@@ -1,0 +1,27 @@
+# Podprzepływ: plan tygodnia „Upper A” w każdym dniu (jak początek 13-kalendarz-plan.yaml; sprawdzone na symulatorze, run 38330631978).
+# Wołać na ekranie Trening po subflows/szablon-testowy.yaml, bez planu. Okno zgody na przypomnienie zamykane „Not now”. Koniec: ekran planu (potem „Back”).
+appId: pl.lukasz.trening
+---
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "Planning", timeout: 30000 }
+- tapOn: "Planning"
+- extendedWaitUntil: { visible: "Monday, Rest", timeout: 30000 }
+- tapOn: "Monday, Rest"
+- tapOn: "Monday: Upper A"
+- extendedWaitUntil: { visible: "Not now", timeout: 8000, optional: true }
+- tapOn: { text: "Not now", optional: true }
+- tapOn: "Tuesday, Rest"
+- tapOn: "Tuesday: Upper A"
+- tapOn: "Wednesday, Rest"
+- tapOn: "Wednesday: Upper A"
+- scrollUntilVisible: { element: "Sunday, Rest", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Thursday, Rest"
+- tapOn: "Thursday: Upper A"
+- tapOn: "Friday, Rest"
+- tapOn: "Friday: Upper A"
+- tapOn: "Saturday, Rest"
+- tapOn: "Saturday: Upper A"
+- scrollUntilVisible: { element: "Sunday, Rest", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Sunday, Rest"
+- scrollUntilVisible: { element: "Sunday: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # 11.10.2026: wyższy nagłówek planu — chipy rozwiniętego wiersza pod ekranem
+- tapOn: "Sunday: Upper A"

@@ -1,0 +1,23 @@
+# Podprzepływ: generator szablonów i planu (jak 14) — „Planning” → podgląd → zapis „Full Body A/B”, plan Pn/Śr/Sb aktywny. Koniec na ekranie planu (Back → ekran Trening).
+# Wołać na ekranie Trening z widocznym „Planning”, bez szablonów i planu. Kroki jak w 14-generator.yaml (sprawdzone na symulatorze, run 38330631978).
+appId: pl.lukasz.trening
+---
+- tapOn: "Planning"
+- extendedWaitUntil: { visible: "Generate templates and plan", timeout: 30000 }
+- tapOn: "Generate templates and plan"
+- extendedWaitUntil: { visible: "Preview", timeout: 30000 }
+- tapOn: { id: "day-4" }
+- tapOn: { id: "day-5" }
+- scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Save templates and plan", direction: DOWN, timeout: 30000 }  # bez centerElement: przycisk jest na końcu listy i nie da się go wyśrodkować (run 38369572843, zrzut: widoczny na dole)
+- tapOn: "Save templates and plan"
+- extendedWaitUntil: { visible: "Make the new plan active\\?", timeout: 15000 }
+- tapOn: "Make active"
+- tapOn: { text: "Not now", optional: true }
+- extendedWaitUntil: { visible: "Saved", timeout: 15000 }
+- tapOn: "Planning"
+- tapOn: { text: "Not now", optional: true }
+- extendedWaitUntil: { visible: "Monday, Full Body A", timeout: 30000 }
+- scrollUntilVisible: { element: "Saturday, Full Body A", direction: DOWN, timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }

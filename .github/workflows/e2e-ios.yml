@@ -22,11 +22,21 @@ on:
         description: 'Wygląd systemu symulatora: light albo dark'
         required: false
         default: 'light'
+      poprzednia_wersja_z_przebiegu:
+        description: 'Test aktualizacji (scenariusze 33–34): numer przebiegu z aplikacją POPRZEDNIEJ wersji (artefakt trening-sim-app). Pusty = ostatni zielony przebieg na main (artefakty żyją 1 dzień — gdy wygasł, test aktualizacji jest pomijany z ostrzeżeniem); „brak” = bez testu aktualizacji'
+        required: false
+        default: ''
+      tylko_scenariusze:
+        description: 'Tylko wybrane scenariusze: numery po spacji, np. "31 35" (33 i 34 uruchamiają test aktualizacji); pusty = wszystkie. Do szybkiego powtórzenia po poprawce scenariusza'
+        required: false
+        default: ''
   workflow_call:  # nocny przebieg (nightly.yml, 06.10.2026): inne urządzenie i ciemny wygląd
     inputs:
       aplikacja_z_przebiegu: { type: string, required: false, default: '' }
       urzadzenie: { type: string, required: false, default: '' }
       wyglad: { type: string, required: false, default: 'light' }
+      poprzednia_wersja_z_przebiegu: { type: string, required: false, default: '' }
+      tylko_scenariusze: { type: string, required: false, default: '' }
 concurrency:
   group: e2e-${{ github.ref }}-${{ github.event_name }}
   cancel-in-progress: ${{ github.event_name == 'push' }}
@@ -36,7 +46,7 @@ jobs:
     permissions:
       contents: read
       actions: read
-    timeout-minutes: 180  # build ~30 + symulator ~8 + 2 × strażnik 70 min (11.10.2026: 18 scenariuszy ~50 min — strażnik 50 min uciął ostatni, run 38153866859) (07.10.2026: scenariusz 11; 10 scenariuszy trwało 38 min); przy za małym limicie powtórzenie było ucinane bez podsumowania porażki
+    timeout-minutes: 300  # 13.10.2026: scenariusze „z życia” 31–35 (+~20 min) i test aktualizacji — strażnik 100 min na podejście; wcześniej 180: build ~30 + symulator ~8 + 2 × strażnik 70 min (11.10.2026: 18 scenariuszy ~50 min — strażnik 50 min uciął ostatni, run 38153866859) (07.10.2026: scenariusz 11; 10 scenariuszy trwało 38 min); przy za małym limicie powtórzenie było ucinane bez podsumowania porażki
     steps:
       - uses: actions/checkout@v5
       - name: Select Xcode 26.x
@@ -122,26 +132,81 @@ jobs:
           "$HOME/.maestro/bin/maestro" --version || true
       - name: Maestro
         env:
+          ONLY: ${{ inputs.tylko_scenariusze }}
           MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'  # świeżo uruchomiony symulator potrzebuje więcej czasu na sterownik XCTest (04.10.2026: 2× „driver not ready” przy 240 s po 8-min. rozruchu symulatora)
           MAESTRO_CLI_NO_ANALYTICS: '1'
         run: |
           mkdir -p e2e-out
+          # Wejście „tylko_scenariusze”: kopia wybranych plików (poza 33–34, te idą krokiem „Aktualizacja”) z podprzepływami do osobnego katalogu
+          DIR=.maestro
+          if [ -n "$ONLY" ]; then
+            rm -rf .maestro-wybrane; mkdir .maestro-wybrane; cp -r .maestro/subflows .maestro-wybrane/; N=0
+            for n in $ONLY; do case "$n" in 33|34) ;; *) cp .maestro/"$n"-*.yaml .maestro-wybrane/ && N=$((N+1));; esac; done
+            [ "$N" -gt 0 ] || { echo "Brak scenariuszy do głównego przebiegu (wybrane: $ONLY)"; exit 0; }
+            DIR=.maestro-wybrane
+          fi
           # Jedno powtórzenie TYLKO, gdy sterownik XCTest nie wystartował (awaria maszyny przed pierwszym scenariuszem — CLAUDE.md);
           # błąd w scenariuszu nie jest powtarzany.
           set +e
           # Strażnik czasu (04.10.2026, run 37229659437: po błędzie sterownika Maestro wisiał 68 min do limitu zadania): 40 min na podejście
-          # (06.10.2026: 10 scenariuszy zamiast 7 — przebieg 56 z 7 scenariuszami trwał ~21 min);
+          # (06.10.2026: 10 scenariuszy zamiast 7 — przebieg 56 z 7 scenariuszami trwał ~21 min; 13.10.2026: 40 min → 100 min — 21 scenariuszy trwało ~58 min, doszły długie 31, 32, 35);
           # Maestro w osobnej grupie procesów — po czasie TERM/KILL całej grupy (java uruchamiana przez skrypt maestro trzymałaby potok do tee).
-          guard() { perl -e '$t=shift; $p=fork; if(!$p){setpgrp(0,0); exec @ARGV; exit 127} $SIG{ALRM}=sub{kill "TERM",-$p; sleep 5; kill "KILL",-$p; exit 124}; alarm $t; waitpid($p,0); exit($? & 127 ? 128 + ($? & 127) : $? >> 8)' "${MAESTRO_ALARM:-4200}" "$@"; }
-          guard maestro --device "$SIM" test .maestro --format junit --output e2e-out/report.xml --test-output-dir e2e-out 2>&1 | tee /tmp/maestro-1.log
+          guard() { perl -e '$t=shift; $p=fork; if(!$p){setpgrp(0,0); exec @ARGV; exit 127} $SIG{ALRM}=sub{kill "TERM",-$p; sleep 5; kill "KILL",-$p; exit 124}; alarm $t; waitpid($p,0); exit($? & 127 ? 128 + ($? & 127) : $? >> 8)' "${MAESTRO_ALARM:-6000}" "$@"; }
+          guard maestro --device "$SIM" test "$DIR" --exclude-tags=aktualizacja --format junit --output e2e-out/report.xml --test-output-dir e2e-out 2>&1 | tee /tmp/maestro-1.log
           rc=${PIPESTATUS[0]}
           if [ "$rc" -ne 0 ] && grep -qE "iOS driver not ready in time|deviceInfo failed" /tmp/maestro-1.log; then
             echo "::warning::Sterownik XCTest nie wystartował — jedno powtórzenie (awaria maszyny, nie scenariusza)"
             rm -rf e2e-out && mkdir -p e2e-out
-            guard maestro --device "$SIM" test .maestro --format junit --output e2e-out/report.xml --test-output-dir e2e-out
+            guard maestro --device "$SIM" test "$DIR" --exclude-tags=aktualizacja --format junit --output e2e-out/report.xml --test-output-dir e2e-out
             rc=$?
           fi
           exit $rc
+      - name: Aktualizacja — wybór poprzedniej wersji
+        # 13.10.2026 (docs/31, persona C): poprzednia wersja aplikacji z artefaktu trening-sim-app wskazanego wejściem albo z ostatniego zielonego przebiegu na main.
+        # Artefakty żyją 1 dzień (ADR-031) — gdy go nie ma, test aktualizacji jest pominięty z ostrzeżeniem (nie z błędem: brak starej aplikacji to nie błąd nowej).
+        id: prev
+        if: ${{ !cancelled() && inputs.poprzednia_wersja_z_przebiegu != 'brak' && (inputs.tylko_scenariusze == '' || contains(inputs.tylko_scenariusze, '33') || contains(inputs.tylko_scenariusze, '34')) }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WANT_RUN: ${{ inputs.poprzednia_wersja_z_przebiegu }}
+        run: |
+          RUN="$WANT_RUN"
+          if [ -z "$RUN" ]; then
+            RUN=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow e2e-ios.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId' 2>/dev/null || true)
+          fi
+          [ "$RUN" = "$GITHUB_RUN_ID" ] && RUN=""
+          echo "run=$RUN" >> "$GITHUB_OUTPUT"
+          [ -n "$RUN" ] || echo "::warning::Test aktualizacji pominięty: brak przebiegu z poprzednią wersją aplikacji"
+      - uses: actions/download-artifact@v4
+        id: prevapp
+        if: ${{ !cancelled() && steps.prev.outputs.run != '' }}
+        continue-on-error: true
+        with:
+          name: trening-sim-app
+          run-id: ${{ steps.prev.outputs.run }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: poprzednia-wersja
+      - name: Aktualizacja (poprzednia wersja → dane przez UI → bieżąca wersja bez odinstalowania → sprawdzenie)
+        if: ${{ !cancelled() && steps.prev.outputs.run != '' && steps.prevapp.outcome == 'success' }}
+        env:
+          MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'
+          MAESTRO_CLI_NO_ANALYTICS: '1'
+        run: |
+          set -o pipefail
+          NEW=ios/build/Build/Products/Release-iphonesimulator/Trening.app
+          mkdir -p poprzednia-wersja/app e2e-out/aktualizacja
+          unzip -q poprzednia-wersja/Trening-sim.zip -d poprzednia-wersja/app
+          test -d poprzednia-wersja/app/Trening.app || { echo "::warning::Artefakt poprzedniej wersji bez Trening.app — test aktualizacji pominięty"; exit 0; }
+          guard() { perl -e '$t=shift; $p=fork; if(!$p){setpgrp(0,0); exec @ARGV; exit 127} $SIG{ALRM}=sub{kill "TERM",-$p; sleep 5; kill "KILL",-$p; exit 124}; alarm $t; waitpid($p,0); exit($? & 127 ? 128 + ($? & 127) : $? >> 8)' "${MAESTRO_ALARM_UPD:-1500}" "$@"; }
+          echo "Poprzednia wersja: $(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' poprzednia-wersja/app/Trening.app/Info.plist) (build $(/usr/libexec/PlistBuddy -c 'Print CFBundleVersion' poprzednia-wersja/app/Trening.app/Info.plist)); bieżąca: $(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$NEW/Info.plist")"
+          xcrun simctl terminate "$SIM" pl.lukasz.trening || true
+          xcrun simctl uninstall "$SIM" pl.lukasz.trening || true
+          xcrun simctl install "$SIM" poprzednia-wersja/app/Trening.app
+          guard maestro --device "$SIM" test .maestro/33-aktualizacja-przygotuj.yaml --format junit --output e2e-out/aktualizacja/przygotuj.xml --test-output-dir e2e-out/aktualizacja/przygotuj
+          # instalacja bieżącej wersji NA TEJ SAMEJ instalacji (bez uninstall) — dane, ustawienia i trening w toku zostają
+          xcrun simctl terminate "$SIM" pl.lukasz.trening || true
+          xcrun simctl install "$SIM" "$NEW"
+          guard maestro --device "$SIM" test .maestro/34-aktualizacja-sprawdz.yaml --format junit --output e2e-out/aktualizacja/sprawdz.xml --test-output-dir e2e-out/aktualizacja/sprawdz
       - name: Podsumowanie porażki (nieudane polecenie i teksty z ekranu — artefakty bywają nieosiągalne)
         if: failure()
         run: |

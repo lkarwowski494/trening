@@ -1,0 +1,181 @@
+# Scenariusz „z życia” (docs/31, persona A — Ola, nowa użytkowniczka, pierwszy tydzień): pierwsze uruchomienie → „Pierwsze kroki” → „Co nowego” → generator szablonów
+# i planu → miejsce i sprzęt → pierwszy trening z szablonu (waga i powtórzenia wpisane, przerwa, pauza, zamiana ćwiczenia, pominięcie ćwiczenia, seria dopisana) →
+# zakończenie → dwa treningi wstecz (poprzednie dni) → „Ten tydzień”, Progresja, Postępy, rekordy ćwiczenia, historia i kalendarz.
+# Daty: symulator nie pozwala przesunąć zegara w Maestro, więc „kolejne dni” to trening wstecz (przycisk „Previous day”) — docs/31 pkt 3. Asercje nie zależą
+# od dnia tygodnia ani od północy (dzień uruchomienia bywa poniedziałkiem lub niedzielą; „wczoraj” bywa w poprzednim tygodniu).
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "First steps", "Create your first template or generate templates and a plan.", "Set a weekly plan.*", "First workout.*" ← components/Dashboard.tsx FirstSteps
+#   "What's new.*", "In this version", "Close"            ← components/WhatsNew.tsx ('Co nowego', 'W tej wersji', 'Zamknij')
+#   "Full Body A", "Full Body B"                           ← szablony z generatora (subflows/generator-plan.yaml)
+#   "Previous day"                                          ← components/WhenFields.tsx ('Dzień wcześniej')
+#   "Workout progress: .*", "Pause workout", ".* · paused", "Resume workout", "Skip today: …", "skipped today", "Restore exercise.*" ← ActiveWorkout
+appId: pl.lukasz.trening
+name: Pierwszy tydzień nowego użytkownika
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+# --- pierwsze uruchomienie: „Pierwsze kroki” i „Co nowego” ---
+- assertVisible: "First steps"
+- assertVisible: "Create your first template or generate templates and a plan."
+- assertVisible: "Set a weekly plan.*"
+- assertVisible: "First workout.*"
+- takeScreenshot: 80-pierwsze-kroki
+# run 38368489051: pierwsze stuknięcie tuż po starcie (animacja startowa) nie otworzyło panelu — powtórzenie; wpis może mieć numer buildu (13)
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: { id: "whats-new-i" }
+      - extendedWaitUntil: { visible: "In this version|Test build [0-9]+ · .*", timeout: 10000 }
+- assertVisible: ".*starting with this version.*"
+- tapOn: "Close"
+- assertNotVisible: "In this version|Test build [0-9]+ · .*"
+# --- generator szablonów i planu (jak 14) ---
+- runFlow: subflows/generator-plan.yaml
+- takeScreenshot: 81-po-generatorze
+# --- miejsce i sprzęt: dom z hantlami i ławką (jak 07) ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+- tapOn: "Places and equipment"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Add place"
+- extendedWaitUntil: { visible: "Home,.*", timeout: 30000 }
+- tapOn: "Home,.*"
+- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
+- scrollUntilVisible: { element: "Free weights.*", direction: DOWN, timeout: 90000 }
+- tapOn: "Free weights.*"
+- scrollUntilVisible: { element: { id: "sw-Dumbbells \\(fixed or quick-adjust\\)" }, direction: DOWN, timeout: 90000 }
+- tapOn: { id: "sw-Dumbbells \\(fixed or quick-adjust\\)" }
+- scrollUntilVisible: { element: "Benches and racks.*", direction: DOWN, timeout: 90000 }
+- tapOn: "Benches and racks.*"
+- scrollUntilVisible: { element: { id: "sw-Adjustable bench" }, direction: DOWN, timeout: 90000 }
+- tapOn: { id: "sw-Adjustable bench" }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+# --- pierwszy trening: „Full Body A” z szablonu ---
+- tapOn: "Other workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 20000 }
+- tapOn: "From a template"
+- extendedWaitUntil: { visible: "Start: Full Body A", timeout: 30000 }
+- tapOn: "Start: Full Body A"
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- assertVisible: "Workout progress: 0 of 18 sets"
+- takeScreenshot: 82-trening-start
+# pierwsza seria: ciężar i powtórzenia wpisane, potem ✓ (przerwa)
+- tapOn: { id: "w-0-0" }
+- inputText: "60"
+- tapOn: { id: "r-0-0" }
+- inputText: "10"
+- tapOn: { text: "Set 1 done — Back Squat" }
+- extendedWaitUntil: { visible: "Skip", timeout: 15000 }
+- assertVisible: "Workout progress: 1 of 18 sets"
+- takeScreenshot: 83-przerwa
+# pauza treningu w przerwie i wznowienie
+- tapOn: "Pause workout"
+- extendedWaitUntil: { visible: "Resume workout", timeout: 15000 }
+- assertVisible: ".* · paused"
+- tapOn: "Resume workout"
+- extendedWaitUntil: { visible: "Pause workout", timeout: 15000 }
+- tapOn: "Skip"
+- assertNotVisible: "Skip"
+# zamiana ćwiczenia: martwy ciąg / wiosłowanie → propozycja
+- scrollUntilVisible: { element: "Swap exercise: Bent Over Row \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Swap exercise: Bent Over Row \\(Barbell\\)"
+- extendedWaitUntil: { visible: "Suggestion 1: .*", timeout: 30000 }
+- tapOn: "Suggestion 1: .*"
+- extendedWaitUntil: { visible: "instead of: Bent Over Row \\(Barbell\\).*", timeout: 30000 }
+# pominięcie ćwiczenia „na dziś” i przywrócenie
+- scrollUntilVisible: { element: "Skip today: Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Skip today: Overhead Press \\(Barbell\\)"
+- extendedWaitUntil: { visible: "skipped today", timeout: 15000 }
+- takeScreenshot: 84-pominiete
+- scrollUntilVisible: { element: "Restore exercise.*", direction: UP, timeout: 30000, centerElement: true }  # run 38363820424: wiersz „pominięte dziś” był nad ekranem — Maestro nie przewija przed stuknięciem
+- tapOn: "Restore exercise.*"
+- scrollUntilVisible: { element: "Set 1 done — Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }
+- assertNotVisible: "skipped today"
+# dopisana seria
+- scrollUntilVisible: { element: { text: "\\+ set", index: 0 }, direction: UP, timeout: 60000, centerElement: true }
+- tapOn: { text: "\\+ set", index: 0 }
+- extendedWaitUntil: { visible: "Set 4 done — .*", timeout: 15000 }  # runy 38364646107, 38370760163: stuknięty „+ set” to pierwszy widoczny na urządzeniu (nie zawsze Back Squat) — nazwa dowolna
+# zakończenie (część serii nieodhaczona — świadomie)
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }  # run 38375488119: przycisk „Finish” był ucięty u góry — przewinięcie na początek listy
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- waitForAnimationToEnd
+- retry:  # run 38375488119: stuknięcie „Finish” w trakcie odliczania/przewijania bywa gubione — okno pytania się nie pokazało
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
+- takeScreenshot: 85-pytanie-o-zakonczenie
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: "Full Body A"
+- takeScreenshot: 86-sesja
+- tapOn: "Back"
+# --- dwa treningi wstecz: dzień wcześniej i dwa dni wcześniej (jak 05) ---
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }
+- tapOn: "Log a past workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 30000 }
+- tapOn: "Previous day"
+- tapOn: "Full Body B, .*"
+- extendedWaitUntil: { visible: "Cancel session editing", timeout: 30000 }
+- tapOn: { id: "reps-0-0" }
+- inputText: "8"
+- tapOn: "Save session"
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: "Full Body B"
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }
+- tapOn: "Log a past workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 30000 }
+- tapOn: "Previous day"
+- tapOn: "Previous day"
+- tapOn: "Previous day"
+- tapOn: "Full Body A, .*"
+- extendedWaitUntil: { visible: "Cancel session editing", timeout: 30000 }
+- tapOn: { id: "reps-0-0" }
+- inputText: "9"
+- tapOn: "Save session"
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "3 sessions", timeout: 30000 }
+- takeScreenshot: 87-historia-trzy-sesje
+# --- ekran Trening po pierwszym tygodniu: „Ten tydzień”, brak „Pierwszych kroków”, kafelki progresji ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "This week", timeout: 30000 }
+- assertNotVisible: "First steps"
+- assertVisible: "Workouts: [1-9];.*"
+- takeScreenshot: 88-ten-tydzien
+- scrollUntilVisible: { element: { id: "progress-tile-week" }, direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: { id: "progress-tile-week" }
+- extendedWaitUntil: { visible: "Progression", timeout: 30000 }
+- takeScreenshot: 89-progresja
+- tapOn: "Back"
+# --- Postępy: podsumowanie i rekordy ćwiczenia ---
+- tapOn: "Progress, tab.*"
+- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- assertVisible: "Workouts: [1-9].*, previously .*"
+- takeScreenshot: 90-postepy
+- assertVisible: "Muscle map: .*"
+- scrollUntilVisible: { element: "Back Squat", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Back Squat"
+- extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }
+- takeScreenshot: 91-rekordy-cwiczenia
+- assertVisible: "Max weight"
+- assertVisible: "Best session \\(volume\\)"
+- assertVisible: "e1RM \\(Epley\\)"
+# --- Plan po pierwszym tygodniu: plan z generatora wciąż obowiązuje (Plan → Planowanie) ---
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "Planning", timeout: 30000 }
+- tapOn: "Planning"
+- extendedWaitUntil: { visible: "Monday, Full Body A", timeout: 30000 }
+- takeScreenshot: 92-plan-po-tygodniu

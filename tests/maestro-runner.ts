@@ -236,7 +236,7 @@ export class Runner {
           if (clear) (global as any).__notifPerm = { ...SIM_NOTIF_PERM };
           /* UX2-03: ponowny start na tej samej bazie — także klucz szkiców edycji (store.DRAFTS_KEY) */
           const kv = !clear && global.__kv.has(store.DRAFTS_KEY) ? { [store.DRAFTS_KEY]: global.__kv.get(store.DRAFTS_KEY)! } : undefined;
-          await renderApp({ locale: 'en', tag: SIM_TAG, saved: st, kv }); await this.tick(100);
+          await renderApp({ locale: 'en', tag: SIM_TAG, saved: st, kv }); if (process.env.MAESTRO_NOW) jest.setSystemTime(new Date(process.env.MAESTRO_NOW)); /* docs/31: scenariusze „z życia” sprawdzane w różne dni tygodnia i na granicy miesiąca (zegar symulatora to zegar maszyny) */ await this.tick(100);
           this.focused = null; this.scrollY = new WeakMap(); this.alertSeen = 0 /* UX2-03: renderApp czyści okna — każde obecne powstało przy tym starcie (np. pytanie o szkic) */; this.alertOpen = null; this.alertStack = []; this.sheetSeen = (global as any).__sheets.length; this.sheetOpen = null; break;
         }
         case 'stopApp': await act(async () => { await store.flush(); }); break;

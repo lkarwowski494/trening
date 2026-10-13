@@ -1,0 +1,74 @@
+# Scenariusz „z życia” (docs/31, persona C — Kasia, aktualizacja aplikacji), CZĘŚĆ 1: dane przez UI w POPRZEDNIEJ wersji aplikacji. Uruchamiany tylko przez
+# e2e-ios.yml w kroku „Aktualizacja”, na zainstalowanej poprzedniej wersji (ostatni zielony przebieg na main albo wejście `poprzednia_wersja_z_przebiegu`); w zwykłym
+# przebiegu pomijany (tag `aktualizacja`, `--exclude-tags`). Po nim workflow instaluje BIEŻĄCĄ aplikację na tym samym symulatorze BEZ odinstalowania i uruchamia
+# 34-aktualizacja-sprawdz.yaml. Test pary w Jest: tests/maestro-zycie.test.tsx (restart na tych samych danych).
+# Kroki ograniczone do UI, który istnieje w kilku ostatnich wersjach (zakładki, Szablony pod Więcej, Ustawienia, Postępy → masa ciała).
+# Stan końcowy: szablon „Upper A”, jednostka kg, wygląd ciemny, 1 zakończony trening, masa ciała 80 kg, DRUGI trening w toku (1 seria odhaczona).
+tags:
+  - aktualizacja
+appId: pl.lukasz.trening
+name: Aktualizacja — dane w poprzedniej wersji
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+# --- ustawienia: kg i ciemny wygląd ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
+- tapOn: "kg"
+- tapOn: "Dark"
+- tapOn: "Back"
+# --- pierwszy trening: ciężar, powtórzenia, zakończenie ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Skip", timeout: 15000 }
+- tapOn: "Skip"
+- assertNotVisible: "Skip"
+- retry:  # run 38375488119: stuknięcie „Finish” w trakcie odliczania/przewijania bywa gubione — okno pytania się nie pokazało
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
+# --- masa ciała 80 kg (jak 15) ---
+- tapOn: "Progress, tab.*"
+- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000 }
+- tapOn: "Body weight — measurements"
+- extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }
+- retry:
+    maxRetries: 1
+    commands:
+      - runFlow:
+          when: { visible: "Body weight must be .*" }
+          commands:
+            - tapOn: "OK"
+      - tapOn: { id: "bodymass-kg" }
+      - waitForAnimationToEnd
+      - eraseText: 6
+      - inputText: "8"
+      - inputText: "0"
+      - tapOn: "Save measurement"
+      - extendedWaitUntil: { visible: "80 kg, .*", timeout: 15000 }
+- tapOn: "Back"
+# --- drugi trening: w toku, pierwsza seria odhaczona z ciężarem i powtórzeniami ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: { id: "w-0-0" }
+- inputText: "40"
+- tapOn: { id: "r-0-0" }
+- inputText: "10"
+- tapOn: { text: "Set 1 done — Bench Press \\(Dumbbell\\)" }
+- extendedWaitUntil: { visible: "Skip", timeout: 15000 }
+- takeScreenshot: 100-trening-w-toku-przed-aktualizacja

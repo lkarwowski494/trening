@@ -44,7 +44,7 @@ test('e2e-ios.yml: podsumowanie porażki uruchamiane tylko po błędzie, przed w
 
 test('e2e-ios.yml: najwyżej jedno powtórzenie Maestro i tylko, gdy sterownik XCTest nie wystartował (błąd scenariusza nie jest powtarzany)', () => {
   const y = fs.readFileSync(path.join(root, '.github/workflows/e2e-ios.yml'), 'utf8');
-  const step = y.slice(y.indexOf('- name: Maestro'), y.indexOf('- name: Podsumowanie porażki'));
+  const step = y.slice(y.indexOf('- name: Maestro'), y.indexOf('- name: Aktualizacja — wybór'));
   expect(step.match(/maestro --device/g)).toHaveLength(2); /* oba przez strażnika czasu (guard) */
   expect(step).toMatch(/if \[ "\$rc" -ne 0 \] && grep -qE "iOS driver not ready in time\|deviceInfo failed"/);
   expect(step).toMatch(/exit \$rc/);
