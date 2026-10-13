@@ -1557,5 +1557,7 @@
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Barele de serii arată separat seriile indirecte (secundare, numărate câte 0,5).",
  "Generator uwzględnia Twój cel serii z Ustawień.": "Generatorul ține cont de ținta ta de serii din Configurări.",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Utilizare mai coerentă în toată aplicația: ferestre cu „Anulează” în stânga, „+” în antetele listelor pentru adăugare și mesaje și descrieri VoiceOver mai clare.",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Butonul „Scrie-ne” din Mai mult → Despre aplicație."
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Butonul „Scrie-ne” din Mai mult → Despre aplicație.",
+ "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Adaptează la locație: când treci la o locație fără echipamentul necesar, aplicația propune exerciții de înlocuire pentru a le revizui — modificările se aplică doar acestui antrenament.",
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "În fereastră poți schimba înlocuitorul sau alege „Fără modificări” ori „Sari peste azi”; o înlocuire aplicată se anulează la exercițiu."
 }

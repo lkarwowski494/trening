@@ -30,8 +30,11 @@ name: Pierwszy tydzień nowego użytkownika
       - tapOn: { id: "whats-new-i" }
       - extendedWaitUntil: { visible: "In this version|Test build [0-9]+ · .*", timeout: 10000 }
 - assertVisible: ".*starting with this version.*"
+# 0.18: rozwinięta sekcja (dwa punkty bieżącego wpisu + wiersze starszych) spycha „Close” pod listę — przewinięcie z wyśrodkowaniem przed stuknięciem (wzór 13, 34); po zwinięciu powrót w górę
+- scrollUntilVisible: { element: "Close", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Close"
 - assertNotVisible: "In this version|Test build [0-9]+ · .*"
+- scrollUntilVisible: { element: "Planning", direction: UP, timeout: 30000, centerElement: true }
 # --- generator szablonów i planu (jak 14) ---
 - runFlow: subflows/generator-plan.yaml
 - takeScreenshot: 81-po-generatorze

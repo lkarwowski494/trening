@@ -1557,5 +1557,7 @@
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Les barres de séries affichent séparément les séries indirectes (secondaires, comptées pour 0,5).",
  "Generator uwzględnia Twój cel serii z Ustawień.": "Le générateur tient compte de votre objectif de séries défini dans Réglages.",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Une utilisation plus cohérente dans toute l’application : fenêtres avec « Annuler » à gauche, « + » dans les en-têtes de liste pour ajouter, et des messages et descriptions VoiceOver plus clairs.",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Bouton « Écrivez-nous » dans Plus → À propos."
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Bouton « Écrivez-nous » dans Plus → À propos.",
+ "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Adapter au lieu : quand vous passez à un lieu sans le matériel nécessaire, l’application propose des exercices de remplacement à examiner ; les modifications ne concernent que cette séance.",
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Dans la fenêtre, vous pouvez changer le remplaçant ou choisir « Aucun changement » ou « Passer aujourd’hui » ; vous annulez un échange appliqué sur l’exercice."
 }

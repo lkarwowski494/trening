@@ -1557,5 +1557,7 @@
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Settstolpene viser indirekte sett separat (sekundære, regnet som 0,5).",
  "Generator uwzględnia Twój cel serii z Ustawień.": "Generatoren tar hensyn til settmålet ditt fra Innstillinger.",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Mer ensartet betjening i hele appen: vinduer med «Avbryt» til venstre, «+» i listeoverskrifter for å legge til, og tydeligere meldinger og beskrivelser for VoiceOver.",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Knappen «Skriv til oss» under Mer → Om appen."
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Knappen «Skriv til oss» under Mer → Om appen.",
+ "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Tilpass til stedet: når du bytter til et sted uten nødvendig utstyr, foreslår appen erstatningsøvelser du kan se gjennom – endringene gjelder bare denne økten.",
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "I vinduet kan du endre erstatningen eller velge «Ingen endring» eller «Hopp over i dag»; et utført bytte kan angres ved øvelsen."
 }

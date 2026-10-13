@@ -1557,5 +1557,7 @@
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Serijų juostose netiesioginės serijos rodomos atskirai (pagalbinės, skaičiuojamos po 0,5).",
  "Generator uwzględnia Twój cel serii z Ustawień.": "Generatorius atsižvelgia į Nustatymuose nurodytą jūsų serijų tikslą.",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Nuoseklesnis valdymas visoje programėlėje: languose „Atšaukti“ kairėje, sąrašų antraštėse „+“ pridėti, aiškesni pranešimai ir VoiceOver aprašai.",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Mygtukas „Parašykite mums“ skiltyje Daugiau → Apie programėlę."
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Mygtukas „Parašykite mums“ skiltyje Daugiau → Apie programėlę.",
+ "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Pritaikyti vietai: kai pakeiti vietą į tokią be reikiamos įrangos, programėlė pasiūlo pakaitinius pratimus peržiūrai – pakeitimai galioja tik šiai treniruotei.",
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Lange gali pakeisti pakaitalą arba pasirinkti „Be pakeitimų“ ar „Šiandien praleisti“; pritaikytą pakeitimą atšauksi prie pratimo."
 }

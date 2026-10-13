@@ -1557,5 +1557,7 @@
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "A sorozatsávok külön mutatják a közvetett sorozatokat (másodlagos, 0,5-tel számolt).",
  "Generator uwzględnia Twój cel serii z Ustawień.": "A generátor figyelembe veszi a Beállításokban megadott sorozatcélt.",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Egységesebb kezelés az egész alkalmazásban: az ablakokban a „Mégsem” balra kerül, a listák fejlécében „+” gomb szolgál a hozzáadásra, az üzenetek és a VoiceOver-leírások pedig érthetőbbek.",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Új „Írj nekünk” gomb az Egyebek → Az alkalmazásról részben."
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Új „Írj nekünk” gomb az Egyebek → Az alkalmazásról részben.",
+ "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Igazítás a helyszínhez: ha olyan helyszínre váltasz, ahol nincs meg a szükséges felszerelés, az alkalmazás helyettesítő gyakorlatokat javasol átnézésre – a módosítások csak erre az edzésre vonatkoznak.",
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Az ablakban módosíthatod a helyettesítőt, vagy választhatod a „Nincs változtatás” vagy a „Ma kihagyom” lehetőséget; az alkalmazott cserét a gyakorlatnál vonhatod vissza."
 }

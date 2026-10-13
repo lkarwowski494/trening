@@ -1557,5 +1557,7 @@
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Полоски подходов показывают косвенные подходы отдельно (вспомогательные, считаются по 0,5).",
  "Generator uwzględnia Twój cel serii z Ustawień.": "Генератор учитывает вашу цель по подходам из Настроек.",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Более единообразное управление во всём приложении: в окнах «Отменить» слева, в заголовках списков есть «+» для добавления, а сообщения и описания для VoiceOver стали понятнее.",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Кнопка «Написать нам» в разделе Ещё → О приложении."
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Кнопка «Написать нам» в разделе Ещё → О приложении.",
+ "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Подстроить под место: при смене места на такое, где нет нужного оборудования, приложение предлагает замены упражнений на проверку — изменения действуют только в этой тренировке.",
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "В окне можно изменить замену или выбрать «Без изменений» либо «Пропустить сегодня»; применённую замену можно отменить у самого упражнения."
 }

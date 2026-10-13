@@ -119,6 +119,8 @@ describe('ekran Trening', () => {
       'Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii.',
       'Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.',
       'Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.', /* audyt 0.10 A9 */
+      'Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.',
+      'W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.',
       'Nowy wygląd: kolory i kroje, grafika talerzy na sztandze.',
       'Pauza treningu — czas pauzy nie liczy się do czasu trwania.',
       'Pierwsza wersja testowa: treningi z szablonów, historia, postępy i rekordy, kopia zapasowa w Plikach.',

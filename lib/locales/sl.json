@@ -1557,5 +1557,7 @@
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Vrstice serij ločeno prikazujejo posredne serije (pomožne, štete po 0,5).",
  "Generator uwzględnia Twój cel serii z Ustawień.": "Generator upošteva vaš cilj serij iz Nastavitev.",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Enotnejše upravljanje po vsej aplikaciji: okna z gumbom „Prekliči“ na levi, „+“ v glavah seznamov za dodajanje ter razumljivejša sporočila in opisi za VoiceOver.",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Gumb „Pišite nam“ v Več → O aplikaciji."
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Gumb „Pišite nam“ v Več → O aplikaciji.",
+ "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Prilagodi lokaciji: ko zamenjaš lokacijo z drugo, brez potrebne opreme, aplikacija predlaga nadomestne vaje v pregled – spremembe veljajo samo za ta trening.",
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "V oknu lahko spremeniš nadomestek ali izbereš „Brez spremembe“ ali „Danes izpusti“; uporabljeno zamenjavo razveljaviš pri vaji."
 }

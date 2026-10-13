@@ -1052,6 +1052,8 @@ export const EN: Record<string, string> = {
   'Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.': 'More consistent controls across the app: windows with “Cancel” on the left, “+” in list headers for adding, and clearer messages and VoiceOver descriptions.',
   'Przycisk „Napisz do nas” w Więcej → O aplikacji.': 'A “Write to us” button in More → About.',
   /* 0.18 „Dostosuj do miejsca” (docs/33) */
+  'Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.': 'Adjust to location: after you switch to a location without the equipment you need, the app suggests exercise substitutes for you to review — changes apply to this workout only.',
+  'W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.': 'In the window you can change a substitute or choose “No change” or “Skip today”; you can undo an applied swap at the exercise.',
   'Dostosuj do miejsca': 'Adjust to location', 'Dostosuj do: {l}': 'Adjust to: {l}',
   'Zamiany tylko w tym treningu — szablon i plan bez zmian.': 'Swaps apply to this workout only — your template and plan stay as they are.',
   'Zastosuj ({n})': 'Apply ({n})', 'Zamieniono {n} {w}': 'Swapped {n} {w}',

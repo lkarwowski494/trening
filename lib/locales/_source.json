@@ -1191,6 +1191,10 @@
   "en": "Adjust to location"
  },
  {
+  "pl": "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.",
+  "en": "Adjust to location: after you switch to a location without the equipment you need, the app suggests exercise substitutes for you to review — changes apply to this workout only."
+ },
+ {
   "pl": "Dostosuj do: {l}",
   "en": "Adjust to: {l}"
  },
@@ -5357,6 +5361,10 @@
  {
   "pl": "W historii serie z tą gumą pokażą „?”.",
   "en": "Sets with this band will show “?” in history."
+ },
+ {
+  "pl": "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.",
+  "en": "In the window you can change a substitute or choose “No change” or “Skip today”; you can undo an applied swap at the exercise."
  },
  {
   "pl": "w planie na: {day} · {n} ćw.",

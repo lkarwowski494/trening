@@ -1557,5 +1557,7 @@
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Bilah set menampilkan set tidak langsung secara terpisah (set pendukung, dihitung 0,5).",
  "Generator uwzględnia Twój cel serii z Ustawień.": "Pembuat memperhitungkan target set Anda dari Pengaturan.",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Penggunaan yang lebih konsisten di seluruh aplikasi: jendela dengan “Batal” di kiri, “+” di header daftar untuk menambah, serta pesan dan deskripsi VoiceOver yang lebih jelas.",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Tombol “Tulis kepada kami” di Lainnya → Tentang."
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Tombol “Tulis kepada kami” di Lainnya → Tentang.",
+ "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Sesuaikan dengan tempat: saat Anda pindah ke tempat tanpa peralatan yang diperlukan, aplikasi menyarankan latihan pengganti untuk Anda tinjau — perubahan hanya berlaku untuk latihan ini.",
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Di jendela, Anda bisa mengubah penggantinya atau memilih “Tanpa perubahan” atau “Lewati hari ini”; penggantian yang sudah diterapkan bisa dibatalkan pada latihannya."
 }

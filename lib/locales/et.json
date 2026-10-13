@@ -1557,5 +1557,7 @@
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Seeriaribad näitavad kaudseid seeriaid eraldi (abistavad, arvestatud 0,5 kaupa).",
  "Generator uwzględnia Twój cel serii z Ustawień.": "Generaator arvestab Seadetes seatud seeriate eesmärki.",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Ühtlasem kasutus kogu rakenduses: aknad nupuga „Tühista“ vasakul, „+“ loendite päistes lisamiseks ning selgemad teated ja VoiceOveri kirjeldused.",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Nupp „Kirjuta meile“ jaotises Rohkem → Rakendusest."
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Nupp „Kirjuta meile“ jaotises Rohkem → Rakendusest.",
+ "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Kohanda kohale: kui vahetad koha vajaliku varustuseta koha vastu, pakub rakendus asendusharjutusi ülevaatamiseks – muudatused kehtivad ainult selle treeningu kohta.",
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Aknas saad asendust muuta või valida „Muutmata“ või „Jäta täna vahele“; rakendatud vahetuse saad harjutuse juures tühistada."
 }
