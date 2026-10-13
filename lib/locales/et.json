@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} otse, {w} kaudselt (abistavad seeriad: {n})",
  "cel {n}": "siht {n}",
  "bezpośrednie": "otsesed",
- "pośrednie (pomocnicze, po {h})": "kaudsed (abistavad, {h} kumbki)"
+ "pośrednie (pomocnicze, po {h})": "kaudsed (abistavad, {h} kumbki)",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Värskendatud koostöö Apple Healthiga — treeningute salvestamine töötab nagu varem.",
+ "Poprawione sformułowania części wskazówek techniki.": "Täiendatud osa tehnikavihjete sõnastust."
 }

@@ -958,6 +958,8 @@ export const EN: Record<string, string> = {
   'Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.': 'Fixes: Progress remembers the selected exercise, an import without times shows “time unknown”, and help texts now match the tab names.',
   '20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.': '20 new exercises with tips in the “Technique” section.',
   'Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.': 'Workouts logged after the fact: you can choose the workout place in the editor.',
+  'Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.': 'Updated integration with Apple Health — saving workouts works as before.',
+  'Poprawione sformułowania części wskazówek techniki.': 'Reworded some of the technique tips.',
   /* 0.14.0 */
   'godzina nieznana': 'time unknown',
   'Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.': 'Weight from other equipment — it does not count toward records until you enter it here.',

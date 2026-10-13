@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} dirette, {w} indirette (serie secondarie: {n})",
  "cel {n}": "obiettivo {n}",
  "bezpośrednie": "dirette",
- "pośrednie (pomocnicze, po {h})": "indirette (secondarie, {h} ciascuna)"
+ "pośrednie (pomocnicze, po {h})": "indirette (secondarie, {h} ciascuna)",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Aggiornata l’integrazione con Apple Health — il salvataggio degli allenamenti funziona come prima.",
+ "Poprawione sformułowania części wskazówek techniki.": "Migliorata la formulazione di alcuni consigli sulla tecnica."
 }

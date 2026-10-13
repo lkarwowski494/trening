@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} doğrudan, {w} dolaylı (ikincil setler: {n})",
  "cel {n}": "hedef {n}",
  "bezpośrednie": "doğrudan",
- "pośrednie (pomocnicze, po {h})": "dolaylı (ikincil, her biri {h})"
+ "pośrednie (pomocnicze, po {h})": "dolaylı (ikincil, her biri {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Apple Health ile iş birliği güncellendi — antrenmanların kaydedilmesi eskisi gibi çalışıyor.",
+ "Poprawione sformułowania części wskazówek techniki.": "Bazı teknik ipuçlarının ifadeleri iyileştirildi."
 }

@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} direct, {w} indirect (serii secundare: {n})",
  "cel {n}": "țintă {n}",
  "bezpośrednie": "directe",
- "pośrednie (pomocnicze, po {h})": "indirecte (secundare, câte {h})"
+ "pośrednie (pomocnicze, po {h})": "indirecte (secundare, câte {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Colaborarea cu Apple Health a fost actualizată — salvarea antrenamentelor funcționează ca până acum.",
+ "Poprawione sformułowania części wskazówek techniki.": "Formulări îmbunătățite pentru o parte dintre sfaturile de tehnică."
 }

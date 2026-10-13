@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} trực tiếp, {w} gián tiếp (hiệp phụ: {n})",
  "cel {n}": "mục tiêu {n}",
  "bezpośrednie": "trực tiếp",
- "pośrednie (pomocnicze, po {h})": "gián tiếp (phụ, {h} mỗi hiệp)"
+ "pośrednie (pomocnicze, po {h})": "gián tiếp (phụ, {h} mỗi hiệp)",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Đã cập nhật liên kết với Apple Health — việc lưu buổi tập vẫn hoạt động như trước.",
+ "Poprawione sformułowania części wskazówek techniki.": "Đã cải thiện cách diễn đạt của một số mẹo kỹ thuật."
 }

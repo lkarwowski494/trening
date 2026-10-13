@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} közvetlen, {w} közvetett (másodlagos sorozatok: {n})",
  "cel {n}": "cél {n}",
  "bezpośrednie": "közvetlen",
- "pośrednie (pomocnicze, po {h})": "közvetett (másodlagos, egyenként {h})"
+ "pośrednie (pomocnicze, po {h})": "közvetett (másodlagos, egyenként {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Frissítettük az Apple Health-szel való együttműködést — az edzések mentése a megszokott módon működik.",
+ "Poprawione sformułowania części wskazówek techniki.": "Javítottuk néhány technikai tipp megfogalmazását."
 }

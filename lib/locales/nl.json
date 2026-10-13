@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} direct, {w} indirect (secundaire sets: {n})",
  "cel {n}": "doel {n}",
  "bezpośrednie": "direct",
- "pośrednie (pomocnicze, po {h})": "indirect (secundair, elk {h})"
+ "pośrednie (pomocnicze, po {h})": "indirect (secundair, elk {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Bijgewerkte samenwerking met Apple Health — het opslaan van trainingen werkt zoals voorheen.",
+ "Poprawione sformułowania części wskazówek techniki.": "Verbeterde formulering van een deel van de techniektips."
 }

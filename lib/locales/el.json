@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} άμεσα, {w} έμμεσα (δευτερεύοντα σετ: {n})",
  "cel {n}": "στόχος {n}",
  "bezpośrednie": "άμεσα",
- "pośrednie (pomocnicze, po {h})": "έμμεσα (δευτερεύοντα, {h} το καθένα)"
+ "pośrednie (pomocnicze, po {h})": "έμμεσα (δευτερεύοντα, {h} το καθένα)",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Ενημερώθηκε η συνεργασία με το Apple Health — η αποθήκευση των προπονήσεων λειτουργεί όπως πριν.",
+ "Poprawione sformułowania części wskazówek techniki.": "Βελτιώθηκε η διατύπωση ορισμένων συμβουλών τεχνικής."
 }

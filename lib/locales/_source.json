@@ -336,6 +336,10 @@
   "en": "Accessories"
  },
  {
+  "pl": "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.",
+  "en": "Updated integration with Apple Health — saving workouts works as before."
+ },
+ {
   "pl": "aktywny",
   "en": "active"
  },
@@ -3405,6 +3409,10 @@
  {
   "pl": "Ponów teraz",
   "en": "Retry now"
+ },
+ {
+  "pl": "Poprawione sformułowania części wskazówek techniki.",
+  "en": "Reworded some of the technique tips."
  },
  {
   "pl": "Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).",

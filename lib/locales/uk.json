@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} безпосередньо, {w} опосередковано (допоміжні підходи: {n})",
  "cel {n}": "ціль {n}",
  "bezpośrednie": "безпосередні",
- "pośrednie (pomocnicze, po {h})": "опосередковані (допоміжні, по {h})"
+ "pośrednie (pomocnicze, po {h})": "опосередковані (допоміжні, по {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Оновлено інтеграцію з Apple Health — збереження тренувань працює як раніше.",
+ "Poprawione sformułowania części wskazówek techniki.": "Покращено формулювання частини порад щодо техніки."
 }

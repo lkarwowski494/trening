@@ -59,7 +59,7 @@ describe('ekran Trening', () => {
     expect(screen.getByText(WHATS_NEW[0].build ? new RegExp(`^Wersja testowa ${WHATS_NEW[0].build} · `) : 'W tej wersji')).toBeTruthy(); /* bieżący wpis: niewydany albo wydany (0.11 — build 1005) */
     for (const x of WHATS_NEW[0].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id);
-    const old = WHATS_NEW[5]; /* 1002 — rozwijany niżej (nad nim 0.14, nowy układ 0.13, 0.12, 1005, 1004) */ const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
+    const old = WHATS_NEW.find(e => e.build === 1002)!; /* 1002 — rozwijany niżej (nad nim 0.15, 0.14, nowy układ 0.13, 0.12, 1005, 1004) */ const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
     expect(screen.getByText(/^▸ Wersja testowa 1008 · 12 paź 2026$/)).toBeTruthy(); /* 0.12.0 — build 1008, zwinięte pod bieżącym wpisem 0.13 */
     expect(screen.getByText(/^▸ Wersja testowa 1005 · 10 paź 2026$/)).toBeTruthy(); /* 0.11.0 — wydanie 2 */
     expect(screen.getByText(/^▸ Wersja testowa 1004 · 9 paź 2026$/)).toBeTruthy(); /* 0.10.0 — wydanie 1 (A11B-8) */
@@ -73,10 +73,13 @@ describe('ekran Trening', () => {
   test('wszystkie wpisy po polsku mają tytuł i punkty (wpis 1001 rozwinięty)', async () => {
     await boot(withWorkout); await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
     await tap(screen.getByText(/^▸ Wersja testowa 1001/)); await flushAll(5);
-    for (const x of WHATS_NEW[6].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
+    for (const x of WHATS_NEW.find(e => e.build === 1001)!.items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
   });
   test('treść wpisów po polsku na ekranie (wszystkie rozwinięte po kolei)', async () => {
     const texts = [
+      /* 12.10.2026 (0.15.0): Apple Health 16, parafrazy wskazówek */
+      'Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.',
+      'Poprawione sformułowania części wskazówek techniki.',
       /* 12.10.2026 (0.14.0, backlog A): cel serii na partię, poprawki, nowe ćwiczenia, miejsce treningu */
       'Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.',
       'Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.',
@@ -119,7 +122,7 @@ describe('ekran Trening', () => {
     await boot(withWorkout); await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
     const shown = new Set<string>(); const collect = () => texts.forEach(x => { if (screen.queryByText(`• ${x}`)) shown.add(x); });
     collect(); /* starsze otwierają się pojedynczo — otwarcie następnego zwija poprzedni */
-    for (const e of WHATS_NEW.slice(1)) { await tap(screen.getByText(e.build ? new RegExp(`^▸ Wersja testowa ${e.build}`) : '▸ W tej wersji')); await flushAll(5); collect(); }
+    for (const e of WHATS_NEW.slice(1)) { await tap((e.build ? screen.getByText(new RegExp(`^▸ Wersja testowa ${e.build}`)) : screen.getAllByText('▸ W tej wersji')[0])); await flushAll(5); collect(); }
     expect([...shown].sort()).toEqual([...texts].sort()); expect(texts.length).toBe(WHATS_NEW.flatMap(e => e.items()).length);
   });
   test('w trakcie treningu „i” nie ma (ekran treningu)', async () => {

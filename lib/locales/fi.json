@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} suoraan, {w} välillisesti (avustavat sarjat: {n})",
  "cel {n}": "tavoite {n}",
  "bezpośrednie": "suorat",
- "pośrednie (pomocnicze, po {h})": "välilliset (avustavat, {h} kukin)"
+ "pośrednie (pomocnicze, po {h})": "välilliset (avustavat, {h} kukin)",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Apple Health -yhteistyö on päivitetty — treenien tallennus toimii kuten ennenkin.",
+ "Poprawione sformułowania części wskazówek techniki.": "Joidenkin tekniikkavinkkien sanamuotoja on parannettu."
 }

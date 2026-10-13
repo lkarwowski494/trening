@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} непосредно, {w} посредно (секундарне серије: {n})",
  "cel {n}": "циљ {n}",
  "bezpośrednie": "непосредне",
- "pośrednie (pomocnicze, po {h})": "посредне (секундарне, по {h})"
+ "pośrednie (pomocnicze, po {h})": "посредне (секундарне, по {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Ажурирана је сарадња са Apple Health — чување тренинга ради као и до сада.",
+ "Poprawione sformułowania części wskazówek techniki.": "Побољшана је формулација неких савета за технику."
 }

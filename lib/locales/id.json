@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} langsung, {w} tidak langsung (set pendukung: {n})",
  "cel {n}": "target {n}",
  "bezpośrednie": "langsung",
- "pośrednie (pomocnicze, po {h})": "tidak langsung (pendukung, masing-masing {h})"
+ "pośrednie (pomocnicze, po {h})": "tidak langsung (pendukung, masing-masing {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Integrasi dengan Apple Health diperbarui — penyimpanan latihan berfungsi seperti biasa.",
+ "Poprawione sformułowania części wskazówek techniki.": "Redaksi sebagian tips teknik diperbaiki."
 }

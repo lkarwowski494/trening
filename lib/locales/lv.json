@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} tieši, {w} netieši (papildu sērijas: {n})",
  "cel {n}": "mērķis {n}",
  "bezpośrednie": "tiešās",
- "pośrednie (pomocnicze, po {h})": "netiešās (papildu, pa {h})"
+ "pośrednie (pomocnicze, po {h})": "netiešās (papildu, pa {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Atjaunināta sadarbība ar Apple Health — treniņu saglabāšana darbojas kā līdz šim.",
+ "Poprawione sformułowania części wskazówek techniki.": "Uzlabots daļas tehnikas padomu formulējums."
 }

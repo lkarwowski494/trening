@@ -167,8 +167,8 @@ describe('przepływy dalej osiągalne (docs/22 4.5): Szablony, Ćwiczenia, Post�
 });
 
 describe('„Co nowego” — wspólny wpis o nowym układzie (docs/18 P7)', () => {
-  test('wpis 0.13 (id 2026-10-11, historyczny; bieżący 0.14: release-0.14.test.tsx), bez numeru buildu, trzy punkty o czterech zakładkach, Postępach i ekranie Trening oraz punkt o imporcie CSV (0.13.0); pod nim 0.12 z buildem 1008', () => {
-    const e = WHATS_NEW.find(w => w.id === '2026-10-11')!; const j = WHATS_NEW.indexOf(e); expect([e.id, e.build, WHATS_NEW[j + 1].id, WHATS_NEW[j + 1].build]).toEqual(['2026-10-11', undefined, '2026-10-10', 1008]); expect(e.items()).toEqual([
+  test('wpis 0.13 (id 2026-10-11, historyczny; bieżący 0.15: release-0.15.test.tsx), build 1009, trzy punkty o czterech zakładkach, Postępach i ekranie Trening oraz punkt o imporcie CSV (0.13.0); pod nim 0.12 z buildem 1008', () => {
+    const e = WHATS_NEW.find(w => w.id === '2026-10-11')!; const j = WHATS_NEW.indexOf(e); expect([e.id, e.build, WHATS_NEW[j + 1].id, WHATS_NEW[j + 1].build]).toEqual(['2026-10-11', 1009, '2026-10-10', 1008]); expect(e.items()).toEqual([
       'Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.',
       'Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.',
       'Ekran Trening: „Planowanie” przy nazwie planu, „Ten tydzień” i „Progresja”; „Z szablonu” w arkuszu „Inny trening” otwiera wybór szablonu ze „Startem”.',
@@ -187,6 +187,6 @@ describe('„Co nowego” — wspólny wpis o nowym układzie (docs/18 P7)', () 
     await boot('/', () => { lastTrain(); }); expect(screen.getByTestId('whats-new-dot')).toBeTruthy();
     await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
     for (const x of WHATS_NEW[0].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
-    expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id); /* bieżący wpis (od 0.14: id 2026-10-12) */
+    expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id); /* bieżący wpis (od 0.15: id 2026-10-13) */
   });
 });

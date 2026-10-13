@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "직접 {d}, 간접 {w}(보조 세트: {n})",
  "cel {n}": "목표 {n}",
  "bezpośrednie": "직접",
- "pośrednie (pomocnicze, po {h})": "간접(보조, 각 {h})"
+ "pośrednie (pomocnicze, po {h})": "간접(보조, 각 {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Apple Health 연동을 업데이트했습니다 — 운동 저장은 이전과 같이 작동합니다.",
+ "Poprawione sformułowania części wskazówek techniki.": "일부 자세 팁의 표현을 다듬었습니다."
 }

@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} přímo, {w} nepřímo (vedlejší série: {n})",
  "cel {n}": "cíl {n}",
  "bezpośrednie": "přímé",
- "pośrednie (pomocnicze, po {h})": "nepřímé (vedlejší, po {h})"
+ "pośrednie (pomocnicze, po {h})": "nepřímé (vedlejší, po {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Aktualizace spolupráce s Apple Health — ukládání tréninků funguje jako dosud.",
+ "Poprawione sformułowania części wskazówek techniki.": "Upravená formulace části tipů k technice."
 }

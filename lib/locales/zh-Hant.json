@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} 直接，{w} 間接（輔助組數：{n}）",
  "cel {n}": "目標 {n}",
  "bezpośrednie": "直接",
- "pośrednie (pomocnicze, po {h})": "間接（輔助，各 {h}）"
+ "pośrednie (pomocnicze, po {h})": "間接（輔助，各 {h}）",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "已更新與 Apple Health 的整合——訓練儲存方式與以往相同。",
+ "Poprawione sformułowania części wskazówek techniki.": "改善了部分技巧提示的措辭。"
 }

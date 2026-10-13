@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} neposredno, {w} posredno (pomožne serije: {n})",
  "cel {n}": "cilj {n}",
  "bezpośrednie": "neposredne",
- "pośrednie (pomocnicze, po {h})": "posredne (pomožne, po {h})"
+ "pośrednie (pomocnicze, po {h})": "posredne (pomožne, po {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Posodobljeno sodelovanje z Apple Health — shranjevanje treningov deluje kot doslej.",
+ "Poprawione sformułowania części wskazówek techniki.": "Izboljšana formulacija nekaterih nasvetov za tehniko."
 }

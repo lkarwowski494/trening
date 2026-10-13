@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} tiesiogiai, {w} netiesiogiai (pagalbinės serijos: {n})",
  "cel {n}": "tikslas {n}",
  "bezpośrednie": "tiesioginės",
- "pośrednie (pomocnicze, po {h})": "netiesioginės (pagalbinės, po {h})"
+ "pośrednie (pomocnicze, po {h})": "netiesioginės (pagalbinės, po {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Atnaujintas bendradarbiavimas su Apple Health — treniruočių įrašymas veikia kaip anksčiau.",
+ "Poprawione sformułowania części wskazówek techniki.": "Patobulintos kai kurių technikos patarimų formuluotės."
 }

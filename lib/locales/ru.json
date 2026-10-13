@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} напрямую, {w} косвенно (вспомогательные подходы: {n})",
  "cel {n}": "цель {n}",
  "bezpośrednie": "прямые",
- "pośrednie (pomocnicze, po {h})": "косвенные (вспомогательные, по {h})"
+ "pośrednie (pomocnicze, po {h})": "косвенные (вспомогательные, по {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Обновлена интеграция с Apple Health — сохранение тренировок работает как раньше.",
+ "Poprawione sformułowania części wskazówek techniki.": "Улучшены формулировки части советов по технике."
 }

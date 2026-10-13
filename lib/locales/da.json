@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} direkte, {w} indirekte (sekundære sæt: {n})",
  "cel {n}": "mål {n}",
  "bezpośrednie": "direkte",
- "pośrednie (pomocnicze, po {h})": "indirekte (sekundære, {h} hver)"
+ "pośrednie (pomocnicze, po {h})": "indirekte (sekundære, {h} hver)",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Opdateret samarbejde med Apple Health — lagring af træninger fungerer som hidtil.",
+ "Poprawione sformułowania części wskazówek techniki.": "Forbedret formulering af nogle teknikråd."
 }

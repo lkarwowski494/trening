@@ -1470,5 +1470,7 @@
  "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} direkt, {w} indirekt (sekundäre Sätze: {n})",
  "cel {n}": "Ziel {n}",
  "bezpośrednie": "direkt",
- "pośrednie (pomocnicze, po {h})": "indirekt (sekundär, je {h})"
+ "pośrednie (pomocnicze, po {h})": "indirekt (sekundär, je {h})",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Aktualisierte Zusammenarbeit mit Apple Health — das Speichern von Workouts funktioniert wie bisher.",
+ "Poprawione sformułowania części wskazówek techniki.": "Überarbeitete Formulierungen einiger Technik-Tipps."
 }
