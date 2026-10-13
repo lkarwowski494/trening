@@ -23,8 +23,8 @@ final class WatchConnectivityClient: NSObject, WCSessionDelegate, WatchTransport
     let payload: [String: Any] = [WatchWire.message: json]
     if s.activationState == .activated && s.isReachable {
       s.sendMessage(payload, replyHandler: { _ in }, errorHandler: { [weak self] _ in self?.queueForLater(payload) })
-    } else {
-      queueForLater(payload)
+    } else if !json.contains("\"kind\":\"hello\"") {
+      queueForLater(payload)   // „hello” ma sens tylko przy połączeniu — nie kolejkujemy go na później
     }
   }
 

@@ -67,7 +67,8 @@ final class WatchUITests: XCTestCase {
 
   // MARK: - Stany bez treningu
 
-  func testNoWorkoutShowsStartOnPhone() { let app = launch(nil); appears(app, "watch.idle") }
+  /// Prawdziwy transport na symulatorze bez sparowanego telefonu: brak osiągalności i brak migawki → „Połącz z telefonem” (model referencyjny: idle tylko przy połączeniu).
+  func testNoPhoneAndNoWorkoutAsksToConnect() { let app = launch(nil); appears(app, "watch.connect") }
   func testIdleSnapshot() { let app = launch("idle"); appears(app, "watch.idle") }
   func testDoneSnapshotShowsNothingLeft() { let app = launch("done"); appears(app, "watch.nothing") }
   func testLastSetRestAlreadyElapsedShowsNothingLeft() { let app = launch("last-rest"); appears(app, "watch.nothing") }

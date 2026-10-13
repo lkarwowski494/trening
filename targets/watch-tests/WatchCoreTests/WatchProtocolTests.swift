@@ -69,6 +69,7 @@ final class WatchProtocolTests: XCTestCase {
     XCTAssertTrue(json.contains("\"protocol\":1"))
     XCTAssertTrue(json.contains("\"caps\":{\"session\":true}"))
     XCTAssertTrue(json.contains("\"client\":\"apple\""))
+    XCTAssertTrue(json.contains("\"kind\":\"hello\""), "transport rozpoznaje hello po tym ciągu (nie kolejkuje go bez połączenia)")
   }
 
   func testPhoneMessagesFromWire() {
