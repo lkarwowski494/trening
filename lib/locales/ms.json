@@ -1472,5 +1472,8 @@
  "bezpośrednie": "langsung",
  "pośrednie (pomocnicze, po {h})": "tidak langsung (sokongan, {h} setiap satu)",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Integrasi dengan Apple Health dikemas kini — penyimpanan latihan berfungsi seperti biasa.",
- "Poprawione sformułowania części wskazówek techniki.": "Perkataan sebahagian petua teknik diperbaiki."
+ "Poprawione sformułowania części wskazówek techniki.": "Perkataan sebahagian petua teknik diperbaiki.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Bacaan daripada Apple Health (aktifkan dalam Seting): langkah dan aktiviti lain dalam panel hari, purata langkah di bawah “Minggu ini”, serta kadar denyutan jantung dan kcal daripada jam tangan semasa latihan.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Bar set memaparkan set tidak langsung secara berasingan (sokongan, dikira 0,5 setiap satu).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Penjana mengambil kira sasaran set anda daripada Seting."
 }

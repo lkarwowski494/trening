@@ -1472,5 +1472,8 @@
  "bezpośrednie": "directas",
  "pośrednie (pomocnicze, po {h})": "indirectas (secundarias, {h} cada una)",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Actualizada la integración con Apple Health: el guardado de entrenamientos funciona como hasta ahora.",
- "Poprawione sformułowania części wskazówek techniki.": "Mejorada la redacción de algunos consejos de técnica."
+ "Poprawione sformułowania części wskazówek techniki.": "Mejorada la redacción de algunos consejos de técnica.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Lectura de Apple Health (se activa en Ajustes): pasos y otras actividades en el panel del día, promedio de pasos bajo «Esta semana» y frecuencia cardiaca y kcal del reloj en el entrenamiento.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Las barras de series muestran por separado las series indirectas (secundarias, contadas a 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "El generador tiene en cuenta tu objetivo de series de Ajustes."
 }

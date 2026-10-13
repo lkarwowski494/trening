@@ -1472,5 +1472,8 @@
  "bezpośrednie": "direkte",
  "pośrednie (pomocnicze, po {h})": "indirekte (sekundære, {h} hver)",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Opdateret samarbejde med Apple Health — lagring af træninger fungerer som hidtil.",
- "Poprawione sformułowania części wskazówek techniki.": "Forbedret formulering af nogle teknikråd."
+ "Poprawione sformułowania części wskazówek techniki.": "Forbedret formulering af nogle teknikråd.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Aflæsning fra Apple Health (slås til i Indstillinger): skridt og andre aktiviteter i dagspanelet, gennemsnitlige skridt under “Denne uge” samt puls og kcal fra uret ved en træning.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Sætbjælkerne viser indirekte sæt separat (sekundære sæt, talt som 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generatoren tager højde for dit sætmål fra Indstillinger."
 }

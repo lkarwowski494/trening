@@ -1472,5 +1472,8 @@
  "bezpośrednie": "directe",
  "pośrednie (pomocnicze, po {h})": "indirecte (secundare, câte {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Colaborarea cu Apple Health a fost actualizată — salvarea antrenamentelor funcționează ca până acum.",
- "Poprawione sformułowania części wskazówek techniki.": "Formulări îmbunătățite pentru o parte dintre sfaturile de tehnică."
+ "Poprawione sformułowania części wskazówek techniki.": "Formulări îmbunătățite pentru o parte dintre sfaturile de tehnică.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Citire din Apple Health (se activează în Configurări): pași și alte activități în panoul zilei, media pașilor sub „Săptămâna aceasta” și pulsul și kcal de la ceas la antrenament.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Barele de serii arată separat seriile indirecte (secundare, numărate câte 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generatorul ține cont de ținta ta de serii din Configurări."
 }

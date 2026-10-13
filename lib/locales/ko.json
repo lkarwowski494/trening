@@ -1472,5 +1472,8 @@
  "bezpośrednie": "직접",
  "pośrednie (pomocnicze, po {h})": "간접(보조, 각 {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Apple Health 연동을 업데이트했습니다 — 운동 저장은 이전과 같이 작동합니다.",
- "Poprawione sformułowania części wskazówek techniki.": "일부 자세 팁의 표현을 다듬었습니다."
+ "Poprawione sformułowania części wskazówek techniki.": "일부 자세 팁의 표현을 다듬었습니다.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Apple Health에서 읽기(설정에서 켤 수 있음): 하루 패널에 걸음 수와 기타 활동, ‘이번 주’ 아래에 평균 걸음 수, 운동 기록에는 워치의 심박수와 kcal을 표시합니다.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "세트 막대가 간접 세트(보조, 0.5세트로 계산)를 따로 보여 줍니다.",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "생성기가 설정에서 정한 세트 목표를 반영합니다."
 }

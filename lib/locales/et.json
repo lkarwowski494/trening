@@ -1472,5 +1472,8 @@
  "bezpośrednie": "otsesed",
  "pośrednie (pomocnicze, po {h})": "kaudsed (abistavad, {h} kumbki)",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Värskendatud koostöö Apple Healthiga — treeningute salvestamine töötab nagu varem.",
- "Poprawione sformułowania części wskazówek techniki.": "Täiendatud osa tehnikavihjete sõnastust."
+ "Poprawione sformułowania części wskazówek techniki.": "Täiendatud osa tehnikavihjete sõnastust.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Lugemine Apple Healthist (lülitatakse sisse Seadetes): sammud ja muud tegevused päevapaneelil, keskmine sammude arv jaotise „See nädal“ all ning kella pulss ja kcal treeningul.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Seeriaribad näitavad kaudseid seeriaid eraldi (abistavad, arvestatud 0,5 kaupa).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generaator arvestab Seadetes seatud seeriate eesmärki."
 }

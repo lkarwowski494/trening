@@ -1472,5 +1472,8 @@
  "bezpośrednie": "άμεσα",
  "pośrednie (pomocnicze, po {h})": "έμμεσα (δευτερεύοντα, {h} το καθένα)",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Ενημερώθηκε η συνεργασία με το Apple Health — η αποθήκευση των προπονήσεων λειτουργεί όπως πριν.",
- "Poprawione sformułowania części wskazówek techniki.": "Βελτιώθηκε η διατύπωση ορισμένων συμβουλών τεχνικής."
+ "Poprawione sformułowania części wskazówek techniki.": "Βελτιώθηκε η διατύπωση ορισμένων συμβουλών τεχνικής.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Ανάγνωση από το Apple Health (ενεργοποιείται στις Ρυθμίσεις): βήματα και άλλες δραστηριότητες στον πίνακα της ημέρας, μέσος όρος βημάτων κάτω από το «Αυτή την εβδομάδα» και καρδιακός ρυθμός και kcal από το ρολόι στην προπόνηση.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Οι μπάρες σετ δείχνουν χωριστά τα έμμεσα σετ (δευτερεύοντα, με μέτρηση 0,5 το καθένα).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Η γεννήτρια λαμβάνει υπόψη τον στόχο σετ από τις Ρυθμίσεις."
 }

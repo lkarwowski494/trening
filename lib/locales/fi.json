@@ -1472,5 +1472,8 @@
  "bezpośrednie": "suorat",
  "pośrednie (pomocnicze, po {h})": "välilliset (avustavat, {h} kukin)",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Apple Health -yhteistyö on päivitetty — treenien tallennus toimii kuten ennenkin.",
- "Poprawione sformułowania części wskazówek techniki.": "Joidenkin tekniikkavinkkien sanamuotoja on parannettu."
+ "Poprawione sformułowania części wskazówek techniki.": "Joidenkin tekniikkavinkkien sanamuotoja on parannettu.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Tietojen luku Apple Healthista (otetaan käyttöön Asetuksissa): askeleet ja muut aktiviteetit päivän paneelissa, askelten keskiarvo kohdassa ”Tämä viikko” sekä kellon syke ja kcal treenin yhteydessä.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Sarjapalkit näyttävät välilliset sarjat erikseen (avustavat sarjat, lasketaan 0,5:n arvoisina).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generaattori huomioi Asetuksissa asetetun sarjatavoitteesi."
 }

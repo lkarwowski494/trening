@@ -504,5 +504,7 @@
  "Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu.": "Passos, outras atividades e frequência cardíaca e kcal do relógio — somente para consulta, os dados ficam na Saúde.",
  "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "O treino do relógio fica no Apple Health — apague no app Saúde.",
  "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Você pode revogar a permissão no app Saúde: perfil → Apps → {app}.",
- "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Massa: séries por grupo muscular por semana até a meta de Ajustes (automaticamente {m}), {a}–{b} repetições (em casa {c}–{d}), normalmente {r1}–{r2} repetições em reserva."
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Massa: séries por grupo muscular por semana até a meta de Ajustes (automaticamente {m}), {a}–{b} repetições (em casa {c}–{d}), normalmente {r1}–{r2} repetições em reserva.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Leitura do Apple Health (ative em Ajustes): passos e outras atividades no painel do dia, média de passos em “Esta semana” e frequência cardíaca e kcal do relógio no treino.",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "O gerador considera a sua meta de séries de Ajustes."
 }

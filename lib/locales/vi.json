@@ -1472,5 +1472,8 @@
  "bezpośrednie": "trực tiếp",
  "pośrednie (pomocnicze, po {h})": "gián tiếp (phụ, {h} mỗi hiệp)",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Đã cập nhật liên kết với Apple Health — việc lưu buổi tập vẫn hoạt động như trước.",
- "Poprawione sformułowania części wskazówek techniki.": "Đã cải thiện cách diễn đạt của một số mẹo kỹ thuật."
+ "Poprawione sformułowania części wskazówek techniki.": "Đã cải thiện cách diễn đạt của một số mẹo kỹ thuật.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Đọc từ Apple Health (bật trong Cài đặt): số bước chân và hoạt động khác trong bảng của ngày, số bước trung bình dưới “Tuần này”, cùng nhịp tim và kcal từ đồng hồ khi tập.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Thanh hiệp hiển thị riêng các hiệp gián tiếp (hiệp phụ, tính 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Trình tạo tính đến mục tiêu số hiệp của bạn trong Cài đặt."
 }

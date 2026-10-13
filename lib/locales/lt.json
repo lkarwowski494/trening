@@ -1472,5 +1472,8 @@
  "bezpośrednie": "tiesioginės",
  "pośrednie (pomocnicze, po {h})": "netiesioginės (pagalbinės, po {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Atnaujintas bendradarbiavimas su Apple Health — treniruočių įrašymas veikia kaip anksčiau.",
- "Poprawione sformułowania części wskazówek techniki.": "Patobulintos kai kurių technikos patarimų formuluotės."
+ "Poprawione sformułowania części wskazówek techniki.": "Patobulintos kai kurių technikos patarimų formuluotės.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Skaitymas iš Apple Health (įjungiamas Nustatymuose): žingsniai ir kita veikla dienos skydelyje, vidutinis žingsnių skaičius po „Ši savaitė“ bei laikrodžio pulsas ir kcal treniruotės metu.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Serijų juostose netiesioginės serijos rodomos atskirai (pagalbinės, skaičiuojamos po 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generatorius atsižvelgia į Nustatymuose nurodytą jūsų serijų tikslą."
 }

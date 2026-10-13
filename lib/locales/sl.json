@@ -1472,5 +1472,8 @@
  "bezpośrednie": "neposredne",
  "pośrednie (pomocnicze, po {h})": "posredne (pomožne, po {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Posodobljeno sodelovanje z Apple Health — shranjevanje treningov deluje kot doslej.",
- "Poprawione sformułowania części wskazówek techniki.": "Izboljšana formulacija nekaterih nasvetov za tehniko."
+ "Poprawione sformułowania części wskazówek techniki.": "Izboljšana formulacija nekaterih nasvetov za tehniko.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Branje iz Apple Health (vklopite v Nastavitvah): koraki in druge dejavnosti na plošči dneva, povprečje korakov pod »Ta teden« ter srčni utrip in kcal z ure pri treningu.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Vrstice serij ločeno prikazujejo posredne serije (pomožne, štete po 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generator upošteva vaš cilj serij iz Nastavitev."
 }

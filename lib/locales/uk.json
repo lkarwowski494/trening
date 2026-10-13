@@ -1472,5 +1472,8 @@
  "bezpośrednie": "безпосередні",
  "pośrednie (pomocnicze, po {h})": "опосередковані (допоміжні, по {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Оновлено інтеграцію з Apple Health — збереження тренувань працює як раніше.",
- "Poprawione sformułowania części wskazówek techniki.": "Покращено формулювання частини порад щодо техніки."
+ "Poprawione sformułowania części wskazówek techniki.": "Покращено формулювання частини порад щодо техніки.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Читання з Apple Health (вмикається в Параметрах): кроки та інша активність на панелі дня, середня кількість кроків під «Цей тиждень», а також пульс і ккал з годинника під час тренування.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Смужки підходів показують окремо опосередковані підходи (допоміжні, враховуються по 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Генератор враховує вашу ціль підходів із Параметрів."
 }

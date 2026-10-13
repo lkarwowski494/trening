@@ -1472,5 +1472,8 @@
  "bezpośrednie": "přímé",
  "pośrednie (pomocnicze, po {h})": "nepřímé (vedlejší, po {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Aktualizace spolupráce s Apple Health — ukládání tréninků funguje jako dosud.",
- "Poprawione sformułowania części wskazówek techniki.": "Upravená formulace části tipů k technice."
+ "Poprawione sformułowania części wskazówek techniki.": "Upravená formulace části tipů k technice.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Čtení z Apple Health (zapnete v Nastavení): kroky a další aktivity v panelu dne, průměr kroků pod „Tento týden“ a tep a kcal z hodinek u tréninku.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Pruhy sérií zobrazují nepřímé série zvlášť (vedlejší, počítané po 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generátor zohledňuje váš cíl sérií z Nastavení."
 }

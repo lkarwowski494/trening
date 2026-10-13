@@ -1472,5 +1472,8 @@
  "bezpośrednie": "direkt",
  "pośrednie (pomocnicze, po {h})": "indirekt (sekundär, je {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Aktualisierte Zusammenarbeit mit Apple Health — das Speichern von Workouts funktioniert wie bisher.",
- "Poprawione sformułowania części wskazówek techniki.": "Überarbeitete Formulierungen einiger Technik-Tipps."
+ "Poprawione sformułowania części wskazówek techniki.": "Überarbeitete Formulierungen einiger Technik-Tipps.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Auslesen aus Apple Health (in den Einstellungen aktivierbar): Schritte und andere Aktivitäten im Tagesbereich, durchschnittliche Schritte unter „Diese Woche“ sowie Herzfrequenz und kcal von der Uhr bei einem Training.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Die Satzbalken zeigen indirekte Sätze getrennt (sekundäre Sätze, mit je 0,5 gezählt).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Der Generator berücksichtigt das Satzziel aus den Einstellungen."
 }

@@ -1377,6 +1377,10 @@
   "en": "Template and weekly plan generator on request (goal, place, number and length of sessions) and several plans with a choice of the active one."
  },
  {
+  "pl": "Generator uwzględnia Twój cel serii z Ustawień.",
+  "en": "The generator now uses your sets goal from Settings."
+ },
+ {
   "pl": "Generator: wybór dni tygodnia, od {a} do {b} dni, cel „Ogólny” i „Plan z moich szablonów”.",
   "en": "Generator: choose the days of the week, from {a} to {b} days, the “General fitness” goal and “Plan from my templates”."
  },
@@ -2883,6 +2887,10 @@
   "en": "Since 0.10: templates and exercises open in a preview — start changes with “Edit” and confirm them with “Save”."
  },
  {
+  "pl": "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.",
+  "en": "Reading from Apple Health (turn it on in Settings): steps and other activities in the day panel, average steps under “This week”, and heart rate and kcal from your watch on a workout."
+ },
+ {
   "pl": "Odhacz bez pomiaru",
   "en": "Tick without timing"
  },
@@ -3117,6 +3125,10 @@
  {
   "pl": "Pas do dociążania",
   "en": "Dip belt"
+ },
+ {
+  "pl": "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).",
+  "en": "Set bars show indirect sets separately (secondary sets, counted as 0.5 each)."
  },
  {
   "pl": "pauza",

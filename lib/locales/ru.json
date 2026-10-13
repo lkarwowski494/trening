@@ -1472,5 +1472,8 @@
  "bezpośrednie": "прямые",
  "pośrednie (pomocnicze, po {h})": "косвенные (вспомогательные, по {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Обновлена интеграция с Apple Health — сохранение тренировок работает как раньше.",
- "Poprawione sformułowania części wskazówek techniki.": "Улучшены формулировки части советов по технике."
+ "Poprawione sformułowania części wskazówek techniki.": "Улучшены формулировки части советов по технике.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Чтение из Apple Health (включается в Настройках): шаги и другая активность на панели дня, среднее число шагов под «Эта неделя», а также пульс и ккал с часов в тренировке.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Полоски подходов показывают косвенные подходы отдельно (вспомогательные, считаются по 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Генератор учитывает вашу цель по подходам из Настроек."
 }

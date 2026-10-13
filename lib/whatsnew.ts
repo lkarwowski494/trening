@@ -21,9 +21,16 @@ const genDays = () => { const all = Object.values(GEN_SESSIONS).flat(); return {
 export const LANGS_012 = ['pt-BR', 'es-419', 'id', 'ms', 'vi', 'ru', 'ja', 'ko', 'zh-Hant'] as const;
 
 export const WHATS_NEW: WhatsNewEntry[] = [
+  /* 0.16.0 (docs/29, docs/18 13.10.2026): odczyt z Apple Health, paski serii z odcinkiem pośrednim, cel serii w generatorze. Bez numeru buildu — dopisuje się po przebiegu testflight.yml.
+   * id '2026-10-14' (następny po 0.15), data 13.10.2026. */
+  { id: '2026-10-14', date: '2026-10-13', items: () => [
+    t('Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.'),
+    t('Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).'),
+    t('Generator uwzględnia Twój cel serii z Ustawień.'),
+  ] },
   /* 0.15.0 (docs/18): aktualizacja biblioteki Apple Health 8 → 16 (zapis treningów bez zmian dla użytkownika), parafrazy wskazówek techniki w EN.
-   * Strona WWW w site/ — tylko repo, bez punktu. Bez numeru buildu — dopisuje się po przebiegu testflight.yml. id '2026-10-13' (następny po 0.14), data wydania 12.10.2026. */
-  { id: '2026-10-13', date: '2026-10-12', items: () => [
+   * Strona WWW w site/ — tylko repo, bez punktu. Build 1012 (TestFlight 38355743899; 1011 przepadł — limit certyfikatów). id '2026-10-13' (następny po 0.14), data wydania 12.10.2026. */
+  { id: '2026-10-13', build: 1012, date: '2026-10-12', items: () => [
     t('Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.'),
     t('Poprawione sformułowania części wskazówek techniki.'),
   ] },

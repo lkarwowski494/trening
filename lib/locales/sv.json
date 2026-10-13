@@ -1472,5 +1472,8 @@
  "bezpośrednie": "direkta",
  "pośrednie (pomocnicze, po {h})": "indirekta (sekundära, {h} vardera)",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Uppdaterat samarbete med Apple Health — sparande av pass fungerar som förut.",
- "Poprawione sformułowania części wskazówek techniki.": "Förbättrad formulering av en del teknikråd."
+ "Poprawione sformułowania części wskazówek techniki.": "Förbättrad formulering av en del teknikråd.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Avläsning från Apple Health (slås på i Inställningar): steg och andra aktiviteter i dagspanelen, genomsnittligt antal steg under ”Den här veckan” samt puls och kcal från klockan vid ett pass.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Setstaplarna visar indirekta set separat (sekundära set, räknas som 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generatorn tar hänsyn till ditt setmål från Inställningar."
 }

@@ -1472,5 +1472,8 @@
  "bezpośrednie": "doğrudan",
  "pośrednie (pomocnicze, po {h})": "dolaylı (ikincil, her biri {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Apple Health ile iş birliği güncellendi — antrenmanların kaydedilmesi eskisi gibi çalışıyor.",
- "Poprawione sformułowania części wskazówek techniki.": "Bazı teknik ipuçlarının ifadeleri iyileştirildi."
+ "Poprawione sformułowania części wskazówek techniki.": "Bazı teknik ipuçlarının ifadeleri iyileştirildi.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Apple Health’ten okuma (Ayarlar’dan açarsınız): gün panelinde adım ve diğer etkinlikler, “Bu hafta” altında ortalama adım sayısı ve antrenmanda saatten nabız ile kcal.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Set çubukları dolaylı setleri (ikincil, 0,5 sayılır) ayrı gösterir.",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Oluşturucu, Ayarlar’daki set hedefinizi dikkate alır."
 }

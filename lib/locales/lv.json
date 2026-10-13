@@ -1472,5 +1472,8 @@
  "bezpośrednie": "tiešās",
  "pośrednie (pomocnicze, po {h})": "netiešās (papildu, pa {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Atjaunināta sadarbība ar Apple Health — treniņu saglabāšana darbojas kā līdz šim.",
- "Poprawione sformułowania części wskazówek techniki.": "Uzlabots daļas tehnikas padomu formulējums."
+ "Poprawione sformułowania części wskazówek techniki.": "Uzlabots daļas tehnikas padomu formulējums.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Datu lasīšana no Apple Health (ieslēdzama sadaļā Iestatījumi): soļi un citas aktivitātes dienas panelī, vidējais soļu skaits zem „Šī nedēļa” un pulss un kcal no pulksteņa treniņa laikā.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Sēriju joslas atsevišķi rāda netiešās sērijas (papildu, skaita pa 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Ģenerators ņem vērā jūsu sēriju mērķi no Iestatījumiem."
 }

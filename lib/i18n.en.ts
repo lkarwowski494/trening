@@ -980,4 +980,8 @@ export const EN: Record<string, string> = {
   '{n} kcal aktywne': '{n} active kcal',
   'tętno średnie {avg} na minutę, maksymalne {max}': 'average heart rate {avg} per minute, maximum {max}', 'tętno średnie {n} na minutę': 'average heart rate {n} per minute',
   'tętno maksymalne {n} na minutę': 'maximum heart rate {n} per minute', '{n} kilokalorii aktywnych': '{n} active kilocalories',
+  /* 0.16.0 „Co nowego” */
+  'Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.': 'Reading from Apple Health (turn it on in Settings): steps and other activities in the day panel, average steps under “This week”, and heart rate and kcal from your watch on a workout.',
+  'Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).': 'Set bars show indirect sets separately (secondary sets, counted as 0.5 each).',
+  'Generator uwzględnia Twój cel serii z Ustawień.': 'The generator now uses your sets goal from Settings.',
 };

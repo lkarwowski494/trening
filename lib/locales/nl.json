@@ -1472,5 +1472,8 @@
  "bezpośrednie": "direct",
  "pośrednie (pomocnicze, po {h})": "indirect (secundair, elk {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Bijgewerkte samenwerking met Apple Health — het opslaan van trainingen werkt zoals voorheen.",
- "Poprawione sformułowania części wskazówek techniki.": "Verbeterde formulering van een deel van de techniektips."
+ "Poprawione sformułowania części wskazówek techniki.": "Verbeterde formulering van een deel van de techniektips.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Uitlezen uit Apple Health (aan te zetten in Instellingen): stappen en andere activiteiten in het dagpaneel, gemiddeld aantal stappen onder „Deze week” en hartslag en kcal van het horloge bij een training.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "De setbalken tonen indirecte sets apart (secundaire sets, geteld als 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "De generator houdt rekening met je setdoel uit Instellingen."
 }

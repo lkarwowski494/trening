@@ -1472,5 +1472,8 @@
  "bezpośrednie": "непосредне",
  "pośrednie (pomocnicze, po {h})": "посредне (секундарне, по {h})",
  "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Ажурирана је сарадња са Apple Health — чување тренинга ради као и до сада.",
- "Poprawione sformułowania części wskazówek techniki.": "Побољшана је формулација неких савета за технику."
+ "Poprawione sformułowania części wskazówek techniki.": "Побољшана је формулација неких савета за технику.",
+ "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Читање из Apple Health (укључује се у Подешавањима): кораци и друге активности на табли дана, просек корака испод „Ове недеље“ те пулс и kcal са сата при тренингу.",
+ "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Траке серија посебно приказују посредне серије (секундарне, рачунају се по 0,5).",
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Генератор узима у обзир ваш циљ серија из Подешавања."
 }
