@@ -8,8 +8,8 @@ import { PRODUCT_IDS, SUBSCRIPTION_PLANS, TRIAL_MONTHS } from '@/lib/products';
 import type { PurchaseOutcome, StoreAdapter, StoreProduct } from '@/lib/store-adapter';
 
 const DAY_MS = 86400e3;
-/** Ceny testowe (jak w docs/27 rozdz. 1 w USD) — tylko dla sztucznego sklepu. */
-export const FAKE_PRICES: Record<EntitlementPlan, string> = { monthly: '$0.99', yearly: '$6.99', lifetime: '$21.99' };
+/** Ceny testowe (jak w docs/27 rozdz. 1 w USD, M1 z 13.10.2026) — jedno źródło dla sztucznego sklepu i testów; tests/prices-decision.test.ts pilnuje zgodności z .storekit i docs. */
+export const FAKE_PRICES: Record<EntitlementPlan, string> = { monthly: '$0.99', yearly: '$4.99', lifetime: '$14.99' };
 
 /** Sterowanie sztucznym sklepem z testów i z panelu „Test store” (build E2E). */
 export interface FakeStoreControl {

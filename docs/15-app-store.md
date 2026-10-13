@@ -120,7 +120,11 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     brak kosztu na użytkownika; prośba o jednorazowy zakup w researchu skarg (docs/research, pkt 18). Odrzucone: B 59,99 zł (3 lata planu
     rocznego), C 99,99 zł z promocją 59,99 zł na premierę, D bez dożywotniego. „5× roczna” to kalkulacja, nie dane rynkowe; cenę zmienia się
     w App Store Connect bez nowej wersji. Wdrożenie: paczka przed App Store, razem z subskrypcją (biblioteka iOS+Android).
-  - **ZMIANA CEN (decyzja właściciela 11.10.2026, po porównaniu z konkurentem — docs/research/raporty-rynkowe-2026-10.md):** „zachowamy
+  - **ZMIANA CEN (decyzja właściciela 13.10.2026, wariant M1; zapis: docs/18, wpis „cennik … M1”):** miesięczna 0,99 USD/EUR/GBP (PL 3,99 zł),
+    roczna **4,99** (PL 19,99 zł) = 5 × miesięczna, dożywotnia **14,99** (PL 59,99 zł) = 3 × roczna. Zastępuje ceny z 11.10.2026 (6,99 / 21,99)
+    i „5× roczna” z 10.10.2026. Ukraina: niższy punkt cenowy poniżej ceny espresso — **[OTWARTE]** konkretny punkt (lista punktów w App Store
+    Connect). Poniższy wpis z 11.10.2026 zostaje jako historia decyzji.
+  - **(historia) ZMIANA CEN (decyzja właściciela 11.10.2026, po porównaniu z konkurentem — docs/research/raporty-rynkowe-2026-10.md):** „zachowamy
     proporcje z nimi” (konkurent: roczna 14,99 USD, dożywotnio 44,99 USD ≈ 3× roczna; okresów subskrypcji nie podaje). Obowiązuje:
     | | PL | USD / EUR / GBP |
     |---|---|---|
@@ -339,7 +343,7 @@ Zakres: 168 commitów ze wszystkich gałęzi, wiadomości, tagi, 289 plików z h
 
 Projekt do przejrzenia; nic nie wysłano do App Store Connect. Liczby znaków policzone skryptem node (znaki Unicode). Tłumaczenia na pozostałe lokalizacje — później (nazwy już w `store/app-store-names.json`). Zasady: bez nazw innych aplikacji i marek (wytyczne Apple 2.3.7), bez twierdzeń zdrowotnych i obietnic efektów, bez superlatywów; jedyna liczba merytoryczna to e1RM (wzór Epleya, który aplikacja pokazuje ze źródłem).
 
-**Uwaga o stanie kodu (podstawa: commit 72be439, wydanie 0.12.0):** w kodzie nie ma jeszcze ekranu subskrypcji/zakupu (StoreKit), więc blok cenowy w opisie i hasło „pierwszy miesiąc za darmo” w tekście promocyjnym opisują decyzję, nie istniejącą funkcję — wstawić dopiero, gdy zakup trafi do wydania. Ceny wg najnowszej decyzji z 11.10.2026 (docs/15 wyżej): miesięczna 0,99 USD/EUR/GBP i 3,99 zł; roczna 6,99 USD/EUR/GBP i 19,99 zł; dożywotnia 21,99 USD/EUR/GBP i 59,99 zł; okres próbny 1 miesiąc; po wygaśnięciu 4 treningi na żywo na miesiąc; Family Sharing: tak.
+**Uwaga o stanie kodu (podstawa: commit 72be439, wydanie 0.12.0):** w kodzie nie ma jeszcze ekranu subskrypcji/zakupu (StoreKit), więc blok cenowy w opisie i hasło „pierwszy miesiąc za darmo” w tekście promocyjnym opisują decyzję, nie istniejącą funkcję — wstawić dopiero, gdy zakup trafi do wydania. Ceny wg najnowszej decyzji z 13.10.2026 (M1, docs/18; docs/15 wyżej): miesięczna 0,99 USD/EUR/GBP i 3,99 zł; roczna 4,99 USD/EUR/GBP i 19,99 zł; dożywotnia 14,99 USD/EUR/GBP i 59,99 zł; okres próbny 1 miesiąc; po wygaśnięciu 4 treningi na żywo na miesiąc; Family Sharing: tak.
 
 ### Polski (pl)
 
@@ -473,7 +477,7 @@ YOUR DATA
 • Light, dark or system appearance, 35 languages
 
 [PRICING BLOCK — owner to confirm]
-First month free. Then a subscription: 0.99 per month or 6.99 per year (USD, EUR, GBP; 3.99 PLN and 19.99 PLN in Poland; renews automatically, cancel in your Apple account settings), or a one-time lifetime access purchase for 21.99 (59.99 PLN in Poland). Subscription and lifetime access can be shared with your family (Family Sharing). Without a subscription you can still log 4 live workouts per month; history, backup and export always work.
+First month free. Then a subscription: 0.99 per month or 4.99 per year (USD, EUR, GBP; 3.99 PLN and 19.99 PLN in Poland; renews automatically, cancel in your Apple account settings), or a one-time lifetime access purchase for 14.99 (59.99 PLN in Poland). Subscription and lifetime access can be shared with your family (Family Sharing). Without a subscription you can still log 4 live workouts per month; history, backup and export always work.
 
 Training is not medical advice. For pain, injuries or illness, consult a specialist.
 ```
@@ -492,7 +496,7 @@ Training is not medical advice. For pain, injuries or illness, consult a special
 ### Do potwierdzenia przez właściciela
 
 1. **Cena w opisie i tekście promocyjnym** (blok cenowy, „pierwszy miesiąc za darmo”): wstawiać dopiero z działającym zakupem; czy podawać kwoty w opisie (zmieniają się w App Store Connect bez nowej wersji, w innych krajach inne), czy tylko „subskrypcja lub dostęp dożywotni” — Apple (3.1.2) wymaga jasnych warunków odnawiania.
-2. **Waluty w opisie:** EN podaje 0,99/6,99/21,99 w USD/EUR/GBP (opis jest jeden dla wszystkich krajów angielskiego) — czy tak, czy bez kwot.
+2. **Waluty w opisie:** EN podaje 0,99/4,99/14,99 w USD/EUR/GBP (opis jest jeden dla wszystkich krajów angielskiego) — czy tak, czy bez kwot.
 3. **Family Sharing:** decyzja TAK (11.10.2026), opis ją wspomina; otwarte w docs/15: czy włączenie jest nieodwracalne — sprawdzić w App Store Connect przed wysyłką.
 4. **Hasło „w cenie espresso lub taniej”** — pominięte; wymaga potwierdzenia cen espresso źródłami w każdym kraju (decyzja 09.10 pkt 3). **Zmiana (właściciel 11.10.2026, ok. 23:10): wyjątek od warunku źródeł — hasło wolno użyć bez potwierdzania cen espresso w każdym kraju** (hasło marketingowe, nie twierdzenie merytoryczne o treningu; ryzyko: w krajach z bardzo tanią kawą porównanie może być nieścisłe — Apple 2.3.1). Wstawić razem z blokiem cenowym, gdy zakup trafi do wydania.
 5. **„What's New 0.12.0”:** w `lib/whatsnew.ts` nie ma jeszcze wpisu 0.12.0 (najnowszy to 0.11.0). Projekt opiera się na zamianie ćwiczenia (E2, scalone w kodzie); po dopisaniu wpisu (35 języków, przez `t()`) tekst App Store dostosować do niego.
