@@ -20,6 +20,7 @@ import * as units from '@/lib/units';
 import * as edit from '@/lib/edit';
 import * as locs from '@/lib/locations';
 import * as plan from '@/lib/plan';
+import * as adapt from '@/lib/adapt';
 import * as gen from '@/lib/generator';
 import * as draft from '@/lib/draft';
 import * as tplsync from '@/lib/tplsync';
@@ -76,7 +77,8 @@ const KINDS = {
   /* 09.10.2026 (decyzje właściciela, B): „Plan z moich szablonów” (zapis jako nowy / aktywny) i „+ Nowy szablon” z przypisaniem do dnia po „Zapisz” */
   ownPlan: 1, tplNewAssign: 1,
 } as const;
-type K = keyof typeof KINDS;
+/** 0.18 (docs/33): „Dostosuj do miejsca” — wybory z okna naraz; osobny przebieg (`adaptSeqArb`), żeby nie przesuwać ziarna głównego alfabetu */
+type K = keyof typeof KINDS | 'adaptActive';
 type Op = { o: number; a: number; b: number; v: number | '' };
 type Act = { t: K; a: number; b: number; c: number; v: number | ''; ops?: Op[] };
 
@@ -101,6 +103,10 @@ const start = fc.record({ t: fc.constantFrom<K>('startTpl', 'startTpl', 'startTp
 const end = fc.record({ t: fc.constantFrom<K>('finish', 'finish', 'finish', 'cancel'), a: nat, b: nat, c: nat, v: fc.constant<number | ''>('') });
 /** Sesja: start (szablon / pusty / powtórz ostatni) → 3–25 działań w treningu → zakończenie albo anulowanie. */
 const session = fc.tuple(start, fc.array(inSession, { minLength: 3, maxLength: 25 }), end).map(([a, xs, z]) => [a, ...xs, z]);
+/** 0.18: sesje z oknem „Dostosuj do: X” — zmiany miejsca (setLoc), zamiany i cofnięcia, odhaczanie i „Pomiń dziś” w jednym treningu, z miejscami na start. */
+const adaptSession = fc.tuple(start, fc.array(arbOf({ adaptActive: 10, setLoc: 8, swap: 3, swapImpl: 2, undoSwap: 3, acceptAlt: 2, tick: 8, type: 5, addSet: 2, addEx: 2, skipEx: 2, moveBlock: 1,
+  link: 2, unlink: 1, reload: 1, rememberAlt: 1, deload: 1 }), { minLength: 4, maxLength: 25 }), end).map(([a, xs, z]) => [a, ...xs, z]);
+const adaptSeqArb = fc.array(adaptSession, { minLength: 1, maxLength: 4 });
 const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) }, { weight: 2, arbitrary: session }), { minLength: 6, maxLength: 30 });
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
@@ -264,6 +270,15 @@ async function step(x: Act, m: Model, where: string) {
       hit(P ? 'undoMerge' : 'undoSwap'); } } break;
     case 'acceptAlt': if (act) { const e = pick(act.exercises.filter(b => store.altHint(act, b)), x.b); if (e) { const r = store.acceptAlt(e.id); afterSwap(where, setsBefore, r); if (r) hit('acceptAlt'); } } break;
     case 'skipAlt': if (act && blk) store.skipAlt(blk.id); break;
+    case 'adaptActive': if (act && act.locationId) { /* okno „Dostosuj do: X”: domyślne propozycje (część odznaczona), „Pomiń dziś” dla wierszy bez zamiennika, „Wraca z planu” */
+      const L = act.locationId; const rows = adapt.adaptCandidates(act, L); const back = adapt.restoreCandidates(act, L);
+      const chs: adapt.AdaptChoice[] = [...rows.flatMap((r, i) => r.choice ? (x.b % 2 === 0 || (x.b >> i) & 1 ? [r.choice] : []) : x.c % 3 === 0 ? [{ kind: 'skip' as const, blockId: r.blockId }] : []),
+        ...back.filter((_, i) => x.c % 2 === 0 || (x.c >> i) & 1).map(r => r.choice)];
+      if (chs.length) { const r = store.adaptActive(chs); ok(!!r, where, 'adaptActive odrzucone mimo propozycji z adaptCandidates / restoreCandidates', chs); afterSwap(where, setsBefore, r);
+        if (r) { dropTimers(r.skippedSetIds); othersSame(); ok(r.swapped + r.restored + r.skipped === chs.length, where, 'adaptActive: liczba zastosowanych wyborów');
+          const still = new Set(adapt.adaptCandidates(act, L).map(z => z.blockId)); ok(chs.every(c => c.kind === 'skip' || !still.has(c.blockId)), where, 'zamieniony blok wciąż na liście do dostosowania');
+          ok(chs.every(c => c.kind !== 'restore' || !adapt.restoreCandidates(act, L).some(z => z.blockId === c.blockId)), where, 'przywrócony blok wciąż na liście „Wraca z planu”');
+          implFresh(where); hit('adaptActive'); } } } break;
     case 'setLoc': if (act && loc) { const prev = act.locationId; store.setActiveLocation(loc.id); if (prev !== loc.id) { implFresh(where); hit('setLoc'); } } break;
     case 'timerRest': if (act && blk) { const s = pick(blk.sets, x.b)!; store.setTimerState({ restEndAt: Date.now() + 60e3, restTotal: 60, restSetId: s.id }); } break;
     case 'timerSet': if (act && blk) { const s = pick(blk.sets, x.b)!; if (!s.done) store.setTimerState({ setStartAt: Date.now(), setTarget: x.c % 2 ? 30 : 0, setId: s.id }); } break;
@@ -664,6 +679,16 @@ describe('macierz niezmienników — losowe sekwencje działań na prawdziwym AP
     /* pokrycie: kluczowe ścieżki naprawdę się wykonały (inaczej niezmienniki byłyby puste) */
     if (RUNS >= 50 && !process.env.MATRIX_SEED) /* kontrola pokrycia tylko dla stałego ziarna — losowe może nie wylosować rzadkiej akcji */ for (const k of ['startTpl', 'finish', 'tick', 'swap', 'split', 'undoSwap', 'pastCommit', 'editCommit', 'draftSwap', 'delExArchive', 'delExHard', 'reload', 'roundtrip', 'addLoc', 'setLoc', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplDup', 'repeat', 'unit', 'lang', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draftCancel', 'draftSave', 'draftFxCancel', 'draftFxSave', 'saveAsTpl', 'tplArchive', 'deload', 'pause', 'resume', 'skipEx', 'health', 'planSwap', 'planSuggest', 'planReset', 'tplUpdate', 'ownPlan', 'tplNewAssign', 'setGoal', 'healthWatch'])
       expect([k, (ran[k] ?? 0) > 0]).toEqual([k, true]);
+  });
+});
+
+describe('macierz niezmienników — dostosowanie do miejsca (0.18, adaptActive)', () => {
+  afterAll(() => { units.applyUnit('kg'); });
+  test('okno „Dostosuj do: X” w losowych sesjach: zmiana tylko w treningu w toku (szablony bez zmian), zegary, przyrządy, lista po zastosowaniu pusta', async () => {
+    await fc.assert(fc.asyncProperty(adaptSeqArb, fc.constantFrom(2, 3), async (seq, locStart) => {
+      try { await runSeq(seq.flat(), locStart); } finally { units.applyUnit('kg'); edit.__resetDrafts(); }
+    }), { numRuns: Math.max(10, Math.floor(RUNS / 2)), seed: SEED });
+    if (RUNS >= 50 && !process.env.MATRIX_SEED) expect(['adaptActive', (ran.adaptActive ?? 0) > 0]).toEqual(['adaptActive', true]);
   });
 });
 

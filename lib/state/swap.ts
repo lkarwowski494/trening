@@ -13,6 +13,7 @@ import { normalizeGroups } from './groups';
 import { rowsFor } from './templates';
 import { purgeOrphans } from './exercises';
 import { prefillSets } from './start';
+import type { AdaptChoice } from '../adapt';
 
 /* ---------- E2: zamiana ćwiczenia w treningu w toku (docs/14 pkt 3) ---------- */
 /** Pozycja szablonu, z której powstał blok (gdy trening ma szablon, a pozycja wciąż istnieje). */
@@ -211,6 +212,31 @@ export function unskipExercise(blockId: string) {
   if (!w || !e) return;
   delete e.skipped;
   save(w);
+}
+/**
+ * 0.18 „Dostosuj do miejsca” (docs/33): wszystkie wybory z okna naraz — w pamięci kolejno swapBlock / swapImpl / undoSwap / skipExercise,
+ * potem JEDEN zapis (restart w trakcie = nic nie zastosowano; w pamięci zmiana jest wszystko albo nic). Szablony i plan nie są dotykane
+ * (zamiany tylko w tym treningu). Blok bez wyboru zostaje bez zmian. Wybór nieprawidłowy (brak bloku, brak aktywnego treningu, ten sam blok dwa razy,
+ * odrzucona zamiana) cofa całość i zwraca null — nic się nie zmienia.
+ * Zwraca: `goneSetIds` — serie, które zniknęły z treningu (ekran: afterSwap zatrzymuje ich stopery); `skippedSetIds` — nieodhaczone serie
+ * pominiętych bloków (stoper serii; jak „Pomiń dziś”); `swapped`/`restored`/`skipped` — liczby do komunikatu „Zamieniono N ćwiczeń”.
+ * Po wywołaniu ekran woła afterSwap([...goneSetIds, ...skippedSetIds]) (relabelRest).
+ */
+export function adaptActive(choices: readonly AdaptChoice[]): { goneSetIds: string[]; skippedSetIds: string[]; swapped: number; restored: number;
+    skipped: number } | null {
+  const a = getState().active; if (!a || !choices.length) return null;
+  const ids = choices.map(c => c.blockId); if (new Set(ids).size !== ids.length) return null;
+  const before = JSON.parse(JSON.stringify(a.exercises)) as Workout['exercises'];
+  const out = { goneSetIds: [] as string[], skippedSetIds: [] as string[], swapped: 0, restored: 0, skipped: 0 };
+  for (const c of choices) {
+    const blk = a.exercises.find(x => x.id === c.blockId); let ok = !!blk;
+    if (blk && c.kind === 'swap') { const r = swapBlockIn(a, c.blockId, c.toExId, { restSec: c.restSec, impl: c.impl }); ok = !!r; if (r) { out.goneSetIds.push(...r.goneSetIds); out.swapped++; } }
+    else if (blk && c.kind === 'impl') { const r = swapImplIn(a, c.blockId, c.impl); ok = !!r; if (r) { out.goneSetIds.push(...r.goneSetIds); out.swapped++; } }
+    else if (blk && c.kind === 'restore') { const r = undoSwapIn(a, c.blockId); ok = !!r; if (r) { out.goneSetIds.push(...r.goneSetIds); out.restored++; } }
+    else if (blk && c.kind === 'skip') { const ids = blk.sets.filter(x => !x.done).map(x => x.id); ok = !blk.skipped && skipIn(a, c.blockId); if (ok) { out.skippedSetIds.push(...ids); out.skipped++; } }
+    if (!ok) { a.exercises = before; return null; } /* wszystko albo nic */
+  }
+  saveSwapped(a); return out;
 }
 /** „✕” przy podpowiedzi: tylko ten blok, tylko ten trening (M4). */
 export function skipAlt(blockId: string) {

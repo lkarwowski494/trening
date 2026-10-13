@@ -80,7 +80,7 @@ export const {
 export const { prefillSets, startableItem, repeatBlocks, startFromTemplate, startEmpty, repeatLast, deloadTail, addExerciseToActive } = startMod;
 export const { addSet, removeSetById, removeSet, removeExercise, findSet, restAfter, roundRest, toggleDone, focusSet, typeSetValue } = liveMod;
 export const {
-  swapBlock, swapImpl, canUndoSwap, undoSwap, canRememberAlt, rememberAlt, altHint, acceptAlt, skipExercise, unskipExercise, skipAlt, rememberRest
+  swapBlock, swapImpl, canUndoSwap, undoSwap, canRememberAlt, rememberAlt, altHint, acceptAlt, adaptActive, skipExercise, unskipExercise, skipAlt, rememberRest
 } = swapMod;
 export const {
   STALE_ASK_MS, STALE_AUTO_MS, lastActivity, staleRef, staleKind, hasWorkDone, staleSince, ackStale, markActivity, resolveColdStopwatch,
