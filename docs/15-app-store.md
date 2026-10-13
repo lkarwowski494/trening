@@ -1,4 +1,4 @@
-# 15. Publikacja w App Store — decyzje i plan (stan 05.10.2026)
+# 15. Publikacja w App Store — decyzje i plan (decyzje od 05.10.2026; metadane odświeżone 13.10.2026)
 
 ## Decyzje właściciela
 
@@ -10,14 +10,14 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   - Klucz tylko jako sekret GitHub, nigdy w repo (CLAUDE.md, ADR-031). Bez `eas submit`: limitów darmowego planu dla Submit nie sprawdzono.
 - **Polityka prywatności:** GitHub Pages z tego repozytorium, z osobnego katalogu `site/` przez GitHub Actions (`.github/workflows/pages.yml`;
   decyzja właściciela 12.10.2026, audyt przed App Store F2, wariant A) — strona `site/privacy.html` (PL/EN, 08.10.2026, audyt N2; treść zgodna
-  z kodem: brak wywołań sieciowych, HealthKit tylko zapis, powiadomienia lokalne). Publikowany jest tylko `site/` (trzy strony); reszta `docs/`
+  z kodem: brak wywołań sieciowych, HealthKit zapis (od 0.16 także opcjonalny odczyt — zob. niżej), powiadomienia lokalne). Publikowany jest tylko `site/` (trzy strony); reszta `docs/`
   (dziennik decyzji, raporty, research) nie jest publikowana. **Krok właściciela po scaleniu do `main`:** Settings → Pages → Source: GitHub Actions
   (zamiast „Deploy from a branch → main / docs”); pierwsze wdrożenie uruchamia się samo przy zmianie `site/**` na `main` albo ręcznie
   (Actions → Pages → Run workflow). Adres: https://lkarwowski494.github.io/trening/privacy.html (do App Store Connect → App Privacy).
   Bez `.nojekyll` — artefakt z Actions jest podawany bez Jekylla.
-  - Treść: brak zbierania danych, wszystko lokalnie na telefonie, HealthKit tylko zapis zakończonych treningów.
+  - Treść: brak zbierania danych, wszystko lokalnie na telefonie; HealthKit: zapis zakończonych treningów oraz opcjonalny odczyt (kroki, treningi, tętno, aktywna energia — odczytane dane tylko wyświetlane na telefonie; wydanie 0.16). Aktualna treść: `site/privacy.html`.
 - **Strona www i wsparcie (11.10.2026, marka Apps4Brew, PL/EN):** `site/index.html`, `site/support.html`; adres wsparcia (App Store Connect → Support URL): https://lkarwowski494.github.io/trening/support.html. Domena apps4brew.com po zakupie (bez CNAME); kontakt: GitHub Issues — adres e-mail do uzupełnienia po zakupie domeny.
-- **Cena:** „Darmowa na start” (05.10.2026) — bez reklam i zakupów; w App Store Connect deklaracja „nie jestem traderem” (DSA), bez publicznego adresu.
+- **Cena (stan 13.10.2026):** aplikacja jest dziś bez zakupów i bez reklam — subskrypcja wyłączona przełącznikiem `PAYWALL.ENABLED = false` (`lib/access.ts`); obowiązujący cennik to M1 (sekcja „Wzrost i promocja”, wpis „ZMIANA CEN … M1”). Historia: „Darmowa na start” (05.10.2026); w App Store Connect deklaracja „nie jestem traderem” (DSA), bez publicznego adresu.
 - ~~**Płatności później, wcześniejsi użytkownicy za darmo**~~ (odwołane 06.10.2026: płatna subskrypcja od pierwszej wersji, bez darmowych użytkowników; było — właściciel 05.10.2026: „Później najwyżej wprowadzimy płatności, ale tym, co już mają, to zostawimy darmową”).
   Kierunek (do decyzji, gdy przyjdzie czas): aplikacja dalej darmowa do pobrania, wersja Pro jako zakup w aplikacji;
   kto pobrał przed wersją płatną, ma Pro bez opłaty — StoreKit 2 `AppTransaction.originalAppVersion` (Apple podaje numer
@@ -39,7 +39,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   - Otwarte: ceny
     (miesięczna/roczna), data wprowadzenia płatności, Small Business Program (prowizja 15%).
   Konto: Apple Developer jako osoba fizyczna (Individual) — firma niepotrzebna.
-- **Nazwa:** decyzja właściciela 05.10.2026 (potwierdzona 06.10) — `store/app-store-names.json` (12 lokalizacji App Store), szczegóły w docs/16 „Nazwa aplikacji”. Unikalność potwierdzi rezerwacja nazwy w App Store Connect.
+- **Nazwa:** decyzja właściciela 05.10.2026 (potwierdzona 06.10) — `store/app-store-names.json` (31 lokalizacji App Store Connect; aplikacja ma 35 języków), szczegóły w docs/16 „Nazwa aplikacji”. Unikalność potwierdzi rezerwacja nazwy w App Store Connect.
 
 ## Wzrost i promocja — ustalenia (właściciel 06.10.2026)
 
@@ -47,7 +47,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 - **Realistyczny punkt wyjścia (ocena agenta, nie dane):** bez promocji — rzędu kilkudziesięciu pobrań w pierwszym miesiącu, potem od kilku do kilkudziesięciu
   miesięcznie; kategoria „dziennik treningów” zatłoczona (Strong, Hevy, Fitbod, JEFIT). Liczby do zweryfikowania po premierze (App Store Connect → Analityka).
 - **Kanały za 0 zł (zgoda właściciela 06.10: „Tak” — przygotować przy wydaniu):**
-  1. ASO: słowa kluczowe i opisy w 12 lokalizacjach App Store (`store/app-store-names.json` + opisy), zrzuty ekranu w każdym języku (`npm run screens`).
+  1. ASO: słowa kluczowe i opisy w 31 lokalizacjach App Store (`store/app-store-names.json`; teksty: `store/app-store-metadata.json`), zrzuty ekranu w każdym języku (`npm run screens`).
      Największa szansa w mniejszych sklepach (cs, sk, lt, lv, et, hr, sl, ro, hu, bg) — mniejsza konkurencja, nazwa lokalna.
   2. Prośba o ocenę w aplikacji po kilku treningach (systemowe okno Apple) — do zaprojektowania (kiedy, ile razy), decyzja właściciela.
   3. Spokojne wpisy tam, gdzie są osoby trenujące (lokalne fora/grupy, Reddit np. r/homegym): bez konta, dane w telefonie, offline, domowa siłownia.
@@ -339,52 +339,62 @@ Zakres: 168 commitów ze wszystkich gałęzi, wiadomości, tagi, 289 plików z h
   `appleTeamId` w `app.json` — Apple nie traktuje go jako sekretu (zostaje); Maestro instalowany bez przypiętej wersji (bez sekretów — zostaje).
 - Do sprawdzenia przez właściciela: GitHub → Settings → Actions → General → „Fork pull request workflows” — wymagane zatwierdzenie.
 
-## Metadane App Store — projekt PL/EN (11.10.2026, do akceptacji właściciela)
+## Metadane App Store — stan 13.10.2026 (do akceptacji właściciela)
 
-Projekt do przejrzenia; nic nie wysłano do App Store Connect. Liczby znaków policzone skryptem node (znaki Unicode). Tłumaczenia na pozostałe lokalizacje — później (nazwy już w `store/app-store-names.json`). Zasady: bez nazw innych aplikacji i marek (wytyczne Apple 2.3.7), bez twierdzeń zdrowotnych i obietnic efektów, bez superlatywów; jedyna liczba merytoryczna to e1RM (wzór Epleya, który aplikacja pokazuje ze źródłem).
+Nic nie wysłano do App Store Connect. **Teksty są w `store/app-store-metadata.json`** (jedno miejsce), a tu kopia do czytania; `tests/app-store-metadata.test.ts`
+pilnuje, że kopia jest dosłowna, oraz limitów (podtytuł 30 znaków, słowa kluczowe 100 bajtów, promo 170, opis 4000), braku nazw innych firm
+(wytyczne Apple 2.3.7, 5.2.1), braku cen poza blokiem cenowym, zgodności liczby języków (35, z `LANG_NAME`) i liczby lokalizacji (31). Zmieniasz tekst — zmień plik JSON i tę kopię.
 
-**Uwaga o stanie kodu (podstawa: commit 72be439, wydanie 0.12.0):** w kodzie nie ma jeszcze ekranu subskrypcji/zakupu (StoreKit), więc blok cenowy w opisie i hasło „pierwszy miesiąc za darmo” w tekście promocyjnym opisują decyzję, nie istniejącą funkcję — wstawić dopiero, gdy zakup trafi do wydania. Ceny wg najnowszej decyzji z 13.10.2026 (M1, docs/18; docs/15 wyżej): miesięczna 0,99 USD/EUR/GBP i 3,99 zł; roczna 4,99 USD/EUR/GBP i 19,99 zł; dożywotnia 14,99 USD/EUR/GBP i 59,99 zł; okres próbny 1 miesiąc; po wygaśnięciu 4 treningi na żywo na miesiąc; Family Sharing: tak.
+**Podstawa: stan kodu wydania 0.18 (13.10.2026).** Zasady: opis zgodny z tym, co aplikacja robi dziś (Apple 2.3.1), bez nazw innych aplikacji, bez twierdzeń zdrowotnych
+i obietnic efektów, bez superlatywów. Subskrypcji w aplikacji dziś nie ma w użyciu (`PAYWALL.ENABLED = false`), więc blok cenowy jest **poza opisem** (pole `pricingBlock`),
+dopóki zakup nie trafi do wydania. Zegarki, głos i zgodność z zegarkami sportowymi: **[CZEKA NA 0.20]** — nie ma ich w tekstach niżej.
+
+### Decyzje właściciela 13.10.2026 (docs/18) i wybór nazwy
+
+- **Nazwa:** wariant A z rejestru `store/app-store-names.json` (PL „Trening: dziennik siłowni”, EN „Training: Gym Log & Rest Timer”, DE „Training: Gym-Tagebuch”) — zamyka wiersz 1 rozbieżności (poprzednio „dwa warianty”). Wariant B („Trening”) odrzucony: zbyt ogólny, trudniej o unikalność nazwy i widoczność.
+- **Podtytuły (prywatność i offline):** PL „Plan i serie offline bez konta”, EN „Private, offline plans & sets”, DE „Trainingsplan offline, privat”. Zastępują warianty A/B z 11.10.
+- **Hasło (pierwsze zdanie opisu):** „Twój trening zostaje w Twoim telefonie. Prosty dziennik siłowni — bez konta, bez internetu.” **[DO ZATWIERDZENIA]** — brzmienie robocze (połączenie dwóch haseł właściciela), nie zatwierdzone. Zdanie „bez internetu” sprawdzić ponownie po włączeniu StoreKit (zakup wymaga sieci).
+- **Ceny M1** (0,99 / 4,99 / 14,99; PL 3,99 / 19,99 / 59,99 zł) tylko w bloku cenowym opisu — nigdy w nazwie, podtytule, tekście promocyjnym ani na zrzutach (Apple 2.3.7). Blok z dopiskiem: subskrypcja jest dziś wyłączona przełącznikiem. Hasło „w cenie espresso lub taniej” — wyjątek właściciela z 11.10.2026; wstawić na początek bloku cenowego razem z blokiem.
+- **Zegarki, głos:** **[CZEKA NA 0.20]**. Planowany akapit (nie do wysłania wcześniej): „Na zegarku widzisz bieżącą serię i odliczanie przerwy, a serię odhaczasz jednym ruchem. W słuchawkach na początku przerwy usłyszysz następne ćwiczenie i ciężar.”
+- **Zgodność z zegarkami innych producentów — bez nazwy producenta w metadanych** (ustalenie badacza przekazane przez koordynatora 13.10.2026): w treści do publikacji tylko neutralne „także z wybranymi zegarkami sportowymi” **[CZEKA NA 0.20]**. **Notatka robocza (warunek):** umowa programu dla deweloperów danego producenta pozwala pisać o zgodności z jego urządzeniami dopiero po zatwierdzeniu naszej aplikacji przez producenta, a Apple (5.2.1) bywa żąda dokumentu od producenta — przed jakąkolwiek wzmianką z nazwą: zatwierdzenie przez producenta + list/zgoda do Apple. Nazwy nie wpisujemy też w słowach kluczowych, podtytule ani na zrzutach.
+- **Apple Health w opisie (wymóg Apple 2.5.1):** opis wprost wymienia integrację z Apple Health (zapis zakończonych treningów i opcjonalny odczyt) — jest w sekcji „Twoje dane” obu opisów; test pilnuje frazy „Apple Health”.
 
 ### Polski (pl)
 
-**Nazwa / podtytuł — dwa warianty (decyzja właściciela):**
-
-| Wariant | Nazwa | Podtytuł | Znaki (nazwa / podtytuł) |
+| Pole | Znaki | Bajty | Limit |
 |---|---|---|---|
-| A | Trening: dziennik siłowni | Plan, serie i timer przerw | 25 / 26 (limit 30 / 30) |
-| B | Trening | Dziennik siłowni, plan, timer | 7 / 29 (limit 30 / 30) |
+| Nazwa (rejestr) | 25 | 26 | 30 znaków |
+| Podtytuł | 30 | 30 | 30 znaków |
+| Słowa kluczowe | 91 | 94 | 100 bajtów |
+| Tekst promocyjny | 115 | 118 | 170 znaków |
+| Opis (bez bloku cenowego) | 2343 | 2490 | 4000 znaków |
+| Opis + blok cenowy | 2751 | — | 4000 znaków |
 
-| Pole | Znaki | Limit |
-|---|---|---|
-| Nazwa A | 25 / 30 | ok |
-| Podtytuł A | 26 / 30 | ok |
-| Nazwa B | 7 / 30 | ok |
-| Podtytuł B | 29 / 30 | ok |
-| Słowa kluczowe | 95 / 100 | ok |
-| Tekst promocyjny | 142 / 170 | ok |
-| Opis | 2237 / 4000 | ok |
-| What's New 0.12.0 | 175 / 4000 | ok |
+**Podtytuł:** Plan i serie offline bez konta
 
-**Słowa kluczowe** (dla wariantu A; bez słów z nazwy i podtytułu):
+**Słowa kluczowe** (bez słów z nazwy i podtytułu; „treningowy” łączy się z „dziennik” i „plan”; zmiana względem 11.10 — odpadły „siła”, „masa”, „e1RM”, „szablony”, „RIR”, „offline”, doszły „treningowy”, „timer”, „przerw”, „trójbój”; popularność haseł **[DO SPRAWDZENIA]** w podpowiedziach App Store po rejestracji aplikacji):
 
-`ćwiczenia,hantle,sztanga,siła,masa,rekordy,e1RM,szablony,kalendarz,offline,RPE,RIR,gumy,talerze`
+`treningowy,ćwiczenia,hantle,sztanga,rekordy,timer,przerw,gumy,talerze,RPE,kalendarz,trójbój`
 
-**Tekst promocyjny:**
+**Tekst promocyjny** (bez „pierwszy miesiąc za darmo” — oferty jeszcze nie ma; zmienia się bez nowej wersji):
 
-Własne szablony, plan tygodnia, timer przerw i wykresy postępów. Wszystko offline na telefonie, bez konta i reklam. Pierwszy miesiąc za darmo.
+Własne szablony, plan tygodnia, timer przerw i wykresy postępów. Wszystko offline na telefonie, bez konta i reklam.
 
 **Opis:**
 
 ```text
-Trening to dziennik treningowy na siłownię i do domu. Zapisujesz serie, ciężary i powtórzenia, a aplikacja liczy resztę: objętość, rekordy i szacowany maksymalny ciężar (e1RM, wzór Epleya). Działa w całości na telefonie, bez konta, bez reklam i bez śledzenia.
+Twój trening zostaje w Twoim telefonie. Prosty dziennik siłowni — bez konta, bez internetu.
+
+Trening to dziennik treningowy na siłownię i do domu. Zapisujesz serie, ciężary i powtórzenia, a aplikacja liczy resztę: objętość, rekordy i szacowany maksymalny ciężar (e1RM, wzór Epleya). Nie zbiera żadnych danych, nie ma reklam ani śledzenia.
 
 TRENING
 • Własne szablony treningów, porządkowane w folderach i archiwum
 • Widok „Skupiony” (jedna seria na ekranie) albo klasyczna lista
-• Timer przerw z powiadomieniem na koniec, także przy zablokowanym ekranie
+• Timer przerw z powiadomieniem na koniec, także przy zablokowanym ekranie, oraz na ekranie blokady (Live Activity)
 • Pauza treningu: czas pauzy nie wlicza się do czasu trwania
 • Opcjonalna skala wysiłku RPE albo RIR przy serii
 • Zamiana ćwiczenia w trakcie treningu, gdy brakuje sprzętu albo maszyna jest zajęta
+• „Dostosuj do miejsca”: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — nic nie zmienia się samo, szablon i plan zostają bez zmian
 • Kalkulator talerzy na sztandze, taśmy i gumy z kolorami oporu, ciężar w kg lub lb
 
 PLAN I KALENDARZ
@@ -395,67 +405,62 @@ PLAN I KALENDARZ
 
 POSTĘPY
 • Historia treningów, rekordy i wykresy dla każdego ćwiczenia
-• Podsumowanie tygodnia i miesiąca z mapą mięśni, liczbą serii na partię i rekordami okresu
+• Podsumowanie tygodnia i miesiąca z mapą mięśni, rekordami okresu oraz serią na partię mięśni względem Twojego celu (Automatycznie albo Ręcznie)
 • Porównanie bieżącego okresu z poprzednim (objętość, serie, treningi)
 • Masa ciała z datą, podpowiedź progresji przy ćwiczeniu
 • Biblioteka ćwiczeń z krótkimi wskazówkami techniki
 
 TWOJE DANE
 • Kopia zapasowa i eksport do pliku JSON oraz CSV, import z kopii
-• Opcjonalny zapis zakończonych treningów do Apple Health
+• Import historii treningów z plików CSV popularnych dzienników, z podglądem przed zapisem
+• Apple Health (opcjonalnie): zapis zakończonych treningów oraz odczyt kroków, treningów, tętna i aktywnej energii — odczytane dane są tylko wyświetlane na telefonie
 • Jasny, ciemny lub systemowy wygląd, 35 języków
-
-[BLOK CENOWY — do potwierdzenia przez właściciela]
-Pierwszy miesiąc za darmo. Potem subskrypcja: 3,99 zł miesięcznie lub 19,99 zł rocznie (odnawiana automatycznie, anulujesz w ustawieniach konta Apple), albo jednorazowy dostęp dożywotni za 59,99 zł. Subskrypcję i dostęp dożywotni można udostępnić w gronie rodziny (Chmura rodzinna). Bez subskrypcji możesz nadal zapisywać 4 treningi na żywo w miesiącu, a historia, kopia zapasowa i eksport działają zawsze.
 
 Trening nie jest poradnikiem medycznym. W sprawie bólu, kontuzji lub chorób skonsultuj się ze specjalistą.
 ```
 
-**Co nowego (0.12.0):**
-
-- 9 nowych języków: Português (Brasil), Español (Latinoamérica), Bahasa Indonesia, Bahasa Melayu, Tiếng Việt, Русский, 日本語, 한국어, 繁體中文.
-- 35 języków; język zmienisz w Ustawieniach.
-
-### English (en-US)
-
-**Nazwa / podtytuł — dwa warianty (decyzja właściciela):**
-
-| Wariant | Nazwa | Podtytuł | Znaki (nazwa / podtytuł) |
-|---|---|---|---|
-| A | Training: Gym Log & Rest Timer | Plans, sets & progress offline | 30 / 30 (limit 30 / 30) |
-| B | Training | Gym log, plans & rest timer | 8 / 27 (limit 30 / 30) |
-
-| Pole | Znaki | Limit |
-|---|---|---|
-| Nazwa A | 30 / 30 | ok |
-| Podtytuł A | 30 / 30 | ok |
-| Nazwa B | 8 / 30 | ok |
-| Podtytuł B | 27 / 30 | ok |
-| Słowa kluczowe | 96 / 100 | ok |
-| Tekst promocyjny | 152 / 170 | ok |
-| Opis | 2232 / 4000 | ok |
-| What's New 0.12.0 | 186 / 4000 | ok |
-
-**Słowa kluczowe** (dla wariantu A; bez słów z nazwy i podtytułu):
-
-`workout,exercise,strength,barbell,dumbbell,templates,calendar,records,e1RM,RPE,RIR,lifting,bands`
-
-**Tekst promocyjny:**
-
-Your own templates, a weekly plan, rest timer and progress charts. Everything works offline on your phone, with no account and no ads. First month free.
-
-**Opis:**
+**Blok cenowy** (pole `pricingBlock`; do opisu dopiero z działającym zakupem — **[CZEKA NA SUBSKRYPCJĘ]**; na początek dodać „W cenie espresso lub taniej.”):
 
 ```text
-Training is a workout log for the gym and for home. You record sets, weights and reps, and the app works out the rest: volume, records and estimated one-rep max (e1RM, Epley formula). It runs entirely on your phone, with no account, no ads and no tracking.
+Pierwszy miesiąc za darmo. Potem subskrypcja: 3,99 zł miesięcznie lub 19,99 zł rocznie (odnawiana automatycznie, anulujesz w ustawieniach konta Apple), albo jednorazowy dostęp dożywotni za 59,99 zł. Subskrypcję i dostęp dożywotni można udostępnić w gronie rodziny (Chmura rodzinna). Bez subskrypcji możesz nadal zapisywać 4 treningi na żywo w miesiącu, a historia, kopia zapasowa i eksport działają zawsze.
+```
+
+### English (en-US; en-GB — ta sama treść)
+
+| Field | Chars | Bytes | Limit |
+|---|---|---|---|
+| Name (registry) | 30 | 30 | 30 chars |
+| Subtitle | 29 | 29 | 30 chars |
+| Keywords | 100 | 100 | 100 bytes |
+| Promotional text | 134 | 134 | 170 chars |
+| Description (no pricing block) | 2300 | 2348 | 4000 chars |
+| Description + pricing block | 2746 | — | 4000 chars |
+
+**Subtitle:** Private, offline plans & sets
+
+**Keywords** (no words from the name or subtitle; "tracker" is the main category phrase; "progress" moved here from the old subtitle):
+
+`workout,tracker,lifting,strength,weightlifting,routine,progress,plate,barbell,dumbbell,1RM,RPE,bands`
+
+**Promotional text:**
+
+Your own templates, a weekly plan, rest timer and progress charts. Everything works offline on your phone, with no account and no ads.
+
+**Description:**
+
+```text
+Your training stays on your phone. A simple gym log — no account, no internet.
+
+Training is a workout log for the gym and for home. You record sets, weights and reps, and the app works out the rest: volume, records and estimated one-rep max (e1RM, Epley formula). It collects no data and has no ads or tracking.
 
 WORKOUTS
 • Your own workout templates, organised in folders and an archive
 • "Focus" view (one set on screen) or the classic list
-• Rest timer with an end-of-rest notification, also with the screen locked
+• Rest timer with an end-of-rest notification, also with the screen locked, and on the Lock Screen (Live Activity)
 • Workout pause: paused time is not counted in the duration
 • Optional RPE or RIR effort scale per set
 • Swap an exercise mid-workout when equipment is missing or a machine is taken
+• "Adapt to place": when you switch to a place without the equipment you need, the app suggests substitute exercises for you to review — nothing changes on its own, your template and plan stay as they are
 • Plate calculator for the barbell, resistance bands with colours, weights in kg or lb
 
 PLAN AND CALENDAR
@@ -466,41 +471,84 @@ PLAN AND CALENDAR
 
 PROGRESS
 • Workout history, records and charts for every exercise
-• Weekly and monthly summary with a muscle map, sets per muscle group and records of the period
+• Weekly and monthly summary with a muscle map, records of the period and sets per muscle group against your own target (Automatic or Manual)
 • Comparison of the current period with the previous one (volume, sets, workouts)
 • Body weight with a date, a progression hint on each exercise
 • Exercise library with short technique cues
 
 YOUR DATA
 • Backup and export to JSON and CSV files, import from a backup
-• Optional saving of finished workouts to Apple Health
+• Import workout history from the CSV files of popular training logs, with a preview before saving
+• Apple Health (optional): saving finished workouts, and reading steps, workouts, heart rate and active energy — the data read is only displayed on your phone
 • Light, dark or system appearance, 35 languages
-
-[PRICING BLOCK — owner to confirm]
-First month free. Then a subscription: 0.99 per month or 4.99 per year (USD, EUR, GBP; 3.99 PLN and 19.99 PLN in Poland; renews automatically, cancel in your Apple account settings), or a one-time lifetime access purchase for 14.99 (59.99 PLN in Poland). Subscription and lifetime access can be shared with your family (Family Sharing). Without a subscription you can still log 4 live workouts per month; history, backup and export always work.
 
 Training is not medical advice. For pain, injuries or illness, consult a specialist.
 ```
 
-**What's New (0.12.0):**
+**Pricing block** (field `pricingBlock`; add to the description only once the purchase ships — **[CZEKA NA SUBSKRYPCJĘ]**; the subscription is switched off today):
 
-- 9 new languages: Português (Brasil), Español (Latinoamérica), Bahasa Indonesia, Bahasa Melayu, Tiếng Việt, Русский, 日本語, 한국어, 繁體中文.
-- 35 languages; you can change the language in Settings.
+```text
+First month free. Then a subscription: 0.99 per month or 4.99 per year (USD, EUR, GBP; 3.99 PLN and 19.99 PLN in Poland; renews automatically, cancel in your Apple account settings), or a one-time lifetime access purchase for 14.99 (59.99 PLN in Poland). Subscription and lifetime access can be shared with your family (Family Sharing). Without a subscription you can still log 4 live workouts per month; history, backup and export always work.
+```
 
-### Rekomendacja nazwy i podtytułu
+### Deutsch (de-DE) — szkic do przeglądu przez tłumacza
 
-- **Wariant A (rekomendowany):** nazwa z rejestru (decyzja 05.10/06.10, `store/app-store-names.json`) zawiera słowa wyszukiwane przez ludzi („dziennik siłowni”, „gym log”, „rest timer”), a podtytuł dokłada plan i serie. Kompromis: dłuższa nazwa w sklepie, mniej „markowa”.
-- **Wariant B:** krótka nazwa „Trening”/„Training” (jak nazwa pod ikoną), opis funkcji w podtytule. Kompromis: bardzo ogólne słowo — trudniej o unikalność nazwy w App Store Connect i słabsza widoczność w wyszukiwaniu; słowa kluczowe trzeba by przeliczyć.
-- Decyzja należy do właściciela. Liczby znaków w tabelach wyżej.
+| Feld | Zeichen | Bytes | Limit |
+|---|---|---|---|
+| Name (Register) | 22 | 22 | 30 |
+| Untertitel | 29 | 29 | 30 |
+| Schlüsselwörter | 99 | 99 | 100 Bytes |
+
+**Untertitel:** Trainingsplan offline, privat
+
+**Schlüsselwörter** (Komposita als volle Wörter; ob Apple Komposita trennt: **[DO SPRAWDZENIA]**; „Trainingstagebuch” z nazwy lokalnej — zmiana nazwy na „Training: Trainingstagebuch” to pytanie do tłumacza):
+
+`Trainingstagebuch,Krafttraining,Fitnessstudio,Hantel,Langhantel,Kraftsport,Wiederholungen,Pause,RPE`
+
+**Początek opisu** (reszta po przeglądzie tłumacza):
+
+```text
+Dein Training bleibt auf deinem iPhone. Ein einfaches Trainingstagebuch fürs Gym — ohne Konto, ohne Internet.
+
+Training ist ein Trainingstagebuch fürs Gym und für zu Hause: Sätze, Gewichte und Wiederholungen erfassen, den Rest rechnet die App. Sie sammelt keine Daten, hat keine Werbung und kein Tracking.
+```
+
+### Do tłumaczenia (pozostałe lokalizacje — nie tłumaczymy teraz)
+
+Lokalizacje bez gotowych tekstów: **27** (31 w rejestrze nazw minus pl, en-US, de-DE, en-GB; en-GB kopiuje en-US, bo działa też jako drugi język w sklepach PL, CZ, HU i innych). Tłumaczy rola tłumacza; przegląd — Gemini (zadanie z gotowym promptem, CLAUDE.md).
+
+| Pole do przetłumaczenia | Limit | Źródło | Zależy od 0.20? |
+|---|---|---|---|
+| Podtytuł | 30 znaków | EN | nie |
+| Słowa kluczowe | 100 bajtów | EN jako lista tematów, dobór słów lokalnie (nie tłumaczenie słowo w słowo) | nie |
+| Tekst promocyjny | 170 znaków | EN | nie |
+| Opis (bez bloku cenowego) | 4000 znaków | EN (pl dla języków słowiańskich — do ustalenia z tłumaczem) | **tak** — akapit o zegarku i głosie dopisać po wydaniu 0.20 |
+| Blok cenowy | w opisie | EN + lokalne ceny | **tak** — po włączeniu subskrypcji; lokalne progi cenowe wg zasady z 09.10.2026 |
+| Podpisy zrzutów 1–8 | wg planu zrzutów | PL/EN | nie |
+| Podpisy zrzutów 9–10 (przerwa z głosem; zegarek) | wg planu zrzutów | PL/EN | **tak** |
+
+Lokalizacje: `cs`, `sk`, `hu`, `ro`, `hr`, `sl`, `uk`, `es-ES`, `es-MX`, `pt-PT`, `pt-BR`, `fr-FR`, `it`, `nl-NL`, `sv`, `da`, `no`, `fi`, `tr`, `el`, `id`, `ms`, `vi`, `ru`, `ja`, `ko`, `zh-Hant`.
+
+### Rozbieżności z audytu docs/15 (plan marketingu, tabela 3.6) — stan po odświeżeniu
+
+| # | Rozbieżność | Stan |
+|---|---|---|
+| 1 | Nazwa: „dwa warianty” | zamknięte: wariant A (wyżej) |
+| 2 | Opis na stanie 0.12.0 | opis na stanie 0.18: „Dostosuj do miejsca” (0.18), import CSV z popularnych dzienników (0.13), odczyt z Apple Health (0.16), Live Activity, cel serii na partię (0.14/0.16). Zegarki i głos — **[CZEKA NA 0.20]**; zakres przed wysyłką porównać z `lib/whatsnew.ts` |
+| 3 | HealthKit „tylko zapis” | poprawione (zapis + opcjonalny odczyt) w docs/15 i w opisach; `site/privacy.html` już zgodna |
+| 4 | „Darmowa na start” / stare ceny | oznaczone jako historia; obowiązuje M1; subskrypcja dziś wyłączona |
+| 5 | Słowa kluczowe PL | zastąpione (wyżej); popularność **[DO SPRAWDZENIA]** |
+| 6 | „12 lokalizacji” | poprawione: 31 lokalizacji (rejestr nazw), 35 języków aplikacji |
+| 7 | Podtytuł bez prywatności/offline | zamknięte decyzją właściciela 13.10.2026 |
+| 8 | „What's New 0.12.0” w projekcie | usunięte. Przy pierwszej wersji w sklepie pole „What's New” prawdopodobnie nie występuje **[DO SPRAWDZENIA]** w App Store Connect; treść późniejszych wersji z `lib/whatsnew.ts` |
+| 9 | „bez śledzenia”, „Data Not Collected”, „bez internetu” | twierdzenia zgodne z kodem dziś (brak wywołań sieciowych); ponowna kontrola po włączeniu StoreKit i przy głębokim audycie przed App Store |
 
 ### Do potwierdzenia przez właściciela
 
-1. **Cena w opisie i tekście promocyjnym** (blok cenowy, „pierwszy miesiąc za darmo”): wstawiać dopiero z działającym zakupem; czy podawać kwoty w opisie (zmieniają się w App Store Connect bez nowej wersji, w innych krajach inne), czy tylko „subskrypcja lub dostęp dożywotni” — Apple (3.1.2) wymaga jasnych warunków odnawiania.
-2. **Waluty w opisie:** EN podaje 0,99/4,99/14,99 w USD/EUR/GBP (opis jest jeden dla wszystkich krajów angielskiego) — czy tak, czy bez kwot.
-3. **Family Sharing:** decyzja TAK (11.10.2026), opis ją wspomina; otwarte w docs/15: czy włączenie jest nieodwracalne — sprawdzić w App Store Connect przed wysyłką.
-4. **Hasło „w cenie espresso lub taniej”** — pominięte; wymaga potwierdzenia cen espresso źródłami w każdym kraju (decyzja 09.10 pkt 3). **Zmiana (właściciel 11.10.2026, ok. 23:10): wyjątek od warunku źródeł — hasło wolno użyć bez potwierdzania cen espresso w każdym kraju** (hasło marketingowe, nie twierdzenie merytoryczne o treningu; ryzyko: w krajach z bardzo tanią kawą porównanie może być nieścisłe — Apple 2.3.1). Wstawić razem z blokiem cenowym, gdy zakup trafi do wydania.
-5. **„What's New 0.12.0”:** w `lib/whatsnew.ts` nie ma jeszcze wpisu 0.12.0 (najnowszy to 0.11.0). Projekt opiera się na zamianie ćwiczenia (E2, scalone w kodzie); po dopisaniu wpisu (35 języków, przez `t()`) tekst App Store dostosować do niego.
-6. **Zakres funkcji w opisie:** generator planu, zamiana ćwiczenia, Apple Health (tylko zapis), kopia JSON/CSV — potwierdzić, że wszystko trafia do 0.12.0.
-7. **Twierdzenie „bez śledzenia”** — zgodne z `site/privacy.html` (brak wywołań sieciowych); zweryfikować przed wysyłką, jeśli dojdzie StoreKit.
-8. **Słowo „offline” w podtytule EN A i „bands” w słowach kluczowych** — czy zostają jako wyróżniki.
-9. Poza tym zadaniem: zrzuty ekranu, kategoria, rating wiekowy, adres URL wsparcia.
+1. **Brzmienie hasła** (pierwsze zdanie opisu) — **[DO ZATWIERDZENIA]**.
+2. **Blok cenowy w opisie:** podawać kwoty (zmieniają się w App Store Connect bez nowej wersji, w innych krajach inne) czy tylko „subskrypcja lub dostęp dożywotni” — Apple 3.1.2 wymaga jasnych warunków odnawiania. Waluty EN: USD/EUR/GBP w jednym opisie.
+3. **Family Sharing:** TAK (11.10.2026); otwarte: czy włączenie jest nieodwracalne — sprawdzić w App Store Connect przed wysyłką.
+4. **Hasło „w cenie espresso lub taniej”:** wolno użyć (wyjątek 11.10.2026, ryzyko — Apple 2.3.1 w krajach z bardzo tanią kawą); wstawić z blokiem cenowym.
+5. **Twierdzenie „bez śledzenia / bez internetu”:** zgodne z `site/privacy.html`; sprawdzić po StoreKit.
+6. **Zakres funkcji w opisie:** porównać z `lib/whatsnew.ts` tuż przed wysyłką; po 0.20 dopisać zegarki, głos i (po spełnieniu warunku z notatki wyżej) neutralne „także z wybranymi zegarkami sportowymi”.
+7. Poza tym zadaniem: zrzuty ekranu (plan: plan marketingu rozdz. 3.4), kategoria, rating wiekowy, adres URL wsparcia.
