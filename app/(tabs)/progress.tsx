@@ -154,7 +154,7 @@ function MuscleCompare({ cur: curIn, prev: prevIn, curSplit, prevSplit, fmt, mar
     const shown = sp ? splitText(sp, mark) : fmt(c); const bid = curSplit ? 'cbar' : 'cvol'; /* serie / objętość: osobne testID */
     return (
     <View accessibilityLanguage={lang()} key={mu} style={{ marginBottom: 8 }} accessible accessibilityLabel={`${label}: ${sp ? splitLabel(sp) : fmt(c)} (${t('poprz.')} ${fmt(p)})${mark ? ', ' + t('cel {n}', { n: fmt(mark) }) : ''}${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}><Txt style={{ fontSize: 14 }}>{label}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{shown} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(p)})</Muted></Muted></View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}><Txt style={{ fontSize: 14 }}>{label}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{monoSafe(shown) /* A11-11 */} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(p)})</Muted></Muted></View>
       <View style={{ height: 6, backgroundColor: th.line, borderRadius: 3, marginTop: 4 }}>
         <View testID={`${bid}-${mu}`} style={{ width: `${Math.round(100 * c / max)}%`, height: 6, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
           {c - ind > 0 ? <Seg testID={`${bid}-${mu}-direct`} width={`${(100 * (c - ind)) / c}%`} color={th.accent} /> : null}

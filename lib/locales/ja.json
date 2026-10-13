@@ -442,7 +442,7 @@
  "Masa ciała ({u})": "体重（{u}）",
  "Masa ciała musi być większa od zera i nie większa niż {max}.": "体重は0より大きく、{max}以下にしてください。",
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "体重：「±」は加重（プラス）または補助、例えばマシン（マイナス）です。バンドはレベル付きの別の項目です。記録は補助なしの合計回数で、ボリュームは加重分だけで計算します。",
- "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "筋肥大：部位ごとに週{m}セット以上、{a}–{b}回（自宅では{c}–{d}回）、通常は余力{r1}–{r2}回。",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "筋肥大：部位ごとの週あたりセット数は設定の目標まで（自動では{m}）、{a}–{b}回（自宅では{c}–{d}回）、通常は余力{r1}–{r2}回。",
  "maszyna": "マシン",
  "maszyna belt squat": "ベルトスクワットマシン",
  "maszyna do bicepsa": "バイセップスカールマシン",
@@ -732,8 +732,8 @@
  "Pomiń dziś": "今日はスキップ",
  "Pomiń dziś: {name}": "今日はスキップ: {name}",
  "pomocnicza": "補助",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "週{n}セット未満: {list}。セッションを増やす、時間を長くする、またはその場所の器具を増やすと改善します。",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "週{n}セット未満: {list}。これは筋肥大に推奨される下限です。セットはテンプレートで追加できます。",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "週のセット目標未満: {list}。セッションを増やす、時間を長くする、またはその場所の器具を増やすと改善します。",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "週のセット目標未満: {list}。目標は設定で変更できます（自動の場合は筋肥大に推奨される下限）。セットはテンプレートで追加できます。",
  "Ponów teraz": "今すぐ再試行",
  "Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).": "記録の修正：「{name}」のすべてのセットを選んだ種目に移します（値は変わりません）。",
  "poprz.": "前回",
@@ -1465,5 +1465,10 @@
  "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "ウォッチのトレーニングは Apple Health に残ります — ヘルスケアアプリで削除してください。",
  "w tym tygodniu": "今週",
  "Z zegarka": "ウォッチから",
- "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "許可はヘルスケアアプリで取り消せます：プロフィール → App → {app}。"
+ "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "許可はヘルスケアアプリで取り消せます：プロフィール → App → {app}。",
+ "{d} + {w} pośrednio ({n} {s})": "{d} + {w} 間接（{n}{s}）",
+ "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "直接 {d}、間接 {w}（補助セット：{n}）",
+ "cel {n}": "目標 {n}",
+ "bezpośrednie": "直接",
+ "pośrednie (pomocnicze, po {h})": "間接（補助、各{h}）"
 }

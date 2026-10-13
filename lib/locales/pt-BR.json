@@ -176,8 +176,8 @@
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Pular o exercício interrompe a cronometragem — este tempo não será salvo.",
  "Pomiń dziś": "Pular hoje",
  "Pomiń dziś: {name}": "Pular hoje: {name}",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Abaixo de {n} séries por semana: {list}. Mais sessões, sessões mais longas ou mais equipamento no local ajudam.",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Abaixo de {n} séries por semana: {list}. É o limite mínimo recomendado para ganhar músculo; você pode adicionar séries nos modelos.",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Abaixo da meta semanal de séries: {list}. Mais sessões, sessões mais longas ou mais equipamento no local ajudam.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "Abaixo da meta semanal de séries: {list}. A meta é definida em Ajustes (automaticamente, o limite mínimo recomendado para ganhar músculo); você pode adicionar séries nos modelos.",
  "Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).": "Correção do registro: todas as séries de «{name}» passam para o exercício escolhido (valores inalterados).",
  "Poprzedni tydzień jest oznaczony jako deload.": "A semana anterior está marcada como deload.",
  "Poręcze do dipów": "Barras paralelas",
@@ -503,5 +503,6 @@
  "Jeśli dane się nie pokażą, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Se os dados não aparecerem, verifique o acesso no app Saúde: perfil → Apps → {app}.",
  "Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu.": "Passos, outras atividades e frequência cardíaca e kcal do relógio — somente para consulta, os dados ficam na Saúde.",
  "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "O treino do relógio fica no Apple Health — apague no app Saúde.",
- "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Você pode revogar a permissão no app Saúde: perfil → Apps → {app}."
+ "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Você pode revogar a permissão no app Saúde: perfil → Apps → {app}.",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Massa: séries por grupo muscular por semana até a meta de Ajustes (automaticamente {m}), {a}–{b} repetições (em casa {c}–{d}), normalmente {r1}–{r2} repetições em reserva."
 }

@@ -442,7 +442,7 @@
  "Masa ciała ({u})": "체중({u})",
  "Masa ciała musi być większa od zera i nie większa niż {max}.": "체중은 0보다 크고 {max} 이하여야 합니다.",
  "Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.": "체중: ‘±’는 추가 중량(플러스) 또는 보조, 예를 들어 머신(마이너스)입니다. 밴드는 레벨이 있는 별도 항목입니다. 기록은 보조 없는 총 반복 횟수이며, 볼륨은 추가 중량으로만 계산합니다.",
- "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "근비대: 부위별 주 {m}세트 이상, {a}–{b}회(집에서는 {c}–{d}회), 보통 {r1}–{r2}회 여유를 남김.",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "근비대: 부위별 주간 세트 수는 설정의 목표까지(자동일 때 {m}), {a}–{b}회(집에서는 {c}–{d}회), 보통 {r1}–{r2}회 여유를 남김.",
  "maszyna": "머신",
  "maszyna belt squat": "벨트 스쿼트 머신",
  "maszyna do bicepsa": "바이셉스 컬 머신",
@@ -732,8 +732,8 @@
  "Pomiń dziś": "오늘 건너뛰기",
  "Pomiń dziś: {name}": "오늘 건너뛰기: {name}",
  "pomocnicza": "보조",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "주 {n}세트 미만: {list}. 세션을 늘리거나, 시간을 길게 하거나, 그 장소의 장비를 늘리면 도움이 됩니다.",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "주 {n}세트 미만: {list}. 근비대에 권장되는 최소 기준입니다. 세트는 루틴에서 추가할 수 있습니다.",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "주간 세트 목표 미만: {list}. 세션을 늘리거나, 시간을 길게 하거나, 그 장소의 장비를 늘리면 도움이 됩니다.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "주간 세트 목표 미만: {list}. 목표는 설정에서 정할 수 있습니다(자동일 때는 근비대에 권장되는 최소 기준). 세트는 루틴에서 추가할 수 있습니다.",
  "Ponów teraz": "지금 다시 시도",
  "Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).": "기록 수정: ‘{name}’의 모든 세트가 선택한 종목으로 옮겨집니다(값은 그대로).",
  "poprz.": "이전",
@@ -1465,5 +1465,10 @@
  "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "워치의 운동은 Apple Health에 남습니다 — 건강 앱에서 삭제하세요.",
  "w tym tygodniu": "이번 주",
  "Z zegarka": "워치에서",
- "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "권한은 건강 앱에서 철회할 수 있습니다: 프로필 → 앱 → {app}."
+ "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "권한은 건강 앱에서 철회할 수 있습니다: 프로필 → 앱 → {app}.",
+ "{d} + {w} pośrednio ({n} {s})": "{d} + {w} 간접({n}{s})",
+ "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "직접 {d}, 간접 {w}(보조 세트: {n})",
+ "cel {n}": "목표 {n}",
+ "bezpośrednie": "직접",
+ "pośrednie (pomocnicze, po {h})": "간접(보조, 각 {h})"
 }

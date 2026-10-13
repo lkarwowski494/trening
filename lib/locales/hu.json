@@ -981,7 +981,7 @@
  "Dalej": "Tovább",
  "Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.": "Az edzés képernyőn: a mai tervezett edzés, az aktuális hét és a következő edzések névvel.",
  "Siła: bój główny na początku, {s} × {a}–{b} powtórzeń (ciężko, ok. {p}% maksimum i więcej), pozostałe ćwiczenia {s} × {c}–{d}.": "Erő: a fő gyakorlat elöl, {s} × {a}–{b} ismétlés (nehéz, a maximum kb. {p}%-a vagy több), a többi gyakorlat {s} × {c}–{d}.",
- "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Izomtömeg: izomcsoportonként legalább {m} sorozat hetente, {a}–{b} ismétlés (otthon {c}–{d}), általában {r1}–{r2} ismétlés tartalékban.",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Izomtömeg: izomcsoportonként heti sorozatszám a(z) Beállításokban megadott célig (automatikusan {m}), {a}–{b} ismétlés (otthon {c}–{d}), általában {r1}–{r2} ismétlés tartalékban.",
  "Zapisano": "Mentve",
  "Szablony: {list} — w folderze „{folder}” na liście Szablony.": "Sablonok: {list} — a „{folder}” mappában a Sablonok listán.",
  "Plan „{name}” jest teraz aktywny.": "A(z) „{name}” terv most aktív.",
@@ -1008,7 +1008,7 @@
  "Brak ćwiczeń na: {list}.": "Nincs gyakorlat ezekre: {list}.",
  "Przyda się: {list}.": "Segítene: {list}.",
  "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).": "Ritkábban, mint heti {n} nap: {list} (csak segítő munkával töltött nap = {h}).",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Heti {n} sorozat alatt: {list}. Több edzés, hosszabb edzések vagy több eszköz a helyen segít.",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "A heti sorozatcél alatt: {list}. Több edzés, hosszabb edzések vagy több eszköz a helyen segít.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, heti {n}× · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Erőfeszítés: általában {a}–{b} ismétlés tartalékban (RIR); kifáradásig nem szükséges.",
  "{v} (masa ciała {d})": "{v} (testsúly {d})",
@@ -1222,7 +1222,7 @@
  "{name}: {n}× w tygodniu": "{name}: heti {n}×",
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Több nap, mint sablon: a sablonok sorban (A, B, A…), mint a generátorban — megállapodás.",
  "Zapisz plan": "Terv mentése",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Heti {n} sorozat alatt: {list}. Ez az izomépítéshez ajánlott alsó határ; sorozatokat a sablonokban adhatsz hozzá.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "A heti sorozatcél alatt: {list}. A célt a(z) Beállítások menüben állíthatod be (automatikusan az izomépítéshez ajánlott alsó határ); sorozatokat a sablonokban adhatsz hozzá.",
  "Moje szablony, {n}× w tygodniu": "Saját sablonok, heti {n}×",
  "Mój plan ({date})": "Saját terv ({date})",
  "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Edzés nélkül: {list}. Ez az aktív „{plan}” tervet is lecseréli, amely csak ezekből a sablonokból áll — a „Csere” törli őket, és helyette az új tervet teszi aktívvá, a „Megtartás” melléjük teszi az újakat.",
@@ -1465,5 +1465,10 @@
  "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "Az órán rögzített edzés megmarad az Apple Healthben — az Egészség appban törölheted.",
  "w tym tygodniu": "ezen a héten",
  "Z zegarka": "Az óráról",
- "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Az engedélyt visszavonhatod az Egészség appban: profil → Appok → {app}."
+ "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Az engedélyt visszavonhatod az Egészség appban: profil → Appok → {app}.",
+ "{d} + {w} pośrednio ({n} {s})": "{d} + {w} közvetett ({n} {s})",
+ "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} közvetlen, {w} közvetett (másodlagos sorozatok: {n})",
+ "cel {n}": "cél {n}",
+ "bezpośrednie": "közvetlen",
+ "pośrednie (pomocnicze, po {h})": "közvetett (másodlagos, egyenként {h})"
 }

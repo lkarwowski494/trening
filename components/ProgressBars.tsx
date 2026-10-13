@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useTheme, F } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
 import { fmtNum, volOut } from '@/lib/units';
-import { Muted, Txt } from '@/components/ui';
+import { Muted, Txt, monoSafe } from '@/components/ui';
 import type { MuscleRow, SetRow } from '@/lib/progress';
 import { SECONDARY_SHARE, splitText, splitLabel, type SetSplit } from '@/lib/setSplit';
 
@@ -82,7 +82,7 @@ export function MuscleRows({ rows, metric, showPrev = true }: { rows: BarRow[]; 
       <View accessibilityLanguage={lang()} key={r.key} testID={`prow-${metric}-${r.key}`} accessible accessibilityLabel={label} style={{ marginBottom: 10 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
           <Txt style={{ fontSize: 14, flexShrink: 1 }}>{showPrev && r.up ? '▲ ' : ''}{r.label}</Txt>
-          <Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{value}{showPrev ? <Muted style={{ fontSize: 12 }}> ({t('poprz.')} {fmt(r.prev)})</Muted> : null}</Muted>
+          <Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{monoSafe(value) /* A11-11: litery greckie krojem tekstu */}{showPrev ? <Muted style={{ fontSize: 12 }}> ({t('poprz.')} {fmt(r.prev)})</Muted> : null}</Muted>
         </View>
         <View style={{ marginTop: 4 }}><SegBar testID={`pbar-${metric}-${r.key}`} done={r.done} doneIndirect={ds?.indirectWeighted ?? 0} planned={r.planned} plannedIndirect={r.plannedSplit?.indirectWeighted ?? 0} max={max} mark={r.mark} /></View>
         {showPrev ? <View style={{ marginTop: 3, height: 3, borderRadius: 1.5, backgroundColor: th.line }}><View testID={`pprev-${metric}-${r.key}`} style={{ width: `${Math.min(100, (100 * r.prev) / max)}%`, height: 3, borderRadius: 1.5, backgroundColor: th.muted }} /></View> : null}

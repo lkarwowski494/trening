@@ -56,6 +56,14 @@
   "en": "{cur} vs {prev}"
  },
  {
+  "pl": "{d} + {w} pośrednio ({n} {s})",
+  "en": "{d} + {w} indirect ({n} {s})"
+ },
+ {
+  "pl": "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})",
+  "en": "{d} direct, {w} indirect (secondary sets: {n})"
+ },
+ {
   "pl": "{ex} — {n} min, umiarkowane tempo",
   "en": "{ex} — {n} min, moderate pace"
  },
@@ -508,6 +516,10 @@
   "en": "Not used in any workout: {list}. This also replaces the active plan “{plan}”, made only of these templates — “Replace” deletes them and makes the new plan active in its place, “Keep” adds the new ones alongside."
  },
  {
+  "pl": "bezpośrednie",
+  "en": "direct"
+ },
+ {
   "pl": "biblioteki ćwiczeń organizacji szkoleniowych",
   "en": "exercise libraries of fitness education organisations"
  },
@@ -698,6 +710,10 @@
  {
   "pl": "Cel",
   "en": "Goal"
+ },
+ {
+  "pl": "cel {n}",
+  "en": "goal {n}"
  },
  {
   "pl": "cel s",
@@ -2058,8 +2074,8 @@
   "en": "Body weight: “±” is added weight (plus) or assistance, e.g. a machine (minus); a band is a separate field with its level. The record is total unassisted reps, and volume uses only the added weight."
  },
  {
-  "pl": "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.",
-  "en": "Muscle: at least {m} sets per muscle group per week, {a}–{b} reps (at home {c}–{d}), usually {r1}–{r2} reps in reserve."
+  "pl": "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.",
+  "en": "Muscle: sets per muscle group per week up to the goal from Settings (automatically {m}), {a}–{b} reps (at home {c}–{d}), usually {r1}–{r2} reps in reserve."
  },
  {
   "pl": "maszyna",
@@ -3379,12 +3395,12 @@
   "en": "secondary"
  },
  {
-  "pl": "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
-  "en": "Below {n} sets per week: {list}. More sessions, longer sessions or more equipment at the place will help."
+  "pl": "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.",
+  "en": "Below the weekly set goal: {list}. You can set the goal in Settings (automatically the lower threshold recommended for building muscle); you can add sets in the templates."
  },
  {
-  "pl": "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.",
-  "en": "Below {n} sets per week: {list}. This is the lower threshold recommended for building muscle; you can add sets in the templates."
+  "pl": "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
+  "en": "Below the weekly set goal: {list}. More sessions, longer sessions or more equipment at the place will help."
  },
  {
   "pl": "Ponów teraz",
@@ -3485,6 +3501,10 @@
  {
   "pl": "pośladki",
   "en": "glutes"
+ },
+ {
+  "pl": "pośrednie (pomocnicze, po {h})",
+  "en": "indirect (secondary, {h} each)"
  },
  {
   "pl": "pow.",

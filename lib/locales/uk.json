@@ -981,7 +981,7 @@
  "Dalej": "Далі",
  "Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.": "На екрані тренування: сьогоднішнє заплановане тренування, поточний тиждень і найближчі тренування з назвами.",
  "Siła: bój główny na początku, {s} × {a}–{b} powtórzeń (ciężko, ok. {p}% maksimum i więcej), pozostałe ćwiczenia {s} × {c}–{d}.": "Сила: основна вправа першою, {s} × {a}–{b} повторень (важко, приблизно {p}% максимуму й більше), інші вправи {s} × {c}–{d}.",
- "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Маса: щонайменше {m} підходів на м’язову групу на тиждень, {a}–{b} повторень (вдома {c}–{d}), зазвичай {r1}–{r2} повторення в запасі.",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Маса: підходів на м’язову групу на тиждень до цілі з розділу Параметри (автоматично {m}), {a}–{b} повторень (вдома {c}–{d}), зазвичай {r1}–{r2} повторення в запасі.",
  "Zapisano": "Збережено",
  "Szablony: {list} — w folderze „{folder}” na liście Szablony.": "Шаблони: {list} — у папці «{folder}» у списку Шаблони.",
  "Plan „{name}” jest teraz aktywny.": "План «{name}» тепер активний.",
@@ -1008,7 +1008,7 @@
  "Brak ćwiczeń na: {list}.": "Немає вправ на: {list}.",
  "Przyda się: {list}.": "Знадобиться: {list}.",
  "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).": "Рідше ніж {n} дні на тиждень: {list} (день лише з допоміжною роботою = {h}).",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Менше {n} підходів на тиждень: {list}. Допоможуть більше тренувань, довші тренування або більше обладнання в місці.",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Нижче тижневої цілі підходів: {list}. Допоможуть більше тренувань, довші тренування або більше обладнання в місці.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× на тиждень · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Зусилля: зазвичай {a}–{b} повторення в запасі (RIR); до відмови не потрібно.",
  "{v} (masa ciała {d})": "{v} (маса тіла {d})",
@@ -1222,7 +1222,7 @@
  "{name}: {n}× w tygodniu": "{name}: {n}× на тиждень",
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Днів більше, ніж шаблонів: шаблони по черзі (A, B, A…), як у генераторі, — домовленість.",
  "Zapisz plan": "Зберегти план",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Менше {n} підходів на тиждень: {list}. Це нижній поріг, рекомендований для набору м’язової маси; підходи додаси в шаблонах.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "Нижче тижневої цілі підходів: {list}. Ціль можна задати в розділі Параметри (автоматично — нижній поріг, рекомендований для набору м’язової маси); підходи додаси в шаблонах.",
  "Moje szablony, {n}× w tygodniu": "Мої шаблони, {n}× на тиждень",
  "Mój plan ({date})": "Мій план ({date})",
  "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Без тренувань: {list}. Це замінить і активний план «{plan}», складений лише з цих шаблонів — «Замінити» видалить їх і зробить новий план активним замість нього, «Залишити» додасть нові поруч.",
@@ -1465,5 +1465,10 @@
  "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "Тренування з годинника залишиться в Apple Health — видали його в застосунку «Здоров’я».",
  "w tym tygodniu": "цього тижня",
  "Z zegarka": "З годинника",
- "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Дозвіл можна скасувати в програмі «Здоров’я»: профіль → Програми → {app}."
+ "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Дозвіл можна скасувати в програмі «Здоров’я»: профіль → Програми → {app}.",
+ "{d} + {w} pośrednio ({n} {s})": "{d} + {w} опосередковано ({n} {s})",
+ "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} безпосередньо, {w} опосередковано (допоміжні підходи: {n})",
+ "cel {n}": "ціль {n}",
+ "bezpośrednie": "безпосередні",
+ "pośrednie (pomocnicze, po {h})": "опосередковані (допоміжні, по {h})"
 }

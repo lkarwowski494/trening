@@ -981,7 +981,7 @@
  "Dalej": "Weiter",
  "Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.": "Auf dem Trainingsbildschirm: heutiges Training aus dem Plan, die aktuelle Woche und die nächsten Trainings mit Namen.",
  "Siła: bój główny na początku, {s} × {a}–{b} powtórzeń (ciężko, ok. {p}% maksimum i więcej), pozostałe ćwiczenia {s} × {c}–{d}.": "Kraft: Hauptübung zuerst, {s} × {a}–{b} Wiederholungen (schwer, etwa {p} % des Maximums oder mehr), andere Übungen {s} × {c}–{d}.",
- "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Muskelaufbau: mindestens {m} Sätze pro Muskelgruppe pro Woche, {a}–{b} Wiederholungen (zu Hause {c}–{d}), meist {r1}–{r2} Wiederholungen in Reserve.",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Muskelaufbau: Sätze pro Muskelgruppe pro Woche bis zum Ziel aus Einstellungen (automatisch {m}), {a}–{b} Wiederholungen (zu Hause {c}–{d}), meist {r1}–{r2} Wiederholungen in Reserve.",
  "Zapisano": "Gespeichert",
  "Szablony: {list} — w folderze „{folder}” na liście Szablony.": "Vorlagen: {list} — im Ordner „{folder}“ in der Liste Vorlagen.",
  "Plan „{name}” jest teraz aktywny.": "Der Plan „{name}“ ist jetzt aktiv.",
@@ -1008,7 +1008,7 @@
  "Brak ćwiczeń na: {list}.": "Keine Übungen für: {list}.",
  "Przyda się: {list}.": "Hilfreich wäre: {list}.",
  "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).": "Seltener als an {n} Tagen pro Woche: {list} (ein Tag nur mit unterstützender Arbeit = {h}).",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Unter {n} Sätzen pro Woche: {list}. Mehr Einheiten, längere Einheiten oder mehr Geräte am Ort helfen.",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Unter dem Wochenziel an Sätzen: {list}. Mehr Einheiten, längere Einheiten oder mehr Geräte am Ort helfen.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× pro Woche · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Anstrengung: meist {a}–{b} Wiederholungen in Reserve (RIR); Training bis zum Versagen ist nicht nötig.",
  "{v} (masa ciała {d})": "{v} (Körpergewicht {d})",
@@ -1222,7 +1222,7 @@
  "{name}: {n}× w tygodniu": "{name}: {n}× pro Woche",
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Mehr Tage als Vorlagen: Vorlagen der Reihe nach (A, B, A…), wie im Generator — eine Konvention.",
  "Zapisz plan": "Plan speichern",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Unter {n} Sätzen pro Woche: {list}. Das ist die untere Schwelle, die für Muskelaufbau empfohlen wird; Sätze ergänzt du in den Vorlagen.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "Unter dem Wochenziel an Sätzen: {list}. Das Ziel legst du in Einstellungen fest (automatisch die untere Schwelle, die für Muskelaufbau empfohlen wird); Sätze ergänzt du in den Vorlagen.",
  "Moje szablony, {n}× w tygodniu": "Meine Vorlagen, {n}× pro Woche",
  "Mój plan ({date})": "Mein Plan ({date})",
  "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Ohne Trainings: {list}. Das ersetzt auch den aktiven Plan „{plan}“, der nur aus diesen Vorlagen besteht — „Ersetzen“ löscht sie und macht den neuen Plan an seiner Stelle aktiv, „Behalten“ fügt die neuen daneben hinzu.",
@@ -1465,5 +1465,10 @@
  "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "Das Training von der Uhr bleibt in Apple Health — lösche es in der Health-App.",
  "w tym tygodniu": "diese Woche",
  "Z zegarka": "Von der Uhr",
- "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Die Berechtigung kannst du in der Health-App widerrufen: Profil → Apps → {app}."
+ "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Die Berechtigung kannst du in der Health-App widerrufen: Profil → Apps → {app}.",
+ "{d} + {w} pośrednio ({n} {s})": "{d} + {w} indirekt ({n} {s})",
+ "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} direkt, {w} indirekt (sekundäre Sätze: {n})",
+ "cel {n}": "Ziel {n}",
+ "bezpośrednie": "direkt",
+ "pośrednie (pomocnicze, po {h})": "indirekt (sekundär, je {h})"
 }

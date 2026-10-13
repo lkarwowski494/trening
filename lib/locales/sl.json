@@ -981,7 +981,7 @@
  "Dalej": "Nadaljuj",
  "Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.": "Na zaslonu treninga: današnji trening iz načrta, tekoči teden in naslednji treningi z imeni.",
  "Siła: bój główny na początku, {s} × {a}–{b} powtórzeń (ciężko, ok. {p}% maksimum i więcej), pozostałe ćwiczenia {s} × {c}–{d}.": "Moč: glavna vaja na začetku, {s} × {a}–{b} ponovitev (težko, okoli {p} % maksimuma ali več), druge vaje {s} × {c}–{d}.",
- "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Mišična masa: vsaj {m} serij na mišično skupino na teden, {a}–{b} ponovitev (doma {c}–{d}), običajno {r1}–{r2} ponovitve v rezervi.",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Mišična masa: serije na mišično skupino na teden do cilja iz Nastavitve (samodejno {m}), {a}–{b} ponovitev (doma {c}–{d}), običajno {r1}–{r2} ponovitve v rezervi.",
  "Zapisano": "Shranjeno",
  "Szablony: {list} — w folderze „{folder}” na liście Szablony.": "Predloge: {list} — v mapi »{folder}« na seznamu Predloge.",
  "Plan „{name}” jest teraz aktywny.": "Načrt »{name}« je zdaj aktiven.",
@@ -1008,7 +1008,7 @@
  "Brak ćwiczeń na: {list}.": "Ni vaj za: {list}.",
  "Przyda się: {list}.": "Prav bi prišlo: {list}.",
  "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).": "Redkeje kot {n} dni na teden: {list} (dan samo s pomožnim delom = {h}).",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Pod {n} serij na teden: {list}. Pomaga več treningov, daljši treningi ali več opreme na mestu.",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Pod tedenskim ciljem serij: {list}. Pomaga več treningov, daljši treningi ali več opreme na mestu.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× na teden · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Napor: običajno {a}–{b} ponovitve v rezervi (RIR); do odpovedi ni treba.",
  "{v} (masa ciała {d})": "{v} (telesna teža {d})",
@@ -1222,7 +1222,7 @@
  "{name}: {n}× w tygodniu": "{name}: {n}× na teden",
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Več dni kot predlog: predloge po vrsti (A, B, A…), kot v generatorju — dogovor.",
  "Zapisz plan": "Shrani načrt",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Pod {n} serij na teden: {list}. To je spodnji prag, priporočen za rast mišične mase; serije dodaš v predlogah.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "Pod tedenskim ciljem serij: {list}. Cilj nastaviš v Nastavitve (samodejno spodnji prag, priporočen za rast mišične mase); serije dodaš v predlogah.",
  "Moje szablony, {n}× w tygodniu": "Moje predloge, {n}× na teden",
  "Mój plan ({date})": "Moj načrt ({date})",
  "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Brez treningov: {list}. S tem se zamenja tudi aktivni načrt »{plan}«, sestavljen samo iz teh predlog — »Zamenjaj« jih izbriše in nov načrt nastavi kot aktiven namesto njega, »Obdrži« doda nove poleg njih.",
@@ -1465,5 +1465,10 @@
  "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "Trening z ure ostane v Apple Health — izbriši ga v aplikaciji Zdravje.",
  "w tym tygodniu": "ta teden",
  "Z zegarka": "Z ure",
- "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Dovoljenje lahko prekličeš v aplikaciji Zdravje: profil → Aplikacije → {app}."
+ "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Dovoljenje lahko prekličeš v aplikaciji Zdravje: profil → Aplikacije → {app}.",
+ "{d} + {w} pośrednio ({n} {s})": "{d} + {w} posredno ({n} {s})",
+ "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} neposredno, {w} posredno (pomožne serije: {n})",
+ "cel {n}": "cilj {n}",
+ "bezpośrednie": "neposredne",
+ "pośrednie (pomocnicze, po {h})": "posredne (pomožne, po {h})"
 }

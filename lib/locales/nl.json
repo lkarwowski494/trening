@@ -981,7 +981,7 @@
  "Dalej": "Doorgaan",
  "Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.": "Op het trainingsscherm: de geplande training van vandaag, de huidige week en de volgende trainingen met naam.",
  "Siła: bój główny na początku, {s} × {a}–{b} powtórzeń (ciężko, ok. {p}% maksimum i więcej), pozostałe ćwiczenia {s} × {c}–{d}.": "Kracht: hoofdoefening eerst, {s} × {a}–{b} herhalingen (zwaar, ongeveer {p}% van het maximum of meer), andere oefeningen {s} × {c}–{d}.",
- "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Spiermassa: minstens {m} sets per spiergroep per week, {a}–{b} herhalingen (thuis {c}–{d}), meestal {r1}–{r2} herhalingen in reserve.",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Spiermassa: sets per spiergroep per week tot het doel uit Instellingen (automatisch {m}), {a}–{b} herhalingen (thuis {c}–{d}), meestal {r1}–{r2} herhalingen in reserve.",
  "Zapisano": "Opgeslagen",
  "Szablony: {list} — w folderze „{folder}” na liście Szablony.": "Sjablonen: {list} — in de map ‘{folder}’ in de lijst Sjablonen.",
  "Plan „{name}” jest teraz aktywny.": "Het plan ‘{name}’ is nu actief.",
@@ -1008,7 +1008,7 @@
  "Brak ćwiczeń na: {list}.": "Geen oefeningen voor: {list}.",
  "Przyda się: {list}.": "Zou helpen: {list}.",
  "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).": "Minder dan {n} dagen per week: {list} (een dag met alleen helpend werk = {h}).",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Minder dan {n} sets per week: {list}. Meer sessies, langere sessies of meer materiaal op de plek helpen.",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Onder het wekelijkse setdoel: {list}. Meer sessies, langere sessies of meer materiaal op de plek helpen.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× per week · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Inspanning: meestal {a}–{b} herhalingen in reserve (RIR); tot falen trainen is niet nodig.",
  "{v} (masa ciała {d})": "{v} (lichaamsgewicht {d})",
@@ -1222,7 +1222,7 @@
  "{name}: {n}× w tygodniu": "{name}: {n}× per week",
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Meer dagen dan sjablonen: sjablonen op volgorde (A, B, A…), zoals in de generator — een conventie.",
  "Zapisz plan": "Plan opslaan",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Minder dan {n} sets per week: {list}. Dit is de ondergrens die wordt aanbevolen voor spieropbouw; sets voeg je toe in de sjablonen.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "Onder het wekelijkse setdoel: {list}. Het doel stel je in bij Instellingen (automatisch de ondergrens die wordt aanbevolen voor spieropbouw); sets voeg je toe in de sjablonen.",
  "Moje szablony, {n}× w tygodniu": "Mijn sjablonen, {n}× per week",
  "Mój plan ({date})": "Mijn plan ({date})",
  "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Zonder trainingen: {list}. Dit vervangt ook het actieve plan ‘{plan}’, dat alleen uit deze sjablonen bestaat — ‘Vervang’ verwijdert ze en maakt het nieuwe plan in plaats daarvan actief, ‘Behouden’ voegt de nieuwe ernaast toe.",
@@ -1465,5 +1465,10 @@
  "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "De training van het horloge blijft in Apple Health — verwijder die in de Gezondheid-app.",
  "w tym tygodniu": "deze week",
  "Z zegarka": "Van het horloge",
- "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Je kunt de toestemming intrekken in de Gezondheid-app: profiel → Apps → {app}."
+ "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Je kunt de toestemming intrekken in de Gezondheid-app: profiel → Apps → {app}.",
+ "{d} + {w} pośrednio ({n} {s})": "{d} + {w} indirect ({n} {s})",
+ "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} direct, {w} indirect (secundaire sets: {n})",
+ "cel {n}": "doel {n}",
+ "bezpośrednie": "direct",
+ "pośrednie (pomocnicze, po {h})": "indirect (secundair, elk {h})"
 }

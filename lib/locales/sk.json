@@ -981,7 +981,7 @@
  "Dalej": "Pokračovať",
  "Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.": "Na obrazovke tréningu: dnešný tréning z plánu, aktuálny týždeň a najbližšie tréningy s názvom.",
  "Siła: bój główny na początku, {s} × {a}–{b} powtórzeń (ciężko, ok. {p}% maksimum i więcej), pozostałe ćwiczenia {s} × {c}–{d}.": "Sila: hlavný cvik na začiatku, {s} × {a}–{b} opakovaní (ťažko, asi {p} % maxima a viac), ostatné cviky {s} × {c}–{d}.",
- "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Svaly: aspoň {m} sérií na partiu týždenne, {a}–{b} opakovaní (doma {c}–{d}), zvyčajne {r1}–{r2} opakovania v rezerve.",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Svaly: série na partiu týždenne až do cieľa z Nastavenia (automaticky {m}), {a}–{b} opakovaní (doma {c}–{d}), zvyčajne {r1}–{r2} opakovania v rezerve.",
  "Zapisano": "Uložené",
  "Szablony: {list} — w folderze „{folder}” na liście Szablony.": "Šablóny: {list} — v priečinku „{folder}“ v zozname Šablóny.",
  "Plan „{name}” jest teraz aktywny.": "Plán „{name}“ je teraz aktívny.",
@@ -1008,7 +1008,7 @@
  "Brak ćwiczeń na: {list}.": "Žiadne cviky na: {list}.",
  "Przyda się: {list}.": "Pomohlo by: {list}.",
  "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).": "Menej ako {n} dni v týždni: {list} (deň len s pomocnou prácou = {h}).",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Pod {n} sérií týždenne: {list}. Pomôže viac tréningov, dlhšie tréningy alebo viac vybavenia na mieste.",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Pod týždenným cieľom sérií: {list}. Pomôže viac tréningov, dlhšie tréningy alebo viac vybavenia na mieste.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× týždenne · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Úsilie: zvyčajne {a}–{b} opakovania v rezerve (RIR); do zlyhania netreba.",
  "{v} (masa ciała {d})": "{v} (telesná hmotnosť {d})",
@@ -1222,7 +1222,7 @@
  "{name}: {n}× w tygodniu": "{name}: {n}× týždenne",
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Viac dní ako šablón: šablóny postupne (A, B, A…), ako v generátore — konvencia.",
  "Zapisz plan": "Uložiť plán",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Pod {n} sérií týždenne: {list}. To je spodná hranica odporúčaná pre nárast svalov; série pridáš v šablónach.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "Pod týždenným cieľom sérií: {list}. Cieľ nastavíš v Nastavenia (automaticky spodná hranica odporúčaná pre nárast svalov); série pridáš v šablónach.",
  "Moje szablony, {n}× w tygodniu": "Moje šablóny, {n}× týždenne",
  "Mój plan ({date})": "Môj plán ({date})",
  "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Bez tréningov: {list}. Tým sa nahradí aj aktívny plán „{plan}“, zložený len z týchto šablón — „Nahradiť“ ich vymaže a nový plán nastaví ako aktívny namiesto neho, „Ponechať“ pridá nové vedľa nich.",
@@ -1465,5 +1465,10 @@
  "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "Tréning z hodiniek zostane v Apple Health — vymažeš ho v aplikácii Zdravie.",
  "w tym tygodniu": "tento týždeň",
  "Z zegarka": "Z hodiniek",
- "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Povolenie zrušíš v aplikácii Zdravie: profil → Aplikácie → {app}."
+ "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Povolenie zrušíš v aplikácii Zdravie: profil → Aplikácie → {app}.",
+ "{d} + {w} pośrednio ({n} {s})": "{d} + {w} nepriamo ({n} {s})",
+ "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} priamo, {w} nepriamo (pomocné série: {n})",
+ "cel {n}": "cieľ {n}",
+ "bezpośrednie": "priame",
+ "pośrednie (pomocnicze, po {h})": "nepriame (pomocné, po {h})"
 }

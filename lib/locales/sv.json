@@ -981,7 +981,7 @@
  "Dalej": "Fortsätt",
  "Na ekranie treningu: dzisiejszy trening z planu, bieżący tydzień i najbliższe treningi z nazwą.": "På träningsskärmen: dagens planerade pass, den aktuella veckan och de närmaste passen med namn.",
  "Siła: bój główny na początku, {s} × {a}–{b} powtórzeń (ciężko, ok. {p}% maksimum i więcej), pozostałe ćwiczenia {s} × {c}–{d}.": "Styrka: huvudövning först, {s} × {a}–{b} repetitioner (tungt, cirka {p} % av max eller mer), övriga övningar {s} × {c}–{d}.",
- "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Muskelmassa: minst {m} set per muskelgrupp och vecka, {a}–{b} repetitioner (hemma {c}–{d}), oftast {r1}–{r2} repetitioner i reserv.",
+ "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Muskelmassa: set per muskelgrupp och vecka upp till målet från Inställningar (automatiskt {m}), {a}–{b} repetitioner (hemma {c}–{d}), oftast {r1}–{r2} repetitioner i reserv.",
  "Zapisano": "Sparat",
  "Szablony: {list} — w folderze „{folder}” na liście Szablony.": "Mallar: {list} — i mappen ”{folder}” i listan Mallar.",
  "Plan „{name}” jest teraz aktywny.": "Planen ”{name}” är nu aktiv.",
@@ -1008,7 +1008,7 @@
  "Brak ćwiczeń na: {list}.": "Inga övningar för: {list}.",
  "Przyda się: {list}.": "Det skulle hjälpa: {list}.",
  "Rzadziej niż {n} dni w tygodniu: {list} (dzień tylko z pracą pomocniczą = {h}).": "Mer sällan än {n} dagar i veckan: {list} (en dag med bara hjälparbete = {h}).",
- "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Under {n} set per vecka: {list}. Fler pass, längre pass eller mer utrustning på platsen hjälper.",
+ "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.": "Under veckomålet för set: {list}. Fler pass, längre pass eller mer utrustning på platsen hjälper.",
  "{goal}, {n}× w tygodniu · {place}": "{goal}, {n}× per vecka · {place}",
  "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.": "Ansträngning: oftast {a}–{b} repetitioner i reserv (RIR); att träna till failure behövs inte.",
  "{v} (masa ciała {d})": "{v} (kroppsvikt {d})",
@@ -1222,7 +1222,7 @@
  "{name}: {n}× w tygodniu": "{name}: {n}× per vecka",
  "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.": "Fler dagar än mallar: mallarna i ordning (A, B, A…), som i generatorn — en konvention.",
  "Zapisz plan": "Spara plan",
- "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.": "Under {n} set per vecka: {list}. Det är den nedre gräns som rekommenderas för muskeluppbyggnad; set lägger du till i mallarna.",
+ "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.": "Under veckomålet för set: {list}. Målet ställer du in i Inställningar (automatiskt den nedre gräns som rekommenderas för muskeluppbyggnad); set lägger du till i mallarna.",
  "Moje szablony, {n}× w tygodniu": "Mina mallar, {n}× per vecka",
  "Mój plan ({date})": "Min plan ({date})",
  "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.": "Utan pass: {list}. Detta ersätter också den aktiva planen ”{plan}”, som bara består av dessa mallar — ”Ersätt” raderar dem och gör den nya planen aktiv i stället, ”Behåll” lägger till de nya bredvid.",
@@ -1465,5 +1465,10 @@
  "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.": "Passet från klockan finns kvar i Apple Health — radera det i appen Hälsa.",
  "w tym tygodniu": "den här veckan",
  "Z zegarka": "Från klockan",
- "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Du kan återkalla behörigheten i appen Hälsa: profil → Appar → {app}."
+ "Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.": "Du kan återkalla behörigheten i appen Hälsa: profil → Appar → {app}.",
+ "{d} + {w} pośrednio ({n} {s})": "{d} + {w} indirekt ({n} {s})",
+ "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})": "{d} direkt, {w} indirekt (sekundära set: {n})",
+ "cel {n}": "mål {n}",
+ "bezpośrednie": "direkta",
+ "pośrednie (pomocnicze, po {h})": "indirekta (sekundära, {h} vardera)"
 }
