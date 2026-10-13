@@ -1,165 +1,162 @@
-/* Most do Apple Watch po stronie iPhone'a (modules/watch-link, 0.20, docs/36): logika TypeScript na module natywnym zastąpionym atrapą,
- * adapter do łącza protokołu (lib/watch/link.ts), atrapa transportu (testy i E2E) oraz zgodność warstwy JS z kodem Swift/konfiguracją modułu
- * (Swift kompiluje się tylko w CI na macOS). */
-import * as fs from 'fs';
-import * as path from 'path';
-import { NO_WATCH, appleWatch, attachWatchMessages, createFakeWatchLink, createNativeTransport, nativeWatchLink, toLinkTransport, type NativeWatchLink, type WatchLinkStatus } from '@/modules/watch-link';
+/*
+ * lib/watch/link.ts + lib/watch/fake.ts — telefon i atrapa zegarka (model referencyjny) razem: scenariusze od początku do końca, kolejka offline, restart telefonu,
+ * negocjacja sesji treningu (Zdrowie). Zegarek tylko wyświetla i odsyła zdarzenia; po każdym kroku jego widok ma zgadzać się z tym, co telefon wie.
+ */
+import * as store from '@/lib/store';
+import * as timer from '@/lib/timer';
+import { WatchLink, startWatchLink, stopWatchLink, activeWatchLink } from '@/lib/watch/link';
+import { FakeWatch } from '@/lib/watch/fake';
+import { WATCH, WATCH_PROTOCOL, type PhoneToWatch, type WatchSnapshot } from '@/lib/watch/protocol';
+import { completeSet } from '@/lib/setFlow';
+import { fresh, saved } from './helpers';
+import { world, A, sid, NOW, teardownWorld } from './watch-world';
 
-const ALL: WatchLinkStatus = { supported: true, activated: true, paired: true, installed: true, reachable: true };
+const cfg = { client: 'apple' as const, app: '0.20.0', session: true };
+let link: WatchLink | null = null;
+afterEach(() => { link?.stop(); link = null; stopWatchLink(); teardownWorld(); });
+const settle = async (l: WatchLink) => { await l.settled(); await Promise.resolve(); await l.settled(); };
+async function pair(c = cfg) { const w = await world(); const fw = new FakeWatch(c, () => Date.now()); link = new WatchLink(fw, () => Date.now()); link.start(); fw.input({ t: 'launch' }); await settle(link); return { w, fw, link }; }
+const snaps = (fw: FakeWatch) => fw.sent.filter((m): m is WatchSnapshot => m.kind === 'snapshot');
+const kinds = (fw: FakeWatch) => fw.sent.map(m => m.kind + (m.kind === 'session' ? ':' + m.action : ''));
 
-function mockNative(over: Partial<NativeWatchLink> = {}) {
-  const listeners: Record<string, Array<(p?: any) => void>> = { onMessages: [], onStatus: [] }; // eslint-disable-line @typescript-eslint/no-explicit-any
-  const removed: string[] = [];
-  const native: NativeWatchLink = {
-    isSupported: () => true, getStatus: () => ({ ...ALL }), send: jest.fn(async () => true), startWatchApp: jest.fn(async () => true), takeMessages: jest.fn(() => []),
-    addListener: (name, cb) => { listeners[name].push(cb); return { remove: () => { removed.push(name); listeners[name] = listeners[name].filter(x => x !== cb); } }; },
-    ...over,
-  };
-  return { native, listeners, removed };
-}
-
-describe('transport bez modułu natywnego (Expo Go, Android, testy)', () => {
-  const t = createNativeTransport(null);
-  test('wszystko no-op: brak zegarka, nic nie wysyła, pusta kolejka', async () => {
-    expect(t.status()).toEqual(NO_WATCH);
-    expect(await t.send('{}')).toBe(false);
-    expect(await t.startWatchApp()).toBe(false);
-    expect(t.takeMessages()).toEqual([]);
-    const off = t.subscribe(() => {}, () => {}); expect(typeof off).toBe('function'); off();
+describe('hello i welcome', () => {
+  test('start łącza wysyła migawkę; hello → welcome ok + migawka (rev nie rośnie bez zmiany treści); śmieci są pomijane', async () => {
+    const { fw, link: l } = await pair(); const first = snaps(fw);
+    expect(first[0].rev).toBe(1); expect(fw.sent.find(m => m.kind === 'welcome')).toEqual({ v: 1, kind: 'welcome', ok: true, protocol: 1, upgrade: null });
+    expect(first.every(s => s.rev === 1)).toBe(true); expect(fw.view()).toMatchObject({ screen: 'set', title: 'Bench Press (sztanga)' });
+    const n = fw.sent.length; for (const bad of [null, 'x', { v: 9 }, { v: 1, kind: 'event' }, '{zepsuty']) await l.receive(bad); expect(fw.sent).toHaveLength(n);
   });
-  test('moduł zaimportowany w Jest (bez natywnego WatchLink) jest transportem „bez zegarka”', async () => {
-    expect(nativeWatchLink).toBeNull(); expect(appleWatch.status()).toEqual(NO_WATCH); expect(await appleWatch.send('{}')).toBe(false);
+  test('protokół zegarka starszy / nowszy niż obsługiwany: welcome ok=false z upgrade watch / phone, bez migawki', async () => {
+    const w = await world(); void w; const fw = new FakeWatch(cfg); link = new WatchLink(fw); link.start(); fw.sent.length = 0;
+    await link.receive({ v: 1, kind: 'hello', client: 'garmin', protocol: WATCH_PROTOCOL + 1, app: '9', caps: { session: false } });
+    expect(fw.sent).toEqual([{ v: 1, kind: 'welcome', ok: false, protocol: WATCH_PROTOCOL, upgrade: 'phone' }]);
+    expect(link.snapshot().phase).toBe('set');
+  });
+  test('brak treningu: migawka idle', async () => {
+    await world(); store.cancelWorkout(); const fw = new FakeWatch(cfg); link = new WatchLink(fw); link.start(); fw.input({ t: 'launch' }); await settle(link); expect(fw.view().screen).toBe('idle');
   });
 });
 
-describe('transport na module natywnym (atrapa)', () => {
-  test('status: pola z modułu, brakujące i nieprawdziwe wartości = false', () => {
-    expect(createNativeTransport(mockNative().native).status()).toEqual(ALL);
-    expect(createNativeTransport(mockNative({ getStatus: () => ({ supported: true, paired: 1 as unknown as boolean }) }).native).status()).toEqual({ ...NO_WATCH, supported: true });
-    expect(createNativeTransport(mockNative({ getStatus: () => { throw new Error('x'); } }).native).status()).toEqual(NO_WATCH);
+describe('zdarzenia end-to-end', () => {
+  test('„Seria zrobiona” na zegarku: seria odhaczona na telefonie, przerwa 90 s, migawka potem ack z jej numerem; widok zegarka = migawka', async () => {
+    const { fw, link: l } = await pair(); const mark = fw.sent.length; jest.setSystemTime(NOW + 1000);
+    fw.input({ t: 'press', button: 'main' }); await settle(l);
+    expect(A().exercises[0].sets[0]).toMatchObject({ done: true, completedAt: NOW + 1000 }); expect(timer.T.on).toBe(true);
+    const out = fw.sent.slice(mark); expect(out.map(m => m.kind)).toEqual(['snapshot', 'ack']);
+    const [s, a] = out as [WatchSnapshot, Extract<PhoneToWatch, { kind: 'ack' }>]; expect(s.phase).toBe('rest'); expect(a).toMatchObject({ status: 'applied', reason: null, rev: s.rev });
+    expect(fw.state.queue).toEqual([]); expect(fw.view()).toMatchObject({ screen: 'rest', busy: false, cue: A() && s.rest!.cue, restEndsAt: s.rest!.endsAt });
   });
-  test.each([['migawka', '{"v":1,"kind":"snapshot","rev":3}'], ['pusta', ''], ['polskie znaki i emoji', '{"kind":"ack","title":"Wiosłowanie — łódka ✓"}']])('send przekazuje ciąg bez zmian: %s', async (_n, json) => {
-    const { native } = mockNative(); expect(await createNativeTransport(native).send(json)).toBe(true); expect(native.send).toHaveBeenCalledWith(json);
+  test('zapowiedź na zegarku = podpis timera telefonu = Live Activity (jedno źródło)', async () => {
+    const { fw, link: l } = await pair(); fw.input({ t: 'press', button: 'main' }); await settle(l);
+    expect(fw.view().cue).toBe(timer.T.sub); expect(global.__la).toContainEqual(['start', 'Push', timer.T.sub, timer.T.endAt, 90, 'rest|Przerwa']);
   });
-  test('send / startWatchApp: odrzucona obietnica i wyjątek synchroniczny = false (bez wyjątku w aplikacji)', async () => {
-    const rej = createNativeTransport(mockNative({ send: () => Promise.reject(new Error('x')), startWatchApp: () => Promise.reject(new Error('x')) }).native);
-    expect(await rej.send('{}')).toBe(false); expect(await rej.startWatchApp()).toBe(false);
-    const thr = createNativeTransport(mockNative({ send: () => { throw new Error('x'); }, startWatchApp: () => { throw new Error('x'); } }).native);
-    expect(await thr.send('{}')).toBe(false); expect(await thr.startWatchApp()).toBe(false);
+  test('„Cofnij” w oknie: telefon cofa odhaczenie i zatrzymuje przerwę; zegarek wraca do serii', async () => {
+    const { fw, link: l } = await pair(); fw.input({ t: 'press', button: 'main' }); await settle(l); jest.setSystemTime(NOW + 2000);
+    fw.input({ t: 'press', button: 'undo' }); await settle(l);
+    expect(A().exercises[0].sets[0].done).toBe(false); expect(timer.T.on).toBe(false); expect(fw.view()).toMatchObject({ screen: 'set', counter: 'seria 1 z 3', busy: false });
   });
-  test('send: moduł odpowiada false (zegarek niesparowany) → false', async () => {
-    expect(await createNativeTransport(mockNative({ send: async () => false }).native).send('{}')).toBe(false);
+  test('„Zrobione inaczej”: seria ze znacznikiem „do uzupełnienia”, migawka niesie toFillCount', async () => {
+    const { fw, link: l } = await pair(); fw.input({ t: 'press', button: 'differ' }); await settle(l);
+    expect(A().exercises[0].sets[0]).toMatchObject({ done: true, toFill: true }); expect(link!.snapshot().toFillCount).toBe(1); expect(fw.view().toFillCount).toBe(1);
   });
-  test('takeMessages: tylko niepuste ciągi, wyjątek = pusta lista', () => {
-    expect(createNativeTransport(mockNative({ takeMessages: () => ['{"a":1}', '', 5 as unknown as string, '{"b":2}'] }).native).takeMessages()).toEqual(['{"a":1}', '{"b":2}']);
-    expect(createNativeTransport(mockNative({ takeMessages: () => { throw new Error('x'); } }).native).takeMessages()).toEqual([]);
+  test('„Pomiń” z potwierdzeniem na zegarku: blok pominięty bez drugiego pytania na telefonie; zegarek pokazuje następne ćwiczenie', async () => {
+    const { fw, link: l } = await pair(); fw.input({ t: 'press', button: 'skip' }); fw.input({ t: 'press', button: 'confirmSkip' }); await settle(l);
+    expect(A().exercises[0].skipped).toBe(true); expect(global.__alerts).toEqual([]); expect(fw.view()).toMatchObject({ title: 'Pull Up', busy: false });
   });
-  test('subscribe: powiadomienia dochodzą, błąd odbiorcy nie zrywa kanału, odpięcie zdejmuje oba nasłuchy', () => {
-    const { native, listeners, removed } = mockNative(); const t = createNativeTransport(native);
-    const ev = jest.fn(() => { throw new Error('odbiorca'); }); const st = jest.fn();
-    const off = t.subscribe(ev, st);
-    expect(() => listeners.onMessages[0]()).not.toThrow(); expect(ev).toHaveBeenCalledTimes(1);
-    listeners.onStatus[0]({ supported: true, reachable: true }); expect(st).toHaveBeenLastCalledWith({ ...NO_WATCH, supported: true, reachable: true });
-    listeners.onStatus[0](undefined); expect(st).toHaveBeenLastCalledWith(ALL); /* bez ładunku: status pobrany z modułu */
-    off(); expect(removed.sort()).toEqual(['onMessages', 'onStatus']); expect(listeners.onMessages).toHaveLength(0);
+  test('przycisk główny w przerwie odhacza następną serię (kolejne przerwy), do końca bloku', async () => {
+    const { fw, link: l } = await pair(); for (let i = 0; i < 3; i++) { jest.setSystemTime(NOW + 1000 * (i + 1)); fw.input({ t: 'press', button: 'main' }); await settle(l); }
+    expect(A().exercises[0].sets.map(s => s.done)).toEqual([true, true, true]); expect(fw.view()).toMatchObject({ title: 'Pull Up', counter: 'seria 1 z 2', screen: 'rest' });
   });
-  test('subscribe bez odbiorcy statusu zakłada tylko nasłuch komunikatów', () => {
-    const { native, listeners } = mockNative(); createNativeTransport(native).subscribe(() => {}); expect(listeners.onMessages).toHaveLength(1); expect(listeners.onStatus).toHaveLength(0);
+  test('koniec przerwy: zegarek wysyła restEnded w chwili końca, telefon przyjmuje (applied) i jego alarm jest zgodny', async () => {
+    const { fw, link: l } = await pair(); fw.input({ t: 'press', button: 'main' }); await settle(l); const end = timer.T.endAt;
+    jest.setSystemTime(end); fw.input({ t: 'tick' }); await settle(l);
+    expect(fw.fromWatch.at(-1)).toMatchObject({ type: 'restEnded' }); expect(fw.sent.filter(m => m.kind === 'ack').at(-1)).toMatchObject({ status: 'applied' }); expect(timer.T.alarmed).toBe(true);
+    expect(fw.view()).toMatchObject({ screen: 'set', counter: 'seria 2 z 3' });
   });
-});
-
-describe('attachWatchMessages: odbiór komunikatów z zegarka', () => {
-  test('kolejka sprzed startu JS jest pobrana od razu, potem po każdym powiadomieniu — w kolejności', () => {
-    const w = createFakeWatchLink(); w.emit('{"n":1}'); w.emit('{"n":2}');
-    const got: string[] = []; attachWatchMessages(w, e => got.push(e));
-    expect(got).toEqual(['{"n":1}', '{"n":2}']);
-    w.emit('{"n":3}'); expect(got).toEqual(['{"n":1}', '{"n":2}', '{"n":3}']);
+  test('zmiana na telefonie (edycja ciężaru, pauza) odświeża zegarek bez udziału zegarka', async () => {
+    const { fw, link: l } = await pair(); const n = snaps(fw).length;
+    A().exercises[0].sets[0].weight = 82.5; store.save(A()); jest.advanceTimersByTime(60); await settle(l);
+    expect(snaps(fw)).toHaveLength(n + 1); expect(fw.view().load).toBe('82,5 kg × 8');
+    store.pauseWorkout(); jest.advanceTimersByTime(60); await settle(l); expect(fw.view().paused).toBe(true);
   });
-  test('błąd obsługi jednego komunikatu nie gubi pozostałych', () => {
-    const w = createFakeWatchLink(); const got: string[] = [];
-    attachWatchMessages(w, e => { if (e === 'zle') throw new Error('x'); got.push(e); });
-    w.emit('a'); w.emit('zle'); w.emit('b'); expect(got).toEqual(['a', 'b']);
-  });
-  test('po odpięciu komunikaty zostają w kolejce (nie giną) do następnego odbiorcy', () => {
-    const w = createFakeWatchLink(); const got: string[] = []; const off = attachWatchMessages(w, e => got.push(e)); off();
-    w.emit('x'); expect(got).toEqual([]); const got2: string[] = []; attachWatchMessages(w, e => got2.push(e)); expect(got2).toEqual(['x']);
-  });
-  test('status przekazywany odbiorcy', () => {
-    const w = createFakeWatchLink(); const seen: boolean[] = []; attachWatchMessages(w, () => {}, s => seen.push(s.reachable));
-    w.setStatus({ reachable: false }); w.setStatus({ reachable: true }); expect(seen).toEqual([false, true]);
+  test('trening zakończony na telefonie: zegarek dostaje migawkę idle → „Trening zakończony”', async () => {
+    const { fw, link: l } = await pair(); await completeSet(0, 0); store.finishWorkout(); jest.advanceTimersByTime(60); await settle(l);
+    expect(snaps(fw).at(-1)!.phase).toBe('idle'); expect(fw.view().screen).toBe('finished');
   });
 });
 
-describe('adapter do łącza protokołu (toLinkTransport)', () => {
-  test('send serializuje komunikat do JSON; błąd wysyłki nie jest wyjątkiem', async () => {
-    const w = createFakeWatchLink(); const l = toLinkTransport(w);
-    l.send({ v: 1, kind: 'snapshot', rev: 1 }); await Promise.resolve(); expect(w.sent.map(s => JSON.parse(s))).toEqual([{ v: 1, kind: 'snapshot', rev: 1 }]);
-    w.failNextSend(); expect(() => l.send({ v: 1, kind: 'ack' })).not.toThrow(); await Promise.resolve();
-    const cyc: Record<string, unknown> = {}; cyc.self = cyc; expect(() => l.send(cyc)).not.toThrow();
+describe('bez połączenia', () => {
+  test('dwa „zrobione” offline: zegarek sam przechodzi przez przerwy, trzecie blokuje; po powrocie telefon stosuje zdarzenia po kolei i widoki się zgadzają', async () => {
+    const { fw, link: l } = await pair(); fw.goOffline();
+    jest.setSystemTime(NOW + 1000); fw.input({ t: 'press', button: 'main' }); expect(fw.view()).toMatchObject({ screen: 'rest', offline: true }); const g1 = A().exercises[0].sets[0].done; expect(g1).toBe(false);
+    jest.setSystemTime(NOW + 20e3); fw.input({ t: 'press', button: 'main' }); expect(fw.view().screen).toBe('connect');
+    jest.setSystemTime(NOW + 21e3); const before = fw.fromWatch.length; fw.input({ t: 'press', button: 'main' }); expect(fw.fromWatch).toHaveLength(before);
+    jest.setSystemTime(NOW + 30e3); fw.goOnline(); await settle(l);
+    expect(A().exercises[0].sets.map(s => s.done)).toEqual([true, true, false]); expect(A().exercises[0].sets[0].completedAt).toBe(NOW + 1000);
+    expect(timer.T.setId).toBe(sid(0, 1)); expect(timer.T.endAt).toBe(NOW + 20e3 + 90e3);
+    expect(fw.state.queue).toEqual([]); expect(fw.view()).toMatchObject({ screen: 'rest', counter: 'seria 3 z 3', busy: false, offline: false });
   });
-  test('onMessage podaje surowe ciągi JSON (w tym zaległe), odpięcie zostawia kolejkę; reachable z bieżącego statusu', () => {
-    const w = createFakeWatchLink(); const l = toLinkTransport(w); w.emit('{"kind":"hello"}');
-    const got: unknown[] = []; const off = l.onMessage(r => got.push(r)); w.emit('{"kind":"event"}');
-    expect(got).toEqual(['{"kind":"hello"}', '{"kind":"event"}']); off(); w.emit('{"kind":"event","n":2}'); expect(got).toHaveLength(2);
-    expect(l.reachable()).toBe(true); w.setStatus({ reachable: false }); expect(l.reachable()).toBe(false);
+  test('migawki offline zastępują się (zostaje ostatnia), zdarzenia wracają w kolejności wysłania', async () => {
+    const { fw, link: l } = await pair(); fw.goOffline(); jest.setSystemTime(NOW + 1000);
+    A().exercises[0].sets[0].weight = 81; store.save(A()); jest.advanceTimersByTime(60); await settle(l); A().exercises[0].sets[0].weight = 82; store.save(A()); jest.advanceTimersByTime(60); await settle(l);
+    fw.goOnline(); await settle(l); expect(fw.view().load).toBe('82 kg × 8'); expect(snaps(fw).filter((s, i, a) => a.indexOf(s) === i).length).toBeGreaterThan(2);
   });
-  test('polecenie „session start” budzi aplikację na zegarku, inne komunikaty nie', async () => {
-    const w = createFakeWatchLink(); const l = toLinkTransport(w);
-    l.send({ v: 1, kind: 'session', action: 'end', workoutId: 'w', save: true }); l.send({ v: 1, kind: 'snapshot' }); await Promise.resolve(); expect(w.started).toBe(0);
-    l.send({ v: 1, kind: 'session', action: 'start', workoutId: 'w', save: true }); await Promise.resolve(); await Promise.resolve(); expect(w.started).toBe(1);
-  });
-  test('bez zegarka (Expo Go): wszystko no-op', () => {
-    const l = toLinkTransport(createNativeTransport(null)); expect(() => l.send({ kind: 'session', action: 'start' })).not.toThrow(); expect(l.reachable()).toBe(false); l.onMessage(() => {})();
-  });
-});
-
-describe('atrapa zegarka (testy i E2E z fałszywym transportem)', () => {
-  test('komunikaty zapisane w kolejności; poza zasięgiem/niesparowany = false i bez zapisu', async () => {
-    const w = createFakeWatchLink(); expect(await w.send('1')).toBe(true); expect(await w.send('2')).toBe(true); expect(w.sent).toEqual(['1', '2']);
-    w.failNextSend(); expect(await w.send('3')).toBe(false); expect(await w.send('4')).toBe(true); expect(w.sent).toEqual(['1', '2', '4']);
-    w.setStatus({ paired: false }); expect(await w.send('5')).toBe(false); expect(await w.startWatchApp()).toBe(false);
-  });
-  test('startWatchApp liczy wywołania; takeMessages czyści kolejkę', async () => {
-    const w = createFakeWatchLink(); expect(await w.startWatchApp()).toBe(true); expect(w.started).toBe(1);
-    w.emit('a'); expect(w.takeMessages()).toEqual(['a']); expect(w.takeMessages()).toEqual([]);
-  });
-  test('domyślnie zegarek sparowany z aplikacją; status można zmieniać częściowo', () => {
-    const w = createFakeWatchLink(); expect(w.status()).toEqual(ALL); w.setStatus({ installed: false }); expect(w.status()).toEqual({ ...ALL, installed: false });
-    expect(createFakeWatchLink({}).status()).toEqual(NO_WATCH);
+  test('powtórzone zdarzenia z kolejki (ponowne dostarczenie) nie podwajają odhaczeń', async () => {
+    const { fw, link: l } = await pair(); fw.input({ t: 'press', button: 'main' }); await settle(l);
+    const ev = fw.fromWatch.find(m => m.kind === 'event')!; for (let i = 0; i < 3; i++) { await l.receive(ev); } expect(A().exercises[0].sets.map(s => s.done)).toEqual([true, false, false]);
+    expect(fw.sent.filter(m => m.kind === 'ack').slice(-3).map(m => m.kind === 'ack' && m.status)).toEqual(['duplicate', 'duplicate', 'duplicate']);
   });
 });
 
-describe('zgodność JS z kodem natywnym (Swift) i konfiguracją modułu', () => {
-  const dir = path.join(__dirname, '..', 'modules', 'watch-link'); const read = (f: string) => fs.readFileSync(path.join(dir, f), 'utf8');
-  const mod = read('ios/WatchLinkModule.swift');
-  test('nazwa modułu, funkcje i zdarzenia po obu stronach', () => {
-    expect(mod).toMatch(/Name\("WatchLink"\)/); expect(read('index.ts')).toMatch(/requireOptionalNativeModule<NativeWatchLink>\('WatchLink'\)/);
-    const fns = [...mod.matchAll(/(?:Function|AsyncFunction)\("(\w+)"\)/g)].map(m => m[1]).sort();
-    expect(fns).toEqual(['getStatus', 'isSupported', 'send', 'startWatchApp', 'takeMessages']);
-    const ts = read('transport.ts'); const type = ts.match(/export type NativeWatchLink = \{([\s\S]*?)\n\};/)![1];
-    expect([...type.matchAll(/^\s+(\w+)\(/gm)].map(m => m[1]).filter(n => n !== 'addListener').sort()).toEqual(fns);
-    expect(mod).toMatch(/Events\("onMessages", "onStatus"\)/); expect(type).toMatch(/'onMessages' \| 'onStatus'/);
+describe('restart telefonu w trakcie treningu', () => {
+  test('po wczytaniu zapisu nowe łącze: hello → migawka zgodna ze stanem; stare zdarzenia z kolejki zegarka to duplicate; „Cofnij” z telefonu nie wraca od starego zdarzenia', async () => {
+    const { fw, link: l } = await pair(); jest.setSystemTime(NOW + 1000); fw.input({ t: 'press', button: 'main' }); await settle(l); const ev = fw.fromWatch.find(m => m.kind === 'event')!;
+    l.stop(); await store.flush(); const snap = JSON.parse(JSON.stringify(saved())); await fresh(snap); await timer.restore();
+    const fw2 = new FakeWatch(cfg, () => Date.now()); link = new WatchLink(fw2, () => Date.now()); link.start(); fw2.input({ t: 'launch' }); await settle(link);
+    expect(fw2.view()).toMatchObject({ screen: expect.stringMatching(/^(rest|set)$/), doneCount: 1 });
+    const acks = fw2.sent.length; await link.receive(ev); await settle(link); expect(fw2.sent.slice(acks).find(m => m.kind === 'ack')).toMatchObject({ status: 'duplicate' });
+    expect(store.getState().active!.exercises[0].sets.map(s => s.done)).toEqual([true, false, false]);
   });
-  test('expo-module.config.json: klasy istnieją, podspec i autolinking', () => {
-    const cfg = JSON.parse(read('expo-module.config.json')); expect(cfg.platforms).toEqual(['apple']);
-    for (const c of [...cfg.apple.modules, ...cfg.apple.appDelegateSubscribers]) expect(read(`ios/${c}.swift`)).toMatch(new RegExp(`class ${c}\\b`));
-    expect(fs.existsSync(path.join(dir, cfg.apple.podspecPath))).toBe(true);
-    expect(read('WatchLink.podspec')).toMatch(/s\.frameworks\s+= 'WatchConnectivity', 'HealthKit'/); expect(read('WatchLink.podspec')).toMatch(/s\.name\s+= 'WatchLink'/);
+});
+
+describe('sesja treningu zegarka (Zdrowie)', () => {
+  test('hello z zdolnością sesji → jeden `session start` na trening (save = zapis do Zdrowia); sessionStarted zapisane w treningu; ponowny hello wysyła start tylko dopóki sesja nie ruszyła', async () => {
+    await world(); store.getState().settings.healthSync = true; const fw = new FakeWatch(cfg, () => Date.now()); link = new WatchLink(fw, () => Date.now()); link.start(); fw.input({ t: 'launch' }); await settle(link);
+    expect(fw.sent.filter(m => m.kind === 'session')).toEqual([{ v: 1, kind: 'session', action: 'start', workoutId: A().id, save: true }]);
+    fw.input({ t: 'launch' }); await settle(link); expect(fw.sent.filter(m => m.kind === 'session')).toHaveLength(2); /* sesja jeszcze nie ruszyła — zamówienie ponowione */
+    await link.receive({ v: 1, kind: 'event', eventId: 'apple-s1', workoutId: A().id, baseRev: 1, at: Date.now(), client: 'apple', type: 'sessionStarted' }); expect(A().watch).toMatchObject({ client: 'apple' });
+    fw.input({ t: 'launch' }); await settle(link); expect(fw.sent.filter(m => m.kind === 'session')).toHaveLength(2);
   });
-  test('komunikat z zegarka jest zapisany w trwałej kolejce PRZED odpowiedzią transportową dla zegarka', () => {
-    const hub = read('ios/WatchLinkHub.swift');
-    expect(hub).toMatch(/if let json = message\[wireKey\] as\? String, enqueue\(json\) \{ replyHandler\(\["received": true\]\) \}/);
-    expect(hub).toMatch(/d\.set\(q, forKey: queueKey\)/); expect(hub).toMatch(/updateApplicationContext/); expect(hub).toMatch(/didReceiveUserInfo/);
+  test('zegarek bez zdolności sesji (Garmin): nigdy `session`', async () => {
+    const { fw } = await pair({ client: 'garmin' as unknown as 'apple', app: '0.20.0', session: false }); expect(fw.sent.some(m => m.kind === 'session')).toBe(false);
   });
-  test('migawka idzie jako stan (applicationContext), pozostałe komunikaty jako wiadomość albo kolejka systemu', () => {
-    const hub = read('ios/WatchLinkHub.swift');
-    expect(hub).toMatch(/if kind == "snapshot" \{\s*do \{ try s\.updateApplicationContext\(payload\) \}/);
-    expect(hub).toMatch(/s\.sendMessage\(payload, replyHandler: nil, errorHandler: \{ \[weak self\] _ in self\?\.queueForLater\(payload\) \}\)/);
-    expect(hub).toMatch(/s\.transferUserInfo\(payload\)/);
+  test('koniec treningu → `session end` z save zależnym od zapisu do Zdrowia; odrzucenie treningu → save=false', async () => {
+    const { fw, link: l } = await pair(); store.getState().settings.healthSync = true; await l.receive({ v: 1, kind: 'event', eventId: 'apple-s1', workoutId: A().id, baseRev: 1, at: Date.now(), client: 'apple', type: 'sessionStarted' });
+    await completeSet(0, 0); const id = A().id; store.finishWorkout(); jest.advanceTimersByTime(60); await settle(l);
+    expect(fw.sent.filter(m => m.kind === 'session').at(-1)).toEqual({ v: 1, kind: 'session', action: 'end', workoutId: id, save: true });
+    /* odrzucenie */
+    await world(); const fw2 = new FakeWatch(cfg, () => Date.now()); const l2 = new WatchLink(fw2, () => Date.now()); link = l2; l2.start(); fw2.input({ t: 'launch' }); await settle(l2);
+    await l2.receive({ v: 1, kind: 'event', eventId: 'apple-s1', workoutId: A().id, baseRev: 1, at: Date.now(), client: 'apple', type: 'sessionStarted' }); const id2 = A().id; store.cancelWorkout(); jest.advanceTimersByTime(60); await settle(l2);
+    expect(fw2.sent.filter(m => m.kind === 'session').at(-1)).toEqual({ v: 1, kind: 'session', action: 'end', workoutId: id2, save: false });
   });
-  test('klucze słownika WatchConnectivity po stronie telefonu = po stronie zegarka (msg, received)', () => {
-    const hub = read('ios/WatchLinkHub.swift'); const w = fs.readFileSync(path.join(__dirname, '..', 'targets/watch-app/Core/WatchProtocol.swift'), 'utf8');
-    expect(hub).toContain('private let wireKey = "msg"'); expect(w).toMatch(/static let message = "msg"/);
-    expect(hub).toContain('"received"'); expect(w).toMatch(/static let received = "received"/);
+  test('raport po zakończeniu: saved=true → telefon nie zapisuje (healthUUID „watch”); saved=false → zostaje do zapisu z telefonu; powtórzenie raportu = duplicate', async () => {
+    const { fw, link: l } = await pair(); store.getState().settings.healthSync = true; await l.receive({ v: 1, kind: 'event', eventId: 'apple-s1', workoutId: A().id, baseRev: 1, at: Date.now(), client: 'apple', type: 'sessionStarted' });
+    await completeSet(0, 0); const w = A(); store.finishWorkout(); w.healthPending = true; store.save(w); jest.advanceTimersByTime(60); await settle(l);
+    const rep = { v: 1, kind: 'event', eventId: 'apple-s2', workoutId: w.id, baseRev: 2, at: Date.now(), client: 'apple', type: 'sessionEnded', saved: true };
+    await l.receive(rep); await settle(l); const done = store.getState().workouts.find(x => x.id === w.id)!; expect([done.healthUUID, done.healthPending, done.watch]).toEqual(['watch', undefined, undefined]);
+    expect(fw.sent.filter(m => m.kind === 'ack').at(-1)).toMatchObject({ status: 'applied' });
+    await l.receive({ ...rep, eventId: 'apple-s3' }); expect(fw.sent.filter(m => m.kind === 'ack').at(-1)).toMatchObject({ status: 'duplicate' }); /* sesja już rozstrzygnięta */
+  });
+  test('raport o nieznanym treningu → rejected', async () => {
+    const { fw, link: l } = await pair(); await l.receive({ v: 1, kind: 'event', eventId: 'x1', workoutId: 'nie-ma', baseRev: 1, at: Date.now(), client: 'apple', type: 'sessionEnded', saved: true });
+    expect(fw.sent.filter(m => m.kind === 'ack').at(-1)).toMatchObject({ status: 'rejected', reason: 'other-workout' });
+  });
+});
+
+describe('rejestr łącza', () => {
+  test('startWatchLink zastępuje poprzednie łącze (stare przestaje wysyłać); stopWatchLink je zatrzymuje', async () => {
+    await world(); const a = new FakeWatch(cfg); const b = new FakeWatch(cfg); startWatchLink(a); const l1 = activeWatchLink(); startWatchLink(b); expect(activeWatchLink()).not.toBe(l1);
+    const na = a.sent.length; A().exercises[0].sets[0].weight = 90; store.save(A()); jest.advanceTimersByTime(60); expect(a.sent).toHaveLength(na); expect(b.sent.length).toBeGreaterThan(0);
+    stopWatchLink(); expect(activeWatchLink()).toBeNull(); expect(WATCH.OFFLINE_DONE_MAX).toBe(2);
   });
 });

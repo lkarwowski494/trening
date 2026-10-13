@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Wybiera i uruchamia symulator Apple Watch dla testów zegarka (watch-sim.yml, docs/36). Wypisuje TYLKO identyfikator symulatora na stdout
+# Wybiera i uruchamia symulator Apple Watch dla testów zegarka (watch-sim.yml, docs/35-zegarek-apple). Wypisuje TYLKO identyfikator symulatora na stdout
 # (log CI jest publiczny — żadnych nazw maszyn ani numerów urządzeń poza tym jednym wynikiem, który workflow zapisuje do zmiennej).
 # Użycie: UDID=$(bash scripts/ci/watch-simulator.sh [wzorzec_nazwy])   (domyślnie: „Apple Watch Series 1[0-9]” albo dowolny dostępny zegarek)
 # Zmienne: DRY_RUN=1 — nie uruchamia symulatora (test w Jest na Linuksie podaje własny wynik `simctl list` w SIMCTL_LIST_JSON).

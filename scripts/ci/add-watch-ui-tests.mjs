@@ -1,5 +1,5 @@
 // Dodaje do wygenerowanego projektu Xcode (po `expo prebuild`) cel testów interfejsu zegarka (XCUITest) i jego schemat — wtyczka apple-targets
-// takiego celu nie tworzy (docs/36). Źródła testów: targets/watch-ui-tests (katalog zsynchronizowany z celem, jak cele apple-targets).
+// takiego celu nie tworzy (docs/35-zegarek-apple). Źródła testów: targets/watch-ui-tests (katalog zsynchronizowany z celem, jak cele apple-targets).
 // Użycie: node scripts/ci/add-watch-ui-tests.mjs [katalog_ios]   (domyślnie ./ios). Idempotentne: drugi przebieg nic nie zmienia.
 // Sprawdzane bez Maca w scripts/verify-native.mjs (projekt otwiera się ponownie, cel i schemat istnieją); uruchamiane w CI: watch-sim.yml.
 import { createRequire } from 'node:module';

@@ -1,12 +1,12 @@
 import XCTest
 @testable import WatchCore
 
-/// Odtwarza na Swift scenariusze wygenerowane z modelu referencyjnego (lib/watch/client.ts): każdy krok daje te same zdarzenia i ten sam widok.
+/// Odtwarza na Swift scenariusze wygenerowane z modelu referencyjnego (lib/watch/client.ts → watch-fixtures/scenarios): każdy krok daje te same zdarzenia i ten sam widok.
 /// To jest ręka na pulsie zgodności zegarka z protokołem — tu zegarek nie może się rozjechać.
 final class ScenarioReplayTests: XCTestCase {
   func testFixturesCoverTheExpectedScenarios() {
     let names = Fixtures.names("scenarios").map { String($0.dropLast(5)) }
-    for want in ["basic-apple", "undo-window", "differ", "skip-confirm", "main-in-rest", "rest-ended", "offline-two-done", "stale-snapshot", "finished-and-update", "last-set-and-done", "paused"] {
+    for want in ["basic-apple", "undo-window", "differ", "skip-confirm", "main-in-rest", "rest-ended", "offline-two-done", "stale-snapshot", "finished-and-update", "last-set-and-done", "paused", "ack-before-snapshot"] {
       XCTAssertTrue(names.contains(want), "brak scenariusza \(want)")
     }
   }
@@ -15,12 +15,12 @@ final class ScenarioReplayTests: XCTestCase {
     var total = 0
     for file in Fixtures.names("scenarios") {
       let sc = Fixtures.scenario(file)
-      var st = initialClient(sc.cfg)
+      var st = initialClient(sc.config)
       for (i, step) in sc.steps.enumerated() {
         let r = clientStep(st, TimedInput(at: step.at, input: step.input))
         st = r.state
-        XCTAssertEqual(r.out, step.out, "\(sc.name), krok \(i) (\(step.note ?? "")): zdarzenia do telefonu")
-        XCTAssertEqual(clientView(st, nowMs: step.at), step.view, "\(sc.name), krok \(i) (\(step.note ?? "")): widok")
+        XCTAssertEqual(r.out, step.expect.out, "\(sc.name), krok \(i) (\(step.note ?? "")): zdarzenia do telefonu")
+        XCTAssertEqual(clientView(st, nowMs: step.at), step.expect.view, "\(sc.name), krok \(i) (\(step.note ?? "")): widok")
         total += 1
       }
     }
@@ -31,11 +31,11 @@ final class ScenarioReplayTests: XCTestCase {
   func testStateSurvivesEncodeDecodeAtEveryStep() throws {
     for file in Fixtures.names("scenarios") {
       let sc = Fixtures.scenario(file)
-      var st = initialClient(sc.cfg)
+      var st = initialClient(sc.config)
       for (i, step) in sc.steps.enumerated() {
         st = clientStep(st, TimedInput(at: step.at, input: step.input)).state
         st = try JSONDecoder().decode(ClientState.self, from: JSONEncoder().encode(st))
-        XCTAssertEqual(clientView(st, nowMs: step.at), step.view, "\(sc.name), krok \(i) po restarcie")
+        XCTAssertEqual(clientView(st, nowMs: step.at), step.expect.view, "\(sc.name), krok \(i) po restarcie")
       }
     }
   }
@@ -43,7 +43,7 @@ final class ScenarioReplayTests: XCTestCase {
   func testScenarioClientsMatchTheirEventIdPrefix() {
     for file in Fixtures.names("scenarios") {
       let sc = Fixtures.scenario(file)
-      for step in sc.steps { for case .event(let e) in step.out { XCTAssertTrue(e.eventId.hasPrefix(sc.cfg.client.rawValue + "-"), sc.name); XCTAssertEqual(e.client, sc.cfg.client) } }
+      for step in sc.steps { for case .event(let e) in step.expect.out { XCTAssertTrue(e.eventId.hasPrefix(sc.config.client.rawValue + "-"), sc.name); XCTAssertEqual(e.client, sc.config.client) } }
     }
   }
 }

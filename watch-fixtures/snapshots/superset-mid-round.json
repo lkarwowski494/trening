@@ -1,0 +1,39 @@
+{
+ "v": 1,
+ "kind": "snapshot",
+ "rev": 1,
+ "lang": "pl",
+ "phase": "set",
+ "paused": false,
+ "workoutId": "workout-1",
+ "title": "Push",
+ "now": {
+  "setId": "set-0-0",
+  "blockId": "block-0",
+  "title": "Bench Press (sztanga)",
+  "counter": "seria 1 z 3",
+  "load": "80 kg × 8",
+  "group": "SS A",
+  "timed": false,
+  "targetSec": null
+ },
+ "rest": null,
+ "after": {
+  "restSec": null,
+  "cue": "",
+  "last": false,
+  "now": {
+   "setId": "set-1-0",
+   "blockId": "block-1",
+   "title": "Pull Up",
+   "counter": "seria 1 z 2",
+   "load": "+10 kg × 8",
+   "group": "SS A",
+   "timed": false,
+   "targetSec": null
+  }
+ },
+ "doneCount": 0,
+ "totalCount": 7,
+ "toFillCount": 0
+}

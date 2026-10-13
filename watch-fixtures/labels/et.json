@@ -1,0 +1,16 @@
+{
+ "done": "Seeria tehtud",
+ "differ": "Tehtud teisiti",
+ "skip": "Jäta vahele",
+ "skipAsk": "Jätad harjutuse vahele?",
+ "cancel": "Tühista",
+ "undo": "Võta tagasi",
+ "rest": "Paus",
+ "set": "Seeria",
+ "pause": "Peatatud",
+ "connect": "Ühenda telefoniga",
+ "idle": "Alusta treeningut telefonis",
+ "finished": "Treening lõppenud",
+ "update": "Värskenda kellarakendust",
+ "nothingLeft": "rohkem pole midagi teha"
+}

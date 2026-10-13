@@ -1,4 +1,4 @@
-/* Skrypty CI zegarka (docs/36): wybór symulatora watchOS i zrzuty — logika sprawdzana na Linuksie bez Xcode (wynik `simctl list` podany z pliku). */
+/* Skrypty CI zegarka (docs/35-zegarek-apple): wybór symulatora watchOS i zrzuty — logika sprawdzana na Linuksie bez Xcode (wynik `simctl list` podany z pliku). */
 import { execFileSync } from 'child_process';
 import * as fs from 'fs';
 import * as os from 'os';
@@ -36,7 +36,7 @@ describe('scripts/ci/watch-screenshots.sh', () => {
   test('identyfikator pakietu = celu zegarka; stany zrzutów istnieją jako pliki złote; Debug przez SIMCTL_CHILD_', () => {
     const cfg = fs.readFileSync(path.join(root, 'targets/watch-app/expo-target.config.js'), 'utf8');
     expect(cfg).toContain("bundleIdentifier: '.watchkitapp'"); expect(sh).toContain('BUNDLE="pl.lukasz.trening.watchkitapp"');
-    for (const s of sh.match(/STATES="([^"]+)"/)![1].split(' ')) expect(fs.existsSync(path.join(root, 'tests/fixtures/watch-app/snapshots', `${s}.json`))).toBe(true);
+    for (const s of sh.match(/STATES="([^"]+)"/)![1].split(' ')) expect(fs.existsSync(path.join(root, 'watch-fixtures/snapshots', `${s}.json`))).toBe(true);
     expect(sh).toContain('SIMCTL_CHILD_WATCH_FAKE_SNAPSHOT_JSON');
     const app = fs.readFileSync(path.join(root, 'targets/watch-app/TreningWatchApp.swift'), 'utf8');
     expect(app).toMatch(/#if DEBUG[\s\S]*WATCH_FAKE_SNAPSHOT_JSON[\s\S]*#endif/); /* wydanie ignoruje zmienną: sztuczny transport tylko w Debug */

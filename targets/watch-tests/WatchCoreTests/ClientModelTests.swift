@@ -6,7 +6,7 @@ final class ClientModelTests: XCTestCase {
   private let apple = ClientConfig(client: .apple, app: "0.20.0", session: true)
 
   private func step(_ s: ClientState, _ at: Double, _ input: ClientInput) -> ClientStep { clientStep(s, TimedInput(at: at, input: input)) }
-  private func started(_ snap: String = "set1") -> ClientState {
+  private func started(_ snap: String = "set-first") -> ClientState {
     var s = initialClient(apple)
     s = step(s, T0, .receive(.welcome(WatchWelcome(v: 1, kind: "welcome", ok: true, protocolVersion: 1, upgrade: nil)))).state
     return step(s, T0, .receive(.snapshot(Fixtures.snapshot(snap)))).state
@@ -34,7 +34,7 @@ final class ClientModelTests: XCTestCase {
     let e = events(step(s, T0 + 777, .press(.main)))
     XCTAssertEqual(e.count, 1)
     XCTAssertEqual(e[0].type, .done); XCTAssertEqual(e[0].setId, "set-0-0"); XCTAssertEqual(e[0].workoutId, "workout-1")
-    XCTAssertEqual(e[0].baseRev, Fixtures.snapshot("set1").rev); XCTAssertEqual(e[0].at, T0 + 777); XCTAssertEqual(e[0].eventId, "apple-1"); XCTAssertEqual(e[0].client, .apple)
+    XCTAssertEqual(e[0].baseRev, Fixtures.snapshot("set-first").rev); XCTAssertEqual(e[0].at, T0 + 777); XCTAssertEqual(e[0].eventId, "apple-1"); XCTAssertEqual(e[0].client, .apple)
   }
 
   func testEventIdsAreSequentialAndSurviveRestart() throws {
@@ -49,10 +49,10 @@ final class ClientModelTests: XCTestCase {
     // „zrobione” wysłane (zdarzenie w kolejce), telefon przysłał już migawkę z przerwą, ale ack jeszcze nie doszedł — widok nie odhacza kolejnej serii
     var s = started()
     s = step(s, T0 + 1000, .press(.main)).state
-    s = step(s, T0 + 1200, .receive(.snapshot(Fixtures.snapshot("rest1")))).state
+    s = step(s, T0 + 1200, .receive(.snapshot(Fixtures.snapshot("rest-after-first")))).state
     let v = clientView(s, nowMs: T0 + 1300)
     XCTAssertEqual(v.screen, .rest); XCTAssertEqual(v.counter, "seria 2 z 3")
-    XCTAssertEqual(v.doneCount, Fixtures.snapshot("rest1").doneCount)               // bez doliczenia zdarzenia, które migawka już ma
+    XCTAssertEqual(v.doneCount, Fixtures.snapshot("rest-after-first").doneCount)               // bez doliczenia zdarzenia, które migawka już ma
     XCTAssertEqual(s.queue.count, 1)
     s = step(s, T0 + 1400, .receive(.ack(WatchAck(v: 1, kind: "ack", eventId: "apple-1", status: "applied", reason: nil, rev: 2)))).state
     XCTAssertTrue(s.queue.isEmpty)
@@ -86,7 +86,7 @@ final class ClientModelTests: XCTestCase {
   }
 
   func testDoneDuringRestStartsANewRestAndSupersedesTheOldEnd() {
-    var s = started("rest1")                                                       // przerwa po set-0-0 do T0+90 s, następna: set-0-1, po niej set-0-2
+    var s = started("rest-after-first")                                                       // przerwa po set-0-0 do T0+90 s, następna: set-0-1, po niej set-0-2
     s = step(s, T0 + 10_000, .press(.main)).state                                  // set-0-1 odhaczona w przerwie → nowa przerwa 90 s od T0+10 s
     XCTAssertTrue(events(step(s, T0 + 91_000, .tick)).isEmpty, "stary koniec przerwy już nie obowiązuje")
     let r = step(s, T0 + 100_000, .tick)

@@ -1,8 +1,5 @@
-Pliki „złote” zegarka Apple Watch (0.20, docs/36). WERSJA ROBOCZA: wygenerowane 13.10.2026 z modelu referencyjnego zegarka z gałęzi `f020-protokol`
-(stan roboczy: lib/watch/client.ts + tests/watch-scenarios.ts — scenariusze, migawki z prawdziwego telefonu). Po scaleniu protokołu zastąp je plikami
-z `watch-fixtures/` (docs/36 rozdz. 6) — format scenariusza ten sam: `{name, doc, cfg, steps: [{at, input, out, view, note}]}`.
-- scenarios/*.json — wejścia (start, połączenie, komunikaty z telefonu, przyciski, tik) → zdarzenia do wysłania i widok po każdym kroku;
-  XCTest (`ScenarioReplayTests`) odtwarza każdy krok na Swift i porównuje wynik z tym plikiem.
-- snapshots/*.json — migawki kolejnych stanów jednego treningu.
-- constants.json — liczby protokołu (`WATCH`), pilnowane testem względem `WatchLimits` w Swift.
-- labels.json, lang-cases.json — generowane z lib/watchLabels.ts (tests/watch-apple-i18n.test.ts, UPDATE_WATCH_APPLE=1).
+Pliki generowane dla aplikacji na Apple Watch (0.20, docs/35-zegarek-apple) — NIE protokół (pliki wzorcowe protokołu: `watch-fixtures/`, docs/35):
+- labels.json — stałe etykiety zegarka w 35 językach (identyfikatory z protokołu + `workoutOn` tylko Apple), z lib/watchLabels.ts;
+  XCTest sprawdza, że tabela w `Core/WatchLabelTable.swift` jest identyczna, XCUITest — że ekran pokazuje te teksty w każdym języku;
+- lang-cases.json — tagi języka telefonu → język aplikacji (resolveLang), dla `WatchLabels.resolve`.
+Odtworzenie: `UPDATE_WATCH_APPLE=1 npx jest tests/watch-apple-i18n.test.ts`.

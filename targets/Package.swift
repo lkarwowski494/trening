@@ -1,7 +1,7 @@
 // swift-tools-version:5.9
 import PackageDescription
 
-// Logika zegarka (czysty Swift, bez SwiftUI/WatchKit) jako pakiet do `swift test` na macOS — bez symulatora, w minutach (docs/36).
+// Logika zegarka (czysty Swift, bez SwiftUI/WatchKit) jako pakiet do `swift test` na macOS — bez symulatora, w minutach (docs/35-zegarek-apple).
 // Te same pliki (watch-app/Core) kompiluje cel watchOS (apple-targets, TreningWatch). Pakiet leży w targets/, bo SwiftPM nie pozwala
 // wskazać źródeł poza katalogiem pakietu, a katalog celu (watch-app) jest w całości kompilowany przez Xcode — testy muszą być obok.
 // Uruchomienie: cd targets && swift test

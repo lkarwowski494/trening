@@ -4,7 +4,7 @@ import { createNativeTransport, type NativeWatchLink, type WatchTransport } from
 export * from './transport';
 
 /**
- * Most do aplikacji na Apple Watch (0.20, docs/36): WatchConnectivity po stronie iPhone'a. Bez modułu natywnego (Expo Go, testy, Android)
+ * Most do aplikacji na Apple Watch (0.20, docs/35-zegarek-apple): WatchConnectivity po stronie iPhone'a. Bez modułu natywnego (Expo Go, testy, Android)
  * transport jest „bez zegarka” i wszystkie wywołania są no-op — aplikacja działa jak wcześniej.
  */
 export const nativeWatchLink = requireOptionalNativeModule<NativeWatchLink>('WatchLink');

@@ -104,7 +104,7 @@ describe('F5 (LIVE-04): podpis przerwy (Live Activity) według tej samej reguły
   });
   test('F5 (LIVE-04): następna seria tego samego ćwiczenia / supersetu — „nazwa · seria n”', async () => {
     const a = await live(['Bench Press (sztanga)', 'Pull Up'], 2, true);
-    expect(restLabel(a, 0, 0)).toEqual({ sub: 'Pull Up · seria 1', last: false });
+    expect(restLabel(a, 0, 0)).toEqual({ sub: 'Pull Up · seria 1, masa ciała', last: false }); /* 0.20: zapowiedź zawiera ciężar i powtórzenia (restCue) */
     a.exercises[0].sets[0].done = true; expect(restLabel(a, 1, 0)).toEqual({ sub: 'Bench Press (sztanga) · seria 2', last: false });
   });
   test('F5 (LIVE-04, decyzja B): po ostatniej serii treningu — przerwa zostaje, podpis „nic więcej do zrobienia” (last)', async () => {

@@ -1,6 +1,6 @@
 import Foundation
 
-// Protokół telefon <-> zegarek, strona Apple Watch (0.20 „Zegarki i głos”, docs/36). Lustro typów z lib/watch/protocol.ts (gałąź f020-protokol,
+// Protokół telefon <-> zegarek, strona Apple Watch (0.20 „Zegarki i głos”, docs/35-zegarek-apple). Lustro typów z lib/watch/protocol.ts (gałąź f020-protokol,
 // docs/35): jedna wersjonowana postać komunikatów dla obu zegarków. Telefon = mózg (stan, teksty, decyzje), zegarek = wyświetlacz z kilkoma przyciskami;
 // wszystkie teksty dynamiczne przychodzą GOTOWE, w języku aplikacji. Kształt JSON sprawdzają pliki „złote” (tests/fixtures/watch-app → docelowo
 // watch-fixtures/) — czytają je Jest i XCTest; zmiana protokołu = zmiana plików = czerwone testy po obu stronach.
@@ -9,8 +9,8 @@ import Foundation
 /// Wersja protokołu, którą rozumie ta wersja zegarka (WATCH_PROTOCOL w lib/watch/protocol.ts).
 let watchProtocolVersion = 1
 
-enum WatchClientKind: String, Codable, Equatable { case apple, garmin }
-enum WatchPhase: String, Codable, Equatable { case idle, set, rest, done }
+enum WatchClientKind: String, Codable, Equatable, CaseIterable { case apple, garmin }
+enum WatchPhase: String, Codable, Equatable, CaseIterable { case idle, set, rest, done }
 
 /// Bieżąca seria do wyświetlenia (teksty gotowe).
 struct WatchNow: Codable, Equatable {
@@ -59,7 +59,7 @@ struct WatchSnapshot: Codable, Equatable {
   var toFillCount: Int
 }
 
-enum WatchEventType: String, Codable, Equatable { case done, differ, skip, undo, restEnded, sessionStarted, sessionEnded }
+enum WatchEventType: String, Codable, Equatable, CaseIterable { case done, differ, skip, undo, restEnded, sessionStarted, sessionEnded }
 
 /// Zdarzenie zegarek -> telefon. Bezwzględne (nie przełączniki); telefon pomija powtórzone `eventId`.
 struct WatchEvent: Codable, Equatable {
@@ -105,7 +105,7 @@ struct WatchAck: Codable, Equatable {
   var rev: Int
 }
 
-enum WatchSessionAction: String, Codable, Equatable { case start, end }
+enum WatchSessionAction: String, Codable, Equatable, CaseIterable { case start, end }
 /// Sesja treningu zegarka (Zdrowie): `save` = telefon ma włączony zapis do Zdrowia, więc zegarek MA zapisać trening; false = sesja tylko jako środek techniczny.
 struct WatchSessionCmd: Codable, Equatable {
   var v: Int

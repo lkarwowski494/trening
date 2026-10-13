@@ -5,6 +5,8 @@ import { catalogKey } from './seed';
 import { hk as lib } from './hkModule';
 import { HEALTH_READ_TYPES, HEALTH_UUID_WATCH, ownCopyFilter } from './healthRead';
 import { hasWatchMatch, matchesFor, ownCopySessions, readEnabled } from './healthQuery';
+import { watchHealthPlan } from './watch/health';
+import { WATCH } from './watch/protocol';
 
 /*
  * Zapis treningu do Apple Health (0.6, HealthKit write); ładowanie biblioteki i kształty wywołań: lib/hkModule.ts. Biblioteka @kingstinct/react-native-healthkit 16.x (Nitro Modules; od 0.15.0,
@@ -70,7 +72,7 @@ export async function saveWorkout(w: Workout): Promise<'saved' | 'skipped' | 'un
     if (!res) return 'failed';
     // Gdy HealthKit nie zwróci UUID, zapisujemy znacznik 'saved' (nie identyfikator) — tylko po to, by nie dublować zapisu.
     /* docs/12 (weryfikacja 2, L3): trening mógł zostać w międzyczasie podmieniony edycją — znacznik trafia też do obiektu, który jest teraz w historii */
-    const uuid = typeof res.uuid === 'string' && res.uuid ? res.uuid : 'saved'; try { res.dispose?.(); } catch {} w.healthUUID = uuid; delete w.healthPending; const cur = getState().workouts.find(x => x.id === w.id); if (cur && cur !== w) { cur.healthUUID = uuid; delete cur.healthPending; } save(cur ?? w);
+    const uuid = typeof res.uuid === 'string' && res.uuid ? res.uuid : 'saved'; try { res.dispose?.(); } catch {} w.healthUUID = uuid; delete w.healthPending; delete w.watch; const cur = getState().workouts.find(x => x.id === w.id); if (cur && cur !== w) { cur.healthUUID = uuid; delete cur.healthPending; delete cur.watch; } save(cur ?? w);
     return 'saved';
   } catch { return 'failed'; } finally { inFlight.delete(w.id); }
 }
@@ -90,8 +92,8 @@ export const healthPending = (): Workout[] => getState().workouts.filter(w => w.
  * znacznik synchronizacji = id sesji ORAZ źródło = ta aplikacja (healthRead.ownCopyFilter). Błąd zapytania / brak modułu = „nie wiadomo” → zapis jak dotąd.
  */
 function markWatch(w: Workout) {
-  w.healthUUID = HEALTH_UUID_WATCH; delete w.healthPending; const cur = getState().workouts.find(x => x.id === w.id);
-  if (cur && cur !== w) { cur.healthUUID = HEALTH_UUID_WATCH; delete cur.healthPending; } save(cur ?? w);
+  w.healthUUID = HEALTH_UUID_WATCH; delete w.healthPending; delete w.watch; const cur = getState().workouts.find(x => x.id === w.id);
+  if (cur && cur !== w) { cur.healthUUID = HEALTH_UUID_WATCH; delete cur.healthPending; delete cur.watch; } save(cur ?? w);
 }
 /** Sesja ma trening z zegarka w Zdrowiu → znacznik 'watch' bez zapisu kopii. Zwraca true, gdy tak. Wymaga włączonego odczytu. */
 async function adoptWatch(w: Workout): Promise<boolean> {
@@ -122,7 +124,19 @@ export async function reconcileWatchCopies(): Promise<number> {
 export async function syncAfterFinish(w: Workout): Promise<void> {
   if (!getState().settings.healthSync || w.healthUUID) return;
   try { if (w.healthPending !== true) { w.healthPending = true; const cur = getState().workouts.find(x => x.id === w.id); if (cur && cur !== w) cur.healthPending = true; save(cur ?? w); await flush(); }
+    /* 0.20 (docs/35): trening prowadzony też na zegarku — zapisuje zegarek (bogatsze źródło) albo czekamy na jego raport; po czasie zapis z telefonu (retryHealth) */
+    const plan = watchHealthPlan(w, Date.now());
+    if (plan.writer === 'watch') { markWatch(w); await flush(); return; }
+    if (plan.writer === 'wait') { setTimeout(() => { retryHealth().catch(() => {}); }, (WATCH.HEALTH_WAIT_SEC + 1) * 1000); return; }
     if (await adoptWatch(w)) { await flush(); return; } await saveWorkout(w); } catch {}
+}
+/** 0.20: zegarek zgłosił koniec sesji treningu (`sessionEnded`) po zakończeniu treningu na telefonie: zapisał trening w Zdrowiu → znacznik 'watch' bez zapisu z telefonu;
+ * nie zapisał → zapis z telefonu (ponowienie). Zwraca true, gdy zastosowano raport (trening czekał na Zdrowie). */
+export function reportWatchSession(w: Workout, endedAt: number, saved: boolean): boolean {
+  if (!w.watch || w.watch.endedAt != null || w.healthUUID) return false;
+  w.watch = { ...w.watch, endedAt, saved }; save(w);
+  if (saved) markWatch(w); else retryHealth().catch(() => {});
+  return true;
 }
 /** J2: ponawia zapis treningów ze znacznikiem (po kolei — HealthKit i tak zapisuje jeden naraz), a potem usuwa własne kopie zastąpione treningiem z zegarka (0.16.0).
  * Zwraca liczbę zapisanych. Bez synchronizacji — nic. */
@@ -130,7 +144,7 @@ let retrying: Promise<number> | null = null;
 export function retryHealth(): Promise<number> {
   if (!getState().settings.healthSync) return Promise.resolve(0);
   if (retrying) return retrying; /* start i powrót z tła tuż po sobie — jedno przejście */
-  const run = (async () => { let n = 0; try { for (const w of healthPending()) { if (await adoptWatch(w)) continue; if ((await saveWorkout(w)) === 'saved') n++; } } catch {} await reconcileWatchCopies().catch(() => 0); return n; })();
+  const run = (async () => { let n = 0; try { for (const w of healthPending()) { const plan = watchHealthPlan(w, Date.now()); if (plan.writer === 'watch') { markWatch(w); continue; } if (plan.writer === 'wait') continue; if (await adoptWatch(w)) continue; if ((await saveWorkout(w)) === 'saved') n++; } } catch {} await reconcileWatchCopies().catch(() => 0); return n; })();
   retrying = run; run.finally(() => { if (retrying === run) retrying = null; }).catch(() => {});
   return run;
 }

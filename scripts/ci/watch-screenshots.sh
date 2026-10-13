@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# Zrzuty ekranu aplikacji na Apple Watch z symulatora (watch-sim.yml, docs/36; te same zrzuty idą do App Store Connect — ten sam rozmiar we wszystkich
-# lokalizacjach). Aplikacja (konfiguracja Debug) jest już zainstalowana przez przebieg testów interfejsu; migawka z plików złotych trafia do niej
+# Zrzuty ekranu aplikacji na Apple Watch z symulatora (watch-sim.yml, docs/35-zegarek-apple; te same zrzuty idą do App Store Connect — ten sam rozmiar we wszystkich
+# lokalizacjach). Aplikacja (konfiguracja Debug) jest już zainstalowana przez przebieg testów interfejsu; migawka z plików wzorcowych (watch-fixtures) trafia do niej
 # zmienną SIMCTL_CHILD_WATCH_FAKE_SNAPSHOT_JSON (tylko Debug; wydanie ją ignoruje). Migawki mają stałą godzinę z roku 2026, więc przerwie w migawce przesuwamy
 # znaczniki na „teraz” (zostaje 75 s z 90 s) — inaczej odliczanie byłoby już skończone. Wynik: <katalog>/<język>/<stan>.png.
 # Użycie: bash scripts/ci/watch-screenshots.sh <UDID> <katalog_wyjściowy> [języki po przecinku | all]
 set -euo pipefail
 UDID="$1"; OUT="$2"; LANGS="${3:-pl,en,de,fi,ja}"
 BUNDLE="pl.lukasz.trening.watchkitapp"
-FIX="tests/fixtures/watch-app"
-if [ "$LANGS" = "all" ]; then LANGS=$(node -e 'console.log(Object.keys(require("./'"$FIX"'/labels.json")).join(","))'); fi
-STATES="set1 rest1 paused lastRest done idle"
+FIX="watch-fixtures"; APPLE="tests/fixtures/watch-app"
+if [ "$LANGS" = "all" ]; then LANGS=$(node -e 'console.log(Object.keys(require("./'"$APPLE"'/labels.json")).join(","))'); fi
+STATES="set-first rest-after-first paused last-rest done idle"
 mkdir -p "$OUT"
 for lang in ${LANGS//,/ }; do
   mkdir -p "$OUT/$lang"

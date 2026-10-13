@@ -42,7 +42,7 @@ final class WatchStoreTests: XCTestCase {
     XCTAssertEqual(s.lang, "de")
     XCTAssertEqual(s.label(.done), "Satz erledigt")
     s.start()
-    transport.deliver(json: Fixtures.snapshotJSON("set1"))                          // lang pl
+    transport.deliver(json: Fixtures.snapshotJSON("set-first"))                          // lang pl
     await settle()
     XCTAssertEqual(s.lang, "pl")
     XCTAssertEqual(persistence.lang, "pl")
@@ -52,7 +52,7 @@ final class WatchStoreTests: XCTestCase {
   func testUnknownSnapshotLanguageKeepsCurrentOne() async {
     let s = makeStore(languages: ["en-US"])
     s.start()
-    var snap = Fixtures.snapshot("set1"); snap.lang = "xx"
+    var snap = Fixtures.snapshot("set-first"); snap.lang = "xx"
     transport.deliver(json: String(data: try! JSONEncoder().encode(snap), encoding: .utf8)!)
     await settle()
     XCTAssertEqual(s.lang, "en")
@@ -60,7 +60,7 @@ final class WatchStoreTests: XCTestCase {
 
   func testSnapshotShowsSetAndPressSendsDoneAndStartsRest() async {
     let s = makeStore()
-    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set1")); await settle()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
     XCTAssertEqual(s.view(at: nowMs).screen, .set)
     s.press(.main); await settle()
     XCTAssertEqual(haptics.doneCount, 1)
@@ -75,7 +75,7 @@ final class WatchStoreTests: XCTestCase {
 
   func testQuickSecondPressIsDebounced() async {
     let s = makeStore()
-    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set1")); await settle()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
     s.press(.main); nowMs += 100; s.press(.main); await settle()
     XCTAssertEqual(transport.sentEvents.filter { $0.type == .done }.count, 1)
     XCTAssertEqual(haptics.doneCount, 1)
@@ -85,7 +85,7 @@ final class WatchStoreTests: XCTestCase {
 
   func testRestEndHapticAndEventWhenTimerFires() async {
     let s = makeStore()
-    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set1")); await settle()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
     s.press(.main); await settle()
     nowMs = T0 + 90_100
     scheduled.last?.fire(); await settle()
@@ -97,7 +97,7 @@ final class WatchStoreTests: XCTestCase {
     let s = makeStore()
     s.start()
     nowMs = T0 + 90_000 + WatchLimits.restEndGraceMs + 1                            // przerwa z migawki skończyła się dawno temu
-    transport.deliver(json: Fixtures.snapshotJSON("rest1")); await settle()
+    transport.deliver(json: Fixtures.snapshotJSON("rest-after-first")); await settle()
     s.tick(); await settle()
     XCTAssertEqual(haptics.restEndedCount, 0)
     XCTAssertTrue(transport.sentEvents.contains { $0.type == .restEnded })
@@ -105,7 +105,7 @@ final class WatchStoreTests: XCTestCase {
 
   func testOlderScheduledTickIsIgnoredAfterRescheduling() async {
     let s = makeStore()
-    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set1")); await settle()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
     s.press(.main); await settle()
     let first = scheduled.last
     nowMs = T0 + 1000
@@ -118,7 +118,7 @@ final class WatchStoreTests: XCTestCase {
 
   func testOfflineEventsStayQueuedAndAreResentAfterReconnect() async {
     let s = makeStore(reachable: false, autoReply: false)
-    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set1")); await settle()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
     s.press(.main); await settle()
     XCTAssertTrue(s.view(at: nowMs).offline)
     XCTAssertEqual(transport.sentEvents.filter { $0.eventId == "apple-1" }.count, 1)
@@ -134,7 +134,7 @@ final class WatchStoreTests: XCTestCase {
 
   func testWelcomeResendsQueuedEventsOnce() async {
     let s = makeStore(autoReply: false)
-    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set1")); await settle()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
     s.press(.main); await settle()
     transport.deliver(json: "{\"v\":1,\"kind\":\"welcome\",\"ok\":true,\"protocol\":1,\"upgrade\":null}"); await settle()
     XCTAssertEqual(transport.sentEvents.filter { $0.eventId == "apple-1" }.count, 2)
@@ -142,7 +142,7 @@ final class WatchStoreTests: XCTestCase {
 
   func testQueuedEventsSurviveRestart() async {
     var st = initialClient(apple)
-    st = clientStep(st, TimedInput(at: T0, input: .receive(.snapshot(Fixtures.snapshot("set1"))))).state
+    st = clientStep(st, TimedInput(at: T0, input: .receive(.snapshot(Fixtures.snapshot("set-first"))))).state
     st = clientStep(st, TimedInput(at: T0, input: .press(.main))).state
     let s = makeStore(persisted: st)
     s.start(); await settle()
@@ -152,7 +152,7 @@ final class WatchStoreTests: XCTestCase {
 
   func testSkipFlowThroughStore() async {
     let s = makeStore()
-    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set1")); await settle()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
     s.press(.skip)
     XCTAssertTrue(s.view(at: nowMs).confirmSkip)
     s.press(.cancelSkip)
@@ -163,7 +163,7 @@ final class WatchStoreTests: XCTestCase {
 
   func testDifferThroughStore() async {
     let s = makeStore()
-    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set1")); await settle()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
     s.press(.differ); await settle()
     XCTAssertTrue(transport.sentEvents.contains { $0.type == .differ && $0.setId == "set-0-0" })
     XCTAssertEqual(haptics.doneCount, 1)
@@ -181,7 +181,7 @@ final class WatchStoreTests: XCTestCase {
 
   func testSessionStartCommandStartsWorkoutAndReportsToPhone() async {
     let s = makeStore()
-    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set1")); await settle()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
     XCTAssertEqual(workout.starts, 0, "sesję startuje polecenie telefonu, nie sama migawka")
     transport.deliver(json: session("start")); await settle()
     XCTAssertEqual(workout.starts, 1)
@@ -195,7 +195,7 @@ final class WatchStoreTests: XCTestCase {
 
   func testSessionEndSavesWithPhoneWorkoutIdAndReportsSaved() async {
     let s = makeStore()
-    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set1")); transport.deliver(json: session("start")); await settle()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); transport.deliver(json: session("start")); await settle()
     transport.deliver(json: session("end", save: true)); await settle()
     XCTAssertEqual(workout.ends.count, 1)
     XCTAssertEqual(workout.ends.first?.save, true)

@@ -1,0 +1,16 @@
+{
+ "done": "Sett gjort",
+ "differ": "Gjort annerledes",
+ "skip": "Hopp over",
+ "skipAsk": "Hoppe over øvelsen?",
+ "cancel": "Avbryt",
+ "undo": "Angre",
+ "rest": "Hvile",
+ "set": "Sett",
+ "pause": "På pause",
+ "connect": "Koble til telefonen",
+ "idle": "Start en økt på telefonen",
+ "finished": "Økten er avsluttet",
+ "update": "Oppdater appen på klokken",
+ "nothingLeft": "ingenting mer å gjøre"
+}

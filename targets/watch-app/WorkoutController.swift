@@ -4,7 +4,7 @@ import WatchKit
 
 // Sesja treningu na zegarku (HKWorkoutSession) — po to, żeby aplikacja żyła i mogła wibrować po opuszczeniu ręki (WKInterfaceDevice.play w tle działa
 // tylko z aktywną sesją treningu) oraz żeby tętno i energia trafiły do treningu. Zegarek niczego nie edytuje: sesję startuje polecenie telefonu
-// (`session start`) i kończy `session end` (docs/35 rozdz. 6, docs/36). Sesja może też wystartować z `startWatchApp` (WKApplicationDelegate.handle).
+// (`session start`) i kończy `session end` (docs/35 rozdz. 6, docs/35-zegarek-apple). Sesja może też wystartować z `startWatchApp` (WKApplicationDelegate.handle).
 //
 // Zapis do Apple Health (polecenie `session end` z `save = true`): zegarek zapisuje HKWorkout z TYM SAMYM HKMetadataKeySyncIdentifier (= id treningu)
 // i SyncVersion = 1 co telefon (lib/health.ts) — HealthKit odrzuca drugi zapis tego samego treningu, więc duplikatu nie ma, kto by pierwszy nie zapisał.

@@ -1,5 +1,5 @@
 import { exById, focusSet, isBW, fmtSec, occurrence, occurrences } from './store';
-import { t, exName } from './i18n';
+import { t, tp, exName } from './i18n';
 import { wu, wOut, fmtNum } from './units';
 import { hasWeight, hasReps, hasTime, hasDistance, SET_KIND_MARK, type Exercise, type SetKind, type WExercise, type WSet, type Workout } from './seed';
 
@@ -21,17 +21,49 @@ export function setMarkOf(kinds: readonly (SetKind | undefined)[], i: number): s
 export function setLabel(e: WExercise, si: number): string { return setMarkOf(e.sets.map(s => s.kind), si); }
 
 /**
- * Podpis przerwy po serii (ei, si): następna seria do zrobienia według tej samej reguły co karta „teraz” — store.focusSet w stanie PO odhaczeniu
- * tej serii, z pominięciem bloków „Pomiń dziś” i usuniętych ćwiczeń (audyt 0.10, LIVE-04: wcześniej osobna reguła wskazywała inną serię niż karta).
- * Ta sama seria / ten sam superset — „nazwa · seria n”, inne ćwiczenie — „dalej: nazwa”. Nic nie zostało (decyzja B: przerwa po ostatniej serii
- * zostaje) — „nic więcej do zrobienia” i `last` (powiadomienie bez „Następna seria.”, lib/timer.ts). Wspólny dla odhaczenia, ponownego pomiaru,
- * zamiany, „Pomiń dziś” i odtworzenia przerwy po restarcie (LIVE-15).
+ * Zapowiedź po serii `setId` — JEDEN tekst dla głosu (lib/voice.ts), podpisu przerwy na ekranie, Live Activity, powiadomienia po restarcie i zegarków
+ * (lib/watch/*; decyzje właściciela 13.10.2026): następna seria do zrobienia według tej samej reguły co karta „teraz” — store.focusSet w stanie PO
+ * odhaczeniu tej serii, z pominięciem bloków „Pomiń dziś” i usuniętych ćwiczeń (audyt 0.10, LIVE-04) — wraz z ciężarem i liczbą powtórzeń
+ * (`spokenLoad`; BEZ talerzy, każda siłownia ma inne). To samo ćwiczenie albo ten sam superset — „nazwa · seria n, 80 kg, 8 powtórzeń”, inne
+ * ćwiczenie — „dalej: nazwa, 80 kg, 8 powtórzeń”. Pole puste = pominięte (nie zgadujemy liczby). Nic nie zostało (decyzja B: przerwa po ostatniej serii
+ * zostaje) — „nic więcej do zrobienia” i `last` (powiadomienie bez „Następna seria.”, lib/timer.ts). `''` = brak takiej serii.
+ */
+export function restCue(a: Workout, setId: string): { text: string; last: boolean } {
+  let ei = -1, si = -1;
+  for (let i = 0; i < a.exercises.length && ei < 0; i++) { const j = a.exercises[i].sets.findIndex(s => s.id === setId); if (j >= 0) { ei = i; si = j; } }
+  if (ei < 0) return { text: '', last: false };
+  const e = a.exercises[ei];
+  const pos = focusSet(a, setId); if (!pos) return { text: t('nic więcej do zrobienia'), last: true };
+  const x = a.exercises[pos.ei]; const xe = exById(x.exerciseId); const nm = exName(xe); const same = pos.ei === ei || (!!e.groupId && x.groupId === e.groupId);
+  const head = same ? `${nm} · ${t('seria {n}', { n: setLabel(x, pos.si) })}` : t('dalej: {name}', { name: nm });
+  const load = xe ? spokenLoad(xe, x.sets[pos.si]) : '';
+  return { text: load ? `${head}, ${load}` : head, last: false };
+}
+/**
+ * Podpis przerwy po serii (ei, si) — `restCue` dla serii na tej pozycji. Wspólny dla odhaczenia, ponownego pomiaru, zamiany, „Pomiń dziś” i odtworzenia
+ * przerwy po restarcie (LIVE-15). Pozycja poza treningiem — pusty podpis.
  */
 export function restLabel(a: Workout, ei: number, si: number): { sub: string; last: boolean } {
-  const e = a.exercises[ei]; const s = e?.sets[si]; if (!e || !s) return { sub: '', last: false };
-  const pos = focusSet(a, s.id); if (!pos) return { sub: t('nic więcej do zrobienia'), last: true };
-  const x = a.exercises[pos.ei]; const nm = exName(exById(x.exerciseId)); const same = pos.ei === ei || (!!e.groupId && x.groupId === e.groupId);
-  return { sub: same ? `${nm} · ${t('seria {n}', { n: setLabel(x, pos.si) })}` : t('dalej: {name}', { name: nm }), last: false };
+  const s = a.exercises[ei]?.sets[si]; if (!s) return { sub: '', last: false };
+  const c = restCue(a, s.id); return { sub: c.text, last: c.last };
+}
+/**
+ * Ciężar i powtórzenia serii słowami do zapowiedzi (głos czyta ten sam tekst, który widać): „80 kg, 8 powtórzeń”, „+10 kg, 8 powtórzeń”,
+ * „masa ciała, 12 powtórzeń”, „45 s”, „5000 m, 25:00”. Pole puste (albo 0) jest pomijane — zapowiedź nie zgaduje liczby. Ciężar w jednostce aplikacji
+ * (kg/lb) jak karta „teraz” (`nowParts`).
+ */
+export function spokenLoad(ex: Exercise, set: WSet): string {
+  const m = ex.metric ?? 'weight_reps'; const out: string[] = [];
+  if (hasWeight(m)) { const p = nowParts(ex, set); if (p.num !== '—') out.push(p.num + (p.unit ? ' ' + p.unit : '')); }
+  if (hasDistance(m) && Number(set.distanceM) > 0) out.push(`${set.distanceM} m`);
+  if (hasReps(m) && Number(set.reps) > 0) out.push(`${set.reps} ${tp(Number(set.reps), 'powtórzenie|powtórzenia|powtórzeń')}`);
+  if (hasTime(m) && Number(set.durationSec) > 0) out.push(fmtSec(Number(set.durationSec)));
+  return out.join(', ');
+}
+/** Licznik na karcie „teraz” jako tekst (jedno źródło dla karty i zegarka): „seria 2 z 4”, „rozgrzewka”, „seria 2 z 4 · drop set”. */
+export function counterLabel(e: WExercise, si: number): string {
+  const c = focusCounter(e, si);
+  return c.kind === 'warmup' ? t('rozgrzewka') : c.kind === 'drop' ? t('seria {n} z {all} · drop set', { n: c.n, all: c.all }) : t('seria {n} z {all}', { n: c.n, all: c.all });
 }
 
 /** Podpis stopera serii na Live Activity: „nazwa · seria n” (dwa bloki tego samego ćwiczenia — „nazwa (k)”). Wspólny dla startu pomiaru

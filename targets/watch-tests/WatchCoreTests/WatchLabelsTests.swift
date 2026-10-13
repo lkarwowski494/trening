@@ -14,8 +14,17 @@ final class WatchLabelsTests: XCTestCase {
   }
 
   func testTableEqualsTheGeneratedLabelsFixture() throws {
-    let labels = try JSONSerialization.jsonObject(with: Fixtures.data("labels.json")) as! [String: [String: String]]
+    let labels = try JSONSerialization.jsonObject(with: Fixtures.data("labels.json", in: Fixtures.appleDir)) as! [String: [String: String]]
     XCTAssertEqual(labels, WatchLabels.table)
+  }
+
+  /// Etykiety wspólne z protokołem (watch-fixtures/labels/<język>.json, 35 języków) są w tabeli zegarka co do znaku — to samo widzi Garmin.
+  func testSharedLabelsEqualTheProtocolLabelFixtures() throws {
+    for lang in WatchLabels.languages {
+      let proto = try JSONSerialization.jsonObject(with: Fixtures.data("labels/\(lang).json")) as! [String: String]
+      XCTAssertEqual(proto.count, 14, lang)
+      for (id, text) in proto { XCTAssertEqual(WatchLabels.table[lang]?[id], text, "\(lang).\(id)") }
+    }
   }
 
   func testTextFallsBackToEnglishThenKey() {
@@ -31,7 +40,7 @@ final class WatchLabelsTests: XCTestCase {
   }
 
   func testResolveMatchesTheAppForEveryRecordedTag() throws {
-    let cases = try JSONSerialization.jsonObject(with: Fixtures.data("lang-cases.json")) as! [[String: String]]
+    let cases = try JSONSerialization.jsonObject(with: Fixtures.data("lang-cases.json", in: Fixtures.appleDir)) as! [[String: String]]
     XCTAssertGreaterThan(cases.count, 30)
     for c in cases { XCTAssertEqual(WatchLabels.resolve(tag: c["tag"]!), c["lang"]!, c["tag"]!) }
   }

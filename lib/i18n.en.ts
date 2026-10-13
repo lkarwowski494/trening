@@ -9,10 +9,7 @@ export const EN: Record<string, string> = {
   'Wróć': 'Back', 'Wybierz ćwiczenie': 'Choose exercise', 'Szablon': 'Template', 'Ćwiczenie': 'Exercise', 'Sesja': 'Session',
   'Gumy': 'Bands', 'Postępy': 'Progress', 'Ustawienia': 'Settings',
 
-  /* zegarek (0.20): etykiety zegarków (lib/watchLabels.ts — te same co lib/watch/labels.ts z protokołu) i opisy zgód HealthKit Apple Watch */
-  'Zrobione inaczej': 'Done differently', 'Pominąć ćwiczenie?': 'Skip this exercise?', 'Połącz z telefonem': 'Connect to your phone',
-  'Zacznij trening na telefonie': 'Start a workout on your phone', 'Trening zakończony': 'Workout finished', 'Pauza': 'Paused',
-  'Zaktualizuj aplikację na zegarku': 'Update the watch app',
+  /* zegarek (0.20): opisy zgód HealthKit aplikacji na Apple Watch (lib/watchLabels.ts); etykiety wspólne z protokołem — lib/watch/labels.ts */
   'Zegarek odczytuje tętno i energię aktywną z trwającego treningu. Dane nie są wysyłane poza Twoje urządzenia.': 'Your watch reads heart rate and active energy during the workout. The data is not sent outside your devices.',
   'Zegarek zapisuje zakończony trening siłowy, z tętnem i energią aktywną, w Apple Health.': 'Your watch saves the finished strength workout, with heart rate and active energy, to Apple Health.',
 
@@ -1074,4 +1071,11 @@ export const EN: Record<string, string> = {
   '{n} {w} · Dostosuj': '{n} {w} · Adjust', 'ćwiczenie bez sprzętu|ćwiczenia bez sprzętu|ćwiczeń bez sprzętu': 'exercise without equipment|exercises without equipment',
   'ćwiczenie wraca do planu|ćwiczenia wracają do planu|ćwiczeń wraca do planu': 'exercise returns to your plan|exercises return to your plan',
   'Otwiera propozycje zamian na to miejsce.': 'Opens swap suggestions for this location.',
+  /* 0.20 „Zegarki i głos”: zapowiedź (restCue), etykiety zegarka (lib/watch/labels.ts), serie do uzupełnienia, głos w Ustawieniach */
+  'Zrobione inaczej': 'Done differently', 'Pominąć ćwiczenie?': 'Skip this exercise?', 'Połącz z telefonem': 'Connect to your phone',
+  'Zacznij trening na telefonie': 'Start a workout on your phone', 'Trening zakończony': 'Workout finished', 'Pauza': 'Paused',
+  'Zaktualizuj aplikację na zegarku': 'Update the watch app',
+  'do uzupełnienia': 'to fill in', 'Serie do uzupełnienia': 'Sets to fill in',
+  'Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.': 'Sets marked on your watch as done differently from the plan: {n}. Fill in the reps and weight — a record only counts once they are filled in.',
+  'Zakończ mimo to': 'Finish anyway', 'Seria {n} uzupełniona — {ex}': 'Set {n} filled in — {ex}', 'Seria {n} do uzupełnienia — {ex}': 'Set {n} to fill in — {ex}',
 };

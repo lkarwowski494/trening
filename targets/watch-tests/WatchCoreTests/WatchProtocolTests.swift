@@ -4,7 +4,7 @@ import XCTest
 final class WatchProtocolTests: XCTestCase {
   func testAllSnapshotFixturesDecodeAndRoundTrip() throws {
     let names = Fixtures.names("snapshots")
-    XCTAssertGreaterThanOrEqual(names.count, 10)
+    XCTAssertGreaterThanOrEqual(names.count, 15)
     for n in names {
       let data = Fixtures.data("snapshots/\(n)")
       let snap = try JSONDecoder().decode(WatchSnapshot.self, from: data)
@@ -21,12 +21,35 @@ final class WatchProtocolTests: XCTestCase {
     XCTAssertEqual(phases, Set(["idle", "set", "rest", "done"]))
   }
 
+  /// Poprawne komunikaty z telefonu (ack, welcome, session, migawka) dekodują się; zegarek ich nie odrzuca.
+  func testValidPhoneMessagesDecode() {
+    for (file, kind) in [("ack-applied", "ack"), ("ack-rejected", "ack"), ("welcome-ok", "welcome"), ("welcome-update-phone", "welcome"), ("welcome-update-watch", "welcome"), ("session-start", "session"), ("session-end", "session")] {
+      guard let m = WatchCodec.decodePhone(Fixtures.data("messages/valid/\(file).json")) else { return XCTFail("\(file) nie dekoduje się") }
+      switch (m, kind) {
+      case (.ack, "ack"), (.welcome, "welcome"), (.session, "session"): break
+      default: XCTFail("\(file): zły rodzaj")
+      }
+    }
+  }
+
+  /// Komunikaty zegarka (hello, zdarzenia) kodujemy tak samo jak w plikach wzorcowych — telefon je przyjmie (parseWatchMessage).
+  func testWatchMessagesEncodeLikeTheValidFixtures() throws {
+    var checked = 0
+    for n in Fixtures.names("messages/valid") where n.hasPrefix("hello-") || n.hasPrefix("event-") {
+      let data = Fixtures.data("messages/valid/\(n)")
+      let m = try JSONDecoder().decode(WatchOutgoing.self, from: data)
+      XCTAssertEqual(Fixtures.normalized(Data(WatchCodec.encode(m).utf8)), Fixtures.normalized(data), n)
+      checked += 1
+    }
+    XCTAssertEqual(checked, 2 + 7)   // 2 × hello, 7 typów zdarzeń
+  }
+
   func testEveryMessageInScenariosRoundTrips() throws {
     var kinds = Set<String>()
     for file in Fixtures.names("scenarios") {
       let sc = Fixtures.scenario(file)
       for step in sc.steps {
-        for o in step.out {
+        for o in step.expect.out {
           let json = WatchCodec.encode(o)
           let back = try JSONDecoder().decode(WatchOutgoing.self, from: Data(json.utf8))
           XCTAssertEqual(back, o, sc.name)
@@ -66,11 +89,20 @@ final class WatchProtocolTests: XCTestCase {
     XCTAssertNil(WatchCodec.probeVersion(Data("[]".utf8)))
   }
 
-  func testLimitsMirrorTheProtocolConstants() {
-    let c = Fixtures.constants()
-    XCTAssertEqual(WatchLimits.undoSec, c.undoSec)
-    XCTAssertEqual(WatchLimits.offlineDoneMax, c.offlineDoneMax)
-    XCTAssertEqual(watchProtocolVersion, c.protocolVersion)
+  func testLimitsAndEnumsMirrorTheProtocolFile() {
+    let p = Fixtures.protocolInfo()
+    XCTAssertEqual(WatchLimits.undoSec, p.undoSec)
+    XCTAssertEqual(WatchLimits.offlineDoneMax, p.offlineDoneMax)
+    XCTAssertEqual(watchProtocolVersion, p.version)
+    func names<T: RawRepresentable & CaseIterable>(_ t: T.Type) -> Set<String> where T.RawValue == String { Set(t.allCases.map { $0.rawValue }) }
+    func list(_ k: String) -> Set<String> { Set(p.json[k] as! [String]) }
+    XCTAssertEqual(names(WatchPhase.self), list("phases"))
+    XCTAssertEqual(names(WatchEventType.self), list("eventTypes"))
+    XCTAssertEqual(names(WatchClientKind.self), list("clients"))
+    XCTAssertEqual(names(WatchSessionAction.self), list("sessionActions"))
+    XCTAssertEqual(names(ClientScreen.self), list("clientScreens"))
+    XCTAssertEqual(names(ClientAction.self), list("clientActions"))
+    XCTAssertEqual(names(WatchLabelKey.self).subtracting(["workoutOn"]), list("labelIds"))   // workoutOn: tylko Apple Watch
   }
 
   func testWireKeysAreStable() {

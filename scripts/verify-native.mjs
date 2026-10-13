@@ -3,7 +3,7 @@
 // cel widżetu i kolor akcentu, brak UIBackgroundModes, NSSupportsLiveActivities = true, UIFileSharingEnabled i LSSupportsOpeningDocumentsInPlace (kopie w Plikach, runda 75), identyczny RestTimerAttributes.swift
 // w module i widżecie (rundy 63–64); audyt NAT-05 (08.10.2026): MARKETING_VERSION = app.json, iPhone, cele ≤ aplikacja, tylko opisy HealthKit,
 // ikona 1024, InfoPlist.strings we wszystkich językach; NAT-07: bez ExtensionStorage, ekran startowy z wariantem ciemnym.
-// 0.20 (Apple Watch, docs/36): cel TreningWatch (watchOS 11, towarzysz pl.lukasz.trening, HealthKit, tryb tła treningu, manifest prywatności,
+// 0.20 (Apple Watch, docs/35-zegarek-apple): cel TreningWatch (watchOS 11, towarzysz pl.lukasz.trening, HealthKit, tryb tła treningu, manifest prywatności,
 // opisy zgód w 35 językach), moduł WatchLink w autolinkingu, cel testów interfejsu dokładany skryptem scripts/ci/add-watch-ui-tests.mjs. Kod wyjścia 1 = błąd.
 import { execSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';

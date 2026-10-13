@@ -1,4 +1,4 @@
-/* Apple Watch (0.20 „Zegarki i głos”, docs/36): stałe etykiety i opisy zgód w 35 językach. Pliki zegarka są GENEROWANE z lib/watchLabels.ts
+/* Apple Watch (0.20 „Zegarki i głos”, docs/35-zegarek-apple): stałe etykiety i opisy zgód w 35 językach. Pliki zegarka są GENEROWANE z lib/watchLabels.ts
  * (jeden słownik z telefonem, bez rozjazdu) — wzór tests/widget-i18n.test.ts. Po zmianie tłumaczeń, języków albo kluczy:
  *   UPDATE_WATCH_APPLE=1 npx jest tests/watch-apple-i18n.test.ts
  * - targets/watch-app/Core/WatchLabelTable.swift — tabela język → etykiety (zegarek bierze język z migawki telefonu),
@@ -51,16 +51,10 @@ describe.each(WATCH_LABEL_KEYS)('etykieta zegarka %s', key => {
   });
 });
 
-test('klucze Swift (WatchLabelKey) = WATCH_LABEL_KEYS, w tej samej kolejności; identyfikatory wspólne z protokołem w tej samej kolejności', () => {
+test('klucze Swift (WatchLabelKey) = WATCH_LABEL_KEYS (identyfikatory protokołu + dodatki Apple), w tej samej kolejności', () => {
   const swift = fs.readFileSync(path.join(dir, 'Core', 'WatchLabels.swift'), 'utf8');
   const m = swift.match(/enum WatchLabelKey: String, CaseIterable \{\s*case ([^\n]+)\n/); expect(m).not.toBeNull();
   expect(m![1].split(',').map(s => s.trim())).toEqual([...WATCH_LABEL_KEYS]);
-  /* po scaleniu z gałęzią protokołu (lib/watch/labels.ts) lista wspólnych identyfikatorów musi być identyczna — wtedy ten plik zastępuje się importem */
-  const proto = path.join(root, 'lib', 'watch', 'labels.ts');
-  if (fs.existsSync(proto)) {
-    const ids = fs.readFileSync(proto, 'utf8').match(/WATCH_LABEL_IDS = \[([^\]]+)\]/)![1].split(',').map(x => x.trim().replace(/'/g, ''));
-    expect(WATCH_LABEL_KEYS.filter(k => k !== 'workoutOn')).toEqual(ids);
-  }
 });
 
 test('opisy zgód HealthKit zegarka: wszystkie języki, niepuste, Info.plist (pl) i CFBundleLocalizations zgodne', () => {
@@ -75,12 +69,21 @@ test('opisy zgód HealthKit zegarka: wszystkie języki, niepuste, Info.plist (pl
   expect(wk).toContain('workout-processing');
 });
 
-test('etykiety zegarka: polskie źródło i angielski komplet (literały — te same teksty widzi użytkownik na zegarku)', () => {
+test('etykiety Apple Watch: literały (polski i angielski) — wskaźnik sesji i opisy zgód HealthKit', () => {
   applyLang('pl');
-  expect(watchLabels()).toEqual({ done: 'Seria zrobiona', differ: 'Zrobione inaczej', skip: 'Pomiń', skipAsk: 'Pominąć ćwiczenie?', cancel: 'Anuluj', undo: 'Cofnij', rest: 'Przerwa', set: 'Seria', pause: 'Pauza', connect: 'Połącz z telefonem', idle: 'Zacznij trening na telefonie', finished: 'Trening zakończony', update: 'Zaktualizuj aplikację na zegarku', nothingLeft: 'nic więcej do zrobienia', workoutOn: 'Trening wciąż trwa' });
+  expect(watchLabels().workoutOn).toBe('Trening wciąż trwa');
   expect(watchInfoPlist('pl')).toEqual({ CFBundleDisplayName: 'Trening', NSHealthShareUsageDescription: 'Zegarek odczytuje tętno i energię aktywną z trwającego treningu. Dane nie są wysyłane poza Twoje urządzenia.', NSHealthUpdateUsageDescription: 'Zegarek zapisuje zakończony trening siłowy, z tętnem i energią aktywną, w Apple Health.' });
   applyLang('en');
-  expect(watchLabels()).toEqual({ done: 'Set done', differ: 'Done differently', skip: 'Skip', skipAsk: 'Skip this exercise?', cancel: 'Cancel', undo: 'Undo', rest: 'Rest', set: 'Set', pause: 'Paused', connect: 'Connect to your phone', idle: 'Start a workout on your phone', finished: 'Workout finished', update: 'Update the watch app', nothingLeft: 'nothing more to do', workoutOn: 'Workout still in progress' });
+  expect(watchLabels().workoutOn).toBe('Workout still in progress');
   expect(watchInfoPlist('en')).toEqual({ CFBundleDisplayName: 'Training', NSHealthShareUsageDescription: 'Your watch reads heart rate and active energy during the workout. The data is not sent outside your devices.', NSHealthUpdateUsageDescription: 'Your watch saves the finished strength workout, with heart rate and active energy, to Apple Health.' });
   applyLang('pl');
+});
+
+test('etykiety wspólne z protokołem są w tabeli zegarka identyczne z watch-fixtures/labels (35 języków) — Apple i Garmin pokazują te same teksty', () => {
+  const tab = watchLabelTable('pl');
+  for (const l of LANGS) {
+    const proto = JSON.parse(fs.readFileSync(path.join(root, 'watch-fixtures', 'labels', `${l}.json`), 'utf8'));
+    expect(Object.keys(proto).sort()).toEqual([...WATCH_LABEL_IDS].sort());
+    for (const id of WATCH_LABEL_IDS) expect([l, id, tab[l].labels[id]]).toEqual([l, id, proto[id]]);
+  }
 });

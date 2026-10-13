@@ -1,0 +1,16 @@
+{
+ "done": "Sarja tehty",
+ "differ": "Tehty toisin",
+ "skip": "Ohita",
+ "skipAsk": "Ohitetaanko liike?",
+ "cancel": "Kumoa",
+ "undo": "Peru",
+ "rest": "Palautus",
+ "set": "Sarja",
+ "pause": "Tauolla",
+ "connect": "Yhdistä puhelimeen",
+ "idle": "Aloita treeni puhelimella",
+ "finished": "Treeni päättyi",
+ "update": "Päivitä kellosovellus",
+ "nothingLeft": "ei enää mitään tehtävää"
+}

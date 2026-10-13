@@ -2,7 +2,7 @@ import SwiftUI
 import WatchKit
 import HealthKit
 
-// Aplikacja na Apple Watch (0.20 „Zegarki i głos”, docs/36): wyświetla to, co dzieje się na telefonie (bieżące ćwiczenie, seria k z n,
+// Aplikacja na Apple Watch (0.20 „Zegarki i głos”, docs/35-zegarek-apple): wyświetla to, co dzieje się na telefonie (bieżące ćwiczenie, seria k z n,
 // ciężar i powtórzenia, od początku przerwy zapowiedź następnego ćwiczenia, odliczanie przerwy z wibracją) i odsyła zdarzenia:
 // „zrobione według planu”, „zrobione inaczej”, „pomiń” (z potwierdzeniem), „cofnij”. BEZ edycji na zegarku. Teksty dynamiczne przychodzą
 // z telefonu gotowe. Podwójne stuknięcie (watchOS 11) = „zrobione według planu”.

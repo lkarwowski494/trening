@@ -1,0 +1,16 @@
+{
+ "done": "Serija opravljena",
+ "differ": "Opravljeno drugače",
+ "skip": "Preskoči",
+ "skipAsk": "Preskočim vajo?",
+ "cancel": "Prekliči",
+ "undo": "Razveljavi",
+ "rest": "Počitek",
+ "set": "Serija",
+ "pause": "Zaustavljeno",
+ "connect": "Poveži s telefonom",
+ "idle": "Začni trening v telefonu",
+ "finished": "Trening je končan",
+ "update": "Posodobi aplikacijo na uri",
+ "nothingLeft": "ni več ničesar za narediti"
+}

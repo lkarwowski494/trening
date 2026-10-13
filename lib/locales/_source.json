@@ -1091,6 +1091,10 @@
   "en": "To failure (F)"
  },
  {
+  "pl": "do uzupełnienia",
+  "en": "to fill in"
+ },
+ {
   "pl": "do zrobienia",
   "en": "to do"
  },
@@ -4259,6 +4263,14 @@
   "en": "Set {n} — {ex}"
  },
  {
+  "pl": "Seria {n} do uzupełnienia — {ex}",
+  "en": "Set {n} to fill in — {ex}"
+ },
+ {
+  "pl": "Seria {n} uzupełniona — {ex}",
+  "en": "Set {n} filled in — {ex}"
+ },
+ {
   "pl": "seria {n} z {all}",
   "en": "set {n} of {all}"
  },
@@ -4314,6 +4326,10 @@
  {
   "pl": "Serie bez wyniku zostaną pominięte: {n}.",
   "en": "Sets without a result will be skipped: {n}."
+ },
+ {
+  "pl": "Serie do uzupełnienia",
+  "en": "Sets to fill in"
  },
  {
   "pl": "Serie na partię — wykonane i zaplanowane",
@@ -5847,6 +5863,10 @@
   "en": "From your watch"
  },
  {
+  "pl": "Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.",
+  "en": "Sets marked on your watch as done differently from the plan: {n}. Fill in the reps and weight — a record only counts once they are filled in."
+ },
+ {
   "pl": "Za dużo ciężarów (najwyżej {n}).",
   "en": "Too many weights (at most {n})."
  },
@@ -5897,6 +5917,10 @@
  {
   "pl": "Zakończ i zapisz",
   "en": "Finish and save"
+ },
+ {
+  "pl": "Zakończ mimo to",
+  "en": "Finish anyway"
  },
  {
   "pl": "Zakończ serię",

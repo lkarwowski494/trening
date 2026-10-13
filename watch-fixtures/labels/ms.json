@@ -1,0 +1,16 @@
+{
+ "done": "Set selesai",
+ "differ": "Dibuat dengan cara lain",
+ "skip": "Langkau",
+ "skipAsk": "Langkau latihan ini?",
+ "cancel": "Batal",
+ "undo": "Buat asal",
+ "rest": "Rehat",
+ "set": "Set",
+ "pause": "Dijeda",
+ "connect": "Sambung ke telefon",
+ "idle": "Mulakan latihan pada telefon",
+ "finished": "Latihan tamat",
+ "update": "Kemas kini aplikasi pada jam",
+ "nothingLeft": "tiada lagi yang perlu dibuat"
+}

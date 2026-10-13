@@ -1,10 +1,10 @@
 import XCTest
 
-// Testy interfejsu aplikacji na Apple Watch (XCUITest, symulator watchOS; workflow watch-sim.yml — docs/36). Telefonu nie ma: komunikaty z plików
-// złotych (tests/fixtures/watch-app) trafiają do aplikacji zmienną środowiskową WATCH_FAKE_SNAPSHOT_JSON (tylko konfiguracja Debug) — jeden komunikat
+// Testy interfejsu aplikacji na Apple Watch (XCUITest, symulator watchOS; workflow watch-sim.yml — docs/35-zegarek-apple). Telefonu nie ma: komunikaty z plików
+// wzorcowych protokołu (watch-fixtures) trafiają do aplikacji zmienną środowiskową WATCH_FAKE_SNAPSHOT_JSON (tylko konfiguracja Debug) — jeden komunikat
 // albo tablica; fałszywy „telefon” odpowiada jak prawdziwy (welcome na hello, ack na zdarzenie), chyba że zegarek ma być „poza zasięgiem”.
 // Elementy po stabilnych identyfikatorach (nie po tekście), więc test działa w każdym języku; teksty sprawdza osobno pętla po 35 językach.
-// Migawki mają stałą godzinę z roku 2026 (przerwy w nich są już „skończone”), więc przerwę na ekranie wywołuje dopiero „Seria zrobiona”.
+// Migawki mają stałą godzinę z października 2026 (przerwy w nich są już „skończone”), więc przerwę na ekranie wywołuje dopiero „Seria zrobiona”.
 @MainActor
 final class WatchUITests: XCTestCase {
   private let root: URL = {
@@ -15,9 +15,10 @@ final class WatchUITests: XCTestCase {
 
   override func setUp() async throws { continueAfterFailure = false }
 
-  private func fixture(_ path: String) -> Data {
-    let url = root.appendingPathComponent("tests/fixtures/watch-app/\(path)")
-    guard let d = try? Data(contentsOf: url) else { fatalError("Brak pliku złotego: \(url.path)") }
+  /// Pliki wzorcowe protokołu (watch-fixtures/) albo wygenerowane dla Apple Watch (tests/fixtures/watch-app/: labels.json).
+  private func fixture(_ path: String, apple: Bool = false) -> Data {
+    let url = root.appendingPathComponent(apple ? "tests/fixtures/watch-app/\(path)" : "watch-fixtures/\(path)")
+    guard let d = try? Data(contentsOf: url) else { fatalError("Brak pliku wzorcowego: \(url.path)") }
     return d
   }
 
@@ -69,10 +70,10 @@ final class WatchUITests: XCTestCase {
   func testNoWorkoutShowsStartOnPhone() { let app = launch(nil); appears(app, "watch.idle") }
   func testIdleSnapshot() { let app = launch("idle"); appears(app, "watch.idle") }
   func testDoneSnapshotShowsNothingLeft() { let app = launch("done"); appears(app, "watch.nothing") }
-  func testLastSetRestAlreadyElapsedShowsNothingLeft() { let app = launch("lastRest"); appears(app, "watch.nothing") }
+  func testLastSetRestAlreadyElapsedShowsNothingLeft() { let app = launch("last-rest"); appears(app, "watch.nothing") }
 
   func testFinishedAfterTheWorkoutEndsOnThePhone() {
-    let app = launch([object("set1"), object("idle") { $0["rev"] = 9 }])
+    let app = launch([object("set-first"), object("idle") { $0["rev"] = 9 }])
     appears(app, "watch.finished")
   }
 
@@ -84,7 +85,7 @@ final class WatchUITests: XCTestCase {
   // MARK: - Seria
 
   func testSetShowsExerciseCounterAndLoad() {
-    let app = launch("set1")
+    let app = launch("set-first")
     appears(app, "watch.title")
     XCTAssertEqual(el(app, "watch.title").label, "Bench Press (sztanga)")
     XCTAssertEqual(el(app, "watch.counter").label, "seria 1 z 3")
@@ -98,14 +99,14 @@ final class WatchUITests: XCTestCase {
   func testPausedBadge() { let app = launch("paused"); appears(app, "watch.paused") }
 
   func testSupersetGroupLabelIsShown() {
-    let app = launch([object("set1") { o in var n = o["now"] as! [String: Any]; n["group"] = "SS A"; o["now"] = n }])
+    let app = launch([object("set-first") { o in var n = o["now"] as! [String: Any]; n["group"] = "SS A"; o["now"] = n }])
     appears(app, "watch.group")
     XCTAssertEqual(el(app, "watch.group").label, "SS A")
   }
 
   func testLongGermanTextIsReachableAndTranslated() {
     let long = "Beidarmiges Schulterdrücken mit Kurzhanteln im Sitzen"
-    let app = launch([object("set1") { o in o["lang"] = "de"; var n = o["now"] as! [String: Any]; n["title"] = long; o["now"] = n }])
+    let app = launch([object("set-first") { o in o["lang"] = "de"; var n = o["now"] as! [String: Any]; n["title"] = long; o["now"] = n }])
     appears(app, "watch.title")
     XCTAssertTrue(el(app, "watch.title").label.hasPrefix("Beidarmiges"))
     XCTAssertEqual(el(app, "watch.primary").label, "Satz erledigt")
@@ -114,7 +115,7 @@ final class WatchUITests: XCTestCase {
   // MARK: - Zrobione, przerwa, cofnij
 
   func testDoneStartsRestWithAnnouncementAndUndo() {
-    let app = launch("set1")
+    let app = launch("set-first")
     appears(app, "watch.primary"); el(app, "watch.primary").tap()
     appears(app, "watch.timer")
     appears(app, "watch.cue")
@@ -124,7 +125,7 @@ final class WatchUITests: XCTestCase {
   }
 
   func testUndoReturnsToTheSet() {
-    let app = launch("set1")
+    let app = launch("set-first")
     appears(app, "watch.primary"); el(app, "watch.primary").tap()
     appears(app, "watch.undo"); el(app, "watch.undo").tap()
     appears(app, "watch.title")
@@ -133,7 +134,7 @@ final class WatchUITests: XCTestCase {
   }
 
   func testUndoDisappearsAfterWindow() {
-    let app = launch("set1") // okno „Cofnij” 5 s
+    let app = launch("set-first") // okno „Cofnij” 5 s
     appears(app, "watch.primary"); el(app, "watch.primary").tap()
     appears(app, "watch.undo")
     gone(app, "watch.undo", timeout: 12)
@@ -141,23 +142,23 @@ final class WatchUITests: XCTestCase {
   }
 
   func testPrimaryInRestTicksNextSetAndThenAsksToConnect() {
-    let app = launch("set1")
+    let app = launch("set-first")
     appears(app, "watch.primary"); el(app, "watch.primary").tap()
     appears(app, "watch.timer")
     sleep(1) // ponad okno podwójnego kliknięcia (400 ms)
     el(app, "watch.primary").tap()
-    appears(app, "watch.connect") // znane są tylko dwie serie z migawki (set1 + after)
+    appears(app, "watch.connect") // znane są tylko dwie serie z migawki (set-first + after)
   }
 
   func testDifferStartsRestToo() {
-    let app = launch("set1")
+    let app = launch("set-first")
     appears(app, "watch.differ"); el(app, "watch.differ").tap()
     appears(app, "watch.timer")
   }
 
   func testLastSetShowsNothingLeftAndNoPrimary() {
     // ostatnia seria: after.now = nil → po „zrobione” przerwa z „nic więcej do zrobienia”
-    let app = launch([object("set1") { o in var a = o["after"] as! [String: Any]; a["now"] = NSNull(); a["last"] = true; o["after"] = a }])
+    let app = launch([object("set-first") { o in var a = o["after"] as! [String: Any]; a["now"] = NSNull(); a["last"] = true; o["after"] = a }])
     appears(app, "watch.primary"); el(app, "watch.primary").tap()
     appears(app, "watch.timer")
     appears(app, "watch.nothing")
@@ -167,7 +168,7 @@ final class WatchUITests: XCTestCase {
   // MARK: - Pomiń
 
   func testSkipAsksForConfirmationAndCancelGoesBack() {
-    let app = launch("set1")
+    let app = launch("set-first")
     appears(app, "watch.skip"); el(app, "watch.skip").tap()
     appears(app, "watch.confirm.title")
     el(app, "watch.confirm.cancel").tap()
@@ -176,7 +177,7 @@ final class WatchUITests: XCTestCase {
   }
 
   func testSkipConfirmedSendsEventAndKeepsScreenUntilPhoneAnswers() {
-    let app = launch("set1")
+    let app = launch("set-first")
     appears(app, "watch.skip"); el(app, "watch.skip").tap()
     appears(app, "watch.confirm.skip"); el(app, "watch.confirm.skip").tap()
     appears(app, "watch.title")
@@ -186,7 +187,7 @@ final class WatchUITests: XCTestCase {
   // MARK: - Brak połączenia, sesja treningu
 
   func testOfflineShowsBadgeAndQueuesEvents() {
-    let app = launch("set1", reachable: false)
+    let app = launch("set-first", reachable: false)
     appears(app, "watch.offline")
     waitPending(app, "pending 0")
     el(app, "watch.primary").tap()
@@ -195,7 +196,7 @@ final class WatchUITests: XCTestCase {
   }
 
   func testOfflineAfterTwoDonesAsksToConnect() {
-    let app = launch("set1", reachable: false)
+    let app = launch("set-first", reachable: false)
     appears(app, "watch.primary"); el(app, "watch.primary").tap()
     appears(app, "watch.timer"); sleep(1); el(app, "watch.primary").tap()
     appears(app, "watch.connect")
@@ -203,20 +204,20 @@ final class WatchUITests: XCTestCase {
   }
 
   func testSessionIndicatorAppearsWhenPhoneStartsTheSession() {
-    let app = launch([object("set1"), sessionStart])
+    let app = launch([object("set-first"), sessionStart])
     appears(app, "watch.session") // wskaźnik trwającej sesji treningu (wymóg Apple)
   }
 
   // MARK: - Dostępność i języki
 
   func testControlsHaveAccessibilityLabels() {
-    let app = launch("set1")
+    let app = launch("set-first")
     appears(app, "watch.primary")
     for id in ["watch.primary", "watch.differ", "watch.skip"] { XCTAssertFalse(el(app, id).label.isEmpty, id) }
   }
 
   func testLargestTextStillShowsPrimaryButton() {
-    let app = launch("set1", args: ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"])
+    let app = launch("set-first", args: ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"])
     appears(app, "watch.title")
     XCTAssertTrue(el(app, "watch.primary").exists)
   }
@@ -224,10 +225,10 @@ final class WatchUITests: XCTestCase {
   /// Etykiety w każdym z 35 języków aplikacji (język z migawki telefonu), zgodne z tests/fixtures/watch-app/labels.json
   /// (generowane z lib/watchLabels.ts przez tests/watch-apple-i18n.test.ts).
   func testButtonLabelsInEveryLanguage() throws {
-    let labels = try JSONSerialization.jsonObject(with: fixture("labels.json")) as! [String: [String: String]]
+    let labels = try JSONSerialization.jsonObject(with: fixture("labels.json", apple: true)) as! [String: [String: String]]
     XCTAssertEqual(labels.count, 35)
     for (lang, l) in labels.sorted(by: { $0.key < $1.key }) {
-      let app = launch("set1", lang: lang)
+      let app = launch("set-first", lang: lang)
       appears(app, "watch.primary")
       XCTAssertEqual(el(app, "watch.primary").label, l["done"], "język \(lang)")
       XCTAssertEqual(el(app, "watch.differ").label, l["differ"], "język \(lang)")

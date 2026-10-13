@@ -49,7 +49,7 @@ func initialClient(_ cfg: ClientConfig) -> ClientState {
   ClientState(cfg: cfg, seq: 0, connected: true, base: nil, queue: [], undo: nil, confirmSkip: false, finished: false, upgrade: nil, restEndedSent: nil)
 }
 
-enum ClientButton: String, Codable, Equatable { case main, differ, skip, confirmSkip, cancelSkip, undo }
+enum ClientButton: String, Codable, Equatable, CaseIterable { case main, differ, skip, confirmSkip, cancelSkip, undo }
 
 enum ClientInput: Equatable {
   case launch                                   // start aplikacji / powrót na ekran: zgłasza się `hello`
@@ -64,8 +64,8 @@ struct TimedInput: Equatable {
   var input: ClientInput
 }
 
-enum ClientScreen: String, Codable, Equatable { case idle, set, rest, done, connect, update, finished }
-enum ClientAction: String, Codable, Equatable { case done, differ, skip, undo }
+enum ClientScreen: String, Codable, Equatable, CaseIterable { case idle, set, rest, done, connect, update, finished }
+enum ClientAction: String, Codable, Equatable, CaseIterable { case done, differ, skip, undo }
 
 struct ClientView: Codable, Equatable {
   var screen: ClientScreen

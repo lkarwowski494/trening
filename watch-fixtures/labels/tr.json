@@ -1,0 +1,16 @@
+{
+ "done": "Set tamam",
+ "differ": "Farklı yapıldı",
+ "skip": "Atla",
+ "skipAsk": "Egzersiz atlansın mı?",
+ "cancel": "Vazgeç",
+ "undo": "Geri al",
+ "rest": "Dinlenme",
+ "set": "Set",
+ "pause": "Duraklatıldı",
+ "connect": "Telefona bağlan",
+ "idle": "Telefonda antrenman başlat",
+ "finished": "Antrenman bitti",
+ "update": "Saat uygulamasını güncelle",
+ "nothingLeft": "yapılacak başka bir şey yok"
+}
