@@ -96,6 +96,8 @@ export class Runner {
     if (!c.node) return true; const b = this.screenBox(c.node as unknown as LNode, false); if (!b || !b.sc) return true;
     /* widoczny pas elementu (pionowo: od górnej krawędzi listy do dołu ekranu) co najmniej połowa wysokości, najwyżej SCREEN.minVis pt —
      * z luzem SCREEN.peek na błąd szacunku; poziomo — środek w ekranie z luzem SCREEN.slack (chipy w poziomym pasku, E2E 89: 16) */
+    /* E2E 38471218362 (27): chip w poziomym pasku, który wystaje za prawą krawędź ekranu (tu „cables”, 5. chip sprzętu), jest na symulatorze poza zasięgiem stuknięcia — szacunek szerokości tekstu bywa o kilkanaście % za mały, więc wystawanie = poza ekranem */
+    if (this.boxes.get(c.node as unknown as LNode)?.horiz && b.x + b.w > SCREEN.w) return false;
     const top = this.vpTop(b.sc); const vis = Math.min(b.y + b.h, SCREEN.h) - Math.max(b.y, top);
     return vis >= Math.min(b.h / 2, SCREEN.minVis) - SCREEN.peek && b.x + b.w / 2 < SCREEN.w + SCREEN.slack && b.x + b.w / 2 > -SCREEN.slack;
   }

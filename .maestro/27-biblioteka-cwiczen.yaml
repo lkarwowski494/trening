@@ -3,7 +3,7 @@
 #
 # Literały (EN z lib/i18n.en.ts):
 #   "Add exercise"                                  ← 'Dodaj ćwiczenie' (przycisk „+” w nagłówku ekranu Ćwiczenia; app/exercises.tsx, components/AddButton.tsx)
-#   "Name" / "Body part" / "Equipment"              ← pola formularza (app/exercise/[id].tsx); chipy "biceps", "cables", "reps"
+#   "Name" / "Body part" / "Equipment"              ← pola formularza (app/exercise/[id].tsx); chipy "biceps", "barbell"
 #   "Save exercise"                                 ← 'Zapisz ćwiczenie' (nagłówek edycji)
 #   lib-row-N / lib-row-N-del                       ← testID pozycji listy Ćwiczenia (z nagłówkami grup; przy jednym wyniku wyszukiwania N = 1), przycisk pod nią
 #   "Delete exercise\\?"                            ← 'Usunąć ćwiczenie?' (SwipeRow)
@@ -27,9 +27,11 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - inputText: "Cable Hammer E2E"
 - pressKey: Enter
 - tapOn: "biceps"
-- scrollUntilVisible: { element: "cables", direction: DOWN, timeout: 30000, centerElement: true }
-# E2E 38471218362: chip sprzętu „cables” nie ustawił się na symulatorze (lista pokazała „other”) — nie zależymy od niego; asercje po nazwie
-- tapOn: { text: "cables", optional: true }
+# E2E 38471218362: chip „cables” to 5. chip poziomego paska — poza prawą krawędzią ekranu; stuknięcie w niego nic nie zmieniało (lista pokazała „other”; jak E2E 89 w 16).
+# Wybór sprzętu jest realnym przepływem, więc stukamy chip widoczny bez przewijania poziomego („barbell”) i sprawdzamy stan zaznaczenia (accessibilityState.selected) — bez luzowania asercji.
+- scrollUntilVisible: { element: "barbell", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "barbell"
+- assertVisible: { text: "barbell", selected: true }
 - takeScreenshot: 93-nowe-cwiczenie
 - tapOn: "Save exercise"
 - extendedWaitUntil: { visible: "Edit exercise", timeout: 30000 }
@@ -39,7 +41,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - tapOn: "Search exercises…"
 - inputText: "Hammer E2E"
 - tapOn: { text: "Continue", optional: true }
-- extendedWaitUntil: { visible: "Cable Hammer E2E, .*", timeout: 15000 }
+- extendedWaitUntil: { visible: "Cable Hammer E2E, barbell.*", timeout: 15000 }
 # --- użycie własnego ćwiczenia w treningu ---
 - tapOn: "Back"
 - tapOn: "Workout, tab.*"
@@ -87,7 +89,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - tapOn: "Search exercises…"
 - inputText: "Hammer E2E"
 - tapOn: { text: "Continue", optional: true }
-- extendedWaitUntil: { visible: "Cable Hammer E2E, .*", timeout: 15000 }
+- extendedWaitUntil: { visible: "Cable Hammer E2E, barbell.*", timeout: 15000 }
 - swipe: { from: { id: "lib-row-1" }, direction: LEFT, duration: 400 }
 - runFlow:
     when: { visible: { id: "lib-row-1-del" } }
@@ -95,7 +97,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
       - tapOn: { id: "lib-row-1-del" }
 - extendedWaitUntil: { visible: "Delete exercise\\?", timeout: 15000 }
 - tapOn: { text: "Cancel", below: "Delete exercise\\?" }
-- assertVisible: "Cable Hammer E2E, .*"
+- assertVisible: "Cable Hammer E2E, barbell.*"
 - swipe: { from: { id: "lib-row-1" }, direction: LEFT, duration: 400 }
 - runFlow:
     when: { visible: { id: "lib-row-1-del" } }
