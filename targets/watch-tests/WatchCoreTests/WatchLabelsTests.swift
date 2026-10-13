@@ -1,0 +1,49 @@
+import XCTest
+@testable import WatchCore
+
+final class WatchLabelsTests: XCTestCase {
+  func testTableHasAllThirtyFiveLanguagesAndAllKeys() {
+    XCTAssertEqual(WatchLabels.table.count, 35)
+    for (lang, labels) in WatchLabels.table {
+      for key in WatchLabelKey.allCases {
+        let v = labels[key.rawValue] ?? ""
+        XCTAssertFalse(v.trimmingCharacters(in: .whitespaces).isEmpty, "\(lang).\(key.rawValue)")
+      }
+      XCTAssertEqual(Set(labels.keys), Set(WatchLabelKey.allCases.map { $0.rawValue }), lang)
+    }
+  }
+
+  func testTableEqualsTheGeneratedLabelsFixture() throws {
+    let labels = try JSONSerialization.jsonObject(with: Fixtures.data("labels.json")) as! [String: [String: String]]
+    XCTAssertEqual(labels, WatchLabels.table)
+  }
+
+  func testTextFallsBackToEnglishThenKey() {
+    XCTAssertEqual(WatchLabels.text(.done, lang: "pl"), "Seria zrobiona")
+    XCTAssertEqual(WatchLabels.text(.done, lang: "xx"), WatchLabels.text(.done, lang: "en"))
+    XCTAssertEqual(WatchLabels.text(.undo, lang: "de"), "Rückgängig")
+  }
+
+  func testNothingLeftStartsWithACapitalLetter() {
+    XCTAssertEqual(WatchLabels.text(.nothingLeft, lang: "pl"), "Nic więcej do zrobienia")
+    XCTAssertEqual(WatchLabels.text(.nothingLeft, lang: "de"), "Nichts mehr zu tun")
+    XCTAssertFalse(WatchLabels.text(.nothingLeft, lang: "ja").isEmpty)                 // pismo bez wielkich liter — bez zmian
+  }
+
+  func testResolveMatchesTheAppForEveryRecordedTag() throws {
+    let cases = try JSONSerialization.jsonObject(with: Fixtures.data("lang-cases.json")) as! [[String: String]]
+    XCTAssertGreaterThan(cases.count, 30)
+    for c in cases { XCTAssertEqual(WatchLabels.resolve(tag: c["tag"]!), c["lang"]!, c["tag"]!) }
+  }
+
+  func testResolvePicksFirstPreferredLanguage() {
+    XCTAssertEqual(WatchLabels.resolve(preferred: ["pt-BR", "en"]), "pt-BR")
+    XCTAssertEqual(WatchLabels.resolve(preferred: []), "en")
+  }
+
+  func testEveryAppLanguageIsAResolveResultForItsOwnCode() {
+    for lang in WatchLabels.languages where !["es-419", "pt", "pt-BR", "zh-Hant"].contains(lang) { // pt → pt-BR, es-419 i zh-Hant to pełne tagi regionalne
+      XCTAssertEqual(WatchLabels.resolve(tag: lang), lang)
+    }
+  }
+}

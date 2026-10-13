@@ -9,6 +9,13 @@ export const EN: Record<string, string> = {
   'Wróć': 'Back', 'Wybierz ćwiczenie': 'Choose exercise', 'Szablon': 'Template', 'Ćwiczenie': 'Exercise', 'Sesja': 'Session',
   'Gumy': 'Bands', 'Postępy': 'Progress', 'Ustawienia': 'Settings',
 
+  /* zegarek (0.20): etykiety zegarków (lib/watchLabels.ts — te same co lib/watch/labels.ts z protokołu) i opisy zgód HealthKit Apple Watch */
+  'Zrobione inaczej': 'Done differently', 'Pominąć ćwiczenie?': 'Skip this exercise?', 'Połącz z telefonem': 'Connect to your phone',
+  'Zacznij trening na telefonie': 'Start a workout on your phone', 'Trening zakończony': 'Workout finished', 'Pauza': 'Paused',
+  'Zaktualizuj aplikację na zegarku': 'Update the watch app',
+  'Zegarek odczytuje tętno i energię aktywną z trwającego treningu. Dane nie są wysyłane poza Twoje urządzenia.': 'Your watch reads heart rate and active energy during the workout. The data is not sent outside your devices.',
+  'Zegarek zapisuje zakończony trening siłowy, z tętnem i energią aktywną, w Apple Health.': 'Your watch saves the finished strength workout, with heart rate and active energy, to Apple Health.',
+
   /* liczebniki */
   'sesja|sesje|sesji': 'session|sessions', 'seria|serie|serii': 'set|sets',
 

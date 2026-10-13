@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "La montre lit la fréquence cardiaque et l’énergie active pendant la séance en cours. Les données ne sont pas envoyées en dehors de tes appareils.";
+"NSHealthUpdateUsageDescription" = "La montre enregistre dans Santé la séance de musculation terminée, avec la fréquence cardiaque et l’énergie active.";

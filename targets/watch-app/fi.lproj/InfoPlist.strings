@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Treeni";
+"NSHealthShareUsageDescription" = "Kello lukee sykkeen ja aktiivisen energian käynnissä olevan treenin aikana. Tietoja ei lähetetä laitteidesi ulkopuolelle.";
+"NSHealthUpdateUsageDescription" = "Kello tallentaa päättyneen voimaharjoituksen sykkeineen ja aktiivisine energioineen Apple Healthiin.";

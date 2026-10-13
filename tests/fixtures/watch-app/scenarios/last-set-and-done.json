@@ -1,0 +1,171 @@
+{
+ "name": "last-set-and-done",
+ "doc": "Ostatnia seria: przerwa zostaje z „nic więcej do zrobienia”, potem ekran „done”.",
+ "cfg": {
+  "client": "apple",
+  "app": "0.20.0",
+  "session": true
+ },
+ "steps": [
+  {
+   "at": 1791878400000,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "welcome",
+     "ok": true,
+     "protocol": 1,
+     "upgrade": null
+    }
+   },
+   "out": [],
+   "view": {
+    "screen": "idle",
+    "title": "",
+    "counter": "",
+    "load": "",
+    "group": null,
+    "cue": null,
+    "restEndsAt": null,
+    "restTotalSec": null,
+    "paused": false,
+    "timed": false,
+    "targetSec": null,
+    "doneCount": 0,
+    "totalCount": 0,
+    "toFillCount": 0,
+    "undoUntil": null,
+    "confirmSkip": false,
+    "actions": [],
+    "offline": false,
+    "busy": false
+   }
+  },
+  {
+   "at": 1791878400000,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "snapshot",
+     "rev": 9,
+     "lang": "pl",
+     "phase": "rest",
+     "paused": false,
+     "workoutId": "workout-1",
+     "title": "Push",
+     "now": null,
+     "rest": {
+      "setId": "set-2-1",
+      "startedAt": 1791878492000,
+      "endsAt": 1791878582000,
+      "totalSec": 90,
+      "cue": "nic więcej do zrobienia",
+      "last": true
+     },
+     "after": null,
+     "doneCount": 7,
+     "totalCount": 7,
+     "toFillCount": 0
+    }
+   },
+   "out": [],
+   "view": {
+    "screen": "rest",
+    "title": "Push",
+    "counter": "",
+    "load": "",
+    "group": null,
+    "cue": "nic więcej do zrobienia",
+    "restEndsAt": 1791878582000,
+    "restTotalSec": 90,
+    "paused": false,
+    "timed": false,
+    "targetSec": null,
+    "doneCount": 7,
+    "totalCount": 7,
+    "toFillCount": 0,
+    "undoUntil": null,
+    "confirmSkip": false,
+    "actions": [],
+    "offline": false,
+    "busy": false
+   }
+  },
+  {
+   "at": 1791878400001,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "snapshot",
+     "rev": 10,
+     "lang": "pl",
+     "phase": "done",
+     "paused": false,
+     "workoutId": "workout-1",
+     "title": "Push",
+     "now": null,
+     "rest": null,
+     "after": null,
+     "doneCount": 7,
+     "totalCount": 7,
+     "toFillCount": 0
+    }
+   },
+   "out": [],
+   "view": {
+    "screen": "done",
+    "title": "Push",
+    "counter": "",
+    "load": "",
+    "group": null,
+    "cue": null,
+    "restEndsAt": null,
+    "restTotalSec": null,
+    "paused": false,
+    "timed": false,
+    "targetSec": null,
+    "doneCount": 7,
+    "totalCount": 7,
+    "toFillCount": 0,
+    "undoUntil": null,
+    "confirmSkip": false,
+    "actions": [],
+    "offline": false,
+    "busy": false
+   }
+  },
+  {
+   "at": 1791878400002,
+   "input": {
+    "t": "press",
+    "button": "main"
+   },
+   "out": [],
+   "view": {
+    "screen": "done",
+    "title": "Push",
+    "counter": "",
+    "load": "",
+    "group": null,
+    "cue": null,
+    "restEndsAt": null,
+    "restTotalSec": null,
+    "paused": false,
+    "timed": false,
+    "targetSec": null,
+    "doneCount": 7,
+    "totalCount": 7,
+    "toFillCount": 0,
+    "undoUntil": null,
+    "confirmSkip": false,
+    "actions": [],
+    "offline": false,
+    "busy": false
+   },
+   "note": "nie ma serii do odhaczenia — nic"
+  }
+ ]
+}

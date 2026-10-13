@@ -1,0 +1,305 @@
+{
+ "name": "finished-and-update",
+ "doc": "Koniec treningu na telefonie: „Trening zakończony”; nowy trening wraca do serii; welcome z upgrade=watch pokazuje „Zaktualizuj aplikację”.",
+ "cfg": {
+  "client": "apple",
+  "app": "0.20.0",
+  "session": true
+ },
+ "steps": [
+  {
+   "at": 1791878400000,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "welcome",
+     "ok": true,
+     "protocol": 1,
+     "upgrade": null
+    }
+   },
+   "out": [],
+   "view": {
+    "screen": "idle",
+    "title": "",
+    "counter": "",
+    "load": "",
+    "group": null,
+    "cue": null,
+    "restEndsAt": null,
+    "restTotalSec": null,
+    "paused": false,
+    "timed": false,
+    "targetSec": null,
+    "doneCount": 0,
+    "totalCount": 0,
+    "toFillCount": 0,
+    "undoUntil": null,
+    "confirmSkip": false,
+    "actions": [],
+    "offline": false,
+    "busy": false
+   }
+  },
+  {
+   "at": 1791878400000,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "snapshot",
+     "rev": 1,
+     "lang": "pl",
+     "phase": "set",
+     "paused": false,
+     "workoutId": "workout-1",
+     "title": "Push",
+     "now": {
+      "setId": "set-0-0",
+      "blockId": "block-0",
+      "title": "Bench Press (sztanga)",
+      "counter": "seria 1 z 3",
+      "load": "80 kg × 8",
+      "group": null,
+      "timed": false,
+      "targetSec": null
+     },
+     "rest": null,
+     "after": {
+      "restSec": 90,
+      "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+      "last": false,
+      "now": {
+       "setId": "set-0-1",
+       "blockId": "block-0",
+       "title": "Bench Press (sztanga)",
+       "counter": "seria 2 z 3",
+       "load": "80 kg × 8",
+       "group": null,
+       "timed": false,
+       "targetSec": null
+      }
+     },
+     "doneCount": 0,
+     "totalCount": 7,
+     "toFillCount": 0
+    }
+   },
+   "out": [],
+   "view": {
+    "screen": "set",
+    "title": "Bench Press (sztanga)",
+    "counter": "seria 1 z 3",
+    "load": "80 kg × 8",
+    "group": null,
+    "cue": null,
+    "restEndsAt": null,
+    "restTotalSec": null,
+    "paused": false,
+    "timed": false,
+    "targetSec": null,
+    "doneCount": 0,
+    "totalCount": 7,
+    "toFillCount": 0,
+    "undoUntil": null,
+    "confirmSkip": false,
+    "actions": [
+     "done",
+     "differ",
+     "skip"
+    ],
+    "offline": false,
+    "busy": false
+   }
+  },
+  {
+   "at": 1791878400001,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "snapshot",
+     "rev": 1,
+     "lang": "pl",
+     "phase": "idle",
+     "paused": false,
+     "workoutId": null,
+     "title": "",
+     "now": null,
+     "rest": null,
+     "after": null,
+     "doneCount": 0,
+     "totalCount": 0,
+     "toFillCount": 0
+    }
+   },
+   "out": [],
+   "view": {
+    "screen": "finished",
+    "title": "",
+    "counter": "",
+    "load": "",
+    "group": null,
+    "cue": null,
+    "restEndsAt": null,
+    "restTotalSec": null,
+    "paused": false,
+    "timed": false,
+    "targetSec": null,
+    "doneCount": 0,
+    "totalCount": 0,
+    "toFillCount": 0,
+    "undoUntil": null,
+    "confirmSkip": false,
+    "actions": [],
+    "offline": false,
+    "busy": false
+   },
+   "note": "trening skończony"
+  },
+  {
+   "at": 1791878400002,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "snapshot",
+     "rev": 1,
+     "lang": "pl",
+     "phase": "set",
+     "paused": false,
+     "workoutId": "workout-1",
+     "title": "Push",
+     "now": {
+      "setId": "set-0-0",
+      "blockId": "block-0",
+      "title": "Bench Press (sztanga)",
+      "counter": "seria 1 z 3",
+      "load": "80 kg × 8",
+      "group": null,
+      "timed": false,
+      "targetSec": null
+     },
+     "rest": null,
+     "after": {
+      "restSec": 90,
+      "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+      "last": false,
+      "now": {
+       "setId": "set-0-1",
+       "blockId": "block-0",
+       "title": "Bench Press (sztanga)",
+       "counter": "seria 2 z 3",
+       "load": "80 kg × 8",
+       "group": null,
+       "timed": false,
+       "targetSec": null
+      }
+     },
+     "doneCount": 0,
+     "totalCount": 7,
+     "toFillCount": 0
+    }
+   },
+   "out": [],
+   "view": {
+    "screen": "set",
+    "title": "Bench Press (sztanga)",
+    "counter": "seria 1 z 3",
+    "load": "80 kg × 8",
+    "group": null,
+    "cue": null,
+    "restEndsAt": null,
+    "restTotalSec": null,
+    "paused": false,
+    "timed": false,
+    "targetSec": null,
+    "doneCount": 0,
+    "totalCount": 7,
+    "toFillCount": 0,
+    "undoUntil": null,
+    "confirmSkip": false,
+    "actions": [
+     "done",
+     "differ",
+     "skip"
+    ],
+    "offline": false,
+    "busy": false
+   }
+  },
+  {
+   "at": 1791878400003,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "welcome",
+     "ok": false,
+     "protocol": 2,
+     "upgrade": "watch"
+    }
+   },
+   "out": [],
+   "view": {
+    "screen": "update",
+    "title": "",
+    "counter": "",
+    "load": "",
+    "group": null,
+    "cue": null,
+    "restEndsAt": null,
+    "restTotalSec": null,
+    "paused": false,
+    "timed": false,
+    "targetSec": null,
+    "doneCount": 0,
+    "totalCount": 0,
+    "toFillCount": 0,
+    "undoUntil": null,
+    "confirmSkip": false,
+    "actions": [],
+    "offline": false,
+    "busy": false
+   },
+   "note": "zegarek starszy od telefonu"
+  },
+  {
+   "at": 1791878400004,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "welcome",
+     "ok": false,
+     "protocol": 1,
+     "upgrade": "phone"
+    }
+   },
+   "out": [],
+   "view": {
+    "screen": "connect",
+    "title": "",
+    "counter": "",
+    "load": "",
+    "group": null,
+    "cue": null,
+    "restEndsAt": null,
+    "restTotalSec": null,
+    "paused": false,
+    "timed": false,
+    "targetSec": null,
+    "doneCount": 0,
+    "totalCount": 0,
+    "toFillCount": 0,
+    "undoUntil": null,
+    "confirmSkip": false,
+    "actions": [],
+    "offline": false,
+    "busy": false
+   },
+   "note": "telefon starszy od zegarka"
+  }
+ ]
+}

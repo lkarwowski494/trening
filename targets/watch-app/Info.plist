@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>WKApplication</key>
+  <true/>
+  <key>WKRunsIndependentlyOfCompanionApp</key>
+  <false/>
+  <key>CFBundleLocalizations</key>
+  <array>
+    <string>pl</string>
+    <string>en</string>
+    <string>cs</string>
+    <string>sk</string>
+    <string>hu</string>
+    <string>ro</string>
+    <string>bg</string>
+    <string>hr</string>
+    <string>sl</string>
+    <string>sr</string>
+    <string>lt</string>
+    <string>lv</string>
+    <string>et</string>
+    <string>uk</string>
+    <string>es</string>
+    <string>es-419</string>
+    <string>pt</string>
+    <string>pt-BR</string>
+    <string>de</string>
+    <string>fr</string>
+    <string>it</string>
+    <string>nl</string>
+    <string>sv</string>
+    <string>da</string>
+    <string>nb</string>
+    <string>fi</string>
+    <string>tr</string>
+    <string>el</string>
+    <string>id</string>
+    <string>ms</string>
+    <string>vi</string>
+    <string>ru</string>
+    <string>ja</string>
+    <string>ko</string>
+    <string>zh-Hant</string>
+  </array>
+  <key>NSHealthShareUsageDescription</key>
+  <string>Zegarek odczytuje tętno i energię aktywną z trwającego treningu. Dane nie są wysyłane poza Twoje urządzenia.</string>
+  <key>NSHealthUpdateUsageDescription</key>
+  <string>Zegarek zapisuje zakończony trening siłowy, z tętnem i energią aktywną, w Apple Health.</string>
+  <key>WKBackgroundModes</key>
+  <array>
+    <string>workout-processing</string>
+  </array>
+</dict>
+</plist>

@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "Saat, devam eden antrenman sırasında kalp atış hızını ve aktif enerjiyi okur. Veriler cihazlarının dışına gönderilmez.";
+"NSHealthUpdateUsageDescription" = "Saat, tamamlanan kuvvet antrenmanını kalp atış hızı ve aktif enerjiyle birlikte Apple Sağlık’a kaydeder.";

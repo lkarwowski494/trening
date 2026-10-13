@@ -32,3 +32,7 @@ e2e-out/
 Trening-sim.zip
 .claude/worktrees/
 .claude/settings.local.json
+
+# SwiftPM (targets/Package.swift, testy logiki zegarka)
+targets/.build/
+targets/.swiftpm/

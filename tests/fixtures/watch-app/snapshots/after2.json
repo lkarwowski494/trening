@@ -1,0 +1,46 @@
+{
+ "v": 1,
+ "kind": "snapshot",
+ "rev": 5,
+ "lang": "pl",
+ "phase": "rest",
+ "paused": false,
+ "workoutId": "workout-1",
+ "title": "Push",
+ "now": {
+  "setId": "set-1-0",
+  "blockId": "block-1",
+  "title": "Pull Up",
+  "counter": "seria 1 z 2",
+  "load": "+10 kg × 8",
+  "group": null,
+  "timed": false,
+  "targetSec": null
+ },
+ "rest": {
+  "setId": "set-0-2",
+  "startedAt": 1791878492000,
+  "endsAt": 1791878582000,
+  "totalSec": 90,
+  "cue": "dalej: Pull Up, +10 kg, 8 powtórzeń",
+  "last": false
+ },
+ "after": {
+  "restSec": 60,
+  "cue": "Pull Up · seria 2, +10 kg, 8 powtórzeń",
+  "last": false,
+  "now": {
+   "setId": "set-1-1",
+   "blockId": "block-1",
+   "title": "Pull Up",
+   "counter": "seria 2 z 2",
+   "load": "+10 kg × 8",
+   "group": null,
+   "timed": false,
+   "targetSec": null
+  }
+ },
+ "doneCount": 3,
+ "totalCount": 7,
+ "toFillCount": 0
+}

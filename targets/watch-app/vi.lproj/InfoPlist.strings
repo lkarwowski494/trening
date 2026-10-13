@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "Đồng hồ đọc nhịp tim và năng lượng hoạt động trong buổi tập đang diễn ra. Dữ liệu không được gửi ra ngoài các thiết bị của bạn.";
+"NSHealthUpdateUsageDescription" = "Đồng hồ lưu buổi tập sức mạnh đã kết thúc, kèm nhịp tim và năng lượng hoạt động, vào Apple Health.";
