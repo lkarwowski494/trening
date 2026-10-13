@@ -51,7 +51,7 @@ describe('config.yaml i workflow', () => {
   });
   test('e2e-ios.yml: główny przebieg wyklucza tag, krok Aktualizacja: poprzednia wersja → 33 → bieżąca bez uninstall → 34; uprawnienia bez zmian', () => {
     const y = read('.github/workflows/e2e-ios.yml');
-    expect((y.match(/test "\$DIR" --exclude-tags=aktualizacja /g) || []).length).toBe(2); expect(y).toMatch(/tylko_scenariusze:/); expect(y).toMatch(/DIR=\.maestro-wybrane/);
+    expect((y.match(/test "\$DIR" --exclude-tags=aktualizacja /g) || []).length).toBe(2); expect(y).toMatch(/tylko_scenariusze:/); expect(y).toMatch(/DIR=\.maestro-czesc/); /* 13.10.2026: podział na części — katalog przygotowuje scripts/ci/e2e-shards.mjs (tests/e2e-shards.test.ts) */
     expect(y).toMatch(/poprzednia_wersja_z_przebiegu:/); expect(y).toMatch(/permissions:\n\s+contents: read\n\s+actions: read/);
     const upd = y.split('Aktualizacja (poprzednia wersja')[1]; expect(upd).toBeTruthy();
     const a = upd.indexOf('simctl uninstall'), b = upd.indexOf('33-aktualizacja-przygotuj.yaml'), c = upd.indexOf('simctl install "$SIM" "$NEW"'), d = upd.indexOf('34-aktualizacja-sprawdz.yaml');
