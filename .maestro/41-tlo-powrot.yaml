@@ -29,7 +29,7 @@ name: Eksperyment — tło i powrót w trakcie przerwy
       - tapOn: { id: "w-0-1" }
       - eraseText: 10
       - inputText: "35"
-      - hideKeyboard
+      - tapOn: "Change the values in the set row below."   # klawiatura numeryczna nie ma „Gotowe” (E2E 38471218362)
       - assertVisible: "Now: 35 .* × .*"
 # --- aplikacja w tle: Home, kilkanaście sekund, powrót bez restartu ---
 - pressKey: Home

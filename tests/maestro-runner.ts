@@ -178,7 +178,7 @@ export class Runner {
     const H = 20 + tH + mH + 16 + btns.length * 56 - 8 + 16; let y = (SCREEN.h - H) / 2 + 20;
     const out: { c: Cand; y: number }[] = [{ c: { texts: [a.title] }, y: y + tH / 2 }]; y += tH;
     if (a.msg) { out.push({ c: { texts: [a.msg] }, y: y + mH / 2 }); y += mH; } y += 16;
-    for (const b of btns) { out.push({ c: { texts: [b.text], alertBtn: () => { this.alertStack.pop(); this.alertOpen = this.alertStack.length ? this.alertStack[this.alertStack.length - 1] : null; b.onPress?.(a.prompt ? (this as any).promptVal ?? a.def ?? '' : undefined); } }, y: y + 24 }); y += 56; }
+    for (const b of btns) { out.push({ c: { texts: [b.text], alertBtn: () => { const pv = (this as any).promptVal; (this as any).promptVal = undefined; this.alertStack.pop(); this.alertOpen = this.alertStack.length ? this.alertStack[this.alertStack.length - 1] : null; b.onPress?.(a.prompt ? pv ?? a.def ?? '' : undefined); } }, y: y + 24 }); y += 56; }
     return out;
   }
   /** Kotwica `below`/`above` przy otwartym oknie: Maestro widzi okno i ekran pod nim; warunek spełnia KTÓRYKOLWIEK pasujący element (Filters.below/above). */
@@ -295,11 +295,23 @@ export class Runner {
         }
         case 'stopApp': await act(async () => { await store.flush(); }); break;
         case 'tapOn': {
-          const s = sel(arg); const opt = typeof arg === 'object' && arg.optional;
+          this.syncModals(); let s = sel(arg); let idx: number | undefined; if (this.alertOpen != null && typeof s === 'object' && s.index != null) { idx = s.index; s = { ...s, index: undefined }; } /* przy oknie indeks liczy się wśród elementów okna I ekranu pod nim */
+          const opt = typeof arg === 'object' && arg.optional;
           if (!(await this.waitFor(s, true, opt ? 300 : 3000))) {
             if (opt) break; this.fail(step, 'Nie znaleziono elementu.');
           }
           const target = this.find(s)[0]; const why = this.tapProblem(target); if (why) this.fail(step, `Element ${why}.`);
+          /* E2E 38471218362 (29): przy otwartym oknie Maestro widzi też ekran pod nim i wybiera PIERWSZY pasujący element (od góry) — przycisk „Discard workout” ekranu leży wyżej niż ten w oknie,
+           * więc stuknięcie trafiało w zasłonięty ekran i okno zostawało. Interpreter odtwarza to: stuknięcie w element ekranu pod oknem nic nie robi (okno przechwytuje dotyk). */
+          if (this.alertOpen != null && target.alertBtn) {
+            const ss = typeof s === 'string' ? { text: s } : s; const ay = this.alertCands().find(x => x.c === target)?.y ?? Infinity;
+            const anchors = (k: 'below' | 'above') => (ss[k] ? this.alertAnchorY(ss[k]!) : null);
+            const bl = anchors('below'), ab = anchors('above'); this.relayout();
+            const under = this.screenCands().filter(c => c.node && !c.header && this.onScreen(c) && (ss.text == null || c.texts.some(t => full(ss.text!).test(t))) && (ss.id == null || (c.id != null && full(ss.id).test(c.id))))
+              .filter(c => { const b = this.screenBox(c.node as unknown as LNode, false); const y = b ? b.y + b.h / 2 : 0; return y < ay && (!bl || bl.some(v => y > v)) && (!ab || ab.some(v => y < v)); });
+            if (idx != null ? idx > under.length : false) this.fail(step, 'Nie znaleziono elementu (indeks poza liczbą pasujących).');
+            if (idx != null ? idx < under.length : under.length > 0) { this.lastTapAt = Date.now(); break; }
+          }
           /* 13.10.2026 (docs/38): polecenie Maestro trwa na symulatorze ≥ 1 s (zrzut hierarchii, stuknięcie, ustabilizowanie) — dwa stuknięcia w tym samym ekranie nigdy nie wypadają w odstępie
            * krótszym niż blokada podwójnego stuknięcia (useOnce: 700–1000 ms); wcześniej interpreter stukał szybciej niż jakikolwiek człowiek i Maestro. */
           const gap = Date.now() - this.lastTapAt; if (this.lastTapAt && gap < TAP_GAP_MS) await this.tick(TAP_GAP_MS - gap);
@@ -315,18 +327,21 @@ export class Runner {
         }
         case 'inputText': {
           this.syncModals();
-          if (this.alertOpen != null && global.__alerts[this.alertOpen].prompt) { (this as any).promptVal = String(arg); break; }
+          if (this.alertOpen != null && global.__alerts[this.alertOpen].prompt) { (this as any).promptVal = String((this as any).promptVal ?? global.__alerts[this.alertOpen].def ?? '') + String(arg); break; } /* pole okna ma wartość domyślną i NIE jest zaznaczone — wpis dopisuje się na końcu (E2E 38471218362, 25: „45” po „90” = 9045) */
           const f = this.focused; if (!f) this.fail(step, 'Brak pola z fokusem.');
           const cur = this.selectAll ? '' : String(f!.props.value ?? ''); this.selectAll = false;
           const typed = this.inputFilter ? this.inputFilter(String(arg), f!) : String(arg); /* E2E 105: zgubione znaki z przebiegu symulatora (testy) */
           await act(async () => { fireEvent.changeText(f as any, cur + typed); }); await this.tick(); break;
         }
         case 'eraseText': {
+          if (this.alertOpen != null && global.__alerts[this.alertOpen].prompt) { const cur = String((this as any).promptVal ?? global.__alerts[this.alertOpen].def ?? ''); (this as any).promptVal = cur.slice(0, Math.max(0, cur.length - (typeof arg === 'number' ? arg : 50))); break; }
           const f = this.focused; if (!f) this.fail(step, 'Brak pola z fokusem.'); const n = typeof arg === 'number' ? arg : 50;
           const cur = String(f!.props.value ?? ''); this.selectAll = false; await act(async () => { fireEvent.changeText(f as any, cur.slice(0, Math.max(0, cur.length - n))); }); await this.tick(); break;
         }
         case 'pressKey': { if (/^home$/i.test(String(arg))) { await this.blur(); await act(async () => { await store.flush(); }); await emitAppState('background'); break; } const f = this.focused; if (f && /enter/i.test(String(arg))) { await act(async () => { f.props.onSubmitEditing?.({ nativeEvent: { text: f.props.value } }); }); await this.blur(); } break; }
-        case 'hideKeyboard': await this.blur(); break;
+        /* E2E 38471218362 (36, 29): klawiatura numeryczna iOS (number-pad, decimal-pad, numbers-and-punctuation) nie ma klawisza „Gotowe” ani innej akcji zamknięcia — Maestro zgłasza
+         * „Couldn't hide the keyboard”. Pole tekstowe z klawiszem Return/Search zamyka się. Fokus zdejmuje stuknięcie w etykietę/tekst ekranu. */
+        case 'hideKeyboard': { const kt = String(this.focused?.props?.keyboardType ?? ''); if (/number|decimal|phone|numeric/i.test(kt)) this.fail(step, `Couldn't hide the keyboard (klawiatura „${kt}” nie ma akcji zamknięcia).`); await this.blur(); break; }
         case 'extendedWaitUntil': {
           const vis = arg.visible != null; const s = sel(arg);
           if (!(await this.waitFor(s, vis, Math.min(Number(arg.timeout ?? 3000), 3000)))) {

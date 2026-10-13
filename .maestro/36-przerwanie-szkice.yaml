@@ -27,7 +27,7 @@ name: Przerwanie — trening i szkic szablonu po restarcie
       - tapOn: { id: "r-0-0" }
       - eraseText: 10
       - inputText: "10"
-      - hideKeyboard
+      - tapOn: "Change the values in the set row below."   # E2E 38471218362: klawiatura numeryczna nie ma „Gotowe” — hideKeyboard pada; fokus zdejmuje stuknięcie w tekst karty
       - assertVisible: "Now: 40 lb × 10"
 - stopApp
 - launchApp:
@@ -42,6 +42,7 @@ name: Przerwanie — trening i szkic szablonu po restarcie
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - waitForAnimationToEnd
+- tapOn: { text: "Skip", optional: true }   # E2E 38471218362: przy trwającej przerwie widać Live Activity w Dynamic Island i stuknięcie „Finish” otworzyło Ustawienia iOS (01 kończy przerwę przed „Finish”)
 - retry:
     maxRetries: 2
     commands:

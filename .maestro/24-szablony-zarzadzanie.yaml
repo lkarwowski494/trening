@@ -83,6 +83,7 @@ name: Szablony — duplikat, archiwum, usuwanie, zapis zmian
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - waitForAnimationToEnd
 - assertVisible: "Workout progress: 1 of 7 sets"
+- tapOn: { text: "Skip", optional: true }   # E2E 38471218362: przy trwającej przerwie widać Live Activity w Dynamic Island i stuknięcie „Finish” otworzyło Ustawienia iOS (01 kończy przerwę przed „Finish”)
 - retry:
     maxRetries: 2
     commands:

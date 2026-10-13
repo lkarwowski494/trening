@@ -43,6 +43,7 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - tapOn: { text: "Rest: 1:30", index: 0 }
 - extendedWaitUntil: { visible: "Remember", timeout: 15000 }
 - takeScreenshot: 77-przerwa-cwiczenia
+- eraseText: 10   # pole okna ma wartość domyślną (90), niezaznaczoną — bez kasowania wpis dał 9045 → 30:00 (E2E 38471218362)
 - inputText: "45"
 - tapOn: "Remember"
 - extendedWaitUntil: { visible: "Rest: 45 s", timeout: 15000 }
@@ -73,7 +74,7 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - scrollUntilVisible: { element: "e.g. how you feel, pain, equipment", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "e.g. how you feel, pain, equipment"
 - inputText: "lekko bolało ramię"
-- hideKeyboard
+- tapOn: "Workout note"   # tekst nad polem zdejmuje fokus (hideKeyboard na klawiaturze bez „Gotowe” pada — E2E 38471218362)
 # --- usunięcie ćwiczenia przesunięciem nagłówka bloku ---
 - scrollUntilVisible: { element: "Bent Over Row \\(Dumbbell\\)", direction: UP, timeout: 30000 }
 - swipe: { from: { id: "ex-1" }, direction: LEFT, duration: 400 }
@@ -133,7 +134,7 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - assertVisible: "Discard workout"
 - tapOn: "Discard workout"
 - extendedWaitUntil: { visible: "Discard workout\\?", timeout: 15000 }
-- tapOn: { text: "Discard workout", below: "Discard workout\\?" }
+- tapOn: { text: "Discard workout", below: "Discard workout\\?", index: 1 }   # przycisk ekranu pod oknem leży wyżej — pierwszy pasujący to on (E2E 38471218362, 29)
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - assertVisible: "Workouts: 1;.*"
 - takeScreenshot: 85-po-odrzuceniu

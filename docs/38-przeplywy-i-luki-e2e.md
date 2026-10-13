@@ -108,6 +108,9 @@ Gdy gałąź zostanie scalona: dopisać pliki, zamienić wpisy `projekt` na `sce
 - nowe polecenia i klucze: `doubleTapOn`, `pressKey: Home` + `launchApp: { stopApp: false }` (AppState), `extendedWaitUntil … optional` (czas mija do końca timeoutu), selektory `checked` i `selected`,
   `launchApp permissions: { notifications: deny | allow }`;
 - scenariusze `eksperyment`: okno zgody iOS udawane jako okno z „Allow” / „Don’t Allow”, wirtualny dysk (`expo-file-system`) i atrapa wyboru pliku; kroki okna systemowego (`wybierz-plik-kopii`) pomijane;
+- **po pierwszym przebiegu na symulatorze (run 38471218362, 13.10.2026)** interpreter dopasowany do tego, co przepuścił, a Maestro nie: `hideKeyboard` na polu z klawiaturą numeryczną (number-pad, decimal-pad,
+  numbers-and-punctuation — bez „Gotowe”) jest błędem; pole okna `Alert.prompt` ma wartość domyślną, niezaznaczoną (wpis dopisuje się, `eraseText` kasuje); przy otwartym oknie `tapOn` wybiera pierwszy
+  pasujący element od góry, także ekranu ZA oknem (stuknięcie nic nie robi), `index` liczy się wśród okna i ekranu pod nim;
 - `blur()` odporny na pole zdemontowane razem z ekranem (wyszukiwanie + „Back”).
 Dowód, że nowy przepływ może paść: zdjęcie blokady `once` z przycisku „+” (`components/AddButton.tsx`) wywala 29 (sprawdzone ręcznie, zmiana cofnięta).
 

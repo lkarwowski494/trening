@@ -25,7 +25,7 @@ name: Błędne i skrajne dane
 - assertNotVisible: "Nothing to save. Discard this workout\\?"
 - tapOn: "Finish"
 - extendedWaitUntil: { visible: "Nothing to save. Discard this workout\\?", timeout: 15000 }
-- tapOn: { text: "Discard workout", below: "Nothing to save. Discard this workout\\?" }
+- tapOn: { text: "Discard workout", below: "Nothing to save. Discard this workout\\?", index: 1 }   # E2E 38471218362: pierwszy „Discard workout” to przycisk ekranu ZA oknem (okno zostawało); w oknie — drugi
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - assertNotVisible: "This week"   # nic nie zapisano: ekran jak dla nowej osoby
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
@@ -49,13 +49,14 @@ name: Błędne i skrajne dane
       - tapOn: { id: "r-0-0" }
       - eraseText: 12
       - inputText: "99999"
-      - hideKeyboard
+      - tapOn: "Change the values in the set row below."   # klawiatura numeryczna nie ma „Gotowe” — hideKeyboard pada na symulatorze (E2E 38471218362)
       - assertVisible: "Now: .* × 1000"   # powtórzenia obcięte do REPS_MAX = 1000 (wpisano 99999)
 - takeScreenshot: 101-skrajne-wartosci
 - tapOn: "Set 1 done — Back Squat"
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - waitForAnimationToEnd
+- tapOn: { text: "Skip", optional: true }   # E2E 38471218362: przy trwającej przerwie widać Live Activity w Dynamic Island i stuknięcie „Finish” otworzyło Ustawienia iOS (01 kończy przerwę przed „Finish”)
 - retry:
     maxRetries: 2
     commands:
@@ -89,7 +90,6 @@ name: Błędne i skrajne dane
       - tapOn: { id: "bodymass-kg" }
       - eraseText: 10
       - inputText: "99999"
-      - hideKeyboard
       - tapOn: "Save measurement"
       - extendedWaitUntil: { visible: "Body weight must be greater than zero and no more than .*", timeout: 15000 }
 - takeScreenshot: 103-masa-ponad-limit
@@ -101,7 +101,6 @@ name: Błędne i skrajne dane
 - tapOn: { text: "20.*", below: "Measurement date \\(YYYY-MM-DD\\)" }
 - eraseText: 10
 - inputText: "2026-13-45"
-- hideKeyboard
 - tapOn: "Save measurement"
 - extendedWaitUntil: { visible: "Invalid date. Enter YYYY-MM-DD.*", timeout: 15000 }
 - tapOn: "OK"
