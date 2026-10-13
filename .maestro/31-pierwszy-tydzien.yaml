@@ -23,11 +23,15 @@ name: Pierwszy tydzień nowego użytkownika
 - assertVisible: "Set a weekly plan.*"
 - assertVisible: "First workout.*"
 - takeScreenshot: 80-pierwsze-kroki
-- tapOn: "What's new.*"
-- extendedWaitUntil: { visible: "In this version", timeout: 15000 }
+# run 38368489051: pierwsze stuknięcie tuż po starcie (animacja startowa) nie otworzyło panelu — powtórzenie; wpis może mieć numer buildu (13)
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: { id: "whats-new-i" }
+      - extendedWaitUntil: { visible: "In this version|Test build [0-9]+ · .*", timeout: 10000 }
 - assertVisible: ".*starting with this version.*"
 - tapOn: "Close"
-- assertNotVisible: "In this version"
+- assertNotVisible: "In this version|Test build [0-9]+ · .*"
 # --- generator szablonów i planu (jak 14) ---
 - runFlow: subflows/generator-plan.yaml
 - takeScreenshot: 81-po-generatorze
