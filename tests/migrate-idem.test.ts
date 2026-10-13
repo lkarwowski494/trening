@@ -22,8 +22,10 @@ const keyArb = fc.constantFrom('2026-09-01', '2026-10-06', '2026-10-09', '2026-1
 const ovArb = fc.oneof(fc.constant(undefined), val, fc.dictionary(keyArb, dayArb, { maxKeys: 4 }));
 const planArb = {
   weekPlan: fc.oneof(fc.constant(undefined), val, fc.record({ days: daysArb, name: nameArb }, { requiredKeys: [] })),
-  savedPlans: fc.oneof(fc.constant(undefined), val, fc.array(fc.oneof(val, fc.record({ id: idv, name: nameArb, days: daysArb, overrides: ovArb }, { requiredKeys: [] })), { maxLength: 4 })),
+  savedPlans: fc.oneof(fc.constant(undefined), val, fc.array(fc.oneof(val, fc.record({ id: idv, name: nameArb, days: daysArb, overrides: ovArb, places: fc.oneof(fc.constant(undefined), val, fc.dictionary(keyArb, fc.constantFrom('l1', 'l2', 'duch', 1), { maxKeys: 3 })) }, { requiredKeys: [] })), { maxLength: 4 })),
   planOverrides: ovArb,
+  /* 0.19 (schemat 19): miejsca dni planu — klucze-daty (także złe), id miejsc (istniejących, nieistniejących, liczbowych), zapisane plany z miejscami */
+  planPlaces: fc.oneof(fc.constant(undefined), val, fc.dictionary(keyArb, fc.constantFrom('l1', 'l2', 'duch', 1, '', null), { maxKeys: 4 })),
   planHistory: fc.oneof(fc.constant(undefined), val, fc.array(fc.oneof(val, fc.record({ from: keyArb, days: daysArb }, { requiredKeys: [] })), { maxLength: 5 })),
   deloadSnooze: fc.oneof(keyArb, val, fc.constant(undefined)),
   /* fala 2 audytu 0.10 (obszar TESTY, M3 / TST-03): pozostałe pola stanu z 07–09.10 — tygodnie deload, przewodnik, „Co nowego”, zachęta do planu,
@@ -40,10 +42,12 @@ const wExtra = { pauses: fc.oneof(fc.constant(undefined), val, fc.array(fc.oneof
 const wArb2 = fc.tuple(wArb, fc.record(wExtra, { requiredKeys: [] })).map(([w, x]) => ({ ...w, ...x }));
 const stateArb = fc.record({
   ...planArb,
-  schemaVersion: fc.constantFrom(undefined, 5, 9, 10, 11, '11', 12, 17, 18),
+  schemaVersion: fc.constantFrom(undefined, 5, 9, 10, 11, '11', 12, 17, 18, 19),
   exercises: fc.array(exArb, { maxLength: 4 }), templates: fc.array(tplArb, { maxLength: 2 }), workouts: fc.array(wArb2, { maxLength: 3 }),
   active: fc.oneof(fc.constant(null), wArb2), mornings: fc.array(morningArb, { maxLength: 3 }), bands: fc.array(bandArb, { maxLength: 2 }),
   settings: fc.record({ unit: fc.constantFrom('kg', 'lb', 'x'), bodyWeightKg: val, defaultRest: val, language: fc.constantFrom('pl', 'en', 'auto', 'x'), futureSetting: val /* audyt 0.10 J1: nieznane ustawienie zostaje */,
+    /* 0.19: miejsca z miejscem jednorazowym (znacznik tylko true), miejsce główne — także jednorazowe albo nieistniejące */
+    locations: fc.array(fc.record({ id: fc.constantFrom('l1', 'l2', 'l3', 1), name: val, equipment: fc.constant([]), oneOff: fc.oneof(val, fc.boolean(), fc.constant(true)) }, { requiredKeys: ['id'] }), { maxLength: 3 }), mainLocationId: fc.constantFrom('l1', 'l2', 'l3', null, 5),
     healthSync: fc.oneof(val, fc.boolean()), libShowAll: fc.oneof(val, fc.boolean()), effortScale: fc.constantFrom('rpe', 'rir', 'x', undefined), planReminder: fc.oneof(val, fc.boolean()) /* fala 2: Zdrowie, filtr „Podstawowe”, skala, przypomnienie */ }, { requiredKeys: [] }),
   timer: fc.record({ restEndAt: val, restTotal: val, restSetId: idv, setStartAt: val, setTarget: val, setId: idv }, { requiredKeys: [] }),
 });

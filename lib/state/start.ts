@@ -7,11 +7,12 @@ import { deloadSets } from '@/lib/deload-sets';
 import { uid, base, hasTime, hasReps, hasWeight, hasDistance, type Impl, type SetKind, type Workout, type WSet, type WExercise, type Exercise, type Template,
     type TemplateItem, type TRow } from '../seed';
 import { implsAt } from '../equipment';
-import { tzOffsetAt } from './time';
+import { tzOffsetAt, localISODate } from './time';
+import { armAutoAdapt } from '../adaptPick';
 import { flush, save, getState } from './core';
 import { exById, bandById, isBW, restFor, usesBand, isRoundSet } from './sets';
 import { blankSet, copyVals, markPre, stripUnused, assistLost } from './setvals';
-import { locationById, startLocationId, offListAt, prevFromOther, implAtLoc, pinnedImpl, srcSetAt, stampImpl } from './places';
+import { locationById, startLocationId, placeOnDay, offListAt, prevFromOther, implAtLoc, pinnedImpl, srcSetAt, stampImpl } from './places';
 import { finishedWorkouts, previousBlockFor, occurrence, occurrences } from './history';
 import { normalizeGroups } from './groups';
 import { tplRows } from './templates';
@@ -23,8 +24,12 @@ const newWorkout = (templateId: string | null, templateName: string, locPref?: s
       finishedAt: null, note: '', exercises: [] };
   w.tzOffsetMin = tzOffsetAt(w.startedAt); /* J3 */
   w.live = true; /* 0.16.0 (P11 B): start na żywo — jedyne miejsce, które ustawia znacznik (trening wstecz i import CSV tworzą Workout osobno, bez niego) */
-  const loc = startLocationId(locPref);
+  /* 0.19 (docs/33 B, P4 A): miejsce zapisane w planie na dziś bierze pierwszeństwo przed miejscem szablonu (każda droga startu idzie tędy);
+   * okno „Dostosuj” otworzy się samo po starcie (ActiveWorkout, gdy są propozycje) — nigdy automatyczna zamiana */
+  const dayPlace = placeOnDay(localISODate(new Date(w.startedAt)));
+  const loc = startLocationId(dayPlace ?? locPref);
   if (loc) w.locationId = loc;
+  if (dayPlace && loc === dayPlace) armAutoAdapt(w.id);
   return w;
 };
 /**

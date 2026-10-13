@@ -1,7 +1,7 @@
 import * as Notifications from 'expo-notifications';
 import { Alert } from 'react-native';
 import { workoutDay, getState } from '@/lib/store';
-import { hasPlan, plannedOn, addDays, dayKeyOf, dayStatus, pending } from '@/lib/plan';
+import { hasPlan, plannedOn, addDays, dayKeyOf, dayStatus, pending, plannedPlaceName } from '@/lib/plan';
 import { t, lang } from '@/lib/i18n';
 
 /*
@@ -23,7 +23,8 @@ const activeDay = () => { const a = getState().active; return a ? workoutDay(a) 
  * (bez treningu albo po innym treningu); nie — gdy zrobiony, w toku albo szablon pusty (A8). */
 function reminderName(k: string, active: string | null): string | null {
   const st = dayStatus(k); if (!pending(st) || k === active) return null;
-  const tpl = getState().templates.find(x => x.id === st.templateId); return tpl && tpl.items.length ? tpl.name : null;
+  const tpl = getState().templates.find(x => x.id === st.templateId); if (!tpl || !tpl.items.length) return null;
+  const place = plannedPlaceName(k); return place ? `${tpl.name} · ${place}` : tpl.name; /* 0.19 (docs/33 B): „Dziś: FBW A · Hotel” — miejsce zapisane w planie na ten dzień */
 }
 
 export async function syncPlanReminders(now = Date.now()) {
@@ -46,7 +47,8 @@ export function planReminderKey(now = Date.now()) {
   const today = dayKeyOf(now); const st = getState();
   const days = Array.from({ length: PLAN_REMINDER_DAYS }, (_, i) => plannedOn(addDays(today, i)) ?? '-');
   const early = days.map((_, i) => (dayStatus(addDays(today, i)).early ? i : '')).join('');
-  return `${planReminderOn()}|${lang()}|${today}|${dayStatus(today).status}|${activeDay() ?? ''}|${days.join(',')}|${st.templates.map(x => x.id + x.name + (x.items.length ? '' : '∅')).join(',')}|${early}`; /* 11.10.2026: dni „zrobione wcześniej” — na końcu, by nie przesuwać pozycji pól */
+  const places = days.map((_, i) => plannedPlaceName(addDays(today, i))).join(','); /* 0.19: miejsce dnia w treści przypomnienia — przeliczane po zmianie miejsca, jego nazwy i usunięciu */
+  return `${planReminderOn()}|${lang()}|${today}|${dayStatus(today).status}|${activeDay() ?? ''}|${days.join(',')}|${st.templates.map(x => x.id + x.name + (x.items.length ? '' : '∅')).join(',')}|${early}|${places}`; /* 11.10.2026: dni „zrobione wcześniej” — na końcu, by nie przesuwać pozycji pól */
 }
 
 /** Identyfikatory powiadomień, których aplikacja już nie planuje: przypomnienie o odnowieniu podpisu (T-053) — usunięte razem z instalacją

@@ -37,7 +37,7 @@ describe('model: wiersze serii w pozycji szablonu', () => {
     expect(sets.map(s => [s.kind, s.weight, s.reps])).toEqual([['warmup', 40, 10], ['normal', 65, 9], ['normal', 65, 9], ['normal', 65, 8]]);
   });
   test('zakres opcjonalny: nowa pozycja bez zakresu (bez podpowiedzi ↑); zapis/odczyt wierszy; zły zapis naprawiony; schemat 17', async () => {
-    expect(SCHEMA_VERSION).toBe(18); /* audyt 0.10 A1: schemat 18 — historia planu tygodnia */
+    expect(SCHEMA_VERSION).toBe(19); /* audyt 0.10 A1: schemat 18 — historia planu tygodnia */
     await fresh(); const t = tplWith('Bench Press (sztanga)'); store.tplAddRow(t, 'iq', 'warmup'); await store.flush();
     const raw = JSON.parse(JSON.stringify(store.getState())); const rit = raw.templates.find((x: any) => x.id === 'tq').items[0];
     rit.rows.push({ id: 5, kind: 'nonsense', reps: 'x', weight: -3 }); rit.rows.push('zły');

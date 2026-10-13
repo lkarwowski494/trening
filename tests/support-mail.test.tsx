@@ -42,7 +42,7 @@ describe('lib/support: buildSupportMailto', () => {
     expect(s.length).toBeGreaterThan(100); expect(decodeURIComponent(u)).not.toMatch(/ownerId|schemaVersion|workouts|bodyWeight|kg\b|[0-9a-f]{8}-[0-9a-f]{4}-/);
     expect(u).not.toMatch(/[?&](cc|bcc|attach)=/i);
   });
-  test('dane: SCHEMA_VERSION bez zmian (18)', () => { expect(SCHEMA_VERSION).toBe(18); });
+  test('dane: SCHEMA_VERSION = 19 (0.19: jedno podniesienie dla miejsc jednorazowych i miejsc dni planu)', () => { expect(SCHEMA_VERSION).toBe(19); });
 });
 
 describe('O aplikacji: wiersz „Napisz do nas”', () => {

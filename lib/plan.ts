@@ -1,4 +1,4 @@
-import { fmtDayKey, memoHist, workoutDay, getState, save, finishedWorkouts, localISODate, exById, appendPlanSegment, sameDays, planDays, cleanPlanName, clampName, deleteTemplate, SAVED_PLANS_MAX, PLAN_NAME_MAX } from './store';
+import { fmtDayKey, placeOnDay, locationById, pruneOneOff, cleanPlanPlaces, PLAN_PLACE_RANGE_MAX, memoHist, workoutDay, getState, save, finishedWorkouts, localISODate, exById, appendPlanSegment, sameDays, planDays, cleanPlanName, clampName, deleteTemplate, SAVED_PLANS_MAX, PLAN_NAME_MAX } from './store';
 import { uid, type SavedPlan, type PlanSegment, type Workout } from './seed';
 import { t, locale } from './i18n';
 import { fmtDayMonth, weekdayLabels } from '@/lib/calendar';
@@ -154,9 +154,11 @@ export function activatePlan(id: string) {
   const rest = savedPlans().filter(x => x.id !== id); const cur = weekPlanDays(); const nm = cleanPlanName(planName());
   const ov = getState().planOverrides ?? {}; const past = Object.fromEntries(Object.entries(ov).filter(([k]) => k < today));
   const mine = Object.fromEntries(Object.entries(ov).filter(([k]) => k >= today && isChanged(k, today)));
-  putSaved(cur.some(Boolean) || nm || Object.keys(mine).length ? [...rest, { id: uid(), name: uniqueIn(rest.map(x => x.name), nm || datedName(today)), days: cur, ...(Object.keys(mine).length ? { overrides: mine } : {}) }] : rest);
+  const places = futurePlaces(today); /* 0.19 (docs/33 B): miejsca dni od dziś wędrują z planem jak zmiany dni (B1) */
+  putSaved(cur.some(Boolean) || nm || Object.keys(mine).length || Object.keys(places).length ? [...rest, { id: uid(), name: uniqueIn(rest.map(x => x.name), nm || datedName(today)), days: cur, ...(Object.keys(mine).length ? { overrides: mine } : {}), ...(Object.keys(places).length ? { places } : {}) }] : rest);
   putActive(planDays(p.days).map(x => (exists(x) ? x : null)) /* audyt 0.10 A7: usunięty szablon — dzień wolny */, p.name, today);
   putOv({ ...past, ...Object.fromEntries(Object.entries(p.overrides ?? {}).filter(([k]) => k >= today)) });
+  putPlaces(Object.fromEntries(Object.entries(p.places ?? {}).filter(([, id]) => locationById(id))), today);
   tidy(today); commit();
 }
 /** Czy jest aktywny plan, który można wyłączyć: dni, nazwa albo zmiany dni od dziś (jak przy zapisie w activatePlan). */
@@ -170,8 +172,9 @@ export function deactivatePlan(today = todayKey()): 'ok' | 'none' | 'full' {
   const cur = weekPlanDays(); const nm = cleanPlanName(planName());
   const ov = getState().planOverrides ?? {}; const past = Object.fromEntries(Object.entries(ov).filter(([k]) => k < today));
   const mine = Object.fromEntries(Object.entries(ov).filter(([k]) => k >= today && isChanged(k, today)));
-  putSaved([...savedPlans(), { id: uid(), name: uniqueIn(savedPlans().map(x => x.name), nm || datedName(today)), days: cur, ...(Object.keys(mine).length ? { overrides: mine } : {}) }]);
-  putActive(planDays([]), '', today); putOv(past); tidy(today); commit(); return 'ok';
+  const places = futurePlaces(today);
+  putSaved([...savedPlans(), { id: uid(), name: uniqueIn(savedPlans().map(x => x.name), nm || datedName(today)), days: cur, ...(Object.keys(mine).length ? { overrides: mine } : {}), ...(Object.keys(places).length ? { places } : {}) }]);
+  putActive(planDays([]), '', today); putOv(past); putPlaces({}, today); tidy(today); commit(); return 'ok';
 }
 /** Nowy plan z dniami (np. z generatora; nazwa bez powtórzeń); `activate` — od razu obowiązuje. '' — „Inne plany” pełne (ekran sprawdza plansFull). */
 export function addPlan(name: string, days: PlanDays, activate: boolean): string {
@@ -197,6 +200,47 @@ export function deletePlan(id: string) { if (!savedPlans().some(p => p.id === id
 export function setDayPlan(k: string, id: string | null) { setDay(k, id && liveTemplate(id) ? id : null); commit(); }
 /** Powrót dnia do planu tygodnia. */
 export function resetDay(k: string) { const st = getState(); if (st.planOverrides && k in st.planOverrides) { const ov = { ...st.planOverrides }; delete ov[k]; putOv(ov); commit(); } }
+
+/* ---------- miejsce treningu na dni planu (0.19, docs/33 B; decyzje właściciela 13.10.2026: P4 A, P6 B, P7 A) ----------
+ * `State.planPlaces` (data → id miejsca) — osobno od planOverrides: opisuje, GDZIE użytkownik jest w danym dniu (np. Hotel pt–nd), nie CO trenuje.
+ * Dlatego przesunięcie treningu (shiftPlan, moveOnly, swapDays), „Przywróć z planu” (resetDay) i porządek planu (tidy) go nie ruszają — miejsce zostaje przy
+ * dacie (P7 A). Start treningu w takim dniu bierze to miejsce przed miejscem szablonu (lib/state/start newWorkout), a potem otwiera okno „Dostosuj”
+ * z zaznaczonymi propozycjami (P4 A) — nigdy automatyczna zamiana. Zakres od–do: najwyżej PLAN_PLACE_RANGE_MAX dni, tylko od dziś. */
+/** Miejsce zapisane na dzień `k` (id) albo undefined (brak albo miejsce usunięte). */
+export const plannedPlace = (k: string): string | undefined => placeOnDay(k);
+/** Nazwa miejsca dnia (do „📍 Hotel”, przypomnienia) albo '' (brak miejsca w planie). */
+export const plannedPlaceName = (k: string): string => { const id = placeOnDay(k); return id ? locationById(id)?.name ?? '' : ''; };
+/** Dni zakresu od `from` do `to` włącznie (puste, gdy zakres odwrócony albo dłuższy niż PLAN_PLACE_RANGE_MAX). */
+export function placeDays(from: string, to: string): string[] {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(from) || !/^\d{4}-\d{2}-\d{2}$/.test(to) || to < from) return [];
+  const out: string[] = []; for (let k = from; k <= to && out.length <= PLAN_PLACE_RANGE_MAX; k = addDays(k, 1)) out.push(k); return out.length > PLAN_PLACE_RANGE_MAX ? [] : out;
+}
+/** Miejsca dni od dziś (do zapisania z planem). */
+const futurePlaces = (today: string): Record<string, string> => Object.fromEntries(Object.entries(getState().planPlaces ?? {}).filter(([k]) => k >= today));
+/** Zapis miejsc dni: puste = brak pola; dni minione odpadają (nic ich nie czyta). */
+const putPlaces = (pp: Record<string, string>, today: string) => { const st = getState(); const keep = Object.fromEntries(Object.entries(pp).filter(([k]) => k >= today));
+  const c = cleanPlanPlaces(keep); if (Object.keys(c).length) st.planPlaces = c; else delete st.planPlaces; };
+/** Ustawia miejsce `locationId` na dni od `from` do `to` (od dziś; istniejące miejsce — z listy albo jednorazowe). Zwraca liczbę dni albo 0, gdy zakres lub
+ * miejsce nieprawidłowe (nic się wtedy nie zmienia). Miejsce w dniu z treningiem w toku ustawia się normalnie (dotyczy następnych startów). */
+export function setPlanPlace(from: string, to: string, locationId: string, today = todayKey()): number {
+  const days = placeDays(from, to); if (!days.length || from < today || !locationById(locationId)) return 0;
+  const pp = { ...(getState().planPlaces ?? {}) }; for (const k of days) pp[k] = locationId;
+  putPlaces(pp, today); pruneOneOff(); commit(); return days.length;
+}
+/** Zakres dni z tym samym miejscem wokół dnia `k` (kolejne dni z tym samym id) albo null, gdy dzień nie ma miejsca. */
+export function placeRun(k: string): { from: string; to: string; locationId: string } | null {
+  const id = placeOnDay(k); if (!id) return null; let from = k, to = k;
+  while (placeOnDay(addDays(from, -1)) === id) from = addDays(from, -1);
+  while (placeOnDay(addDays(to, 1)) === id) to = addDays(to, 1);
+  return { from, to, locationId: id };
+}
+/** „Usuń miejsce”: zdejmuje miejsce z całego zakresu (kolejnych dni z tym samym miejscem) wokół dnia `k`; dni wracają do miejsca szablonu / głównego.
+ * Zwraca liczbę dni; miejsce jednorazowe bez odwołań znika. */
+export function clearPlanPlace(k: string, today = todayKey()): number {
+  const run = placeRun(k); if (!run) return 0; const days = placeDays(run.from, run.to);
+  const pp = { ...(getState().planPlaces ?? {}) }; for (const d of days) delete pp[d];
+  putPlaces(pp, today); pruneOneOff(); commit(); return days.length;
+}
 
 export type ShiftResult = { moved: { from: string; to: string; id: string }[]; dropped?: string };
 type IO = { get: (k: string) => string | null; set: (k: string, id: string | null) => void };

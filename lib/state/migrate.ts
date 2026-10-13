@@ -14,7 +14,8 @@ import { cleanLevels } from './bands';
 import { normalizeGoals } from '../setParts';
 import { normalizeReviewAsked } from '../review';
 import { normalizeGroups } from './groups';
-import { SAVED_PLANS_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays, normPlanHistory, cleanOverrides, cleanDoneEarly, appendPlanSegment } from './weekplan';
+import { SAVED_PLANS_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays, normPlanHistory, cleanOverrides, cleanDoneEarly, appendPlanSegment, cleanPlanPlaces } from './weekplan';
+import { unusedOneOffIds } from './places';
 import { setLegacyLb, snapL, posNum, fixTemplates, fixWorkout, freshIds, uniqueIds } from './migrate-records';
 import { migrateExercises, retireCatalog } from './migrate-catalog';
 
@@ -36,6 +37,7 @@ function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { loc
     seen.add(l.id);
     const n = typeof l.name === 'string' ? clampName(l.name.replace(/\s+/g, ' ').trim()) : '';
     l.name = n || tIn(language, 'Miejsce'); /* audyt (LOW): limit nazwy jak w polu */
+    if (l.oneOff !== true) delete l.oneOff; /* schemat 19 (docs/33 A4): miejsce jednorazowe — tylko true */
     const items = new Set<string>();
     l.equipment = arr(l.equipment).filter((e: any) => {
       const x = typeof e.item === 'string' ? equipById(e.item) : undefined;
@@ -52,8 +54,8 @@ function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { loc
       return true; });
     locations.push(l as Location);
   }
-  const main = idOf(s.mainLocationId);
-  return { locations, mainLocationId: main && seen.has(main) ? main : locations[0]?.id ?? null, pickerShowAll: s.pickerShowAll === true };
+  const main = idOf(s.mainLocationId); const listed = locations.filter(l => !l.oneOff); /* schemat 19: miejscem głównym nie bywa miejsce jednorazowe */
+  return { locations, mainLocationId: main && listed.some(l => l.id === main) ? main : listed[0]?.id ?? null, pickerShowAll: s.pickerShowAll === true };
 }
 /**
  * Migracja do bieżącego schematu. Przyjmuje backupy web 0.3, natywnej 0.1.0 i każdą późniejszą wersję;
@@ -241,10 +243,10 @@ export function migrate(raw: any): State {
       const sp0 = (Array.isArray(raw.savedPlans) ? raw.savedPlans : []).filter((p: any) => isObj(p) && typeof p.id === 'string' && p.id);
       freshIds(sp0); /* DAT2-04: powtórzone id → „~n” */
       const sp = sp0.map((p: any) => {
-        const ov = cleanOverrides(p.overrides);
+        const ov = cleanOverrides(p.overrides); const pl = cleanPlanPlaces(p.places);
         return { id: p.id, name: typeof p.name === 'string' ? cleanPlanName(p.name) : '', days: planDays(p.days),
-            ...(Object.keys(ov).length ? { overrides: ov } : {}) };
-      }); /* audyt 0.10 B1: zmiany dni zapisane z planem */
+            ...(Object.keys(ov).length ? { overrides: ov } : {}), ...(Object.keys(pl).length ? { places: pl } : {}) };
+      }); /* audyt 0.10 B1: zmiany dni zapisane z planem; schemat 19: miejsca dni (id istniejących miejsc sprawdzane niżej, po wczytaniu miejsc) */
       if (sp.length) raw.savedPlans = sp.slice(0, SAVED_PLANS_MAX); else delete raw.savedPlans; }
     const ov = cleanOverrides(raw.planOverrides);
     if (Object.keys(ov).length) raw.planOverrides = ov; else delete raw.planOverrides;
@@ -260,6 +262,12 @@ export function migrate(raw: any): State {
       if (h.length) raw.planHistory = h; else delete raw.planHistory; }
     /* audyt 0.10 D4: „Nie teraz” przy podpowiedzi deload — data poniedziałku albo brak */
     if (typeof raw.deloadSnooze !== 'string' || !DATE_KEY.test(raw.deloadSnooze)) delete raw.deloadSnooze; }
+  /* Schemat 19 (0.19, docs/33 B): miejsca dni planu — klucze-daty, id istniejących miejsc (usunięte odpadają), także w zapisanych planach; potem miejsca
+   * jednorazowe bez odwołań znikają (trening w toku, historia, plan). Idempotentne; dane sprzed 19 bez pól — bez zmian. */
+  { const known = new Set<string>(raw.settings.locations.map((l: Location) => l.id));
+    const pp = cleanPlanPlaces(raw.planPlaces, known); if (Object.keys(pp).length) raw.planPlaces = pp; else delete raw.planPlaces;
+    if (Array.isArray(raw.savedPlans)) for (const p of raw.savedPlans) { const pl = cleanPlanPlaces(p.places, known); if (Object.keys(pl).length) p.places = pl; else delete p.places; }
+    const gone = unusedOneOffIds(raw); if (gone.size) raw.settings.locations = raw.settings.locations.filter((l: Location) => !gone.has(l.id)); }
   {
     const g = [...new Set((Array.isArray(raw.guideSeen) ? raw.guideSeen : []).filter((x: unknown) => typeof x === 'string' && x && x.length <= 40))].slice(0,
         50);

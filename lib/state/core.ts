@@ -51,7 +51,7 @@ export function seqAtLeast(n: number) { persistSeq = Math.max(persistSeq, n); }
 export function setRecovery(r: { key: string; at: number } | null) { recovery = r; }
 
 /** PERF-03 (A): pola stanu zapisywane małym kluczem „cfg”, gdy zmieniła się tylko konfiguracja (save(szablon), saveCfg). */
-export const CFG_KEYS = ['settings', 'templates', 'weekPlan', 'savedPlans', 'planOverrides', 'planHistory', 'deloadWeeks', 'deloadSnooze', 'whatsNewSeen',
+export const CFG_KEYS = ['settings', 'templates', 'weekPlan', 'savedPlans', 'planOverrides', 'planPlaces', 'planHistory', 'deloadWeeks', 'deloadSnooze', 'whatsNewSeen',
     'guideSeen'] as const;
 /** Nakłada nowszy klucz „cfg” na wczytany stan (przed migrate): tylko gdy jego numer zapisu jest wyższy niż pełnego „state” — wtedy pola
  * z „cfg” są nowsze (brak pola w „cfg” = pole usunięte). Zwraca, czy nałożono. Wspólne dla startu i importu kopii odzysku. */
