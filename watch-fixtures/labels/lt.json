@@ -1,0 +1,16 @@
+{
+ "done": "Serija atlikta",
+ "differ": "Atlikta kitaip",
+ "skip": "Praleisti",
+ "skipAsk": "Praleisti pratimą?",
+ "cancel": "Atšaukti",
+ "undo": "Atšaukti",
+ "rest": "Poilsis",
+ "set": "Serija",
+ "pause": "Pristabdyta",
+ "connect": "Prijungti prie telefono",
+ "idle": "Pradėkite treniruotę telefone",
+ "finished": "Treniruotė baigta",
+ "update": "Atnaujinkite programą laikrodyje",
+ "nothingLeft": "daugiau nieko neliko"
+}

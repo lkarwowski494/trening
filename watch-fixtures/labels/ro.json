@@ -1,0 +1,16 @@
+{
+ "done": "Serie gata",
+ "differ": "Făcut altfel",
+ "skip": "Omite",
+ "skipAsk": "Omiți exercițiul?",
+ "cancel": "Anulează",
+ "undo": "Revocă",
+ "rest": "Pauză",
+ "set": "Serie",
+ "pause": "Pauză",
+ "connect": "Conectează la telefon",
+ "idle": "Începe un antrenament pe telefon",
+ "finished": "Antrenament încheiat",
+ "update": "Actualizează aplicația de pe ceas",
+ "nothingLeft": "nimic altceva de făcut"
+}

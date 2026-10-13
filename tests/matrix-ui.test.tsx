@@ -431,7 +431,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
     global.__notifications.length = 0;
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona — Back Squat/)[0]); await flushAll(10);
     expect(timer.T.on).toBe(true); expect((global.__notifications as any[]).find(n => n.content.title === 'Przerwa minęła').content.body).toBe('Następna seria.');
-    expect(timer.labels.subtitle).toBe('dalej: Push Up');
+    expect(timer.labels.subtitle).toBe('dalej: Push Up, masa ciała'); /* 0.20: zapowiedź = restCue (ciężar i powtórzenia) */
   });
 
   test('chip miejsca: menu „Miejsce tego treningu” zmienia miejsce sesji', async () => {

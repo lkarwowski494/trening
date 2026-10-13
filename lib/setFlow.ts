@@ -39,3 +39,6 @@ async function finishTimedSetInner(): Promise<void> {
     if (!set.done) await completeSet(pos.ei, pos.si, endAt);
     else { const nx = a.exercises[pos.ei].sets[pos.si + 1]; const rest = nx && nx.kind === 'drop' && !nx.done ? null /* T7: przed drop setem bez przerwy, także po ponownym pomiarze */ : restAfter(pos.ei, pos.si) ?? roundRest(pos.ei); if (rest && endAt + rest * 1000 > Date.now()) { restLabels(pos.ei, pos.si); await timer.start(rest, set.id, endAt); } /* T9: przerwa od końca serii, jak przy pierwszym pomiarze */ } // runda 19/21/22: po ponownym pomiarze przerwa od nowa (w supersecie — przerwa rundy)
 }
+/** Podpis TRWAJĄCEJ przerwy liczony od nowa dla serii, która ją uruchomiła (lib/live.ts restLabel) — po zamianie (E2 pkt 3.8), „Pomiń dziś”
+ * i każdej innej zmianie treningu (audyt 0.10, LIVE-03/04). Bez przerwy albo bez tej serii — nic. */
+export function relabelRest() { const a = getState().active; const pos = timer.T.on ? findSet(timer.T.setId) : null; if (a && pos) { const r = restLabel(a, pos.ei, pos.si); timer.relabel(r.sub, r.last); } }

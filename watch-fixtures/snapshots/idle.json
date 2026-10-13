@@ -1,0 +1,16 @@
+{
+ "v": 1,
+ "kind": "snapshot",
+ "rev": 1,
+ "lang": "pl",
+ "phase": "idle",
+ "paused": false,
+ "workoutId": null,
+ "title": "",
+ "now": null,
+ "rest": null,
+ "after": null,
+ "doneCount": 0,
+ "totalCount": 0,
+ "toFillCount": 0
+}

@@ -4,7 +4,7 @@
  */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import { completeSet, restLabels, finishTimedSet, isClosingSet } from '@/lib/setFlow';
+import { completeSet, restLabels, finishTimedSet, isClosingSet, relabelRest } from '@/lib/setFlow';
 import { blankTimer } from '@/lib/seed';
 import { fresh, ex } from './helpers';
 
@@ -38,6 +38,13 @@ describe('completeSet', () => {
   });
   test('brak treningu albo serii: nic się nie dzieje', async () => {
     await completeSet(9, 9); expect(timer.T.on).toBe(false); expect(S().active!.exercises.every(e => e.sets.every(s => !s.done))).toBe(true);
+  });
+});
+describe('relabelRest', () => {
+  test('po „Pomiń dziś” podpis TRWAJĄCEJ przerwy przelicza się na następne ćwiczenie (timer.relabel); bez przerwy — nic', async () => {
+    const s0 = timer.T.sub; relabelRest(); expect([timer.T.on, timer.T.sub]).toEqual([false, s0]);
+    await completeSet(0, 0); expect(timer.T.sub).toMatch(/^dalej: Plank/); store.addExerciseToActive(ex('Back Squat')); relabelRest(); expect(timer.T.sub).toMatch(/^dalej: Plank/);
+    store.skipExercise(S().active!.exercises[1].id); relabelRest(); expect(timer.T.sub).toMatch(/^dalej: Back Squat/); expect(timer.labels.subtitle).toBe(timer.T.sub);
   });
 });
 describe('restLabels i stoper serii', () => {

@@ -179,9 +179,10 @@ function ssMembers(list: WExercise[], pick: (x: WExercise) => boolean): Map<stri
   }
   return m;
 }
-/** Przerwa po serii (ei, si) treningu w toku; null = superset bez przerwy. Wspólne dla odhaczenia i ponownego pomiaru (runda 19). */
-export function restAfter(ei: number, si: number): number | null {
-  const a = getState().active; const e = a?.exercises[ei]; const s = e?.sets[si]; if (!a || !e || !s) return null; const ex = exById(e.exerciseId);
+/** Przerwa po serii (ei, si) treningu w toku; null = superset bez przerwy. Wspólne dla odhaczenia i ponownego pomiaru (runda 19).
+ * `w` — inny trening niż bieżący (0.20: migawka dla zegarka liczy przerwę „po odhaczeniu” na kopii, bez ruszania stanu). */
+export function restAfter(ei: number, si: number, w?: Workout | null): number | null {
+  const a = w ?? getState().active; const e = a?.exercises[ei]; const s = e?.sets[si]; if (!a || !e || !s) return null; const ex = exById(e.exerciseId);
   // Superset (0.4; od rundy 72): bez przerwy, dopóki runda nie jest zamknięta — liczy się liczba serii, nie kolejność na liście.
   // Runda 72 (T5): runda liczona serią, nie kolejnością na liście — odhaczenie B1 przed A1 nie odpala przerwy w środku rundy.
   // Runda 72 (T6): drop set to część serii, po której następuje — bez przerwy przed nim, a w supersecie nie liczy się jako osobna runda.
@@ -202,13 +203,13 @@ export function restAfter(ei: number, si: number): number | null {
       /* T9: pominięty drop set nie blokuje przerwy po ostatniej rundzie */
       : !closesGroup && others.some(x => work(x).filter(y => y.done).length < r && work(x).some(y => !y.done))) return null; }
   if (s.kind === 'warmup' && ex?.restWarmupSec != null) return ex.restWarmupSec;
-  if (e.groupId && s.kind !== 'warmup') return roundRest(ei); /* runda 72: koniec rundy poza kolejnością — przerwa rundy (ostatniego ćwiczenia grupy) */
+  if (e.groupId && s.kind !== 'warmup') return roundRest(ei, a); /* runda 72: koniec rundy poza kolejnością — przerwa rundy (ostatniego ćwiczenia grupy) */
   return e.restSec ?? restFor(ex);
 }
 /** Przerwa rundy supersetu (ostatniego ćwiczenia grupy) albo własna przerwa ćwiczenia — dla ponownego pomiaru (runda 21).
  * Audyt 0.10 (LIVE-01): ostatni NIEPOMINIĘTY członek grupy („Pomiń dziś”). */
-export function roundRest(ei: number): number | null {
-  const a = getState().active; const e = a?.exercises[ei]; if (!a || !e) return null;
+export function roundRest(ei: number, w?: Workout | null): number | null {
+  const a = w ?? getState().active; const e = a?.exercises[ei]; if (!a || !e) return null;
   const last = e.groupId ? [...a.exercises].reverse().find(x => x.groupId === e.groupId && (x === e || !x.skipped)) ?? e : e;
   return last.restSec ?? restFor(exById(last.exerciseId));
 }
@@ -259,7 +260,7 @@ export function toggleDone(ei: number, si: number, at?: number): number | null {
       if ((s as any)[k] === v && !(k === 'addKg' && hb && band0 !== hb))
         (s as any)[k] = ''; /* P-001: zdjęcie gumy z podpowiedzi nie rusza ±kg (dawniej runda 53) */
   } // runda 48: po zmianie gumy asysta należy już do nowej gumy
-  s.hinted = undefined; s.completedAt = null; s.actualRest = null; save(a); return null;
+  s.hinted = undefined; s.completedAt = null; s.actualRest = null; delete s.toFill; /* 0.20: cofnięcie odhaczenia zdejmuje też „do uzupełnienia” (zegarek) */ save(a); return null;
 }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): seria „teraz” = pierwsza nieodhaczona seria w kolejności treningu.

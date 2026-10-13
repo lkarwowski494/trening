@@ -1,0 +1,161 @@
+[
+ {
+  "name": "not-object",
+  "message": "tekst",
+  "reason": "not-object"
+ },
+ {
+  "name": "wrong-version",
+  "message": {
+   "v": 2,
+   "kind": "event",
+   "eventId": "apple-1",
+   "workoutId": "workout-1",
+   "baseRev": 3,
+   "at": 1791885601000,
+   "client": "apple",
+   "type": "done",
+   "setId": "s"
+  },
+  "reason": "version"
+ },
+ {
+  "name": "unknown-kind",
+  "message": {
+   "v": 1,
+   "kind": "edit"
+  },
+  "reason": "kind"
+ },
+ {
+  "name": "unknown-type",
+  "message": {
+   "v": 1,
+   "kind": "event",
+   "eventId": "apple-1",
+   "workoutId": "workout-1",
+   "baseRev": 3,
+   "at": 1791885601000,
+   "client": "apple",
+   "type": "edit",
+   "setId": "s"
+  },
+  "reason": "type"
+ },
+ {
+  "name": "unknown-client",
+  "message": {
+   "v": 1,
+   "kind": "event",
+   "eventId": "apple-1",
+   "workoutId": "workout-1",
+   "baseRev": 3,
+   "at": 1791885601000,
+   "client": "pebble",
+   "type": "done",
+   "setId": "s"
+  },
+  "reason": "client"
+ },
+ {
+  "name": "missing-setId",
+  "message": {
+   "v": 1,
+   "kind": "event",
+   "eventId": "apple-1",
+   "workoutId": "workout-1",
+   "baseRev": 3,
+   "at": 1791885601000,
+   "client": "apple",
+   "type": "done"
+  },
+  "reason": "setId"
+ },
+ {
+  "name": "empty-eventId",
+  "message": {
+   "v": 1,
+   "kind": "event",
+   "eventId": "",
+   "workoutId": "workout-1",
+   "baseRev": 3,
+   "at": 1791885601000,
+   "client": "apple",
+   "type": "done",
+   "setId": "s"
+  },
+  "reason": "eventId"
+ },
+ {
+  "name": "long-id",
+  "message": {
+   "v": 1,
+   "kind": "event",
+   "eventId": "apple-1",
+   "workoutId": "workout-1",
+   "baseRev": 3,
+   "at": 1791885601000,
+   "client": "apple",
+   "type": "done",
+   "setId": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  "reason": "setId"
+ },
+ {
+  "name": "negative-baseRev",
+  "message": {
+   "v": 1,
+   "kind": "event",
+   "eventId": "apple-1",
+   "workoutId": "workout-1",
+   "baseRev": -1,
+   "at": 1791885601000,
+   "client": "apple",
+   "type": "done",
+   "setId": "s"
+  },
+  "reason": "baseRev"
+ },
+ {
+  "name": "zero-at",
+  "message": {
+   "v": 1,
+   "kind": "event",
+   "eventId": "apple-1",
+   "workoutId": "workout-1",
+   "baseRev": 3,
+   "at": 0,
+   "client": "apple",
+   "type": "done",
+   "setId": "s"
+  },
+  "reason": "at"
+ },
+ {
+  "name": "saved-not-boolean",
+  "message": {
+   "v": 1,
+   "kind": "event",
+   "eventId": "apple-1",
+   "workoutId": "workout-1",
+   "baseRev": 3,
+   "at": 1791885601000,
+   "client": "apple",
+   "type": "sessionEnded",
+   "saved": "yes"
+  },
+  "reason": "saved"
+ },
+ {
+  "name": "hello-bad-caps",
+  "message": {
+   "v": 1,
+   "kind": "hello",
+   "client": "apple",
+   "protocol": 1,
+   "app": "x",
+   "caps": {}
+  },
+  "reason": "caps"
+ }
+]

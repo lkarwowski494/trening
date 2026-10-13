@@ -1,0 +1,16 @@
+{
+ "done": "Set klart",
+ "differ": "Gjort annorlunda",
+ "skip": "Hoppa över",
+ "skipAsk": "Hoppa över övningen?",
+ "cancel": "Avbryt",
+ "undo": "Ångra",
+ "rest": "Vila",
+ "set": "Set",
+ "pause": "Pausad",
+ "connect": "Anslut till telefonen",
+ "idle": "Starta ett pass på telefonen",
+ "finished": "Passet avslutat",
+ "update": "Uppdatera appen på klockan",
+ "nothingLeft": "inget mer att göra"
+}

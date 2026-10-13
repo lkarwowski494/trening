@@ -1,0 +1,16 @@
+{
+ "done": "這組完成",
+ "differ": "以不同方式完成",
+ "skip": "略過",
+ "skipAsk": "要略過此動作嗎？",
+ "cancel": "取消",
+ "undo": "復原",
+ "rest": "休息",
+ "set": "組",
+ "pause": "已暫停",
+ "connect": "連接到手機",
+ "idle": "在手機上開始訓練",
+ "finished": "訓練已結束",
+ "update": "更新手錶 App",
+ "nothingLeft": "沒有其他要做的了"
+}

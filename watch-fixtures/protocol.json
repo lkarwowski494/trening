@@ -1,0 +1,102 @@
+{
+ "protocol": 1,
+ "protocolMin": 1,
+ "constants": {
+  "UNDO_SEC": 5,
+  "CLOCK_TOL_MS": 5000,
+  "MAX_EVENT_AGE_MS": 43200000,
+  "MAX_FUTURE_MS": 600000,
+  "OFFLINE_DONE_MAX": 2,
+  "EVENT_LOG_MAX": 200,
+  "CUE_MAX": 200,
+  "TITLE_MAX": 60,
+  "COUNTER_MAX": 40,
+  "LOAD_MAX": 40,
+  "ID_MAX": 64,
+  "MSG_MAX_BYTES": 2048,
+  "HEALTH_WAIT_SEC": 20,
+  "REST_END_TOL_MS": 3000,
+  "CLIENT_HISTORY": 4
+ },
+ "clients": [
+  "apple",
+  "garmin"
+ ],
+ "phases": [
+  "idle",
+  "set",
+  "rest",
+  "done"
+ ],
+ "eventTypes": [
+  "done",
+  "differ",
+  "skip",
+  "undo",
+  "restEnded",
+  "sessionStarted",
+  "sessionEnded"
+ ],
+ "ackStatuses": [
+  "applied",
+  "duplicate",
+  "ignored",
+  "rejected"
+ ],
+ "reasons": [
+  "no-workout",
+  "other-workout",
+  "set-gone",
+  "block-gone",
+  "not-done",
+  "undo-window",
+  "no-rest",
+  "rest-not-over",
+  "stale-time",
+  "future-time",
+  "skipped-block"
+ ],
+ "sessionActions": [
+  "start",
+  "end"
+ ],
+ "messageKinds": [
+  "snapshot",
+  "ack",
+  "welcome",
+  "session",
+  "hello",
+  "event"
+ ],
+ "labelIds": [
+  "done",
+  "differ",
+  "skip",
+  "skipAsk",
+  "cancel",
+  "undo",
+  "rest",
+  "set",
+  "pause",
+  "connect",
+  "idle",
+  "finished",
+  "update",
+  "nothingLeft"
+ ],
+ "clientScreens": [
+  "idle",
+  "set",
+  "rest",
+  "done",
+  "connect",
+  "update",
+  "finished"
+ ],
+ "clientActions": [
+  "done",
+  "differ",
+  "skip",
+  "undo"
+ ]
+}

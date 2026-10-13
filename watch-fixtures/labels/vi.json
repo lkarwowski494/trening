@@ -1,0 +1,16 @@
+{
+ "done": "Đã xong hiệp",
+ "differ": "Làm khác kế hoạch",
+ "skip": "Bỏ qua",
+ "skipAsk": "Bỏ qua bài tập này?",
+ "cancel": "Hủy",
+ "undo": "Hoàn tác",
+ "rest": "Nghỉ",
+ "set": "Hiệp",
+ "pause": "Đã tạm dừng",
+ "connect": "Kết nối với điện thoại",
+ "idle": "Bắt đầu buổi tập trên điện thoại",
+ "finished": "Buổi tập đã kết thúc",
+ "update": "Cập nhật ứng dụng trên đồng hồ",
+ "nothingLeft": "không còn gì phải làm"
+}

@@ -1,0 +1,751 @@
+{
+ "name": "undo-window",
+ "doc": "„Cofnij” tuż po odhaczeniu (okno 5 s): zdarzenie undo, widok wraca do serii; po oknie nie ma akcji cofnięcia i zdarzenie nie powstaje.",
+ "config": {
+  "client": "apple",
+  "app": "0.20.0",
+  "session": true
+ },
+ "steps": [
+  {
+   "at": 1791885600000,
+   "input": {
+    "t": "launch"
+   },
+   "note": "start aplikacji: zgłoszenie hello",
+   "expect": {
+    "out": [
+     {
+      "v": 1,
+      "kind": "hello",
+      "client": "apple",
+      "protocol": 1,
+      "app": "0.20.0",
+      "caps": {
+       "session": true
+      }
+     }
+    ],
+    "view": {
+     "screen": "idle",
+     "title": "",
+     "counter": "",
+     "load": "",
+     "group": null,
+     "cue": null,
+     "restEndsAt": null,
+     "restTotalSec": null,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 0,
+     "totalCount": 0,
+     "toFillCount": 0,
+     "undoUntil": null,
+     "confirmSkip": false,
+     "actions": [],
+     "offline": false,
+     "busy": false
+    }
+   }
+  },
+  {
+   "at": 1791885600000,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "welcome",
+     "ok": true,
+     "protocol": 1,
+     "upgrade": null
+    }
+   },
+   "note": null,
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "idle",
+     "title": "",
+     "counter": "",
+     "load": "",
+     "group": null,
+     "cue": null,
+     "restEndsAt": null,
+     "restTotalSec": null,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 0,
+     "totalCount": 0,
+     "toFillCount": 0,
+     "undoUntil": null,
+     "confirmSkip": false,
+     "actions": [],
+     "offline": false,
+     "busy": false
+    }
+   }
+  },
+  {
+   "at": 1791885600000,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "snapshot",
+     "rev": 1,
+     "lang": "pl",
+     "phase": "set",
+     "paused": false,
+     "workoutId": "workout-1",
+     "title": "Push",
+     "now": {
+      "setId": "set-0-0",
+      "blockId": "block-0",
+      "title": "Bench Press (sztanga)",
+      "counter": "seria 1 z 3",
+      "load": "80 kg × 8",
+      "group": null,
+      "timed": false,
+      "targetSec": null
+     },
+     "rest": null,
+     "after": {
+      "restSec": 90,
+      "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+      "last": false,
+      "now": {
+       "setId": "set-0-1",
+       "blockId": "block-0",
+       "title": "Bench Press (sztanga)",
+       "counter": "seria 2 z 3",
+       "load": "80 kg × 8",
+       "group": null,
+       "timed": false,
+       "targetSec": null
+      }
+     },
+     "doneCount": 0,
+     "totalCount": 7,
+     "toFillCount": 0
+    }
+   },
+   "note": "bieżąca seria: ćwiczenie, licznik, ciężar × powtórzenia",
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "set",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 1 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": null,
+     "restEndsAt": null,
+     "restTotalSec": null,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 0,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": null,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip"
+     ],
+     "offline": false,
+     "busy": false
+    }
+   }
+  },
+  {
+   "at": 1791885601000,
+   "input": {
+    "t": "press",
+    "button": "main"
+   },
+   "note": "„Seria zrobiona”: zdarzenie done; od razu przerwa i zapowiedź z pola after migawki (bez czekania na telefon)",
+   "expect": {
+    "out": [
+     {
+      "v": 1,
+      "kind": "event",
+      "eventId": "apple-1",
+      "workoutId": "workout-1",
+      "baseRev": 1,
+      "at": 1791885601000,
+      "client": "apple",
+      "type": "done",
+      "setId": "set-0-0"
+     }
+    ],
+    "view": {
+     "screen": "rest",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 2 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+     "restEndsAt": 1791885691000,
+     "restTotalSec": 90,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": 1791885606000,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip",
+      "undo"
+     ],
+     "offline": false,
+     "busy": true
+    }
+   }
+  },
+  {
+   "at": 1791885601100,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "snapshot",
+     "rev": 2,
+     "lang": "pl",
+     "phase": "rest",
+     "paused": false,
+     "workoutId": "workout-1",
+     "title": "Push",
+     "now": {
+      "setId": "set-0-1",
+      "blockId": "block-0",
+      "title": "Bench Press (sztanga)",
+      "counter": "seria 2 z 3",
+      "load": "80 kg × 8",
+      "group": null,
+      "timed": false,
+      "targetSec": null
+     },
+     "rest": {
+      "setId": "set-0-0",
+      "startedAt": 1791885600000,
+      "endsAt": 1791885690000,
+      "totalSec": 90,
+      "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+      "last": false
+     },
+     "after": {
+      "restSec": 90,
+      "cue": "Bench Press (sztanga) · seria 3, 80 kg, 8 powtórzeń",
+      "last": false,
+      "now": {
+       "setId": "set-0-2",
+       "blockId": "block-0",
+       "title": "Bench Press (sztanga)",
+       "counter": "seria 3 z 3",
+       "load": "80 kg × 8",
+       "group": null,
+       "timed": false,
+       "targetSec": null
+      }
+     },
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0
+    }
+   },
+   "note": "telefon: migawka z przerwą (najpierw migawka…)",
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "rest",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 2 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+     "restEndsAt": 1791885690000,
+     "restTotalSec": 90,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": 1791885606000,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip",
+      "undo"
+     ],
+     "offline": false,
+     "busy": true
+    }
+   }
+  },
+  {
+   "at": 1791885601200,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "ack",
+     "eventId": "apple-1",
+     "status": "applied",
+     "reason": null,
+     "rev": 2
+    }
+   },
+   "note": "…potem potwierdzenie z numerem tej migawki",
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "rest",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 2 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+     "restEndsAt": 1791885690000,
+     "restTotalSec": 90,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": 1791885606000,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip",
+      "undo"
+     ],
+     "offline": false,
+     "busy": false
+    }
+   }
+  },
+  {
+   "at": 1791885602000,
+   "input": {
+    "t": "press",
+    "button": "undo"
+   },
+   "note": "w oknie: zdarzenie undo, widok wraca do serii (z historii migawek)",
+   "expect": {
+    "out": [
+     {
+      "v": 1,
+      "kind": "event",
+      "eventId": "apple-2",
+      "workoutId": "workout-1",
+      "baseRev": 2,
+      "at": 1791885602000,
+      "client": "apple",
+      "type": "undo",
+      "setId": "set-0-0"
+     }
+    ],
+    "view": {
+     "screen": "set",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 1 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": null,
+     "restEndsAt": null,
+     "restTotalSec": null,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": null,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip"
+     ],
+     "offline": false,
+     "busy": true
+    }
+   }
+  },
+  {
+   "at": 1791885602100,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "snapshot",
+     "rev": 3,
+     "lang": "pl",
+     "phase": "set",
+     "paused": false,
+     "workoutId": "workout-1",
+     "title": "Push",
+     "now": {
+      "setId": "set-0-0",
+      "blockId": "block-0",
+      "title": "Bench Press (sztanga)",
+      "counter": "seria 1 z 3",
+      "load": "80 kg × 8",
+      "group": null,
+      "timed": false,
+      "targetSec": null
+     },
+     "rest": null,
+     "after": {
+      "restSec": 90,
+      "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+      "last": false,
+      "now": {
+       "setId": "set-0-1",
+       "blockId": "block-0",
+       "title": "Bench Press (sztanga)",
+       "counter": "seria 2 z 3",
+       "load": "80 kg × 8",
+       "group": null,
+       "timed": false,
+       "targetSec": null
+      }
+     },
+     "doneCount": 0,
+     "totalCount": 7,
+     "toFillCount": 0
+    }
+   },
+   "note": "telefon cofnął odhaczenie",
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "set",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 1 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": null,
+     "restEndsAt": null,
+     "restTotalSec": null,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 0,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": null,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip"
+     ],
+     "offline": false,
+     "busy": true
+    }
+   }
+  },
+  {
+   "at": 1791885602200,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "ack",
+     "eventId": "apple-2",
+     "status": "applied",
+     "reason": null,
+     "rev": 3
+    }
+   },
+   "note": null,
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "set",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 1 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": null,
+     "restEndsAt": null,
+     "restTotalSec": null,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 0,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": null,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip"
+     ],
+     "offline": false,
+     "busy": false
+    }
+   }
+  },
+  {
+   "at": 1791885602300,
+   "input": {
+    "t": "press",
+    "button": "main"
+   },
+   "note": "ponowne odhaczenie tej samej serii",
+   "expect": {
+    "out": [
+     {
+      "v": 1,
+      "kind": "event",
+      "eventId": "apple-3",
+      "workoutId": "workout-1",
+      "baseRev": 3,
+      "at": 1791885602300,
+      "client": "apple",
+      "type": "done",
+      "setId": "set-0-0"
+     }
+    ],
+    "view": {
+     "screen": "rest",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 2 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+     "restEndsAt": 1791885692300,
+     "restTotalSec": 90,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": 1791885607300,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip",
+      "undo"
+     ],
+     "offline": false,
+     "busy": true
+    }
+   }
+  },
+  {
+   "at": 1791885602400,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "snapshot",
+     "rev": 4,
+     "lang": "pl",
+     "phase": "rest",
+     "paused": false,
+     "workoutId": "workout-1",
+     "title": "Push",
+     "now": {
+      "setId": "set-0-1",
+      "blockId": "block-0",
+      "title": "Bench Press (sztanga)",
+      "counter": "seria 2 z 3",
+      "load": "80 kg × 8",
+      "group": null,
+      "timed": false,
+      "targetSec": null
+     },
+     "rest": {
+      "setId": "set-0-0",
+      "startedAt": 1791885600000,
+      "endsAt": 1791885690000,
+      "totalSec": 90,
+      "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+      "last": false
+     },
+     "after": {
+      "restSec": 90,
+      "cue": "Bench Press (sztanga) · seria 3, 80 kg, 8 powtórzeń",
+      "last": false,
+      "now": {
+       "setId": "set-0-2",
+       "blockId": "block-0",
+       "title": "Bench Press (sztanga)",
+       "counter": "seria 3 z 3",
+       "load": "80 kg × 8",
+       "group": null,
+       "timed": false,
+       "targetSec": null
+      }
+     },
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0
+    }
+   },
+   "note": null,
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "rest",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 2 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+     "restEndsAt": 1791885690000,
+     "restTotalSec": 90,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": 1791885607300,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip",
+      "undo"
+     ],
+     "offline": false,
+     "busy": true
+    }
+   }
+  },
+  {
+   "at": 1791885602500,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "ack",
+     "eventId": "apple-3",
+     "status": "applied",
+     "reason": null,
+     "rev": 4
+    }
+   },
+   "note": null,
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "rest",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 2 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+     "restEndsAt": 1791885690000,
+     "restTotalSec": 90,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": 1791885607300,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip",
+      "undo"
+     ],
+     "offline": false,
+     "busy": false
+    }
+   }
+  },
+  {
+   "at": 1791885609000,
+   "input": {
+    "t": "tick"
+   },
+   "note": "po 5 s okno minęło",
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "rest",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 2 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+     "restEndsAt": 1791885690000,
+     "restTotalSec": 90,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": null,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip"
+     ],
+     "offline": false,
+     "busy": false
+    }
+   }
+  },
+  {
+   "at": 1791885609100,
+   "input": {
+    "t": "press",
+    "button": "undo"
+   },
+   "note": "poza oknem: nic",
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "rest",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 2 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+     "restEndsAt": 1791885690000,
+     "restTotalSec": 90,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": null,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip"
+     ],
+     "offline": false,
+     "busy": false
+    }
+   }
+  }
+ ]
+}
