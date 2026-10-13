@@ -9,9 +9,10 @@ import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { compareCached, type CmpKind } from '@/lib/progress';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { fmtVol } from '@/lib/units';
+import { splitLabel, sumSplit } from '@/lib/setSplit';
 import { WeekStacks } from '@/components/WeekStacks';
 import { MuscleMap } from '@/components/MuscleMap';
-import { MuscleRows, SegLegend, setBars } from '@/components/ProgressBars';
+import { MuscleRows, SegLegend, IndirectLegend, setBars } from '@/components/ProgressBars';
 import { t, tp, lang } from '@/lib/i18n';
 
 /* Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A) — dane: lib/dashboard.ts. */
@@ -40,10 +41,11 @@ export function WeekStats() {
     <WeekHealthLine />{/* 0.16.0 (P3): średnia dzienna kroków z 7 dni + inne aktywności tygodnia (Apple Health) */}
     {w.planned ? <View style={{ marginTop: 10 }}><WeekStacks /></View> : null /* przy planie stosy talerzy i „60% planu tygodnia (3 z 5)” (korekta właściciela 09.10.2026 ok. 17:00; te same liczby, lib/motif.weekProgress) */}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
     {c.rows.length ? <View testID="week-muscles" style={{ marginTop: 6 }}>
-      <MuscleMap sets={map} title={t('Sylwetka: serie w tym tygodniu')} height={170} legend={false} caption={t('Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.')} label={t('Sylwetka, serie w tym tygodniu: {list}', { list: c.rows.map(r => `${t(r.muscle)} ${r.doneSets + r.plannedSets}`).join(', ') })} />
+      <MuscleMap sets={map} title={t('Sylwetka: serie w tym tygodniu')} height={170} legend={false} caption={t('Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.')} label={t('Sylwetka, serie w tym tygodniu: {list}', { list: c.setRows.map(r => `${t(r.part)} ${splitLabel(sumSplit(r.doneSplit, r.plannedSplit))}`).join(', ') })} />
       <Muted style={{ fontSize: 12, fontFamily: F.semibold, marginTop: 10, marginBottom: 6 }}>{t('Serie na partię — wykonane i zaplanowane')}</Muted>
       <MuscleRows rows={setBars(c.setRows, true)} metric="sets" showPrev={false} />
       <SegLegend planned={plannedSets > 0} />
+      {c.setRows.some(r => r.doneSplit.indirectSets + r.plannedSplit.indirectSets > 0) ? <IndirectLegend /> : null}
       <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })} {t('Zaplanowane — z szablonów na pozostałe dni tygodnia.')} {t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).')}</Muted>
     </View> : null}
     {/* „Ostatni trening” usunięty z ekranu głównego (właściciel 09.10.2026 ok. 16:20): informacja zostaje w arkuszu „Inny trening” („Powtórz ostatni”: nazwa · data), w Historii i Kalendarzu */}

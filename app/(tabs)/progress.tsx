@@ -4,9 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Txt, Chip, Input, Empty, H2, monoSafe, Btn } from '@/components/ui';
 import { isDeloadWeek, useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState, bodyMassLog, latestBodyMass, localDateTs } from '@/lib/store';
-import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySetsByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, setsGoal, fmtE1, bwShare, type ChartKey } from '@/lib/stats';
+import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySplitByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, setsGoal, fmtE1, bwShare, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
 import { SET_PARTS } from '@/lib/setParts';
+import { splitText, splitLabel, splitTotals, emptySplit, type SetSplit } from '@/lib/setSplit';
+import { Seg, IndirectLegend } from '@/components/ProgressBars';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { PeriodSummary } from '@/components/PeriodSummary';
 import { ProgressTiles } from '@/components/Dashboard';
@@ -69,7 +71,8 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: w.sets }))} fmt={v => `${v}`} height={110} />
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')}{weeks.some(w => isDeloadWeek(w.weekStart)) ? ' ' + t('D — tydzień oznaczony jako deload.') : ''}</Muted>
           <H2>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
-          <MuscleCompare parts={SET_PARTS} cur={weeklySetsByMuscle(thisMonday())} prev={weeklySetsByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} markOf={setsGoal} />
+          <MuscleCompare parts={SET_PARTS} curSplit={weeklySplitByMuscle(thisMonday())} prevSplit={weeklySplitByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} markOf={setsGoal} />
+          {Object.values(weeklySplitByMuscle(thisMonday())).some(x => x.indirectSets > 0) ? <IndirectLegend /> : null}
           <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })} {t('Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.', { n: WEEKLY_SETS_MARK })} {t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).')} {t('Uproszczenie: drop set liczy się razem z serią, po której jest.') /* D3 (audyt 0.10): brak źródła, jak liczyć drop sety w objętości tygodniowej — docs/research/22 */}</Muted>
           <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')}</Muted>
           <H2>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
@@ -143,14 +146,20 @@ function BodyMassSection() {
 
 /** Porównanie partii: ten tydzień (pasek) vs poprzedni (liczba w nawiasie) — serie albo objętość (06.10.2026). `mark` — pionowa kreska
  * (pakiet C: WEEKLY_SETS_MARK przy seriach, ACSM 2026); skala paska obejmuje kreskę, żeby była widoczna także przy mniejszej objętości. */
-function MuscleCompare({ cur, prev, fmt, markOf, parts = MUSCLES }: { cur: Record<string, number>; prev: Record<string, number>; fmt: (v: number) => string; /** kreska celu wiersza (serie: cel części) */ markOf?: (part: string) => number; parts?: readonly string[] }) {
-  const th = useTheme(); const rows = parts.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, ...rows.map(mu => Math.max(markOf?.(mu) ?? 0, cur[mu] ?? 0, prev[mu] ?? 0)));
+function MuscleCompare({ cur: curIn, prev: prevIn, curSplit, prevSplit, fmt, markOf, parts = MUSCLES }: { cur?: Record<string, number>; prev?: Record<string, number>; /** serie (13.10.2026): podział bezpośrednio / pośrednio zamiast samych sum — odcinki paska i podpis „6 + 1,5 pośrednio (3 serie) / 10” */ curSplit?: Record<string, SetSplit>; prevSplit?: Record<string, SetSplit>; fmt: (v: number) => string; /** kreska celu wiersza (serie: cel części) */ markOf?: (part: string) => number; parts?: readonly string[] }) {
+  const th = useTheme(); const cur = curSplit ? splitTotals(curSplit) : curIn ?? {}; const prev = prevSplit ? splitTotals(prevSplit) : prevIn ?? {};
+  const rows = parts.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, ...rows.map(mu => Math.max(markOf?.(mu) ?? 0, cur[mu] ?? 0, prev[mu] ?? 0)));
   if (!rows.length) return <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym i poprzednim tygodniu.')}</Muted>;
-  return <>{rows.map(mu => { const c = cur[mu] ?? 0, p = prev[mu] ?? 0; const mark = markOf?.(mu); const label = t(mu); return (
-    <View accessibilityLanguage={lang()} key={mu} style={{ marginBottom: 8 }} accessible accessibilityLabel={`${label}: ${fmt(c)} (${t('poprz.')} ${fmt(p)})${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontSize: 14 }}>{label}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono }}>{fmt(c)} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(p)})</Muted></Muted></View>
+  return <>{rows.map(mu => { const c = cur[mu] ?? 0, p = prev[mu] ?? 0; const mark = markOf?.(mu); const label = t(mu); const sp = curSplit ? curSplit[mu] ?? emptySplit() : undefined; const ind = sp?.indirectWeighted ?? 0;
+    const shown = sp ? splitText(sp, mark) : fmt(c); const bid = curSplit ? 'cbar' : 'cvol'; /* serie / objętość: osobne testID */
+    return (
+    <View accessibilityLanguage={lang()} key={mu} style={{ marginBottom: 8 }} accessible accessibilityLabel={`${label}: ${sp ? splitLabel(sp) : fmt(c)} (${t('poprz.')} ${fmt(p)})${mark ? ', ' + t('cel {n}', { n: fmt(mark) }) : ''}${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}><Txt style={{ fontSize: 14 }}>{label}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{shown} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(p)})</Muted></Muted></View>
       <View style={{ height: 6, backgroundColor: th.line, borderRadius: 3, marginTop: 4 }}>
-        <View style={{ width: `${Math.round(100 * c / max)}%`, height: 6, backgroundColor: th.accent, borderRadius: 3 }} />
+        <View testID={`${bid}-${mu}`} style={{ width: `${Math.round(100 * c / max)}%`, height: 6, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
+          {c - ind > 0 ? <Seg testID={`${bid}-${mu}-direct`} width={`${(100 * (c - ind)) / c}%`} color={th.accent} /> : null}
+          {ind > 0 ? <Seg testID={`${bid}-${mu}-indirect`} width={`${(100 * ind) / c}%`} color={th.accent} indirect edge={c - ind > 0} /> : null}
+        </View>
         {mark ? <View testID={`mark-${mu}`} style={{ position: 'absolute', left: `${Math.round(100 * mark / max)}%`, top: -3, width: 2, height: 12, marginLeft: -1, backgroundColor: th.text }} /> : null}
       </View>
     </View>); })}</>;

@@ -95,7 +95,7 @@ describe('C2 / MER-02 / LOG-03: częstotliwość partii dla każdego celu, braki
     const bw = addLocation('bodyweight'); const r = generate(inp({ locationId: bw.id }));
     expect(r.below10).toEqual(MAJOR.filter(m => (r.weeklySets[m] ?? 0) < WEEKLY_SETS_MARK));
     const below = previewWarnings(r, inp({ locationId: bw.id })).find(x => x.kind === 'below')!.text;
-    expect(below).toMatch(/^Poniżej 10 serii tygodniowo: /); for (const m of r.missing) expect(below).not.toContain(t(m));
+    expect(below).toMatch(/^Poniżej celu serii tygodniowo: /); for (const m of r.missing) expect(below).not.toContain(t(m));
   });
 });
 

@@ -34,12 +34,12 @@ test('wejście z Szablonów i z Planu tygodnia', async () => {
 test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgodny z logiką; opisy celów i „Na czym to oparte”', async () => {
   await boot('/generator');
   expect(screen.getByText('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań; części oznaczone jako konwencja albo uproszczenie nie wynikają z badań.')).toBeTruthy();
-  expect(screen.getByText('Masa: co najmniej 10 serii na partię w tygodniu, 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy(); /* audyt 0.10 MER-06: 0–3 (ACSM 2026: blisko upadku albo 2–3) */
+  expect(screen.getByText('Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie 10), 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy(); /* audyt 0.10 MER-06: 0–3 (ACSM 2026: blisko upadku albo 2–3) */
   const r = generate({ goal: 'hypertrophy', locationId: null, sessions: 3, minutes: 60 });
   expect(screen.getByText(/^pon\.? FBW A · śr\.? FBW B · pt\.? FBW A$/)).toBeTruthy();
   const it = r.templates[0].items[0]; expect(screen.getByText(`${exName(store.exById(it.exerciseId))} — 3 × 8–\u206012, przerwa 2:00`)).toBeTruthy();
   expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii — uproszczenie, jedno źródło\): klatka \d/)).toBeTruthy(); /* MER-17 */
-  expect(screen.getByText(`Poniżej 10 serii tygodniowo: ${r.below10.join(', ')}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.`)).toBeTruthy();
+  expect(screen.getByText(`Poniżej celu serii tygodniowo: ${r.below10.map(m => `${m} (${String(r.weeklySets[m]).replace('.', ',')}/${r.goals[m]})`).join(', ')}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.`)).toBeTruthy();
   /* audyt 0.10 (C2 atrybucja, C4 MER-06/07/12): wszystkie punkty „Na czym to oparte” — pełne brzmienie w tests/audit-0.10-gen-ui.test.tsx */
   for (const x of [/^• Każda główna partia co najmniej 2 dni w tygodniu \(WHO 2020/, /^• Serie: 3 na ćwiczenie/, /^• Liczba serii z czasu sesji: \(minuty − 10 min rozgrzewki\) × 60 \/ \(40 s serii \+ średnia przerwa 105 s\) = 20;/,
     /^• Zakresy powtórzeń \(masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10\)/, /^• Wysiłek: zwykle 0–3 powtórzenia w zapasie/, /^• Przerwy: 3 min/, /^• Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar — konwencja\.$/]) expect(screen.getByText(x)).toBeTruthy();

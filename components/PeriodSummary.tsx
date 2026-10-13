@@ -7,7 +7,8 @@ import { fmtVol } from '@/lib/units';
 import { periodSummary, periodTitle, type PeriodKind } from '@/lib/period';
 import { Chip, H2, Muted, Txt, monoSafe } from '@/components/ui';
 import { MuscleMap } from '@/components/MuscleMap';
-import { setsByMuscle } from '@/lib/stats';
+import { setsSplitByMuscle } from '@/lib/stats';
+import { splitTotals } from '@/lib/setSplit';
 import { monthWeeks, PLATE_STACK } from '@/lib/motif';
 import { PlateStack, a11yHidden } from '@/components/Motif';
 
@@ -33,7 +34,7 @@ function MonthWeeks({ start, end }: { start: number; end: number }) {
  */
 export function PeriodSummary() {
   const th = useTheme(); const [kind, setKind] = useState<PeriodKind>('week'); const [offset, setOffset] = useState(0);
-  useTick(); const s = periodSummary(kind, offset); const deload = kind === 'week' && isDeloadWeek(s.start); const prevDeload = kind === 'week' && isDeloadWeek(s.start - 86400e3);
+  useTick(); const s = periodSummary(kind, offset); const split = setsSplitByMuscle(s.start, s.end); const deload = kind === 'week' && isDeloadWeek(s.start); const prevDeload = kind === 'week' && isDeloadWeek(s.start - 86400e3);
   const pick = (k: PeriodKind) => { setKind(k); setOffset(0); };
   const arrow = (label: string, glyph: string, delta: number, disabled = false) => (
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ disabled }} disabled={disabled} onPress={() => setOffset(o => o + delta)} hitSlop={8}
@@ -69,7 +70,7 @@ export function PeriodSummary() {
             <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.monoBold }}>{monoSafe(v, true)} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{'\u00a0'}<Muted style={{ fontSize: 12, fontFamily: F.mono }}>{monoSafe(p)}</Muted>)</Muted>{/* A11-11: słowo krojem tekstu (Plex Mono bez greckich liter), liczba mono */}</Txt>
           </View>))}
       </View>
-      <MuscleMap sets={setsByMuscle(s.start, s.end)} />
+      <MuscleMap sets={splitTotals(split)} splits={split} />
       <Muted style={{ fontSize: 12, fontFamily: F.semibold, marginTop: 10, marginBottom: 4 }}>{t('Rekordy w tym okresie')}</Muted>
       {s.prs.length ? s.prs.map(({ workoutId, at, pr }) => (
         <View key={workoutId + pr.exercise.id + pr.set.id} style={{ paddingVertical: 4 }}>
