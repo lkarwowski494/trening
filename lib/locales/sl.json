@@ -1532,5 +1532,8 @@
  "Poprawione sformułowania części wskazówek techniki.": "Izboljšana formulacija nekaterih nasvetov za tehniko.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Branje iz Apple Health (vklopite v Nastavitvah): koraki in druge dejavnosti na plošči dneva, povprečje korakov pod »Ta teden« ter srčni utrip in kcal z ure pri treningu.",
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Vrstice serij ločeno prikazujejo posredne serije (pomožne, štete po 0,5).",
- "Generator uwzględnia Twój cel serii z Ustawień.": "Generator upošteva vaš cilj serij iz Nastavitev."
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generator upošteva vaš cilj serij iz Nastavitev.",
+ "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Enotnejše upravljanje po vsej aplikaciji: okna z gumbom „Prekliči“ na levi, „+“ v glavah seznamov za dodajanje ter razumljivejša sporočila in opisi za VoiceOver.",
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Gumb „Pišite nam“ v Več → O aplikaciji.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "Po vadbi z novim rekordom vas lahko aplikacija prosi za oceno – redko in samo v sistemskem oknu."
 }

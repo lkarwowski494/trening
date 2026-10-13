@@ -3431,6 +3431,10 @@
   "en": "When restored from the archive, the template returns to the plan."
  },
  {
+  "pl": "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.",
+  "en": "After a workout with a new record, the app may ask you for a rating — rarely, and only in the system dialog."
+ },
+ {
   "pl": "Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.",
   "en": "After hiding this message the copy can no longer be sent from the app — send it first if you need it."
  },
@@ -3937,6 +3941,10 @@
   "en": "Front"
  },
  {
+  "pl": "Przycisk „Napisz do nas” w Więcej → O aplikacji.",
+  "en": "A “Write to us” button in More → About."
+ },
+ {
   "pl": "Przyda się: {list}.",
   "en": "Would help: {list}."
  },
@@ -4369,6 +4377,10 @@
  {
   "pl": "specjalistyczne serwisy treningowe",
   "en": "specialist training websites"
+ },
+ {
+  "pl": "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.",
+  "en": "More consistent controls across the app: windows with “Cancel” on the left, “+” in list headers for adding, and clearer messages and VoiceOver descriptions."
  },
  {
   "pl": "Sprawdź datę i godzinę",

@@ -1532,5 +1532,8 @@
  "Poprawione sformułowania części wskazówek techniki.": "Redaksi sebagian tips teknik diperbaiki.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Pembacaan dari Apple Health (aktifkan di Pengaturan): langkah dan aktivitas lain di panel hari, rata-rata langkah di bawah “Minggu ini”, serta detak jantung dan kcal dari jam tangan saat latihan.",
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Bilah set menampilkan set tidak langsung secara terpisah (set pendukung, dihitung 0,5).",
- "Generator uwzględnia Twój cel serii z Ustawień.": "Pembuat memperhitungkan target set Anda dari Pengaturan."
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Pembuat memperhitungkan target set Anda dari Pengaturan.",
+ "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Penggunaan yang lebih konsisten di seluruh aplikasi: jendela dengan “Batal” di kiri, “+” di header daftar untuk menambah, serta pesan dan deskripsi VoiceOver yang lebih jelas.",
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Tombol “Tulis kepada kami” di Lainnya → Tentang.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "Setelah latihan dengan rekor baru, aplikasi dapat meminta ulasan — jarang dan hanya lewat jendela sistem."
 }

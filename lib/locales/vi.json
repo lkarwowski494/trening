@@ -1532,5 +1532,8 @@
  "Poprawione sformułowania części wskazówek techniki.": "Đã cải thiện cách diễn đạt của một số mẹo kỹ thuật.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Đọc từ Apple Health (bật trong Cài đặt): số bước chân và hoạt động khác trong bảng của ngày, số bước trung bình dưới “Tuần này”, cùng nhịp tim và kcal từ đồng hồ khi tập.",
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Thanh hiệp hiển thị riêng các hiệp gián tiếp (hiệp phụ, tính 0,5).",
- "Generator uwzględnia Twój cel serii z Ustawień.": "Trình tạo tính đến mục tiêu số hiệp của bạn trong Cài đặt."
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Trình tạo tính đến mục tiêu số hiệp của bạn trong Cài đặt.",
+ "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Thao tác nhất quán hơn trên toàn ứng dụng: cửa sổ có “Hủy” ở bên trái, dấu “+” ở tiêu đề danh sách để thêm, cùng thông báo và mô tả VoiceOver rõ ràng hơn.",
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Nút “Liên hệ với chúng tôi” trong Thêm → Giới thiệu.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "Sau buổi tập có kỷ lục mới, ứng dụng có thể xin bạn đánh giá — hiếm khi và chỉ trong cửa sổ hệ thống."
 }

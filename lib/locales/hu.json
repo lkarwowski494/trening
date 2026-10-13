@@ -1532,5 +1532,8 @@
  "Poprawione sformułowania części wskazówek techniki.": "Javítottuk néhány technikai tipp megfogalmazását.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Olvasás az Apple Healthből (a Beállításokban kapcsolható be): lépések és egyéb tevékenységek a napi panelen, az átlagos lépésszám az „Ezen a héten” alatt, valamint az órából származó pulzus és kcal az edzésnél.",
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "A sorozatsávok külön mutatják a közvetett sorozatokat (másodlagos, 0,5-tel számolt).",
- "Generator uwzględnia Twój cel serii z Ustawień.": "A generátor figyelembe veszi a Beállításokban megadott sorozatcélt."
+ "Generator uwzględnia Twój cel serii z Ustawień.": "A generátor figyelembe veszi a Beállításokban megadott sorozatcélt.",
+ "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Egységesebb kezelés az egész alkalmazásban: az ablakokban a „Mégsem” balra kerül, a listák fejlécében „+” gomb szolgál a hozzáadásra, az üzenetek és a VoiceOver-leírások pedig érthetőbbek.",
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Új „Írj nekünk” gomb az Egyebek → Az alkalmazásról részben.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "Új rekordos edzés után az alkalmazás értékelést kérhet – ritkán, és csak a rendszerablakban."
 }

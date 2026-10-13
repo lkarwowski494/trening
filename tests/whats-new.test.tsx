@@ -59,7 +59,7 @@ describe('ekran Trening', () => {
     expect(screen.getByText(WHATS_NEW[0].build ? new RegExp(`^Wersja testowa ${WHATS_NEW[0].build} · `) : 'W tej wersji')).toBeTruthy(); /* bieżący wpis: niewydany albo wydany (0.11 — build 1005) */
     for (const x of WHATS_NEW[0].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id);
-    const old = WHATS_NEW.find(e => e.build === 1002)!; /* 1002 — rozwijany niżej (nad nim 0.16, 0.15, 0.14, nowy układ 0.13, 0.12, 1005, 1004) */ const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
+    const old = WHATS_NEW.find(e => e.build === 1002)!; /* 1002 — rozwijany niżej (nad nim 0.17, 0.16, 0.15, 0.14, nowy układ 0.13, 0.12, 1005, 1004) */ const oldItem = `• ${old.items()[0]}`; expect(screen.queryByText(oldItem)).toBeNull();
     expect(screen.getByText(/^▸ Wersja testowa 1008 · 12 paź 2026$/)).toBeTruthy(); /* 0.12.0 — build 1008, zwinięte pod bieżącym wpisem 0.13 */
     expect(screen.getByText(/^▸ Wersja testowa 1005 · 10 paź 2026$/)).toBeTruthy(); /* 0.11.0 — wydanie 2 */
     expect(screen.getByText(/^▸ Wersja testowa 1004 · 9 paź 2026$/)).toBeTruthy(); /* 0.10.0 — wydanie 1 (A11B-8) */
@@ -77,6 +77,10 @@ describe('ekran Trening', () => {
   });
   test('treść wpisów po polsku na ekranie (wszystkie rozwinięte po kolei)', async () => {
     const texts = [
+      /* 13.10.2026 (0.17.0): spójna obsługa, „Napisz do nas”, prośba o ocenę */
+      'Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.',
+      'Przycisk „Napisz do nas” w Więcej → O aplikacji.',
+      'Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.',
       /* 13.10.2026 (0.16.0): odczyt z Apple Health, paski serii z odcinkiem pośrednim, cel serii w generatorze */
       'Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.',
       'Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).',

@@ -1532,5 +1532,8 @@
  "Poprawione sformułowania części wskazówek techniki.": "Mejorada la redacción de algunos consejos de técnica.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Lectura de Apple Health (se activa en Ajustes): pasos y otras actividades en el panel del día, promedio de pasos bajo «Esta semana» y frecuencia cardiaca y kcal del reloj en el entrenamiento.",
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Las barras de series muestran por separado las series indirectas (secundarias, contadas a 0,5).",
- "Generator uwzględnia Twój cel serii z Ustawień.": "El generador tiene en cuenta tu objetivo de series de Ajustes."
+ "Generator uwzględnia Twój cel serii z Ustawień.": "El generador tiene en cuenta tu objetivo de series de Ajustes.",
+ "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Manejo más coherente en toda la app: ventanas con «Cancelar» a la izquierda, «+» en las cabeceras de las listas para añadir, y mensajes y descripciones de VoiceOver más claros.",
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Botón «Escríbenos» en Más → Acerca de.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "Tras un entrenamiento con un nuevo récord, la app puede pedirte una valoración: con poca frecuencia y solo en la ventana del sistema."
 }

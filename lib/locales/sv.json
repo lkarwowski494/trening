@@ -1532,5 +1532,8 @@
  "Poprawione sformułowania części wskazówek techniki.": "Förbättrad formulering av en del teknikråd.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Avläsning från Apple Health (slås på i Inställningar): steg och andra aktiviteter i dagspanelen, genomsnittligt antal steg under ”Den här veckan” samt puls och kcal från klockan vid ett pass.",
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Setstaplarna visar indirekta set separat (sekundära set, räknas som 0,5).",
- "Generator uwzględnia Twój cel serii z Ustawień.": "Generatorn tar hänsyn till ditt setmål från Inställningar."
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generatorn tar hänsyn till ditt setmål från Inställningar.",
+ "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Mer enhetlig hantering i hela appen: fönster med ”Avbryt” till vänster, ”+” i listrubrikerna för att lägga till samt tydligare meddelanden och beskrivningar för VoiceOver.",
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Knappen ”Skriv till oss” under Mer → Om appen.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "Efter ett pass med nytt rekord kan appen be om ett betyg – sällan och bara i systemfönstret."
 }

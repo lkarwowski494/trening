@@ -1532,5 +1532,8 @@
  "Poprawione sformułowania części wskazówek techniki.": "Formulări îmbunătățite pentru o parte dintre sfaturile de tehnică.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Citire din Apple Health (se activează în Configurări): pași și alte activități în panoul zilei, media pașilor sub „Săptămâna aceasta” și pulsul și kcal de la ceas la antrenament.",
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Barele de serii arată separat seriile indirecte (secundare, numărate câte 0,5).",
- "Generator uwzględnia Twój cel serii z Ustawień.": "Generatorul ține cont de ținta ta de serii din Configurări."
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generatorul ține cont de ținta ta de serii din Configurări.",
+ "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Utilizare mai coerentă în toată aplicația: ferestre cu „Anulează” în stânga, „+” în antetele listelor pentru adăugare și mesaje și descrieri VoiceOver mai clare.",
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Butonul „Scrie-ne” din Mai mult → Despre aplicație.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "După un antrenament cu un record nou, aplicația poate cere o evaluare – rar și doar în fereastra sistemului."
 }

@@ -1048,4 +1048,8 @@ export const EN: Record<string, string> = {
   'Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.': 'Reading from Apple Health (turn it on in Settings): steps and other activities in the day panel, average steps under “This week”, and heart rate and kcal from your watch on a workout.',
   'Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).': 'Set bars show indirect sets separately (secondary sets, counted as 0.5 each).',
   'Generator uwzględnia Twój cel serii z Ustawień.': 'The generator now uses your sets goal from Settings.',
+  /* 0.17.0 „Co nowego” */
+  'Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.': 'More consistent controls across the app: windows with “Cancel” on the left, “+” in list headers for adding, and clearer messages and VoiceOver descriptions.',
+  'Przycisk „Napisz do nas” w Więcej → O aplikacji.': 'A “Write to us” button in More → About.',
+  'Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.': 'After a workout with a new record, the app may ask you for a rating — rarely, and only in the system dialog.',
 };

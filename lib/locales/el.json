@@ -1532,5 +1532,8 @@
  "Poprawione sformułowania części wskazówek techniki.": "Βελτιώθηκε η διατύπωση ορισμένων συμβουλών τεχνικής.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Ανάγνωση από το Apple Health (ενεργοποιείται στις Ρυθμίσεις): βήματα και άλλες δραστηριότητες στον πίνακα της ημέρας, μέσος όρος βημάτων κάτω από το «Αυτή την εβδομάδα» και καρδιακός ρυθμός και kcal από το ρολόι στην προπόνηση.",
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Οι μπάρες σετ δείχνουν χωριστά τα έμμεσα σετ (δευτερεύοντα, με μέτρηση 0,5 το καθένα).",
- "Generator uwzględnia Twój cel serii z Ustawień.": "Η γεννήτρια λαμβάνει υπόψη τον στόχο σετ από τις Ρυθμίσεις."
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Η γεννήτρια λαμβάνει υπόψη τον στόχο σετ από τις Ρυθμίσεις.",
+ "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Πιο συνεπής χειρισμός σε όλη την εφαρμογή: παράθυρα με «Ακύρωση» αριστερά, «+» στις κεφαλίδες των λιστών για προσθήκη, καθώς και πιο κατανοητά μηνύματα και περιγραφές για το VoiceOver.",
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Κουμπί «Γράψτε μας» στο Περισσότερα → Σχετικά με την εφαρμογή.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "Μετά από προπόνηση με νέο ρεκόρ η εφαρμογή μπορεί να ζητήσει αξιολόγηση — σπάνια και μόνο στο παράθυρο του συστήματος."
 }

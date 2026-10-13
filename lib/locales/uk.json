@@ -1532,5 +1532,8 @@
  "Poprawione sformułowania części wskazówek techniki.": "Покращено формулювання частини порад щодо техніки.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Читання з Apple Health (вмикається в Параметрах): кроки та інша активність на панелі дня, середня кількість кроків під «Цей тиждень», а також пульс і ккал з годинника під час тренування.",
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Смужки підходів показують окремо опосередковані підходи (допоміжні, враховуються по 0,5).",
- "Generator uwzględnia Twój cel serii z Ustawień.": "Генератор враховує вашу ціль підходів із Параметрів."
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Генератор враховує вашу ціль підходів із Параметрів.",
+ "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Одноманітніше керування в усьому застосунку: у вікнах «Скасувати» ліворуч, у заголовках списків є «+» для додавання, а повідомлення й описи для VoiceOver стали зрозумілішими.",
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Кнопка «Напишіть нам» у Більше → Про застосунок.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "Після тренування з новим рекордом застосунок може попросити оцінку — рідко й лише в системному вікні."
 }

@@ -1532,5 +1532,8 @@
  "Poprawione sformułowania części wskazówek techniki.": "Täiendatud osa tehnikavihjete sõnastust.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Lugemine Apple Healthist (lülitatakse sisse Seadetes): sammud ja muud tegevused päevapaneelil, keskmine sammude arv jaotise „See nädal“ all ning kella pulss ja kcal treeningul.",
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "Seeriaribad näitavad kaudseid seeriaid eraldi (abistavad, arvestatud 0,5 kaupa).",
- "Generator uwzględnia Twój cel serii z Ustawień.": "Generaator arvestab Seadetes seatud seeriate eesmärki."
+ "Generator uwzględnia Twój cel serii z Ustawień.": "Generaator arvestab Seadetes seatud seeriate eesmärki.",
+ "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Ühtlasem kasutus kogu rakenduses: aknad nupuga „Tühista“ vasakul, „+“ loendite päistes lisamiseks ning selgemad teated ja VoiceOveri kirjeldused.",
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Nupp „Kirjuta meile“ jaotises Rohkem → Rakendusest.",
+ "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "Uue rekordiga treeningu järel võib rakendus paluda hinnangut – harva ja ainult süsteemiaknas."
 }
