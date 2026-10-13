@@ -11,7 +11,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|---|
 | EKRAN | 30 | 30 | 0 |
 | UI | 297 | 297 | 0 |
-| TEKST | 979 | 979 | 0 |
+| TEKST | 978 | 978 | 0 |
 | LOGIKA | 788 | 788 | 0 |
 | WYMIAR | 88 | 88 | 0 |
 
@@ -909,7 +909,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Po dopisaniu zakresu byłoby ciężarów: {c} — najwyżej {n}. Zwiększ krok albo usuń odznaczone. | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx |
 | Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”. | lib/guide.ts | tests/guide.test.tsx |
 | Po przywróceniu z archiwum szablon wróci do planu. | lib/plan.ts | tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-plan.test.ts |
-| Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym. | lib/whatsnew.ts | tests/release-0.17.test.tsx, tests/whats-new.test.tsx |
 | Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna. | app/(tabs)/index.tsx | tests/matrix-ui.test.tsx |
 | Po zapisie szablon trafi na ten dzień. | app/plan.tsx | tests/plan-new-template-day.test.tsx |
 | Podgląd | app/generator.tsx | tests/csv-import-ui.test.tsx, tests/dashboard.test.tsx, tests/gen-days-ui.test.tsx +4 |

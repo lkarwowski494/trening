@@ -1534,6 +1534,5 @@
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "組數長條會分開顯示間接組（輔助，以 0.5 計）。",
  "Generator uwzględnia Twój cel serii z Ustawień.": "產生器會採用「設定」中的組數目標。",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "整個 App 的操作更一致：視窗的「取消」在左側，清單標題以「+」新增，訊息與 VoiceOver 說明也更清楚。",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "「更多」→「關於」新增「寫信給我們」按鈕。",
- "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "完成創下新紀錄的訓練後，App 可能會請你評分——這種情況很少，且只會出現在系統視窗中。"
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "「更多」→「關於」新增「寫信給我們」按鈕。"
 }

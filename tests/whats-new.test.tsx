@@ -77,10 +77,9 @@ describe('ekran Trening', () => {
   });
   test('treść wpisów po polsku na ekranie (wszystkie rozwinięte po kolei)', async () => {
     const texts = [
-      /* 13.10.2026 (0.17.0): spójna obsługa, „Napisz do nas”, prośba o ocenę */
+      /* 13.10.2026 (0.17.0): spójna obsługa, „Napisz do nas” */
       'Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.',
       'Przycisk „Napisz do nas” w Więcej → O aplikacji.',
-      'Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.',
       /* 13.10.2026 (0.16.0): odczyt z Apple Health, paski serii z odcinkiem pośrednim, cel serii w generatorze */
       'Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.',
       'Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).',

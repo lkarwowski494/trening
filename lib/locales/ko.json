@@ -1534,6 +1534,5 @@
  "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).": "세트 막대가 간접 세트(보조, 0.5세트로 계산)를 따로 보여 줍니다.",
  "Generator uwzględnia Twój cel serii z Ustawień.": "생성기가 설정에서 정한 세트 목표를 반영합니다.",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "앱 전체에서 조작이 더 일관됩니다. 창의 ‘취소’는 왼쪽에, 목록 머리글에는 추가용 ‘+’가 있고, 메시지와 VoiceOver 설명이 더 명확해졌습니다.",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "더보기 → 앱 정보에 ‘문의하기’ 버튼이 생겼습니다.",
- "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.": "새 기록을 세운 운동 뒤에 앱이 평가를 요청할 수 있습니다. 드물게, 시스템 창으로만 표시됩니다."
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "더보기 → 앱 정보에 ‘문의하기’ 버튼이 생겼습니다."
 }

@@ -3431,10 +3431,6 @@
   "en": "When restored from the archive, the template returns to the plan."
  },
  {
-  "pl": "Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.",
-  "en": "After a workout with a new record, the app may ask you for a rating — rarely, and only in the system dialog."
- },
- {
   "pl": "Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.",
   "en": "After hiding this message the copy can no longer be sent from the app — send it first if you need it."
  },

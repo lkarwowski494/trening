@@ -1,6 +1,6 @@
 /**
  * Wydanie 0.17.0 (docs/32, docs/18): spójna obsługa w całej aplikacji (okna z „Anuluj” po lewej, „+” w nagłówkach list, komunikaty, VoiceOver), „Napisz do nas”
- * w Więcej → O aplikacji, prośba o ocenę po treningu z rekordem. Wersja projektu i bieżący wpis „Co nowego” (id '2026-10-15', data 13.10.2026, bez numeru buildu
+ * w Więcej → O aplikacji (punkt o prośbie o ocenę usunięty 13.10.2026, decyzja A). Wersja projektu i bieżący wpis „Co nowego” (id '2026-10-15', data 13.10.2026, bez numeru buildu
  * do czasu wydania na TestFlight; numer dopisuje się po przebiegu). Wpis 0.16 (build 1013) jest historyczny (release-0.16.test.tsx). Subskrypcja jest wyłączona
  * przełącznikiem PAYWALL.ENABLED — wpis o niej nie wspomina (test niżej pilnuje obu rzeczy).
  */
@@ -15,7 +15,6 @@ const E = () => WHATS_NEW.find(e => e.id === '2026-10-15')!;
 const PL = [
   'Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.',
   'Przycisk „Napisz do nas” w Więcej → O aplikacji.',
-  'Po treningu z nowym rekordem aplikacja może poprosić o ocenę — rzadko i tylko w oknie systemowym.',
 ];
 
 describe('wydanie 0.17.0', () => {
@@ -30,7 +29,7 @@ describe('wydanie 0.17.0', () => {
     expect(cur.build === undefined || cur.build > 1013).toBe(true);
     expect(prev.build).toBe(1013);
   });
-  test('wpis 0.17 po polsku: spójna obsługa, „Napisz do nas”, prośba o ocenę; 3 punkty, każdy kończy się kropką', () => {
+  test('wpis 0.17 po polsku: spójna obsługa, „Napisz do nas”, 2 punkty (punkt o prośbie o ocenę usunięty 13.10 — decyzja A: w TestFlight okno się nie pokazuje), każdy kończy się kropką', () => {
     expect(E().items()).toEqual(PL);
   });
   test('wpis 0.17 nie zawiera nazw innych aplikacji (wytyczne 2.3.7 / 5.2.1) ani wzmianki o subskrypcji (przełącznik wyłączony)', () => {
@@ -39,10 +38,10 @@ describe('wydanie 0.17.0', () => {
     expect(all).not.toMatch(/subskrypc|abonament|płatn|zakup|premium|cennik/i);
     expect(PAYWALL.ENABLED).toBe(false); /* gdyby włączono, wpis o subskrypcji to osobna decyzja */
   });
-  test('wszystkie języki: trzy punkty przetłumaczone, bez „{”, kropka („。” w ja/zh-Hant), VoiceOver zachowane, zgodność z tIn', () => {
+  test('wszystkie języki: dwa punkty przetłumaczone, bez „{”, kropka („。” w ja/zh-Hant), VoiceOver zachowane, zgodność z tIn', () => {
     for (const l of LANGS) { if (l === 'pl') continue; applyLang(l);
       const it = E().items();
-      expect([l, it.length]).toEqual([l, 3]);
+      expect([l, it.length]).toEqual([l, 2]);
       expect([l, it.filter(x => /[{}]/.test(x) || !/[.。]$/.test(x))]).toEqual([l, []]);
       expect([l, it.filter((x, i) => x === PL[i])]).toEqual([l, []]);
       expect([l, it[0].includes('VoiceOver')]).toEqual([l, true]);
@@ -51,10 +50,9 @@ describe('wydanie 0.17.0', () => {
   test('angielski i francuski (twarde spacje, „vous”)', () => {
     applyLang('en'); expect(E().items()).toEqual([
       'More consistent controls across the app: windows with “Cancel” on the left, “+” in list headers for adding, and clearer messages and VoiceOver descriptions.',
-      'A “Write to us” button in More → About.',
-      'After a workout with a new record, the app may ask you for a rating — rarely, and only in the system dialog.']);
+      'A “Write to us” button in More → About.']);
     applyLang('fr'); const fr = E().items();
-    expect(fr[0]).toContain('l’application :'); expect(fr[0]).toContain('« Annuler »'); expect(fr[1]).toContain('« Écrivez-nous »'); expect(fr[2]).toContain('vous demander');
+    expect(fr[0]).toContain('l’application :'); expect(fr[0]).toContain('« Annuler »'); expect(fr[1]).toContain('« Écrivez-nous »'); expect(fr).toHaveLength(2);
   });
   test('nazwy w punkcie 2 zgodne ze słownikami ekranu: „Napisz do nas”, „Więcej”, „O aplikacji” w każdym języku', () => {
     for (const l of LANGS) { if (l === 'pl') continue;
@@ -63,7 +61,7 @@ describe('wydanie 0.17.0', () => {
       const it = E().items()[1];
       expect([l, it.includes(a), it.includes(b), it.includes(c)]).toEqual([l, true, true, true]); }
   });
-  test('nakładki: pt-BR „o app”, es-419 „calificación”', () => {
-    applyLang('pt-BR'); expect(E().items()[0]).toContain('todo o app'); applyLang('es-419'); expect(E().items()[2]).toContain('calificación');
+  test('nakładki: pt-BR „o app”; es-419 bez własnych punktów (dziedziczy es; jedyna różnica „calificación” odpadła z punktem o ocenie)', () => {
+    applyLang('pt-BR'); expect(E().items()[0]).toContain('todo o app'); applyLang('es-419'); const la = E().items(); applyLang('es'); expect(la).toEqual(E().items());
   });
 });
