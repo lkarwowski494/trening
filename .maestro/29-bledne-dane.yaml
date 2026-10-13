@@ -1,0 +1,126 @@
+# Błędne, puste i skrajne dane (katalog przepływów docs/37: NU-12, PR-07, PR-08, PR-09, PR-10): zakończenie pustego treningu, liczby poza zakresem w polach treningu i ustawień,
+# masa ciała (pusta, ponad limit, poprawna), pusty szablon, szybkie podwójne stuknięcie. Każde pole ma limit z jednego miejsca w kodzie (lib/state/util.ts REPS_MAX / REST_MAX,
+# lib/seed.ts BODY_MASS_MAX); aplikacja obcina wartość albo odmawia z komunikatem — nigdy nie zapisuje śmieci i nie zawiesza ekranu. Kombinacje wartości granicznych: Jest (matrix-bounds).
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Nothing to save. Discard this workout\\?" / "No ticked sets" ← 'Nic do zapisania. Odrzucić ten trening?' / 'Brak odhaczonych serii' (okno „Zakończ” bez serii)
+#   w-0-0 / r-0-0                                            ← testID pól ciężaru i powtórzeń (components/ActiveWorkout.tsx)
+#   bodymass-kg / "Save measurement" / "Enter body weight."   ← pole i przycisk (app/more/bodymass.tsx); 'Wpisz masę ciała.'
+#   doubleTapOn                                              ← dwa szybkie stuknięcia (blokada useOnce w components/ui.tsx)
+appId: pl.lukasz.trening
+name: Błędne i skrajne dane
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+# --- pusty trening: „Zakończ” bez serii nie zapisuje sesji ---
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "Finish", timeout: 30000 }
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Nothing to save. Discard this workout\\?", timeout: 15000 }
+- takeScreenshot: 100-pusty-trening-zakoncz
+- tapOn: { text: "Cancel", below: "Nothing to save. Discard this workout\\?" }
+- assertNotVisible: "Nothing to save. Discard this workout\\?"
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Nothing to save. Discard this workout\\?", timeout: 15000 }
+- tapOn: { text: "Discard workout", below: "Nothing to save. Discard this workout\\?" }
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- assertNotVisible: "This week"   # nic nie zapisano: ekran jak dla nowej osoby
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+# --- liczby poza zakresem w polach serii: powtórzenia i ciężar obcięte do limitu ---
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Back Squat"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Back Squat,.*"
+- extendedWaitUntil: { visible: "Set 1 done — Back Squat", timeout: 30000 }
+# E2E 105 (Q-029): na wolnym symulatorze ginęły pojedyncze znaki wpisu — wpis razem z asercją skutku w jednej powtórce
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: { id: "w-0-0" }
+      - eraseText: 12
+      - inputText: "99999999"
+      - tapOn: { id: "r-0-0" }
+      - eraseText: 12
+      - inputText: "99999"
+      - hideKeyboard
+      - assertVisible: "Now: .* × 1000"   # powtórzenia obcięte do REPS_MAX = 1000 (wpisano 99999)
+- takeScreenshot: 101-skrajne-wartosci
+- tapOn: "Set 1 done — Back Squat"
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- takeScreenshot: 102-sesja-ze-skrajnymi-wartosciami
+- tapOn: "Back"
+# --- ekrany z takimi danymi nadal się otwierają (Postępy, Plan) ---
+- tapOn: "Progress, tab.*"
+- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "1 session", timeout: 30000 }
+# --- masa ciała: pusta, ponad limit, zła data, poprawna ---
+- tapOn: "Progress, tab.*"
+- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Body weight — measurements"
+- extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }
+- tapOn: "Save measurement"
+- extendedWaitUntil: { visible: "Enter your body weight.", timeout: 15000 }
+- tapOn: "OK"
+- retry:
+    maxRetries: 2
+    commands:
+      - runFlow:
+          when: { visible: "Body weight" }
+          commands:
+            - tapOn: { text: "OK", optional: true }
+      - tapOn: { id: "bodymass-kg" }
+      - eraseText: 10
+      - inputText: "99999"
+      - hideKeyboard
+      - tapOn: "Save measurement"
+      - extendedWaitUntil: { visible: "Body weight must be greater than zero and no more than .*", timeout: 15000 }
+- takeScreenshot: 103-masa-ponad-limit
+- tapOn: "OK"
+- tapOn: { id: "bodymass-kg" }
+- eraseText: 10
+- inputText: "8"
+- inputText: "0"
+- tapOn: { text: "20.*", below: "Measurement date \\(YYYY-MM-DD\\)" }
+- eraseText: 10
+- inputText: "2026-13-45"
+- hideKeyboard
+- tapOn: "Save measurement"
+- extendedWaitUntil: { visible: "Invalid date. Enter YYYY-MM-DD.*", timeout: 15000 }
+- tapOn: "OK"
+# --- szablon: podwójne stuknięcie „Add template” otwiera jeden edytor; pusta nazwa i brak ćwiczeń ---
+- tapOn: "Back"
+- tapOn: "More, tab.*"
+- tapOn: "Templates"
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
+- doubleTapOn: "Add template"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: { text: "New template", below: "Name" }
+- eraseText: 30
+- pressKey: Enter
+- tapOn: "Save template"
+- extendedWaitUntil: { visible: "The template is empty — “Edit” to add exercises.", timeout: 15000 }   # pusta nazwa → nazwa domyślna; szablon bez ćwiczeń zapisany, ale bez „Start”
+- assertVisible: "New template"
+- assertNotVisible: "Start: .*"
+- takeScreenshot: 104-pusty-szablon
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
+- assertVisible: { id: "tpl-list-0" }
+- assertNotVisible: { id: "tpl-list-1" }   # podwójne stuknięcie nie utworzyło drugiego szablonu

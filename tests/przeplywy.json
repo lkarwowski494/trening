@@ -1,0 +1,3007 @@
+{
+ "_opis": "Katalog przepływów użytkownika (jedno źródło prawdy E2E, 13.10.2026, polecenie właściciela). Pilnuje go tests/przeplywy.test.ts; dokumenty docs/37 i docs/39 generuje node scripts/flows-catalog.mjs --write. Szczegóły: docs/38.",
+ "stany": {
+  "nowy": "Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState).",
+  "istniejacy": "Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia).",
+  "aktualizacja": "Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34).",
+  "kopia": "Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu.",
+  "jezyk-motyw": "Po zmianie języka, wyglądu lub jednostki: zmienione w Ustawieniach, sprawdzane też po restarcie."
+ },
+ "grupy": {
+  "NU": "Pierwsze uruchomienie i start od zera",
+  "TR": "Trening na żywo",
+  "PR": "Przerwanie, tło, błędne i skrajne dane",
+  "PL": "Plan, kalendarz i generator",
+  "SZ": "Szablony i biblioteka ćwiczeń",
+  "HI": "Historia i postępy",
+  "US": "Ustawienia, uprawnienia, zakupy",
+  "DA": "Kopia, eksport, import, czyszczenie danych",
+  "AK": "Po aktualizacji z poprzedniej wersji",
+  "JM": "Po zmianie języka, wyglądu lub jednostki",
+  "ZD": "Funkcje systemowe (powiadomienia, widżet, Zdrowie, sklep)",
+  "W2": "Wersja 0.20 (zegarek i głos) — projekt"
+ },
+ "przeplywy": [
+  {
+   "id": "NU-01",
+   "tytul": "Pierwsze uruchomienie: ekran Trening z „Pierwszymi krokami”",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Zainstaluj i uruchom aplikację (pusta baza)",
+    "Poczekaj na koniec animacji startowej",
+    "Na zakładce Trening jest karta „Pierwsze kroki” z trzema krokami (szablon / plan / pierwszy trening)"
+   ],
+   "wynik": "Brak szablonów i treningów; widać „Pierwsze kroki”, a duży przycisk startu to „Pusty trening”.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "31-pierwszy-tydzien.yaml",
+   "znaczniki": [
+    "First steps",
+    "Set a weekly plan"
+   ]
+  },
+  {
+   "id": "NU-02",
+   "tytul": "„Co nowego”: otwarcie panelu, rozwinięcie starszych wpisów, zamknięcie",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Stuknij „i” w nagłówku ekranu Trening",
+    "Przeczytaj bieżący wpis, rozwiń starsze",
+    "Zamknij panel"
+   ],
+   "wynik": "Panel pokazuje wpis bieżącej wersji; po zamknięciu znika; „i” nie ma kropki.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "31-pierwszy-tydzien.yaml",
+   "znaczniki": [
+    "whats-new-i",
+    "In this version"
+   ]
+  },
+  {
+   "id": "NU-03",
+   "tytul": "Pierwszy trening bez szablonu: pusty trening, ćwiczenie z listy, seria, zakończenie, sesja",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„Pusty trening” → „+ Dodaj ćwiczenie” → wyszukaj → wybierz",
+    "Wpisz ciężar i powtórzenia, odhacz serię",
+    "Zakończ → potwierdź → ekran sesji"
+   ],
+   "wynik": "Sesja zapisana i widoczna w Planie; kafelki „Ten tydzień” pokazują 1 trening.",
+   "ekrany": [
+    "/",
+    "/picker",
+    "/history/[id]"
+   ],
+   "scenariusz": "04-plank-stoper.yaml",
+   "znaczniki": [
+    "Empty workout",
+    "Search exercises"
+   ]
+  },
+  {
+   "id": "NU-04",
+   "tytul": "Pierwszy szablon zrobiony ręcznie (Więcej → Szablony → „+”)",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Więcej → Szablony → „+” → wpisz nazwę",
+    "Dodaj dwa ćwiczenia z listy",
+    "Zapisz szablon"
+   ],
+   "wynik": "Szablon jest na liście i da się z niego wystartować.",
+   "ekrany": [
+    "/templates",
+    "/template/[id]",
+    "/picker"
+   ],
+   "scenariusz": "01-trening-z-szablonu.yaml",
+   "znaczniki": [
+    "Save template"
+   ]
+  },
+  {
+   "id": "NU-05",
+   "tytul": "Generator szablonów i planu: dni, cel, podgląd, zapis, aktywacja",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„Planowanie” → „Wygeneruj szablony i plan”",
+    "Wybierz dni, obejrzyj podgląd i „Na czym to oparte”",
+    "Zapisz → „Ustaw jako aktywny” → okno „Zapisano”"
+   ],
+   "wynik": "Powstają szablony i aktywny plan; kalendarz pokazuje zaplanowane dni.",
+   "ekrany": [
+    "/generator",
+    "/plan",
+    "/guide"
+   ],
+   "scenariusz": "14-generator.yaml",
+   "znaczniki": [
+    "Generate templates and plan",
+    "Save templates and plan"
+   ]
+  },
+  {
+   "id": "NU-06",
+   "tytul": "Plan z moich szablonów",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„Pierwsze kroki” → „Plan z moich szablonów”",
+    "Wybierz szablon i liczbę dni",
+    "Podgląd → „Zapisz plan” → aktywacja"
+   ],
+   "wynik": "Aktywny plan z własnego szablonu; „+ Nowy szablon” w dniu planu tworzy szablon przypisany do dnia.",
+   "ekrany": [
+    "/generator",
+    "/plan"
+   ],
+   "scenariusz": "18-plan-z-moich-szablonow.yaml",
+   "znaczniki": [
+    "Plan from my templates"
+   ]
+  },
+  {
+   "id": "NU-07",
+   "tytul": "Plan tygodnia ręcznie: szablon w każdym dniu, odmowa przypomnienia",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Plan → „Planowanie” → dzień → chip szablonu (×7)",
+    "Przy pierwszym dniu okno zgody na przypomnienie → „Nie teraz”"
+   ],
+   "wynik": "Plan ma szablon w każdym dniu; przypomnienie niewłączone; aplikacja działa dalej.",
+   "ekrany": [
+    "/plan",
+    "/history"
+   ],
+   "scenariusz": "13-kalendarz-plan.yaml",
+   "znaczniki": [
+    "Monday, Rest",
+    "Not now"
+   ]
+  },
+  {
+   "id": "NU-08",
+   "tytul": "Pierwsze miejsce i sprzęt: preset, przełączniki, licznik dostępnych ćwiczeń",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Więcej → Miejsca i sprzęt → „Dodaj miejsce” → preset",
+    "Włącz drążek / hantle / ławkę",
+    "Wróć — licznik „Dostępne ćwiczenia” się zmienił"
+   ],
+   "wynik": "Miejsce zapisane, filtr „Place filter” w wyborze ćwiczeń zawęża listę.",
+   "ekrany": [
+    "/more/locations",
+    "/more/location/[id]",
+    "/picker"
+   ],
+   "scenariusz": "06-miejsca.yaml",
+   "znaczniki": [
+    "Add place",
+    "Available exercises"
+   ]
+  },
+  {
+   "id": "NU-09",
+   "tytul": "Przewodnik: temat → „Pokaż” → docelowy ekran",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„Pierwsze kroki” albo Więcej → Przewodnik",
+    "Wybierz temat, przeczytaj kroki",
+    "„Pokaż” przenosi na właściwy ekran i da się wrócić"
+   ],
+   "wynik": "Każdy temat ma działające „Pokaż”; powrót nie zostawia ekranu bez drogi wstecz.",
+   "ekrany": [
+    "/guide"
+   ],
+   "scenariusz": "38-pomoc-powiadomienia.yaml",
+   "znaczniki": [
+    "Guide"
+   ]
+  },
+  {
+   "id": "NU-10",
+   "tytul": "Pierwszy trening z szablonu: start, seria, przerwa, zakończenie, kafelki „Ten tydzień”",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„Inny trening” → „Z szablonu” → „Start”",
+    "Wpisz wartości, odhacz serię, poczekaj/pomiń przerwę",
+    "Zakończ"
+   ],
+   "wynik": "Sesja zapisana; „Ten tydzień” pokazuje „Workouts: 1”; brak „Pierwszych kroków” dla szablonu.",
+   "ekrany": [
+    "/",
+    "/pick-template",
+    "/history/[id]"
+   ],
+   "scenariusz": "01-trening-z-szablonu.yaml",
+   "znaczniki": [
+    "This week",
+    "Workouts: 1"
+   ]
+  },
+  {
+   "id": "NU-11",
+   "tytul": "Pierwszy trening: darmowy limit i ekran zakupu przy drugim treningu w miesiącu",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Zrób pierwszy trening (build ze sztucznym sklepem: limit 1)",
+    "Spróbuj zacząć drugi",
+    "Ekran zakupu zamiast startu; „Rozpocznij miesiąc za darmo” odblokowuje"
+   ],
+   "wynik": "Limit działa; zakup (sztuczny sklep) odblokowuje start; „Zarejestruj trening z przeszłości” nadal możliwe.",
+   "ekrany": [
+    "/paywall"
+   ],
+   "scenariusz": "21-subskrypcja.yaml",
+   "znaczniki": [
+    "Start your free month"
+   ]
+  },
+  {
+   "id": "NU-12",
+   "tytul": "Zakończenie pustego treningu (żadna seria nie odhaczona)",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„Pusty trening” → bez odhaczania serii stuknij „Zakończ”",
+    "Okno „Brak odhaczonych serii: Nic do zapisania. Odrzucić ten trening?”",
+    "„Anuluj” zostaje w treningu; „Odrzuć trening” wraca na ekran Trening bez sesji"
+   ],
+   "wynik": "Pusty trening nie zapisuje sesji, nie psuje „Ten tydzień”.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "29-bledne-dane.yaml",
+   "znaczniki": [
+    "Nothing to save",
+    "Discard workout"
+   ]
+  },
+  {
+   "id": "NU-13",
+   "tytul": "Ćwiczenia, którego nie ma w bibliotece: „Utwórz „…”” z wyboru ćwiczenia",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "W wyborze ćwiczenia wpisz nieistniejącą nazwę",
+    "„Utwórz „…”” → ćwiczenie powstaje i trafia do treningu"
+   ],
+   "wynik": "Nowe ćwiczenie jest w bibliotece i w treningu.",
+   "ekrany": [
+    "/picker",
+    "/exercises"
+   ],
+   "scenariusz": "27-biblioteka-cwiczen.yaml",
+   "znaczniki": [
+    "Create “Zottman Curl E2E”"
+   ]
+  },
+  {
+   "id": "NU-14",
+   "tytul": "Nawigacja po czterech zakładkach: Trening, Plan, Postępy, Więcej; Szablony i Ćwiczenia pod Więcej",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Stuknij każdą zakładkę po kolei",
+    "Więcej → Szablony / Ćwiczenia → „Wróć” do listy Więcej z paskiem zakładek"
+   ],
+   "wynik": "Każda zakładka otwiera właściwy ekran; powrót zawsze możliwy; Masa ciała nie jest już w Ustawieniach.",
+   "ekrany": [
+    "/",
+    "/history",
+    "/progress",
+    "/more",
+    "/templates",
+    "/exercises"
+   ],
+   "scenariusz": "19-zakladki.yaml",
+   "znaczniki": [
+    "Progress, tab",
+    "Exercises"
+   ]
+  },
+  {
+   "id": "TR-01",
+   "tytul": "Start dzisiejszego treningu z planu dużym przyciskiem",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Plan tygodnia ma szablon na dziś",
+    "Zakładka Trening → „Start planned workout”",
+    "Trening startuje z szablonu"
+   ],
+   "wynik": "Trening ma serie i wartości z szablonu; karta „Dziś” zmienia się na „w toku”.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "13-kalendarz-plan.yaml",
+   "znaczniki": [
+    "Start planned workout"
+   ]
+  },
+  {
+   "id": "TR-02",
+   "tytul": "Inny trening → „Powtórz ostatni”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Po jednym zapisanym treningu: „Inny trening” → „Powtórz ostatni ({nazwa})”"
+   ],
+   "wynik": "Nowy trening ma skład ostatniego; stary pozostaje w historii.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "01-trening-z-szablonu.yaml",
+   "znaczniki": [
+    "Repeat last"
+   ]
+  },
+  {
+   "id": "TR-03",
+   "tytul": "Inny trening → „Z szablonu” → wybór szablonu → Start",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„Inny trening” → „Z szablonu”",
+    "Wybierz szablon na liście → „Start”"
+   ],
+   "wynik": "Trening startuje, okno wyboru znika.",
+   "ekrany": [
+    "/",
+    "/pick-template"
+   ],
+   "scenariusz": "01-trening-z-szablonu.yaml",
+   "znaczniki": [
+    "From a template"
+   ]
+  },
+  {
+   "id": "TR-04",
+   "tytul": "Start treningu z podglądu szablonu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Więcej → Szablony → szablon → „Start”"
+   ],
+   "wynik": "Trening startuje, stos nawigacji wraca na Trening; w toku innego treningu przycisk „Trening w toku” pyta, co zrobić.",
+   "ekrany": [
+    "/template/[id]",
+    "/templates"
+   ],
+   "scenariusz": "08-szablon-wiersze.yaml",
+   "znaczniki": [
+    "Start: Rows E2E"
+   ]
+  },
+  {
+   "id": "TR-05",
+   "tytul": "Start z panelu dnia w Planie (dzień dzisiejszy)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Plan → dzisiejszy dzień → panel dnia → „Start”"
+   ],
+   "wynik": "Trening startuje z szablonu dnia; panel pokazuje „w toku”.",
+   "ekrany": [
+    "/history"
+   ],
+   "scenariusz": "26-plan-zarzadzanie.yaml",
+   "znaczniki": [
+    "Start planned workout: Upper A"
+   ]
+  },
+  {
+   "id": "TR-06",
+   "tytul": "Wpisanie ciężaru i powtórzeń, odhaczenie serii, przerwa startuje",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Stuknij pole ciężaru, wpisz liczbę",
+    "Pole powtórzeń, wpisz liczbę",
+    "Stuknij ✓ — pasek przerwy ze „Skip”"
+   ],
+   "wynik": "Seria zaliczona, licznik postępu rośnie, przerwa odlicza.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "31-pierwszy-tydzien.yaml",
+   "znaczniki": [
+    "w-0-0",
+    "Workout progress"
+   ]
+  },
+  {
+   "id": "TR-07",
+   "tytul": "Przerwa: pominięcie, ±15 s",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Odhacz serię",
+    "W panelu przerwy stuknij „−15 s”, „+15 s”, potem „Skip”"
+   ],
+   "wynik": "Przerwa się skraca / wydłuża / znika; licznik nie schodzi poniżej 0.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "25-trening-narzedzia.yaml",
+   "znaczniki": [
+    "Extend rest by 15 seconds",
+    "Shorten rest by 15 seconds"
+   ]
+  },
+  {
+   "id": "TR-08",
+   "tytul": "Zmiana przerwy ćwiczenia: „Tylko teraz” albo „Zapamiętaj”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Stuknij „⏱” przy ćwiczeniu",
+    "Wpisz inną liczbę sekund",
+    "„Zapamiętaj” zapisuje przerwę ćwiczenia na stałe, „Tylko teraz” tylko w tym treningu"
+   ],
+   "wynik": "Kolejna przerwa ma nowy czas.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "25-trening-narzedzia.yaml",
+   "znaczniki": [
+    "Remember",
+    "Rest: 45 s"
+   ]
+  },
+  {
+   "id": "TR-09",
+   "tytul": "Widok skupiony: karta „teraz”, talerze na stronę, „Seria zrobiona”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Włącz miejsce z talerzami",
+    "Start treningu ze sztangą",
+    "Karta „Teraz: 80 kg × 5” i rysunek talerzy; „Seria zrobiona”"
+   ],
+   "wynik": "Karta i talerze zgodne z ciężarem; po ostatniej serii „Wszystkie serie odhaczone”.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "11-widok-skupiony.yaml",
+   "znaczniki": [
+    "Each side",
+    "All sets ticked off"
+   ]
+  },
+  {
+   "id": "TR-10",
+   "tytul": "Seria na czas: stoper („Start”) i odhaczenie bez pomiaru",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ćwiczenie na czas (plank)",
+    "Stuknij „Start stopera”",
+    "Zakończ serię albo „Odhacz bez pomiaru”"
+   ],
+   "wynik": "Czas zapisany w serii; stoper nie zostaje włączony po zakończeniu.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "04-plank-stoper.yaml",
+   "znaczniki": [
+    "Start set stopwatch",
+    "Tick without timing"
+   ]
+  },
+  {
+   "id": "TR-11",
+   "tytul": "Dodanie ćwiczenia w trakcie treningu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„+ Dodaj ćwiczenie” → wyszukaj → wybierz"
+   ],
+   "wynik": "Ćwiczenie pojawia się na końcu z domyślnymi seriami.",
+   "ekrany": [
+    "/picker"
+   ],
+   "scenariusz": "04-plank-stoper.yaml",
+   "znaczniki": [
+    "Search exercises"
+   ]
+  },
+  {
+   "id": "TR-12",
+   "tytul": "Zamiana ćwiczenia „tylko dziś”: propozycje, cofnięcie, „Zawsze w tym miejscu”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Stuknij „Zamień ćwiczenie”",
+    "Wybierz propozycję",
+    "„Cofnij” przywraca poprzednie"
+   ],
+   "wynik": "Blok pokazuje „zamiast: …”; cofnięcie wraca do planu.",
+   "ekrany": [
+    "/swap"
+   ],
+   "scenariusz": "07-zamiana.yaml",
+   "znaczniki": [
+    "Suggestion 1",
+    "instead of"
+   ]
+  },
+  {
+   "id": "TR-13",
+   "tytul": "Pominięcie ćwiczenia na dziś i przywrócenie",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„Pomiń dziś” przy ćwiczeniu",
+    "Blok zwija się z „pominięte dziś”",
+    "„Przywróć ćwiczenie”"
+   ],
+   "wynik": "Pominięte nie liczy się do postępu; po przywróceniu wraca.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "31-pierwszy-tydzien.yaml",
+   "znaczniki": [
+    "skipped today",
+    "Restore exercise"
+   ]
+  },
+  {
+   "id": "TR-14",
+   "tytul": "Zmiana kolejności ćwiczeń w trakcie",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„Zmień kolejność” → lista → „Gotowe”"
+   ],
+   "wynik": "Kolejność zmieniona, wpisane wartości zostają.",
+   "ekrany": [
+    "/reorder"
+   ],
+   "scenariusz": "03-kolejnosc.yaml",
+   "znaczniki": [
+    "Reorder"
+   ]
+  },
+  {
+   "id": "TR-15",
+   "tytul": "Typy serii (rozgrzewka, drop set, do upadku) i „+ seria”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Szablon: „+ rozgrzewka”, „+ drop set”, typ z menu etykiety",
+    "Start — trening ma te same typy",
+    "„+ seria” w treningu"
+   ],
+   "wynik": "Etykiety W / 1 / 2D / F zgodne z typami.",
+   "ekrany": [
+    "/template/[id]",
+    "/"
+   ],
+   "scenariusz": "08-szablon-wiersze.yaml",
+   "znaczniki": [
+    "warm-up",
+    "drop set"
+   ]
+  },
+  {
+   "id": "TR-16",
+   "tytul": "Notatka do serii",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Numer serii → menu → „Notatka”",
+    "Wpisz tekst, zapisz"
+   ],
+   "wynik": "Notatka widoczna przy serii i w sesji po zakończeniu.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "25-trening-narzedzia.yaml",
+   "znaczniki": [
+    "Add note",
+    "tempo 3-1-1"
+   ]
+  },
+  {
+   "id": "TR-17",
+   "tytul": "Usunięcie serii przesunięciem w lewo (Nie / Usuń); ostatniej serii bloku nie da się usunąć",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Przesuń wiersz w lewo → „Usunąć serię?”",
+    "„Cancel” zostawia, „Delete” usuwa"
+   ],
+   "wynik": "Liczba serii zgodna z wyborem.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "12-usuwanie-gestem.yaml",
+   "znaczniki": [
+    "Delete set"
+   ]
+  },
+  {
+   "id": "TR-18",
+   "tytul": "Usunięcie ćwiczenia z trwającego treningu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Stopka bloku → „Usuń ćwiczenie” → potwierdź"
+   ],
+   "wynik": "Blok znika; licznik postępu liczy bez niego.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "25-trening-narzedzia.yaml",
+   "znaczniki": [
+    "ex-1-del",
+    "Remove from workout"
+   ]
+  },
+  {
+   "id": "TR-19",
+   "tytul": "Superset: łączenie i rozdzielanie ćwiczeń",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Stopka bloku → „⇅ SS” łączy z następnym",
+    "„✂ SS” rozdziela"
+   ],
+   "wynik": "W supersecie przerwa dopiero po rundzie.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "25-trening-narzedzia.yaml",
+   "znaczniki": [
+    "Link with next into a superset",
+    "Remove from superset"
+   ]
+  },
+  {
+   "id": "TR-20",
+   "tytul": "Pauza treningu i wznowienie",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„Pauza treningu” pod nazwą",
+    "Czas zatrzymany („· paused”)",
+    "„Wznów trening”"
+   ],
+   "wynik": "Czas treningu nie liczy pauzy.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "31-pierwszy-tydzien.yaml",
+   "znaczniki": [
+    "Pause workout",
+    "Resume workout"
+   ]
+  },
+  {
+   "id": "TR-21",
+   "tytul": "Zmiana miejsca w treningu i okno „Dostosuj do miejsca”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Chip „📍” → inne miejsce z brakami sprzętu",
+    "Okno „Dostosuj do: X” → „Zastosuj” albo „Anuluj”",
+    "Powrót na siłownię: sekcja „Wraca z planu”"
+   ],
+   "wynik": "Zamienniki oznaczone „zamiast: …”; szablon i plan bez zmian.",
+   "ekrany": [
+    "/adapt"
+   ],
+   "scenariusz": "22-dostosuj-do-miejsca.yaml",
+   "znaczniki": [
+    "Adjust to",
+    "Apply"
+   ]
+  },
+  {
+   "id": "TR-22",
+   "tytul": "Inne miejsce tylko na dziś",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„📍” → „Inne miejsce (tylko dziś)…”",
+    "Zestaw sprzętu → „Użyj” → okno Dostosuj → Zastosuj"
+   ],
+   "wynik": "Miejsce jednorazowe nie trafia na listę miejsc.",
+   "ekrany": [
+    "/place-once",
+    "/adapt"
+   ],
+   "scenariusz": "23-miejsce-jednorazowe.yaml",
+   "znaczniki": [
+    "Another place",
+    "Today only"
+   ]
+  },
+  {
+   "id": "TR-23",
+   "tytul": "Technika ćwiczenia z poziomu treningu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Stopka bloku → „ⓘ Technika” → karta ćwiczenia → „Wróć”"
+   ],
+   "wynik": "Trening w toku bez zmian po powrocie.",
+   "ekrany": [
+    "/exercise/[id]"
+   ],
+   "scenariusz": "25-trening-narzedzia.yaml",
+   "znaczniki": [
+    "Technique: Bench Press"
+   ]
+  },
+  {
+   "id": "TR-24",
+   "tytul": "Notatka do treningu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Pole notatki na dole listy → wpisz tekst → zakończ"
+   ],
+   "wynik": "Notatka widoczna na ekranie sesji.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "25-trening-narzedzia.yaml",
+   "znaczniki": [
+    "e.g. how you feel",
+    "lekko bolało ramię"
+   ]
+  },
+  {
+   "id": "TR-25",
+   "tytul": "Zakończenie z niedokończonymi seriami",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„Zakończ” → „Zakończyć trening?” → „Zakończ”"
+   ],
+   "wynik": "Sesja zapisana tylko z odhaczonymi seriami.",
+   "ekrany": [
+    "/",
+    "/history/[id]"
+   ],
+   "scenariusz": "31-pierwszy-tydzien.yaml",
+   "znaczniki": [
+    "Finish workout"
+   ]
+  },
+  {
+   "id": "TR-26",
+   "tytul": "Odrzucenie treningu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Dół listy → „Odrzuć trening” → potwierdź"
+   ],
+   "wynik": "Nic nie zapisuje się do historii; ekran Trening wraca do stanu startowego.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "25-trening-narzedzia.yaml",
+   "znaczniki": [
+    "Discard workout\\\\?",
+    "Workouts: 1"
+   ]
+  },
+  {
+   "id": "TR-27",
+   "tytul": "Cofnięcie omyłkowego odhaczenia serii",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Odhacz ✓, stuknij ponownie ✓"
+   ],
+   "wynik": "Seria wraca do nieodhaczonej, licznik postępu maleje, przerwa znika.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "25-trening-narzedzia.yaml",
+   "znaczniki": [
+    "Workout progress: 0 of 6 sets"
+   ]
+  },
+  {
+   "id": "TR-28",
+   "tytul": "Powrót do treningu z innej zakładki; próba startu drugiego treningu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "W trakcie treningu wejdź w Więcej → Szablony → szablon",
+    "Przycisk „Trening w toku” pyta, co zrobić",
+    "Zakładka Trening wraca do treningu"
+   ],
+   "wynik": "Nie powstają dwa treningi naraz.",
+   "ekrany": [
+    "/template/[id]"
+   ],
+   "scenariusz": "25-trening-narzedzia.yaml",
+   "znaczniki": [
+    "Back to workout",
+    "Finish or discard the current workout first."
+   ]
+  },
+  {
+   "id": "TR-29",
+   "tytul": "Tydzień deload: pytanie „Mniej serii / Pełny” przy starcie",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Oznacz tydzień jako deload",
+    "Start treningu → pytanie → „Mniej serii”"
+   ],
+   "wynik": "Trening ma mniej serii; po zakończeniu liczby w szablonie bez zmian.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "32-regularny-uzytkownik.yaml",
+   "znaczniki": [
+    "Fewer sets"
+   ]
+  },
+  {
+   "id": "TR-30",
+   "tytul": "Gumy oporowe: opór i asysta w treningu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Miejsce z gumami → trening z Band Pull Apart i Pull Up",
+    "Przycisk gumy przechodzi tylko przez poziomy miejsca"
+   ],
+   "wynik": "Guma zapisana w sesji.",
+   "ekrany": [
+    "/more/bands",
+    "/more/location/[id]"
+   ],
+   "scenariusz": "10-gumy.yaml",
+   "znaczniki": [
+    "Resistance bands"
+   ]
+  },
+  {
+   "id": "TR-31",
+   "tytul": "Zakończenie treningu: zmiany względem szablonu → „Zapisz zmiany w szablonie”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Zmień skład treningu z szablonu (zamiana / dodane ćwiczenie)",
+    "Zakończ → na sesji przycisk „Zapisz zmiany w szablonie”",
+    "Stuknij — szablon ma nowy skład"
+   ],
+   "wynik": "Szablon zmienia się tylko po wyraźnym wyborze użytkownika.",
+   "ekrany": [
+    "/history/[id]",
+    "/template/[id]"
+   ],
+   "scenariusz": "24-szablony-zarzadzanie.yaml",
+   "znaczniki": [
+    "Save changes to the template"
+   ]
+  },
+  {
+   "id": "PR-01",
+   "tytul": "Zabicie aplikacji w przerwie — pasek przerwy wraca",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Odhacz serię (przerwa)",
+    "Zabij aplikację, uruchom ponownie"
+   ],
+   "wynik": "Pasek przerwy nadal jest, wpisane wartości zostają.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "02-przerwa-po-restarcie.yaml",
+   "znaczniki": [
+    "Skip"
+   ]
+  },
+  {
+   "id": "PR-02",
+   "tytul": "Zabicie aplikacji w pauzie treningu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Pauza → zabij aplikację → uruchom"
+   ],
+   "wynik": "Trening dalej wstrzymany; „Wznów” kontynuuje.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "32-regularny-uzytkownik.yaml",
+   "znaczniki": [
+    "Resume workout"
+   ]
+  },
+  {
+   "id": "PR-03",
+   "tytul": "Zabicie aplikacji w trakcie wpisywania serii (wartości nieodhaczone)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Wpisz ciężar i powtórzenia bez ✓",
+    "Zabij aplikację, uruchom"
+   ],
+   "wynik": "Wpisane liczby zostają, trening w toku.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "36-przerwanie-szkice.yaml",
+   "znaczniki": [
+    "Now: 40 lb × 10"
+   ]
+  },
+  {
+   "id": "PR-04",
+   "tytul": "Zabicie aplikacji w edycji ćwiczenia — „Niezapisane zmiany”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Edytuj ćwiczenie, zmień pole",
+    "Zabij aplikację, uruchom",
+    "„Wróć do edycji” albo „Odrzuć zmiany”"
+   ],
+   "wynik": "Szkic odzyskany lub odrzucony na wybór użytkownika.",
+   "ekrany": [
+    "/exercise/[id]"
+   ],
+   "scenariusz": "16-edycja-na-zadanie.yaml",
+   "znaczniki": [
+    "Unsaved changes",
+    "Back to editing"
+   ]
+  },
+  {
+   "id": "PR-05",
+   "tytul": "Zabicie aplikacji w edycji szablonu — „Niezapisane zmiany”, „Odrzuć zmiany”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Edytuj szablon (nowa nazwa, dodane ćwiczenie)",
+    "Zabij aplikację, uruchom",
+    "„Odrzuć zmiany” — szablon bez zmian; ponowna próba i „Wróć do edycji”"
+   ],
+   "wynik": "Szablon nigdy nie jest w połowie zmieniony.",
+   "ekrany": [
+    "/template/[id]"
+   ],
+   "scenariusz": "36-przerwanie-szkice.yaml",
+   "znaczniki": [
+    "Discard changes",
+    "Back to editing"
+   ]
+  },
+  {
+   "id": "PR-06",
+   "tytul": "Anulowanie okien potwierdzeń: zakończenie, usuwanie, wyczyszczenie, import",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Otwórz okno (Zakończ / Usuń serię / Wyczyść dane / Nadpisać dane?)",
+    "Wybierz „Anuluj”/„Nie”"
+   ],
+   "wynik": "Nic się nie zmienia, ekran pod oknem bez zmian.",
+   "ekrany": [
+    "/",
+    "/more/settings",
+    "/more/backup"
+   ],
+   "scenariusz": "32-regularny-uzytkownik.yaml",
+   "znaczniki": [
+    "Erase all data"
+   ]
+  },
+  {
+   "id": "PR-07",
+   "tytul": "Błędne wartości w polach: ciężar, powtórzenia i RIR poza zakresem",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Wpisz bardzo dużą liczbę w ciężar/powtórzenia",
+    "Wpisz RIR ponad limit",
+    "Odhacz serię i zakończ"
+   ],
+   "wynik": "Wartości obcięte do limitów, sesja się zapisuje, nic się nie wiesza.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "29-bledne-dane.yaml",
+   "znaczniki": [
+    "w-0-0",
+    "× 1000"
+   ]
+  },
+  {
+   "id": "PR-08",
+   "tytul": "Pusty i niepełny szablon: pusta nazwa, brak ćwiczeń",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Nowy szablon bez nazwy i ćwiczeń → „Zapisz”",
+    "Start pustego szablonu"
+   ],
+   "wynik": "Aplikacja nadaje domyślną nazwę albo odmawia; start pustego szablonu nie psuje treningu.",
+   "ekrany": [
+    "/template/[id]"
+   ],
+   "scenariusz": "29-bledne-dane.yaml",
+   "znaczniki": [
+    "Save template",
+    "The template is empty"
+   ]
+  },
+  {
+   "id": "PR-09",
+   "tytul": "Błędna masa ciała i ustawienia liczbowe (przerwa, cel serii) poza zakresem",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Masa ciała 0 / ogromna / pusta → „Zapisz pomiar”",
+    "Domyślna przerwa 99999, cel serii poza zakresem"
+   ],
+   "wynik": "Wartości obcięte lub odrzucone z komunikatem.",
+   "ekrany": [
+    "/more/bodymass",
+    "/more/settings"
+   ],
+   "scenariusz": "29-bledne-dane.yaml",
+   "znaczniki": [
+    "Save measurement",
+    "Invalid date"
+   ]
+  },
+  {
+   "id": "PR-10",
+   "tytul": "Szybkie podwójne stuknięcie przycisku „+” (Dodaj szablon)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Szablony → dwa szybkie stuknięcia w „+”",
+    "Edytor otwiera się raz; pusta nazwa → domyślna „Nowy szablon”; zapis pustego szablonu"
+   ],
+   "wynik": "Powstaje jeden szablon (blokada podwójnego stuknięcia), pusty szablon bez „Start”.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "29-bledne-dane.yaml",
+   "znaczniki": [
+    "doubleTapOn",
+    "The template is empty"
+   ]
+  },
+  {
+   "id": "PR-11",
+   "tytul": "Aplikacja w tle (przycisk Home) i powrót — przerwa i trening w toku",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Odhacz serię → Home → poczekaj → wróć do aplikacji bez restartu"
+   ],
+   "wynik": "Odliczanie zgodne z upływem czasu, wpisane wartości zostają.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "41-tlo-powrot.yaml",
+   "znaczniki": [
+    "pressKey: Home",
+    "stopApp: false"
+   ],
+   "tryb": "eksperyment"
+  },
+  {
+   "id": "PR-12",
+   "tytul": "Zablokowany ekran w przerwie, powiadomienie o końcu przerwy, Live Activity i wibracja",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Odhacz serię → zablokuj telefon",
+    "Po czasie przerwy: dźwięk, wibracja, baner; Live Activity na ekranie blokady / Wyspie",
+    "Odblokuj — licznik zgodny"
+   ],
+   "wynik": "Powiadomienie i Live Activity pojawiają się dokładnie na koniec przerwy; zmiana czasu przerwy aktualizuje je.",
+   "ekrany": [
+    "/"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Maestro nie blokuje ekranu, baner powiadomień, ekran blokady i Dynamic Island są poza aplikacją; wibracja i dźwięk niewidoczne dla testu.",
+    "zastepnik": [
+     "tests/e2e-102-reminder.test.tsx",
+     "tests/timer-logic.test.ts",
+     "tests/audit-final-timer.test.tsx"
+    ],
+    "kontrola": "Przerwa 2:00 → zablokuj ekran → w 2:00 baner, dźwięk i wibracja; Live Activity pokazuje odliczanie i znika po końcu; odblokuj: licznik zgodny; zmień przerwę w trakcie — Live Activity się zmienia."
+   }
+  },
+  {
+   "id": "PR-13",
+   "tytul": "Porzucony trening: brak aktywności ponad 2 h (pytanie) i ponad 6 h (zapis sam)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Zostaw trening bez serii na kilka godzin",
+    "Otwórz aplikację: okno „Kontynuuj / Zakończ i zapisz / Odrzuć”, po 6 h sesja zapisana sama z komunikatem"
+   ],
+   "wynik": "Dane nie giną; użytkownik dostaje wybór.",
+   "ekrany": [
+    "/"
+   ],
+   "wyjatek": {
+    "typ": "jest",
+    "powod": "Symulator CI nie przestawia zegara systemowego (Maestro bez uprawnień administratora); zegar jest przestawiany w interpreterze (MAESTRO_NOW) i w testach.",
+    "zastepnik": [
+     "tests/audit-stale-ui.test.tsx",
+     "tests/audit-final-timer.test.tsx"
+    ]
+   }
+  },
+  {
+   "id": "PR-14",
+   "tytul": "Zmiana daty, strefy czasowej i przejście przez północ / granicę miesiąca",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Podróż do innej strefy albo trening przez północ",
+    "Dzień tygodnia, plan, „dziś” i sesje zgodne z lokalnym czasem"
+   ],
+   "wynik": "Brak zdublowanych / zgubionych dni; plan wskazuje właściwy dzień.",
+   "ekrany": [
+    "/",
+    "/history"
+   ],
+   "wyjatek": {
+    "typ": "jest",
+    "powod": "Zegara symulatora nie da się zmienić z Maestro; strefy sprawdza osobny nocny przebieg całego zestawu Jest w 7 strefach (tests-tz.yml), a scenariusze 13/31/32/33 interpreter uruchamia w niedzielę, poniedziałek i przed północą (MAESTRO_NOW).",
+    "zastepnik": [
+     "tests/matrix-time.test.ts",
+     "tests/maestro-zycie.test.tsx"
+    ]
+   }
+  },
+  {
+   "id": "PR-15",
+   "tytul": "Bardzo dużo danych: setki sesji, długa lista, wykresy, eksport",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Historia kilku lat (setki sesji, tysiące serii)",
+    "Otwórz Plan, Postępy, wykres ćwiczenia, kopię"
+   ],
+   "wynik": "Ekrany otwierają się bez zawieszenia; wyniki zgodne z danymi.",
+   "ekrany": [
+    "/history",
+    "/progress"
+   ],
+   "wyjatek": {
+    "typ": "jest",
+    "powod": "Wytworzenie setek sesji przez UI zajęłoby godziny (≈40 s na sesję); 8 sesji przez UI robi scenariusz 28, skalę sprawdzają testy wydajności i równoważności na wygenerowanych danych.",
+    "zastepnik": [
+     "tests/audit-perf-equiv.test.ts",
+     "tests/audit-perf-ui.test.tsx",
+     "tests/audit-records-perf.test.ts"
+    ]
+   }
+  },
+  {
+   "id": "PR-16",
+   "tytul": "Dane z nowszej wersji aplikacji i błąd startu bazy (ekrany awaryjne)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Zainstaluj starszą wersję na danych nowszej (downgrade) albo uszkodzona baza",
+    "Ekran „Dane z nowszej wersji” z „Wyślij dane” / „Spróbuj ponownie”"
+   ],
+   "wynik": "Aplikacja niczego nie nadpisuje i daje wyjście.",
+   "ekrany": [
+    "/"
+   ],
+   "wyjatek": {
+    "typ": "jest",
+    "powod": "Wymaga bazy zapisanej przez nowszy schemat albo uszkodzonej; z poziomu UI nie do wywołania, a downgrade przez TestFlight jest nieobsługiwany.",
+    "zastepnik": [
+     "tests/audit-persist.test.ts",
+     "tests/splash-start-error.test.tsx",
+     "tests/places-migrate.test.ts"
+    ]
+   }
+  },
+  {
+   "id": "PL-01",
+   "tytul": "Zmiana szablonu dnia w planie tygodnia i „Wolne”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Planowanie → wiersz dnia → chip innego szablonu albo „Wolne”"
+   ],
+   "wynik": "Zmiana od razu w kalendarzu i na karcie „Dziś”.",
+   "ekrany": [
+    "/plan"
+   ],
+   "scenariusz": "13-kalendarz-plan.yaml",
+   "znaczniki": [
+    "Tuesday: Upper A"
+   ]
+  },
+  {
+   "id": "PL-02",
+   "tytul": "Nazwa planu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Planowanie → pole nazwy planu → wpisz → wyjdź i wróć"
+   ],
+   "wynik": "Nazwa zapisana, widoczna w wierszu „Plan: …”.",
+   "ekrany": [
+    "/plan"
+   ],
+   "scenariusz": "26-plan-zarzadzanie.yaml",
+   "znaczniki": [
+    "plan-name",
+    "Turn off plan: Plan A"
+   ]
+  },
+  {
+   "id": "PL-03",
+   "tytul": "Drugi plan: utworzenie, aktywacja z potwierdzeniem, powrót do poprzedniego",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "„+ Nowy plan” → edycja kopii → „Ustaw jako aktywny” → „Ustaw”",
+    "W „Inne plany” wybierz poprzedni → „Ustaw jako aktywny”"
+   ],
+   "wynik": "Aktywny jest ostatnio wybrany plan; dni zgodne z planem.",
+   "ekrany": [
+    "/plan"
+   ],
+   "scenariusz": "26-plan-zarzadzanie.yaml",
+   "znaczniki": [
+    "Make active: "
+   ]
+  },
+  {
+   "id": "PL-04",
+   "tytul": "Usunięcie zapisanego planu przesunięciem w lewo",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Planowanie → „Inne plany” → przesuń plan w lewo → potwierdź"
+   ],
+   "wynik": "Plan znika; aktywny plan nietknięty.",
+   "ekrany": [
+    "/plan"
+   ],
+   "scenariusz": "26-plan-zarzadzanie.yaml",
+   "znaczniki": [
+    "plan-saved-0-del",
+    "Delete this plan"
+   ]
+  },
+  {
+   "id": "PL-05",
+   "tytul": "Wyłączenie planu (wszystkie dni „Wolne”)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Planowanie → ustaw każdy dzień na „Wolne” (albo przycisk wyłączenia planu)"
+   ],
+   "wynik": "Kalendarz bez zaplanowanych dni; karta „Dziś” bez planu.",
+   "ekrany": [
+    "/plan",
+    "/history"
+   ],
+   "scenariusz": "26-plan-zarzadzanie.yaml",
+   "znaczniki": [
+    "Turn off the plan",
+    "Make active: Plan A"
+   ]
+  },
+  {
+   "id": "PL-06",
+   "tytul": "Przesunięcie planu o dzień i powrót",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Panel dnia → „Przesuń albo pomiń” → „Zastosuj: Przesuń plan o 1 dzień”",
+    "„Przywróć z planu”"
+   ],
+   "wynik": "Dni planu przesunięte, potem przywrócone.",
+   "ekrany": [
+    "/history"
+   ],
+   "scenariusz": "13-kalendarz-plan.yaml",
+   "znaczniki": [
+    "Apply: Move plan by 1 day",
+    "Restore from plan"
+   ]
+  },
+  {
+   "id": "PL-07",
+   "tytul": "Wolne w wybranym dniu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Panel dnia → „Przesuń albo pomiń” → „Wolne w tym dniu”"
+   ],
+   "wynik": "Dzień oznaczony jako wolny (zmiana planu).",
+   "ekrany": [
+    "/history"
+   ],
+   "scenariusz": "26-plan-zarzadzanie.yaml",
+   "znaczniki": [
+    "Apply: Rest this day"
+   ]
+  },
+  {
+   "id": "PL-08",
+   "tytul": "Inny trening w dniu / dodanie treningu w dzień wolny (chip szablonu, „+ Nowy szablon”)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Panel dnia → „Inny trening” albo „Dodaj trening”",
+    "Wybierz chip szablonu"
+   ],
+   "wynik": "Dzień ma wybrany szablon bez zmiany reszty tygodnia.",
+   "ekrany": [
+    "/history"
+   ],
+   "scenariusz": "26-plan-zarzadzanie.yaml",
+   "znaczniki": [
+    "Change template",
+    "Planned: Upper A"
+   ]
+  },
+  {
+   "id": "PL-09",
+   "tytul": "Dopisanie treningu do minionego dnia z panelu dnia",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Plan → poprzedni miesiąc → miniony dzień → panel dnia → „Dopisz trening wstecz”",
+    "Wybierz szablon → edytor sesji → „Zapisz sesję”"
+   ],
+   "wynik": "Sesja z datą tego dnia i szablonem z planu.",
+   "ekrany": [
+    "/history/add",
+    "/history/edit/[id]"
+   ],
+   "scenariusz": "26-plan-zarzadzanie.yaml",
+   "znaczniki": [
+    "Log a past workout",
+    "Save session"
+   ]
+  },
+  {
+   "id": "PL-10",
+   "tytul": "Oznaczenie tygodnia jako deload i podpowiedź w kalendarzu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Panel dnia → „Więcej opcji” → „Oznacz tydzień jako deload”",
+    "Podpowiedź „Zaplanuj deload od …” → „Nie teraz”"
+   ],
+   "wynik": "Tydzień oznaczony; trening pyta o „Mniej serii”.",
+   "ekrany": [
+    "/history",
+    "/progress"
+   ],
+   "scenariusz": "05-edycja-historii.yaml",
+   "znaczniki": [
+    "Mark week as deload",
+    "This week: deload"
+   ]
+  },
+  {
+   "id": "PL-11",
+   "tytul": "Miejsce na zakres dni planu („Miejsce na te dni”)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Panel dnia → „Więcej opcji” → „Miejsce na te dni” → wybierz → „Ustaw miejsce”",
+    "„Usuń miejsce”"
+   ],
+   "wynik": "Start w tych dniach ma miejsce z planu; po usunięciu wraca główne.",
+   "ekrany": [
+    "/history",
+    "/place-once"
+   ],
+   "scenariusz": "13-kalendarz-plan.yaml",
+   "znaczniki": [
+    "Place for these days",
+    "Remove place"
+   ]
+  },
+  {
+   "id": "PL-12",
+   "tytul": "Ponowne użycie generatora: zastąpienie aktywnego planu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Wygeneruj plan drugi raz → „Ustaw nowy plan jako aktywny?”",
+    "Starszy plan zostaje w „Inne plany”"
+   ],
+   "wynik": "Szablony starego aktywnego planu są zastępowane na wyraźne polecenie.",
+   "ekrany": [
+    "/generator"
+   ],
+   "scenariusz": "14-generator.yaml",
+   "znaczniki": [
+    "Make the new plan active"
+   ]
+  },
+  {
+   "id": "PL-13",
+   "tytul": "Kalendarz: przechodzenie między miesiącami i dzień z sesją",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Plan → strzałki ‹ › miesiąca",
+    "Stuknij dzień z sesją → panel dnia → „Zrobione: …”"
+   ],
+   "wynik": "Panel pokazuje sesję; ekran sesji otwiera się i wraca.",
+   "ekrany": [
+    "/history",
+    "/history/[id]"
+   ],
+   "scenariusz": "05-edycja-historii.yaml",
+   "znaczniki": [
+    "Previous month",
+    "Next month"
+   ]
+  },
+  {
+   "id": "PL-14",
+   "tytul": "Przypomnienie o treningu z planu: przełącznik w Ustawieniach, stan zgody",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → „Przypomnienie o treningu z planu” wył./wł.",
+    "„Sprawdź zgodę na powiadomienia”"
+   ],
+   "wynik": "Przełącznik zapisany; komunikat o zgodzie zgodny ze stanem.",
+   "ekrany": [
+    "/more/settings"
+   ],
+   "scenariusz": "38-pomoc-powiadomienia.yaml",
+   "znaczniki": [
+    "sw-Reminder for planned workouts"
+   ]
+  },
+  {
+   "id": "PL-15",
+   "tytul": "Pusty szablon w planie: „Szablon jest pusty — dodaj ćwiczenia”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Plan z szablonem bez ćwiczeń",
+    "Karta „Dziś” / panel dnia pokazuje link do edytora"
+   ],
+   "wynik": "Link otwiera edytor szablonu.",
+   "ekrany": [
+    "/",
+    "/template/[id]"
+   ],
+   "wyjatek": {
+    "typ": "jest",
+    "powod": "Rzadka droga (szablon opróżniony po wpisaniu w plan); logika i ekran sprawdzone w testach, dodatkowy kosztowny scenariusz nie wnosi więcej.",
+    "zastepnik": [
+     "tests/plan-new-template-day.test.tsx",
+     "tests/plan-own-templates-ui.test.tsx"
+    ]
+   }
+  },
+  {
+   "id": "SZ-01",
+   "tytul": "Edytor szablonu: wiersze serii, zakresy, zwijane karty, dodanie i usunięcie ćwiczenia",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Edytuj szablon → „+ seria”, „+ rozgrzewka”, „+ drop set”",
+    "Wpisz zakres powtórzeń; zwiń kartę",
+    "„Usuń ćwiczenie”"
+   ],
+   "wynik": "Szablon zapisany ze strukturą wierszy; start przenosi typy i wartości.",
+   "ekrany": [
+    "/template/[id]"
+   ],
+   "scenariusz": "08-szablon-wiersze.yaml",
+   "znaczniki": [
+    "+ warm-up",
+    "Remove from template"
+   ]
+  },
+  {
+   "id": "SZ-02",
+   "tytul": "Edycja na żądanie: podgląd szablonu, „Edytuj”, Anuluj/Zapisz, odrzucenie zmian",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Otwórz szablon (podgląd bez pól)",
+    "„Edytuj szablon” → zmień → „Anuluj” → „Odrzuć zmiany”"
+   ],
+   "wynik": "Szablon bez zmian po odrzuceniu.",
+   "ekrany": [
+    "/template/[id]"
+   ],
+   "scenariusz": "08-szablon-wiersze.yaml",
+   "znaczniki": [
+    "Edit template",
+    "Discard changes"
+   ]
+  },
+  {
+   "id": "SZ-03",
+   "tytul": "Duplikowanie szablonu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Podgląd szablonu → „Duplikuj”"
+   ],
+   "wynik": "Kopia otwiera się jako nowy szablon, oryginał bez zmian.",
+   "ekrany": [
+    "/template/[id]"
+   ],
+   "scenariusz": "24-szablony-zarzadzanie.yaml",
+   "znaczniki": [
+    "Duplicate"
+   ]
+  },
+  {
+   "id": "SZ-04",
+   "tytul": "Archiwizacja szablonu i przywrócenie z archiwum",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Podgląd → „Archiwizuj”",
+    "Lista Szablony → „Archiwum (1)” → szablon → „Przywróć z archiwum”"
+   ],
+   "wynik": "Zarchiwizowany nie jest w wyborze treningu; po przywróceniu wraca.",
+   "ekrany": [
+    "/templates",
+    "/template/[id]"
+   ],
+   "scenariusz": "24-szablony-zarzadzanie.yaml",
+   "znaczniki": [
+    "Restore from archive"
+   ]
+  },
+  {
+   "id": "SZ-05",
+   "tytul": "Usunięcie szablonu przesunięciem w lewo (z informacją o planie)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Szablony → przesuń wiersz w lewo → „Usunąć szablon?” → Usuń"
+   ],
+   "wynik": "Szablon znika razem z jego dniami w planie.",
+   "ekrany": [
+    "/templates"
+   ],
+   "scenariusz": "24-szablony-zarzadzanie.yaml",
+   "znaczniki": [
+    "Delete template"
+   ]
+  },
+  {
+   "id": "SZ-06",
+   "tytul": "Folder szablonów",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Edytor szablonu → „+ Nowy folder” → nazwa → zapisz"
+   ],
+   "wynik": "Szablon pod nagłówkiem folderu na liście.",
+   "ekrany": [
+    "/templates",
+    "/template/[id]"
+   ],
+   "scenariusz": "08-szablon-wiersze.yaml",
+   "znaczniki": [
+    "New folder"
+   ]
+  },
+  {
+   "id": "SZ-07",
+   "tytul": "„Zapisz jako szablon” z zakończonej sesji",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Sesja → „Zapisz jako szablon”",
+    "Nowy szablon z ćwiczeniami i seriami sesji"
+   ],
+   "wynik": "Szablon na liście; sesja bez zmian.",
+   "ekrany": [
+    "/history/[id]",
+    "/template/[id]"
+   ],
+   "scenariusz": "24-szablony-zarzadzanie.yaml",
+   "znaczniki": [
+    "Save as template",
+    "Upper A \\\\(2\\\\)"
+   ]
+  },
+  {
+   "id": "SZ-08",
+   "tytul": "Biblioteka: wyszukiwanie, filtr „Podstawowe”, lista wszystkich ćwiczeń",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Więcej → Ćwiczenia → szukaj → zdejmij filtr „Podstawowe”"
+   ],
+   "wynik": "Lista zawęża się i rozszerza zgodnie z filtrem.",
+   "ekrany": [
+    "/exercises"
+   ],
+   "scenariusz": "17-biblioteka-technika.yaml",
+   "znaczniki": [
+    "Filter: basic exercises"
+   ]
+  },
+  {
+   "id": "SZ-09",
+   "tytul": "Podgląd ćwiczenia: technika, rysunek ruchu, pauza animacji",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ćwiczenie → „Technika” → rozwiń → „Zatrzymaj animację”"
+   ],
+   "wynik": "Treść techniki z podpisem źródeł; animację można zatrzymać.",
+   "ekrany": [
+    "/exercise/[id]"
+   ],
+   "scenariusz": "17-biblioteka-technika.yaml",
+   "znaczniki": [
+    "Pause animation"
+   ]
+  },
+  {
+   "id": "SZ-10",
+   "tytul": "Nowe własne ćwiczenie: nazwa, partia, sprzęt, co zapisywać",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ćwiczenia → „+ Nowe” → wypełnij → „Zapisz ćwiczenie”",
+    "Użyj w treningu przez wybór ćwiczenia"
+   ],
+   "wynik": "Ćwiczenie w bibliotece i do wyboru w treningu.",
+   "ekrany": [
+    "/exercises",
+    "/exercise/[id]"
+   ],
+   "scenariusz": "27-biblioteka-cwiczen.yaml",
+   "znaczniki": [
+    "Save exercise",
+    "Cable Hammer E2E"
+   ]
+  },
+  {
+   "id": "SZ-11",
+   "tytul": "Edycja ćwiczenia (Anuluj / Zapisz / Odrzuć) i trwałość po restarcie",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ćwiczenie → „Edytuj” → zmień → „Zapisz” → restart"
+   ],
+   "wynik": "Zmiana trwała po restarcie.",
+   "ekrany": [
+    "/exercise/[id]"
+   ],
+   "scenariusz": "16-edycja-na-zadanie.yaml",
+   "znaczniki": [
+    "Save exercise"
+   ]
+  },
+  {
+   "id": "SZ-12",
+   "tytul": "Usunięcie lub archiwizacja ćwiczenia i przywrócenie z wyszukiwania",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Ćwiczenia → przesuń własne ćwiczenie w lewo → potwierdź",
+    "Wyszukaj nazwę → „Przywróć „…””"
+   ],
+   "wynik": "Ćwiczenie znika z wyboru, historia zachowuje nazwę; przywrócenie działa.",
+   "ekrany": [
+    "/exercises"
+   ],
+   "scenariusz": "27-biblioteka-cwiczen.yaml",
+   "znaczniki": [
+    "lib-row-1-del",
+    "Restore “Cable Hammer E2E”"
+   ]
+  },
+  {
+   "id": "SZ-13",
+   "tytul": "Gumy oporowe: poziomy, kolory, dodanie i usunięcie",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Miejsce → „Gumy” → poziomy / kolor / usuń"
+   ],
+   "wynik": "Poziomy i kolor zapisane; usunięcie pyta o skutki w historii.",
+   "ekrany": [
+    "/more/bands"
+   ],
+   "scenariusz": "10-gumy.yaml",
+   "znaczniki": [
+    "Band colour"
+   ]
+  },
+  {
+   "id": "HI-01",
+   "tytul": "Trening wstecz z szablonu, termin „Dzień wcześniej”, zapis",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Plan → „Zarejestruj trening z przeszłości” → „Dzień wcześniej” → szablon → wpisz → „Zapisz sesję”"
+   ],
+   "wynik": "Sesja z datą wczorajszą w kalendarzu.",
+   "ekrany": [
+    "/history/add",
+    "/history/edit/[id]"
+   ],
+   "scenariusz": "05-edycja-historii.yaml",
+   "znaczniki": [
+    "Log a past workout",
+    "Save session"
+   ]
+  },
+  {
+   "id": "HI-02",
+   "tytul": "Edycja zapisanej sesji (nazwa, serie), „Zapisać zmiany?”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Sesja → „Edytuj sesję” → zmień → „Zapisz sesję” → „Zapisz”"
+   ],
+   "wynik": "Zmiany widoczne na ekranie sesji i w statystykach.",
+   "ekrany": [
+    "/history/[id]",
+    "/history/edit/[id]"
+   ],
+   "scenariusz": "05-edycja-historii.yaml",
+   "znaczniki": [
+    "Edit session",
+    "Cancel session editing"
+   ]
+  },
+  {
+   "id": "HI-03",
+   "tytul": "Usunięcie sesji przesunięciem w lewo (z ostrzeżeniem o kopii w Zdrowiu)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Plan → lista sesji → przesuń w lewo → „Usunąć trening?” → Usuń"
+   ],
+   "wynik": "Sesja znika z kalendarza i statystyk.",
+   "ekrany": [
+    "/history"
+   ],
+   "scenariusz": "28-dluga-historia.yaml",
+   "znaczniki": [
+    "session-0-del",
+    "Delete this session from history"
+   ]
+  },
+  {
+   "id": "HI-04",
+   "tytul": "Lista sesji „Pokaż wszystkie”, kilka sesji w jednym dniu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Plan → lista pod kalendarzem → „Pokaż wszystkie”"
+   ],
+   "wynik": "Wszystkie sesje, najnowsze na górze.",
+   "ekrany": [
+    "/history"
+   ],
+   "scenariusz": "05-edycja-historii.yaml",
+   "znaczniki": [
+    "Show all"
+   ]
+  },
+  {
+   "id": "HI-05",
+   "tytul": "Postępy: podsumowanie tygodnia i miesiąca, strzałki wstecz",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Postępy → „Podsumowanie” → Tydzień / Miesiąc → ‹ ›"
+   ],
+   "wynik": "Liczby zgodne z historią; „poprz.” z porównaniem.",
+   "ekrany": [
+    "/progress"
+   ],
+   "scenariusz": "05-edycja-historii.yaml",
+   "znaczniki": [
+    "Previous period",
+    "Month"
+   ]
+  },
+  {
+   "id": "HI-06",
+   "tytul": "Mapa mięśni i serie na partię vs poprzedni tydzień",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Postępy → mapa mięśni → lista partii z kreską celu"
+   ],
+   "wynik": "Partie ze zrobionych ćwiczeń podświetlone; liczby serii zgodne.",
+   "ekrany": [
+    "/progress"
+   ],
+   "scenariusz": "31-pierwszy-tydzien.yaml",
+   "znaczniki": [
+    "Muscle map"
+   ]
+  },
+  {
+   "id": "HI-07",
+   "tytul": "Wykres i rekordy ćwiczenia (max ciężar, objętość sesji, e1RM)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Postępy → wybierz ćwiczenie",
+    "Rekordy i wykres; „Ostatnie treningi” → sesja"
+   ],
+   "wynik": "Rekordy zgodne z historią.",
+   "ekrany": [
+    "/progress",
+    "/exercise/[id]"
+   ],
+   "scenariusz": "31-pierwszy-tydzien.yaml",
+   "znaczniki": [
+    "RECORDS",
+    "e1RM"
+   ]
+  },
+  {
+   "id": "HI-08",
+   "tytul": "Rekord w kończonym treningu (plakietka rekordu, karta rekordów sesji)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Dwa treningi z rosnącym ciężarem",
+    "Drugi: po zakończeniu karta rekordów na ekranie sesji"
+   ],
+   "wynik": "Rekord oznaczony tylko tam, gdzie jest nowy.",
+   "ekrany": [
+    "/history/[id]"
+   ],
+   "scenariusz": "28-dluga-historia.yaml",
+   "znaczniki": [
+    "PR: .*",
+    "4 sessions"
+   ]
+  },
+  {
+   "id": "HI-09",
+   "tytul": "Progresja: tydzień vs poprzedni, partie z postępem",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ten tydzień → kafelek → Progresja"
+   ],
+   "wynik": "Porównanie tygodnia z poprzednim.",
+   "ekrany": [
+    "/progression"
+   ],
+   "scenariusz": "31-pierwszy-tydzien.yaml",
+   "znaczniki": [
+    "progress-tile-week"
+   ]
+  },
+  {
+   "id": "HI-10",
+   "tytul": "Masa ciała z datą: pomiar, lista pomiarów, jednostka",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Postępy → „Masa ciała — pomiary” → wpisz → „Zapisz pomiar”"
+   ],
+   "wynik": "Pomiar na liście i w sekcji Postępów.",
+   "ekrany": [
+    "/more/bodymass"
+   ],
+   "scenariusz": "15-masa-licencje.yaml",
+   "znaczniki": [
+    "Save measurement"
+   ]
+  },
+  {
+   "id": "HI-11",
+   "tytul": "Cel serii na partię: automatyczny i ręczny",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → „Cele partii” → partia → Ręcznie → liczba"
+   ],
+   "wynik": "Kreska celu w „Ten tydzień” i Postępach zgodna.",
+   "ekrany": [
+    "/more/settings"
+   ],
+   "scenariusz": "35-ustawienia-dostepnosc.yaml",
+   "znaczniki": [
+    "Muscle group goals"
+   ]
+  },
+  {
+   "id": "HI-12",
+   "tytul": "Kafelki „Ten tydzień” jako jeden przycisk do Postępów",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Zakładka Trening → kafelki → Postępy"
+   ],
+   "wynik": "Przejście do Postępów z jedną etykietą VoiceOver.",
+   "ekrany": [
+    "/",
+    "/progress"
+   ],
+   "scenariusz": "01-trening-z-szablonu.yaml",
+   "znaczniki": [
+    "This week"
+   ]
+  },
+  {
+   "id": "US-01",
+   "tytul": "Język: wybór polskiego i powrót do „Jak w telefonie”",
+   "stan": "jezyk-motyw",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Więcej → Ustawienia → Język → Polski",
+    "Teksty ekranów po polsku",
+    "Język → „Jak w telefonie”"
+   ],
+   "wynik": "Wszystkie ekrany zmieniają język od razu.",
+   "ekrany": [
+    "/more/language",
+    "/more/settings",
+    "/more"
+   ],
+   "scenariusz": "09-jezyk-wyglad.yaml",
+   "znaczniki": [
+    "Polski",
+    "Phone setting"
+   ]
+  },
+  {
+   "id": "US-02",
+   "tytul": "Wygląd: jasny, ciemny, jak w telefonie — aplikacja dalej nawiguje",
+   "stan": "jezyk-motyw",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → Wygląd → Ciemny → Jasny → Jak w telefonie"
+   ],
+   "wynik": "Motyw zmienia się bez restartu, ekrany czytelne.",
+   "ekrany": [
+    "/more/settings"
+   ],
+   "scenariusz": "09-jezyk-wyglad.yaml",
+   "znaczniki": [
+    "Dark",
+    "Light"
+   ]
+  },
+  {
+   "id": "US-03",
+   "tytul": "Jednostka ciężaru kg / lb widoczna przy polu ciężaru",
+   "stan": "jezyk-motyw",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → Jednostka → lb → trening: pole ciężaru w lb → kg"
+   ],
+   "wynik": "Jednostka przy polu zgodna; zapisane ciężary się przeliczają.",
+   "ekrany": [
+    "/more/settings",
+    "/"
+   ],
+   "scenariusz": "09-jezyk-wyglad.yaml",
+   "znaczniki": [
+    "Weight unit"
+   ]
+  },
+  {
+   "id": "US-04",
+   "tytul": "Domyślna przerwa, dźwięk, ekran włączony podczas treningu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → domyślna przerwa 45 s",
+    "Przełączniki dźwięku i ekranu",
+    "Trening: przerwa 0:45"
+   ],
+   "wynik": "Nowa przerwa używana w treningu.",
+   "ekrany": [
+    "/more/settings"
+   ],
+   "scenariusz": "35-ustawienia-dostepnosc.yaml",
+   "znaczniki": [
+    "rest of 0:45",
+    "Shorten rest by 15 seconds"
+   ]
+  },
+  {
+   "id": "US-05",
+   "tytul": "RPE / RIR: włączenie, skala, kolumna w treningu",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → „RPE / RIR przy serii” → skala RIR",
+    "Trening: kolumna RIR"
+   ],
+   "wynik": "Kolumna zgodna ze skalą; zapisane wartości przeliczone.",
+   "ekrany": [
+    "/more/settings",
+    "/"
+   ],
+   "scenariusz": "35-ustawienia-dostepnosc.yaml",
+   "znaczniki": [
+    "RPE / RIR"
+   ]
+  },
+  {
+   "id": "US-06",
+   "tytul": "Podpowiedź progresji (↑ przy ćwiczeniu)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Ustawienia → „Podpowiedź progresji”"
+   ],
+   "wynik": "Znaczek ↑ pojawia się/znika zgodnie z przełącznikiem.",
+   "ekrany": [
+    "/more/settings"
+   ],
+   "scenariusz": "35-ustawienia-dostepnosc.yaml",
+   "znaczniki": [
+    "Progression hint"
+   ]
+  },
+  {
+   "id": "US-07",
+   "tytul": "Widok treningu: Skupiony / Lista",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → „Widok treningu” → Lista → trening"
+   ],
+   "wynik": "Trening bez karty „teraz” w widoku Lista.",
+   "ekrany": [
+    "/more/settings",
+    "/"
+   ],
+   "scenariusz": "35-ustawienia-dostepnosc.yaml",
+   "znaczniki": [
+    "Workout view"
+   ]
+  },
+  {
+   "id": "US-08",
+   "tytul": "Zapis zakończonych treningów do Apple Health (zgoda systemowa)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → „Zapisuj zakończone treningi do Apple Health” → arkusz zgody iOS → Zezwól",
+    "Zakończ trening → w Zdrowiu pojawia się trening"
+   ],
+   "wynik": "Trening zapisany w Zdrowiu raz; odmowa wyświetla komunikat i nie włącza przełącznika.",
+   "ekrany": [
+    "/more/settings"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Arkusz zgody HealthKit to okno systemowe, a Zdrowie na symulatorze CI nie ma aplikacji do podglądu zapisanych danych; zgody nie da się nadać z Maestro.",
+    "zastepnik": [
+     "tests/health-use.test.tsx",
+     "tests/healthkit-contract.test.ts",
+     "tests/health-permissions.test.ts"
+    ],
+    "kontrola": "Włącz zapis → zezwól w arkuszu → zrób krótki trening → Zdrowie → Przeglądaj → Aktywność → Trening siłowy: jest jeden wpis z czasem treningu. Odmów zgody: aplikacja pokazuje komunikat, przełącznik zostaje wyłączony."
+   }
+  },
+  {
+   "id": "US-09",
+   "tytul": "Odczyt Apple Health — przełącznik wyłączony: żadnej linii Zdrowia w panelach",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → przełącznik odczytu wyłączony (domyślnie)",
+    "Panel dnia, „Ten tydzień” i sesja bez linii Apple Health"
+   ],
+   "wynik": "Ekran jak przed 0.16.",
+   "ekrany": [
+    "/more/settings",
+    "/history/[id]"
+   ],
+   "scenariusz": "20-zdrowie-odczyt.yaml",
+   "znaczniki": [
+    "Show data from Apple Health"
+   ]
+  },
+  {
+   "id": "US-10",
+   "tytul": "Odczyt Apple Health z prawdziwymi danymi (kroki, tętno, kcal, trening z zegarka)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Włącz odczyt → zezwól w arkuszu",
+    "Plan → dzień z aktywnością → linie Zdrowia; sesja: tętno i kcal z zegarka"
+   ],
+   "wynik": "Dane zgodne z aplikacją Zdrowie; cofnięcie zgody w Zdrowiu usuwa linie.",
+   "ekrany": [
+    "/history",
+    "/history/[id]",
+    "/"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Symulator CI nie ma danych Zdrowia (kroków, tętna, zegarka) ani sterowania nimi, a arkusz zgody jest oknem systemowym (docs/29 pkt 7).",
+    "zastepnik": [
+     "tests/health-read-ui.test.tsx",
+     "tests/health-scenario.test.tsx",
+     "tests/health-query.test.ts"
+    ],
+    "kontrola": "Na iPhonie z zegarkiem: włącz odczyt, zezwól; dzień z aktywnością w Planie pokazuje kroki i inne aktywności; sesja z treningiem z zegarka pokazuje tętno i kcal; wyłącz odczyt — linie znikają."
+   }
+  },
+  {
+   "id": "US-11",
+   "tytul": "Odmowa zgody na powiadomienia: ostrzeżenie w Ustawieniach i „Otwórz Ustawienia iOS”",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Pierwszy dzień planu → okno przypomnienia → „Zezwól” → systemowe „Nie zezwalaj”",
+    "Ustawienia → komunikat o braku zgody i przycisk „Otwórz Ustawienia iOS”"
+   ],
+   "wynik": "Aplikacja działa bez powiadomień, wyjaśnia skutek i wskazuje drogę naprawy.",
+   "ekrany": [
+    "/more/settings",
+    "/plan"
+   ],
+   "scenariusz": "40-odmowa-powiadomien.yaml",
+   "znaczniki": [
+    "notifications: deny",
+    "Open iOS Settings"
+   ],
+   "tryb": "eksperyment"
+  },
+  {
+   "id": "US-12",
+   "tytul": "Subskrypcja: karta w Ustawieniach, ekran zakupu, ceny, przywracanie, limit, zakup",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → karta „Subskrypcja” → ekran zakupu",
+    "Panel „Test store”: wygaszenie → ceny → „Przywróć zakupy”",
+    "Drugi trening ponad limit → ekran zakupu → zakup"
+   ],
+   "wynik": "Dostęp zgodny ze stanem sklepu; zamknięcie ekranu zakupu przyciskiem „Zamknij”.",
+   "ekrany": [
+    "/paywall",
+    "/more/settings"
+   ],
+   "scenariusz": "21-subskrypcja.yaml",
+   "znaczniki": [
+    "Restore purchases",
+    "Test store: expire access"
+   ]
+  },
+  {
+   "id": "US-13",
+   "tytul": "Prawdziwy zakup w piaskownicy Apple: próba, odnowienie, zwrot, kod, Chmura rodzinna",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Zainstaluj z TestFlight, konto piaskownicy",
+    "Kup, przywróć, sprawdź stan po wygaśnięciu"
+   ],
+   "wynik": "Dostęp zgodny ze stanem sklepu.",
+   "ekrany": [
+    "/paywall"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Okna zakupu Apple i konto piaskownicy są poza kontrolą Maestro; build E2E ma sztuczny sklep (EXPO_PUBLIC_STORE_FAKE), więc nie sprawdza prawdziwego StoreKit.",
+    "zastepnik": [
+     "tests/store-adapter.test.ts",
+     "tests/subscription-ui.test.tsx",
+     "tests/subscription-invariants.test.ts",
+     "tests/entitlement.test.ts"
+    ],
+    "kontrola": "Wg docs/27 pkt 7.2: kup w piaskownicy, sprawdź próbę i cenę, „Przywróć zakupy” po ponownej instalacji, wygaśnięcie."
+   }
+  },
+  {
+   "id": "US-14",
+   "tytul": "O aplikacji, licencje open source, wersja",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Więcej → O aplikacji → „Licencje open source”"
+   ],
+   "wynik": "Lista pakietów i bibliotek natywnych.",
+   "ekrany": [
+    "/more/about",
+    "/more/licenses",
+    "/more"
+   ],
+   "scenariusz": "15-masa-licencje.yaml",
+   "znaczniki": [
+    "Open-source licences"
+   ]
+  },
+  {
+   "id": "US-15",
+   "tytul": "„Napisz do nas” (poczta) i prośba o ocenę w App Store",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Więcej → O aplikacji → „Napisz do nas” → okno poczty",
+    "Po kilku treningach — systemowa prośba o ocenę"
+   ],
+   "wynik": "Poczta z adresem i wersją; prośba o ocenę nie częściej niż pozwala iOS.",
+   "ekrany": [
+    "/more/about"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Okno poczty i systemowa prośba o ocenę to okna systemowe, nieobecne w TestFlight/na symulatorze CI.",
+    "zastepnik": [
+     "tests/support-mail.test.tsx",
+     "tests/review-run.test.tsx",
+     "tests/review.test.ts"
+    ],
+    "kontrola": "Stuknij „Napisz do nas” — otwiera się wiadomość z adresem wsparcia i wersją; ocena: tylko w wydaniu App Store."
+   }
+  },
+  {
+   "id": "US-16",
+   "tytul": "Wyczyszczenie wszystkich danych: pytanie, „Nie” zostawia dane, potem „Wyczyść”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → „Wyczyść wszystkie dane” → Anuluj → jeszcze raz → Wyczyść",
+    "Powrót do „Pierwszych kroków”"
+   ],
+   "wynik": "Przed czyszczeniem powstaje kopia bezpieczeństwa; po czyszczeniu stan jak nowy.",
+   "ekrany": [
+    "/more/settings",
+    "/"
+   ],
+   "scenariusz": "32-regularny-uzytkownik.yaml",
+   "znaczniki": [
+    "Erase all data"
+   ]
+  },
+  {
+   "id": "DA-01",
+   "tytul": "Ekran „Kopia zapasowa”: przyciski eksportu i importu, odmowa nadpisania",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Więcej → Kopia zapasowa",
+    "„Importuj backup” → „Nadpisać dane?” → Anuluj"
+   ],
+   "wynik": "Dane bez zmian po odmowie.",
+   "ekrany": [
+    "/more/backup",
+    "/more/import",
+    "/more"
+   ],
+   "scenariusz": "32-regularny-uzytkownik.yaml",
+   "znaczniki": [
+    "Import backup",
+    "Choose a CSV file"
+   ]
+  },
+  {
+   "id": "DA-02",
+   "tytul": "Eksport kopii (JSON) i historii (CSV) przez arkusz udostępniania",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Kopia zapasowa → „Eksportuj backup” → arkusz → zapisz w Plikach",
+    "„Eksportuj historię do CSV”"
+   ],
+   "wynik": "Plik zawiera całą historię i szablony; CSV w jednostce z ustawień.",
+   "ekrany": [
+    "/more/backup"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Arkusz udostępniania i Pliki to okna systemowe (UIActivityViewController), poza kontrolą Maestro.",
+    "zastepnik": [
+     "tests/audit-io-flows.test.tsx",
+     "tests/audit-io-more.test.tsx",
+     "tests/roundtrip.test.ts"
+    ],
+    "kontrola": "Eksportuj backup → Zapisz w Plikach; potem (wg DA-04) „Wyczyść dane” i import tego pliku: dane identyczne. CSV otwiera się w Plikach/Numbers z kolumnami i właściwą jednostką."
+   }
+  },
+  {
+   "id": "DA-03",
+   "tytul": "Automatyczna kopia po każdym treningu (pliki w Plikach, ostatnie N)",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → „Automatyczna kopia po każdym treningu” (włączone) → zakończ trening",
+    "Pliki → Na moim iPhonie → Trening → Backup"
+   ],
+   "wynik": "Po treningu powstaje plik JSON; starsze ponad limit znikają.",
+   "ekrany": [
+    "/more/settings"
+   ],
+   "scenariusz": "35-ustawienia-dostepnosc.yaml",
+   "znaczniki": [
+    "Automatic backup"
+   ],
+   "uwaga": "Przełącznik; sam plik w Plikach: lista kontrolna."
+  },
+  {
+   "id": "DA-04",
+   "tytul": "Przywrócenie z pliku kopii po wyczyszczeniu danych (okno wyboru pliku)",
+   "stan": "kopia",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Zrób trening przy włączonej kopii automatycznej",
+    "Wyczyść wszystkie dane",
+    "Kopia zapasowa → „Importuj backup” → „Nadpisz” → wybierz plik z folderu Backup"
+   ],
+   "wynik": "Historia, szablony, plan i ustawienia wracają; język i jednostka jak w kopii.",
+   "ekrany": [
+    "/more/backup",
+    "/more/settings"
+   ],
+   "scenariusz": "42-kopia-przywrocenie.yaml",
+   "znaczniki": [
+    "Import backup",
+    "Erase all data"
+   ],
+   "tryb": "eksperyment"
+  },
+  {
+   "id": "DA-05",
+   "tytul": "Po przywróceniu kopii: nowy trening na przywróconych danych działa",
+   "stan": "kopia",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Po DA-04 zacznij trening z przywróconego szablonu",
+    "Zakończ — sesja doliczona do przywróconej historii"
+   ],
+   "wynik": "Identyfikatory i plan spójne; brak zdublowanych sesji.",
+   "ekrany": [
+    "/",
+    "/history"
+   ],
+   "scenariusz": "42-kopia-przywrocenie.yaml",
+   "znaczniki": [
+    "Start: Upper A"
+   ],
+   "tryb": "eksperyment"
+  },
+  {
+   "id": "DA-06",
+   "tytul": "Import historii z pliku CSV popularnego dziennika: podgląd, dopisanie bez usuwania danych",
+   "stan": "kopia",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Kopia zapasowa → „Importuj historię z pliku CSV” → wybierz plik → podgląd → importuj"
+   ],
+   "wynik": "Treningi dopisane, obecne dane nietknięte, duplikaty pominięte.",
+   "ekrany": [
+    "/more/import"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Plik CSV trzeba wskazać w systemowym oknie wyboru plików, a na symulatorze CI nie ma pliku CSV innego dziennika.",
+    "zastepnik": [
+     "tests/csv-import-ui.test.tsx",
+     "tests/csv-import-logic.test.ts",
+     "tests/backlog-0.10.1-dane-ui.test.tsx"
+    ],
+    "kontrola": "Wyeksportuj CSV z innej aplikacji na iPhone’a, wybierz w „Importuj historię z pliku CSV”: podgląd liczb, import, powtórny import nie dubluje."
+   }
+  },
+  {
+   "id": "DA-07",
+   "tytul": "Import uszkodzonego albo obcego pliku: komunikat i dane bez zmian",
+   "stan": "kopia",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Kopia zapasowa → „Importuj backup” → wskaż plik, który nie jest kopią"
+   ],
+   "wynik": "Komunikat o błędzie, dane nietknięte, kopia bezpieczeństwa istnieje.",
+   "ekrany": [
+    "/more/backup"
+   ],
+   "wyjatek": {
+    "typ": "jest",
+    "powod": "Wymaga wskazania pliku w oknie systemowym; sprawdzone na atrapie wyboru plików, w tym pliki złego formatu, nowszego schematu i z wersji webowej.",
+    "zastepnik": [
+     "tests/audit-io-flows.test.tsx",
+     "tests/audit-io-more.test.tsx",
+     "tests/roundtrip.test.ts"
+    ]
+   }
+  },
+  {
+   "id": "AK-01",
+   "tytul": "Aktualizacja z treningiem w toku: wpisana seria i przerwa zostają",
+   "stan": "aktualizacja",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "W poprzedniej wersji: drugi trening w toku, jedna seria odhaczona",
+    "Zainstaluj nową wersję na tej samej instalacji (bez odinstalowania)"
+   ],
+   "wynik": "Trening w toku, wartości na miejscu, trening da się dokończyć.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "34-aktualizacja-sprawdz.yaml",
+   "znaczniki": [
+    "Pause workout",
+    "Finish"
+   ]
+  },
+  {
+   "id": "AK-02",
+   "tytul": "Aktualizacja: historia, szablon, masa ciała, jednostka i ciemny wygląd zachowane",
+   "stan": "aktualizacja",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "W poprzedniej wersji: szablon, kg, ciemny wygląd, trening, masa 80 kg",
+    "Po aktualizacji sprawdź każdą z tych rzeczy"
+   ],
+   "wynik": "Dane identyczne; „2 sessions” w kalendarzu.",
+   "ekrany": [
+    "/history",
+    "/templates",
+    "/more/settings",
+    "/progress"
+   ],
+   "scenariusz": "34-aktualizacja-sprawdz.yaml",
+   "znaczniki": [
+    "3 sessions"
+   ]
+  },
+  {
+   "id": "AK-03",
+   "tytul": "Aktualizacja: plan tygodnia, miejsce z wyposażeniem i trening wstecz zachowane (migracja schematu)",
+   "stan": "aktualizacja",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "W poprzedniej wersji: plan na każdy dzień, miejsce „Home” z hantlami, trening wstecz",
+    "Po aktualizacji: plan, miejsce i sesje na miejscu, Start planowego treningu działa"
+   ],
+   "wynik": "Migracja schematu nie gubi planu ani miejsc; nowe pola (miejsce jednorazowe) nie psują planu.",
+   "ekrany": [
+    "/plan",
+    "/history",
+    "/more/locations",
+    "/"
+   ],
+   "scenariusz": "34-aktualizacja-sprawdz.yaml",
+   "znaczniki": [
+    "Monday, Upper A",
+    "★ Home, main"
+   ]
+  },
+  {
+   "id": "AK-04",
+   "tytul": "„Co nowego” po aktualizacji: kropka na „i” i wpis bieżącej wersji",
+   "stan": "aktualizacja",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Po aktualizacji na ekranie Trening „i” z kropką",
+    "Panel pokazuje wpis nowej wersji"
+   ],
+   "wynik": "Wpis wersji widoczny.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "34-aktualizacja-sprawdz.yaml",
+   "znaczniki": [
+    "In this version"
+   ]
+  },
+  {
+   "id": "AK-05",
+   "tytul": "Aktualizacja z TestFlight na prawdziwym telefonie (dane z poprzedniego buildu)",
+   "stan": "aktualizacja",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Telefon właściciela z poprzednim buildem → TestFlight „Zaktualizuj”",
+    "Otwórz aplikację"
+   ],
+   "wynik": "Dane, trening w toku, ikona, widżet i Live Activity jak przed aktualizacją.",
+   "ekrany": [
+    "/"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Instalacja z TestFlight na prawdziwym urządzeniu (podpis, ikona, rozszerzenie Live Activity, dane w prawdziwej bazie) nie istnieje na symulatorze CI.",
+    "zastepnik": [
+     "tests/maestro-zycie.test.tsx",
+     "tests/migrate-idem.test.ts",
+     "tests/places-migrate.test.ts"
+    ],
+    "kontrola": "Na własnym telefonie: stary build → TestFlight Zaktualizuj → otwórz: historia i szablony na miejscu, plan, trening w toku (jeśli był), ikona i nazwa poprawne, „Co nowego” pokazuje wersję."
+   }
+  },
+  {
+   "id": "AK-06",
+   "tytul": "Poprzednia wersja aplikacji: dane zbudowane przez UI (część 1 testu aktualizacji)",
+   "stan": "aktualizacja",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Na poprzedniej wersji: ciemny wygląd, kg, szablon, plan, miejsce, dwa treningi, masa ciała, trening w toku z odhaczoną serią"
+   ],
+   "wynik": "Stan, który ma przetrwać aktualizację, powstaje wyłącznie z UI poprzedniej wersji.",
+   "ekrany": [
+    "/",
+    "/templates",
+    "/plan",
+    "/more/settings",
+    "/more/bodymass"
+   ],
+   "scenariusz": "33-aktualizacja-przygotuj.yaml",
+   "znaczniki": [
+    "Save measurement",
+    "Dark"
+   ]
+  },
+  {
+   "id": "JM-01",
+   "tytul": "Cały trening po polsku i trwałość języka po restarcie",
+   "stan": "jezyk-motyw",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → Język → Polski",
+    "Szablon, start, seria, zakończenie po polsku",
+    "Zabij aplikację, uruchom — nadal po polsku"
+   ],
+   "wynik": "Brak angielskich tekstów w głównych ekranach; język zapisany.",
+   "ekrany": [
+    "/",
+    "/more/language",
+    "/history/[id]"
+   ],
+   "scenariusz": "37-jezyk-motyw-trwale.yaml",
+   "znaczniki": [
+    "Seria 1 zrobiona",
+    "Zakończyć trening"
+   ]
+  },
+  {
+   "id": "JM-02",
+   "tytul": "Ciemny wygląd i jednostka kg trwałe po restarcie",
+   "stan": "jezyk-motyw",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → Ciemny, kg, Polski",
+    "Restart",
+    "Segmenty „Ciemny” i „kg” nadal wybrane; sesja pokazuje ciężar w kg"
+   ],
+   "wynik": "Ustawienia trwałe (kolory widać tylko na zrzucie; stan segmentu — accessibilityState).",
+   "ekrany": [
+    "/more/settings"
+   ],
+   "scenariusz": "37-jezyk-motyw-trwale.yaml",
+   "znaczniki": [
+    "selected: true",
+    "Ciemny"
+   ]
+  },
+  {
+   "id": "JM-03",
+   "tytul": "Powrót do „Jak w telefonie” i do języka angielskiego bez śladów polskiego",
+   "stan": "jezyk-motyw",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Język → „Jak w telefonie”",
+    "Ekrany znów po angielsku"
+   ],
+   "wynik": "Zmiana natychmiast, bez restartu.",
+   "ekrany": [
+    "/more/language"
+   ],
+   "scenariusz": "09-jezyk-wyglad.yaml",
+   "znaczniki": [
+    "Phone setting"
+   ]
+  },
+  {
+   "id": "JM-04",
+   "tytul": "35 języków i wszystkie kombinacje wartości (długie nazwy, mnoga liczba, kg/lb)",
+   "stan": "jezyk-motyw",
+   "wersja": "0.19",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Zmień język na każdy z 35",
+    "Otwórz każdą trasę"
+   ],
+   "wynik": "Brak ucięć i polskich tekstów poza polskim.",
+   "ekrany": [
+    "/"
+   ],
+   "wyjatek": {
+    "typ": "jest",
+    "powod": "Warianty kombinatoryczne (35 języków × trasy × wygląd) zostają w Jest zgodnie z decyzją właściciela 13.10.2026; w Maestro tylko język polski i angielski.",
+    "zastepnik": [
+     "tests/i18n-locales.test.ts",
+     "tests/matrix-a11y.test.tsx",
+     "tests/i18n-multi.test.ts"
+    ]
+   }
+  },
+  {
+   "id": "ZD-01",
+   "tytul": "Wibracja przy odhaczeniu serii i na koniec przerwy",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Odhacz serię; poczekaj do końca przerwy"
+   ],
+   "wynik": "Krótka wibracja przy ✓ i dłuższa na koniec (gdy włączone).",
+   "ekrany": [
+    "/"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Silnik haptyczny nie istnieje na symulatorze, a Maestro go nie czyta.",
+    "zastepnik": [
+     "tests/timer-logic.test.ts",
+     "tests/e2e-102-reminder.test.tsx"
+    ],
+    "kontrola": "Z włączonym dźwiękiem i wibracją odhacz serię (krótkie stuknięcie), poczekaj do końca przerwy (sygnał); wyłącz „Dźwięk i wibracja” — cisza."
+   }
+  },
+  {
+   "id": "ZD-02",
+   "tytul": "Instalacja z TestFlight na prawdziwym telefonie: pierwsze uruchomienie, ikona, nazwa, animacja startowa",
+   "stan": "nowy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Zainstaluj z TestFlight",
+    "Uruchom, obejrzyj ikonę, nazwę i animację startową"
+   ],
+   "wynik": "Aplikacja startuje bez błędu, „Pierwsze kroki” widoczne.",
+   "ekrany": [
+    "/"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Podpis, ikona, ekran startowy i środowisko prawdziwego urządzenia istnieją dopiero w buildzie z TestFlight.",
+    "zastepnik": [
+     "tests/intro.test.tsx",
+     "tests/smoke.test.tsx"
+    ],
+    "kontrola": "Po instalacji: ikona i nazwa poprawne, animacja startowa krótka (stuknięcie pomija), „Pierwsze kroki”, brak komunikatu o błędzie danych."
+   }
+  },
+  {
+   "id": "ZD-03",
+   "tytul": "Powiększony tekst systemowy, VoiceOver na żywo i „Ogranicz ruch”",
+   "stan": "istniejacy",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia iOS → Dostępność → większy tekst / VoiceOver / Ogranicz ruch",
+    "Przejdź trening i ekrany główne"
+   ],
+   "wynik": "Układ nie ucina przycisków; VoiceOver czyta etykiety; animacje wyłączone.",
+   "ekrany": [
+    "/"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Maestro nie przestawia ustawień dostępności systemu.",
+    "zastepnik": [
+     "tests/tabs-a11y.test.tsx",
+     "tests/matrix-a11y.test.tsx"
+    ],
+    "kontrola": "Największy rozmiar tekstu: trening, plan i ustawienia czytelne bez ucięć; VoiceOver: przejdź start → seria → zakończenie; „Ogranicz ruch”: animacja startowa i figury ćwiczeń nie migają."
+   }
+  },
+  {
+   "id": "ZD-04",
+   "tytul": "Układ na małym ekranie i w ciemnym wyglądzie systemu",
+   "stan": "jezyk-motyw",
+   "wersja": "0.19",
+   "realnosc": "realny",
+   "kroki": [
+    "Uruchom na iPhone SE / 16e i w ciemnym trybie systemu"
+   ],
+   "wynik": "Brak ucięć i nakładek.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "35-ustawienia-dostepnosc.yaml",
+   "znaczniki": [
+    "Dark"
+   ],
+   "uwaga": "Cały zestaw Maestro biegnie co noc na małym ekranie przy ciemnym wyglądzie (nightly.yml, wejścia „urządzenie” i „wygląd” e2e-ios.yml)."
+  },
+  {
+   "id": "W2-01",
+   "tytul": "Zegarek Apple Watch: serie „zrobione inaczej” wracają jako „do uzupełnienia”",
+   "stan": "istniejacy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Trening w toku, zegarek (atrapa) wysyła „done” i „differ”",
+    "W wierszu serii „do uzupełnienia” i przycisk „Gotowe”",
+    "Rekord nie liczy takiej serii, dopóki nie jest uzupełniona"
+   ],
+   "wynik": "Znacznik i rekord zgodne z docs/35.",
+   "ekrany": [
+    "/"
+   ],
+   "projekt": {
+    "scenariusz": ".maestro/50-zegarek-do-uzupelnienia.yaml",
+    "czeka_na": "scalenie f020-protokol oraz tryb testowy zegarka w buildzie E2E (EXPO_PUBLIC_WATCH_FAKE: panel „Test watch” z przyciskami zdarzeń, wzór: panel „Test store”)",
+    "opis": "Seria „Z zegarka: zrobione inaczej” → „Serie do uzupełnienia” → „Gotowe” → rekord."
+   },
+   "status": "projekt"
+  },
+  {
+   "id": "W2-02",
+   "tytul": "Zakończenie treningu z seriami „do uzupełnienia”: „Zakończ mimo to” i „Anuluj”",
+   "stan": "istniejacy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Zostaw serię z zegarka „do uzupełnienia”",
+    "„Zakończ” → okno „Serie do uzupełnienia” → Anuluj (wraca) / „Zakończ mimo to” (zapis z wartościami z planu)"
+   ],
+   "wynik": "Znaczniki zdjęte, sesja bez śladu znacznika.",
+   "ekrany": [
+    "/",
+    "/history/[id]"
+   ],
+   "projekt": {
+    "scenariusz": ".maestro/50-zegarek-do-uzupelnienia.yaml",
+    "czeka_na": "scalenie f020-protokol oraz tryb testowy zegarka w buildzie E2E (jak W2-01)",
+    "opis": "Druga połowa scenariusza 50: „Zakończ” → okno → „Anuluj” / „Zakończ mimo to”."
+   },
+   "status": "projekt"
+  },
+  {
+   "id": "W2-03",
+   "tytul": "Głos w słuchawkach: przełącznik „Głos także przez głośnik telefonu”, „Posłuchaj przykładu”, brak głosu dla języka",
+   "stan": "istniejacy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → Trening → przełącznik głośnika (domyślnie wył.)",
+    "„Posłuchaj przykładu”",
+    "Wskazówka o braku głosu dla języka"
+   ],
+   "wynik": "Ustawienie zapisane; przykład nie psuje ekranu (dźwięku symulator nie odtwarza).",
+   "ekrany": [
+    "/more/settings"
+   ],
+   "projekt": {
+    "scenariusz": ".maestro/51-glos-ustawienia.yaml",
+    "czeka_na": "scalenie f020-protokol (moduł VoiceCue, Ustawienia)",
+    "opis": "Tylko przełączniki i komunikaty w Ustawieniach; dźwięk poza zasięgiem Maestro."
+   },
+   "status": "projekt"
+  },
+  {
+   "id": "W2-04",
+   "tytul": "Głos na żywo: zapowiedź następnego ćwiczenia w AirPods, ściszanie muzyki, tryb cichy",
+   "stan": "istniejacy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "AirPods + muzyka, odhacz serię",
+    "Zapowiedź: ćwiczenie, ciężar, powtórzenia; muzyka wraca do pełnej głośności"
+   ],
+   "wynik": "Zapowiedź zgodna z podpisem przerwy; brak głosu bez słuchawek i przełącznika.",
+   "ekrany": [
+    "/"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Mowa AVSpeechSynthesizer i trasa dźwięku (słuchawki, ściszanie) nie są słyszalne ani mierzalne na symulatorze CI.",
+    "zastepnik": [],
+    "kontrola": "AirPods + muzyka: odhacz serię → zapowiedź w słuchawkach, muzyka ściszona i wraca; bez słuchawek cisza; przełącznik głośnika: mówi telefon; tryb cichy; odłączenie słuchawek w trakcie; podcast pauzuje i wznawia."
+   }
+  },
+  {
+   "id": "W2-05",
+   "tytul": "Apple Watch i drugi zegarek (Connect IQ) na prawdziwych zegarkach: parowanie, odliczanie, wibracja, „Połącz z telefonem”",
+   "stan": "istniejacy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Sparuj zegarek, zacznij trening na telefonie",
+    "Odhaczaj z zegarka, zgub zasięg po dwóch seriach, wróć"
+   ],
+   "wynik": "Zdarzenia dochodzą po kolei, zegarek niczego nie zgaduje.",
+   "ekrany": [
+    "/"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Zegarek, WatchConnectivity i Connect IQ nie istnieją na symulatorze iPhone’a w CI; Apple Watch bywa tylko wirtualny, zegarek Connect IQ tylko fizyczny.",
+    "zastepnik": [],
+    "kontrola": "Wg docs/35 (lista ręczna wydania 0.20): parowanie, pierwsza seria z zegarka, przerwa z wibracją, zasięg w kieszeni, „Cofnij”, „Pomiń”."
+   }
+  }
+ ],
+ "pominiete": [
+  {
+   "opis": "Ręczna edycja pliku bazy lub kopii w edytorze, a potem otwarcie w aplikacji",
+   "powod": "Teoretyczne: wymaga zmiany danych poza aplikacją; format chronią migracje i walidacja importu (testy Jest)."
+  },
+  {
+   "opis": "Brak miejsca na dysku telefonu podczas zapisu",
+   "powod": "Teoretyczne w normalnym użyciu; zapis jest atomowy (SQLite), a błąd startu bazy ma ekran awaryjny (PR-16)."
+  },
+  {
+   "opis": "Synchronizacja z drugim urządzeniem lub iCloud",
+   "powod": "Aplikacja jest lokalna (ADR), funkcji nie ma."
+  },
+  {
+   "opis": "iPad, Stage Manager, kilka okien aplikacji",
+   "powod": "Aplikacja na iPhone’a; układ iPada nie jest wspierany."
+  },
+  {
+   "opis": "Wejście przez link głęboki (trening://…) ze zewnętrznej aplikacji",
+   "powod": "Brzegowe i bez drogi z UI; ekrany otwarte linkiem zawsze mają zakładki pod spodem (unstable_settings), sprawdza test routingu."
+  }
+ ]
+}

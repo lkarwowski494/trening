@@ -1,0 +1,99 @@
+# Po zmianie języka, wyglądu i jednostki (katalog przepływów docs/37: JM-01, JM-02): ustawienia zmienione RAZ (ciemny wygląd, kg, polski), a potem cały krótki trening po polsku —
+# szablon, start, seria, zakończenie, sesja — i RESTART aplikacji: język, wygląd i jednostka zostają. 09 sprawdza przełączanie tam i z powrotem, 35 skutki w ustawieniach;
+# tu sprawdzamy, że prawdziwa praca w innym języku działa i przeżywa restart (nazwy ćwiczeń po polsku, etykiety VoiceOver, daty, jednostka w sesji).
+#
+# Literały PL (klucze z kodu lib/i18n.en.ts → polski tekst klucza):
+#   "Więcej" (nagłówek) / "Ustawienia" / "Język, Polski" / "Wróć"   ← jak 09
+#   "Szablony" / "Dodaj szablon" / "Zapisz szablon" / "Edytuj szablon" ← app/templates.tsx, app/template/[id].tsx
+#   "Pauza treningu" / "Seria 1 zrobiona — …" / "Zakończ" / "Zakończyć trening?" / "Sesja" ← components/ActiveWorkout.tsx, tytuł ekranu sesji
+appId: pl.lukasz.trening
+name: Po zmianie języka i wyglądu — praca po polsku i restart
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+# --- ustawienia: ciemny wygląd, kg, język polski ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Appearance", timeout: 30000 }
+- tapOn: "Dark"
+- tapOn: "kg"
+- tapOn: "Language, Phone setting"
+- extendedWaitUntil: { visible: "Polski", timeout: 30000 }
+- tapOn: "Polski"
+- extendedWaitUntil: { visible: "Język, Polski", timeout: 30000 }
+- takeScreenshot: 108-polski-ciemny
+- tapOn: "Wróć"
+- extendedWaitUntil: { visible: "Więcej", timeout: 30000 }
+# --- szablon po polsku ---
+- tapOn: "Szablony"
+- extendedWaitUntil: { visible: "Dodaj szablon", timeout: 30000 }
+- tapOn: "Dodaj szablon"
+- extendedWaitUntil: { visible: "\\+ Dodaj ćwiczenie", timeout: 30000 }
+- tapOn: { text: "Nowy szablon", below: "Nazwa" }
+- eraseText: 30
+- inputText: "Góra A"
+- pressKey: Enter
+- tapOn: "\\+ Dodaj ćwiczenie"
+- extendedWaitUntil: { visible: "Szukaj ćwiczenia…", timeout: 30000 }
+- tapOn: "Szukaj ćwiczenia…"
+- inputText: "Bench Press"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Bench Press \\(hantle\\), .*"
+- extendedWaitUntil: { visible: "Zapisz szablon", timeout: 30000 }
+- takeScreenshot: 109-szablon-po-polsku
+- tapOn: "Zapisz szablon"
+- extendedWaitUntil: { visible: "Edytuj szablon", timeout: 30000 }
+- assertVisible: "Góra A"
+- tapOn: "Wróć"
+- extendedWaitUntil: { visible: "Dodaj szablon", timeout: 30000 }
+- tapOn: "Wróć"
+- tapOn: "Trening, .*"
+- extendedWaitUntil: { visible: "Inny trening", timeout: 30000 }
+# --- trening po polsku: start z szablonu, seria, pauza, zakończenie ---
+- tapOn: "Inny trening"
+- extendedWaitUntil: { visible: "Z szablonu", timeout: 20000 }
+- tapOn: "Z szablonu"
+- extendedWaitUntil: { visible: "Start: Góra A", timeout: 30000 }
+- tapOn: "Start: Góra A"
+- extendedWaitUntil: { visible: "Seria 1 zrobiona.*", timeout: 30000 }
+- tapOn: { text: "Seria 1 zrobiona.*", index: 0 }
+- extendedWaitUntil: { visible: "Pomiń", timeout: 15000 }
+- takeScreenshot: 110-trening-po-polsku
+- tapOn: "Pomiń"
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Zakończ"
+      - extendedWaitUntil: { visible: "Zakończyć trening\\?", timeout: 8000 }
+- tapOn: { text: "Zakończ", below: "Zakończyć trening\\?" }
+- extendedWaitUntil: { visible: "Sesja", timeout: 30000 }
+- assertVisible: "Góra A"
+- takeScreenshot: 111-sesja-po-polsku
+- tapOn: "Wróć"
+# --- restart: język, wygląd i jednostka zostają ---
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Inny trening", timeout: 60000 }
+- assertVisible: "Ten tydzień"
+- tapOn: "Plan, .*"
+- extendedWaitUntil: { visible: "Planowanie", timeout: 30000 }
+- assertVisible: "Góra A, .*"
+- tapOn: "Góra A, .*"
+- extendedWaitUntil: { visible: "Sesja", timeout: 30000 }
+- assertVisible: ".*kg.*"
+- takeScreenshot: 112-po-restarcie-po-polsku
+- tapOn: "Wróć"
+- tapOn: "Więcej, .*"
+- tapOn: "Ustawienia"
+- extendedWaitUntil: { visible: "Język, Polski", timeout: 30000 }
+- assertVisible: "Jednostka ciężaru"
+- assertVisible: { text: "Ciemny", selected: true }   # wygląd i jednostka zostały po restarcie (stan segmentu = accessibilityState.selected)
+- assertVisible: { text: "kg", selected: true }
+- takeScreenshot: 116-ustawienia-po-restarcie

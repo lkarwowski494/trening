@@ -1,0 +1,50 @@
+# EKSPERYMENT (katalog przepływów docs/37: PR-11) — aplikacja w tle (przycisk Home) i powrót BEZ restartu: przerwa liczy czas także w tle, wpisane wartości i trening w toku zostają.
+# Nikt jeszcze nie uruchomił go na symulatorze CI: zakładamy, że `pressKey: Home` działa na iOS (przycisk Home symulatora) i że `launchApp` z `stopApp: false` wraca do działającej aplikacji
+# zamiast ją restartować. Tag `eksperyment`, plik poza listą flows w config.yaml (docs/38 pkt 5). Gdy zielony — usunąć tag i dopisać do config.yaml.
+# Czekanie w tle: Maestro nie ma polecenia „sleep”; `extendedWaitUntil` na nieistniejącym tekście z `optional: true` czeka do końca czasu bez błędu.
+# Interpreter w Jest (tests/maestro-runner.ts): Home → AppState 'background', `launchApp: { stopApp: false }` → 12 s w tle i AppState 'active'.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "rest of 1:30" / "Workout progress: 1 of 6 sets" / "Pause workout"   ← jak 01, 31
+#   w-0-1 / r-0-1                                                          ← testID pól drugiej serii (wpisane przed pójściem w tło)
+tags:
+  - eksperyment
+appId: pl.lukasz.trening
+name: Eksperyment — tło i powrót w trakcie przerwy
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+- runFlow: subflows/start-szablonu.yaml
+- tapOn: { text: "Allow", optional: true }   # start treningu może poprosić o zgodę na powiadomienia (okno systemowe) — tu zezwalamy, odmowę sprawdza 40
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- tapOn: { text: "Allow", optional: true }   # pierwsza przerwa prosi o zgodę na powiadomienia — gdyby Maestro pokazał okno systemowe, zezwalamy (nie sprawdzamy tu odmowy: 40)
+- extendedWaitUntil: { visible: "rest of 1:30", timeout: 15000 }
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: { id: "w-0-1" }
+      - eraseText: 10
+      - inputText: "35"
+      - hideKeyboard
+      - assertVisible: "Now: 35 .* × .*"
+# --- aplikacja w tle: Home, kilkanaście sekund, powrót bez restartu ---
+- pressKey: Home
+- extendedWaitUntil: { visible: "Tego-tekstu-nie-ma-na-ekranie", timeout: 12000, optional: true }
+- launchApp:
+    stopApp: false
+- extendedWaitUntil: { visible: "Plan, tab.*", timeout: 30000 }   # po powrocie z tła pasek zakładek jest od razu (zakładka Trening w przerwie ma w etykiecie czas przerwy) (bez animacji startowej); ten krok też spełnia strażnika tests/intro.test.tsx
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- waitForAnimationToEnd
+- extendedWaitUntil: { visible: "Pause workout", timeout: 30000 }
+- assertVisible: "Workout progress: 1 of 6 sets"
+- assertNotVisible: "rest of 0:00"
+- takeScreenshot: 120-po-powrocie-z-tla
+# --- czas w tle odliczył się z przerwy: pasek przerwy pokazuje mniej niż pełne 1:30 (albo przerwa się skończyła) ---
+- assertNotVisible: "1:30"
+- tapOn: { text: "Set 2 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Workout progress: 2 of 6 sets", timeout: 15000 }

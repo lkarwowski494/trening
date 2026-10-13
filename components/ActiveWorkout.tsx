@@ -384,7 +384,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const deleteSet = (id: string) => { const cur = getState().active?.exercises.find(x => x.id === e.id); if (!cur || cur.sets.length <= 1 || !cur.sets.some(x => x.id === id)) return; dropTimers([id]); removeSetById(getState().active!.exercises.indexOf(cur), id); };
   return (
     <View style={[s.ex, { borderBottomColor: t.line }]}>
-      <SwipeRow label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={delMsg} onDelete={removeBlock}>{a11y => <View style={s.exHead}>
+      <SwipeRow testID={`ex-${ei}`} /* E2E 25 */ label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={delMsg} onDelete={removeBlock}>{a11y => <View style={s.exHead}>
         <Text accessibilityLanguage={lang()} {...a11y} accessibilityRole="header" style={{ color: t.text, fontSize: 17, fontFamily: F.semibold, flexGrow: 1, flexShrink: 1, minWidth: '58%' }}>{inSS ? <Text accessibilityLanguage={lang()} style={{ color: t.band }}>{`SS ${labels[e.groupId!]} · `}</Text> : null}{exName(ex)}{ex.archived ? <Text accessibilityLanguage={lang()} style={{ color: t.muted, fontSize: 13 }}>{' (' + tr('usunięte') + ')'}</Text> : null}</Text>
         <Muted numberOfLines={2} style={{ fontSize: 13, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{headMeta}</Muted>
       </View>}</SwipeRow>

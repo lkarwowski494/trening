@@ -1,0 +1,111 @@
+# Zarządzanie szablonami (katalog przepływów docs/37: SZ-03, SZ-04, SZ-05, SZ-07, TR-31): duplikat, archiwum i przywrócenie, usunięcie przesunięciem (Anuluj / Usuń),
+# „Zapisz zmiany w szablonie” po treningu różnym od szablonu, „Zapisz jako szablon” z sesji. Szablon aplikacja zmienia tylko na wyraźny wybór użytkownika (decyzja 03.10.2026).
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Duplicate" / "Archive" / "Restore from archive"   ← 'Duplikuj' / 'Archiwizuj' / 'Przywróć z archiwum' (przyciski podglądu szablonu, app/template/[id].tsx)
+#   "Archive \\(1\\)"                                   ← 'Archiwum ({n})' (zwijany nagłówek listy Szablony, app/templates.tsx)
+#   tpl-list-N / tpl-arch-N                            ← testID wierszy listy (kolejność na liście; archiwum osobno), przycisk pod wierszem <id>-del
+#   "Delete template\\?" / "Delete"                    ← 'Usunąć szablon?' / 'Usuń' (SwipeRow)
+#   "Save changes to the template"                     ← 'Zapisz zmiany w szablonie' (przycisk na ekranie sesji, app/history/[id].tsx; tylko gdy skład różnił się od szablonu)
+#   "Save as template"                                 ← 'Zapisz jako szablon' (ekran sesji)
+appId: pl.lukasz.trening
+name: Szablony — duplikat, archiwum, usuwanie, zapis zmian
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+# --- podgląd szablonu: Duplikuj (kopia otwiera się jako nowy szablon) ---
+- tapOn: "More, tab.*"
+- tapOn: "Templates"
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Duplicate", timeout: 30000 }
+- tapOn: "Duplicate"
+- extendedWaitUntil: { visible: "Archive", timeout: 30000 }
+- takeScreenshot: 70-kopia-szablonu
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
+- assertVisible: { id: "tpl-list-1" }
+# --- archiwizacja kopii i przywrócenie z archiwum ---
+- tapOn: "Upper A \\(copy\\), .*"
+- extendedWaitUntil: { visible: "Archive", timeout: 30000 }
+- tapOn: "Archive"
+- extendedWaitUntil: { visible: "Restore from archive", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Archive \\(1\\)", timeout: 30000 }
+- assertNotVisible: { id: "tpl-list-1" }
+- tapOn: "Archive \\(1\\)"
+- extendedWaitUntil: { visible: { id: "tpl-arch-0" }, timeout: 15000 }
+- takeScreenshot: 71-archiwum
+- tapOn: "Upper A \\(copy\\), .*"
+- extendedWaitUntil: { visible: "Restore from archive", timeout: 30000 }
+- tapOn: "Restore from archive"
+- tapOn: "Back"
+- extendedWaitUntil: { visible: { id: "tpl-list-1" }, timeout: 15000 }
+- assertNotVisible: "Archive \\(.*"
+# --- usunięcie kopii przesunięciem: Anuluj zostawia, Usuń usuwa ---
+- swipe: { from: { id: "tpl-list-1" }, direction: LEFT, duration: 400 }
+- runFlow:
+    when: { visible: { id: "tpl-list-1-del" } }
+    commands:
+      - tapOn: { id: "tpl-list-1-del" }
+- extendedWaitUntil: { visible: "Delete template\\?", timeout: 15000 }
+- tapOn: { text: "Cancel", below: "Delete template\\?" }
+- assertVisible: { id: "tpl-list-1" }
+- swipe: { from: { id: "tpl-list-1" }, direction: LEFT, duration: 400 }
+- runFlow:
+    when: { visible: { id: "tpl-list-1-del" } }
+    commands:
+      - tapOn: { id: "tpl-list-1-del" }
+- extendedWaitUntil: { visible: "Delete template\\?", timeout: 15000 }
+- tapOn: { text: "Delete", below: "Delete template\\?" }
+- extendedWaitUntil: { notVisible: { id: "tpl-list-1" }, timeout: 15000 }
+- assertVisible: { id: "tpl-list-0" }
+- takeScreenshot: 72-po-usunieciu
+# --- trening z szablonu ze zmienionym składem (dodane ćwiczenie) → „Zapisz zmiany w szablonie” ---
+- tapOn: "Back"
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Back Squat"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Back Squat,.*"
+- extendedWaitUntil: { visible: "Set 1 done — Back Squat", timeout: 30000 }
+- tapOn: "Set 1 done — Back Squat"
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- waitForAnimationToEnd
+- assertVisible: "Workout progress: 1 of 7 sets"
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- extendedWaitUntil: { visible: "Save changes to the template", timeout: 15000 }
+- takeScreenshot: 73-zapisz-zmiany
+- tapOn: "Save changes to the template"
+- assertNotVisible: "Save changes to the template"
+# --- „Zapisz jako szablon” z sesji: nowy szablon ze składem sesji ---
+- assertVisible: "Template updated."
+- tapOn: "Save as template"
+- extendedWaitUntil: { visible: "Edit template", timeout: 30000 }
+- assertVisible: "Back Squat.*"
+- takeScreenshot: 74-nowy-z-sesji
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Session", timeout: 15000 }
+- tapOn: "Back"
+- tapOn: "More, tab.*"
+- tapOn: "Templates"
+- extendedWaitUntil: { visible: { id: "tpl-list-1" }, timeout: 30000 }
+- assertVisible: "Upper A, Bench Press.*Back Squat"   # „Zapisz zmiany w szablonie” dopisało do szablonu dodane w treningu ćwiczenie
+- assertVisible: "Upper A \\(2\\), Back Squat.*"   # nowy szablon z sesji (składa się z tego, co zrobiono)
+- takeScreenshot: 75-lista-po-zmianach

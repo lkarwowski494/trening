@@ -1,5 +1,7 @@
 # 31. Scenariusze E2E „z życia” (decyzja właściciela 13.10.2026, wariant A rozszerzony)
 
+> Uzupełnienie z 13.10.2026 (wieczór): pełny katalog przepływów (143, wszystkie stany startowe) i scenariusze 24–29, 36–38 oraz eksperymenty 40–42 — `docs/37`, `docs/38`; lista „tylko telefon” dla właściciela — `docs/39`. Tabele poniżej opisują scenariusze 31–35 i zostają.
+
 Dotychczasowe scenariusze Maestro 01–21 sprawdzają po jednej funkcji i zostają. Do nich dochodzą **długie scenariusze 31–35**: jedna osoba, jedna
 podróż, pełny zakres tego, co robi w normalnych warunkach — razem pokrywają **całą aplikację** (każdy ekran z `docs/19` „EKRAN” i każdą główną
 funkcję). Pliki: `.maestro/31-…` do `35-…`, podprzepływy `.maestro/subflows/generator-plan.yaml` i `plan-kazdego-dnia.yaml`. Wszystkie przechodzą w interpreterze

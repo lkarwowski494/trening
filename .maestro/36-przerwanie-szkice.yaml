@@ -1,0 +1,94 @@
+# Przerwanie w połowie (katalog przepływów docs/37: PR-03, PR-05): aplikacja zabita (stopApp + launchApp bez czyszczenia — jak system, który ubija aplikację w tle) w trakcie
+# wpisywania serii (liczby nieodhaczone zostają, trening w toku) i w trakcie edycji szablonu (pytanie „Niezapisane zmiany”: „Odrzuć zmiany” — szablon bez zmian;
+# „Wróć do edycji” — szkic odzyskany i zapisany). Przerwę (02, 32), pauzę (32) i szkic ćwiczenia (16) sprawdzają inne scenariusze.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   w-0-0 / r-0-0                                    ← testID pól ciężaru i powtórzeń (components/ActiveWorkout.tsx)
+#   "Now: 40 lb × 10"                                ← karta „teraz” ('Teraz: {v}'); symulator en-US startuje w lb (H4, E2E 89)
+#   "Unsaved changes" / "Discard changes" / "Back to editing" ← okno po restarcie (app/_layout.tsx askRestored): 'Niezapisane zmiany' / 'Odrzuć zmiany' / 'Wróć do edycji'
+#   "Edit template" / "Save template" / "Name"        ← podgląd i edycja szablonu (app/template/[id].tsx)
+appId: pl.lukasz.trening
+name: Przerwanie — trening i szkic szablonu po restarcie
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+# --- zabicie aplikacji w trakcie wpisywania serii ---
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: { id: "w-0-0" }
+      - eraseText: 10
+      - inputText: "40"
+      - tapOn: { id: "r-0-0" }
+      - eraseText: 10
+      - inputText: "10"
+      - hideKeyboard
+      - assertVisible: "Now: 40 lb × 10"
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Pause workout", timeout: 60000 }
+- assertVisible: "Workout progress: 0 of 6 sets"
+- assertVisible: "Now: 40 lb × 10"
+- takeScreenshot: 105-po-restarcie-trening
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Workout progress: 1 of 6 sets", timeout: 15000 }
+# --- trening zakończony, szablon w edycji i zabicie aplikacji ---
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
+- tapOn: "More, tab.*"
+- tapOn: "Templates"
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Edit template", timeout: 30000 }
+- tapOn: "Edit template"
+- extendedWaitUntil: { visible: "Save template", timeout: 30000 }
+- tapOn: { text: "Upper A", below: "Name" }
+- eraseText: 30
+- inputText: "Upper B"
+- pressKey: Enter
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Unsaved changes", timeout: 60000 }
+- takeScreenshot: 106-szkic-szablonu
+# --- „Odrzuć zmiany” — szablon wraca do zapisanej wersji ---
+- tapOn: "Discard changes"
+- tapOn: "More, tab.*"
+- tapOn: "Templates"
+- extendedWaitUntil: { visible: "Upper A, .*", timeout: 30000 }
+- assertNotVisible: "Upper B.*"
+# --- jeszcze raz: nowa nazwa, zabicie aplikacji, „Wróć do edycji” i zapis ---
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Edit template", timeout: 30000 }
+- tapOn: "Edit template"
+- extendedWaitUntil: { visible: "Save template", timeout: 30000 }
+- tapOn: { text: "Upper A", below: "Name" }
+- eraseText: 30
+- inputText: "Upper C"
+- pressKey: Enter
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Unsaved changes", timeout: 60000 }
+- tapOn: "Back to editing"
+- extendedWaitUntil: { visible: "Save template", timeout: 30000 }
+- assertVisible: "Upper C"
+- tapOn: "Save template"
+- extendedWaitUntil: { visible: "Edit template", timeout: 30000 }
+- assertVisible: "Upper C"
+- takeScreenshot: 107-szkic-odzyskany

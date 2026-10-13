@@ -1,0 +1,139 @@
+# Narzędzia w trakcie treningu (katalog przepływów docs/37: TR-07, TR-08, TR-16, TR-18, TR-19, TR-23, TR-24, TR-26, TR-27, TR-28): cofnięcie omyłkowego ✓, przerwa ±15 s,
+# zmiana przerwy ćwiczenia („Zapamiętaj”), notatka do serii, superset („Link with next” / „Remove from superset”), technika ćwiczenia z treningu, notatka do treningu,
+# usunięcie ćwiczenia przesunięciem, powrót do treningu z podglądu szablonu, blokada drugiego treningu, odrzucenie treningu.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Shorten rest by 15 seconds" / "Extend rest by 15 seconds"  ← etykiety VoiceOver przycisków −15 / +15 w panelu przerwy (components/ActiveWorkout.tsx RestPanel)
+#   "Rest: 1:30"                                               ← przycisk przerwy ćwiczenia ('Przerwa: {t}'); okno z "This time only" / "Remember" ('Tylko teraz' / 'Zapamiętaj')
+#   "Set 1, type: normal"                                      ← etykieta serii: menu typu serii (ActionSheet) z pozycją "Set note" ('Notatka do serii')
+#   "Link with next into a superset" / "Remove from superset"  ← '⇅ SS' / '✂ SS' (etykiety VoiceOver)
+#   "Technique: X"                                             ← 'Technika: {name}' (stopka bloku → /exercise/[id]?cues=1)
+#   "Workout note"                                             ← 'Notatka do treningu' (pole na dole listy)
+#   ex-N / ex-N-del                                            ← testID nagłówka bloku (SwipeRow) i przycisk usunięcia pod nim; "Remove from workout\\?" ← 'Usunąć z treningu?'
+#   "Discard workout" / "Workout in progress" / "Back to workout" ← 'Odrzuć trening' / 'Trening w toku' / 'Wróć do treningu'
+appId: pl.lukasz.trening
+name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+# --- omyłkowe ✓ i cofnięcie (stuknięcie ✓ jeszcze raz) ---
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Skip", timeout: 15000 }
+- assertVisible: "Workout progress: 1 of 6 sets"
+- tapOn: { text: "Set 1 done — Bench Press \\(Dumbbell\\)" }
+- assertNotVisible: "Skip"
+- assertVisible: "Workout progress: 0 of 6 sets"
+# --- przerwa: +15 s, −15 s, Skip ---
+- tapOn: { text: "Set 1 done — Bench Press \\(Dumbbell\\)" }
+- extendedWaitUntil: { visible: "rest of 1:30", timeout: 15000 }
+- tapOn: "Extend rest by 15 seconds"
+- extendedWaitUntil: { visible: "rest of 1:45", timeout: 15000 }
+- tapOn: "Shorten rest by 15 seconds"
+- tapOn: "Shorten rest by 15 seconds"
+- extendedWaitUntil: { visible: "rest of 1:15", timeout: 15000 }
+- takeScreenshot: 76-przerwa-plus-minus
+- tapOn: "Skip"
+- assertNotVisible: "Skip"
+# --- przerwa ćwiczenia: okno, „Zapamiętaj” ---
+- tapOn: { text: "Rest: 1:30", index: 0 }
+- extendedWaitUntil: { visible: "Remember", timeout: 15000 }
+- takeScreenshot: 77-przerwa-cwiczenia
+- inputText: "45"
+- tapOn: "Remember"
+- extendedWaitUntil: { visible: "Rest: 45 s", timeout: 15000 }
+# --- notatka do serii: menu etykiety serii → „Set note” ---
+- tapOn: { text: "Set 1, type: normal", index: 0 }
+- extendedWaitUntil: { visible: "Add note", timeout: 15000 }
+- takeScreenshot: 78-menu-serii
+- tapOn: "Add note"
+- extendedWaitUntil: { visible: "Set note", timeout: 15000 }
+- inputText: "tempo 3-1-1"
+- tapOn: "Save"
+- extendedWaitUntil: { visible: "tempo 3-1-1", timeout: 15000 }
+# --- superset: połączenie z następnym ćwiczeniem i rozdzielenie ---
+- scrollUntilVisible: { element: "Link with next into a superset", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Link with next into a superset"
+- extendedWaitUntil: { visible: "Remove from superset", timeout: 15000 }
+- takeScreenshot: 79-superset
+- tapOn: "Remove from superset"
+- extendedWaitUntil: { visible: "Link with next into a superset", timeout: 15000 }
+# --- technika ćwiczenia z poziomu treningu i powrót ---
+- scrollUntilVisible: { element: "Technique: Bench Press \\(Dumbbell\\)", direction: UP, timeout: 30000, centerElement: true }
+- tapOn: "Technique: Bench Press \\(Dumbbell\\)"
+- extendedWaitUntil: { visible: "Back", timeout: 30000 }
+- takeScreenshot: 80-technika-z-treningu
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Technique: Bench Press \\(Dumbbell\\)", timeout: 30000 }
+# --- notatka do treningu ---
+- scrollUntilVisible: { element: "e.g. how you feel, pain, equipment", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "e.g. how you feel, pain, equipment"
+- inputText: "lekko bolało ramię"
+- hideKeyboard
+# --- usunięcie ćwiczenia przesunięciem nagłówka bloku ---
+- scrollUntilVisible: { element: "Bent Over Row \\(Dumbbell\\)", direction: UP, timeout: 30000 }
+- swipe: { from: { id: "ex-1" }, direction: LEFT, duration: 400 }
+- runFlow:
+    when: { visible: { id: "ex-1-del" } }
+    commands:
+      - tapOn: { id: "ex-1-del" }
+- extendedWaitUntil: { visible: "Remove from workout\\?", timeout: 15000 }
+- takeScreenshot: 81-usuwanie-cwiczenia
+- tapOn: { text: "Delete", below: "Remove from workout\\?" }
+- extendedWaitUntil: { notVisible: "Bent Over Row \\(Dumbbell\\)", timeout: 15000 }
+# --- zakończenie: notatka treningu i notatka serii w zapisanej sesji ---
+- scrollUntilVisible: { element: "Pause workout", direction: UP, timeout: 30000 }
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: "lekko bolało ramię"
+- assertVisible: "tempo 3-1-1"
+- assertNotVisible: "Bent Over Row.*"
+- takeScreenshot: 82-sesja-z-notatkami
+- tapOn: "Back"
+# --- drugi trening: powrót z podglądu szablonu, blokada startu innego szablonu, odrzucenie ---
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: "More, tab.*"
+- tapOn: "Templates"
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Back to workout", timeout: 30000 }
+- takeScreenshot: 83-wroc-do-treningu
+- tapOn: "Duplicate"
+- extendedWaitUntil: { visible: "Start: Upper A \\(copy\\)", timeout: 30000 }
+- tapOn: "Start: Upper A \\(copy\\)"
+- extendedWaitUntil: { visible: "Finish or discard the current workout first.", timeout: 15000 }
+- assertVisible: "Workout in progress"
+- tapOn: "OK"
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Back to workout", timeout: 30000 }
+- tapOn: "Back to workout"
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- scrollUntilVisible: { element: "Discard workout", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Discard workout"
+- extendedWaitUntil: { visible: "Discard workout\\?", timeout: 15000 }
+- takeScreenshot: 84-odrzucenie-pytanie
+- tapOn: { text: "Cancel", below: "Discard workout\\?" }
+- assertNotVisible: "Discard workout\\?"
+- assertVisible: "Discard workout"
+- tapOn: "Discard workout"
+- extendedWaitUntil: { visible: "Discard workout\\?", timeout: 15000 }
+- tapOn: { text: "Discard workout", below: "Discard workout\\?" }
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- assertVisible: "Workouts: 1;.*"
+- takeScreenshot: 85-po-odrzuceniu

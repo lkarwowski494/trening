@@ -3,7 +3,8 @@
 # przebiegu pomijany (tag `aktualizacja`, `--exclude-tags`). Po nim workflow instaluje BIEŻĄCĄ aplikację na tym samym symulatorze BEZ odinstalowania i uruchamia
 # 34-aktualizacja-sprawdz.yaml. Test pary w Jest: tests/maestro-zycie.test.tsx (restart na tych samych danych).
 # Kroki ograniczone do UI, który istnieje w kilku ostatnich wersjach (zakładki, Szablony pod Więcej, Ustawienia, Postępy → masa ciała).
-# Stan końcowy: szablon „Upper A”, jednostka kg, wygląd ciemny, 1 zakończony trening, masa ciała 80 kg, DRUGI trening w toku (1 seria odhaczona).
+# Stan końcowy: szablon „Upper A”, jednostka kg, wygląd ciemny, 1 zakończony trening + 1 trening wstecz, masa ciała 80 kg, plan Upper A na każdy dzień, miejsce „Home” z hantlami,
+# DRUGI trening w toku (1 seria odhaczona).
 tags:
   - aktualizacja
 appId: pl.lukasz.trening
@@ -59,6 +60,39 @@ name: Aktualizacja — dane w poprzedniej wersji
       - inputText: "0"
       - tapOn: "Save measurement"
       - extendedWaitUntil: { visible: "80 kg, .*", timeout: 15000 }
+- tapOn: "Back"
+# --- 13.10.2026 (katalog przepływów AK-03): plan tygodnia na każdy dzień, miejsce „Home” z hantlami, trening wstecz — stan, który migracja schematu nie może zgubić ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- runFlow: subflows/plan-kazdego-dnia.yaml
+- tapOn: "Back"
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+- tapOn: "Places and equipment"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Add place"
+- extendedWaitUntil: { visible: "Home,.*", timeout: 30000 }
+- tapOn: "Home,.*"
+- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
+- scrollUntilVisible: { element: "Free weights.*", direction: DOWN, timeout: 90000 }
+- tapOn: "Free weights.*"
+- scrollUntilVisible: { element: { id: "sw-Dumbbells \\(fixed or quick-adjust\\)" }, direction: DOWN, timeout: 90000 }
+- tapOn: { id: "sw-Dumbbells \\(fixed or quick-adjust\\)" }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Back"
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }
+- tapOn: "Log a past workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 30000 }
+- tapOn: "Previous day"
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Cancel session editing", timeout: 30000 }
+- tapOn: { id: "reps-0-0" }
+- inputText: "9"
+- tapOn: "Save session"
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
 - tapOn: "Back"
 # --- drugi trening: w toku, pierwsza seria odhaczona z ciężarem i powtórzeniami ---
 - tapOn: "Workout, tab.*"

@@ -1,0 +1,142 @@
+# Zarządzanie planem (katalog przepływów docs/37: PL-02, PL-03, PL-04, PL-05, PL-07, PL-08, PL-09, TR-05): nazwa planu, drugi plan i powrót do pierwszego, usunięcie zapisanego planu,
+# wyłączenie planu, w panelu dnia: zmiana szablonu, „Wolne w tym dniu”, dopisanie treningu do minionego dnia, start z panelu dnia.
+# Daty: żadna asercja nie zależy od dnia tygodnia ani miesiąca — dzień przyszły to pierwsza komórka NASTĘPNEGO miesiąca z planem, minione to pierwsza komórka POPRZEDNIEGO miesiąca.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   plan-name                                        ← testID pola 'Nazwa planu' (app/plan.tsx; ekran aktywnego planu i zapisanego planu)
+#   "Turn off plan: X" / "Turn off the plan\\?" / "Turn off" ← PlanToggle przy aktywnym planie ('Wyłącz plan: {name}', 'Wyłączyć plan?', 'Wyłącz')
+#   "Make active: X" / "Set"                         ← 'Ustaw jako aktywny: {name}' / 'Ustaw' (okno potwierdzenia)
+#   plan-saved-N / plan-saved-N-del / "Delete this plan\\?" ← testID wiersza „Inne plany”, przycisk pod nim, pytanie ('Usunąć ten plan?')
+#   cal-RRRR-MM-DD                                   ← testID komórki kalendarza (components/HistoryCalendar.tsx); etykieta „{data}, planned: {szablon}”
+#   "Change template" / "Planned: X" / "Move or skip" / "Rest this day" / "Apply: Rest this day" ← panel dnia (components/DayPanel.tsx)
+#   "Log a past workout" (przycisk w panelu minionego dnia: 'Dopisz trening wstecz' → "Log a workout for this day")
+appId: pl.lukasz.trening
+name: Plan — nazwa, drugi plan, wyłączenie, panel dnia
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+# --- drugi szablon (kopia) do wyboru w panelu dnia ---
+- tapOn: "More, tab.*"
+- tapOn: "Templates"
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Duplicate", timeout: 30000 }
+- tapOn: "Duplicate"
+- extendedWaitUntil: { visible: "Archive", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
+- tapOn: "Back"
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- runFlow: subflows/plan-kazdego-dnia.yaml
+# --- nazwa planu ---
+- tapOn: { id: "plan-name" }
+- inputText: "Plan A"
+- pressKey: Enter
+- tapOn: "Back"
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "Planning", timeout: 30000 }
+- tapOn: "Planning"
+- extendedWaitUntil: { visible: "Turn off plan: Plan A", timeout: 30000 }
+- takeScreenshot: 86-nazwa-planu
+# --- drugi plan: nazwa, aktywacja, powrót do pierwszego ---
+- tapOn: "Add plan"
+- extendedWaitUntil: { visible: "This plan is not active yet.*", timeout: 15000 }
+- tapOn: { id: "plan-name" }
+- eraseText: 40
+- inputText: "Plan B"
+- pressKey: Enter
+- tapOn: "Make active: Plan B"
+- extendedWaitUntil: { visible: "Set", timeout: 15000 }
+- tapOn: "Set"
+- extendedWaitUntil: { visible: "Turn off plan: Plan B", timeout: 30000 }
+- assertVisible: "Make active: Plan A"
+- takeScreenshot: 87-plan-b-aktywny
+- tapOn: "Make active: Plan A"
+- extendedWaitUntil: { visible: "Set", timeout: 15000 }
+- tapOn: "Set"
+- extendedWaitUntil: { visible: "Turn off plan: Plan A", timeout: 30000 }
+# --- usunięcie zapisanego planu B przesunięciem (Anuluj zostawia, Usuń usuwa) ---
+- swipe: { from: { id: "plan-saved-0" }, direction: LEFT, duration: 400 }
+- runFlow:
+    when: { visible: { id: "plan-saved-0-del" } }
+    commands:
+      - tapOn: { id: "plan-saved-0-del" }
+- extendedWaitUntil: { visible: "Delete this plan\\?", timeout: 15000 }
+- tapOn: { text: "Cancel", below: "Delete this plan\\?" }
+- assertVisible: "Make active: Plan B"
+- swipe: { from: { id: "plan-saved-0" }, direction: LEFT, duration: 400 }
+- runFlow:
+    when: { visible: { id: "plan-saved-0-del" } }
+    commands:
+      - tapOn: { id: "plan-saved-0-del" }
+- extendedWaitUntil: { visible: "Delete this plan\\?", timeout: 15000 }
+- tapOn: { text: "Delete", below: "Delete this plan\\?" }
+- extendedWaitUntil: { notVisible: "Make active: Plan B", timeout: 15000 }
+# --- wyłączenie planu: Anuluj zostawia, Wyłącz czyści kalendarz od dziś ---
+- tapOn: "Turn off plan: Plan A"
+- extendedWaitUntil: { visible: "Turn off the plan\\?", timeout: 15000 }
+- tapOn: { text: "Cancel", below: "Turn off the plan\\?" }
+- assertVisible: "Turn off plan: Plan A"
+- tapOn: "Turn off plan: Plan A"
+- extendedWaitUntil: { visible: "Turn off the plan\\?", timeout: 15000 }
+- tapOn: { text: "Turn off", below: "Turn off the plan\\?" }
+- extendedWaitUntil: { visible: "Make active: Plan A", timeout: 30000 }
+- assertNotVisible: "Turn off plan: .*"
+- tapOn: "Back"
+- tapOn: "Plan, tab.*"
+- assertNotVisible: ".*, planned: .*"
+- takeScreenshot: 88-plan-wylaczony
+# --- powrót planu A jednym przyciskiem ---
+- tapOn: "Planning"
+- extendedWaitUntil: { visible: "Make active: Plan A", timeout: 30000 }
+- tapOn: "Make active: Plan A"
+- extendedWaitUntil: { visible: "Set", timeout: 15000 }
+- tapOn: "Set"
+- extendedWaitUntil: { visible: "Turn off plan: Plan A", timeout: 30000 }
+- tapOn: "Back"
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: ".*, planned: Upper A", timeout: 30000 }
+# --- panel dnia w następnym miesiącu: zmiana szablonu dnia, „Wolne w tym dniu” ---
+- tapOn: "Next month"
+- tapOn: { text: ".*, planned: Upper A", index: 0 }
+- extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
+- tapOn: "Change template"
+- tapOn: "Upper A \\(copy\\)"
+- extendedWaitUntil: { visible: "Planned: Upper A \\(copy\\).*", timeout: 15000 }
+- takeScreenshot: 89-zmiana-szablonu-dnia
+- tapOn: "Move or skip"
+- scrollUntilVisible: { element: "Show [0-9]+ more", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Show [0-9]+ more"
+- scrollUntilVisible: { element: "Apply: Rest this day", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Apply: Rest this day"
+- extendedWaitUntil: { visible: "Rest · plan changed", timeout: 15000 }
+- takeScreenshot: 90-wolne-w-dniu
+# --- miniony dzień: dopisanie treningu wstecz z panelu dnia ---
+- tapOn: "Previous month"
+- tapOn: "Previous month"
+- tapOn: { id: "cal-.*", index: 0 }
+- extendedWaitUntil: { visible: "Rest", timeout: 15000 }
+- tapOn: { text: "Log a past workout", index: 1 }
+- extendedWaitUntil: { visible: "From a template", timeout: 30000 }
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Cancel session editing", timeout: 30000 }
+- tapOn: { id: "reps-0-0" }
+- inputText: "8"
+- tapOn: "Save session"
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: "Upper A"
+- takeScreenshot: 91-trening-z-minionego-dnia
+# --- start dzisiejszego treningu z panelu dnia ---
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Planning", timeout: 30000 }
+- tapOn: "Next month"
+- tapOn: { text: ".*, today.*" }
+- extendedWaitUntil: { visible: "Start planned workout: Upper A", timeout: 15000 }
+- tapOn: "Start planned workout: Upper A"
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- takeScreenshot: 92-start-z-panelu-dnia

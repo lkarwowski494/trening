@@ -1,0 +1,12 @@
+# Podprzepływ (EKSPERYMENT, katalog DA-04): wybór pliku kopii w oknie wyboru plików iOS (UIDocumentPicker) po „Importuj” w Kopia zapasowa. Okno jest procesem systemowym: zakładamy, że Maestro
+# widzi jego elementy (jak okno zgody na powiadomienia) — Browse → On My iPhone → folder aplikacji → Backup → najnowsza kopia automatyczna „trening-2…”. Kroki niepewne są `optional`,
+# bo okno otwiera się w ostatnio użytym miejscu. Nikt nie uruchomił ich na symulatorze (docs/38 pkt 5); interpreter w Jest tego podprzepływu NIE wykonuje (tests/maestro-runner.ts,
+# PICKER_SUBFLOW) — wybór pliku robi atrapa wyboru plików z wirtualnym dyskiem. Nie jest na liście w config.yaml — tylko runFlow ze scenariusza 42.
+appId: pl.lukasz.trening
+---
+- extendedWaitUntil: { visible: "Browse|Recents|Cancel", timeout: 30000 }
+- tapOn: { text: "Browse", optional: true }
+- tapOn: { text: "On My iPhone", optional: true }
+- tapOn: { text: "Trening", optional: true }
+- tapOn: { text: "Backup", optional: true }
+- tapOn: { text: "trening-2.*", index: 0 }
