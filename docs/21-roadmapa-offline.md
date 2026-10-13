@@ -137,6 +137,9 @@ Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właścic
 - Wydanie Health — biblioteka `@kingstinct/react-native-healthkit` 8 → 16: odczyt aktywnych kcal, ocena wysiłku (`workoutEffortScore`; RPE → ocena **[OTWARTE]**),
   prawdziwe zdarzenia pauzy z `Workout.pauses`, masa ciała i pomiary ciała.
 - Import CSV ze Strong i Hevy — **przeniesione do „Przed App Store” (11.10.2026)**, sekcja niżej.
+- „Skąd to wiemy?” (dodane 13.10.2026, odłożone przez właściciela do backlogu bez priorytetu): przy każdej liczbie i regule merytorycznej
+  przycisk ze źródłem, poziomem pewności i krótkim cytatem (25 miejsc w kodzie; jeden rejestr źródeł generowany z kodu). Specyfikacja: scratchpad
+  koordynatora `spec-zrodla-i-glos.md` (część A) — do przeniesienia do docs przy wznowieniu. Także sposób pokazania cytatów w 35 językach — **[OTWARTE]**.
 - Nagranie siebie podczas ćwiczenia i ocena AI poprawności ruchu (dodane 08.10.2026). Przed pracą **[OTWARTE]**: źródła dla kryteriów techniki
   i dokładności oceny z obrazu (w 4c „liczenie powtórzeń kamerą” odłożone z braku udokumentowanej dokładności); granica porad zdrowotnych
   (ból, kontuzje → specjalista); prywatność nagrań (tylko na telefonie?); koszt modelu (0 zł poza Apple).
