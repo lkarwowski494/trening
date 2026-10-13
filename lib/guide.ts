@@ -18,7 +18,7 @@ export const GUIDE: GuideTopic[] = [
     t('Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.'),
   ] },
   { id: 'templates', route: '/templates', title: () => t('Szablony'), steps: () => [
-    t('Więcej → Szablony: „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.'),
+    t('Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.'),
     t('Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.'), /* edycja na żądanie, 08.10.2026 */
     t('„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).'),
   ] },
@@ -37,7 +37,7 @@ export const GUIDE: GuideTopic[] = [
     t('Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.'),
     t('Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.'),
     t('Na górze listy jest polecana: wraca do rutyny i nie gubi treningu, potem unika par dzień po dniu z tymi samymi partiami i zmienia najmniej dni.'),
-    t('Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.'),
+    t('Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.'),
   ] },
   { id: 'generator', route: '/generator', title: () => t('Generator szablonów i planu'), steps: () => [
     t('„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.'),

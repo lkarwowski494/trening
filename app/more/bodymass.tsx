@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { ScrollView, Alert, View } from 'react-native';
-import { Screen, Field, NumInput, Input, Btn, Muted, Item, SectionTitle } from '@/components/ui';
+import { Screen, Field, NumInput, Input, Btn, Muted, Item, SectionTitle, Empty } from '@/components/ui';
 import { SwipeRow } from '@/components/SwipeRow';
 import { useTick, bodyMassLog, addBodyMass, removeBodyMass, localISODate, fmtDate, localDateTs } from '@/lib/store';
 import { BW_SHARE } from '@/lib/stats';
 import { t } from '@/lib/i18n';
 import { wu, wIn, fmtW } from '@/lib/units';
+import { DateField } from '@/components/WhenFields';
 
 /*
  * Masa ciała z datą (fala 2 audytu 0.10, decyzja: wdrożyć; E1 wariant B). Pomiary — dzień i masa; e1RM ćwiczeń z masą ciała w każdym treningu liczy się
@@ -25,7 +26,7 @@ export default function BodyMassScreen() {
       <Muted style={{ fontSize: 13, marginBottom: 12 }}>{t('Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.', { p: Math.round(BW_SHARE['Push Up'] * 100) })}</Muted>
       <View /* UX2-11: pola jedno pod drugim — na 320 pt i przy dużym tekście etykiety nie konkurują o szerokość */>
         <View><Field label={t('Masa ciała ({u})', { u: wu() })}><NumInput testID="bodymass-kg" /* E2E: pole masy po id (UX2-11 — pola jedno pod drugim) */ decimal weightTol value={kg} placeholder="—" onNum={v => setKg(v === '' ? '' : Math.max(0, v))} /></Field></View>
-        <View><Field label={t('Data pomiaru (RRRR-MM-DD)')}><Input value={date} onChangeText={setDate} placeholder={localISODate()} autoCorrect={false} keyboardType="numbers-and-punctuation" maxLength={10} /></Field></View>
+        <View style={{ marginBottom: 12 }}><DateField value={date} onChange={setDate} label={t('Data pomiaru (RRRR-MM-DD)')} placeholder={localISODate()} /></View>
       </View>
       <Btn title={t('Zapisz pomiar')} kind="primary" onPress={add} />
       <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Pomiar z tym samym dniem zastępuje poprzedni.')}</Muted>
@@ -35,7 +36,7 @@ export default function BodyMassScreen() {
           message={t('{v} z {d}. Treningi z tego okresu przeliczą e1RM z wcześniejszego pomiaru (albo bez e1RM, gdy go nie ma).', { v, d })} onDelete={() => removeBodyMass(x.date)}>
           {a11y => <Item a11y={a11y} title={v} sub={d} />}
         </SwipeRow>); })
-        : <Muted style={{ fontSize: 13 }}>{t('Brak pomiarów.')}</Muted>}
+        : <Empty>{t('Brak pomiarów.')}</Empty>}
     </ScrollView></Screen>
   );
 }

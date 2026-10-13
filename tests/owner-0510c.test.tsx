@@ -6,7 +6,7 @@ jest.setTimeout(60000);
 describe('1) grupy sprzętu zwijane', () => {
   test('domyślnie zwinięte z licznikiem; dotknięcie rozwija i zwija', async () => {
     await renderApp(); await go('/more/locations'); await flushAll(10);
-    await tap(screen.getByText('+ Dodaj miejsce')); await tap(screen.getByText('Dom')); await flushAll(10);
+    await tap(screen.getByLabelText('Dodaj miejsce')); await tap(screen.getByText('Dom')); await flushAll(10);
     expect(screen.queryByLabelText('Ławka regulowana')).toBeNull();
     const g = screen.getByLabelText('Ławki i stojaki'); expect(g.props.accessibilityState).toEqual({ expanded: false }); expect(screen.getAllByText(/^0 z \d+$/).length).toBeGreaterThan(0);
     await tap(g); expect(screen.getByLabelText('Ławka regulowana')).toBeTruthy();

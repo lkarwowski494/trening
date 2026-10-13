@@ -4,7 +4,7 @@
 # Literały (EN z lib/i18n.en.ts):
 #   "Workout, tab, 1 of 4" … "More, tab, 4 of 4" ← etykieta zakładki „{label}, tab, {i} of {n}” (app/(tabs)/_layout.tsx, tabA11y; TAB_COUNT = 4)
 #   "Templates" / "Exercises"        ← pozycje listy Więcej (app/(tabs)/more.tsx) i tytuły ekranów stosu (app/_layout.tsx)
-#   "\+ New" / "Search…"             ← przycisk ekranu Szablony (app/templates.tsx) / pole ekranu Ćwiczenia (app/exercises.tsx)
+#   "Add template" / "Search exercises…"             ← przycisk ekranu Szablony (app/templates.tsx) / pole ekranu Ćwiczenia (app/exercises.tsx)
 #   "Progression" / "Body weight — measurements" ← sekcja kafelków (components/Dashboard.tsx ProgressTiles — widoczna po pierwszym treningu) i przycisk
 #                                    sekcji „Body weight” (app/(tabs)/progress.tsx)
 #   "Planning"                       ← przycisk w zakładce Plan (app/(tabs)/history.tsx)
@@ -39,12 +39,12 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
 - assertVisible: "Exercises"
 - assertNotVisible: "Progress"  # Postępy mają własną zakładkę — nie ma ich już na liście Więcej
 - tapOn: "Templates"
-- extendedWaitUntil: { visible: "\\+ New", timeout: 30000 }
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
 - takeScreenshot: 92-wiecej-szablony
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "More, tab.*", timeout: 30000 }
 - tapOn: "Exercises"
-- extendedWaitUntil: { visible: "Search…", timeout: 30000 }
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "More, tab.*", timeout: 30000 }
 

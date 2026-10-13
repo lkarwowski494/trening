@@ -176,10 +176,10 @@ describe('B — kilka planów', () => {
     plan.setSavedDay(urlop, 0, C); plan.setSavedDay(urlop, 2, null); /* edycja przed aktywacją — aktywny plan bez zmian */
     expect(plan.weekPlanDays()).toEqual([A, null, B, null, null, null, null]); expect(plan.savedPlans()[0].days).toEqual([C, null, null, null, null, null, null]);
     plan.activatePlan(urlop);
-    expect(plan.planName()).toBe('Urlop'); expect(plan.savedPlans().map(p => [p.name, p.days[0]])).toEqual([['Mój plan (8.10)', A]]);
-    const back = plan.savedPlans()[0].id; plan.activatePlan(back); expect(plan.planName()).toBe('Mój plan (8.10)');
+    expect(plan.planName()).toBe('Urlop'); expect(plan.savedPlans().map(p => [p.name, p.days[0]])).toEqual([['Mój plan (8 paź)', A]]);
+    const back = plan.savedPlans()[0].id; plan.activatePlan(back); expect(plan.planName()).toBe('Mój plan (8 paź)');
     plan.activatePlan(plan.savedPlans()[0].id); plan.activatePlan(plan.savedPlans()[0].id);
-    expect(plan.savedPlans().map(p => p.name)).toEqual(['Urlop']); expect(plan.planName()).toBe('Mój plan (8.10)');
+    expect(plan.savedPlans().map(p => p.name)).toEqual(['Urlop']); expect(plan.planName()).toBe('Mój plan (8 paź)');
   });
   test('B1 (DAT-02 B): zmiany pojedynczych dni od dziś wędrują z planem — zapisane przy wyłączeniu, wracają przy ponownej aktywacji; przeszłe zostają', async () => {
     plan.setWeekDay(0, A); plan.setWeekDay(2, B); plan.setPlanName('Rutyna'); const tmp = plan.newPlan('Przejściowy')!;
@@ -280,7 +280,7 @@ describe('A2–A8 — logika stanu dnia i przesuwania', () => {
   test('A7 (UX-07/UI-06): skutki usunięcia / archiwizacji szablonu dla planu — dni planu, zmiany dni, zapisane plany, trening w toku', () => {
     plan.setWeekDay(0, A); plan.setWeekDay(3, A); plan.newPlan('Urlop'); plan.setDayPlan('2026-10-10', A);
     const tpl = S().templates.find(x => x.id === A)!; store.startFromTemplate(tpl);
-    expect(plan.templateUsageText(A).split('\n')).toEqual(['W planie tygodnia: pon., czw. — te dni będą wolne.', 'Zaplanowany też na: sob., 10.10 — te dni będą wolne.', 'W zapisanych planach: Urlop.', 'Trwa trening z tego szablonu — zostanie bez zmian.']);
+    expect(plan.templateUsageText(A).split('\n')).toEqual(['W planie tygodnia: pon., czw. — te dni będą wolne.', 'Zaplanowany też na: sob., 10 paź — te dni będą wolne.', 'W zapisanych planach: Urlop.', 'Trwa trening z tego szablonu — zostanie bez zmian.']);
     expect(plan.templateUsageText(A, true)).toContain('Po przywróceniu z archiwum szablon wróci do planu.');
     expect(plan.templateUsageText(B)).toBe('');
   });

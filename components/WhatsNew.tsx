@@ -6,10 +6,11 @@ import { useTheme, F } from '@/lib/theme';
 import { WHATS_NEW, whatsNewUnseen, markWhatsNewSeen, type WhatsNewEntry } from '@/lib/whatsnew';
 import { finishedWorkouts } from '@/lib/store';
 import { t, locale, lang } from '@/lib/i18n';
+import { fmtDayMonthYear } from '@/lib/calendar';
 
 /* „Co nowego” (decyzja właściciela 08.10.2026): przycisk „i” w lewym górnym rogu ekranu Trening, kropka po aktualizacji, sekcja rozwijana. */
 const entryTitle = (e: WhatsNewEntry) => {
-  const d = new Date(+e.date.slice(0, 4), +e.date.slice(5, 7) - 1, +e.date.slice(8, 10)).toLocaleDateString(locale(), { day: 'numeric', month: 'short', year: 'numeric' }); /* H3 (audyt 0.10): miesiąc słownie jak w pozostałych datach */
+  const d = fmtDayMonthYear(new Date(+e.date.slice(0, 4), +e.date.slice(5, 7) - 1, +e.date.slice(8, 10))); /* H3 (audyt 0.10): miesiąc słownie jak w pozostałych datach */
   return e.build ? t('Wersja testowa {n} · {date}', { n: e.build, date: d }) : t('W tej wersji');
 };
 

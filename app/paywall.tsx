@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, View, Text, Pressable, Linking, ActivityIndicator, Alert } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useCloseHeader } from '@/components/CloseButton';
-import { Screen, H1, Muted, Btn, SectionTitle } from '@/components/ui';
+import { Screen, Muted, Btn, SectionTitle } from '@/components/ui';
 import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t, tp, lang } from '@/lib/i18n';
 import { fmtDate } from '@/lib/store';
@@ -11,6 +11,7 @@ import { PLAN_ORDER, PRIVACY_URL, TERMS_URL, isFakeStoreBuild } from '@/lib/prod
 import { getStoreAdapter, type StoreProduct } from '@/lib/store-adapter';
 import type { FakeStoreControl } from '@/lib/store-fake';
 import { useAccess, purchasePlan, restorePurchases, paywallConfig, refreshEntitlements, nextMonthDay } from '@/lib/entitlement';
+import { useAnnounce } from '@/lib/announce';
 
 /*
  * Ekran zakupu (docs/27 rozdz. 5, wydanie 0.17.0): ceny wyłącznie z App Store (displayPrice), „1 miesiąc za darmo, potem {cena}/{okres}” tylko dla osób
@@ -42,7 +43,7 @@ export default function PaywallScreen() {
     try {
       const r = await purchasePlan(chosen.plan);
       if (r.status === 'pending') setNote(t('Czeka na zgodę organizatora rodziny.'));
-      else if (r.status === 'error') Alert.alert(t('Nie udało się'), t('Spróbuj ponownie.'));
+      else if (r.status === 'error') Alert.alert(t('Nie udało się dokończyć zakupu'), t('Spróbuj ponownie.'));
     } finally { setBusy(false); }
   };
   const restore = async () => {
@@ -50,11 +51,10 @@ export default function PaywallScreen() {
     try { const r = await restorePurchases(); setNote(r === 'restored' ? t('Przywrócono zakupy.') : r === 'none' ? t('Nie znaleziono zakupów dla tego konta Apple.') : t('Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.')); } finally { setBusy(false); }
   };
   const store = async (fn: () => Promise<void>) => { try { await fn(); } catch { setNote(t('Potrzebne połączenie z internetem.')); } };
-  const cfg = paywallConfig();
+  useAnnounce(note); const cfg = paywallConfig();
   const fake = isFakeStoreBuild() ? (getStoreAdapter() as unknown as FakeStoreControl) : null;
   return (
     <Screen><Stack.Screen options={headerOpts} /><ScrollView testID="paywall-scroll" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
-      <H1>{t('Pełna wersja')}</H1>
       {reason === 'limit' && view.decision.resetsAt ? <Text testID="paywall-limit" accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.semibold, fontSize: 16, marginTop: 8 }}>{t('Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.', { n: view.decision.limit, date: fmtDate(nextMonthDay()) })}</Text> : null}
       <Muted style={{ marginTop: 8, marginBottom: 12 }}>{t('Treningi bez limitu. Bez reklam. Wszystko zostaje na Twoim telefonie.')}</Muted>
 
@@ -81,7 +81,7 @@ export default function PaywallScreen() {
         {chosen && chosen.period !== null ? <Muted style={{ fontSize: 13, marginTop: 8 }}>{t('Subskrypcja odnawia się automatycznie, dopóki jej nie anulujesz w ustawieniach konta Apple.')}</Muted> : null}
       </> : null}
 
-      {note ? <Text testID="paywall-note" accessibilityLiveRegion="polite" accessibilityLanguage={lang()} style={{ color: th.text, marginTop: 10 }}>{note}</Text> : null}
+      {note ? <Text testID="paywall-note" accessibilityLanguage={lang()} style={{ color: th.text, marginTop: 10 }}>{note}</Text> : null}
       <Muted style={{ fontSize: 13, marginTop: 12 }}>{t('Bez zakupu: {n} {s} na żywo w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.', { n: cfg.FREE_LIVE_PER_MONTH, s: tp(cfg.FREE_LIVE_PER_MONTH, 'trening|treningi|treningów') })}</Muted>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
         <Btn small title={t('Przywróć zakupy')} onPress={() => { void restore(); }} />

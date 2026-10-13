@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { ScrollView, Alert, View } from 'react-native';
-import { Screen, Btn, Muted, Segmented, SectionTitle, Item, Input } from '@/components/ui';
+import { Screen, Btn, Muted, Segmented, SectionTitle, Item, Input, SearchField } from '@/components/ui';
 import { getState, useTick, fmtDayKey } from '@/lib/store';
 import { isSafetyError } from '@/lib/backup';
 import { pickCsv, commitCsvImport } from '@/lib/csvimport';
@@ -18,18 +18,18 @@ const ERR: Record<ImportErrorCode, () => string> = {
 const SHOWN = 6; /* podpowiedzi przy zmianie dopasowania */
 
 export default function ImportCsv() {
-  useTick(); const st = getState(); const busy = useRef(false);
+  useTick(); const st = getState(); const busy = useRef(false); const [working, setWorking] = useState(false);
   const [file, setFile] = useState<ParsedFile | null>(null);
   const [unit, setUnit] = useState<Unit>(st.settings.unit === 'lb' ? 'lb' : 'kg'); /* domyślnie jednostka z Ustawień */
   const [mapping, setMapping] = useState<Record<string, string | 'new'>>({});
   const [editing, setEditing] = useState<string | null>(null); const [q, setQ] = useState('');
   const a = useMemo(() => file ? analyze(file, st, mapping) : null, [file, st, mapping]);
-  const fail = (e: unknown) => isImportError(e) ? Alert.alert(t('Nie udało się'), ERR[e.code]()) : Alert.alert(t('Nie udało się'), t('Spróbuj ponownie.'));
+  const fail = (e: unknown) => isImportError(e) ? Alert.alert(t('Nie udało się zaimportować pliku'), ERR[e.code]()) : Alert.alert(t('Nie udało się zaimportować pliku'), t('Spróbuj ponownie.'));
   const pick = () => { if (busy.current) return; busy.current = true;
     pickCsv().then(f => { if (f) { setFile(f); setMapping({}); setEditing(null); setQ(''); } }).catch(fail).finally(() => { busy.current = false; }); };
-  const run = () => { if (busy.current || !file) return; busy.current = true;
+  const run = () => { if (busy.current || !file) return; busy.current = true; setWorking(true);
     commitCsvImport(file, { unit, mapping }).then(r => { setFile(null); Alert.alert(t('Zaimportowano'), t('Dodano treningi: {n}, nowe ćwiczenia: {m}.', { n: r.workouts, m: r.exercises })); })
-      .catch((e: unknown) => isSafetyError(e) ? Alert.alert(t('Import przerwany'), e.message) : fail(e)).finally(() => { busy.current = false; }); };
+      .catch((e: unknown) => isSafetyError(e) ? Alert.alert(t('Import przerwany'), e.message) : fail(e)).finally(() => { busy.current = false; setWorking(false); }); };
   const targetOf = (name: string) => { const m = mapping[name]; const auto = a?.names.find(r => r.name === name)?.auto ?? null;
     const ex = m && m !== 'new' ? st.exercises.find(e => e.id === m) ?? null : m === 'new' ? null : auto; return ex; };
   const hits = useMemo(() => { const k = normName(q); const l = st.exercises.filter(e => !e.archived && (!k || normName(exName(e)).includes(k) || normName(e.name).includes(k)));
@@ -55,15 +55,15 @@ export default function ImportCsv() {
           {a.names.length ? <SectionTitle>{t('Ćwiczenia z pliku')}</SectionTitle> : null}
           {a.names.map(r => { const ex = targetOf(r.name); const open = editing === r.name;
             return (<View key={r.name}>
-              <Item title={r.name} sub={`${t('Serie: {n}', { n: r.sets })} · ${ex ? `→ ${exName(ex)}` : t('Nowe ćwiczenie')}`} icon={open ? '⌃' : '⌄'} accessibilityLabel={`${r.name}, ${ex ? exName(ex) : t('Nowe ćwiczenie')}, ${t('Zmień dopasowanie')}`}
+              <Item title={r.name} sub={`${t('Serie: {n}', { n: r.sets })} · ${ex ? `→ ${exName(ex)}` : t('Nowe ćwiczenie')}`} icon={open ? '▾' : '▸'} expanded={open} accessibilityLabel={`${r.name}, ${ex ? exName(ex) : t('Nowe ćwiczenie')}, ${t('Zmień dopasowanie')}`}
                 onPress={() => { setEditing(open ? null : r.name); setQ(''); }} />
               {open ? <View style={{ gap: 6, paddingVertical: 6 }}>
-                <Item title={t('Nowe ćwiczenie')} icon={!ex ? '✓' : undefined} onPress={() => { setMapping(m => ({ ...m, [r.name]: 'new' })); setEditing(null); }} />
-                <Input value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} autoCorrect={false} />
-                {hits.map(e => <Item key={e.id} title={exName(e)} icon={ex?.id === e.id ? '✓' : undefined} onPress={() => { setMapping(m => ({ ...m, [r.name]: e.id })); setEditing(null); }} />)}
+                <Item title={t('Nowe ćwiczenie')} selected={!ex} icon={!ex ? '✓' : undefined} onPress={() => { setMapping(m => ({ ...m, [r.name]: 'new' })); setEditing(null); }} />
+                <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} />
+                {hits.map(e => <Item key={e.id} title={exName(e)} selected={ex?.id === e.id} icon={ex?.id === e.id ? '✓' : undefined} onPress={() => { setMapping(m => ({ ...m, [r.name]: e.id })); setEditing(null); }} />)}
               </View> : null}
             </View>); })}
-          {a.fresh.length ? <Btn title={t('Importuj')} kind="primary" block onPress={run} /> : <Muted>{t('Nie ma nowych treningów do dodania — wszystkie są już w historii.')}</Muted>}
+          {a.fresh.length ? <Btn title={t('Importuj')} kind="primary" block loading={working} onPress={run} /> : <Muted>{t('Nie ma nowych treningów do dodania — wszystkie są już w historii.')}</Muted>}
           <Btn title={t('Anuluj')} block onPress={() => { setFile(null); setEditing(null); }} />
         </View>
       ) : null}

@@ -27,12 +27,12 @@ test('picker swap:edit: „Przywróć …” zarchiwizowanego ćwiczenia z tą s
   expect(screen.queryByText('Przywróć „Plank”')).toBeNull();
 });
 
-test('renderApp({ navTimers: false }): arkusz zamiany zamknięty „Zamknij” nie zostawia zaległych timerów', async () => {
+test('renderApp({ navTimers: false }): arkusz zamiany zamknięty „Anuluj” nie zostawia zaległych timerów', async () => {
   await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await store.flush();
   await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())), navTimers: false }); await flushAll(2000);
   const before = jest.getTimerCount();
   await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (sztanga)')); await flushAll(50);
-  await tap(screen.getByText('Zamknij')); await flushAll(2000);
+  await tap(screen.getByText('Anuluj')); await flushAll(2000);
   expect(jest.getTimerCount()).toBe(before);
 });
 

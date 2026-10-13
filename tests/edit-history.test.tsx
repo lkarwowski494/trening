@@ -186,7 +186,7 @@ describe('ekrany', () => {
     expect(sets(w.id)).toEqual([['80x5', '80x5']]); // dopiero „Zapisz”
     await tap(screen.getByText('Zapisz')); await flushAll(50); await settle();
     expect(sets(w.id)).toEqual([['82.5x5', '80x6']]); expect(byId(w.id).healthUUID).toBeNull();
-    expect(screen.getAllByText('82,5').length).toBeGreaterThan(0); expect(screen.queryByText('Zapisz zmiany')).toBeNull();
+    expect(screen.getAllByText('82,5').length).toBeGreaterThan(0); expect(screen.queryByLabelText('Zapisz sesję')).toBeNull();
     expect(saved().workouts.find(x => x.id === w.id)!.exercises[0].sets[0].weight).toBe(82.5);
     expect(write.mock.calls.some(c => /\/Backup\/trening-[\d-]+\.json$/.test(c[0]))).toBe(true);
     spy.mockRestore(); expect(errs).toEqual([]); // bez ostrzeżeń Reacta (szkic zakładany w trakcie renderu edytora)
@@ -198,7 +198,7 @@ describe('ekrany', () => {
     expect(global.__alerts.length).toBe(n); expect(screen.getByText('Edytuj')).toBeTruthy(); expect(edit.draftOf(w.id)).toBeUndefined();
     await tap(screen.getByText('Edytuj')); await flushAll(20); await type(screen.getAllByLabelText('kg')[0], '100'); await type(screen.getByLabelText('Godzina startu'), '06:00');
     await tap(screen.getByText('Anuluj')); expect(lastAlert().title).toBe('Odrzucić zmiany?');
-    await alertNow('Odrzucić zmiany?', 'Wróć'); expect(screen.getByText('Zapisz zmiany')).toBeTruthy();
+    await alertNow('Odrzucić zmiany?', 'Wróć do edycji'); expect(screen.getByLabelText('Zapisz sesję')).toBeTruthy();
     await tap(screen.getByText('Anuluj')); await alertNow('Odrzucić zmiany?', 'Odrzuć zmiany');
     expect(sets(w.id)).toEqual([['80x5']]); expect(byId(w.id).startedAt).toBe(day(3)); expect(edit.draftOf(w.id)).toBeUndefined(); expect(screen.getByText('Edytuj')).toBeTruthy();
   });
@@ -224,10 +224,10 @@ describe('ekrany', () => {
     await renderApp({ saved: snapshot() }); await open(w);
     expect(deleteActions()).not.toContain(`Usuń serię 1 — ${BP}`); /* G4 (audyt 0.10 UI-07, wariant A): ostatniej serii nie usuwa się — całe ćwiczenie gestem nagłówka */
     await swipeDelete(`Usuń ćwiczenie: ${BP}`); await alertNow('Usunąć z treningu?', 'Usuń'); expect(screen.getByText('Brak ćwiczeń — dodaj pierwsze.')).toBeTruthy();
-    await tap(screen.getByText('Zapisz zmiany')); expect(lastAlert().title).toBe('Pusty trening');
-    await alertNow('Pusty trening', 'Wróć'); expect(store.getState().workouts).toHaveLength(2);
+    await tap(screen.getByLabelText('Zapisz sesję')); expect(lastAlert().title).toBe('Pusty trening');
+    await alertNow('Pusty trening', 'Anuluj'); expect(store.getState().workouts).toHaveLength(2);
     await tap(screen.getByText('Zapisz')); await alertNow('Pusty trening', 'Usuń sesję');
-    expect(store.getState().workouts.map(x => x.id)).toEqual([keep.id]); expect(screen.queryByText('Zapisz zmiany')).toBeNull(); expect(screen.queryByText('Brak sesji.')).toBeNull();
+    expect(store.getState().workouts.map(x => x.id)).toEqual([keep.id]); expect(screen.queryByLabelText('Zapisz sesję')).toBeNull(); expect(screen.queryByText('Brak sesji.')).toBeNull();
   });
 
   test('trening wstecz z Historii: termin, szablon, edytor z wartościami sprzed tej daty, zapis → szczegóły; Apple Health nie dostaje treningu', async () => {
@@ -255,7 +255,7 @@ describe('ekrany', () => {
     await renderApp(); await go('/history/add'); await flushAll(20); await tap(screen.getByText('Pusty trening')); await flushAll(50);
     expect(screen.getByText('Brak ćwiczeń — dodaj pierwsze.')).toBeTruthy(); expect(screen.queryByText('Zmiany nie trafiają do Apple Health.')).toBeNull();
     await tap(screen.getByText('Zapisz')); expect(lastAlert()).toMatchObject({ title: 'Pusty trening', msg: 'Nie ma żadnej serii z wynikiem — nic do zapisania.' });
-    await alertNow('Pusty trening', 'Odrzuć trening'); expect(store.getState().workouts).toHaveLength(0); expect(screen.queryByText('Zapisz zmiany')).toBeNull();
+    await alertNow('Pusty trening', 'Odrzuć trening'); expect(store.getState().workouts).toHaveLength(0); expect(screen.queryByLabelText('Zapisz sesję')).toBeNull();
   });
 
   test('jednostka lb: pola w funtach, zapis w kg (nieruszone serie co do cyfry)', async () => {
@@ -272,11 +272,11 @@ describe('ekrany', () => {
     const texts = () => { const out: string[] = []; const walk = (n: any) => { if (!n) return; if (typeof n === 'string') { out.push(n); return; } if (Array.isArray(n)) { n.forEach(walk); return; } if (n.props) { if (typeof n.props.placeholder === 'string') out.push(n.props.placeholder); if (typeof n.props.accessibilityLabel === 'string') out.push(n.props.accessibilityLabel); } (n.children ?? []).forEach(walk); }; walk(screen.toJSON()); return out; };
     const leaks: string[] = []; const check = (where: string) => texts().filter(x => pl.test(x)).forEach(x => leaks.push(`${where}: ${x}`));
     await go(`/history/${w.id}`); await flushAll(20); await tap(screen.getByText('Edit')); await flushAll(20); check('edit');
-    expect(screen.getByText('Save changes')).toBeTruthy(); expect(deleteActions()).toContain('Remove exercise: Bench Press (Barbell)'); /* G4: jedna seria — bez gestu serii */
+    expect(screen.getByLabelText('Save session')).toBeTruthy(); expect(deleteActions()).toContain('Remove exercise: Bench Press (Barbell)'); /* G4: jedna seria — bez gestu serii */
     deleteActions().filter(x => pl.test(x)).forEach(x => leaks.push(`akcja usuń: ${x}`)); /* 07.10.2026 wieczór: etykiety gestu usuwania też po angielsku */
     for (const n of ['Bench Press (Barbell)', 'Chest Dip', 'Plank']) { await swipeDelete(`Remove exercise: ${n}`); leaks.push(...[lastAlert().title].filter(x => pl.test(x))); await alertNow('Remove from workout?', 'Delete'); }
     await tap(screen.getByText('Save')); expect(lastAlert().title).toBe('Empty workout');
-    leaks.push(...[lastAlert().title, lastAlert().msg ?? ''].filter(x => pl.test(x))); await alertNow(lastAlert().title, 'Back');
+    leaks.push(...[lastAlert().title, lastAlert().msg ?? ''].filter(x => pl.test(x))); await alertNow(lastAlert().title, 'Cancel');
     await tap(screen.getByText('Cancel')); await alertNow('Discard changes?', 'Discard changes');
     await go('/history'); await flushAll(20); check('history'); await tap(screen.getByText('Log a past workout')); await flushAll(20); check('add');
     await type(screen.getByLabelText('Start time'), '25:00'); await tap(screen.getByText('Empty workout')); leaks.push(...[lastAlert().title, lastAlert().msg ?? ''].filter(x => pl.test(x)));

@@ -35,7 +35,7 @@ const txt = (s: string | RegExp) => screen.queryByText(s); const lbl = (s: strin
 describe('ekran zakupu: ceny, plany, miesiąc za darmo', () => {
   test('EN, kwalifikacja do próby: trzy plany w kolejności roczny, miesięczny, na zawsze; ceny dokładnie ze sklepu; tekst „1 month free, then …”; cena po próbie w etykiecie VoiceOver', async () => {
     await boot({ locale: 'en' });
-    expect(screen.getByText('Full version')).toBeTruthy();
+    expect(require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions()?.title).toBe('Full version'); /* H1 zdublowany z nagłówkiem usunięty (N28) */
     const labels = ['yearly', 'monthly', 'lifetime'].map(p => screen.getByTestId(`plan-${p}`).props.accessibilityLabel);
     expect(labels).toEqual([`Yearly, 1 month free, then ${FAKE_PRICES.yearly}/year`, `Monthly, 1 month free, then ${FAKE_PRICES.monthly}/month`, `Forever, ${FAKE_PRICES.lifetime} one-time`]);
     const order = screen.getAllByTestId(/^plan-/).map(n => n.props.testID); expect(order).toEqual(['plan-yearly', 'plan-monthly', 'plan-lifetime']);
@@ -80,7 +80,7 @@ describe('ekran zakupu: zakup, przywracanie, kod, linki', () => {
   test('anulowanie w oknie Apple: bez komunikatu i bez zmiany; oczekiwanie na zgodę (Ask to Buy): komunikat; błąd: alert „Nie udało się”', async () => {
     await boot({ locale: 'en' }); fake.nextPurchase = 'cancelled'; await tap(screen.getByText('Start your free month')); await settle(); expect(screen.queryByTestId('paywall-note')).toBeNull(); expect(screen.queryByTestId('paywall-owned')).toBeNull(); expect(global.__alerts).toHaveLength(0);
     fake.nextPurchase = 'pending'; await tap(screen.getByText('Start your free month')); await settle(); expect(screen.getByTestId('paywall-note').props.children).toBe('Waiting for approval from the family organizer.');
-    fake.nextPurchase = 'error'; await tap(screen.getByText('Start your free month')); await settle(); expect(global.__alerts.find(a => a.title === 'Something went wrong')!.msg).toBe('Please try again.'); expect(fake.entitlements()).toEqual([]);
+    fake.nextPurchase = 'error'; await tap(screen.getByText('Start your free month')); await settle(); expect(global.__alerts.find(a => a.title === "Couldn't complete the purchase")!.msg).toBe('Please try again.'); expect(fake.entitlements()).toEqual([]);
   });
   test('Przywróć zakupy: przywrócono / brak zakupów dla konta / błąd sieci (EN i PL), przycisk działa też bez cen (offline)', async () => {
     await boot({ locale: 'en' }); await tap(screen.getByText('Restore purchases')); await settle(); expect(screen.getByTestId('paywall-note').props.children).toBe('No purchases found for this Apple account.');

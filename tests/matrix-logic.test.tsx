@@ -1,6 +1,6 @@
 /* Macierz testów (polecenie właściciela 06.10.2026) — LOGIKA i EKRAN bez wcześniejszego testu (scripts/test-matrix.mjs --list).
  * Każda funkcja ma własny describe('<moduł>.<funkcja>') z zachowaniem i przypadkami brzegowymi (pusto, granice, złe dane, kg/lb, pl/en).
- * Ekrany: /more/language (każda pozycja listy) i /swap (każdy element arkusza: Zamknij, Propozycje, ↺ przywróć, Inny przyrząd, Inne ▾/▴,
+ * Ekrany: /more/language (każda pozycja listy) i /swap (każdy element arkusza: Anuluj, Propozycje, ↺ przywróć, Inny przyrząd, Inne ▾/▴,
  * filtry-etykiety, wyszukiwanie, Pokaż więcej, Przywróć „…”, Utwórz „…”, Nic nie pasuje, cel nieprawidłowy, edytor historii). */
 import { Appearance } from 'react-native';
 import { renderHook, act as hookAct } from '@testing-library/react-native';
@@ -763,9 +763,9 @@ describe('EKRAN /swap', () => {
     await renderApp({ saved: await swapState(['Bench Press (sztanga)']) }); await flushAll(20);
     for (const tg of ['bogus', 'active:nie-ma', 'edit:nie-ma:b', 'edit:x']) {
       await go(swapUrl(tg)); await flushAll(10); expect(screen.getByText('Tego ćwiczenia nie da się już zamienić.')).toBeTruthy();
-      await tap(screen.getByText('Zamknij')); await flushAll(10);
+      await tap(screen.getByText('Anuluj')); await flushAll(10);
     }
-    await go('/swap'); await flushAll(10); expect(screen.getByText('Tego ćwiczenia nie da się już zamienić.')).toBeTruthy(); await tap(screen.getByText('Zamknij')); await flushAll(10);
+    await go('/swap'); await flushAll(10); expect(screen.getByText('Tego ćwiczenia nie da się już zamienić.')).toBeTruthy(); await tap(screen.getByText('Anuluj')); await flushAll(10);
     for (let si = 0; si < 3; si++) await act(async () => { blk(0).sets[si].weight = 60; blk(0).sets[si].reps = 5; store.toggleDone(0, si); });
     await go(swapUrl('active:' + blk(0).id)); await flushAll(10); expect(screen.getByText('Tego ćwiczenia nie da się już zamienić.')).toBeTruthy();
   });
@@ -778,7 +778,7 @@ describe('EKRAN /swap', () => {
     expect(screen.getByLabelText(/^Propozycja \d: Bench Press \(hantle\).*już w treningu/)).toBeTruthy();
     expect(screen.queryByText(/↺ przywróć/)).toBeNull();
     /* Zamknij — bez zmian, drugie tapnięcie bez efektu */
-    const cancel = screen.getByText('Zamknij'); await tap(cancel); await tap(cancel); await flushAll(10);
+    const cancel = screen.getByText('Anuluj'); await tap(cancel); await tap(cancel); await flushAll(10);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id);
     await go(swapUrl('active:' + id0)); await flushAll(20);
     const p1 = screen.getByLabelText(/^Propozycja 1: /); const name1 = /^Propozycja 1: ([^,]+)/.exec(p1.props.accessibilityLabel)![1];
@@ -787,7 +787,7 @@ describe('EKRAN /swap', () => {
     expect(blk(0)).toMatchObject({ exerciseId: to.id, swappedFrom: ex('Bench Press (sztanga)').id });
     await go(swapUrl('active:' + blk(0).id)); await flushAll(20);
     expect(screen.getByText(`Zamiana tylko w tym treningu: ${name1}`)).toBeTruthy();
-    await tap(screen.getByText('↺ przywróć: Bench Press (sztanga)')); await flushAll(20);
+    await tap(screen.getByText('↺ cofnij zamianę: Bench Press (sztanga)')); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(blk(0).swappedFrom).toBeUndefined();
   });
 
@@ -795,7 +795,7 @@ describe('EKRAN /swap', () => {
     await renderApp({ saved: await swapState(['Bench Press (sztanga)']) }); await flushAll(20);
     await act(async () => { store.swapBlock(blk(0).id, ex('Bench Press (hantle)').id); }); await act(async () => { blk(0).sets[0].edited = true; store.save(store.getState().active); });
     await go(swapUrl('active:' + blk(0).id)); await flushAll(20);
-    global.__alerts.length = 0; await tap(screen.getByText('↺ przywróć: Bench Press (sztanga)')); await flushAll(5);
+    global.__alerts.length = 0; await tap(screen.getByText('↺ cofnij zamianę: Bench Press (sztanga)')); await flushAll(5);
     expect(global.__alerts.map(a => a.title)).toEqual(['Cofnąć zamianę?']); expect(blk(0).exerciseId).toBe(ex('Bench Press (hantle)').id);
     await act(async () => { global.__alerts[0].buttons!.find(b => b.text === 'Cofnij')!.onPress!(); }); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id);
@@ -884,7 +884,7 @@ describe('EKRAN /swap', () => {
     expect(store.getState().workouts.find(x => x.id === w.id)!.exercises[0].exerciseId).toBe(ex('Bench Press (sztanga)').id);
     expect(edit.isDirty(d)).toBe(true);
     await go(swapUrl(`edit:${d.key}:${b0}`)); await flushAll(20);
-    await tap(screen.getByText('↺ przywróć: Bench Press (sztanga)')); await flushAll(20);
+    await tap(screen.getByText('↺ cofnij zamianę: Bench Press (sztanga)')); await flushAll(20);
     expect(d.w.exercises[0].exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(edit.isDirty(d)).toBe(false);
     /* blok usuniętego ćwiczenia: opis z „Usunięte ćwiczenie”, bez propozycji i bez filtra partii; „Inne” działa */
     await act(async () => { d.w.exercises[1].exerciseId = 'usuniete'; edit.touchDraft(); });
@@ -900,9 +900,9 @@ describe('EKRAN /swap', () => {
     await fresh(undefined, 'en'); const st = await (async () => { const s = store.getState().settings; const home = userHome([10, 20]); s.locations.push(home); s.mainLocationId = home.id; store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await store.flush(); return JSON.parse(JSON.stringify(store.getState())); })();
     await renderApp({ saved: st, locale: 'en' }); await flushAll(20);
     await go(swapUrl('active:' + blk(0).id)); await flushAll(20);
-    expect(screen.getByText('Suggestions')).toBeTruthy(); expect(screen.getByText('Close')).toBeTruthy();
+    expect(screen.getByText('Suggestions')).toBeTruthy(); expect(screen.getByText('Cancel')).toBeTruthy();
     await tap(screen.getByLabelText('Show other exercises')); await flushAll(5);
-    const txt = JSON.stringify(screen.toJSON()); expect(txt).not.toMatch(/Propozycje|Zwiń inne ćwiczenia|Anuluj|Zamknij|Szukaj ćwiczenia|Filtr partii|Zamiana tylko/);
+    const txt = JSON.stringify(screen.toJSON()); expect(txt).not.toMatch(/Propozycje|Zwiń inne ćwiczenia|Anuluj|Szukaj ćwiczenia|Filtr partii|Zamiana tylko/);
   });
 });
 

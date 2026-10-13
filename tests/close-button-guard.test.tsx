@@ -1,6 +1,6 @@
 /*
- * Test-strażnik zasady „zamykanie okien” (właściciel, 13.10.2026; docs/22): każde okno wysuwane z dołu / modalne ma widoczny, spójny przycisk
- * zamknięcia w nagłówku — ta sama etykieta „Zamknij”, testID `close-modal`, rola „przycisk”; gest w dół zostaje dodatkowo.
+ * Test-strażnik zasady „zamykanie okien” (właściciel, 13.10.2026, decyzja 1A; docs/22, docs/32 wzorzec 1): każde okno wysuwane z dołu / modalne ma widoczny, spójny
+ * przycisk zamknięcia w nagłówku po LEWEJ — ta sama etykieta „Anuluj” (HIG Sheets), testID `close-modal`, rola „przycisk”; gest w dół zostaje dodatkowo.
  * Rodzaje (docs/20): niezmiennik (skan źródeł: trasy z presentation ≠ card, <Modal>), ekran (każde okno renderuje przycisk i go zamyka), języki (EN),
  * wygląd (jasny i ciemny motyw). Nowe okno bez przycisku = czerwony test.
  */
@@ -73,7 +73,7 @@ async function boot(locale: 'pl' | 'en', theme: 'light' | 'dark') {
 }
 afterEach(() => { PAYWALL.ENABLED = false; resetEntitlementsForTests(); resetStoreAdapterForTests(); applyLang('pl'); jest.restoreAllMocks(); jest.useRealTimers(); });
 
-describe.each([['pl', 'Zamknij', 'light'], ['en', 'Close', 'dark']] as const)('okna renderują ten sam przycisk zamknięcia (%s, motyw %s)', (locale, label, theme) => {
+describe.each([['pl', 'Anuluj', 'light'], ['en', 'Cancel', 'dark']] as const)('okna renderują ten sam przycisk zamknięcia (%s, motyw %s)', (locale, label, theme) => {
   test.each([...new Set([...Object.values(MODAL_URLS), ...EXTRA_URLS])])(`%s: „${label}” w nagłówku (testID, rola, etykieta), stuknięcie zamyka okno`, async url => {
     await boot(locale, theme); await go(url);
     const open = stack(); expect(open[open.length - 1]).toBe(url.slice(1).split('?')[0]);

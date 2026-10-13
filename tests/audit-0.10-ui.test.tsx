@@ -45,8 +45,8 @@ describe('G1 — edytor ciężarów: „Wypełnij” dopisuje, „Usuń odznaczo
     expect(spec().items.map(x => x.w)).toEqual([7, 8, 10, 12]);
     await tap(screen.getByLabelText('7 kg')); await tap(screen.getByLabelText(`Usuń odznaczone — ${KB}`));
     expect(lastAlert()).toMatchObject({ title: 'Usunąć odznaczone ciężary?' }); expect(lastAlert().msg).toMatch(/^7 kg/);
-    expect(lastAlert().buttons!.map(b => [b.text, b.style])).toEqual([['Nie', 'cancel'], ['Usuń', 'destructive']]);
-    await act(async () => { pressAlert('Usunąć odznaczone ciężary?', 'Nie'); }); expect(spec().items).toHaveLength(4);
+    expect(lastAlert().buttons!.map(b => [b.text, b.style])).toEqual([['Anuluj', 'cancel'], ['Usuń', 'destructive']]);
+    await act(async () => { pressAlert('Usunąć odznaczone ciężary?', 'Anuluj'); }); expect(spec().items).toHaveLength(4);
     await tap(screen.getByLabelText(`Usuń odznaczone — ${KB}`)); await act(async () => { pressAlert('Usunąć odznaczone ciężary?', 'Usuń'); }); await flushAll(5); expect(spec().items.map(x => x.w)).toEqual([8, 10, 12]);
     await type(byHint('od'), '13'); await type(byHint('do'), '310'); await type(byHint('co'), '1'); await tap(screen.getByLabelText(`Wypełnij zakresem — ${KB}`)); await flushAll(5);
     expect(screen.getByText(`Po dopisaniu zakresu byłoby ciężarów: ${3 + 298} — najwyżej ${LOAD_LIMITS.listItems}. Zwiększ krok albo usuń odznaczone.`)).toBeTruthy(); expect(spec().items).toHaveLength(3);
@@ -73,10 +73,10 @@ describe('G3 — skutki w oknach potwierdzeń', () => {
     await boot(() => { const a = addLocation('home'); addLocation('gym'); store.startEmpty(); S().active!.locationId = S().settings.locations.find(l => l.id !== S().settings.mainLocationId)!.id; void a;
       addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi').healthUUID = 'hk-1'; store.save(); });
     await go('/more/locations'); await flushAll(10); await swipeDelete(/^Usuń miejsce: /);
-    expect(lastAlert().msg).toContain('Trwający trening w tym miejscu trwa dalej; miejsce pokaże się jako „(usunięte miejsce)”.'); await act(async () => { pressAlert('Usunąć miejsce?', 'Nie'); });
+    expect(lastAlert().msg).toContain('Trwający trening w tym miejscu trwa dalej; miejsce pokaże się jako „(usunięte miejsce)”.'); await act(async () => { pressAlert('Usunąć miejsce?', 'Anuluj'); });
     await go('/more/settings'); await flushAll(10); await tap(screen.getByText('Wyczyść wszystkie dane'));
-    expect(lastAlert()).toMatchObject({ title: 'Wyczyścić wszystkie dane?' }); expect(lastAlert().msg).toContain('Trening w toku też zostanie usunięty.'); expect(lastAlert().buttons![0]).toMatchObject({ text: 'Nie', style: 'cancel' });
-    await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Nie'); }); store.cancelWorkout();
+    expect(lastAlert()).toMatchObject({ title: 'Wyczyścić wszystkie dane?' }); expect(lastAlert().msg).toContain('Trening w toku też zostanie usunięty.'); expect(lastAlert().buttons![0]).toMatchObject({ text: 'Anuluj', style: 'cancel' });
+    await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Anuluj'); }); store.cancelWorkout();
     await go('/history'); await flushAll(10); await swipeDelete(/^Usuń sesję: Nogi/); expect(lastAlert().msg).toContain('Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie.');
   });
 });
@@ -98,7 +98,7 @@ describe('G5 — konwencje okien i SwipeRow', () => {
     await renderApp({ saved: '{zle' }); await flushAll(10); await tap(screen.getByText('Poprzednich danych nie dało się odczytać'));
     expect(lastAlert().buttons!.find(b => b.text === 'Ukryj komunikat')!.style).toBe('destructive'); expect(lastAlert().buttons![0]).toMatchObject({ text: 'Anuluj', style: 'cancel' });
     await boot(() => { store.startEmpty(); }); await tap(screen.getByText('Odrzuć trening'));
-    expect(lastAlert()).toMatchObject({ title: 'Odrzucić trening?' }); expect(lastAlert().buttons!.map(b => [b.text, b.style])).toEqual([['Wróć', 'cancel'], ['Odrzuć trening', 'destructive']]);
+    expect(lastAlert()).toMatchObject({ title: 'Odrzucić trening?' }); expect(lastAlert().buttons!.map(b => [b.text, b.style])).toEqual([['Anuluj', 'cancel'], ['Odrzuć trening', 'destructive']]);
   });
   test('UI-17: PanResponder wiersza nie zmienia się przy przerysowaniu (gest nie zeruje się); jeden odsłonięty wiersz', async () => {
     await boot(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addSet(0); });
@@ -113,14 +113,14 @@ describe('G5 — konwencje okien i SwipeRow', () => {
   test('UI-16: powtórzenia ≤ REPS_MAX w treningu; zły wpis przerwy — komunikat zamiast ciszy', async () => {
     await boot(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); });
     await type(screen.getAllByLabelText('Powtórzenia')[0], '99999'); expect(S().active!.exercises[0].sets[0].reps).toBe(store.REPS_MAX);
-    await tap(screen.getAllByLabelText(/^Przerwa: /)[0]); await act(async () => { pressAlert('Przerwa (sekundy)', 'Tylko teraz', 'abc'); });
+    await tap(screen.getAllByLabelText(/^Przerwa: /)[0]); await act(async () => { pressAlert('Przerwa (s)', 'Tylko teraz', 'abc'); });
     expect(lastAlert()).toMatchObject({ title: 'Nie zmieniono przerwy', msg: `Wpisz liczbę sekund od 0 do ${store.REST_MAX}.` });
   });
   test('UI-18: panel dnia przy treningu w toku — „Start” wyszarzony z wyjaśnieniem, nie znika', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
     let tid = ''; await boot(() => { const t = mkTpl(); tid = t.id; plan.setWeekDay(3, t.id); store.startEmpty(); }, `/history?day=2026-10-08`);
     const st = screen.getByLabelText('Start zaplanowanego treningu: Push'); expect(st.props.accessibilityHint).toBe('Trening w toku');
-    await tap(st); expect(lastAlert()).toMatchObject({ title: 'Trening w toku', msg: 'Najpierw zakończ albo anuluj bieżący trening.' }); expect(S().active!.templateId).not.toBe(tid);
+    await tap(st); expect(lastAlert()).toMatchObject({ title: 'Trening w toku', msg: 'Najpierw zakończ albo odrzuć bieżący trening.' }); expect(S().active!.templateId).not.toBe(tid);
   });
 });
 

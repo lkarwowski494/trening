@@ -6,7 +6,7 @@ import { rowLayout } from '@/components/ActiveWorkout';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
 import { TechniqueLink } from '@/components/ExerciseCues';
-import { Screen, Field, Input, NumInput, Btn, Muted, Txt, H1, Empty, FieldLabel, FieldHint, useOnce, Chip } from '@/components/ui';
+import { Screen, Field, Input, NumInput, Btn, Muted, Txt, H1, Empty, FieldLabel, FieldHint, useOnce, Chip, Missing } from '@/components/ui';
 import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
 import { availability } from '@/lib/equipment';
@@ -17,10 +17,11 @@ import { nowParts } from '@/lib/live';
 import { useTheme, F } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type Template, type TemplateItem, type TRow, type Exercise, type WSet } from '@/lib/seed';
 import { t, tp, exName, lang } from '@/lib/i18n';
-import { startTemplate } from '@/lib/start';
+import { startTemplate, workoutInProgressNotice } from '@/lib/start';
 import { templateUsageText, assignNewTemplate, hasPlan } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { wu, wField, wInKeep } from '@/lib/units';
+import { cancelButton } from '@/lib/confirm';
 
 /*
  * Szablon (decyzja właściciela 08.10.2026 ok. 21:30, docs/18): najpierw PODGLĄD „jak trening” ze „Start”; zmiany dopiero po „Edytuj” — edycja
@@ -37,7 +38,7 @@ export default function TemplateScreen() {
   // Nowy, nietknięty szablon znika po wyjściu — „+ Nowy” i „Wróć” nie zostawiają śmieci (runda 2); zapisane szablony bez ćwiczeń zostają (runda 3).
   useEffect(() => () => { discardObjDraft('template', id); const x = getState().templates.find(y => y.id === id); if (x && !assigned.current && (isNew.current || x.name === t('Nowy szablon'))) dropUnsavedNew('template', id); }, [id]);
   const real = getState().templates.find(x => x.id === id); const d = editing ? objDraft<Template>('template', id) : undefined;
-  if (!real) return <Screen><Muted>{t('Nie ma takiego szablonu.')}</Muted></Screen>;
+  if (!real) return <Screen><Missing>{t('Nie ma takiego szablonu.')}</Missing></Screen>;
   const close = () => { if (router.canGoBack()) router.back(); else router.replace('/templates'); };
   if (editing && d) {
     const cancel = () => confirmDiscard(objDirty('template', id), isNew.current ? t('Nowy szablon nie zostanie zapisany.') : t('Szablon zostanie bez zmian.'), () => {
@@ -65,14 +66,14 @@ function TemplatePreview({ tpl, onEdit }: { tpl: Template; onEdit: () => void })
   const goHome = () => { if (router.canDismiss()) router.dismissAll(); router.navigate('/'); };
   const act = getState().active; const labels = groupLabels(tpl.items); const sets = tplWorkSets(tpl);
   const meta = [tpl.folder ? `${t('Folder')}: ${tpl.folder}` : '', getState().settings.locations.length ? `📍 ${tpl.locationId ? locationLabel(tpl.locationId) : `${locationLabel(getState().settings.mainLocationId)} (${t('główne')})`}` /* UX2-02: bez miejsca = miejsce główne (jak chip „główne” w edytorze i start) */ : '', `${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}`, tpl.archived ? t('w archiwum') : ''].filter(Boolean).join(' · ');
-  const start = once(() => { const a = getState().active; if (a && a.templateId === tpl.id) { goHome(); return; } if (a) { Alert.alert(t('Trening w toku'), t('Najpierw zakończ albo anuluj bieżący trening.')); return; } startTemplate(tpl, goHome); });
-  const archive = () => { const use = tpl.archived ? '' : templateUsageText(tpl.id, true); /* audyt 0.10 A7: szablon w planie — pytanie ze skutkami */ if (!use) { setTemplateArchived(tpl, !tpl.archived); return; } Alert.alert(t('Archiwizować szablon?'), `${tpl.name}\n\n${use}`, [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Archiwizuj'), onPress: () => setTemplateArchived(tpl, true) }]); };
+  const start = once(() => { const a = getState().active; if (a && a.templateId === tpl.id) { goHome(); return; } if (a) { workoutInProgressNotice(); return; } startTemplate(tpl, goHome); });
+  const archive = () => { const use = tpl.archived ? '' : templateUsageText(tpl.id, true); /* audyt 0.10 A7: szablon w planie — pytanie ze skutkami */ if (!use) { setTemplateArchived(tpl, !tpl.archived); return; } Alert.alert(t('Archiwizować szablon?'), `${tpl.name}\n\n${use}`, [{ ...cancelButton() }, { text: t('Archiwizuj'), onPress: () => setTemplateArchived(tpl, true) }]); };
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{tpl.name}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj szablon')} onPress={onEdit} /></View>
       <Muted style={{ marginTop: 2, marginBottom: 10 }}>{meta}</Muted>
       {tpl.note ? <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${t('Notatka')}: ${tpl.note}`} style={{ borderLeftWidth: 3, borderLeftColor: th.accent, paddingLeft: 10, marginBottom: 12 }}><Txt style={{ fontSize: 15 }}>{tpl.note}</Txt></View> : null /* audyt 0.10 UX-10: notatka (z generatora — linijka wysiłku) */}
-      {tpl.items.length ? <Btn title={act ? (act.templateId === tpl.id ? t('Wróć do treningu') : t('Trening w toku')) : t('Start')} kind={act && act.templateId !== tpl.id ? 'ghost' : 'primary'} block style={{ minHeight: 52, marginBottom: 12 }} accessibilityLabel={act ? undefined : t('Start: {name}', { name: tpl.name })} onPress={start} />
+      {tpl.items.length ? <Btn title={act && act.templateId === tpl.id ? t('Wróć do treningu') : t('Start')} kind={act && act.templateId !== tpl.id ? 'ghost' : 'primary'} block style={{ minHeight: 52, marginBottom: 12 }} accessibilityLabel={act && act.templateId === tpl.id ? undefined : t('Start: {name}', { name: tpl.name })} accessibilityHint={act && act.templateId !== tpl.id ? t('Trening w toku') : undefined} onPress={start} />
         : <Empty>{t('Szablon jest pusty — „Edytuj”, by dodać ćwiczenia.')}</Empty>}
       {tpl.items.map(it => { const ex = exById(it.exerciseId); const rows = tplRows(it); const kinds = rows.map(r => r.kind); const nm = exName(ex);
         const foot = [it.repMin != null ? `${t('zakres')} ${reps(it.repMin, it.repMax)}` : '', `${t('przerwa')} ${fmtSec(it.restSec ?? restFor(ex))}`].filter(Boolean).join(' · ');
@@ -98,7 +99,7 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
   useEffect(() => { const ids = tpl.items.map(x => x.id); if (!known.current) { known.current = new Set(ids); return; } const fresh = ids.filter(x => !known.current!.has(x)); ids.forEach(x => known.current!.add(x)); if (fresh.length) setOpen(fresh[fresh.length - 1]); });
   const labels = groupLabels(tpl.items);
   const folders = [...new Set([...templateFolders(), ...(tpl.folder ? [tpl.folder] : [])])]; /* folder nowy w szkicu — widoczny przed zapisem */
-  const newFolder = () => Alert.prompt?.(t('Nazwa folderu'), undefined, [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Zapisz'), onPress: (v?: string) => { if ((v ?? '').trim()) setTemplateFolder(tpl, v ?? ''); else Alert.alert(t('Pusta nazwa folderu'), t('Folder nie został utworzony.')); /* UI-16 (audyt 0.10): odrzucony wpis nie znika po cichu */ } }], 'plain-text', '');
+  const newFolder = () => Alert.prompt?.(t('Nazwa folderu'), undefined, [{ ...cancelButton() }, { text: t('Zapisz'), onPress: (v?: string) => { if ((v ?? '').trim()) setTemplateFolder(tpl, v ?? ''); else Alert.alert(t('Pusta nazwa folderu'), t('Folder nie został utworzony.')); /* UI-16 (audyt 0.10): odrzucony wpis nie znika po cichu */ } }], 'plain-text', '');
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
       <Field label={t('Nazwa')}><Input selectTextOnFocus maxLength={80} value={tpl.name} onChangeText={v => { tpl.name = v; save(tpl); }} /* G2 (audyt 0.10): pusta nazwa przy „Zapisz” wraca do poprzedniej (lib/draft.cleanName) */ /></Field>
@@ -196,7 +197,7 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
         <Btn title={t('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => tplAddRow(tpl, it.id, 'drop')} />
       </View>
       <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-end', marginTop: 4 }}>
-        <View style={{ width: 96 }}><Field label={t('przerwa s')}><NumInput value={it.restSec ?? ''} onNum={v => { it.restSec = int(v, 0, REST_MAX); save(tpl); }} placeholder={String(restFor(ex))} /></Field></View>
+        <View style={{ width: 96 }}><Field label={t('Przerwa (s)')}><NumInput value={it.restSec ?? ''} onNum={v => { it.restSec = int(v, 0, REST_MAX); save(tpl); }} placeholder={String(restFor(ex))} /></Field></View>
         {hasReps(m) && !range ? <Btn title={t('+ zakres powtórzeń')} small kind="ghost" accessibilityHint={nm} style={{ marginBottom: 12 }} onPress={() => setRange(true)} /> : null}
         {hasReps(m) && range ? <>
           <View style={{ width: 72 }}><Field label={t('pow. od')}><NumInput value={it.repMin ?? ''} accessibilityLabel={`${t('powtórzenia od')} — ${nm}`} onNum={v => { it.repMin = int(v, 1, 100); save(tpl); }} /></Field></View>

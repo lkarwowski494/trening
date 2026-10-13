@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, Field, Input, NumInput, Btn, Muted, Chip, H1, Txt, useOnce } from '@/components/ui';
+import { Screen, Field, Input, NumInput, Btn, Muted, Chip, SwitchRow, H1, Txt, useOnce, Missing } from '@/components/ui';
 import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
 import { Stack } from 'expo-router';
 import { getState, useTick, exById, previousFor, save, setSummary, fmtDate, fmtSec, setEquipment, exerciseInHistory, usesBand, finishedWorkouts, wallTs, REST_MAX } from '@/lib/store';
@@ -26,7 +26,7 @@ export default function ExerciseScreen() {
   /* zamknięcie ekranu w jakikolwiek sposób wyrzuca szkic; nowe ćwiczenie, którego nigdy nie zapisano (albo nietknięte „Nowe ćwiczenie”), znika — runda 2 */
   useEffect(() => () => { discardObjDraft('exercise', id); const x = exById(id); if (x && (isNew.current || x.name === t('Nowe ćwiczenie'))) dropUnsavedNew('exercise', id); }, [id]);
   const real = exById(id); const d = editing ? objDraft<Exercise>('exercise', id) : undefined;
-  if (!real) return <Screen><Muted>{t('Nie ma takiego ćwiczenia.')}</Muted></Screen>;
+  if (!real) return <Screen><Missing>{t('Nie ma takiego ćwiczenia.')}</Missing></Screen>;
   const close = () => { if (router.canGoBack()) router.back(); else router.replace('/exercises'); };
   if (editing && d) {
     const cancel = () => confirmDiscard(objDirty('exercise', id), isNew.current ? t('Nowe ćwiczenie nie zostanie zapisane.') : t('Ćwiczenie zostanie bez zmian.'), () => {
@@ -106,11 +106,12 @@ function EditForm({ e }: { e: Exercise }) {
         <View style={{ flex: 1 }}><Field label={t('Przerwa robocza (s)')}><NumInput value={e.restSec ?? ''} onNum={v => { e.restSec = v === '' ? null : Math.min(REST_MAX, Math.max(0, Math.round(v))); save(e); }} placeholder={t('domyślna {s}', { s: getState().settings.defaultRest })} /></Field></View>
         <View style={{ flex: 1 }}><Field label={t('Przerwa po rozgrzewce (s)')}><NumInput value={e.restWarmupSec ?? ''} onNum={v => { e.restWarmupSec = v === '' ? null : Math.min(REST_MAX, Math.max(0, Math.round(v))); save(e); }} placeholder={t('jak robocza')} /></Field></View>
       </View>
-      <Field label={t('Partie główne (1 seria)')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{MUSCLES.map(mu => <Chip key={mu} label={t(mu)} on={(e.muscles ?? []).includes(mu)} onPress={() => { const has = (e.muscles ?? []).includes(mu); e.muscles = has ? e.muscles.filter(x => x !== mu) : [...(e.muscles ?? []), mu]; if (!has) e.secondaryMuscles = (e.secondaryMuscles ?? []).filter(x => x !== mu); save(e); }} />)}</View></Field>
-      <Field label={t('Partie pomocnicze (0,5 serii)')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{MUSCLES.map(mu => <Chip key={mu} label={t(mu)} on={(e.secondaryMuscles ?? []).includes(mu)} onPress={() => { const has = (e.secondaryMuscles ?? []).includes(mu); e.secondaryMuscles = has ? e.secondaryMuscles.filter(x => x !== mu) : [...(e.secondaryMuscles ?? []), mu]; if (!has) e.muscles = (e.muscles ?? []).filter(x => x !== mu); save(e); }} />)}</View></Field>
+      <Field label={t('Partie główne (1 seria)')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{MUSCLES.map(mu => <Chip toggle key={mu} label={t(mu)} on={(e.muscles ?? []).includes(mu)} onPress={() => { const has = (e.muscles ?? []).includes(mu); e.muscles = has ? e.muscles.filter(x => x !== mu) : [...(e.muscles ?? []), mu]; if (!has) e.secondaryMuscles = (e.secondaryMuscles ?? []).filter(x => x !== mu); save(e); }} />)}</View></Field>
+      <Field label={t('Partie pomocnicze (0,5 serii)')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{MUSCLES.map(mu => <Chip toggle key={mu} label={t(mu)} on={(e.secondaryMuscles ?? []).includes(mu)} onPress={() => { const has = (e.secondaryMuscles ?? []).includes(mu); e.secondaryMuscles = has ? e.secondaryMuscles.filter(x => x !== mu) : [...(e.secondaryMuscles ?? []), mu]; if (!has) e.muscles = (e.muscles ?? []).filter(x => x !== mu); save(e); }} />)}</View></Field>
       <MuscleNote e={e} style={{ marginTop: -6 }} />
       {muscleLoadOf(e).length ? <Field label={t('Obciążenie partii (z katalogu)')}><Muted style={{ fontSize: 13 }} accessibilityLabel={muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])}: ${w === 1 ? t('główna') : w === 0.5 ? t('pomocnicza') : t('stabilizacja')}`).join(', ')}>{muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])} ${w === 1 ? '●●●' : w === 0.5 ? '●●' : '●'}`).join(' · ')}</Muted><Muted style={{ fontSize: 11, marginTop: 2 }}>{t('●●● główna · ●● pomocnicza · ● stabilizacja')}</Muted></Field> : null}
-      <Field label={t('Asysta gumą')}><Chip toggle label={e.bandAssistable ? t('tak — przy serii wybierasz gumę') : t('nie')} on={e.bandAssistable} onPress={() => { e.bandAssistable = !e.bandAssistable; save(e); }} />{!e.bandAssistable && usesBand(e) ? <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.')}</Muted> : null /* przegląd 06.10: 34 ćwiczenia z oporem gumy */}</Field>
+      <SwitchRow label={t('Asysta gumą')} detail={e.bandAssistable ? t('tak — przy serii wybierasz gumę') : t('nie')} value={!!e.bandAssistable} onChange={v => { e.bandAssistable = v; save(e); }} />
+      {!e.bandAssistable && usesBand(e) ? <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.')}</Muted> : null /* przegląd 06.10: 34 ćwiczenia z oporem gumy */}
       <Field label={t('Tempo (opcjonalnie, np. 3-1-1)')}><Input maxLength={20} value={e.tempo} onChangeText={v => { e.tempo = v; save(e); }} /></Field>
       <Field label={t('Notatki techniczne')}><Input maxLength={2000} value={e.notes} onChangeText={v => { e.notes = v; save(e); }} multiline style={{ minHeight: 80 }} /></Field>
       {exerciseInHistory(e.id) ? <Muted style={{ fontSize: 12, marginBottom: 10 }}>{t('Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).')}</Muted> : null}

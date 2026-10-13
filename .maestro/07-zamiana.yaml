@@ -1,8 +1,8 @@
 # E2 (docs/14 pkt 7, Maestro 07): zamiana ćwiczenia w trakcie treningu — W1 „tylko dziś”: zamiana w miejscu, cofnięcie, podział po odhaczonej serii.
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
-#   "Other workout", "More, tab.*", "Places and equipment", "\+ Add place", "Back", "Workout, tab.*",
-#   "Empty workout", "\+ Add exercise", "Search exercises…", "Close", "Place filter: X.*" (chip filtra miejsca)  ← jak przepływ 06
+#   "Other workout", "More, tab.*", "Places and equipment", "Add place", "Back", "Workout, tab.*",
+#   "Empty workout", "\+ Add exercise", "Search exercises…", "Cancel", "Place filter: X.*" (chip filtra miejsca)  ← jak przepływ 06
 #   "Home,.*"                        ← LOCATION_PRESET_LABEL.home.en 'Home' + hint 'empty — tick what you have' (lib/equipment.ts)
 #   sw-Adjustable bench              ← testID przełącznika SwitchRow: 'sw-' + EQUIPMENT bench_adj.en (lib/equipment.ts)
 #   sw-Dumbbells \(fixed or quick-adjust\) ← jak wyżej, db_fixed.en; nawiasy poprzedzone \\ (tests/maestro-selectors.test.ts)
@@ -30,8 +30,8 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 # 11.10.2026: „Places and equipment” to pozycja ekranu Więcej (z Ustawień zniknęła)
 - extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
 - tapOn: "Places and equipment"
-- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
-- tapOn: "\\+ Add place"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Add place"
 - extendedWaitUntil: { visible: "Home,.*", timeout: 30000 }
 - tapOn: "Home,.*"
 - extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
@@ -46,7 +46,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - tapOn: { id: "sw-Adjustable bench" }
 - takeScreenshot: 30-dom-lawka-hantle
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }  # lista miejsc → ekran Więcej
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
@@ -138,7 +138,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - takeScreenshot: 35-historia-po-podziale
 
 # --- D6: przepięcie w edytorze historii (docs/14 pkt 5, krok 7) ---
-#   "Edit session", "Save", "Save changes\?" ← jak przepływ 05; „⇄ zamień” w edytorze ma ten sam opis „Swap exercise: X”
+#   "Edit session", "Save session", "Save changes\?" ← jak przepływ 05; „⇄ zamień” w edytorze ma ten sam opis „Swap exercise: X”
 - tapOn: "Edit session"
 - extendedWaitUntil: { visible: "Swap exercise: Overhead Press \\(Barbell\\)", timeout: 30000 }
 - tapOn: "Swap exercise: Overhead Press \\(Barbell\\)"  # ekran bez paska zakładek (edytor historii)
@@ -146,7 +146,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - takeScreenshot: 38-edytor-arkusz
 - tapOn: "Suggestion \\d: Overhead Press \\(Dumbbell\\).*"
 - extendedWaitUntil: { visible: "Swap exercise: Overhead Press \\(Dumbbell\\)", timeout: 30000 }
-- tapOn: "Save"
+- tapOn: "Save session"
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }
 - extendedWaitUntil: { visible: "Session", timeout: 30000 }
 - assertVisible: ".*Overhead Press \\(Dumbbell\\).*"
@@ -182,7 +182,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 # (Do 07.10.2026 kotwicą był opis w tle „The workout in progress saves…” — w kroju Tuleja opis zachodzi na przycisk okna, run 37600735711, krok 154.)
 # Run 37900617167 (f2bdca8): od fali 2 (H2) „Back” ma styl 'cancel' — iOS stawia przycisk anulowania NA DOLE okna, pod „Discard workout”
 # (zrzut kroku 159). Przycisk okna: nad „Back”; przycisk w tle leży pod oknem, więc pod „Back”.
-- tapOn: { text: "Discard workout", above: "Back" }
+- tapOn: { text: "Discard workout", above: "Cancel" }
 - extendedWaitUntil: { notVisible: "Discard workout\\?", timeout: 30000 }
 - runFlow: subflows/start-szablonu.yaml
 # 11.10.2026: podpowiedź „Usually at Home — X. Swap?” to tekst-przycisk (bez „Zamień”); etykieta VoiceOver „Swap to substitute: X” — stuknięcie otwiera arkusz zamiany
@@ -197,5 +197,5 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - waitForAnimationToEnd
 - tapOn: "Swap to substitute: .*"
 - extendedWaitUntil: { visible: "Suggestion 1: .*", timeout: 30000 }
-- tapOn: "Close"
+- tapOn: "Cancel"
 - extendedWaitUntil: { notVisible: "Suggestion 1: .*", timeout: 30000 }

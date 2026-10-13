@@ -228,8 +228,8 @@
   "en": "↺ undo"
  },
  {
-  "pl": "↺ przywróć: {name}",
-  "en": "↺ restore: {name}"
+  "pl": "↺ cofnij zamianę: {name}",
+  "en": "↺ undo swap: {name}"
  },
  {
   "pl": "⇄ zamień",
@@ -248,24 +248,8 @@
   "en": "+ drop set"
  },
  {
-  "pl": "+ Guma",
-  "en": "+ Band"
- },
- {
-  "pl": "+ Nowe",
-  "en": "+ New"
- },
- {
-  "pl": "+ Nowy",
-  "en": "+ New"
- },
- {
   "pl": "+ Nowy folder",
   "en": "+ New folder"
- },
- {
-  "pl": "+ Nowy plan",
-  "en": "+ New plan"
  },
  {
   "pl": "+ Nowy szablon",
@@ -354,6 +338,10 @@
  {
   "pl": "Anuluj edycję ćwiczenia",
   "en": "Cancel exercise editing"
+ },
+ {
+  "pl": "Anuluj edycję sesji",
+  "en": "Cancel session editing"
  },
  {
   "pl": "Anuluj edycję szablonu",
@@ -732,6 +720,10 @@
   "en": "Set goal: {part}"
  },
  {
+  "pl": "Cele partii",
+  "en": "Muscle group goals"
+ },
+ {
   "pl": "Ceny są niedostępne bez połączenia z internetem.",
   "en": "Prices are unavailable without an internet connection."
  },
@@ -856,8 +848,8 @@
   "en": "Duration: 1 to 1440 minutes."
  },
  {
-  "pl": "Czeka na zapis w Apple Health: {n}. Ponawiam przy uruchomieniu i powrocie do aplikacji.",
-  "en": "Waiting to be saved to Apple Health: {n}. I retry when the app starts and when you return to it."
+  "pl": "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.",
+  "en": "Waiting to be saved to Apple Health: {n}. It will be retried when the app starts and when you return to it."
  },
  {
   "pl": "Czeka na zgodę organizatora rodziny.",
@@ -1069,12 +1061,32 @@
   "en": "Add weight"
  },
  {
+  "pl": "Dodaj ćwiczenie",
+  "en": "Add exercise"
+ },
+ {
   "pl": "Dodaj do planu",
   "en": "Add to plan"
  },
  {
+  "pl": "Dodaj gumę",
+  "en": "Add band"
+ },
+ {
+  "pl": "Dodaj miejsce",
+  "en": "Add place"
+ },
+ {
   "pl": "Dodaj notatkę",
   "en": "Add note"
+ },
+ {
+  "pl": "Dodaj plan",
+  "en": "Add plan"
+ },
+ {
+  "pl": "Dodaj szablon",
+  "en": "Add template"
  },
  {
   "pl": "Dodane: {list}.",
@@ -1093,8 +1105,8 @@
   "en": "default {s}"
  },
  {
-  "pl": "Domyślna przerwa (sekundy)",
-  "en": "Default rest (seconds)"
+  "pl": "Domyślna przerwa (s)",
+  "en": "Default rest (s)"
  },
  {
   "pl": "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.",
@@ -1762,8 +1774,8 @@
   "en": "kettlebell: {v}"
  },
  {
-  "pl": "Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.",
-  "en": "Several plans: “+ New plan” creates a copy to change, and “Make active” under “Other plans” switches to it — day changes come back with their plan."
+  "pl": "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.",
+  "en": "Several plans: the + button in the header (Add plan) creates a copy to change, and “Make active” under “Other plans” switches to it — day changes come back with their plan."
  },
  {
   "pl": "klatka",
@@ -2519,8 +2531,8 @@
   "en": "Best session (volume)"
  },
  {
-  "pl": "Najpierw zakończ albo anuluj bieżący trening.",
-  "en": "Finish or cancel the current workout first."
+  "pl": "Najpierw zakończ albo odrzuć bieżący trening.",
+  "en": "Finish or discard the current workout first."
  },
  {
   "pl": "najszersze grzbietu",
@@ -2679,12 +2691,36 @@
   "en": "Something went wrong"
  },
  {
+  "pl": "Nie udało się dokończyć zakupu",
+  "en": "Couldn't complete the purchase"
+ },
+ {
   "pl": "Nie udało się otworzyć danych.",
   "en": "Could not open your data."
  },
  {
   "pl": "Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.",
   "en": "Couldn't restore purchases. Check your internet connection."
+ },
+ {
+  "pl": "Nie udało się włączyć Apple Health",
+  "en": "Couldn't turn on Apple Health"
+ },
+ {
+  "pl": "Nie udało się wyeksportować kopii",
+  "en": "Couldn't export the backup"
+ },
+ {
+  "pl": "Nie udało się wysłać danych",
+  "en": "Couldn't send the data"
+ },
+ {
+  "pl": "Nie udało się wysłać kopii",
+  "en": "Couldn't send the backup"
+ },
+ {
+  "pl": "Nie udało się zaimportować pliku",
+  "en": "Couldn't import the file"
  },
  {
   "pl": "Nie udało się zapisać",
@@ -2699,12 +2735,16 @@
   "en": "Could not save the safety copy in Files — your data was not changed."
  },
  {
+  "pl": "Nie udało się zapisać w Apple Health",
+  "en": "Couldn't save to Apple Health"
+ },
+ {
   "pl": "Nie zamieniaj: {name}",
   "en": "Don’t swap: {name}"
  },
  {
-  "pl": "Nie zapisano jeszcze w Apple Health — ponowię przy następnym uruchomieniu aplikacji.",
-  "en": "Not saved to Apple Health yet — I’ll retry the next time the app starts."
+  "pl": "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.",
+  "en": "Not saved to Apple Health yet — it will be retried the next time the app starts."
  },
  {
   "pl": "Nie zmieniono przerwy",
@@ -3745,8 +3785,8 @@
   "en": "Rest"
  },
  {
-  "pl": "Przerwa (sekundy)",
-  "en": "Rest (seconds)"
+  "pl": "Przerwa (s)",
+  "en": "Rest (s)"
  },
  {
   "pl": "przerwa {s}",
@@ -3779,10 +3819,6 @@
  {
   "pl": "Przerwa robocza (s)",
   "en": "Working rest (s)"
- },
- {
-  "pl": "przerwa s",
-  "en": "rest s"
  },
  {
   "pl": "przerwa z {s}",
@@ -4524,10 +4560,6 @@
   "en": "Search templates…"
  },
  {
-  "pl": "Szukaj…",
-  "en": "Search…"
- },
- {
   "pl": "szyja",
   "en": "neck"
  },
@@ -4586,6 +4618,10 @@
  {
   "pl": "Tapnij, by spróbować ponownie. Zrób też backup.",
   "en": "Tap to try again. Also make a backup."
+ },
+ {
+  "pl": "Tapnij, by ukryć.",
+  "en": "Tap to dismiss."
  },
  {
   "pl": "Tapnij, by włączyć.",
@@ -4818,6 +4854,10 @@
  {
   "pl": "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.",
   "en": "The workout from your watch stays in Apple Health — delete it in the Health app."
+ },
+ {
+  "pl": "Trening zapisał się sam",
+  "en": "Workout saved automatically"
  },
  {
   "pl": "Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).",
@@ -5293,8 +5333,8 @@
   "en": "More → Places and equipment: home, gym, hotel — each with its own equipment and weights."
  },
  {
-  "pl": "Więcej → Szablony: „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",
-  "en": "More → Templates: “+ New” creates a template: exercises, sets, rep range and rest."
+  "pl": "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",
+  "en": "More → Templates: the + button in the header (Add template) creates a template: exercises, sets, rep range and rest."
  },
  {
   "pl": "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.",
@@ -5773,10 +5813,6 @@
   "en": "Save changes?"
  },
  {
-  "pl": "Zapisałem trening",
-  "en": "Workout saved"
- },
- {
   "pl": "Zapisane zostaną serie robocze: {n}.",
   "en": "Working sets to be saved: {n}."
  },
@@ -5817,16 +5853,16 @@
   "en": "Save measurement"
  },
  {
+  "pl": "Zapisz sesję",
+  "en": "Save session"
+ },
+ {
   "pl": "Zapisz szablon",
   "en": "Save template"
  },
  {
   "pl": "Zapisz szablony i plan",
   "en": "Save templates and plan"
- },
- {
-  "pl": "Zapisz zmiany",
-  "en": "Save changes"
  },
  {
   "pl": "Zapisz zmiany w szablonie",

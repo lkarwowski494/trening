@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View, Alert, Pressable, Text } from 'react-native';
 import { BandColorInput } from '@/components/BandColorInput';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, Field, Input, Btn, Muted, SwitchRow, Chip, useOnce } from '@/components/ui';
+import { Screen, Field, Input, Btn, Muted, SwitchRow, Chip, useOnce, Missing } from '@/components/ui';
 import LoadEditor from '@/components/LoadEditor';
 import { getState, useTick, locationById, visibleExercises, bandColor } from '@/lib/store';
 import { setMainLocation, renameLocation, commitLocationName, duplicateLocation, deleteLocation, canDeleteLocation, setEquip, setOpt, activeEquip, setBandLevel } from '@/lib/locations';
@@ -22,7 +22,7 @@ export default function LocationEdit() {
   const [open, setOpen] = useState<string[]>([]);
   /* audyt (LOW): wyjście z pustą nazwą (bez zakończenia edycji) przywraca poprzednią — nie zapisuje pustej */
   useEffect(() => () => { const x = locationById(typeof id === 'string' ? id : ''); if (x && (!x.name.trim() || x.name !== x.name.replace(/\s+/g, ' ').trim())) commitLocationName(x, initialName.current); }, [id]);
-  if (!l) return <Screen><Muted style={{ marginTop: 16 }}>{t('Nie ma takiego miejsca.')}</Muted></Screen>;
+  if (!l) return <Screen><Missing>{t('Nie ma takiego miejsca.')}</Missing></Screen>;
   const s = getState().settings; const main = s.mainLocationId === l.id;
   const back = () => { if (router.canGoBack()) router.back(); else router.replace('/more/locations'); };
   const caps = capsOf(l); const all = visibleExercises(); const ok = all.filter(e => availability(e, l, caps).ok).length;

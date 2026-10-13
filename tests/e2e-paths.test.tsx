@@ -15,7 +15,7 @@ describe('E2E 89 — podprzepływy szablon-testowy i start-szablonu (Upper A), w
   test('Więcej → Szablony: „+ New” → nazwa (bez endEditing) → dwa ćwiczenia → „Save template” → „Back” → „Back” → zakładka Trening → „Other workout” → „From a template” → „Start: Upper A”', async () => {
     await boot();
     await tap(screen.getByLabelText(/^More, tab/)); await flushAll(10); await tap(screen.getByLabelText('Templates')); await flushAll(10); /* 11.10.2026: Szablony pod Więcej */
-    await tap(screen.getByLabelText('+ New')); await flushAll(10);
+    await tap(screen.getByLabelText('Add template')); await flushAll(10);
     const nameF = screen.getByLabelText('Name'); expect(nameF.props.value).toBe('New template');
     await type(nameF, 'Upper A'); await flushAll(5);
     for (const [q, lbl] of [['Bench Press', 'Bench Press (Dumbbell), dumbbells'], ['Bent Over Row', 'Bent Over Row (Dumbbell), dumbbells']]) {
@@ -28,7 +28,7 @@ describe('E2E 89 — podprzepływy szablon-testowy i start-szablonu (Upper A), w
     expect(S().templates[0].name).toBe('Upper A');
     expect(screen.getByLabelText('Edit template')).toBeTruthy();
     await act(async () => { require('expo-router').router.back(); }); await flushAll(10); /* „Back” w pasku nawigacji (w Jest się nie renderuje) */
-    expect(screen.getByLabelText('+ New')).toBeTruthy(); /* po zapisie „Back” wraca na listę szablonów */
+    expect(screen.getByLabelText('Add template')).toBeTruthy(); /* po zapisie „Back” wraca na listę szablonów */
     await act(async () => { require('expo-router').router.back(); }); await flushAll(10); expect(screen.getByLabelText(/^Workout, tab/)).toBeTruthy(); /* drugie „Back” — do Więcej z paskiem zakładek */
     await tap(screen.getByLabelText(/^Workout, tab/)); await flushAll(10);
     await tap(screen.getByLabelText('Other workout')); await flushAll(10);

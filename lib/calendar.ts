@@ -38,3 +38,11 @@ export const weekdayNames = (): string[] => Array.from({ length: 7 }, (_, i) => 
 export const monthTitle = (y: number, m: number) => new Date(y, m, 1).toLocaleDateString(locale(), { month: 'long', year: 'numeric' });
 /** Pełna data dnia dla VoiceOver, np. „7 października 2026”. */
 export const dayTitle = (c: Pick<Cell, 'y' | 'm' | 'd'>) => new Date(c.y, c.m, c.d).toLocaleDateString(locale(), { day: 'numeric', month: 'long', year: 'numeric' });
+
+/* Wzorzec „formaty dat” (docs/32 wzorzec 22; H3 audytu 0.10): jedyne miejsca formatowania dat w interfejsie (poza lib/state/time.ts i lib/period.ts) — miesiąc zawsze słownie. */
+const D = (d: Date | number, o: Intl.DateTimeFormatOptions) => new Date(d).toLocaleDateString(locale(), o);
+/** „12 paź” */ export const fmtDayMonth = (d: Date | number) => D(d, { day: 'numeric', month: 'short' });
+/** „12 paź 2026” */ export const fmtDayMonthYear = (d: Date | number) => D(d, { day: 'numeric', month: 'short', year: 'numeric' });
+/** „poniedziałek, 12 października” */ export const fmtWeekdayDayMonth = (d: Date | number) => D(d, { weekday: 'long', day: 'numeric', month: 'long' });
+/** „pon.” */ export const fmtWeekdayShort = (d: Date | number) => D(d, { weekday: 'short' });
+/** „12” */ export const fmtDayNum = (d: Date | number) => D(d, { day: 'numeric' });

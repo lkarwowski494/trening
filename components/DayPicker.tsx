@@ -4,6 +4,7 @@ import { Field } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX } from '@/lib/theme';
 import { weekdayLabels, weekdayNames } from '@/lib/calendar';
 import { t, lang } from '@/lib/i18n';
+import { useAnnounce } from '@/lib/announce';
 
 /*
  * Wybór dni treningowych (decyzja właściciela 09.10.2026 wieczór, wariant B; docs/18) — jedno miejsce dla generatora (app/generator.tsx) i „Planu
@@ -27,7 +28,7 @@ export function DayPicker({ label, value, onChange, min, max }: { label: string;
   const th = useTheme(); const win = useWindowDimensions(); const [w, setW] = useState(win.width - 28 /* Screen: paddingHorizontal 14 */);
   const cols = dayCols(w); const cell = (w - (cols - 1) * GAP) / cols; const short = weekdayLabels(); const long = weekdayNames();
   const toggle = (d: number) => onChange(value.includes(d) ? value.filter(x => x !== d) : [...value, d].sort((a, b) => a - b));
-  const ok = daysOk(value, min, max);
+  const ok = daysOk(value, min, max); useAnnounce(ok ? null : daysRangeText(min, max));
   return (
     <Field label={label}>
       <View testID="day-picker" onLayout={e => setW(e.nativeEvent.layout.width)} style={{ flexDirection: 'row', flexWrap: 'wrap', gap: GAP }}>
@@ -37,7 +38,7 @@ export function DayPicker({ label, value, onChange, min, max }: { label: string;
             <Text accessibilityLanguage={lang()} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7} maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ color: on ? th.accentInk : th.text, fontFamily: on ? F.semibold : F.regular, fontSize: 14, paddingHorizontal: 2 }}>{s}</Text>
           </Pressable>); })}
       </View>
-      {ok ? null : <Text testID="day-picker-range" accessibilityLanguage={lang()} accessibilityLiveRegion="polite" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontSize: 13, marginTop: 6, fontFamily: F.regular }}>{daysRangeText(min, max)}</Text>}
+      {ok ? null : <Text testID="day-picker-range" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontSize: 13, marginTop: 6, fontFamily: F.regular }}>{daysRangeText(min, max)}</Text>}
     </Field>
   );
 }

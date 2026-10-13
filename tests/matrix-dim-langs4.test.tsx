@@ -37,10 +37,10 @@ describe('LANGS × THEMES — główne ekrany w każdym języku i motywie', () =
   });
   afterAll(() => jest.restoreAllMocks());
   const ROUTES: [string, string][] = [
-    ['/', 'Pusty trening'], ['/exercises', '+ Nowe'], ['/templates', 'Brak szablonów — dodaj pierwszy.'], ['/history', 'Dopisz trening wstecz'], ['/more', 'Miejsca i sprzęt'],
-    ['/more/settings', 'Dźwięk i wibracja na koniec przerwy'], ['/progress', 'Wykresy pojawią się po pierwszym zakończonym treningu.'], ['/more/locations', '+ Dodaj miejsce'],
+    ['/', 'Pusty trening'], ['/exercises', 'Szukaj ćwiczenia…'], ['/templates', 'Brak szablonów — dodaj pierwszy.'], ['/history', 'Dopisz trening wstecz'], ['/more', 'Miejsca i sprzęt'],
+    ['/more/settings', 'Dźwięk i wibracja na koniec przerwy'], ['/progress', 'Wykresy pojawią się po pierwszym zakończonym treningu.'], ['/more/locations', 'Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.'],
     ['/more/backup', 'Eksport tworzy plik JSON z całą historią i szablonami — zapisz go w Plikach/iCloud albo wyślij sobie. Import przyjmuje ten sam format, także backup z wersji webowej.'],
-    ['/more/language', 'Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.'], ['/more/bands', '+ Guma'],
+    ['/more/language', 'Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.'], ['/more/bands', 'Kolor i poziom trudności: 1 = cienka, 7 = bardzo gruba. Gumy nie mają kilogramów — przy serii zapisujesz, której gumy użyłeś. Guma jako asysta (np. podciąganie): rekordem są powtórzenia bez gumy, a postęp to zejście na niższy poziom. Guma jako opór: rekordy liczą serie z gumą.'],
   ];
   const TABS = ['Trening', 'Plan', 'Postępy', 'Więcej']; /* 11.10.2026: cztery zakładki (docs/22, wariant A) */
   /** Polskie teksty, które w innym języku nie mogą zostać na ekranie (wszystkie mają tłumaczenia w słownikach; bez „+ Guma” — „guma” to też
@@ -57,7 +57,7 @@ describe('LANGS × THEMES — główne ekrany w każdym języku i motywie', () =
     await renderApp({ saved: s }); await flushAll(10);
     expect(lang()).toBe(l); expect(S().settings.language).toBe(l);
     for (const tab of TABS) expect([l, tab, screen.queryAllByText(t(tab)).length > 0]).toEqual([l, tab, true]);
-    for (const [route, sentinel] of ROUTES) { await go(route); await flushAll(10); expect([l, route, screen.queryAllByText(t(sentinel)).length > 0]).toEqual([l, route, true]); }
+    for (const [route, sentinel] of ROUTES) { await go(route); await flushAll(10); expect([l, route, (screen.queryAllByText(t(sentinel)).length + screen.queryAllByPlaceholderText(t(sentinel)).length) > 0]).toEqual([l, route, true]); }
     const all = texts();
     if (l !== 'pl') {
       for (const pl of PL_SENTINELS.filter(x => !SAME_WORD[l]?.includes(x))) expect([l, pl, t(pl) !== pl, all.includes(pl)]).toEqual([l, pl, true, false]);

@@ -49,7 +49,7 @@ describe('Ustawienia: przełącznik odczytu', () => {
   });
   test('prośba nieobsłużona → „Nie udało się”, pole bez zmian', async () => {
     await boot(w => { w.spies.requestAuthorization.mockImplementation((async () => false) as any); }, { read: false, url: '/more/settings' });
-    await sw(/^Pokazuj dane z Apple Health/, true); expect(global.__alerts.find(x => x.title === 'Nie udało się')!.msg).toBe('Spróbuj ponownie.'); expect(S().settings.healthRead).toBeUndefined();
+    await sw(/^Pokazuj dane z Apple Health/, true); expect(global.__alerts.find(x => x.title === 'Nie udało się włączyć Apple Health')!.msg).toBe('Spróbuj ponownie.'); expect(S().settings.healthRead).toBeUndefined();
   });
   test('wyłączenie: pole znika, aplikacja przestaje pytać Zdrowie, zgoda w iOS nie jest ruszana; ustawienie przeżywa restart', async () => {
     await boot(undefined, { url: '/more/settings' }); expect(screen.getByTestId('health-read-note')).toBeTruthy();
@@ -168,7 +168,7 @@ describe('lista sesji: usuwanie', () => {
     await boot(() => { const a = sess(at('2026-10-10', 18)); a.healthUUID = 'watch'; a.templateName = 'Watch'; const b = sess(at('2026-10-09', 18)); b.healthUUID = 'U-1'; b.templateName = 'Copy'; const c = sess(at('2026-10-08', 18)); c.templateName = 'None'; }, { url: '/history' });
     for (const [name, line] of [['Watch', 'Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.'], ['Copy', 'Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie.'], ['None', '']] as const) {
       global.__alerts.length = 0; await swipeDelete(new RegExp(`^Usuń sesję: ${name}, `)); const al = global.__alerts.find(x => x.title === 'Usunąć tę sesję z historii?')!; expect(al.msg).toMatch(line ? new RegExp(`${line.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`) : /^[^\n]+$/);
-      if (!line) expect(al.msg).not.toMatch(/Apple Health/); pressAlert('Usunąć tę sesję z historii?', 'Nie'); await flushAll(5);
+      if (!line) expect(al.msg).not.toMatch(/Apple Health/); pressAlert('Usunąć tę sesję z historii?', 'Anuluj'); await flushAll(5);
     }
   });
 });

@@ -67,15 +67,15 @@ describe('UX2-01: wyszukiwanie po dawnej nazwie — ekrany', () => {
   });
   test('zakładka Ćwiczenia: dawna nazwa znajduje obecne ćwiczenie, bez przycisku „Utwórz …”; zwykłe trafienie nazwy — bez dopisku', async () => {
     await boot(); await go('/exercises'); await flushAll(10);
-    await type(screen.getByPlaceholderText('Szukaj…'), 'Narrow Stance Squats'); await flushAll(5);
+    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Narrow Stance Squats'); await flushAll(5);
     expect(screen.queryByText('Utwórz „Narrow Stance Squats”')).toBeNull(); expect(screen.getByText('Back Squat')).toBeTruthy(); expect(screen.getByText(/dawniej: Narrow Stance Squats/)).toBeTruthy();
-    await type(screen.getByPlaceholderText('Szukaj…'), 'Back Squat'); await flushAll(5);
+    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Back Squat'); await flushAll(5);
     expect(screen.queryByText(/dawniej:/)).toBeNull();
-    await type(screen.getByPlaceholderText('Szukaj…'), 'Zupełnie Nowe'); await flushAll(5); expect(screen.getByText('Utwórz „Zupełnie Nowe”')).toBeTruthy(); /* bez aliasu — jak dotąd */
+    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Zupełnie Nowe'); await flushAll(5); expect(screen.getByText('Utwórz „Zupełnie Nowe”')).toBeTruthy(); /* bez aliasu — jak dotąd */
   });
   test('po angielsku: alias znajduje ćwiczenie, dopisek z nazwą w języku aplikacji', async () => {
     await boot(undefined, undefined, 'en'); await go('/exercises'); await flushAll(10);
-    await type(screen.getByPlaceholderText(t('Szukaj…')), 'Seated Dumbbell Curl'); await flushAll(5);
+    await type(screen.getByPlaceholderText(t('Szukaj ćwiczenia…')), 'Seated Dumbbell Curl'); await flushAll(5);
     expect(screen.getByText(exName(ex('Biceps Curl (hantle)')))).toBeTruthy(); expect(screen.getByText(/formerly: Seated Dumbbell Curl/)).toBeTruthy();
     expect(screen.queryByText(/Create/)).toBeNull();
   });
@@ -202,7 +202,7 @@ describe('UI2-02: podwójne tapnięcie nie otwiera dwóch ekranów ani nie tworz
   test('„+ Nowy plan” ×2 → jeden nowy plan i jeden ekran planu', async () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); const tp = withDemoTemplates(); plan.setWeekDay(0, tp[0].id); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/plan' }); await flushAll(10); const n0 = plan.savedPlans().length;
-    await dbl(screen.getByText('+ Nowy plan'));
+    await dbl(screen.getByLabelText('Dodaj plan'));
     expect(plan.savedPlans().length).toBe(n0 + 1); expect(routeNames().filter(n => n === 'plan')).toHaveLength(2); /* aktywny + jeden nowy */
   });
   test('podgląd ćwiczenia: wiersz „Ostatnie treningi” ×2 → jeden ekran sesji', async () => {

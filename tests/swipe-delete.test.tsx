@@ -41,8 +41,8 @@ describe('komponent', () => {
   test('potwierdzenie: „Nie” nic nie usuwa, „Usuń” usuwa raz', async () => {
     await fresh(); const del = jest.fn(); const r = mount(del);
     await rtlAct(async () => { fireEvent(r.getByLabelText('Wiersz X'), 'accessibilityAction', { nativeEvent: { actionName: 'delete' } }); });
-    expect(lastAlert()).toMatchObject({ title: 'Usunąć X?', msg: 'opis' }); expect(lastAlert().buttons!.map((b: any) => b.text)).toEqual(['Nie', 'Usuń']);
-    await rtlAct(async () => { pressAlert('Usunąć X?', 'Nie'); }); expect(del).not.toHaveBeenCalled();
+    expect(lastAlert()).toMatchObject({ title: 'Usunąć X?', msg: 'opis' }); expect(lastAlert().buttons!.map((b: any) => b.text)).toEqual(['Anuluj', 'Usuń']);
+    await rtlAct(async () => { pressAlert('Usunąć X?', 'Anuluj'); }); expect(del).not.toHaveBeenCalled();
     await rtlAct(async () => { fireEvent(r.getByLabelText('Wiersz X'), 'accessibilityAction', { nativeEvent: { actionName: 'activate' } }); }); expect(global.__alerts.length).toBe(1); /* inna akcja — bez pytania */
     await rtlAct(async () => { fireEvent(r.getByLabelText('Wiersz X'), 'accessibilityAction', { nativeEvent: { actionName: 'delete' } }); });
     await rtlAct(async () => { pressAlert('Usunąć X?', 'Usuń'); }); expect(del).toHaveBeenCalledTimes(1);
@@ -64,7 +64,7 @@ const tplWith = () => { const t = store.newTemplate(); t.name = 'T1'; t.items.pu
 const PLACES: Place[] = [
   { name: 'szablon (lista Szablony)', setup: async () => { await boot(() => { tplWith(); }); await go('/templates'); await flushAll(10); }, label: 'Usuń szablon: T1', title: 'Usunąć szablon?', count: () => S().templates.length },
   { name: 'sesja (lista Historia)', setup: async () => { await boot(() => { addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); }); await go('/history'); await flushAll(10); }, label: /^Usuń sesję: /, title: 'Usunąć tę sesję z historii?', count: () => S().workouts.length },
-  { name: 'ćwiczenie (biblioteka)', setup: async () => { await boot(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'Back Squat'); /* N3: lista wirtualizowana — wiersz z dalszej partii przez szukanie */ }, label: 'Usuń z biblioteki: Back Squat', title: 'Usunąć ćwiczenie?', count: () => S().exercises.filter(e => !e.archived).length },
+  { name: 'ćwiczenie (biblioteka)', setup: async () => { await boot(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Back Squat'); /* N3: lista wirtualizowana — wiersz z dalszej partii przez szukanie */ }, label: 'Usuń z biblioteki: Back Squat', title: 'Usunąć ćwiczenie?', count: () => S().exercises.filter(e => !e.archived).length },
   { name: 'pomiar masy ciała (UI2-03)', setup: async () => { await boot(() => { store.addBodyMass(80, '2026-10-01'); store.addBodyMass(81, '2026-10-05'); }); await go('/more/bodymass'); await flushAll(10); }, label: /^Usuń pomiar: /, title: 'Usunąć pomiar?', count: () => store.bodyMassLog().length },
   { name: 'guma', setup: async () => { await boot(); await go('/more/bands'); await flushAll(10); }, label: /^Usuń gumę: /, title: 'Usunąć gumę?', count: () => S().bands.length },
   { name: 'miejsce (inne niż główne)', setup: async () => { await boot(() => { addLocation('home'); addLocation('gym'); }); await go('/more/locations'); await flushAll(10); }, label: /^Usuń miejsce: /, title: 'Usunąć miejsce?', count: () => S().settings.locations.length },
@@ -79,7 +79,7 @@ describe('macierz: każde miejsce usuwania — „Nie” zostawia, „Usuń” u
   test.each(PLACES.map(p => [p.name, p] as const))('%s', async (_n, p) => {
     await p.setup(); const n0 = p.count();
     await swipeDelete(p.label); expect(lastAlert().title).toBe(p.title);
-    await act(async () => { pressAlert(p.title, 'Nie'); }); await flushAll(5); expect(p.count()).toBe(n0);
+    await act(async () => { pressAlert(p.title, 'Anuluj'); }); await flushAll(5); expect(p.count()).toBe(n0);
     await swipeDelete(p.label); await act(async () => { pressAlert(p.title, 'Usuń'); }); await flushAll(10); expect(p.count()).toBe(n0 - 1);
   });
 });
@@ -104,6 +104,6 @@ describe('języki', () => {
     await fresh(undefined, 'en'); tplWith(); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'en', url: '/templates' }); await flushAll(10);
     expect(deleteActions()).toEqual(['Delete template: T1']);
-    await swipeDelete('Delete template: T1'); expect(lastAlert()).toMatchObject({ title: 'Delete template?' }); expect(lastAlert().buttons!.map((b: any) => b.text)).toEqual(['No', 'Delete']);
+    await swipeDelete('Delete template: T1'); expect(lastAlert()).toMatchObject({ title: 'Delete template?' }); expect(lastAlert().buttons!.map((b: any) => b.text)).toEqual(['Cancel', 'Delete']);
   });
 });

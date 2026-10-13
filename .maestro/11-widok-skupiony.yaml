@@ -32,8 +32,8 @@ name: Widok skupiony i talerze
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }  # 11.10.2026: pozycja ekranu Więcej, nie Ustawień
 - tapOn: "Places and equipment"
-- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
-- tapOn: "\\+ Add place"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Add place"
 - extendedWaitUntil: { visible: "Full gym,.*", timeout: 30000 }
 - tapOn: "Full gym,.*"
 - extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }

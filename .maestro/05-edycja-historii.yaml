@@ -10,9 +10,8 @@
 #   "Edit session"           ← 'Edytuj sesję'     (app/history/[id].tsx — przycisk u góry ekranu zapisanej sesji)
 #   "Edit session"           ← 'Edytuj sesję'     (accessibilityLabel przycisku „Edit” w app/history/[id].tsx;
 #                                                  uwaga: tytuł edytora 'Edycja sesji' to też „Edit session”)
-#   "Cancel"                 ← 'Anuluj'           (headerLeft edytora app/history/edit/[id].tsx)
-#   "Save"                   ← 'Zapisz'           (headerRight edytora i przycisk w Alercie „Save changes?”)
-#   "Save changes"           ← 'Zapisz zmiany'    (przycisk na dole edytora)
+#   "Cancel session editing" ← 'Anuluj edycję sesji' (headerLeft edytora app/history/edit/[id].tsx)
+#   "Save session"           ← 'Zapisz sesję'     (headerRight edytora; „Save” — przycisk w Alercie „Save changes?”)
 #   "Save changes\?"         ← 'Zapisać zmiany?'  (Alert przy pominiętych seriach / nachodzeniu terminów)
 #   "Upper A"                ← wartość pola Nazwa (Input w Field 'Nazwa' = „Name”) — nazwa szablonu z subflows/szablon-testowy.yaml
 #   "Upper A E2E"            ← tekst wpisywany w tym teście
@@ -47,23 +46,22 @@ name: Edycja historii i trening wstecz
 
 # --- Edycja sesji ---
 - tapOn: "Edit session"
-- extendedWaitUntil: { visible: "Cancel", timeout: 30000 }
-- assertVisible: "Save"
-- assertVisible: "Save changes"
+- extendedWaitUntil: { visible: "Cancel session editing", timeout: 30000 }
+- assertVisible: "Save session"
 - takeScreenshot: 11-edytor-sesji
 # Pole „Name” (TextInput) ma wartość „Upper A” — dopasowanie po wartości pola (etykieta „Name” jest zdublowana z podpisem pola)
 - tapOn: "Upper A"
 - eraseText: 30
 - inputText: "Upper A E2E"
 - takeScreenshot: 12-edytor-nowa-nazwa
-- tapOn: "Save"
+- tapOn: "Save session"
 # Alert pojawia się przy pominiętych seriach, seriach bez ciężaru (szablon testowy nie ma ciężaru startowego — tu zwykle tak) albo nachodzeniu terminów; opcjonalny
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }
 # Powrót na ekran sesji z nową nazwą
 - extendedWaitUntil: { visible: "Session", timeout: 30000 }  # tytuł ekranu zapisanej sesji („Delete session” bywa poza ekranem; „Edit session” to też tytuł edytora)
 - assertVisible: "Upper A E2E"
 - assertNotVisible: "Upper A"
-- assertNotVisible: "Cancel"
+- assertNotVisible: "Cancel session editing"
 - takeScreenshot: 13-sesja-po-edycji
 
 # --- Trening wstecz ---
@@ -74,14 +72,14 @@ name: Edycja historii i trening wstecz
 - extendedWaitUntil: { visible: "From a template", timeout: 30000 }
 - takeScreenshot: 14-trening-wstecz
 - tapOn: "Upper A, .*"
-- extendedWaitUntil: { visible: "Cancel", timeout: 30000 }
-- assertVisible: "Save"
+- extendedWaitUntil: { visible: "Cancel session editing", timeout: 30000 }
+- assertVisible: "Save session"
 - takeScreenshot: 15-edytor-treningu-wstecz
 # 05.10.2026: nowe ćwiczenie w szablonie nie ma już domyślnego zakresu 8–10 (zakres opcjonalny), więc trening wstecz bez wcześniejszej sesji
 # ma puste powtórzenia — wpisujemy wynik pierwszej serii (testID reps-<blok>-<seria> w app/history/edit/[id].tsx); „Save” w nagłówku nad klawiaturą.
 - tapOn: { id: "reps-0-0" }
 - inputText: "8"
-- tapOn: "Save"
+- tapOn: "Save session"
 # Szablon testowy nie ma ciężaru startowego — serie bez ciężaru („Sets without weight: n.”), więc spodziewany Alert „Save changes?”
 - tapOn: { text: "Save", below: "Save changes\\?", optional: true }
 # Po zapisie edytor zastępuje się ekranem nowej sesji

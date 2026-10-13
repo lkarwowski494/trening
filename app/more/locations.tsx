@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, Stack } from 'expo-router';
 import { Screen, Item, Btn, Muted, Empty, SectionTitle, useOnce } from '@/components/ui';
 import { getState, useTick } from '@/lib/store';
 import { addLocation, canDeleteLocation, deleteLocation } from '@/lib/locations';
 import { SwipeRow } from '@/components/SwipeRow';
 import { LOCATION_PRESETS, LOCATION_PRESET_LABEL, presetHint, equipLabel } from '@/lib/equipment';
 import { t, tp } from '@/lib/i18n';
+import { useAddHeader } from '@/components/AddButton';
 
 /* P-003 E1: Ustawienia → Miejsca treningu (docs/10, sekcja 5). Lista miejsc (główne oznaczone) i „+ Dodaj miejsce” z presetami. */
 export default function Locations() {
   useTick(); const s = getState().settings; const router = useRouter(); const [adding, setAdding] = useState(false); const once = useOnce();
+  const addHeader = useAddHeader(t('Dodaj miejsce'), () => setAdding(true), undefined, false) /* idempotentne: otwiera listę presetów — bez blokady */;
   return (
-    <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 80 }}>
+    <Screen><Stack.Screen options={addHeader} /><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 80 }}>
       <Muted style={{ marginBottom: 8 }}>{t('Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.')}</Muted>
       {s.locations.map(l => { const main = l.id === s.mainLocationId; const n = l.equipment.filter(e => !e.off).length;
         /* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (z ekranu miejsca przycisk zniknął); miejsca głównego się nie usuwa — bez gestu */
@@ -23,7 +25,7 @@ export default function Locations() {
         <SectionTitle>{t('Nowe miejsce')}</SectionTitle>
         {LOCATION_PRESETS.map(p => <Item key={p} title={equipLabel(LOCATION_PRESET_LABEL[p])} sub={presetHint(p, s.unit)} /* audyt 0.10 LOG-08: opis z danych presetu, w jednostce aplikacji */ icon="+" onPress={once(() => { const l = addLocation(p); setAdding(false); router.push(`/more/location/${l.id}`); })} />)}
         <Btn title={t('Anuluj')} kind="ghost" style={{ marginTop: 8 }} onPress={() => setAdding(false)} />
-      </> : <Btn title={t('+ Dodaj miejsce')} block style={{ marginTop: 14 }} onPress={() => setAdding(true)} />}
+      </> : null}
     </ScrollView></Screen>
   );
 }

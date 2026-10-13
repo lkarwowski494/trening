@@ -23,6 +23,6 @@ describe('uwagi właściciela 05.10 (b)', () => {
   test('„Więcej” ma osobną pozycję „Miejsca i sprzęt” prowadzącą do listy miejsc', async () => {
     await renderApp(); await go('/more'); await flushAll(10);
     await tap(screen.getByText('Miejsca i sprzęt')); await flushAll(10);
-    expect(screen.getByText('+ Dodaj miejsce')).toBeTruthy();
+    expect(screen.getByLabelText('Dodaj miejsce')).toBeTruthy();
   });
 });

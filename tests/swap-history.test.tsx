@@ -105,7 +105,7 @@ describe('D6 — ekrany', () => {
     const d = edit.draftOf(w.id)!; expect(d.w.exercises[0].exerciseId).toBe(ex(DB).id);
     expect(screen.getByText('Bench Press (hantle)')).toBeTruthy();
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (hantle)')); await flushAll(20);
-    expect(screen.getByText('↺ przywróć: Bench Press (sztanga)')).toBeTruthy();
+    expect(screen.getByText('↺ cofnij zamianę: Bench Press (sztanga)')).toBeTruthy();
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); await flushAll(5);
     expect(screen.queryByText('Plank')).toBeNull(); await tap(screen.getAllByText('Push Up').at(-1)!); await flushAll(20);
     expect(d.w.exercises[0].exerciseId).toBe(ex('Push Up').id); expect(d.w.exercises[0].sets[0].addKg).toBe(60); /* P4 */

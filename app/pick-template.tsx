@@ -2,7 +2,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import { ScrollView, Pressable, Text } from 'react-native';
 import { useRouter, Stack } from 'expo-router';
 import { useTheme, F } from '@/lib/theme';
-import { Screen, Input, Item, Btn, Muted, SectionTitle, Empty, useOnce } from '@/components/ui';
+import { Screen, Input, Item, Btn, Muted, SectionTitle, Empty, useOnce, SearchField } from '@/components/ui';
 import { getState, useTick, finishedWorkouts, templateGroups, wallTs, fmtDate, tplWorkSets } from '@/lib/store';
 import { startTemplate } from '@/lib/start';
 import { useCloseHeader } from '@/components/CloseButton';
@@ -25,7 +25,7 @@ export default function PickTemplateScreen() {
   return (
     <Screen style={{ paddingTop: 10 }}>
       <Stack.Screen options={headerOpts} />
-      {total >= SEARCH_MIN ? <Input value={q} onChangeText={setQ} placeholder={t('Szukaj szablonu…')} accessibilityLabel={t('Szukaj szablonu…')} maxLength={80} autoCorrect={false} /> : null}
+      {total >= SEARCH_MIN ? <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj szablonu…')} /> : null}
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 40 }}>
         {!total ? <Empty>{t('Nie masz jeszcze szablonów.')}</Empty> : !groups.length ? <Empty>{t('Nic nie pasuje.')}</Empty> : null}
         {groups.map(g => <React.Fragment key={g.folder ?? ''}>{g.folder ? <SectionTitle>{g.folder}</SectionTitle> : null}{g.items.map(tpl => { const lw = fin.find(x => x.templateId === tpl.id); const sets = tplWorkSets(tpl); return (

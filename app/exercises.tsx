@@ -1,13 +1,14 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { F } from '@/lib/theme';
-import { useRouter } from 'expo-router';
-import { Screen, Item, Btn, Input, Muted, Empty, useOnce } from '@/components/ui';
+import { useRouter, Stack } from 'expo-router';
+import { Screen, Item, Btn, Input, Muted, Empty, useOnce, SearchField } from '@/components/ui';
 import { useExercisesTick, useCfgTick, newExercise, visibleExercises, getState, exerciseInHistory, usesBand, restoreExercise, deleteExercise, exercisesInUse, inCoreList, libShowAll, setLibShowAll } from '@/lib/store';
 import { LibScopeChip } from '@/components/LibScope';
 import { SwipeRow } from '@/components/SwipeRow';
 import { GROUPS, formerMatch, type Exercise } from '@/lib/seed';
 import { t, exName, fold, collator, lang } from '@/lib/i18n';
+import { useAddHeader } from '@/components/AddButton';
 
 /*
  * Audyt 0.10 N3 / PERF-01: 854+ ćwiczeń — lista wirtualizowana (FlatList, jak wybór ćwiczenia), sortowanie raz na zmianę listy (jeden Intl.Collator),
@@ -41,12 +42,14 @@ export default function ExercisesScreen() {
     /* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (z ekranu ćwiczenia przycisk zniknął); treść potwierdzenia jak wcześniej (runda 40) */
     return <SwipeRow label={t('Usuń z biblioteki: {name}', { name: exName(e) })} title={t('Usunąć ćwiczenie?')} message={() => [exerciseInHistory(e.id) ? t('Zniknie z list i szablonów; historia, wykresy i eksport zostaną.') : t('Zniknie z list i szablonów.'), getState().active?.exercises.some(x => x.exerciseId === e.id) ? t('W trwającym treningu zostanie oznaczone jako usunięte.') : ''].filter(Boolean).join(' ')} onDelete={() => { const cur = getState().exercises.find(x => x.id === e.id); if (cur && !cur.archived) deleteExercise(e.id); }}>{a11y => <Item a11y={a11y} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${e.tempo ? ' · ' + t('tempo') + ' ' + e.tempo : ''}${r.kind === 'ex' && r.was ? ' · ' + t('dawniej: {n}', { n: exName({ name: r.was, lib: true }) }) : ''}`} onPress={() => router.push(`/exercise/${e.id}`)} />}</SwipeRow>;
   };
+  const addHeader = useAddHeader(t('Dodaj ćwiczenie'), () => { const e = newExercise(); router.push(`/exercise/${e.id}?edit=1&new=1`); });
   const empty = <><Empty>{t('Nic nie pasuje.')}</Empty>{ql ? <Btn title={t('Utwórz „{name}”', { name: q.trim() })} block onPress={once(() => { const e = newExercise(q.replace(/\s+/g, ' ').trim()); setQ(''); router.push(`/exercise/${e.id}?edit=1&new=1`); })} /> : null}</>;
   return (
     <Screen>
+      <Stack.Screen options={addHeader} />
       {/* 11.10.2026 (docs/22, wariant A): ekran pod Więcej — tytuł „Ćwiczenia” w nagłówku stosu, liczba ćwiczeń obok przycisku */}
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 10 }}><Muted>{count}</Muted><Btn title={t('+ Nowe')} small onPress={once(() => { const e = newExercise(); router.push(`/exercise/${e.id}?edit=1&new=1`); })} /></View>
-      <Input value={q} onChangeText={setQ} placeholder={t('Szukaj…')} maxLength={80} autoCorrect={false} />
+      <View style={{ marginVertical: 10 }}><Muted>{count}</Muted></View>
+      <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} />
       <LibScopeChip all={libAll} hidden={nicheHidden} searching={!!ql} onToggle={() => { const v = !libAll; setLibAll(v); setLibShowAll(v); }} />
       <FlatList testID="exercises-list" data={rows} renderItem={render} keyExtractor={r => r.key} initialNumToRender={EXERCISES_FIRST_RENDER} maxToRenderPerBatch={30} windowSize={11}
         keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }} ListEmptyComponent={empty} />

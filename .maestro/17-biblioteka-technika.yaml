@@ -7,7 +7,7 @@
 #   "More, tab.*" → "Exercises"                              ← 'Więcej' + 'Ćwiczenia' (Item na liście Więcej; 11.10.2026, wariant A: Ćwiczenia pod Więcej) (jak w 16)
 #   "Filter: basic exercises"                        ← 'Filtr: podstawowe ćwiczenia' (accessibilityLabel chipa „Basic ✕”, components/LibScope.tsx)
 #   "Showing all exercises, including niche ones"    ← 'Pokazane wszystkie ćwiczenia, także niszowe' (ten sam chip po zdjęciu filtra)
-#   "Search…" / "Back Squat, barbell.*"             ← jak w 16
+#   "Search exercises…" / "Back Squat, barbell.*"             ← jak w 16
 #   "Technique"                                      ← 'Technika' (przycisk sekcji, components/ExerciseCues.tsx)
 #   "Setup" / "Based on: .*"                         ← 'Ustawienie' / 'Na podstawie: {list}. Własne sformułowania.'
 #   "Movement drawing: .*"                           ← 'Rysunek ruchu: {opis}' (etykieta VoiceOver obrazu figury, components/ExerciseFigure.tsx)
@@ -34,7 +34,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - tapOn: "Showing all exercises, including niche ones"
 - extendedWaitUntil: { visible: "Filter: basic exercises", timeout: 15000 }
 
-- tapOn: "Search…"
+- tapOn: "Search exercises…"
 - inputText: "Back Squat"
 - tapOn: { text: "Continue", optional: true }
 - tapOn: "Back Squat, barbell.*"
@@ -61,8 +61,8 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - tapOn: "More, tab.*"
 - tapOn: "Exercises"  # 11.10.2026: Ćwiczenia to ekran pod Więcej (bez własnej zakładki)
-- extendedWaitUntil: { visible: "Search…", timeout: 30000 }
-- tapOn: "Search…"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
 - inputText: "Narrow Stance Squats"
 - tapOn: { text: "Continue", optional: true }
 - extendedWaitUntil: { visible: "Back Squat, barbell · formerly: Narrow Stance Squats", timeout: 15000 }

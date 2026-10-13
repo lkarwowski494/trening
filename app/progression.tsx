@@ -11,6 +11,7 @@ import { MuscleMap } from '@/components/MuscleMap';
 import { MuscleRows, SegBar, SegLegend, setBars, volumeBars } from '@/components/ProgressBars';
 import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t, tp, locale, lang } from '@/lib/i18n';
+import { fmtDayMonth } from '@/lib/calendar';
 
 /*
  * Progresja — szczegóły (docs/22 krok 3 pkt 5; decyzja właściciela 11.10.2026, P8 B): trzy porównania — (a) ten tydzień (wykonane + zaplanowane z szablonów)
@@ -20,7 +21,7 @@ import { t, tp, locale, lang } from '@/lib/i18n';
 const KINDS: CmpKind[] = ['week', 'prevWeek', 'month'];
 const kindOf = (v: unknown): CmpKind => (v === 'prevWeek' || v === 'month' ? v : 'week');
 const pctText = (p: number | null) => (p === null ? '—' : p > 0 ? `+${p}%` : p < 0 ? `−${Math.abs(p)}%` : '0%');
-const short = (ts: number) => new Date(ts).toLocaleDateString(locale(), { day: 'numeric', month: 'short' });
+const short = (ts: number) => fmtDayMonth(ts);
 
 /** Podpis okresu bieżącego i porównawczego. */
 function periodLabels(c: Comparison): { cur: string; prev: string } {

@@ -5,6 +5,7 @@ import { t } from '@/lib/i18n';
 import { guardLiveStart } from '@/lib/entitlement';
 import type { GuardedStart } from '@/lib/access';
 import type { Template, Workout } from '@/lib/seed';
+import { cancelButton } from '@/lib/confirm';
 
 /** Liczby do pytania deload z serii roboczych na ćwiczenie (store.workCount — D3: bez rozgrzewek, drop set liczy się razem z serią przed nim): pełne, po cięciu i czy jest ćwiczenie z 1 serią.
  * `shortened` — źródło jest już skrócone (Workout.deload): „mniej” = jak ostatnio, „pełne” = po przywróceniu (D1+, decyzja 08.10.2026). */
@@ -31,10 +32,10 @@ function askDeload(c: ReturnType<typeof counts>, go: (deload: boolean) => void) 
   if (c.shortened) { askShortened(c, go); return; }
   if (!isDeloadWeek(Date.now()) || !c.full) { go(false); return; }
   /* Audyt 0.10 (D1): same ćwiczenia z 1 serią — nie ma czego skrócić; informacja zamiast cichego startu (teksty obiecują propozycję przy starcie) */
-  if (c.less >= c.full) { Alert.alert(t('Tydzień deload'), t('Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.'), [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Start'), onPress: () => go(false) }]); return; }
+  if (c.less >= c.full) { Alert.alert(t('Tydzień deload'), t('Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.'), [{ ...cancelButton() }, { text: t('Start'), onPress: () => go(false) }]); return; }
   const msg = t('Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.', { a: c.less, b: c.full }) + (c.single ? ' ' + t('Ćwiczenia z 1 serią bez zmian.') : '');
   Alert.alert(t('Tydzień deload'), msg, [
-    { text: t('Anuluj'), style: 'cancel' }, { text: t('Pełny trening'), onPress: () => go(false) }, { text: t('Mniej serii'), onPress: () => go(true) },
+    { ...cancelButton() }, { text: t('Pełny trening'), onPress: () => go(false) }, { text: t('Mniej serii'), onPress: () => go(true) },
   ]);
 }
 
@@ -47,11 +48,11 @@ function askShortened(c: ReturnType<typeof counts>, go: (deload: boolean) => voi
   if (c.full <= c.less) { go(isDeloadWeek(Date.now())); return; } /* nic do przywrócenia: w tygodniu deload — jak ostatnio (znacznik zostaje), poza nim — zwykłe powtórzenie */
   if (isDeloadWeek(Date.now())) {
     Alert.alert(t('Tydzień deload'), t('Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.', { a: c.less, b: c.full }) + ' ' + t('Ostatni trening był już skrócony — „Mniej serii” powtórzy go bez dalszego cięcia.'), [
-      { text: t('Anuluj'), style: 'cancel' }, { text: t('Pełny trening'), onPress: () => go(false) }, { text: t('Mniej serii'), onPress: () => go(true) },
+      { ...cancelButton() }, { text: t('Pełny trening'), onPress: () => go(false) }, { text: t('Mniej serii'), onPress: () => go(true) },
     ]); return;
   }
   Alert.alert(t('Ostatni trening był lżejszy'), t('Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?', { a: c.less, b: c.full }), [
-    { text: t('Anuluj'), style: 'cancel' }, { text: t('Jak ostatnio'), onPress: () => go(true) }, { text: t('Pełny trening'), onPress: () => go(false), isPreferred: true },
+    { ...cancelButton() }, { text: t('Jak ostatnio'), onPress: () => go(true) }, { text: t('Pełny trening'), onPress: () => go(false), isPreferred: true },
   ]);
 }
 
@@ -74,3 +75,6 @@ export function startEmptyWorkout(after?: () => void): boolean {
   if (!guardLiveStart('empty')) return false;
   const ok = startEmpty(); if (ok) after?.(); return ok;
 }
+
+/** Wzorzec „start treningu” (docs/32 wzorzec 12): przy treningu w toku „Start” z podglądu szablonu i z panelu dnia daje to samo okno, tym samym słowem co przycisk „Odrzuć trening”. */
+export function workoutInProgressNotice() { Alert.alert(t('Trening w toku'), t('Najpierw zakończ albo odrzuć bieżący trening.')); }

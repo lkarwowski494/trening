@@ -25,6 +25,7 @@ import { markDoneEarly } from '@/lib/plan';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
 import { t as tr, tp, exName, lang, glue } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
+import { cancelButton } from '@/lib/confirm';
 
 /*
  * Trening w toku. Audyt 0.8.1:
@@ -127,7 +128,7 @@ export default function ActiveWorkout() {
     Alert.alert(tr('Trening wciąż trwa'), timer.staleBody(k, since, true, cur.pausedAt, cur.tzOffsetMin), [
       { text: tr('Kontynuuj'), onPress: () => { done(); if (same()) ackStale(); } },
       ...(k === 'work' ? [{ text: tr('Zakończ i zapisz'), onPress: () => { done(); if (same()) finalize(since); } }] : []),
-      { text: tr('Odrzuć'), style: 'destructive' as const, onPress: () => { Alert.alert(tr('Odrzucić trening?'), tr('Serie z tej sesji przepadną.'), [{ text: tr('Wróć'), style: 'cancel', onPress: () => { done(); askStale(); } }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { done(); if (!same()) return; cancelWorkout(); timer.stop(); timer.stopSet(); timer.cancelStaleReminder().catch(() => {}); } }]); } }, /* T1: potwierdzenie — okno pojawia się niespodziewanie */
+      { text: tr('Odrzuć'), style: 'destructive' as const, onPress: () => { Alert.alert(tr('Odrzucić trening?'), tr('Serie z tej sesji przepadną.'), [{ ...cancelButton(), onPress: () => { done(); askStale(); } }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { done(); if (!same()) return; cancelWorkout(); timer.stop(); timer.stopSet(); timer.cancelStaleReminder().catch(() => {}); } }]); } }, /* T1: potwierdzenie — okno pojawia się niespodziewanie */
     ]);
   };
   useEffect(() => { askStale(); }, [fg, minute]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -153,21 +154,21 @@ export default function ActiveWorkout() {
     const pendingLine = [pending ? tr('Nieodhaczone serie z wpisanymi wynikami: {n} — nie zostaną zapisane. Seria zapisuje się po odhaczeniu ✓.', { n: pending }) : '',
       rest ? (pending ? tr('Pozostałe nieodhaczone serie: {n} — też nie zostaną zapisane.', { n: rest }) : tr('Nieodhaczone serie: {n} — nie zostaną zapisane.', { n: rest })) : ''].filter(Boolean).join('\n');
     // Bez odhaczonych serii nie zapisujemy pustej sesji (stałaby się źródłem „Powtórz ostatni”).
-    if (!done) { ask(tr('Brak odhaczonych serii'), [tr('Nic do zapisania. Odrzucić ten trening?'), pendingLine].filter(Boolean).join('\n'), [{ text: tr('Wróć'), style: 'cancel' }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { cancelWorkout(); timer.stop(); timer.stopSet(); } }]); return; }
+    if (!done) { ask(tr('Brak odhaczonych serii'), [tr('Nic do zapisania. Odrzucić ten trening?'), pendingLine].filter(Boolean).join('\n'), [{ ...cancelButton() }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { cancelWorkout(); timer.stop(); timer.stopSet(); } }]); return; }
     // Zawsze potwierdzenie + ostrzeżenia: wpisane, nieodhaczone serie; odhaczone serie bez powtórzeń.
     const zeroReps = w.exercises.reduce((a, e) => { const ex = exById(e.exerciseId); return a + (ex && hasReps(ex.metric ?? 'weight_reps') ? e.sets.filter(s => s.done && s.kind !== 'warmup' && !(Number(s.reps) > 0)).length : 0); }, 0);
     // Runda 52/53: odhaczone (i mierzona właśnie) serie bez czasu/dystansu; mierzona dostanie czas przy „Zakończ”, dystansu — nie.
     const zeroVal = w.exercises.reduce((a, e) => { const ex = exById(e.exerciseId); const m = ex?.metric ?? 'weight_reps'; return a + (ex && (hasTime(m) || hasDistance(m)) ? e.sets.filter(s => (s.done || s.id === runId) && s.kind !== 'warmup' && ((hasTime(m) && !(Number(s.durationSec) > 0) && s.id !== rset?.id) || (hasDistance(m) && !(Number(s.distanceM) > 0)))).length : 0); }, 0);
     // Runda 6: sama rozgrzewka — jasny komunikat i możliwość odrzucenia (pusta sesja psułaby „Powtórz ostatni”).
-    if (!doneWork) { ask(tr('Tylko rozgrzewka'), [tr('Odhaczone są tylko serie rozgrzewkowe ({n}). Zapisać taki trening?', { n: done }), pendingLine].filter(Boolean).join('\n'), [{ text: tr('Wróć'), style: 'cancel' }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { cancelWorkout(); timer.stop(); timer.stopSet(); } }, { text: tr('Zapisz'), onPress: () => { go(); } }]); return; }
+    if (!doneWork) { ask(tr('Tylko rozgrzewka'), [tr('Odhaczone są tylko serie rozgrzewkowe ({n}). Zapisać taki trening?', { n: done }), pendingLine].filter(Boolean).join('\n'), [{ ...cancelButton() }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { cancelWorkout(); timer.stop(); timer.stopSet(); } }, { text: tr('Zapisz'), onPress: () => { go(); } }]); return; }
     /* weryfikacja 3 (L1): odhaczone serie robocze ćwiczeń z ciężarem (nie masa ciała) bez wpisanego ciężaru — ostrzeżenie jak przy powtórzeniach */
     const zeroW = w.exercises.reduce((a, e) => { const ex = exById(e.exerciseId); return a + (ex && !isBW(ex) && hasWeight(ex.metric ?? 'weight_reps') ? e.sets.filter(s => s.done && s.kind !== 'warmup' && (s.weight === '' || s.weight == null)).length : 0); }, 0);
     const msg = [tr('Zapisane zostaną serie robocze: {n}.', { n: doneWork }), pendingLine, zeroReps ? tr('Odhaczone serie bez powtórzeń: {n}.', { n: zeroReps }) : '', zeroW ? tr('Odhaczone serie bez ciężaru: {n}.', { n: zeroW }) : '', zeroVal ? tr('Odhaczone serie bez czasu lub dystansu: {n}.', { n: zeroVal }) : ''].filter(Boolean).join('\n');
-    ask(tr('Zakończyć trening?'), msg, [{ text: tr('Wróć'), style: 'cancel' }, { text: tr('Zakończ'), onPress: () => { go(); } }]);
+    ask(tr('Zakończyć trening?'), msg, [{ ...cancelButton() }, { text: tr('Zakończ'), onPress: () => { go(); } }]);
   };
   /* Audyt 0.10 (LIVE-12): blokada jak w „Zakończ” — dwa szybkie tapnięcia nie otwierają dwóch okien */
   const cancel = () => { if (finishing.current || asking.current) return; asking.current = true; const done = () => { asking.current = false; };
-    Alert.alert(tr('Odrzucić trening?'), tr('Serie z tej sesji przepadną.'), [{ text: tr('Wróć'), style: 'cancel', onPress: done }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { done(); cancelWorkout(); timer.stop(); timer.stopSet(); } }]); };
+    Alert.alert(tr('Odrzucić trening?'), tr('Serie z tej sesji przepadną.'), [{ ...cancelButton(), onPress: done }, { text: tr('Odrzuć trening'), style: 'destructive', onPress: () => { done(); cancelWorkout(); timer.stop(); timer.stopSet(); } }]); };
   const once = useOnce(); /* audyt 0.10 (UI-08): przejścia z ekranu treningu bez podwójnego ekranu */
   /* Audyt 0.10 (LIVE-07, wariant A): dolny pasek przerwy w widoku skupionym, gdy przerwa w karcie jest poza ekranem (przewinięcie listy) */
   const restY = useRef<{ card: number | null; panel: number | null }>({ card: null, panel: null }); const scrollY = useRef(0); const [restOff, setRestOff] = useState(false);
@@ -210,7 +211,7 @@ export function afterSwap(goneSetIds: string[]) {
 export function confirmUndoSwap(blockId: string, done?: () => void) {
   const e = getState().active?.exercises.find(x => x.id === blockId); if (!e) return;
   const go = () => { const r = undoSwap(blockId); if (r) afterSwap(r.goneSetIds); done?.(); };
-  if (e.sets.some(x => x.edited)) Alert.alert(tr('Cofnąć zamianę?'), tr('Wpisane wartości zamiennika przepadną.'), [{ text: tr('Nie'), style: 'cancel' }, { text: tr('Cofnij'), style: 'destructive', onPress: go }]); else go();
+  if (e.sets.some(x => x.edited)) Alert.alert(tr('Cofnąć zamianę?'), tr('Wpisane wartości zamiennika przepadną.'), [{ ...cancelButton() }, { text: tr('Cofnij'), style: 'destructive', onPress: go }]); else go();
 }
 /** E2 (pkt 3.2): „zamiast: A · ostatnio 3 serie 80×8” — ostatnia sesja A (previousFor), bez przeliczania. */
 function insteadLine(e: WExercise): string {
@@ -318,7 +319,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
    * a jej podpis liczy się od nowa (relabelRest — następna seria jak na karcie). */
   const skipToday = () => {
     const go = () => { if (timer.S.on && e.sets.some(x => x.id === timer.S.setId)) timer.stopSet(); skipExercise(e.id); relabelRest(); };
-    if (timer.S.on && e.sets.some(x => x.id === timer.S.setId)) Alert.alert(tr('Trwa pomiar serii'), tr('Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.'), [{ text: tr('Wróć'), style: 'cancel' }, { text: tr('Pomiń dziś'), style: 'destructive', onPress: go }]);
+    if (timer.S.on && e.sets.some(x => x.id === timer.S.setId)) Alert.alert(tr('Trwa pomiar serii'), tr('Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.'), [{ ...cancelButton() }, { text: tr('Pomiń dziś'), style: 'destructive', onPress: go }]);
     else go();
   };
   const removeBlock = () => { const i = getState().active?.exercises.findIndex(x => x.id === e.id) ?? -1; if (i < 0) return; /* runda 10: po id — drugie okno nie usuwa sąsiada */ dropBlockTimers(); removeExercise(i); };
@@ -342,7 +343,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const prog = progressionFor(ex, e.repMax, prev?.sets, listLocFor(e, w.locationId), pinnedImpl(e)); /* E2 D5: przypięty przyrząd */ /* T-017: cicha podpowiedź progresji; P-003: z ciężarów miejsca; runda 82b (LOW 5): blok innym przyrządem niż tutaj — bez listy miejsca */
   /* Audyt 0.10 (D1 / MER-05): w tygodniu deload bez „↑ spróbuj” — ciężary bez zmian (Rogerson 2024, Travis 2020: intensywność utrzymana albo niższa) */
   const progText = prog && !isDeloadWeek(wallTs(w)) ? (prog.kind === 'reps' ? tr('↑ spróbuj {n} pow.', { n: prog.reps }) : (bw && prog.kg === 0 ? tr('↑ spróbuj bez asysty') : tr('↑ spróbuj {v}', { v: (bw && prog.kg > 0 ? '+' : '') + fmtW(prog.kg) }))) : '';
-  const headMeta = [e.implPinned && e.impl ? implLabel(e.impl) /* E2 D5: przyrząd wybrany ręcznie */ : '', hasReps(m) && e.repMin != null ? reps(e.repMin, e.repMax) + ' ' + tr('pow.') : '', progText, inSS ? tr('superset · przerwa po rundzie {t}', { t: fmtDur(roundRest(ei) ?? e.restSec) }) /* T7: przerwa po zamknięciu rundy, niezależnie od kolejności odhaczania */ : tr('przerwa') + ' ' + fmtDur(e.restSec), ex.tempo].filter(Boolean).join(' · ');
+  const headMeta = [e.implPinned && e.impl ? implLabel(e.impl) /* E2 D5: przyrząd wybrany ręcznie */ : '', hasReps(m) && e.repMin != null ? reps(e.repMin, e.repMax) + ' ' + tr('pow.') : '', progText, inSS ? tr('superset · przerwa po rundzie {t}', { t: fmtSec(roundRest(ei) ?? e.restSec) }) /* T7: przerwa po zamknięciu rundy, niezależnie od kolejności odhaczania */ : tr('przerwa') + ' ' + fmtSec(e.restSec), ex.tempo].filter(Boolean).join(' · ');
   // Szerokość: czy kolumna „Poprzednio” zmieści się w wierszu (ekran − marginesy 2×14).
   const { prevInline, W } = rowLayout(m, band, showRpe, width);
   // „Poprzednio” po numerze serii roboczej: rozgrzewki w tym treningu nie przesuwają podpowiedzi.
@@ -358,7 +359,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
     ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: labels.length - 1, title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; save(st.active); }
-      else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
+      else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: tr('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
     });
   };
   /* 07.10.2026 wieczór (docs/18): usuwanie serii przesunięciem w lewo, zawsze z potwierdzeniem; ostatniej serii bloku się nie usuwa (jak wcześniej) */
@@ -416,7 +417,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
       })}
       <View style={s.actions}>
         <Btn title={tr('+ seria')} small accessibilityHint={nm} onPress={() => addSet(ei)} /><Btn title={tr('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'warmup')} /><Btn title={tr('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'drop')} />
-        <Btn title={`⏱ ${fmtDur(e.restSec)}`} small accessibilityHint={`${nm}. ${tr('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={tr('Przerwa: {s}', { s: fmtDur(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (sekundy)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ text: tr('Anuluj'), style: 'cancel' }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } else badRest(); } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); else badRest(); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
+        <Btn title={`⏱ ${fmtSec(e.restSec)}`} small accessibilityHint={`${nm}. ${tr('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={tr('Przerwa: {s}', { s: fmtSec(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (s)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ ...cancelButton() }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } else badRest(); } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); else badRest(); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
         {ei + 1 < w.exercises.length && (!inSS || w.exercises[ei + 1].groupId !== e.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={tr('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(w.exercises, ei, w)} /> : null}
         {inSS ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={tr('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(w.exercises, ei, w)} /> : null}
         <TechniqueLink exercise={ex} name={nm} />{/* UX2-05 (audyt kontrolny 1): wskazówki techniki i figura w trakcie treningu */}
@@ -434,7 +435,7 @@ function startTimed(w: Workout, e: WExercise, set: WSet, si: number, onStartSet:
   const tplTarget = Number(it?.targetSec) || 0; /* runda 18: ponowny pomiar liczy od nowa — cel z szablonu albo bez limitu, nie stary wynik */
   const ei = w.exercises.indexOf(e);
   const go = () => onStartSet(set.id, set.done ? tplTarget : Number(set.durationSec) || tplTarget /* runda 22: pusty czas → cel z szablonu */, timedLabel(w, ei, si), set.done);
-  if (set.done) Alert.alert(tr('Zmierzyć serię od nowa?'), tr('Zapisany czas zostanie nadpisany.'), [{ text: tr('Nie'), style: 'cancel' }, { text: tr('Zmierz'), onPress: go }]); else go();
+  if (set.done) Alert.alert(tr('Zmierzyć serię od nowa?'), tr('Zapisany czas zostanie nadpisany.'), [{ ...cancelButton() }, { text: tr('Zmierz'), onPress: go }]); else go();
 }
 /**
  * Widok skupiony (styl „Tuleja”, decyzja właściciela 07.10.2026; docs/21 pkt 3): karta serii „teraz” (store.focusSet) nad listą — ćwiczenie,

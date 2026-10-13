@@ -20,10 +20,10 @@ describe('klawiatura i nawigacja', () => {
     await tap(screen.getAllByLabelText('Start stopera serii')[0]); expect(spy).toHaveBeenCalledTimes(2);
     spy.mockRestore();
   });
-  test('wybór ćwiczenia: „Zamknij” w nagłówku zamyka okno bez dodawania', async () => {
+  test('wybór ćwiczenia: „Anuluj” w nagłówku zamyka okno bez dodawania', async () => {
     await fresh(); store.startEmpty(); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go('/picker?target=active'); await flushAll(20);
-    await tap(screen.getByText('Zamknij')); await flushAll(20);
+    await tap(screen.getByText('Anuluj')); await flushAll(20);
     expect(store.getState().active!.exercises).toHaveLength(0); expect(screen.queryByPlaceholderText('Szukaj ćwiczenia…')).toBeNull();
   });
 });
@@ -69,11 +69,11 @@ describe('zmieniona wartość wstępna przechodzi na nieruszone serie (decyzja 0
     store.toggleDone(0, 0); e.sets[0].weight = 62.5; store.toggleDone(0, 0); expect(e.sets.map(s => s.weight)).toEqual([62.5, 62.5, 62.5, 62.5]);
     store.toggleDone(0, 0); e.sets[0].weight = 60; store.toggleDone(0, 0); expect(e.sets.map(s => s.weight)).toEqual([60, 60, 60, 60]); // cofnięcie zmiany też
   });
-  test('weryfikacja M3: podwójne „Zamknij” w wyborze ćwiczenia nie zamyka edytora szablonu', async () => {
+  test('weryfikacja M3: podwójne „Anuluj” w wyborze ćwiczenia nie zamyka edytora szablonu', async () => {
     await fresh(); const tpl = store.newTemplate(); tpl.name = 'X'; store.save(tpl); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await go(`/template/${tpl.id}`); await flushAll(20); await startEdit();
     await go(`/picker?target=template:${tpl.id}`); await flushAll(20);
-    const b = screen.getByText('Zamknij'); await tap(b); await tap(b); await flushAll(50);
+    const b = screen.getByText('Anuluj'); await tap(b); await tap(b); await flushAll(50);
     expect(screen.getByText('+ Dodaj ćwiczenie')).toBeTruthy(); expect(store.getState().templates.some(x => x.id === tpl.id)).toBe(true);
   });
   void set;

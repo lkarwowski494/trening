@@ -39,8 +39,8 @@ test('regresja run 37600735711: przycisk karty „teraz” ma etykietę VoiceOve
 test('regresja run 37600735711 i 37900617167: przycisk „Discard workout” w oknie wskazany względem „Back” okna (styl cancel — na dole okna), nie opisu w tle', () => {
   const fs = require('fs'); const path = require('path');
   const y = fs.readFileSync(path.join(__dirname, '..', '.maestro', '07-zamiana.yaml'), 'utf8');
-  expect(y).toContain('tapOn: { text: "Discard workout", above: "Back" }');
-  expect(y).not.toContain('below: "Back", above: "Discard workout"');
+  expect(y).toContain('tapOn: { text: "Discard workout", above: "Cancel" }');
+  expect(y).not.toContain('below: "Cancel", above: "Discard workout"');
   expect(y).not.toMatch(/above: "The workout in progress saves/);
 });
 
