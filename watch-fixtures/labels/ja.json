@@ -7,9 +7,9 @@
  "undo": "元に戻す",
  "rest": "休憩",
  "set": "セット",
- "pause": "一時停止中",
- "connect": "電話に接続",
- "idle": "電話でトレーニングを開始",
+ "pause": "トレーニングを一時停止中",
+ "connect": "iPhone に接続",
+ "idle": "iPhone でトレーニングを開始",
  "finished": "トレーニングが終了しました",
  "update": "ウォッチのアプリを更新",
  "nothingLeft": "もうやることはありません"

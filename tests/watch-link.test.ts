@@ -127,7 +127,7 @@ describe('sesja treningu zegarka (Zdrowie)', () => {
     await link.receive({ v: 1, kind: 'event', eventId: 'apple-s1', workoutId: A().id, baseRev: 1, at: Date.now(), client: 'apple', type: 'sessionStarted' }); expect(A().watch).toMatchObject({ client: 'apple' });
     fw.input({ t: 'launch' }); await settle(link); expect(fw.sent.filter(m => m.kind === 'session')).toHaveLength(2);
   });
-  test('zegarek bez zdolności sesji (Garmin): nigdy `session`', async () => {
+  test('zegarek bez zdolności sesji (Connect IQ): nigdy `session`', async () => {
     const { fw } = await pair({ client: 'garmin' as unknown as 'apple', app: '0.20.0', session: false }); expect(fw.sent.some(m => m.kind === 'session')).toBe(false);
   });
   test('koniec treningu → `session end` z save zależnym od zapisu do Zdrowia; odrzucenie treningu → save=false', async () => {

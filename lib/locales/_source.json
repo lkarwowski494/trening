@@ -592,6 +592,10 @@
   "en": "No data from Apple Health for this day. If there should be some, check access in the Health app: profile → Apps → {app}."
  },
  {
+  "pl": "Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność → Treści mówione → Głosy).",
+  "en": "This phone has no voice for the app language. Download one in iOS Settings (Accessibility → Spoken Content → Voices)."
+ },
+ {
   "pl": "Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.",
   "en": "No bands yet. Add one to log assisted pull-ups."
  },
@@ -1459,6 +1463,15 @@
   "en": "The folder wasn’t created."
  },
  {
+  "pl": "funt|funty|funtów",
+  "en": "pound|pounds",
+  "plural": true
+ },
+ {
+  "pl": "funta",
+  "en": "pounds"
+ },
+ {
   "pl": "Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.",
   "en": "Where you train and what equipment you have there. The exercise picker then shows what you can do at the workout’s place, and the “↑” hint suggests weights you actually have. You pick the place when a workout starts."
  },
@@ -1491,6 +1504,10 @@
   "en": "glute-ham raise"
  },
  {
+  "pl": "Głos także przez głośnik telefonu",
+  "en": "Voice also through the phone speaker"
+ },
+ {
   "pl": "główna",
   "en": "primary"
  },
@@ -1509,6 +1526,11 @@
  {
   "pl": "Godzina startu",
   "en": "Start time"
+ },
+ {
+  "pl": "godzina|godziny|godzin",
+  "en": "hour|hours",
+  "plural": true
  },
  {
   "pl": "Gotowe",
@@ -1842,6 +1864,15 @@
  {
   "pl": "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.",
   "en": "Several plans: the + button in the header (Add plan) creates a copy to change, and “Make active” under “Other plans” switches to it — day changes come back with their plan."
+ },
+ {
+  "pl": "kilogram|kilogramy|kilogramów",
+  "en": "kilogram|kilograms",
+  "plural": true
+ },
+ {
+  "pl": "kilograma",
+  "en": "kilograms"
  },
  {
   "pl": "klatka",
@@ -2410,6 +2441,15 @@
  {
   "pl": "Max powtórzeń z asystą",
   "en": "Max reps assisted"
+ },
+ {
+  "pl": "metr|metry|metrów",
+  "en": "metre|metres",
+  "plural": true
+ },
+ {
+  "pl": "metra",
+  "en": "metres"
  },
  {
   "pl": "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.",
@@ -3337,10 +3377,6 @@
   "en": "paused"
  },
  {
-  "pl": "Pauza",
-  "en": "Paused"
- },
- {
   "pl": "Pauza treningu",
   "en": "Pause workout"
  },
@@ -3707,6 +3743,10 @@
  {
   "pl": "Porównanie: {name}",
   "en": "Comparison: {name}"
+ },
+ {
+  "pl": "Posłuchaj przykładu",
+  "en": "Listen to an example"
  },
  {
   "pl": "Postęp treningu: {d} z {n} serii",
@@ -4229,6 +4269,11 @@
  {
   "pl": "sek.",
   "en": "sec."
+ },
+ {
+  "pl": "sekunda|sekundy|sekund",
+  "en": "second|seconds",
+  "plural": true
  },
  {
   "pl": "sen",
@@ -4994,6 +5039,10 @@
   "en": "A past workout dated this day."
  },
  {
+  "pl": "Trening wstrzymany",
+  "en": "Workout paused"
+ },
+ {
   "pl": "Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
   "en": "The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in the Plan tab."
  },
@@ -5409,6 +5458,10 @@
  {
   "pl": "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.",
   "en": "In Progress a marked week shows as the letter D on the charts — you do not change it there."
+ },
+ {
+  "pl": "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.",
+  "en": "In headphones the next exercise is announced at the start of the rest (when sound is on); through the phone speaker only if you turn this switch on."
  },
  {
   "pl": "W tej wersji",

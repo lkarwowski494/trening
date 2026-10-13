@@ -2,7 +2,7 @@ import type { Lang } from '../i18n';
 
 /*
  * Protokół zegarka (0.20 „Zegarki i głos”; docs/35-zegarki.md): telefon = mózg (stan, teksty, decyzje, głos, zapis), zegarek = wyświetlacz z jednym
- * przyciskiem. Jedna wersjonowana postać komunikatów dla Apple Watch (WatchConnectivity) i Garmina (Connect IQ); oba klienty są cienkie —
+ * przyciskiem. Jedna wersjonowana postać komunikatów dla Apple Watch (WatchConnectivity) i zegarków z Connect IQ; oba klienty są cienkie —
  * nie składają zdań, nie liczą reguł, niczego nie edytują (decyzja właściciela 13.10.2026). Czysty TypeScript: model, walidacja i kodowanie
  * sprawdzają testy Jest na Linuksie, a pliki wzorcowe (watch-fixtures/) czytają testy Swift i Monkey C.
  *
@@ -30,9 +30,9 @@ export const WATCH = {
   OFFLINE_DONE_MAX: 2,
   /** Ile ostatnich identyfikatorów zdarzeń trening w toku pamięta (odrzucanie powtórzeń, także po restarcie telefonu). */
   EVENT_LOG_MAX: 200,
-  /** Limity długości pól tekstowych migawki (znaki) — mały komunikat także dla Garmina. */
+  /** Limity długości pól tekstowych migawki (znaki) — mały komunikat także dla zegarków z Connect IQ. */
   CUE_MAX: 200, TITLE_MAX: 60, COUNTER_MAX: 40, LOAD_MAX: 40, ID_MAX: 64,
-  /** Budżet rozmiaru jednego komunikatu po zakodowaniu (bajty UTF-8) — założenie projektowe, nie limit Garmina [DO SPRAWDZENIA na urządzeniu]. */
+  /** Budżet rozmiaru jednego komunikatu po zakodowaniu (bajty UTF-8) — założenie projektowe, nie limit Connect IQ [DO SPRAWDZENIA na urządzeniu]. */
   MSG_MAX_BYTES: 2048,
   /** Jak długo telefon czeka po „Zakończ” na raport zegarka o zapisie treningu w Zdrowiu (s), zanim zapisze sam. */
   HEALTH_WAIT_SEC: 20,
@@ -83,7 +83,7 @@ export interface WatchNow {
   /** cel czasu serii (s) albo null */
   targetSec: number | null;
 }
-/** Przerwa w toku. `cue` = ten sam tekst co głos, ekran i Live Activity (lib/live.ts restCue). */
+/** Przerwa w toku. `cue` = ten sam tekst co ekran i Live Activity (lib/live.ts restCue.text, jednostka skrótem); głos czyta wariant `speech` z pełną nazwą jednostki. */
 export interface WatchRest {
   /** seria, która uruchomiła przerwę */
   setId: string;
@@ -194,7 +194,7 @@ export function encodeWatchMessage(msg: WatchMessage): { text: string; bytes: nu
   let bytes = 0; for (let i = 0; i < text.length; i++) { const c = text.charCodeAt(i); bytes += c < 0x80 ? 1 : c < 0x800 ? 2 : c >= 0xd800 && c <= 0xdbff ? (i++, 4) : 3; }
   return { text, bytes };
 }
-/** Odczyt komunikatu z zegarka przesłanego jako tekst JSON (albo już jako obiekt — Garmin przesyła słowniki). Błąd składni = odrzucenie. */
+/** Odczyt komunikatu z zegarka przesłanego jako tekst JSON (albo już jako obiekt — Connect IQ przesyła słowniki). Błąd składni = odrzucenie. */
 export function decodeWatchMessage(input: unknown): ParseResult<WatchToPhone> {
   if (typeof input === 'string') { let o: unknown; try { o = JSON.parse(input); } catch { return { ok: false, reason: 'json' }; } return parseWatchMessage(o); }
   return parseWatchMessage(input);

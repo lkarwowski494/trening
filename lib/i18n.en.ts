@@ -1073,9 +1073,17 @@ export const EN: Record<string, string> = {
   'Otwiera propozycje zamian na to miejsce.': 'Opens swap suggestions for this location.',
   /* 0.20 „Zegarki i głos”: zapowiedź (restCue), etykiety zegarka (lib/watch/labels.ts), serie do uzupełnienia, głos w Ustawieniach */
   'Zrobione inaczej': 'Done differently', 'Pominąć ćwiczenie?': 'Skip this exercise?', 'Połącz z telefonem': 'Connect to your phone',
-  'Zacznij trening na telefonie': 'Start a workout on your phone', 'Trening zakończony': 'Workout finished', 'Pauza': 'Paused',
+  'Zacznij trening na telefonie': 'Start a workout on your phone', 'Trening zakończony': 'Workout finished', 'Trening wstrzymany': 'Workout paused',
   'Zaktualizuj aplikację na zegarku': 'Update the watch app',
   'do uzupełnienia': 'to fill in', 'Serie do uzupełnienia': 'Sets to fill in',
   'Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.': 'Sets marked on your watch as done differently from the plan: {n}. Fill in the reps and weight — a record only counts once they are filled in.',
   'Zakończ mimo to': 'Finish anyway', 'Seria {n} uzupełniona — {ex}': 'Set {n} filled in — {ex}', 'Seria {n} do uzupełnienia — {ex}': 'Set {n} to fill in — {ex}',
+  'Głos także przez głośnik telefonu': 'Voice also through the phone speaker',
+  'W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.': 'In headphones the next exercise is announced at the start of the rest (when sound is on); through the phone speaker only if you turn this switch on.',
+  'Posłuchaj przykładu': 'Listen to an example',
+  /* głos (restCue.speech): pełna nazwa jednostki zamiast skrótu kg/lb; „kilograma”/„funta” = forma przy ułamku (CLDR) */
+  'kilogram|kilogramy|kilogramów': 'kilogram|kilograms', 'funt|funty|funtów': 'pound|pounds', 'kilograma': 'kilograms', 'funta': 'pounds',
+  /* głos: metry i czas słowami (restCue.speech); „metra” = forma przy ułamku (CLDR) */
+  'metr|metry|metrów': 'metre|metres', 'metra': 'metres', 'sekunda|sekundy|sekund': 'second|seconds', 'godzina|godziny|godzin': 'hour|hours',
+  'Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność → Treści mówione → Głosy).': 'This phone has no voice for the app language. Download one in iOS Settings (Accessibility → Spoken Content → Voices).',
 };

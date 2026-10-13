@@ -1,6 +1,6 @@
 {
  "name": "basic-garmin",
- "doc": "Garmin: to samo zachowanie, inny klient (eventId z przedrostkiem garmin, bez zdolności sesji).",
+ "doc": "Zegarek z Connect IQ: to samo zachowanie, inny klient (eventId z przedrostkiem garmin, bez zdolności sesji).",
  "config": {
   "client": "garmin",
   "app": "0.20.0",
