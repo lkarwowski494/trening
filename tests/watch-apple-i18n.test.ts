@@ -79,7 +79,7 @@ test('etykiety Apple Watch: literały (polski i angielski) — wskaźnik sesji i
   applyLang('pl');
 });
 
-test('etykiety wspólne z protokołem są w tabeli zegarka identyczne z watch-fixtures/labels (35 języków) — Apple i Garmin pokazują te same teksty', () => {
+test('etykiety wspólne z protokołem są w tabeli zegarka identyczne z watch-fixtures/labels (35 języków) — Apple i drugi zegarek pokazują te same teksty', () => {
   const tab = watchLabelTable('pl');
   for (const l of LANGS) {
     const proto = JSON.parse(fs.readFileSync(path.join(root, 'watch-fixtures', 'labels', `${l}.json`), 'utf8'));

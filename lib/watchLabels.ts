@@ -2,7 +2,7 @@ import { t, APP_NAME, LANGS, applyLang, type Lang } from './i18n';
 import { WATCH_LABEL_IDS, watchLabels as protocolLabels, type WatchLabelId } from './watch/labels';
 
 /*
- * Etykiety aplikacji na Apple Watch (0.20 „Zegarki i głos”, docs/35-zegarek-apple): stałe etykiety z protokołu (lib/watch/labels.ts — te same co na Garminie, identyczne teksty
+ * Etykiety aplikacji na Apple Watch (0.20 „Zegarki i głos”, docs/35-zegarek-apple): stałe etykiety z protokołu (lib/watch/labels.ts — te same co na drugim zegarku, identyczne teksty
  * i klucze słownika) plus to, co dotyczy tylko Apple Watch: wskaźnik trwającej sesji treningu (wymóg Apple dla HKWorkoutSession) i opisy zgód HealthKit zegarka.
  * Teksty dynamiczne (ćwiczenie, ciężar, zapowiedź przerwy) przychodzą z telefonu gotowe w migawce. Pliki zegarka są GENEROWANE z tego pliku przez
  * tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1):

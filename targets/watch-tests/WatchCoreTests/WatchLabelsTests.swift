@@ -18,7 +18,7 @@ final class WatchLabelsTests: XCTestCase {
     XCTAssertEqual(labels, WatchLabels.table)
   }
 
-  /// Etykiety wspólne z protokołem (watch-fixtures/labels/<język>.json, 35 języków) są w tabeli zegarka co do znaku — to samo widzi Garmin.
+  /// Etykiety wspólne z protokołem (watch-fixtures/labels/<język>.json, 35 języków) są w tabeli zegarka co do znaku — to samo widzi drugi zegarek.
   func testSharedLabelsEqualTheProtocolLabelFixtures() throws {
     for lang in WatchLabels.languages {
       let proto = try JSONSerialization.jsonObject(with: Fixtures.data("labels/\(lang).json")) as! [String: String]
