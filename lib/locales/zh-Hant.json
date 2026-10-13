@@ -1572,8 +1572,8 @@
  "📍 Miejsce na te dni": "📍 這幾天的地點",
  "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "這幾天開始訓練時，會先採用這個地點，再採用範本的地點，「調整」視窗會建議替換。不會自動變更任何內容。",
  "Inne miejsce…": "其他地點…",
- "Od: {day}": "起：{day}",
- "Do: {day}": "迄：{day}",
+ "Od: {day}": "從：{day}",
+ "Do: {day}": "到：{day}",
  "Ustaw miejsce": "設定地點",
  "Usuń miejsce": "移除地點",
  "Usuń miejsce: {a} – {b}": "移除地點：{a} – {b}"
