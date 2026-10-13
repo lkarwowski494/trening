@@ -1576,5 +1576,9 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Более единообразное управление во всём приложении: в окнах «Отменить» слева, в заголовках списков есть «+» для добавления, а сообщения и описания для VoiceOver стали понятнее.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Кнопка «Написать нам» в разделе Ещё → О приложении.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Подстроить под место: при смене места на такое, где нет нужного оборудования, приложение предлагает замены упражнений на проверку — изменения действуют только в этой тренировке.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "В окне можно изменить замену или выбрать «Без изменений» либо «Пропустить сегодня»; применённую замену можно отменить у самого упражнения."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "В окне можно изменить замену или выбрать «Без изменений» либо «Пропустить сегодня»; применённую замену можно отменить у самого упражнения.",
+ "kilogram|kilogramy|kilogramów": "килограмм|килограмма|килограммов",
+ "funt|funty|funtów": "фунт|фунта|фунтов",
+ "kilograma": "килограмма",
+ "funta": "фунта"
 }

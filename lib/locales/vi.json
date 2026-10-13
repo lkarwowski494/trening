@@ -1576,5 +1576,9 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Thao tác nhất quán hơn trên toàn ứng dụng: cửa sổ có “Hủy” ở bên trái, dấu “+” ở tiêu đề danh sách để thêm, cùng thông báo và mô tả VoiceOver rõ ràng hơn.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Nút “Liên hệ với chúng tôi” trong Thêm → Giới thiệu.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Điều chỉnh theo địa điểm: khi bạn đổi sang địa điểm không có dụng cụ cần thiết, ứng dụng sẽ đề xuất bài tập thay thế để bạn xem lại — thay đổi chỉ áp dụng cho buổi tập này.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Trong cửa sổ, bạn có thể đổi bài thay thế hoặc chọn “Không đổi” hoặc chọn “Bỏ qua hôm nay”; phép thay đã áp dụng có thể hoàn tác ở bài tập."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Trong cửa sổ, bạn có thể đổi bài thay thế hoặc chọn “Không đổi” hoặc chọn “Bỏ qua hôm nay”; phép thay đã áp dụng có thể hoàn tác ở bài tập.",
+ "kilogram|kilogramy|kilogramów": "ki-lô-gam",
+ "funt|funty|funtów": "pound",
+ "kilograma": "ki-lô-gam",
+ "funta": "pound"
 }

@@ -1576,5 +1576,9 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Utilizzo più coerente in tutta l’app: finestre con «Annulla» a sinistra, «+» nelle intestazioni delle liste per aggiungere, messaggi e descrizioni per VoiceOver più chiari.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Pulsante «Scrivici» in Altro → Info sull’app.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Adatta al luogo: quando passi a un luogo senza l’attrezzatura necessaria, l’app propone esercizi sostitutivi da rivedere: le modifiche valgono solo per questo allenamento.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Nella finestra puoi cambiare il sostituto o scegliere «Nessuna modifica» o «Salta oggi»; uno scambio applicato si annulla sull’esercizio."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Nella finestra puoi cambiare il sostituto o scegliere «Nessuna modifica» o «Salta oggi»; uno scambio applicato si annulla sull’esercizio.",
+ "kilogram|kilogramy|kilogramów": "chilogrammo|chilogrammi",
+ "funt|funty|funtów": "libbra|libbre",
+ "kilograma": "chilogrammi",
+ "funta": "libbre"
 }

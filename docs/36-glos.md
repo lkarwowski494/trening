@@ -16,6 +16,12 @@ Telefon mówi zapowiedź następnego ćwiczenia na początku przerwy. Część w
 **Tekst** to ta sama funkcja, co podpis przerwy na ekranie, Live Activity i migawka zegarka — `restCue` (lib/live.ts):
 „dalej: Bench Press (sztanga), 80 kg, 8 powtórzeń” (inne ćwiczenie) albo „Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń” (ta sama seria bloku / superset). Pole puste albo 0 jest pomijane (nie zgadujemy liczby);
 masa ciała: „masa ciała” / „+10 kg”; seria na czas: „45 s”; po ostatniej serii „nic więcej do zrobienia”. Jednostki w jednostce aplikacji (kg/lb), liczba mnoga powtórzeń przez `tp`, 35 języków.
+
+**Dwie wersje jednego tekstu (14.10.2026, zgłoszenie tłumacza):** syntezator literuje skróty („el-be”), więc `restCue` zwraca `text` (ekran, Live Activity, powiadomienie, zegarek — skrót kg/lb)
+i `speech` (głos i VoiceOver — pełna odmieniona nazwa: „80 kilogramów”, „1 pound”, „62,5 kilograma”). Obie składa ta sama funkcja (`buildCue`), różni je tylko jednostka ciężaru (`spokenUnit`).
+Liczba mnoga całkowitych: `tp()` (klucze „kilogram|kilogramy|kilogramów”, „funt|funty|funtów”); ułamek ma w wielu językach własną formę (reguły CLDR, v ≠ 0), stąd osobne klucze „kilograma” / „funta”;
+fr i pt-BR czytają ułamek poniżej 2 w liczbie pojedynczej (CLDR: one = i 0..1). Uproszczenie: hr, sr, lv mają „one” także dla ułamków kończących się na 1 (62,1) — tu forma „other”.
+Dystans „m” i czas „s” w głosie zostają skrótami (otwarte). Tłumaczenia kluczy jednostek — do przeglądu tłumacza.
 Przy rekordzie przed zapowiedzią „Nowy rekord!” (ta sama detekcja co plakietka PR; serie „do uzupełnienia” z zegarka rekordu nie mają — docs/35 rozdz. 5).
 
 **Kiedy** (`voicePolicy`, pierwsza pasująca reguła):

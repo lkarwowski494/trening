@@ -1463,6 +1463,15 @@
   "en": "The folder wasn’t created."
  },
  {
+  "pl": "funt|funty|funtów",
+  "en": "pound|pounds",
+  "plural": true
+ },
+ {
+  "pl": "funta",
+  "en": "pounds"
+ },
+ {
   "pl": "Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.",
   "en": "Where you train and what equipment you have there. The exercise picker then shows what you can do at the workout’s place, and the “↑” hint suggests weights you actually have. You pick the place when a workout starts."
  },
@@ -1850,6 +1859,15 @@
  {
   "pl": "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.",
   "en": "Several plans: the + button in the header (Add plan) creates a copy to change, and “Make active” under “Other plans” switches to it — day changes come back with their plan."
+ },
+ {
+  "pl": "kilogram|kilogramy|kilogramów",
+  "en": "kilogram|kilograms",
+  "plural": true
+ },
+ {
+  "pl": "kilograma",
+  "en": "kilograms"
  },
  {
   "pl": "klatka",

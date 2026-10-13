@@ -1576,5 +1576,9 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Yhtenäisempi käyttö koko sovelluksessa: ikkunoissa „Kumoa“ vasemmalla, luetteloiden otsikoissa „+“ lisäämistä varten sekä selkeämmät ilmoitukset ja VoiceOver-kuvaukset.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Painike „Kirjoita meille“ kohdassa Lisää → Tietoja sovelluksesta.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Mukauta paikkaan: kun vaihdat paikkaan, jossa tarvittavia välineitä ei ole, sovellus ehdottaa korvaavia liikkeitä tarkistettavaksi – muutokset koskevat vain tätä treeniä.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Ikkunassa voit vaihtaa korvaavan liikkeen tai valita „Ei muutosta“ tai „Ohita tänään“; tehdyn vaihdon voi perua liikkeen kohdalta."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Ikkunassa voit vaihtaa korvaavan liikkeen tai valita „Ei muutosta“ tai „Ohita tänään“; tehdyn vaihdon voi perua liikkeen kohdalta.",
+ "kilogram|kilogramy|kilogramów": "kilogramma|kilogrammaa",
+ "funt|funty|funtów": "pauna|paunaa",
+ "kilograma": "kilogrammaa",
+ "funta": "paunaa"
 }

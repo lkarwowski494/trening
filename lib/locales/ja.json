@@ -1576,5 +1576,9 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "アプリ全体で操作をより統一しました。ウィンドウの「キャンセル」は左側に、リストの見出しには追加用の「+」を配置し、メッセージとVoiceOverの説明もわかりやすくしました。",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "「その他」→「このアプリについて」に「お問い合わせ」ボタンを追加しました。",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "場所に合わせる：必要な器具がない場所に切り替えると、アプリが代わりの種目を提案します。内容を確認して選べます。変更はこのトレーニングだけに反映されます。",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "ウィンドウでは代わりの種目を変更するか、「変更なし」または「今日はスキップ」を選べます。適用した置き換えは、その種目から元に戻せます。"
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "ウィンドウでは代わりの種目を変更するか、「変更なし」または「今日はスキップ」を選べます。適用した置き換えは、その種目から元に戻せます。",
+ "kilogram|kilogramy|kilogramów": "キログラム",
+ "funt|funty|funtów": "ポンド",
+ "kilograma": "キログラム",
+ "funta": "ポンド"
 }

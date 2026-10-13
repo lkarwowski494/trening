@@ -1576,5 +1576,9 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Dosljednije rukovanje u cijeloj aplikaciji: prozori s gumbom „Odustani“ slijeva, „+“ u zaglavljima popisa za dodavanje te jasnije poruke i opisi za VoiceOver.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Gumb „Napišite nam“ u Više → O aplikaciji.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Prilagodi mjestu: kad promijeniš mjesto u ono bez potrebne opreme, aplikacija predlaže zamjenske vježbe za pregled — promjene vrijede samo za ovaj trening.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "U prozoru možeš promijeniti zamjenu ili odabrati „Bez promjene“ ili „Preskoči danas“; primijenjenu zamjenu poništavaš kod vježbe."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "U prozoru možeš promijeniti zamjenu ili odabrati „Bez promjene“ ili „Preskoči danas“; primijenjenu zamjenu poništavaš kod vježbe.",
+ "kilogram|kilogramy|kilogramów": "kilogram|kilograma|kilograma",
+ "funt|funty|funtów": "funta|funte|funti",
+ "kilograma": "kilograma",
+ "funta": "funte"
 }

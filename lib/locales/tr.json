@@ -1576,5 +1576,9 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Uygulamanın her yerinde daha tutarlı kullanım: pencerelerde “Vazgeç” solda, listelerin başlıklarında eklemek için “+”, ayrıca daha anlaşılır iletiler ve VoiceOver açıklamaları.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Daha Fazla → Hakkında bölümünde “Bize yazın” düğmesi.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Yere uyarla: yeri gerekli ekipmanın olmadığı bir yerle değiştirdiğinde uygulama, gözden geçirmen için yedek egzersizler önerir — değişiklikler yalnızca bu antrenman için geçerlidir.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Pencerede yedeği değiştirebilir ya da “Değişiklik yok” veya “Bugün atla” seçeneğini seçebilirsiniz; uygulanan değişikliği egzersiz üzerinden geri alabilirsiniz."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Pencerede yedeği değiştirebilir ya da “Değişiklik yok” veya “Bugün atla” seçeneğini seçebilirsiniz; uygulanan değişikliği egzersiz üzerinden geri alabilirsiniz.",
+ "kilogram|kilogramy|kilogramów": "kilogram|kilogram",
+ "funt|funty|funtów": "pound|pound",
+ "kilograma": "kilogram",
+ "funta": "pound"
 }

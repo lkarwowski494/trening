@@ -83,7 +83,7 @@ export interface WatchNow {
   /** cel czasu serii (s) albo null */
   targetSec: number | null;
 }
-/** Przerwa w toku. `cue` = ten sam tekst co głos, ekran i Live Activity (lib/live.ts restCue). */
+/** Przerwa w toku. `cue` = ten sam tekst co ekran i Live Activity (lib/live.ts restCue.text, jednostka skrótem); głos czyta wariant `speech` z pełną nazwą jednostki. */
 export interface WatchRest {
   /** seria, która uruchomiła przerwę */
   setId: string;

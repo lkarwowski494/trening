@@ -1576,5 +1576,9 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Konsekventāka lietošana visā lietotnē: logos „Atcelt“ ir kreisajā pusē, sarakstu galvenēs ir „+“ pievienošanai, kā arī skaidrāki paziņojumi un VoiceOver apraksti.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Poga „Raksti mums“ sadaļā Vairāk → Par lietotni.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Pielāgot vietai: kad nomaini vietu uz tādu bez vajadzīgā aprīkojuma, lietotne piedāvā aizstājējvingrinājumus pārskatīšanai – izmaiņas attiecas tikai uz šo treniņu.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Logā vari mainīt aizstājēju vai izvēlēties „Bez izmaiņām“ vai „Šodien izlaist“; pielietoto aizstāšanu atcel pie vingrinājuma."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Logā vari mainīt aizstājēju vai izvēlēties „Bez izmaiņām“ vai „Šodien izlaist“; pielietoto aizstāšanu atcel pie vingrinājuma.",
+ "kilogram|kilogramy|kilogramów": "kilogramu|kilograms|kilogrami",
+ "funt|funty|funtów": "mārciņu|mārciņa|mārciņas",
+ "kilograma": "kilogrami",
+ "funta": "mārciņas"
 }

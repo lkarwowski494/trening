@@ -37,24 +37,24 @@ describe('voicePolicy (czysta)', () => {
 });
 
 describe('cueSpeech', () => {
-  test('tekst = restCue; nieznana seria → pusty', async () => {
-    await world(); expect(cueSpeech(A(), sid(0, 0))).toBe('Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń'); expect(cueSpeech(A(), sid(0, 0))).toBe(restCue(A(), sid(0, 0)).text); expect(cueSpeech(A(), 'nie ma')).toBe('');
+  test('tekst = restCue.speech (pełna nazwa jednostki, nie skrót); nieznana seria → pusty', async () => {
+    await world(); expect(cueSpeech(A(), sid(0, 0))).toBe('Bench Press (sztanga) · seria 2, 80 kilogramów, 8 powtórzeń'); expect(cueSpeech(A(), sid(0, 0))).toBe(restCue(A(), sid(0, 0)).speech); expect(restCue(A(), sid(0, 0)).text).toContain('80 kg,'); expect(cueSpeech(A(), 'nie ma')).toBe('');
   });
   test('rekord w odhaczonej serii: „Nowy rekord!” przed zapowiedzią; seria „do uzupełnienia” bez rekordu; po ostatniej serii „nic więcej do zrobienia”', async () => {
     await world(); addWorkout(NOW - 7 * 86400e3, [['Bench Press (sztanga)', [{ weight: 60, reps: 8 }]]]);
-    A().exercises[0].sets[0].done = true; expect(cueSpeech(A(), sid(0, 0))).toBe('Nowy rekord! Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń');
-    A().exercises[0].sets[0].toFill = true; expect(cueSpeech(A(), sid(0, 0))).toBe('Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń');
+    A().exercises[0].sets[0].done = true; expect(cueSpeech(A(), sid(0, 0))).toBe('Nowy rekord! Bench Press (sztanga) · seria 2, 80 kilogramów, 8 powtórzeń');
+    A().exercises[0].sets[0].toFill = true; expect(cueSpeech(A(), sid(0, 0))).toBe('Bench Press (sztanga) · seria 2, 80 kilogramów, 8 powtórzeń');
     A().exercises.forEach(e => e.sets.forEach(s => { s.done = true; delete s.toFill; })); expect(cueSpeech(A(), sid(2, 1))).toBe('nic więcej do zrobienia');
   });
   test('angielski i funty: ta sama funkcja, tekst w języku aplikacji', async () => {
-    await world(); applyLang('en'); applyUnit('lb'); expect(cueSpeech(A(), sid(0, 0))).toBe('Bench Press (Barbell) · set 2, 176.4 lb, 8 reps');
+    await world(); applyLang('en'); applyUnit('lb'); expect(cueSpeech(A(), sid(0, 0))).toBe('Bench Press (Barbell) · set 2, 176.4 pounds, 8 reps');
   });
 });
 
 describe('sayRestStart: trasa dźwięku', () => {
   test('słuchawki: mówi zapowiedź w języku aplikacji (tag regionalny), zwraca decyzję', async () => {
     await world(); V().headphones = true; const r = await sayRestStart(A(), sid(0, 0));
-    expect(V().spoken).toEqual([['Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń', 'pl-PL']]); expect(r).toMatchObject({ mode: 'speak', reason: 'headphones' });
+    expect(V().spoken).toEqual([['Bench Press (sztanga) · seria 2, 80 kilogramów, 8 powtórzeń', 'pl-PL']]); expect(r).toMatchObject({ mode: 'speak', reason: 'headphones' });
   });
   test('bez słuchawek i bez przełącznika: cisza; z przełącznikiem „Głos także przez głośnik”: mówi', async () => {
     await world(); await sayRestStart(A(), sid(0, 0)); expect(V().spoken).toEqual([]);
@@ -70,20 +70,20 @@ describe('sayRestStart: trasa dźwięku', () => {
   test('VoiceOver: zapowiedź przez announce (nie własna synteza), tylko gdy trasa dźwięku na to pozwala', async () => {
     await world(); const an = jest.spyOn(AccessibilityInfo, 'announceForAccessibility').mockImplementation(() => {}); __setScreenReaderForTests(true);
     await sayRestStart(A(), sid(0, 0)); expect(an).not.toHaveBeenCalled(); V().headphones = true; const r = await sayRestStart(A(), sid(0, 0));
-    expect(an).toHaveBeenCalledWith('Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń'); expect(V().spoken).toEqual([]); expect(r.mode).toBe('announce');
+    expect(an).toHaveBeenCalledWith('Bench Press (sztanga) · seria 2, 80 kilogramów, 8 powtórzeń'); expect(V().spoken).toEqual([]); expect(r.mode).toBe('announce');
   });
   test('pusty tekst (nieznana seria) → nic nie mówi', async () => { await world(); V().headphones = true; const r = await sayRestStart(A(), 'nie ma'); expect([r.mode, V().spoken]).toEqual(['silent', []]); });
   test('język bez głosu w telefonie: hasVoice=false → voiceAvailable false (Ustawienia pokazują wskazówkę)', () => { V().hasVoice = false; expect(voiceAvailable()).toBe(false); V().hasVoice = true; expect(voiceAvailable()).toBe(true); });
   test('„Posłuchaj przykładu”: przykładowa zapowiedź w języku i jednostce aplikacji', async () => {
-    await world(); expect(await sampleVoice()).toBe(true); expect(V().spoken.at(-1)).toEqual(['dalej: Bench Press, 80 kg, 8 powtórzeń', 'pl-PL']);
-    applyLang('en'); applyUnit('lb'); await sampleVoice(); expect(V().spoken.at(-1)).toEqual(['next: Bench Press, 176.4 lb, 8 reps', 'en-GB'.replace('en-GB', V().spoken.at(-1)![1])]);
+    await world(); expect(await sampleVoice()).toBe(true); expect(V().spoken.at(-1)).toEqual(['dalej: Bench Press, 80 kilogramów, 8 powtórzeń', 'pl-PL']);
+    applyLang('en'); applyUnit('lb'); await sampleVoice(); expect(V().spoken.at(-1)).toEqual(['next: Bench Press, 176.4 pounds, 8 reps', 'en-GB'.replace('en-GB', V().spoken.at(-1)![1])]);
   });
 });
 
 describe('integracja z odhaczeniem serii', () => {
-  test('✓ na telefonie: dokładnie jedna zapowiedź, ten sam tekst co podpis przerwy; po ostatniej serii „nic więcej do zrobienia”', async () => {
+  test('✓ na telefonie: dokładnie jedna zapowiedź, ten sam szkielet co podpis przerwy, jednostka pełnym słowem; po ostatniej serii „nic więcej do zrobienia”', async () => {
     await world(); V().headphones = true; await completeSet(0, 0); await tick();
-    expect(V().spoken).toEqual([[timer.T.sub, 'pl-PL']]);
+    expect(V().spoken).toEqual([[timer.T.sub.replace('80 kg', '80 kilogramów'), 'pl-PL']]); expect(timer.T.sub).toContain('80 kg,'); /* ekran: skrót */
     A().exercises.forEach(e => e.sets.forEach(s => { s.done = true; })); A().exercises[2].sets[1].done = false; V().spoken.length = 0; await completeSet(2, 1); await tick();
     expect(V().spoken.map(x => x[0])).toEqual(['nic więcej do zrobienia']);
   });
@@ -92,7 +92,7 @@ describe('integracja z odhaczeniem serii', () => {
   });
   test('cofnięcie odhaczenia przerywa mowę (stop); szybkie kolejne odhaczenia: każde zaczyna nową zapowiedź (moduł przerywa poprzednią)', async () => {
     await world(); V().headphones = true; await completeSet(0, 0); await tick(); const s0 = V().stops; await completeSet(0, 0); await tick(); expect(V().stops).toBe(s0 + 1);
-    await completeSet(0, 0); await completeSet(0, 1); await tick(); expect(V().spoken.at(-1)![0]).toBe(restCue(A(), sid(0, 1)).text);
+    await completeSet(0, 0); await completeSet(0, 1); await tick(); expect(V().spoken.at(-1)![0]).toBe(restCue(A(), sid(0, 1)).speech);
   });
   test('odhaczenie z opóźnieniem po końcu przerwy (przerwa już minęła): cisza', async () => {
     await world(); V().headphones = true; jest.setSystemTime(NOW + 300e3); await completeSet(0, 0, NOW + 1000); await tick(); expect(V().spoken).toEqual([]);
@@ -100,8 +100,8 @@ describe('integracja z odhaczeniem serii', () => {
   test('zdarzenie z zegarka (done): zapowiedź jak po ✓ na telefonie; differ: seria „do uzupełnienia” nie ma „Nowy rekord!”', async () => {
     await world(); V().headphones = true; addWorkout(NOW - 7 * 86400e3, [['Bench Press (sztanga)', [{ weight: 60, reps: 8 }]]]);
     const ev = (type: 'done' | 'differ', i: number) => ({ v: 1, kind: 'event', eventId: `v-${type}-${i}`, workoutId: A().id, baseRev: 1, at: NOW + 1000 * (i + 1), client: 'apple', type, setId: sid(0, i) }) as never;
-    jest.setSystemTime(NOW + 5000); await applyWatchEvent(ev('done', 0), 1); await tick(); expect(V().spoken.at(-1)![0]).toBe('Nowy rekord! Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń');
-    await applyWatchEvent(ev('differ', 1), 2); await tick(); expect(V().spoken.at(-1)![0]).toBe('Bench Press (sztanga) · seria 3, 80 kg, 8 powtórzeń');
+    jest.setSystemTime(NOW + 5000); await applyWatchEvent(ev('done', 0), 1); await tick(); expect(V().spoken.at(-1)![0]).toBe('Nowy rekord! Bench Press (sztanga) · seria 2, 80 kilogramów, 8 powtórzeń');
+    await applyWatchEvent(ev('differ', 1), 2); await tick(); expect(V().spoken.at(-1)![0]).toBe('Bench Press (sztanga) · seria 3, 80 kilogramów, 8 powtórzeń');
   });
   test('błąd modułu mowy nie psuje przerwy ani odhaczenia', async () => {
     await world(); V().headphones = true; const m = require('@/modules/voice-cue'); m.speak.mockImplementationOnce(async () => { throw new Error('audio'); });

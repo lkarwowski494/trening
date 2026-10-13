@@ -1576,5 +1576,9 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Consistentere bediening in de hele app: vensters met „Annuleer” links, „+” in de koppen van lijsten om iets toe te voegen, en duidelijkere meldingen en VoiceOver-beschrijvingen.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "De knop „Schrijf ons” onder Meer → Over de app.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Aanpassen aan locatie: als je overstapt naar een locatie zonder de benodigde apparatuur, stelt de app vervangende oefeningen voor om te bekijken – de wijzigingen gelden alleen voor deze training.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "In het venster kun je de vervanger wijzigen of „Geen wijziging” of „Vandaag overslaan” kiezen; een toegepaste vervanging maak je ongedaan bij de oefening."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "In het venster kun je de vervanger wijzigen of „Geen wijziging” of „Vandaag overslaan” kiezen; een toegepaste vervanging maak je ongedaan bij de oefening.",
+ "kilogram|kilogramy|kilogramów": "kilogram|kilogram",
+ "funt|funty|funtów": "pond|pond",
+ "kilograma": "kilogram",
+ "funta": "pond"
 }

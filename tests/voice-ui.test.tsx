@@ -29,7 +29,7 @@ test('włączenie zapisuje tylko true i przeżywa restart; wyłączenie usuwa po
   await sw('Głos także przez głośnik telefonu', false); expect('voiceSpeaker' in S().settings).toBe(false);
 });
 test('„Posłuchaj przykładu” mówi przykładową zapowiedź w języku aplikacji', async () => {
-  await boot(); await tap(screen.getByText('Posłuchaj przykładu')); await flushAll(10); expect(V().spoken).toEqual([['dalej: Bench Press, 80 kg, 8 powtórzeń', 'pl-PL']]);
+  await boot(); await tap(screen.getByText('Posłuchaj przykładu')); await flushAll(10); expect(V().spoken).toEqual([['dalej: Bench Press, 80 kilogramów, 8 powtórzeń', 'pl-PL']]);
 });
 test('brak głosu dla języka w telefonie: wskazówka z instrukcją pobrania (przełącznik i przykład dalej dostępne)', async () => {
   V().hasVoice = false; await boot(); expect(screen.getByText('Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność → Treści mówione → Głosy).')).toBeTruthy();
@@ -38,5 +38,5 @@ test('brak głosu dla języka w telefonie: wskazówka z instrukcją pobrania (pr
 test('EN: etykiety, wskazówka i przykład po angielsku', async () => {
   V().hasVoice = false; await boot('en'); expect(screen.getByText('Voice also through the phone speaker')).toBeTruthy(); expect(screen.getByText('Listen to an example')).toBeTruthy();
   expect(screen.getByText('This phone has no voice for the app language. Download one in iOS Settings (Accessibility → Spoken Content → Voices).')).toBeTruthy();
-  await tap(screen.getByText('Listen to an example')); await flushAll(10); expect(V().spoken[0][0]).toBe('next: Bench Press, 80 kg, 8 reps');
+  await tap(screen.getByText('Listen to an example')); await flushAll(10); expect(V().spoken[0][0]).toBe('next: Bench Press, 80 kilograms, 8 reps');
 });

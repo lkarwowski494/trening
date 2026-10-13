@@ -1077,5 +1077,7 @@ export const EN: Record<string, string> = {
   'Głos także przez głośnik telefonu': 'Voice also through the phone speaker',
   'W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.': 'In headphones the next exercise is announced at the start of the rest (when sound is on); through the phone speaker only if you turn this switch on.',
   'Posłuchaj przykładu': 'Listen to an example',
+  /* głos (restCue.speech): pełna nazwa jednostki zamiast skrótu kg/lb; „kilograma”/„funta” = forma przy ułamku (CLDR) */
+  'kilogram|kilogramy|kilogramów': 'kilogram|kilograms', 'funt|funty|funtów': 'pound|pounds', 'kilograma': 'kilograms', 'funta': 'pounds',
   'Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność → Treści mówione → Głosy).': 'This phone has no voice for the app language. Download one in iOS Settings (Accessibility → Spoken Content → Voices).',
 };

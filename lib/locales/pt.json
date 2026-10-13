@@ -1576,5 +1576,9 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Utilização mais coerente em toda a app: janelas com «Cancelar» à esquerda, «+» nos cabeçalhos das listas para adicionar, e mensagens e descrições do VoiceOver mais claras.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Botão «Escreva-nos» em Mais → Acerca da app.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Adaptar ao local: ao mudar para um local sem o equipamento necessário, a aplicação propõe exercícios substitutos para rever — as alterações aplicam-se apenas a este treino.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Na janela pode alterar o substituto ou escolher «Sem alterações» ou «Saltar hoje»; uma troca aplicada desfaz-se no exercício."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Na janela pode alterar o substituto ou escolher «Sem alterações» ou «Saltar hoje»; uma troca aplicada desfaz-se no exercício.",
+ "kilogram|kilogramy|kilogramów": "quilograma|quilogramas",
+ "funt|funty|funtów": "libra|libras",
+ "kilograma": "quilogramas",
+ "funta": "libras"
 }

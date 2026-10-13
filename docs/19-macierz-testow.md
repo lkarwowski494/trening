@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 31 | 31 | 0 |
 | UI | 305 | 305 | 0 |
 | TEKST | 1010 | 1010 | 0 |
-| LOGIKA | 831 | 831 | 0 |
+| LOGIKA | 833 | 833 | 0 |
 | WYMIAR | 103 | 103 | 0 |
 
 ## EKRAN
@@ -1676,7 +1676,9 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | live.setLabel | lib/live.ts | tests/audit-0.10-live-logic.test.ts |
 | live.restCue | lib/live.ts | tests/voice.test.ts, tests/watch-cue.test.ts, tests/watch-snapshot.test.ts |
 | live.restLabel | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/f014-logic.test.ts, tests/regress.test.tsx +1 |
+| live.spokenUnit | lib/live.ts | tests/watch-cue.test.ts |
 | live.spokenLoad | lib/live.ts | tests/watch-cue.test.ts |
+| live.cueLoad | lib/live.ts | tests/watch-cue.test.ts |
 | live.counterLabel | lib/live.ts | tests/watch-cue.test.ts |
 | live.timedLabel | lib/live.ts | tests/f014-logic.test.ts |
 | live.nowParts | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/catalog-library25.test.tsx |

@@ -4,8 +4,8 @@ import { getState } from './store';
 import { locale, t, tp } from './i18n';
 import { announce } from './announce';
 import { prMap } from './stats';
-import { restCue } from './live';
-import { wOut, wu, fmtNum } from './units';
+import { restCue, spokenUnit } from './live';
+import { wOut, fmtNum } from './units';
 import type { Workout } from './seed';
 
 /*
@@ -46,8 +46,8 @@ export const appActive = (): boolean => { try { const st = AppState.currentState
 
 /** Tekst zapowiedzi do wypowiedzenia: zapowiedź przerwy (restCue), przy rekordzie w odhaczonej serii poprzedzona „Nowy rekord!” (serie „do uzupełnienia” rekordu nie mają). Pusty = nic do powiedzenia. */
 export function cueSpeech(w: Workout, setId: string): string {
-  const c = restCue(w, setId); if (!c.text) return '';
-  return prMap(w).get(setId)?.length ? `${t('Nowy rekord!')} ${c.text}` : c.text;
+  const c = restCue(w, setId); if (!c.speech) return '';
+  return prMap(w).get(setId)?.length ? `${t('Nowy rekord!')} ${c.speech}` : c.speech;
 }
 
 /** Zapowiedź po odhaczeniu serii `setId` (start przerwy). Zwraca decyzję (testy); nowa zapowiedź przerywa poprzednią, brak głosu w telefonie → cisza. */
@@ -64,7 +64,7 @@ export const silenceVoice = (): void => { Voice.stop(); };
 export const voiceAvailable = (): boolean => Voice.isSupported() && Voice.hasVoice(locale());
 /** „Posłuchaj przykładu” w Ustawieniach: przykładowa zapowiedź w języku aplikacji, trasa dźwięku jak telefon ją ustawił (użytkownik sam o to poprosił — bez warunku słuchawek). */
 export async function sampleVoice(): Promise<boolean> {
-  watchScreenReader(); const n = 8; const text = `${t('dalej: {name}', { name: 'Bench Press' })}, ${fmtNum(wOut(80), 2)} ${wu()}, ${n} ${tp(n, 'powtórzenie|powtórzenia|powtórzeń')}`;
+  watchScreenReader(); const n = 8; const text = `${t('dalej: {name}', { name: 'Bench Press' })}, ${fmtNum(wOut(80), 2)} ${spokenUnit(wOut(80))}, ${n} ${tp(n, 'powtórzenie|powtórzenia|powtórzeń')}`;
   if (screenReader) { announce(text); return true; }
   return Voice.speak(text, locale());
 }

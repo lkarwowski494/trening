@@ -1576,5 +1576,9 @@
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Jednotnější ovládání v celé aplikaci: okna s tlačítkem „Zrušit“ vlevo, „+“ v záhlaví seznamů pro přidávání a srozumitelnější zprávy a popisy pro VoiceOver.",
  "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Tlačítko „Napište nám“ v části Další → O aplikaci.",
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Přizpůsobit místu: po změně místa na takové bez potřebného vybavení aplikace navrhne náhradní cviky k prohlédnutí — změny platí jen pro tento trénink.",
- "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "V okně můžeš změnit náhradu nebo zvolit „Beze změny“ či „Dnes vynechat“; použitou záměnu vrátíš u cviku."
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "V okně můžeš změnit náhradu nebo zvolit „Beze změny“ či „Dnes vynechat“; použitou záměnu vrátíš u cviku.",
+ "kilogram|kilogramy|kilogramów": "kilogram|kilogramy|kilogramů",
+ "funt|funty|funtów": "libra|libry|liber",
+ "kilograma": "kilogramu",
+ "funta": "libry"
 }
