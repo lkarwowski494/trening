@@ -1,0 +1,61 @@
+/* Skrypty CI zegarka (docs/35-zegarek-apple): wybór symulatora watchOS i zrzuty — logika sprawdzana na Linuksie bez Xcode (wynik `simctl list` podany z pliku). */
+import { execFileSync } from 'child_process';
+import * as fs from 'fs';
+import * as os from 'os';
+import * as path from 'path';
+
+const root = path.join(__dirname, '..');
+const script = (n: string) => path.join(root, 'scripts', 'ci', n);
+const list = (devices: Record<string, Array<{ name: string; udid: string }>>) => {
+  const f = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'simctl-')), 'list.json');
+  fs.writeFileSync(f, JSON.stringify({ devices })); return f;
+};
+const pick = (devices: Record<string, Array<{ name: string; udid: string }>>, pattern?: string) =>
+  execFileSync('bash', [script('watch-simulator.sh'), ...(pattern ? [pattern] : [])], { env: { ...process.env, DRY_RUN: '1', SIMCTL_LIST_JSON: list(devices) }, encoding: 'utf8' }).trim();
+
+describe('scripts/ci/watch-simulator.sh', () => {
+  const D = {
+    'com.apple.CoreSimulator.SimRuntime.iOS-26-5': [{ name: 'iPhone 17', udid: 'IOS-1' }],
+    'com.apple.CoreSimulator.SimRuntime.watchOS-26-2': [{ name: 'Apple Watch SE 3 (44mm)', udid: 'SE-262' }, { name: 'Apple Watch Series 11 (46mm)', udid: 'S11-262' }, { name: 'Apple Watch Ultra 3 (49mm)', udid: 'U3-262' }],
+    'com.apple.CoreSimulator.SimRuntime.watchOS-26-4': [{ name: 'Apple Watch Series 11 (46mm)', udid: 'S11-264' }, { name: 'Apple Watch Ultra 3 (49mm)', udid: 'U3-264' }],
+    'com.apple.CoreSimulator.SimRuntime.watchOS-11-5': [{ name: 'Apple Watch Series 10 (46mm)', udid: 'S10-115' }],
+  };
+  test('domyślnie: Series 10/11 z najnowszego watchOS (nie iPhone, nie starszy system)', () => { expect(pick(D)).toBe('S11-264'); });
+  test('wzorzec nazwy: Ultra, SE; najnowszy system, na którym jest taki zegarek', () => {
+    expect(pick(D, 'Apple Watch Ultra')).toBe('U3-264'); expect(pick(D, 'Apple Watch SE')).toBe('SE-262'); expect(pick(D, 'Series 10')).toBe('S10-115');
+  });
+  test('wzorzec bez dopasowania: dowolny dostępny zegarek (najnowszy system), nigdy iPhone', () => { expect(pick(D, 'Nie ma takiego')).toMatch(/^(S11|U3)-264$/); });
+  test('brak symulatorów watchOS: błąd z komunikatem', () => {
+    expect(() => pick({ 'com.apple.CoreSimulator.SimRuntime.iOS-26-5': [{ name: 'iPhone 17', udid: 'x' }] })).toThrow();
+  });
+  test('wypisuje wyłącznie identyfikator (log CI jest publiczny)', () => { expect(pick(D)).not.toMatch(/\s|Apple Watch/); });
+});
+
+describe('scripts/ci/watch-screenshots.sh', () => {
+  const sh = fs.readFileSync(script('watch-screenshots.sh'), 'utf8');
+  test('identyfikator pakietu = celu zegarka; stany zrzutów istnieją jako pliki złote; Debug przez SIMCTL_CHILD_', () => {
+    const cfg = fs.readFileSync(path.join(root, 'targets/watch-app/expo-target.config.js'), 'utf8');
+    expect(cfg).toContain("bundleIdentifier: '.watchkitapp'"); expect(sh).toContain('BUNDLE="pl.lukasz.trening.watchkitapp"');
+    for (const s of sh.match(/STATES="([^"]+)"/)![1].split(' ')) expect(fs.existsSync(path.join(root, 'watch-fixtures/snapshots', `${s}.json`))).toBe(true);
+    expect(sh).toContain('SIMCTL_CHILD_WATCH_FAKE_SNAPSHOT_JSON');
+    const app = fs.readFileSync(path.join(root, 'targets/watch-app/TreningWatchApp.swift'), 'utf8');
+    expect(app).toMatch(/#if DEBUG[\s\S]*WATCH_FAKE_SNAPSHOT_JSON[\s\S]*#endif/); /* wydanie ignoruje zmienną: sztuczny transport tylko w Debug */
+  });
+  test('"all" bierze języki z labels.json (35)', () => {
+    const labels = JSON.parse(fs.readFileSync(path.join(root, 'tests/fixtures/watch-app/labels.json'), 'utf8')); expect(Object.keys(labels)).toHaveLength(35);
+    expect(sh).toContain('labels.json');
+  });
+});
+
+describe('zabezpieczenie wydania: sztuczny transport zegarka nie trafia do Release', () => {
+  test('wszystkie odwołania do FakeTransport poza Core i testami są w #if DEBUG', () => {
+    const dir = path.join(root, 'targets/watch-app');
+    for (const f of fs.readdirSync(dir).filter(x => x.endsWith('.swift'))) {
+      const src = fs.readFileSync(path.join(dir, f), 'utf8');
+      for (const m of src.matchAll(/FakeTransport|FakeWorkout|FakeHaptics|MemoryPersistence/g)) {
+        const before = src.slice(0, m.index); const opens = (before.match(/^\s*#if DEBUG/gm) || []).length; const closes = (before.match(/^\s*#endif/gm) || []).length;
+        expect([f, opens > closes]).toEqual([f, true]);
+      }
+    }
+  });
+});

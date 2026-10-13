@@ -1,0 +1,16 @@
+{
+ "done": "Sērija pabeigta",
+ "differ": "Izpildīts citādi",
+ "skip": "Izlaist",
+ "skipAsk": "Izlaist vingrinājumu?",
+ "cancel": "Atcelt",
+ "undo": "Atsaukt",
+ "rest": "Atpūta",
+ "set": "Sērija",
+ "pause": "Treniņš apturēts",
+ "connect": "Savienot ar tālruni",
+ "idle": "Sāciet treniņu tālrunī",
+ "finished": "Treniņš pabeigts",
+ "update": "Atjauniniet lietotni pulkstenī",
+ "nothingLeft": "vairs nekas nav jādara"
+}

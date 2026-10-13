@@ -1,0 +1,340 @@
+{
+ "name": "basic-garmin",
+ "doc": "Zegarek z Connect IQ: to samo zachowanie, inny klient (eventId z przedrostkiem garmin, bez zdolności sesji).",
+ "config": {
+  "client": "garmin",
+  "app": "0.20.0",
+  "session": false
+ },
+ "steps": [
+  {
+   "at": 1791885600000,
+   "input": {
+    "t": "launch"
+   },
+   "note": "start aplikacji: zgłoszenie hello",
+   "expect": {
+    "out": [
+     {
+      "v": 1,
+      "kind": "hello",
+      "client": "garmin",
+      "protocol": 1,
+      "app": "0.20.0",
+      "caps": {
+       "session": false
+      }
+     }
+    ],
+    "view": {
+     "screen": "idle",
+     "title": "",
+     "counter": "",
+     "load": "",
+     "group": null,
+     "cue": null,
+     "restEndsAt": null,
+     "restTotalSec": null,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 0,
+     "totalCount": 0,
+     "toFillCount": 0,
+     "undoUntil": null,
+     "confirmSkip": false,
+     "actions": [],
+     "offline": false,
+     "busy": false
+    }
+   }
+  },
+  {
+   "at": 1791885600000,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "welcome",
+     "ok": true,
+     "protocol": 1,
+     "upgrade": null
+    }
+   },
+   "note": null,
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "idle",
+     "title": "",
+     "counter": "",
+     "load": "",
+     "group": null,
+     "cue": null,
+     "restEndsAt": null,
+     "restTotalSec": null,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 0,
+     "totalCount": 0,
+     "toFillCount": 0,
+     "undoUntil": null,
+     "confirmSkip": false,
+     "actions": [],
+     "offline": false,
+     "busy": false
+    }
+   }
+  },
+  {
+   "at": 1791885600000,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "snapshot",
+     "rev": 1,
+     "lang": "pl",
+     "phase": "set",
+     "paused": false,
+     "workoutId": "workout-1",
+     "title": "Push",
+     "now": {
+      "setId": "set-0-0",
+      "blockId": "block-0",
+      "title": "Bench Press (sztanga)",
+      "counter": "seria 1 z 3",
+      "load": "80 kg × 8",
+      "group": null,
+      "timed": false,
+      "targetSec": null
+     },
+     "rest": null,
+     "after": {
+      "restSec": 90,
+      "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+      "last": false,
+      "now": {
+       "setId": "set-0-1",
+       "blockId": "block-0",
+       "title": "Bench Press (sztanga)",
+       "counter": "seria 2 z 3",
+       "load": "80 kg × 8",
+       "group": null,
+       "timed": false,
+       "targetSec": null
+      }
+     },
+     "doneCount": 0,
+     "totalCount": 7,
+     "toFillCount": 0
+    }
+   },
+   "note": "bieżąca seria: ćwiczenie, licznik, ciężar × powtórzenia",
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "set",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 1 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": null,
+     "restEndsAt": null,
+     "restTotalSec": null,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 0,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": null,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip"
+     ],
+     "offline": false,
+     "busy": false
+    }
+   }
+  },
+  {
+   "at": 1791885601000,
+   "input": {
+    "t": "press",
+    "button": "main"
+   },
+   "note": "„Seria zrobiona”: zdarzenie done; od razu przerwa i zapowiedź z pola after migawki (bez czekania na telefon)",
+   "expect": {
+    "out": [
+     {
+      "v": 1,
+      "kind": "event",
+      "eventId": "garmin-1",
+      "workoutId": "workout-1",
+      "baseRev": 1,
+      "at": 1791885601000,
+      "client": "garmin",
+      "type": "done",
+      "setId": "set-0-0"
+     }
+    ],
+    "view": {
+     "screen": "rest",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 2 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+     "restEndsAt": 1791885691000,
+     "restTotalSec": 90,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": 1791885606000,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip",
+      "undo"
+     ],
+     "offline": false,
+     "busy": true
+    }
+   }
+  },
+  {
+   "at": 1791885601100,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "snapshot",
+     "rev": 2,
+     "lang": "pl",
+     "phase": "rest",
+     "paused": false,
+     "workoutId": "workout-1",
+     "title": "Push",
+     "now": {
+      "setId": "set-0-1",
+      "blockId": "block-0",
+      "title": "Bench Press (sztanga)",
+      "counter": "seria 2 z 3",
+      "load": "80 kg × 8",
+      "group": null,
+      "timed": false,
+      "targetSec": null
+     },
+     "rest": {
+      "setId": "set-0-0",
+      "startedAt": 1791885600000,
+      "endsAt": 1791885690000,
+      "totalSec": 90,
+      "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+      "last": false
+     },
+     "after": {
+      "restSec": 90,
+      "cue": "Bench Press (sztanga) · seria 3, 80 kg, 8 powtórzeń",
+      "last": false,
+      "now": {
+       "setId": "set-0-2",
+       "blockId": "block-0",
+       "title": "Bench Press (sztanga)",
+       "counter": "seria 3 z 3",
+       "load": "80 kg × 8",
+       "group": null,
+       "timed": false,
+       "targetSec": null
+      }
+     },
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0
+    }
+   },
+   "note": "telefon: migawka z przerwą (najpierw migawka…)",
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "rest",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 2 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+     "restEndsAt": 1791885690000,
+     "restTotalSec": 90,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": 1791885606000,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip",
+      "undo"
+     ],
+     "offline": false,
+     "busy": true
+    }
+   }
+  },
+  {
+   "at": 1791885601200,
+   "input": {
+    "t": "receive",
+    "msg": {
+     "v": 1,
+     "kind": "ack",
+     "eventId": "garmin-1",
+     "status": "applied",
+     "reason": null,
+     "rev": 2
+    }
+   },
+   "note": "…potem potwierdzenie z numerem tej migawki",
+   "expect": {
+    "out": [],
+    "view": {
+     "screen": "rest",
+     "title": "Bench Press (sztanga)",
+     "counter": "seria 2 z 3",
+     "load": "80 kg × 8",
+     "group": null,
+     "cue": "Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń",
+     "restEndsAt": 1791885690000,
+     "restTotalSec": 90,
+     "paused": false,
+     "timed": false,
+     "targetSec": null,
+     "doneCount": 1,
+     "totalCount": 7,
+     "toFillCount": 0,
+     "undoUntil": 1791885606000,
+     "confirmSkip": false,
+     "actions": [
+      "done",
+      "differ",
+      "skip",
+      "undo"
+     ],
+     "offline": false,
+     "busy": false
+    }
+   }
+  }
+ ]
+}

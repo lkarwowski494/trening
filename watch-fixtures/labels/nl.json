@@ -1,0 +1,16 @@
+{
+ "done": "Set klaar",
+ "differ": "Anders gedaan",
+ "skip": "Sla over",
+ "skipAsk": "Oefening overslaan?",
+ "cancel": "Annuleer",
+ "undo": "Herstel",
+ "rest": "Rust",
+ "set": "Set",
+ "pause": "Training gepauzeerd",
+ "connect": "Verbind met de telefoon",
+ "idle": "Start een training op de telefoon",
+ "finished": "Training beëindigd",
+ "update": "Werk de app op het horloge bij",
+ "nothingLeft": "niets meer te doen"
+}

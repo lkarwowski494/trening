@@ -1,0 +1,182 @@
+[
+ {
+  "tag": "pl-PL",
+  "lang": "pl"
+ },
+ {
+  "tag": "en-US",
+  "lang": "en"
+ },
+ {
+  "tag": "en-GB",
+  "lang": "en"
+ },
+ {
+  "tag": "pt-BR",
+  "lang": "pt-BR"
+ },
+ {
+  "tag": "pt_BR",
+  "lang": "pt-BR"
+ },
+ {
+  "tag": "pt",
+  "lang": "pt-BR"
+ },
+ {
+  "tag": "pt-PT",
+  "lang": "pt"
+ },
+ {
+  "tag": "pt-AO",
+  "lang": "pt"
+ },
+ {
+  "tag": "es-419",
+  "lang": "es-419"
+ },
+ {
+  "tag": "es-MX",
+  "lang": "es-419"
+ },
+ {
+  "tag": "es-AR",
+  "lang": "es-419"
+ },
+ {
+  "tag": "es-US",
+  "lang": "es-419"
+ },
+ {
+  "tag": "es-ES",
+  "lang": "es"
+ },
+ {
+  "tag": "es",
+  "lang": "es"
+ },
+ {
+  "tag": "es-GQ",
+  "lang": "es"
+ },
+ {
+  "tag": "zh-Hant-TW",
+  "lang": "zh-Hant"
+ },
+ {
+  "tag": "zh-Hant",
+  "lang": "zh-Hant"
+ },
+ {
+  "tag": "zh-TW",
+  "lang": "zh-Hant"
+ },
+ {
+  "tag": "zh-HK",
+  "lang": "zh-Hant"
+ },
+ {
+  "tag": "zh-MO",
+  "lang": "zh-Hant"
+ },
+ {
+  "tag": "zh-Hans-CN",
+  "lang": "en"
+ },
+ {
+  "tag": "zh-CN",
+  "lang": "en"
+ },
+ {
+  "tag": "zh",
+  "lang": "en"
+ },
+ {
+  "tag": "sr-Latn-RS",
+  "lang": "sr"
+ },
+ {
+  "tag": "sr",
+  "lang": "sr"
+ },
+ {
+  "tag": "nb-NO",
+  "lang": "nb"
+ },
+ {
+  "tag": "nb",
+  "lang": "nb"
+ },
+ {
+  "tag": "no",
+  "lang": "en"
+ },
+ {
+  "tag": "ja-JP",
+  "lang": "ja"
+ },
+ {
+  "tag": "ko-KR",
+  "lang": "ko"
+ },
+ {
+  "tag": "in-ID",
+  "lang": "id"
+ },
+ {
+  "tag": "id-ID",
+  "lang": "id"
+ },
+ {
+  "tag": "zsm",
+  "lang": "ms"
+ },
+ {
+  "tag": "ms-MY",
+  "lang": "ms"
+ },
+ {
+  "tag": "th-TH",
+  "lang": "en"
+ },
+ {
+  "tag": "de-AT",
+  "lang": "de"
+ },
+ {
+  "tag": "fr-CA",
+  "lang": "fr"
+ },
+ {
+  "tag": "cs-CZ",
+  "lang": "cs"
+ },
+ {
+  "tag": "uk-UA",
+  "lang": "uk"
+ },
+ {
+  "tag": "ru-RU",
+  "lang": "ru"
+ },
+ {
+  "tag": "fi-FI",
+  "lang": "fi"
+ },
+ {
+  "tag": "el-GR",
+  "lang": "el"
+ },
+ {
+  "tag": "tr-TR",
+  "lang": "tr"
+ },
+ {
+  "tag": "vi-VN",
+  "lang": "vi"
+ },
+ {
+  "tag": "",
+  "lang": "en"
+ }
+]

@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Trening";
+"NSHealthShareUsageDescription" = "Ura bere srčni utrip in aktivno energijo med potekajočim treningom. Podatki se ne pošiljajo zunaj tvojih naprav.";
+"NSHealthUpdateUsageDescription" = "Ura shrani končan trening moči, s srčnim utripom in aktivno energijo, v Apple Health.";

@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "Часы считывают пульс и активную энергию во время текущей тренировки. Данные не отправляются за пределы твоих устройств.";
+"NSHealthUpdateUsageDescription" = "Часы сохраняют завершённую силовую тренировку с пульсом и активной энергией в Apple Health.";

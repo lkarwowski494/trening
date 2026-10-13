@@ -189,7 +189,7 @@ function raise(ex: Exercise, s: WSet, rec: Records, bm: number | undefined) {
 export function prMap(w: Workout): Map<string, string[]> {
   const out = new Map<string, string[]>(); const at = w.startedAt; const bm = bodyMassFor(w); /* masa ciała z dnia treningu */ const recs = new Map<string, Records>(); const run = new Map<string, number>(); const runU = new Map<string, number>(); const totDone = new Set<string>();
   const sets: { ex: Exercise; s: WSet; order: number; impl?: Impl }[] = [];
-  w.exercises.forEach((e, ei) => { const ex = exById(e.exerciseId); if (!ex) return; e.sets.forEach((s, si) => { if (isWorking(s)) sets.push({ ex, s, order: s.completedAt ?? (ei * 1000 + si), impl: e.impl }); }); });
+  w.exercises.forEach((e, ei) => { const ex = exById(e.exerciseId); if (!ex) return; e.sets.forEach((s, si) => { if (isWorking(s) && !s.toFill /* 0.20: seria z zegarka „do uzupełnienia” — rekord dopiero po uzupełnieniu */) sets.push({ ex, s, order: s.completedAt ?? (ei * 1000 + si), impl: e.impl }); }); });
   sets.sort((a, b) => a.order - b.order);
   for (const { ex, s, impl } of sets) {
     let rec = recs.get(ex.id); if (!rec) { rec = recordsFor(ex, at); recs.set(ex.id, rec); }

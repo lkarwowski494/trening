@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "워치는 진행 중인 운동 중에 심박수와 활동 에너지를 읽습니다. 데이터는 사용자의 기기 밖으로 전송되지 않습니다.";
+"NSHealthUpdateUsageDescription" = "워치는 종료된 근력 운동을 심박수 및 활동 에너지와 함께 Apple Health에 저장합니다.";

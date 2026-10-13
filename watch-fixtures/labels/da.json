@@ -1,0 +1,16 @@
+{
+ "done": "Sæt udført",
+ "differ": "Udført anderledes",
+ "skip": "Spring over",
+ "skipAsk": "Spring øvelsen over?",
+ "cancel": "Annuller",
+ "undo": "Fortryd",
+ "rest": "Hvile",
+ "set": "Sæt",
+ "pause": "Træning sat på pause",
+ "connect": "Forbind til telefonen",
+ "idle": "Start en træning på telefonen",
+ "finished": "Træning afsluttet",
+ "update": "Opdater appen på uret",
+ "nothingLeft": "intet mere at lave"
+}

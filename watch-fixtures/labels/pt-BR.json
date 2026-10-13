@@ -1,0 +1,16 @@
+{
+ "done": "Série feita",
+ "differ": "Feito de outra forma",
+ "skip": "Ignorar",
+ "skipAsk": "Pular o exercício?",
+ "cancel": "Cancelar",
+ "undo": "Desfazer",
+ "rest": "Descanso",
+ "set": "Série",
+ "pause": "Treino em pausa",
+ "connect": "Conectar ao celular",
+ "idle": "Inicie um treino no celular",
+ "finished": "Treino finalizado",
+ "update": "Atualize o app do relógio",
+ "nothingLeft": "nada mais para fazer"
+}

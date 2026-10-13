@@ -1926,10 +1926,10 @@ describe('Q-004 (0.14.0): zmiana języka w trakcie przerwy/stopera odświeża Li
   };
   const pickEnglish = async () => { await go('/more/language'); await flushAll(10); await tap(screen.getByLabelText('English')); await flushAll(10); };
   test('przerwa: Live Activity startuje od nowa po angielsku (etykieta „rest|Rest”, podpis „next: …”), T.sub w nowym języku', async () => {
-    const lb = await bootRest(); expect(lb.sub).toBe('dalej: Pull Up'); global.__la.length = 0;
+    const lb = await bootRest(); expect(lb.sub).toBe('dalej: Pull Up, masa ciała'); /* 0.20: podpis = restCue (ciężar i powtórzenia) */ global.__la.length = 0;
     await pickEnglish();
     const starts = (global.__la as any[][]).filter(x => x[0] === 'start'); expect(starts).toHaveLength(1);
-    expect(starts[0][2]).toBe('next: Pull Up'); expect(starts[0][5]).toBe('rest|Rest'); expect(timer.T.sub).toBe('next: Pull Up');
+    expect(starts[0][2]).toBe('next: Pull Up, body weight'); expect(starts[0][5]).toBe('rest|Rest'); expect(timer.T.sub).toBe('next: Pull Up, body weight');
     expect(starts[0][3]).toBe(timer.T.endAt); /* koniec przerwy bez zmian */
   });
   test('przypomnienie o porzuconym treningu jest przeplanowane w nowym języku także bez zamontowanego ekranu treningu', async () => {

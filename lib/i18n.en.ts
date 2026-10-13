@@ -9,6 +9,10 @@ export const EN: Record<string, string> = {
   'Wróć': 'Back', 'Wybierz ćwiczenie': 'Choose exercise', 'Szablon': 'Template', 'Ćwiczenie': 'Exercise', 'Sesja': 'Session',
   'Gumy': 'Bands', 'Postępy': 'Progress', 'Ustawienia': 'Settings',
 
+  /* zegarek (0.20): opisy zgód HealthKit aplikacji na Apple Watch (lib/watchLabels.ts); etykiety wspólne z protokołem — lib/watch/labels.ts */
+  'Zegarek odczytuje tętno i energię aktywną z trwającego treningu. Dane nie są wysyłane poza Twoje urządzenia.': 'Your watch reads heart rate and active energy during the workout. The data is not sent outside your devices.',
+  'Zegarek zapisuje zakończony trening siłowy, z tętnem i energią aktywną, w Apple Health.': 'Your watch saves the finished strength workout, with heart rate and active energy, to Apple Health.',
+
   /* liczebniki */
   'sesja|sesje|sesji': 'session|sessions', 'seria|serie|serii': 'set|sets',
 
@@ -1075,4 +1079,19 @@ export const EN: Record<string, string> = {
   'Gotowe zestawy': 'Ready-made sets',
   '📍 Miejsce na te dni': '📍 Place for these days', 'Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.': 'Starting a workout on these days uses this place before the template’s place, and the “Adjust” window suggests swaps. Nothing changes by itself.',
   'Inne miejsce…': 'Another place…', 'Od: {day}': 'From: {day}', 'Do: {day}': 'To: {day}', 'Ustaw miejsce': 'Set place', 'Usuń miejsce': 'Remove place', 'Usuń miejsce: {a} – {b}': 'Remove place: {a} – {b}',
+  /* 0.20 „Zegarki i głos”: zapowiedź (restCue), etykiety zegarka (lib/watch/labels.ts), serie do uzupełnienia, głos w Ustawieniach */
+  'Zrobione inaczej': 'Done differently', 'Pominąć ćwiczenie?': 'Skip this exercise?', 'Połącz z telefonem': 'Connect to your phone',
+  'Zacznij trening na telefonie': 'Start a workout on your phone', 'Trening zakończony': 'Workout finished', 'Trening wstrzymany': 'Workout paused',
+  'Zaktualizuj aplikację na zegarku': 'Update the watch app',
+  'do uzupełnienia': 'to fill in', 'Serie do uzupełnienia': 'Sets to fill in',
+  'Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.': 'Sets marked on your watch as done differently from the plan: {n}. Fill in the reps and weight — a record only counts once they are filled in.',
+  'Zakończ mimo to': 'Finish anyway', 'Seria {n} uzupełniona — {ex}': 'Set {n} filled in — {ex}', 'Seria {n} do uzupełnienia — {ex}': 'Set {n} to fill in — {ex}',
+  'Głos także przez głośnik telefonu': 'Voice also through the phone speaker',
+  'W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.': 'In headphones the next exercise is announced at the start of the rest (when sound is on); through the phone speaker only if you turn this switch on.',
+  'Posłuchaj przykładu': 'Listen to an example',
+  /* głos (restCue.speech): pełna nazwa jednostki zamiast skrótu kg/lb; „kilograma”/„funta” = forma przy ułamku (CLDR) */
+  'kilogram|kilogramy|kilogramów': 'kilogram|kilograms', 'funt|funty|funtów': 'pound|pounds', 'kilograma': 'kilograms', 'funta': 'pounds',
+  /* głos: metry i czas słowami (restCue.speech); „metra” = forma przy ułamku (CLDR) */
+  'metr|metry|metrów': 'metre|metres', 'metra': 'metres', 'sekunda|sekundy|sekund': 'second|seconds', 'godzina|godziny|godzin': 'hour|hours',
+  'Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność → Treści mówione → Głosy).': 'This phone has no voice for the app language. Download one in iOS Settings (Accessibility → Spoken Content → Voices).',
 };

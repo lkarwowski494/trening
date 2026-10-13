@@ -1,0 +1,16 @@
+{
+ "done": "Série hotová",
+ "differ": "Hotovo jinak",
+ "skip": "Přeskočit",
+ "skipAsk": "Přeskočit cvik?",
+ "cancel": "Zrušit",
+ "undo": "Vrátit",
+ "rest": "Pauza",
+ "set": "Série",
+ "pause": "Trénink pozastaven",
+ "connect": "Připojit k telefonu",
+ "idle": "Začněte trénink v telefonu",
+ "finished": "Trénink dokončen",
+ "update": "Aktualizujte aplikaci v hodinkách",
+ "nothingLeft": "už nic nezbývá"
+}

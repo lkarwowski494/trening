@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "手錶會在訓練進行期間讀取心率與活動能量。資料不會傳送到你的裝置之外。";
+"NSHealthUpdateUsageDescription" = "手錶會將已結束的肌力訓練連同心率與活動能量儲存到 Apple Health。";

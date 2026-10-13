@@ -77,6 +77,16 @@ jest.mock('@/modules/rest-activity', () => ({
   end: jest.fn(async () => { global.__la.push(['end']); return false; }),
 }));
 
+/* 0.20 (docs/36): moduł głosu — atrapa sterowana z testów (global.__voice: wypowiedziane [tekst, język], liczba przerwań, słuchawki, dostępność głosu) */
+global.__voice = { spoken: [], stops: 0, headphones: false, hasVoice: true };
+jest.mock('@/modules/voice-cue', () => ({
+  isSupported: () => true,
+  hasVoice: () => global.__voice.hasVoice,
+  headphonesConnected: () => global.__voice.headphones,
+  speak: jest.fn(async (text, language) => { global.__voice.spoken.push([text, language]); return true; }),
+  stop: jest.fn(() => { global.__voice.stops++; }),
+}));
+
 const { Alert } = require('react-native');
 Alert.alert = jest.fn((title, msg, buttons) => { global.__alerts.push({ title, msg, buttons }); });
 Alert.prompt = jest.fn((title, msg, buttons, type, def) => { global.__alerts.push({ title, msg, buttons, prompt: true, def }); });

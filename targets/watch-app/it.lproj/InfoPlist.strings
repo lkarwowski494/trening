@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "L’orologio legge la frequenza cardiaca e l’energia attiva durante l’allenamento in corso. I dati non vengono inviati al di fuori dei tuoi dispositivi.";
+"NSHealthUpdateUsageDescription" = "L’orologio salva in Apple Health l’allenamento di forza terminato, con frequenza cardiaca ed energia attiva.";

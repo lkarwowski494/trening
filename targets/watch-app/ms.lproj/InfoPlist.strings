@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "Jam tangan membaca kadar denyutan jantung dan tenaga aktif semasa latihan berlangsung. Data tidak dihantar ke luar peranti anda.";
+"NSHealthUpdateUsageDescription" = "Jam tangan menyimpan latihan kekuatan yang tamat, bersama kadar denyutan jantung dan tenaga aktif, ke Apple Health.";
