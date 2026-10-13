@@ -101,7 +101,7 @@ Właściciel wybrał wariant z celem na partię (A rozszerzone): automat = jedna
 - **Cel serii na partię w tygodniu** (Ustawienia → „Cel serii na partię w tygodniu”): przy każdej partii „Automatycznie” (`WEEKLY_SETS_MARK` = 10, lib/stats.ts — jedno źródło liczby)
   albo „Ręcznie” (własna liczba całkowita 1–40, `SETS_GOAL_MIN/MAX` w lib/setParts.ts — granice pola w interfejsie, **nie zalecenie**). Zapis: opcjonalne `Settings.weeklySetGoals`
   (tylko odstępstwa), bez zmiany `SCHEMA_VERSION`; `migrate` zachowuje klucze partii całych i liczby (przycięte do granic), resztę odrzuca; kopia i import przechodzą przez `migrate`.
-  Kreski w „Ten tydzień”, Postępach i Progresji (tydzień) mierzą do celu swojej partii; miesiąc bez kresek (jak dotąd). Generator i jego uwagi dalej używają automatu (`WEEKLY_SETS_MARK`) — bez zmian.
+  Kreski w „Ten tydzień”, Postępach i Progresji (tydzień) mierzą do celu swojej partii; miesiąc bez kresek (jak dotąd). Generator i jego uwagi używały automatu (`WEEKLY_SETS_MARK`) — **zmienione 13.10.2026**: generator mierzy do celu z Ustawień (sekcja na końcu).
 - **Pół serii** (lib/stats.ts `setsByMuscle`): partia główna ćwiczenia = 1, pomocnicza = 0,5; poziom 0,25 z `MUSCLE_LOAD` nie wchodzi do serii. Zdanie przy kresce w Postępach, Progresji i „Ten tydzień”
   nazywa to uproszczeniem i podaje źródło (Pelland i in. 2026 — jedno źródło, tak jak w komentarzu przy `WEEKLY_SETS_MARK`).
 - **Rozbicie barków i pleców — WYCOFANE (decyzja właściciela 12.10.2026, wariant A, zastępuje wcześniejszy wybór 2B).** Powód: bloker WYSOKI audytu 0.14 —
@@ -113,3 +113,31 @@ Właściciel wybrał wariant z celem na partię (A rozszerzone): automat = jedna
   Mapa mięśni, objętość, generator i regeneracja bez zmian (już na partiach).
 - **Otwarte (bez zmian):** czy dawka–odpowiedź różni się między mięśniami; waga serii pośredniej inna niż 0,5; brak źródła na osobne cele dla regionów ciała (barki, plecy) — dlatego cel dotyczy tylko partii całych.
 
+
+## Serie pomocnicze (0,5) a cel 10 — podstawy i decyzja (13.10.2026)
+
+Pytanie właściciela: praktycy na siłowni nie liczą serii pomocniczych — czy liczenie ich po 0,5 do celu „Automatycznie = 10” zawyża postęp?
+Zapis badacza (materiały robocze poza repozytorium), przeczytane źródła i szczeble:
+
+| Źródło | Szczebel | Co mówi o liczeniu serii |
+|---|---|---|
+| Schoenfeld, Ogborn, Krieger 2017, J Sports Sci (pełny tekst, DOI 10.1080/02640414.2016.1210197) | 2 | Kodowano „total weekly training volume per muscle group”; nie ma reguły dla serii pośrednich (s. 2 „Coding of studies”). Próg: „at least 10 weekly sets per muscle group” (s. 9). |
+| ACSM 2026, Currier i in., MSSE 58(4) (PMC12965823) | 2 | „higher volume (≥10 sets/muscle group/wk)”; seria zdefiniowana tylko jako liczba serii „per exercise”, bez reguły dla pośrednich. |
+| Baz-Valle i in. 2022, J Hum Kinet 81 (PMC8884877) | 2 | Liczy wszystkie serie, także z ćwiczeń wielostawowych: „all single and multi-joint sets have been quantified”. |
+| Pelland i in., preprint SportRxiv 460 v2 (2024); wersja w Sports Med (2026, DOI 10.1007/s40279-025-02344-w) | 2 | Wcześniejsze metaanalizy liczyły serie synergistów na równi z bezpośrednimi; metoda „fractional” (pośrednie × 0,5) pasuje do danych lepiej niż „total” i „direct”. Autorzy zaznaczają, że waga 0,5 to założenie. |
+| Mannarino i in. 2021 (RCT, n = 10, streszczenie); Gentil i in. 2013 (RCT, n = 29, streszczenie) | 3 | Praca pośrednia daje od ok. połowy efektu (Mannarino) do prawie pełnego (Gentil, niewytrenowani). |
+
+Wnioski (pewność umiarkowana):
+- **Waga 0,5 = jedno źródło** (Pelland i in.) i uproszczenie; tak ma zostać oznaczona. Teza „serie pomocnicze nie liczą się wcale” jest sprzeczna ze wszystkimi przeczytanymi źródłami szczebla 2–3.
+- Próg 10 **nie** pochodzi z badań liczących wyłącznie serie bezpośrednie: stanowisko ACSM i metaanaliza z 2017 liczą „serie na partię” bez rozróżnienia, a Baz-Valle wprost metodą „total”.
+  Dla danego programu zawsze: bezpośrednie ≤ ułamkowe (0,5) ≤ „total”, więc liczenie 0,5 jest ostrzejsze od źródeł progu — postępu nie zawyża.
+- Praktyka trenerska (liczenie tylko serii bezpośrednich) to szczebel 5 — wskazówka, nie dowód; nie podważa wariantu A, ale uzasadnia pokazanie obu odcinków osobno (czytelność).
+- Wcześniejsze uzasadnienie w komentarzu przy `setsByMuscle` („jak w popularnych aplikacjach”) nie było podstawą merytoryczną — usunięte 13.10.2026.
+
+**Decyzja właściciela (13.10.2026), wariant A:** serie pomocnicze nadal liczą się do celu po 0,5 (`SECONDARY_SHARE`, jedno źródło, uproszczenie), ale na każdym pasku serii na partię odcinek
+bezpośredni i pośredni są pokazane osobno (inne wypełnienie + obrys, nie tylko kolor), z podpisem „6 + 1,5 pośrednio (3 serie) / 10” i etykietą VoiceOver z obiema wartościami i celem.
+Jedna funkcja liczenia (`lib/setSplit.ts`, `stats.setsSplitByMuscle`) dla „Ten tydzień”, Postępów, Progresji, podsumowania (mapa mięśni) i generatora. Generator mierzy do celu serii z Ustawień
+(per partia), nie do stałej 10. Odrzucone: B (do celu tylko bezpośrednie + dopisek), D (tylko bezpośrednie, pomocnicze ukryte), waga 1 (sprzeczna z Pelland — „total” gorzej dopasowane niż „fractional”).
+
+**Otwarte:** jak liczono serie mierzonego mięśnia w 15 badaniach metaanalizy Schoenfeld 2017 (bezpośrednie czy wszystkie) — do sprawdzenia w tab. 1 i tekstach badań; waga serii pośredniej inna niż 0,5
+(zależna od ćwiczenia, mięśnia i stażu; RCT od ok. 0,5 do prawie 1); zgodność tab. 2A wersji Sports Med z preprintem.

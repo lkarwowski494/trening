@@ -16,7 +16,7 @@ describe('wydanie 0.13.0', () => {
   test('wpis 0.13 (id 2026-10-11) jest pod bieżącym; jeśli ma build, to nowszy niż 1008; pod nim 0.12 z buildem 1008', () => {
     const cur = E(); const prev = WHATS_NEW[WHATS_NEW.indexOf(cur) + 1];
     expect([cur.id, prev.id, prev.build, prev.date]).toEqual(['2026-10-11', '2026-10-10', 1008, '2026-10-12']);
-    expect(cur.build === undefined || cur.build > 1008).toBe(true);
+    expect(cur.build).toBe(1009); /* build 0.13.0 = 1009 (TestFlight run 38294805184, 12.10.2026) */
   });
   test('wpis 0.13 po polsku: układ zakładek, Postępy, import CSV (nazwa przycisku jak w ekranie); 2–10 punktów', () => {
     const it = E().items();

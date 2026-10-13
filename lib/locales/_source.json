@@ -56,6 +56,14 @@
   "en": "{cur} vs {prev}"
  },
  {
+  "pl": "{d} + {w} pośrednio ({n} {s})",
+  "en": "{d} + {w} indirect ({n} {s})"
+ },
+ {
+  "pl": "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})",
+  "en": "{d} direct, {w} indirect (secondary sets: {n})"
+ },
+ {
   "pl": "{ex} — {n} min, umiarkowane tempo",
   "en": "{ex} — {n} min, moderate pace"
  },
@@ -324,6 +332,10 @@
   "en": "Accessories"
  },
  {
+  "pl": "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.",
+  "en": "Updated integration with Apple Health — saving workouts works as before."
+ },
+ {
   "pl": "aktywny",
   "en": "active"
  },
@@ -510,6 +522,10 @@
  {
   "pl": "Bez zakupu: {n} {s} na żywo w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.",
   "en": "Without a purchase: {n} live {s} per month; history, backup and export are always available."
+ },
+ {
+  "pl": "bezpośrednie",
+  "en": "direct"
  },
  {
   "pl": "biblioteki ćwiczeń organizacji szkoleniowych",
@@ -702,6 +718,10 @@
  {
   "pl": "Cel",
   "en": "Goal"
+ },
+ {
+  "pl": "cel {n}",
+  "en": "goal {n}"
  },
  {
   "pl": "cel s",
@@ -1407,6 +1427,10 @@
  {
   "pl": "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.",
   "en": "Template and weekly plan generator on request (goal, place, number and length of sessions) and several plans with a choice of the active one."
+ },
+ {
+  "pl": "Generator uwzględnia Twój cel serii z Ustawień.",
+  "en": "The generator now uses your sets goal from Settings."
  },
  {
   "pl": "Generator: wybór dni tygodnia, od {a} do {b} dni, cel „Ogólny” i „Plan z moich szablonów”.",
@@ -2118,8 +2142,8 @@
   "en": "Body weight: “±” is added weight (plus) or assistance, e.g. a machine (minus); a band is a separate field with its level. The record is total unassisted reps, and volume uses only the added weight."
  },
  {
-  "pl": "Masa: co najmniej {m} serii na partię w tygodniu, {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.",
-  "en": "Muscle: at least {m} sets per muscle group per week, {a}–{b} reps (at home {c}–{d}), usually {r1}–{r2} reps in reserve."
+  "pl": "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.",
+  "en": "Muscle: sets per muscle group per week up to the goal from Settings (automatically {m}), {a}–{b} reps (at home {c}–{d}), usually {r1}–{r2} reps in reserve."
  },
  {
   "pl": "Masz dostęp na zawsze",
@@ -2991,6 +3015,10 @@
   "en": "Since 0.10: templates and exercises open in a preview — start changes with “Edit” and confirm them with “Save”."
  },
  {
+  "pl": "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.",
+  "en": "Reading from Apple Health (turn it on in Settings): steps and other activities in the day panel, average steps under “This week”, and heart rate and kcal from your watch on a workout."
+ },
+ {
   "pl": "Odhacz bez pomiaru",
   "en": "Tick without timing"
  },
@@ -3245,6 +3273,10 @@
  {
   "pl": "Pas do dociążania",
   "en": "Dip belt"
+ },
+ {
+  "pl": "Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5).",
+  "en": "Set bars show indirect sets separately (secondary sets, counted as 0.5 each)."
  },
  {
   "pl": "pauza",
@@ -3531,16 +3563,20 @@
   "en": "secondary"
  },
  {
-  "pl": "Poniżej {n} serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
-  "en": "Below {n} sets per week: {list}. More sessions, longer sessions or more equipment at the place will help."
+  "pl": "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.",
+  "en": "Below the weekly set goal: {list}. You can set the goal in Settings (automatically the lower threshold recommended for building muscle); you can add sets in the templates."
  },
  {
-  "pl": "Poniżej {n} serii tygodniowo: {list}. To dolny próg zalecany przy budowie masy; serie dodasz w szablonach.",
-  "en": "Below {n} sets per week: {list}. This is the lower threshold recommended for building muscle; you can add sets in the templates."
+  "pl": "Poniżej celu serii tygodniowo: {list}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.",
+  "en": "Below the weekly set goal: {list}. More sessions, longer sessions or more equipment at the place will help."
  },
  {
   "pl": "Ponów teraz",
   "en": "Retry now"
+ },
+ {
+  "pl": "Poprawione sformułowania części wskazówek techniki.",
+  "en": "Reworded some of the technique tips."
  },
  {
   "pl": "Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).",
@@ -3637,6 +3673,10 @@
  {
   "pl": "pośladki",
   "en": "glutes"
+ },
+ {
+  "pl": "pośrednie (pomocnicze, po {h})",
+  "en": "indirect (secondary, {h} each)"
  },
  {
   "pl": "Potrzebne połączenie z internetem.",
