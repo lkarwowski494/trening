@@ -1,5 +1,5 @@
 /**
- * Transport telefon <-> zegarek (0.20 „Zegarki i głos”, docs/36). Wspólny kształt dla WatchConnectivity (Apple Watch), Connect IQ (Garmin) i atrapy
+ * Transport telefon <-> zegarek (0.20 „Zegarki i głos”, docs/36). Wspólny kształt dla WatchConnectivity (Apple Watch), Connect IQ (drugi zegarek) i atrapy
  * (testy, E2E). Treści komunikatów są dla transportu NIEPRZEZROCZYSTYMI ciągami JSON — ich kształt ustala protokół (lib/watch/protocol.ts, docs/35), nie ten moduł.
  * Warstwa protokołu (lib/watch/link.ts) dostaje transport przez adapter `toLinkTransport` i nie wie, co jest pod spodem.
  */

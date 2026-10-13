@@ -1,6 +1,6 @@
 {
  "name": "basic-garmin",
- "doc": "Garmin: to samo zachowanie, inny klient (eventId z przedrostkiem garmin, bez zdolności sesji).",
+ "doc": "Drugi klient (eventId z przedrostkiem garmin, bez zdolności sesji): to samo zachowanie.",
  "cfg": {
   "client": "garmin",
   "app": "0.20.0",
