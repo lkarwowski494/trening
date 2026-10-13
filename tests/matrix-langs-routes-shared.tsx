@@ -39,6 +39,7 @@ export const routesFor = (r: Awaited<ReturnType<typeof richState>>) => [
   '/picker?target=active', '/reorder?target=active', '/history/add', `/more/location/${r.locId}`, '/more/bodymass', '/more/about', '/more/licenses', '/more/import', '/paywall?reason=limit', /* 11.10.2026: import CSV; 0.17.0: ekran zakupu — na końcu, żeby indeksy tras się nie przesunęły */
   '/generator?mode=own', /* 09.10.2026 (B): „Plan z moich szablonów” */
   '/pick-template', '/progression', /* 11.10.2026: wybór szablonu do startu (P2 B), Progresja (P8 B) */
+  '/adapt', /* 0.18 (docs/33): okno „Dostosuj do miejsca” */
 ];
 type Node = { type?: unknown; props?: Record<string, unknown>; children?: unknown[] } | string;
 const texts = () => { const out: string[] = []; const walk = (n: unknown) => { if (!n) return; if (typeof n === 'string') { out.push(n); return; } if (Array.isArray(n)) { n.forEach(walk); return; } walk((n as { children?: unknown }).children); }; walk(screen.toJSON()); return out; };

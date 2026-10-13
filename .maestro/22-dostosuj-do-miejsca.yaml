@@ -1,0 +1,94 @@
+# 0.18 „Dostosuj do miejsca” (docs/33, Maestro 22): zmiana „📍” na miejsce z brakami → okno „Adjust to: X” otwiera się samo → „Apply (n)” →
+# blok z linijką „instead of: …”; powrót na siłownię → okno z sekcją „Back to your plan” → „Cancel” nic nie zmienia.
+#
+# Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
+#   "Other workout", "More, tab.*", "Workout, tab.*", "Places and equipment", "Add place", "Back" ← jak przepływy 06 i 07
+#   "Full gym,.*", "Hotel,.*"        ← Item presetów w kreatorze miejsca: '{etykieta}, {opis}' (LOCATION_PRESET_LABEL.gym.en 'Full gym', .hotel.en 'Hotel')
+#   "Empty workout", "\+ Add exercise", "Search exercises…" ← jak 07
+#   "Bench Press \(Barbell\),.*"     ← Item pickera „{title}, {sub}” (07)
+#   "Workout place: X"               ← 'Miejsce treningu: {l}' (accessibilityLabel chipa „📍 X ▾”, components/ActiveWorkout.tsx); stuknięcie → arkusz akcji z nazwami miejsc
+#   "Adjust to: X"                   ← 'Dostosuj do: {l}' (tytuł okna app/adapt.tsx)
+#   "Swaps apply to this workout only — your template and plan stay as they are." ← stała linijka okna
+#   "Exercises without equipment", "Back to your plan" ← nagłówki sekcji okna ('Ćwiczenia bez sprzętu', 'Wraca z planu')
+#   "Bench Press \(Barbell\) → .*"   ← Item wiersza okna „A → B” (B = pierwsza propozycja rankingu w Hotelu)
+#   "Apply \(1\)"                    ← 'Zastosuj ({n})' (przycisk w nagłówku okna po prawej; testID adapt-apply)
+#   "Cancel"                         ← 'Anuluj' (CloseButton, zasada 13.10.2026)
+#   "instead of: X.*"                ← 'zamiast: {name}' (jak 07)
+#   "1 exercise without equipment · Adjust" ← wiersz pod chipem (testID adapt-line) — po „Cancel”, przed zastosowaniem
+appId: pl.lukasz.trening
+name: Dostosowanie treningu do miejsca (0.18)
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+
+# --- Dwa miejsca: pełna siłownia (główne) i Hotel ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+- tapOn: "Places and equipment"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Add place"
+- extendedWaitUntil: { visible: "Full gym,.*", timeout: 30000 }
+- tapOn: "Full gym,.*"
+- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Add place"
+- extendedWaitUntil: { visible: "Hotel,.*", timeout: 30000 }
+- tapOn: "Hotel,.*"
+- extendedWaitUntil: { visible: "Available exercises: .*", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+- tapOn: "Workout, tab.*"
+
+# --- Pusty trening na siłowni z Bench Press (Barbell) ---
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Bench Press"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Bench Press \\(Barbell\\),.*", timeout: 30000 }
+- tapOn: "Bench Press \\(Barbell\\),.*"
+- extendedWaitUntil: { visible: "Workout place: Full gym", timeout: 30000 }
+- assertNotVisible: ".*exercise without equipment · Adjust"
+
+# --- 📍 Hotel → okno otwiera się samo ---
+- tapOn: "Workout place: Full gym"
+- extendedWaitUntil: { visible: "Hotel", timeout: 30000 }
+- tapOn: "Hotel"
+- extendedWaitUntil: { visible: "Adjust to: Hotel", timeout: 30000 }
+- assertVisible: "Swaps apply to this workout only — your template and plan stay as they are."
+- assertVisible: "Exercises without equipment"
+- assertVisible: "Bench Press \\(Barbell\\) → .*"
+- takeScreenshot: 40-dostosuj-okno
+
+# --- „Cancel” nic nie zmienia; wiersz pod chipem otwiera okno ponownie ---
+- tapOn: "Cancel"
+- extendedWaitUntil: { visible: "1 exercise without equipment · Adjust", timeout: 30000 }
+- assertNotVisible: "instead of: .*"
+- tapOn: "1 exercise without equipment · Adjust"
+- extendedWaitUntil: { visible: "Adjust to: Hotel", timeout: 30000 }
+
+# --- „Apply (1)” → blok „instead of: …” ---
+- tapOn: "Apply \\(1\\)"
+- extendedWaitUntil: { visible: "instead of: Bench Press \\(Barbell\\).*", timeout: 30000 }
+- assertNotVisible: ".*exercise without equipment · Adjust"
+- takeScreenshot: 41-po-dostosowaniu
+
+# --- Powrót na siłownię: sekcja „Back to your plan” ---
+- tapOn: "Workout place: Hotel"
+- extendedWaitUntil: { visible: "Full gym", timeout: 30000 }
+- tapOn: "Full gym"
+- extendedWaitUntil: { visible: "Adjust to: Full gym", timeout: 30000 }
+- assertVisible: "Back to your plan"
+- assertVisible: "Apply \\(1\\)"
+- takeScreenshot: 42-wraca-z-planu
+- tapOn: "Cancel"
+- extendedWaitUntil: { visible: "instead of: Bench Press \\(Barbell\\).*", timeout: 30000 }

@@ -26,6 +26,7 @@ import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercis
 import { t as tr, tp, exName, lang, glue } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
 import { cancelButton } from '@/lib/confirm';
+import { adaptCandidates, restoreCandidates } from '@/lib/adapt';
 
 /*
  * Trening w toku. Audyt 0.8.1:
@@ -181,7 +182,7 @@ export default function ActiveWorkout() {
     <View style={{ flex: 1 }}>
       <ScrollView testID="workout-scroll" contentContainerStyle={{ paddingBottom: 170 }} keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets scrollEventThrottle={64} onScroll={ev => { scrollY.current = ev.nativeEvent.contentOffset.y; checkRest(); }}>
         <View style={s.head}>
-          <View style={{ flex: 1 }}><Text accessibilityLanguage={lang()} accessibilityRole="header" style={{ color: t.text, fontSize: 24, fontFamily: F.heavy }}>{w.templateName || tr('Trening')}</Text><LocationChip w={w} /><SessionClock w={w} /><SessionProgress w={w} /></View>
+          <View style={{ flex: 1 }}><Text accessibilityLanguage={lang()} accessibilityRole="header" style={{ color: t.text, fontSize: 24, fontFamily: F.heavy }}>{w.templateName || tr('Trening')}</Text><LocationChip w={w} /><AdaptLine w={w} /><SessionClock w={w} /><SessionProgress w={w} /></View>
           <Btn title={tr('Zakończ')} kind="primary" onPress={finish} />
         </View>
         <TemplateNote w={w} />
@@ -224,12 +225,24 @@ function insteadLine(e: WExercise): string {
 /** P-003 E1: „📍 Dom ▾” pod nazwą treningu (tylko gdy są miejsca) — zmiana miejsca tylko dla tej sesji; nic nie jest przepisywane
  * ani zamieniane (A-002) — zmienia się filtr wyboru ćwiczeń, plakietki braku sprzętu i podpowiedzi. */
 function LocationChip({ w }: { w: Workout }) {
-  const t = useTheme(); const locs = getState().settings.locations; if (!locs.length) return null;
+  const t = useTheme(); const router = useRouter(); const locs = getState().settings.locations; if (!locs.length) return null;
   const name = w.locationId ? locationLabel(w.locationId) : tr('bez miejsca');
   const pick = () => ActionSheetIOS.showActionSheetWithOptions({ options: [...locs.map(l => l.name), tr('Anuluj')], cancelButtonIndex: locs.length, title: tr('Miejsce tego treningu') }, i => {
-    const l = locs[i]; const a = getState().active; if (!l || !a || a.id !== w.id) return; setActiveLocation(l.id); /* decyzja 8c: przyrządy bloków wg nowego miejsca */ });
+    const l = locs[i]; const a = getState().active; if (!l || !a || a.id !== w.id) return; const was = a.locationId; setActiveLocation(l.id); /* decyzja 8c: przyrządy bloków wg nowego miejsca */
+    /* 0.18 (docs/33, P2 A): miejsce z brakami albo z ćwiczeniami do przywrócenia — okno „Dostosuj do: X” otwiera się samo (tylko propozycje do przejrzenia) */
+    const cur = getState().active; if (cur && was !== l.id && (adaptCandidates(cur, l.id).length || restoreCandidates(cur, l.id).length)) router.push('/adapt'); });
   return <Pressable accessibilityLanguage={lang()} onPress={pick} accessibilityRole="button" accessibilityLabel={tr('Miejsce treningu: {l}', { l: name })} accessibilityHint={tr('Tapnij, by zmienić.')} /* A11-18 */ hitSlop={6} style={{ alignSelf: 'flex-start', paddingVertical: 4 }}>
     <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.accent, fontSize: 14, fontFamily: F.semibold }}>{`📍 ${name} ▾`}</Text></Pressable>;
+}
+
+/** 0.18 (docs/33, P2 A): wiersz pod chipem miejsca — „N ćwiczeń bez sprzętu · Dostosuj” (do ponownego otwarcia okna i przy starcie z miejscem z brakami);
+ * gdy brak braków, a są ćwiczenia do przywrócenia z planu — „N ćwiczeń wraca do planu · Dostosuj”. Nic nie zmienia samo. */
+function AdaptLine({ w }: { w: Workout }) {
+  const th = useTheme(); const router = useRouter(); const once = useOnce();
+  const na = w.locationId ? adaptCandidates(w, w.locationId).length : 0; const nr = w.locationId ? restoreCandidates(w, w.locationId).length : 0; if (!na && !nr) return null;
+  const text = na ? tr('{n} {w} · Dostosuj', { n: na, w: tp(na, 'ćwiczenie bez sprzętu|ćwiczenia bez sprzętu|ćwiczeń bez sprzętu') }) : tr('{n} {w} · Dostosuj', { n: nr, w: tp(nr, 'ćwiczenie wraca do planu|ćwiczenia wracają do planu|ćwiczeń wraca do planu') });
+  return <Pressable testID="adapt-line" accessibilityLanguage={lang()} onPress={once(() => router.push('/adapt'))} accessibilityRole="button" accessibilityLabel={text} accessibilityHint={tr('Otwiera propozycje zamian na to miejsce.')} hitSlop={6} style={{ alignSelf: 'flex-start', paddingVertical: 4 }}>
+    <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.accent, fontSize: 14, fontFamily: F.semibold }}>{text}</Text></Pressable>;
 }
 
 /** Etykieta serii (lib/live.ts — wspólna z podpisem przerwy w timerze); eksport zostaje dla ekranów, które importują ją stąd. */

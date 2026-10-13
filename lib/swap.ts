@@ -105,9 +105,11 @@ export function reasonText(c: SwapCandidate): string {
     c.sessions > 0 ? t('robione {n}×', { n: c.sessions }) : ''].filter(Boolean).join(' · ');
 }
 
-/** Cel arkusza: 'active:<id bloku>' (trening w toku, W1) albo 'edit:<klucz szkicu>:<id bloku>' (edytor historii, D6). */
-export function parseSwapTarget(target: string): { kind: 'active'; blockId: string } | { kind: 'edit'; key: string; blockId: string } | null {
+/** Cel arkusza: 'active:<id bloku>' (trening w toku, W1), 'adapt:<id bloku>' (0.18: wybór dla okna „Dostosuj do miejsca” — arkusz zwraca wybór, nie zapisuje)
+ * albo 'edit:<klucz szkicu>:<id bloku>' (edytor historii, D6). */
+export function parseSwapTarget(target: string): { kind: 'active'; blockId: string } | { kind: 'adapt'; blockId: string } | { kind: 'edit'; key: string; blockId: string } | null {
   if (target.startsWith('active:')) return { kind: 'active', blockId: target.slice(7) };
+  if (target.startsWith('adapt:')) return { kind: 'adapt', blockId: target.slice(6) };
   if (target.startsWith('edit:')) { const r = target.slice(5); const i = r.lastIndexOf(':'); return i > 0 ? { kind: 'edit', key: r.slice(0, i), blockId: r.slice(i + 1) } : null; }
   return null;
 }

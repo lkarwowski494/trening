@@ -61,3 +61,14 @@ Doprecyzowania przyjęte przy implementacji (do przejrzenia przez właściciela 
 3. Blok, który może wrócić do planu (`restoreCandidates`), nie trafia na listę dostosowań, nawet gdy jego bieżące ćwiczenie jest niedostępne.
 4. Pominięty blok nie jest ani dostosowywany, ani przywracany. Blok z odhaczonymi seriami, którego ćwiczenie z planu jest znów dostępne, a bieżące nie — lista dostosowań (ranking od planu, bez samego ćwiczenia z planu; brak „powrotu” — `canUndoSwap` wymaga zera odhaczonych serii).
 5. Ćwiczenie z planu usunięte (archiwum) — ranking od ćwiczenia bieżącego; blok nie wraca (brak do czego).
+
+## Stan wdrożenia — etap 2 (UI; gałąź `f018-dostosuj`, 13.10.2026)
+Zrobione: `app/adapt.tsx` (okno modalne, trasa `adapt` w `app/_layout.tsx` i `MODAL_URLS`), `lib/adaptPick.ts` (kanał wyboru z arkusza zamiany do okna), cel `adapt:<id bloku>` w `app/swap.tsx`
+(`parseSwapTarget`; „Bez zmian”, „Pomiń dziś”, ranking od ćwiczenia z planu, bez „cofnij zamianę”), wiersz „N ćwiczeń bez sprzętu · Dostosuj” i auto-otwarcie po zmianie „📍” w `components/ActiveWorkout.tsx`,
+`useCloseHeader(onClose, action)` — przycisk akcji po prawej w nagłówku okna (`components/CloseButton.tsx`, dla „Zastosuj (n)”). Po „Zastosuj”: `adaptActive`, `afterSwap([...goneSetIds, ...skippedSetIds])`, ogłoszenie „Zamieniono N ćwiczeń”.
+Doprecyzowania przyjęte przy implementacji (do przejrzenia przez właściciela):
+1. Kolejność z deload wynika z natury startu: pytanie „Tydzień deload” pojawia się PRZED utworzeniem treningu, więc okno jest zawsze po nim; przy starcie z miejscem z brakami okno samo się nie otwiera (P2 A: tylko po zmianie „📍”; P4 — dzień planu z miejscem — dopiero 0.19) — jest wiersz pod chipem.
+2. Gdy brak braków, a są ćwiczenia do przywrócenia, wiersz brzmi „N ćwiczeń wraca do planu · Dostosuj”; okno po zmianie „📍” otwiera się też wtedy (sekcja „Wraca z planu”).
+3. Wiersz „A → Bez zmian” zostaje na liście (można wrócić do propozycji stuknięciem); „Zastosuj (n)” liczy tylko wiersze z wyborem + włączone przełączniki „Wraca z planu”; przy n = 0 przycisku nie ma (zostaje „Anuluj”).
+4. Pytanie C7 („Cofnąć zamianę?”, [Anuluj, Cofnij]) dotyczy tylko zaznaczonych bloków „Wraca z planu” z wpisanymi wartościami zamiennika; zamiana zwykłego bloku z wpisanymi wartościami nie pyta (jak W1).
+5. „Pomiń dziś” z trwającym stoperem serii: bez dodatkowego pytania (jak w spec. pkt 6: `afterSwap` zatrzymuje stoper) — do rozstrzygnięcia, jeśli właściciel woli pytanie jak przy pojedynczym „Pomiń dziś”.
