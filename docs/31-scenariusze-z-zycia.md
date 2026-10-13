@@ -128,6 +128,25 @@ Przebieg z 21 scenariuszami: ~66 min (run 38330631978, z buildem). Z 31, 32, 35 
 po przebiegach). Strażnik czasu głównego podejścia podniesiony z 70 do 100 min, limit zadania 180 → 300 min. Opcja skrócenia czasu zegarowego (nie wykonana): wydzielić build do
 osobnego zadania i uruchamiać 01–21 oraz 31–35 równolegle na dwóch maszynach.
 
-## 7. Wyniki przebiegów
+## 7. Wyniki przebiegów (gałąź `f-scenariusze`, aplikacja z przebiegu 38324474808 — kod aplikacji bez zmian, build ze sztucznym sklepem)
 
-(uzupełnione po przebiegach na gałęzi `f-scenariusze`)
+| Przebieg | Wynik | Przyczyna / działanie |
+|---|---|---|
+| 38355192038 (pierwszy) | czerwony na starcie | artefakt `trening-sim-app` wskazanego przebiegu nie istniał (przebieg 130 sam używał cudzej aplikacji) — wskazano przebieg z buildem |
+| 38355440075 (pełny, aplikacja z 38324474808) | 23/24 + aktualizacja zielona | **31**: po „Restore exercise” asercja widoczności — scenariusz (element poza ekranem) |
+| 38363820424 (tylko 31) | 31 czerwony | scenariusz: wiersz „pominięte dziś” nad ekranem — Maestro nie przewija przed stuknięciem (zrzut) → dodane przewinięcie |
+| 38364646107 | 31 czerwony | scenariusz: „Set 4 done — Back Squat” — stuknięty „+ set” to inne ćwiczenie niż w interpreterze → nazwa dowolna |
+| 38368489051 | 31 czerwony | scenariusz/maszyna: „Co nowego” nie otworzyło się przy pierwszym stuknięciu tuż po starcie → `retry` po testID |
+| 38369572843 | 31 czerwony | scenariusz: „Save templates and plan” z `centerElement` nie da się wyśrodkować (przycisk na końcu listy; zrzut) → bez centerElement |
+| 38370760163 | 31 czerwony | scenariusz: jak 38364646107 (tym razem asercja z przewijaniem po nazwie) |
+| 38372549029 | 31 czerwony bez komunikatu | **maszyna**: proces Maestro zakończony w trakcie przewijania (log urywa się, brak błędu kroku) — powtórzenie |
+| 38373904606 | **31 zielony** (solo) | |
+| 38375488119 (pełny) | 22/24; 31 i 34 czerwone | scenariusz: stuknięcie „Finish” gubione (zrzuty: 31 — przycisk ucięty u góry, 34 — odliczanie przerwy), okno „Finish workout?” się nie pokazało → `retry` + przewinięcie na początek |
+| 38387152966 (pełny) | czerwony | **maszyna**: po 1. scenariuszu wszystkie kolejne padały w kilka sekund (symulator) — powtórzenie od razu |
+| **38390313147 (pełny)** | **zielony: 24 scenariusze + test aktualizacji (33 → instalacja bieżącej bez odinstalowania → 34)** | poprzednia wersja wybrana automatycznie: ostatni zielony przebieg na main (38352160100) |
+
+**Czas (maszyna macos-26, aplikacja z artefaktu, bez buildu):** przed — przebieg 38330631978: zadanie 66 min, Maestro 60 min (21 scenariuszy). Po — przebieg 38390313147: zadanie 87 min,
+Maestro 75 min (24 scenariusze: +31 ≈ 5 min, +32 ≈ 9 min, +35 ≈ 3,5 min) i krok „Aktualizacja” 5,6 min. Z buildem doliczyć ~30 min. Czas zegarowy +21 min (+32%).
+
+**Błędy aplikacji znalezione przez scenariusze:** brak (plik `bledy-z-scenariuszy.md` w katalogu roboczym nie zawiera pozycji). Znaleziska dotyczyły scenariuszy i interpretera
+(zob. docs/09): przewijanie przed stuknięciem, ucięty „Finish”, `centerElement` na końcu listy, zależność od dnia tygodnia (niedziela/poniedziałek) i północy.
