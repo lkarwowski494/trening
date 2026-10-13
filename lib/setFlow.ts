@@ -2,6 +2,7 @@ import { getState, save, toggleDone, restAfter, roundRest, findSet, markActivity
 import { restLabel } from './live';
 import * as timer from './timer';
 import { t as tr } from './i18n';
+import { sayRestStart, silenceVoice } from './voice';
 
 /*
  * Odhaczenie serii z przerwą i stoperem — przepływ wspólny dla ekranu treningu (components/ActiveWorkout.tsx) i zegarka (lib/watch/*):
@@ -22,8 +23,12 @@ export async function completeSet(ei: number, si: number, at?: number): Promise<
     const rest = toggleDone(ei, si, at);
     /* T8: przerwa liczona od końca serii — po późnym wybudzeniu zostaje reszta albo nic */
     const live = !!rest && (at == null || at + rest * 1000 > Date.now());
-    if (set.done) { if (rest && live) await timer.start(rest, set.id, at); else await timer.stop(); }
-    else await timer.stopIfFrom(set.id);
+    if (set.done) { if (rest && live) await startRest(rest, set.id, at); else await timer.stop(); }
+    else { silenceVoice(); await timer.stopIfFrom(set.id); } /* cofnięcie odhaczenia przerywa zapowiedź */
+}
+/** Start przerwy po serii + zapowiedź głosem (lib/voice.ts: tylko gdy głos ma mówić; błąd mowy nigdy nie psuje przerwy). Jedna droga dla ✓ na telefonie, zdarzeń z zegarka i ponownego pomiaru. */
+async function startRest(sec: number, setId: string, at?: number) {
+  await timer.start(sec, setId, at); const a = getState().active; if (a) sayRestStart(a, setId).catch(() => {});
 }
 /** Podpis przerwy na Live Activity: następna seria albo następne ćwiczenie (runda 22: wspólny dla odhaczenia i ponownego pomiaru; audyt 0.10 LIVE-04:
  * ta sama reguła co karta „teraz”, po ostatniej serii — `last`). */
@@ -37,7 +42,7 @@ async function finishTimedSetInner(): Promise<void> {
     const { setId, sec, endAt } = await timer.stopSet(); const pos = findSet(setId); const a = getState().active; if (!pos || !a) return;
     const set = a.exercises[pos.ei].sets[pos.si]; set.durationSec = Math.max(1, sec); if (set.done) markActivity(a, endAt); /* Q-010 */ save(a);
     if (!set.done) await completeSet(pos.ei, pos.si, endAt);
-    else { const nx = a.exercises[pos.ei].sets[pos.si + 1]; const rest = nx && nx.kind === 'drop' && !nx.done ? null /* T7: przed drop setem bez przerwy, także po ponownym pomiarze */ : restAfter(pos.ei, pos.si) ?? roundRest(pos.ei); if (rest && endAt + rest * 1000 > Date.now()) { restLabels(pos.ei, pos.si); await timer.start(rest, set.id, endAt); } /* T9: przerwa od końca serii, jak przy pierwszym pomiarze */ } // runda 19/21/22: po ponownym pomiarze przerwa od nowa (w supersecie — przerwa rundy)
+    else { const nx = a.exercises[pos.ei].sets[pos.si + 1]; const rest = nx && nx.kind === 'drop' && !nx.done ? null /* T7: przed drop setem bez przerwy, także po ponownym pomiarze */ : restAfter(pos.ei, pos.si) ?? roundRest(pos.ei); if (rest && endAt + rest * 1000 > Date.now()) { restLabels(pos.ei, pos.si); await startRest(rest, set.id, endAt); } /* T9: przerwa od końca serii, jak przy pierwszym pomiarze */ } // runda 19/21/22: po ponownym pomiarze przerwa od nowa (w supersecie — przerwa rundy)
 }
 /** Podpis TRWAJĄCEJ przerwy liczony od nowa dla serii, która ją uruchomiła (lib/live.ts restLabel) — po zamianie (E2 pkt 3.8), „Pomiń dziś”
  * i każdej innej zmianie treningu (audyt 0.10, LIVE-03/04). Bez przerwy albo bez tej serii — nic. */

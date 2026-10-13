@@ -51,6 +51,8 @@ try {
       if (code === 'pl' || code === 'en') ok(!/nie odczytuje|does not read|doesn't read/i.test(sh ?? '') && /kroki|steps/i.test(sh ?? ''), `InfoPlist.strings ${d}: opis odczytu Zdrowia nieaktualny`); } }
   const auto = execSync('npx expo-modules-autolinking resolve -p apple --json', { cwd: root }).toString();
   ok(/"podName":"RestActivity"/.test(auto.replace(/\s/g, '')), 'autolinking: moduł RestActivity nie jest linkowany (Live Activity byłoby martwe)');
+  /* 0.20 (docs/36): moduł głosu VoiceCue linkowany do aplikacji; etap 1 bez trybu audio w tle (UIBackgroundModes sprawdzone wyżej) */
+  ok(/"podName":"VoiceCue"/.test(auto.replace(/\s/g, '')), 'autolinking: moduł VoiceCue nie jest linkowany (zapowiedzi głosowe byłyby martwe)');
   /* audyt 0.10 NAT-07: martwy moduł ExtensionStorage (@bacons/apple-targets, App Group widżetu wycofanego 07.10) poza aplikacją; ekran startowy z wariantem ciemnym */
   ok(!/"podName":"ExtensionStorage"/.test(auto.replace(/\s/g, '')), 'autolinking: ExtensionStorage linkowany do aplikacji (package.json expo.autolinking.exclude)');
   const splashDir = root + 'ios/Trening/Images.xcassets/'; const splash = readdirSync(splashDir).filter(d => /^Splash.*\.colorset$/.test(d)).map(d => readFileSync(splashDir + d + '/Contents.json', 'utf8')).join('\n');

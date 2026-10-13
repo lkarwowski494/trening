@@ -592,6 +592,10 @@
   "en": "No data from Apple Health for this day. If there should be some, check access in the Health app: profile → Apps → {app}."
  },
  {
+  "pl": "Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność → Treści mówione → Głosy).",
+  "en": "This phone has no voice for the app language. Download one in iOS Settings (Accessibility → Spoken Content → Voices)."
+ },
+ {
   "pl": "Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.",
   "en": "No bands yet. Add one to log assisted pull-ups."
  },
@@ -1489,6 +1493,10 @@
  {
   "pl": "glute-ham raise",
   "en": "glute-ham raise"
+ },
+ {
+  "pl": "Głos także przez głośnik telefonu",
+  "en": "Voice also through the phone speaker"
  },
  {
   "pl": "główna",
@@ -3709,6 +3717,10 @@
   "en": "Comparison: {name}"
  },
  {
+  "pl": "Posłuchaj przykładu",
+  "en": "Listen to an example"
+ },
+ {
   "pl": "Postęp treningu: {d} z {n} serii",
   "en": "Workout progress: {d} of {n} sets"
  },
@@ -5409,6 +5421,10 @@
  {
   "pl": "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.",
   "en": "In Progress a marked week shows as the letter D on the charts — you do not change it there."
+ },
+ {
+  "pl": "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.",
+  "en": "In headphones the next exercise is announced at the start of the rest (when sound is on); through the phone speaker only if you turn this switch on."
  },
  {
   "pl": "W tej wersji",
