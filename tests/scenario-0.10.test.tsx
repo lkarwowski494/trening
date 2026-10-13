@@ -40,7 +40,7 @@ test('plan tygodnia → restart → Kalendarz i ekran Trening: plan obowiązuje,
 
 test('kilka planów: „+ Nowy plan” → dzień → „Ustaw jako aktywny” → restart → aktywny nowy, poprzedni w „Inne plany” — i z powrotem', async () => {
   const t = await boot('/plan', ids => { plan.setWeekDay(0, ids[0]); plan.setPlanName('Rutyna'); });
-  await tap(screen.getByText('+ Nowy plan')); await flushAll(10);
+  await tap(screen.getByLabelText('Dodaj plan')); await flushAll(10);
   const id = plan.savedPlans()[0].id; plan.setSavedDay(id, 2, t[1].id); /* edycja zapisanego planu (ten sam ekran z ?id=) — dzień środy */
   await restart(`/plan?id=${id}`);
   await tap(screen.getAllByText('Ustaw jako aktywny')[0]); await flushAll(5); await press(`Ustawić „${plan.savedPlans().find(p => p.id === id)!.name}” jako aktywny plan?`, 'Ustaw');

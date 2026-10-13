@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { ScrollView, View, Alert, Pressable } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
-import { Screen, Chip, Muted, Txt, Btn, Item, Field, Input, SectionTitle } from '@/components/ui';
+import { Screen, Chip, Muted, Txt, Btn, Item, Field, Input, SectionTitle, Missing } from '@/components/ui';
 import { SwipeRow } from '@/components/SwipeRow';
 import { getState, useTick, templateGroups, newTemplate, SAVED_PLANS_MAX } from '@/lib/store';
 import { ownTemplates } from '@/lib/generator';
@@ -9,6 +9,9 @@ import { useTheme, F } from '@/lib/theme';
 import { weekPlanDays, setWeekDay, planName, setPlanName, typePlanName, savedPlans, newPlan, setSavedDay, typeSavedName, renamePlan, activatePlan, deactivatePlan, hasActivePlan, deletePlan, plansFull, activationNote, savedChanges, hasPlan, assignTarget, type PlanDays } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
+import { cancelButton } from '@/lib/confirm';
+import { useAddHeader } from '@/components/AddButton';
+import { weekdayLabels, weekdayNames } from '@/lib/calendar';
 
 /*
  * Plan tygodnia (kalendarz, decyzja właściciela 08.10.2026, wariant 2A): dla każdego dnia pon…nd szablon albo „Wolne”. Plan powtarza się co tydzień;
@@ -22,8 +25,8 @@ import { t, locale, lang } from '@/lib/i18n';
  * - I1: pierwszy dzień w planie — prośba o zgodę na powiadomienia (przypomnienie rano).
  * - UI2-08 (audyt kontrolny 1): zapisany plan (/plan?id=…) ma w nagłówku swoją nazwę (bez nazwy — „Inny plan”), nie „Plan tygodnia”.
  */
-const weekdayName = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'long' }); /* 1.01.2024 = poniedziałek */
-const weekdayShort = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' });
+const weekdayName = (i: number) => weekdayNames()[i];
+const weekdayShort = (i: number) => weekdayLabels()[i];
 const tplName = (id: string | null) => (id ? getState().templates.find(x => x.id === id && !x.archived)?.name ?? '' : '');
 /** „pon. Upper A · śr. Upper B” — dni z treningiem. */
 export const planSummary = (days: PlanDays) => days.map((id, i) => (tplName(id) ? `${weekdayShort(i)} ${tplName(id)}` : '')).filter(Boolean).join(' · ') || t('bez treningów');
@@ -58,7 +61,7 @@ function DayRows({ days, onSet, target }: { days: PlanDays; onSet: (i: number, i
       <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={`${weekdayName(i)}, ${nm}`} accessibilityHint={t('Wybierz szablon na ten dzień.')} accessibilityState={{ expanded: isOpen }} onPress={() => setOpen(isOpen ? null : i)}
         style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 48, gap: 8, opacity: pressed ? 0.6 : 1 })}>
         <Txt style={{ fontFamily: F.semibold }}>{weekdayName(i)}</Txt>
-        <Txt style={{ flexShrink: 1, textAlign: 'right', color: tplName(id) ? th.text : th.muted }}>{`${nm} ${isOpen ? '▾' : '›'}`}</Txt>
+        <Txt style={{ flexShrink: 1, textAlign: 'right', color: tplName(id) ? th.text : th.muted }}>{`${nm} ${isOpen ? '▾' : '▸'}`}</Txt>
       </Pressable>
       {isOpen ? <View style={{ paddingBottom: 10, gap: 6 }}>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}><Chip label={t('Wolne')} on={!tplName(id)} a11yLabel={`${weekdayName(i)}: ${t('Wolne')}`} onPress={() => { onSet(i, null); setOpen(null); }} /></View>
@@ -80,9 +83,9 @@ export default function PlanScreen() {
   const saved = id ? savedPlans().find(p => p.id === id) : undefined; const initial = useRef(saved?.name ?? '');
   const activate = (pid: string, name: string, after?: () => void) => {
     Alert.alert(t('Ustawić „{name}” jako aktywny plan?', { name: nameOr(name) }), activationNote(pid) || undefined, [
-      { text: t('Anuluj'), style: 'cancel' }, { text: t('Ustaw'), onPress: () => { activatePlan(pid); after?.(); } },
+      { ...cancelButton() }, { text: t('Ustaw'), onPress: () => { activatePlan(pid); after?.(); } },
     ]); };
-  if (id && !saved) return <Screen><Muted style={{ marginTop: 12 }}>{t('Nie ma takiego planu.')}</Muted></Screen>;
+  if (id && !saved) return <Screen><Missing>{t('Nie ma takiego planu.')}</Missing></Screen>;
   if (saved) return ( /* B2 A: zapisany plan edytowany przed aktywacją */
     <Screen><Stack.Screen options={{ title: saved.name || t('Inny plan') }} />{/* UI2-08: nie „Plan tygodnia” — to nie aktywny plan */}
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
@@ -102,15 +105,15 @@ function ActivePlan({ activate }: { activate: (id: string, name: string) => void
   const off = () => {
     /* docs/18 pkt 5 (11.10.2026): wyłączenie zawsze z potwierdzeniem; „Inne plany” pełne — plan nie miałby gdzie się zapisać */
     if (plansFull()) { Alert.alert(t('Nie można wyłączyć planu'), t('W „Inne plany” jest już {n} planów — usuń któryś, by wyłączyć obecny.', { n: SAVED_PLANS_MAX })); return; }
-    Alert.alert(t('Wyłączyć plan?'), [t('Kalendarz od dziś będzie pusty.'), activationNote() ? activationNote() : ''].filter(Boolean).join('\n'), [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Wyłącz'), style: 'destructive', onPress: () => { deactivatePlan(); } }]); };
+    Alert.alert(t('Wyłączyć plan?'), [t('Kalendarz od dziś będzie pusty.'), activationNote() ? activationNote() : ''].filter(Boolean).join('\n'), [{ ...cancelButton() }, { text: t('Wyłącz'), style: 'destructive', onPress: () => { deactivatePlan(); } }]); };
+  const addHeader = useAddHeader(!plansFull() ? t('Dodaj plan') : null, () => { const nid = newPlan(); if (nid) router.push(`/plan?id=${nid}`); }, t('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.')); /* 13.10.2026: „+” w nagłówku; UI2-02: blokada podwójnego tapnięcia w AddButton */
   const setDay = (i: number, x: string | null) => { const had = hasPlan(); setWeekDay(i, x); if (!had && hasPlan()) askReminderPermission().catch(() => {}); };
   return (
-    <Screen><ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
+    <Screen><Stack.Screen options={addHeader} /><ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
       {hasActivePlan() ? <View testID="active-plan-row" style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><PlanToggle name={nameOr(planName() || t('Mój plan'))} active onPress={off} /><Txt style={{ flex: 1, fontFamily: F.semibold }}>{t('Aktywny plan')}</Txt></View> : null}
       <Field label={t('Nazwa planu')}><Input value={planName()} placeholder={t('Mój plan')} maxLength={40} accessibilityLabel={t('Nazwa planu')} onChangeText={typePlanName} onEndEditing={() => setPlanName(planName())} /></Field>
       <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')}</Muted>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
-        {!plansFull() ? <Btn nav /* UI2-02: blokada obejmuje też newPlan() — jeden plan */ title={t('+ Nowy plan')} small accessibilityHint={t('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.')} onPress={() => { const nid = newPlan(); if (nid) router.push(`/plan?id=${nid}`); }} /> : null}
         <Btn nav title={t('Szablony')} small accessibilityHint={t('Otwiera listę szablonów.')} onPress={() => openTemplates(router)} />{/* 11.10.2026: z Planowania do szablonów (docs/22 problem 3) */}
         <Btn nav title={t('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} />{/* 08.10.2026: generator (docs/24) */}
         {ownTemplates().length ? <Btn nav title={t('Plan z moich szablonów')} small onPress={() => router.push('/generator?mode=own')} /> : null}{/* 09.10.2026 (B) */}

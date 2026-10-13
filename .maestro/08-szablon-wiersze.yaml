@@ -3,7 +3,7 @@
 # zwijane karty (otwarta jedna), drugie ćwiczenie i „Usuń ćwiczenie”, a potem Start — trening ma typy i wartości z wierszy.
 #
 # Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
-#   "Other workout", "More, tab.*", "Templates", "\+ New", "New template" (below: "Name" — E2E 89), "\+ Add exercise", "Search exercises…",
+#   "Other workout", "More, tab.*", "Templates", "Add template", "New template" (below: "Name" — E2E 89), "\+ Add exercise", "Search exercises…",
 #   "Bench Press \(Dumbbell\), dumbbells", "Bent Over Row \(Dumbbell\), dumbbells" ← jak podprzepływ subflows/szablon-testowy.yaml
 #   "Bench Press \(Dumbbell\)"       ← accessibilityLabel nagłówka karty ćwiczenia (Pressable w app/template/[id].tsx; tapnięcie zwija/rozwija)
 #   "\+ set" / "\+ warm-up" / "\+ drop set" ← '+ seria' / '+ rozgrzewka' / '+ drop set' (TplRows)
@@ -34,11 +34,11 @@ name: Szablon jak trening — wiersze serii, karty, start
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 
 # --- Nowy szablon „Rows E2E” ---
-# 11.10.2026: ekran główny nie ma „+ New template” — nowy szablon z ekranu Szablony (Więcej → Templates, przycisk „+ New”; wariant A: Szablony pod Więcej)
+# 11.10.2026: ekran główny nie ma „+ New template” — nowy szablon z ekranu Szablony (Więcej → Templates, przycisk „+” (Add template); wariant A: Szablony pod Więcej)
 - tapOn: "More, tab.*"
 - tapOn: "Templates"
-- extendedWaitUntil: { visible: "\\+ New", timeout: 30000 }
-- tapOn: "\\+ New"
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
+- tapOn: "Add template"
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 - tapOn: { text: "New template", below: "Name" }   # E2E 89: tytuł nagłówka edycji nowego szablonu to też „New template” — pole pod etykietą „Name”
 - eraseText: 30

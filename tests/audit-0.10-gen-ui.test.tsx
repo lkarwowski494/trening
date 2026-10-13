@@ -148,7 +148,7 @@ describe('B1 / UI-02 / X-07 / DAT-02 / LOG-05: aktywacja z generatora mówi to s
 describe('LOG-08: opisy presetów miejsc w jednostce aplikacji', () => {
   test('lb: „sztanga 45 lb + talerze 45…2,5 lb; hantle 5–100 lb co 5”, hotel 5–50 lb', async () => {
     await boot('/more/locations', () => { S().settings.unit = 'lb'; store.applyPrefs(); store.save(); });
-    await tap(screen.getByText('+ Dodaj miejsce')); await flushAll(5);
+    await tap(screen.getByLabelText('Dodaj miejsce')); await flushAll(5);
     expect(screen.getByLabelText('Pełna siłownia, cały sprzęt; sztanga 45 lb + talerze 45…2,5 lb; hantle 5–100 lb co 5')).toBeTruthy();
     expect(screen.getByLabelText('Hotel, hantle 5–50 lb, ławka regulowana, mata, ściana, bieżnia, rower')).toBeTruthy();
     await tap(screen.getByLabelText(/^Pełna siłownia, /)); await flushAll(10);

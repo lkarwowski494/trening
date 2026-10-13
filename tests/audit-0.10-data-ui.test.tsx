@@ -29,10 +29,10 @@ describe('J2: Apple Health — licznik w Ustawieniach, ponowienie, stan w szczeg
     await boot(() => { S().settings.healthSync = true; w = addWorkout(at(9, 7), [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.healthPending = true; });
     jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => { throw new Error('HealthKit'); });
     await go('/more/settings'); await flushAll(10);
-    expect(screen.getByText('Czeka na zapis w Apple Health: 1. Ponawiam przy uruchomieniu i powrocie do aplikacji.')).toBeTruthy();
+    expect(screen.getByText('Czeka na zapis w Apple Health: 1. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.')).toBeTruthy();
     await tap(screen.getByText('Ponów teraz')); await flushAll(10);
-    expect(global.__alerts.at(-1)).toMatchObject({ title: 'Nie udało się', msg: 'Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → Trening.' }); /* odmowa — trening dalej czeka */
-    await go(`/history/${w.id}`); await flushAll(10); expect(screen.getByText('Nie zapisano jeszcze w Apple Health — ponowię przy następnym uruchomieniu aplikacji.')).toBeTruthy();
+    expect(global.__alerts.at(-1)).toMatchObject({ title: 'Nie udało się zapisać w Apple Health', msg: 'Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → Trening.' }); /* odmowa — trening dalej czeka */
+    await go(`/history/${w.id}`); await flushAll(10); expect(screen.getByText('Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.')).toBeTruthy();
     jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => (global as any).__hkProxy('uuid-1'));
     await go('/more/settings'); await flushAll(10); await tap(screen.getByText('Ponów teraz')); await flushAll(10);
     expect(screen.queryByText(/^Czeka na zapis w Apple Health/)).toBeNull(); expect(S().workouts.find(x => x.id === w.id)!.healthUUID).toBe('uuid-1');
@@ -82,7 +82,7 @@ describe('N3 / PERF-01: zakładka Ćwiczenia — wirtualizacja, przeliczanie tyl
   test('700+ ćwiczeń (po researchu biblioteki 709): na ekranie najwyżej kilkadziesiąt wierszy; szukanie nadal znajduje każde ćwiczenie', async () => {
     await boot(); await go('/exercises'); await flushAll(10);
     expect(S().exercises.filter(e => !e.archived).length).toBeGreaterThan(700); expect(rowsOnScreen()).toBeLessThanOrEqual(80); expect(rowsOnScreen()).toBeGreaterThan(5);
-    await typeText(screen.getByPlaceholderText('Szukaj…'), 'Back Squat'); await flushAll(5); expect(screen.getByText('Back Squat')).toBeTruthy();
+    await typeText(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Back Squat'); await flushAll(5); expect(screen.getByText('Back Squat')).toBeTruthy();
   });
   test('znak w notatce ćwiczenia i nazwie szablonu nie przelicza listy (visibleExercises 0×); zmiana nazwy ćwiczenia — raz; komunikat usuwania liczony dopiero przy pytaniu', async () => {
     await boot(() => { addWorkout(at(9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); }); await go('/exercises'); await flushAll(10);
@@ -92,7 +92,7 @@ describe('N3 / PERF-01: zakładka Ćwiczenia — wirtualizacja, przeliczanie tyl
     await flushAll(5); expect(vis).not.toHaveBeenCalled();
     await act(async () => { sq.name = 'Przysiad'; store.save(sq); }); await flushAll(5); expect(vis).toHaveBeenCalledTimes(1);
     expect(inHist).not.toHaveBeenCalled();
-    await typeText(screen.getByPlaceholderText('Szukaj…'), 'Przysiad'); await flushAll(5);
+    await typeText(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Przysiad'); await flushAll(5);
     await swipeDelete('Usuń z biblioteki: Przysiad');
     expect(inHist).toHaveBeenCalled(); expect(global.__alerts.at(-1)!.msg).toBe('Zniknie z list i szablonów; historia, wykresy i eksport zostaną.');
   });

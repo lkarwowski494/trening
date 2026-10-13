@@ -160,6 +160,14 @@
   "en": "{p}% of the weekly plan ({done} of {n})"
  },
  {
+  "pl": "{price} jednorazowo",
+  "en": "{price} one-time"
+ },
+ {
+  "pl": "{price}/{period}",
+  "en": "{price}/{period}"
+ },
+ {
   "pl": "{title} ({sub}): objętość {v}, {p}; serie {s}, {d}",
   "en": "{title} ({sub}): volume {v}, {p}; sets {s}, {d}"
  },
@@ -228,8 +236,8 @@
   "en": "↺ undo"
  },
  {
-  "pl": "↺ przywróć: {name}",
-  "en": "↺ restore: {name}"
+  "pl": "↺ cofnij zamianę: {name}",
+  "en": "↺ undo swap: {name}"
  },
  {
   "pl": "⇄ zamień",
@@ -248,24 +256,8 @@
   "en": "+ drop set"
  },
  {
-  "pl": "+ Guma",
-  "en": "+ Band"
- },
- {
-  "pl": "+ Nowe",
-  "en": "+ New"
- },
- {
-  "pl": "+ Nowy",
-  "en": "+ New"
- },
- {
   "pl": "+ Nowy folder",
   "en": "+ New folder"
- },
- {
-  "pl": "+ Nowy plan",
-  "en": "+ New plan"
  },
  {
   "pl": "+ Nowy szablon",
@@ -312,6 +304,10 @@
   "en": "★ Main place — default for new workouts and for templates without their own place."
  },
  {
+  "pl": "1 miesiąc za darmo, potem {price}/{period}",
+  "en": "1 month free, then {price}/{period}"
+ },
+ {
   "pl": "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.",
   "en": "10 new languages: German, French, Italian, Dutch, Swedish, Danish, Norwegian, Finnish, Turkish and Greek."
  },
@@ -354,6 +350,10 @@
  {
   "pl": "Anuluj edycję ćwiczenia",
   "en": "Cancel exercise editing"
+ },
+ {
+  "pl": "Anuluj edycję sesji",
+  "en": "Cancel session editing"
  },
  {
   "pl": "Anuluj edycję szablonu",
@@ -518,6 +518,10 @@
  {
   "pl": "Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.",
   "en": "Not used in any workout: {list}. This also replaces the active plan “{plan}”, made only of these templates — “Replace” deletes them and makes the new plan active in its place, “Keep” adds the new ones alongside."
+ },
+ {
+  "pl": "Bez zakupu: {n} {s} na żywo w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.",
+  "en": "Without a purchase: {n} live {s} per month; history, backup and export are always available."
  },
  {
   "pl": "bezpośrednie",
@@ -736,6 +740,14 @@
   "en": "Set goal: {part}"
  },
  {
+  "pl": "Cele partii",
+  "en": "Muscle group goals"
+ },
+ {
+  "pl": "Ceny są niedostępne bez połączenia z internetem.",
+  "en": "Prices are unavailable without an internet connection."
+ },
+ {
   "pl": "Ciemny",
   "en": "Dark"
  },
@@ -856,8 +868,12 @@
   "en": "Duration: 1 to 1440 minutes."
  },
  {
-  "pl": "Czeka na zapis w Apple Health: {n}. Ponawiam przy uruchomieniu i powrocie do aplikacji.",
-  "en": "Waiting to be saved to Apple Health: {n}. I retry when the app starts and when you return to it."
+  "pl": "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.",
+  "en": "Waiting to be saved to Apple Health: {n}. It will be retried when the app starts and when you return to it."
+ },
+ {
+  "pl": "Czeka na zgodę organizatora rodziny.",
+  "en": "Waiting for approval from the family organizer."
  },
  {
   "pl": "czerwona",
@@ -965,6 +981,10 @@
   "en": "Data from a newer app version — update the app"
  },
  {
+  "pl": "Darmowe treningi w tym miesiącu: {n} z {limit}",
+  "en": "Free workouts this month: {n} of {limit}"
+ },
+ {
   "pl": "Data (RRRR-MM-DD)",
   "en": "Date (YYYY-MM-DD)"
  },
@@ -1061,12 +1081,32 @@
   "en": "Add weight"
  },
  {
+  "pl": "Dodaj ćwiczenie",
+  "en": "Add exercise"
+ },
+ {
   "pl": "Dodaj do planu",
   "en": "Add to plan"
  },
  {
+  "pl": "Dodaj gumę",
+  "en": "Add band"
+ },
+ {
+  "pl": "Dodaj miejsce",
+  "en": "Add place"
+ },
+ {
   "pl": "Dodaj notatkę",
   "en": "Add note"
+ },
+ {
+  "pl": "Dodaj plan",
+  "en": "Add plan"
+ },
+ {
+  "pl": "Dodaj szablon",
+  "en": "Add template"
  },
  {
   "pl": "Dodane: {list}.",
@@ -1085,8 +1125,8 @@
   "en": "default {s}"
  },
  {
-  "pl": "Domyślna przerwa (sekundy)",
-  "en": "Default rest (seconds)"
+  "pl": "Domyślna przerwa (s)",
+  "en": "Default rest (s)"
  },
  {
   "pl": "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.",
@@ -1099,6 +1139,18 @@
  {
   "pl": "Dopisz trening wstecz",
   "en": "Log a past workout"
+ },
+ {
+  "pl": "Dostęp do {date}",
+  "en": "Access until {date}"
+ },
+ {
+  "pl": "Dostęp z Chmury rodzinnej",
+  "en": "Access through Family Sharing"
+ },
+ {
+  "pl": "Dostęp z kodu do {date}",
+  "en": "Access from a code until {date}"
  },
  {
   "pl": "Dostępne ćwiczenia: {n} z {m}",
@@ -1746,8 +1798,8 @@
   "en": "kettlebell: {v}"
  },
  {
-  "pl": "Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.",
-  "en": "Several plans: “+ New plan” creates a copy to change, and “Make active” under “Other plans” switches to it — day changes come back with their plan."
+  "pl": "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.",
+  "en": "Several plans: the + button in the header (Add plan) creates a copy to change, and “Make active” under “Other plans” switches to it — day changes come back with their plan."
  },
  {
   "pl": "klatka",
@@ -1894,6 +1946,10 @@
   "en": "A short animation at launch: plates slide onto the bar."
  },
  {
+  "pl": "Kup na zawsze",
+  "en": "Buy forever"
+ },
+ {
   "pl": "landmine",
   "en": "landmine"
  },
@@ -1956,6 +2012,10 @@
  {
   "pl": "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.",
   "en": "List: exercises and sets as in earlier versions, without the card."
+ },
+ {
+  "pl": "Ładowanie cen…",
+  "en": "Loading prices…"
  },
  {
   "pl": "łańcuchy",
@@ -2084,6 +2144,14 @@
  {
   "pl": "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.",
   "en": "Muscle: sets per muscle group per week up to the goal from Settings (automatically {m}), {a}–{b} reps (at home {c}–{d}), usually {r1}–{r2} reps in reserve."
+ },
+ {
+  "pl": "Masz dostęp na zawsze",
+  "en": "You have access forever"
+ },
+ {
+  "pl": "Masz pełną wersję",
+  "en": "You have the full version"
  },
  {
   "pl": "maszyna",
@@ -2326,12 +2394,20 @@
   "en": "Workout place: {l}"
  },
  {
+  "pl": "miesiąc",
+  "en": "month"
+ },
+ {
   "pl": "Miesiąc",
   "en": "Month"
  },
  {
   "pl": "Miesiąc do miesiąca",
   "en": "Month over month"
+ },
+ {
+  "pl": "Miesięcznie",
+  "en": "Monthly"
  },
  {
   "pl": "Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.",
@@ -2435,6 +2511,10 @@
   "en": "on the device: {v}"
  },
  {
+  "pl": "Na zawsze",
+  "en": "Forever"
+ },
+ {
   "pl": "Nadpisać dane?",
   "en": "Overwrite data?"
  },
@@ -2475,8 +2555,8 @@
   "en": "Best session (volume)"
  },
  {
-  "pl": "Najpierw zakończ albo anuluj bieżący trening.",
-  "en": "Finish or cancel the current workout first."
+  "pl": "Najpierw zakończ albo odrzuć bieżący trening.",
+  "en": "Finish or discard the current workout first."
  },
  {
   "pl": "najszersze grzbietu",
@@ -2497,6 +2577,14 @@
  {
   "pl": "Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.",
   "en": "At most {n} templates — each one gets at least one day."
+ },
+ {
+  "pl": "Napisz do nas",
+  "en": "Write to us"
+ },
+ {
+  "pl": "Napisz na: {mail}",
+  "en": "Write to: {mail}"
  },
  {
   "pl": "Następna seria.",
@@ -2635,8 +2723,40 @@
   "en": "Something went wrong"
  },
  {
+  "pl": "Nie udało się dokończyć zakupu",
+  "en": "Couldn't complete the purchase"
+ },
+ {
   "pl": "Nie udało się otworzyć danych.",
   "en": "Could not open your data."
+ },
+ {
+  "pl": "Nie udało się otworzyć poczty",
+  "en": "Couldn’t open Mail"
+ },
+ {
+  "pl": "Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.",
+  "en": "Couldn't restore purchases. Check your internet connection."
+ },
+ {
+  "pl": "Nie udało się włączyć Apple Health",
+  "en": "Couldn't turn on Apple Health"
+ },
+ {
+  "pl": "Nie udało się wyeksportować kopii",
+  "en": "Couldn't export the backup"
+ },
+ {
+  "pl": "Nie udało się wysłać danych",
+  "en": "Couldn't send the data"
+ },
+ {
+  "pl": "Nie udało się wysłać kopii",
+  "en": "Couldn't send the backup"
+ },
+ {
+  "pl": "Nie udało się zaimportować pliku",
+  "en": "Couldn't import the file"
  },
  {
   "pl": "Nie udało się zapisać",
@@ -2651,16 +2771,24 @@
   "en": "Could not save the safety copy in Files — your data was not changed."
  },
  {
+  "pl": "Nie udało się zapisać w Apple Health",
+  "en": "Couldn't save to Apple Health"
+ },
+ {
   "pl": "Nie zamieniaj: {name}",
   "en": "Don’t swap: {name}"
  },
  {
-  "pl": "Nie zapisano jeszcze w Apple Health — ponowię przy następnym uruchomieniu aplikacji.",
-  "en": "Not saved to Apple Health yet — I’ll retry the next time the app starts."
+  "pl": "Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.",
+  "en": "Not saved to Apple Health yet — it will be retried the next time the app starts."
  },
  {
   "pl": "Nie zmieniono przerwy",
   "en": "Rest not changed"
+ },
+ {
+  "pl": "Nie znaleziono zakupów dla tego konta Apple.",
+  "en": "No purchases found for this Apple account."
  },
  {
   "pl": "Nie zostałaby żadna seria z wynikiem. Usunąć tę sesję z historii?",
@@ -2967,6 +3095,18 @@
   "en": "OK"
  },
  {
+  "pl": "Okres próbny do {date}",
+  "en": "Free trial until {date}"
+ },
+ {
+  "pl": "Okres próbny dobiega końca",
+  "en": "Your free trial is ending"
+ },
+ {
+  "pl": "Okres próbny kończy się {date}. Jeśli nie chcesz subskrypcji, anuluj ją w ustawieniach konta Apple.",
+  "en": "Your free trial ends on {date}. If you don't want the subscription, cancel it in your Apple account settings."
+ },
+ {
   "pl": "opaski na kostki",
   "en": "ankle straps"
  },
@@ -3043,6 +3183,10 @@
   "en": "last time {s}"
  },
  {
+  "pl": "Otwiera aplikację Mail",
+  "en": "Opens the Mail app"
+ },
+ {
   "pl": "Otwiera listę szablonów.",
   "en": "Opens the template list."
  },
@@ -3053,6 +3197,10 @@
  {
   "pl": "Otwiera Postępy.",
   "en": "Opens Progress."
+ },
+ {
+  "pl": "Otwiera stronę w przeglądarce.",
+  "en": "Opens the page in your browser."
  },
  {
   "pl": "Otwiera szczegóły Progresji.",
@@ -3145,6 +3293,10 @@
  {
   "pl": "Pełna siłownia",
   "en": "Full gym"
+ },
+ {
+  "pl": "Pełna wersja",
+  "en": "Full version"
  },
  {
   "pl": "Pełny trening",
@@ -3527,6 +3679,10 @@
   "en": "indirect (secondary, {h} each)"
  },
  {
+  "pl": "Potrzebne połączenie z internetem.",
+  "en": "An internet connection is needed."
+ },
+ {
   "pl": "pow.",
   "en": "reps"
  },
@@ -3645,6 +3801,10 @@
   "en": "lower back"
  },
  {
+  "pl": "Prywatność",
+  "en": "Privacy"
+ },
+ {
   "pl": "Przeciągnij za ≡, żeby zmienić kolejność. Superset przesuwa się w całości; kolejność w nim zmienisz uchwytami przy ćwiczeniach.",
   "en": "Drag by ≡ to change the order. A superset moves as a whole; use the handles next to its exercises to reorder within it."
  },
@@ -3681,8 +3841,8 @@
   "en": "Rest"
  },
  {
-  "pl": "Przerwa (sekundy)",
-  "en": "Rest (seconds)"
+  "pl": "Przerwa (s)",
+  "en": "Rest (s)"
  },
  {
   "pl": "przerwa {s}",
@@ -3715,10 +3875,6 @@
  {
   "pl": "Przerwa robocza (s)",
   "en": "Working rest (s)"
- },
- {
-  "pl": "przerwa s",
-  "en": "rest s"
  },
  {
   "pl": "przerwa z {s}",
@@ -3781,6 +3937,10 @@
   "en": "Front"
  },
  {
+  "pl": "Przycisk „Napisz do nas” w Więcej → O aplikacji.",
+  "en": "A “Write to us” button in More → About."
+ },
+ {
   "pl": "Przyda się: {list}.",
   "en": "Would help: {list}."
  },
@@ -3805,6 +3965,10 @@
   "en": "adductors"
  },
  {
+  "pl": "Przywrócono zakupy.",
+  "en": "Purchases restored."
+ },
+ {
   "pl": "Przywróć",
   "en": "Restore"
  },
@@ -3823,6 +3987,10 @@
  {
   "pl": "Przywróć z planu",
   "en": "Restore from plan"
+ },
+ {
+  "pl": "Przywróć zakupy",
+  "en": "Restore purchases"
  },
  {
   "pl": "Pusta nazwa folderu",
@@ -3907,6 +4075,14 @@
  {
   "pl": "robione {n}×",
   "en": "done {n}×"
+ },
+ {
+  "pl": "Rocznie",
+  "en": "Yearly"
+ },
+ {
+  "pl": "rok",
+  "en": "year"
  },
  {
   "pl": "roller",
@@ -4199,6 +4375,10 @@
   "en": "specialist training websites"
  },
  {
+  "pl": "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.",
+  "en": "More consistent controls across the app: windows with “Cancel” on the left, “+” in list headers for adding, and clearer messages and VoiceOver descriptions."
+ },
+ {
   "pl": "Sprawdź datę i godzinę",
   "en": "Check the date and time"
  },
@@ -4297,6 +4477,18 @@
  {
   "pl": "Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.",
   "en": "Tap a day in the Plan tab: “Move or skip” shows the options — move the plan by 1 day, move only this workout, swap or rest."
+ },
+ {
+  "pl": "Subskrybuj",
+  "en": "Subscribe"
+ },
+ {
+  "pl": "Subskrypcja",
+  "en": "Subscription"
+ },
+ {
+  "pl": "Subskrypcja odnawia się automatycznie, dopóki jej nie anulujesz w ustawieniach konta Apple.",
+  "en": "The subscription renews automatically until you cancel it in your Apple account settings."
  },
  {
   "pl": "suma pow.",
@@ -4432,10 +4624,6 @@
   "en": "Search templates…"
  },
  {
-  "pl": "Szukaj…",
-  "en": "Search…"
- },
- {
   "pl": "szyja",
   "en": "neck"
  },
@@ -4494,6 +4682,10 @@
  {
   "pl": "Tapnij, by spróbować ponownie. Zrób też backup.",
   "en": "Tap to try again. Also make a backup."
+ },
+ {
+  "pl": "Tapnij, by ukryć.",
+  "en": "Tap to dismiss."
  },
  {
   "pl": "Tapnij, by włączyć.",
@@ -4668,6 +4860,10 @@
   "en": "Workout"
  },
  {
+  "pl": "Trening — opinia",
+  "en": "Training — feedback"
+ },
+ {
   "pl": "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.",
   "en": "Workouts logged after the fact: you can choose the workout place in the editor."
  },
@@ -4728,12 +4924,25 @@
   "en": "The workout from your watch stays in Apple Health — delete it in the Health app."
  },
  {
+  "pl": "Trening zapisał się sam",
+  "en": "Workout saved automatically"
+ },
+ {
   "pl": "Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).",
   "en": "A workout you didn’t log at the time. Set the date and pick a template — you’ll fill in the sets in the next step (values from your last workout before that date)."
  },
  {
+  "pl": "trening|treningi|treningów",
+  "en": "workout|workouts",
+  "plural": true
+ },
+ {
   "pl": "Treningi",
   "en": "Workouts"
+ },
+ {
+  "pl": "Treningi bez limitu. Bez reklam. Wszystko zostaje na Twoim telefonie.",
+  "en": "Unlimited workouts. No ads. Everything stays on your phone."
  },
  {
   "pl": "Treningi do dodania: {n}",
@@ -4766,6 +4975,10 @@
  {
   "pl": "Trwający trening w tym miejscu trwa dalej; miejsce pokaże się jako „(usunięte miejsce)”.",
   "en": "The workout in progress at this place continues; the place will show as “(deleted place)”."
+ },
+ {
+  "pl": "Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.",
+  "en": "Your subscription still renews — cancel it so you don't pay twice."
  },
  {
   "pl": "Tydzień",
@@ -5144,6 +5357,10 @@
   "en": "Change the values in the set row below."
  },
  {
+  "pl": "Warunki korzystania",
+  "en": "Terms of Use"
+ },
+ {
   "pl": "wcześniej zamieniane",
   "en": "swapped before"
  },
@@ -5154,6 +5371,10 @@
  {
   "pl": "Wersja testowa {n} · {date}",
   "en": "Test build {n} · {date}"
+ },
+ {
+  "pl": "Wersja: {v} · iOS {os} · Język: {lang}",
+  "en": "Version: {v} · iOS {os} · Language: {lang}"
  },
  {
   "pl": "Widok treningu",
@@ -5184,8 +5405,8 @@
   "en": "More → Places and equipment: home, gym, hotel — each with its own equipment and weights."
  },
  {
-  "pl": "Więcej → Szablony: „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",
-  "en": "More → Templates: “+ New” creates a template: exercises, sets, rep range and rest."
+  "pl": "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",
+  "en": "More → Templates: the + button in the header (Add template) creates a template: exercises, sets, rep range and rest."
  },
  {
   "pl": "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.",
@@ -5416,6 +5637,10 @@
   "en": "done + planned"
  },
  {
+  "pl": "Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.",
+  "en": "You've used this month's free workouts ({n}). More from {date}."
+ },
+ {
   "pl": "Wykres słupkowy: {v}",
   "en": "Bar chart: {v}"
  },
@@ -5548,6 +5773,10 @@
   "en": "Start with fewer sets: {a} instead of {b} working sets? Same weights, the template stays unchanged."
  },
  {
+  "pl": "Zacznij miesiąc za darmo",
+  "en": "Start your free month"
+ },
+ {
   "pl": "Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.",
   "en": "You’re starting with this version — below are changes for people who used earlier ones. The guide is a better place to start."
  },
@@ -5604,6 +5833,10 @@
   "en": "Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength other exercises {e}–{f}) are a simplification: muscles grow across a wide range of loads when sets are close to failure (ACSM, research reviews)."
  },
  {
+  "pl": "Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.",
+  "en": "Purchases are tied to your Apple account. You restore workouts from a backup."
+ },
+ {
   "pl": "Zalecenia",
   "en": "Recommendations"
  },
@@ -5652,10 +5885,6 @@
   "en": "Save changes?"
  },
  {
-  "pl": "Zapisałem trening",
-  "en": "Workout saved"
- },
- {
   "pl": "Zapisane zostaną serie robocze: {n}.",
   "en": "Working sets to be saved: {n}."
  },
@@ -5696,16 +5925,16 @@
   "en": "Save measurement"
  },
  {
+  "pl": "Zapisz sesję",
+  "en": "Save session"
+ },
+ {
   "pl": "Zapisz szablon",
   "en": "Save template"
  },
  {
   "pl": "Zapisz szablony i plan",
   "en": "Save templates and plan"
- },
- {
-  "pl": "Zapisz zmiany",
-  "en": "Save changes"
  },
  {
   "pl": "Zapisz zmiany w szablonie",
@@ -5738,6 +5967,10 @@
  {
   "pl": "Zaplanuj deload od {date}",
   "en": "Plan a deload from {date}"
+ },
+ {
+  "pl": "Zarządzaj subskrypcją",
+  "en": "Manage subscription"
  },
  {
   "pl": "Zastąp",
@@ -5870,6 +6103,10 @@
  {
   "pl": "Zostaw",
   "en": "Keep"
+ },
+ {
+  "pl": "Zrealizuj kod",
+  "en": "Redeem code"
  },
  {
   "pl": "zrobione",

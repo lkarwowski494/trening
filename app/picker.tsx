@@ -2,9 +2,10 @@ import React, { useMemo, useRef, useState } from 'react';
 import { FlatList, ScrollView, Pressable, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme, F } from '@/lib/theme';
-import { Screen, Input, Chip, Item, Muted, Empty } from '@/components/ui';
+import { Screen, Input, Chip, Item, Muted, Empty, SearchField } from '@/components/ui';
 import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory, locationById, swapBlock, exById, usesBand, restoreExercise, exercisesInUse, inCoreList, libShowAll, setLibShowAll } from '@/lib/store';
 import { LibScopeChip } from '@/components/LibScope';
+import { useCloseHeader } from '@/components/CloseButton';
 import { afterSwap } from '@/components/ActiveWorkout';
 import { availability, capsOf, missingLabel, type Availability } from '@/lib/equipment';
 import { uid } from '@/lib/seed';
@@ -22,7 +23,7 @@ export default function PickerScreen() {
   // Runda 26: parametr z linku może być tablicą (powtórzony ?target=) — tylko tekst, inaczej nic nie dodajemy.
   const raw = useLocalSearchParams<{ target?: string | string[] }>().target; const target = typeof raw === 'string' ? raw : ''; const router = useRouter();
   const th = useTheme(); const [q, setQ] = useState(''); const [g, setG] = useState(''); const st = getState(); const chosen = useRef(false);
-  const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityLanguage={lang()} accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; /* weryfikacja: podwójne „Anuluj” zamykało też ekran pod spodem */ if (router.canGoBack()) router.back(); else router.replace('/'); }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 17, fontFamily: F.regular }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
+  const headerOpts = useCloseHeader(() => { if (chosen.current) return; chosen.current = true; /* weryfikacja: podwójne „Zamknij” zamykało też ekran pod spodem */ if (router.canGoBack()) router.back(); else router.replace('/'); });
   const ql = fold(q.trim());
   // Runda 6: dokładne trafienie nazwy pokazujemy mimo filtra partii — inaczej picker proponował utworzenie duplikatu.
   const exact = (e: Exercise) => !!ql && (fold(e.name) === ql || fold(exName(e)) === ql || formerExact(e, ql) /* UX2-01: dawna nazwa z katalogu */);
@@ -69,7 +70,7 @@ export default function PickerScreen() {
     <Screen style={{ paddingTop: 10 }}>
       {/* Audyt przed telefonem: okno zamykało się tylko gestem w dół (niedostępnym dla VoiceOver) — przycisk w nagłówku */}
       <Stack.Screen options={headerOpts} />
-      <Input value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} maxLength={80} autoFocus autoCorrect={false} />
+      <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} autoFocus />
       {ctx ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 6, marginTop: 8 }}>
         {/* decyzja właściciela 04.10.2026: miejsce jako filtr-etykieta (jak etykieta w JIRA) — „📍 Dom ✕” zdejmuje filtr, „+ 📍 Dom” przywraca; wybór zapamiętany */}
         <Chip label={showAll ? `+ 📍 ${ctx.name}` : `📍 ${ctx.name} ✕`} on={!showAll} onPress={() => { const v = !showAll; setAllOn(v); st.settings.pickerShowAll = v; save(); }} a11yLabel={showAll ? t('Filtr miejsca wyłączony: {l}', { l: ctx.name }) : t('Filtr miejsca: {l}', { l: ctx.name })} a11yHint={showAll ? t('Tapnij, by pokazać tylko dostępne.') : t('Tapnij, by zdjąć.')} /* A11-18: instrukcja w podpowiedzi */ />

@@ -34,7 +34,7 @@ test('F1 foreground after 7 h with running plank (work done earlier): finished, 
   const la = (global.__la as any[]); log('la tail', JSON.stringify(la.slice(-3)));
   expect(la[la.length - 1][0]).toBe('end');
   log(global.__alerts.map(a => a.title + ': ' + a.msg).join(' | '));
-  expect(global.__alerts.filter(a => a.title === 'Zapisałem trening').length).toBe(1);
+  expect(require('@/lib/notices').autoSavedNotice()).not.toBeNull(); expect(global.__alerts.filter(a => a.title === 'Zapisałem trening').length).toBe(0);
 });
 
 test('F2 foreground after 7 h with running warm-up plank only: set done, prompt warmup, UI ok, no rest', async () => {

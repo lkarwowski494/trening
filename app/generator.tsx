@@ -4,8 +4,8 @@ import { ScrollView, View, Alert } from 'react-native';
 import { useRouter, useLocalSearchParams, Stack } from 'expo-router';
 import { OwnPlan, usePlanReturn } from '@/components/OwnPlan';
 import { DayPicker, daysOk } from '@/components/DayPicker';
-import { Screen, Field, Chip, Muted, Txt, H2, Btn, SectionTitle, SwitchRow } from '@/components/ui';
-import { getState, useTick, exById, fmtDur } from '@/lib/store';
+import { Screen, Field, Chip, Muted, Txt, H2, Btn, SectionTitle, SwitchRow, Segmented } from '@/components/ui';
+import { getState, useTick, exById, fmtSec } from '@/lib/store';
 import {
   generate, genProposal, weeklySetsList, saveGenerated, replaceable, previewWarnings, genFolder, goalLabel, GOALS, GEN_SESSIONS, GEN_MINUTES, WARMUP_MIN, SET_WORK_SEC, SETS_PER_EX, ACSM_MIN_SETS,
   MIN_EXERCISES, CUT_CARDIO_FROM, cardioCount, cardioSwitch, genCount, setsFor, REPS, REST, HEAVY_PCT, RIR, RIR_ACSM, MIN_DAYS, SECONDARY_SHARE, WHO_MODERATE, WHO_VIGOROUS,
@@ -16,6 +16,8 @@ import { activationNote, plansFull, planName } from '@/lib/plan';
 import { t, locale, exName, glue } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
 import { SAVED_PLANS_MAX } from '@/lib/store';
+import { cancelButton } from '@/lib/confirm';
+import { weekdayLabels } from '@/lib/calendar';
 
 /*
  * Generator szablonów i planu tygodnia (decyzje właściciela 08.10.2026, wariant A; docs/24). Na wyraźne polecenie: założenia → podgląd → zapis po
@@ -23,7 +25,7 @@ import { SAVED_PLANS_MAX } from '@/lib/store';
  * a co jest konwencją albo uproszczeniem (docs/research/22 sekcja 3). Audyt 0.10 (grupa C, B1): wszystkie liczby ze stałych lib/generator.ts,
  * siła bez obciążenia z ostrzeżeniem, braki partii i dni w tygodniu, „+ Dodaj miejsce”, zastąpienie nieużywanych, tekst aktywacji jak na ekranie Plan.
  */
-const wd = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' });
+const wd = (i: number) => weekdayLabels()[i];
 const min = (sec: number) => fmtNum(sec / 60, 1);
 
 /** Ekran generatora: dwa tryby (decyzja właściciela 09.10.2026, B) — „Nowe szablony i plan” (generator) i „Plan z moich szablonów” (components/OwnPlan);
@@ -31,8 +33,7 @@ const min = (sec: number) => fmtNum(sec / 60, 1);
 export default function GeneratorScreen() {
   const p = useLocalSearchParams<{ mode?: string }>(); const [mode, setMode] = useState<'gen' | 'own'>(p.mode === 'own' ? 'own' : 'gen');
   const header = <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
-    <Chip label={t('Nowe szablony i plan')} on={mode === 'gen'} onPress={() => setMode('gen')} />
-    <Chip label={t('Plan z moich szablonów')} on={mode === 'own'} onPress={() => setMode('own')} />
+    <Segmented label={t('Generator szablonów i planu')} value={mode} onChange={setMode} options={[['gen', t('Nowe szablony i plan')], ['own', t('Plan z moich szablonów')]]} />
   </View>;
   if (mode === 'own') return <Screen><Stack.Screen options={{ title: t('Plan z moich szablonów') }} /><OwnPlan header={header} /></Screen>;
   return <><Stack.Screen options={{ title: t('Generator szablonów i planu') }} /><NewTemplatesPlan header={header} /></>;
@@ -72,7 +73,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
   /* B1: ten sam tekst co na ekranie Plan (lib/plan.ts activationNote) — zmiany dni od dziś zapisują się z obecnym planem */
   const ask = (replace: boolean) => {
     Alert.alert(t('Ustawić nowy plan jako aktywny?'), [t('Szablony trafią do folderu „{folder}”, a plan — do „Inne plany” albo od razu jako aktywny.', { folder: genFolder() }), activationNote()].filter(Boolean).join('\n\n'), [
-      { text: t('Anuluj'), style: 'cancel' },
+      { ...cancelButton() },
       { text: t('Tylko zapisz'), onPress: () => done(false, replace) },
       { text: t('Ustaw jako aktywny'), onPress: () => done(true, replace) },
     ]); };
@@ -85,7 +86,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
     Alert.alert(t('Zastąpić poprzednio wygenerowane, nieużywane szablony?'), old.activePlan
       ? t('Bez treningów: {list}. To zastąpi też aktywny plan „{plan}”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.', { list, plan: planName() || t('Mój plan') })
       : t('Bez treningów i poza aktywnym planem: {list}. „Zastąp” je usunie, „Zostaw” doda nowe obok.', { list }), [
-      { text: t('Anuluj'), style: 'cancel' }, { text: t('Zostaw'), onPress: () => ask(false) }, { text: t('Zastąp'), style: 'destructive', onPress: () => (old.activePlan ? done(true, true) : ask(true)) },
+      { ...cancelButton() }, { text: t('Zostaw'), onPress: () => ask(false) }, { text: t('Zastąp'), style: 'destructive', onPress: () => (old.activePlan ? done(true, true) : ask(true)) },
     ]);
   };
   const basis = [
@@ -134,7 +135,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
         <View key={tp.key} testID={`gen-${tp.key}`} style={{ marginBottom: 10 }}>
           <H2 style={{ marginBottom: 4 }}>{tp.name}</H2>
           {tp.items.length ? tp.items.map(it => { const e = exById(it.exerciseId); return (
-            <Muted key={it.exerciseId} style={{ fontSize: 13 }}>{glue(it.targetSec ? t('{ex} — {n} min, umiarkowane tempo', { ex: exName(e), n: Math.round(Number(it.targetSec) / 60) }) : t('{ex} — {s} × {a}–{b}, przerwa {r}', { ex: exName(e), s: it.sets, a: it.repMin ?? '', b: it.repMax ?? '', r: fmtDur(it.restSec) })) /* A11-19: „8–12” bez złamania */}</Muted>); })
+            <Muted key={it.exerciseId} style={{ fontSize: 13 }}>{glue(it.targetSec ? t('{ex} — {n} min, umiarkowane tempo', { ex: exName(e), n: Math.round(Number(it.targetSec) / 60) }) : t('{ex} — {s} × {a}–{b}, przerwa {r}', { ex: exName(e), s: it.sets, a: it.repMin ?? '', b: it.repMax ?? '', r: fmtSec(it.restSec) })) /* A11-19: „8–12” bez złamania */}</Muted>); })
             : <Muted style={{ fontSize: 13 }}>{t('Brak ćwiczeń dostępnych w tym miejscu.')}</Muted>}
         </View>))}
       <Muted style={{ fontSize: 13 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, inp.goal === 'hypertrophy' || inp.goal === 'cut') })}</Muted>

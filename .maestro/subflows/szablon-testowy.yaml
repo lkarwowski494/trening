@@ -7,7 +7,7 @@
 # Nie jest na liście w config.yaml — uruchamiany tylko przez runFlow.
 #
 # Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
-#   "More, tab.*" / "Templates" / "\+ New" ← zakładka Więcej, jej pozycja Szablony (app/templates.tsx; wydanie 2, 11.10.2026: Szablony pod Więcej) i przycisk '+ Nowy' (EN „+ New”)
+#   "More, tab.*" / "Templates" / "Add template" ← zakładka Więcej, jej pozycja Szablony (app/templates.tsx; wydanie 2, 11.10.2026: Szablony pod Więcej) i przycisk „+” w nagłówku (etykieta 'Dodaj szablon', EN „Add template”)
 #   "\+ Add exercise"             ← '+ Dodaj ćwiczenie' (Btn w app/template/[id].tsx)
 #   "New template"                ← wartość pola Nazwa nowego szablonu: 'Nowy szablon' (lib/store.ts newTemplate) — dopasowanie po wartości pola
 #                                    (E2E 89: tytuł nagłówka edycji nowego szablonu — DraftHeader title 'Nowy szablon' — to ten sam tekst i stoi wyżej;
@@ -25,8 +25,8 @@ appId: pl.lukasz.trening
 # Wydanie 1 (11.10.2026): ekran główny nie ma już listy szablonów ani „+ New template”. Wydanie 2: szablon powstaje w Więcej → Szablony („+ New”).
 - tapOn: "More, tab.*"
 - tapOn: "Templates"
-- extendedWaitUntil: { visible: "\\+ New", timeout: 30000 }
-- tapOn: "\\+ New"
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
+- tapOn: "Add template"
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 # Pole „Name” ma wartość „New template” (zaznacza się całe przy fokusie)
 - tapOn: { text: "New template", below: "Name" }   # E2E 89: tytuł nagłówka edycji nowego szablonu to też „New template” — pole pod etykietą „Name”
@@ -58,7 +58,7 @@ appId: pl.lukasz.trening
 - extendedWaitUntil: { visible: "Edit template", timeout: 30000 }
 # --- powrót na ekran główny (po zapisie „Back” wraca na listę szablonów, drugie „Back” — do Więcej z paskiem zakładek) ---
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "\\+ New", timeout: 30000 }
+- extendedWaitUntil: { visible: "Add template", timeout: 30000 }
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"

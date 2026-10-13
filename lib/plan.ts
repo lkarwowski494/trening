@@ -1,6 +1,7 @@
-import { memoHist, workoutDay, getState, save, finishedWorkouts, localISODate, exById, appendPlanSegment, sameDays, planDays, cleanPlanName, clampName, deleteTemplate, SAVED_PLANS_MAX, PLAN_NAME_MAX } from './store';
+import { fmtDayKey, memoHist, workoutDay, getState, save, finishedWorkouts, localISODate, exById, appendPlanSegment, sameDays, planDays, cleanPlanName, clampName, deleteTemplate, SAVED_PLANS_MAX, PLAN_NAME_MAX } from './store';
 import { uid, type SavedPlan, type PlanSegment, type Workout } from './seed';
 import { t, locale } from './i18n';
+import { fmtDayMonth, weekdayLabels } from '@/lib/calendar';
 
 /*
  * Plan tygodnia i kalendarz (priorytet właściciela 08.10.2026, docs/18; docs/21 „Priorytet”). Same dane użytkownika — bez twierdzeń dziedzinowych
@@ -117,7 +118,7 @@ export function setPlanName(n: string) { const c = cleanPlanName(n); putActive(w
 /** Nazwa przy każdej zmianie pola (audyt 0.10 B4 / UI-05 — jak inne nazwy: zapis od razu, porządkowanie przy końcu edycji). */
 export function typePlanName(n: string) { putActive(weekPlanDays(), clampTyped(n)); commit(); }
 /** Nazwa planu bez nazwy, gdy przestaje obowiązywać: „Mój plan (8.10)” — data utworzenia nazwy (UX2-10; wcześniej „Plan do 8.10”, mylące po ponownej aktywacji; audyt 0.10 B2 A — ten sam plan nie nazywa się raz „Mój plan”, raz „Poprzedni plan”). */
-const datedName = (today: string) => t('Mój plan ({date})', /* UX2-10: data zapisu, nie „do”, bo plan może znów obowiązywać */ { date: parseKey(today).toLocaleDateString(locale(), { day: 'numeric', month: 'numeric' }) });
+const datedName = (today: string) => t('Mój plan ({date})', /* UX2-10: data zapisu, nie „do”, bo plan może znów obowiązywać */ { date: fmtDayMonth(parseKey(today)) });
 /** „Nowy plan” (audyt 0.10 B2 A): osobny wpis w „Inne plany” — kopia aktywnego planu (dni) do edycji przed aktywacją; aktywny plan i jego
  * nazwa bez zmian. Zwraca id nowego planu; null — „Inne plany” pełne. */
 export function newPlan(name = ''): string | null {
@@ -243,8 +244,8 @@ function tidy(today = todayKey()) {
 }
 
 /* ---------- szablony a plan (audyt 0.10 A7) ---------- */
-const weekdayShort = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' }); /* 1.01.2024 = poniedziałek */
-const shortDate = (k: string) => parseKey(k).toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'numeric' });
+const weekdayShort = (i: number) => weekdayLabels()[i];
+const shortDate = (k: string) => fmtDayKey(k); /* N11 (audyt spójności): „pon., 12 paź” jak wszędzie (H3), nie „pon., 12.10” */
 /** Gdzie plan używa szablonu: dni planu tygodnia, zmiany dni od dziś, zapisane plany, trening w toku. */
 export function templateUsage(id: string, today = todayKey()) {
   return {

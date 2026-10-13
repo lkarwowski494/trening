@@ -102,7 +102,7 @@ describe('ekran importu CSV', () => {
     await boot(); const snap = JSON.stringify(store.getState());
     for (const [txt, msg] of [[fx('import-obcy.csv'), 'To nie wygląda na obsługiwany plik CSV z historią treningów. Dane nie zostały zmienione.'], ['', 'Plik jest pusty. Dane nie zostały zmienione.'],
       ['Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE\n', 'Plik nie zawiera żadnych poprawnych treningów. Dane nie zostały zmienione.']] as const) {
-      global.__alerts.length = 0; await choose(txt); expect(global.__alerts.some(a => a.title === t('Nie udało się') && a.msg === t(msg))).toBe(true); expect(screen.queryByText(t('Podgląd importu'))).toBeNull();
+      global.__alerts.length = 0; await choose(txt); expect(global.__alerts.some(a => a.title === t('Nie udało się zaimportować pliku') && a.msg === t(msg))).toBe(true); expect(screen.queryByText(t('Podgląd importu'))).toBeNull();
     }
     expect(JSON.stringify(store.getState())).toBe(snap);
     (require('expo-document-picker').getDocumentAsync as jest.Mock).mockImplementationOnce(async () => ({ canceled: false, assets: [{ uri: 'file:///cache/DocumentPicker/big.csv', size: 999_999_999 }] }));

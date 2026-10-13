@@ -49,7 +49,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     '„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.',
     '„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.',
     'Automatyczna kopia po każdym treningu trafia do Plików (Ustawienia).',
-    'Kilka planów: „+ Nowy plan” tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.', /* audyt 0.10 B2 A, B1 */
+    'Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.', /* audyt 0.10 B2 A, B1 */
     'Kopia zapasowa',
     'Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.',
     'Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.',
@@ -71,7 +71,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Zmiany w trakcie treningu', 'Edycja sesji i trening wstecz',
     'Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.',
     'W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian); ciężary i szablon bez zmian.', /* audyt 0.10 (D1, MER-04) */
-    'Więcej → Szablony: „+ Nowy” tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.',
+    'Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.',
     'Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku.',
     'Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.',
     'Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.',
@@ -105,7 +105,7 @@ describe('ekrany', () => {
   });
   test('wszystkie tematy po polsku na ekranie; „Pokaż” otwiera opisany ekran', async () => {
     const expectOn: Record<string, () => void> = {
-      workout: () => expect(screen.getByLabelText('Inny trening')).toBeTruthy(), templates: () => expect(screen.getByText('+ Nowy')).toBeTruthy(),
+      workout: () => expect(screen.getByLabelText('Inny trening')).toBeTruthy(), templates: () => expect(screen.getByLabelText('Dodaj szablon')).toBeTruthy(),
       plan: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), generator: () => expect(screen.getByText('Podgląd')).toBeTruthy(),
       deload: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), /* 11.10.2026: Przewodnik „Deload” kieruje do planu (zakładka Plan), nie do Postępów */
       during: () => expect(screen.getByLabelText('Inny trening')).toBeTruthy(), history: () => expect(screen.getByRole('header', { name: 'Plan' })).toBeTruthy(), progress: () => expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(), /* ekran Postępów bez treningów */

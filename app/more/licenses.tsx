@@ -17,7 +17,7 @@ export default function LicensesScreen() {
   const header = <View style={{ paddingVertical: 10 }}>
     <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Aplikacja korzysta z bibliotek open source. Niżej licencje (dotknij, by zobaczyć treść) oraz wszystkie pakiety npm, od których zależy aplikacja — także narzędzia budowania — z licencją i notką o prawach autorskich.')}</Muted>
     {COUNTS.map(([id, n]) => <View key={id}>
-      <Item title={id} sub={t('pakiety: {n} · treść wg {p}', { n, p: LICENSE_TEXTS[id].from })} icon={open === id ? '▾' : '▸'} onPress={() => setOpen(open === id ? null : id)} />
+      <Item title={id} sub={t('pakiety: {n} · treść wg {p}', { n, p: LICENSE_TEXTS[id].from })} icon={open === id ? '▾' : '▸'} expanded={open === id} onPress={() => setOpen(open === id ? null : id)} />
       {open === id ? <Txt style={{ fontSize: 11, fontFamily: F.mono, marginVertical: 8 }}>{LICENSE_TEXTS[id].text}</Txt> : null}
     </View>)}
     <Muted accessibilityRole="header" style={{ fontSize: 12, fontFamily: F.semibold, paddingTop: 14 }}>{t('Biblioteki natywne iOS spoza npm ({n})', { n: NATIVE_LICENSES.length })}</Muted>

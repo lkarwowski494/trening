@@ -102,7 +102,7 @@ describe('start i zamknięcie', () => {
   });
   test('„Anuluj” w nagłówku zamyka wybór bez startu; podwójne „Anuluj” nie cofa dalej', async () => {
     await boot(() => { mk('A'); });
-    await openPick(); const cancel = screen.getAllByText('Anuluj').pop()!; await act(async () => { fireEvent.press(cancel); fireEvent.press(cancel); }); await flushAll(10);
+    await openPick(); const cancel = screen.getByTestId('close-modal'); await act(async () => { fireEvent.press(cancel); fireEvent.press(cancel); }); await flushAll(10);
     expect(S().active).toBeNull(); expect(stack()).toEqual(['(tabs)']); expect(screen.getByTestId('start-main')).toBeTruthy();
   });
   test('brak szablonów (wejście z linku): „Nie masz jeszcze szablonów.”, bez wyszukiwarki', async () => {

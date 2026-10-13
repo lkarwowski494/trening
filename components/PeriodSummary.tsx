@@ -5,12 +5,13 @@ import { t, exName, locale, lang } from '@/lib/i18n';
 import { fmtSec, isDeloadWeek, useTick } from '@/lib/store';
 import { fmtVol } from '@/lib/units';
 import { periodSummary, periodTitle, type PeriodKind } from '@/lib/period';
-import { Chip, H2, Muted, Txt, monoSafe } from '@/components/ui';
+import { Chip, Segmented, H2, Muted, Txt, monoSafe } from '@/components/ui';
 import { MuscleMap } from '@/components/MuscleMap';
 import { setsSplitByMuscle } from '@/lib/stats';
 import { splitTotals } from '@/lib/setSplit';
 import { monthWeeks, PLATE_STACK } from '@/lib/motif';
 import { PlateStack, a11yHidden } from '@/components/Motif';
+import { fmtDayMonth } from '@/lib/calendar';
 
 /** Miesiąc: tygodnie jako rząd stosów talerzy (decyzja właściciela 09.10.2026 ok. 17:25) — ten sam stos co postęp tygodnia (PlateStack): pełny = plan
  * tygodnia wykonany w 100%, obwódka = niepełny, kreska = tydzień bez planu; pod spodem „Tygodnie z wykonanym planem: x z n”. Miesiąc bez planu — nic. */
@@ -47,14 +48,11 @@ export function PeriodSummary() {
     [t('Objętość'), fmtVol(s.volume), fmtVol(s.prev.volume)],
     [t('Czas treningów'), fmtSec(s.durationSec), fmtSec(s.prev.durationSec)],
   ];
-  const short = (ts: number) => new Date(ts).toLocaleDateString(locale(), { day: 'numeric', month: 'short' });
+  const short = (ts: number) => fmtDayMonth(ts);
   return (
     <View testID="period-summary" style={{ marginBottom: 14 }}>
       <H2>{t('Podsumowanie')}</H2>
-      <View style={{ flexDirection: 'row', gap: 6 }}>
-        <Chip label={t('Tydzień')} on={kind === 'week'} onPress={() => pick('week')} />
-        <Chip label={t('Miesiąc')} on={kind === 'month'} onPress={() => pick('month')} />
-      </View>
+      <Segmented label={t('Podsumowanie')} value={kind} onChange={pick} options={[['week', t('Tydzień')], ['month', t('Miesiąc')]]} />
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 6 }}>
         {arrow(t('Poprzedni okres'), '‹', -1)}
         <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 16, fontFamily: F.heavy, flexShrink: 1, textAlign: 'center' }}>{periodTitle(kind, s.start)}</Text>

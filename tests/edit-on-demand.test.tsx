@@ -84,8 +84,8 @@ describe('ekran ćwiczenia: podgląd → Edytuj → Anuluj / Zapisz', () => {
     await boot(); const e = ex('Back Squat'); const before = snap(); await go(`/exercise/${e.id}`); await flushAll(10);
     await startEdit(); const n = global.__alerts.length; await tap(screen.getByLabelText('Anuluj edycję ćwiczenia')); await flushAll(5); expect(global.__alerts.length).toBe(n); expect(screen.getByLabelText('Edytuj ćwiczenie')).toBeTruthy();
     await startEdit(); await tap(screen.getAllByText('klatka')[0]); await tap(screen.getByLabelText('Anuluj edycję ćwiczenia'));
-    expect(lastAlert()).toMatchObject({ title: 'Odrzucić zmiany?', msg: 'Ćwiczenie zostanie bez zmian.' }); expect(lastAlert().buttons!.map((b: { text: string; style?: string }) => [b.text, b.style])).toEqual([['Wróć', 'cancel'], ['Odrzuć zmiany', 'destructive']]);
-    await act(async () => { pressAlert('Odrzucić zmiany?', 'Wróć'); }); expect(screen.getByLabelText('Zapisz ćwiczenie')).toBeTruthy(); expect(exDraft(e.id).group).toBe('klatka');
+    expect(lastAlert()).toMatchObject({ title: 'Odrzucić zmiany?', msg: 'Ćwiczenie zostanie bez zmian.' }); expect(lastAlert().buttons!.map((b: { text: string; style?: string }) => [b.text, b.style])).toEqual([['Wróć do edycji', 'cancel'], ['Odrzuć zmiany', 'destructive']]);
+    await act(async () => { pressAlert('Odrzucić zmiany?', 'Wróć do edycji'); }); expect(screen.getByLabelText('Zapisz ćwiczenie')).toBeTruthy(); expect(exDraft(e.id).group).toBe('klatka');
     await tap(screen.getByLabelText('Anuluj edycję ćwiczenia')); await act(async () => { pressAlert('Odrzucić zmiany?', 'Odrzuć zmiany'); }); await flushAll(5);
     expect(screen.getByLabelText('Edytuj ćwiczenie')).toBeTruthy(); expect(e.group).toBe('nogi'); expect(exDraft(e.id)).toBeUndefined(); expect(snap()).toBe(before);
   });
@@ -95,9 +95,9 @@ describe('ekran ćwiczenia: podgląd → Edytuj → Anuluj / Zapisz', () => {
   });
   test('„+ Nowe” otwiera od razu edycję; „Anuluj” usuwa niezapisane ćwiczenie; „Zapisz” je zostawia', async () => {
     await boot(undefined, '/exercises'); const n0 = S().exercises.length;
-    await tap(screen.getByText('+ Nowe')); await flushAll(10); expect(screen.getByLabelText('Zapisz ćwiczenie')).toBeTruthy(); expect(S().exercises.length).toBe(n0 + 1);
-    await tap(screen.getByLabelText('Anuluj edycję ćwiczenia')); await flushAll(10); expect(S().exercises.length).toBe(n0); expect(screen.getByText('+ Nowe')).toBeTruthy();
-    await flushAll(1100); await tap(screen.getByText('+ Nowe')); await flushAll(10); await type(screen.getByLabelText('Nazwa'), 'Moje wiosłowanie'); await saveEdit();
+    await tap(screen.getByLabelText('Dodaj ćwiczenie')); await flushAll(10); expect(screen.getByLabelText('Zapisz ćwiczenie')).toBeTruthy(); expect(S().exercises.length).toBe(n0 + 1);
+    await tap(screen.getByLabelText('Anuluj edycję ćwiczenia')); await flushAll(10); expect(S().exercises.length).toBe(n0); expect(screen.getByLabelText('Dodaj ćwiczenie')).toBeTruthy();
+    await flushAll(1100); await tap(screen.getByLabelText('Dodaj ćwiczenie')); await flushAll(10); await type(screen.getByLabelText('Nazwa'), 'Moje wiosłowanie'); await saveEdit();
     expect(S().exercises.length).toBe(n0 + 1); expect(screen.getByLabelText('Edytuj ćwiczenie')).toBeTruthy();
     const { router } = require('expo-router'); await act(async () => { router.back(); }); await flushAll(10); expect(S().exercises.some(x => x.name === 'Moje wiosłowanie')).toBe(true);
   });
@@ -137,9 +137,9 @@ describe('ekran szablonu: podgląd „jak trening” → Edytuj → Anuluj / Zap
   });
   test('„+ Nowy” → od razu edycja; „Anuluj” bez zmian usuwa nowy szablon; zapisany zostaje', async () => {
     await boot(undefined, '/templates'); const n0 = S().templates.length;
-    await tap(screen.getByText('+ Nowy')); await flushAll(10); expect(screen.getByLabelText('Zapisz szablon')).toBeTruthy();
+    await tap(screen.getByLabelText('Dodaj szablon')); await flushAll(10); expect(screen.getByLabelText('Zapisz szablon')).toBeTruthy();
     await tap(screen.getByLabelText('Anuluj edycję szablonu')); await flushAll(10); expect(S().templates.length).toBe(n0);
-    await flushAll(1100); await tap(screen.getByText('+ Nowy')); await flushAll(10); await type(screen.getByLabelText('Nazwa'), 'Nogi'); await saveEdit();
+    await flushAll(1100); await tap(screen.getByLabelText('Dodaj szablon')); await flushAll(10); await type(screen.getByLabelText('Nazwa'), 'Nogi'); await saveEdit();
     expect(S().templates.map(x => x.name)).toContain('Nogi'); expect(screen.getByLabelText('Edytuj szablon')).toBeTruthy();
   });
   test('Duplikuj i Archiwizuj zostają w podglądzie (archiwum z pytaniem o skutki — A7)', async () => {
@@ -156,14 +156,14 @@ describe('teksty edycji na żądanie, pierwszych kroków i edycji sesji (macierz
     await boot(); const e = ex('Back Squat'); await go(`/exercise/${e.id}`); await flushAll(10);
     expect(screen.getByRole('header', { name: 'Ostatnie treningi' })).toBeTruthy(); expect(screen.getByText('Jeszcze nie było w treningu.')).toBeTruthy();
     await startEdit(); expect(headers()).toContain('Edycja ćwiczenia');
-    await boot(undefined, '/exercises'); await tap(screen.getByText('+ Nowe')); await flushAll(10); await type(screen.getByLabelText('Nazwa'), 'Moje');
+    await boot(undefined, '/exercises'); await tap(screen.getByLabelText('Dodaj ćwiczenie')); await flushAll(10); await type(screen.getByLabelText('Nazwa'), 'Moje');
     await tap(screen.getByLabelText('Anuluj edycję ćwiczenia')); expect(lastAlert()).toMatchObject({ title: 'Odrzucić zmiany?', msg: 'Nowe ćwiczenie nie zostanie zapisane.' });
   });
   test('szablon: tytuł „Edycja szablonu”; nowy ze zmianami — „Nowy szablon nie zostanie zapisany.”; pusta nazwa folderu — komunikat; trening z tego szablonu — „Wróć do treningu”', async () => {
     let id = ''; await boot(() => { id = mkTpl().id; }); await go(`/template/${id}`); await flushAll(10); await startEdit(); expect(headers()).toContain('Edycja szablonu');
     await tap(screen.getByText('+ Nowy folder')); await act(async () => { pressAlert('Nazwa folderu', 'Zapisz', '   '); }); expect(lastAlert()).toMatchObject({ title: 'Pusta nazwa folderu', msg: 'Folder nie został utworzony.' });
     expect(tplDraft(id).folder).toBeUndefined();
-    await boot(undefined, '/templates'); await tap(screen.getByText('+ Nowy')); await flushAll(10); await type(screen.getByLabelText('Nazwa'), 'Nogi');
+    await boot(undefined, '/templates'); await tap(screen.getByLabelText('Dodaj szablon')); await flushAll(10); await type(screen.getByLabelText('Nazwa'), 'Nogi');
     await tap(screen.getByLabelText('Anuluj edycję szablonu')); expect(lastAlert()).toMatchObject({ title: 'Odrzucić zmiany?', msg: 'Nowy szablon nie zostanie zapisany.' });
     await boot(() => { const t = mkTpl(); id = t.id; store.startFromTemplate(t); }); await go(`/template/${id}`); await flushAll(10); expect(screen.getByText('Wróć do treningu')).toBeTruthy();
   });

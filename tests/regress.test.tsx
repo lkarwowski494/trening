@@ -101,9 +101,9 @@ describe('runda 1 — ekrany', () => {
   });
   test('R1-22 puste pole w oknie przerwy nie zeruje przerwy', async () => {
     await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); await flushAll(10);
-    await tap(screen.getAllByLabelText(/^Przerwa: /)[0]); pressAlert('Przerwa (sekundy)', 'Zapamiętaj', '  ');
+    await tap(screen.getAllByLabelText(/^Przerwa: /)[0]); pressAlert('Przerwa (s)', 'Zapamiętaj', '  ');
     expect(ex('Bench Press (hantle)').restSec).toBeNull();
-    await tap(screen.getAllByLabelText(/^Przerwa: /)[0]); pressAlert('Przerwa (sekundy)', 'Zapamiętaj', '75');
+    await tap(screen.getAllByLabelText(/^Przerwa: /)[0]); pressAlert('Przerwa (s)', 'Zapamiętaj', '75');
     expect(ex('Bench Press (hantle)').restSec).toBe(75); expect(store.getState().templates[0].items[0].restSec).toBe(75);
   });
   test('R1-23 (runda 75, Q-001): edytor ćwiczenia z masą ciała nie ma już pola udziału masy ciała', async () => {
@@ -206,7 +206,7 @@ describe('runda 2 — ekrany', () => {
   });
   test('R2-24 pole liczbowe pokazuje po edycji wartość zapisaną (po przycięciu)', async () => {
     await renderApp({ saved: seedWithDemo() }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await startEdit(); await openCard(0);
-    const f = screen.getAllByLabelText('przerwa s')[0]; await type(f, '1800'); await type(f, '2500'); expect(tplDraft(tpl.id).items[0].restSec).toBe(1800); /* 05.10.2026: pole „serie” zastąpione wierszami — ta sama zasada na polu przerwy (limit 1800) */
+    const f = screen.getAllByLabelText('Przerwa (s)')[0]; await type(f, '1800'); await type(f, '2500'); expect(tplDraft(tpl.id).items[0].restSec).toBe(1800); /* 05.10.2026: pole „serie” zastąpione wierszami — ta sama zasada na polu przerwy (limit 1800) */
     await act(async () => { f.props.onEndEditing?.(); }); expect(f.props.value).toBe('1800');
   });
   test('R2-25 zmiana języka przeformatowuje separator w polach', async () => {
@@ -217,7 +217,7 @@ describe('runda 2 — ekrany', () => {
   });
   test('R2-26 nietknięty nowy szablon znika po wyjściu', async () => {
     await renderApp(); const n = store.getState().templates.length; await go('/templates'); await flushAll(10);
-    await tap(screen.getByText('+ Nowy')); await flushAll(10); expect(store.getState().templates.length).toBe(n + 1);
+    await tap(screen.getByLabelText('Dodaj szablon')); await flushAll(10); expect(store.getState().templates.length).toBe(n + 1);
     const { router } = require('expo-router'); await act(async () => { router.back(); }); await flushAll(10);
     expect(store.getState().templates.length).toBe(n);
   });
@@ -288,7 +288,7 @@ describe('runda 3', () => {
     expect(screen.UNSAFE_getAllByType(TextInput).filter((i: any) => !i.props.accessibilityLabel)).toHaveLength(0);
   });
   test('R3-11 szablon bez ćwiczeń nie ma „Duplikuj”', async () => {
-    await renderApp(); await go('/templates'); await flushAll(10); await tap(screen.getByText('+ Nowy')); await flushAll(10);
+    await renderApp(); await go('/templates'); await flushAll(10); await tap(screen.getByLabelText('Dodaj szablon')); await flushAll(10);
     expect(screen.queryByText('Duplikuj')).toBeNull();
   });
   test('R3-12 wywołania Live Activity idą po kolei', async () => {
@@ -342,7 +342,7 @@ describe('runda 4', () => {
   test('R4-08 „Zakończ” → „Wróć” nie przerywa trwającej serii na czas', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Plank')); }); await flushAll(10);
     await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]); await tap(screen.getByLabelText('Start stopera serii')); await flushAll(20e3);
-    await tap(screen.getAllByText('Zakończ')[0]); pressAlert('Zakończyć trening?', 'Wróć'); await flushAll(10);
+    await tap(screen.getAllByText('Zakończ')[0]); pressAlert('Zakończyć trening?', 'Anuluj'); await flushAll(10);
     expect(timer.S.on).toBe(true);
   });
   test('R4-09 wyszukanie usuniętego ćwiczenia pozwala je przywrócić', async () => {
@@ -376,10 +376,10 @@ describe('runda 5', () => {
   };
   test('R5-03 trwająca seria na czas nie jest liczona jako „nie zostanie zapisana”', async () => {
     const a = await runPlank(false); expect(a.title).toBe('Zakończyć trening?');
-    expect(a.msg).not.toMatch(/nie zostaną zapisane/); expect(a.msg).toMatch(/robocze: 2/); pressAlert('Zakończyć trening?', 'Wróć');
+    expect(a.msg).not.toMatch(/nie zostaną zapisane/); expect(a.msg).toMatch(/robocze: 2/); pressAlert('Zakończyć trening?', 'Anuluj');
   });
   test('R5-04 trwająca rozgrzewka na czas nie zawyża liczby serii roboczych', async () => {
-    const a = await runPlank(true); expect(a.msg).toMatch(/robocze: 1\./); pressAlert('Zakończyć trening?', 'Wróć');
+    const a = await runPlank(true); expect(a.msg).toMatch(/robocze: 1\./); pressAlert('Zakończyć trening?', 'Anuluj');
   });
   test('R5-05 EN: wyszukanie usuniętego ćwiczenia pokazuje tylko „Restore”, bez „Create”', async () => {
     await renderApp({ locale: 'en' }); addWorkout(Date.now() - 3600e3, [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); store.deleteExercise(ex('Bench Press (hantle)').id);
@@ -446,8 +446,8 @@ describe('runda 6', () => {
     await renderApp({ saved: seedWithDemo() }); await startTpl('Upper A'); await tap(screen.getAllByLabelText(/^Seria 1 zrobiona/)[0]);
     const n = global.__alerts.length; const b = screen.getAllByText('Zakończ')[0];
     await act(async () => { const { fireEvent } = require('@testing-library/react-native'); fireEvent.press(b); fireEvent.press(b); });
-    expect(global.__alerts.length).toBe(n + 1); pressAlert('Zakończyć trening?', 'Wróć');
-    await tap(b); expect(global.__alerts.length).toBe(n + 2); pressAlert('Zakończyć trening?', 'Wróć');
+    expect(global.__alerts.length).toBe(n + 1); pressAlert('Zakończyć trening?', 'Anuluj');
+    await tap(b); expect(global.__alerts.length).toBe(n + 2); pressAlert('Zakończyć trening?', 'Anuluj');
   });
   test('R6-09 picker z filtrem partii: ćwiczenie z grupy dostaje partię, a istniejące nie jest dublowane', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); }); await go('/picker?target=active'); await flushAll(10);
@@ -462,7 +462,7 @@ describe('runda 6', () => {
     const inputs = screen.getAllByLabelText(store.loadLabel(ex('Chin Up'))); await type(inputs[0], '-10'); await saveEdit(); const it2 = tpl.items.find(i => i.id === it.id)!; /* „Zapisz” podmienia pozycje szkicem */ expect(it2.startWeight).toBe(-10); expect(it2.rows![0].weight).toBe(-10); /* 05.10.2026: wiersz serii */
   });
   test('R6-11 wyszukiwanie bez wyników pokazuje tekst (Ćwiczenia i Postępy, ze spacją na końcu)', async () => {
-    await renderApp(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'zzzz'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
+    await renderApp(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'zzzz'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
     await go('/progress'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'plank '); expect(screen.getByText('Plank')).toBeTruthy();
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'zzzz'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
   });
@@ -508,12 +508,12 @@ describe('runda 7', () => {
   });
   test('R7-07 Ćwiczenia: wyszukanie usuniętego pozwala je przywrócić, bez „Utwórz”', async () => {
     await renderApp(); addWorkout(Date.now() - 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); await act(async () => { store.deleteExercise(ex('Back Squat').id); });
-    await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'back squat'); await flushAll(10);
+    await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'back squat'); await flushAll(10);
     expect(screen.queryByText(/^Utwórz/)).toBeNull(); await tap(screen.getByText('Przywróć „Back Squat”')); expect(ex('Back Squat').archived).toBeUndefined(); /* restoreExercise (06.10) */
   });
   test('R7-08 okno „brak odhaczonych” i „tylko rozgrzewka” ostrzega o wpisanych, nieodhaczonych seriach', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const s0 = store.getState().active!.exercises[0].sets[0]; s0.weight = 100; s0.reps = 5; s0.edited = true; store.save(); }); await flushAll(10);
-    await tap(screen.getAllByText('Zakończ')[0]); expect(global.__alerts.at(-1)!.msg).toMatch(/Nieodhaczone serie z wpisanymi wynikami: 1/); pressAlert('Brak odhaczonych serii', 'Wróć');
+    await tap(screen.getAllByText('Zakończ')[0]); expect(global.__alerts.at(-1)!.msg).toMatch(/Nieodhaczone serie z wpisanymi wynikami: 1/); pressAlert('Brak odhaczonych serii', 'Anuluj');
   });
 });
 
@@ -566,7 +566,7 @@ describe('runda 9', () => {
   });
   test('R9-04 podwójne „+ Nowy” tworzy jeden szablon', async () => {
     await renderApp(); const n = store.getState().templates.length; await go('/templates'); await flushAll(10);
-    const b = screen.getByText('+ Nowy'); await act(async () => { const { fireEvent } = require('@testing-library/react-native'); fireEvent.press(b); fireEvent.press(b); }); await flushAll(10);
+    const b = screen.getByLabelText('Dodaj szablon'); await act(async () => { const { fireEvent } = require('@testing-library/react-native'); fireEvent.press(b); fireEvent.press(b); }); await flushAll(10);
     expect(store.getState().templates.length).toBe(n + 1);
   });
   test('R9-05 ponowny Start w edytorze szablonu nie pokazuje sprzecznego komunikatu', async () => {
@@ -975,7 +975,7 @@ describe('runda 32', () => {
     expect(screen.getAllByText('Nie udało się zapisać danych').length).toBeGreaterThan(0); global.__dbFail = false;
   });
   test('R32-03 wyszukiwanie bez polskich znaków', async () => {
-    await renderApp(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj…'), 'lydki na'); await flushAll(10);
+    await renderApp(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'lydki na'); await flushAll(10);
     expect(screen.getByText('Łydki na stopniu')).toBeTruthy();
   });
 });
@@ -1025,7 +1025,7 @@ describe('runda 36', () => {
   test('R36-02 wysłanie kopii nieczytelnych danych: błąd zapisu kończy się komunikatem', async () => {
     await renderApp({ saved: '{zle' }); await flushAll(10); const fs = require('expo-file-system/legacy'); const spy = jest.spyOn(fs, 'writeAsStringAsync').mockRejectedValueOnce(new Error('disk full'));
     await tap(screen.getByText('Poprzednich danych nie dało się odczytać')); pressAlert('Poprzednich danych nie dało się odczytać', 'Wyślij kopię'); await flushAll(10);
-    expect(global.__alerts.at(-1)!.title).toBe('Nie udało się'); spy.mockRestore();
+    expect(global.__alerts.at(-1)!.title).toBe('Nie udało się wysłać kopii'); spy.mockRestore();
   });
 });
 
@@ -1074,7 +1074,7 @@ describe('runda 41', () => {
   });
   test('R41-02 „Przywróć” dla ćwiczenia bez historii nie obiecuje historii', async () => {
     await renderApp(); let e: any; await act(async () => { e = store.newExercise('Rowx'); store.startEmpty(); store.addExerciseToActive(e); store.deleteExercise(e.id); }); await go('/exercises'); await flushAll(10);
-    await type(screen.getByPlaceholderText('Szukaj…'), 'rowx'); await flushAll(10); expect(screen.queryByText('usunięte ćwiczenie z historią')).toBeNull(); expect(screen.getByText('usunięte ćwiczenie (w bieżącym treningu)')).toBeTruthy();
+    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'rowx'); await flushAll(10); expect(screen.queryByText('usunięte ćwiczenie z historią')).toBeNull(); expect(screen.getByText('usunięte ćwiczenie (w bieżącym treningu)')).toBeTruthy();
   });
 });
 
@@ -1286,7 +1286,7 @@ describe('runda 50', () => {
   });
   test('R50-06 historia: wiersz serii czytany jako „nagłówek: wartość”', async () => {
     await renderApp(); const w = addWorkout(Date.now() - 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); await go(`/history/${w.id}`); await flushAll(10);
-    expect(screen.getByLabelText(/^#: 1, .*100.*, pow\.: 5/)).toBeTruthy();
+    expect(screen.getByLabelText(/^#: 1, .*100.*, Pow\.: 5/)).toBeTruthy();
   });
   test('R50-07 import: blok z nieprawidłowym exerciseId odpada, liczbowy zamieniony na tekst', async () => {
     await fresh(); const raw = JSON.parse(JSON.stringify(store.getState())); raw.workouts.push({ startedAt: at(2026, 9, 1), finishedAt: at(2026, 9, 1, 19), exercises: [{ exerciseId: true, sets: [{ reps: 5, done: true }] }, { exerciseId: 7, sets: [{ reps: 5, done: true }] }] }); /* runda 59: historia bez pustych bloków */
@@ -1706,7 +1706,7 @@ test('R69-09 start aplikacji z treningiem porzuconym > 6 h: zapis i komunikat; p
   const H = 3600e3; await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = store.getState().active!; const now = Date.now();
   a.startedAt = now - 9 * H; const s = a.exercises[0].sets[0]; s.weight = 100; s.reps = 5; s.done = true; s.completedAt = now - 8 * H; store.save(a); await store.flush();
   const st = JSON.parse(JSON.stringify(store.getState())); await renderApp({ saved: st }); await flushAll(20);
-  expect(store.getState().active).toBeNull(); expect(global.__alerts.some((x: any) => x.title === 'Zapisałem trening')).toBe(true);
+  expect(store.getState().active).toBeNull(); expect(require('@/lib/notices').autoSavedNotice()).not.toBeNull(); expect(global.__alerts.some((x: any) => x.title === 'Zapisałem trening')).toBe(false);
 });
 test('R69-10 przypomnienie o porzuconym treningu planowane 2 h po ostatniej serii', async () => {
   await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); }); await flushAll(10);
@@ -1795,7 +1795,7 @@ describe('runda 71 (audyt tematyczny T1b/T3)', () => {
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = store.getState().active!; a.startedAt = now - 3 * H; store.save(a); store.refreshViews(); }); await flushAll(10);
     const count = () => global.__alerts.filter((x: any) => x.title === 'Trening wciąż trwa').length; const c0 = count(); expect(c0).toBeGreaterThan(0);
     await act(async () => { pressAlert('Trening wciąż trwa', 'Odrzuć'); }); await flushAll(5);
-    await act(async () => { pressAlert('Odrzucić trening?', 'Wróć'); }); await flushAll(5); expect(count()).toBe(c0 + 1);
+    await act(async () => { pressAlert('Odrzucić trening?', 'Anuluj'); }); await flushAll(5); expect(count()).toBe(c0 + 1);
     const first = store.getState().active!.id;
     await act(async () => { store.cancelWorkout(); store.startEmpty(); }); await flushAll(5); const second = store.getState().active!.id; expect(second).not.toBe(first);
     await act(async () => { pressAlert('Trening wciąż trwa', 'Odrzuć'); }); await flushAll(5);

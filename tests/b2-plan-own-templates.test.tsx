@@ -16,7 +16,7 @@ const restart = async (url = '/') => { await act(async () => { await store.flush
 const home = async () => { await act(async () => { if (router.canDismiss()) router.dismissAll(); router.navigate('/'); }); await flushAll(10); };
 /** „+ Nowy” na zakładce Szablony → (nazwa, folder) → „+ Dodaj ćwiczenie” → wybór → „Zapisz”. */
 const createViaUi = async (name?: string, folder?: string) => {
-  await go('/templates'); await flushAll(10); await tap(screen.getByText('+ Nowy')); await flushAll(10);
+  await go('/templates'); await flushAll(10); await tap(screen.getByLabelText('Dodaj szablon')); await flushAll(10);
   if (name) await type(screen.getByLabelText('Nazwa'), name);
   if (folder) { await tap(screen.getByText('+ Nowy folder')); await act(async () => { pressAlert('Nazwa folderu', 'Zapisz', folder); }); await flushAll(5); }
   await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(10);

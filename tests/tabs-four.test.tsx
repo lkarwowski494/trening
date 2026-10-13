@@ -84,19 +84,19 @@ describe('Więcej: Szablony i Ćwiczenia jako ekrany stosu (B1–B3, D9)', () =>
   });
   test('Więcej → Szablony: lista szablonów z „+ Nowy” i generatorem; powrót wraca do Więcej', async () => {
     await boot('/more'); await tap(screen.getByLabelText('Szablony')); await flushAll(10);
-    expect(screen.getByText('+ Nowy')).toBeTruthy(); expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy(); expect(screen.getByText(S().templates[0].name)).toBeTruthy();
+    expect(screen.getByLabelText('Dodaj szablon')).toBeTruthy(); expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy(); expect(screen.getByText(S().templates[0].name)).toBeTruthy();
     expect(treesOf().filter(n => n === '(tabs)').length).toBe(1);
-    await back(); expect(screen.getByText('Przewodnik')).toBeTruthy(); expect(screen.queryByText('+ Nowy')).toBeNull();
+    await back(); expect(screen.getByText('Przewodnik')).toBeTruthy(); expect(screen.queryByLabelText('Dodaj szablon')).toBeNull();
   });
   test('Więcej → Ćwiczenia: biblioteka z szukaniem i „+ Nowe”; otwarcie ćwiczenia i powrót', async () => {
     await boot('/more'); await tap(screen.getByLabelText('Ćwiczenia')); await flushAll(10);
-    expect(screen.getByPlaceholderText('Szukaj…')).toBeTruthy(); expect(screen.getByText('+ Nowe')).toBeTruthy();
+    expect(screen.getByPlaceholderText('Szukaj ćwiczenia…')).toBeTruthy(); expect(screen.getByLabelText('Dodaj ćwiczenie')).toBeTruthy();
     await back(); expect(screen.getByText('Przewodnik')).toBeTruthy();
   });
   test('szablon z listy otwiera podgląd i wraca do listy, a „Start” zamyka stos na zakładce Trening', async () => {
     await boot('/more'); await tap(screen.getByLabelText('Szablony')); await flushAll(10);
     await tap(screen.getByText(S().templates[0].name)); await flushAll(10); expect(screen.getByLabelText('Edytuj szablon')).toBeTruthy();
-    await back(); expect(screen.getByText('+ Nowy')).toBeTruthy();
+    await back(); expect(screen.getByLabelText('Dodaj szablon')).toBeTruthy();
   });
 });
 
@@ -136,7 +136,7 @@ describe('Postępy: zakładka z Progresją i masą ciała (C2, C10, C11; P5 A)',
 describe('przepływy dalej osiągalne (docs/22 4.5): Szablony, Ćwiczenia, Postępy, masa ciała', () => {
   test('B1 Planowanie → „Szablony” otwiera listę na stosie; powrót do planu', async () => {
     await boot('/'); await tab('Plan'); await tap(screen.getByText('Planowanie')); await flushAll(10);
-    await tap(screen.getAllByText('Szablony')[0]); await flushAll(10); expect(screen.getByText('+ Nowy')).toBeTruthy();
+    await tap(screen.getAllByText('Szablony')[0]); await flushAll(10); expect(screen.getByLabelText('Dodaj szablon')).toBeTruthy();
     await back(); expect(screen.getByText('Wygeneruj szablony i plan')).toBeTruthy(); expect(treesOf().filter(n => n === '(tabs)').length).toBe(1);
   });
   test('C1 „Ten tydzień” na ekranie Trening → zakładka Postępy (jedno „(tabs)” na stosie)', async () => {
@@ -160,14 +160,14 @@ describe('przepływy dalej osiągalne (docs/22 4.5): Szablony, Ćwiczenia, Post�
   });
   test('Przewodnik: „Pokaż” przy Szablonach otwiera ekran na stosie, przy Postępach — zakładkę', async () => {
     await boot('/guide'); await tap(screen.getByLabelText('Szablony, nieprzeczytane')); await flushAll(5); await tap(screen.getByLabelText('Pokaż: Szablony')); await flushAll(10);
-    expect(screen.getByText('+ Nowy')).toBeTruthy(); expect(treesOf().filter(n => n === '(tabs)').length).toBe(1);
+    expect(screen.getByLabelText('Dodaj szablon')).toBeTruthy(); expect(treesOf().filter(n => n === '(tabs)').length).toBe(1);
     await boot('/guide'); await tap(screen.getByLabelText('Postępy i rekordy, nieprzeczytane')); await flushAll(5); await tap(screen.getByLabelText('Pokaż: Postępy i rekordy')); await flushAll(10);
     expect(screen.getByRole('header', { name: 'Postępy' })).toBeTruthy(); expect(treesOf().filter(n => n === '(tabs)').length).toBe(1);
   });
 });
 
 describe('„Co nowego” — wspólny wpis o nowym układzie (docs/18 P7)', () => {
-  test('wpis 0.13 (id 2026-10-11, historyczny; bieżący 0.16: release-0.16.test.tsx), build 1009, trzy punkty o czterech zakładkach, Postępach i ekranie Trening oraz punkt o imporcie CSV (0.13.0); pod nim 0.12 z buildem 1008', () => {
+  test('wpis 0.13 (id 2026-10-11, historyczny; bieżący 0.17: release-0.17.test.tsx), build 1009, trzy punkty o czterech zakładkach, Postępach i ekranie Trening oraz punkt o imporcie CSV (0.13.0); pod nim 0.12 z buildem 1008', () => {
     const e = WHATS_NEW.find(w => w.id === '2026-10-11')!; const j = WHATS_NEW.indexOf(e); expect([e.id, e.build, WHATS_NEW[j + 1].id, WHATS_NEW[j + 1].build]).toEqual(['2026-10-11', 1009, '2026-10-10', 1008]); expect(e.items()).toEqual([
       'Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.',
       'Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.',
@@ -187,6 +187,6 @@ describe('„Co nowego” — wspólny wpis o nowym układzie (docs/18 P7)', () 
     await boot('/', () => { lastTrain(); }); expect(screen.getByTestId('whats-new-dot')).toBeTruthy();
     await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
     for (const x of WHATS_NEW[0].items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
-    expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id); /* bieżący wpis (od 0.16: id 2026-10-14) */
+    expect(screen.queryByTestId('whats-new-dot')).toBeNull(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id); /* bieżący wpis (od 0.17: id 2026-10-15) */
   });
 });

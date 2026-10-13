@@ -24,7 +24,7 @@ describe('L1: odhaczone serie bez ciężaru', () => {
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(10);
     expect(screen.getByText('Poprzednio: Siłownia · ciężaru 32 kg nie ma tutaj — wpisz ciężar')).toBeTruthy();
     await tap(screen.getAllByText('Zakończ')[0]); const al = global.__alerts.filter(x => x.title === 'Zakończyć trening?').pop()!;
-    expect(al.msg).toMatch(/Odhaczone serie bez ciężaru: 1\./); /* Pull Up (masa ciała) się nie liczy */ pressAlert('Zakończyć trening?', 'Wróć');
+    expect(al.msg).toMatch(/Odhaczone serie bez ciężaru: 1\./); /* Pull Up (masa ciała) się nie liczy */ pressAlert('Zakończyć trening?', 'Anuluj');
   });
   test('także bez miejsc (pierwsza sesja): seria tylko z powtórzeniami → ostrzeżenie; seria z ciężarem 0 kg — bez', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Biceps Curl (hantle)')); const a = store.getState().active!; a.exercises[0].sets[0].reps = 5; store.toggleDone(0, 0); a.exercises[1].sets[0].weight = 0; a.exercises[1].sets[0].reps = 10; store.toggleDone(1, 0); }); await flushAll(10);

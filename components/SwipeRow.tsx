@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, Animated, PanResponder, Alert, StyleSheet, type StyleProp, type ViewStyle, type AccessibilityActionEvent } from 'react-native';
 import { useTheme, F } from '@/lib/theme';
 import { t as tr, lang } from '@/lib/i18n';
+import { cancelButton, okButton } from '@/lib/confirm';
 
 /*
  * Usuwanie przesunięciem w lewo (decyzja właściciela 07.10.2026 wieczór, docs/18): wszędzie ten sam gest, zawsze z potwierdzeniem,
@@ -51,10 +52,10 @@ export function SwipeRow({ label, title, message, onDelete, bg, style, testID, d
     if (to !== 0) { if (closeOpen && closeOpen !== close) closeOpen(); closeOpen = close; } else if (closeOpen === close) closeOpen = null;
   };
   const ask = () => Alert.alert(cur.current.title, typeof cur.current.message === 'function' ? cur.current.message() : cur.current.message, [
-    { text: tr('Nie'), style: 'cancel', onPress: () => snap(0) },
+    { ...cancelButton(), onPress: () => snap(0) },
     { text: tr('Usuń'), style: 'destructive', onPress: () => { snap(0); cur.current.onDelete(); } },
   ]);
-  const explain = () => { const b = cur.current.blocked; if (b) Alert.alert(b.title, b.message, [{ text: tr('OK'), style: 'cancel' }]); };
+  const explain = () => { const b = cur.current.blocked; if (b) Alert.alert(b.title, b.message, [okButton()]); };
   const pan = useRef(PanResponder.create({
     onMoveShouldSetPanResponder: (_e, g) => Math.abs(g.dx) > SWIPE.start && Math.abs(g.dx) > Math.abs(g.dy) * 1.5,
     onPanResponderTerminationRequest: () => false,

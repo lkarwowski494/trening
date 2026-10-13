@@ -52,7 +52,7 @@ test('A1 cold start 3 h, plank target 60: exactly one prompt across minute ticks
 test('A2 cold start 3 h: Odrzuć → Wróć → prompt again (once), Kontynuuj → no prompt for 2 h, then once more', async () => {
   await killDuringPlank(60, 3);
   expect(prompts().length).toBe(1);
-  pressAlert('Trening wciąż trwa', 'Odrzuć'); pressAlert('Odrzucić trening?', 'Wróć'); await flushAll(10);
+  pressAlert('Trening wciąż trwa', 'Odrzuć'); pressAlert('Odrzucić trening?', 'Anuluj'); await flushAll(10);
   expect(prompts().length).toBe(2);
   pressAlert('Trening wciąż trwa', 'Kontynuuj'); await flushAll(10);
   for (let i = 0; i < 119; i++) await flushAll(60e3);
@@ -66,7 +66,7 @@ test('A3 cold start 7 h: auto-saved, plank 60 s, no stale prompt, no running tim
   for (let i = 0; i < 3; i++) await flushAll(60e3);
   expect(store.getState().active).toBeNull();
   expect(prompts().length).toBe(0);
-  expect(global.__alerts.some(x => x.title === 'Zapisałem trening')).toBe(true);
+  expect(require('@/lib/notices').autoSavedNotice()).not.toBeNull(); /* 13.10.2026: wiersz na ekranie Trening zamiast okna przy starcie (docs/32 wzorzec 14) */
   const w = store.getState().workouts[store.getState().workouts.length - 1];
   expect(w.exercises[1].sets[0].durationSec).toBe(60); expect(w.finishedAt).toBe(plankStart + 60e3);
   expect(timer.S.on).toBe(false);

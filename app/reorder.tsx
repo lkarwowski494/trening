@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, Btn, Muted, Txt, Empty } from '@/components/ui';
+import { Screen, Btn, Muted, Txt, Empty, Missing } from '@/components/ui';
 import { DragList, DragScroll } from '@/components/DragList';
 import { getState, useTick, exById, groupLabels, blockRanges, moveBlockOf, moveInGroup, occurrence, occurrences, workCount, workSetCount, tplRows, type Grouped } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
@@ -23,7 +23,7 @@ export default function ReorderScreen() {
   const owner: Base | null | undefined = target === 'active' ? st.active : tpl;
   const list: Row[] | undefined = target === 'active' ? st.active?.exercises : tpl?.items;
   const back = () => { if (router.canGoBack()) router.back(); else router.replace('/'); };
-  if (!list || !owner) return <Screen><Empty>{target === 'active' ? t('Nie ma treningu w toku.') : t('Nie ma takiego szablonu.')}</Empty><Btn title={t('Wróć')} block style={{ marginTop: 12 }} onPress={back} /></Screen>;
+  if (!list || !owner) return <Screen><Missing>{target === 'active' ? t('Nie ma treningu w toku.') : t('Nie ma takiego szablonu.')}</Missing></Screen>;
 
   const labels = groupLabels(list);
   const name = (r: Row) => { const ex = exById(r.exerciseId); const base = ex ? exName(ex) : t('Usunięte ćwiczenie'); const i = list.indexOf(r); return occurrences(list, r.exerciseId) > 1 ? `${base} (${occurrence(list, i) + 1})` : base; };

@@ -67,7 +67,7 @@ describe('ekran', () => {
     await tap(box.getAllByText('Planowanie')[0]); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')).toBeTruthy();
     await tap(screen.getByText('Wygeneruj szablony i plan')); await flushAll(10); expect(screen.getByText('Podgląd')).toBeTruthy();
     /* 11.10.2026: „Miejsca i sprzęt” — jedno zdanie z odnośnikiem (nie osobny, numerowany krok); „Przewodnik” tylko raz (krok 3) */
-    await go('/'); await flushAll(10); const box2 = within(screen.getByTestId('first-steps')); const places = 'Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.'; expect(box2.getByText(places)).toBeTruthy(); expect(screen.getByLabelText(places).props.accessibilityRole).toBe('link'); expect(screen.queryByText(/^4\. /)).toBeNull();
+    await go('/'); await flushAll(10); const box2 = within(screen.getByTestId('first-steps')); const places = 'Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.'; expect(box2.getByText(places)).toBeTruthy(); expect(screen.getByLabelText(places).props.accessibilityRole).toBe('button'); expect(screen.queryByText(/^4\. /)).toBeNull();
     await tap(box2.getByText(places)); await flushAll(10); expect(screen.getByText(/Brak miejsc — wszystkie ćwiczenia są dostępne/)).toBeTruthy();
   });
   test('kroki odhaczone: szablon i plan zrobione (✓, VoiceOver „zrobione”, bez przycisku „Planowanie”), krok 3 „Przewodnik” zostaje', async () => {

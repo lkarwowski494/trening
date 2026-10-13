@@ -71,7 +71,7 @@ describe('F4 (LIVE-03): „Pomiń dziś” nie zatrzymuje przerwy po odhaczonej 
     await tap(screen.getByLabelText('Start stopera serii')); expect(timer.S.on).toBe(true);
     await tap(screen.getByLabelText('Pomiń dziś: Plank')); await flushAll(5);
     expect(lastAlert()).toMatchObject({ title: 'Trwa pomiar serii', msg: 'Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.' });
-    await act(async () => { pressAlert('Trwa pomiar serii', 'Wróć'); }); await flushAll(5); expect(timer.S.on).toBe(true); expect(S().active!.exercises[0].skipped).toBeUndefined();
+    await act(async () => { pressAlert('Trwa pomiar serii', 'Anuluj'); }); await flushAll(5); expect(timer.S.on).toBe(true); expect(S().active!.exercises[0].skipped).toBeUndefined();
     await tap(screen.getByLabelText('Pomiń dziś: Plank')); await flushAll(5);
     await act(async () => { pressAlert('Trwa pomiar serii', 'Pomiń dziś'); }); await flushAll(5);
     expect(timer.S.on).toBe(false); expect(S().active!.exercises[0].skipped).toBe(true); expect(S().active!.exercises[0].sets[0].done).toBe(false);
@@ -136,7 +136,7 @@ describe('F7 (LIVE-12 / UI-08): podwójne tapnięcie przy starcie, anulowaniu i 
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await boot();
     const btn = screen.getByText('Odrzuć trening'); await tap(btn); await tap(btn);
     expect(global.__alerts.filter(x => x.title === 'Odrzucić trening?')).toHaveLength(1);
-    await act(async () => { pressAlert('Odrzucić trening?', 'Wróć'); }); await tap(btn); expect(global.__alerts.filter(x => x.title === 'Odrzucić trening?')).toHaveLength(2); /* po „Wróć” znów działa */
+    await act(async () => { pressAlert('Odrzucić trening?', 'Anuluj'); }); await tap(btn); expect(global.__alerts.filter(x => x.title === 'Odrzucić trening?')).toHaveLength(2); /* po „Wróć” znów działa */
   });
   test('F7 (LIVE-12): podwójne „Start” w tygodniu deload → jedno pytanie; podwójne „Pusty trening” / „Powtórz ostatni” → jeden trening', async () => {
     await fresh(); const t = withDemoTemplates(); store.toggleDeloadWeek(Date.now()); await boot();

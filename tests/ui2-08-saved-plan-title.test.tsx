@@ -17,7 +17,7 @@ describe('UI2-08 — tytuł zapisanego planu', () => {
   test('„+ Nowy plan” → nagłówek z nazwą planu, nie „Plan tygodnia”; idzie za wpisaną nazwą; aktywny plan — „Planowanie”', async () => {
     await boot('/plan', () => { const t = withDemoTemplates(); plan.setWeekDay(0, t[0].id); plan.setPlanName('Siłownia'); });
     expect(title()).toBe('Planowanie'); /* 11.10.2026: tytuł ekranu planu */
-    await tap(screen.getByText('+ Nowy plan')); await flushAll(1100);
+    await tap(screen.getByLabelText('Dodaj plan')); await flushAll(1100);
     const p = plan.savedPlans()[0]; expect(p.name).toBeTruthy(); expect(title()).toBe(p.name);
     await type(screen.getByLabelText('Nazwa planu'), 'Wakacje'); await flushAll(5); expect(title()).toBe('Wakacje');
     await type(screen.getByLabelText('Nazwa planu'), ''); await flushAll(5); expect(title()).toBe('Inny plan');

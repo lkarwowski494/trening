@@ -445,3 +445,31 @@ z większą zmianą nawyku i więcej E2E naraz.
 **P8. Progresja — estymacja.** A) do czasu odpowiedzi badacza pokazywać tylko „wykonane” i „zaplanowane” jako dwie liczby bez sumowania;
 B) od razu sumować serie i objętość z szablonów (nazwane „uproszczenie: z szablonu”). Kompromis: A zgodne z zasadą merytoryczną, B szybciej
 pokazuje to, czego chce właściciel.
+
+---
+
+## Zasada: zamykanie okien (13.10.2026) — pierwszy wzorzec zasady „to samo działa tak samo”
+
+**Zasada (właściciel, 13.10.2026):** akcje i elementy tego samego typu działają w całej aplikacji tak samo; katalog wzorców: **`docs/32-wzorce-interakcji.md`**. Zamykanie okien to jej pierwszy przypadek:
+**każdy ekran wysuwany z dołu / okno modalne (presentation modal, formSheet, sheet, transparentModal; arkusze i `<Modal>` w komponentach) ma widoczny, spójny przycisk zamknięcia w nagłówku** — decyzja 1A
+(13.10.2026): **„Anuluj” po lewej** (HIG Sheets, jak edytory na szkicu), ten sam komponent i `testID` `close-modal`, rola „przycisk” dla VoiceOver; gest w dół działa dalej jako dodatek.
+Alert systemowy (`Alert.alert`) i inline'owa sekcja „Co nowego” (rozwijana karta, własne „Zamknij”) zasady nie dotyczą.
+
+**Implementacja:** `components/CloseButton.tsx` — `CloseButton`, `useCloseHeader(onClose?)` (opcje nagłówka), `useDismiss()`; rysuje `HeaderButton` z `components/DraftHeader.tsx` (pole 44 pt, limit powiększenia).
+Etykieta: istniejące `t('Anuluj')`. **Strażnik:** `tests/close-button-guard.test.tsx` (skan layoutów i źródeł + render każdego okna w PL/EN, jasny/ciemny motyw).
+
+### Wykaz okien (stan przed → po)
+
+| Okno | Plik / sposób | Przed | Po |
+|---|---|---|---|
+| Wybór ćwiczenia | `app/picker.tsx`, trasa `picker` (modal) | „Anuluj” po prawej (własny kod) | „Anuluj” po lewej (wspólny komponent; blokada podwójnego tapnięcia zachowana) |
+| Zamiana ćwiczenia | `app/swap.tsx`, trasa `swap` (modal), także stan „nie da się zamienić” | „Anuluj” po prawej (własny kod) | „Anuluj” po lewej |
+| Wybór szablonu | `app/pick-template.tsx`, trasa `pick-template` (modal) | „Anuluj” po prawej (własny kod) | „Anuluj” po lewej |
+| Ekran zakupu | `app/paywall.tsx`, trasa `paywall` (modal) | reason=settings: brak przycisku (tylko gest); limit/first: „Nie teraz” na dole | „Anuluj” w nagłówku zawsze; „Nie teraz” (limit, first) zostaje na dole; usunięty zdublowany H1 |
+| Arkusz „Inny trening” | `components/StartPanel.tsx`, `<Modal>` od dołu | tło jako ukryty „Zamknij” + „Anuluj” na dole | „Anuluj” po lewej w nagłówku arkusza (tytuł pośrodku); dolny „Anuluj” usunięty; tło zamyka dotykiem, ale nie jest przyciskiem dla VoiceOver |
+| Pozostałe trasy | `presentation` nie występuje w innych layoutach ani komponentach | — | strażnik wykrywa każde nowe |
+
+**Przypadki (opis):**
+- *Okna wyboru bez zmian do zapisania* (picker, swap, pick-template): „Anuluj” (nie „Zamknij”) — jedna etykieta we wszystkich oknach, po lewej jak w edytorach i HIG Sheets.
+- *Ekran zakupu — wymóg Apple:* zamknięcie nie może być ukryte ani mylące. „Anuluj” jest zawsze widoczne w nagłówku, w standardowym miejscu; „Nie teraz” prowadzi w to samo miejsce (wstecz), więc nie jest pułapką.
+- *Okna z Zapisz/Anuluj* (edycja sesji, szablonu, ćwiczenia — `DraftHeader`) to zwykłe karty: „Anuluj” po lewej / „Zapisz” po prawej już były spójne z tą zasadą.

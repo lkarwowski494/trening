@@ -9,6 +9,8 @@ import { achievable, noPlates, fillRange, convertSpec, validateSpec, rangeCount,
 import { fmtNum } from '@/lib/units';
 import { t } from '@/lib/i18n';
 import type { Location, LocEquip } from '@/lib/seed';
+import { cancelButton } from '@/lib/confirm';
+import { useAnnounce } from '@/lib/announce';
 
 /*
  * P-003 E1: edytor dostępnych ciężarów pozycji sprzętu (docs/10, sekcja 3.2). Wartości w jednostce sprzętu (kg albo lb — talerz
@@ -40,13 +42,13 @@ export function loadSummary(item: EquipItem, spec: LoadSpec): string {
 const filled = (s: LoadSpec) => s.kind === 'list' ? s.items.length > 0 : s.kind === 'plates' ? s.plates.length > 0 : s.max > 0 || s.min > 0;
 
 export default function LoadEditor({ loc, entry, item }: { loc: Location; entry: LocEquip; item: EquipItem }) {
-  const th = useTheme(); const spec = entry.load; const [rng, setRng] = useState<{ min: number | ''; max: number | ''; step: number | '' }>({ min: '', max: '', step: '' }); const [add, setAdd] = useState<number | ''>(''); const [msg, setMsg] = useState('');
+  const th = useTheme(); const spec = entry.load; const [rng, setRng] = useState<{ min: number | ''; max: number | ''; step: number | '' }>({ min: '', max: '', step: '' }); const [add, setAdd] = useState<number | ''>(''); const [msg, setMsg] = useState(''); useAnnounce(msg);
   if (!spec) return null;
   const upd = () => { setMsg(''); locationEdited(loc); }; /* runda 82c (LOW 2): przyrządy bloków treningu w toku w tym miejscu od nowa */ const name = equipLabel(item); const lbl = (s: string) => `${s} — ${name}`;
   const presets = LOAD_PRESETS.filter(p => p.item === item.id);
   const applyPreset = (p: typeof presets[number]) => { const go = () => { applyLoadPreset(entry, p); upd(); };
     if (!filled(spec)) { go(); return; }
-    Alert.alert(t('Zastąpić wpisane ciężary?'), t('{p} zastąpi ciężary wpisane dla: {i}.', { p: equipLabel(p.label), i: name }), [{ text: t('Nie'), style: 'cancel' }, { text: t('Zastąp'), style: 'destructive', onPress: go }]); };
+    Alert.alert(t('Zastąpić wpisane ciężary?'), t('{p} zastąpi ciężary wpisane dla: {i}.', { p: equipLabel(p.label), i: name }), [{ ...cancelButton() }, { text: t('Zastąp'), style: 'destructive', onPress: go }]); };
   const problem = validateSpec(spec);
   return (
     <FieldHint.Provider value={name}><View style={{ marginLeft: 12, paddingLeft: 10, borderLeftWidth: 2, borderLeftColor: th.line, marginVertical: 6, gap: 6 }}>
@@ -68,7 +70,7 @@ export default function LoadEditor({ loc, entry, item }: { loc: Location; entry:
           <View style={{ flex: 1 }}><Field label={t('dodaj ciężar')}><NumInput decimal value={add} onNum={setAdd} /></Field></View>
           <View style={{ marginBottom: 12 }}><Btn small title="+" accessibilityLabel={lbl(t('Dodaj ciężar'))} onPress={() => { if (add === '' || add < W_MIN || add > W_MAX) { if (add !== '') setMsg(t('Ciężar od {a} do {b}.', { a: fmtNum(W_MIN, 3), b: W_MAX })); return; } if (!spec.items.some(x => Math.abs(x.w - add) < 1e-9)) { if (spec.items.length >= LOAD_LIMITS.listItems) { setMsg(t('Za dużo ciężarów (najwyżej {n}).', { n: LOAD_LIMITS.listItems })); return; } spec.items.push({ w: Math.round(add * 1000) / 1000, on: true }); } setAdd(''); upd(); }} /></View>
           {spec.items.some(x => !x.on) ? <View style={{ marginBottom: 12 }}><Btn small kind="ghost" title={t('Usuń odznaczone')} accessibilityLabel={lbl(t('Usuń odznaczone'))} onPress={() => { const off = spec.items.filter(x => !x.on).sort((a, b) => a.w - b.w); /* G1 (audyt 0.10, wariant B): przycisk zostaje, z potwierdzeniem jak usuwanie gestem (chipów nie da się przesunąć) */
-            Alert.alert(t('Usunąć odznaczone ciężary?'), `${off.map(x => n(x.w)).join(', ')} ${spec.unit}\n${name}`, [{ text: t('Nie'), style: 'cancel' }, { text: t('Usuń'), style: 'destructive', onPress: () => { spec.items = spec.items.filter(x => x.on); upd(); } }]); }} /></View> : null}
+            Alert.alert(t('Usunąć odznaczone ciężary?'), `${off.map(x => n(x.w)).join(', ')} ${spec.unit}\n${name}`, [{ ...cancelButton() }, { text: t('Usuń'), style: 'destructive', onPress: () => { spec.items = spec.items.filter(x => x.on); upd(); } }]); }} /></View> : null}
         </View>
       </> : null}
       {spec.kind === 'plates' ? <>

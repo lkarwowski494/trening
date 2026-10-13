@@ -1,4 +1,6 @@
 import { MedicalNote } from '@/components/MedicalNote';
+import { SubscriptionCard } from '@/components/SubscriptionCard';
+import { paywallOn } from '@/lib/entitlement';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Alert, View, Linking } from 'react-native';
 import { Screen, Field, NumInput, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
@@ -13,6 +15,7 @@ import { t, LANG_NAME, type Lang, appName } from '@/lib/i18n';
 import { type Unit } from '@/lib/units';
 import { WEEKLY_SETS_MARK, manualSetsGoal } from '@/lib/stats';
 import { SET_PARTS, SETS_GOAL_MIN, SETS_GOAL_MAX, clampGoal, type SetPart } from '@/lib/setParts';
+import { cancelButton } from '@/lib/confirm';
 
 
 export default function SettingsScreen() {
@@ -24,6 +27,7 @@ export default function SettingsScreen() {
   const [goalsOpen, setGoalsOpen] = useState(false);
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
+      {paywallOn() ? <SubscriptionCard /> /* 0.17.0 (docs/27): karta tylko przy PAYWALL.ENABLED */ : null}
       <SectionTitle>{t('Ogólne')}</SectionTitle>
       <Item title={t('Język')} sub={s.language && s.language !== 'auto' ? LANG_NAME[s.language as Lang] : t('Jak w telefonie')} onPress={() => router.push('/more/language')} /* 05.10.2026: 16 języków — osobna lista */ />
       <Field label={t('Wygląd')}><Segmented label={t('Wygląd')} options={[['light', t('Jasny')], ['dark', t('Ciemny')], ['auto', t('Jak w telefonie')]] as [ThemeSetting, string][]} value={s.theme ?? 'light'} onChange={v => { s.theme = v; applyPrefs(); saveCfg(); }} /></Field>
@@ -32,7 +36,7 @@ export default function SettingsScreen() {
       <SectionTitle>{t('Trening')}</SectionTitle>
       <Field label={t('Widok treningu')}><Segmented label={t('Widok treningu')} options={[['focus', t('Skupiony')], ['list', t('Lista')]] as [WorkoutView, string][]} value={s.workoutView ?? 'focus'} onChange={v => { s.workoutView = v; saveCfg(); }} /></Field>
       <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{s.workoutView === 'list' ? t('Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.') : t('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')}</Muted>
-      <Field label={t('Domyślna przerwa (sekundy)')}><NumInput value={s.defaultRest} onNum={v => { if (v === '') return; s.defaultRest = Math.min(REST_MAX, Math.max(0, Math.round(v))) /* UI2-09: limit z jednego miejsca */; saveCfg(); }} placeholder={String(DEFAULT_REST)} /></Field>
+      <Field label={t('Domyślna przerwa (s)')}><NumInput value={s.defaultRest} onNum={v => { if (v === '') return; s.defaultRest = Math.min(REST_MAX, Math.max(0, Math.round(v))) /* UI2-09: limit z jednego miejsca */; saveCfg(); }} placeholder={String(DEFAULT_REST)} /></Field>
       <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; saveCfg(); timer.refreshScheduled().catch(() => {}); timer.refreshStale().catch(() => {}); }} />
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; saveCfg(); }} />
       <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; saveCfg(); }} />
@@ -46,21 +50,21 @@ export default function SettingsScreen() {
 
       <SectionTitle>{t('Cel serii na partię w tygodniu')}</SectionTitle>{/* 12.10.2026 (decyzja właściciela, docs/research/32): cel osobno dla każdej partii; automat = jedna liczba ze źródłami */}
       <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}.', { n: WEEKLY_SETS_MARK, min: SETS_GOAL_MIN, max: SETS_GOAL_MAX })}</Muted>
-      <Btn small title={goalsOpen ? t('Ukryj cele partii') : t('Pokaż cele partii')} style={{ alignSelf: 'flex-start', marginBottom: 8 }} onPress={() => setGoalsOpen(o => !o)} />
+      <Btn small expanded={goalsOpen} accessibilityLabel={t('Cele partii')} title={goalsOpen ? t('Ukryj cele partii') : t('Pokaż cele partii')} style={{ alignSelf: 'flex-start', marginBottom: 8 }} onPress={() => setGoalsOpen(o => !o)} />
       {goalsOpen ? <View testID="set-goals">{SET_PARTS.map(p => <SetGoalRow key={p} part={p} />)}</View> : null}
 
       <MedicalNote style={{ marginTop: 18, marginBottom: 10 }} /* L1 (audyt 0.10, MER-11 A); UI2-09: w sekcji „Trening”, nie nad „Wyczyść wszystkie dane” */ />
       <SectionTitle>{t('Dane i kopie')}</SectionTitle>
       <SwitchRow label={t('Zapisuj zakończone treningi do Apple Health')} value={s.healthSync} onChange={async v => { if (!v) { s.healthSync = false; save(); return; } const ok = await health.ensureAuthorization(); if (ok) { s.healthSync = true; save(); } else Alert.alert(t('Apple Health niedostępne'), t('Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })); }} />
       {s.healthSync && health.healthPending().length ? <View testID="health-pending-count" style={{ gap: 6, marginTop: -2, marginBottom: 8 }}>{/* audyt 0.10 J2 (DAT-04 B): licznik i ponowienie */}
-        <Muted style={{ fontSize: 13 }}>{t('Czeka na zapis w Apple Health: {n}. Ponawiam przy uruchomieniu i powrocie do aplikacji.', { n: health.healthPending().length })}</Muted>
-        <Btn small title={t('Ponów teraz')} style={{ alignSelf: 'flex-start' }} onPress={() => { health.retryHealth().then(() => { if (health.healthPending().length) Alert.alert(t('Nie udało się'), t('Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })); }).catch(() => {}); }} />
+        <Muted style={{ fontSize: 13 }}>{t('Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.', { n: health.healthPending().length })}</Muted>
+        <Btn small title={t('Ponów teraz')} style={{ alignSelf: 'flex-start' }} onPress={() => { health.retryHealth().then(() => { if (health.healthPending().length) Alert.alert(t('Nie udało się zapisać w Apple Health'), t('Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })); }).catch(() => {}); }} />
       </View> : null}
       <SwitchRow label={t('Pokazuj dane z Apple Health')} detail={t('Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu.')} value={s.healthRead === true} onChange={async v => {
         if (!v) { delete s.healthRead; save(); return; } /* 0.16.0 (P2 A): wyłączenie = aplikacja przestaje pytać Zdrowie; zgoda w iOS zostaje */
         const r = await health.ensureReadAuthorization();
         if (r === 'unavailable') Alert.alert(t('Apple Health niedostępne'), t('Apple Health nie jest dostępne na tym urządzeniu.'));
-        else if (r === 'failed') Alert.alert(t('Nie udało się'), t('Spróbuj ponownie.'));
+        else if (r === 'failed') Alert.alert(t('Nie udało się włączyć Apple Health'), t('Spróbuj ponownie.'));
         else { s.healthRead = true; save(); Alert.alert(t('Gotowe'), t('Jeśli dane się nie pokażą, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })); } /* iOS nie mówi, czy odmówiono odczytu — przełącznik włączony niezależnie od wyborów w arkuszu */
       }} />
       {s.healthRead ? <View testID="health-read-note" style={{ marginTop: -2, marginBottom: 8 }}><Muted style={{ fontSize: 13 }}>{t('Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })}</Muted></View> : null}
@@ -72,12 +76,12 @@ export default function SettingsScreen() {
         <Muted style={{ fontSize: 13 }}>{t('Brak zgody na powiadomienia — przypomnienia i koniec przerwy nie przyjdą. Zgodę włączysz w Ustawieniach iOS.')}</Muted>
         <Btn small title={t('Otwórz Ustawienia iOS')} onPress={openIos} style={{ alignSelf: 'flex-start' }} />
       </View> : s.planReminder !== false && perm === 'undetermined' ? <Muted style={{ fontSize: 13, marginTop: 4 }}>{t('Zgody na powiadomienia jeszcze nie ma — „Sprawdź zgodę na powiadomienia” poprosi o nią.')}</Muted> : null}{/* audyt 0.10 I1 */}
-      <Btn title={t('Sprawdź zgodę na powiadomienia')} style={{ marginTop: 12 }} onPress={async () => { const ok = await timer.ensurePermission(); refreshPerm(); if (ok) Alert.alert(t('Powiadomienia działają'), t('Koniec przerwy i przypomnienie o treningu z planu przyjdą także przy zablokowanym ekranie.')); else Alert.alert(t('Brak zgody'), t('Włącz powiadomienia dla {app} w Ustawieniach iOS.', { app: appName() }), [{ text: t('Anuluj'), style: 'cancel' }, { text: t('Otwórz Ustawienia iOS'), onPress: openIos }]); }} />
+      <Btn title={t('Sprawdź zgodę na powiadomienia')} style={{ marginTop: 12 }} onPress={async () => { const ok = await timer.ensurePermission(); refreshPerm(); if (ok) Alert.alert(t('Powiadomienia działają'), t('Koniec przerwy i przypomnienie o treningu z planu przyjdą także przy zablokowanym ekranie.')); else Alert.alert(t('Brak zgody'), t('Włącz powiadomienia dla {app} w Ustawieniach iOS.', { app: appName() }), [{ ...cancelButton() }, { text: t('Otwórz Ustawienia iOS'), onPress: openIos }]); }} />
       <Muted style={{ fontSize: 13, marginVertical: 12 }}>{t('Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.')}</Muted>
 
       {/* Moduły schowane (decyzja właściciela 05.10.2026: „Na razie schowaj moduły”) — ustawienia modułów zostają w danych */}
       <SectionTitle>{t('Dane w telefonie')}</SectionTitle>
-      <Btn title={t('Wyczyść wszystkie dane')} kind="danger" onPress={() => Alert.alert(t('Wyczyścić wszystkie dane?') /* G5 (audyt 0.10 UI-14): konkretne pytanie zamiast „Na pewno?” */, t('Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).', { app: appName() }) + (getState().active ? ' ' + t('Trening w toku też zostanie usunięty.') : '') /* G3 (audyt 0.10 UI-06) */ + safetyRecoveryNote(), [{ text: t('Nie'), style: 'cancel' }, { text: t('Wyczyść'), style: 'destructive', onPress: () => { safetyBackup('reset').then(() => { timer.resetAll().catch(() => {}); resetAll(); timer.scheduleWeighReminder().catch(() => {}); /* runda 75 (audyt T14): po wyczyszczeniu domyślne ustawienia — bez przypomnienia */ }).catch((e: unknown) => Alert.alert(t('Dane nie zostały wyczyszczone'), e instanceof Error ? e.message : undefined)); /* Q-019: najpierw kopia bezpieczeństwa w Backup/ */ } }])} />
+      <Btn title={t('Wyczyść wszystkie dane')} kind="danger" onPress={() => Alert.alert(t('Wyczyścić wszystkie dane?') /* G5 (audyt 0.10 UI-14): konkretne pytanie zamiast „Na pewno?” */, t('Usunie ćwiczenia, szablony i całą historię oraz przywróci ustawienia domyślne (także miejsca, sprzęt i gumy). Przedtem obecne dane zapiszą się jako kopia w Plikach: {app} → Backup (można ją zaimportować).', { app: appName() }) + (getState().active ? ' ' + t('Trening w toku też zostanie usunięty.') : '') /* G3 (audyt 0.10 UI-06) */ + safetyRecoveryNote(), [{ ...cancelButton() }, { text: t('Wyczyść'), style: 'destructive', onPress: () => { safetyBackup('reset').then(() => { timer.resetAll().catch(() => {}); resetAll(); timer.scheduleWeighReminder().catch(() => {}); /* runda 75 (audyt T14): po wyczyszczeniu domyślne ustawienia — bez przypomnienia */ }).catch((e: unknown) => Alert.alert(t('Dane nie zostały wyczyszczone'), e instanceof Error ? e.message : undefined)); /* Q-019: najpierw kopia bezpieczeństwa w Backup/ */ } }])} />
     </ScrollView></Screen>
   );
 }

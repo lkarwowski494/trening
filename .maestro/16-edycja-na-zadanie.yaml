@@ -5,7 +5,7 @@
 #
 # Literały (EN z lib/i18n.en.ts):
 #   "More, tab.*" → "Exercises"           ← 'Więcej' + 'Ćwiczenia' (Item na liście Więcej; 11.10.2026, wariant A: Ćwiczenia pod Więcej)
-#   "Search…"                    ← 'Szukaj…' (pole wyszukiwania na zakładce Ćwiczenia)
+#   "Search exercises…"                    ← 'Szukaj…' (pole wyszukiwania na zakładce Ćwiczenia)
 #   "Back Squat, barbell.*"      ← wiersz listy: „{nazwa}, {sprzęt}” (Item, components/ui.tsx; 'sztanga' → barbell)
 #   "Edit exercise"              ← 'Edytuj ćwiczenie' (accessibilityLabel przycisku „Edytuj” w podglądzie, app/exercise/[id].tsx)
 #   "Body part: legs"            ← wiersz podglądu „{etykieta}: {wartość}” ('Partia' → Body part, 'nogi' → legs)
@@ -27,8 +27,8 @@ name: Edycja na żądanie — ekran ćwiczenia
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - tapOn: "More, tab.*"
 - tapOn: "Exercises"  # 11.10.2026: Ćwiczenia to ekran pod Więcej (bez własnej zakładki)
-- extendedWaitUntil: { visible: "Search…", timeout: 30000 }
-- tapOn: "Search…"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
 - inputText: "Back Squat"
 - tapOn: { text: "Continue", optional: true }
 - tapOn: "Back Squat, barbell.*"
@@ -63,8 +63,8 @@ name: Edycja na żądanie — ekran ćwiczenia
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - tapOn: "More, tab.*"
 - tapOn: "Exercises"  # 11.10.2026: Ćwiczenia to ekran pod Więcej (bez własnej zakładki)
-- extendedWaitUntil: { visible: "Search…", timeout: 30000 }
-- tapOn: "Search…"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
 - inputText: "Back Squat"
 - tapOn: { text: "Continue", optional: true }
 - tapOn: "Back Squat, barbell.*"

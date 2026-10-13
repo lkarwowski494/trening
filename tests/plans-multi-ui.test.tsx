@@ -33,7 +33,7 @@ test('nazwa planu: pole z podpowiedzią „Mój plan”, zapis przy każdej zmia
 test('„+ Nowy plan” → edycja przed aktywacją → „Inne plany” z opisem i dniami; „Ustaw jako aktywny” z potwierdzeniem; „Anuluj” bez zmian', async () => {
   const t = await boot(ids => { plan.setWeekDay(0, ids[0]); plan.setWeekDay(2, ids[1]); });
   expect(screen.queryByText('Inne plany')).toBeNull();
-  await tap(screen.getByText('+ Nowy plan')); await flushAll(10);
+  await tap(screen.getByLabelText('Dodaj plan')); await flushAll(10);
   expect(screen.getByText('Ten plan jeszcze nie obowiązuje. Zmień nazwę i dni, potem „Ustaw jako aktywny”.')).toBeTruthy();
   await tap(screen.getByLabelText(`poniedziałek, ${t[0].name}`)); await flushAll(5); await tap(screen.getByLabelText(`poniedziałek: ${t[2].name}`)); await flushAll(5); /* nowy plan różni się od aktywnego */
   expect(plan.weekPlanDays()[0]).toBe(t[0].id);
@@ -46,7 +46,7 @@ test('„+ Nowy plan” → edycja przed aktywacją → „Inne plany” z opise
   await press('Ustawić „Nowy plan” jako aktywny plan?', 'Anuluj'); expect(plan.weekPlanDays()[0]).toBe(t[0].id);
   await tap(screen.getByLabelText('Ustaw jako aktywny: Nowy plan')); await flushAll(5); await press('Ustawić „Nowy plan” jako aktywny plan?', 'Ustaw');
   expect(plan.weekPlanDays()[0]).toBe(t[2].id); expect(plan.planName()).toBe('Nowy plan'); expect(S().planOverrides).toBeUndefined();
-  expect(screen.getByText('Mój plan (8.10)')).toBeTruthy(); expect(screen.getByLabelText(`poniedziałek, ${t[2].name}`)).toBeTruthy();
+  expect(screen.getByText('Mój plan (8 paź)')).toBeTruthy(); expect(screen.getByLabelText(`poniedziałek, ${t[2].name}`)).toBeTruthy();
 });
 test('bez zmian dni od dziś — krótszy komunikat; usuwanie gestem z potwierdzeniem', async () => {
   await boot(ids => { plan.setWeekDay(0, ids[0]); plan.addPlan('Wakacje', [null, ids[1], null, null, null, null, null], false); });
@@ -62,12 +62,12 @@ test('plan bez treningów w podsumowaniu — „bez treningów”', async () => 
 });
 test('English', async () => {
   await boot(ids => { plan.setWeekDay(0, ids[0]); plan.addPlan('', [ids[1], null, null, null, null, null, null], false); }, 'en');
-  expect(screen.getByText('Other plans')).toBeTruthy(); expect(screen.getByText('New plan')).toBeTruthy(); expect(screen.getByText('+ New plan')).toBeTruthy();
+  expect(screen.getByText('Other plans')).toBeTruthy(); expect(screen.getByText('New plan')).toBeTruthy(); expect(screen.getByLabelText('Add plan')).toBeTruthy();
   await tap(screen.getByLabelText('Make active: New plan')); await flushAll(5); expect(lastAlert('Make “New plan” the active plan?')).toBeTruthy();
 });
 test('regresja run 37784561635: wiersz zapisanego planu ma etykietę „tytuł, dni” — selektory E2E (.maestro/13) pasują do całej etykiety („My plan (…)”, audyt 0.10 B2 A)', async () => {
   await boot(ids => { plan.setWeekDay(0, ids[0]); }, 'en');
-  await tap(screen.getByText('+ New plan')); await flushAll(10);
+  await tap(screen.getByLabelText('Add plan')); await flushAll(10);
   await tap(screen.getByLabelText('Make active: New plan')); await flushAll(5); await press('Make “New plan” the active plan?', 'Set'); await flushAll(10);
   const label: string = screen.getByLabelText(/^My plan \(/).props.accessibilityLabel; expect(label).toMatch(/^My plan \(.*, Mon /);
   const fs = require('fs'); const path = require('path');

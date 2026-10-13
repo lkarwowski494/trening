@@ -29,5 +29,10 @@ jest.setTimeout(240000);
 const flows = readdirSync(DIR).filter(f => /^\d\d-.*\.yaml$/.test(f)).sort();
 describe('scenariusze Maestro na drzewie dostępności (EN, en-US)', () => {
   afterAll(() => { delete (global as any).__notifPerm; });
-  test.each(flows)('%s', async f => { const r = new Runner(f); await r.run(load(join(DIR, f)), f); });
+  test.each(flows)('%s', async f => {
+    /* 21 (0.17.0): build E2E ze sztucznym sklepem — zmienna ustawiona tylko dla tego scenariusza, adapter i uprawnienia zapomniane przed i po */
+    const fake = f.startsWith('21-'); const { resetStoreAdapterForTests } = require('@/lib/store-adapter'); const { resetEntitlementsForTests } = require('@/lib/entitlement');
+    if (fake) process.env.EXPO_PUBLIC_STORE_FAKE = '1'; resetStoreAdapterForTests(); resetEntitlementsForTests();
+    try { const r = new Runner(f); await r.run(load(join(DIR, f)), f); } finally { delete process.env.EXPO_PUBLIC_STORE_FAKE; resetStoreAdapterForTests(); resetEntitlementsForTests(); }
+  });
 });

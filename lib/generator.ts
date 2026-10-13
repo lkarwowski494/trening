@@ -7,6 +7,7 @@ import { SECONDARY_SHARE, addSplitSets, splitTotals, emptySplit, splitText, type
 import { t, tIn, lbl, locale, LANGS } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
 import { loadCapWarning } from './loadcap';
+import { weekdayLabels } from '@/lib/calendar';
 
 /*
  * Generator szablonów i planu tygodnia (decyzje właściciela 08.10.2026, wariant A pełny; docs/24). Działa tylko na wyraźne polecenie, wynik do
@@ -293,7 +294,7 @@ export const genProposal = (inp: GenInput): number[] => generate({ ...inp, days:
 
 /** Serie na partię w podglądzie: „klatka 6 + 1,5 pośrednio (3 serie) / 10; …” — ta sama funkcja podpisu co paski; cel tylko tam, gdzie obowiązuje (masa, redukcja, plan z szablonów). */
 export const weeklySetsList = (r: Pick<GenResult, 'splits' | 'goals'>, withGoal: boolean): string => MAJOR.map(m => `${t(m)} ${splitText(r.splits[m] ?? emptySplit(), withGoal ? r.goals[m] : undefined)}`).join('; ');
-const wd = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' }); /* 1.01.2024 = poniedziałek */
+const wd = (i: number) => weekdayLabels()[i];
 const list = (ms: string[]) => ms.map(m => t(m)).join(', ');
 export type GenWarning = { kind: 'unloaded' | 'missing' | 'rare' | 'below' | 'oneday' | 'pairs' | 'loadcap'; text: string };
 /** Ostrzeżenia podglądu (audyt 0.10 MER-01, MER-02, LOG-03): siła bez obciążenia, partie bez ćwiczeń (z podpowiedzią sprzętu), partie rzadziej niż

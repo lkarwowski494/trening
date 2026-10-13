@@ -9,6 +9,7 @@
 #   "Save measurement" / "Measurements" ← 'Zapisz pomiar' / 'Pomiary'
 #   "80 kg, .*"                       ← wiersz pomiaru (Item: tytuł „80 kg”, opis = data)
 #   "About" / "Open-source licences"  ← 'O aplikacji' / 'Licencje open source' (app/more/about.tsx)
+#   "Write to us"                     ← 'Napisz do nas' (etykieta VoiceOver wiersza; podpis z adresem jest częścią wiersza, nie osobnym elementem) — tylko asercja widoczności
 #   "Packages \(\d+\)"                ← 'Pakiety ({n})' (app/more/licenses.tsx)
 #   "Native iOS libraries outside npm \(\d+\)" / "folly .*" ← 'Biblioteki natywne iOS spoza npm ({n})' i wiersz biblioteki (SEC2-06, scripts/licenses-native.json)
 #   "MIT, .*" / "MIT License.*Permission is hereby granted.*" ← pozycja licencji i jej treść (lib/licenses.generated.ts, scripts/licenses.mjs;
@@ -57,6 +58,8 @@ name: Masa ciała z datą i licencje open source
 
 - extendedWaitUntil: { visible: "About", timeout: 30000 }
 - tapOn: "About"
+# 13.10.2026: „Write to us” (mailto:) — wiersz jest widoczny pod wersją; NIE stukamy: otwarcie Mail poza kontrolą Maestro (symulator bez skonfigurowanej poczty, docs/09)
+- extendedWaitUntil: { visible: "Write to us", timeout: 30000 }
 - extendedWaitUntil: { visible: "Open-source licences.*", timeout: 30000 }
 - tapOn: "Open-source licences.*"
 # E2E 91: nagłówek „Packages (n)” jest pod 13 licencjami — poza ekranem; najpierw licencja MIT (widoczna bez przewijania) i jej treść, potem przewinięcie do nagłówka

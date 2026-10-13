@@ -7,8 +7,9 @@ import { useTheme, F } from '@/lib/theme';
 import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, suggestionOrder, SUGGEST_FIRST, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, earlyWorkout, undoDoneEarly, type Suggestion } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
-import { startTemplate } from '@/lib/start';
+import { startTemplate, workoutInProgressNotice } from '@/lib/start';
 import { DayHealth } from '@/components/HealthLines';
+import { fmtWeekdayDayMonth } from '@/lib/calendar';
 
 /*
  * Panel wybranego dnia w Kalendarzu (priorytet właściciela 08.10.2026): co jest zaplanowane i co z tym zrobić.
@@ -26,7 +27,7 @@ const tplName = planTplName;
 const dateOf = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10));
 const keyTs = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10), 12).getTime();
 export const shortDay = (k: string) => fmtDayKey(k); /* H3 (audyt 0.10): jeden format daty dnia */
-const longDay = (k: string) => dateOf(k).toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' });
+const longDay = (k: string) => fmtWeekdayDayMonth(dateOf(k));
 /** Najwyżej tyle głównych akcji panelu (UX-13 A). */
 const PRIMARY_MAX = 3;
 
@@ -45,7 +46,7 @@ export function DayPanel({ day }: { day: string }) {
 
   /* ---- stan dnia ---- */
   const lines: React.ReactElement[] = [];
-  const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="link" accessibilityLabel={text} onPress={once(() => router.push(`/history/${wid}`))} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, paddingVertical: 2 })}><Txt style={{ fontSize: 15, color: th.accent, fontFamily: F.semibold }}>{`${text} ›`}</Txt></Pressable>;
+  const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="button" accessibilityLabel={text} onPress={once(() => router.push(`/history/${wid}`))} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, minHeight: 44, justifyContent: 'center' })}><Txt style={{ fontSize: 15, color: th.accent, fontFamily: F.semibold }}>{`${text} ›`}</Txt></Pressable>;
   const ch = changed ? ` · ${t('zmiana planu')}` : '';
   if (st.early) { const w = earlyWorkout(day, today); lines.push(w ? link(w.id, t('Zrobiony wcześniej: {name}', { name: tplName(id) }), w.id) : <Txt key="early" style={{ fontSize: 15 }}>{t('Zrobiony wcześniej: {name}', { name: tplName(id) })}</Txt>); lines.push(<Muted key="early-free" style={{ fontSize: 13 }}>{t('Trening z tego dnia zrobiony wcześniej — dzień wolny.')}</Muted>); }
   else if (st.status === 'done' || st.status === 'other') doneOn(day).forEach(w => lines.push(link(w.id, st.status === 'done' ? t('Zrobione: {name}', { name: w.templateName || t('Trening') }) : t('Zrobiony inny trening: {name}', { name: w.templateName || t('Trening') }), w.id)));
@@ -54,13 +55,13 @@ export function DayPanel({ day }: { day: string }) {
   else if (changed) lines.push(<Muted key="plan" style={{ fontSize: 13 }}>{t('zmiana planu')}</Muted>);
   if (activeHere) lines.push(<Muted key="active" style={{ fontSize: 13 }}>{t('Trening w toku')}</Muted>);
   const empty = !!tpl && !tpl.items.length && pending(st);
-  if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="link" onPress={once(() => router.push(`/template/${tpl!.id}?edit=1`))}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
+  if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="button" onPress={once(() => router.push(`/template/${tpl!.id}?edit=1`))} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
 
   /* ---- akcje: główne (najwyżej 3) i „Więcej opcji” ---- */
   const primary: Act[] = []; const extra: Act[] = [];
-  if (tpl && day === today && pending(st) && !act && tpl.items.length) primary.push({ key: 'start', el: <Btn nav small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} onPress={() => startTemplate(tpl, () => router.navigate('/'))} /> });
+  if (tpl && day === today && pending(st) && !act && tpl.items.length) primary.push({ key: 'start', el: <Btn nav small kind="primary" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} onPress={() => startTemplate(tpl, () => router.navigate('/'), 'calendar')} /> });
   /* UI-18 (audyt 0.10, G5): przy treningu w toku Start nie znika bez słowa — ta sama informacja co w podglądzie szablonu */
-  else if (tpl && day === today && pending(st) && act && tpl.items.length) primary.push({ key: 'start', el: <Btn small kind="ghost" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} accessibilityHint={t('Trening w toku')} onPress={() => Alert.alert(t('Trening w toku'), t('Najpierw zakończ albo anuluj bieżący trening.'))} /> });
+  else if (tpl && day === today && pending(st) && act && tpl.items.length) primary.push({ key: 'start', el: <Btn small kind="ghost" title={t('Start')} accessibilityLabel={t('Start zaplanowanego treningu: {name}', { name: tpl.name })} accessibilityHint={t('Trening w toku')} onPress={workoutInProgressNotice} /> });
   if (movable) primary.push({ key: 'move', el: <Btn small title={t('Przesuń albo pomiń')} accessibilityHint={t('Lista możliwości: przesunięcie planu, przeniesienie tylko tego treningu, zamiana albo wolne — z uwzględnieniem regeneracji partii.')} onPress={() => setMode(mode === 'move' ? 'none' : 'move')} /> });
   if (!past && !activeHere && st.status !== 'done') primary.push({ key: 'pick', el: <Btn small title={id ? t('Zmień szablon') : t('Dodaj do planu')} onPress={() => setMode(mode === 'pick' ? 'none' : 'pick')} /> });
   if (past && st.status !== 'done') primary.push({ key: 'past', el: <Btn nav small title={t('Dopisz trening wstecz')} accessibilityHint={t('Trening wstecz z datą tego dnia.')} onPress={() => router.push(`/history/add?date=${day}${tpl ? `&tpl=${tpl.id}` : ''}`)} /> });
@@ -79,7 +80,7 @@ export function DayPanel({ day }: { day: string }) {
       <DayHealth day={day} />{/* 0.16.0 (docs/29 5.5): Apple Health — kroki i inne aktywności dnia, tylko do wglądu */}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
         {primary.map(a => <React.Fragment key={a.key}>{a.el}</React.Fragment>)}
-        {extra.length ? <Btn small kind="ghost" title={more ? t('Mniej opcji') : t('Więcej opcji')} accessibilityLabel={t('Więcej opcji')} accessibilityHint={t('Pozostałe akcje dla tego dnia.')} onPress={() => setMore(v => !v)} /> : null}
+        {extra.length ? <Btn small kind="ghost" expanded={more} title={more ? t('Mniej opcji') : t('Więcej opcji')} accessibilityLabel={t('Więcej opcji')} accessibilityHint={t('Pozostałe akcje dla tego dnia.')} onPress={() => setMore(v => !v)} /> : null}
       </View>
       {more ? <View testID="day-more" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 6 }}>{extra.map(a => <React.Fragment key={a.key}>{a.el}</React.Fragment>)}</View> : null}
       {mode === 'move' && movable ? <MoveList day={day} onDone={close} /> : null}

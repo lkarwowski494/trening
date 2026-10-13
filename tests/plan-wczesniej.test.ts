@@ -146,7 +146,7 @@ describe('wyłączenie wszystkich planów (pkt 5, wariant A z potwierdzeniem)', 
   });
   test('plan bez nazwy dostaje „Mój plan (<data>)”; wyłączenie i ponowna aktywacja przywraca dni i zmiany dni od dziś', () => {
     plan.setWeekDay(1, A); plan.setDayPlan('2026-10-15', B); plan.deactivatePlan();
-    const id = plan.savedPlans()[0].id; expect(plan.savedPlans()[0].name).toBe('Mój plan (11.10)');
+    const id = plan.savedPlans()[0].id; expect(plan.savedPlans()[0].name).toBe('Mój plan (11 paź)');
     plan.activatePlan(id); expect(plan.weekPlanDays()).toEqual([null, A, null, null, null, null, null]); expect(S().planOverrides).toEqual({ '2026-10-15': B }); expect(plan.savedPlans()).toEqual([]);
   });
   test('„Inne plany” pełne — wyłączenie odmawia i niczego nie zmienia', () => {
@@ -165,7 +165,7 @@ describe('wyłączenie wszystkich planów (pkt 5, wariant A z potwierdzeniem)', 
   test('najwyżej jeden aktywny: po wyłączeniu i aktywacji innego aktywny jest dokładnie jeden, poprzedni w „Inne plany”', () => {
     plan.setWeekDay(0, A); plan.deactivatePlan(); const other = plan.addPlan('Drugi', [B, null, null, null, null, null, null], false);
     plan.activatePlan(plan.savedPlans()[0].id); plan.deactivatePlan(); plan.activatePlan(other);
-    expect(plan.weekPlanDays()[0]).toBe(B); expect(plan.savedPlans().map(p => p.name)).toEqual(['Mój plan (11.10)']);
+    expect(plan.weekPlanDays()[0]).toBe(B); expect(plan.savedPlans().map(p => p.name)).toEqual(['Mój plan (11 paź)']);
   });
   test('dane: zapis i odczyt po wyłączeniu (historia z pustym odcinkiem, idempotentna migracja)', async () => {
     plan.setWeekDay(0, A); jest.setSystemTime(new Date(2026, 9, 12, 9).getTime()); plan.deactivatePlan(); await store.flush(); await fresh(saved());

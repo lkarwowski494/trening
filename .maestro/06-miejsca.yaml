@@ -6,7 +6,7 @@
 #   "Settings"                       ← 'Ustawienia'                         (Item w app/(tabs)/more.tsx)
 #   "Places and equipment,.*"             ← 'Miejsca i sprzęt' (audyt 0.10 H2, dawniej 'Miejsca treningu') + sub 'sprzęt w domu, na siłowni, w hotelu…'
 #                                      (Item w app/more/settings.tsx; accessibilityLabel „{title}, {sub}”)
-#   "\+ Add place"                   ← '+ Dodaj miejsce'                    (app/more/locations.tsx)
+#   "Add place"                      ← 'Dodaj miejsce' (etykieta VoiceOver przycisku „+” w nagłówku, app/more/locations.tsx)
 #   "Bodyweight only,.*"             ← LOCATION_PRESET_LABEL.bodyweight.en + LOCATION_PRESET_HINT.bodyweight.en 'mat only' (lib/equipment.ts)
 #   "Available exercises: .*"        ← 'Dostępne ćwiczenia: {n} z {m}' → 'Available exercises: {n} of {m}' (app/more/location/[id].tsx)
 #   "Pull-up bar.*"                  ← EQUIPMENT pullup_bar.en 'Pull-up bar (doorway, wall-mounted)' (lib/equipment.ts; SwitchRow)
@@ -23,7 +23,7 @@
 #   "Pull Up,.*"                     ← nazwa ćwiczenia z lib/seed.ts (EN bez zmian, exName) — wymaga pullup.bar|rings (catalog.generated.ts)
 #   "Lat Pulldown,.*"                ← nazwa z lib/seed.ts — wymaga lat_pulldown|cable.high → niedostępne w „Bodyweight only”
 #   "missing:"                       ← 'brak: {m}' → 'missing: {m}'
-#   "Cancel"                         ← 'Anuluj' (headerRight pickera)
+#   "Cancel"                         ← 'Anuluj' (headerLeft pickera, components/CloseButton.tsx — zasada 13.10.2026)
 appId: pl.lukasz.trening
 name: Miejsca treningu i filtr ćwiczeń
 ---
@@ -37,9 +37,9 @@ name: Miejsca treningu i filtr ćwiczeń
 # 11.10.2026: „Places and equipment” to pozycja ekranu Więcej (z Ustawień zniknęła)
 - extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
 - tapOn: "Places and equipment"
-- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
 - takeScreenshot: 20-miejsca-pusto
-- tapOn: "\\+ Add place"
+- tapOn: "Add place"
 - extendedWaitUntil: { visible: "Bodyweight only,.*", timeout: 30000 }
 - takeScreenshot: 21-presety-miejsc
 - tapOn: "Bodyweight only,.*"
@@ -63,7 +63,7 @@ name: Miejsca treningu i filtr ćwiczeń
 
 # --- Powrót do zakładki Trening (miejsce → lista miejsc → ustawienia → zakładki) ---
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "\\+ Add place", timeout: 30000 }
+- extendedWaitUntil: { visible: "Add place", timeout: 30000 }
 - assertVisible: ".*Bodyweight only, main.*"
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }  # lista miejsc → ekran Więcej (od 11.10.2026 wiersz bez podsumowania miejsc)

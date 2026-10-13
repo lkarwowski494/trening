@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, H1, Muted, Txt, Chip, Input, Empty, H2, monoSafe, Btn } from '@/components/ui';
+import { Screen, H1, Muted, Txt, Chip, Input, Empty, H2, monoSafe, Btn, SearchField } from '@/components/ui';
 import { isDeloadWeek, useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState, bodyMassLog, latestBodyMass, localDateTs } from '@/lib/store';
 import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySplitByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, setsGoal, fmtE1, bwShare, type ChartKey } from '@/lib/stats';
 import { MUSCLES } from '@/lib/seed';
@@ -16,6 +16,7 @@ import { useTheme, F } from '@/lib/theme';
 import { hasWeight, hasReps, hasTime, hasDistance } from '@/lib/seed';
 import { t, exName, locale, fold, lang, collator } from '@/lib/i18n';
 import { fmtW, fmtVol, volOut, wu, fmtNum, KG_PER_LB } from '@/lib/units';
+import { fmtDayMonth, fmtDayMonthYear } from '@/lib/calendar';
 
 /*
  * Postępy (T-030): bez wybranego ćwiczenia — tygodniowa objętość i serie; z ćwiczeniem — wykres wybranej
@@ -54,9 +55,9 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
   const ql = fold(q.trim()); // runda 6: spacja na końcu nie gubi wyników
   const all = pool.filter(e => !ql || fold(e.name).includes(ql) || fold(exName(e)).includes(ql)).sort((a, b) => Number(withHist(b)) - Number(withHist(a)) || collator().compare(exName(a), exName(b)));
   const opts = all.slice(0, 40);
-  const short = (ts: number) => new Date(ts).toLocaleDateString(locale(), { day: 'numeric', month: 'short' });
+  const short = (ts: number) => fmtDayMonth(ts);
   // Runda 14: etykiety osi wykresu z rokiem, gdy nie bieżący (wykres ponad rok: „29 wrz 2025 … 29 wrz”).
-  const shortY = (ts: number) => new Date(ts).getFullYear() !== new Date().getFullYear() ? new Date(ts).toLocaleDateString(locale(), { day: 'numeric', month: 'short', year: 'numeric' }) : short(ts);
+  const shortY = (ts: number) => new Date(ts).getFullYear() !== new Date().getFullYear() ? fmtDayMonthYear(ts) : short(ts);
 
   if (!ex) {
     const weeks = weeklyTotals(8); const any = hasAnyHistory();
@@ -81,7 +82,7 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
         </> : <Empty>{t('Wykresy pojawią się po pierwszym zakończonym treningu.')}</Empty>}
         <BodyMassSection />
         <H2 style={{ marginTop: 8 }}>{t('Ćwiczenie')}</H2>
-        <Input value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} maxLength={80} autoCorrect={false} />
+        <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} />
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>{opts.map(e => <Chip key={e.id} label={exName(e) + (e.archived ? ` (${t('usunięte')})` : '')} on={false} onPress={() => { setExId(e.id); setKey(''); }} />)}</View>
         {!opts.length ? <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Nic nie pasuje.')}</Muted> : null}
         {all.length > opts.length ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Pokazano {n} z {m} — wpisz nazwę, by zawęzić.', { n: opts.length, m: all.length })}</Muted> : null}
@@ -135,7 +136,7 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
  * (/more/bodymass). Bez nowych danych — te same pomiary co dotąd (store.bodyMassLog), tylko inne miejsce wejścia niż Ustawienia. */
 function BodyMassSection() {
   const router = useRouter(); const log = bodyMassLog(); const b = latestBodyMass(); const lb = wu() === 'lb';
-  const points = log.map(x => ({ x: localDateTs(x.date), y: x.kg, label: new Date(localDateTs(x.date)).toLocaleDateString(locale(), { day: 'numeric', month: 'short', year: 'numeric' }) }));
+  const points = log.map(x => ({ x: localDateTs(x.date), y: x.kg, label: fmtDayMonthYear(localDateTs(x.date)) }));
   return <>
     <H2 style={{ marginTop: 14 }}>{t('Masa ciała')}</H2>
     <Muted style={{ fontSize: 13, marginBottom: 6 }}>{b ? t('{v} · pomiar z {d}', { v: fmtW(b.kg), d: fmtDate(localDateTs(b.date)) }) : t('nie podano — e1RM podciągania i pompek')}</Muted>

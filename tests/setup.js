@@ -42,6 +42,34 @@ global.__hkProxy = (uuid) => ({ uuid, dispose: jest.fn() });
 jest.mock('@kingstinct/react-native-healthkit', () => ({ default: { isHealthDataAvailableAsync: async () => false, requestAuthorization: async () => false, authorizationStatusFor: () => 0, saveWorkoutSample: async () => { throw new Error('HealthKit niedostępny'); },
   /* 0.16.0 (odczyt, docs/29): domyślnie puste odpowiedzi; dane do testów — tests/health-world.ts (kontrakt 16.x przeczytany w paczce: queryStatisticsCollectionForQuantity, queryWorkoutSamples, deleteObjects, currentAppSource) */
   queryStatisticsCollectionForQuantity: async () => [], queryWorkoutSamples: async () => [], deleteObjects: async () => 0, currentAppSource: () => ({ name: 'Trening', bundleIdentifier: 'com.test.trening' }) } }), { virtual: true });
+/* 0.17.0 (docs/30): expo-iap 5.8.1 i expo-store-review — makiety z kontraktem zgodnym z build/*.d.ts paczki; stan w global.__iap / global.__review sterowany z testów.
+ * Domyślnie: sklep bez produktów i bez zakupów, prośba o ocenę dostępna. Aplikacja przez nie nie przechodzi, dopóki PAYWALL.ENABLED = false. */
+global.__iap = { calls: [], products: [], purchases: [], status: [], eligible: true, fail: null, purchaseError: null, listeners: { updated: [], error: [] } };
+jest.mock('expo-iap', () => {
+  const g = () => global.__iap; const rec = (n, a) => { g().calls.push([n, ...a]); };
+  const maybeFail = () => { if (g().fail) throw new Error(g().fail); };
+  return {
+    initConnection: async (...a) => { rec('initConnection', a); maybeFail(); return true; },
+    endConnection: async () => true,
+    fetchProducts: async (...a) => { rec('fetchProducts', a); maybeFail(); return g().products; },
+    requestPurchase: async (...a) => { rec('requestPurchase', a); maybeFail(); if (g().purchaseError) { const e = new Error('purchase'); e.code = g().purchaseError; throw e; } return g().purchaseResult ?? []; },
+    getAvailablePurchases: async (...a) => { rec('getAvailablePurchases', a); maybeFail(); return g().purchases; },
+    restorePurchases: async (...a) => { rec('restorePurchases', a); maybeFail(); },
+    finishTransaction: async (...a) => { rec('finishTransaction', a); },
+    purchaseUpdatedListener: (l) => { g().listeners.updated.push(l); return { remove: () => { g().listeners.updated = g().listeners.updated.filter(x => x !== l); } }; },
+    purchaseErrorListener: (l) => { g().listeners.error.push(l); return { remove: () => { g().listeners.error = g().listeners.error.filter(x => x !== l); } }; },
+    isEligibleForIntroOfferIOS: async (...a) => { rec('isEligibleForIntroOfferIOS', a); return g().eligible; },
+    subscriptionStatusIOS: async (...a) => { rec('subscriptionStatusIOS', a); maybeFail(); return g().status; },
+    openRedeemOfferCode: async (...a) => { rec('openRedeemOfferCode', a); return null; },
+    deepLinkToSubscriptions: async (...a) => { rec('deepLinkToSubscriptions', a); },
+  };
+}, { virtual: true });
+global.__review = { available: true, requested: 0, fail: false };
+jest.mock('expo-store-review', () => ({
+  isAvailableAsync: async () => global.__review.available,
+  requestReview: async () => { if (global.__review.fail) throw new Error('review'); global.__review.requested++; },
+  hasAction: async () => global.__review.available,
+}), { virtual: true });
 jest.mock('@/modules/rest-activity', () => ({
   isSupported: () => false,
   start: jest.fn(async (...a) => { global.__la.push(['start', ...a]); return false; }),

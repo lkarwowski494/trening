@@ -151,6 +151,7 @@ Wrócimy za jakiś czas; w rozmowie wymieniane tylko zbiorczo, dopóki właścic
   co z danych treningowych trafia do grupy (tylko wyniki wyzwań, nie cała historia).
 - Układanie treningów według preferencji i celu (dodane 08.10.2026). Przed pracą **[OTWARTE]**: koliduje z decyzją 03.10.2026 („szablony ustawia
   właściciel — aplikacja ich nie tworzy”) — wymaga nowej decyzji właściciela; zasady układania tylko ze źródeł (ACSM 2026, przeglądy) wg hierarchii.
+- Generator dokładający ćwiczenia do celu (decyzja właściciela 13.10.2026, 7A) — **wersja: po 0.17**, osobna zmiana (nie wchodzi do paczki „spójność”). Zakres i źródła do ustalenia przy starcie prac (reguły tylko ze źródeł wg hierarchii; wynik do przejrzenia przed zapisem — wyjątek z 08.10.2026).
 
 ### 4n. Wydanie natywne — po najbliższej wersji (decyzja właściciela 07.10.2026 wieczór)
 Funkcje, których działania agent nie sprawdzi testami automatycznymi (Maestro na symulatorze nie steruje ekranem blokady ani ekranem

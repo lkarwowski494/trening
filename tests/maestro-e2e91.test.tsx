@@ -101,9 +101,9 @@ describe('run 37900617167 (f2bdca8): interpreter odtwarza porażki w tym samym k
       'extendedWaitUntil {"visible":"Permission is hereby granted.*","timeout":30000}', /nie pojawił się/);
   });
 
-  test('07 — „Back” (styl cancel) na dole okna: przycisk okna nie jest pod „Back”', async () => {
-    await failsAt('07-zamiana.yaml', replace({ tapOn: { text: 'Discard workout', above: 'Back' } }, [{ tapOn: { text: 'Discard workout', below: 'Back', above: 'Discard workout' } }]),
-      'tapOn {"text":"Discard workout","below":"Back","above":"Discard workout"}', /Nie znaleziono/);
+  test('07 — „Cancel” (styl cancel) na dole okna: przycisk okna nie jest pod „Cancel”', async () => {
+    await failsAt('07-zamiana.yaml', replace({ tapOn: { text: 'Discard workout', above: 'Cancel' } }, [{ tapOn: { text: 'Discard workout', below: 'Cancel', above: 'Discard workout' } }]),
+      'tapOn {"text":"Discard workout","below":"Cancel","above":"Discard workout"}', /Nie znaleziono/);
   });
 
   test('13 — „Close” rozwiniętej sekcji „What\'s new” pod paskiem zakładek bez przewinięcia', async () => {

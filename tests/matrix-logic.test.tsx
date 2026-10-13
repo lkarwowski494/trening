@@ -759,7 +759,7 @@ const blk = (i: number) => store.getState().active!.exercises[i];
 const swapUrl = (target: string) => `/swap?target=${encodeURIComponent(target)}`;
 
 describe('EKRAN /swap', () => {
-  test('cel nieprawidłowy, brak celu, blok nieistniejący, blok bez nieodhaczonych serii → „nie da się zamienić”; Anuluj wraca', async () => {
+  test('cel nieprawidłowy, brak celu, blok nieistniejący, blok bez nieodhaczonych serii → „nie da się zamienić”; Zamknij wraca', async () => {
     await renderApp({ saved: await swapState(['Bench Press (sztanga)']) }); await flushAll(20);
     for (const tg of ['bogus', 'active:nie-ma', 'edit:nie-ma:b', 'edit:x']) {
       await go(swapUrl(tg)); await flushAll(10); expect(screen.getByText('Tego ćwiczenia nie da się już zamienić.')).toBeTruthy();
@@ -770,14 +770,14 @@ describe('EKRAN /swap', () => {
     await go(swapUrl('active:' + blk(0).id)); await flushAll(10); expect(screen.getByText('Tego ćwiczenia nie da się już zamienić.')).toBeTruthy();
   });
 
-  test('trening w toku: opis, Propozycje (top 3, „już w treningu”), wybór propozycji, „↺ przywróć”, Anuluj bez zmian', async () => {
+  test('trening w toku: opis, Propozycje (top 3, „już w treningu”), wybór propozycji, „↺ przywróć”, Zamknij bez zmian', async () => {
     await renderApp({ saved: await swapState(['Bench Press (sztanga)', 'Bench Press (hantle)']) }); await flushAll(20);
     const id0 = blk(0).id; await go(swapUrl('active:' + id0)); await flushAll(20);
     expect(screen.getByText('Zamiana tylko w tym treningu: Bench Press (sztanga)')).toBeTruthy(); expect(screen.getByText('Propozycje')).toBeTruthy();
     expect(screen.getAllByLabelText(/^Propozycja \d: /)).toHaveLength(3);
     expect(screen.getByLabelText(/^Propozycja \d: Bench Press \(hantle\).*już w treningu/)).toBeTruthy();
     expect(screen.queryByText(/↺ przywróć/)).toBeNull();
-    /* Anuluj — bez zmian, drugie tapnięcie bez efektu */
+    /* Zamknij — bez zmian, drugie tapnięcie bez efektu */
     const cancel = screen.getByText('Anuluj'); await tap(cancel); await tap(cancel); await flushAll(10);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id);
     await go(swapUrl('active:' + id0)); await flushAll(20);
@@ -787,7 +787,7 @@ describe('EKRAN /swap', () => {
     expect(blk(0)).toMatchObject({ exerciseId: to.id, swappedFrom: ex('Bench Press (sztanga)').id });
     await go(swapUrl('active:' + blk(0).id)); await flushAll(20);
     expect(screen.getByText(`Zamiana tylko w tym treningu: ${name1}`)).toBeTruthy();
-    await tap(screen.getByText('↺ przywróć: Bench Press (sztanga)')); await flushAll(20);
+    await tap(screen.getByText('↺ cofnij zamianę: Bench Press (sztanga)')); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(blk(0).swappedFrom).toBeUndefined();
   });
 
@@ -795,7 +795,7 @@ describe('EKRAN /swap', () => {
     await renderApp({ saved: await swapState(['Bench Press (sztanga)']) }); await flushAll(20);
     await act(async () => { store.swapBlock(blk(0).id, ex('Bench Press (hantle)').id); }); await act(async () => { blk(0).sets[0].edited = true; store.save(store.getState().active); });
     await go(swapUrl('active:' + blk(0).id)); await flushAll(20);
-    global.__alerts.length = 0; await tap(screen.getByText('↺ przywróć: Bench Press (sztanga)')); await flushAll(5);
+    global.__alerts.length = 0; await tap(screen.getByText('↺ cofnij zamianę: Bench Press (sztanga)')); await flushAll(5);
     expect(global.__alerts.map(a => a.title)).toEqual(['Cofnąć zamianę?']); expect(blk(0).exerciseId).toBe(ex('Bench Press (hantle)').id);
     await act(async () => { global.__alerts[0].buttons!.find(b => b.text === 'Cofnij')!.onPress!(); }); await flushAll(20);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id);
@@ -884,7 +884,7 @@ describe('EKRAN /swap', () => {
     expect(store.getState().workouts.find(x => x.id === w.id)!.exercises[0].exerciseId).toBe(ex('Bench Press (sztanga)').id);
     expect(edit.isDirty(d)).toBe(true);
     await go(swapUrl(`edit:${d.key}:${b0}`)); await flushAll(20);
-    await tap(screen.getByText('↺ przywróć: Bench Press (sztanga)')); await flushAll(20);
+    await tap(screen.getByText('↺ cofnij zamianę: Bench Press (sztanga)')); await flushAll(20);
     expect(d.w.exercises[0].exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(edit.isDirty(d)).toBe(false);
     /* blok usuniętego ćwiczenia: opis z „Usunięte ćwiczenie”, bez propozycji i bez filtra partii; „Inne” działa */
     await act(async () => { d.w.exercises[1].exerciseId = 'usuniete'; edit.touchDraft(); });

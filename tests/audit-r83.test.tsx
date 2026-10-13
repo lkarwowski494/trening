@@ -24,7 +24,7 @@ describe('T-055 gumy bez kg: dawne nominalKg tylko przyjmowane przy imporcie', (
   test('świeża instalacja, nowa guma z ekranu Gumy i zapis — bez pola nominalKg', async () => {
     await renderApp(); await flushAll(10);
     expect(store.getState().bands.length).toBeGreaterThan(0); for (const b of store.getState().bands) expect(b).not.toHaveProperty('nominalKg');
-    await go('/more/bands'); await flushAll(10); await tap(screen.getByText('+ Guma')); await flushAll(400); await store.flush();
+    await go('/more/bands'); await flushAll(10); await tap(screen.getByLabelText('Dodaj gumę')); await flushAll(400); await store.flush();
     expect(global.__kv.get('state')).not.toMatch(/nominalKg/); expect(JSON.stringify(backup.buildBackup())).not.toMatch(/nominalKg/);
   });
   test('stara kopia z asystą kg gum (różne postaci) importuje się; pole odpada, gumy (kolor, poziom) i serie bez zmian', async () => {

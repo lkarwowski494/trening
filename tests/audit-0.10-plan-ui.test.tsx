@@ -194,7 +194,7 @@ describe('UX-15 A, B1–B4 — ekran Plan tygodnia', () => {
   });
   test('B2 A (UX-04): „+ Nowy plan” — osobny wpis edytowany przed aktywacją; aktywny bez zmian; aktywacja z opisem zmian dni (B1)', async () => {
     const t = await boot(ids => { plan.setWeekDay(0, ids[0]); plan.setPlanName('Rutyna'); plan.setDayPlan('2026-10-09', ids[1]); }, '/plan');
-    await tap(screen.getByText('+ Nowy plan')); await flushAll(10);
+    await tap(screen.getByLabelText('Dodaj plan')); await flushAll(10);
     expect(screen.getByText('Ten plan jeszcze nie obowiązuje. Zmień nazwę i dni, potem „Ustaw jako aktywny”.')).toBeTruthy();
     const f = screen.getByLabelText('Nazwa planu'); expect(f.props.value).toBe('Nowy plan');
     await act(async () => { fireEvent.changeText(f, 'Urlop'); }); await act(async () => { fireEvent(f, 'endEditing', { nativeEvent: { text: 'Urlop' } }); }); await flushAll(5);
@@ -216,7 +216,7 @@ describe('UX-15 A, B1–B4 — ekran Plan tygodnia', () => {
   });
   test('B3 (DAT-03): 50 zapisanych planów — bez „+ Nowy plan”, komunikat; generator też nie dopisze 51.', async () => {
     await boot(ids => { plan.setWeekDay(0, ids[0]); for (let i = 0; i < store.SAVED_PLANS_MAX; i++) plan.newPlan('P' + i); }, '/plan');
-    expect(screen.queryByText('+ Nowy plan')).toBeNull(); expect(screen.getByText('W „Inne plany” jest już 50 planów — usuń któryś, by dodać nowy.')).toBeTruthy();
+    expect(screen.queryByLabelText('Dodaj plan')).toBeNull(); expect(screen.getByText('W „Inne plany” jest już 50 planów — usuń któryś, by dodać nowy.')).toBeTruthy();
     await go('/generator'); await flushAll(10); await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5);
     expect(lastAlert('Za dużo zapisanych planów')).toBeTruthy(); expect(plan.savedPlans()).toHaveLength(50);
   });
@@ -224,7 +224,7 @@ describe('UX-15 A, B1–B4 — ekran Plan tygodnia', () => {
     await boot(ids => { plan.setWeekDay(0, ids[0]); plan.setPlanName('Rutyna'); }, '/plan');
     await act(async () => { fireEvent.changeText(screen.getByLabelText('Nazwa planu'), 'Redukcja jesień'); }); await flushAll(5);
     expect(plan.planName()).toBe('Redukcja jesień');
-    await tap(screen.getByText('+ Nowy plan')); await flushAll(10); expect(plan.planName()).toBe('Redukcja jesień'); expect(plan.savedPlans()[0].name).toBe('Nowy plan');
+    await tap(screen.getByLabelText('Dodaj plan')); await flushAll(10); expect(plan.planName()).toBe('Redukcja jesień'); expect(plan.savedPlans()[0].name).toBe('Nowy plan');
   });
 });
 
@@ -278,7 +278,7 @@ describe('English', () => {
     await boot(ids => { plan.setWeekDay(3, ids[0]); }, '/history', 'en');
     await openDay('2026-10-08'); expect(screen.getByText('Move or skip')).toBeTruthy(); expect(screen.getByText('More options')).toBeTruthy();
     await tap(screen.getByText('Move or skip')); await flushAll(5); expect(screen.getByLabelText('Apply: Move plan by 1 day')).toBeTruthy();
-    await go('/plan'); await flushAll(10); expect(screen.getByText('+ New plan')).toBeTruthy(); expect(screen.getByText('Days of the week')).toBeTruthy();
+    await go('/plan'); await flushAll(10); expect(screen.getByLabelText('Add plan')).toBeTruthy(); expect(screen.getByText('Days of the week')).toBeTruthy();
   });
 });
 
@@ -306,7 +306,7 @@ describe('macierz — podpowiedzi VoiceOver i teksty pomocnicze ekranów planu (
   });
   test('Plan tygodnia: podpowiedzi „+ Nowy plan” i wierszy dni, „Pokaż wszystkie (n)” przy > 3 planach, nieistniejący plan, zmiany dni zapisane z planem', async () => {
     await boot(ids => { plan.setWeekDay(0, ids[0]); ['P1', 'P2', 'P3', 'P4'].forEach(n => plan.addPlan(n, [ids[1], null, null, null, null, null, null], false)); }, '/plan');
-    expect(hint('+ Nowy plan')).toBe('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.');
+    expect(hint('Dodaj plan')).toBe('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.');
     expect(screen.getByLabelText(/^poniedziałek, /).props.accessibilityHint).toBe('Wybierz szablon na ten dzień.');
     expect(screen.queryByLabelText('Ustaw jako aktywny: P4')).toBeNull(); await tap(screen.getByText('Pokaż wszystkie (4)')); await flushAll(5); expect(screen.getByLabelText('Ustaw jako aktywny: P4')).toBeTruthy();
     await go('/plan?id=brak'); await flushAll(10); expect(screen.getByText('Nie ma takiego planu.')).toBeTruthy();

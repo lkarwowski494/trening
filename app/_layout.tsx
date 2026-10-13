@@ -18,6 +18,8 @@ import { useTheme, F, FONT_FILES } from '@/lib/theme';
 import * as Font from 'expo-font';
 import { Intro } from '@/components/Intro';
 import { takeColdStart } from '@/lib/intro';
+import { setAutoSavedNotice } from '@/lib/notices';
+import { initEntitlements, refreshEntitlements } from '@/lib/entitlement';
 
 /** Kroje marki (docs/16). Błąd lub brak odpowiedzi w 3 s nie blokuje startu — zostaje krój systemowy. */
 const loadFonts = () => { let to: ReturnType<typeof setTimeout> | undefined; return Promise.race([Font.loadAsync(FONT_FILES), new Promise(r => { to = setTimeout(r, 3000); })]).catch(() => {}).finally(() => clearTimeout(to)); };
@@ -31,20 +33,20 @@ export default function RootLayout() {
   const [intro, setIntro] = useState(() => takeColdStart(AppState.currentState));
   // Runda 69: trening porzucony ponad 6 h temu zapisuje się sam (koniec = ostatnia odhaczona seria) — przy starcie i powrocie z tła.
   const autoSaved = (w: Workout | null) => { if (!w) return; markDoneEarly(w); timer.stop().catch(() => {}); timer.stopSet().catch(() => {}); timer.cancelStaleReminder().catch(() => {}); onWorkoutSaved(w).catch(() => {});
-    setTimeout(() => Alert.alert(t('Zapisałem trening'), t('Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.' /* H2 (audyt 0.10): zakładka nazywa się Kalendarz */, { d: fmtDate(wallTs(w)), s: fmtTime(wallTs(w)), e: fmtTime(wallTs(w, w.finishedAt ?? w.startedAt)) })), 500); };
-  const start = () => { setErr(null); Promise.all([init(), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ restored = restoreObjDrafts(); /* UX2-03 = DAT2-06: szkice edycji sprzed zamknięcia aplikacji */ cancelLegacyReminders().catch(() => {}); /* decyzja 09.10.2026: bez przypomnienia o podpisie — stare odwołane */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => setErr(e instanceof Error ? e.message : String(e))); };
+    setAutoSavedNotice(t('Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.' /* H2 (audyt 0.10): zakładka nazywa się Kalendarz */, { d: fmtDate(wallTs(w)), s: fmtTime(wallTs(w)), e: fmtTime(wallTs(w, w.finishedAt ?? w.startedAt)) })); };
+  const start = () => { setErr(null); Promise.all([init(), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ restored = restoreObjDrafts(); /* UX2-03 = DAT2-06: szkice edycji sprzed zamknięcia aplikacji */ cancelLegacyReminders().catch(() => {}); /* decyzja 09.10.2026: bez przypomnienia o podpisie — stare odwołane */ initEntitlements().catch(() => {}); /* 0.17.0: sklep tylko przy PAYWALL.ENABLED */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => setErr(e instanceof Error ? e.message : String(e))); };
   useEffect(start, []);
   /* T-051 (SDK 56+, audyt aktualizacji): expo-router trzyma ekran powitalny, dopóki nie zamontuje się nawigator — ekran błędu startu
    * (poniżej) nie ma nawigatora, więc zostałby pod logo i aplikacja wyglądałaby na zawieszoną. Przy błędzie chowamy go sami. */
   useEffect(() => { if (err) SplashScreen.hideAsync().catch(() => {}); }, [err]);
   // Zapis wymuszony przy wyjściu do tła — debounce 300 ms nie może zgubić ostatniej zmiany, gdy system ubije apkę.
-  useEffect(() => { const sub = AppState.addEventListener('change', st => { if (st !== 'active') flush(); else { const w = autoFinishStale(); /* runda 74 (audyt): stoper zdjęty z zapisu przez cichy zapis (Q-011, seria z celem odhaczona) nie liczy dalej w pamięci */ if (!w && timer.S.on && !getState().timer?.setStartAt) timer.stopSet().catch(() => {}); autoSaved(w); timer.onForeground(); refreshViews(); retryHealth().catch(() => {}); /* J2 */ } }); return () => sub.remove(); }, []);
+  useEffect(() => { const sub = AppState.addEventListener('change', st => { if (st !== 'active') flush(); else { const w = autoFinishStale(); /* runda 74 (audyt): stoper zdjęty z zapisu przez cichy zapis (Q-011, seria z celem odhaczona) nie liczy dalej w pamięci */ if (!w && timer.S.on && !getState().timer?.setStartAt) timer.stopSet().catch(() => {}); autoSaved(w); timer.onForeground(); refreshViews(); retryHealth().catch(() => {}); /* J2 */ refreshEntitlements().catch(() => {}); /* 0.17.0: powrót z tła */ } }); return () => sub.remove(); }, []);
   /* Audyt 0.10 J1 (DAT-05): dane z nowszej wersji aplikacji — niczego nie nadpisujemy; „zaktualizuj” i wysłanie surowych danych. */
   const newer = err ? getNewerSchema() : null;
   const body = newer != null ? <View testID="newer-data" style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}>
     <Text accessibilityLanguage={lang()} accessibilityRole="header" style={{ color: th.text, fontSize: 18, textAlign: 'center', fontFamily: F.semibold }}>{t('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')}</Text>
     <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center' }}>{t('Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.', { a: newer, b: SCHEMA_VERSION })}</Text>
-    <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={() => { exportRawData().then(ok => { if (!ok) Alert.alert(t('Nie udało się'), t('Spróbuj ponownie.')); }).catch(() => {}); }} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Wyślij dane')}</Text></Pressable>
+    <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={() => { exportRawData().then(ok => { if (!ok) Alert.alert(t('Nie udało się wysłać danych'), t('Spróbuj ponownie.')); }).catch(() => {}); }} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Wyślij dane')}</Text></Pressable>
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={start} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Spróbuj ponownie')}</Text></Pressable>
   </View>
   // Błąd startu (np. baza niedostępna) — komunikat i ponowienie zamiast wiecznego kółka (runda 2).
@@ -94,6 +96,7 @@ function Root() {
         <Stack.Screen name="history/[id]" options={{ title: t('Sesja') }} />
         <Stack.Screen name="history/add" options={{ title: t('Trening wstecz') }} />
         <Stack.Screen name="history/edit/[id]" options={{ title: t('Edycja sesji'), gestureEnabled: false /* docs/12: szkic nie przepada gestem — Anuluj/Zapisz w nagłówku */ }} />
+        <Stack.Screen name="paywall" options={{ presentation: 'modal', title: t('Pełna wersja') }} />{/* 0.17.0 (docs/27): ekran zakupu */}
         <Stack.Screen name="more/bands" options={{ title: t('Gumy') }} />
         <Stack.Screen name="more/settings" options={{ title: t('Ustawienia') }} />
         <Stack.Screen name="more/bodymass" options={{ title: t('Masa ciała') }} />

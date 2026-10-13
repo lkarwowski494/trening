@@ -150,7 +150,7 @@ describe('strona www aplikacji (GitHub Pages)', () => {
     expect(fs.existsSync(join(root, 'site', name))).toBe(true); expect(fs.existsSync(join(root, 'docs', name))).toBe(false);
     const html = readFileSync(join(root, 'site', name), 'utf8');
     expect(html).toMatch(/<section lang="pl"/); expect(html).toMatch(/<section lang="en"/); expect(html).toContain('href="privacy.html"');
-    expect(html).not.toMatch(/[\w.+-]+@[\w-]+\.[\w.-]+/); expect(html).not.toMatch(/mailto:/);
+    expect([...html.matchAll(EMAIL_RE)].map(m => m[0]).filter(a => !ALLOWED_EMAILS.includes(a))).toEqual([]); expect([...html.matchAll(/mailto:([^"?]+)/g)].map(m => m[1]).filter(a => a !== 'support@apps4brew.com')).toEqual([]); /* wsparcie 13.10.2026: tylko adres wsparcia */
     expect(html).not.toMatch(/<script/i); expect(html).not.toMatch(/<link\b[^>]*stylesheet/i); expect(html).not.toMatch(/<(img|iframe)\b/i); expect(html).not.toMatch(/@import|url\(/);
     expect([...html.matchAll(/(?:src|href)="(https?:[^"]+)"/g)].map(m => m[1]).filter(u => !u.startsWith('https://github.com/lkarwowski494/trening/issues'))).toEqual([]);
     expect(fs.existsSync(join(root, 'site/CNAME'))).toBe(false); expect(fs.existsSync(join(root, 'docs/CNAME'))).toBe(false); /* domena apps4brew.com dopiero po zakupie */
@@ -160,8 +160,24 @@ describe('strona www aplikacji (GitHub Pages)', () => {
     expect(idx).toContain('href="support.html"'); expect(idx).toContain('Apps4Brew');
     for (const h of [idx, sup]) expect(h).toContain(`${LANGS.length} języków`);
     expect(idx).toContain(`${LANGS.length} languages`); expect(sup).toContain(`${LANGS.length} languages`);
-    expect(sup).toContain('https://github.com/lkarwowski494/trening/issues'); expect(sup).toContain('DO UZUPEŁNIENIA: adres kontaktowy po zakupie domeny');
+    expect(sup).toContain('https://github.com/lkarwowski494/trening/issues'); expect(sup).not.toContain('DO UZUPEŁNIENIA');
   });
+  /* proces wsparcia (docs/34, decyzje właściciela 13.10.2026) */
+  test('wsparcie PL/EN: adres support@, czas odpowiedzi „w ciągu tygodnia”, co dołączyć (wersja z O aplikacji, bez kopii z danymi), ostrzeżenie o publicznych zgłoszeniach, zdanie o AI z linkiem do polityki', () => {
+    const sup = readFileSync(join(root, 'site/support.html'), 'utf8'); const pl = sup.slice(sup.indexOf('<section lang="pl"'), sup.indexOf('<section lang="en"')); const en = sup.slice(sup.indexOf('<section lang="en"'));
+    for (const w of ['href="mailto:support@apps4brew.com"', 'zwykle w ciągu tygodnia', 'Więcej → O aplikacji', 'Nie dołączaj kopii zapasowej z danymi, chyba że o to poprosimy', 'zgłoszenia tam są publiczne', 'AI pomaga nam porządkować opinie', 'href="privacy.html"']) expect(pl).toContain(w);
+    for (const w of ['href="mailto:support@apps4brew.com"', 'usually reply within a week', 'More → About', 'do not attach a backup containing your data unless we ask for it', 'reports there are public', 'AI helps us sort feedback', 'href="privacy.html"']) expect(en).toContain(w);
+    /* kolejność: najpierw e-mail, GitHub jako opcja */ expect(pl.indexOf('support@apps4brew.com')).toBeLessThan(pl.indexOf('github.com/lkarwowski494'));
+  });
+  test('polityka: sekcja „Gdy do nas piszesz” / „When you write to us” — administrator, dane, cel, podstawa art. 6 ust. 1 lit. f, 12 miesięcy, odbiorcy, prawa, PUODO, aplikacja nic nie wysyła; znacznik weryfikacji tylko w komentarzu; nowa data', () => {
+    const h = readFileSync(join(root, 'site/privacy.html'), 'utf8'); const body = h.replace(/<!--[\s\S]*?-->/g, '');
+    expect(h).toMatch(/<!-- \[DO WERYFIKACJI: badacz RODO\/DPA\]/); expect(body).not.toContain('DO WERYFIKACJI');
+    const pl = body.slice(body.indexOf('<h2>Gdy do nas piszesz</h2>'), body.indexOf('<h2>Zmiany i kontakt</h2>')); const en = body.slice(body.indexOf('<h2>When you write to us</h2>'), body.indexOf('<h2>Changes and contact</h2>'));
+    for (const w of ['Łukasz Karwowski, osoba fizyczna', 'support@apps4brew.com', 'adres e-mail, treść wiadomości, załączniki', 'wersja aplikacji i iOS', 'art. 6 ust. 1 lit. f RODO', '12 miesięcy od zamknięcia sprawy', 'Porkbun', 'Google (Gmail, Dysk)', 'dostawca narzędzi AI', 'dostęp do danych, sprostowanie, usunięcie, sprzeciw', 'PUODO', 'Aplikacja nadal niczego nie wysyła — e-mail wysyłasz Ty, swoją pocztą']) expect(pl).toContain(w);
+    for (const w of ['Łukasz Karwowski, a natural person', 'support@apps4brew.com', 'email address, the message text, attachments', 'app and iOS versions', 'Article 6(1)(f) GDPR', '12 months after the case is closed', 'Porkbun', 'Google (Gmail, Drive)', 'provider of the AI tools', 'access, rectification, erasure, objection', 'PUODO', 'The app still sends nothing — you send the email, from your own mail app']) expect(en).toContain(w);
+    expect(h).toContain('Obowiązuje od 13 października 2026 r.'); expect(h).toContain('Effective 13 October 2026'); expect(h).not.toContain('12 października 2026');
+  });
+
   test('FAQ wsparcia zgodne z kodem: ścieżki menu i nazwy przycisków istnieją w tekstach aplikacji', () => {
     const sup = readFileSync(join(root, 'site/support.html'), 'utf8'); const en = readFileSync(join(root, 'lib/i18n.en.ts'), 'utf8');
     for (const pl of ['Eksportuj backup (plik JSON)', 'Eksportuj historię do CSV', 'Wyczyść wszystkie dane', 'Kopia zapasowa (eksport / import)', 'Język', 'Jak w telefonie']) {
@@ -215,4 +231,24 @@ describe('SEC2-08 (audyt kontrolny 1): dokumenty bez identyfikatorów sesji i lo
     });
     expect(bad).toEqual([]);
   });
+});
+
+/* adresy e-mail w repozytorium (13.10.2026): w docs/, site/, lib/, app/ tylko z listy dozwolonych; skan plików, nie historii. Wyjątek: lib/licenses.generated.ts (autorzy pakietów z licencji, generowany) */
+const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/g;
+const ALLOWED_EMAILS = ['support@apps4brew.com', 'hello@apps4brew.com'];
+describe('adresy e-mail w repozytorium', () => {
+  const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
+  const walk = (d: string): string[] => fs.readdirSync(join(root, d), { withFileTypes: true }).flatMap(e => e.isDirectory() ? (e.name === 'node_modules' ? [] : walk(join(d, e.name))) : [join(d, e.name)]);
+  const EXEMPT = ['lib/licenses.generated.ts'];
+  const scanned = ['docs', 'site', 'lib', 'app'].flatMap(walk).filter(f => /\.(md|html|json|ts|tsx|mjs|js|txt|csv)$/.test(f) && !EXEMPT.includes(f));
+  test('żaden plik w docs/, site/, lib/, app/ nie zawiera adresu e-mail spoza listy dozwolonych', () => {
+    expect(scanned.length).toBeGreaterThan(100);
+    const bad = scanned.flatMap(f => [...readFileSync(join(root, f), 'utf8').matchAll(EMAIL_RE)].map(m => `${f}: ${m[0]}`).filter(x => !ALLOWED_EMAILS.includes(x.split(': ')[1])));
+    expect(bad).toEqual([]);
+  });
+  test('reguła wykrywa adres prywatny i przepuszcza dozwolone (sprawdzenie samej reguły)', () => {
+    expect('a jan.kowalski@gmail.com b'.match(EMAIL_RE)).toEqual(['jan.kowalski@gmail.com']); expect('support@apps4brew.com hello@apps4brew.com'.match(EMAIL_RE)!.every(a => ALLOWED_EMAILS.includes(a))).toBe(true);
+    expect('@babel/core i git@github.com'.match(EMAIL_RE)).toEqual(['git@github.com']);
+  });
+  test('wyjątek licenses.generated.ts istnieje i jest plikiem generowanym', () => { expect(fs.readFileSync(join(root, EXEMPT[0]), 'utf8')).toMatch(/Wygenerowane/); });
 });

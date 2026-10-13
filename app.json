@@ -2,7 +2,7 @@
   "expo": {
     "name": "Trening",
     "slug": "trening",
-    "version": "0.16.0",
+    "version": "0.17.0",
     "scheme": "trening",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
@@ -89,6 +89,7 @@
         }
       ],
       "@bacons/apple-targets",
+      "expo-iap",
       "expo-localization",
       "expo-sharing",
       "expo-status-bar",

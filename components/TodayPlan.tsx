@@ -9,6 +9,7 @@ import { weekStrip } from '@/lib/dashboard';
 import { DayIcon } from '@/components/Motif';
 import { dayMark } from '@/lib/motif';
 import { t, locale, lang } from '@/lib/i18n';
+import { fmtWeekdayShort, fmtWeekdayDayMonth, fmtDayNum } from '@/lib/calendar';
 
 /*
  * Karta „Dziś” na ekranie treningu (decyzje właściciela 08.10.2026: 1A, potem dashboard wariant A): „Dziś: X” ze startem i pasek bieżącego
@@ -29,7 +30,7 @@ export function TodayPlan() {
   const plan = hasPlan(); if (!plan && !finishedWorkouts().length) return null;
   const today = dayKeyOf(Date.now()); const days = weekStrip(); const name = planTplName;
   const cur = days.find(d => d.today)!; const id = cur.templateId; const tpl = id ? getState().templates.find(x => x.id === id && !x.archived) : undefined;
-  const wd = (k: string) => dateOf(k).toLocaleDateString(locale(), { weekday: 'short' });
+  const wd = (k: string) => fmtWeekdayShort(dateOf(k));
   const word = (d: (typeof days)[number]): string => {
     const plannedWord = d.date < today ? t('opuszczony: {name}', { name: name(d.templateId) }) : t('zaplanowany: {name}', { name: name(d.templateId) });
     const m: Record<DayStatus, () => string> = { done: () => (d.early ? t('zrobiony wcześniej: {name}', { name: name(d.templateId) }) : t('zrobione: {name}', { name: names(d.date) })), other: () => `${t('zrobiony inny trening: {name}', { name: names(d.date) })}, ${plannedWord}`,
@@ -54,16 +55,16 @@ export function TodayPlan() {
         {(() => { const u = upperText(deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')); /* A11-02: wersaliki z regułami języka */ return <Muted accessibilityLabel={u.label} style={[{ fontSize: 12, fontFamily: F.semibold, letterSpacing: 0.5 }, u.style]}>{u.text}</Muted>; })()}
         <Txt style={{ fontFamily: F.semibold, fontSize: 18 }}>{title}</Txt>
         {cur.status === 'other' ? <Muted style={{ fontSize: 13 }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Muted> : null}
-        {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="link" onPress={once(() => router.push(`/template/${tpl.id}?edit=1`))}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
+        {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={once(() => router.push(`/template/${tpl.id}?edit=1`))} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
       </View> : deload ? <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{t('Tydzień deload')}</Muted> : null}
       <View testID="week-strip" style={{ flexDirection: 'row', gap: 2 }}>
         {days.map(d => {
-          const label = [dateOf(d.date).toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' }), ...(d.today ? [t('dziś')] : []), word(d), ...(deload ? [t('tydzień deload')] : [])].join(', ');
+          const label = [fmtWeekdayDayMonth(dateOf(d.date)), ...(d.today ? [t('dziś')] : []), word(d), ...(deload ? [t('tydzień deload')] : [])].join(', ');
           const mark = dayMark(d.status, d.inPlan);
           return (
             <Pressable accessibilityLanguage={lang()} key={d.date} testID={`strip-${d.date}`} accessibilityRole="button" accessibilityLabel={label} accessibilityHint={t('Otwiera ten dzień w zakładce Plan.')} onPress={once(() => router.push(`/history?day=${d.date}`))} style={({ pressed }) => ({ flex: 1, minHeight: 44 /* A11-15 */, alignItems: 'center', gap: 4, paddingVertical: 3, borderRadius: 8, borderWidth: 2, borderColor: d.today ? th.accent : 'transparent', opacity: pressed ? 0.6 : 1 })}>
               <View style={{ alignItems: 'center' }}>{(() => { const u = upperText(wd(d.date)); /* B1: skrót dnia wersalikami wg reguł języka (A11-02), pod nim numer dnia miesiąca */ return <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[{ fontSize: 11, fontFamily: d.today ? F.semibold : F.regular, color: d.today ? th.text : th.muted }, u.style]}>{u.text}</Muted>; })()}
-              <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: 13, fontFamily: d.today ? F.heavy : F.semibold, color: d.today ? th.text : th.muted }}>{dateOf(d.date).toLocaleDateString(locale(), { day: 'numeric' })}</Txt></View>
+              <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: 13, fontFamily: d.today ? F.heavy : F.semibold, color: d.today ? th.text : th.muted }}>{fmtDayNum(dateOf(d.date))}</Txt></View>
               {/* znacznik dnia — jedyny kod „zrobione / zaplanowane / odpoczynek” (lib/motif.dayMark; zrobiony inny trening = pełna ikona, że zaplanowany czeka — etykieta) */}
               <View testID={`strip-mark-${d.date}`} style={{ height: 20, alignItems: 'center', justifyContent: 'center' }}>{mark ? <DayIcon mark={mark} bg={th.surface} th={th} /> : null}</View>
             </Pressable>); })}

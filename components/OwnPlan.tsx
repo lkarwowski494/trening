@@ -8,6 +8,8 @@ import { ownTemplates, ownSessionsFor, ownPlan, ownProposal, ownWarnings, ownCou
 import { activationNote, plansFull } from '@/lib/plan';
 import { t, locale } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
+import { cancelButton } from '@/lib/confirm';
+import { weekdayLabels } from '@/lib/calendar';
 
 /*
  * „Plan z moich szablonów” (decyzja właściciela 09.10.2026, wariant B — wyjątek od zamrożenia; docs/18 ok. 14:55): wybór własnych szablonów
@@ -15,7 +17,7 @@ import { fmtNum } from '@/lib/units';
  * i ostrzeżenia) → podgląd → zapis po zatwierdzeniu jako nowy plan albo od razu aktywny (to samo pytanie i ten sam tekst co generator — activationNote).
  * Szablony zostają bez zmian (zasada 03.10.2026). Wejścia: generator („Plan z moich szablonów”), edytor planu, „Pierwsze kroki”.
  */
-const wd = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' }); /* 1.01.2024 = poniedziałek */
+const wd = (i: number) => weekdayLabels()[i];
 const nameOf = (id: string) => getState().templates.find(x => x.id === id)?.name ?? '';
 
 /** UI2-06 (audyt kontrolny 1): „Plan tygodnia” w oknie „Zapisano” (generator i „Plan z moich szablonów”). Gdy pod generatorem jest ekran aktywnego
@@ -51,7 +53,7 @@ export function OwnPlan({ header }: { header?: React.ReactNode }) {
     if (plansFull()) { Alert.alert(t('Za dużo zapisanych planów'), t('W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.', { n: SAVED_PLANS_MAX })); return; }
     /* to samo pytanie co generator: zmiany pojedynczych dni od dziś zostają z obecnym planem w „Inne plany” (activatePlan, audyt 0.10 B1) */
     Alert.alert(t('Ustawić nowy plan jako aktywny?'), [t('Szablony zostają bez zmian. Plan trafi do „Inne plany” albo od razu jako aktywny.'), activationNote()].filter(Boolean).join('\n\n'), [
-      { text: t('Anuluj'), style: 'cancel' },
+      { ...cancelButton() },
       { text: t('Tylko zapisz'), onPress: () => done(false) },
       { text: t('Ustaw jako aktywny'), onPress: () => done(true) },
     ]);

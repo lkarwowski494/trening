@@ -89,7 +89,7 @@ describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
     await tap(screen.getByText('Zapisz plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
     expect(lastAlert('Zapisano')!.msg).toBe('Plan „Moje szablony, 3× w tygodniu (2)” jest teraz aktywny.');
     const r = ownPlan({ templateIds: [t[0].id, t[2].id], sessions: 3 })!; expect(plan.weekPlanDays()).toEqual(r.days);
-    expect(plan.savedPlans().map(p => p.name).sort()).toEqual(['Moje szablony, 3× w tygodniu', 'Mój plan (8.10)']);
+    expect(plan.savedPlans().map(p => p.name).sort()).toEqual(['Moje szablony, 3× w tygodniu', 'Mój plan (8 paź)']);
     expect(JSON.stringify(S().templates)).toBe(snap);
     await press('Zapisano', 'Planowanie'); expect(screen.getByLabelText(new RegExp(`^poniedziałek, ${t[0].name}$`))).toBeTruthy();
     await restart('/plan'); expect(plan.weekPlanDays()).toEqual(r.days); expect(plan.planName()).toBe('Moje szablony, 3× w tygodniu (2)'); expect(JSON.stringify(S().templates)).toBe(snap);

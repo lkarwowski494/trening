@@ -37,7 +37,7 @@ describe('kilka planów', () => {
   });
   test('addPlan z aktywacją (generator): poprzedni aktywny trafia do zapisanych pod swoją nazwą albo — bez nazwy — „Mój plan (<data>)” (audyt 0.10 B2 A; dawniej pusta nazwa → „Poprzedni plan”)', () => {
     plan.setWeekDay(1, B); plan.addPlan('Wygenerowany', [A, null, A, null, A, null, null], true);
-    expect(plan.planName()).toBe('Wygenerowany'); expect(plan.savedPlans()).toEqual([expect.objectContaining({ name: 'Mój plan (8.10)', days: [null, B, null, null, null, null, null] })]);
+    expect(plan.planName()).toBe('Wygenerowany'); expect(plan.savedPlans()).toEqual([expect.objectContaining({ name: 'Mój plan (8 paź)', days: [null, B, null, null, null, null, null] })]);
   });
   test('zmiana nazwy i usuwanie zapisanego planu; nieznane id — bez zmian', () => {
     const id = plan.addPlan('A', [A, null, null, null, null, null, null], false); plan.renamePlan(id, 'B'); expect(plan.savedPlans()[0].name).toBe('B');
