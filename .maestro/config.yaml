@@ -32,3 +32,8 @@ flows:
   - 19-zakladki.yaml
   - 20-zdrowie-odczyt.yaml
   - 21-subskrypcja.yaml
+  - 31-pierwszy-tydzien.yaml
+  - 32-regularny-uzytkownik.yaml
+  - 33-aktualizacja-przygotuj.yaml
+  - 34-aktualizacja-sprawdz.yaml
+  - 35-ustawienia-dostepnosc.yaml

@@ -1,0 +1,41 @@
+# Scenariusz „z życia” (docs/31, persona C), CZĘŚĆ 2: po instalacji BIEŻĄCEJ aplikacji na symulator z danymi poprzedniej wersji (bez odinstalowania, bez
+# clearState). Sprawdza, że trening w toku, historia, szablon, masa ciała i jednostka są na miejscu, pokazuje się „Co nowego”, a trening da się dokończyć.
+# Tylko e2e-ios.yml (krok „Aktualizacja”); w zwykłym przebiegu pomijany (tag `aktualizacja`). Przerwa mogła się już skończyć (instalacja trwa > 2 min) — nie zakładamy „Skip”.
+tags:
+  - aktualizacja
+appId: pl.lukasz.trening
+name: Aktualizacja — dane po instalacji nowej wersji
+---
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Pause workout", timeout: 90000 }
+- assertVisible: "Upper A"
+- assertVisible: "Workout progress: 1 of 6 sets"
+- assertVisible: "Now: 40 kg × 10"  # wpisane wartości i jednostka kg przetrwały aktualizację
+- takeScreenshot: 101-trening-w-toku-po-aktualizacji
+# --- dokończenie treningu ---
+- scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000 }
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: "Upper A"
+- tapOn: "Back"
+# --- „Co nowego” po aktualizacji ---
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- tapOn: { id: "whats-new-i" }
+- extendedWaitUntil: { visible: "In this version|Test build [0-9]+ · .*", timeout: 15000 }
+- takeScreenshot: 102-co-nowego-po-aktualizacji
+- scrollUntilVisible: { element: "Close", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Close"
+# --- historia: dwa treningi dzisiaj; szablon i masa ciała na miejscu ---
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "2 sessions", timeout: 30000 }  # nie „dziś”: instalacja trwa minuty i przebieg bywa przez północ UTC (docs/18)
+- tapOn: "Progress, tab.*"
+- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- scrollUntilVisible: { element: "80 kg · measured .*", direction: DOWN, timeout: 60000 }
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Templates", timeout: 30000 }
+- tapOn: "Templates"
+- extendedWaitUntil: { visible: "Upper A.*", timeout: 30000 }
+- takeScreenshot: 103-szablon-po-aktualizacji

@@ -1,0 +1,173 @@
+# Scenariusz „z życia” (docs/31, persona B — Marek, regularny użytkownik z historią): szablon i plan na każdy dzień → trening wstecz sprzed kilku dni (ręczny wpis) →
+# edycja zapisanej sesji → kalendarz: przesunięcie planu o dzień i powrót → tydzień deload → trening na żywo z pytaniem deloadu, ciężar i powtórzenia, przerwa,
+# RESTART w trakcie przerwy (aplikacja zabita i uruchomiona ponownie), pauza i restart w pauzie, kontynuacja i zakończenie → masa ciała i jednostka → rekordy →
+# ekran kopii zapasowej (przyciski eksportu/importu — sam plik poza Maestro), historia z CSV (ekran importu), wyczyszczenie danych.
+# Poza CI (docs/31 pkt 4): aplikacja w tle z zablokowanym ekranem i powiadomienie o końcu przerwy (Maestro nie blokuje ekranu, baner iOS jest poza aplikacją),
+# zapis i odczyt pliku kopii (arkusz udostępniania i wybór pliku to okna systemu). Zastępniki: restart (stopApp + launchApp bez czyszczenia) i test ekranów w Jest.
+#
+# Literały (EN z lib/i18n.en.ts): jak 05, 13, 15 oraz
+#   "Backup \\(export / import\\)", "Export backup \\(JSON file\\)", "Export history to CSV", "Import backup", "Import history from a CSV file", "Choose a CSV file"
+#                                                       ← app/more/backup.tsx, app/more/import.tsx
+#   "Erase all data", "Erase all data\\?"                ← app/more/settings.tsx (przycisk i pytanie)
+appId: pl.lukasz.trening
+name: Regularny użytkownik — historia, plan, restart, kopia
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+# --- jednostka kg (symulator en-US startuje w lb), jak 15 ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
+- tapOn: "kg"
+- tapOn: "Back"
+- runFlow: subflows/plan-kazdego-dnia.yaml
+- tapOn: "Back"
+# --- trening wstecz sprzed trzech dni (ręczny wpis z datą), potem edycja sesji ---
+- extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }
+- tapOn: "Log a past workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 30000 }
+- tapOn: "Previous day"
+- tapOn: "Previous day"
+- tapOn: "Previous day"
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Cancel", timeout: 30000 }
+- tapOn: { id: "reps-0-0" }
+- inputText: "8"
+- tapOn: "Save"
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: "Upper A"
+- takeScreenshot: 93-sesja-wstecz
+- tapOn: "Edit session"
+- extendedWaitUntil: { visible: "Cancel", timeout: 30000 }
+- tapOn: "Upper A"
+- eraseText: 30
+- inputText: "Upper A ciezki"
+- tapOn: "Save"
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: "Upper A ciezki"
+- tapOn: "Back"
+# --- kalendarz: dziś w planie → „Move or skip” → przesunięcie planu o 1 dzień → powrót (jak 13) ---
+- extendedWaitUntil: { visible: ".*, planned: Upper A", timeout: 30000 }
+- tapOn: { text: ".*, today, planned: Upper A" }
+- extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
+- tapOn: "Move or skip"
+- extendedWaitUntil: { visible: "Days changed: .*", timeout: 15000 }
+- scrollUntilVisible: { element: "Apply: Move plan by 1 day", direction: DOWN, timeout: 30000, centerElement: true }  # 13.10.2026: w niedzielę/poniedziałek lista przesunięć dłuższa — przycisk pod krawędzią
+- tapOn: "Apply: Move plan by 1 day"
+- extendedWaitUntil: { visible: "Rest · plan changed", timeout: 15000 }
+- tapOn: "More options"
+- tapOn: "Restore from plan"
+- extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
+# --- tydzień deload (jak 05) ---
+- tapOn: "More options"
+- tapOn: "Mark week as deload"
+- scrollUntilVisible: { element: "This week: deload.*", direction: UP, timeout: 30000 }  # lista Planu może być przewinięta (sylwetka dnia) — komunikat jest na samej górze
+- takeScreenshot: 94-deload
+# --- trening na żywo w tygodniu deload: pytanie o mniej serii, ciężar i powtórzenia ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Start with fewer sets: 4 instead of 6 working sets.*", timeout: 15000 }
+- tapOn: "Fewer sets"
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: { id: "w-0-0" }
+- inputText: "40"
+- tapOn: { id: "r-0-0" }
+- inputText: "10"
+- tapOn: { text: "Set 1 done — Bench Press \\(Dumbbell\\)" }
+- extendedWaitUntil: { visible: "Skip", timeout: 15000 }
+# --- restart w trakcie przerwy (aplikacja zabita, jak w 02): przerwa trwa dalej, wpisane wartości zostają ---
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Skip", timeout: 60000 }
+- takeScreenshot: 95-przerwa-po-restarcie
+- tapOn: "Skip"
+- assertNotVisible: "Skip"
+# --- pauza, restart w pauzie, kontynuacja ---
+- tapOn: "Pause workout"
+- extendedWaitUntil: { visible: "Resume workout", timeout: 15000 }
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Resume workout", timeout: 60000 }
+- assertVisible: ".* · paused"
+- tapOn: "Resume workout"
+- extendedWaitUntil: { visible: "Pause workout", timeout: 15000 }
+- tapOn: { text: "Set 2 done — Bench Press \\(Dumbbell\\)" }
+- tapOn: { text: "Skip", optional: true }
+- scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000 }
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: "Upper A"
+- tapOn: "Back"
+# --- masa ciała (jak 15) i rekordy ---
+- tapOn: "Progress, tab.*"
+- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000 }
+- tapOn: "Body weight — measurements"
+- extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }
+- retry:
+    maxRetries: 1
+    commands:
+      - runFlow:
+          when: { visible: "Body weight must be .*" }
+          commands:
+            - tapOn: "OK"
+      - tapOn: { id: "bodymass-kg" }
+      - waitForAnimationToEnd
+      - eraseText: 6
+      - inputText: "8"
+      - inputText: "0"
+      - tapOn: "Save measurement"
+      - extendedWaitUntil: { visible: "80 kg, .*", timeout: 15000 }
+- tapOn: "Back"
+- scrollUntilVisible: { element: "80 kg · measured .*", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Bench Press \\(Dumbbell\\)"
+- extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }
+- assertVisible: "Max weight"
+- takeScreenshot: 96-rekordy
+# --- kopia zapasowa: ekran z eksportem/importem (pliku nie da się wskazać w Maestro) i ekran importu CSV ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Backup \\(export / import\\)", timeout: 30000 }
+- tapOn: "Backup \\(export / import\\)"
+- extendedWaitUntil: { visible: "Export backup \\(JSON file\\)", timeout: 30000 }
+- assertVisible: "Export history to CSV"
+- assertVisible: "Import backup"
+- takeScreenshot: 97-kopia
+- tapOn: "Import backup"
+- extendedWaitUntil: { visible: "Overwrite data\\?", timeout: 15000 }
+- tapOn: "No"
+- extendedWaitUntil: { notVisible: "Overwrite data\\?", timeout: 15000 }
+- tapOn: "Import history from a CSV file"
+- extendedWaitUntil: { visible: "Choose a CSV file", timeout: 30000 }
+- takeScreenshot: 98-import-csv
+- tapOn: "Back"
+- tapOn: "Back"
+# --- wyczyszczenie danych z pytaniem (kopia bezpieczeństwa powstaje przed): „No” zostawia dane, potem „Erase” czyści ---
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
+- scrollUntilVisible: { element: "Erase all data", direction: DOWN, timeout: 60000 }
+- tapOn: "Erase all data"
+- extendedWaitUntil: { visible: "Erase all data\\?", timeout: 15000 }
+- takeScreenshot: 99-wyczysc-pytanie
+- tapOn: { text: "No", below: "Erase all data\\?" }
+- extendedWaitUntil: { notVisible: "Erase all data\\?", timeout: 15000 }
+- tapOn: "Erase all data"
+- extendedWaitUntil: { visible: "Erase all data\\?", timeout: 15000 }
+- tapOn: { text: "Erase", below: "Erase all data\\?" }
+- extendedWaitUntil: { notVisible: "Erase all data\\?", timeout: 30000 }
+- tapOn: "Back"
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "First steps", timeout: 30000 }
+- assertNotVisible: "This week"
+- takeScreenshot: 99-po-wyczyszczeniu

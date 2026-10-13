@@ -1,0 +1,163 @@
+# Scenariusz „z życia” (docs/31, persona D — Ewa, ustawienia i dostępność): język (polski i z powrotem), wygląd ciemny/jasny, jednostki lb/kg, domyślna przerwa,
+# przełączniki treningu (dźwięk, ekran włączony, RPE/RIR, podpowiedź progresji, kopia automatyczna), cel serii na partię (ręcznie), widok treningu „Lista”,
+# etykiety VoiceOver najważniejszych przycisków (asercje po etykiecie/testID — to samo, co czyta VoiceOver), Zdrowie (stan bez danych w CI), subskrypcja (build
+# E2E ze sztucznym sklepem: ekran zakupu, limit, zamknięcie, przywracanie, zakup).
+# Poza CI (docs/31 pkt 4): prawdziwy odczyt Zdrowia (HealthKit na symulatorze bez danych), prawdziwy StoreKit i okna Apple, przestawienie systemowej
+# wielkości tekstu i VoiceOver na żywo (Maestro nie włącza ustawień dostępności).
+#
+# Literały (EN z lib/i18n.en.ts): jak 09, 20, 21 oraz "Default rest \\(seconds\\)", "Sound and vibration at the end of rest", "Keep screen on during workout",
+#   "RPE / RIR per set", "Progression hint", "Automatic backup after every workout", "Show muscle group goals", "Workout view", "List", "Focused"
+appId: pl.lukasz.trening
+name: Ustawienia, dostępność, Zdrowie, subskrypcja
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+# --- etykiety VoiceOver zakładek i głównych przycisków ekranu Trening ---
+- assertVisible: "Workout, tab, 1 of 4"
+- assertVisible: "Plan, tab, 2 of 4"
+- assertVisible: "Progress, tab, 3 of 4"
+- assertVisible: "More, tab, 4 of 4"
+- assertVisible: "Empty workout"
+- assertVisible: "Other workout"
+- assertVisible: { id: "whats-new-i" }
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
+# --- język: polski i z powrotem ---
+- tapOn: "Language, Phone setting"
+- extendedWaitUntil: { visible: "Polski", timeout: 30000 }
+- tapOn: "Polski"
+- extendedWaitUntil: { visible: "Język, Polski", timeout: 30000 }
+- assertVisible: "Jednostka ciężaru"
+- tapOn: "Język, Polski"
+- extendedWaitUntil: { visible: "Jak w telefonie", timeout: 30000 }
+- tapOn: "Jak w telefonie"
+- extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
+# --- wygląd, jednostka, widok treningu ---
+- tapOn: "Dark"
+- takeScreenshot: 104-ciemny
+- tapOn: "Light"
+- tapOn: "kg"
+- tapOn: "List"
+- assertVisible: "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.|List: exercises and sets as in earlier versions, without the card."
+# --- domyślna przerwa 45 s (pole liczbowe; fokus zdejmuje stuknięcie w etykietę nad polem) ---
+- scrollUntilVisible: { element: "90", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "90"
+- eraseText: 3
+- inputText: "45"
+- tapOn: "Workout view"
+- takeScreenshot: 105-przerwa-45
+# --- przełączniki: dźwięk, ekran włączony, podpowiedź progresji, RPE/RIR, kopia automatyczna ---
+- tapOn: { id: "sw-Sound and vibration at the end of rest" }
+- tapOn: { id: "sw-Keep screen on during workout" }
+- scrollUntilVisible: { element: { id: "sw-Progression hint" }, direction: DOWN, timeout: 30000 }
+- tapOn: { id: "sw-Progression hint" }
+- scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 30000 }
+- tapOn: { id: "sw-RPE / RIR per set" }
+- scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000 }
+- tapOn: "RIR"
+- scrollUntilVisible: { element: { id: "sw-Automatic backup after every workout" }, direction: DOWN, timeout: 30000 }
+- tapOn: { id: "sw-Automatic backup after every workout" }
+- takeScreenshot: 106-przelaczniki
+# --- cel serii na partię: ręcznie dla pierwszej partii ---
+- scrollUntilVisible: { element: "Show muscle group goals", direction: UP, timeout: 30000, centerElement: true }
+- tapOn: "Show muscle group goals"
+- extendedWaitUntil: { visible: "Hide muscle group goals", timeout: 15000 }
+- takeScreenshot: 107-cele-partii
+- tapOn: { text: "Manual", index: 0 }
+- tapOn: { id: "set-goal-.*", index: 0 }
+- eraseText: 3
+- inputText: "12"
+- tapOn: "Weekly set goal per muscle group"
+- takeScreenshot: 108-cel-reczny
+- tapOn: "Back"
+# --- skutki ustawień w treningu: widok „Lista”, kolumna RIR, przerwa 0:45, kg ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Empty workout", timeout: 30000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Bench Press"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Bench Press \\(Barbell\\),.*", timeout: 30000 }
+- tapOn: "Bench Press \\(Barbell\\),.*"
+- extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 30000 }
+- assertVisible: "RIR"
+- assertVisible: "Workout progress: 0 of 1 sets"
+- assertVisible: "Pause workout"
+- assertVisible: "Swap exercise: Bench Press \\(Barbell\\)"
+- assertVisible: "Skip today: Bench Press \\(Barbell\\)"
+- tapOn: "Set 1 done — Bench Press \\(Barbell\\)"
+- extendedWaitUntil: { visible: "Skip", timeout: 15000 }
+- assertVisible: "rest of 0:45"
+- assertVisible: "Shorten rest by 15 seconds"
+- assertVisible: "Extend rest by 15 seconds"
+- takeScreenshot: 109-przerwa-45-w-treningu
+- tapOn: "Skip"
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
+# --- Zdrowie: stan bez danych w CI (jak 20) — przełącznik odczytu wyłączony, brak linii Zdrowia w „Ten tydzień” ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "This week", timeout: 30000 }
+- assertNotVisible: "Apple Health.*"
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- scrollUntilVisible: { element: "Show data from Apple Health", direction: DOWN, timeout: 60000, centerElement: true }
+- assertVisible: "Steps, other activities, .*"
+- assertNotVisible: "You can revoke access .*"
+- takeScreenshot: 110-zdrowie-wylaczone
+- tapOn: "Back"
+# --- Ustawienia → karta „Subscription” → ekran zakupu (dostęp aktywny) ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
+- assertVisible: ".*You have access forever.*"
+- tapOn: "Full version.*"
+- extendedWaitUntil: { visible: ".*You have access forever.*", timeout: 30000 }
+- takeScreenshot: 99-zakup-aktywny
+- scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000 }
+- tapOn: "Test store: expire access"
+# --- po wygaszeniu: ceny ze sklepu, miesiąc za darmo, przywracanie bez zakupów ---
+- scrollUntilVisible: { element: ".*1 month free, then .*", direction: UP, timeout: 60000 }
+- assertVisible: ".*1 month free, then .*"
+- assertNotVisible: ".*You have access forever.*"
+- takeScreenshot: 99-zakup-ceny
+- scrollUntilVisible: { element: "Restore purchases", direction: DOWN, timeout: 60000 }
+- tapOn: "Restore purchases"
+- extendedWaitUntil: { visible: "No purchases found for this Apple account.", timeout: 20000 }
+# Ekran zakupu z Ustawień to okno modalne (presentation 'modal', bez „Back” i bez „Not now” — E2E 38324474808, krok 74): zamyka je gest w dół z paska nagłówka.
+- swipe: { start: "50%, 10%", end: "50%, 90%", duration: 400 }
+- extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
+- tapOn: "Back"
+# --- drugi trening na żywo ponad limit 1: ekran zakupu zamiast startu ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- tapOn: "Other workout"
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "You've used this month's free workouts .*", timeout: 30000 }
+- assertVisible: "Log a past workout"
+- takeScreenshot: 99-limit
+- scrollUntilVisible: { element: "Start your free month", direction: DOWN, timeout: 60000 }
+- tapOn: "Start your free month"
+- extendedWaitUntil: { visible: ".*You have the full version.*", timeout: 30000 }
+- scrollUntilVisible: { element: "Not now", direction: DOWN, timeout: 60000 }
+- tapOn: "Not now"
+# --- po zakupie start działa ---
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- tapOn: "Other workout"
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "Finish", timeout: 30000 }
+- assertNotVisible: "You've used this month's free workouts .*"
+- takeScreenshot: 99-start-po-zakupie

@@ -26,13 +26,14 @@ import { join } from 'path';
 import { Runner, DIR, load } from './maestro-runner';
 
 jest.setTimeout(240000);
-const flows = readdirSync(DIR).filter(f => /^\d\d-.*\.yaml$/.test(f)).sort();
+/* 33 i 34 (docs/31, persona C) to PARA: 34 startuje na danych zostawionych przez 33 (aktualizacja aplikacji) — test pary niżej */
+const flows = readdirSync(DIR).filter(f => /^\d\d-.*\.yaml$/.test(f) && !f.startsWith('34-')).sort();
 describe('scenariusze Maestro na drzewie dostępności (EN, en-US)', () => {
   afterAll(() => { delete (global as any).__notifPerm; });
   test.each(flows)('%s', async f => {
     /* 21 (0.17.0): build E2E ze sztucznym sklepem — zmienna ustawiona tylko dla tego scenariusza, adapter i uprawnienia zapomniane przed i po */
-    const fake = f.startsWith('21-'); const { resetStoreAdapterForTests } = require('@/lib/store-adapter'); const { resetEntitlementsForTests } = require('@/lib/entitlement');
+    const fake = f.startsWith('21-') || f.startsWith('35-'); const { resetStoreAdapterForTests } = require('@/lib/store-adapter'); const { resetEntitlementsForTests } = require('@/lib/entitlement');
     if (fake) process.env.EXPO_PUBLIC_STORE_FAKE = '1'; resetStoreAdapterForTests(); resetEntitlementsForTests();
-    try { const r = new Runner(f); await r.run(load(join(DIR, f)), f); } finally { delete process.env.EXPO_PUBLIC_STORE_FAKE; resetStoreAdapterForTests(); resetEntitlementsForTests(); }
+    try { const r = new Runner(f); await r.run(load(join(DIR, f)), f); if (f.startsWith('33-')) { const r2 = new Runner('34-aktualizacja-sprawdz.yaml'); await r2.run(load(join(DIR, '34-aktualizacja-sprawdz.yaml')), '34-aktualizacja-sprawdz.yaml'); } } finally { delete process.env.EXPO_PUBLIC_STORE_FAKE; resetStoreAdapterForTests(); resetEntitlementsForTests(); }
   });
 });
