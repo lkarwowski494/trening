@@ -713,7 +713,7 @@
  "z oparciem skośnym": "avec dossier incliné",
  "z regulacją nachylenia (marsz pod górę)": "avec inclinaison (marche en côte)",
  "Z szablonu": "D’un modèle",
- "Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.": "Séries marquées sur la montre comme faites autrement que prévu : {n}. Complétez les répétitions et la charge — un record ne compte qu’une fois complétées.",
+ "Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.": "Séries marquées sur la montre comme faites autrement que prévu : {n}. Complétez les répétitions et la charge — un record ne compte qu’une fois ces champs remplis.",
  "Za dużo ciężarów (najwyżej {n}).": "Trop de charges (au plus {n}).",
  "Za dużo kombinacji talerzy — ciężary nie są liczone. Usuń nietypowe talerze.": "Trop de combinaisons de disques — les charges ne sont pas calculées. Retirez les disques inhabituels.",
  "Za dużo rodzajów talerzy (najwyżej {n}).": "Trop de tailles de disques (au plus {n}).",

@@ -1213,7 +1213,7 @@
  "z oparciem skośnym": "附可調斜度椅背",
  "z regulacją nachylenia (marsz pod górę)": "附坡度調整（上坡走）",
  "Z szablonu": "從範本",
- "Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.": "在手錶上標示為與計畫不同方式完成的組數：{n}。請補填次數與重量——紀錄要在補填後才會計入。",
+ "Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.": "手錶上標示為「與計畫不同」的組數：{n}。請補填次數與重量，紀錄要補填後才會計入。",
  "Za dużo ciężarów (najwyżej {n}).": "重量太多（最多 {n} 個）。",
  "Za dużo kombinacji talerzy — ciężary nie są liczone. Usuń nietypowe talerze.": "槓片組合太多 — 不會計算重量。請刪除不常見的槓片。",
  "Za dużo rodzajów talerzy (najwyżej {n}).": "槓片種類太多（最多 {n} 種）。",
