@@ -104,9 +104,14 @@ name: Pierwszy tydzień nowego użytkownika
 - tapOn: { text: "\\+ set", index: 0 }
 - extendedWaitUntil: { visible: "Set 4 done — .*", timeout: 15000 }  # runy 38364646107, 38370760163: stuknięty „+ set” to pierwszy widoczny na urządzeniu (nie zawsze Back Squat) — nazwa dowolna
 # zakończenie (część serii nieodhaczona — świadomie)
-- scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000 }
-- tapOn: "Finish"
-- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }  # run 38375488119: przycisk „Finish” był ucięty u góry — przewinięcie na początek listy
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- waitForAnimationToEnd
+- retry:  # run 38375488119: stuknięcie „Finish” w trakcie odliczania/przewijania bywa gubione — okno pytania się nie pokazało
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
 - takeScreenshot: 85-pytanie-o-zakonczenie
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
 - extendedWaitUntil: { visible: "Session", timeout: 30000 }

@@ -31,8 +31,11 @@ name: Aktualizacja — dane w poprzedniej wersji
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
 - tapOn: "Skip"
 - assertNotVisible: "Skip"
-- tapOn: "Finish"
-- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- retry:  # run 38375488119: stuknięcie „Finish” w trakcie odliczania/przewijania bywa gubione — okno pytania się nie pokazało
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
 - extendedWaitUntil: { visible: "Session", timeout: 30000 }
 - tapOn: "Back"

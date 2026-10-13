@@ -103,8 +103,11 @@ name: Regularny użytkownik — historia, plan, restart, kopia
 - tapOn: { text: "Set 2 done — Bench Press \\(Dumbbell\\)" }
 - tapOn: { text: "Skip", optional: true }
 - scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000 }
-- tapOn: "Finish"
-- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- retry:  # run 38375488119: stuknięcie „Finish” w trakcie odliczania/przewijania bywa gubione — okno pytania się nie pokazało
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
 - extendedWaitUntil: { visible: "Session", timeout: 30000 }
 - assertVisible: "Upper A"

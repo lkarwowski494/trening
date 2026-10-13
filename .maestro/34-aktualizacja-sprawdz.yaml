@@ -15,8 +15,11 @@ name: Aktualizacja — dane po instalacji nowej wersji
 - takeScreenshot: 101-trening-w-toku-po-aktualizacji
 # --- dokończenie treningu ---
 - scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000 }
-- tapOn: "Finish"
-- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- retry:  # run 38375488119: stuknięcie „Finish” w trakcie odliczania/przewijania bywa gubione — okno pytania się nie pokazało
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
 - tapOn: { text: "Finish", below: "Finish workout\\?" }
 - extendedWaitUntil: { visible: "Session", timeout: 30000 }
 - assertVisible: "Upper A"
