@@ -25,12 +25,12 @@ describe('T4b flows', () => {
   test('R72 import kopii z włączonym Apple Health: prośba o zgodę na tym telefonie; bez zgody zapis wyłączony', async () => {
     await fresh(); store.getState().settings.healthSync = true; const env = JSON.stringify(buildBackup());
     await fresh();
-    const hk = require('@kingstinct/react-native-healthkit').default; const avail = hk.isHealthDataAvailable;
-    const req = jest.spyOn(hk, 'requestAuthorization'); hk.isHealthDataAvailable = async () => true;
+    const hk = require('@kingstinct/react-native-healthkit').default; const avail = hk.isHealthDataAvailableAsync;
+    const req = jest.spyOn(hk, 'requestAuthorization'); hk.isHealthDataAvailableAsync = async () => true;
     try {
       store.replaceState(parseBackup(env)); await require('@/lib/backup').recheckHealthAfterImport();
       expect(req).toHaveBeenCalled(); expect(store.getState().settings.healthSync).toBe(false); // mock: brak zgody
-    } finally { req.mockRestore(); hk.isHealthDataAvailable = avail; }
+    } finally { req.mockRestore(); hk.isHealthDataAvailableAsync = avail; }
   });
 
   test('CSV drops sets whose exercise is missing from the exercise list (import of older/partial backup)', async () => {

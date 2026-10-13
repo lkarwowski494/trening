@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Nädalase seeriate sihi lihasgrupi kohta seadistad jaotises Seaded (Automaatselt või Käsitsi); ribad vaates „See nädal“ ja jaotises Edenemine mõõdavad selle sihi suhtes ning harjutuse abilihasgrupp loetakse pooleks seeriaks.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Parandused: Edenemine jätab valitud harjutuse meelde, ilma kellaaegadeta import näitab „kellaaeg teadmata“ ja abitekstid vastavad sakkide nimedele.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 uut harjutust näpunäidetega jaotises „Tehnika“.",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Tagantjärele lisatud trenn: treeningukoha valid redaktoris."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Tagantjärele lisatud trenn: treeningukoha valid redaktoris.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Värskendatud koostöö Apple Healthiga — treeningute salvestamine töötab nagu varem.",
+ "Poprawione sformułowania części wskazówek techniki.": "Täiendatud osa tehnikavihjete sõnastust."
 }

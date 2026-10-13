@@ -94,7 +94,7 @@ Ryzyka:
 - Idempotencja zapisu i obejście pauz (decyzja 08.10): sprawdzić, czy `HKMetadataKeySyncVersion` jako liczba w `AnyMap` trafia poprawnie.
 - Mocki testów: globalny mock w `tests/setup.js` i ok. 10 plików używa sygnatur 8.x — przepisać na kontrakt v16.
 - Zależność od jednego małego utrzymującego (Kingstinct), jedno źródło — ryzyko porzucenia; rezerwa: własny moduł Expo w Swift (kosztowny).
-- Prywatność/Apple: etap 1 zmienia deklarację (odczyt) — opis uprawnień, `docs/privacy.html`, formularz prywatności App Store (Apple 5.1.3; decyzja 11.10 to uwzględnia).
+- Prywatność/Apple: etap 1 zmienia deklarację (odczyt) — opis uprawnień, `site/privacy.html`, formularz prywatności App Store (Apple 5.1.3; decyzja 11.10 to uwzględnia).
 
 Testowanie bez danych Health na symulatorze:
 - Symulator ma aplikację Zdrowie z ręcznym dodawaniem danych (Przeglądaj → Kroki → Dodaj dane); automatyzacja tego w Maestro/CI — do sprawdzenia, nie zakładam.
@@ -108,3 +108,14 @@ Szacunek pracy agenta (wariant A; orientacyjny, nie zmierzony):
 - Czekanie: pierwszy `ios-unsigned.yml` ok. 20–40 min (+ ponowienia przy braku maszyn macOS), `e2e-ios.yml` (wolny symulator), `testflight.yml`, przegląd Apple
   (przy zmianie deklaracji zdrowotnej może trwać dłużej niż rutynowo — do potwierdzenia).
 - Czas właściciela: test zapisu/odczytu na iPhonie z zegarkiem po każdym TestFlight, App Store Connect (formularz prywatności, opis uprawnień), decyzja o kolejności wydań.
+
+## 6. Wydanie 0.15.0 — wykonanie aktualizacji (12.10.2026)
+
+Zakres: tylko biblioteka (wariant A z pkt 4, kolejność C z 12.10), zapis treningu do Zdrowia jak dotąd — bez nowych odczytów, bez zmiany tekstów zgody (0.16), bez zmiany schematu danych.
+
+- Wersje: `@kingstinct/react-native-healthkit` 8.7.2 → **16.1.0** (ciągnie `@react-native-healthkit/core` 16.1.0), dodane jawnie `react-native-nitro-modules` **0.37.1** (peer ≥0.35). Expo ~57.0.26, RN 0.86.3, React 19.2.3 bez zmian. Lockfile przez `npm install`.
+- `lib/health.ts` (kontrakt przeczytany w `src/specs/*.nitro.ts` paczki): `isHealthDataAvailableAsync()` (w 16.x `isHealthDataAvailable` jest synchroniczne), `requestAuthorization({ toRead: [], toShare: [WORKOUT] })`, `authorizationStatusFor` (synchroniczne; `sharingAuthorized` = 2 potwierdzone w `@react-native-healthkit/core`),
+  `saveWorkoutSample(rodzaj, [], start, koniec, undefined, metadane)` → `WorkoutProxy` (UUID z `uuid`, `dispose()` po użyciu); błąd zapisu to odrzucona obietnica (w 8.x `false`) — ścieżka `failed` bez zmian. Metadane, przesunięty start (obejście pauz) i `HK_ACTIVITY` (wartości liczbowe potwierdzone w enum `WorkoutActivityType`) bez zmian.
+- Prawdziwych pauz nadal nie zapiszemy: `saveWorkoutSample` w 16.x nie ma parametru zdarzeń (inna droga — do rozpoznania w etapie 1–2).
+- Testy: mock w `tests/setup.js` i szpiegi w 10 plikach przepisane na kontrakt 16.x; nowy `tests/healthkit-contract.test.ts` (7). Licencje: `node scripts/licenses.mjs` (nowe wpisy: healthkit 16.1.0, core, nitro-modules; wszystkie MIT), `check:licenses` i `verify:native` OK.
+- Do sprawdzenia na telefonie (pkt 5): prawdziwy zapis treningu (czas, rodzaj, metadane, brak duplikatu po ponowieniu), okno zgody, pierwszy start z modułem Nitro. Wynik kompilacji `ios-unsigned.yml`: patrz wiersz poniżej.

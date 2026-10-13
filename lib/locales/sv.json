@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Det veckovisa målet för set per muskelgrupp ställer du in i Inställningar (Automatiskt eller Manuellt); staplarna i ”Den här veckan” och i Framsteg mäts mot det målet, och en övnings sekundära muskelgrupp räknas som ett halvt set.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Rättningar: Framsteg kommer ihåg vald övning, import utan klockslag visar ”tid okänd” och hjälptexterna stämmer med flikarnas namn.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 nya övningar med tips i avsnittet ”Teknik”.",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Pass som läggs till i efterhand: träningsplatsen väljer du i redigeraren."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Pass som läggs till i efterhand: träningsplatsen väljer du i redigeraren.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Uppdaterat samarbete med Apple Health — sparande av pass fungerar som förut.",
+ "Poprawione sformułowania części wskazówek techniki.": "Förbättrad formulering av en del teknikråd."
 }

@@ -79,10 +79,10 @@ describe('runda 1 — logika', () => {
   test('R1-14 czas od godziny w formacie h:mm:ss', () => { expect(store.fmtDur(5700)).toBe('1:35:00'); expect(store.fmtDur(90)).toBe('1:30'); });
   test('R1-15 Apple Health: odmowa zgody nie włącza zapisu', async () => {
     const hk = require('@kingstinct/react-native-healthkit').default;
-    hk.isHealthDataAvailable = async () => true; hk.requestAuthorization = async () => true; hk.authorizationStatusFor = async () => 1;
+    hk.isHealthDataAvailableAsync = async () => true; hk.requestAuthorization = async () => true; hk.authorizationStatusFor = () => 1;
     const { ensureAuthorization } = require('@/lib/health');
     expect(await ensureAuthorization()).toBe(false);
-    hk.authorizationStatusFor = async () => 2; expect(await ensureAuthorization()).toBe(true);
+    hk.authorizationStatusFor = () => 2; expect(await ensureAuthorization()).toBe(true);
   });
 });
 
@@ -491,7 +491,7 @@ describe('runda 7', () => {
     store.getState().settings.healthSync = true;
     const w = addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 40, reps: 5, kind: 'warmup', warmup: true }, { weight: 61.23, reps: 5 }]]]);
     await require('@/lib/health').saveWorkout(w);
-    const md = (spy.mock.calls.at(-1) as any[])[3].metadata; expect(md.VolumeKg).toBe(306); expect(md.Sets).toBe(1); spy.mockRestore();
+    const md = (spy.mock.calls.at(-1) as any[])[5]; expect(md.VolumeKg).toBe(306); expect(md.Sets).toBe(1); spy.mockRestore();
   });
   test('R7-04 CSV w jednostce użytkownika (lb)', async () => {
     await fresh(); units.applyUnit('lb'); addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 225 * units.KG_PER_LB, reps: 5 }]]]);

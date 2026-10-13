@@ -27,19 +27,19 @@ describe('J2: Apple Health — licznik w Ustawieniach, ponowienie, stan w szczeg
   test('trening czeka na zapis: Ustawienia pokazują liczbę i „Ponów teraz”; po udanym ponowieniu licznik znika; sesja — „Nie zapisano jeszcze…” do czasu zapisu', async () => {
     let w!: ReturnType<typeof addWorkout>;
     await boot(() => { S().settings.healthSync = true; w = addWorkout(at(9, 7), [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.healthPending = true; });
-    jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => false);
+    jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => { throw new Error('HealthKit'); });
     await go('/more/settings'); await flushAll(10);
     expect(screen.getByText('Czeka na zapis w Apple Health: 1. Ponawiam przy uruchomieniu i powrocie do aplikacji.')).toBeTruthy();
     await tap(screen.getByText('Ponów teraz')); await flushAll(10);
     expect(global.__alerts.at(-1)).toMatchObject({ title: 'Nie udało się', msg: 'Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → Trening.' }); /* odmowa — trening dalej czeka */
     await go(`/history/${w.id}`); await flushAll(10); expect(screen.getByText('Nie zapisano jeszcze w Apple Health — ponowię przy następnym uruchomieniu aplikacji.')).toBeTruthy();
-    jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => 'uuid-1');
+    jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => (global as any).__hkProxy('uuid-1'));
     await go('/more/settings'); await flushAll(10); await tap(screen.getByText('Ponów teraz')); await flushAll(10);
     expect(screen.queryByText(/^Czeka na zapis w Apple Health/)).toBeNull(); expect(S().workouts.find(x => x.id === w.id)!.healthUUID).toBe('uuid-1');
     await go(`/history/${w.id}`); await flushAll(10); expect(screen.queryByText(/^Nie zapisano jeszcze w Apple Health/)).toBeNull();
   });
   test('scenariusz: start aplikacji ponawia zapis (bez dotykania czegokolwiek); bez synchronizacji — bez licznika i bez prób', async () => {
-    const sv = jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => 'uuid-start');
+    const sv = jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => (global as any).__hkProxy('uuid-start'));
     await boot(() => { S().settings.healthSync = true; const w = addWorkout(at(9, 7), [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.healthPending = true; });
     await flushAll(50); expect(sv).toHaveBeenCalledTimes(1); expect(health.healthPending()).toEqual([]);
     sv.mockClear(); await boot(() => { const w = addWorkout(at(9, 7), [['Back Squat', [{ weight: 100, reps: 5 }]]]); w.healthPending = true; }, '/more/settings');

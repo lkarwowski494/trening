@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "筋群ごとの週あたりセット目標は設定で設定します（自動または手動）。「今週」と進捗のバーはこの目標を基準に表示され、種目の補助筋群は0.5セットとして数えます。",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "修正：進捗は選んだ種目を記憶し、時刻のないインポートでは「時刻不明」と表示され、ヘルプの文言はタブ名と一致します。",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "「テクニック」セクションにヒント付きの新しい種目を20件追加しました。",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "後から記録したトレーニング：エディタでトレーニングの場所を選べます。"
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "後から記録したトレーニング：エディタでトレーニングの場所を選べます。",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Apple Health との連携を更新しました — トレーニングの保存はこれまでどおり動作します。",
+ "Poprawione sformułowania części wskazówek techniki.": "一部のフォームのコツの表現を改善しました。"
 }

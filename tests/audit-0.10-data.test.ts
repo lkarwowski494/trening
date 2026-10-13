@@ -25,7 +25,7 @@ const finishOne = () => { store.startEmpty(); store.addExerciseToActive(ex('Back
 describe('J2 (DAT-04, LIVE-16): nieudany zapis do Apple Health — znacznik, ponowienie, licznik', () => {
   test('pierwszy zapis rzuca błąd → trening czeka (healthPending, zapisany na dysk); ponowienie zapisuje go raz i zdejmuje znacznik; drugie ponowienie nic nie robi', async () => {
     S().settings.healthSync = true; let n = 0;
-    const sv = jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => { n++; if (n === 1) throw new Error('HealthKit'); return 'uuid-' + n; });
+    const sv = jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => { n++; if (n === 1) throw new Error('HealthKit'); return (global as any).__hkProxy('uuid-' + n); });
     const w = finishOne(); await health.syncAfterFinish(w);
     expect(sv).toHaveBeenCalledTimes(1); expect(w.healthUUID).toBeNull(); expect(w.healthPending).toBe(true);
     expect(health.healthPending().map(x => x.id)).toEqual([w.id]);
@@ -33,26 +33,26 @@ describe('J2 (DAT-04, LIVE-16): nieudany zapis do Apple Health — znacznik, pon
     expect(await health.retryHealth()).toBe(1); expect(sv).toHaveBeenCalledTimes(2);
     const cur = S().workouts.find(x => x.id === w.id)!; expect(cur.healthUUID).toBe('uuid-2'); expect('healthPending' in cur).toBe(false); expect(health.healthPending()).toEqual([]);
     expect(await health.retryHealth()).toBe(0); expect(sv).toHaveBeenCalledTimes(2);
-    for (const c of sv.mock.calls as any[]) expect(c[3].metadata.HKMetadataKeySyncIdentifier).toBe(w.id); /* HealthKit odrzuca duplikat */
+    for (const c of sv.mock.calls as any[]) expect(c[5].HKMetadataKeySyncIdentifier).toBe(w.id); /* HealthKit odrzuca duplikat */
   });
   test('zabicie aplikacji między „Zakończ” a zapisem do Zdrowia: znacznik jest już w bazie, a po restarcie ponowienie zapisuje trening', async () => {
-    S().settings.healthSync = true; let release!: (v: string) => void;
-    jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(() => new Promise<string>(r => { release = r; }));
+    S().settings.healthSync = true; let release!: (v: unknown) => void;
+    jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(() => new Promise<any>(r => { release = r; }));
     const w = finishOne(); const p = health.syncAfterFinish(w); await Promise.resolve(); await store.flush();
     const disk = saved(); expect(disk.workouts.find(x => x.id === w.id)!.healthPending).toBe(true); /* „zabicie” teraz */
-    release('late'); await p;
-    await fresh(disk); const sv = jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => 'uuid-after'); sv.mockClear();
+    release((global as any).__hkProxy('late')); await p;
+    await fresh(disk); const sv = jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => (global as any).__hkProxy('uuid-after')); sv.mockClear();
     expect(health.healthPending().map(x => x.id)).toEqual([w.id]); expect(await health.retryHealth()).toBe(1); expect(sv).toHaveBeenCalledTimes(1);
     expect(S().workouts.find(x => x.id === w.id)!.healthUUID).toBe('uuid-after');
   });
-  test('odmowa zapisu (false) zostawia znacznik; synchronizacja wyłączona — ponowienie nic nie robi; włączona znowu — dosyła', async () => {
-    S().settings.healthSync = true; const sv = jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => false);
+  test('odmowa zapisu (odrzucona obietnica) zostawia znacznik; synchronizacja wyłączona — ponowienie nic nie robi; włączona znowu — dosyła', async () => {
+    S().settings.healthSync = true; const sv = jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => { throw new Error('HealthKit'); });
     const w = finishOne(); await health.syncAfterFinish(w); expect(health.healthPending()).toHaveLength(1);
     S().settings.healthSync = false; expect(await health.retryHealth()).toBe(0); expect(sv).toHaveBeenCalledTimes(1);
-    S().settings.healthSync = true; sv.mockImplementation(async () => 'ok'); expect(await health.retryHealth()).toBe(1); expect(health.healthPending()).toEqual([]);
+    S().settings.healthSync = true; sv.mockImplementation(async () => (global as any).__hkProxy('ok')); expect(await health.retryHealth()).toBe(1); expect(health.healthPending()).toEqual([]);
   });
   test('bez synchronizacji: trening nie dostaje znacznika; trening wstecz i edycja nie trafiają do Zdrowia (jak dotąd) — ponowienie ich nie dosyła', async () => {
-    const sv = jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => 'x');
+    const sv = jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => (global as any).__hkProxy('x'));
     const w = finishOne(); await onWorkoutSaved(w); expect(w.healthPending).toBeUndefined(); expect(sv).not.toHaveBeenCalled();
     S().settings.healthSync = true; addWorkout(at(9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); /* jak trening wstecz */
     expect(await health.retryHealth()).toBe(0); expect(sv).not.toHaveBeenCalled();
@@ -60,7 +60,7 @@ describe('J2 (DAT-04, LIVE-16): nieudany zapis do Apple Health — znacznik, pon
   test('ponowienie po kolei i raz naraz (start i powrót z tła tuż po sobie): dwa treningi — dwa zapisy, nie cztery', async () => {
     S().settings.healthSync = true; const sv = jest.spyOn(hk(), 'saveWorkoutSample').mockImplementation(async () => { throw new Error('x'); });
     const a = finishOne(); await health.syncAfterFinish(a); jest.setSystemTime(NOW + 7200e3); const b = finishOne(); await health.syncAfterFinish(b);
-    sv.mockReset(); sv.mockImplementation(async () => 'u');
+    sv.mockReset(); sv.mockImplementation(async () => (global as any).__hkProxy('u'));
     const [x, y] = await Promise.all([health.retryHealth(), health.retryHealth()]); expect(x).toBe(2); expect(y).toBe(2); expect(sv).toHaveBeenCalledTimes(2);
   });
   test('dane: migrate zostawia healthPending tylko jako true na zakończonym treningu bez healthUUID; idempotentne; kopia eksport → import zachowuje znacznik', () => {

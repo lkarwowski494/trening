@@ -1,6 +1,6 @@
 # Baza wiedzy funkcji — Trening vs 10 aplikacji (wnioski)
 
-Stan: 02.10.2026. Dane: `docs/research/kb/<aplikacja>.json` (jedno źródło prawdy; format `SCHEMA.md`), z nich generowane `matrix.csv` i strona „Baza wiedzy” (`python3 scripts/kb/build.py`). Nasza kolumna powstała **z kodu**, nie z dokumentacji (lekcja 2).
+Stan: 02.10.2026. Dane (12.10.2026 przeniesione poza repozytorium — zasada o treściach cudzych w CLAUDE.md): Dysk Google, folder „Trening App / 05 Research konkurencji / kb (z repo, 12.10.2026)”, https://drive.google.com/drive/folders/1zIgAQ3vsPQh6ltGY52Gr8b_NfAAVatDJ — po jednym pliku JSON na aplikację, `SCHEMA.md` oraz generator `build.py` z szablonem `page.html` (macierz CSV i stronę „Baza wiedzy” generuje się z nich ponownie). Nasza kolumna powstała **z kodu**, nie z dokumentacji (lekcja 2).
 Strona z całą bazą (opis działania i źródła w każdej komórce): artefakt „Baza wiedzy funkcji”, https://claude.ai/artifact/2R1cP4dA3zmvZC9wLHj5mF (prywatny). Opisy działania są po polsku (tłumaczenie 03.10; angielskie oryginały badaczy zostają w plikach JSON jako „how”).
 Aplikacje: Strong, Hevy, Fitbod, Alpha Progression, Liftosaur, StrengthLog, JEFIT, Boostcamp, SmartGym, Caliber. 83 funkcje ze wspólnej listy + funkcje spoza listy znalezione u poszczególnych aplikacji (razem 187 wierszy).
 

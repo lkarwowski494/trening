@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Viikoittaisen sarjatavoitteen lihasryhmää kohti asetat kohdassa Asetukset (Automaattisesti tai Käsin); palkit näkymässä ”Tämä viikko” ja kohdassa Kehitys mitataan tätä tavoitetta vasten, ja liikkeen apulihasryhmä lasketaan puoleksi sarjaksi.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Korjauksia: Kehitys muistaa valitun liikkeen, tuonti ilman kellonaikoja näyttää ”kellonaika tuntematon” ja ohjetekstit vastaavat välilehtien nimiä.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 uutta liikettä vinkkeineen osiossa ”Tekniikka”.",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Jälkikäteen kirjattu treeni: treenipaikan valitset muokkaimessa."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Jälkikäteen kirjattu treeni: treenipaikan valitset muokkaimessa.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Apple Health -yhteistyö on päivitetty — treenien tallennus toimii kuten ennenkin.",
+ "Poprawione sformułowania części wskazówek techniki.": "Joidenkin tekniikkavinkkien sanamuotoja on parannettu."
 }

@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Iknedēļas sēriju mērķi uz muskuļu grupu iestata sadaļā Iestatījumi (Automātiski vai Manuāli); joslas sadaļās „Šī nedēļa“ un Progress tiek mērītas pret šo mērķi, un vingrinājuma palīgmuskuļu grupa tiek skaitīta kā pus sērijas.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Labojumi: Progress atceras izvēlēto vingrinājumu, imports bez laikiem rāda „laiks nav zināms“, un palīdzības teksti atbilst cilņu nosaukumiem.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 jauni vingrinājumi ar padomiem sadaļā „Tehnika“.",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Vēlāk pievienots treniņš: treniņa vietu izvēlies redaktorā."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Vēlāk pievienots treniņš: treniņa vietu izvēlies redaktorā.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Atjaunināta sadarbība ar Apple Health — treniņu saglabāšana darbojas kā līdz šim.",
+ "Poprawione sformułowania części wskazówek techniki.": "Uzlabots daļas tehnikas padomu formulējums."
 }

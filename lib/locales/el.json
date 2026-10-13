@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Τον εβδομαδιαίο στόχο σετ ανά μυϊκή ομάδα τον ορίζεις στις Ρυθμίσεις (Αυτόματα ή Χειροκίνητα). Οι μπάρες στο «Αυτή την εβδομάδα» και στην Πρόοδος μετρούν προς αυτόν τον στόχο και η δευτερεύουσα μυϊκή ομάδα μιας άσκησης μετράει ως μισό σετ.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Διορθώσεις: η Πρόοδος θυμάται την επιλεγμένη άσκηση, η εισαγωγή χωρίς ώρες δείχνει «άγνωστη ώρα» και τα κείμενα βοήθειας ταιριάζουν με τα ονόματα των καρτελών.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 νέες ασκήσεις με συμβουλές στην ενότητα «Τεχνική».",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Προπόνηση που καταχωρίζεται εκ των υστέρων: τον χώρο της προπόνησης τον επιλέγεις στον επεξεργαστή."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Προπόνηση που καταχωρίζεται εκ των υστέρων: τον χώρο της προπόνησης τον επιλέγεις στον επεξεργαστή.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Ενημερώθηκε η συνεργασία με το Apple Health — η αποθήκευση των προπονήσεων λειτουργεί όπως πριν.",
+ "Poprawione sformułowania części wskazówek techniki.": "Βελτιώθηκε η διατύπωση ορισμένων συμβουλών τεχνικής."
 }

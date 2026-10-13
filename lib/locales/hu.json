@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "A heti sorozatcélt izomcsoportonként a(z) Beállítások menüben állíthatod be (Automatikus vagy Kézi); a(z) „Ezen a héten” és a(z) Fejlődés sávjai ehhez a célhoz mérnek, a gyakorlat segédizomcsoportja pedig fél sorozatnak számít.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Javítások: a(z) Fejlődés megjegyzi a kiválasztott gyakorlatot, az órák nélküli import „időpont ismeretlen” szöveget mutat, a súgószövegek pedig egyeznek a fülek neveivel.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "20 új gyakorlat tanácsokkal a(z) „Kivitelezés” részben.",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Utólag rögzített edzés: az edzés helyét a szerkesztőben választod ki."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Utólag rögzített edzés: az edzés helyét a szerkesztőben választod ki.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Frissítettük az Apple Health-szel való együttműködést — az edzések mentése a megszokott módon működik.",
+ "Poprawione sformułowania części wskazówek techniki.": "Javítottuk néhány technikai tipp megfogalmazását."
 }

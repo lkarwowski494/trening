@@ -27,7 +27,7 @@ Stan na 03.10.2026. Kod czytany z `/home/claude/trening-wt-integration`, gałą�
 
 ## A1. Jak robią to inni
 
-Źródło: baza wiedzy `docs/research/kb/*.json` (pole `log_replace_exercise`, ze źródłami) plus świeże sprawdzenie Liftosaur i StrengthLog (03.10.2026).
+Źródło: baza wiedzy funkcji na Dysku („Trening App / 05 Research konkurencji / kb (z repo, 12.10.2026)”, https://drive.google.com/drive/folders/1zIgAQ3vsPQh6ltGY52Gr8b_NfAAVatDJ; pole `log_replace_exercise`, ze źródłami) plus świeże sprawdzenie Liftosaur i StrengthLog (03.10.2026).
 
 | Aplikacja | Wejście | Propozycje | Dziś / na stałe | Odhaczone serie, ciężary | Źródło |
 |---|---|---|---|---|---|

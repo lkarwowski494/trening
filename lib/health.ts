@@ -5,11 +5,13 @@ import { getState, save, exById, volume, workingSets, pausedTotal, flush } from 
 import { catalogKey } from './seed';
 
 /*
- * Zapis treningu do Apple Health (0.6, HealthKit write). Biblioteka @kingstinct/react-native-healthkit 8.x
- * (bez Nitro — zgodna z RN 0.76). Wymaga dev buildu / IPA z config pluginem; w Expo Go moduł nie istnieje,
- * więc ładujemy go leniwie i każdy brak traktujemy jako „niedostępne”, nie jako błąd.
+ * Zapis treningu do Apple Health (0.6, HealthKit write). Biblioteka @kingstinct/react-native-healthkit 16.x (Nitro Modules; od 0.15.0,
+ * wcześniej 8.x). Wymaga dev buildu / IPA z config pluginem; w Expo Go moduł nie istnieje, więc ładujemy go leniwie i każdy brak
+ * traktujemy jako „niedostępne”, nie jako błąd. Kontrakt 16.x: requestAuthorization({ toRead, toShare }), authorizationStatusFor synchroniczne,
+ * saveWorkoutSample(rodzaj, próbki, start, koniec, sumy, metadane) → WorkoutProxy (UUID w `uuid`, po użyciu `dispose()`), błąd zapisu = odrzucona obietnica.
  */
-type HK = { authorizationStatusFor?: (type: string) => Promise<number>; isHealthDataAvailable: () => Promise<boolean>; requestAuthorization: (read: readonly string[], write?: readonly string[]) => Promise<boolean>; saveWorkoutSample: (type: number, quantities: readonly unknown[], start: Date, options?: { end?: Date; totals?: { distance?: number; energyBurned?: number }; metadata?: Record<string, string | number | boolean> }) => Promise<string | boolean> };
+type HKProxy = { uuid: string; dispose?: () => void };
+type HK = { authorizationStatusFor?: (type: string) => number | Promise<number>; isHealthDataAvailableAsync: () => Promise<boolean>; requestAuthorization: (options: { toRead?: readonly string[]; toShare?: readonly string[] }) => Promise<boolean>; saveWorkoutSample: (type: number, quantities: readonly unknown[], start: Date, end: Date, totals?: { distance?: number; energyBurned?: number }, metadata?: Record<string, string | number | boolean>) => Promise<HKProxy> };
 let mod: HK | null | undefined;
 function lib(): HK | null {
   if (mod !== undefined) return mod;
@@ -18,7 +20,7 @@ function lib(): HK | null {
   return mod;
 }
 const WORKOUT_TYPE = 'HKWorkoutTypeIdentifier';
-/** HKWorkoutActivityType (@kingstinct/react-native-healthkit 8.x, native-types.ts). Audyt 0.10 MER-18: trening z samych ćwiczeń cardio nie jest siłowy. */
+/** HKWorkoutActivityType (@kingstinct/react-native-healthkit 16.x, enum WorkoutActivityType; wartości liczbowe jak w 8.x). Audyt 0.10 MER-18: trening z samych ćwiczeń cardio nie jest siłowy. */
 export const HK_ACTIVITY = { traditionalStrength: 50, functionalStrength: 20, running: 37, walking: 52, cycling: 13, rowing: 35, elliptical: 16, stairClimbing: 44, jumpRope: 64, mixedCardio: 73 } as const;
 /** Ćwiczenia cardio z biblioteki → rodzaj treningu w Zdrowiu. Audyt 0.10 (fala 2): po kluczu katalogu `libKey` (seed.catalogKey), nie po nazwie —
  * ćwiczenie biblioteki przemianowane przez użytkownika (np. „Bieg” → „Jogging”) dalej trafia do Zdrowia jako bieg (jak E2: nazwa tylko do wyświetlania).
@@ -37,8 +39,8 @@ export function workoutActivityType(w: Workout): number {
 export async function ensureAuthorization(): Promise<boolean> {
   const h = lib(); if (!h) return false;
   try {
-    if (!(await h.isHealthDataAvailable())) return false;
-    const processed = await h.requestAuthorization([], [WORKOUT_TYPE]); if (!processed) return false;
+    if (!(await h.isHealthDataAvailableAsync())) return false;
+    const processed = await h.requestAuthorization({ toRead: [], toShare: [WORKOUT_TYPE] }); if (!processed) return false;
     // requestAuthorization mówi tylko, że prośba została obsłużona — zgodę sprawdzamy osobno (2 = sharingAuthorized).
     if (h.authorizationStatusFor) return (await h.authorizationStatusFor(WORKOUT_TYPE)) === 2;
     return true;
@@ -53,17 +55,17 @@ export async function saveWorkout(w: Workout): Promise<'saved' | 'skipped' | 'un
   if (w.healthUUID || inFlight.has(w.id)) return 'skipped'; // podwójne wywołanie nie zapisze treningu dwa razy
   inFlight.add(w.id);
   try {
-    /* 08.10.2026 (decyzja właściciela, wariant A): biblioteka 8.x zapisuje HKWorkout bez zdarzeń pauzy (workoutEvents: nil), a Zdrowie liczy
+    /* 08.10.2026 (decyzja właściciela, wariant A): biblioteka (8.x i 16.x: saveWorkoutSample bez parametru zdarzeń) zapisuje HKWorkout bez zdarzeń pauzy (workoutEvents: nil), a Zdrowie liczy
      * czas jako koniec − start — więc start w Zdrowiu przesunięty o sumę pauz: czas trwania jak w aplikacji, koniec prawdziwy, start później
-     * o długość pauz (w aplikacji start bez zmian). Prawdziwe zdarzenia pauzy (Workout.pauses) — w wydaniu Health po aktualizacji biblioteki. */
-    const res = await h.saveWorkoutSample(workoutActivityType(w), [], new Date(healthStart(w)), {
-      end: new Date(w.finishedAt),
-      metadata: { HKMetadataKeySyncIdentifier: w.id, HKMetadataKeySyncVersion: 1 /* T4b: HealthKit sam odrzuca drugi zapis tego treningu (np. po przywróceniu kopii sprzed zapisu) */, 'Workout': w.templateName || t('Trening'), 'VolumeKg': Math.round(volume(w)), 'Sets': workingSets(w) } // runda 7: jak w historii (bez rozgrzewek); X-15 (audyt 0.10): ta sama funkcja co lista Historii i kafelki,
-    });
-    if (res === false) return 'failed'; // biblioteka zwraca false przy odmowie zapisu — nie oznaczamy jako zapisane
+     * o długość pauz (w aplikacji start bez zmian). Prawdziwe zdarzenia pauzy (Workout.pauses): 16.x też nie ma parametru zdarzeń w saveWorkoutSample — inna droga do sprawdzenia (docs/28 §2). */
+    const res = await h.saveWorkoutSample(workoutActivityType(w), [], new Date(healthStart(w)), new Date(w.finishedAt), undefined,
+      { HKMetadataKeySyncIdentifier: w.id, HKMetadataKeySyncVersion: 1 /* T4b: HealthKit sam odrzuca drugi zapis tego treningu (np. po przywróceniu kopii sprzed zapisu) */, 'Workout': w.templateName || t('Trening'), 'VolumeKg': Math.round(volume(w)), 'Sets': workingSets(w) } // runda 7: jak w historii (bez rozgrzewek); X-15 (audyt 0.10): ta sama funkcja co lista Historii i kafelki
+    );
+    // 16.x: odmowa/błąd zapisu = odrzucona obietnica (trafia do catch → 'failed'); pusty wynik też nie oznacza zapisu.
+    if (!res) return 'failed';
     // Gdy HealthKit nie zwróci UUID, zapisujemy znacznik 'saved' (nie identyfikator) — tylko po to, by nie dublować zapisu.
     /* docs/12 (weryfikacja 2, L3): trening mógł zostać w międzyczasie podmieniony edycją — znacznik trafia też do obiektu, który jest teraz w historii */
-    const uuid = typeof res === 'string' && res ? res : 'saved'; w.healthUUID = uuid; delete w.healthPending; const cur = getState().workouts.find(x => x.id === w.id); if (cur && cur !== w) { cur.healthUUID = uuid; delete cur.healthPending; } save(cur ?? w);
+    const uuid = typeof res.uuid === 'string' && res.uuid ? res.uuid : 'saved'; try { res.dispose?.(); } catch {} w.healthUUID = uuid; delete w.healthPending; const cur = getState().workouts.find(x => x.id === w.id); if (cur && cur !== w) { cur.healthUUID = uuid; delete cur.healthPending; } save(cur ?? w);
     return 'saved';
   } catch { return 'failed'; } finally { inFlight.delete(w.id); }
 }

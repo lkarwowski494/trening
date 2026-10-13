@@ -1438,5 +1438,7 @@
  "Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii.": "Kas grubu başına haftalık set hedefini Ayarlar bölümünde ayarlarsınız (Otomatik veya Elle); “Bu hafta” ve İlerleme içindeki çubuklar bu hedefe göre ölçülür, egzersizin yardımcı kas grubu yarım set sayılır.",
  "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.": "Düzeltmeler: İlerleme seçilen egzersizi hatırlar, saatsiz içe aktarma “saat bilinmiyor” gösterir ve yardım metinleri sekme adlarıyla uyumludur.",
  "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.": "“Teknik” bölümünde ipuçları içeren 20 yeni egzersiz.",
- "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Sonradan eklenen antrenman: antrenman yerini düzenleyicide seçersiniz."
+ "Trening dopisywany wstecz: miejsce treningu wybierzesz w edytorze.": "Sonradan eklenen antrenman: antrenman yerini düzenleyicide seçersiniz.",
+ "Aktualizacja współpracy z Apple Health — zapis treningów działa jak dotąd.": "Apple Health ile iş birliği güncellendi — antrenmanların kaydedilmesi eskisi gibi çalışıyor.",
+ "Poprawione sformułowania części wskazówek techniki.": "Bazı teknik ipuçlarının ifadeleri iyileştirildi."
 }
