@@ -5,6 +5,7 @@ import { useTheme, F } from '@/lib/theme';
 import { Screen, Input, Item, Btn, Muted, SectionTitle, Empty, useOnce } from '@/components/ui';
 import { getState, useTick, finishedWorkouts, templateGroups, wallTs, fmtDate, tplWorkSets } from '@/lib/store';
 import { startTemplate } from '@/lib/start';
+import { useCloseHeader } from '@/components/CloseButton';
 import { t, tp, fold, lang } from '@/lib/i18n';
 
 /*
@@ -17,7 +18,7 @@ export const SEARCH_MIN = 6;
 
 export default function PickTemplateScreen() {
   useTick(); const th = useTheme(); const router = useRouter(); const once = useOnce(); const [q, setQ] = useState(''); const chosen = useRef(false);
-  const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityLanguage={lang()} accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; if (router.canGoBack()) router.back(); else router.replace('/'); }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 17, fontFamily: F.regular }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
+  const headerOpts = useCloseHeader(() => { if (chosen.current) return; chosen.current = true; if (router.canGoBack()) router.back(); else router.replace('/'); });
   const fin = finishedWorkouts(); const all = templateGroups(); const total = all.reduce((a, g) => a + g.items.length, 0); const ql = fold(q.trim());
   const groups = all.map(g => ({ ...g, items: g.items.filter(x => !ql || fold(x.name).includes(ql)) })).filter(g => g.items.length);
   const goHome = () => { if (router.canDismiss()) router.dismissAll(); router.navigate('/'); }; /* jak „Start” w podglądzie szablonu */

@@ -219,8 +219,6 @@ describe('UI2-02: podwójne tapnięcie nie otwiera dwóch ekranów ani nie tworz
   test('strażnik (jedno miejsce): każdy przycisk, chip i Pressable z przejściem (router.push/navigate/replace) w app/ i components/ ma blokadę — `nav`, `once(…)` albo wyjątek z powodem', () => {
     /* Item (components/ui) blokuje sam (useOnce) — poza listą. Wyjątki: własna blokada w miejscu. */
     const EXC: Record<string, string> = {
-      'app/picker.tsx#Pressable#router.back': 'nagłówek „Anuluj” — blokada chosen.current (wybór albo zamknięcie tylko raz)',
-      'app/pick-template.tsx#Pressable#router.back': 'nagłówek „Anuluj” wyboru szablonu (11.10.2026, P2 B) — jak w picker: blokada chosen.current',
       'app/template/[id].tsx#Btn#dupTemplate': '„Duplikuj” — blokada busy.current obejmuje też utworzenie kopii',
     };
     const ROOT = path.join(__dirname, '..'); const files: string[] = [];

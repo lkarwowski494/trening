@@ -8,6 +8,7 @@ import { startTemplate, startRepeatLast, startEmptyWorkout } from '@/lib/start';
 import { mainStart, otherStarts, type MainStart, type OtherStart } from '@/lib/home';
 import { dayKeyOf, addDays } from '@/lib/plan';
 import { t, tp, lang } from '@/lib/i18n';
+import { CloseButton } from '@/components/CloseButton';
 
 /*
  * Ekran główny, układ B (decyzja właściciela 09.10.2026; docs/18): duży przycisk startu zależny od sytuacji (reguła — lib/home.ts mainStart)
@@ -54,10 +55,13 @@ export function StartPanel() {
       {m.kind !== 'resume' ? <Btn block title={t('Inny trening')} accessibilityLabel={t('Inny trening')} accessibilityHint={t('Inny z planu, powtórz ostatni, z szablonu albo pusty.')} onPress={() => setOpen(true)} /> : null}
       <Modal visible={open} transparent animationType="slide" onRequestClose={() => setOpen(false)} accessibilityViewIsModal>
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-          <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Zamknij')} onPress={() => setOpen(false)} style={{ ...{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }, backgroundColor: 'rgba(0,0,0,0.4)' }} />
+          <Pressable testID="other-sheet-scrim" accessible={false} importantForAccessibility="no" onPress={() => setOpen(false)} /* tło: stuknięcie zamyka jako dodatek; przycisk „Zamknij” jest w nagłówku arkusza (zasada 13.10.2026) */ style={{ ...{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }, backgroundColor: 'rgba(0,0,0,0.4)' }} />
           <View testID="other-sheet" style={{ backgroundColor: th.surface, borderTopLeftRadius: 16, borderTopRightRadius: 16, paddingHorizontal: 16, paddingTop: 8, paddingBottom: 34 }}>
             <View style={{ alignSelf: 'center', width: 40, height: 5, borderRadius: 3, backgroundColor: th.line, marginBottom: 8 }} accessibilityElementsHidden importantForAccessibility="no" />
-            <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.heavy, fontSize: 17, marginBottom: 4 }}>{t('Inny trening')}</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 4 }}>
+              <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ flexShrink: 1, color: th.text, fontFamily: F.heavy, fontSize: 17 }}>{t('Inny trening')}</Text>
+              <CloseButton onPress={() => setOpen(false)} />
+            </View>
             {others.map(row)}
             <Btn title={t('Anuluj')} kind="ghost" block onPress={() => setOpen(false)} style={{ marginTop: 8 }} />
           </View>

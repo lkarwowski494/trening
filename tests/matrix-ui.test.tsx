@@ -582,7 +582,7 @@ describe('/swap', () => {
     await startIn('gym', ['Chest Dip', 'Upright Row (sztanga)']);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Chest Dip')); await flushAll(20);
     expect(screen.getAllByText(/^te same mięśnie · /).length).toBeGreaterThan(0);
-    await tap(screen.getByText('Anuluj')); await flushAll(10);
+    await tap(screen.getByText('Zamknij')); await flushAll(10);
     await tap(screen.getByLabelText('Zamień ćwiczenie: Upright Row (sztanga)')); await flushAll(20);
     expect(screen.getByText('Upright Row (sztanga) — gryf łamany')).toBeTruthy();
     await tap(screen.getByLabelText('Inny przyrząd: gryf łamany')); await flushAll(10);

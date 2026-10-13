@@ -8,7 +8,7 @@
 #   "Test store: expire access"                                             ← panel tylko w buildzie E2E (app/paywall.tsx, bez t())
 #   ".*1 month free, then .*", "Restore purchases", "No purchases found for this Apple account."
 #   "You've used this month's free workouts .*"                             ← 'Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.'
-#   "Start your free month", "Log a past workout", "Not now"
+#   "Start your free month", "Log a past workout", "Not now", "Close" (id close-modal)
 #   "Empty workout", "Other workout", "Finish", "Set 1 done.*", "Skip", "Finish workout\?", "Session", "Upper A" ← jak flow 05
 appId: pl.lukasz.trening
 name: Subskrypcja — ekran zakupu i limit
@@ -48,8 +48,10 @@ name: Subskrypcja — ekran zakupu i limit
 - scrollUntilVisible: { element: "Restore purchases", direction: DOWN, timeout: 60000 }
 - tapOn: "Restore purchases"
 - extendedWaitUntil: { visible: "No purchases found for this Apple account.", timeout: 20000 }
-# Ekran zakupu z Ustawień to okno modalne (presentation 'modal', bez „Back” i bez „Not now” — E2E 38324474808, krok 74): zamyka je gest w dół z paska nagłówka.
-- swipe: { start: "50%, 10%", end: "50%, 90%", duration: 400 }
+# Ekran zakupu z Ustawień to okno modalne (presentation 'modal', bez „Back” — E2E 38324474808, krok 74): zasada 13.10.2026 — przycisk „Close” w nagłówku
+# (components/CloseButton.tsx, testID close-modal), gest w dół tylko dodatkowo.
+- assertVisible: { id: "close-modal" }
+- tapOn: { id: "close-modal" }
 - extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
 - tapOn: "Back"
 # --- drugi trening na żywo ponad limit 1: ekran zakupu zamiast startu ---

@@ -24,9 +24,9 @@ const blk = (i: number) => store.getState().active!.exercises[i];
 describe('W1 — ekran treningu i arkusz zamiany', () => {
   test('plakietka „brak sprzętu w: Dom” jest tekstem, który po stuknięciu otwiera arkusz zamiany (nie osobny przycisk)', async () => {
     await renderApp({ saved: await savedWith(['Bench Press (sztanga)', 'Push Up']) }); await flushAll(20);
-    expect(screen.queryByText('Anuluj')).toBeNull(); expect(screen.getByLabelText(/^Brak sprzętu w: Dom\. Brakuje: /).props.accessibilityHint).toBe('Otwiera zamianę ćwiczenia'); expect(screen.getByLabelText(/^Brak sprzętu w: Dom\. Brakuje: /).props.accessibilityRole).toBe('button');
+    expect(screen.queryByText('Zamknij')).toBeNull(); expect(screen.getByLabelText(/^Brak sprzętu w: Dom\. Brakuje: /).props.accessibilityHint).toBe('Otwiera zamianę ćwiczenia'); expect(screen.getByLabelText(/^Brak sprzętu w: Dom\. Brakuje: /).props.accessibilityRole).toBe('button');
     await tap(screen.getByLabelText(/^Brak sprzętu w: Dom\. Brakuje: /)); await flushAll(20);
-    expect(screen.getByText('Anuluj')).toBeTruthy(); expect(blk(0).exerciseId).toBe(store.getState().active!.exercises[0].exerciseId);
+    expect(screen.getByText('Zamknij')).toBeTruthy(); expect(blk(0).exerciseId).toBe(store.getState().active!.exercises[0].exerciseId);
   });
   test('przycisk ukryty po odhaczeniu wszystkich serii (D3) i w bloku usuniętego ćwiczenia; „⇄” przy plakietce braku sprzętu', async () => {
     await renderApp({ saved: await savedWith(['Bench Press (sztanga)', 'Push Up']) }); await flushAll(20);

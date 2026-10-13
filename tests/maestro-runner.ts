@@ -159,7 +159,7 @@ export class Runner {
     /* pasek nawigacji (w Jest się nie renderuje): tytuł ekranu i przycisk wstecz „Back” — na górze ekranu, więc przed treścią */
     const nav = require('expo-router/build/global-state/router-store').store.navigationRef; const o = nav?.getCurrentOptions?.() ?? {};
     if (typeof o.title === 'string' && o.title && o.headerShown !== false) out.push({ texts: [o.title], header: true });
-    /* okno modalne (presentation modal/sheet) nie ma przycisku „Back” — zamyka je gest w dół z paska nagłówka (E2E 38324474808, scenariusz 21) */
+    /* okno modalne (presentation modal/sheet) nie ma przycisku „Back” — zamyka je przycisk „Zamknij/Close” z nagłówka (headerRight, testID close-modal; zasada 13.10.2026), a dodatkowo gest w dół z paska nagłówka (E2E 38324474808, scenariusz 21) */
     const modal = /modal|sheet/i.test(String(o.presentation ?? ''));
     if (!modal && nav?.canGoBack?.() && o.headerBackVisible !== false && !o.headerLeft && o.headerShown !== false) out.push({ texts: [typeof o.headerBackTitle === 'string' ? o.headerBackTitle : 'Back'], header: true, alertBtn: () => { nav.goBack(); } });
     const all = (screen.UNSAFE_root as unknown as Node & { findAll: (f: (n: Node) => boolean) => Node[] }).findAll((n: Node) => isHost(n) && !hidden(n)); /* ekrany pod spodem stosu (aria-hidden) — Maestro ich nie widzi */

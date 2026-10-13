@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, View, Text, Pressable, Linking, ActivityIndicator, Alert } from 'react-native';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
+import { useCloseHeader } from '@/components/CloseButton';
 import { Screen, H1, Muted, Btn, SectionTitle } from '@/components/ui';
 import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t, tp, lang } from '@/lib/i18n';
@@ -27,7 +28,7 @@ export function priceLine(p: StoreProduct): string {
 const ctaLabel = (p: StoreProduct): string => (p.period === null ? t('Kup na zawsze') : p.trial ? t('Zacznij miesiąc za darmo') : t('Subskrybuj'));
 
 export default function PaywallScreen() {
-  const th = useTheme(); const router = useRouter(); const { reason } = useLocalSearchParams<{ reason?: string }>(); const view = useAccess();
+  const th = useTheme(); const router = useRouter(); const headerOpts = useCloseHeader(); /* zasada 13.10.2026: „Zamknij” w nagłówku zawsze (także reason=settings); „Nie teraz” na dole zostaje */ const { reason } = useLocalSearchParams<{ reason?: string }>(); const view = useAccess();
   const [products, setProducts] = useState<StoreProduct[] | 'loading' | 'unavailable'>('loading'); const [sel, setSel] = useState<EntitlementPlan>('yearly');
   const [busy, setBusy] = useState(false); const [note, setNote] = useState<string | null>(null);
   const load = useCallback(() => { setProducts('loading'); getStoreAdapter().getProducts().then(p => { setProducts(p); }).catch(() => setProducts('unavailable')); }, []);
@@ -52,7 +53,7 @@ export default function PaywallScreen() {
   const cfg = paywallConfig();
   const fake = isFakeStoreBuild() ? (getStoreAdapter() as unknown as FakeStoreControl) : null;
   return (
-    <Screen><ScrollView testID="paywall-scroll" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
+    <Screen><Stack.Screen options={headerOpts} /><ScrollView testID="paywall-scroll" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <H1>{t('Pełna wersja')}</H1>
       {reason === 'limit' && view.decision.resetsAt ? <Text testID="paywall-limit" accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.semibold, fontSize: 16, marginTop: 8 }}>{t('Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.', { n: view.decision.limit, date: fmtDate(nextMonthDay()) })}</Text> : null}
       <Muted style={{ marginTop: 8, marginBottom: 12 }}>{t('Treningi bez limitu. Bez reklam. Wszystko zostaje na Twoim telefonie.')}</Muted>

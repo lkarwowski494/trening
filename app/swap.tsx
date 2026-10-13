@@ -5,6 +5,7 @@ import { useTheme, F } from '@/lib/theme';
 import { Screen, Item, Muted, Empty, SectionTitle, Chip, Input } from '@/components/ui';
 import { getState, useTick, exById, swapBlock, swapImpl, canUndoSwap, locationById, visibleExercises, newExercise, save, exerciseInHistory, restoreExercise, exercisesInUse, inCoreList, libShowAll, setLibShowAll } from '@/lib/store';
 import { LibScopeChip } from '@/components/LibScope';
+import { useCloseHeader } from '@/components/CloseButton';
 import { availability, capsOf, missingLabel } from '@/lib/equipment';
 import { draftOf, useDraftTick, draftSwapExercise, canRestoreExercise, draftRestoreExercise, draftImplChoices, draftSetImpl, swapTargetOk } from '@/lib/edit';
 import { swapCandidates, reasonText, otherImpls, implLabel, parseSwapTarget, SWAP_TOP, SWAP_PAGE, sortOthers } from '@/lib/swap';
@@ -18,7 +19,7 @@ import type { Exercise, Impl, WExercise } from '@/lib/seed';
  *    „↺ przywróć: A”, „Cała biblioteka” → picker z celem swap:;
  *  - edytor historii (D6, H1): ten sam arkusz w szkicu — ranking z miejscem szkicu i licznikami sprzed daty treningu, przepięcie całego bloku
  *    (P3 a), poprawka samego przyrządu (P5b a), „↺ przywróć” ćwiczenia z otwarcia szkicu (H8).
- * Okno jak picker: „Anuluj” w nagłówku, blokada podwójnego tapnięcia.
+ * Okno jak picker: „Zamknij” w nagłówku, blokada podwójnego tapnięcia.
  */
 export default function SwapScreen() {
   const raw = useLocalSearchParams<{ target?: string | string[] }>().target; const target = typeof raw === 'string' ? raw : ''; const router = useRouter();
@@ -26,7 +27,7 @@ export default function SwapScreen() {
   /* „Inne” (decyzja właściciela 04.10.2026): rozwijana lista z filtrami-etykietami partii i miejsca, które da się zdjąć (✕) */
   const [open, setOpen] = useState(false); const [grpOn, setGrpOn] = useState(true); const [locOn, setLocOn] = useState(true); const [q, setQ] = useState(''); const [lim, setLim] = useState(SWAP_PAGE); const [libAll, setLibAll] = useState(libShowAll());
   const close = () => { if (router.canGoBack()) router.back(); else router.replace('/'); };
-  const headerOpts = useMemo(() => ({ headerRight: () => <Pressable accessibilityLanguage={lang()} accessibilityRole="button" hitSlop={10} onPress={() => { if (chosen.current) return; chosen.current = true; close(); }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 17, fontFamily: F.regular }}>{t('Anuluj')}</Text></Pressable> }), [th, router]); // eslint-disable-line react-hooks/exhaustive-deps
+  const headerOpts = useCloseHeader(() => { if (chosen.current) return; chosen.current = true; close(); });
   const tg = parseSwapTarget(target);
   const d = tg?.kind === 'edit' ? draftOf(tg.key) : undefined; const a = tg?.kind === 'active' ? getState().active : null;
   const w = d ? d.w : a; const e: WExercise | undefined = tg && w ? w.exercises.find(x => x.id === tg.blockId) : undefined; const ex = e ? exById(e.exerciseId) : undefined;

@@ -1,7 +1,7 @@
 /*
  * Wybór szablonu do startu (docs/22 P2 B, decyzja właściciela 11.10.2026): „Inny trening” → „Z szablonu” otwiera pełnoekranowy wybór (app/pick-template.tsx)
  * ze „Startem” przy każdym szablonie, wzorem „Wybierz ćwiczenie”; start tymi samymi funkcjami co duży przycisk (lib/start.startTemplate).
- * Rodzaje (docs/20): ekran (wiersze, foldery, wyszukiwarka od SEARCH_MIN, stany puste), scenariusz (start → ekran treningu, stos bez modalu, „Anuluj”,
+ * Rodzaje (docs/20): ekran (wiersze, foldery, wyszukiwarka od SEARCH_MIN, stany puste), scenariusz (start → ekran treningu, stos bez modalu, „Zamknij”,
  * podgląd szablonu), niezmienniki (zarchiwizowane i puste bez „Startu”, jeden start przy podwójnym tapnięciu, deload jak duży przycisk, strażnik treningu w toku),
  * języki (EN), wąski ekran (320 pt). E2E: .maestro (zmiana literałów „Start from a template” → „Other workout” → „From a template”).
  */
@@ -100,9 +100,9 @@ describe('start i zamknięcie', () => {
     await tap(screen.getByLabelText('Start: B')); await flushAll(10);
     expect(S().active!.id).toBe(id0); expect(S().active!.templateId).toBeNull(); expect(stack()).toEqual(['(tabs)']); void a;
   });
-  test('„Anuluj” w nagłówku zamyka wybór bez startu; podwójne „Anuluj” nie cofa dalej', async () => {
+  test('„Zamknij” w nagłówku zamyka wybór bez startu; podwójne „Zamknij” nie cofa dalej', async () => {
     await boot(() => { mk('A'); });
-    await openPick(); const cancel = screen.getAllByText('Anuluj').pop()!; await act(async () => { fireEvent.press(cancel); fireEvent.press(cancel); }); await flushAll(10);
+    await openPick(); const cancel = screen.getByTestId('close-modal'); await act(async () => { fireEvent.press(cancel); fireEvent.press(cancel); }); await flushAll(10);
     expect(S().active).toBeNull(); expect(stack()).toEqual(['(tabs)']); expect(screen.getByTestId('start-main')).toBeTruthy();
   });
   test('brak szablonów (wejście z linku): „Nie masz jeszcze szablonów.”, bez wyszukiwarki', async () => {

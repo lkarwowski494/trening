@@ -14,6 +14,7 @@
 - W trakcie pracy: `npm run test:fast` (tylko testy związane ze zmienionymi plikami, ~1 min). Przed wypchnięciem: pełne `npm run verify`
   (typecheck, check:i18n, jest, `expo export --platform ios`, verify:native; ~12 min) — decyzja właściciela 11.10.2026, wariant B. Nowe teksty w UI
   przez `t()` i słownik `lib/i18n.en.ts`.
+- Zasada projektowa (właściciel, 13.10.2026): akcje i elementy tego samego typu działają w całej aplikacji tak samo — sposób wywołania, miejsce, wygląd, etykieta, potwierdzenie, informacja zwrotna, VoiceOver; katalog wzorców: docs/32-wzorce-interakcji.md (w przygotowaniu); pilnowane testami-strażnikami tam, gdzie się da (np. zamykanie okien — każde okno wysuwane z dołu/modalne ma widoczny, spójny przycisk zamknięcia w nagłówku, gest w dół tylko dodatkowo: `tests/close-button-guard.test.tsx`).
 - Liczby (progi, limity, czasy) w jednym miejscu; dokumenty generowane z kodu, nie przepisywane ręcznie (wzór: `gen.mjs --check`).
 - Dokumentacja w `docs/` (po polsku): stan prac i decyzje właściciela zapisuj tam, z datą. Specyfikacja w toku: E2 —
   `docs/14-e2-specyfikacja.md` (decyzje: docs/13 A5 i docs/14 pkt 9). Nie zgaduj liczb nieznanego pochodzenia — oznacz jako otwarte.

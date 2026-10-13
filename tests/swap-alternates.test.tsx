@@ -112,8 +112,8 @@ describe('W3 — ekrany', () => {
     await renderApp({ saved: await savedActive(true) }); await flushAll(20);
     expect(screen.getByText('Zwykle w: Dom — Bench Press (hantle). Zamienić?')).toBeTruthy();
     await tap(screen.getByLabelText('Zamień na zamiennik: Bench Press (hantle)')); await flushAll(20); /* decyzja 11.10.2026: tekst otwiera arkusz zamiany (jedno wejście), nie zamienia od razu */
-    expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(screen.getByText('Anuluj')).toBeTruthy(); /* arkusz zamiany otwarty */
-    await tap(screen.getByText('Anuluj')); await flushAll(10); await act(async () => { store.acceptAlt(blk(0).id); }); await flushAll(10);
+    expect(blk(0).exerciseId).toBe(ex('Bench Press (sztanga)').id); expect(screen.getByText('Zamknij')).toBeTruthy(); /* arkusz zamiany otwarty */
+    await tap(screen.getByText('Zamknij')); await flushAll(10); await act(async () => { store.acceptAlt(blk(0).id); }); await flushAll(10);
     expect(blk(0).exerciseId).toBe(ex('Bench Press (hantle)').id); expect(screen.queryByText(/Zwykle w:/)).toBeNull();
     expect(screen.queryByLabelText(/^Zawsze w: Dom/)).toBeNull(); /* wpis już jest */
     await tap(screen.getByLabelText('Zamień ćwiczenie: Bench Press (hantle)')); await flushAll(20); await tap(screen.getByLabelText(/^Propozycja 1: /)); await flushAll(20);

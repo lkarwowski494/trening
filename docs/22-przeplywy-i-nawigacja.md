@@ -445,3 +445,37 @@ z większą zmianą nawyku i więcej E2E naraz.
 **P8. Progresja — estymacja.** A) do czasu odpowiedzi badacza pokazywać tylko „wykonane” i „zaplanowane” jako dwie liczby bez sumowania;
 B) od razu sumować serie i objętość z szablonów (nazwane „uproszczenie: z szablonu”). Kompromis: A zgodne z zasadą merytoryczną, B szybciej
 pokazuje to, czego chce właściciel.
+
+---
+
+## Zasada: zamykanie okien (13.10.2026) — pierwszy wzorzec zasady „to samo działa tak samo”
+
+**Zasada (właściciel, 13.10.2026):** akcje i elementy tego samego typu działają w całej aplikacji tak samo (sposób wywołania, miejsce, wygląd, etykieta,
+potwierdzenie, informacja zwrotna, VoiceOver); katalog wzorców: `docs/32-wzorce-interakcji.md` (w przygotowaniu). Zamykanie okien to jej pierwszy przypadek:
+**każdy ekran wysuwany z dołu / okno modalne (presentation modal, formSheet, sheet, transparentModal; arkusze i `<Modal>` w komponentach) ma widoczny,
+spójny przycisk zamknięcia w nagłówku** — to samo miejsce (prawy górny róg nagłówka okna), ta sama etykieta „Zamknij” (EN „Close”), ten sam wygląd
+(tekst w kolorze akcentu, 17 pt), `testID` `close-modal`, rola „przycisk” dla VoiceOver; gest w dół działa dalej jako dodatek.
+Alert systemowy (`Alert.alert`) i inline'owa sekcja „Co nowego” (nie okno, tylko rozwijana karta, ma własne „Zamknij”) zasady nie dotyczą.
+
+**Implementacja:** `components/CloseButton.tsx` — `CloseButton` (rysuje przycisk), `useCloseHeader(onClose?)` (opcje nagłówka dla `<Stack.Screen options=…>`),
+`useDismiss()` (wstecz albo ekran główny). Etykieta: istniejące `t('Zamknij')` (słownik EN: „Close”) — nowych tekstów brak.
+**Strażnik:** `tests/close-button-guard.test.tsx` (skan layoutów i źródeł + render każdego okna w PL/EN, jasny/ciemny motyw).
+
+### Wykaz okien (stan przed → po)
+
+| Okno | Plik / sposób | Przed | Po |
+|---|---|---|---|
+| Wybór ćwiczenia | `app/picker.tsx`, trasa `picker` (modal) | „Anuluj” w nagłówku (własny kod) | `useCloseHeader`: „Zamknij” (blokada podwójnego tapnięcia zachowana) |
+| Zamiana ćwiczenia | `app/swap.tsx`, trasa `swap` (modal) | „Anuluj” w nagłówku (własny kod), także w stanie „nie da się zamienić” | „Zamknij” j.w. |
+| Wybór szablonu | `app/pick-template.tsx`, trasa `pick-template` (modal) | „Anuluj” w nagłówku (własny kod) | „Zamknij” j.w. |
+| Ekran zakupu | `app/paywall.tsx`, trasa `paywall` (modal) | reason=settings: brak przycisku (tylko gest); limit/first: „Nie teraz” na dole | „Zamknij” w nagłówku zawsze; „Nie teraz” (limit, first) zostaje na dole |
+| Arkusz „Inny trening” | `components/StartPanel.tsx`, `<Modal>` od dołu | tło jako ukryty „Zamknij” + „Anuluj” na dole | „Zamknij” obok tytułu arkusza (komponent wspólny); „Anuluj” na dole zostaje; tło zamyka dotykiem, ale nie jest już przyciskiem dla VoiceOver (jeden „Zamknij”, nie dwa) |
+| Pozostałe trasy | `presentation` nie występuje w innych layoutach ani komponentach | — | strażnik wykrywa każde nowe |
+
+**Przypadki (opis):**
+- *Okna wyboru bez zmian do zapisania* (picker, swap, pick-template): „Zamknij” zamiast „Anuluj” — nie ma czego anulować, a etykieta ma być taka sama w każdym oknie.
+- *Ekran zakupu — wymóg Apple:* zamknięcie nie może być ukryte ani mylące. „Zamknij” jest zawsze widoczne w nagłówku, w standardowym miejscu; „Nie teraz” (limit, first)
+  prowadzi w to samo miejsce (wstecz), więc nie jest pułapką; zakupy i przywracanie bez zmian.
+- *Okna z Zapisz/Anuluj* (edycja sesji `history/edit/[id]`, edycja szablonu/ćwiczenia — `DraftHeader`) to zwykłe karty (nie modalne): układ „Anuluj/Zapisz” zostaje, nie dotyczy ich ta zasada.
+- *Arkusz „Inny trening”* ma dwa wyjścia o tym samym skutku („Zamknij” w nagłówku, „Anuluj” u dołu przy liście) — dolny przycisk to wygodny dodatek pod kciukiem, jak „Nie teraz” w ekranie zakupu.
+

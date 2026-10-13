@@ -23,7 +23,7 @@
 #   "Pull Up,.*"                     ← nazwa ćwiczenia z lib/seed.ts (EN bez zmian, exName) — wymaga pullup.bar|rings (catalog.generated.ts)
 #   "Lat Pulldown,.*"                ← nazwa z lib/seed.ts — wymaga lat_pulldown|cable.high → niedostępne w „Bodyweight only”
 #   "missing:"                       ← 'brak: {m}' → 'missing: {m}'
-#   "Cancel"                         ← 'Anuluj' (headerRight pickera)
+#   "Close"                          ← 'Zamknij' (headerRight pickera, components/CloseButton.tsx — zasada 13.10.2026)
 appId: pl.lukasz.trening
 name: Miejsca treningu i filtr ćwiczeń
 ---
@@ -95,5 +95,5 @@ name: Miejsca treningu i filtr ćwiczeń
 - tapOn: { text: "Continue", optional: true }
 - extendedWaitUntil: { visible: "Lat Pulldown,.*missing:.*", timeout: 30000 }
 - takeScreenshot: 25-picker-pokaz-wszystkie
-- tapOn: "Cancel"
+- tapOn: "Close"
 - assertNotVisible: "Place filter.*"

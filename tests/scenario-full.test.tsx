@@ -398,7 +398,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await type(search(), ''); await tap(screen.getAllByLabelText('barki').find(x => x.props.accessibilityRole === 'button')!);
     expect(screen.getByText('Band Pull Apart')).toBeTruthy(); expect(screen.queryByText('Bench Press (hantle)')).toBeNull();
     await tap(screen.getByLabelText('Wszystkie'));
-    await tap(screen.getByText('Anuluj')); await flushAll(10); expect(tpl.items).toHaveLength(0); expect(screen.getByLabelText('Nazwa')).toBeTruthy();
+    await tap(screen.getByText('Zamknij')); await flushAll(10); expect(tpl.items).toHaveLength(0); expect(screen.getByLabelText('Nazwa')).toBeTruthy();
     const add = async (n: string) => { await tap(screen.getByText('+ Dodaj ćwiczenie')); await flushAll(10); await type(search(), n); await tap(screen.getAllByText(n)[0]); await flushAll(10); };
     for (const n of ['Bench Press (hantle)', 'Cable Curl', 'Pull Up', 'Plank', 'Band Pull Apart', 'Back Squat']) await add(n);
     expect(tpl.items.map(i => store.exById(i.exerciseId)!.name)).toEqual(['Bench Press (hantle)', 'Cable Curl', 'Pull Up', 'Plank', 'Band Pull Apart', 'Back Squat']);
@@ -602,7 +602,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByLabelText(`Zamień ćwiczenie: ${BP}`)); await flushAll(10);
     await tap(screen.getByLabelText('Pokaż inne ćwiczenia')); expect(screen.getByLabelText('Filtr partii: barki')).toBeTruthy(); expect(screen.getByLabelText('Filtr miejsca: Dom testowy')).toBeTruthy();
     await tap(screen.getByLabelText('Filtr partii: barki')); expect(screen.getByLabelText('Filtr partii wyłączony: barki')).toBeTruthy();
-    await tap(screen.getByText('Anuluj')); await flushAll(10); expect(names()[3]).toBe(BP);
+    await tap(screen.getByText('Zamknij')); await flushAll(10); expect(names()[3]).toBe(BP);
 
     /* Cable Curl: ten sam ruch, inny przyrząd — seria 1 odhaczona, więc podział bloku */
     const impl0 = blk(C).impl; expect(['cable', 'electric']).toContain(impl0); const other = impl0 === 'cable' ? 'stacja' : 'wyciąg';
@@ -700,7 +700,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* ekran główny: „Powtórz ostatni”, szablon z datą ostatniego treningu, bez podpowiedzi pierwszego razu */
     await go('/'); await flushAll(10);
     await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B: arkusz „Inny trening” */ expect(screen.getByLabelText('Powtórz ostatni (Push A)')).toBeTruthy(); expect(screen.getByText(/^Push A · /)).toBeTruthy(); /* podpis: nazwa · data */ expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
-    await tap(screen.getByLabelText('Z szablonu')); await flushAll(10); /* P2 B: wiersz szablonu z datą ostatniego treningu — w wyborze szablonu */ expect(screen.getByLabelText(/^Push A, 5 ćw\. · 14 serii · ostatnio /)).toBeTruthy(); await tap(screen.getAllByText('Anuluj').pop()!); await flushAll(10);
+    await tap(screen.getByLabelText('Z szablonu')); await flushAll(10); /* P2 B: wiersz szablonu z datą ostatniego treningu — w wyborze szablonu */ expect(screen.getByLabelText(/^Push A, 5 ćw\. · 14 serii · ostatnio /)).toBeTruthy(); await tap(screen.getByTestId('close-modal')); await flushAll(10);
     expect(timer.T.on).toBe(false); expect(timer.S.on).toBe(false);
   });
 

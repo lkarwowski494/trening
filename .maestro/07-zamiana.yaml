@@ -2,7 +2,7 @@
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts, chyba że zaznaczono inaczej):
 #   "Other workout", "More, tab.*", "Places and equipment", "\+ Add place", "Back", "Workout, tab.*",
-#   "Empty workout", "\+ Add exercise", "Search exercises…", "Cancel", "Place filter: X.*" (chip filtra miejsca)  ← jak przepływ 06
+#   "Empty workout", "\+ Add exercise", "Search exercises…", "Close", "Place filter: X.*" (chip filtra miejsca)  ← jak przepływ 06
 #   "Home,.*"                        ← LOCATION_PRESET_LABEL.home.en 'Home' + hint 'empty — tick what you have' (lib/equipment.ts)
 #   sw-Adjustable bench              ← testID przełącznika SwitchRow: 'sw-' + EQUIPMENT bench_adj.en (lib/equipment.ts)
 #   sw-Dumbbells \(fixed or quick-adjust\) ← jak wyżej, db_fixed.en; nawiasy poprzedzone \\ (tests/maestro-selectors.test.ts)
@@ -197,5 +197,5 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - waitForAnimationToEnd
 - tapOn: "Swap to substitute: .*"
 - extendedWaitUntil: { visible: "Suggestion 1: .*", timeout: 30000 }
-- tapOn: "Cancel"
+- tapOn: "Close"
 - extendedWaitUntil: { notVisible: "Suggestion 1: .*", timeout: 30000 }
