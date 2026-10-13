@@ -5,6 +5,7 @@ import XCTest
 // albo tablica; fałszywy „telefon” odpowiada jak prawdziwy (welcome na hello, ack na zdarzenie), chyba że zegarek ma być „poza zasięgiem”.
 // Elementy po stabilnych identyfikatorach (nie po tekście), więc test działa w każdym języku; teksty sprawdza osobno pętla po 35 językach.
 // Migawki mają stałą godzinę z roku 2026 (przerwy w nich są już „skończone”), więc przerwę na ekranie wywołuje dopiero „Seria zrobiona”.
+@MainActor
 final class WatchUITests: XCTestCase {
   private let root: URL = {
     var u = URL(fileURLWithPath: #filePath)
@@ -12,7 +13,7 @@ final class WatchUITests: XCTestCase {
     return u
   }()
 
-  override func setUpWithError() throws { continueAfterFailure = false }
+  override func setUp() async throws { continueAfterFailure = false }
 
   private func fixture(_ path: String) -> Data {
     let url = root.appendingPathComponent("tests/fixtures/watch-app/\(path)")

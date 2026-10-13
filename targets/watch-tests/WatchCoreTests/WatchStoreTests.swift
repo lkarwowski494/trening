@@ -22,7 +22,7 @@ final class WatchStoreTests: XCTestCase {
   /// Wywołania zwrotne transportu i sesji trafiają do `Task { @MainActor }` — oddajemy sterowanie kilka razy, żeby się wykonały.
   private func settle() async { for _ in 0..<8 { await Task.yield() } }
 
-  override func setUp() { nowMs = T0 }
+  override func setUp() async throws { nowMs = T0 }
 
   private func session(_ action: String, id: String = "workout-1", save: Bool = true) -> String {
     "{\"v\":1,\"kind\":\"session\",\"action\":\"\(action)\",\"workoutId\":\"\(id)\",\"save\":\(save)}"
