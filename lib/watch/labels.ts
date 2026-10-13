@@ -10,7 +10,7 @@ import { LANGS, applyLang, lang, t, type Lang } from '../i18n';
 export const WATCH_LABEL_IDS = ['done', 'differ', 'skip', 'skipAsk', 'cancel', 'undo', 'rest', 'set', 'pause', 'connect', 'idle', 'finished', 'update', 'nothingLeft'] as const;
 export type WatchLabelId = typeof WATCH_LABEL_IDS[number];
 
-/** Etykiety w bieżącym języku aplikacji. Każdy tekst literałem `t('…')`, żeby `check:i18n` widział klucze. */
+/** Etykiety w bieżącym języku aplikacji. Każdy tekst jako literał w wywołaniu tłumaczenia, żeby check:i18n widział klucze. */
 export function watchLabels(): Record<WatchLabelId, string> {
   return {
     done: t('Seria zrobiona'), differ: t('Zrobione inaczej'), skip: t('Pomiń'), skipAsk: t('Pominąć ćwiczenie?'), cancel: t('Anuluj'), undo: t('Cofnij'),
