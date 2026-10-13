@@ -66,7 +66,7 @@ export function scenarios(S: Snaps): Scenario[] {
   ];
   return [
     { name: 'basic-apple', doc: 'Apple Watch online: seria → zrobione → przerwa z zapowiedzią (ten sam tekst co głos).', cfg: apple, steps: basic(apple) },
-    { name: 'basic-garmin', doc: 'Garmin: to samo zachowanie, inny klient (eventId z przedrostkiem garmin, bez zdolności sesji).', cfg: garmin, steps: basic(garmin) },
+    { name: 'basic-garmin', doc: 'Zegarek z Connect IQ: to samo zachowanie, inny klient (eventId z przedrostkiem garmin, bez zdolności sesji).', cfg: garmin, steps: basic(garmin) },
     { name: 'ack-before-snapshot', doc: 'Potwierdzenie przed migawką (kolejność nie jest gwarantowana): widok nie migocze — zdarzenie znika dopiero z migawką o numerze z potwierdzenia.', cfg: apple, steps: [
       { at: T, input: recv(welcomeOk()) }, { at: T, input: recv(S.set1) }, { at: at(1000), input: { t: 'press', button: 'main' } },
       { at: at(1100), input: recv(ack('apple-1', 2)), note: 'ack wyprzedził migawkę: nadal widok z projekcji lokalnej' },

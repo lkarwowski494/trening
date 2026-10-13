@@ -64,7 +64,7 @@ export const silenceVoice = (): void => { Voice.stop(); };
 export const voiceAvailable = (): boolean => Voice.isSupported() && Voice.hasVoice(locale());
 /** „Posłuchaj przykładu” w Ustawieniach: przykładowa zapowiedź w języku aplikacji, trasa dźwięku jak telefon ją ustawił (użytkownik sam o to poprosił — bez warunku słuchawek). */
 export async function sampleVoice(): Promise<boolean> {
-  watchScreenReader(); const text = `${t('dalej: {name}', { name: 'Bench Press' })}, ${fmtNum(wOut(80), 2)} ${wu()}, 8 ${tp(8, 'powtórzenie|powtórzenia|powtórzeń')}`;
+  watchScreenReader(); const n = 8; const text = `${t('dalej: {name}', { name: 'Bench Press' })}, ${fmtNum(wOut(80), 2)} ${wu()}, ${n} ${tp(n, 'powtórzenie|powtórzenia|powtórzeń')}`;
   if (screenReader) { announce(text); return true; }
   return Voice.speak(text, locale());
 }

@@ -56,7 +56,7 @@ export function spokenLoad(ex: Exercise, set: WSet): string {
   const m = ex.metric ?? 'weight_reps'; const out: string[] = [];
   if (hasWeight(m)) { const p = nowParts(ex, set); if (p.num !== '—') out.push(p.num + (p.unit ? ' ' + p.unit : '')); }
   if (hasDistance(m) && Number(set.distanceM) > 0) out.push(`${set.distanceM} m`);
-  if (hasReps(m) && Number(set.reps) > 0) out.push(`${set.reps} ${tp(Number(set.reps), 'powtórzenie|powtórzenia|powtórzeń')}`);
+  { const n = Number(set.reps); if (hasReps(m) && n > 0) out.push(`${n} ${tp(n, 'powtórzenie|powtórzenia|powtórzeń')}`); }
   if (hasTime(m) && Number(set.durationSec) > 0) out.push(fmtSec(Number(set.durationSec)));
   return out.join(', ');
 }

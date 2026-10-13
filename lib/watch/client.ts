@@ -3,7 +3,7 @@ import {
 } from './protocol';
 
 /*
- * Model stanu ZEGARKA — wzorzec referencyjny dla klientów Apple Watch (SwiftUI) i Garmina (Monkey C), które są cienkie i mają dokładnie to zachowanie
+ * Model stanu ZEGARKA — wzorzec referencyjny dla klientów Apple Watch (SwiftUI) i zegarka z Connect IQ (Monkey C), które są cienkie i mają dokładnie to zachowanie
  * (docs/35 rozdz. 3). Czysty TypeScript: Jest sprawdza model na Linuksie, a `watch-fixtures/scenarios/*.json` (wygenerowane z niego) odtwarzają testy Swift
  * (`swift test`) i Monkey C — wejścia → zdarzenia do wysłania i widok do wyświetlenia. Zegarek niczego nie edytuje: tylko wyświetla migawkę i wysyła
  * zdarzenia bezwzględne (zrobione według planu, zrobione inaczej, pomiń z potwierdzeniem, cofnij, koniec przerwy).

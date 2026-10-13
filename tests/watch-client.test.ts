@@ -1,5 +1,5 @@
 /*
- * Model stanu zegarka (lib/watch/client.ts) na migawkach z prawdziwego telefonu: zachowanie, które mają mieć Apple Watch (SwiftUI) i Garmin (Monkey C) — docs/35.
+ * Model stanu zegarka (lib/watch/client.ts) na migawkach z prawdziwego telefonu: zachowanie, które mają mieć Apple Watch (SwiftUI) i zegarek z Connect IQ (Monkey C) — docs/35.
  * Te same scenariusze są zapisywane jako pliki wzorcowe (tests/watch-fixtures.test.ts) dla testów Swift i Monkey C.
  */
 import { clientStep, clientView, initialClient, CLIENT_SCREENS, CLIENT_ACTIONS } from '@/lib/watch/client';

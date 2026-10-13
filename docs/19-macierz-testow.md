@@ -904,7 +904,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Partie z większą objętością niż poprzednio: {list} | app/progression.tsx | tests/progression-ui.test.tsx |
 | Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5). | lib/whatsnew.ts | tests/release-0.16.test.tsx, tests/whats-new.test.tsx |
 | pauza | components/ActiveWorkout.tsx | tests/audit-0.10-lang.test.ts, tests/matrix-i18n.test.tsx, tests/matrix-invariants.test.ts +3 |
-| Pauza | lib/watch/labels.ts | tests/audit-0.10-lang.test.ts, tests/audit-0.10-live.test.tsx, tests/guide.test.tsx +7 |
 | Pauza treningu | components/ActiveWorkout.tsx | tests/audit-0.10-lang.test.ts, tests/audit-0.10-live.test.tsx, tests/pause.test.tsx +2 |
 | Pauza treningu — czas pauzy nie liczy się do czasu trwania. | lib/whatsnew.ts | tests/whats-new.test.tsx |
 | Pełny trening | lib/start.ts | tests/audit-0.10-live.test.tsx, tests/deload-ui.test.tsx, tests/pick-template.test.tsx |
@@ -1164,6 +1163,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Trening wciąż trwa | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/audit-backlog-q.test.tsx, tests/audit-close-c.test.tsx +10 |
 | Trening wstecz | app/_layout.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-tst.test.ts |
 | Trening wstecz z datą tego dnia. | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx |
+| Trening wstrzymany | lib/watch/labels.ts | tests/watch-protocol.test.ts |
 | Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan. | app/_layout.tsx | tests/audit-0.10-ui.test.tsx, tests/matrix-ui.test.tsx |
 | Trening z tego dnia zrobiony wcześniej — dzień wolny. | components/DayPanel.tsx | tests/plan-wczesniej-ui.test.tsx |
 | Trening z Twojego planu tygodnia. Otwórz aplikację, by zacząć. | lib/planReminder.ts | tests/audit-k1-bl-mer.test.tsx, tests/mutation-bounds.test.ts, tests/plan-reminder.test.tsx |

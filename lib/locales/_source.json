@@ -3345,10 +3345,6 @@
   "en": "paused"
  },
  {
-  "pl": "Pauza",
-  "en": "Paused"
- },
- {
   "pl": "Pauza treningu",
   "en": "Pause workout"
  },
@@ -5004,6 +5000,10 @@
  {
   "pl": "Trening wstecz z datą tego dnia.",
   "en": "A past workout dated this day."
+ },
+ {
+  "pl": "Trening wstrzymany",
+  "en": "Workout paused"
  },
  {
   "pl": "Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",

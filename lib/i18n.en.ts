@@ -1069,7 +1069,7 @@ export const EN: Record<string, string> = {
   'Otwiera propozycje zamian na to miejsce.': 'Opens swap suggestions for this location.',
   /* 0.20 „Zegarki i głos”: zapowiedź (restCue), etykiety zegarka (lib/watch/labels.ts), serie do uzupełnienia, głos w Ustawieniach */
   'Zrobione inaczej': 'Done differently', 'Pominąć ćwiczenie?': 'Skip this exercise?', 'Połącz z telefonem': 'Connect to your phone',
-  'Zacznij trening na telefonie': 'Start a workout on your phone', 'Trening zakończony': 'Workout finished', 'Pauza': 'Paused',
+  'Zacznij trening na telefonie': 'Start a workout on your phone', 'Trening zakończony': 'Workout finished', 'Trening wstrzymany': 'Workout paused',
   'Zaktualizuj aplikację na zegarku': 'Update the watch app',
   'do uzupełnienia': 'to fill in', 'Serie do uzupełnienia': 'Sets to fill in',
   'Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.': 'Sets marked on your watch as done differently from the plan: {n}. Fill in the reps and weight — a record only counts once they are filled in.',
