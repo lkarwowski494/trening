@@ -6,7 +6,7 @@
     <string id="LblOffline">スマートフォンと接続されていません</string>
     <string id="LblUpdate">ウォッチのアプリを更新してください</string>
     <string id="LblFinished">トレーニング完了</string>
-    <string id="LblNothingMore">これ以上やることはありません</string>
+    <string id="LblNothingMore">もうやることはありません</string>
     <string id="LblDone">セット完了</string>
     <string id="LblDoneDiff">プランと違う内容で完了</string>
     <string id="LblSkip">種目をスキップ</string>

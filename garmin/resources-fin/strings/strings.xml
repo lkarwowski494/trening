@@ -4,9 +4,9 @@
     <string id="AppName">Treeni</string>
     <string id="LblIdle">Aloita treeni puhelimen sovelluksessa</string>
     <string id="LblOffline">Ei yhteyttä puhelimeen</string>
-    <string id="LblUpdate">Päivitä sovellus kelloon</string>
+    <string id="LblUpdate">Päivitä kellon sovellus</string>
     <string id="LblFinished">Treeni päättyi</string>
-    <string id="LblNothingMore">Ei enää tekemistä</string>
+    <string id="LblNothingMore">Ei enää mitään tehtävää</string>
     <string id="LblDone">Sarja tehty</string>
     <string id="LblDoneDiff">Tehty toisin kuin suunnitelmassa</string>
     <string id="LblSkip">Ohita liike</string>
