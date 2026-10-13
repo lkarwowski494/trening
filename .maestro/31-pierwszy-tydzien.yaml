@@ -71,10 +71,18 @@ name: Pierwszy tydzień nowego użytkownika
 - assertVisible: "Workout progress: 0 of 18 sets"
 - takeScreenshot: 82-trening-start
 # pierwsza seria: ciężar i powtórzenia wpisane, potem ✓ (przerwa)
-- tapOn: { id: "w-0-0" }
-- inputText: "60"
-- tapOn: { id: "r-0-0" }
-- inputText: "10"
+# run 38435841211: pierwszy znak „60” zgubił się przy świeżo otwartej klawiaturze (ciężar „0” zamiast „60”, zrzut 83; aplikacja bez zmian od runu, który przeszedł) —
+# w Postępach zostało „0×10”, więc ekran rekordów nie miał „Best session (volume)” (objętość 0). Wpis z potwierdzeniem na karcie „Now: …” i powtórzeniem.
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn: { id: "w-0-0" }
+      - eraseText: 10
+      - inputText: "60"
+      - tapOn: { id: "r-0-0" }
+      - eraseText: 10
+      - inputText: "10"
+      - extendedWaitUntil: { visible: "Now:.60.(kg|lb).×.10", timeout: 5000 }
 - tapOn: { text: "Set 1 done — Back Squat" }
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
 - assertVisible: "Workout progress: 1 of 18 sets"
