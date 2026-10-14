@@ -1,10 +1,10 @@
 # Strażnik progresji (14.10.2026, f020-straznik): szablon i plan na każdy dzień → pierwszy trening (jedna seria) → ekran Trening: sylwetka w kolorach progresu z legendą,
 # zdanie o brakach celu serii (nawet z planem) i przycisk „Details in Progress” → Postępy: sekcja „Muscle groups this week” → stuknięcie partii rozwija szczegóły, ponowne zwija.
-# Pierwszy tydzień (brak poprzedniego) → partie trenowane są „new”, więc legenda ma słowo „new”, a zdania o spadkach nie ma. Zdanie o brakach zależy od dnia tygodnia
+# Pierwszy tydzień (brak poprzedniego) → partie trenowane są „new” (opis sylwetki), a zdania o spadkach nie ma. Zdanie o brakach zależy od dnia tygodnia
 # (ile dni planu jeszcze przed nami), więc scenariusz sprawdza oba brzmienia.
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Details in Progress", "Muscle groups this week", "more", "same", "less", "no comparison", "no sets", "new"   ← components/Guard.tsx, components/GuardSection.tsx, components/Dashboard.tsx
+#   "Details in Progress", "Muscle groups this week", "This week compared with the previous one: new — …"   ← components/Guard.tsx, components/GuardSection.tsx, components/Dashboard.tsx
 #   "Below goal even with the plan: …" / "With the plan, every muscle group you train will reach its goal."     ← lib/guard.ts (guardTexts)
 #   "Deload week — no comparison"                                                        ← lib/guard.ts (tydzień oznaczony jako deload)
 #   "chest: …" (etykieta wiersza partii: „partia: słowo stanu. n / cel sets. …”), "Done: …" (rozwinięcie wiersza)
@@ -34,12 +34,7 @@ name: Strażnik progresji — sylwetka, zdanie o brakach, Postępy
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "This week", timeout: 30000 }
 - scrollUntilVisible: { element: "Details in Progress", direction: DOWN, timeout: 60000, centerElement: true }
-- assertVisible: "more"
-- assertVisible: "same"
-- assertVisible: "less"
-- assertVisible: "no comparison"
-- assertVisible: "no sets"
-- assertVisible: "new"   # pierwszy tydzień: brak poprzedniego, trenowane partie „new”
+- assertVisible: "This week compared with the previous one: new — .*"   # etykieta obrazu sylwetki; pierwszy tydzień: brak poprzedniego, trenowane partie „new” (legenda jest ukryta przed VoiceOver, więc nie w drzewie dostępności)
 - assertVisible: "(Below goal even with the plan: .*|With the plan, every muscle group you train will reach its goal\\.)"
 - assertNotVisible: "Less than the week before: .*"   # bez poprzedniego tygodnia nie ma zdania o spadkach
 - takeScreenshot: 95-straznik-trening
@@ -62,5 +57,4 @@ name: Strażnik progresji — sylwetka, zdanie o brakach, Postępy
 - extendedWaitUntil: { visible: "This week", timeout: 30000 }
 - scrollUntilVisible: { element: "Deload week — no comparison", direction: DOWN, timeout: 60000, centerElement: true }
 - assertNotVisible: "(Below goal even with the plan: .*|With the plan, every muscle group you train will reach its goal\\.)"
-- assertNotVisible: "no comparison"   # legenda znika w tygodniu deloadu (zostaje tylko zdanie „Deload week — no comparison”)
 - takeScreenshot: 98-straznik-deload

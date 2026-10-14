@@ -124,10 +124,9 @@ describe('Progresja (szczegóły): serie i objętość per partia — dwa słupk
     expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toMatch(/^klatka: Ten tydzień 12, .*Poprzedni tydzień 0 \(brak danych\)/); expect(has('pprev-sets-klatka-zero')).toBe(true);
     expect(within(screen.getByTestId('prow-sets-klatka')).getByText('0 (brak danych)')).toBeTruthy(); expect(style('pprev-sets-klatka-fill').width).toBe('0%');
   });
-  test('„Ten tydzień” na ekranie Trening zostaje jednosłupkowy (tylko ten tydzień — bez okresu 2)', async () => {
+  test('ekran Trening nie ma pasków partii (od 14.10.2026 strażnik progresji: sylwetka z kierunkiem) — słupki okres vs okres tylko w Postępach i Progresji', async () => {
     await boot(thisWeek, '/');
-    expect(has('pbar-sets-klatka')).toBe(true); expect(has('pprev-sets-klatka')).toBe(false); expect(has('pprev-sets-klatka-hatch')).toBe(false);
-    expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 12, cel 10, co najmniej 10');
+    expect(has('pbar-sets-klatka')).toBe(false); expect(has('pprev-sets-klatka')).toBe(false); expect(has('prow-sets-klatka')).toBe(false); expect(has('guard-map')).toBe(true);
   });
   test.each([['light', light], ['dark', dark]] as const)('motyw %s: okres 2 w kolorze „muted” z prążkami, okres 1 w akcencie', async (name, th) => {
     await boot(both, '/progression?c=week', 'pl', name);

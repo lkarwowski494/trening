@@ -125,9 +125,6 @@ describe('scenariusz: Trening → „Szczegóły w Postępach” → sekcja → 
     await tap(btn); await flushAll(5); expect(within(screen.getByTestId('grow-czworogłowe')).getByRole('button').props.accessibilityState.expanded).toBe(true); expect(has('gdet-czworogłowe')).toBe(true);
     await tap(within(screen.getByTestId('grow-czworogłowe')).getByRole('button')); await flushAll(5); expect(has('gdet-czworogłowe')).toBe(false);
   });
-  test('stuknięcie sylwetki (cała sekcja) też prowadzi do Postępów', async () => {
-    await boot(mixed); await tap(screen.getByTestId('week-muscles')); await flushAll(10); expect(screen.getByTestId('guard-section')).toBeTruthy();
-  });
 });
 
 describe('Postępy: „Partie w tym tygodniu”', () => {

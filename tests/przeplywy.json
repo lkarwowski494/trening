@@ -2098,7 +2098,7 @@
    "kroki": [
     "Zrób pierwszy trening w tygodniu z planem tygodnia na pozostałe dni",
     "Na zakładce Trening w „Ten tydzień” przewiń do sylwetki",
-    "Pod sylwetką jest legenda (więcej, tyle samo, mniej, bez porównania, bez serii, nowe) i zdanie o partiach poniżej celu nawet z planem albo „Z planem wszystkie trenowane partie dojdą do celu”",
+    "Sylwetka ma opis stanów partii (więcej, tyle samo, mniej, bez porównania, nowe), a pod nią legenda i zdanie o partiach poniżej celu nawet z planem albo „Z planem wszystkie trenowane partie dojdą do celu”",
     "Pierwszy tydzień nie ma poprzedniego, więc partie są „nowe” i nie ma zdania o spadkach"
    ],
    "wynik": "Sylwetka pokazuje kierunek zmiany tygodnia, zdanie podaje partie poniżej celu serii po całym planie; przycisk „Szczegóły w Postępach” prowadzi do Postępów.",

@@ -38,7 +38,7 @@ export function WeekStats() {
     </Pressable>
     <WeekHealthLine />{/* 0.16.0 (P3): średnia dzienna kroków z 7 dni + inne aktywności tygodnia (Apple Health) */}
     {w.planned ? <View style={{ marginTop: 10 }}><WeekStacks /></View> : null /* przy planie stosy talerzy i „60% planu tygodnia (3 z 5)” (korekta właściciela 09.10.2026 ok. 17:00; te same liczby, lib/motif.weekProgress) */}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
-    {trained ? <Pressable testID="week-muscles" accessible={false} onPress={open} style={{ marginTop: 6 }} /* cała sekcja prowadzi do Postępów; dla VoiceOver osobny przycisk poniżej */>
+    {trained ? <View testID="week-muscles" style={{ marginTop: 6 }} /* jeden przycisk „Szczegóły w Postępach” (≥ 44 pt) prowadzi do Postępów */>
       <GuardMap parts={g.parts} label={x.label} height={170} />
       {x.deload ? <Muted testID="guard-deload" style={{ textAlign: 'center', fontFamily: F.semibold, marginTop: 8 }}>{x.deload}</Muted> : <GuardLegend parts={g.parts} />}
       {x.compared ? <Muted testID="guard-compared" style={{ fontSize: 12, textAlign: 'center', marginTop: 6 }}>{x.compared}</Muted> : null}
@@ -49,7 +49,7 @@ export function WeekStats() {
       <Pressable testID="guard-more" accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Szczegóły w Postępach')} accessibilityHint={t('Otwiera Postępy.')} onPress={open} style={({ pressed }: { pressed: boolean }) => ({ minHeight: 44, marginTop: 10, borderTopWidth: 1, borderTopColor: th.line, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', opacity: pressed ? 0.7 : 1 })}>
         <Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ fontFamily: F.semibold, fontSize: 15, color: th.accent }}>{t('Szczegóły w Postępach')}</Txt><Txt style={{ color: th.accent, fontSize: 20 }}>›</Txt>
       </Pressable>
-    </Pressable> : <Muted testID="week-muscles" style={{ fontSize: 13, marginTop: 8 }}>{t('Brak serii w tym tygodniu.')}</Muted>}
+    </View> : <Muted testID="week-muscles" style={{ fontSize: 13, marginTop: 8 }}>{t('Brak serii w tym tygodniu.')}</Muted>}
     {/* „Ostatni trening” usunięty z ekranu głównego (właściciel 09.10.2026 ok. 16:20): informacja zostaje w arkuszu „Inny trening” („Powtórz ostatni”: nazwa · data), w Historii i Kalendarzu */}
   </>;
 }

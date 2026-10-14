@@ -23,7 +23,7 @@ const REASON: Record<SkipReason, () => string> = { onlyNow: () => t('nowe w tym 
 const dayOf = (k: string) => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d); };
 const exLabel = (id: string) => { const e = exById(id); return e ? exName(e) : id; };
 /** „6 + 1,5 pośrednio (3 serie po 0,5)”; bez serii pośrednich — samo „6”. */
-const setsText = (s: SetSplit) => s.indirectSets > 0 ? t('{d} + {w} pośrednio ({n} {s} po {share})', { d: n1(s.direct), w: n1(s.indirectWeighted), n: s.indirectSets, s: tp(s.indirectSets, 'seria|serie|serii'), share: n1(SECONDARY_SHARE) }) : n1(s.direct);
+const setsText = (s: SetSplit) => { const n = s.indirectSets; /* nazwa `n`: test liczby mnogiej (tests/matrix-i18n) zna argumenty tp() */ return n > 0 ? t('{d} + {w} pośrednio ({n} {s} po {share})', { d: n1(s.direct), w: n1(s.indirectWeighted), n, s: tp(n, 'seria|serie|serii'), share: n1(SECONDARY_SHARE) }) : n1(s.direct); };
 
 function GuardBar({ p }: { p: GuardPart }) {
   const th = useTheme(); const max = 2 * p.goal; const pc = (v: number) => Math.max(0, Math.min(100, (100 * v) / max)); const dw = pc(p.done.total); const pw = Math.max(0, pc(p.total) - dw);
