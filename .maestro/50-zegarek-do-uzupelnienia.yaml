@@ -1,0 +1,45 @@
+# Zegarek (atrapa) — serie „zrobione inaczej” (0.20, docs/35, docs/36; katalog przepływów W2-01, W2-02): build E2E z udawanym zegarkiem (EXPO_PUBLIC_WATCH_FAKE=1
+# razem ze sztucznym sklepem, tylko e2e-ios.yml; lib/watch/test-mode.ts) ma na dole ekranu treningu panel „Test watch” z przyciskami zdarzeń zegarka. Przepływ: trening z szablonu →
+# „Test watch: differ” (seria 1 „zrobiona inaczej”) → w wierszu serii znacznik „to fill in” → „Finish” → okno „Sets to fill in” → „Cancel” (wraca do treningu, znacznik zostaje) →
+# „Finish” → „Finish anyway” → zwykłe potwierdzenie „Finish workout?” → sesja zapisana. Logika i ekran: Jest (tests/watch-fill-ui.test.tsx, tests/watch-apply.test.ts, tests/watch-test-mode.test.ts).
+#
+# Literały (EN z lib/i18n.en.ts, chyba że zaznaczono inaczej):
+#   "Test watch: differ"                         ← panel tylko w buildzie E2E (components/TestWatchPanel.tsx, bez t())
+#   "Set 1 to fill in — .*"                      ← 'Seria {n} do uzupełnienia — {ex}' (etykieta VoiceOver wiersza serii; znacznik 'do uzupełnienia' w wierszu jest jej częścią)
+#   "Sets to fill in", "Cancel", "Finish anyway"  ← okno przed „Zakończ” ('Serie do uzupełnienia'; przyciski 'Anuluj', 'Zakończ mimo to')
+#   "Finish", "Finish workout\\?", "Session"      ← jak flow 05 i 21
+appId: pl.lukasz.trening
+name: Zegarek (atrapa) — serie do uzupełnienia
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- assertNotVisible: "Set 1 to fill in — .*"
+# --- zdarzenie z „zegarka”: seria 1 zrobiona inaczej niż w planie ---
+- scrollUntilVisible: { element: "Test watch: differ", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Test watch: differ"
+- scrollUntilVisible: { element: "Set 1 to fill in — .*", direction: UP, timeout: 60000, centerElement: true }
+- extendedWaitUntil: { visible: "Set 1 to fill in — .*", timeout: 30000 }
+- takeScreenshot: 120-do-uzupelnienia
+# --- „Finish” → okno → „Cancel”: wraca do treningu, znacznik zostaje ---
+- scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000, centerElement: true }
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Sets to fill in", timeout: 30000 }
+- takeScreenshot: 121-okno-do-uzupelnienia
+- tapOn: "Cancel"
+- assertNotVisible: "Sets to fill in"
+- scrollUntilVisible: { element: "Set 1 to fill in — .*", direction: DOWN, timeout: 30000, centerElement: true }  # po „Cancel” ekran może stać niżej niż nagłówek
+- extendedWaitUntil: { visible: "Set 1 to fill in — .*", timeout: 30000 }
+# --- „Finish” → „Finish anyway” → zwykłe potwierdzenie → sesja ---
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Sets to fill in", timeout: 30000 }
+- tapOn: "Finish anyway"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertNotVisible: "Set 1 to fill in — .*"
+- tapOn: "Back"

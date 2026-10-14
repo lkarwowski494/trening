@@ -19,11 +19,11 @@ Przepływów w katalogu: **144** (realny: 125, brzegowy: 19); pominięte jako te
 
 | Pokrycie | Przepływów |
 |---|---|
-| Maestro | 116 |
+| Maestro | 118 |
 | Maestro (eksperyment) | 4 |
 | Jest | 9 |
 | Telefon | 13 |
-| Projekt 0.20 | 2 |
+| Projekt 0.20 | 0 |
 
 „Maestro (eksperyment)” — scenariusz z krokami, których nikt jeszcze nie uruchomił na symulatorze (okna systemowe, tło, wybór pliku); znacznik `eksperyment`, poza listą `flows` w `.maestro/config.yaml`, uruchamiany osobno (docs/38 pkt 5).
 
@@ -224,8 +224,8 @@ Przepływów w katalogu: **144** (realny: 125, brzegowy: 19); pominięte jako te
 
 | ID | Przepływ i kroki | Oczekiwany wynik | Stan | Realność | Pokrycie |
 |---|---|---|---|---|---|
-| W2-01 | **Zegarek Apple Watch: serie „zrobione inaczej” wracają jako „do uzupełnienia”** — Trening w toku, zegarek (atrapa) wysyła „done” i „differ” → W wierszu serii „do uzupełnienia” i przycisk „Gotowe” → Rekord nie liczy takiej serii, dopóki nie jest uzupełniona | Znacznik i rekord zgodne z docs/35. | `istniejacy` | realny | Projekt: `.maestro/50-zegarek-do-uzupelnienia.yaml` — czeka na: scalenie f020-protokol oraz tryb testowy zegarka w buildzie E2E (EXPO_PUBLIC_WATCH_FAKE: panel „Test watch” z przyciskami zdarzeń, wzór: panel „Test store”) |
-| W2-02 | **Zakończenie treningu z seriami „do uzupełnienia”: „Zakończ mimo to” i „Anuluj”** — Zostaw serię z zegarka „do uzupełnienia” → „Zakończ” → okno „Serie do uzupełnienia” → Anuluj (wraca) / „Zakończ mimo to” (zapis z wartościami z planu) | Znaczniki zdjęte, sesja bez śladu znacznika. | `istniejacy` | realny | Projekt: `.maestro/50-zegarek-do-uzupelnienia.yaml` — czeka na: scalenie f020-protokol oraz tryb testowy zegarka w buildzie E2E (jak W2-01) |
+| W2-01 | **Zegarek Apple Watch: serie „zrobione inaczej” wracają jako „do uzupełnienia”** — Trening w toku, zegarek (atrapa, panel „Test watch”) wysyła „differ” → W wierszu serii „do uzupełnienia” i przycisk „Gotowe” → Rekord nie liczy takiej serii, dopóki nie jest uzupełniona | Znacznik i rekord zgodne z docs/35; seria z zegarka „zrobiona inaczej” ma w wierszu „do uzupełnienia”. | `istniejacy` | realny | Maestro: `.maestro/50-zegarek-do-uzupelnienia.yaml` |
+| W2-02 | **Zakończenie treningu z seriami „do uzupełnienia”: „Zakończ mimo to” i „Anuluj”** — Zostaw serię z zegarka „do uzupełnienia” → „Zakończ” → okno „Serie do uzupełnienia” → Anuluj (wraca) / „Zakończ mimo to” (zapis z wartościami z planu) | Anuluj wraca do treningu ze znacznikiem; „Zakończ mimo to” przechodzi do zwykłego potwierdzenia, sesja zapisana bez śladu znacznika. | `istniejacy` | realny | Maestro: `.maestro/50-zegarek-do-uzupelnienia.yaml` |
 | W2-03 | **Głos w słuchawkach: przełącznik „Głos także przez głośnik telefonu” i „Posłuchaj przykładu”** — Ustawienia → Trening → przełącznik głośnika (domyślnie wył., z opisem) → Włącz → „Posłuchaj przykładu” (aplikacja działa dalej) → Restart: przełącznik nadal włączony; wyłączenie | Ustawienie zapisane i trwałe; przykład nie psuje ekranu (dźwięku symulator nie odtwarza). | `istniejacy` | realny | Maestro: `.maestro/51-glos-ustawienia.yaml` |
 | W2-06 | **Brak głosu dla języka aplikacji w telefonie: wskazówka z instrukcją pobrania** — Telefon bez głosu dla języka aplikacji (np. język bez pobranego głosu) → Ustawienia → Trening | Pod „Posłuchaj przykładu” wskazówka „Pobierz go w Ustawieniach iOS (Dostępność).”; przełącznik i przykład dalej dostępne. | `istniejacy` | brzegowy | Jest: `tests/voice-ui.test.tsx`, `tests/voice.test.ts` — Czy symulator CI ma głos dla języka, zależy od obrazu systemu i nie da się go usunąć z Maestro; stan „brak głosu” sprawdzony na atrapie modułu (hasVoice = false), też po angielsku. |
 | W2-04 | **Głos na żywo: zapowiedź następnego ćwiczenia w AirPods, ściszanie muzyki, tryb cichy** — AirPods + muzyka, odhacz serię → Zapowiedź: ćwiczenie, ciężar, powtórzenia; muzyka wraca do pełnej głośności | Zapowiedź zgodna z podpisem przerwy; brak głosu bez słuchawek i przełącznika. | `istniejacy` | realny | Telefon (lista kontrolna wydania) — Mowa AVSpeechSynthesizer i trasa dźwięku (słuchawki, ściszanie) nie są słyszalne ani mierzalne na symulatorze CI. |
