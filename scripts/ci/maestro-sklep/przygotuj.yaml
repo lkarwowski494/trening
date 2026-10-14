@@ -1,0 +1,8 @@
+# Zrzuty do sklepu (scripts/ci/store-screenshots.sh): jednorazowo przed zrzutami — zgody systemowe nadane z góry (bez okien systemowych na zrzutach).
+# Nie czyści danych (dane pokazowe zapisuje skrypt). Poza .maestro/ — to nie jest scenariusz E2E.
+appId: pl.lukasz.trening
+---
+- launchApp:
+    clearState: false
+    permissions: { all: allow }
+- stopApp

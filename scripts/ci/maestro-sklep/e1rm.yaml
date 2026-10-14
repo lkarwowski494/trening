@@ -1,0 +1,5 @@
+# Zrzuty do sklepu: Postępy ćwiczenia → wykres e1RM (etykieta „e1RM” jest taka sama we wszystkich językach).
+appId: pl.lukasz.trening
+---
+- extendedWaitUntil: { visible: "e1RM", timeout: 20000 }
+- tapOn: "e1RM"

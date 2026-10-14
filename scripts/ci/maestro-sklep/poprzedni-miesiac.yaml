@@ -1,0 +1,5 @@
+# Zrzuty do sklepu: Plan → kalendarz na poprzedni (pełny) miesiąc (strzałka „‹”, testID month-prev w components/HistoryCalendar.tsx).
+appId: pl.lukasz.trening
+---
+- extendedWaitUntil: { visible: { id: "month-prev" }, timeout: 20000 }
+- tapOn: { id: "month-prev" }

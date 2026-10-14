@@ -150,7 +150,7 @@ Zakupy: lokalizacje gotowe (`store/iap-localizations.json`).
 | D-1 płatności | **P — płatności od 1.0** | B2–B6 na ścieżce krytycznej; blok cenowy w opisie |
 | D-2 adresy privacy/support | **A — https://apps4brew.com/trening/privacy.html i …/support.html** | strony w repo strony apps4brew.com (przegląd i push: koordynator); `PRIVACY_URL`, `SUPPORT_URL` (lib/products.ts) i linki w `site/`, `store/` zmienione 14.10.2026; ten sam adres w App Store Connect |
 | D-3 czyste repo | po scaleniu 0.20 (rozstrzygnięte wcześniej) | E1 |
-| D-4 podtytuł | **A — prywatność/offline** | D2: tłumaczenia wariantu A |
+| D-4 podtytuł | ~~A — prywatność/offline~~ → **zmiana właściciela 14.10.2026: EN „Clean gym log. No account.”, PL „Przejrzysty dziennik bez konta”** (26 i 30 znaków); „clean / przejrzysty” także w pierwszym zdaniu opisu i w słowach kluczowych EN | D2: `store/app-store-metadata.json`; inne języki — tłumacz po akceptacji PL/EN |
 | D-5 publikacja | **A — ręcznie** | D11 |
 | D-6 zrzuty | **B — z podpisami i ramkami** (wbrew rekomendacji A) | C1: krok `ramki` w `store-screenshots.yml`, podpisy w `store/screenshot-captions.json` (PL/EN do akceptacji, reszta języków po akceptacji — tłumacz); ramka własna z kolorów marki, **bez obudów urządzeń Apple** (wytyczne Apple Marketing: „Use Apple-provided product bezels” i „Use Apple product images “as is” and without modification” — https://developer.apple.com/app-store/marketing/guidelines/, przeczytane 14.10.2026; obudowy Apple wymagałyby licencji Apple Design Resources i nie wolno ich wkładać do publicznego repo — dlatego neutralna ramka, nie imitacja telefonu) |
 | D-7 zegarek | **B — pożyczony prawdziwy Apple Watch** | A2: R-003 sprawdzany na prawdziwym zegarku (właściciel, ok. 30 min) |
@@ -187,3 +187,11 @@ Zakupy: lokalizacje gotowe (`store/iap-localizations.json`).
   (test `tests/site-export.test.ts`; źródłem treści zostaje `site/`; po każdej zmianie `site/privacy.html` lub `site/support.html` — ponowny eksport i commit w repo strony).
 - D-6 B — podpisy i ramki: `store/screenshot-captions.json` (8 podpisów PL/EN, status „propozycja”), `scripts/ci/store-frames.sh`, zadanie `ramki`
   w `store-screenshots.yml` (artefakt `sklep-zrzuty-ramki`), test `tests/store-frames.test.ts`.
+- 14.10.2026 (scenorys właściciela, 9 ekranów): dane pokazowe przebudowane (`scripts/screens/store-seed.test.ts`: 12 tygodni Push/Pull/Nogi pon/śr/pt
+  z progresją w kg, sobotni FBW w ostatnich 3 tygodniach, plan z dniami wolnymi, trening w toku z przerwą, okno „Dostosuj” w domu, zmyślony CSV
+  do podglądu importu; warianty stanu: trening, adapt, jasny, ciemny — ekrany 3 i 7 w ciemnym motywie); akcje na ekranach przez Maestro
+  (`scripts/ci/maestro-sklep/`: wykres e1RM, przewinięcie do sylwetki strażnika, poprzedni pełny miesiąc w kalendarzu — `testID` `month-prev`/`month-next`
+  w components/HistoryCalendar.tsx, wybór pliku CSV); podpisy 9 ekranów (PL zaakceptowane, EN propozycja). Opis sklepu PL/EN z funkcją
+  „Strażnik progresji” i podtytuł D-4 A: `store/app-store-metadata.json` (projekt do akceptacji; test `tests/store-metadata.test.ts`).
+  Ograniczenia: porównanie miesiąca liczy dni 1–N bieżącego miesiąca (zrzut z 1.–3. dnia miesiąca byłby słaby); nazwy ćwiczeń biblioteki
+  w PL są takie, jak w aplikacji (część po angielsku); nazwy szablonów w innych językach — EN.

@@ -32,7 +32,7 @@ export function HistoryCalendar({ byDay, selected, onSelect, onMonth }: { byDay:
   const today = dayKey(Date.now()); const weeks = monthGrid(ym.y, ym.m); const heads = weekdayLabels();
   const nav = (delta: number) => { const n = shiftMonth(ym.y, ym.m, delta); setYm(n); onMonth?.(n.y, n.m); };
   const arrow = (label: string, glyph: string, delta: number) => (
-    <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} onPress={() => nav(delta)} hitSlop={8} style={({ pressed }) => ({ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.5 : 1 })}>
+    <Pressable accessibilityLanguage={lang()} testID={delta < 0 ? 'month-prev' : 'month-next' /* 14.10.2026: zrzuty do sklepu (Maestro, .maestro/sklep) */} accessibilityRole="button" accessibilityLabel={label} onPress={() => nav(delta)} hitSlop={8} style={({ pressed }) => ({ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.5 : 1 })}>
       <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 22, fontFamily: F.semibold }}>{glyph}</Text>
     </Pressable>);
   return (

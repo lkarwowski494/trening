@@ -140,8 +140,22 @@ jobs:
           xcrun simctl boot "$DEV" || true
           xcrun simctl bootstatus "$DEV" -b
           xcrun simctl install "$DEV" app/Trening.app
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Install Maestro (akcje na ekranach: wykres e1RM, przewinięcie, kalendarz, wybór pliku CSV)
+        # jak e2e-ios.yml: zmienna repozytorium MAESTRO_VERSION przypina wersję (pusta = najnowsza)
+        env:
+          MAESTRO_VERSION: ${{ vars.MAESTRO_VERSION }}
+        run: |
+          [ -n "$MAESTRO_VERSION" ] || unset MAESTRO_VERSION
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
       - name: Zrzuty ekranu
         env:
+          MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'
+          MAESTRO_CLI_NO_ANALYTICS: '1'
           JEZYKI: ${{ inputs.jezyki }}
           ROZMIAR: ${{ matrix.rozmiar }}
         run: bash scripts/ci/store-screenshots.sh "$SIM" "sklep-zrzuty/$ROZMIAR" sklep-dane "$JEZYKI"
@@ -216,7 +230,7 @@ jobs:
           xcrun simctl install "$DEV" app/Trening.app
       - name: Zrzut ekranu zakupu (pl, en)
         run: |
-          for l in pl en; do printf '[["zakup","/paywall"]]' > "sklep-dane/routes-$l.json"; done
+          for l in pl en; do printf '[["zakup","/paywall","jasny",""]]' > "sklep-dane/routes-$l.json"; done
           bash scripts/ci/store-screenshots.sh "$SIM" sklep-zakup sklep-dane "pl,en"
       - uses: actions/upload-artifact@v4
         if: always()

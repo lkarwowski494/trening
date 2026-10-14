@@ -9,13 +9,13 @@ import { BRAND } from '@/lib/theme';
 const root = path.join(__dirname, '..');
 const cap = JSON.parse(fs.readFileSync(path.join(root, 'store/screenshot-captions.json'), 'utf8'));
 const seed = fs.readFileSync(path.join(root, 'scripts/screens/store-seed.test.ts'), 'utf8');
-const screens = [...seed.matchAll(/\['([a-z-]+)', '\//g)].map(m => m[1]);
+const screens = [...seed.matchAll(/\['([a-z-]+)', '\/[^']*'(?: \+ \w+)?, '[a-z]+', '[a-z0-9-]*'\]/g)].map(m => m[1]);
 const y = fs.readFileSync(path.join(root, '.github/workflows/store-screenshots.yml'), 'utf8');
 const hasIM = (() => { try { execFileSync('convert', ['-version']); execFileSync('identify', ['-version']); return true; } catch { return false; } })();
 
 describe('store/screenshot-captions.json', () => {
   test('PL i EN: podpis dla każdego ekranu zrzutów (te same klucze), najwyżej 40 znaków, bez cen', () => {
-    expect(screens).toHaveLength(8); expect(cap.maxZnakow).toBe(40);
+    expect(screens).toHaveLength(9); expect(cap.maxZnakow).toBe(40);
     for (const l of ['pl', 'en']) {
       expect(Object.keys(cap.podpisy[l]).sort()).toEqual([...screens].sort());
       for (const [k, v] of Object.entries(cap.podpisy[l]) as [string, string][]) {
@@ -25,9 +25,10 @@ describe('store/screenshot-captions.json', () => {
     }
     expect(cap.podpisy.pl.trening).toBe('Twój trening zostaje w Twoim telefonie'); /* hasło z planu marketingu 13.10.2026 */
   });
-  test('status: propozycja do akceptacji; inne języki dopiero po akceptacji (tłumacz) — każdy obecny język ma komplet', () => {
-    expect(['propozycja', 'zaakceptowane']).toContain(cap.status);
-    if (cap.status === 'propozycja') expect(Object.keys(cap.podpisy).sort()).toEqual(['en', 'pl']);
+  test('status per język (PL zaakceptowane w scenorysie 14.10.2026, EN propozycja); inne języki dopiero po akceptacji EN — każdy obecny język ma komplet', () => {
+    expect(cap.status.pl).toBe('zaakceptowane 14.10.2026'); expect(Object.keys(cap.status).sort()).toEqual(Object.keys(cap.podpisy).sort());
+    if (cap.status.en === 'propozycja') expect(Object.keys(cap.podpisy).sort()).toEqual(['en', 'pl']);
+    expect(cap.podpisy.pl.straznik).toContain('Strażnik progresji'); /* decyzja właściciela 14.10.2026: nazwa funkcji w podpisie */
     for (const l of Object.keys(cap.podpisy)) expect(Object.keys(cap.podpisy[l]).sort()).toEqual([...screens].sort());
   });
   test('kolory ramki = kolory marki z lib/theme.ts', () => {
@@ -56,10 +57,10 @@ describe('zadanie „ramki” w store-screenshots.yml', () => {
     for (const l of ['pl', 'de']) fs.mkdirSync(path.join(inp, '6.3', l), { recursive: true });
     const shot = path.join(inp, '6.3', 'pl', '01-trening.png');
     execFileSync('convert', ['-size', '241x524', 'xc:#00ff00', shot]);
-    fs.copyFileSync(shot, path.join(inp, '6.3', 'pl', '08-technika.png')); fs.copyFileSync(shot, path.join(inp, '6.3', 'de', '01-trening.png'));
+    fs.copyFileSync(shot, path.join(inp, '6.3', 'pl', '08-szablony.png')); fs.copyFileSync(shot, path.join(inp, '6.3', 'de', '01-trening.png'));
     const res = execFileSync('bash', [path.join(root, 'scripts/ci/store-frames.sh'), inp, out], { cwd: root, encoding: 'utf8' });
     expect(res).toContain('::warning::Brak podpisów dla języka de'); expect(res).toContain('Ramki: 2 plików');
-    expect(fs.readdirSync(path.join(out, '6.3', 'pl')).sort()).toEqual(['01-trening.png', '08-technika.png']); expect(fs.existsSync(path.join(out, '6.3', 'de'))).toBe(false);
+    expect(fs.readdirSync(path.join(out, '6.3', 'pl')).sort()).toEqual(['01-trening.png', '08-szablony.png']); expect(fs.existsSync(path.join(out, '6.3', 'de'))).toBe(false);
     const f = path.join(out, '6.3', 'pl', '01-trening.png');
     expect(execFileSync('identify', ['-format', '%w %h %A', f], { encoding: 'utf8' })).toMatch(/^241 524 (False|Undefined|Blend)$/);
     const px = (x: number, yy: number) => execFileSync('convert', [f, '-depth', '8', '-format', `%[hex:u.p{${x},${yy}}]`, 'info:'], { encoding: 'utf8' }).trim().slice(0, 6).toUpperCase();
