@@ -68,6 +68,8 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - tapOn: "Create “Zottman Curl E2E”.*"
 - extendedWaitUntil: { visible: "Set 1 done — Zottman Curl E2E", timeout: 30000 }  # ćwiczenie z wyboru trafia od razu do treningu (bez formularza)
 # --- zakończenie treningu z własnym ćwiczeniem (historia zachowa jego nazwę) ---
+# run 38563966851: po przewinięciu do „+ Add exercise” znacznik serii 1 leżał nad ekranem (y -35…8) i stuknięcie nic nie odhaczyło („No sets ticked”)
+- scrollUntilVisible: { element: "Set 1 done — Cable Hammer E2E", direction: UP, timeout: 60000, centerElement: true }
 - tapOn: "Set 1 done — Cable Hammer E2E"
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }

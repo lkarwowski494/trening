@@ -32,7 +32,7 @@ describe('scenariusze Maestro na drzewie dostępności (EN, en-US)', () => {
   afterAll(() => { delete (global as any).__notifPerm; delete (global as any).__sysPrompt; });
   test.each(flows)('%s', async f => {
     /* 21 (0.17.0): build E2E ze sztucznym sklepem — zmienna ustawiona tylko dla tego scenariusza, adapter i uprawnienia zapomniane przed i po */
-    const fake = f.startsWith('21-') || f.startsWith('35-') || f.startsWith('50-'); const fakeWatch = f.startsWith('50-') /* 14.10.2026: udawany zegarek — tylko z STORE_FAKE, jak w buildzie E2E */; const { resetStoreAdapterForTests } = require('@/lib/store-adapter'); const { resetEntitlementsForTests } = require('@/lib/entitlement');
+    const fake = true; const fakeWatch = true; /* E2E 38563966851: build E2E ma sztuczny sklep i udawany zegarek (panel „Test watch” pod treningiem wydłuża ekran) we WSZYSTKICH scenariuszach — wcześniej Jest włączał je tylko dla 21, 35 i 50 i nie widział przewinięć 07 i 27 */ const { resetStoreAdapterForTests } = require('@/lib/store-adapter'); const { resetEntitlementsForTests } = require('@/lib/entitlement');
     if (fake) process.env.EXPO_PUBLIC_STORE_FAKE = '1'; if (fakeWatch) process.env.EXPO_PUBLIC_WATCH_FAKE = '1'; resetStoreAdapterForTests(); resetEntitlementsForTests();
     try { const r = new Runner(f); await r.run(load(join(DIR, f)), f); if (f.startsWith('33-')) { const r2 = new Runner('34-aktualizacja-sprawdz.yaml'); await r2.run(load(join(DIR, '34-aktualizacja-sprawdz.yaml')), '34-aktualizacja-sprawdz.yaml'); } } finally { delete process.env.EXPO_PUBLIC_STORE_FAKE; delete process.env.EXPO_PUBLIC_WATCH_FAKE; resetStoreAdapterForTests(); resetEntitlementsForTests(); }
   });

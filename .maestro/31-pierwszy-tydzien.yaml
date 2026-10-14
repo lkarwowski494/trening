@@ -71,10 +71,26 @@ name: Pierwszy tydzień nowego użytkownika
 - assertVisible: "Workout progress: 0 of 18 sets"
 - takeScreenshot: 82-trening-start
 # pierwsza seria: ciężar i powtórzenia wpisane, potem ✓ (przerwa)
-- tapOn: { id: "w-0-0" }
-- inputText: "60"
-- tapOn: { id: "r-0-0" }
-- inputText: "10"
+# run 38563966851: na wolnym symulatorze zginął pierwszy znak „60” (pole miało 0 — wszystkie trzy serie 0 lb, a rekordy ćwiczenia bez „Best session (volume)”) —
+# ta sama klasa co 15 i 04 (E2E 105, Q-029): znaki osobno, sprawdzenie wartości pola i jedna powtórka całego wpisu (tests/maestro-e2e38563.test.tsx)
+- retry:
+    maxRetries: 1
+    commands:
+      - tapOn: { id: "w-0-0" }
+      - waitForAnimationToEnd
+      - eraseText: 5
+      - inputText: "6"
+      - inputText: "0"
+      - assertVisible: { id: "w-0-0", text: "60" }
+- retry:
+    maxRetries: 1
+    commands:
+      - tapOn: { id: "r-0-0" }
+      - waitForAnimationToEnd
+      - eraseText: 5
+      - inputText: "1"
+      - inputText: "0"
+      - assertVisible: { id: "r-0-0", text: "10" }
 - tapOn: { text: "Set 1 done — Back Squat" }
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
 - assertVisible: "Workout progress: 1 of 18 sets"

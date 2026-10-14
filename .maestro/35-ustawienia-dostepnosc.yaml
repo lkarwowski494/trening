@@ -42,13 +42,18 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: "Light"
 - tapOn: "kg"
 - tapOn: "List"
+- assertVisible: "Workout view"  # etykieta pola widoku treningu (przełącznik z tą samą etykietą dostępności)
 - assertVisible: "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.|List: exercises and sets as in earlier versions, without the card."
 # --- domyślna przerwa 45 s (pole liczbowe; fokus zdejmuje stuknięcie w etykietę nad polem) ---
 - scrollUntilVisible: { element: "90", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "90"
 - eraseText: 3
 - inputText: "45"
-- tapOn: "Workout view"
+# run 38563966851 (zrzut 105): po wpisie lista stała tak, że „Workout view” leżało nad krawędzią (pod paskiem nawigacji) — stuknięcie nie zdjęło fokusu, klawiatura zakryła
+# przełączniki i stuknięcie „RIR” trafiło w nic (w treningu została kolumna RPE). Fokus zdejmuje stuknięcie w zwykły tekst na ekranie — opis widoku treningu
+# (nie „Default rest (s)”: pole ma tę samą etykietę dostępności i stuknięcie mogłoby trafić w pole)
+- scrollUntilVisible: { element: "List: exercises and sets as in earlier versions.*", direction: UP, timeout: 30000, centerElement: true }
+- tapOn: "List: exercises and sets as in earlier versions.*"
 - takeScreenshot: 105-przerwa-45
 # --- przełączniki: dźwięk, ekran włączony, podpowiedź progresji, RPE/RIR, kopia automatyczna ---
 - tapOn: { id: "sw-Sound and vibration at the end of rest" }
@@ -57,7 +62,7 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: { id: "sw-Progression hint" }
 - scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 30000 }
 - tapOn: { id: "sw-RPE / RIR per set" }
-- scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000 }
+- scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000, centerElement: true }
 - tapOn: "RIR"
 - scrollUntilVisible: { element: { id: "sw-Automatic backup after every workout" }, direction: DOWN, timeout: 30000 }
 - tapOn: { id: "sw-Automatic backup after every workout" }

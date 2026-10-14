@@ -1,0 +1,116 @@
+/*
+ * Regresja przebiegu E2E 38563966851 (14.10.2026, f020-wydanie, build z 0c33997, Maestro 2.11.0, iPhone 17, en-US): 6 scenariuszy padło, build i eksperymenty zielone.
+ * Wszystkie sześć to scenariusze (albo wolny symulator), nie aplikacja — Jest ich nie odtwarzał, bo:
+ *  - build E2E ma sztuczny sklep i udawany zegarek (panel „Test watch” pod treningiem, wydłuża ekran) we WSZYSTKICH scenariuszach, a Jest włączał je tylko dla 21, 35 i 50
+ *    (tests/maestro-flows.test.tsx — teraz dla wszystkich);
+ *  - przybliżony układ interpretera nie wylicza, gdzie lista staje po przewinięciu — pozycje z hierarchii przebiegu wstawia test (jak RUN_SCROLL w tests/maestro-e2e105.test.tsx).
+ * 07 „Undo swap” nad górną krawędzią listy (y 35–75, lista od 62) — stuknięcie w pasek stanu; 27 znacznik serii 1 nad ekranem (y −35…8) — nic nie odhaczone, „No sets ticked”;
+ * 50 „Finish” poza hierarchią po przewinięciu do wiersza serii; 35 „Workout view” nad krawędzią — klawiatura została i „RIR” nie zadziałał;
+ * 28 dwa „Delete” (wiersz historii i przycisk okna) — Maestro stuknął w pierwszy; 31 zgubiony pierwszy znak „60” (waga 0) — ta sama klasa co 15 i 04 (E2E 105, Q-029).
+ */
+import { join } from 'path';
+import { Runner, DIR, load } from './maestro-runner';
+import { SCREEN } from './maestro-layout';
+
+jest.setTimeout(240000);
+type Cmd = any;
+const same = (a: Cmd, b: Cmd) => JSON.stringify(a) === JSON.stringify(b);
+const at = (c: Cmd[], step: Cmd) => { const i = c.findIndex(x => same(x, step)); if (i < 0) throw new Error('brak kroku ' + JSON.stringify(step)); return i; };
+const without = (c: Cmd[], step: Cmd) => c.filter(x => !same(x, step));
+
+/** Build E2E: sztuczny sklep + udawany zegarek we wszystkich scenariuszach (e2e-ios.yml). */
+function fakeBuild(on: boolean) {
+  const { resetStoreAdapterForTests } = require('@/lib/store-adapter'); const { resetEntitlementsForTests } = require('@/lib/entitlement');
+  if (on) { process.env.EXPO_PUBLIC_STORE_FAKE = '1'; process.env.EXPO_PUBLIC_WATCH_FAKE = '1'; } else { delete process.env.EXPO_PUBLIC_STORE_FAKE; delete process.env.EXPO_PUBLIC_WATCH_FAKE; }
+  resetStoreAdapterForTests(); resetEntitlementsForTests();
+}
+beforeEach(() => fakeBuild(true));
+afterAll(() => { fakeBuild(false); delete (global as any).__notifPerm; delete (global as any).__sysPrompt; });
+
+/** Wykonuje kroki do `marker` włącznie, przewija listę tak, by środek `target` leżał `dy` pt nad jej górną krawędzią (jak w hierarchii przebiegu), i kończy scenariusz. */
+async function runAbove(f: string, cmds: Cmd[], marker: Cmd, target: any, stop?: Cmd, dy = 40) {
+  const r = new Runner(f); const i = at(cmds, marker); await r.run(cmds.slice(0, i + 1), f);
+  const c = r.find(target, true)[0]; const b = c?.node ? r.screenBox(c.node as any) : null;
+  expect(b?.sc).toBeTruthy();
+  const top = r.vpTop(b!.sc!); const cur = r.curScroll(b!.sc!, top);
+  r.scrollY.set(r.scrollKey(b!.sc!), cur + (b!.y + b!.h / 2) - (top - dy));
+  const b2 = r.screenBox(c!.node as any)!; expect(b2.y + b2.h / 2).toBeLessThan(top - SCREEN.slack); /* lista pozwala przewinąć tak daleko (treść dość długa) */
+  await r.run(cmds.slice(i + 1, stop ? at(cmds, stop) + 1 : undefined), f); /* `stop`: dalsze kroki zależą od przewinięcia, którego przebieg nie pokazał */
+}
+
+describe('E2E 38563966851: scenariusze z elementem nad krawędzią listy', () => {
+  test('07 — „Undo swap” nad listą: scenariusz przewija w górę przed stuknięciem; wersja z przebiegu zatrzymuje się na stuknięciu', async () => {
+    const f = '07-zamiana.yaml'; const cmds = load(join(DIR, f)); const shot = { takeScreenshot: '33-po-zamianie' };
+    const scroll = { scrollUntilVisible: { element: 'Undo swap: Bench Press \\(Dumbbell\\)', direction: 'UP', timeout: 30000, centerElement: true } };
+    const target = { text: 'Undo swap: Bench Press \\(Dumbbell\\)' };
+    const stop = { extendedWaitUntil: { visible: 'Swap exercise: Bench Press \\(Barbell\\)', timeout: 30000 } };
+    await runAbove(f, cmds, shot, target, stop);
+    await expect(runAbove(f, without(cmds, scroll), shot, target, stop)).rejects.toThrow(/tapOn "Undo swap[^\n]*\n(Nie znaleziono elementu|Element nad widokiem listy)/);
+  });
+
+  test('27 — znacznik serii 1 nad ekranem: scenariusz przewija w górę przed odhaczeniem; wersja z przebiegu zatrzymuje się na stuknięciu', async () => {
+    const f = '27-biblioteka-cwiczen.yaml'; const cmds = load(join(DIR, f)); const mark = { extendedWaitUntil: { visible: 'Set 1 done — Zottman Curl E2E', timeout: 30000 } };
+    const scroll = { scrollUntilVisible: { element: 'Set 1 done — Cable Hammer E2E', direction: 'UP', timeout: 60000, centerElement: true } };
+    const target = { text: 'Set 1 done — Cable Hammer E2E' };
+    await runAbove(f, cmds, mark, target);
+    await expect(runAbove(f, without(cmds, scroll), mark, target)).rejects.toThrow(/tapOn "Set 1 done — Cable Hammer E2E"\n(Nie znaleziono elementu|Element nad widokiem listy)/);
+  });
+
+  test('50 — „Finish” nad ekranem po przewinięciu do wiersza serii: scenariusz przewija w górę przed drugim stuknięciem; wersja z przebiegu zatrzymuje się na „Finish”', async () => {
+    const f = '50-zegarek-do-uzupelnienia.yaml'; const cmds = load(join(DIR, f));
+    const scroll = { scrollUntilVisible: { element: 'Finish', direction: 'UP', timeout: 60000, centerElement: true } };
+    const second = cmds.map((c: Cmd, i: number) => (same(c, scroll) ? i : -1)).filter((i: number) => i >= 0).pop()!; /* ostatnie takie przewinięcie — przed drugim „Finish” */
+    expect(same(cmds[second - 1], { extendedWaitUntil: { visible: 'Set 1 to fill in — .*', timeout: 30000 } })).toBe(true);
+    const marker = cmds[second - 1];
+    const run = async (list: Cmd[]) => {
+      const r = new Runner(f); const i = list.indexOf(marker); await r.run(list.slice(0, i + 1), f);
+      const c = r.find({ text: 'Finish' }, true)[0]; const b = c?.node ? r.screenBox(c.node as any) : null; expect(b?.sc).toBeTruthy();
+      const top = r.vpTop(b!.sc!); r.scrollY.set(r.scrollKey(b!.sc!), r.curScroll(b!.sc!, top) + (b!.y + b!.h / 2) - (top - 40));
+      await r.run(list.slice(i + 1), f);
+    };
+    await run(cmds);
+    await expect(run(cmds.filter((_: Cmd, i: number) => i !== second))).rejects.toThrow(/tapOn "Finish"/);
+  });
+
+  test('35 — „Workout view” nad krawędzią po wpisie przerwy: scenariusz stuka zwykły tekst na ekranie i centruje „RIR”; wersja z przebiegu zatrzymuje się na „Workout view”', async () => {
+    const f = '35-ustawienia-dostepnosc.yaml'; const cmds = load(join(DIR, f)); const mark = { inputText: '45' };
+    const hint = 'List: exercises and sets as in earlier versions.*';
+    const tap = { tapOn: hint }; const scroll = { scrollUntilVisible: { element: hint, direction: 'UP', timeout: 30000, centerElement: true } };
+    /* etykieta „Workout view” i przełącznik widoku (ta sama etykieta dostępności, tuż pod nią) — oba nad listą, 120 pt */
+    await runAbove(f, cmds, mark, { text: 'Workout view' }, undefined, 120);
+    const old = [...without(without(cmds, scroll), tap)]; old.splice(at(old, mark) + 1, 0, { tapOn: 'Workout view' });
+    await expect(runAbove(f, old, mark, { text: 'Workout view' }, undefined, 120)).rejects.toThrow(/tapOn "Workout view"\n(Nie znaleziono elementu|Element nad widokiem listy)/);
+  });
+});
+
+describe('E2E 38563966851: 28 — dwa „Delete” pod oknem pytania', () => {
+  const f = '28-dluga-historia.yaml';
+  const stuk = (c: Cmd) => c && c.tapOn && c.tapOn.text === 'Delete' && c.tapOn.below === 'Delete this session from history\\?';
+  test('przycisk okna to drugi „Delete” w kolejności drzewa (indeks 1) — sesja znika, „3 sessions”', async () => {
+    const cmds = load(join(DIR, f)); expect(cmds.filter(stuk).length).toBe(1); expect(cmds.find(stuk).tapOn.index).toBe(1);
+    await new Runner(f).run(cmds, f);
+  });
+  test('wersja z przebiegu (bez indeksu) stuka w „Delete” wiersza pod oknem — okno zostaje, brak „3 sessions”', async () => {
+    const cmds = load(join(DIR, f)).map((c: Cmd) => stuk(c) ? { tapOn: { text: 'Delete', below: 'Delete this session from history\\?' } } : c);
+    await expect(new Runner(f).run(cmds, f)).rejects.toThrow(/extendedWaitUntil \{"visible":"3 sessions"/);
+  });
+});
+
+describe('E2E 38563966851: 31 — zgubiony pierwszy znak wagi na wolnym symulatorze', () => {
+  const f = '31-pierwszy-tydzien.yaml';
+  /* pierwsze wywołanie inputText w polu wagi pierwszego wiersza gubi pierwszy znak („60” → „0”, „6” → „”) */
+  const dropFirst = () => { let n = 0; return (t: string, field: any) => { if (field.props.testID !== 'w-0-0') return t; n++; return n === 1 ? t.slice(1) : t; }; };
+  test('scenariusz powtarza wpis wagi: 60 zapisane, rekordy ćwiczenia pokazują „Best session (volume)”', async () => {
+    const r = new Runner(f); r.inputFilter = dropFirst(); await r.run(load(join(DIR, f)), f);
+    expect(r.retries.length).toBe(1); expect(r.retries[0]).toMatch(/w-0-0/);
+  });
+  test('bez zgubionych znaków scenariusz przechodzi bez powtórki', async () => {
+    const r = new Runner(f); await r.run(load(join(DIR, f)), f); expect(r.retries.length).toBe(0);
+  });
+  test('wersja z przebiegu (jeden wpis „60” bez sprawdzenia) przy zgubionym znaku zatrzymuje się przy rekordach ćwiczenia', async () => {
+    const cmds: Cmd[] = load(join(DIR, f)); const k = cmds.findIndex(x => x && typeof x === 'object' && 'retry' in x && JSON.stringify(x).includes('"w-0-0"'));
+    const old = [...cmds.slice(0, k), { tapOn: { id: 'w-0-0' } }, { inputText: '60' }, { tapOn: { id: 'r-0-0' } }, { inputText: '10' }, ...cmds.slice(k + 2)];
+    const r = new Runner(f); r.inputFilter = dropFirst();
+    await expect(r.run(old, f)).rejects.toThrow(/assertVisible "Best session/);
+  });
+});
