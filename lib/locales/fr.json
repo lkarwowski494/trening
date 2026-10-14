@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "mètre|mètres",
  "metra": "mètres",
  "sekunda|sekundy|sekund": "seconde|secondes",
- "godzina|godziny|godzin": "heure|heures"
+ "godzina|godziny|godzin": "heure|heures",
+ "Poproś o nową funkcję": "Demander une nouvelle fonction",
+ "Pomysł": "Idée",
+ "Czego brakuje:": "Ce qui manque :",
+ "W jakiej sytuacji na treningu:": "Dans quelle situation pendant l’entraînement :",
+ "Czego Ci brakuje? Poproś o funkcję": "Que vous manque-t-il ? Demandez une fonction"
 }

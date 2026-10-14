@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "metro|metros",
  "metra": "metros",
  "sekunda|sekundy|sekund": "segundo|segundos",
- "godzina|godziny|godzin": "hora|horas"
+ "godzina|godziny|godzin": "hora|horas",
+ "Poproś o nową funkcję": "Pedir una función nueva",
+ "Pomysł": "Idea",
+ "Czego brakuje:": "Qué falta:",
+ "W jakiej sytuacji na treningu:": "En qué situación durante el entrenamiento:",
+ "Czego Ci brakuje? Poproś o funkcję": "¿Qué te falta? Pide una función"
 }

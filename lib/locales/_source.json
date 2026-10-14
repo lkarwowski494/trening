@@ -888,6 +888,14 @@
   "en": "Duration: 1 to 1440 minutes."
  },
  {
+  "pl": "Czego brakuje:",
+  "en": "What’s missing:"
+ },
+ {
+  "pl": "Czego Ci brakuje? Poproś o funkcję",
+  "en": "Missing something? Request a feature"
+ },
+ {
   "pl": "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.",
   "en": "Waiting to be saved to Apple Health: {n}. It will be retried when the app starts and when you return to it."
  },
@@ -3705,6 +3713,10 @@
   "en": "secondary"
  },
  {
+  "pl": "Pomysł",
+  "en": "Idea"
+ },
+ {
   "pl": "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.",
   "en": "Below the weekly set goal: {list}. You can set the goal in Settings (automatically the lower threshold recommended for building muscle); you can add sets in the templates."
  },
@@ -3727,6 +3739,10 @@
  {
   "pl": "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.",
   "en": "Fixes: Progress remembers the selected exercise, an import without times shows “time unknown”, and help texts now match the tab names."
+ },
+ {
+  "pl": "Poproś o nową funkcję",
+  "en": "Request a new feature"
  },
  {
   "pl": "poprz.",
@@ -5506,6 +5522,10 @@
  {
   "pl": "W historii serie z tą gumą pokażą „?”.",
   "en": "Sets with this band will show “?” in history."
+ },
+ {
+  "pl": "W jakiej sytuacji na treningu:",
+  "en": "In what situation during a workout:"
  },
  {
   "pl": "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.",

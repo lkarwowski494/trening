@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "meter",
  "metra": "meter",
  "sekunda|sekundy|sekund": "detik",
- "godzina|godziny|godzin": "jam"
+ "godzina|godziny|godzin": "jam",
+ "Poproś o nową funkcję": "Minta fitur baru",
+ "Pomysł": "Ide",
+ "Czego brakuje:": "Apa yang kurang:",
+ "W jakiej sytuacji na treningu:": "Dalam situasi apa saat latihan:",
+ "Czego Ci brakuje? Poproś o funkcję": "Apa yang kurang? Minta fitur"
 }

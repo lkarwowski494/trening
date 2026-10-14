@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "μέτρο|μέτρα",
  "metra": "μέτρα",
  "sekunda|sekundy|sekund": "δευτερόλεπτο|δευτερόλεπτα",
- "godzina|godziny|godzin": "ώρα|ώρες"
+ "godzina|godziny|godzin": "ώρα|ώρες",
+ "Poproś o nową funkcję": "Ζητήστε μια νέα λειτουργία",
+ "Pomysł": "Ιδέα",
+ "Czego brakuje:": "Τι λείπει:",
+ "W jakiej sytuacji na treningu:": "Σε ποια περίσταση στην προπόνηση:",
+ "Czego Ci brakuje? Poproś o funkcję": "Τι σου λείπει; Ζήτα μια λειτουργία"
 }

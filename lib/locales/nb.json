@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "meter|meter",
  "metra": "meter",
  "sekunda|sekundy|sekund": "sekund|sekunder",
- "godzina|godziny|godzin": "time|timer"
+ "godzina|godziny|godzin": "time|timer",
+ "Poproś o nową funkcję": "Be om en ny funksjon",
+ "Pomysł": "Idé",
+ "Czego brakuje:": "Hva mangler:",
+ "W jakiej sytuacji na treningu:": "I hvilken situasjon under treningen:",
+ "Czego Ci brakuje? Poproś o funkcję": "Savner du noe? Be om en funksjon"
 }
