@@ -1,18 +1,16 @@
 import { WeekHealthLine } from '@/components/HealthLines';
 import React from 'react';
-import { View, Pressable } from 'react-native';
+import { View, Pressable, Text } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
-import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
+import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX } from '@/lib/theme';
 import { useTick } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { compareCached, pctText, type CmpKind } from '@/lib/progress';
-import { WEEKLY_SETS_MARK } from '@/lib/stats';
+import { guardCached, guardTexts } from '@/lib/guard';
 import { fmtVol } from '@/lib/units';
-import { splitLabel, sumSplit } from '@/lib/setSplit';
 import { WeekStacks } from '@/components/WeekStacks';
-import { MuscleMap } from '@/components/MuscleMap';
-import { MuscleRows, SegLegend, IndirectLegend, setBars } from '@/components/ProgressBars';
+import { GuardMap, GuardLegend, SignChip } from '@/components/Guard';
 import { t, tp, lang } from '@/lib/i18n';
 
 /* Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A) — dane: lib/dashboard.ts. */
@@ -27,12 +25,12 @@ function Tile({ label, value }: { label: string; value: string }) { /* 11.10.202
 const hm = (sec: number) => { const m = Math.round(sec / 60); return m >= 60 ? `${t('{n} h', { n: Math.floor(m / 60) })}${m % 60 ? ` ${t('{n} min', { n: m % 60 })}` : ''}` : t('{n} min', { n: m }); }; /* A11-17: jednostki przez t() */
 
 /** „Ten tydzień” (od pierwszego zakończonego treningu), tylko bieżący tydzień (11.10.2026): cztery kafelki (treningi, serie, objętość, czas), przy planie
- * stosy talerzy tuż pod nimi, potem sylwetka z seriami tygodnia i pilnowanie liczby serii: wykonane + zaplanowane z szablonów vs kreska celu na jednej osi. */
+ * stosy talerzy tuż pod nimi, potem „strażnik progresji” (wariant C, 14.10.2026): sylwetka w kolorach PROGRESU per partia (więcej / tyle samo / mniej / bez porównania /
+ * bez serii), legenda, najwyżej dwa zdania (braki celu nawet z planem; spadki) i jeden przycisk do Postępów. Listy pasków i serii pośrednich tu nie ma — są w Postępach. */
 export function WeekStats() {
-  useTick(); const router = useRouter(); const once = useOnce(); /* UI2-02 */ const w = weekTiles(); const last = lastWorkout(); if (!last) return null;
-  const c = compareCached('week'); const plannedSets = c.planned?.sets ?? 0;
+  useTick(); const th = useTheme(); const router = useRouter(); const once = useOnce(); /* UI2-02 */ const w = weekTiles(); const last = lastWorkout(); if (!last) return null;
+  const g = guardCached(); const x = guardTexts(g); const trained = g.parts.some(p => p.total > 0); const open = once(() => router.navigate('/progress?s=guard'));
   const tiles = [[t('Treningi'), String(w.workouts)], [t('Serie'), String(w.sets)], [t('Objętość'), fmtVol(w.volume)], [t('Czas'), hm(w.durationSec)]] as const;
-  const map: Record<string, number> = {}; c.rows.forEach(r => { map[r.muscle] = r.doneSets + r.plannedSets; });
   return <>
     <SectionTitle>{t('Ten tydzień')}</SectionTitle>
     <Pressable testID="week-tiles" accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={tiles.map(([label, value]) => `${label}: ${value}`).join('; ')} accessibilityHint={t('Otwiera Postępy.')} onPress={once(() => router.navigate('/progress'))} style={({ pressed }: { pressed: boolean }) => ({ flexDirection: 'row', flexWrap: 'wrap', gap: 8, opacity: pressed ? 0.7 : 1 })} /* UX-16 A (audyt 0.10): te same definicje co Postępy */>
@@ -40,14 +38,18 @@ export function WeekStats() {
     </Pressable>
     <WeekHealthLine />{/* 0.16.0 (P3): średnia dzienna kroków z 7 dni + inne aktywności tygodnia (Apple Health) */}
     {w.planned ? <View style={{ marginTop: 10 }}><WeekStacks /></View> : null /* przy planie stosy talerzy i „60% planu tygodnia (3 z 5)” (korekta właściciela 09.10.2026 ok. 17:00; te same liczby, lib/motif.weekProgress) */}{/* audyt 0.10 A5/X-04: dni z planu zrobione zaplanowanym szablonem (ten sam stan dnia co kalendarz) — sesje i dni planu osobno */}
-    {c.rows.length ? <View testID="week-muscles" style={{ marginTop: 6 }}>
-      <MuscleMap sets={map} title={t('Sylwetka: serie w tym tygodniu')} height={170} legend={false} caption={t('Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.')} label={t('Sylwetka, serie w tym tygodniu: {list}', { list: c.setRows.map(r => `${t(r.part)} ${splitLabel(sumSplit(r.doneSplit, r.plannedSplit))}`).join(', ') })} />
-      <Muted style={{ fontSize: 12, fontFamily: F.semibold, marginTop: 10, marginBottom: 6 }}>{t('Serie na partię — wykonane i zaplanowane')}</Muted>
-      <MuscleRows rows={setBars(c.setRows, true)} metric="sets" showPrev={false} />
-      <SegLegend planned={plannedSets > 0} />
-      {c.setRows.some(r => r.doneSplit.indirectSets + r.plannedSplit.indirectSets > 0) ? <IndirectLegend /> : null}
-      <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })} {t('Zaplanowane — z szablonów na pozostałe dni tygodnia.')} {t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).')}</Muted>
-    </View> : null}
+    {trained ? <View testID="week-muscles" style={{ marginTop: 6 }} /* jeden przycisk „Szczegóły w Postępach” (≥ 44 pt) prowadzi do Postępów */>
+      <GuardMap parts={g.parts} label={x.label} height={170} />
+      {x.deload ? <Muted testID="guard-deload" style={{ textAlign: 'center', fontFamily: F.semibold, marginTop: 8 }}>{x.deload}</Muted> : <GuardLegend parts={g.parts} />}
+      {x.compared ? <Muted testID="guard-compared" style={{ fontSize: 12, textAlign: 'center', marginTop: 6 }}>{x.compared}</Muted> : null}
+      {x.short || x.less ? <View style={{ marginTop: 10, gap: 4 }}>
+        {x.short ? <Text testID="guard-short" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.regular, fontSize: 13, lineHeight: 19 }}>{x.short}</Text> : null}
+        {x.less ? <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6 }}><View style={{ marginTop: 2 }}><SignChip dir="down" size={16} /></View><Text testID="guard-less" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.regular, fontSize: 13, lineHeight: 19, flexShrink: 1 }}>{x.less}</Text></View> : null}
+      </View> : null}
+      <Pressable testID="guard-more" accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Szczegóły w Postępach')} accessibilityHint={t('Otwiera Postępy.')} onPress={open} style={({ pressed }: { pressed: boolean }) => ({ minHeight: 44, marginTop: 10, borderTopWidth: 1, borderTopColor: th.line, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', opacity: pressed ? 0.7 : 1 })}>
+        <Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ fontFamily: F.semibold, fontSize: 15, color: th.accent }}>{t('Szczegóły w Postępach')}</Txt><Txt style={{ color: th.accent, fontSize: 20 }}>›</Txt>
+      </Pressable>
+    </View> : <Muted testID="week-muscles" style={{ fontSize: 13, marginTop: 8 }}>{t('Brak serii w tym tygodniu.')}</Muted>}
     {/* „Ostatni trening” usunięty z ekranu głównego (właściciel 09.10.2026 ok. 16:20): informacja zostaje w arkuszu „Inny trening” („Powtórz ostatni”: nazwa · data), w Historii i Kalendarzu */}
   </>;
 }

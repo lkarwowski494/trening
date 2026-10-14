@@ -211,3 +211,23 @@ logika `lib/csvparse.ts`/`lib/csvimport.ts`, testy `csv-import-logic`/`csv-impor
 - **Pusty poprzedni okres:** przy obu liczbach „brak poprzedniego okresu” (zamiast „—” i „+37”). Odrzucone: „—” obu, różnice bezwzględne obu.
 - Nowe teksty do przeglądu tłumacza: „brak poprzedniego okresu”, „część zaplanowanych serii nie ma ciężaru”; zmieniony tekst noty „„≥” — w zaplanowanych szablonach …” (dawniej „+?”) we wszystkich słownikach.
 
+
+## 14.10.2026 — strażnik progresji (gałąź `f020-straznik`, od `f020-postepy`; specyfikacja zatwierdzona przez właściciela)
+- **Ekran Trening („Ten tydzień”, wariant C):** sylwetka przód + tył w kolorach PROGRESU per partia (`lib/guard.ts` → `components/Guard.tsx`), legenda z pełnymi słowami (zawija się), najwyżej dwa zdania
+  („Poniżej celu nawet z planem: dwugłowe (3/10), przywodziciele (4,5/10).” albo „Z planem wszystkie trenowane partie dojdą do celu.”; „Mniej niż przed tygodniem: …” tylko przy spadkach) i przycisk
+  „Szczegóły w Postępach ›”. Lista pasków i serie pośrednie zniknęły z ekranu Trening (są w Postępach). W tygodniu deloadu zamiast legendy i zdań: „Tydzień deloadu — bez porównania”.
+- **Postępy → „Partie w tym tygodniu”:** sylwetka jak na Trening + wiersze rozwijane (poniżej celu — największa luka pierwsza, mniej, bez porównania, tyle samo, nowe, więcej; na końcu „Bez serii: …”).
+  Stuknięcie wiersza: wykonane (bezpośrednio + pośrednio „po 0,5”), zaplanowane z dniami, porównywane ćwiczenia (tonaż na sesję i ciężar roboczy teraz / wcześniej), „Pominięte (bez punktu odniesienia)”.
+  Przycisk z Trening otwiera `/progress?s=guard` i przewija do sekcji.
+- **Reguły (konwencje produktu, nie twierdzenia dziedzinowe; badacz: brak konsensusu co do tempa, tonaż bez danych dawka–odpowiedź, „10%” to reguła z biegania):** tylko kierunek, bez progów procentowych;
+  porównanie wyłącznie ćwiczeń powtórzonych w obu tygodniach (bieżący: wykonane + plan; poprzedni: wykonane); tonaż ŚREDNIO NA SESJĘ ćwiczenia (FBW raz vs dwa razy nie daje fałszywego progresu);
+  tonaż↓ i ciężar roboczy↑ → progres; „tyle samo” = ta sama liczba na ekranie (`volOut`); „bez porównania” — brak wspólnych ćwiczeń, plan bez ciężaru/powtórzeń („≥”), ćwiczenia bez ciężaru (masa ciała, czas, gumy);
+  deload bieżący — bez oceny, po deloadzie — wobec ostatniego tygodnia bez deloadu z podaną datą (konwencja, badacz pkt 13); pierwszy tydzień — „nowe”.
+- **Kolory:** nowy token `less` (pomarańcz #B85C00 / #F0A050) — kontrast do tła, powierzchni i powierzchni 2 ≥ 3,7:1 (jasny) i ≥ 6,9:1 (ciemny); każdy stan ma też znak, słowo i wzór.
+- **[OTWARTE — decyzje produktowe, bez źródła; domyślne rozwiązania w kodzie, do zatwierdzenia]** (1) kilka ćwiczeń w partii, część z progresem ciężarem a część ze spadkiem: dziś progres ciężarem liczy się jak „bez zmiany”
+  w sumie ważonej, więc wygrywa suma pozostałych (alternatywy: głosowanie ćwiczeń; progres ciężarem tylko przy jednym ćwiczeniu); (2) „ciężar roboczy” = najwyższy ciężar serii roboczych
+  (alternatywa: mediana serii); (3) po przerwie bez treningów porównujemy z poprzednim tygodniem kalendarzowym (pusty → „nowe”), nie z ostatnim tygodniem z treningiem; (4) zasięg wstecz po deloadzie
+  `GUARD_DELOAD_LOOKBACK_WEEKS` = 8 (brak źródła); (5) „i jeszcze N” zamiast „i N inne” (bez odmiany przez przypadki w 31 językach); (6) objaśnienie metody jest na razie widoczne w sekcji Postępów
+  (4 krótkie akapity) — zostaje przenieść pod ⓘ w osobnym zadaniu.
+- Nowe teksty do przeglądu tłumacza (38 kluczy × 31 słowników + nakładka pt-BR): „tyle samo”, „bez porównania”, „bez serii”, „nowe”, zdania strażnika, „Partie w tym tygodniu”, wiersze i rozwinięcie Postępów (patrz `lib/i18n.en.ts`,
+  blok „strażnik progresji”); usunięte 5 martwych kluczy sylwetki i pasków z ekranu Trening. Tłumaczenia wykonał programista — do sprawdzenia przez native speakerów (szczególnie: tonaż, deload, ja/ko/zh-Hant, fi/hu/et/lt/lv).

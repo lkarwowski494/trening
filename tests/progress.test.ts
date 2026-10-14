@@ -5,7 +5,7 @@
  */
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
-import { estimateTemplate, plannedRest, compare, compareCached, pctText, signedNum } from '@/lib/progress';
+import { estimateTemplate, estimateItem, plannedDays, plannedRest, compare, compareCached, pctText, signedNum } from '@/lib/progress';
 import { weeklyVolumeByMuscle, weeklySetsByMuscle, volumeByMuscle, setsByMuscle, thisMonday } from '@/lib/stats';
 import { periodSummary, periodRange, totals } from '@/lib/period';
 import { uid, type Template, type TRow, type SetKind } from '@/lib/seed';
@@ -74,6 +74,26 @@ describe('plannedRest: zaplanowane, jeszcze niezrobione dni od dziś do niedziel
     a.archived = true; store.save(); expect(plannedRest(NOW.getTime()).workouts).toBe(0);
   });
   test('bez planu — zero', () => { expect(plannedRest(NOW.getTime())).toMatchObject({ workouts: 0, sets: 0, volume: 0, unknownSets: 0 }); });
+});
+
+describe('estimateItem i plannedDays: rozbicie szacunku na wiersze i dni (podstawa strażnika progresji)', () => {
+  test('estimateItem: serie, objętość i serie bez wartości jednego wiersza; suma wierszy = estimateTemplate; ćwiczenie zarchiwizowane → null', () => {
+    const t = tpl('A', ['Back Squat', [row(5, 100), row('', '')]], ['Bench Press (sztanga)', [row(5, 60), row(5, 60)]]);
+    const a = estimateItem(t, 0)!; const b = estimateItem(t, 1)!;
+    expect(a).toEqual({ exerciseId: ex('Back Squat').id, sets: 2, volume: 500, unknown: 1, maxWeight: 100 }); expect(b).toEqual({ exerciseId: ex('Bench Press (sztanga)').id, sets: 2, volume: 600, unknown: 0, maxWeight: 60 });
+    const all = estimateTemplate(t); expect(all.sets).toBe(a.sets + b.sets); expect(all.volume).toBe(a.volume + b.volume); expect(all.unknownSets).toBe(a.unknown + b.unknown);
+    ex('Bench Press (sztanga)').archived = true; store.save(); expect(estimateItem(t, 1)).toBeNull();
+  });
+  test('plannedDays: dni od dziś do niedzieli z niezrobionym szablonem, rosnąco; zrobiony dzień i miniony dzień odpadają; zgodne z plannedRest', () => {
+    const a = tpl('A', ['Back Squat', [row(5, 100)]]); const b = tpl('B', ['Bench Press (sztanga)', [row(5, 60)]]);
+    setPlan({ 1: a, 3: a, 5: b }); /* wt, czw, sob */
+    expect(plannedDays(NOW.getTime()).map(d => [d.day, d.tpl.name])).toEqual([['2026-10-08', 'A'], ['2026-10-10', 'B']]);
+    doneFrom(a, 8, [{ weight: 100, reps: 5 }]); expect(plannedDays(NOW.getTime()).map(d => d.day)).toEqual(['2026-10-10']);
+    expect(plannedDays(NOW.getTime()).length).toBe(plannedRest(NOW.getTime()).workouts);
+  });
+  test('plannedDays: bez planu i z zarchiwizowanym szablonem — pusto', () => {
+    expect(plannedDays(NOW.getTime())).toEqual([]); const a = tpl('A', ['Back Squat', [row(5, 100)]]); setPlan({ 3: a }); a.archived = true; store.save(); expect(plannedDays(NOW.getTime())).toEqual([]);
+  });
 });
 
 describe('compare: trzy porównania', () => {

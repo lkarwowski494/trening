@@ -7,11 +7,11 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **146** (realny: 125, brzegowy: 21); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **149** (realny: 128, brzegowy: 21); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
-| `nowy` | 16 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
+| `nowy` | 19 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
 | `istniejacy` | 112 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
 | `aktualizacja` | 6 | Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34). |
 | `kopia` | 4 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
@@ -19,7 +19,7 @@ Przepływów w katalogu: **146** (realny: 125, brzegowy: 21); pominięte jako te
 
 | Pokrycie | Przepływów |
 |---|---|
-| Maestro | 119 |
+| Maestro | 122 |
 | Maestro (eksperyment) | 4 |
 | Jest | 10 |
 | Telefon | 13 |
@@ -158,6 +158,9 @@ Przepływów w katalogu: **146** (realny: 125, brzegowy: 21); pominięte jako te
 | HI-10 | **Masa ciała z datą: pomiar, lista pomiarów, jednostka** — Postępy → „Masa ciała — pomiary” → wpisz → „Zapisz pomiar” | Pomiar na liście i w sekcji Postępów. | `istniejacy` | realny | Maestro: `.maestro/15-masa-licencje.yaml` |
 | HI-11 | **Cel serii na partię: automatyczny i ręczny** — Ustawienia → „Cele partii” → partia → Ręcznie → liczba | Kreska celu w „Ten tydzień” i Postępach zgodna. | `istniejacy` | realny | Maestro: `.maestro/35-ustawienia-dostepnosc.yaml` |
 | HI-12 | **Kafelki „Ten tydzień” jako jeden przycisk do Postępów** — Zakładka Trening → kafelki → Postępy | Przejście do Postępów z jedną etykietą VoiceOver. | `istniejacy` | realny | Maestro: `.maestro/01-trening-z-szablonu.yaml` |
+| HI-13 | **Strażnik progresji na ekranie Trening: sylwetka w kolorach progresu, legenda, zdanie o brakach celu serii** — Zrób pierwszy trening w tygodniu z planem tygodnia na pozostałe dni → Na zakładce Trening w „Ten tydzień” przewiń do sylwetki → Sylwetka ma opis stanów partii (więcej, tyle samo, mniej, bez porównania, nowe), a pod nią legenda i zdanie o partiach poniżej celu nawet z planem albo „Z planem wszystkie trenowane partie dojdą do celu” → Pierwszy tydzień nie ma poprzedniego, więc partie są „nowe” i nie ma zdania o spadkach | Sylwetka pokazuje kierunek zmiany tygodnia, zdanie podaje partie poniżej celu serii po całym planie; przycisk „Szczegóły w Postępach” prowadzi do Postępów. | `nowy` | realny | Maestro: `.maestro/52-straznik-progresji.yaml` |
+| HI-14 | **Postępy: sekcja „Partie w tym tygodniu” — grupy od problemów, rozwinięcie partii** — Na ekranie Trening stuknij „Szczegóły w Postępach” → W Postępach jest sekcja „Partie w tym tygodniu” z listą partii (znak, serie z celem, pasek serii) → Stuknij partię: widać wykonane, zaplanowane z dniami i porównywane ćwiczenia → Stuknij ponownie: szczegóły się zwijają | Sekcja jest przewinięta do widoku; wiersz rozwija i zwija szczegóły (serie pośrednie tylko tu). | `nowy` | realny | Maestro: `.maestro/52-straznik-progresji.yaml` |
+| HI-15 | **Strażnik progresji w tygodniu deloadu: „Tydzień deloadu — bez porównania” zamiast legendy i zdań** — Plan → dzisiejszy dzień → „Więcej opcji” → „Oznacz tydzień jako deload” → Wróć na zakładkę Trening, „Ten tydzień” → Sylwetka jest we wzorze deloadu, pod nią napis „Tydzień deloadu — bez porównania”, bez legendy i bez zdań o brakach | Tydzień deloadu nie jest oceniany: żadnych porównań ani braków celu. | `nowy` | realny | Maestro: `.maestro/52-straznik-progresji.yaml` |
 
 ## US — Ustawienia, uprawnienia, zakupy
 

@@ -314,3 +314,19 @@ Raport luk, czasy i podział na części: docs/38; katalog: docs/37; lista „ty
 - **Dwa słupki na partię** (Postępy: serie i objętość per partia; Progresja: tydzień, poprzedni tydzień, miesiąc): `tests/period-bars.test.tsx` (kolejność, wspólna skala, podpisy okresów, liczby, prążki, VoiceOver, brak danych, jasny/ciemny, 320 pt + skala 2,0, EN). Zmieniony format etykiet VoiceOver w `tests/set-split-ui`, `set-goals-ui`, `sets-mark`, `scenario-full`.
 - Nowe teksty do przeglądu tłumacza: „Ten miesiąc”, „2 tyg. temu”, „brak danych” (31 słowników; es-419 i pt-BR dziedziczą).
 
+
+## 14.10.2026 — strażnik progresji (gałąź `f020-straznik`; docs/18, docs/32 wzorzec 26)
+Zakres: `lib/guard.ts` (kierunek partii, cel serii, deload, teksty), `components/Guard.tsx` (sylwetka progresu, znak stanu, legenda), `components/GuardSection.tsx` (Postępy → „Partie w tym tygodniu”), token `less` w motywie,
+`estimateItem` / `plannedDays` wydzielone z `lib/progress.ts` (commit strukturalny osobno, wyniki bez zmian). Czerwony przed kodem: `tests/guard.test.ts` i `tests/guard-ui.test.tsx` napisane przed modułami.
+
+| Rodzaj (docs/20) | Testy |
+|---|---|
+| Logika | `tests/guard.test.ts` — każdy stan (więcej / tyle samo / mniej / ? / nowe / bez serii / deload) × deload bieżący, poprzedni, kilka z rzędu i brak tygodnia bez deloadu × z planem i bez × plan „≥” × masa ciała (bez i z dociążeniem), ćwiczenie na czas × FBW raz vs dwa razy (średnio na sesję) × tonaż↓ ciężar↑ (i kontrprzypadki) × ćwiczenie nowe / nierobione × kg/lb × ręczny cel × rozgrzewki i drop set × tydzień zamknięty; `tests/progress.test.ts` (`estimateItem`, `plannedDays`) |
+| Ekran | `tests/guard-ui.test.tsx` — Trening (sylwetka, legenda, dwa zdania, przycisk, brak dawnych pasków, „nowe”, deload, po deloadzie, EN), Postępy (grupy w kolejności, wiersz, rozwinięcie, pasek serii, nadmiar „»”, deload, objaśnienie, EN) |
+| Scenariusz | `tests/guard-ui.test.tsx` „scenariusz: Trening → Szczegóły w Postępach → sekcja → rozwinięcie partii”; `.maestro/52-straznik-progresji.yaml` (interpretowany w `tests/maestro-flows.test.tsx`) |
+| Macierz | `tests/guard.test.ts` „języki” — 33 języki × zdania strażnika i słowa stanów; `check:matrix` (nowe funkcje `lib/`, teksty) |
+| Niezmienniki | zgodność serii z `compare('week')` (te same funkcje liczą serie wykonane i zaplanowane); suma serii pośrednich po `SECONDARY_SHARE`; każda partia w jednej grupie |
+| Dane | brak nowych danych w stanie (czysty rachunek z historii, planu i oznaczeń deload); ćwiczenie usunięte z katalogu, rozgrzewki, drop set, pusty tydzień |
+| Języki / wygląd | 38 nowych kluczy × 31 słowników + nakładka pt-BR (`i18n-locales`, `i18n-variants`), kontrast tokenu `less` ≥ 3:1 w obu motywach, ciemny motyw (kolory sylwetki i paska), 320 pt + skala tekstu 2,0 (bez `numberOfLines`, legenda zawija się) |
+| Regresja | zmiana zachowania ekranu Trening na polecenie właściciela (14.10.2026): zniknęły lista pasków serii i legenda wykonane/zaplanowane — oczekiwania w `tests/progression-ui.test.tsx` zaktualizowane |
+| E2E | `.maestro/52-straznik-progresji.yaml` (HI-13, HI-14, HI-15 w katalogu przepływów) — do przebiegu na symulatorze; ryzyka: selektor dnia „.*, today.*” w kroku deloadu i dopasowanie słów legendy bez rozróżnienia wielkości liter |
