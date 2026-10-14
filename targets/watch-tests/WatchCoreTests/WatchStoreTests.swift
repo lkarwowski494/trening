@@ -102,6 +102,19 @@ final class WatchStoreTests: XCTestCase {
     XCTAssertEqual(Int(scheduled.last!.delay), Int(Double(WatchLimits.undoSec) * 1000) + 50, "najbliższy termin to koniec okna „Cofnij”")
   }
 
+  /// Fałszywy telefon (UI na symulatorze) jak prawdziwy: migawka z przerwą przed ack, „Cofnij” wraca do poprzedniej migawki — ekran przerwy nie znika po ack.
+  func testFakePhoneSendsSnapshotBeforeAckAndUndoRestoresTheSet() async {
+    let s = makeStore()
+    s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
+    s.press(.main); await settle()
+    XCTAssertEqual(s.state.base?.rev, 2)
+    XCTAssertEqual(s.view(at: nowMs + 10).screen, .rest)
+    XCTAssertTrue(s.state.queue.isEmpty)
+    s.press(.undo); await settle()
+    let v = s.view(at: nowMs + 20)
+    XCTAssertEqual(v.screen, .set); XCTAssertEqual(v.counter, "seria 1 z 3")
+  }
+
   func testQuickSecondPressIsDebounced() async {
     let s = makeStore()
     s.start(); transport.deliver(json: Fixtures.snapshotJSON("set-first")); await settle()
@@ -269,7 +282,7 @@ final class WatchStoreTests: XCTestCase {
   func testSessionEventsAreQueuedUntilAcked() async {
     let s = makeStore(reachable: false, autoReply: false)
     s.start(); transport.deliver(json: session("start")); await settle()
-    XCTAssertTrue(s.state.queue.contains { $0.type == .sessionStarted })
+    XCTAssertTrue(s.state.queue.contains { $0.ev.type == .sessionStarted })
     transport.autoReply = true; transport.setReachable(true); await settle()
     XCTAssertTrue(s.state.queue.isEmpty)
   }

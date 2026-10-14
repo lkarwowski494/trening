@@ -23,6 +23,7 @@ final class AppEnvironment {
     if let json = env["WATCH_FAKE_SNAPSHOT_JSON"] {
       let online = env["WATCH_FAKE_REACHABLE"] != "0"
       let ft = FakeTransport(reachable: online, autoReply: online)
+      ft.acksEventsWithoutNextSet = false /* po wyczerpaniu znanych serii telefon milczy: ekran „Połącz z telefonem” */
       let s = WatchStore(transport: ft, workout: FakeWorkout(), haptics: FakeHaptics(), persistence: MemoryPersistence(), config: AppEnvironment.config)
       /* jeden komunikat albo tablica komunikatów (np. migawka i polecenie sesji) — dostarczane po kolei */
       var messages = [json]

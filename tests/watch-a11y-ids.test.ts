@@ -19,4 +19,12 @@ describe('identyfikatory dostępności zegarka', () => {
     const missing = [...used].filter(id => !all.includes(`"${id}"`));
     expect(missing).toEqual([]);
   });
+  test('fałszywy telefon testów interfejsu odpowiada migawką przed ack (inaczej ack cofa ekran przerwy do serii; przebieg 38531002089)', () => {
+    const app = fs.readFileSync(path.join(root, 'watch-app', 'TreningWatchApp.swift'), 'utf8');
+    const fakes = fs.readFileSync(path.join(root, 'watch-app', 'Core', 'WatchFakes.swift'), 'utf8');
+    expect(app).toContain('ft.acksEventsWithoutNextSet = false');
+    expect(fakes).toContain('var phoneFollowsEvents = true');
+    expect(fakes.indexOf('deliverDict(next)')).toBeGreaterThan(-1);
+    expect(fakes.indexOf('deliverDict(next)')).toBeLessThan(fakes.lastIndexOf('deliverAck(id, rev)'));
+  });
 });

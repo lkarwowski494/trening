@@ -139,7 +139,7 @@ final class ClientModelTests: XCTestCase {
     let endEv = clientNoteSession(&s, type: .sessionEnded, workoutId: "workout-1", at: T0 + 3000, saved: true)
     XCTAssertEqual([startEv.eventId, endEv.eventId], ["apple-2", "apple-3"])
     XCTAssertNil(startEv.saved); XCTAssertEqual(endEv.saved, true)
-    XCTAssertEqual(s.queue.map { $0.type }, [.done, .sessionStarted, .sessionEnded])
+    XCTAssertEqual(s.queue.map { $0.ev.type }, [.done, .sessionStarted, .sessionEnded])
     // po migawce „idle” (trening skończony na telefonie) zdarzenie sesji nadal ma id treningu z polecenia, nie puste
     var idle = Fixtures.snapshot("idle"); idle.rev = 99
     s = step(s, T0 + 4000, .receive(.snapshot(idle))).state

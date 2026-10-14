@@ -188,7 +188,7 @@ final class WatchStore: ObservableObject {
   }
 
   private func resendQueue() {
-    for e in state.queue { transport.send(json: WatchCodec.encode(e)) }
+    for q in state.queue where q.ackRev == nil { transport.send(json: WatchCodec.encode(q.ev)) }
   }
 
   private func persist() { persistence.save(state) }

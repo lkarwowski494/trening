@@ -12,6 +12,8 @@ enum WatchLimits {
   static let undoSec = 5
   /// Tyle „zrobione” bez połączenia zegarek przyjmuje (z pola `after`); potem „Połącz z telefonem”.
   static let offlineDoneMax = 2
+  /// Ile ostatnich migawek zegarek pamięta, żeby po „Cofnij” odtworzyć widok zdarzenia, które telefon już uwzględnił (WATCH.CLIENT_HISTORY).
+  static let clientHistory = 4
   /// Platforma (nie protokół): przycisk i gest w tym samym ułamku sekundy liczą się raz — drugie „zrobione” odhaczyłoby następną serię.
   static let debounceMs: Double = 400
   /// Platforma: wibracja „koniec przerwy” tylko, gdy przerwa skończyła się przed chwilą (stara przerwa z odebranej migawki nie wibruje).
@@ -22,6 +24,13 @@ struct ClientConfig: Codable, Equatable {
   var client: WatchClientKind
   var app: String
   var session: Bool
+}
+
+/// Zdarzenie wysłane i jeszcze nieuwzględnione w migawce. `ackRev` = numer migawki z potwierdzenia: wpis znika dopiero, gdy przyjdzie migawka o tym numerze
+/// (albo nowsza) — bez migotania widoku między potwierdzeniem a migawką; potwierdzenie przed migawką jest normalne.
+struct QueuedEvent: Codable, Equatable {
+  var ev: WatchEvent
+  var ackRev: Int?
 }
 
 struct ClientUndo: Codable, Equatable {
@@ -35,8 +44,10 @@ struct ClientState: Codable, Equatable {
   var connected: Bool
   /// ostatnia migawka z telefonu
   var base: WatchSnapshot?
-  /// zdarzenia wysłane i jeszcze niepotwierdzone (`ack`) — zegarek pokazuje ich skutek lokalnie
-  var queue: [WatchEvent]
+  /// zdarzenia wysłane i jeszcze nieuwzględnione w migawce telefonu — zegarek pokazuje ich skutek lokalnie
+  var queue: [QueuedEvent]
+  /// ostatnie migawki (najstarsza pierwsza) — z nich zegarek odtwarza widok po „Cofnij” zdarzenia, które telefon już uwzględnił
+  var history: [WatchSnapshot]
   var undo: ClientUndo?
   var confirmSkip: Bool
   /// po migawce `idle` poprzedzonej treningiem: „Trening zakończony”
@@ -46,7 +57,7 @@ struct ClientState: Codable, Equatable {
 }
 
 func initialClient(_ cfg: ClientConfig) -> ClientState {
-  ClientState(cfg: cfg, seq: 0, connected: true, base: nil, queue: [], undo: nil, confirmSkip: false, finished: false, upgrade: nil, restEndedSent: nil)
+  ClientState(cfg: cfg, seq: 0, connected: true, base: nil, queue: [], history: [], undo: nil, confirmSkip: false, finished: false, upgrade: nil, restEndedSent: nil)
 }
 
 enum ClientButton: String, Codable, Equatable, CaseIterable { case main, differ, skip, confirmSkip, cancelSkip, undo }
@@ -109,11 +120,12 @@ private func isDone(_ e: WatchEvent) -> Bool { e.type == .done || e.type == .dif
 
 /// Skutek niepotwierdzonych zdarzeń na ostatniej migawce. Zdarzenie już ujęte w migawce (telefon przesunął `now`) nie zmienia widoku — sprawdza `setId`,
 /// więc powtórzenie i spóźniony `ack` nie odhaczają kolejnej serii.
-private func project(_ base: WatchSnapshot, _ queue: [WatchEvent]) -> (local: Local, pendingDone: Int) {
+private func project(_ base: WatchSnapshot, _ queue: [QueuedEvent], _ history: [WatchSnapshot]) -> (local: Local, pendingDone: Int) {
   var L = Local(phase: base.phase, now: base.now, rest: base.rest, after: base.after, blind: false)
   var stack: [(ev: WatchEvent, before: Local)] = []
   var pendingDone = 0
-  for ev in queue {
+  for q in queue {
+    let ev = q.ev
     if isDone(ev), let evSet = ev.setId {
       guard let now = L.now, now.setId == evSet else { continue }
       stack.append((ev, L)); pendingDone += 1
@@ -125,16 +137,15 @@ private func project(_ base: WatchSnapshot, _ queue: [WatchEvent]) -> (local: Lo
       let phase: WatchPhase = rest != nil ? .rest : (a.now != nil ? .set : .done)
       L = Local(phase: phase, now: a.now, rest: rest, after: nil, blind: false)
     } else if ev.type == .undo {
-      var i = stack.count - 1
-      while i >= 0 {
-        let s = stack[i]
-        if s.ev.setId != nil, s.ev.setId == ev.setId {
-          L = s.before
-          stack.removeSubrange(i...)
-          pendingDone = max(0, pendingDone - 1)
-          break
-        }
-        i -= 1
+      if let i = stack.lastIndex(where: { $0.ev.setId != nil && $0.ev.setId == ev.setId }) {
+        L = stack[i].before
+        stack.removeSubrange(i...)
+        pendingDone = max(0, pendingDone - 1)
+        continue
+      }
+      /* telefon już uwzględnił odhaczenie (migawka z przerwą po nim): wracamy do ostatniej migawki, w której ta seria była bieżąca; przerwa po cofniętej serii znika */
+      if let prev = history.last(where: { $0.now?.setId == ev.setId }), !(L.now != nil && L.now!.setId == ev.setId) {
+        L = Local(phase: .set, now: prev.now, rest: nil, after: prev.after, blind: false)
       }
     } else if ev.type == .skip {
       if let now = L.now, now.blockId == ev.blockId { L.now = nil; L.blind = true; L.after = nil }
@@ -153,16 +164,17 @@ func clientView(_ s: ClientState, nowMs: Double) -> ClientView {
     var v = blank; v.screen = screen; edit(&v); return v
   }
   if s.upgrade == "watch" { return with(.update) }
+  if s.upgrade == "phone" { return with(.connect) } /* telefon starszy od zegarka: aktualizację robi się na telefonie — zegarek prosi o połączenie */
   guard let base = s.base else { return with(s.connected ? .idle : .connect) }
   if s.finished { return with(.finished) { $0.title = base.title } }
   if base.phase == .idle { return with(s.connected ? .idle : .connect) }
-  let (L, pendingDone) = project(base, s.queue)
+  let (L, pendingDone) = project(base, s.queue, s.history)
   var v = blank
   v.title = base.title; v.paused = base.paused
   v.doneCount = base.doneCount + pendingDone; v.totalCount = base.totalCount; v.toFillCount = base.toFillCount
   if !s.connected && pendingDone >= WatchLimits.offlineDoneMax { v.screen = .connect; return v }
   let rest: WatchRest? = (L.rest != nil && L.rest!.endsAt > nowMs) ? L.rest : nil
-  let phase: WatchPhase = rest != nil ? .rest : (L.now != nil ? .set : .done)
+  let phase: WatchPhase = rest != nil ? .rest : (L.now != nil || L.blind ? .set : .done)
   let n = L.now
   let undoUntil: Double? = (s.undo != nil && s.undo!.until > nowMs) ? s.undo!.until : nil
   var actions: [ClientAction] = (n != nil && !L.blind) ? [.done, .differ, .skip] : []
@@ -180,7 +192,7 @@ func clientView(_ s: ClientState, nowMs: Double) -> ClientView {
   v.undoUntil = undoUntil
   v.confirmSkip = s.confirmSkip && n != nil
   v.actions = actions
-  v.busy = !s.queue.isEmpty || L.blind
+  v.busy = s.queue.contains { $0.ev.type != .restEnded } || L.blind
   return v
 }
 
@@ -204,7 +216,7 @@ func clientStep(_ s0: ClientState, _ ti: TimedInput) -> ClientStep {
     var ev = WatchEvent(v: watchProtocolVersion, kind: "event", eventId: "\(s.cfg.client.rawValue)-\(s.seq + 1)", workoutId: s.base?.workoutId ?? "", baseRev: s.base?.rev ?? 0,
                         at: at, client: s.cfg.client, type: type, setId: nil, blockId: nil, saved: nil)
     if type == .skip { ev.blockId = id } else { ev.setId = id }
-    s.seq += 1; s.queue.append(ev); out.append(.event(ev))
+    s.seq += 1; s.queue.append(QueuedEvent(ev: ev, ackRev: nil)); out.append(.event(ev))
   }
 
   let view = clientView(s, nowMs: at)
@@ -221,18 +233,27 @@ func clientStep(_ s0: ClientState, _ ti: TimedInput) -> ClientStep {
       let finished = m.phase == .idle && (wasWorking || s.finished)
       /* migawka starsza niż ostatnia w tym samym treningu (spóźniona) — pomijamy */
       if let b = s.base, m.rev < b.rev, m.workoutId == b.workoutId { break }
+      var history = s.history
+      if let b = s.base { history.append(b) }
+      s.history = Array(history.suffix(WatchLimits.clientHistory))
       s.base = m
       s.finished = finished
       s.confirmSkip = (m.phase == .idle || m.phase == .done) ? false : s.confirmSkip
+      s.queue = s.queue.filter { $0.ackRev == nil || $0.ackRev! > m.rev }
     case .ack(let m):
-      s.queue.removeAll { $0.eventId == m.eventId }
+      let have = s.base?.rev ?? 0
+      s.queue = s.queue.flatMap { q -> [QueuedEvent] in
+        if q.ev.eventId != m.eventId { return [q] }
+        if have >= m.rev { return [] }
+        var c = q; c.ackRev = m.rev; return [c]
+      }
     case .welcome(let m):
       s.upgrade = m.ok ? nil : m.upgrade
     case .session:
       break /* sesją treningu zajmuje się warstwa platformy (WatchStore) */
     }
   case .press(let b):
-    let n: WatchNow? = (view.actions.contains(.done) && s.base != nil) ? project(s.base!, s.queue).local.now : nil
+    let n: WatchNow? = (view.actions.contains(.done) && s.base != nil) ? project(s.base!, s.queue, s.history).local.now : nil
     switch b {
     case .main, .differ:
       guard let n = n, view.actions.contains(.done) else { break }
@@ -250,7 +271,7 @@ func clientStep(_ s0: ClientState, _ ti: TimedInput) -> ClientStep {
     }
   case .tick:
     if let u = s.undo, u.until <= at { s.undo = nil }
-    let local: Local? = s.base != nil ? project(s.base!, s.queue).local : nil
+    let local: Local? = s.base != nil ? project(s.base!, s.queue, s.history).local : nil
     if let r = local?.rest, r.endsAt <= at, s.restEndedSent != r.setId {
       emit(.restEnded, r.setId)
       s.restEndedSent = r.setId
@@ -262,7 +283,7 @@ func clientStep(_ s0: ClientState, _ ti: TimedInput) -> ClientStep {
 /// Koniec przerwy, którą reduktor uzna za bieżącą (lokalna projekcja niepotwierdzonych zdarzeń na migawce) — warstwa platformy rozstrzyga po nim, czy wibrować.
 func clientRestEndsAt(_ s: ClientState) -> Double? {
   guard let b = s.base else { return nil }
-  return project(b, s.queue).local.rest?.endsAt
+  return project(b, s.queue, s.history).local.rest?.endsAt
 }
 
 // MARK: - Zdarzenia spoza reduktora (sesja treningu)
@@ -272,7 +293,7 @@ func clientRestEndsAt(_ s: ClientState) -> Double? {
 func clientNoteSession(_ s: inout ClientState, type: WatchEventType, workoutId: String, at: Double, saved: Bool? = nil) -> WatchEvent {
   let ev = WatchEvent(v: watchProtocolVersion, kind: "event", eventId: "\(s.cfg.client.rawValue)-\(s.seq + 1)", workoutId: workoutId, baseRev: s.base?.rev ?? 0, at: at,
                       client: s.cfg.client, type: type, setId: nil, blockId: nil, saved: type == .sessionEnded ? (saved ?? false) : nil)
-  s.seq += 1; s.queue.append(ev)
+  s.seq += 1; s.queue.append(QueuedEvent(ev: ev, ackRev: nil))
   return ev
 }
 
