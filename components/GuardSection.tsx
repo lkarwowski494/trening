@@ -13,7 +13,7 @@ import { fmtWeekdayShort } from '@/lib/calendar';
 import { t, tp, lang, exName, upper } from '@/lib/i18n';
 
 /*
- * Postępy → „Partie w tym tygodniu” (strażnik progresji, specyfikacja 14.10.2026): sylwetka jak na ekranie Trening i lista partii od problemów:
+ * Postępy → „Strażnik progresji” (strażnik progresji, specyfikacja 14.10.2026): sylwetka jak na ekranie Trening i lista partii od problemów:
  * poniżej celu (największa luka pierwsza), mniej, bez porównania, tyle samo, nowe, więcej; na końcu „Bez serii”. Wiersz: znak + nazwa, serie / cel, tonaż na sesję
  * z poprzednim, pasek serii (wykonane pełnym akcentem, plan jaśniejszym, kreska celu, skala do 2× cel, nadmiar „»” z liczbą — bez koloru ostrzegawczego).
  * Stuknięcie rozwija szczegóły (wzorzec 20, ▸/▾ + expanded; po wyjściu z ekranu zwinięte). Serie pośrednie pokazujemy tylko tutaj.
@@ -91,12 +91,12 @@ export function guardGroups(g: Guard): { key: string; dir: GuardDir | null; titl
   return out.filter(x => x.parts.length);
 }
 
-/** Sekcja „Partie w tym tygodniu” w Postępach (zakładka bez wybranego ćwiczenia). `onLayoutY` — pozycja sekcji (przewinięcie z ekranu Trening). */
+/** Sekcja „Strażnik progresji” w Postępach (zakładka bez wybranego ćwiczenia). `onLayoutY` — pozycja sekcji (przewinięcie z ekranu Trening). */
 export function GuardSection({ onLayoutY }: { onLayoutY?: (y: number) => void }) {
   useTick(); const th = useTheme(); const g = guardCached(); const x = guardTexts(g); const trained = g.parts.some(p => p.total > 0); const none = g.parts.filter(p => p.dir === 'none');
   return (
     <View testID="guard-section" onLayout={e => onLayoutY?.(e.nativeEvent.layout.y)} style={{ marginBottom: 6 }}>
-      <H2 style={{ marginTop: 14 }}>{t('Partie w tym tygodniu')}</H2>
+      <H2 style={{ marginTop: 14 }}>{t('Strażnik progresji')}</H2>
       <View testID="guard-info" style={{ padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, gap: 6, marginBottom: 8 }}>
         <Muted style={{ fontSize: 13 }}>{t('Kierunek dla partii liczymy tylko na ćwiczeniach, które były w obu tygodniach. Ćwiczenia bez punktu odniesienia — nowe w tym tygodniu albo nierobione teraz — pomijamy w obu tygodniach.')}</Muted>
         <Muted style={{ fontSize: 13 }}>{t('Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.')}</Muted>

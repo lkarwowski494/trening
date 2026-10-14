@@ -316,7 +316,7 @@ Raport luk, czasy i podział na części: docs/38; katalog: docs/37; lista „ty
 
 
 ## 14.10.2026 — strażnik progresji (gałąź `f020-straznik`; docs/18, docs/32 wzorzec 26)
-Zakres: `lib/guard.ts` (kierunek partii, cel serii, deload, teksty), `components/Guard.tsx` (sylwetka progresu, znak stanu, legenda), `components/GuardSection.tsx` (Postępy → „Partie w tym tygodniu”), token `less` w motywie,
+Zakres: `lib/guard.ts` (kierunek partii, cel serii, deload, teksty), `components/Guard.tsx` (sylwetka progresu, znak stanu, legenda), `components/GuardSection.tsx` (Postępy → „Strażnik progresji”), token `less` w motywie,
 `estimateItem` / `plannedDays` wydzielone z `lib/progress.ts` (commit strukturalny osobno, wyniki bez zmian). Czerwony przed kodem: `tests/guard.test.ts` i `tests/guard-ui.test.tsx` napisane przed modułami.
 
 | Rodzaj (docs/20) | Testy |

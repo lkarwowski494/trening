@@ -3473,10 +3473,6 @@
   "en": "Secondary muscles (0.5 set)"
  },
  {
-  "pl": "Partie w tym tygodniu",
-  "en": "Muscle groups this week"
- },
- {
   "pl": "Partie z większą objętością",
   "en": "Muscle groups with more volume"
  },
@@ -4760,6 +4756,10 @@
  {
   "pl": "stożek rotatorów",
   "en": "rotator cuff"
+ },
+ {
+  "pl": "Strażnik progresji",
+  "en": "Progress Guard"
  },
  {
   "pl": "Strongman",

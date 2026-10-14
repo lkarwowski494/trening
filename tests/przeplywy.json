@@ -2113,13 +2113,13 @@
   },
   {
    "id": "HI-14",
-   "tytul": "Postępy: sekcja „Partie w tym tygodniu” — grupy od problemów, rozwinięcie partii",
+   "tytul": "Postępy: sekcja „Strażnik progresji” — grupy od problemów, rozwinięcie partii",
    "stan": "nowy",
    "wersja": "0.20",
    "realnosc": "realny",
    "kroki": [
     "Na ekranie Trening stuknij „Szczegóły w Postępach”",
-    "W Postępach jest sekcja „Partie w tym tygodniu” z listą partii (znak, serie z celem, pasek serii)",
+    "W Postępach jest sekcja „Strażnik progresji” z listą partii (znak, serie z celem, pasek serii)",
     "Stuknij partię: widać wykonane, zaplanowane z dniami i porównywane ćwiczenia",
     "Stuknij ponownie: szczegóły się zwijają"
    ],
@@ -2129,7 +2129,7 @@
    ],
    "scenariusz": "52-straznik-progresji.yaml",
    "znaczniki": [
-    "Muscle groups this week",
+    "Progress Guard",
     "chest: .*",
     "Done: .*"
    ]
