@@ -43,7 +43,7 @@ describe('workflowy na publicznym repozytorium', () => {
   test('decyzja właściciela 08.10.2026 (audyt M4): workflowy EAS usunięte — żaden workflow nie używa Expo ani sekretów spoza klucza App Store Connect', () => {
     const fs = require('fs') as typeof import('fs'); const dir = join(__dirname, '../.github/workflows');
     const files = fs.readdirSync(dir).filter(f => f.endsWith('.yml')).sort();
-    expect(files).toEqual(['e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml', 'watch-sim.yml']);
+    expect(files).toEqual(['asc-iap-localizations.yml', 'e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml', 'watch-sim.yml']);
     expect(fs.existsSync(join(__dirname, '../scripts/eas'))).toBe(false);
     const allowed = ['secrets.GITHUB_TOKEN', 'secrets.ASC_KEY_ID', 'secrets.ASC_ISSUER_ID', 'secrets.ASC_KEY_P8'];
     for (const f of files) {
@@ -75,6 +75,18 @@ describe('workflowy na publicznym repozytorium', () => {
     expect(arch).not.toMatch(/CODE_SIGN_STYLE=Automatic|authenticationKey|allowProvisioningUpdates/);
     const exp = y.slice(y.indexOf('- name: Eksport i wysyłka'), y.indexOf('- name: Usunięcie klucza'));
     expect(exp).toContain('-allowProvisioningUpdates'); expect(exp).toContain('<key>signingStyle</key><string>automatic</string>');
+  });
+  test('asc-iap-localizations.yml (14.10.2026): tylko ręcznie z wejściem tryb (dry-run domyślnie), ubuntu, odczyt treści, klucz maskowany w RUNNER_TEMP i usuwany zawsze, bez zapisów do repozytorium', () => {
+    const y = wf('asc-iap-localizations.yml');
+    expect(y).toMatch(/\non:\n  workflow_dispatch:\n    inputs:\n      tryb:\n/); expect(y).toMatch(/options: \[dry-run, apply\]\n\s+default: dry-run\n/);
+    expect(y).toMatch(/permissions:\n\s+contents: read\n/); expect(y).not.toMatch(/contents: write|pull_request|schedule:|^\s+push:/m);
+    expect(y).toMatch(/runs-on: ubuntu-latest/); expect(y).not.toMatch(/macos|eas-cli|EXPO_TOKEN/);
+    for (const k of ['ASC_KEY_ID', 'ASC_ISSUER_ID', 'ASC_KEY_P8']) expect(y).toContain(`secrets.${k}`);
+    expect(y).toContain('::add-mask::$ASC_KEY_ID'); expect(y).toContain('::add-mask::$ASC_ISSUER_ID'); expect(y).toMatch(/umask 077/);
+    expect(y).not.toMatch(/echo[^\n]*\$\{?ASC_KEY_P8(?!" \|)/); expect(y).not.toMatch(/echo "\$ASC_KEY_(ID|P8)|echo "\$ASC_ISSUER_ID/);
+    expect(y).toMatch(/- name: Usunięcie klucza z maszyny\n\s+if: always\(\)\n\s+run: rm -f "\$RUNNER_TEMP\/AuthKey\.p8"/);
+    expect(y).toMatch(/TRYB: \$\{\{ inputs\.tryb \}\}/); expect(y).not.toMatch(/run:[^\n]*\$\{\{ inputs/); /* wejście tylko przez zmienną środowiskową (bez wstrzyknięcia do powłoki) */
+    expect(y).toMatch(/case "\$TRYB" in dry-run\|apply\)/); expect(y).not.toMatch(/\bDELETE\b/);
   });
   test('deklaracja szyfrowania: aplikacja nie używa szyfrowania poza systemowym (bez pytania przy każdym buildzie w App Store Connect)', () => {
     expect(JSON.parse(readFileSync(join(__dirname, '../app.json'), 'utf8')).expo.ios.infoPlist.ITSAppUsesNonExemptEncryption).toBe(false);
