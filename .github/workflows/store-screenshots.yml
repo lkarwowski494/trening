@@ -1,0 +1,195 @@
+# Zrzuty ekranu iPhone'a do App Store Connect (docs/41-droga-do-app-store.md, 14.10.2026). Tylko ręcznie: Actions → „Zrzuty do App Store” → Run workflow.
+# Rozmiary wymagane przez Apple (developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/, przeczytane 14.10.2026):
+# „iPhone with Dynamic Island (medium display)” — wymagany (iPhone 17 Pro, 1206 × 2622) i „large display” (iPhone 17 Pro Max, 1320 × 2868; bez niego
+# Apple bierze zrzuty 6,5″). iPad nie jest potrzebny (app.json: supportsTablet false). Zegarek: watch-sim.yml (wejście jezyki_zrzutow: all).
+# Dane pokazowe zmyślone (scripts/screens/store-seed.test.ts), bez zmian w kodzie aplikacji: build Release bez sztucznego sklepu i bez udawanego
+# zegarka. Zrzut ekranu zakupu (tylko do przeglądu zakupów w App Store Connect, nie do strony w sklepie): opcjonalnie z aplikacji E2E
+# (e2e-ios.yml ma sztuczny sklep) — wejście zrzut_zakupu_z_przebiegu. Repo publiczne — minuty macOS bez opłat; artefakty 3 dni, bez sekretów.
+name: Zrzuty do App Store
+on:
+  workflow_dispatch:
+    inputs:
+      jezyki:
+        description: 'Języki aplikacji po przecinku (np. "pl,en,de") albo "all" (35 języków, ok. 1 h na rozmiar)'
+        required: false
+        default: 'pl,en'
+      wyglad:
+        description: 'Motyw aplikacji na zrzutach: light albo dark'
+        required: false
+        default: 'light'
+      aplikacja_z_przebiegu:
+        description: 'Numer przebiegu TEGO workflow z gotową aplikacją (artefakt trening-sim-app-sklep, żyje 3 dni); pusty = zbuduj od nowa (~40 min)'
+        required: false
+        default: ''
+      zrzut_zakupu_z_przebiegu:
+        description: 'Numer przebiegu e2e-ios.yml (artefakt trening-sim-app, żyje 1 dzień) — zrzut ekranu zakupu do przeglądu zakupów; pusty = bez tego zrzutu'
+        required: false
+        default: ''
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: store-screenshots-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  dane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Dane pokazowe (zmyślone) dla wszystkich języków
+        env:
+          STORE_SEED_OUT: ${{ github.workspace }}/sklep-dane
+          STORE_SEED_THEME: ${{ inputs.wyglad }}
+        run: npx jest --testMatch "**/scripts/screens/store-seed.test.ts"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sklep-dane
+          retention-days: 3
+          path: sklep-dane
+  build:
+    if: inputs.aplikacja_z_przebiegu == ''
+    runs-on: macos-26
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select Xcode 26.x
+        run: bash scripts/ci/select-xcode.sh 26
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Generate native iOS project (expo prebuild)
+        run: npx expo prebuild --platform ios --no-install --clean
+      - name: Install pods
+        run: cd ios && pod install
+      - name: Platformy iOS i watchOS zgodne z SDK wybranego Xcode
+        run: bash scripts/ci/ensure-ios-platform.sh
+      - name: Build (Release, symulator, bez podpisu) — jak w App Store, bez sztucznego sklepu i zegarka
+        run: |
+          set -o pipefail
+          cd ios
+          xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release \
+            -destination 'generic/platform=iOS Simulator' -derivedDataPath build CODE_SIGNING_ALLOWED=NO \
+            2>&1 | tee xcodebuild.log | xcbeautify
+          test -d build/Build/Products/Release-iphonesimulator/Trening.app
+      - name: Zapis aplikacji (do ponownego użycia)
+        run: cd ios/build/Build/Products/Release-iphonesimulator && zip -qry "$GITHUB_WORKSPACE/Trening-sim.zip" Trening.app
+      - uses: actions/upload-artifact@v4
+        with:
+          name: trening-sim-app-sklep
+          path: Trening-sim.zip
+          retention-days: 3
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: xcodebuild-log-sklep
+          retention-days: 3
+          path: ios/xcodebuild.log
+  zrzuty:
+    name: zrzuty (${{ matrix.rozmiar }})
+    needs: [dane, build]
+    if: ${{ !cancelled() && needs.dane.result == 'success' && (needs.build.result == 'success' || needs.build.result == 'skipped') }}
+    runs-on: macos-26
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - rozmiar: '6.9'   # iPhone with Dynamic Island (large display), 1320 × 2868
+            wzorzec: 'iPhone 17 Pro Max \('
+          - rozmiar: '6.3'   # iPhone with Dynamic Island (medium display) — wymagany, 1206 × 2622
+            wzorzec: 'iPhone 17 Pro \('
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select Xcode 26.x
+        run: bash scripts/ci/select-xcode.sh 26
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          name: sklep-dane
+          path: sklep-dane
+      - uses: actions/download-artifact@v4
+        if: inputs.aplikacja_z_przebiegu != ''
+        with:
+          name: trening-sim-app-sklep
+          run-id: ${{ inputs.aplikacja_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        if: inputs.aplikacja_z_przebiegu == ''
+        with:
+          name: trening-sim-app-sklep
+      - name: Rozpakowanie aplikacji
+        run: mkdir -p app && unzip -q Trening-sim.zip -d app
+      - name: Symulator
+        env:
+          WZORZEC: ${{ matrix.wzorzec }}
+        run: |
+          DEV=$(xcrun simctl list devices available | grep -m1 -E "$WZORZEC" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/' || true)
+          [ -n "$DEV" ] || { echo "::error::Brak symulatora pasującego do wzorca $WZORZEC"; xcrun simctl list devices available | grep -E 'iPhone' | sed -E 's/\([0-9A-F-]{36}\)//'; exit 1; }
+          echo "SIM=$DEV" >> "$GITHUB_ENV"
+          xcrun simctl boot "$DEV" || true
+          xcrun simctl bootstatus "$DEV" -b
+          xcrun simctl install "$DEV" app/Trening.app
+      - name: Zrzuty ekranu
+        env:
+          JEZYKI: ${{ inputs.jezyki }}
+          ROZMIAR: ${{ matrix.rozmiar }}
+        run: bash scripts/ci/store-screenshots.sh "$SIM" "sklep-zrzuty/$ROZMIAR" sklep-dane "$JEZYKI"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sklep-zrzuty-${{ matrix.rozmiar }}
+          retention-days: 3
+          if-no-files-found: ignore
+          path: sklep-zrzuty
+  zakup:
+    name: zrzut ekranu zakupu (przegląd zakupów)
+    needs: dane
+    if: ${{ !cancelled() && needs.dane.result == 'success' && inputs.zrzut_zakupu_z_przebiegu != '' }}
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select Xcode 26.x
+        run: bash scripts/ci/select-xcode.sh 26
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          name: sklep-dane
+          path: sklep-dane
+      - uses: actions/download-artifact@v4
+        with:
+          name: trening-sim-app
+          run-id: ${{ inputs.zrzut_zakupu_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Symulator i aplikacja E2E (sztuczny sklep — tylko do zrzutu dla recenzenta)
+        run: |
+          mkdir -p app && unzip -q Trening-sim.zip -d app
+          DEV=$(xcrun simctl list devices available | grep -m1 -E 'iPhone 17 Pro Max \(' | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/' || true)
+          [ -n "$DEV" ] || { echo "::error::Brak symulatora iPhone 17 Pro Max"; exit 1; }
+          echo "SIM=$DEV" >> "$GITHUB_ENV"
+          xcrun simctl boot "$DEV" || true
+          xcrun simctl bootstatus "$DEV" -b
+          xcrun simctl install "$DEV" app/Trening.app
+      - name: Zrzut ekranu zakupu (pl, en)
+        run: |
+          for l in pl en; do printf '[["zakup","/paywall"]]' > "sklep-dane/routes-$l.json"; done
+          bash scripts/ci/store-screenshots.sh "$SIM" sklep-zakup sklep-dane "pl,en"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sklep-zrzut-zakupu
+          retention-days: 3
+          if-no-files-found: ignore
+          path: sklep-zakup

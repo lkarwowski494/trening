@@ -44,7 +44,7 @@ describe('workflowy na publicznym repozytorium', () => {
   test('decyzja właściciela 08.10.2026 (audyt M4): workflowy EAS usunięte — żaden workflow nie używa Expo ani sekretów spoza klucza App Store Connect', () => {
     const fs = require('fs') as typeof import('fs'); const dir = join(__dirname, '../.github/workflows');
     const files = fs.readdirSync(dir).filter(f => f.endsWith('.yml')).sort();
-    expect(files).toEqual(['asc-iap-localizations.yml', 'e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml', 'watch-sim.yml']);
+    expect(files).toEqual(['asc-iap-localizations.yml', 'e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'store-screenshots.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml', 'watch-sim.yml']);
     expect(fs.existsSync(join(__dirname, '../scripts/eas'))).toBe(false);
     const allowed = ['secrets.GITHUB_TOKEN', 'secrets.ASC_KEY_ID', 'secrets.ASC_ISSUER_ID', 'secrets.ASC_KEY_P8'];
     for (const f of files) {
@@ -140,6 +140,16 @@ describe('polityka prywatności zgodna z kodem', () => {
     expect(hk).toMatch(/requestAuthorization\(\{ toRead: \[\], toShare: \[/); /* zapis: bez odczytu (kontrakt 16.x) */
     expect(hk).toMatch(/requestAuthorization\(\{ toRead: HEALTH_READ_TYPES, toShare: \[\] \}\)/); /* 0.16.0: odczyt osobną zgodą, bez zapisu; strona opisuje odczyt (tests/health-permissions.test.ts) */
   });
+  /* 14.10.2026 (docs/41, przed App Store): 0.20 — zegarek (WatchConnectivity, sesja treningu z tętnem i energią, zapis do Zdrowia) i głos (syntezator iOS) opisane na stronie */
+  test('strona opisuje zegarek i zapowiedzi głosowe tak, jak działa kod (0.20)', () => {
+    const html = readFileSync(join(root, 'site/privacy.html'), 'utf8');
+    const wc = readFileSync(join(root, 'targets/watch-app/WorkoutController.swift'), 'utf8'); const voice = readFileSync(join(root, 'modules/voice-cue/ios/VoiceCueModule.swift'), 'utf8');
+    expect(wc).toMatch(/HKWorkoutSession/); expect(wc).toMatch(/\.heartRate/); expect(wc).toMatch(/\.activeEnergyBurned/); expect(voice).toMatch(/AVSpeechSynthesizer\(\)/);
+    expect(fs.existsSync(join(root, 'targets/watch-app/WatchConnectivityClient.swift'))).toBe(true);
+    for (const w of ['<h2>Apple Watch (opcjonalnie)</h2>', 'WatchConnectivity', 'odczytuje tętno i energię aktywną', 'zapisuje trening siłowy w Apple Health', '<h2>Zapowiedzi głosowe</h2>', 'syntezator mowy iOS na telefonie',
+      '<h2>Apple Watch (optional)</h2>', 'reads heart rate and active energy', 'saves the strength workout to Apple Health', '<h2>Voice cues</h2>', 'iOS speech synthesizer on your phone']) expect(html).toContain(w);
+    expect(html).toContain('(wersja aplikacji 0.20.0)'); expect(html).toContain('(app version 0.20.0)');
+  });
   /* fala 2 audytu 0.10: masa ciała z datą (State.bodyMassLog), Zdrowie — siłowe i cardio z ponowieniem, CSV bez masy ciała, pliki udostępniania usuwane */
   test('strona mówi to, co robi kod: pomiary masy ciała z datą (kopia tak, CSV nie), Zdrowie — siłowe i cardio z ponowieniem, sprzątanie plików udostępniania', () => {
     const html = readFileSync(join(root, 'site/privacy.html'), 'utf8'); const seed = readFileSync(join(root, 'lib/seed.ts'), 'utf8'); const backup = readFileSync(join(root, 'lib/backup.ts'), 'utf8'); const health = readFileSync(join(root, 'lib/health.ts'), 'utf8');
@@ -219,7 +229,7 @@ describe('strona www aplikacji (GitHub Pages)', () => {
     const pl = body.slice(body.indexOf('<h2>Gdy do nas piszesz</h2>'), body.indexOf('<h2>Zmiany i kontakt</h2>')); const en = body.slice(body.indexOf('<h2>When you write to us</h2>'), body.indexOf('<h2>Changes and contact</h2>'));
     for (const w of ['Łukasz Karwowski, osoba fizyczna', 'support@apps4brew.com', 'adres e-mail, treść wiadomości, załączniki', 'wersja aplikacji i iOS', 'art. 6 ust. 1 lit. f RODO', '12 miesięcy od zamknięcia sprawy', 'Porkbun', 'Google (Gmail, Dysk)', 'dostawca narzędzi AI', 'dostęp do danych, sprostowanie, usunięcie, sprzeciw', 'PUODO', 'Aplikacja nadal niczego nie wysyła — e-mail wysyłasz Ty, swoją pocztą']) expect(pl).toContain(w);
     for (const w of ['Łukasz Karwowski, a natural person', 'support@apps4brew.com', 'email address, the message text, attachments', 'app and iOS versions', 'Article 6(1)(f) GDPR', '12 months after the case is closed', 'Porkbun', 'Google (Gmail, Drive)', 'provider of the AI tools', 'access, rectification, erasure, objection', 'PUODO', 'The app still sends nothing — you send the email, from your own mail app']) expect(en).toContain(w);
-    expect(h).toContain('Obowiązuje od 13 października 2026 r.'); expect(h).toContain('Effective 13 October 2026'); expect(h).not.toContain('12 października 2026');
+    expect(h).toContain('Obowiązuje od 14 października 2026 r.'); expect(h).toContain('Effective 14 October 2026'); expect(h).not.toContain('12 października 2026'); /* 14.10.2026: zegarek i głos (0.20) */
   });
 
   test('FAQ wsparcia zgodne z kodem: ścieżki menu i nazwy przycisków istnieją w tekstach aplikacji', () => {
