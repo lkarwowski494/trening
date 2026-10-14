@@ -1093,5 +1093,5 @@ export const EN: Record<string, string> = {
   'kilogram|kilogramy|kilogramów': 'kilogram|kilograms', 'funt|funty|funtów': 'pound|pounds', 'kilograma': 'kilograms', 'funta': 'pounds',
   /* głos: metry i czas słowami (restCue.speech); „metra” = forma przy ułamku (CLDR) */
   'metr|metry|metrów': 'metre|metres', 'metra': 'metres', 'sekunda|sekundy|sekund': 'second|seconds', 'godzina|godziny|godzin': 'hour|hours',
-  'Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność → Treści mówione → Głosy).': 'This phone has no voice for the app language. Download one in iOS Settings (Accessibility → Spoken Content → Voices).',
+  'Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).': 'This phone has no voice for the app language. Download one in iOS Settings (Accessibility).',
 };

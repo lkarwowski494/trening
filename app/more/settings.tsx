@@ -41,7 +41,7 @@ export default function SettingsScreen() {
       <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; saveCfg(); timer.refreshScheduled().catch(() => {}); timer.refreshStale().catch(() => {}); }} />
       <SwitchRow label={t('Głos także przez głośnik telefonu')} detail={t('W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.')} value={s.voiceSpeaker === true} onChange={v => { if (v) s.voiceSpeaker = true; else delete s.voiceSpeaker; saveCfg(); }} />
       <Btn title={t('Posłuchaj przykładu')} small onPress={() => { sampleVoice().catch(() => {}); }} />
-      {!voiceAvailable() ? <Muted style={{ fontSize: 13, marginTop: 4, marginBottom: 8 }}>{t('Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność → Treści mówione → Głosy).')}</Muted> : null}
+      {!voiceAvailable() ? <Muted style={{ fontSize: 13, marginTop: 4, marginBottom: 8 }}>{t('Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).')}</Muted> : null}
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; saveCfg(); }} />
       <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; saveCfg(); }} />
       {s.showRpe ? <>

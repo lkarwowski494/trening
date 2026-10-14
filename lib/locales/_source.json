@@ -596,8 +596,8 @@
   "en": "No data from Apple Health for this day. If there should be some, check access in the Health app: profile → Apps → {app}."
  },
  {
-  "pl": "Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność → Treści mówione → Głosy).",
-  "en": "This phone has no voice for the app language. Download one in iOS Settings (Accessibility → Spoken Content → Voices)."
+  "pl": "Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).",
+  "en": "This phone has no voice for the app language. Download one in iOS Settings (Accessibility)."
  },
  {
   "pl": "Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.",
