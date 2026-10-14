@@ -101,21 +101,25 @@ name: Kalendarz z planem tygodnia
 - tapOn: "Set place"
 - extendedWaitUntil: { visible: "Workout place: Hotel", timeout: 15000 }
 - takeScreenshot: 61a-miejsce-dnia
-- tapOn: "More options"
-- tapOn: "📍 Place for these days"
-- extendedWaitUntil: { visible: "Remove place", timeout: 15000 }
-- scrollUntilVisible: { element: "Remove place", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "Remove place"
-- assertNotVisible: "Workout place: Hotel"
+# --- 14.10.2026 (decyzja właściciela): miejsce należy do DATY — przesunięcie planu o 1 dzień zmienia trening dnia, nie miejsce ---
 - tapOn: "Move or skip"
 - extendedWaitUntil: { visible: "Days changed: .*", timeout: 15000 }
 - takeScreenshot: 64-propozycje
 - scrollUntilVisible: { element: "Apply: Move plan by 1 day", direction: DOWN, timeout: 30000, centerElement: true }  # 13.10.2026: w niedzielę/poniedziałek lista przesunięć dłuższa — przycisk pod krawędzią
 - tapOn: "Apply: Move plan by 1 day"
 - extendedWaitUntil: { visible: "Rest · plan changed", timeout: 15000 }
+- extendedWaitUntil: { visible: "Workout place: Hotel", timeout: 15000 }  # dzień jest już wolny, a miejsce zostało przy dacie
 - tapOn: "More options"
 - tapOn: "Restore from plan"
 - extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
+- extendedWaitUntil: { visible: "Workout place: Hotel", timeout: 15000 }  # „Przywróć z planu” też nie rusza miejsca
+# --- „Remove place” przywraca miejsce domyślne ---
+- tapOn: "More options"
+- tapOn: "📍 Place for these days"
+- extendedWaitUntil: { visible: "Remove place", timeout: 15000 }
+- scrollUntilVisible: { element: "Remove place", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Remove place"
+- assertNotVisible: "Workout place: Hotel"
 # --- Ekran treningu: „Today: Upper A” i start ---
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "Today: Upper A", timeout: 30000 }

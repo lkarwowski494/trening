@@ -1489,9 +1489,10 @@
    "realnosc": "realny",
    "kroki": [
     "Panel dnia → „Więcej opcji” → „Miejsce na te dni” → wybierz → „Ustaw miejsce”",
+    "„Przesuń albo pomiń” → „Przesuń plan o 1 dzień” oraz „Przywróć z planu” (miejsce zostaje przy dacie)",
     "„Usuń miejsce”"
    ],
-   "wynik": "Start w tych dniach ma miejsce z planu; po usunięciu wraca główne.",
+   "wynik": "Start w tych dniach ma miejsce z planu; przesunięcie treningu nie przenosi miejsca (należy do daty); po usunięciu wraca główne.",
    "ekrany": [
     "/history",
     "/place-once"

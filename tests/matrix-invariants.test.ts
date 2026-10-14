@@ -123,6 +123,8 @@ const PAST_FROZEN = new Set<K>(['planPlace', 'planPlaceClear', 'planDay', 'planD
 
 /* ---------- pomocnicze ---------- */
 const J = (x: unknown) => JSON.stringify(x);
+/** Działania na planie, które zmieniają CO trenuje się danego dnia — nigdy GDZIE (planPlaces); aktywacja planu zapisanego odtwarza miejsca planu, więc poza zbiorem. */
+const PP_BY_DATE = new Set<string>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planSwap', 'planReset', 'planSuggest']);
 const S = () => store.getState();
 const pick = <T,>(arr: readonly T[], i: number): T | undefined => (arr.length ? arr[i % arr.length] : undefined);
 /* Znalezisko 1 naprawione 06.10 (store.restoreExercise) — porównania I1 / restart / import bez wyjątków. */
@@ -221,6 +223,7 @@ async function step(x: Act, m: Model, where: string) {
   /* audyt 0.10 A1: statusy minionych 21 dni przed działaniem (porównanie po nim — PAST_FROZEN) */
   const today = plan.dayKeyOf(Date.now()); const pastKeys = Array.from({ length: 21 }, (_, i) => plan.addDays(today, -(i + 1)));
   const pastBefore = PAST_FROZEN.has(x.t) ? pastKeys.map(k => J(plan.dayStatus(k, today))) : null; let pastTouched: string | null = null;
+  const ppBefore = PP_BY_DATE.has(x.t) ? J(st.planPlaces ?? {}) : null; /* 14.10.2026: miejsce dni zostaje przy dacie */
 
   switch (x.t) {
     /* ===== szablony (jawne edycje) ===== */
@@ -518,6 +521,7 @@ async function step(x: Act, m: Model, where: string) {
     case 'resetAll': { store.resetAll(); await store.flush(); store.setTimerState(blankTimer()); ok(!S().templates.length && !S().workouts.length && !S().active, where, 'reset: bez szablonów, historii i treningu'); snap(m); hit('resetAll'); break; }
   }
 
+  if (ppBefore !== null) ok(J(S().planPlaces ?? {}) === ppBefore, where, 'przesunięcie / zmiana / zamiana / powrót dnia zmieniły miejsca dni (miejsce zostaje przy dacie, 14.10.2026)', { was: ppBefore, now: S().planPlaces });
   if (pastBefore) { const after = pastKeys.map(k => J(plan.dayStatus(k, today))); const changed = pastKeys.filter((k, i) => after[i] !== pastBefore[i] && k !== pastTouched);
     ok(!changed.length, where, 'działanie zmieniło status minionego dnia (audyt 0.10 A1 — plan nie obowiązuje wstecz)', changed.map(k => [k, JSON.parse(pastBefore[pastKeys.indexOf(k)]), plan.dayStatus(k, today)])); }
   if (TPL_EDIT.has(x.t)) m.tpl = J(S().templates);
