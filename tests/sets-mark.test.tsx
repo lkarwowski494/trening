@@ -27,8 +27,8 @@ test('liczba w jednym miejscu (10) ze źródłem i cytatem przy stałej', () => 
 describe('ekran Postępy', () => {
   test('12 serii klatki: VoiceOver „co najmniej 10”; kreska w połowie skali przy 20; opis ze źródłem', async () => {
     await boot(() => { bench(12); });
-    expect(screen.getByLabelText(/^klatka: 12 \(poprz\. 0\), cel 10, co najmniej 10$/)).toBeTruthy();
-    expect(screen.getByLabelText(/^triceps: 0 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\) \(poprz\. 0\), cel 10$/)).toBeTruthy(); /* pomocnicza 0,5 × 12 — poniżej kreski, bez dopisku */
+    expect(screen.getByLabelText(/^klatka: Ten tydzień 12, Poprzedni tydzień 0 \(brak danych\), cel 10, co najmniej 10$/)).toBeTruthy();
+    expect(screen.getByLabelText(/^triceps: Ten tydzień 0 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), Poprzedni tydzień 0 \(brak danych\), cel 10$/)).toBeTruthy(); /* pomocnicza 0,5 × 12 — poniżej kreski, bez dopisku */
     expect(screen.getByText('Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień.' + ' ' + 'Stanowisko ACSM 2026: przy co najmniej 10 seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.' + ' ' + 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).' + ' ' + 'Uproszczenie: drop set liczy się razem z serią, po której jest.')).toBeTruthy(); /* D3 (audyt 0.10): dopisane uproszczenie drop setu */
     await boot(() => { bench(20); }); expect(screen.getByTestId('mark-klatka').props.style.left).toBe('50%');
   });
@@ -40,7 +40,7 @@ describe('ekran Postępy', () => {
   });
   test('English', async () => {
     await boot(() => { bench(12); }, 'en');
-    expect(screen.getByLabelText(/^chest: 12 \(prev\. 0\), .*10, at least 10$/)).toBeTruthy();
+    expect(screen.getByLabelText(/^chest: This week 12, Last week 0 \(no data\), goal 10, at least 10$/)).toBeTruthy();
     expect(screen.getByText(/^Line = weekly goal of sets per muscle group: 10 automatically, or your own number from Settings\. ACSM 2026 position stand/)).toBeTruthy();
   });
 });

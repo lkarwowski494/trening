@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Sinds 0.10: opgeruimde oefeningenbibliotheek — vergelijkbare varianten samengevoegd, zeldzamere zie je als je het filter ‘Basis’ uitzet (je trainingen blijven gelijk); lichaamsgewicht met datum en e1RM bij optrekken en opdrukken, techniektips met een tekening van de beweging, ‘Bewaar als sjabloon’ in de geschiedenis.",
  "9 nowych języków: {list}.": "9 nieuwe talen: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 talen; de taal wijzig je in Instellingen.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "‘+?’ — in de geplande sjablonen hebben {n} {s} geen gewicht of herhalingen (en geen ‘Vorige’): ze tellen als sets, maar niet mee voor het volume.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "‘≥’ — in de geplande sjablonen hebben {n} {s} geen gewicht of herhalingen (en geen ‘Vorige’): ze tellen als sets, maar niet mee voor het volume.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "‘Sjablonen en plan genereren’ (Sjablonen of Planning): kies doel, plek, aantal en duur van sessies.",
  "{cur} wobec {prev}": "{cur} ten opzichte van {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, eerste resultaat",
@@ -1608,5 +1608,10 @@
  "Pomysł": "Idee",
  "Czego brakuje:": "Wat ontbreekt er:",
  "W jakiej sytuacji na treningu:": "In welke situatie tijdens de training:",
- "Czego Ci brakuje? Poproś o funkcję": "Mis je iets? Vraag een functie aan"
+ "Czego Ci brakuje? Poproś o funkcję": "Mis je iets? Vraag een functie aan",
+ "Ten miesiąc": "Deze maand",
+ "2 tyg. temu": "2 weken geleden",
+ "brak danych": "geen gegevens",
+ "brak poprzedniego okresu": "geen vorige periode",
+ "część zaplanowanych serii nie ma ciężaru": "sommige geplande sets hebben geen gewicht"
 }

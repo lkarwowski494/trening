@@ -152,23 +152,25 @@ name: Pierwszy tydzień nowego użytkownika
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "3 sessions", timeout: 30000 }
 - takeScreenshot: 87-historia-trzy-sesje
-# --- ekran Trening po pierwszym tygodniu: „Ten tydzień”, brak „Pierwszych kroków”, kafelki progresji ---
+# --- ekran Trening po pierwszym tygodniu: „Ten tydzień”, brak „Pierwszych kroków”; bez sekcji „Progression” (14.10.2026: jest w Postępach) ---
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "This week", timeout: 30000 }
 - assertNotVisible: "First steps"
 - assertVisible: "Workouts: [1-9];.*"
+- assertNotVisible: "Progression"
 - takeScreenshot: 88-ten-tydzien
-- scrollUntilVisible: { element: { id: "progress-tile-week" }, direction: DOWN, timeout: 60000, centerElement: true }
-- tapOn: { id: "progress-tile-week" }
-- extendedWaitUntil: { visible: "Progression", timeout: 30000 }
-- takeScreenshot: 89-progresja
-- tapOn: "Back"
 # --- Postępy: podsumowanie i rekordy ćwiczenia ---
 - tapOn: "Progress, tab.*"
 - extendedWaitUntil: { visible: "Summary", timeout: 30000 }
 - assertVisible: "Workouts: [1-9].*, previously .*"
 - takeScreenshot: 90-postepy
 - assertVisible: "Muscle map: .*"
+# kafelki „Progression” (te same trzy porównania co dawniej na ekranie Trening) → szczegóły z dwoma słupkami na partię
+- scrollUntilVisible: { element: { id: "progress-tile-week" }, direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: { id: "progress-tile-week" }
+- extendedWaitUntil: { visible: "Progression", timeout: 30000 }
+- takeScreenshot: 89-progresja
+- tapOn: "Back"
 - scrollUntilVisible: { element: "Back Squat", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Back Squat"
 - extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }

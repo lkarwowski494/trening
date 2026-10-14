@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "От 0.10: подредена библиотека с упражнения — сходните варианти са обединени, по-рядко срещаните се виждат след изключване на филтъра „Основни“ (вашите тренировки са без промяна); телесно тегло с дата и e1RM при набирания и лицеви опори, съвети за техника с рисунка на движението, „Запази като шаблон“ в историята.",
  "9 nowych języków: {list}.": "9 нови езика: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 езика; езикът се сменя в Настройки.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "„+?“ — в планираните шаблони има {n} {s} без тежест и повторения (и без „Предишно“): броят се като серии, но не в обема.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "„≥“ — в планираните шаблони има {n} {s} без тежест и повторения (и без „Предишно“): броят се като серии, но не в обема.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "„Генерирай шаблони и план“ (Шаблони или Планиране): избери цел, място, брой и продължителност на сесиите.",
  "{cur} wobec {prev}": "{cur} спрямо {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, първи резултат",
@@ -1608,5 +1608,10 @@
  "Pomysł": "Идея",
  "Czego brakuje:": "Какво липсва:",
  "W jakiej sytuacji na treningu:": "В каква ситуация по време на тренировка:",
- "Czego Ci brakuje? Poproś o funkcję": "Какво ти липсва? Поискай функция"
+ "Czego Ci brakuje? Poproś o funkcję": "Какво ти липсва? Поискай функция",
+ "Ten miesiąc": "Този месец",
+ "2 tyg. temu": "преди 2 седмици",
+ "brak danych": "няма данни",
+ "brak poprzedniego okresu": "няма предишен период",
+ "część zaplanowanych serii nie ma ciężaru": "някои планирани серии нямат тежест"
 }

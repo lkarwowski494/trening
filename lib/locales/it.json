@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Dalla 0.10: libreria degli esercizi riordinata — varianti simili unite, quelle più rare compaiono disattivando il filtro «Di base» (i tuoi allenamenti non cambiano); peso corporeo con data ed e1RM in trazioni e piegamenti, consigli di tecnica con disegno del movimento, «Salva come scheda» nella cronologia.",
  "9 nowych języków: {list}.": "9 nuove lingue: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 lingue; la lingua si cambia nelle Impostazioni.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«+?» — nelle schede pianificate {n} {s} non hanno peso né ripetizioni (e nessun «Precedente»): contano come serie, ma non nel volume.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«≥» — nelle schede pianificate {n} {s} non hanno peso né ripetizioni (e nessun «Precedente»): contano come serie, ma non nel volume.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "«Genera schede e piano» (Schede o Pianificazione): scegli obiettivo, luogo, numero e durata delle sessioni.",
  "{cur} wobec {prev}": "{cur} rispetto a {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, primo risultato",
@@ -1608,5 +1608,10 @@
  "Pomysł": "Idea",
  "Czego brakuje:": "Cosa manca:",
  "W jakiej sytuacji na treningu:": "In quale situazione durante l’allenamento:",
- "Czego Ci brakuje? Poproś o funkcję": "Cosa ti manca? Richiedi una funzione"
+ "Czego Ci brakuje? Poproś o funkcję": "Cosa ti manca? Richiedi una funzione",
+ "Ten miesiąc": "Questo mese",
+ "2 tyg. temu": "2 settimane fa",
+ "brak danych": "nessun dato",
+ "brak poprzedniego okresu": "nessun periodo precedente",
+ "część zaplanowanych serii nie ma ciężaru": "alcune serie pianificate non hanno il peso"
 }

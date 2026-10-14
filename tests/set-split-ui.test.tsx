@@ -96,15 +96,15 @@ describe('Postępy: porównanie tygodni (ten vs poprzedni) — odcinki, podpis, 
     await boot(bench, '/progress');
     expect(el('cbar-triceps-indirect')).not.toBeNull(); expect(el('cbar-triceps-direct')).toBeNull(); expect(el('cbar-klatka-direct')).not.toBeNull(); expect(el('cbar-klatka-indirect')).toBeNull();
     expect(el('cbar-barki-direct')).not.toBeNull(); expect(el('cbar-barki-indirect')).not.toBeNull();
-    expect(screen.getByLabelText('triceps: 0 bezpośrednio, 6 pośrednio (serie pomocnicze: 12) (poprz. 0), cel 10')).toBeTruthy();
-    expect(screen.getByLabelText('klatka: 12 (poprz. 0), cel 10, co najmniej 10')).toBeTruthy();
-    expect(screen.getByText(/^0 \+ 6 pośrednio \(12 serii\) \/ 10 \(poprz\. 0\)$/)).toBeTruthy(); expect(screen.getByText(/^5 \+ 6 pośrednio \(12 serii\) \/ 10 \(poprz\. 0\)$/)).toBeTruthy();
+    expect(screen.getByLabelText('triceps: Ten tydzień 0 bezpośrednio, 6 pośrednio (serie pomocnicze: 12), Poprzedni tydzień 0 (brak danych), cel 10')).toBeTruthy();
+    expect(screen.getByLabelText('klatka: Ten tydzień 12, Poprzedni tydzień 0 (brak danych), cel 10, co najmniej 10')).toBeTruthy();
+    expect(screen.getByText(/^0 \+ 6 pośrednio \(12 serii\) \/ 10$/)).toBeTruthy(); expect(screen.getByText(/^5 \+ 6 pośrednio \(12 serii\) \/ 10$/)).toBeTruthy();
     expect(el('seg-legend-indirect')).not.toBeNull();
     expect(style('cbar-barki-direct').width).toBe(`${(100 * 5) / 11}%`); expect(style('cbar-barki-indirect').borderColor).toBe(light.accent);
   });
   test('bez serii pośrednich: brak legendy i odcinka pośredniego', async () => {
     await boot(onlyDirect, '/progress'); expect(el('seg-legend-indirect')).toBeNull(); expect(el('cbar-barki-indirect')).toBeNull(); expect(el('cbar-barki-direct')).not.toBeNull();
-    expect(screen.getByLabelText('barki: 5 (poprz. 0), cel 10')).toBeTruthy();
+    expect(screen.getByLabelText('barki: Ten tydzień 5, Poprzedni tydzień 0 (brak danych), cel 10')).toBeTruthy();
   });
   test('podsumowanie okresu: mapa mięśni opisuje obie wartości (kolor wg sumy ważonej)', async () => {
     await boot(bench, '/progress'); const lbl = screen.getAllByTestId('muscle-map').map(n => n.props.accessibilityLabel as string).join(' | ');
@@ -116,12 +116,12 @@ describe('Progresja: paski serii per partia (tydzień — z celem, miesiąc — 
   test('tydzień: odcinki, podpisy z celem, legenda; miesiąc: odcinki i podpis bez celu', async () => {
     await boot(bench, '/progression?c=week');
     expect(el('pbar-sets-triceps-done-indirect')).not.toBeNull(); expect(el('pbar-sets-triceps-done-direct')).toBeNull(); expect(el('seg-legend-indirect')).not.toBeNull();
-    expect(within(screen.getByTestId('prow-sets-triceps')).getByText(/^0 \+ 6 pośrednio \(12 serii\) \/ 10 /)).toBeTruthy();
-    expect(screen.getByTestId('prow-sets-triceps').props.accessibilityLabel).toMatch(/^triceps: 0 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), cel 10, poprz\. 0/);
+    expect(within(screen.getByTestId('prow-sets-triceps')).getByText(/^0 \+ 6 pośrednio \(12 serii\) \/ 10$/)).toBeTruthy();
+    expect(screen.getByTestId('prow-sets-triceps').props.accessibilityLabel).toMatch(/^triceps: Ten tydzień 0 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), Poprzedni tydzień 0 \(brak danych\), cel 10/);
     await boot(bench, '/progression?c=month');
     expect(el('pbar-sets-triceps-done-indirect')).not.toBeNull(); expect(within(get('prow-sets-triceps')).queryByTestId('pbar-sets-triceps-mark', { includeHiddenElements: true })).toBeNull(); /* miesiąc: bez kresek celu */
-    expect(within(screen.getByTestId('prow-sets-triceps')).getByText(/^0 \+ 6 pośrednio \(12 serii\) \(poprz\./)).toBeTruthy();
-    expect(screen.getByTestId('prow-sets-triceps').props.accessibilityLabel).toMatch(/^triceps: 0 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), poprz\. 0/); /* bez celu */
+    expect(within(screen.getByTestId('prow-sets-triceps')).getByText(/^0 \+ 6 pośrednio \(12 serii\)$/)).toBeTruthy();
+    expect(screen.getByTestId('prow-sets-triceps').props.accessibilityLabel).toMatch(/^triceps: Ten miesiąc 0 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), Poprzedni miesiąc 0 \(brak danych\)/); /* bez celu */
   });
   test('ciemny motyw: ten sam układ i kolory z palety ciemnej', async () => {
     await boot(bench, '/progression?c=week', 'pl', 'dark');

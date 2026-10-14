@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Siden 0.10: ryddigere øvelsesbibliotek — like varianter slått sammen, sjeldnere vises når du slår av filteret «Grunnleggende» (øktene dine er uendret); kroppsvekt med dato og e1RM i pull-ups og armhevinger, teknikktips med tegning av bevegelsen, «Lagre som mal» i historikken.",
  "9 nowych języków: {list}.": "9 nye språk: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 språk; bytt språk i Innstillinger.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«+?» — i de planlagte malene har {n} {s} ingen vekt eller repetisjoner (og ingen «Forrige»): de teller som sett, men ikke i volumet.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«≥» — i de planlagte malene har {n} {s} ingen vekt eller repetisjoner (og ingen «Forrige»): de teller som sett, men ikke i volumet.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "«Generer maler og plan» (Maler eller Planlegging): velg mål, sted, antall og lengde på økter.",
  "{cur} wobec {prev}": "{cur} sammenlignet med {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, første resultat",
@@ -1608,5 +1608,10 @@
  "Pomysł": "Idé",
  "Czego brakuje:": "Hva mangler:",
  "W jakiej sytuacji na treningu:": "I hvilken situasjon under treningen:",
- "Czego Ci brakuje? Poproś o funkcję": "Savner du noe? Be om en funksjon"
+ "Czego Ci brakuje? Poproś o funkcję": "Savner du noe? Be om en funksjon",
+ "Ten miesiąc": "Denne måneden",
+ "2 tyg. temu": "for 2 uker siden",
+ "brak danych": "ingen data",
+ "brak poprzedniego okresu": "ingen tidligere periode",
+ "część zaplanowanych serii nie ma ciężaru": "noen planlagte sett mangler vekt"
 }

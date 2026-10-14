@@ -814,7 +814,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* serie per partia: każdy wiersz na ekranie = liczby ze store (ten tydzień i poprzedni) */
     const cur = stats.weeklySetsByMuscle(stats.thisMonday()), prev = stats.weeklySetsByMuscle(stats.thisMonday(-1)); const { splitText, emptySplit } = require('@/lib/setSplit'); const split = stats.weeklySplitByMuscle(stats.thisMonday()); /* 13.10.2026: podpis z podziałem bezpośrednio / pośrednio i celem */
     const mus = Object.keys({ ...cur, ...prev }).filter(m => (cur[m] ?? 0) > 0 || (prev[m] ?? 0) > 0); expect(mus).toEqual(expect.arrayContaining(['klatka', 'barki', 'plecy', 'biceps', 'core']));
-    for (const m of mus) expect(screen.getAllByText(`${splitText(split[m] ?? emptySplit(), stats.setsGoal(m))} (poprz. ${fmtNum(prev[m] ?? 0, 1)})`).length).toBeGreaterThan(0);
+    for (const m of mus) { expect(screen.getAllByText(splitText(split[m] ?? emptySplit(), stats.setsGoal(m))).length).toBeGreaterThan(0); expect(screen.getAllByText(prev[m] ? fmtNum(prev[m], 1) : /^0( \(brak danych\))?$/).length).toBeGreaterThan(0); /* 14.10.2026: okres 2 w osobnym wierszu pod słupkiem */ }
     expect((cur.klatka ?? 0) + (prev.klatka ?? 0)).toBeGreaterThan(0);
     /* wybór ćwiczenia: najpierw te z historią */
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'bench press (h'); await tap(screen.getByLabelText('Bench Press (hantle)')); await flushAll(10);

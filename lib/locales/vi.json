@@ -1324,7 +1324,7 @@
  "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.": "“Kỹ thuật”: mẹo bài tập cũng mở được từ buổi tập và từ mẫu.",
  "9 nowych języków: {list}.": "9 ngôn ngữ mới: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 ngôn ngữ; đổi ngôn ngữ trong Cài đặt.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "“+?” — trong các mẫu theo kế hoạch, {n} {s} không có mức tạ và số lần lặp (và không có “Lần trước”): được tính là hiệp nhưng không tính vào khối lượng.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "“≥” — trong các mẫu theo kế hoạch, {n} {s} không có mức tạ và số lần lặp (và không có “Lần trước”): được tính là hiệp nhưng không tính vào khối lượng.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "“Tạo mẫu và kế hoạch” (Mẫu hoặc Lên kế hoạch): chọn mục tiêu, địa điểm, số buổi và thời lượng mỗi buổi.",
  "{cur} wobec {prev}": "{cur} so với {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, kết quả đầu tiên",
@@ -1608,5 +1608,10 @@
  "Pomysł": "Ý tưởng",
  "Czego brakuje:": "Còn thiếu gì:",
  "W jakiej sytuacji na treningu:": "Trong tình huống nào khi tập:",
- "Czego Ci brakuje? Poproś o funkcję": "Bạn còn thiếu gì? Đề xuất tính năng"
+ "Czego Ci brakuje? Poproś o funkcję": "Bạn còn thiếu gì? Đề xuất tính năng",
+ "Ten miesiąc": "Tháng này",
+ "2 tyg. temu": "2 tuần trước",
+ "brak danych": "không có dữ liệu",
+ "brak poprzedniego okresu": "không có kỳ trước",
+ "część zaplanowanych serii nie ma ciężaru": "một số hiệp dự kiến chưa có mức tạ"
 }

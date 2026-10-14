@@ -1324,7 +1324,7 @@
  "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.": "「テクニック」：種目のヒントはトレーニング中やテンプレートからも開けます。",
  "9 nowych języków: {list}.": "9つの新しい言語：{list}。",
  "35 języków; język zmienisz w Ustawieniach.": "35の言語。言語は設定で変更できます。",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "「+?」— 予定のテンプレートでは、{n} {s}に重量と回数がなく（「前回」もありません）、セット数には数えますが、ボリュームには含めません。",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "「≥」— 予定のテンプレートでは、{n} {s}に重量と回数がなく（「前回」もありません）、セット数には数えますが、ボリュームには含めません。",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "「テンプレートとプランを作成」（テンプレートまたはプランニング）：目標、場所、回数とセッションの長さを選びます。",
  "{cur} wobec {prev}": "{cur}、{prev} と比較",
  "{label} {value}, pierwszy wynik": "{label} {value}、初回の結果",
@@ -1608,5 +1608,10 @@
  "Pomysł": "アイデア",
  "Czego brakuje:": "足りないもの:",
  "W jakiej sytuacji na treningu:": "トレーニング中のどんな場面か:",
- "Czego Ci brakuje? Poproś o funkcję": "足りないものは？ 機能をリクエスト"
+ "Czego Ci brakuje? Poproś o funkcję": "足りないものは？ 機能をリクエスト",
+ "Ten miesiąc": "今月",
+ "2 tyg. temu": "2週間前",
+ "brak danych": "データなし",
+ "brak poprzedniego okresu": "前の期間なし",
+ "część zaplanowanych serii nie ma ciężaru": "重量のない予定セットがあります"
 }

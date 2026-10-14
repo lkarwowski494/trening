@@ -5,7 +5,7 @@
  */
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
-import { estimateTemplate, plannedRest, compare, compareCached } from '@/lib/progress';
+import { estimateTemplate, plannedRest, compare, compareCached, pctText, signedNum } from '@/lib/progress';
 import { weeklyVolumeByMuscle, weeklySetsByMuscle, volumeByMuscle, setsByMuscle, thisMonday } from '@/lib/stats';
 import { periodSummary, periodRange, totals } from '@/lib/period';
 import { uid, type Template, type TRow, type SetKind } from '@/lib/seed';
@@ -156,4 +156,10 @@ describe('niezmienniki: te same definicje co reszta aplikacji', () => {
     const a = tpl('A', ['Back Squat', [row(5, 100)]]); setPlan({ 3: a }); store.startFromTemplate(a);
     expect(compare('week', NOW.getTime()).done.sets).toBe(0); expect(plannedRest(NOW.getTime()).workouts).toBe(1);
   });
+});
+
+describe('pctText i signedNum (14.10.2026: procent i różnica bezwzględna; pusty poprzedni okres = „brak poprzedniego okresu”)', () => {
+  test.each([[null, 'brak poprzedniego okresu'], [30, '+30%'], [-12, '−12%'], [0, '0%'], [191, '+191%']] as const)('pctText(%s) = %s', (p, want) => { expect(pctText(p)).toBe(want); });
+  test.each([[35, '+35'], [-3, '−3'], [0, '0']] as const)('signedNum(%s) = %s', (n, want) => { expect(signedNum(n)).toBe(want); });
+  test('signedNum z formaterem: znak przed wartością bezwzględną', () => { expect(signedNum(-300, v => `${v} kg`)).toBe('−300 kg'); expect(signedNum(300, v => `${v} kg`)).toBe('+300 kg'); expect(signedNum(0, v => `${v} kg`)).toBe('0 kg'); });
 });
