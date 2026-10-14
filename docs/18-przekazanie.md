@@ -213,7 +213,7 @@ logika `lib/csvparse.ts`/`lib/csvimport.ts`, testy `csv-import-logic`/`csv-impor
 - **Ekran Trening („Ten tydzień”, wariant C):** sylwetka przód + tył w kolorach PROGRESU per partia (`lib/guard.ts` → `components/Guard.tsx`), legenda z pełnymi słowami (zawija się), najwyżej dwa zdania
   („Poniżej celu nawet z planem: dwugłowe (3/10), przywodziciele (4,5/10).” albo „Z planem wszystkie trenowane partie dojdą do celu.”; „Mniej niż przed tygodniem: …” tylko przy spadkach) i przycisk
   „Szczegóły w Postępach ›”. Lista pasków i serie pośrednie zniknęły z ekranu Trening (są w Postępach). W tygodniu deloadu zamiast legendy i zdań: „Tydzień deloadu — bez porównania”.
-- **Postępy → „Partie w tym tygodniu”:** sylwetka jak na Trening + wiersze rozwijane (poniżej celu — największa luka pierwsza, mniej, bez porównania, tyle samo, nowe, więcej; na końcu „Bez serii: …”).
+- **Postępy → „Strażnik progresji”:** sylwetka jak na Trening + wiersze rozwijane (poniżej celu — największa luka pierwsza, mniej, bez porównania, tyle samo, nowe, więcej; na końcu „Bez serii: …”).
   Stuknięcie wiersza: wykonane (bezpośrednio + pośrednio „po 0,5”), zaplanowane z dniami, porównywane ćwiczenia (tonaż na sesję i ciężar roboczy teraz / wcześniej), „Pominięte (bez punktu odniesienia)”.
   Przycisk z Trening otwiera `/progress?s=guard` i przewija do sekcji.
 - **Reguły (konwencje produktu, nie twierdzenia dziedzinowe; badacz: brak konsensusu co do tempa, tonaż bez danych dawka–odpowiedź, „10%” to reguła z biegania):** tylko kierunek, bez progów procentowych;
@@ -226,5 +226,10 @@ logika `lib/csvparse.ts`/`lib/csvimport.ts`, testy `csv-import-logic`/`csv-impor
   (alternatywa: mediana serii); (3) po przerwie bez treningów porównujemy z poprzednim tygodniem kalendarzowym (pusty → „nowe”), nie z ostatnim tygodniem z treningiem; (4) zasięg wstecz po deloadzie
   `GUARD_DELOAD_LOOKBACK_WEEKS` = 8 (brak źródła); (5) „i jeszcze N” zamiast „i N inne” (bez odmiany przez przypadki w 31 językach); (6) objaśnienie metody jest na razie widoczne w sekcji Postępów
   (4 krótkie akapity) — zostaje przenieść pod ⓘ w osobnym zadaniu.
-- Nowe teksty do przeglądu tłumacza (38 kluczy × 31 słowników + nakładka pt-BR): „tyle samo”, „bez porównania”, „bez serii”, „nowe”, zdania strażnika, „Partie w tym tygodniu”, wiersze i rozwinięcie Postępów (patrz `lib/i18n.en.ts`,
+- Nowe teksty do przeglądu tłumacza (38 kluczy × 31 słowników + nakładka pt-BR): „tyle samo”, „bez porównania”, „bez serii”, „nowe”, zdania strażnika, „Strażnik progresji”, wiersze i rozwinięcie Postępów (patrz `lib/i18n.en.ts`,
   blok „strażnik progresji”); usunięte 5 martwych kluczy sylwetki i pasków z ekranu Trening. Tłumaczenia wykonał programista — do sprawdzenia przez native speakerów (szczególnie: tonaż, deload, ja/ko/zh-Hant, fi/hu/et/lt/lv).
+
+## 14.10.2026 — nazwa funkcji „Strażnik progresji” (gałąź `f020-nazwa-straznika`)
+Decyzja właściciela: nagłówek sekcji w Postępach (dawniej „Partie w tym tygodniu”) to widoczna nazwa funkcji **„Strażnik progresji”**. Klucz `Partie w tym tygodniu` usunięty (nieużywany), nowy `Strażnik progresji` w `lib/i18n.en.ts` i 31 słownikach (pt-BR i es-419 dziedziczą pt/es). Przycisk „Szczegóły w Postępach” bez zmian (to przejście do zakładki). `.maestro/52` czeka na „Progress Guard”.
+Tłumaczenia (nazwa funkcji, naturalnie, nie kalka) — **wszystkie do przeglądu przez native speakera**, szczególnie ja/ko/zh-Hant/vi/hu/et/fi/lt/lv:
+EN Progress Guard · bg Пазач на прогреса · cs Strážce progrese · da Fremgangsvagt · de Fortschrittswächter · el Φρουρός προόδου · es Guardián de progreso · et Edusammude valvur · fi Edistymisvartija · fr Gardien de progrès · hr Čuvar napretka · hu Fejlődésőr · id Penjaga Progres · it Guardiano progressi · ja 進捗ガード · ko 진행 지킴이 · lt Progreso sargas · lv Progresa sargs · ms Pengawal Kemajuan · nb Fremdriftsvokter · nl Voortgangswacht · pt Guardião do progresso · ro Paznic de progres · ru Страж прогресса · sk Strážca progresu · sl Čuvaj napredka · sr Чувар напретка · sv Framstegsvakt · tr İlerleme Bekçisi · uk Вартовий прогресу · vi Giám sát tiến bộ · zh-Hant 進步守護者.

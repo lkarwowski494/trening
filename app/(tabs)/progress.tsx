@@ -46,7 +46,7 @@ type View_ = { exId: string; setExId: (id: string) => void; q: string; setQ: (q:
 
 function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: View_) {
   const { ex: exParam, s: sParam } = useLocalSearchParams<{ ex?: string; s?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
-  /* „Szczegóły w Postępach ›” z ekranu Trening (/progress?s=guard): przewinięcie do sekcji „Partie w tym tygodniu” (strażnik progresji, 14.10.2026); pozycję podaje onLayout sekcji */
+  /* „Szczegóły w Postępach ›” z ekranu Trening (/progress?s=guard): przewinięcie do sekcji „Strażnik progresji” (strażnik progresji, 14.10.2026); pozycję podaje onLayout sekcji */
   const listRef = useRef<ScrollView>(null); const guardY = useRef<number | null>(null); const wantGuard = useRef(false);
   const toGuard = () => { if (wantGuard.current && guardY.current != null) { wantGuard.current = false; listRef.current?.scrollTo({ y: guardY.current, animated: false }); scrollY.current = guardY.current; } };
   useEffect(() => { if (sParam === 'guard') { wantGuard.current = true; toGuard(); router.setParams({ s: '' }); /* inaczej powrót do zakładki znów przewijałby */ } }, [sParam]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -70,7 +70,7 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
       <ScrollView ref={listRef} testID="progress-scroll-list" {...scroll} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
         {any ? <>
           <PeriodSummary />
-          <GuardSection onLayoutY={y => { guardY.current = y; toGuard(); }} />{/* 14.10.2026: strażnik progresji — „Partie w tym tygodniu” */}
+          <GuardSection onLayoutY={y => { guardY.current = y; toGuard(); }} />{/* 14.10.2026: strażnik progresji — „Strażnik progresji” */}
           <ProgressTiles />{/* 11.10.2026: „Progresja” także tu — to samo wejście co z ekranu Trening (/progression) */}
           <H2>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: volOut(w.volume) }))} fmt={v => v >= 1000 ? `${fmtNum(v / 1000, 1)}k` : `${v}`} />

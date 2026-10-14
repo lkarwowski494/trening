@@ -1,6 +1,6 @@
 /*
  * „Strażnik progresji” — ekrany (specyfikacja zatwierdzona 14.10.2026, docs/18): ekran Trening („Ten tydzień”: sylwetka w kolorach progresu, legenda, najwyżej dwa zdania,
- * przycisk do Postępów) i Postępy („Partie w tym tygodniu”: grupy od problemów, wiersze, rozwijanie, pasek serii). Logika: tests/guard.test.ts. Rodzaje (docs/20): ekran
+ * przycisk do Postępów) i Postępy („Strażnik progresji”: grupy od problemów, wiersze, rozwijanie, pasek serii). Logika: tests/guard.test.ts. Rodzaje (docs/20): ekran
  * (każdy element i komunikat), scenariusz (Trening → „Szczegóły w Postępach” → sekcja → rozwinięcie partii), macierz (stan kierunku × motyw × język), VoiceOver (role,
  * etykiety, stan rozwinięcia), wygląd (jasny/ciemny, kontrast tokenu `less`, 320 pt, skala tekstu 2,0: legenda zawija się, nic nie ucięte).
  */
@@ -118,16 +118,22 @@ describe('ekran Trening: „Ten tydzień” ze strażnikiem (wariant C)', () => 
 });
 
 describe('scenariusz: Trening → „Szczegóły w Postępach” → sekcja → rozwinięcie partii', () => {
-  test('stuknięcie przycisku otwiera Postępy z sekcją „Partie w tym tygodniu”; stuknięcie wiersza rozwija szczegóły i zwija je ponownie', async () => {
+  test('stuknięcie przycisku otwiera Postępy z sekcją „Strażnik progresji”; stuknięcie wiersza rozwija szczegóły i zwija je ponownie', async () => {
     await boot(mixed); await tap(screen.getByTestId('guard-more')); await flushAll(10);
-    expect(screen.getByTestId('guard-section')).toBeTruthy(); expect(screen.getAllByText('Partie w tym tygodniu').length).toBeGreaterThan(0);
+    expect(screen.getByTestId('guard-section')).toBeTruthy(); expect(screen.getAllByText('Strażnik progresji').length).toBeGreaterThan(0);
     const r = within(screen.getByTestId('grow-czworogłowe')); const btn = r.getByRole('button'); expect(btn.props.accessibilityState.expanded).toBe(false); expect(has('gdet-czworogłowe')).toBe(false);
     await tap(btn); await flushAll(5); expect(within(screen.getByTestId('grow-czworogłowe')).getByRole('button').props.accessibilityState.expanded).toBe(true); expect(has('gdet-czworogłowe')).toBe(true);
     await tap(within(screen.getByTestId('grow-czworogłowe')).getByRole('button')); await flushAll(5); expect(has('gdet-czworogłowe')).toBe(false);
   });
 });
 
-describe('Postępy: „Partie w tym tygodniu”', () => {
+describe('Postępy: „Strażnik progresji”', () => {
+  test('nagłówek sekcji to nazwa funkcji (decyzja właściciela 14.10.2026): PL „Strażnik progresji”, EN „Progress Guard”, bez starego „Partie w tym tygodniu”', async () => {
+    for (const [locale, name, old] of [['pl', 'Strażnik progresji', 'Partie w tym tygodniu'], ['en', 'Progress Guard', 'Muscle groups this week']] as const) {
+      await boot(mixed, '/progress', locale); const sec = within(screen.getByTestId('guard-section'));
+      expect([locale, sec.getAllByText(name).length]).toEqual([locale, 1]); expect(sec.queryByText(old)).toBeNull();
+    }
+  });
   test('grupy w kolejności: poniżej celu, mniej, bez porównania, tyle samo, więcej; na końcu „Bez serii: …”; każda partia w jednej grupie (poniżej celu wygrywa z „mniej”)', async () => {
     await boot(() => {
       mixed(); addWorkout(at(9, 3), [['Barbell Curl', sets(3, 30, 10)]], 'pb'); addWorkout(at(9, 7), [['Barbell Curl', sets(3, 30, 10)]], 'cb');
@@ -176,7 +182,7 @@ describe('Postępy: „Partie w tym tygodniu”', () => {
     expect(i.getByText(/średnio na sesję ćwiczenia/)).toBeTruthy(); expect(i.getByText(/nowe w tym tygodniu albo nierobione teraz/)).toBeTruthy(); expect(i.getByText(/Plan bez ciężarów \(≥\)/)).toBeTruthy(); expect(i.getByText(/Pelland i in\. 2026 — jedno źródło/)).toBeTruthy();
   });
   test('EN: tytuł sekcji, grupy, wiersze i rozwinięcie po angielsku', async () => {
-    await boot(mixed, '/progress', 'en'); expect(screen.getAllByText('Muscle groups this week').length).toBeGreaterThan(0); expect(within(screen.getByTestId('grow-dwugłowe')).getByText('no comparison — new this week')).toBeTruthy();
+    await boot(mixed, '/progress', 'en'); expect(screen.getAllByText('Progress Guard').length).toBeGreaterThan(0); expect(within(screen.getByTestId('grow-dwugłowe')).getByText('no comparison — new this week')).toBeTruthy();
     expect(within(screen.getByTestId('ggrp-below')).getByText('BELOW GOAL EVEN WITH THE PLAN')).toBeTruthy();
   });
 });

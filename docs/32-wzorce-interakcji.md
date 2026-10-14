@@ -121,7 +121,7 @@ Sekcja „Progresja” (trzy kafelki) jest tylko w Postępach — z ekranu Treni
 „tyle samo” = ta sama liczba na ekranie (`volOut`). Tydzień deloadu: bez oceny; tydzień po deloadzie: wobec ostatniego tygodnia bez deloadu, z podaną datą. Pierwszy tydzień: „nowe”.
 **Każdy stan ma znak, słowo i wzór** (nie tylko kolor): ▲ więcej (akcent) · = tyle samo (przygaszony) · ▼ mniej (pomarańcz `less` z kreskowaniem 45°) · ? bez porównania (kropkowanie) · ○ bez serii (obrys przerywany) · + nowe (kropki) · deload (poziome paski).
 **Ekran Trening:** sylwetka + legenda (zawija się) + najwyżej dwa zdania + jeden przycisk „Szczegóły w Postępach ›” (≥ 44 pt, podpowiedź „Otwiera Postępy.”); żadnej listy pasków ani serii pośrednich.
-**Postępy → „Partie w tym tygodniu”:** grupy od problemów (poniżej celu — największa luka pierwsza, mniej, bez porównania, tyle samo, nowe, więcej), wiersze rozwijane wzorcem 20 (▸/▾, `expanded`, po wyjściu zwinięte), pasek serii do 2× cel z „»”, serie pośrednie tylko tu.
+**Postępy → „Strażnik progresji”:** grupy od problemów (poniżej celu — największa luka pierwsza, mniej, bez porównania, tyle samo, nowe, więcej), wiersze rozwijane wzorcem 20 (▸/▾, `expanded`, po wyjściu zwinięte), pasek serii do 2× cel z „»”, serie pośrednie tylko tu.
 **VoiceOver:** sylwetka to obraz z etykietą stanów („Ten tydzień wobec poprzedniego: więcej — …; tyle samo — …; mniej — …; bez porównania — …”); legenda ukryta; wiersz czyta słowo stanu zamiast znaku. Testy: `tests/guard.test.ts`, `tests/guard-ui.test.tsx`, scenariusz Maestro `52-straznik-progresji.yaml`.
 
 ## Strażniki (S1–S16)
