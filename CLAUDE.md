@@ -8,6 +8,8 @@
 - Macierz testów (polecenie właściciela 06.10.2026): każdy ekran, element UI, komunikat, funkcja `lib/` i wartość wymiaru ma test;
   `npm run check:matrix` (część verify) blokuje braki, `docs/19-macierz-testow.md` generuje `node scripts/test-matrix.mjs --write`.
   Przy każdej zmianie: nowe zachowanie → test scenariuszowy/macierzowy, nie tylko wzmianka tekstu. Wyjątki tylko z powodem (`tests/matrix-exceptions.json`).
+- Katalog przepływów użytkownika (właściciel, 14.10.2026): każdy realny przepływ (nowy, istniejący, po aktualizacji, po przywróceniu kopii) ma scenariusz Maestro
+  albo wyjątek z powodem w `tests/przeplywy.json`; nowy ekran lub przepływ bez scenariusza blokuje verify. E2E zastępuje ręczne testy właściciela; poza nimi tylko lista „tylko telefon”.
 - Definicja ukończenia (zasada właściciela 06.10.2026): każda funkcjonalność przy wdrażaniu ma pełen zakres testów automatycznych —
   wszystkie przypadki i wszystkie rodzaje z `docs/20-definicja-ukonczenia.md` (logika, ekran, scenariusz, macierz, niezmienniki, dane,
   języki/wygląd, regresja, E2E Maestro). Rodzaj pominięty tylko z zapisanym powodem w docs/09.
