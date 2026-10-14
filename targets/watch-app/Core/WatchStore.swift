@@ -22,6 +22,9 @@ protocol WorkoutDriver: AnyObject {
   /// Sesja się skończyła: `saved` = trening zapisany w Apple Zdrowiu przez zegarek. Także gdy system zakończył sesję sam.
   var onEnded: ((Bool) -> Void)? { get set }
   func start()
+  /// Prosi o zgodę na Zdrowie (zapis treningu, tętno, energia) — wołane przy otwarciu aplikacji na zegarku, nie dopiero przy pierwszym treningu
+  /// (decyzja właściciela 14.10.2026). System pyta tylko raz (status „nieustalony”); powtórne wywołanie nic nie pokazuje. Bez zgody ekrany działają.
+  func requestAuthorization()
   /// Kończy sesję; `save` = zapisz trening w Zdrowiu z identyfikatorem synchronizacji `workoutId` (ten sam co zapis telefonu — bez duplikatu).
   func end(save: Bool, workoutId: String)
 }
@@ -75,6 +78,7 @@ final class WatchStore: ObservableObject {
   // MARK: - Cykl życia
 
   func start() {
+    workout.requestAuthorization()   // zgoda na Zdrowie przy pierwszym otwarciu aplikacji (14.10.2026), przed pierwszym treningiem
     transport.activate()
     apply(.launch)
     resendQueue()

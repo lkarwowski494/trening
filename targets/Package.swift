@@ -7,7 +7,7 @@ import PackageDescription
 // Uruchomienie: cd targets && swift test
 let package = Package(
   name: "TreningWatchCore",
-  platforms: [.macOS(.v14)], // testy na macOS; cel watchOS 11 ustawia projekt Xcode (SwiftPM 5.9 nie zna .watchOS(.v11))
+  platforms: [.macOS(.v14)], // testy na macOS; cel watchOS 10 ustawia projekt Xcode (SwiftPM 5.9 nie zna .watchOS(.v10))
   products: [.library(name: "WatchCore", targets: ["WatchCore"])],
   targets: [
     .target(name: "WatchCore", path: "watch-app/Core"),

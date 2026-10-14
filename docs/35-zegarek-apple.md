@@ -9,7 +9,7 @@ wirtualnie** (właściciel nie ma urządzenia); zapis do Apple Health z zegarka,
 | Ekran (`clientView.screen`) | Zegarek pokazuje | Akcje |
 |---|---|---|
 | `idle` | „Zacznij trening na telefonie” | — |
-| `set` | ćwiczenie, „seria k z n”, ciężar × powtórzenia (gotowe teksty z telefonu), etykieta superserii, „Pauza” | **Seria zrobiona** (przycisk + podwójne stuknięcie, watchOS 11), **Zrobione inaczej**, **Pomiń** (z potwierdzeniem: „Pominąć ćwiczenie?” Anuluj / Pomiń) |
+| `set` | ćwiczenie, „seria k z n”, ciężar × powtórzenia (gotowe teksty z telefonu), etykieta superserii, „Pauza” | **Seria zrobiona** (przycisk; podwójne stuknięcie od watchOS 11), **Zrobione inaczej**, **Pomiń** (z potwierdzeniem: „Pominąć ćwiczenie?” Anuluj / Pomiń) |
 | `rest` (od pierwszej sekundy) | odliczanie, zapowiedź = ten sam tekst co głos w słuchawkach (`cue`) | przycisk główny odhacza **następną** serię (P4-A), **Cofnij** przez `WATCH.UNDO_SEC` (5 s) |
 | koniec przerwy | wibracja (`WKHapticType.notification`) i zdarzenie `restEnded` (telefon mówi „koniec przerwy”) | — |
 | `done` | „Nic więcej do zrobienia” | — |
@@ -24,7 +24,7 @@ przyciemnienie, odliczanie przez `Text(timerInterval:)` (liczy system). Ikona tr
 ## 2. Architektura (gdzie co leży)
 | Część | Pliki | Uwagi |
 |---|---|---|
-| Cel watchOS | `targets/watch-app/` (`expo-target.config.js`, `Info.plist`, `Assets.xcassets`; manifest prywatności dokłada CocoaPods, patrz niżej) | `@bacons/apple-targets` 5.0.0, typ `watch`; `MARKETING_VERSION` ustawia Expo (= `app.json`), pilnuje go `verify:native`; watchOS 11, HealthKit w uprawnieniach, tryb tła `workout-processing`, `WKRunsIndependentlyOfCompanionApp = false` |
+| Cel watchOS | `targets/watch-app/` (`expo-target.config.js`, `Info.plist`, `Assets.xcassets`; manifest prywatności dokłada CocoaPods, patrz niżej) | `@bacons/apple-targets` 5.0.0, typ `watch`; `MARKETING_VERSION` ustawia Expo (= `app.json`), pilnuje go `verify:native`; minimum watchOS 10 (od 14.10.2026), HealthKit w uprawnieniach, tryb tła `workout-processing`, `WKRunsIndependentlyOfCompanionApp = false` |
 | Model zegarka (czysty Swift) | `Core/WatchClient.swift` — port `lib/watch/client.ts` (`clientStep`, `clientView`, projekcja niepotwierdzonych zdarzeń) | zachowanie = model referencyjny; sprawdza je odtworzenie scenariuszy z TS (XCTest `ScenarioReplayTests`) |
 | Protokół | `Core/WatchProtocol.swift` (typy `Codable` = lustro `lib/watch/protocol.ts`) | schemat ↔ typy Swift pilnuje `tests/watch-apple-contract.test.ts` |
 | Warstwa platformy | `Core/WatchStore.swift` (transport, sesja treningu, wibracja, ponawianie niepotwierdzonych zdarzeń, język z migawki), `WatchPersistence`, `WatchFakes` | zależności wstrzykiwane; XCTest `WatchStoreTests` na fałszywych |
@@ -52,27 +52,28 @@ Telefon (`lib/watch/link.ts`, `lib/watch/health.ts`) prosi o sesję poleceniem `
 co zapis telefonu (`lib/health.ts`), po czym zgłasza `sessionEnded {saved}`; przy `save = false` odrzuca sesję. HealthKit odrzuca drugi zapis tego samego treningu,
 więc duplikatu nie ma, kto by pierwszy nie zapisał. Telefon czeka na raport `WATCH.HEALTH_WAIT_SEC` i zapisuje sam, gdy zegarek nie zapisał. Gdy sesję przerwie system
 (np. systemowe Treningi), zegarek zgłasza `sessionEnded {saved: false}`; bez żywej sesji na polecenie `end` odpowiada od razu `saved: false` (telefon nie czeka).
-Zgoda HealthKit na zegarku jest pytana przy pierwszej sesji; bez zgody ekrany działają, ale bez wibracji w tle (zapisuje telefon).
+Zgoda HealthKit na zegarku jest pytana przy pierwszym otwarciu aplikacji na zegarku (od 14.10.2026; wcześniej przy pierwszej sesji treningu); bez zgody ekrany działają, ale bez wibracji w tle (zapisuje telefon).
 
 ## 3. Co sprawdzamy wirtualnie, czego nie
 | Warstwa | Jak | Gdzie liczone |
 |---|---|---|
 | Teksty 35 języków, opisy zgód, kontrakt Swift ↔ schemat ↔ pliki złote, liczby = stałe protokołu | Jest | `npm run verify` (Linux) |
-| Konfiguracja celu (watchOS 11, HealthKit, tryb tła, manifest prywatności, ikona, wersja, autolinking `WatchLink`, cel XCUITest) | `verify:native` (prebuild na Linuksie) | `npm run verify` |
+| Każde API z watchOS 11 w `targets/watch-app` osłonięte `#available(watchOS 11, *)` / `@available`; powiązanie zgody na Zdrowie z `WatchStore.start()` | Jest: `tests/watch-availability.test.ts`, `tests/watch-health-consent.test.ts` (skan źródeł) | `npm run verify` (Linux) |
+| Konfiguracja celu (minimum watchOS 10, HealthKit, tryb tła, manifest prywatności, ikona, wersja, autolinking `WatchLink`, cel XCUITest) | `verify:native` (prebuild na Linuksie) | `npm run verify` |
 | Moduł iPhone’a (logika TS, adapter łącza, atrapa zegarka, zgodność z kodem Swift) | Jest | `npm run verify` |
 | Zachowanie zegarka: wszystkie scenariusze z modelu referencyjnego krok po kroku (zdarzenia i widok), trwałość stanu w każdym kroku, granice (offline, ack, powtórzenia, sesja) | XCTest, `swift test` na macOS | **CI (łatka)** |
-| Store zegarka z fałszywym transportem, sesją i wibracją (polecenia sesji, zapis, ponawianie, język) | XCTest | **CI (łatka)** |
+| Store zegarka z fałszywym transportem, sesją i wibracją (polecenia sesji, zapis, ponawianie, język, prośba o zgodę na Zdrowie przy starcie: `WatchStoreTests.testStartAsksForHealthAuthorizationOnFirstLaunchWithoutStartingSession`) | XCTest | **CI (łatka)** |
 | Ekrany: seria → zrobione → przerwa z zapowiedzią → Cofnij → Pomiń → brak połączenia → wskaźnik sesji; etykiety w 35 językach | XCUITest na symulatorze watchOS | **CI (łatka)** |
 | Zrzuty (App Store: 35 języków, największa czcionka) | `simctl launch --setenv` + `simctl io screenshot` (konfiguracja Debug) | **CI (łatka)** |
 | Kompilacja celu watchOS, podpis, eksport | `xcodebuild` | **CI (łatka)** |
 
 **Nie do sprawdzenia wirtualnie (lista ręczna — tester z Apple Watch, opcjonalnie P2-B):**
 1. Siła i odczucie wibracji; wibracja po opuszczeniu ręki (tło z aktywną sesją) — symulator nie wibruje.
-2. Podwójne stuknięcie (Series 9 / Ultra 2 i nowsze) — gest fizyczny.
+2. Podwójne stuknięcie (Series 9 / Ultra 2 i nowsze, watchOS 11+) — gest fizyczny; na watchOS 10 przycisk działa bez gestu (sprawdzić na zegarku z watchOS 10, jeśli taki będzie).
 3. Always On na prawdziwym ekranie (czytelność, brak migotania).
 4. `transferUserInfo` (symulator go nie obsługuje; zdarzenia bez połączenia ratuje kolejka zegarka, ale droga systemowa jest nieprzetestowana).
 5. Wybudzenie zablokowanego iPhone’a przez `sendMessage` i opóźnienie (cel < 2 s).
-6. Zgoda HealthKit na zegarku, start sesji z telefonu (`startWatchApp`), zachowanie przy równoległym systemowym treningu.
+6. Okno zgody HealthKit na zegarku przy pierwszym otwarciu aplikacji (system pokazuje je tylko raz; symulator je pomija), start sesji z telefonu (`startWatchApp`), zachowanie przy równoległym systemowym treningu.
 7. Instalacja zegarka z TestFlight razem z aplikacją, wymiary zrzutów w App Store Connect.
 8. Jeden trening w Apple Zdrowiu po sesji prowadzonej przez zegarek (brak duplikatu, tętno i energia przy treningu).
 Skrócona lista dla testera: instalacja z TestFlight, zgoda HealthKit, start na telefonie, odhaczenie przyciskiem i podwójnym stuknięciem, wibracja po opuszczeniu
@@ -91,6 +92,22 @@ adapter → `WatchLink` → trening: hello/welcome, sesja, zdarzenie „zrobione
 Gdy protokół się zmieni (nowa wersja `v`, nowe pole): odtworzyć pliki wzorcowe (`UPDATE_WATCH=1 npx jest tests/watch-fixtures.test.ts`), poprawić typy w `WatchProtocol.swift` i schemat
 w teście kontraktu — czerwone testy wskażą każde miejsce po stronie Swift. Zmiana zachowania modelu (`lib/watch/client.ts`) = zmiana `WatchClient.swift` (scenariusze nie przejdą bez tego).
 Rejestr łącza jest jeden (`startWatchLink` zatrzymuje poprzednie) — jednoczesna praca Apple Watch i drugiego zegarka wymaga rejestru wielu transportów (poza zakresem 0.20).
+
+## Decyzje właściciela 14.10.2026, rano (zegarek)
+
+- **Minimum watchOS 10, podwójne stuknięcie od watchOS 11** („zachowanie zależne od wersji”; odrzucone: tylko 11, tylko 10). `deploymentTarget: '10.0'` w
+  `targets/watch-app/expo-target.config.js`; `verify:native` wymaga `WATCHOS_DEPLOYMENT_TARGET = 10.0`. `handGestureShortcut` (watchOS 11) jest w `RootView.swift`
+  wyłącznie w modyfikatorze `DoubleTapShortcut` pod `if #available(watchOS 11, *)`; na watchOS 10 przycisk „Seria zrobiona” działa tak samo, bez gestu.
+- **Przegląd całego Swifta zegarka pod kątem API nowszych niż watchOS 10** (14.10.2026): SwiftUI (`TimelineView`, `Text(timerInterval:)`, `.buttonStyle(.borderedProminent)`,
+  `isLuminanceReduced` — watchOS 9, `onChange(of:)` z dwoma parametrami — watchOS 10), HealthKit (`HKWorkoutSession`, `HKLiveWorkoutBuilder`, `HKMetadataKeySyncIdentifier`),
+  WatchConnectivity, WatchKit (`WKApplicationDelegateAdaptor`, `WKInterfaceDevice.play`) — wszystko dostępne od watchOS 10 albo wcześniej; jedyne API z watchOS 11 to `handGestureShortcut`.
+  Kompilatora Swift na Linuksie nie ma — pewność daje kompilacja w CI (`ios-unsigned.yml`, symulator `watch-sim.yml`); skan źródeł w Jest (`tests/watch-availability.test.ts`)
+  pilnuje, żeby żadne API z listy `WATCHOS_11_API` nie wystąpiło poza osłoną (nowe API z nowszego systemu trzeba dopisać do listy).
+- **Zgoda na Zdrowie przy pierwszym otwarciu aplikacji na zegarku** (odrzucone: przy pierwszym treningu). `WatchStore.start()` woła `WorkoutDriver.requestAuthorization()` przed
+  aktywacją transportu; `WorkoutController` prosi o zapis treningu, tętna i energii oraz odczyt tych samych typów. Sesja (`begin`) nadal sprawdza zgodę. Okno „Cofnij” po odhaczeniu: 5 s (bez zmian).
+  Testy: XCTest `WatchStoreTests` (3 testy), `tests/watch-health-consent.test.ts` (połączenie kodu na Linuksie).
+- **Do łatki CI (właściciel):** `scripts/ci/add-watch-ui-tests.mjs` ustawia dla celu testów interfejsu `WATCHOS_DEPLOYMENT_TARGET: '11.0'` — cel testów może mieć wyższe minimum niż aplikacja
+  (symulator ma watchOS 26), więc nie blokuje; dla spójności zmienić na `'10.0'` przy okazji łatki.
 
 ## Manifest prywatności zegarka (14.10.2026)
 

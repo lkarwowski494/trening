@@ -40,9 +40,12 @@ final class FakeWorkout: WorkoutDriver {
   var onStarted: (() -> Void)?
   var onEnded: ((Bool) -> Void)?
   private(set) var starts = 0
+  /// Ile razy aplikacja poprosiła o zgodę na Zdrowie (przy otwarciu); sama prośba nie zaczyna sesji.
+  private(set) var authorizationRequests = 0
   private(set) var ends: [(save: Bool, workoutId: String)] = []
   /// Wynik zapisu zgłaszany przy końcu sesji (true = zegarek zapisał trening w Zdrowiu).
   var saveSucceeds = true
+  func requestAuthorization() { authorizationRequests += 1 }
   func start() { isActive = true; starts += 1; onStarted?() }
   func end(save: Bool, workoutId: String) { isActive = false; ends.append((save, workoutId)); onEnded?(save && saveSucceeds) }
 }
