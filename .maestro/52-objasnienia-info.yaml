@@ -1,0 +1,60 @@
+# Objaśnienia pod ⓘ (14.10.2026, docs/32 wzorzec 26; katalog przepływów docs/37: US-18, JM-05): tekst objaśniający jest schowany pod okręgiem „i” przy nagłówku;
+# stuknięcie rozwija go w miejscu, drugie zwija; stan nie jest zapamiętywany. Sprawdzamy na Ustawieniach: pole „Workout view” (Field), nagłówek sekcji
+# „Weekly set goal per muscle group” (SectionTitle) i przełącznik „Voice also through the phone speaker” (SwitchRow) — jasny wygląd, potem ciemny.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   info-workout-view / info-text-workout-view                  ← testID przycisku ⓘ i ramki z tekstem (components/InfoTip.tsx; infoId w app/more/settings.tsx)
+#   info-sets-goal / info-voice-speaker                         ← j.w. (nagłówek 'Cel serii na partię w tygodniu', przełącznik 'Głos także przez głośnik telefonu')
+#   "More information: Workout view"                            ← etykieta VoiceOver 'Więcej informacji: {name}' (stała, także po rozwinięciu)
+#   "Focused: the current set in big numbers.*"                 ← 'Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.' (opis, który zszedł z wierzchu)
+#   "The line in “This week” and in Progress.*"                 ← 'Kreska w „Ten tydzień” i w Postępach. Automatycznie: …' (ACSM 2026 — źródło zostaje w tekście pod ⓘ)
+#   "In headphones the next exercise.*" / "By default the voice.*" ← długi opis pod ⓘ / krótki opis na wierzchu
+#   "Dark" / "Light" / "Appearance"                              ← segmenty i pole Wygląd (app/more/settings.tsx)
+appId: pl.lukasz.trening
+name: Objaśnienia pod ⓘ — rozwijanie, zwijanie, ciemny wygląd
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Appearance", timeout: 30000 }
+# --- pole „Workout view”: opis schowany, ⓘ rozwija, drugie stuknięcie zwija ---
+- scrollUntilVisible: { element: { id: "info-workout-view" }, direction: DOWN, timeout: 30000, centerElement: true }
+- assertNotVisible: "Focused: the current set in big numbers.*"
+- assertVisible: "More information: Workout view"
+- tapOn: { id: "info-workout-view" }
+- assertVisible: { id: "info-text-workout-view" }
+- assertVisible: "Focused: the current set in big numbers.*"
+- takeScreenshot: 120-info-rozwiniete
+- tapOn: "More information: Workout view"
+- assertNotVisible: "Focused: the current set in big numbers.*"
+# --- nagłówek sekcji: cel serii (źródło ACSM pod ⓘ) ---
+- scrollUntilVisible: { element: { id: "info-sets-goal" }, direction: DOWN, timeout: 30000, centerElement: true }
+- assertNotVisible: "The line in “This week” and in Progress.*"
+- tapOn: { id: "info-sets-goal" }
+- assertVisible: "The line in “This week” and in Progress.*"
+- tapOn: { id: "info-sets-goal" }
+- assertNotVisible: "The line in “This week” and in Progress.*"
+# --- przełącznik: krótki opis na wierzchu, długi pod ⓘ; ⓘ nie przełącza przełącznika ---
+- scrollUntilVisible: { element: { id: "info-voice-speaker" }, direction: UP, timeout: 30000, centerElement: true }
+- assertVisible: "By default the voice.*"
+- assertNotVisible: "In headphones the next exercise.*"
+- tapOn: { id: "info-voice-speaker" }
+- assertVisible: "In headphones the next exercise.*"
+- assertVisible: { id: "sw-Voice also through the phone speaker", checked: false }
+- tapOn: { id: "info-voice-speaker" }
+- assertNotVisible: "In headphones the next exercise.*"
+# --- ciemny wygląd (JM-05): ⓘ i ramka tekstu czytelne, rozwijanie działa tak samo ---
+- scrollUntilVisible: { element: "Appearance", direction: UP, timeout: 30000 }
+- tapOn: "Dark"
+- scrollUntilVisible: { element: { id: "info-workout-view" }, direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: { id: "info-workout-view" }
+- assertVisible: "Focused: the current set in big numbers.*"
+- takeScreenshot: 121-info-ciemny
+- tapOn: { id: "info-workout-view" }
+- assertNotVisible: "Focused: the current set in big numbers.*"
+- scrollUntilVisible: { element: "Appearance", direction: UP, timeout: 30000 }
+- tapOn: "Light"

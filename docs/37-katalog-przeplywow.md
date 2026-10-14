@@ -7,19 +7,19 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **146** (realny: 125, brzegowy: 21); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **148** (realny: 126, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
 | `nowy` | 16 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
-| `istniejacy` | 112 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
+| `istniejacy` | 113 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
 | `aktualizacja` | 6 | Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34). |
 | `kopia` | 4 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
-| `jezyk-motyw` | 8 | Po zmianie języka, wyglądu lub jednostki: zmienione w Ustawieniach, sprawdzane też po restarcie. |
+| `jezyk-motyw` | 9 | Po zmianie języka, wyglądu lub jednostki: zmienione w Ustawieniach, sprawdzane też po restarcie. |
 
 | Pokrycie | Przepływów |
 |---|---|
-| Maestro | 119 |
+| Maestro | 121 |
 | Maestro (eksperyment) | 4 |
 | Jest | 10 |
 | Telefon | 13 |
@@ -72,7 +72,7 @@ Przepływów w katalogu: **146** (realny: 125, brzegowy: 21); pominięte jako te
 | TR-20 | **Pauza treningu i wznowienie** — „Pauza treningu” pod nazwą → Czas zatrzymany („· paused”) → „Wznów trening” | Czas treningu nie liczy pauzy. | `istniejacy` | realny | Maestro: `.maestro/31-pierwszy-tydzien.yaml` |
 | TR-21 | **Zmiana miejsca w treningu i okno „Dostosuj do miejsca”** — Chip „📍” → inne miejsce z brakami sprzętu → Okno „Dostosuj do: X” → „Zastosuj” albo „Anuluj” → Powrót na siłownię: sekcja „Wraca z planu” | Zamienniki oznaczone „zamiast: …”; szablon i plan bez zmian. | `istniejacy` | realny | Maestro: `.maestro/22-dostosuj-do-miejsca.yaml` |
 | TR-22 | **Inne miejsce tylko na dziś** — „📍” → „Inne miejsce (tylko dziś)…” → Zestaw sprzętu → „Użyj” → okno Dostosuj → Zastosuj | Miejsce jednorazowe nie trafia na listę miejsc. | `istniejacy` | realny | Maestro: `.maestro/23-miejsce-jednorazowe.yaml` |
-| TR-23 | **Technika ćwiczenia z poziomu treningu** — Stopka bloku → „ⓘ Technika” → karta ćwiczenia → „Wróć” | Trening w toku bez zmian po powrocie. | `istniejacy` | realny | Maestro: `.maestro/25-trening-narzedzia.yaml` |
+| TR-23 | **Technika ćwiczenia z poziomu treningu** — Stopka bloku → „Technika ›” → karta ćwiczenia → „Wróć” | Trening w toku bez zmian po powrocie. | `istniejacy` | realny | Maestro: `.maestro/25-trening-narzedzia.yaml` |
 | TR-24 | **Notatka do treningu** — Pole notatki na dole listy → wpisz tekst → zakończ | Notatka widoczna na ekranie sesji. | `istniejacy` | realny | Maestro: `.maestro/25-trening-narzedzia.yaml` |
 | TR-25 | **Zakończenie z niedokończonymi seriami** — „Zakończ” → „Zakończyć trening?” → „Zakończ” | Sesja zapisana tylko z odhaczonymi seriami. | `istniejacy` | realny | Maestro: `.maestro/31-pierwszy-tydzien.yaml` |
 | TR-26 | **Odrzucenie treningu** — Dół listy → „Odrzuć trening” → potwierdź | Nic nie zapisuje się do historii; ekran Trening wraca do stanu startowego. | `istniejacy` | realny | Maestro: `.maestro/25-trening-narzedzia.yaml` |
@@ -180,6 +180,7 @@ Przepływów w katalogu: **146** (realny: 125, brzegowy: 21); pominięte jako te
 | US-15 | **„Napisz do nas” (poczta) i prośba o ocenę w App Store** — Więcej → O aplikacji → „Napisz do nas” → okno poczty → Po kilku treningach — systemowa prośba o ocenę | Poczta z adresem i wersją; prośba o ocenę nie częściej niż pozwala iOS. | `istniejacy` | brzegowy | Telefon (lista kontrolna wydania) — Okno poczty i systemowa prośba o ocenę to okna systemowe, nieobecne w TestFlight/na symulatorze CI. |
 | US-16 | **Wyczyszczenie wszystkich danych: pytanie, „Nie” zostawia dane, potem „Wyczyść”** — Ustawienia → „Wyczyść wszystkie dane” → Anuluj → jeszcze raz → Wyczyść → Powrót do „Pierwszych kroków” | Przed czyszczeniem powstaje kopia bezpieczeństwa; po czyszczeniu stan jak nowy. | `istniejacy` | realny | Maestro: `.maestro/32-regularny-uzytkownik.yaml` |
 | US-17 | **„Poproś o nową funkcję” obok „Napisz do nas” (Więcej → O aplikacji)** — Więcej → O aplikacji → Pod wersją są dwa wiersze: „Napisz do nas” i „Poproś o nową funkcję” → Stuknięcie „Poproś o nową funkcję” → wiadomość e-mail do wsparcia z tematem „Pomysł: ” i szablonem (tylko ręcznie na telefonie z Pocztą) | Oba wiersze są widoczne; „Poproś o nową funkcję” otwiera pocztę tą samą drogą co „Napisz do nas”; bez poczty — okno z adresem wsparcia. | `istniejacy` | brzegowy | Maestro: `.maestro/15-masa-licencje.yaml` |
+| US-18 | **Objaśnienie pod ⓘ: rozwiń w miejscu, zwiń, źródło zostaje w tekście** — Ustawienia → przy „Widok treningu” stuknij ⓘ → Przeczytaj opis pod polem; stuknij ⓘ ponownie → To samo przy nagłówku „Cel serii na partię w tygodniu” (źródło ACSM) i przy przełączniku „Głos także przez głośnik telefonu” | Tekst objaśniający pojawia się pod nagłówkiem i znika po drugim stuknięciu; ⓘ nie przełącza przełącznika; na wierzchu zostaje tylko krótki opis; stan nie jest zapamiętywany. | `istniejacy` | realny | Maestro: `.maestro/52-objasnienia-info.yaml` |
 
 ## DA — Kopia, eksport, import, czyszczenie danych
 
@@ -212,6 +213,7 @@ Przepływów w katalogu: **146** (realny: 125, brzegowy: 21); pominięte jako te
 | JM-02 | **Ciemny wygląd i jednostka kg trwałe po restarcie** — Ustawienia → Ciemny, kg, Polski → Restart → Segmenty „Ciemny” i „kg” nadal wybrane; sesja pokazuje ciężar w kg | Ustawienia trwałe (kolory widać tylko na zrzucie; stan segmentu — accessibilityState). | `jezyk-motyw` | realny | Maestro: `.maestro/37-jezyk-motyw-trwale.yaml` |
 | JM-03 | **Powrót do „Jak w telefonie” i do języka angielskiego bez śladów polskiego** — Język → „Jak w telefonie” → Ekrany znów po angielsku | Zmiana natychmiast, bez restartu. | `jezyk-motyw` | realny | Maestro: `.maestro/09-jezyk-wyglad.yaml` |
 | JM-04 | **35 języków i wszystkie kombinacje wartości (długie nazwy, mnoga liczba, kg/lb)** — Zmień język na każdy z 35 → Otwórz każdą trasę | Brak ucięć i polskich tekstów poza polskim. | `jezyk-motyw` | brzegowy | Jest: `tests/i18n-locales.test.ts`, `tests/matrix-a11y.test.tsx`, `tests/i18n-multi.test.ts` — Warianty kombinatoryczne (35 języków × trasy × wygląd) zostają w Jest zgodnie z decyzją właściciela 13.10.2026; w Maestro tylko język polski i angielski. |
+| JM-05 | **Objaśnienie pod ⓘ w ciemnym wyglądzie** — Ustawienia → Wygląd → Ciemny → Przy „Widok treningu” stuknij ⓘ, przeczytaj opis, stuknij ponownie → Wygląd → Jasny | Okrąg ⓘ i ramka z tekstem czytelne w ciemnym wyglądzie; rozwijanie i zwijanie działa tak samo jak w jasnym. | `jezyk-motyw` | brzegowy | Maestro: `.maestro/52-objasnienia-info.yaml` |
 
 ## ZD — Funkcje systemowe (powiadomienia, widżet, Zdrowie, sklep)
 

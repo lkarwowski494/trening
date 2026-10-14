@@ -10,7 +10,7 @@ import * as store from '@/lib/store';
 import * as draft from '@/lib/draft';
 import { fresh, ex, saved, addWorkout, pressAlert, set, withDemoTemplates } from './helpers';
 import * as plan from '@/lib/plan';
-import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, openCard } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, openCard, openInfo } from './app';
 import { LIB_KEYS, LIB_RENAMED, LIB_MERGED, formerNamesOf, formerMatch, formerExact, seedState, type Template, type State } from '@/lib/seed';
 import { applyLang, t, exName } from '@/lib/i18n';
 import { namesIn } from './forbidden-names';
@@ -117,10 +117,10 @@ describe('UX2-05: wskazówki techniki z treningu na żywo i z szablonu', () => {
       for (const l of ['pl', 'en', 'de']) jest.dontMock(`@/lib/cues/text/${l}.json`);
     });
   });
-  test('trening na żywo: „ⓘ Technika” przy ćwiczeniu z wskazówkami otwiera podgląd ćwiczenia z rozwiniętą sekcją „Technika” na górze; podwójne tapnięcie — jeden ekran; własne ćwiczenie — bez przycisku', async () => {
+  test('trening na żywo: „Technika ›” przy ćwiczeniu z wskazówkami otwiera podgląd ćwiczenia z rozwiniętą sekcją „Technika” na górze; podwójne tapnięcie — jeden ekran; własne ćwiczenie — bez przycisku', async () => {
     await boot(() => { S().settings.workoutView = 'list'; store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(store.newExercise('Moje ćwiczenie')); });
     expect(screen.getByLabelText('Technika: Back Squat')).toBeTruthy(); expect(screen.queryByLabelText('Technika: Moje ćwiczenie')).toBeNull();
-    expect(screen.getByText('ⓘ Technika')).toBeTruthy();
+    expect(screen.getByText('Technika ›')).toBeTruthy();
     await dbl(screen.getByLabelText('Technika: Back Squat'));
     expect(routeNames().filter(n => n === 'exercise/[id]')).toHaveLength(1);
     expect(cuesOpen()).toBe(true); expect(screen.getByText('Ustawienie')).toBeTruthy();
@@ -132,7 +132,7 @@ describe('UX2-05: wskazówki techniki z treningu na żywo i z szablonu', () => {
     expect(cuesOpen()).toBe(false); expect(screen.queryByText('Ustawienie')).toBeNull();
     const json = JSON.stringify(screen.toJSON()); expect(json.indexOf('exercise-cues')).toBeLessThan(json.indexOf('Partia: nogi'));
   });
-  test('podgląd szablonu i edytor szablonu: „ⓘ Technika” przy ćwiczeniu; w edycji otwarcie nie gubi szkicu', async () => {
+  test('podgląd szablonu i edytor szablonu: „Technika ›” przy ćwiczeniu; w edycji otwarcie nie gubi szkicu', async () => {
     let id = ''; await boot(() => { id = mkTpl().id; }); await go(`/template/${id}`); await flushAll(10);
     expect(screen.getByLabelText('Technika: Back Squat')).toBeTruthy();
     await tap(screen.getByLabelText('Edytuj szablon')); await flushAll(5); draft.objDraft<Template>('template', id)!.name = 'Nogi 2';
@@ -188,12 +188,12 @@ describe('UX2-09: opuszczony dzień — „Przesuń plan od dziś” i „Wolne�
     const warn = screen.queryAllByText(/^Uwaga: .* dzień po dniu/).length;
     expect(warn).toBeGreaterThan(0); /* stan z raportu: jest ostrzeżenie */
     expect(screen.queryByText(FOOT)).toBeNull();
-    expect(screen.getByText(/^Uproszczenie: zwykle dzień przerwy/)).toBeTruthy(); /* objaśnienie zostaje */
+    await openInfo('move-list'); expect(screen.getByText(/^Uproszczenie: zwykle dzień przerwy/)).toBeTruthy(); /* objaśnienie zostaje (ⓘ 14.10.2026: pod ⓘ) */
   });
   test('bez ostrzeżeń — pełna stopka jak dotąd', async () => {
     await bootPlan(ids => { plan.setWeekDay(0, ids[0]); });
     await tap(screen.getByTestId('cal-2026-10-05')); await flushAll(5); await tap(screen.getByText('Przesuń albo pomiń')); await flushAll(5);
-    expect(screen.queryAllByText(/^Uwaga: .* dzień po dniu/)).toHaveLength(0); expect(screen.getByText(FOOT)).toBeTruthy();
+    expect(screen.queryAllByText(/^Uwaga: .* dzień po dniu/)).toHaveLength(0); await openInfo('move-list'); expect(screen.getByText(FOOT)).toBeTruthy();
   });
 });
 

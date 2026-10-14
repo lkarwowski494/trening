@@ -6,7 +6,7 @@
  */
 import * as store from '@/lib/store';
 import { fresh, saved, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, type as typeText, act } from './app';
+import { renderApp, flushAll, screen, tap, type as typeText, act, openInfo } from './app';
 import { within } from '@testing-library/react-native';
 import { SET_PARTS } from '@/lib/setParts';
 
@@ -31,6 +31,7 @@ describe('Ustawienia: cel serii na partię', () => {
   test('sekcja z opisem (automat 10, granice 1–40); lista zwinięta, „Pokaż cele partii” rozwija wiersz dla każdej partii, „Ukryj” zwija', async () => {
     await boot(() => {}, '/more/settings');
     expect(screen.getByText('Cel serii na partię w tygodniu')).toBeTruthy();
+    expect(screen.queryByText(/^Kreska w „Ten tydzień”/)).toBeNull(); await openInfo('sets-goal'); /* ⓘ 14.10.2026: opis i źródło (ACSM 2026) pod ⓘ */
     expect(screen.getByText('Kreska w „Ten tydzień” i w Postępach. Automatycznie: 10 serii (stanowisko ACSM 2026). Ręcznie: własna liczba od 1 do 40.')).toBeTruthy();
     expect(goalGroups()).toHaveLength(0); expect(screen.queryByTestId('set-goals')).toBeNull();
     await tap(screen.getByText('Pokaż cele partii')); await flushAll(5);
@@ -65,7 +66,7 @@ describe('Ustawienia: cel serii na partię', () => {
   test('English: napisy i nazwy partii', async () => {
     await boot(() => {}, '/more/settings', 'en');
     expect(screen.getByText('Weekly set goal per muscle group')).toBeTruthy();
-    expect(screen.getByText('The line in “This week” and in Progress. Automatic: 10 sets (ACSM 2026 position stand). Manual: your own number from 1 to 40.')).toBeTruthy();
+    await openInfo('sets-goal'); expect(screen.getByText('The line in “This week” and in Progress. Automatic: 10 sets (ACSM 2026 position stand). Manual: your own number from 1 to 40.')).toBeTruthy();
     await tap(screen.getByText('Show muscle group goals')); await flushAll(5);
     expect(grpOf('Set goal: shoulders')).toBeTruthy(); expect(grpOf('Set goal: back')).toBeTruthy();
     expect(screen.getAllByLabelText('Automatic (10)', { exact: true }).length).toBe(SET_PARTS.length);

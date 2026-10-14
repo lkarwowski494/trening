@@ -8,7 +8,7 @@ import { LOCALES } from '@/lib/locales';
 import { EN } from '@/lib/i18n.en';
 import { __setScreenReaderForTests } from '@/lib/voice';
 import { fresh, saved } from './helpers';
-import { renderApp, flushAll, screen, tap, act, fireEvent } from './app';
+import { renderApp, flushAll, screen, tap, act, fireEvent, openInfo } from './app';
 
 jest.setTimeout(60000);
 const S = () => store.getState();
@@ -20,7 +20,7 @@ const boot = async (locale: 'pl' | 'en' = 'pl', fn: () => void = () => {}) => { 
 const sw = async (label: string, v: boolean) => { await act(async () => { fireEvent(screen.getByLabelText(label), 'valueChange', v); }); await flushAll(10); };
 
 test('domyślnie wyłączony, z opisem; nie ma wskazówki o braku głosu, gdy głos jest', async () => {
-  await boot(); expect(screen.getByText('Głos także przez głośnik telefonu')).toBeTruthy(); expect(screen.getByText(LONG)).toBeTruthy();
+  await boot(); expect(screen.getByText('Głos także przez głośnik telefonu')).toBeTruthy(); expect(screen.getByText('Domyślnie głos tylko w słuchawkach.')).toBeTruthy(); expect(screen.queryByText(LONG)).toBeNull(); await openInfo('voice-speaker'); expect(screen.getByText(LONG)).toBeTruthy(); /* ⓘ 14.10.2026 */
   expect(screen.getByLabelText('Głos także przez głośnik telefonu').props.value).toBe(false); expect('voiceSpeaker' in S().settings).toBe(false);
   expect(screen.queryByText(/^Brak głosu dla języka aplikacji/)).toBeNull();
 });

@@ -773,7 +773,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "Stopka bloku → „ⓘ Technika” → karta ćwiczenia → „Wróć”"
+    "Stopka bloku → „Technika ›” → karta ćwiczenia → „Wróć”"
    ],
    "wynik": "Trening w toku bez zmian po powrocie.",
    "ekrany": [
@@ -2456,6 +2456,29 @@
    ]
   },
   {
+   "id": "US-18",
+   "tytul": "Objaśnienie pod ⓘ: rozwiń w miejscu, zwiń, źródło zostaje w tekście",
+   "stan": "istniejacy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Ustawienia → przy „Widok treningu” stuknij ⓘ",
+    "Przeczytaj opis pod polem; stuknij ⓘ ponownie",
+    "To samo przy nagłówku „Cel serii na partię w tygodniu” (źródło ACSM) i przy przełączniku „Głos także przez głośnik telefonu”"
+   ],
+   "wynik": "Tekst objaśniający pojawia się pod nagłówkiem i znika po drugim stuknięciu; ⓘ nie przełącza przełącznika; na wierzchu zostaje tylko krótki opis; stan nie jest zapamiętywany.",
+   "ekrany": [
+    "/more/settings"
+   ],
+   "scenariusz": "52-objasnienia-info.yaml",
+   "znaczniki": [
+    "info-workout-view",
+    "info-sets-goal",
+    "info-voice-speaker",
+    "More information: Workout view"
+   ]
+  },
+  {
    "id": "DA-01",
    "tytul": "Ekran „Kopia zapasowa”: przyciski eksportu i importu, odmowa nadpisania",
    "stan": "istniejacy",
@@ -2831,6 +2854,27 @@
      "tests/i18n-multi.test.ts"
     ]
    }
+  },
+  {
+   "id": "JM-05",
+   "tytul": "Objaśnienie pod ⓘ w ciemnym wyglądzie",
+   "stan": "jezyk-motyw",
+   "wersja": "0.20",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Ustawienia → Wygląd → Ciemny",
+    "Przy „Widok treningu” stuknij ⓘ, przeczytaj opis, stuknij ponownie",
+    "Wygląd → Jasny"
+   ],
+   "wynik": "Okrąg ⓘ i ramka z tekstem czytelne w ciemnym wyglądzie; rozwijanie i zwijanie działa tak samo jak w jasnym.",
+   "ekrany": [
+    "/more/settings"
+   ],
+   "scenariusz": "52-objasnienia-info.yaml",
+   "znaczniki": [
+    "Dark",
+    "121-info-ciemny"
+   ]
   },
   {
    "id": "ZD-01",

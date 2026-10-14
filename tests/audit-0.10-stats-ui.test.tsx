@@ -8,7 +8,7 @@ import { applyUnit } from '@/lib/units';
 import { BW_SHARE } from '@/lib/stats';
 import { base, uid, type Template } from '@/lib/seed';
 import { fresh, saved, addWorkout, ex, setBodyMass } from './helpers';
-import { renderApp, flushAll, screen, go, tap, act, fireEvent, openCard, type as typeText, startEdit, tplDraft } from './app';
+import { renderApp, flushAll, screen, go, tap, act, fireEvent, openCard, type as typeText, startEdit, tplDraft, openInfo } from './app';
 
 jest.setTimeout(30000);
 const NOW = new Date(2026, 9, 8, 18).getTime();
@@ -30,6 +30,7 @@ describe('E1: masa ciała (od 11.10.2026 w Postępach, dawniej w Ustawieniach) i
     expect(screen.getByText('nie podano — e1RM podciągania i pompek')).toBeTruthy(); expect(screen.getByRole('header', { name: 'Masa ciała' })).toBeTruthy();
     await tap(screen.getByText('Masa ciała — pomiary')); await flushAll(5);
     const p = Math.round(BW_SHARE['Push Up'] * 100);
+    expect(screen.getByText('Opcjonalnie, tylko w telefonie. Potrzebna do e1RM w podciąganiu i pompkach.')).toBeTruthy(); await openInfo('bodymass-intro'); /* ⓘ 14.10.2026 */
     expect(screen.getByText(`Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. ${p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.`)).toBeTruthy();
     const f = screen.getByLabelText('Masa ciała (kg)'); expect(f.props.value).toBe(''); expect(screen.getByLabelText('Data pomiaru (RRRR-MM-DD)').props.value).toBe('2026-10-08');
     await typeText(f, '80,5'); await act(async () => { fireEvent.press(screen.getByText('Zapisz pomiar')); }); await flushAll(5);
@@ -58,7 +59,7 @@ describe('E1: masa ciała (od 11.10.2026 w Postępach, dawniej w Ustawieniach) i
   test('ekran ćwiczenia: opis masy ciała mówi prawdę o e1RM (masa ciała z Ustawień, udział ze źródeł), bez „masa ciała nie wchodzi do obliczeń”', async () => {
     await boot(); await go(`/exercise/${ex('Pull Up').id}`); await flushAll(10);
     const p = Math.round(BW_SHARE['Push Up'] * 100);
-    expect(screen.getByText(new RegExp(`liczy się tylko z masą ciała wpisaną w Postępach .*pompki \\(ok\\. ${p}% — badania z platformą siłową\\)\\.`))).toBeTruthy();
+    await openInfo('bw-rules'); expect(screen.getByText(new RegExp(`liczy się tylko z masą ciała wpisaną w Postępach .*pompki \\(ok\\. ${p}% — badania z platformą siłową\\)\\.`))).toBeTruthy();
     expect(screen.queryByText(/nie wchodzi do obliczeń/)).toBeNull();
   });
   test('EN: Progress body weight section and note', async () => {
@@ -74,8 +75,10 @@ describe('E4 / MER-10: przypisanie partii — „uproszczenie, nie wynik badań�
     await boot(); await go(`/exercise/${ex('Back Squat').id}`); await flushAll(10);
     expect(screen.queryByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeNull();
     await go(`/exercise/${ex('Dead Bug').id}`); await flushAll(10); /* scalenie fix-ui: dopisek wg pewności (seed.muscleConfidence) — „jedno źródło” */
+    expect(screen.getByText('Przypisanie partii: jedno źródło.')).toBeTruthy(); await openInfo('muscle-note'); /* ⓘ 14.10.2026: oznaczenie na wierzchu, pełny dopisek pod ⓘ */
     expect(screen.getByText(/^Przypisanie partii mięśniowych — jedno źródło, nie ustalone\./)).toBeTruthy(); expect(screen.queryByText(/^Przypisanie partii mięśniowych — uproszczenie/)).toBeNull();
     const own = store.newExercise('Moje'); await flushAll(5); await go(`/exercise/${own.id}`); await flushAll(10);
+    expect(screen.getByText('Przypisanie partii: uproszczenie.')).toBeTruthy(); await openInfo('muscle-note');
     expect(screen.getByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeTruthy();
   });
 });
@@ -111,15 +114,16 @@ describe('E5: teksty prawdziwe dla działania aplikacji', () => {
   test('MER-13: edytor szablonu — opis podpowiedzi „↑ spróbuj …” z górą zakresu; brak przy zakresie otwartym „8+” i przy wyłączonej podpowiedzi', async () => {
     await boot(() => { const t = tplD(); t.items[0].rows = rows(['normal', 'normal']); S().templates.push(t); });
     await go('/template/td'); await flushAll(10); await startEdit(); await openCard(0);
+    expect(screen.getByText('Zakres 5–8: gdy ostatnio wszystkie serie miały ≥ 8 powt., pojawi się „↑”.')).toBeTruthy(); await tap(screen.getByTestId(/^info-range-/));
     expect(screen.getByText('Zakres powtórzeń: 5–8 — gdy ostatnio wszystkie serie robocze miały co najmniej 8 powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).')).toBeTruthy();
     expect(screen.queryByText(/↑ więcej/)).toBeNull();
     await act(async () => { const it = tplDraft('td').items[0]; it.repMax = 3; store.save(); }); await flushAll(5); /* „do” < „od” → „5+” */
-    expect(screen.queryByText(/^Zakres powtórzeń: 5\+/)).toBeNull();
+    expect(screen.queryByText(/^Zakres powtórzeń: 5\+/)).toBeNull(); expect(screen.queryByText(/^Zakres 5\+/)).toBeNull();
     await act(async () => { const it = tplDraft('td').items[0]; it.repMax = 8; S().settings.progressHint = false; store.save(); }); await flushAll(5);
-    expect(screen.queryByText(/^Zakres powtórzeń: 5–8 —/)).toBeNull();
+    expect(screen.queryByText(/^Zakres powtórzeń: 5–8 —/)).toBeNull(); expect(screen.queryByTestId(/^info-range-/)).toBeNull(); /* podpowiedź wyłączona — ani opis, ani ⓘ */
   });
   test('MER-15: ekran Gumy — zdanie prawdziwe dla asysty i oporu', async () => {
-    await boot(undefined, '/more/bands');
+    await boot(undefined, '/more/bands'); await openInfo('bands-intro');
     expect(screen.getByText(/Guma jako asysta \(np\. podciąganie\): rekordem są powtórzenia bez gumy, a postęp to zejście na niższy poziom\. Guma jako opór: rekordy liczą serie z gumą\.$/)).toBeTruthy();
     expect(screen.queryByText(/którą gumą pomagałeś/)).toBeNull();
   });

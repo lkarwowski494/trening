@@ -266,3 +266,11 @@ test('13 (0.19): miejsce na zakres dni w planie — Hotel w panelu dnia, linijka
   const reopen = at(/tapOn: "📍 Place for these days"/, line); const rm = at(/tapOn: "Remove place"/, reopen); expect(s[rm - 1]).toMatch(/scrollUntilVisible: \{ element: "Remove place"/); at(/assertNotVisible: "Workout place: Hotel"/, rm);
   expect(at(/tapOn: "Full gym,\.\*"/)).toBeLessThan(at(/tapOn: "Monday, Rest"/)); /* miejsca tworzone przed planem; główne = pełna siłownia, więc start „Upper A” bez okna */
 });
+
+test('interpreter modeluje inset klawiatury tylko tam, gdzie aplikacja go ma (automaticallyAdjustKeyboardInsets) — 14.10.2026, edytor szablonu po zdjęciu stopki z gestami (08, „reps to”)', () => {
+  const fs = require('fs'); const path = require('path');
+  const runner = fs.readFileSync(path.join(__dirname, 'maestro-runner.ts'), 'utf8');
+  expect(runner).toMatch(/kbInset\(sc: LNode\) \{ return this\.focused && sc\.props\.automaticallyAdjustKeyboardInsets \?/); expect(runner).toMatch(/maxScroll\(sc: LNode, top: number\) \{ return .*\+ this\.kbInset\(sc\); \}/);
+  /* założenie: edytor szablonu (tryb edycji) ma tę właściwość — w aplikacji lista da się przewinąć nad klawiaturę niezależnie od długości treści */
+  expect(fs.readFileSync(path.join(__dirname, '..', 'app/template/[id].tsx'), 'utf8')).toMatch(/<ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets/);
+});

@@ -10,7 +10,7 @@ import * as draft from '@/lib/draft';
 import * as edit from '@/lib/edit';
 import * as backup from '@/lib/backup';
 import { fresh, saved, ex, addWorkout, pressAlert } from './helpers';
-import { renderApp, flushAll, screen, act, go, startEdit, saveEdit, tap } from './app';
+import { renderApp, flushAll, screen, act, go, startEdit, saveEdit, tap, openInfo } from './app';
 import type { Exercise, Template } from '@/lib/seed';
 import { generate, previewWarnings, GENERAL_SETS, GENERAL_SETS_RANGE, ACSM_MIN_SETS, MIN_DAYS } from '@/lib/generator';
 import { LANGS, tIn, applyLang } from '@/lib/i18n';
@@ -106,6 +106,7 @@ const showGenerator = async (locale: 'pl' | 'en') => {
   jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); await act(async () => { await store.flush(); });
   await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/generator' }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
   await tap(screen.getByText(locale === 'pl' ? 'Ogólny' : 'General fitness')); await flushAll(5);
+  await openInfo('gen-basis'); /* ⓘ 14.10.2026: punkty „Na czym to oparte” pod ⓘ */
 };
 /** Wszystkie 25 tłumaczeń klucza (bez PL): parametry zachowane, tekst przetłumaczony. */
 const allLangs = (key: string, params: string[]) => {

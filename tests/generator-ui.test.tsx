@@ -9,7 +9,7 @@ import { addLocation } from '@/lib/locations';
 import { generate, genProposal, sessionName, goalLabel, type GenInput } from '@/lib/generator';
 import { applyLang, exName } from '@/lib/i18n';
 import { fresh, saved } from './helpers';
-import { renderApp, flushAll, screen, tap, act } from './app';
+import { renderApp, flushAll, screen, tap, act, openInfo } from './app';
 
 const NOW = new Date(2026, 9, 8, 9, 0);
 const S = () => store.getState();
@@ -28,11 +28,11 @@ const press = async (title: string, btn: string) => { const a = lastAlert(title)
 
 test('wejście z Szablonów i z Planu tygodnia', async () => {
   await boot('/templates'); await tap(screen.getByText('Wygeneruj szablony i plan')); await flushAll(10);
-  expect(screen.getByText(/^Propozycja według Twoich założeń/)).toBeTruthy();
+  expect(screen.getByText('Propozycja do przejrzenia przed zapisem.')).toBeTruthy(); expect(screen.queryByText(/^Propozycja według Twoich założeń/)).toBeNull(); await openInfo('gen-intro'); expect(screen.getByText(/^Propozycja według Twoich założeń/)).toBeTruthy(); /* ⓘ 14.10.2026 */
   await boot('/plan'); await tap(screen.getByText('Wygeneruj szablony i plan')); await flushAll(10); expect(screen.getByText('Podgląd')).toBeTruthy();
 });
 test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgodny z logiką; opisy celów i „Na czym to oparte”', async () => {
-  await boot('/generator');
+  await boot('/generator'); await openInfo('gen-intro'); await openInfo('gen-goal'); await openInfo('gen-basis'); /* ⓘ 14.10.2026: wstęp, opis celu i „Na czym to oparte” pod ⓘ */
   expect(screen.getByText('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań; części oznaczone jako konwencja albo uproszczenie nie wynikają z badań.')).toBeTruthy();
   expect(screen.getByText('Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie 10), 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy(); /* audyt 0.10 MER-06: 0–3 (ACSM 2026: blisko upadku albo 2–3) */
   const r = generate({ goal: 'hypertrophy', locationId: null, sessions: 3, minutes: 60 });
@@ -51,6 +51,8 @@ test('redukcja: 1–2 dni — same siłowe, cardio poza planem (WHO); od 3 dni �
   await boot('/generator'); await pickDays(daysFor(2)); expect(checkedDays()).toEqual([0, 3]);
   await tap(screen.getByText('Redukcja')); await flushAll(5); expect(checkedDays()).toEqual([0, 3]); /* 1–6 dla każdego celu (09.10.2026) — wybór zostaje */
   /* opcja A (docs/research/29 sekcja 3): bez sesji cardio przy 1–2 dniach */
+  await openInfo('gen-goal'); await openInfo('gen-cardio-out'); await openInfo('gen-basis'); /* ⓘ 14.10.2026 */
+  expect(screen.getByText('Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.')).toBeTruthy();
   expect(screen.getByText('Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od 3 dni w tygodniu.')).toBeTruthy();
   expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy(); expect(screen.queryByTestId('gen-cardio')).toBeNull(); expect(screen.queryByText(/^Cardio w planie:/)).toBeNull();
   expect(screen.getByText('Cardio poza planem: sesja cardio jest w planie od 3 dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')).toBeTruthy();
@@ -63,6 +65,7 @@ test('redukcja: 1–2 dni — same siłowe, cardio poza planem (WHO); od 3 dni �
   expect(screen.queryByText(/^Cardio poza planem/)).toBeNull(); expect(screen.queryByText(/^Jeden trening w tygodniu/)).toBeNull();
   await tap(screen.getByText('45 min')); await flushAll(5);
   expect(screen.getByTestId('gen-cardio')).toBeTruthy(); expect(screen.getByText(/ — 45 min, umiarkowane tempo$/)).toBeTruthy();
+  expect(screen.getByText('Cardio w planie: 45 min tygodniowo.')).toBeTruthy(); await openInfo('gen-cardio-in');
   expect(screen.getByText('Cardio w planie: 45 min tygodniowo. Zalecenie WHO: co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')).toBeTruthy(); /* MER-08 */
 });
 test('5 sesji — ostrzeżenie o parach dzień po dniu; miejsce z listy miejsc; brak ćwiczeń — komunikat', async () => {

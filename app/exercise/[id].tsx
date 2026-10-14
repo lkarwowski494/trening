@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Field, Input, NumInput, Btn, Muted, Chip, SwitchRow, H1, Txt, useOnce, Missing } from '@/components/ui';
+import { InfoTip, InfoButton, InfoBox, useInfoOpen } from '@/components/InfoTip';
 import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
 import { Stack } from 'expo-router';
 import { getState, useTick, exById, previousFor, save, setSummary, fmtDate, fmtSec, setEquipment, exerciseInHistory, usesBand, finishedWorkouts, wallTs, REST_MAX } from '@/lib/store';
@@ -48,16 +49,19 @@ function MuscleNote({ e, style }: { e: Exercise; style?: object }) {
   const note = musclesSourced(e) ? '' : conf.startsWith('jedno źródło')
     ? t('Przypisanie partii mięśniowych — jedno źródło, nie ustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')
     : t('Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.');
-  return <>{note ? <Muted style={[{ fontSize: 12, marginBottom: 10 }, style]}>{note}</Muted> : null}
+  const short = conf.startsWith('jedno źródło') ? t('Przypisanie partii: jedno źródło.') : t('Przypisanie partii: uproszczenie.');
+  return <>{note ? <InfoTip id="muscle-note" label={short} info={note} style={[{ marginBottom: 10 }, style]}><Muted style={{ fontSize: 12 }}>{short}</Muted></InfoTip> : null}
     {um ? <Muted style={{ fontSize: 12, marginBottom: 10 }}>{t('Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.', { m: UNMAPPED_LABEL[um]?.() ?? um })}</Muted> : null}</>;
 }
 /** Wiersz podglądu: etykieta i wartość, czytane razem przez VoiceOver. */
-function Row({ label, value }: { label: string; value: string }) {
-  return <View accessibilityLanguage={lang()} /* audyt kontrolny 1 A11N-01 */ accessible accessibilityLabel={`${label}: ${value}`} style={{ marginBottom: 10 }}><Muted style={{ fontSize: 13 }}>{label}</Muted><Txt>{value}</Txt></View>;
+function Row({ label, value, info, infoId }: { label: string; value: string; /** ⓘ przy etykiecie (docs/32 wzorzec 26) */ info?: string; infoId?: string }) {
+  const row = <View accessibilityLanguage={lang()} /* audyt kontrolny 1 A11N-01 */ accessible accessibilityLabel={`${label}: ${value}`} style={{ marginBottom: 10 }}><Muted style={{ fontSize: 13 }}>{label}</Muted><Txt>{value}</Txt></View>;
+  const [open, toggle] = useInfoOpen();
+  return info && infoId ? <View><View style={{ flexDirection: 'row', alignItems: 'flex-start', columnGap: 6 }}><View style={{ flex: 1 }}>{row}</View><View style={{ paddingTop: 2 }}><InfoButton id={infoId} label={label} open={open} onToggle={toggle} /></View></View>{open ? <InfoBox id={infoId} info={info} /> : null}</View> : row;
 }
 /** Ostatnie sesje z tym ćwiczeniem (najnowsze pierwsze). */
 const HISTORY_ROWS = 5;
-function Preview({ e, cuesOpen, onEdit, onOpen, onProgress }: { e: Exercise; /** UX2-05: z „ⓘ Technika” — sekcja rozwinięta */ cuesOpen?: boolean; onEdit: () => void; onOpen: (id: string) => void; onProgress: () => void }) {
+function Preview({ e, cuesOpen, onEdit, onOpen, onProgress }: { e: Exercise; /** UX2-05: z „Technika ›” — sekcja rozwinięta */ cuesOpen?: boolean; onEdit: () => void; onOpen: (id: string) => void; onProgress: () => void }) {
   const m = e.metric ?? 'weight_reps'; const def = getState().settings.defaultRest;
   const hist = finishedWorkouts().filter(w => w.exercises.some(x => x.exerciseId === e.id)).slice(0, HISTORY_ROWS);
   const mus = (xs: readonly string[] | undefined) => (xs ?? []).length ? (xs ?? []).map(x => t(x)).join(', ') : '—';
@@ -68,7 +72,7 @@ function Preview({ e, cuesOpen, onEdit, onOpen, onProgress }: { e: Exercise; /**
       <Row label={t('Partia')} value={t(e.group)} />
       <Row label={t('Sprzęt')} value={t(e.equipment)} />
       {formerNamesOf(e).length ? <Row label={t('Dawne nazwy w bibliotece')} value={formerNamesOf(e).map(n => exName({ name: n, lib: true })).join(', ')} /> : null}{/* UX2-01 (audyt kontrolny 1): scalone i przemianowane w kroku katalogu 09.10 */}
-      <Row label={t('Co logujesz w serii')} value={t(METRIC_LABEL[m])} />
+      <Row label={t('Co logujesz w serii')} value={t(METRIC_LABEL[m])} infoId="bw-rules" info={bwNote()} />
       {hasWeight(m) && e.equipment !== 'masa ciała' ? <Row label={t('Jak liczyć ciężar w objętości')} value={t(LOAD_MODE_LABEL[e.loadMode ?? 'total'])} /> : null}
       <Row label={t('Przerwa robocza')} value={e.restSec != null ? fmtSec(e.restSec) : t('domyślna {s}', { s: fmtSec(def) })} />
       <Row label={t('Przerwa po rozgrzewce')} value={e.restWarmupSec != null ? fmtSec(e.restWarmupSec) : t('jak robocza')} />
@@ -80,7 +84,6 @@ function Preview({ e, cuesOpen, onEdit, onOpen, onProgress }: { e: Exercise; /**
       {!e.bandAssistable && usesBand(e) ? <Muted style={{ fontSize: 12, marginTop: -6, marginBottom: 10 }}>{t('Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.')}</Muted> : null}
       {e.tempo ? <Row label={t('Tempo')} value={e.tempo} /> : null}
       {e.notes ? <Row label={t('Notatki techniczne')} value={e.notes} /> : null}
-      <Muted style={{ fontSize: 13, marginBottom: 12 }}>{bwNote()}</Muted>
       <Muted accessibilityRole="header" style={{ fontSize: 13, marginTop: 6, marginBottom: 4 }}>{t('Ostatnie treningi')}</Muted>
       {hist.length ? hist.map(w => { const sets = w.exercises.filter(x => x.exerciseId === e.id).flatMap(x => x.sets); const line = `${fmtDate(wallTs(w))} · ${sets.map(x => setSummary(e, x)).join(', ')}`;
         return <Btn nav /* UI2-02 */ key={w.id} kind="ghost" small title={line} accessibilityLabel={t('Sesja {d}: {s}', { d: fmtDate(wallTs(w)), s: sets.map(x => setSummary(e, x)).join(', ') })} style={{ justifyContent: 'flex-start', paddingHorizontal: 0 }} onPress={() => onOpen(w.id)} />; })
@@ -100,7 +103,7 @@ function EditForm({ e }: { e: Exercise }) {
       {translated ? <Muted style={{ fontSize: 12, marginTop: -6, marginBottom: 10 }}>{t('Wyświetlane jako: {n}', { n: exName(e) })}</Muted> : null}
       <Field label={t('Partia')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{GROUPS.map(g => <Chip key={g} label={t(g)} on={e.group === g} onPress={() => { const old = e.group; const auto = old ? GROUP_TO_MUSCLE[old] : undefined; const cur = e.muscles ?? []; e.group = g; const mu = GROUP_TO_MUSCLE[g]; /* runda 5: automatyczna partia z poprzedniej grupy jest podmieniana, a nowa znika z pomocniczych */ if (!cur.length || (cur.length === 1 && cur[0] === auto)) { e.muscles = mu ? [mu] : []; if (mu) e.secondaryMuscles = (e.secondaryMuscles ?? []).filter(x => x !== mu); } save(e); }} />)}</ScrollView></Field>
       <Field label={t('Sprzęt')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{EQ.map(g => <Chip key={g} label={t(g)} on={e.equipment === g} onPress={() => setEquipment(e, g)} />)}</ScrollView></Field>
-      <Field label={t('Co logujesz w serii')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{METRICS.map(m => <Chip key={m} label={t(METRIC_LABEL[m])} on={(e.metric ?? 'weight_reps') === m} onPress={() => { e.metric = m; save(e); }} />)}</ScrollView></Field>
+      <Field label={t('Co logujesz w serii')} infoId="bw-rules" info={bwNote()}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{METRICS.map(m => <Chip key={m} label={t(METRIC_LABEL[m])} on={(e.metric ?? 'weight_reps') === m} onPress={() => { e.metric = m; save(e); }} />)}</ScrollView></Field>
       {hasWeight(e.metric ?? 'weight_reps') && e.equipment !== 'masa ciała' ? <Field label={t('Jak liczyć ciężar w objętości')}><ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>{(Object.keys(LOAD_MODE_LABEL) as LoadMode[]).map(m => <Chip key={m} label={t(LOAD_MODE_LABEL[m])} on={(e.loadMode ?? 'total') === m} onPress={() => { e.loadMode = m; save(e); }} />)}</ScrollView></Field> : null}
       <View style={{ flexDirection: 'row', gap: 10 }}>
         <View style={{ flex: 1 }}><Field label={t('Przerwa robocza (s)')}><NumInput value={e.restSec ?? ''} onNum={v => { e.restSec = v === '' ? null : Math.min(REST_MAX, Math.max(0, Math.round(v))); save(e); }} placeholder={t('domyślna {s}', { s: getState().settings.defaultRest })} /></Field></View>
@@ -117,7 +120,6 @@ function EditForm({ e }: { e: Exercise }) {
       {exerciseInHistory(e.id) ? <Muted style={{ fontSize: 12, marginBottom: 10 }}>{t('Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).')}</Muted> : null}
       {p ? <Muted style={{ fontSize: 13, marginBottom: 10 }}>{t('Ostatnio {d}:', { d: fmtDate(wallTs(p.workout)) }) /* J3 (fix-data): data w strefie treningu */} {p.sets.map(x => setSummary(e, x)).join(', ')}</Muted> : null}
       {/* E1 (audyt 0.10): e1RM w ćwiczeniach z masą ciała — tylko z masą ciała z Ustawień i udziałem ze źródeł (stats.BW_SHARE) */}
-      <Muted style={{ fontSize: 13, marginBottom: 16 }}>{bwNote()}</Muted>
     </ScrollView></Screen>
   );
 }

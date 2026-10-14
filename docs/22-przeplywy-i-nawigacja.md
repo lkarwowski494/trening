@@ -56,7 +56,7 @@ Legenda częstości: **D** codziennie / w każdym treningu, **T** co tydzień, *
 | A17 | Superset | R | „⇅ SS” / „✂ SS” | 1 | ekran treningu | — | — |
 | A18 | Pauza / wznowienie treningu | T | „⏸ Pauza” / „▶ Wznów” pod nazwą | 1 | ekran treningu | — | odhaczenie serii wznawia |
 | A19 | Zmienić miejsce tej sesji | R | „📍 Dom ▾” → arkusz | 2 | ekran treningu | — | tylko gdy są miejsca |
-| A20 | Technika ćwiczenia w trakcie | R | „ⓘ Technika” w stopce bloku → `exercise/[id]?cues=1` → Wróć | 2 | Trening → Ćwiczenie | ekran treningu | — |
+| A20 | Technika ćwiczenia w trakcie | R | „Technika ›” w stopce bloku → `exercise/[id]?cues=1` → Wróć | 2 | Trening → Ćwiczenie | ekran treningu | — |
 | A21 | Notatka do treningu | T | pole na dole listy | 1 + wpis | ekran treningu | — | — |
 | A22 | Zakończyć i zapisać | D | „Zakończ” (góra) / „Zakończ trening” (karta, gdy wszystko odhaczone) / „Zakończ trening i zapisz” (dół) → okno „Zakończyć trening?” → zapis | **2** + 0–2 okna (rekordy; „Zaktualizować szablon?”) | Trening → Sesja (`history/[id]` na stosie) | ekran sesji; „Wróć” → ekran główny | **3 przyciski tego samego celu na jednym ekranie**; NOWY (decyzja 7): podsumowanie rekordów bez grafiki |
 | A23 | Odrzucić trening | R | „Odrzuć trening” (dół) → potwierdzenie | 2 | ekran treningu | ekran główny | — |
@@ -165,13 +165,13 @@ zmiany istniejących).
 | | „📍 miejsce ▾” | arkusz miejsc | |
 | | „⏸ Pauza / ▶ Wznów” | — | |
 | | blok: numer serii → arkusz typu/notatki; pola; ▶; guma; ✓ | — | |
-| | stopka bloku: „+ seria”, „+ rozgrzewka”, „+ drop set”, „⏱ przerwa”, „⇅ SS”/„✂ SS”, „ⓘ Technika” → `/exercise/[id]?cues=1`, „⇄ zamień” → `/swap`, „Pomiń dziś” | | do 8 przycisków w stopce każdego bloku |
+| | stopka bloku: „+ seria”, „+ rozgrzewka”, „+ drop set”, „⏱ przerwa”, „⇅ SS”/„✂ SS”, „Technika ›” → `/exercise/[id]?cues=1`, „⇄ zamień” → `/swap`, „Pomiń dziś” | | do 8 przycisków w stopce każdego bloku |
 | | przy bloku: „↺ cofnij”, „Zawsze w: …”, „Zamień” (podpowiedź), „⇄” (brak sprzętu), „Przywróć” (pominięty) | | **trzy wejścia do zamiany** w jednym bloku |
 | | „+ Dodaj ćwiczenie” → `/picker?target=active`; „≡ Kolejność” → `/reorder?target=active` | | |
 | | notatka; „Zakończ trening i zapisz”; „Odrzuć trening” | | **drugi/trzeci przycisk zakończenia** |
 | | dolny pasek: „Zakończ serię” / „−15 +15 Pomiń” | | |
 | **Szablony** (`app/(tabs)/templates.tsx`) | „+ Nowy” → edytor; „Wygeneruj szablony i plan” → `/generator`; wiersz → `/template/[id]`; gest → usuń; „Archiwum (n)” | | |
-| **Szablon — podgląd** (`app/template/[id].tsx`) | „Edytuj”; „Start” (zamyka stos, → Trening) / „Wróć do treningu” / „Trening w toku” (okno); „ⓘ Technika”; „Duplikuj” (replace); „Archiwizuj / Przywróć z archiwum” | | |
+| **Szablon — podgląd** (`app/template/[id].tsx`) | „Edytuj”; „Start” (zamyka stos, → Trening) / „Wróć do treningu” / „Trening w toku” (okno); „Technika ›”; „Duplikuj” (replace); „Archiwizuj / Przywróć z archiwum” | | |
 | **Szablon — edycja** | nagłówek „Anuluj” / „Zapisz” (`DraftHeader.tsx`); „+ Nowy folder”; „≡ Kolejność” → `/reorder`; „+ Dodaj ćwiczenie” → `/picker`; wiersze serii; zamienniki | | po „Zapisz” z `assign` — przypisanie do dnia planu |
 | **Ćwiczenia** (`app/(tabs)/exercises.tsx`) | „+ Nowe” → edytor; szukaj; chip zakresu „Podstawowe / Wszystkie”; wiersz → `/exercise/[id]`; „Przywróć „…”” (zarchiwizowane przy szukaniu); „Utwórz „…”” (pusty wynik); gest → usuń | | |
 | **Ćwiczenie — podgląd** (`app/exercise/[id].tsx`) | „Edytuj”; Technika (rozwijana, figura); „Ostatnie treningi” → `/history/[id]`; „Postępy” → `/more/progress?ex=` | | |

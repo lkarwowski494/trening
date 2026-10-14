@@ -7,6 +7,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
 import { TechniqueLink } from '@/components/ExerciseCues';
 import { Screen, Field, Input, NumInput, Btn, Muted, Txt, H1, Empty, FieldLabel, FieldHint, useOnce, Chip, Missing } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
 import { availability } from '@/lib/equipment';
@@ -139,7 +140,6 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
           </> : null}
         </View>); })}
       <Btn title={t('+ Dodaj ćwiczenie')} block style={{ marginTop: 12 }} onPress={once(() => router.push(`/picker?target=template:${tpl.id}`))} />
-      <Muted style={{ fontSize: 13, marginTop: 10 }}>{t('Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.')}</Muted>
     </ScrollView></Screen>
   );
 }
@@ -207,7 +207,9 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
       </View>
       {/* MER-13 (audyt 0.10): opis zgodny z podpowiedzią („↑ spróbuj 62,5”, „↑ spróbuj 9 pow.”) i tylko tam, gdzie ona się pojawia (store.progressionFor:
        * ciężar + powtórzenia, zamknięty zakres, włączona w Ustawieniach) — przy zakresie otwartym „8+” jej nie ma */}
-      {m === 'weight_reps' && it.repMin != null && it.repMax != null && it.repMax >= it.repMin && getState().settings.progressHint ? <Muted style={{ fontSize: 12 }}>{t('Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze miały co najmniej {n} powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).', { r: reps(it.repMin, it.repMax), n: it.repMax })}</Muted> : null}
+      {m === 'weight_reps' && it.repMin != null && it.repMax != null && it.repMax >= it.repMin && getState().settings.progressHint ? <InfoTip id={`range-${it.id}`} label={t('Zakres {r}: gdy ostatnio wszystkie serie miały ≥ {n} powt., pojawi się „↑”.', { r: reps(it.repMin, it.repMax), n: it.repMax })} info={t('Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze miały co najmniej {n} powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).', { r: reps(it.repMin, it.repMax), n: it.repMax })}>
+        <Muted style={{ fontSize: 12 }}>{t('Zakres {r}: gdy ostatnio wszystkie serie miały ≥ {n} powt., pojawi się „↑”.', { r: reps(it.repMin, it.repMax), n: it.repMax })}</Muted>
+      </InfoTip> : null}
       {hasReps(m) && it.repMin != null && it.repMax != null && it.repMax < it.repMin ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+', { n: it.repMin })}</Muted> : null}
     </View></FieldHint.Provider>
   );

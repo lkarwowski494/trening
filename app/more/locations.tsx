@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useRouter, Stack } from 'expo-router';
 import { Screen, Item, Btn, Muted, Empty, SectionTitle, useOnce } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { getState, useTick, visibleLocations } from '@/lib/store';
 import { addLocation, canDeleteLocation, deleteLocation } from '@/lib/locations';
 import { SwipeRow } from '@/components/SwipeRow';
@@ -15,7 +16,9 @@ export default function Locations() {
   const addHeader = useAddHeader(t('Dodaj miejsce'), () => setAdding(true), undefined, false) /* idempotentne: otwiera listę presetów — bez blokady */;
   return (
     <Screen><Stack.Screen options={addHeader} /><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 80 }}>
-      <Muted style={{ marginBottom: 8 }}>{t('Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.')}</Muted>
+      <InfoTip id="places-intro" label={t('Gdzie trenujesz i jaki sprzęt tam masz.')} info={t('Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.')} style={{ marginBottom: 8 }}>
+        <Muted>{t('Gdzie trenujesz i jaki sprzęt tam masz.')}</Muted>
+      </InfoTip>
       {visibleLocations().map(l => { const main = l.id === s.mainLocationId; const n = l.equipment.filter(e => !e.off).length;
         /* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (z ekranu miejsca przycisk zniknął); miejsca głównego się nie usuwa — bez gestu */
         const used = getState().workouts.some(w => w.locationId === l.id) || getState().templates.some(x => x.locationId === l.id);

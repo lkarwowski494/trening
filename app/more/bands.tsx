@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { ScrollView, View, Alert } from 'react-native';
 import { Screen, Input, NumInput, Btn, Muted, Empty, useOnce } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { getState, useTick, save, bandColor, deleteBand } from '@/lib/store';
 import { SwipeRow } from '@/components/SwipeRow';
 import { BandColorInput } from '@/components/BandColorInput';
@@ -19,7 +20,9 @@ export default function Bands() {
   const addHeader = useAddHeader(t('Dodaj gumę'), () => { st.bands.push({ ...base(st.ownerId), color: t('nowa'), level: 3 }); save(); });
   return (
     <Screen><Stack.Screen options={addHeader} /><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
-      <Muted style={{ marginBottom: 10 }}>{t('Kolor i poziom trudności: 1 = cienka, 7 = bardzo gruba. Gumy nie mają kilogramów — przy serii zapisujesz, której gumy użyłeś. Guma jako asysta (np. podciąganie): rekordem są powtórzenia bez gumy, a postęp to zejście na niższy poziom. Guma jako opór: rekordy liczą serie z gumą.') /* MER-15 (audyt 0.10): prawdziwe dla asysty i oporu */}</Muted>
+      <InfoTip id="bands-intro" label={t('Poziom: 1 = cienka, 7 = bardzo gruba.')} info={t('Kolor i poziom trudności: 1 = cienka, 7 = bardzo gruba. Gumy nie mają kilogramów — przy serii zapisujesz, której gumy użyłeś. Guma jako asysta (np. podciąganie): rekordem są powtórzenia bez gumy, a postęp to zejście na niższy poziom. Guma jako opór: rekordy liczą serie z gumą.') /* MER-15 (audyt 0.10): prawdziwe dla asysty i oporu */} style={{ marginBottom: 10 }}>
+        <Muted>{t('Poziom: 1 = cienka, 7 = bardzo gruba.')}</Muted>
+      </InfoTip>
       {bands.map(b => (
         <SwipeRow key={b.id} label={t('Usuń gumę: {name}', { name: bandColor(b) })} title={t('Usunąć gumę?')} message={[st.workouts.some(w => w.exercises.some(e => e.sets.some(s => s.bandId === b.id))) ? t('W historii serie z tą gumą pokażą „?”.') : '', st.active?.exercises.some(e => e.sets.some(s => s.bandId === b.id)) ? t('W trwającym treningu guma zniknie z nieodhaczonych serii.') : ''].filter(Boolean).join(' ') || undefined} onDelete={() => deleteBand(b.id)}>{a11y => <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center', paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: th.line }}>
           <View style={{ flex: 1 }}><BandColorInput band={b} a11y={a11y} accessibilityLabel={t('Kolor gumy')} /* G2 (audyt 0.10): wspólne pole z poziomami gum w miejscu */ /></View>

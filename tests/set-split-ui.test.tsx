@@ -11,7 +11,7 @@ import { within } from '@testing-library/react-native';
 import { light, dark } from '@/lib/theme';
 import { contrast, GRAPHIC_MIN } from '@/lib/motif';
 import { fresh, saved, addWorkout, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, tap, act } from './app';
+import { renderApp, flushAll, screen, tap, act, openInfo } from './app';
 
 jest.setTimeout(60000);
 const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek; tydzień pon 5 … nd 11 października 2026 */
@@ -134,7 +134,7 @@ describe('Generator i plan z moich szablonów: cel z Ustawień per partia, ten s
     await boot(() => { S().settings.weeklySetGoals = { klatka: 25, plecy: 2 }; store.save(); }, '/generator');
     expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii — uproszczenie, jedno źródło\): .*klatka [\d,]+( \+ [\d,]+ pośrednio \(\d+ serii?e?\))? \/ 25; .*plecy .* \/ 2;/)).toBeTruthy();
     const w = screen.getByText(/^Poniżej celu serii tygodniowo: /); expect(w.props.children).toMatch(/klatka \([\d,]+\/25\)/); expect(w.props.children).not.toMatch(/plecy \(/);
-    expect(screen.getByText('Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie 10), 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy();
+    await openInfo('gen-goal'); expect(screen.getByText('Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie 10), 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy();
     await tap(screen.getByText('Ogólny')); await flushAll(5);
     expect(screen.queryByText(/^Poniżej celu serii/)).toBeNull(); const list = screen.getByText(/^Serie na partię w tygodniu \(pomocnicza/); expect(String(list.props.children)).not.toMatch(/ \/ \d/);
   });

@@ -16,7 +16,7 @@ import * as FS from 'expo-file-system/legacy';
 import * as DP from 'expo-document-picker';
 import * as Sharing from 'expo-sharing';
 import { within } from '@testing-library/react-native';
-import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft, fromHome, startTpl } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft, fromHome, startTpl, openInfo } from './app';
 import { ex, pressAlert, saved } from './helpers';
 import type { State } from '@/lib/seed';
 import { loadSummary } from '@/components/LoadEditor';
@@ -156,6 +156,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByLabelText('Dodaj miejsce')); await tap(screen.getByLabelText(/^Pełna siłownia, /)); await flushAll(10);
     const gym = loc('Pełna siłownia'); expect(S().settings.mainLocationId).toBe(gym.id);
     expect(screen.getByLabelText('Nazwa').props.value).toBe('Pełna siłownia');
+    expect(screen.getByText('★ Miejsce główne')).toBeTruthy(); await openInfo('main-place'); /* ⓘ 14.10.2026: wyjaśnienie pod ⓘ */
     expect(screen.getByText('★ Miejsce główne — domyślne dla nowych treningów i szablonów bez własnego miejsca.')).toBeTruthy(); expect(screen.queryByText('Ustaw jako główne')).toBeNull();
     expect(gym.equipment.some(e => e.item === 'electric' || e.item === 'db_plate' || e.item === 'tire')).toBe(false); /* stacja, hantle na talerze i strongman poza presetem */
     expect(gym.equipment.find(e => e.item === 'barbell')!.load).toMatchObject({ kind: 'plates', unit: 'kg', base: 20 });
@@ -438,8 +439,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(byHint('+ zakres powtórzeń', B));
     await type(screen.getByLabelText(`powtórzenia od — ${B}`), '8'); await type(screen.getByLabelText(`powtórzenia do — ${B}`), '6');
     expect(screen.getByText('„do” jest mniejsze niż „od” — zakres pokaże się jako 8+')).toBeTruthy();
-    await type(screen.getByLabelText(`powtórzenia do — ${B}`), '12'); expect([it0().repMin, it0().repMax]).toEqual([8, 12]); expect(screen.getByText(/^Zakres powtórzeń: 8–12/)).toBeTruthy();
-    await tap(screen.getAllByLabelText('Usuń zakres powtórzeń').find(x => x.props.accessibilityHint === B)!); expect([it0().repMin, it0().repMax]).toEqual([null, null]); expect(screen.queryByText(/^Zakres powtórzeń:/)).toBeNull();
+    await type(screen.getByLabelText(`powtórzenia do — ${B}`), '12'); expect([it0().repMin, it0().repMax]).toEqual([8, 12]); expect(screen.getByText(/^Zakres 8–12: gdy ostatnio/)).toBeTruthy();
+    await tap(screen.getAllByLabelText('Usuń zakres powtórzeń').find(x => x.props.accessibilityHint === B)!); expect([it0().repMin, it0().repMax]).toEqual([null, null]); expect(screen.queryByText(/^Zakres (powtórzeń: )?\d/)).toBeNull();
     await tap(byHint('+ zakres powtórzeń', B)); await type(screen.getByLabelText(`powtórzenia od — ${B}`), '8'); await type(screen.getByLabelText(`powtórzenia do — ${B}`), '12');
     expect(rF()[1].props.placeholder).toBe('8–12');
     /* przerwa pozycji: pusta = z ćwiczenia (100 s), wpisana wygrywa */
@@ -855,7 +856,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
   test('10 backup: eksport JSON, CSV, import (anulowany, zły plik, nowszy schemat, poprawny) przywraca dane; kopia bezpieczeństwa przed importem', async () => {
     const write = FS.writeAsStringAsync as jest.Mock; const share = Sharing.shareAsync as jest.Mock; write.mockClear(); share.mockClear();
     await boot('/more'); await tap(screen.getByText('Kopia zapasowa (eksport / import)')); await flushAll(10);
-    expect(screen.getByText(/^Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam/)).toBeTruthy();
+    expect(screen.getByText(/^Kopie automatyczne znikają razem z aplikacją/)).toBeTruthy(); await openInfo('backup-auto'); expect(screen.getByText(/^Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam/)).toBeTruthy();
     await tap(screen.getByText('Eksportuj backup (plik JSON)')); await flushAll(10);
     const [jp, json] = write.mock.calls.at(-1)!; expect(jp).toMatch(/^file:\/\/\/cache\/trening-backup-\d{4}-\d{2}-\d{2}\.json$/); expect(share).toHaveBeenLastCalledWith(jp, expect.objectContaining({ mimeType: 'application/json' }));
     const env = JSON.parse(json); expect(env.format).toBe('trening-backup'); expect(env.schemaVersion).toBe(require('@/lib/seed').SCHEMA_VERSION);

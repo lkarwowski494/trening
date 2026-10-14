@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { ScrollView, Alert, Keyboard } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H2, Muted, Item, SectionTitle } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { WhenFields } from '@/components/WhenFields';
 import { getState, useTick, exById, tplWorkSets } from '@/lib/store';
 import { beginPast, defaultPastWhen, parseWhen, activeOverlapError } from '@/lib/edit';
@@ -30,7 +31,9 @@ export default function AddPastWorkout() {
   const row = (tpl: (typeof usable)[number]) => { const sets = tplWorkSets(tpl); return <Item key={tpl.id} title={tpl.name} sub={`${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}`} onPress={() => start(tpl.id)} />; };
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
-      <Muted style={{ fontSize: 13, marginBottom: 12 }}>{t('Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).')}</Muted>
+      <InfoTip id="add-intro" label={t('Ustaw termin i szablon — serie uzupełnisz w następnym kroku.')} info={t('Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).')} style={{ marginBottom: 12 }}>
+        <Muted style={{ fontSize: 13 }}>{t('Ustaw termin i szablon — serie uzupełnisz w następnym kroku.')}</Muted>
+      </InfoTip>
       <WhenFields date={when.date} time={when.time} min={when.min} onChange={p => setWhen(x => ({ ...x, ...p }))} />
       <H2 style={{ marginTop: 16 }}>{t('Z szablonu')}</H2>
       {tpls.map(row)}

@@ -54,7 +54,7 @@ describe('ekran szablonu jak trening', () => {
     expect(screen.getAllByLabelText(/^Seria [123], typ: normalna/).length).toBe(3);
     await tap(screen.getByText('+ rozgrzewka')); await tap(screen.getByText('+ drop set')); await flushAll(5);
     expect(screen.getByLabelText(/^Seria W, typ: rozgrzewkowa/)).toBeTruthy();
-    expect(screen.getByText(/Zakres powtórzeń: 8–12/)).toBeTruthy(); /* ustawiony zakres widoczny */
+    expect(screen.getByText(/Zakres 8–12: gdy ostatnio/)).toBeTruthy(); /* ustawiony zakres widoczny (ⓘ 14.10.2026: skrócony opis, pełny pod ⓘ) */
     await saveEdit(); /* edycja na żądanie (08.10.2026): zmiany w danych dopiero po „Zapisz” */
     expect(store.getState().templates.find(x => x.id === 'tq')!.items[0].rows!.map(r => r.kind)).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']);
   });

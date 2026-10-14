@@ -83,7 +83,10 @@ export class Runner {
     const top = this.vpTop(b.scroll); return { x, y: top + b.y - this.curScroll(b.scroll, top), w: b.w, h: b.h, sc: b.scroll };
   }
   /** Przewinięcie listy przycięte do treści (treść skróciła się — lista wraca, jak w UIScrollView). */
-  maxScroll(sc: LNode, top: number) { return Math.max(0, (this.boxes.get(sc)?.h ?? 0) - (this.vpBottom() - top)); }
+  maxScroll(sc: LNode, top: number) { return Math.max(0, (this.boxes.get(sc)?.h ?? 0) - (this.vpBottom() - top)) + this.kbInset(sc); }
+  /** Inset klawiatury (UIScrollView.automaticallyAdjustsContentInsetForKeyboard — prop `automaticallyAdjustKeyboardInsets`): przy aktywnym polu lista da się przewinąć o wysokość klawiatury
+   * poza koniec treści, więc pole na samym dole krótkiej listy też da się wynieść nad klawiaturę (14.10.2026: edytor szablonu po zdjęciu stopki z gestami — 08, „reps to”). */
+  kbInset(sc: LNode) { return this.focused && sc.props.automaticallyAdjustKeyboardInsets ? SCREEN.bottom - SCREEN.kbTop : 0; }
   curScroll(sc: LNode, top: number) { return Math.min(this.scrollY.get(this.scrollKey(sc)) ?? 0, this.maxScroll(sc, top)); }
   /** Dolna krawędź obszaru listy (pasek zakładek albo wskaźnik home). */
   /** Fokus pola w liście z automaticallyAdjustKeyboardInsets: lista przesuwa pole nad klawiaturę. */

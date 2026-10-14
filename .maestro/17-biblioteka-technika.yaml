@@ -16,7 +16,7 @@
 #   UX2-01 — dawna nazwa z katalogu znajduje obecne ćwiczenie: "Back Squat, barbell · formerly: Narrow Stance Squats" ← 'dawniej: {n}' (dopisek wiersza
 #            listy Ćwiczeń); bez "Create .*" ← 'Utwórz „{name}”'.
 #   UX2-05 — technika z treningu: "Empty workout", "\+ Add exercise", "Search exercises…" (jak 04), "Technique: Back Squat" ← 'Technika: {name}'
-#            (etykieta VoiceOver przycisku „ⓘ Technika” w karcie ćwiczenia, components/ExerciseCues.tsx TechniqueLink) → podgląd z rozwiniętą sekcją
+#            (etykieta VoiceOver przycisku „Technika ›” w karcie ćwiczenia, components/ExerciseCues.tsx TechniqueLink) → podgląd z rozwiniętą sekcją
 #            („Setup” widoczne bez tapnięcia „Technique”).
 appId: pl.lukasz.trening
 name: Filtr „Podstawowe” i sekcja „Technika”
@@ -69,7 +69,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - assertNotVisible: "Create .*"
 - takeScreenshot: 83-dawna-nazwa
 
-# --- UX2-05: „ⓘ Technika” w treningu na żywo → podgląd ćwiczenia z rozwiniętą sekcją ---
+# --- UX2-05: „Technika ›” w treningu na żywo → podgląd ćwiczenia z rozwiniętą sekcją ---
 - stopApp
 - launchApp:
     clearState: false
