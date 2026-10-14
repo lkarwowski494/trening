@@ -4,7 +4,7 @@
   "nazwa": 30,
   "opis": 45
  },
- "ascLocaleBrak": "Bułgarski, serbski, litewski, łotewski i estoński nie są lokalizacjami App Store Connect (lista Apple: App Store localizations, sprawdzone 14.10.2026). Słoweński: strona Apple wymienia „Slovenia/Slovenian”, ale zestawienia lokalizacji subskrypcji go nie zawierają — [DO POTWIERDZENIA przy pierwszym apply].",
+ "ascLocaleBrak": "Bułgarski, serbski, litewski, łotewski i estoński nie są lokalizacjami App Store Connect (lista Apple: App Store localizations, sprawdzone 14.10.2026). Słoweński: App Store Connect odrzucił go przy pierwszym zapisie 14.10.2026 (UNSUPPORTED_LOCALE_CODE dla grupy, subskrypcji i zakupu) — pomijany.",
  "wpisaneRecznie": {
   "en-US": {
    "group": {
@@ -151,7 +151,7 @@
    }
   },
   "sl": {
-   "ascLocale": "sl",
+   "ascLocale": null,
    "group": {
     "name": "Trening — polna različica"
    },

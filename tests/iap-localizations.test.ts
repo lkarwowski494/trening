@@ -21,7 +21,7 @@ const LANGS33 = LANGS.filter(l => l !== 'pl' && l !== 'en');
 
 /** Mapowanie kodów języków aplikacji na kody lokalizacji App Store Connect (jawnie, żeby zmiana pliku nie przechodziła niezauważona). */
 const MAPPING: Record<string, string | null> = {
-  cs: 'cs', sk: 'sk', hu: 'hu', ro: 'ro', bg: null, hr: 'hr', sl: 'sl', sr: null, lt: null, lv: null, et: null, uk: 'uk',
+  cs: 'cs', sk: 'sk', hu: 'hu', ro: 'ro', bg: null, hr: 'hr', sl: null, sr: null, lt: null, lv: null, et: null, uk: 'uk',
   es: 'es-ES', 'es-419': 'es-MX', pt: 'pt-PT', 'pt-BR': 'pt-BR', de: 'de-DE', fr: 'fr-FR', it: 'it', nl: 'nl-NL', sv: 'sv', da: 'da', nb: 'no',
   fi: 'fi', tr: 'tr', el: 'el', id: 'id', ms: 'ms', vi: 'vi', ru: 'ru', ja: 'ja', ko: 'ko', 'zh-Hant': 'zh-Hant',
 };
@@ -48,10 +48,10 @@ describe('store/iap-localizations.json: dane', () => {
   test('limity także dla EN i PL wpisanych przez właściciela', () => {
     for (const loc of Object.values(data.wpisaneRecznie)) for (const k of KEYS) { const t = loc[k]; expect(len(t.name)).toBeLessThanOrEqual(30); expect(len(t.description ?? '')).toBeLessThanOrEqual(45); }
   });
-  test('mapowanie języków aplikacji na lokalizacje App Store Connect: jawne, bez powtórzeń; nieobsługiwane = null (bg, sr, lt, lv, et)', () => {
+  test('mapowanie języków aplikacji na lokalizacje App Store Connect: jawne, bez powtórzeń; nieobsługiwane = null (bg, sr, lt, lv, et, sl)', () => {
     expect(Object.fromEntries(LANGS33.map(l => [l, data.tlumaczenia[l].ascLocale]))).toEqual(MAPPING);
-    const codes = Object.values(MAPPING).filter(Boolean) as string[]; expect(new Set(codes).size).toBe(codes.length); expect(codes).toHaveLength(28);
-    expect(LANGS33.filter(l => MAPPING[l] === null).sort()).toEqual(['bg', 'et', 'lt', 'lv', 'sr']);
+    const codes = Object.values(MAPPING).filter(Boolean) as string[]; expect(new Set(codes).size).toBe(codes.length); expect(codes).toHaveLength(27);
+    expect(LANGS33.filter(l => MAPPING[l] === null).sort()).toEqual(['bg', 'et', 'lt', 'lv', 'sl', 'sr']);
     for (const c of codes) expect(c).not.toMatch(/^(en|pl)(-|$)/); /* EN i PL wpisał właściciel */
   });
   test.each(LANGS33)('%s: nazwy używają tego samego tłumaczenia „Pełna wersja” co słownik aplikacji (lib/locales)', (l) => {
@@ -136,22 +136,22 @@ if (mode === 'jwt') {
 process.stdout.write(JSON.stringify(out));
 `;
 const drive = (mode: string) => JSON.parse(execFileSync('node', ['--input-type=module', '-e', DRIVER, mode], { encoding: 'utf8', maxBuffer: 20e6 }));
-const MAPPED = LANGS33.filter(l => MAPPING[l]).length; /* 28 */
+const MAPPED = LANGS33.filter(l => MAPPING[l]).length; /* 27 (sl odrzucony przez ASC 14.10.2026) */
 
 describe('scripts/asc/iap-localizations.mjs na atrapie API', () => {
-  test('dry-run: znajduje 4 obiekty, planuje utworzenie lokalizacji dla każdego obsługiwanego języka (4 × 28), niczego nie zapisuje', () => {
+  test('dry-run: znajduje 4 obiekty, planuje utworzenie lokalizacji dla każdego obsługiwanego języka (4 × 27), niczego nie zapisuje', () => {
     const r = drive('dry');
-    expect(r.first.code).toBe(0); expect(r.first.counts).toMatchObject({ 'utwórz': 4 * MAPPED, 'zaktualizuj': 0, 'pomiń': 4 * 5, błędy: 0, różniceWłaściciela: 0 });
+    expect(r.first.code).toBe(0); expect(r.first.counts).toMatchObject({ 'utwórz': 4 * MAPPED, 'zaktualizuj': 0, 'pomiń': 4 * 6, błędy: 0, różniceWłaściciela: 0 });
     expect(r.callsAfterFirst.every((c: string) => c.startsWith('GET '))).toBe(true);
     expect(r.logs1[0]).toContain('DRY-RUN'); expect(r.logs1[0]).toContain('4 z 4');
     expect(r.logs1.join('\n')).toContain('bg → -: pomiń (brak lokalizacji w App Store Connect)');
     expect(r.store.GROUP).toHaveLength(2); /* bez zmian */
   });
-  test('apply tworzy brakujące (4 × 28 POST), EN i PL nie są dotykane; drugi przebieg = same „pomiń” i zero zapisów (idempotencja)', () => {
+  test('apply tworzy brakujące (4 × 27 POST), EN i PL nie są dotykane; drugi przebieg = same „pomiń” i zero zapisów (idempotencja)', () => {
     const r = drive('apply');
     expect(r.first.counts).toMatchObject({ 'utwórz': 4 * MAPPED, 'zaktualizuj': 0, błędy: 0 }); expect(r.first.code).toBe(0);
     expect(r.callsAfterFirst.filter((c: string) => c.startsWith('POST ')).length).toBe(4 * MAPPED); expect(r.callsAfterFirst.some((c: string) => c.startsWith('PATCH '))).toBe(false);
-    expect(r.second.counts).toMatchObject({ 'utwórz': 0, 'zaktualizuj': 0, 'pomiń': 4 * (MAPPED + 5), błędy: 0 }); expect(r.second.code).toBe(0);
+    expect(r.second.counts).toMatchObject({ 'utwórz': 0, 'zaktualizuj': 0, 'pomiń': 4 * (MAPPED + 6), błędy: 0 }); expect(r.second.code).toBe(0);
     expect(r.callsSecond.every((c: string) => c.startsWith('GET '))).toBe(true);
     for (const k of ['GROUP', 'monthly', 'yearly', 'lifetime']) { expect(r.store[k]).toHaveLength(2 + MAPPED); expect(r.store[k].slice(0, 2).map((x: string[]) => x[0])).toEqual(['en-US', 'pl']); }
     const de = r.store.monthly.find((x: string[]) => x[0] === 'de-DE'); expect(de.slice(1)).toEqual([data.tlumaczenia.de.monthly.name, data.tlumaczenia.de.monthly.description]);
