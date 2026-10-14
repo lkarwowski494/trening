@@ -73,7 +73,7 @@ describe('Ustawienia: cel serii na partię', () => {
   });
 });
 
-describe('Postępy → „Partie w tym tygodniu” (strażnik progresji, 14.10.2026): cel każdej partii', () => {
+describe('Postępy → „Strażnik progresji” (strażnik progresji, 14.10.2026): cel każdej partii', () => {
   const lbl = (part: string) => within(screen.getByTestId(`grow-${part}`)).getByRole('button').props.accessibilityLabel as string;
   const rowIds = () => screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && /^grow-/.test(String(n.props.testID))).map((n: { props: { testID?: string } }) => String(n.props.testID).replace('grow-', ''));
   test('barki i plecy jako całe partie (bez części); cel = cel partii (domyślnie 10, ręczny cel jednej partii nie rusza pozostałych); kreska zawsze w połowie skali 2× cel', async () => {

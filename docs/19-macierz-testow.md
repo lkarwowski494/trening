@@ -938,7 +938,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | pakiety: {n} · treść wg {p} | app/more/licenses.tsx | tests/audit-0.10-data-ui.test.tsx, tests/licenses-native.test.tsx |
 | para: {a} ({r}); jeden hantel: {b} ({r1}) | components/LoadEditor.tsx | tests/locations-ui.test.tsx |
 | Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia. | app/(tabs)/progress.tsx | tests/matrix-ui.test.tsx |
-| Partie w tym tygodniu | components/GuardSection.tsx | tests/guard-ui.test.tsx |
 | Partie z większą objętością niż poprzednio: {list} | app/progression.tsx | tests/progression-ui.test.tsx |
 | Paski serii pokazują osobno serie pośrednie (pomocnicze, liczone po 0,5). | lib/whatsnew.ts | tests/release-0.16.test.tsx, tests/whats-new.test.tsx |
 | pauza | components/ActiveWorkout.tsx | tests/audit-0.10-lang.test.ts, tests/matrix-i18n.test.tsx, tests/matrix-invariants.test.ts +3 |
@@ -1131,6 +1130,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Stoper trwa | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | stos na {v} | components/EquipVisual.tsx | tests/karta-sprzet.test.tsx, tests/matrix-a11y.test.tsx, tests/matrix-karta.test.tsx |
 | stożek rotatorów | app/exercise/[id].tsx | tests/audit-0.10-ui.test.tsx |
+| Strażnik progresji | components/GuardSection.tsx | tests/guard-ui.test.tsx, .maestro/52-straznik-progresji.yaml |
 | Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne. | lib/guide.ts | tests/guide.test.tsx |
 | Subskrybuj | app/paywall.tsx | tests/subscription-i18n.test.ts |
 | Subskrypcja | components/SubscriptionCard.tsx | tests/prices-decision.test.ts, tests/subscription-i18n.test.ts, .maestro/21-subskrypcja.yaml |

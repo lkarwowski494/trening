@@ -1094,7 +1094,7 @@ export const EN: Record<string, string> = {
   /* głos: metry i czas słowami (restCue.speech); „metra” = forma przy ułamku (CLDR) */
   'metr|metry|metrów': 'metre|metres', 'metra': 'metres', 'sekunda|sekundy|sekund': 'second|seconds', 'godzina|godziny|godzin': 'hour|hours',
   'Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).': 'This phone has no voice for the app language. Download one in iOS Settings (Accessibility).',
-  /* strażnik progresji (14.10.2026): sylwetka w kolorach progresu na ekranie Trening i sekcja „Partie w tym tygodniu” w Postępach (lib/guard.ts, components/Guard*.tsx) */
+  /* strażnik progresji (14.10.2026): sylwetka w kolorach progresu na ekranie Trening i sekcja „Strażnik progresji” w Postępach (lib/guard.ts, components/Guard*.tsx) */
   'tyle samo': 'same', 'bez porównania': 'no comparison', 'bez serii': 'no sets', 'nowe': 'new',
   'Poniżej celu nawet z planem: {list}.': 'Below goal even with the plan: {list}.',
   'Z planem wszystkie trenowane partie dojdą do celu.': 'With the plan, every muscle group you train will reach its goal.',
@@ -1107,7 +1107,7 @@ export const EN: Record<string, string> = {
   'Ten tydzień wobec poprzedniego: {list}.': 'This week compared with the previous one: {list}.',
   'i jeszcze {n}': 'and {n} more',
   'Szczegóły w Postępach': 'Details in Progress',
-  'Partie w tym tygodniu': 'Muscle groups this week',
+  'Strażnik progresji': 'Progress Guard',
   'Kierunek dla partii liczymy tylko na ćwiczeniach, które były w obu tygodniach. Ćwiczenia bez punktu odniesienia — nowe w tym tygodniu albo nierobione teraz — pomijamy w obu tygodniach.': 'The direction for a muscle group uses only exercises that appear in both weeks. Exercises with nothing to compare — new this week or not done now — are left out of both weeks.',
   'Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.': 'Measure: tonnage (sets × reps × weight) averaged per session of the exercise, so a different number of sessions does not inflate the result. When tonnage fell but the working weight rose, it counts as more.',
   'Ten tydzień = wykonane + plan. Plan bez ciężarów (≥) — bez porównania. Tydzień deloadu nie jest porównywany.': 'This week = done + plan. A plan without weights (≥) — no comparison. A deload week is not compared.',
