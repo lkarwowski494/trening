@@ -107,7 +107,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dni cardio w planie | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni treningowe w tygodniu | components/OwnPlan.tsx | tests/gen-days-ui.test.tsx, tests/gen-general-ui.test.tsx, tests/generator-ui.test.tsx +1 |
-| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/audit-0.10-data-ui.test.tsx +196 |
+| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/audit-0.10-data-ui.test.tsx +197 |
 | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | dodaj ciężar | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Dodaj notatkę | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx |
@@ -154,7 +154,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Kolor gumy | app/more/bands.tsx | tests/audit-0.10-ui.test.tsx, tests/owner-0510c.test.tsx, tests/regress.test.tsx +1 |
 | Kontynuuj | components/ActiveWorkout.tsx | tests/audit-close2-a.test.tsx, tests/audit-journey-b.test.tsx, tests/audit-r72-ui.test.tsx +4 |
 | Kopia zapasowa (eksport / import) | app/(tabs)/more.tsx | tests/audit-0.10-ui.test.tsx, tests/public-repo.test.ts, tests/scenario-full.test.tsx |
-| krok | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/audit-k1-fala2b.test.tsx, tests/audit011b.test.tsx +23 |
+| krok | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/audit-k1-fala2b.test.tsx, tests/audit011b.test.tsx +24 |
 | Kroki, inne aktywności oraz tętno i kcal z zegarka — tylko do wglądu, dane zostają w Zdrowiu. | app/more/settings.tsx | tests/health-read-ui.test.tsx |
 | Licencje open source | app/more/about.tsx | tests/audit-0.10-data-ui.test.tsx |
 | Ładowanie cen… | app/paywall.tsx | tests/subscription-i18n.test.ts |
@@ -482,7 +482,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | bezpośrednie | components/ProgressBars.tsx | tests/set-split-ui.test.tsx |
 | biblioteki ćwiczeń organizacji szkoleniowych | components/ExerciseCues.tsx | tests/audit-k1-bl-mer.test.tsx, tests/cues-014.test.tsx, tests/cues.test.tsx |
 | Biblioteki natywne iOS spoza npm ({n}) | app/more/licenses.tsx | tests/licenses-native.test.tsx |
-| brak | app/history/edit/[id].tsx | tests/adapt-ui.test.tsx, tests/app.tsx, tests/audit-0.10-lang-ui.test.tsx +52 |
+| brak | app/history/edit/[id].tsx | tests/adapt-ui.test.tsx, tests/app.tsx, tests/audit-0.10-lang-ui.test.tsx +53 |
 | brak ciężarów — podpowiedź „↑” jak bez miejsca | components/LoadEditor.tsx | tests/bar-no-plates.test.tsx, tests/matrix-ui.test.tsx |
 | Brak ćwiczeń — dodaj pierwsze. | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/scenario-full.test.tsx |
 | Brak ćwiczeń dostępnych w tym miejscu. | app/generator.tsx | tests/generator-ui.test.tsx |
@@ -813,7 +813,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | nic więcej do zrobienia | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/voice.test.ts +5 |
 | Nic więcej do zrobienia — możesz zakończyć trening. | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
 | Nic więcej do zrobienia (część pominięta) | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/skip-today.test.tsx |
-| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +220 |
+| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +221 |
 | Nie da się ułożyć z talerzy ({l}) | components/EquipVisual.tsx | tests/audit-0.10-live.test.tsx |
 | Nie da się ułożyć z talerzy ({l}) — najbliżej {v} | components/EquipVisual.tsx | tests/audit-0.10-live.test.tsx |
 | Nie ma nowych treningów do dodania — wszystkie są już w historii. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
@@ -1073,7 +1073,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016). | app/more/settings.tsx | tests/audit-k1-bl-mer.test.tsx |
 | robione {n}× | lib/swap.ts | tests/audit-0.10-plan-ui.test.tsx, tests/dashboard.test.tsx, tests/first-steps-empty.test.tsx +11 |
 | Rocznie | app/paywall.tsx | tests/subscription-i18n.test.ts, tests/subscription-ui.test.tsx |
-| rok | app/paywall.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-io-more.test.tsx +29 |
+| rok | app/paywall.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-io-more.test.tsx +30 |
 | rozgrzewka | lib/live.ts | tests/audit-close2-a.test.tsx, tests/audit-stale-ui.test.tsx, tests/matrix-invariants.test.ts +9 |
 | Ruch | components/ExerciseCues.tsx | tests/cues-014.test.tsx, tests/cues.test.tsx, tests/figures.test.tsx |
 | Rysunek ruchu: {opis} | lib/figures/index.ts | tests/figures.test.tsx, tests/maestro-selectors.test.ts |
@@ -1573,7 +1573,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | entitlement.lastKnownFrom | lib/entitlement.ts | tests/entitlement.test.ts |
 | entitlement.refreshEntitlements | lib/entitlement.ts | tests/entitlement.test.ts, tests/subscription-invariants.test.ts |
 | entitlement.initEntitlements | lib/entitlement.ts | tests/entitlement.test.ts, tests/review-run.test.tsx, tests/subscription-invariants.test.ts +1 |
-| entitlement.resetEntitlementsForTests | lib/entitlement.ts | tests/close-button-guard.test.tsx, tests/entitlement.test.ts, tests/maestro-e2e-modal.test.tsx +7 |
+| entitlement.resetEntitlementsForTests | lib/entitlement.ts | tests/close-button-guard.test.tsx, tests/entitlement.test.ts, tests/maestro-e2e-modal.test.tsx +8 |
 | entitlement.liveStarts | lib/entitlement.ts | tests/entitlement.test.ts |
 | entitlement.accessNow | lib/entitlement.ts | tests/entitlement.test.ts, tests/subscription-invariants.test.ts |
 | entitlement.useAccess | lib/entitlement.ts | tests/subscription-ui.test.tsx |
@@ -1727,7 +1727,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | i18n.deviceUnit | lib/i18n.ts | tests/audit-0.10-tst.test.ts, tests/audit-0.10-ui.test.tsx, tests/maestro-selectors.test.ts |
 | i18n.locale | lib/i18n.ts | tests/adapt-ui.test.tsx, tests/app.tsx, tests/audit-0.10-data-ui.test.tsx +88 |
 | i18n.decimalComma | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +7 |
-| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/audit-0.10-data.test.ts +133 |
+| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/audit-0.10-data.test.ts +134 |
 | i18n.lbl | lib/i18n.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
 | i18n.tp | lib/i18n.ts | tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-bl-mer.test.tsx +26 |
 | i18n.exName | lib/i18n.ts | tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-final-auto.test.tsx +28 |
@@ -2220,7 +2220,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | stats.volumeByMuscle | lib/stats.ts | tests/progress.test.ts |
 | store-adapter.setStoreAdapter | lib/store-adapter.ts | tests/entitlement.test.ts, tests/review-run.test.tsx, tests/store-adapter.test.ts +3 |
 | store-adapter.getStoreAdapter | lib/store-adapter.ts | tests/store-adapter.test.ts |
-| store-adapter.resetStoreAdapterForTests | lib/store-adapter.ts | tests/close-button-guard.test.tsx, tests/entitlement.test.ts, tests/maestro-e2e-modal.test.tsx +8 |
+| store-adapter.resetStoreAdapterForTests | lib/store-adapter.ts | tests/close-button-guard.test.tsx, tests/entitlement.test.ts, tests/maestro-e2e-modal.test.tsx +9 |
 | store-fake.createFakeStore | lib/store-fake.ts | tests/entitlement.test.ts, tests/review-run.test.tsx, tests/store-adapter.test.ts +3 |
 | store-native.entitlementFromPurchase | lib/store-native.ts | tests/store-adapter.test.ts |
 | store-native.productFromStore | lib/store-native.ts | tests/store-adapter.test.ts |
@@ -2240,7 +2240,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | timer.start | lib/timer.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts +41 |
 | timer.adjust | lib/timer.ts | tests/maestro-selectors.test.ts, tests/matrix-logic.test.tsx, tests/matrix-time.test.ts +3 |
 | timer.relabel | lib/timer.ts | tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
-| timer.stop | lib/timer.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst-ui.test.tsx +75 |
+| timer.stop | lib/timer.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst-ui.test.tsx +76 |
 | timer.stopIfFrom | lib/timer.ts | tests/matrix-logic.test.tsx, tests/timer-logic.test.ts |
 | timer.restore | lib/timer.ts | tests/adapt-logic.test.ts, tests/audit-final-timer.test.tsx, tests/matrix-invariants.test.ts +8 |
 | timer.onForeground | lib/timer.ts | tests/matrix-logic.test.tsx, tests/matrix-time.test.ts, tests/timer-logic.test.ts |
