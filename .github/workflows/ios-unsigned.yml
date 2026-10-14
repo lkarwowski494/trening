@@ -8,10 +8,16 @@
 name: iOS — kompilacja
 on:
   workflow_dispatch:
+    inputs:
+      podpis:
+        description: 'Doświadczenie podpisu (14.10.2026): uprawnienia po archiwizacji i eksporcie, 3 warianty; bez wysyłki do Apple'
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   build:
+    if: ${{ !inputs.podpis }}
     # SDK 56+ wymaga Xcode 26.4+, a macos-15 ma najwyżej 26.3 — od SDK 56 macos-26 (docs/13, B5). Obraz 20260907:
     # Xcode 26.0.1 … 26.4.1, 26.5, 26.6 (domyślny); wybierany jawnie najnowszy 26.x (26.6, SDK iOS 26.5).
     runs-on: macos-26
@@ -68,3 +74,85 @@ jobs:
           name: xcodebuild-log
           retention-days: 1
           path: ios/xcodebuild.log
+
+  podpis:
+    # Doświadczenie 14.10.2026 (błąd TestFlight 0.18/1015, Zdrowie): czy uprawnienia przeżywają archiwum bez podpisu + podpis przy eksporcie.
+    # Eksport do pliku (destination export) — NIC nie jest wysyłane do App Store Connect. Wypisywane są tylko nazwy kluczy uprawnień.
+    if: ${{ inputs.podpis }}
+    runs-on: macos-26
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        wariant: [bez-podpisu, adhoc, codesign-reczny]
+    steps:
+      - uses: actions/checkout@v5
+      - run: bash scripts/ci/select-xcode.sh 26
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx expo prebuild --platform ios --no-install --clean
+      - run: /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${{ github.run_number }}" ios/Trening/Info.plist
+      - run: cd ios && pod install
+      - run: bash scripts/ci/ensure-ios-platform.sh
+      - name: Archiwum (${{ matrix.wariant }})
+        run: |
+          set -o pipefail
+          TEAM=$(node -p "require('./app.json').expo.ios.appleTeamId")
+          case "${{ matrix.wariant }}" in
+            adhoc) SIGN="CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=YES PROVISIONING_PROFILE_SPECIFIER=" ;;
+            *) SIGN="CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO" ;;
+          esac
+          cd ios
+          xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/Trening.xcarchive" archive $SIGN DEVELOPMENT_TEAM="$TEAM" CURRENT_PROJECT_VERSION=${{ github.run_number }} \
+            2>&1 | xcbeautify
+      - name: Uprawnienia w archiwum (przed eksportem)
+        continue-on-error: true
+        run: |
+          APP="$RUNNER_TEMP/Trening.xcarchive/Products/Applications/Trening.app"
+          bash scripts/ci/check-entitlements.sh "$APP" ios/Trening/Trening.entitlements "archiwum: aplikacja"
+          bash scripts/ci/check-entitlements.sh "$APP/Watch/TreningWatch.app" ios/.targets/TreningWatch/generated.entitlements "archiwum: zegarek"
+      - name: Wariant codesign-reczny — podpis ad hoc z plikami uprawnień (od środka na zewnątrz)
+        if: matrix.wariant == 'codesign-reczny'
+        run: |
+          APP="$RUNNER_TEMP/Trening.xcarchive/Products/Applications/Trening.app"
+          codesign --force -s - --entitlements ios/.targets/TreningWatch/generated.entitlements "$APP/Watch/TreningWatch.app"
+          for x in "$APP"/PlugIns/*.appex; do codesign --force -s - "$x"; done
+          codesign --force -s - --entitlements ios/Trening/Trening.entitlements "$APP"
+      - name: Eksport do pliku (podpis dystrybucyjny w chmurze; bez wysyłki)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          set -o pipefail
+          umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
+          KID="$ASC_KEY_ID"; ISS="$ASC_ISSUER_ID"; unset ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8
+          TEAM=$(node -p "require('./app.json').expo.ios.appleTeamId")
+          cat > "$RUNNER_TEMP/ExportOptions.plist" <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>destination</key><string>export</string>
+            <key>teamID</key><string>$TEAM</string>
+            <key>signingStyle</key><string>automatic</string>
+            <key>manageAppVersionAndBuildNumber</key><false/>
+          </dict></plist>
+          EOF
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/Trening.xcarchive" -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" \
+            -exportPath "$RUNNER_TEMP/export" -allowProvisioningUpdates -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
+            -authenticationKeyID "$KID" -authenticationKeyIssuerID "$ISS" 2>&1 | xcbeautify
+          rm -f "$RUNNER_TEMP/AuthKey.p8"
+      - name: Uprawnienia w wyeksportowanym .ipa
+        run: |
+          mkdir "$RUNNER_TEMP/ipa" && cd "$RUNNER_TEMP/ipa" && unzip -q "$RUNNER_TEMP"/export/*.ipa
+          cd - >/dev/null
+          APP=$(ls -d "$RUNNER_TEMP"/ipa/Payload/*.app)
+          rc=0
+          bash scripts/ci/check-entitlements.sh "$APP" ios/Trening/Trening.entitlements "ipa: aplikacja" || rc=1
+          bash scripts/ci/check-entitlements.sh "$APP/Watch/TreningWatch.app" ios/.targets/TreningWatch/generated.entitlements "ipa: zegarek" || rc=1
+          exit $rc
