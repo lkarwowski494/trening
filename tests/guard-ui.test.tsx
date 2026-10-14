@@ -66,7 +66,7 @@ describe('ekran Trening: „Ten tydzień” ze strażnikiem (wariant C)', () => 
   test('dane z makiety: zdanie o brakach „dwugłowe (3/10), przywodziciele (4,5/10)” — bez pośladków; bez spadków nie ma drugiego zdania; legenda z pięcioma słowami', async () => {
     await boot(makieta); expect(textOf('guard-short')).toBe('Poniżej celu nawet z planem: dwugłowe (3/10), przywodziciele (4,5/10).'); expect(has('guard-less')).toBe(false);
     for (const d of DIRS) expect(has(`guard-legend-${d}`)).toBe(true); expect(has('guard-legend-new')).toBe(false);
-    const legend = within(find('guard-legend')[0] as never, { includeHiddenElements: true } as never) ; void legend; for (const w of ['więcej', 'tyle samo', 'mniej', 'bez porównania', 'bez serii']) expect([w, screen.getAllByText(w, { includeHiddenElements: true }).length > 0]).toEqual([w, true]);
+    for (const w of ['więcej', 'tyle samo', 'mniej', 'bez porównania', 'bez serii']) expect([w, screen.getAllByText(w, { includeHiddenElements: true }).length > 0]).toEqual([w, true]);
   });
   test('kolejność na ekranie: kafelki → stosy planu → sylwetka z legendą, zdaniami i przyciskiem; bez dawnych pasków serii, legendy wykonane/zaplanowane i podpisów', async () => {
     await boot(mixed); const [wt, wm, gm, gl, gs, gmore] = order('week-tiles', 'week-muscles', 'guard-map', 'guard-legend', 'guard-short', 'guard-more');
