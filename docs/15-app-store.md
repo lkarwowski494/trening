@@ -120,7 +120,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     brak kosztu na użytkownika; prośba o jednorazowy zakup w researchu skarg (docs/research, pkt 18). Odrzucone: B 59,99 zł (3 lata planu
     rocznego), C 99,99 zł z promocją 59,99 zł na premierę, D bez dożywotniego. „5× roczna” to kalkulacja, nie dane rynkowe; cenę zmienia się
     w App Store Connect bez nowej wersji. Wdrożenie: paczka przed App Store, razem z subskrypcją (biblioteka iOS+Android).
-  - **ZMIANA CEN (decyzja właściciela 13.10.2026, wariant M1; zapis: docs/18, wpis „cennik … M1”):** miesięczna 0,99 USD/EUR/GBP (PL 3,99 zł),
+  - **ZMIANA CEN (decyzja właściciela 13.10.2026, wariant M1; zapis: docs/18, wpis „cennik … M1”):** miesięczna 0,99 USD/EUR/GBP (PL 3,99 zł — **zmienione 14.10.2026 na 4,99 zł**, bo 3,99 nie ma w siatce Apple; docs/18),
     roczna **4,99** (PL 19,99 zł) = 5 × miesięczna, dożywotnia **14,99** (PL 59,99 zł) = 3 × roczna. Zastępuje ceny z 11.10.2026 (6,99 / 21,99)
     i „5× roczna” z 10.10.2026. Ukraina: niższy punkt cenowy poniżej ceny espresso — **[OTWARTE]** konkretny punkt (lista punktów w App Store
     Connect). Poniższy wpis z 11.10.2026 zostaje jako historia decyzji.
@@ -135,7 +135,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
     (także odczyt: 6,99 = roczna, 21,99 = dożywotnio). Zastępuje „5× roczna” z 10.10.2026 (dożywotnio ≈ 3× roczna).
   - **Chmura rodzinna (Family Sharing) — TAK (właściciel 11.10.2026)** dla subskrypcji i dostępu dożywotniego. **[OTWARTE]**: czy włączenie
     jest nieodwracalne (strona pomocy Apple pod znanym adresem zwróciła 404 — sprawdzić przy wdrożeniu w App Store Connect).
-  - **Do sprawdzenia w App Store Connect** (nie zgadujemy): czy punkty cenowe 0,99 EUR/GBP, 3,99 PLN i 19,99 PLN istnieją w siatce cen Apple.
+  - **Sprawdzone 14.10.2026 (docs/18):** 3,99 PLN nie istnieje w siatce Apple (miesięczna PL = 4,99 zł), 19,99 i 59,99 PLN ustawione ręcznie. Było do sprawdzenia: czy punkty cenowe 0,99 EUR/GBP, 3,99 PLN i 19,99 PLN istnieją w siatce cen Apple.
 - **Cel przychodu (właściciel 06.10.2026):** ~2000 zł miesięcznie; model bez zmian: 30 dni za darmo, potem jednorazowa płatność.
   Rachunek orientacyjny (agent, do sprawdzenia): z ceny w App Store odpada VAT kraju kupującego (PL 23%) i prowizja Apple (15% w Small Business
   Program), czyli na konto ok. 0,69 × cena przy kupującym z Polski. Potrzebne zakupy miesięcznie: cena 29 zł → ok. 100; 49 zł → ok. 59;
@@ -406,7 +406,7 @@ TWOJE DANE
 • Jasny, ciemny lub systemowy wygląd, 35 języków
 
 [BLOK CENOWY — do potwierdzenia przez właściciela]
-Pierwszy miesiąc za darmo. Potem subskrypcja: 3,99 zł miesięcznie lub 19,99 zł rocznie (odnawiana automatycznie, anulujesz w ustawieniach konta Apple), albo jednorazowy dostęp dożywotni za 59,99 zł. Subskrypcję i dostęp dożywotni można udostępnić w gronie rodziny (Chmura rodzinna). Bez subskrypcji możesz nadal zapisywać 4 treningi na żywo w miesiącu, a historia, kopia zapasowa i eksport działają zawsze.
+Pierwszy miesiąc za darmo. Potem subskrypcja: 4,99 zł miesięcznie lub 19,99 zł rocznie (odnawiana automatycznie, anulujesz w ustawieniach konta Apple), albo jednorazowy dostęp dożywotni za 59,99 zł. Subskrypcję i dostęp dożywotni można udostępnić w gronie rodziny (Chmura rodzinna). Bez subskrypcji możesz nadal zapisywać 4 treningi na żywo w miesiącu, a historia, kopia zapasowa i eksport działają zawsze.
 
 Trening nie jest poradnikiem medycznym. W sprawie bólu, kontuzji lub chorób skonsultuj się ze specjalistą.
 ```
@@ -477,7 +477,7 @@ YOUR DATA
 • Light, dark or system appearance, 35 languages
 
 [PRICING BLOCK — owner to confirm]
-First month free. Then a subscription: 0.99 per month or 4.99 per year (USD, EUR, GBP; 3.99 PLN and 19.99 PLN in Poland; renews automatically, cancel in your Apple account settings), or a one-time lifetime access purchase for 14.99 (59.99 PLN in Poland). Subscription and lifetime access can be shared with your family (Family Sharing). Without a subscription you can still log 4 live workouts per month; history, backup and export always work.
+First month free. Then a subscription: 0.99 per month or 4.99 per year (USD, EUR, GBP; 4.99 PLN and 19.99 PLN in Poland; renews automatically, cancel in your Apple account settings), or a one-time lifetime access purchase for 14.99 (59.99 PLN in Poland). Subscription and lifetime access can be shared with your family (Family Sharing). Without a subscription you can still log 4 live workouts per month; history, backup and export always work.
 
 Training is not medical advice. For pain, injuries or illness, consult a specialist.
 ```

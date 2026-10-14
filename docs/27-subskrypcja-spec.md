@@ -32,7 +32,7 @@ Wyjście na model darmowy: jedna wartość `PAYWALL.ENABLED` (lib/access.ts). Uw
 
 | Pozycja | Wartość | Źródło |
 |---|---|---|
-| Subskrypcja miesięczna (auto-odnawiana) | 0,99 USD / 0,99 EUR / 0,99 GBP / 3,99 zł | docs/15, 09.10 i 11.10.2026 |
+| Subskrypcja miesięczna (auto-odnawiana) | 0,99 USD / 0,99 EUR / 0,99 GBP / 4,99 zł | docs/15, 09.10 i 11.10.2026; PL 4,99 zł: docs/18, 14.10.2026 |
 | Subskrypcja roczna (auto-odnawiana, płatna z góry) | 4,99 USD / EUR / GBP / 19,99 zł (= 5 × miesięczna) | docs/15 i docs/18, 13.10.2026 (M1) |
 | Dostęp dożywotni (zakup jednorazowy, non-consumable) | 14,99 USD / EUR / GBP / 59,99 zł (= 3 × roczna) | docs/15 i docs/18, 13.10.2026 (M1) |
 | Inne kraje | lokalny próg zakupu impulsowego; przeliczenie Apple tylko jako punkt wyjścia | docs/15, zasada cenowa 09.10 |
@@ -256,9 +256,9 @@ Pierwszy trening bez przeszkód (użytkownik widzi wartość), po „Zakończ”
 │ ( ) Rocznie        19,99 zł / rok    │
 │     1 miesiąc za darmo, potem        │
 │     19,99 zł co rok                  │
-│ (•) Miesięcznie     3,99 zł / mies.  │
+│ (•) Miesięcznie     4,99 zł / mies.  │
 │     1 miesiąc za darmo, potem        │
-│     3,99 zł co miesiąc               │
+│     4,99 zł co miesiąc               │
 │ ( ) Na zawsze      59,99 zł raz      │
 │                                      │
 │ [   Zacznij miesiąc za darmo   ]     │
@@ -293,7 +293,7 @@ ryzyko złych ocen na starcie.
   available currencies” oraz „A way for current subscribers to sign in or restore purchases”; „the amount that will be billed must be the most
   prominent pricing element in the layout”; przy próbie „clearly indicate how long the free trial lasts and the price billed once the free trial
   is over.”; linki: „your app and App Store metadata must include links to your Terms of Use and Privacy Policy.”
-- Skutek dla szkicu B: cena po próbie (np. „3,99 zł co miesiąc”) większa niż „za darmo”; nazwa planu i okres przy każdej pozycji; linki
+- Skutek dla szkicu B: cena po próbie (np. „4,99 zł co miesiąc”) większa niż „za darmo”; nazwa planu i okres przy każdej pozycji; linki
   „Warunki korzystania” i „Prywatność” na ekranie i w opisie sklepu. Polityka prywatności istnieje (`site/privacy.html`); **warunków korzystania
   nie mamy** — pytanie P9.
 - 5.1.1: aplikacja bez konta i bez danych osobowych — zakupy przypisane do konta Apple, nic nie zbieramy (spełnione bez zmian).
@@ -316,7 +316,7 @@ rodzinnej / z kodu (data końca). Długie teksty: 35 języków (najdłuższe naz
    `pl.lukasz.trening.full.monthly` (1 miesiąc), `pl.lukasz.trening.full.yearly` (1 rok); poziomy: roczna wyżej (3.11).
 5. **Produkt dożywotni:** In-App Purchases → Non-Consumable `pl.lukasz.trening.full.lifetime`.
 6. **Ceny per kraj:** cena bazowa USD, ręcznie EUR/GBP/PLN wg tabeli z rozdz. 1; potem przegląd krajów wydania (zasada progu impulsowego).
-   Sprawdzić, czy punkty 0,99 EUR/GBP, 3,99 / 19,99 / 59,99 zł istnieją w siatce Apple (otwarte w docs/15).
+   Punkty cenowe sprawdzone w App Store Connect 14.10.2026 (docs/18): 3,99 PLN nie ma w siatce, miesięczna PL = 4,99 zł; 19,99 i 59,99 zł ustawione ręcznie.
 7. **Okres próbny** jako oferta wprowadzająca w obu subskrypcjach: typ „Free Trial”, 1 miesiąc, wszystkie kraje. Dostępne długości:
    „3 Days. 1 or 2 Weeks. 1, 2, 3, or 6 Months. 1 Year.”; „each person is only eligible to redeem one introductory offer per subscription
    group.” — https://developer.apple.com/help/app-store-connect/manage-subscriptions/set-up-introductory-offers-for-auto-renewable-subscriptions.

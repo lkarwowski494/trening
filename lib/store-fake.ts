@@ -10,6 +10,8 @@ import type { PurchaseOutcome, StoreAdapter, StoreProduct } from '@/lib/store-ad
 const DAY_MS = 86400e3;
 /** Ceny testowe (jak w docs/27 rozdz. 1 w USD, M1 z 13.10.2026) — jedno źródło dla sztucznego sklepu i testów; tests/prices-decision.test.ts pilnuje zgodności z .storekit i docs. */
 export const FAKE_PRICES: Record<EntitlementPlan, string> = { monthly: '$0.99', yearly: '$4.99', lifetime: '$14.99' };
+/** Ceny w Polsce w App Store Connect (14.10.2026, docs/18): miesięczna 4,99 (3,99 nie ma w siatce Apple), roczna i dożywotnia ustawione ręcznie. Tylko dokumentacja i testy — aplikacja pokazuje cenę z App Store. */
+export const PLN_PRICES: Record<EntitlementPlan, string> = { monthly: '4,99 zł', yearly: '19,99 zł', lifetime: '59,99 zł' };
 
 /** Sterowanie sztucznym sklepem z testów i z panelu „Test store” (build E2E). */
 export interface FakeStoreControl {

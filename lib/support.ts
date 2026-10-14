@@ -33,3 +33,6 @@ export function openSupportMail(kind: SupportKind, onFail?: () => void): void {
     Alert.alert(t('Nie udało się otworzyć poczty'), t('Napisz na: {mail}', { mail: SUPPORT_EMAIL }), [okButton()]);
   });
 }
+
+/** Otwarcie strony (Warunki korzystania, Prywatność) w przeglądarce; błąd otwarcia jest cichy (jak na ekranie zakupu). */
+export function openWebPage(url: string): void { Promise.resolve().then(() => Linking.openURL(url)).catch(() => {}); }
