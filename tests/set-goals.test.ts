@@ -115,7 +115,7 @@ describe('dane: migrate, kopia, import', () => {
 });
 
 /* Języki (docs/20 rodzaj 7): nowe teksty tego wdrożenia mają tłumaczenie w każdym języku (kompletność i parametry: tests/i18n-locales.test.ts). */
-const NEW_TEXTS = ['Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).', 'Zaplanowane — z szablonów na pozostałe dni tygodnia.',
+const NEW_TEXTS = ['Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).',
   'Cel serii na partię w tygodniu', 'Pokaż cele partii', 'Ukryj cele partii', 'Cel serii: {part}', 'Automatycznie ({n})', 'Ręcznie',
   'Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.',
   'Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}.'];

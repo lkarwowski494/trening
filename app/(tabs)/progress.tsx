@@ -12,6 +12,7 @@ import { Seg, IndirectLegend, PeriodLine, HatchBar, prevText } from '@/component
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { PeriodSummary } from '@/components/PeriodSummary';
 import { ProgressTiles } from '@/components/Dashboard';
+import { GuardSection } from '@/components/GuardSection';
 import { useTheme, F } from '@/lib/theme';
 import { hasWeight, hasReps, hasTime, hasDistance } from '@/lib/seed';
 import { t, exName, locale, fold, lang, collator } from '@/lib/i18n';
@@ -44,7 +45,11 @@ export default function ProgressTab() {
 type View_ = { exId: string; setExId: (id: string) => void; q: string; setQ: (q: string) => void; chartKey: ChartKey | ''; setKey: (k: ChartKey | '') => void; scrollY: React.MutableRefObject<number> };
 
 function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: View_) {
-  const { ex: exParam } = useLocalSearchParams<{ ex?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
+  const { ex: exParam, s: sParam } = useLocalSearchParams<{ ex?: string; s?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
+  /* „Szczegóły w Postępach ›” z ekranu Trening (/progress?s=guard): przewinięcie do sekcji „Partie w tym tygodniu” (strażnik progresji, 14.10.2026); pozycję podaje onLayout sekcji */
+  const listRef = useRef<ScrollView>(null); const guardY = useRef<number | null>(null); const wantGuard = useRef(false);
+  const toGuard = () => { if (wantGuard.current && guardY.current != null) { wantGuard.current = false; listRef.current?.scrollTo({ y: guardY.current, animated: false }); scrollY.current = guardY.current; } };
+  useEffect(() => { if (sParam === 'guard') { wantGuard.current = true; toGuard(); router.setParams({ s: '' }); /* inaczej powrót do zakładki znów przewijałby */ } }, [sParam]); // eslint-disable-line react-hooks/exhaustive-deps
   /* przewinięcie (audyt 0.13): zapamiętywane w zakładce, przywracane przy ponownym zamontowaniu treści */
   const scroll = { onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => { scrollY.current = e.nativeEvent.contentOffset.y; }, scrollEventThrottle: 32, contentOffset: { x: 0, y: scrollY.current } };
   const ex = exId ? exById(exId) : undefined;
@@ -62,9 +67,10 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
   if (!ex) {
     const weeks = weeklyTotals(8); const any = hasAnyHistory();
     return (
-      <ScrollView testID="progress-scroll-list" {...scroll} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
+      <ScrollView ref={listRef} testID="progress-scroll-list" {...scroll} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
         {any ? <>
           <PeriodSummary />
+          <GuardSection onLayoutY={y => { guardY.current = y; toGuard(); }} />{/* 14.10.2026: strażnik progresji — „Partie w tym tygodniu” */}
           <ProgressTiles />{/* 11.10.2026: „Progresja” także tu — to samo wejście co z ekranu Trening (/progression) */}
           <H2>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: volOut(w.volume) }))} fmt={v => v >= 1000 ? `${fmtNum(v / 1000, 1)}k` : `${v}`} />
