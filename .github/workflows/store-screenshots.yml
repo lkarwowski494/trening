@@ -2,6 +2,7 @@
 # Rozmiary wymagane przez Apple (developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/, przeczytane 14.10.2026):
 # „iPhone with Dynamic Island (medium display)” — wymagany (iPhone 17 Pro, 1206 × 2622) i „large display” (iPhone 17 Pro Max, 1320 × 2868; bez niego
 # Apple bierze zrzuty 6,5″). iPad nie jest potrzebny (app.json: supportsTablet false). Zegarek: watch-sim.yml (wejście jezyki_zrzutow: all).
+# Podpisy i ramki (D-6 B, 14.10.2026): zadanie „ramki” (scripts/ci/store-frames.sh, store/screenshot-captions.json); artefakt sklep-zrzuty-ramki.
 # Dane pokazowe zmyślone (scripts/screens/store-seed.test.ts), bez zmian w kodzie aplikacji: build Release bez sztucznego sklepu i bez udawanego
 # zegarka. Zrzut ekranu zakupu (tylko do przeglądu zakupów w App Store Connect, nie do strony w sklepie): opcjonalnie z aplikacji E2E
 # (e2e-ios.yml ma sztuczny sklep) — wejście zrzut_zakupu_z_przebiegu. Repo publiczne — minuty macOS bez opłat; artefakty 3 dni, bez sekretów.
@@ -151,6 +152,37 @@ jobs:
           retention-days: 3
           if-no-files-found: ignore
           path: sklep-zrzuty
+  ramki:
+    name: podpisy i ramki (D-6)
+    # Decyzja właściciela 14.10.2026 (D-6 B, docs/41): podpis u góry i ramka z kolorów marki, ten sam rozmiar obrazu co zrzut, bez obudów urządzeń Apple.
+    # Narzędzia open source z apt (ImageMagick, czcionki Noto CJK dla ja/ko/zh-Hant) i czcionka marki z node_modules — 0 zł, bez zależności aplikacji.
+    needs: zrzuty
+    if: ${{ !cancelled() && needs.zrzuty.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: ImageMagick i czcionki CJK
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick fonts-noto-cjk >/dev/null
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: sklep-zrzuty-*
+          path: sklep-zrzuty
+          merge-multiple: true
+      - name: Podpisy i ramki
+        run: bash scripts/ci/store-frames.sh sklep-zrzuty sklep-ramki store/screenshot-captions.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sklep-zrzuty-ramki
+          retention-days: 3
+          if-no-files-found: ignore
+          path: sklep-ramki
   zakup:
     name: zrzut ekranu zakupu (przegląd zakupów)
     needs: dane

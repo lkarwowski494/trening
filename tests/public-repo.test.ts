@@ -191,7 +191,7 @@ describe('publikacja strony: site/ + pages.yml', () => {
   test('docs/15 opisuje źródło „GitHub Actions” i adresy stron; nie każe już włączać „Deploy from a branch /docs”', () => {
     const d = readFileSync(join(root, 'docs/15-app-store.md'), 'utf8');
     expect(d).toContain('Settings → Pages → Source: GitHub Actions');
-    for (const p of ['privacy.html', 'support.html']) expect(d).toContain(`https://lkarwowski494.github.io/trening/${p}`);
+    for (const p of ['privacy.html', 'support.html']) { expect(d).toContain(`https://lkarwowski494.github.io/trening/${p}`); expect(d).toContain(`https://apps4brew.com/trening/${p}`); } /* 14.10.2026 (D-2 A): docelowe adresy na apps4brew.com, github.io przejściowo */
     expect(d).not.toMatch(/Deploy from a branch\*?\*? → `main` \/ `\/docs`/);
   });
 });

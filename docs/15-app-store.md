@@ -15,6 +15,8 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   (zamiast „Deploy from a branch → main / docs”); pierwsze wdrożenie uruchamia się samo przy zmianie `site/**` na `main` albo ręcznie
   (Actions → Pages → Run workflow). Adres: https://lkarwowski494.github.io/trening/privacy.html (do App Store Connect → App Privacy).
   Bez `.nojekyll` — artefakt z Actions jest podawany bez Jekylla.
+  **Zmiana 14.10.2026 (decyzja właściciela D-2 A, docs/41):** adresy w aplikacji i w App Store Connect: https://apps4brew.com/trening/privacy.html
+  i https://apps4brew.com/trening/support.html (repo strony apps4brew.com; `site/` w tym repo zostaje źródłem treści). Adresy github.io działają przejściowo — do zmiany starego repo na prywatne (docs/41 W5).
   - Treść: brak zbierania danych, wszystko lokalnie na telefonie, HealthKit tylko zapis zakończonych treningów.
 - **Strona www i wsparcie (11.10.2026, marka Apps4Brew, PL/EN):** `site/index.html`, `site/support.html`; adres wsparcia (App Store Connect → Support URL): https://lkarwowski494.github.io/trening/support.html. Domena apps4brew.com po zakupie (bez CNAME); kontakt: GitHub Issues — adres e-mail do uzupełnienia po zakupie domeny.
 - **Cena:** „Darmowa na start” (05.10.2026) — bez reklam i zakupów; w App Store Connect deklaracja „nie jestem traderem” (DSA), bez publicznego adresu.

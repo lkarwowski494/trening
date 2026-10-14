@@ -82,6 +82,11 @@ Przy D-1 = F: B2–B6 odpadają; produktów **nie** dodajemy do zgłoszenia, z o
 
 ### C. Zrzuty ekranu
 
+**Podpisy i ramki (D-6 B, 14.10.2026):** zadanie `ramki` (ubuntu, ImageMagick i czcionki Noto CJK z apt, IBM Plex Sans z `node_modules` — 0 zł, bez nowych
+zależności aplikacji) składa każdy zrzut w obraz o **tym samym rozmiarze** (1206 × 2622 / 1320 × 2868): tło `BRAND.paper`, podpis `BRAND.ink` u góry,
+zrzut pomniejszony do 78% z zaokrągleniem i obwódką `BRAND.signal`, bez kanału alfa (`scripts/ci/store-frames.sh`). Języki bez zatwierdzonych podpisów
+są pomijane z ostrzeżeniem (surowe zrzuty zostają w artefakcie). Agent: tłumaczenia podpisów 33 języków po akceptacji PL/EN (~1 h); właściciel: akceptacja 8 podpisów (5 min).
+
 | # | Co | Kto | Wpis | Zależy od | Blokuje | Agent | Właściciel |
 |---|---|---|---|---|---|---|---|
 | C1 | iPhone: wymagany „iPhone with Dynamic Island (medium display)” (np. iPhone 17 Pro, 1206 × 2622) + zalecany „large display” (iPhone 17 Pro Max, 1320 × 2868; bez niego Apple użyje 6,5″ albo przeskaluje). Do 10 zrzutów na rozmiar i język. **Workflow gotowy: `.github/workflows/store-screenshots.yml`** (tylko ręcznie; nieuruchomiony) | agent (CI) | API | A7 (zrzuty z buildu 1.0) | TAK | 1 h (przegląd obrazów) | 15 min (akceptacja zestawu) |
@@ -111,7 +116,7 @@ Zakupy: lokalizacje gotowe (`store/iap-localizations.json`).
 | D2 | Podtytuł (≤ 30 znaków): wybór wariantu (D-4), potem tłumaczenia | agent (tlumacz) | API | D-4 | nie (pole opcjonalne), ale ASO | 0,5 h | 5 min |
 | D3 | Opis PL/EN odświeżony do 1.0: zegarek, głos, „Dostosuj do miejsca”, odczyt Zdrowia, import CSV; integracja ze Zdrowiem w opisie (2.5.1: „indicate that integration in their app description”); blok cenowy i link do standardowej licencji Apple (decyzja 14.10) tylko przy D-1 = P; bez nazw innych aplikacji (2.3.7) | agent | API | D-1, A4 (zakres 1.0) | TAK (opis wymagany) | 1 h | 15 min (akceptacja PL/EN) |
 | D4 | Tłumaczenia opisu, słów kluczowych (≤ 100 **bajtów** — „up to 100 bytes”; PL dziś 97 B), podtytułu i tekstu promocyjnego na 29 lokalizacji + przegląd językowy | agent (tlumacz; opcjonalnie przegląd Gemini) | API | D3 | TAK dla lokalizacji z nazwą (bez opisu lokalizacja się nie zapisze) | 3–4 h | 0 (albo 15 min na prompt do Gemini) |
-| D5 | Adresy: Privacy Policy URL (wymagany), Support URL (wymagany; „must lead to actual contact information (legal address, email address, telephone number), as may be required by local law”), Marketing URL (opcjonalny) | właściciel decyduje (D-2), agent wdraża | API | D-2, E5 | TAK | 1 h (kod `PRIVACY_URL`, strony, testy) | 5 min |
+| D5 | Adresy: Privacy Policy URL (wymagany), Support URL (wymagany; „must lead to actual contact information (legal address, email address, telephone number), as may be required by local law”), Marketing URL (opcjonalny) | **zrobione w kodzie 14.10.2026** (D-2 A: `PRIVACY_URL`, `SUPPORT_URL`, `store/app-store-urls.json`); strony w repo apps4brew.com — commit lokalny, przegląd i push: koordynator | API | E4 (działająca skrzynka) | TAK | — | — |
 | D6 | Copyright („2026 …” — imię i nazwisko sprzedawcy; nie wpisujemy do repo) | właściciel | ręcznie | — | TAK („This property is required”) | — | 2 min |
 | D7 | App Review Information: kontakt (imię, telefon, e-mail — tylko w App Store Connect), „Sign-in required” wyłączone, notatki (A5) | właściciel + agent | ręcznie (kontakt), API (notatki) | A5, E5 | TAK | — | 5 min |
 | D8 | Kategoria Health & Fitness, wiek 9+, App Privacy „Data Not Collected” (opublikowane przez właściciela 14.10.2026) | **zrobione** | — | — | — | — | — |
@@ -138,7 +143,19 @@ Zakupy: lokalizacje gotowe (`store/iap-localizations.json`).
 | F1 | Wersja 1.0 w App Store Connect: build, zrzuty, metadane, zakupy w tym samym zgłoszeniu (B6) → „Add for Review” → „Submit for Review” | właściciel (koordynator przygotowuje przez API) | ręcznie | wszystko z TAK | — | 0,5 h (sprawdzenie kompletności przez API) | 20 min |
 | F2 | Recenzja Apple; po odrzuceniu: odpowiedź w Resolution Center, naprawa wg progu | Apple / agent | — | F1 | — | zależy | czekanie — **czas recenzji: [OTWARTE]**, nie z przeczytanej dokumentacji |
 
-## Decyzje produktowe do podjęcia (właściciel)
+## Decyzje właściciela (14.10.2026, przez koordynatora)
+
+| Decyzja | Wybór | Skutek w liście braków |
+|---|---|---|
+| D-1 płatności | **P — płatności od 1.0** | B2–B6 na ścieżce krytycznej; blok cenowy w opisie |
+| D-2 adresy privacy/support | **A — https://apps4brew.com/trening/privacy.html i …/support.html** | strony w repo strony apps4brew.com (przegląd i push: koordynator); `PRIVACY_URL`, `SUPPORT_URL` (lib/products.ts) i linki w `site/`, `store/` zmienione 14.10.2026; ten sam adres w App Store Connect |
+| D-3 czyste repo | po scaleniu 0.20 (rozstrzygnięte wcześniej) | E1 |
+| D-4 podtytuł | **A — prywatność/offline** | D2: tłumaczenia wariantu A |
+| D-5 publikacja | **A — ręcznie** | D11 |
+| D-6 zrzuty | **B — z podpisami i ramkami** (wbrew rekomendacji A) | C1: krok `ramki` w `store-screenshots.yml`, podpisy w `store/screenshot-captions.json` (PL/EN do akceptacji, reszta języków po akceptacji — tłumacz); ramka własna z kolorów marki, **bez obudów urządzeń Apple** (wytyczne Apple Marketing: „Use Apple-provided product bezels” i „Use Apple product images “as is” and without modification” — https://developer.apple.com/app-store/marketing/guidelines/, przeczytane 14.10.2026; obudowy Apple wymagałyby licencji Apple Design Resources i nie wolno ich wkładać do publicznego repo — dlatego neutralna ramka, nie imitacja telefonu) |
+| D-7 zegarek | **B — pożyczony prawdziwy Apple Watch** | A2: R-003 sprawdzany na prawdziwym zegarku (właściciel, ok. 30 min) |
+
+## Decyzje produktowe — warianty (historia, przed decyzjami z 14.10.2026)
 
 - **D-1. Płatności w 1.0.** P: `PAYWALL.ENABLED = true` od pierwszej wersji (zgodne z decyzjami 06.10 i 09.10: „Nie będzie użytkowników za darmo”; kod i testy gotowe od 0.17) — kompromis: piaskownica, przegląd zakupów (B2–B6), więcej powodów odrzucenia (3.1.2), ok. 1 dzień dłużej. F: 1.0 za darmo, płatności w aktualizacji — szybsza i prostsza recenzja, ale późniejsze odebranie darmowego dostępu to skarga nr 1 z researchu (docs/15) i odwrócenie decyzji 06.10. **Rekomendacja: P.**
 - **D-2. Gdzie mieszkają polityka prywatności i wsparcie.** Dziś działa tylko https://lkarwowski494.github.io/trening/privacy.html (i support.html); apps4brew.com/… zwraca 404, a strona główna apps4brew.com (GitHub Pages) linkuje do github.io. Adres prywatności jest wpisany w aplikację (`PRIVACY_URL` w lib/products.ts) i w App Store Connect. A: **apps4brew.com/trening/privacy.html i …/support.html** — adres niezależny od repozytorium i jego przenosin, zgodny z marką; kompromis: strony trzeba publikować w repo strony apps4brew.com (kopia z `site/` przy każdej zmianie albo workflow). B: GitHub Pages nowego repo w organizacji (np. apps4brew.github.io/trening/…) — bez dodatkowej pracy, ale adres znowu zależy od repo. C: zostawić github.io starego repo — **psuje się** po zmianie repo na prywatne przy W5 (GitHub Pages dla repo prywatnych wymaga płatnego planu — **[DO POTWIERDZENIA]** na stronie GitHuba). **Rekomendacja: A**; decyzja potrzebna przed W5 i przed buildem 1.0 (adres jest w aplikacji).
@@ -165,3 +182,8 @@ Zakupy: lokalizacje gotowe (`store/iap-localizations.json`).
 - `.github/workflows/store-screenshots.yml`, `scripts/ci/store-screenshots.sh`, `scripts/screens/store-seed.test.ts` — zrzuty do App Store (C1, B4); testy `tests/store-screenshots.test.ts`, lista workflowów w `tests/public-repo.test.ts`.
 - `store/review-notes.md` — notatki dla recenzenta PL/EN (A5, B5); test `tests/store-review-notes.test.ts`.
 - `site/privacy.html` — sekcje „Apple Watch (opcjonalnie)” i „Zapowiedzi głosowe” PL/EN, data 14.10.2026 (D9); test w `tests/public-repo.test.ts`.
+- 14.10.2026 (po decyzjach właściciela): D-2 A — `PRIVACY_URL`/`SUPPORT_URL` w lib/products.ts = https://apps4brew.com/trening/privacy.html i …/support.html,
+  `store/app-store-urls.json` (dla API), test `tests/store-urls.test.ts`; eksport stron do repo strony marki `scripts/site/export-apps4brew.mjs`
+  (test `tests/site-export.test.ts`; źródłem treści zostaje `site/`; po każdej zmianie `site/privacy.html` lub `site/support.html` — ponowny eksport i commit w repo strony).
+- D-6 B — podpisy i ramki: `store/screenshot-captions.json` (8 podpisów PL/EN, status „propozycja”), `scripts/ci/store-frames.sh`, zadanie `ramki`
+  w `store-screenshots.yml` (artefakt `sklep-zrzuty-ramki`), test `tests/store-frames.test.ts`.

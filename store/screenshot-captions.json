@@ -1,0 +1,28 @@
+{
+  "_opis": "Podpisy na zrzutach do App Store (decyzja właściciela 14.10.2026, D-6 B — docs/41). Jeden podpis na ekran (klucze = nazwy ekranów z scripts/screens/store-seed.test.ts), najwyżej 40 znaków. Źródło: PL i EN — PROPOZYCJA agenta do akceptacji właściciela (status). Pozostałe języki aplikacji dopisuje tłumacz dopiero po akceptacji PL/EN; do tego czasu krok „ramki” pomija język bez podpisów. Bez nazw innych aplikacji (wytyczne Apple 2.3.7), bez cen (2.3.7: zrzuty bez cen) i bez twierdzeń merytorycznych. Kolory ramki z lib/theme.ts (BRAND; test: tests/store-frames.test.ts).",
+  "status": "propozycja",
+  "maxZnakow": 40,
+  "kolory": { "tlo": "#F4F3EF", "tekst": "#15171A", "obwodka": "#1F5FD1" },
+  "podpisy": {
+    "pl": {
+      "trening": "Twój trening zostaje w Twoim telefonie",
+      "plan": "Plan tygodnia, który ustawiasz sam",
+      "postepy-cwiczenia": "Rekordy i wykresy każdego ćwiczenia",
+      "progresja": "Tydzień i miesiąc w jednym miejscu",
+      "historia": "Cała historia bez konta i reklam",
+      "sesja": "Każda seria zapisana, także offline",
+      "szablony": "Własne szablony treningów",
+      "technika": "Krótkie wskazówki techniki"
+    },
+    "en": {
+      "trening": "Your training stays on your phone",
+      "plan": "A weekly plan you set yourself",
+      "postepy-cwiczenia": "Records and charts for every exercise",
+      "progresja": "Your week and month in one place",
+      "historia": "Full history, no account, no ads",
+      "sesja": "Every set logged, even offline",
+      "szablony": "Your own workout templates",
+      "technika": "Short technique cues"
+    }
+  }
+}
