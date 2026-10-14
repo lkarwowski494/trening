@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "метр|метри|метрів",
  "metra": "метра",
  "sekunda|sekundy|sekund": "секунда|секунди|секунд",
- "godzina|godziny|godzin": "година|години|годин"
+ "godzina|godziny|godzin": "година|години|годин",
+ "Poproś o nową funkcję": "Запропонувати нову функцію",
+ "Pomysł": "Ідея",
+ "Czego brakuje:": "Чого бракує:",
+ "W jakiej sytuacji na treningu:": "У якій ситуації під час тренування:",
+ "Czego Ci brakuje? Poproś o funkcję": "Чого вам бракує? Запропонуйте функцію"
 }

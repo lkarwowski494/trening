@@ -7,21 +7,21 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **144** (realny: 125, brzegowy: 19); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **146** (realny: 125, brzegowy: 21); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
 | `nowy` | 16 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
-| `istniejacy` | 110 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
+| `istniejacy` | 112 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
 | `aktualizacja` | 6 | Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34). |
 | `kopia` | 4 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
 | `jezyk-motyw` | 8 | Po zmianie języka, wyglądu lub jednostki: zmienione w Ustawieniach, sprawdzane też po restarcie. |
 
 | Pokrycie | Przepływów |
 |---|---|
-| Maestro | 118 |
+| Maestro | 119 |
 | Maestro (eksperyment) | 4 |
-| Jest | 9 |
+| Jest | 10 |
 | Telefon | 13 |
 | Projekt 0.20 | 0 |
 
@@ -81,6 +81,7 @@ Przepływów w katalogu: **144** (realny: 125, brzegowy: 19); pominięte jako te
 | TR-29 | **Tydzień deload: pytanie „Mniej serii / Pełny” przy starcie** — Oznacz tydzień jako deload → Start treningu → pytanie → „Mniej serii” | Trening ma mniej serii; po zakończeniu liczby w szablonie bez zmian. | `istniejacy` | realny | Maestro: `.maestro/32-regularny-uzytkownik.yaml` |
 | TR-30 | **Gumy oporowe: opór i asysta w treningu** — Miejsce z gumami → trening z Band Pull Apart i Pull Up → Przycisk gumy przechodzi tylko przez poziomy miejsca | Guma zapisana w sesji. | `istniejacy` | brzegowy | Maestro: `.maestro/10-gumy.yaml` |
 | TR-31 | **Zakończenie treningu: zmiany względem szablonu → „Zapisz zmiany w szablonie”** — Zmień skład treningu z szablonu (zamiana / dodane ćwiczenie) → Zakończ → na sesji przycisk „Zapisz zmiany w szablonie” → Stuknij — szablon ma nowy skład | Szablon zmienia się tylko po wyraźnym wyborze użytkownika. | `istniejacy` | realny | Maestro: `.maestro/24-szablony-zarzadzanie.yaml` |
+| TR-32 | **Link „Czego Ci brakuje? Poproś o funkcję” na podsumowaniu co 10. trening (nie razem z prośbą o ocenę)** — Zakończ 10. trening w historii (bez prośby o ocenę na tym treningu) → Na podsumowaniu jest dyskretny link „Czego Ci brakuje? Poproś o funkcję” z „✕” → Stuknij „✕” — link znika bez żadnych skutków; stuknięcie linku otwiera pocztę → Gdy na 10. treningu wypada prośba o ocenę — linku nie ma, pojawia się na następnym treningu | Link pojawia się co 10. ukończony trening, nigdy na tym samym ekranie co systemowa prośba o ocenę; zamknięcie „✕” niczego nie zmienia w danych. | `istniejacy` | brzegowy | Jest: `tests/idea-request.test.tsx`, `tests/review-run.test.tsx` — Reguła wymaga 10 ukończonych treningów (i osobno systemowej prośby o ocenę, której w TestFlight i na symulatorze nie ma); wykonanie 10 treningów w Maestro wydłużyłoby przebieg CI bez nowej wartości — reguła, kolizja z oceną, 100 treningów, ×, poczta i brak poczty są sprawdzone w Jest. |
 
 ## PR — Przerwanie, tło, błędne i skrajne dane
 
@@ -178,6 +179,7 @@ Przepływów w katalogu: **144** (realny: 125, brzegowy: 19); pominięte jako te
 | US-14 | **O aplikacji, licencje open source, wersja** — Więcej → O aplikacji → „Licencje open source” | Lista pakietów i bibliotek natywnych. | `istniejacy` | brzegowy | Maestro: `.maestro/15-masa-licencje.yaml` |
 | US-15 | **„Napisz do nas” (poczta) i prośba o ocenę w App Store** — Więcej → O aplikacji → „Napisz do nas” → okno poczty → Po kilku treningach — systemowa prośba o ocenę | Poczta z adresem i wersją; prośba o ocenę nie częściej niż pozwala iOS. | `istniejacy` | brzegowy | Telefon (lista kontrolna wydania) — Okno poczty i systemowa prośba o ocenę to okna systemowe, nieobecne w TestFlight/na symulatorze CI. |
 | US-16 | **Wyczyszczenie wszystkich danych: pytanie, „Nie” zostawia dane, potem „Wyczyść”** — Ustawienia → „Wyczyść wszystkie dane” → Anuluj → jeszcze raz → Wyczyść → Powrót do „Pierwszych kroków” | Przed czyszczeniem powstaje kopia bezpieczeństwa; po czyszczeniu stan jak nowy. | `istniejacy` | realny | Maestro: `.maestro/32-regularny-uzytkownik.yaml` |
+| US-17 | **„Poproś o nową funkcję” obok „Napisz do nas” (Więcej → O aplikacji)** — Więcej → O aplikacji → Pod wersją są dwa wiersze: „Napisz do nas” i „Poproś o nową funkcję” → Stuknięcie „Poproś o nową funkcję” → wiadomość e-mail do wsparcia z tematem „Pomysł: ” i szablonem (tylko ręcznie na telefonie z Pocztą) | Oba wiersze są widoczne; „Poproś o nową funkcję” otwiera pocztę tą samą drogą co „Napisz do nas”; bez poczty — okno z adresem wsparcia. | `istniejacy` | brzegowy | Maestro: `.maestro/15-masa-licencje.yaml` |
 
 ## DA — Kopia, eksport, import, czyszczenie danych
 

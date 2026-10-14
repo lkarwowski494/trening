@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "メートル",
  "metra": "メートル",
  "sekunda|sekundy|sekund": "秒",
- "godzina|godziny|godzin": "時間"
+ "godzina|godziny|godzin": "時間",
+ "Poproś o nową funkcję": "新しい機能をリクエスト",
+ "Pomysł": "アイデア",
+ "Czego brakuje:": "足りないもの:",
+ "W jakiej sytuacji na treningu:": "トレーニング中のどんな場面か:",
+ "Czego Ci brakuje? Poproś o funkcję": "足りないものは? 機能をリクエスト"
 }

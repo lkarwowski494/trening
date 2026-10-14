@@ -50,9 +50,10 @@ jobs:
         run: npm run verify
       - name: Logika zegarka — testy jednostkowe Swift (targets/watch-tests)
         run: cd targets && swift test
-      - name: Straż 0.17.0 — build dla telefonu ma prawdziwy sklep (bez sztucznego, który jest tylko w E2E)
+      - name: Straż 0.17.0 — build dla telefonu ma prawdziwy sklep i prawdziwy zegarek (bez sztucznych, które są tylko w E2E)
         run: |
           if [ -n "${EXPO_PUBLIC_STORE_FAKE:-}" ]; then echo "::error::EXPO_PUBLIC_STORE_FAKE ustawione w buildzie TestFlight"; exit 1; fi
+          if [ -n "${EXPO_PUBLIC_WATCH_FAKE:-}" ]; then echo "::error::EXPO_PUBLIC_WATCH_FAKE ustawione w buildzie TestFlight"; exit 1; fi
       - name: Generate native iOS project (expo prebuild)
         run: npx expo prebuild --platform ios --no-install --clean
       - name: Numer buildu (aplikacja, widżet i zegarek ten sam CFBundleVersion)

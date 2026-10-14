@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "meter|metre|metrov",
  "metra": "metra",
  "sekunda|sekundy|sekund": "sekunda|sekundy|sekúnd",
- "godzina|godziny|godzin": "hodina|hodiny|hodín"
+ "godzina|godziny|godzin": "hodina|hodiny|hodín",
+ "Poproś o nową funkcję": "Požiadať o novú funkciu",
+ "Pomysł": "Nápad",
+ "Czego brakuje:": "Čo chýba:",
+ "W jakiej sytuacji na treningu:": "V akej situácii pri tréningu:",
+ "Czego Ci brakuje? Poproś o funkcję": "Čo ti chýba? Požiadaj o funkciu"
 }

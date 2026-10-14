@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "metri|metriä",
  "metra": "metriä",
  "sekunda|sekundy|sekund": "sekunti|sekuntia",
- "godzina|godziny|godzin": "tunti|tuntia"
+ "godzina|godziny|godzin": "tunti|tuntia",
+ "Poproś o nową funkcję": "Pyydä uutta toimintoa",
+ "Pomysł": "Idea",
+ "Czego brakuje:": "Mitä puuttuu:",
+ "W jakiej sytuacji na treningu:": "Missä tilanteessa treenin aikana:",
+ "Czego Ci brakuje? Poproś o funkcję": "Mitä kaipaat? Pyydä toimintoa"
 }

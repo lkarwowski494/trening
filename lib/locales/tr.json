@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "metre|metre",
  "metra": "metre",
  "sekunda|sekundy|sekund": "saniye|saniye",
- "godzina|godziny|godzin": "saat|saat"
+ "godzina|godziny|godzin": "saat|saat",
+ "Poproś o nową funkcję": "Yeni bir özellik isteyin",
+ "Pomysł": "Fikir",
+ "Czego brakuje:": "Neyin eksik olduğu:",
+ "W jakiej sytuacji na treningu:": "Antrenmanda hangi durumda:",
+ "Czego Ci brakuje? Poproś o funkcję": "Neyi eksik buluyorsunuz? Bir özellik isteyin"
 }

@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "metras|metrai|metrų",
  "metra": "metro",
  "sekunda|sekundy|sekund": "sekundė|sekundės|sekundžių",
- "godzina|godziny|godzin": "valanda|valandos|valandų"
+ "godzina|godziny|godzin": "valanda|valandos|valandų",
+ "Poproś o nową funkcję": "Paprašyti naujos funkcijos",
+ "Pomysł": "Idėja",
+ "Czego brakuje:": "Ko trūksta:",
+ "W jakiej sytuacji na treningu:": "Kokioje situacijoje treniruotės metu:",
+ "Czego Ci brakuje? Poproś o funkcję": "Ko tau trūksta? Paprašyk funkcijos"
 }

@@ -73,6 +73,8 @@ jobs:
         env:
           # 0.17.0 (docs/27 7.2): sztuczny sklep + włączony przełącznik subskrypcji, limit 1 trening — TYLKO ten build E2E; testflight.yml ma straż (tests/store-adapter.test.ts)
           EXPO_PUBLIC_STORE_FAKE: '1'
+          # 14.10.2026: udawany zegarek (panel „Test watch”, scenariusz 50) — TYLKO ten build E2E, razem ze sztucznym sklepem; testflight.yml ma straż (tests/watch-test-mode.test.tsx)
+          EXPO_PUBLIC_WATCH_FAKE: '1'
         run: |
           set -o pipefail
           cd ios

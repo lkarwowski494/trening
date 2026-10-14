@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "Meter|Meter",
  "metra": "Meter",
  "sekunda|sekundy|sekund": "Sekunde|Sekunden",
- "godzina|godziny|godzin": "Stunde|Stunden"
+ "godzina|godziny|godzin": "Stunde|Stunden",
+ "Poproś o nową funkcję": "Neue Funktion vorschlagen",
+ "Pomysł": "Idee",
+ "Czego brakuje:": "Was fehlt:",
+ "W jakiej sytuacji na treningu:": "In welcher Situation beim Training:",
+ "Czego Ci brakuje? Poproś o funkcję": "Was fehlt dir? Funktion vorschlagen"
 }

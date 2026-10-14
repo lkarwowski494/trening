@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "метър|метра",
  "metra": "метра",
  "sekunda|sekundy|sekund": "секунда|секунди",
- "godzina|godziny|godzin": "час|часа"
+ "godzina|godziny|godzin": "час|часа",
+ "Poproś o nową funkcję": "Поискайте нова функция",
+ "Pomysł": "Идея",
+ "Czego brakuje:": "Какво липсва:",
+ "W jakiej sytuacji na treningu:": "В каква ситуация по време на тренировка:",
+ "Czego Ci brakuje? Poproś o funkcję": "Какво ти липсва? Поискай функция"
 }

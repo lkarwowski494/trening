@@ -1603,5 +1603,10 @@
  "metr|metry|metrów": "metru|metrs|metri",
  "metra": "metri",
  "sekunda|sekundy|sekund": "sekunžu|sekunde|sekundes",
- "godzina|godziny|godzin": "stundu|stunda|stundas"
+ "godzina|godziny|godzin": "stundu|stunda|stundas",
+ "Poproś o nową funkcję": "Pieprasīt jaunu funkciju",
+ "Pomysł": "Ideja",
+ "Czego brakuje:": "Kā trūkst:",
+ "W jakiej sytuacji na treningu:": "Kādā situācijā treniņa laikā:",
+ "Czego Ci brakuje? Poproś o funkcję": "Kā tev trūkst? Pieprasi funkciju"
 }

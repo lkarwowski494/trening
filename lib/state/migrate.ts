@@ -12,7 +12,7 @@ import { isObj, arr, parseNum, idOf, tsOf, intIn, kg2, clampName } from './util'
 import { localDateTs, localISODate, workoutDay, realDay, DATE_KEY } from './time';
 import { cleanLevels } from './bands';
 import { normalizeGoals } from '../setParts';
-import { normalizeReviewAsked } from '../review';
+import { normalizeReviewAsked, normalizeIdeaShownAt } from '../review';
 import { normalizeGroups } from './groups';
 import { SAVED_PLANS_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays, normPlanHistory, cleanOverrides, cleanDoneEarly, appendPlanSegment, cleanPlanPlaces } from './weekplan';
 import { unusedOneOffIds } from './places';
@@ -21,7 +21,7 @@ import { migrateExercises, retireCatalog } from './migrate-catalog';
 
 /** Pola Settings znane tej wersji — pola domyślne plus opcjonalne (nowe pole opcjonalne dopisz tutaj, inaczej jego zła wartość z importu
  * przejdzie jak nieznane ustawienie); reszta zostaje bez zmian — audyt 0.10 J1. */
-const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll', 'weeklySetGoals', 'healthRead', 'reviewAsked', 'voiceSpeaker']);
+const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll', 'weeklySetGoals', 'healthRead', 'reviewAsked', 'voiceSpeaker', 'ideaShownAt']);
 /** Ustawienia przeniesione poza Settings — nie zostają jako „nieznane” (J1): masa ciała bez daty → State.bodyMassLog (fala 2 audytu 0.10). */
 const MOVED_SETTINGS = new Set(['bodyMass']);
 const PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
@@ -180,6 +180,7 @@ export function migrate(raw: any): State {
         ...((g => g ? { weeklySetGoals: g } : {})(normalizeGoals(s.weeklySetGoals))), /* 12.10.2026: ręczny cel serii na partię — tylko znane części, liczby w granicach */
     healthSync: typeof s.healthSync === 'boolean' ? s.healthSync : d.healthSync,
     ...((r => r ? { reviewAsked: r } : {})(normalizeReviewAsked(s.reviewAsked))), /* 0.17.0 (docs/26): tylko poprawna para {at, version}; przyszła data (zegar cofnięty, uszkodzone dane) = brak pola */
+    ...((n => n != null ? { ideaShownAt: n } : {})(normalizeIdeaShownAt(s.ideaShownAt))), /* 0.20 (docs/34): tylko nieujemna liczba całkowita */
     ...(s.voiceSpeaker === true ? { voiceSpeaker: true as const } : {}), /* 0.20: tylko włączenie zapisane; zła wartość = wyłączony */
     ...(s.healthRead === true ? { healthRead: true as const } : {}), /* 0.16.0 (P2 A): tylko włączenie zapisane; zła wartość = wyłączony */
     /* runda 75 */

@@ -35,7 +35,7 @@ if (!ui) {
   const common = {
     CODE_SIGN_STYLE: 'Automatic', CURRENT_PROJECT_VERSION: 1, GENERATE_INFOPLIST_FILE: 'YES', MARKETING_VERSION: app.version,
     PRODUCT_BUNDLE_IDENTIFIER: app.ios.bundleIdentifier + '.watchkitapp.uitests', PRODUCT_NAME: '$(TARGET_NAME)', SDKROOT: 'watchos', SUPPORTED_PLATFORMS: 'watchos watchsimulator',
-    SWIFT_VERSION: '5.0', TARGETED_DEVICE_FAMILY: '4', TEST_TARGET_NAME: WATCH_APP, WATCHOS_DEPLOYMENT_TARGET: '11.0',
+    SWIFT_VERSION: '5.0', TARGETED_DEVICE_FAMILY: '4', TEST_TARGET_NAME: WATCH_APP, WATCHOS_DEPLOYMENT_TARGET: '10.0',
     SWIFT_EMIT_LOC_STRINGS: 'NO', ...(teamId ? { DEVELOPMENT_TEAM: teamId } : {}),
   };
   const list = XCConfigurationList.create(project, {
