@@ -799,7 +799,7 @@
    ],
    "scenariusz": "25-trening-narzedzia.yaml",
    "znaczniki": [
-    "e.g. how you feel",
+    "Workout note",
     "lekko bolało ramię"
    ]
   },
@@ -1118,7 +1118,7 @@
    "scenariusz": "29-bledne-dane.yaml",
    "znaczniki": [
     "Save measurement",
-    "Invalid date"
+    "cannot be in the future"
    ]
   },
   {

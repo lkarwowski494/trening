@@ -98,11 +98,11 @@ name: Błędne i skrajne dane
 - eraseText: 10
 - inputText: "8"
 - inputText: "0"
-- tapOn: { text: "20.*", below: "Measurement date \\(YYYY-MM-DD\\)" }
-- eraseText: 10
-- inputText: "2026-13-45"
+# E2E 38483827437: wpisywanie daty w polu (tap w środek tekstu ustawia kursor w środku, maxLength 10) dało przypadkiem „2026-10-13” (dzisiaj) i zapis się udał — zamiast tego „›” (Next day)
+# przesuwa datę na jutro: pomiar z przyszłości jest odrzucany z komunikatem (walidacja daty bez edycji tekstu)
+- tapOn: "Next day"
 - tapOn: "Save measurement"
-- extendedWaitUntil: { visible: "Invalid date. Enter YYYY-MM-DD.*", timeout: 15000 }
+- extendedWaitUntil: { visible: "The measurement date cannot be in the future.", timeout: 15000 }
 - tapOn: "OK"
 # --- szablon: podwójne stuknięcie „Add template” otwiera jeden edytor; pusta nazwa i brak ćwiczeń ---
 - tapOn: "Back"

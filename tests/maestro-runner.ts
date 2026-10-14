@@ -201,7 +201,7 @@ export class Runner {
     const all = (screen.UNSAFE_root as unknown as Node & { findAll: (f: (n: Node) => boolean) => Node[] }).findAll((n: Node) => isHost(n) && !hidden(n)); /* ekrany pod spodem stosu (aria-hidden) — Maestro ich nie widzi */
     for (const n of all) {
       const p = n.props; const texts: string[] = [];
-      if (n.type === 'TextInput') { if (p.value != null && p.value !== '') texts.push(String(p.value)); else if (p.placeholder) texts.push(String(p.placeholder)); if (typeof p.accessibilityLabel === 'string') texts.push(p.accessibilityLabel); }
+      if (n.type === 'TextInput') { /* E2E 38483827437 (25): placeholder pustego pola NIE jest tekstem dla Maestro (iOS: placeholderValue), gdy różni się od etykiety dostępności — wcześniej interpreter go dopasowywał */ if (p.value != null && p.value !== '') texts.push(String(p.value)); if (typeof p.accessibilityLabel === 'string') texts.push(p.accessibilityLabel); }
       else if (typeof p.accessibilityLabel === 'string' && p.accessibilityLabel !== '') { if (!inA11yElement(n)) texts.push(p.accessibilityLabel); } /* E2E 91: element z etykietą wewnątrz elementu dostępności (np. kafelek „Workouts: …” w przycisku „Postępy”) nie jest osobnym elementem — iOS czyta etykietę rodzica */
       else if (n.type === 'Text' && !accessibleAncestor(n)) { const t = textOf(n); if (t) texts.push(t); }
       else if (p.accessible === true) { const t = textOf(n); if (t) texts.push(t); }

@@ -71,8 +71,9 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Technique: Bench Press \\(Dumbbell\\)", timeout: 30000 }
 # --- notatka do treningu ---
-- scrollUntilVisible: { element: "e.g. how you feel, pain, equipment", direction: DOWN, timeout: 60000, centerElement: true }
-- tapOn: "e.g. how you feel, pain, equipment"
+# E2E 38483827437: placeholder pustego pola nie jest tekstem dla Maestro (etykieta pola to „Workout note”) — stukamy pole po etykiecie; pierwszy „Workout note” to podpis nad polem, drugi — pole
+- scrollUntilVisible: { element: "Workout note", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: { text: "Workout note", index: 1 }
 - inputText: "lekko bolało ramię"
 - tapOn: "Workout note"   # tekst nad polem zdejmuje fokus (hideKeyboard na klawiaturze bez „Gotowe” pada — E2E 38471218362)
 # --- usunięcie ćwiczenia przesunięciem nagłówka bloku ---
