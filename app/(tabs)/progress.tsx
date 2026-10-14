@@ -8,7 +8,7 @@ import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal,
 import { MUSCLES } from '@/lib/seed';
 import { SET_PARTS } from '@/lib/setParts';
 import { splitText, splitLabel, splitTotals, emptySplit, type SetSplit } from '@/lib/setSplit';
-import { Seg, IndirectLegend } from '@/components/ProgressBars';
+import { Seg, IndirectLegend, PeriodLine, HatchBar, prevText } from '@/components/ProgressBars';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { PeriodSummary } from '@/components/PeriodSummary';
 import { ProgressTiles } from '@/components/Dashboard';
@@ -145,23 +145,28 @@ function BodyMassSection() {
   </>;
 }
 
-/** Porównanie partii: ten tydzień (pasek) vs poprzedni (liczba w nawiasie) — serie albo objętość (06.10.2026). `mark` — pionowa kreska
- * (pakiet C: WEEKLY_SETS_MARK przy seriach, ACSM 2026); skala paska obejmuje kreskę, żeby była widoczna także przy mniejszej objętości. */
+/** Porównanie partii: ten tydzień vs poprzedni — DWA słupki na partię na wspólnej osi (14.10.2026): wyżej okres 1 (pełny), niżej okres 2 (szary z prążkami), przy każdym
+ * nazwa okresu i liczby; serie albo objętość (06.10.2026). `mark` — pionowa kreska (pakiet C: WEEKLY_SETS_MARK przy seriach, ACSM 2026); oś obejmuje kreskę i oba słupki. */
 function MuscleCompare({ cur: curIn, prev: prevIn, curSplit, prevSplit, fmt, markOf, parts = MUSCLES }: { cur?: Record<string, number>; prev?: Record<string, number>; /** serie (13.10.2026): podział bezpośrednio / pośrednio zamiast samych sum — odcinki paska i podpis „6 + 1,5 pośrednio (3 serie) / 10” */ curSplit?: Record<string, SetSplit>; prevSplit?: Record<string, SetSplit>; fmt: (v: number) => string; /** kreska celu wiersza (serie: cel części) */ markOf?: (part: string) => number; parts?: readonly string[] }) {
   const th = useTheme(); const cur = curSplit ? splitTotals(curSplit) : curIn ?? {}; const prev = prevSplit ? splitTotals(prevSplit) : prevIn ?? {};
   const rows = parts.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, ...rows.map(mu => Math.max(markOf?.(mu) ?? 0, cur[mu] ?? 0, prev[mu] ?? 0)));
   if (!rows.length) return <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym i poprzednim tygodniu.')}</Muted>;
+  const n1 = t('Ten tydzień'), n2 = t('Poprzedni tydzień'); const prevEmpty = !rows.some(mu => (prev[mu] ?? 0) > 0);
   return <>{rows.map(mu => { const c = cur[mu] ?? 0, p = prev[mu] ?? 0; const mark = markOf?.(mu); const label = t(mu); const sp = curSplit ? curSplit[mu] ?? emptySplit() : undefined; const ind = sp?.indirectWeighted ?? 0;
-    const shown = sp ? splitText(sp, mark) : fmt(c); const bid = curSplit ? 'cbar' : 'cvol'; /* serie / objętość: osobne testID */
+    const shown = sp ? splitText(sp, mark) : fmt(c); const bid = curSplit ? 'cbar' : 'cvol'; const kind = curSplit ? 'sets' : 'vol'; /* serie / objętość: osobne testID */ const pv = prevText(p, fmt, prevEmpty);
     return (
-    <View accessibilityLanguage={lang()} key={mu} style={{ marginBottom: 8 }} accessible accessibilityLabel={`${label}: ${sp ? splitLabel(sp) : fmt(c)} (${t('poprz.')} ${fmt(p)})${mark ? ', ' + t('cel {n}', { n: fmt(mark) }) : ''}${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}><Txt style={{ fontSize: 14 }}>{label}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{monoSafe(shown) /* A11-11 */} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(p)})</Muted></Muted></View>
-      <View style={{ height: 6, backgroundColor: th.line, borderRadius: 3, marginTop: 4 }}>
-        <View testID={`${bid}-${mu}`} style={{ width: `${Math.round(100 * c / max)}%`, height: 6, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
-          {c - ind > 0 ? <Seg testID={`${bid}-${mu}-direct`} width={`${(100 * (c - ind)) / c}%`} color={th.accent} /> : null}
-          {ind > 0 ? <Seg testID={`${bid}-${mu}-indirect`} width={`${(100 * ind) / c}%`} color={th.accent} indirect edge={c - ind > 0} /> : null}
+    <View accessibilityLanguage={lang()} testID={`crow-${kind}-${mu}`} key={mu} style={{ marginBottom: 10 }} accessible accessibilityLabel={`${label}: ${n1} ${sp ? splitLabel(sp) : fmt(c)}, ${n2} ${pv}${mark ? ', ' + t('cel {n}', { n: fmt(mark) }) : ''}${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
+      <Txt style={{ fontSize: 14 }}>{label}</Txt>
+      <PeriodLine n={1} id={`${kind}-${mu}`} name={n1} text={shown}>
+        <View style={{ height: 8, backgroundColor: th.line, borderRadius: 4 }}>
+          <View testID={`${bid}-${mu}`} style={{ width: `${Math.round(100 * c / max)}%`, height: 8, borderRadius: 4, overflow: 'hidden', flexDirection: 'row' }}>
+            {c - ind > 0 ? <Seg testID={`${bid}-${mu}-direct`} width={`${(100 * (c - ind)) / c}%`} color={th.accent} /> : null}
+            {ind > 0 ? <Seg testID={`${bid}-${mu}-indirect`} width={`${(100 * ind) / c}%`} color={th.accent} indirect edge={c - ind > 0} /> : null}
+          </View>
+          {c === 0 ? <View testID={`${bid}-${mu}-zero`} style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, backgroundColor: th.accent, borderRadius: 4 }} /> : null}
+          {mark ? <View testID={`mark-${mu}`} style={{ position: 'absolute', left: `${Math.round(100 * mark / max)}%`, top: -3, width: 2, height: 14, marginLeft: -1, backgroundColor: th.text }} /> : null}
         </View>
-        {mark ? <View testID={`mark-${mu}`} style={{ position: 'absolute', left: `${Math.round(100 * mark / max)}%`, top: -3, width: 2, height: 12, marginLeft: -1, backgroundColor: th.text }} /> : null}
-      </View>
+      </PeriodLine>
+      <PeriodLine n={2} id={`${kind}-${mu}`} name={n2} text={pv}><HatchBar testID={`${bid}-prev-${mu}`} pct={Math.round(100 * p / max)} /></PeriodLine>
     </View>); })}</>;
 }

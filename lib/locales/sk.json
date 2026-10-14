@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Od 0.10: usporiadaná knižnica cvikov — podobné varianty zlúčené, menej časté uvidíte po vypnutí filtra „Základné“ (vaše tréningy bez zmeny); telesná hmotnosť s dátumom a e1RM pri zhyboch a klikoch, tipy k technike s nákresom pohybu, „Uložiť ako šablónu“ v histórii.",
  "9 nowych języków: {list}.": "9 nových jazykov: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 jazykov; jazyk zmeníte v Nastaveniach.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "„+?“ — v naplánovaných šablónach: {n} {s} bez váhy a opakovaní (a bez „Predtým“); počítajú sa do sérií, ale nie do objemu.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "„≥“ — v naplánovaných šablónach: {n} {s} bez váhy a opakovaní (a bez „Predtým“); počítajú sa do sérií, ale nie do objemu.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "„Vygenerovať šablóny a plán“ (Šablóny alebo Plánovanie): vyber cieľ, miesto, počet a dĺžku tréningov.",
  "{cur} wobec {prev}": "{cur} oproti {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, prvý výsledok",
@@ -1608,5 +1608,10 @@
  "Pomysł": "Nápad",
  "Czego brakuje:": "Čo chýba:",
  "W jakiej sytuacji na treningu:": "V akej situácii pri tréningu:",
- "Czego Ci brakuje? Poproś o funkcję": "Čo ti chýba? Požiadaj o funkciu"
+ "Czego Ci brakuje? Poproś o funkcję": "Čo ti chýba? Požiadaj o funkciu",
+ "Ten miesiąc": "Tento mesiac",
+ "2 tyg. temu": "pred 2 týždňami",
+ "brak danych": "žiadne údaje",
+ "brak poprzedniego okresu": "žiadne predchádzajúce obdobie",
+ "część zaplanowanych serii nie ma ciężaru": "niektoré plánované série nemajú váhu"
 }

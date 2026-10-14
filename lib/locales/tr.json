@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "0.10'dan beri: düzenlenmiş hareket kitaplığı — benzer varyantlar birleştirildi, daha nadir olanlar “Temel” filtresini kapattığınızda görünür (antrenmanlarınız değişmez); tarihli vücut ağırlığı ve barfiks ile şınavda e1RM, hareket çizimli teknik ipuçları, geçmişte “Şablon olarak kaydet”.",
  "9 nowych języków: {list}.": "9 yeni dil: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 dil; dili Ayarlar’dan değiştirebilirsiniz.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "“+?” — planlanan şablonlarda {n} {s} ağırlık ve tekrar içermez (ve “Önceki” yoktur): set olarak sayılır, ancak hacme dahil edilmez.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "“≥” — planlanan şablonlarda {n} {s} ağırlık ve tekrar içermez (ve “Önceki” yoktur): set olarak sayılır, ancak hacme dahil edilmez.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "“Şablon ve plan oluştur” (Şablonlar veya Planlama): hedefi, yeri, seans sayısını ve süresini seçin.",
  "{cur} wobec {prev}": "{cur} (önceki: {prev})",
  "{label} {value}, pierwszy wynik": "{label} {value}, ilk sonuç",
@@ -1608,5 +1608,10 @@
  "Pomysł": "Fikir",
  "Czego brakuje:": "Neyin eksik olduğu:",
  "W jakiej sytuacji na treningu:": "Antrenmanda hangi durumda:",
- "Czego Ci brakuje? Poproś o funkcję": "Neyi eksik buluyorsunuz? Bir özellik isteyin"
+ "Czego Ci brakuje? Poproś o funkcję": "Neyi eksik buluyorsunuz? Bir özellik isteyin",
+ "Ten miesiąc": "Bu ay",
+ "2 tyg. temu": "2 hafta önce",
+ "brak danych": "veri yok",
+ "brak poprzedniego okresu": "önceki dönem yok",
+ "część zaplanowanych serii nie ma ciężaru": "bazı planlı setlerin ağırlığı yok"
 }

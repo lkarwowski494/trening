@@ -1324,7 +1324,7 @@
  "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.": "“Teknik”: tips gerakan juga bisa dibuka dari latihan dan dari templat.",
  "9 nowych języków: {list}.": "9 bahasa baru: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 bahasa; ganti bahasa di Pengaturan.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "“+?” — dalam templat terencana, {n} {s} tanpa beban dan repetisi (dan tanpa “Sebelumnya”): dihitung sebagai set, tetapi tidak masuk volume.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "“≥” — dalam templat terencana, {n} {s} tanpa beban dan repetisi (dan tanpa “Sebelumnya”): dihitung sebagai set, tetapi tidak masuk volume.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "“Buat templat dan rencana” (Templat atau Perencanaan): pilih tujuan, tempat, jumlah, dan durasi sesi.",
  "{cur} wobec {prev}": "{cur} dibandingkan {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, hasil pertama",
@@ -1608,5 +1608,10 @@
  "Pomysł": "Ide",
  "Czego brakuje:": "Apa yang kurang:",
  "W jakiej sytuacji na treningu:": "Dalam situasi apa saat latihan:",
- "Czego Ci brakuje? Poproś o funkcję": "Apa yang kurang? Minta fitur"
+ "Czego Ci brakuje? Poproś o funkcję": "Apa yang kurang? Minta fitur",
+ "Ten miesiąc": "Bulan ini",
+ "2 tyg. temu": "2 minggu lalu",
+ "brak danych": "tidak ada data",
+ "brak poprzedniego okresu": "tidak ada periode sebelumnya",
+ "część zaplanowanych serii nie ma ciężaru": "beberapa set terencana tidak punya beban"
 }

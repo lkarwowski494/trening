@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Desde a 0.10: biblioteca de exercícios arrumada — variantes semelhantes fundidas, as mais raras aparecem ao desligar o filtro «Básicos» (os seus treinos não mudam); peso corporal com data e e1RM em elevações e flexões, dicas de técnica com desenho do movimento, «Guardar como modelo» no histórico.",
  "9 nowych języków: {list}.": "9 novos idiomas: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 idiomas; o idioma muda-se nas Definições.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«+?» — nos modelos planeados, {n} {s} não têm peso nem repetições (e não há «Anterior»): contam como séries, mas não para o volume.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«≥» — nos modelos planeados, {n} {s} não têm peso nem repetições (e não há «Anterior»): contam como séries, mas não para o volume.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "«Gerar modelos e plano» (Modelos ou Planeamento): escolhe objetivo, local, número e duração das sessões.",
  "{cur} wobec {prev}": "{cur} face a {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, primeiro resultado",
@@ -1608,5 +1608,10 @@
  "Pomysł": "Ideia",
  "Czego brakuje:": "O que falta:",
  "W jakiej sytuacji na treningu:": "Em que situação durante o treino:",
- "Czego Ci brakuje? Poproś o funkcję": "O que lhe falta? Peça uma funcionalidade"
+ "Czego Ci brakuje? Poproś o funkcję": "O que lhe falta? Peça uma funcionalidade",
+ "Ten miesiąc": "Este mês",
+ "2 tyg. temu": "há 2 semanas",
+ "brak danych": "sem dados",
+ "brak poprzedniego okresu": "sem período anterior",
+ "część zaplanowanych serii nie ma ciężaru": "algumas séries planeadas não têm peso"
 }

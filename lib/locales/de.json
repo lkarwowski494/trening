@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Seit 0.10: aufgeräumte Übungsbibliothek — ähnliche Varianten zusammengeführt, seltenere siehst du nach dem Ausschalten des Filters „Basis“ (deine Trainings bleiben unverändert); Körpergewicht mit Datum und e1RM bei Klimmzügen und Liegestützen, Technikhinweise mit Bewegungszeichnung, „Als Vorlage speichern“ im Verlauf.",
  "9 nowych języków: {list}.": "9 neue Sprachen: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 Sprachen; die Sprache lässt sich in den Einstellungen ändern.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "„+?“ — in den geplanten Vorlagen haben {n} {s} kein Gewicht und keine Wiederholungen (und kein „Vorher“): Sie zählen als Sätze, aber nicht zum Volumen.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "„≥“ — in den geplanten Vorlagen haben {n} {s} kein Gewicht und keine Wiederholungen (und kein „Vorher“): Sie zählen als Sätze, aber nicht zum Volumen.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "„Vorlagen und Plan erstellen“ (Vorlagen oder Planung): Ziel, Ort, Anzahl und Dauer der Einheiten wählen.",
  "{cur} wobec {prev}": "{cur} gegenüber {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, erstes Ergebnis",
@@ -1608,5 +1608,10 @@
  "Pomysł": "Idee",
  "Czego brakuje:": "Was fehlt:",
  "W jakiej sytuacji na treningu:": "In welcher Situation beim Training:",
- "Czego Ci brakuje? Poproś o funkcję": "Was fehlt dir? Funktion vorschlagen"
+ "Czego Ci brakuje? Poproś o funkcję": "Was fehlt dir? Funktion vorschlagen",
+ "Ten miesiąc": "Dieser Monat",
+ "2 tyg. temu": "vor 2 Wochen",
+ "brak danych": "keine Daten",
+ "brak poprzedniego okresu": "kein Vorzeitraum",
+ "część zaplanowanych serii nie ma ciężaru": "bei einigen geplanten Sätzen fehlt das Gewicht"
 }

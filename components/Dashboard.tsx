@@ -6,7 +6,7 @@ import { Btn, Muted, Txt, SectionTitle, useOnce } from '@/components/ui';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { useTick } from '@/lib/store';
 import { weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
-import { compareCached, type CmpKind } from '@/lib/progress';
+import { compareCached, pctText, type CmpKind } from '@/lib/progress';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { fmtVol } from '@/lib/units';
 import { splitLabel, sumSplit } from '@/lib/setSplit';
@@ -16,7 +16,7 @@ import { MuscleRows, SegLegend, IndirectLegend, setBars } from '@/components/Pro
 import { t, tp, lang } from '@/lib/i18n';
 
 /* Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A) — dane: lib/dashboard.ts. */
-function Tile({ label, value }: { label: string; value: string }) { /* 11.10.2026: bez „poprz.” — porównania są w Progresji */
+function Tile({ label, value }: { label: string; value: string }) { /* 11.10.2026: bez „poprz.” — porównania są w Progresji (w Postępach) */
   const th = useTheme();
   return (
     <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
@@ -52,9 +52,7 @@ export function WeekStats() {
   </>;
 }
 
-const pctText = (p: number | null) => (p === null ? '—' : p > 0 ? `+${p}%` : p < 0 ? `−${Math.abs(p)}%` : '0%');
-const signed = (n: number) => (n > 0 ? `+${n}` : n < 0 ? `−${Math.abs(n)}` : '0');
-/** Kafelki „Progresji” na ekranie głównym (docs/22 krok 3 pkt 5; P8 B): bardzo podstawowe liczby — objętość (najpierw) i serie, z różnicą względem
+/** Kafelki „Progresji” w Postępach (14.10.2026: z ekranu Trening usunięte; docs/22 krok 3 pkt 5; P8 B): bardzo podstawowe liczby — objętość (najpierw) i serie, z różnicą względem
  * porównywanego okresu; tydzień bieżący = wykonane + zaplanowane z szablonów (przy nieznanej objętości „+?”). Stuknięcie → ekran szczegółów. */
 export function ProgressTiles() {
   useTick(); const th = useTheme(); const router = useRouter(); const once = useOnce(); if (!lastWorkout()) return null;
@@ -64,16 +62,18 @@ export function ProgressTiles() {
     <View style={{ gap: 8 }}>
       {items.map(([kind, title, sub0]) => {
         const c = compareCached(kind); const sets = c.total.sets; const sub = kind === 'month' ? t('dni 1–{n} miesiąca vs poprzedni miesiąc', { n: new Date(c.cur.end - 1).getDate() }) : sub0;
-        const vol = `${fmtVol(c.total.volume)}${c.unknown ? '+?' : ''}`; const vp = pctText(c.volumePct);
+        const vol = `${c.unknown ? '≥ ' : ''}${fmtVol(c.total.volume)}`; const vp = pctText(c.volumePct); const sp = pctText(c.setsPct); /* 14.10.2026: oba w procentach; „≥” = część zaplanowanych serii bez ciężaru */
+        const volA11y = c.unknown ? `${t('co najmniej {n}', { n: fmtVol(c.total.volume) })} (${t('część zaplanowanych serii nie ma ciężaru')})` : vol;
         return (
           <Pressable key={kind} testID={`progress-tile-${kind}`} accessibilityRole="button" accessibilityLanguage={lang()} accessibilityHint={t('Otwiera szczegóły Progresji.')}
-            accessibilityLabel={t('{title} ({sub}): objętość {v}, {p}; serie {s}, {d}', { title, sub, v: vol, p: vp, s: c.total.sets, d: signed(c.setsDelta) })}
+            accessibilityLabel={t('{title} ({sub}): objętość {v}, {p}; serie {s}, {d}', { title, sub, v: volA11y, p: vp, s: c.total.sets, d: sp })}
             onPress={once(() => router.push(`/progression?c=${kind}`))} style={({ pressed }) => ({ padding: 12, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, opacity: pressed ? 0.7 : 1, gap: 2 })}>
             <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{title}</Muted>
             <Muted style={{ fontSize: 11 }}>{sub}</Muted>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 16, rowGap: 2, marginTop: 4 }}>
-              <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.heavy, fontSize: 18 }}>{vol} <Muted style={{ fontSize: 13 }}>{vp}</Muted></Txt>
-              <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.semibold, fontSize: 15 }}>{sets} {tp(sets, 'seria|serie|serii')} <Muted style={{ fontSize: 12 }}>{signed(c.setsDelta)}</Muted></Txt>
+              {/* osobne teksty: „brak poprzedniego okresu” to zdanie — limit powiększenia TEXT_SCALE_MAX (A11N-04), liczby 1,4 */}
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.heavy, fontSize: 18 }}>{vol}</Txt><Muted style={{ fontSize: 13 }}>{vp}</Muted></View>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', columnGap: 6 }}><Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.semibold, fontSize: 15 }}>{sets} {tp(sets, 'seria|serie|serii')}</Txt><Muted style={{ fontSize: 12 }}>{sp}</Muted></View>
             </View>
           </Pressable>); })}
     </View>
