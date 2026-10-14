@@ -2143,3 +2143,23 @@ describe('Q-026 (0.14.0): edytor historii oznacza ciężar zapisany pod innym sp
     expect(screen.queryByText(NOTE)).toBeNull();
   });
 });
+
+describe('TestFlight 0.18/1015 (14.10.2026, WYSOKI): „Nie udało się włączyć Apple Health” — build bez uprawnienia HealthKit', () => {
+  /* Kroki: TestFlight 0.18 (build 1015) → Ustawienia → „Pokazuj dane z Apple Health” → alert „Nie udało się włączyć Apple Health”.
+   * Przyczyna (przebieg 38549517589): archiwum z CODE_SIGNING_ALLOWED=NO nie ma uprawnień, a eksport podpisał .ipa tylko z team-identifier — requestAuthorization
+   * rzuca wyjątek bez com.apple.developer.healthkit. Realność: realny (każdy build z tym archiwum). Test odtwarza objaw w kodzie (wyjątek → 'failed' → alert)
+   * i pilnuje przyczyny: uprawnienie, którego aplikacja potrzebuje, jest w plikach projektu, a testflight.yml sprawdza je w .ipa przed wysyłką (tests/public-repo.test.ts). */
+  test('wyjątek z requestAuthorization (brak uprawnienia w podpisie) = „failed”, a nie „ok”', async () => {
+    jest.resetModules();
+    jest.doMock('@/lib/hkModule', () => ({ hk: () => ({ isHealthDataAvailableAsync: async () => true, requestAuthorization: async () => { throw new Error('Missing com.apple.developer.healthkit entitlement'); } }) }));
+    const h = require('@/lib/health'); expect(await h.ensureReadAuthorization()).toBe('failed'); jest.dontMock('@/lib/hkModule');
+  });
+  test('aplikacja wymaga HealthKit w obu celach (telefon i zegarek) i strażnik .ipa sprawdza dokładnie te cele', () => {
+    const fs = require('fs'); const path = require('path'); const root = path.join(__dirname, '..');
+    const app = JSON.parse(fs.readFileSync(path.join(root, 'app.json'), 'utf8')).expo;
+    expect(JSON.stringify(app.plugins)).toContain('@kingstinct/react-native-healthkit'); expect(app.ios.infoPlist).toBeDefined();
+    expect(fs.readFileSync(path.join(root, 'targets/watch-app/expo-target.config.js'), 'utf8')).toContain("'com.apple.developer.healthkit': true");
+    const y = fs.readFileSync(path.join(root, '.github/workflows/testflight.yml'), 'utf8');
+    expect(y).toContain('ios/Trening/Trening.entitlements'); expect(y).toContain('ios/.targets/TreningWatch/generated.entitlements');
+  });
+});
