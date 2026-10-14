@@ -7,7 +7,7 @@ import { Alert } from 'react-native';
 import { getState, useTick, getPersistError, getRecovery, clearRecovery, flush } from '@/lib/store';
 import { exportRecovery } from '@/lib/backup';
 import { TodayPlan } from '@/components/TodayPlan';
-import { WeekStats, FirstSteps, ProgressTiles } from '@/components/Dashboard';
+import { WeekStats, FirstSteps } from '@/components/Dashboard';
 import { WhatsNewHeader } from '@/components/WhatsNew';
 import { StartPanel } from '@/components/StartPanel';
 import { t, locale } from '@/lib/i18n';
@@ -29,7 +29,7 @@ function Home() {
   /* Układ B „najpierw trening” (decyzja właściciela 09.10.2026, docs/18) po zmianach z 11.10.2026 (docs/22 krok 3; P2–P4, P8): nagłówek planu z „Planowaniem”
    * nad kalendarzem tygodnia (components/TodayPlan) → duży przycisk startu i „Inny trening” (arkusz: inny z planu, powtórz ostatni, z szablonu — pełnoekranowy
    * wybór ze Startem, pusty) → „Pierwsze kroki” (tylko nowa osoba) → „Ten tydzień” (kafelki, stosy planu, sylwetka i serie na partię: wykonane + zaplanowane)
-   * → „Progresja” (kafelki → szczegóły). Lista „Zacznij z szablonu”, karta Planowania i wiersz „Plan: … Planowanie ›” usunięte jako duplikaty. */
+   * (14.10.2026, uwaga właściciela z telefonu: sekcja „Progresja” zniknęła z tego ekranu — jest w Postępach). Lista „Zacznij z szablonu”, karta Planowania i wiersz „Plan: … Planowanie ›” usunięte jako duplikaty. */
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
       <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela) */}<H1>{t('Trening')}</H1><Muted>{fmtWeekdayDayMonth(new Date())}</Muted></WhatsNewHeader>
@@ -38,7 +38,6 @@ function Home() {
       <StartPanel />
       <FirstSteps />
       <WeekStats />
-      <ProgressTiles />
     </ScrollView>
   );
 }

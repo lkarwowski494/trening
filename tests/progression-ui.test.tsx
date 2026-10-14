@@ -51,10 +51,11 @@ const legendP = (word: string) => prog().findAll((n: { type: unknown; props: { c
 const orderP = (...ids: string[]) => { const all = prog().findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && ids.includes(n.props.testID as string)).map((n: { props: { testID?: string } }) => n.props.testID as string); return ids.map(id => all.indexOf(id)); };
 
 describe('„Ten tydzień”: tylko ten tydzień — kafelki, sylwetka, serie na partię', () => {
-  test('kolejność: kalendarz → start → Ten tydzień (kafelki, stosy planu, sylwetka i serie) → Progresja; 4 kafelki z Objętością', async () => {
+  test('kolejność: kalendarz → start → Ten tydzień (kafelki, stosy planu, sylwetka i serie) — bez sekcji Progresja (14.10.2026); 4 kafelki z Objętością', async () => {
     await boot(scenario);
-    const [tp, sp, wt, ws, wm, pt] = order('today-plan', 'start-panel', 'week-tiles', 'week-stacks', 'week-muscles', 'progress-tile-week');
-    expect([tp, sp, wt, ws, wm, pt].every(i => i >= 0)).toBe(true); expect(tp).toBeLessThan(sp); expect(sp).toBeLessThan(wt); expect(wt).toBeLessThan(ws); expect(ws).toBeLessThan(wm); expect(wm).toBeLessThan(pt);
+    const [tp, sp, wt, ws, wm] = order('today-plan', 'start-panel', 'week-tiles', 'week-stacks', 'week-muscles');
+    expect([tp, sp, wt, ws, wm].every(i => i >= 0)).toBe(true); expect(tp).toBeLessThan(sp); expect(sp).toBeLessThan(wt); expect(wt).toBeLessThan(ws); expect(ws).toBeLessThan(wm);
+    expect(order('progress-tile-week', 'progress-tile-prevWeek', 'progress-tile-month')).toEqual([-1, -1, -1]); /* sekcja „Progresja” zniknęła z ekranu Trening */
     const tiles = screen.getByTestId('week-tiles'); expect(tiles.props.accessibilityLabel).toBe(`Treningi: 1; Serie: 2; Objętość: ${fmtVol(1000)}; Czas: 1 h`);
     expect(screen.queryAllByText(/^poprz\.: /)).toHaveLength(0); /* 11.10.2026: kafelki bez „poprz.” */
   });
@@ -84,9 +85,19 @@ describe('„Ten tydzień”: tylko ten tydzień — kafelki, sylwetka, serie na
   });
 });
 
-describe('„Progresja”: kafelki na ekranie głównym', () => {
+describe('Ekran Trening bez sekcji „Progresja” (właściciel 14.10.2026: „jest już w postępach”)', () => {
+  test('po treningach: brak nagłówka „Progresja”, brak trzech kart, ale „Ten tydzień” zostaje', async () => {
+    await boot(scenario); expect(screen.queryByText('Progresja')).toBeNull(); expect(screen.queryByRole('header', { name: 'Progresja' })).toBeNull();
+    for (const k of ['week', 'prevWeek', 'month']) expect(screen.queryByTestId(`progress-tile-${k}`)).toBeNull();
+    for (const x of ['Ten tydzień vs poprzedni', 'Poprzedni tydzień vs 2 tyg. temu', 'Miesiąc do miesiąca']) expect(screen.queryByText(x)).toBeNull();
+    expect(screen.getByTestId('week-tiles')).toBeTruthy(); expect(screen.getByTestId('week-muscles')).toBeTruthy();
+  });
+  test('EN: też bez „Progression”', async () => { await boot(scenario, '/', 'en'); expect(screen.queryByText('Progression')).toBeNull(); expect(screen.queryByTestId('progress-tile-week')).toBeNull(); });
+});
+
+describe('„Progresja”: kafelki w Postępach', () => {
   test('trzy kafelki z objętością (najpierw), serią i różnicą; tydzień bieżący z „+?” przy nieznanej objętości', async () => {
-    await boot(scenario); expect(screen.getByText('Progresja')).toBeTruthy();
+    await boot(scenario, '/progress'); expect(screen.getByText('Progresja')).toBeTruthy();
     expect(screen.getByTestId('progress-tile-week').props.accessibilityLabel).toBe(`Ten tydzień vs poprzedni (wykonane + zaplanowane): objętość ${fmtVol(1300)}+?, +30%; serie 4, +2`);
     expect(screen.getByTestId('progress-tile-prevWeek').props.accessibilityLabel).toBe(`Poprzedni tydzień vs 2 tyg. temu (wykonane): objętość ${fmtVol(1000)}, +100%; serie 2, +1`);
     expect(screen.getByTestId('progress-tile-month').props.accessibilityLabel).toBe(`Miesiąc do miesiąca (dni 1–8 miesiąca vs poprzedni miesiąc): objętość ${fmtVol(1000)}, +150%; serie 2, +1`);
@@ -94,15 +105,15 @@ describe('„Progresja”: kafelki na ekranie głównym', () => {
     expect(screen.getByTestId('progress-tile-week').props.accessibilityHint).toBe('Otwiera szczegóły Progresji.');
   });
   test('bez „+?”, gdy każda zaplanowana seria ma wartości; bez poprzedniego okresu — procent „—”; seria bez zmian „0”', async () => {
-    await boot(() => { const b = tpl('B', ['Bench Press (sztanga)', [row(5, 60)]]); jest.setSystemTime(new Date(2026, 9, 5, 6).getTime()); plan.setWeekDay(5, b.id); jest.setSystemTime(NOW.getTime()); sq(9, 6, [{ weight: 100, reps: 5 }]); });
+    await boot(() => { const b = tpl('B', ['Bench Press (sztanga)', [row(5, 60)]]); jest.setSystemTime(new Date(2026, 9, 5, 6).getTime()); plan.setWeekDay(5, b.id); jest.setSystemTime(NOW.getTime()); sq(9, 6, [{ weight: 100, reps: 5 }]); }, '/progress');
     const l = screen.getByTestId('progress-tile-week').props.accessibilityLabel as string; expect(l).toContain(`objętość ${fmtVol(800)},`); expect(l).not.toContain('+?'); expect(l).toContain('—'); /* poprzedni tydzień pusty */
   });
   test('nowa osoba (bez zakończonego treningu): bez Progresji i bez „Ten tydzień”', async () => {
-    await boot(); expect(screen.queryByText('Progresja')).toBeNull(); expect(screen.queryByTestId('progress-tile-week')).toBeNull(); expect(screen.queryByTestId('week-tiles')).toBeNull();
+    await boot(); await go('/progress'); await flushAll(10); expect(screen.queryByText('Progresja')).toBeNull(); expect(screen.queryByTestId('progress-tile-week')).toBeNull(); expect(screen.queryByTestId('week-tiles')).toBeNull();
   });
   test('stuknięcie kafelka otwiera ekran „Progresja” z właściwym porównaniem (tydzień / poprzedni tydzień / miesiąc)', async () => {
     for (const [kind, chip, h2] of [['week', 'Ten tydzień', 'Ten tydzień vs poprzedni'], ['prevWeek', 'Poprzedni tydzień', 'Poprzedni tydzień vs 2 tyg. temu'], ['month', 'Miesiąc', 'Miesiąc do miesiąca']] as const) {
-      await boot(scenario); await tap(screen.getByTestId(`progress-tile-${kind}`)); await flushAll(10);
+      await boot(scenario, '/progress'); await tap(screen.getByTestId(`progress-tile-${kind}`)); await flushAll(10);
       expect(header()).toContain('Progresja'); expect(screen.getByLabelText(`Porównanie: ${chip}`).props.accessibilityState.selected).toBe(true); expect(screen.getByText(h2)).toBeTruthy();
     }
   });
@@ -146,7 +157,7 @@ describe('„Progresja”: szczegóły', () => {
   });
   test('nic nie wzrosło (jest tylko poprzedni tydzień): opis sylwetki „Żadna partia…”, wiersze partii z poprzednim; ćwiczenie bez partii — „Brak serii w tym i poprzednim okresie.”', async () => {
     await boot(() => { sq(8, 30, [{ weight: 100, reps: 5 }]); }, '/progression?c=week');
-    expect(screen.getByTestId('muscle-map').props.accessibilityLabel).toBe('Żadna partia nie ma większej objętości niż poprzednio.'); expect(screen.getByTestId('prow-volume-czworogłowe').props.accessibilityLabel).toBe('czworogłowe: 0, poprz. 500');
+    expect(screen.getByTestId('muscle-map').props.accessibilityLabel).toBe('Żadna partia nie ma większej objętości niż poprzednio.'); expect(screen.getByTestId('prow-volume-czworogłowe').props.accessibilityLabel).toBe('czworogłowe: Ten tydzień 0, Poprzedni tydzień 500');
     await boot(() => { const e = store.newExercise('Własne bez partii'); e.muscles = []; e.secondaryMuscles = []; store.save(e); addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Własne bez partii', [{ weight: 50, reps: 5 }]]], 'W'); }, '/progression?c=week');
     expect(screen.getAllByText('Brak serii w tym i poprzednim okresie.')).toHaveLength(2); /* objętość i serie per partia */
   });
@@ -154,10 +165,11 @@ describe('„Progresja”: szczegóły', () => {
     await boot(scenario, '/progression?c=week', 'en');
     expect(header()).toContain('Progression'); expect(screen.getByText('This week vs last week')).toBeTruthy(); expect(screen.getByLabelText('Comparison: This week')).toBeTruthy();
     expect(legendP('planned')).toBe(1); expect(screen.getByLabelText(`Volume: ${fmtVol(1300)}+? (${fmtVol(1000)} + ${fmtVol(300)}+?), before ${fmtVol(1000)}, +30%`)).toBeTruthy();
-    await go('/'); await flushAll(10); expect(screen.getByText('Progression')).toBeTruthy(); expect(screen.getByTestId('progress-tile-month').props.accessibilityLabel).toContain('days 1–8 of the month vs last month');
+    await go('/progress'); await flushAll(10); expect(screen.getByText('Progression')).toBeTruthy(); expect(screen.getByTestId('progress-tile-month').props.accessibilityLabel).toContain('days 1–8 of the month vs last month');
   });
   test('320 pt: ekran główny (kafelki, sylwetka, słupki) i szczegóły renderują się bez wyjątków przy długich tłumaczeniach', async () => {
-    await boot(scenario, '/', 'en', 320); expect(screen.getByTestId('week-muscles')).toBeTruthy(); expect(screen.getByTestId('progress-tile-week')).toBeTruthy();
+    await boot(scenario, '/', 'en', 320); expect(screen.getByTestId('week-muscles')).toBeTruthy(); expect(screen.queryByTestId('progress-tile-week')).toBeNull();
+    await boot(scenario, '/progress', 'en', 320); expect(screen.getByTestId('progress-tile-week')).toBeTruthy();
     await tap(screen.getByTestId('progress-tile-week')); await flushAll(10); expect(screen.getByTestId('muscle-map')).toBeTruthy(); expect(hasP('total-volume')).toBe(true);
     await boot(scenario, '/progression?c=month', 'pl', 320); expect(screen.getByText('Porównanie tych samych dni miesiąca: 1–8.')).toBeTruthy();
   });

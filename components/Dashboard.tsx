@@ -16,7 +16,7 @@ import { MuscleRows, SegLegend, IndirectLegend, setBars } from '@/components/Pro
 import { t, tp, lang } from '@/lib/i18n';
 
 /* Dashboard ekranu Trening (decyzja właściciela 08.10.2026, wariant A) — dane: lib/dashboard.ts. */
-function Tile({ label, value }: { label: string; value: string }) { /* 11.10.2026: bez „poprz.” — porównania są w Progresji */
+function Tile({ label, value }: { label: string; value: string }) { /* 11.10.2026: bez „poprz.” — porównania są w Progresji (w Postępach) */
   const th = useTheme();
   return (
     <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${label}: ${value}`} style={{ flexGrow: 1, flexBasis: '45%' /* 2 × 2 — mieści się przy 320 pt i długich tłumaczeniach */, padding: 10, borderRadius: 10, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line }}>
@@ -54,7 +54,7 @@ export function WeekStats() {
 
 const pctText = (p: number | null) => (p === null ? '—' : p > 0 ? `+${p}%` : p < 0 ? `−${Math.abs(p)}%` : '0%');
 const signed = (n: number) => (n > 0 ? `+${n}` : n < 0 ? `−${Math.abs(n)}` : '0');
-/** Kafelki „Progresji” na ekranie głównym (docs/22 krok 3 pkt 5; P8 B): bardzo podstawowe liczby — objętość (najpierw) i serie, z różnicą względem
+/** Kafelki „Progresji” w Postępach (14.10.2026: z ekranu Trening usunięte; docs/22 krok 3 pkt 5; P8 B): bardzo podstawowe liczby — objętość (najpierw) i serie, z różnicą względem
  * porównywanego okresu; tydzień bieżący = wykonane + zaplanowane z szablonów (przy nieznanej objętości „+?”). Stuknięcie → ekran szczegółów. */
 export function ProgressTiles() {
   useTick(); const th = useTheme(); const router = useRouter(); const once = useOnce(); if (!lastWorkout()) return null;

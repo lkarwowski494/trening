@@ -921,7 +921,7 @@ export const EN: Record<string, string> = {
   '{label}: {v}, poprzednio {p}, {d}': '{label}: {v}, before {p}, {d}',
   'Porównanie: {name}': 'Comparison: {name}',
   'Ten tydzień vs poprzedni': 'This week vs last week',
-  'Poprzedni tydzień vs 2 tyg. temu': 'Last week vs 2 weeks ago',
+  'Poprzedni tydzień vs 2 tyg. temu': 'Last week vs 2 weeks ago', 'Ten miesiąc': 'This month', '2 tyg. temu': '2 weeks ago', 'brak danych': 'no data',
   'Miesiąc do miesiąca': 'Month over month',
   '{cur} wobec {prev}': '{cur} vs {prev}',
   'Porównanie tych samych dni miesiąca: 1–{n}.': 'Comparing the same days of the month: 1–{n}.',

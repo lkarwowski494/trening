@@ -324,6 +324,10 @@
   "en": "16 languages; light, dark or system appearance."
  },
  {
+  "pl": "2 tyg. temu",
+  "en": "2 weeks ago"
+ },
+ {
   "pl": "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.",
   "en": "20 new exercises with tips in the “Technique” section."
  },
@@ -586,6 +590,10 @@
  {
   "pl": "Brak ćwiczeń na: {list}.",
   "en": "No exercises for: {list}."
+ },
+ {
+  "pl": "brak danych",
+  "en": "no data"
  },
  {
   "pl": "Brak danych do wykresu.",
@@ -4945,6 +4953,10 @@
  {
   "pl": "Tempo (opcjonalnie, np. 3-1-1)",
   "en": "Tempo (optional, e.g. 3-1-1)"
+ },
+ {
+  "pl": "Ten miesiąc",
+  "en": "This month"
  },
  {
   "pl": "Ten okres",

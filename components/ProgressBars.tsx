@@ -69,22 +69,69 @@ export const volumeBars = (rows: MuscleRow[]): BarRow[] => rows.map(r => ({ key:
 /** Serie per partia; `goals` — czy rysować kreski celu (miesiąc: bez kresek). */
 export const setBars = (rows: SetRow[], goals: boolean): BarRow[] => rows.map(r => ({ key: r.part, label: t(r.part), done: r.doneSets, planned: r.plannedSets, prev: r.prevSets, up: r.setsUp, doneSplit: r.doneSplit, plannedSplit: r.plannedSplit, ...(goals ? { mark: r.goal } : {}) }));
 
-/** Wiersze partii: bieżący okres (wykonane + zaplanowane, słupek dwukolorowy) i poprzedni (cienki słupek); ▲ — wzrost. `metric` — co jest słupkiem; kreska celu — osobna dla każdego wiersza. */
-export function MuscleRows({ rows, metric, showPrev = true }: { rows: BarRow[]; metric: 'volume' | 'sets'; /** false — „Ten tydzień”: tylko bieżący tydzień, bez poprzedniego */ showPrev?: boolean }) {
-  const th = useTheme(); const fmt = metric === 'volume' ? fmtVolShort : fmtSets;
+/** Prążki (wzór okresu 2): cienkie pionowe kreski w kolorze tła na całym torze; warstwa o szerokości toru (`trackPct` — ile procent toru zajmuje wypełnienie),
+ * więc gęstość wzoru jest taka sama niezależnie od długości słupka. Wzór + kolor + podpis: okresów nie odróżnia sam kolor (dostępność, daltonizm; 14.10.2026). */
+function Stripes({ testID, trackPct, count = 24 }: { testID?: string; trackPct: number; count?: number }) {
+  const th = useTheme();
+  return <View testID={testID} pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${10000 / Math.max(trackPct, 0.01)}%` }}>
+    {Array.from({ length: count }, (_, i) => <View key={i} style={{ position: 'absolute', top: 0, bottom: 0, left: `${(i + 1) * (100 / (count + 1))}%`, width: 2, backgroundColor: th.bg }} />)}
+  </View>;
+}
+/** Słupek okresu 2: tor, wypełnienie szare z prążkami i — przy zerze — znacznik zera (słupek nie znika). `pct` — szerokość na wspólnej osi (0–100). Id: `testID` (tor),
+ * `-fill`, `-hatch` (prążki; tylko przy wartości > 0), `-zero` (znacznik zera). */
+export function HatchBar({ pct, testID, height = 8 }: { pct: number; testID?: string; height?: number }) {
+  const th = useTheme(); const id = (k: string) => (testID ? `${testID}-${k}` : undefined); const p = Math.max(0, Math.min(100, pct));
+  return (
+    <View testID={testID} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ height, backgroundColor: th.line, borderRadius: height / 2, overflow: 'hidden' }}>
+      <View testID={id('fill')} style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${p}%`, backgroundColor: th.muted, overflow: 'hidden' }}>{p > 0 ? <Stripes testID={id('hatch')} trackPct={p} /> : null}</View>
+      {p === 0 ? <View testID={id('zero')} style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, backgroundColor: th.muted }} /> : null}
+    </View>);
+}
+/** Próbka okresu w podpisie: okres 1 — pełny kolor akcentu, okres 2 — szary z prążkami (jak słupek). */
+function PeriodSwatch({ n, id }: { n: 1 | 2; id: string }) {
+  const th = useTheme();
+  return <View testID={`cswatch-${n}-${id}`} style={{ width: 14, height: 8, borderRadius: 2, overflow: 'hidden', backgroundColor: n === 1 ? th.accent : th.muted }}>{n === 2 ? <Stripes testID={`cswatch-2-${id}-hatch`} trackPct={100} count={3} /> : null}</View>;
+}
+/** Wiersz okresu przy słupku: próbka + nazwa okresu (słowami) po lewej, liczby po prawej (zawija się przy wąskim ekranie i dużej czcionce), pod spodem słupek. */
+export function PeriodLine({ n, id, name, text, children }: { n: 1 | 2; id: string; name: string; text: string; children: React.ReactNode }) {
+  return (
+    <View style={{ marginTop: 4 }}>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'baseline', columnGap: 8 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, flexShrink: 1 }}><PeriodSwatch n={n} id={id} /><Muted style={{ fontSize: 12, flexShrink: 1 }}>{name}</Muted></View>
+        <Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right', maxWidth: '100%' }}>{monoSafe(text) /* A11-11: litery greckie krojem tekstu */}</Muted>
+      </View>
+      <View style={{ marginTop: 3 }}>{children}</View>
+    </View>);
+}
+/** Liczba okresu 2 z opisem, gdy cały okres jest pusty: „0 (brak danych)”. */
+export const prevText = (v: number, fmt: (v: number) => string, periodEmpty: boolean) => (periodEmpty && v === 0 ? `${fmt(0)} (${t('brak danych')})` : fmt(v));
+
+/** Wiersze partii. `showPrev` — porównanie okresów: DWA słupki na partię na wspólnej osi (14.10.2026) — wyżej okres 1 (wykonane + zaplanowane, dwukolorowy), niżej
+ * okres 2 (szary z prążkami), przy każdym nazwa okresu i liczby; ▲ — wzrost. `names` — nazwy [okres 1, okres 2]. Bez `showPrev` („Ten tydzień”): jeden słupek.
+ * `metric` — co jest słupkiem; kreska celu — osobna dla każdego wiersza. */
+export function MuscleRows({ rows, metric, showPrev = true, names }: { rows: BarRow[]; metric: 'volume' | 'sets'; /** false — „Ten tydzień”: tylko bieżący tydzień, bez poprzedniego */ showPrev?: boolean; names?: [string, string] }) {
+  const fmt = metric === 'volume' ? fmtVolShort : fmtSets; const [n1, n2] = names ?? [t('Ten okres'), t('Poprzedni okres')];
   const list = rows.filter(r => r.done + r.planned + (showPrev ? r.prev : 0) > 0); const max = Math.max(1, ...list.map(r => Math.max(r.mark ?? 0, r.done + r.planned, showPrev ? r.prev : 0)));
+  const prevEmpty = !list.some(r => r.prev > 0);
   if (!list.length) return <Muted style={{ fontSize: 13 }}>{showPrev ? t('Brak serii w tym i poprzednim okresie.') : t('Brak serii w tym tygodniu.')}</Muted>;
   return <>{list.map(r => {
     const ds = r.doneSplit; /* serie: podpis „6 + 1,5 pośrednio (3 serie) [+ zaplanowane] / cel”; objętość: liczby jak dotąd */
     const value = (ds ? splitText(ds) : fmt(r.done)) + (r.planned > 0 ? ` + ${fmt(r.planned)}` : '') + (ds && r.mark ? ` / ${fmt(r.mark)}` : '');
-    const label = `${r.label}: ${ds ? splitLabel(ds) : fmt(r.done)}${r.planned > 0 ? ` + ${fmt(r.planned)} (${t('wykonane')} + ${t('zaplanowane')})` : ''}${ds && r.mark ? `, ${t('cel {n}', { n: fmt(r.mark) })}` : ''}${showPrev ? `, ${t('poprz.')} ${fmt(r.prev)}${r.up ? ', ' + t('więcej niż poprzednio') : ''}` : ''}${r.mark && r.done + r.planned >= r.mark ? ', ' + t('co najmniej {n}', { n: r.mark }) : ''}`;
+    const curLabel = `${ds ? splitLabel(ds) : fmt(r.done)}${r.planned > 0 ? ` + ${fmt(r.planned)} (${t('wykonane')} + ${t('zaplanowane')})` : ''}`; const pv = prevText(r.prev, fmt, prevEmpty);
+    const label = `${r.label}: ${showPrev ? `${n1} ${curLabel}, ${n2} ${pv}` : curLabel}${ds && r.mark ? `, ${t('cel {n}', { n: fmt(r.mark) })}` : ''}${showPrev && r.up ? ', ' + t('więcej niż poprzednio') : ''}${r.mark && r.done + r.planned >= r.mark ? ', ' + t('co najmniej {n}', { n: r.mark }) : ''}`;
+    const bar = <SegBar testID={`pbar-${metric}-${r.key}`} done={r.done} doneIndirect={ds?.indirectWeighted ?? 0} planned={r.planned} plannedIndirect={r.plannedSplit?.indirectWeighted ?? 0} max={max} mark={r.mark} height={showPrev ? 8 : 6} />;
     return (
       <View accessibilityLanguage={lang()} key={r.key} testID={`prow-${metric}-${r.key}`} accessible accessibilityLabel={label} style={{ marginBottom: 10 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
-          <Txt style={{ fontSize: 14, flexShrink: 1 }}>{showPrev && r.up ? '▲ ' : ''}{r.label}</Txt>
-          <Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{monoSafe(value) /* A11-11: litery greckie krojem tekstu */}{showPrev ? <Muted style={{ fontSize: 12 }}> ({t('poprz.')} {fmt(r.prev)})</Muted> : null}</Muted>
-        </View>
-        <View style={{ marginTop: 4 }}><SegBar testID={`pbar-${metric}-${r.key}`} done={r.done} doneIndirect={ds?.indirectWeighted ?? 0} planned={r.planned} plannedIndirect={r.plannedSplit?.indirectWeighted ?? 0} max={max} mark={r.mark} /></View>
-        {showPrev ? <View style={{ marginTop: 3, height: 3, borderRadius: 1.5, backgroundColor: th.line }}><View testID={`pprev-${metric}-${r.key}`} style={{ width: `${Math.min(100, (100 * r.prev) / max)}%`, height: 3, borderRadius: 1.5, backgroundColor: th.muted }} /></View> : null}
+        {showPrev ? <>
+          <Txt style={{ fontSize: 14, flexShrink: 1 }}>{r.up ? '▲ ' : ''}{r.label}</Txt>
+          <PeriodLine n={1} id={`${metric}-${r.key}`} name={n1} text={value}>{bar}</PeriodLine>
+          <PeriodLine n={2} id={`${metric}-${r.key}`} name={n2} text={pv}><HatchBar testID={`pprev-${metric}-${r.key}`} pct={Math.min(100, (100 * r.prev) / max)} /></PeriodLine>
+        </> : <>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
+            <Txt style={{ fontSize: 14, flexShrink: 1 }}>{r.label}</Txt>
+            <Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{monoSafe(value) /* A11-11: litery greckie krojem tekstu */}</Muted>
+          </View>
+          <View style={{ marginTop: 4 }}>{bar}</View>
+        </>}
       </View>); })}</>;
 }

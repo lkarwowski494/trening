@@ -106,8 +106,8 @@ describe('Postępy i Progresja: kreski celu i objaśnienie', () => {
   test('Postępy: wiersze per partia z kreską celu partii; jedno zdanie o półserii przy kresce; bez zdania o rozbiciu', async () => {
     await boot(() => { week(); S().settings.weeklySetGoals = { barki: 20 }; store.save(); }, '/progress');
     expect(left('mark-barki')).toBe('100%'); expect(left('mark-klatka')).toBe('50%'); /* oś: max(20, 12) */
-    expect(screen.getByLabelText(/^barki: 5 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\) \(poprz\. 0\), cel 20$/)).toBeTruthy(); expect(screen.getByLabelText(/^klatka: 12 \(poprz\. 0\), cel 10, co najmniej 10$/)).toBeTruthy();
-    expect(screen.getByLabelText(/^plecy: 4 \(poprz\. 0\), cel 10$/)).toBeTruthy();
+    expect(screen.getByLabelText(/^barki: Ten tydzień 5 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), Poprzedni tydzień 0 \(brak danych\), cel 20$/)).toBeTruthy(); expect(screen.getByLabelText(/^klatka: Ten tydzień 12, Poprzedni tydzień 0 \(brak danych\), cel 10, co najmniej 10$/)).toBeTruthy();
+    expect(screen.getByLabelText(/^plecy: Ten tydzień 4, Poprzedni tydzień 0 \(brak danych\), cel 10$/)).toBeTruthy();
     expect(screen.getByText(/Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\./)).toBeTruthy();
     expect(screen.queryByText(/rozbite|bez rozbicia/)).toBeNull();
     expect(screen.getByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\. Stanowisko ACSM 2026:/)).toBeTruthy();

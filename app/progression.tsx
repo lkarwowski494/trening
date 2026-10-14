@@ -44,6 +44,7 @@ export default function ProgressionScreen() {
   const { c: param } = useLocalSearchParams<{ c?: string }>(); useTick(); const th = useTheme();
   const [kind, setKind] = useState<CmpKind>(kindOf(param)); const c = compareCached(kind); const lb = periodLabels(c);
   const names: Record<CmpKind, string> = { week: t('Ten tydzień'), prevWeek: t('Poprzedni tydzień'), month: t('Miesiąc') };
+  const periods: [string, string] = kind === 'week' ? [t('Ten tydzień'), t('Poprzedni tydzień')] : kind === 'prevWeek' ? [t('Poprzedni tydzień'), t('2 tyg. temu')] : [t('Ten miesiąc'), t('Poprzedni miesiąc')]; /* podpisy dwóch słupków na partię (14.10.2026) */
   const plannedV = c.planned?.volume ?? 0; const plannedS = c.planned?.sets ?? 0; const vol = `${fmtVol(c.total.volume)}${c.unknown ? '+?' : ''}`;
   const improved: Record<string, number> = {}; c.rows.filter(r => r.volumeUp).forEach(r => { improved[r.muscle] = r.doneVolume + r.plannedVolume - r.prevVolume; });
   const empty = !c.total.sets && !c.before.sets; const n = c.planned?.unknownSets ?? 0;
@@ -75,9 +76,9 @@ export default function ProgressionScreen() {
           label={Object.keys(improved).length ? t('Partie z większą objętością niż poprzednio: {list}', { list: c.rows.filter(r => r.volumeUp).map(r => t(r.muscle)).join(', ') }) : t('Żadna partia nie ma większej objętości niż poprzednio.')}
           caption={t('Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.')} />
         <H2 style={{ marginTop: 16 }}>{t('Objętość per partia ({u})', { u: wu() })}</H2>
-        <MuscleRows rows={volumeBars(c.rows)} metric="volume" />
+        <MuscleRows rows={volumeBars(c.rows)} metric="volume" names={periods} />
         <H2 style={{ marginTop: 10 }}>{t('Serie per partia')}</H2>
-        <MuscleRows rows={setBars(c.setRows, kind !== 'month')} metric="sets" />
+        <MuscleRows rows={setBars(c.setRows, kind !== 'month')} metric="sets" names={periods} />
         {c.setRows.some(r => r.doneSplit.indirectSets + r.plannedSplit.indirectSets > 0) ? <IndirectLegend /> : null}
         {kind !== 'month' ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })}</Muted> : null}
         <Muted style={{ fontSize: 12, marginTop: 8 }}>{kind === 'week'
