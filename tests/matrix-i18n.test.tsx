@@ -450,7 +450,7 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
   });
 });
 
-/* ⓘ (14.10.2026, docs/32 wzorzec 26): rozwinięte objaśnienie to tekst 14 pt w ramce z paddingiem 10 pt (components/InfoTip.tsx InfoBox) — na ekranie 320 pt
+/* ⓘ (14.10.2026, docs/32 wzorzec 27): rozwinięte objaśnienie to tekst 14 pt w ramce z paddingiem 10 pt (components/InfoTip.tsx InfoBox) — na ekranie 320 pt
  * (marginesy ekranu 2 × 14) wiersz ma 320 − 28 − 20 = 272 pt. Żaden wyraz żadnego tekstu pod ⓘ nie może być szerszy niż wiersz — w żadnym języku,
  * także przy 200% (TEXT_SCALE_MAX). Teksty zbierane z kodu (AST): literały t()/tr() w atrybutach `info=` oraz w zmiennych przekazywanych do `info=`
  * (goalNote, basis, simplification, bwNote, note) — nowy tekst pod ⓘ trafia do testu sam. Renderowanie rozwiniętego ⓘ w każdym języku: tests/gen-days-ui.test.tsx. */

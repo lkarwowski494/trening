@@ -15,7 +15,7 @@ export function Screen({ children, style }: { children: React.ReactNode; style?:
   return <View style={[{ flex: 1, backgroundColor: t.bg, paddingHorizontal: 14 }, style]}>{children}</View>;
 }
 export function H1({ children }: { children: React.ReactNode }) { const t = useTheme(); return <Text accessibilityLanguage={lang()} accessibilityRole="header" /* runda 68 */ style={{ color: t.text, fontSize: 24, fontFamily: F.heavy }}>{children}</Text>; }
-/** `info` = objaśnienie pod ⓘ przy nagłówku (docs/32 wzorzec 26): wymaga `infoId` (testID i scenariusze Maestro); etykieta VoiceOver z tekstu nagłówka. */
+/** `info` = objaśnienie pod ⓘ przy nagłówku (docs/32 wzorzec 27): wymaga `infoId` (testID i scenariusze Maestro); etykieta VoiceOver z tekstu nagłówka. */
 export function H2({ children, style, info, infoId }: { children: React.ReactNode; style?: StyleProp<TextStyle>; info?: React.ReactNode | string[]; infoId?: string }) {
   const t = useTheme();
   const head = (bare: boolean) => <Text accessibilityLanguage={lang()} accessibilityRole="header" style={[{ color: t.text, fontSize: 17, fontFamily: F.semibold }, bare ? null : { marginBottom: 8 }, style]}>{children}</Text>;
@@ -70,7 +70,7 @@ export function useOnce(ms = 1000) { const last = React.useRef(0); return (fn: (
 export const FieldLabel = React.createContext<string | undefined>(undefined);
 /** Runda 49: kontekst pola w wierszu listy (np. nazwa ćwiczenia w szablonie) — podpowiedź VoiceOver dla pól bez własnej. */
 export const FieldHint = React.createContext<string | undefined>(undefined);
-/** `info` = objaśnienie pod ⓘ przy etykiecie pola (docs/32 wzorzec 26); wymaga `infoId`. */
+/** `info` = objaśnienie pod ⓘ przy etykiecie pola (docs/32 wzorzec 27); wymaga `infoId`. */
 export function Field({ label, children, info, infoId }: { label: string; children: React.ReactNode; info?: React.ReactNode | string[]; infoId?: string }) {
   const t = useTheme();
   const head = (bare: boolean) => <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={[{ color: t.muted, fontSize: 14, fontFamily: F.regular }, bare ? null : { marginBottom: 5 }]}>{label}</Text>;
@@ -138,7 +138,7 @@ export function Chip({ label, on, onPress, toggle, a11yLabel, a11yHint, disabled
  * P-002 (02.10.2026): ustawienia jak w Ustawieniach iOS (Apple HIG: przełącznik dla wł./wył., kontrolka segmentowa dla 1 z 2–4).
  * Wiersz z opisem po lewej i systemowym przełącznikiem po prawej — zamiast przycisku na całą szerokość.
  */
-export function SwitchRow({ label, detail, value, onChange, disabled, a11yLabel, info, infoId }: { label: string; detail?: string; value: boolean; onChange: (v: boolean) => void; disabled?: boolean; /** P-003 (audyt M7): pełna etykieta dla VoiceOver, np. „Ławka regulowana: ze skosem w dół” */ a11yLabel?: string; /** objaśnienie pod ⓘ przy etykiecie (docs/32 wzorzec 26; wymaga `infoId`); rozwija się pod całym wierszem */ info?: React.ReactNode | string[]; infoId?: string }) {
+export function SwitchRow({ label, detail, value, onChange, disabled, a11yLabel, info, infoId }: { label: string; detail?: string; value: boolean; onChange: (v: boolean) => void; disabled?: boolean; /** P-003 (audyt M7): pełna etykieta dla VoiceOver, np. „Ławka regulowana: ze skosem w dół” */ a11yLabel?: string; /** objaśnienie pod ⓘ przy etykiecie (docs/32 wzorzec 27; wymaga `infoId`); rozwija się pod całym wierszem */ info?: React.ReactNode | string[]; infoId?: string }) {
   const t = useTheme(); const [open, toggle] = useInfoOpen(); const hasInfo = !!(info && infoId);
   const labelEl = <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: t.text, fontSize: 16, fontFamily: F.regular, flexShrink: 1 }}>{label}</Text>;
   const row = (

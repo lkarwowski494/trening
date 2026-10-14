@@ -2023,7 +2023,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "Ten tydzień → kafelek → Progresja"
+    "Postępy → kafelek „Ten tydzień vs poprzedni” → Progresja (dwa słupki na partię)"
    ],
    "wynik": "Porównanie tygodnia z poprzednim.",
    "ekrany": [
@@ -2087,6 +2087,73 @@
    "scenariusz": "01-trening-z-szablonu.yaml",
    "znaczniki": [
     "This week"
+   ]
+  },
+  {
+   "id": "HI-13",
+   "tytul": "Strażnik progresji na ekranie Trening: sylwetka w kolorach progresu, legenda, zdanie o brakach celu serii",
+   "stan": "nowy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Zrób pierwszy trening w tygodniu z planem tygodnia na pozostałe dni",
+    "Na zakładce Trening w „Ten tydzień” przewiń do sylwetki",
+    "Sylwetka ma opis stanów partii (więcej, tyle samo, mniej, bez porównania, nowe), a pod nią legenda i zdanie o partiach poniżej celu nawet z planem albo „Z planem wszystkie trenowane partie dojdą do celu”",
+    "Pierwszy tydzień nie ma poprzedniego, więc partie są „nowe” i nie ma zdania o spadkach"
+   ],
+   "wynik": "Sylwetka pokazuje kierunek zmiany tygodnia, zdanie podaje partie poniżej celu serii po całym planie; przycisk „Szczegóły w Postępach” prowadzi do Postępów.",
+   "ekrany": [
+    "/"
+   ],
+   "scenariusz": "52-straznik-progresji.yaml",
+   "znaczniki": [
+    "Details in Progress",
+    "Below goal even with the plan"
+   ]
+  },
+  {
+   "id": "HI-14",
+   "tytul": "Postępy: sekcja „Strażnik progresji” — grupy od problemów, rozwinięcie partii",
+   "stan": "nowy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Na ekranie Trening stuknij „Szczegóły w Postępach”",
+    "W Postępach jest sekcja „Strażnik progresji” z listą partii (znak, serie z celem, pasek serii)",
+    "Stuknij partię: widać wykonane, zaplanowane z dniami i porównywane ćwiczenia",
+    "Stuknij ponownie: szczegóły się zwijają"
+   ],
+   "wynik": "Sekcja jest przewinięta do widoku; wiersz rozwija i zwija szczegóły (serie pośrednie tylko tu).",
+   "ekrany": [
+    "/progress"
+   ],
+   "scenariusz": "52-straznik-progresji.yaml",
+   "znaczniki": [
+    "Progress Guard",
+    "chest: .*",
+    "Done: .*"
+   ]
+  },
+  {
+   "id": "HI-15",
+   "tytul": "Strażnik progresji w tygodniu deloadu: „Tydzień deloadu — bez porównania” zamiast legendy i zdań",
+   "stan": "nowy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Plan → dzisiejszy dzień → „Więcej opcji” → „Oznacz tydzień jako deload”",
+    "Wróć na zakładkę Trening, „Ten tydzień”",
+    "Sylwetka jest we wzorze deloadu, pod nią napis „Tydzień deloadu — bez porównania”, bez legendy i bez zdań o brakach"
+   ],
+   "wynik": "Tydzień deloadu nie jest oceniany: żadnych porównań ani braków celu.",
+   "ekrany": [
+    "/",
+    "/history"
+   ],
+   "scenariusz": "52-straznik-progresji.yaml",
+   "znaczniki": [
+    "Mark week as deload",
+    "Deload week — no comparison"
    ]
   },
   {
@@ -2470,7 +2537,7 @@
    "ekrany": [
     "/more/settings"
    ],
-   "scenariusz": "52-objasnienia-info.yaml",
+   "scenariusz": "53-objasnienia-info.yaml",
    "znaczniki": [
     "info-workout-view",
     "info-sets-goal",
@@ -2870,7 +2937,7 @@
    "ekrany": [
     "/more/settings"
    ],
-   "scenariusz": "52-objasnienia-info.yaml",
+   "scenariusz": "53-objasnienia-info.yaml",
    "znaczniki": [
     "Dark",
     "121-info-ciemny"

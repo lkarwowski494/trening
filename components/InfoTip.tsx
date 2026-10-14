@@ -4,7 +4,7 @@ import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { lang, t } from '@/lib/i18n';
 
 /*
- * Wzorzec „ⓘ” — teksty objaśniające schowane pod ikoną (docs/32 wzorzec 26, strażnik S17; decyzje właściciela 14.10.2026).
+ * Wzorzec „ⓘ” — teksty objaśniające schowane pod ikoną (docs/32 wzorzec 27, strażnik S17; decyzje właściciela 14.10.2026).
  * Jeden komponent we wszystkich ekranach (nagłówki przez parametr `info` w SectionTitle i H2 albo wprost InfoTip wokół nagłówka):
  *  - rozwinięcie w miejscu, pod nagłówkiem, w ramce surface2; drugie stuknięcie zwija; stan NIE jest zapamiętywany (każde wejście na ekran zaczyna od zwiniętego);
  *  - okrąg z literą „i” rysowany widokiem (nie znak U+24D8 — krój zastępczy iOS); obrys i znak muted, po rozwinięciu accent; pole dotyku ≥ 44 pt (hitSlop);

@@ -61,7 +61,7 @@ describe('ekran', () => {
     await boot(() => { addWorkout(at(9, 6), [['Bench Press (sztanga)', [{ weight: 80, reps: 5 }, { weight: 80, reps: 5 }]]]); });
     const map = screen.getByTestId('muscle-map'); expect(map.props.accessibilityRole).toBe('image');
     expect(map.props.accessibilityLabel).toBe('Mapa mięśni: klatka 2, barki 0 bezpośrednio, 1 pośrednio (serie pomocnicze: 2), triceps 0 bezpośrednio, 1 pośrednio (serie pomocnicze: 2)'); /* 13.10.2026: obie wartości; kolor nadal wg sumy ważonej */
-    for (const s of ['Mapa mięśni', 'Przód', 'Tył', 'mniej', 'więcej', 'Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.']) expect(screen.getByText(s)).toBeTruthy();
+    for (const s of ['Mapa mięśni', 'Przód', 'Tył', 'mniej', 'więcej', 'Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.']) expect(screen.getAllByText(s).length).toBeGreaterThan(0);
     await boot(() => { addWorkout(at(8, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });
     expect(screen.getByTestId('muscle-map').props.accessibilityLabel).toBe('Mapa mięśni: brak serii w tym okresie.');
   });
@@ -78,6 +78,6 @@ describe('ekran', () => {
   test('English', async () => {
     await boot(() => { addWorkout(at(9, 6), [['Bench Press (sztanga)', [{ weight: 80, reps: 5 }]]]); }, 'en');
     expect(screen.getByTestId('muscle-map').props.accessibilityLabel).toMatch(/^Muscle map: chest 1, /);
-    for (const s of ['Muscle map', 'Front', 'Back', 'less', 'more']) expect(screen.getByText(s)).toBeTruthy();
+    for (const s of ['Muscle map', 'Front', 'Back', 'less', 'more']) expect(screen.getAllByText(s).length).toBeGreaterThan(0);
   });
 });

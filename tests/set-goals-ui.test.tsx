@@ -74,32 +74,31 @@ describe('Ustawienia: cel serii na partię', () => {
   });
 });
 
-describe('„Ten tydzień” (ekran Trening): paski serii z kreską celu każdej partii', () => {
-  test('barki i plecy jako całe partie (bez części); kreska = cel partii (domyślnie 10, ręczny cel jednej partii nie rusza pozostałych); VoiceOver „co najmniej”', async () => {
-    await boot(() => { week(); S().settings.weeklySetGoals = { klatka: 20, barki: 4 }; store.save(); });
-    const rows = () => screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && /^prow-sets-/.test(String(n.props.testID))).map((n: { props: { testID?: string } }) => String(n.props.testID).replace('prow-sets-', ''));
-    expect(rows()).toEqual(expect.arrayContaining(['klatka', 'barki', 'plecy', 'triceps', 'biceps']));
-    for (const x of ['side_delt', 'front_delt', 'rear_delt', 'lats', 'upper_back', 'lower_back']) expect(rows()).not.toContain(x);
-    /* oś wspólna: max(cel 20, wartości) = 20 */
-    expect(left('pbar-sets-klatka-mark')).toBe('100%'); expect(left('pbar-sets-barki-mark')).toBe('20%'); expect(left('pbar-sets-plecy-mark')).toBe('50%');
-    expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 12, cel 20'); /* 12 < 20 — bez „co najmniej” */
-    expect(screen.getByTestId('prow-sets-barki').props.accessibilityLabel).toBe('barki: 5 bezpośrednio, 6 pośrednio (serie pomocnicze: 12), cel 4, co najmniej 4'); /* wyciskanie: barki pomocnicze 0,5 × 12 + unoszenie 5; 11 ≥ 4 */
-    expect(screen.getByTestId('prow-sets-plecy').props.accessibilityLabel).toBe('plecy: 4, cel 10');
+describe('Postępy → „Strażnik progresji” (strażnik progresji, 14.10.2026): cel każdej partii', () => {
+  const lbl = (part: string) => within(screen.getByTestId(`grow-${part}`)).getByRole('button').props.accessibilityLabel as string;
+  const rowIds = () => screen.UNSAFE_root.findAll((n: { type: unknown; props: { testID?: string } }) => typeof n.type === 'string' && /^grow-/.test(String(n.props.testID))).map((n: { props: { testID?: string } }) => String(n.props.testID).replace('grow-', ''));
+  test('barki i plecy jako całe partie (bez części); cel = cel partii (domyślnie 10, ręczny cel jednej partii nie rusza pozostałych); kreska zawsze w połowie skali 2× cel', async () => {
+    await boot(() => { week(); S().settings.weeklySetGoals = { klatka: 20, barki: 4 }; store.save(); }, '/progress');
+    expect(rowIds()).toEqual(expect.arrayContaining(['klatka', 'barki', 'plecy', 'triceps', 'biceps']));
+    for (const x of ['side_delt', 'front_delt', 'rear_delt', 'lats', 'upper_back', 'lower_back']) expect(rowIds()).not.toContain(x);
+    expect(within(screen.getByTestId('grow-klatka')).getByText('12 / 20 serii')).toBeTruthy(); expect(within(screen.getByTestId('grow-barki')).getByText('11 / 4 serii')).toBeTruthy(); expect(within(screen.getByTestId('grow-plecy')).getByText('4 / 10 serii')).toBeTruthy();
+    expect(left('gbar-klatka-mark')).toBe('50%'); expect(left('gbar-barki-mark')).toBe('50%'); expect(screen.getByText('» 11', { includeHiddenElements: true })).toBeTruthy(); /* 11 > 2 × 4 */
+    expect(lbl('klatka')).toMatch(/^klatka: .+\. 12 \/ 20 serii/); expect(lbl('plecy')).toMatch(/^plecy: .+\. 4 \/ 10 serii/);
   });
-  test('kreska celu automatycznego i objaśnienie: cel, zaplanowane, pół serii z dopiskiem o źródle; bez zdania o rozbiciu', async () => {
-    await boot(() => { week(); });
-    expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 12, cel 10, co najmniej 10'); expect(left('pbar-sets-klatka-mark')).toBe(`${(100 * 10) / 12}%`); /* oś kończy się na 12 (więcej niż cel 10) */
-    expect(screen.getByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\. Zaplanowane — z szablonów na pozostałe dni tygodnia\. Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\.$/)).toBeTruthy();
+  test('cel automatyczny i objaśnienie: kreska = cel 10, pół serii z dopiskiem o źródle; bez zdania o rozbiciu', async () => {
+    await boot(() => { week(); }, '/progress');
+    expect(within(screen.getByTestId('grow-klatka')).getByText('12 / 10 serii')).toBeTruthy();
+    await openInfo('guard-method'); expect(within(screen.getByTestId('info-text-guard-method')).getByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\. Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\.$/)).toBeTruthy();
     expect(screen.queryByText(/rozbite|bez rozbicia/)).toBeNull();
   });
   test('ćwiczenie własne z barkami → wiersz „barki” (ta sama partia co z katalogu)', async () => {
-    await boot(() => { const e = store.newExercise('Własne barki'); e.muscles = ['barki']; store.save(); addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Własne barki', sets(3)]]); });
-    expect(screen.getByTestId('prow-sets-barki').props.accessibilityLabel).toBe('barki: 3, cel 10');
+    await boot(() => { const e = store.newExercise('Własne barki'); e.muscles = ['barki']; store.save(); addWorkout(new Date(2026, 9, 6, 18).getTime(), [['Własne barki', sets(3)]]); }, '/progress');
+    expect(within(screen.getByTestId('grow-barki')).getByText('3 / 10 serii')).toBeTruthy();
   });
   test('English', async () => {
-    await boot(() => { week(); }, '/', 'en');
-    expect(screen.getByTestId('prow-sets-barki').props.accessibilityLabel).toMatch(/^shoulders: .*, at least 10$/); expect(screen.getByTestId('prow-sets-plecy').props.accessibilityLabel).toMatch(/^back: 4, .*10$/); /* nowe teksty (bezpośrednio / pośrednio / cel) czekają na tłumacza — docs/18 13.10.2026 */
-    expect(screen.getByText(/^Line = weekly goal of sets per muscle group: 10 automatically, or your own number from Settings\. Planned — from templates for the rest of the week\. Simplification: a secondary muscle group of an exercise counts as half a set \(main 1, secondary 0\.5; Pelland et al\. 2026 — a single source\)\./)).toBeTruthy();
+    await boot(() => { week(); }, '/progress', 'en');
+    expect(lbl('barki')).toMatch(/^shoulders: .+ 11 \/ 10 sets/); expect(lbl('plecy')).toMatch(/^back: .+ 4 \/ 10 sets/);
+    await openInfo('guard-method'); expect(within(screen.getByTestId('info-text-guard-method')).getByText(/^Line = weekly goal of sets per muscle group: 10 automatically, or your own number from Settings\. Simplification: a secondary muscle group of an exercise counts as half a set \(main 1, secondary 0\.5; Pelland et al\. 2026 — a single source\)\./)).toBeTruthy();
   });
 });
 
@@ -107,11 +106,11 @@ describe('Postępy i Progresja: kreski celu i objaśnienie', () => {
   test('Postępy: wiersze per partia z kreską celu partii; jedno zdanie o półserii przy kresce; bez zdania o rozbiciu', async () => {
     await boot(() => { week(); S().settings.weeklySetGoals = { barki: 20 }; store.save(); }, '/progress');
     expect(left('mark-barki')).toBe('100%'); expect(left('mark-klatka')).toBe('50%'); /* oś: max(20, 12) */
-    expect(screen.getByLabelText(/^barki: 5 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\) \(poprz\. 0\), cel 20$/)).toBeTruthy(); expect(screen.getByLabelText(/^klatka: 12 \(poprz\. 0\), cel 10, co najmniej 10$/)).toBeTruthy();
-    expect(screen.getByLabelText(/^plecy: 4 \(poprz\. 0\), cel 10$/)).toBeTruthy();
-    expect(screen.getByText(/Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\./)).toBeTruthy();
+    expect(screen.getByLabelText(/^barki: Ten tydzień 5 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), Poprzedni tydzień 0 \(brak danych\), cel 20$/)).toBeTruthy(); expect(screen.getByLabelText(/^klatka: Ten tydzień 12, Poprzedni tydzień 0 \(brak danych\), cel 10, co najmniej 10$/)).toBeTruthy();
+    expect(screen.getByLabelText(/^plecy: Ten tydzień 4, Poprzedni tydzień 0 \(brak danych\), cel 10$/)).toBeTruthy();
+    await openInfo('sets-part'); expect(screen.getAllByText(/Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\./).length).toBeGreaterThan(0);
     expect(screen.queryByText(/rozbite|bez rozbicia/)).toBeNull();
-    expect(screen.getByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\. Stanowisko ACSM 2026:/)).toBeTruthy();
+    expect(screen.getAllByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\.$/).length).toBeGreaterThan(0); expect(screen.getByText(/^Stanowisko ACSM 2026:/)).toBeTruthy(); /* ⓘ 14.10.2026: akapity pod ⓘ osobno */
   });
   test('Progresja: tydzień — paski z kreskami celu partii; miesiąc — bez kresek i bez zdania o kresce', async () => {
     await boot(() => { week(); S().settings.weeklySetGoals = { klatka: 15 }; store.save(); }, '/progression?c=week');

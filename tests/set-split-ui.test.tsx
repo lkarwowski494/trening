@@ -36,58 +36,34 @@ beforeEach(() => {
 });
 afterEach(() => { jest.restoreAllMocks(); scheme = 'light'; jest.useRealTimers(); });
 
-describe('„Ten tydzień” (ekran Trening): dwa odcinki paska, podpis i etykieta', () => {
-  test('scenariusz: wyciskanie → triceps tylko odcinek pośredni; klatka tylko bezpośredni; barki oba (5 + 6 pośrednio z 12 serii)', async () => {
-    await boot(bench);
-    expect(el('pbar-sets-triceps-done-indirect')).not.toBeNull(); expect(el('pbar-sets-triceps-done-direct')).toBeNull();
-    expect(el('pbar-sets-klatka-done-direct')).not.toBeNull(); expect(el('pbar-sets-klatka-done-indirect')).toBeNull();
-    expect(el('pbar-sets-barki-done-direct')).not.toBeNull(); expect(el('pbar-sets-barki-done-indirect')).not.toBeNull();
-    /* podpisy: „bezpośrednio + pośrednio (n serii) / cel” */
-    expect(within(screen.getByTestId('prow-sets-triceps')).getByText('0 + 6 pośrednio (12 serii) / 10')).toBeTruthy();
-    expect(within(screen.getByTestId('prow-sets-klatka')).getByText('12 / 10')).toBeTruthy();
-    expect(within(screen.getByTestId('prow-sets-barki')).getByText('5 + 6 pośrednio (12 serii) / 10')).toBeTruthy();
-    /* etykiety VoiceOver: obie wartości i cel */
-    expect(screen.getByTestId('prow-sets-triceps').props.accessibilityLabel).toBe('triceps: 0 bezpośrednio, 6 pośrednio (serie pomocnicze: 12), cel 10');
-    expect(screen.getByTestId('prow-sets-barki').props.accessibilityLabel).toBe('barki: 5 bezpośrednio, 6 pośrednio (serie pomocnicze: 12), cel 10, co najmniej 10');
-    expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 12, cel 10, co najmniej 10');
-    /* mapa mięśni (opis dla VoiceOver) niesie ten sam podział */
-    expect(screen.getByTestId('muscle-map').props.accessibilityLabel).toContain('triceps 0 bezpośrednio, 6 pośrednio (serie pomocnicze: 12)');
+describe('Serie pośrednie: ekran Trening ich nie pokazuje (strażnik progresji, 14.10.2026) — są w rozwinięciu partii w Postępach', () => {
+  const open = async (part: string) => { await tap(within(screen.getByTestId(`grow-${part}`)).getByRole('button')); await flushAll(5); return within(screen.getByTestId(`gdet-${part}`)); };
+  test('Trening: żadnego podziału bezpośrednio / pośrednio ani dawnych pasków (pbar, legenda odcinków)', async () => {
+    await boot(bench); expect(screen.queryByText(/pośrednio/)).toBeNull(); expect(el('seg-legend-indirect')).toBeNull(); expect(el('pbar-sets-triceps-done-indirect')).toBeNull(); expect(el('prow-sets-triceps')).toBeNull();
   });
-  test('proporcje odcinków = udział w sumie ważonej (barki: 5 z 11 bezpośrednio, 6 z 11 pośrednio); oś wspólna z kreską celu', async () => {
-    await boot(bench);
-    expect(style('pbar-sets-barki-done-direct').width).toBe(`${(100 * 5) / 11}%`); expect(style('pbar-sets-barki-done-indirect').width).toBe(`${(100 * 6) / 11}%`);
-    expect(style('pbar-sets-barki-done').width).toBe(`${(100 * 11) / 12}%`); /* oś: max(cel 10, klatka 12) = 12 */
-    expect(style('pbar-sets-triceps-done').width).toBe(`${(100 * 6) / 12}%`); expect(style('pbar-sets-triceps-done-indirect').width).toBe('100%');
-    expect(style('pbar-sets-klatka-mark').left).toBe(`${(100 * 10) / 12}%`);
+  test('Postępy, rozwinięcie: triceps tylko pośrednio (0 + 6 z 12 serii po 0,5), klatka tylko bezpośrednio (12), barki oba (5 + 6)', async () => {
+    await boot(bench, '/progress');
+    expect((await open('triceps')).getByText('Wykonane: 0 + 6 pośrednio (12 serii po 0,5)')).toBeTruthy();
+    expect((await open('klatka')).getByText('Wykonane: 12')).toBeTruthy();
+    expect((await open('barki')).getByText('Wykonane: 5 + 6 pośrednio (12 serii po 0,5)')).toBeTruthy();
   });
-  test('legenda odcinków („bezpośrednie” / „pośrednie (pomocnicze, po 0,5)”) tylko gdy są serie pośrednie', async () => {
-    await boot(bench); expect(el('seg-legend-indirect')).not.toBeNull();
-    const lg = within(get('seg-legend-indirect')); expect(lg.getByText('bezpośrednie', { includeHiddenElements: true })).toBeTruthy(); expect(lg.getByText('pośrednie (pomocnicze, po 0,5)', { includeHiddenElements: true })).toBeTruthy();
-    await boot(onlyDirect); expect(el('seg-legend-indirect')).toBeNull();
-    expect(screen.getByTestId('prow-sets-barki').props.accessibilityLabel).toBe('barki: 5, cel 10'); /* bez serii pośrednich — bez dopisku */
-    expect(within(screen.getByTestId('prow-sets-barki')).getByText('5 / 10')).toBeTruthy(); expect(el('pbar-sets-barki-done-indirect')).toBeNull();
+  test('wiersz: „n / cel serii” z sumą ważoną i etykieta ze słowem stanu; bez serii pośrednich — samo „5”', async () => {
+    await boot(bench, '/progress'); expect(within(screen.getByTestId('grow-triceps')).getByText('6 / 10 serii')).toBeTruthy(); expect(within(screen.getByTestId('grow-barki')).getByText('11 / 10 serii')).toBeTruthy();
+    await boot(onlyDirect, '/progress'); expect((await open('barki')).getByText('Wykonane: 5')).toBeTruthy(); expect(screen.queryByText(/pośrednio/)).toBeNull();
   });
-  test('cel z Ustawień w podpisie i etykiecie (klatka 20); zaplanowane z szablonu dopisane po wykonanych', async () => {
-    await boot(() => { bench(); S().settings.weeklySetGoals = { klatka: 20 }; store.save(); });
-    expect(within(screen.getByTestId('prow-sets-klatka')).getByText('12 / 20')).toBeTruthy(); expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 12, cel 20');
+  test('cel z Ustawień w wierszu (klatka 20)', async () => {
+    await boot(() => { bench(); S().settings.weeklySetGoals = { klatka: 20 }; store.save(); }, '/progress'); expect(within(screen.getByTestId('grow-klatka')).getByText('12 / 20 serii')).toBeTruthy();
   });
-  test('wygląd: odcinek pośredni = ten sam kolor, ale półprzezroczyste wypełnienie + obrys (nie sam kolor); jasny i ciemny motyw', async () => {
-    for (const [name, th] of [['light', light], ['dark', dark]] as const) {
-      await boot(bench, '/', 'pl', name);
-      expect(style('pbar-sets-klatka-done-direct').backgroundColor).toBe(th.accent); /* bezpośredni: pełne wypełnienie */
-      const ind = style('pbar-sets-triceps-done-indirect'); expect([name, ind.borderColor, ind.borderWidth]).toEqual([name, th.accent, 1.5]); expect(ind.backgroundColor).toBeUndefined();
-      const fill = style('pbar-sets-triceps-done-indirect-fill'); expect([name, fill.backgroundColor, fill.opacity]).toEqual([name, th.accent, 0.35]);
-      /* barki: oba odcinki obok siebie — pośredni z lewą krawędzią rozdzielającą */
-      expect(style('pbar-sets-barki-done-indirect').borderLeftWidth).toBe(1.5); expect(style('pbar-sets-triceps-done-indirect').borderLeftWidth).toBe(0);
-    }
-  });
-  test('kontrast obrysu odcinka pośredniego z tłem paska (tor) w obu motywach ≥ próg grafiki', () => {
+  test('kontrast obrysu odcinka pośredniego z tłem paska (tor) w obu motywach ≥ próg grafiki (odcinki pośrednie dalej na paskach Postępów)', () => {
     for (const [n, th] of [['light', light], ['dark', dark]] as const) { expect([n, contrast(th.accent, th.line) >= GRAPHIC_MIN]).toEqual([n, true]); expect([n, contrast(th.accent, th.surface) >= GRAPHIC_MIN]).toEqual([n, true]); expect([n, contrast(th.band, th.line) >= 1.5]).toEqual([n, true]); }
   });
-  test('English: układ i liczby; nowe teksty (bezpośrednio / pośrednio / cel / legenda) czekają na tłumacza', async () => {
-    await boot(bench, '/', 'en');
-    expect(el('pbar-sets-triceps-done-indirect')).not.toBeNull(); expect(screen.getByTestId('prow-sets-triceps').props.accessibilityLabel).toMatch(/^triceps: .*6.*12/);
-    expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toMatch(/^chest: 12, .*10, at least 10$/);
+  test('legenda odcinków („bezpośrednie” / „pośrednie (pomocnicze, po 0,5)”) w Postępach tylko gdy są serie pośrednie', async () => {
+    await boot(bench, '/progress'); expect(el('seg-legend-indirect')).not.toBeNull();
+    const lg = within(get('seg-legend-indirect')); expect(lg.getByText('bezpośrednie', { includeHiddenElements: true })).toBeTruthy(); expect(lg.getByText('pośrednie (pomocnicze, po 0,5)', { includeHiddenElements: true })).toBeTruthy();
+    await boot(onlyDirect, '/progress'); expect(el('seg-legend-indirect')).toBeNull();
+  });
+  test('English: rozwinięcie po angielsku', async () => {
+    await boot(bench, '/progress', 'en'); expect((await open('triceps')).getByText(/^Done: 0 \+ 6 indirect \(12 sets at 0\.5 each\)$/)).toBeTruthy();
   });
 });
 
@@ -96,15 +72,15 @@ describe('Postępy: porównanie tygodni (ten vs poprzedni) — odcinki, podpis, 
     await boot(bench, '/progress');
     expect(el('cbar-triceps-indirect')).not.toBeNull(); expect(el('cbar-triceps-direct')).toBeNull(); expect(el('cbar-klatka-direct')).not.toBeNull(); expect(el('cbar-klatka-indirect')).toBeNull();
     expect(el('cbar-barki-direct')).not.toBeNull(); expect(el('cbar-barki-indirect')).not.toBeNull();
-    expect(screen.getByLabelText('triceps: 0 bezpośrednio, 6 pośrednio (serie pomocnicze: 12) (poprz. 0), cel 10')).toBeTruthy();
-    expect(screen.getByLabelText('klatka: 12 (poprz. 0), cel 10, co najmniej 10')).toBeTruthy();
-    expect(screen.getByText(/^0 \+ 6 pośrednio \(12 serii\) \/ 10 \(poprz\. 0\)$/)).toBeTruthy(); expect(screen.getByText(/^5 \+ 6 pośrednio \(12 serii\) \/ 10 \(poprz\. 0\)$/)).toBeTruthy();
+    expect(screen.getByLabelText('triceps: Ten tydzień 0 bezpośrednio, 6 pośrednio (serie pomocnicze: 12), Poprzedni tydzień 0 (brak danych), cel 10')).toBeTruthy();
+    expect(screen.getByLabelText('klatka: Ten tydzień 12, Poprzedni tydzień 0 (brak danych), cel 10, co najmniej 10')).toBeTruthy();
+    expect(screen.getByText(/^0 \+ 6 pośrednio \(12 serii\) \/ 10$/)).toBeTruthy(); expect(screen.getByText(/^5 \+ 6 pośrednio \(12 serii\) \/ 10$/)).toBeTruthy();
     expect(el('seg-legend-indirect')).not.toBeNull();
     expect(style('cbar-barki-direct').width).toBe(`${(100 * 5) / 11}%`); expect(style('cbar-barki-indirect').borderColor).toBe(light.accent);
   });
   test('bez serii pośrednich: brak legendy i odcinka pośredniego', async () => {
     await boot(onlyDirect, '/progress'); expect(el('seg-legend-indirect')).toBeNull(); expect(el('cbar-barki-indirect')).toBeNull(); expect(el('cbar-barki-direct')).not.toBeNull();
-    expect(screen.getByLabelText('barki: 5 (poprz. 0), cel 10')).toBeTruthy();
+    expect(screen.getByLabelText('barki: Ten tydzień 5, Poprzedni tydzień 0 (brak danych), cel 10')).toBeTruthy();
   });
   test('podsumowanie okresu: mapa mięśni opisuje obie wartości (kolor wg sumy ważonej)', async () => {
     await boot(bench, '/progress'); const lbl = screen.getAllByTestId('muscle-map').map(n => n.props.accessibilityLabel as string).join(' | ');
@@ -116,12 +92,12 @@ describe('Progresja: paski serii per partia (tydzień — z celem, miesiąc — 
   test('tydzień: odcinki, podpisy z celem, legenda; miesiąc: odcinki i podpis bez celu', async () => {
     await boot(bench, '/progression?c=week');
     expect(el('pbar-sets-triceps-done-indirect')).not.toBeNull(); expect(el('pbar-sets-triceps-done-direct')).toBeNull(); expect(el('seg-legend-indirect')).not.toBeNull();
-    expect(within(screen.getByTestId('prow-sets-triceps')).getByText(/^0 \+ 6 pośrednio \(12 serii\) \/ 10 /)).toBeTruthy();
-    expect(screen.getByTestId('prow-sets-triceps').props.accessibilityLabel).toMatch(/^triceps: 0 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), cel 10, poprz\. 0/);
+    expect(within(screen.getByTestId('prow-sets-triceps')).getByText(/^0 \+ 6 pośrednio \(12 serii\) \/ 10$/)).toBeTruthy();
+    expect(screen.getByTestId('prow-sets-triceps').props.accessibilityLabel).toMatch(/^triceps: Ten tydzień 0 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), Poprzedni tydzień 0 \(brak danych\), cel 10/);
     await boot(bench, '/progression?c=month');
     expect(el('pbar-sets-triceps-done-indirect')).not.toBeNull(); expect(within(get('prow-sets-triceps')).queryByTestId('pbar-sets-triceps-mark', { includeHiddenElements: true })).toBeNull(); /* miesiąc: bez kresek celu */
-    expect(within(screen.getByTestId('prow-sets-triceps')).getByText(/^0 \+ 6 pośrednio \(12 serii\) \(poprz\./)).toBeTruthy();
-    expect(screen.getByTestId('prow-sets-triceps').props.accessibilityLabel).toMatch(/^triceps: 0 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), poprz\. 0/); /* bez celu */
+    expect(within(screen.getByTestId('prow-sets-triceps')).getByText(/^0 \+ 6 pośrednio \(12 serii\)$/)).toBeTruthy();
+    expect(screen.getByTestId('prow-sets-triceps').props.accessibilityLabel).toMatch(/^triceps: Ten miesiąc 0 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), Poprzedni miesiąc 0 \(brak danych\)/); /* bez celu */
   });
   test('ciemny motyw: ten sam układ i kolory z palety ciemnej', async () => {
     await boot(bench, '/progression?c=week', 'pl', 'dark');

@@ -3,7 +3,7 @@ import { ScrollView, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Screen, Muted, Txt, Chip, H2 } from '@/components/ui';
 import { useTick } from '@/lib/store';
-import { compareCached, type CmpKind, type Comparison } from '@/lib/progress';
+import { compareCached, pctText, signedNum, type CmpKind, type Comparison } from '@/lib/progress';
 import { periodTitle } from '@/lib/period';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { fmtVol, wu } from '@/lib/units';
@@ -20,7 +20,6 @@ import { fmtDayMonth } from '@/lib/calendar';
  */
 const KINDS: CmpKind[] = ['week', 'prevWeek', 'month'];
 const kindOf = (v: unknown): CmpKind => (v === 'prevWeek' || v === 'month' ? v : 'week');
-const pctText = (p: number | null) => (p === null ? '—' : p > 0 ? `+${p}%` : p < 0 ? `−${Math.abs(p)}%` : '0%');
 const short = (ts: number) => fmtDayMonth(ts);
 
 /** Podpis okresu bieżącego i porównawczego. */
@@ -44,11 +43,14 @@ export default function ProgressionScreen() {
   const { c: param } = useLocalSearchParams<{ c?: string }>(); useTick(); const th = useTheme();
   const [kind, setKind] = useState<CmpKind>(kindOf(param)); const c = compareCached(kind); const lb = periodLabels(c);
   const names: Record<CmpKind, string> = { week: t('Ten tydzień'), prevWeek: t('Poprzedni tydzień'), month: t('Miesiąc') };
-  const plannedV = c.planned?.volume ?? 0; const plannedS = c.planned?.sets ?? 0; const vol = `${fmtVol(c.total.volume)}${c.unknown ? '+?' : ''}`;
+  const periods: [string, string] = kind === 'week' ? [t('Ten tydzień'), t('Poprzedni tydzień')] : kind === 'prevWeek' ? [t('Poprzedni tydzień'), t('2 tyg. temu')] : [t('Ten miesiąc'), t('Poprzedni miesiąc')]; /* podpisy dwóch słupków na partię (14.10.2026) */
+  const plannedV = c.planned?.volume ?? 0; const plannedS = c.planned?.sets ?? 0; const vol = `${c.unknown ? '≥ ' : ''}${fmtVol(c.total.volume)}`;
+  /* 14.10.2026: procent i różnica bezwzględna (kg / liczba serii); pusty poprzedni okres = samo „brak poprzedniego okresu” */
+  const volPct = c.volumePct === null ? pctText(null) : `${pctText(c.volumePct)} (${signedNum(c.volumeDelta, fmtVol)})`; const setsPct = c.setsPct === null ? pctText(null) : `${pctText(c.setsPct)} (${signedNum(c.setsDelta)})`;
   const improved: Record<string, number> = {}; c.rows.filter(r => r.volumeUp).forEach(r => { improved[r.muscle] = r.doneVolume + r.plannedVolume - r.prevVolume; });
   const empty = !c.total.sets && !c.before.sets; const n = c.planned?.unknownSets ?? 0;
-  const rowText = (label: string, value: string, p: string, pct: string, sub?: string) => (
-    <View accessibilityLanguage={lang()} accessible accessibilityLabel={t('{label}: {v}, poprzednio {p}, {d}', { label, v: value + (sub ? ` (${sub})` : ''), p, d: pct })} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
+  const rowText = (label: string, value: string, p: string, pct: string, sub?: string, spoken?: string) => (
+    <View accessibilityLanguage={lang()} accessible accessibilityLabel={t('{label}: {v}, poprzednio {p}, {d}', { label, v: (spoken ?? value) + (sub ? ` (${sub})` : ''), p, d: pct })} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
       <Muted style={{ flexShrink: 1 }}>{label}</Muted>
       <Txt maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ fontFamily: F.monoBold, flexShrink: 1, textAlign: 'right' }}>{value} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{' '}{p}) {pct}</Muted></Txt>
     </View>);
@@ -63,26 +65,25 @@ export default function ProgressionScreen() {
       {c.deloadCur || c.deloadPrev ? <Muted style={{ fontSize: 12, marginBottom: 8 }}>{[c.deloadCur ? t('Ten tydzień jest oznaczony jako deload.') : '', c.deloadPrev ? t('Poprzedni tydzień jest oznaczony jako deload.') : ''].filter(Boolean).join(' ')}</Muted> : null}
       {empty ? <View testID="progress-empty"><Muted style={{ fontSize: 13 }}>{t('Brak treningów w tym i poprzednim okresie.')}</Muted></View> : <>
         <View style={{ padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
-          {rowText(t('Objętość'), vol, fmtVol(c.before.volume), pctText(c.volumePct), c.planned ? `${fmtVol(c.done.volume)} + ${fmtVol(plannedV)}${c.unknown ? '+?' : ''}` : undefined)}
+          {rowText(t('Objętość'), vol, fmtVol(c.before.volume), volPct, c.planned ? `${fmtVol(c.done.volume)} + ${c.unknown ? '≥ ' : ''}${fmtVol(plannedV)}` : undefined, c.unknown ? `${t('co najmniej {n}', { n: fmtVol(c.total.volume) })}, ${t('część zaplanowanych serii nie ma ciężaru')}` : undefined)}
           <TotalBars id="volume" done={c.done.volume} planned={plannedV} prev={c.before.volume} curLabel={`${t('Ten okres')}: ${vol}`} prevLabel={`${t('Poprzedni okres')}: ${fmtVol(c.before.volume)}`} />
-          {rowText(t('Serie robocze'), String(c.total.sets), String(c.before.sets), pctText(c.setsPct), c.planned ? `${c.done.sets} + ${plannedS}` : undefined)}
+          {rowText(t('Serie robocze'), String(c.total.sets), String(c.before.sets), setsPct, c.planned ? `${c.done.sets} + ${plannedS}` : undefined)}
           <TotalBars id="sets" done={c.done.sets} planned={plannedS} prev={c.before.sets} curLabel={`${t('Ten okres')}: ${c.total.sets}`} prevLabel={`${t('Poprzedni okres')}: ${c.before.sets}`} />
           {rowText(t('Treningi'), String(c.total.workouts), String(c.before.workouts), pctText(c.before.workouts ? Math.round(((c.total.workouts - c.before.workouts) / c.before.workouts) * 100) : null), c.planned ? `${c.done.workouts} + ${c.planned.workouts}` : undefined)}
           {c.planned ? <SegLegend /> : null}
         </View>
-        {c.unknown ? <View testID="progress-unknown"><Muted style={{ fontSize: 12, marginTop: 6 }}>{t('„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.', { n, s: tp(n, 'seria|serie|serii') })}</Muted></View> : null}
+        {c.unknown ? <View testID="progress-unknown"><Muted style={{ fontSize: 12, marginTop: 6 }}>{t('„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.', { n, s: tp(n, 'seria|serie|serii') })}</Muted></View> : null}
         <MuscleMap sets={improved} title={t('Partie z większą objętością')} legend={false}
           label={Object.keys(improved).length ? t('Partie z większą objętością niż poprzednio: {list}', { list: c.rows.filter(r => r.volumeUp).map(r => t(r.muscle)).join(', ') }) : t('Żadna partia nie ma większej objętości niż poprzednio.')}
           caption={t('Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.')} />
         <H2 style={{ marginTop: 16 }}>{t('Objętość per partia ({u})', { u: wu() })}</H2>
-        <MuscleRows rows={volumeBars(c.rows)} metric="volume" />
-        <H2 style={{ marginTop: 10 }}>{t('Serie per partia')}</H2>
-        <MuscleRows rows={setBars(c.setRows, kind !== 'month')} metric="sets" />
+        <MuscleRows rows={volumeBars(c.rows)} metric="volume" names={periods} />
+        <H2 style={{ marginTop: 10 }} infoId="prog-sets" info={kind === 'week'
+          ? t('Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.')
+          : t('Objętość = ciężar × powtórzenia × mnożnik ćwiczenia (jak w Postępach); rozgrzewka poza. Partia główna liczy całość, pomocnicza połowę.')}>{t('Serie per partia')}</H2>
+        <MuscleRows rows={setBars(c.setRows, kind !== 'month')} metric="sets" names={periods} />
         {c.setRows.some(r => r.doneSplit.indirectSets + r.plannedSplit.indirectSets > 0) ? <IndirectLegend /> : null}
         {kind !== 'month' ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })}</Muted> : null}
-        <Muted style={{ fontSize: 12, marginTop: 8 }}>{kind === 'week'
-          ? t('Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.')
-          : t('Objętość = ciężar × powtórzenia × mnożnik ćwiczenia (jak w Postępach); rozgrzewka poza. Partia główna liczy całość, pomocnicza połowę.')}</Muted>
       </>}
     </ScrollView></Screen>
   );

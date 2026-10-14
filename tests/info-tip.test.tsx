@@ -1,5 +1,5 @@
 /*
- * Wzorzec „ⓘ” (docs/32 wzorzec 26; decyzje właściciela 14.10.2026: rozwinięcie w miejscu, stan rozwinięcia nie jest zapamiętywany, etykieta VoiceOver
+ * Wzorzec „ⓘ” (docs/32 wzorzec 27; decyzje właściciela 14.10.2026: rozwinięcie w miejscu, stan rozwinięcia nie jest zapamiętywany, etykieta VoiceOver
  * „Więcej informacji: {nagłówek}”). Rodzaje testów (docs/20): komponent (zwinięty / rozwinięty, expanded, etykieta, podpowiedź, język VoiceOver, pole dotyku),
  * wygląd (jasny / ciemny), języki (PL / EN), układ wąski (320 pt: zawijanie, brak ucinania) i Dynamic Type (limity powiększenia), niezmiennik „nic nie pamięta”.
  */

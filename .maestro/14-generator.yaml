@@ -59,7 +59,7 @@ name: Generator szablonów i planu
 # --- cel „Ogólny” (09.10.2026, docs/research/30): pon/śr/sob — pełne FBW każdego dnia, bez przełącznika; + pt (4 dni) → przełącznik cardio → 3 × FBW + cardio ---
 - scrollUntilVisible: { element: "General fitness", direction: UP, timeout: 30000 }
 - tapOn: "General fitness"
-- tapOn: { id: "info-gen-goal" }  # 14.10.2026: opis celu jest pod ⓘ przy polu „Goal” (docs/32 wzorzec 26)
+- tapOn: { id: "info-gen-goal" }  # 14.10.2026: opis celu jest pod ⓘ przy polu „Goal” (docs/32 wzorzec 27)
 - assertVisible: "General fitness \\(for health\\): 2 sets per exercise.*"
 - tapOn: { id: "info-gen-goal" }  # zwinięcie — dalsze kroki jak dotąd
 - assertNotVisible: { id: "sw-Cardio days in the plan" }

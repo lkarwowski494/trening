@@ -54,7 +54,7 @@ function MuscleNote({ e, style }: { e: Exercise; style?: object }) {
     {um ? <Muted style={{ fontSize: 12, marginBottom: 10 }}>{t('Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.', { m: UNMAPPED_LABEL[um]?.() ?? um })}</Muted> : null}</>;
 }
 /** Wiersz podglądu: etykieta i wartość, czytane razem przez VoiceOver. */
-function Row({ label, value, info, infoId }: { label: string; value: string; /** ⓘ przy etykiecie (docs/32 wzorzec 26) */ info?: string; infoId?: string }) {
+function Row({ label, value, info, infoId }: { label: string; value: string; /** ⓘ przy etykiecie (docs/32 wzorzec 27) */ info?: string; infoId?: string }) {
   const row = <View accessibilityLanguage={lang()} /* audyt kontrolny 1 A11N-01 */ accessible accessibilityLabel={`${label}: ${value}`} style={{ marginBottom: 10 }}><Muted style={{ fontSize: 13 }}>{label}</Muted><Txt>{value}</Txt></View>;
   const [open, toggle] = useInfoOpen();
   return info && infoId ? <View><View style={{ flexDirection: 'row', alignItems: 'flex-start', columnGap: 6 }}><View style={{ flex: 1 }}>{row}</View><View style={{ paddingTop: 2 }}><InfoButton id={infoId} label={label} open={open} onToggle={toggle} /></View></View>{open ? <InfoBox id={infoId} info={info} /> : null}</View> : row;

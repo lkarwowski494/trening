@@ -109,7 +109,23 @@ Seria odhaczona na zegarku jako „zrobione inaczej niż w planie” ma w wiersz
 [Anuluj, Zakończ mimo to] — „Anuluj” wraca do treningu (wzorzec 6; jedyny przycisk potwierdzający to akcja, nie „Tak”). Rekord liczy się dopiero po uzupełnieniu. Zegarek ma te same etykiety co telefon („Seria zrobiona”, „Pomiń”,
 „Anuluj”, „Cofnij”); „Pomiń” pyta o potwierdzenie na zegarku (decyzja 8), a przycisk i gest wywołują zawsze akcję główną ekranu. Szczegóły: docs/35.
 
-### 26. Teksty objaśniające pod ⓘ — S17 (decyzje właściciela 14.10.2026)
+### 25. Wykres „okres vs okres” — dwa słupki na partię (decyzja właściciela 14.10.2026, uwagi z testu na telefonie)
+**Wzorzec:** wyżej okres 1 (np. ten tydzień), niżej okres 2 (np. poprzedni tydzień), na jednej osi (max z obu słupków i kreski celu); przy każdym słupku nazwa okresu słowami z próbką (okres 1 — pełny kolor, okres 2 — szary z prążkami: okresów nie odróżnia
+sam kolor) i liczba po prawej (zawija się przy wąskim ekranie i dużej czcionce); okres 2 równy zeru ma tor i znacznik zera, a gdy cały okres jest pusty — opis „0 (brak danych)”. VoiceOver: „partia: okres 1 X, okres 2 Y”, potem cel i „co najmniej”.
+Komponenty: `HatchBar`, `PeriodLine`, `prevText` w `components/ProgressBars.tsx`; użyte w Postępach (`MuscleCompare`: serie i objętość per partia) i w Progresji (`MuscleRows` z `showPrev`). Ekran Trening nie ma już pasków partii — pokazuje sylwetkę z kierunkiem zmiany (wzorzec 26); paski serii z celem są tylko w Postępach. Testy: `tests/period-bars.test.tsx`.
+Sekcja „Progresja” (trzy kafelki) jest tylko w Postępach — z ekranu Trening usunięta 14.10.2026.
+
+### 26. Strażnik progresji — kierunek partii, cel serii, sylwetka (decyzje właściciela 14.10.2026; implementacja: `lib/guard.ts`, `components/Guard.tsx`, `components/GuardSection.tsx`)
+**Dwie osobne odpowiedzi na partię.** (1) Cel serii: wykonane + zaplanowane na resztę tygodnia wobec celu (ręcznego albo automatycznego); „poniżej celu” tylko po całym planie, partia bez serii i planu to „bez serii”.
+(2) Kierunek względem poprzedniego tygodnia: więcej / tyle samo / mniej, bez progów procentowych i bez oceny; kolory neutralne (bez „za mało / za dużo / ryzyko”).
+**Miara kierunku:** tonaż średnio na sesję ćwiczenia, tylko ćwiczenia powtórzone w obu tygodniach (reszta wykluczona z obu i wymieniona jako „Pominięte”); tonaż spadł, a ciężar roboczy wzrósł → progres;
+„tyle samo” = ta sama liczba na ekranie (`volOut`). Tydzień deloadu: bez oceny; tydzień po deloadzie: wobec ostatniego tygodnia bez deloadu, z podaną datą. Pierwszy tydzień: „nowe”.
+**Każdy stan ma znak, słowo i wzór** (nie tylko kolor): ▲ więcej (akcent) · = tyle samo (przygaszony) · ▼ mniej (pomarańcz `less` z kreskowaniem 45°) · ? bez porównania (kropkowanie) · ○ bez serii (obrys przerywany) · + nowe (kropki) · deload (poziome paski).
+**Ekran Trening:** sylwetka + legenda (zawija się) + najwyżej dwa zdania + jeden przycisk „Szczegóły w Postępach ›” (≥ 44 pt, podpowiedź „Otwiera Postępy.”); żadnej listy pasków ani serii pośrednich.
+**Postępy → „Strażnik progresji”:** grupy od problemów (poniżej celu — największa luka pierwsza, mniej, bez porównania, tyle samo, nowe, więcej), wiersze rozwijane wzorcem 20 (▸/▾, `expanded`, po wyjściu zwinięte), pasek serii do 2× cel z „»”, serie pośrednie tylko tu.
+**VoiceOver:** sylwetka to obraz z etykietą stanów („Ten tydzień wobec poprzedniego: więcej — …; tyle samo — …; mniej — …; bez porównania — …”); legenda ukryta; wiersz czyta słowo stanu zamiast znaku. Testy: `tests/guard.test.ts`, `tests/guard-ui.test.tsx`, scenariusz Maestro `52-straznik-progresji.yaml`.
+
+### 27. Teksty objaśniające pod ⓘ — S17 (decyzje właściciela 14.10.2026)
 Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną ⓘ przy nagłówku (treść i oznaczenia „jedno źródło” / „uproszczenie” bez zmian — tylko przeniesione), a na wierzchu zostaje krótka linia albo nic.
 - **Jeden komponent:** `components/InfoTip.tsx` (`InfoTip`, `InfoButton` + `InfoBox` + `useInfoOpen`). Nagłówki podpinają go przez parametr `info` + `infoId` w `SectionTitle`, `H2`, `Field`, `SwitchRow`; krótką linię (`Muted`) owija `InfoTip` wprost. Okrąg „i” rysowany widokiem (24 pt, obrys `muted`, po rozwinięciu `accent`), nie znak U+24D8.
 - **Zachowanie:** rozwinięcie **w miejscu** pod nagłówkiem (ramka `surface2`, zaokrąglenie 10); drugie stuknięcie zwija; **stan nie jest zapamiętywany** (każde wejście na ekran zaczyna od zwiniętego); nic nie rozwija się samo.
@@ -118,7 +134,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 - **Dynamic Type:** rozwinięty tekst bez `numberOfLines`, rośnie do `TEXT_SCALE_MAX`; znak „i” do 1,3. Uproszczenie (nazwane): przy 200% długie złożenia (de, nl, sv, da, nb, fi) łamią się w środku wyrazu, jak w każdym tekście iOS (test: wyraz mieści się w dwóch wierszach).
 - **Zostaje na wierzchu (nigdy pod ⓘ):** warunki subskrypcji, zastrzeżenia zdrowotne (`MedicalNote`), ostrzeżenia o utracie danych (np. „Serie bez wyniku nie zostaną zapisane.”, „Kopie automatyczne znikają razem z aplikacją…”), błędy i stany zapisu, prywatność, puste stany. Lista wyjątków z powodem: `LONG_OK` w `tests/interaction-guards.test.ts`.
 - **Instrukcje gestów** (typ serii, notatka, przesunięcie w lewo, ⇅ SS, ≡) **nie stoją na ekranach** — są w Przewodniku (`lib/guide.ts`).
-- **Strażnik lekkości (S17):** widoczny tekst pomocniczy (`<Muted>`, `detail=`) ma najwyżej **100 znaków** (polskie źródło) poza listą wyjątków z powodem; ekrany Trening i Postępy mają wyjątek tymczasowy (`PENDING_FILES`) do czasu wdrożenia tam ⓘ.
+- **Strażnik lekkości (S17):** widoczny tekst pomocniczy (`<Muted>`, `detail=`) ma najwyżej **100 znaków** (polskie źródło) poza listą wyjątków z powodem.
 - Nowy ekran z objaśnieniem: tekst pod ⓘ, krótka linia na wierzchu (jeśli potrzebna), `infoId` unikalny na ekranie (testID `info-{id}` i `info-text-{id}`; scenariusz Maestro 52).
 
 ## Strażniki (S1–S17)
@@ -140,7 +156,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 | S14 | zakaz roli „link”; komponenty wspólne mają 44 pt | j.w. | częściowo — Jest nie liczy układu, więc rozmiaru dotyku nie mierzymy; pilnujemy komponentów wspólnych |
 | S15 | pola wyszukiwania tylko przez `SearchField` | j.w. | jest |
 | S16 | arkusze akcji: wyjątki z powodem | j.w. | jest (wyjątki: lista miejsc użytkownika ma zmienną długość; rodzaje serii to 4 + notatka + Anuluj — dwupoziomowy arkusz wydłużyłby najczęstszą akcję treningu) |
-| S17 | ⓘ: jeden komponent (etykieta, rola, `expanded`, pole 44 pt), teksty przeniesione tylko jako `info=`, widoczny tekst pomocniczy ≤ 100 znaków poza listą wyjątków z powodem, gesty tylko w Przewodniku | j.w. + `tests/info-tip.test.tsx`, `tests/matrix-i18n.test.tsx` (szerokość 320 pt), `.maestro/52-objasnienia-info.yaml` | jest (wyjątek tymczasowy: ekrany Trening / Postępy) |
+| S17 | ⓘ: jeden komponent (etykieta, rola, `expanded`, pole 44 pt), teksty przeniesione tylko jako `info=`, widoczny tekst pomocniczy ≤ 100 znaków poza listą wyjątków z powodem, gesty tylko w Przewodniku | j.w. + `tests/info-tip.test.tsx`, `tests/matrix-i18n.test.tsx` (szerokość 320 pt), `.maestro/53-objasnienia-info.yaml` | jest |
 
 ## Słownik terminów
 Anuluj (rezygnacja; okna i potwierdzenia) · Wróć (strzałka, przycisk „nie ma takiego …”) · Wróć do edycji (tylko odrzucanie zmian) · Zamknij (tylko panel „Co nowego”) · Cofnij (ostatnia zmiana) · Przywróć (usunięte / zarchiwizowane / pominięte) ·

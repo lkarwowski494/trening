@@ -42,7 +42,7 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: "Light"
 - tapOn: "kg"
 - tapOn: "List"
-- tapOn: { id: "info-workout-view" }  # 14.10.2026: opis widoku jest pod ⓘ (docs/32 wzorzec 26)
+- tapOn: { id: "info-workout-view" }  # 14.10.2026: opis widoku jest pod ⓘ (docs/32 wzorzec 27)
 - assertVisible: "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.|List: exercises and sets as in earlier versions, without the card."
 # --- domyślna przerwa 45 s (pole liczbowe; fokus zdejmuje stuknięcie w etykietę nad polem) ---
 - scrollUntilVisible: { element: "90", direction: DOWN, timeout: 30000, centerElement: true }

@@ -1,4 +1,4 @@
-# Objaśnienia pod ⓘ (14.10.2026, docs/32 wzorzec 26; katalog przepływów docs/37: US-18, JM-05): tekst objaśniający jest schowany pod okręgiem „i” przy nagłówku;
+# Objaśnienia pod ⓘ (14.10.2026, docs/32 wzorzec 27; katalog przepływów docs/37: US-18, JM-05): tekst objaśniający jest schowany pod okręgiem „i” przy nagłówku;
 # stuknięcie rozwija go w miejscu, drugie zwija; stan nie jest zapamiętywany. Sprawdzamy na Ustawieniach: pole „Workout view” (Field), nagłówek sekcji
 # „Weekly set goal per muscle group” (SectionTitle) i przełącznik „Voice also through the phone speaker” (SwitchRow) — jasny wygląd, potem ciemny.
 #

@@ -141,7 +141,7 @@ describe('N1/N28: ekran zakupu', () => {
   test('bez nagłówka H1 powtarzającego tytuł nagłówka; zamknięcie przez useCloseHeader', () => { const s = src.get('app/paywall.tsx')!; expect(s).not.toMatch(/<H1>/); expect(s).toContain('useCloseHeader('); });
 });
 
-/* ---------- S17: teksty objaśniające pod ⓘ (docs/32 wzorzec 26; decyzje właściciela 14.10.2026) ---------- */
+/* ---------- S17: teksty objaśniające pod ⓘ (docs/32 wzorzec 27; decyzje właściciela 14.10.2026) ---------- */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const tsc = require('typescript');
 type Lit = { file: string; line: number; text: string };
@@ -173,10 +173,9 @@ const LONG_OK: Record<string, string> = {
   'Aplikacja nie zbiera danych:': 'prywatność — oświadczenie, że dane zostają w telefonie (zasada właściciela: prywatność na wierzchu)',
   'Plik nie podaje godzin treningów —': 'ostrzeżenie: dzień z treningiem zostanie pominięty (dane przy imporcie)',
   'Brak zgody na powiadomienia —': 'błąd uprawnień z działaniem (przypomnienia nie przyjdą)',
+  '„≥” — w zaplanowanych szablonach': 'legenda znaku „≥” przy liczbie — wyjaśnia widoczną wartość (plan bez ciężaru), nie jest objaśnieniem metody',
   'Zaczynasz od tej wersji —': 'kontekst nowej osoby po aktualizacji („Co nowego”)',
 };
-/** Pliki ekranów Trening i Postępy (równolegle pracuje tam inny programista — strażnik progresji): ⓘ wdrożą po scaleniu; wyjątek TYMCZASOWY, z testem, że nadal jest potrzebny. */
-const PENDING_FILES = ['app/(tabs)/progress.tsx', 'app/progression.tsx', 'components/Dashboard.tsx', 'components/PeriodSummary.tsx', 'components/MuscleMap.tsx'];
 describe('S17: ⓘ — jeden komponent, objaśnienia nie wracają na wierzch', () => {
   test('okrąg „i” (przycisk ⓘ) i etykieta VoiceOver „Więcej informacji” tylko w components/InfoTip.tsx; znak U+24D8 nie służy jako ikona', () => {
     expect(lines(/Więcej informacji: \{name\}/, ['components/InfoTip.tsx'])).toEqual([]);
@@ -199,7 +198,7 @@ describe('S17: ⓘ — jeden komponent, objaśnienia nie wracają na wierzch', (
       ['app/more/settings.tsx', 'RIR — powtórzenia w zapasie'], ['app/more/settings.tsx', 'RIR wpisuje się w zakresie'], ['app/more/settings.tsx', 'Kreska w „Ten tydzień” i w Postępach.'], ['app/more/settings.tsx', 'Timer odlicza w aplikacji'],
       ['app/generator.tsx', 'Propozycja według Twoich założeń'], ['app/generator.tsx', 'Nie masz jeszcze miejsc treningu'], ['app/generator.tsx', 'Cardio poza planem: sesja cardio'], ['app/generator.tsx', 'Cardio w planie: {n} min tygodniowo. Zalecenie WHO'],
       ['app/generator.tsx', 'Siła: bój główny na początku'], ['app/generator.tsx', 'Masa: serie na partię w tygodniu'], ['app/generator.tsx', 'Każda główna partia co najmniej'],
-      ['components/OwnPlan.tsx', 'Plan tygodnia z Twoich szablonów według tych samych reguł'], ['components/OwnPlan.tsx', 'Każda główna partia co najmniej'], ['components/OwnPlan.tsx', 'Uproszczenie: zwykle dzień przerwy'], ['app/plan.tsx', 'Plan powtarza się co tydzień.'], ['app/plan.tsx', 'Obowiązuje jeden plan naraz.'],
+      ['components/OwnPlan.tsx', 'Plan tygodnia z Twoich szablonów według tych samych reguł'], ['components/GuardSection.tsx', 'Kierunek dla partii liczymy tylko'], ['components/GuardSection.tsx', 'Miara: tonaż'], ['components/PeriodSummary.tsx', 'Obok w nawiasie'], ['components/PeriodSummary.tsx', 'Kolor względem partii z największą'], ['app/(tabs)/progress.tsx', 'Partia główna liczy 1 serię, pomocnicza 0,5'], ['app/(tabs)/progress.tsx', 'Objętość serii roboczych'], ['app/progression.tsx', 'Zaplanowane = szablony z planu'], ['components/OwnPlan.tsx', 'Każda główna partia co najmniej'], ['components/OwnPlan.tsx', 'Uproszczenie: zwykle dzień przerwy'], ['app/plan.tsx', 'Plan powtarza się co tydzień.'], ['app/plan.tsx', 'Obowiązuje jeden plan naraz.'],
       ['app/template/[id].tsx', 'Zakres powtórzeń: {r} — gdy ostatnio'], ['app/reorder.tsx', 'Przeciągnij za ≡, żeby zmienić kolejność.'],
       ['app/exercise/[id].tsx', 'Masa ciała: „±” to dociążenie'], ['app/exercise/[id].tsx', 'Przypisanie partii mięśniowych — jedno źródło, nie ustalone.'], ['app/exercise/[id].tsx', 'Przypisanie partii mięśniowych — uproszczenie, nie wynik badań.'],
       ['app/history/add.tsx', 'Trening, którego nie zapisałeś na bieżąco.'], ['app/more/locations.tsx', 'Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia'], ['app/more/location/[id].tsx', '★ Miejsce główne — domyślne'],
@@ -226,14 +225,11 @@ describe('S17: ⓘ — jeden komponent, objaśnienia nie wracają na wierzch', (
     expect(bad).toEqual([]);
   });
   test(`lekkość: widoczny tekst pomocniczy (<Muted>, detail) ma najwyżej ${INFO_MAX_CHARS} znaków poza listą z powodem`, () => {
-    const long = visibleHelperTexts().filter(x => x.text.length > INFO_MAX_CHARS && !PENDING_FILES.includes(x.file));
+    const long = visibleHelperTexts().filter(x => x.text.length > INFO_MAX_CHARS);
     const bad = long.filter(x => !Object.keys(LONG_OK).some(k => x.text.startsWith(k))).map(x => `${x.file}:${x.line} (${x.text.length}) ${x.text.slice(0, 60)}`);
     expect(bad).toEqual([]);
     Object.values(LONG_OK).forEach(v => expect(v.length).toBeGreaterThan(15));
     const unused = Object.keys(LONG_OK).filter(k => !visibleHelperTexts().some(x => x.text.startsWith(k) && x.text.length > INFO_MAX_CHARS)); expect(unused).toEqual([]); /* wyjątek, który nic nie zwalnia, jest błędem */
-  });
-  test('wyjątek tymczasowy dla ekranów Trening / Postępy: każdy plik z listy nadal ma za długi tekst (po wdrożeniu ⓘ tam — usuń z PENDING_FILES)', () => {
-    for (const f of PENDING_FILES) expect([f, visibleHelperTexts().some(x => x.file === f && x.text.length > INFO_MAX_CHARS)]).toEqual([f, true]);
   });
   test('instrukcje gestów nie wracają na ekrany (są w Przewodniku): stopki treningu, edytora szablonu i edycji sesji', () => {
     expect(lines(/Tapnij numer serii|Dotknij etykiety serii|Przesuń serię albo nazwę ćwiczenia w lewo/, ['lib/guide.ts'])).toEqual([]);

@@ -1,8 +1,9 @@
-import { getState, getRev, exById, tplRows, workCount, setVolume, startableItem, previousBlockFor, occurrence, occurrences, startLocationId, implAtLoc, srcSetAt, isBW, isDeloadWeek } from '@/lib/store';
+import { getState, getRev, exById, tplRows, workCount, setVolume, effectiveLoad, startableItem, previousBlockFor, occurrence, occurrences, startLocationId, implAtLoc, srcSetAt, isBW, isDeloadWeek } from '@/lib/store';
 import { dayKeyOf, addDays, dayStatus, pending } from '@/lib/plan';
 import { thisMonday, setsSplitByMuscle, volumeByMuscle, setsGoal } from '@/lib/stats';
 import { addSplitSets, emptySplit, mergeSplits, splitTotals, type SetSplit } from '@/lib/setSplit';
 import { periodRange, totals } from '@/lib/period';
+import { t } from '@/lib/i18n';
 import { MUSCLES, hasReps, hasWeight, type Muscle, type Template, type WSet } from '@/lib/seed';
 
 /*
@@ -11,7 +12,7 @@ import { MUSCLES, hasReps, hasWeight, type Muscle, type Template, type WSet } fr
  *  - tydzień bieżący = wykonane (historia) + zaplanowane z szablonów na dni od dziś do niedzieli, które jeszcze czekają (dayStatus → pending);
  *  - zaplanowany szablon liczymy wierszami: serie robocze jak w treningu (workCount), objętość jak wszędzie (setVolume) z wartości wiersza szablonu;
  *    wiersz bez ciężaru albo powtórzeń bierze brakującą wartość z „Poprzednio” (ostatnie wykonanie tego wiersza — store.previousBlockFor, ten sam dobór
- *    co przy starcie treningu); bez „Poprzednio” seria liczy się do serii, ale nie do objętości (`unknownSets` → kafelek „+?”);
+ *    co przy starcie treningu); bez „Poprzednio” seria liczy się do serii, ale nie do objętości (`unknownSets` → kafelek „≥ …”, decyzja właściciela 14.10.2026);
  *  - objętość i serie wykonane — te same funkcje co Postępy i podsumowanie (period.totals, stats.setsSplitByMuscle, stats.volumeByMuscle);
  *  - miesiąc: bieżący (do dziś) z poprzednim w tym samym zakresie dni miesiąca (uproszczenie nazwane — pełny poprzedni miesiąc zawyżyłby różnicę).
  * Partia „wzrosła”, gdy jej objętość jest większa niż w okresie porównawczym (bez progów — progu nie wolno zgadywać).
@@ -24,38 +25,55 @@ export type Planned = Part & { /** serie robocze, których objętości nie da si
 const emptyPart = (): Part => ({ workouts: 0, sets: 0, volume: 0, bySets: {}, byVolume: {}, bySplit: {} });
 const add = (a: Rec, k: string, v: number) => { a[k] = (a[k] ?? 0) + v; };
 
+/** Oszacowanie jednego wiersza (ćwiczenia) szablonu: serie robocze, objętość z wierszy (wartość wiersza, a przy braku — „Poprzednio”) i liczba serii bez wartości.
+ * `null` — ćwiczenie nie do wystartowania (usunięte/zarchiwizowane). Jedno źródło dla sum szablonu (estimateTemplate) i strażnika progresji (lib/guard.ts). */
+export type ItemEstimate = { exerciseId: string; sets: number; volume: number; unknown: number; /** najwyższy ciężar (kg; ±kg przy masie ciała, asysta = 0) serii roboczych o znanej wartości — „ciężar roboczy” strażnika progresji */ maxWeight: number };
+export function estimateItem(tpl: Template, ii: number): ItemEstimate | null {
+  const it = tpl.items[ii]; if (!startableItem(it)) return null; const ex = exById(it.exerciseId)!; const rows = tplRows(it); const n = workCount(rows.map(r => r.kind)); const loc = startLocationId(tpl.locationId);
+  const m = ex.metric ?? 'weight_reps'; const counted = hasWeight(m) && hasReps(m); const bw = isBW(ex);
+  const impl = implAtLoc(ex, loc);
+  const prev = counted ? previousBlockFor(it.exerciseId, occurrence(tpl.items, ii), occurrences(tpl.items, it.exerciseId), it.id, tpl.id, impl) : null;
+  const src = prev ? prev.sets.filter(x => x.kind !== 'drop') : []; let j = 0; let vol = 0; let unknown = 0; let maxWeight = 0;
+  for (const r of rows) {
+    if (r.kind === 'warmup') continue;
+    const p = r.kind === 'drop' ? null : srcSetAt(src, j++); /* drop set bez własnych wartości — nieznany (jak przy starcie: pusty) */
+    if (!counted) continue;
+    const w = r.weight !== '' ? r.weight : p ? (bw ? p.addKg : p.weight) : ''; const reps = r.reps !== '' ? r.reps : p ? p.reps : '';
+    if (reps === '' || (!bw && w === '')) { unknown++; continue; }
+    const set = { kind: r.kind, warmup: false, done: true, weight: bw ? '' : w, addKg: bw ? w : '', reps } as WSet;
+    vol += setVolume(ex, set, impl); maxWeight = Math.max(maxWeight, effectiveLoad(ex, set));
+  }
+  return { exerciseId: it.exerciseId, sets: n, volume: vol, unknown, maxWeight };
+}
+
 /** Oszacowanie jednego szablonu: serie i objętość z wierszy (wartość wiersza, a przy braku — „Poprzednio”). */
 export function estimateTemplate(tpl: Template): Planned {
-  const out: Planned = { ...emptyPart(), unknownSets: 0 }; const loc = startLocationId(tpl.locationId);
-  tpl.items.forEach((it, ii) => {
-    if (!startableItem(it)) return; const ex = exById(it.exerciseId)!; const rows = tplRows(it); const n = workCount(rows.map(r => r.kind));
-    const m = ex.metric ?? 'weight_reps'; const counted = hasWeight(m) && hasReps(m); const bw = isBW(ex);
-    const impl = implAtLoc(ex, loc);
-    const prev = counted ? previousBlockFor(it.exerciseId, occurrence(tpl.items, ii), occurrences(tpl.items, it.exerciseId), it.id, tpl.id, impl) : null;
-    const src = prev ? prev.sets.filter(x => x.kind !== 'drop') : []; let j = 0; let vol = 0; let unknown = 0;
-    for (const r of rows) {
-      if (r.kind === 'warmup') continue;
-      const p = r.kind === 'drop' ? null : srcSetAt(src, j++); /* drop set bez własnych wartości — nieznany (jak przy starcie: pusty) */
-      if (!counted) continue;
-      const w = r.weight !== '' ? r.weight : p ? (bw ? p.addKg : p.weight) : ''; const reps = r.reps !== '' ? r.reps : p ? p.reps : '';
-      if (reps === '' || (!bw && w === '')) { unknown++; continue; }
-      vol += setVolume(ex, { kind: r.kind, warmup: false, done: true, weight: bw ? '' : w, addKg: bw ? w : '', reps } as WSet, impl);
-    }
-    out.sets += n; out.volume += vol; out.unknownSets += unknown;
-    addSplitSets(out.bySplit, ex.muscles ?? [], ex.secondaryMuscles ?? [], n);
-    (ex.muscles ?? []).forEach(mu => { add(out.byVolume, mu, vol); });
-    (ex.secondaryMuscles ?? []).forEach(mu => { add(out.byVolume, mu, vol * 0.5); });
+  const out: Planned = { ...emptyPart(), unknownSets: 0 };
+  tpl.items.forEach((_, ii) => {
+    const e = estimateItem(tpl, ii); if (!e) return; const ex = exById(e.exerciseId)!;
+    out.sets += e.sets; out.volume += e.volume; out.unknownSets += e.unknown;
+    addSplitSets(out.bySplit, ex.muscles ?? [], ex.secondaryMuscles ?? [], e.sets);
+    (ex.muscles ?? []).forEach(mu => { add(out.byVolume, mu, e.volume); });
+    (ex.secondaryMuscles ?? []).forEach(mu => { add(out.byVolume, mu, e.volume * 0.5); });
   });
   out.bySets = splitTotals(out.bySplit);
   return out;
 }
 
-/** Zaplanowane, jeszcze niezrobione treningi od dziś do niedzieli bieżącego tygodnia (stan dnia jak w kalendarzu i na pasku). */
-export function plannedRest(now = Date.now()): Planned {
-  const out: Planned = { ...emptyPart(), unknownSets: 0 }; const today = dayKeyOf(now); const sun = addDays(dayKeyOf(thisMonday(0, new Date(now))), 6);
+/** Dni od dziś do niedzieli bieżącego tygodnia z zaplanowanym, jeszcze niezrobionym szablonem (stan dnia jak w kalendarzu i na pasku). */
+export function plannedDays(now = Date.now()): { day: string; tpl: Template }[] {
+  const out: { day: string; tpl: Template }[] = []; const today = dayKeyOf(now); const sun = addDays(dayKeyOf(thisMonday(0, new Date(now))), 6);
   for (let k = today; k <= sun; k = addDays(k, 1)) {
     const ds = dayStatus(k, today); if (!ds.templateId || !pending(ds)) continue;
-    const tpl = getState().templates.find(x => x.id === ds.templateId && !x.archived); if (!tpl) continue;
+    const tpl = getState().templates.find(x => x.id === ds.templateId && !x.archived); if (tpl) out.push({ day: k, tpl });
+  }
+  return out;
+}
+
+/** Zaplanowane, jeszcze niezrobione treningi od dziś do niedzieli bieżącego tygodnia (stan dnia jak w kalendarzu i na pasku). */
+export function plannedRest(now = Date.now()): Planned {
+  const out: Planned = { ...emptyPart(), unknownSets: 0 };
+  for (const { tpl } of plannedDays(now)) {
     const e = estimateTemplate(tpl); if (!e.sets) continue;
     out.workouts++; out.sets += e.sets; out.volume += e.volume; out.unknownSets += e.unknownSets;
     for (const [mu, v] of Object.entries(e.byVolume)) add(out.byVolume, mu, v); out.bySplit = mergeSplits(out.bySplit, e.bySplit);
@@ -113,3 +131,8 @@ export function compareCached(kind: CmpKind, now = Date.now()): Comparison {
   const key = `${getRev()}|${dayKeyOf(now)}`; const st = getState(); const m = memo.get(kind); if (m && m.key === key && m.st === st) return m.v;
   const v = compare(kind, now); memo.set(kind, { key, st, v }); return v;
 }
+
+/** Zmiana w procentach; pusty poprzedni okres (`null`) = „brak poprzedniego okresu” (jedno sformułowanie dla objętości i serii — decyzja właściciela 14.10.2026). */
+export const pctText = (p: number | null): string => (p === null ? t('brak poprzedniego okresu') : p > 0 ? `+${p}%` : p < 0 ? `−${Math.abs(p)}%` : '0%');
+/** Liczba ze znakiem (różnica bezwzględna w szczegółach Progresji). */
+export const signedNum = (n: number, f: (v: number) => string = String): string => (n > 0 ? `+${f(n)}` : n < 0 ? `−${f(Math.abs(n))}` : f(0));
