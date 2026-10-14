@@ -1,0 +1,52 @@
+# Lokalizacje produktów zakupu w App Store Connect przez API (decyzja właściciela 14.10.2026, wariant A; skrypt scripts/asc/iap-localizations.mjs,
+# teksty store/iap-localizations.json). Tylko ręcznie. Domyślnie dry-run (plan bez zmian); apply uruchamia właściciel/koordynator po przeglądzie planu.
+# Skrypt nigdy nie usuwa i nie zmienia lokalizacji EN (U.S.) ani PL. Sekrety jak w testflight.yml: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8.
+# Repozytorium jest publiczne: logi bez identyfikatorów klucza (maskowanie), klucz tylko w RUNNER_TEMP i usuwany zawsze.
+name: ASC lokalizacje produktów zakupu
+on:
+  workflow_dispatch:
+    inputs:
+      tryb:
+        description: 'dry-run = tylko plan; apply = utwórz brakujące i zaktualizuj różniące się (nigdy nie usuwa)'
+        type: choice
+        options: [dry-run, apply]
+        default: dry-run
+permissions:
+  contents: read
+concurrency:
+  group: asc-iap-localizations
+  cancel-in-progress: false
+jobs:
+  lokalizacje:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Klucz API do pliku tymczasowego (maskowany)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/15 — kroki właściciela)"; exit 1; }; done
+          echo "::add-mask::$ASC_KEY_ID"; echo "::add-mask::$ASC_ISSUER_ID"
+          printf '%s\n' "$ASC_KEY_P8" | while IFS= read -r line; do case "$line" in -----*) ;; *) [ ${#line} -ge 20 ] && echo "::add-mask::$line" ;; esac; done; true
+          umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
+      - name: Lokalizacje (tryb z wejścia)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          TRYB: ${{ inputs.tryb }}
+        run: |
+          set -o pipefail
+          case "$TRYB" in dry-run|apply) ;; *) echo "::error::Nieznany tryb"; exit 1 ;; esac
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          node scripts/asc/iap-localizations.mjs "--$TRYB" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Usunięcie klucza z maszyny
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey.p8"
