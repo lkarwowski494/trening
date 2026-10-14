@@ -17,6 +17,7 @@ Brak któregoś rodzaju wymaga zapisanego powodu w docs/09 (wiersz tej zmiany), 
 | 7 | Języki i wygląd | wszystkie języki z `LANGS` (26 od 07.10.2026; bez polskich tekstów poza pl), kg/lb, motyw jasny/ciemny; nowe teksty w słowniku EN i 24 plikach | `check:i18n`, `tests/i18n-locales.test.ts`, macierz |
 | 8 | Regresja | każdy znaleziony błąd: test, który go odtwarza (czerwony przed poprawką) | `tests/regress.test.tsx` lub plik zmiany |
 | 9 | E2E na symulatorze | przepływ widoczny dla użytkownika: scenariusz Maestro (nowy albo dopisany krok) | `.maestro/NN-*.yaml` |
+| 10 | Katalog przepływów | (13.10.2026) nowy ekran albo funkcja = przepływ w katalogu ze scenariuszem Maestro albo wyjątkiem z powodem; ekran bez przepływu blokuje verify | `tests/przeplywy.json`, `tests/przeplywy.test.ts`, docs/37–39 |
 
 ## Co pilnuje automatycznie, a co przy przeglądzie
 

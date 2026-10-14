@@ -54,7 +54,8 @@ test('regresja run 37611882320: scenariusz 11 nie używa hideKeyboard (klawiatur
 
 test('regresja run 37645619096: każdy scenariusz .maestro/*.yaml jest na liście flows w config.yaml (inaczej Maestro go pomija)', () => {
   const fs = require('fs'); const path = require('path'); const dir = path.join(__dirname, '..', '.maestro');
-  const files = fs.readdirSync(dir).filter((f: string) => /^\d\d-.*\.yaml$/.test(f)).sort();
+  /* 13.10.2026: scenariusze z tagiem `eksperyment` (docs/38 pkt 5) celowo NIE są na liście — główny przebieg ich nie uruchamia */
+  const files = fs.readdirSync(dir).filter((f: string) => /^\d\d-.*\.yaml$/.test(f) && !/^tags:\n\s+- eksperyment$/m.test(fs.readFileSync(path.join(dir, f), 'utf8'))).sort();
   const listed = [...fs.readFileSync(path.join(dir, 'config.yaml'), 'utf8').matchAll(/^\s+-\s+(\S+\.yaml)\s*$/gm)].map((m: RegExpMatchArray) => m[1]);
   expect(listed).toEqual(files);
 });

@@ -33,7 +33,7 @@ name: Aktualizacja — dane po instalacji nowej wersji
 - tapOn: "Close"
 # --- historia: dwa treningi dzisiaj; szablon i masa ciała na miejscu ---
 - tapOn: "Plan, tab.*"
-- extendedWaitUntil: { visible: "2 sessions", timeout: 30000 }  # nie „dziś”: instalacja trwa minuty i przebieg bywa przez północ UTC (docs/18)
+- extendedWaitUntil: { visible: "3 sessions", timeout: 30000 }  # nie „dziś”: instalacja trwa minuty i przebieg bywa przez północ UTC (docs/18)
 - tapOn: "Progress, tab.*"
 - extendedWaitUntil: { visible: "Summary", timeout: 30000 }
 - scrollUntilVisible: { element: "80 kg · measured .*", direction: DOWN, timeout: 60000 }
@@ -42,3 +42,16 @@ name: Aktualizacja — dane po instalacji nowej wersji
 - tapOn: "Templates"
 - extendedWaitUntil: { visible: "Upper A.*", timeout: 30000 }
 - takeScreenshot: 103-szablon-po-aktualizacji
+- tapOn: "Back"
+# --- 13.10.2026 (katalog przepływów AK-03): plan tygodnia i miejsce „Home” z poprzedniej wersji nadal są (migracja schematu) ---
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "Planning", timeout: 30000 }
+- tapOn: "Planning"
+- extendedWaitUntil: { visible: "Monday, Upper A", timeout: 30000 }
+- scrollUntilVisible: { element: "Sunday, Upper A", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Back"
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+- tapOn: "Places and equipment"
+- extendedWaitUntil: { visible: "★ Home, main · 1 equipment item", timeout: 30000 }   # miejsce z poprzedniej wersji, z jedną pozycją sprzętu (hantle)
+- takeScreenshot: 104-miejsce-po-aktualizacji

@@ -46,7 +46,9 @@ describe('docs/31 — pokrycie', () => {
 describe('config.yaml i workflow', () => {
   test('31–35 po 21, 22 i 23, w tej kolejności; 33–34 z tagiem aktualizacja, reszta bez', () => {
     const cfg = read('.maestro/config.yaml'); const list = [...cfg.matchAll(/^\s+- (\d\d-.*\.yaml)$/gm)].map(m => m[1]);
-    expect(list.slice(-8).map(f => f.slice(0, 2))).toEqual(['21', '22', '23', '31', '32', '33', '34', '35']); /* 0.19: 23 — miejsce jednorazowe */
+    const nums = list.map(f => f.slice(0, 2)); expect(nums).toEqual([...nums].sort()); /* kolejność numeryczna (13.10.2026: 24–29 i 36–38 z katalogu przepływów, docs/37) */
+    expect(nums.slice(nums.indexOf('21'), nums.indexOf('21') + 3)).toEqual(['21', '22', '23']); /* 0.19: 23 — miejsce jednorazowe */
+    expect(nums.slice(nums.indexOf('31'), nums.indexOf('31') + 5)).toEqual(['31', '32', '33', '34', '35']);
     for (const f of files) expect([f, /^tags:\n\s+- aktualizacja$/m.test(read('.maestro/' + f))]).toEqual([f, /^3[34]-/.test(f)]);
   });
   test('e2e-ios.yml: główny przebieg wyklucza tag, krok Aktualizacja: poprzednia wersja → 33 → bieżąca bez uninstall → 34; uprawnienia bez zmian', () => {

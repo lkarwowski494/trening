@@ -29,7 +29,7 @@ jest.setTimeout(240000);
 /* 33 i 34 (docs/31, persona C) to PARA: 34 startuje na danych zostawionych przez 33 (aktualizacja aplikacji) — test pary niżej */
 const flows = readdirSync(DIR).filter(f => /^\d\d-.*\.yaml$/.test(f) && !f.startsWith('34-')).sort();
 describe('scenariusze Maestro na drzewie dostępności (EN, en-US)', () => {
-  afterAll(() => { delete (global as any).__notifPerm; });
+  afterAll(() => { delete (global as any).__notifPerm; delete (global as any).__sysPrompt; });
   test.each(flows)('%s', async f => {
     /* 21 (0.17.0): build E2E ze sztucznym sklepem — zmienna ustawiona tylko dla tego scenariusza, adapter i uprawnienia zapomniane przed i po */
     const fake = f.startsWith('21-') || f.startsWith('35-'); const { resetStoreAdapterForTests } = require('@/lib/store-adapter'); const { resetEntitlementsForTests } = require('@/lib/entitlement');

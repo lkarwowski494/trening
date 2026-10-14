@@ -1,0 +1,61 @@
+# Pomoc w aplikacji i przypomnienia (katalog przepływów docs/37: NU-09, PL-14): Przewodnik — tematy, „Pokaż” przenosi na właściwy ekran i da się wrócić, licznik „Read: N of 10”
+# przeżywa restart; w Ustawieniach przełącznik przypomnienia o treningu z planu (wyłączony i włączony z powrotem — przed zgodą systemową, bo okno systemowe to 40).
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Guide, Read: N of 10"                              ← wiersz Więcej ('Przewodnik' + 'Przeczytane: {n} z {m}'; app/(tabs)/more.tsx)
+#   "Backup, unread" / "Show: Backup"                   ← temat przewodnika (app/guide.tsx: tytuł, stan 'nieprzeczytane'/'przeczytane') i przycisk 'Pokaż: {temat}'
+#   "Weekly plan and Calendar, unread"                  ← temat → „Show: …” otwiera zakładkę Plan
+#   sw-Reminder for planned workouts / "Notification permission not granted yet.*" ← testID SwitchRow i podpowiedź o zgodzie (widoczna tylko przy włączonym przypomnieniu); poprzednio: testID SwitchRow 'Przypomnienie o treningu z planu' (app/more/settings.tsx)
+appId: pl.lukasz.trening
+name: Przewodnik i przypomnienia
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Guide, .*", timeout: 30000 }
+- tapOn: "Guide, .*"
+- extendedWaitUntil: { visible: "Read: 0 of 10", timeout: 30000 }
+- takeScreenshot: 113-przewodnik
+# --- temat „Backup” → Pokaż → ekran kopii → powrót ---
+- tapOn: "Backup, unread"
+- extendedWaitUntil: { visible: "Show: Backup", timeout: 15000 }
+- assertVisible: "Read: 1 of 10"
+- scrollUntilVisible: { element: "Show: Backup", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Show: Backup"
+- extendedWaitUntil: { visible: "Export backup \\(JSON file\\)", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Backup, read", timeout: 30000 }
+# --- temat „Weekly plan and Calendar” → Pokaż → zakładka Plan ---
+- scrollUntilVisible: { element: "Weekly plan and Calendar, unread", direction: UP, timeout: 30000, centerElement: true }
+- tapOn: "Weekly plan and Calendar, unread"
+- extendedWaitUntil: { visible: "Show: .*", timeout: 15000 }
+- scrollUntilVisible: { element: "Show: .*", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Show: .*"
+- extendedWaitUntil: { visible: "Planning", timeout: 30000 }
+- takeScreenshot: 114-pokaz-plan
+# --- licznik przeczytanych tematów przeżywa restart ---
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Guide, Read: 2 of 10", timeout: 30000 }
+# --- przypomnienie o treningu z planu: wyłączone i włączone z powrotem (stan przełącznika w Ustawieniach) ---
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Appearance", timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-Reminder for planned workouts" }, direction: DOWN, timeout: 60000, centerElement: true }
+- assertVisible: "Notification permission not granted yet.*"   # świeży symulator: zgoda nieustalona — przy włączonym przypomnieniu jest podpowiedź (audyt 0.10 I1)
+- tapOn: { id: "sw-Reminder for planned workouts" }
+- assertNotVisible: "Notification permission not granted yet.*"   # przypomnienie wyłączone — podpowiedź o zgodzie znika
+- takeScreenshot: 115-przypomnienie-wylaczone
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- tapOn: "More, tab.*"
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Appearance", timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-Reminder for planned workouts" }, direction: DOWN, timeout: 60000, centerElement: true }
+- assertNotVisible: "Notification permission not granted yet.*"   # wyłączenie przeżyło restart

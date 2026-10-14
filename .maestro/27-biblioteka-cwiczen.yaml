@@ -1,0 +1,113 @@
+# Biblioteka ćwiczeń — własne ćwiczenie (katalog przepływów docs/37: SZ-10, SZ-12, NU-13): nowe ćwiczenie z formularza, użycie w treningu, ćwiczenie z wyboru ćwiczenia
+# („Utwórz „…””), usunięcie z biblioteki przesunięciem (historia zostaje) i przywrócenie z wyszukiwania. Edycję istniejącego ćwiczenia i restart sprawdza 16.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Add exercise"                                  ← 'Dodaj ćwiczenie' (przycisk „+” w nagłówku ekranu Ćwiczenia; app/exercises.tsx, components/AddButton.tsx)
+#   "Name" / "Body part" / "Equipment"              ← pola formularza (app/exercise/[id].tsx); chipy "biceps", "barbell"
+#   "Save exercise"                                 ← 'Zapisz ćwiczenie' (nagłówek edycji)
+#   lib-row-N / lib-row-N-del                       ← testID pozycji listy Ćwiczenia (z nagłówkami grup; przy jednym wyniku wyszukiwania N = 1), przycisk pod nią
+#   "Delete exercise\\?"                            ← 'Usunąć ćwiczenie?' (SwipeRow)
+#   "Restore “X”"                                   ← 'Przywróć „{name}”' (pozycja listy wyszukiwania dla usuniętego ćwiczenia)
+#   "Create “X”"                                    ← 'Utwórz „{name}”' (przycisk w pustym wyniku wyszukiwania; w wyborze ćwiczenia i w bibliotece)
+appId: pl.lukasz.trening
+name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+# --- nowe ćwiczenie z formularza ---
+- tapOn: "More, tab.*"
+- tapOn: "Exercises"
+- extendedWaitUntil: { visible: "Add exercise", timeout: 30000 }
+- tapOn: "Add exercise"
+- extendedWaitUntil: { visible: "Save exercise", timeout: 30000 }
+- tapOn: { text: "New exercise", below: "Name" }
+- eraseText: 40
+- inputText: "Cable Hammer E2E"
+- pressKey: Enter
+- tapOn: "biceps"
+# E2E 38471218362: chip „cables” to 5. chip poziomego paska — poza prawą krawędzią ekranu; stuknięcie w niego nic nie zmieniało (lista pokazała „other”; jak E2E 89 w 16).
+# Wybór sprzętu jest realnym przepływem, więc stukamy chip widoczny bez przewijania poziomego („barbell”) i sprawdzamy stan zaznaczenia (accessibilityState.selected) — bez luzowania asercji.
+- scrollUntilVisible: { element: "barbell", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "barbell"
+- assertVisible: { text: "barbell", selected: true }
+- takeScreenshot: 93-nowe-cwiczenie
+- tapOn: "Save exercise"
+- extendedWaitUntil: { visible: "Edit exercise", timeout: 30000 }
+- assertVisible: "Cable Hammer E2E"
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Hammer E2E"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Cable Hammer E2E, barbell.*", timeout: 15000 }
+# --- użycie własnego ćwiczenia w treningu ---
+- tapOn: "Back"
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
+- tapOn: "Empty workout"
+- extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Hammer E2E"
+- tapOn: { text: "Continue", optional: true }
+- tapOn: "Cable Hammer E2E,.*"
+- extendedWaitUntil: { visible: "Set 1 done — Cable Hammer E2E", timeout: 30000 }
+# --- ćwiczenie, którego nie ma nigdzie: „Utwórz „…”” z wyboru ćwiczenia ---
+- scrollUntilVisible: { element: "\\+ Add exercise", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Zottman Curl E2E"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Create “Zottman Curl E2E”.*", timeout: 15000 }
+- takeScreenshot: 94-utworz-z-wyboru
+- tapOn: "Create “Zottman Curl E2E”.*"
+- extendedWaitUntil: { visible: "Set 1 done — Zottman Curl E2E", timeout: 30000 }  # ćwiczenie z wyboru trafia od razu do treningu (bez formularza)
+# --- zakończenie treningu z własnym ćwiczeniem (historia zachowa jego nazwę) ---
+- tapOn: "Set 1 done — Cable Hammer E2E"
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- waitForAnimationToEnd
+- tapOn: { text: "Skip", optional: true }   # E2E 38471218362: przy trwającej przerwie widać Live Activity w Dynamic Island i stuknięcie „Finish” otworzyło Ustawienia iOS (01 kończy przerwę przed „Finish”)
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: "Cable Hammer E2E"
+- tapOn: "Back"
+# --- usunięcie z biblioteki przesunięciem: Anuluj zostawia, Usuń usuwa; historia zostaje ---
+- tapOn: "More, tab.*"
+- tapOn: "Exercises"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Hammer E2E"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Cable Hammer E2E, barbell.*", timeout: 15000 }
+- swipe: { from: { id: "lib-row-1" }, direction: LEFT, duration: 400 }
+- runFlow:
+    when: { visible: { id: "lib-row-1-del" } }
+    commands:
+      - tapOn: { id: "lib-row-1-del" }
+- extendedWaitUntil: { visible: "Delete exercise\\?", timeout: 15000 }
+- tapOn: { text: "Cancel", below: "Delete exercise\\?" }
+- assertVisible: "Cable Hammer E2E, barbell.*"
+- swipe: { from: { id: "lib-row-1" }, direction: LEFT, duration: 400 }
+- runFlow:
+    when: { visible: { id: "lib-row-1-del" } }
+    commands:
+      - tapOn: { id: "lib-row-1-del" }
+- extendedWaitUntil: { visible: "Delete exercise\\?", timeout: 15000 }
+- tapOn: { text: "Delete", below: "Delete exercise\\?" }
+- extendedWaitUntil: { visible: "Restore “Cable Hammer E2E”.*", timeout: 15000 }
+- takeScreenshot: 95-po-usunieciu
+# --- przywrócenie z wyszukiwania ---
+- tapOn: "Restore “Cable Hammer E2E”.*"
+- extendedWaitUntil: { visible: "Edit exercise", timeout: 30000 }
+- assertVisible: "Cable Hammer E2E"

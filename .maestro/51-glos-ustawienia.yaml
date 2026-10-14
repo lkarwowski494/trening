@@ -1,0 +1,49 @@
+# Głos w przerwie (0.20, docs/36; katalog przepływów W2-03): Ustawienia → przełącznik „Głos także przez głośnik telefonu” (domyślnie wyłączony, trwały po restarcie)
+# i przycisk „Posłuchaj przykładu” (aplikacja po stuknięciu dalej działa). Dźwięku symulator nie słychać, a to, czy symulator ma głos dla języka, nie jest zagwarantowane —
+# wskazówki „Brak głosu…” scenariusz więc nie wymaga i nie wyklucza (tekst i warianty: Jest, tests/voice-ui.test.tsx). Mowa w przerwie, słuchawki i ściszanie muzyki: tylko telefon (W2-04).
+#
+# Literały (EN z lib/i18n.en.ts):
+#   sw-Voice also through the phone speaker   ← testID przełącznika (SwitchRow 'sw-' + etykieta; 'Głos także przez głośnik telefonu')
+#   "In headphones the next exercise.*"        ← opis przełącznika
+#   "Listen to an example"                    ← 'Posłuchaj przykładu'
+#   checked: false / true                     ← stan przełącznika (UISwitch)
+appId: pl.lukasz.trening
+name: Głos w przerwie — ustawienia
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
+# --- domyślnie wyłączony, z opisem ---
+- scrollUntilVisible: { element: { id: "sw-Voice also through the phone speaker" }, direction: DOWN, timeout: 60000, centerElement: true }
+- assertVisible: "In headphones the next exercise.*"
+- assertVisible: { id: "sw-Voice also through the phone speaker", checked: false }
+- takeScreenshot: 110-glos-domyslnie
+# --- włączenie ---
+- tapOn: { id: "sw-Voice also through the phone speaker" }
+- assertVisible: { id: "sw-Voice also through the phone speaker", checked: true }
+# --- „Posłuchaj przykładu”: nic się nie psuje (mowa na symulatorze może być cicha albo jej nie być) ---
+- scrollUntilVisible: { element: "Listen to an example", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Listen to an example"
+- waitForAnimationToEnd
+- assertVisible: "Listen to an example"
+- assertVisible: { id: "sw-Voice also through the phone speaker", checked: true }
+- takeScreenshot: 111-glos-po-przykladzie
+# --- trwałość po restarcie ---
+- stopApp
+- launchApp:
+    clearState: false
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-Voice also through the phone speaker" }, direction: DOWN, timeout: 60000, centerElement: true }
+- assertVisible: { id: "sw-Voice also through the phone speaker", checked: true }
+# --- wyłączenie ---
+- tapOn: { id: "sw-Voice also through the phone speaker" }
+- assertVisible: { id: "sw-Voice also through the phone speaker", checked: false }

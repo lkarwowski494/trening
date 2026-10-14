@@ -1,0 +1,54 @@
+# EKSPERYMENT (katalog przepływów docs/37: US-11) — odmowa zgody na powiadomienia. Nikt jeszcze nie uruchomił go na symulatorze CI: zakładamy, że Maestro potrafi ustawić zgodę na powiadomienia
+# przed startem (`permissions: { notifications: deny }` — `all: allow` jej nie obejmuje, E2E 91). Jeśli ta składnia nie działa na iOS, scenariusz padnie przy `launchApp` — i to jest wynik
+# eksperymentu (wtedy wariant z systemowym oknem „Don’t Allow”: docs/38 pkt 5). Tag `eksperyment`, plik poza listą flows w config.yaml (główny przebieg go pomija); uruchamiany osobno:
+# `maestro test .maestro/40-odmowa-powiadomien.yaml`. Gdy zielony — usunąć tag i dopisać do config.yaml (zwykły scenariusz).
+# Interpreter w Jest (tests/maestro-runner.ts) ustawia zgodę „denied” i sprawdza całą resztę: aplikacja nie pyta o zgodę, plan działa, Ustawienia tłumaczą skutek i pokazują „Open iOS Settings”,
+# trening z przerwą działa bez powiadomień.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Reminder for planned workouts"                                 ← okno aplikacji o zgodę po pierwszym planie (lib/planReminder.ts); przy odmowie z góry NIE pojawia się
+#   "No notification permission — reminders and end-of-rest alerts will not arrive.*" + testID perm-denied ← app/more/settings.tsx (przełącznik przypomnienia, audyt 0.10 I1)
+#   "Open iOS Settings" / "Check notification permission" / "No permission"  ← przyciski i okno 'Brak zgody' z odesłaniem do Ustawień iOS
+tags:
+  - eksperyment
+appId: pl.lukasz.trening
+name: Eksperyment — odmowa zgody na powiadomienia
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow, notifications: deny }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+# --- pierwszy dzień planu bez zgody na powiadomienia ---
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "Planning", timeout: 30000 }
+- tapOn: "Planning"
+- extendedWaitUntil: { visible: "Monday, Rest", timeout: 30000 }
+- tapOn: "Monday, Rest"
+- tapOn: "Monday: Upper A"
+- extendedWaitUntil: { visible: "Monday, Upper A", timeout: 15000 }   # plan zapisany mimo odmowy
+- assertNotVisible: "Reminder for planned workouts"   # po odmowie aplikacja nie pyta drugi raz (iOS i tak nie pokaże okna)
+- takeScreenshot: 117-plan-bez-zgody
+# --- Ustawienia tłumaczą skutek odmowy i wskazują drogę naprawy ---
+- tapOn: "Back"
+- tapOn: "More, tab.*"
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Appearance", timeout: 30000 }
+- scrollUntilVisible: { element: { id: "perm-denied" }, direction: DOWN, timeout: 60000, centerElement: true }
+- assertVisible: "No notification permission — reminders and end-of-rest alerts will not arrive.*"
+- assertVisible: "Open iOS Settings"
+- takeScreenshot: 119-brak-zgody
+# --- „Check notification permission” po odmowie: okno z odesłaniem do Ustawień iOS, bez ponownego okna systemowego ---
+- scrollUntilVisible: { element: "Check notification permission", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Check notification permission"
+- extendedWaitUntil: { visible: "No permission", timeout: 15000 }
+- tapOn: "Cancel"
+# --- aplikacja działa dalej bez powiadomień: trening z przerwą ---
+- tapOn: "Back"
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Skip", timeout: 15000 }
+- assertVisible: "rest of 1:30"

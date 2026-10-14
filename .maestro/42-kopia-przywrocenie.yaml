@@ -1,0 +1,73 @@
+# EKSPERYMENT (katalog przepływów docs/37: DA-04, DA-05, stan „po przywróceniu kopii”) — trening → kopia automatyczna w Plikach → „Erase all data” → „Import backup” z pliku kopii →
+# szablon i sesja wracają → NOWY trening na przywróconych danych. Ten przepływ rozwiązuje to, co dotąd robił tylko właściciel na telefonie (eksport → Pliki → wyczyść → import).
+# Nikt jeszcze nie uruchomił go na symulatorze CI: zakładamy, że Maestro widzi okno wyboru plików iOS (subflows/wybierz-plik-kopii.yaml — kroki niepewne). Tag `eksperyment`, plik poza listą
+# flows w config.yaml (docs/38 pkt 5). Interpreter w Jest pomija kroki okna systemowego i wybiera najnowszą kopię z wirtualnego dysku — sprawdza resztę (zapis kopii po treningu,
+# kopia bezpieczeństwa przed czyszczeniem, czyszczenie, import, dane po przywróceniu, nowy trening).
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Erase all data" / "Erase all data\\?" / "Erase"    ← app/more/settings.tsx ('Wyczyść wszystkie dane', 'Wyczyść'); jak 32
+#   "Backup \\(export / import\\)" / "Import backup" / "Overwrite data\\?" / "Import" / "Imported" ← app/more/backup.tsx ('Importuj backup', 'Nadpisać dane?', 'Importuj', 'Zaimportowano')
+tags:
+  - eksperyment
+appId: pl.lukasz.trening
+name: Eksperyment — przywrócenie danych z pliku kopii
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+# --- trening z szablonu: po „Finish” powstaje kopia automatyczna (Ustawienia: „Automatic backup after every workout”, domyślnie włączona) ---
+- runFlow: subflows/start-szablonu.yaml
+- tapOn: { text: "Allow", optional: true }   # start treningu może poprosić o zgodę na powiadomienia (okno systemowe)
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- tapOn: { text: "Allow", optional: true }
+- extendedWaitUntil: { visible: "Skip", timeout: 15000 }
+- tapOn: "Skip"
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Finish"
+      - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
+# --- wyczyszczenie wszystkich danych ---
+- tapOn: "More, tab.*"
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Appearance", timeout: 30000 }
+- scrollUntilVisible: { element: "Erase all data", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Erase all data"
+- extendedWaitUntil: { visible: "Erase all data\\?", timeout: 15000 }
+- tapOn: { text: "Erase", below: "Erase all data\\?" }
+- tapOn: "Back"
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "First steps", timeout: 30000 }
+- takeScreenshot: 121-po-wyczyszczeniu
+# --- import kopii z pliku (okno wyboru plików iOS) ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Backup \\(export / import\\)", timeout: 30000 }
+- tapOn: "Backup \\(export / import\\)"
+- extendedWaitUntil: { visible: "Import backup", timeout: 30000 }
+- tapOn: "Import backup"
+- extendedWaitUntil: { visible: "Overwrite data\\?", timeout: 15000 }
+- tapOn: { text: "Import", below: "Overwrite data\\?" }
+- runFlow: subflows/wybierz-plik-kopii.yaml
+- extendedWaitUntil: { visible: "Imported", timeout: 60000 }
+- tapOn: "OK"
+- takeScreenshot: 122-po-imporcie
+# --- dane wróciły: szablon i sesja ---
+- tapOn: "Back"
+- tapOn: "More, tab.*"
+- tapOn: "Templates"
+- extendedWaitUntil: { visible: "Upper A, .*", timeout: 30000 }
+- tapOn: "Back"
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "1 session", timeout: 30000 }
+# --- nowy trening na przywróconych danych ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- runFlow: subflows/start-szablonu.yaml
+- tapOn: { text: "Allow", optional: true }   # start treningu może poprosić o zgodę na powiadomienia (okno systemowe)
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
