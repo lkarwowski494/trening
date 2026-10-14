@@ -60,7 +60,7 @@ let T0: Double = 1_791_885_600_000
 
 extension WatchOutgoing: Decodable {
   private enum Key: String, CodingKey { case kind }
-  init(from decoder: Decoder) throws {
+  public init(from decoder: Decoder) throws {
     let kind = try decoder.container(keyedBy: Key.self).decode(String.self, forKey: .kind)
     switch kind {
     case "hello": self = .hello(try WatchHello(from: decoder))

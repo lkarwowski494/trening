@@ -42,6 +42,7 @@ final class WatchUITests: XCTestCase {
     if !reachable { app.launchEnvironment["WATCH_FAKE_REACHABLE"] = "0" }
     app.launchArguments += args
     app.launch()
+    _ = app.wait(for: .runningForeground, timeout: 15) // kAXErrorServerNotFound: migawka drzewa dostępności za wcześnie po starcie
     return app
   }
   @discardableResult
@@ -235,6 +236,7 @@ final class WatchUITests: XCTestCase {
       XCTAssertEqual(el(app, "watch.differ").label, l["differ"], "język \(lang)")
       XCTAssertEqual(el(app, "watch.skip").label, l["skip"], "język \(lang)")
       app.terminate()
+      sleep(1) // 35 uruchomień z rzędu: daj symulatorowi domknąć poprzedni proces
     }
   }
 }

@@ -140,9 +140,9 @@ struct RestView: View {
             Text(store.label(.rest)).font(.caption2).foregroundStyle(.secondary)
             Text(timerInterval: Date(timeIntervalSince1970: nowMs / 1000)...Date(timeIntervalSince1970: end / 1000), countsDown: true, showsHours: false)
               .font(.system(.largeTitle, design: .rounded).weight(.bold)).monospacedDigit().minimumScaleFactor(0.6)
-              .accessibilityIdentifier("watch.timer")
           }
           .accessibilityElement(children: .combine)
+          .accessibilityIdentifier("watch.timer") // na elemencie połączonym: identyfikator dziecka ginie przy .combine
         }
         if let cue = v.cue, !cue.isEmpty {
           Text(cue).font(.footnote).multilineTextAlignment(.center).accessibilityIdentifier("watch.cue")
