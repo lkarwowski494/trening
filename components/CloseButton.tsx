@@ -23,12 +23,18 @@ export function useDismiss(): () => void {
   return () => { if (router.canGoBack()) router.back(); else router.replace('/'); };
 }
 
+/** Przycisk akcji po prawej stronie nagłówka okna (np. „Zastosuj (2)” w oknie „Dostosuj do miejsca”): pogrubiony, jak „Zapisz” edytorów. */
+export interface CloseHeaderAction { title: string; onPress: () => void; testID?: string }
+
 /**
  * Opcje nagłówka okna modalnego z przyciskiem „Anuluj” po lewej. `onClose` domyślnie zamyka okno (useDismiss); okna z blokadą podwójnego
- * tapnięcia (picker, swap, pick-template) podają własną funkcję. Użycie: `<Stack.Screen options={useCloseHeader()} />`.
+ * tapnięcia (picker, swap, pick-template) podają własną funkcję. `action` (opcjonalnie) — przycisk akcji po prawej (HeaderButton, bold).
+ * Użycie: `<Stack.Screen options={useCloseHeader()} />`.
  */
-export function useCloseHeader(onClose?: () => void) {
+export function useCloseHeader(onClose?: () => void, action?: CloseHeaderAction | null) {
   const dismiss = useDismiss(); const th = useTheme();
   const ref = useRef<() => void>(dismiss); ref.current = onClose ?? dismiss;
-  return useMemo(() => ({ headerLeft: () => <CloseButton onPress={() => ref.current()} /> }), [th]); // eslint-disable-line react-hooks/exhaustive-deps
+  const aref = useRef<(() => void) | undefined>(undefined); aref.current = action?.onPress;
+  const title = action?.title; const testID = action?.testID;
+  return useMemo(() => ({ headerLeft: () => <CloseButton onPress={() => ref.current()} />, headerRight: title ? () => <HeaderButton testID={testID} title={title} bold onPress={() => aref.current?.()} /> : undefined /* setOptions scala opcje — bez jawnego undefined stary przycisk zostałby po zdjęciu akcji */ }), [th, title, testID]); // eslint-disable-line react-hooks/exhaustive-deps
 }

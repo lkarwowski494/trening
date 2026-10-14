@@ -338,7 +338,8 @@ export const genNote = (goal?: Goal) => (goal === 'general' ? t('Wysiłek: do ch
   : t('Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.', { a: RIR[0], b: RIR[1] })); /* „Ogólny”: opis słowny jak w źródłach (PAG 2018, WHO 2020) */
 /** Folder szablonów z generatora w bieżącym języku; rozpoznawany w każdym języku aplikacji (nazwa zostaje w języku z chwili zapisu). */
 export const genFolder = () => t('Wygenerowane');
-const genFolders = () => new Set<string>(LANGS.map(l => tIn(l, 'Wygenerowane')));
+/** Nazwy folderu „Wygenerowane” we wszystkich językach (szablony z generatora w dowolnym języku interfejsu). */
+export const genFolders = () => new Set<string>(LANGS.map(l => tIn(l, 'Wygenerowane')));
 
 /**
  * UX-10: poprzednio wygenerowane, nieużywane szablony (folder „Wygenerowane” w dowolnym języku) — bez treningu w historii ani w toku, poza aktywnym

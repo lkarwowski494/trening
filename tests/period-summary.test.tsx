@@ -61,6 +61,7 @@ describe('ekran Postępy — sekcja „Podsumowanie”', () => {
   test('tydzień: wiersze z poprzednim okresem (VoiceOver), rekordy; „Następny okres” nieaktywny w bieżącym; strzałka wstecz i miesiąc', async () => {
     await boot(() => { addWorkout(at(8, 30), [['Back Squat', [{ weight: 100, reps: 5 }]]]); addWorkout(at(9, 6), [['Back Squat', [{ weight: 110, reps: 5 }, { weight: 110, reps: 5 }]]]); });
     expect(screen.getByTestId('period-summary')).toBeTruthy();
+    expect(screen.getByLabelText('Podsumowanie')).toBeTruthy(); /* przełącznik Tydzień / Miesiąc: etykieta grupy dla VoiceOver (0.17) */
     expect(screen.getByLabelText('Treningi: 1, poprzednio 1')).toBeTruthy();
     expect(screen.getByLabelText('Serie robocze: 2, poprzednio 1')).toBeTruthy();
     expect(screen.getByLabelText(/^Czas treningów: 1:00:00, poprzednio 1:00:00$/)).toBeTruthy();

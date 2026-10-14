@@ -14,6 +14,7 @@ Toolbars, Action sheets, Toggles, Text fields, Feedback, Buttons, Undo and redo)
 5. **Powrót:** strzałka z napisem „Wróć”, jak dziś (ujednolicone tam, gdzie odstawało).
 6. Naprawić wszystkie niespójności N1–N28 w wydaniu 0.17 i dodać strażniki.
 7. (poza tą zmianą) generator dokładający ćwiczenia do celu — osobna zmiana po 0.17 (docs/21, backlog).
+8. **Przerwanie pomiaru serii (13.10.2026, wariant A):** pominięcie ćwiczenia pyta o potwierdzenie (`confirmSkipTimedSet`), zamiana ćwiczenia — zwykła i w oknie „Dostosuj do miejsca” — nie pyta. Zamierzona różnica: zamiana to celowy wybór innego ćwiczenia, pominięcie łatwo wybrać przypadkiem. Odrzucone B: pytanie także przy zamianie.
 
 ## Katalog wzorców
 

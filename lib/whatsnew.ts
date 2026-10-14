@@ -21,10 +21,16 @@ const genDays = () => { const all = Object.values(GEN_SESSIONS).flat(); return {
 export const LANGS_012 = ['pt-BR', 'es-419', 'id', 'ms', 'vi', 'ru', 'ja', 'ko', 'zh-Hant'] as const;
 
 export const WHATS_NEW: WhatsNewEntry[] = [
+  /* 0.18.0 (docs/33, docs/18 13.10.2026): „Dostosuj do miejsca” — okno z zamiennikami po zmianie miejsca na takie bez potrzebnego sprzętu; zmiany tylko w bieżącym treningu,
+   * szablon i plan bez zmian. Bez numeru buildu — dopisuje się po przebiegu testflight.yml. id '2026-10-16' (następny po 0.17), data 13.10.2026. */
+  { id: '2026-10-16', date: '2026-10-13', items: () => [
+    t('Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.'),
+    t('W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.'),
+  ] },
   /* 0.17.0 (docs/32, docs/18 13.10.2026): spójna obsługa (wzorce interakcji), „Napisz do nas”, (punkt o prośbie o ocenę usunięty 13.10.2026, decyzja właściciela A — w TestFlight okno się nie pokazuje; prośba aktywna: lib/review-run.ts — aktywna niezależnie od
    * PAYWALL.ENABLED; system pokazuje okno tylko w wersji z App Store, w TestFlight nie). Subskrypcja jest wyłączona przełącznikiem — bez wzmianki. Bez numeru buildu — dopisuje się po
-   * przebiegu testflight.yml. id '2026-10-15' (następny po 0.16), data 13.10.2026. */
-  { id: '2026-10-15', date: '2026-10-13', items: () => [
+   * przebiegu testflight.yml (dopisany: build 1014, TestFlight 38413965421, tag v0.17.0-b1014). id '2026-10-15' (następny po 0.16), data 13.10.2026. */
+  { id: '2026-10-15', build: 1014, date: '2026-10-13', items: () => [
     t('Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.'),
     t('Przycisk „Napisz do nas” w Więcej → O aplikacji.'),
   ] },

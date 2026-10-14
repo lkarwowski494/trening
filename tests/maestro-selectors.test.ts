@@ -236,3 +236,14 @@ test('TST2-05: figura ruchu ma E2E — w 17 rysunek (etykieta VoiceOver „Movem
   const iD = after.indexOf(`- assertVisible: "${drawing}"`); const iP = after.indexOf(`- tapOn: "${pause}"`); const iR = after.findIndex((l: string) => l.startsWith(`- extendedWaitUntil: { visible: "${resume}"`));
   expect([iD >= 0, iP > iD, iR > iP]).toEqual([true, true, true]);
 });
+
+test('22 (0.18): scenariusz „Dostosuj do miejsca” — angielskie literały zgodne ze słownikiem, kolejność: okno samo → „Cancel” bez zmian → wiersz pod chipem → „Apply (1)” → „instead of” → powrót z „Back to your plan”', () => {
+  const { EN } = require('@/lib/i18n.en'); const s = readFileSync(join(dir, '22-dostosuj-do-miejsca.yaml'), 'utf8').split('\n').filter((l: string) => l.startsWith('- '));
+  const at = (re: RegExp, from = 0) => { const i = s.findIndex((l: string, k: number) => k >= from && re.test(l)); expect(i).toBeGreaterThanOrEqual(from); return i; };
+  expect(EN['Dostosuj do: {l}'].replace('{l}', 'Hotel')).toBe('Adjust to: Hotel'); expect(EN['Zastosuj ({n})'].replace('{n}', '1')).toBe('Apply (1)'); expect(EN['Wraca z planu']).toBe('Back to your plan');
+  expect(EN['Ćwiczenia bez sprzętu']).toBe('Exercises without equipment'); expect(EN['Zamiany tylko w tym treningu — szablon i plan bez zmian.']).toBe('Swaps apply to this workout only — your template and plan stay as they are.');
+  expect(EN['{n} {w} · Dostosuj'].replace('{n}', '1').replace('{w}', EN['ćwiczenie bez sprzętu|ćwiczenia bez sprzętu|ćwiczeń bez sprzętu'].split('|')[0])).toBe('1 exercise without equipment · Adjust');
+  const auto = at(/visible: "Adjust to: Hotel"/); const cancel = at(/tapOn: "Cancel"/, auto); const line = at(/visible: "1 exercise without equipment · Adjust"/, cancel); const reopen = at(/tapOn: "1 exercise without equipment · Adjust"/, line);
+  const apply = at(/tapOn: "Apply /, reopen); const instead = at(/visible: "instead of: Bench Press/, apply); const back = at(/visible: "Adjust to: Full gym"/, instead); at(/assertVisible: "Back to your plan"/, back);
+  expect(s.slice(cancel + 1, line).some((l: string) => /Apply/.test(l))).toBe(false); /* „Cancel” niczego nie zastosował */
+});

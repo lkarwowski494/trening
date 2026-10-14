@@ -20,6 +20,7 @@ import * as units from '@/lib/units';
 import * as edit from '@/lib/edit';
 import * as locs from '@/lib/locations';
 import * as plan from '@/lib/plan';
+import * as adapt from '@/lib/adapt';
 import * as gen from '@/lib/generator';
 import * as draft from '@/lib/draft';
 import * as tplsync from '@/lib/tplsync';
@@ -76,7 +77,8 @@ const KINDS = {
   /* 09.10.2026 (decyzje właściciela, B): „Plan z moich szablonów” (zapis jako nowy / aktywny) i „+ Nowy szablon” z przypisaniem do dnia po „Zapisz” */
   ownPlan: 1, tplNewAssign: 1,
 } as const;
-type K = keyof typeof KINDS;
+/** 0.18 (docs/33): „Dostosuj do miejsca” — wybory z okna naraz; osobny przebieg (`adaptSeqArb`), żeby nie przesuwać ziarna głównego alfabetu */
+type K = keyof typeof KINDS | 'adaptActive';
 type Op = { o: number; a: number; b: number; v: number | '' };
 type Act = { t: K; a: number; b: number; c: number; v: number | ''; ops?: Op[] };
 
@@ -96,11 +98,15 @@ const actArb = arbOf(KINDS);
 const inSession = arbOf({ addEx: 4, rmEx: 1, addSet: 5, rmSet: 1, rmSetById: 1, type: 14, tick: 22, kind: 3, band: 3, link: 2, unlink: 1, moveBlock: 1,
   swap: 6, swapImpl: 4, undoSwap: 5, acceptAlt: 5, skipAlt: 1, setLoc: 3, timerRest: 1, timerSet: 1, rememberAlt: 4, rememberRest: 2,
   past: 1, edit: 1, delW: 1, tplRow: 1, tplAddRow: 1, setEquip: 1, setBandLevel: 1, delBand: 1, delEx: 1, equip: 1, unit: 1, reload: 1, roundtrip: 1, delLoc: 1,
-  pause: 3, skipEx: 2, draft: 1, deload: 1 });
+  pause: 3, skipEx: 2, draft: 1, deload: 1, adaptActive: 4 });
 const start = fc.record({ t: fc.constantFrom<K>('startTpl', 'startTpl', 'startTpl', 'startEmpty', 'repeat'), a: nat, b: nat, c: nat, v: fc.constant<number | ''>('') });
 const end = fc.record({ t: fc.constantFrom<K>('finish', 'finish', 'finish', 'cancel'), a: nat, b: nat, c: nat, v: fc.constant<number | ''>('') });
 /** Sesja: start (szablon / pusty / powtórz ostatni) → 3–25 działań w treningu → zakończenie albo anulowanie. */
 const session = fc.tuple(start, fc.array(inSession, { minLength: 3, maxLength: 25 }), end).map(([a, xs, z]) => [a, ...xs, z]);
+/** 0.18: sesje z oknem „Dostosuj do: X” (obok głównego alfabetu — `adaptActive` jest też w `inSession`; ten przebieg ma gęstsze okna) — zmiany miejsca (setLoc), zamiany i cofnięcia, odhaczanie i „Pomiń dziś” w jednym treningu, z miejscami na start. */
+const adaptSession = fc.tuple(start, fc.array(arbOf({ adaptActive: 10, setLoc: 8, swap: 3, swapImpl: 2, undoSwap: 3, acceptAlt: 2, tick: 8, type: 5, addSet: 2, addEx: 2, skipEx: 2, moveBlock: 1,
+  link: 2, unlink: 1, reload: 1, rememberAlt: 1, deload: 1 }), { minLength: 4, maxLength: 25 }), end).map(([a, xs, z]) => [a, ...xs, z]);
+const adaptSeqArb = fc.array(adaptSession, { minLength: 1, maxLength: 4 });
 const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) }, { weight: 2, arbitrary: session }), { minLength: 6, maxLength: 30 });
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
@@ -123,6 +129,27 @@ const ran: Record<string, number> = {};
 const hit = (k: string) => { ran[k] = (ran[k] ?? 0) + 1; };
 function fail(where: string, msg: string, data?: unknown): never { throw new Error(`${where}: ${msg}${data !== undefined ? '\n' + J(data) : ''}`); }
 const ok = (c: unknown, where: string, msg: string, data?: unknown) => { if (!c) fail(where, msg, data); };
+
+/** Wyrocznia akcji `gen` (zastąpienie, UX2-08): szablony, które PRZED zapisem były w użyciu, a PO nim ich nie ma — poza dozwolonym wyjątkiem.
+ * W użyciu = trening w historii, trening w toku, zapisany plan, który PO zapisie nadal istnieje (zapisane plany złożone z samych nieużywanych wygenerowanych
+ * szablonów zastąpienie usuwa razem z nimi), oraz AKTYWNY plan tygodnia (dni i zmiany dni). Wyjątek (UX2-08): szablon wygenerowanego folderu trzymany
+ * WYŁĄCZNIE przez dawny aktywny plan, gdy ten plan zastąpił nowy z zapisu (po zapisie `weekPlan` wskazuje tylko szablony z `res`) — „aktywny plan zrobiony
+ * z samych nieużywanych wygenerowanych szablonów jest do zastąpienia”. Usunięcie szablonu używanego przez INNY plan, historię albo trening w toku
+ * oraz szablonu spoza folderu wygenerowanych nadal jest błędem. */
+export type GenSnap = { templates: { id: string; folder?: string }[]; used: string[]; saved: { id: string; refs: string[] }[]; active: string[] };
+export function genSnap(st: { templates: { id: string; folder?: string }[]; workouts: { templateId?: string | null }[]; active?: { templateId?: string | null } | null;
+  weekPlan?: { days: (string | null)[] } | null; planOverrides?: Record<string, string | null> | null; savedPlans?: { id: string; days: (string | null)[]; overrides?: Record<string, string | null> }[] }): GenSnap {
+  const live = new Set(st.templates.map(t => t.id)); const f = (xs: unknown[]) => xs.filter((id): id is string => typeof id === 'string' && live.has(id));
+  return { templates: st.templates.map(t => ({ id: t.id, folder: t.folder })), used: f([...st.workouts.map(w => w.templateId), st.active?.templateId]),
+    saved: (st.savedPlans ?? []).map(p => ({ id: p.id, refs: f([...p.days, ...Object.values(p.overrides ?? {})]) })), active: f([...(st.weekPlan?.days ?? []), ...Object.values(st.planOverrides ?? {})]) };
+}
+export function genLostRefs(before: GenSnap, after: GenSnap & { weekDays: (string | null)[] }, replace: boolean, newIds: string[], folders: Set<string>): string[] {
+  const have = new Set(after.templates.map(t => t.id)); const folderOf = new Map(before.templates.map(t => [t.id, t.folder]));
+  const alive = new Set(after.saved.map(p => p.id)); const strong = new Set([...before.used, ...before.saved.filter(p => alive.has(p.id)).flatMap(p => p.refs)]);
+  const wd = after.weekDays.filter((d): d is string => !!d); const replacedActive = replace && wd.length > 0 && wd.every(d => newIds.includes(d));
+  return [...new Set([...strong, ...before.active])].filter(id => !have.has(id)
+    && !(!strong.has(id) && replacedActive && (folders.has(folderOf.get(id) ?? '') || false)));
+}
 const working = (s: WSet) => s.done && s.kind !== 'warmup';
 /** D3 (audyt 0.10): seria robocza — drop zaraz po serii roboczej to ta sama seria (niezależna wyrocznia dla store.workSetCount). */
 const workN = (sets: WSet[]) => { let n = 0, prev = false; for (const s of sets.filter(working)) { if (!(s.kind === 'drop' && prev)) n++; prev = true; } return n; };
@@ -196,9 +223,10 @@ async function step(x: Act, m: Model, where: string) {
     case 'gen': { /* app/generator.tsx: zapis; zastąpienie usuwa tylko nieużywane wygenerowane szablony i plany zrobione tylko z nich */
       const goal = gen.GOALS[x.a % gen.GOALS.length]; const ss = gen.GEN_SESSIONS[goal]; /* także cel „Ogólny” z przełącznikiem cardio (09.10.2026) */
       const inp = { goal, locationId: x.b % 4 === 0 ? null : pick(st.settings.locations, x.b)?.id ?? null, sessions: ss[x.b % ss.length], minutes: gen.GEN_MINUTES[x.c % gen.GEN_MINUTES.length], cardio: x.c % 2 === 1 };
-      const live = new Set(st.templates.map(t => t.id)); const refs = [...st.workouts.map(w => w.templateId), st.active?.templateId, ...(st.weekPlan?.days ?? []), ...Object.values(st.planOverrides ?? {})].filter((id): id is string => !!id && live.has(id));
-      const res = gen.saveGenerated(gen.generate(inp), inp, x.c % 2 === 0, x.c % 3 === 0); const ids = new Set(S().templates.map(t => t.id));
-      ok(refs.every(id => ids.has(id)), where, 'zastąpienie usunęło szablon w użyciu', refs.filter(id => !ids.has(id)));
+      const snap = genSnap(st); const replace = x.c % 3 === 0; const folders = gen.genFolders();
+      const res = gen.saveGenerated(gen.generate(inp), inp, x.c % 2 === 0, replace);
+      const lost = genLostRefs(snap, { ...genSnap(S()), weekDays: S().weekPlan?.days ?? [] }, replace, res.templateIds, folders);
+      ok(!lost.length, where, 'zastąpienie usunęło szablon w użyciu', lost);
       ok(res.templateIds.every(id => (S().templates.find(t => t.id === id)?.items.length ?? 0) > 0), where, 'pusty szablon z generatora');
       const days = x.c % 2 === 0 ? S().weekPlan?.days ?? [] : S().savedPlans?.find(p => p.id === res.planId)?.days ?? [];
       ok(days.length === 7 && days.every(d => !d || res.templateIds.includes(d)), where, 'plan z generatora wskazuje nie swoje szablony', days);
@@ -264,6 +292,15 @@ async function step(x: Act, m: Model, where: string) {
       hit(P ? 'undoMerge' : 'undoSwap'); } } break;
     case 'acceptAlt': if (act) { const e = pick(act.exercises.filter(b => store.altHint(act, b)), x.b); if (e) { const r = store.acceptAlt(e.id); afterSwap(where, setsBefore, r); if (r) hit('acceptAlt'); } } break;
     case 'skipAlt': if (act && blk) store.skipAlt(blk.id); break;
+    case 'adaptActive': if (act && act.locationId) { /* okno „Dostosuj do: X”: domyślne propozycje (część odznaczona), „Pomiń dziś” dla wierszy bez zamiennika, „Wraca z planu” */
+      const L = act.locationId; const rows = adapt.adaptCandidates(act, L); const back = adapt.restoreCandidates(act, L);
+      const chs: adapt.AdaptChoice[] = [...rows.flatMap((r, i) => r.choice ? (x.b % 2 === 0 || (x.b >> i) & 1 ? [r.choice] : []) : x.c % 3 === 0 ? [{ kind: 'skip' as const, blockId: r.blockId }] : []),
+        ...back.filter((_, i) => x.c % 2 === 0 || (x.c >> i) & 1).map(r => r.choice)];
+      if (chs.length) { const r = store.adaptActive(chs); ok(!!r, where, 'adaptActive odrzucone mimo propozycji z adaptCandidates / restoreCandidates', chs); afterSwap(where, setsBefore, r);
+        if (r) { dropTimers(r.skippedSetIds); othersSame(); ok(r.swapped + r.restored + r.skipped === chs.length, where, 'adaptActive: liczba zastosowanych wyborów');
+          const still = new Set(adapt.adaptCandidates(act, L).map(z => z.blockId)); ok(chs.every(c => c.kind === 'skip' || !still.has(c.blockId)), where, 'zamieniony blok wciąż na liście do dostosowania');
+          ok(chs.every(c => c.kind !== 'restore' || !adapt.restoreCandidates(act, L).some(z => z.blockId === c.blockId)), where, 'przywrócony blok wciąż na liście „Wraca z planu”');
+          implFresh(where); hit('adaptActive'); } } } break;
     case 'setLoc': if (act && loc) { const prev = act.locationId; store.setActiveLocation(loc.id); if (prev !== loc.id) { implFresh(where); hit('setLoc'); } } break;
     case 'timerRest': if (act && blk) { const s = pick(blk.sets, x.b)!; store.setTimerState({ restEndAt: Date.now() + 60e3, restTotal: 60, restSetId: s.id }); } break;
     case 'timerSet': if (act && blk) { const s = pick(blk.sets, x.b)!; if (!s.done) store.setTimerState({ setStartAt: Date.now(), setTarget: x.c % 2 ? 30 : 0, setId: s.id }); } break;
@@ -667,7 +704,56 @@ describe('macierz niezmienników — losowe sekwencje działań na prawdziwym AP
   });
 });
 
+describe('macierz niezmienników — dostosowanie do miejsca (0.18, adaptActive)', () => {
+  afterAll(() => { units.applyUnit('kg'); });
+  test('okno „Dostosuj do: X” w losowych sesjach: zmiana tylko w treningu w toku (szablony bez zmian), zegary, przyrządy, lista po zastosowaniu pusta', async () => {
+    await fc.assert(fc.asyncProperty(adaptSeqArb, fc.constantFrom(2, 3), async (seq, locStart) => {
+      try { await runSeq(seq.flat(), locStart); } finally { units.applyUnit('kg'); edit.__resetDrafts(); }
+    }), { numRuns: Math.max(10, Math.floor(RUNS / 2)), seed: SEED });
+    if (RUNS >= 50 && !process.env.MATRIX_SEED) expect(['adaptActive', (ran.adaptActive ?? 0) > 0]).toEqual(['adaptActive', true]);
+  });
+});
+
 /* ---------- znaleziska (deterministyczne, minimalne) ---------- */
+describe('wyrocznia akcji gen (UX2-08): zastąpienie aktywnego planu z wygenerowanych szablonów nie jest „usunięciem szablonu w użyciu”', () => {
+  /* Znalezisko z etapu 1 (0.18): wyrocznia liczyła szablony starego AKTYWNEGO planu jako „w użyciu”, a saveGenerated(…, replace) usuwa je z założenia
+   * (replaceable → activePlan, UX2-08: aktywny plan z samych nieużywanych wygenerowanych szablonów jest do zastąpienia; nowy plan zajmuje jego miejsce).
+   * To był błąd wyroczni, nie produktu — kod ma test UX2-08 (tests/ux2-08-gen-replace-active.test.tsx). Wyrocznia dalej łapie usunięcie szablonu
+   * używanego przez INNY plan, historię albo trening w toku, oraz szablonu spoza folderu wygenerowanych. */
+  const FOLDERS = new Set(['Wygenerowane', 'Generated']);
+  const tpl = (id: string, folder?: string) => ({ id, folder });
+  const base = (o: Partial<Parameters<typeof genSnap>[0]> = {}) => genSnap({ templates: [tpl('a', 'Wygenerowane'), tpl('b', 'Wygenerowane'), tpl('c')], workouts: [], active: null, weekPlan: { days: ['a', null, 'b', null, null, null, null] }, ...o });
+  const after = (st: Parameters<typeof genSnap>[0]) => ({ ...genSnap(st), weekDays: st.weekPlan?.days ?? [] });
+  test('dawny aktywny plan z wygenerowanych szablonów zastąpiony nowym planem — brak straty (kontrprzykład z logu)', () => {
+    const before = base(); const a = after({ templates: [tpl('n1', 'Wygenerowane'), tpl('n2', 'Wygenerowane'), tpl('c')], workouts: [], weekPlan: { days: ['n1', null, 'n2', null, null, null, null] } });
+    expect(genLostRefs(before, a, true, ['n1', 'n2'], FOLDERS)).toEqual([]);
+  });
+  test('bez zastąpienia (replace = false) usunięcie szablonu aktywnego planu jest błędem', () => {
+    const a = after({ templates: [tpl('b', 'Wygenerowane'), tpl('c'), tpl('n1', 'Wygenerowane')], workouts: [], weekPlan: { days: ['n1', null, null, null, null, null, null] } });
+    expect(genLostRefs(base(), a, false, ['n1'], FOLDERS)).toEqual(['a']); /* 'b' przetrwał */
+  });
+  test('zastąpienie, ale nowy plan nie zajął miejsca aktywnego (weekPlan wskazuje nie swoje szablony) — błąd', () => {
+    const a = after({ templates: [tpl('c'), tpl('n1', 'Wygenerowane')], workouts: [], weekPlan: { days: ['c', null, null, null, null, null, null] } });
+    expect(genLostRefs(base(), a, true, ['n1'], FOLDERS).sort()).toEqual(['a', 'b']);
+  });
+  test('szablon aktywnego planu spoza folderu wygenerowanych usunięty przy zastąpieniu — błąd', () => {
+    const before = base({ templates: [tpl('a'), tpl('b', 'Wygenerowane')], weekPlan: { days: ['a', null, 'b', null, null, null, null] } });
+    const a = after({ templates: [tpl('b', 'Wygenerowane'), tpl('n1', 'Wygenerowane')], workouts: [], weekPlan: { days: ['n1', null, null, null, null, null, null] } });
+    expect(genLostRefs(before, a, true, ['n1'], FOLDERS)).toEqual(['a']);
+  });
+  test('szablon użyty w historii, w treningu w toku albo w ZAPISANYM planie, który przetrwał — usunięcie jest błędem także przy zastąpieniu', () => {
+    const st = { templates: [tpl('a', 'Wygenerowane'), tpl('h', 'Wygenerowane'), tpl('t', 'Wygenerowane'), tpl('s', 'Wygenerowane')], workouts: [{ templateId: 'h' }], active: { templateId: 't' }, weekPlan: { days: ['a', null, null, null, null, null, null] }, savedPlans: [{ id: 'p1', days: ['s', null, null, null, null, null, null] }, { id: 'p2', days: ['a', null, null, null, null, null, null] }] };
+    const before = genSnap(st); const a = after({ templates: [tpl('n1', 'Wygenerowane')], workouts: [{ templateId: 'h' }], active: { templateId: 't' }, weekPlan: { days: ['n1', null, null, null, null, null, null] }, savedPlans: [{ id: 'p1', days: ['s', null, null, null, null, null, null] }] });
+    expect(genLostRefs(before, a, true, ['n1'], FOLDERS).sort()).toEqual(['h', 's', 't']); /* 'a' i zapisany plan p2 zniknęły razem — dozwolone */
+  });
+  test('wyrocznia na kodzie: wygeneruj → aktywuj → wygeneruj ze zastąpieniem (UX2-08) nie zgłasza straty', async () => {
+    await fresh(); const inp = { goal: gen.GOALS[0], locationId: null, sessions: gen.GEN_SESSIONS[gen.GOALS[0]][0], minutes: gen.GEN_MINUTES[0], cardio: false };
+    gen.saveGenerated(gen.generate(inp), inp, true, false); const snap = genSnap(S()); expect(snap.active.length).toBeGreaterThan(0);
+    const res = gen.saveGenerated(gen.generate(inp), inp, true, true); expect(S().templates.some(t => snap.active.includes(t.id))).toBe(false); /* stare szablony aktywnego planu usunięte (UX2-08) */
+    expect(genLostRefs(snap, { ...genSnap(S()), weekDays: S().weekPlan?.days ?? [] }, true, res.templateIds, gen.genFolders())).toEqual([]);
+  });
+});
+
 describe('macierz niezmienników — znaleziska', () => {
   /* Minimalny kontrprzykład z sekwencji: delEx (ćwiczenie z historią → archiwum) → restoreEx. „Przywróć” w UI ustawia `e.archived = false`
    * (app/exercises.tsx:24, app/picker.tsx:58, app/swap.tsx:76), a migrate usuwa każde archived ≠ true (lib/store.ts:246). Skutek: stan w pamięci

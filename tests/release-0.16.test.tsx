@@ -19,7 +19,7 @@ const PL = [
 describe('wydanie 0.16.0', () => {
   test('app.json, package.json i package-lock.json (projekt) — wersja bieżąca (od 0.17: release-0.17.test.tsx), 0.16.0 było wydane', () => {
     const lock = J('package-lock.json');
-    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.17.0', '0.17.0', '0.17.0', '0.17.0']);
+    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.18.0', '0.18.0', '0.18.0', '0.18.0']);
   });
   test('wpis 0.16 (id 2026-10-14, historyczny; bieżący 0.17: release-0.17.test.tsx), data 2026-10-13, build 1013 (TestFlight 38374133953); pod nim 0.15 (2026-10-13, build 1012)', () => {
     const cur = E(); const prev = WHATS_NEW[WHATS_NEW.indexOf(cur) + 1];

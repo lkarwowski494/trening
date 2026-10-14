@@ -533,5 +533,7 @@
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Leitura do Apple Health (ative em Ajustes): passos e outras atividades no painel do dia, média de passos em “Esta semana” e frequência cardíaca e kcal do relógio no treino.",
  "Generator uwzględnia Twój cel serii z Ustawień.": "O gerador considera a sua meta de séries de Ajustes.",
  "Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.": "Uso mais consistente em todo o app: janelas com “Cancelar” à esquerda, “+” nos cabeçalhos das listas para adicionar, e mensagens e descrições do VoiceOver mais claras.",
- "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Botão “Escreva para nós” em Mais → Sobre o app."
+ "Przycisk „Napisz do nas” w Więcej → O aplikacji.": "Botão “Escreva para nós” em Mais → Sobre o app.",
+ "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Adaptar ao local: ao mudar para um local sem o equipamento necessário, o app sugere exercícios substitutos para você revisar — as alterações valem só para este treino.",
+ "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Na janela você pode trocar o substituto ou escolher “Sem alterações” ou “Pular hoje”; uma troca aplicada pode ser desfeita no exercício."
 }

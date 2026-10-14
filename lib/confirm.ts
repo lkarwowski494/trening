@@ -20,3 +20,8 @@ export const okButton = (): CancelBtn => ({ text: t('OK'), style: 'cancel' });
 export function confirm({ title, message, action, destructive, onConfirm, onCancel }: { title: string; message?: string; action: string; destructive?: boolean; onConfirm: () => void; onCancel?: () => void }) {
   Alert.alert(title, message, [cancelButton(onCancel), { text: action, ...(destructive ? { style: 'destructive' as const } : {}), onPress: onConfirm }]);
 }
+
+/** Pytanie „Trwa pomiar serii” przed pominięciem bloku z trwającym stoperem serii (jedno miejsce: „Pomiń dziś” w bloku i „Zastosuj” w oknie „Dostosuj do miejsca” — docs/32). */
+export function confirmSkipTimedSet(onConfirm: () => void) {
+  confirm({ title: t('Trwa pomiar serii'), message: t('Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.'), action: t('Pomiń dziś'), destructive: true, onConfirm });
+}

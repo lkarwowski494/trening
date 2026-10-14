@@ -77,21 +77,16 @@ jobs:
         env:
           ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
         run: umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
-      - name: Archiwum (podpis automatyczny kluczem API)
-        env:
-          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
-          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      - name: Archiwum (bez podpisu — podpis dystrybucyjny dopiero przy eksporcie, 13.10.2026)
+        # Świeży runner nie ma klucza prywatnego poprzedniego certyfikatu Apple Development, więc archiwum z podpisem automatycznym
+        # tworzyło nowy certyfikat przy każdym przebiegu (limit -> build 1011). Certyfikat dystrybucyjny jest jeden na zespół (cloud-managed).
         run: |
           set -o pipefail
-          # przegląd CI 06.10: identyfikatory klucza poza środowiskiem xcodebuild (surowe logi idą do artefaktu, a tam GitHub nie maskuje)
-          KID="$ASC_KEY_ID"; ISS="$ASC_ISSUER_ID"; unset ASC_KEY_ID ASC_ISSUER_ID
           TEAM=$(node -p "require('./app.json').expo.ios.appleTeamId")
           cd ios
           xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release -destination 'generic/platform=iOS' \
             -archivePath "$RUNNER_TEMP/Trening.xcarchive" archive \
-            -allowProvisioningUpdates -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
-            -authenticationKeyID "$KID" -authenticationKeyIssuerID "$ISS" \
-            CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM="$TEAM" CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO DEVELOPMENT_TEAM="$TEAM" CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
             2>&1 | tee xcodebuild.log | xcbeautify
       - name: Eksport i wysyłka do App Store Connect
         env:

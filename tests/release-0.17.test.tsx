@@ -1,7 +1,7 @@
 /**
  * Wydanie 0.17.0 (docs/32, docs/18): spójna obsługa w całej aplikacji (okna z „Anuluj” po lewej, „+” w nagłówkach list, komunikaty, VoiceOver), „Napisz do nas”
- * w Więcej → O aplikacji (punkt o prośbie o ocenę usunięty 13.10.2026, decyzja A). Wersja projektu i bieżący wpis „Co nowego” (id '2026-10-15', data 13.10.2026, bez numeru buildu
- * do czasu wydania na TestFlight; numer dopisuje się po przebiegu). Wpis 0.16 (build 1013) jest historyczny (release-0.16.test.tsx). Subskrypcja jest wyłączona
+ * w Więcej → O aplikacji (punkt o prośbie o ocenę usunięty 13.10.2026, decyzja A). Wpis „Co nowego” (id '2026-10-15', data 13.10.2026, bez numeru buildu
+ * do czasu wydania na TestFlight; numer dopisuje się po przebiegu). Wpis 0.17 jest historyczny od 0.18 (build 1014 — TestFlight 38413965421, tag v0.17.0-b1014; bieżący: release-0.18.test.tsx); wpis 0.16 (build 1013) — release-0.16.test.tsx. Subskrypcja jest wyłączona
  * przełącznikiem PAYWALL.ENABLED — wpis o niej nie wspomina (test niżej pilnuje obu rzeczy).
  */
 import { WHATS_NEW } from '@/lib/whatsnew';
@@ -18,15 +18,14 @@ const PL = [
 ];
 
 describe('wydanie 0.17.0', () => {
-  test('app.json, package.json i package-lock.json (projekt) — 0.17.0', () => {
+  test('app.json, package.json i package-lock.json (projekt) — wersja bieżąca (od 0.18: release-0.18.test.tsx), 0.17.0 było wydane', () => {
     const lock = J('package-lock.json');
-    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.17.0', '0.17.0', '0.17.0', '0.17.0']);
+    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.18.0', '0.18.0', '0.18.0', '0.18.0']);
   });
-  test('najnowszy wpis = 0.17 (id 2026-10-15, data 2026-10-13); jeśli ma build, to nowszy niż 1013; pod nim 0.16 (2026-10-14, build 1013)', () => {
-    expect(WHATS_NEW[0]).toBe(E());
+  test('wpis 0.17 (id 2026-10-15, historyczny; bieżący 0.18), data 2026-10-13, build 1014 (TestFlight 38413965421); pod nim 0.16 (2026-10-14, build 1013)', () => {
     const cur = E(); const prev = WHATS_NEW[WHATS_NEW.indexOf(cur) + 1];
     expect([cur.id, cur.date, prev.id]).toEqual(['2026-10-15', '2026-10-13', '2026-10-14']);
-    expect(cur.build === undefined || cur.build > 1013).toBe(true);
+    expect(cur.build).toBe(1014);
     expect(prev.build).toBe(1013);
   });
   test('wpis 0.17 po polsku: spójna obsługa, „Napisz do nas”, 2 punkty (punkt o prośbie o ocenę usunięty 13.10 — decyzja A: w TestFlight okno się nie pokazuje), każdy kończy się kropką', () => {

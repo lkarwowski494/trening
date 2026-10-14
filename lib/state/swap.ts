@@ -13,6 +13,7 @@ import { normalizeGroups } from './groups';
 import { rowsFor } from './templates';
 import { purgeOrphans } from './exercises';
 import { prefillSets } from './start';
+import type { AdaptChoice } from '../adapt';
 
 /* ---------- E2: zamiana ćwiczenia w treningu w toku (docs/14 pkt 3) ---------- */
 /** Pozycja szablonu, z której powstał blok (gdy trening ma szablon, a pozycja wciąż istnieje). */
@@ -37,7 +38,12 @@ function splitDeload(A: WExercise, B: WExercise, left: WSet[]) {
  */
 export function swapBlock(blockId: string, toExId: string, opts: { restSec?: number | null; impl?: Impl } = {}): { goneSetIds: string[];
     blockId: string } | null {
-  const a = getState().active; const ei = a ? a.exercises.findIndex(x => x.id === blockId) : -1; if (!a || ei < 0) return null;
+  const a = getState().active; const r = a ? swapBlockIn(a, blockId, toExId, opts) : null; if (a && r) saveSwapped(a); return r;
+}
+/** Rdzeń swapBlock bez zapisu — zmienia tylko `a` w pamięci (0.18: adaptActive składa kilka zamian w jeden zapis). */
+function swapBlockIn(a: Workout, blockId: string, toExId: string, opts: { restSec?: number | null; impl?: Impl }): { goneSetIds: string[];
+    blockId: string } | null {
+  const ei = a.exercises.findIndex(x => x.id === blockId); if (ei < 0) return null;
   const A = a.exercises[ei]; const B = exById(toExId); if (!B || B.archived || B.id === A.exerciseId) return null;
   const left = A.sets.filter(x => !x.done); if (!left.length) return null;
   const orig = A.swappedFrom ?? A.exerciseId; const it = tplItemOf(a, A);
@@ -60,7 +66,7 @@ export function swapBlock(blockId: string, toExId: string, opts: { restSec?: num
   } /* W3 P5a: przyrząd z zamiennika per miejsce */
   if (typeof opts.restSec === 'number' && opts.restSec >= 0) blk.restSec = Math.min(1800, Math.round(opts.restSec));
   blk.sets = prefillSets(B, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, blk.impl, it?.targetSec ?? '', '', 0, !!blk.implPinned);
-  saveSwapped(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
+  return { goneSetIds: left.map(x => x.id), blockId: blk.id };
 }
 /**
  * E2 D5 (docs/14 pkt 3.7): „ten sam ruch, inny przyrząd” — to samo ćwiczenie, przyrząd `impl` wybrany ręcznie (implPinned), bez swappedFrom.
@@ -69,7 +75,11 @@ export function swapBlock(blockId: string, toExId: string, opts: { restSec?: num
  * Przyrząd musi być w miejscu treningu (implsAt) i różny od bieżącego; wszystkie serie odhaczone — nic.
  */
 export function swapImpl(blockId: string, impl: Impl): { goneSetIds: string[]; blockId: string } | null {
-  const a = getState().active; const ei = a ? a.exercises.findIndex(x => x.id === blockId) : -1; if (!a || ei < 0) return null;
+  const a = getState().active; const r = a ? swapImplIn(a, blockId, impl) : null; if (a && r) save(a); return r;
+}
+/** Rdzeń swapImpl bez zapisu (0.18). */
+function swapImplIn(a: Workout, blockId: string, impl: Impl): { goneSetIds: string[]; blockId: string } | null {
+  const ei = a.exercises.findIndex(x => x.id === blockId); if (ei < 0) return null;
   const A = a.exercises[ei]; const ex = exById(A.exerciseId); const loc = locationById(a.locationId);
   if (!ex || !loc || impl === A.impl || !implsAt(ex, loc).includes(impl)) return null;
   const left = A.sets.filter(x => !x.done); if (!left.length) return null; const it = tplItemOf(a, A);
@@ -85,7 +95,7 @@ export function swapImpl(blockId: string, impl: Impl): { goneSetIds: string[]; b
   const own = it && it.exerciseId === ex.id && !blk.swappedFrom ? it : undefined;
   blk.sets = prefillSets(ex, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, impl, it?.targetSec ?? '', blk === A ? own?.startWeight ?? '' : '',
       0 /* numeracja jak „Poprzednio” na ekranie (hintFor — od początku bloku) */, true, blk === A ? rowsFor(own, left.map(x => x.kind)) : undefined);
-  save(a); return { goneSetIds: left.map(x => x.id), blockId: blk.id };
+  return { goneSetIds: left.map(x => x.id), blockId: blk.id };
 }
 /** „↺ cofnij zamianę” (pkt 3.4): blok-zamiennik bez odhaczonych serii, a oryginał wciąż istnieje (nieusunięty). */
 export const canUndoSwap = (e: WExercise) => {
@@ -95,7 +105,11 @@ export const canUndoSwap = (e: WExercise) => {
 /** Cofnięcie zamiany (pkt 3.4). Po podziale (blok A wciąż w treningu) serie B wracają na koniec A jako nowe serie A (numeracja serii roboczych dalej
  * od odhaczonych), B znika. Inaczej — w miejscu: wraca oryginał z wartościami jak przy starcie (przerwa pozycji szablonu, gdy blok z niej powstał). */
 export function undoSwap(blockId: string): { goneSetIds: string[] } | null {
-  const a = getState().active; const ei = a ? a.exercises.findIndex(x => x.id === blockId) : -1; if (!a || ei < 0) return null;
+  const a = getState().active; const r = a ? undoSwapIn(a, blockId) : null; if (a && r) saveSwapped(a); return r;
+}
+/** Rdzeń undoSwap bez zapisu (0.18). */
+function undoSwapIn(a: Workout, blockId: string): { goneSetIds: string[] } | null {
+  const ei = a.exercises.findIndex(x => x.id === blockId); if (ei < 0) return null;
   const B = a.exercises[ei]; if (!canUndoSwap(B)) return null;
   const gone = B.sets.map(x => x.id); const kinds = B.sets.map(x => x.kind);
   /* audyt L1: scalenie z blokiem podziału tylko, gdy to oryginał (A) — po A→B w miejscu i B→C z podziałem C wraca do A, jak obiecuje „zamiast: A” */
@@ -112,7 +126,7 @@ export function undoSwap(blockId: string): { goneSetIds: string[] } | null {
     if (own) B.restSec = typeof own.restSec === 'number' && own.restSec >= 0 ? own.restSec : restFor(A);
     B.sets = prefillSets(A, kinds, prevOfActiveBlock(a, B), a.locationId, B.impl, own?.targetSec ?? '', own?.startWeight ?? '', 0, false, rowsFor(own, kinds));
   }
-  saveSwapped(a); return { goneSetIds: gone };
+  return { goneSetIds: gone };
 }
 /** TST2-03 (audyt kontrolny 1, wariant A): po zamianie albo jej cofnięciu ćwiczenie usunięte w trakcie treningu (archiwum) bez ostatniego odwołania
  * znika od razu — jak removeExercise i jak migrate przy starcie (stan w pamięci = migrate(stan)). */
@@ -183,10 +197,14 @@ export function acceptAlt(blockId: string): { goneSetIds: string[]; blockId: str
  * Timery serii bloku zatrzymuje ekran (jak przy usunięciu ćwiczenia — store nie zależy od lib/timer). */
 export function skipExercise(blockId: string) {
   const w = getState().active;
-  const e = w?.exercises.find(x => x.id === blockId);
-  if (!w || !e) return;
+  if (w && skipIn(w, blockId)) save(w);
+}
+/** Rdzeń skipExercise bez zapisu (0.18). */
+function skipIn(w: Workout, blockId: string): boolean {
+  const e = w.exercises.find(x => x.id === blockId);
+  if (!e) return false;
   e.skipped = true;
-  save(w);
+  return true;
 }
 export function unskipExercise(blockId: string) {
   const w = getState().active;
@@ -194,6 +212,31 @@ export function unskipExercise(blockId: string) {
   if (!w || !e) return;
   delete e.skipped;
   save(w);
+}
+/**
+ * 0.18 „Dostosuj do miejsca” (docs/33): wszystkie wybory z okna naraz — w pamięci kolejno swapBlock / swapImpl / undoSwap / skipExercise,
+ * potem JEDEN zapis (restart w trakcie = nic nie zastosowano; w pamięci zmiana jest wszystko albo nic). Szablony i plan nie są dotykane
+ * (zamiany tylko w tym treningu). Blok bez wyboru zostaje bez zmian. Wybór nieprawidłowy (brak bloku, brak aktywnego treningu, ten sam blok dwa razy,
+ * odrzucona zamiana) cofa całość i zwraca null — nic się nie zmienia.
+ * Zwraca: `goneSetIds` — serie, które zniknęły z treningu (ekran: afterSwap zatrzymuje ich stopery); `skippedSetIds` — nieodhaczone serie
+ * pominiętych bloków (stoper serii; jak „Pomiń dziś”); `swapped`/`restored`/`skipped` — liczby do komunikatu „Zamieniono N ćwiczeń”.
+ * Po wywołaniu ekran woła afterSwap([...goneSetIds, ...skippedSetIds]) (relabelRest).
+ */
+export function adaptActive(choices: readonly AdaptChoice[]): { goneSetIds: string[]; skippedSetIds: string[]; swapped: number; restored: number;
+    skipped: number } | null {
+  const a = getState().active; if (!a || !choices.length) return null;
+  const ids = choices.map(c => c.blockId); if (new Set(ids).size !== ids.length) return null;
+  const before = JSON.parse(JSON.stringify(a.exercises)) as Workout['exercises'];
+  const out = { goneSetIds: [] as string[], skippedSetIds: [] as string[], swapped: 0, restored: 0, skipped: 0 };
+  for (const c of choices) {
+    const blk = a.exercises.find(x => x.id === c.blockId); let ok = !!blk;
+    if (blk && c.kind === 'swap') { const r = swapBlockIn(a, c.blockId, c.toExId, { restSec: c.restSec, impl: c.impl }); ok = !!r; if (r) { out.goneSetIds.push(...r.goneSetIds); out.swapped++; } }
+    else if (blk && c.kind === 'impl') { const r = swapImplIn(a, c.blockId, c.impl); ok = !!r; if (r) { out.goneSetIds.push(...r.goneSetIds); out.swapped++; } }
+    else if (blk && c.kind === 'restore') { const r = undoSwapIn(a, c.blockId); ok = !!r; if (r) { out.goneSetIds.push(...r.goneSetIds); out.restored++; } }
+    else if (blk && c.kind === 'skip') { const ids = blk.sets.filter(x => !x.done).map(x => x.id); ok = !blk.skipped && skipIn(a, c.blockId); if (ok) { out.skippedSetIds.push(...ids); out.skipped++; } }
+    if (!ok) { a.exercises = before; return null; } /* wszystko albo nic */
+  }
+  saveSwapped(a); return out;
 }
 /** „✕” przy podpowiedzi: tylko ten blok, tylko ten trening (M4). */
 export function skipAlt(blockId: string) {

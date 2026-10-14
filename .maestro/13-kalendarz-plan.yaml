@@ -71,6 +71,7 @@ name: Kalendarz z planem tygodnia
 - tapOn: "Move or skip"
 - extendedWaitUntil: { visible: "Days changed: .*", timeout: 15000 }
 - takeScreenshot: 64-propozycje
+- scrollUntilVisible: { element: "Apply: Move plan by 1 day", direction: DOWN, timeout: 30000, centerElement: true }  # 13.10.2026: w niedzielę/poniedziałek lista przesunięć dłuższa — przycisk pod krawędzią
 - tapOn: "Apply: Move plan by 1 day"
 - extendedWaitUntil: { visible: "Rest · plan changed", timeout: 15000 }
 - tapOn: "More options"

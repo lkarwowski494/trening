@@ -10,6 +10,7 @@ import { availability, capsOf, missingLabel } from '@/lib/equipment';
 import { draftOf, useDraftTick, draftSwapExercise, canRestoreExercise, draftRestoreExercise, draftImplChoices, draftSetImpl, swapTargetOk } from '@/lib/edit';
 import { swapCandidates, reasonText, otherImpls, implLabel, parseSwapTarget, SWAP_TOP, SWAP_PAGE, sortOthers } from '@/lib/swap';
 import { afterSwap, confirmUndoSwap } from '@/components/ActiveWorkout';
+import { emitAdaptPick } from '@/lib/adaptPick';
 import { t, exName, locale, fold, lang } from '@/lib/i18n';
 import type { Exercise, Impl, WExercise } from '@/lib/seed';
 
@@ -19,7 +20,9 @@ import type { Exercise, Impl, WExercise } from '@/lib/seed';
  *    „↺ cofnij zamianę: A”, „Cała biblioteka” → picker z celem swap:;
  *  - edytor historii (D6, H1): ten sam arkusz w szkicu — ranking z miejscem szkicu i licznikami sprzed daty treningu, przepięcie całego bloku
  *    (P3 a), poprawka samego przyrządu (P5b a), „↺ przywróć” ćwiczenia z otwarcia szkicu (H8).
- * Okno jak picker: „Zamknij” w nagłówku, blokada podwójnego tapnięcia.
+ *  - 0.18 (docs/33 pkt 4): cel `adapt:<id bloku>` — ten sam arkusz w oknie „Dostosuj do miejsca”: ranking od ćwiczenia Z PLANU (bez bieżącego),
+ *    wybór wraca do okna (lib/adaptPick.ts), nic się nie zapisuje; pozycje „Bez zmian” i „Pomiń dziś”, bez „cofnij zamianę” (od tego jest „Wraca z planu”).
+ * Okno jak picker: „Anuluj” w nagłówku, blokada podwójnego tapnięcia.
  */
 export default function SwapScreen() {
   const raw = useLocalSearchParams<{ target?: string | string[] }>().target; const target = typeof raw === 'string' ? raw : ''; const router = useRouter();
@@ -29,18 +32,21 @@ export default function SwapScreen() {
   const close = () => { if (router.canGoBack()) router.back(); else router.replace('/'); };
   const headerOpts = useCloseHeader(() => { if (chosen.current) return; chosen.current = true; close(); });
   const tg = parseSwapTarget(target);
-  const d = tg?.kind === 'edit' ? draftOf(tg.key) : undefined; const a = tg?.kind === 'active' ? getState().active : null;
+  const live = tg?.kind === 'active' || tg?.kind === 'adapt'; const d = tg?.kind === 'edit' ? draftOf(tg.key) : undefined; const a = live ? getState().active : null;
   const w = d ? d.w : a; const e: WExercise | undefined = tg && w ? w.exercises.find(x => x.id === tg.blockId) : undefined; const ex = e ? exById(e.exerciseId) : undefined;
   const gone = <Screen style={{ paddingTop: 10 }}><Stack.Screen options={headerOpts} /><Missing>{t('Tego ćwiczenia nie da się już zamienić.')}</Missing></Screen>;
-  if (!tg || !w || !e || (tg.kind === 'active' && (!ex || !e.sets.some(x => !x.done)))) return gone;
+  if (!tg || !w || !e || (live && (!ex || !e.sets.some(x => !x.done) || e.skipped))) return gone;
   const once = (f: () => void) => { if (chosen.current) return; chosen.current = true; f(); };
   const inW = new Set(w.exercises.map(x => x.exerciseId));
-  const props = ex ? swapCandidates(ex.id, { locationId: w.locationId, showAll: false, inWorkout: inW, before: d ? w.startedAt : undefined }).slice(0, SWAP_TOP) : [];
-  const pick = (toId: string) => once(() => { if (tg.kind === 'active') { const r = swapBlock(tg.blockId, toId); if (r) afterSwap(r.goneSetIds); } else draftSwapExercise(tg.key, tg.blockId, toId); close(); });
+  /* adapt: ranking od ćwiczenia z planu (swappedFrom), bez bieżącego ćwiczenia bloku (docs/33 „Słownik”) */
+  const planEx = tg.kind === 'adapt' && e.swappedFrom ? exById(e.swappedFrom) : undefined; const base = planEx && !planEx.archived ? planEx : ex;
+  const props = base ? swapCandidates(base.id, { locationId: w.locationId, showAll: false, inWorkout: inW, before: d ? w.startedAt : undefined }).filter(c => tg.kind !== 'adapt' || c.exId !== e.exerciseId).slice(0, SWAP_TOP) : [];
+  const give = (choice: Parameters<typeof emitAdaptPick>[0]['choice']) => once(() => { emitAdaptPick({ blockId: tg.blockId, choice }); close(); });
+  const pick = (toId: string) => tg.kind === 'adapt' ? give({ kind: 'swap', blockId: tg.blockId, toExId: toId }) : once(() => { if (tg.kind === 'active') { const r = swapBlock(tg.blockId, toId); if (r) afterSwap(r.goneSetIds); } else draftSwapExercise(tg.key, tg.blockId, toId); close(); });
   const impls: Impl[] = !ex ? [] : d ? draftImplChoices(d, e) : otherImpls(ex, locationById(w.locationId), e.impl);
-  const pickImpl = (i: Impl) => once(() => { if (tg.kind === 'active') { const r = swapImpl(tg.blockId, i); if (r) afterSwap(r.goneSetIds); } else draftSetImpl(tg.key, tg.blockId, i); close(); });
+  const pickImpl = (i: Impl) => tg.kind === 'adapt' ? give({ kind: 'impl', blockId: tg.blockId, impl: i }) : once(() => { if (tg.kind === 'active') { const r = swapImpl(tg.blockId, i); if (r) afterSwap(r.goneSetIds); } else draftSetImpl(tg.key, tg.blockId, i); close(); });
   /* „↺ przywróć”: w treningu — cofnięcie zamiany (pkt 3.4); w edytorze — stan z otwarcia szkicu (H8) */
-  const restore: { ex: Exercise; go: () => void } | null = tg.kind === 'active'
+  const restore: { ex: Exercise; go: () => void } | null = tg.kind === 'adapt' ? null : tg.kind === 'active'
     ? (e.swappedFrom && canUndoSwap(e) ? { ex: exById(e.swappedFrom)!, go: () => { if (chosen.current) return; confirmUndoSwap(tg.blockId, () => { chosen.current = true; close(); }); } } : null)
     : (d && canRestoreExercise(d, e) ? { ex: exById(d.origEx[e.id].exerciseId)!, go: () => once(() => { draftRestoreExercise(tg.key, tg.blockId); close(); }) } : null);
   const place = locationById(w.locationId); const caps = place ? capsOf(place) : null; const ql = fold(q.trim());
@@ -58,8 +64,11 @@ export default function SwapScreen() {
       <Stack.Screen options={headerOpts} />
       <ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }} /* audyt 04.10 (MEDIUM 1): tapnięcie w wynik przy otwartej klawiaturze działa za pierwszym razem */>
         <Muted style={{ marginBottom: 4 }}>{d ? t('Poprawka zapisu: wszystkie serie bloku „{name}” przejdą pod wybrane ćwiczenie (wartości bez zmian).', { name: ex ? exName(ex) : t('Usunięte ćwiczenie') }) : t('Zamiana tylko w tym treningu: {name}', { name: exName(ex) })}</Muted>
+        {tg.kind === 'adapt' ? <>
+          <Item title={t('Bez zmian')} sub={t('zostaje to ćwiczenie')} icon="" accessibilityLabel={t('Bez zmian: {name}', { name: exName(ex) })} onPress={() => give(null)} />
+          <Item title={t('Pomiń dziś')} sub={t('szablon bez zmian')} icon="" accessibilityLabel={t('Pomiń dziś: {name}', { name: exName(ex) })} onPress={() => give({ kind: 'skip', blockId: tg.blockId })} /></> : null}
         {restore ? <Item title={t('↺ cofnij zamianę: {name}', { name: exName(restore.ex) })} icon="" /* A11-18: bez drugiego „↺” */ accessibilityLabel={t('Cofnij zamianę: {name}', { name: exName(restore.ex) })} onPress={restore.go} /> : null}
-        {ex ? <><SectionTitle>{t('Propozycje')}</SectionTitle>
+        {base ? <><SectionTitle>{t('Propozycje')}</SectionTitle>
           {props.length ? props.map((c, i) => { const b = exById(c.exId)!; const sub = [reasonText(c), c.inWorkout ? t('już w treningu') : ''].filter(Boolean).join(' · ');
             return <Item key={c.exId} title={exName(b)} sub={sub} icon="⇄" onPress={() => pick(c.exId)} accessibilityLabel={t('Propozycja {n}: {name}', { n: i + 1, name: exName(b) }) + (sub ? `, ${sub}` : '')} />; })
             : <Empty>{t('Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.')}</Empty>}</> : null}

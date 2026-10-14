@@ -19,6 +19,8 @@
  "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.": "Cardio: a partir de {k} días a la semana, una sesión en un día aparte; con menos días, todos son de fuerza, para que el cardio no quite días al entrenamiento de fuerza (cada grupo muscular principal al menos {n} días) — una convención.",
  "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). WHO 2020 nie znalazło dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy zalecenia radzą rozłożyć na kilka dni (wytyczne USA 2018, ACSM 2011). Długość sesji cardio = czas sesji — konwencja.": "Cardio: con {k}–{m} días puedes convertir los días por encima de {j} en sesiones de cardio moderado («Días de cardio en el plan», desactivado de forma predeterminada). La OMS 2020 no encontró pruebas de que más fortalecimiento aporte más beneficios para la salud, y las recomendaciones aconsejan repartir la actividad aeróbica en varios días (guías de EE. UU. 2018, ACSM 2011). Duración de la sesión de cardio = tiempo de sesión — una convención.",
  "Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.": "Ingresa los pesos de la estación por lado — tal como los muestra el aparato.",
+ "Ćwiczenia bez sprzętu": "Ejercicios sin equipo",
+ "ćwiczenie bez sprzętu|ćwiczenia bez sprzętu|ćwiczeń bez sprzętu": "ejercicio sin equipo|ejercicios sin equipo",
  "Dane i kopie": "Datos y respaldos",
  "Dane nie zostały wyczyszczone": "No se borraron los datos",
  "Dane w telefonie": "Datos en este celular",

@@ -33,8 +33,8 @@ Wyjście na model darmowy: jedna wartość `PAYWALL.ENABLED` (lib/access.ts). Uw
 | Pozycja | Wartość | Źródło |
 |---|---|---|
 | Subskrypcja miesięczna (auto-odnawiana) | 0,99 USD / 0,99 EUR / 0,99 GBP / 3,99 zł | docs/15, 09.10 i 11.10.2026 |
-| Subskrypcja roczna (auto-odnawiana, płatna z góry) | 6,99 USD / EUR / GBP / 19,99 zł | docs/15, 11.10.2026 |
-| Dostęp dożywotni (zakup jednorazowy, non-consumable) | 21,99 USD / EUR / GBP / 59,99 zł | docs/15, 11.10.2026 |
+| Subskrypcja roczna (auto-odnawiana, płatna z góry) | 4,99 USD / EUR / GBP / 19,99 zł (= 5 × miesięczna) | docs/15 i docs/18, 13.10.2026 (M1) |
+| Dostęp dożywotni (zakup jednorazowy, non-consumable) | 14,99 USD / EUR / GBP / 59,99 zł (= 3 × roczna) | docs/15 i docs/18, 13.10.2026 (M1) |
 | Inne kraje | lokalny próg zakupu impulsowego; przeliczenie Apple tylko jako punkt wyjścia | docs/15, zasada cenowa 09.10 |
 | Okres próbny | 1 miesiąc jako oferta wprowadzająca Apple, w obu planach subskrypcji | docs/15, 09.10 pkt 2 |
 | Bez zakupu (po próbie / po wygaśnięciu) | 4 darmowe treningi na miesiąc kalendarzowy; liczone na telefonie; tylko treningi na żywo; trening wstecz bez limitu; historia, kopia i eksport bez limitu | docs/15, 09.10 pkt 5 |

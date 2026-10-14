@@ -57,7 +57,7 @@ test('wszystkie klucze 0.17.0: te same {parametry} w polskim i angielskim, niepu
 test('t() w obu językach podstawia parametry (cena, okres, data, liczby) i nie zostawia nawiasów', () => {
   const args: Record<string, string | number> = { price: '3,99 zł', period: 'miesiąc', date: '1 lis', n: 4, limit: 4, s: 'treningi' };
   for (const lang of ['pl', 'en'] as const) { applyLang(lang); for (const [pl] of PAIRS) { if (pl.includes('|')) continue; const r = t(pl, args); expect(r).not.toMatch(/\{\w+\}/); expect(r.length).toBeGreaterThan(0); } }
-  applyLang('en'); expect(t('1 miesiąc za darmo, potem {price}/{period}', { price: '$6.99', period: 'year' })).toBe('1 month free, then $6.99/year');
+  applyLang('en'); expect(t('1 miesiąc za darmo, potem {price}/{period}', { price: '$4.99', period: 'year' })).toBe('1 month free, then $4.99/year');
   applyLang('pl'); expect(t('1 miesiąc za darmo, potem {price}/{period}', { price: '19,99 zł', period: 'rok' })).toBe('1 miesiąc za darmo, potem 19,99 zł/rok');
 });
 test('liczebnik „trening|treningi|treningów” (limit darmowych treningów): polski 1/2/5, angielski 1/4', () => {

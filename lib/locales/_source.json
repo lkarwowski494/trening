@@ -100,6 +100,10 @@
   "en": "{label}: {v}, before {p}, {d}"
  },
  {
+  "pl": "{n} {w} · Dostosuj",
+  "en": "{n} {w} · Adjust"
+ },
+ {
   "pl": "{n} h",
   "en": "{n} h"
  },
@@ -524,6 +528,14 @@
   "en": "Without a purchase: {n} live {s} per month; history, backup and export are always available."
  },
  {
+  "pl": "Bez zmian",
+  "en": "No change"
+ },
+ {
+  "pl": "Bez zmian: {name}",
+  "en": "No change: {name}"
+ },
+ {
   "pl": "bezpośrednie",
   "en": "direct"
  },
@@ -900,6 +912,10 @@
   "en": "Exercises"
  },
  {
+  "pl": "Ćwiczenia bez sprzętu",
+  "en": "Exercises without equipment"
+ },
+ {
   "pl": "ćwiczenia dodasz w następnym kroku",
   "en": "add exercises in the next step"
  },
@@ -928,8 +944,18 @@
   "en": "Exercise"
  },
  {
+  "pl": "ćwiczenie bez sprzętu|ćwiczenia bez sprzętu|ćwiczeń bez sprzętu",
+  "en": "exercise without equipment|exercises without equipment",
+  "plural": true
+ },
+ {
   "pl": "Ćwiczenie ma co najmniej jedną serię. Żeby usunąć całe ćwiczenie, przesuń w lewo jego nazwę.",
   "en": "An exercise keeps at least one set. To delete the whole exercise, swipe its name left."
+ },
+ {
+  "pl": "ćwiczenie wraca do planu|ćwiczenia wracają do planu|ćwiczeń wraca do planu",
+  "en": "exercise returns to your plan|exercises return to your plan",
+  "plural": true
  },
  {
   "pl": "Ćwiczenie zostanie bez zmian.",
@@ -1159,6 +1185,18 @@
  {
   "pl": "dostępne: {n} ({r})",
   "en": "available: {n} ({r})"
+ },
+ {
+  "pl": "Dostosuj do miejsca",
+  "en": "Adjust to location"
+ },
+ {
+  "pl": "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.",
+  "en": "Adjust to location: after you switch to a location without the equipment you need, the app suggests exercise substitutes for you to review — changes apply to this workout only."
+ },
+ {
+  "pl": "Dostosuj do: {l}",
+  "en": "Adjust to: {l}"
  },
  {
   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
@@ -2587,6 +2625,10 @@
   "en": "Write to: {mail}"
  },
  {
+  "pl": "następna propozycja — pierwsza jest już zajęta przez inne ćwiczenie",
+  "en": "next suggestion — the first one is already taken by another exercise"
+ },
+ {
   "pl": "Następna seria.",
   "en": "Next set."
  },
@@ -3199,6 +3241,10 @@
   "en": "Opens Progress."
  },
  {
+  "pl": "Otwiera propozycje zamian na to miejsce.",
+  "en": "Opens swap suggestions for this location."
+ },
+ {
   "pl": "Otwiera stronę w przeglądarce.",
   "en": "Opens the page in your browser."
  },
@@ -3209,6 +3255,10 @@
  {
   "pl": "Otwiera ten dzień w zakładce Plan.",
   "en": "Opens this day in the Plan tab."
+ },
+ {
+  "pl": "Otwiera wybór zamiennika.",
+  "en": "Opens the substitute picker."
  },
  {
   "pl": "Otwiera zamianę ćwiczenia",
@@ -4547,6 +4597,10 @@
   "en": "Template"
  },
  {
+  "pl": "szablon bez zmian",
+  "en": "template unchanged"
+ },
+ {
   "pl": "Szablon jest pusty — „Edytuj”, by dodać ćwiczenia.",
   "en": "The template is empty — “Edit” to add exercises."
  },
@@ -4642,6 +4696,10 @@
  {
   "pl": "T-bar",
   "en": "T-bar"
+ },
+ {
+  "pl": "ta sama propozycja co przy innym ćwiczeniu — możesz zmienić",
+  "en": "same suggestion as for another exercise — you can change it"
  },
  {
   "pl": "tak — przy serii wybierasz gumę",
@@ -5305,6 +5363,10 @@
   "en": "Sets with this band will show “?” in history."
  },
  {
+  "pl": "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.",
+  "en": "In the window you can change a substitute or choose “No change” or “Skip today”; you can undo an applied swap at the exercise."
+ },
+ {
   "pl": "w planie na: {day} · {n} ćw.",
   "en": "planned for: {day} · {n} ex."
  },
@@ -5469,6 +5531,10 @@
   "en": "Sandbag"
  },
  {
+  "pl": "wpisane wartości zamiennika przepadną",
+  "en": "values entered for the substitute will be lost"
+ },
+ {
   "pl": "Wpisane wartości zamiennika przepadną.",
   "en": "Values entered for the substitute will be lost."
  },
@@ -5491,6 +5557,14 @@
  {
   "pl": "wpisz zakres na stronę i krok",
   "en": "enter the per-side range and step"
+ },
+ {
+  "pl": "wraca do ćwiczenia z planu",
+  "en": "returns to the planned exercise"
+ },
+ {
+  "pl": "Wraca z planu",
+  "en": "Back to your plan"
  },
  {
   "pl": "Wrócą zmiany pojedynczych dni zapisane z tym planem: {n}.",
@@ -5519,6 +5593,10 @@
  {
   "pl": "Wszystkie",
   "en": "All"
+ },
+ {
+  "pl": "Wszystkie ćwiczenia są dostępne w: {l}",
+  "en": "All exercises are available at: {l}"
  },
  {
   "pl": "wszystkie ćwiczenia, także niszowe",
@@ -5555,6 +5633,10 @@
  {
   "pl": "Wybierz szablon na ten dzień.",
   "en": "Choose a template for this day."
+ },
+ {
+  "pl": "wybrane ręcznie",
+  "en": "chosen by you"
  },
  {
   "pl": "wyciąg",
@@ -5845,8 +5927,20 @@
   "en": "Swap for this workout only: {name}"
  },
  {
+  "pl": "Zamiany tylko w tym treningu — szablon i plan bez zmian.",
+  "en": "Swaps apply to this workout only — your template and plan stay as they are."
+ },
+ {
   "pl": "zamiast: {name}",
   "en": "instead of: {name}"
+ },
+ {
+  "pl": "Zamieniono {n} {w}",
+  "en": "Swapped {n} {w}"
+ },
+ {
+  "pl": "zamiennik z szablonu dla tego miejsca",
+  "en": "template substitute for this location"
  },
  {
   "pl": "Zamienniki",
@@ -5989,6 +6083,10 @@
   "en": "Apply"
  },
  {
+  "pl": "Zastosuj ({n})",
+  "en": "Apply ({n})"
+ },
+ {
   "pl": "Zastosuj: {title}",
   "en": "Apply: {title}"
  },
@@ -6099,6 +6197,10 @@
  {
   "pl": "Zniknie z list i szablonów.",
   "en": "It disappears from lists and templates."
+ },
+ {
+  "pl": "zostaje to ćwiczenie",
+  "en": "this exercise stays"
  },
  {
   "pl": "Zostaw",
