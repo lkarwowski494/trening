@@ -106,7 +106,7 @@ describe('D3 / UI-13: liczba serii roboczych na ekranach — rozgrzewka poza, dr
     let id = ''; await boot(() => { id = sqDrop(6).id; }, '/history');
     expect(screen.getAllByText(/ · 3 serie · /).length).toBeGreaterThan(0); expect(screen.queryByText(/ · 4 serie · /)).toBeNull();
     await go(`/history/edit/${id}`); await flushAll(20); expect(screen.getByText('3 serie · 1 rozgrz.')).toBeTruthy();
-    await go('/progress'); await flushAll(10); expect(screen.getByText(/Uproszczenie: drop set liczy się razem z serią, po której jest\./)).toBeTruthy();
+    await go('/progress'); await flushAll(10); await openInfo('sets-part'); expect(screen.getByText(/Uproszczenie: drop set liczy się razem z serią, po której jest\./)).toBeTruthy();
   });
 });
 

@@ -60,5 +60,5 @@ flows:
   - 38-pomoc-powiadomienia.yaml
   - 50-zegarek-do-uzupelnienia.yaml
   - 51-glos-ustawienia.yaml
-  - 53-objasnienia-info.yaml
   - 52-straznik-progresji.yaml
+  - 53-objasnienia-info.yaml

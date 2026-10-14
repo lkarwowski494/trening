@@ -9,7 +9,7 @@ import { applyLang } from '@/lib/i18n';
 import { weeklyTotals, workoutPRs } from '@/lib/stats';
 import { periodRange, periodSummary, periodTitle } from '@/lib/period';
 import { fresh, addWorkout, saved } from './helpers';
-import { renderApp, flushAll, screen, go, tap, act } from './app';
+import { renderApp, flushAll, screen, go, tap, act, openInfo } from './app';
 
 const NOW = new Date(2026, 9, 8, 18, 0); /* czwartek */
 const at = (m: number, d: number, h = 18) => new Date(2026, m, d, h).getTime();
@@ -76,7 +76,7 @@ describe('ekran Postępy — sekcja „Podsumowanie”', () => {
   test('puste stany: tydzień bez treningów i tydzień bez nowych rekordów; opis pod sekcją', async () => {
     await boot(() => { addWorkout(at(8, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });
     expect(screen.getByText('Brak treningów w tym okresie.')).toBeTruthy();
-    expect(screen.getByText('Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.')).toBeTruthy();
+    await openInfo('period-summary'); expect(screen.getByText('Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.')).toBeTruthy();
     await boot(() => { addWorkout(at(8, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); addWorkout(at(9, 6), [['Back Squat', [{ weight: 90, reps: 5 }]]]); });
     expect(screen.getByText('Bez nowych rekordów w tym okresie.')).toBeTruthy();
   });

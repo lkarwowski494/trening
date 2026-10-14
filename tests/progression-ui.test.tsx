@@ -9,7 +9,7 @@ import * as plan from '@/lib/plan';
 import { fmtVol } from '@/lib/units';
 import { uid, type Template, type TRow, type SetKind } from '@/lib/seed';
 import { fresh, saved, ex, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, act, go } from './app';
+import { renderApp, flushAll, screen, tap, act, go, openInfo } from './app';
 import { within } from '@testing-library/react-native';
 
 jest.setTimeout(60000);
@@ -130,7 +130,7 @@ describe('„Progresja”: szczegóły', () => {
     expect(hasP('pbar-volume-klatka-planned')).toBe(true); expect(hasP('pbar-volume-czworogłowe-planned')).toBe(false); expect(hasP('pprev-volume-czworogłowe')).toBe(true);
     expect(legendP('zaplanowane')).toBe(1);
     expect(screen.getByTestId('progress-unknown')).toBeTruthy(); expect(within(screen.getByTestId('progress-unknown')).getByText('„≥” — w zaplanowanych szablonach 1 seria nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.')).toBeTruthy();
-    expect(screen.getByText('Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.')).toBeTruthy();
+    await openInfo('prog-sets'); expect(screen.getByText('Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.')).toBeTruthy();
     expect(screen.getByText('Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.')).toBeTruthy();
     expect(screen.queryAllByText(/^Ten okres: /, { includeHiddenElements: true })).toHaveLength(2); /* podpisy słupków objętości i serii: „Ten okres: …” / „Poprzedni okres: …” */
   });
@@ -152,7 +152,7 @@ describe('„Progresja”: szczegóły', () => {
     await tap(screen.getByLabelText('Porównanie: Miesiąc')); await flushAll(5);
     expect(screen.getByText('Porównanie tych samych dni miesiąca: 1–8.')).toBeTruthy(); expect(screen.getByLabelText(`Objętość: ${fmtVol(1000)}, poprzednio ${fmtVol(400)}, +150% (+${fmtVol(600)})`)).toBeTruthy();
     expect(screen.queryByText(/^Kreska = /)).toBeNull(); expect(hasP('pbar-sets-czworogłowe-mark')).toBe(false); /* miesiąc: kreska tygodniowego celu nie ma sensu */
-    expect(screen.getByText('Objętość = ciężar × powtórzenia × mnożnik ćwiczenia (jak w Postępach); rozgrzewka poza. Partia główna liczy całość, pomocnicza połowę.')).toBeTruthy();
+    await openInfo('prog-sets'); expect(screen.getByText('Objętość = ciężar × powtórzenia × mnożnik ćwiczenia (jak w Postępach); rozgrzewka poza. Partia główna liczy całość, pomocnicza połowę.')).toBeTruthy();
   });
   test('puste okresy: komunikat zamiast tabel; deload: informacja o oznaczeniu tygodnia', async () => {
     await boot(() => { sq(7, 1, [{ weight: 100, reps: 5 }]); store.toggleDeloadWeek(new Date(2026, 8, 28).getTime()); }, '/progression?c=prevWeek');
