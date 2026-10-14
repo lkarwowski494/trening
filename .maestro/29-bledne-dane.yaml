@@ -25,7 +25,13 @@ name: Błędne i skrajne dane
 - assertNotVisible: "Nothing to save. Discard this workout\\?"
 - tapOn: "Finish"
 - extendedWaitUntil: { visible: "Nothing to save. Discard this workout\\?", timeout: 15000 }
-- tapOn: { text: "Discard workout", below: "Nothing to save. Discard this workout\\?", index: 1 }   # E2E 38471218362: pierwszy „Discard workout” to przycisk ekranu ZA oknem (okno zostawało); w oknie — drugi
+# E2E 38471218362 / 38494711499: kolejność „od góry” zależy od położenia przycisku ekranu względem okna; dwa stuknięcia obejmują oba układy (patrz 25)
+- tapOn: { text: "Discard workout", below: "Nothing to save. Discard this workout\\?", index: 0 }
+- waitForAnimationToEnd
+- runFlow:
+    when: { visible: "Nothing to save. Discard this workout\\?" }
+    commands:
+      - tapOn: { text: "Discard workout", below: "Nothing to save. Discard this workout\\?", index: 1, optional: true }
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - assertNotVisible: "This week"   # nic nie zapisano: ekran jak dla nowej osoby
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
@@ -75,6 +81,9 @@ name: Błędne i skrajne dane
 - tapOn: "Progress, tab.*"
 - extendedWaitUntil: { visible: "Summary", timeout: 30000 }
 - scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000, centerElement: true }
+# E2E 38494711499: po przewinięciu przycisk został przy samej górnej krawędzi listy (pod nagłówkiem „Progress”) i stuknięcie nie otworzyło ekranu — cofamy listę w dół o kilkanaście procent
+- swipe: { start: "50%, 40%", end: "50%, 55%", duration: 400 }
+- waitForAnimationToEnd
 - tapOn: "Body weight — measurements"
 - extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }
 - tapOn: "Save measurement"

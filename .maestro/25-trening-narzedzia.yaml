@@ -135,7 +135,14 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - assertVisible: "Discard workout"
 - tapOn: "Discard workout"
 - extendedWaitUntil: { visible: "Discard workout\\?", timeout: 15000 }
-- tapOn: { text: "Discard workout", below: "Discard workout\\?", index: 1 }   # przycisk ekranu pod oknem leży wyżej — pierwszy pasujący to on (E2E 38471218362, 29)
+# E2E 38494711499: kolejność „od góry” zależy od położenia przycisku ekranu względem okna (po przewinięciu do końca leży NIŻEJ: y≈1370 vs 1050 — pierwszy jest przycisk okna);
+# index 1 trafiał w przyciemnione tło i okno zostawało. Dwa stuknięcia obejmują oba układy: jeśli pierwsze trafiło w zasłonięty przycisk ekranu, okno nadal jest i drugie bierze przycisk okna.
+- tapOn: { text: "Discard workout", below: "Discard workout\\?", index: 0 }
+- waitForAnimationToEnd
+- runFlow:
+    when: { visible: "Discard workout\\?" }
+    commands:
+      - tapOn: { text: "Discard workout", below: "Discard workout\\?", index: 1, optional: true }
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - assertVisible: "Workouts: 1;.*"
 - takeScreenshot: 85-po-odrzuceniu
