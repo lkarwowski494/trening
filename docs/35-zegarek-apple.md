@@ -24,7 +24,7 @@ przyciemnienie, odliczanie przez `Text(timerInterval:)` (liczy system). Ikona tr
 ## 2. Architektura (gdzie co leży)
 | Część | Pliki | Uwagi |
 |---|---|---|
-| Cel watchOS | `targets/watch-app/` (`expo-target.config.js`, `Info.plist`, `PrivacyInfo.xcprivacy`, `Assets.xcassets`) | `@bacons/apple-targets` 5.0.0, typ `watch`; `MARKETING_VERSION` ustawia Expo (= `app.json`), pilnuje go `verify:native`; watchOS 11, HealthKit w uprawnieniach, tryb tła `workout-processing`, `WKRunsIndependentlyOfCompanionApp = false` |
+| Cel watchOS | `targets/watch-app/` (`expo-target.config.js`, `Info.plist`, `Assets.xcassets`; manifest prywatności dokłada CocoaPods, patrz niżej) | `@bacons/apple-targets` 5.0.0, typ `watch`; `MARKETING_VERSION` ustawia Expo (= `app.json`), pilnuje go `verify:native`; watchOS 11, HealthKit w uprawnieniach, tryb tła `workout-processing`, `WKRunsIndependentlyOfCompanionApp = false` |
 | Model zegarka (czysty Swift) | `Core/WatchClient.swift` — port `lib/watch/client.ts` (`clientStep`, `clientView`, projekcja niepotwierdzonych zdarzeń) | zachowanie = model referencyjny; sprawdza je odtworzenie scenariuszy z TS (XCTest `ScenarioReplayTests`) |
 | Protokół | `Core/WatchProtocol.swift` (typy `Codable` = lustro `lib/watch/protocol.ts`) | schemat ↔ typy Swift pilnuje `tests/watch-apple-contract.test.ts` |
 | Warstwa platformy | `Core/WatchStore.swift` (transport, sesja treningu, wibracja, ponawianie niepotwierdzonych zdarzeń, język z migawki), `WatchPersistence`, `WatchFakes` | zależności wstrzykiwane; XCTest `WatchStoreTests` na fałszywych |
@@ -91,3 +91,11 @@ adapter → `WatchLink` → trening: hello/welcome, sesja, zdarzenie „zrobione
 Gdy protokół się zmieni (nowa wersja `v`, nowe pole): odtworzyć pliki wzorcowe (`UPDATE_WATCH=1 npx jest tests/watch-fixtures.test.ts`), poprawić typy w `WatchProtocol.swift` i schemat
 w teście kontraktu — czerwone testy wskażą każde miejsce po stronie Swift. Zmiana zachowania modelu (`lib/watch/client.ts`) = zmiana `WatchClient.swift` (scenariusze nie przejdą bez tego).
 Rejestr łącza jest jeden (`startWatchLink` zatrzymuje poprzednie) — jednoczesna praca Apple Watch i drugiego zegarka wymaga rejestru wielu transportów (poza zakresem 0.20).
+
+## Manifest prywatności zegarka (14.10.2026)
+
+Przebieg kompilacji 38486942752 padł na „Multiple commands produce TreningWatch.app/PrivacyInfo.xcprivacy”. Przyczyna: krok CocoaPods
+„Privacy Manifest Aggregation” (React Native, `privacy_manifest_utils.rb`) dopisuje `PrivacyInfo.xcprivacy` do każdego celu typu aplikacja,
+także zegarka, a nasz własny plik w `targets/watch-app/` kopiowała jako zasób grupa zsynchronizowana. Naprawa: zegarek nie ma własnego pliku;
+manifest zbiorczy (bez śledzenia, z powodami użycia UserDefaults z rdzenia RN) dokłada jedyny producent. Strażnik: `verify:native`
+(brak `*.xcprivacy` w folderze celu, brak jawnego odwołania w projekcie, brak zasobów o tej samej nazwie).
