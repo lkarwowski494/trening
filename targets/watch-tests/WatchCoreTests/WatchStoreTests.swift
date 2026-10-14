@@ -186,7 +186,7 @@ final class WatchStoreTests: XCTestCase {
     var st = initialClient(apple)
     st = clientStep(st, TimedInput(at: T0, input: .receive(.snapshot(Fixtures.snapshot("set-first"))))).state
     st = clientStep(st, TimedInput(at: T0, input: .press(.main))).state
-    let s = makeStore(persisted: st)
+    let s = makeStore(autoReply: false, persisted: st)                               // bez odpowiedzi telefonu: sprawdzamy trwałość kolejki, nie potwierdzenie
     s.start(); await settle()
     XCTAssertTrue(transport.sentEvents.contains { $0.eventId == "apple-1" })
     XCTAssertEqual(s.view(at: T0 + 10).screen, .rest)                               // po restarcie nakładka nadal pokazuje przerwę
