@@ -87,3 +87,8 @@ Mock: `jest.mock('expo-store-review')` (`requestReview`, `isAvailableAsync`, `ha
 3. **Odstęp i limit:** 14 dni + max 1 na wersję, albo 30 dni + max 1 na wersję. **Rekomendacja: 14 dni, 1 na wersję.**
 4. **Stały link „Oceń w App Store”** w Ustawieniach (otwiera stronę sklepu, bez okna): tak / nie. Plus: chętny oceni w dowolnej chwili; minus: dodatkowy element UI i teksty w 26 językach. **Rekomendacja: nie w tym wydaniu**, wrócić po publikacji.
 5. **Gdzie trzymać datę ostatniej prośby:** opcjonalne pole w ustawieniach (idzie do kopii, bez zmiany schematu) albo osobny klucz poza kopią. **Rekomendacja: pole w ustawieniach**, chyba że `lib/store.ts` ma prosty osobny magazyn.
+
+## Kolizja z linkiem „Poproś o funkcję” (14.10.2026, docs/34 pkt 8)
+Na podsumowaniu treningu działają dwie reguły: prośba o ocenę (ten dokument) i link „Czego Ci brakuje? Poproś o funkcję” co `IDEA.EVERY_N_WORKOUTS` (= 10) treningów. Nigdy oba na jednym ekranie; gdy obie wypadają na ten sam trening, **ocena ma pierwszeństwo** (Apple ogranicza liczbę próśb: 3 na 365 dni),
+a link pokazuje się przy najbliższym treningu, na którym bramka oceny nie mówi „ask” (licznik `Settings.ideaShownAt` liczy od ostatniego pokazania linku). Skutek uboczny: w TestFlight (okna oceny nie ma, a bramka dalej mówi „ask” przy każdym treningu z rekordem) link pojawia się tylko po treningach bez rekordu.
+

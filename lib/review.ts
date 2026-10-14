@@ -15,6 +15,15 @@ export const REVIEW = {
   MIN_GAP_DAYS: 14,
 } as const;
 
+/**
+ * Link „Poproś o funkcję” na podsumowaniu treningu (decyzja właściciela 14.10.2026; docs/34): liczba PRODUKTOWA (nie merytoryczna) — bez źródeł naukowych.
+ * Trzymana tu, obok progów prośby o ocenę, bo obie reguły dzielą ekran podsumowania i nie mogą się wzajemnie po cichu wyłączać.
+ */
+export const IDEA = {
+  /** Link pojawia się, gdy od ostatniego pokazania (lub od początku) minęło co najmniej tyle ukończonych treningów. */
+  EVERY_N_WORKOUTS: 10,
+} as const;
+
 const DAY_MS = 86400e3;
 
 /** Powody odmowy, w kolejności sprawdzania (docs/26 rozdz. 2 „zasady twarde” + próg + odstęp + wersja). */
@@ -76,4 +85,36 @@ export function normalizeReviewAsked(raw: unknown, now: number = Date.now()): Re
   const r = raw as { at?: unknown; version?: unknown } | null | undefined;
   if (!r || typeof r !== 'object' || !finite(r.at) || r.at < 0 || r.at > now || typeof r.version !== 'string' || !r.version) return undefined;
   return { at: r.at, version: r.version };
+}
+
+/** Powody, dla których link „Poproś o funkcję” się nie pokazuje (w kolejności sprawdzania). */
+export const IDEA_BLOCK_REASONS = ['badInput', 'tooSoon', 'reviewFirst'] as const;
+export type IdeaBlockReason = (typeof IDEA_BLOCK_REASONS)[number];
+
+export interface IdeaInput {
+  /** Liczba ukończonych treningów (włącznie z właśnie zakończonym). */
+  finishedWorkouts: number;
+  /** Liczba ukończonych treningów w chwili ostatniego pokazania linku; brak = jeszcze nie pokazywano. */
+  lastShownAt?: number | null;
+  /** Wynik bramki prośby o ocenę dla tego samego treningu (reviewDecision). 'ask' = ocena ma pierwszeństwo (Apple ogranicza liczbę próśb). */
+  review: 'ask' | ReviewBlockReason;
+}
+
+/**
+ * Czy pokazać link „Poproś o funkcję” na podsumowaniu świeżo zakończonego treningu. Co N-ty trening (liczone od ostatniego pokazania);
+ * gdy w tym samym treningu wypada prośba o ocenę, ona ma pierwszeństwo, a link przy następnym treningu, na którym ocena nie wypada
+ * (zaległość nie przepada: licznik liczy od ostatniego POKAZANIA, nie od progu). Nigdy oba na jednym ekranie.
+ */
+export function ideaDecision(i: IdeaInput): 'show' | IdeaBlockReason {
+  if (!i || !finite(i.finishedWorkouts) || i.finishedWorkouts < 0) return 'badInput';
+  const last = i.lastShownAt == null ? 0 : (finite(i.lastShownAt) && i.lastShownAt >= 0 ? Math.min(i.lastShownAt, i.finishedWorkouts) : null);
+  if (last == null) return 'badInput';
+  if (i.finishedWorkouts - last < IDEA.EVERY_N_WORKOUTS) return 'tooSoon'; /* obejmuje też liczbę treningów mniejszą niż zapisana (usunięte treningi) */
+  if (i.review === 'ask') return 'reviewFirst';
+  return 'show';
+}
+
+/** Normalizacja pola Settings.ideaShownAt przy wczytaniu/imporcie: nieujemna liczba całkowita; inna wartość → undefined (brak pola = jeszcze nie pokazywano). */
+export function normalizeIdeaShownAt(raw: unknown): number | undefined {
+  return typeof raw === 'number' && Number.isInteger(raw) && raw >= 0 ? raw : undefined;
 }

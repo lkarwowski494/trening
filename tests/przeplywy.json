@@ -941,6 +941,31 @@
    ]
   },
   {
+   "id": "TR-32",
+   "tytul": "Link „Czego Ci brakuje? Poproś o funkcję” na podsumowaniu co 10. trening (nie razem z prośbą o ocenę)",
+   "stan": "istniejacy",
+   "wersja": "0.20",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Zakończ 10. trening w historii (bez prośby o ocenę na tym treningu)",
+    "Na podsumowaniu jest dyskretny link „Czego Ci brakuje? Poproś o funkcję” z „✕”",
+    "Stuknij „✕” — link znika bez żadnych skutków; stuknięcie linku otwiera pocztę",
+    "Gdy na 10. treningu wypada prośba o ocenę — linku nie ma, pojawia się na następnym treningu"
+   ],
+   "wynik": "Link pojawia się co 10. ukończony trening, nigdy na tym samym ekranie co systemowa prośba o ocenę; zamknięcie „✕” niczego nie zmienia w danych.",
+   "ekrany": [
+    "/history/[id]"
+   ],
+   "wyjatek": {
+    "typ": "jest",
+    "powod": "Reguła wymaga 10 ukończonych treningów (i osobno systemowej prośby o ocenę, której w TestFlight i na symulatorze nie ma); wykonanie 10 treningów w Maestro wydłużyłoby przebieg CI bez nowej wartości — reguła, kolizja z oceną, 100 treningów, ×, poczta i brak poczty są sprawdzone w Jest.",
+    "zastepnik": [
+     "tests/idea-request.test.tsx",
+     "tests/review-run.test.tsx"
+    ]
+   }
+  },
+  {
    "id": "PR-01",
    "tytul": "Zabicie aplikacji w przerwie — pasek przerwy wraca",
    "stan": "istniejacy",
@@ -2407,6 +2432,26 @@
    "scenariusz": "32-regularny-uzytkownik.yaml",
    "znaczniki": [
     "Erase all data"
+   ]
+  },
+  {
+   "id": "US-17",
+   "tytul": "„Poproś o nową funkcję” obok „Napisz do nas” (Więcej → O aplikacji)",
+   "stan": "istniejacy",
+   "wersja": "0.20",
+   "realnosc": "brzegowy",
+   "kroki": [
+    "Więcej → O aplikacji",
+    "Pod wersją są dwa wiersze: „Napisz do nas” i „Poproś o nową funkcję”",
+    "Stuknięcie „Poproś o nową funkcję” → wiadomość e-mail do wsparcia z tematem „Pomysł: ” i szablonem (tylko ręcznie na telefonie z Pocztą)"
+   ],
+   "wynik": "Oba wiersze są widoczne; „Poproś o nową funkcję” otwiera pocztę tą samą drogą co „Napisz do nas”; bez poczty — okno z adresem wsparcia.",
+   "ekrany": [
+    "/more/about"
+   ],
+   "scenariusz": "15-masa-licencje.yaml",
+   "znaczniki": [
+    "Request a new feature"
    ]
   },
   {

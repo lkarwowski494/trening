@@ -5,7 +5,7 @@
  * Settings.reviewAsked (opcjonalne pole, bez zmiany SCHEMA_VERSION). System sam ogranicza prośby (3 na 365 dni), więc nie zakładamy „pokazano”.
  */
 import Constants from 'expo-constants';
-import { reviewDecision, type ReviewBlockReason } from '@/lib/review';
+import { reviewDecision, ideaDecision, type ReviewBlockReason } from '@/lib/review';
 import { STORE_TIMING } from '@/lib/products';
 import { getState, saveCfg, finishedWorkouts, getPersistError } from '@/lib/store';
 import { workoutPRs, prCountOf } from '@/lib/stats';
@@ -21,11 +21,17 @@ export const markJustFinished = (id: string) => { justFinished = id; };
 export function takeJustFinished(id: string): boolean { if (justFinished !== id) return false; justFinished = null; return true; }
 
 export type ReviewRunResult = 'asked' | ReviewBlockReason | 'unavailable' | 'error';
+/** Bramka prośby o ocenę dla świeżo zakończonego treningu — jedna funkcja dla prośby i dla reguły linku „Poproś o funkcję” (kolizja: ocena ma pierwszeństwo). */
+function reviewGate(w: Workout, now: number): 'ask' | ReviewBlockReason {
+  const st = getState();
+  return reviewDecision({ now, finishedWorkouts: finishedWorkouts().length, justFinishedHasRecord: prCountOf(workoutPRs(w)) > 0, version: String(Constants.expoConfig?.version ?? ''),
+    lastAsked: st.settings.reviewAsked ?? null, workoutActive: !!st.active, blocked: nextStartBlocked(now), ioBusy: false, lastFailed: !!getPersistError() });
+}
+
 /** Bramka + wywołanie systemowe. Data i wersja zapisują się PO wywołaniu modułu (system może nie pokazać okna — i tak liczymy odstęp; wyjątek modułu = prośby nie było). Brak modułu / TestFlight → 'unavailable', bez zapisu. */
 export async function maybeRequestReview(w: Workout, now: number = Date.now()): Promise<ReviewRunResult> {
   const st = getState();
-  const d = reviewDecision({ now, finishedWorkouts: finishedWorkouts().length, justFinishedHasRecord: prCountOf(workoutPRs(w)) > 0, version: String(Constants.expoConfig?.version ?? ''),
-    lastAsked: st.settings.reviewAsked ?? null, workoutActive: !!st.active, blocked: nextStartBlocked(now), ioBusy: false, lastFailed: !!getPersistError() });
+  const d = reviewGate(w, now);
   if (d !== 'ask') return d;
   const m = storeReview(); if (!m) return 'unavailable';
   try {
@@ -36,12 +42,23 @@ export async function maybeRequestReview(w: Workout, now: number = Date.now()): 
 }
 
 /**
+ * Link „Czego Ci brakuje? Poproś o funkcję” (decyzja właściciela 14.10.2026): czy pokazać go na podsumowaniu świeżo zakończonego treningu. Co N-ty trening (lib/review.ts IDEA);
+ * gdy w tym samym treningu wypada prośba o ocenę (bramka 'ask'), ocena ma pierwszeństwo, a link czeka na następny trening. Pokazanie zapisuje licznik
+ * (Settings.ideaShownAt) — zamknięcie linku (×) niczego już nie zmienia. Wołana raz na świeżo zakończony trening.
+ */
+export function ideaLinkDue(w: Workout, now: number = Date.now()): boolean {
+  const st = getState(); const finished = finishedWorkouts().length;
+  if (ideaDecision({ finishedWorkouts: finished, lastShownAt: st.settings.ideaShownAt ?? null, review: reviewGate(w, now) }) !== 'show') return false;
+  st.settings.ideaShownAt = finished; saveCfg(); return true;
+}
+
+/**
  * Wejście z ekranu podsumowania: najpierw ewentualny ekran zakupu po pierwszym treningu (P2 B), w przeciwnym razie prośba o ocenę po krótkim opóźnieniu
  * (karta rekordów zdąża się pokazać). Zwraca anulowanie opóźnionej prośby (wyjście z ekranu).
  */
-export function onSummaryShown(w: Workout): () => void {
+export function onSummaryShown(w: Workout, onIdeaLink?: () => void): () => void {
   if (!takeJustFinished(w.id)) return () => {};
   let off = false; let timer: ReturnType<typeof setTimeout> | null = null;
-  void maybeShowPaywallAfterFirstWorkout(w.id).then(opened => { if (off || opened) return; timer = setTimeout(() => { void maybeRequestReview(w); }, STORE_TIMING.REVIEW_DELAY_MS); });
+  void maybeShowPaywallAfterFirstWorkout(w.id).then(opened => { if (off || opened) return; if (onIdeaLink && ideaLinkDue(w)) onIdeaLink(); timer = setTimeout(() => { void maybeRequestReview(w); }, STORE_TIMING.REVIEW_DELAY_MS); });
   return () => { off = true; if (timer) clearTimeout(timer); };
 }
