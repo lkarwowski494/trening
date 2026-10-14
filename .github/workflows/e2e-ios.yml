@@ -2,6 +2,9 @@
 # Od 03.10.2026 repozytorium publiczne (ADR-031): standardowe maszyny GitHuba, także macOS, bez limitu minut. Nadal tylko ręcznie.
 # Artefakty trzymane 1 dzień (publicznie widoczne dla zalogowanych użytkowników GitHuba).
 # Build Release na symulator nie wymaga podpisu ani konta Apple. Wynik: zrzuty ekranu i raport jako artefakty.
+# 13.10.2026 (decyzja właściciela): aplikacja budowana RAZ (zadanie „build”), scenariusze Maestro dzielone na 3 równoległe maszyny macOS
+# (zadanie „e2e”, macierz „shard” 1–3). Podział: scripts/ci/e2e-shards.mjs + e2e-shards.json (wagi = czasy scenariuszy; nowy scenariusz
+# bez wagi też trafia do jednej części). Test aktualizacji (33–34) wykonuje jedna część. Artefakt porażek: e2e-ios-<numer części>.
 name: E2E iOS (symulator)
 on:
   # decyzja właściciela 06.10.2026 (wariant A): samoczynnie po wypchnięciu na main i gałęzie integracyjne (bez zmian tylko w dokumentacji)
@@ -37,16 +40,18 @@ on:
       wyglad: { type: string, required: false, default: 'light' }
       poprzednia_wersja_z_przebiegu: { type: string, required: false, default: '' }
       tylko_scenariusze: { type: string, required: false, default: '' }
+# uprawnienia na poziomie przepływu — dotyczą wszystkich zadań (build i części)
+permissions:
+  contents: read
+  actions: read
 concurrency:
   group: e2e-${{ github.ref }}-${{ github.event_name }}
   cancel-in-progress: ${{ github.event_name == 'push' }}
 jobs:
-  e2e:
+  build:
+    if: inputs.aplikacja_z_przebiegu == ''
     runs-on: macos-26  # SDK 56+: Xcode 26.4+ (macos-15 ma najwyżej 26.3)
-    permissions:
-      contents: read
-      actions: read
-    timeout-minutes: 300  # 13.10.2026: scenariusze „z życia” 31–35 (+~20 min) i test aktualizacji — strażnik 100 min na podejście; wcześniej 180: build ~30 + symulator ~8 + 2 × strażnik 70 min (11.10.2026: 18 scenariuszy ~50 min — strażnik 50 min uciął ostatni, run 38153866859) (07.10.2026: scenariusz 11; 10 scenariuszy trwało 38 min); przy za małym limicie powtórzenie było ucinane bez podsumowania porażki
+    timeout-minutes: 90  # build ~40 min (run 38411267312: pods 2 min + xcodebuild 36 min)
     steps:
       - uses: actions/checkout@v5
       - name: Select Xcode 26.x
@@ -56,49 +61,84 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-      - if: inputs.aplikacja_z_przebiegu == ''
-        run: npm ci
+      - run: npm ci
       - name: Generate native iOS project (expo prebuild)
-        if: inputs.aplikacja_z_przebiegu == ''
         run: npx expo prebuild --platform ios --no-install --clean
       - name: Install pods
-        if: inputs.aplikacja_z_przebiegu == ''
         run: cd ios && pod install
-      - name: Build (Release, symulator, bez podpisu)
+      - name: Platformy iOS i watchOS zgodne z SDK wybranego Xcode (pobranie tylko, gdy ich brak)
         if: inputs.aplikacja_z_przebiegu == ''
+        run: bash scripts/ci/ensure-ios-platform.sh
+      - name: Build (Release, symulator, bez podpisu)
         env:
           # 0.17.0 (docs/27 7.2): sztuczny sklep + włączony przełącznik subskrypcji, limit 1 trening — TYLKO ten build E2E; testflight.yml ma straż (tests/store-adapter.test.ts)
           EXPO_PUBLIC_STORE_FAKE: '1'
         run: |
           set -o pipefail
           cd ios
-          xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release -sdk iphonesimulator \
+          # 0.20: bez „-sdk iphonesimulator” — wymuszałby SDK iOS także dla zegarka osadzonego w aplikacji (cel watchOS buduje się z watchsimulator)
+          xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release \
             -destination 'generic/platform=iOS Simulator' -derivedDataPath build CODE_SIGNING_ALLOWED=NO \
             2>&1 | tee xcodebuild.log | xcbeautify
           test -d build/Build/Products/Release-iphonesimulator/Trening.app
       - name: Zapis aplikacji (do ponownego użycia)
-        if: inputs.aplikacja_z_przebiegu == ''
         run: cd ios/build/Build/Products/Release-iphonesimulator && zip -qry "$GITHUB_WORKSPACE/Trening-sim.zip" Trening.app
       - uses: actions/upload-artifact@v4
-        if: inputs.aplikacja_z_przebiegu == ''
         with:
           name: trening-sim-app
           path: Trening-sim.zip
           retention-days: 1
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: xcodebuild-log-sim
+          retention-days: 1
+          path: ios/xcodebuild.log
+  e2e:
+    name: e2e (część ${{ matrix.shard }})
+    needs: build
+    # build pominięty (wejście aplikacja_z_przebiegu) = aplikacja z innego przebiegu; build nieudany = części się nie uruchamiają
+    if: ${{ !cancelled() && (needs.build.result == 'success' || needs.build.result == 'skipped') }}
+    runs-on: macos-26
+    strategy:
+      fail-fast: false  # porażka jednej części nie przerywa pozostałych — wynik wszystkich scenariuszy w jednym przebiegu
+      matrix:
+        shard: [1, 2, 3]  # liczba części = „czesci” w scripts/ci/e2e-shards.json (pilnuje tests/e2e-shards.test.ts)
+    timeout-minutes: 300  # 13.10.2026: scenariusze „z życia” 31–35 (+~20 min) i test aktualizacji — strażnik 100 min na podejście; wcześniej 180: symulator ~8 + 2 × strażnik (11.10.2026: 18 scenariuszy ~50 min — strażnik 50 min uciął ostatni, run 38153866859); przy za małym limicie powtórzenie było ucinane bez podsumowania porażki. Część to ~30 min scenariuszy, limit zostaje zapasowy
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select Xcode 26.x
+        run: bash scripts/ci/select-xcode.sh 26
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Plan części (które scenariusze wykonuje ta maszyna)
+        # Wejście „tylko_scenariusze” działa tak jak dawniej, tylko na każdej maszynie osobno: część bez wybranych scenariuszy kończy się od razu (bez symulatora).
+        id: plan
+        env:
+          ONLY: ${{ inputs.tylko_scenariusze }}
+          SHARD: ${{ matrix.shard }}
+        run: node scripts/ci/e2e-shards.mjs czesc "$SHARD" --out .maestro-czesc
+      - uses: actions/setup-java@v4
+        if: steps.plan.outputs.any == 'true'
+        with:
+          distribution: temurin
+          java-version: 17
       - uses: actions/download-artifact@v4
-        if: inputs.aplikacja_z_przebiegu != ''
+        if: steps.plan.outputs.any == 'true' && inputs.aplikacja_z_przebiegu != ''
         with:
           name: trening-sim-app
           run-id: ${{ inputs.aplikacja_z_przebiegu }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Rozpakowanie aplikacji z wcześniejszego przebiegu
-        if: inputs.aplikacja_z_przebiegu != ''
+      - uses: actions/download-artifact@v4
+        if: steps.plan.outputs.any == 'true' && inputs.aplikacja_z_przebiegu == ''
+        with:
+          name: trening-sim-app
+      - name: Rozpakowanie aplikacji
+        if: steps.plan.outputs.any == 'true'
         run: mkdir -p ios/build/Build/Products/Release-iphonesimulator && unzip -q Trening-sim.zip -d ios/build/Build/Products/Release-iphonesimulator
       - name: Simulator
+        if: steps.plan.outputs.any == 'true'
         # Obraz macos-26 (20260907) ma symulatory iOS 26.2/26.4/26.5 z iPhone 17 (bez iPhone 16) — wybieramy z wersji zgodnej
         # z SDK wybranego Xcode (dla 26.6: iOS 26.5), a gdy jej nie ma, z całej listy. Kolejność: iPhone 17, iPhone 16 (macos-15,
         # testy do SDK 54), dowolny iPhone. Wzorzec z „ (” — bez iPhone 17 Pro/17e/16e.
@@ -122,6 +162,7 @@ jobs:
           [ "$WYGLAD" = dark ] && xcrun simctl ui "$DEV" appearance dark || true  # wejście „wyglad” (nocny przebieg)
           xcrun simctl install "$DEV" ios/build/Build/Products/Release-iphonesimulator/Trening.app
       - name: Install Maestro
+        if: steps.plan.outputs.any == 'true'
         # audyt 08.10.2026 (TST-11, SEC-05): wersja w logu; zmienna repozytorium MAESTRO_VERSION przypina wersję (pusta = najnowsza)
         env:
           MAESTRO_VERSION: ${{ vars.MAESTRO_VERSION }}
@@ -131,20 +172,14 @@ jobs:
           echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
           "$HOME/.maestro/bin/maestro" --version || true
       - name: Maestro
+        if: steps.plan.outputs.main == 'true'
         env:
-          ONLY: ${{ inputs.tylko_scenariusze }}
           MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'  # świeżo uruchomiony symulator potrzebuje więcej czasu na sterownik XCTest (04.10.2026: 2× „driver not ready” przy 240 s po 8-min. rozruchu symulatora)
           MAESTRO_CLI_NO_ANALYTICS: '1'
         run: |
           mkdir -p e2e-out
-          # Wejście „tylko_scenariusze”: kopia wybranych plików (poza 33–34, te idą krokiem „Aktualizacja”) z podprzepływami do osobnego katalogu
-          DIR=.maestro
-          if [ -n "$ONLY" ]; then
-            rm -rf .maestro-wybrane; mkdir .maestro-wybrane; cp -r .maestro/subflows .maestro-wybrane/; N=0
-            for n in $ONLY; do case "$n" in 33|34) ;; *) cp .maestro/"$n"-*.yaml .maestro-wybrane/ && N=$((N+1));; esac; done
-            [ "$N" -gt 0 ] || { echo "Brak scenariuszy do głównego przebiegu (wybrane: $ONLY)"; exit 0; }
-            DIR=.maestro-wybrane
-          fi
+          # Katalog części (scenariusze tej maszyny + subflows) przygotował krok „Plan części”; wejście „tylko_scenariusze” zawęża go tam.
+          DIR=.maestro-czesc
           # Jedno powtórzenie TYLKO, gdy sterownik XCTest nie wystartował (awaria maszyny przed pierwszym scenariuszem — CLAUDE.md);
           # błąd w scenariuszu nie jest powtarzany.
           set +e
@@ -165,7 +200,7 @@ jobs:
         # 13.10.2026 (docs/31, persona C): poprzednia wersja aplikacji z artefaktu trening-sim-app wskazanego wejściem albo z ostatniego zielonego przebiegu na main.
         # Artefakty żyją 1 dzień (ADR-031) — gdy go nie ma, test aktualizacji jest pominięty z ostrzeżeniem (nie z błędem: brak starej aplikacji to nie błąd nowej).
         id: prev
-        if: ${{ !cancelled() && inputs.poprzednia_wersja_z_przebiegu != 'brak' && (inputs.tylko_scenariusze == '' || contains(inputs.tylko_scenariusze, '33') || contains(inputs.tylko_scenariusze, '34')) }}
+        if: ${{ !cancelled() && steps.plan.outputs.update == 'true' && inputs.poprzednia_wersja_z_przebiegu != 'brak' }}  # update=true tylko w jednej części (wybranej przez e2e-shards.mjs)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WANT_RUN: ${{ inputs.poprzednia_wersja_z_przebiegu }}
@@ -210,6 +245,7 @@ jobs:
       - name: Podsumowanie porażki (nieudane polecenie i teksty z ekranu — artefakty bywają nieosiągalne)
         if: failure()
         run: |
+          echo "Część E2E: ${{ matrix.shard }}"
           python3 scripts/ci/maestro-failures.py e2e-out /tmp/zrzuty.txt
           # Zrzut nieudanego kroku jako tekst w logu (base64 JPEG ~480 px) — artefakty bywają nieosiągalne; tylko ekran aplikacji w symulatorze.
           head -4 /tmp/zrzuty.txt | while IFS= read -r f; do
@@ -219,15 +255,90 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: e2e-ios
+          name: e2e-ios-${{ matrix.shard }}  # numer części w nazwie — artefakty porażek się nie nadpisują
           retention-days: 1
           path: |
             e2e-out
             *.png
             .maestro/*.png
-      - uses: actions/upload-artifact@v4
-        if: failure()
+  # Scenariusze eksperymentalne 40–42 (decyzja właściciela 14.10.2026: osobno, niewiążąco; awans do głównego po 3 zielonych przebiegach)
+  eksperymenty:
+    name: eksperymenty (niewiążące)
+    needs: build
+    if: ${{ !cancelled() && (needs.build.result == 'success' || needs.build.result == 'skipped') && inputs.tylko_scenariusze == '' }}
+    runs-on: macos-26
+    continue-on-error: true
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select Xcode 26.x
+        run: bash scripts/ci/select-xcode.sh 26
+      - uses: actions/setup-node@v5
         with:
-          name: xcodebuild-log-sim
+          node-version: 22
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: actions/download-artifact@v4
+        if: inputs.aplikacja_z_przebiegu != ''
+        with:
+          name: trening-sim-app
+          run-id: ${{ inputs.aplikacja_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        if: inputs.aplikacja_z_przebiegu == ''
+        with:
+          name: trening-sim-app
+      - name: Rozpakowanie aplikacji
+        run: mkdir -p ios/build/Build/Products/Release-iphonesimulator && unzip -q Trening-sim.zip -d ios/build/Build/Products/Release-iphonesimulator
+      - name: Simulator
+        # Obraz macos-26 (20260907) ma symulatory iOS 26.2/26.4/26.5 z iPhone 17 (bez iPhone 16) — wybieramy z wersji zgodnej
+        # z SDK wybranego Xcode (dla 26.6: iOS 26.5), a gdy jej nie ma, z całej listy. Kolejność: iPhone 17, iPhone 16 (macos-15,
+        # testy do SDK 54), dowolny iPhone. Wzorzec z „ (” — bez iPhone 17 Pro/17e/16e.
+        env:
+          WANT: ${{ inputs.urzadzenie }}
+          WYGLAD: ${{ inputs.wyglad }}
+        run: |
+          SDK=$(xcrun --sdk iphonesimulator --show-sdk-version)
+          LIST=$(xcrun simctl list devices available | awk -v h="-- iOS $SDK --" '$0 == h { f = 1; next } /^-- / { f = 0 } f')
+          [ -n "$LIST" ] || { echo "Brak symulatorów iOS $SDK — wybór z całej listy"; LIST=$(xcrun simctl list devices available); }
+          DEV=""
+          for pat in ${WANT:+"$WANT"} "iPhone 17 \(" "iPhone 16 \(" "iPhone"; do  # WANT: wejście „urzadzenie” (nocny przebieg — mały ekran)
+            DEV=$(printf '%s\n' "$LIST" | grep -m1 -E "$pat" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/' || true)  # || true: krok działa z -eo pipefail
+            [ -n "$DEV" ] && break
+          done
+          [ -n "$DEV" ] || { echo "::error::Brak dostępnego symulatora iPhone'a"; xcrun simctl list devices available; exit 1; }
+          echo "Symulator: $(printf '%s\n' "$LIST" | grep -m1 "$DEV" | sed -E 's/^ +//') (SDK symulatora $SDK)"
+          echo "SIM=$DEV" >> "$GITHUB_ENV"
+          xcrun simctl boot "$DEV" || true
+          xcrun simctl bootstatus "$DEV" -b
+          [ "$WYGLAD" = dark ] && xcrun simctl ui "$DEV" appearance dark || true  # wejście „wyglad” (nocny przebieg)
+          xcrun simctl install "$DEV" ios/build/Build/Products/Release-iphonesimulator/Trening.app
+      - name: Install Maestro
+        # audyt 08.10.2026 (TST-11, SEC-05): wersja w logu; zmienna repozytorium MAESTRO_VERSION przypina wersję (pusta = najnowsza)
+        env:
+          MAESTRO_VERSION: ${{ vars.MAESTRO_VERSION }}
+        run: |
+          [ -n "$MAESTRO_VERSION" ] || unset MAESTRO_VERSION
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+          "$HOME/.maestro/bin/maestro" --version || true
+      - name: Maestro (eksperymenty, każdy plik osobno)
+        env:
+          MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'
+          MAESTRO_CLI_NO_ANALYTICS: '1'
+        run: |
+          mkdir -p e2e-out; rc=0
+          for f in $(grep -l -E '^  - eksperyment$' .maestro/[0-9][0-9]-*.yaml | sort); do
+            echo "=== EKSPERYMENT $f"; mkdir -p "e2e-out/$(basename "$f" .yaml)"
+            xcrun simctl terminate "$SIM" pl.lukasz.trening || true
+            maestro --device "$SIM" test "$f" --format junit --output "e2e-out/$(basename "$f" .yaml).xml" --test-output-dir "e2e-out/$(basename "$f" .yaml)" || { echo "::warning::Eksperyment $f nie przeszedł (niewiążący)"; rc=1; }
+          done
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-ios-eksperymenty
           retention-days: 1
-          path: ios/xcodebuild.log
+          path: e2e-out

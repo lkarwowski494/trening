@@ -48,12 +48,14 @@ jobs:
         env:
           NODE_OPTIONS: --max-old-space-size=3072
         run: npm run verify
+      - name: Logika zegarka — testy jednostkowe Swift (targets/watch-tests)
+        run: cd targets && swift test
       - name: Straż 0.17.0 — build dla telefonu ma prawdziwy sklep (bez sztucznego, który jest tylko w E2E)
         run: |
           if [ -n "${EXPO_PUBLIC_STORE_FAKE:-}" ]; then echo "::error::EXPO_PUBLIC_STORE_FAKE ustawione w buildzie TestFlight"; exit 1; fi
       - name: Generate native iOS project (expo prebuild)
         run: npx expo prebuild --platform ios --no-install --clean
-      - name: Numer buildu (aplikacja i widżet ten sam CFBundleVersion)
+      - name: Numer buildu (aplikacja, widżet i zegarek ten sam CFBundleVersion)
         # BUILD_BASE + numer przebiegu (wyrażenia GitHub Actions nie liczą — liczy powłoka)
         env:
           BUILD_BASE: ${{ vars.BUILD_BASE || '1000' }}
@@ -77,22 +79,30 @@ jobs:
         env:
           ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
         run: umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
-      - name: Archiwum (podpis automatyczny kluczem API)
-        env:
-          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
-          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      - name: Archiwum (bez podpisu — podpis dystrybucyjny dopiero przy eksporcie, 13.10.2026)
+        # Świeży runner nie ma klucza prywatnego poprzedniego certyfikatu Apple Development, więc archiwum z podpisem automatycznym
+        # tworzyło nowy certyfikat przy każdym przebiegu (limit -> build 1011). Certyfikat dystrybucyjny jest jeden na zespół (cloud-managed).
         run: |
           set -o pipefail
-          # przegląd CI 06.10: identyfikatory klucza poza środowiskiem xcodebuild (surowe logi idą do artefaktu, a tam GitHub nie maskuje)
-          KID="$ASC_KEY_ID"; ISS="$ASC_ISSUER_ID"; unset ASC_KEY_ID ASC_ISSUER_ID
           TEAM=$(node -p "require('./app.json').expo.ios.appleTeamId")
           cd ios
           xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release -destination 'generic/platform=iOS' \
             -archivePath "$RUNNER_TEMP/Trening.xcarchive" archive \
-            -allowProvisioningUpdates -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
-            -authenticationKeyID "$KID" -authenticationKeyIssuerID "$ISS" \
-            CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM="$TEAM" CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO DEVELOPMENT_TEAM="$TEAM" CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
             2>&1 | tee xcodebuild.log | xcbeautify
+      - name: Zegarek w archiwum (osadzony, ta sama wersja i numer buildu, HealthKit)
+        # 0.20: cel pl.lukasz.trening.watchkitapp podpisuje się automatycznie tym samym kluczem API. Pierwszy przebieg tworzy App ID i profil zegarka —
+        # jeśli Apple odmówi (HealthKit na App ID), właściciel dodaje App ID ręcznie (docs/35-zegarek-apple, latki-zegarek/README). Archiwum musi zawierać zegarek.
+        run: |
+          APP="$RUNNER_TEMP/Trening.xcarchive/Products/Applications/Trening.app"
+          W="$APP/Watch/TreningWatch.app"
+          test -d "$W" || { echo "::error::Brak zegarka w archiwum ($APP/Watch)"; exit 1; }
+          pb() { /usr/libexec/PlistBuddy -c "Print :$1" "$2"; }
+          [ "$(pb CFBundleShortVersionString "$W/Info.plist")" = "$(pb CFBundleShortVersionString "$APP/Info.plist")" ] || { echo "::error::Wersja zegarka różni się od wersji aplikacji"; exit 1; }
+          [ "$(pb CFBundleVersion "$W/Info.plist")" = "$BUILD_NUMBER" ] || { echo "::error::Numer buildu zegarka ≠ $BUILD_NUMBER"; exit 1; }
+          [ "$(pb WKCompanionAppBundleIdentifier "$W/Info.plist")" = "pl.lukasz.trening" ] || { echo "::error::Zegarek wskazuje inną aplikację towarzyszącą"; exit 1; }
+          # archiwum jest bez podpisu (podpis dopiero przy eksporcie), więc sprawdzamy plik uprawnień celu, nie podpis
+          grep -q "com.apple.developer.healthkit" ios/.targets/TreningWatch/generated.entitlements || { echo "::error::Zegarek bez uprawnienia HealthKit (generated.entitlements)"; exit 1; }
       - name: Eksport i wysyłka do App Store Connect
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}

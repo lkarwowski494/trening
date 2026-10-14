@@ -43,7 +43,7 @@ describe('workflowy na publicznym repozytorium', () => {
   test('decyzja właściciela 08.10.2026 (audyt M4): workflowy EAS usunięte — żaden workflow nie używa Expo ani sekretów spoza klucza App Store Connect', () => {
     const fs = require('fs') as typeof import('fs'); const dir = join(__dirname, '../.github/workflows');
     const files = fs.readdirSync(dir).filter(f => f.endsWith('.yml')).sort();
-    expect(files).toEqual(['e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml']);
+    expect(files).toEqual(['e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml', 'watch-sim.yml']);
     expect(fs.existsSync(join(__dirname, '../scripts/eas'))).toBe(false);
     const allowed = ['secrets.GITHUB_TOKEN', 'secrets.ASC_KEY_ID', 'secrets.ASC_ISSUER_ID', 'secrets.ASC_KEY_P8'];
     for (const f of files) {
@@ -68,7 +68,13 @@ describe('workflowy na publicznym repozytorium', () => {
     const exprs = [...step.matchAll(/-e "(s\/\$\{ASC_(?:KEY|ISSUER)_ID\}\/<[A-Z_]+>\/g)"/g)].map(m => m[1].replace('${ASC_KEY_ID}', 'ABC123DEFG').replace('${ASC_ISSUER_ID}', '69a6de70-0000-47e3-e053-5b8c7c11a4d1')); expect(exprs.length).toBe(2);
     const line = 'Command line invocation: xcodebuild -authenticationKeyID ABC123DEFG -authenticationKeyIssuerID 69a6de70-0000-47e3-e053-5b8c7c11a4d1\n';
     expect(execFileSync('sed', exprs.flatMap(e => ['-e', e]), { input: line }).toString()).toBe('Command line invocation: xcodebuild -authenticationKeyID <KEY_ID> -authenticationKeyIssuerID <ISSUER_ID>\n');
-    expect((y.match(/unset ASC_KEY_ID ASC_ISSUER_ID/g) || []).length).toBe(2); expect(y).not.toMatch(/-authenticationKeyID "\$ASC_KEY_ID"/); /* logi w artefakcie bez identyfikatorów */ /* audyt 06.10: klucz na dysku dopiero przed archiwum */
+    expect((y.match(/unset ASC_KEY_ID ASC_ISSUER_ID/g) || []).length).toBe(1); expect(y).not.toMatch(/-authenticationKeyID "\$ASC_KEY_ID"/); /* logi w artefakcie bez identyfikatorów */ /* audyt 06.10: klucz na dysku dopiero przed archiwum */
+    /* 13.10.2026 (build 1011): archiwum nie tworzy certyfikatu Apple Development; klucz API tylko w eksporcie (podpis dystrybucyjny w chmurze) */
+    const arch = y.slice(y.indexOf('- name: Archiwum'), y.indexOf('- name: Eksport i wysyłka'));
+    expect(arch).toContain('CODE_SIGNING_ALLOWED=NO'); expect(arch).toContain('CODE_SIGNING_REQUIRED=NO');
+    expect(arch).not.toMatch(/CODE_SIGN_STYLE=Automatic|authenticationKey|allowProvisioningUpdates/);
+    const exp = y.slice(y.indexOf('- name: Eksport i wysyłka'), y.indexOf('- name: Usunięcie klucza'));
+    expect(exp).toContain('-allowProvisioningUpdates'); expect(exp).toContain('<key>signingStyle</key><string>automatic</string>');
   });
   test('deklaracja szyfrowania: aplikacja nie używa szyfrowania poza systemowym (bez pytania przy każdym buildzie w App Store Connect)', () => {
     expect(JSON.parse(readFileSync(join(__dirname, '../app.json'), 'utf8')).expo.ios.infoPlist.ITSAppUsesNonExemptEncryption).toBe(false);
