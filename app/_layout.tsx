@@ -9,6 +9,7 @@ import { onWorkoutSaved, exportRawData, cleanShareLeftovers } from '@/lib/backup
 import { markDoneEarly } from '@/lib/plan';
 import { retryHealth } from '@/lib/health';
 import { startAppleWatchLink } from '@/lib/watch/apple';
+import { isFakeWatchBuild, startTestWatch } from '@/lib/watch/test-mode';
 import { cancelLegacyReminders } from '@/lib/planReminder';
 import { SCHEMA_VERSION, type Workout } from '@/lib/seed';
 import { AppState } from 'react-native';
@@ -37,7 +38,8 @@ export default function RootLayout() {
     setAutoSavedNotice(t('Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.' /* H2 (audyt 0.10): zakładka nazywa się Kalendarz */, { d: fmtDate(wallTs(w)), s: fmtTime(wallTs(w)), e: fmtTime(wallTs(w, w.finishedAt ?? w.startedAt)) })); };
   const start = () => { setErr(null); Promise.all([init(), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ restored = restoreObjDrafts(); /* UX2-03 = DAT2-06: szkice edycji sprzed zamknięcia aplikacji */ cancelLegacyReminders().catch(() => {}); /* decyzja 09.10.2026: bez przypomnienia o podpisie — stare odwołane */ initEntitlements().catch(() => {}); /* 0.17.0: sklep tylko przy PAYWALL.ENABLED */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => setErr(e instanceof Error ? e.message : String(e))); };
   useEffect(start, []);
-  useEffect(() => startAppleWatchLink(), []); /* 0.20: łącze z Apple Watch — startuje samo przy sparowanym zegarku z aplikacją (docs/36) */
+  /* 0.20: łącze z Apple Watch — startuje samo przy sparowanym zegarku z aplikacją (docs/36); build E2E: atrapa zegarka (lib/watch/test-mode.ts). Dopiero po init() (`ready`): migawka czyta stan, a przed wczytaniem danych getState() rzuca „store not initialised” (E2E 50, 14.10.2026) */
+  useEffect(() => (ready ? (isFakeWatchBuild() ? startTestWatch() : startAppleWatchLink()) : undefined), [ready]);
   /* T-051 (SDK 56+, audyt aktualizacji): expo-router trzyma ekran powitalny, dopóki nie zamontuje się nawigator — ekran błędu startu
    * (poniżej) nie ma nawigatora, więc zostałby pod logo i aplikacja wyglądałaby na zawieszoną. Przy błędzie chowamy go sami. */
   useEffect(() => { if (err) SplashScreen.hideAsync().catch(() => {}); }, [err]);

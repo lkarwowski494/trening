@@ -92,7 +92,7 @@ po trzech zielonych przebiegach: usuń tag, dopisz do `config.yaml`, dopisz wag�
 
 Funkcje na gałęziach `f020-protokol` (protokół zegarka, „do uzupełnienia”, głos) i `f020-garmin`; gałęzi `f020-applewatch` jeszcze nie ma. W katalogu: W2-01..W2-03 (`projekt`), W2-04, W2-05 (telefon).
 
-- `50-zegarek-do-uzupelnienia.yaml` (W2-01, W2-02): wymaga trybu testowego zegarka w buildzie E2E — wzorzec jak sztuczny sklep: `EXPO_PUBLIC_WATCH_FAKE=1` (tylko `e2e-ios.yml`, straż w teście jak
+- `50-zegarek-do-uzupelnienia.yaml` (W2-01, W2-02) — **JEST (14.10.2026)**, tryb testowy zegarka wdrożony: `EXPO_PUBLIC_WATCH_FAKE=1` razem ze sztucznym sklepem (zamek podwójny; `lib/watch/test-mode.ts`, straż `tests/watch-test-mode.test.tsx`), zmienną ustawia tylko `e2e-ios.yml` (łatka właściciela `atrapa-zegarka-e2e.patch`; do czasu łatki scenariusz 50 w buildzie E2E nie zobaczy panelu „Test watch”). Pierwotny opis: wymaga trybu testowego zegarka w buildzie E2E — wzorzec jak sztuczny sklep: `EXPO_PUBLIC_WATCH_FAKE=1` (tylko `e2e-ios.yml`, straż w teście jak
   `tests/store-adapter.test.ts`) i panel „Test watch” z przyciskami zdarzeń (`done`, `differ`, `skip`, `undo`) na ekranie treningu — atrapa `lib/watch/fake.ts` już istnieje w protokole.
   Kroki: start treningu → „zrobione inaczej” z zegarka → w wierszu „to fill in” i „Done” → rekord nie liczy serii → „Finish” → okno „Sets to fill in” → Anuluj (wraca) → „Finish anyway” → sesja
   bez znaczników. ≈ 3 min.

@@ -37,6 +37,35 @@ final class WatchStoreTests: XCTestCase {
     XCTAssertNil(s.state.upgrade)
   }
 
+  /// Decyzja właściciela 14.10.2026: zgoda na Zdrowie przy pierwszym otwarciu aplikacji na zegarku, nie przy pierwszym treningu.
+  func testStartAsksForHealthAuthorizationOnFirstLaunchWithoutStartingSession() async {
+    let s = makeStore()
+    XCTAssertEqual(workout.authorizationRequests, 0)       // sam store jeszcze o nic nie prosi
+    s.start(); await settle()
+    XCTAssertEqual(workout.authorizationRequests, 1)       // otwarcie aplikacji = prośba o zgodę
+    XCTAssertEqual(workout.starts, 0)                       // bez sesji treningu i bez polecenia telefonu
+    XCTAssertFalse(s.sessionActive)
+    XCTAssertTrue(transport.activated)                      // reszta startu bez zmian
+  }
+
+  func testAuthorizationIsAskedOncePerLaunchNotOnResume() async {
+    var s = makeStore()
+    s.start(); s.didBecomeActive(); s.didBecomeActive(); await settle()
+    XCTAssertEqual(workout.authorizationRequests, 1)       // powrót na ekran nie pyta ponownie
+    s = makeStore(persisted: persistence.load())            // kolejne uruchomienie (stan z dysku, nowy FakeWorkout): znów jedna prośba; system pokaże okno tylko gdy zgoda nieustalona
+    s.start(); await settle()
+    XCTAssertEqual(workout.authorizationRequests, 1)
+  }
+
+  func testSessionStartFromPhoneWorksWithoutPriorAuthorizationRequest() async {
+    let s = makeStore()
+    s.start(); await settle()
+    transport.deliver(json: session("start")); await settle()
+    XCTAssertEqual(workout.starts, 1)
+    XCTAssertTrue(s.sessionActive)
+    XCTAssertEqual(workout.authorizationRequests, 1)       // zgoda tylko przy otwarciu; polecenie sesji nie dokłada kolejnej prośby w store
+  }
+
   func testDefaultLanguageFromSystemThenFromSnapshot() async {
     let s = makeStore(languages: ["de-DE"])
     XCTAssertEqual(s.lang, "de")

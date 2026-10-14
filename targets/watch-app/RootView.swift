@@ -70,7 +70,15 @@ struct MessageView: View {
   }
 }
 
-/// Przycisk główny: „Seria zrobiona”. Gest podwójnego stuknięcia (watchOS 11) uruchamia dokładnie to samo.
+/// Gest podwójnego stuknięcia istnieje od watchOS 11; minimum aplikacji to watchOS 10, więc modyfikator jest tylko w gałęzi `#available`
+/// (tests/watch-availability.test.ts pilnuje, żeby żadne API z watchOS 11 nie wystąpiło poza taką osłoną). Na watchOS 10 przycisk działa bez gestu.
+private struct DoubleTapShortcut: ViewModifier {
+  func body(content: Content) -> some View {
+    if #available(watchOS 11, *) { content.handGestureShortcut(.primaryAction) } else { content }
+  }
+}
+
+/// Przycisk główny: „Seria zrobiona”. Gest podwójnego stuknięcia (od watchOS 11) uruchamia dokładnie to samo.
 struct PrimaryButton: View {
   @ObservedObject var store: WatchStore
   var body: some View {
@@ -78,7 +86,7 @@ struct PrimaryButton: View {
       Text(store.label(.done)).frame(maxWidth: .infinity).multilineTextAlignment(.center)
     }
     .buttonStyle(.borderedProminent)
-    .handGestureShortcut(.primaryAction)
+    .modifier(DoubleTapShortcut())
     .accessibilityIdentifier("watch.primary")
   }
 }

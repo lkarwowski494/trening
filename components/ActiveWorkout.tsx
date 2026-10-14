@@ -28,6 +28,7 @@ import { t as tr, tp, exName, lang, glue } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
 import { cancelButton, confirmSkipTimedSet } from '@/lib/confirm';
 import { adaptCandidates, restoreCandidates } from '@/lib/adapt';
+import { TestWatchPanel } from '@/components/TestWatchPanel';
 import { takeAutoAdapt } from '@/lib/adaptPick';
 
 /*
@@ -182,6 +183,8 @@ export default function ActiveWorkout() {
         <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{tr('Notatka do treningu')}</Muted><Input testID="workout-note" /* E2E 25 */ maxLength={1000} value={w.note} onChangeText={v => { w.note = v; save(w); }} placeholder={tr('np. samopoczucie, ból, sprzęt')} accessibilityLabel={tr('Notatka do treningu')} multiline /><MedicalNote /></View>
         <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{tr('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.')} {tr('Przesuń serię albo nazwę ćwiczenia w lewo, by je usunąć.') /* UI-07 (audyt 0.10): opis gestu także w treningu */}</Muted>
         <Btn title={tr('Odrzuć trening')} kind="danger" block style={{ marginTop: 24 }} onPress={cancel} />
+        {/* tylko build E2E z udawanym zegarkiem (lib/watch/test-mode.ts); poza nim null */}
+        <TestWatchPanel />
       </ScrollView>
       <TimerBar onFinishSet={() => finishTimedSet()} restInCard={st.settings.workoutView !== 'list' && !restOff} />
     </View>

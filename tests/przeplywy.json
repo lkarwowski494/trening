@@ -1489,9 +1489,10 @@
    "realnosc": "realny",
    "kroki": [
     "Panel dnia → „Więcej opcji” → „Miejsce na te dni” → wybierz → „Ustaw miejsce”",
+    "„Przesuń albo pomiń” → „Przesuń plan o 1 dzień” oraz „Przywróć z planu” (miejsce zostaje przy dacie)",
     "„Usuń miejsce”"
    ],
-   "wynik": "Start w tych dniach ma miejsce z planu; po usunięciu wraca główne.",
+   "wynik": "Start w tych dniach ma miejsce z planu; przesunięcie treningu nie przenosi miejsca (należy do daty); po usunięciu wraca główne.",
    "ekrany": [
     "/history",
     "/place-once"
@@ -2883,21 +2884,20 @@
    "wersja": "0.20",
    "realnosc": "realny",
    "kroki": [
-    "Trening w toku, zegarek (atrapa) wysyła „done” i „differ”",
+    "Trening w toku, zegarek (atrapa, panel „Test watch”) wysyła „differ”",
     "W wierszu serii „do uzupełnienia” i przycisk „Gotowe”",
     "Rekord nie liczy takiej serii, dopóki nie jest uzupełniona"
    ],
-   "wynik": "Znacznik i rekord zgodne z docs/35.",
+   "wynik": "Znacznik i rekord zgodne z docs/35; seria z zegarka „zrobiona inaczej” ma w wierszu „do uzupełnienia”.",
    "ekrany": [
     "/"
    ],
-   "projekt": {
-    "scenariusz": ".maestro/50-zegarek-do-uzupelnienia.yaml",
-    "czeka_na": "scalenie f020-protokol oraz tryb testowy zegarka w buildzie E2E (EXPO_PUBLIC_WATCH_FAKE: panel „Test watch” z przyciskami zdarzeń, wzór: panel „Test store”)",
-    "opis": "Seria „Z zegarka: zrobione inaczej” → „Serie do uzupełnienia” → „Gotowe” → rekord."
-   },
-   "status": "projekt",
-   "uwaga": "Jak W2-02: znacznik „do uzupełnienia” powstaje tylko ze zdarzenia z zegarka, telefon sam go nie wywoła; logika i ekran: Jest (tests/watch-fill-ui.test.tsx, tests/watch-apply.test.ts)."
+   "uwaga": "Tryb testowy zegarka (EXPO_PUBLIC_WATCH_FAKE razem ze sztucznym sklepem, tylko e2e-ios.yml; lib/watch/test-mode.ts) wysyła zdarzenia atrapy zegarka; znacznik „do uzupełnienia” powstaje tylko ze zdarzenia z zegarka. Rekord po uzupełnieniu: Jest (tests/watch-fill-ui.test.tsx).",
+   "scenariusz": "50-zegarek-do-uzupelnienia.yaml",
+   "znaczniki": [
+    "Test watch: differ",
+    "Set 1 to fill in — .*"
+   ]
   },
   {
    "id": "W2-02",
@@ -2909,18 +2909,18 @@
     "Zostaw serię z zegarka „do uzupełnienia”",
     "„Zakończ” → okno „Serie do uzupełnienia” → Anuluj (wraca) / „Zakończ mimo to” (zapis z wartościami z planu)"
    ],
-   "wynik": "Znaczniki zdjęte, sesja bez śladu znacznika.",
+   "wynik": "Anuluj wraca do treningu ze znacznikiem; „Zakończ mimo to” przechodzi do zwykłego potwierdzenia, sesja zapisana bez śladu znacznika.",
    "ekrany": [
     "/",
     "/history/[id]"
    ],
-   "projekt": {
-    "scenariusz": ".maestro/50-zegarek-do-uzupelnienia.yaml",
-    "czeka_na": "scalenie f020-protokol oraz tryb testowy zegarka w buildzie E2E (jak W2-01)",
-    "opis": "Druga połowa scenariusza 50: „Zakończ” → okno → „Anuluj” / „Zakończ mimo to”."
-   },
-   "status": "projekt",
-   "uwaga": "Znacznik „do uzupełnienia” (toFill) ustawia wyłącznie zdarzenie z zegarka (lib/watch/apply.ts: markDiffer, done+differ) — z telefonu nie ma drogi przez UI, więc bez atrapy zegarka tego przepływu nie da się wywołać w Maestro; logika i okno: Jest (tests/watch-fill-ui.test.tsx)."
+   "uwaga": "Znacznik „do uzupełnienia” (toFill) ustawia wyłącznie zdarzenie z zegarka (lib/watch/apply.ts: markDiffer, done+differ) — w scenariuszu daje je panel „Test watch” (build E2E z atrapą zegarka). Wartości zapisane po „Zakończ mimo to”: Jest (tests/watch-fill-ui.test.tsx).",
+   "scenariusz": "50-zegarek-do-uzupelnienia.yaml",
+   "znaczniki": [
+    "Sets to fill in",
+    "Finish anyway",
+    "Cancel"
+   ]
   },
   {
    "id": "W2-03",
@@ -2954,7 +2954,7 @@
     "Telefon bez głosu dla języka aplikacji (np. język bez pobranego głosu)",
     "Ustawienia → Trening"
    ],
-   "wynik": "Pod „Posłuchaj przykładu” wskazówka „Pobierz go w Ustawieniach iOS…”; przełącznik i przykład dalej dostępne.",
+   "wynik": "Pod „Posłuchaj przykładu” wskazówka „Pobierz go w Ustawieniach iOS (Dostępność).”; przełącznik i przykład dalej dostępne.",
    "ekrany": [
     "/more/settings"
    ],

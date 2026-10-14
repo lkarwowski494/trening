@@ -43,6 +43,13 @@ final class WorkoutController: NSObject, WorkoutDriver, HKWorkoutSessionDelegate
     begin(c)
   }
 
+  /// Zgoda na Zdrowie przy otwarciu aplikacji (nie dopiero przy pierwszej sesji) — okno systemowe pojawia się raz; potem wywołanie jest bez skutku.
+  /// Wynik nie jest tu potrzebny: bez zgody ekrany działają, a sesja (`begin`) sprawdzi zgodę jeszcze raz.
+  func requestAuthorization() {
+    guard HKHealthStore.isHealthDataAvailable() else { return }
+    store.requestAuthorization(toShare: shareTypes, read: readTypes) { _, _ in }
+  }
+
   private func begin(_ config: HKWorkoutConfiguration) {
     guard !isActive, !starting, HKHealthStore.isHealthDataAvailable() else { return }
     starting = true

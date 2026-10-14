@@ -73,8 +73,7 @@ describe('katalog przepływów — scenariusze Maestro', () => {
     expect([...expFiles].filter(f => regular.has(f))).toEqual([]); /* plik albo eksperymentalny, albo zwykły */
   });
   test('przepływy 0.20 (projekt): plik scenariusza jeszcze nie istnieje (po jego dopisaniu zmień wpis na scenariusz ze znacznikami)', () => {
-    const proj = flows.filter(f => f.projekt);
-    expect(proj.length).toBeGreaterThan(0);
+    const proj = flows.filter(f => f.projekt); /* 14.10.2026: W2-01 i W2-02 mają już scenariusz 50 (tryb testowy zegarka) — projektów może nie być wcale */
     for (const f of proj) {
       expect([f.id, f.status, f.wersja]).toEqual([f.id, 'projekt', '0.20']);
       expect([f.id, existsSync(join(root, f.projekt!.scenariusz))]).toEqual([f.id, false]);

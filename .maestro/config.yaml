@@ -13,7 +13,8 @@
 # 23 (13.10.2026, 0.19): „Inne miejsce (tylko dziś)” — 📍 → okno → zestaw → „Use” → „Adjust to: Today only” → „Apply”; 13 rozszerzony o miejsce na zakres dni w planie.
 # 24–29, 36–38 (13.10.2026, katalog przepływów docs/37): zarządzanie szablonami (24), narzędzia w treningu (25), zarządzanie planem (26), biblioteka ćwiczeń (27), długa historia (28),
 # błędne i skrajne dane (29), przerwanie i szkice po restarcie (36), praca po polsku i restart (37), przewodnik i przypomnienia (38).
-# 51 (14.10.2026, 0.20): głos w przerwie — przełącznik „Głos także przez głośnik telefonu” i „Posłuchaj przykładu” w Ustawieniach (zegarek: 50, projekt, czeka na tryb testowy zegarka).
+# 50 (14.10.2026, 0.20): zegarek — serie „zrobione inaczej” z udawanego zegarka (panel „Test watch”, EXPO_PUBLIC_WATCH_FAKE=1 tylko w e2e-ios.yml) → „do uzupełnienia” → okno przed „Zakończ”.
+# 51 (14.10.2026, 0.20): głos w przerwie — przełącznik „Głos także przez głośnik telefonu” i „Posłuchaj przykładu” w Ustawieniach.
 # 40–42 (EKSPERYMENTY): odmowa zgody na powiadomienia (40), tło i powrót (41), przywrócenie z pliku kopii (42) — tag `eksperyment`, NIE na liście flows (główny przebieg ich pomija,
 # bo nikt nie sprawdził jeszcze na symulatorze okien systemowych / Home / wyboru pliku); uruchamiane osobno (docs/38 pkt 5).
 # 13 (08.10.2026): kalendarz z planem tygodnia (plan, przesunięcie planu, konflikt, „Dziś”). 14 (08.10.2026): generator szablonów i planu. Każdy plik .yaml z katalogu musi być tu wpisany (tests/maestro-selectors.test.ts).
@@ -55,4 +56,5 @@ flows:
   - 36-przerwanie-szkice.yaml
   - 37-jezyk-motyw-trwale.yaml
   - 38-pomoc-powiadomienia.yaml
+  - 50-zegarek-do-uzupelnienia.yaml
   - 51-glos-ustawienia.yaml

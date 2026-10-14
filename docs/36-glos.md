@@ -48,7 +48,7 @@ Koniec przerwy: dotychczasowe powiadomienie lokalne (dźwięk + wibracja, dział
 
 - „Głos także przez głośnik telefonu” (przełącznik, domyślnie wyłączony; pole `Settings.voiceSpeaker`, zapisywane tylko `true`, bez zmiany schematu) z opisem: w słuchawkach zapowiedź jest zawsze (gdy dźwięk włączony), przez głośnik tylko po włączeniu.
 - „Posłuchaj przykładu” — przykładowa zapowiedź w języku i jednostce aplikacji.
-- Gdy telefon nie ma głosu dla języka aplikacji: wskazówka z instrukcją pobrania głosu w ustawieniach iOS (Dostępność → Treści mówione → Głosy). Wg listy Apple głosów może nie być m.in. dla serbskiego, łotewskiego i estońskiego — **do sprawdzenia na urządzeniu**.
+- Gdy telefon nie ma głosu dla języka aplikacji: ogólna wskazówka z instrukcją pobrania głosu w Ustawieniach iOS (Dostępność) — bez dokładnej ścieżki podmenu (decyzja właściciela 14.10.2026: nazwy podmenu różnią się między wersjami iOS i językami; odrzucone: sprawdzanie nazw w 35 językach). Wg listy Apple głosów może nie być m.in. dla serbskiego, łotewskiego i estońskiego — **do sprawdzenia na urządzeniu**.
 
 ## 4. Moduł natywny (`modules/voice-cue`, Swift)
 
