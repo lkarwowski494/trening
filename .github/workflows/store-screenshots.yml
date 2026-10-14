@@ -144,7 +144,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      - name: Install Maestro (akcje na ekranach: wykres e1RM, przewinięcie, kalendarz, wybór pliku CSV)
+      - name: Install Maestro (akcje na ekranach — wykres e1RM, przewinięcie, kalendarz, wybór pliku CSV)
         # jak e2e-ios.yml: zmienna repozytorium MAESTRO_VERSION przypina wersję (pusta = najnowsza)
         env:
           MAESTRO_VERSION: ${{ vars.MAESTRO_VERSION }}

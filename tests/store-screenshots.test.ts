@@ -17,6 +17,9 @@ describe('store-screenshots.yml', () => {
     for (const m of y.match(/secrets\.[A-Z_0-9]+/g) || []) expect(m).toBe('secrets.GITHUB_TOKEN');
     expect(y).not.toMatch(/run:[^\n]*\$\{\{/); /* ani inputs, ani matrix w poleceniach powłoki */
   });
+  test('poprawny YAML z wyzwalaczem workflow_dispatch (14.10.2026: dwukropek w nazwie kroku unieważnił plik — GitHub: „does not have workflow_dispatch”)', () => {
+    const doc = require('js-yaml').load(y); expect(Object.keys(doc.on)).toEqual(['workflow_dispatch']); expect(Object.keys(doc.jobs)).toEqual(['dane', 'build', 'zrzuty', 'ramki', 'zakup']);
+  });
   test('build jak w App Store: bez sztucznego sklepu i bez udawanego zegarka (te zmienne ustawia tylko e2e-ios.yml)', () => {
     expect(y).not.toMatch(/EXPO_PUBLIC_(STORE|WATCH)_FAKE/); expect(y).toMatch(/-configuration Release/); expect(y).toMatch(/CODE_SIGNING_ALLOWED=NO/);
   });
