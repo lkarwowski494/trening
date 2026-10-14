@@ -80,7 +80,7 @@ describe('estimateItem i plannedDays: rozbicie szacunku na wiersze i dni (podsta
   test('estimateItem: serie, objętość i serie bez wartości jednego wiersza; suma wierszy = estimateTemplate; ćwiczenie zarchiwizowane → null', () => {
     const t = tpl('A', ['Back Squat', [row(5, 100), row('', '')]], ['Bench Press (sztanga)', [row(5, 60), row(5, 60)]]);
     const a = estimateItem(t, 0)!; const b = estimateItem(t, 1)!;
-    expect(a).toEqual({ exerciseId: ex('Back Squat').id, sets: 2, volume: 500, unknown: 1 }); expect(b).toEqual({ exerciseId: ex('Bench Press (sztanga)').id, sets: 2, volume: 600, unknown: 0 });
+    expect(a).toEqual({ exerciseId: ex('Back Squat').id, sets: 2, volume: 500, unknown: 1, maxWeight: 100 }); expect(b).toEqual({ exerciseId: ex('Bench Press (sztanga)').id, sets: 2, volume: 600, unknown: 0, maxWeight: 60 });
     const all = estimateTemplate(t); expect(all.sets).toBe(a.sets + b.sets); expect(all.volume).toBe(a.volume + b.volume); expect(all.unknownSets).toBe(a.unknown + b.unknown);
     ex('Bench Press (sztanga)').archived = true; store.save(); expect(estimateItem(t, 1)).toBeNull();
   });

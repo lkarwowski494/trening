@@ -59,29 +59,26 @@ describe('„Ten tydzień”: tylko ten tydzień — kafelki, sylwetka, serie na
     const tiles = screen.getByTestId('week-tiles'); expect(tiles.props.accessibilityLabel).toBe(`Treningi: 1; Serie: 2; Objętość: ${fmtVol(1000)}; Czas: 1 h`);
     expect(screen.queryAllByText(/^poprz\.: /)).toHaveLength(0); /* 11.10.2026: kafelki bez „poprz.” */
   });
-  test('sylwetka z seriami tygodnia (wykonane + zaplanowane) i słupki partii: dwa kolory, kreska celu, bez poprzedniego tygodnia', async () => {
+  test('sylwetka ze strażnikiem (14.10.2026): jeden obraz z etykietą stanów, legenda, zdanie o brakach, przycisk do Postępów; dawnych pasków serii i objaśnień nie ma', async () => {
     await boot(scenario);
-    const m = screen.getByTestId('muscle-map'); expect(m.props.accessibilityLabel).toMatch(/^Sylwetka, serie w tym tygodniu: .*czworogłowe 2/); expect(m.props.accessibilityLabel).toMatch(/klatka 2/);
-    const box = within(screen.getByTestId('week-muscles')); expect(box.getByText('Sylwetka: serie w tym tygodniu')).toBeTruthy(); expect(box.getByText('Serie na partię — wykonane i zaplanowane')).toBeTruthy();
-    expect(has('pbar-sets-czworogłowe-done')).toBe(true); expect(has('pbar-sets-czworogłowe-planned')).toBe(false); /* przysiad zrobiony, nic zaplanowanego */
-    expect(has('pbar-sets-klatka-planned')).toBe(true); expect(has('pbar-sets-klatka-done')).toBe(true); expect(has('pbar-sets-klatka-mark')).toBe(true); /* kreska celu na jednej osi */
-    expect(screen.getByTestId('prow-sets-klatka').props.accessibilityLabel).toBe('klatka: 0 + 2 (wykonane + zaplanowane), cel 10'); expect(screen.getByTestId('prow-sets-czworogłowe').props.accessibilityLabel).toBe('czworogłowe: 2, cel 10');
-    expect(find('pprev-sets-klatka')).toHaveLength(0); expect(find('pprev-sets-czworogłowe')).toHaveLength(0); /* tylko ten tydzień: bez słupków poprzedniego */ expect(screen.queryAllByText(/poprz\./).length).toBe(0); /* 11.10.2026: kafelki „Ten tydzień” bez „poprz.” */
-    expect(box.getByText('Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.')).toBeTruthy();
-    expect(box.getByText(['Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień.', 'Zaplanowane — z szablonów na pozostałe dni tygodnia.', 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).'].join(' '))).toBeTruthy();
+    const m = screen.getByTestId('guard-map'); expect(m.props.accessibilityLabel).toMatch(/^Ten tydzień wobec poprzedniego: /); expect(m.props.accessibilityLabel).toMatch(/tyle samo — czworogłowe/); expect(m.props.accessibilityLabel).toMatch(/bez porównania — klatka/);
+    const box = within(screen.getByTestId('week-muscles')); expect(box.getByText(/^Poniżej celu nawet z planem: .+ i jeszcze \d+\.$/)).toBeTruthy(); expect(box.getByTestId('guard-more')).toBeTruthy();
+    for (const id of ['pbar-sets-czworogłowe-done', 'pbar-sets-klatka-planned', 'pbar-sets-klatka-mark', 'prow-sets-klatka', 'pprev-sets-klatka', 'seg-legend', 'muscle-map']) expect([id, has(id)]).toEqual([id, false]);
+    expect(screen.queryAllByText(/poprz\./).length).toBe(0); /* 11.10.2026: kafelki „Ten tydzień” bez „poprz.” */
+    for (const x of ['Sylwetka: serie w tym tygodniu', 'Serie na partię — wykonane i zaplanowane', 'Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.']) expect(screen.queryByText(x)).toBeNull();
   });
-  test('legenda „zaplanowane” tylko przy zaplanowanych treningach; bez planu — same wykonane', async () => {
-    await boot(scenario); expect(legend('zaplanowane')).toBe(1); expect(legend('wykonane')).toBe(1);
+  test('legenda stanów zamiast legendy „wykonane / zaplanowane”; bez planu zdanie z dopiskiem „(bez planu tygodnia)”', async () => {
+    await boot(scenario); expect(has('guard-legend')).toBe(true); expect(legend('zaplanowane')).toBe(0);
     await boot(() => { sq(9, 6, [{ weight: 100, reps: 5 }]); });
-    expect(legend('zaplanowane')).toBe(0); expect(legend('wykonane')).toBe(1);
+    expect(has('guard-legend')).toBe(true); expect(legend('wykonane')).toBe(0); expect(screen.getByTestId('guard-short').props.children).toMatch(/^Poniżej celu \(bez planu tygodnia\): /);
   });
-  test('tydzień bez żadnej serii (trening tylko dawniej): bez sylwetki i słupków, kafelki zerowe', async () => {
+  test('tydzień bez żadnej serii (trening tylko dawniej): bez sylwetki, „Brak serii w tym tygodniu.”, kafelki zerowe', async () => {
     await boot(() => { sq(8, 1, [{ weight: 100, reps: 5 }]); });
-    expect(has('week-muscles')).toBe(false); expect(screen.getByTestId('week-tiles')).toBeTruthy();
+    expect(has('guard-map')).toBe(false); expect(screen.getByText('Brak serii w tym tygodniu.')).toBeTruthy(); expect(screen.getByTestId('week-tiles')).toBeTruthy();
   });
-  test('w tym tygodniu jeszcze nic, ale był poprzedni: sylwetka bez zaznaczeń i „Brak serii w tym tygodniu.” (poprzedni tydzień nie wraca do „Ten tydzień”)', async () => {
+  test('w tym tygodniu jeszcze nic, ale był poprzedni: „Brak serii w tym tygodniu.” (poprzedni tydzień nie wraca do „Ten tydzień”)', async () => {
     await boot(() => { sq(8, 30, [{ weight: 100, reps: 5 }]); });
-    expect(screen.getByText('Brak serii w tym tygodniu.')).toBeTruthy(); expect(find('pbar-sets-czworogłowe')).toHaveLength(0); expect(find('pprev-sets-czworogłowe')).toHaveLength(0);
+    expect(screen.getByText('Brak serii w tym tygodniu.')).toBeTruthy(); expect(has('guard-map')).toBe(false); expect(find('pbar-sets-czworogłowe')).toHaveLength(0);
   });
 });
 

@@ -111,8 +111,18 @@ Seria odhaczona na zegarku jako „zrobione inaczej niż w planie” ma w wiersz
 ### 25. Wykres „okres vs okres” — dwa słupki na partię (decyzja właściciela 14.10.2026, uwagi z testu na telefonie)
 **Wzorzec:** wyżej okres 1 (np. ten tydzień), niżej okres 2 (np. poprzedni tydzień), na jednej osi (max z obu słupków i kreski celu); przy każdym słupku nazwa okresu słowami z próbką (okres 1 — pełny kolor, okres 2 — szary z prążkami: okresów nie odróżnia
 sam kolor) i liczba po prawej (zawija się przy wąskim ekranie i dużej czcionce); okres 2 równy zeru ma tor i znacznik zera, a gdy cały okres jest pusty — opis „0 (brak danych)”. VoiceOver: „partia: okres 1 X, okres 2 Y”, potem cel i „co najmniej”.
-Komponenty: `HatchBar`, `PeriodLine`, `prevText` w `components/ProgressBars.tsx`; użyte w Postępach (`MuscleCompare`: serie i objętość per partia) i w Progresji (`MuscleRows` z `showPrev`). „Ten tydzień” na ekranie Trening zostaje jednosłupkowy (nie porównuje okresów). Testy: `tests/period-bars.test.tsx`.
+Komponenty: `HatchBar`, `PeriodLine`, `prevText` w `components/ProgressBars.tsx`; użyte w Postępach (`MuscleCompare`: serie i objętość per partia) i w Progresji (`MuscleRows` z `showPrev`). Ekran Trening nie ma już pasków partii — pokazuje sylwetkę z kierunkiem zmiany (wzorzec 26); paski serii z celem są tylko w Postępach. Testy: `tests/period-bars.test.tsx`.
 Sekcja „Progresja” (trzy kafelki) jest tylko w Postępach — z ekranu Trening usunięta 14.10.2026.
+
+### 26. Strażnik progresji — kierunek partii, cel serii, sylwetka (decyzje właściciela 14.10.2026; implementacja: `lib/guard.ts`, `components/Guard.tsx`, `components/GuardSection.tsx`)
+**Dwie osobne odpowiedzi na partię.** (1) Cel serii: wykonane + zaplanowane na resztę tygodnia wobec celu (ręcznego albo automatycznego); „poniżej celu” tylko po całym planie, partia bez serii i planu to „bez serii”.
+(2) Kierunek względem poprzedniego tygodnia: więcej / tyle samo / mniej, bez progów procentowych i bez oceny; kolory neutralne (bez „za mało / za dużo / ryzyko”).
+**Miara kierunku:** tonaż średnio na sesję ćwiczenia, tylko ćwiczenia powtórzone w obu tygodniach (reszta wykluczona z obu i wymieniona jako „Pominięte”); tonaż spadł, a ciężar roboczy wzrósł → progres;
+„tyle samo” = ta sama liczba na ekranie (`volOut`). Tydzień deloadu: bez oceny; tydzień po deloadzie: wobec ostatniego tygodnia bez deloadu, z podaną datą. Pierwszy tydzień: „nowe”.
+**Każdy stan ma znak, słowo i wzór** (nie tylko kolor): ▲ więcej (akcent) · = tyle samo (przygaszony) · ▼ mniej (pomarańcz `less` z kreskowaniem 45°) · ? bez porównania (kropkowanie) · ○ bez serii (obrys przerywany) · + nowe (kropki) · deload (poziome paski).
+**Ekran Trening:** sylwetka + legenda (zawija się) + najwyżej dwa zdania + jeden przycisk „Szczegóły w Postępach ›” (≥ 44 pt, podpowiedź „Otwiera Postępy.”); żadnej listy pasków ani serii pośrednich.
+**Postępy → „Partie w tym tygodniu”:** grupy od problemów (poniżej celu — największa luka pierwsza, mniej, bez porównania, tyle samo, nowe, więcej), wiersze rozwijane wzorcem 20 (▸/▾, `expanded`, po wyjściu zwinięte), pasek serii do 2× cel z „»”, serie pośrednie tylko tu.
+**VoiceOver:** sylwetka to obraz z etykietą stanów („Ten tydzień wobec poprzedniego: więcej — …; tyle samo — …; mniej — …; bez porównania — …”); legenda ukryta; wiersz czyta słowo stanu zamiast znaku. Testy: `tests/guard.test.ts`, `tests/guard-ui.test.tsx`, scenariusz Maestro `52-straznik-progresji.yaml`.
 
 ## Strażniki (S1–S16)
 | # | Strażnik | Plik | Stan |

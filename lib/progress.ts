@@ -1,4 +1,4 @@
-import { getState, getRev, exById, tplRows, workCount, setVolume, startableItem, previousBlockFor, occurrence, occurrences, startLocationId, implAtLoc, srcSetAt, isBW, isDeloadWeek } from '@/lib/store';
+import { getState, getRev, exById, tplRows, workCount, setVolume, effectiveLoad, startableItem, previousBlockFor, occurrence, occurrences, startLocationId, implAtLoc, srcSetAt, isBW, isDeloadWeek } from '@/lib/store';
 import { dayKeyOf, addDays, dayStatus, pending } from '@/lib/plan';
 import { thisMonday, setsSplitByMuscle, volumeByMuscle, setsGoal } from '@/lib/stats';
 import { addSplitSets, emptySplit, mergeSplits, splitTotals, type SetSplit } from '@/lib/setSplit';
@@ -27,22 +27,23 @@ const add = (a: Rec, k: string, v: number) => { a[k] = (a[k] ?? 0) + v; };
 
 /** Oszacowanie jednego wiersza (ćwiczenia) szablonu: serie robocze, objętość z wierszy (wartość wiersza, a przy braku — „Poprzednio”) i liczba serii bez wartości.
  * `null` — ćwiczenie nie do wystartowania (usunięte/zarchiwizowane). Jedno źródło dla sum szablonu (estimateTemplate) i strażnika progresji (lib/guard.ts). */
-export type ItemEstimate = { exerciseId: string; sets: number; volume: number; unknown: number };
+export type ItemEstimate = { exerciseId: string; sets: number; volume: number; unknown: number; /** najwyższy ciężar (kg; ±kg przy masie ciała, asysta = 0) serii roboczych o znanej wartości — „ciężar roboczy” strażnika progresji */ maxWeight: number };
 export function estimateItem(tpl: Template, ii: number): ItemEstimate | null {
   const it = tpl.items[ii]; if (!startableItem(it)) return null; const ex = exById(it.exerciseId)!; const rows = tplRows(it); const n = workCount(rows.map(r => r.kind)); const loc = startLocationId(tpl.locationId);
   const m = ex.metric ?? 'weight_reps'; const counted = hasWeight(m) && hasReps(m); const bw = isBW(ex);
   const impl = implAtLoc(ex, loc);
   const prev = counted ? previousBlockFor(it.exerciseId, occurrence(tpl.items, ii), occurrences(tpl.items, it.exerciseId), it.id, tpl.id, impl) : null;
-  const src = prev ? prev.sets.filter(x => x.kind !== 'drop') : []; let j = 0; let vol = 0; let unknown = 0;
+  const src = prev ? prev.sets.filter(x => x.kind !== 'drop') : []; let j = 0; let vol = 0; let unknown = 0; let maxWeight = 0;
   for (const r of rows) {
     if (r.kind === 'warmup') continue;
     const p = r.kind === 'drop' ? null : srcSetAt(src, j++); /* drop set bez własnych wartości — nieznany (jak przy starcie: pusty) */
     if (!counted) continue;
     const w = r.weight !== '' ? r.weight : p ? (bw ? p.addKg : p.weight) : ''; const reps = r.reps !== '' ? r.reps : p ? p.reps : '';
     if (reps === '' || (!bw && w === '')) { unknown++; continue; }
-    vol += setVolume(ex, { kind: r.kind, warmup: false, done: true, weight: bw ? '' : w, addKg: bw ? w : '', reps } as WSet, impl);
+    const set = { kind: r.kind, warmup: false, done: true, weight: bw ? '' : w, addKg: bw ? w : '', reps } as WSet;
+    vol += setVolume(ex, set, impl); maxWeight = Math.max(maxWeight, effectiveLoad(ex, set));
   }
-  return { exerciseId: it.exerciseId, sets: n, volume: vol, unknown };
+  return { exerciseId: it.exerciseId, sets: n, volume: vol, unknown, maxWeight };
 }
 
 /** Oszacowanie jednego szablonu: serie i objętość z wierszy (wartość wiersza, a przy braku — „Poprzednio”). */
