@@ -1324,7 +1324,7 @@
  "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.": "«Техника»: подсказки к упражнению открываются также из тренировки и из шаблона.",
  "9 nowych języków: {list}.": "9 новых языков: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 языков; язык можно сменить в Настройках.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«+?» — в запланированных шаблонах есть {n} {s} без веса и повторений (и без «Ранее»): они считаются подходами, но не входят в объём.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«≥» — в запланированных шаблонах есть {n} {s} без веса и повторений (и без «Ранее»): они считаются подходами, но не входят в объём.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "«Создать шаблоны и план» (Шаблоны или Планирование): выберите цель, место, количество и длительность тренировок.",
  "{cur} wobec {prev}": "{cur} по сравнению с {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, первый результат",
@@ -1611,5 +1611,7 @@
  "Czego Ci brakuje? Poproś o funkcję": "Чего вам не хватает? Предложите функцию",
  "Ten miesiąc": "Этот месяц",
  "2 tyg. temu": "2 недели назад",
- "brak danych": "нет данных"
+ "brak danych": "нет данных",
+ "brak poprzedniego okresu": "нет предыдущего периода",
+ "część zaplanowanych serii nie ma ciężaru": "у некоторых запланированных подходов нет веса"
 }

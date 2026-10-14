@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Kopš 0.10: sakārtota vingrinājumu bibliotēka — līdzīgi varianti apvienoti, retākie redzami pēc filtra “Pamata” izslēgšanas (jūsu treniņi nemainās); ķermeņa svars ar datumu un e1RM pievilkšanās un atspiešanās vingrinājumos, tehnikas padomi ar kustības zīmējumu, “Saglabāt kā veidni” vēsturē.",
  "9 nowych języków: {list}.": "9 jaunas valodas: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 valodas; valodu var mainīt Iestatījumos.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "“+?” — plānotajās veidnēs ir {n} {s} bez svara un atkārtojumiem (un bez “Iepriekš”): tās tiek skaitītas kā sērijas, bet ne apjomā.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "“≥” — plānotajās veidnēs ir {n} {s} bez svara un atkārtojumiem (un bez “Iepriekš”): tās tiek skaitītas kā sērijas, bet ne apjomā.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "“Ģenerēt veidnes un plānu” (Veidnes vai Plānošana): izvēlies mērķi, vietu, treniņu skaitu un ilgumu.",
  "{cur} wobec {prev}": "{cur} salīdzinājumā ar {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, pirmais rezultāts",
@@ -1611,5 +1611,7 @@
  "Czego Ci brakuje? Poproś o funkcję": "Kas tev trūkst? Pieprasi funkciju",
  "Ten miesiąc": "Šis mēnesis",
  "2 tyg. temu": "pirms 2 nedēļām",
- "brak danych": "nav datu"
+ "brak danych": "nav datu",
+ "brak poprzedniego okresu": "iepriekšēja perioda nav",
+ "część zaplanowanych serii nie ma ciężaru": "dažām plānotajām sērijām nav svara"
 }

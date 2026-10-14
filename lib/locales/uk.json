@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Від 0.10: упорядкована бібліотека вправ — схожі варіанти об’єднано, рідші видно після вимкнення фільтра «Основні» (ваші тренування без змін); маса тіла з датою та e1RM у підтягуваннях і віджиманнях, поради з техніки з малюнком руху, «Зберегти як шаблон» в історії.",
  "9 nowych języków: {list}.": "9 нових мов: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 мов; мову можна змінити в Параметрах.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«+?» — у запланованих шаблонах є {n} {s} без ваги й повторень (і без «Попередні»): вони рахуються як підходи, але не в обсяг.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«≥» — у запланованих шаблонах є {n} {s} без ваги й повторень (і без «Попередні»): вони рахуються як підходи, але не в обсяг.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "«Згенерувати шаблони й план» (Шаблони або Планування): обери мету, місце, кількість і тривалість тренувань.",
  "{cur} wobec {prev}": "{cur} порівняно з {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, перший результат",
@@ -1611,5 +1611,7 @@
  "Czego Ci brakuje? Poproś o funkcję": "Чого вам бракує? Запропонуйте функцію",
  "Ten miesiąc": "Цей місяць",
  "2 tyg. temu": "2 тижні тому",
- "brak danych": "немає даних"
+ "brak danych": "немає даних",
+ "brak poprzedniego okresu": "немає попереднього періоду",
+ "część zaplanowanych serii nie ma ciężaru": "у деяких запланованих підходів немає ваги"
 }

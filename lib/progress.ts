@@ -3,6 +3,7 @@ import { dayKeyOf, addDays, dayStatus, pending } from '@/lib/plan';
 import { thisMonday, setsSplitByMuscle, volumeByMuscle, setsGoal } from '@/lib/stats';
 import { addSplitSets, emptySplit, mergeSplits, splitTotals, type SetSplit } from '@/lib/setSplit';
 import { periodRange, totals } from '@/lib/period';
+import { t } from '@/lib/i18n';
 import { MUSCLES, hasReps, hasWeight, type Muscle, type Template, type WSet } from '@/lib/seed';
 
 /*
@@ -11,7 +12,7 @@ import { MUSCLES, hasReps, hasWeight, type Muscle, type Template, type WSet } fr
  *  - tydzień bieżący = wykonane (historia) + zaplanowane z szablonów na dni od dziś do niedzieli, które jeszcze czekają (dayStatus → pending);
  *  - zaplanowany szablon liczymy wierszami: serie robocze jak w treningu (workCount), objętość jak wszędzie (setVolume) z wartości wiersza szablonu;
  *    wiersz bez ciężaru albo powtórzeń bierze brakującą wartość z „Poprzednio” (ostatnie wykonanie tego wiersza — store.previousBlockFor, ten sam dobór
- *    co przy starcie treningu); bez „Poprzednio” seria liczy się do serii, ale nie do objętości (`unknownSets` → kafelek „+?”);
+ *    co przy starcie treningu); bez „Poprzednio” seria liczy się do serii, ale nie do objętości (`unknownSets` → kafelek „≥ …”, decyzja właściciela 14.10.2026);
  *  - objętość i serie wykonane — te same funkcje co Postępy i podsumowanie (period.totals, stats.setsSplitByMuscle, stats.volumeByMuscle);
  *  - miesiąc: bieżący (do dziś) z poprzednim w tym samym zakresie dni miesiąca (uproszczenie nazwane — pełny poprzedni miesiąc zawyżyłby różnicę).
  * Partia „wzrosła”, gdy jej objętość jest większa niż w okresie porównawczym (bez progów — progu nie wolno zgadywać).
@@ -113,3 +114,8 @@ export function compareCached(kind: CmpKind, now = Date.now()): Comparison {
   const key = `${getRev()}|${dayKeyOf(now)}`; const st = getState(); const m = memo.get(kind); if (m && m.key === key && m.st === st) return m.v;
   const v = compare(kind, now); memo.set(kind, { key, st, v }); return v;
 }
+
+/** Zmiana w procentach; pusty poprzedni okres (`null`) = „brak poprzedniego okresu” (jedno sformułowanie dla objętości i serii — decyzja właściciela 14.10.2026). */
+export const pctText = (p: number | null): string => (p === null ? t('brak poprzedniego okresu') : p > 0 ? `+${p}%` : p < 0 ? `−${Math.abs(p)}%` : '0%');
+/** Liczba ze znakiem (różnica bezwzględna w szczegółach Progresji). */
+export const signedNum = (n: number, f: (v: number) => string = String): string => (n > 0 ? `+${f(n)}` : n < 0 ? `−${f(Math.abs(n))}` : f(0));

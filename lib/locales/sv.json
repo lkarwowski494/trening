@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Sedan 0.10: städat övningsbibliotek — liknande varianter sammanslagna, ovanligare syns när du stänger av filtret ”Grundläggande” (dina pass är oförändrade); kroppsvikt med datum och e1RM i chins och armhävningar, tekniktips med teckning av rörelsen, ”Spara som mall” i historiken.",
  "9 nowych języków: {list}.": "9 nya språk: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 språk; byt språk i Inställningar.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "”+?” — i de planerade mallarna har {n} {s} ingen vikt eller några repetitioner (och ingen ”Föregående”): de räknas som set, men inte i volymen.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "”≥” — i de planerade mallarna har {n} {s} ingen vikt eller några repetitioner (och ingen ”Föregående”): de räknas som set, men inte i volymen.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "”Skapa mallar och plan” (Mallar eller Planering): välj mål, plats, antal och längd på pass.",
  "{cur} wobec {prev}": "{cur} jämfört med {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, första resultatet",
@@ -1611,5 +1611,7 @@
  "Czego Ci brakuje? Poproś o funkcję": "Saknar du något? Be om en funktion",
  "Ten miesiąc": "Denna månad",
  "2 tyg. temu": "för 2 veckor sedan",
- "brak danych": "inga data"
+ "brak danych": "inga data",
+ "brak poprzedniego okresu": "ingen tidigare period",
+ "część zaplanowanych serii nie ma ciężaru": "vissa planerade set saknar vikt"
 }

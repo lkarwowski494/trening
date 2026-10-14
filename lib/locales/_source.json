@@ -4,8 +4,8 @@
   "en": "“⇄ swap” next to an exercise replaces it with another only in this workout — the template stays."
  },
  {
-  "pl": "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.",
-  "en": "“+?” — in the planned templates {n} {s} have no weight or reps (and no “Previous”): they count as sets but not toward volume."
+  "pl": "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.",
+  "en": "“≥” — in the planned templates {n} {s} have no weight or reps (and no “Previous”): they count as sets but not toward volume."
  },
  {
   "pl": "„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
@@ -628,6 +628,10 @@
   "en": "No measurements."
  },
  {
+  "pl": "brak poprzedniego okresu",
+  "en": "no previous period"
+ },
+ {
   "pl": "Brak serii w tym i poprzednim okresie.",
   "en": "No sets in this or the previous period."
  },
@@ -918,6 +922,10 @@
  {
   "pl": "Częste błędy",
   "en": "Common mistakes"
+ },
+ {
+  "pl": "część zaplanowanych serii nie ma ciężaru",
+  "en": "some planned sets have no weight"
  },
  {
   "pl": "Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.",

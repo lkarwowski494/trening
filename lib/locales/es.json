@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Desde la 0.10: biblioteca de ejercicios ordenada — variantes parecidas fusionadas, las menos comunes aparecen al desactivar el filtro «Básicos» (tus entrenos no cambian); peso corporal con fecha y e1RM en dominadas y flexiones, indicaciones de técnica con dibujo del movimiento, «Guardar como plantilla» en el historial.",
  "9 nowych języków: {list}.": "9 idiomas nuevos: {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 idiomas; el idioma se cambia en Ajustes.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«+?» — en las plantillas planificadas, {n} {s} no tienen peso ni repeticiones (y no hay «Anterior»): cuentan como series, pero no para el volumen.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "«≥» — en las plantillas planificadas, {n} {s} no tienen peso ni repeticiones (y no hay «Anterior»): cuentan como series, pero no para el volumen.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "«Generar plantillas y plan» (Plantillas o Planificación): elige objetivo, lugar, número y duración de las sesiones.",
  "{cur} wobec {prev}": "{cur} frente a {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, primer resultado",
@@ -1611,5 +1611,7 @@
  "Czego Ci brakuje? Poproś o funkcję": "¿Qué te falta? Pide una función",
  "Ten miesiąc": "Este mes",
  "2 tyg. temu": "hace 2 semanas",
- "brak danych": "sin datos"
+ "brak danych": "sin datos",
+ "brak poprzedniego okresu": "sin periodo anterior",
+ "część zaplanowanych serii nie ma ciężaru": "algunas series planificadas no tienen peso"
 }

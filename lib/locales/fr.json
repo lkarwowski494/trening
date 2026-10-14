@@ -1324,7 +1324,7 @@
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Depuis la 0.10 : bibliothèque d’exercices réorganisée — variantes proches fusionnées, les plus rares apparaissent quand vous désactivez le filtre « Essentiels » (vos séances ne changent pas) ; poids de corps daté et e1RM aux tractions et aux pompes, conseils de technique avec dessin du mouvement, « Enregistrer comme modèle » dans l’historique.",
  "9 nowych języków: {list}.": "9 nouvelles langues : {list}.",
  "35 języków; język zmienisz w Ustawieniach.": "35 langues ; la langue se change dans les Réglages.",
- "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "« +? » — dans les modèles prévus, {n} {s} n’ont ni charge ni répétitions (et pas de « Précédent ») : elles comptent comme séries, mais pas dans le volume.",
+ "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.": "« ≥ » — dans les modèles prévus, {n} {s} n’ont ni charge ni répétitions (et pas de « Précédent ») : elles comptent comme séries, mais pas dans le volume.",
  "„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.": "« Générer des modèles et un programme » (Modèles ou Planification) : choisissez l’objectif, le lieu, le nombre et la durée des séances.",
  "{cur} wobec {prev}": "{cur} contre {prev}",
  "{label} {value}, pierwszy wynik": "{label} {value}, premier résultat",
@@ -1611,5 +1611,7 @@
  "Czego Ci brakuje? Poproś o funkcję": "Que vous manque-t-il ? Demandez une fonction",
  "Ten miesiąc": "Ce mois",
  "2 tyg. temu": "il y a 2 semaines",
- "brak danych": "aucune donnée"
+ "brak danych": "aucune donnée",
+ "brak poprzedniego okresu": "pas de période précédente",
+ "część zaplanowanych serii nie ma ciężaru": "certaines séries prévues n'ont pas de poids"
 }
