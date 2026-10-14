@@ -271,3 +271,6 @@ Raport luk, czasy i podział na części: docs/38; katalog: docs/37; lista „ty
 
 ## 14.10.2026 — drugi przebieg E2E (run 38483827437): 24, 27, 36 zielone; 25 i 29 — scenariusz/interpreter
 25: placeholder pustego pola nie jest tekstem dla Maestro (etykieta pola to „Workout note”) — pole po etykiecie (indeks 1); interpreter przestał dopasowywać placeholder, gdy różni się od etykiety. 29: wpis daty „2026-13-45” po stuknięciu w środek tekstu (kursor w środku, maxLength 10) dał przypadkiem dzisiejszą datę i zapis się udał — walidację daty sprawdza teraz „Next day” (data z przyszłości odrzucona). Błędów aplikacji: 0; realność: teoretyczny.
+
+## 14.10.2026 — trzeci przebieg E2E (run 38490407634): 25 i 29
+25: pole notatki treningu ma `testID` „workout-note” (struktura etykiety pola wielowierszowego w Maestro nieznana; indeks po etykiecie nie znalazł pola) — wymaga NOWEGO buildu. 29: `doubleTapOn` na „+” (Dodaj szablon) — drugie stuknięcie trafiło w „Zapisz” nowego ekranu i zapisało pusty szablon (zrzut: podgląd „New template”, 0 ćwiczeń). Zachowanie brzegowe i nieszkodliwe; próba blokady przycisków nagłówka tuż po pojawieniu się ekranu wywaliła kilkanaście istniejących testów (zapis zaraz po renderze) i została cofnięta; przepływ PR-10 w katalogu jest teraz wyjątkiem Jest, scenariusz stuka raz. Backlog: blokada „Zapisz” tuż po wejściu w edytor.

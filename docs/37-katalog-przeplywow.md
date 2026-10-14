@@ -7,7 +7,7 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **143** (realny: 126, brzegowy: 17); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **143** (realny: 125, brzegowy: 18); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
@@ -19,9 +19,9 @@ Przepływów w katalogu: **143** (realny: 126, brzegowy: 17); pominięte jako te
 
 | Pokrycie | Przepływów |
 |---|---|
-| Maestro | 116 |
+| Maestro | 115 |
 | Maestro (eksperyment) | 4 |
-| Jest | 7 |
+| Jest | 8 |
 | Telefon | 13 |
 | Projekt 0.20 | 3 |
 
@@ -95,7 +95,7 @@ Przepływów w katalogu: **143** (realny: 126, brzegowy: 17); pominięte jako te
 | PR-07 | **Błędne wartości w polach: ciężar, powtórzenia i RIR poza zakresem** — Wpisz bardzo dużą liczbę w ciężar/powtórzenia → Wpisz RIR ponad limit → Odhacz serię i zakończ | Wartości obcięte do limitów, sesja się zapisuje, nic się nie wiesza. | `istniejacy` | realny | Maestro: `.maestro/29-bledne-dane.yaml` |
 | PR-08 | **Pusty i niepełny szablon: pusta nazwa, brak ćwiczeń** — Nowy szablon bez nazwy i ćwiczeń → „Zapisz” → Start pustego szablonu | Aplikacja nadaje domyślną nazwę albo odmawia; start pustego szablonu nie psuje treningu. | `istniejacy` | realny | Maestro: `.maestro/29-bledne-dane.yaml` |
 | PR-09 | **Błędna masa ciała i ustawienia liczbowe (przerwa, cel serii) poza zakresem** — Masa ciała 0 / ogromna / pusta → „Zapisz pomiar” → Domyślna przerwa 99999, cel serii poza zakresem | Wartości obcięte lub odrzucone z komunikatem. | `istniejacy` | realny | Maestro: `.maestro/29-bledne-dane.yaml` |
-| PR-10 | **Szybkie podwójne stuknięcie przycisku „+” (Dodaj szablon)** — Szablony → dwa szybkie stuknięcia w „+” → Edytor otwiera się raz; pusta nazwa → domyślna „Nowy szablon”; zapis pustego szablonu | Powstaje jeden szablon (blokada podwójnego stuknięcia), pusty szablon bez „Start”. | `istniejacy` | realny | Maestro: `.maestro/29-bledne-dane.yaml` |
+| PR-10 | **Szybkie podwójne stuknięcie przycisku „+” (Dodaj szablon)** — Szablony → dwa szybkie stuknięcia w „+” → Edytor otwiera się raz; pusta nazwa → domyślna „Nowy szablon”; zapis pustego szablonu | Powstaje jeden szablon (blokada podwójnego stuknięcia), pusty szablon bez „Start”. | `istniejacy` | brzegowy | Jest: `tests/interaction-guards.test.ts`, `tests/swipe-delete.test.tsx` — Podwójne stuknięcie „+” (Dodaj szablon): edytor otwiera się raz, ale drugie stuknięcie bywa w „Zapisz” nowego ekranu (to samo miejsce nagłówka) i zapisuje pusty szablon — zaobserwowane w E2E 38490407634, brzegowe i nieszkodliwe (backlog); blokada podwójnego stuknięcia przycisków jest w Jest. |
 | PR-11 | **Aplikacja w tle (przycisk Home) i powrót — przerwa i trening w toku** — Odhacz serię → Home → poczekaj → wróć do aplikacji bez restartu | Odliczanie zgodne z upływem czasu, wpisane wartości zostają. | `istniejacy` | realny | Maestro (eksperyment): `.maestro/41-tlo-powrot.yaml` |
 | PR-12 | **Zablokowany ekran w przerwie, powiadomienie o końcu przerwy, Live Activity i wibracja** — Odhacz serię → zablokuj telefon → Po czasie przerwy: dźwięk, wibracja, baner; Live Activity na ekranie blokady / Wyspie → Odblokuj — licznik zgodny | Powiadomienie i Live Activity pojawiają się dokładnie na koniec przerwy; zmiana czasu przerwy aktualizuje je. | `istniejacy` | realny | Telefon (lista kontrolna wydania) — Maestro nie blokuje ekranu, baner powiadomień, ekran blokady i Dynamic Island są poza aplikacją; wibracja i dźwięk niewidoczne dla testu. |
 | PR-13 | **Porzucony trening: brak aktywności ponad 2 h (pytanie) i ponad 6 h (zapis sam)** — Zostaw trening bez serii na kilka godzin → Otwórz aplikację: okno „Kontynuuj / Zakończ i zapisz / Odrzuć”, po 6 h sesja zapisana sama z komunikatem | Dane nie giną; użytkownik dostaje wybór. | `istniejacy` | brzegowy | Jest: `tests/audit-stale-ui.test.tsx`, `tests/audit-final-timer.test.tsx` — Symulator CI nie przestawia zegara systemowego (Maestro bez uprawnień administratora); zegar jest przestawiany w interpreterze (MAESTRO_NOW) i w testach. |

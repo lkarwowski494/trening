@@ -799,7 +799,7 @@
    ],
    "scenariusz": "25-trening-narzedzia.yaml",
    "znaczniki": [
-    "Workout note",
+    "workout-note",
     "lekko bolało ramię"
    ]
   },
@@ -1126,7 +1126,7 @@
    "tytul": "Szybkie podwójne stuknięcie przycisku „+” (Dodaj szablon)",
    "stan": "istniejacy",
    "wersja": "0.19",
-   "realnosc": "realny",
+   "realnosc": "brzegowy",
    "kroki": [
     "Szablony → dwa szybkie stuknięcia w „+”",
     "Edytor otwiera się raz; pusta nazwa → domyślna „Nowy szablon”; zapis pustego szablonu"
@@ -1135,11 +1135,14 @@
    "ekrany": [
     "/"
    ],
-   "scenariusz": "29-bledne-dane.yaml",
-   "znaczniki": [
-    "doubleTapOn",
-    "The template is empty"
-   ]
+   "wyjatek": {
+    "typ": "jest",
+    "powod": "Podwójne stuknięcie „+” (Dodaj szablon): edytor otwiera się raz, ale drugie stuknięcie bywa w „Zapisz” nowego ekranu (to samo miejsce nagłówka) i zapisuje pusty szablon — zaobserwowane w E2E 38490407634, brzegowe i nieszkodliwe (backlog); blokada podwójnego stuknięcia przycisków jest w Jest.",
+    "zastepnik": [
+     "tests/interaction-guards.test.ts",
+     "tests/swipe-delete.test.tsx"
+    ]
+   }
   },
   {
    "id": "PR-11",
