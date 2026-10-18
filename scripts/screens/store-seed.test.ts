@@ -3,7 +3,8 @@
  * Uruchamiane tylko jawnie: STORE_SEED_OUT=<katalog> npx jest --testMatch "**\/scripts/screens/store-seed.test.ts" (poza zwykłym `jest`).
  * Wynik dla każdego języka aplikacji:
  *   state-<język>-<wariant>.json — stan aplikacji (klucz „state” w SQLite); warianty: trening (trening w toku, przerwa), adapt (trening w toku
- *     w domu — okno „Dostosuj”), jasny i ciemny (bez treningu w toku; motyw aplikacji);
+ *     w domu — okno „Dostosuj”), jasny i ciemny (bez treningu w toku); od 18.10.2026 (decyzja właściciela) wszystkie warianty w ciemnym motywie,
+ *     chyba że STORE_SEED_THEME=light;
  *   routes-<język>.json — 9 ekranów w kolejności scenorysu: [nazwa, ścieżka expo-router, wariant, akcja Maestro albo ''];
  *   trening-historia.csv — zmyślony plik CSV (format z popularnych dzienników) do podglądu importu.
  * Dane są zmyślone (wytyczne Apple 2.3.9). Ciężary i powtórzenia to przykład wpisów użytkownika, nie zalecenie (bez liczb merytorycznych).
@@ -126,8 +127,10 @@ test('dane pokazowe do zrzutów App Store (wszystkie języki aplikacji, 4 warian
   const now = Date.now();
   for (const lng of LANGS as readonly Lang[]) {
     const { st, tpls, gym, home, squat } = await build(lng, now);
+    /* decyzja właściciela 18.10.2026: wszystkie zrzuty w ciemnej wersji aplikacji (STORE_SEED_THEME=light — wariant jasny tylko na żądanie) */
+    const base = process.env.STORE_SEED_THEME === 'light' ? 'light' : 'dark'; st.settings.theme = base;
     fs.writeFileSync(path.join(out, `state-${lng}-jasny.json`), snap());
-    st.settings.theme = 'dark'; fs.writeFileSync(path.join(out, `state-${lng}-ciemny.json`), snap()); st.settings.theme = 'light';
+    st.settings.theme = 'dark'; fs.writeFileSync(path.join(out, `state-${lng}-ciemny.json`), snap()); st.settings.theme = base;
     /* trening w toku: Nogi na siłowni, przysiad 100 kg × 5 (poprzednio 97,5 × 5), pierwsza seria odhaczona, przerwa trwa */
     store.startFromTemplate(tpls.legs); const a = st.active!; a.locationId = gym.id; a.startedAt = now - 9 * 60e3;
     const sq = a.exercises.find(e => e.exerciseId === squat.id)!;

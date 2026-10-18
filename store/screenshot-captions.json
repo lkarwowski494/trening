@@ -1,14 +1,14 @@
 {
-  "_opis": "Podpisy na zrzutach do App Store (decyzja właściciela 14.10.2026, D-6 B — docs/41; scenorys 9 ekranów zaakceptowany 14.10.2026). Jeden podpis na ekran (klucze = nazwy ekranów z scripts/screens/store-seed.test.ts), najwyżej 40 znaków. Status per język: PL — zaakceptowane przez właściciela (scenorys), EN — propozycja agenta do akceptacji razem z obrazami. Pozostałe języki dopisuje tłumacz po akceptacji EN; do tego czasu krok „ramki” pomija język bez podpisów. Bez nazw innych aplikacji (wytyczne Apple 2.3.7), bez cen (2.3.7: zrzuty bez cen) i bez twierdzeń merytorycznych. Kolory ramki z lib/theme.ts (BRAND; test: tests/store-frames.test.ts).",
+  "_opis": "Podpisy na zrzutach do App Store (decyzja właściciela 14.10.2026, D-6 B — docs/41; scenorys 9 ekranów zaakceptowany 14.10.2026). Jeden podpis na ekran (klucze = nazwy ekranów z scripts/screens/store-seed.test.ts), najwyżej 40 znaków. Status per język: PL — zaakceptowane przez właściciela (scenorys), EN — propozycja agenta do akceptacji razem z obrazami. Pozostałe języki dopisuje tłumacz po akceptacji EN; do tego czasu krok „ramki” pomija język bez podpisów. Bez nazw innych aplikacji (wytyczne Apple 2.3.7), bez cen (2.3.7: zrzuty bez cen) i bez twierdzeń merytorycznych. Kolory ramki z lib/theme.ts — wersja ciemna (`dark`: bg, text, accent), bo wszystkie zrzuty są ciemne (decyzja właściciela 18.10.2026); test: tests/store-frames.test.ts.",
   "status": {
     "pl": "zaakceptowane 14.10.2026",
     "en": "propozycja"
   },
   "maxZnakow": 40,
   "kolory": {
-    "tlo": "#F4F3EF",
-    "tekst": "#15171A",
-    "obwodka": "#1F5FD1"
+    "tlo": "#121316",
+    "tekst": "#eceae4",
+    "obwodka": "#6f9bf2"
   },
   "podpisy": {
     "pl": {

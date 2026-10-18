@@ -4,7 +4,7 @@ import { execFileSync } from 'child_process';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { BRAND } from '@/lib/theme';
+import { BRAND, dark } from '@/lib/theme';
 
 const root = path.join(__dirname, '..');
 const cap = JSON.parse(fs.readFileSync(path.join(root, 'store/screenshot-captions.json'), 'utf8'));
@@ -31,8 +31,12 @@ describe('store/screenshot-captions.json', () => {
     expect(cap.podpisy.pl.straznik).toContain('Strażnik progresji'); /* decyzja właściciela 14.10.2026: nazwa funkcji w podpisie */
     for (const l of Object.keys(cap.podpisy)) expect(Object.keys(cap.podpisy[l]).sort()).toEqual([...screens].sort());
   });
-  test('kolory ramki = kolory marki z lib/theme.ts', () => {
-    expect(cap.kolory).toEqual({ tlo: BRAND.paper, tekst: BRAND.ink, obwodka: BRAND.signal });
+  test('kolory ramki = ciemna wersja kolorów aplikacji z lib/theme.ts (wszystkie zrzuty ciemne — decyzja właściciela 18.10.2026); podpis czytelny', () => {
+    expect(cap.kolory).toEqual({ tlo: dark.bg, tekst: dark.text, obwodka: dark.accent });
+    const lum = (h: string) => { const c = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(v => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
+    const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+    expect(ratio(cap.kolory.tekst, cap.kolory.tlo)).toBeGreaterThan(7); /* WCAG AAA dla tekstu */
+    expect(BRAND.signal).toBe('#1F5FD1'); /* marka bez zmian; ramka używa jej jaśniejszej wersji z ciemnego motywu */
   });
 });
 
@@ -64,7 +68,7 @@ describe('zadanie „ramki” w store-screenshots.yml', () => {
     const f = path.join(out, '6.3', 'pl', '01-trening.png');
     expect(execFileSync('identify', ['-format', '%w %h %A', f], { encoding: 'utf8' })).toMatch(/^241 524 (False|Undefined|Blend)$/);
     const px = (x: number, yy: number) => execFileSync('convert', [f, '-depth', '8', '-format', `%[hex:u.p{${x},${yy}}]`, 'info:'], { encoding: 'utf8' }).trim().slice(0, 6).toUpperCase();
-    expect(px(1, 1)).toBe(BRAND.paper.slice(1).toUpperCase()); /* tło */
+    expect(px(1, 1)).toBe(dark.bg.slice(1).toUpperCase()); /* tło */
     expect(px(120, 300)).toBe('00FF00'); /* środek zrzutu */
   });
 });

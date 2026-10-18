@@ -195,3 +195,7 @@ Zakupy: lokalizacje gotowe (`store/iap-localizations.json`).
   „Strażnik progresji” i podtytuł D-4 A: `store/app-store-metadata.json` (projekt do akceptacji; test `tests/store-metadata.test.ts`).
   Ograniczenia: porównanie miesiąca liczy dni 1–N bieżącego miesiąca (zrzut z 1.–3. dnia miesiąca byłby słaby); nazwy ćwiczeń biblioteki
   w PL są takie, jak w aplikacji (część po angielsku); nazwy szablonów w innych językach — EN.
+- 18.10.2026 (właściciel): wszystkie zrzuty do App Store w ciemnej wersji aplikacji (zastępuje „1–2 ekrany w ciemnym motywie”): dane pokazowe
+  w ciemnym motywie (`STORE_SEED_THEME=light` tylko na żądanie), symulator w trybie ciemnym (wejście `wyglad`, domyślnie dark), ramka i podpis
+  w kolorach ciemnego motywu (`dark.bg`, `dark.text`, `dark.accent` z lib/theme.ts; kontrast podpisu > 7:1 w teście). Okna systemowe po łączu
+  („Open in …?”) i pytanie o powiadomienia zatwierdza Maestro (`scripts/ci/maestro-sklep/dialogi.yaml`) — wykryte w przebiegu 39143133368.

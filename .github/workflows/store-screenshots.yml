@@ -15,9 +15,9 @@ on:
         required: false
         default: 'pl,en'
       wyglad:
-        description: 'Motyw aplikacji na zrzutach: light albo dark'
+        description: 'Motyw aplikacji i symulatora na zrzutach: dark (decyzja właściciela 18.10.2026 — wszystkie zrzuty ciemne) albo light'
         required: false
-        default: 'light'
+        default: 'dark'
       aplikacja_z_przebiegu:
         description: 'Numer przebiegu TEGO workflow z gotową aplikacją (artefakt trening-sim-app-sklep, żyje 3 dni); pusty = zbuduj od nowa (~40 min)'
         required: false
@@ -133,12 +133,14 @@ jobs:
       - name: Symulator
         env:
           WZORZEC: ${{ matrix.wzorzec }}
+          WYGLAD: ${{ inputs.wyglad }}
         run: |
           DEV=$(xcrun simctl list devices available | grep -m1 -E "$WZORZEC" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/' || true)
           [ -n "$DEV" ] || { echo "::error::Brak symulatora pasującego do wzorca $WZORZEC"; xcrun simctl list devices available | grep -E 'iPhone' | sed -E 's/\([0-9A-F-]{36}\)//'; exit 1; }
           echo "SIM=$DEV" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEV" || true
           xcrun simctl bootstatus "$DEV" -b
+          [ "$WYGLAD" = light ] || xcrun simctl ui "$DEV" appearance dark   # pasek stanu i okna systemowe jak aplikacja (ciemne)
           xcrun simctl install "$DEV" app/Trening.app
       - uses: actions/setup-java@v4
         with:
