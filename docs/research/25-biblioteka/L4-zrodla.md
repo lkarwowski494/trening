@@ -23,7 +23,7 @@ werdykt, zakres, scalenie, poprawki pól, źródła, pewność, uzasadnienie). P
 - **Ważne rozróżnienie przy scalaniu:** warianty, w których zapisany ciężar znaczy co innego (gumy/łańcuchy — ciężar to sam gryf;
   rack pull — 1RM z częściowego zakresu o ok. 18% wyższy, L4-S26), **zostają osobno** (NISZOWE), bo scalenie zafałszowałoby rekordy i e1RM.
 - Oznaczenia: **PT** — przeczytany pełny tekst (lub wskazane strony), **A** — przeczytane streszczenie (PubMed / E-utilities NCBI).
-  Pewność: jak w docs/24 (mocne / umiarkowane / jedno źródło / brak źródła — uproszczenie; „(analogia)” — wariant niebadany osobno).
+  Pewność: jak w docs/24 (mocne / umiarkowane / jedno źródło / brak źródła — uproszczenie; „(analogia)” — wariant niebadany osobno). Od 18.10.2026: jedno źródło szczebla 1–2 z twierdzeniem wprost jest ustalone; „jedno źródło” zostaje dla szczebli 3–5.
 - Nie udało się otworzyć ExRx.net (HTTP 403) — nie jest cytowany. Nie cytowano niczego, czego nie przeczytano.
 
 ## 2. Źródła (nowe w L4)

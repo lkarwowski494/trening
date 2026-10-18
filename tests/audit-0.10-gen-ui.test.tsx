@@ -54,7 +54,7 @@ describe('C4 / MER-06, MER-07, MER-08, MER-12, MER-17: „Na czym to oparte” i
   test('każdy parametr podglądu ma punkt ze źródłem albo oznaczeniem; liczby ze stałych', async () => {
     await boot('/generator'); expect(screen.queryByText(/^• Każda główna partia/)).toBeNull(); await openInfo('gen-basis'); /* ⓘ 14.10.2026: „Na czym to oparte” — punkty pod ⓘ */
     for (const x of [
-      'Każda główna partia co najmniej 2 dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej 2 sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako 0,5 — uproszczenie (jedno źródło). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.',
+      'Każda główna partia co najmniej 2 dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej 2 sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako 0,5 — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.',
       'Serie: 3 na ćwiczenie — ACSM 2026 zaleca co najmniej 2; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba 3 to uproszczenie.',
       'Liczba serii z czasu sesji: (minuty − 10 min rozgrzewki) × 60 / (40 s serii + średnia przerwa 105 s) = 20; ćwiczeń = serie / 3 (co najmniej 3) — uproszczenie, nie wynik badań.',
       'Zakresy powtórzeń (masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań).',
@@ -62,7 +62,7 @@ describe('C4 / MER-06, MER-07, MER-08, MER-12, MER-17: „Na czym to oparte” i
       'Przerwy: 3 min po ciężkich seriach boju głównego, 2 min po innych wielostawowych, 1,5 min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).',
       'Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar — konwencja.',
     ]) expect(screen.getByText(`• ${x}`)).toBeTruthy();
-    const head = 'Serie na partię w tygodniu (pomocnicza = 0,5 serii — uproszczenie, jedno źródło): klatka '; /* MER-17 */
+    const head = 'Serie na partię w tygodniu (pomocnicza = 0,5 serii — uproszczenie): klatka '; /* MER-17 */
     expect(screen.getAllByText(/^Serie na partię w tygodniu/).map(n => String(n.props.children)).filter(x => x.startsWith(head))).toHaveLength(1);
     expect(screen.queryByText(/^• Cardio:/)).toBeNull();
     await tap(screen.getByText('Siła')); await flushAll(5); expect(screen.getByText(/średnia przerwa 150 s\) = 15;/)).toBeTruthy(); /* przerwa średnia siły */

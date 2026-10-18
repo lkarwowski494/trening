@@ -20,7 +20,7 @@ beforeEach(() => {
 afterEach(() => { jest.restoreAllMocks(); scheme = 'light'; applyLang('pl'); });
 
 const flat = (st: unknown): Record<string, any> => Object.assign({}, ...[st].flat(Infinity as 1).filter(Boolean) as object[]);
-const TEXT = 'Objaśnienie — kolor względem partii z największą liczbą serii (uproszczenie, jedno źródło).';
+const TEXT = 'Objaśnienie — kolor względem partii z największą liczbą serii (uproszczenie).';
 const ui = (props: Partial<React.ComponentProps<typeof InfoTip>> = {}) => <InfoTip id="demo" label="Ten tydzień" info={TEXT} {...props}><RN.Text>Ten tydzień</RN.Text></InfoTip>;
 
 describe('InfoTip: zwinięty i rozwinięty', () => {
