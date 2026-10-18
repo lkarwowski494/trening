@@ -37,7 +37,8 @@ db.commit(); db.close()' "$C/Library/SQLite/trening.db" "$OUT/.state.json"
     [ "$action" = import ] && [ -f "$DATA/trening-historia.csv" ] && cp "$DATA/trening-historia.csv" "$C/Documents/trening-historia.csv"
     xcrun simctl launch "$UDID" "$BUNDLE" >/dev/null
     sleep 8   # animacja startowa (tylko zimny start) i wczytanie danych
-    [ "$route" = "/" ] || { xcrun simctl openurl "$UDID" "trening://${route#/}"; sleep 4; }
+    [ "$route" = "/" ] || { xcrun simctl openurl "$UDID" "trening://${route#/}"; sleep 2; }
+    maestro_run dialogi "$lang/$name"; sleep 2   # „Open in …?” po łączu i pytanie o powiadomienia — zatwierdzone, poza kadrem
     [ -z "$action" ] || { maestro_run "$action" "$lang/$name"; sleep 1; }
     xcrun simctl io "$UDID" screenshot "$OUT/$lang/$(printf '%02d' "$i")-$name.png" >/dev/null 2>&1
   done < <(node -e 'for (const [n, r, v, a] of JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"))) console.log([n, r, v, a || ""].join("\t"))' "$ROUTES")

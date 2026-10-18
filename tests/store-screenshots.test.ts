@@ -93,7 +93,7 @@ esac
     const calls = fs.readFileSync(log, 'utf8').trim().split('\n');
     expect(calls[0]).toMatch(/^simctl status_bar SIM-1 override --time 9:41/); expect(calls[1]).toBe('maestro przygotuj.yaml'); expect(calls[calls.length - 1]).toBe('simctl status_bar SIM-1 clear');
     expect(calls.filter(c => c.startsWith('simctl openurl'))).toEqual(['simctl openurl SIM-1 trening://history', 'simctl openurl SIM-1 trening://more/import', 'simctl openurl SIM-1 trening://history', 'simctl openurl SIM-1 trening://more/import']);
-    expect(calls.filter(c => c.startsWith('maestro ') && c !== 'maestro przygotuj.yaml')).toEqual(['maestro poprzedni-miesiac.yaml', 'maestro import.yaml', 'maestro poprzedni-miesiac.yaml', 'maestro import.yaml']);
+    expect(calls.filter(c => c.startsWith('maestro ') && c !== 'maestro przygotuj.yaml')).toEqual([...Array(2)].flatMap(() => ['maestro dialogi.yaml', 'maestro dialogi.yaml', 'maestro poprzedni-miesiac.yaml', 'maestro dialogi.yaml', 'maestro import.yaml'])); /* okna systemowe zatwierdzane po każdym starcie i łączu */
     expect(calls.filter(c => c.startsWith('simctl launch'))).toHaveLength(6); /* świeży start na każdy ekran */
     expect(fs.existsSync(path.join(cont, 'Documents', 'trening-historia.csv'))).toBe(true);
     const read = (f: string) => JSON.parse(execFileSync('python3', ['-I', '-c', 'import sqlite3,sys;print(sqlite3.connect(sys.argv[1]).execute("select v from kv where k=?",("state",)).fetchone()[0])', f], { encoding: 'utf8' }));

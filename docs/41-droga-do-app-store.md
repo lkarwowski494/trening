@@ -9,18 +9,18 @@ Wpis do App Store Connect: **API** = koordynator przez App Store Connect API (ja
 
 ## Ścieżka krytyczna
 
-Decyzja (koordynator, 14.10.2026; wykonanie decyzji z 12.10 „repozytorium produkcyjne”): **po scaleniu 0.20** przejście do organizacji GitHub
-**Apps4Brew** (plan Free) i **nowego publicznego repo z jednym commitem** ze stanem 0.20. Audyt, poprawki i 1.0 już w nowym repo; pierwszy build do
-sklepu z nowego repo (`BUILD_BASE` wyżej niż ostatni build); stare repo → prywatne archiwum.
+**Kolejność (zmiana właściciela 18.10.2026, zastępuje ustalenie z 14.10.2026):** najpierw **pełny audyt w obecnym repo** (po scaleniu 0.20)
+i naprawy blokerów, **dopiero potem** przenosiny do organizacji GitHub **Apps4Brew** (plan Free) — nowe publiczne repo z **jednym commitem ze stanem
+po naprawach**; build 1.0 do sklepu z nowego repo (`BUILD_BASE` wyżej niż ostatni build); stare repo → prywatne archiwum. (Było 14.10: przenosiny
+zaraz po 0.20, audyt i poprawki już w nowym repo.)
 
 ```
 0.20: A1 TestFlight 0.20 (CI ~1,5 h) → A2 telefon: docs/39 + R-001…R-003 (właściciel 20–30 min)
   → scalenie 0.20 do main (właściciel 5 min)
-  → E1 przenosiny: kroki właściciela W1–W5 (ok. 45 min) + agent (2–3 h) → pierwszy zielony verify i TestFlight z nowego repo (CI ~2 h)
-  → D-1, D-2 (decyzje, właściciel 10 min)
-  → A3 pełny głęboki audyt w nowym repo (agent 4–6 h) → A4 naprawy blokerów + verify + E2E (agent: zależy; CI ~2 h)
-  → [D-1 = P] B2 włączenie płatności → B3 piaskownica (właściciel 30–45 min)
-  → A6/A7 build 1.0 → TestFlight → szybka próba na telefonie (CI ~1,5 h, właściciel 15 min)
+  → A3 pełny głęboki audyt w obecnym repo (agent 4–6 h) → A4 naprawy blokerów + verify + E2E (agent: zależy; CI ~2 h)
+  → B2 włączenie płatności (D-1 = P) → B3 piaskownica (właściciel 30–45 min; TestFlight z obecnego repo)
+  → E1 przenosiny: kroki właściciela W1–W5 (ok. 45 min) + agent (2–3 h; jeden commit ze stanem po naprawach) → zielony verify i TestFlight z nowego repo (CI ~2 h)
+  → A6/A7 build 1.0 z nowego repo → TestFlight → szybka próba na telefonie (CI ~1,5 h, właściciel 15 min)
   → C1/C3 zrzuty z buildu 1.0 (CI ~2–3 h)               ┐
   → D3/D4 metadane 31 lokalizacji (agent ~4 h, równolegle z A3) ├→ F1 wysyłka (właściciel 20 min) → recenzja Apple
   → E3/E4 DSA zweryfikowane + skrzynka support@ (czekanie)  ┘
@@ -41,7 +41,7 @@ Blok C i D (przygotowanie tekstów, próbny przebieg zrzutów) idzie równolegle
 
 ### Co przenosimy (agent, E1)
 
-- **Kod i dokumenty:** migawka drzewa 0.20 jako jeden commit (bez historii); przed migawką skan sekretów i e-maili (testy repo publicznego) i sprawdzenie, że w drzewie nie ma danych właściciela.
+- **Kod i dokumenty:** migawka drzewa po audycie i naprawach blokerów jako jeden commit (bez historii); przed migawką skan sekretów i e-maili (testy repo publicznego) i sprawdzenie, że w drzewie nie ma danych właściciela.
 - **Workflowy:** wszystkie z `.github/workflows/` (tests, e2e-ios, nightly, tests-tz, ios-unsigned, testflight, watch-sim, pages, asc-iap-localizations, store-screenshots); `testflight.yml`: `BUILD_BASE` wyżej niż ostatni build w App Store Connect (ostatni numer z TestFlight 0.20); `nightly.yml`: `NIGHTLY_REFS` na gałęzie nowego repo.
 - **Sekrety:** tylko przez właściciela (W2); w repo nic.
 - **Skrypty App Store Connect:** `scripts/asc/iap-localizations.mjs` (identyfikator grupy subskrypcji i bundle bez zmian — ta sama aplikacja w App Store Connect).
@@ -59,7 +59,7 @@ Legenda „Blokuje”: **TAK** — bez tego nie da się wysłać albo wysyłka �
 |---|---|---|---|---|---|---|---|
 | A1 | TestFlight 0.20 (`testflight.yml`), strażnik uprawnień zielony — zamyka R-001 | agent (CI) | — | gałąź f020-wydanie scalona | TAK | 0,5 h (+ CI ~1,5 h) | — |
 | A2 | Lista kontrolna docs/39 (13 punktów) + R-002 (Zdrowie po poprawce podpisu), R-003 (zegarek) | właściciel | — | A1 | TAK (rejestr ryzyk) | — | 20–30 min (R-003 tylko z zegarkiem — patrz D-7) |
-| A3 | **Pełny głęboki audyt całości** (w nowym repo, po E1) (CLAUDE.md „Audyty i wydania” pkt 4: „przed upublicznieniem w App Store … pełny głęboki audyt”), z listą stałą: dane, migracje, prywatność, sekrety, prawa autorskie (grafiki w paczce, docs/15 pkt 8), elementy specyficzne dla właściciela (docs/15 pkt 7) | agent (audytor) | — | E1 (zakres zamrożony od startu audytu) | TAK | 4–6 h | 15–30 min (decyzje przy znaleziskach) |
+| A3 | **Pełny głęboki audyt całości** (w obecnym repo, po scaleniu 0.20 — zmiana 18.10.2026) (CLAUDE.md „Audyty i wydania” pkt 4: „przed upublicznieniem w App Store … pełny głęboki audyt”), z listą stałą: dane, migracje, prywatność, sekrety, prawa autorskie (grafiki w paczce, docs/15 pkt 8), elementy specyficzne dla właściciela (docs/15 pkt 7) | agent (audytor) | — | scalenie 0.20 (zakres zamrożony od startu audytu) | TAK | 4–6 h | 15–30 min (decyzje przy znaleziskach) |
 | A4 | Naprawy KRYTYCZNYCH/WYSOKICH z A3: test odtwarzający + verify + E2E (bez drugiego audytu) | agent | — | A3 | TAK | zależy od znalezisk | decyzja „naprawa albo wyłączenie”, gdy bloker wymaga przebudowy |
 | A5 | Notatki dla recenzenta — **szkic gotowy** (`store/review-notes.md`, PL+EN, test `tests/store-review-notes.test.ts`); sprawdzić na buildzie 1.0 | agent | API | A6 | TAK (2.1: „detailed explanations of non-obvious features and in-app purchases in the App Review notes”) | 0,5 h | 10 min (akceptacja) |
 | A6 | Wersja 1.0: `app.json` 1.0.0, „Co nowego” wyczyszczone, testy wersji | agent | — | A4 | TAK | 0,5–1 h | — |
@@ -129,7 +129,7 @@ Zakupy: lokalizacje gotowe (`store/iap-localizations.json`).
 
 | # | Co | Kto | Wpis | Zależy od | Blokuje | Agent | Właściciel |
 |---|---|---|---|---|---|---|---|
-| E1 | **Czysta historia git = nowe publiczne repo w organizacji Apps4Brew (plan Free) z jednym commitem ze stanem 0.20** (decyzja 12.10.2026, A; termin: po scaleniu 0.20 — koordynator 14.10.2026), stare repo → prywatne archiwum. Kroki właściciela W1–W5 i lista przenoszonych rzeczy — wyżej, „Ścieżka krytyczna” | właściciel + agent | — | A2, scalenie 0.20, D-2 (adresy) | TAK (reguła właściciela „przed App Store”, docs/15 pkt 1 i 8) | 2–3 h (+ CI ~2 h) | ok. 45 min (W1–W5) |
+| E1 | **Czysta historia git = nowe publiczne repo w organizacji Apps4Brew (plan Free) z jednym commitem ze stanem 0.20** (decyzja 12.10.2026, A; termin: po audycie i naprawach blokerów w obecnym repo — zmiana właściciela 18.10.2026), stare repo → prywatne archiwum. Kroki właściciela W1–W5 i lista przenoszonych rzeczy — wyżej, „Ścieżka krytyczna” | właściciel + agent | — | A3–A4 (audyt i naprawy), D-2 (adresy) | TAK (reguła właściciela „przed App Store”, docs/15 pkt 1 i 8) | 2–3 h (+ CI ~2 h) | ok. 45 min (W1–W5) |
 | E2 | Prawa autorskie: cytaty w `docs/research` pilnuje `tests/research-quotes.test.ts`; research konkurencji na Dysku; podobieństwo wskazówek do źródeł sprawdzone (docs/09 rozdz. G); licencje zależności w verify (`check:licenses`). Zostaje: dawne długie cytaty w historii gita → znikają z E1; grafiki w paczce → A3 | agent | — | E1, A3 | TAK (część E1/A3) | w A3 | — |
 | E3 | Status tradera DSA — **w weryfikacji** (Apple). **[DO POTWIERDZENIA]**: czy przed zakończeniem weryfikacji można wysłać wersję i czy blokuje to tylko dystrybucję w UE | właściciel | ręcznie | Apple | TAK dla UE | — | czekanie |
 | E4 | Google Workspace + skrzynka support@apps4brew.com (aliasy support@, hello@) — **dopiero po weryfikacji DSA** (koordynator, 14.10.2026). Bez niej: przycisk „Napisz do nas” w aplikacji prowadzi do nieistniejącej skrzynki (funkcja nie do użycia — próg WYSOKI), Support URL bez działającego kontaktu, notatki recenzenta bez kontaktu | właściciel | ręcznie | E3 | TAK | — | 30 min (+ DNS/MX ręcznie, bez ruszania istniejących rekordów) |
@@ -149,7 +149,7 @@ Zakupy: lokalizacje gotowe (`store/iap-localizations.json`).
 |---|---|---|
 | D-1 płatności | **P — płatności od 1.0** | B2–B6 na ścieżce krytycznej; blok cenowy w opisie |
 | D-2 adresy privacy/support | **A — https://apps4brew.com/trening/privacy.html i …/support.html** | strony w repo strony apps4brew.com (przegląd i push: koordynator); `PRIVACY_URL`, `SUPPORT_URL` (lib/products.ts) i linki w `site/`, `store/` zmienione 14.10.2026; ten sam adres w App Store Connect |
-| D-3 czyste repo | po scaleniu 0.20 (rozstrzygnięte wcześniej) | E1 |
+| D-3 czyste repo | po audycie i naprawach w obecnym repo (zmiana 18.10.2026; było: zaraz po 0.20) | E1 |
 | D-4 podtytuł | ~~A — prywatność/offline~~ → **zmiana właściciela 14.10.2026: EN „Clean gym log. No account.”, PL „Przejrzysty dziennik bez konta”** (26 i 30 znaków); „clean / przejrzysty” także w pierwszym zdaniu opisu i w słowach kluczowych EN | D2: `store/app-store-metadata.json`; inne języki — tłumacz po akceptacji PL/EN |
 | D-5 publikacja | **A — ręcznie** | D11 |
 | D-6 zrzuty | **B — z podpisami i ramkami** (wbrew rekomendacji A) | C1: krok `ramki` w `store-screenshots.yml`, podpisy w `store/screenshot-captions.json` (PL/EN do akceptacji, reszta języków po akceptacji — tłumacz); ramka własna z kolorów marki, **bez obudów urządzeń Apple** (wytyczne Apple Marketing: „Use Apple-provided product bezels” i „Use Apple product images “as is” and without modification” — https://developer.apple.com/app-store/marketing/guidelines/, przeczytane 14.10.2026; obudowy Apple wymagałyby licencji Apple Design Resources i nie wolno ich wkładać do publicznego repo — dlatego neutralna ramka, nie imitacja telefonu) |
@@ -159,7 +159,7 @@ Zakupy: lokalizacje gotowe (`store/iap-localizations.json`).
 
 - **D-1. Płatności w 1.0.** P: `PAYWALL.ENABLED = true` od pierwszej wersji (zgodne z decyzjami 06.10 i 09.10: „Nie będzie użytkowników za darmo”; kod i testy gotowe od 0.17) — kompromis: piaskownica, przegląd zakupów (B2–B6), więcej powodów odrzucenia (3.1.2), ok. 1 dzień dłużej. F: 1.0 za darmo, płatności w aktualizacji — szybsza i prostsza recenzja, ale późniejsze odebranie darmowego dostępu to skarga nr 1 z researchu (docs/15) i odwrócenie decyzji 06.10. **Rekomendacja: P.**
 - **D-2. Gdzie mieszkają polityka prywatności i wsparcie.** Dziś działa tylko https://lkarwowski494.github.io/trening/privacy.html (i support.html); apps4brew.com/… zwraca 404, a strona główna apps4brew.com (GitHub Pages) linkuje do github.io. Adres prywatności jest wpisany w aplikację (`PRIVACY_URL` w lib/products.ts) i w App Store Connect. A: **apps4brew.com/trening/privacy.html i …/support.html** — adres niezależny od repozytorium i jego przenosin, zgodny z marką; kompromis: strony trzeba publikować w repo strony apps4brew.com (kopia z `site/` przy każdej zmianie albo workflow). B: GitHub Pages nowego repo w organizacji (np. apps4brew.github.io/trening/…) — bez dodatkowej pracy, ale adres znowu zależy od repo. C: zostawić github.io starego repo — **psuje się** po zmianie repo na prywatne przy W5 (GitHub Pages dla repo prywatnych wymaga płatnego planu — **[DO POTWIERDZENIA]** na stronie GitHuba). **Rekomendacja: A**; decyzja potrzebna przed W5 i przed buildem 1.0 (adres jest w aplikacji).
-- **D-3. (rozstrzygnięte 14.10.2026)** — czyste repo po scaleniu 0.20, audyt i 1.0 w nowym repo (E1).
+- **D-3. (rozstrzygnięte 14.10.2026, zmienione 18.10.2026)** — audyt i naprawy w obecnym repo, potem czyste repo (jeden commit) i 1.0 z nowego repo (E1).
 - **D-4. Podtytuł.** A: o prywatności i offline (plan marketingu 13.10: PL „Plan i serie offline bez konta”, EN „Private, offline plans & sets”). B: funkcje (docs/15: „Plan, serie i timer przerw”, „Plans, sets & progress offline”). Kompromis: A wyróżnia na tle konkurencji, B ma więcej słów wyszukiwanych. **Rekomendacja: A** (słowa funkcji zostają w słowach kluczowych).
 - **D-5. Wydanie po akceptacji.** A: ręcznie (właściciel klika „Release” — wpisy w społecznościach i nominacja w jednym dniu). B: automatycznie zaraz po akceptacji — szybciej, bez kontroli momentu. **Rekomendacja: A.**
 - **D-6. Zrzuty.** A: same ekrany z symulatora (gotowy workflow, 0 zł, 35 języków automatycznie). B: z podpisami/ramkami (2.3.3 dopuszcza nakładki tekstu) — lepsza konwersja, ale grafik do przygotowania i tłumaczenia podpisów. **Rekomendacja: A na 1.0**, B po premierze.
