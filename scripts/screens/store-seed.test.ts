@@ -8,7 +8,7 @@
  *   routes-<język>.json — 9 ekranów w kolejności scenorysu: [nazwa, ścieżka expo-router, wariant, akcja Maestro albo ''];
  *   trening-historia.csv — zmyślony plik CSV (format z popularnych dzienników) do podglądu importu.
  * Dane są zmyślone (wytyczne Apple 2.3.9). Ciężary i powtórzenia to przykład wpisów użytkownika, nie zalecenie (bez liczb merytorycznych).
- * Pole `__sklepRestLeft` (sekundy do końca przerwy) przelicza skrypt zrzutów na chwilę zrzutu (scripts/ci/store-screenshots.sh) i usuwa.
+ * Pole `__sklepSavedAt` (chwila zapisu danych): skrypt zrzutów przesuwa o czas od zapisu czasy treningu w toku i przerwy (scripts/ci/store-screenshots.sh) i je usuwa.
  */
 import * as store from '@/lib/store';
 import * as loc from '@/lib/locations';
@@ -114,7 +114,7 @@ async function build(lng: Lang, now: number) {
   /* własny cel serii (Ustawienia → cel na partię) dla małych partii, których plan PPL nie dobija do celu automatycznego — wybór zmyślonego użytkownika,
    * żeby sekcja strażnika pokazywała partie na celu; tylko wartości w danych pokazowych, bez zmiany automatu w aplikacji */
   const g = (require('@/lib/guard') as typeof import('@/lib/guard')).guardCached(now);
-  st.settings.weeklySetGoals = Object.fromEntries(g.below.map(p => [p.part, Math.max(2, Math.floor(p.total))]));
+  st.settings.weeklySetGoals = Object.fromEntries(g.below.map(p => [p.part, Math.max(1, Math.floor(p.total))]));
   store.save(); await store.flush();
   return { st, tpls, gym, home, squat: exByName('Back Squat') };
 }
@@ -136,15 +136,15 @@ test('dane pokazowe do zrzutów App Store (wszystkie języki aplikacji, 4 warian
     const sq = a.exercises.find(e => e.exerciseId === squat.id)!;
     for (const s of sq.sets) { s.weight = 100; s.reps = 5; }
     sq.sets[0].done = true; sq.sets[0].completedAt = now - 85e3;
-    st.timer = { ...st.timer, restEndAt: now + 95e3, restTotal: 180, restSetId: sq.sets[0].id };
+    st.timer = { ...st.timer, restEndAt: now + 120e3, restTotal: 180, restSetId: sq.sets[0].id };
     store.save(); await store.flush();
-    const tr = JSON.parse(snap({ __sklepRestLeft: 95 })) as State;
+    const tr = JSON.parse(snap({ __sklepSavedAt: now })) as State; /* skrypt przesuwa czasy o czas od zapisu: na zrzucie trening trwa ok. 9 min, przerwa ok. 1:30 (2:00 minus start i okna systemowe) */
     expect(tr.active?.exercises[0].sets[0].weight).toBe(100);
     fs.writeFileSync(path.join(out, `state-${lng}-trening.json`), JSON.stringify(tr));
     /* trening w domu (hantle + ławka): Push — okno „Dostosuj” z zamianami */
     st.active = null; st.timer = { ...st.timer, restEndAt: null, restSetId: null };
     store.startFromTemplate(tpls.push); st.active!.locationId = home.id; st.active!.startedAt = now - 2 * 60e3; store.save(); await store.flush();
-    fs.writeFileSync(path.join(out, `state-${lng}-adapt.json`), snap());
+    fs.writeFileSync(path.join(out, `state-${lng}-adapt.json`), snap({ __sklepSavedAt: now }));
     const r = routes(squat.id); expect(r).toHaveLength(9);
     fs.writeFileSync(path.join(out, `routes-${lng}.json`), JSON.stringify(r));
   }

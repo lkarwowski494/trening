@@ -82,7 +82,7 @@ esac
     fs.writeFileSync(path.join(bin, 'maestro'), `#!/usr/bin/env bash\necho "maestro $(basename "$4")" >> "${log}"\n`, { mode: 0o755 });
     fs.writeFileSync(path.join(bin, 'sleep'), '#!/usr/bin/env bash\nexit 0\n', { mode: 0o755 });
     for (const l of ['pl', 'de']) {
-      fs.writeFileSync(path.join(data, `state-${l}-trening.json`), JSON.stringify({ settings: { language: l }, timer: { restEndAt: 1 }, __sklepRestLeft: 95 }));
+      fs.writeFileSync(path.join(data, `state-${l}-trening.json`), JSON.stringify({ settings: { language: l }, timer: { restEndAt: 1000 + 95e3 }, active: { startedAt: 1000 - 540e3, exercises: [{ sets: [{ completedAt: 1000 - 85e3 }, { completedAt: null }] }] }, __sklepSavedAt: 1000 }));
       fs.writeFileSync(path.join(data, `state-${l}-ciemny.json`), JSON.stringify({ settings: { language: l, theme: 'dark' }, timer: { restEndAt: null } }));
       fs.writeFileSync(path.join(data, `routes-${l}.json`), JSON.stringify([['trening', '/', 'trening', ''], ['historia', '/history', 'ciemny', 'poprzedni-miesiac'], ['import', '/more/import', 'ciemny', 'import']]));
     }
@@ -99,8 +99,9 @@ esac
     const read = (f: string) => JSON.parse(execFileSync('python3', ['-I', '-c', 'import sqlite3,sys;print(sqlite3.connect(sys.argv[1]).execute("select v from kv where k=?",("state",)).fetchone()[0])', f], { encoding: 'utf8' }));
     for (const l of ['de', 'pl']) {
       expect(fs.readdirSync(path.join(out, l)).sort()).toEqual(['01-trening.png', '02-historia.png', '03-import.png']);
-      const tr = read(path.join(out, l, '01-trening.png')); expect(tr.settings.language).toBe(l); expect(tr.__sklepRestLeft).toBeUndefined();
-      expect(tr.timer.restEndAt).toBeGreaterThanOrEqual(t0 + 95e3); expect(tr.timer.restEndAt).toBeLessThan(Date.now() + 96e3);
+      const tr = read(path.join(out, l, '01-trening.png')); expect(tr.settings.language).toBe(l); expect(tr.__sklepSavedAt).toBeUndefined();
+      expect(tr.timer.restEndAt).toBeGreaterThanOrEqual(t0 + 95e3); expect(tr.timer.restEndAt).toBeLessThan(Date.now() + 96e3); /* przerwa i trening „teraz” */
+      expect(tr.active.startedAt).toBeGreaterThanOrEqual(t0 - 540e3); expect(tr.active.exercises[0].sets[0].completedAt).toBeGreaterThanOrEqual(t0 - 85e3); expect(tr.active.exercises[0].sets[1].completedAt).toBeNull();
       expect(read(path.join(out, l, '02-historia.png')).settings.theme).toBe('dark');
     }
     expect(fs.existsSync(path.join(out, '.state.json'))).toBe(false);

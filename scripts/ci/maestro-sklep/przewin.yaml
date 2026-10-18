@@ -1,7 +1,7 @@
-# Zrzuty do sklepu: sekcja strażnika progresji — wolne przewinięcie o ok. 38% ekranu (objaśnienie nad sylwetką poza kadrem, sylwetka i wiersze w kadrze).
+# Zrzuty do sklepu: sekcja strażnika progresji — wolne przewinięcie o ok. 32% ekranu (przebieg 39149701858: przy 38% sylwetka u góry ucięta) (objaśnienie nad sylwetką poza kadrem, sylwetka i wiersze w kadrze).
 appId: pl.lukasz.trening
 ---
 - swipe:
     start: "50%, 80%"
-    end: "50%, 42%"
+    end: "50%, 48%"
     duration: 1500
