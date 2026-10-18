@@ -94,7 +94,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | cel s | app/template/[id].tsx | tests/matrix-invariants.test.ts, tests/release-0.16.test.tsx, tests/scenario-full.test.tsx +10 |
 | Cel serii: {part} | app/more/settings.tsx | tests/set-goals-ui.test.tsx, tests/set-goals.test.ts |
 | Cele partii | app/more/settings.tsx | tests/interaction-patterns.test.tsx |
-| co | components/LoadEditor.tsx | tests/access.test.ts, tests/adapt-ui.test.tsx, tests/audit-0.10-data-ui.test.tsx +171 |
+| co | components/LoadEditor.tsx | tests/access.test.ts, tests/adapt-ui.test.tsx, tests/audit-0.10-data-ui.test.tsx +172 |
 | Co logujesz w serii | app/exercise/[id].tsx | tests/edit-on-demand.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +3 |
 | Cofnij | components/ActiveWorkout.tsx | tests/adapt-ui.test.tsx, tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx +5 |
 | Cofnij zamianę: {name} | app/swap.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx, tests/swap-ui.test.tsx |
@@ -111,7 +111,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dni cardio w planie | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni treningowe w tygodniu | components/OwnPlan.tsx | tests/gen-days-ui.test.tsx, tests/gen-general-ui.test.tsx, tests/generator-ui.test.tsx +1 |
-| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/audit-0.10-data-ui.test.tsx +199 |
+| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/audit-0.10-data-ui.test.tsx +200 |
 | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | dodaj ciężar | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Dodaj notatkę | components/ActiveWorkout.tsx | tests/scenario-full.test.tsx |
@@ -837,7 +837,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | nic więcej do zrobienia | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/voice.test.ts +5 |
 | Nic więcej do zrobienia — możesz zakończyć trening. | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
 | Nic więcej do zrobienia (część pominięta) | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/skip-today.test.tsx |
-| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +224 |
+| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +225 |
 | Nie da się ułożyć z talerzy ({l}) | components/EquipVisual.tsx | tests/audit-0.10-live.test.tsx |
 | Nie da się ułożyć z talerzy ({l}) — najbliżej {v} | components/EquipVisual.tsx | tests/audit-0.10-live.test.tsx |
 | Nie ma nowych treningów do dodania — wszystkie są już w historii. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
@@ -1757,7 +1757,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | i18n.deviceUnit | lib/i18n.ts | tests/audit-0.10-tst.test.ts, tests/audit-0.10-ui.test.tsx, tests/maestro-selectors.test.ts |
 | i18n.locale | lib/i18n.ts | tests/adapt-ui.test.tsx, tests/app.tsx, tests/audit-0.10-data-ui.test.tsx +89 |
 | i18n.decimalComma | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +7 |
-| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/audit-0.10-data.test.ts +134 |
+| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/audit-0.10-data.test.ts +135 |
 | i18n.lbl | lib/i18n.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
 | i18n.tp | lib/i18n.ts | tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-bl-mer.test.tsx +26 |
 | i18n.exName | lib/i18n.ts | tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx, tests/audit-final-auto.test.tsx +28 |

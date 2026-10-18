@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4276-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4293-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-44-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -62,8 +62,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Komunikaty i teksty | 1073 (z testem: 1073) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 872 (z testem: 872) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 111 (z testem: 111) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 328 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 4276 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 329 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 4293 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 151 (Maestro: 124, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 13) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 44 (w głównym przebiegu: 41, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
