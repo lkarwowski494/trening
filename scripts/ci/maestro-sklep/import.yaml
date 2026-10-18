@@ -4,10 +4,17 @@
 appId: pl.lukasz.trening
 ---
 - extendedWaitUntil: { visible: "Wybierz plik CSV|Choose a CSV file", timeout: 20000 }
-- tapOn: "Wybierz plik CSV|Choose a CSV file"
-- extendedWaitUntil: { visible: "Browse|Recents|Cancel", timeout: 30000 }
+- waitForAnimationToEnd
+- retry:   # przebieg 39169554299: stuknięcie bywało gubione — okno plików się nie otwierało
+    maxRetries: 3
+    commands:
+      - tapOn: "Wybierz plik CSV|Choose a CSV file"
+      - extendedWaitUntil: { visible: "Browse|Recents|Cancel", timeout: 10000 }
 - tapOn: { text: "Browse", optional: true }
 - tapOn: { text: "On My iPhone", optional: true }
 - tapOn: { text: "Trening|Training", optional: true }   # folder aplikacji ma nazwę wyświetlaną w języku symulatora (przebieg 39162600481: „Training”)
-- tapOn: "trening-historia.*"
-- extendedWaitUntil: { visible: "Podgląd importu|Import preview", timeout: 30000 }
+- retry:   # przebieg 39169554299: stuknięcie w sam podpis pliku nie wybierało go — stukamy w całą komórkę („trening-historia, csv, …”)
+    maxRetries: 3
+    commands:
+      - tapOn: "trening-historia, .*"
+      - extendedWaitUntil: { visible: "Podgląd importu|Import preview", timeout: 15000 }

@@ -1,5 +1,12 @@
 # Zrzuty do sklepu: Postępy ćwiczenia → wykres e1RM (etykieta „e1RM” jest taka sama we wszystkich językach).
+# Przebieg 39169554299: pojedyncze stuknięcie bywało gubione tuż po otwarciu ekranu łączem — powtórzenie aż oś wykresu pokaże wartości e1RM
+# (90–120 kg; wykres objętości ma oś w tysiącach kg).
 appId: pl.lukasz.trening
 ---
 - extendedWaitUntil: { visible: "e1RM", timeout: 20000 }
-- tapOn: "e1RM"
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 3
+    commands:
+      - tapOn: "e1RM"
+      - assertVisible: "1[0-2]0 kg"
