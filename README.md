@@ -304,7 +304,7 @@ tak samo jak zrzuty do App Store ([`docs/18-przekazanie.md`](docs/18-przekazanie
   Workflow uruchamia testy, buduje i podpisuje aplikację wyłącznie narzędziami Apple (klucz App Store Connect API przechowywany w sekretach repozytorium: identyfikator klucza, identyfikator wydawcy i sam klucz) i wysyła ją do App Store Connect.
   Numer buildu to baza (zmienna repozytorium `BUILD_BASE`) powiększona o numer przebiegu. Build pojawia się w aplikacji TestFlight po przetworzeniu przez Apple; testerzy zewnętrzni dostają go po przeglądzie Apple.
 - **App Store:** publikacja w przygotowaniu — zakres, decyzje i lista kontrolna: [`docs/15-app-store.md`](docs/15-app-store.md), [`docs/39-lista-kontrolna-wydania.md`](docs/39-lista-kontrolna-wydania.md).
-- **Strona, prywatność i wsparcie:** docelowo pod adresem **apps4brew.com/trening/** (decyzja właściciela, [`docs/18-przekazanie.md`](docs/18-przekazanie.md)); treść stron w repozytorium:
+- **Strona, prywatność i wsparcie:** pod adresem **apps4brew.com/trening/** (decyzja właściciela, [`docs/18-przekazanie.md`](docs/18-przekazanie.md)); treść stron w repozytorium:
   [`site/index.html`](site/index.html), [`site/privacy.html`](site/privacy.html), [`site/support.html`](site/support.html), publikacja przez `pages.yml`.
 - Buildy przez Expo (EAS), instalacja „ad hoc” i instalacja z komputera zostały usunięte (decyzje z 08.10.2026 i 09.10.2026, [`docs/18-archiwum-do-11.10.md`](docs/18-archiwum-do-11.10.md)): aplikację instalujemy tylko przez TestFlight.
 
@@ -341,4 +341,4 @@ Przed importem i przed „Wyczyść wszystkie dane” aplikacja zawsze zapisuje 
 - Licencje bibliotek: lista generowana z zależności (`npm run check:licenses`), widoczna w aplikacji w Więcej → Licencje.
 - Warunki korzystania z aplikacji: standardowa licencja Apple (Standard EULA), decyzja właściciela w [`docs/18-przekazanie.md`](docs/18-przekazanie.md).
 - W aplikacji tylko własne teksty i grafiki; cudze treści i research konkurencji trzymamy poza repozytorium (Dysk projektu), w repo najwyżej krótki cytat z adresem.
-- **[OTWARTE]** Licencja kodu źródłowego tego repozytorium: w repozytorium nie ma pliku licencji; decyzja należy do właściciela.
+- Kod źródłowy: **© Apps4Brew, wszelkie prawa zastrzeżone** (plik [`LICENSE`](LICENSE); decyzja właściciela, [`docs/18-przekazanie.md`](docs/18-przekazanie.md)). Repozytorium jest publiczne do wglądu; kopiowanie, modyfikowanie i rozpowszechnianie kodu, w tym publikacja aplikacji pochodnych, wymaga pisemnej zgody.

@@ -108,6 +108,7 @@ function flows() {
 
 /* ---------- opisy (teksty bez liczb; brakujący opis nowego katalogu / pliku / workflow = błąd, żeby README nie rozjechało się z repozytorium) ---------- */
 const TOP = {
+  'LICENSE': 'prawa autorskie: wszelkie prawa zastrzeżone',
   'app/': 'ekrany (expo-router): zakładki Trening, Historia, Postępy, Więcej oraz ekrany szczegółowe',
   'components/': 'trening w toku (ActiveWorkout), elementy interfejsu, kalendarz, wykresy, mapa mięśni',
   'lib/': 'logika bez interfejsu: stan i SQLite, plan, generator, statystyki, timer, kopia, tłumaczenia, dostęp i zakupy',
