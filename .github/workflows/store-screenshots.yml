@@ -167,6 +167,7 @@ jobs:
           name: sklep-zrzuty-${{ matrix.rozmiar }}
           retention-days: 3
           if-no-files-found: ignore
+          include-hidden-files: true  # dzienniki Maestro w sklep-zrzuty/<rozmiar>/.maestro (przebieg 39155596330: bez nich nie było widać przyczyny porażki akcji)
           path: sklep-zrzuty
   ramki:
     name: podpisy i ramki (D-6)

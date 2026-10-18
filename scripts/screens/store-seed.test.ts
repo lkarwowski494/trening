@@ -135,10 +135,11 @@ test('dane pokazowe do zrzutów App Store (wszystkie języki aplikacji, 4 warian
     store.startFromTemplate(tpls.legs); const a = st.active!; a.locationId = gym.id; a.startedAt = now - 9 * 60e3;
     const sq = a.exercises.find(e => e.exerciseId === squat.id)!;
     for (const s of sq.sets) { s.weight = 100; s.reps = 5; }
+    sq.restSec = 240; /* przerwa 4:00 przy ciężkim przysiadzie — zapas na start aplikacji i okna systemowe przed zrzutem (przebieg 39155596330: przy 2:00 przerwa zdążyła minąć) */
     sq.sets[0].done = true; sq.sets[0].completedAt = now - 85e3;
-    st.timer = { ...st.timer, restEndAt: now + 120e3, restTotal: 180, restSetId: sq.sets[0].id };
+    st.timer = { ...st.timer, restEndAt: now + 235e3, restTotal: 240, restSetId: sq.sets[0].id };
     store.save(); await store.flush();
-    const tr = JSON.parse(snap({ __sklepSavedAt: now })) as State; /* skrypt przesuwa czasy o czas od zapisu: na zrzucie trening trwa ok. 9 min, przerwa ok. 1:30 (2:00 minus start i okna systemowe) */
+    const tr = JSON.parse(snap({ __sklepSavedAt: now })) as State; /* skrypt przesuwa czasy o czas od zapisu: na zrzucie trening trwa ok. 9 min, przerwa ok. 1:30–2:00 z 4:00 (minus start i okna systemowe) */
     expect(tr.active?.exercises[0].sets[0].weight).toBe(100);
     fs.writeFileSync(path.join(out, `state-${lng}-trening.json`), JSON.stringify(tr));
     /* trening w domu (hantle + ławka): Push — okno „Dostosuj” z zamianami */
