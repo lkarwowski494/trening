@@ -41,10 +41,15 @@ name: Strażnik progresji — sylwetka, zdanie o brakach, Postępy
 # --- Postępy: sekcja „Progress Guard”, rozwinięcie partii ---
 - tapOn: "Details in Progress"
 - extendedWaitUntil: { visible: "Progress Guard", timeout: 30000 }
-- scrollUntilVisible: { element: "chest: .*", direction: DOWN, timeout: 60000, centerElement: true }
+# run 39169313185: stuknięcie „chest” nie rozwinęło wiersza (zrzut: wiersz przy górnej krawędzi, bez „Done”) — przewinięcie na środek, czekanie na koniec ruchu i powtórka stuknięcia
+- retry:
+    maxRetries: 2
+    commands:
+      - scrollUntilVisible: { element: "chest: .*", direction: DOWN, timeout: 60000, centerElement: true }
+      - waitForAnimationToEnd
+      - tapOn: "chest: .*"
+      - extendedWaitUntil: { visible: "Done: .*", timeout: 8000 }
 - takeScreenshot: 96-straznik-postepy
-- tapOn: "chest: .*"
-- extendedWaitUntil: { visible: "Done: .*", timeout: 15000 }
 - takeScreenshot: 97-straznik-partia
 - tapOn: "chest: .*"
 - assertNotVisible: "Done: .*"

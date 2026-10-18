@@ -163,3 +163,11 @@ describe('E2E 39148365522: 35 i 07', () => {
     expect(cmds.some((c: Cmd) => same(c, { scrollUntilVisible: { element: 'Finish', direction: 'UP', timeout: 60000, centerElement: true } }))).toBe(true);
   });
 });
+
+/* E2E 39169313185: 52 — stuknięcie wiersza „chest” przy górnej krawędzi nie rozwinęło go; interpreter nie odtwarza bezwładności listy — test strukturalny. */
+describe('E2E 39169313185: 52', () => {
+  test('rozwinięcie wiersza partii: przewinięcie, czekanie na koniec ruchu, stuknięcie i „Done” w jednym retry', () => {
+    const c = load(join(DIR, '52-straznik-progresji.yaml')).find((x: Cmd) => x && typeof x === 'object' && 'retry' in x && JSON.stringify(x).includes('Done: '));
+    expect(c.retry.commands.map((x: Cmd) => (typeof x === 'string' ? x : Object.keys(x)[0]))).toEqual(['scrollUntilVisible', 'waitForAnimationToEnd', 'tapOn', 'extendedWaitUntil']);
+  });
+});
