@@ -42,6 +42,6 @@ describe('ekran Postępy', () => {
   test('English', async () => {
     await boot(() => { bench(12); }, 'en');
     expect(screen.getByLabelText(/^chest: This week 12, Last week 0 \(no data\), goal 10, at least 10$/)).toBeTruthy();
-    expect(screen.getByText(/^Line = weekly goal of sets per muscle group: 10 automatically, or your own number from Settings\. ACSM 2026 position stand/)).toBeTruthy();
+    await openInfo('sets-part'); expect(screen.getByText(/^Line = weekly goal of sets per muscle group: 10 automatically, or your own number from Settings\.$/)).toBeTruthy(); expect(screen.getByText(/^ACSM 2026 position stand/)).toBeTruthy(); /* ⓘ: akapity osobno */
   });
 });

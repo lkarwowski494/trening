@@ -82,6 +82,7 @@ describe('ekran Postępy — sekcja „Podsumowanie”', () => {
   });
   test('English', async () => {
     await boot(() => { addWorkout(at(9, 6), [['Back Squat', [{ weight: 100, reps: 5 }]]]); }, 'en');
+    await openInfo('period-summary');
     for (const s of ['Summary', 'Week', 'Month', 'Records in this period', 'In brackets — the whole previous period. Working sets exclude warm-ups; records as in the workout summary.']) expect(screen.getByText(s)).toBeTruthy();
     expect(screen.getByLabelText('Workouts: 1, previously 0')).toBeTruthy(); expect(screen.getByLabelText('Previous period')).toBeTruthy();
   });
