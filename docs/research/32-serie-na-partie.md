@@ -41,7 +41,7 @@ Oznaczenia: **PT** = przeczytany pełny tekst, **A** = przeczytane streszczenie.
 Uwagi do źródeł:
 - (1) i (2) to różne zespoły (McMaster/ACSM vs Lehman College); ACSM 2026 jako przegląd przeglądów obejmuje m.in. (2), więc niezależność częściowa.
 - (2) w wynikach podaje P = 0,28, w dyskusji P = 0,30 dla tej samej interakcji — rozbieżność w samym artykule, wniosek („brak różnicy”) ten sam.
-- (3) to ten sam zespół co przyjęta już w aplikacji reguła 0,5 (docs/research/22, „jedno źródło”). Przeczytano pełny tekst preprintu v1 (wrzesień 2024);
+- (3) to ten sam zespół co przyjęta już w aplikacji reguła 0,5 (docs/research/22; od 18.10.2026 metaanaliza szczebla 2 wystarcza). Przeczytano pełny tekst preprintu v1 (wrzesień 2024);
   wersja opublikowana — tylko streszczenie (zgodne z preprintem co do metody „fractional”).
 - (4) przedział ufności dla tricepsu w kopii czytanej przez narzędzie stracił znak; Pelland (3) cytuje go jako −0,88 do −0,11 — wniosek „korzyść > 20 serii dla tricepsu” stoi.
 - (5) dotyczy osób niewytrenowanych, górę ciała mierzono tylko na mięśniu czworobocznym; wyższy szczebel (2) zbadał tę samą kwestię i różnicy nie znalazł → wygrywa (2).
@@ -79,7 +79,7 @@ Uwagi do źródeł:
 | C | Jednolite 10, ale dokładniejsze liczenie pracy pośredniej (np. poziom 0,25 z `MUSCLE_LOAD` w seriach albo liczenie per akton zamiast partii zbiorczej). | Bliżej mechaniki ćwiczeń. | Pelland badał tylko 0 / 0,5 / 1 — waga 0,25 nie ma źródła (**[OTWARTE]**); progi źródeł dotyczą „muscle group”, nie aktonów; dużo pracy (testy macierzowe, docs) bez przewagi merytorycznej. |
 
 **Rekomendacja: A.** Rozstrzygnięcie merytoryczne według hierarchii: dwa niezależne źródła S2 (ACSM 2026, Schoenfeld 2017) nie dają podstaw do różnicowania,
-a jedyna obserwowana różnica (triceps, Baz-Valle 2022) wynika z liczenia serii pośrednich, które aplikacja już uwzględnia metodą 0,5 (Pelland — jedno źródło, nazwane
+a jedyna obserwowana różnica (triceps, Baz-Valle 2022) wynika z liczenia serii pośrednich, które aplikacja już uwzględnia metodą 0,5 (Pelland — metaanaliza szczebla 2, nazwane
 uproszczenie, wzmocnione kierunkowo przez RCT Mannarino 2021). Czy dodać zdanie wyjaśnienia (A z dopiskiem) — decyzja produktowa właściciela.
 
 ## Otwarte pytania
@@ -103,7 +103,7 @@ Właściciel wybrał wariant z celem na partię (A rozszerzone): automat = jedna
   (tylko odstępstwa), bez zmiany `SCHEMA_VERSION`; `migrate` zachowuje klucze partii całych i liczby (przycięte do granic), resztę odrzuca; kopia i import przechodzą przez `migrate`.
   Kreski w „Ten tydzień”, Postępach i Progresji (tydzień) mierzą do celu swojej partii; miesiąc bez kresek (jak dotąd). Generator i jego uwagi używały automatu (`WEEKLY_SETS_MARK`) — **zmienione 13.10.2026**: generator mierzy do celu z Ustawień (sekcja na końcu).
 - **Pół serii** (lib/stats.ts `setsByMuscle`): partia główna ćwiczenia = 1, pomocnicza = 0,5; poziom 0,25 z `MUSCLE_LOAD` nie wchodzi do serii. Zdanie przy kresce w Postępach, Progresji i „Ten tydzień”
-  nazywa to uproszczeniem i podaje źródło (Pelland i in. 2026 — jedno źródło, tak jak w komentarzu przy `WEEKLY_SETS_MARK`).
+  nazywa to uproszczeniem i podaje źródło (Pelland i in. 2026 — metaanaliza, tak jak w komentarzu przy `WEEKLY_SETS_MARK`).
 - **Rozbicie barków i pleców — WYCOFANE (decyzja właściciela 12.10.2026, wariant A, zastępuje wcześniejszy wybór 2B).** Powód: bloker WYSOKI audytu 0.14 —
   automatyczna kreska 10 dla każdej części (przód / bok / tył barków; góra pleców / najszersze / prostowniki) nie ma źródła; źródła (ACSM 2026, Pelland i in. 2026) mówią o 10 seriach na partię.
   Zostaje: cel serii na partię (automatycznie `WEEKLY_SETS_MARK` / ręcznie 1–40) dla CAŁYCH partii (barki i plecy jako całość), kreski w „Ten tydzień”, Postępach i Progresji mierzone do celu partii,
@@ -128,13 +128,13 @@ Zapis badacza (materiały robocze poza repozytorium), przeczytane źródła i sz
 | Mannarino i in. 2021 (RCT, n = 10, streszczenie); Gentil i in. 2013 (RCT, n = 29, streszczenie) | 3 | Praca pośrednia daje od ok. połowy efektu (Mannarino) do prawie pełnego (Gentil, niewytrenowani). |
 
 Wnioski (pewność umiarkowana):
-- **Waga 0,5 = jedno źródło** (Pelland i in.) i uproszczenie; tak ma zostać oznaczona. Teza „serie pomocnicze nie liczą się wcale” jest sprzeczna ze wszystkimi przeczytanymi źródłami szczebla 2–3.
+- **Waga 0,5 = metaanaliza szczebla 2** (Pelland i in.; od 18.10.2026 jedno takie źródło wystarcza) i uproszczenie; tak ma zostać oznaczona. Teza „serie pomocnicze nie liczą się wcale” jest sprzeczna ze wszystkimi przeczytanymi źródłami szczebla 2–3.
 - Próg 10 **nie** pochodzi z badań liczących wyłącznie serie bezpośrednie: stanowisko ACSM i metaanaliza z 2017 liczą „serie na partię” bez rozróżnienia, a Baz-Valle wprost metodą „total”.
   Dla danego programu zawsze: bezpośrednie ≤ ułamkowe (0,5) ≤ „total”, więc liczenie 0,5 jest ostrzejsze od źródeł progu — postępu nie zawyża.
 - Praktyka trenerska (liczenie tylko serii bezpośrednich) to szczebel 5 — wskazówka, nie dowód; nie podważa wariantu A, ale uzasadnia pokazanie obu odcinków osobno (czytelność).
 - Wcześniejsze uzasadnienie w komentarzu przy `setsByMuscle` („jak w popularnych aplikacjach”) nie było podstawą merytoryczną — usunięte 13.10.2026.
 
-**Decyzja właściciela (13.10.2026), wariant A:** serie pomocnicze nadal liczą się do celu po 0,5 (`SECONDARY_SHARE`, jedno źródło, uproszczenie), ale na każdym pasku serii na partię odcinek
+**Decyzja właściciela (13.10.2026), wariant A:** serie pomocnicze nadal liczą się do celu po 0,5 (`SECONDARY_SHARE`, metaanaliza szczebla 2, uproszczenie), ale na każdym pasku serii na partię odcinek
 bezpośredni i pośredni są pokazane osobno (inne wypełnienie + obrys, nie tylko kolor), z podpisem „6 + 1,5 pośrednio (3 serie) / 10” i etykietą VoiceOver z obiema wartościami i celem.
 Jedna funkcja liczenia (`lib/setSplit.ts`, `stats.setsSplitByMuscle`) dla „Ten tydzień”, Postępów, Progresji, podsumowania (mapa mięśni) i generatora. Generator mierzy do celu serii z Ustawień
 (per partia), nie do stałej 10. Odrzucone: B (do celu tylko bezpośrednie + dopisek), D (tylko bezpośrednie, pomocnicze ukryte), waga 1 (sprzeczna z Pelland — „total” gorzej dopasowane niż „fractional”).

@@ -215,7 +215,8 @@ export const MUSCLES_BY_NAME: Record<string, [Muscle[], Muscle[]]> = {
  * dopisek „uproszczenie” (tylko gdy partie są nadal takie jak w katalogu). Wpisy z researchu biblioteki (docs/research/25-biblioteka) — ćwiczenia
  * z oceną „mocne” lub „umiarkowane” i źródłami (audyt kontrolny 1 MER2-09: dawny komentarz o pustej mapie był nieaktualny). */
 export const MUSCLE_SOURCES: Readonly<Record<string, string>> = Object.fromEntries(Object.entries(CATALOG_RESEARCH).filter(([, r]) => /^(mocne|umiarkowane)/.test(r[1]) && r[2].length).map(([k, r]) => [k, `docs/research/25-biblioteka/${r[0]}: ${r[2].join(', ')}`]));
-/** Research 25 (09.10.2026): pewność przypisania partii (mocne / umiarkowane / jedno źródło / brak źródła — uproszczenie; „(analogia)”) — po kluczu katalogu. */
+/** Research 25 (09.10.2026): pewność przypisania partii — mocne / umiarkowane / jedno źródło (szczebel 3–5) / brak źródła — uproszczenie / uproszczenie (analogia) — po kluczu katalogu.
+ * Zmiana zasady 18.10.2026: jedno źródło szczebla 1–2 z twierdzeniem wprost = ustalone (umiarkowane; analogia → uproszczenie (analogia)). */
 export const muscleConfidence = (e: Pick<Exercise, 'lib' | 'libKey'>): string | undefined => { const k = catalogKey(e); return k ? own(CATALOG_RESEARCH as Record<string, readonly [string, string, readonly string[]]>, k)?.[1] : undefined; };
 /** L2 Q1/Q2/Q5 (decyzja 09.10.2026): mięsień docelowy spoza mapy regionów (stożek rotatorów, zębaty przedni, piszczelowy przedni) — oznaczenie przy partiach. */
 export const unmappedMuscleOf = (e: Pick<Exercise, 'lib' | 'libKey'>): string | undefined => { const k = catalogKey(e); return k ? own(CATALOG_UNMAPPED as Record<string, string>, k) : undefined; };

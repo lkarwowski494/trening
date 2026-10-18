@@ -27,7 +27,7 @@ nogi, pośladki, łydki, przedramiona).
 - **Odczyt źródeł:** ExRx.net blokuje pobieranie automatyczne (Cloudflare), strony czytano w całości z archiwum Wayback Machine
   (zrzuty 2019–2026, adres oryginalny w wykazie). Badania — streszczenia z Europe PMC (**A**); fedb — pełny rekord JSON (**PT**).
 - **Pewność** (`confidence`): mocne — ≥ 2 niezależne źródła, w tym badanie (szczebel 2–3); umiarkowane — dwa niezależne źródła (np. ExRx +
-  fedb albo ExRx + badanie EMG) lub ćwiczenie bazowe ocenione w docs/24; jedno źródło; brak źródła — uproszczenie.
+  fedb albo ExRx + badanie EMG) lub ćwiczenie bazowe ocenione w docs/24; jedno źródło (od 18.10.2026: jedno źródło szczebla 1–2 z twierdzeniem wprost jest ustalone, „jedno źródło” zostaje dla szczebli 3–5); brak źródła — uproszczenie.
   ExRx i fedb to różne organizacje (ExRx.net; fedb — zbiór domeny publicznej oparty na innym serwisie), ale oba to szczebel 4.
 
 ## Źródła

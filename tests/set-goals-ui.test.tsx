@@ -88,7 +88,7 @@ describe('Postępy → „Strażnik progresji” (strażnik progresji, 14.10.202
   test('cel automatyczny i objaśnienie: kreska = cel 10, pół serii z dopiskiem o źródle; bez zdania o rozbiciu', async () => {
     await boot(() => { week(); }, '/progress');
     expect(within(screen.getByTestId('grow-klatka')).getByText('12 / 10 serii')).toBeTruthy();
-    await openInfo('guard-method'); expect(within(screen.getByTestId('info-text-guard-method')).getByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\. Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\.$/)).toBeTruthy();
+    await openInfo('guard-method'); expect(within(screen.getByTestId('info-text-guard-method')).getByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\. Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; metaanaliza Pelland i in\. 2026\)\.$/)).toBeTruthy();
     expect(screen.queryByText(/rozbite|bez rozbicia/)).toBeNull();
   });
   test('ćwiczenie własne z barkami → wiersz „barki” (ta sama partia co z katalogu)', async () => {
@@ -98,7 +98,7 @@ describe('Postępy → „Strażnik progresji” (strażnik progresji, 14.10.202
   test('English', async () => {
     await boot(() => { week(); }, '/progress', 'en');
     expect(lbl('barki')).toMatch(/^shoulders: .+ 11 \/ 10 sets/); expect(lbl('plecy')).toMatch(/^back: .+ 4 \/ 10 sets/);
-    await openInfo('guard-method'); expect(within(screen.getByTestId('info-text-guard-method')).getByText(/^Line = weekly goal of sets per muscle group: 10 automatically, or your own number from Settings\. Simplification: a secondary muscle group of an exercise counts as half a set \(main 1, secondary 0\.5; Pelland et al\. 2026 — a single source\)\./)).toBeTruthy();
+    await openInfo('guard-method'); expect(within(screen.getByTestId('info-text-guard-method')).getByText(/^Line = weekly goal of sets per muscle group: 10 automatically, or your own number from Settings\. Simplification: a secondary muscle group of an exercise counts as half a set \(main 1, secondary 0\.5; Pelland et al\. 2026 meta-analysis\)\./)).toBeTruthy();
   });
 });
 
@@ -108,7 +108,7 @@ describe('Postępy i Progresja: kreski celu i objaśnienie', () => {
     expect(left('mark-barki')).toBe('100%'); expect(left('mark-klatka')).toBe('50%'); /* oś: max(20, 12) */
     expect(screen.getByLabelText(/^barki: Ten tydzień 5 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), Poprzedni tydzień 0 \(brak danych\), cel 20$/)).toBeTruthy(); expect(screen.getByLabelText(/^klatka: Ten tydzień 12, Poprzedni tydzień 0 \(brak danych\), cel 10, co najmniej 10$/)).toBeTruthy();
     expect(screen.getByLabelText(/^plecy: Ten tydzień 4, Poprzedni tydzień 0 \(brak danych\), cel 10$/)).toBeTruthy();
-    await openInfo('sets-part'); expect(screen.getAllByText(/Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\./).length).toBeGreaterThan(0);
+    await openInfo('sets-part'); expect(screen.getAllByText(/Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; metaanaliza Pelland i in\. 2026\)\./).length).toBeGreaterThan(0);
     expect(screen.queryByText(/rozbite|bez rozbicia/)).toBeNull();
     expect(screen.getAllByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\.$/).length).toBeGreaterThan(0); expect(screen.getByText(/^Stanowisko ACSM 2026:/)).toBeTruthy(); /* ⓘ 14.10.2026: akapity pod ⓘ osobno */
   });

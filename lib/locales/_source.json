@@ -1958,8 +1958,8 @@
   "en": "Current set card during a workout; the “List” view as before, selectable in Settings."
  },
  {
-  "pl": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (jedno źródło). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
-  "en": "Each major muscle group on at least {n} days a week (WHO 2020 — a health recommendation; ACSM 2026: strength improves with at least {n} sessions a week). A day when the group only assists counts as {h} — a simplification (single source). The split (full body, upper/lower) is a convention — with the same number of sets it gives similar results."
+  "pl": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
+  "en": "Each major muscle group on at least {n} days a week (WHO 2020 — a health recommendation; ACSM 2026: strength improves with at least {n} sessions a week). A day when the group only assists counts as {h} — a simplification (method from the Pelland et al. 2026 meta-analysis). The split (full body, upper/lower) is a convention — with the same number of sets it gives similar results."
  },
  {
   "pl": "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.",
@@ -4625,8 +4625,8 @@
   "en": "Sets to fill in"
  },
  {
-  "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}",
-  "en": "Sets per muscle group per week (assisting = {h} set — a simplification, single source): {list}"
+  "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list}",
+  "en": "Sets per muscle group per week (assisting = {h} set — a simplification): {list}"
  },
  {
   "pl": "Serie per partia",
@@ -5496,8 +5496,8 @@
   "en": "Simplification: a drop set counts together with the set before it."
  },
  {
-  "pl": "Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).",
-  "en": "Simplification: a secondary muscle group of an exercise counts as half a set (main 1, secondary 0.5; Pelland et al. 2026 — a single source)."
+  "pl": "Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).",
+  "en": "Simplification: a secondary muscle group of an exercise counts as half a set (main 1, secondary 0.5; Pelland et al. 2026 meta-analysis)."
  },
  {
   "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).",

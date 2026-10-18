@@ -7,9 +7,9 @@ import { fmtNum } from '@/lib/units';
  *  - bezpośrednio = serie ćwiczeń, w których partia jest główna (waga 1);
  *  - pośrednio    = serie ćwiczeń, w których partia jest pomocnicza; do celu liczą się po SECONDARY_SHARE (0,5);
  *  - total        = direct + indirectWeighted — to jest liczba porównywana z celem (jak dotąd).
- * Uproszczenie: waga 0,5 = metoda „fractional” (Pelland i in. 2024/2026) — jedno źródło; szczegóły: docs/research/32.
+ * Uproszczenie: waga 0,5 = metoda „fractional” (Pelland i in. 2024/2026, metaanaliza); szczegóły: docs/research/32.
  */
-/** Partia pomocnicza liczona jako SECONDARY_SHARE serii i dnia — Pelland, metoda „fractional” (jedno źródło, uproszczenie). */
+/** Partia pomocnicza liczona jako SECONDARY_SHARE serii i dnia — Pelland, metoda „fractional” (metaanaliza, szczebel 2; uproszczenie). */
 export const SECONDARY_SHARE = 0.5;
 
 export type SetSplit = { /** serie bezpośrednie */ direct: number; /** liczba serii pomocniczych (surowa, bez wagi) */ indirectSets: number; /** serie pomocnicze z wagą SECONDARY_SHARE */ indirectWeighted: number; /** direct + indirectWeighted — wartość porównywana z celem */ total: number };

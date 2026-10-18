@@ -1853,7 +1853,7 @@
    "L3-S32",
    "L3-S28"
   ],
-  "confidence": "jedno źródło",
+  "confidence": "umiarkowane",
   "note": "Sprzęt strongman; spójność muscleLoad z Farmer's Walk."
  },
  {
@@ -1876,7 +1876,7 @@
    "L3-S30",
    "L3-S32"
   ],
-  "confidence": "jedno źródło",
+  "confidence": "uproszczenie (analogia)",
   "note": "Ten sam ruch co Farmer's Walk innym przyrządem — spójność muscleLoad (odwodziciele)."
  },
  {

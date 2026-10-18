@@ -7808,7 +7808,7 @@
   "note": "Floor or flat bench.",
   "research": {
    "part": "L6",
-   "confidence": "jedno źródło",
+   "confidence": "umiarkowane",
    "sources": [
     "S32"
    ]
@@ -8116,7 +8116,7 @@
   "note": "Loaded trap bar carried.",
   "research": {
    "part": "L3",
-   "confidence": "jedno źródło",
+   "confidence": "uproszczenie (analogia)",
    "sources": [
     "L3-S30",
     "L3-S32"
@@ -9551,7 +9551,7 @@
   },
   "research": {
    "part": "L5",
-   "confidence": "jedno źródło",
+   "confidence": "uproszczenie (analogia)",
    "sources": [
     "L5-S1",
     "L5-S26",
@@ -16759,7 +16759,7 @@
   "note": "Strongman farmer's handles; weight = total of both handles (dumbbell version = Farmer's Walk).",
   "research": {
    "part": "L3",
-   "confidence": "jedno źródło",
+   "confidence": "umiarkowane",
    "sources": [
     "L3-S30",
     "L3-S32",
@@ -17275,7 +17275,7 @@
   "note": "One dumbbell pressed with both hands, shoulders across a bench.",
   "research": {
    "part": "L5",
-   "confidence": "jedno źródło",
+   "confidence": "uproszczenie (analogia)",
    "sources": [
     "L5-S13",
     "L5-S27",
@@ -17471,7 +17471,7 @@
   "note": "Decline bench; alternates close-grip press and skullcrusher reps.",
   "research": {
    "part": "L5",
-   "confidence": "jedno źródło",
+   "confidence": "uproszczenie (analogia)",
    "sources": [
     "L5-S13",
     "L5-S27",
@@ -19664,7 +19664,7 @@
   "note": "Standing between two low pulleys with one handle in each hand (squat-style pull).",
   "research": {
    "part": "L4",
-   "confidence": "jedno źródło (analogia)",
+   "confidence": "uproszczenie (analogia)",
    "sources": [
     "S16",
     "S17",
@@ -19709,7 +19709,7 @@
   "note": "Plate-loaded lever deadlift machine with handles at the sides (trap-bar-like).",
   "research": {
    "part": "L4",
-   "confidence": "jedno źródło (analogia)",
+   "confidence": "uproszczenie (analogia)",
    "sources": [
     "S16",
     "S17"
@@ -23610,7 +23610,7 @@
   "note": "Seated on a flat bench, back to a high pulley, rope held at the head.",
   "research": {
    "part": "L6",
-   "confidence": "jedno źródło",
+   "confidence": "uproszczenie (analogia)",
    "sources": [
     "L6-S17",
     "S32"
@@ -23646,7 +23646,7 @@
   "note": "Floor; arms and knees meet over the torso (tuck V-up).",
   "research": {
    "part": "L6",
-   "confidence": "jedno źródło",
+   "confidence": "uproszczenie (analogia)",
    "sources": [
     "L6-S17",
     "S32"
@@ -27480,7 +27480,7 @@
   "note": "Isometric draw-in of the abdomen after full exhale (transversus abdominis).",
   "research": {
    "part": "L6",
-   "confidence": "jedno źródło",
+   "confidence": "umiarkowane",
    "sources": [
     "S32"
    ]
@@ -27515,7 +27515,7 @@
   "note": "Lying, legs low and alternately crossed; same pattern as Lying Leg Raise.",
   "research": {
    "part": "L6",
-   "confidence": "jedno źródło",
+   "confidence": "uproszczenie (analogia)",
    "sources": [
     "L6-S17",
     "S32"
