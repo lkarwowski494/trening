@@ -1098,6 +1098,8 @@ export const EN: Record<string, string> = {
   'Tydzień deload (D na wykresach).': 'Deload week (D on the charts).', 'D — tydzień deload': 'D — deload week',
   /* ⓘ: skrócone teksty na wierzchu (pełne, dawne wersje — pod ⓘ, bez zmian) */
   'Przypisanie partii: jedno źródło.': 'Muscle group assignment: one source.',
+  'Przypisanie partii: przegląd badań.': 'Muscle group assignment: research review.',
+  'Przypisanie partii mięśniowych — ustalone na podstawie przeglądu badań dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.': 'Muscle group assignment is established from a research review for this exercise. It drives sets per muscle, the muscle map, the generator and the calendar suggestions.',
   'Przypisanie partii: uproszczenie.': 'Muscle group assignment: a simplification.',
   'Propozycja do przejrzenia przed zapisem.': 'A proposal to review before saving.',
   'Bez miejsc plan zakłada pełną siłownię. W domu? „+ Dodaj miejsce”.': 'With no places, the plan assumes a full gym. Training at home? “+ Add place”.',

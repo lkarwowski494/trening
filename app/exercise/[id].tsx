@@ -46,10 +46,12 @@ const UNMAPPED_LABEL: Record<string, () => string> = { rotator_cuff: () => t('st
  * „mocne”/„umiarkowane” (musclesSourced), „jedno źródło” albo „uproszczenie” wg seed.muscleConfidence; linijka o mięśniu docelowym spoza mapy. */
 function MuscleNote({ e, style }: { e: Exercise; style?: object }) {
   const conf = muscleConfidence(e) ?? ''; const um = unmappedMuscleOf(e);
-  const note = musclesSourced(e) ? '' : conf.startsWith('jedno źródło')
+  const note = musclesSourced(e) ? '' : conf.startsWith('ustalone')
+    ? t('Przypisanie partii mięśniowych — ustalone na podstawie przeglądu badań dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')
+    : conf.startsWith('jedno źródło')
     ? t('Przypisanie partii mięśniowych — jedno źródło, nie ustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')
     : t('Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.');
-  const short = conf.startsWith('jedno źródło') ? t('Przypisanie partii: jedno źródło.') : t('Przypisanie partii: uproszczenie.');
+  const short = conf.startsWith('ustalone') ? t('Przypisanie partii: przegląd badań.') : conf.startsWith('jedno źródło') ? t('Przypisanie partii: jedno źródło.') : t('Przypisanie partii: uproszczenie.');
   return <>{note ? <InfoTip id="muscle-note" label={short} info={note} style={[{ marginBottom: 10 }, style]}><Muted style={{ fontSize: 12 }}>{short}</Muted></InfoTip> : null}
     {um ? <Muted style={{ fontSize: 12, marginBottom: 10 }}>{t('Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.', { m: UNMAPPED_LABEL[um]?.() ?? um })}</Muted> : null}</>;
 }

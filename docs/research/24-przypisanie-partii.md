@@ -28,7 +28,7 @@ treningowymi i podlegają zasadzie „Merytoryczne podstawy” (CLAUDE.md).
 - **Pewność** (pole `confidence` w JSON):
   - **mocne** — wzrost zmierzony w ≥ 2 badaniach różnych zespołów albo przegląd systematyczny + badanie wzrostu;
   - **umiarkowane** — jedno badanie wzrostu + EMG/klasyfikacja, albo EMG z przeglądu / ≥ 2 zespołów, albo analogia do ćwiczenia z mocnym dowodem;
-  - **jedno źródło** — jedno przeczytane źródło (np. sama klasyfikacja S6, sama anatomia S35, jedno badanie EMG). *Zmiana zasady 18.10.2026 (właściciel):* jedno źródło szczebla 1–2 (przegląd systematyczny, metaanaliza, stanowisko organizacji), które zawiera twierdzenie dla tego ćwiczenia wprost, jest „ustalone” (jak „umiarkowane”); analogia do niego = „uproszczenie (analogia)”; „jedno źródło” zostaje przy szczeblach 3–5 i gdy źródło szczebla 2 tylko towarzyszy, bez tego twierdzenia;
+  - **jedno źródło** — jedno przeczytane źródło (np. sama klasyfikacja S6, sama anatomia S35, jedno badanie EMG). *Zmiana zasady 18.10.2026 (właściciel):* jedno źródło szczebla 1–2 (przegląd systematyczny, metaanaliza, stanowisko organizacji), które zawiera twierdzenie dla tego ćwiczenia wprost, ma pewność **ustalone (przegląd)** (własny dopisek w aplikacji: „Przypisanie partii: przegląd badań.”); analogia do niego = „uproszczenie (analogia)”; „jedno źródło” zostaje przy szczeblach 3–5 i gdy źródło szczebla 2 tylko towarzyszy, bez tego twierdzenia;
   - **brak źródła — uproszczenie** — brak przeczytanego źródła dla tego ćwiczenia;
   - **nie dotyczy** — cardio (bez partii, nie liczy się do serii).
 - **Niezależność źródeł:** zespół Isaka/Maeo/Kinoshita (Ritsumeikan) to S3, S27, S29, S30 (S28 — Maeo z Loughborough); zespół Gentila to S11,
@@ -290,11 +290,11 @@ dla każdego ćwiczenia — pola `note` i `evidence` w JSON. Pola JSON: `exercis
 | Bench Press (hantle) | klatka / triceps + barki | bez zmian | brak | S7, S8, S9, S6, S10 | umiarkowane (analogia) |
 | Incline Bench Press (sztanga) | klatka / barki + triceps | bez zmian | brak | S10, S6, S7 | umiarkowane |
 | Incline Bench Press (hantle) | klatka / barki + triceps | bez zmian | brak | S10, S6, S7 | umiarkowane |
-| Decline Bench Press | klatka / triceps | bez zmian | brak | S6 | umiarkowane (18.10.2026) |
+| Decline Bench Press | klatka / triceps | bez zmian | brak | S6 | ustalone (przegląd) (18.10.2026) |
 | Chest Fly (hantle) | klatka / — | bez zmian | brak | S6, S35 | umiarkowane |
 | Cable Fly | klatka / — | bez zmian | brak | S6, S35 | umiarkowane (analogia) |
 | Pec Deck | klatka / — | bez zmian | brak | S6, S35 | umiarkowane (analogia) |
-| Machine Chest Press | klatka / triceps | klatka / triceps + barki | opcjonalna | S6, S7 | umiarkowane (18.10.2026) |
+| Machine Chest Press | klatka / triceps | klatka / triceps + barki | opcjonalna | S6, S7 | ustalone (przegląd) (18.10.2026) |
 | Wyciskanie na linkach (stojąc) | klatka / triceps | bez zmian | brak | S6, S7 | brak źródła — uproszczenie (analogia) |
 | Chest Dip | klatka / triceps | bez zmian | brak | S35 | brak źródła — uproszczenie |
 | Push Up | klatka / triceps + barki | bez zmian | brak | S9, S36, S7 | umiarkowane |
@@ -324,7 +324,7 @@ dla każdego ćwiczenia — pola `note` i `evidence` w JSON. Pola JSON: `exercis
 | Back Extension | plecy / pośladki + dwugłowe | plecy + dwugłowe / pośladki | zalecana | S22, S23, S14 | umiarkowane |
 | Shrugs (hantle) | plecy / — | bez zmian | brak | S35 | jedno źródło |
 | Shrugs (sztanga) | plecy / — | bez zmian | brak | S35 | jedno źródło |
-| Good Morning | dwugłowe / plecy | bez zmian | brak | S16 | umiarkowane (18.10.2026) |
+| Good Morning | dwugłowe / plecy | bez zmian | brak | S16 | ustalone (przegląd) (18.10.2026) |
 | Overhead Press (sztanga) | barki / triceps | bez zmian | brak | S6, S15 | umiarkowane |
 | Overhead Press (hantle) | barki / triceps | bez zmian | brak | S6, S15 | umiarkowane |
 | Seated Shoulder Press (hantle) | barki / triceps | bez zmian | brak | S6, S15 | umiarkowane |
@@ -354,7 +354,7 @@ dla każdego ćwiczenia — pola `note` i `evidence` w JSON. Pola JSON: `exercis
 | Triceps Pushdown | triceps / — | bez zmian | brak | S29, S6, S35 | mocne |
 | Overhead Triceps Extension (hantel) | triceps / — | bez zmian | brak | S29, S6, S35 | mocne |
 | Cable Overhead Extension | triceps / — | bez zmian | brak | S29, S6, S35 | mocne |
-| Close Grip Bench Press | triceps / klatka | bez zmian | brak | S6 | umiarkowane (18.10.2026) |
+| Close Grip Bench Press | triceps / klatka | bez zmian | brak | S6 | ustalone (przegląd) (18.10.2026) |
 | Triceps Kickback | triceps / — | bez zmian | brak | S6, S29, S35 | umiarkowane |
 | Back Squat | czworogłowe / pośladki + dwugłowe | czworogłowe / pośladki | zalecana | S1, S2, S38, S4, S5, S6 | mocne |
 | Front Squat | czworogłowe / pośladki + core | bez zmian | brak | S1, S2, S33 | umiarkowane (analogia) |
@@ -417,7 +417,7 @@ dla każdego ćwiczenia — pola `note` i `evidence` w JSON. Pola JSON: `exercis
 ### 5.1 Liczby
 - Ćwiczeń bazowych: **125** (z tego 9 cardio bez partii).
 - Przypisanie oparte na przeczytanym źródle (pewność „mocne”, „umiarkowane” lub „jedno źródło”): **104** — w tym 71 bezpośrednio, 33 przez analogię do badanego wariantu.
-- Pewność: mocne 19, umiarkowane 63, jedno źródło 18, uproszczenie (analogia) 4, brak źródła — uproszczenie 12, nie dotyczy 9 (stan po zmianie zasady 18.10.2026; wcześniej: umiarkowane 59, jedno źródło 26).
+- Pewność: mocne 19, umiarkowane 59, ustalone (przegląd) 4, jedno źródło 18, uproszczenie (analogia) 4, brak źródła — uproszczenie 12, nie dotyczy 9 (stan po zmianie zasady 18.10.2026; wcześniej: umiarkowane 59, jedno źródło 26).
 - Zmiany: zalecane **9**, opcjonalne 1, bez zmian 115.
 - Użyte źródła: 38 (S1–S38).
 
@@ -431,7 +431,7 @@ dla każdego ćwiczenia — pola `note` i `evidence` w JSON. Pola JSON: `exercis
 | Deadlift (hantle) | plecy + dwugłowe / pośladki | dwugłowe + pośladki / plecy | jak wyżej (analogia) | umiarkowane |
 | Trap Bar Deadlift | czworogłowe + plecy / pośladki + dwugłowe | czworogłowe + pośladki / dwugłowe + plecy | S16, S17, S18 (EMG) | umiarkowane |
 | Back Extension | plecy / pośladki + dwugłowe | plecy + dwugłowe / pośladki | S22 (MRI), S23 (EMG) | umiarkowane |
-| Machine Chest Press (opcjonalna) | klatka / triceps | klatka / triceps + barki | S6 (spójność z wyciskaniem) | umiarkowane (18.10.2026) |
+| Machine Chest Press (opcjonalna) | klatka / triceps | klatka / triceps + barki | S6 (spójność z wyciskaniem) | ustalone (przegląd) (18.10.2026) |
 
 ### 5.3 Skutki dla kodu (dla wdrażającego — wymagają testów)
 - **catalog-v2** (`tests/catalog-v2.test.ts`: główna ↔ region z wagą 1, pomocnicza ↔ ≥ 0,5): po zmianie partii `muscleLoad` w catalog.json musi
