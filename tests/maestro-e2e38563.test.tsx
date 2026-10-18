@@ -73,7 +73,7 @@ describe('E2E 38563966851: scenariusze z elementem nad krawędzią listy', () =>
   });
 
   test('35 — „Workout view” nad krawędzią po wpisie przerwy: scenariusz przewija etykietę na środek przed stuknięciem; wersja z przebiegu zatrzymuje się na „Workout view”', async () => {
-    const f = '35-ustawienia-dostepnosc.yaml'; const cmds = load(join(DIR, f)); const mark = { inputText: '45' };
+    const f = '35-ustawienia-dostepnosc.yaml'; const cmds = load(join(DIR, f)); const mark = cmds.find((c: Cmd) => c && typeof c === 'object' && 'retry' in c && JSON.stringify(c).includes('Default rest'));
     const scroll = { scrollUntilVisible: { element: 'Workout view', direction: 'UP', timeout: 30000, centerElement: true } };
     /* etykieta „Workout view” i przełącznik widoku (ta sama etykieta dostępności, tuż pod nią) — wszystkie nad listą, 220 pt (jest jeszcze przycisk ⓘ) */
     await runAbove(f, cmds, mark, { text: 'Workout view' }, undefined, 220);
@@ -143,5 +143,20 @@ describe('E2E 38607952098: 12 i 32 — stuknięcie gubione na wolnym symulatorze
     const c = load(join(DIR, '32-regularny-uzytkownik.yaml')).find((x: Cmd) => x && typeof x === 'object' && 'retry' in x && JSON.stringify(x).includes('RECORDS'));
     const kinds = c.retry.commands.map((x: Cmd) => (typeof x === 'string' ? x : Object.keys(x)[0]));
     expect(kinds).toEqual(['scrollUntilVisible', 'waitForAnimationToEnd', 'tapOn', 'extendedWaitUntil']);
+  });
+});
+
+/* E2E 39148365522: 35 — po „tapOn 90” kursor na początku: „45”+„90” = 4590 → 1800 s („rest 30:00” w treningu); 07 — „Finish” przewinięty tylko do krawędzi. Kursora i stuknięcia pod nagłówkiem interpreter nie odtwarza — test strukturalny. */
+describe('E2E 39148365522: 35 i 07', () => {
+  const retries = (f: string) => load(join(DIR, f)).filter((c: Cmd) => c && typeof c === 'object' && 'retry' in c);
+  test('35: wpis przerwy — podwójne stuknięcie zaznacza liczbę, wpis „4”, „5”, sprawdzenie pola, retry; stary „tapOn 90” zniknął', () => {
+    const r = retries('35-ustawienia-dostepnosc.yaml').find((c: Cmd) => JSON.stringify(c).includes('Default rest'));
+    expect(r.retry.commands.map((x: Cmd) => (typeof x === 'string' ? x : Object.keys(x)[0]))).toEqual(['doubleTapOn', 'eraseText', 'inputText', 'inputText', 'assertVisible']);
+    const all = load(join(DIR, '35-ustawienia-dostepnosc.yaml')); expect(all.some((c: Cmd) => same(c, { tapOn: '90' }))).toBe(false);
+  });
+  test('07: „Finish” przewijany na środek, stuknięcie i pytanie w retry', () => {
+    const f = '07-zamiana.yaml'; const cmds = load(join(DIR, f)); const r = retries(f).find((c: Cmd) => JSON.stringify(c).includes('Finish workout'));
+    expect(r.retry.commands.map((x: Cmd) => Object.keys(x)[0])).toEqual(['tapOn', 'extendedWaitUntil']);
+    expect(cmds.some((c: Cmd) => same(c, { scrollUntilVisible: { element: 'Finish', direction: 'UP', timeout: 60000, centerElement: true } }))).toBe(true);
   });
 });
