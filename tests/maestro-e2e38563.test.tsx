@@ -75,9 +75,9 @@ describe('E2E 38563966851: scenariusze z elementem nad krawędzią listy', () =>
   test('35 — „Workout view” nad krawędzią po wpisie przerwy: scenariusz przewija etykietę na środek przed stuknięciem; wersja z przebiegu zatrzymuje się na „Workout view”', async () => {
     const f = '35-ustawienia-dostepnosc.yaml'; const cmds = load(join(DIR, f)); const mark = { inputText: '45' };
     const scroll = { scrollUntilVisible: { element: 'Workout view', direction: 'UP', timeout: 30000, centerElement: true } };
-    /* etykieta „Workout view” i przełącznik widoku (ta sama etykieta dostępności, tuż pod nią) — oba nad listą, 120 pt */
-    await runAbove(f, cmds, mark, { text: 'Workout view' }, undefined, 120);
-    await expect(runAbove(f, without(cmds, scroll), mark, { text: 'Workout view' }, undefined, 120)).rejects.toThrow(/tapOn "Workout view"\n(Nie znaleziono elementu|Element nad widokiem listy)/);
+    /* etykieta „Workout view” i przełącznik widoku (ta sama etykieta dostępności, tuż pod nią) — wszystkie nad listą, 220 pt (jest jeszcze przycisk ⓘ) */
+    await runAbove(f, cmds, mark, { text: 'Workout view' }, undefined, 220);
+    await expect(runAbove(f, without(cmds, scroll), mark, { text: 'Workout view' }, undefined, 220)).rejects.toThrow(/tapOn "Workout view"\n(Nie znaleziono elementu|Element nad widokiem listy)/);
   });
 });
 
