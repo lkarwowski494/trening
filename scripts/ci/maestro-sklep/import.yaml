@@ -8,6 +8,6 @@ appId: pl.lukasz.trening
 - extendedWaitUntil: { visible: "Browse|Recents|Cancel", timeout: 30000 }
 - tapOn: { text: "Browse", optional: true }
 - tapOn: { text: "On My iPhone", optional: true }
-- tapOn: { text: "Trening", optional: true }
+- tapOn: { text: "Trening|Training", optional: true }   # folder aplikacji ma nazwę wyświetlaną w języku symulatora (przebieg 39162600481: „Training”)
 - tapOn: "trening-historia.*"
 - extendedWaitUntil: { visible: "Podgląd importu|Import preview", timeout: 30000 }
