@@ -57,25 +57,22 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
       - inputText: "4"
       - inputText: "5"
       - assertVisible: { text: "45", below: "Default rest \\(s\\)" }
-# run 38563966851 (zrzut 105): po wpisie lista stała tak, że „Workout view” leżało nad krawędzią (pod paskiem nawigacji) — stuknięcie nie zdjęło fokusu, klawiatura zakryła
-# przełączniki i stuknięcie „RIR” trafiło w nic (w treningu została kolumna RPE). run 38607952098: stuknięcie w opis widoku (zwykły tekst) też nie zdjęło fokusu — zrzut: klawiatura
-# nadal na ekranie. Wracamy do sprawdzonego stuknięcia w etykietę „Workout view”, ale dopiero po przewinięciu jej na środek ekranu (wcześniej leżała pod paskiem nawigacji)
-- scrollUntilVisible: { element: "Workout view", direction: UP, timeout: 30000, centerElement: true }
-- tapOn: "Workout view"
+# runy 38563966851, 38607952098, 39156881838 (zrzuty 105): po wpisie liczby klawiatura NIE znika — ani po stuknięciu etykiety „Workout view” (leżała pod paskiem albo, po przewinięciu, pod klawiaturą:
+# stuknięcie trafiło w klawisze 5 i 6 i zmieniło wpis), ani po stuknięciu zwykłego tekstu. Fokusu nie zdejmujemy: każdy element sekcji przewijamy na ŚRODEK ekranu (nad klawiaturę,
+# która zaczyna się w 2/3 wysokości) i stukamy go z klawiaturą na ekranie; klawiatura znika przy przejściu do kolejnego ekranu (tests/maestro-e2e38563.test.tsx)
 - takeScreenshot: 105-przerwa-45
 # --- przełączniki: dźwięk, ekran włączony, podpowiedź progresji, RPE/RIR, kopia automatyczna ---
-# po wyśrodkowaniu etykiety przełączniki leżą niżej — przewinięcie przed każdym stuknięciem (tests/maestro-e2e38563.test.tsx)
-- scrollUntilVisible: { element: { id: "sw-Sound and vibration at the end of rest" }, direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-Sound and vibration at the end of rest" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Sound and vibration at the end of rest" }
-- scrollUntilVisible: { element: { id: "sw-Keep screen on during workout" }, direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-Keep screen on during workout" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Keep screen on during workout" }
-- scrollUntilVisible: { element: { id: "sw-Progression hint" }, direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-Progression hint" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Progression hint" }
-- scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-RPE / RIR per set" }
 - scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000, centerElement: true }
 - tapOn: "RIR"
-- scrollUntilVisible: { element: { id: "sw-Automatic backup after every workout" }, direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-Automatic backup after every workout" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Automatic backup after every workout" }
 - takeScreenshot: 106-przelaczniki
 # --- cel serii na partię: ręcznie dla pierwszej partii ---

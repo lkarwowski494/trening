@@ -72,12 +72,13 @@ describe('E2E 38563966851: scenariusze z elementem nad krawędzią listy', () =>
     await expect(run(cmds.filter((_: Cmd, i: number) => i !== second))).rejects.toThrow(/tapOn "Finish"/);
   });
 
-  test('35 — „Workout view” nad krawędzią po wpisie przerwy: scenariusz przewija etykietę na środek przed stuknięciem; wersja z przebiegu zatrzymuje się na „Workout view”', async () => {
-    const f = '35-ustawienia-dostepnosc.yaml'; const cmds = load(join(DIR, f)); const mark = cmds.find((c: Cmd) => c && typeof c === 'object' && 'retry' in c && JSON.stringify(c).includes('Default rest'));
-    const scroll = { scrollUntilVisible: { element: 'Workout view', direction: 'UP', timeout: 30000, centerElement: true } };
-    /* etykieta „Workout view” i przełącznik widoku (ta sama etykieta dostępności, tuż pod nią) — wszystkie nad listą, 220 pt (jest jeszcze przycisk ⓘ) */
-    await runAbove(f, cmds, mark, { text: 'Workout view' }, undefined, 220);
-    await expect(runAbove(f, without(cmds, scroll), mark, { text: 'Workout view' }, undefined, 220)).rejects.toThrow(/tapOn "Workout view"\n(Nie znaleziono elementu|Element nad widokiem listy)/);
+  test('35 — klawiatura po wpisie przerwy zostaje na ekranie (zrzuty 105 z trzech przebiegów): przełączniki są przewijane na środek i stukane z klawiaturą; nie ma stukania „Workout view”', () => {
+    const cmds = load(join(DIR, '35-ustawienia-dostepnosc.yaml')); const from = cmds.findIndex((c: Cmd) => c && c.retry && JSON.stringify(c).includes('Default rest'));
+    const to = cmds.findIndex((c: Cmd) => same(c, { tapOn: { id: 'sw-Automatic backup after every workout' } })); expect(from).toBeGreaterThan(0); expect(to).toBeGreaterThan(from);
+    expect(cmds.some((c: Cmd) => c && c.tapOn === 'Workout view')).toBe(false);
+    const taps = cmds.slice(from, to + 1).map((c: Cmd, i: number, a: Cmd[]) => ({ c, prev: a[i - 1] })).filter(x => x.c && x.c.tapOn && x.c.tapOn.id && /^sw-/.test(x.c.tapOn.id));
+    expect(taps.length).toBe(5);
+    for (const x of taps) expect([x.c.tapOn.id, x.prev?.scrollUntilVisible?.centerElement, x.prev?.scrollUntilVisible?.element?.id]).toEqual([x.c.tapOn.id, true, x.c.tapOn.id]);
   });
 });
 
