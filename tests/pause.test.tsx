@@ -11,7 +11,7 @@ import { beginEdit, draftSetWhen, commitDraft } from '@/lib/edit';
 import { buildCsv } from '@/lib/backup';
 import { periodSummary } from '@/lib/period';
 import { fresh, addWorkout, saved, ex } from './helpers';
-import { renderApp, flushAll, screen, tap, act } from './app';
+import { renderApp, flushAll, screen, tap, act, openInfo } from './app';
 
 const T0 = new Date(2026, 9, 8, 17, 0).getTime(); const MIN = 60e3;
 const clock = (ms: number) => jest.setSystemTime(T0 + ms);
@@ -110,6 +110,7 @@ describe('ekran', () => {
     expect(screen.getByText(/^start \d{2}:\d{2} · 5:0\d$/)).toBeTruthy();
     expect(screen.getByText('⏸ Pauza')).toBeTruthy(); await tap(screen.getByLabelText('Pauza treningu')); await flushAll(10); expect(screen.getByText('▶ Wznów')).toBeTruthy(); expect(store.isPaused(store.getState().active)).toBe(true);
     expect(screen.getByLabelText('Wznów trening')).toBeTruthy(); expect(screen.getByText(/ · pauza$/)).toBeTruthy();
+    expect(screen.getByText('Pauza — czas treningu stoi. Odhaczenie serii wznawia.')).toBeTruthy(); expect(screen.queryByText(/^Zegar treningu stoi/)).toBeNull(); await openInfo('pause'); /* ⓘ 14.10.2026 */
     expect(screen.getByText('Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.')).toBeTruthy();
     const frozen = screen.getByText(/ · pauza$/).props.children; clock(9 * MIN); await flushAll(1000); expect(screen.getByText(/ · pauza$/).props.children).toEqual(frozen);
     await tap(screen.getByLabelText('Wznów trening')); clock(10 * MIN); await flushAll(1000);

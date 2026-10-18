@@ -38,9 +38,9 @@ describe('LANGS × THEMES — główne ekrany w każdym języku i motywie', () =
   afterAll(() => jest.restoreAllMocks());
   const ROUTES: [string, string][] = [
     ['/', 'Pusty trening'], ['/exercises', 'Szukaj ćwiczenia…'], ['/templates', 'Brak szablonów — dodaj pierwszy.'], ['/history', 'Dopisz trening wstecz'], ['/more', 'Miejsca i sprzęt'],
-    ['/more/settings', 'Dźwięk i wibracja na koniec przerwy'], ['/progress', 'Wykresy pojawią się po pierwszym zakończonym treningu.'], ['/more/locations', 'Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.'],
-    ['/more/backup', 'Eksport tworzy plik JSON z całą historią i szablonami — zapisz go w Plikach/iCloud albo wyślij sobie. Import przyjmuje ten sam format, także backup z wersji webowej.'],
-    ['/more/language', 'Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.'], ['/more/bands', 'Kolor i poziom trudności: 1 = cienka, 7 = bardzo gruba. Gumy nie mają kilogramów — przy serii zapisujesz, której gumy użyłeś. Guma jako asysta (np. podciąganie): rekordem są powtórzenia bez gumy, a postęp to zejście na niższy poziom. Guma jako opór: rekordy liczą serie z gumą.'],
+    ['/more/settings', 'Dźwięk i wibracja na koniec przerwy'], ['/progress', 'Wykresy pojawią się po pierwszym zakończonym treningu.'], ['/more/locations', 'Gdzie trenujesz i jaki sprzęt tam masz.'],
+    ['/more/backup', 'Plik JSON z całą historią i szablonami. Import przyjmuje ten sam format.'],
+    ['/more/language', 'Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.'], ['/more/bands', 'Poziom: 1 = cienka, 7 = bardzo gruba.'],
   ];
   const TABS = ['Trening', 'Plan', 'Postępy', 'Więcej']; /* 11.10.2026: cztery zakładki (docs/22, wariant A) */
   /** Polskie teksty, które w innym języku nie mogą zostać na ekranie (wszystkie mają tłumaczenia w słownikach; bez „+ Guma” — „guma” to też

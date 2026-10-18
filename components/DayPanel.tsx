@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Pressable, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Chip, Muted, Txt, H2, useOnce } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey, newTemplate, visibleLocations, PLAN_PLACE_RANGE_MAX } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
 import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, suggestionOrder, SUGGEST_FIRST, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, earlyWorkout, undoDoneEarly, plannedPlace, plannedPlaceName, setPlanPlace, clearPlanPlace, placeRun, type Suggestion } from '@/lib/plan';
@@ -114,9 +115,13 @@ export function suggestionTexts(day: string, sg: Suggestion, today = dayKeyOf(Da
 /** „Przesuń albo pomiń” (audyt 0.10 UX-13 A, MER-16): jedna lista możliwości, uszeregowana; pierwsza — „polecane”. */
 function MoveList({ day, onDone }: { day: string; onDone: () => void }) {
   const [all, setAll] = useState(false); const list = suggestionOrder(suggest(day), day) /* UX2-09: miniony dzień — przesunięcie i wolne od razu */; const shown = all ? list : list.slice(0, SUGGEST_FIRST);
+  /* UX2-09: przy widocznym ostrzeżeniu „dzień po dniu” bez zdania „dwa dni pod rząd … też są w porządku” (sprzeczność na jednym ekranie) — zostaje objaśnienie uproszczenia; ⓘ (14.10.2026): kolejność i uproszczenie pod ⓘ */
+  const simplification = [shown.some(x => x.newBackToBack.length) ? t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.') : t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).'), ...(list.every(x => x.returns) ? [t('Każda z tych możliwości wraca do rutyny w ciągu {n} dni.', { n: RETURN_DAYS })] : [])].join(' ');
   return (
     <View testID="suggestions" style={{ marginTop: 8, gap: 8 }}>
-      <Muted style={{ fontSize: 12 }}>{t('Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu {n} dni, potem bez utraty treningów, bez nowych par dzień po dniu z tymi samymi partiami i z najmniejszą liczbą zmienionych dni.', { n: RETURN_DAYS })}</Muted>
+      <InfoTip id="move-list" label={t('Możliwości w kolejności')} info={[t('Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu {n} dni, potem bez utraty treningów, bez nowych par dzień po dniu z tymi samymi partiami i z najmniejszą liczbą zmienionych dni.', { n: RETURN_DAYS }), simplification]}>
+        <Muted style={{ fontSize: 12 }}>{t('Możliwości w kolejności')}</Muted>
+      </InfoTip>
       {shown.map((sg, i) => { const { title, details } = suggestionTexts(day, sg); return (
         <View key={`${sg.kind}-${sg.to ?? ''}`} style={{ gap: 2 }}>
           <Txt style={{ fontSize: 14 }}>{i === 0 && list.length > 1 ? `${title} · ${t('polecane')}` : title}</Txt>
@@ -124,8 +129,6 @@ function MoveList({ day, onDone }: { day: string; onDone: () => void }) {
           <Btn small title={t('Zastosuj')} accessibilityLabel={t('Zastosuj: {title}', { title })} onPress={() => { applySuggestion(sg); onDone(); }} style={{ alignSelf: 'flex-start', marginTop: 2 }} />
         </View>); })}
       {!all && list.length > SUGGEST_FIRST ? <Btn small kind="ghost" title={t('Więcej możliwości ({n})', { n: list.length - SUGGEST_FIRST })} onPress={() => setAll(true)} style={{ alignSelf: 'flex-start' }} /> : null}
-      {/* UX2-09: przy widocznym ostrzeżeniu „dzień po dniu” bez zdania „dwa dni pod rząd … też są w porządku” (sprzeczność na jednym ekranie) — zostaje objaśnienie uproszczenia */}
-      <Muted style={{ fontSize: 12 }}>{[shown.some(x => x.newBackToBack.length) ? t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.') : t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).'), ...(list.every(x => x.returns) ? [t('Każda z tych możliwości wraca do rutyny w ciągu {n} dni.', { n: RETURN_DAYS })] : [])].join(' ')}</Muted>
     </View>
   );
 }
@@ -139,7 +142,9 @@ function PlaceRange({ day, onDone }: { day: string; onDone: () => void }) {
   const setPlace = () => { if (pick && setPlanPlace(day, to, pick)) onDone(); };
   return (
     <View testID="place-range" style={{ marginTop: 8, gap: 8 }}>
-      <Muted style={{ fontSize: 12 }}>{t('Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.')}</Muted>
+      <InfoTip id="place-range" label={t('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.')} info={t('Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.')}>
+        <Muted style={{ fontSize: 12 }}>{t('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.')}</Muted>
+      </InfoTip>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         {locs.map(l => <Chip key={l.id} label={l.name} on={pick === l.id} onPress={() => setPick(l.id)} />)}
         <Btn nav small kind="ghost" title={t('Inne miejsce…')} onPress={() => router.push(`/place-once?from=${day}&to=${to}`)} />

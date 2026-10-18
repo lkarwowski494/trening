@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { Screen, Item, Muted, Txt } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { F } from '@/lib/theme';
 import { LICENSES, LICENSE_TEXTS, NATIVE_LICENSES } from '@/lib/licenses.generated';
 import { t } from '@/lib/i18n';
@@ -15,7 +16,9 @@ const COUNTS = Object.keys(LICENSE_TEXTS).map(id => [id, [...LICENSES, ...NATIVE
 export default function LicensesScreen() {
   const [open, setOpen] = useState<string | null>(null);
   const header = <View style={{ paddingVertical: 10 }}>
-    <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Aplikacja korzysta z bibliotek open source. Niżej licencje (dotknij, by zobaczyć treść) oraz wszystkie pakiety npm, od których zależy aplikacja — także narzędzia budowania — z licencją i notką o prawach autorskich.')}</Muted>
+    <InfoTip id="licenses-intro" label={t('Licencje bibliotek open source. Dotknij, by zobaczyć treść.')} info={t('Aplikacja korzysta z bibliotek open source. Niżej licencje (dotknij, by zobaczyć treść) oraz wszystkie pakiety npm, od których zależy aplikacja — także narzędzia budowania — z licencją i notką o prawach autorskich.')} style={{ marginBottom: 8 }}>
+      <Muted style={{ fontSize: 13 }}>{t('Licencje bibliotek open source. Dotknij, by zobaczyć treść.')}</Muted>
+    </InfoTip>
     {COUNTS.map(([id, n]) => <View key={id}>
       <Item title={id} sub={t('pakiety: {n} · treść wg {p}', { n, p: LICENSE_TEXTS[id].from })} icon={open === id ? '▾' : '▸'} expanded={open === id} onPress={() => setOpen(open === id ? null : id)} />
       {open === id ? <Txt style={{ fontSize: 11, fontFamily: F.mono, marginVertical: 8 }}>{LICENSE_TEXTS[id].text}</Txt> : null}

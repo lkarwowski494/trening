@@ -5,6 +5,7 @@ import { useRouter, useLocalSearchParams, Stack } from 'expo-router';
 import { OwnPlan, usePlanReturn } from '@/components/OwnPlan';
 import { DayPicker, daysOk } from '@/components/DayPicker';
 import { Screen, Field, Chip, Muted, Txt, H2, Btn, SectionTitle, SwitchRow, Segmented } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { getState, useTick, exById, fmtSec, visibleLocations } from '@/lib/store';
 import {
   generate, genProposal, weeklySetsList, saveGenerated, replaceable, previewWarnings, genFolder, goalLabel, GOALS, GEN_SESSIONS, GEN_MINUTES, WARMUP_MIN, SET_WORK_SEC, SETS_PER_EX, ACSM_MIN_SETS,
@@ -108,14 +109,16 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       {header}
-      <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań; części oznaczone jako konwencja albo uproszczenie nie wynikają z badań.')}</Muted>
+      <InfoTip id="gen-intro" label={t('Propozycja do przejrzenia przed zapisem.')} info={t('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań; części oznaczone jako konwencja albo uproszczenie nie wynikają z badań.')} style={{ marginBottom: 8 }}>
+        <Muted style={{ fontSize: 13 }}>{t('Propozycja do przejrzenia przed zapisem.')}</Muted>
+      </InfoTip>
       {/* kolejność (decyzja właściciela 09.10.2026 B): najpierw dni, potem cel — każdy cel przy każdej liczbie dni, przy 1 dniu uwaga pod celem */}
       <DayPicker label={cardioN ? t('Dni treningowe w tygodniu (w tym {n} cardio)', { n: cardioN }) : t('Dni treningowe w tygodniu')} value={inp.days ?? []} min={lim[0]} max={lim[lim.length - 1]} onChange={days => set({ days })} />
       {/* cel: chipy z zawijaniem (4 cele nie mieszczą się w kontrolce segmentowej na 320 pt w każdym języku — tests/matrix-i18n) */}
-      <Field label={t('Cel')}><View testID="gen-goals" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+      <Field label={t('Cel')} infoId="gen-goal" info={unloaded ? undefined : goalNote}><View testID="gen-goals" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         {GOALS.map(g => <Chip key={g} label={goalLabel(g)} on={inp.goal === g} onPress={() => { if (inp.goal !== g) set({ goal: g }); }} />)}
       </View></Field>
-      {unloaded ? <Txt style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{unloaded.text}</Txt> : <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{goalNote}</Muted>}
+      {unloaded ? <Txt style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{unloaded.text}</Txt> : null}
       {dayNote ? <View testID="gen-day-note"><Txt style={{ fontSize: 13, marginTop: -2, marginBottom: 8 }}>{dayNote.text}</Txt></View> : null}
       {cardioSwitch(inp.goal, nDays) ? <SwitchRow label={t('Dni cardio w planie')} detail={t('Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych.', { k: GENERAL_LIFT_MAX })} value={!!inp.cardio} onChange={v => set({ cardio: v })} /> : null}
       <Field label={t('Miejsce')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
@@ -123,7 +126,10 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
         <Chip label={t('Bez ograniczeń sprzętu')} on={inp.locationId === null} onPress={() => set({ locationId: null })} />
         <Chip nav label={t('+ Dodaj miejsce')} on={false} onPress={() => router.push('/more/locations')} />
       </View></Field>
-      {inp.locationId === null ? <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{nLoc ? t('„Bez ograniczeń sprzętu” = pełna siłownia (sztanga, hantle, maszyny i wyciągi).') : t('Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.')}</Muted> : null}
+      {inp.locationId === null ? (nLoc ? <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{t('„Bez ograniczeń sprzętu” = pełna siłownia (sztanga, hantle, maszyny i wyciągi).')}</Muted>
+        : <InfoTip id="gen-no-places" label={t('Bez miejsc plan zakłada pełną siłownię. W domu? „+ Dodaj miejsce”.')} info={t('Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.')} style={{ marginTop: -4, marginBottom: 8 }}>
+          <Muted style={{ fontSize: 13 }}>{t('Bez miejsc plan zakłada pełną siłownię. W domu? „+ Dodaj miejsce”.')}</Muted>
+        </InfoTip>) : null}
       <Field label={t('Czas sesji')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         {GEN_MINUTES.map(n => <Chip key={n} label={t('{n} min', { n })} on={inp.minutes === n} onPress={() => set({ minutes: n })} />)}
       </View></Field>
@@ -140,11 +146,14 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
         </View>))}
       <Muted style={{ fontSize: 13 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, inp.goal === 'hypertrophy' || inp.goal === 'cut') })}</Muted>
       {warn.filter(w => w.kind !== 'unloaded' && w.kind !== 'oneday' /* pod celem */).map(w => <Txt key={w.kind} style={{ fontSize: 13, marginTop: 6 }}>{w.text}</Txt>)}
-      {inp.goal === 'cut' && !cardioN ? <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { k: CUT_CARDIO_FROM, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })}</Muted> : null}
-      {(inp.goal === 'cut' && cardioN) || general ? <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { n: r.cardioMin, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })}</Muted> : null}</> : null}
+      {inp.goal === 'cut' && !cardioN ? <InfoTip id="gen-cardio-out" label={t('Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.')} info={t('Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { k: CUT_CARDIO_FROM, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })} style={{ marginTop: 6 }}>
+        <Muted style={{ fontSize: 13 }}>{t('Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.')}</Muted>
+      </InfoTip> : null}
+      {(inp.goal === 'cut' && cardioN) || general ? <InfoTip id="gen-cardio-in" label={t('Cardio w planie: {n} min tygodniowo.', { n: r.cardioMin })} info={t('Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { n: r.cardioMin, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })} style={{ marginTop: 6 }}>
+        <Muted style={{ fontSize: 13 }}>{t('Cardio w planie: {n} min tygodniowo.', { n: r.cardioMin })}</Muted>
+      </InfoTip> : null}</> : null}
 
-      <SectionTitle>{t('Na czym to oparte')}</SectionTitle>
-      {basis.map(x => <Muted key={x} style={{ fontSize: 12, marginBottom: 4 }}>{`• ${x}`}</Muted>)}
+      <SectionTitle infoId="gen-basis" info={basis.map(x => `• ${x}`)}>{t('Na czym to oparte')}</SectionTitle>
       <MedicalNote style={{ marginTop: 6 }} /* L1 (audyt 0.10, MER-11 A): plan z cardio — bez porad medycznych, odesłanie do specjalisty */ />
       {ok && r.templates.some(tp => tp.items.length) ? <Btn title={t('Zapisz szablony i plan')} kind="primary" block onPress={save} style={{ marginTop: 14 }} /> : null}
     </ScrollView></Screen>

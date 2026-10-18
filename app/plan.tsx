@@ -112,7 +112,6 @@ function ActivePlan({ activate }: { activate: (id: string, name: string) => void
     <Screen><Stack.Screen options={addHeader} /><ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
       {hasActivePlan() ? <View testID="active-plan-row" style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><PlanToggle name={nameOr(planName() || t('Mój plan'))} active onPress={off} /><Txt style={{ flex: 1, fontFamily: F.semibold }}>{t('Aktywny plan')}</Txt></View> : null}
       <Field label={t('Nazwa planu')}><Input testID="plan-name" value={planName()} placeholder={t('Mój plan')} maxLength={40} accessibilityLabel={t('Nazwa planu')} onChangeText={typePlanName} onEndEditing={() => setPlanName(planName())} /></Field>
-      <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')}</Muted>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
         <Btn nav title={t('Szablony')} small accessibilityHint={t('Otwiera listę szablonów.')} onPress={() => openTemplates(router)} />{/* 11.10.2026: z Planowania do szablonów (docs/22 problem 3) */}
         <Btn nav title={t('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} />{/* 08.10.2026: generator (docs/24) */}
@@ -120,14 +119,13 @@ function ActivePlan({ activate }: { activate: (id: string, name: string) => void
       </View>
       {plansFull() ? <Muted style={{ fontSize: 13 }}>{t('W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.', { n: SAVED_PLANS_MAX })}</Muted> : null}
       {other.length ? <>
-        <SectionTitle>{t('Inne plany')}</SectionTitle>
-        <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem. Tapnij plan, by zmienić jego nazwę i dni.')}</Muted>
+        <SectionTitle infoId="other-plans" info={t('Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem. Tapnij plan, by zmienić jego nazwę i dni.')}>{t('Inne plany')}</SectionTitle>
         {shown.map((p, pi) => { const n = savedChanges(p.id); return <SwipeRow key={p.id} testID={`plan-saved-${pi}`} /* E2E 26 */ label={t('Usuń plan: {name}', { name: nameOr(p.name) })} title={t('Usunąć ten plan?')} message={nameOr(p.name)} onDelete={() => deletePlan(p.id)}>
           {a11y => <Item a11y={a11y} title={nameOr(p.name)} sub={planSummary(p.days) + (n ? ` · ${t('zmiany dni: {n}', { n })}` : '')} onPress={() => router.push(`/plan?id=${p.id}`)} right={<PlanToggle name={nameOr(p.name)} active={false} onPress={() => activate(p.id, p.name)} />} />}
         </SwipeRow>; })}
         {!all && other.length > OTHER_FIRST ? <Btn small kind="ghost" title={t('Pokaż wszystkie ({n})', { n: other.length })} onPress={() => setAll(true)} style={{ alignSelf: 'flex-start' }} /> : null}
       </> : null}
-      <SectionTitle>{t('Dni tygodnia')}</SectionTitle>
+      <SectionTitle infoId="plan-days" info={t('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')}>{t('Dni tygodnia')}</SectionTitle>
       <DayRows days={days} onSet={setDay} target={assignTarget.week} />
     </ScrollView></Screen>
   );

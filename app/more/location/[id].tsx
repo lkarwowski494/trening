@@ -3,6 +3,7 @@ import { ScrollView, View, Alert, Pressable, Text } from 'react-native';
 import { BandColorInput } from '@/components/BandColorInput';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Field, Input, Btn, Muted, SwitchRow, Chip, useOnce, Missing } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import LoadEditor from '@/components/LoadEditor';
 import { getState, useTick, locationById, visibleExercises, bandColor } from '@/lib/store';
 import { setMainLocation, renameLocation, commitLocationName, duplicateLocation, deleteLocation, canDeleteLocation, setEquip, setOpt, activeEquip, setBandLevel } from '@/lib/locations';
@@ -29,7 +30,7 @@ export default function LocationEdit() {
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
       <Field label={t('Nazwa')}><Input selectTextOnFocus maxLength={80} value={l.name} onChangeText={v => renameLocation(l, v)} onEndEditing={() => { commitLocationName(l, initialName.current); initialName.current = l.name; }} /></Field>
-      {main ? <Muted style={{ marginBottom: 8 }}>{t('★ Miejsce główne — domyślne dla nowych treningów i szablonów bez własnego miejsca.')}</Muted>
+      {main ? <InfoTip id="main-place" label={t('★ Miejsce główne')} info={t('★ Miejsce główne — domyślne dla nowych treningów i szablonów bez własnego miejsca.')} style={{ marginBottom: 8 }}><Muted>{t('★ Miejsce główne')}</Muted></InfoTip>
         : <Btn title={t('Ustaw jako główne')} small style={{ alignSelf: 'flex-start', marginBottom: 8 }} onPress={() => setMainLocation(l.id)} />}
       <Muted style={{ fontSize: 13 }}>{t('Dostępne ćwiczenia: {n} z {m}', { n: ok, m: all.length })}</Muted>
       {EQUIP_GROUPS.map(g => { const items = EQUIPMENT.filter(x => x.group === g); const n = items.filter(x => activeEquip(l, x.id)).length; const isOpen = open.includes(g); const name = equipLabel(EQUIP_GROUP_LABEL[g]); return (

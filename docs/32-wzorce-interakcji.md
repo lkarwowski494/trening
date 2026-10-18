@@ -2,7 +2,7 @@
 
 **Zasada (właściciel, 13.10.2026):** akcje i elementy tego samego typu działają w całej aplikacji tak samo — sposób wywołania, miejsce, wygląd, etykieta, potwierdzenie,
 informacja zwrotna, VoiceOver. Ten katalog jest źródłem prawdy; nowa funkcja najpierw sprawdza tu wzorzec, a dopiero potem go tworzy. Wzorce pilnują testy-strażniki
-(`tests/interaction-guards.test.ts` — S2–S16, `tests/close-button-guard.test.tsx` — S1, `tests/swipe-delete.test.tsx` — usuwanie).
+(`tests/interaction-guards.test.ts` — S2–S17, `tests/close-button-guard.test.tsx` — S1, `tests/swipe-delete.test.tsx` — usuwanie).
 Podstawa: audyt spójności z 13.10.2026 (28 niespójności N1–N28; decyzje właściciela „wszystko A” z tego samego dnia), wytyczne Apple HIG (strony: Sheets, Modality, Alerts,
 Toolbars, Action sheets, Toggles, Text fields, Feedback, Buttons, Undo and redo). Cytaty — najwyżej 2 zdania, z adresem: https://developer.apple.com/design/human-interface-guidelines/…
 
@@ -83,6 +83,7 @@ Eksport/import kopii, import CSV: `Btn loading` — wskaźnik w przycisku, przyc
 
 ### 17. Przejścia w aplikacji i linki
 Przejście w aplikacji → rola `button` (`Item`, `Btn nav`, blokada podwójnego tapnięcia). Rola `link` zakazana (S14). Strony zewnętrzne: `Btn` z podpowiedzią „Otwiera stronę w przeglądarce.” Pole dotyku ≥ 44 pt.
+Przycisk, który **przechodzi na inny ekran**, ma po tytule „›” (np. „Technika ›” przy ćwiczeniu — dawniej „ⓘ Technika”; ⓘ ma od 14.10.2026 wyłącznie znaczenie wzorca 26: rozwija tekst w miejscu).
 
 ### 18. Przyciski główne i drugorzędne
 `Btn`: `primary` (jedna główna akcja ekranu), `default`, `ghost`, `danger`. Wyjątki nazwane: duży Start (`StartPanel`) i karta „teraz” (decyzja „Tuleja” 07.10.2026).
@@ -124,7 +125,19 @@ Sekcja „Progresja” (trzy kafelki) jest tylko w Postępach — z ekranu Treni
 **Postępy → „Strażnik progresji”:** grupy od problemów (poniżej celu — największa luka pierwsza, mniej, bez porównania, tyle samo, nowe, więcej), wiersze rozwijane wzorcem 20 (▸/▾, `expanded`, po wyjściu zwinięte), pasek serii do 2× cel z „»”, serie pośrednie tylko tu.
 **VoiceOver:** sylwetka to obraz z etykietą stanów („Ten tydzień wobec poprzedniego: więcej — …; tyle samo — …; mniej — …; bez porównania — …”); legenda ukryta; wiersz czyta słowo stanu zamiast znaku. Testy: `tests/guard.test.ts`, `tests/guard-ui.test.tsx`, scenariusz Maestro `52-straznik-progresji.yaml`.
 
-## Strażniki (S1–S16)
+### 27. Teksty objaśniające pod ⓘ — S17 (decyzje właściciela 14.10.2026)
+Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną ⓘ przy nagłówku (treść i oznaczenia „jedno źródło” / „uproszczenie” bez zmian — tylko przeniesione), a na wierzchu zostaje krótka linia albo nic.
+- **Jeden komponent:** `components/InfoTip.tsx` (`InfoTip`, `InfoButton` + `InfoBox` + `useInfoOpen`). Nagłówki podpinają go przez parametr `info` + `infoId` w `SectionTitle`, `H2`, `Field`, `SwitchRow`; krótką linię (`Muted`) owija `InfoTip` wprost. Okrąg „i” rysowany widokiem (24 pt, obrys `muted`, po rozwinięciu `accent`), nie znak U+24D8.
+- **Zachowanie:** rozwinięcie **w miejscu** pod nagłówkiem (ramka `surface2`, zaokrąglenie 10); drugie stuknięcie zwija; **stan nie jest zapamiętywany** (każde wejście na ekran zaczyna od zwiniętego); nic nie rozwija się samo.
+- **Pole dotyku** ≥ 44 pt (24 pt + `hitSlop` 10 z każdej strony). Na wąskim ekranie (320 pt) nagłówek i ⓘ zawijają się razem (`flexWrap`), kółko się nie ściska.
+- **VoiceOver:** rola `button`, `accessibilityState.expanded`, etykieta stała „Więcej informacji: {nagłówek}” (także po rozwinięciu), podpowiedź „Pokazuje objaśnienie pod nagłówkiem.”, język aplikacji; rozwinięty tekst jest **następnym elementem**; bez automatycznego ogłaszania.
+- **Dynamic Type:** rozwinięty tekst bez `numberOfLines`, rośnie do `TEXT_SCALE_MAX`; znak „i” do 1,3. Uproszczenie (nazwane): przy 200% długie złożenia (de, nl, sv, da, nb, fi) łamią się w środku wyrazu, jak w każdym tekście iOS (test: wyraz mieści się w dwóch wierszach).
+- **Zostaje na wierzchu (nigdy pod ⓘ):** warunki subskrypcji, zastrzeżenia zdrowotne (`MedicalNote`), ostrzeżenia o utracie danych (np. „Serie bez wyniku nie zostaną zapisane.”, „Kopie automatyczne znikają razem z aplikacją…”), błędy i stany zapisu, prywatność, puste stany. Lista wyjątków z powodem: `LONG_OK` w `tests/interaction-guards.test.ts`.
+- **Instrukcje gestów** (typ serii, notatka, przesunięcie w lewo, ⇅ SS, ≡) **nie stoją na ekranach** — są w Przewodniku (`lib/guide.ts`).
+- **Strażnik lekkości (S17):** widoczny tekst pomocniczy (`<Muted>`, `detail=`) ma najwyżej **100 znaków** (polskie źródło) poza listą wyjątków z powodem.
+- Nowy ekran z objaśnieniem: tekst pod ⓘ, krótka linia na wierzchu (jeśli potrzebna), `infoId` unikalny na ekranie (testID `info-{id}` i `info-text-{id}`; scenariusz Maestro 52).
+
+## Strażniki (S1–S17)
 | # | Strażnik | Plik | Stan |
 |---|---|---|---|
 | S1 | okno modalne / arkusz ma „Anuluj” w nagłówku (render każdego okna, PL/EN, jasny/ciemny) | `tests/close-button-guard.test.tsx` | jest |
@@ -143,6 +156,7 @@ Sekcja „Progresja” (trzy kafelki) jest tylko w Postępach — z ekranu Treni
 | S14 | zakaz roli „link”; komponenty wspólne mają 44 pt | j.w. | częściowo — Jest nie liczy układu, więc rozmiaru dotyku nie mierzymy; pilnujemy komponentów wspólnych |
 | S15 | pola wyszukiwania tylko przez `SearchField` | j.w. | jest |
 | S16 | arkusze akcji: wyjątki z powodem | j.w. | jest (wyjątki: lista miejsc użytkownika ma zmienną długość; rodzaje serii to 4 + notatka + Anuluj — dwupoziomowy arkusz wydłużyłby najczęstszą akcję treningu) |
+| S17 | ⓘ: jeden komponent (etykieta, rola, `expanded`, pole 44 pt), teksty przeniesione tylko jako `info=`, widoczny tekst pomocniczy ≤ 100 znaków poza listą wyjątków z powodem, gesty tylko w Przewodniku | j.w. + `tests/info-tip.test.tsx`, `tests/matrix-i18n.test.tsx` (szerokość 320 pt), `.maestro/53-objasnienia-info.yaml` | jest |
 
 ## Słownik terminów
 Anuluj (rezygnacja; okna i potwierdzenia) · Wróć (strzałka, przycisk „nie ma takiego …”) · Wróć do edycji (tylko odrzucanie zmian) · Zamknij (tylko panel „Co nowego”) · Cofnij (ostatnia zmiana) · Przywróć (usunięte / zarchiwizowane / pominięte) ·

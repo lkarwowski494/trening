@@ -6,7 +6,7 @@
  */
 import * as store from '@/lib/store';
 import { fresh, saved, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, type as typeText, act } from './app';
+import { renderApp, flushAll, screen, tap, type as typeText, act, openInfo } from './app';
 import { within } from '@testing-library/react-native';
 import { SET_PARTS } from '@/lib/setParts';
 
@@ -31,6 +31,7 @@ describe('Ustawienia: cel serii na partię', () => {
   test('sekcja z opisem (automat 10, granice 1–40); lista zwinięta, „Pokaż cele partii” rozwija wiersz dla każdej partii, „Ukryj” zwija', async () => {
     await boot(() => {}, '/more/settings');
     expect(screen.getByText('Cel serii na partię w tygodniu')).toBeTruthy();
+    expect(screen.queryByText(/^Kreska w „Ten tydzień”/)).toBeNull(); await openInfo('sets-goal'); /* ⓘ 14.10.2026: opis i źródło (ACSM 2026) pod ⓘ */
     expect(screen.getByText('Kreska w „Ten tydzień” i w Postępach. Automatycznie: 10 serii (stanowisko ACSM 2026). Ręcznie: własna liczba od 1 do 40.')).toBeTruthy();
     expect(goalGroups()).toHaveLength(0); expect(screen.queryByTestId('set-goals')).toBeNull();
     await tap(screen.getByText('Pokaż cele partii')); await flushAll(5);
@@ -65,7 +66,7 @@ describe('Ustawienia: cel serii na partię', () => {
   test('English: napisy i nazwy partii', async () => {
     await boot(() => {}, '/more/settings', 'en');
     expect(screen.getByText('Weekly set goal per muscle group')).toBeTruthy();
-    expect(screen.getByText('The line in “This week” and in Progress. Automatic: 10 sets (ACSM 2026 position stand). Manual: your own number from 1 to 40.')).toBeTruthy();
+    await openInfo('sets-goal'); expect(screen.getByText('The line in “This week” and in Progress. Automatic: 10 sets (ACSM 2026 position stand). Manual: your own number from 1 to 40.')).toBeTruthy();
     await tap(screen.getByText('Show muscle group goals')); await flushAll(5);
     expect(grpOf('Set goal: shoulders')).toBeTruthy(); expect(grpOf('Set goal: back')).toBeTruthy();
     expect(screen.getAllByLabelText('Automatic (10)', { exact: true }).length).toBe(SET_PARTS.length);
@@ -87,7 +88,7 @@ describe('Postępy → „Strażnik progresji” (strażnik progresji, 14.10.202
   test('cel automatyczny i objaśnienie: kreska = cel 10, pół serii z dopiskiem o źródle; bez zdania o rozbiciu', async () => {
     await boot(() => { week(); }, '/progress');
     expect(within(screen.getByTestId('grow-klatka')).getByText('12 / 10 serii')).toBeTruthy();
-    expect(within(screen.getByTestId('guard-info')).getByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\. Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\.$/)).toBeTruthy();
+    await openInfo('guard-method'); expect(within(screen.getByTestId('info-text-guard-method')).getByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\. Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\.$/)).toBeTruthy();
     expect(screen.queryByText(/rozbite|bez rozbicia/)).toBeNull();
   });
   test('ćwiczenie własne z barkami → wiersz „barki” (ta sama partia co z katalogu)', async () => {
@@ -97,7 +98,7 @@ describe('Postępy → „Strażnik progresji” (strażnik progresji, 14.10.202
   test('English', async () => {
     await boot(() => { week(); }, '/progress', 'en');
     expect(lbl('barki')).toMatch(/^shoulders: .+ 11 \/ 10 sets/); expect(lbl('plecy')).toMatch(/^back: .+ 4 \/ 10 sets/);
-    expect(within(screen.getByTestId('guard-info')).getByText(/^Line = weekly goal of sets per muscle group: 10 automatically, or your own number from Settings\. Simplification: a secondary muscle group of an exercise counts as half a set \(main 1, secondary 0\.5; Pelland et al\. 2026 — a single source\)\./)).toBeTruthy();
+    await openInfo('guard-method'); expect(within(screen.getByTestId('info-text-guard-method')).getByText(/^Line = weekly goal of sets per muscle group: 10 automatically, or your own number from Settings\. Simplification: a secondary muscle group of an exercise counts as half a set \(main 1, secondary 0\.5; Pelland et al\. 2026 — a single source\)\./)).toBeTruthy();
   });
 });
 
@@ -107,9 +108,9 @@ describe('Postępy i Progresja: kreski celu i objaśnienie', () => {
     expect(left('mark-barki')).toBe('100%'); expect(left('mark-klatka')).toBe('50%'); /* oś: max(20, 12) */
     expect(screen.getByLabelText(/^barki: Ten tydzień 5 bezpośrednio, 6 pośrednio \(serie pomocnicze: 12\), Poprzedni tydzień 0 \(brak danych\), cel 20$/)).toBeTruthy(); expect(screen.getByLabelText(/^klatka: Ten tydzień 12, Poprzedni tydzień 0 \(brak danych\), cel 10, co najmniej 10$/)).toBeTruthy();
     expect(screen.getByLabelText(/^plecy: Ten tydzień 4, Poprzedni tydzień 0 \(brak danych\), cel 10$/)).toBeTruthy();
-    expect(screen.getAllByText(/Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\./).length).toBeGreaterThan(0);
+    await openInfo('sets-part'); expect(screen.getAllByText(/Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii \(główna 1, pomocnicza 0,5; Pelland i in\. 2026 — jedno źródło\)\./).length).toBeGreaterThan(0);
     expect(screen.queryByText(/rozbite|bez rozbicia/)).toBeNull();
-    expect(screen.getByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\. Stanowisko ACSM 2026:/)).toBeTruthy();
+    expect(screen.getAllByText(/^Kreska = cel serii na partię w tygodniu: 10 automatycznie albo Twoja liczba z Ustawień\.$/).length).toBeGreaterThan(0); expect(screen.getByText(/^Stanowisko ACSM 2026:/)).toBeTruthy(); /* ⓘ 14.10.2026: akapity pod ⓘ osobno */
   });
   test('Progresja: tydzień — paski z kreskami celu partii; miesiąc — bez kresek i bez zdania o kresce', async () => {
     await boot(() => { week(); S().settings.weeklySetGoals = { klatka: 15 }; store.save(); }, '/progression?c=week');

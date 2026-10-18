@@ -21,6 +21,7 @@ export const GUIDE: GuideTopic[] = [
     t('Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.'),
     t('Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.'), /* edycja na żądanie, 08.10.2026 */
     t('„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).'),
+    t('Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.'), /* ⓘ (14.10.2026): dawna stopka edytora szablonu przeniesiona z ekranu do Przewodnika */
   ] },
   /* H1 (audyt 0.10, UX-09): tematy, których brakowało — zmiany w trakcie treningu i historia */
   { id: 'during', route: '/', title: () => t('Zmiany w trakcie treningu'), steps: () => [
@@ -28,10 +29,12 @@ export const GUIDE: GuideTopic[] = [
     t('„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.'),
     t('Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.') /* UI2-07: cytat widocznego tekstu przycisku */,
     t('Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).'),
+    t('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.'), /* ⓘ (14.10.2026): dawna stopka treningu w toku */
   ] },
   { id: 'history', route: '/history', title: () => t('Edycja sesji i trening wstecz'), steps: () => [
     t('W zakładce Plan stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.'),
     t('„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w zakładce Plan jest ten sam przycisk.'),
+    t('Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.'), /* ⓘ (14.10.2026): dawna stopka edycji sesji (gesty); ostrzeżenie o seriach bez wyniku zostało też na ekranie */
   ] },
   { id: 'plan', route: '/history', title: () => t('Plan tygodnia i Kalendarz'), steps: () => [
     t('Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.'),

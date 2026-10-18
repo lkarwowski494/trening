@@ -12,7 +12,7 @@ import { addLocation } from '@/lib/locations';
 import type { Template, Workout } from '@/lib/seed';
 import { fresh, ex, addWorkout, pressAlert, saved } from './helpers';
 import { within } from '@testing-library/react-native';
-import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, swipeDelete, deleteActions } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, swipeDelete, deleteActions, openInfo } from './app';
 import { loc } from './locations-fixtures';
 
 jest.setTimeout(60000);
@@ -243,7 +243,7 @@ describe('trening w toku: notatka szablonu, licznik serii roboczych, notka medyc
     await act(async () => { const a = S().active!; a.exercises[0].sets[1].done = true; a.exercises[0].sets[2].done = true; a.exercises[0].sets[3].done = true; store.save(a); }); await flushAll(5);
     expect(screen.getByLabelText('Postęp treningu: 2 z 4 serii')).toBeTruthy(); /* drop razem z serią przed nim */
     expect(screen.getByText('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.')).toBeTruthy();
-    expect(screen.getByText('Przesuń serię albo nazwę ćwiczenia w lewo, by je usunąć.', { exact: false })).toBeTruthy();
+    expect(screen.queryByText('Przesuń serię albo nazwę ćwiczenia w lewo, by je usunąć.', { exact: false })).toBeNull(); /* ⓘ 14.10.2026 (P2 A): opis gestu jest w Przewodniku, nie na ekranie treningu */
   });
   test('L1: notka medyczna także w edycji sesji, generatorze i Ustawieniach; EN', async () => {
     let id = ''; await boot(() => { id = addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]).id; });
@@ -272,10 +272,12 @@ describe('podgląd ćwiczenia po scaleniu z fix-catalog i fix-cues: pewność pa
     const simple = all.find(e => !musclesSourced(e) && String(muscleConfidence(e) ?? '').startsWith('brak źródła'))!, um = all.find(e => unmappedMuscleOf(e) === 'rotator_cuff')!;
     expect([!!sourced, !!one, !!simple, !!um]).toEqual([true, true, true, true]);
     await go(`/exercise/${sourced.id}`); await flushAll(10); expect(screen.queryByText(ONE)).toBeNull(); expect(screen.queryByText(SIMPLE)).toBeNull();
-    await go(`/exercise/${one.id}`); await flushAll(10); expect(screen.getAllByText(ONE).length).toBeGreaterThan(0);
-    await go(`/exercise/${simple.id}`); await flushAll(10); expect(screen.getAllByText(SIMPLE).length).toBeGreaterThan(0);
+    const open = async () => { const b = screen.getAllByTestId('info-muscle-note'); await tap(b[b.length - 1]); }; /* ⓘ 14.10.2026: pełny dopisek pod ⓘ, na wierzchu krótki */
+    expect(screen.queryByTestId('info-muscle-note')).toBeNull(); /* ćwiczenie ze źródłami — bez dopisku i bez ⓘ */
+    await go(`/exercise/${one.id}`); await flushAll(10); expect(screen.getAllByText('Przypisanie partii: jedno źródło.').length).toBeGreaterThan(0); expect(screen.queryByText(ONE)).toBeNull(); await open(); expect(screen.getAllByText(ONE).length).toBeGreaterThan(0);
+    await go(`/exercise/${simple.id}`); await flushAll(10); expect(screen.getAllByText('Przypisanie partii: uproszczenie.').length).toBeGreaterThan(0); await open(); expect(screen.getAllByText(SIMPLE).length).toBeGreaterThan(0);
     await go(`/exercise/${um.id}`); await flushAll(10); expect(screen.getAllByText('Mięsień docelowy spoza mapy partii: stożek rotatorów — nie liczy się w seriach na partię ani na mapie mięśni.').length).toBeGreaterThan(0);
-    const own = store.newExercise('Moje'); await go(`/exercise/${own.id}`); await flushAll(10); expect(screen.getAllByText(SIMPLE).length).toBeGreaterThan(0);
+    const own = store.newExercise('Moje'); await go(`/exercise/${own.id}`); await flushAll(10); await open(); expect(screen.getAllByText(SIMPLE).length).toBeGreaterThan(0);
     for (const [k, v] of [['serratus_anterior', 'zębaty przedni'], ['tibialis_anterior', 'piszczelowy przedni'], ['hip_flexors', 'zginacze biodra']] as const) {
       const e = all.find(x => unmappedMuscleOf(x) === k); if (e) { await go(`/exercise/${e.id}`); await flushAll(10); expect(screen.getAllByText(`Mięsień docelowy spoza mapy partii: ${v} — nie liczy się w seriach na partię ani na mapie mięśni.`).length).toBeGreaterThan(0); }
     }

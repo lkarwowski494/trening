@@ -14,6 +14,7 @@
 # 24–29, 36–38 (13.10.2026, katalog przepływów docs/37): zarządzanie szablonami (24), narzędzia w treningu (25), zarządzanie planem (26), biblioteka ćwiczeń (27), długa historia (28),
 # błędne i skrajne dane (29), przerwanie i szkice po restarcie (36), praca po polsku i restart (37), przewodnik i przypomnienia (38).
 # 50 (14.10.2026, 0.20): zegarek — serie „zrobione inaczej” z udawanego zegarka (panel „Test watch”, EXPO_PUBLIC_WATCH_FAKE=1 tylko w e2e-ios.yml) → „do uzupełnienia” → okno przed „Zakończ”.
+# 53 (14.10.2026, 0.20): objaśnienia pod ⓘ — rozwijanie i zwijanie w Ustawieniach (Field, SectionTitle, SwitchRow), jasny i ciemny wygląd.
 # 51 (14.10.2026, 0.20): głos w przerwie — przełącznik „Głos także przez głośnik telefonu” i „Posłuchaj przykładu” w Ustawieniach.
 # 52 (14.10.2026, strażnik progresji): sylwetka w kolorach progresu i zdanie o brakach celu na ekranie Trening → Postępy, sekcja „Strażnik progresji”, rozwinięcie partii.
 # 40–42 (EKSPERYMENTY): odmowa zgody na powiadomienia (40), tło i powrót (41), przywrócenie z pliku kopii (42) — tag `eksperyment`, NIE na liście flows (główny przebieg ich pomija,
@@ -60,3 +61,4 @@ flows:
   - 50-zegarek-do-uzupelnienia.yaml
   - 51-glos-ustawienia.yaml
   - 52-straznik-progresji.yaml
+  - 53-objasnienia-info.yaml

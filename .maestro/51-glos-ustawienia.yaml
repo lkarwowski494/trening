@@ -4,7 +4,8 @@
 #
 # Literały (EN z lib/i18n.en.ts):
 #   sw-Voice also through the phone speaker   ← testID przełącznika (SwitchRow 'sw-' + etykieta; 'Głos także przez głośnik telefonu')
-#   "In headphones the next exercise.*"        ← opis przełącznika
+#   "By default the voice.*"                  ← krótki opis przełącznika ('Domyślnie głos tylko w słuchawkach.')
+#   info-voice-speaker                        ← ⓘ przy przełączniku (components/InfoTip.tsx); pod nim "In headphones the next exercise.*" — dawny opis przełącznika
 #   "Listen to an example"                    ← 'Posłuchaj przykładu'
 #   checked: false / true                     ← stan przełącznika (UISwitch)
 appId: pl.lukasz.trening
@@ -20,6 +21,8 @@ name: Głos w przerwie — ustawienia
 - extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
 # --- domyślnie wyłączony, z opisem ---
 - scrollUntilVisible: { element: { id: "sw-Voice also through the phone speaker" }, direction: DOWN, timeout: 60000, centerElement: true }
+- assertVisible: "By default the voice.*"  # 14.10.2026: na wierzchu krótki opis, długi jest pod ⓘ
+- tapOn: { id: "info-voice-speaker" }
 - assertVisible: "In headphones the next exercise.*"
 - assertVisible: { id: "sw-Voice also through the phone speaker", checked: false }
 - takeScreenshot: 110-glos-domyslnie

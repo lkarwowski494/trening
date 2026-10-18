@@ -10,7 +10,7 @@ import { deloadKeep } from '@/lib/deload';
 import { deloadCounts } from '@/lib/start';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, act, go, startTpl } from './app';
+import { renderApp, flushAll, screen, tap, act, go, startTpl, openInfo } from './app';
 
 const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek; tydzień od 5.10 */
 const S = () => store.getState();
@@ -31,6 +31,7 @@ describe('A: Kalendarz', () => {
   });
   test('4 tygodnie z rzędu: podpowiedź (praktyka, nie wynik badań) → „Zaplanuj deload od …” → informacja, tło wiersza, VoiceOver; „Zdejmij oznaczenie deload”', async () => {
     await boot(streak4);
+    expect(screen.getByText('Tygodnie treningu bez deloadu: 4.')).toBeTruthy(); expect(screen.queryByText(/^Tygodnie treningu z rzędu/)).toBeNull(); await openInfo('deload'); /* ⓘ 14.10.2026: praktyka trenerów i oznaczenie „jedno źródło” pod ⓘ */
     expect(screen.getByText('Tygodnie treningu z rzędu bez deloadu: 4. Trenerzy zwykle robią deload co 4–6 tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.' /* audyt kontrolny 1 MER2-05: jedno źródło (docs/research/22 sekcja 2) */)).toBeTruthy();
     await tap(screen.getByText(/^Zaplanuj deload od pon\.,? 12 paź/)); /* H3 (audyt 0.10): miesiąc słownie */ await flushAll(5);
     expect(S().deloadWeeks).toEqual(['2026-10-12']);
@@ -84,6 +85,7 @@ describe('B: start w tygodniu deload', () => {
 describe('English', () => {
   test('hint and start question', async () => {
     const t = await boot(streak4, '/history', 'en');
+    expect(screen.getByText('Training weeks without a deload: 4.')).toBeTruthy(); await openInfo('deload');
     expect(screen.getByText('Training weeks in a row without a deload: 4. Coaches usually deload every 4–6 weeks — this is practice described in surveys by one research team (single source), not a finding on effectiveness.')).toBeTruthy();
     expect(screen.getByText(/^Plan a deload from /)).toBeTruthy();
     act(() => { store.toggleDeloadWeek(NOW.getTime()); }); await flushAll(5);

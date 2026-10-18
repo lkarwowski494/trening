@@ -13,7 +13,7 @@ import { light, dark } from '@/lib/theme';
 import { mixHex as mixOf } from '@/lib/musclemap';
 import { exName } from '@/lib/i18n';
 import { fresh, saved, ex, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, act } from './app';
+import { renderApp, flushAll, screen, tap, act, openInfo } from './app';
 import { within } from '@testing-library/react-native';
 
 import { SIGN_CHAR } from '@/components/Guard';
@@ -177,8 +177,8 @@ describe('Postępy: „Strażnik progresji”', () => {
     await boot(() => { mixed(); store.toggleDeloadWeek(NOW.getTime()); }, '/progress'); expect(has('ggrp-deload')).toBe(true); for (const g of ['below', 'down', 'up', 'unknown']) expect(has(`ggrp-${g}`)).toBe(false);
     expect(within(screen.getByTestId('ggrp-deload')).getByText('TYDZIEŃ DELOADU — BEZ PORÓWNANIA')).toBeTruthy();
   });
-  test('objaśnienie metody jest widoczne w sekcji (tymczasowo, do przeniesienia pod ⓘ): tonaż na sesję, pominięte ćwiczenia, ≥, uproszczenie 0,5', async () => {
-    await boot(mixed, '/progress'); const i = within(screen.getByTestId('guard-info'));
+  test('objaśnienie metody jest pod ⓘ przy nagłówku „Strażnik progresji” (zwinięte na starcie): tonaż na sesję, pominięte ćwiczenia, ≥, uproszczenie 0,5', async () => {
+    await boot(mixed, '/progress'); expect(screen.queryByTestId('info-text-guard-method')).toBeNull(); await openInfo('guard-method'); const i = within(screen.getByTestId('info-text-guard-method'));
     expect(i.getByText(/średnio na sesję ćwiczenia/)).toBeTruthy(); expect(i.getByText(/nowe w tym tygodniu albo nierobione teraz/)).toBeTruthy(); expect(i.getByText(/Plan bez ciężarów \(≥\)/)).toBeTruthy(); expect(i.getByText(/Pelland i in\. 2026 — jedno źródło/)).toBeTruthy();
   });
   test('EN: tytuł sekcji, grupy, wiersze i rozwinięcie po angielsku', async () => {
@@ -189,7 +189,7 @@ describe('Postępy: „Strażnik progresji”', () => {
 
 describe('Postępy: teksty objaśnień i powody pominięcia (dokładne brzmienie)', () => {
   test('objaśnienie metody — trzy akapity i legenda skali (dokładne zdania)', async () => {
-    await boot(mixed, '/progress'); const i = within(screen.getByTestId('guard-info'));
+    await boot(mixed, '/progress'); expect(screen.queryByTestId('info-text-guard-method')).toBeNull(); await openInfo('guard-method'); const i = within(screen.getByTestId('info-text-guard-method'));
     expect(i.getByText('Kierunek dla partii liczymy tylko na ćwiczeniach, które były w obu tygodniach. Ćwiczenia bez punktu odniesienia — nowe w tym tygodniu albo nierobione teraz — pomijamy w obu tygodniach.')).toBeTruthy();
     expect(i.getByText('Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.')).toBeTruthy();
     expect(i.getByText('Ten tydzień = wykonane + plan. Plan bez ciężarów (≥) — bez porównania. Tydzień deloadu nie jest porównywany.')).toBeTruthy();

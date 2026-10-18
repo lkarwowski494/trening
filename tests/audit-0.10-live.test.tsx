@@ -11,7 +11,7 @@ import { F } from '@/lib/theme';
 import { addLocation } from '@/lib/locations';
 import { applyUnit, wIn } from '@/lib/units';
 import { fresh, ex, saved, pressAlert, withDemoTemplates, addWorkout } from './helpers';
-import { renderApp, tap, flushAll, screen, act, fireEvent, swipeDelete, go, fromHome, startTpl } from './app';
+import { renderApp, tap, flushAll, screen, act, fireEvent, swipeDelete, go, fromHome, startTpl, openInfo } from './app';
 
 jest.setTimeout(120000);
 const S = () => store.getState();
@@ -311,7 +311,7 @@ describe('D2 (MER-04, wariant A): teksty o deloadzie', () => {
     await fresh(); addWorkout(Date.now() - 3600e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); store.toggleDeloadWeek(Date.now()); await boot('/history');
     expect(screen.getByText('Ten tydzień: deload. Przy starcie treningu zaproponuję o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian), ciężary bez zmian.')).toBeTruthy();
     await go('/progress'); await flushAll(10);
-    expect(screen.getByText(/^Ten tydzień jest oznaczony jako deload/)).toBeTruthy(); /* 11.10.2026: Postępy tylko pokazują oznaczenie (bez chipa i opisu liczby serii) */
+    await openInfo('period-deload'); expect(screen.getByText(/^Ten tydzień jest oznaczony jako deload/)).toBeTruthy(); /* 11.10.2026: Postępy tylko pokazują oznaczenie (bez chipa i opisu liczby serii) */
     expect(screen.queryByText(/około połowy/)).toBeNull();
   });
 });
