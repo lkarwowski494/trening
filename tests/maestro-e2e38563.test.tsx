@@ -72,27 +72,33 @@ describe('E2E 38563966851: scenariusze z elementem nad krawędzią listy', () =>
     await expect(run(cmds.filter((_: Cmd, i: number) => i !== second))).rejects.toThrow(/tapOn "Finish"/);
   });
 
-  test('35 — „Workout view” nad krawędzią po wpisie przerwy: scenariusz stuka zwykły tekst na ekranie i centruje „RIR”; wersja z przebiegu zatrzymuje się na „Workout view”', async () => {
+  test('35 — „Workout view” nad krawędzią po wpisie przerwy: scenariusz przewija etykietę na środek przed stuknięciem; wersja z przebiegu zatrzymuje się na „Workout view”', async () => {
     const f = '35-ustawienia-dostepnosc.yaml'; const cmds = load(join(DIR, f)); const mark = { inputText: '45' };
-    const hint = 'List: exercises and sets as in earlier versions.*';
-    const tap = { tapOn: hint }; const scroll = { scrollUntilVisible: { element: hint, direction: 'UP', timeout: 30000, centerElement: true } };
+    const scroll = { scrollUntilVisible: { element: 'Workout view', direction: 'UP', timeout: 30000, centerElement: true } };
     /* etykieta „Workout view” i przełącznik widoku (ta sama etykieta dostępności, tuż pod nią) — oba nad listą, 120 pt */
     await runAbove(f, cmds, mark, { text: 'Workout view' }, undefined, 120);
-    const old = [...without(without(cmds, scroll), tap)]; old.splice(at(old, mark) + 1, 0, { tapOn: 'Workout view' });
-    await expect(runAbove(f, old, mark, { text: 'Workout view' }, undefined, 120)).rejects.toThrow(/tapOn "Workout view"\n(Nie znaleziono elementu|Element nad widokiem listy)/);
+    await expect(runAbove(f, without(cmds, scroll), mark, { text: 'Workout view' }, undefined, 120)).rejects.toThrow(/tapOn "Workout view"\n(Nie znaleziono elementu|Element nad widokiem listy)/);
   });
 });
 
-describe('E2E 38563966851: 28 — dwa „Delete” pod oknem pytania', () => {
+describe('E2E 38563966851 / 38607952098: 28 — dwa „Delete” pod oknem pytania', () => {
   const f = '28-dluga-historia.yaml';
-  const stuk = (c: Cmd) => c && c.tapOn && c.tapOn.text === 'Delete' && c.tapOn.below === 'Delete this session from history\\?';
-  test('przycisk okna to drugi „Delete” w kolejności drzewa (indeks 1) — sesja znika, „3 sessions”', async () => {
-    const cmds = load(join(DIR, f)); expect(cmds.filter(stuk).length).toBe(1); expect(cmds.find(stuk).tapOn.index).toBe(1);
+  const punkt = { tapOn: { point: '68%, 56%' } };
+  const bez = { tapOn: { text: 'Delete', below: 'Delete this session from history\\?' } };
+  test('stuknięcie w punkt przycisku „Delete” okna (68%, 56% — zrzuty przebiegów) — sesja znika, „3 sessions”', async () => {
+    const cmds = load(join(DIR, f)); expect(cmds.filter((c: Cmd) => same(c, punkt)).length).toBe(1);
     await new Runner(f).run(cmds, f);
   });
-  test('wersja z przebiegu (bez indeksu) stuka w „Delete” wiersza pod oknem — okno zostaje, brak „3 sessions”', async () => {
-    const cmds = load(join(DIR, f)).map((c: Cmd) => stuk(c) ? { tapOn: { text: 'Delete', below: 'Delete this session from history\\?' } } : c);
+  test('punkt po lewej (Cancel) zostawia sesję', async () => {
+    const cmds = load(join(DIR, f)).map((c: Cmd) => same(c, punkt) ? { tapOn: { point: '32%, 56%' } } : c);
     await expect(new Runner(f).run(cmds, f)).rejects.toThrow(/extendedWaitUntil \{"visible":"3 sessions"/);
+  });
+  test('wersja z przebiegu 38563966851 (selektor bez indeksu) stuka w „Delete” wiersza pod oknem — okno zostaje, brak „3 sessions”', async () => {
+    const cmds = load(join(DIR, f)).map((c: Cmd) => same(c, punkt) ? bez : c);
+    await expect(new Runner(f).run(cmds, f)).rejects.toThrow(/extendedWaitUntil \{"visible":"3 sessions"/);
+  });
+  test('wersja z indeksem 1 (przebieg 38607952098: też nie trafiła w okno) — interpreter nie odróżnia kolejności, więc scenariusz nie może na niej polegać', () => {
+    const txt = require('fs').readFileSync(join(DIR, f), 'utf8'); expect(txt).not.toMatch(/Delete this session from history\\\\\?", index: 1/);
   });
 });
 
@@ -112,5 +118,30 @@ describe('E2E 38563966851: 31 — zgubiony pierwszy znak wagi na wolnym symulato
     const old = [...cmds.slice(0, k), { tapOn: { id: 'w-0-0' } }, { inputText: '60' }, { tapOn: { id: 'r-0-0' } }, { inputText: '10' }, ...cmds.slice(k + 2)];
     const r = new Runner(f); r.inputFilter = dropFirst();
     await expect(r.run(old, f)).rejects.toThrow(/assertVisible "Best session/);
+  });
+});
+
+describe('E2E 38607952098: 33/34 — zgubiony pierwszy znak powtórzeń („10” → „0”) w wpisie przed aktualizacją', () => {
+  const f33 = '33-aktualizacja-przygotuj.yaml', f34 = '34-aktualizacja-sprawdz.yaml';
+  const dropFirst = () => { let n = 0; return (t: string, field: any) => { if (field.props.testID !== 'r-0-0') return t; n++; return n === 1 ? t.slice(1) : t; }; };
+  const pair = async (cmds33: Cmd[], filter?: any) => { const r = new Runner(f33); if (filter) r.inputFilter = filter; await r.run(cmds33, f33); const r2 = new Runner(f34); await r2.run(load(join(DIR, f34)), f34); return r; };
+  test('scenariusz powtarza wpis powtórzeń — po aktualizacji „Now: 40 kg × 10”', async () => {
+    const r = await pair(load(join(DIR, f33)), dropFirst()); expect(r.retries.length).toBe(1);
+  });
+  test('wersja z przebiegu (jeden wpis „10”) przy zgubionym znaku: 34 zatrzymuje się na „Now: 40 kg × 10”', async () => {
+    const cmds: Cmd[] = load(join(DIR, f33)); const k = cmds.findIndex(x => x && typeof x === 'object' && 'retry' in x && JSON.stringify(x).includes('"w-0-0"'));
+    const old = [...cmds.slice(0, k), { tapOn: { id: 'w-0-0' } }, { inputText: '40' }, { tapOn: { id: 'r-0-0' } }, { inputText: '10' }, ...cmds.slice(k + 2)];
+    await expect(pair(old, dropFirst())).rejects.toThrow(/Now: 40 kg/);
+  });
+});
+
+/* Tego interpreter nie odtwarza (bezwładność przewijania listy, rozsuwająca się klawiatura, układ okna wyboru) — zapisujemy tylko, że kroki są w `retry` (docs/09, E2E 38607952098). */
+describe('E2E 38607952098: 12 i 32 — stuknięcie gubione na wolnym symulatorze jest powtarzane', () => {
+  const inRetry = (f: string, text: string) => load(join(DIR, f)).some((c: Cmd) => c && typeof c === 'object' && 'retry' in c && JSON.stringify(c.retry.commands).includes(text));
+  test('12: wybór „Back Squat” w retry', () => { expect(inRetry('12-usuwanie-gestem.yaml', 'Back Squat,.*')).toBe(true); });
+  test('32: przewinięcie, czekanie na koniec ruchu, stuknięcie „Bench Press (Dumbbell)” i „RECORDS” w jednym retry', () => {
+    const c = load(join(DIR, '32-regularny-uzytkownik.yaml')).find((x: Cmd) => x && typeof x === 'object' && 'retry' in x && JSON.stringify(x).includes('RECORDS'));
+    const kinds = c.retry.commands.map((x: Cmd) => (typeof x === 'string' ? x : Object.keys(x)[0]));
+    expect(kinds).toEqual(['scrollUntilVisible', 'waitForAnimationToEnd', 'tapOn', 'extendedWaitUntil']);
   });
 });

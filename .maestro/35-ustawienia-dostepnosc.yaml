@@ -50,13 +50,16 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - eraseText: 3
 - inputText: "45"
 # run 38563966851 (zrzut 105): po wpisie lista stała tak, że „Workout view” leżało nad krawędzią (pod paskiem nawigacji) — stuknięcie nie zdjęło fokusu, klawiatura zakryła
-# przełączniki i stuknięcie „RIR” trafiło w nic (w treningu została kolumna RPE). Fokus zdejmuje stuknięcie w zwykły tekst na ekranie — opis widoku treningu
-# (nie „Default rest (s)”: pole ma tę samą etykietę dostępności i stuknięcie mogłoby trafić w pole)
-- scrollUntilVisible: { element: "List: exercises and sets as in earlier versions.*", direction: UP, timeout: 30000, centerElement: true }
-- tapOn: "List: exercises and sets as in earlier versions.*"
+# przełączniki i stuknięcie „RIR” trafiło w nic (w treningu została kolumna RPE). run 38607952098: stuknięcie w opis widoku (zwykły tekst) też nie zdjęło fokusu — zrzut: klawiatura
+# nadal na ekranie. Wracamy do sprawdzonego stuknięcia w etykietę „Workout view”, ale dopiero po przewinięciu jej na środek ekranu (wcześniej leżała pod paskiem nawigacji)
+- scrollUntilVisible: { element: "Workout view", direction: UP, timeout: 30000, centerElement: true }
+- tapOn: "Workout view"
 - takeScreenshot: 105-przerwa-45
 # --- przełączniki: dźwięk, ekran włączony, podpowiedź progresji, RPE/RIR, kopia automatyczna ---
+# po wyśrodkowaniu etykiety przełączniki leżą niżej — przewinięcie przed każdym stuknięciem (tests/maestro-e2e38563.test.tsx)
+- scrollUntilVisible: { element: { id: "sw-Sound and vibration at the end of rest" }, direction: DOWN, timeout: 30000 }
 - tapOn: { id: "sw-Sound and vibration at the end of rest" }
+- scrollUntilVisible: { element: { id: "sw-Keep screen on during workout" }, direction: DOWN, timeout: 30000 }
 - tapOn: { id: "sw-Keep screen on during workout" }
 - scrollUntilVisible: { element: { id: "sw-Progression hint" }, direction: DOWN, timeout: 30000 }
 - tapOn: { id: "sw-Progression hint" }

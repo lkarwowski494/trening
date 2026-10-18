@@ -22,8 +22,12 @@ name: Usuwanie przesunięciem w lewo i „Pomiń dziś”
 - tapOn: "Search exercises…"
 - inputText: "Back Squat"
 - tapOn: { text: "Continue", optional: true }
-- tapOn: "Back Squat,.*"
-- extendedWaitUntil: { visible: "\\+ set", timeout: 30000 }
+# run 38607952098: stuknięcie w wiersz „Back Squat” przy rozsuwającej się klawiaturze nie wybrało ćwiczenia (zrzut: wybór wciąż otwarty) — powtórka stuknięcia
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Back Squat,.*"
+      - extendedWaitUntil: { visible: "\\+ set", timeout: 10000 }
 - tapOn: "\\+ set"
 - extendedWaitUntil: { visible: "Set 2 done.*", timeout: 15000 }
 

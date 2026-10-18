@@ -151,7 +151,8 @@ name: Długa historia — kilka sesji, rekordy, usunięcie sesji
       - tapOn: { id: "session-0-del" }
 - extendedWaitUntil: { visible: "Delete this session from history\\?", timeout: 15000 }
 # run 38563966851: odsłonięty wiersz historii zostaje pod oknem pytania i jego przycisk ma w hierarchii dziecko „Delete” — Maestro wziął pierwsze pasujące (wiersz, y 506–526),
-# nie przycisk okna (y 463–511), i okno zostało. Przycisk okna jest drugi w kolejności drzewa: indeks 1 (tests/maestro-e2e38563.test.tsx)
-- tapOn: { text: "Delete", below: "Delete this session from history\\?", index: 1 }
+# nie przycisk okna (y 463–511), i okno zostało; run 38607952098: indeks 1 też nie trafił w okno (zrzut: okno zostało). Selektor tekstowy jest dwuznaczny, więc stuknięcie w punkt:
+# „Delete” w oknie z dwoma przyciskami leży po prawej, środek [205,463][345,511] = (275, 487) z 402×874 pt = 68%, 56% (zrzuty obu przebiegów) (tests/maestro-e2e38563.test.tsx)
+- tapOn: { point: "68%, 56%" }
 - extendedWaitUntil: { visible: "3 sessions", timeout: 30000 }
 - takeScreenshot: 99-po-usunieciu-sesji

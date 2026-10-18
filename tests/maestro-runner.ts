@@ -299,7 +299,15 @@ export class Runner {
         }
         case 'stopApp': await act(async () => { await store.flush(); }); break;
         case 'tapOn': {
-          this.syncModals(); let s = sel(arg); let idx: number | undefined; if (this.alertOpen != null && typeof s === 'object' && s.index != null) { idx = s.index; s = { ...s, index: undefined }; } /* przy oknie indeks liczy się wśród elementów okna I ekranu pod nim */
+          this.syncModals();
+          /* `point: "x%, y%"` (E2E 38607952098, 28): stuknięcie w punkt ekranu. Interpreter zna je tylko dla okna systemowego z jednym lub dwoma przyciskami — na iOS dwa przyciski leżą obok siebie
+           * (pierwszy z lewej, drugi z prawej), pion musi trafić w okno (30–70% wysokości ekranu). Punkt nigdy nie trafia w ekran pod oknem (okno przechwytuje dotyk). */
+          if (typeof arg === 'object' && arg.point != null) {
+            const m = /^\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*$/.exec(String(arg.point)); if (!m) this.fail(step, `tapOn point: „${arg.point}” — interpreter zna tylko procenty ekranu`);
+            const btns = this.alertOpen != null ? this.alertCands().filter(x => x.c.alertBtn) : []; if (!btns.length || btns.length > 2) this.fail(step, 'tapOn point: interpreter zna punkt tylko w oknie systemowym z jednym lub dwoma przyciskami.');
+            const px = +m![1], py = +m![2]; if (py < 30 || py > 70) this.fail(step, `tapOn point: y=${py}% poza oknem systemowym (30–70% wysokości).`);
+            const pick = btns.length === 1 ? btns[0] : px < 50 ? btns[1] : btns[0]; /* alertCands: przyciski bez stylu 'cancel' pierwsze, 'cancel' ostatni; na iOS cancel z lewej */ await this.tap(pick.c); this.lastTapAt = Date.now(); break;
+          } let s = sel(arg); let idx: number | undefined; if (this.alertOpen != null && typeof s === 'object' && s.index != null) { idx = s.index; s = { ...s, index: undefined }; } /* przy oknie indeks liczy się wśród elementów okna I ekranu pod nim */
           const opt = typeof arg === 'object' && arg.optional;
           if (!(await this.waitFor(s, true, opt ? 300 : 3000))) {
             if (opt) break; this.fail(step, 'Nie znaleziono elementu.');
