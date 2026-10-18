@@ -57,9 +57,13 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
       - inputText: "4"
       - inputText: "5"
       - assertVisible: { text: "45", below: "Default rest \\(s\\)" }
-# runy 38563966851, 38607952098, 39156881838 (zrzuty 105): po wpisie liczby klawiatura NIE znika — ani po stuknięciu etykiety „Workout view” (leżała pod paskiem albo, po przewinięciu, pod klawiaturą:
-# stuknięcie trafiło w klawisze 5 i 6 i zmieniło wpis), ani po stuknięciu zwykłego tekstu. Fokusu nie zdejmujemy: każdy element sekcji przewijamy na ŚRODEK ekranu (nad klawiaturę,
-# która zaczyna się w 2/3 wysokości) i stukamy go z klawiaturą na ekranie; klawiatura znika przy przejściu do kolejnego ekranu (tests/maestro-e2e38563.test.tsx)
+# runy 38563966851, 38607952098, 39156881838, 39165840217 (zrzuty 105/106): po wpisie liczby klawiatura NIE znika — ani po stuknięciu etykiety „Workout view” (pod paskiem albo pod klawiaturą:
+# stuknięcie trafiało w klawisze), ani zwykłego tekstu; stuknięcia w elementy pod klawiaturą dopisywały cyfry do przerwy (45 → 4590 → limit 1800 s, w treningu „rest 30:00”).
+# Klawiaturę zdejmuje opuszczenie ekranu: „Back” i ponowne wejście w Ustawienia (wartość zostaje zapisana — sprawdza ją „rest of 0:45” w treningu)
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
 - takeScreenshot: 105-przerwa-45
 # --- przełączniki: dźwięk, ekran włączony, podpowiedź progresji, RPE/RIR, kopia automatyczna ---
 - scrollUntilVisible: { element: { id: "sw-Sound and vibration at the end of rest" }, direction: DOWN, timeout: 30000, centerElement: true }

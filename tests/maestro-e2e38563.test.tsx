@@ -72,10 +72,12 @@ describe('E2E 38563966851: scenariusze z elementem nad krawędzią listy', () =>
     await expect(run(cmds.filter((_: Cmd, i: number) => i !== second))).rejects.toThrow(/tapOn "Finish"/);
   });
 
-  test('35 — klawiatura po wpisie przerwy zostaje na ekranie (zrzuty 105 z trzech przebiegów): przełączniki są przewijane na środek i stukane z klawiaturą; nie ma stukania „Workout view”', () => {
+  test('35 — klawiatura po wpisie przerwy zostaje na ekranie (zrzuty 105/106 z czterech przebiegów): ekran jest opuszczany i otwierany ponownie przed przełącznikami; przełączniki przewijane na środek; nie ma stukania „Workout view”', () => {
     const cmds = load(join(DIR, '35-ustawienia-dostepnosc.yaml')); const from = cmds.findIndex((c: Cmd) => c && c.retry && JSON.stringify(c).includes('Default rest'));
     const to = cmds.findIndex((c: Cmd) => same(c, { tapOn: { id: 'sw-Automatic backup after every workout' } })); expect(from).toBeGreaterThan(0); expect(to).toBeGreaterThan(from);
     expect(cmds.some((c: Cmd) => c && c.tapOn === 'Workout view')).toBe(false);
+    /* klawiatura numeryczna nie ma „Gotowe” i stuknięcia w tekst jej nie zdejmują — po wpisie „Back” i ponowne wejście w Ustawienia, zanim ruszą przełączniki */
+    const kroki = cmds.slice(from + 1, from + 6); expect(kroki.slice(0, 1)).toEqual([{ tapOn: 'Back' }]); expect(kroki.some((c: Cmd) => same(c, { tapOn: 'Settings' }))).toBe(true);
     const taps = cmds.slice(from, to + 1).map((c: Cmd, i: number, a: Cmd[]) => ({ c, prev: a[i - 1] })).filter(x => x.c && x.c.tapOn && x.c.tapOn.id && /^sw-/.test(x.c.tapOn.id));
     expect(taps.length).toBe(5);
     for (const x of taps) expect([x.c.tapOn.id, x.prev?.scrollUntilVisible?.centerElement, x.prev?.scrollUntilVisible?.element?.id]).toEqual([x.c.tapOn.id, true, x.c.tapOn.id]);
