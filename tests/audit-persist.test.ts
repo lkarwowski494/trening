@@ -124,3 +124,31 @@ test('H: __resetForTests while a persist is queued -> stale run mutates the next
   const s = JSON.parse(global.__kv.get('state')!);
   expect(s.templates.some((t: any) => t.name === 'OLD')).toBe(false);
 });
+
+/* M1-audytor-generalny-001 (P0): migracja rzuca, a kopia „live” (trening w toku) się nie udaje — start NIE może usunąć „live” ani nadpisać go czystym stanem. */
+test('M1-001: corrupt state + live copy to key_live fails -> live stays in db; next start with working db moves it to the recovery copy', async () => {
+  await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); for (let i = 0; i < 3; i++) { store.save(store.getState().active); await store.flush(); }
+  const oldId = store.getState().active!.id;
+  const liveBefore = global.__kv.get('live')!;
+  global.__kv.set('state', '{zepsute');
+  (global as any).__dbFail = (k: string, q: string) => /_live$/.test(k) && !/DELETE/.test(q);
+  store.__resetForTests(); await store.init().catch(() => {});
+  expect(global.__kv.get('live')).toBe(liveBefore); /* trening w toku nietknięty */
+  expect(JSON.parse(global.__kv.get('live')!).active.id).toBe(oldId);
+  (global as any).__dbFail = false; store.__resetForTests(); await store.init();
+  const key = [...global.__kv.keys()].find(k => /^state_corrupt_\d+_live$/.test(k))!;
+  expect(key).toBeTruthy();
+  expect(JSON.parse(global.__kv.get(key)!).active.id).toBe(oldId); /* odłożony poprawnie przy ponownym starcie */
+  expect(store.getState().active?.id).not.toBe(oldId);
+});
+test('M1-001b: same for the “cfg” key (configuration newer than the last full save is not deleted when its copy fails)', async () => {
+  await fresh(); withDemoTemplates(); await store.flush();
+  const cfg = JSON.stringify({ seq: 99, at: Date.now(), data: { templates: [] } }); global.__kv.set('cfg', cfg);
+  global.__kv.set('state', '{zepsute');
+  (global as any).__dbFail = (k: string, q: string) => /_cfg$/.test(k) && !/DELETE/.test(q);
+  store.__resetForTests(); await store.init().catch(() => {});
+  expect(global.__kv.get('cfg')).toBe(cfg);
+  (global as any).__dbFail = false; store.__resetForTests(); await store.init();
+  const key = [...global.__kv.keys()].find(k => /^state_corrupt_\d+_cfg$/.test(k))!;
+  expect(global.__kv.get(key)).toBe(cfg);
+});

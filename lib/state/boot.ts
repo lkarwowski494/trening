@@ -55,15 +55,17 @@ export async function init(): Promise<void> {
       // Runda 69 (T1): trening w toku z klucza „live” trafia do tej samej kopii (osobny klucz) — wysyłany razem z nią.
       // T1b/T4a: stary „live” nie może nałożyć się na nowy, czysty stan przy następnym starcie — numer zapisu podbijamy najpierw,
       // a kopia i usunięcie mają osobne try (nieudana kopia nie zostawia „live” w bazie).
+      /* M1-audytor-generalny-001 (P0): „live” i „cfg” usuwamy z bazy WYŁĄCZNIE po udanej kopii. Nieudana kopia przerywa start (ekran błędu startu,
+       * „Spróbuj ponownie”) — nic nie jest nadpisywane czystym stanem, a następny start powtarza odkładanie. */
       let lv: { v: string } | null = null; try { lv = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'live'); } catch {}
       if (lv) { try { seqAtLeast(Number(JSON.parse(lv.v)?.seq) || 0); } catch {}
-        try { await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_live', lv.v); } catch {}
+        await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_live', lv.v);
         try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'live'); } catch {} }
       /* PERF-03 (A): tak samo „cfg” — nie może nałożyć się na czysty stan (numer zapisu wyżej, klucz usunięty, kopia obok nieczytelnego zapisu) */
-      try { const cv = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg');
-        if (cv) { try { seqAtLeast(Number(JSON.parse(cv.v)?.seq) || 0); } catch {}
-          try { await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_cfg', cv.v); } catch {}
-          try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'cfg'); } catch {} } } catch {}
+      let cv: { v: string } | null = null; try { cv = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg'); } catch {}
+      if (cv) { try { seqAtLeast(Number(JSON.parse(cv.v)?.seq) || 0); } catch {}
+        await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_cfg', cv.v);
+        try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'cfg'); } catch {} }
       setRecovery({ key, at: Date.now() }); setS(null);
       // Runda 34: znacznik w bazie — komunikat i wysłanie kopii działają także po ponownym uruchomieniu.
       // Runda 35: gdy wcześniejsza kopia wciąż czeka na wysłanie, zostaje ona (zwykle to w niej jest prawdziwa historia).
