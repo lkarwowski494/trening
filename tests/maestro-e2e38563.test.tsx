@@ -183,3 +183,17 @@ test('E2E 39185287611: 09 — po „Back” czekanie na koniec animacji i stukni
   const cmds = load(join(DIR, '09-jezyk-wyglad.yaml')); const ks = cmds.map((c: Cmd, i: number) => (c && c.retry && JSON.stringify(c).includes('Workout, tab') ? i : -1)).filter((i: number) => i >= 0);
   expect(ks.length).toBe(2); for (const k of ks) { expect(cmds[k - 1]).toBe('waitForAnimationToEnd'); expect(cmds[k - 2]).toEqual({ tapOn: 'Back' }); }
 });
+
+/* E2E 39191946283 / 39196025031: zakładka stuknięta tuż po starcie aplikacji bywa ignorowana (23, 19: zrzut z wciąż „Workout”); 26 — chip dnia poza ekranem. Interpreter nie gubi stuknięć — test strukturalny. */
+describe('E2E 39191946283 / 39196025031: 23, 19, 26', () => {
+  const inRetry = (f: string, text: string) => load(join(DIR, f)).some((c: Cmd) => c && c.retry && JSON.stringify(c.retry.commands).includes(text));
+  test('23: „More” w retry z czekaniem na „Places and equipment”', () => { expect(inRetry('23-miejsce-jednorazowe.yaml', 'More, tab')).toBe(true); });
+  test('19: „Progress” w retry z czekaniem na tytuł ekranu', () => { expect(inRetry('19-zakladki.yaml', 'Progress, tab')).toBe(true); });
+  test('26 (podprzepływ planu): przewinięcie do chipa każdego dnia przed stuknięciem', () => {
+    const cmds = load(join(DIR, 'subflows', 'plan-kazdego-dnia.yaml'));
+    for (const d of ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']) {
+      const i = cmds.findIndex((c: Cmd) => same(c, { tapOn: `${d}: Upper A` })); expect(i).toBeGreaterThan(0);
+      expect(cmds[i - 1]).toEqual({ scrollUntilVisible: { element: `${d}: Upper A`, direction: 'DOWN', timeout: 30000, centerElement: true } });
+    }
+  });
+});

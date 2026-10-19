@@ -23,8 +23,12 @@ name: Miejsce jednorazowe (0.19)
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 
 # --- Jedno miejsce: pełna siłownia (główne) ---
-- tapOn: "More, tab.*"
-- extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }
+# run 39191946283 (zrzut: wciąż „Workout”): stuknięcie zakładki tuż po starcie aplikacji zostało zignorowane — powtórka
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "More, tab.*"
+      - extendedWaitUntil: { visible: "Places and equipment", timeout: 10000 }
 - tapOn: "Places and equipment"
 - extendedWaitUntil: { visible: "Add place", timeout: 30000 }
 - tapOn: "Add place"
