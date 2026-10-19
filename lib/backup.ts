@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
-import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, noClock, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery, readRawData } from './store';
+import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, noClock, shownLoad, bandById, localISODate, flush, flushStrict, readRecovery, getRecovery, readRawData } from './store';
 import { t, exName } from './i18n';
 import { wOut } from './units';
 import { ensureAuthorization, ensureReadAuthorization, syncAfterFinish } from './health';
@@ -103,6 +103,9 @@ export async function safetyBackup(kind: 'import' | 'reset'): Promise<string> {
 /** Runda 83b (LOW 3): dopisek do potwierdzenia importu / czyszczenia, gdy kopia bezpieczeństwa obejmie też nieczytelny zapis (safetyBackup). */
 export const safetyRecoveryNote = (): string => getRecovery() ? ' ' + t('Kopia obejmie też poprzednie, nieczytelne dane.') : '';
 export const isSafetyError = (e: unknown): e is Error => e instanceof Error && (e as Error & { safety?: boolean }).safety === true;
+/** M1-audytor-generalny-006: import (kopii albo CSV), po którym zapis do bazy się nie udał — dane w aplikacji wracają do stanu sprzed importu, a wołający pokazuje błąd zamiast „Zaimportowano”. */
+export const persistFailure = (): Error => Object.assign(new Error(t('Nie udało się zapisać danych')), { persist: true });
+export const isPersistError = (e: unknown): e is Error => e instanceof Error && (e as Error & { persist?: boolean }).persist === true;
 /** Po zapisaniu treningu (przycisk „Zakończ”, pytanie o porzucony trening, cichy zapis po 6 h): Apple Health i kopia automatyczna — jedno miejsce. */
 export async function onWorkoutSaved(w: Workout): Promise<void> { await syncAfterFinish(w).catch(() => {}); await autoBackup(); /* po Zdrowiu — kopia ma już healthUUID (audyt T14) */ }
 /** Docs/12: po zapisaniu edycji treningu albo treningu wstecz — ta sama kopia automatyczna co po „Zakończ”. Apple Health świadomie
@@ -172,7 +175,10 @@ export async function importBackup(): Promise<boolean> {
   const uri = res.assets[0].uri; let txt: string;
   try { txt = await FileSystem.readAsStringAsync(uri); } finally { if (FileSystem.cacheDirectory && uri.startsWith(FileSystem.cacheDirectory)) await FileSystem.deleteAsync(uri, { idempotent: true }).catch(() => {}); /* SEC-09: kopia z wyboru pliku */ }
   const next = parseBackup(txt); await safetyBackup('import'); /* Q-019: dopiero gdy plik jest poprawny — przed zastąpieniem danych */
-  replaceState(next); await flush(); clearRecovery(); await recheckHealthAfterImport(); await scheduleWeighReminder(); /* runda 75: ustawienie z kopii */
+  const prev = JSON.parse(JSON.stringify(getState())) as State; /* punkt powrotu, gdy zapis do bazy się nie uda (M1-audytor-generalny-006) */
+  replaceState(next);
+  try { await flushStrict(); } catch { replaceState(prev); throw persistFailure(); } /* bez „Zaimportowano”, gdy dane nie trafiły do bazy; kopia bezpieczeństwa w Plikach już jest */
+  clearRecovery(); await recheckHealthAfterImport(); await scheduleWeighReminder(); /* runda 75: ustawienie z kopii */
   return true;
 }
 

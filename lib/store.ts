@@ -41,7 +41,7 @@ export const {
 export const { dbDirectory, copyKv } = dbMod;
 export type { KvDb } from './state/db';
 export const {
-  CFG_KEYS, applyCfg, flush, DRAFTS_KEY, registerDraftStore, draftsChanged, takeSavedDrafts, getPersistError, getRecovery, clearRecovery,
+  CFG_KEYS, applyCfg, flush, flushStrict, DRAFTS_KEY, registerDraftStore, draftsChanged, takeSavedDrafts, getPersistError, getRecovery, clearRecovery,
   getNewerSchema, markDraft, isDraftObj, save, saveCfg, getState, useStore, useTick, usePrefsTick, getHistRev, getRev, refreshViews,
   useForegroundTick, useHistTick, useCfgTick, memoHist, memoHistBy, setTimerState, isReadyForTests, __resetForTests
 } = coreMod;
