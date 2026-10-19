@@ -32,6 +32,14 @@
   "en": "“Skip today” skips the rest of an exercise’s sets in this workout."
  },
  {
+  "pl": "„Poproś o nową funkcję” obok „Napisz do nas” w Więcej → O aplikacji.",
+  "en": "“Request a new feature” next to “Write to us” in More → About."
+ },
+ {
+  "pl": "„Strażnik progresji” w Postępach: sylwetka z kierunkiem progresu oraz zdanie o brakach do celu z uwzględnieniem planu.",
+  "en": "“Progress Guard” in Progress: a body figure showing the direction of progress and a sentence on what is missing to reach the goal, taking your plan into account."
+ },
+ {
   "pl": "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.",
   "en": "“Technique”: open the exercise tips from a workout and from a template too."
  },
@@ -422,6 +430,10 @@
  {
   "pl": "Apple Health…",
   "en": "Apple Health…"
+ },
+ {
+  "pl": "Apple Watch: odhaczanie serii, przerwa z timerem i „Cofnij” przez 5 sekund (watchOS 10 lub nowszy).",
+  "en": "Apple Watch: tick off sets, a rest timer and “Undo” for 5 seconds (watchOS 10 or later)."
  },
  {
   "pl": "Archiwizować szablon?",
@@ -2592,6 +2604,10 @@
   "en": "Places and equipment"
  },
  {
+  "pl": "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.",
+  "en": "Workout locations and “Adjust to location”: changes apply to today’s workout only — the template and plan stay as they are."
+ },
+ {
   "pl": "Miejsce",
   "en": "Place"
  },
@@ -3211,6 +3227,10 @@
  {
   "pl": "obj.",
   "en": "vol."
+ },
+ {
+  "pl": "Objaśnienia pod przyciskiem „i” na ekranach.",
+  "en": "Explanations under the “i” button on the screens."
  },
  {
   "pl": "objętość",
@@ -3905,6 +3925,10 @@
   "en": "Log correction: all sets of “{name}” move to the chosen exercise (values unchanged)."
  },
  {
+  "pl": "Poprawka: zapis i odczyt Apple Health działają (w poprzedniej wersji testowej brakowało uprawnienia).",
+  "en": "Fix: writing to and reading from Apple Health work (the previous test version lacked the permission)."
+ },
+ {
   "pl": "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.",
   "en": "Fixes: Progress remembers the selected exercise, an import without times shows “time unknown”, and help texts now match the tab names."
  },
@@ -3995,6 +4019,10 @@
  {
   "pl": "Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.",
   "en": "Progress has its own tab: summary, “Progression”, exercise charts and body weight."
+ },
+ {
+  "pl": "Postępy: dwa słupki na partię — porównanie okresu z poprzednim okresem.",
+  "en": "Progress: two bars per muscle group — a period compared with the previous period."
  },
  {
   "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.",
@@ -6522,6 +6550,10 @@
  {
   "pl": "Zaplanuj deload od {date}",
   "en": "Plan a deload from {date}"
+ },
+ {
+  "pl": "Zapowiedzi głosowe na początku przerwy: ćwiczenie, ciężar i powtórzenia.",
+  "en": "Voice announcements at the start of the rest: exercise, weight and reps."
  },
  {
   "pl": "Zarządzaj subskrypcją",

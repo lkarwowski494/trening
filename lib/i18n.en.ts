@@ -1055,6 +1055,15 @@ export const EN: Record<string, string> = {
   'Spójniejsza obsługa w całej aplikacji: okna z „Anuluj” po lewej, „+” w nagłówkach list do dodawania oraz czytelniejsze komunikaty i opisy dla VoiceOver.': 'More consistent controls across the app: windows with “Cancel” on the left, “+” in list headers for adding, and clearer messages and VoiceOver descriptions.',
   'Przycisk „Napisz do nas” w Więcej → O aplikacji.': 'A “Write to us” button in More → About.',
   /* 0.18 „Dostosuj do miejsca” (docs/33) */
+  /* 0.20.0 „Co nowego” (docs/18 19.10.2026; tłumaczenia do przeglądu) */
+  'Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.': 'Workout locations and “Adjust to location”: changes apply to today’s workout only — the template and plan stay as they are.',
+  'Apple Watch: odhaczanie serii, przerwa z timerem i „Cofnij” przez 5 sekund (watchOS 10 lub nowszy).': 'Apple Watch: tick off sets, a rest timer and “Undo” for 5 seconds (watchOS 10 or later).',
+  'Zapowiedzi głosowe na początku przerwy: ćwiczenie, ciężar i powtórzenia.': 'Voice announcements at the start of the rest: exercise, weight and reps.',
+  '„Strażnik progresji” w Postępach: sylwetka z kierunkiem progresu oraz zdanie o brakach do celu z uwzględnieniem planu.': '“Progress Guard” in Progress: a body figure showing the direction of progress and a sentence on what is missing to reach the goal, taking your plan into account.',
+  'Postępy: dwa słupki na partię — porównanie okresu z poprzednim okresem.': 'Progress: two bars per muscle group — a period compared with the previous period.',
+  'Objaśnienia pod przyciskiem „i” na ekranach.': 'Explanations under the “i” button on the screens.',
+  '„Poproś o nową funkcję” obok „Napisz do nas” w Więcej → O aplikacji.': '“Request a new feature” next to “Write to us” in More → About.',
+  'Poprawka: zapis i odczyt Apple Health działają (w poprzedniej wersji testowej brakowało uprawnienia).': 'Fix: writing to and reading from Apple Health work (the previous test version lacked the permission).',
   'Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.': 'Adjust to location: after you switch to a location without the equipment you need, the app suggests exercise substitutes for you to review — changes apply to this workout only.',
   'W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.': 'In the window you can change a substitute or choose “No change” or “Skip today”; you can undo an applied swap at the exercise.',
   'Dostosuj do miejsca': 'Adjust to location', 'Dostosuj do: {l}': 'Adjust to: {l}',

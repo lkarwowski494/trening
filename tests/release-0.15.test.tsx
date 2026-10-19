@@ -15,7 +15,7 @@ const B = 'Poprawione sformułowania części wskazówek techniki.';
 describe('wydanie 0.15.0', () => {
   test('app.json, package.json i package-lock.json (projekt) — wersja bieżąca (od 0.17: release-0.17.test.tsx), 0.15.0 było wydane', () => {
     const lock = J('package-lock.json');
-    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.18.0', '0.18.0', '0.18.0', '0.18.0']);
+    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.20.0', '0.20.0', '0.20.0', '0.20.0']);
   });
   test('wpis 0.15 (id 2026-10-13, historyczny; bieżący 0.16: release-0.16.test.tsx), data 2026-10-12, build 1012 (TestFlight 38355743899; 1011 przepadł); pod nim 0.14 (2026-10-12, build 1010)', () => {
     const cur = E(); const prev = WHATS_NEW[WHATS_NEW.indexOf(cur) + 1];
