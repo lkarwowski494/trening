@@ -3,7 +3,7 @@ import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fireEvent } from '@testing-library/react-native';
 import { fresh, ex, legacyBandKg } from './helpers';
-import { renderApp, flushAll, screen, go, tap, act } from './app';
+import { renderApp, flushAll, screen, go, tap, act, openInfo } from './app';
 
 jest.setTimeout(30000);
 afterEach(async () => { try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
@@ -12,6 +12,7 @@ describe('P-001 gumy: tylko kolor i poziom 1–7', () => {
   test('ekran gum: bez pola kg, opis mówi o poziomie; poziom dalej ograniczony do 1–7', async () => {
     await renderApp(); await go('/more/bands'); await flushAll(10);
     expect(screen.queryAllByLabelText(/^Asysta/)).toHaveLength(0); expect(screen.queryByPlaceholderText('kg')).toBeNull();
+    expect(screen.getByText('Poziom: 1 = cienka, 7 = bardzo gruba.')).toBeTruthy(); await openInfo('bands-intro'); /* ⓘ 14.10.2026 */
     expect(screen.getByText(/Gumy nie mają kilogramów/)).toBeTruthy();
     const lvl = screen.getAllByLabelText('Poziom (1–7)')[0]; await act(async () => { fireEvent.changeText(lvl, '9'); }); await flushAll(400);
     expect(Math.max(...store.getState().bands.map(b => b.level))).toBe(7);

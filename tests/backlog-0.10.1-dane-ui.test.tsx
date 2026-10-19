@@ -61,7 +61,8 @@ describe('X2-04: okno nakładania terminów w edycji sesji podaje godzinę tamte
   test('X2-04: sesja „Pompki” zapisana w strefie +3 h → „nachodzi na sesję „Pompki” (… 14:00)”, nie 11:00', async () => {
     await fresh(); const d0 = new Date(Date.now() - 3 * 86400e3); d0.setHours(8, 0, 0, 0); const t0 = d0.getTime();
     const w1 = addWorkout(t0, [['Back Squat', [{ weight: 100, reps: 5 }]]], 'Nogi'); const w2 = addWorkout(t0 + 3 * 3600e3, [['Push Up', [{ reps: 20 }]]], 'Pompki');
-    w2.tzOffsetMin = store.tzOffsetAt(w2.startedAt) + 180; store.save();
+    /* strefa startu +3 h względem telefonu; gdy telefon jest w UTC+11…+14, +3 h wychodzi poza UTC+14 (cleanTz je odrzuca) → wtedy −3 h */
+    const base2 = store.tzOffsetAt(w2.startedAt); w2.tzOffsetMin = Math.abs(base2 + 180) <= 14 * 60 ? base2 + 180 : base2 - 180; store.save();
     await boot(`/history/edit/${w1.id}`); await flushAll(20);
     await type(screen.getByLabelText('Godzina startu'), '11:15'); await tap(screen.getByText('Zapisz'));
     const wall = store.wallTs(w2); expect(edit.timeText(wall)).not.toBe(edit.timeText(w2.startedAt));
@@ -72,7 +73,11 @@ describe('X2-04: okno nakładania terminów w edycji sesji podaje godzinę tamte
 describe('X2-02: Postępy ćwiczenia — data sesji na zegarze strefy startu (jak Historia)', () => {
   test('X2-02: trening nd. 4.10 20:00 w strefie +10 h → lista sesji w Postępach: „pon., 5 paź”, nie „niedz., 4 paź”', async () => {
     await fresh(); const at = new Date(2026, 9, 4, 20, 0).getTime();
-    const w = addWorkout(at, [['Back Squat', [{ weight: 120, reps: 5 }]]]); w.tzOffsetMin = store.tzOffsetAt(at) + 600; store.save();
+    const w = addWorkout(at, [['Back Squat', [{ weight: 120, reps: 5 }]]]);
+    /* strefa startu +10 h względem telefonu; poza UTC+14 (telefon w UTC+5…+14) → pierwsza dopuszczalna (UTC+14, UTC−12), przy której dzień
+       kalendarzowy różni się od dnia na telefonie — test sprawdza właśnie dzień */
+    const base = store.tzOffsetAt(at); const wallDay = (o: number) => new Date(at + o * 60e3).getUTCDate(); /* dzień miesiąca na zegarze strefy o przesunięciu o min */
+    w.tzOffsetMin = [base + 600, 14 * 60, -12 * 60].find(o => Math.abs(o) <= 14 * 60 && wallDay(o) !== new Date(at).getDate())!; store.save();
     await boot(`/progress?ex=${ex('Back Squat').id}`);
     const wall = store.fmtDate(store.wallTs(w)); expect(wall).not.toBe(store.fmtDate(at));
     expect(screen.getAllByText(wall).length).toBeGreaterThan(0); expect(screen.queryAllByText(store.fmtDate(at))).toHaveLength(0);

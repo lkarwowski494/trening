@@ -21,9 +21,22 @@ const genDays = () => { const all = Object.values(GEN_SESSIONS).flat(); return {
 export const LANGS_012 = ['pt-BR', 'es-419', 'id', 'ms', 'vi', 'ru', 'ja', 'ko', 'zh-Hant'] as const;
 
 export const WHATS_NEW: WhatsNewEntry[] = [
+  /* 0.20.0 (0.19 + 0.20 jednym wydaniem, decyzja właściciela 13.10.2026; docs/18 13–19.10.2026): miejsca treningu, Apple Watch, głos, Strażnik progresji, Postępy (dwa słupki),
+   * objaśnienia ⓘ, „Poproś o nową funkcję”, poprawka zapisu/odczytu Apple Health (L-001). Bez numeru buildu — dopisuje się po przebiegu testflight.yml.
+   * id '2026-10-17' (następny po 0.18), data 19.10.2026. Tłumaczenia 31 języków do przeglądu (rola tłumacza). */
+  { id: '2026-10-17', date: '2026-10-19', items: () => [
+    t('Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.'),
+    t('Apple Watch: odhaczanie serii, przerwa z timerem i „Cofnij” przez 5 sekund (watchOS 10 lub nowszy).'),
+    t('Zapowiedzi głosowe na początku przerwy: ćwiczenie, ciężar i powtórzenia.'),
+    t('„Strażnik progresji” w Postępach: sylwetka z kierunkiem progresu oraz zdanie o brakach do celu z uwzględnieniem planu.'),
+    t('Postępy: dwa słupki na partię — porównanie okresu z poprzednim okresem.'),
+    t('Objaśnienia pod przyciskiem „i” na ekranach.'),
+    t('„Poproś o nową funkcję” obok „Napisz do nas” w Więcej → O aplikacji.'),
+    t('Poprawka: zapis i odczyt Apple Health działają (w poprzedniej wersji testowej brakowało uprawnienia).'),
+  ] },
   /* 0.18.0 (docs/33, docs/18 13.10.2026): „Dostosuj do miejsca” — okno z zamiennikami po zmianie miejsca na takie bez potrzebnego sprzętu; zmiany tylko w bieżącym treningu,
    * szablon i plan bez zmian. Bez numeru buildu — dopisuje się po przebiegu testflight.yml. id '2026-10-16' (następny po 0.17), data 13.10.2026. */
-  { id: '2026-10-16', date: '2026-10-13', items: () => [
+  { id: '2026-10-16', build: 1015, date: '2026-10-13', items: () => [
     t('Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.'),
     t('W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.'),
   ] },

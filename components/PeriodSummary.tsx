@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useTheme, F } from '@/lib/theme';
+import { InfoTip } from '@/components/InfoTip';
 import { t, exName, locale, lang } from '@/lib/i18n';
 import { fmtSec, isDeloadWeek, useTick } from '@/lib/store';
 import { fmtVol } from '@/lib/units';
@@ -51,14 +52,14 @@ export function PeriodSummary() {
   const short = (ts: number) => fmtDayMonth(ts);
   return (
     <View testID="period-summary" style={{ marginBottom: 14 }}>
-      <H2>{t('Podsumowanie')}</H2>
+      <H2 infoId="period-summary" info={[t('Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.'), t('Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.')]}>{t('Podsumowanie')}</H2>
       <Segmented label={t('Podsumowanie')} value={kind} onChange={pick} options={[['week', t('Tydzień')], ['month', t('Miesiąc')]]} />
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 6 }}>
         {arrow(t('Poprzedni okres'), '‹', -1)}
         <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 16, fontFamily: F.heavy, flexShrink: 1, textAlign: 'center' }}>{periodTitle(kind, s.start)}</Text>
         {arrow(t('Następny okres'), '›', 1, offset >= 0)}
       </View>
-      {deload ? <Muted style={{ fontSize: 12, marginBottom: 8 }}>{t('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.')}</Muted> : null}{/* 11.10.2026: Postępy pokazują oznaczenie, nie zmieniają (chip „Tydzień deload” usunięty) */}
+      {deload ? <InfoTip id="period-deload" label={t('Tydzień deload (D na wykresach).')} info={t('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.')} style={{ marginBottom: 8 }}><Muted style={{ fontSize: 12 }}>{t('Tydzień deload (D na wykresach).')}</Muted></InfoTip> : null}{/* 11.10.2026: Postępy pokazują oznaczenie, nie zmieniają (chip „Tydzień deload” usunięty) */}
       {kind === 'month' ? <MonthWeeks start={s.start} end={s.end} /> : null}
       {prevDeload ? <Muted style={{ fontSize: 12, marginBottom: 6 }}>{t('Poprzedni tydzień jest oznaczony jako deload.')}</Muted> : null}
       <View style={{ padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
@@ -76,7 +77,6 @@ export function PeriodSummary() {
           <Muted style={{ fontSize: 13 }}>{pr.details.join(' · ')}</Muted>
         </View>))
         : <Muted style={{ fontSize: 13 }}>{s.workouts ? t('Bez nowych rekordów w tym okresie.') : t('Brak treningów w tym okresie.')}</Muted>}
-      <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Obok w nawiasie — cały poprzedni okres. Serie robocze bez rozgrzewki; rekordy jak w podsumowaniu treningu.')}</Muted>
     </View>
   );
 }

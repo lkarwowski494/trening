@@ -16,7 +16,7 @@
 #   "Delete set\?" / "Remove from template\?" → "Delete" ← 'Usunąć serię?' / 'Usunąć z szablonu?' → 'Usuń'
 #   "\+ rep range"                   ← '+ zakres powtórzeń'
 #   "reps from — X" / "reps to — X"  ← '{powtórzenia od} — {nazwa}' / '{powtórzenia do} — {nazwa}' (accessibilityLabel pól zakresu)
-#   "Rep range: 8.12.*"              ← 'Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze…' (MER-13, audyt 0.10; tylko ciężar + powtórzenia i zamknięty zakres) (r = reps(8, 12) = „8–12”)
+#   "Range 8.12: when all sets last time had.*" ← ⓘ 14.10.2026: skrócony opis na wierzchu 'Zakres {r}: gdy ostatnio wszystkie serie miały ≥ {n} powt., pojawi się „↑”.'; pełny 'Zakres powtórzeń: {r} — gdy ostatnio…' (MER-13) pod ⓘ (testID info-range-{id})
 #   "Remove rep range"               ← 'Usuń zakres powtórzeń' (przycisk „✕”)
 #   tpl-w-<poz>-<wiersz> / tpl-r-<poz>-<wiersz> ← testID pól ciężaru / powtórzeń wiersza szablonu (app/template/[id].tsx, dodane 06.10.2026 dla tego scenariusza)
 #   (do 07.10.2026: „Remove from template” — przycisk usunięty; dziś przesunięcie nagłówka tpl-item-<poz>)
@@ -103,12 +103,16 @@ name: Szablon jak trening — wiersze serii, karty, start
 - scrollUntilVisible: { element: "Rows E2E", direction: UP, timeout: 30000 }
 - tapOn: "Rows E2E"
 - pressKey: Enter
-- scrollUntilVisible: { element: "Rep range: 8.12.*", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Range 8.12: when all sets last time had.*", direction: DOWN, timeout: 30000 }
+- assertNotVisible: "Rep range: 8.12 — when.*"
+- tapOn: { id: "info-range-.*" }
+- assertVisible: "Rep range: 8.12 — when.*"
+- tapOn: { id: "info-range-.*" }
 - takeScreenshot: 42-zakres-powtorzen
 - scrollUntilVisible: { element: "Remove rep range", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Remove rep range"
 - extendedWaitUntil: { visible: "\\+ rep range", timeout: 15000 }
-- assertNotVisible: "Rep range: .*"
+- assertNotVisible: "Range [0-9].*: when all sets last time had.*"
 
 # --- Wartości w wierszach (rozgrzewka 20 × 10, seria 1: 37 × 11) ---
 - scrollUntilVisible: { element: { id: "tpl-w-0-0" }, direction: UP, timeout: 30000 }

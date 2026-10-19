@@ -16,7 +16,7 @@ import * as FS from 'expo-file-system/legacy';
 import * as DP from 'expo-document-picker';
 import * as Sharing from 'expo-sharing';
 import { within } from '@testing-library/react-native';
-import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft, fromHome, startTpl } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft, fromHome, startTpl, openInfo } from './app';
 import { ex, pressAlert, saved } from './helpers';
 import type { State } from '@/lib/seed';
 import { loadSummary } from '@/components/LoadEditor';
@@ -156,6 +156,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByLabelText('Dodaj miejsce')); await tap(screen.getByLabelText(/^Pełna siłownia, /)); await flushAll(10);
     const gym = loc('Pełna siłownia'); expect(S().settings.mainLocationId).toBe(gym.id);
     expect(screen.getByLabelText('Nazwa').props.value).toBe('Pełna siłownia');
+    expect(screen.getByText('★ Miejsce główne')).toBeTruthy(); await openInfo('main-place'); /* ⓘ 14.10.2026: wyjaśnienie pod ⓘ */
     expect(screen.getByText('★ Miejsce główne — domyślne dla nowych treningów i szablonów bez własnego miejsca.')).toBeTruthy(); expect(screen.queryByText('Ustaw jako główne')).toBeNull();
     expect(gym.equipment.some(e => e.item === 'electric' || e.item === 'db_plate' || e.item === 'tire')).toBe(false); /* stacja, hantle na talerze i strongman poza presetem */
     expect(gym.equipment.find(e => e.item === 'barbell')!.load).toMatchObject({ kind: 'plates', unit: 'kg', base: 20 });
@@ -438,8 +439,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(byHint('+ zakres powtórzeń', B));
     await type(screen.getByLabelText(`powtórzenia od — ${B}`), '8'); await type(screen.getByLabelText(`powtórzenia do — ${B}`), '6');
     expect(screen.getByText('„do” jest mniejsze niż „od” — zakres pokaże się jako 8+')).toBeTruthy();
-    await type(screen.getByLabelText(`powtórzenia do — ${B}`), '12'); expect([it0().repMin, it0().repMax]).toEqual([8, 12]); expect(screen.getByText(/^Zakres powtórzeń: 8–12/)).toBeTruthy();
-    await tap(screen.getAllByLabelText('Usuń zakres powtórzeń').find(x => x.props.accessibilityHint === B)!); expect([it0().repMin, it0().repMax]).toEqual([null, null]); expect(screen.queryByText(/^Zakres powtórzeń:/)).toBeNull();
+    await type(screen.getByLabelText(`powtórzenia do — ${B}`), '12'); expect([it0().repMin, it0().repMax]).toEqual([8, 12]); expect(screen.getByText(/^Zakres 8–12: gdy ostatnio/)).toBeTruthy();
+    await tap(screen.getAllByLabelText('Usuń zakres powtórzeń').find(x => x.props.accessibilityHint === B)!); expect([it0().repMin, it0().repMax]).toEqual([null, null]); expect(screen.queryByText(/^Zakres (powtórzeń: )?\d/)).toBeNull();
     await tap(byHint('+ zakres powtórzeń', B)); await type(screen.getByLabelText(`powtórzenia od — ${B}`), '8'); await type(screen.getByLabelText(`powtórzenia do — ${B}`), '12');
     expect(rF()[1].props.placeholder).toBe('8–12');
     /* przerwa pozycji: pusta = z ćwiczenia (100 s), wpisana wygrywa */
@@ -538,13 +539,13 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('Notatka do treningu')).toBeTruthy(); expect(screen.getAllByText('RPE', { includeHiddenElements: true }).length).toBeGreaterThan(0); /* RPE włączone w Ustawieniach; nagłówek kolumny ukryty przed VoiceOver (audyt 0.10, A11-18) */
     /* zmiana miejsca tylko dla tej sesji: masa ciała → plakietka braku sprzętu; Anuluj; powrót do domu */
     const chipLoc = () => screen.getByLabelText(/^Miejsce treningu: .*$/);
-    await tap(chipLoc()); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Pełna siłownia', 'Dom testowy', 'Tylko masa ciała', 'Hotel', 'Anuluj']);
+    await tap(chipLoc()); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Pełna siłownia', 'Dom testowy', 'Tylko masa ciała', 'Hotel', 'Inne miejsce (tylko dziś)…', 'Anuluj']); /* 0.19 (docs/33 A4): pozycja „Inne miejsce (tylko dziś)…” */
     await sheet(2); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id);
     /* 0.18 (docs/33, P2 A): miejsce z brakami otwiera okno „Dostosuj do: X” samo — „Anuluj” nic nie zmienia, wiersz pod chipem zostaje */
     expect(screen.getByTestId('adapt-apply')).toBeTruthy(); await tap(screen.getByTestId('close-modal')); await flushAll(10); expect(screen.getByTestId('adapt-line')).toBeTruthy();
     expect(screen.getByText('📍 Tylko masa ciała ▾')).toBeTruthy();
     expect(screen.getAllByLabelText(/^Brak sprzętu w: Tylko masa ciała\. Brakuje: /).length).toBe(4); /* wszystko poza Plankiem */ expect(screen.queryByLabelText(`Zamień ćwiczenie (brak sprzętu): ${B}`)).toBeNull(); /* jedno „⇄ zamień” w stopce; plakietka = tekst otwierający arkusz */ expect(screen.getByLabelText(`Zamień ćwiczenie: ${B}`)).toBeTruthy();
-    await tap(chipLoc()); await sheet(4); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id); /* Anuluj */
+    await tap(chipLoc()); await sheet(5); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id); /* Anuluj (0.19: po „Inne miejsce (tylko dziś)…” — indeks 5) */
     await tap(chipLoc()); await sheet(1); expect(S().active!.locationId).toBe(loc('Dom testowy').id); expect(screen.queryByLabelText(/^Brak sprzętu w:/)).toBeNull();
     expect(tpl.locationId).toBe(loc('Dom testowy').id); /* szablon bez zmian */
 
@@ -814,7 +815,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     /* serie per partia: każdy wiersz na ekranie = liczby ze store (ten tydzień i poprzedni) */
     const cur = stats.weeklySetsByMuscle(stats.thisMonday()), prev = stats.weeklySetsByMuscle(stats.thisMonday(-1)); const { splitText, emptySplit } = require('@/lib/setSplit'); const split = stats.weeklySplitByMuscle(stats.thisMonday()); /* 13.10.2026: podpis z podziałem bezpośrednio / pośrednio i celem */
     const mus = Object.keys({ ...cur, ...prev }).filter(m => (cur[m] ?? 0) > 0 || (prev[m] ?? 0) > 0); expect(mus).toEqual(expect.arrayContaining(['klatka', 'barki', 'plecy', 'biceps', 'core']));
-    for (const m of mus) expect(screen.getAllByText(`${splitText(split[m] ?? emptySplit(), stats.setsGoal(m))} (poprz. ${fmtNum(prev[m] ?? 0, 1)})`).length).toBeGreaterThan(0);
+    for (const m of mus) { expect(screen.getAllByText(splitText(split[m] ?? emptySplit(), stats.setsGoal(m))).length).toBeGreaterThan(0); expect(screen.getAllByText(prev[m] ? fmtNum(prev[m], 1) : /^0( \(brak danych\))?$/).length).toBeGreaterThan(0); /* 14.10.2026: okres 2 w osobnym wierszu pod słupkiem */ }
     expect((cur.klatka ?? 0) + (prev.klatka ?? 0)).toBeGreaterThan(0);
     /* wybór ćwiczenia: najpierw te z historią */
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'bench press (h'); await tap(screen.getByLabelText('Bench Press (hantle)')); await flushAll(10);
@@ -855,7 +856,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
   test('10 backup: eksport JSON, CSV, import (anulowany, zły plik, nowszy schemat, poprawny) przywraca dane; kopia bezpieczeństwa przed importem', async () => {
     const write = FS.writeAsStringAsync as jest.Mock; const share = Sharing.shareAsync as jest.Mock; write.mockClear(); share.mockClear();
     await boot('/more'); await tap(screen.getByText('Kopia zapasowa (eksport / import)')); await flushAll(10);
-    expect(screen.getByText(/^Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam/)).toBeTruthy();
+    expect(screen.getByText(/^Kopie automatyczne znikają razem z aplikacją/)).toBeTruthy(); await openInfo('backup-auto'); expect(screen.getByText(/^Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam/)).toBeTruthy();
     await tap(screen.getByText('Eksportuj backup (plik JSON)')); await flushAll(10);
     const [jp, json] = write.mock.calls.at(-1)!; expect(jp).toMatch(/^file:\/\/\/cache\/trening-backup-\d{4}-\d{2}-\d{2}\.json$/); expect(share).toHaveBeenLastCalledWith(jp, expect.objectContaining({ mimeType: 'application/json' }));
     const env = JSON.parse(json); expect(env.format).toBe('trening-backup'); expect(env.schemaVersion).toBe(require('@/lib/seed').SCHEMA_VERSION);

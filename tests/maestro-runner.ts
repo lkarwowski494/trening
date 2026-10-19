@@ -4,23 +4,57 @@
  */
 import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
+import { Alert, AppState } from 'react-native';
 import * as store from '@/lib/store';
 import { renderApp, flushAll, screen, act, fireEvent } from './app';
 import { saved } from './helpers';
 import { layout, flat, SCREEN, type LNode, type Box } from './maestro-layout';
 
 const yaml = require('js-yaml');
+
+/* 13.10.2026 (katalog PR-11): tło i powrót bez restartu (`pressKey: Home` + `launchApp: { stopApp: false }`). Interpreter przechwytuje nasłuchy AppState aplikacji (jak testy audit-close*)
+ * i wysyła zmianę stanu 'background' → 'active'; w tle mija czas (BG_MS), jak na symulatorze, gdzie scenariusz czeka kilkanaście sekund. */
+export const BG_MS = 12000;
+let appStateHandlers: ((s: string) => void)[] = []; let appStateSpied = false;
+function captureAppState() {
+  appStateHandlers = [];
+  if (appStateSpied) return; appStateSpied = true;
+  jest.spyOn(AppState, 'addEventListener').mockImplementation(((ev: string, cb: (s: string) => void) => { if (ev === 'change') appStateHandlers.push(cb); return { remove: () => { appStateHandlers = appStateHandlers.filter(h => h !== cb); } }; }) as never);
+}
+const emitAppState = async (st: 'active' | 'background') => { (AppState as { currentState: string }).currentState = st; await act(async () => { for (const h of [...appStateHandlers]) h(st); }); };
+
+/* 13.10.2026 (katalog DA-04, scenariusz 42): wirtualny system plików dla scenariuszy eksperymentalnych — kopia automatyczna po treningu i kopia bezpieczeństwa zapisują pliki w Backup/,
+ * a okno wyboru pliku iOS (poza zasięgiem interpretera) zwraca najnowszą kopię automatyczną. Podprzepływ subflows/wybierz-plik-kopii.yaml (kroki w oknie systemowym) interpreter pomija. */
+export const PICKER_SUBFLOW = 'subflows/wybierz-plik-kopii.yaml';
+const vfsFiles = new Map<string, string>(); const vfsDirs = new Set<string>(); /* pliki przeżywają restart aplikacji (launchApp bez clearState), jak dysk telefonu */
+function installVirtualFs(clear: boolean) {
+  const FS = jest.requireMock('expo-file-system/legacy'); const DP = jest.requireMock('expo-document-picker'); const files = vfsFiles; const dirs = vfsDirs; if (clear) { files.clear(); dirs.clear(); }
+  FS.makeDirectoryAsync.mockImplementation(async (d: string) => { dirs.add(d.replace(/\/$/, '') + '/'); });
+  FS.getInfoAsync.mockImplementation(async (p: string) => ({ exists: files.has(p) || dirs.has(p.replace(/\/$/, '') + '/'), ...(files.has(p) ? { modificationTime: Date.now() / 1000, isDirectory: false } : {}) }));
+  FS.writeAsStringAsync.mockImplementation(async (p: string, t: string) => { files.set(p, t); });
+  FS.readAsStringAsync.mockImplementation(async (p: string) => { if (!files.has(p)) throw new Error('brak pliku ' + p); return files.get(p)!; });
+  FS.readDirectoryAsync.mockImplementation(async (d: string) => [...files.keys()].filter(k => k.startsWith(d) && !k.slice(d.length).includes('/')).map(k => k.slice(d.length)));
+  FS.deleteAsync.mockImplementation(async (p: string) => { files.delete(p); });
+  DP.getDocumentAsync.mockImplementation(async () => {
+    const auto = [...files.keys()].filter(k => /\/Backup\/trening-\d/.test(k)).sort(); const uri = auto[auto.length - 1];
+    return uri ? { canceled: false, assets: [{ uri, name: uri.split('/').pop() }] } : { canceled: true };
+  });
+}
+/** Scenariusz z tagiem `eksperyment` (docs/38 pkt 5): poza listą flows, niesprawdzony jeszcze na symulatorze. */
+export const isExperimental = (file: string) => { try { return /^tags:\n\s+- eksperyment$/m.test(readFileSync(join(DIR, file), 'utf8')); } catch { return false; } };
 /** MAESTRO_DIR — inny katalog scenariuszy (np. stara wersja z gita, żeby sprawdzić, że interpreter odtwarza porażki przebiegu). */
 export const DIR = process.env.MAESTRO_DIR ?? join(__dirname, '..', '.maestro');
 /** Region symulatora w e2e-ios.yml (domyślny obraz iOS: en-US → lb, H4 audytu 0.10). */
 export const SIM_TAG = 'en-US';
 /** Zgoda na powiadomienia na świeżym symulatorze (E2E 91: okno „Reminder for planned workouts” po pierwszym dniu planu w 13). */
+/** Najkrótszy odstęp między stuknięciami Maestro (polecenie trwa na symulatorze ≥ 1 s; zapas: 1100 ms > domyślna blokada useOnce 1000 ms). */
+export const TAP_GAP_MS = 1100;
 export const SIM_NOTIF_PERM = { granted: false, canAskAgain: true, status: 'undetermined' } as const;
 
 type Node = { type: unknown; props: Record<string, any>; parent: Node | null; children: (Node | string)[] };
-type Sel = string | { text?: string; id?: string; index?: number; below?: Sel; above?: Sel; leftOf?: Sel; rightOf?: Sel; optional?: boolean; enabled?: boolean };
+type Sel = string | { text?: string; id?: string; index?: number; below?: Sel; above?: Sel; leftOf?: Sel; rightOf?: Sel; optional?: boolean; enabled?: boolean; checked?: boolean; selected?: boolean };
 /** Klucze selektora obsługiwane przez interpreter — inny klucz to błąd (E2E 91: nieobsłużony `leftOf` przechodził tu po cichu). */
-const SEL_KEYS = new Set(['text', 'id', 'index', 'below', 'above', 'leftOf', 'rightOf', 'optional', 'enabled', 'centerElement', 'direction', 'timeout', 'element', 'visible', 'notVisible', 'speed', 'visibilityPercentage', 'retryTapIfNoChange', 'waitToSettleTimeoutMs']);
+const SEL_KEYS = new Set(['text', 'id', 'index', 'below', 'above', 'leftOf', 'rightOf', 'optional', 'enabled', 'checked', 'selected', 'centerElement', 'direction', 'timeout', 'element', 'visible', 'notVisible', 'speed', 'visibilityPercentage', 'retryTapIfNoChange', 'waitToSettleTimeoutMs']);
 type Cand = { node?: Node; texts: string[]; id?: string; alertBtn?: () => void; sheetIdx?: number; header?: true };
 
 /** Maestro (Filters.textMatches): wyrażenie regularne do całego tekstu albo dosłowna równość (np. „Finish workout?” bez \\?). */
@@ -35,7 +69,7 @@ const accessibleAncestor = (n: Node) => { for (let p = n.parent; p; p = p.parent
 export class Runner {
   /** E2E 91: przewinięcie list (klucz: natywny element listy — nowy po ponownym zamontowaniu, jak w aplikacji) — przybliżony układ z tests/maestro-layout.ts */
   scrollY = new WeakMap<object, number>(); boxes: Map<LNode, Box> = new Map();
-  hasTabs = false;
+  hasTabs = false; lastTapAt = 0;
   relayout() { this.boxes = layout(screen.UNSAFE_root as unknown as LNode); this.hasTabs = this.candidates(true).some(c => c.texts.some(t => /, tab, \d+ of \d+$/.test(t))); return this.boxes; }
   nav() { return require('expo-router/build/global-state/router-store').store.navigationRef; }
   headerTop() { const o = this.nav()?.getCurrentOptions?.() ?? {}; return SCREEN.top + (o.headerShown === false ? 0 : SCREEN.header) + (/modal|sheet/i.test(String(o.presentation ?? '')) ? SCREEN.modal : 0); }
@@ -49,7 +83,10 @@ export class Runner {
     const top = this.vpTop(b.scroll); return { x, y: top + b.y - this.curScroll(b.scroll, top), w: b.w, h: b.h, sc: b.scroll };
   }
   /** Przewinięcie listy przycięte do treści (treść skróciła się — lista wraca, jak w UIScrollView). */
-  maxScroll(sc: LNode, top: number) { return Math.max(0, (this.boxes.get(sc)?.h ?? 0) - (this.vpBottom() - top)); }
+  maxScroll(sc: LNode, top: number) { return Math.max(0, (this.boxes.get(sc)?.h ?? 0) - (this.vpBottom() - top)) + this.kbInset(sc); }
+  /** Inset klawiatury (UIScrollView.automaticallyAdjustsContentInsetForKeyboard — prop `automaticallyAdjustKeyboardInsets`): przy aktywnym polu lista da się przewinąć o wysokość klawiatury
+   * poza koniec treści, więc pole na samym dole krótkiej listy też da się wynieść nad klawiaturę (14.10.2026: edytor szablonu po zdjęciu stopki z gestami — 08, „reps to”). */
+  kbInset(sc: LNode) { return this.focused && sc.props.automaticallyAdjustKeyboardInsets ? SCREEN.bottom - SCREEN.kbTop : 0; }
   curScroll(sc: LNode, top: number) { return Math.min(this.scrollY.get(this.scrollKey(sc)) ?? 0, this.maxScroll(sc, top)); }
   /** Dolna krawędź obszaru listy (pasek zakładek albo wskaźnik home). */
   /** Fokus pola w liście z automaticallyAdjustKeyboardInsets: lista przesuwa pole nad klawiaturę. */
@@ -62,6 +99,8 @@ export class Runner {
     if (!c.node) return true; const b = this.screenBox(c.node as unknown as LNode, false); if (!b || !b.sc) return true;
     /* widoczny pas elementu (pionowo: od górnej krawędzi listy do dołu ekranu) co najmniej połowa wysokości, najwyżej SCREEN.minVis pt —
      * z luzem SCREEN.peek na błąd szacunku; poziomo — środek w ekranie z luzem SCREEN.slack (chipy w poziomym pasku, E2E 89: 16) */
+    /* E2E 38471218362 (27): chip w poziomym pasku, który wystaje za prawą krawędź ekranu (tu „cables”, 5. chip sprzętu), jest na symulatorze poza zasięgiem stuknięcia — szacunek szerokości tekstu bywa o kilkanaście % za mały, więc wystawanie = poza ekranem */
+    if (this.boxes.get(c.node as unknown as LNode)?.horiz && b.x + b.w > SCREEN.w) return false;
     const top = this.vpTop(b.sc); const vis = Math.min(b.y + b.h, SCREEN.h) - Math.max(b.y, top);
     return vis >= Math.min(b.h / 2, SCREEN.minVis) - SCREEN.peek && b.x + b.w / 2 < SCREEN.w + SCREEN.slack && b.x + b.w / 2 > -SCREEN.slack;
   }
@@ -114,6 +153,8 @@ export class Runner {
   inputFilter: ((text: string, field: Node) => string) | null = null;
   /** E2E 105: błędy prób bloku `retry`, po których przyszła kolejna próba. */
   retries: string[] = [];
+  /** E2E 38563966851 (28): wiersz z odsłoniętym przyciskiem „Delete” (przesunięcie w lewo) — w prawdziwej aplikacji przycisk zostaje w drzewie dostępności pod oknem pytania (SwipeRow: open), aż okno się zamknie. */
+  revealed: { node: Node; id: string } | null = null;
   focused: Node | null = null; selectAll = false; alertSeen = 0; alertOpen: number | null = null; /** X-11: okna systemowe jak na iOS — nowsze nad starszym, po zamknięciu wierzchniego widać poprzednie */ alertStack: number[] = []; sheetSeen = 0; sheetOpen: number | null = null; log: string[] = [];
   /** Stan wyrażeń Maestro: `output` (wspólny dla scenariusza i podscenariuszy) i `maestro.copiedText` (ostatni copyTextFrom); copied — wszystkie skopiowane teksty (testy). */
   output: Record<string, unknown> = {}; maestro: { copiedText?: string } = {}; copied: string[] = [];
@@ -144,7 +185,7 @@ export class Runner {
     const H = 20 + tH + mH + 16 + btns.length * 56 - 8 + 16; let y = (SCREEN.h - H) / 2 + 20;
     const out: { c: Cand; y: number }[] = [{ c: { texts: [a.title] }, y: y + tH / 2 }]; y += tH;
     if (a.msg) { out.push({ c: { texts: [a.msg] }, y: y + mH / 2 }); y += mH; } y += 16;
-    for (const b of btns) { out.push({ c: { texts: [b.text], alertBtn: () => { this.alertStack.pop(); this.alertOpen = this.alertStack.length ? this.alertStack[this.alertStack.length - 1] : null; b.onPress?.(a.prompt ? (this as any).promptVal ?? a.def ?? '' : undefined); } }, y: y + 24 }); y += 56; }
+    for (const b of btns) { out.push({ c: { texts: [b.text], alertBtn: () => { this.revealed = null; const pv = (this as any).promptVal; (this as any).promptVal = undefined; this.alertStack.pop(); this.alertOpen = this.alertStack.length ? this.alertStack[this.alertStack.length - 1] : null; b.onPress?.(a.prompt ? pv ?? a.def ?? '' : undefined); } }, y: y + 24 }); y += 56; }
     return out;
   }
   /** Kotwica `below`/`above` przy otwartym oknie: Maestro widzi okno i ekran pod nim; warunek spełnia KTÓRYKOLWIEK pasujący element (Filters.below/above). */
@@ -165,7 +206,7 @@ export class Runner {
     const all = (screen.UNSAFE_root as unknown as Node & { findAll: (f: (n: Node) => boolean) => Node[] }).findAll((n: Node) => isHost(n) && !hidden(n)); /* ekrany pod spodem stosu (aria-hidden) — Maestro ich nie widzi */
     for (const n of all) {
       const p = n.props; const texts: string[] = [];
-      if (n.type === 'TextInput') { if (p.value != null && p.value !== '') texts.push(String(p.value)); else if (p.placeholder) texts.push(String(p.placeholder)); if (typeof p.accessibilityLabel === 'string') texts.push(p.accessibilityLabel); }
+      if (n.type === 'TextInput') { /* E2E 38483827437 (25): placeholder pustego pola NIE jest tekstem dla Maestro (iOS: placeholderValue), gdy różni się od etykiety dostępności — wcześniej interpreter go dopasowywał */ if (p.value != null && p.value !== '') texts.push(String(p.value)); if (typeof p.accessibilityLabel === 'string') texts.push(p.accessibilityLabel); }
       else if (typeof p.accessibilityLabel === 'string' && p.accessibilityLabel !== '') { if (!inA11yElement(n)) texts.push(p.accessibilityLabel); } /* E2E 91: element z etykietą wewnątrz elementu dostępności (np. kafelek „Workouts: …” w przycisku „Postępy”) nie jest osobnym elementem — iOS czyta etykietę rodzica */
       else if (n.type === 'Text' && !accessibleAncestor(n)) { const t = textOf(n); if (t) texts.push(t); }
       else if (p.accessible === true) { const t = textOf(n); if (t) texts.push(t); }
@@ -179,6 +220,9 @@ export class Runner {
     if (!offscreen) this.relayout(); const cs = offscreen ? cs0 : cs0.filter(c => this.onScreen(c));
     for (const k of Object.keys(s)) if (!SEL_KEYS.has(k)) throw new Error(`[${this.name}] nieobsługiwany klucz selektora „${k}” — dopisz go do interpretera`);
     let hit = cs.filter(c => (s.text == null || c.texts.some(t => full(s.text!).test(t))) && (s.id == null || (c.id != null && full(s.id).test(c.id))));
+    /* 13.10.2026 (katalog przepływów): `checked` (przełącznik włączony) i `selected` (segment wybrany) — stan z accessibilityState albo wartości Switch, jak czyta go Maestro z iOS */
+    if (s.checked != null) hit = hit.filter(c => !!c.node && nodeState(c.node, 'checked') === s.checked);
+    if (s.selected != null) hit = hit.filter(c => !!c.node && nodeState(c.node, 'selected') === s.selected);
     /* ten sam element natywny bywa w drzewie dwa razy (host i jego dziecko z tą samą etykietą) — zostaje pierwszy */
     hit = hit.filter(c => !c.node || !hit.some(d => d !== c && d.node && d.texts.join() === c.texts.join() && isDesc(c.node!, d.node)));
     const order = (c: Cand) => cs.indexOf(c);
@@ -219,7 +263,7 @@ export class Runner {
     if (n.type === 'RCTSwitch' || n.props.onValueChange) { await act(async () => { fireEvent(n as any, 'valueChange', !n.props.value); }); await this.tick(); return; }
     await act(async () => { fireEvent.press(n as any); }); await this.tick(100);
   }
-  async blur() { const f = this.focused; this.focused = null; if (!f) return; await act(async () => { f.props.onEndEditing?.({ nativeEvent: { text: f.props.value } }); f.props.onBlur?.({ nativeEvent: {} }); }); await this.tick(); }
+  async blur() { const f = this.focused; this.focused = null; if (!f) return; /* pole zdemontowane wraz z ekranem (np. wyszukiwanie + „Back”) — iOS po prostu zdejmuje fokus */ try { await act(async () => { f.props.onEndEditing?.({ nativeEvent: { text: f.props.value } }); f.props.onBlur?.({ nativeEvent: {} }); }); } catch { /* zdemontowane */ } await this.tick(); }
   async run(cmds: any[], file: string) {
     for (const raw of cmds) { await this.step(raw, file); const d = process.env.MAESTRO_DUMP; if (d && this.log[this.log.length - 1].includes(d)) console.log(`${this.log[this.log.length - 1]}\n  ${this.candidates().map(c => { const b = c.node ? this.screenBox(c.node) : null; return (b ? `[${Math.round(b.x)},${Math.round(b.y)}][${Math.round(b.x + b.w)},${Math.round(b.y + b.h)}] ` : '') + c.texts.join(' | ') + (c.id ? ` #${c.id}` : ''); }).join('\n  ')}`); }
   }
@@ -230,41 +274,102 @@ export class Runner {
       const sel = (a: any): Sel => typeof a === 'string' ? a : (a.element ?? a.visible ?? a.notVisible ?? a);
       switch (cmd) {
         case 'launchApp': {
+          /* `stopApp: false` — powrót na wierzch zamiast restartu: aplikacja dostaje 'active' po czasie spędzonym w tle (pressKey: Home), dane i ekran bez zmian */
+          if (arg && arg.stopApp === false) { await this.tick(BG_MS); await emitAppState('active'); await this.tick(100); break; }
+          captureAppState();
           const clear = arg?.clearState !== false; let st: unknown;
           if (!clear) { await act(async () => { await store.flush(); }); st = JSON.parse(JSON.stringify(saved())); }
           /* E2E 91: na symulatorze zgoda na powiadomienia jest nieustalona (`permissions: all: allow` jej nie obejmuje) — okno I1 przy pierwszym dniu planu */
           if (clear) (global as any).__notifPerm = { ...SIM_NOTIF_PERM };
+          /* `permissions: { notifications: deny | allow }` — zgoda ustawiona z góry (bez okna), jak `simctl privacy`/Maestro przed startem aplikacji; `all: allow` zgody na powiadomienia nie obejmuje (E2E 91) */
+          const np = arg?.permissions?.notifications;
+          if (np === 'deny') (global as any).__notifPerm = { granted: false, canAskAgain: false, status: 'denied' };
+          else if (np === 'allow') (global as any).__notifPerm = { granted: true, canAskAgain: true, status: 'granted' };
+          /* 13.10.2026 (katalog PR/US-11): pierwsza prośba o zgodę na powiadomienia pokazuje okno systemowe iOS („Allow” / „Don’t Allow”, cudzysłowy typograficzne jak w iOS) — decyzja zostaje w stanie zgody;
+           * po odmowie kolejne prośby nie pokazują okna (canAskAgain = false). Bez tego okna scenariusz mógłby „zezwolić” na coś, czego na symulatorze nikt nie zatwierdził. */
+          /* tylko scenariusze z tagiem `eksperyment`: nikt nie sprawdził jeszcze na symulatorze, jak Maestro widzi takie okno (zwykłe scenariusze 01–38 przechodzą w CI bez żadnego stuknięcia w okno systemowe) */
+          if (isExperimental(this.name)) installVirtualFs(clear);
+          if (!isExperimental(this.name)) delete (global as any).__sysPrompt; else
+          (global as any).__sysPrompt = () => new Promise(res => {
+            const cur = (global as any).__notifPerm ?? SIM_NOTIF_PERM; if (cur.status === 'denied' || cur.granted) { res(cur); return; }
+            const set = (granted: boolean) => { (global as any).__notifPerm = granted ? { granted: true, canAskAgain: true, status: 'granted' } : { granted: false, canAskAgain: false, status: 'denied' }; res((global as any).__notifPerm); };
+            Alert.alert('“Trening” Would Like to Send You Notifications', 'Notifications may include alerts, sounds and icon badges.', [{ text: 'Don’t Allow', onPress: () => set(false) }, { text: 'Allow', onPress: () => set(true) }]);
+          });
           /* UX2-03: ponowny start na tej samej bazie — także klucz szkiców edycji (store.DRAFTS_KEY) */
           const kv = !clear && global.__kv.has(store.DRAFTS_KEY) ? { [store.DRAFTS_KEY]: global.__kv.get(store.DRAFTS_KEY)! } : undefined;
           await renderApp({ locale: 'en', tag: SIM_TAG, saved: st, kv }); if (process.env.MAESTRO_NOW) jest.setSystemTime(new Date(process.env.MAESTRO_NOW)); /* docs/31: scenariusze „z życia” sprawdzane w różne dni tygodnia i na granicy miesiąca (zegar symulatora to zegar maszyny) */ await this.tick(100);
-          this.focused = null; this.scrollY = new WeakMap(); this.alertSeen = 0 /* UX2-03: renderApp czyści okna — każde obecne powstało przy tym starcie (np. pytanie o szkic) */; this.alertOpen = null; this.alertStack = []; this.sheetSeen = (global as any).__sheets.length; this.sheetOpen = null; break;
+          this.focused = null; this.revealed = null; this.scrollY = new WeakMap(); this.alertSeen = 0 /* UX2-03: renderApp czyści okna — każde obecne powstało przy tym starcie (np. pytanie o szkic) */; this.alertOpen = null; this.alertStack = []; this.sheetSeen = (global as any).__sheets.length; this.sheetOpen = null; break;
         }
         case 'stopApp': await act(async () => { await store.flush(); }); break;
         case 'tapOn': {
-          const s = sel(arg); const opt = typeof arg === 'object' && arg.optional;
+          this.syncModals();
+          /* `point: "x%, y%"` (E2E 38607952098, 28): stuknięcie w punkt ekranu. Interpreter zna je tylko dla okna systemowego z jednym lub dwoma przyciskami — na iOS dwa przyciski leżą obok siebie
+           * (pierwszy z lewej, drugi z prawej), pion musi trafić w okno (30–70% wysokości ekranu). Punkt nigdy nie trafia w ekran pod oknem (okno przechwytuje dotyk). */
+          if (typeof arg === 'object' && arg.point != null) {
+            const m = /^\s*(\d+(?:\.\d+)?)%\s*,\s*(\d+(?:\.\d+)?)%\s*$/.exec(String(arg.point)); if (!m) this.fail(step, `tapOn point: „${arg.point}” — interpreter zna tylko procenty ekranu`);
+            const btns = this.alertOpen != null ? this.alertCands().filter(x => x.c.alertBtn) : []; if (!btns.length || btns.length > 2) this.fail(step, 'tapOn point: interpreter zna punkt tylko w oknie systemowym z jednym lub dwoma przyciskami.');
+            const px = +m![1], py = +m![2]; if (py < 30 || py > 70) this.fail(step, `tapOn point: y=${py}% poza oknem systemowym (30–70% wysokości).`);
+            const pick = btns.length === 1 ? btns[0] : px < 50 ? btns[1] : btns[0]; /* alertCands: przyciski bez stylu 'cancel' pierwsze, 'cancel' ostatni; na iOS cancel z lewej */ await this.tap(pick.c); this.lastTapAt = Date.now(); break;
+          } let s = sel(arg); let idx: number | undefined; if (this.alertOpen != null && typeof s === 'object' && s.index != null) { idx = s.index; s = { ...s, index: undefined }; } /* przy oknie indeks liczy się wśród elementów okna I ekranu pod nim */
+          const opt = typeof arg === 'object' && arg.optional;
           if (!(await this.waitFor(s, true, opt ? 300 : 3000))) {
             if (opt) break; this.fail(step, 'Nie znaleziono elementu.');
           }
           const target = this.find(s)[0]; const why = this.tapProblem(target); if (why) this.fail(step, `Element ${why}.`);
-          await this.tap(target); break;
+          /* E2E 38471218362 (29): przy otwartym oknie Maestro widzi też ekran pod nim i wybiera PIERWSZY pasujący element (od góry) — przycisk „Discard workout” ekranu leży wyżej niż ten w oknie,
+           * więc stuknięcie trafiało w zasłonięty ekran i okno zostawało. Interpreter odtwarza to: stuknięcie w element ekranu pod oknem nic nie robi (okno przechwytuje dotyk). */
+          if (this.alertOpen != null && target.alertBtn) {
+            const ss = typeof s === 'string' ? { text: s } : s;
+            const anchors = (k: 'below' | 'above') => (ss[k] ? this.alertAnchorY(ss[k]!) : null);
+            const bl = anchors('below'), ab = anchors('above'); this.relayout();
+            const under = this.screenCands().filter(c => c.node && !c.header && this.onScreen(c) && (ss.text == null || c.texts.some(t => full(ss.text!).test(t))) && (ss.id == null || (c.id != null && full(ss.id).test(c.id))))
+              .filter(c => { const b = this.screenBox(c.node as unknown as LNode, false); const y = b ? b.y + b.h / 2 : 0; return (!bl || bl.some(v => y > v)) && (!ab || ab.some(v => y < v)); /* E2E 38563966851 (28): kolejność z drzewa Maestro, nie z pionu — „Delete” wiersza pod oknem leżał niżej niż „Delete” okna, a Maestro i tak stuknął w wiersz */ });
+            /* wiersz z odsłoniętym „Delete” (E2E 38563966851, 28): ten sam tekst w drzewie przed przyciskiem okna — Maestro bierze pierwszy (wiersz), więc stuknięcie bez indeksu nic nie usuwa */
+            /* tylko wiersze historii (`session-N`): w hierarchii przebiegu 38563966851 tylko ich przycisk usuwania ma dziecko „Delete” (u zestawów, planów, szablonów i ćwiczeń — children=[], tekst scalony z etykietą) */
+            const rv = this.revealed && /^session-\d+$/.test(this.revealed.id) ? this.revealed : null; const rb = rv ? this.screenBox(rv.node as unknown as LNode, false) : null;
+            if (rv && rb && (ss.text == null || full(ss.text).test('Delete')) && (ss.id == null || full(ss.id).test(`${rv.id}-del`))) {
+              const y = rb.y + rb.h / 2; if ((!bl || bl.some(v => y > v)) && (!ab || ab.some(v => y < v))) under.unshift({ texts: ['Delete'], id: `${rv.id}-del` });
+            }
+            if (idx != null ? idx > under.length : false) this.fail(step, 'Nie znaleziono elementu (indeks poza liczbą pasujących).');
+            if (idx != null ? idx < under.length : under.length > 0) { this.lastTapAt = Date.now(); break; }
+          }
+          /* 13.10.2026 (docs/38): polecenie Maestro trwa na symulatorze ≥ 1 s (zrzut hierarchii, stuknięcie, ustabilizowanie) — dwa stuknięcia w tym samym ekranie nigdy nie wypadają w odstępie
+           * krótszym niż blokada podwójnego stuknięcia (useOnce: 700–1000 ms); wcześniej interpreter stukał szybciej niż jakikolwiek człowiek i Maestro. */
+          const gap = Date.now() - this.lastTapAt; if (this.lastTapAt && gap < TAP_GAP_MS) await this.tick(TAP_GAP_MS - gap);
+          await this.tap(target); this.lastTapAt = Date.now(); break;
+        }
+        /* doubleTapOn (13.10.2026, katalog PR-10): dwa szybkie stuknięcia (~100 ms) w ten sam element — blokady podwójnego stuknięcia (useOnce) mają zadziałać, jak przy palcu */
+        case 'doubleTapOn': {
+          const s = sel(arg);
+          if (!(await this.waitFor(s, true, 3000))) this.fail(step, 'Nie znaleziono elementu.');
+          const target = this.find(s)[0]; const why = this.tapProblem(target); if (why) this.fail(step, `Element ${why}.`);
+          const gap = Date.now() - this.lastTapAt; if (this.lastTapAt && gap < TAP_GAP_MS) await this.tick(TAP_GAP_MS - gap);
+          await this.tap(target); await this.tick(50); if (target.node && !target.alertBtn) await this.tap(target); this.lastTapAt = Date.now(); break;
         }
         case 'inputText': {
           this.syncModals();
-          if (this.alertOpen != null && global.__alerts[this.alertOpen].prompt) { (this as any).promptVal = String(arg); break; }
+          if (this.alertOpen != null && global.__alerts[this.alertOpen].prompt) { (this as any).promptVal = String((this as any).promptVal ?? global.__alerts[this.alertOpen].def ?? '') + String(arg); break; } /* pole okna ma wartość domyślną i NIE jest zaznaczone — wpis dopisuje się na końcu (E2E 38471218362, 25: „45” po „90” = 9045) */
           const f = this.focused; if (!f) this.fail(step, 'Brak pola z fokusem.');
           const cur = this.selectAll ? '' : String(f!.props.value ?? ''); this.selectAll = false;
           const typed = this.inputFilter ? this.inputFilter(String(arg), f!) : String(arg); /* E2E 105: zgubione znaki z przebiegu symulatora (testy) */
           await act(async () => { fireEvent.changeText(f as any, cur + typed); }); await this.tick(); break;
         }
         case 'eraseText': {
+          if (this.alertOpen != null && global.__alerts[this.alertOpen].prompt) { const cur = String((this as any).promptVal ?? global.__alerts[this.alertOpen].def ?? ''); (this as any).promptVal = cur.slice(0, Math.max(0, cur.length - (typeof arg === 'number' ? arg : 50))); break; }
           const f = this.focused; if (!f) this.fail(step, 'Brak pola z fokusem.'); const n = typeof arg === 'number' ? arg : 50;
           const cur = String(f!.props.value ?? ''); this.selectAll = false; await act(async () => { fireEvent.changeText(f as any, cur.slice(0, Math.max(0, cur.length - n))); }); await this.tick(); break;
         }
-        case 'pressKey': { const f = this.focused; if (f && /enter/i.test(String(arg))) { await act(async () => { f.props.onSubmitEditing?.({ nativeEvent: { text: f.props.value } }); }); await this.blur(); } break; }
-        case 'hideKeyboard': await this.blur(); break;
+        case 'pressKey': { if (/^home$/i.test(String(arg))) { await this.blur(); await act(async () => { await store.flush(); }); await emitAppState('background'); break; } const f = this.focused; if (f && /enter/i.test(String(arg))) { await act(async () => { f.props.onSubmitEditing?.({ nativeEvent: { text: f.props.value } }); }); await this.blur(); } break; }
+        /* E2E 38471218362 (36, 29): klawiatura numeryczna iOS (number-pad, decimal-pad, numbers-and-punctuation) nie ma klawisza „Gotowe” ani innej akcji zamknięcia — Maestro zgłasza
+         * „Couldn't hide the keyboard”. Pole tekstowe z klawiszem Return/Search zamyka się. Fokus zdejmuje stuknięcie w etykietę/tekst ekranu. */
+        case 'hideKeyboard': { const kt = String(this.focused?.props?.keyboardType ?? ''); if (/number|decimal|phone|numeric/i.test(kt)) this.fail(step, `Couldn't hide the keyboard (klawiatura „${kt}” nie ma akcji zamknięcia).`); await this.blur(); break; }
         case 'extendedWaitUntil': {
           const vis = arg.visible != null; const s = sel(arg);
-          if (!(await this.waitFor(s, vis, Math.min(Number(arg.timeout ?? 3000), 3000)))) this.fail(step, vis ? 'Element nie pojawił się.' : 'Element nie zniknął.');
+          if (!(await this.waitFor(s, vis, Math.min(Number(arg.timeout ?? 3000), 3000)))) {
+            /* `optional: true` — brak elementu nie jest błędem, a czas mija do końca timeoutu (sposób na „sleep” w Maestro, np. czekanie w tle w 41) */
+            if (arg.optional) { await this.tick(Math.max(0, Number(arg.timeout ?? 3000) - 3000)); break; }
+            this.fail(step, vis ? 'Element nie pojawił się.' : 'Element nie zniknął.');
+          }
           break;
         }
         case 'assertVisible': if (!(await this.waitFor(sel(arg), true, 1500))) this.fail(step, 'Element niewidoczny.'); break;
@@ -283,6 +388,7 @@ export class Runner {
           let target: Node | null = null; for (let p: Node | null = n; p && !target; p = p.parent) if (hasDel(p)) target = p;
           if (!target) { const sub = (c!.node as any).findAll((x: Node) => hasDel(x)); target = sub[0] ?? null; }
           if (!target) this.fail(step, 'Wiersz bez akcji usuwania.');
+          this.revealed = { node: c!.node!, id };
           await act(async () => { target!.props.onAccessibilityAction({ nativeEvent: { actionName: 'delete' } }); }); await this.tick(); n = null; break;
         }
         case 'retry': {
@@ -292,6 +398,7 @@ export class Runner {
           break;
         }
         case 'runFlow': {
+          if (arg === PICKER_SUBFLOW) break; /* okno wyboru pliku iOS — patrz installVirtualFs: wybór wykonał już sam interpreter */
           if (typeof arg === 'string') { await this.run(load(join(DIR, arg)), arg); break; }
           if (arg.when) { const w = arg.when; const ok = w.visible != null ? this.find(sel(w.visible)).length > 0 : w.notVisible != null ? this.find(sel(w.notVisible)).length === 0 : true; if (!ok) break; }
           if (arg.file) await this.run(load(join(DIR, arg.file)), arg.file); else await this.run(arg.commands, file); break;
@@ -316,6 +423,12 @@ export class Runner {
   }
 }
 /** Przodek będący elementem dostępności (accessible: true — np. Pressable): iOS nie pokazuje jego potomków osobno (E2E 91, kafelki tygodnia w 01). */
+/** Stan `checked` / `selected` elementu: accessibilityState własny albo najbliższego przodka/potomka, a dla przełącznika wartość `value`. */
+function nodeState(n: Node, key: 'checked' | 'selected'): boolean {
+  const own = (x: Node) => { const st = x.props?.accessibilityState; if (st && typeof st[key] === 'boolean') return st[key] as boolean; if (key === 'checked' && typeof x.props?.value === 'boolean' && typeof x.props?.onValueChange === 'function') return x.props.value as boolean; return undefined; };
+  for (let p: Node | null = n, i = 0; p && i < 4; p = p.parent, i++) { const v = own(p); if (v !== undefined) return v; }
+  const sub: Node[] = (n as any).findAll?.((x: Node) => own(x) !== undefined) ?? []; return sub.length ? !!own(sub[0]) : false;
+}
 function inA11yElement(n: Node) { for (let p = n.parent; p; p = p.parent) if (isHost(p) && p.props.accessible === true) return true; return false; }
 /** Dwa elementy w jednym wierszu: najbliższy wspólny przodek-host ma flexDirection: 'row' (np. wiersz serii: pola, guma, ✓). */
 function sameRow(a: Node, b: Node) {

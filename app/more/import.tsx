@@ -1,6 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { ScrollView, Alert, View } from 'react-native';
 import { Screen, Btn, Muted, Segmented, SectionTitle, Item, Input, SearchField } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { getState, useTick, fmtDayKey } from '@/lib/store';
 import { isSafetyError } from '@/lib/backup';
 import { pickCsv, commitCsvImport } from '@/lib/csvimport';
@@ -36,7 +37,9 @@ export default function ImportCsv() {
     return l.slice(0, SHOWN); }, [q, st.exercises]);
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, gap: 12 }} keyboardShouldPersistTaps="handled">
-      <Muted>{t('Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.')}</Muted>
+      <InfoTip id="import-intro" label={t('Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.')} info={t('Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.')}>
+        <Muted>{t('Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.')}</Muted>
+      </InfoTip>
       <Btn title={t('Wybierz plik CSV')} kind={file ? 'default' : 'primary'} block onPress={pick} />
       {a && file ? (
         <View style={{ gap: 10 }}>

@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Trening";
+"NSHealthShareUsageDescription" = "Klokken leser puls og aktiv energi under pågående økt. Dataene sendes ikke utenfor enhetene dine.";
+"NSHealthUpdateUsageDescription" = "Klokken lagrer den avsluttede styrkeøkten, med puls og aktiv energi, i Apple Health.";

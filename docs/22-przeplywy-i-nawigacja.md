@@ -56,7 +56,7 @@ Legenda częstości: **D** codziennie / w każdym treningu, **T** co tydzień, *
 | A17 | Superset | R | „⇅ SS” / „✂ SS” | 1 | ekran treningu | — | — |
 | A18 | Pauza / wznowienie treningu | T | „⏸ Pauza” / „▶ Wznów” pod nazwą | 1 | ekran treningu | — | odhaczenie serii wznawia |
 | A19 | Zmienić miejsce tej sesji | R | „📍 Dom ▾” → arkusz | 2 | ekran treningu | — | tylko gdy są miejsca |
-| A20 | Technika ćwiczenia w trakcie | R | „ⓘ Technika” w stopce bloku → `exercise/[id]?cues=1` → Wróć | 2 | Trening → Ćwiczenie | ekran treningu | — |
+| A20 | Technika ćwiczenia w trakcie | R | „Technika ›” w stopce bloku → `exercise/[id]?cues=1` → Wróć | 2 | Trening → Ćwiczenie | ekran treningu | — |
 | A21 | Notatka do treningu | T | pole na dole listy | 1 + wpis | ekran treningu | — | — |
 | A22 | Zakończyć i zapisać | D | „Zakończ” (góra) / „Zakończ trening” (karta, gdy wszystko odhaczone) / „Zakończ trening i zapisz” (dół) → okno „Zakończyć trening?” → zapis | **2** + 0–2 okna (rekordy; „Zaktualizować szablon?”) | Trening → Sesja (`history/[id]` na stosie) | ekran sesji; „Wróć” → ekran główny | **3 przyciski tego samego celu na jednym ekranie**; NOWY (decyzja 7): podsumowanie rekordów bez grafiki |
 | A23 | Odrzucić trening | R | „Odrzuć trening” (dół) → potwierdzenie | 2 | ekran treningu | ekran główny | — |
@@ -94,7 +94,7 @@ w toku” (`DayPanel`, `template/[id]`); offline — aplikacja w całości lokal
 
 | ID | Cel | Częstość | Punkt wejścia dziś | Stuknięć | Ekrany | Koniec | Stany i uwagi |
 |---|---|---|---|---|---|---|---|
-| C1 | Ile zrobiłem w tym tygodniu | D | „Ten tydzień”: Treningi / Serie / Czas z „poprz.”; przy planie stosy „60% planu (3 z 5)” (`components/Dashboard.tsx WeekStats`, `WeekStacks`) | 0 | Trening | — | brak przed pierwszym treningiem; kafelki jako jeden przycisk → Postępy (1) |
+| C1 | Ile zrobiłem w tym tygodniu | D | „Ten tydzień”: Treningi / Serie / Objętość / Czas; przy planie stosy „60% planu (3 z 5)”; od 14.10.2026 sylwetka ze strażnikiem progresji i przyciskiem „Szczegóły w Postępach” (`components/Dashboard.tsx WeekStats`, `WeekStacks`, `components/Guard.tsx`) | 0 | Trening | — | brak przed pierwszym treningiem; kafelki jako jeden przycisk → Postępy (1) |
 | C2 | Podsumowanie tygodnia / miesiąca z poprzednim | T | Więcej → Postępy → „Podsumowanie” (chipy Tydzień/Miesiąc, strzałki wstecz) (`components/PeriodSummary.tsx`) | 2 (z kafelków 1) | Więcej → Postępy | — | miesiąc: rząd stosów tygodni; mapa mięśni (`MuscleMap`); rekordy okresu |
 | C3 | Serie i objętość per partia vs poprzedni tydzień | T | Postępy (pod wykresami tygodniowymi) (`app/more/progress.tsx MuscleCompare`) | 2 + przewinięcie | Postępy | — | kreska `WEEKLY_SETS_MARK`; tylko bieżący vs poprzedni, bez wyboru tygodnia |
 | C4 | Wykres i rekordy ćwiczenia | T/R | (1) Więcej → Postępy → szukaj → chip = 4; (2) Ćwiczenia → ćwiczenie → „Postępy” = 3 | 3–4 | Postępy / Ćwiczenia → Ćwiczenie → Postępy | — | ten sam ekran z parametrem `?ex=` |
@@ -165,13 +165,13 @@ zmiany istniejących).
 | | „📍 miejsce ▾” | arkusz miejsc | |
 | | „⏸ Pauza / ▶ Wznów” | — | |
 | | blok: numer serii → arkusz typu/notatki; pola; ▶; guma; ✓ | — | |
-| | stopka bloku: „+ seria”, „+ rozgrzewka”, „+ drop set”, „⏱ przerwa”, „⇅ SS”/„✂ SS”, „ⓘ Technika” → `/exercise/[id]?cues=1`, „⇄ zamień” → `/swap`, „Pomiń dziś” | | do 8 przycisków w stopce każdego bloku |
+| | stopka bloku: „+ seria”, „+ rozgrzewka”, „+ drop set”, „⏱ przerwa”, „⇅ SS”/„✂ SS”, „Technika ›” → `/exercise/[id]?cues=1`, „⇄ zamień” → `/swap`, „Pomiń dziś” | | do 8 przycisków w stopce każdego bloku |
 | | przy bloku: „↺ cofnij”, „Zawsze w: …”, „Zamień” (podpowiedź), „⇄” (brak sprzętu), „Przywróć” (pominięty) | | **trzy wejścia do zamiany** w jednym bloku |
 | | „+ Dodaj ćwiczenie” → `/picker?target=active`; „≡ Kolejność” → `/reorder?target=active` | | |
 | | notatka; „Zakończ trening i zapisz”; „Odrzuć trening” | | **drugi/trzeci przycisk zakończenia** |
 | | dolny pasek: „Zakończ serię” / „−15 +15 Pomiń” | | |
 | **Szablony** (`app/(tabs)/templates.tsx`) | „+ Nowy” → edytor; „Wygeneruj szablony i plan” → `/generator`; wiersz → `/template/[id]`; gest → usuń; „Archiwum (n)” | | |
-| **Szablon — podgląd** (`app/template/[id].tsx`) | „Edytuj”; „Start” (zamyka stos, → Trening) / „Wróć do treningu” / „Trening w toku” (okno); „ⓘ Technika”; „Duplikuj” (replace); „Archiwizuj / Przywróć z archiwum” | | |
+| **Szablon — podgląd** (`app/template/[id].tsx`) | „Edytuj”; „Start” (zamyka stos, → Trening) / „Wróć do treningu” / „Trening w toku” (okno); „Technika ›”; „Duplikuj” (replace); „Archiwizuj / Przywróć z archiwum” | | |
 | **Szablon — edycja** | nagłówek „Anuluj” / „Zapisz” (`DraftHeader.tsx`); „+ Nowy folder”; „≡ Kolejność” → `/reorder`; „+ Dodaj ćwiczenie” → `/picker`; wiersze serii; zamienniki | | po „Zapisz” z `assign` — przypisanie do dnia planu |
 | **Ćwiczenia** (`app/(tabs)/exercises.tsx`) | „+ Nowe” → edytor; szukaj; chip zakresu „Podstawowe / Wszystkie”; wiersz → `/exercise/[id]`; „Przywróć „…”” (zarchiwizowane przy szukaniu); „Utwórz „…”” (pusty wynik); gest → usuń | | |
 | **Ćwiczenie — podgląd** (`app/exercise/[id].tsx`) | „Edytuj”; Technika (rozwijana, figura); „Ostatnie treningi” → `/history/[id]`; „Postępy” → `/more/progress?ex=` | | |
@@ -406,8 +406,8 @@ Szacunek pracy agenta (zasada 09.10): kroki 1–3 i 6 — ok. 1 dzień każdy z 
 
 1. **[DO WYJAŚNIENIA — badacz]** Estymacja pozostałych treningów tygodnia (krok 3 pkt 4–5): z czego liczyć objętość i serie niezrobionych jeszcze
    treningów z planu (szablon / „Poprzednio” / średnia ostatnich wykonań) i czy to w ogóle ma podstawy, czy tylko „arytmetyka z szablonu” nazwana
-   wprost.
-2. **[DO WYJAŚNIENIA — badacz]** Definicja „progresji partii” (próg wzrostu objętości/serii; rola e1RM); jak traktować tydzień deload w porównaniach.
+   wprost. **Odpowiedź badacza (14.10.2026):** to rachunek (szczebel 1) — prognoza vs pomiar; zostaje „wykonane + zaplanowane” z wartości wiersza szablonu, a przy braku — z „Poprzednio”; plan bez ciężaru lub powtórzeń to „≥”/„bez porównania” (nie zgadujemy); uczciwe nazwanie: „wykonane + plan”.
+2. **[ROZSTRZYGNIĘTE 14.10.2026 — badacz + właściciel]** Definicja „progresji partii”: tylko kierunek (więcej / tyle samo / mniej), bez progu procentowego (brak konsensusu co do tempa; „10% tygodniowo” to reguła z biegania); miara: tonaż na sesję ćwiczeń powtórzonych w obu tygodniach, progres ciężarem liczy się jako więcej; tydzień deload bez oceny, po deloadzie porównanie z ostatnim tygodniem bez deloadu. Wdrożone jako „strażnik progresji” (`lib/guard.ts`, docs/18, docs/32 wzorzec 27). Rola e1RM: brak (e1RM nie wchodzi do kierunku).
 3. Dolny przycisk „Zakończ trening i zapisz” (usunięcie w 4.3): żaden scenariusz `.maestro` go nie używa (sprawdzone grep), ale **20 plików
    testów jednostkowych** (`tests/audit-journey-*`, `audit-0.10-live`, `audit-records-*` i in.) szuka tego tekstu — usunięcie to zmiana w 20 testach.
    **[DO WYJAŚNIENIA]**: czy to argument za wariantem B w pytaniu P3 (zostawić w widoku „Lista”).

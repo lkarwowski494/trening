@@ -77,7 +77,7 @@ export const RIR: readonly [number, number] = [0, 3];
 export const RIR_ACSM: readonly [number, number] = [2, 3];
 /** Główna partia co najmniej MIN_DAYS dni w tygodniu: WHO 2020 („all major muscle groups on 2 or more days a week”); ACSM 2026 — siła ≥ 2 sesje/tydz. */
 export const MIN_DAYS = 2;
-/** Partia pomocnicza liczona jako SECONDARY_SHARE serii i dnia — Pelland 2026, metoda „fractional” (jedno źródło; jak paski serii w Postępach). Definicja: lib/setSplit. */
+/** Partia pomocnicza liczona jako SECONDARY_SHARE serii i dnia — Pelland 2026, metoda „fractional” (metaanaliza, szczebel 2; jak paski serii w Postępach). Definicja: lib/setSplit. */
 export { SECONDARY_SHARE };
 /** WHO 2020: „at least 150–300 min of moderate-intensity … or at least 75–150 min of vigorous-intensity aerobic physical activity”. */
 export const WHO_MODERATE: readonly [number, number] = [150, 300];
@@ -397,7 +397,7 @@ export function saveGenerated(r: GenResult, inp: GenInput, activate: boolean, re
  *   partiami” — uproszczenie; reguła 2: dwa dni pod rząd — „ostrzeżenie, nie blokada”);
  *   z wyborem dni (09.10.2026 B) — dokładnie wybrane dni, szablony przydzielone przez assignDays (ten sam koszt par);
  * - ostrzeżenia (weekLoad + loadWarnings): partia < MIN_DAYS dni (R1: WHO 2020 7a „all major muscle groups on 2 or more days a week”; ACSM 2026 7b
- *   „Frequency: ≥2 sessions/wk”), pomocnicza = SECONDARY_SHARE (Pelland 2026 7c, jedno źródło), < WEEKLY_SETS_MARK serii (R2: dolny próg 10 —
+ *   „Frequency: ≥2 sessions/wk”), pomocnicza = SECONDARY_SHARE (Pelland 2026 7c, metaanaliza), < WEEKLY_SETS_MARK serii (R2: dolny próg 10 —
  *   ACSM, Schoenfeld 2017, Baz-Valle 2022 — docs/research/22 sekcja 3), brak ćwiczeń na partię, pary dzień po dniu;
  * - serie szablonu: serie robocze jak w treningu (store.workCount — bez rozgrzewek, drop z poprzednią); ćwiczenia cardio (pattern „cardio”) nie liczą
  *   się do partii — jak sesja cardio generatora.

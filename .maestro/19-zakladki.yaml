@@ -5,7 +5,7 @@
 #   "Workout, tab, 1 of 4" … "More, tab, 4 of 4" ← etykieta zakładki „{label}, tab, {i} of {n}” (app/(tabs)/_layout.tsx, tabA11y; TAB_COUNT = 4)
 #   "Templates" / "Exercises"        ← pozycje listy Więcej (app/(tabs)/more.tsx) i tytuły ekranów stosu (app/_layout.tsx)
 #   "Add template" / "Search exercises…"             ← przycisk ekranu Szablony (app/templates.tsx) / pole ekranu Ćwiczenia (app/exercises.tsx)
-#   "Progression" / "Body weight — measurements" ← sekcja kafelków (components/Dashboard.tsx ProgressTiles — widoczna po pierwszym treningu) i przycisk
+#   "Progression" / "Body weight — measurements" ← sekcja kafelków w Postępach (components/Dashboard.tsx ProgressTiles — widoczna po pierwszym treningu; z ekranu Trening usunięta 14.10.2026) i przycisk
 #                                    sekcji „Body weight” (app/(tabs)/progress.tsx)
 #   "Planning"                       ← przycisk w zakładce Plan (app/(tabs)/history.tsx)
 appId: pl.lukasz.trening
@@ -25,7 +25,12 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
 - takeScreenshot: 90-cztery-zakladki
 
 # --- Postępy: osobna zakładka; masa ciała w jej sekcji (nie w Ustawieniach) ---
-- tapOn: "Progress, tab.*"
+# run 39196025031 (zrzut: wciąż „Workout”): stuknięcie zakładki tuż po starcie zostało zignorowane — powtórka, aż pojawi się tytuł ekranu „Progress”
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Progress, tab.*"
+      - extendedWaitUntil: { visible: "Progress", timeout: 10000 }
 - scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 91-postepy-masa-ciala
 

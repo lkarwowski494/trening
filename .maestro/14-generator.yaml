@@ -59,7 +59,9 @@ name: Generator szablonów i planu
 # --- cel „Ogólny” (09.10.2026, docs/research/30): pon/śr/sob — pełne FBW każdego dnia, bez przełącznika; + pt (4 dni) → przełącznik cardio → 3 × FBW + cardio ---
 - scrollUntilVisible: { element: "General fitness", direction: UP, timeout: 30000 }
 - tapOn: "General fitness"
+- tapOn: { id: "info-gen-goal" }  # 14.10.2026: opis celu jest pod ⓘ przy polu „Goal” (docs/32 wzorzec 27)
 - assertVisible: "General fitness \\(for health\\): 2 sets per exercise.*"
+- tapOn: { id: "info-gen-goal" }  # zwinięcie — dalsze kroki jak dotąd
 - assertNotVisible: { id: "sw-Cardio days in the plan" }
 - scrollUntilVisible: { element: "Mon.* Full Body · Wed.* Full Body · Sat.* Full Body", direction: DOWN, timeout: 30000 }
 - scrollUntilVisible: { element: { id: "day-4" }, direction: UP, timeout: 30000 }
@@ -76,6 +78,8 @@ name: Generator szablonów i planu
 - scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 70-generator
 - scrollUntilVisible: { element: "What this is based on", direction: DOWN, timeout: 30000 }
+- tapOn: { id: "info-gen-basis" }  # 14.10.2026: „Na czym to oparte” — źródła pod ⓘ (treść bez zmian)
+- assertVisible: ".*Each major muscle group on at least.*"
 - takeScreenshot: 71-generator-zrodla
 - scrollUntilVisible: { element: "Save templates and plan", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Save templates and plan"

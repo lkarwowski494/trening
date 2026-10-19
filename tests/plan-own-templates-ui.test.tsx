@@ -9,7 +9,7 @@ import * as draft from '@/lib/draft';
 import { ownPlan, ownProposal } from '@/lib/generator';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, tap, act, go } from './app';
+import { renderApp, flushAll, screen, tap, act, go, openInfo } from './app';
 import { router } from 'expo-router';
 
 jest.setTimeout(60000);
@@ -33,11 +33,12 @@ describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
   test('wybór trybu na ekranie generatora; ?mode=own otwiera od razu drugi tryb; tytuł ekranu', async () => {
     await boot('/generator');
     expect(screen.getByText('Nowe szablony i plan').parent).toBeTruthy(); expect(screen.getByRole('button', { name: 'Nowe szablony i plan' }).props.accessibilityState.selected).toBe(true);
-    expect(screen.getByText(/^Propozycja według Twoich założeń/)).toBeTruthy();
+    await openInfo('gen-intro'); expect(screen.getByText(/^Propozycja według Twoich założeń/)).toBeTruthy(); /* ⓘ 14.10.2026 */
     await tap(screen.getByRole('button', { name: 'Plan z moich szablonów' })); await flushAll(10);
+    expect(screen.getByText('Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.')).toBeTruthy(); await openInfo('own-intro');
     expect(screen.getByText('Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.')).toBeTruthy();
     expect(screen.queryByText(/^Propozycja według Twoich założeń/)).toBeNull();
-    await tap(screen.getByRole('button', { name: 'Nowe szablony i plan' })); await flushAll(10); expect(screen.getByText(/^Propozycja według Twoich założeń/)).toBeTruthy();
+    await tap(screen.getByRole('button', { name: 'Nowe szablony i plan' })); await flushAll(10); await openInfo('gen-intro'); expect(screen.getByText(/^Propozycja według Twoich założeń/)).toBeTruthy();
     await go('/generator?mode=own'); await flushAll(10); expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy();
   });
   test('domyślnie wszystkie szablony z ćwiczeniami (pusty i z archiwum — nie); dni od liczby szablonów; podgląd zgodny z logiką; rotacja; ostrzeżenia; źródła', async () => {
@@ -57,7 +58,7 @@ describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
     expect(screen.getByText(`${t[0].name}: 2× w tygodniu`)).toBeTruthy(); expect(screen.getByText(`${t[2].name}: 1× w tygodniu`)).toBeTruthy();
     expect(screen.getByText(/^Rzadziej niż 2 dni w tygodniu: /)).toBeTruthy(); expect(screen.getByText(/^Poniżej celu serii tygodniowo: .+\. Cel ustawisz w Ustawieniach \(automatycznie dolny próg zalecany przy budowie masy\); serie dodasz w szablonach\.$/)).toBeTruthy();
     expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii/)).toBeTruthy();
-    expect(screen.getByText(/^• Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami/)).toBeTruthy();
+    await openInfo('own-basis'); expect(screen.getByText(/^• Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami/)).toBeTruthy();
     expect(screen.getByText(/^• Każda główna partia co najmniej 2 dni w tygodniu \(WHO 2020/)).toBeTruthy();
     expect(screen.getByText('• Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.')).toBeTruthy();
     /* bez wyboru — komunikat, bez zapisu */

@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "ウォッチは、進行中のトレーニング中の心拍数とアクティブエネルギーを読み取ります。データがお使いのデバイスの外に送信されることはありません。";
+"NSHealthUpdateUsageDescription" = "ウォッチは、終了した筋力トレーニングを心拍数とアクティブエネルギーとともにApple Healthに保存します。";

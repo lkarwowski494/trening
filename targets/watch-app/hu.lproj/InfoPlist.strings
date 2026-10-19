@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "Az óra a folyamatban lévő edzés alatt kiolvassa a pulzusszámot és az aktív energiát. Az adatok nem hagyják el az eszközeidet.";
+"NSHealthUpdateUsageDescription" = "Az óra a befejezett erősítő edzést a pulzusszámmal és az aktív energiával együtt az Apple Health-be menti.";

@@ -22,7 +22,7 @@ jest.mock('expo-notifications', () => ({
   setNotificationHandler: jest.fn(),
   /* audyt 0.10 I1 / TST-06: stan zgody sterowany przez test (global.__notifPerm; domyślnie zgoda), prośby liczone w global.__notifPermAsked */
   getPermissionsAsync: async () => global.__notifPerm ?? { granted: true },
-  requestPermissionsAsync: async () => { global.__notifPermAsked = (global.__notifPermAsked ?? 0) + 1; return global.__notifPermReq ?? global.__notifPerm ?? { granted: true }; },
+  requestPermissionsAsync: async () => { global.__notifPermAsked = (global.__notifPermAsked ?? 0) + 1; if (typeof global.__sysPrompt === 'function') return global.__sysPrompt(); /* interpreter Maestro: okno zgody iOS jako okno systemowe (tests/maestro-runner.ts) */ return global.__notifPermReq ?? global.__notifPerm ?? { granted: true }; },
   scheduleNotificationAsync: async (req) => { global.__notifications.push(req); return 'n' + global.__notifications.length; },
   cancelScheduledNotificationAsync: async (id) => { global.__cancelled.push(id); },
   getAllScheduledNotificationsAsync: async () => [],
@@ -75,6 +75,16 @@ jest.mock('@/modules/rest-activity', () => ({
   start: jest.fn(async (...a) => { global.__la.push(['start', ...a]); return false; }),
   update: jest.fn(async (...a) => { global.__la.push(['update', ...a]); return false; }),
   end: jest.fn(async () => { global.__la.push(['end']); return false; }),
+}));
+
+/* 0.20 (docs/36): moduł głosu — atrapa sterowana z testów (global.__voice: wypowiedziane [tekst, język], liczba przerwań, słuchawki, dostępność głosu) */
+global.__voice = { spoken: [], stops: 0, headphones: false, hasVoice: true };
+jest.mock('@/modules/voice-cue', () => ({
+  isSupported: () => true,
+  hasVoice: () => global.__voice.hasVoice,
+  headphonesConnected: () => global.__voice.headphones,
+  speak: jest.fn(async (text, language) => { global.__voice.spoken.push([text, language]); return true; }),
+  stop: jest.fn(() => { global.__voice.stops++; }),
 }));
 
 const { Alert } = require('react-native');

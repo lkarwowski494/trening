@@ -1,0 +1,46 @@
+{
+ "v": 1,
+ "kind": "snapshot",
+ "rev": 3,
+ "lang": "pl",
+ "phase": "rest",
+ "paused": false,
+ "workoutId": "workout-1",
+ "title": "Push",
+ "now": {
+  "setId": "set-0-2",
+  "blockId": "block-0",
+  "title": "Bench Press (sztanga)",
+  "counter": "seria 3 z 3",
+  "load": "80 kg × 8",
+  "group": null,
+  "timed": false,
+  "targetSec": null
+ },
+ "rest": {
+  "setId": "set-0-1",
+  "startedAt": 1791885620000,
+  "endsAt": 1791885710000,
+  "totalSec": 90,
+  "cue": "Bench Press (sztanga) · seria 3, 80 kg, 8 powtórzeń",
+  "last": false
+ },
+ "after": {
+  "restSec": 90,
+  "cue": "dalej: Pull Up, +10 kg, 8 powtórzeń",
+  "last": false,
+  "now": {
+   "setId": "set-1-0",
+   "blockId": "block-1",
+   "title": "Pull Up",
+   "counter": "seria 1 z 2",
+   "load": "+10 kg × 8",
+   "group": null,
+   "timed": false,
+   "targetSec": null
+  }
+ },
+ "doneCount": 2,
+ "totalCount": 7,
+ "toFillCount": 0
+}

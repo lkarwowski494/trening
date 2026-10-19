@@ -1,5 +1,6 @@
 /* Repozytorium publiczne (ADR-031, 03.10.2026): logi, podsumowania i artefakty przebiegów widzi każdy. */
-import { readFileSync } from 'fs';
+import { readFileSync, mkdtempSync, mkdirSync, writeFileSync } from 'fs';
+import { tmpdir } from 'os';
 import { join } from 'path';
 import { execFileSync } from 'child_process';
 
@@ -43,7 +44,7 @@ describe('workflowy na publicznym repozytorium', () => {
   test('decyzja właściciela 08.10.2026 (audyt M4): workflowy EAS usunięte — żaden workflow nie używa Expo ani sekretów spoza klucza App Store Connect', () => {
     const fs = require('fs') as typeof import('fs'); const dir = join(__dirname, '../.github/workflows');
     const files = fs.readdirSync(dir).filter(f => f.endsWith('.yml')).sort();
-    expect(files).toEqual(['asc-iap-localizations.yml', 'e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'store-screenshots.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml']);
+    expect(files).toEqual(['asc-iap-localizations.yml', 'e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'store-screenshots.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml', 'watch-sim.yml']);
     expect(fs.existsSync(join(__dirname, '../scripts/eas'))).toBe(false);
     const allowed = ['secrets.GITHUB_TOKEN', 'secrets.ASC_KEY_ID', 'secrets.ASC_ISSUER_ID', 'secrets.ASC_KEY_P8'];
     for (const f of files) {
@@ -63,18 +64,43 @@ describe('workflowy na publicznym repozytorium', () => {
     expect(y.indexOf('AuthKey.p8"\n')).toBeGreaterThan(y.indexOf('pod install'));
     expect(y.indexOf('Sekrety obecne')).toBeLessThan(y.indexOf('npm ci')); /* brak sekretu kończy przebieg od razu */
     /* audyt SEC-02: xcodebuild wypisuje pełną linię poleceń (z identyfikatorami) — przed artefaktem logi są czyszczone; filtr sprawdzony na przykładzie */
-    const mask = y.indexOf('Identyfikatory klucza wycięte z logów przed artefaktem'); expect(mask).toBeGreaterThan(y.indexOf('Eksport i wysyłka')); expect(mask).toBeLessThan(y.indexOf('actions/upload-artifact@v4'));
+    const mask = y.indexOf('Identyfikatory klucza wycięte z logów przed artefaktem'); expect(mask).toBeGreaterThan(y.indexOf('Wysyłka do App Store Connect')); expect(mask).toBeLessThan(y.indexOf('actions/upload-artifact@v4'));
     const step = y.slice(mask, y.indexOf('actions/upload-artifact@v4')); expect(step).toMatch(/if: failure\(\)/); expect(step).toContain('ios/xcodebuild.log export.log');
     const exprs = [...step.matchAll(/-e "(s\/\$\{ASC_(?:KEY|ISSUER)_ID\}\/<[A-Z_]+>\/g)"/g)].map(m => m[1].replace('${ASC_KEY_ID}', 'ABC123DEFG').replace('${ASC_ISSUER_ID}', '69a6de70-0000-47e3-e053-5b8c7c11a4d1')); expect(exprs.length).toBe(2);
     const line = 'Command line invocation: xcodebuild -authenticationKeyID ABC123DEFG -authenticationKeyIssuerID 69a6de70-0000-47e3-e053-5b8c7c11a4d1\n';
     expect(execFileSync('sed', exprs.flatMap(e => ['-e', e]), { input: line }).toString()).toBe('Command line invocation: xcodebuild -authenticationKeyID <KEY_ID> -authenticationKeyIssuerID <ISSUER_ID>\n');
-    expect((y.match(/unset ASC_KEY_ID ASC_ISSUER_ID/g) || []).length).toBe(1); expect(y).not.toMatch(/-authenticationKeyID "\$ASC_KEY_ID"/); /* logi w artefakcie bez identyfikatorów */ /* audyt 06.10: klucz na dysku dopiero przed archiwum */
+    expect((y.match(/unset ASC_KEY_ID ASC_ISSUER_ID/g) || []).length).toBe(2); /* 14.10.2026: dwa kroki używają klucza — eksport do pliku i wysyłka */ expect(y).not.toMatch(/-authenticationKeyID "\$ASC_KEY_ID"/); /* logi w artefakcie bez identyfikatorów */ /* audyt 06.10: klucz na dysku dopiero przed archiwum */
     /* 13.10.2026 (build 1011): archiwum nie tworzy certyfikatu Apple Development; klucz API tylko w eksporcie (podpis dystrybucyjny w chmurze) */
-    const arch = y.slice(y.indexOf('- name: Archiwum'), y.indexOf('- name: Eksport i wysyłka'));
+    const arch = y.slice(y.indexOf('- name: Archiwum'), y.indexOf('- name: Uprawnienia w archiwum'));
     expect(arch).toContain('CODE_SIGNING_ALLOWED=NO'); expect(arch).toContain('CODE_SIGNING_REQUIRED=NO');
     expect(arch).not.toMatch(/CODE_SIGN_STYLE=Automatic|authenticationKey|allowProvisioningUpdates/);
-    const exp = y.slice(y.indexOf('- name: Eksport i wysyłka'), y.indexOf('- name: Usunięcie klucza'));
+    const exp = y.slice(y.indexOf('- name: Eksport do pliku'), y.indexOf('- name: Usunięcie klucza'));
     expect(exp).toContain('-allowProvisioningUpdates'); expect(exp).toContain('<key>signingStyle</key><string>automatic</string>');
+  });
+  test('14.10.2026 (błąd Zdrowia w 0.18/1015, regres): uprawnienia z archiwum bez podpisu przeżywają eksport — ad hoc z plikami uprawnień, eksport do pliku, strażnik .ipa PRZED wysyłką', () => {
+    const y = wf('testflight.yml'); const at = (n: string) => y.indexOf(`- name: ${n}`);
+    const order = ['Archiwum (bez podpisu', 'Uprawnienia w archiwum', 'Eksport do pliku', 'Strażnik uprawnień w .ipa', 'Wysyłka do App Store Connect', 'Usunięcie klucza'].map(at);
+    expect(order.every(i => i > 0)).toBe(true); expect([...order].sort((a, b) => a - b)).toEqual(order);
+    const ad = y.slice(at('Uprawnienia w archiwum'), at('Eksport do pliku'));
+    for (const f of ['ios/.targets/TreningWatch/generated.entitlements', 'ios/Trening/Trening.entitlements']) expect(ad).toContain(`codesign --force -s - --entitlements ${f}`);
+    expect(ad).toContain('PlugIns/*.appex'); expect(ad.indexOf('TreningWatch.app"')).toBeLessThan(ad.indexOf('ios/Trening/Trening.entitlements "$APP"')); /* od środka na zewnątrz */
+    expect(ad).not.toMatch(/authenticationKey|allowProvisioningUpdates/); /* ad hoc nie tworzy certyfikatu i nie dotyka konta Apple */
+    expect(y).not.toMatch(/CODE_SIGN_IDENTITY=-/); /* Xcode 26: „Ad Hoc code signing is not allowed with SDK” */
+    expect(y.slice(at('Eksport do pliku'), at('Strażnik'))).toContain('<key>destination</key><string>$D</string>');
+    const guard = y.slice(at('Strażnik uprawnień w .ipa'), at('Wysyłka do App Store Connect'));
+    expect(guard).toContain('check-entitlements.sh "$APP" ios/Trening/Trening.entitlements'); expect(guard).toContain('Watch/TreningWatch.app" ios/.targets/TreningWatch/generated.entitlements'); expect(guard).toContain('exit $rc');
+    const up = y.slice(at('Wysyłka do App Store Connect'), at('Usunięcie klucza')); expect(up).toContain('ExportOptions-upload.plist');
+    expect((y.match(/<key>destination<\/key><string>/g) || []).length).toBe(1); /* upload tylko w ostatnim kroku (destination ustawiane pętlą export/upload) */
+    expect(y).toMatch(/for D in export upload/);
+  });
+  test('scripts/ci/check-entitlements.sh: przechodzi z kompletnymi uprawnieniami, pada przy braku HealthKit i przy get-task-allow=true; wypisuje tylko nazwy kluczy', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'ent-')); mkdirSync(join(dir, 'a.app'));
+    const src = join(dir, 'src.entitlements'); writeFileSync(src, '<plist><dict><key>com.apple.developer.healthkit</key><true/></dict></plist>');
+    const run = (xml: string) => { const f = join(dir, 'x.xml'); writeFileSync(f, xml); try { return { rc: 0, out: execFileSync('bash', [join(__dirname, '../scripts/ci/check-entitlements.sh'), join(dir, 'a.app'), src, 'T'], { env: { ...process.env, ENTITLEMENTS_XML: f } }).toString() }; } catch (e: any) { return { rc: e.status as number, out: String(e.stdout) }; } };
+    const ok = '<plist><dict><key>application-identifier</key><string>TEAMID.pl.x</string><key>com.apple.developer.healthkit</key><true/><key>get-task-allow</key><false/></dict></plist>';
+    expect(run(ok).rc).toBe(0); expect(run(ok).out).not.toContain('TEAMID'); /* wartości nie trafiają do logów */
+    expect(run('<plist><dict><key>com.apple.developer.team-identifier</key><string>X</string></dict></plist>')).toMatchObject({ rc: 1 });
+    expect(run(ok.replace('<false/>', '<true/>')).rc).toBe(1);
   });
   test('asc-iap-localizations.yml (14.10.2026): tylko ręcznie z wejściem tryb (dry-run domyślnie), ubuntu, odczyt treści, klucz maskowany w RUNNER_TEMP i usuwany zawsze, bez zapisów do repozytorium', () => {
     const y = wf('asc-iap-localizations.yml');

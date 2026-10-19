@@ -1,0 +1,16 @@
+{
+ "done": "Set done",
+ "differ": "Done differently",
+ "skip": "Skip",
+ "skipAsk": "Skip this exercise?",
+ "cancel": "Cancel",
+ "undo": "Undo",
+ "rest": "Rest",
+ "set": "Set",
+ "pause": "Workout paused",
+ "connect": "Connect to your phone",
+ "idle": "Start a workout on your phone",
+ "finished": "Workout finished",
+ "update": "Update the watch app",
+ "nothingLeft": "nothing more to do"
+}

@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { View, Pressable, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Chip, Muted, Txt, H2, useOnce } from '@/components/ui';
-import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey, newTemplate } from '@/lib/store';
+import { InfoTip } from '@/components/InfoTip';
+import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey, newTemplate, visibleLocations, PLAN_PLACE_RANGE_MAX } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
-import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, suggestionOrder, SUGGEST_FIRST, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, earlyWorkout, undoDoneEarly, type Suggestion } from '@/lib/plan';
+import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, suggestionOrder, SUGGEST_FIRST, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, earlyWorkout, undoDoneEarly, plannedPlace, plannedPlaceName, setPlanPlace, clearPlanPlace, placeRun, type Suggestion } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
 import { startTemplate, workoutInProgressNotice } from '@/lib/start';
@@ -39,7 +40,7 @@ export function DayPanel({ day }: { day: string }) {
   const act = getState().active; const activeHere = !!act && workoutDay(act) === day; const changed = isChanged(day, today);
   const waiting = (pending(st) || st.status === 'missed') && !activeHere; /* zaplanowany trening czeka (albo minął) — można go przesunąć / pominąć */
   const movable = waiting && !!tpl;
-  const [mode, setMode] = useState<'none' | 'move' | 'pick'>('none'); const [more, setMore] = useState(false);
+  const [mode, setMode] = useState<'none' | 'move' | 'pick' | 'place'>('none'); const [more, setMore] = useState(false);
   const live = getState().templates.filter(x => !x.archived);
   const close = () => { setMode('none'); setMore(false); };
   const pickTpl = (x: string) => { const had = hasPlan(); setDayPlan(day, x); close(); if (!had) askReminderPermission().catch(() => {}); /* I1: pierwszy trening w planie */ };
@@ -54,6 +55,8 @@ export function DayPanel({ day }: { day: string }) {
   else if (st.status === 'rest') lines.push(<Txt key="plan" style={{ fontSize: 15 }}>{t('Wolne') + ch}</Txt>);
   else if (changed) lines.push(<Muted key="plan" style={{ fontSize: 13 }}>{t('zmiana planu')}</Muted>);
   if (activeHere) lines.push(<Muted key="active" style={{ fontSize: 13 }}>{t('Trening w toku')}</Muted>);
+  const placeName = plannedPlaceName(day); /* 0.19 (docs/33 B): miejsce zapisane w planie na ten dzień */
+  if (placeName) lines.push(<Muted key="place" testID="day-place" accessibilityLabel={t('Miejsce treningu: {l}', { l: placeName })} style={{ fontSize: 15 }}>{`📍 ${placeName}`}</Muted>);
   const empty = !!tpl && !tpl.items.length && pending(st);
   if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="button" onPress={once(() => router.push(`/template/${tpl!.id}?edit=1`))} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
 
@@ -71,6 +74,8 @@ export function DayPanel({ day }: { day: string }) {
     ...(changed && !activeHere ? [{ key: 'reset', el: <Btn small kind="ghost" title={t('Przywróć z planu')} onPress={() => { resetDay(day); close(); }} /> }] : []),
     { key: 'deload', el: <Btn small kind="ghost" title={deload ? t('Zdejmij oznaczenie deload') : t('Oznacz tydzień jako deload')} onPress={() => toggleDeloadWeek(keyTs(day))} /> },
   ];
+  const canPlace = !past && visibleLocations().length > 0; /* 0.19: miejsce na dni — od dziś, gdy są miejsca (bez miejsc nie ma z czego wybierać) */
+  if (canPlace) secondary.push({ key: 'place', el: <Btn small kind="ghost" expanded={mode === 'place'} title={t('📍 Miejsce na te dni')} onPress={() => setMode(mode === 'place' ? 'none' : 'place')} /> });
   extra.push(...primary.splice(PRIMARY_MAX), ...secondary);
 
   return (
@@ -84,6 +89,7 @@ export function DayPanel({ day }: { day: string }) {
       </View>
       {more ? <View testID="day-more" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 6 }}>{extra.map(a => <React.Fragment key={a.key}>{a.el}</React.Fragment>)}</View> : null}
       {mode === 'move' && movable ? <MoveList day={day} onDone={close} /> : null}
+      {mode === 'place' && canPlace ? <PlaceRange day={day} onDone={close} /> : null}
       {mode === 'pick' ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
         {live.length ? live.map(x => <Chip key={x.id} label={x.name} on={x.id === id} onPress={() => pickTpl(x.id)} />) : <Muted style={{ fontSize: 13 }}>{t('Nie masz jeszcze szablonów.')}</Muted>}
         {/* docs/18 09.10.2026 (B): nowy szablon — po „Zapisz” trafia na ten dzień (zmiana pojedynczego dnia) */}
@@ -109,9 +115,13 @@ export function suggestionTexts(day: string, sg: Suggestion, today = dayKeyOf(Da
 /** „Przesuń albo pomiń” (audyt 0.10 UX-13 A, MER-16): jedna lista możliwości, uszeregowana; pierwsza — „polecane”. */
 function MoveList({ day, onDone }: { day: string; onDone: () => void }) {
   const [all, setAll] = useState(false); const list = suggestionOrder(suggest(day), day) /* UX2-09: miniony dzień — przesunięcie i wolne od razu */; const shown = all ? list : list.slice(0, SUGGEST_FIRST);
+  /* UX2-09: przy widocznym ostrzeżeniu „dzień po dniu” bez zdania „dwa dni pod rząd … też są w porządku” (sprzeczność na jednym ekranie) — zostaje objaśnienie uproszczenia; ⓘ (14.10.2026): kolejność i uproszczenie pod ⓘ */
+  const simplification = [shown.some(x => x.newBackToBack.length) ? t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.') : t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).'), ...(list.every(x => x.returns) ? [t('Każda z tych możliwości wraca do rutyny w ciągu {n} dni.', { n: RETURN_DAYS })] : [])].join(' ');
   return (
     <View testID="suggestions" style={{ marginTop: 8, gap: 8 }}>
-      <Muted style={{ fontSize: 12 }}>{t('Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu {n} dni, potem bez utraty treningów, bez nowych par dzień po dniu z tymi samymi partiami i z najmniejszą liczbą zmienionych dni.', { n: RETURN_DAYS })}</Muted>
+      <InfoTip id="move-list" label={t('Możliwości w kolejności')} info={[t('Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu {n} dni, potem bez utraty treningów, bez nowych par dzień po dniu z tymi samymi partiami i z najmniejszą liczbą zmienionych dni.', { n: RETURN_DAYS }), simplification]}>
+        <Muted style={{ fontSize: 12 }}>{t('Możliwości w kolejności')}</Muted>
+      </InfoTip>
       {shown.map((sg, i) => { const { title, details } = suggestionTexts(day, sg); return (
         <View key={`${sg.kind}-${sg.to ?? ''}`} style={{ gap: 2 }}>
           <Txt style={{ fontSize: 14 }}>{i === 0 && list.length > 1 ? `${title} · ${t('polecane')}` : title}</Txt>
@@ -119,8 +129,36 @@ function MoveList({ day, onDone }: { day: string; onDone: () => void }) {
           <Btn small title={t('Zastosuj')} accessibilityLabel={t('Zastosuj: {title}', { title })} onPress={() => { applySuggestion(sg); onDone(); }} style={{ alignSelf: 'flex-start', marginTop: 2 }} />
         </View>); })}
       {!all && list.length > SUGGEST_FIRST ? <Btn small kind="ghost" title={t('Więcej możliwości ({n})', { n: list.length - SUGGEST_FIRST })} onPress={() => setAll(true)} style={{ alignSelf: 'flex-start' }} /> : null}
-      {/* UX2-09: przy widocznym ostrzeżeniu „dzień po dniu” bez zdania „dwa dni pod rząd … też są w porządku” (sprzeczność na jednym ekranie) — zostaje objaśnienie uproszczenia */}
-      <Muted style={{ fontSize: 12 }}>{[shown.some(x => x.newBackToBack.length) ? t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.') : t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).'), ...(list.every(x => x.returns) ? [t('Każda z tych możliwości wraca do rutyny w ciągu {n} dni.', { n: RETURN_DAYS })] : [])].join(' ')}</Muted>
+    </View>
+  );
+}
+
+/** 0.19 (docs/33 B, P6 B): „📍 Miejsce na te dni” — miejsce (z listy albo „Inne miejsce…”) i zakres od–do: „Od” to wybrany dzień, „Do” przesuwa się o dzień (−/+, najwyżej
+ * PLAN_PLACE_RANGE_MAX dni). „Ustaw miejsce” zapisuje State.planPlaces; „Usuń miejsce” zdejmuje je z całego zakresu wokół dnia. */
+function PlaceRange({ day, onDone }: { day: string; onDone: () => void }) {
+  const router = useRouter(); const locs = visibleLocations(); const run = placeRun(day);
+  const [pick, setPick] = useState<string | null>(run?.locationId && locs.some(l => l.id === run.locationId) ? run.locationId : null);
+  const [to, setTo] = useState(run?.to ?? day); const last = addDays(day, PLAN_PLACE_RANGE_MAX - 1);
+  const setPlace = () => { if (pick && setPlanPlace(day, to, pick)) onDone(); };
+  return (
+    <View testID="place-range" style={{ marginTop: 8, gap: 8 }}>
+      <InfoTip id="place-range" label={t('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.')} info={t('Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.')}>
+        <Muted style={{ fontSize: 12 }}>{t('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.')}</Muted>
+      </InfoTip>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+        {locs.map(l => <Chip key={l.id} label={l.name} on={pick === l.id} onPress={() => setPick(l.id)} />)}
+        <Btn nav small kind="ghost" title={t('Inne miejsce…')} onPress={() => router.push(`/place-once?from=${day}&to=${to}`)} />
+      </View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+        <Txt style={{ fontSize: 14 }}>{t('Od: {day}', { day: shortDay(day) })}</Txt>
+        <Muted testID="place-to" style={{ fontSize: 14 }}>{t('Do: {day}', { day: shortDay(to) })}</Muted>
+        <Btn small kind="ghost" title="−" accessibilityLabel={t('Dzień wcześniej')} accessibilityHint={t('Do: {day}', { day: shortDay(to) })} onPress={() => { if (to > day) setTo(addDays(to, -1)); }} />
+        <Btn small kind="ghost" title="+" accessibilityLabel={t('Dzień później')} accessibilityHint={t('Do: {day}', { day: shortDay(to) })} onPress={() => { if (to < last) setTo(addDays(to, 1)); }} />
+      </View>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+        {pick ? <Btn small title={t('Ustaw miejsce')} onPress={setPlace} /> : null}
+        {plannedPlace(day) ? <Btn small kind="ghost" title={t('Usuń miejsce')} accessibilityLabel={run && run.from !== run.to ? t('Usuń miejsce: {a} – {b}', { a: shortDay(run.from), b: shortDay(run.to) }) : t('Usuń miejsce')} onPress={() => { clearPlanPlace(day); onDone(); }} /> : null}
+      </View>
     </View>
   );
 }

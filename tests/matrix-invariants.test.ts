@@ -27,7 +27,7 @@ import * as tplsync from '@/lib/tplsync';
 import * as health from '@/lib/health';
 import * as hq from '@/lib/healthQuery';
 import { buildBackup, parseBackup } from '@/lib/backup';
-import { implsAt, EQUIPMENT, LOCATION_PRESETS } from '@/lib/equipment';
+import { implsAt, EQUIPMENT, LOCATION_PRESETS, presetEquipment } from '@/lib/equipment';
 import { CABLES } from '@/lib/catalog.generated';
 import { SET_PARTS, SETS_GOAL_MIN, SETS_GOAL_MAX, clampGoal, isSetPart } from '@/lib/setParts';
 import { SCHEMA_VERSION, METRICS, blankTimer, uid, hasReps, hasTime, hasDistance, type Exercise, type Template, type TemplateItem, type Workout, type WSet, type SetKind, type Impl } from '@/lib/seed';
@@ -78,7 +78,8 @@ const KINDS = {
   ownPlan: 1, tplNewAssign: 1,
 } as const;
 /** 0.18 (docs/33): „Dostosuj do miejsca” — wybory z okna naraz; osobny przebieg (`adaptSeqArb`), żeby nie przesuwać ziarna głównego alfabetu */
-type K = keyof typeof KINDS | 'adaptActive';
+/** 0.19 (docs/33 A4 i B): miejsce jednorazowe (`oneOff`) i miejsce na dni planu (`planPlace`, `planPlaceClear`) — osobny przebieg (`placesSeqArb`), żeby nie przesuwać ziarna głównego alfabetu */
+type K = keyof typeof KINDS | 'adaptActive' | 'oneOff' | 'planPlace' | 'planPlaceClear';
 type Op = { o: number; a: number; b: number; v: number | '' };
 type Act = { t: K; a: number; b: number; c: number; v: number | ''; ops?: Op[] };
 
@@ -107,16 +108,23 @@ const session = fc.tuple(start, fc.array(inSession, { minLength: 3, maxLength: 2
 const adaptSession = fc.tuple(start, fc.array(arbOf({ adaptActive: 10, setLoc: 8, swap: 3, swapImpl: 2, undoSwap: 3, acceptAlt: 2, tick: 8, type: 5, addSet: 2, addEx: 2, skipEx: 2, moveBlock: 1,
   link: 2, unlink: 1, reload: 1, rememberAlt: 1, deload: 1 }), { minLength: 4, maxLength: 25 }), end).map(([a, xs, z]) => [a, ...xs, z]);
 const adaptSeqArb = fc.array(adaptSession, { minLength: 1, maxLength: 4 });
+/** 0.19: sesje z miejscem jednorazowym i miejscami na dni planu (obok głównego alfabetu): „Inne miejsce (tylko dziś)…” w trakcie treningu i bez niego, zakres
+ * miejsca w planie (także dla miejsca jednorazowego), usunięcie miejsca, zmiany miejsca, start w dniu z miejscem, „Dostosuj”, zamiany, kopia / restart. */
+const placesSession = fc.tuple(start, fc.array(arbOf({ oneOff: 6, planPlace: 6, planPlaceClear: 3, setLoc: 5, adaptActive: 4, swap: 2, undoSwap: 2, tick: 6, type: 4, addEx: 1, delLoc: 2, addLoc: 1,
+  planDay: 2, planShift: 1, planReset: 1, startTpl: 1, reload: 1, roundtrip: 1, migrate: 1 }), { minLength: 4, maxLength: 25 }), end).map(([a, xs, z]) => [a, ...xs, z]);
+const placesSeqArb = fc.array(placesSession, { minLength: 1, maxLength: 4 });
 const seqArb = fc.array(fc.oneof({ weight: 3, arbitrary: actArb.map(x => [x]) }, { weight: 2, arbitrary: session }), { minLength: 6, maxLength: 30 });
 
 /** Kategorie: jawne edycje szablonów, zmiany historii; w pozostałych działaniach trening w toku ma zostać co do bajtu (ACTIVE_FROZEN). */
 const TPL_EDIT = new Set<K>(['tplNew', 'tplRename', 'tplDup', 'tplDel', 'tplAddItem', 'tplRmItem', 'tplMove', 'tplLink', 'tplUnlink', 'tplAddRow', 'tplRmRow', 'tplKind', 'tplRow', 'tplBand', 'tplLoc', 'rememberAlt', 'rememberRest', 'gen', 'tplNote', 'draft', 'saveAsTpl', 'tplArchive', 'tplNewAssign']);
-const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass', 'draft', 'saveAsTpl', 'tplArchive', 'deload', 'health', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'libScope', 'ownPlan', 'setGoal']);
+const ACTIVE_FROZEN = new Set<K>([...[...TPL_EDIT].filter(k => k !== 'rememberRest'), 'planPlace', 'planPlaceClear', 'delW', 'past', 'edit', 'unit', 'lang', 'newEx', 'metric', 'bandAssist', 'delEx', 'restoreEx', 'addLoc', 'setMain', 'dupLoc', 'renameLoc', 'setBandColor', 'reload', 'roundtrip', 'migrate', 'stats', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'bodyMass', 'draft', 'saveAsTpl', 'tplArchive', 'deload', 'health', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'libScope', 'ownPlan', 'setGoal']);
 /** Audyt 0.10 A1/A7: działania, po których żaden miniony dzień nie może zmienić statusu (poza dniem, którego działanie dotyczy wprost). */
-const PAST_FROZEN = new Set<K>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename', 'tplArchive', 'draft', 'saveAsTpl', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'deload', 'health', 'healthWatch', 'ownPlan', 'tplNewAssign']);
+const PAST_FROZEN = new Set<K>(['planPlace', 'planPlaceClear', 'planDay', 'planDayOv', 'planShift', 'planMove', 'planNew', 'planActivate', 'tplDel', 'tplNew', 'tplDup', 'tplRename', 'tplArchive', 'draft', 'saveAsTpl', 'planRename', 'planDel', 'planSwap', 'planSuggest', 'planReset', 'deload', 'health', 'healthWatch', 'ownPlan', 'tplNewAssign']);
 
 /* ---------- pomocnicze ---------- */
 const J = (x: unknown) => JSON.stringify(x);
+/** Działania na planie, które zmieniają CO trenuje się danego dnia — nigdy GDZIE (planPlaces); aktywacja planu zapisanego odtwarza miejsca planu, więc poza zbiorem. */
+const PP_BY_DATE = new Set<string>(['planDay', 'planDayOv', 'planShift', 'planMove', 'planSwap', 'planReset', 'planSuggest']);
 const S = () => store.getState();
 const pick = <T,>(arr: readonly T[], i: number): T | undefined => (arr.length ? arr[i % arr.length] : undefined);
 /* Znalezisko 1 naprawione 06.10 (store.restoreExercise) — porównania I1 / restart / import bez wyjątków. */
@@ -215,6 +223,7 @@ async function step(x: Act, m: Model, where: string) {
   /* audyt 0.10 A1: statusy minionych 21 dni przed działaniem (porównanie po nim — PAST_FROZEN) */
   const today = plan.dayKeyOf(Date.now()); const pastKeys = Array.from({ length: 21 }, (_, i) => plan.addDays(today, -(i + 1)));
   const pastBefore = PAST_FROZEN.has(x.t) ? pastKeys.map(k => J(plan.dayStatus(k, today))) : null; let pastTouched: string | null = null;
+  const ppBefore = PP_BY_DATE.has(x.t) ? J(st.planPlaces ?? {}) : null; /* 14.10.2026: miejsce dni zostaje przy dacie */
 
   switch (x.t) {
     /* ===== szablony (jawne edycje) ===== */
@@ -374,6 +383,15 @@ async function step(x: Act, m: Model, where: string) {
     case 'restoreEx': { const e = pick(st.exercises.filter(z => z.archived), x.b); if (e) { store.restoreExercise(e); hit('restoreEx'); } break; } /* app/exercises.tsx:24 „Przywróć” */
 
     /* ===== miejsca, sprzęt, gumy ===== */
+    /* 0.19 (docs/33 A4): „Inne miejsce (tylko dziś)…” — ukryte miejsce z presetu; w treningu: trening przechodzi tam (L5), poza treningiem: na dni planu */
+    case 'oneOff': { const keep = x.c % 5 === 0; const l = locs.addOneOffLocation(x.v === '' ? '' : String(x.v), presetEquipment(locs.ONE_OFF_PRESETS[x.b % locs.ONE_OFF_PRESETS.length]), keep);
+      ok(keep ? !l.oneOff && store.visibleLocations().some(z => z.id === l.id) : l.oneOff === true && !store.visibleLocations().some(z => z.id === l.id) && S().settings.mainLocationId !== l.id, where, 'miejsce jednorazowe / zapisane');
+      if (act) { const prev = act.locationId; store.setActiveLocation(l.id); if (prev !== l.id) implFresh(where); } else plan.setPlanPlace(today, plan.addDays(today, x.a % 3), l.id, today);
+      hit(keep ? 'oneOffKeep' : 'oneOff'); break; }
+    case 'planPlace': { const l2 = pick(st.settings.locations, x.b); const from = plan.addDays(today, (x.a % 6) - 1); const to = plan.addDays(from, x.c % 5); const n = l2 ? plan.setPlanPlace(from, to, l2.id, today) : 0;
+      if (!l2 || from < today) ok(n === 0, where, 'miejsce w planie: dzień miniony / brak miejsca przyjęte'); else { const days = plan.placeDays(from, to); ok(n === days.length && days.every(d => plan.plannedPlace(d) === l2.id), where, 'miejsce w planie: zakres od–do', { from, to, n }); hit('planPlace'); } break; }
+    case 'planPlaceClear': { const day = plan.addDays(today, (x.a % 8) - 1); const run = plan.placeRun(day); const n = plan.clearPlanPlace(day, today);
+      ok(n === (run ? plan.placeDays(run.from, run.to).length : 0) && !plan.plannedPlace(day), where, 'usunięcie miejsca z zakresu', { day, run, n }); if (run) hit('planPlaceClear'); break; }
     case 'addLoc': { const l = locs.addLocation(LOCATION_PRESETS[x.b % LOCATION_PRESETS.length]); ok(!!store.locationById(S().settings.mainLocationId) && !!store.locationById(l.id), where, 'nowe miejsce / główne'); hit('addLoc'); break; }
     case 'delLoc': if (loc) { const can = locs.canDeleteLocation(loc.id); ok(locs.deleteLocation(loc.id) === can, where, 'deleteLocation ≠ canDeleteLocation'); if (can && act?.locationId === loc.id) implFresh(where); } break;
     case 'setMain': if (loc) locs.setMainLocation(loc.id); break;
@@ -503,6 +521,7 @@ async function step(x: Act, m: Model, where: string) {
     case 'resetAll': { store.resetAll(); await store.flush(); store.setTimerState(blankTimer()); ok(!S().templates.length && !S().workouts.length && !S().active, where, 'reset: bez szablonów, historii i treningu'); snap(m); hit('resetAll'); break; }
   }
 
+  if (ppBefore !== null) ok(J(S().planPlaces ?? {}) === ppBefore, where, 'przesunięcie / zmiana / zamiana / powrót dnia zmieniły miejsca dni (miejsce zostaje przy dacie, 14.10.2026)', { was: ppBefore, now: S().planPlaces });
   if (pastBefore) { const after = pastKeys.map(k => J(plan.dayStatus(k, today))); const changed = pastKeys.filter((k, i) => after[i] !== pastBefore[i] && k !== pastTouched);
     ok(!changed.length, where, 'działanie zmieniło status minionego dnia (audyt 0.10 A1 — plan nie obowiązuje wstecz)', changed.map(k => [k, JSON.parse(pastBefore[pastKeys.indexOf(k)]), plan.dayStatus(k, today)])); }
   if (TPL_EDIT.has(x.t)) m.tpl = J(S().templates);
@@ -546,7 +565,10 @@ function light(m: Model, where: string) {
   uniq(where, 'pozycje szablonów', st.templates.flatMap(t => t.items.map(i => i.id))); uniq(where, 'bloki', all.flatMap(w => w.exercises.map(e => e.id))); uniq(where, 'serie', all.flatMap(w => w.exercises.flatMap(e => e.sets.map(s => s.id))));
   /* referencje */
   const exIds = new Set(st.exercises.map(e => e.id)); const liveEx = new Set(st.exercises.filter(e => !e.archived).map(e => e.id)); const bandIds = new Set(st.bands.map(b => b.id));
-  const s = st.settings; ok(s.locations.length ? !!store.locationById(s.mainLocationId) : s.mainLocationId === null, where, 'mainLocationId', { main: s.mainLocationId, locs: s.locations.map(l => l.id) });
+  const s = st.settings; const listed = s.locations.filter(l => !l.oneOff); ok(listed.length ? listed.some(l => l.id === s.mainLocationId) : s.mainLocationId === null, where, 'mainLocationId (nigdy miejsce jednorazowe)', { main: s.mainLocationId, locs: s.locations.map(l => l.id) });
+  ok(s.locations.every(l => l.oneOff === undefined || l.oneOff === true) && store.visibleLocations().length === listed.length, where, '0.19: Location.oneOff tylko true; visibleLocations = miejsca bez znacznika');
+  for (const [k, id] of Object.entries(st.planPlaces ?? {})) ok(/^\d{4}-\d{2}-\d{2}$/.test(k) && !!store.locationById(id), where, '0.19: planPlaces wskazuje istniejące miejsce, klucz = data', { k, id });
+  for (const p of st.savedPlans ?? []) for (const k of Object.keys(p.places ?? {})) ok(/^\d{4}-\d{2}-\d{2}$/.test(k), where, '0.19: SavedPlan.places klucz = data', k);
   ok(s.unit === 'kg' || s.unit === 'lb', where, 'unit');
   for (const t of st.templates) {
     ok(groupsOk(t.items), where, 'supersety szablonu', t.items.map(i => i.groupId));
@@ -583,6 +605,7 @@ function light(m: Model, where: string) {
 
 /* ---------- niezmienniki ciężkie ---------- */
 function migrateCheck(where: string) {
+  store.pruneOneOff(); /* migracja przy starcie porządkuje miejsca jednorazowe bez odwołań (0.19) — stan w pamięci ma być taki sam */
   const s0 = strip(S()); const m1 = store.migrate(JSON.parse(J(S())));
   ok(m1.schemaVersion === SCHEMA_VERSION, where, 'migrate: schemaVersion');
   expect({ where, why: 'migrate(stan aplikacji) zmienia dane (I1)', s: strip(m1) }).toEqual({ where, why: 'migrate(stan aplikacji) zmienia dane (I1)', s: s0 });
@@ -590,11 +613,13 @@ function migrateCheck(where: string) {
   expect({ where, why: 'migrate nieidempotentne', s: strip(m2) }).toEqual({ where, why: 'migrate nieidempotentne', s: strip(m1) });
 }
 async function reloadCheck(where: string) {
+  store.pruneOneOff();
   await store.flush(); const before = strip(S());
   store.__resetForTests(); await store.init();
   expect({ where, why: 'stan po ponownym uruchomieniu ≠ przed', s: strip(S()) }).toEqual({ where, why: 'stan po ponownym uruchomieniu ≠ przed', s: before });
 }
 async function roundtripCheck(where: string) {
+  store.pruneOneOff();
   const before = strip(S(), true); const next = parseBackup(J(buildBackup()));
   /* A11B-1 (audyt zmian 0.11, część 2): szkice sprzed importu (ćwiczenie, szablon, edycja historii) nie przeżywają go — ani w pamięci, ani w bazie */
   const exId = S().exercises[0]?.id; const tpId = S().templates[0]?.id; const wId = S().workouts[0]?.id;
@@ -711,6 +736,16 @@ describe('macierz niezmienników — dostosowanie do miejsca (0.18, adaptActive)
       try { await runSeq(seq.flat(), locStart); } finally { units.applyUnit('kg'); edit.__resetDrafts(); }
     }), { numRuns: Math.max(10, Math.floor(RUNS / 2)), seed: SEED });
     if (RUNS >= 50 && !process.env.MATRIX_SEED) expect(['adaptActive', (ran.adaptActive ?? 0) > 0]).toEqual(['adaptActive', true]);
+  });
+});
+
+describe('macierz niezmienników — miejsce jednorazowe i miejsca na dni planu (0.19)', () => {
+  afterAll(() => { units.applyUnit('kg'); });
+  test('losowe sesje z „Inne miejsce (tylko dziś)…” i zakresami miejsca w planie: lista miejsc bez jednorazowych, miejsce główne zwykłe, planPlaces tylko na istniejące miejsca, szablony i plan nietknięte, restart / kopia bez strat', async () => {
+    await fc.assert(fc.asyncProperty(placesSeqArb, fc.constantFrom(2, 3), async (seq, locStart) => {
+      try { await runSeq(seq.flat(), locStart); } finally { units.applyUnit('kg'); edit.__resetDrafts(); }
+    }), { numRuns: Math.max(10, Math.floor(RUNS / 2)), seed: SEED });
+    if (RUNS >= 50 && !process.env.MATRIX_SEED) for (const k of ['oneOff', 'planPlace']) expect([k, (ran[k] ?? 0) > 0]).toEqual([k, true]);
   });
 });
 

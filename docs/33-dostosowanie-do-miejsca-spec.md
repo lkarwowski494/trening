@@ -72,3 +72,27 @@ Doprecyzowania przyjęte przy implementacji (do przejrzenia przez właściciela)
 3. Wiersz „A → Bez zmian” zostaje na liście (można wrócić do propozycji stuknięciem); „Zastosuj (n)” liczy tylko wiersze z wyborem + włączone przełączniki „Wraca z planu”; przy n = 0 przycisku nie ma (zostaje „Anuluj”).
 4. Pytanie C7 („Cofnąć zamianę?”, [Anuluj, Cofnij]) dotyczy tylko zaznaczonych bloków „Wraca z planu” z wpisanymi wartościami zamiennika; zamiana zwykłego bloku z wpisanymi wartościami nie pyta (jak W1).
 5. „Pomiń dziś” z trwającym stoperem serii: bez dodatkowego pytania (jak w spec. pkt 6: `afterSwap` zatrzymuje stoper) — do rozstrzygnięcia, jeśli właściciel woli pytanie jak przy pojedynczym „Pomiń dziś”.
+
+## Stan wdrożenia — etap 3 (0.19: A4 miejsce jednorazowe + B miejsce na zakres dni; gałąź `f019-miejsca`, 13.10.2026)
+Schemat 18 → 19 (JEDNO podniesienie dla A4 i B; bez aktualizacji SDK): `Location.oneOff?: true`, `State.planPlaces?: Record<data, idMiejsca>`, `SavedPlan.places?`. Migracja (`lib/state/migrate.ts`): znacznik tylko `true`,
+miejscem głównym nigdy nie bywa miejsce jednorazowe, `planPlaces` i `SavedPlan.places` — klucze-daty (`cleanPlanPlaces`, bez `__proto__`), id tekstem (`idOf`), nieistniejące miejsca odpadają, najwyżej `PLAN_PLACES_MAX` dni,
+miejsca jednorazowe bez odwołań (trening w toku, historia, plan, zapisane plany) znikają (`unusedOneOffIds`); idempotentna; kopia 19 odrzucana przez 18; dane 18 wstają 1:1.
+Zrobione:
+- **A4:** `lib/locations.ts` (`addOneOffLocation`, `keepOneOff`, `ONE_OFF_PRESETS`, `ONE_OFF_DEFAULT_NAME`), `visibleLocations` / `pruneOneOff` (`lib/state/places.ts`); jednorazowe wykluczone z: Ustawienia → Miejsca i sprzęt, generatora, „Miejsce domyślne”
+  szablonu, chipów edytora sesji, arkusza „📍”, `startLocationId` (bez `preferred`), miejsca głównego, `setMainLocation` / `duplicateLocation`, „Zawsze w” (`altCtx`). Arkusz „📍”: ostatnia pozycja „Inne miejsce (tylko dziś)…” → okno
+  `app/place-once.tsx` (nazwa, domyślnie „Tylko dziś”; przełącznik „Zapisz jako miejsce”; zestawy Hotel / Tylko masa ciała / Dom; pozycje sprzętu z grup, bez ciężarów) → „Użyj” → `setActiveLocation` → okno „Dostosuj” samo, gdy są propozycje.
+- **B:** `lib/plan.ts` (`setPlanPlace` / `clearPlanPlace` / `placeRun` / `placeDays` / `plannedPlace` / `plannedPlaceName`; miejsca dni wędrują z planem w `activatePlan` / `deactivatePlan` jak zmiany dni), panel dnia
+  („Więcej opcji” → „📍 Miejsce na te dni”: miejsce z listy albo „Inne miejsce…”, „Od” = wybrany dzień, „Do” −/+ do `PLAN_PLACE_RANGE_MAX` = 31 dni, „Ustaw miejsce”, „Usuń miejsce”), linijka „📍 Hotel” w panelu dnia, na karcie „Dziś” i w etykiecie dnia paska
+  tygodnia, start (`newWorkout`: każda droga startu) bierze miejsce dnia przed miejscem szablonu i otwiera okno „Dostosuj” (raz, tylko gdy są propozycje; `armAutoAdapt` / `takeAutoAdapt` w `lib/adaptPick.ts`), przypomnienie rano „Dziś: FBW · Hotel”
+  (`planReminderKey` zawiera miejsca dni). Przesunięcia (`shiftPlan`, `moveOnly`, `swapDays`), `resetDay`, `tidy` i zmiana planu tygodnia nie ruszają `planPlaces` (miejsce zostaje przy dacie, P7 A).
+Elementy oznaczone [DO WYJAŚNIENIA] w wariancie najprostszym — pytania do właściciela (rekomendacja pierwsza):
+1. Ciężary w szybkiej liście: (A, zrobione) bez wpisywania — zestaw Hotel zachowuje swoje hantle, reszta pozycji ma pusty opis ciężarów (podpowiedzi jak przed P-003); (B) krótkie pytanie o zakres hantli. Rekomendacja A.
+2. Zero miejsc na liście: (A, zrobione) nie ma „📍”, więc nie ma wejścia do „Inne miejsce”, a bez miejsc wszystkie ćwiczenia są dostępne; (B) „📍” z samą pozycją „Inne miejsce…”. Rekomendacja A.
+3. Arkusz „📍” przy wielu miejscach: (A, zrobione) lista wszystkich miejsc + „Inne miejsce (tylko dziś)…” w arkuszu akcji (limit 4 przycisków HIG dotyczy alertów, nie arkusza); (B) osobny ekran wyboru przy > 6 miejscach. Rekomendacja A, do sprawdzenia na symulatorze.
+4. Zakres dat: (A, zrobione) „Od” = wybrany dzień, „Do” przesuwane o dzień; (B) dwa pełne wybory dat. Rekomendacja A.
+5. „Usuń miejsce”: (A, zrobione) cały ciąg dni z tym samym miejscem, etykieta „Usuń miejsce: pt – nd”; (B) tylko wybrany dzień. Rekomendacja A.
+6. Miejsca dni przy zmianie planu (`SavedPlan.places` ze spec.): (A, zrobione wg spec.) wędrują z planem jak zmiany dni; (B) zostają przy dacie niezależnie od planu (miejsce = gdzie jestem; pole `SavedPlan.places` byłoby zbędne). Rekomendacja B jako logiczniejsze — zmiana jednej funkcji.
+7. Nazwa domyślna miejsca na zakres dni: „Inne miejsce” (A4 ma „Tylko dziś”, które dla kilku dni nie pasuje). Rekomendacja: zostawić.
+8. „Zapisz jako miejsce” tylko przy tworzeniu (przełącznik w oknie); w trakcie treningu brak osobnej pozycji (funkcja `keepOneOff` jest w kodzie). Rekomendacja: zostawić do opinii z TestFlight.
+Znane ograniczenia/uproszczenia: miejsce w dniu z treningiem w toku zapisuje się normalnie (dotyczy kolejnych startów); dni minione odpadają z `planPlaces` przy zapisie; miejsce jednorazowe bez odwołań znika dopiero przy uruchomieniu albo zdjęciu z planu (niewidoczne
+dla użytkownika); `Powtórz ostatni` też bierze miejsce dnia (każda droga startu).

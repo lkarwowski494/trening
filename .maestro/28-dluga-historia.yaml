@@ -1,0 +1,158 @@
+# Długa historia istniejącego użytkownika (katalog przepływów docs/37: HI-03, HI-08, PL-13 w części „kilka sesji”): cztery treningi wstecz z rosnącym ciężarem (4, 3, 2 i 1 dzień temu — jedyna droga w UI do sesji
+# z różnych dni bez zmiany zegara, docs/31 pkt 2), potem licznik sesji, rekord w najnowszej sesji, wykres/rekordy ćwiczenia i usunięcie sesji przesunięciem (Anuluj / Usuń).
+# Skala (setki sesji): poza Maestro — wytworzenie jej przez UI trwałoby godziny (≈40 s na sesję); sprawdzają ją testy wydajności na wygenerowanych danych (katalog: PR-15).
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Log a past workout" / "Previous day" / "From a template"  ← panel Planu i ekran „Trening wstecz” (jak 05, 31, 32)
+#   w-0-0 / reps-0-0                                          ← testID pól ciężaru i powtórzeń pierwszej serii w edytorze sesji (app/history/edit/[id].tsx; ciężar od 13.10.2026)
+#   "Cancel session editing" / "Save session"                 ← nagłówek edytora sesji
+#   "PR: .*"                                                  ← 'PR: {rodzaje}' (wiersz rekordu pod serią w sesji, app/history/[id].tsx)
+#   session-N / session-N-del / "Delete this session from history\\?" ← testID wiersza listy sesji w Planie (app/(tabs)/history.tsx), przycisk pod nim, pytanie ('Usunąć tę sesję z historii?')
+appId: pl.lukasz.trening
+name: Długa historia — kilka sesji, rekordy, usunięcie sesji
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }
+# --- trening sprzed 4 dni: 20 × 8 ---
+- tapOn: "Log a past workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 30000 }
+- tapOn: "Previous day"
+- tapOn: "Previous day"
+- tapOn: "Previous day"
+- tapOn: "Previous day"
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Cancel session editing", timeout: 30000 }
+# E2E 105 (Q-029): na wolnym symulatorze ginęły pojedyncze znaki wpisu — wpis z asercją wartości w jednej powtórce
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: { id: "w-0-0" }
+      - eraseText: 8
+      - inputText: "20"
+      - tapOn: { id: "reps-0-0" }
+      - eraseText: 8
+      - inputText: "8"
+      - assertVisible: { id: "w-0-0", text: "20" }
+      - assertVisible: { id: "reps-0-0", text: "8" }
+- tapOn: "Save session"
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }
+# --- trening sprzed 3 dni: 22 × 8 ---
+- tapOn: "Log a past workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 30000 }
+- tapOn: "Previous day"
+- tapOn: "Previous day"
+- tapOn: "Previous day"
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Cancel session editing", timeout: 30000 }
+# E2E 105 (Q-029): na wolnym symulatorze ginęły pojedyncze znaki wpisu — wpis z asercją wartości w jednej powtórce
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: { id: "w-0-0" }
+      - eraseText: 8
+      - inputText: "22"
+      - tapOn: { id: "reps-0-0" }
+      - eraseText: 8
+      - inputText: "8"
+      - assertVisible: { id: "w-0-0", text: "22" }
+      - assertVisible: { id: "reps-0-0", text: "8" }
+- tapOn: "Save session"
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }
+# --- trening sprzed 2 dni: 24 × 8 ---
+- tapOn: "Log a past workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 30000 }
+- tapOn: "Previous day"
+- tapOn: "Previous day"
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Cancel session editing", timeout: 30000 }
+# E2E 105 (Q-029): na wolnym symulatorze ginęły pojedyncze znaki wpisu — wpis z asercją wartości w jednej powtórce
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: { id: "w-0-0" }
+      - eraseText: 8
+      - inputText: "24"
+      - tapOn: { id: "reps-0-0" }
+      - eraseText: 8
+      - inputText: "8"
+      - assertVisible: { id: "w-0-0", text: "24" }
+      - assertVisible: { id: "reps-0-0", text: "8" }
+- tapOn: "Save session"
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }
+# --- trening sprzed 1 dni: 26 × 8 ---
+- tapOn: "Log a past workout"
+- extendedWaitUntil: { visible: "From a template", timeout: 30000 }
+- tapOn: "Previous day"
+- tapOn: "Upper A, .*"
+- extendedWaitUntil: { visible: "Cancel session editing", timeout: 30000 }
+# E2E 105 (Q-029): na wolnym symulatorze ginęły pojedyncze znaki wpisu — wpis z asercją wartości w jednej powtórce
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: { id: "w-0-0" }
+      - eraseText: 8
+      - inputText: "26"
+      - tapOn: { id: "reps-0-0" }
+      - eraseText: 8
+      - inputText: "8"
+      - assertVisible: { id: "w-0-0", text: "26" }
+      - assertVisible: { id: "reps-0-0", text: "8" }
+- tapOn: "Save session"
+- tapOn: { text: "Save", below: "Save changes\\?", optional: true }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertVisible: "PR: .*"
+- takeScreenshot: 96-sesja-z-rekordem
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }
+# --- historia: cztery sesje w kalendarzu i na liście ---
+- extendedWaitUntil: { visible: "4 sessions", timeout: 30000 }
+- takeScreenshot: 97-historia-cztery-sesje
+# --- Postępy: podsumowanie i rekordy ćwiczenia z kilku sesji ---
+- tapOn: "Progress, tab.*"
+- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- assertVisible: "Workouts: [0-9]+, previously .*"
+- scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Bench Press \\(Dumbbell\\)"
+- extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }
+- assertVisible: "Max weight.*"
+- assertVisible: "e1RM \\(Epley.*"
+- assertVisible: "Chart, 4 sessions.*"
+- takeScreenshot: 98-rekordy-cwiczenia-historia
+# --- usunięcie najnowszej sesji przesunięciem: Anuluj zostawia, Usuń usuwa ---
+- tapOn: "Plan, tab.*"
+- extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }
+- scrollUntilVisible: { element: { id: "session-0" }, direction: DOWN, timeout: 60000, centerElement: true }
+- swipe: { from: { id: "session-0" }, direction: LEFT, duration: 400 }
+- runFlow:
+    when: { visible: { id: "session-0-del" } }
+    commands:
+      - tapOn: { id: "session-0-del" }
+- extendedWaitUntil: { visible: "Delete this session from history\\?", timeout: 15000 }
+- tapOn: { text: "Cancel", below: "Delete this session from history\\?" }
+- assertVisible: "4 sessions"
+- swipe: { from: { id: "session-0" }, direction: LEFT, duration: 400 }
+- runFlow:
+    when: { visible: { id: "session-0-del" } }
+    commands:
+      - tapOn: { id: "session-0-del" }
+- extendedWaitUntil: { visible: "Delete this session from history\\?", timeout: 15000 }
+# run 38563966851: odsłonięty wiersz historii zostaje pod oknem pytania i jego przycisk ma w hierarchii dziecko „Delete” — Maestro wziął pierwsze pasujące (wiersz, y 506–526),
+# nie przycisk okna (y 463–511), i okno zostało; run 38607952098: indeks 1 też nie trafił w okno (zrzut: okno zostało). Selektor tekstowy jest dwuznaczny, więc stuknięcie w punkt:
+# „Delete” w oknie z dwoma przyciskami leży po prawej, środek [205,463][345,511] = (275, 487) z 402×874 pt = 68%, 56% (zrzuty obu przebiegów) (tests/maestro-e2e38563.test.tsx)
+- tapOn: { point: "68%, 56%" }
+- extendedWaitUntil: { visible: "3 sessions", timeout: 30000 }
+- takeScreenshot: 99-po-usunieciu-sesji

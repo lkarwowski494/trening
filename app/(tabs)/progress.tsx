@@ -8,10 +8,11 @@ import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal,
 import { MUSCLES } from '@/lib/seed';
 import { SET_PARTS } from '@/lib/setParts';
 import { splitText, splitLabel, splitTotals, emptySplit, type SetSplit } from '@/lib/setSplit';
-import { Seg, IndirectLegend } from '@/components/ProgressBars';
+import { Seg, IndirectLegend, PeriodLine, HatchBar, prevText } from '@/components/ProgressBars';
 import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { PeriodSummary } from '@/components/PeriodSummary';
 import { ProgressTiles } from '@/components/Dashboard';
+import { GuardSection } from '@/components/GuardSection';
 import { useTheme, F } from '@/lib/theme';
 import { hasWeight, hasReps, hasTime, hasDistance } from '@/lib/seed';
 import { t, exName, locale, fold, lang, collator } from '@/lib/i18n';
@@ -44,7 +45,11 @@ export default function ProgressTab() {
 type View_ = { exId: string; setExId: (id: string) => void; q: string; setQ: (q: string) => void; chartKey: ChartKey | ''; setKey: (k: ChartKey | '') => void; scrollY: React.MutableRefObject<number> };
 
 function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: View_) {
-  const { ex: exParam } = useLocalSearchParams<{ ex?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
+  const { ex: exParam, s: sParam } = useLocalSearchParams<{ ex?: string; s?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
+  /* „Szczegóły w Postępach ›” z ekranu Trening (/progress?s=guard): przewinięcie do sekcji „Strażnik progresji” (strażnik progresji, 14.10.2026); pozycję podaje onLayout sekcji */
+  const listRef = useRef<ScrollView>(null); const guardY = useRef<number | null>(null); const wantGuard = useRef(false);
+  const toGuard = () => { if (wantGuard.current && guardY.current != null) { wantGuard.current = false; listRef.current?.scrollTo({ y: guardY.current, animated: false }); scrollY.current = guardY.current; } };
+  useEffect(() => { if (sParam === 'guard') { wantGuard.current = true; toGuard(); router.setParams({ s: '' }); /* inaczej powrót do zakładki znów przewijałby */ } }, [sParam]); // eslint-disable-line react-hooks/exhaustive-deps
   /* przewinięcie (audyt 0.13): zapamiętywane w zakładce, przywracane przy ponownym zamontowaniu treści */
   const scroll = { onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => { scrollY.current = e.nativeEvent.contentOffset.y; }, scrollEventThrottle: 32, contentOffset: { x: 0, y: scrollY.current } };
   const ex = exId ? exById(exId) : undefined;
@@ -62,23 +67,21 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
   if (!ex) {
     const weeks = weeklyTotals(8); const any = hasAnyHistory();
     return (
-      <ScrollView testID="progress-scroll-list" {...scroll} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
+      <ScrollView ref={listRef} testID="progress-scroll-list" {...scroll} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
         {any ? <>
           <PeriodSummary />
+          <GuardSection onLayoutY={y => { guardY.current = y; toGuard(); }} />{/* 14.10.2026: strażnik progresji — „Strażnik progresji” */}
           <ProgressTiles />{/* 11.10.2026: „Progresja” także tu — to samo wejście co z ekranu Trening (/progression) */}
-          <H2>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
+          <H2 infoId="vol-week" info={[t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.'), ...(weeks.some(w => isDeloadWeek(w.weekStart)) ? [t('D — tydzień oznaczony jako deload.')] : [])]}>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: volOut(w.volume) }))} fmt={v => v >= 1000 ? `${fmtNum(v / 1000, 1)}k` : `${v}`} />
           <H2 style={{ marginTop: 14 }}>{t('Serie robocze tygodniowo')}</H2>
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: w.sets }))} fmt={v => `${v}`} height={110} />
-          <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')}{weeks.some(w => isDeloadWeek(w.weekStart)) ? ' ' + t('D — tydzień oznaczony jako deload.') : ''}</Muted>
-          <H2>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
+          {weeks.some(w => isDeloadWeek(w.weekStart)) ? <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('D — tydzień deload')}</Muted> : null}
+          <H2 infoId="sets-part" info={[t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }), t('Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.', { n: WEEKLY_SETS_MARK }), t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).'), t('Uproszczenie: drop set liczy się razem z serią, po której jest.'), t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')]}>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
           <MuscleCompare parts={SET_PARTS} curSplit={weeklySplitByMuscle(thisMonday())} prevSplit={weeklySplitByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} markOf={setsGoal} />
           {Object.values(weeklySplitByMuscle(thisMonday())).some(x => x.indirectSets > 0) ? <IndirectLegend /> : null}
-          <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })} {t('Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.', { n: WEEKLY_SETS_MARK })} {t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).')} {t('Uproszczenie: drop set liczy się razem z serią, po której jest.') /* D3 (audyt 0.10): brak źródła, jak liczyć drop sety w objętości tygodniowej — docs/research/22 */}</Muted>
-          <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')}</Muted>
-          <H2>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
+          <H2 infoId="vol-part" info={t('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')}>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
           <MuscleCompare cur={weeklyVolumeByMuscle(thisMonday())} prev={weeklyVolumeByMuscle(thisMonday(-1))} fmt={v => { const x = volOut(v); return x >= 10000 ? `${fmtNum(x / 1000, 1)}k` : fmtNum(Math.round(x)); }} />
-          <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')}</Muted>
         </> : <Empty>{t('Wykresy pojawią się po pierwszym zakończonym treningu.')}</Empty>}
         <BodyMassSection />
         <H2 style={{ marginTop: 8 }}>{t('Ćwiczenie')}</H2>
@@ -145,23 +148,28 @@ function BodyMassSection() {
   </>;
 }
 
-/** Porównanie partii: ten tydzień (pasek) vs poprzedni (liczba w nawiasie) — serie albo objętość (06.10.2026). `mark` — pionowa kreska
- * (pakiet C: WEEKLY_SETS_MARK przy seriach, ACSM 2026); skala paska obejmuje kreskę, żeby była widoczna także przy mniejszej objętości. */
+/** Porównanie partii: ten tydzień vs poprzedni — DWA słupki na partię na wspólnej osi (14.10.2026): wyżej okres 1 (pełny), niżej okres 2 (szary z prążkami), przy każdym
+ * nazwa okresu i liczby; serie albo objętość (06.10.2026). `mark` — pionowa kreska (pakiet C: WEEKLY_SETS_MARK przy seriach, ACSM 2026); oś obejmuje kreskę i oba słupki. */
 function MuscleCompare({ cur: curIn, prev: prevIn, curSplit, prevSplit, fmt, markOf, parts = MUSCLES }: { cur?: Record<string, number>; prev?: Record<string, number>; /** serie (13.10.2026): podział bezpośrednio / pośrednio zamiast samych sum — odcinki paska i podpis „6 + 1,5 pośrednio (3 serie) / 10” */ curSplit?: Record<string, SetSplit>; prevSplit?: Record<string, SetSplit>; fmt: (v: number) => string; /** kreska celu wiersza (serie: cel części) */ markOf?: (part: string) => number; parts?: readonly string[] }) {
   const th = useTheme(); const cur = curSplit ? splitTotals(curSplit) : curIn ?? {}; const prev = prevSplit ? splitTotals(prevSplit) : prevIn ?? {};
   const rows = parts.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, ...rows.map(mu => Math.max(markOf?.(mu) ?? 0, cur[mu] ?? 0, prev[mu] ?? 0)));
   if (!rows.length) return <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym i poprzednim tygodniu.')}</Muted>;
+  const n1 = t('Ten tydzień'), n2 = t('Poprzedni tydzień'); const prevEmpty = !rows.some(mu => (prev[mu] ?? 0) > 0);
   return <>{rows.map(mu => { const c = cur[mu] ?? 0, p = prev[mu] ?? 0; const mark = markOf?.(mu); const label = t(mu); const sp = curSplit ? curSplit[mu] ?? emptySplit() : undefined; const ind = sp?.indirectWeighted ?? 0;
-    const shown = sp ? splitText(sp, mark) : fmt(c); const bid = curSplit ? 'cbar' : 'cvol'; /* serie / objętość: osobne testID */
+    const shown = sp ? splitText(sp, mark) : fmt(c); const bid = curSplit ? 'cbar' : 'cvol'; const kind = curSplit ? 'sets' : 'vol'; /* serie / objętość: osobne testID */ const pv = prevText(p, fmt, prevEmpty);
     return (
-    <View accessibilityLanguage={lang()} key={mu} style={{ marginBottom: 8 }} accessible accessibilityLabel={`${label}: ${sp ? splitLabel(sp) : fmt(c)} (${t('poprz.')} ${fmt(p)})${mark ? ', ' + t('cel {n}', { n: fmt(mark) }) : ''}${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}><Txt style={{ fontSize: 14 }}>{label}</Txt><Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{monoSafe(shown) /* A11-11 */} <Muted style={{ fontSize: 12 }}>({t('poprz.')} {fmt(p)})</Muted></Muted></View>
-      <View style={{ height: 6, backgroundColor: th.line, borderRadius: 3, marginTop: 4 }}>
-        <View testID={`${bid}-${mu}`} style={{ width: `${Math.round(100 * c / max)}%`, height: 6, borderRadius: 3, overflow: 'hidden', flexDirection: 'row' }}>
-          {c - ind > 0 ? <Seg testID={`${bid}-${mu}-direct`} width={`${(100 * (c - ind)) / c}%`} color={th.accent} /> : null}
-          {ind > 0 ? <Seg testID={`${bid}-${mu}-indirect`} width={`${(100 * ind) / c}%`} color={th.accent} indirect edge={c - ind > 0} /> : null}
+    <View accessibilityLanguage={lang()} testID={`crow-${kind}-${mu}`} key={mu} style={{ marginBottom: 10 }} accessible accessibilityLabel={`${label}: ${n1} ${sp ? splitLabel(sp) : fmt(c)}, ${n2} ${pv}${mark ? ', ' + t('cel {n}', { n: fmt(mark) }) : ''}${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
+      <Txt style={{ fontSize: 14 }}>{label}</Txt>
+      <PeriodLine n={1} id={`${kind}-${mu}`} name={n1} text={shown}>
+        <View style={{ height: 8, backgroundColor: th.line, borderRadius: 4 }}>
+          <View testID={`${bid}-${mu}`} style={{ width: `${Math.round(100 * c / max)}%`, height: 8, borderRadius: 4, overflow: 'hidden', flexDirection: 'row' }}>
+            {c - ind > 0 ? <Seg testID={`${bid}-${mu}-direct`} width={`${(100 * (c - ind)) / c}%`} color={th.accent} /> : null}
+            {ind > 0 ? <Seg testID={`${bid}-${mu}-indirect`} width={`${(100 * ind) / c}%`} color={th.accent} indirect edge={c - ind > 0} /> : null}
+          </View>
+          {c === 0 ? <View testID={`${bid}-${mu}-zero`} style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, backgroundColor: th.accent, borderRadius: 4 }} /> : null}
+          {mark ? <View testID={`mark-${mu}`} style={{ position: 'absolute', left: `${Math.round(100 * mark / max)}%`, top: -3, width: 2, height: 14, marginLeft: -1, backgroundColor: th.text }} /> : null}
         </View>
-        {mark ? <View testID={`mark-${mu}`} style={{ position: 'absolute', left: `${Math.round(100 * mark / max)}%`, top: -3, width: 2, height: 12, marginLeft: -1, backgroundColor: th.text }} /> : null}
-      </View>
+      </PeriodLine>
+      <PeriodLine n={2} id={`${kind}-${mu}`} name={n2} text={pv}><HatchBar testID={`${bid}-prev-${mu}`} pct={Math.round(100 * p / max)} /></PeriodLine>
     </View>); })}</>;
 }

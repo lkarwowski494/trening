@@ -140,7 +140,7 @@ function saveSwapped(a: Workout) {
 function altCtx(w: Workout, e: WExercise): { tpl: Template; item: TemplateItem; loc: Location } | null {
   const tpl = w.templateId ? getState().templates.find(x => x.id === w.templateId) : undefined;
   const item = tpl && e.tplItemId ? tpl.items.find(x => x.id === e.tplItemId) : undefined;
-  const loc = locationById(w.locationId); return tpl && item && loc ? { tpl, item, loc } : null;
+  const loc = locationById(w.locationId); return tpl && item && loc && !loc.oneOff /* 0.19 (docs/33 A4): „Zawsze w” tylko dla zapisanego miejsca */ ? { tpl, item, loc } : null;
 }
 /** Wpis, który zapisałby „Zawsze w” dla bloku: zamiennik B pozycji A (swappedFrom = ćwiczenie pozycji) albo A z przyrządem wybranym ręcznie (P5a). */
 function altOfBlock(c: { item: TemplateItem; loc: Location }, e: WExercise): TemplateAlt | null {

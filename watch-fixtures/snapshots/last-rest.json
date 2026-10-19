@@ -1,0 +1,23 @@
+{
+ "v": 1,
+ "kind": "snapshot",
+ "rev": 2,
+ "lang": "pl",
+ "phase": "rest",
+ "paused": false,
+ "workoutId": "workout-1",
+ "title": "Push",
+ "now": null,
+ "rest": {
+  "setId": "set-2-1",
+  "startedAt": 1791885600000,
+  "endsAt": 1791885690000,
+  "totalSec": 90,
+  "cue": "nic więcej do zrobienia",
+  "last": true
+ },
+ "after": null,
+ "doneCount": 7,
+ "totalCount": 7,
+ "toFillCount": 0
+}

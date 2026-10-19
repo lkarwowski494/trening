@@ -1436,7 +1436,7 @@ describe('runda 54', () => {
 describe('runda 55', () => {
   test('R55-01 kg z wieloma miejscami po przecinku zostają po restarcie (przyciąganie funtów tylko dla starych danych)', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const s = store.getState().active!.exercises[0].sets[0]; s.weight = 45.359237;
-    const m = store.migrate(JSON.parse(JSON.stringify(store.getState()))); expect(m.active!.exercises[0].sets[0].weight).toBe(45.36); /* runda 60: siatka 0,01 kg, nie przyciąganie funtów (45,35) */ expect(m.schemaVersion).toBe(18); /* runda 75: schemat 13; P-003 E1: 14; audyt 0.10 A1: 18 */
+    const m = store.migrate(JSON.parse(JSON.stringify(store.getState()))); expect(m.active!.exercises[0].sets[0].weight).toBe(45.36); /* runda 60: siatka 0,01 kg, nie przyciąganie funtów (45,35) */ expect(m.schemaVersion).toBe(19); /* runda 75: schemat 13; P-003 E1: 14; audyt 0.10 A1: 18 */
   });
   test('R55-02 nazwy jak „toString”/„constructor”/„__proto__” nie trafiają w Object.prototype', async () => {
     await fresh(); for (const n of ['toString', 'constructor', '__proto__', 'hasOwnProperty']) { const e = store.newExercise(n); store.setEquipment(e, 'masa ciała'); expect(e.equipment).toBe('masa ciała'); }
@@ -1926,10 +1926,10 @@ describe('Q-004 (0.14.0): zmiana języka w trakcie przerwy/stopera odświeża Li
   };
   const pickEnglish = async () => { await go('/more/language'); await flushAll(10); await tap(screen.getByLabelText('English')); await flushAll(10); };
   test('przerwa: Live Activity startuje od nowa po angielsku (etykieta „rest|Rest”, podpis „next: …”), T.sub w nowym języku', async () => {
-    const lb = await bootRest(); expect(lb.sub).toBe('dalej: Pull Up'); global.__la.length = 0;
+    const lb = await bootRest(); expect(lb.sub).toBe('dalej: Pull Up, masa ciała'); /* 0.20: podpis = restCue (ciężar i powtórzenia) */ global.__la.length = 0;
     await pickEnglish();
     const starts = (global.__la as any[][]).filter(x => x[0] === 'start'); expect(starts).toHaveLength(1);
-    expect(starts[0][2]).toBe('next: Pull Up'); expect(starts[0][5]).toBe('rest|Rest'); expect(timer.T.sub).toBe('next: Pull Up');
+    expect(starts[0][2]).toBe('next: Pull Up, body weight'); expect(starts[0][5]).toBe('rest|Rest'); expect(timer.T.sub).toBe('next: Pull Up, body weight');
     expect(starts[0][3]).toBe(timer.T.endAt); /* koniec przerwy bez zmian */
   });
   test('przypomnienie o porzuconym treningu jest przeplanowane w nowym języku także bez zamontowanego ekranu treningu', async () => {
@@ -2141,5 +2141,25 @@ describe('Q-026 (0.14.0): edytor historii oznacza ciężar zapisany pod innym sp
   test('wpisanie ciężaru w polu przenosi go do obecnego sprzętu i dopisek znika', async () => {
     await boot(); expect(screen.getAllByText(NOTE)).toHaveLength(1); const f = screen.getAllByLabelText(/^kg/)[0]; await type(f, '12'); await flushAll(10);
     expect(screen.queryByText(NOTE)).toBeNull();
+  });
+});
+
+describe('TestFlight 0.18/1015 (14.10.2026, WYSOKI): „Nie udało się włączyć Apple Health” — build bez uprawnienia HealthKit', () => {
+  /* Kroki: TestFlight 0.18 (build 1015) → Ustawienia → „Pokazuj dane z Apple Health” → alert „Nie udało się włączyć Apple Health”.
+   * Przyczyna (przebieg 38549517589): archiwum z CODE_SIGNING_ALLOWED=NO nie ma uprawnień, a eksport podpisał .ipa tylko z team-identifier — requestAuthorization
+   * rzuca wyjątek bez com.apple.developer.healthkit. Realność: realny (każdy build z tym archiwum). Test odtwarza objaw w kodzie (wyjątek → 'failed' → alert)
+   * i pilnuje przyczyny: uprawnienie, którego aplikacja potrzebuje, jest w plikach projektu, a testflight.yml sprawdza je w .ipa przed wysyłką (tests/public-repo.test.ts). */
+  test('wyjątek z requestAuthorization (brak uprawnienia w podpisie) = „failed”, a nie „ok”', async () => {
+    jest.resetModules();
+    jest.doMock('@/lib/hkModule', () => ({ hk: () => ({ isHealthDataAvailableAsync: async () => true, requestAuthorization: async () => { throw new Error('Missing com.apple.developer.healthkit entitlement'); } }) }));
+    const h = require('@/lib/health'); expect(await h.ensureReadAuthorization()).toBe('failed'); jest.dontMock('@/lib/hkModule');
+  });
+  test('aplikacja wymaga HealthKit w obu celach (telefon i zegarek) i strażnik .ipa sprawdza dokładnie te cele', () => {
+    const fs = require('fs'); const path = require('path'); const root = path.join(__dirname, '..');
+    const app = JSON.parse(fs.readFileSync(path.join(root, 'app.json'), 'utf8')).expo;
+    expect(JSON.stringify(app.plugins)).toContain('@kingstinct/react-native-healthkit'); expect(app.ios.infoPlist).toBeDefined();
+    expect(fs.readFileSync(path.join(root, 'targets/watch-app/expo-target.config.js'), 'utf8')).toContain("'com.apple.developer.healthkit': true");
+    const y = fs.readFileSync(path.join(root, '.github/workflows/testflight.yml'), 'utf8');
+    expect(y).toContain('ios/Trening/Trening.entitlements'); expect(y).toContain('ios/.targets/TreningWatch/generated.entitlements');
   });
 });

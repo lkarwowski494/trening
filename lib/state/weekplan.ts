@@ -4,7 +4,7 @@
  * Zależy od: ./core, ./time, ./util; zewnętrzne: ../seed.
  */
 import { type PlanSegment } from '../seed';
-import { isObj, clampName } from './util';
+import { isObj, clampName, idOf } from './util';
 import { mondayKey, DATE_KEY } from './time';
 import { S, save, getState } from './core';
 
@@ -57,6 +57,19 @@ export const cleanOverrides = (x: unknown): Record<string, string | null> => (is
 /** Trening zrobiony wcześniej (11.10.2026): dzień → id treningu; zły klucz albo pusta wartość odpada. */
 export const cleanDoneEarly = (x: unknown): Record<string, string> => (isObj(x)
     ? Object.fromEntries(Object.entries(x).filter(([k, v]) => DATE_KEY.test(k) && typeof v === 'string' && !!v && v.length <= 80)) as Record<string, string> : {});
+/** Najwyżej tyle dni z miejscem w planie (najnowsze zostają) — liczba w jednym miejscu (migrate, ekran, plan). */
+export const PLAN_PLACES_MAX = 400;
+/** Najdłuższy zakres miejsca w planie (dni, wliczając pierwszy i ostatni) — „Hotel pt–nd”, wyjazd na kilka tygodni; ekran i funkcja planu. */
+export const PLAN_PLACE_RANGE_MAX = 31;
+/** 0.19 (docs/33 B): miejsca dni planu — klucze-daty (bez `__proto__` i innych: tylko poprawna data), wartości id miejsca tekstem (liczbowe id z ręcznie
+ * edytowanej kopii też); `known` — jeśli podane, zostają tylko id istniejących miejsc; najwyżej PLAN_PLACES_MAX najnowszych dni; idempotentne. */
+export function cleanPlanPlaces(x: unknown, known?: ReadonlySet<string>): Record<string, string> {
+  if (!isObj(x)) return {};
+  const e: [string, string][] = [];
+  for (const [k, v] of Object.entries(x)) { const id = idOf(v); if (DATE_KEY.test(k) && id && id.length <= 80 && (!known || known.has(id))) e.push([k, id]); }
+  e.sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0));
+  return Object.fromEntries(e.slice(-PLAN_PLACES_MAX));
+}
 /** Nowy odcinek od dnia `from` (zmiana planu dziś): odcinki od tego dnia i późniejsze ustępują nowemu. */
 export const appendPlanSegment = (list: PlanSegment[], from: string,
     days: (string | null)[]): PlanSegment[] => normPlanHistory([...list.filter(x => x.from < from), { from, days: planDays(days) }]);

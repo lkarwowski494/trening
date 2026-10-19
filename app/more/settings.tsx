@@ -8,6 +8,7 @@ import { useRouter } from 'expo-router';
 import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, REST_MAX, RIR_MAX, RPE_LIGHT } from '@/lib/store';
 import { DEFAULT_REST, type ThemeSetting, type WorkoutView } from '@/lib/seed';
 import * as timer from '@/lib/timer';
+import { sampleVoice, voiceAvailable } from '@/lib/voice';
 import { PLAN_REMINDER_HOUR, reminderPermission, type ReminderPermission } from '@/lib/planReminder';
 import { safetyBackup, safetyRecoveryNote, AUTO_KEEP } from '@/lib/backup';
 import * as health from '@/lib/health';
@@ -34,22 +35,21 @@ export default function SettingsScreen() {
       <Field label={t('Jednostka ciężaru')}><Segmented label={t('Jednostka ciężaru')} options={[['kg', 'kg'], ['lb', 'lb']] as [Unit, string][]} value={(s.unit ?? 'kg') as Unit} onChange={u => { s.unit = u; applyPrefs(); save(); }} /></Field>
 
       <SectionTitle>{t('Trening')}</SectionTitle>
-      <Field label={t('Widok treningu')}><Segmented label={t('Widok treningu')} options={[['focus', t('Skupiony')], ['list', t('Lista')]] as [WorkoutView, string][]} value={s.workoutView ?? 'focus'} onChange={v => { s.workoutView = v; saveCfg(); }} /></Field>
-      <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{s.workoutView === 'list' ? t('Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.') : t('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')}</Muted>
+      <Field label={t('Widok treningu')} infoId="workout-view" info={s.workoutView === 'list' ? t('Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.') : t('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')}><Segmented label={t('Widok treningu')} options={[['focus', t('Skupiony')], ['list', t('Lista')]] as [WorkoutView, string][]} value={s.workoutView ?? 'focus'} onChange={v => { s.workoutView = v; saveCfg(); }} /></Field>
       <Field label={t('Domyślna przerwa (s)')}><NumInput value={s.defaultRest} onNum={v => { if (v === '') return; s.defaultRest = Math.min(REST_MAX, Math.max(0, Math.round(v))) /* UI2-09: limit z jednego miejsca */; saveCfg(); }} placeholder={String(DEFAULT_REST)} /></Field>
       <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; saveCfg(); timer.refreshScheduled().catch(() => {}); timer.refreshStale().catch(() => {}); }} />
+      <SwitchRow label={t('Głos także przez głośnik telefonu')} detail={t('Domyślnie głos tylko w słuchawkach.')} infoId="voice-speaker" info={t('W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.')} value={s.voiceSpeaker === true} onChange={v => { if (v) s.voiceSpeaker = true; else delete s.voiceSpeaker; saveCfg(); }} />
+      <Btn title={t('Posłuchaj przykładu')} small onPress={() => { sampleVoice().catch(() => {}); }} />
+      {!voiceAvailable() ? <Muted style={{ fontSize: 13, marginTop: 4, marginBottom: 8 }}>{t('Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).')}</Muted> : null}
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; saveCfg(); }} />
       <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; saveCfg(); }} />
       {s.showRpe ? <>
-        <Field label={t('Skala wysiłku')}><Segmented label={t('Skala wysiłku')} options={[['rpe', 'RPE'], ['rir', 'RIR']] as ['rpe' | 'rir', string][]} value={s.effortScale ?? 'rpe'} onChange={v => { if (v === 'rir') s.effortScale = v; else delete s.effortScale; saveCfg(); }} /></Field>
-        <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{t('RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.')}</Muted>
-        <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{t('RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).', { max: RIR_MAX, light: RPE_LIGHT, min: 10 - RIR_MAX })}</Muted>{/* audyt kontrolny 1 MER2-08 */}
+        <Field label={t('Skala wysiłku')} infoId="effort-scale" info={[t('RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.'), t('RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).', { max: RIR_MAX, light: RPE_LIGHT, min: 10 - RIR_MAX })]}><Segmented label={t('Skala wysiłku')} options={[['rpe', 'RPE'], ['rir', 'RIR']] as ['rpe' | 'rir', string][]} value={s.effortScale ?? 'rpe'} onChange={v => { if (v === 'rir') s.effortScale = v; else delete s.effortScale; saveCfg(); }} /></Field>
       </> : null}
       <SwitchRow label={t('Podpowiedź progresji')} detail={t('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')} value={s.progressHint} onChange={v => { s.progressHint = v; saveCfg(); }} />
       {/* 11.10.2026 (docs/22, P5 A): „Masa ciała” przeniesiona do zakładki Postępy (sekcja „Masa ciała”) — z Ustawień wejście zniknęło */}
 
-      <SectionTitle>{t('Cel serii na partię w tygodniu')}</SectionTitle>{/* 12.10.2026 (decyzja właściciela, docs/research/32): cel osobno dla każdej partii; automat = jedna liczba ze źródłami */}
-      <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}.', { n: WEEKLY_SETS_MARK, min: SETS_GOAL_MIN, max: SETS_GOAL_MAX })}</Muted>
+      <SectionTitle infoId="sets-goal" info={t('Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}.', { n: WEEKLY_SETS_MARK, min: SETS_GOAL_MIN, max: SETS_GOAL_MAX })}>{t('Cel serii na partię w tygodniu')}</SectionTitle>{/* 12.10.2026 (decyzja właściciela, docs/research/32): cel osobno dla każdej partii; automat = jedna liczba ze źródłami; ⓘ 14.10.2026 */}
       <Btn small expanded={goalsOpen} accessibilityLabel={t('Cele partii')} title={goalsOpen ? t('Ukryj cele partii') : t('Pokaż cele partii')} style={{ alignSelf: 'flex-start', marginBottom: 8 }} onPress={() => setGoalsOpen(o => !o)} />
       {goalsOpen ? <View testID="set-goals">{SET_PARTS.map(p => <SetGoalRow key={p} part={p} />)}</View> : null}
 
@@ -70,14 +70,13 @@ export default function SettingsScreen() {
       {s.healthRead ? <View testID="health-read-note" style={{ marginTop: -2, marginBottom: 8 }}><Muted style={{ fontSize: 13 }}>{t('Zgodę cofniesz w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })}</Muted></View> : null}
       <SwitchRow label={t('Automatyczna kopia po każdym treningu')} detail={t('Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}', { app: appName(), n: AUTO_KEEP })} value={s.autoBackup} onChange={v => { s.autoBackup = v; saveCfg(); }} />
 
-      <SectionTitle>{t('Powiadomienia')}</SectionTitle>
+      <SectionTitle infoId="notifications" info={t('Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.')}>{t('Powiadomienia')}</SectionTitle>
       <SwitchRow label={t('Przypomnienie o treningu z planu')} detail={t('rano o {h}:00 w dniu zaplanowanego treningu', { h: PLAN_REMINDER_HOUR })} value={s.planReminder !== false} onChange={v => { if (v) { delete s.planReminder; timer.ensurePermission().then(refreshPerm).catch(() => {}); } else s.planReminder = false; save(); }} />{/* 08.10.2026 (decyzja właściciela) */}
       {s.planReminder !== false && perm === 'denied' ? <View testID="perm-denied" style={{ gap: 6, marginTop: 4 }}>
         <Muted style={{ fontSize: 13 }}>{t('Brak zgody na powiadomienia — przypomnienia i koniec przerwy nie przyjdą. Zgodę włączysz w Ustawieniach iOS.')}</Muted>
         <Btn small title={t('Otwórz Ustawienia iOS')} onPress={openIos} style={{ alignSelf: 'flex-start' }} />
       </View> : s.planReminder !== false && perm === 'undetermined' ? <Muted style={{ fontSize: 13, marginTop: 4 }}>{t('Zgody na powiadomienia jeszcze nie ma — „Sprawdź zgodę na powiadomienia” poprosi o nią.')}</Muted> : null}{/* audyt 0.10 I1 */}
       <Btn title={t('Sprawdź zgodę na powiadomienia')} style={{ marginTop: 12 }} onPress={async () => { const ok = await timer.ensurePermission(); refreshPerm(); if (ok) Alert.alert(t('Powiadomienia działają'), t('Koniec przerwy i przypomnienie o treningu z planu przyjdą także przy zablokowanym ekranie.')); else Alert.alert(t('Brak zgody'), t('Włącz powiadomienia dla {app} w Ustawieniach iOS.', { app: appName() }), [{ ...cancelButton() }, { text: t('Otwórz Ustawienia iOS'), onPress: openIos }]); }} />
-      <Muted style={{ fontSize: 13, marginVertical: 12 }}>{t('Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.')}</Muted>
 
       {/* Moduły schowane (decyzja właściciela 05.10.2026: „Na razie schowaj moduły”) — ustawienia modułów zostają w danych */}
       <SectionTitle>{t('Dane w telefonie')}</SectionTitle>

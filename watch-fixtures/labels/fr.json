@@ -1,0 +1,16 @@
+{
+ "done": "Série terminée",
+ "differ": "Fait autrement",
+ "skip": "Passer",
+ "skipAsk": "Passer l’exercice ?",
+ "cancel": "Annuler",
+ "undo": "Annuler",
+ "rest": "Repos",
+ "set": "Série",
+ "pause": "Séance en pause",
+ "connect": "Connecter au téléphone",
+ "idle": "Démarrez une séance sur le téléphone",
+ "finished": "Séance terminée",
+ "update": "Mettez à jour l’app de la montre",
+ "nothingLeft": "plus rien à faire"
+}

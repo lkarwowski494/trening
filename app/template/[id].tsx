@@ -7,11 +7,12 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
 import { TechniqueLink } from '@/components/ExerciseCues';
 import { Screen, Field, Input, NumInput, Btn, Muted, Txt, H1, Empty, FieldLabel, FieldHint, useOnce, Chip, Missing } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
 import { availability } from '@/lib/equipment';
 import { implLabel } from '@/lib/swap';
-import { getState, useTick, exById, save, dupTemplate, templateFolders, setTemplateFolder, setTemplateArchived, TEMPLATE_NOTE_MAX, groupLabels, linkWithNext, unlink, removeItem, restFor, isBW, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplEditRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand, workCount, tplWorkSets, fmtSec , REPS_MAX , REST_MAX } from '@/lib/store';
+import { visibleLocations, getState, useTick, exById, save, dupTemplate, templateFolders, setTemplateFolder, setTemplateArchived, TEMPLATE_NOTE_MAX, groupLabels, linkWithNext, unlink, removeItem, restFor, isBW, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplEditRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand, workCount, tplWorkSets, fmtSec , REPS_MAX , REST_MAX } from '@/lib/store';
 import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dropUnsavedNew } from '@/lib/draft';
 import { nowParts } from '@/lib/live';
 import { useTheme, F } from '@/lib/theme';
@@ -65,7 +66,7 @@ function TemplatePreview({ tpl, onEdit }: { tpl: Template; onEdit: () => void })
   // Runda 9: start z ekranu otwartego z zakładki Szablony — zamykamy cały stos i przechodzimy na zakładkę główną.
   const goHome = () => { if (router.canDismiss()) router.dismissAll(); router.navigate('/'); };
   const act = getState().active; const labels = groupLabels(tpl.items); const sets = tplWorkSets(tpl);
-  const meta = [tpl.folder ? `${t('Folder')}: ${tpl.folder}` : '', getState().settings.locations.length ? `📍 ${tpl.locationId ? locationLabel(tpl.locationId) : `${locationLabel(getState().settings.mainLocationId)} (${t('główne')})`}` /* UX2-02: bez miejsca = miejsce główne (jak chip „główne” w edytorze i start) */ : '', `${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}`, tpl.archived ? t('w archiwum') : ''].filter(Boolean).join(' · ');
+  const meta = [tpl.folder ? `${t('Folder')}: ${tpl.folder}` : '', visibleLocations().length ? `📍 ${tpl.locationId ? locationLabel(tpl.locationId) : `${locationLabel(getState().settings.mainLocationId)} (${t('główne')})`}` /* UX2-02: bez miejsca = miejsce główne (jak chip „główne” w edytorze i start) */ : '', `${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}`, tpl.archived ? t('w archiwum') : ''].filter(Boolean).join(' · ');
   const start = once(() => { const a = getState().active; if (a && a.templateId === tpl.id) { goHome(); return; } if (a) { workoutInProgressNotice(); return; } startTemplate(tpl, goHome); });
   const archive = () => { const use = tpl.archived ? '' : templateUsageText(tpl.id, true); /* audyt 0.10 A7: szablon w planie — pytanie ze skutkami */ if (!use) { setTemplateArchived(tpl, !tpl.archived); return; } Alert.alert(t('Archiwizować szablon?'), `${tpl.name}\n\n${use}`, [{ ...cancelButton() }, { text: t('Archiwizuj'), onPress: () => setTemplateArchived(tpl, true) }]); };
   return (
@@ -103,9 +104,9 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
       <Field label={t('Nazwa')}><Input selectTextOnFocus maxLength={80} value={tpl.name} onChangeText={v => { tpl.name = v; save(tpl); }} /* G2 (audyt 0.10): pusta nazwa przy „Zapisz” wraca do poprzedniej (lib/draft.cleanName) */ /></Field>
-      {getState().settings.locations.length ? <Field label={t('Miejsce domyślne')} /* P-003 E1: start treningu z tego szablonu — to miejsce (zmiana na starcie: „📍”) */><HScroll horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>
+      {visibleLocations().length ? <Field label={t('Miejsce domyślne')} /* P-003 E1: start treningu z tego szablonu — to miejsce (zmiana na starcie: „📍”) */><HScroll horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}>
         <Chip label={t('główne')} on={!tpl.locationId} onPress={() => { if (!tpl.locationId) return; delete tpl.locationId; save(tpl); }} />
-        {getState().settings.locations.map(l => <Chip key={l.id} label={l.name} on={tpl.locationId === l.id} onPress={() => { if (tpl.locationId === l.id) return; tpl.locationId = l.id; save(tpl); }} />)}
+        {visibleLocations().map(l => <Chip key={l.id} label={l.name} on={tpl.locationId === l.id} onPress={() => { if (tpl.locationId === l.id) return; tpl.locationId = l.id; save(tpl); }} />)}
         {tpl.locationId && !getState().settings.locations.some(l => l.id === tpl.locationId) ? <Chip label={locationLabel(tpl.locationId)} on onPress={() => {}} /> : null}
       </HScroll></Field> : null}
       {/* 07.10.2026 wieczór (docs/21 4a): folder — zmienia tylko użytkownik */}
@@ -139,7 +140,6 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
           </> : null}
         </View>); })}
       <Btn title={t('+ Dodaj ćwiczenie')} block style={{ marginTop: 12 }} onPress={once(() => router.push(`/picker?target=template:${tpl.id}`))} />
-      <Muted style={{ fontSize: 13, marginTop: 10 }}>{t('Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.')}</Muted>
     </ScrollView></Screen>
   );
 }
@@ -207,7 +207,9 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
       </View>
       {/* MER-13 (audyt 0.10): opis zgodny z podpowiedzią („↑ spróbuj 62,5”, „↑ spróbuj 9 pow.”) i tylko tam, gdzie ona się pojawia (store.progressionFor:
        * ciężar + powtórzenia, zamknięty zakres, włączona w Ustawieniach) — przy zakresie otwartym „8+” jej nie ma */}
-      {m === 'weight_reps' && it.repMin != null && it.repMax != null && it.repMax >= it.repMin && getState().settings.progressHint ? <Muted style={{ fontSize: 12 }}>{t('Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze miały co najmniej {n} powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).', { r: reps(it.repMin, it.repMax), n: it.repMax })}</Muted> : null}
+      {m === 'weight_reps' && it.repMin != null && it.repMax != null && it.repMax >= it.repMin && getState().settings.progressHint ? <InfoTip id={`range-${it.id}`} label={t('Zakres {r}: gdy ostatnio wszystkie serie miały ≥ {n} powt., pojawi się „↑”.', { r: reps(it.repMin, it.repMax), n: it.repMax })} info={t('Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze miały co najmniej {n} powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).', { r: reps(it.repMin, it.repMax), n: it.repMax })}>
+        <Muted style={{ fontSize: 12 }}>{t('Zakres {r}: gdy ostatnio wszystkie serie miały ≥ {n} powt., pojawi się „↑”.', { r: reps(it.repMin, it.repMax), n: it.repMax })}</Muted>
+      </InfoTip> : null}
       {hasReps(m) && it.repMin != null && it.repMax != null && it.repMax < it.repMin ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+', { n: it.repMin })}</Muted> : null}
     </View></FieldHint.Provider>
   );

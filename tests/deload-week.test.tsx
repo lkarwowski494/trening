@@ -7,7 +7,7 @@
 import * as store from '@/lib/store';
 import { applyLang } from '@/lib/i18n';
 import { fresh, addWorkout, saved } from './helpers';
-import { renderApp, flushAll, screen, tap, act } from './app';
+import { renderApp, flushAll, screen, tap, act, openInfo } from './app';
 
 const NOW = new Date(2026, 9, 8, 18, 0); /* czwartek; poniedziałek 5.10 */
 const S = () => store.getState();
@@ -35,9 +35,9 @@ describe('ekran Postępy', () => {
     expect(screen.queryByText('Tydzień deload')).toBeNull(); expect(screen.queryByRole('switch')).toBeNull(); expect(screen.queryByText(/^Ten tydzień jest oznaczony jako deload/)).toBeNull();
     expect(screen.queryByText(/D — tydzień oznaczony jako deload\./)).toBeNull();
     await act(async () => { store.toggleDeloadWeek(new Date(2026, 9, 6).getTime()); }); await flushAll(5);
-    expect(S().deloadWeeks).toEqual(['2026-10-05']); expect(screen.getByText('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.')).toBeTruthy();
+    expect(S().deloadWeeks).toEqual(['2026-10-05']); expect(screen.getByText('Tydzień deload (D na wykresach).')).toBeTruthy(); await openInfo('period-deload'); expect(screen.getByText('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.')).toBeTruthy(); /* ⓘ 14.10.2026 */
     expect(screen.queryByText('Tydzień deload')).toBeNull(); expect(screen.getAllByLabelText(/^Wykres słupkowy: .* D: /).length).toBe(2); /* oba wykresy tygodniowe — etykieta tygodnia z „D” */
-    const legend = 'D — tydzień oznaczony jako deload.'; expect(screen.getByText(new RegExp(' ' + legend.replace(/[.]/g, '\\.') + '$'))).toBeTruthy(); /* dopisek po opisie wykresów */
+    expect(screen.getByText('D — tydzień deload')).toBeTruthy(); await openInfo('vol-week'); expect(screen.getByText('D — tydzień oznaczony jako deload.')).toBeTruthy(); /* krótka legenda na wierzchu, pełna pod ⓘ przy wykresie */
   });
   test('poprzedni tydzień oznaczony — informacja; w widoku miesiąca nie ma oznaczenia tygodnia', async () => {
     await boot(() => { store.toggleDeloadWeek(new Date(2026, 8, 30).getTime()); });
@@ -46,6 +46,6 @@ describe('ekran Postępy', () => {
   });
   test('English', async () => {
     await boot(() => { store.toggleDeloadWeek(new Date(2026, 9, 6).getTime()); }, 'en'); expect(screen.queryByText('Deload week')).toBeNull();
-    expect(screen.getByText(/^This week is marked as deload/)).toBeTruthy();
+    expect(screen.getByText('Deload week (D on the charts).')).toBeTruthy(); await openInfo('period-deload'); expect(screen.getByText(/^This week is marked as deload/)).toBeTruthy();
   });
 });

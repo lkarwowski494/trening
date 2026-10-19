@@ -1,0 +1,8 @@
+{
+ "v": 1,
+ "kind": "ack",
+ "eventId": "apple-1",
+ "status": "applied",
+ "reason": null,
+ "rev": 3
+}

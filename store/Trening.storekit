@@ -48,7 +48,7 @@
           ],
           "displayPrice" : "0.99",
           "familyShareable" : true,
-          "groupNumber" : 1,
+          "groupNumber" : 2,
           "internalID" : "3C71A8E5",
           "introductoryOffer" : {
             "internalID" : "9A40D2B7",
@@ -86,7 +86,7 @@
           ],
           "displayPrice" : "4.99",
           "familyShareable" : true,
-          "groupNumber" : 2,
+          "groupNumber" : 1,
           "internalID" : "58E0C3D9",
           "introductoryOffer" : {
             "internalID" : "B71F6A20",

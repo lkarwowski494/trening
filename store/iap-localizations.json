@@ -1,0 +1,640 @@
+{
+ "_opis": "Lokalizacje produktów zakupu w App Store Connect (nazwy i opisy) — JEDNO źródło prawdy dla scripts/asc/iap-localizations.mjs (workflow asc-iap-localizations.yml) i testu tests/iap-localizations.test.ts. Decyzja właściciela 14.10.2026 (wariant A): właściciel wpisał ręcznie tylko EN (U.S.) i PL, pozostałe 33 języki aplikacji dopisuje skrypt przez App Store Connect API. Klucze „tlumaczenia” = kody języków aplikacji (lib/i18n.ts LANGS bez pl i en); „ascLocale” = kod lokalizacji App Store Connect albo null, gdy App Store Connect danego języka nie obsługuje (wtedy wpis zostaje tylko jako gotowy tekst). Limity znaków: nazwa 30, opis 45 (Apple, In-App Purchase Information: Display Name 2–30, Description do 45; limity subskrypcji i grupy w dokumentacji Apple nie są podane, przyjęto te same — ostrożnie).",
+ "limity": {
+  "nazwa": 30,
+  "opis": 45
+ },
+ "ascLocaleBrak": "Bułgarski, serbski, litewski, łotewski i estoński nie są lokalizacjami App Store Connect (lista Apple: App Store localizations, sprawdzone 14.10.2026). Słoweński: App Store Connect odrzucił go przy pierwszym zapisie 14.10.2026 (UNSUPPORTED_LOCALE_CODE dla grupy, subskrypcji i zakupu) — pomijany.",
+ "wpisaneRecznie": {
+  "en-US": {
+   "group": {
+    "name": "Trening Full Version"
+   },
+   "monthly": {
+    "name": "Full version — monthly",
+    "description": "All features, billed monthly"
+   },
+   "yearly": {
+    "name": "Full version — yearly",
+    "description": "All features, billed once a year"
+   },
+   "lifetime": {
+    "name": "Full version — lifetime",
+    "description": "All features, one-time purchase"
+   }
+  },
+  "pl": {
+   "group": {
+    "name": "Trening — pełna wersja"
+   },
+   "monthly": {
+    "name": "Pełna wersja — miesięcznie",
+    "description": "Wszystkie funkcje, płatność co miesiąc"
+   },
+   "yearly": {
+    "name": "Pełna wersja — rocznie",
+    "description": "Wszystkie funkcje, płatność raz w roku"
+   },
+   "lifetime": {
+    "name": "Pełna wersja — dożywotnio",
+    "description": "Wszystkie funkcje, jednorazowy zakup"
+   }
+  }
+ },
+ "tlumaczenia": {
+  "cs": {
+   "ascLocale": "cs",
+   "group": {
+    "name": "Trening — plná verze"
+   },
+   "monthly": {
+    "name": "Plná verze — měsíčně",
+    "description": "Všechny funkce, platba každý měsíc"
+   },
+   "yearly": {
+    "name": "Plná verze — ročně",
+    "description": "Všechny funkce, platba jednou ročně"
+   },
+   "lifetime": {
+    "name": "Plná verze — doživotně",
+    "description": "Všechny funkce, jednorázový nákup"
+   }
+  },
+  "sk": {
+   "ascLocale": "sk",
+   "group": {
+    "name": "Trening — plná verzia"
+   },
+   "monthly": {
+    "name": "Plná verzia — mesačne",
+    "description": "Všetky funkcie, platba každý mesiac"
+   },
+   "yearly": {
+    "name": "Plná verzia — ročne",
+    "description": "Všetky funkcie, platba raz za rok"
+   },
+   "lifetime": {
+    "name": "Plná verzia — doživotne",
+    "description": "Všetky funkcie, jednorazový nákup"
+   }
+  },
+  "hu": {
+   "ascLocale": "hu",
+   "group": {
+    "name": "Trening — teljes verzió"
+   },
+   "monthly": {
+    "name": "Teljes verzió — havonta",
+    "description": "Minden funkció, havi számlázás"
+   },
+   "yearly": {
+    "name": "Teljes verzió — évente",
+    "description": "Minden funkció, éves számlázás"
+   },
+   "lifetime": {
+    "name": "Teljes verzió — élethosszig",
+    "description": "Minden funkció, egyszeri vásárlás"
+   }
+  },
+  "ro": {
+   "ascLocale": "ro",
+   "group": {
+    "name": "Trening — versiunea completă"
+   },
+   "monthly": {
+    "name": "Versiunea completă — lunar",
+    "description": "Toate funcțiile, plată lunară"
+   },
+   "yearly": {
+    "name": "Versiunea completă — anual",
+    "description": "Toate funcțiile, plată o dată pe an"
+   },
+   "lifetime": {
+    "name": "Versiunea completă — pe viață",
+    "description": "Toate funcțiile, achiziție unică"
+   }
+  },
+  "bg": {
+   "ascLocale": null,
+   "group": {
+    "name": "Trening — пълна версия"
+   },
+   "monthly": {
+    "name": "Пълна версия — месечно",
+    "description": "Всички функции, плащане всеки месец"
+   },
+   "yearly": {
+    "name": "Пълна версия — годишно",
+    "description": "Всички функции, плащане веднъж годишно"
+   },
+   "lifetime": {
+    "name": "Пълна версия — завинаги",
+    "description": "Всички функции, еднократна покупка"
+   }
+  },
+  "hr": {
+   "ascLocale": "hr",
+   "group": {
+    "name": "Trening — puna verzija"
+   },
+   "monthly": {
+    "name": "Puna verzija — mjesečno",
+    "description": "Sve značajke, naplata svaki mjesec"
+   },
+   "yearly": {
+    "name": "Puna verzija — godišnje",
+    "description": "Sve značajke, naplata jednom godišnje"
+   },
+   "lifetime": {
+    "name": "Puna verzija — doživotno",
+    "description": "Sve značajke, jednokratna kupnja"
+   }
+  },
+  "sl": {
+   "ascLocale": null,
+   "group": {
+    "name": "Trening — polna različica"
+   },
+   "monthly": {
+    "name": "Polna različica — mesečno",
+    "description": "Vse funkcije, plačilo vsak mesec"
+   },
+   "yearly": {
+    "name": "Polna različica — letno",
+    "description": "Vse funkcije, plačilo enkrat na leto"
+   },
+   "lifetime": {
+    "name": "Polna različica — trajno",
+    "description": "Vse funkcije, enkratni nakup"
+   }
+  },
+  "sr": {
+   "ascLocale": null,
+   "group": {
+    "name": "Trening — пуна верзија"
+   },
+   "monthly": {
+    "name": "Пуна верзија — месечно",
+    "description": "Све функције, плаћање сваког месеца"
+   },
+   "yearly": {
+    "name": "Пуна верзија — годишње",
+    "description": "Све функције, плаћање једном годишње"
+   },
+   "lifetime": {
+    "name": "Пуна верзија — доживотно",
+    "description": "Све функције, једнократна куповина"
+   }
+  },
+  "lt": {
+   "ascLocale": null,
+   "group": {
+    "name": "Trening — pilna versija"
+   },
+   "monthly": {
+    "name": "Pilna versija — kas mėnesį",
+    "description": "Visos funkcijos, mokama kas mėnesį"
+   },
+   "yearly": {
+    "name": "Pilna versija — kasmet",
+    "description": "Visos funkcijos, mokama kartą per metus"
+   },
+   "lifetime": {
+    "name": "Pilna versija — visam laikui",
+    "description": "Visos funkcijos, vienkartinis pirkimas"
+   }
+  },
+  "lv": {
+   "ascLocale": null,
+   "group": {
+    "name": "Trening — pilnā versija"
+   },
+   "monthly": {
+    "name": "Pilnā versija — katru mēnesi",
+    "description": "Visas funkcijas, maksājums katru mēnesi"
+   },
+   "yearly": {
+    "name": "Pilnā versija — katru gadu",
+    "description": "Visas funkcijas, maksājums reizi gadā"
+   },
+   "lifetime": {
+    "name": "Pilnā versija — mūžīgi",
+    "description": "Visas funkcijas, vienreizējs pirkums"
+   }
+  },
+  "et": {
+   "ascLocale": null,
+   "group": {
+    "name": "Trening — täisversioon"
+   },
+   "monthly": {
+    "name": "Täisversioon — kuus",
+    "description": "Kõik funktsioonid, tasu iga kuu"
+   },
+   "yearly": {
+    "name": "Täisversioon — aastas",
+    "description": "Kõik funktsioonid, tasu kord aastas"
+   },
+   "lifetime": {
+    "name": "Täisversioon — eluaegne",
+    "description": "Kõik funktsioonid, ühekordne ost"
+   }
+  },
+  "uk": {
+   "ascLocale": "uk",
+   "group": {
+    "name": "Trening — повна версія"
+   },
+   "monthly": {
+    "name": "Повна версія — щомісяця",
+    "description": "Усі функції, оплата щомісяця"
+   },
+   "yearly": {
+    "name": "Повна версія — щороку",
+    "description": "Усі функції, оплата раз на рік"
+   },
+   "lifetime": {
+    "name": "Повна версія — назавжди",
+    "description": "Усі функції, одноразова покупка"
+   }
+  },
+  "es": {
+   "ascLocale": "es-ES",
+   "group": {
+    "name": "Trening — versión completa"
+   },
+   "monthly": {
+    "name": "Versión completa — mensual",
+    "description": "Todas las funciones, cobro mensual"
+   },
+   "yearly": {
+    "name": "Versión completa — anual",
+    "description": "Todas las funciones, cobro anual"
+   },
+   "lifetime": {
+    "name": "Versión completa — de por vida",
+    "description": "Todas las funciones, compra única"
+   }
+  },
+  "es-419": {
+   "ascLocale": "es-MX",
+   "group": {
+    "name": "Trening — versión completa"
+   },
+   "monthly": {
+    "name": "Versión completa — mensual",
+    "description": "Todas las funciones, cobro mensual"
+   },
+   "yearly": {
+    "name": "Versión completa — anual",
+    "description": "Todas las funciones, cobro anual"
+   },
+   "lifetime": {
+    "name": "Versión completa — de por vida",
+    "description": "Todas las funciones, compra única"
+   }
+  },
+  "pt": {
+   "ascLocale": "pt-PT",
+   "group": {
+    "name": "Trening — versão completa"
+   },
+   "monthly": {
+    "name": "Versão completa — mensal",
+    "description": "Todas as funcionalidades, cobrança mensal"
+   },
+   "yearly": {
+    "name": "Versão completa — anual",
+    "description": "Todas as funcionalidades, cobrança anual"
+   },
+   "lifetime": {
+    "name": "Versão completa — vitalício",
+    "description": "Todas as funcionalidades, compra única"
+   }
+  },
+  "pt-BR": {
+   "ascLocale": "pt-BR",
+   "group": {
+    "name": "Trening — versão completa"
+   },
+   "monthly": {
+    "name": "Versão completa — mensal",
+    "description": "Todos os recursos, cobrança mensal"
+   },
+   "yearly": {
+    "name": "Versão completa — anual",
+    "description": "Todos os recursos, cobrança anual"
+   },
+   "lifetime": {
+    "name": "Versão completa — vitalício",
+    "description": "Todos os recursos, compra única"
+   }
+  },
+  "de": {
+   "ascLocale": "de-DE",
+   "group": {
+    "name": "Trening — vollversion"
+   },
+   "monthly": {
+    "name": "Vollversion — monatlich",
+    "description": "Alle Funktionen, monatliche Zahlung"
+   },
+   "yearly": {
+    "name": "Vollversion — jährlich",
+    "description": "Alle Funktionen, Zahlung einmal im Jahr"
+   },
+   "lifetime": {
+    "name": "Vollversion — lebenslang",
+    "description": "Alle Funktionen, einmaliger Kauf"
+   }
+  },
+  "fr": {
+   "ascLocale": "fr-FR",
+   "group": {
+    "name": "Trening — version complète"
+   },
+   "monthly": {
+    "name": "Version complète — mensuel",
+    "description": "Toutes les fonctions, paiement mensuel"
+   },
+   "yearly": {
+    "name": "Version complète — annuel",
+    "description": "Toutes les fonctions, paiement annuel"
+   },
+   "lifetime": {
+    "name": "Version complète — à vie",
+    "description": "Toutes les fonctions, achat unique"
+   }
+  },
+  "it": {
+   "ascLocale": "it",
+   "group": {
+    "name": "Trening — versione completa"
+   },
+   "monthly": {
+    "name": "Versione completa — mensile",
+    "description": "Tutte le funzioni, pagamento mensile"
+   },
+   "yearly": {
+    "name": "Versione completa — annuale",
+    "description": "Tutte le funzioni, pagamento annuale"
+   },
+   "lifetime": {
+    "name": "Versione completa — a vita",
+    "description": "Tutte le funzioni, acquisto unico"
+   }
+  },
+  "nl": {
+   "ascLocale": "nl-NL",
+   "group": {
+    "name": "Trening — volledige versie"
+   },
+   "monthly": {
+    "name": "Volledige versie — maandelijks",
+    "description": "Alle functies, maandelijkse betaling"
+   },
+   "yearly": {
+    "name": "Volledige versie — jaarlijks",
+    "description": "Alle functies, jaarlijkse betaling"
+   },
+   "lifetime": {
+    "name": "Volledige versie — voor altijd",
+    "description": "Alle functies, eenmalige aankoop"
+   }
+  },
+  "sv": {
+   "ascLocale": "sv",
+   "group": {
+    "name": "Trening — fullständig version"
+   },
+   "monthly": {
+    "name": "Fullständig version — månatlig",
+    "description": "Alla funktioner, betalning varje månad"
+   },
+   "yearly": {
+    "name": "Fullständig version — årsvis",
+    "description": "Alla funktioner, betalning en gång per år"
+   },
+   "lifetime": {
+    "name": "Fullständig version — livstid",
+    "description": "Alla funktioner, engångsköp"
+   }
+  },
+  "da": {
+   "ascLocale": "da",
+   "group": {
+    "name": "Trening — fuld version"
+   },
+   "monthly": {
+    "name": "Fuld version — månedligt",
+    "description": "Alle funktioner, betaling hver måned"
+   },
+   "yearly": {
+    "name": "Fuld version — årligt",
+    "description": "Alle funktioner, betaling én gang om året"
+   },
+   "lifetime": {
+    "name": "Fuld version — for altid",
+    "description": "Alle funktioner, engangskøb"
+   }
+  },
+  "nb": {
+   "ascLocale": "no",
+   "group": {
+    "name": "Trening — full versjon"
+   },
+   "monthly": {
+    "name": "Full versjon — månedlig",
+    "description": "Alle funksjoner, betaling hver måned"
+   },
+   "yearly": {
+    "name": "Full versjon — årlig",
+    "description": "Alle funksjoner, betaling én gang i året"
+   },
+   "lifetime": {
+    "name": "Full versjon — for alltid",
+    "description": "Alle funksjoner, engangskjøp"
+   }
+  },
+  "fi": {
+   "ascLocale": "fi",
+   "group": {
+    "name": "Trening — täysi versio"
+   },
+   "monthly": {
+    "name": "Täysi versio — kuukausittain",
+    "description": "Kaikki ominaisuudet, maksu kuukausittain"
+   },
+   "yearly": {
+    "name": "Täysi versio — vuosittain",
+    "description": "Kaikki ominaisuudet, maksu kerran vuodessa"
+   },
+   "lifetime": {
+    "name": "Täysi versio — ikuisesti",
+    "description": "Kaikki ominaisuudet, kertaostos"
+   }
+  },
+  "tr": {
+   "ascLocale": "tr",
+   "group": {
+    "name": "Trening — tam sürüm"
+   },
+   "monthly": {
+    "name": "Tam sürüm — aylık",
+    "description": "Tüm özellikler, aylık ödeme"
+   },
+   "yearly": {
+    "name": "Tam sürüm — yıllık",
+    "description": "Tüm özellikler, yılda bir ödeme"
+   },
+   "lifetime": {
+    "name": "Tam sürüm — ömür boyu",
+    "description": "Tüm özellikler, tek seferlik satın alma"
+   }
+  },
+  "el": {
+   "ascLocale": "el",
+   "group": {
+    "name": "Trening — πλήρης έκδοση"
+   },
+   "monthly": {
+    "name": "Πλήρης έκδοση — μηνιαία",
+    "description": "Όλες οι λειτουργίες, μηνιαία χρέωση"
+   },
+   "yearly": {
+    "name": "Πλήρης έκδοση — ετήσια",
+    "description": "Όλες οι λειτουργίες, ετήσια χρέωση"
+   },
+   "lifetime": {
+    "name": "Πλήρης έκδοση — για πάντα",
+    "description": "Όλες οι λειτουργίες, εφάπαξ αγορά"
+   }
+  },
+  "id": {
+   "ascLocale": "id",
+   "group": {
+    "name": "Trening — versi lengkap"
+   },
+   "monthly": {
+    "name": "Versi lengkap — bulanan",
+    "description": "Semua fitur, ditagih setiap bulan"
+   },
+   "yearly": {
+    "name": "Versi lengkap — tahunan",
+    "description": "Semua fitur, ditagih setahun sekali"
+   },
+   "lifetime": {
+    "name": "Versi lengkap — seumur hidup",
+    "description": "Semua fitur, pembelian sekali bayar"
+   }
+  },
+  "ms": {
+   "ascLocale": "ms",
+   "group": {
+    "name": "Trening — versi penuh"
+   },
+   "monthly": {
+    "name": "Versi penuh — bulanan",
+    "description": "Semua ciri, bayaran setiap bulan"
+   },
+   "yearly": {
+    "name": "Versi penuh — tahunan",
+    "description": "Semua ciri, bayaran setahun sekali"
+   },
+   "lifetime": {
+    "name": "Versi penuh — seumur hidup",
+    "description": "Semua ciri, pembelian sekali sahaja"
+   }
+  },
+  "vi": {
+   "ascLocale": "vi",
+   "group": {
+    "name": "Trening — phiên bản đầy đủ"
+   },
+   "monthly": {
+    "name": "Phiên bản đầy đủ — hằng tháng",
+    "description": "Mọi tính năng, thanh toán hằng tháng"
+   },
+   "yearly": {
+    "name": "Phiên bản đầy đủ — hằng năm",
+    "description": "Mọi tính năng, thanh toán mỗi năm một lần"
+   },
+   "lifetime": {
+    "name": "Phiên bản đầy đủ — trọn đời",
+    "description": "Mọi tính năng, mua một lần"
+   }
+  },
+  "ru": {
+   "ascLocale": "ru",
+   "group": {
+    "name": "Trening — полная версия"
+   },
+   "monthly": {
+    "name": "Полная версия — в месяц",
+    "description": "Все функции, оплата каждый месяц"
+   },
+   "yearly": {
+    "name": "Полная версия — в год",
+    "description": "Все функции, оплата раз в год"
+   },
+   "lifetime": {
+    "name": "Полная версия — навсегда",
+    "description": "Все функции, разовая покупка"
+   }
+  },
+  "ja": {
+   "ascLocale": "ja",
+   "group": {
+    "name": "Trening — フルバージョン"
+   },
+   "monthly": {
+    "name": "フルバージョン — 月額",
+    "description": "すべての機能、毎月のお支払い"
+   },
+   "yearly": {
+    "name": "フルバージョン — 年額",
+    "description": "すべての機能、年1回のお支払い"
+   },
+   "lifetime": {
+    "name": "フルバージョン — 買い切り",
+    "description": "すべての機能、1回限りの購入"
+   }
+  },
+  "ko": {
+   "ascLocale": "ko",
+   "group": {
+    "name": "Trening — 전체 버전"
+   },
+   "monthly": {
+    "name": "전체 버전 — 월간",
+    "description": "모든 기능, 매월 결제"
+   },
+   "yearly": {
+    "name": "전체 버전 — 연간",
+    "description": "모든 기능, 연 1회 결제"
+   },
+   "lifetime": {
+    "name": "전체 버전 — 평생",
+    "description": "모든 기능, 1회 구매"
+   }
+  },
+  "zh-Hant": {
+   "ascLocale": "zh-Hant",
+   "group": {
+    "name": "Trening — 完整版"
+   },
+   "monthly": {
+    "name": "完整版 — 每月",
+    "description": "所有功能，按月付費"
+   },
+   "yearly": {
+    "name": "完整版 — 每年",
+    "description": "所有功能，按年付費"
+   },
+   "lifetime": {
+    "name": "完整版 — 永久",
+    "description": "所有功能，一次性購買"
+   }
+  }
+ }
+}

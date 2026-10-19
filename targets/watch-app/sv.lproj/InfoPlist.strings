@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Träning";
+"NSHealthShareUsageDescription" = "Klockan läser hjärtfrekvens och aktiv energi under pågående pass. Data skickas inte utanför dina enheter.";
+"NSHealthUpdateUsageDescription" = "Klockan sparar det avslutade styrkepasset, med hjärtfrekvens och aktiv energi, i Apple Health.";

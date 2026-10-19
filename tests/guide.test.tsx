@@ -19,10 +19,10 @@ afterEach(() => { applyLang('pl'); });
 
 describe('treść i logika', () => {
   beforeEach(async () => { await fresh(); });
-  test('tematy: unikalne id, 2–4 kroki, zdania z kropką; ścieżki „Pokaż” istnieją w app/', () => {
+  test('tematy: unikalne id, 2–5 kroków, zdania z kropką; ścieżki „Pokaż” istnieją w app/', () => {
     const ids = GUIDE.map(g => g.id); expect(new Set(ids).size).toBe(ids.length); expect(GUIDE.length).toBe(10); /* H1 (audyt 0.10): + „Zmiany w trakcie treningu”, „Edycja sesji i trening wstecz” */
     for (const g of GUIDE) {
-      const st = g.steps(); expect(st.length).toBeGreaterThanOrEqual(2); expect(st.length).toBeLessThanOrEqual(4); st.forEach(s => expect(s).toMatch(/[.…]”?\.?$/));
+      const st = g.steps(); expect(st.length).toBeGreaterThanOrEqual(2); expect(st.length).toBeLessThanOrEqual(5); /* ⓘ 14.10.2026: instrukcje gestów przeniesione z ekranów do Przewodnika — „Zmiany w trakcie treningu” ma 5 kroków */ st.forEach(s => expect(s).toMatch(/[.…]”?\.?$/));
       const file = g.route === '/' ? 'app/(tabs)/index.tsx' : g.route === '/history' || g.route === '/progress' ? `app/(tabs)${g.route}.tsx` : `app${g.route}.tsx`; /* 11.10.2026: Postępy to zakładka, Szablony — ekran stosu (app/templates.tsx) */
       expect([g.id, fs.existsSync(path.join(__dirname, '..', file))]).toEqual([g.id, true]);
     }
@@ -30,7 +30,7 @@ describe('treść i logika', () => {
   test('cytowane w krokach nazwy przycisków („…”) to teksty z interfejsu — zmiana nazwy przycisku wymaga zmiany przewodnika', () => {
     const quoted = GUIDE.flatMap(g => g.steps()).flatMap(s => [...s.matchAll(/„([^”]+)”/g)].map(m => m[1]));
     expect(quoted.length).toBeGreaterThan(10);
-    const missing = quoted.map(q => (q === 'Zaplanuj deload od …' ? 'Zaplanuj deload od {date}' : q === 'Powtórz ostatni' ? 'Powtórz ostatni ({name})' /* przycisk z nazwą treningu */ : q)).filter(q => !(q in EN) && q !== '⇅ SS' /* UI2-07: tekst przycisku bez tłumaczenia (symbol) — sprawdzany niżej w kodzie ekranów */);
+    const missing = quoted.map(q => (q === 'Zaplanuj deload od …' ? 'Zaplanuj deload od {date}' : q === 'Powtórz ostatni' ? 'Powtórz ostatni ({name})' /* przycisk z nazwą treningu */ : q)).filter(q => !(q in EN) && !['⇅ SS', '✂ SS', '↑'].includes(q) /* UI2-07: tekst przycisku bez tłumaczenia (symbol) — sprawdzany niżej w kodzie ekranów; ⓘ 14.10.2026: „✂ SS” i „↑” z dawnej stopki edytora szablonu */);
     expect(missing).toEqual([]);
   });
   test('postęp i odhaczanie: nieznane id pomijane, bez powtórzeń, bez userTouched', () => {
@@ -84,6 +84,10 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).',
     'W zakładce Plan stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.',
     '„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w zakładce Plan jest ten sam przycisk.',
+    /* ⓘ 14.10.2026 (P2 A): instrukcje gestów zeszły z ekranów do Przewodnika — typy serii W/D/F, notatka, tapnięcie numeru serii, ⇅ SS / ✂ SS, kolejność ≡ */
+    'Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.',
+    'Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.',
+    'Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.',
   ];
   const all = new Set([...GUIDE.flatMap(g => [g.title(), ...g.steps()]), ...WHATS_NEW.flatMap(e => e.items())]);
   expect(texts.filter(x => !all.has(x))).toEqual([]);
@@ -144,5 +148,22 @@ describe('UI2-07 (audyt kontrolny 1): przewodnik cytuje to, co widać na ekranie
     expect(all).not.toContain('Połącz z następnym w superset');
     expect(all).toContain('⇅ SS');
     const fs2 = require('fs'); for (const f of ['app/template/[id].tsx', 'components/ActiveWorkout.tsx']) expect(fs2.readFileSync(f, 'utf8')).toContain('title="⇅ SS"');
+  });
+});
+
+describe('ⓘ (14.10.2026, P2 A): instrukcje gestów zeszły z ekranów do Przewodnika', () => {
+  const fs2 = require('fs'); const read = (f: string) => fs2.readFileSync(path.join(__dirname, '..', f), 'utf8') as string;
+  const steps = () => GUIDE.flatMap(g => g.steps());
+  test('Przewodnik opisuje: typy serii W/D/F, notatkę i tapnięcie numeru serii (trening, edycja sesji), „⇅ SS” / „✂ SS”, kolejność „≡ Kolejność”, przesunięcie w lewo', () => {
+    const all = steps().join('\n');
+    for (const x of ['numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę', 'numer serii, by zmienić typ (W, D, F) albo dodać notatkę', 'Dotknij etykiety serii, by zmienić typ', '„⇅ SS”', '„✂ SS”', '„≡ Kolejność”', 'w lewo']) expect([x, all.includes(x)]).toEqual([x, true]);
+  });
+  test('cytowane symbole istnieją w interfejsie: „✂ SS” (szablon i trening), „≡ Kolejność” (trening), podpowiedź „↑ spróbuj”', () => {
+    for (const f of ['app/template/[id].tsx', 'components/ActiveWorkout.tsx']) expect(read(f)).toContain('title="✂ SS"');
+    expect(read('components/ActiveWorkout.tsx')).toContain("tr('≡ Kolejność')"); expect(read('lib/i18n.en.ts')).toContain("'↑ spróbuj");
+  });
+  test('ekrany nie powtarzają instrukcji gestów (zostaje tylko ostrzeżenie o seriach bez wyniku w edycji sesji)', () => {
+    for (const f of ['components/ActiveWorkout.tsx', 'app/template/[id].tsx', 'app/history/edit/[id].tsx']) { const s = read(f); expect(s).not.toContain('Tapnij numer serii'); expect(s).not.toContain('Dotknij etykiety serii'); expect(s).not.toContain('Przesuń serię albo nazwę ćwiczenia w lewo'); }
+    expect(read('app/history/edit/[id].tsx')).toContain("t('Serie bez wyniku nie zostaną zapisane.')");
   });
 });

@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Treening";
+"NSHealthShareUsageDescription" = "Kell loeb käimasoleva treeningu ajal pulssi ja aktiivset energiat. Andmeid ei saadeta väljapoole sinu seadmeid.";
+"NSHealthUpdateUsageDescription" = "Kell salvestab lõppenud jõutreeningu koos pulsi ja aktiivse energiaga rakendusse Apple Health.";

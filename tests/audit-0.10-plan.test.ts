@@ -80,7 +80,7 @@ describe('A1 — dane: migracja do schematu 18, idempotencja, kopia', () => {
   const v17 = () => { const st = JSON.parse(JSON.stringify(S())); st.schemaVersion = 17; st.weekPlan = { days: [A, null, B, null, null, null, null], name: 'Rutyna' }; st.planOverrides = { '2026-10-06': C, '2026-10-16': null }; delete st.planHistory; return st; };
   test('A1: dane sprzed 18 — plan obowiązuje od dnia migracji (żaden wcześniejszy dzień nie jest „opuszczony” z planu tygodnia); zmiany dni zostają', async () => {
     await fresh(v17());
-    expect(S().schemaVersion).toBe(SCHEMA_VERSION); expect(SCHEMA_VERSION).toBe(18);
+    expect(S().schemaVersion).toBe(SCHEMA_VERSION); expect(SCHEMA_VERSION).toBe(19); /* 0.19: schemat 19 — miejsca jednorazowe i miejsca dni planu */
     expect(S().planHistory).toEqual([{ from: '2026-10-08', days: [A, null, B, null, null, null, null] }]);
     expect(S().weekPlan).toEqual({ days: [A, null, B, null, null, null, null], name: 'Rutyna' }); /* pole czytane przez starsze wersje */
     expect([plan.dayStatus('2026-10-05').status, plan.dayStatus('2026-10-07').status, plan.dayStatus('2026-09-28').status]).toEqual(['rest', 'rest', 'rest']);

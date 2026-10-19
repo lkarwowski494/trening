@@ -37,7 +37,7 @@ describe('model: wiersze serii w pozycji szablonu', () => {
     expect(sets.map(s => [s.kind, s.weight, s.reps])).toEqual([['warmup', 40, 10], ['normal', 65, 9], ['normal', 65, 9], ['normal', 65, 8]]);
   });
   test('zakres opcjonalny: nowa pozycja bez zakresu (bez podpowiedzi ↑); zapis/odczyt wierszy; zły zapis naprawiony; schemat 17', async () => {
-    expect(SCHEMA_VERSION).toBe(18); /* audyt 0.10 A1: schemat 18 — historia planu tygodnia */
+    expect(SCHEMA_VERSION).toBe(19); /* audyt 0.10 A1: schemat 18 — historia planu tygodnia */
     await fresh(); const t = tplWith('Bench Press (sztanga)'); store.tplAddRow(t, 'iq', 'warmup'); await store.flush();
     const raw = JSON.parse(JSON.stringify(store.getState())); const rit = raw.templates.find((x: any) => x.id === 'tq').items[0];
     rit.rows.push({ id: 5, kind: 'nonsense', reps: 'x', weight: -3 }); rit.rows.push('zły');
@@ -54,7 +54,7 @@ describe('ekran szablonu jak trening', () => {
     expect(screen.getAllByLabelText(/^Seria [123], typ: normalna/).length).toBe(3);
     await tap(screen.getByText('+ rozgrzewka')); await tap(screen.getByText('+ drop set')); await flushAll(5);
     expect(screen.getByLabelText(/^Seria W, typ: rozgrzewkowa/)).toBeTruthy();
-    expect(screen.getByText(/Zakres powtórzeń: 8–12/)).toBeTruthy(); /* ustawiony zakres widoczny */
+    expect(screen.getByText(/Zakres 8–12: gdy ostatnio/)).toBeTruthy(); /* ustawiony zakres widoczny (ⓘ 14.10.2026: skrócony opis, pełny pod ⓘ) */
     await saveEdit(); /* edycja na żądanie (08.10.2026): zmiany w danych dopiero po „Zapisz” */
     expect(store.getState().templates.find(x => x.id === 'tq')!.items[0].rows!.map(r => r.kind)).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']);
   });

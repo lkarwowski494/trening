@@ -1,0 +1,16 @@
+{
+ "done": "Sorozat kész",
+ "differ": "Máshogy kész",
+ "skip": "Kihagyás",
+ "skipAsk": "Kihagyod a gyakorlatot?",
+ "cancel": "Mégsem",
+ "undo": "Visszavonás",
+ "rest": "Pihenő",
+ "set": "Sorozat",
+ "pause": "Edzés szüneteltetve",
+ "connect": "Csatlakozás a telefonhoz",
+ "idle": "Indíts edzést a telefonon",
+ "finished": "Az edzés véget ért",
+ "update": "Frissítsd az óra alkalmazását",
+ "nothingLeft": "nincs több teendő"
+}

@@ -12,11 +12,32 @@ import { isEmpty } from './setvals';
 
 /* ---------- P-003: miejsca treningu ---------- */
 export const locationById = (id: string | null | undefined): Location | undefined => id ? getState().settings.locations.find(l => l.id === id) : undefined;
-/** Miejsce nowego treningu: miejsce szablonu (gdy istnieje), inaczej główne. Bez miejsc — brak (zachowanie sprzed P-003). */
+/** 0.19 (docs/33 A4, P1 A): miejsca z list (Ustawienia, 📍, generator, edytor szablonu, „Zawsze w”) — bez miejsc jednorazowych. */
+export const visibleLocations = (): Location[] => getState().settings.locations.filter(l => !l.oneOff);
+/** Miejsce zapisane w planie na dzień `k` (RRRR-MM-DD) — tylko gdy to miejsce wciąż istnieje (0.19, docs/33 B). */
+export const placeOnDay = (k: string): string | undefined => { const id = getState().planPlaces?.[k]; return id && locationById(id) ? id : undefined; };
+/** Miejsce nowego treningu: miejsce dnia z planu (0.19, docs/33 B: przed miejscem szablonu), miejsce szablonu (gdy istnieje), inaczej główne.
+ * Bez miejsc — brak (zachowanie sprzed P-003). Miejsca jednorazowe nie są domyślnym wyborem (tylko jako `preferred` — dzień planu). */
 export function startLocationId(preferred?: string | null): string | undefined {
-  const s = getState().settings; if (!s.locations.length) return undefined;
+  const s = getState().settings; const vis = visibleLocations(); if (!s.locations.length) return undefined;
   if (preferred && s.locations.some(l => l.id === preferred)) return preferred;
-  return s.mainLocationId && s.locations.some(l => l.id === s.mainLocationId) ? s.mainLocationId : s.locations[0].id;
+  if (s.mainLocationId && vis.some(l => l.id === s.mainLocationId)) return s.mainLocationId;
+  return vis[0]?.id ?? s.locations[0].id;
+}
+/** Miejsca jednorazowe, do których nic się już nie odwołuje (trening w toku, historia, miejsca dni planu, zapisane plany) — do usunięcia. Czysta funkcja
+ * nad `State`-podobnym obiektem (też surowym, przed migracją): migrate i porządki po zmianie planu. */
+export function unusedOneOffIds(st: { settings?: any; workouts?: any; active?: any; planPlaces?: any; savedPlans?: any }): Set<string> {
+  const used = new Set<string>(); const add = (v: unknown) => { if (typeof v === 'string') used.add(v); else if (typeof v === 'number') used.add(String(v)); };
+  if (st.active) add(st.active.locationId);
+  for (const w of Array.isArray(st.workouts) ? st.workouts : []) if (w) add(w.locationId);
+  for (const v of Object.values(st.planPlaces ?? {})) add(v);
+  for (const p of Array.isArray(st.savedPlans) ? st.savedPlans : []) for (const v of Object.values(p?.places ?? {})) add(v);
+  return new Set((Array.isArray(st.settings?.locations) ? st.settings.locations : []).filter((l: any) => l && l.oneOff === true && !used.has(String(l.id))).map((l: any) => String(l.id)));
+}
+/** Usuwa miejsca jednorazowe bez odwołań (patrz unusedOneOffIds); zapisuje tylko, gdy coś usunięto. Zwraca, ile usunięto. */
+export function pruneOneOff(): number {
+  const st = getState(); const gone = unusedOneOffIds(st); if (!gone.size) return 0;
+  st.settings.locations = st.settings.locations.filter(l => !gone.has(l.id)); save(); return gone.size;
 }
 /** Audyt M3: ciężar spoza listy dostępnych w miejscu (np. 32 kg z siłowni, w domu max 24) — nie wstawiamy go do pól, zostaje w „Poprzednio”
  * (tylko gdy źródło jest „gdzie indziej” — prevFromOther; z sesji bez miejsca wartość zostaje, a ekran pokazuje dopisek — offListNote).

@@ -44,14 +44,16 @@ describe('docs/31 — pokrycie', () => {
 });
 
 describe('config.yaml i workflow', () => {
-  test('31–35 po 21 i 22, w tej kolejności; 33–34 z tagiem aktualizacja, reszta bez', () => {
+  test('31–35 po 21, 22 i 23, w tej kolejności; 33–34 z tagiem aktualizacja, reszta bez', () => {
     const cfg = read('.maestro/config.yaml'); const list = [...cfg.matchAll(/^\s+- (\d\d-.*\.yaml)$/gm)].map(m => m[1]);
-    expect(list.slice(-7).map(f => f.slice(0, 2))).toEqual(['21', '22', '31', '32', '33', '34', '35']);
+    const nums = list.map(f => f.slice(0, 2)); expect(nums).toEqual([...nums].sort()); /* kolejność numeryczna (13.10.2026: 24–29 i 36–38 z katalogu przepływów, docs/37) */
+    expect(nums.slice(nums.indexOf('21'), nums.indexOf('21') + 3)).toEqual(['21', '22', '23']); /* 0.19: 23 — miejsce jednorazowe */
+    expect(nums.slice(nums.indexOf('31'), nums.indexOf('31') + 5)).toEqual(['31', '32', '33', '34', '35']);
     for (const f of files) expect([f, /^tags:\n\s+- aktualizacja$/m.test(read('.maestro/' + f))]).toEqual([f, /^3[34]-/.test(f)]);
   });
   test('e2e-ios.yml: główny przebieg wyklucza tag, krok Aktualizacja: poprzednia wersja → 33 → bieżąca bez uninstall → 34; uprawnienia bez zmian', () => {
     const y = read('.github/workflows/e2e-ios.yml');
-    expect((y.match(/test "\$DIR" --exclude-tags=aktualizacja /g) || []).length).toBe(2); expect(y).toMatch(/tylko_scenariusze:/); expect(y).toMatch(/DIR=\.maestro-wybrane/);
+    expect((y.match(/test "\$DIR" --exclude-tags=aktualizacja /g) || []).length).toBe(2); expect(y).toMatch(/tylko_scenariusze:/); expect(y).toMatch(/DIR=\.maestro-czesc/); /* 13.10.2026: podział na części — katalog przygotowuje scripts/ci/e2e-shards.mjs (tests/e2e-shards.test.ts) */
     expect(y).toMatch(/poprzednia_wersja_z_przebiegu:/); expect(y).toMatch(/permissions:\n\s+contents: read\n\s+actions: read/);
     const upd = y.split('Aktualizacja (poprzednia wersja')[1]; expect(upd).toBeTruthy();
     const a = upd.indexOf('simctl uninstall'), b = upd.indexOf('33-aktualizacja-przygotuj.yaml'), c = upd.indexOf('simctl install "$SIM" "$NEW"'), d = upd.indexOf('34-aktualizacja-sprawdz.yaml');
@@ -78,13 +80,13 @@ describe('odporność na zegar (MAESTRO_NOW): niedziela, poniedziałek, północ
   test('tuż przed północą (13.10, 23:59): para 33 + 34 — sesje z dwóch dni, bez „dziś”', async () => { await at('2026-10-13T23:59:00', ['33-aktualizacja-przygotuj.yaml']); });
   test('poniedziałek 12.10 i niedziela 18.10: 31 (treningi wstecz w poprzednim tygodniu) i 35', async () => { await at('2026-10-12T10:00:00', ['31-pierwszy-tydzien.yaml']); await at('2026-10-18T20:00:00', ['31-pierwszy-tydzien.yaml', '35-ustawienia-dostepnosc.yaml']); });
   /* run 38435841211: zgubiony pierwszy znak ciężaru („60” → „0”) dawał rekordy bez „Best session (volume)” (objętość 0). Interpreter nie gubi znaków, więc pilnujemy samej odporności scenariusza. */
-  test('31: wpis ciężaru i powtórzeń pierwszej serii jest w retry i potwierdzony kartą „Now: …” przed ✓', () => {
+  test('31: wpis ciężaru i powtórzeń pierwszej serii jest w retry, znak po znaku, z potwierdzeniem wartości pola przed ✓ (run 38563966851)', () => {
     const y = read('.maestro/31-pierwszy-tydzien.yaml');
-    const i = y.indexOf('- inputText: "60"');
+    const i = y.indexOf('assertVisible: { id: "w-0-0", text: "60" }');
     expect(i).toBeGreaterThan(0);
-    const blok = y.slice(y.lastIndexOf('- retry:', i), y.indexOf('Set 1 done — Back Squat', i));
-    expect(blok).toContain('eraseText');
-    expect(blok).toMatch(/Now:\.60\./);
-    expect(y.indexOf('Now:.60.')).toBeLessThan(y.indexOf('{ text: "Set 1 done — Back Squat" }'));
+    const blok = y.slice(y.lastIndexOf('- retry:', i), i);
+    expect(blok).toContain('eraseText'); expect(blok).toContain('inputText: "6"'); expect(blok).toContain('inputText: "0"');
+    expect(y.indexOf('assertVisible: { id: "r-0-0", text: "10" }')).toBeGreaterThan(i);
+    expect(i).toBeLessThan(y.indexOf('Set 1 done — Back Squat'));
   });
 });

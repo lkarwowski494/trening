@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "Your watch reads heart rate and active energy during the workout. The data is not sent outside your devices.";
+"NSHealthUpdateUsageDescription" = "Your watch saves the finished strength workout, with heart rate and active energy, to Apple Health.";

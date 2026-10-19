@@ -1,5 +1,7 @@
 # 31. Scenariusze E2E „z życia” (decyzja właściciela 13.10.2026, wariant A rozszerzony)
 
+> Uzupełnienie z 13.10.2026 (wieczór): pełny katalog przepływów (143, wszystkie stany startowe) i scenariusze 24–29, 36–38 oraz eksperymenty 40–42 — `docs/37`, `docs/38`; lista „tylko telefon” dla właściciela — `docs/39`. Tabele poniżej opisują scenariusze 31–35 i zostają.
+
 Dotychczasowe scenariusze Maestro 01–21 sprawdzają po jednej funkcji i zostają. Do nich dochodzą **długie scenariusze 31–35**: jedna osoba, jedna
 podróż, pełny zakres tego, co robi w normalnych warunkach — razem pokrywają **całą aplikację** (każdy ekran z `docs/19` „EKRAN” i każdą główną
 funkcję). Pliki: `.maestro/31-…` do `35-…`, podprzepływy `.maestro/subflows/generator-plan.yaml` i `plan-kazdego-dnia.yaml`. Wszystkie przechodzą w interpreterze
@@ -44,6 +46,7 @@ Każdy `EKRAN` z `docs/19` ma wiersz (pilnuje tego `tests/maestro-zycie.test.tsx
 | `/progress` (Postępy, masa ciała, rekordy) | 05, 15, 19, **31, 32, 34** | |
 | `/more` | 06, 09, 15, 19, **32, 34, 35** | |
 | `/adapt` (Dostosuj do miejsca) | 22 | okno modalne po zmianie miejsca na takie z brakami sprzętu; w 31–35 bez wejścia w to okno (scenariusze zmieniające miejsce zamykają je „Cancel”) |
+| `/place-once` (Inne miejsce) | 23, 13 | okno z „Inne miejsce (tylko dziś)…” w arkuszu 📍 (23); w 13 miejsce na dni planu ustawia się z listy miejsc (panel dnia → „📍 Miejsce na te dni”), „Inne miejsce…” z panelu — tests/places-ui; w 31–35 bez wejścia w to okno |
 | `/exercise` (karta/edycja ćwiczenia) | 16, 17 | |
 | `/exercises` | 17, 19 | wejście z Więcej; w 31 ćwiczenie wybierane z listy w Postępach |
 | `/generator` | 14, **31** | |

@@ -96,8 +96,8 @@ describe('dane: migrate, kopia, import', () => {
     expect(normalizeGoals({ klatka: 12, barki: 25.6, core: 0, plecy: 99, side_delt: 8, lats: 14, front_delt: 9, nieznana: 5, szyja: 4, biceps: '10', triceps: NaN, 'pośladki': null, __proto__: { 'łydki': 7 } })).toEqual({ klatka: 12, barki: 26, core: 1, plecy: 40 });
     expect(normalizeGoals({ nieznana: 5, biceps: 'x', lats: 12, rear_delt: 10, upper_back: 9, lower_back: 8 })).toBeUndefined();
   });
-  test('migrate: pole zapisane tylko z odstępstwami; klucze części z wersji roboczej odpadają; idempotentne; SCHEMA_VERSION bez zmian', () => {
-    expect(SCHEMA_VERSION).toBe(18);
+  test('migrate: pole zapisane tylko z odstępstwami; klucze części z wersji roboczej odpadają; idempotentne; SCHEMA_VERSION = 19 (0.19)', () => {
+    expect(SCHEMA_VERSION).toBe(19);
     const raw = JSON.parse(JSON.stringify(S())); raw.settings.weeklySetGoals = { klatka: 14, plecy: 'dużo', barki: 1000, lats: 12, front_delt: 9, obca: 3 };
     const m1 = store.migrate(raw); expect(m1.settings.weeklySetGoals).toEqual({ klatka: 14, barki: 40 }); expect(m1.schemaVersion).toBe(SCHEMA_VERSION);
     expect(m1.settings.defaultRest).toBe(S().settings.defaultRest);
@@ -115,7 +115,7 @@ describe('dane: migrate, kopia, import', () => {
 });
 
 /* Języki (docs/20 rodzaj 7): nowe teksty tego wdrożenia mają tłumaczenie w każdym języku (kompletność i parametry: tests/i18n-locales.test.ts). */
-const NEW_TEXTS = ['Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).', 'Zaplanowane — z szablonów na pozostałe dni tygodnia.',
+const NEW_TEXTS = ['Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).',
   'Cel serii na partię w tygodniu', 'Pokaż cele partii', 'Ukryj cele partii', 'Cel serii: {part}', 'Automatycznie ({n})', 'Ręcznie',
   'Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.',
   'Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}.'];

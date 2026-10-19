@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty, Missing } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
+import { visibleLocations, effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, draftSetLocation, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
@@ -76,7 +76,7 @@ export default function EditWorkout() {
         {!w.exercises.length ? <Empty>{t('Brak ćwiczeń — dodaj pierwsze.')}</Empty> : null}
         <Btn nav title={t('+ Dodaj ćwiczenie')} block style={{ marginTop: 12 }} onPress={() => router.push(`/picker?target=${encodeURIComponent('edit:' + key)}`)} />
         <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{t('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; touchDraft(); }} placeholder={t('np. samopoczucie, ból, sprzęt')} accessibilityLabel={t('Notatka do treningu')} multiline /><MedicalNote /></View>
-        <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{t('Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.')} {t('Przesuń serię albo nazwę ćwiczenia w lewo, by je usunąć.') /* UI-07 (audyt 0.10) */}</Muted>
+        <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{t('Serie bez wyniku nie zostaną zapisane.') /* utrata danych zostaje na wierzchu; gesty (typ serii, usuwanie) — w Przewodniku, 14.10.2026 */}</Muted>
       </ScrollView>
     </Screen>
   );
@@ -85,7 +85,7 @@ export default function EditWorkout() {
 /** T-057: „📍 Dom ▾” — wybór miejsca treningu (jak chip w treningu w toku): miejsca użytkownika i, gdy trening ma miejsce, „bez miejsca”. Bez zdefiniowanych
  * miejsc — tylko podpis (jeśli trening ma miejsce, także usunięte). Zmiana: lib/edit.ts draftSetLocation. */
 function LocationChip({ d }: { d: Draft }) {
-  const th = useTheme(); const locs = getState().settings.locations; const cur = d.w.locationId;
+  const th = useTheme(); const locs = visibleLocations(); const cur = d.w.locationId; /* 0.19: miejsca jednorazowe poza listą */
   if (!locs.length && !cur) return null;
   const name = cur ? locationLabel(cur) : t('bez miejsca');
   if (!locs.length) return <Text accessibilityLanguage={lang()} accessibilityLabel={`${t('Miejsce')}: ${name}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontFamily: F.semibold, marginBottom: 10 }}>{`📍 ${name}`}</Text>;
@@ -131,7 +131,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
               <Pressable accessibilityLanguage={lang()} {...a11y} onPress={() => setMenu(set, si)} hitSlop={8} accessibilityRole="button" accessibilityHint={`${hint}. ${t('Tapnij, by zmienić typ lub dodać notatkę.')}`} /* A11-18 */ accessibilityLabel={t('Seria {n}, typ: {k}', { n: lbl, k: t(SET_KIND_LABEL[kind]) })} style={{ width: 32, minHeight: 44, justifyContent: 'center' }}>
                 <SetBadge kind={kind} label={lbl} note={!!set.note} /* przegląd 06.10: jak w treningu i szablonie */ />
               </Pressable>
-              {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(loadFieldValue(ex, set))} stored={loadFieldValue(ex, set)} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* Q-021; audyt 83b (LOW 2): pole pokazuje to samo co ekran sesji (store.loadOf), wpis trafia do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} /></View> : null}
+              {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(loadFieldValue(ex, set))} stored={loadFieldValue(ex, set)} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* Q-021; audyt 83b (LOW 2): pole pokazuje to samo co ekran sesji (store.loadOf), wpis trafia do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 28 */ /></View> : null}
               {hasReps(m) ? <View style={s.cell}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v))); touchDraft(); }} placeholder={t('pow.')} accessibilityLabel={t('Powtórzenia')} accessibilityHint={hint} testID={`reps-${ei}-${si}`} /* E2E (Maestro 05) */ /></View> : null}
               {hasDistance(m) ? <View style={s.cell}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); touchDraft(); }} placeholder="m" accessibilityLabel={t('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={s.cell}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); touchDraft(); }} placeholder="s" accessibilityLabel={t('czas')} accessibilityHint={hint} /></View> : null}

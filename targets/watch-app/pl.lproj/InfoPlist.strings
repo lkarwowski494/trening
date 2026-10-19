@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Trening";
+"NSHealthShareUsageDescription" = "Zegarek odczytuje tętno i energię aktywną z trwającego treningu. Dane nie są wysyłane poza Twoje urządzenia.";
+"NSHealthUpdateUsageDescription" = "Zegarek zapisuje zakończony trening siłowy, z tętnem i energią aktywną, w Apple Health.";

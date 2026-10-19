@@ -1,0 +1,16 @@
+{
+ "done": "Satz erledigt",
+ "differ": "Anders erledigt",
+ "skip": "Überspringen",
+ "skipAsk": "Übung überspringen?",
+ "cancel": "Abbrechen",
+ "undo": "Rückgängig",
+ "rest": "Pause",
+ "set": "Satz",
+ "pause": "Training angehalten",
+ "connect": "Mit dem Telefon verbinden",
+ "idle": "Training am Telefon starten",
+ "finished": "Training beendet",
+ "update": "Uhr-App aktualisieren",
+ "nothingLeft": "nichts mehr zu tun"
+}

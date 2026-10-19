@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "Het horloge leest tijdens de lopende training je hartslag en actieve energie. De gegevens worden niet buiten je apparaten verstuurd.";
+"NSHealthUpdateUsageDescription" = "Het horloge bewaart de afgeronde krachttraining met hartslag en actieve energie in Apple Health.";

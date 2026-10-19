@@ -12,15 +12,16 @@ import { isObj, arr, parseNum, idOf, tsOf, intIn, kg2, clampName } from './util'
 import { localDateTs, localISODate, workoutDay, realDay, DATE_KEY } from './time';
 import { cleanLevels } from './bands';
 import { normalizeGoals } from '../setParts';
-import { normalizeReviewAsked } from '../review';
+import { normalizeReviewAsked, normalizeIdeaShownAt } from '../review';
 import { normalizeGroups } from './groups';
-import { SAVED_PLANS_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays, normPlanHistory, cleanOverrides, cleanDoneEarly, appendPlanSegment } from './weekplan';
+import { SAVED_PLANS_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays, normPlanHistory, cleanOverrides, cleanDoneEarly, appendPlanSegment, cleanPlanPlaces } from './weekplan';
+import { unusedOneOffIds } from './places';
 import { setLegacyLb, snapL, posNum, fixTemplates, fixWorkout, freshIds, uniqueIds } from './migrate-records';
 import { migrateExercises, retireCatalog } from './migrate-catalog';
 
 /** Pola Settings znane tej wersji — pola domyślne plus opcjonalne (nowe pole opcjonalne dopisz tutaj, inaczej jego zła wartość z importu
  * przejdzie jak nieznane ustawienie); reszta zostaje bez zmian — audyt 0.10 J1. */
-const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll', 'weeklySetGoals', 'healthRead', 'reviewAsked']);
+const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll', 'weeklySetGoals', 'healthRead', 'reviewAsked', 'voiceSpeaker', 'ideaShownAt']);
 /** Ustawienia przeniesione poza Settings — nie zostają jako „nieznane” (J1): masa ciała bez daty → State.bodyMassLog (fala 2 audytu 0.10). */
 const MOVED_SETTINGS = new Set(['bodyMass']);
 const PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
@@ -36,6 +37,7 @@ function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { loc
     seen.add(l.id);
     const n = typeof l.name === 'string' ? clampName(l.name.replace(/\s+/g, ' ').trim()) : '';
     l.name = n || tIn(language, 'Miejsce'); /* audyt (LOW): limit nazwy jak w polu */
+    if (l.oneOff !== true) delete l.oneOff; /* schemat 19 (docs/33 A4): miejsce jednorazowe — tylko true */
     const items = new Set<string>();
     l.equipment = arr(l.equipment).filter((e: any) => {
       const x = typeof e.item === 'string' ? equipById(e.item) : undefined;
@@ -52,8 +54,8 @@ function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { loc
       return true; });
     locations.push(l as Location);
   }
-  const main = idOf(s.mainLocationId);
-  return { locations, mainLocationId: main && seen.has(main) ? main : locations[0]?.id ?? null, pickerShowAll: s.pickerShowAll === true };
+  const main = idOf(s.mainLocationId); const listed = locations.filter(l => !l.oneOff); /* schemat 19: miejscem głównym nie bywa miejsce jednorazowe */
+  return { locations, mainLocationId: main && listed.some(l => l.id === main) ? main : listed[0]?.id ?? null, pickerShowAll: s.pickerShowAll === true };
 }
 /**
  * Migracja do bieżącego schematu. Przyjmuje backupy web 0.3, natywnej 0.1.0 i każdą późniejszą wersję;
@@ -178,6 +180,8 @@ export function migrate(raw: any): State {
         ...((g => g ? { weeklySetGoals: g } : {})(normalizeGoals(s.weeklySetGoals))), /* 12.10.2026: ręczny cel serii na partię — tylko znane części, liczby w granicach */
     healthSync: typeof s.healthSync === 'boolean' ? s.healthSync : d.healthSync,
     ...((r => r ? { reviewAsked: r } : {})(normalizeReviewAsked(s.reviewAsked))), /* 0.17.0 (docs/26): tylko poprawna para {at, version}; przyszła data (zegar cofnięty, uszkodzone dane) = brak pola */
+    ...((n => n != null ? { ideaShownAt: n } : {})(normalizeIdeaShownAt(s.ideaShownAt))), /* 0.20 (docs/34): tylko nieujemna liczba całkowita */
+    ...(s.voiceSpeaker === true ? { voiceSpeaker: true as const } : {}), /* 0.20: tylko włączenie zapisane; zła wartość = wyłączony */
     ...(s.healthRead === true ? { healthRead: true as const } : {}), /* 0.16.0 (P2 A): tylko włączenie zapisane; zła wartość = wyłączony */
     /* runda 75 */
     progressHint: typeof s.progressHint === 'boolean' ? s.progressHint : d.progressHint,
@@ -241,10 +245,10 @@ export function migrate(raw: any): State {
       const sp0 = (Array.isArray(raw.savedPlans) ? raw.savedPlans : []).filter((p: any) => isObj(p) && typeof p.id === 'string' && p.id);
       freshIds(sp0); /* DAT2-04: powtórzone id → „~n” */
       const sp = sp0.map((p: any) => {
-        const ov = cleanOverrides(p.overrides);
+        const ov = cleanOverrides(p.overrides); const pl = cleanPlanPlaces(p.places);
         return { id: p.id, name: typeof p.name === 'string' ? cleanPlanName(p.name) : '', days: planDays(p.days),
-            ...(Object.keys(ov).length ? { overrides: ov } : {}) };
-      }); /* audyt 0.10 B1: zmiany dni zapisane z planem */
+            ...(Object.keys(ov).length ? { overrides: ov } : {}), ...(Object.keys(pl).length ? { places: pl } : {}) };
+      }); /* audyt 0.10 B1: zmiany dni zapisane z planem; schemat 19: miejsca dni (id istniejących miejsc sprawdzane niżej, po wczytaniu miejsc) */
       if (sp.length) raw.savedPlans = sp.slice(0, SAVED_PLANS_MAX); else delete raw.savedPlans; }
     const ov = cleanOverrides(raw.planOverrides);
     if (Object.keys(ov).length) raw.planOverrides = ov; else delete raw.planOverrides;
@@ -260,6 +264,12 @@ export function migrate(raw: any): State {
       if (h.length) raw.planHistory = h; else delete raw.planHistory; }
     /* audyt 0.10 D4: „Nie teraz” przy podpowiedzi deload — data poniedziałku albo brak */
     if (typeof raw.deloadSnooze !== 'string' || !DATE_KEY.test(raw.deloadSnooze)) delete raw.deloadSnooze; }
+  /* Schemat 19 (0.19, docs/33 B): miejsca dni planu — klucze-daty, id istniejących miejsc (usunięte odpadają), także w zapisanych planach; potem miejsca
+   * jednorazowe bez odwołań znikają (trening w toku, historia, plan). Idempotentne; dane sprzed 19 bez pól — bez zmian. */
+  { const known = new Set<string>(raw.settings.locations.map((l: Location) => l.id));
+    const pp = cleanPlanPlaces(raw.planPlaces, known); if (Object.keys(pp).length) raw.planPlaces = pp; else delete raw.planPlaces;
+    if (Array.isArray(raw.savedPlans)) for (const p of raw.savedPlans) { const pl = cleanPlanPlaces(p.places, known); if (Object.keys(pl).length) p.places = pl; else delete p.places; }
+    const gone = unusedOneOffIds(raw); if (gone.size) raw.settings.locations = raw.settings.locations.filter((l: Location) => !gone.has(l.id)); }
   {
     const g = [...new Set((Array.isArray(raw.guideSeen) ? raw.guideSeen : []).filter((x: unknown) => typeof x === 'string' && x && x.length <= 40))].slice(0,
         50);

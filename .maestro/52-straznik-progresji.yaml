@@ -1,0 +1,65 @@
+# Strażnik progresji (14.10.2026, f020-straznik): szablon i plan na każdy dzień → pierwszy trening (jedna seria) → ekran Trening: sylwetka w kolorach progresu z legendą,
+# zdanie o brakach celu serii (nawet z planem) i przycisk „Details in Progress” → Postępy: sekcja „Progress Guard” → stuknięcie partii rozwija szczegóły, ponowne zwija.
+# Pierwszy tydzień (brak poprzedniego) → partie trenowane są „new” (opis sylwetki), a zdania o spadkach nie ma. Zdanie o brakach zależy od dnia tygodnia
+# (ile dni planu jeszcze przed nami), więc scenariusz sprawdza oba brzmienia.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Details in Progress", "Progress Guard", "This week compared with the previous one: new — …"   ← components/Guard.tsx, components/GuardSection.tsx, components/Dashboard.tsx
+#   "Below goal even with the plan: …" / "With the plan, every muscle group you train will reach its goal."     ← lib/guard.ts (guardTexts)
+#   "Deload week — no comparison"                                                        ← lib/guard.ts (tydzień oznaczony jako deload)
+#   "chest: …" (etykieta wiersza partii: „partia: słowo stanu. n / cel sets. …”), "Done: …" (rozwinięcie wiersza)
+appId: pl.lukasz.trening
+name: Strażnik progresji — sylwetka, zdanie o brakach, Postępy
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+- runFlow: subflows/plan-kazdego-dnia.yaml
+- tapOn: "Back"
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- assertVisible: "Skip"
+- tapOn: "Skip"
+- tapOn: "Finish"
+- assertVisible: "Finish workout?"
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
+# --- ekran Trening: sylwetka z legendą, zdanie o brakach, przycisk do Postępów ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "This week", timeout: 30000 }
+- scrollUntilVisible: { element: "Details in Progress", direction: DOWN, timeout: 60000, centerElement: true }
+- assertVisible: "This week compared with the previous one: new — .*"   # etykieta obrazu sylwetki; pierwszy tydzień: brak poprzedniego, trenowane partie „new” (legenda jest ukryta przed VoiceOver, więc nie w drzewie dostępności)
+- assertVisible: "(Below goal even with the plan: .*|With the plan, every muscle group you train will reach its goal\\.)"
+- assertNotVisible: "Less than the week before: .*"   # bez poprzedniego tygodnia nie ma zdania o spadkach
+- takeScreenshot: 95-straznik-trening
+# --- Postępy: sekcja „Progress Guard”, rozwinięcie partii ---
+- tapOn: "Details in Progress"
+- extendedWaitUntil: { visible: "Progress Guard", timeout: 30000 }
+# run 39169313185: stuknięcie „chest” nie rozwinęło wiersza (zrzut: wiersz przy górnej krawędzi, bez „Done”) — przewinięcie na środek, czekanie na koniec ruchu i powtórka stuknięcia
+- retry:
+    maxRetries: 2
+    commands:
+      - scrollUntilVisible: { element: "chest: .*", direction: DOWN, timeout: 60000, centerElement: true }
+      - waitForAnimationToEnd
+      - tapOn: "chest: .*"
+      - extendedWaitUntil: { visible: "Done: .*", timeout: 8000 }
+- takeScreenshot: 96-straznik-postepy
+- takeScreenshot: 97-straznik-partia
+- tapOn: "chest: .*"
+- assertNotVisible: "Done: .*"
+# --- tydzień deloadu (jak 05: Plan → dzisiejszy dzień → „More options” → „Mark week as deload”): zamiast legendy i zdań „Deload week — no comparison” ---
+- tapOn: "Plan, tab.*"
+- tapOn: { text: ".*, today.*" }
+- tapOn: "More options"
+- tapOn: "Mark week as deload"
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "This week", timeout: 30000 }
+- scrollUntilVisible: { element: "Deload week — no comparison", direction: DOWN, timeout: 60000, centerElement: true }
+- assertNotVisible: "(Below goal even with the plan: .*|With the plan, every muscle group you train will reach its goal\\.)"
+- takeScreenshot: 98-straznik-deload

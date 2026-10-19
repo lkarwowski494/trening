@@ -4,9 +4,10 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted, useOnce, monoSafe } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { TechniqueLink } from '@/components/ExerciseCues';
-import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, typeSetValue, setActiveLocation, lastActivity, staleSince, staleRef, staleKind, ackStale, markActivity, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, toggleDone, restAfter, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
-import { restLabel, setLabel, nowParts, focusCounter, timedLabel } from '@/lib/live';
+import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, typeSetValue, setActiveLocation, visibleLocations, lastActivity, staleSince, staleRef, staleKind, ackStale, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
+import { restLabel, setLabel, nowParts, counterLabel, timedLabel } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
 import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
@@ -18,6 +19,7 @@ import { implLabel } from '@/lib/swap';
 import { SetBadge } from '@/components/SetBadge';
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
+import { completeSet, finishTimedSet, isClosingSet, relabelRest } from '@/lib/setFlow';
 import { prMap } from '@/lib/stats';
 import { onWorkoutSaved } from '@/lib/backup';
 import { markJustFinished } from '@/lib/review-run';
@@ -27,6 +29,8 @@ import { t as tr, tp, exName, lang, glue } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
 import { cancelButton, confirmSkipTimedSet } from '@/lib/confirm';
 import { adaptCandidates, restoreCandidates } from '@/lib/adapt';
+import { TestWatchPanel } from '@/components/TestWatchPanel';
+import { takeAutoAdapt } from '@/lib/adaptPick';
 
 /*
  * Trening w toku. Audyt 0.8.1:
@@ -46,41 +50,20 @@ export default function ActiveWorkout() {
   const wake = st.settings.wakeLock !== false;
   useEffect(() => { if (!wake) return; activateKeepAwakeAsync('workout').catch(() => {}); return () => { deactivateKeepAwake('workout').catch(() => {}); }; }, [wake]);
   useEffect(() => { timer.ensurePermission().catch(() => {}); }, []);
+  /* 0.19 (docs/33 B, P4 A): start w dniu z miejscem z planu — okno „Dostosuj do: X” otwiera się samo (raz, tylko gdy są propozycje); nigdy automatyczna zamiana */
+  useEffect(() => { const a = getState().active; if (a && takeAutoAdapt(a.id) && a.locationId && (adaptCandidates(a, a.locationId).length || restoreCandidates(a, a.locationId).length)) router.push('/adapt'); }, [w.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const [, force] = useState(0);
   useEffect(() => timer.subscribe(() => force(x => x + 1)), []);
   const finishing = useRef(false); const asking = useRef(false);
 
-  /** Odhaczenie serii: startuje przerwę; cofnięcie — zatrzymuje ją tylko, jeśli pochodziła z tej serii. */
+  /** Odhaczenie serii: startuje przerwę; cofnięcie — zatrzymuje ją tylko, jeśli pochodziła z tej serii (lib/setFlow.ts — wspólne z zegarkiem). */
   const onDone = async (ei: number, si: number, at?: number) => {
     if (at == null) Keyboard.dismiss(); /* audyt przed telefonem: klawiatura numeryczna nie ma „Gotowe” i zasłaniała pasek przerwy po ✓ */
-    const a = getState().active; if (!a) return; const set = a.exercises[ei]?.sets[si]; if (!set) return;
-    if (timer.S.on && timer.S.setId === set.id) { await finishTimedSet(); return; }
-    if (timer.S.on && timer.S.setId !== set.id && !set.done) await finishTimedSet(); // runda 19: odhaczenie innej serii kończy trwający pomiar (jeden timer naraz)
-    if (!set.done) restLabels(ei, si); // runda 23: tylko przy odhaczeniu — odznaczenie nie zmienia podpisu trwającej przerwy
-    const rest = toggleDone(ei, si, at);
-    /* T8: przerwa liczona od końca serii — po późnym wybudzeniu zostaje reszta albo nic */
-    const live = !!rest && (at == null || at + rest * 1000 > Date.now());
-    if (set.done) { if (rest && live) await timer.start(rest, set.id, at); else await timer.stop(); }
-    else await timer.stopIfFrom(set.id);
-  };
-  /** Podpis przerwy na Live Activity: następna seria albo następne ćwiczenie (runda 22: wspólny dla odhaczenia i ponownego pomiaru; audyt 0.10 LIVE-04:
-   * ta sama reguła co karta „teraz”, po ostatniej serii — `last`). */
-  const restLabels = (ei: number, si: number) => {
-    const a = getState().active; if (!a) return; const e = a.exercises[ei]; if (!e) return; timer.labels.title = a.templateName || tr('Trening');
-    const r = restLabel(a, ei, si); timer.labels.subtitle = r.sub; timer.labels.last = r.last;
+    await completeSet(ei, si, at);
   };
   /* Audyt 0.10 (LIVE-03/04): podpis trwającej przerwy liczony po każdej zmianie treningu („Pomiń dziś”, „Przywróć”, + seria, usunięcie, kolejność) —
    * zawsze ta sama następna seria co na karcie; bez zmiany nic się nie dzieje (timer.relabel porównuje). */
   useEffect(() => { relabelRest(); });
-  /** Koniec serii czasowej (auto po osiągnięciu celu, ✓ albo ręcznie): zapisuje czas (maks. cel) i odhacza. */
-  const closingSet = useRef(false); /* T11: domykanie serii czasowej w toku — pytanie o porzucony trening czeka */
-  const finishTimedSet = async () => { closingSet.current = true; try { await finishTimedSetInner(); } finally { closingSet.current = false; } };
-  const finishTimedSetInner = async () => {
-    const { setId, sec, endAt } = await timer.stopSet(); const pos = findSet(setId); const a = getState().active; if (!pos || !a) return;
-    const set = a.exercises[pos.ei].sets[pos.si]; set.durationSec = Math.max(1, sec); if (set.done) markActivity(a, endAt); /* Q-010 */ save(a);
-    if (!set.done) await onDone(pos.ei, pos.si, endAt);
-    else { const nx = a.exercises[pos.ei].sets[pos.si + 1]; const rest = nx && nx.kind === 'drop' && !nx.done ? null /* T7: przed drop setem bez przerwy, także po ponownym pomiarze */ : restAfter(pos.ei, pos.si) ?? roundRest(pos.ei); if (rest && endAt + rest * 1000 > Date.now()) { restLabels(pos.ei, pos.si); await timer.start(rest, set.id, endAt); } /* T9: przerwa od końca serii, jak przy pierwszym pomiarze */ } // runda 19/21/22: po ponownym pomiarze przerwa od nowa (w supersecie — przerwa rundy)
-  };
   const finishRef = useRef(finishTimedSet); finishRef.current = finishTimedSet;
   useEffect(() => {
     const i = setInterval(() => { timer.tick(); if (timer.setReached()) finishRef.current().catch(() => {}); }, 500);
@@ -118,7 +101,7 @@ export default function ActiveWorkout() {
   /** Pytanie o porzucony trening. Runda 71: blokada na poziomie modułu (dwa zamontowane ekrany nie otwierają dwóch okien),
    * przyciski działają tylko na tym samym treningu (T3), a „Wróć” z potwierdzenia odrzucenia wraca do pytania. */
   const askStale = (tries = 0) => {
-    if (closingSet.current && tries < 10) { setTimeout(() => askStale(tries + 1), 300); return; }
+    if (isClosingSet() && tries < 10) { setTimeout(() => askStale(tries + 1), 300); return; }
     if (timer.setReached()) { finishRef.current().then(() => askStale()).catch(() => {}); return; } /* T11: najpierw domknięcie serii czasowej po celu — pytanie widzi te same dane co zapis po 6 h */
     { const tm = getState().timer; const pos = tm?.setStartAt && Number(tm.setTarget) > 0 ? findSet(tm.setId) : null; const cur0 = getState().active;
       /* T11: zimny start — stoper z zapisu jeszcze nie odtworzony (timer.restore), a jego cel już minął: chwila na domknięcie serii */
@@ -133,7 +116,16 @@ export default function ActiveWorkout() {
     ]);
   };
   useEffect(() => { askStale(); }, [fg, minute]); // eslint-disable-line react-hooks/exhaustive-deps
+  /** 0.20 (decyzja właściciela 13.10.2026): przed „Zakończ” prośba o uzupełnienie serii odhaczonych na zegarku jako „zrobione inaczej niż w planie” (wzorzec potwierdzeń docs/32:
+   * „Anuluj” wraca do treningu, „Zakończ mimo to” zostawia wartości z planu). Rekord dla takich serii liczy się dopiero po uzupełnieniu. */
   const finish = () => {
+    if (finishing.current || asking.current) return;
+    const toFill = w.exercises.reduce((a, e) => a + e.sets.filter(x => x.done && x.toFill).length, 0);
+    if (toFill) { asking.current = true; Alert.alert(tr('Serie do uzupełnienia'), tr('Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.', { n: toFill }),
+      [{ ...cancelButton(), onPress: () => { asking.current = false; } }, { text: tr('Zakończ mimo to'), onPress: () => { asking.current = false; finishCore(); } }]); return; }
+    finishCore();
+  };
+  const finishCore = () => {
     if (finishing.current || asking.current) return; // runda 6: podwójne tapnięcie nie otwiera dwóch okien
     const ask = (title: string, msg: string, buttons: { text: string; style?: 'destructive' | 'cancel'; onPress?: () => void }[]) => { asking.current = true; Alert.alert(title, msg, buttons.map(b => ({ ...b, onPress: () => { asking.current = false; b.onPress?.(); } }))); };
     // Trwająca seria na czas liczy się jak odhaczona — zapisze się dopiero po „Zakończ”. Runda 5: tylko gdy ta seria
@@ -189,18 +181,17 @@ export default function ActiveWorkout() {
         {st.settings.workoutView !== 'list' ? <FocusCard w={w} onDone={onDone} onFinish={finish} onStartSet={startSet} onCardY={y => { restY.current.card = y; checkRest(); }} onRestY={y => { restY.current.panel = y; checkRest(); }} /> : null}
         {w.exercises.map((e, ei) => <ExerciseBlock key={e.id} w={w} e={e} ei={ei} onDone={onDone} onStartSet={startSet} labels={labels} prs={prs} />)}
         <View style={{ flexDirection: 'row', gap: 8 }}><Btn title={tr('+ Dodaj ćwiczenie')} style={{ flex: 1 }} onPress={once(() => router.push('/picker?target=active'))} />{w.exercises.length > 1 ? <Btn title={tr('≡ Kolejność')} accessibilityLabel={tr('Zmień kolejność ćwiczeń')} onPress={once(() => router.push('/reorder?target=active'))} /> : null}</View>
-        <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{tr('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; save(w); }} placeholder={tr('np. samopoczucie, ból, sprzęt')} accessibilityLabel={tr('Notatka do treningu')} multiline /><MedicalNote /></View>
-        <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{tr('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.')} {tr('Przesuń serię albo nazwę ćwiczenia w lewo, by je usunąć.') /* UI-07 (audyt 0.10): opis gestu także w treningu */}</Muted>
+        <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{tr('Notatka do treningu')}</Muted><Input testID="workout-note" /* E2E 25 */ maxLength={1000} value={w.note} onChangeText={v => { w.note = v; save(w); }} placeholder={tr('np. samopoczucie, ból, sprzęt')} accessibilityLabel={tr('Notatka do treningu')} multiline /><MedicalNote /></View>
         <Btn title={tr('Odrzuć trening')} kind="danger" block style={{ marginTop: 24 }} onPress={cancel} />
+        {/* tylko build E2E z udawanym zegarkiem (lib/watch/test-mode.ts); poza nim null */}
+        <TestWatchPanel />
       </ScrollView>
       <TimerBar onFinishSet={() => finishTimedSet()} restInCard={st.settings.workoutView !== 'list' && !restOff} />
     </View>
   );
 }
 
-/** Podpis TRWAJĄCEJ przerwy liczony od nowa dla serii, która ją uruchomiła (lib/live.ts restLabel) — po zamianie (E2 pkt 3.8), „Pomiń dziś”
- * i każdej innej zmianie treningu (audyt 0.10, LIVE-03/04). Bez przerwy albo bez tej serii — nic. */
-export function relabelRest() { const a = getState().active; const pos = timer.T.on ? findSet(timer.T.setId) : null; if (a && pos) { const r = restLabel(a, pos.ei, pos.si); timer.relabel(r.sub, r.last); } }
+export { relabelRest }; /* lib/setFlow.ts — wspólne z zegarkiem */
 /** E2 (docs/14 pkt 3.8): po zamianie albo cofnięciu zamiany — stoper usuniętej serii stop (jak „usuń”), przerwa trwa (seria, która ją uruchomiła,
  * zostaje w bloku A), a jej podpis — także na Live Activity — liczony od nowa dla serii, która ją uruchomiła. */
 export function afterSwap(goneSetIds: string[]) {
@@ -225,9 +216,11 @@ function insteadLine(e: WExercise): string {
 /** P-003 E1: „📍 Dom ▾” pod nazwą treningu (tylko gdy są miejsca) — zmiana miejsca tylko dla tej sesji; nic nie jest przepisywane
  * ani zamieniane (A-002) — zmienia się filtr wyboru ćwiczeń, plakietki braku sprzętu i podpowiedzi. */
 function LocationChip({ w }: { w: Workout }) {
-  const t = useTheme(); const router = useRouter(); const locs = getState().settings.locations; if (!locs.length) return null;
+  const t = useTheme(); const router = useRouter(); const locs = visibleLocations(); if (!locs.length) return null;
   const name = w.locationId ? locationLabel(w.locationId) : tr('bez miejsca');
-  const pick = () => ActionSheetIOS.showActionSheetWithOptions({ options: [...locs.map(l => l.name), tr('Anuluj')], cancelButtonIndex: locs.length, title: tr('Miejsce tego treningu') }, i => {
+  /* 0.19 (docs/33 A4): ostatnia pozycja arkusza — „Inne miejsce (tylko dziś)…” (szybka lista sprzętu, app/place-once.tsx); miejsca jednorazowe nie są na liście */
+  const pick = () => ActionSheetIOS.showActionSheetWithOptions({ options: [...locs.map(l => l.name), tr('Inne miejsce (tylko dziś)…'), tr('Anuluj')], cancelButtonIndex: locs.length + 1, title: tr('Miejsce tego treningu') }, i => {
+    if (i === locs.length) { if (getState().active?.id === w.id) router.push('/place-once'); return; }
     const l = locs[i]; const a = getState().active; if (!l || !a || a.id !== w.id) return; const was = a.locationId; setActiveLocation(l.id); /* decyzja 8c: przyrządy bloków wg nowego miejsca */
     /* 0.18 (docs/33, P2 A): miejsce z brakami albo z ćwiczeniami do przywrócenia — okno „Dostosuj do: X” otwiera się samo (tylko propozycje do przejrzenia) */
     const cur = getState().active; if (cur && was !== l.id && (adaptCandidates(cur, l.id).length || restoreCandidates(cur, l.id).length)) router.push('/adapt'); });
@@ -263,7 +256,7 @@ function SessionClock({ w }: { w: Workout }) {
       <Muted style={{ fontSize: 13 }}>{tr('start')} {fmtTime(wallTs(w))} · {fmtDur(workoutDurSec(w))}{paused ? ` · ${tr('pauza')}` : ''}</Muted>
       <Btn small kind={paused ? 'primary' : 'ghost'} title={paused ? tr('▶ Wznów') : tr('⏸ Pauza')} accessibilityLabel={paused ? tr('Wznów trening') : tr('Pauza treningu')} onPress={() => { if (paused) resumeWorkout(); else pauseWorkout(); force(x => x + 1); }} />
     </View>
-    {paused ? <Muted style={{ fontSize: 12 }}>{tr('Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.')}</Muted> : null}
+    {paused ? <InfoTip id="pause" label={tr('Pauza — czas treningu stoi. Odhaczenie serii wznawia.')} info={tr('Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.')}><Muted style={{ fontSize: 12 }}>{tr('Pauza — czas treningu stoi. Odhaczenie serii wznawia.')}</Muted></InfoTip> : null}
   </View>;
 }
 
@@ -379,7 +372,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const deleteSet = (id: string) => { const cur = getState().active?.exercises.find(x => x.id === e.id); if (!cur || cur.sets.length <= 1 || !cur.sets.some(x => x.id === id)) return; dropTimers([id]); removeSetById(getState().active!.exercises.indexOf(cur), id); };
   return (
     <View style={[s.ex, { borderBottomColor: t.line }]}>
-      <SwipeRow label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={delMsg} onDelete={removeBlock}>{a11y => <View style={s.exHead}>
+      <SwipeRow testID={`ex-${ei}`} /* E2E 25 */ label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={delMsg} onDelete={removeBlock}>{a11y => <View style={s.exHead}>
         <Text accessibilityLanguage={lang()} {...a11y} accessibilityRole="header" style={{ color: t.text, fontSize: 17, fontFamily: F.semibold, flexGrow: 1, flexShrink: 1, minWidth: '58%' }}>{inSS ? <Text accessibilityLanguage={lang()} style={{ color: t.band }}>{`SS ${labels[e.groupId!]} · `}</Text> : null}{exName(ex)}{ex.archived ? <Text accessibilityLanguage={lang()} style={{ color: t.muted, fontSize: 13 }}>{' (' + tr('usunięte') + ')'}</Text> : null}</Text>
         <Muted numberOfLines={2} style={{ fontSize: 13, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{headMeta}</Muted>
       </View>}</SwipeRow>
@@ -425,6 +418,10 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
             </View>
             {!prevInline && p ? <Muted numberOfLines={1} style={{ fontSize: 12, marginLeft: W.idx + W.gap, marginTop: -4, marginBottom: 6 }}>{tr('Poprzednio')}: {prevTxt}</Muted> : null}
             {set.note ? <Muted style={{ fontSize: 12, marginLeft: W.idx + W.gap, marginTop: -4, marginBottom: 6 }}>{set.note}</Muted> : null}
+            {set.done && set.toFill ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginLeft: W.idx + W.gap, marginTop: -4, marginBottom: 6 }} testID={`tofill-${ei}-${si}`}>
+              <Muted accessibilityLabel={tr('Seria {n} do uzupełnienia — {ex}', { n: lbl, ex: nm })} style={{ fontSize: 12, color: t.danger /* 0.20: seria odhaczona na zegarku jako „zrobione inaczej” — znacznik słowem, nie samym kolorem */ }}>{tr('do uzupełnienia')}</Muted>
+              <Btn small kind="ghost" title={tr('Gotowe')} accessibilityLabel={tr('Seria {n} uzupełniona — {ex}', { n: lbl, ex: nm })} onPress={() => { delete set.toFill; save(st.active); }} />
+            </View> : null}
           </View>}</SwipeRow>
         );
       })}
@@ -479,8 +476,7 @@ function FocusCard({ w, onDone, onFinish, onStartSet, onCardY, onRestY }: { w: W
   const prev = prevOfActiveBlock(w, e); const p = hintFor(prev?.sets, e.sets, pos.si, ex);
   const vis = equipVisFor(w, e, set); const ghost = vis.some(v => v.kind !== 'noplates') ? [] : equipSlotFor(w, e, set); const minH = slot.key === set.id ? slot.h : 0; const resting = timer.T.on;
   /* Audyt 0.10 (UI-10 / LIVE-14, wariant A): „80 kg × 8” — jednostka przy ciężarze, ta sama treść dla VoiceOver; licznik bez drop setów */
-  const big = nowParts(ex, set); const bigTxt = `${big.num}${big.unit ? ' ' + big.unit : ''}${big.tail}`; const cnt = focusCounter(e, pos.si);
-  const counter = cnt.kind === 'warmup' ? tr('rozgrzewka') : cnt.kind === 'drop' ? tr('seria {n} z {all} · drop set', { n: cnt.n, all: cnt.all }) : tr('seria {n} z {all}', { n: cnt.n, all: cnt.all });
+  const big = nowParts(ex, set); const bigTxt = `${big.num}${big.unit ? ' ' + big.unit : ''}${big.tail}`; const counter = counterLabel(e, pos.si);
   const name = exName(ex); const ss = e.groupId ? `SS ${groupLabels(w.exercises)[e.groupId]} · ` : '';
   /* Audyt 0.10 (LIVE-06, wariant A): seria na czas bez trwającego pomiaru — duży „▶ Start”, pod nim mały „Odhacz bez pomiaru” (czas z pola serii) */
   const timedIdle = hasTime(m) && !(timer.S.on && timer.S.setId === set.id);

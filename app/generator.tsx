@@ -5,7 +5,8 @@ import { useRouter, useLocalSearchParams, Stack } from 'expo-router';
 import { OwnPlan, usePlanReturn } from '@/components/OwnPlan';
 import { DayPicker, daysOk } from '@/components/DayPicker';
 import { Screen, Field, Chip, Muted, Txt, H2, Btn, SectionTitle, SwitchRow, Segmented } from '@/components/ui';
-import { getState, useTick, exById, fmtSec } from '@/lib/store';
+import { InfoTip } from '@/components/InfoTip';
+import { getState, useTick, exById, fmtSec, visibleLocations } from '@/lib/store';
 import {
   generate, genProposal, weeklySetsList, saveGenerated, replaceable, previewWarnings, genFolder, goalLabel, GOALS, GEN_SESSIONS, GEN_MINUTES, WARMUP_MIN, SET_WORK_SEC, SETS_PER_EX, ACSM_MIN_SETS,
   MIN_EXERCISES, CUT_CARDIO_FROM, cardioCount, cardioSwitch, genCount, setsFor, REPS, REST, HEAVY_PCT, RIR, RIR_ACSM, MIN_DAYS, SECONDARY_SHARE, WHO_MODERATE, WHO_VIGOROUS,
@@ -42,13 +43,13 @@ export default function GeneratorScreen() {
 function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
   const rev = useTick(); const router = useRouter(); const toPlan = usePlanReturn(); const s = getState().settings;
   /* wybór dni (09.10.2026 B): na starcie zaznaczona propozycja generatora dla domyślnej liczby sesji (genProposal) */
-  const [inp, setInp] = useState<GenInput>(() => { const i: GenInput = { goal: 'hypertrophy', locationId: s.mainLocationId && s.locations.some(l => l.id === s.mainLocationId) ? s.mainLocationId : null, sessions: 3, minutes: 60 }; return { ...i, days: genProposal(i) }; });
+  const [inp, setInp] = useState<GenInput>(() => { const i: GenInput = { goal: 'hypertrophy', locationId: s.mainLocationId && visibleLocations().some(l => l.id === s.mainLocationId) ? s.mainLocationId : null, sessions: 3, minutes: 60 }; return { ...i, days: genProposal(i) }; });
   /* zmiana celu, przy której liczba zaznaczonych dni wypada poza zakres (redukcja: od 3) — zaznaczenie = propozycja dla najbliższej dozwolonej liczby;
    * w zakresie — wybór użytkownika zostaje (miejsce i czas go nie zmieniają) */
   const set = (p: Partial<GenInput>) => setInp(x => { const n = { ...x, ...p }; const al = GEN_SESSIONS[n.goal]; const k = (n.days ?? []).length;
     if (p.goal && p.goal !== x.goal && !al.includes(k)) { n.sessions = al.find(v => v >= k) ?? al[al.length - 1]; n.days = genProposal(n); } return n; });
   const lim = GEN_SESSIONS[inp.goal]; const ok = daysOk(inp.days ?? [], lim[0], lim[lim.length - 1]);
-  const nLoc = s.locations.length; const r = useMemo(() => generate(inp), [inp, rev]); /* rev: miejsca i sprzęt zmienione po „+ Dodaj miejsce” */ const warn = previewWarnings(r, inp);
+  const nLoc = visibleLocations().length; const r = useMemo(() => generate(inp), [inp, rev]); /* rev: miejsca i sprzęt zmienione po „+ Dodaj miejsce” */ const warn = previewWarnings(r, inp);
   const unloaded = warn.find(w => w.kind === 'unloaded');
   /* uwaga pod celem przy zbyt małej liczbie dni (decyzja właściciela 09.10.2026 B, docs/18): ostrzeżenie „oneday” (1 dzień siłowy) stoi pod celem,
    * a nie w podglądzie — jedno miejsce, bez powtórzenia; przy celu „Ogólny” ma tekst dla zdrowia (WHO/PAG, docs/research/30) */
@@ -90,7 +91,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
     ]);
   };
   const basis = [
-    t('Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (jedno źródło). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.', { n: MIN_DAYS, h: fmtNum(SECONDARY_SHARE, 1) }),
+    t('Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.', { n: MIN_DAYS, h: fmtNum(SECONDARY_SHARE, 1) }),
     general ? t('Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. ACSM 2026 zaleca co najmniej {m}. Wytyczne USA 2018: jedna seria działa, {s}–{b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. {s} to dolna granica — uproszczenie.', { s: sets, b: GENERAL_SETS_RANGE[1], m: ACSM_MIN_SETS }) /* A11B-2: źródła rozdzielone — „jedna seria” = PAG 2018 (c8) i ACSM 2011 (c4), ACSM 2026 = co najmniej 2 (docs/research/22 7g) */
       : t('Serie: {s} na ćwiczenie — ACSM 2026 zaleca co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba {s} to uproszczenie.', { s: SETS_PER_EX, m: ACSM_MIN_SETS }),
     t('Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}) — uproszczenie, nie wynik badań.', { w: WARMUP_MIN, s: SET_WORK_SEC, r: r.avgRest, n: r.budget, k: sets, e: MIN_EXERCISES }),
@@ -108,22 +109,27 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       {header}
-      <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań; części oznaczone jako konwencja albo uproszczenie nie wynikają z badań.')}</Muted>
+      <InfoTip id="gen-intro" label={t('Propozycja do przejrzenia przed zapisem.')} info={t('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań; części oznaczone jako konwencja albo uproszczenie nie wynikają z badań.')} style={{ marginBottom: 8 }}>
+        <Muted style={{ fontSize: 13 }}>{t('Propozycja do przejrzenia przed zapisem.')}</Muted>
+      </InfoTip>
       {/* kolejność (decyzja właściciela 09.10.2026 B): najpierw dni, potem cel — każdy cel przy każdej liczbie dni, przy 1 dniu uwaga pod celem */}
       <DayPicker label={cardioN ? t('Dni treningowe w tygodniu (w tym {n} cardio)', { n: cardioN }) : t('Dni treningowe w tygodniu')} value={inp.days ?? []} min={lim[0]} max={lim[lim.length - 1]} onChange={days => set({ days })} />
       {/* cel: chipy z zawijaniem (4 cele nie mieszczą się w kontrolce segmentowej na 320 pt w każdym języku — tests/matrix-i18n) */}
-      <Field label={t('Cel')}><View testID="gen-goals" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+      <Field label={t('Cel')} infoId="gen-goal" info={unloaded ? undefined : goalNote}><View testID="gen-goals" style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         {GOALS.map(g => <Chip key={g} label={goalLabel(g)} on={inp.goal === g} onPress={() => { if (inp.goal !== g) set({ goal: g }); }} />)}
       </View></Field>
-      {unloaded ? <Txt style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{unloaded.text}</Txt> : <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{goalNote}</Muted>}
+      {unloaded ? <Txt style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{unloaded.text}</Txt> : null}
       {dayNote ? <View testID="gen-day-note"><Txt style={{ fontSize: 13, marginTop: -2, marginBottom: 8 }}>{dayNote.text}</Txt></View> : null}
       {cardioSwitch(inp.goal, nDays) ? <SwitchRow label={t('Dni cardio w planie')} detail={t('Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych.', { k: GENERAL_LIFT_MAX })} value={!!inp.cardio} onChange={v => set({ cardio: v })} /> : null}
       <Field label={t('Miejsce')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-        {s.locations.map(l => <Chip key={l.id} label={l.name} on={inp.locationId === l.id} onPress={() => set({ locationId: l.id })} />)}
+        {visibleLocations().map(l => <Chip key={l.id} label={l.name} on={inp.locationId === l.id} onPress={() => set({ locationId: l.id })} />)}
         <Chip label={t('Bez ograniczeń sprzętu')} on={inp.locationId === null} onPress={() => set({ locationId: null })} />
         <Chip nav label={t('+ Dodaj miejsce')} on={false} onPress={() => router.push('/more/locations')} />
       </View></Field>
-      {inp.locationId === null ? <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{nLoc ? t('„Bez ograniczeń sprzętu” = pełna siłownia (sztanga, hantle, maszyny i wyciągi).') : t('Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.')}</Muted> : null}
+      {inp.locationId === null ? (nLoc ? <Muted style={{ fontSize: 13, marginTop: -4, marginBottom: 8 }}>{t('„Bez ograniczeń sprzętu” = pełna siłownia (sztanga, hantle, maszyny i wyciągi).')}</Muted>
+        : <InfoTip id="gen-no-places" label={t('Bez miejsc plan zakłada pełną siłownię. W domu? „+ Dodaj miejsce”.')} info={t('Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.')} style={{ marginTop: -4, marginBottom: 8 }}>
+          <Muted style={{ fontSize: 13 }}>{t('Bez miejsc plan zakłada pełną siłownię. W domu? „+ Dodaj miejsce”.')}</Muted>
+        </InfoTip>) : null}
       <Field label={t('Czas sesji')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         {GEN_MINUTES.map(n => <Chip key={n} label={t('{n} min', { n })} on={inp.minutes === n} onPress={() => set({ minutes: n })} />)}
       </View></Field>
@@ -138,13 +144,16 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
             <Muted key={it.exerciseId} style={{ fontSize: 13 }}>{glue(it.targetSec ? t('{ex} — {n} min, umiarkowane tempo', { ex: exName(e), n: Math.round(Number(it.targetSec) / 60) }) : t('{ex} — {s} × {a}–{b}, przerwa {r}', { ex: exName(e), s: it.sets, a: it.repMin ?? '', b: it.repMax ?? '', r: fmtSec(it.restSec) })) /* A11-19: „8–12” bez złamania */}</Muted>); })
             : <Muted style={{ fontSize: 13 }}>{t('Brak ćwiczeń dostępnych w tym miejscu.')}</Muted>}
         </View>))}
-      <Muted style={{ fontSize: 13 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, inp.goal === 'hypertrophy' || inp.goal === 'cut') })}</Muted>
+      <Muted style={{ fontSize: 13 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, inp.goal === 'hypertrophy' || inp.goal === 'cut') })}</Muted>
       {warn.filter(w => w.kind !== 'unloaded' && w.kind !== 'oneday' /* pod celem */).map(w => <Txt key={w.kind} style={{ fontSize: 13, marginTop: 6 }}>{w.text}</Txt>)}
-      {inp.goal === 'cut' && !cardioN ? <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { k: CUT_CARDIO_FROM, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })}</Muted> : null}
-      {(inp.goal === 'cut' && cardioN) || general ? <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { n: r.cardioMin, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })}</Muted> : null}</> : null}
+      {inp.goal === 'cut' && !cardioN ? <InfoTip id="gen-cardio-out" label={t('Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.')} info={t('Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { k: CUT_CARDIO_FROM, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })} style={{ marginTop: 6 }}>
+        <Muted style={{ fontSize: 13 }}>{t('Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.')}</Muted>
+      </InfoTip> : null}
+      {(inp.goal === 'cut' && cardioN) || general ? <InfoTip id="gen-cardio-in" label={t('Cardio w planie: {n} min tygodniowo.', { n: r.cardioMin })} info={t('Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { n: r.cardioMin, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })} style={{ marginTop: 6 }}>
+        <Muted style={{ fontSize: 13 }}>{t('Cardio w planie: {n} min tygodniowo.', { n: r.cardioMin })}</Muted>
+      </InfoTip> : null}</> : null}
 
-      <SectionTitle>{t('Na czym to oparte')}</SectionTitle>
-      {basis.map(x => <Muted key={x} style={{ fontSize: 12, marginBottom: 4 }}>{`• ${x}`}</Muted>)}
+      <SectionTitle infoId="gen-basis" info={basis.map(x => `• ${x}`)}>{t('Na czym to oparte')}</SectionTitle>
       <MedicalNote style={{ marginTop: 6 }} /* L1 (audyt 0.10, MER-11 A): plan z cardio — bez porad medycznych, odesłanie do specjalisty */ />
       {ok && r.templates.some(tp => tp.items.length) ? <Btn title={t('Zapisz szablony i plan')} kind="primary" block onPress={save} style={{ marginTop: 14 }} /> : null}
     </ScrollView></Screen>

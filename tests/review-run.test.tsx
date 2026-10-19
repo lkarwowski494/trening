@@ -45,7 +45,7 @@ describe('normalizeReviewAsked', () => {
 
 describe('dane: Settings.reviewAsked bez zmiany schematu', () => {
   test('SCHEMA_VERSION bez zmian (18); stan bez prośby nie ma pola; zapis → restart zachowuje; zła i przyszła data znikają przy wczytaniu', async () => {
-    expect(SCHEMA_VERSION).toBe(18); jest.useFakeTimers({ now: NOW });
+    expect(SCHEMA_VERSION).toBe(19); jest.useFakeTimers({ now: NOW });
     await fresh(); expect('reviewAsked' in S().settings).toBe(false); S().settings.reviewAsked = { at: NOW - DAY, version: '0.17.0' }; store.saveCfg(); await store.flush();
     const raw = JSON.parse(global.__kv.get('state')!); expect(raw.settings.reviewAsked).toEqual({ at: NOW - DAY, version: '0.17.0' });
     await fresh(raw); expect(S().settings.reviewAsked).toEqual({ at: NOW - DAY, version: '0.17.0' });

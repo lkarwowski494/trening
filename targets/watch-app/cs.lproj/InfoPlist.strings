@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Trénink";
+"NSHealthShareUsageDescription" = "Hodinky čtou tep a aktivní energii během probíhajícího tréninku. Data se neodesílají mimo tvoje zařízení.";
+"NSHealthUpdateUsageDescription" = "Hodinky ukládají dokončený silový trénink s tepem a aktivní energií do Apple Health.";

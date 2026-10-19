@@ -71,18 +71,26 @@ name: Pierwszy tydzień nowego użytkownika
 - assertVisible: "Workout progress: 0 of 18 sets"
 - takeScreenshot: 82-trening-start
 # pierwsza seria: ciężar i powtórzenia wpisane, potem ✓ (przerwa)
-# run 38435841211: pierwszy znak „60” zgubił się przy świeżo otwartej klawiaturze (ciężar „0” zamiast „60”, zrzut 83; aplikacja bez zmian od runu, który przeszedł) —
-# w Postępach zostało „0×10”, więc ekran rekordów nie miał „Best session (volume)” (objętość 0). Wpis z potwierdzeniem na karcie „Now: …” i powtórzeniem.
+# run 38563966851: na wolnym symulatorze zginął pierwszy znak „60” (pole miało 0 — wszystkie trzy serie 0 lb, a rekordy ćwiczenia bez „Best session (volume)”) —
+# ta sama klasa co 15 i 04 (E2E 105, Q-029): znaki osobno, sprawdzenie wartości pola i jedna powtórka całego wpisu (tests/maestro-e2e38563.test.tsx)
 - retry:
-    maxRetries: 3
+    maxRetries: 1
     commands:
       - tapOn: { id: "w-0-0" }
-      - eraseText: 10
-      - inputText: "60"
+      - waitForAnimationToEnd
+      - eraseText: 5
+      - inputText: "6"
+      - inputText: "0"
+      - assertVisible: { id: "w-0-0", text: "60" }
+- retry:
+    maxRetries: 1
+    commands:
       - tapOn: { id: "r-0-0" }
-      - eraseText: 10
-      - inputText: "10"
-      - extendedWaitUntil: { visible: "Now:.60.(kg|lb).×.10", timeout: 5000 }
+      - waitForAnimationToEnd
+      - eraseText: 5
+      - inputText: "1"
+      - inputText: "0"
+      - assertVisible: { id: "r-0-0", text: "10" }
 - tapOn: { text: "Set 1 done — Back Squat" }
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
 - assertVisible: "Workout progress: 1 of 18 sets"
@@ -160,23 +168,25 @@ name: Pierwszy tydzień nowego użytkownika
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "3 sessions", timeout: 30000 }
 - takeScreenshot: 87-historia-trzy-sesje
-# --- ekran Trening po pierwszym tygodniu: „Ten tydzień”, brak „Pierwszych kroków”, kafelki progresji ---
+# --- ekran Trening po pierwszym tygodniu: „Ten tydzień”, brak „Pierwszych kroków”; bez sekcji „Progression” (14.10.2026: jest w Postępach) ---
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "This week", timeout: 30000 }
 - assertNotVisible: "First steps"
 - assertVisible: "Workouts: [1-9];.*"
+- assertNotVisible: "Progression"
 - takeScreenshot: 88-ten-tydzien
-- scrollUntilVisible: { element: { id: "progress-tile-week" }, direction: DOWN, timeout: 60000, centerElement: true }
-- tapOn: { id: "progress-tile-week" }
-- extendedWaitUntil: { visible: "Progression", timeout: 30000 }
-- takeScreenshot: 89-progresja
-- tapOn: "Back"
 # --- Postępy: podsumowanie i rekordy ćwiczenia ---
 - tapOn: "Progress, tab.*"
 - extendedWaitUntil: { visible: "Summary", timeout: 30000 }
 - assertVisible: "Workouts: [1-9].*, previously .*"
 - takeScreenshot: 90-postepy
 - assertVisible: "Muscle map: .*"
+# kafelki „Progression” (te same trzy porównania co dawniej na ekranie Trening) → szczegóły z dwoma słupkami na partię
+- scrollUntilVisible: { element: { id: "progress-tile-week" }, direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: { id: "progress-tile-week" }
+- extendedWaitUntil: { visible: "Progression", timeout: 30000 }
+- takeScreenshot: 89-progresja
+- tapOn: "Back"
 - scrollUntilVisible: { element: "Back Squat", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Back Squat"
 - extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }

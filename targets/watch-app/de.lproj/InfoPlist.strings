@@ -1,0 +1,4 @@
+/* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
+"CFBundleDisplayName" = "Training";
+"NSHealthShareUsageDescription" = "Die Uhr liest während des laufenden Trainings Herzfrequenz und aktive Energie. Die Daten werden nicht außerhalb deiner Geräte gesendet.";
+"NSHealthUpdateUsageDescription" = "Die Uhr speichert das beendete Krafttraining mit Herzfrequenz und aktiver Energie in Apple Health.";

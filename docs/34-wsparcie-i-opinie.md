@@ -11,6 +11,7 @@ Specyfikacja źródłowa: raport analityka z 13.10.2026 (w transkrypcie; skrót 
 | TestFlight | opinie testerów i raporty awarii | odczyt przy przeglądzie tygodniowym |
 | GitHub Issues | zgłoszenia techniczne | publiczne — strona wsparcia ostrzega, żeby nie podawać danych osobowych |
 | Przycisk „Napisz do nas” w Więcej → O aplikacji | otwiera pocztę użytkownika (mailto) | decyzja 2A; wdraża osobna gałąź (f-zamykanie), aplikacja nadal niczego nie wysyła |
+| Przycisk „Poproś o nową funkcję” w Więcej → O aplikacji oraz link „Czego Ci brakuje? Poproś o funkcję” na podsumowaniu co 10. trening | ta sama poczta i ten sam adres; temat „Pomysł: …” | decyzja właściciela 14.10.2026 (pkt 8); wdraża gałąź f020-pomysl, bez serwera |
 
 ## 2. Obieg sprawy
 1. **Zbieranie** — przegląd skrzynki, recenzji, TestFlight i Issues (rytm: pkt 3).
@@ -54,3 +55,9 @@ liczba eskalacji pilnych; liczba wpadek w szkicach (warunek przejścia z wariant
 5. **5A** — osobny klucz App Store Connect o najmniejszej roli do czytania recenzji (rolę potwierdzi badacz).
 6. **6B** — „na Waszą prośbę” w „Co nowego”.
 7. **7A** — retencja 12 miesięcy od zamknięcia sprawy (z zastrzeżeniem wyniku badacza RODO/DPA).
+8. **„Poproś o nową funkcję”** (14.10.2026, docs/18) — osobny przycisk obok „Napisz do nas” (ta sama funkcja `openSupportMail` w `lib/support.ts`, ten sam adres, to samo zachowanie bez poczty), temat „Pomysł: …”, treść: „Czego brakuje:” / „W jakiej sytuacji na treningu:” + stopka techniczna (wersja, iOS, język; bez danych treningowych i identyfikatorów).
+   Dodatkowo dyskretny link na podsumowaniu świeżo zakończonego treningu co N-ty trening: **N = 10 (`IDEA.EVERY_N_WORKOUTS` w `lib/review.ts`; liczba produktowa, decyzja właściciela — nie merytoryczna)**, zamykany „✕” bez skutków.
+   Licznik: opcjonalne pole `Settings.ideaShownAt` (liczba ukończonych treningów w chwili pokazania; bez zmiany schematu, migracja odrzuca złe wartości, trafia do kopii).
+   Niezmienniki: link nigdy na tym samym ekranie co prośba o ocenę — przy kolizji **pierwszeństwo ma ocena** (Apple ogranicza liczbę próśb), link czeka na najbliższy trening bez oceny (licznik liczy od ostatniego POKAZANIA, więc zaległość nie przepada);
+   link tylko na podsumowaniu świeżo zakończonego treningu (nie przy otwarciu z historii); jedna reguła nie wyłącza drugiej (test 100 treningów: ocena i link pojawiają się). Odrzucone: jeden przycisk z wyborem rodzaju, formularz w aplikacji (serwer, prywatność).
+   Teksty (5 kluczy × 35 języków) wpisane z najlepszą wiedzą — **do przeglądu tłumacza** (lista w raporcie wdrożenia).

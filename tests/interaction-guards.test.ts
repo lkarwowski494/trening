@@ -1,6 +1,6 @@
 /*
  * Strażniki wzorców interakcji (właściciel, 13.10.2026: „akcje tego samego typu działają w całej aplikacji tak samo”; katalog: docs/32-wzorce-interakcji.md).
- * Statyczny skan źródeł app/, components/, lib/ — nowy kod, który łamie wzorzec, robi test czerwonym. Numeracja S1–S16 jak w audycie spójności (docs/32, sekcja „Strażniki”).
+ * Statyczny skan źródeł app/, components/, lib/ — nowy kod, który łamie wzorzec, robi test czerwonym. Numeracja S1–S16 jak w audycie spójności (docs/32, sekcja „Strażniki”); S17 — wzorzec ⓘ (14.10.2026).
  * Zamykanie okien (S1) pilnuje osobno tests/close-button-guard.test.tsx; wzorzec usuwania — tests/swipe-delete.test.tsx.
  * Pominięte lub częściowe (z powodem): S14 (pole dotyku ≥ 44 pt — Jest nie liczy układu; pilnujemy komponentów wspólnych i zakazu roli „link”), S6 (wybór 1 z 2–4 / boolean —
  * reguła semantyczna, sprawdzamy miejsca naprawione), S16 (arkusz akcji — lista wyjątków z powodem).
@@ -139,4 +139,100 @@ describe('S16: arkusze akcji — najwyżej 4 opcje (z „Anuluj”) albo wyjąte
 
 describe('N1/N28: ekran zakupu', () => {
   test('bez nagłówka H1 powtarzającego tytuł nagłówka; zamknięcie przez useCloseHeader', () => { const s = src.get('app/paywall.tsx')!; expect(s).not.toMatch(/<H1>/); expect(s).toContain('useCloseHeader('); });
+});
+
+/* ---------- S17: teksty objaśniające pod ⓘ (docs/32 wzorzec 27; decyzje właściciela 14.10.2026) ---------- */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const tsc = require('typescript');
+type Lit = { file: string; line: number; text: string };
+/** Literały t('…')/tr('…') wewnątrz elementów `<Muted>` i atrybutów `detail=` (widoczne teksty pomocnicze) — AST, nie wyrażenie regularne. */
+function visibleHelperTexts(): Lit[] {
+  const out: Lit[] = [];
+  for (const [f, s] of src) {
+    if (!/\.tsx$/.test(f)) continue;
+    const sf = tsc.createSourceFile(f, s, tsc.ScriptTarget.Latest, true, tsc.ScriptKind.TSX);
+    const visit = (n: any) => {
+      const hit = (tsc.isJsxElement(n) && n.openingElement.tagName.getText() === 'Muted') || (tsc.isJsxAttribute(n) && n.name.getText() === 'detail');
+      if (hit) { const v = (m: any) => { if (tsc.isCallExpression(m) && /^(t|tr)$/.test(m.expression.getText()) && m.arguments[0] && tsc.isStringLiteralLike(m.arguments[0])) out.push({ file: f, line: sf.getLineAndCharacterOfPosition(m.getStart()).line + 1, text: m.arguments[0].text }); tsc.forEachChild(m, v); }; tsc.forEachChild(n, v); }
+      tsc.forEachChild(n, visit);
+    };
+    visit(sf);
+  }
+  return out;
+}
+/** Próg długości widocznego tekstu objaśniającego (polskie źródło, bez podstawienia parametrów) — decyzja właściciela 14.10.2026 (P7 A). */
+const INFO_MAX_CHARS = 100;
+/** Teksty, które zostają na wierzchu mimo długości — tylko z powodem (subskrypcja, zdrowie, utrata danych, błędy, prywatność, pusty stan z działaniem). Klucz = początek tekstu. */
+const LONG_OK: Record<string, string> = {
+  'Aplikacja nie udziela porad medycznych.': 'zastrzeżenie zdrowotne (MedicalNote) — zasada właściciela: zdrowie zawsze na wierzchu',
+  'Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi': 'ostrzeżenie: zmiana działa wstecz na dane',
+  'Nie zapisano jeszcze w Apple Health': 'stan zapisu do Zdrowia (dane, ponowienie) — błąd/stan wymagający uwagi',
+  'Czeka na zapis w Apple Health:': 'stan zapisu do Zdrowia (dane, ponowienie) — błąd/stan wymagający uwagi',
+  'Brak danych z Apple Health dla tego dnia.': 'pusty stan z działaniem (sprawdź dostęp) — zdrowie',
+  'Brak szablonów z ćwiczeniami —': 'pusty stan z działaniem (wskazuje, gdzie utworzyć szablon)',
+  'Aplikacja nie zbiera danych:': 'prywatność — oświadczenie, że dane zostają w telefonie (zasada właściciela: prywatność na wierzchu)',
+  'Plik nie podaje godzin treningów —': 'ostrzeżenie: dzień z treningiem zostanie pominięty (dane przy imporcie)',
+  'Brak zgody na powiadomienia —': 'błąd uprawnień z działaniem (przypomnienia nie przyjdą)',
+  '„≥” — w zaplanowanych szablonach': 'legenda znaku „≥” przy liczbie — wyjaśnia widoczną wartość (plan bez ciężaru), nie jest objaśnieniem metody',
+  'Zaczynasz od tej wersji —': 'kontekst nowej osoby po aktualizacji („Co nowego”)',
+};
+describe('S17: ⓘ — jeden komponent, objaśnienia nie wracają na wierzch', () => {
+  test('okrąg „i” (przycisk ⓘ) i etykieta VoiceOver „Więcej informacji” tylko w components/InfoTip.tsx; znak U+24D8 nie służy jako ikona', () => {
+    expect(lines(/Więcej informacji: \{name\}/, ['components/InfoTip.tsx'])).toEqual([]);
+    expect(lines(/>i<\/Text>/, ['components/InfoTip.tsx'])).toEqual([]);
+    const glyph: string[] = []; /* znak U+24D8 w tekście interfejsu (literał / tekst JSX) — w komentarzach wolno */
+    for (const [f, s] of src) { const sf = tsc.createSourceFile(f, s, tsc.ScriptTarget.Latest, true, /\.tsx$/.test(f) ? tsc.ScriptKind.TSX : tsc.ScriptKind.TS); const v = (n: any) => { if ((tsc.isStringLiteralLike(n) || tsc.isJsxText(n) || tsc.isTemplateHead(n) || tsc.isTemplateMiddle(n) || tsc.isTemplateTail(n)) && n.text.includes('\u24d8')) glyph.push(f); tsc.forEachChild(n, v); }; v(sf); }
+    expect(glyph).toEqual([]);
+    const tip = src.get('components/InfoTip.tsx')!; expect(tip).toMatch(/hitSlop=\{INFO_HIT_SLOP\}/); expect(tip).toMatch(/accessibilityState=\{\{ expanded: open \}\}/); expect(tip).toMatch(/accessibilityRole="button"/);
+  });
+  test('SectionTitle / H2 / Field / SwitchRow: parametr `info` obsługuje wspólny komponent (nie osobna implementacja)', () => {
+    const u = src.get('components/ui.tsx')!;
+    for (const c of ['SectionTitle', 'H2', 'Field', 'SwitchRow']) expect([c, new RegExp(`export function ${c}\\([^)]*info`).test(u) || new RegExp(`export function ${c}\\(\\{[^}]*\\binfo\\b`).test(u)]).toEqual([c, true]);
+    expect(u).toContain("from '@/components/InfoTip'");
+  });
+  test('teksty przeniesione pod ⓘ występują w kodzie tylko jako `info=` (albo w zmiennej używanej wyłącznie jako `info=`)', () => {
+    const MOVED: [string, string][] = [
+      ['components/ActiveWorkout.tsx', 'Zegar treningu stoi i pauza nie wlicza się do czasu trwania.'], ['components/DeloadHint.tsx', 'Tygodnie treningu z rzędu bez deloadu: {n}.'],
+      ['components/DayPanel.tsx', 'Kolejność: najpierw zmiany'], ['components/DayPanel.tsx', 'Uproszczenie: zwykle dzień przerwy'], ['components/DayPanel.tsx', 'Start treningu w tych dniach weźmie to miejsce'],
+      ['app/more/settings.tsx', 'Lista: ćwiczenia i serie jak w poprzednich wersjach'], ['app/more/settings.tsx', 'Skupiony: bieżąca seria dużymi cyframi'], ['app/more/settings.tsx', 'W słuchawkach zapowiedź następnego ćwiczenia'],
+      ['app/more/settings.tsx', 'RIR — powtórzenia w zapasie'], ['app/more/settings.tsx', 'RIR wpisuje się w zakresie'], ['app/more/settings.tsx', 'Kreska w „Ten tydzień” i w Postępach.'], ['app/more/settings.tsx', 'Timer odlicza w aplikacji'],
+      ['app/generator.tsx', 'Propozycja według Twoich założeń'], ['app/generator.tsx', 'Nie masz jeszcze miejsc treningu'], ['app/generator.tsx', 'Cardio poza planem: sesja cardio'], ['app/generator.tsx', 'Cardio w planie: {n} min tygodniowo. Zalecenie WHO'],
+      ['app/generator.tsx', 'Siła: bój główny na początku'], ['app/generator.tsx', 'Masa: serie na partię w tygodniu'], ['app/generator.tsx', 'Każda główna partia co najmniej'],
+      ['components/OwnPlan.tsx', 'Plan tygodnia z Twoich szablonów według tych samych reguł'], ['components/GuardSection.tsx', 'Kierunek dla partii liczymy tylko'], ['components/GuardSection.tsx', 'Miara: tonaż'], ['components/PeriodSummary.tsx', 'Obok w nawiasie'], ['components/PeriodSummary.tsx', 'Kolor względem partii z największą'], ['app/(tabs)/progress.tsx', 'Partia główna liczy 1 serię, pomocnicza 0,5'], ['app/(tabs)/progress.tsx', 'Objętość serii roboczych'], ['app/progression.tsx', 'Zaplanowane = szablony z planu'], ['components/OwnPlan.tsx', 'Każda główna partia co najmniej'], ['components/OwnPlan.tsx', 'Uproszczenie: zwykle dzień przerwy'], ['app/plan.tsx', 'Plan powtarza się co tydzień.'], ['app/plan.tsx', 'Obowiązuje jeden plan naraz.'],
+      ['app/template/[id].tsx', 'Zakres powtórzeń: {r} — gdy ostatnio'], ['app/reorder.tsx', 'Przeciągnij za ≡, żeby zmienić kolejność.'],
+      ['app/exercise/[id].tsx', 'Masa ciała: „±” to dociążenie'], ['app/exercise/[id].tsx', 'Przypisanie partii mięśniowych — jedno źródło, nie ustalone.'], ['app/exercise/[id].tsx', 'Przypisanie partii mięśniowych — uproszczenie, nie wynik badań.'],
+      ['app/history/add.tsx', 'Trening, którego nie zapisałeś na bieżąco.'], ['app/more/locations.tsx', 'Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia'], ['app/more/location/[id].tsx', '★ Miejsce główne — domyślne'],
+      ['app/more/bands.tsx', 'Kolor i poziom trudności: 1 = cienka'], ['app/more/bodymass.tsx', 'Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM'], ['app/more/backup.tsx', 'Eksport tworzy plik JSON'],
+      ['app/more/backup.tsx', 'Dopisuje treningi z plików CSV'], ['app/more/backup.tsx', 'Kopia automatyczna: po każdym treningu'], ['app/more/import.tsx', 'Dopisuje treningi z plików CSV'], ['app/more/licenses.tsx', 'Aplikacja korzysta z bibliotek open source.'],
+    ];
+    const bad: string[] = [];
+    for (const [f, start] of MOVED) {
+      const s = src.get(f); if (!s) { bad.push(`${f}: brak pliku`); continue; }
+      const sf = tsc.createSourceFile(f, s, tsc.ScriptTarget.Latest, true, tsc.ScriptKind.TSX); let seen = 0;
+      const inInfo = (n: any): boolean => { for (let p = n.parent; p; p = p.parent) { if (tsc.isJsxAttribute(p) && p.name.getText() === 'info') return true; if (tsc.isVariableDeclaration(p) && ['goalNote', 'basis', 'simplification', 'bwNote', 'note'].includes(p.name.getText())) return true; if (tsc.isFunctionDeclaration(p) || tsc.isSourceFile(p)) return false; } return false; };
+      const visit = (n: any) => { if (tsc.isCallExpression(n) && /^(t|tr)$/.test(n.expression.getText()) && n.arguments[0] && tsc.isStringLiteralLike(n.arguments[0]) && n.arguments[0].text.startsWith(start)) { seen++; if (!inInfo(n)) bad.push(`${f}:${sf.getLineAndCharacterOfPosition(n.getStart()).line + 1} „${start}” poza ⓘ`); } tsc.forEachChild(n, visit); };
+      visit(sf); if (!seen) bad.push(`${f}: „${start}” nie występuje (zmieniono tekst? zaktualizuj listę)`);
+    }
+    expect(bad).toEqual([]);
+  });
+  test('zmienne pośrednie (goalNote, basis, simplification, bwNote) są używane wyłącznie w `info=`', () => {
+    const bad: string[] = [];
+    for (const [f, names] of [['app/generator.tsx', ['goalNote', 'basis']], ['components/DayPanel.tsx', ['simplification']], ['app/exercise/[id].tsx', ['bwNote']]] as [string, string[]][]) {
+      const sf = tsc.createSourceFile(f, src.get(f)!, tsc.ScriptTarget.Latest, true, tsc.ScriptKind.TSX);
+      const visit = (n: any) => { if (tsc.isIdentifier(n) && names.includes(n.text) && !(tsc.isVariableDeclaration(n.parent) && n.parent.name === n)) { let ok = false; for (let p = n.parent; p; p = p.parent) if (tsc.isJsxAttribute(p) && p.name.getText() === 'info') { ok = true; break; } if (!ok) bad.push(`${f}:${sf.getLineAndCharacterOfPosition(n.getStart()).line + 1} ${n.text}`); } tsc.forEachChild(n, visit); };
+      visit(sf);
+    }
+    expect(bad).toEqual([]);
+  });
+  test(`lekkość: widoczny tekst pomocniczy (<Muted>, detail) ma najwyżej ${INFO_MAX_CHARS} znaków poza listą z powodem`, () => {
+    const long = visibleHelperTexts().filter(x => x.text.length > INFO_MAX_CHARS);
+    const bad = long.filter(x => !Object.keys(LONG_OK).some(k => x.text.startsWith(k))).map(x => `${x.file}:${x.line} (${x.text.length}) ${x.text.slice(0, 60)}`);
+    expect(bad).toEqual([]);
+    Object.values(LONG_OK).forEach(v => expect(v.length).toBeGreaterThan(15));
+    const unused = Object.keys(LONG_OK).filter(k => !visibleHelperTexts().some(x => x.text.startsWith(k) && x.text.length > INFO_MAX_CHARS)); expect(unused).toEqual([]); /* wyjątek, który nic nie zwalnia, jest błędem */
+  });
+  test('instrukcje gestów nie wracają na ekrany (są w Przewodniku): stopki treningu, edytora szablonu i edycji sesji', () => {
+    expect(lines(/Tapnij numer serii|Dotknij etykiety serii|Przesuń serię albo nazwę ćwiczenia w lewo/, ['lib/guide.ts'])).toEqual([]);
+  });
+  test('„Technika ›” to przejście (wzorzec 17), nie ⓘ', () => { const c = src.get('components/ExerciseCues.tsx')!; expect(c).toContain("`${t('Technika')} ›`"); expect(c).not.toMatch(/ⓘ \$\{t\('Technika'\)\}/); });
 });

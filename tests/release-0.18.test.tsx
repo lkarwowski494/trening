@@ -18,16 +18,15 @@ const PL = [
 ];
 
 describe('wydanie 0.18.0', () => {
-  test('app.json, package.json i package-lock.json (projekt) — 0.18.0', () => {
+  test('app.json, package.json i package-lock.json (projekt) — wersja bieżąca (od 0.20: release-0.20.test.tsx), 0.18.0 było wydane', () => {
     const lock = J('package-lock.json');
-    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.18.0', '0.18.0', '0.18.0', '0.18.0']);
+    expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.20.0', '0.20.0', '0.20.0', '0.20.0']);
   });
-  test('najnowszy wpis = 0.18 (id 2026-10-16, data 2026-10-13); jeśli ma build, to nowszy niż 1014; pod nim 0.17 (2026-10-15, build 1014)', () => {
-    expect(WHATS_NEW[0]).toBe(E());
-    const cur = E(); const prev = WHATS_NEW[WHATS_NEW.indexOf(cur) + 1];
-    expect([cur.id, cur.date, prev.id]).toEqual(['2026-10-16', '2026-10-13', '2026-10-15']);
-    expect(cur.build === undefined || cur.build > 1014).toBe(true);
-    expect(prev.build).toBe(1014);
+  test('wpis 0.18 (id 2026-10-16, historyczny; bieżący 0.20), data 2026-10-13, build 1015; nad nim 0.20 (2026-10-17), pod nim 0.17 (2026-10-15, build 1014)', () => {
+    const cur = E(); const i = WHATS_NEW.indexOf(cur);
+    expect([cur.id, cur.date, WHATS_NEW[i + 1].id, WHATS_NEW[i - 1].id]).toEqual(['2026-10-16', '2026-10-13', '2026-10-15', '2026-10-17']);
+    expect(cur.build).toBe(1015);
+    expect(WHATS_NEW[i + 1].build).toBe(1014);
   });
   test('wpis 0.18 po polsku: „Dostosuj do miejsca”, 2 punkty, każdy kończy się kropką; nazwa funkcji zgodna z tytułem okna, nazwy przycisków z okna', () => {
     expect(E().items()).toEqual(PL);

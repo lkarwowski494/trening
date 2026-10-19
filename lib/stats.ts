@@ -189,7 +189,7 @@ function raise(ex: Exercise, s: WSet, rec: Records, bm: number | undefined) {
 export function prMap(w: Workout): Map<string, string[]> {
   const out = new Map<string, string[]>(); const at = w.startedAt; const bm = bodyMassFor(w); /* masa ciała z dnia treningu */ const recs = new Map<string, Records>(); const run = new Map<string, number>(); const runU = new Map<string, number>(); const totDone = new Set<string>();
   const sets: { ex: Exercise; s: WSet; order: number; impl?: Impl }[] = [];
-  w.exercises.forEach((e, ei) => { const ex = exById(e.exerciseId); if (!ex) return; e.sets.forEach((s, si) => { if (isWorking(s)) sets.push({ ex, s, order: s.completedAt ?? (ei * 1000 + si), impl: e.impl }); }); });
+  w.exercises.forEach((e, ei) => { const ex = exById(e.exerciseId); if (!ex) return; e.sets.forEach((s, si) => { if (isWorking(s) && !s.toFill /* 0.20: seria z zegarka „do uzupełnienia” — rekord dopiero po uzupełnieniu */) sets.push({ ex, s, order: s.completedAt ?? (ei * 1000 + si), impl: e.impl }); }); });
   sets.sort((a, b) => a.order - b.order);
   for (const { ex, s, impl } of sets) {
     let rec = recs.get(ex.id); if (!rec) { rec = recordsFor(ex, at); recs.set(ex.id, rec); }
@@ -304,7 +304,7 @@ export const hasAnyHistory = () => getState().workouts.some(w => w.finishedAt);
  * PMC12965823, sekcja „Improving hypertrophy”): „Between RTx, hypertrophy was enhanced by … higher volume (≥10 sets/muscle group/wk)”;
  * to samo stanowisko: każdy trening siłowy poprawia hipertrofię względem braku treningu — znacznik nie jest progiem „działa / nie działa”.
  * Uproszczenie (decyzja właściciela 13.10.2026, wariant A; docs/research/32): serie pomocnicze liczą się po 0,5 (SECONDARY_SHARE) — to metoda
- * „fractional” z Pelland i in. 2024/2026 (JEDNO źródło, waga to założenie autorów), a nie praktyka „jak w aplikacjach”. Stanowisko ACSM i badania, z których
+ * „fractional” z Pelland i in. 2024/2026 (metaanaliza, szczebel 2; waga to założenie autorów — uproszczenie), a nie praktyka „jak w aplikacjach”. Stanowisko ACSM i badania, z których
  * pochodzi próg 10 (Schoenfeld i in. 2017, Baz-Valle i in. 2022), liczą „serie na partię” bez rozróżnienia bezpośrednich i pośrednich (Baz-Valle: wszystkie
  * serie, także z ćwiczeń wielostawowych), więc liczenie 0,5 nie zawyża postępu względem progu. Dlatego na paskach odcinek bezpośredni i pośredni są
  * pokazane osobno (lib/setSplit.ts). */

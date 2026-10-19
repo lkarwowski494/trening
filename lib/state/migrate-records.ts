@@ -124,6 +124,7 @@ const fixSet = (s: any) => {
     s.actualRest = v == null || v < 0 ? null : Math.min(3600, Math.round(v));
   } /* runda 52: jak przy odhaczeniu (< 1 h) */
   if (typeof s.note !== 'string') s.note = '';
+  if (s.toFill !== true || !s.done) delete s.toFill; /* 0.20: znacznik „do uzupełnienia” (zegarek) — tylko true i tylko przy odhaczonej serii */
   if (!(SET_KINDS as readonly string[]).includes(s.kind)) s.kind = s.warmup ? 'warmup' : 'normal';
   s.warmup = s.kind === 'warmup'; // runda 15: nieznany typ z importu
   s.done = !!s.done; if (s.completedAt === undefined) s.completedAt = null; if (s.actualRest === undefined) s.actualRest = null;
@@ -184,12 +185,26 @@ export const fixWorkout = (raw: any, owner: string, w: any) => {
     const z = cleanTz(w.tzOffsetMin);
     if (z === undefined) delete w.tzOffsetMin; else w.tzOffsetMin = z;
   } /* J3: strefa startu — zła wartość odpada (= strefa bieżąca, jak dotąd) */
+  /* 0.20 (docs/35): zdarzenia z zegarka i sesja zegarka — pola opcjonalne bez zmiany schematu. Dziennik zdarzeń tylko w treningu w toku (lista krótkich id);
+   * sesja zegarka (`watch`) w treningu w toku albo zakończonym, który czeka na Zdrowie, i tylko z poprawnymi liczbami. */
+  if (w === raw.active && Array.isArray(w.watchEvents)) w.watchEvents = w.watchEvents.filter((x: unknown) => typeof x === 'string' && x.length > 0 && x.length <= 64).slice(-200); else delete w.watchEvents;
+  if (w.watchEvents?.length === 0) delete w.watchEvents;
+  {
+    const k = w.watch; const keep = isObj(k) && (w === raw.active || (w.healthPending === true && !w.healthUUID)) && (k.client === 'apple' || k.client === 'garmin') && tsOf(k.startedAt) != null;
+    if (!keep) delete w.watch; else {
+      const o: any = { client: k.client, startedAt: tsOf(k.startedAt) };
+      if (tsOf(k.endedAt) != null) o.endedAt = tsOf(k.endedAt);
+      if (k.saved === true || k.saved === false) o.saved = k.saved;
+      w.watch = o;
+    }
+  }
   w.exercises = arr(w.exercises).filter((e: any) => idOf(e.exerciseId) != null); /* runda 50/51 */
   if (w !== raw.active) {
     w.exercises.forEach((e: any) => {
       e.sets = arr(e.sets).filter((s: any) => !!s.done);
       e.sets.forEach((s: any) => {
         delete s.pre;
+        delete s.toFill; /* 0.20: „do uzupełnienia” tylko w treningu w toku */
       });
     });
     w.exercises = w.exercises.filter((e: any) => e.sets.length);

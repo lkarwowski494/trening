@@ -48,12 +48,15 @@ jobs:
         env:
           NODE_OPTIONS: --max-old-space-size=3072
         run: npm run verify
-      - name: Straż 0.17.0 — build dla telefonu ma prawdziwy sklep (bez sztucznego, który jest tylko w E2E)
+      - name: Logika zegarka — testy jednostkowe Swift (targets/watch-tests)
+        run: cd targets && swift test
+      - name: Straż 0.17.0 — build dla telefonu ma prawdziwy sklep i prawdziwy zegarek (bez sztucznych, które są tylko w E2E)
         run: |
           if [ -n "${EXPO_PUBLIC_STORE_FAKE:-}" ]; then echo "::error::EXPO_PUBLIC_STORE_FAKE ustawione w buildzie TestFlight"; exit 1; fi
+          if [ -n "${EXPO_PUBLIC_WATCH_FAKE:-}" ]; then echo "::error::EXPO_PUBLIC_WATCH_FAKE ustawione w buildzie TestFlight"; exit 1; fi
       - name: Generate native iOS project (expo prebuild)
         run: npx expo prebuild --platform ios --no-install --clean
-      - name: Numer buildu (aplikacja i widżet ten sam CFBundleVersion)
+      - name: Numer buildu (aplikacja, widżet i zegarek ten sam CFBundleVersion)
         # BUILD_BASE + numer przebiegu (wyrażenia GitHub Actions nie liczą — liczy powłoka)
         env:
           BUILD_BASE: ${{ vars.BUILD_BASE || '1000' }}
@@ -77,7 +80,7 @@ jobs:
         env:
           ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
         run: umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
-      - name: Archiwum (bez podpisu — podpis dystrybucyjny dopiero przy eksporcie, 13.10.2026)
+      - name: Archiwum (bez podpisu — podpis dystrybucyjny dopiero przy eksporcie, 13.10.2026; uprawnienia osadza następny krok, 14.10.2026)
         # Świeży runner nie ma klucza prywatnego poprzedniego certyfikatu Apple Development, więc archiwum z podpisem automatycznym
         # tworzyło nowy certyfikat przy każdym przebiegu (limit -> build 1011). Certyfikat dystrybucyjny jest jeden na zespół (cloud-managed).
         run: |
@@ -88,7 +91,32 @@ jobs:
             -archivePath "$RUNNER_TEMP/Trening.xcarchive" archive \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO DEVELOPMENT_TEAM="$TEAM" CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
             2>&1 | tee xcodebuild.log | xcbeautify
-      - name: Eksport i wysyłka do App Store Connect
+      - name: Zegarek w archiwum (osadzony, ta sama wersja i numer buildu, HealthKit)
+        # 0.20: cel pl.lukasz.trening.watchkitapp podpisuje się automatycznie tym samym kluczem API. Pierwszy przebieg tworzy App ID i profil zegarka —
+        # jeśli Apple odmówi (HealthKit na App ID), właściciel dodaje App ID ręcznie (docs/35-zegarek-apple, latki-zegarek/README). Archiwum musi zawierać zegarek.
+        run: |
+          APP="$RUNNER_TEMP/Trening.xcarchive/Products/Applications/Trening.app"
+          W="$APP/Watch/TreningWatch.app"
+          test -d "$W" || { echo "::error::Brak zegarka w archiwum ($APP/Watch)"; exit 1; }
+          pb() { /usr/libexec/PlistBuddy -c "Print :$1" "$2"; }
+          [ "$(pb CFBundleShortVersionString "$W/Info.plist")" = "$(pb CFBundleShortVersionString "$APP/Info.plist")" ] || { echo "::error::Wersja zegarka różni się od wersji aplikacji"; exit 1; }
+          [ "$(pb CFBundleVersion "$W/Info.plist")" = "$BUILD_NUMBER" ] || { echo "::error::Numer buildu zegarka ≠ $BUILD_NUMBER"; exit 1; }
+          [ "$(pb WKCompanionAppBundleIdentifier "$W/Info.plist")" = "pl.lukasz.trening" ] || { echo "::error::Zegarek wskazuje inną aplikację towarzyszącą"; exit 1; }
+          # archiwum jest bez podpisu (podpis dopiero przy eksporcie), więc sprawdzamy plik uprawnień celu, nie podpis
+          grep -q "com.apple.developer.healthkit" ios/.targets/TreningWatch/generated.entitlements || { echo "::error::Zegarek bez uprawnienia HealthKit (generated.entitlements)"; exit 1; }
+      - name: Uprawnienia w archiwum (podpis ad hoc z plikami uprawnień — 14.10.2026, błąd Zdrowia w 0.18/1015)
+        # Archiwum bez podpisu nie zawiera uprawnień (HealthKit): eksport podpisał aplikację i zegarek bez nich, więc „Pokazuj dane z Apple Health” kończyło się
+        # alertem (przebieg doświadczenia 38549517589: .ipa miał tylko team-identifier). Xcode 26 nie pozwala na podpis ad hoc w archiwum (tożsamość „-” → błąd
+        # „Ad Hoc code signing is not allowed with SDK”), więc osadzamy uprawnienia ręcznie: codesign -s - z plikami uprawnień celów (od środka na zewnątrz).
+        # Podpis ad hoc nie tworzy certyfikatu; eksport i tak podpisuje dystrybucyjnie (cloud-managed) i zachowuje te uprawnienia (sprawdzone w tym samym przebiegu).
+        run: |
+          APP="$RUNNER_TEMP/Trening.xcarchive/Products/Applications/Trening.app"
+          codesign --force -s - --entitlements ios/.targets/TreningWatch/generated.entitlements "$APP/Watch/TreningWatch.app"
+          for x in "$APP"/PlugIns/*.appex; do codesign --force -s - "$x"; done
+          codesign --force -s - --entitlements ios/Trening/Trening.entitlements "$APP"
+          bash scripts/ci/check-entitlements.sh "$APP" ios/Trening/Trening.entitlements "archiwum: aplikacja"
+          bash scripts/ci/check-entitlements.sh "$APP/Watch/TreningWatch.app" ios/.targets/TreningWatch/generated.entitlements "archiwum: zegarek"
+      - name: Eksport do pliku .ipa (jeszcze bez wysyłki)
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
@@ -96,20 +124,40 @@ jobs:
           set -o pipefail
           KID="$ASC_KEY_ID"; ISS="$ASC_ISSUER_ID"; unset ASC_KEY_ID ASC_ISSUER_ID
           TEAM=$(node -p "require('./app.json').expo.ios.appleTeamId")
-          cat > "$RUNNER_TEMP/ExportOptions.plist" <<EOF
+          for D in export upload; do
+          cat > "$RUNNER_TEMP/ExportOptions-$D.plist" <<EOF
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
           <plist version="1.0"><dict>
             <key>method</key><string>app-store-connect</string>
-            <key>destination</key><string>upload</string>
+            <key>destination</key><string>$D</string>
             <key>teamID</key><string>$TEAM</string>
             <key>signingStyle</key><string>automatic</string>
             <key>manageAppVersionAndBuildNumber</key><false/>
           </dict></plist>
           EOF
-          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/Trening.xcarchive" -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" \
+          done
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/Trening.xcarchive" -exportOptionsPlist "$RUNNER_TEMP/ExportOptions-export.plist" \
             -exportPath "$RUNNER_TEMP/export" -allowProvisioningUpdates -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
             -authenticationKeyID "$KID" -authenticationKeyIssuerID "$ISS" 2>&1 | tee export.log | xcbeautify
+      - name: Strażnik uprawnień w .ipa (aplikacja i zegarek) — brak uprawnienia zatrzymuje przebieg przed wysyłką
+        run: |
+          mkdir "$RUNNER_TEMP/ipa" && (cd "$RUNNER_TEMP/ipa" && unzip -q "$RUNNER_TEMP"/export/*.ipa)
+          APP=$(ls -d "$RUNNER_TEMP"/ipa/Payload/*.app)
+          rc=0
+          bash scripts/ci/check-entitlements.sh "$APP" ios/Trening/Trening.entitlements "ipa: aplikacja" || rc=1
+          bash scripts/ci/check-entitlements.sh "$APP/Watch/TreningWatch.app" ios/.targets/TreningWatch/generated.entitlements "ipa: zegarek" || rc=1
+          exit $rc
+      - name: Wysyłka do App Store Connect
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          set -o pipefail
+          KID="$ASC_KEY_ID"; ISS="$ASC_ISSUER_ID"; unset ASC_KEY_ID ASC_ISSUER_ID
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/Trening.xcarchive" -exportOptionsPlist "$RUNNER_TEMP/ExportOptions-upload.plist" \
+            -exportPath "$RUNNER_TEMP/upload" -allowProvisioningUpdates -authenticationKeyPath "$RUNNER_TEMP/AuthKey.p8" \
+            -authenticationKeyID "$KID" -authenticationKeyIssuerID "$ISS" 2>&1 | tee -a export.log | xcbeautify
           echo "## TestFlight: build $BUILD_NUMBER wysłany" >> "$GITHUB_STEP_SUMMARY"
           echo "Po przetworzeniu przez Apple (zwykle 10–30 min) pojawi się w aplikacji TestFlight na iPhonie." >> "$GITHUB_STEP_SUMMARY"
       - name: Usunięcie klucza z maszyny

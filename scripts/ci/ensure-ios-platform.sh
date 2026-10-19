@@ -13,4 +13,19 @@ else
   echo "Brak platformy iOS ${SDK} — pobieram (xcodebuild -downloadPlatform iOS)."
   sudo xcodebuild -downloadPlatform iOS
 fi
+# 0.20 (Apple Watch): aplikacja osadza zegarek, więc build iPhone'a potrzebuje też platformy watchOS zgodnej z SDK wybranego Xcode (ten sam błąd
+# „watchOS X.Y is not installed”). Obraz macos-26 ma watchOS 26.x; pobranie tylko, gdy brakuje.
+WSDK="$(xcrun --sdk watchos --show-sdk-version 2>/dev/null || true)"
+if [ -n "${WSDK}" ]; then
+  echo "SDK watchOS wybranego Xcode: ${WSDK}"
+  if xcrun simctl list runtimes | grep -Eq "watchOS ${WSDK//./\\.}( |\.)"; then
+    echo "Platforma watchOS ${WSDK} jest zainstalowana — bez pobierania."
+  else
+    echo "Brak platformy watchOS ${WSDK} — pobieram (xcodebuild -downloadPlatform watchOS)."
+    sudo xcodebuild -downloadPlatform watchOS
+  fi
+else
+  echo "Brak SDK watchOS w wybranym Xcode — pobieram platformę (xcodebuild -downloadPlatform watchOS)."
+  sudo xcodebuild -downloadPlatform watchOS
+fi
 xcrun simctl list runtimes

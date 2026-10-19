@@ -16,7 +16,7 @@ import { EN } from '@/lib/i18n.en';
 import { LOCALES } from '@/lib/locales';
 import * as store from '@/lib/store';
 import { fresh, saved, addWorkout, ex } from './helpers';
-import { renderApp, flushAll, act, screen as appScreen } from './app';
+import { renderApp, flushAll, act, screen as appScreen, openInfo } from './app';
 
 const root = path.join(__dirname, '..');
 const lib = (key: string) => ({ lib: true as const, libKey: key });
@@ -88,9 +88,9 @@ describe('MER2-08: RIR > 5 = „lekko”', () => {
   test('Ustawienia: opis skali RIR mówi o zakresie 0–5 i „lekko” (z parametrów RIR_MAX, RPE_LIGHT) — PL i EN', async () => {
     scale('rpe'); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/more/settings' }); await flushAll(10);
-    expect(appScreen.getByText('RIR wpisuje się w zakresie 0–5; więcej niż 5 powtórzeń w zapasie zapisuje się jako „lekko” (RPE 4), bo poniżej RPE 5 skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).')).toBeTruthy();
+    await openInfo('effort-scale'); expect(appScreen.getByText('RIR wpisuje się w zakresie 0–5; więcej niż 5 powtórzeń w zapasie zapisuje się jako „lekko” (RPE 4), bo poniżej RPE 5 skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).')).toBeTruthy();
     applyLang('en'); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/more/settings', locale: 'en' }); await flushAll(10);
-    expect(appScreen.getByText('Enter RIR from 0 to 5; more than 5 reps in reserve is saved as “light” (RPE 4), because below RPE 5 the scale describes effort in words, not reps in reserve (Helms et al. 2016).')).toBeTruthy();
+    await openInfo('effort-scale'); expect(appScreen.getByText('Enter RIR from 0 to 5; more than 5 reps in reserve is saved as “light” (RPE 4), because below RPE 5 the scale describes effort in words, not reps in reserve (Helms et al. 2016).')).toBeTruthy();
   });
 });
 

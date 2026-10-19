@@ -1,0 +1,10 @@
+{
+ "v": 1,
+ "kind": "hello",
+ "client": "apple",
+ "protocol": 1,
+ "app": "0.20.0",
+ "caps": {
+  "session": true
+ }
+}

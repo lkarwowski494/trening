@@ -203,6 +203,6 @@ describe('C5 / LOG-11 / TST-10: liczby generatora tylko w stałych lib/generator
     const fs = require('fs'); const path = require('path');
     const keys = ['app/generator.tsx', 'lib/generator.ts'].flatMap(f => [...String(fs.readFileSync(path.join(__dirname, '..', f), 'utf8')).matchAll(/\bt\(\s*'((?:[^'\\]|\\.)*)'/g)].map(m => m[1]));
     expect(keys.length).toBeGreaterThan(30);
-    expect(keys.map(k => k.replace(/\{\w+\}|WHO 2020|ACSM 2026|ACSM 2011|USA 2018|× 60/g, '')).filter(k => /\d/.test(k))).toEqual([]);
+    expect(keys.map(k => k.replace(/\{\w+\}|WHO 2020|ACSM 2026|ACSM 2011|Pelland i in\. 2026|USA 2018|× 60/g, '')).filter(k => /\d/.test(k))).toEqual([]);
   });
 });

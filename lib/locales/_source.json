@@ -4,8 +4,8 @@
   "en": "“⇄ swap” next to an exercise replaces it with another only in this workout — the template stays."
  },
  {
-  "pl": "„+?” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.",
-  "en": "“+?” — in the planned templates {n} {s} have no weight or reps (and no “Previous”): they count as sets but not toward volume."
+  "pl": "„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.",
+  "en": "“≥” — in the planned templates {n} {s} have no weight or reps (and no “Previous”): they count as sets but not toward volume."
  },
  {
   "pl": "„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
@@ -32,6 +32,14 @@
   "en": "“Skip today” skips the rest of an exercise’s sets in this workout."
  },
  {
+  "pl": "„Poproś o nową funkcję” obok „Napisz do nas” w Więcej → O aplikacji.",
+  "en": "“Request a new feature” next to “Write to us” in More → About."
+ },
+ {
+  "pl": "„Strażnik progresji” w Postępach: sylwetka z kierunkiem progresu oraz zdanie o brakach do celu z uwzględnieniem planu.",
+  "en": "“Progress Guard” in Progress: a body figure showing the direction of progress and a sentence on what is missing to reach the goal, taking your plan into account."
+ },
+ {
   "pl": "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.",
   "en": "“Technique”: open the exercise tips from a workout and from a template too."
  },
@@ -54,6 +62,10 @@
  {
   "pl": "{cur} wobec {prev}",
   "en": "{cur} vs {prev}"
+ },
+ {
+  "pl": "{d} + {w} pośrednio ({n} {s} po {share})",
+  "en": "{d} + {w} indirect ({n} {s} at {share} each)"
  },
  {
   "pl": "{d} + {w} pośrednio ({n} {s})",
@@ -102,6 +114,10 @@
  {
   "pl": "{n} {w} · Dostosuj",
   "en": "{n} {w} · Adjust"
+ },
+ {
+  "pl": "{n} / {goal} serii",
+  "en": "{n} / {goal} sets"
  },
  {
   "pl": "{n} h",
@@ -304,8 +320,16 @@
   "en": "●●● primary · ●● secondary · ● stabilizer"
  },
  {
+  "pl": "★ Miejsce główne",
+  "en": "★ Main place"
+ },
+ {
   "pl": "★ Miejsce główne — domyślne dla nowych treningów i szablonów bez własnego miejsca.",
   "en": "★ Main place — default for new workouts and for templates without their own place."
+ },
+ {
+  "pl": "📍 Miejsce na te dni",
+  "en": "📍 Place for these days"
  },
  {
   "pl": "1 miesiąc za darmo, potem {price}/{period}",
@@ -318,6 +342,10 @@
  {
   "pl": "16 języków; wygląd jasny, ciemny albo jak w telefonie.",
   "en": "16 languages; light, dark or system appearance."
+ },
+ {
+  "pl": "2 tyg. temu",
+  "en": "2 weeks ago"
  },
  {
   "pl": "20 nowych ćwiczeń ze wskazówkami w sekcji „Technika”.",
@@ -404,6 +432,10 @@
   "en": "Apple Health…"
  },
  {
+  "pl": "Apple Watch: odhaczanie serii, przerwa z timerem i „Cofnij” przez 5 sekund (watchOS 10 lub nowszy).",
+  "en": "Apple Watch: tick off sets, a rest timer and “Undo” for 5 seconds (watchOS 10 or later)."
+ },
+ {
   "pl": "Archiwizować szablon?",
   "en": "Archive template?"
  },
@@ -484,12 +516,20 @@
   "en": "Keg"
  },
  {
+  "pl": "bez ciężaru",
+  "en": "no weight"
+ },
+ {
   "pl": "Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.",
   "en": "No e1RM: there are no sources on what share of body weight you lift in this exercise."
  },
  {
   "pl": "bez folderu",
   "en": "no folder"
+ },
+ {
+  "pl": "Bez miejsc plan zakłada pełną siłownię. W domu? „+ Dodaj miejsce”.",
+  "en": "With no places, the plan assumes a full gym. Training at home? “+ Add place”."
  },
  {
   "pl": "bez miejsca",
@@ -506,6 +546,18 @@
  {
   "pl": "Bez planu tygodnia",
   "en": "No weekly plan"
+ },
+ {
+  "pl": "bez porównania",
+  "en": "no comparison"
+ },
+ {
+  "pl": "bez serii",
+  "en": "no sets"
+ },
+ {
+  "pl": "Bez serii: {list}",
+  "en": "No sets: {list}"
  },
  {
   "pl": "bez szablonu",
@@ -584,12 +636,20 @@
   "en": "No exercises for: {list}."
  },
  {
+  "pl": "brak danych",
+  "en": "no data"
+ },
+ {
   "pl": "Brak danych do wykresu.",
   "en": "No data to chart."
  },
  {
   "pl": "Brak danych z Apple Health dla tego dnia. Jeśli dane powinny być, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.",
   "en": "No data from Apple Health for this day. If there should be some, check access in the Health app: profile → Apps → {app}."
+ },
+ {
+  "pl": "Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).",
+  "en": "This phone has no voice for the app language. Download one in iOS Settings (Accessibility)."
  },
  {
   "pl": "Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.",
@@ -610,6 +670,14 @@
  {
   "pl": "Brak pomiarów.",
   "en": "No measurements."
+ },
+ {
+  "pl": "brak poprzedniego okresu",
+  "en": "no previous period"
+ },
+ {
+  "pl": "brak poprzedniego tygodnia",
+  "en": "no previous week"
  },
  {
   "pl": "Brak serii w tym i poprzednim okresie.",
@@ -708,8 +776,16 @@
   "en": "Cardio"
  },
  {
+  "pl": "Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.",
+  "en": "Cardio outside the plan: with this number of days all sessions are strength."
+ },
+ {
   "pl": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
   "en": "Cardio outside the plan: a cardio session is in the plan from {k} days per week; with fewer, all days are strength days. WHO recommends at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts."
+ },
+ {
+  "pl": "Cardio w planie: {n} min tygodniowo.",
+  "en": "Cardio in the plan: {n} min per week."
  },
  {
   "pl": "Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
@@ -782,6 +858,10 @@
  {
   "pl": "Ciężar od {a} do {b}.",
   "en": "Weight from {a} to {b}."
+ },
+ {
+  "pl": "ciężar roboczy {sign} {now} (poprz. {prev})",
+  "en": "working weight {sign} {now} (prev. {prev})"
  },
  {
   "pl": "Ciężar serii na stacji wpisuj na stronę — tak, jak pokazuje urządzenie.",
@@ -880,6 +960,14 @@
   "en": "Duration: 1 to 1440 minutes."
  },
  {
+  "pl": "Czego brakuje:",
+  "en": "What’s missing:"
+ },
+ {
+  "pl": "Czego Ci brakuje? Poproś o funkcję",
+  "en": "Missing something? Request a feature"
+ },
+ {
   "pl": "Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji.",
   "en": "Waiting to be saved to Apple Health: {n}. It will be retried when the app starts and when you return to it."
  },
@@ -894,6 +982,10 @@
  {
   "pl": "Częste błędy",
   "en": "Common mistakes"
+ },
+ {
+  "pl": "część zaplanowanych serii nie ma ciężaru",
+  "en": "some planned sets have no weight"
  },
  {
   "pl": "Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej.",
@@ -969,6 +1061,10 @@
  {
   "pl": "Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.",
   "en": "Exercising at home or at a gym? Set your equipment in “Places and equipment”."
+ },
+ {
+  "pl": "D — tydzień deload",
+  "en": "D — deload week"
  },
  {
   "pl": "D — tydzień oznaczony jako deload.",
@@ -1091,8 +1187,16 @@
   "en": "To failure (F)"
  },
  {
+  "pl": "do uzupełnienia",
+  "en": "to fill in"
+ },
+ {
   "pl": "do zrobienia",
   "en": "to do"
+ },
+ {
+  "pl": "Do: {day}",
+  "en": "To: {day}"
  },
  {
   "pl": "dociążenie: {v}",
@@ -1153,6 +1257,18 @@
  {
   "pl": "Domyślna przerwa (s)",
   "en": "Default rest (s)"
+ },
+ {
+  "pl": "Domyślnie głos tylko w słuchawkach.",
+  "en": "By default the voice plays only through headphones."
+ },
+ {
+  "pl": "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.",
+  "en": "Adds workouts from CSV — without deleting data, with a preview."
+ },
+ {
+  "pl": "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.",
+  "en": "Adds workouts from CSV. Does not change existing data. Preview before saving."
  },
  {
   "pl": "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.",
@@ -1455,6 +1571,19 @@
   "en": "The folder wasn’t created."
  },
  {
+  "pl": "funt|funty|funtów",
+  "en": "pound|pounds",
+  "plural": true
+ },
+ {
+  "pl": "funta",
+  "en": "pounds"
+ },
+ {
+  "pl": "Gdzie trenujesz i jaki sprzęt tam masz.",
+  "en": "Where you train and what equipment you have there."
+ },
+ {
   "pl": "Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.",
   "en": "Where you train and what equipment you have there. The exercise picker then shows what you can do at the workout’s place, and the “↑” hint suggests weights you actually have. You pick the place when a workout starts."
  },
@@ -1487,6 +1616,10 @@
   "en": "glute-ham raise"
  },
  {
+  "pl": "Głos także przez głośnik telefonu",
+  "en": "Voice also through the phone speaker"
+ },
+ {
   "pl": "główna",
   "en": "primary"
  },
@@ -1507,8 +1640,17 @@
   "en": "Start time"
  },
  {
+  "pl": "godzina|godziny|godzin",
+  "en": "hour|hours",
+  "plural": true
+ },
+ {
   "pl": "Gotowe",
   "en": "Done"
+ },
+ {
+  "pl": "Gotowe zestawy",
+  "en": "Ready-made sets"
  },
  {
   "pl": "Góra A",
@@ -1623,6 +1765,10 @@
   "en": "Hotel"
  },
  {
+  "pl": "i jeszcze {n}",
+  "en": "and {n} more"
+ },
+ {
   "pl": "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.",
   "en": "Import your workout history from CSV files of popular training logs (More → Backup → “Import history from a CSV file”), with a preview before saving."
  },
@@ -1674,6 +1820,18 @@
  {
   "pl": "Inne",
   "en": "Other"
+ },
+ {
+  "pl": "Inne miejsce",
+  "en": "Another place"
+ },
+ {
+  "pl": "Inne miejsce (tylko dziś)…",
+  "en": "Another place (today only)…"
+ },
+ {
+  "pl": "Inne miejsce…",
+  "en": "Another place…"
  },
  {
   "pl": "Inne plany",
@@ -1812,8 +1970,8 @@
   "en": "Current set card during a workout; the “List” view as before, selectable in Settings."
  },
  {
-  "pl": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (jedno źródło). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
-  "en": "Each major muscle group on at least {n} days a week (WHO 2020 — a health recommendation; ACSM 2026: strength improves with at least {n} sessions a week). A day when the group only assists counts as {h} — a simplification (single source). The split (full body, upper/lower) is a convention — with the same number of sets it gives similar results."
+  "pl": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
+  "en": "Each major muscle group on at least {n} days a week (WHO 2020 — a health recommendation; ACSM 2026: strength improves with at least {n} sessions a week). A day when the group only assists counts as {h} — a simplification (method from the Pelland et al. 2026 meta-analysis). The split (full body, upper/lower) is a convention — with the same number of sets it gives similar results."
  },
  {
   "pl": "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.",
@@ -1836,8 +1994,21 @@
   "en": "kettlebell: {v}"
  },
  {
+  "pl": "Kierunek dla partii liczymy tylko na ćwiczeniach, które były w obu tygodniach. Ćwiczenia bez punktu odniesienia — nowe w tym tygodniu albo nierobione teraz — pomijamy w obu tygodniach.",
+  "en": "The direction for a muscle group uses only exercises that appear in both weeks. Exercises with nothing to compare — new this week or not done now — are left out of both weeks."
+ },
+ {
   "pl": "Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.",
   "en": "Several plans: the + button in the header (Add plan) creates a copy to change, and “Make active” under “Other plans” switches to it — day changes come back with their plan."
+ },
+ {
+  "pl": "kilogram|kilogramy|kilogramów",
+  "en": "kilogram|kilograms",
+  "plural": true
+ },
+ {
+  "pl": "kilograma",
+  "en": "kilograms"
  },
  {
   "pl": "klatka",
@@ -1882,10 +2053,6 @@
  {
   "pl": "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.",
   "en": "Colour relative to the muscle group with the most sets in this period (main group 1 set, secondary 0.5). Grey — no sets."
- },
- {
-  "pl": "Kolor względem partii z największą liczbą serii w tym tygodniu (wykonane + zaplanowane). Szare — bez serii.",
-  "en": "Colour relative to the muscle group with the most sets this week (done + planned). Grey — no sets."
  },
  {
   "pl": "Koniec przerwy i przypomnienie o treningu z planu przyjdą także przy zablokowanym ekranie.",
@@ -1934,6 +2101,10 @@
  {
   "pl": "Kopia zapasowa (eksport / import)",
   "en": "Backup (export / import)"
+ },
+ {
+  "pl": "Kopie automatyczne znikają razem z aplikacją — przed jej usunięciem wyeksportuj backup.",
+  "en": "Automatic copies disappear together with the app — export a backup before deleting it."
  },
  {
   "pl": "kółka gimnastyczne",
@@ -1994,6 +2165,10 @@
  {
   "pl": "Landmine (uchwyt końca gryfu)",
   "en": "Landmine"
+ },
+ {
+  "pl": "Licencje bibliotek open source. Dotknij, by zobaczyć treść.",
+  "en": "Open-source library licenses. Tap one to see its text."
  },
  {
   "pl": "Licencje open source",
@@ -2408,12 +2583,29 @@
   "en": "Max reps assisted"
  },
  {
+  "pl": "metr|metry|metrów",
+  "en": "metre|metres",
+  "plural": true
+ },
+ {
+  "pl": "metra",
+  "en": "metres"
+ },
+ {
+  "pl": "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.",
+  "en": "Measure: tonnage (sets × reps × weight) averaged per session of the exercise, so a different number of sessions does not inflate the result. When tonnage fell but the working weight rose, it counts as more."
+ },
+ {
   "pl": "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.",
   "en": "You can’t delete the main place — first set another place as main."
  },
  {
   "pl": "Miejsca i sprzęt",
   "en": "Places and equipment"
+ },
+ {
+  "pl": "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.",
+  "en": "Workout locations and “Adjust to location”: changes apply to today’s workout only — the template and plan stay as they are."
  },
  {
   "pl": "Miejsce",
@@ -2424,12 +2616,24 @@
   "en": "Default place"
  },
  {
+  "pl": "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.",
+  "en": "A place for {a} – {b}. Pick the equipment you have there — no need to enter weights."
+ },
+ {
   "pl": "Miejsce tego treningu",
   "en": "Place of this workout"
  },
  {
+  "pl": "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).",
+  "en": "The place will be added to your places (Settings → Places and equipment)."
+ },
+ {
   "pl": "Miejsce treningu: {l}",
   "en": "Workout place: {l}"
+ },
+ {
+  "pl": "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.",
+  "en": "A place for this workout only. Pick the equipment you have there — no need to enter weights."
  },
  {
   "pl": "miesiąc",
@@ -2477,6 +2681,14 @@
   "en": "less"
  },
  {
+  "pl": "Mniej niż przed tygodniem: {list}.",
+  "en": "Less than the week before: {list}."
+ },
+ {
+  "pl": "Mniej niż w tygodniu {d}: {list}.",
+  "en": "Less than in the week of {d}: {list}."
+ },
+ {
   "pl": "Mniej opcji",
   "en": "Fewer options"
  },
@@ -2495,6 +2707,10 @@
  {
   "pl": "Moje szablony, {n}× w tygodniu",
   "en": "My templates, {n}× a week"
+ },
+ {
+  "pl": "Możliwości w kolejności",
+  "en": "Options in order"
  },
  {
   "pl": "Mój plan",
@@ -2865,6 +3081,10 @@
   "en": "unread"
  },
  {
+  "pl": "nierobione w tym tygodniu",
+  "en": "not done this week"
+ },
+ {
   "pl": "Niezapisane zmiany",
   "en": "Unsaved changes"
  },
@@ -2909,6 +3129,10 @@
   "en": "new"
  },
  {
+  "pl": "nowe",
+  "en": "new"
+ },
+ {
   "pl": "Nowe ćwiczenia: {n}",
   "en": "New exercises: {n}"
  },
@@ -2935,6 +3159,10 @@
  {
   "pl": "Nowe szablony i plan",
   "en": "New templates and plan"
+ },
+ {
+  "pl": "nowe w tym tygodniu",
+  "en": "new this week"
  },
  {
   "pl": "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.",
@@ -3001,6 +3229,10 @@
   "en": "vol."
  },
  {
+  "pl": "Objaśnienia pod przyciskiem „i” na ekranach.",
+  "en": "Explanations under the “i” button on the screens."
+ },
+ {
   "pl": "objętość",
   "en": "volume"
  },
@@ -3055,6 +3287,10 @@
  {
   "pl": "Od 0.10: szablon i ćwiczenie otwierają się w podglądzie — zmiany zaczynasz przyciskiem „Edytuj” i zatwierdzasz „Zapisz”.",
   "en": "Since 0.10: templates and exercises open in a preview — start changes with “Edit” and confirm them with “Save”."
+ },
+ {
+  "pl": "Od: {day}",
+  "en": "From: {day}"
  },
  {
   "pl": "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.",
@@ -3155,6 +3391,10 @@
  {
   "pl": "opcjonalne pole, nie wpływa na objętość",
   "en": "optional field, does not affect volume"
+ },
+ {
+  "pl": "Opcjonalnie, tylko w telefonie. Potrzebna do e1RM w podciąganiu i pompkach.",
+  "en": "Optional, stored only on your phone. Needed for e1RM in pull-ups and push-ups."
  },
  {
   "pl": "Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.",
@@ -3333,6 +3573,10 @@
   "en": "paused"
  },
  {
+  "pl": "Pauza — czas treningu stoi. Odhaczenie serii wznawia.",
+  "en": "Paused — the workout clock is stopped. Ticking off a set resumes it."
+ },
+ {
   "pl": "Pauza treningu",
   "en": "Pause workout"
  },
@@ -3409,6 +3653,10 @@
   "en": "The plan “{name}” is under “Other plans”."
  },
  {
+  "pl": "plan bez ciężaru lub powtórzeń",
+  "en": "plan without weight or reps"
+ },
+ {
   "pl": "Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.",
   "en": "The plan repeats every week. Change single days in the Plan tab."
  },
@@ -3429,6 +3677,10 @@
   "en": "Plan from my templates"
  },
  {
+  "pl": "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.",
+  "en": "A plan from your templates — to review. Templates stay unchanged."
+ },
+ {
   "pl": "Plan: {name}",
   "en": "Plan: {name}"
  },
@@ -3447,6 +3699,10 @@
  {
   "pl": "Plik jest za duży. Dane nie zostały zmienione.",
   "en": "The file is too large. Your data was not changed."
+ },
+ {
+  "pl": "Plik JSON z całą historią i szablonami. Import przyjmuje ten sam format.",
+  "en": "A JSON file with your whole history and templates. Import accepts the same format."
  },
  {
   "pl": "Plik ma schemat {a}, a ta wersja obsługuje do {b}. Zaktualizuj aplikację.",
@@ -3525,6 +3781,10 @@
   "en": "Show data from Apple Health"
  },
  {
+  "pl": "Pokazuje objaśnienie pod nagłówkiem.",
+  "en": "Shows the explanation under the heading."
+ },
+ {
   "pl": "Pokaż",
   "en": "Show"
  },
@@ -3573,6 +3833,10 @@
   "en": "Link with next into a superset"
  },
  {
+  "pl": "Połącz z telefonem",
+  "en": "Connect to your phone"
+ },
+ {
   "pl": "Pomiar z tym samym dniem zastępuje poprzedni.",
   "en": "A measurement with the same date replaces the earlier one."
  },
@@ -3581,8 +3845,16 @@
   "en": "Measurements"
  },
  {
+  "pl": "Pominąć ćwiczenie?",
+  "en": "Skip this exercise?"
+ },
+ {
   "pl": "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.",
   "en": "Skipping the exercise stops the timing — this time won’t be saved."
+ },
+ {
+  "pl": "Pominięte (bez punktu odniesienia): {list}",
+  "en": "Left out (nothing to compare with): {list}"
  },
  {
   "pl": "pominięte dziś",
@@ -3613,6 +3885,26 @@
   "en": "secondary"
  },
  {
+  "pl": "Pomysł",
+  "en": "Idea"
+ },
+ {
+  "pl": "Poniżej celu",
+  "en": "Below goal"
+ },
+ {
+  "pl": "Poniżej celu (bez planu tygodnia): {list}.",
+  "en": "Below goal (no weekly plan): {list}."
+ },
+ {
+  "pl": "Poniżej celu nawet z planem",
+  "en": "Below goal even with the plan"
+ },
+ {
+  "pl": "Poniżej celu nawet z planem: {list}.",
+  "en": "Below goal even with the plan: {list}."
+ },
+ {
   "pl": "Poniżej celu serii tygodniowo: {list}. Cel ustawisz w Ustawieniach (automatycznie dolny próg zalecany przy budowie masy); serie dodasz w szablonach.",
   "en": "Below the weekly set goal: {list}. You can set the goal in Settings (automatically the lower threshold recommended for building muscle); you can add sets in the templates."
  },
@@ -3633,8 +3925,16 @@
   "en": "Log correction: all sets of “{name}” move to the chosen exercise (values unchanged)."
  },
  {
+  "pl": "Poprawka: zapis i odczyt Apple Health działają (w poprzedniej wersji testowej brakowało uprawnienia).",
+  "en": "Fix: writing to and reading from Apple Health work (the previous test version lacked the permission)."
+ },
+ {
   "pl": "Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek.",
   "en": "Fixes: Progress remembers the selected exercise, an import without times shows “time unknown”, and help texts now match the tab names."
+ },
+ {
+  "pl": "Poproś o nową funkcję",
+  "en": "Request a new feature"
  },
  {
   "pl": "poprz.",
@@ -3693,6 +3993,14 @@
   "en": "Comparison: {name}"
  },
  {
+  "pl": "Porównywane ćwiczenia: tonaż/sesję i ciężar roboczy",
+  "en": "Compared exercises: tonnage/session and working weight"
+ },
+ {
+  "pl": "Posłuchaj przykładu",
+  "en": "Listen to an example"
+ },
+ {
   "pl": "Postęp treningu: {d} z {n} serii",
   "en": "Workout progress: {d} of {n} sets"
  },
@@ -3711,6 +4019,10 @@
  {
   "pl": "Postępy mają własną zakładkę: podsumowanie, „Progresja”, wykresy ćwiczeń i masa ciała.",
   "en": "Progress has its own tab: summary, “Progression”, exercise charts and body weight."
+ },
+ {
+  "pl": "Postępy: dwa słupki na partię — porównanie okresu z poprzednim okresem.",
+  "en": "Progress: two bars per muscle group — a period compared with the previous period."
  },
  {
   "pl": "Postępy: podsumowanie tygodnia i miesiąca z mapą mięśni, znacznik {n} serii na partię w tygodniu i oznaczanie tygodnia deload.",
@@ -3794,6 +4106,10 @@
   "en": "level {n}"
  },
  {
+  "pl": "Poziom: 1 = cienka, 7 = bardzo gruba.",
+  "en": "Level: 1 = thin, 7 = very thick."
+ },
+ {
   "pl": "Poziomy gum, które masz w tym miejscu (1 = cienka, 7 = bardzo gruba).",
   "en": "Band levels you have at this place (1 = thin, 7 = very thick)."
  },
@@ -3839,6 +4155,10 @@
   "en": "Suggestion {n}: {name}"
  },
  {
+  "pl": "Propozycja do przejrzenia przed zapisem.",
+  "en": "A proposal to review before saving."
+ },
+ {
   "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań; części oznaczone jako konwencja albo uproszczenie nie wynikają z badań.",
   "en": "A proposal based on your assumptions — you review it before saving. The rules come from research reviews; parts marked as convention or simplification are not research findings."
  },
@@ -3853,6 +4173,10 @@
  {
   "pl": "Prywatność",
   "en": "Privacy"
+ },
+ {
+  "pl": "Przeciągnij za ≡, by zmienić kolejność.",
+  "en": "Drag by ≡ to change the order."
  },
  {
   "pl": "Przeciągnij za ≡, żeby zmienić kolejność. Superset przesuwa się w całości; kolejność w nim zmienisz uchwytami przy ćwiczeniach.",
@@ -3967,10 +4291,6 @@
   "en": "Move plan from today"
  },
  {
-  "pl": "Przesuń serię albo nazwę ćwiczenia w lewo, by je usunąć.",
-  "en": "Swipe a set or an exercise name left to delete it."
- },
- {
   "pl": "Przesuń wyżej",
   "en": "Move up"
  },
@@ -4001,6 +4321,22 @@
  {
   "pl": "Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.",
   "en": "Muscle group assignment is a simplification, not a research finding. It drives sets per muscle, the muscle map, the generator and the calendar suggestions."
+ },
+ {
+  "pl": "Przypisanie partii mięśniowych — ustalone na podstawie przeglądu badań dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.",
+  "en": "Muscle group assignment is established from a research review for this exercise. It drives sets per muscle, the muscle map, the generator and the calendar suggestions."
+ },
+ {
+  "pl": "Przypisanie partii: jedno źródło.",
+  "en": "Muscle group assignment: one source."
+ },
+ {
+  "pl": "Przypisanie partii: przegląd badań.",
+  "en": "Muscle group assignment: research review."
+ },
+ {
+  "pl": "Przypisanie partii: uproszczenie.",
+  "en": "Muscle group assignment: a simplification."
  },
  {
   "pl": "Przypomnienie o treningu z planu",
@@ -4215,6 +4551,11 @@
   "en": "sec."
  },
  {
+  "pl": "sekunda|sekundy|sekund",
+  "en": "second|seconds",
+  "plural": true
+ },
+ {
   "pl": "sen",
   "en": "sleep"
  },
@@ -4245,6 +4586,14 @@
  {
   "pl": "Seria {n} — {ex}",
   "en": "Set {n} — {ex}"
+ },
+ {
+  "pl": "Seria {n} do uzupełnienia — {ex}",
+  "en": "Set {n} to fill in — {ex}"
+ },
+ {
+  "pl": "Seria {n} uzupełniona — {ex}",
+  "en": "Set {n} filled in — {ex}"
  },
  {
   "pl": "seria {n} z {all}",
@@ -4300,16 +4649,20 @@
   "en": "Sets without weight: {n}."
  },
  {
+  "pl": "Serie bez wyniku nie zostaną zapisane.",
+  "en": "Sets with no result will not be saved."
+ },
+ {
   "pl": "Serie bez wyniku zostaną pominięte: {n}.",
   "en": "Sets without a result will be skipped: {n}."
  },
  {
-  "pl": "Serie na partię — wykonane i zaplanowane",
-  "en": "Sets per muscle group — done and planned"
+  "pl": "Serie do uzupełnienia",
+  "en": "Sets to fill in"
  },
  {
-  "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}",
-  "en": "Sets per muscle group per week (assisting = {h} set — a simplification, single source): {list}"
+  "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list}",
+  "en": "Sets per muscle group per week (assisting = {h} set — a simplification): {list}"
  },
  {
   "pl": "Serie per partia",
@@ -4387,6 +4740,10 @@
  {
   "pl": "Skakanka",
   "en": "Jump rope"
+ },
+ {
+  "pl": "Skala do dwukrotności celu, » — więcej.",
+  "en": "Scale up to twice the goal; » — more."
  },
  {
   "pl": "Skala wysiłku",
@@ -4489,6 +4846,14 @@
   "en": "Start stopwatch: {ex}, set {n}"
  },
  {
+  "pl": "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.",
+  "en": "Starting a workout on these days uses this place before the template’s place, and the “Adjust” window suggests swaps. Nothing changes by itself."
+ },
+ {
+  "pl": "Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.",
+  "en": "Starting a workout on these days will use this place. Nothing changes by itself."
+ },
+ {
   "pl": "Start zaplanowanego treningu: {name}",
   "en": "Start planned workout: {name}"
  },
@@ -4519,6 +4884,10 @@
  {
   "pl": "stożek rotatorów",
   "en": "rotator cuff"
+ },
+ {
+  "pl": "Strażnik progresji",
+  "en": "Progress Guard"
  },
  {
   "pl": "Strongman",
@@ -4585,14 +4954,6 @@
   "en": "Smith machine"
  },
  {
-  "pl": "Sylwetka, serie w tym tygodniu: {list}",
-  "en": "Body map, sets this week: {list}"
- },
- {
-  "pl": "Sylwetka: serie w tym tygodniu",
-  "en": "Body map: sets this week"
- },
- {
   "pl": "Szablon",
   "en": "Template"
  },
@@ -4656,6 +5017,10 @@
  {
   "pl": "Szablony: {list} — w folderze „{folder}” na liście Szablony.",
   "en": "Templates: {list} — in the “{folder}” folder on the Templates list."
+ },
+ {
+  "pl": "Szczegóły w Postępach",
+  "en": "Details in Progress"
  },
  {
   "pl": "sztanga",
@@ -4814,6 +5179,10 @@
   "en": "Tempo (optional, e.g. 3-1-1)"
  },
  {
+  "pl": "Ten miesiąc",
+  "en": "This month"
+ },
+ {
   "pl": "Ten okres",
   "en": "This period"
  },
@@ -4846,6 +5215,10 @@
   "en": "This week"
  },
  {
+  "pl": "Ten tydzień = wykonane + plan. Plan bez ciężarów (≥) — bez porównania. Tydzień deloadu nie jest porównywany.",
+  "en": "This week = done + plan. A plan without weights (≥) — no comparison. A deload week is not compared."
+ },
+ {
   "pl": "Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.",
   "en": "This week is marked as deload (D on the charts). Change the mark in the Plan tab: day → “More options”."
  },
@@ -4858,8 +5231,16 @@
   "en": "This week vs last week"
  },
  {
+  "pl": "Ten tydzień wobec poprzedniego: {list}.",
+  "en": "This week compared with the previous one: {list}."
+ },
+ {
   "pl": "Ten tydzień: deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.",
   "en": "This week: deload. When you start a workout I will suggest {less}, same weights."
+ },
+ {
+  "pl": "teraz",
+  "en": "now"
  },
  {
   "pl": "Teraz: {v}",
@@ -4908,6 +5289,10 @@
  {
   "pl": "To ostatnia seria",
   "en": "This is the last set"
+ },
+ {
+  "pl": "tonaż/sesję {sign} {now} (poprz. {prev})",
+  "en": "tonnage/session {sign} {now} (prev. {prev})"
  },
  {
   "pl": "trap bar",
@@ -4966,6 +5351,10 @@
   "en": "A past workout dated this day."
  },
  {
+  "pl": "Trening wstrzymany",
+  "en": "Workout paused"
+ },
+ {
   "pl": "Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
   "en": "The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in the Plan tab."
  },
@@ -4980,6 +5369,10 @@
  {
   "pl": "Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.",
   "en": "The workout from your watch stays in Apple Health — delete it in the Health app."
+ },
+ {
+  "pl": "Trening zakończony",
+  "en": "Workout finished"
  },
  {
   "pl": "Trening zapisał się sam",
@@ -5051,8 +5444,20 @@
   "en": "Deload week"
  },
  {
+  "pl": "Tydzień deload (D na wykresach).",
+  "en": "Deload week (D on the charts)."
+ },
+ {
+  "pl": "Tydzień deloadu — bez porównania",
+  "en": "Deload week — no comparison"
+ },
+ {
   "pl": "Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.",
   "en": "Weeks start on Monday. Volume = weight × reps × exercise multiplier; warm-ups excluded."
+ },
+ {
+  "pl": "Tygodnie treningu bez deloadu: {n}.",
+  "en": "Training weeks without a deload: {n}."
  },
  {
   "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.",
@@ -5063,8 +5468,16 @@
   "en": "Weeks with the plan done: {done} of {n}"
  },
  {
+  "pl": "tyle samo",
+  "en": "same"
+ },
+ {
   "pl": "tylko dostępne w: {l}",
   "en": "only available at {l}"
+ },
+ {
+  "pl": "Tylko dziś",
+  "en": "Today only"
  },
  {
   "pl": "Tylko masa ciała",
@@ -5119,8 +5532,8 @@
   "en": "Simplification: a drop set counts together with the set before it."
  },
  {
-  "pl": "Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).",
-  "en": "Simplification: a secondary muscle group of an exercise counts as half a set (main 1, secondary 0.5; Pelland et al. 2026 — a single source)."
+  "pl": "Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).",
+  "en": "Simplification: a secondary muscle group of an exercise counts as half a set (main 1, secondary 0.5; Pelland et al. 2026 meta-analysis)."
  },
  {
   "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).",
@@ -5155,12 +5568,20 @@
   "en": "Set as main"
  },
  {
+  "pl": "Ustaw miejsce",
+  "en": "Set place"
+ },
+ {
   "pl": "Ustaw plan",
   "en": "Set a plan"
  },
  {
   "pl": "Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie.",
   "en": "Set a weekly plan — you will see today’s workout here and get a reminder."
+ },
+ {
+  "pl": "Ustaw termin i szablon — serie uzupełnisz w następnym kroku.",
+  "en": "Set the date and template — you will fill in the sets in the next step."
  },
  {
   "pl": "Ustawić „{name}” jako aktywny plan?",
@@ -5279,6 +5700,14 @@
   "en": "Delete band: {name}"
  },
  {
+  "pl": "Usuń miejsce",
+  "en": "Remove place"
+ },
+ {
+  "pl": "Usuń miejsce: {a} – {b}",
+  "en": "Remove place: {a} – {b}"
+ },
+ {
   "pl": "Usuń miejsce: {name}",
   "en": "Delete place: {name}"
  },
@@ -5347,6 +5776,10 @@
   "en": "Note: changing equipment, weight counting or metric also recalculates past workouts (volume, records, charts)."
  },
  {
+  "pl": "Użyj",
+  "en": "Use"
+ },
+ {
   "pl": "W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.",
   "en": "There are already {n} plans in “Other plans” — delete one to add a new one."
  },
@@ -5363,6 +5796,10 @@
   "en": "Sets with this band will show “?” in history."
  },
  {
+  "pl": "W jakiej sytuacji na treningu:",
+  "en": "In what situation during a workout:"
+ },
+ {
   "pl": "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.",
   "en": "In the window you can change a substitute or choose “No change” or “Skip today”; you can undo an applied swap at the exercise."
  },
@@ -5377,6 +5814,10 @@
  {
   "pl": "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.",
   "en": "In Progress a marked week shows as the letter D on the charts — you do not change it there."
+ },
+ {
+  "pl": "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.",
+  "en": "In headphones the next exercise is announced at the start of the rest (when sound is on); through the phone speaker only if you turn this switch on."
  },
  {
   "pl": "W tej wersji",
@@ -5421,6 +5862,10 @@
  {
   "pl": "Warunki korzystania",
   "en": "Terms of Use"
+ },
+ {
+  "pl": "wcześniej",
+  "en": "before"
  },
  {
   "pl": "wcześniej zamieniane",
@@ -5475,6 +5920,10 @@
   "en": "More days than templates: templates in order (A, B, A…), as in the generator — a convention."
  },
  {
+  "pl": "Więcej informacji: {name}",
+  "en": "More information: {name}"
+ },
+ {
   "pl": "Więcej możliwości ({n})",
   "en": "Show {n} more"
  },
@@ -5501,6 +5950,10 @@
  {
   "pl": "Włącz powiadomienia dla {app} w Ustawieniach iOS.",
   "en": "Enable notifications for {app} in iOS Settings."
+ },
+ {
+  "pl": "Wobec tygodnia {d} (poprzedni był deloadem)",
+  "en": "Compared with the week of {d} (the previous week was a deload)"
  },
  {
   "pl": "Wolna ściana (stanie na rękach, wall sit)",
@@ -5605,6 +6058,10 @@
  {
   "pl": "Wszystkie serie odhaczone",
   "en": "All sets ticked off"
+ },
+ {
+  "pl": "Wszystkie trenowane partie są na celu (bez planu tygodnia).",
+  "en": "Every muscle group you train is at its goal (no weekly plan)."
  },
  {
   "pl": "Wybierz co najmniej jeden szablon.",
@@ -5719,6 +6176,10 @@
   "en": "done + planned"
  },
  {
+  "pl": "Wykonane: {text}",
+  "en": "Done: {text}"
+ },
+ {
   "pl": "Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.",
   "en": "You've used this month's free workouts ({n}). More from {date}."
  },
@@ -5819,6 +6280,10 @@
   "en": "with incline back"
  },
  {
+  "pl": "Z planem wszystkie trenowane partie dojdą do celu.",
+  "en": "With the plan, every muscle group you train will reach its goal."
+ },
+ {
   "pl": "z regulacją nachylenia (marsz pod górę)",
   "en": "with incline (uphill walking)"
  },
@@ -5829,6 +6294,10 @@
  {
   "pl": "Z zegarka",
   "en": "From your watch"
+ },
+ {
+  "pl": "Z zegarka oznaczono serie jako zrobione inaczej niż w planie: {n}. Uzupełnij powtórzenia i ciężar — rekord liczy się dopiero po uzupełnieniu.",
+  "en": "Sets marked on your watch as done differently from the plan: {n}. Fill in the reps and weight — a record only counts once they are filled in."
  },
  {
   "pl": "Za dużo ciężarów (najwyżej {n}).",
@@ -5859,6 +6328,10 @@
   "en": "Start your free month"
  },
  {
+  "pl": "Zacznij trening na telefonie",
+  "en": "Start a workout on your phone"
+ },
+ {
   "pl": "Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.",
   "en": "You’re starting with this version — below are changes for people who used earlier ones. The guide is a better place to start."
  },
@@ -5879,6 +6352,10 @@
   "en": "Finish and save"
  },
  {
+  "pl": "Zakończ mimo to",
+  "en": "Finish anyway"
+ },
+ {
   "pl": "Zakończ serię",
   "en": "Finish set"
  },
@@ -5893,6 +6370,10 @@
  {
   "pl": "zakres",
   "en": "range"
+ },
+ {
+  "pl": "Zakres {r}: gdy ostatnio wszystkie serie miały ≥ {n} powt., pojawi się „↑”.",
+  "en": "Range {r}: when all sets last time had ≥ {n} reps, “↑” appears."
  },
  {
   "pl": "Zakres dat: {a} – {b}",
@@ -5913,6 +6394,10 @@
  {
   "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań).",
   "en": "Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength other exercises {e}–{f}) are a simplification: muscles grow across a wide range of loads when sets are close to failure (ACSM, research reviews)."
+ },
+ {
+  "pl": "Zaktualizuj aplikację na zegarku",
+  "en": "Update the watch app"
  },
  {
   "pl": "Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.",
@@ -6007,6 +6492,10 @@
   "en": "Save exercise"
  },
  {
+  "pl": "Zapisz jako miejsce",
+  "en": "Save as a place"
+ },
+ {
   "pl": "Zapisz jako szablon",
   "en": "Save as template"
  },
@@ -6039,12 +6528,12 @@
   "en": "planned"
  },
  {
-  "pl": "Zaplanowane — z szablonów na pozostałe dni tygodnia.",
-  "en": "Planned — from templates for the rest of the week."
- },
- {
   "pl": "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.",
   "en": "Planned = templates from your plan for the rest of the week, calculated from the values in the template (missing ones from “Previous”). It is arithmetic on your plan, not a forecast. A main muscle group counts 1 set, a secondary one 0.5."
+ },
+ {
+  "pl": "Zaplanowane: {text} ({days})",
+  "en": "Planned: {text} ({days})"
  },
  {
   "pl": "Zaplanowany też na: {days} — te dni będą wolne.",
@@ -6061,6 +6550,10 @@
  {
   "pl": "Zaplanuj deload od {date}",
   "en": "Plan a deload from {date}"
+ },
+ {
+  "pl": "Zapowiedzi głosowe na początku przerwy: ćwiczenie, ciężar i powtórzenia.",
+  "en": "Voice announcements at the start of the rest: exercise, weight and reps."
  },
  {
   "pl": "Zarządzaj subskrypcją",
@@ -6121,6 +6614,14 @@
  {
   "pl": "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.",
   "en": "The workout clock is stopped and the pause does not count towards the duration. The rest timer keeps running; ticking off a set resumes the workout."
+ },
+ {
+  "pl": "Zegarek odczytuje tętno i energię aktywną z trwającego treningu. Dane nie są wysyłane poza Twoje urządzenia.",
+  "en": "Your watch reads heart rate and active energy during the workout. The data is not sent outside your devices."
+ },
+ {
+  "pl": "Zegarek zapisuje zakończony trening siłowy, z tętnem i energią aktywną, w Apple Health.",
+  "en": "Your watch saves the finished strength workout, with heart rate and active energy, to Apple Health."
  },
  {
   "pl": "zębaty przedni",
@@ -6213,6 +6714,10 @@
  {
   "pl": "zrobione",
   "en": "done"
+ },
+ {
+  "pl": "Zrobione inaczej",
+  "en": "Done differently"
  },
  {
   "pl": "zrobione: {name}",

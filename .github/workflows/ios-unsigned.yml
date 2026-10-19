@@ -31,9 +31,12 @@ jobs:
         run: npm run typecheck && npm run check:i18n && npm test -- --maxWorkers=2  # 7 GB RAM na maszynie — mniej procesów Jesta
       - name: Natywna konfiguracja (warstwa D planu testów — runda 58)
         run: npm run verify:native
+      - name: Logika zegarka — testy jednostkowe Swift (targets/watch-tests, bez symulatora)
+        # 0.20: te same pliki (targets/watch-app/Core) kompiluje cel watchOS; czytają też pliki złote z tests/fixtures/watch-app
+        run: cd targets && swift test
       - name: Generate native iOS project (expo prebuild)
         run: npx expo prebuild --platform ios --no-install --clean
-      - name: Build number = numer przebiegu (aplikacja i widżet muszą mieć ten sam CFBundleVersion)
+      - name: Build number = numer przebiegu (aplikacja, widżet i zegarek muszą mieć ten sam CFBundleVersion)
         run: /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${{ github.run_number }}" ios/Trening/Info.plist
       - name: Install pods
         run: cd ios && pod install
@@ -43,7 +46,8 @@ jobs:
         run: |
           set -o pipefail
           cd ios
-          xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release -sdk iphoneos \
+          # 0.20: bez „-sdk iphoneos” — wymuszałby SDK iOS także dla celu watchOS (zegarek osadzony w aplikacji buduje się z SDK watchos)
+          xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release \
             -destination 'generic/platform=iOS' -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
             DEVELOPMENT_TEAM="" PROVISIONING_PROFILE_SPECIFIER="" \
@@ -51,6 +55,13 @@ jobs:
             2>&1 | tee xcodebuild.log | xcbeautify
           APP=build/Build/Products/Release-iphoneos/Trening.app
           test -f "$APP/Trening" && test -f "$APP/main.jsbundle" && test -d "$APP/PlugIns/RestWidget.appex"
+          # zegarek osadzony w aplikacji, ta sama wersja i numer buildu co telefon, HealthKit i tryb tła treningu
+          W="$APP/Watch/TreningWatch.app"
+          test -d "$W"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$W/Info.plist")" = "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP/Info.plist")"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$W/Info.plist")" = "${{ github.run_number }}"
+          test "$(/usr/libexec/PlistBuddy -c 'Print :WKCompanionAppBundleIdentifier' "$W/Info.plist")" = "pl.lukasz.trening"
+          /usr/libexec/PlistBuddy -c 'Print :WKBackgroundModes:0' "$W/Info.plist" | grep -qx workout-processing
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

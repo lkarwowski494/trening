@@ -1,0 +1,90 @@
+# Aplikacja na Apple Watch — testy na symulatorze watchOS (XCUITest) i zrzuty ekranu (0.20 „Zegarki i głos”, docs/35-zegarek-apple).
+# Właściciel nie ma zegarka Apple — to jedyne automatyczne sprawdzenie ekranów zegarka. Telefonu nie ma: migawka z plików złotych
+# (watch-fixtures — pliki wzorcowe protokołu) trafia do aplikacji zmienną środowiskową (tylko konfiguracja Debug). Czego symulator nie sprawdzi
+# (wibracja, podwójne stuknięcie, Always On, transferUserInfo, wybudzenie iPhone'a): docs/35-zegarek-apple rozdz. 4, lista ręczna.
+# Uruchamianie: Actions → „Zegarek — symulator” → Run workflow. Artefakty trzymane 3 dni (publicznie widoczne dla zalogowanych użytkowników GitHuba).
+name: Zegarek — symulator
+on:
+  workflow_dispatch:
+    inputs:
+      jezyki_zrzutow:
+        description: 'Języki zrzutów po przecinku albo "all" (35 języków, dłużej); domyślnie pl,en,de,fi,ja'
+        required: false
+        default: 'pl,en,de,fi,ja'
+      urzadzenie:
+        description: 'Wzorzec nazwy symulatora zegarka (regex), np. "Apple Watch Ultra" albo "Apple Watch SE"; pusty = Series 10/11'
+        required: false
+        default: ''
+  push:
+    branches: ['f020-*', 'integration/**']
+    paths:
+      - 'targets/watch-app/**'
+      - 'targets/watch-ui-tests/**'
+      - 'tests/fixtures/watch-app/**'
+      - 'watch-fixtures/**'
+      - 'scripts/ci/add-watch-ui-tests.mjs'
+      - 'scripts/ci/watch-*.sh'
+      - '.github/workflows/watch-sim.yml'
+permissions:
+  contents: read
+concurrency:
+  group: watch-sim-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  watch:
+    runs-on: macos-26   # simulatory watchOS 26.x (Series 11, SE 3, Ultra 3) są w obrazie; Xcode 26.4+ wymagany przez SDK 56
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v5
+      - name: Select Xcode 26.x
+        run: bash scripts/ci/select-xcode.sh 26
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Testy logiki zegarka (XCTest, bez symulatora) — pliki wzorcowe z watch-fixtures
+        run: cd targets && swift test 2>&1 | tee ../swift-test.log
+      - name: Generate native iOS project (expo prebuild)
+        run: npx expo prebuild --platform ios --no-install --clean
+      - name: Cel testów interfejsu zegarka (XCUITest) i schemat
+        run: node scripts/ci/add-watch-ui-tests.mjs
+      - name: Symulator zegarka
+        id: sim
+        env:
+          WZORZEC: ${{ inputs.urzadzenie }}
+        run: |
+          UDID=$(bash scripts/ci/watch-simulator.sh ${WZORZEC:+"$WZORZEC"})
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+      - name: XCUITest (Debug) — seria, przerwa, Cofnij, Pomiń, brak połączenia, 35 języków
+        env:
+          UDID: ${{ steps.sim.outputs.udid }}
+        run: |
+          set -o pipefail
+          cd ios
+          xcodebuild test -project Trening.xcodeproj -scheme TreningWatchUITests -configuration Debug \
+            -destination "platform=watchOS Simulator,id=$UDID" -derivedDataPath build -resultBundlePath ../watch-ui.xcresult \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            2>&1 | tee ../watch-xcodebuild.log | xcbeautify
+      - name: Zrzuty ekranu (te same trafią do App Store Connect)
+        if: success()
+        env:
+          UDID: ${{ steps.sim.outputs.udid }}
+          JEZYKI: ${{ inputs.jezyki_zrzutow || 'pl,en,de,fi,ja' }}
+        run: bash scripts/ci/watch-screenshots.sh "$UDID" watch-screens "$JEZYKI"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zegarek-zrzuty
+          retention-days: 3
+          if-no-files-found: ignore
+          path: watch-screens
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: zegarek-logi
+          retention-days: 3
+          path: |
+            watch-xcodebuild.log
+            swift-test.log
+            watch-ui.xcresult
