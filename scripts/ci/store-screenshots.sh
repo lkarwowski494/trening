@@ -44,6 +44,8 @@ db.commit(); db.close()' "$C/Library/SQLite/trening.db" "$OUT/.state.json"
     [ "$route" = "/" ] || { xcrun simctl openurl "$UDID" "trening://${route#/}"; sleep 2; }
     maestro_run dialogi "$lang/$name"; sleep 2   # „Open in …?” po łączu i pytanie o powiadomienia — zatwierdzone, poza kadrem
     [ -z "$action" ] || { maestro_run "$action" "$lang/$name"; sleep 1; }
+    # drugi raz tuż przed zrzutem: pytanie o powiadomienia przy treningu w toku potrafi przyjść po pierwszym zatwierdzaniu (run 39181699626, 6.9 pl/01)
+    maestro_run dialogi "$lang/$name-przed-zrzutem"; sleep 1
     xcrun simctl io "$UDID" screenshot "$OUT/$lang/$(printf '%02d' "$i")-$name.png" >/dev/null 2>&1
   done < <(node -e 'for (const [n, r, v, a] of JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"))) console.log([n, r, v, a || ""].join("\t"))' "$ROUTES")
 done
