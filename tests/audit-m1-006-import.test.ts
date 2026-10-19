@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as FS from 'expo-file-system/legacy';
 import * as DocumentPicker from 'expo-document-picker';
-import { importBackup, isPersistError } from '@/lib/backup';
+import { importBackup, isPersistError, persistFailure } from '@/lib/backup';
 import { parseImport } from '@/lib/csvparse';
 import { commitCsvImport } from '@/lib/csvimport';
 import { SCHEMA_VERSION } from '@/lib/seed';
@@ -36,5 +36,19 @@ describe('M1-006: import przy nieudanym zapisie do bazy kończy się błędem za
     (global as any).__dbFail = false;
     await expect(commitCsvImport(parseImport(csv, NOW), { unit: 'kg' })).resolves.toEqual({ workouts: 3, exercises: 2 });
     const st = await restart(); expect([st.workouts.length, st.exercises.length]).toEqual([w0 + 3, e0 + 2]);
+  });
+});
+
+describe('M1-006: flushStrict i persistFailure', () => {
+  test('flushStrict zapisuje i kończy się bez błędu; przy niedziałającym zapisie „state” odrzuca (flush połyka); po naprawie zapisuje zaległą zmianę', async () => {
+    await fresh(); store.getState().settings.defaultRest = 61; store.save(); await expect(store.flushStrict()).resolves.toBeUndefined();
+    expect(JSON.parse(global.__kv.get('state')!).settings.defaultRest).toBe(61);
+    (global as any).__dbFail = (k: string) => k === 'state'; store.getState().settings.defaultRest = 62; store.save();
+    await expect(store.flushStrict()).rejects.toThrow('disk full'); await expect(store.flush()).resolves.toBeUndefined(); /* flush: błąd zapisu nie wychodzi na zewnątrz */
+    (global as any).__dbFail = false; await store.flushStrict(); expect(JSON.parse(global.__kv.get('state')!).settings.defaultRest).toBe(62);
+  });
+  test('persistFailure: błąd z komunikatem „Nie udało się zapisać danych”, rozpoznawany przez isPersistError; zwykły błąd i inne typy nie', () => {
+    const e = persistFailure(); expect(isPersistError(e)).toBe(true); expect(e.message).toBe('Nie udało się zapisać danych');
+    expect(isPersistError(new Error('x'))).toBe(false); expect(isPersistError('x')).toBe(false); expect(isPersistError(null)).toBe(false);
   });
 });
