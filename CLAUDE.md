@@ -50,11 +50,11 @@
   zmiana tylko scenariuszy → `aplikacja_z_przebiegu`), `testflight.yml` (telefon, TestFlight). Symulator na `macos-26` bywa wolny —
   awaria przed pierwszym scenariuszem to maszyna; jedno powtórzenie, potem szukaj przyczyny. Przebieg anulowany bez przydzielonej maszyny
   („not acquired by Runner”, brak maszyn macOS u GitHuba) — ponawiaj od razu, aż dostanie maszynę (właściciel, 08.10.2026).
-- E2E — podział (właściciel, 19.10.2026): wydanie TestFlight blokuje **pakiet podstawowy** (, wejście
-  , jedno ponowienie pojedynczego scenariusza); **pełny katalog** biegnie w nocy (), niewiążąco, z pomiarem
+- E2E — podział (właściciel, 19.10.2026): wydanie TestFlight blokuje **pakiet podstawowy** (`scripts/ci/e2e-podstawowy.json`, wejście
+  `pakiet: podstawowy`, jedno ponowienie pojedynczego scenariusza); **pełny katalog** biegnie w nocy (`nightly.yml`), niewiążąco, z pomiarem
   niestabilności — przegląd zbiorczo raz dziennie, nie po każdej porażce. Wydanie do App Store blokuje pełny katalog w **trybie ścisłym**
-  (, bez ponowień) — obowiązuje od 3 kolejnych nocnych pełnych przebiegów zielonych bez ponowień (docs/38 pkt 11). Przed oddaniem
-  pracy: szybki przebieg tylko zmienionych scenariuszy (). Pełne verify na tej maszynie przez kolejkę (jeden naraz).
+  (`tryb_scisly`, bez ponowień) — obowiązuje od 3 kolejnych nocnych pełnych przebiegów zielonych bez ponowień (docs/38 pkt 11). Przed oddaniem
+  pracy: szybki przebieg tylko zmienionych scenariuszy (`tylko_scenariusze`). Pełne verify na tej maszynie przez kolejkę (jeden naraz).
 - Gałęzie: praca na gałęzi funkcji od `integration/0.9.0`; scalenie do `main` tylko na polecenie właściciela. Nie łącz aktualizacji SDK ze zmianą
   schematu danych w jednym wydaniu.
 
