@@ -150,6 +150,6 @@ describe('ekran Trening', () => {
     await boot(withWorkout, 'en');
     expect(screen.getByLabelText("What's new — new changes")).toBeTruthy();
     await tap(screen.getByTestId('whats-new-i')); await flushAll(5);
-    expect(screen.getByText('In this version')).toBeTruthy(); expect(screen.getByText(/^▸ Test build 1005 · 10 Oct 2026$/)).toBeTruthy(); expect(screen.getByText('Close')).toBeTruthy();
+    expect(screen.getByText(/^Test build 1018 · 19 Oct 2026$/)).toBeTruthy(); expect(screen.getByText(/^▸ Test build 1005 · 10 Oct 2026$/)).toBeTruthy(); expect(screen.getByText('Close')).toBeTruthy();
   });
 });
