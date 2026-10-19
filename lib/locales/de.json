@@ -313,7 +313,6 @@
  "Dom": "Zuhause",
  "domyślna {s}": "Standard {s}",
  "Domyślna przerwa (s)": "Standardpause (s)",
- "Domyślnie głos tylko w słuchawkach.": "Standardmäßig kommt die Stimme nur über Kopfhörer.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Fügt Trainings aus CSV hinzu — ohne Daten zu löschen, mit Vorschau.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Fügt Trainings aus CSV hinzu. Vorhandene Daten bleiben unverändert. Vorschau vor dem Speichern.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Fügt Workouts aus CSV-Dateien beliebter Trainingstagebücher hinzu — ohne deine aktuellen Daten zu entfernen, mit Vorschau vor dem Speichern.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (Glute-Ham-Developer)",
  "glute-ham raise": "Glute-Ham Raise",
- "Głos także przez głośnik telefonu": "Stimme auch über den Lautsprecher des Telefons",
  "główna": "primär",
  "główne": "Hauptort",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Die Uhrzeit {t} gibt es an diesem Tag nicht (Zeitumstellung). Gib eine andere ein.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "im Plan für: {day} · {n} Üb.",
  "W planie tygodnia: {days} — te dni będą wolne.": "Im Wochenplan: {days} — diese Tage werden frei.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Im Fortschritt erscheint eine markierte Woche als Buchstabe D in den Diagrammen — dort änderst du sie nicht.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "In Kopfhörern wird die nächste Übung zu Beginn der Pause angesagt (bei eingeschaltetem Ton); über den Lautsprecher des Telefons nur, wenn du diesen Schalter einschaltest.",
  "W tej wersji": "In dieser Version",
  "W trakcie": "Während der Bewegung",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Im laufenden Training wird das Band aus noch nicht abgehakten Sätzen entfernt.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Andere Übungen einklappen",
  "Zwykle w: {l} — {name}. Zamienić?": "Meist in: {l} — {name}. Tauschen?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Keine Muskelgruppe hat mehr Volumen als zuvor.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Weggelassen (Plan ohne Gewicht oder Wiederholungen): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Weggelassen (Plan ohne Gewicht oder Wiederholungen): {list}",
+ "Zapowiedzi głosowe": "Sprachansagen",
+ "Wyłączone": "Aus",
+ "W słuchawkach": "Über Kopfhörer",
+ "Także przez głośnik": "Auch über Lautsprecher",
+ "Głos": "Stimme",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Zu Beginn der Pause sagt das Telefon die nächste Übung, das Gewicht und die Wiederholungen an. Über Kopfhörer — nur mit verbundenen Kopfhörern; Auch über Lautsprecher — auch ohne Kopfhörer, über den Lautsprecher des Telefons (auch im Stumm-Modus); Aus — keine Ansagen.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Ansagen funktionieren, wenn „Ton und Vibration am Ende der Pause“ eingeschaltet ist. Dieselbe Einstellung änderst du mit der Taste „Stimme“ auf dem Trainingsbildschirm.",
+ "Zapowiedzi głosowe: {mode}": "Sprachansagen: {mode}"
 }

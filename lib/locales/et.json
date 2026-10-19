@@ -313,7 +313,6 @@
  "Dom": "Kodu",
  "domyślna {s}": "vaikimisi {s}",
  "Domyślna przerwa (s)": "Vaikimisi paus (s)",
- "Domyślnie głos tylko w słuchawkach.": "Vaikimisi kõlab hääl ainult kõrvaklappides.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Lisab treeninguid CSV-st — andmeid kustutamata, eelvaatega.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Lisab treeninguid CSV-st. Olemasolevaid andmeid ei muuda. Enne salvestamist eelvaade.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Lisab treeninguid populaarsete treeningupäevikute CSV-failidest — ilma praeguseid andmeid eemaldamata, enne salvestamist on eelvaade.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Hääl ka telefoni kõlarist",
  "główna": "peamine",
  "główne": "peamine",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Kellaaega {t} sel päeval ei ole (kellakeeramine). Sisesta muu aeg.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "plaanis: {day} · {n} harj.",
  "W planie tygodnia: {days} — te dni będą wolne.": "Nädalaplaanis: {days} — need päevad jäävad puhkuseks.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Jaotises Edenemine paistab märgitud nädal diagrammidel tähena D — seal seda ei muudeta.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Kõrvaklappides teatatakse järgmine harjutus pausi alguses (kui heli on sisse lülitatud); telefoni kõlarist ainult selle lüliti sisselülitamisel.",
  "W tej wersji": "Selles versioonis",
  "W trakcie": "Liigutuse ajal",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Praeguses treeningus eemaldatakse kumm märkimata seeriatest.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Ahenda teised harjutused",
  "Zwykle w: {l} — {name}. Zamienić?": "Tavaliselt: {l} — {name}. Vahetada?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Ühelgi lihasrühmal pole varasemast suuremat mahtu.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Välja jäetud (plaan ilma raskuse või kordusteta): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Välja jäetud (plaan ilma raskuse või kordusteta): {list}",
+ "Zapowiedzi głosowe": "Häälteated",
+ "Wyłączone": "Väljas",
+ "W słuchawkach": "Kõrvaklappides",
+ "Także przez głośnik": "Ka kõlarist",
+ "Głos": "Hääl",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Pausi alguses ütleb telefon järgmise harjutuse, raskuse ja kordused. Kõrvaklappides — ainult ühendatud kõrvaklappidega; Ka kõlarist — ka ilma kõrvaklappideta, telefoni kõlarist (ka vaikses režiimis); Väljas — teadeteta.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Teated töötavad, kui „Heli ja vibratsioon pausi lõpus“ on sisse lülitatud. Sama seadet saad muuta treeningu ekraanil nupuga „Hääl“.",
+ "Zapowiedzi głosowe: {mode}": "Häälteated: {mode}"
 }

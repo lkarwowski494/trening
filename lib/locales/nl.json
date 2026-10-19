@@ -313,7 +313,6 @@
  "Dom": "Thuis",
  "domyślna {s}": "standaard {s}",
  "Domyślna przerwa (s)": "Standaardrust (s)",
- "Domyślnie głos tylko w słuchawkach.": "Standaard klinkt de stem alleen via oordopjes.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Voegt trainingen toe uit CSV — zonder gegevens te verwijderen, met voorbeeld.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Voegt trainingen toe uit CSV. Wijzigt bestaande gegevens niet. Voorbeeld vóór het opslaan.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Voegt trainingen toe uit CSV-bestanden van populaire trainingslogboeken — zonder je huidige gegevens te verwijderen, met een voorbeeld vóór het opslaan.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Stem ook via de luidspreker van de telefoon",
  "główna": "primair",
  "główne": "primair",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "De tijd {t} bestaat niet op die dag (overgang zomer-/wintertijd). Voer een andere in.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "gepland op: {day} · {n} oef.",
  "W planie tygodnia: {days} — te dni będą wolne.": "In het weekplan: {days} — deze dagen worden rustdagen.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "In Voortgang verschijnt een gemarkeerde week als de letter D in de grafieken — daar wijzig je dat niet.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "In koptelefoons wordt de volgende oefening aan het begin van de rust aangekondigd (als geluid aan staat); via de luidspreker van de telefoon alleen als je deze schakelaar aanzet.",
  "W tej wersji": "In deze versie",
  "W trakcie": "Tijdens de beweging",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "In de huidige training wordt de band verwijderd uit sets die nog niet zijn afgevinkt.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Klap andere oefeningen in",
  "Zwykle w: {l} — {name}. Zamienić?": "Meestal op {l} — {name}. Wisselen?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Geen enkele spiergroep heeft meer volume dan eerder.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Weggelaten (plan zonder gewicht of herhalingen): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Weggelaten (plan zonder gewicht of herhalingen): {list}",
+ "Zapowiedzi głosowe": "Gesproken aankondigingen",
+ "Wyłączone": "Uit",
+ "W słuchawkach": "Via oordopjes",
+ "Także przez głośnik": "Ook via de luidspreker",
+ "Głos": "Stem",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Aan het begin van de rust kondigt de telefoon de volgende oefening, het gewicht en de herhalingen aan. Via oordopjes — alleen met verbonden oordopjes; Ook via de luidspreker — ook zonder oordopjes, via de luidspreker van de telefoon (ook in de stille modus); Uit — geen aankondigingen.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Aankondigingen werken als „Geluid en trilling aan het einde van de rust” aanstaat. Dezelfde instelling wijzig je ook met de knop „Stem” op het trainingsscherm.",
+ "Zapowiedzi głosowe: {mode}": "Gesproken aankondigingen: {mode}"
 }

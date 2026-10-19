@@ -239,7 +239,6 @@
  "Dodane: {list}.": "Đã thêm: {list}.",
  "Dom": "Nhà",
  "domyślna {s}": "mặc định {s}",
- "Domyślnie głos tylko w słuchawkach.": "Mặc định giọng nói chỉ phát qua tai nghe.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Thêm buổi tập từ CSV — không xóa dữ liệu, có xem trước.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Thêm buổi tập từ CSV. Không thay đổi dữ liệu hiện có. Xem trước khi lưu.",
  "Dostępne ćwiczenia: {n} z {m}": "Bài tập khả dụng: {n}/{m}",
@@ -311,7 +310,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Giọng nói cả qua loa điện thoại",
  "główna": "chính",
  "główne": "chính",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Giờ {t} không tồn tại vào ngày đó (đổi giờ). Hãy nhập giờ khác.",
@@ -1174,7 +1172,6 @@
  "W historii serie z tą gumą pokażą „?”.": "Các hiệp dùng dây này sẽ hiển thị “?” trong lịch sử.",
  "w planie na: {day} · {n} ćw.": "theo kế hoạch: {day} · {n} bài",
  "W planie tygodnia: {days} — te dni będą wolne.": "Trong kế hoạch tuần: {days} — những ngày này sẽ là ngày nghỉ.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Trên tai nghe, bài tập tiếp theo được thông báo khi bắt đầu giờ nghỉ (khi âm thanh bật); qua loa điện thoại chỉ khi bạn bật công tắc này.",
  "W tej wersji": "Trong phiên bản này",
  "W trakcie": "Đang diễn ra",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Trong buổi tập đang diễn ra, dây sẽ được bỏ khỏi các hiệp chưa đánh dấu.",
@@ -1686,5 +1683,13 @@
  "brak poprzedniego okresu": "không có kỳ trước",
  "brak poprzedniego tygodnia": "không có tuần trước",
  "część zaplanowanych serii nie ma ciężaru": "một số hiệp dự kiến chưa có mức tạ",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Đã bỏ qua (kế hoạch không có mức tạ hoặc số lần): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Đã bỏ qua (kế hoạch không có mức tạ hoặc số lần): {list}",
+ "Zapowiedzi głosowe": "Thông báo bằng giọng nói",
+ "Wyłączone": "Tắt",
+ "W słuchawkach": "Qua tai nghe",
+ "Także przez głośnik": "Cả qua loa",
+ "Głos": "Giọng nói",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Khi bắt đầu nghỉ, điện thoại đọc bài tập tiếp theo, mức tạ và số lần. Qua tai nghe — chỉ khi đã kết nối tai nghe; Cả qua loa — cả khi không có tai nghe, qua loa điện thoại (kể cả ở chế độ im lặng); Tắt — không thông báo.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Thông báo hoạt động khi bật „Âm thanh và rung khi hết giờ nghỉ”. Có thể đổi cùng cài đặt này bằng nút „Giọng nói” trên màn hình buổi tập.",
+ "Zapowiedzi głosowe: {mode}": "Thông báo bằng giọng nói: {mode}"
 }

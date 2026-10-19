@@ -239,7 +239,6 @@
  "Dodane: {list}.": "Ditambah: {list}.",
  "Dom": "Rumah",
  "domyślna {s}": "lalai {s}",
- "Domyślnie głos tylko w słuchawkach.": "Secara lalai suara hanya kedengaran melalui fon kepala.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Menambah latihan daripada CSV — tanpa memadam data, dengan pratonton.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Menambah latihan daripada CSV. Tidak mengubah data sedia ada. Pratonton sebelum disimpan.",
  "Dostępne ćwiczenia: {n} z {m}": "Senaman tersedia: {n} daripada {m}",
@@ -311,7 +310,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Suara juga melalui pembesar suara telefon",
  "główna": "utama",
  "główne": "utama",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Masa {t} tidak wujud pada hari itu (perubahan waktu). Masukkan masa lain.",
@@ -1174,7 +1172,6 @@
  "W historii serie z tą gumą pokażą „?”.": "Set dengan getah ini akan ditunjukkan sebagai “?” dalam sejarah.",
  "w planie na: {day} · {n} ćw.": "dirancang untuk: {day} · {n} senaman",
  "W planie tygodnia: {days} — te dni będą wolne.": "Dalam pelan mingguan: {days} — hari-hari ini akan menjadi hari rehat.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Pada fon kepala, latihan seterusnya diumumkan pada permulaan rehat (apabila bunyi dihidupkan); melalui pembesar suara telefon hanya jika anda menghidupkan suis ini.",
  "W tej wersji": "Dalam versi ini",
  "W trakcie": "Sedang berjalan",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Dalam latihan yang sedang berjalan, getah akan dibuang daripada set yang belum ditanda.",
@@ -1686,5 +1683,13 @@
  "brak poprzedniego okresu": "tiada tempoh sebelumnya",
  "brak poprzedniego tygodnia": "tiada minggu sebelumnya",
  "część zaplanowanych serii nie ma ciężaru": "sesetengah set terancang tiada berat",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Dilangkau (pelan tanpa beban atau ulangan): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Dilangkau (pelan tanpa beban atau ulangan): {list}",
+ "Zapowiedzi głosowe": "Pengumuman suara",
+ "Wyłączone": "Mati",
+ "W słuchawkach": "Melalui fon kepala",
+ "Także przez głośnik": "Juga melalui pembesar suara",
+ "Głos": "Suara",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Pada awal rehat, telefon mengumumkan latihan seterusnya, beban dan ulangan. Melalui fon kepala — hanya apabila fon kepala disambungkan; Juga melalui pembesar suara — juga tanpa fon kepala, melalui pembesar suara telefon (walaupun dalam mod senyap); Mati — tiada pengumuman.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Pengumuman berfungsi apabila „Bunyi dan getaran pada akhir rehat” dihidupkan. Tetapan yang sama boleh diubah dengan butang „Suara” pada skrin latihan.",
+ "Zapowiedzi głosowe: {mode}": "Pengumuman suara: {mode}"
 }

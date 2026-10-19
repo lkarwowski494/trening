@@ -313,7 +313,6 @@
  "Dom": "Mājas",
  "domyślna {s}": "noklusējums {s}",
  "Domyślna przerwa (s)": "Noklusējuma atpūta (s)",
- "Domyślnie głos tylko w słuchawkach.": "Pēc noklusējuma balss ir tikai austiņās.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Pievieno treniņus no CSV — nedzēšot datus, ar priekšskatījumu.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Pievieno treniņus no CSV. Esošos datus nemaina. Pirms saglabāšanas — priekšskatījums.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Pievieno treniņus no populāru treniņu dienasgrāmatu CSV failiem — nenoņemot pašreizējos datus, ar priekšskatījumu pirms saglabāšanas.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Balss arī tālruņa skaļrunī",
  "główna": "galvenā",
  "główne": "galvenā",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Laiks {t} šajā dienā neeksistē (pulksteņa pārregulēšana). Ievadiet citu.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "plānā: {day} · {n} vingr.",
  "W planie tygodnia: {days} — te dni będą wolne.": "Nedēļas plānā: {days} — šīs dienas būs atpūtas dienas.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Sadaļā Progress atzīmētā nedēļa diagrammās redzama kā burts D — tur to nemaina.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Austiņās nākamais vingrinājums tiek paziņots atpūtas sākumā (ja skaņa ir ieslēgta); tālruņa skaļrunī tikai pēc šī slēdža ieslēgšanas.",
  "W tej wersji": "Šajā versijā",
  "W trakcie": "Kustības laikā",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Notiekošajā treniņā gumija tiks noņemta no neatzīmētajām sērijām.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Sakļaut citus vingrinājumus",
  "Zwykle w: {l} — {name}. Zamienić?": "Parasti vietā {l} — {name}. Mainīt?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Nevienai muskuļu grupai apjoms nav lielāks nekā iepriekš.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Izlaists (plāns bez svara vai atkārtojumiem): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Izlaists (plāns bez svara vai atkārtojumiem): {list}",
+ "Zapowiedzi głosowe": "Balss paziņojumi",
+ "Wyłączone": "Izslēgti",
+ "W słuchawkach": "Austiņās",
+ "Także przez głośnik": "Arī skaļrunī",
+ "Głos": "Balss",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Atpūtas sākumā tālrunis paziņo nākamo vingrinājumu, svaru un atkārtojumus. Austiņās — tikai ar pievienotām austiņām; Arī skaļrunī — arī bez austiņām, caur tālruņa skaļruni (arī klusajā režīmā); Izslēgti — bez paziņojumiem.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Paziņojumi darbojas, ja ieslēgts “Skaņa un vibrācija atpūtas beigās”. To pašu iestatījumu var mainīt arī ar pogu “Balss” treniņa ekrānā.",
+ "Zapowiedzi głosowe: {mode}": "Balss paziņojumi: {mode}"
 }

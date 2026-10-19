@@ -239,7 +239,6 @@
  "Dodane: {list}.": "追加しました: {list}。",
  "Dom": "自宅",
  "domyślna {s}": "初期設定 {s}",
- "Domyślnie głos tylko w słuchawkach.": "初期設定では、音声はイヤホンでのみ再生されます。",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "CSVからトレーニングを追加します。データは削除されず、プレビューできます。",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "CSVからトレーニングを追加します。既存のデータは変更されません。保存前にプレビュー。",
  "Dostępne ćwiczenia: {n} z {m}": "使える種目: {n}/{m}",
@@ -311,7 +310,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD（glute-ham developer）",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "iPhone のスピーカーでも音声を再生",
  "główna": "主",
  "główne": "メイン",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "{t} はその日には存在しません（時刻の切り替え）。別の時刻を入力してください。",
@@ -1174,7 +1172,6 @@
  "W historii serie z tą gumą pokażą „?”.": "履歴では、このバンドを使ったセットに「?」と表示されます。",
  "w planie na: {day} · {n} ćw.": "予定日: {day} · {n} 種目",
  "W planie tygodnia: {days} — te dni będą wolne.": "週間プランでは {days} — これらの日は休みになります。",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "ヘッドフォンでは、休憩の開始時に次の種目を読み上げます（サウンドがオンのとき）。iPhone のスピーカーでは、このスイッチをオンにした場合のみ読み上げます。",
  "W tej wersji": "このバージョンでは",
  "W trakcie": "途中",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "進行中のトレーニングでは、まだチェックしていないセットからバンドが外れます。",
@@ -1686,5 +1683,13 @@
  "brak poprzedniego okresu": "前の期間なし",
  "brak poprzedniego tygodnia": "前の週なし",
  "część zaplanowanych serii nie ma ciężaru": "重量のない予定セットがあります",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "除外（重量または回数のない予定）: {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "除外（重量または回数のない予定）: {list}",
+ "Zapowiedzi głosowe": "音声案内",
+ "Wyłączone": "オフ",
+ "W słuchawkach": "イヤホンのみ",
+ "Także przez głośnik": "スピーカーでも",
+ "Głos": "音声",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "休憩の開始時に、次の種目・重量・回数を音声で案内します。イヤホンのみ — イヤホン接続時のみ。スピーカーでも — イヤホンなしでも iPhone のスピーカーから（消音モードでも）。オフ — 案内しません。",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "音声案内は「休憩終了時のサウンドとバイブレーション」がオンのときに動作します。同じ設定はトレーニング画面の「音声」ボタンでも変更できます。",
+ "Zapowiedzi głosowe: {mode}": "音声案内：{mode}"
 }

@@ -313,7 +313,6 @@
  "Dom": "Σπίτι",
  "domyślna {s}": "προεπιλογή {s}",
  "Domyślna przerwa (s)": "Προεπιλεγμένο διάλειμμα (δευτ.)",
- "Domyślnie głos tylko w słuchawkach.": "Από προεπιλογή η φωνή ακούγεται μόνο στα ακουστικά.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Προσθέτει προπονήσεις από CSV — χωρίς διαγραφή δεδομένων, με προεπισκόπηση.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Προσθέτει προπονήσεις από CSV. Δεν αλλάζει τα υπάρχοντα δεδομένα. Προεπισκόπηση πριν την αποθήκευση.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Προσθέτει προπονήσεις από αρχεία CSV δημοφιλών ημερολογίων προπόνησης — χωρίς να αφαιρεί τα τρέχοντα δεδομένα σου, με προεπισκόπηση πριν την αποθήκευση.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Φωνή και από το ηχείο του τηλεφώνου",
  "główna": "κύριος",
  "główne": "κύριος",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Η ώρα {t} δεν υπάρχει εκείνη τη μέρα (αλλαγή ώρας). Βάλε άλλη.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "στο πρόγραμμα για: {day} · {n} ασκ.",
  "W planie tygodnia: {days} — te dni będą wolne.": "Στο εβδομαδιαίο πρόγραμμα: {days} — αυτές οι μέρες θα είναι ξεκούραση.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Στην Πρόοδο, μια σημασμένη εβδομάδα φαίνεται ως το γράμμα D στα γραφήματα — εκεί δεν αλλάζει.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Στα ακουστικά η επόμενη άσκηση ανακοινώνεται στην αρχή του διαλείμματος (με ενεργό ήχο)· από το ηχείο του τηλεφώνου μόνο αν ενεργοποιήσετε αυτόν τον διακόπτη.",
  "W tej wersji": "Σε αυτή την έκδοση",
  "W trakcie": "Κατά την κίνηση",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Στην τρέχουσα προπόνηση το λάστιχο θα αφαιρεθεί από τα μη σημειωμένα σετ.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Σύμπτυξη άλλων ασκήσεων",
  "Zwykle w: {l} — {name}. Zamienić?": "Συνήθως σε: {l} — {name}. Αλλαγή;",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Κανένα μέρος σώματος δεν έχει μεγαλύτερο όγκο από πριν.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Παραλείφθηκαν (πρόγραμμα χωρίς βάρος ή επαναλήψεις): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Παραλείφθηκαν (πρόγραμμα χωρίς βάρος ή επαναλήψεις): {list}",
+ "Zapowiedzi głosowe": "Φωνητικές ανακοινώσεις",
+ "Wyłączone": "Απενεργοποιημένες",
+ "W słuchawkach": "Στα ακουστικά",
+ "Także przez głośnik": "Και από το ηχείο",
+ "Głos": "Φωνή",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Στην αρχή του διαλείμματος το τηλέφωνο ανακοινώνει την επόμενη άσκηση, το βάρος και τις επαναλήψεις. Στα ακουστικά — μόνο με συνδεδεμένα ακουστικά· Και από το ηχείο — και χωρίς ακουστικά, από το ηχείο του τηλεφώνου (και στη σίγαση)· Απενεργοποιημένες — χωρίς ανακοινώσεις.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Οι ανακοινώσεις λειτουργούν όταν είναι ενεργό το «Ήχος και δόνηση στο τέλος του διαλείμματος». Την ίδια ρύθμιση αλλάζεις και με το κουμπί «Φωνή» στην οθόνη της προπόνησης.",
+ "Zapowiedzi głosowe: {mode}": "Φωνητικές ανακοινώσεις: {mode}"
 }

@@ -313,7 +313,6 @@
  "Dom": "Casa",
  "domyślna {s}": "predefinito {s}",
  "Domyślna przerwa (s)": "Recupero predefinito (s)",
- "Domyślnie głos tylko w słuchawkach.": "Per impostazione predefinita la voce passa solo dalle cuffie.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Aggiunge allenamenti da CSV — senza eliminare dati, con anteprima.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Aggiunge allenamenti da CSV. Non modifica i dati esistenti. Anteprima prima del salvataggio.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Aggiunge allenamenti da file CSV di diari di allenamento popolari, senza rimuovere i tuoi dati attuali e con un’anteprima prima del salvataggio.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Voce anche dall’altoparlante del telefono",
  "główna": "principale",
  "główne": "principali",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "L’ora {t} non esiste in quel giorno (cambio d’ora). Inseriscine un’altra.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "nel piano per: {day} · {n} es.",
  "W planie tygodnia: {days} — te dni będą wolne.": "Nel piano settimanale: {days} — questi giorni diventeranno di riposo.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "In Progressi, una settimana segnata appare come la lettera D nei grafici — lì non si cambia.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Nelle cuffie l’esercizio successivo viene annunciato all’inizio del recupero (con l’audio attivo); dall’altoparlante del telefono solo se attivi questo interruttore.",
  "W tej wersji": "In questa versione",
  "W trakcie": "Durante il movimento",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Nell’allenamento in corso l’elastico verrà rimosso dalle serie non ancora spuntate.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Comprimi gli altri esercizi",
  "Zwykle w: {l} — {name}. Zamienić?": "Di solito in {l} — {name}. Sostituire?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Nessun gruppo muscolare ha più volume di prima.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Esclusi (piano senza carico o ripetizioni): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Esclusi (piano senza carico o ripetizioni): {list}",
+ "Zapowiedzi głosowe": "Annunci vocali",
+ "Wyłączone": "Disattivati",
+ "W słuchawkach": "In cuffia",
+ "Także przez głośnik": "Anche dall’altoparlante",
+ "Głos": "Voce",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "All’inizio del recupero il telefono annuncia l’esercizio successivo, il carico e le ripetizioni. In cuffia — solo con le cuffie collegate; Anche dall’altoparlante — anche senza cuffie, dall’altoparlante del telefono (anche in modalità silenziosa); Disattivati — nessun annuncio.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Gli annunci funzionano quando «Suono e vibrazione a fine recupero» è attivo. La stessa impostazione si cambia con il pulsante «Voce» nella schermata dell’allenamento.",
+ "Zapowiedzi głosowe: {mode}": "Annunci vocali: {mode}"
 }

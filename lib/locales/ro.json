@@ -313,7 +313,6 @@
  "Dom": "Acasă",
  "domyślna {s}": "implicit {s}",
  "Domyślna przerwa (s)": "Pauză implicită (s)",
- "Domyślnie głos tylko w słuchawkach.": "Implicit, vocea se aude doar în căști.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Adaugă antrenamente din CSV — fără ștergerea datelor, cu previzualizare.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Adaugă antrenamente din CSV. Nu modifică datele existente. Previzualizare înainte de salvare.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Adaugă antrenamente din fișiere CSV ale unor jurnale de antrenament populare — fără a șterge datele tale actuale, cu previzualizare înainte de salvare.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Voce și prin difuzorul telefonului",
  "główna": "principală",
  "główne": "principală",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Ora {t} nu există în acea zi (schimbarea orei). Introduceți alta.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "în plan pentru: {day} · {n} ex.",
  "W planie tygodnia: {days} — te dni będą wolne.": "În planul săptămânal: {days} — aceste zile vor fi de pauză.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "În Progres, o săptămână marcată apare ca litera D în grafice — acolo nu se schimbă.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "În căști, următorul exercițiu este anunțat la începutul pauzei (cu sunetul pornit); prin difuzorul telefonului doar dacă pornești acest comutator.",
  "W tej wersji": "În această versiune",
  "W trakcie": "În timpul mișcării",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "În antrenamentul curent, banda va fi eliminată din seriile încă nebifate.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Restrânge celelalte exerciții",
  "Zwykle w: {l} — {name}. Zamienić?": "De obicei în: {l} — {name}. Înlocuiți?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Nicio grupă musculară nu are volum mai mare decât înainte.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Omise (plan fără greutate sau repetări): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Omise (plan fără greutate sau repetări): {list}",
+ "Zapowiedzi głosowe": "Anunțuri vocale",
+ "Wyłączone": "Dezactivate",
+ "W słuchawkach": "În căști",
+ "Także przez głośnik": "Și prin difuzor",
+ "Głos": "Voce",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "La începutul pauzei, telefonul anunță exercițiul următor, greutatea și repetările. În căști — doar cu căștile conectate; Și prin difuzor — și fără căști, prin difuzorul telefonului (chiar și în modul silențios); Dezactivate — fără anunțuri.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Anunțurile funcționează când „Sunet și vibrație la finalul pauzei” este activat. Aceeași setare se schimbă și cu butonul „Voce” de pe ecranul antrenamentului.",
+ "Zapowiedzi głosowe: {mode}": "Anunțuri vocale: {mode}"
 }

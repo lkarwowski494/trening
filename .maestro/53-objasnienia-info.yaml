@@ -1,14 +1,14 @@
 # Objaśnienia pod ⓘ (14.10.2026, docs/32 wzorzec 27; katalog przepływów docs/37: US-18, JM-05): tekst objaśniający jest schowany pod okręgiem „i” przy nagłówku;
 # stuknięcie rozwija go w miejscu, drugie zwija; stan nie jest zapamiętywany. Sprawdzamy na Ustawieniach: pole „Workout view” (Field), nagłówek sekcji
-# „Weekly set goal per muscle group” (SectionTitle) i przełącznik „Voice also through the phone speaker” (SwitchRow) — jasny wygląd, potem ciemny.
+# „Weekly set goal per muscle group” (SectionTitle) i wybór „Voice announcements” (Field z wyborem; 19.10.2026 zastąpił przełącznik głośnika) — jasny wygląd, potem ciemny.
 #
 # Literały (EN z lib/i18n.en.ts):
 #   info-workout-view / info-text-workout-view                  ← testID przycisku ⓘ i ramki z tekstem (components/InfoTip.tsx; infoId w app/more/settings.tsx)
-#   info-sets-goal / info-voice-speaker                         ← j.w. (nagłówek 'Cel serii na partię w tygodniu', przełącznik 'Głos także przez głośnik telefonu')
+#   info-sets-goal / info-voice-mode                            ← j.w. (nagłówek 'Cel serii na partię w tygodniu', pole 'Zapowiedzi głosowe')
 #   "More information: Workout view"                            ← etykieta VoiceOver 'Więcej informacji: {name}' (stała, także po rozwinięciu)
 #   "Focused: the current set in big numbers.*"                 ← 'Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.' (opis, który zszedł z wierzchu)
 #   "The line in “This week” and in Progress.*"                 ← 'Kreska w „Ten tydzień” i w Postępach. Automatycznie: …' (ACSM 2026 — źródło zostaje w tekście pod ⓘ)
-#   "In headphones the next exercise.*" / "By default the voice.*" ← długi opis pod ⓘ / krótki opis na wierzchu
+#   "At the start of the rest the phone announces.*"            ← opis pod ⓘ pola 'Zapowiedzi głosowe'; voice-mode-headphones ← opcja wyboru (selected)
 #   "Dark" / "Light" / "Appearance"                              ← segmenty i pole Wygląd (app/more/settings.tsx)
 appId: pl.lukasz.trening
 name: Objaśnienia pod ⓘ — rozwijanie, zwijanie, ciemny wygląd
@@ -38,15 +38,14 @@ name: Objaśnienia pod ⓘ — rozwijanie, zwijanie, ciemny wygląd
 - assertVisible: "The line in “This week” and in Progress.*"
 - tapOn: { id: "info-sets-goal" }
 - assertNotVisible: "The line in “This week” and in Progress.*"
-# --- przełącznik: krótki opis na wierzchu, długi pod ⓘ; ⓘ nie przełącza przełącznika ---
-- scrollUntilVisible: { element: { id: "info-voice-speaker" }, direction: UP, timeout: 30000, centerElement: true }
-- assertVisible: "By default the voice.*"
-- assertNotVisible: "In headphones the next exercise.*"
-- tapOn: { id: "info-voice-speaker" }
-- assertVisible: "In headphones the next exercise.*"
-- assertVisible: { id: "sw-Voice also through the phone speaker", checked: false }
-- tapOn: { id: "info-voice-speaker" }
-- assertNotVisible: "In headphones the next exercise.*"
+# --- pole z wyborem: opis pod ⓘ; ⓘ nie zmienia wyboru ---
+- scrollUntilVisible: { element: { id: "info-voice-mode" }, direction: UP, timeout: 30000, centerElement: true }
+- assertNotVisible: "At the start of the rest the phone announces.*"
+- tapOn: { id: "info-voice-mode" }
+- assertVisible: "At the start of the rest the phone announces.*"
+- assertVisible: { id: "voice-mode-headphones", selected: true }
+- tapOn: { id: "info-voice-mode" }
+- assertNotVisible: "At the start of the rest the phone announces.*"
 # --- ciemny wygląd (JM-05): ⓘ i ramka tekstu czytelne, rozwijanie działa tak samo ---
 - scrollUntilVisible: { element: "Appearance", direction: UP, timeout: 30000 }
 - tapOn: "Dark"

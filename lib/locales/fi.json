@@ -313,7 +313,6 @@
  "Dom": "Koti",
  "domyślna {s}": "oletus {s}",
  "Domyślna przerwa (s)": "Oletuspalautus (s)",
- "Domyślnie głos tylko w słuchawkach.": "Oletuksena ääni kuuluu vain kuulokkeissa.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Lisää treenejä CSV:stä — poistamatta tietoja, esikatselulla.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Lisää treenejä CSV:stä. Ei muuta olemassa olevia tietoja. Esikatselu ennen tallennusta.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Lisää treenejä suosittujen treenipäiväkirjojen CSV-tiedostoista — poistamatta nykyisiä tietojasi, esikatselulla ennen tallennusta.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Ääni myös puhelimen kaiuttimesta",
  "główna": "pää",
  "główne": "pää",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Kellonaikaa {t} ei ole sinä päivänä (kellojen siirto). Syötä toinen.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "suunnitelmassa: {day} · {n} liik.",
  "W planie tygodnia: {days} — te dni będą wolne.": "Viikkosuunnitelmassa: {days} — nämä päivät muuttuvat lepopäiviksi.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Kehityksessä merkitty viikko näkyy kaavioissa D-kirjaimena — sitä ei muuteta siellä.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Kuulokkeissa seuraava liike kuulutetaan palautuksen alussa (kun ääni on päällä); puhelimen kaiuttimesta vain, jos kytket tämän valitsimen päälle.",
  "W tej wersji": "Tässä versiossa",
  "W trakcie": "Liikkeen aikana",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Käynnissä olevassa treenissä kuminauha poistuu merkitsemättömistä sarjoista.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Pienennä muut liikkeet",
  "Zwykle w: {l} — {name}. Zamienić?": "Yleensä paikassa {l} — {name}. Vaihdetaanko?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Millään lihasryhmällä ei ole enemmän volyymia kuin aiemmin.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Pois jätetty (suunnitelma ilman painoa tai toistoja): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Pois jätetty (suunnitelma ilman painoa tai toistoja): {list}",
+ "Zapowiedzi głosowe": "Ääniopastus",
+ "Wyłączone": "Pois",
+ "W słuchawkach": "Kuulokkeissa",
+ "Także przez głośnik": "Myös kaiuttimesta",
+ "Głos": "Ääni",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Palautuksen alussa puhelin kertoo seuraavan liikkeen, painon ja toistot. Kuulokkeissa — vain kun kuulokkeet on yhdistetty; Myös kaiuttimesta — myös ilman kuulokkeita, puhelimen kaiuttimesta (myös äänettömällä); Pois — ei opastusta.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Opastus toimii, kun ”Ääni ja värinä palautuksen lopussa” on päällä. Saman asetuksen voi vaihtaa treeninäkymän ”Ääni”-painikkeella.",
+ "Zapowiedzi głosowe: {mode}": "Ääniopastus: {mode}"
 }

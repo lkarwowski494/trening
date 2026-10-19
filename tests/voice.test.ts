@@ -1,11 +1,12 @@
 /*
  * Głos w słuchawkach (lib/voice.ts, modules/voice-cue; docs/36): kiedy i co mówi — polityka (dźwięk, aplikacja na wierzchu, słuchawki, głośnik, VoiceOver), tekst (restCue + rekord),
- * integracja z odhaczeniem serii (telefon i zdarzenia z zegarka), cofnięcie przerywa, ustawienie `voiceSpeaker` w danych, most do modułu natywnego (atrapa).
+ * integracja z odhaczeniem serii (telefon i zdarzenia z zegarka), cofnięcie przerywa, ustawienie „Zapowiedzi głosowe” (`Settings.voice`, 19.10.2026: Wyłączone / W słuchawkach /
+ * Także przez głośnik; migracja z `voiceSpeaker`) w danych i kopii, most do modułu natywnego (atrapa).
  */
 import { AccessibilityInfo, AppState } from 'react-native';
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
-import { voicePolicy, cueSpeech, sayRestStart, silenceVoice, voiceAvailable, sampleVoice, appActive, __setScreenReaderForTests, VOICE_REASONS, type VoiceInput } from '@/lib/voice';
+import { voicePolicy, cueSpeech, sayRestStart, silenceVoice, voiceAvailable, sampleVoice, appActive, __setScreenReaderForTests, VOICE_REASONS, VOICE_SETTINGS, VOICE_DEFAULT, voiceSetting, setVoiceSetting, voiceSettingLabel, type VoiceInput } from '@/lib/voice';
 import { completeSet } from '@/lib/setFlow';
 import { applyWatchEvent } from '@/lib/watch/apply';
 import { restCue } from '@/lib/live';
@@ -21,18 +22,21 @@ const tick = async () => { await Promise.resolve(); await Promise.resolve(); awa
 
 describe('voicePolicy (czysta)', () => {
   const bools = [true, false];
-  const all: VoiceInput[] = []; for (const sound of bools) for (const speaker of bools) for (const headphones of bools) for (const appActive of bools) for (const screenReader of bools) all.push({ sound, speaker, headphones, appActive, screenReader });
+  const all: VoiceInput[] = []; for (const sound of bools) for (const setting of VOICE_SETTINGS) for (const headphones of bools) for (const appActive of bools) for (const screenReader of bools) all.push({ sound, setting, headphones, appActive, screenReader });
   test.each(all.map(i => [JSON.stringify(i), i] as const))('%s', (_n, i) => {
     const d = voicePolicy(i); expect(VOICE_REASONS).toContain(d.reason);
-    if (!i.sound) expect(d).toEqual({ mode: 'silent', reason: 'sound-off' });
+    if (i.setting === 'off') expect(d).toEqual({ mode: 'silent', reason: 'voice-off' }); /* „Wyłączone” = nigdy nie mówi, niezależnie od dźwięku i słuchawek */
+    else if (!i.sound) expect(d).toEqual({ mode: 'silent', reason: 'sound-off' });
     else if (!i.appActive) expect(d).toEqual({ mode: 'silent', reason: 'background' });
-    else if (!i.headphones && !i.speaker) expect(d).toEqual({ mode: 'silent', reason: 'no-headphones' });
+    else if (!i.headphones && i.setting !== 'speaker') expect(d).toEqual({ mode: 'silent', reason: 'no-headphones' });
     else if (i.screenReader) expect(d).toEqual({ mode: 'announce', reason: 'screen-reader' });
     else expect(d).toEqual({ mode: 'speak', reason: i.headphones ? 'headphones' : 'speaker' });
   });
-  test('domyślnie (głośnik wyłączony, brak słuchawek) cisza; słuchawki → mowa bez przełącznika; głośnik tylko po przełączniku', () => {
-    const b = { sound: true, speaker: false, headphones: false, appActive: true, screenReader: false };
-    expect(voicePolicy(b).mode).toBe('silent'); expect(voicePolicy({ ...b, headphones: true }).mode).toBe('speak'); expect(voicePolicy({ ...b, speaker: true })).toEqual({ mode: 'speak', reason: 'speaker' });
+  test('domyślnie „W słuchawkach”: bez słuchawek cisza, ze słuchawkami mowa; „Także przez głośnik” mówi bez słuchawek; „Wyłączone” milczy także w słuchawkach', () => {
+    const b = { sound: true, setting: VOICE_DEFAULT, headphones: false, appActive: true, screenReader: false };
+    expect(VOICE_DEFAULT).toBe('headphones'); expect(VOICE_SETTINGS).toEqual(['off', 'headphones', 'speaker']);
+    expect(voicePolicy(b).mode).toBe('silent'); expect(voicePolicy({ ...b, headphones: true }).mode).toBe('speak'); expect(voicePolicy({ ...b, setting: 'speaker' })).toEqual({ mode: 'speak', reason: 'speaker' });
+    expect(voicePolicy({ ...b, setting: 'off', headphones: true })).toEqual({ mode: 'silent', reason: 'voice-off' }); expect(voicePolicy({ ...b, setting: 'off', headphones: true, screenReader: true }).mode).toBe('silent');
   });
 });
 
@@ -56,9 +60,17 @@ describe('sayRestStart: trasa dźwięku', () => {
     await world(); V().headphones = true; const r = await sayRestStart(A(), sid(0, 0));
     expect(V().spoken).toEqual([['Bench Press (sztanga) · seria 2, 80 kilogramów, 8 powtórzeń', 'pl-PL']]); expect(r).toMatchObject({ mode: 'speak', reason: 'headphones' });
   });
-  test('bez słuchawek i bez przełącznika: cisza; z przełącznikiem „Głos także przez głośnik”: mówi', async () => {
+  test('bez słuchawek przy „W słuchawkach”: cisza; „Także przez głośnik”: mówi', async () => {
     await world(); await sayRestStart(A(), sid(0, 0)); expect(V().spoken).toEqual([]);
-    store.getState().settings.voiceSpeaker = true; const r = await sayRestStart(A(), sid(0, 0)); expect(V().spoken).toHaveLength(1); expect(r.reason).toBe('speaker');
+    store.getState().settings.voice = 'speaker'; const r = await sayRestStart(A(), sid(0, 0)); expect(V().spoken).toHaveLength(1); expect(r.reason).toBe('speaker');
+  });
+  test('„Wyłączone”: cisza w słuchawkach i przez głośnik, także przy włączonym dźwięku i VoiceOverze (bez announce)', async () => {
+    await world(); V().headphones = true; store.getState().settings.voice = 'off'; const an = jest.spyOn(AccessibilityInfo, 'announceForAccessibility').mockImplementation(() => {});
+    const r = await sayRestStart(A(), sid(0, 0)); expect([r.mode, r.reason, V().spoken]).toEqual(['silent', 'voice-off', []]);
+    __setScreenReaderForTests(true); await sayRestStart(A(), sid(0, 0)); expect(an).not.toHaveBeenCalled(); expect(V().spoken).toEqual([]);
+  });
+  test('„Wyłączone” przez ✓ na telefonie: przerwa startuje, zapowiedzi brak', async () => {
+    await world(); V().headphones = true; store.getState().settings.voice = 'off'; await completeSet(0, 0); await tick(); expect(timer.T.on).toBe(true); expect(V().spoken).toEqual([]);
   });
   test('„Dźwięk i wibracja” wyłączone: cisza także w słuchawkach', async () => {
     await world(); V().headphones = true; store.getState().settings.sound = false; const r = await sayRestStart(A(), sid(0, 0)); expect(V().spoken).toEqual([]); expect(r.reason).toBe('sound-off');
@@ -110,11 +122,38 @@ describe('integracja z odhaczeniem serii', () => {
   test('silenceVoice wywołuje stop modułu', () => { const s = V().stops; silenceVoice(); expect(V().stops).toBe(s + 1); });
 });
 
-describe('dane: ustawienie voiceSpeaker', () => {
-  test('zapisane tylko true; zła wartość = wyłączone; przeżywa restart i kopię', async () => {
-    await fresh(); store.getState().settings.voiceSpeaker = true; store.saveCfg(); await store.flush(); const disk = JSON.parse(JSON.stringify(saved()));
-    await fresh(disk); expect(store.getState().settings.voiceSpeaker).toBe(true);
-    for (const bad of [false, 'tak', 1, null]) { const d = JSON.parse(JSON.stringify(disk)); d.settings.voiceSpeaker = bad; await fresh(d); expect('voiceSpeaker' in store.getState().settings).toBe(false); }
-    const { buildBackup, parseBackup } = require('@/lib/backup'); await fresh(disk); const r = parseBackup(JSON.stringify(buildBackup())); expect(JSON.stringify(r)).toContain('"voiceSpeaker":true');
+describe('dane: ustawienie „Zapowiedzi głosowe” (Settings.voice; 19.10.2026)', () => {
+  const S = () => store.getState().settings;
+  test('domyślnie „W słuchawkach” bez pola; zapis tylko odstępstwa (off / speaker); powrót do domyślnej usuwa pole', async () => {
+    await fresh(); expect('voice' in S()).toBe(false); expect(voiceSetting()).toBe('headphones');
+    setVoiceSetting('off'); expect(S().voice).toBe('off'); expect(voiceSetting()).toBe('off'); setVoiceSetting('speaker'); expect(S().voice).toBe('speaker');
+    setVoiceSetting('headphones'); expect('voice' in S()).toBe(false);
+  });
+  test('wybór „Wyłączone” w trakcie zapowiedzi przerywa mowę', async () => { await fresh(); const s0 = V().stops; setVoiceSetting('off'); expect(V().stops).toBe(s0 + 1); });
+  test('migracja: voiceSpeaker true → „Także przez głośnik”; brak → „W słuchawkach”; dawne pole znika (jedno źródło)', async () => {
+    await fresh(); store.saveCfg(); await store.flush(); const disk = JSON.parse(JSON.stringify(saved()));
+    const a = JSON.parse(JSON.stringify(disk)); a.settings.voiceSpeaker = true; delete a.settings.voice; await fresh(a); expect(S().voice).toBe('speaker'); expect('voiceSpeaker' in S()).toBe(false);
+    const b = JSON.parse(JSON.stringify(disk)); delete b.settings.voiceSpeaker; delete b.settings.voice; await fresh(b); expect('voice' in S()).toBe(false); expect(voiceSetting()).toBe('headphones');
+    for (const old of [false, 'tak', 1, null]) { const d = JSON.parse(JSON.stringify(disk)); d.settings.voiceSpeaker = old; await fresh(d); expect([old, 'voice' in S(), 'voiceSpeaker' in S()]).toEqual([old, false, false]); }
+  });
+  test('migracja: poprawna wartość przechodzi (off, speaker; headphones = domyślna bez pola); zła wartość → domyślna; nowe pole wygrywa z dawnym', async () => {
+    await fresh(); store.saveCfg(); await store.flush(); const disk = JSON.parse(JSON.stringify(saved()));
+    for (const [v, want] of [['off', 'off'], ['speaker', 'speaker'], ['headphones', undefined], ['loud', undefined], [true, undefined], [1, undefined], [null, undefined], [{}, undefined]] as const) {
+      const d = JSON.parse(JSON.stringify(disk)); d.settings.voice = v; await fresh(d); expect([v, S().voice]).toEqual([v, want]);
+    }
+    const d = JSON.parse(JSON.stringify(disk)); d.settings.voice = 'off'; d.settings.voiceSpeaker = true; await fresh(d); expect(S().voice).toBe('off'); expect('voiceSpeaker' in S()).toBe(false);
+    const e = JSON.parse(JSON.stringify(disk)); e.settings.voice = 'loud'; e.settings.voiceSpeaker = true; await fresh(e); expect('voice' in S()).toBe(false); /* zła wartość nowego pola = domyślna */
+  });
+  test('kopia zapasowa: eksport → import zachowuje wybór; import kopii sprzed zmiany (voiceSpeaker true) daje „Także przez głośnik”; idempotentne', async () => {
+    const { buildBackup, parseBackup } = require('@/lib/backup');
+    for (const v of ['off', 'speaker'] as const) { await fresh(); setVoiceSetting(v); await store.flush(); const r = parseBackup(JSON.stringify(buildBackup())); expect(r.settings.voice).toBe(v); expect('voiceSpeaker' in r.settings).toBe(false); }
+    await fresh(); store.saveCfg(); await store.flush(); const old = buildBackup(); old.state = JSON.parse(JSON.stringify(old.state)); delete old.state.settings.voice; old.state.settings.voiceSpeaker = true;
+    const r = parseBackup(JSON.stringify(old)); expect(r.settings.voice).toBe('speaker'); expect('voiceSpeaker' in r.settings).toBe(false);
+    const again = parseBackup(JSON.stringify({ ...old, state: r })); expect(again.settings.voice).toBe('speaker');
+    const bad = JSON.parse(JSON.stringify(old)); bad.state.settings.voice = 'głośno'; expect('voice' in parseBackup(JSON.stringify(bad)).settings).toBe(false);
+  });
+  test('etykiety wyboru w języku aplikacji (PL, EN)', () => {
+    expect(VOICE_SETTINGS.map(voiceSettingLabel)).toEqual(['Wyłączone', 'W słuchawkach', 'Także przez głośnik']);
+    applyLang('en'); expect(VOICE_SETTINGS.map(voiceSettingLabel)).toEqual(['Off', 'In headphones', 'Also through the speaker']); applyLang('pl');
   });
 });

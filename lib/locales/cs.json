@@ -313,7 +313,6 @@
  "Dom": "Domov",
  "domyślna {s}": "výchozí {s}",
  "Domyślna przerwa (s)": "Výchozí pauza (s)",
- "Domyślnie głos tylko w słuchawkach.": "Ve výchozím nastavení hlas jen ve sluchátkách.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Přidá tréninky z CSV — bez mazání dat, s náhledem.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Přidá tréninky z CSV. Stávající data nemění. Před uložením — náhled.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Přidá tréninky ze souborů CSV oblíbených tréninkových deníků — bez mazání stávajících dat, s náhledem před uložením.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Hlas také přes reproduktor telefonu",
  "główna": "hlavní",
  "główne": "hlavní",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Čas {t} v ten den neexistuje (změna času). Zadejte jiný.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "v plánu na: {day} · {n} cv.",
  "W planie tygodnia: {days} — te dni będą wolne.": "V týdenním plánu: {days} — tyto dny budou volné.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "V Pokroku je označený týden vidět jako písmeno D v grafech — tam se nemění.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Do sluchátek zazní oznámení dalšího cviku na začátku pauzy (při zapnutém zvuku); přes reproduktor telefonu jen po zapnutí tohoto přepínače.",
  "W tej wersji": "V této verzi",
  "W trakcie": "V průběhu pohybu",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "V aktuálním tréninku se guma odebere ze sérií, které ještě nejsou odškrtnuté.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Sbalit další cviky",
  "Zwykle w: {l} — {name}. Zamienić?": "Obvykle v místě {l} – {name}. Vyměnit?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Žádná partie nemá větší objem než dříve.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Vynecháno (plán bez váhy nebo opakování): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Vynecháno (plán bez váhy nebo opakování): {list}",
+ "Zapowiedzi głosowe": "Hlasová oznámení",
+ "Wyłączone": "Vypnuto",
+ "W słuchawkach": "Ve sluchátkách",
+ "Także przez głośnik": "I přes reproduktor",
+ "Głos": "Hlas",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Na začátku pauzy telefon ohlásí další cvik, váhu a opakování. Ve sluchátkách — jen s připojenými sluchátky; I přes reproduktor — také bez sluchátek, přes reproduktor telefonu (i v tichém režimu); Vypnuto — bez oznámení.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Oznámení fungují, když je zapnuto „Zvuk a vibrace na konci pauzy“. Stejné nastavení změníte tlačítkem „Hlas“ na obrazovce tréninku.",
+ "Zapowiedzi głosowe: {mode}": "Hlasová oznámení: {mode}"
 }

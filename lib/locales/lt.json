@@ -313,7 +313,6 @@
  "Dom": "Namai",
  "domyślna {s}": "numatytasis {s}",
  "Domyślna przerwa (s)": "Numatytasis poilsis (s)",
- "Domyślnie głos tylko w słuchawkach.": "Pagal numatytuosius nustatymus balsas girdimas tik ausinėse.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Prideda treniruotes iš CSV — netrinant duomenų, su peržiūra.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Prideda treniruotes iš CSV. Esamų duomenų nekeičia. Prieš išsaugant — peržiūra.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Prideda treniruotes iš populiarių treniruočių dienynų CSV failų — nepašalindama dabartinių duomenų, su peržiūra prieš išsaugant.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham treniruoklis)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Balsas ir per telefono garsiakalbį",
  "główna": "pagrindinis",
  "główne": "pagrindinė",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Laikas {t} tą dieną neegzistuoja (laikrodžio keitimas). Įveskite kitą.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "plane: {day} · {n} prat.",
  "W planie tygodnia: {days} — te dni będą wolne.": "Savaitės plane: {days} — šios dienos taps poilsio dienomis.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Progrese pažymėta savaitė diagramose matoma kaip raidė D — ten jos nekeisi.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Ausinėse kitas pratimas paskelbiamas poilsio pradžioje (kai garsas įjungtas); per telefono garsiakalbį tik įjungus šį jungiklį.",
  "W tej wersji": "Šioje versijoje",
  "W trakcie": "Judesio metu",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Dabartinėje treniruotėje guma bus pašalinta iš dar nepažymėtų serijų.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Suskleisti kitus pratimus",
  "Zwykle w: {l} — {name}. Zamienić?": "Dažniausiai vietoje {l} — {name}. Pakeisti?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Jokia kūno dalis neturi didesnės apimties nei anksčiau.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Praleista (planas be svorio ar pakartojimų): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Praleista (planas be svorio ar pakartojimų): {list}",
+ "Zapowiedzi głosowe": "Balso pranešimai",
+ "Wyłączone": "Išjungta",
+ "W słuchawkach": "Ausinėse",
+ "Także przez głośnik": "Ir per garsiakalbį",
+ "Głos": "Balsas",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Poilsio pradžioje telefonas praneša kitą pratimą, svorį ir pakartojimus. Ausinėse — tik prijungus ausines; Ir per garsiakalbį — ir be ausinių, per telefono garsiakalbį (net begarsiame režime); Išjungta — be pranešimų.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Pranešimai veikia, kai įjungta „Garsas ir vibracija poilsio pabaigoje“. Tą patį nustatymą pakeisite ir mygtuku „Balsas“ treniruotės ekrane.",
+ "Zapowiedzi głosowe: {mode}": "Balso pranešimai: {mode}"
 }

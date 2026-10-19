@@ -46,7 +46,6 @@
  "Do upadku (F)": "Até a falha (F)",
  "do uzupełnienia": "para preencher",
  "Dodaj ciężar": "Adicionar peso extra",
- "Domyślnie głos tylko w słuchawkach.": "Por padrão, a voz só toca nos fones de ouvido.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Adiciona treinos de CSV. Não altera os dados atuais. Prévia antes de salvar.",
  "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.": "Toque no rótulo de uma série para mudar o tipo; deslize uma linha para a esquerda para apagá-la. O intervalo de repetições é opcional — com ele aparecem as sugestões «↑». «⇅ SS» liga o exercício ao seguinte em uma supersérie, «✂ SS» tira ele do grupo. Ordem: «≡ Reordenar».",
  "Drążek do podciągania (rozporowy, ścienny)": "Barra fixa (de porta, de parede)",
@@ -58,7 +57,6 @@
  "Ergometr narciarski": "Ergômetro de esqui",
  "Gdzie trenujesz i jaki sprzęt tam masz.": "Onde você treina e que equipamento tem lá.",
  "Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.": "Onde você treina e que equipamento tem lá. A escolha de exercícios mostra então o que dá para fazer no local do treino, e a sugestão «↑» propõe pesos que você realmente tem. Você escolhe o local no início do treino.",
- "Głos także przez głośnik telefonu": "Voz também pelo alto-falante do celular",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "O horário {t} não existe nesse dia (mudança de horário). Digite outro.",
  "Gryf trap bar (heksagonalny) + talerze": "Barra hexagonal (trap bar) + anilhas",
  "Gryf łamany (EZ) + talerze": "Barra EZ + anilhas",
@@ -292,7 +290,6 @@
  "Usuń talerz": "Remover anilha",
  "Utwórz pierwszy szablon albo wygeneruj szablony i plan.": "Crie seu primeiro modelo ou gere modelos e um plano.",
  "Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi (objętość, rekordy, wykresy).": "Observação: alterar o equipamento, o modo de contar o peso ou a métrica também recalcula os treinos antigos (volume, recordes, gráficos).",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Nos fones, o próximo exercício é anunciado no início do descanso (com o som ativado); pelo alto-falante do celular, só se você ativar este interruptor.",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "No treino em andamento, o elástico será removido das séries ainda não marcadas.",
  "W trwającym treningu zostanie oznaczone jako usunięte.": "No treino em andamento, ele ficará marcado como apagado.",
  "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.": "Em uma semana de deload, «Iniciar» e «Repetir o último» oferecem «Menos séries»: {less}; pesos e modelo sem alterações.",
@@ -566,5 +563,11 @@
  "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "O local será adicionado à lista de locais (Ajustes → Locais e equipamento).",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Um local para {a} – {b}. Escolha o equipamento que tem lá — não precisa digitar pesos.",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Um local só para este treino. Escolha o equipamento que tem lá — não precisa digitar pesos.",
- "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Ao iniciar um treino nesses dias, o app usa este local antes do local do modelo, e a janela «Adaptar» sugere trocas. Nada muda sozinho."
+ "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Ao iniciar um treino nesses dias, o app usa este local antes do local do modelo, e a janela «Adaptar» sugere trocas. Nada muda sozinho.",
+ "Zapowiedzi głosowe": "Avisos por voz",
+ "Zapowiedzi głosowe: {mode}": "Avisos por voz: {mode}",
+ "W słuchawkach": "Nos fones de ouvido",
+ "Także przez głośnik": "Também pelo alto-falante",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "No início do descanso, o celular anuncia o próximo exercício, a carga e as repetições. Nos fones de ouvido — só com fones conectados; Também pelo alto-falante — também sem fones, pelo alto-falante do celular (até no modo silencioso); Desativados — sem avisos.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Os avisos funcionam quando “Som e vibração no fim do descanso” está ativado. Você muda a mesma configuração com o botão “Voz” na tela do treino."
 }

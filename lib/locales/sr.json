@@ -313,7 +313,6 @@
  "Dom": "Кућа",
  "domyślna {s}": "подразумевано {s}",
  "Domyślna przerwa (s)": "Подразумевани одмор (сек.)",
- "Domyślnie głos tylko w słuchawkach.": "Подразумевано се глас чује само у слушалицама.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Додаје тренинге из CSV-а — без брисања података, уз преглед.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Додаје тренинге из CSV-а. Постојеће податке не мења. Преглед пре чувања.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Додаје тренинге из CSV датотека популарних дневника тренинга — без брисања твојих постојећих података, са прегледом пре чувања.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham подизање",
- "Głos także przez głośnik telefonu": "Глас и преко звучника телефона",
  "główna": "примарни",
  "główne": "главно",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Време {t} не постоји тог дана (промена сата). Унесите друго.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "у плану за: {day} · {n} вежб.",
  "W planie tygodnia: {days} — te dni będą wolne.": "У недељном плану: {days} — ти дани ће бити одмор.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "У Напретку се означена недеља види као слово D на графиконима — тамо се не мења.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "У слушалицама се следећа вежба најављује на почетку одмора (када је звук укључен); преко звучника телефона само ако укључиш овај прекидач.",
  "W tej wersji": "У овој верзији",
  "W trakcie": "Током покрета",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "У тренутном тренингу гума ће бити уклоњена из још неозначених серија.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Скупи остале вежбе",
  "Zwykle w: {l} — {name}. Zamienić?": "Обично на месту {l} — {name}. Заменити?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Ниједан део тела нема већи волумен него раније.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Изостављено (план без тежине или понављања): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Изостављено (план без тежине или понављања): {list}",
+ "Zapowiedzi głosowe": "Гласовне најаве",
+ "Wyłączone": "Искључено",
+ "W słuchawkach": "У слушалицама",
+ "Także przez głośnik": "И преко звучника",
+ "Głos": "Глас",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "На почетку одмора телефон најављује следећу вежбу, тежину и понављања. У слушалицама — само са повезаним слушалицама; И преко звучника — и без слушалица, преко звучника телефона (и у нечујном режиму); Искључено — без најава.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Најаве раде када је укључено „Звук и вибрација на крају одмора”. Исто подешавање мењаш и дугметом „Глас” на екрану тренинга.",
+ "Zapowiedzi głosowe: {mode}": "Гласовне најаве: {mode}"
 }

@@ -313,7 +313,6 @@
  "Dom": "Maison",
  "domyślna {s}": "par défaut {s}",
  "Domyślna przerwa (s)": "Repos par défaut (s)",
- "Domyślnie głos tylko w słuchawkach.": "Par défaut, la voix n’est diffusée qu’au casque.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Permet d’ajouter des séances depuis un CSV — sans supprimer de données, avec aperçu.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Permet d’ajouter des séances depuis un CSV. Ne modifie pas les données existantes. Aperçu avant l’enregistrement.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Permet d’ajouter des séances à partir de fichiers CSV de carnets d’entraînement populaires — sans supprimer vos données actuelles, avec un aperçu avant l’enregistrement.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Voix aussi par le haut-parleur du téléphone",
  "główna": "principal",
  "główne": "principal",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "L’heure {t} n’existe pas ce jour-là (changement d’heure). Saisissez-en une autre.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "prévue : {day} · {n} ex.",
  "W planie tygodnia: {days} — te dni będą wolne.": "Dans le plan de la semaine : {days} — ces jours deviendront des jours de repos.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "Dans Progrès, une semaine marquée apparaît sous la forme de la lettre D sur les graphiques — on ne la modifie pas là.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Dans les écouteurs, l’exercice suivant est annoncé au début du repos (son activé) ; par le haut-parleur du téléphone, seulement si vous activez cet interrupteur.",
  "W tej wersji": "Dans cette version",
  "W trakcie": "Pendant le mouvement",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "Dans la séance en cours, l’élastique sera retiré des séries non cochées.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Replier les autres exercices",
  "Zwykle w: {l} — {name}. Zamienić?": "Habituellement à {l} — {name}. Remplacer ?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Aucun groupe musculaire n’a plus de volume qu’avant.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Écartés (plan sans charge ni répétitions) : {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Écartés (plan sans charge ni répétitions) : {list}",
+ "Zapowiedzi głosowe": "Annonces vocales",
+ "Wyłączone": "Désactivées",
+ "W słuchawkach": "Au casque",
+ "Także przez głośnik": "Aussi par le haut-parleur",
+ "Głos": "Voix",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Au début du repos, le téléphone annonce l’exercice suivant, la charge et les répétitions. Au casque — seulement avec un casque connecté ; Aussi par le haut-parleur — également sans casque, par le haut-parleur du téléphone (même en mode silencieux) ; Désactivées — aucune annonce.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Les annonces fonctionnent quand « Son et vibration à la fin du repos » est activé. Le même réglage se change avec le bouton « Voix » sur l’écran de la séance.",
+ "Zapowiedzi głosowe: {mode}": "Annonces vocales: {mode}"
 }

@@ -313,7 +313,6 @@
  "Dom": "Дом",
  "domyślna {s}": "по умолчанию {s}",
  "Domyślna przerwa (s)": "Отдых по умолчанию (с)",
- "Domyślnie głos tylko w słuchawkach.": "По умолчанию голос звучит только в наушниках.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Добавляет тренировки из CSV — без удаления данных, с предпросмотром.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Добавляет тренировки из CSV. Существующие данные не меняет. Перед сохранением — предпросмотр.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Добавляет тренировки из CSV-файлов популярных дневников тренировок — без удаления ваших текущих данных, с предпросмотром перед сохранением.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Голос также через динамик телефона",
  "główna": "основная",
  "główne": "основное",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "Времени {t} в этот день не существует (перевод часов). Введите другое.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "в плане на: {day} · {n} упр.",
  "W planie tygodnia: {days} — te dni będą wolne.": "В плане на неделю: {days} — эти дни будут выходными.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "В Прогрессе отмеченная неделя видна как буква D на графиках — там её не меняют.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "В наушниках следующее упражнение объявляется в начале отдыха (при включённом звуке); через динамик телефона — только после включения этого переключателя.",
  "W tej wersji": "В этой версии",
  "W trakcie": "В процессе",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "В текущей тренировке резинка будет убрана из неотмеченных подходов.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Свернуть другие упражнения",
  "Zwykle w: {l} — {name}. Zamienić?": "Обычно в: {l} — {name}. Заменить?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Ни у одной мышечной группы нет большего объёма, чем раньше.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Пропущено (план без веса или повторений): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Пропущено (план без веса или повторений): {list}",
+ "Zapowiedzi głosowe": "Голосовые подсказки",
+ "Wyłączone": "Выключены",
+ "W słuchawkach": "В наушниках",
+ "Także przez głośnik": "Также через динамик",
+ "Głos": "Голос",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "В начале отдыха телефон называет следующее упражнение, вес и повторения. В наушниках — только при подключённых наушниках; Также через динамик — и без наушников, через динамик телефона (даже в беззвучном режиме); Выключены — без подсказок.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Подсказки работают, когда включено «Звук и вибрация в конце отдыха». Ту же настройку можно изменить кнопкой «Голос» на экране тренировки.",
+ "Zapowiedzi głosowe: {mode}": "Голосовые подсказки: {mode}"
 }

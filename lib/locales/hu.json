@@ -313,7 +313,6 @@
  "Dom": "Otthon",
  "domyślna {s}": "alapértelmezett: {s}",
  "Domyślna przerwa (s)": "Alapértelmezett pihenő (mp)",
- "Domyślnie głos tylko w słuchawkach.": "Alapértelmezés szerint a hang csak fejhallgatóban szól.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "CSV-ből ad hozzá edzéseket — adatok törlése nélkül, előnézettel.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "CSV-ből ad hozzá edzéseket. A meglévő adatokat nem módosítja. Mentés előtt előnézet.",
  "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Edzéseket ad hozzá népszerű edzésnaplók CSV-fájljaiból — a jelenlegi adataid törlése nélkül, mentés előtti előnézettel.",
@@ -402,7 +401,6 @@
  "GHD": "GHD",
  "GHD (glute-ham developer)": "GHD (glute-ham developer)",
  "glute-ham raise": "glute-ham raise",
- "Głos także przez głośnik telefonu": "Hang a telefon hangszóróján is",
  "główna": "fő",
  "główne": "fő",
  "Godzina {t} nie istnieje tego dnia (zmiana czasu). Wpisz inną.": "A(z) {t} időpont azon a napon nem létezik (óraátállítás). Adjon meg másikat.",
@@ -1450,7 +1448,6 @@
  "w planie na: {day} · {n} ćw.": "tervben: {day} · {n} gyak.",
  "W planie tygodnia: {days} — te dni będą wolne.": "A heti tervben: {days} — ezek a napok pihenőnapok lesznek.",
  "W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.": "A Fejlődésben a megjelölt hét D betűként látszik a grafikonokon — ott nem módosítható.",
- "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.": "Fülhallgatóban a következő gyakorlat bemondása a pihenő elején hallható (bekapcsolt hangnál); a telefon hangszóróján csak e kapcsoló bekapcsolása után.",
  "W tej wersji": "Ebben a verzióban",
  "W trakcie": "Mozdulat közben",
  "W trwającym treningu guma zniknie z nieodhaczonych serii.": "A jelenlegi edzésben a gumiszalag lekerül a még ki nem pipált sorozatokról.",
@@ -1686,5 +1683,13 @@
  "Zwiń inne ćwiczenia": "Többi gyakorlat összecsukása",
  "Zwykle w: {l} — {name}. Zamienić?": "Általában itt: {l} — {name}. Cseréli?",
  "Żadna partia nie ma większej objętości niż poprzednio.": "Egyik testrész volumene sem nagyobb a korábbinál.",
- "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Kihagyva (terv súly vagy ismétlés nélkül): {list}"
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Kihagyva (terv súly vagy ismétlés nélkül): {list}",
+ "Zapowiedzi głosowe": "Hangos bejelentések",
+ "Wyłączone": "Ki",
+ "W słuchawkach": "Fejhallgatóban",
+ "Także przez głośnik": "Hangszórón is",
+ "Głos": "Hang",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "A pihenő elején a telefon bemondja a következő gyakorlatot, a súlyt és az ismétlést. Fejhallgatóban — csak csatlakoztatott fejhallgatóval; Hangszórón is — fejhallgató nélkül is, a telefon hangszóróján (néma módban is); Ki — nincs bejelentés.",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "A bejelentések akkor működnek, ha a „Hang és rezgés a pihenő végén” be van kapcsolva. Ugyanezt a beállítást az edzés képernyőjén a „Hang” gombbal is módosíthatod.",
+ "Zapowiedzi głosowe: {mode}": "Hangos bejelentések: {mode}"
 }
