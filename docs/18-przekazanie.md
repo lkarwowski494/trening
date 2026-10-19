@@ -309,7 +309,7 @@ EN Progress Guard · bg Пазач на прогреса · cs Strážce progres
   „Pominięte (plan bez ciężaru lub powtórzeń)”.
 - **(3) Progresja — etykieta „Objętość”** nie łamie się w środku słowa (`app/progression.tsx`: etykieta flexShrink 0, wiersz się zawija, wartość pod spodem).
 - **(4) Zapowiedzi głosowe** — wybór Wyłączone / W słuchawkach / Także przez głośnik (domyślnie W słuchawkach), `Settings.voice` (tylko odstępstwo), migracja z `voiceSpeaker`,
-  przycisk „Głos” obok „Pauza” na ekranie treningu (arkusz z 3 opcjami, zmiana trwała). Szczegóły: docs/36 rozdz. 3. **Zmiana schematu ustawień — nie może iść w jednym wydaniu
+  przycisk „Głos” pod „Zakończ” na ekranie treningu (arkusz z 3 opcjami, zmiana trwała). Szczegóły: docs/36 rozdz. 3. **Zmiana schematu ustawień — nie może iść w jednym wydaniu
   z aktualizacją SDK** (CLAUDE.md). SCHEMA_VERSION bez zmian (pole opcjonalne).
 - **(5) Koniec przerwy i serii jako powiadomienie „pilne” (Time Sensitive)** — `lib/timer.ts` (`interruptionLevel: 'timeSensitive'` dla rest-end i set-end), uprawnienie
   `com.apple.developer.usernotifications.time-sensitive` w `app.json` (`ios.entitlements`), lista wymaganych uprawnień `scripts/ci/required-entitlements-{app,watch}.txt`

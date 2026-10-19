@@ -52,8 +52,8 @@ Koniec przerwy: dotychczasowe powiadomienie lokalne (dźwięk + wibracja, dział
   dawne `voiceSpeaker: true` → „Także przez głośnik”, brak → „W słuchawkach”, zła wartość `voice` → domyślna; `voiceSpeaker` znika (jedno źródło). Pole przechodzi przez kopię (eksport → import, ta sama migracja).
   SCHEMA_VERSION bez zmian (pole opcjonalne, jak `healthRead`); **zmiana schematu ustawień — nie w jednym wydaniu z aktualizacją SDK** (CLAUDE.md). Powrót do 0.20 (kopia z nowszej wersji):
   0.20 nie zna `voice` (zostaje jako nieznane ustawienie) — mówi jak przy „W słuchawkach”; po powrocie do nowszej wersji wybór wraca.
-- Ten sam wybór na ekranie treningu: przycisk „🎧 Głos” obok „Pauza” (ikona = stan: 🔇 / 🎧 / 🔊; VoiceOver „Zapowiedzi głosowe: W słuchawkach”) → arkusz z trzema opcjami (bieżąca z ✓) i Anuluj;
-  zmiana trwała, to samo pole co w Ustawieniach. Odrzucone: przełączanie po kolei jednym stuknięciem (przypadkowe „głośnik” na siłowni, do „Wyłączone” przez głośnik), osobny wiersz pod miejscem (wyższy nagłówek).
+- Ten sam wybór na ekranie treningu: przycisk „🎧 Głos” pod „Zakończ” (ikona = stan: 🔇 / 🎧 / 🔊; VoiceOver „Zapowiedzi głosowe: W słuchawkach”) → arkusz z trzema opcjami (bieżąca z ✓) i Anuluj;
+  zmiana trwała, to samo pole co w Ustawieniach. Odrzucone: przełączanie po kolei jednym stuknięciem (przypadkowe „głośnik” na siłowni, do „Wyłączone” przez głośnik), osobny wiersz pod miejscem i miejsce w wierszu zegara obok „Pauza” (wyższy nagłówek, przesunięta lista — E2E 31 na interpreterze).
 - „Posłuchaj przykładu” — przykładowa zapowiedź w języku i jednostce aplikacji.
 - Gdy telefon nie ma głosu dla języka aplikacji: ogólna wskazówka z instrukcją pobrania głosu w Ustawieniach iOS (Dostępność) — bez dokładnej ścieżki podmenu (decyzja właściciela 14.10.2026: nazwy podmenu różnią się między wersjami iOS i językami; odrzucone: sprawdzanie nazw w 35 językach). Wg listy Apple głosów może nie być m.in. dla serbskiego, łotewskiego i estońskiego — **do sprawdzenia na urządzeniu**.
 

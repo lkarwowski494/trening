@@ -77,7 +77,7 @@ test('brak głosu: żaden klucz słownika ani język nie zawiera starej ścieżk
 });
 
 describe('ekran treningu: przycisk „Głos” (19.10.2026: „ludzie odkryją to w trakcie treningu”)', () => {
-  test('przycisk obok „Pauza”, etykieta VoiceOver z bieżącym wyborem; arkusz „Zapowiedzi głosowe” z trzema opcjami, bieżąca zaznaczona ✓, i Anuluj', async () => {
+  test('przycisk pod „Zakończ” (kolumna przycisku, nagłówek nie rośnie), etykieta VoiceOver z bieżącym wyborem; arkusz „Zapowiedzi głosowe” z trzema opcjami, bieżąca zaznaczona ✓, i Anuluj', async () => {
     await boot('pl', start, '/'); const b = screen.getByTestId('voice-btn'); expect(b.props.accessibilityLabel).toBe('Zapowiedzi głosowe: W słuchawkach'); expect(b.props.accessibilityHint).toBe('Tapnij, by zmienić.');
     expect(screen.getByText('🎧 Głos')).toBeTruthy(); expect(screen.getByLabelText('Pauza treningu')).toBeTruthy();
     await tap(b); const sh = G.__sheets.at(-1)!; expect(sh.opts.title).toBe('Zapowiedzi głosowe'); expect(sh.opts.options).toEqual(['Wyłączone', '✓ W słuchawkach', 'Także przez głośnik', 'Anuluj']); expect(sh.opts.cancelButtonIndex).toBe(3);

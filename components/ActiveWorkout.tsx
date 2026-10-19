@@ -176,7 +176,7 @@ export default function ActiveWorkout() {
       <ScrollView testID="workout-scroll" contentContainerStyle={{ paddingBottom: 170 }} keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets scrollEventThrottle={64} onScroll={ev => { scrollY.current = ev.nativeEvent.contentOffset.y; checkRest(); }}>
         <View style={s.head}>
           <View style={{ flex: 1 }}><Text accessibilityLanguage={lang()} accessibilityRole="header" style={{ color: t.text, fontSize: 24, fontFamily: F.heavy }}>{w.templateName || tr('Trening')}</Text><LocationChip w={w} /><AdaptLine w={w} /><SessionClock w={w} /><SessionProgress w={w} /></View>
-          <Btn title={tr('Zakończ')} kind="primary" onPress={finish} />
+          <View style={{ alignItems: 'flex-end', gap: 6 }}><Btn title={tr('Zakończ')} kind="primary" onPress={finish} /><VoiceBtn /></View>
         </View>
         <TemplateNote w={w} />
         {st.settings.workoutView !== 'list' ? <FocusCard w={w} onDone={onDone} onFinish={finish} onStartSet={startSet} onCardY={y => { restY.current.card = y; checkRest(); }} onRestY={y => { restY.current.panel = y; checkRest(); }} /> : null}
@@ -256,13 +256,13 @@ function SessionClock({ w }: { w: Workout }) {
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
       <Muted style={{ fontSize: 13 }}>{tr('start')} {fmtTime(wallTs(w))} · {fmtDur(workoutDurSec(w))}{paused ? ` · ${tr('pauza')}` : ''}</Muted>
       <Btn small kind={paused ? 'primary' : 'ghost'} title={paused ? tr('▶ Wznów') : tr('⏸ Pauza')} accessibilityLabel={paused ? tr('Wznów trening') : tr('Pauza treningu')} onPress={() => { if (paused) resumeWorkout(); else pauseWorkout(); force(x => x + 1); }} />
-      <VoiceBtn />
     </View>
     {paused ? <InfoTip id="pause" label={tr('Pauza — czas treningu stoi. Odhaczenie serii wznawia.')} info={tr('Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.')}><Muted style={{ fontSize: 12 }}>{tr('Pauza — czas treningu stoi. Odhaczenie serii wznawia.')}</Muted></InfoTip> : null}
   </View>;
 }
 
-/** 19.10.2026 (decyzja właściciela: „ludzie odkryją to w trakcie treningu”): przycisk „Głos” obok „Pauza” — ikona pokazuje bieżący wybór „Zapowiedzi głosowe”,
+/** 19.10.2026 (decyzja właściciela: „ludzie odkryją to w trakcie treningu”): przycisk „Głos” pod „Zakończ” (w kolumnie przycisku — nie wydłuża nagłówka ani nie przesuwa
+ * listy, jak dokładanie go do wiersza zegara; E2E 31 na interpreterze) — ikona pokazuje bieżący wybór „Zapowiedzi głosowe”,
  * stuknięcie otwiera arkusz z trzema opcjami (jak „📍” miejsca; bez przełączania po kolei — nie trafimy przypadkiem w głośnik). Zmiana jest trwała — to samo pole co w Ustawieniach. */
 const VOICE_ICON: Record<VoiceSetting, string> = { off: '🔇', headphones: '🎧', speaker: '🔊' };
 function VoiceBtn() {
