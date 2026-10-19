@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "A képernyőt nem sikerült megjeleníteni.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "A telefonon lévő adatok nem változtak — elküldheted őket fájlként.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Az alkalmazás az utolsó indításoknál váratlanul bezárult.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatikus biztonsági mentés minden edzés után: Fájlok → Az iPhone-omon → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatikus biztonsági mentés minden edzés után: Fájlok → Az iPhone-omon → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "Az edzés utáni mentést nem sikerült elmenteni",
+ "Ostatnia udana kopia: {date}": "Utolsó sikeres mentés: {date}"
 }

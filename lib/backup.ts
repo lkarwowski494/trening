@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
-import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, noClock, shownLoad, bandById, localISODate, flush, flushStrict, readRecovery, getRecovery, readRawData } from './store';
+import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, noClock, shownLoad, bandById, localISODate, flush, flushStrict, noteBackup, readRecovery, getRecovery, readRawData } from './store';
 import { t, exName } from './i18n';
 import { wOut } from './units';
 import { ensureAuthorization, ensureReadAuthorization, syncAfterFinish } from './health';
@@ -80,7 +80,7 @@ async function writeKopia(prefix: string, re: RegExp, extra?: Record<string, unk
 }
 export async function autoBackup(): Promise<string | null> {
   if (!getState().settings.autoBackup || !FileSystem.documentDirectory) return null;
-  try { return await writeKopia('trening-', AUTO_RE); } catch { return null; }
+  try { const f = await writeKopia('trening-', AUTO_RE); noteBackup(true); return f; } catch { noteBackup(false); return null; } /* M1-audytor-generalny-008: porażka widoczna na ekranie Trening */
 }
 /**
  * Q-019: kopia bezpieczeństwa tuż przed importem (zanim plik zastąpi dane) i przed „Wyczyść wszystkie dane” — ZAWSZE, także przy wyłączonej

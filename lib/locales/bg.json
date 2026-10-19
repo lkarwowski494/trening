@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "Екранът не можа да се покаже.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Данните в телефона не са променени — можеш да ги изпратиш като файл.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Приложението се затвори неочаквано при последните стартирания.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Автоматично копие след всяка тренировка: Файлове → На моя iPhone → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Автоматично копие след всяка тренировка: Файлове → На моя iPhone → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "Копието след тренировката не можа да бъде запазено",
+ "Ostatnia udana kopia: {date}": "Последно успешно копие: {date}"
 }

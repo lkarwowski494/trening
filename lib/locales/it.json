@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "Non è stato possibile mostrare questa schermata.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "I dati sul telefono non sono stati modificati: puoi inviarli come file.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "L’app si è chiusa in modo imprevisto negli ultimi avvii.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Backup automatico dopo ogni allenamento: File → Sul mio iPhone → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Backup automatico dopo ogni allenamento: File → Sul mio iPhone → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "Impossibile salvare il backup dopo l’allenamento",
+ "Ostatnia udana kopia: {date}": "Ultimo backup riuscito: {date}"
 }

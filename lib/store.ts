@@ -31,6 +31,7 @@ import * as finishMod from './state/finish';
 import * as migrateMod from './state/migrate';
 import * as settingsMod from './state/settings';
 import * as bootMod from './state/boot';
+import * as backupStatMod from './state/backupstat';
 import * as crashMod from './state/crashguard';
 
 export const { NAME_MAX, REPS_MAX, REST_MAX, clampName, PREMIGRATE_KEEP_MS } = utilMod;
@@ -90,5 +91,6 @@ export const {
 export const { migrate } = migrateMod;
 export const { applyPrefs, setModule } = settingsMod;
 export const { init, sanitizeDraftObj, readRawData, readRecovery, readPreMigrate, markBootStable, onStateReplaced, replaceState, resetAll } = bootMod;
+export const { getBackupStat, noteBackup } = backupStatMod;
 export const { CRASH_LOOP_THRESHOLD, BOOT_STABLE_MS, BOOT_GUARD_KEY, parseBootGuard, decideBoot } = crashMod;
 export type { WExercise } from './seed';

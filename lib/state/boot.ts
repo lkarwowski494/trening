@@ -14,6 +14,7 @@ import {
 import { migrate } from './migrate';
 import { applyPrefs } from './settings';
 import { BOOT_GUARD_KEY, parseBootGuard, decideBoot } from './crashguard';
+import { loadBackupStat } from './backupstat';
 
 /** `guard` (start aplikacji z app/_layout.tsx) włącza strażnika pętli awarii (M1-audytor-generalny-003, lib/state/crashguard.ts); `retry` („Spróbuj ponownie”
  * na ekranie błędu) liczy start od zera. Bez opcji (testy, narzędzia) strażnik nie działa. */
@@ -21,6 +22,7 @@ export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Pro
   if (S) return;
   setDb(await openDb());
   await db!.execAsync('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)');
+  await loadBackupStat(); /* M1-audytor-generalny-008: data ostatniej udanej kopii po treningu i znacznik porażki */
   if (opts.guard) {
     const g = parseBootGuard((await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', BOOT_GUARD_KEY).catch(() => null))?.v);
     const d = decideBoot(opts.retry ? { starts: 0 } : g);

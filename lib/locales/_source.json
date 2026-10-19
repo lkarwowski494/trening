@@ -3045,6 +3045,10 @@
   "en": "Could not save the safety copy in Files — your data was not changed."
  },
  {
+  "pl": "Nie udało się zapisać kopii po treningu",
+  "en": "Could not save the backup after your workout"
+ },
+ {
   "pl": "Nie udało się zapisać w Apple Health",
   "en": "Couldn't save to Apple Health"
  },
@@ -3463,6 +3467,10 @@
  {
   "pl": "Ostatnia seria o {t}. Zakończyć trening z tą godziną końca?",
   "en": "Last set at {t}. Finish the workout with that end time?"
+ },
+ {
+  "pl": "Ostatnia udana kopia: {date}",
+  "en": "Last successful backup: {date}"
  },
  {
   "pl": "Ostatnie treningi",

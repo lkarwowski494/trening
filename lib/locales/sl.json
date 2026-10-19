@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "Tega zaslona ni bilo mogoče prikazati.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Podatki v telefonu niso spremenjeni — pošljete jih lahko kot datoteko.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplikacija se je ob zadnjih zagonih nepričakovano zaprla.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Samodejna kopija po vsakem treningu: Datoteke → V mojem iPhonu → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Samodejna kopija po vsakem treningu: Datoteke → V mojem iPhonu → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "Kopije po treningu ni bilo mogoče shraniti",
+ "Ostatnia udana kopia: {date}": "Zadnja uspešna kopija: {date}"
 }

@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "Layar ini tidak dapat ditampilkan.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Data di ponsel Anda tidak berubah — Anda dapat mengirimkannya sebagai file.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplikasi menutup tiba-tiba pada beberapa peluncuran terakhir.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Cadangan otomatis setelah setiap latihan: File → Di iPhone Saya → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Cadangan otomatis setelah setiap latihan: File → Di iPhone Saya → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "Cadangan setelah latihan tidak dapat disimpan",
+ "Ostatnia udana kopia: {date}": "Cadangan berhasil terakhir: {date}"
 }

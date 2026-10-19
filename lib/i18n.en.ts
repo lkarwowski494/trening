@@ -1170,4 +1170,6 @@ export const EN: Record<string, string> = {
   'Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.': 'Your data on this phone was not changed — you can send it as a file.',
   'Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.': 'The app closed unexpectedly during the last launches.',
   'Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.': 'Automatic backup after each workout: Files → On My iPhone → {app} → Backup.',
+  'Nie udało się zapisać kopii po treningu': 'Could not save the backup after your workout',
+  'Ostatnia udana kopia: {date}': 'Last successful backup: {date}',
 };

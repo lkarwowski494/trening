@@ -573,5 +573,7 @@
  "Ekran nie mógł się wyświetlić.": "Não foi possível exibir esta tela.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Os dados no celular não foram alterados. Você pode enviar tudo como um arquivo.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "O app fechou inesperadamente nas últimas aberturas.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Backup automático após cada treino: Arquivos → No meu iPhone → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Backup automático após cada treino: Arquivos → No meu iPhone → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "Não foi possível salvar o backup após o treino",
+ "Ostatnia udana kopia: {date}": "Último backup bem-sucedido: {date}"
 }

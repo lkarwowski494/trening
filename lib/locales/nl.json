@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "Dit scherm kon niet worden getoond.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Je gegevens op de telefoon zijn niet gewijzigd — je kunt ze als bestand versturen.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "De app is bij de laatste keren opstarten onverwacht gesloten.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatische back-up na elke training: Bestanden → Op mijn iPhone → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatische back-up na elke training: Bestanden → Op mijn iPhone → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "De back-up na de training kon niet worden opgeslagen",
+ "Ostatnia udana kopia: {date}": "Laatste geslaagde back-up: {date}"
 }

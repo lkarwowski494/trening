@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "Skærmen kunne ikke vises.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dine data på telefonen er ikke ændret — du kan sende dem som en fil.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Appen lukkede uventet ved de seneste opstarter.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatisk backup efter hver træning: Filer → På min iPhone → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatisk backup efter hver træning: Filer → På min iPhone → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "Backuppen efter træningen kunne ikke gemmes",
+ "Ostatnia udana kopia: {date}": "Seneste vellykkede backup: {date}"
 }

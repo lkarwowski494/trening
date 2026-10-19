@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "Không thể hiển thị màn hình này.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dữ liệu trên điện thoại không bị thay đổi — bạn có thể gửi dưới dạng tệp.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Ứng dụng đã đóng đột ngột trong những lần mở gần đây.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Tự động sao lưu sau mỗi buổi tập: Tệp → Trên iPhone → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Tự động sao lưu sau mỗi buổi tập: Tệp → Trên iPhone → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "Không lưu được bản sao lưu sau buổi tập",
+ "Ostatnia udana kopia: {date}": "Bản sao lưu thành công gần nhất: {date}"
 }

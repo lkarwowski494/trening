@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "Η οθόνη δεν μπόρεσε να εμφανιστεί.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Τα δεδομένα στο τηλέφωνο δεν άλλαξαν — μπορείς να τα στείλεις ως αρχείο.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Η εφαρμογή έκλεισε απροσδόκητα στις τελευταίες εκκινήσεις.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Αυτόματο αντίγραφο μετά από κάθε προπόνηση: Αρχεία → Στο iPhone μου → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Αυτόματο αντίγραφο μετά από κάθε προπόνηση: Αρχεία → Στο iPhone μου → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "Το αντίγραφο μετά την προπόνηση δεν αποθηκεύτηκε",
+ "Ostatnia udana kopia: {date}": "Τελευταίο επιτυχές αντίγραφο: {date}"
 }

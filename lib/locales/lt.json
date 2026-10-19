@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "Nepavyko parodyti šio ekrano.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Telefone esantys duomenys nepakeisti — galite juos išsiųsti kaip failą.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Programa netikėtai užsidarė per paskutinius paleidimus.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatinė atsarginė kopija po kiekvienos treniruotės: „Failai“ → Mano iPhone → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatinė atsarginė kopija po kiekvienos treniruotės: „Failai“ → Mano iPhone → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "Nepavyko išsaugoti atsarginės kopijos po treniruotės",
+ "Ostatnia udana kopia: {date}": "Paskutinė sėkminga kopija: {date}"
 }

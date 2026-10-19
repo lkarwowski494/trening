@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "Näyttöä ei voitu näyttää.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Puhelimen tietoja ei muutettu — voit lähettää ne tiedostona.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Sovellus sulkeutui odottamatta viimeisillä käynnistyskerroilla.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automaattinen varmuuskopio treenin jälkeen: Tiedostot → Omalla iPhonella → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automaattinen varmuuskopio treenin jälkeen: Tiedostot → Omalla iPhonella → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "Treenin jälkeistä varmuuskopiota ei voitu tallentaa",
+ "Ostatnia udana kopia: {date}": "Viimeisin onnistunut varmuuskopio: {date}"
 }

@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "無法顯示此畫面。",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "手機上的資料未被更改——你可以將它們以檔案傳送。",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "最近幾次開啟時，App 意外關閉。",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "每次訓練後自動備份：檔案 → 我的 iPhone → {app} → Backup。"
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "每次訓練後自動備份：檔案 → 我的 iPhone → {app} → Backup。",
+ "Nie udało się zapisać kopii po treningu": "無法儲存訓練後的備份",
+ "Ostatnia udana kopia: {date}": "上次成功的備份：{date}"
 }

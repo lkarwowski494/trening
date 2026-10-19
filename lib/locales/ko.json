@@ -1695,5 +1695,7 @@
  "Ekran nie mógł się wyświetlić.": "이 화면을 표시할 수 없습니다.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "휴대폰의 데이터는 변경되지 않았습니다. 파일로 보낼 수 있습니다.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "최근 실행 중 앱이 예기치 않게 종료되었습니다.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "운동할 때마다 자동 백업: 파일 → 나의 iPhone → {app} → Backup."
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "운동할 때마다 자동 백업: 파일 → 나의 iPhone → {app} → Backup.",
+ "Nie udało się zapisać kopii po treningu": "운동 후 백업을 저장하지 못했습니다",
+ "Ostatnia udana kopia: {date}": "마지막으로 성공한 백업: {date}"
 }
