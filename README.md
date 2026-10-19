@@ -226,8 +226,6 @@ trening/
 ├── watch-fixtures/           pliki wzorcowe protokołu telefon – zegarek
 ├── .gitignore                pliki pomijane przez git
 ├── CLAUDE.md                 zasady pracy w repozytorium (obowiązują ludzi i agentów)
-├── CLAUDE.md                 zasady pracy w repozytorium (obowiązują ludzi i agentów)
-├── CLAUDE.md                 zasady pracy w repozytorium (obowiązują ludzi i agentów)
 ├── LICENSE                   prawa autorskie: wszelkie prawa zastrzeżone
 ├── README.md                 ten plik (bloki liczbowe generuje scripts/readme.mjs)
 ├── app.json                  konfiguracja aplikacji Expo (wersja, języki, uprawnienia, wtyczki)
