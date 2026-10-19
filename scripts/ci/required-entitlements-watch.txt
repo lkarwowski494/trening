@@ -1,0 +1,2 @@
+# Uprawnienia, które MUSI mieć podpisany zegarek (strażnik scripts/ci/check-entitlements.sh w testflight.yml; lekcja L-001).
+com.apple.developer.healthkit

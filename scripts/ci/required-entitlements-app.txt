@@ -1,0 +1,4 @@
+# Uprawnienia, które MUSI mieć podpisana aplikacja iOS (strażnik scripts/ci/check-entitlements.sh w testflight.yml; lekcja L-001).
+# HealthKit — zapis i odczyt Zdrowia (0.15–0.20); time-sensitive — koniec przerwy i serii jako powiadomienie „pilne” (19.10.2026, lib/timer.ts URGENT).
+com.apple.developer.healthkit
+com.apple.developer.usernotifications.time-sensitive

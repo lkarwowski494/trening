@@ -109,13 +109,14 @@ jobs:
         # alertem (przebieg doświadczenia 38549517589: .ipa miał tylko team-identifier). Xcode 26 nie pozwala na podpis ad hoc w archiwum (tożsamość „-” → błąd
         # „Ad Hoc code signing is not allowed with SDK”), więc osadzamy uprawnienia ręcznie: codesign -s - z plikami uprawnień celów (od środka na zewnątrz).
         # Podpis ad hoc nie tworzy certyfikatu; eksport i tak podpisuje dystrybucyjnie (cloud-managed) i zachowuje te uprawnienia (sprawdzone w tym samym przebiegu).
+        # 19.10.2026: lista wymaganych (scripts/ci/required-entitlements-*.txt: HealthKit, time-sensitive) — strażnik pada także, gdy prebuild zgubi uprawnienie z pliku celu.
         run: |
           APP="$RUNNER_TEMP/Trening.xcarchive/Products/Applications/Trening.app"
           codesign --force -s - --entitlements ios/.targets/TreningWatch/generated.entitlements "$APP/Watch/TreningWatch.app"
           for x in "$APP"/PlugIns/*.appex; do codesign --force -s - "$x"; done
           codesign --force -s - --entitlements ios/Trening/Trening.entitlements "$APP"
-          bash scripts/ci/check-entitlements.sh "$APP" ios/Trening/Trening.entitlements "archiwum: aplikacja"
-          bash scripts/ci/check-entitlements.sh "$APP/Watch/TreningWatch.app" ios/.targets/TreningWatch/generated.entitlements "archiwum: zegarek"
+          bash scripts/ci/check-entitlements.sh "$APP" ios/Trening/Trening.entitlements "archiwum: aplikacja" scripts/ci/required-entitlements-app.txt
+          bash scripts/ci/check-entitlements.sh "$APP/Watch/TreningWatch.app" ios/.targets/TreningWatch/generated.entitlements "archiwum: zegarek" scripts/ci/required-entitlements-watch.txt
       - name: Eksport do pliku .ipa (jeszcze bez wysyłki)
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
@@ -145,8 +146,8 @@ jobs:
           mkdir "$RUNNER_TEMP/ipa" && (cd "$RUNNER_TEMP/ipa" && unzip -q "$RUNNER_TEMP"/export/*.ipa)
           APP=$(ls -d "$RUNNER_TEMP"/ipa/Payload/*.app)
           rc=0
-          bash scripts/ci/check-entitlements.sh "$APP" ios/Trening/Trening.entitlements "ipa: aplikacja" || rc=1
-          bash scripts/ci/check-entitlements.sh "$APP/Watch/TreningWatch.app" ios/.targets/TreningWatch/generated.entitlements "ipa: zegarek" || rc=1
+          bash scripts/ci/check-entitlements.sh "$APP" ios/Trening/Trening.entitlements "ipa: aplikacja" scripts/ci/required-entitlements-app.txt || rc=1
+          bash scripts/ci/check-entitlements.sh "$APP/Watch/TreningWatch.app" ios/.targets/TreningWatch/generated.entitlements "ipa: zegarek" scripts/ci/required-entitlements-watch.txt || rc=1
           exit $rc
       - name: Wysyłka do App Store Connect
         env:
