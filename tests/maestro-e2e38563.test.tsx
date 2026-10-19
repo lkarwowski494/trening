@@ -171,3 +171,9 @@ describe('E2E 39169313185: 52', () => {
     expect(c.retry.commands.map((x: Cmd) => (typeof x === 'string' ? x : Object.keys(x)[0]))).toEqual(['scrollUntilVisible', 'waitForAnimationToEnd', 'tapOn', 'extendedWaitUntil']);
   });
 });
+
+/* E2E 39174616058: 35 — pole celu serii nad dolną krawędzią po ponownym wejściu w Ustawienia; układ strony po „Back” interpreter szacuje inaczej — test strukturalny. */
+test('E2E 39174616058: 35 — pole celu partii jest przewijane na środek przed stuknięciem', () => {
+  const cmds = load(join(DIR, '35-ustawienia-dostepnosc.yaml')); const i = cmds.findIndex((c: Cmd) => same(c, { tapOn: { id: 'set-goal-.*', index: 0 } }));
+  expect(i).toBeGreaterThan(0); expect(cmds[i - 1]).toEqual({ scrollUntilVisible: { element: { id: 'set-goal-.*', index: 0 }, direction: 'DOWN', timeout: 30000, centerElement: true } });
+});

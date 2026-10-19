@@ -85,6 +85,8 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - extendedWaitUntil: { visible: "Manual", timeout: 15000 }
 - takeScreenshot: 107-cele-partii
 - tapOn: { text: "Manual", index: 0 }
+# run 39174616058: po ponownym wejściu w Ustawienia pole celu leży pod dolną krawędzią (zrzut) — przewinięcie na środek przed stuknięciem
+- scrollUntilVisible: { element: { id: "set-goal-.*", index: 0 }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "set-goal-.*", index: 0 }
 - eraseText: 3
 - inputText: "12"
