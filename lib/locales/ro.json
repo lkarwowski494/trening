@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "Anunțuri vocale: {mode}",
  "Ekran nie mógł się wyświetlić.": "Acest ecran nu a putut fi afișat.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Datele din telefon nu au fost modificate — le poți trimite ca fișier.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplicația s-a închis neașteptat la ultimele porniri."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplicația s-a închis neașteptat la ultimele porniri.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Backup automat după fiecare antrenament: Fișiere → Pe iPhone-ul meu → {app} → Backup."
 }

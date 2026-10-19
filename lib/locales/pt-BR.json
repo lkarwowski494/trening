@@ -572,5 +572,6 @@
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Os avisos funcionam quando “Som e vibração no fim do descanso” está ativado. Você muda a mesma configuração com o botão “Voz” na tela do treino.",
  "Ekran nie mógł się wyświetlić.": "Não foi possível exibir esta tela.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Os dados no celular não foram alterados. Você pode enviar tudo como um arquivo.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "O app fechou inesperadamente nas últimas aberturas."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "O app fechou inesperadamente nas últimas aberturas.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Backup automático após cada treino: Arquivos → No meu iPhone → {app} → Backup."
 }

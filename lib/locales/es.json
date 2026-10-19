@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "Avisos de voz: {mode}",
  "Ekran nie mógł się wyświetlić.": "No se pudo mostrar esta pantalla.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Tus datos en el teléfono no han cambiado: puedes enviarlos como archivo.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "La app se cerró de forma inesperada en los últimos inicios."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "La app se cerró de forma inesperada en los últimos inicios.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Copia de seguridad automática tras cada entrenamiento: Archivos → En mi iPhone → {app} → Backup."
 }

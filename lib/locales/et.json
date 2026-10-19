@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "Häälteated: {mode}",
  "Ekran nie mógł się wyświetlić.": "Seda ekraani ei õnnestunud kuvada.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Telefoni andmeid ei muudetud — saad need failina saata.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Rakendus sulgus viimastel käivitustel ootamatult."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Rakendus sulgus viimastel käivitustel ootamatult.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automaatne varukoopia pärast iga treeningut: Failid → Minu iPhone’is → {app} → Backup."
 }

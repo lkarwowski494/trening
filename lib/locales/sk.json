@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "Hlasové oznámenia: {mode}",
  "Ekran nie mógł się wyświetlić.": "Obrazovku sa nepodarilo zobraziť.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Údaje v telefóne sa nezmenili — môžeš ich odoslať ako súbor.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplikácia sa pri posledných spusteniach neočakávane zavrela."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplikácia sa pri posledných spusteniach neočakávane zavrela.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatická záloha po každom tréningu: Súbory → Na mojom iPhone → {app} → Backup."
 }

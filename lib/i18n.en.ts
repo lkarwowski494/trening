@@ -1169,4 +1169,5 @@ export const EN: Record<string, string> = {
   'Ekran nie mógł się wyświetlić.': 'This screen could not be shown.',
   'Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.': 'Your data on this phone was not changed — you can send it as a file.',
   'Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.': 'The app closed unexpectedly during the last launches.',
+  'Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.': 'Automatic backup after each workout: Files → On My iPhone → {app} → Backup.',
 };

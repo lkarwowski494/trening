@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "Pengumuman suara: {mode}",
  "Ekran nie mógł się wyświetlić.": "Skrin ini tidak dapat dipaparkan.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Data pada telefon anda tidak berubah — anda boleh menghantarnya sebagai fail.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplikasi ditutup secara tidak dijangka pada beberapa pelancaran terakhir."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplikasi ditutup secara tidak dijangka pada beberapa pelancaran terakhir.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Sandaran automatik selepas setiap latihan: Fail → Pada iPhone Saya → {app} → Backup."
 }

@@ -184,6 +184,20 @@ export async function exportRawData(): Promise<boolean> {
     return await shareTemp(`trening-dane-${localISODate()}.json`, txt, { mimeType: 'application/json', dialogTitle: t('Dane z nowszej wersji aplikacji') });
   } catch { return false; }
 }
+/** M1-audytor-generalny-004: najnowsza kopia z Plików → Backup (kopie po treningu i bezpieczeństwa), udostępniona wprost z miejsca zapisu — dla ekranu błędu startu,
+ * gdy bazy nie da się otworzyć. Tylko odczyt: nic nie zmienia ani nie usuwa. false — brak kopii albo udostępnianie niedostępne. */
+export async function exportLatestCopy(): Promise<boolean> {
+  try {
+    if (!FileSystem.documentDirectory) return false;
+    const dir = FileSystem.documentDirectory + AUTO_DIR;
+    const files = (await FileSystem.readDirectoryAsync(dir)).map(f => [f, AUTO_RE.exec(f) ?? SAFETY_RE.exec(f)] as const).filter((x): x is readonly [string, RegExpExecArray] => !!x[1])
+      .sort((a, b) => (poolKey(a[1]) < poolKey(b[1]) ? 1 : poolKey(a[1]) > poolKey(b[1]) ? -1 : 0));
+    if (!files.length || !(await Sharing.isAvailableAsync())) return false;
+    await Sharing.shareAsync(dir + files[0][0], { mimeType: 'application/json', dialogTitle: t('Backup treningów') }); return true;
+  } catch { return false; }
+}
+/** Ekran błędu startu: najpierw surowe dane z bazy (exportRawData), gdy ich nie ma albo bazy nie da się otworzyć — najnowsza kopia z puli. */
+export async function exportStartData(): Promise<boolean> { return (await exportRawData()) || (await exportLatestCopy()); }
 export async function exportRecovery(): Promise<boolean> {
   try { // runda 36: każdy błąd (np. brak miejsca) = false → komunikat „Nie udało się”
     const txt = await readRecovery(); if (!txt) return false;

@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "Голосовые подсказки: {mode}",
  "Ekran nie mógł się wyświetlić.": "Не удалось показать этот экран.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Данные в телефоне не изменены — их можно отправить файлом.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "При последних запусках приложение неожиданно закрылось."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "При последних запусках приложение неожиданно закрылось.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Автоматическая копия после каждой тренировки: Файлы → На iPhone → {app} → Backup."
 }

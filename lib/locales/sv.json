@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "Röstmeddelanden: {mode}",
  "Ekran nie mógł się wyświetlić.": "Den här skärmen kunde inte visas.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dina data på telefonen har inte ändrats — du kan skicka dem som en fil.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Appen stängdes oväntat vid de senaste starterna."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Appen stängdes oväntat vid de senaste starterna.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatisk säkerhetskopia efter varje pass: Filer → På min iPhone → {app} → Backup."
 }

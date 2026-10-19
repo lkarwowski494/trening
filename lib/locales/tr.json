@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "Sesli bildirimler: {mode}",
  "Ekran nie mógł się wyświetlić.": "Bu ekran gösterilemedi.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Telefondaki verileriniz değişmedi — dosya olarak gönderebilirsiniz.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Uygulama son açılışlarda beklenmedik şekilde kapandı."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Uygulama son açılışlarda beklenmedik şekilde kapandı.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Her antrenmandan sonra otomatik yedek: Dosyalar → iPhone’umda → {app} → Backup."
 }

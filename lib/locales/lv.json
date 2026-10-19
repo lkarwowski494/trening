@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "Balss paziņojumi: {mode}",
  "Ekran nie mógł się wyświetlić.": "Šo ekrānu neizdevās parādīt.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dati tālrunī nav mainīti — vari tos nosūtīt kā failu.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Lietotne pēdējās palaišanas reizēs negaidīti aizvērās."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Lietotne pēdējās palaišanas reizēs negaidīti aizvērās.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automātisks dublējums pēc katra treniņa: Faili → Manā iPhone → {app} → Backup."
 }

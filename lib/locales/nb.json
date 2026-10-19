@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "Stemmemeldinger: {mode}",
  "Ekran nie mógł się wyświetlić.": "Skjermen kunne ikke vises.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dataene på telefonen er ikke endret — du kan sende dem som en fil.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Appen lukket seg uventet ved de siste oppstartene."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Appen lukket seg uventet ved de siste oppstartene.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatisk sikkerhetskopi etter hver økt: Filer → På min iPhone → {app} → Backup."
 }

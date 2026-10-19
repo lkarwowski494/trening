@@ -480,6 +480,10 @@
   "en": "An automatic backup after every workout goes to Files (Settings)."
  },
  {
+  "pl": "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.",
+  "en": "Automatic backup after each workout: Files → On My iPhone → {app} → Backup."
+ },
+ {
   "pl": "Automatycznie ({n})",
   "en": "Automatic ({n})"
  },

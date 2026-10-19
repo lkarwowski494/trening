@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "Gesproken aankondigingen: {mode}",
  "Ekran nie mógł się wyświetlić.": "Dit scherm kon niet worden getoond.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Je gegevens op de telefoon zijn niet gewijzigd — je kunt ze als bestand versturen.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "De app is bij de laatste keren opstarten onverwacht gesloten."
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "De app is bij de laatste keren opstarten onverwacht gesloten.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatische back-up na elke training: Bestanden → Op mijn iPhone → {app} → Backup."
 }

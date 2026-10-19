@@ -1694,5 +1694,6 @@
  "Zapowiedzi głosowe: {mode}": "語音提示：{mode}",
  "Ekran nie mógł się wyświetlić.": "無法顯示此畫面。",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "手機上的資料未被更改——你可以將它們以檔案傳送。",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "最近幾次開啟時，App 意外關閉。"
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "最近幾次開啟時，App 意外關閉。",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "每次訓練後自動備份：檔案 → 我的 iPhone → {app} → Backup。"
 }
