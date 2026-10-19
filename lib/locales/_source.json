@@ -404,6 +404,10 @@
   "en": "The app collects no data: everything you enter stays on your phone — no account, ads or analytics."
  },
  {
+  "pl": "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.",
+  "en": "The app closed unexpectedly during the last launches."
+ },
+ {
   "pl": "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?",
   "en": "The app closed while you were editing the exercise “{name}”. Go back to editing?"
  },
@@ -1091,6 +1095,10 @@
   "en": "Data on this phone"
  },
  {
+  "pl": "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.",
+  "en": "Your data on this phone was not changed — you can send it as a file."
+ },
+ {
   "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.",
   "en": "The data on this phone was saved by a newer version (schema {a}); this version supports up to {b}. Nothing is changed — install the latest version (TestFlight). You can also send the data as a file."
  },
@@ -1485,6 +1493,10 @@
  {
   "pl": "Edytuj szablon",
   "en": "Edit template"
+ },
+ {
+  "pl": "Ekran nie mógł się wyświetlić.",
+  "en": "This screen could not be shown."
  },
  {
   "pl": "Ekran Trening w nowym układzie; „Powtórz ostatni” z nazwą i datą.",

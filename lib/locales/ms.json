@@ -1691,5 +1691,8 @@
  "Głos": "Suara",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Pada awal rehat, telefon mengumumkan latihan seterusnya, beban dan ulangan. Melalui fon kepala — hanya apabila fon kepala disambungkan; Juga melalui pembesar suara — juga tanpa fon kepala, melalui pembesar suara telefon (walaupun dalam mod senyap); Mati — tiada pengumuman.",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Pengumuman berfungsi apabila „Bunyi dan getaran pada akhir rehat” dihidupkan. Tetapan yang sama boleh diubah dengan butang „Suara” pada skrin latihan.",
- "Zapowiedzi głosowe: {mode}": "Pengumuman suara: {mode}"
+ "Zapowiedzi głosowe: {mode}": "Pengumuman suara: {mode}",
+ "Ekran nie mógł się wyświetlić.": "Skrin ini tidak dapat dipaparkan.",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Data pada telefon anda tidak berubah — anda boleh menghantarnya sebagai fail.",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplikasi ditutup secara tidak dijangka pada beberapa pelancaran terakhir."
 }

@@ -1691,5 +1691,8 @@
  "Głos": "Balss",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Atpūtas sākumā tālrunis paziņo nākamo vingrinājumu, svaru un atkārtojumus. Austiņās — tikai ar pievienotām austiņām; Arī skaļrunī — arī bez austiņām, caur tālruņa skaļruni (arī klusajā režīmā); Izslēgti — bez paziņojumiem.",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Paziņojumi darbojas, ja ieslēgts “Skaņa un vibrācija atpūtas beigās”. To pašu iestatījumu var mainīt arī ar pogu “Balss” treniņa ekrānā.",
- "Zapowiedzi głosowe: {mode}": "Balss paziņojumi: {mode}"
+ "Zapowiedzi głosowe: {mode}": "Balss paziņojumi: {mode}",
+ "Ekran nie mógł się wyświetlić.": "Šo ekrānu neizdevās parādīt.",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dati tālrunī nav mainīti — vari tos nosūtīt kā failu.",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Lietotne pēdējās palaišanas reizēs negaidīti aizvērās."
 }

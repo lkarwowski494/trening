@@ -1691,5 +1691,8 @@
  "Głos": "Глас",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "На почетку одмора телефон најављује следећу вежбу, тежину и понављања. У слушалицама — само са повезаним слушалицама; И преко звучника — и без слушалица, преко звучника телефона (и у нечујном режиму); Искључено — без најава.",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Најаве раде када је укључено „Звук и вибрација на крају одмора”. Исто подешавање мењаш и дугметом „Глас” на екрану тренинга.",
- "Zapowiedzi głosowe: {mode}": "Гласовне најаве: {mode}"
+ "Zapowiedzi głosowe: {mode}": "Гласовне најаве: {mode}",
+ "Ekran nie mógł się wyświetlić.": "Овај екран није могао да се прикаже.",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Подаци на телефону нису промењени — можете их послати као датотеку.",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Апликација се неочекивано затворила при последњим покретањима."
 }

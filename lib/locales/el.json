@@ -1691,5 +1691,8 @@
  "Głos": "Φωνή",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Στην αρχή του διαλείμματος το τηλέφωνο ανακοινώνει την επόμενη άσκηση, το βάρος και τις επαναλήψεις. Στα ακουστικά — μόνο με συνδεδεμένα ακουστικά· Και από το ηχείο — και χωρίς ακουστικά, από το ηχείο του τηλεφώνου (και στη σίγαση)· Απενεργοποιημένες — χωρίς ανακοινώσεις.",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Οι ανακοινώσεις λειτουργούν όταν είναι ενεργό το «Ήχος και δόνηση στο τέλος του διαλείμματος». Την ίδια ρύθμιση αλλάζεις και με το κουμπί «Φωνή» στην οθόνη της προπόνησης.",
- "Zapowiedzi głosowe: {mode}": "Φωνητικές ανακοινώσεις: {mode}"
+ "Zapowiedzi głosowe: {mode}": "Φωνητικές ανακοινώσεις: {mode}",
+ "Ekran nie mógł się wyświetlić.": "Η οθόνη δεν μπόρεσε να εμφανιστεί.",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Τα δεδομένα στο τηλέφωνο δεν άλλαξαν — μπορείς να τα στείλεις ως αρχείο.",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Η εφαρμογή έκλεισε απροσδόκητα στις τελευταίες εκκινήσεις."
 }

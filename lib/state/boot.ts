@@ -13,11 +13,21 @@ import {
 } from './core';
 import { migrate } from './migrate';
 import { applyPrefs } from './settings';
+import { BOOT_GUARD_KEY, parseBootGuard, decideBoot } from './crashguard';
 
-export async function init(): Promise<void> {
+/** `guard` (start aplikacji z app/_layout.tsx) włącza strażnika pętli awarii (M1-audytor-generalny-003, lib/state/crashguard.ts); `retry` („Spróbuj ponownie”
+ * na ekranie błędu) liczy start od zera. Bez opcji (testy, narzędzia) strażnik nie działa. */
+export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Promise<void> {
   if (S) return;
   setDb(await openDb());
   await db!.execAsync('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)');
+  if (opts.guard) {
+    const g = parseBootGuard((await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', BOOT_GUARD_KEY).catch(() => null))?.v);
+    const d = decideBoot(opts.retry ? { starts: 0 } : g);
+    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify(d.next)).catch(() => {});
+    /* tryb awaryjny: dane nie są ładowane ani zmieniane — ekran startu pozwala je wysłać (readRawData) albo spróbować ponownie */
+    if (d.mode === 'safe') throw Object.assign(new Error(t('Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.')), { crashLoop: true });
+  }
   const row = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'state');
   let needsPersist = false;
   let liveTxt: string | null = null; let cfgTxt: string | null = null; /* surowe wiersze „live” i „cfg” — do kopii sprzed migracji (M1-002) */
@@ -139,6 +149,11 @@ export async function readPreMigrate(): Promise<string | null> {
   const idx = await readPreIndex(); const from = Object.entries(idx).sort((a, b) => b[1] - a[1])[0]?.[0]; if (from == null) return null;
   const r = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', preKey(Number(from))).catch(() => null);
   return r ? r.v : null;
+}
+/** „Kamień” strażnika pętli awarii: pierwszy ekran działa (BOOT_STABLE_MS po starcie albo wyjście do tła) — licznik kolejnych niedokończonych startów wraca do 0. */
+export async function markBootStable(): Promise<void> {
+  if (!db) return;
+  await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify({ starts: 0 })).catch(() => {});
 }
 /** Przywracany szkic przechodzi to samo porządkowanie co dane z bazy i importu (migrate na kopii stanu z obiektem szkicu); null — obiektu już nie ma. */
 export function sanitizeDraftObj(kind: 'exercise' | 'template', obj: unknown): Exercise | Template | null {

@@ -1691,5 +1691,8 @@
  "Głos": "Giọng nói",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Khi bắt đầu nghỉ, điện thoại đọc bài tập tiếp theo, mức tạ và số lần. Qua tai nghe — chỉ khi đã kết nối tai nghe; Cả qua loa — cả khi không có tai nghe, qua loa điện thoại (kể cả ở chế độ im lặng); Tắt — không thông báo.",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Thông báo hoạt động khi bật „Âm thanh và rung khi hết giờ nghỉ”. Có thể đổi cùng cài đặt này bằng nút „Giọng nói” trên màn hình buổi tập.",
- "Zapowiedzi głosowe: {mode}": "Thông báo bằng giọng nói: {mode}"
+ "Zapowiedzi głosowe: {mode}": "Thông báo bằng giọng nói: {mode}",
+ "Ekran nie mógł się wyświetlić.": "Không thể hiển thị màn hình này.",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dữ liệu trên điện thoại không bị thay đổi — bạn có thể gửi dưới dạng tệp.",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Ứng dụng đã đóng đột ngột trong những lần mở gần đây."
 }

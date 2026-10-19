@@ -1691,5 +1691,8 @@
  "Głos": "Röst",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "När vilan börjar säger telefonen nästa övning, vikt och repetitioner. I hörlurar – bara med anslutna hörlurar; Även i högtalaren – även utan hörlurar, i telefonens högtalare (även i ljudlöst läge); Av – inga meddelanden.",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Meddelandena fungerar när ”Ljud och vibration när vilan är slut” är på. Samma inställning kan ändras med knappen ”Röst” på träningsskärmen.",
- "Zapowiedzi głosowe: {mode}": "Röstmeddelanden: {mode}"
+ "Zapowiedzi głosowe: {mode}": "Röstmeddelanden: {mode}",
+ "Ekran nie mógł się wyświetlić.": "Den här skärmen kunde inte visas.",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dina data på telefonen har inte ändrats — du kan skicka dem som en fil.",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Appen stängdes oväntat vid de senaste starterna."
 }

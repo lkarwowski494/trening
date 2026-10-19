@@ -1691,5 +1691,8 @@
  "Głos": "Hääl",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Pausi alguses ütleb telefon järgmise harjutuse, raskuse ja kordused. Kõrvaklappides — ainult ühendatud kõrvaklappidega; Ka kõlarist — ka ilma kõrvaklappideta, telefoni kõlarist (ka vaikses režiimis); Väljas — teadeteta.",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Teated töötavad, kui „Heli ja vibratsioon pausi lõpus“ on sisse lülitatud. Sama seadet saad muuta treeningu ekraanil nupuga „Hääl“.",
- "Zapowiedzi głosowe: {mode}": "Häälteated: {mode}"
+ "Zapowiedzi głosowe: {mode}": "Häälteated: {mode}",
+ "Ekran nie mógł się wyświetlić.": "Seda ekraani ei õnnestunud kuvada.",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Telefoni andmeid ei muudetud — saad need failina saata.",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Rakendus sulgus viimastel käivitustel ootamatult."
 }

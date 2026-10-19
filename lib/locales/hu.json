@@ -1691,5 +1691,8 @@
  "Głos": "Hang",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "A pihenő elején a telefon bemondja a következő gyakorlatot, a súlyt és az ismétlést. Fejhallgatóban — csak csatlakoztatott fejhallgatóval; Hangszórón is — fejhallgató nélkül is, a telefon hangszóróján (néma módban is); Ki — nincs bejelentés.",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "A bejelentések akkor működnek, ha a „Hang és rezgés a pihenő végén” be van kapcsolva. Ugyanezt a beállítást az edzés képernyőjén a „Hang” gombbal is módosíthatod.",
- "Zapowiedzi głosowe: {mode}": "Hangos bejelentések: {mode}"
+ "Zapowiedzi głosowe: {mode}": "Hangos bejelentések: {mode}",
+ "Ekran nie mógł się wyświetlić.": "A képernyőt nem sikerült megjeleníteni.",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "A telefonon lévő adatok nem változtak — elküldheted őket fájlként.",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Az alkalmazás az utolsó indításoknál váratlanul bezárult."
 }

@@ -1691,5 +1691,8 @@
  "Głos": "Voce",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "La începutul pauzei, telefonul anunță exercițiul următor, greutatea și repetările. În căști — doar cu căștile conectate; Și prin difuzor — și fără căști, prin difuzorul telefonului (chiar și în modul silențios); Dezactivate — fără anunțuri.",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Anunțurile funcționează când „Sunet și vibrație la finalul pauzei” este activat. Aceeași setare se schimbă și cu butonul „Voce” de pe ecranul antrenamentului.",
- "Zapowiedzi głosowe: {mode}": "Anunțuri vocale: {mode}"
+ "Zapowiedzi głosowe: {mode}": "Anunțuri vocale: {mode}",
+ "Ekran nie mógł się wyświetlić.": "Acest ecran nu a putut fi afișat.",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Datele din telefon nu au fost modificate — le poți trimite ca fișier.",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplicația s-a închis neașteptat la ultimele porniri."
 }

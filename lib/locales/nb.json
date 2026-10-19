@@ -1691,5 +1691,8 @@
  "Głos": "Stemme",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Når hvilen starter, sier telefonen neste øvelse, vekt og repetisjoner. I hodetelefoner — bare med tilkoblede hodetelefoner; Også i høyttaleren — også uten hodetelefoner, gjennom telefonens høyttaler (også i lydløs modus); Av — ingen meldinger.",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Meldingene virker når «Lyd og vibrering når hvilen er over» er slått på. Samme innstilling kan endres med knappen «Stemme» på treningsskjermen.",
- "Zapowiedzi głosowe: {mode}": "Stemmemeldinger: {mode}"
+ "Zapowiedzi głosowe: {mode}": "Stemmemeldinger: {mode}",
+ "Ekran nie mógł się wyświetlić.": "Skjermen kunne ikke vises.",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dataene på telefonen er ikke endret — du kan sende dem som en fil.",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Appen lukket seg uventet ved de siste oppstartene."
 }

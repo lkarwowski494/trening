@@ -1166,4 +1166,7 @@ export const EN: Record<string, string> = {
   'Pominięte (plan bez ciężaru lub powtórzeń): {list}': 'Left out (plan without weight or reps): {list}',
   'Bez serii: {list}': 'No sets: {list}',
   'Skala do dwukrotności celu, » — więcej.': 'Scale up to twice the goal; » — more.',
+  'Ekran nie mógł się wyświetlić.': 'This screen could not be shown.',
+  'Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.': 'Your data on this phone was not changed — you can send it as a file.',
+  'Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.': 'The app closed unexpectedly during the last launches.',
 };

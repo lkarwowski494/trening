@@ -1691,5 +1691,8 @@
  "Głos": "語音",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "休息開始時，手機會唸出下一個動作、重量與次數。僅限耳機 — 只在連接耳機時；也透過喇叭 — 沒有耳機時也會透過手機喇叭播放（靜音模式也會）；關閉 — 不提示。",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "「休息結束時的聲音與震動」開啟時，語音提示才會運作。在訓練畫面按「語音」按鈕也能變更同一項設定。",
- "Zapowiedzi głosowe: {mode}": "語音提示：{mode}"
+ "Zapowiedzi głosowe: {mode}": "語音提示：{mode}",
+ "Ekran nie mógł się wyświetlić.": "無法顯示此畫面。",
+ "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "手機上的資料未被更改——你可以將它們以檔案傳送。",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "最近幾次開啟時，App 意外關閉。"
 }
