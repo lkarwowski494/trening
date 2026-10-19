@@ -80,13 +80,13 @@ describe('odporność na zegar (MAESTRO_NOW): niedziela, poniedziałek, północ
   test('tuż przed północą (13.10, 23:59): para 33 + 34 — sesje z dwóch dni, bez „dziś”', async () => { await at('2026-10-13T23:59:00', ['33-aktualizacja-przygotuj.yaml']); });
   test('poniedziałek 12.10 i niedziela 18.10: 31 (treningi wstecz w poprzednim tygodniu) i 35', async () => { await at('2026-10-12T10:00:00', ['31-pierwszy-tydzien.yaml']); await at('2026-10-18T20:00:00', ['31-pierwszy-tydzien.yaml', '35-ustawienia-dostepnosc.yaml']); });
   /* run 38435841211: zgubiony pierwszy znak ciężaru („60” → „0”) dawał rekordy bez „Best session (volume)” (objętość 0). Interpreter nie gubi znaków, więc pilnujemy samej odporności scenariusza. */
-  test('31: wpis ciężaru i powtórzeń pierwszej serii jest w retry i potwierdzony kartą „Now: …” przed ✓', () => {
+  test('31: wpis ciężaru i powtórzeń pierwszej serii jest w retry, znak po znaku, z potwierdzeniem wartości pola przed ✓ (run 38563966851)', () => {
     const y = read('.maestro/31-pierwszy-tydzien.yaml');
-    const i = y.indexOf('- inputText: "60"');
+    const i = y.indexOf('assertVisible: { id: "w-0-0", text: "60" }');
     expect(i).toBeGreaterThan(0);
-    const blok = y.slice(y.lastIndexOf('- retry:', i), y.indexOf('Set 1 done — Back Squat', i));
-    expect(blok).toContain('eraseText');
-    expect(blok).toMatch(/Now:\.60\./);
-    expect(y.indexOf('Now:.60.')).toBeLessThan(y.indexOf('{ text: "Set 1 done — Back Squat" }'));
+    const blok = y.slice(y.lastIndexOf('- retry:', i), i);
+    expect(blok).toContain('eraseText'); expect(blok).toContain('inputText: "6"'); expect(blok).toContain('inputText: "0"');
+    expect(y.indexOf('assertVisible: { id: "r-0-0", text: "10" }')).toBeGreaterThan(i);
+    expect(i).toBeLessThan(y.indexOf('Set 1 done — Back Squat'));
   });
 });
