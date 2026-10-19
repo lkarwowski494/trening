@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4314-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4315-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-44-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -63,7 +63,7 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Funkcje biblioteki `lib/` | 872 (z testem: 872) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 111 (z testem: 111) | docs/19-macierz-testow.md |
 | Pliki testów Jest | 330 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 4314 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Przypadki testowe (statycznie) | 4315 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 151 (Maestro: 124, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 13) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 44 (w głównym przebiegu: 41, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -226,6 +226,8 @@ trening/
 ├── watch-fixtures/           pliki wzorcowe protokołu telefon – zegarek
 ├── .gitignore                pliki pomijane przez git
 ├── CLAUDE.md                 zasady pracy w repozytorium (obowiązują ludzi i agentów)
+├── CLAUDE.md                 zasady pracy w repozytorium (obowiązują ludzi i agentów)
+├── CLAUDE.md                 zasady pracy w repozytorium (obowiązują ludzi i agentów)
 ├── LICENSE                   prawa autorskie: wszelkie prawa zastrzeżone
 ├── README.md                 ten plik (bloki liczbowe generuje scripts/readme.mjs)
 ├── app.json                  konfiguracja aplikacji Expo (wersja, języki, uprawnienia, wtyczki)
@@ -319,6 +321,7 @@ Workflowy (stan każdego z nich pokazują odznaki u góry dla trzech podstawowyc
 | `ios-unsigned.yml` | iOS — kompilacja | ręcznie | kompilacja natywna bez podpisu (sprawdzenie kodu, bez pliku do instalacji) |
 | `nightly.yml` | Nocne testy | harmonogram, ręcznie | noc: losowe sekwencje, testy mutacyjne, E2E na małym ekranie |
 | `pages.yml` | Pages | wypchnięcie, ręcznie | publikacja strony (prywatność, wsparcie) |
+| `store-screenshots.yml` | Zrzuty do App Store | ręcznie | zrzuty ekranu do App Store z symulatora (ręcznie) |
 | `testflight.yml` | TestFlight (testy wewnętrzne) | wypchnięcie, ręcznie | testy, build, podpis i wysyłka do TestFlight narzędziami Apple |
 | `tests-tz.yml` | tests-tz | harmonogram, ręcznie | testy w różnych strefach czasowych |
 | `tests.yml` | Testy (każde wypchnięcie) | wypchnięcie, ręcznie | pełne `npm run verify` przy każdym wypchnięciu |

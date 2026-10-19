@@ -158,6 +158,7 @@ const WORKFLOW_ROLE = {
   'watch-sim.yml': 'testy aplikacji na Apple Watch na symulatorze watchOS i zrzuty',
   'pages.yml': 'publikacja strony (prywatność, wsparcie)',
   'asc-iap-localizations.yml': 'lokalizacje produktów zakupu w App Store Connect',
+  'store-screenshots.yml': 'zrzuty ekranu do App Store z symulatora (ręcznie)',
 };
 const TRIGGERS = [['push', 'wypchnięcie'], ['pull_request', 'zgłoszenie zmian'], ['schedule', 'harmonogram'], ['workflow_dispatch', 'ręcznie'], ['workflow_call', 'wywołanie z innego workflow'], ['workflow_run', 'po innym workflow']];
 
