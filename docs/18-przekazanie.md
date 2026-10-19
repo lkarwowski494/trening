@@ -299,3 +299,22 @@ EN Progress Guard · bg Пазач на прогреса · cs Strážce progres
 - 19.10.2026 (właściciel): **kroki z Apple Health** zostają w 1.0 bez zmian (średnia pod „Ten tydzień”, kroki w panelu dnia). Odrzucone: zmiana miejsca; usunięcie przed 1.0.
 - 19.10.2026 (właściciel): **zapowiedzi głosowe** — jeden wybór „Wyłączone / W słuchawkach / Także przez głośnik” zamiast przełącznika „Głos także przez głośnik telefonu” (migracja: `voiceSpeaker` true → „Także przez głośnik”, brak → „W słuchawkach”); domyślnie „W słuchawkach”; dodatkowo przycisk na ekranie treningu trwale zmieniający to ustawienie („ludzie odkryją to w trakcie treningu”). Odrzucone: osobny przełącznik wł./wył.; zostawić (wyłączenie tylko z dźwiękiem końca przerwy). Termin: lista napraw przed 1.0; zmiana schematu ustawień — nie w jednym wydaniu z aktualizacją SDK.
 - 19.10.2026: **lista napraw przed 1.0 z testu 0.20** — (1) strażnik 0 kg → „więcej” (decyzja wyżej; test odtwarzający: tydzień −1 Bench Press (hantle) 0 kg, tydzień 0 50×8 → klatka „więcej”); (2) sprzeczny napis „Pominięte (bez punktu odniesienia): X — bez ciężaru” — rozdzielić powody; (3) ekran Progresja: etykieta „Objętość” łamana „Objętoś / ć” przy długiej wartości; (4) zapowiedzi głosowe (decyzja wyżej); (5) do decyzji: koniec przerwy jako powiadomienie „pilne” (Time Sensitive).
+
+## 19.10.2026 — lista napraw przed 1.0 z testu 0.20 (programista, gałąź `feature/e2-swap`)
+- **(1) Strażnik 0 kg → „więcej”** (`lib/guard.ts`): ćwiczenie obciążane (nie masa ciała; miara z ciężarem i powtórzeniami) z tonażem 0 w tygodniu porównawczym i ciężarem teraz
+  jest porównywane (`fromZero`) zamiast pomijane jako „bez ciężaru”. W sumie ważonej liczy się jak progres ciężarem (wartość poprzednia, czyli bez wzrostu od zera) — spójnie
+  z decyzją 14.10 („ćwiczenie z progresem ciężarem liczy się jak bez spadku”), więc nie zawyża partii, a remis daje „więcej”. Wiersz pokazuje liczby wprost: „tonaż/sesję ▲ … (poprz. 0 kg) ·
+  ciężar roboczy ▲ 50 kg (poprz. 0 kg)” (bez dopisku „poprz. bez ciężaru” — odrzucony przez właściciela). Masa ciała bez dociążenia — dalej pominięta. ⓘ uzupełnione.
+- **(2) Powody pominięcia rozdzielone** (`components/GuardSection.tsx`): „Pominięte (bez punktu odniesienia)” tylko dla nowych/nierobionych; osobno „Pominięte (bez ciężaru)” i
+  „Pominięte (plan bez ciężaru lub powtórzeń)”.
+- **(3) Progresja — etykieta „Objętość”** nie łamie się w środku słowa (`app/progression.tsx`: etykieta flexShrink 0, wiersz się zawija, wartość pod spodem).
+- **(4) Zapowiedzi głosowe** — wybór Wyłączone / W słuchawkach / Także przez głośnik (domyślnie W słuchawkach), `Settings.voice` (tylko odstępstwo), migracja z `voiceSpeaker`,
+  przycisk „Głos” obok „Pauza” na ekranie treningu (arkusz z 3 opcjami, zmiana trwała). Szczegóły: docs/36 rozdz. 3. **Zmiana schematu ustawień — nie może iść w jednym wydaniu
+  z aktualizacją SDK** (CLAUDE.md). SCHEMA_VERSION bez zmian (pole opcjonalne).
+- **(5) Koniec przerwy i serii jako powiadomienie „pilne” (Time Sensitive)** — `lib/timer.ts` (`interruptionLevel: 'timeSensitive'` dla rest-end i set-end), uprawnienie
+  `com.apple.developer.usernotifications.time-sensitive` w `app.json` (`ios.entitlements`), lista wymaganych uprawnień `scripts/ci/required-entitlements-{app,watch}.txt`
+  używana przez strażnika `check-entitlements.sh` w `testflight.yml` i przez `verify:native`. **[OTWARTE — przed scaleniem]** przebieg dowodowy `testflight.yml` na gałęzi (model po L-001):
+  czy eksport z podpisem automatycznym (`-allowProvisioningUpdates`) sam włączy możliwość „Time Sensitive Notifications” na App ID `pl.lukasz.trening`. Udokumentowana lista
+  `CapabilityType` API App Store Connect (przeczytana 19.10.2026) tej możliwości nie zawiera — skrypty `scripts/asc/` jej nie włączą; jeśli eksport padnie na profilu, krok właściciela
+  w Apple Developer (Identifiers → pl.lukasz.trening → Capabilities → Time Sensitive Notifications → Save). Telefon po buildzie: profil skupienia bez powiadomień, koniec przerwy ma baner.
+- Tłumaczenia nowych tekstów (31 słowników + nakładki pt-BR/es-419) wykonał programista — do przeglądu przez tłumacza.
