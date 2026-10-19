@@ -1,0 +1,34 @@
+/* Generator fixture'ów zapisu bazy z WYDANEGO builda (uruchamiany w worktree tagu; wynik do tests/fixtures/released/ głównego repo). Dane syntetyczne. */
+import * as fs from 'fs';
+import * as store from '@/lib/store';
+import { fresh, ex, withDemoTemplates, addWorkout } from './helpers';
+
+jest.setTimeout(60000);
+const OUT = process.env.FIXTURE_OUT!;
+const TAG = process.env.FIXTURE_TAG!;
+test('generuje fixture', async () => {
+  jest.useFakeTimers({ now: new Date(2026, 9, 12, 18, 30).getTime(), doNotFake: ['nextTick', 'setImmediate', 'queueMicrotask'] });
+  await fresh(); const st = () => store.getState(); const used: string[] = [];
+  const tpls = withDemoTemplates(); used.push('templates');
+  const L = require('@/lib/locations');
+  try { const home = L.addLocation('home', 'Dom'); const gym = L.addLocation('gym', 'Siłownia'); L.setMainLocation(gym.id); used.push('locations'); void home; } catch (e) { used.push('NO-locations'); }
+  const DAY = 86400e3; const now = Date.now();
+  addWorkout(now - 9 * DAY, [['Back Squat', [{ weight: 60, reps: 8, kind: 'warmup', warmup: true }, { weight: 100, reps: 5, rpe: 8 }, { weight: 100, reps: 5 }]], ['Bench Press (sztanga)', [{ weight: 80, reps: 8 }, { weight: 80, reps: 7, note: 'ciężko' }]]], 'Dół A');
+  addWorkout(now - 6 * DAY, [['Pull Up', [{ weight: '', reps: 6 }, { weight: '', reps: 5 }]], ['Bench Press (sztanga)', [{ weight: 82.5, reps: 6 }, { weight: 70, reps: 10, kind: 'drop' }]]], 'Góra A');
+  addWorkout(now - 3 * DAY, [['Back Squat', [{ weight: 102.5, reps: 5 }, { weight: 102.5, reps: 5 }, { weight: 102.5, reps: 4 }]]], 'Dół B'); used.push('workouts');
+  try { st().bodyMassLog = [{ date: '2026-10-01', kg: 82.4 }, { date: '2026-10-08', kg: 82.1 }]; used.push('bodyMassLog'); } catch {}
+  try { st().mornings.push({ id: 'm1', ownerId: 'local', createdAt: now - DAY, updatedAt: now - DAY, date: '2026-10-11', bb: 70, sleepScore: 80, sleepH: 7.5, weight: 82.1 } as never); used.push('mornings'); } catch {}
+  st().weekPlan = { days: [tpls[0].id, null, tpls[1].id, null, tpls[0].id, null, null], name: 'Plan A' }; used.push('weekPlan');
+  const W = store as any;
+  if (W.appendPlanSegment) { try { st().planHistory = W.appendPlanSegment(st().planHistory ?? [], '2026-10-05', st().weekPlan!.days); used.push('planHistory'); } catch (e) { used.push('NO-planHistory'); } }
+  try { (st() as any).savedPlans = [{ id: 'sp1', name: 'Plan B', days: [tpls[1].id, null, null, tpls[0].id, null, tpls[1].id, null] }]; used.push('savedPlans'); } catch {}
+  if (L.addOneOffLocation) { try { const o = L.addOneOffLocation('Hotel', [], false, 'Tylko dziś'); (st() as any).planPlaces = { '2026-10-14': o.id }; (st().savedPlans![0] as any).places = { '2026-10-20': o.id }; used.push('oneOff', 'planPlaces'); } catch (e) { used.push('NO-oneOff:' + String(e)); } }
+  st().settings.defaultRest = 105; st().settings.autoBackup = true; (st().settings as any).voice = 'speaker';
+  await store.flush();
+  store.startFromTemplate(tpls[0]); const a = st().active!; a.exercises[0].sets[0].weight = 100; a.exercises[0].sets[0].reps = 5; store.toggleDone(0, 0); used.push('active');
+  store.save(a); await store.flush();
+  if ((store as any).saveCfg) { st().settings.defaultRest = 110; (store as any).saveCfg(); await jest.advanceTimersByTimeAsync(500); used.push('cfg-key'); } /* sama zmiana konfiguracji -> mały klucz „cfg” */
+  const g = (k: string) => (global.__kv.has(k) ? JSON.parse(global.__kv.get(k)!) : null);
+  const out = { _comment: `Zapis bazy (klucze state, live, cfg) z wydanego builda ${TAG}; dane syntetyczne, wygenerowane z kodu tego tagu (M1-audytor-generalny-007)`, tag: TAG, schemaVersion: g('state').schemaVersion, features: used, state: g('state'), live: g('live'), cfg: g('cfg') };
+  fs.mkdirSync(require('path').dirname(OUT), { recursive: true }); fs.writeFileSync(OUT, JSON.stringify(out, null, 1) + '\n');
+});
