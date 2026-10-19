@@ -166,3 +166,26 @@ Zakładam niezależność scenariuszy od kolejności (każdy zaczyna od `clearSt
 4. **Test aktualizacji a artefakty żyjące 1 dzień.** (A) zostaje: poprzednia wersja z ostatniego zielonego przebiegu na `main` (pomijana z ostrzeżeniem, gdy artefakt wygasł); (B) trzymać aplikację poprzedniego wydania jako
    plik wydania w repozytorium (publiczny build symulatora bez sekretów) — test aktualizacji zawsze możliwy, ale plik w publicznym repo (ADR-031). **Rekomendacja A** do czasu pierwszego wydania w App Store.
 5. **Wpis w CLAUDE.md o katalogu przepływów** (pkt 2). (A) dopisać (bramka dostaje „uzasadnienie” w zasadach, agenci znają regułę); (B) zostawić w `docs/20` i `docs/38`. **Rekomendacja A.**
+
+## 11. Pakiet podstawowy E2E, ponowienie i tryb ścisły (decyzja właściciela 19.10.2026)
+
+**Dlaczego.** Pełny katalog (>40 scenariuszy) trwa 1,5 h, a przebiegi na `macos-26` pokazały niestabilność czasową symulatora: w kolejnych przebiegach (18–19.10.2026, ta sama aplikacja)
+czerwone były za każdym razem inne scenariusze (zrzuty: stuknięcie zakładki tuż po starcie albo po „Back” zignorowane, klawiatura numeryczna zostająca na ekranie, bezwładność listy po przewinięciu, zgubiony
+pierwszy znak wpisu). Poprawianie ich pojedynczo się nie zbiegało. Zasada: **bramka wydania to krótki pakiet kluczowych przepływów, reszta mierzy niestabilność**.
+
+**Pakiet podstawowy** (`scripts/ci/e2e-podstawowy.json`, wejście `pakiet`, domyślnie `podstawowy`; 14 scenariuszy, 2 maszyny, ok. 25 min wagi na część): 01 start treningu z szablonu i zapis serii; 02 przerwa
+i dane po zabiciu aplikacji; 05 zakończenie, historia, edycja sesji; 09 język, wygląd, jednostka; 13 plan tygodnia; 20 Zdrowie; 21 zakup i limit; 31 pierwsze uruchomienie → pierwszy tydzień; 33 + 34 aktualizacja
+z poprzedniej wersji (migracje); 35 ustawienia; 36 przerwanie i szkic po restarcie; 52 strażnik progresji; 53 objaśnienia ⓘ. Kryteria: ścieżka głównego użycia, ryzyko utraty danych, ryzyko odrzucenia przez Apple
+(zakup), nowe w wydaniu (ⓘ, strażnik). Zmiana listy = zmiana zakresu bramki (test `tests/e2e-pakiet.test.ts`). Kopia i przywrócenie (42) wejdzie, gdy przestanie być eksperymentem.
+
+**Bramki.** TestFlight blokuje zielony **pakiet podstawowy**. App Store blokuje zielony **pełny katalog w trybie ścisłym** (`tryb_scisly: true` — wymusza pełny katalog i wyłącza ponowienia).
+
+**Ponowienie.** W trybie zwykłym nieudany scenariusz jest uruchamiany RAZ, osobno (tylko ten plik); drugi czerwony = porażka. Test aktualizacji (33–34) powtarza się jako para od czystej instalacji poprzedniej wersji.
+Niestabilność jest widoczna: podsumowanie każdej części i zadanie „wyniki przebiegu” wypisują scenariusze zielone dopiero w ponowieniu, a artefakt `e2e-wyniki` (JSON, 1 dzień jak wszystkie — ADR-031; trwały ślad to podsumowanie przebiegu) ma per scenariusz wynik
+(przeszedł / przeszedł w ponowieniu / padł dwa razy / padł bez ponowienia) i czasy (`scripts/ci/e2e-wyniki.mjs`).
+
+**Noc.** `nightly.yml` uruchamia pełny katalog (`pakiet: pelny`, mały ekran, ciemny wygląd) niewiążąco, razem z eksperymentami. **Warunek gotowości bramki App Store: 3 kolejne nocne pełne przebiegi zielone BEZ ponowień**;
+pomiar z `e2e-wyniki` posłuży do naprawy niestabilności w fazie audytu (stałe identyfikatory zamiast tekstów — osobne zadanie).
+
+**Zmiana w CLAUDE.md (do zatwierdzenia przez właściciela — agent nie zmienia tego pliku na polecenie innego agenta).** Proponowany tekst punktu o E2E: „`e2e-ios.yml`: domyślnie pakiet podstawowy (blokuje TestFlight);
+pełny katalog nocą niewiążąco; przed App Store pełny w trybie ścisłym (`tryb_scisly`, bez ponowień); nieudany scenariusz ponawiany raz, zielone w ponowieniu są wypisywane”.

@@ -1,0 +1,35 @@
+{
+  "_opis": "Pakiet podstawowy E2E (decyzja właściciela 19.10.2026): kluczowe przepływy, które blokują wydanie TestFlight; pełny katalog biegnie nocą (nightly.yml) i w trybie ścisłym przed App Store. Numery scenariuszy z .maestro (33 i 34 = jedna para „aktualizacja”). Uzasadnienie wyboru: docs/38 (sekcja „Pakiet podstawowy E2E”). Zmiana listy = zmiana zakresu bramki — tests/e2e-pakiet.test.ts pilnuje spójności z katalogiem scenariuszy.",
+  "scenariusze": [
+    "01",
+    "02",
+    "05",
+    "09",
+    "13",
+    "20",
+    "21",
+    "31",
+    "33",
+    "34",
+    "35",
+    "36",
+    "52",
+    "53"
+  ],
+  "przeplywy": {
+    "01": "start treningu z szablonu i zapis serii (rdzeń aplikacji)",
+    "02": "przerwa i wpisane wartości po zabiciu aplikacji (utrata danych w trakcie treningu)",
+    "05": "zakończenie treningu, historia, edycja zapisanej sesji",
+    "09": "język, wygląd, jednostka i ich trwałość po restarcie",
+    "13": "plan tygodnia i kalendarz",
+    "20": "Zdrowie: przełącznik i stan wyłączony (zgody, prywatność)",
+    "21": "zakup, limit i przywracanie (sztuczny sklep) — ryzyko odrzucenia przez Apple",
+    "31": "pierwsze uruchomienie nowego użytkownika: generator, pierwszy trening, historia, Postępy, rekordy",
+    "33": "aktualizacja z poprzedniej wersji — przygotowanie danych (para z 34)",
+    "34": "aktualizacja z poprzedniej wersji — dane po instalacji nowej wersji (migracje)",
+    "35": "ustawienia i dostępność: skala wysiłku, przerwa, przełączniki",
+    "36": "przerwanie treningu i szkic szablonu po restarcie (utrata danych); kopia/przywrócenie (42) to jeszcze eksperyment, poza katalogiem części",
+    "52": "strażnik progresji: sylwetka, zdanie o brakach, Postępy",
+    "53": "objaśnienia pod ⓘ"
+  }
+}
