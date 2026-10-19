@@ -172,6 +172,17 @@ describe('„Progresja”: szczegóły', () => {
     expect(legendP('planned')).toBe(1); expect(screen.getByLabelText(`Volume: at least ${fmtVol(1300)}, some planned sets have no weight (${fmtVol(1000)} + ≥ ${fmtVol(300)}), before ${fmtVol(1000)}, +30% (+${fmtVol(300)})`)).toBeTruthy();
     await go('/progress'); await flushAll(10); expect(screen.getByText('Progression')).toBeTruthy(); expect(screen.getByTestId('progress-tile-month').props.accessibilityLabel).toContain('days 1–8 of the month vs last month');
   });
+  test('regresja (test 0.20): długa wartość („22240 kg (poprz. 5760 kg) +286% (+16480 kg)”) nie łamie etykiety „Objętość” w środku słowa — etykieta się nie kurczy, wartość zawija się pod spodem', async () => {
+    await boot(() => { sq(8, 30, [{ weight: 160, reps: 36 }]); sq(9, 6, [{ weight: 160, reps: 139 }]); }, '/progression?c=week', 'pl', 320);
+    expect(screen.getByLabelText(/^Objętość: 22240 kg .*poprzednio 5760 kg, \+286% \(\+16480 kg\)$/)).toBeTruthy();
+    const flat = (st: unknown): Record<string, unknown> => Object.assign({}, ...[st].flat(9).filter(Boolean)) as Record<string, unknown>;
+    for (const id of ['volume', 'sets', 'workouts']) {
+      const r = flat((findP(`psum-${id}`)[0] as unknown as { props: { style: unknown } }).props.style); const l = flat((findP(`psum-${id}-label`)[0] as unknown as { props: { style: unknown } }).props.style); const v = flat((findP(`psum-${id}-value`)[0] as unknown as { props: { style: unknown } }).props.style);
+      expect([id, r.flexWrap, l.flexShrink, v.flexShrink, v.flexGrow]).toEqual([id, 'wrap', 0, 1, 1]); /* etykieta nigdy nie kurczy się poniżej własnej szerokości; wartość ma resztę wiersza albo nową linię */
+      expect([id, l.maxWidth]).toEqual([id, '100%']); /* bardzo długie tłumaczenie etykiety zawija się po słowach w całej szerokości, nie wychodzi poza ekran */
+    }
+    expect((findP('psum-volume-label')[0] as unknown as { props: { children: unknown } }).props.children).toBe('Objętość');
+  });
   test('320 pt: ekran główny (kafelki, sylwetka, słupki) i szczegóły renderują się bez wyjątków przy długich tłumaczeniach', async () => {
     await boot(scenario, '/', 'en', 320); expect(screen.getByTestId('week-muscles')).toBeTruthy(); expect(screen.queryByTestId('progress-tile-week')).toBeNull();
     await boot(scenario, '/progress', 'en', 320); expect(screen.getByTestId('progress-tile-week')).toBeTruthy();
