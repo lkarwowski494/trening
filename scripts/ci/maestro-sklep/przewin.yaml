@@ -1,10 +1,16 @@
-# Zrzuty do sklepu: sekcja strażnika progresji — legenda sylwetki na środku ekranu (sylwetka nad nią, wiersze partii pod nią), niezależnie od
-# rozmiaru ekranu (przebiegi 39149701858 i 39162600481: przewinięcie o stały procent ucinało sylwetkę albo zostawiało objaśnienie).
+# Zrzuty do sklepu: sekcja strażnika progresji — sylwetka w górnej części ekranu, legenda i wiersze partii pod nią, niezależnie od rozmiaru ekranu
+# (przebiegi 39149701858 i 39162600481: przewinięcie o stały procent ucinało sylwetkę; 39175724214: legenda jest ukryta dla VoiceOver, więc
+# Maestro jej nie widzi — wyśrodkowanie sylwetki, która ma etykietę dostępności, potem powolne przesunięcie o 20% wysokości bez rozpędu).
 appId: pl.lukasz.trening
 ---
 - waitForAnimationToEnd
 - scrollUntilVisible:
-    element: { id: "guard-legend-pg" }
+    element: { id: "guard-map-pg" }
     direction: DOWN
     centerElement: true
     timeout: 20000
+- swipe:
+    start: "50%, 60%"
+    end: "50%, 40%"
+    duration: 1500
+- waitForAnimationToEnd
