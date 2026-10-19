@@ -42,10 +42,10 @@ test('e2e-ios.yml: podsumowanie porażki uruchamiane tylko po błędzie, przed w
   expect(i).toBeLessThan(y.indexOf('name: e2e-ios'));
 });
 
-test('e2e-ios.yml: najwyżej jedno powtórzenie Maestro i tylko, gdy sterownik XCTest nie wystartował (błąd scenariusza nie jest powtarzany)', () => {
+test('e2e-ios.yml: całość powtarzana najwyżej raz i tylko, gdy sterownik XCTest nie wystartował; nieudany scenariusz — osobne ponowienie tylko jego (raz), w trybie ścisłym bez ponowień', () => {
   const y = fs.readFileSync(path.join(root, '.github/workflows/e2e-ios.yml'), 'utf8');
   const step = y.slice(y.indexOf('- name: Maestro'), y.indexOf('- name: Aktualizacja — wybór'));
-  expect(step.match(/maestro --device/g)).toHaveLength(2); /* oba przez strażnika czasu (guard) */
+  expect(step.match(/maestro --device/g)).toHaveLength(3); /* całość, jej powtórka po awarii sterownika i ponowienie pojedynczego scenariusza — wszystkie przez strażnika czasu (guard) */
   expect(step).toMatch(/if \[ "\$rc" -ne 0 \] && grep -qE "iOS driver not ready in time\|deviceInfo failed"/);
   expect(step).toMatch(/exit \$rc/);
   const bash = require('child_process').execFileSync; /* logika powtórzenia na atrapie maestro */
@@ -59,8 +59,18 @@ test('e2e-ios.yml: najwyżej jedno powtórzenie Maestro i tylko, gdy sterownik X
   expect(sim('UnknownFailure(errorResponse=Request for http://127.0.0.1:50514/deviceInfo failed, code: 500, body: )', 1)).toEqual({ rc: 0, runs: 2 });
   expect(sim('Assertion is false: "Propozycje" is visible', 1)).toEqual({ rc: 1, runs: 1 });
   expect(sim('ok', 0)).toEqual({ rc: 0, runs: 1 });
+  /* 19.10.2026: ponowienie pojedynczego nieudanego scenariusza (osobne uruchomienie tylko jego, raz); tryb ścisły (STRICT=true) — bez ponowień */
+  const ponow = (strict: boolean, retryOk: boolean) => { const d = fs.mkdtempSync(path.join(require('os').tmpdir(), 'mr-')); fs.mkdirSync(path.join(d, 'scripts/ci'), { recursive: true }); fs.copyFileSync(path.join(root, 'scripts/ci/e2e-wyniki.mjs'), path.join(d, 'scripts/ci/e2e-wyniki.mjs')); fs.mkdirSync(path.join(d, '.maestro-czesc'));
+    fs.writeFileSync(path.join(d, '.maestro-czesc', '09-a.yaml'), 'appId: x\nname: Scen A\n---\n- launchApp\n'); fs.writeFileSync(path.join(d, '.maestro-czesc', '10-b.yaml'), 'appId: x\nname: Scen B\n---\n- launchApp\n');
+    const xml = (a: boolean, b: boolean) => `<testsuites><testsuite><testcase id="Scen A" name="Scen A" time="3">${a ? '' : '<failure>x</failure>'}</testcase><testcase id="Scen B" name="Scen B" time="4">${b ? '' : '<failure>x</failure>'}</testcase></testsuite></testsuites>`;
+    fs.writeFileSync(path.join(d, 'maestro'), `#!/bin/bash\necho "$@" >> ${d}/calls\nif [[ "$*" == *"/09-a.yaml"* ]]; then out=$(echo "$@" | sed -E 's/.*--output ([^ ]+).*/\\1/'); mkdir -p $(dirname $out); echo '${xml(retryOk, true)}' > $out; exit ${retryOk ? 0 : 1}; fi\nmkdir -p e2e-out; echo '${xml(false, true)}' > e2e-out/report.xml; exit 1\n`, { mode: 0o755 });
+    let rc = 0; try { bash('bash', ['-e', '-c', body], { cwd: d, env: { ...process.env, PATH: `${d}:${process.env.PATH}`, SIM: 'x', STRICT: strict ? 'true' : 'false' }, stdio: 'pipe' }); } catch (e: any) { rc = e.status; }
+    const calls = fs.readFileSync(path.join(d, 'calls'), 'utf8').trim().split('\n'); return { rc, calls: calls.length, retried: calls.filter(c => c.includes('/09-a.yaml')).length, other: calls.filter(c => c.includes('/10-b.yaml')).length }; };
+  expect(ponow(false, true)).toEqual({ rc: 0, calls: 2, retried: 1, other: 0 }); /* nieudany A ponowiony raz i zielony; B (zielony) nie jest uruchamiany ponownie */
+  expect(ponow(false, false)).toEqual({ rc: 1, calls: 2, retried: 1, other: 0 }); /* drugi czerwony = porażka, bez trzeciej próby */
+  expect(ponow(true, true)).toEqual({ rc: 1, calls: 1, retried: 0, other: 0 }); /* tryb ścisły: bez ponowień */
   /* zawieszony Maestro (ten sam przebieg: wyjątek w wątku głównym, proces nie kończył się 68 min) — strażnik czasu kończy podejście */
-  expect(step.match(/guard maestro --device/g)).toHaveLength(2); const alarm = Number(step.match(/MAESTRO_ALARM:-(\d+)/)![1]); const jobMin = Number(require('fs').readFileSync(require('path').join(__dirname, '..', '.github/workflows/e2e-ios.yml'), 'utf8').split('\n  e2e:\n')[1].match(/timeout-minutes: (\d+)/)![1]); /* 13.10.2026: limit zadania „e2e” (części), nie „build” */
+  expect(step.match(/guard maestro --device/g)).toHaveLength(3); const alarm = Number(step.match(/MAESTRO_ALARM:-(\d+)/)![1]); const jobMin = Number(require('fs').readFileSync(require('path').join(__dirname, '..', '.github/workflows/e2e-ios.yml'), 'utf8').split('\n  e2e:\n')[1].match(/timeout-minutes: (\d+)/)![1]); /* 13.10.2026: limit zadania „e2e” (części), nie „build” */
   /* 06.10.2026: 10 scenariuszy — strażnik ≥ 30 min na podejście; limit zadania mieści build (~40 min) i 2 podejścia, żeby powtórka nie była ucinana */
   expect(alarm).toBeGreaterThanOrEqual(1800); expect(jobMin).toBeGreaterThanOrEqual(15 + 2 * alarm / 60); /* po podziale na części build jest osobnym zadaniem — tu symulator ~10 min + 2 podejścia */
   const d = fs.mkdtempSync(path.join(require('os').tmpdir(), 'mh-')); fs.writeFileSync(path.join(d, 'maestro'), '#!/bin/bash\nsleep 30\n', { mode: 0o755 });
