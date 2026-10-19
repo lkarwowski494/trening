@@ -22,9 +22,9 @@ export const LANGS_012 = ['pt-BR', 'es-419', 'id', 'ms', 'vi', 'ru', 'ja', 'ko',
 
 export const WHATS_NEW: WhatsNewEntry[] = [
   /* 0.20.0 (0.19 + 0.20 jednym wydaniem, decyzja właściciela 13.10.2026; docs/18 13–19.10.2026): miejsca treningu, Apple Watch, głos, Strażnik progresji, Postępy (dwa słupki),
-   * objaśnienia ⓘ, „Poproś o nową funkcję”, poprawka zapisu/odczytu Apple Health (L-001). Bez numeru buildu — dopisuje się po przebiegu testflight.yml.
+   * objaśnienia ⓘ, „Poproś o nową funkcję”, poprawka zapisu/odczytu Apple Health (L-001). Build 1018 (testflight.yml, run 39233940303, 19.10.2026).
    * id '2026-10-17' (następny po 0.18), data 19.10.2026. Tłumaczenia 31 języków do przeglądu (rola tłumacza). */
-  { id: '2026-10-17', date: '2026-10-19', items: () => [
+  { id: '2026-10-17', build: 1018, date: '2026-10-19', items: () => [
     t('Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.'),
     t('Apple Watch: odhaczanie serii, przerwa z timerem i „Cofnij” przez 5 sekund (watchOS 10 lub nowszy).'),
     t('Zapowiedzi głosowe na początku przerwy: ćwiczenie, ciężar i powtórzenia.'),

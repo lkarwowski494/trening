@@ -43,13 +43,16 @@ function GuardBar({ p }: { p: GuardPart }) {
 function GuardRow({ p }: { p: GuardPart }) {
   const th = useTheme(); const [open, setOpen] = useState(false); const name = t(p.part);
   const series = t('{n} / {goal} serii', { n: n1(p.total), goal: n1(p.goal) });
-  const wf = p.compared.find(c => c.byWeight);
+  const wf = p.compared.find(c => c.byWeight || c.fromZero); /* progres ciężarem: tonaż↓ przy ciężarze↑ albo poprzednio 0 kg (19.10.2026) */
   const tonn = (words: boolean) => p.tonnage ? t('tonaż/sesję {sign} {now} (poprz. {prev})', { sign: words ? guardWord(p.tonnage.dir) : SIGN_CHAR[p.tonnage.dir], now: fmtVol(p.tonnage.now), prev: fmtVol(p.tonnage.before) }) : '';
   const wline = (words: boolean) => wf ? t('ciężar roboczy {sign} {now} (poprz. {prev})', { sign: words ? guardWord('up') : SIGN_CHAR.up, now: fmtW(wf.now.weight), prev: fmtW(wf.before.weight) }) : '';
   const why = [...new Set(p.skipped.map(s => REASON[s.reason]()))].join(', ');
   const line = (words: boolean): string => p.dir === 'deload' ? '' : p.dir === 'new' ? t('brak poprzedniego tygodnia') : p.dir === 'unknown' ? (why ? `${guardWord('unknown')} — ${why}` : guardWord('unknown')) : [tonn(words), wline(words)].filter(Boolean).join(' · ');
   const label = [name + ': ' + (p.dir === 'deload' ? t('Tydzień deloadu — bez porównania') : guardWord(p.dir as Exclude<GuardDir, 'deload'>)), series, line(true)].filter(Boolean).join('. ');
-  const skippedItems = p.skipped.map(s => `${exLabel(s.exerciseId)} — ${REASON[s.reason]()}`);
+  /* 19.10.2026: powody pominięcia osobno — „bez punktu odniesienia” tylko dla ćwiczeń z jednego tygodnia; „bez ciężaru” i „plan bez wartości” to inne powody (dawniej jeden sprzeczny napis) */
+  const refItems = p.skipped.filter(s => s.reason === 'onlyNow' || s.reason === 'onlyBefore').map(s => `${exLabel(s.exerciseId)} — ${REASON[s.reason]()}`);
+  const noWeightItems = p.skipped.filter(s => s.reason === 'noWeight').map(s => exLabel(s.exerciseId));
+  const planItems = p.skipped.filter(s => s.reason === 'unknownPlan').map(s => exLabel(s.exerciseId));
   return (
     <View testID={`grow-${p.part}`} style={{ paddingHorizontal: 12, paddingVertical: 4, borderTopWidth: 1, borderTopColor: th.line }}>
       <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ expanded: open }} onPress={() => setOpen(!open)} style={({ pressed }) => ({ minHeight: 44, justifyContent: 'center', paddingVertical: 6, opacity: pressed ? 0.7 : 1 })}>
@@ -77,7 +80,9 @@ function GuardRow({ p }: { p: GuardPart }) {
                   </View>
                 </View>))}
             </View>) : null}
-          {skippedItems.length ? <Muted style={{ fontSize: 12 }}>{t('Pominięte (bez punktu odniesienia): {list}', { list: skippedItems.join('; ') })}</Muted> : null}
+          {refItems.length ? <Muted testID={`gskip-ref-${p.part}`} style={{ fontSize: 12 }}>{t('Pominięte (bez punktu odniesienia): {list}', { list: refItems.join('; ') })}</Muted> : null}
+          {noWeightItems.length ? <Muted testID={`gskip-noweight-${p.part}`} style={{ fontSize: 12 }}>{t('Pominięte (bez ciężaru): {list}', { list: noWeightItems.join(', ') })}</Muted> : null}
+          {planItems.length ? <Muted testID={`gskip-plan-${p.part}`} style={{ fontSize: 12 }}>{t('Pominięte (plan bez ciężaru lub powtórzeń): {list}', { list: planItems.join(', ') })}</Muted> : null}
         </View>) : null}
     </View>);
 }
@@ -98,7 +103,7 @@ export function GuardSection({ onLayoutY }: { onLayoutY?: (y: number) => void })
     <View testID="guard-section" onLayout={e => onLayoutY?.(e.nativeEvent.layout.y)} style={{ marginBottom: 6 }}>
       <H2 style={{ marginTop: 14 }} infoId="guard-method" info={[
         t('Kierunek dla partii liczymy tylko na ćwiczeniach, które były w obu tygodniach. Ćwiczenia bez punktu odniesienia — nowe w tym tygodniu albo nierobione teraz — pomijamy w obu tygodniach.'),
-        t('Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.'),
+        t('Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.'),
         t('Ten tydzień = wykonane + plan. Plan bez ciężarów (≥) — bez porównania. Tydzień deloadu nie jest porównywany.'),
         [t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }), t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).')].join(' '),
       ]}>{t('Strażnik progresji')}</H2>

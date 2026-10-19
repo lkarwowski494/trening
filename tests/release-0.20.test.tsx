@@ -1,7 +1,7 @@
 /**
  * Wydanie 0.20.0 (0.19 + 0.20 jednym wydaniem, decyzja właściciela 13.10.2026; docs/18 19.10.2026): miejsca treningu i „Dostosuj do miejsca”, Apple Watch, głos,
  * „Strażnik progresji”, Postępy (dwa słupki), objaśnienia ⓘ, „Poproś o nową funkcję”, poprawka zapisu i odczytu Apple Health (L-001). Wersja projektu i bieżący wpis
- * „Co nowego” (id '2026-10-17', data 19.10.2026, bez numeru buildu do czasu wydania na TestFlight; numer dopisuje się po przebiegu). Wpis 0.18 (build 1015) jest
+ * „Co nowego” (id '2026-10-17', data 19.10.2026, build 1018 z przebiegu testflight.yml 39233940303). Wpis 0.18 (build 1015) jest
  * historyczny (release-0.18.test.tsx). Subskrypcja jest wyłączona przełącznikiem PAYWALL.ENABLED — wpis o niej nie wspomina. Wpis ma 8 punktów (reguła 2–10).
  * Tłumaczenia 31 języków — do przeglądu (rola tłumacza / Gemini).
  */
@@ -29,11 +29,11 @@ describe('wydanie 0.20.0', () => {
     const lock = J('package-lock.json');
     expect([J('app.json').expo.version, J('package.json').version, lock.version, lock.packages[''].version]).toEqual(['0.20.0', '0.20.0', '0.20.0', '0.20.0']);
   });
-  test('najnowszy wpis = 0.20 (id 2026-10-17, data 2026-10-19); jeśli ma build, to nowszy niż 1015; pod nim 0.18 (2026-10-16, build 1015)', () => {
+  test('najnowszy wpis = 0.20 (id 2026-10-17, data 2026-10-19); build 1018 (TestFlight 39233940303); pod nim 0.18 (2026-10-16, build 1015)', () => {
     expect(WHATS_NEW[0]).toBe(E());
     const cur = E(); const prev = WHATS_NEW[1];
     expect([cur.id, cur.date, prev.id]).toEqual(['2026-10-17', '2026-10-19', '2026-10-16']);
-    expect(cur.build === undefined || cur.build > 1015).toBe(true);
+    expect(cur.build).toBe(1018);
     expect(prev.build).toBe(1015);
   });
   test('wpis 0.20 po polsku: 8 punktów, każdy z kropką; nazwy funkcji zgodne ze słownikiem', () => {

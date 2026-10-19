@@ -36,7 +36,7 @@ describe('przerwa: start, powiadomienie, Live Activity', () => {
     expect([timer.T.on, timer.T.endAt, timer.T.total, timer.T.setId, timer.T.alarmed, timer.T.sub, timer.T.last]).toEqual([true, NOW + 90e3, 90, 's1', false, 'dalej: Plank', false]);
     expect([S().timer.restEndAt, S().timer.restTotal, S().timer.restSetId]).toEqual([NOW + 90e3, 90, 's1']);
     expect(cancelled()).toContain('rest-end');
-    expect(notes()).toEqual([{ identifier: 'rest-end', content: { title: 'Przerwa minęła', body: 'Następna seria.', sound: true }, trigger: { type: 'timeInterval', seconds: 90, repeats: false } }]);
+    expect(notes()).toEqual([{ identifier: 'rest-end', content: { title: 'Przerwa minęła', body: 'Następna seria.', sound: true, interruptionLevel: 'timeSensitive' }, trigger: { type: 'timeInterval', seconds: 90, repeats: false } }]);
     expect(la()).toEqual([['start', 'Push', 'dalej: Plank', NOW + 90e3, 90, 'rest|Przerwa']]);
   });
   test('start bez podpisu i bez treningu: tytuł „Trening”, podpis „przerwa N s”; tytuł z labels.title wygrywa', async () => {
@@ -50,13 +50,31 @@ describe('przerwa: start, powiadomienie, Live Activity', () => {
   });
   test('ostatnia seria treningu: treść „Nic więcej do zrobienia…”; dźwięk wyłączony w Ustawieniach — bez dźwięku', async () => {
     timer.labels.last = true; S().settings.sound = false; await timer.start(30);
-    expect(notes()[0].content).toEqual({ title: 'Przerwa minęła', body: 'Nic więcej do zrobienia — możesz zakończyć trening.', sound: false });
+    expect(notes()[0].content).toEqual({ title: 'Przerwa minęła', body: 'Nic więcej do zrobienia — możesz zakończyć trening.', sound: false, interruptionLevel: 'timeSensitive' }); /* „pilne” także bez dźwięku: baner przebija skupienie, dźwięk zależy od Ustawień */
     expect(timer.T.last).toBe(true);
   });
   test('powiadomienie: najmniej 1 s (przerwa 0 s i koniec w przeszłości), zaokrąglenie do pełnych sekund', async () => {
     await timer.start(0); expect(notes()[0].trigger.seconds).toBe(1);
     reset(); await timer.start(10, null, NOW - 60e3); expect(notes()[0].trigger.seconds).toBe(1);
     reset(); await timer.start(2.6); expect(notes()[0].trigger.seconds).toBe(3);
+  });
+});
+
+describe('koniec przerwy i serii jako powiadomienie „pilne” (Time Sensitive; lista napraw przed 1.0, 19.10.2026)', () => {
+  /* Test 0.20 na telefonie (krok 3): przy profilu skupienia bez powiadomień koniec przerwy nie dał baneru ani dźwięku. interruptionLevel 'timeSensitive' przebija skupienie
+   * i podsumowanie (gdy użytkownik na to pozwala); wymaga uprawnienia com.apple.developer.usernotifications.time-sensitive (app.json, strażnik w testflight.yml). */
+  type NL = { identifier: string; content: { interruptionLevel?: string } };
+  const lvl = (id: string) => (global.__notifications as NL[]).filter(n => n.identifier === id).map(n => n.content.interruptionLevel);
+  test('przerwa: rest-end z interruptionLevel timeSensitive (także po korekcie ± i ponownym planowaniu)', async () => {
+    startWorkout(); await timer.start(90, 's1'); expect(lvl('rest-end')).toEqual(['timeSensitive']);
+    await timer.adjust(15); await timer.refreshScheduled(); expect(lvl('rest-end').every(l => l === 'timeSensitive')).toBe(true); expect(lvl('rest-end').length).toBeGreaterThanOrEqual(2);
+  });
+  test('stoper serii z celem: set-end z interruptionLevel timeSensitive', async () => {
+    startWorkout(); await timer.startSet('s2', 60); expect(lvl('set-end')).toEqual(['timeSensitive']);
+  });
+  test('inne powiadomienia (porzucony trening, przypomnienia) zostają zwykłe — „pilne” tylko koniec przerwy i serii', async () => {
+    startWorkout(); await timer.start(90, 's1'); await timer.refreshStale();
+    const other = (global.__notifications as NL[]).filter(n => n.identifier !== 'rest-end' && n.identifier !== 'set-end'); expect(other.every(n => n.content.interruptionLevel === undefined)).toBe(true);
   });
 });
 
@@ -122,7 +140,7 @@ describe('stoper serii czasowych', () => {
     await timer.startSet(sid, 30.4);
     expect(timer.T.on).toBe(false); expect([timer.S.on, timer.S.startAt, timer.S.targetSec, timer.S.setId, timer.S.alarmed]).toEqual([true, NOW, 30, sid, false]);
     expect([S().timer.setStartAt, S().timer.setTarget, S().timer.setId]).toEqual([NOW, 30, sid]);
-    expect(notes()).toEqual([{ identifier: 'set-end', content: { title: 'Seria skończona', body: 'Minęło 30 s.', sound: true }, trigger: { type: 'timeInterval', seconds: 30, repeats: false } }]);
+    expect(notes()).toEqual([{ identifier: 'set-end', content: { title: 'Seria skończona', body: 'Minęło 30 s.', sound: true, interruptionLevel: 'timeSensitive' }, trigger: { type: 'timeInterval', seconds: 30, repeats: false } }]);
     expect(la().filter(x => x[0] === 'start')).toEqual([['start', 'Push', 'seria 30 s', NOW + 30e3, 30, 'set|Seria']]);
     reset(); await timer.startSet(sid, 0); expect(timer.S.targetSec).toBe(0); expect(notes()).toEqual([]); expect(la().filter(x => x[0] === 'start')).toEqual([]);
     await timer.startSet(sid, -5); expect(timer.S.targetSec).toBe(0); await timer.startSet(sid, 1e9); expect(timer.S.targetSec).toBe(86400);

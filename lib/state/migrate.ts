@@ -21,7 +21,7 @@ import { migrateExercises, retireCatalog } from './migrate-catalog';
 
 /** Pola Settings znane tej wersji — pola domyślne plus opcjonalne (nowe pole opcjonalne dopisz tutaj, inaczej jego zła wartość z importu
  * przejdzie jak nieznane ustawienie); reszta zostaje bez zmian — audyt 0.10 J1. */
-const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll', 'weeklySetGoals', 'healthRead', 'reviewAsked', 'voiceSpeaker', 'ideaShownAt']);
+const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll', 'weeklySetGoals', 'healthRead', 'reviewAsked', 'voice', 'voiceSpeaker' /* 0.20, zastąpione przez voice (19.10.2026) — znane, więc nie zostaje jako nieznane */, 'ideaShownAt']);
 /** Ustawienia przeniesione poza Settings — nie zostają jako „nieznane” (J1): masa ciała bez daty → State.bodyMassLog (fala 2 audytu 0.10). */
 const MOVED_SETTINGS = new Set(['bodyMass']);
 const PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
@@ -181,7 +181,9 @@ export function migrate(raw: any): State {
     healthSync: typeof s.healthSync === 'boolean' ? s.healthSync : d.healthSync,
     ...((r => r ? { reviewAsked: r } : {})(normalizeReviewAsked(s.reviewAsked))), /* 0.17.0 (docs/26): tylko poprawna para {at, version}; przyszła data (zegar cofnięty, uszkodzone dane) = brak pola */
     ...((n => n != null ? { ideaShownAt: n } : {})(normalizeIdeaShownAt(s.ideaShownAt))), /* 0.20 (docs/34): tylko nieujemna liczba całkowita */
-    ...(s.voiceSpeaker === true ? { voiceSpeaker: true as const } : {}), /* 0.20: tylko włączenie zapisane; zła wartość = wyłączony */
+    /* 19.10.2026 „Zapowiedzi głosowe”: zapis tylko odstępstwa od „W słuchawkach”; dane 0.20 bez pola `voice`: voiceSpeaker true → „Także przez głośnik”, inaczej domyślna.
+     * Zła wartość `voice` = domyślna (bez sięgania do dawnego pola). Dawne `voiceSpeaker` znika (jedno źródło) — idempotentne. */
+    ...((v => v === 'off' || v === 'speaker' ? { voice: v } : {})(s.voice !== undefined ? s.voice : s.voiceSpeaker === true ? 'speaker' : undefined)),
     ...(s.healthRead === true ? { healthRead: true as const } : {}), /* 0.16.0 (P2 A): tylko włączenie zapisane; zła wartość = wyłączony */
     /* runda 75 */
     progressHint: typeof s.progressHint === 'boolean' ? s.progressHint : d.progressHint,

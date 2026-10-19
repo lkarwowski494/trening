@@ -8,7 +8,7 @@ import { useRouter } from 'expo-router';
 import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, REST_MAX, RIR_MAX, RPE_LIGHT } from '@/lib/store';
 import { DEFAULT_REST, type ThemeSetting, type WorkoutView } from '@/lib/seed';
 import * as timer from '@/lib/timer';
-import { sampleVoice, voiceAvailable } from '@/lib/voice';
+import { sampleVoice, voiceAvailable, voiceSetting, setVoiceSetting, voiceSettingLabel, VOICE_SETTINGS, type VoiceSetting } from '@/lib/voice';
 import { PLAN_REMINDER_HOUR, reminderPermission, type ReminderPermission } from '@/lib/planReminder';
 import { safetyBackup, safetyRecoveryNote, AUTO_KEEP } from '@/lib/backup';
 import * as health from '@/lib/health';
@@ -38,7 +38,10 @@ export default function SettingsScreen() {
       <Field label={t('Widok treningu')} infoId="workout-view" info={s.workoutView === 'list' ? t('Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.') : t('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')}><Segmented label={t('Widok treningu')} options={[['focus', t('Skupiony')], ['list', t('Lista')]] as [WorkoutView, string][]} value={s.workoutView ?? 'focus'} onChange={v => { s.workoutView = v; saveCfg(); }} /></Field>
       <Field label={t('Domyślna przerwa (s)')}><NumInput value={s.defaultRest} onNum={v => { if (v === '') return; s.defaultRest = Math.min(REST_MAX, Math.max(0, Math.round(v))) /* UI2-09: limit z jednego miejsca */; saveCfg(); }} placeholder={String(DEFAULT_REST)} /></Field>
       <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; saveCfg(); timer.refreshScheduled().catch(() => {}); timer.refreshStale().catch(() => {}); }} />
-      <SwitchRow label={t('Głos także przez głośnik telefonu')} detail={t('Domyślnie głos tylko w słuchawkach.')} infoId="voice-speaker" info={t('W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.')} value={s.voiceSpeaker === true} onChange={v => { if (v) s.voiceSpeaker = true; else delete s.voiceSpeaker; saveCfg(); }} />
+      {/* 19.10.2026 (decyzja właściciela): jeden wybór zamiast przełącznika „Głos także przez głośnik telefonu”; to samo zmienia przycisk „Głos” na ekranie treningu */}
+      <Field label={t('Zapowiedzi głosowe')} infoId="voice-mode" info={[t('Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.'), t('Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.')]}>
+        <Segmented testID="voice-mode" label={t('Zapowiedzi głosowe')} options={VOICE_SETTINGS.map(v => [v, voiceSettingLabel(v)] as [VoiceSetting, string])} value={voiceSetting(s)} onChange={setVoiceSetting} />
+      </Field>
       <Btn title={t('Posłuchaj przykładu')} small onPress={() => { sampleVoice().catch(() => {}); }} />
       {!voiceAvailable() ? <Muted style={{ fontSize: 13, marginTop: 4, marginBottom: 8 }}>{t('Brak głosu dla języka aplikacji w tym telefonie. Pobierz go w Ustawieniach iOS (Dostępność).')}</Muted> : null}
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; saveCfg(); }} />

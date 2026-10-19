@@ -50,13 +50,13 @@ describe('ekran Trening: wpis 0.12 po otwarciu „i”', () => {
   };
   test('po polsku: wpis 0.12 (build 1008, zwinięty pod bieżącym wpisem) po rozwinięciu — oba punkty; 0.11 zwinięte pod „Wersja testowa 1005”', async () => {
     await boot('pl');
-    expect(screen.getByText('W tej wersji')).toBeTruthy(); await tap(screen.getByText(/^▸ Wersja testowa 1008 · 12 paź 2026$/)); await flushAll(5);
+    expect(screen.getByText(/^Wersja testowa 1018 · 19 paź 2026$/)).toBeTruthy(); /* bieżący wpis 0.20 — build 1018 */ await tap(screen.getByText(/^▸ Wersja testowa 1008 · 12 paź 2026$/)); await flushAll(5);
     for (const x of WHATS_NEW.find(e => e.id === '2026-10-10')!.items()) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     expect(screen.getByText(/^▸ Wersja testowa 1005 · 10 paź 2026$/)).toBeTruthy();
   });
   test('English: “In this version” and both points', async () => {
     await boot('en');
-    expect(screen.getByText('In this version')).toBeTruthy(); await tap(screen.getByText(/^▸ Test build 1008 · 12 Oct 2026$/)); await flushAll(5);
+    expect(screen.getByText(/^Test build 1018 · 19 Oct 2026$/)).toBeTruthy(); await tap(screen.getByText(/^▸ Test build 1008 · 12 Oct 2026$/)); await flushAll(5);
     expect(screen.getByText(/^• 9 new languages: Português \(Brasil\), .*, 繁體中文\.$/)).toBeTruthy();
     expect(screen.getByText('• 35 languages; change the language in Settings.')).toBeTruthy();
   });

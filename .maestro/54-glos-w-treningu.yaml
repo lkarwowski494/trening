@@ -1,0 +1,50 @@
+# Przycisk „Głos” na ekranie treningu (19.10.2026, decyzja właściciela: „ludzie odkryją to w trakcie treningu”; katalog przepływów W2-07): pod „Finish” przycisk z ikoną
+# bieżącego wyboru „Zapowiedzi głosowe”; stuknięcie → arkusz z trzema opcjami (bieżąca z ✓) i Cancel; wybór zmienia ustawienie TRWALE — Ustawienia pokazują to samo.
+# Mowy symulator nie odtwarza (W2-04: telefon); sprawdzamy stan przycisku (etykieta VoiceOver) i Ustawienia.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   voice-btn                                   ← testID przycisku (components/ActiveWorkout.tsx VoiceBtn)
+#   "Voice announcements: In headphones"        ← etykieta VoiceOver przycisku ('Zapowiedzi głosowe: {mode}') — stan wyboru
+#   "Voice announcements"                       ← tytuł arkusza ('Zapowiedzi głosowe')
+#   "Off" / "✓ In headphones" / "Also through the speaker" / "Cancel" ← pozycje arkusza (voiceSettingLabel; bieżąca z „✓ ”)
+#   voice-mode-off / voice-mode-speaker         ← opcje wyboru w Ustawieniach (51-glos-ustawienia.yaml)
+appId: pl.lukasz.trening
+name: Zapowiedzi głosowe — przycisk na ekranie treningu
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+# --- przycisk pod „Finish”: domyślnie w słuchawkach ---
+- assertVisible: "Finish"
+- assertVisible: "Voice announcements: In headphones"
+- takeScreenshot: 112-glos-przycisk
+# --- arkusz: trzy opcje, bieżąca z ✓; „Off” ---
+- tapOn: { id: "voice-btn" }
+- extendedWaitUntil: { visible: "Voice announcements", timeout: 15000 }
+- assertVisible: "✓ In headphones"
+- assertVisible: "Also through the speaker"
+- takeScreenshot: 113-glos-arkusz
+- tapOn: "Off"
+- extendedWaitUntil: { visible: "Voice announcements: Off", timeout: 15000 }
+# --- Cancel nic nie zmienia ---
+- tapOn: { id: "voice-btn" }
+- extendedWaitUntil: { visible: "✓ Off", timeout: 15000 }
+- tapOn: "Cancel"
+- extendedWaitUntil: { visible: "Voice announcements: Off", timeout: 15000 }
+# --- „Also through the speaker” ---
+- tapOn: { id: "voice-btn" }
+- extendedWaitUntil: { visible: "Also through the speaker", timeout: 15000 }
+- tapOn: "Also through the speaker"
+- extendedWaitUntil: { visible: "Voice announcements: Also through the speaker", timeout: 15000 }
+# --- trwałe: Ustawienia pokazują ten sam wybór ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
+- scrollUntilVisible: { element: { id: "voice-mode-speaker" }, direction: DOWN, timeout: 60000, centerElement: true }
+- assertVisible: { id: "voice-mode-speaker", selected: true }
+- takeScreenshot: 114-glos-ustawienia-z-treningu

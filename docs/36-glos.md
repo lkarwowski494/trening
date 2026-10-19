@@ -8,7 +8,7 @@ Telefon mówi zapowiedź następnego ćwiczenia na początku przerwy. Część w
 2. **Koniec przerwy — osobny krótki sygnał** (nie mowa).
 3. Przy rekordzie w odhaczonej serii — zapowiedź rekordu.
 4. **Mówi telefon.** Słuchawki tylko mówią; przyciski słuchawek i gesty głową odrzucone; Siri odpuszczone.
-5. **Głośnik telefonu jako przełącznik w Ustawieniach, domyślnie wyłączony** — bez słuchawek cisza.
+5. **Głośnik telefonu jako przełącznik w Ustawieniach, domyślnie wyłączony** — bez słuchawek cisza. *(Zastąpione 19.10.2026: jeden wybór „Zapowiedzi głosowe” — rozdz. 3.)*
 6. Muzyka **ściszana na czas zdania**.
 
 ## 2. Co i kiedy mówi (lib/voice.ts — cała logika, czysta i testowana)
@@ -33,12 +33,13 @@ Przy rekordzie przed zapowiedzią „Nowy rekord!” (ta sama detekcja co plakie
 
 | # | Warunek | Wynik |
 |---|---|---|
+| 0 | „Zapowiedzi głosowe”: Wyłączone (19.10.2026) | cisza — zawsze, także w słuchawkach i przy VoiceOverze (powód `voice-off`) |
 | 1 | „Dźwięk i wibracja” wyłączone w Ustawieniach | cisza (wspólny wyłącznik dźwięków przerwy) |
 | 2 | aplikacja w tle / nieaktywna | cisza (etap 1, rozdz. 5) |
-| 3 | brak słuchawek i przełącznik „Głos także przez głośnik” wyłączony | cisza |
+| 3 | brak słuchawek przy „W słuchawkach” (domyślnie) | cisza |
 | 4 | VoiceOver włączony | `announce()` — głos i tempo VoiceOvera użytkownika, bez własnej syntezy równolegle |
 | 5 | słuchawki (przewodowe, Bluetooth, USB) | mowa |
-| 6 | głośnik telefonu z włączonym przełącznikiem | mowa |
+| 6 | głośnik telefonu przy „Także przez głośnik” | mowa |
 
 Zapowiedź startuje tylko przy **faktycznym starcie przerwy** (`lib/setFlow.ts startRest`): środek rundy supersetu (bez przerwy) i odhaczenie po końcu przerwy (opóźnione zdarzenie z zegarka) — cisza. Każde odhaczenie — z telefonu,
 z zegarka, po ponownym pomiarze — idzie tą samą drogą. **Cofnięcie odhaczenia przerywa mowę.** Nowa zapowiedź przerywa poprzednią (szybkie kolejne odhaczenia: mówi tylko aktualna). Błąd modułu audio nigdy nie psuje przerwy ani odhaczenia.
@@ -46,7 +47,13 @@ Koniec przerwy: dotychczasowe powiadomienie lokalne (dźwięk + wibracja, dział
 
 ## 3. Ustawienia (Więcej → Ustawienia → Trening)
 
-- „Głos także przez głośnik telefonu” (przełącznik, domyślnie wyłączony; pole `Settings.voiceSpeaker`, zapisywane tylko `true`, bez zmiany schematu) z opisem: w słuchawkach zapowiedź jest zawsze (gdy dźwięk włączony), przez głośnik tylko po włączeniu.
+- **19.10.2026 (decyzja właściciela, zastępuje przełącznik z 0.20):** „Zapowiedzi głosowe” — jeden wybór **Wyłączone / W słuchawkach / Także przez głośnik**, domyślnie „W słuchawkach”; opis pod ⓘ.
+  Pole `Settings.voice` (`'off' | 'speaker'`, zapisywane tylko odstępstwo; brak = W słuchawkach; `lib/voice.ts` VOICE_SETTINGS, VOICE_DEFAULT). Migracja (`lib/state/migrate.ts`):
+  dawne `voiceSpeaker: true` → „Także przez głośnik”, brak → „W słuchawkach”, zła wartość `voice` → domyślna; `voiceSpeaker` znika (jedno źródło). Pole przechodzi przez kopię (eksport → import, ta sama migracja).
+  SCHEMA_VERSION bez zmian (pole opcjonalne, jak `healthRead`); **zmiana schematu ustawień — nie w jednym wydaniu z aktualizacją SDK** (CLAUDE.md). Powrót do 0.20 (kopia z nowszej wersji):
+  0.20 nie zna `voice` (zostaje jako nieznane ustawienie) — mówi jak przy „W słuchawkach”; po powrocie do nowszej wersji wybór wraca.
+- Ten sam wybór na ekranie treningu: przycisk „🎧 Głos” pod „Zakończ” (ikona = stan: 🔇 / 🎧 / 🔊; VoiceOver „Zapowiedzi głosowe: W słuchawkach”) → arkusz z trzema opcjami (bieżąca z ✓) i Anuluj;
+  zmiana trwała, to samo pole co w Ustawieniach. Odrzucone: przełączanie po kolei jednym stuknięciem (przypadkowe „głośnik” na siłowni, do „Wyłączone” przez głośnik), osobny wiersz pod miejscem i miejsce w wierszu zegara obok „Pauza” (wyższy nagłówek, przesunięta lista — E2E 31 na interpreterze).
 - „Posłuchaj przykładu” — przykładowa zapowiedź w języku i jednostce aplikacji.
 - Gdy telefon nie ma głosu dla języka aplikacji: ogólna wskazówka z instrukcją pobrania głosu w Ustawieniach iOS (Dostępność) — bez dokładnej ścieżki podmenu (decyzja właściciela 14.10.2026: nazwy podmenu różnią się między wersjami iOS i językami; odrzucone: sprawdzanie nazw w 35 językach). Wg listy Apple głosów może nie być m.in. dla serbskiego, łotewskiego i estońskiego — **do sprawdzenia na urządzeniu**.
 
@@ -81,7 +88,7 @@ i opinii badacza; kosztuje 1–2 dni.
 
 ## 7. Testy (docs/20)
 
-`tests/voice.test.ts` (polityka: wszystkie 32 kombinacje; tekst i rekord; trasa dźwięku; integracja z odhaczeniem z telefonu i z zegarka; cofnięcie; ustawienie w danych), `tests/voice-module.test.ts` (most na atrapie modułu Expo),
-`tests/voice-native.test.ts` (źródło Swift), `tests/voice-ui.test.tsx` (Ustawienia: przełącznik, przykład, brak głosu, EN), `tests/watch-cue.test.ts` (tekst zapowiedzi, 35 języków). E2E Maestro: dźwięku na symulatorze nie słychać —
-scenariusz tylko na przełączniku w Ustawieniach (do dopisania razem z klientami zegarków). Ręcznie na telefonie właściciela: AirPods + muzyka (ściszenie i powrót), podcast (pauza i wznowienie), tryb cichy, odłączenie słuchawek w trakcie,
+`tests/voice.test.ts` (polityka: wszystkie 48 kombinacji; tekst i rekord; trasa dźwięku; integracja z odhaczeniem z telefonu i z zegarka; cofnięcie; ustawienie w danych), `tests/voice-module.test.ts` (most na atrapie modułu Expo),
+`tests/voice-native.test.ts` (źródło Swift), `tests/voice-ui.test.tsx` (Ustawienia: wybór, przykład, brak głosu, EN; przycisk „Głos” na ekranie treningu), `tests/watch-cue.test.ts` (tekst zapowiedzi, 35 języków). E2E Maestro: dźwięku na symulatorze nie słychać —
+scenariusze na wyborze w Ustawieniach (`51-glos-ustawienia.yaml`) i przycisku w treningu (`54-glos-w-treningu.yaml`). Ręcznie na telefonie właściciela: AirPods + muzyka (ściszenie i powrót), podcast (pauza i wznowienie), tryb cichy, odłączenie słuchawek w trakcie,
 rozmowa, VoiceOver, język bez głosu.

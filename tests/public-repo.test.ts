@@ -102,6 +102,29 @@ describe('workflowy na publicznym repozytorium', () => {
     expect(run('<plist><dict><key>com.apple.developer.team-identifier</key><string>X</string></dict></plist>')).toMatchObject({ rc: 1 });
     expect(run(ok.replace('<false/>', '<true/>')).rc).toBe(1);
   });
+  test('19.10.2026 (powiadomienie „pilne”, lekcja L-001): uprawnienie time-sensitive w app.json, na liście wymaganych uprawnień aplikacji i w każdym wywołaniu strażnika w testflight.yml', () => {
+    const app = JSON.parse(readFileSync(join(__dirname, '../app.json'), 'utf8')).expo.ios;
+    expect(app.entitlements?.['com.apple.developer.usernotifications.time-sensitive']).toBe(true);
+    const req = (f: string) => readFileSync(join(__dirname, '../scripts/ci', f), 'utf8').split('\n').map(l => l.replace(/#.*/, '').trim()).filter(Boolean);
+    expect(req('required-entitlements-app.txt').sort()).toEqual(['com.apple.developer.healthkit', 'com.apple.developer.usernotifications.time-sensitive']);
+    expect(req('required-entitlements-watch.txt')).toEqual(['com.apple.developer.healthkit']);
+    const y = wf('testflight.yml'); const calls = y.split('\n').filter(l => /check-entitlements\.sh /.test(l));
+    expect(calls).toHaveLength(4);
+    for (const c of calls) expect([c.trim(), /TreningWatch\.app/.test(c) ? c.includes('scripts/ci/required-entitlements-watch.txt') : c.includes('scripts/ci/required-entitlements-app.txt')]).toEqual([c.trim(), true]);
+  });
+  test('check-entitlements.sh z listą wymaganych: brak klucza w podpisanym pakiecie albo w pliku uprawnień celu (prebuild zgubił uprawnienie) = błąd; komplet = OK', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'ent-req-')); mkdirSync(join(dir, 'a.app'));
+    const HK = '<key>com.apple.developer.healthkit</key><true/>'; const TS = '<key>com.apple.developer.usernotifications.time-sensitive</key><true/>';
+    const req = join(dir, 'req.txt'); writeFileSync(req, '# komentarz\ncom.apple.developer.healthkit\ncom.apple.developer.usernotifications.time-sensitive\n');
+    const run = (src: string, xml: string) => { const s = join(dir, 's.entitlements'); writeFileSync(s, `<plist><dict>${src}</dict></plist>`); const f = join(dir, 'x.xml'); writeFileSync(f, `<plist><dict>${xml}<key>get-task-allow</key><false/></dict></plist>`);
+      try { return { rc: 0, out: execFileSync('bash', [join(__dirname, '../scripts/ci/check-entitlements.sh'), join(dir, 'a.app'), s, 'T', req], { env: { ...process.env, ENTITLEMENTS_XML: f } }).toString() }; } catch (e: any) { return { rc: e.status as number, out: String(e.stdout) }; } };
+    expect(run(HK + TS, HK + TS).rc).toBe(0);
+    expect(run(HK + TS, HK)).toMatchObject({ rc: 1, out: expect.stringContaining('bez uprawnienia com.apple.developer.usernotifications.time-sensitive') });
+    expect(run(HK, HK)).toMatchObject({ rc: 1, out: expect.stringContaining('wymagane com.apple.developer.usernotifications.time-sensitive') }); /* plik celu bez klucza — dawny strażnik by przepuścił */
+    expect(run(HK + TS, HK + TS + '<key>x</key><true/>').rc).toBe(0);
+    const missing = execFileSync('bash', ['-c', `bash ${join(__dirname, '../scripts/ci/check-entitlements.sh')} ${join(dir, 'a.app')} ${join(dir, 's.entitlements')} T ${join(dir, 'nie-ma.txt')}; echo rc=$?`], { env: { ...process.env, ENTITLEMENTS_XML: join(dir, 'x.xml') } }).toString();
+    expect(missing).toContain('rc=1'); /* lista wymaganych podana, ale pliku brak — błąd, nie ciche pominięcie */
+  });
   test('asc-iap-localizations.yml (14.10.2026): tylko ręcznie z wejściem tryb (dry-run domyślnie), ubuntu, odczyt treści, klucz maskowany w RUNNER_TEMP i usuwany zawsze, bez zapisów do repozytorium', () => {
     const y = wf('asc-iap-localizations.yml');
     expect(y).toMatch(/\non:\n  workflow_dispatch:\n    inputs:\n      tryb:\n/); expect(y).toMatch(/options: \[dry-run, apply\]\n\s+default: dry-run\n/);

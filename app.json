@@ -11,6 +11,9 @@
       "bundleIdentifier": "pl.lukasz.trening",
       "appleTeamId": "8NQ9GHY8GF",
       "supportsTablet": false,
+      "entitlements": {
+        "com.apple.developer.usernotifications.time-sensitive": true
+      },
       "icon": {
         "light": "./assets/icon.png",
         "dark": "./assets/icon-dark.png",

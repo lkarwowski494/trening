@@ -26,6 +26,10 @@ Notifications.setNotificationHandler({
 
 /** Stałe identyfikatory powiadomień (audyt r1): po restarcie apki da się anulować powiadomienie zaplanowane przed nim. */
 const REST_ID = 'rest-end'; const SET_ID = 'set-end';
+/** 19.10.2026 (test 0.20, lista napraw przed 1.0): koniec przerwy i serii jako powiadomienie „pilne” (iOS Time Sensitive) — przebija profil skupienia
+ * i podsumowanie powiadomień, gdy użytkownik na to pozwala (Ustawienia iOS). Wymaga uprawnienia com.apple.developer.usernotifications.time-sensitive
+ * (app.json; strażnik scripts/ci/check-entitlements.sh + required-entitlements-app.txt w testflight.yml). Inne powiadomienia zostają zwykłe. */
+const URGENT = { interruptionLevel: 'timeSensitive' as const };
 const listeners = new Set<() => void>();
 /*
  * Runda 19: Live Activity jest jedna naraz (moduł natywny kończy poprzednią przy starcie). Zapamiętujemy, czyja jest
@@ -140,7 +144,7 @@ async function reschedule() {
   try {
     await Notifications.scheduleNotificationAsync({
       identifier: REST_ID,
-      content: { title: t('Przerwa minęła'), body: T.last ? t('Nic więcej do zrobienia — możesz zakończyć trening.') /* audyt 0.10, LIVE-04 (decyzja B) */ : t('Następna seria.'), sound: soundOn() },
+      content: { title: t('Przerwa minęła'), body: T.last ? t('Nic więcej do zrobienia — możesz zakończyć trening.') /* audyt 0.10, LIVE-04 (decyzja B) */ : t('Następna seria.'), sound: soundOn(), ...URGENT },
       trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds, repeats: false },
     });
   } catch {}
@@ -165,7 +169,7 @@ export async function refreshScheduled() { if (T.on && !T.alarmed && T.endAt > D
 async function scheduleSetEnd() {
   await cancelSetScheduled();
   const left = Math.round((S.startAt + S.targetSec * 1000 - Date.now()) / 1000);
-  if (S.targetSec > 0 && left > 0) { try { await Notifications.scheduleNotificationAsync({ identifier: SET_ID, content: { title: t('Seria skończona'), body: t('Minęło {s} s.', { s: S.targetSec }), sound: soundOn() }, trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: left, repeats: false } }); } catch {} }
+  if (S.targetSec > 0 && left > 0) { try { await Notifications.scheduleNotificationAsync({ identifier: SET_ID, content: { title: t('Seria skończona'), body: t('Minęło {s} s.', { s: S.targetSec }), sound: soundOn(), ...URGENT }, trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: left, repeats: false } }); } catch {} }
 }
 /**
  * Zatrzymuje stoper i zwraca czas serii w sekundach. Przy serii z celem wynik nie przekracza celu — gdy telefon był

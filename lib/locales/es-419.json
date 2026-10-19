@@ -31,7 +31,6 @@
  "Dodaj ciężar": "Agregar lastre",
  "Dodaj notatkę": "Agregar nota",
  "Dodane: {list}.": "Agregados: {list}.",
- "Domyślnie głos tylko w słuchawkach.": "De forma predeterminada, la voz suena solo con audífonos.",
  "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Agrega entrenamientos desde CSV, sin borrar datos y con vista previa.",
  "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Agrega entrenamientos desde CSV. No cambia los datos actuales. Vista previa antes de guardar.",
  "Dzień po dniu te same główne partie: {list}. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku.": "Mismos grupos musculares principales en días seguidos: {list}. Suele ser mejor con un día de descanso de por medio; con el mismo número de series semanales también está bien.",
@@ -215,5 +214,7 @@
  "Generator uwzględnia Twój cel serii z Ustawień.": "El generador tiene en cuenta tu objetivo de series de Configuración.",
  "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "El lugar se agregará a la lista de lugares (Configuración → Lugares y equipo).",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lugar solo para este entrenamiento. Elige el equipo que tienes allí; no hace falta escribir pesos.",
- "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lugar para {a} – {b}. Elige el equipo que tienes allí; no hace falta escribir pesos."
+ "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lugar para {a} – {b}. Elige el equipo que tienes allí; no hace falta escribir pesos.",
+ "W słuchawkach": "Con audífonos",
+ "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Al empezar el descanso, el teléfono anuncia el siguiente ejercicio, el peso y las repeticiones. Con audífonos: solo con audífonos conectados; También por el altavoz: también sin audífonos, por el altavoz del teléfono (incluso en modo silencio); Desactivados: sin avisos."
 }

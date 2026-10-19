@@ -30,6 +30,7 @@ import { wu, wField, wInKeep, fmtW } from '@/lib/units';
 import { cancelButton, confirmSkipTimedSet } from '@/lib/confirm';
 import { adaptCandidates, restoreCandidates } from '@/lib/adapt';
 import { TestWatchPanel } from '@/components/TestWatchPanel';
+import { voiceSetting, setVoiceSetting, voiceSettingLabel, VOICE_SETTINGS, type VoiceSetting } from '@/lib/voice';
 import { takeAutoAdapt } from '@/lib/adaptPick';
 
 /*
@@ -175,7 +176,7 @@ export default function ActiveWorkout() {
       <ScrollView testID="workout-scroll" contentContainerStyle={{ paddingBottom: 170 }} keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets scrollEventThrottle={64} onScroll={ev => { scrollY.current = ev.nativeEvent.contentOffset.y; checkRest(); }}>
         <View style={s.head}>
           <View style={{ flex: 1 }}><Text accessibilityLanguage={lang()} accessibilityRole="header" style={{ color: t.text, fontSize: 24, fontFamily: F.heavy }}>{w.templateName || tr('Trening')}</Text><LocationChip w={w} /><AdaptLine w={w} /><SessionClock w={w} /><SessionProgress w={w} /></View>
-          <Btn title={tr('Zakończ')} kind="primary" onPress={finish} />
+          <View style={{ alignItems: 'flex-end', gap: 6 }}><Btn title={tr('Zakończ')} kind="primary" onPress={finish} /><VoiceBtn /></View>
         </View>
         <TemplateNote w={w} />
         {st.settings.workoutView !== 'list' ? <FocusCard w={w} onDone={onDone} onFinish={finish} onStartSet={startSet} onCardY={y => { restY.current.card = y; checkRest(); }} onRestY={y => { restY.current.panel = y; checkRest(); }} /> : null}
@@ -258,6 +259,17 @@ function SessionClock({ w }: { w: Workout }) {
     </View>
     {paused ? <InfoTip id="pause" label={tr('Pauza — czas treningu stoi. Odhaczenie serii wznawia.')} info={tr('Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.')}><Muted style={{ fontSize: 12 }}>{tr('Pauza — czas treningu stoi. Odhaczenie serii wznawia.')}</Muted></InfoTip> : null}
   </View>;
+}
+
+/** 19.10.2026 (decyzja właściciela: „ludzie odkryją to w trakcie treningu”): przycisk „Głos” pod „Zakończ” (w kolumnie przycisku — nie wydłuża nagłówka ani nie przesuwa
+ * listy, jak dokładanie go do wiersza zegara; E2E 31 na interpreterze) — ikona pokazuje bieżący wybór „Zapowiedzi głosowe”,
+ * stuknięcie otwiera arkusz z trzema opcjami (jak „📍” miejsca; bez przełączania po kolei — nie trafimy przypadkiem w głośnik). Zmiana jest trwała — to samo pole co w Ustawieniach. */
+const VOICE_ICON: Record<VoiceSetting, string> = { off: '🔇', headphones: '🎧', speaker: '🔊' };
+function VoiceBtn() {
+  const [, force] = useState(0); const v = voiceSetting(); const cancel = VOICE_SETTINGS.length;
+  const pick = () => ActionSheetIOS.showActionSheetWithOptions({ title: tr('Zapowiedzi głosowe'), options: [...VOICE_SETTINGS.map(k => (k === v ? '✓ ' : '') + voiceSettingLabel(k)), tr('Anuluj')], cancelButtonIndex: cancel }, i => {
+    const k = VOICE_SETTINGS[i]; if (i === cancel || !k) return; setVoiceSetting(k); force(x => x + 1); });
+  return <Btn testID="voice-btn" small kind="ghost" title={`${VOICE_ICON[v]} ${tr('Głos')}`} accessibilityLabel={tr('Zapowiedzi głosowe: {mode}', { mode: voiceSettingLabel(v) })} accessibilityHint={tr('Tapnij, by zmienić.')} onPress={pick} />;
 }
 
 /** Runda 75 (T-016): postęp sesji, cienki pasek pod zegarem. Audyt 0.10 (D3, fala 2): serie ROBOCZE jedną funkcją store.workCount / workSetCount —

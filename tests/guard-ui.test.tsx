@@ -191,7 +191,7 @@ describe('Postępy: teksty objaśnień i powody pominięcia (dokładne brzmienie
   test('objaśnienie metody — trzy akapity i legenda skali (dokładne zdania)', async () => {
     await boot(mixed, '/progress'); expect(screen.queryByTestId('info-text-guard-method')).toBeNull(); await openInfo('guard-method'); const i = within(screen.getByTestId('info-text-guard-method'));
     expect(i.getByText('Kierunek dla partii liczymy tylko na ćwiczeniach, które były w obu tygodniach. Ćwiczenia bez punktu odniesienia — nowe w tym tygodniu albo nierobione teraz — pomijamy w obu tygodniach.')).toBeTruthy();
-    expect(i.getByText('Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.')).toBeTruthy();
+    expect(i.getByText('Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.')).toBeTruthy();
     expect(i.getByText('Ten tydzień = wykonane + plan. Plan bez ciężarów (≥) — bez porównania. Tydzień deloadu nie jest porównywany.')).toBeTruthy();
     expect(screen.getByText('Skala do dwukrotności celu, » — więcej.', { includeHiddenElements: true })).toBeTruthy();
   });
@@ -204,6 +204,34 @@ describe('Postępy: teksty objaśnień i powody pominięcia (dokładne brzmienie
     }, '/progress');
     await tap(within(screen.getByTestId('grow-klatka')).getByRole('button')); await flushAll(5); expect(within(screen.getByTestId('gdet-klatka')).getByText(`Pominięte (bez punktu odniesienia): ${exName(ex('Seated Cable Chest Press'))} — nierobione w tym tygodniu`)).toBeTruthy();
     expect(within(screen.getByTestId('grow-dwugłowe')).getByText('bez porównania — plan bez ciężaru lub powtórzeń')).toBeTruthy();
+  });
+});
+
+describe('Postępy: poprzednio 0 kg i rozdzielone powody pominięcia (lista napraw przed 1.0, 19.10.2026)', () => {
+  const DB = 'Bench Press (hantle)'; const PU = 'Push Up';
+  test('regresja: Bench Press (hantle) 0 kg ×8 → 50 kg ×8 — klatka w grupie „więcej”, linia tonażu z „poprz. 0 kg” i linia ciężaru roboczego, bez „Pominięte”', async () => {
+    await boot(() => { addWorkout(at(9, 1), [[DB, sets(1, 0, 8)]], 'p'); addWorkout(at(9, 6), [[DB, sets(1, 50, 8)]], 'c'); S().settings.weeklySetGoals = { klatka: 1 }; store.saveCfg(); }, '/progress');
+    expect(within(screen.getByTestId('ggrp-up')).getByTestId('grow-klatka')).toBeTruthy();
+    const r = within(screen.getByTestId('grow-klatka')); expect(r.getByText(new RegExp(`^tonaż/sesję ${SIGN_CHAR.up} \\d+ kg \\(poprz\\. 0 kg\\) · ciężar roboczy ${SIGN_CHAR.up} 50 kg \\(poprz\\. 0 kg\\)$`))).toBeTruthy();
+    expect(r.getByRole('button').props.accessibilityLabel).toMatch(/^klatka: więcej\./);
+    await tap(r.getByRole('button')); await flushAll(5); expect(within(screen.getByTestId('gdet-klatka')).queryByText(/^Pominięte/)).toBeNull();
+  });
+  test('powody rozdzielone: „bez punktu odniesienia” tylko dla nowych/nierobionych, osobno „bez ciężaru” i „plan bez ciężaru lub powtórzeń” — bez sprzecznego „bez punktu odniesienia: … — bez ciężaru”', async () => {
+    await boot(() => {
+      addWorkout(at(9, 1), [[BP, sets(3, 60, 8)], [PU, sets(3, 0, 12)], ['Seated Cable Chest Press', sets(3, 40, 10)], [LC, [{ weight: '', reps: 10 }]]], 'p');
+      addWorkout(at(9, 6), [[BP, sets(3, 70, 8)], [PU, sets(3, 0, 15)], [DB, sets(3, 20, 10)]], 'c'); setPlan({ 3: tpl('A', [LC, [row('', ''), row('', '')]]) });
+    }, '/progress');
+    await tap(within(screen.getByTestId('grow-klatka')).getByRole('button')); await flushAll(5); const d = within(screen.getByTestId('gdet-klatka'));
+    expect(d.getByTestId('gskip-ref-klatka').props.children).toBe(`Pominięte (bez punktu odniesienia): ${exName(ex(DB))} — nowe w tym tygodniu; ${exName(ex('Seated Cable Chest Press'))} — nierobione w tym tygodniu`);
+    expect(d.getByTestId('gskip-noweight-klatka').props.children).toBe(`Pominięte (bez ciężaru): ${exName(ex(PU))}`);
+    expect(d.queryByText(/bez punktu odniesienia.*bez ciężaru/)).toBeNull(); expect(d.queryByTestId('gskip-plan-klatka')).toBeNull();
+    await tap(within(screen.getByTestId('grow-dwugłowe')).getByRole('button')); await flushAll(5); const e = within(screen.getByTestId('gdet-dwugłowe'));
+    expect(e.getByTestId('gskip-plan-dwugłowe').props.children).toBe(`Pominięte (plan bez ciężaru lub powtórzeń): ${exName(ex(LC))}`); expect(e.queryByTestId('gskip-ref-dwugłowe')).toBeNull();
+  });
+  test('EN: rozdzielone powody pominięcia po angielsku', async () => {
+    await boot(() => { addWorkout(at(9, 1), [[BP, sets(3, 60, 8)], [PU, sets(3, 0, 12)]], 'p'); addWorkout(at(9, 6), [[BP, sets(3, 70, 8)], [PU, sets(3, 0, 15)], [DB, sets(3, 20, 10)]], 'c'); }, '/progress', 'en');
+    await tap(within(screen.getByTestId('grow-klatka')).getByRole('button')); await flushAll(5); const d = within(screen.getByTestId('gdet-klatka'));
+    expect(d.getByTestId('gskip-ref-klatka').props.children).toMatch(/^Left out \(nothing to compare with\): .+ — new this week$/); expect(d.getByTestId('gskip-noweight-klatka').props.children).toMatch(/^Left out \(no weight\): /);
   });
 });
 

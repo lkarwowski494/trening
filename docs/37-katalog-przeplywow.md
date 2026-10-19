@@ -7,11 +7,11 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **151** (realny: 129, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **152** (realny: 130, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
-| `nowy` | 19 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
+| `nowy` | 20 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
 | `istniejacy` | 113 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
 | `aktualizacja` | 6 | Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34). |
 | `kopia` | 4 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
@@ -19,7 +19,7 @@ Przepływów w katalogu: **151** (realny: 129, brzegowy: 22); pominięte jako te
 
 | Pokrycie | Przepływów |
 |---|---|
-| Maestro | 124 |
+| Maestro | 125 |
 | Maestro (eksperyment) | 4 |
 | Jest | 10 |
 | Telefon | 13 |
@@ -183,7 +183,7 @@ Przepływów w katalogu: **151** (realny: 129, brzegowy: 22); pominięte jako te
 | US-15 | **„Napisz do nas” (poczta) i prośba o ocenę w App Store** — Więcej → O aplikacji → „Napisz do nas” → okno poczty → Po kilku treningach — systemowa prośba o ocenę | Poczta z adresem i wersją; prośba o ocenę nie częściej niż pozwala iOS. | `istniejacy` | brzegowy | Telefon (lista kontrolna wydania) — Okno poczty i systemowa prośba o ocenę to okna systemowe, nieobecne w TestFlight/na symulatorze CI. |
 | US-16 | **Wyczyszczenie wszystkich danych: pytanie, „Nie” zostawia dane, potem „Wyczyść”** — Ustawienia → „Wyczyść wszystkie dane” → Anuluj → jeszcze raz → Wyczyść → Powrót do „Pierwszych kroków” | Przed czyszczeniem powstaje kopia bezpieczeństwa; po czyszczeniu stan jak nowy. | `istniejacy` | realny | Maestro: `.maestro/32-regularny-uzytkownik.yaml` |
 | US-17 | **„Poproś o nową funkcję” obok „Napisz do nas” (Więcej → O aplikacji)** — Więcej → O aplikacji → Pod wersją są dwa wiersze: „Napisz do nas” i „Poproś o nową funkcję” → Stuknięcie „Poproś o nową funkcję” → wiadomość e-mail do wsparcia z tematem „Pomysł: ” i szablonem (tylko ręcznie na telefonie z Pocztą) | Oba wiersze są widoczne; „Poproś o nową funkcję” otwiera pocztę tą samą drogą co „Napisz do nas”; bez poczty — okno z adresem wsparcia. | `istniejacy` | brzegowy | Maestro: `.maestro/15-masa-licencje.yaml` |
-| US-18 | **Objaśnienie pod ⓘ: rozwiń w miejscu, zwiń, źródło zostaje w tekście** — Ustawienia → przy „Widok treningu” stuknij ⓘ → Przeczytaj opis pod polem; stuknij ⓘ ponownie → To samo przy nagłówku „Cel serii na partię w tygodniu” (źródło ACSM) i przy przełączniku „Głos także przez głośnik telefonu” | Tekst objaśniający pojawia się pod nagłówkiem i znika po drugim stuknięciu; ⓘ nie przełącza przełącznika; na wierzchu zostaje tylko krótki opis; stan nie jest zapamiętywany. | `istniejacy` | realny | Maestro: `.maestro/53-objasnienia-info.yaml` |
+| US-18 | **Objaśnienie pod ⓘ: rozwiń w miejscu, zwiń, źródło zostaje w tekście** — Ustawienia → przy „Widok treningu” stuknij ⓘ → Przeczytaj opis pod polem; stuknij ⓘ ponownie → To samo przy nagłówku „Cel serii na partię w tygodniu” (źródło ACSM) i przy polu „Zapowiedzi głosowe” | Tekst objaśniający pojawia się pod nagłówkiem i znika po drugim stuknięciu; ⓘ nie zmienia wyboru; na wierzchu zostaje tylko krótki opis; stan nie jest zapamiętywany. | `istniejacy` | realny | Maestro: `.maestro/53-objasnienia-info.yaml` |
 
 ## DA — Kopia, eksport, import, czyszczenie danych
 
@@ -233,9 +233,10 @@ Przepływów w katalogu: **151** (realny: 129, brzegowy: 22); pominięte jako te
 |---|---|---|---|---|---|
 | W2-01 | **Zegarek Apple Watch: serie „zrobione inaczej” wracają jako „do uzupełnienia”** — Trening w toku, zegarek (atrapa, panel „Test watch”) wysyła „differ” → W wierszu serii „do uzupełnienia” i przycisk „Gotowe” → Rekord nie liczy takiej serii, dopóki nie jest uzupełniona | Znacznik i rekord zgodne z docs/35; seria z zegarka „zrobiona inaczej” ma w wierszu „do uzupełnienia”. | `istniejacy` | realny | Maestro: `.maestro/50-zegarek-do-uzupelnienia.yaml` |
 | W2-02 | **Zakończenie treningu z seriami „do uzupełnienia”: „Zakończ mimo to” i „Anuluj”** — Zostaw serię z zegarka „do uzupełnienia” → „Zakończ” → okno „Serie do uzupełnienia” → Anuluj (wraca) / „Zakończ mimo to” (zapis z wartościami z planu) | Anuluj wraca do treningu ze znacznikiem; „Zakończ mimo to” przechodzi do zwykłego potwierdzenia, sesja zapisana bez śladu znacznika. | `istniejacy` | realny | Maestro: `.maestro/50-zegarek-do-uzupelnienia.yaml` |
-| W2-03 | **Głos w słuchawkach: przełącznik „Głos także przez głośnik telefonu” i „Posłuchaj przykładu”** — Ustawienia → Trening → przełącznik głośnika (domyślnie wył., z opisem) → Włącz → „Posłuchaj przykładu” (aplikacja działa dalej) → Restart: przełącznik nadal włączony; wyłączenie | Ustawienie zapisane i trwałe; przykład nie psuje ekranu (dźwięku symulator nie odtwarza). | `istniejacy` | realny | Maestro: `.maestro/51-glos-ustawienia.yaml` |
+| W2-03 | **Zapowiedzi głosowe w Ustawieniach: wybór „Wyłączone / W słuchawkach / Także przez głośnik” i „Posłuchaj przykładu”** — Ustawienia → Trening → „Zapowiedzi głosowe” (domyślnie „W słuchawkach”, opis pod ⓘ) → „Także przez głośnik” → „Posłuchaj przykładu” (aplikacja działa dalej) → „Wyłączone” → restart: wybór zachowany; powrót do „W słuchawkach” | Wybór zapisany i trwały; przykład nie psuje ekranu (dźwięku symulator nie odtwarza). | `istniejacy` | realny | Maestro: `.maestro/51-glos-ustawienia.yaml` |
+| W2-07 | **Przycisk „Głos” na ekranie treningu: zmiana zapowiedzi w trakcie treningu (trwała)** — Trening w toku → przycisk „🎧 Głos” pod „Zakończ” → Arkusz „Zapowiedzi głosowe”: Wyłączone / ✓ W słuchawkach / Także przez głośnik / Anuluj → „Wyłączone”, potem Anuluj (bez zmiany), potem „Także przez głośnik” → Więcej → Ustawienia: „Zapowiedzi głosowe” pokazuje ten sam wybór | Etykieta przycisku i ikona za bieżącym wyborem; wybór z treningu jest trwały i ten sam co w Ustawieniach; Anuluj nic nie zmienia. | `nowy` | realny | Maestro: `.maestro/54-glos-w-treningu.yaml` |
 | W2-06 | **Brak głosu dla języka aplikacji w telefonie: wskazówka z instrukcją pobrania** — Telefon bez głosu dla języka aplikacji (np. język bez pobranego głosu) → Ustawienia → Trening | Pod „Posłuchaj przykładu” wskazówka „Pobierz go w Ustawieniach iOS (Dostępność).”; przełącznik i przykład dalej dostępne. | `istniejacy` | brzegowy | Jest: `tests/voice-ui.test.tsx`, `tests/voice.test.ts` — Czy symulator CI ma głos dla języka, zależy od obrazu systemu i nie da się go usunąć z Maestro; stan „brak głosu” sprawdzony na atrapie modułu (hasVoice = false), też po angielsku. |
-| W2-04 | **Głos na żywo: zapowiedź następnego ćwiczenia w AirPods, ściszanie muzyki, tryb cichy** — AirPods + muzyka, odhacz serię → Zapowiedź: ćwiczenie, ciężar, powtórzenia; muzyka wraca do pełnej głośności | Zapowiedź zgodna z podpisem przerwy; brak głosu bez słuchawek i przełącznika. | `istniejacy` | realny | Telefon (lista kontrolna wydania) — Mowa AVSpeechSynthesizer i trasa dźwięku (słuchawki, ściszanie) nie są słyszalne ani mierzalne na symulatorze CI. |
+| W2-04 | **Głos na żywo: zapowiedź następnego ćwiczenia w AirPods, ściszanie muzyki, tryb cichy** — AirPods + muzyka, odhacz serię → Zapowiedź: ćwiczenie, ciężar, powtórzenia; muzyka wraca do pełnej głośności | Zapowiedź zgodna z podpisem przerwy; brak głosu bez słuchawek przy „W słuchawkach”, głos przez głośnik przy „Także przez głośnik”, cisza przy „Wyłączone”. | `istniejacy` | realny | Telefon (lista kontrolna wydania) — Mowa AVSpeechSynthesizer i trasa dźwięku (słuchawki, ściszanie) nie są słyszalne ani mierzalne na symulatorze CI. |
 | W2-05 | **Apple Watch i drugi zegarek (Connect IQ) na prawdziwych zegarkach: parowanie, odliczanie, wibracja, „Połącz z telefonem”** — Sparuj zegarek, zacznij trening na telefonie → Odhaczaj z zegarka, zgub zasięg po dwóch seriach, wróć | Zdarzenia dochodzą po kolei, zegarek niczego nie zgaduje. | `istniejacy` | realny | Telefon (lista kontrolna wydania) — Zegarek, WatchConnectivity i Connect IQ nie istnieją na symulatorze iPhone’a w CI; Apple Watch bywa tylko wirtualny, zegarek Connect IQ tylko fizyczny. |
 
 ## Pominięte jako teoretyczne (CLAUDE.md, „Audyty i wydania” pkt 6)

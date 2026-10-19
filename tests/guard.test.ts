@@ -147,6 +147,37 @@ describe('progressGuard: tonaż w dół, ciężar roboczy w górę = progres (de
   });
 });
 
+describe('progressGuard: poprzednio 0 kg, teraz z ciężarem = więcej (decyzja właściciela 19.10.2026)', () => {
+  const DB = 'Bench Press (hantle)';
+  test('regresja (test 0.20 na telefonie): tydzień −1 Bench Press (hantle) 0 kg ×8, tydzień 0 50×8 → klatka „więcej”, ćwiczenie porównane (nie pominięte jako noWeight)', () => {
+    PREV(DB, sets(1, 0, 8)); CUR(DB, sets(1, 50, 8)); const p = part(G(), 'klatka');
+    expect(p.dir).toBe('up'); expect(p.skipped).toEqual([]); expect(p.compared).toHaveLength(1); expect(p.byWeight).toBe(true);
+    expect(p.compared[0]).toMatchObject({ dir: 'up', fromZero: true, byWeight: false, now: { weight: 50 }, before: { weight: 0, perSession: 0 } });
+    expect(p.tonnage).toEqual({ now: p.compared[0].now.perSession, before: 0, dir: 'up' }); /* wiersz pokazuje liczby wprost: poprz. 0 kg */
+    expect(G().less).toEqual([]);
+  });
+  test('w sumie ważonej ćwiczenie „z 0 kg” liczy się jak progres ciężarem (bez zmiany): nie zawyża partii — spadek drugiego ćwiczenia decyduje', () => {
+    PREV(DB, sets(1, 0, 8)); PREV(BP, sets(3, 100, 10), 3); CUR(DB, sets(1, 50, 8)); CUR(BP, sets(3, 90, 10), 7);
+    expect(part(G(), 'klatka')).toMatchObject({ dir: 'down', byWeight: true });
+  });
+  test('z drugim ćwiczeniem bez zmian → więcej (jak progres ciężarem)', () => {
+    PREV(DB, sets(1, 0, 8)); PREV(BP, sets(3, 100, 10), 3); CUR(DB, sets(1, 50, 8)); CUR(BP, sets(3, 100, 10), 7);
+    expect(part(G(), 'klatka').dir).toBe('up');
+  });
+  test('masa ciała bez dociążenia przed i z dociążeniem teraz → nadal pominięte (brak ciężaru z definicji)', () => {
+    addWorkout(at(9, 1), [[PU, [{ addKg: 0, reps: 10 }]]], 'p'); addWorkout(at(9, 6), [[PU, [{ addKg: 10, reps: 10 }]]], 'c'); const p = part(G(), 'klatka');
+    expect(p.dir).toBe('unknown'); expect(p.skipped).toEqual([{ exerciseId: ex(PU).id, reason: 'noWeight' }]);
+  });
+  test('0 kg w obu tygodniach → nadal noWeight; teraz 0 kg po ciężarze → noWeight (bez zmian zachowania)', async () => {
+    PREV(DB, sets(1, 0, 8)); CUR(DB, sets(1, 0, 8)); expect(part(G(), 'klatka').skipped).toEqual([{ exerciseId: ex(DB).id, reason: 'noWeight' }]);
+    await fresh(); PREV(DB, sets(1, 50, 8)); CUR(DB, sets(1, 0, 8)); expect(part(G(), 'klatka').skipped).toEqual([{ exerciseId: ex(DB).id, reason: 'noWeight' }]);
+  });
+  test('ćwiczenie na czas (bez tonażu z definicji) nie korzysta z reguły', () => {
+    addWorkout(at(9, 1), [[PL, [{ durationSec: 60 }]]], 'p'); addWorkout(at(9, 6), [[PL, [{ durationSec: 60, weight: 10 }]]], 'c');
+    expect(part(G(), 'core').skipped).toEqual([{ exerciseId: ex(PL).id, reason: 'noWeight' }]);
+  });
+});
+
 describe('progressGuard: agregacja ćwiczeń partii (główna 1, pomocnicza 0,5)', () => {
   test('ćwiczenie pomocnicze liczy się z wagą SECONDARY_SHARE: spadek tonażu głównego 100 kg vs wzrost pomocniczego 150 kg (×0,5) → wzrost sumy ważonej', () => {
     PREV(BP, sets(1, 100, 10)); PREV('Overhead Press (sztanga)', sets(1, 100, 10), 3); /* triceps: pomocniczy w obu; barki: główne w OHP */

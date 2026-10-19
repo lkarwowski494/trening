@@ -1,5 +1,5 @@
 // Warstwa D planu testów (09): kontrola konfiguracji natywnej po `expo prebuild` (bez Maca).
-// Sprawdza: entitlements (tylko HealthKit), lokalizacje InfoPlist.strings, linkowanie modułu RestActivity,
+// Sprawdza: entitlements (dokładnie lista scripts/ci/required-entitlements-app.txt: HealthKit + time-sensitive), lokalizacje InfoPlist.strings, linkowanie modułu RestActivity,
 // cel widżetu i kolor akcentu, brak UIBackgroundModes, NSSupportsLiveActivities = true, UIFileSharingEnabled i LSSupportsOpeningDocumentsInPlace (kopie w Plikach, runda 75), identyczny RestTimerAttributes.swift
 // w module i widżecie (rundy 63–64); audyt NAT-05 (08.10.2026): MARKETING_VERSION = app.json, iPhone, cele ≤ aplikacja, tylko opisy HealthKit,
 // ikona 1024, InfoPlist.strings we wszystkich językach; NAT-07: bez ExtensionStorage, ekran startowy z wariantem ciemnym.
@@ -15,7 +15,8 @@ try {
   const ent = readFileSync(root + 'ios/Trening/Trening.entitlements', 'utf8');
   ok(ent.includes('com.apple.developer.healthkit'), 'entitlements: brak HealthKit');
   ok(!ent.includes('aps-environment'), 'entitlements: aps-environment (Push) — darmowe Apple ID tego nie podpisze');
-  { const keys = [...ent.matchAll(/<key>([^<]+)<\/key>/g)].map(m => m[1]); ok(keys.length === 1 && keys[0] === 'com.apple.developer.healthkit', 'entitlements: tylko HealthKit, są: ' + keys.join(', ')); } /* runda 63: dokładny zbiór kluczy */
+  { const want = readFileSync(root + 'scripts/ci/required-entitlements-app.txt', 'utf8').split('\n').map(l => l.replace(/#.*/, '').trim()).filter(Boolean).sort();
+    const keys = [...ent.matchAll(/<key>([^<]+)<\/key>/g)].map(m => m[1]).sort(); ok(JSON.stringify(keys) === JSON.stringify(want), `entitlements: dokładnie ${want.join(', ')}, są: ` + keys.join(', ')); } /* runda 63: dokładny zbiór kluczy; 19.10.2026: + time-sensitive, lista w jednym miejscu (strażnik testflight.yml) */
   for (const l of ['pl', 'en']) { const p = root + `ios/Trening/Supporting/${l}.lproj/InfoPlist.strings`; ok(existsSync(p) && /NSHealthUpdateUsageDescription = "[^"]{10,}"/.test(readFileSync(p, 'utf8')) && /NSHealthShareUsageDescription = "[^"]{10,}"/.test(readFileSync(p, 'utf8')), `InfoPlist.strings ${l}: brak lub zły format`); }
   const plist = readFileSync(root + 'ios/Trening/Info.plist', 'utf8');
   ok(!plist.includes('UIBackgroundModes'), 'Info.plist: UIBackgroundModes (nieużywany tryb w tle)');

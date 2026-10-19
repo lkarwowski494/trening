@@ -1259,10 +1259,6 @@
   "en": "Default rest (s)"
  },
  {
-  "pl": "Domyślnie głos tylko w słuchawkach.",
-  "en": "By default the voice plays only through headphones."
- },
- {
   "pl": "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.",
   "en": "Adds workouts from CSV — without deleting data, with a preview."
  },
@@ -1616,8 +1612,8 @@
   "en": "glute-ham raise"
  },
  {
-  "pl": "Głos także przez głośnik telefonu",
-  "en": "Voice also through the phone speaker"
+  "pl": "Głos",
+  "en": "Voice"
  },
  {
   "pl": "główna",
@@ -2592,8 +2588,8 @@
   "en": "metres"
  },
  {
-  "pl": "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.",
-  "en": "Measure: tonnage (sets × reps × weight) averaged per session of the exercise, so a different number of sessions does not inflate the result. When tonnage fell but the working weight rose, it counts as more."
+  "pl": "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.",
+  "en": "Measure: tonnage (sets × reps × weight) averaged per session of the exercise, so a different number of sessions does not inflate the result. When tonnage fell but the working weight rose — or the weight was 0 before and is not now — it counts as more."
  },
  {
   "pl": "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.",
@@ -2755,6 +2751,10 @@
  {
   "pl": "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
   "en": "At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Plan tab."
+ },
+ {
+  "pl": "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.",
+  "en": "At the start of the rest the phone announces the next exercise, weight and reps. In headphones — only with headphones connected; Also through the speaker — also without headphones, through the phone speaker (even in silent mode); Off — no announcements."
  },
  {
   "pl": "Na podstawie: {list}. Własne sformułowania.",
@@ -3853,8 +3853,16 @@
   "en": "Skipping the exercise stops the timing — this time won’t be saved."
  },
  {
+  "pl": "Pominięte (bez ciężaru): {list}",
+  "en": "Left out (no weight): {list}"
+ },
+ {
   "pl": "Pominięte (bez punktu odniesienia): {list}",
   "en": "Left out (nothing to compare with): {list}"
+ },
+ {
+  "pl": "Pominięte (plan bez ciężaru lub powtórzeń): {list}",
+  "en": "Left out (plan without weight or reps): {list}"
  },
  {
   "pl": "pominięte dziś",
@@ -5071,6 +5079,10 @@
   "en": "yes — pick a band for each set"
  },
  {
+  "pl": "Także przez głośnik",
+  "en": "Also through the speaker"
+ },
+ {
   "pl": "talerz ({u})",
   "en": "plate ({u})"
  },
@@ -5816,8 +5828,8 @@
   "en": "In Progress a marked week shows as the letter D on the charts — you do not change it there."
  },
  {
-  "pl": "W słuchawkach zapowiedź następnego ćwiczenia pada na początku przerwy (gdy dźwięk jest włączony); przez głośnik telefonu tylko po włączeniu tego przełącznika.",
-  "en": "In headphones the next exercise is announced at the start of the rest (when sound is on); through the phone speaker only if you turn this switch on."
+  "pl": "W słuchawkach",
+  "en": "In headphones"
  },
  {
   "pl": "W tej wersji",
@@ -6208,6 +6220,10 @@
   "en": "Turn off plan: {name}"
  },
  {
+  "pl": "Wyłączone",
+  "en": "Off"
+ },
+ {
   "pl": "Wyłączyć plan?",
   "en": "Turn off the plan?"
  },
@@ -6552,8 +6568,20 @@
   "en": "Plan a deload from {date}"
  },
  {
+  "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.",
+  "en": "Announcements work when “Sound and vibration at the end of rest” is on. You can change the same setting with the “Voice” button on the workout screen."
+ },
+ {
+  "pl": "Zapowiedzi głosowe",
+  "en": "Voice announcements"
+ },
+ {
   "pl": "Zapowiedzi głosowe na początku przerwy: ćwiczenie, ciężar i powtórzenia.",
   "en": "Voice announcements at the start of the rest: exercise, weight and reps."
+ },
+ {
+  "pl": "Zapowiedzi głosowe: {mode}",
+  "en": "Voice announcements: {mode}"
  },
  {
   "pl": "Zarządzaj subskrypcją",

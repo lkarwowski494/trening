@@ -2531,9 +2531,9 @@
    "kroki": [
     "Ustawienia → przy „Widok treningu” stuknij ⓘ",
     "Przeczytaj opis pod polem; stuknij ⓘ ponownie",
-    "To samo przy nagłówku „Cel serii na partię w tygodniu” (źródło ACSM) i przy przełączniku „Głos także przez głośnik telefonu”"
+    "To samo przy nagłówku „Cel serii na partię w tygodniu” (źródło ACSM) i przy polu „Zapowiedzi głosowe”"
    ],
-   "wynik": "Tekst objaśniający pojawia się pod nagłówkiem i znika po drugim stuknięciu; ⓘ nie przełącza przełącznika; na wierzchu zostaje tylko krótki opis; stan nie jest zapamiętywany.",
+   "wynik": "Tekst objaśniający pojawia się pod nagłówkiem i znika po drugim stuknięciu; ⓘ nie zmienia wyboru; na wierzchu zostaje tylko krótki opis; stan nie jest zapamiętywany.",
    "ekrany": [
     "/more/settings"
    ],
@@ -2541,7 +2541,7 @@
    "znaczniki": [
     "info-workout-view",
     "info-sets-goal",
-    "info-voice-speaker",
+    "info-voice-mode",
     "More information: Workout view"
    ]
   },
@@ -3080,24 +3080,53 @@
   },
   {
    "id": "W2-03",
-   "tytul": "Głos w słuchawkach: przełącznik „Głos także przez głośnik telefonu” i „Posłuchaj przykładu”",
+   "tytul": "Zapowiedzi głosowe w Ustawieniach: wybór „Wyłączone / W słuchawkach / Także przez głośnik” i „Posłuchaj przykładu”",
    "stan": "istniejacy",
    "wersja": "0.20",
    "realnosc": "realny",
    "kroki": [
-    "Ustawienia → Trening → przełącznik głośnika (domyślnie wył., z opisem)",
-    "Włącz → „Posłuchaj przykładu” (aplikacja działa dalej)",
-    "Restart: przełącznik nadal włączony; wyłączenie"
+    "Ustawienia → Trening → „Zapowiedzi głosowe” (domyślnie „W słuchawkach”, opis pod ⓘ)",
+    "„Także przez głośnik” → „Posłuchaj przykładu” (aplikacja działa dalej)",
+    "„Wyłączone” → restart: wybór zachowany; powrót do „W słuchawkach”"
    ],
-   "wynik": "Ustawienie zapisane i trwałe; przykład nie psuje ekranu (dźwięku symulator nie odtwarza).",
+   "wynik": "Wybór zapisany i trwały; przykład nie psuje ekranu (dźwięku symulator nie odtwarza).",
    "ekrany": [
     "/more/settings"
    ],
    "scenariusz": "51-glos-ustawienia.yaml",
    "znaczniki": [
-    "sw-Voice also through the phone speaker",
+    "voice-mode-headphones",
+    "voice-mode-speaker",
+    "voice-mode-off",
+    "info-voice-mode",
     "Listen to an example",
-    "checked: true"
+    "selected: true"
+   ]
+  },
+  {
+   "id": "W2-07",
+   "tytul": "Przycisk „Głos” na ekranie treningu: zmiana zapowiedzi w trakcie treningu (trwała)",
+   "stan": "nowy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Trening w toku → przycisk „🎧 Głos” pod „Zakończ”",
+    "Arkusz „Zapowiedzi głosowe”: Wyłączone / ✓ W słuchawkach / Także przez głośnik / Anuluj",
+    "„Wyłączone”, potem Anuluj (bez zmiany), potem „Także przez głośnik”",
+    "Więcej → Ustawienia: „Zapowiedzi głosowe” pokazuje ten sam wybór"
+   ],
+   "wynik": "Etykieta przycisku i ikona za bieżącym wyborem; wybór z treningu jest trwały i ten sam co w Ustawieniach; Anuluj nic nie zmienia.",
+   "ekrany": [
+    "/",
+    "/more/settings"
+   ],
+   "scenariusz": "54-glos-w-treningu.yaml",
+   "znaczniki": [
+    "voice-btn",
+    "Voice announcements: In headphones",
+    "✓ In headphones",
+    "Also through the speaker",
+    "voice-mode-speaker"
    ]
   },
   {
@@ -3133,7 +3162,7 @@
     "AirPods + muzyka, odhacz serię",
     "Zapowiedź: ćwiczenie, ciężar, powtórzenia; muzyka wraca do pełnej głośności"
    ],
-   "wynik": "Zapowiedź zgodna z podpisem przerwy; brak głosu bez słuchawek i przełącznika.",
+   "wynik": "Zapowiedź zgodna z podpisem przerwy; brak głosu bez słuchawek przy „W słuchawkach”, głos przez głośnik przy „Także przez głośnik”, cisza przy „Wyłączone”.",
    "ekrany": [
     "/"
    ],
