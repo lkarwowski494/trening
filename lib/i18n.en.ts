@@ -1148,7 +1148,7 @@ export const EN: Record<string, string> = {
   'Szczegóły w Postępach': 'Details in Progress',
   'Strażnik progresji': 'Progress Guard',
   'Kierunek dla partii liczymy tylko na ćwiczeniach, które były w obu tygodniach. Ćwiczenia bez punktu odniesienia — nowe w tym tygodniu albo nierobione teraz — pomijamy w obu tygodniach.': 'The direction for a muscle group uses only exercises that appear in both weeks. Exercises with nothing to compare — new this week or not done now — are left out of both weeks.',
-  'Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.': 'Measure: tonnage (sets × reps × weight) averaged per session of the exercise, so a different number of sessions does not inflate the result. When tonnage fell but the working weight rose, it counts as more.',
+  'Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.': 'Measure: tonnage (sets × reps × weight) averaged per session of the exercise, so a different number of sessions does not inflate the result. When tonnage fell but the working weight rose — or the weight was 0 before and is not now — it counts as more.',
   'Ten tydzień = wykonane + plan. Plan bez ciężarów (≥) — bez porównania. Tydzień deloadu nie jest porównywany.': 'This week = done + plan. A plan without weights (≥) — no comparison. A deload week is not compared.',
   'Poniżej celu nawet z planem': 'Below goal even with the plan', 'Poniżej celu': 'Below goal',
   '{n} / {goal} serii': '{n} / {goal} sets',
@@ -1161,6 +1161,8 @@ export const EN: Record<string, string> = {
   'Porównywane ćwiczenia: tonaż/sesję i ciężar roboczy': 'Compared exercises: tonnage/session and working weight',
   'teraz': 'now', 'wcześniej': 'before',
   'Pominięte (bez punktu odniesienia): {list}': 'Left out (nothing to compare with): {list}',
+  'Pominięte (bez ciężaru): {list}': 'Left out (no weight): {list}',
+  'Pominięte (plan bez ciężaru lub powtórzeń): {list}': 'Left out (plan without weight or reps): {list}',
   'Bez serii: {list}': 'No sets: {list}',
   'Skala do dwukrotności celu, » — więcej.': 'Scale up to twice the goal; » — more.',
 };

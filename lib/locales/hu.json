@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Max. ismétlés segítséggel",
  "metr|metry|metrów": "méter|méter",
  "metra": "méter",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Mérték: tonnázs (sorozat × ismétlés × súly), a gyakorlat edzésenkénti átlagában, így a különböző edzésszám nem torzítja az eredményt. Ha a tonnázs csökkent, de a munkasúly nőtt, az többnek számít.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Mérték: tonnázs (sorozat × ismétlés × súly), a gyakorlat edzésenkénti átlagában, így a különböző edzésszám nem torzítja az eredményt. Ha a tonnázs csökkent, de a munkasúly nőtt — vagy korábban 0 volt a súly, most pedig nem —, az többnek számít.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "A fő helyszín nem törölhető — előbb állíts be egy másikat főnek.",
  "Miejsca i sprzęt": "Helyszínek és eszközök",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Edzéshelyek és „Igazítás a helyszínhez”: a módosítások csak a mai edzésre vonatkoznak — a sablon és a terv változatlan marad.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Kihagyod a gyakorlatot?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "A gyakorlat kihagyása megszakítja a mérést — ez az idő nem lesz mentve.",
  "Pominięte (bez punktu odniesienia): {list}": "Kihagyva (nincs összehasonlítási pont): {list}",
+ "Pominięte (bez ciężaru): {list}": "Kihagyva (súly nélkül): {list}",
  "pominięte dziś": "ma kihagyva",
  "Pominięte jako duplikaty: {n}": "Duplikátumként kihagyva: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Kihagyott sorok (érvénytelen adat): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Korábban kész: {name}",
  "Zwiń inne ćwiczenia": "Többi gyakorlat összecsukása",
  "Zwykle w: {l} — {name}. Zamienić?": "Általában itt: {l} — {name}. Cseréli?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Egyik testrész volumene sem nagyobb a korábbinál."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Egyik testrész volumene sem nagyobb a korábbinál.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Kihagyva (terv súly vagy ismétlés nélkül): {list}"
 }

@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Max. Wdh. mit Unterstützung",
  "metr|metry|metrów": "Meter|Meter",
  "metra": "Meter",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Maß: Tonnage (Sätze × Wiederholungen × Gewicht), im Durchschnitt pro Einheit der Übung — eine andere Zahl von Einheiten verfälscht das Ergebnis also nicht. Ist die Tonnage gefallen, das Arbeitsgewicht aber gestiegen, zählt das als mehr.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Maß: Tonnage (Sätze × Wiederholungen × Gewicht), im Durchschnitt pro Einheit der Übung — eine andere Zahl von Einheiten verfälscht das Ergebnis also nicht. Ist die Tonnage gefallen, das Arbeitsgewicht aber gestiegen — oder war das Gewicht vorher 0 und jetzt nicht mehr —, zählt das als mehr.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Den Hauptort kannst du nicht löschen — lege zuerst einen anderen Ort als Hauptort fest.",
  "Miejsca i sprzęt": "Orte und Ausrüstung",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Trainingsorte und „An den Ort anpassen“: Änderungen gelten nur für das heutige Training — Vorlage und Plan bleiben unverändert.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Übung überspringen?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Wenn du die Übung überspringst, wird die Messung abgebrochen — diese Zeit wird nicht gespeichert.",
  "Pominięte (bez punktu odniesienia): {list}": "Weggelassen (kein Vergleichspunkt): {list}",
+ "Pominięte (bez ciężaru): {list}": "Weggelassen (ohne Gewicht): {list}",
  "pominięte dziś": "heute übersprungen",
  "Pominięte jako duplikaty: {n}": "Als Duplikate übersprungen: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Übersprungene Zeilen (ungültige Daten): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Früher erledigt: {name}",
  "Zwiń inne ćwiczenia": "Andere Übungen einklappen",
  "Zwykle w: {l} — {name}. Zamienić?": "Meist in: {l} — {name}. Tauschen?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Keine Muskelgruppe hat mehr Volumen als zuvor."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Keine Muskelgruppe hat mehr Volumen als zuvor.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Weggelassen (Plan ohne Gewicht oder Wiederholungen): {list}"
 }

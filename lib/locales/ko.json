@@ -769,6 +769,7 @@
  "Pominąć ćwiczenie?": "이 운동을 건너뛸까요?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "종목을 건너뛰면 측정이 멈춥니다 — 이 시간은 저장되지 않습니다.",
  "Pominięte (bez punktu odniesienia): {list}": "제외됨(비교 기준 없음): {list}",
+ "Pominięte (bez ciężaru): {list}": "제외됨(무게 없음): {list}",
  "pominięte dziś": "오늘 건너뜀",
  "Pomiń": "건너뛰기",
  "Pomiń dziś": "오늘 건너뛰기",
@@ -1667,7 +1668,7 @@
  "funta": "파운드",
  "metr|metry|metrów": "미터",
  "metra": "미터",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "기준: 총 중량(세트 × 횟수 × 무게)을 그 운동의 1회 평균으로 봅니다. 운동 횟수가 달라도 결과가 왜곡되지 않습니다. 총 중량이 줄었어도 작업 무게가 늘었다면 늘어난 것으로 셉니다.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "기준: 총 중량(세트 × 횟수 × 무게)을 그 운동의 1회 평균으로 봅니다. 운동 횟수가 달라도 결과가 왜곡되지 않습니다. 총 중량이 줄었어도 작업 무게가 늘었거나 이전 무게가 0이었고 지금은 0이 아니라면 늘어난 것으로 셉니다.",
  "sekunda|sekundy|sekund": "초",
  "godzina|godziny|godzin": "시간",
  "Poproś o nową funkcję": "새 기능 요청하기",
@@ -1684,5 +1685,6 @@
  "brak danych": "데이터 없음",
  "brak poprzedniego okresu": "이전 기간 없음",
  "brak poprzedniego tygodnia": "지난주 없음",
- "część zaplanowanych serii nie ma ciężaru": "무게가 없는 예정 세트가 있음"
+ "część zaplanowanych serii nie ma ciężaru": "무게가 없는 예정 세트가 있음",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "제외됨(무게나 횟수가 없는 계획): {list}"
 }

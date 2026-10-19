@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Max ripetizioni con assistenza",
  "metr|metry|metrów": "metro|metri",
  "metra": "metri",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Misura: tonnellaggio (serie × ripetizioni × carico), in media per sessione dell’esercizio, quindi un numero diverso di sessioni non falsa il risultato. Se il tonnellaggio è sceso ma il carico di lavoro è salito, conta come più.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Misura: tonnellaggio (serie × ripetizioni × carico), in media per sessione dell’esercizio, quindi un numero diverso di sessioni non falsa il risultato. Se il tonnellaggio è sceso ma il carico di lavoro è salito — o prima il carico era 0 e ora non lo è — conta come più.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Non puoi eliminare il luogo principale: prima imposta un altro luogo come principale.",
  "Miejsca i sprzęt": "Luoghi e attrezzatura",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Luoghi di allenamento e «Adatta al luogo»: le modifiche valgono solo per l’allenamento di oggi; scheda e piano restano invariati.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Saltare l’esercizio?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Saltare l’esercizio interrompe il cronometraggio — questo tempo non verrà salvato.",
  "Pominięte (bez punktu odniesienia): {list}": "Esclusi (nessun termine di confronto): {list}",
+ "Pominięte (bez ciężaru): {list}": "Esclusi (senza carico): {list}",
  "pominięte dziś": "saltato oggi",
  "Pominięte jako duplikaty: {n}": "Saltati come duplicati: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Righe saltate (dati non validi): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Fatto prima: {name}",
  "Zwiń inne ćwiczenia": "Comprimi gli altri esercizi",
  "Zwykle w: {l} — {name}. Zamienić?": "Di solito in {l} — {name}. Sostituire?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Nessun gruppo muscolare ha più volume di prima."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Nessun gruppo muscolare ha più volume di prima.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Esclusi (piano senza carico o ripetizioni): {list}"
 }

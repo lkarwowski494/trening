@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Yardımlı maks. tekrar",
  "metr|metry|metrów": "metre|metre",
  "metra": "metre",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Ölçü: tonaj (set × tekrar × ağırlık), hareketin antrenman başına ortalaması; yani farklı antrenman sayısı sonucu bozmaz. Tonaj düştü ama çalışma ağırlığı arttıysa daha fazla sayılır.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Ölçü: tonaj (set × tekrar × ağırlık), hareketin antrenman başına ortalaması; yani farklı antrenman sayısı sonucu bozmaz. Tonaj düştü ama çalışma ağırlığı arttıysa — ya da ağırlık önceden 0 olup artık değilse — daha fazla sayılır.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Ana yer silinemez — önce başka bir yeri ana yer yapın.",
  "Miejsca i sprzęt": "Yerler ve ekipman",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Antrenman yerleri ve “Yere uyarla”: değişiklikler yalnızca bugünkü antrenmanı etkiler — şablon ve plan olduğu gibi kalır.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Egzersiz atlansın mı?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Egzersizi atlamak ölçümü durdurur — bu süre kaydedilmez.",
  "Pominięte (bez punktu odniesienia): {list}": "Çıkarıldı (karşılaştırma noktası yok): {list}",
+ "Pominięte (bez ciężaru): {list}": "Çıkarıldı (ağırlıksız): {list}",
  "pominięte dziś": "bugün atlandı",
  "Pominięte jako duplikaty: {n}": "Yinelenen olarak atlanan: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Atlanan satırlar (geçersiz veri): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Daha önce yapıldı: {name}",
  "Zwiń inne ćwiczenia": "Diğer egzersizleri daralt",
  "Zwykle w: {l} — {name}. Zamienić?": "Genelde: {l} — {name}. Değiştirilsin mi?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Hiçbir vücut bölgesinin hacmi öncekinden yüksek değil."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Hiçbir vücut bölgesinin hacmi öncekinden yüksek değil.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Çıkarıldı (ağırlığı veya tekrarı olmayan plan): {list}"
 }

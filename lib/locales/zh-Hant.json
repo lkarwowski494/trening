@@ -769,6 +769,7 @@
  "Pominąć ćwiczenie?": "要略過此動作嗎？",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "略過動作會停止計時 — 這段時間不會儲存。",
  "Pominięte (bez punktu odniesienia): {list}": "已略過（沒有比較對象）：{list}",
+ "Pominięte (bez ciężaru): {list}": "已略過（沒有重量）：{list}",
  "pominięte dziś": "今天已略過",
  "Pomiń": "略過",
  "Pomiń dziś": "今天略過",
@@ -1667,7 +1668,7 @@
  "funta": "磅",
  "metr|metry|metrów": "公尺",
  "metra": "公尺",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "衡量方式：總負荷量（組數 × 次數 × 重量），以該動作每次訓練的平均值計算，所以訓練次數不同也不會扭曲結果。若總負荷量下降但工作重量上升，仍算作增加。",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "衡量方式：總負荷量（組數 × 次數 × 重量），以該動作每次訓練的平均值計算，所以訓練次數不同也不會扭曲結果。若總負荷量下降但工作重量上升（或之前重量為 0、現在不是），仍算作增加。",
  "sekunda|sekundy|sekund": "秒",
  "godzina|godziny|godzin": "小時",
  "Poproś o nową funkcję": "請求新功能",
@@ -1684,5 +1685,6 @@
  "brak danych": "無資料",
  "brak poprzedniego okresu": "無前一期間",
  "brak poprzedniego tygodnia": "沒有上週",
- "część zaplanowanych serii nie ma ciężaru": "部分預定組數沒有重量"
+ "część zaplanowanych serii nie ma ciężaru": "部分預定組數沒有重量",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "已略過（沒有重量或次數的計畫）：{list}"
 }

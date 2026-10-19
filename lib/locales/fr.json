@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Rép. max avec assistance",
  "metr|metry|metrów": "mètre|mètres",
  "metra": "mètres",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Mesure : tonnage (séries × répétitions × charge), en moyenne par séance de l’exercice, donc un nombre de séances différent ne fausse pas le résultat. Si le tonnage a baissé mais que la charge de travail a augmenté, cela compte comme plus.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Mesure : tonnage (séries × répétitions × charge), en moyenne par séance de l’exercice, donc un nombre de séances différent ne fausse pas le résultat. Si le tonnage a baissé mais que la charge de travail a augmenté — ou si la charge était de 0 avant et ne l’est plus —, cela compte comme plus.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Impossible de supprimer le lieu principal — définissez d’abord un autre lieu comme principal.",
  "Miejsca i sprzęt": "Lieux et matériel",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Lieux d’entraînement et « Adapter au lieu » : les changements ne valent que pour l’entraînement du jour — le modèle et le plan restent inchangés.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Passer l’exercice ?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Passer l’exercice arrête le chrono — ce temps ne sera pas enregistré.",
  "Pominięte (bez punktu odniesienia): {list}": "Écartés (aucun point de comparaison) : {list}",
+ "Pominięte (bez ciężaru): {list}": "Écartés (sans charge) : {list}",
  "pominięte dziś": "passé aujourd’hui",
  "Pominięte jako duplikaty: {n}": "Ignorées comme doublons : {n}",
  "Pominięte wiersze (błędne dane): {n}": "Lignes ignorées (données non valides) : {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Fait plus tôt : {name}",
  "Zwiń inne ćwiczenia": "Replier les autres exercices",
  "Zwykle w: {l} — {name}. Zamienić?": "Habituellement à {l} — {name}. Remplacer ?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Aucun groupe musculaire n’a plus de volume qu’avant."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Aucun groupe musculaire n’a plus de volume qu’avant.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Écartés (plan sans charge ni répétitions) : {list}"
 }

@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Maks. gent. med assistance",
  "metr|metry|metrów": "meter|meter",
  "metra": "meter",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Mål: tonnage (sæt × gentagelser × vægt), i gennemsnit pr. træning med øvelsen, så et andet antal træninger ikke forvrænger resultatet. Er tonnagen faldet, men arbejdsvægten steget, tæller det som mere.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Mål: tonnage (sæt × gentagelser × vægt), i gennemsnit pr. træning med øvelsen, så et andet antal træninger ikke forvrænger resultatet. Er tonnagen faldet, men arbejdsvægten steget — eller var vægten 0 før og er det ikke nu — tæller det som mere.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Det primære sted kan ikke slettes — gør først et andet sted til primært.",
  "Miejsca i sprzęt": "Steder og udstyr",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Træningssteder og „Tilpas til stedet“: ændringer gælder kun dagens træning — skabelonen og planen forbliver uændrede.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Spring øvelsen over?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Springer du øvelsen over, stoppes tidtagningen — denne tid gemmes ikke.",
  "Pominięte (bez punktu odniesienia): {list}": "Udeladt (intet sammenligningspunkt): {list}",
+ "Pominięte (bez ciężaru): {list}": "Udeladt (uden vægt): {list}",
  "pominięte dziś": "sprunget over i dag",
  "Pominięte jako duplikaty: {n}": "Sprunget over som dubletter: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Sprungne rækker (ugyldige data): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Gjort tidligere: {name}",
  "Zwiń inne ćwiczenia": "Skjul andre øvelser",
  "Zwykle w: {l} — {name}. Zamienić?": "Normalt på {l} — {name}. Skift?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Ingen muskelgruppe har mere volumen end før."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Ingen muskelgruppe har mere volumen end før.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Udeladt (plan uden vægt eller gentagelser): {list}"
 }

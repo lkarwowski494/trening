@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Rep. max. cu asistență",
  "metr|metry|metrów": "metru|metri|de metri",
  "metra": "metri",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Măsură: tonaj (serii × repetări × greutate), în medie pe sesiune a exercițiului, astfel încât un număr diferit de sesiuni nu denaturează rezultatul. Dacă tonajul a scăzut, dar greutatea de lucru a crescut, se numără ca mai mult.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Măsură: tonaj (serii × repetări × greutate), în medie pe sesiune a exercițiului, astfel încât un număr diferit de sesiuni nu denaturează rezultatul. Dacă tonajul a scăzut, dar greutatea de lucru a crescut — sau greutatea a fost înainte 0, iar acum nu mai este —, se numără ca mai mult.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Locația principală nu poate fi ștearsă — mai întâi setează alta ca principală.",
  "Miejsca i sprzęt": "Locații și echipament",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Locuri de antrenament și „Adaptează la locație”: modificările se aplică doar antrenamentului de azi — șablonul și planul rămân neschimbate.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Omiți exercițiul?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Sărirea exercițiului oprește cronometrarea — acest timp nu va fi salvat.",
  "Pominięte (bez punktu odniesienia): {list}": "Omise (fără punct de comparație): {list}",
+ "Pominięte (bez ciężaru): {list}": "Omise (fără greutate): {list}",
  "pominięte dziś": "sărit azi",
  "Pominięte jako duplikaty: {n}": "Omise ca duplicate: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Rânduri omise (date nevalide): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Făcut mai devreme: {name}",
  "Zwiń inne ćwiczenia": "Restrânge celelalte exerciții",
  "Zwykle w: {l} — {name}. Zamienić?": "De obicei în: {l} — {name}. Înlocuiți?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Nicio grupă musculară nu are volum mai mare decât înainte."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Nicio grupă musculară nu are volum mai mare decât înainte.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Omise (plan fără greutate sau repetări): {list}"
 }

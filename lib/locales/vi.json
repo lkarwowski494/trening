@@ -769,6 +769,7 @@
  "Pominąć ćwiczenie?": "Bỏ qua bài tập này?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Bỏ qua bài tập sẽ dừng việc đo giờ — thời gian này sẽ không được lưu.",
  "Pominięte (bez punktu odniesienia): {list}": "Đã bỏ qua (không có mốc so sánh): {list}",
+ "Pominięte (bez ciężaru): {list}": "Đã bỏ qua (không có mức tạ): {list}",
  "pominięte dziś": "đã bỏ qua hôm nay",
  "Pomiń": "Bỏ qua",
  "Pomiń dziś": "Bỏ qua hôm nay",
@@ -1667,7 +1668,7 @@
  "funta": "pound",
  "metr|metry|metrów": "mét",
  "metra": "mét",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Thước đo: tổng khối lượng nâng (số hiệp × số lần × mức tạ), tính trung bình cho mỗi buổi tập bài đó, nên số buổi khác nhau không làm sai lệch kết quả. Nếu tổng khối lượng giảm nhưng mức tạ làm việc tăng, vẫn tính là nhiều hơn.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Thước đo: tổng khối lượng nâng (số hiệp × số lần × mức tạ), tính trung bình cho mỗi buổi tập bài đó, nên số buổi khác nhau không làm sai lệch kết quả. Nếu tổng khối lượng giảm nhưng mức tạ làm việc tăng — hoặc trước đó mức tạ là 0 và giờ thì không — vẫn tính là nhiều hơn.",
  "sekunda|sekundy|sekund": "giây",
  "godzina|godziny|godzin": "giờ",
  "Poproś o nową funkcję": "Đề xuất tính năng mới",
@@ -1684,5 +1685,6 @@
  "brak danych": "không có dữ liệu",
  "brak poprzedniego okresu": "không có kỳ trước",
  "brak poprzedniego tygodnia": "không có tuần trước",
- "część zaplanowanych serii nie ma ciężaru": "một số hiệp dự kiến chưa có mức tạ"
+ "część zaplanowanych serii nie ma ciężaru": "một số hiệp dự kiến chưa có mức tạ",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Đã bỏ qua (kế hoạch không có mức tạ hoặc số lần): {list}"
 }

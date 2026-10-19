@@ -2592,8 +2592,8 @@
   "en": "metres"
  },
  {
-  "pl": "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.",
-  "en": "Measure: tonnage (sets × reps × weight) averaged per session of the exercise, so a different number of sessions does not inflate the result. When tonnage fell but the working weight rose, it counts as more."
+  "pl": "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.",
+  "en": "Measure: tonnage (sets × reps × weight) averaged per session of the exercise, so a different number of sessions does not inflate the result. When tonnage fell but the working weight rose — or the weight was 0 before and is not now — it counts as more."
  },
  {
   "pl": "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.",
@@ -3853,8 +3853,16 @@
   "en": "Skipping the exercise stops the timing — this time won’t be saved."
  },
  {
+  "pl": "Pominięte (bez ciężaru): {list}",
+  "en": "Left out (no weight): {list}"
+ },
+ {
   "pl": "Pominięte (bez punktu odniesienia): {list}",
   "en": "Left out (nothing to compare with): {list}"
+ },
+ {
+  "pl": "Pominięte (plan bez ciężaru lub powtórzeń): {list}",
+  "en": "Left out (plan without weight or reps): {list}"
  },
  {
   "pl": "pominięte dziś",

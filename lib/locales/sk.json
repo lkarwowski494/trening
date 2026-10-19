@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Max opakovaní s asistenciou",
  "metr|metry|metrów": "meter|metre|metrov",
  "metra": "metra",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Miera: tonáž (série × opakovania × váha) v priemere na tréning cviku, takže iný počet tréningov výsledok neskreslí. Ak tonáž klesla, ale pracovná váha stúpla, počíta sa to ako viac.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Miera: tonáž (série × opakovania × váha) v priemere na tréning cviku, takže iný počet tréningov výsledok neskreslí. Ak tonáž klesla, ale pracovná váha stúpla — alebo bola váha predtým 0 a teraz nie je — počíta sa to ako viac.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Hlavné miesto nevymažeš — najprv nastav ako hlavné iné miesto.",
  "Miejsca i sprzęt": "Miesta a vybavenie",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Miesta tréningu a „Prispôsobiť miestu“: zmeny platia len pre dnešný tréning — šablóna a plán ostávajú bez zmeny.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Preskočiť cvik?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Vynechanie cviku preruší meranie — tento čas sa neuloží.",
  "Pominięte (bez punktu odniesienia): {list}": "Vynechané (bez porovnávacieho bodu): {list}",
+ "Pominięte (bez ciężaru): {list}": "Vynechané (bez váhy): {list}",
  "pominięte dziś": "dnes vynechané",
  "Pominięte jako duplikaty: {n}": "Preskočené ako duplicity: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Preskočené riadky (neplatné údaje): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Hotovo skôr: {name}",
  "Zwiń inne ćwiczenia": "Zbaliť iné cviky",
  "Zwykle w: {l} — {name}. Zamienić?": "Zvyčajne v: {l} — {name}. Zameniť?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Žiadna partia nemá väčší objem ako predtým."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Žiadna partia nemá väčší objem ako predtým.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Vynechané (plán bez váhy alebo opakovaní): {list}"
 }

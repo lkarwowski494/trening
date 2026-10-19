@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Макс. понављања уз асистенцију",
  "metr|metry|metrów": "метар|метра|метара",
  "metra": "метра",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Мера: тонажа (серије × понављања × тежина), у просеку по тренингу вежбе, па другачији број тренинга не кривира резултат. Ако је тонажа пала, а радна тежина порасла, то се рачуна као више.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Мера: тонажа (серије × понављања × тежина), у просеку по тренингу вежбе, па другачији број тренинга не кривира резултат. Ако је тонажа пала, а радна тежина порасла — или је тежина раније била 0, а сада није — то се рачуна као више.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Главно место не можеш да обришеш — прво постави друго место као главно.",
  "Miejsca i sprzęt": "Места и опрема",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Места тренинга и „Прилагоди месту“: измене важе само за данашњи тренинг — шаблон и план остају непромењени.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Прескочити вежбу?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Прескакање вежбе прекида мерење — ово време неће бити сачувано.",
  "Pominięte (bez punktu odniesienia): {list}": "Изостављено (без тачке поређења): {list}",
+ "Pominięte (bez ciężaru): {list}": "Изостављено (без тежине): {list}",
  "pominięte dziś": "прескочено данас",
  "Pominięte jako duplikaty: {n}": "Прескочено као дупликати: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Прескочени редови (неисправни подаци): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Урађено раније: {name}",
  "Zwiń inne ćwiczenia": "Скупи остале вежбе",
  "Zwykle w: {l} — {name}. Zamienić?": "Обично на месту {l} — {name}. Заменити?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Ниједан део тела нема већи волумен него раније."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Ниједан део тела нема већи волумен него раније.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Изостављено (план без тежине или понављања): {list}"
 }

@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Maks. atkārtojumi ar palīdzību",
  "metr|metry|metrów": "metru|metrs|metri",
  "metra": "metri",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Mērs: tonnāža (sērijas × atkārtojumi × svars) vidēji uz vingrinājuma treniņu, tāpēc cits treniņu skaits rezultātu neizkropļo. Ja tonnāža samazinājusies, bet darba svars palielinājies, tas tiek skaitīts kā vairāk.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Mērs: tonnāža (sērijas × atkārtojumi × svars) vidēji uz vingrinājuma treniņu, tāpēc cits treniņu skaits rezultātu neizkropļo. Ja tonnāža samazinājusies, bet darba svars palielinājies — vai agrāk svars bija 0, bet tagad nav —, tas tiek skaitīts kā vairāk.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Galveno vietu nevar dzēst — vispirms iestati citu vietu kā galveno.",
  "Miejsca i sprzęt": "Vietas un aprīkojums",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Treniņu vietas un „Pielāgot vietai“: izmaiņas attiecas tikai uz šodienas treniņu — veidne un plāns paliek nemainīti.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Izlaist vingrinājumu?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Izlaižot vingrinājumu, mērīšana tiks pārtraukta — šis laiks netiks saglabāts.",
  "Pominięte (bez punktu odniesienia): {list}": "Izlaists (nav salīdzinājuma punkta): {list}",
+ "Pominięte (bez ciężaru): {list}": "Izlaists (bez svara): {list}",
  "pominięte dziś": "šodien izlaists",
  "Pominięte jako duplikaty: {n}": "Izlaisti kā dublikāti: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Izlaistās rindas (nederīgi dati): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Izdarīts agrāk: {name}",
  "Zwiń inne ćwiczenia": "Sakļaut citus vingrinājumus",
  "Zwykle w: {l} — {name}. Zamienić?": "Parasti vietā {l} — {name}. Mainīt?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Nevienai muskuļu grupai apjoms nav lielāks nekā iepriekš."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Nevienai muskuļu grupai apjoms nav lielāks nekā iepriekš.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Izlaists (plāns bez svara vai atkārtojumiem): {list}"
 }

@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Max toistot avustettuna",
  "metr|metry|metrów": "metri|metriä",
  "metra": "metriä",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Mittari: tonnimäärä (sarjat × toistot × paino) keskimäärin liikkeen kertaa kohden, joten eri määrä kertoja ei vääristä tulosta. Jos tonnimäärä laski mutta työpaino nousi, se lasketaan lisäykseksi.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Mittari: tonnimäärä (sarjat × toistot × paino) keskimäärin liikkeen kertaa kohden, joten eri määrä kertoja ei vääristä tulosta. Jos tonnimäärä laski mutta työpaino nousi — tai paino oli aiemmin 0 eikä ole nyt — se lasketaan lisäykseksi.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Pääpaikkaa ei voi poistaa — aseta ensin toinen paikka pääpaikaksi.",
  "Miejsca i sprzęt": "Paikat ja välineet",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Harjoituspaikat ja ”Mukauta paikkaan”: muutokset koskevat vain tämän päivän treeniä — pohja ja suunnitelma pysyvät ennallaan.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Ohitetaanko liike?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Liikkeen ohittaminen keskeyttää ajanoton — tätä aikaa ei tallenneta.",
  "Pominięte (bez punktu odniesienia): {list}": "Pois jätetty (ei vertailukohtaa): {list}",
+ "Pominięte (bez ciężaru): {list}": "Pois jätetty (ilman painoa): {list}",
  "pominięte dziś": "ohitettu tänään",
  "Pominięte jako duplikaty: {n}": "Ohitettu kaksoiskappaleina: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Ohitetut rivit (virheelliset tiedot): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Tehty aiemmin: {name}",
  "Zwiń inne ćwiczenia": "Pienennä muut liikkeet",
  "Zwykle w: {l} — {name}. Zamienić?": "Yleensä paikassa {l} — {name}. Vaihdetaanko?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Millään lihasryhmällä ei ole enemmän volyymia kuin aiemmin."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Millään lihasryhmällä ei ole enemmän volyymia kuin aiemmin.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Pois jätetty (suunnitelma ilman painoa tai toistoja): {list}"
 }

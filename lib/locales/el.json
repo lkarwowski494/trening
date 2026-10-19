@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Μέγ. επαναλήψεις με βοήθεια",
  "metr|metry|metrów": "μέτρο|μέτρα",
  "metra": "μέτρα",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Μέτρο: τονάζ (σετ × επαναλήψεις × βάρος), κατά μέσο όρο ανά προπόνηση της άσκησης, ώστε διαφορετικός αριθμός προπονήσεων να μη στρεβλώνει το αποτέλεσμα. Αν το τονάζ έπεσε αλλά το βάρος εργασίας αυξήθηκε, μετράει ως περισσότερο.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Μέτρο: τονάζ (σετ × επαναλήψεις × βάρος), κατά μέσο όρο ανά προπόνηση της άσκησης, ώστε διαφορετικός αριθμός προπονήσεων να μη στρεβλώνει το αποτέλεσμα. Αν το τονάζ έπεσε αλλά το βάρος εργασίας αυξήθηκε — ή αν το βάρος ήταν πριν 0 και τώρα δεν είναι — μετράει ως περισσότερο.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Ο κύριος χώρος δεν διαγράφεται — όρισε πρώτα άλλον χώρο ως κύριο.",
  "Miejsca i sprzęt": "Χώροι και εξοπλισμός",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Χώροι προπόνησης και «Προσαρμογή στον χώρο»: οι αλλαγές ισχύουν μόνο για τη σημερινή προπόνηση — το πρότυπο και το πλάνο μένουν όπως ήταν.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Παράλειψη της άσκησης;",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Η παράλειψη της άσκησης διακόπτει τη χρονομέτρηση — αυτός ο χρόνος δεν θα αποθηκευτεί.",
  "Pominięte (bez punktu odniesienia): {list}": "Παραλείφθηκαν (χωρίς σημείο σύγκρισης): {list}",
+ "Pominięte (bez ciężaru): {list}": "Παραλείφθηκαν (χωρίς βάρος): {list}",
  "pominięte dziś": "παραλείφθηκε σήμερα",
  "Pominięte jako duplikaty: {n}": "Παραλείφθηκαν ως διπλότυπα: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Παραλείφθηκαν γραμμές (μη έγκυρα δεδομένα): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Έγινε νωρίτερα: {name}",
  "Zwiń inne ćwiczenia": "Σύμπτυξη άλλων ασκήσεων",
  "Zwykle w: {l} — {name}. Zamienić?": "Συνήθως σε: {l} — {name}. Αλλαγή;",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Κανένα μέρος σώματος δεν έχει μεγαλύτερο όγκο από πριν."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Κανένα μέρος σώματος δεν έχει μεγαλύτερο όγκο από πριν.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Παραλείφθηκαν (πρόγραμμα χωρίς βάρος ή επαναλήψεις): {list}"
 }

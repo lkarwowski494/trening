@@ -769,6 +769,7 @@
  "Pominąć ćwiczenie?": "Langkau latihan ini?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Melangkau senaman akan menghentikan pengukuran masa — masa ini tidak akan disimpan.",
  "Pominięte (bez punktu odniesienia): {list}": "Dilangkau (tiada titik perbandingan): {list}",
+ "Pominięte (bez ciężaru): {list}": "Dilangkau (tanpa beban): {list}",
  "pominięte dziś": "dilangkau hari ini",
  "Pomiń": "Langkau",
  "Pomiń dziś": "Langkau hari ini",
@@ -1667,7 +1668,7 @@
  "funta": "paun",
  "metr|metry|metrów": "meter",
  "metra": "meter",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Ukuran: tonase (set × ulangan × beban), purata bagi setiap sesi latihan itu, jadi bilangan sesi yang berbeza tidak memesongkan keputusan. Jika tonase turun tetapi beban kerja naik, ia dikira sebagai lebih.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Ukuran: tonase (set × ulangan × beban), purata bagi setiap sesi latihan itu, jadi bilangan sesi yang berbeza tidak memesongkan keputusan. Jika tonase turun tetapi beban kerja naik — atau sebelum ini beban ialah 0 dan kini tidak — ia dikira sebagai lebih.",
  "sekunda|sekundy|sekund": "saat",
  "godzina|godziny|godzin": "jam",
  "Poproś o nową funkcję": "Minta ciri baharu",
@@ -1684,5 +1685,6 @@
  "brak danych": "tiada data",
  "brak poprzedniego okresu": "tiada tempoh sebelumnya",
  "brak poprzedniego tygodnia": "tiada minggu sebelumnya",
- "część zaplanowanych serii nie ma ciężaru": "sesetengah set terancang tiada berat"
+ "część zaplanowanych serii nie ma ciężaru": "sesetengah set terancang tiada berat",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Dilangkau (pelan tanpa beban atau ulangan): {list}"
 }

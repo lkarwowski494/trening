@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Max herhalingen met hulp",
  "metr|metry|metrów": "meter|meter",
  "metra": "meter",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Maat: tonnage (sets × herhalingen × gewicht), gemiddeld per sessie van de oefening, zodat een ander aantal sessies de uitkomst niet vertekent. Is de tonnage gedaald maar het werkgewicht gestegen, dan telt dat als meer.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Maat: tonnage (sets × herhalingen × gewicht), gemiddeld per sessie van de oefening, zodat een ander aantal sessies de uitkomst niet vertekent. Is de tonnage gedaald maar het werkgewicht gestegen — of was het gewicht eerder 0 en nu niet meer — dan telt dat als meer.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "De hoofdlocatie kun je niet verwijderen — maak eerst een andere locatie de hoofdlocatie.",
  "Miejsca i sprzęt": "Locaties en materiaal",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Trainingslocaties en “Aanpassen aan locatie”: wijzigingen gelden alleen voor de training van vandaag — sjabloon en schema blijven ongewijzigd.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Oefening overslaan?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "De oefening overslaan stopt de timing — deze tijd wordt niet bewaard.",
  "Pominięte (bez punktu odniesienia): {list}": "Weggelaten (geen vergelijkingspunt): {list}",
+ "Pominięte (bez ciężaru): {list}": "Weggelaten (zonder gewicht): {list}",
  "pominięte dziś": "vandaag overgeslagen",
  "Pominięte jako duplikaty: {n}": "Overgeslagen als duplicaat: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Overgeslagen rijen (ongeldige gegevens): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Eerder gedaan: {name}",
  "Zwiń inne ćwiczenia": "Klap andere oefeningen in",
  "Zwykle w: {l} — {name}. Zamienić?": "Meestal op {l} — {name}. Wisselen?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Geen enkele spiergroep heeft meer volume dan eerder."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Geen enkele spiergroep heeft meer volume dan eerder.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Weggelaten (plan zonder gewicht of herhalingen): {list}"
 }

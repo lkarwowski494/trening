@@ -1,9 +1,9 @@
-import { getState, getRev, exById, finishedWorkouts, wallTs, isWorking, workSetCount, setVolume, effectiveLoad, isDeloadWeek } from '@/lib/store';
+import { getState, getRev, exById, finishedWorkouts, wallTs, isWorking, workSetCount, setVolume, effectiveLoad, isDeloadWeek, isBW } from '@/lib/store';
 import { dayKeyOf, hasPlan } from '@/lib/plan';
 import { thisMonday, setsSplitByMuscle, setsGoal } from '@/lib/stats';
 import { estimateItem, plannedDays, plannedRest } from '@/lib/progress';
 import { emptySplit, sumSplit, SECONDARY_SHARE, type SetSplit } from '@/lib/setSplit';
-import { MUSCLES, type Muscle } from '@/lib/seed';
+import { MUSCLES, hasWeight, hasReps, type Muscle, type Exercise } from '@/lib/seed';
 import { volOut, wOut, fmtNum } from '@/lib/units';
 import { fmtDayMonth } from '@/lib/calendar';
 import { t } from '@/lib/i18n';
@@ -19,6 +19,9 @@ import { t } from '@/lib/i18n';
  *  - miara: tonaż (serie robocze × powtórzenia × ciężar — store.setVolume) ŚREDNIO NA SESJĘ ćwiczenia (sesja = trening albo zaplanowany dzień z tym ćwiczeniem),
  *    więc FBW raz kontra dwa razy w tygodniu nie daje fałszywego progresu;
  *  - tonaż spadł, a ciężar roboczy ćwiczenia (najwyższy ciężar serii roboczych) wzrósł → ćwiczenie liczy się jako progres (zmiana ciężaru = zamierzona progresja);
+ *  - ćwiczenie obciążane (nie masa ciała, miara z ciężarem i powtórzeniami) zapisane w tygodniu porównawczym z 0 kg (tonaż 0), a teraz z ciężarem → też progres ciężarem
+ *    (decyzja właściciela 19.10.2026: „ciężar roboczy wzrósł = progres”); w sumie ważonej liczy się jak progres ciężarem (jak poprzednio, więc nie zawyża partii),
+ *    a wiersz pokazuje liczby wprost (poprz. 0 kg). Masa ciała bez dociążenia — nadal bez porównania (brak ciężaru z definicji);
  *  - partia: suma ćwiczeń z wagą (główna 1, pomocnicza SECONDARY_SHARE); „tyle samo” = równe po zaokrągleniu do liczby, którą widać na ekranie (volOut);
  *  - bez porównania („?”): brak wspólnych ćwiczeń, plan bez ciężaru lub powtórzeń („≥”), ćwiczenia bez ciężaru (masa ciała bez dociążenia, czas, gumy — tonaż 0);
  *  - tydzień oznaczony deload: bez oceny; tydzień po deloadzie porównujemy z ostatnim tygodniem bez deloadu i mówimy, z którym (badacz, pkt 13: konwencja);
@@ -32,13 +35,14 @@ export const GUARD_DELOAD_LOOKBACK_WEEKS = 8;
 export type GuardDir = 'up' | 'same' | 'down' | 'unknown' | 'new' | 'none' | 'deload';
 export type SkipReason = 'onlyNow' | 'onlyBefore' | 'noWeight' | 'unknownPlan';
 type Side = { sessions: number; perSession: number; /** najwyższy ciężar serii roboczych (kg) */ weight: number };
-export type GuardExercise = { exerciseId: string; /** waga w partii: 1 (główna) albo SECONDARY_SHARE (pomocnicza) */ share: number; now: Side; before: Side; dir: 'up' | 'same' | 'down'; /** tonaż spadł, a ciężar roboczy wzrósł */ byWeight: boolean };
+export type GuardExercise = { exerciseId: string; /** waga w partii: 1 (główna) albo SECONDARY_SHARE (pomocnicza) */ share: number; now: Side; before: Side; dir: 'up' | 'same' | 'down'; /** tonaż spadł, a ciężar roboczy wzrósł */ byWeight: boolean;
+  /** ćwiczenie obciążane zapisane poprzednio z 0 kg (tonaż 0), teraz z ciężarem — progres ciężarem (19.10.2026) */ fromZero: boolean };
 export type GuardSkip = { exerciseId: string; reason: SkipReason };
 export type GuardPart = {
   part: Muscle; dir: GuardDir; goal: number; done: SetSplit; planned: SetSplit; /** wykonane + zaplanowane, serie ważone */ total: number;
   /** brakujące serie do celu PO całym planie (0, gdy cel osiągnięty albo tydzień deload) */ gap: number; over: number; belowGoal: boolean; /** dni (RRRR-MM-DD) zaplanowanych treningów z tą partią */ plannedDays: string[];
   /** suma ważona tonażu na sesję porównywanych ćwiczeń (kg) i jej kierunek (wprost z liczb; bez poprawki o ciężar) albo null */ tonnage: { now: number; before: number; dir: 'up' | 'same' | 'down' } | null;
-  /** którekolwiek porównywane ćwiczenie to progres ciężarem przy spadku tonażu */ byWeight: boolean; compared: GuardExercise[]; skipped: GuardSkip[];
+  /** którekolwiek porównywane ćwiczenie to progres ciężarem (spadek tonażu przy wzroście ciężaru albo poprzednio 0 kg — fromZero) */ byWeight: boolean; compared: GuardExercise[]; skipped: GuardSkip[];
 };
 export type Guard = {
   weekStart: number; current: boolean; deload: boolean; hasPlan: boolean; /** poniedziałek tygodnia porównawczego (bez deloadu) albo null */ comparedStart: number | null;
@@ -88,6 +92,8 @@ function plannedDaysByPart(now: number): Map<string, string[]> {
   }
   return out;
 }
+/** Ćwiczenie, w którym ciężar jest częścią tonażu (nie masa ciała, miara z ciężarem i powtórzeniami) — 0 kg to wtedy zapis „bez ciężaru”, nie brak ciężaru z definicji. */
+const weighted = (ex: Exercise) => !isBW(ex) && hasWeight(ex.metric ?? 'weight_reps') && hasReps(ex.metric ?? 'weight_reps');
 const hasWorkoutIn = (start: number, end: number) => finishedWorkouts().some(w => inRange(w, start, end));
 const dirOf = (a: number, b: number): 'up' | 'same' | 'down' => { const x = volOut(a), y = volOut(b); return x > y ? 'up' : x < y ? 'down' : 'same'; }; /* „tyle samo” = ta sama liczba na ekranie */
 
@@ -109,15 +115,17 @@ export function progressGuard(now = Date.now(), offset = 0): Guard {
       const ex = exById(id); if (!ex) continue; const share = (ex.muscles ?? []).includes(part) ? 1 : (ex.secondaryMuscles ?? []).includes(part) ? SECONDARY_SHARE : 0; if (!share) continue;
       const a = nowAgg.get(id); const b = prevAgg.get(id);
       if (!b) { skipped.push({ exerciseId: id, reason: 'onlyNow' }); continue; } if (!a) { skipped.push({ exerciseId: id, reason: 'onlyBefore' }); continue; }
-      if (a.unknown > 0) { skipped.push({ exerciseId: id, reason: 'unknownPlan' }); continue; } if (!(a.tonnage > 0) || !(b.tonnage > 0)) { skipped.push({ exerciseId: id, reason: 'noWeight' }); continue; }
+      if (a.unknown > 0) { skipped.push({ exerciseId: id, reason: 'unknownPlan' }); continue; }
+      const fromZero = weighted(ex) && a.tonnage > 0 && !(b.tonnage > 0) && wOut(a.maxWeight) > wOut(b.maxWeight); /* poprzednio 0 kg, teraz z ciężarem (19.10.2026) */
+      if (!fromZero && (!(a.tonnage > 0) || !(b.tonnage > 0))) { skipped.push({ exerciseId: id, reason: 'noWeight' }); continue; }
       const now: Side = { sessions: a.sessions, perSession: a.tonnage / a.sessions, weight: a.maxWeight }; const before: Side = { sessions: b.sessions, perSession: b.tonnage / b.sessions, weight: b.maxWeight };
-      const dir = dirOf(now.perSession, before.perSession); compared.push({ exerciseId: id, share, now, before, dir, byWeight: dir === 'down' && wOut(now.weight) > wOut(before.weight) });
+      const dir = dirOf(now.perSession, before.perSession); compared.push({ exerciseId: id, share, now, before, dir, byWeight: dir === 'down' && wOut(now.weight) > wOut(before.weight), fromZero });
     }
-    const byWeight = compared.some(c => c.byWeight); let tonnage: GuardPart['tonnage'] = null; let dir: GuardDir;
+    const byWeight = compared.some(c => c.byWeight || c.fromZero); let tonnage: GuardPart['tonnage'] = null; let dir: GuardDir;
     if (total <= 0) dir = 'none'; else if (deload) dir = 'deload'; else if (!hasPrev) dir = 'new'; else if (!compared.length) dir = 'unknown';
     else {
       const cur = compared.reduce((s, c) => s + c.share * c.now.perSession, 0); const prev = compared.reduce((s, c) => s + c.share * c.before.perSession, 0);
-      const eff = compared.reduce((s, c) => s + c.share * (c.byWeight ? c.before.perSession : c.now.perSession), 0); /* progres ciężarem: tonaż tego ćwiczenia liczy się jak poprzednio (nie jako spadek) */
+      const eff = compared.reduce((s, c) => s + c.share * (c.byWeight || c.fromZero ? c.before.perSession : c.now.perSession), 0); /* progres ciężarem: tonaż tego ćwiczenia liczy się jak poprzednio (nie jako spadek ani wzrost od 0) */
       tonnage = { now: cur, before: prev, dir: dirOf(cur, prev) }; const e = dirOf(eff, prev); dir = e === 'same' && byWeight ? 'up' : e;
     }
     const belowGoal = !deload && total > 0 && total < goal;

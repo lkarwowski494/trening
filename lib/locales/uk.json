@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Макс. повторень з допомогою",
  "metr|metry|metrów": "метр|метри|метрів",
  "metra": "метра",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Міра: тоннаж (підходи × повторення × вага) в середньому на тренування з вправою, тож інша кількість тренувань не спотворює результат. Якщо тоннаж впав, а робоча вага зросла, це рахується як більше.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Міра: тоннаж (підходи × повторення × вага) в середньому на тренування з вправою, тож інша кількість тренувань не спотворює результат. Якщо тоннаж впав, а робоча вага зросла — або раніше вага була 0, а тепер ні, — це рахується як більше.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Основне місце не можна видалити — спершу зроби основним інше місце.",
  "Miejsca i sprzęt": "Місця й обладнання",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Місця тренувань і «Пристосувати до місця»: зміни діють лише для сьогоднішнього тренування — шаблон і план залишаються без змін.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Пропустити вправу?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Пропуск вправи перерве вимірювання — цей час не буде збережено.",
  "Pominięte (bez punktu odniesienia): {list}": "Пропущено (без точки порівняння): {list}",
+ "Pominięte (bez ciężaru): {list}": "Пропущено (без ваги): {list}",
  "pominięte dziś": "пропущено сьогодні",
  "Pominięte jako duplikaty: {n}": "Пропущено як дублікати: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Пропущено рядків (неправильні дані): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Виконано раніше: {name}",
  "Zwiń inne ćwiczenia": "Згорнути інші вправи",
  "Zwykle w: {l} — {name}. Zamienić?": "Зазвичай у: {l} — {name}. Замінити?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Жодна частина тіла не має більшого обсягу, ніж раніше."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Жодна частина тіла не має більшого обсягу, ніж раніше.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Пропущено (план без ваги чи повторень): {list}"
 }

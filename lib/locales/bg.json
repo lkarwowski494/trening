@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Макс. повторения с асистенция",
  "metr|metry|metrów": "метър|метра",
  "metra": "метра",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Мярка: тонаж (серии × повторения × тежест), средно на тренировка с упражнението, така че различният брой тренировки не изкривява резултата. Ако тонажът е спаднал, но работната тежест е нараснала, това се брои като повече.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Мярка: тонаж (серии × повторения × тежест), средно на тренировка с упражнението, така че различният брой тренировки не изкривява резултата. Ако тонажът е спаднал, но работната тежест е нараснала — или преди тежестта е била 0, а сега не е — това се брои като повече.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Основното място не може да се изтрие — първо задай друго място като основно.",
  "Miejsca i sprzęt": "Места и оборудване",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Места за тренировка и „Адаптирай към мястото“: промените важат само за днешната тренировка — шаблонът и планът остават непроменени.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Пропускане на упражнението?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Пропускането на упражнението спира засичането — това време няма да се запази.",
  "Pominięte (bez punktu odniesienia): {list}": "Пропуснати (без точка за сравнение): {list}",
+ "Pominięte (bez ciężaru): {list}": "Пропуснати (без тежест): {list}",
  "pominięte dziś": "пропуснато днес",
  "Pominięte jako duplikaty: {n}": "Пропуснати като дубликати: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Пропуснати редове (невалидни данни): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Направено по-рано: {name}",
  "Zwiń inne ćwiczenia": "Свиване на другите упражнения",
  "Zwykle w: {l} — {name}. Zamienić?": "Обикновено в: {l} — {name}. Замяна?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Никоя мускулна група няма по-голям обем от преди."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Никоя мускулна група няма по-голям обем от преди.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Пропуснати (план без тежест или повторения): {list}"
 }

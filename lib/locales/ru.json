@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Макс. повторений с помощью",
  "metr|metry|metrów": "метр|метра|метров",
  "metra": "метра",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Мера: тоннаж (подходы × повторения × вес) в среднем на одну тренировку с упражнением, поэтому другое число тренировок не искажает результат. Если тоннаж упал, а рабочий вес вырос, это считается как больше.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Мера: тоннаж (подходы × повторения × вес) в среднем на одну тренировку с упражнением, поэтому другое число тренировок не искажает результат. Если тоннаж упал, а рабочий вес вырос — или раньше вес был 0, а теперь нет, — это считается как больше.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Основное место удалить нельзя — сначала сделайте основным другое место.",
  "Miejsca i sprzęt": "Места и оборудование",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Места тренировок и «Подстроить под место»: изменения действуют только в сегодняшней тренировке — шаблон и план остаются без изменений.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Пропустить упражнение?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Пропуск упражнения прервёт замер — это время не сохранится.",
  "Pominięte (bez punktu odniesienia): {list}": "Пропущено (нет точки сравнения): {list}",
+ "Pominięte (bez ciężaru): {list}": "Пропущено (без веса): {list}",
  "pominięte dziś": "пропущено сегодня",
  "Pominięte jako duplikaty: {n}": "Пропущено как дубликаты: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Пропущено строк (неверные данные): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Выполнено раньше: {name}",
  "Zwiń inne ćwiczenia": "Свернуть другие упражнения",
  "Zwykle w: {l} — {name}. Zamienić?": "Обычно в: {l} — {name}. Заменить?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Ни у одной мышечной группы нет большего объёма, чем раньше."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Ни у одной мышечной группы нет большего объёма, чем раньше.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Пропущено (план без веса или повторений): {list}"
 }

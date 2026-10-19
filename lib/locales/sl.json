@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Maks. ponovitev s pomočjo",
  "metr|metry|metrów": "meter|metra|metri|metrov",
  "metra": "metra",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Mera: tonaža (serije × ponovitve × teža), povprečno na trening vaje, zato drugačno število treningov ne izkrivlja rezultata. Če je tonaža padla, delovna teža pa narasla, se šteje kot več.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Mera: tonaža (serije × ponovitve × teža), povprečno na trening vaje, zato drugačno število treningov ne izkrivlja rezultata. Če je tonaža padla, delovna teža pa narasla — ali je bila teža prej 0, zdaj pa ni — se šteje kot več.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Glavne lokacije ne moreš izbrisati — najprej nastavi drugo lokacijo kot glavno.",
  "Miejsca i sprzęt": "Lokacije in oprema",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Kraji vadbe in „Prilagodi lokaciji“: spremembe veljajo samo za današnjo vadbo — predloga in načrt ostaneta nespremenjena.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Preskočim vajo?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Izpust vaje prekine merjenje — ta čas ne bo shranjen.",
  "Pominięte (bez punktu odniesienia): {list}": "Izpuščeno (brez točke primerjave): {list}",
+ "Pominięte (bez ciężaru): {list}": "Izpuščeno (brez teže): {list}",
  "pominięte dziś": "danes izpuščeno",
  "Pominięte jako duplikaty: {n}": "Preskočeno kot dvojniki: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Preskočene vrstice (neveljavni podatki): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Opravljeno prej: {name}",
  "Zwiń inne ćwiczenia": "Strni druge vaje",
  "Zwykle w: {l} — {name}. Zamienić?": "Običajno na lokaciji: {l} — {name}. Zamenjam?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Nobena mišična skupina nima večjega volumna kot prej."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Nobena mišična skupina nima večjega volumna kot prej.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Izpuščeno (načrt brez teže ali ponovitev): {list}"
 }

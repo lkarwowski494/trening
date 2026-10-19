@@ -769,6 +769,7 @@
  "Pominąć ćwiczenie?": "Lewati latihan ini?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Melewati gerakan akan menghentikan pengukuran waktu — waktu ini tidak akan disimpan.",
  "Pominięte (bez punktu odniesienia): {list}": "Dilewati (tanpa titik pembanding): {list}",
+ "Pominięte (bez ciężaru): {list}": "Dilewati (tanpa beban): {list}",
  "pominięte dziś": "dilewati hari ini",
  "Pomiń": "Lewati",
  "Pomiń dziś": "Lewati hari ini",
@@ -1667,7 +1668,7 @@
  "funta": "pon",
  "metr|metry|metrów": "meter",
  "metra": "meter",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Ukuran: tonase (set × repetisi × beban), rata-rata per sesi latihan tersebut, sehingga jumlah sesi yang berbeda tidak memengaruhi hasil. Jika tonase turun tetapi beban kerja naik, itu dihitung sebagai lebih banyak.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Ukuran: tonase (set × repetisi × beban), rata-rata per sesi latihan tersebut, sehingga jumlah sesi yang berbeda tidak memengaruhi hasil. Jika tonase turun tetapi beban kerja naik — atau sebelumnya bebannya 0 dan sekarang tidak — itu dihitung sebagai lebih banyak.",
  "sekunda|sekundy|sekund": "detik",
  "godzina|godziny|godzin": "jam",
  "Poproś o nową funkcję": "Minta fitur baru",
@@ -1684,5 +1685,6 @@
  "brak danych": "tidak ada data",
  "brak poprzedniego okresu": "tidak ada periode sebelumnya",
  "brak poprzedniego tygodnia": "tidak ada minggu sebelumnya",
- "część zaplanowanych serii nie ma ciężaru": "beberapa set terencana tidak punya beban"
+ "część zaplanowanych serii nie ma ciężaru": "beberapa set terencana tidak punya beban",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Dilewati (rencana tanpa beban atau repetisi): {list}"
 }

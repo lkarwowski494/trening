@@ -769,6 +769,7 @@
  "Pominąć ćwiczenie?": "この種目をスキップしますか？",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "種目をスキップすると計測が止まります — この時間は保存されません。",
  "Pominięte (bez punktu odniesienia): {list}": "除外（比較する相手なし）: {list}",
+ "Pominięte (bez ciężaru): {list}": "除外（重量なし）: {list}",
  "pominięte dziś": "今日はスキップ",
  "Pomiń": "スキップ",
  "Pomiń dziś": "今日はスキップ",
@@ -1667,7 +1668,7 @@
  "funta": "ポンド",
  "metr|metry|metrów": "メートル",
  "metra": "メートル",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "指標: 総重量（セット数×回数×重量）を、その種目の1回あたりの平均で見ます。回数が違っても結果は歪みません。総重量が減っても作業重量が増えていれば、増えたとみなします。",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "指標: 総重量（セット数×回数×重量）を、その種目の1回あたりの平均で見ます。回数が違っても結果は歪みません。総重量が減っても作業重量が増えていれば（または以前の重量が0で今は0でなければ）、増えたとみなします。",
  "sekunda|sekundy|sekund": "秒",
  "godzina|godziny|godzin": "時間",
  "Poproś o nową funkcję": "新しい機能をリクエスト",
@@ -1684,5 +1685,6 @@
  "brak danych": "データなし",
  "brak poprzedniego okresu": "前の期間なし",
  "brak poprzedniego tygodnia": "前の週なし",
- "część zaplanowanych serii nie ma ciężaru": "重量のない予定セットがあります"
+ "część zaplanowanych serii nie ma ciężaru": "重量のない予定セットがあります",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "除外（重量または回数のない予定）: {list}"
 }

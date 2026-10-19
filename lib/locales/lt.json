@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Maks. kartojimai su pagalba",
  "metr|metry|metrów": "metras|metrai|metrų",
  "metra": "metro",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Matas: tonažas (serijos × pakartojimai × svoris), vidutiniškai vienai pratimo treniruotei, todėl kitoks treniruočių skaičius rezultato neiškreipia. Jei tonažas sumažėjo, bet darbinis svoris išaugo, tai skaičiuojama kaip daugiau.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Matas: tonažas (serijos × pakartojimai × svoris), vidutiniškai vienai pratimo treniruotei, todėl kitoks treniruočių skaičius rezultato neiškreipia. Jei tonažas sumažėjo, bet darbinis svoris išaugo — arba anksčiau svoris buvo 0, o dabar ne — tai skaičiuojama kaip daugiau.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Pagrindinės vietos ištrinti negalima — pirma nustatyk kitą vietą kaip pagrindinę.",
  "Miejsca i sprzęt": "Vietos ir įranga",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Treniruočių vietos ir „Pritaikyti vietai“: pakeitimai galioja tik šiandienos treniruotei — šablonas ir planas lieka nepakitę.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Praleisti pratimą?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Praleidus pratimą matavimas nutrūks — šis laikas nebus išsaugotas.",
  "Pominięte (bez punktu odniesienia): {list}": "Praleista (be palyginimo taško): {list}",
+ "Pominięte (bez ciężaru): {list}": "Praleista (be svorio): {list}",
  "pominięte dziś": "šiandien praleista",
  "Pominięte jako duplikaty: {n}": "Praleista kaip dublikatai: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Praleistos eilutės (netinkami duomenys): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Atlikta anksčiau: {name}",
  "Zwiń inne ćwiczenia": "Suskleisti kitus pratimus",
  "Zwykle w: {l} — {name}. Zamienić?": "Dažniausiai vietoje {l} — {name}. Pakeisti?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Jokia kūno dalis neturi didesnės apimties nei anksčiau."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Jokia kūno dalis neturi didesnės apimties nei anksčiau.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Praleista (planas be svorio ar pakartojimų): {list}"
 }

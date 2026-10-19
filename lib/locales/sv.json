@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Max reps med assistans",
  "metr|metry|metrów": "meter|meter",
  "metra": "meter",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Mått: tonnage (set × repetitioner × vikt), i genomsnitt per pass med övningen, så ett annat antal pass förvränger inte resultatet. Om tonnaget sjunkit men arbetsvikten ökat räknas det som mer.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Mått: tonnage (set × repetitioner × vikt), i genomsnitt per pass med övningen, så ett annat antal pass förvränger inte resultatet. Om tonnaget sjunkit men arbetsvikten ökat – eller vikten var 0 tidigare och inte är det nu – räknas det som mer.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Huvudplatsen kan inte raderas — gör först en annan plats till huvudplats.",
  "Miejsca i sprzęt": "Platser och utrustning",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Träningsplatser och ”Anpassa till platsen”: ändringar gäller bara dagens pass — mallen och planen förblir oförändrade.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Hoppa över övningen?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Hoppar du över övningen avbryts tidtagningen — den här tiden sparas inte.",
  "Pominięte (bez punktu odniesienia): {list}": "Utelämnade (ingen jämförelsepunkt): {list}",
+ "Pominięte (bez ciężaru): {list}": "Utelämnade (utan vikt): {list}",
  "pominięte dziś": "överhoppad i dag",
  "Pominięte jako duplikaty: {n}": "Överhoppade som dubbletter: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Överhoppade rader (ogiltiga data): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Gjort tidigare: {name}",
  "Zwiń inne ćwiczenia": "Fäll ihop andra övningar",
  "Zwykle w: {l} — {name}. Zamienić?": "Vanligtvis på {l} — {name}. Byta?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Ingen muskelgrupp har mer volym än tidigare."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Ingen muskelgrupp har mer volym än tidigare.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Utelämnade (plan utan vikt eller repetitioner): {list}"
 }

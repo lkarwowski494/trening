@@ -645,7 +645,7 @@
  "Max powtórzeń z asystą": "Máx. de repetições com assistência",
  "metr|metry|metrów": "metro|metros",
  "metra": "metros",
- "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.": "Medida: tonelagem (séries × repetições × carga), em média por sessão do exercício, por isso um número diferente de sessões não distorce o resultado. Se a tonelagem caiu mas a carga de trabalho subiu, conta como mais.",
+ "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.": "Medida: tonelagem (séries × repetições × carga), em média por sessão do exercício, por isso um número diferente de sessões não distorce o resultado. Se a tonelagem caiu mas a carga de trabalho subiu — ou a carga antes era 0 e agora não é — conta como mais.",
  "Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.": "Não podes apagar o local principal — primeiro define outro local como principal.",
  "Miejsca i sprzęt": "Locais e equipamento",
  "Miejsca treningu i „Dostosuj do miejsca”: zmiany tylko w dzisiejszym treningu — szablon i plan zostają bez zmian.": "Locais de treino e «Adaptar ao local»: as alterações valem só para o treino de hoje; o modelo e o plano ficam como estão.",
@@ -961,6 +961,7 @@
  "Pominąć ćwiczenie?": "Ignorar o exercício?",
  "Pominięcie ćwiczenia przerwie pomiar — ten czas się nie zapisze.": "Saltar o exercício interrompe a cronometragem — este tempo não será guardado.",
  "Pominięte (bez punktu odniesienia): {list}": "Omitidos (sem ponto de comparação): {list}",
+ "Pominięte (bez ciężaru): {list}": "Omitidos (sem carga): {list}",
  "pominięte dziś": "saltado hoje",
  "Pominięte jako duplikaty: {n}": "Ignorados como duplicados: {n}",
  "Pominięte wiersze (błędne dane): {n}": "Linhas ignoradas (dados inválidos): {n}",
@@ -1684,5 +1685,6 @@
  "Zrobiony wcześniej: {name}": "Feito antes: {name}",
  "Zwiń inne ćwiczenia": "Recolher outros exercícios",
  "Zwykle w: {l} — {name}. Zamienić?": "Normalmente em {l} — {name}. Trocar?",
- "Żadna partia nie ma większej objętości niż poprzednio.": "Nenhum grupo muscular tem mais volume do que antes."
+ "Żadna partia nie ma większej objętości niż poprzednio.": "Nenhum grupo muscular tem mais volume do que antes.",
+ "Pominięte (plan bez ciężaru lub powtórzeń): {list}": "Omitidos (plano sem carga ou repetições): {list}"
 }
