@@ -20,7 +20,7 @@ const num = (f: string) => f.slice(0, f.indexOf('-'));
 
 const run = (args: string[], env: Record<string, string> = {}) => {
   const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'pakiet-')), 'czesc'); const gh = path.join(path.dirname(out), 'gh-output');
-  const log = execFileSync('node', [shards, ...args, '--out', out], { encoding: 'utf8', env: { PATH: process.env.PATH ?? '', GITHUB_OUTPUT: gh, ...env } });
+  const log = execFileSync('node', [shards, ...args, '--out', out], { encoding: 'utf8', env: { ...process.env, PAKIET: '', ONLY: '', GITHUB_OUTPUT: gh, ...env } });
   return { log, out: fs.existsSync(out) ? fs.readdirSync(out).filter(f => f.endsWith('.yaml')).sort() : [], gh: fs.existsSync(gh) ? fs.readFileSync(gh, 'utf8') : '' };
 };
 
