@@ -108,9 +108,13 @@ name: Język, wygląd i jednostka
 - extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
 - tapOn: "kg"
 - tapOn: "Back"
-- extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
-- tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 30000 }
+# run 39185287611 (zrzut: wciąż „More”): stuknięcie zakładki tuż po „Back” trafiło w trwające przejście i zostało zignorowane — czekanie na koniec animacji i powtórka stuknięcia
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Workout, tab.*"
+      - extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 10000 }
 - assertVisible: "kg"
 - assertNotVisible: "lb"
 - takeScreenshot: 56-jednostka-kg
@@ -127,7 +131,12 @@ name: Język, wygląd i jednostka
 - tapOn: "RIR"
 - takeScreenshot: 57-skala-rir
 - tapOn: "Back"
-- tapOn: "Workout, tab.*"
-- extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 30000 }
+# run 39185287611 (zrzut: wciąż „More”): stuknięcie zakładki tuż po „Back” trafiło w trwające przejście i zostało zignorowane — czekanie na koniec animacji i powtórka stuknięcia
+- waitForAnimationToEnd
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Workout, tab.*"
+      - extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 10000 }
 - scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000 }
 - takeScreenshot: 58-trening-kolumna-rir

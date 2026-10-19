@@ -177,3 +177,9 @@ test('E2E 39174616058: 35 — pole celu partii jest przewijane na środek przed 
   const cmds = load(join(DIR, '35-ustawienia-dostepnosc.yaml')); const i = cmds.findIndex((c: Cmd) => same(c, { tapOn: { id: 'set-goal-.*', index: 0 } }));
   expect(i).toBeGreaterThan(0); expect(cmds[i - 1]).toEqual({ scrollUntilVisible: { element: { id: 'set-goal-.*', index: 0 }, direction: 'DOWN', timeout: 30000, centerElement: true } });
 });
+
+/* E2E 39185287611: 09 — zakładka „Workout” stuknięta tuż po „Back” zostaje zignorowana (zrzut: wciąż „More”); interpreter nie odtwarza przejścia — test strukturalny. */
+test('E2E 39185287611: 09 — po „Back” czekanie na koniec animacji i stuknięcie zakładki „Workout” w retry (dwa miejsca)', () => {
+  const cmds = load(join(DIR, '09-jezyk-wyglad.yaml')); const ks = cmds.map((c: Cmd, i: number) => (c && c.retry && JSON.stringify(c).includes('Workout, tab') ? i : -1)).filter((i: number) => i >= 0);
+  expect(ks.length).toBe(2); for (const k of ks) { expect(cmds[k - 1]).toBe('waitForAnimationToEnd'); expect(cmds[k - 2]).toEqual({ tapOn: 'Back' }); }
+});
