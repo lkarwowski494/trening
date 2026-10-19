@@ -54,6 +54,11 @@ describe('dane pokazowe (scripts/screens/store-seed.test.ts)', () => {
     expect(fs.existsSync(path.join(root, 'scripts/ci/maestro-sklep/przygotuj.yaml'))).toBe(true);
     expect(fs.readFileSync(path.join(root, 'components/HistoryCalendar.tsx'), 'utf8')).toContain("testID={delta < 0 ? 'month-prev' : 'month-next'"); /* akcja poprzedni-miesiac */
   });
+  test('okna systemowe: pytanie o powiadomienia odrzucane (run 39187895976: po „Allow” powiadomienie „Rest is over” z poprzedniego ekranu trafiło na zrzut 6.9 en/02)', () => {
+    const d = fs.readFileSync(path.join(root, 'scripts/ci/maestro-sklep/dialogi.yaml'), 'utf8');
+    expect(d).toMatch(/tapOn: \{ text: "Don\.t Allow", optional: true \}/);
+    expect(d).not.toMatch(/text: "Allow"/);
+  });
   test('akcje Maestro poza .maestro/ (to nie scenariusze E2E), bez czyszczenia danych pokazowych', () => {
     for (const f of fs.readdirSync(path.join(root, 'scripts/ci/maestro-sklep'))) {
       const y2 = fs.readFileSync(path.join(root, 'scripts/ci/maestro-sklep', f), 'utf8');

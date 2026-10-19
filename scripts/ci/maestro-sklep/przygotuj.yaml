@@ -4,5 +4,5 @@ appId: pl.lukasz.trening
 ---
 - launchApp:
     clearState: false
-    permissions: { all: allow }
+    permissions: { all: allow, notifications: deny }   # bez powiadomień o końcu przerwy na zrzutach kolejnych ekranów (run 39187895976)
 - stopApp

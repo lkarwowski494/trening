@@ -1,6 +1,7 @@
 # Zrzuty do sklepu: okna systemowe po starcie i po łączu (przebieg 39143133368, 18.10.2026: „Open in "Training"?” po `simctl openurl`
-# i pytanie o powiadomienia przy treningu w toku) — zatwierdzane, żeby nie trafiły na zrzut. Teksty po angielsku: język symulatora.
+# i pytanie o powiadomienia przy treningu w toku) — zamykane, żeby nie trafiły na zrzut. Teksty po angielsku: język symulatora.
+# Powiadomienia odrzucane (run 39187895976): po zgodzie powiadomienie o końcu przerwy z ekranu treningu trafiało na zrzut następnego ekranu.
 appId: pl.lukasz.trening
 ---
 - tapOn: { text: "Open", optional: true }
-- tapOn: { text: "Allow", optional: true }
+- tapOn: { text: "Don.t Allow", optional: true }
