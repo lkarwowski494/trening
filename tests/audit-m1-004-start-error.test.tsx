@@ -8,7 +8,8 @@ import { t, appName } from '@/lib/i18n';
 import { AUTO_KEEP } from '@/lib/backup';
 import { BOOT_GUARD_KEY, BOOT_STABLE_MS } from '@/lib/state/crashguard';
 import { SUPPORT_EMAIL } from '@/lib/support';
-import { seedState } from './helpers';
+import { exportLatestCopy, exportStartData } from '@/lib/backup';
+import { fresh, seedState } from './helpers';
 import { renderApp, flushAll, screen, tap } from './app';
 
 jest.setTimeout(60000);
@@ -44,5 +45,23 @@ describe('M1-004: ekran błędu startu — nie tylko ponowienie', () => {
     await tap(screen.getByText(t('Wyślij dane'))); await flushAll(20);
     const written = (FS.writeAsStringAsync as jest.Mock).mock.calls.find(c => /trening-dane-/.test(String(c[0])));
     expect(JSON.parse(written![1]).state.settings.defaultRest).toBe(55); expect(Sharing.shareAsync).toHaveBeenCalledTimes(1); expect(snapshot()).toEqual(kv);
+  });
+});
+
+describe('M1-004: exportLatestCopy i exportStartData', () => {
+  const dir = (names: string[] | Error) => (FS.readDirectoryAsync as jest.Mock).mockImplementation(async () => { if (names instanceof Error) throw names; return names; });
+  test('exportLatestCopy: najnowsza kopia z puli (po treningu albo bezpieczeństwa, z numerem z tej samej sekundy); brak plików, błąd katalogu albo pliki spoza puli -> false', async () => {
+    (Sharing.shareAsync as jest.Mock).mockClear(); dir([]);
+    expect(await exportLatestCopy()).toBe(false); dir(new Error('EIO')); expect(await exportLatestCopy()).toBe(false); dir(['inne.txt', 'trening-zle.json']); expect(await exportLatestCopy()).toBe(false);
+    expect(Sharing.shareAsync).not.toHaveBeenCalled();
+    dir(['trening-2026-10-12-090000.json', 'trening-przed-czyszczeniem-2026-10-13-080000.json', 'trening-2026-10-12-090000-2.json']);
+    expect(await exportLatestCopy()).toBe(true); expect((Sharing.shareAsync as jest.Mock).mock.calls.at(-1)![0]).toBe('file:///doc/Backup/trening-przed-czyszczeniem-2026-10-13-080000.json');
+  });
+  test('exportStartData: gdy baza ma dane — wysyła je (nie kopię z Plików); gdy bazy nie ma — najnowszą kopię z puli', async () => {
+    dir(['trening-2026-10-12-090000.json']); (Sharing.shareAsync as jest.Mock).mockClear(); (FS.writeAsStringAsync as jest.Mock).mockClear();
+    await fresh(); expect(await exportStartData()).toBe(true);
+    expect((FS.writeAsStringAsync as jest.Mock).mock.calls.some(c => /trening-dane-/.test(String(c[0])))).toBe(true); expect((Sharing.shareAsync as jest.Mock).mock.calls.at(-1)![0]).not.toContain('Backup/');
+    store.__resetForTests(); (Sharing.shareAsync as jest.Mock).mockClear(); expect(await exportStartData()).toBe(true);
+    expect((Sharing.shareAsync as jest.Mock).mock.calls.at(-1)![0]).toBe('file:///doc/Backup/trening-2026-10-12-090000.json');
   });
 });
