@@ -32,7 +32,7 @@ import * as migrateMod from './state/migrate';
 import * as settingsMod from './state/settings';
 import * as bootMod from './state/boot';
 
-export const { NAME_MAX, REPS_MAX, REST_MAX, clampName } = utilMod;
+export const { NAME_MAX, REPS_MAX, REST_MAX, clampName, PREMIGRATE_KEEP_MS } = utilMod;
 export const {
   localDateTs, fmtSec, fmtDist, reps, fmtDur, fmtDayKey, fmtDate, fmtTime, localISODate, tzOffsetAt, cleanTz, wallTs, fromWallTs, workoutDay,
   mondayKey
@@ -88,5 +88,5 @@ export const {
 } = finishMod;
 export const { migrate } = migrateMod;
 export const { applyPrefs, setModule } = settingsMod;
-export const { init, sanitizeDraftObj, readRawData, readRecovery, onStateReplaced, replaceState, resetAll } = bootMod;
+export const { init, sanitizeDraftObj, readRawData, readRecovery, readPreMigrate, onStateReplaced, replaceState, resetAll } = bootMod;
 export type { WExercise } from './seed';
