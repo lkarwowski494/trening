@@ -107,6 +107,9 @@ esac
       const tr = read(path.join(out, l, '01-trening.png')); expect(tr.settings.language).toBe(l); expect(tr.__sklepSavedAt).toBeUndefined();
       expect(tr.timer.restEndAt).toBeGreaterThanOrEqual(t0 + 95e3); expect(tr.timer.restEndAt).toBeLessThan(Date.now() + 96e3); /* przerwa i trening „teraz” */
       expect(tr.active.startedAt).toBeGreaterThanOrEqual(t0 - 540e3); expect(tr.active.exercises[0].sets[0].completedAt).toBeGreaterThanOrEqual(t0 - 85e3); expect(tr.active.exercises[0].sets[1].completedAt).toBeNull();
+      /* koordynator 19.10.2026: „start 04:35” przy zegarze 9:41 — godzina startu na zegarze strefy treningu = 9:41 minus czas trwania (tu 9 min → 9:32) */
+      const wall = new Date(tr.active.startedAt + tr.active.tzOffsetMin * 60000); expect(Math.abs(wall.getUTCHours() * 60 + wall.getUTCMinutes() - (9 * 60 + 32))).toBeLessThanOrEqual(1);
+      expect(Math.abs(tr.active.tzOffsetMin)).toBeLessThanOrEqual(14 * 60);
       expect(read(path.join(out, l, '02-historia.png')).settings.theme).toBe('dark');
     }
     expect(fs.existsSync(path.join(out, '.state.json'))).toBe(false);

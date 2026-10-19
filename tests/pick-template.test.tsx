@@ -38,7 +38,8 @@ describe('wiersze i foldery', () => {
     expect(screen.getAllByText('Siła').some(x => x.props.accessibilityRole === 'header')).toBe(true);
     expect(screen.getByText(`1 ćw. · 3 serie · ostatnio ${store.fmtDate(new Date(2026, 9, 6, 18).getTime())}`)).toBeTruthy(); expect(screen.getByText('1 ćw. · 3 serie')).toBeTruthy(); /* bez „ostatnio” przy nieużywanym */
     expect(screen.queryByPlaceholderText('Szukaj szablonu…')).toBeNull(); /* mało szablonów — bez wyszukiwarki */
-    expect(screen.getByText('Wiersz otwiera podgląd szablonu, „Start” zaczyna trening.')).toBeTruthy();
+    expect(screen.queryByText('Wiersz otwiera podgląd szablonu, „Start” zaczyna trening.')).toBeNull(); /* ⓘ 14.10.2026: instrukcja zeszła z ekranu do podpowiedzi VoiceOver wiersza */
+    expect(screen.getAllByHintText('Wiersz otwiera podgląd szablonu, „Start” zaczyna trening.').length).toBe(2);
   });
   test('zarchiwizowane nie są na liście; pusty szablon jest, ale bez „Startu” (wiersz otwiera podgląd do uzupełnienia)', async () => {
     await boot(() => { mk('A'); mk('Stary', { archived: true }); mk('Pusty', { empty: true }); });
@@ -114,7 +115,7 @@ describe('języki i wąski ekran', () => {
   test('EN: „Choose a template”, „Start: …”, opis wiersza i wyszukiwarka po angielsku', async () => {
     await boot(() => { ['Alfa', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta'].forEach(n => mk(n)); }, '/', 'en');
     await openPick(true); expect(header()).toContain('Choose a template'); expect(screen.getByLabelText('Start: Alfa')).toBeTruthy(); expect(screen.getByPlaceholderText('Search templates…')).toBeTruthy();
-    expect(screen.getAllByText('1 ex. · 3 sets').length).toBeGreaterThan(0); expect(screen.getByText('A row opens the template preview; “Start” begins the workout.')).toBeTruthy();
+    expect(screen.getAllByText('1 ex. · 3 sets').length).toBeGreaterThan(0); expect(screen.getAllByHintText('A row opens the template preview; “Start” begins the workout.').length).toBeGreaterThan(0); /* ⓘ 14.10.2026: w podpowiedzi VoiceOver, nie na ekranie */
   });
   test('320 pt: wybór renderuje się z długą nazwą szablonu i folderu (nazwa zawija się, „Start” zostaje)', async () => {
     const long = 'Bardzo długa nazwa szablonu treningowego na wąskim ekranie telefonu';

@@ -6,7 +6,7 @@ na rzeźbę. Deload — automatyczne przeliczanie szablonów i podpowiedź w kal
 
 Metoda: teksty pobrane samodzielnie z Europe PMC / Crossref (nie fragmenty z wyszukiwarki). **PT** = przeczytany pełny tekst, **A** = przeczytane
 streszczenie. Szczebel hierarchii z CLAUDE.md: S1 wzory, S2 przeglądy/metaanalizy/stanowiska, S3 pojedyncze badania i książki, S4 serwisy,
-S5 praktyka trenerów. **Jedno źródło** = reguła bez niezależnego potwierdzenia — nie wchodzi do aplikacji jako ustalona.
+S5 praktyka trenerów. **Jedno źródło** = reguła bez niezależnego potwierdzenia — nie wchodzi do aplikacji jako ustalona. *Zmiana zasady 18.10.2026 (właściciel):* jedno źródło szczebla 1–2, które zawiera twierdzenie wprost, czyni regułę ustaloną; „jedno źródło” zostaje dla szczebli 3–5; „uproszczenie” i „konwencja” — niezależnie od liczby źródeł. Wpisy poniżej z datą sprzed zmiany nie są przepisane; wynik przeglądu: odpowiedź badacza z 18.10.2026 (docs/18).
 
 Zastrzeżenia ogólne:
 - ACSM 2026 (Currier i in., MSSE 58(4), PMC12965823, PT) to przegląd przeglądów — obejmuje część tych samych metaanaliz, więc nie jest od nich
@@ -21,7 +21,7 @@ Zastrzeżenia ogólne:
 |---|---|---|
 | Ciężar ≥ 80% 1RM (≈ 1–8 powt.), cięższe = więcej siły | ACSM 2026 tab. 6 „Intensity: ≥80% 1RM (dose-response)” (PT); Schoenfeld 2017 JSCR „greater in favor of high- vs. low-load” (A); Lopez 2021 MSSE (PT); Currier 2023 BJSM „Higher-load (>80%…) prescriptions maximised strength gains” (PT) | potwierdzone |
 | Więcej serii = więcej siły, ale szybko malejący przyrost; zwykle 2–3 serie na ćwiczenie | ACSM 2026 „Volume: 2–3 sets/session” (PT); Ralston 2017 Sports Med (PT: LWS ≤5, MWS 5–9, HWS ≥10 serii/ćw./tydz., „MWS and HWS was more effective than LWS”); Pelland 2026 „diminishing returns… more pronounced” (A) | potwierdzone kierunkowo; „2–3” — ACSM |
-| Minimum: 1 seria 6–12 powt. 2–3×/tydz. daje „suboptimal, yet significant” przyrost | Androulakis-Korakakis 2020 Sports Med (A) | jedno źródło |
+| Minimum: 1 seria 6–12 powt. 2–3×/tydz. daje „suboptimal, yet significant” przyrost | Androulakis-Korakakis 2020 Sports Med (A) | ustalone — jedno źródło szczebla 2 (SR+MA) (18.10.2026) |
 | Częstotliwość ≥ 2×/tydz.; przy równej objętości przewaga częstszego treningu znika | ACSM 2026 (PT); Grgic 2018 Sports Med (A); Pelland 2026 (A) | potwierdzone |
 | Upadek mięśniowy niepotrzebny; szeroki zakres RIR | ACSM 2026 „2–3 RIR” (PT); Grgic 2022 (A); Robinson 2024 (A); Refalo 2023 (PT) | potwierdzone |
 | Przerwy: zwykle 1–3 min; u wytrenowanych przy ciężkich seriach ≥ 2 min | Grgic 2017/2018 (A); ACSM 2026: przerwa nie zmienia siły (PT) — **rozbieżność** | część wspólna 1–3 min |
@@ -30,23 +30,23 @@ Zastrzeżenia ogólne:
 | Reguła | Źródła | Status |
 |---|---|---|
 | ≥ 10 serii na partię tygodniowo; zwykle 10–20 | ACSM 2026 „≥10 sets/wk (dose-response)” (PT); Schoenfeld, Ogborn, Krieger 2017 („+0.37%” na serię, 10+ najlepiej — trend) (A); Baz-Valle 2022 „12–20 weekly sets… may be an optimum” (A, mała próba); Pelland 2026 dawka–odpowiedź (A) | dolny próg potwierdzony |
-| Górna granica ~18–20 serii | Pelland 2026 (cytowany przez ACSM) | **jedno źródło** |
-| Serie pomocnicze liczone jako 0,5 | Pelland 2026 („fractional” najlepiej) (A) | jedno źródło (już w aplikacji jako nazwane uproszczenie) |
+| Górna granica ~18–20 serii | Pelland 2026 (cytowany przez ACSM) | ustalone — Pelland i ACSM 2026, szczebel 2 (nie są niezależne) (18.10.2026) |
+| Serie pomocnicze liczone jako 0,5 | Pelland 2026 („fractional” najlepiej) (A) | metaanaliza szczebla 2 (18.10.2026); uproszczenie zostaje (waga 0,5 to założenie autorów) |
 | Częstotliwość obojętna przy równej objętości (praktycznie ≥ 2× by rozłożyć serie) | ACSM 2026 (PT); Schoenfeld 2019 (A); Pelland 2026 (A); starsze Schoenfeld 2016 (≥2×) zastąpione | potwierdzone |
 | Ciężar dowolny 30–100% 1RM, gdy serie blisko upadku | ACSM 2026 (PT); Schoenfeld 2017 JSCR (A); Lopez 2021 (PT); Currier 2023 (PT) | potwierdzone |
 | Blisko upadku (zwykle 0–3 RIR), upadek nieobowiązkowy; dokładnego RIR nie ustalono | ACSM 2026 (PT); Refalo 2023 (PT); Robinson 2024 (A); Grgic 2022 (A) | potwierdzone kierunkowo |
-| Przerwy > 60 s, korzyść do ~90 s | Singer 2024 (PT); ACSM 2026: „insufficient data” | **jedno źródło** |
-| ≥ 2 serie na ćwiczenie | ACSM 2026 | jedno źródło |
+| Przerwy > 60 s, korzyść do ~90 s | Singer 2024 (PT); ACSM 2026: „insufficient data” | rozbieżność na szczeblu 2 (Singer 2024 vs ACSM 2026) → część wspólna (18.10.2026) |
+| ≥ 2 serie na ćwiczenie | ACSM 2026 | ustalone — stanowisko szczebla 2 (18.10.2026) |
 
 ### Rzeźba (redukcja z utrzymaniem mięśni)
 | Reguła | Źródła | Status |
 |---|---|---|
 | Trening siłowy chroni beztłuszczową masę w deficycie | Sardeli 2018 („reduced 93.5% of CR-induced LBM loss”, starsi otyli) (A); ACSM 2009 Donnelly „may increase fat-free mass” (A); Helms 2015 (A) | potwierdzone |
 | Wolniejsza redukcja lepiej chroni mięśnie (zwykle 0,5–1% masy/tydz.) | ISSN 2017 Aragon (A); Helms 2014 JISSN (A) — częściowo ci sami autorzy | ograniczona niezależność |
-| Deficyt > 500 kcal/d osłabia przyrost masy beztłuszczowej | Murphy & Koehler 2022 (A) | jedno źródło |
+| Deficyt > 500 kcal/d osłabia przyrost masy beztłuszczowej | Murphy & Koehler 2022 (A) | ustalone — jedno źródło szczebla 2 (SR) (18.10.2026) |
 | Objętość treningu potrzebna w deficycie | brak badań porównujących; Helms 2015 (przegląd narracyjny); pośrednio: utrzymanie przy małej objętości, gdy ciężar zachowany — Spiering 2021 (A), Bickel 2011 RCT (A) | **[OTWARTE]** — utrzymać ciężar, objętość jak przy masie |
 | Cardio nie osłabia przerostu ani siły maksymalnej (osłabia siłę eksplozywną, głównie w tej samej sesji) | Schumann 2022 (PT, 43 badania); Petré 2021 (A: osłabienie 1RM nóg u wytrenowanych w tej samej sesji); Wilson 2012 (A: bieg, duża ilość) — **rozbieżność** | umiarkowane cardio zgodne; oddzielać sesje |
-| Interwały ≈ cardio umiarkowane dla % tkanki tłuszczowej | Viana 2019 BJSM (A) | jedno źródło |
+| Interwały ≈ cardio umiarkowane dla % tkanki tłuszczowej | Viana 2019 BJSM (A) | ustalone — jedno źródło szczebla 2 (SR+MA) (18.10.2026) |
 | > 250 min/tydz. aktywności — klinicznie istotna utrata masy; 150–300 min dla zdrowia | ACSM 2009 (A); WHO 2020 (Bull, PT); PAG 2018 (A); ACSM 2011 (A) | potwierdzone |
 
 ## 2. Deload
@@ -69,9 +69,9 @@ Niezależnie: De Marco 2024 (ankieta, A), RCT Coleman 2024 (PT) i Pancar 2026 (P
 
 | Reguła | Podstawa | Status |
 |---|---|---|
-| R1 Każda główna partia (grupa mięśni) ≥ 2 dni/tydz. — zalecenie zdrowotne WHO; dla siły ACSM 2026 ≥ 2 sesje/tydz. (audyt 0.10, 08.10.2026: dawniej „grupy ruchów”, a ekran mówił o partiach i podawał ACSM) | WHO 2020 (PT, cytat 7a), PAG 2018, ACSM 2011; ACSM 2026 (PT, 7b) — siła; przy masie częstotliwość obojętna przy równej objętości (ACSM 2026, Pelland 2026 — 7c) | potwierdzone; liczenie dni z partią tylko pomocniczą jako 0,5 = metoda „fractional” Pelland 2026 — **jedno źródło**, nazwane uproszczeniem; podział (2 → FBW×2, 3 → FBW A/B/A, 4 → góra/dół×2) = **konwencja** (przy równej objętości brak różnicy) |
-| R2 Masa: 10–20 serii/partię/tydz. | ACSM, Schoenfeld 2017, Baz-Valle 2022, Pelland | dolny próg potwierdzony; 20 — jedno źródło |
-| R3 Siła: bój główny na początku, ≥ 80% 1RM (≈ 1–8 powt.), 2–3 serie — **tylko z obciążeniem zewnętrznym**; bez niego (dom, masa ciała, gumy) nie da się trenować ≥ 80% 1RM — plan jak R4 „w domu” z ostrzeżeniem: siła też rośnie, zwykle mniej niż przy dużym ciężarze (audyt 0.10 MER-01) | ciężar: ACSM (7b), Currier, Lopez, Schoenfeld; kolejność i 2–3 serie: ACSM; siła rośnie także przy treningu w domu i z gumami: ACSM 2026 (7b) | ciężar potwierdzony; reszta jedno źródło |
+| R1 Każda główna partia (grupa mięśni) ≥ 2 dni/tydz. — zalecenie zdrowotne WHO; dla siły ACSM 2026 ≥ 2 sesje/tydz. (audyt 0.10, 08.10.2026: dawniej „grupy ruchów”, a ekran mówił o partiach i podawał ACSM) | WHO 2020 (PT, cytat 7a), PAG 2018, ACSM 2011; ACSM 2026 (PT, 7b) — siła; przy masie częstotliwość obojętna przy równej objętości (ACSM 2026, Pelland 2026 — 7c) | potwierdzone; liczenie dni z partią tylko pomocniczą jako 0,5 = metoda „fractional” Pelland 2026 (metaanaliza szczebla 2 (18.10.2026)) — nazwane uproszczeniem; podział (2 → FBW×2, 3 → FBW A/B/A, 4 → góra/dół×2) = **konwencja** (przy równej objętości brak różnicy) |
+| R2 Masa: 10–20 serii/partię/tydz. | ACSM, Schoenfeld 2017, Baz-Valle 2022, Pelland | dolny próg potwierdzony; 20 — Pelland i ACSM 2026, szczebel 2 (18.10.2026) |
+| R3 Siła: bój główny na początku, ≥ 80% 1RM (≈ 1–8 powt.), 2–3 serie — **tylko z obciążeniem zewnętrznym**; bez niego (dom, masa ciała, gumy) nie da się trenować ≥ 80% 1RM — plan jak R4 „w domu” z ostrzeżeniem: siła też rośnie, zwykle mniej niż przy dużym ciężarze (audyt 0.10 MER-01) | ciężar: ACSM (7b), Currier, Lopez, Schoenfeld; kolejność i 2–3 serie: ACSM; siła rośnie także przy treningu w domu i z gumami: ACSM 2026 (7b) | ciężar potwierdzony; reszta — ACSM 2026 (szczebel 2) (18.10.2026) |
 | R4 Masa: 6–15 powt. na siłowni; w domu lżej, > 15 powt. blisko upadku | ACSM, Schoenfeld 2017, Lopez 2021, Currier 2023 | zakres 30–100% 1RM potwierdzony; konkretne liczby = uproszczenie |
 | R5 Zwykle 0–3 RIR (ACSM 2026: „near-failure” albo 2–3 RIR; dokładnego RIR nie ustalono), upadek nieobowiązkowy (audyt 0.10 MER-06: dawniej „1–3” bez źródła wprost) | ACSM (7d), Refalo, Robinson | potwierdzone kierunkowo; „0–3” = część wspólna źródeł (wiersz „Blisko upadku” w sekcji 1) |
 | R6 Przerwy: masa 90–120 s, ciężkie serie siłowe 2–3 min (generator: bój główny 3 min, inne wielostawowe 2 min, jednostawowe i core 1,5 min) | Singer 2024, Grgic 2017; ACSM — rozbieżność (7e) | **uproszczenie**, w podglądzie z dopiskiem „przeglądy niejednoznaczne” |

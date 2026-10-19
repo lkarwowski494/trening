@@ -33,6 +33,9 @@ export async function renderApp(opts: { saved?: unknown; locale?: 'pl' | 'en'; u
   return r;
 }
 export const tap = async (el: Parameters<typeof fireEvent.press>[0]) => { await act(async () => { fireEvent.press(el); }); };
+/** Wzorzec ⓘ (docs/32 wzorzec 27): rozwija/zwija objaśnienie `info-{id}` (testID przycisku w components/InfoTip.tsx). */
+export const openInfo = async (id: string) => { const b = screen.getByTestId(`info-${id}`); if (!b.props.accessibilityState?.expanded) await act(async () => { fireEvent.press(b); }); };
+export const closeInfo = async (id: string) => { const b = screen.getByTestId(`info-${id}`); if (b.props.accessibilityState?.expanded) await act(async () => { fireEvent.press(b); }); };
 export const type = async (el: Parameters<typeof fireEvent.changeText>[0], text: string) => { await act(async () => { fireEvent.changeText(el, text); }); };
 /** renderRouter włącza fałszywe timery Jesta — czas przesuwamy ręcznie (setTimeout/setInterval/Date). */
 export const flushAll = async (ms = 0) => { await act(async () => { jest.advanceTimersByTime(ms); await Promise.resolve(); await Promise.resolve(); }); };

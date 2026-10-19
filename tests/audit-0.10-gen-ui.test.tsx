@@ -9,7 +9,7 @@ import { addLocation } from '@/lib/locations';
 import { generate, saveGenerated, type GenInput } from '@/lib/generator';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, type, act, go, startEdit, saveEdit } from './app';
+import { renderApp, flushAll, screen, tap, type, act, go, startEdit, saveEdit, openInfo } from './app';
 
 jest.setTimeout(120000);
 const NOW = new Date(2026, 9, 8, 9, 0); /* czwartek */
@@ -33,6 +33,7 @@ describe('C1 / MER-01: „Siła” w miejscu bez obciążenia', () => {
     expect(screen.getAllByText(/ — 3 × 12–\u206020, przerwa /).length).toBeGreaterThan(0); expect(screen.getByText('Dead Bug — 3 × 12–\u206020, przerwa 1:30')).toBeTruthy();
     /* pełna siłownia: zwykły opis siły, bój główny 3 × 4–6 */
     await tap(screen.getByText('Bez ograniczeń sprzętu')); await flushAll(5);
+    expect(screen.queryByText(/^Siła: bój główny/)).toBeNull(); await openInfo('gen-goal'); /* ⓘ 14.10.2026: opis celu pod ⓘ przy polu „Cel” */
     expect(screen.getByText(/^Siła: bój główny na początku, 3 × 4–6 powtórzeń \(ciężko, ok\. 80% maksimum i więcej\)/)).toBeTruthy(); expect(screen.queryByText(/^Siła bez obciążenia/)).toBeNull();
   });
 });
@@ -51,9 +52,9 @@ describe('C2 / MER-02 / LOG-03: braki partii i dni w tygodniu — dla każdego c
 
 describe('C4 / MER-06, MER-07, MER-08, MER-12, MER-17: „Na czym to oparte” i podgląd', () => {
   test('każdy parametr podglądu ma punkt ze źródłem albo oznaczeniem; liczby ze stałych', async () => {
-    await boot('/generator');
+    await boot('/generator'); expect(screen.queryByText(/^• Każda główna partia/)).toBeNull(); await openInfo('gen-basis'); /* ⓘ 14.10.2026: „Na czym to oparte” — punkty pod ⓘ */
     for (const x of [
-      'Każda główna partia co najmniej 2 dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej 2 sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako 0,5 — uproszczenie (jedno źródło). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.',
+      'Każda główna partia co najmniej 2 dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej 2 sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako 0,5 — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.',
       'Serie: 3 na ćwiczenie — ACSM 2026 zaleca co najmniej 2; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba 3 to uproszczenie.',
       'Liczba serii z czasu sesji: (minuty − 10 min rozgrzewki) × 60 / (40 s serii + średnia przerwa 105 s) = 20; ćwiczeń = serie / 3 (co najmniej 3) — uproszczenie, nie wynik badań.',
       'Zakresy powtórzeń (masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań).',
@@ -61,12 +62,13 @@ describe('C4 / MER-06, MER-07, MER-08, MER-12, MER-17: „Na czym to oparte” i
       'Przerwy: 3 min po ciężkich seriach boju głównego, 2 min po innych wielostawowych, 1,5 min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).',
       'Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar — konwencja.',
     ]) expect(screen.getByText(`• ${x}`)).toBeTruthy();
-    const head = 'Serie na partię w tygodniu (pomocnicza = 0,5 serii — uproszczenie, jedno źródło): klatka '; /* MER-17 */
+    const head = 'Serie na partię w tygodniu (pomocnicza = 0,5 serii — uproszczenie): klatka '; /* MER-17 */
     expect(screen.getAllByText(/^Serie na partię w tygodniu/).map(n => String(n.props.children)).filter(x => x.startsWith(head))).toHaveLength(1);
     expect(screen.queryByText(/^• Cardio:/)).toBeNull();
     await tap(screen.getByText('Siła')); await flushAll(5); expect(screen.getByText(/średnia przerwa 150 s\) = 15;/)).toBeTruthy(); /* przerwa średnia siły */
     await tap(screen.getByText('Redukcja')); await flushAll(5);
     expect(screen.getByText('• Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji — konwencja.')).toBeTruthy();
+    expect(screen.getByText('Cardio w planie: 60 min tygodniowo.')).toBeTruthy(); await openInfo('gen-cardio-in');
     expect(screen.getByText(/^Cardio w planie: 60 min tygodniowo\. Zalecenie WHO: co najmniej 150–300 min umiarkowanego wysiłku tygodniowo \(albo 75–150 min intensywnego\)/)).toBeTruthy();
   });
 });
@@ -74,6 +76,7 @@ describe('C4 / MER-06, MER-07, MER-08, MER-12, MER-17: „Na czym to oparte” i
 describe('C3 / UX-10: miejsce, ponowne generowanie, potwierdzenie, notatka', () => {
   test('świeża instalacja: „+ Dodaj miejsce” z wyjaśnieniem pełnej siłowni; chip prowadzi do Miejsc', async () => {
     await boot('/generator');
+    expect(screen.getByText('Bez miejsc plan zakłada pełną siłownię. W domu? „+ Dodaj miejsce”.')).toBeTruthy(); expect(screen.queryByText(/^Nie masz jeszcze miejsc treningu/)).toBeNull(); await openInfo('gen-no-places');
     expect(screen.getByText('Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.')).toBeTruthy();
     expect(screen.getByLabelText('Bez ograniczeń sprzętu').props.accessibilityState.selected).toBe(true);
     await tap(screen.getByText('+ Dodaj miejsce')); await flushAll(10);
@@ -119,7 +122,7 @@ describe('C3 / UX-10: miejsce, ponowne generowanie, potwierdzenie, notatka', () 
   });
   test('English: nazwy przy tworzeniu w bieżącym języku, chip „+ Add place”, ostrzeżenia po angielsku', async () => {
     await boot('/generator', () => {}, 'en');
-    expect(screen.getByText('+ Add place')).toBeTruthy(); expect(screen.getByText(/^You have no training places yet/)).toBeTruthy();
+    expect(screen.getByText('+ Add place')).toBeTruthy(); expect(screen.getByText(/^With no places, the plan assumes a full gym/)).toBeTruthy(); await openInfo('gen-no-places'); expect(screen.getByText(/^You have no training places yet/)).toBeTruthy();
     await tap(screen.getByText('Save templates and plan')); await flushAll(5); await press('Make the new plan active?', 'Save only');
     expect(S().templates.map(x => [x.name, x.folder, x.note])).toEqual([['Full Body A', 'Generated', 'Effort: usually 0–3 reps in reserve (RIR); training to failure is not needed.'], ['Full Body B', 'Generated', 'Effort: usually 0–3 reps in reserve (RIR); training to failure is not needed.']]);
     expect(lastAlert('Saved')!.msg).toBe('Templates: Full Body A, Full Body B — in the “Generated” folder on the Templates list.\nThe plan “Muscle, 3× per week · Full gym” is under “Other plans”.');

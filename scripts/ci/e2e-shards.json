@@ -1,6 +1,7 @@
 {
   "_opis": "Podział scenariuszy Maestro na części (maszyny) w e2e-ios.yml. Wagi = czas scenariusza w sekundach z przebiegu 38411267312 (zielony, 25 scenariuszy, 13.10.2026). Scenariusz bez wagi dostaje domyslna_waga_s i też trafia do dokładnie jednej części (nic nie jest pomijane). Wagi tylko równoważą obciążenie — nie decydują o tym, czy scenariusz się uruchomi. Odśwież wagi z logu przebiegu: linie „[Passed] nazwa (2m 10s)” (nazwa scenariusza = pole name: w pliku). Wagi nowych scenariuszy 23–29, 36–38 oraz zmienionych 13, 33, 34 (13.10.2026, katalog przepływów) to SZACUNEK z liczby kroków (czas ≈ 50 s + 1,86 s × krok; regresja na 25 zmierzonych scenariuszach, docs/38) — do odświeżenia po pierwszym zielonym przebiegu.",
   "czesci": 3,
+  "czesci_podstawowy": 2,
   "domyslna_waga_s": 180,
   "narzut_aktualizacji_s": 120,
   "wagi_s": {
@@ -42,6 +43,7 @@
     "37-jezyk-motyw-trwale.yaml": 184,
     "38-pomoc-powiadomienia.yaml": 123,
     "50-zegarek-do-uzupelnienia.yaml": 110,
-    "51-glos-ustawienia.yaml": 120
+    "51-glos-ustawienia.yaml": 120,
+    "53-objasnienia-info.yaml": 100
   }
 }

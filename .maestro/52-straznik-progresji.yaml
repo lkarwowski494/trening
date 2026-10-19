@@ -1,10 +1,10 @@
 # Strażnik progresji (14.10.2026, f020-straznik): szablon i plan na każdy dzień → pierwszy trening (jedna seria) → ekran Trening: sylwetka w kolorach progresu z legendą,
-# zdanie o brakach celu serii (nawet z planem) i przycisk „Details in Progress” → Postępy: sekcja „Muscle groups this week” → stuknięcie partii rozwija szczegóły, ponowne zwija.
+# zdanie o brakach celu serii (nawet z planem) i przycisk „Details in Progress” → Postępy: sekcja „Progress Guard” → stuknięcie partii rozwija szczegóły, ponowne zwija.
 # Pierwszy tydzień (brak poprzedniego) → partie trenowane są „new” (opis sylwetki), a zdania o spadkach nie ma. Zdanie o brakach zależy od dnia tygodnia
 # (ile dni planu jeszcze przed nami), więc scenariusz sprawdza oba brzmienia.
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Details in Progress", "Muscle groups this week", "This week compared with the previous one: new — …"   ← components/Guard.tsx, components/GuardSection.tsx, components/Dashboard.tsx
+#   "Details in Progress", "Progress Guard", "This week compared with the previous one: new — …"   ← components/Guard.tsx, components/GuardSection.tsx, components/Dashboard.tsx
 #   "Below goal even with the plan: …" / "With the plan, every muscle group you train will reach its goal."     ← lib/guard.ts (guardTexts)
 #   "Deload week — no comparison"                                                        ← lib/guard.ts (tydzień oznaczony jako deload)
 #   "chest: …" (etykieta wiersza partii: „partia: słowo stanu. n / cel sets. …”), "Done: …" (rozwinięcie wiersza)
@@ -38,13 +38,18 @@ name: Strażnik progresji — sylwetka, zdanie o brakach, Postępy
 - assertVisible: "(Below goal even with the plan: .*|With the plan, every muscle group you train will reach its goal\\.)"
 - assertNotVisible: "Less than the week before: .*"   # bez poprzedniego tygodnia nie ma zdania o spadkach
 - takeScreenshot: 95-straznik-trening
-# --- Postępy: sekcja „Muscle groups this week”, rozwinięcie partii ---
+# --- Postępy: sekcja „Progress Guard”, rozwinięcie partii ---
 - tapOn: "Details in Progress"
-- extendedWaitUntil: { visible: "Muscle groups this week", timeout: 30000 }
-- scrollUntilVisible: { element: "chest: .*", direction: DOWN, timeout: 60000, centerElement: true }
+- extendedWaitUntil: { visible: "Progress Guard", timeout: 30000 }
+# run 39169313185: stuknięcie „chest” nie rozwinęło wiersza (zrzut: wiersz przy górnej krawędzi, bez „Done”) — przewinięcie na środek, czekanie na koniec ruchu i powtórka stuknięcia
+- retry:
+    maxRetries: 2
+    commands:
+      - scrollUntilVisible: { element: "chest: .*", direction: DOWN, timeout: 60000, centerElement: true }
+      - waitForAnimationToEnd
+      - tapOn: "chest: .*"
+      - extendedWaitUntil: { visible: "Done: .*", timeout: 8000 }
 - takeScreenshot: 96-straznik-postepy
-- tapOn: "chest: .*"
-- extendedWaitUntil: { visible: "Done: .*", timeout: 15000 }
 - takeScreenshot: 97-straznik-partia
 - tapOn: "chest: .*"
 - assertNotVisible: "Done: .*"

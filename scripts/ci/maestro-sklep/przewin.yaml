@@ -1,6 +1,6 @@
 # Zrzuty do sklepu: sekcja strażnika progresji — sylwetka w górnej części ekranu, legenda i wiersze partii pod nią, niezależnie od rozmiaru ekranu
 # (przebiegi 39149701858 i 39162600481: przewinięcie o stały procent ucinało sylwetkę; 39175724214: legenda jest ukryta dla VoiceOver, więc
-# Maestro jej nie widzi — wyśrodkowanie sylwetki, która ma etykietę dostępności, potem powolne przesunięcie o 20% wysokości bez rozpędu).
+# Maestro jej nie widzi — wyśrodkowanie sylwetki, która ma etykietę dostępności, potem powolne przesunięcie o 12% wysokości bez rozpędu; od 0.20 objaśnienie metody jest pod ⓘ, więc nagłówek „Strażnik progresji” stoi tuż nad sylwetką i zostaje w kadrze).
 appId: pl.lukasz.trening
 ---
 - waitForAnimationToEnd
@@ -10,7 +10,7 @@ appId: pl.lukasz.trening
     centerElement: true
     timeout: 20000
 - swipe:
-    start: "50%, 60%"
-    end: "50%, 40%"
+    start: "50%, 56%"
+    end: "50%, 44%"
     duration: 1500
 - waitForAnimationToEnd

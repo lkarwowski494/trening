@@ -5,7 +5,7 @@ przy małej liczbie dni. Dokument uzupełnia `docs/research/22-serie-deload-gene
 i `docs/research/29-jeden-dzien-tygodniowo.md` (1 dzień w tygodniu). Szkic z 09.10.2026 przeniesiony do repo przy wdrożeniu.
 
 Metoda: teksty pobrane samodzielnie. **PT** = przeczytany pełny tekst, **CZ** = przeczytana część dokumentu (wskazane strony/tabele),
-**A** = przeczytane streszczenie. Szczeble jak w CLAUDE.md (S1–S5). „Jedno źródło” = brak niezależnego potwierdzenia.
+**A** = przeczytane streszczenie. Szczeble jak w CLAUDE.md (S1–S5). „Jedno źródło” = brak niezależnego potwierdzenia. *Zmiana zasady 18.10.2026 (właściciel):* jedno źródło szczebla 1–2 z twierdzeniem wprost = ustalone; „jedno źródło” zostaje dla szczebli 3–5; „uproszczenie” i „konwencja” — niezależnie od liczby źródeł.
 
 Zastrzeżenia o niezależności:
 - **WHO 2020 i PAG 2018 (USA) nie są w pełni niezależne**: WHO korzystało z przeglądów przygotowanych dla komitetu PAG 2018, zaktualizowanych
@@ -30,12 +30,12 @@ Właściciel (sprawy produktowe; merytorykę rozstrzyga hierarchia źródeł): w
 | Przełącznik cardio | 4–6 dni: dni powyżej `GENERAL_LIFT_MAX` = 3 to sesje umiarkowanego cardio (długość = czas sesji — konwencja); które dni — najmniej par dzień po dniu (`assignDays`) | G2 (WHO c5, ACSM 2011 2–3 dni), G11, G12, G13 (osobne dni) |
 | Serie | `GENERAL_SETS` = 2 (dolna granica `GENERAL_SETS_RANGE` 2–3) | G6 — część wspólna 2–3, „2” = uproszczenie |
 | Powtórzenia | 8–12, w domu 12–20 (te same `REPS.gym` / `REPS.home` i ta sama reguła domu co masa) | G7 — 8–12 potwierdzone; 12–20 = **uproszczenie** w zakresie 8–20 |
-| Wysiłek | słownie: „do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie; do upadku nie trzeba” (także notatka szablonu) | G8 — opis potwierdzony; bez liczby RIR (jedno źródło na liczbę) |
+| Wysiłek | słownie: „do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie; do upadku nie trzeba” (także notatka szablonu) | G8 — opis potwierdzony; bez liczby RIR (liczba 2–3 RIR — ACSM 2026, szczebel 2 (18.10.2026)) |
 | Przerwy | 120 s wielostawowe, 90 s jednostawowe i core (`REST`) | G9 — **uproszczenie** (rozbieżność źródeł) |
 | Bój 4–6, kreska 10 serii | brak (`below10` = [] jak przy sile) | ciężkie 4–6 nie jest zaleceniem dla zdrowia; 10 serii — próg przerostu (ACSM 2026), nie zalecenie zdrowotne |
 | Ostrzeżenia | `missing`, `rare` (WHO: ≥ 2 dni), `pairs`; „oneday” — tekst dla zdrowia (niżej); bez `unloaded`, `loadcap` (dotyczą ciężkich serii celu „Siła”) i `below` | G1; sekcja 3 |
 | Cardio w podglądzie | „Cardio w planie: X min tygodniowo” + zalecenie WHO 150–300 / 75–150 min i „liczy się też ruch w ciągu dnia” (także 0 min) | G11 (WHO_MODERATE, WHO_VIGOROUS) |
-| Rozciąganie, równowaga | nie ma | G15 — jedno źródło (PAG: korzyści nieznane); G17 — tylko 65+ |
+| Rozciąganie, równowaga | nie ma | G15 — ACSM 2011, szczebel 2 (18.10.2026) (PAG: korzyści nieznane); G17 — tylko 65+ |
 
 ## 1. Reguły dla treningu „ogólnego” — tabela
 
@@ -44,18 +44,18 @@ Właściciel (sprawy produktowe; merytorykę rozstrzyga hierarchia źródeł): w
 | G1 | Ćwiczenia wzmacniające **wszystkie główne grupy mięśni co najmniej 2 dni w tygodniu** | WHO 2020 (S2, PT, c1); PAG 2018 (S2, CZ, c2); ACSM 2026 (S2, PT, c3); ACSM 2011: każda główna grupa 2–3 dni/tydz., kat. A (S2, CZ, c4) | **potwierdzone** (WHO/PAG + ACSM) |
 | G2 | Więcej niż 2–3 dni siłowe nie daje udowodnionej dodatkowej korzyści **zdrowotnej** | WHO 2020: brak dowodów dawka–odpowiedź dla większej ilości ćwiczeń wzmacniających (c5); ACSM 2011: „2–3 d·wk” (c4) | potwierdzone kierunkowo (brak dowodu korzyści ≠ dowód braku); górna granica „3” = ACSM 2011 |
 | G3 | Główne grupy = nogi, biodra, plecy, klatka, brzuch, barki, ramiona | PAG 2018 s. 60 (c6); ACSM 2011 s. 1343: „chest, shoulders, back, hips, legs, trunk, and arms” | **potwierdzone** (dwie organizacje) |
-| G4 | Wystarczy pokryć 4 obszary: góra/dół × pchanie/ciągnięcie (opcjonalnie 6: + poziomo/pionowo w górze) | ACSM 2026 (c7) — „in the view of the authors”, bez porównań w badaniach | **jedno źródło (opinia autorów)** — zgodne z G3 |
-| G5 | Ćwiczenia wielostawowe + jednostawowe dla ważnych grup (brzuch, prostowniki grzbietu, łydki…); mięśnie przeciwstawne | ACSM 2011 s. 1343 (CZ) | jedno źródło; R7 z dok. 22 (Haugen 2023 i in.) potwierdza bazę wielostawową |
+| G4 | Wystarczy pokryć 4 obszary: góra/dół × pchanie/ciągnięcie (opcjonalnie 6: + poziomo/pionowo w górze) | ACSM 2026 (c7) — „in the view of the authors”, bez porównań w badaniach | **konwencja / opinia autorów** (ACSM 2026, szczebel 2 (18.10.2026)) — zgodne z G3 |
+| G5 | Ćwiczenia wielostawowe + jednostawowe dla ważnych grup (brzuch, prostowniki grzbietu, łydki…); mięśnie przeciwstawne | ACSM 2011 s. 1343 (CZ) | ustalone — stanowisko szczebla 2 (18.10.2026); R7 z dok. 22 (Haugen 2023 i in.) potwierdza bazę wielostawową |
 | G6 | **Serie na ćwiczenie: 1 seria działa, 2–3 zwykle lepiej**; zalecenie: co najmniej 2 | PAG 2018: „one set of 8 to 12 … effective, although 2 or 3 sets may be more effective” (c8); ACSM 2011: 2–4 serie, pojedyncza seria skuteczna u początkujących i starszych, kat. A (c4); ACSM 2026: co najmniej 2 serie (22/7g) | **potwierdzone: część wspólna 2–3**; „co najmniej 2” — ACSM 2026 |
 | G7 | **Powtórzenia: 8–12** dla większości dorosłych; u starszych/początkujących i bez dużego ciężaru więcej (10–15, 10–20) | PAG 2018 (c8); ACSM 2011 tab. 2, kat. A (c4) i s. 1343 (10–20 u starszych, słabszych); ACSM 2026: dawne zalecenie 8–20 (c9), a przerost w szerokim zakresie 30–100% 1RM (22, sekcja 1) | **8–12 potwierdzone** (PAG + ACSM); 12–20 „w domu” = uproszczenie mieszczące się w 8–20 |
-| G8 | **Wysiłek**: „umiarkowany lub większy”, do momentu, gdy kolejne powtórzenie byłoby trudne; zmęczenie, ale nie wyczerpanie; „high effort” | WHO 2020 (c1); PAG 2018 (c8); ACSM 2011 s. 1343 (c10); ACSM 2026: „high effort”, cel 2–3 RIR, dokładnego RIR nie ustalono (c3, 22/7d) | opis wysiłku **potwierdzony** (trzy dokumenty, dwie organizacje); **liczba RIR 2–3 = jedno źródło (ACSM 2026)** |
-| G9 | Przerwy między seriami: w programie ogólnym 2–3 min | ACSM 2011, kat. B (c11); ACSM 2026: przerwa nie zmienia przyrostu siły, dla przerostu „insufficient data” (22/7e); Singer 2024: korzyść > 60 s (22) | **rozbieżność / jedno źródło na liczbę** → uproszczenie „zwykle 1,5–2 min” (jak REST) |
-| G10 | Między sesjami tej samej partii ≥ 48 h | ACSM 2011 tab. 2, kat. A, i s. 1343 („48 to 72 h”) (c12) | **jedno źródło** (ACSM 2026: przy równej objętości częstotliwość 1 vs > 5 dni/tydz. nie zmienia przerostu — c13) → nazwane uproszczenie: FBW nie dzień po dniu |
+| G8 | **Wysiłek**: „umiarkowany lub większy”, do momentu, gdy kolejne powtórzenie byłoby trudne; zmęczenie, ale nie wyczerpanie; „high effort” | WHO 2020 (c1); PAG 2018 (c8); ACSM 2011 s. 1343 (c10); ACSM 2026: „high effort”, cel 2–3 RIR, dokładnego RIR nie ustalono (c3, 22/7d) | opis wysiłku **potwierdzony** (trzy dokumenty, dwie organizacje); **liczba RIR 2–3 = ustalone (ACSM 2026, szczebel 2 (18.10.2026))** |
+| G9 | Przerwy między seriami: w programie ogólnym 2–3 min | ACSM 2011, kat. B (c11); ACSM 2026: przerwa nie zmienia przyrostu siły, dla przerostu „insufficient data” (22/7e); Singer 2024: korzyść > 60 s (22) | **rozbieżność na szczeblu 2** → uproszczenie „zwykle 1,5–2 min” (jak REST) |
+| G10 | Między sesjami tej samej partii ≥ 48 h | ACSM 2011 tab. 2, kat. A, i s. 1343 („48 to 72 h”) (c12) | ustalone — ACSM 2011, szczebel 2 (18.10.2026) (ACSM 2026: przy równej objętości częstotliwość 1 vs > 5 dni/tydz. nie zmienia przerostu — c13) → nazwane uproszczenie: FBW nie dzień po dniu |
 | G11 | Aerobowa: **co najmniej 150–300 min umiarkowanej albo 75–150 min intensywnej** tygodniowo; liczy się każdy odcinek; „mniej niż nic” — każda ilość lepsza niż nic | WHO 2020 (22/7f, c14); PAG 2018 (c15); ACSM 2011: ≥ 150 min/tydz. (c16) | **potwierdzone** |
 | G12 | Aerobową najlepiej **rozłożyć na co najmniej 3 dni** | PAG 2018 s. 57 (c17); ACSM 2011: umiarkowana ≥ 5 dni albo intensywna ≥ 3 dni (c16) | potwierdzone (dwie organizacje; liczby „3” i „5” różne — część wspólna: kilka dni, nie jeden) |
 | G13 | Siłowe i cardio w **tej samej sesji**: przyrost mięśni i siły maksymalnej nie słabnie; słabnie siła eksplozywna (głównie w tej samej sesji) | Schumann 2022 (S2, PT, c18); Petré 2021 (S2, PT: osłabienie 1RM nóg tylko u wytrenowanych i tylko w tej samej sesji, c19); ACSM 2026: „insufficient data” dla tej samej sesji (c20) | **potwierdzone kierunkowo dla przerostu i siły u niewytrenowanych**; ACSM — brak danych → ostrożnie |
 | G14 | Kolejność w jednej sesji: najpierw siłowe, potem cardio | Eddens 2018 (S2, PT): lepsza dynamiczna siła nóg, bez różnicy dla przerostu i tkanki tłuszczowej (c21); Schumann 2022: brak efektu kolejności dla siły eksplozywnej (c18) | **rozbieżność** → część wspólna: „najpierw siłowe” niczego nie pogarsza; nazwać konwencją z uzasadnieniem |
-| G15 | Rozciąganie: **≥ 2–3 dni/tydz.**, seria ćwiczeń na główne grupy, ok. 60 s na ćwiczenie, zwykle ~10 min, najlepiej na rozgrzanych mięśniach | ACSM 2011 tab. 2 (kat. B/C) i s. 1344 (c22) | **jedno źródło (ACSM)**; PAG 2018: „appropriate part … even though their health benefits are unknown”, nie liczy się do zaleceń (c23); WHO 2020: brak zalecenia dla ogółu dorosłych |
+| G15 | Rozciąganie: **≥ 2–3 dni/tydz.**, seria ćwiczeń na główne grupy, ok. 60 s na ćwiczenie, zwykle ~10 min, najlepiej na rozgrzanych mięśniach | ACSM 2011 tab. 2 (kat. B/C) i s. 1344 (c22) | ustalone — ACSM 2011, szczebel 2 (18.10.2026); PAG 2018: „appropriate part … even though their health benefits are unknown”, nie liczy się do zaleceń (c23); WHO 2020: brak zalecenia dla ogółu dorosłych |
 | G16 | Długie statyczne rozciąganie tuż przed wysiłkiem siłowym może chwilowo obniżyć siłę (≥ 60 s na grupę); rozciąganie w rozgrzewce z dalszą częścią dynamiczną — bez znaczenia | Behm 2016 (S2, A, c24); ACSM 2011 s. 1344: „can have a negative effect on subsequent muscle strength and power” | potwierdzone kierunkowo (dwie niezależne grupy) |
 | G17 | Równowaga / trening wieloskładnikowy: **dla osób 65+**, ≥ 3 dni/tydz. (WHO); dla młodszych skuteczność nieustalona | WHO 2020 (c25); PAG 2018 (osoby starsze, c26); ACSM 2011: neuromotoryka 2–3 dni, u starszych kat. B, u młodszych kat. D (c27) | potwierdzone **tylko dla starszych** |
 | G18 | Rozgrzewka przed siłowym zwykle = te same ćwiczenia z mniejszym ciężarem | PAG 2018 s. 61 (c28); ACSM 2011 tab. 1: rozgrzewka może zmniejszać ryzyko, kat. C | potwierdzone kierunkowo (opis praktyki w zaleceniach) |
@@ -66,7 +66,7 @@ Właściciel (sprawy produktowe; merytorykę rozstrzyga hierarchia źródeł): w
 | Parametr | Propozycja | Uzasadnienie / status |
 |---|---|---|
 | Dni siłowe | **min(n, 3)**, sesje FBW (każda sesja = wszystkie główne partie) | G1 (≥ 2), G2 (WHO: brak dowodu korzyści z więcej; ACSM 2011: 2–3), G3; FBW, bo przy 2–3 dniach tylko on daje każdą partię ≥ 2 dni — reszta to **konwencja** |
-| Układ dni siłowych | 1: [pon]; 2: FBW A/B pon–czw; 3: FBW A/B/A pon–śr–pt (jak dziś) | G10 (≥ 48 h — jedno źródło, uproszczenie); już działa `bestDays` |
+| Układ dni siłowych | 1: [pon]; 2: FBW A/B pon–czw; 3: FBW A/B/A pon–śr–pt (jak dziś) | G10 (≥ 48 h — ACSM 2011, szczebel 2; uproszczenie); już działa `bestDays` |
 | Dni cardio | **n − 3** dla n = 4–6 (osobne sesje umiarkowanego cardio, długość = czas sesji, jak przy redukcji) | G11, G12; osobny dzień = najbezpieczniej wg G13 (ACSM 2026 „brak danych” dla tej samej sesji); długość = **konwencja** |
 | Cardio w sesji siłowej (n = 1–3) | **opcja**: krótki blok cardio na końcu sesji siłowej (np. 15/20/30 min przy 45/60/90 min — **konwencja**, liczba do decyzji) | G13, G14: przy celu zdrowotnym siła eksplozywna nie jest celem; kolejność „najpierw siłowe” = część wspólna |
 | Serie na ćwiczenie | **2** (wariant B: 3 jak dziś) | G6: 2 = dolna granica części wspólnej (ACSM 2026 „co najmniej 2”, ACSM 2011 2–4, PAG 1 lub 2–3); zostawia czas na więcej ćwiczeń i cardio |
@@ -77,7 +77,7 @@ Właściciel (sprawy produktowe; merytorykę rozstrzyga hierarchia źródeł): w
 | Liczba ćwiczeń | z budżetu czasu (jak dziś), wszystkie MAJOR w każdej sesji FBW; ostrzeżenie, gdy partii brak | G1, G3, G4; dawne zalecenie ACSM „8–10 ćwiczeń” (c9) tylko informacyjnie — budżet czasu to **uproszczenie** |
 | Kreska 10 serii/partię | **nie pokazywać** dla „Ogólnego” (jak przy sile) | 10 serii to próg przerostu (ACSM 2026), nie zalecenie zdrowotne |
 | Rozgrzewka | WARMUP_MIN bez zmian; tekst: „lżejsze serie tych samych ćwiczeń” | G18 |
-| Rozciąganie | **opcjonalna** informacja (po treningu ok. 10 min, ok. 60 s na ćwiczenie); bez długiego rozciągania statycznego przed seriami — **odrzucone przez właściciela 09.10** | G15 (jedno źródło — ACSM; PAG: korzyści zdrowotne nieznane), G16; **nie** jako twierdzenie o zdrowiu ani o zapobieganiu kontuzjom (ACSM 2011: brak spójnego związku) |
+| Rozciąganie | **opcjonalna** informacja (po treningu ok. 10 min, ok. 60 s na ćwiczenie); bez długiego rozciągania statycznego przed seriami — **odrzucone przez właściciela 09.10** | G15 (ACSM 2011, szczebel 2; PAG: korzyści zdrowotne nieznane), G16; **nie** jako twierdzenie o zdrowiu ani o zapobieganiu kontuzjom (ACSM 2011: brak spójnego związku) |
 | Równowaga | nie dodawać teraz (generator nie zna wieku) — otwarte | G17 |
 | Informacja o aktywności | podgląd: „Cardio w planie: X min/tydz. Zalecenie: co najmniej 150–300 min umiarkowanego lub 75–150 min intensywnego wysiłku — liczy się też ruch poza planem (np. szybki marsz)” | G11 (WHO_MODERATE, WHO_VIGOROUS już w kodzie) |
 | GEN_SESSIONS | `general: [1, 2, 3, 4, 5, 6]` | 1 dzień dozwolony z uwagą (pkt 4), bo G19 |
@@ -168,7 +168,7 @@ Uwaga: WHO 2020 wspomina „gentle stretching” **tylko w zaleceniach dla kobie
 
 ## 5. Czego NIE da się potwierdzić (nie wchodzi do aplikacji jako fakt)
 
-- Dokładna liczba serii, RIR i przerw „dla zdrowia” — tylko przedziały (2–3 serie; opis wysiłku); RIR 2–3 = ACSM 2026 (jedno źródło na liczbę).
+- Dokładna liczba serii, RIR i przerw „dla zdrowia” — tylko przedziały (2–3 serie; opis wysiłku); RIR 2–3 = ACSM 2026 (szczebel 2).
 - Że 4–6 dni siłowych daje więcej korzyści **zdrowotnych** niż 2–3 (WHO: brak dowodów dawka–odpowiedź) — ani że szkodzi.
 - Optymalna długość bloku cardio w sesji siłowej i podział minut cardio między dni — konwencja.
 - Wpływ łączenia cardio i siłowego w tej samej sesji na wyniki **zdrowotne** (metaanalizy dotyczą siły, przerostu, mocy; ACSM 2026: brak danych).

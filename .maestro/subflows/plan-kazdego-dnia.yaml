@@ -11,15 +11,20 @@ appId: pl.lukasz.trening
 - extendedWaitUntil: { visible: "Not now", timeout: 8000, optional: true }
 - tapOn: { text: "Not now", optional: true }
 - tapOn: "Tuesday, Rest"
+- scrollUntilVisible: { element: "Tuesday: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # run 39191946283: rozwinięty wiersz dnia z chipem poza ekranem — „Element not found”
 - tapOn: "Tuesday: Upper A"
 - tapOn: "Wednesday, Rest"
+- scrollUntilVisible: { element: "Wednesday: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # run 39191946283: rozwinięty wiersz dnia z chipem poza ekranem — „Element not found”
 - tapOn: "Wednesday: Upper A"
 - scrollUntilVisible: { element: "Sunday, Rest", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Thursday, Rest"
+- scrollUntilVisible: { element: "Thursday: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # run 39191946283: rozwinięty wiersz dnia z chipem poza ekranem — „Element not found”
 - tapOn: "Thursday: Upper A"
 - tapOn: "Friday, Rest"
+- scrollUntilVisible: { element: "Friday: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # run 39191946283: rozwinięty wiersz dnia z chipem poza ekranem — „Element not found”
 - tapOn: "Friday: Upper A"
 - tapOn: "Saturday, Rest"
+- scrollUntilVisible: { element: "Saturday: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # run 39191946283: rozwinięty wiersz dnia z chipem poza ekranem — „Element not found”
 - tapOn: "Saturday: Upper A"
 - scrollUntilVisible: { element: "Sunday, Rest", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Sunday, Rest"

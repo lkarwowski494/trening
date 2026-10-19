@@ -10,7 +10,7 @@ import { weekStrip, weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { workoutPRs, prCount } from '@/lib/stats';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, withDemoTemplates, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, act, go } from './app';
+import { renderApp, flushAll, screen, tap, act, go, openInfo } from './app';
 import { within } from '@testing-library/react-native';
 
 const NOW = new Date(2026, 9, 8, 9, 0); /* czw.; tydzień od 5.10 */
@@ -64,7 +64,7 @@ describe('ekran', () => {
     expect(screen.queryByText(/^4\. /)).toBeNull(); /* P6 B (import) — krok 4 dopiero po wdrożeniu importu */
     const box = within(screen.getByTestId('first-steps')); expect(box.getAllByText('Planowanie')).toHaveLength(2); expect(box.getAllByText('Przewodnik')).toHaveLength(1);
     for (const gone of ['+ Nowy szablon', 'Wygeneruj szablony i plan', 'Plan tygodnia', 'Plan z moich szablonów', 'Miejsca i sprzęt', 'Jak to działa']) expect(box.queryByText(gone)).toBeNull(); /* dawne 9 przycisków */
-    await tap(box.getAllByText('Planowanie')[0]); await flushAll(10); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')).toBeTruthy();
+    await tap(box.getAllByText('Planowanie')[0]); await flushAll(10); await openInfo('plan-days'); expect(screen.getByText('Plan powtarza się co tydzień. Pojedyncze dni zmienisz w zakładce Plan.')).toBeTruthy() /* ⓘ 14.10.2026: opis pod ⓘ przy „Dni tygodnia” */;
     await tap(screen.getByText('Wygeneruj szablony i plan')); await flushAll(10); expect(screen.getByText('Podgląd')).toBeTruthy();
     /* 11.10.2026: „Miejsca i sprzęt” — jedno zdanie z odnośnikiem (nie osobny, numerowany krok); „Przewodnik” tylko raz (krok 3) */
     await go('/'); await flushAll(10); const box2 = within(screen.getByTestId('first-steps')); const places = 'Ćwiczysz w domu albo na siłowni? Ustaw sprzęt w „Miejsca i sprzęt”.'; expect(box2.getByText(places)).toBeTruthy(); expect(screen.getByLabelText(places).props.accessibilityRole).toBe('button'); expect(screen.queryByText(/^4\. /)).toBeNull();

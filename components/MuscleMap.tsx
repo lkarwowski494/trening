@@ -38,7 +38,7 @@ export function MuscleMap({ sets, splits, title, label: given, caption, legend =
         {[0, 1, 2, 3, 4].map(l => <View key={l} style={{ width: 16, height: 10, borderRadius: 3, backgroundColor: shadeColor(l, th.line, th.accent) }} />)}
         <Muted style={{ fontSize: 12, marginLeft: 4 }}>{t('więcej')}</Muted>
       </View> : null}
-      <Muted style={{ fontSize: 12, marginTop: 6 }}>{caption ?? t('Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.')}</Muted>
+      {caption ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{caption}</Muted> : null}{/* ⓘ 14.10.2026: domyślny podpis („Kolor względem partii…”) przeniesiony pod ⓘ przy „Podsumowanie” (PeriodSummary) */}
     </View>
   );
 }

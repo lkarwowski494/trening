@@ -13,7 +13,7 @@ import { setsByMuscle, weeklySetsByMuscle, thisMonday } from '@/lib/stats';
 import { PARTS, shadeLevel, rankedMuscles, SHADE_MIX, svgMarkup, mixHex, shadeColor } from '@/lib/musclemap';
 import { light, dark } from '@/lib/theme';
 import { fresh, addWorkout, saved } from './helpers';
-import { renderApp, flushAll, screen, go, act } from './app';
+import { renderApp, flushAll, screen, go, act, openInfo } from './app';
 
 const NOW = new Date(2026, 9, 8, 18, 0);
 const at = (m: number, d: number, h = 18) => new Date(2026, m, d, h).getTime();
@@ -61,6 +61,7 @@ describe('ekran', () => {
     await boot(() => { addWorkout(at(9, 6), [['Bench Press (sztanga)', [{ weight: 80, reps: 5 }, { weight: 80, reps: 5 }]]]); });
     const map = screen.getByTestId('muscle-map'); expect(map.props.accessibilityRole).toBe('image');
     expect(map.props.accessibilityLabel).toBe('Mapa mięśni: klatka 2, barki 0 bezpośrednio, 1 pośrednio (serie pomocnicze: 2), triceps 0 bezpośrednio, 1 pośrednio (serie pomocnicze: 2)'); /* 13.10.2026: obie wartości; kolor nadal wg sumy ważonej */
+    await openInfo('period-summary'); /* ⓘ 14.10.2026: podpis skali pod ⓘ przy „Podsumowanie” */
     for (const s of ['Mapa mięśni', 'Przód', 'Tył', 'mniej', 'więcej', 'Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.']) expect(screen.getAllByText(s).length).toBeGreaterThan(0);
     await boot(() => { addWorkout(at(8, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });
     expect(screen.getByTestId('muscle-map').props.accessibilityLabel).toBe('Mapa mięśni: brak serii w tym okresie.');

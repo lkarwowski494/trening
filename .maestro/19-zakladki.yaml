@@ -25,7 +25,12 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
 - takeScreenshot: 90-cztery-zakladki
 
 # --- Postępy: osobna zakładka; masa ciała w jej sekcji (nie w Ustawieniach) ---
-- tapOn: "Progress, tab.*"
+# run 39196025031 (zrzut: wciąż „Workout”): stuknięcie zakładki tuż po starcie zostało zignorowane — powtórka, aż pojawi się tytuł ekranu „Progress”
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Progress, tab.*"
+      - extendedWaitUntil: { visible: "Progress", timeout: 10000 }
 - scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 91-postepy-masa-ciala
 

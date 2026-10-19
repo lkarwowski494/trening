@@ -13,7 +13,7 @@ import { toKg, type LoadSpec } from '@/lib/loads';
 import { applyUnit } from '@/lib/units';
 import { applyLang } from '@/lib/i18n';
 import { fresh, ex, saved } from './helpers';
-import { renderApp, tap, flushAll, screen, act, fireEvent } from './app';
+import { renderApp, tap, flushAll, screen, act, fireEvent, openInfo } from './app';
 
 jest.setTimeout(60000);
 const S = () => store.getState();
@@ -171,6 +171,7 @@ describe('ekran treningu: karta „teraz”', () => {
 describe('ekran Ustawień: „Widok treningu”', () => {
   test('kontrolka Skupiony / Lista z opisem; zmiana zapisuje się i zmienia ekran treningu', async () => {
     await fresh(); await renderApp({ url: '/more/settings' }); await flushAll(10);
+    expect(screen.queryByText(/^Skupiony: bieżąca seria/)).toBeNull(); await openInfo('workout-view'); /* ⓘ 14.10.2026: opis widoku pod ⓘ przy polu */
     expect(screen.getByText('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')).toBeTruthy();
     expect(screen.getByText('Skupiony')).toBeTruthy();
     await tap(screen.getByText('Lista')); await flushAll(5);

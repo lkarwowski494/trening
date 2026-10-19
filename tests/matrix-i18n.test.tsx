@@ -449,3 +449,40 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
     expect(f.has('ą') && f.has('ő') && f.has('ș') && f.has('ė') && f.has('ā')).toBe(true); expect(PLEX.width('0000', 10)).toBeCloseTo(4 * PLEX.width('0', 10), 6);
   });
 });
+
+/* ⓘ (14.10.2026, docs/32 wzorzec 27): rozwinięte objaśnienie to tekst 14 pt w ramce z paddingiem 10 pt (components/InfoTip.tsx InfoBox) — na ekranie 320 pt
+ * (marginesy ekranu 2 × 14) wiersz ma 320 − 28 − 20 = 272 pt. Żaden wyraz żadnego tekstu pod ⓘ nie może być szerszy niż wiersz — w żadnym języku,
+ * także przy 200% (TEXT_SCALE_MAX). Teksty zbierane z kodu (AST): literały t()/tr() w atrybutach `info=` oraz w zmiennych przekazywanych do `info=`
+ * (goalNote, basis, simplification, bwNote, note) — nowy tekst pod ⓘ trafia do testu sam. Renderowanie rozwiniętego ⓘ w każdym języku: tests/gen-days-ui.test.tsx. */
+describe('ⓘ: teksty objaśniające na ekranie 320 pt', () => {
+  const fsx = require('fs') as typeof import('fs'); const pathx = require('path') as typeof import('path'); const tsx = require('typescript');
+  const root = pathx.join(__dirname, '..');
+  const walkx = (d: string): string[] => fsx.readdirSync(d).flatMap(f => { const p = pathx.join(d, f); return fsx.statSync(p).isDirectory() ? walkx(p) : [p]; });
+  const INFO_VARS = ['goalNote', 'basis', 'simplification', 'bwNote', 'note'];
+  const infoKeys = (): string[] => {
+    const out = new Set<string>();
+    for (const f of ['app', 'components'].flatMap(d => walkx(pathx.join(root, d))).filter(p => /\.tsx$/.test(p))) {
+      const sf = tsx.createSourceFile(f, fsx.readFileSync(f, 'utf8'), tsx.ScriptTarget.Latest, true, tsx.ScriptKind.TSX);
+      const collect = (n: any) => { if (tsx.isCallExpression(n) && /^(t|tr)$/.test(n.expression.getText()) && n.arguments[0] && tsx.isStringLiteralLike(n.arguments[0])) out.add(n.arguments[0].text); tsx.forEachChild(n, collect); };
+      const visit = (n: any) => {
+        if (tsx.isJsxAttribute(n) && n.name.getText() === 'info' && n.initializer) collect(n.initializer);
+        if (tsx.isVariableDeclaration(n) && INFO_VARS.includes(n.name.getText()) && n.initializer) collect(n.initializer);
+        tsx.forEachChild(n, visit);
+      };
+      visit(sf);
+    }
+    return [...out];
+  };
+  const KEYS = infoKeys();
+  test('zebrano teksty pod ⓘ z kodu (kontrola, że skan działa): opis celu, źródła generatora, kopia automatyczna, cel serii', () => {
+    expect(KEYS.length).toBeGreaterThan(40);
+    for (const k of ['Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}.', 'Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.', 'Przeciągnij za ≡, żeby zmienić kolejność. Superset przesuwa się w całości; kolejność w nim zmienisz uchwytami przy ćwiczeniach.']) expect(KEYS).toContain(k);
+  });
+  test.each([...LANGS])('%s: żaden wyraz tekstu pod ⓘ nie jest szerszy niż wiersz ramki (272 pt) przy 100%%; przy 200%% — mieści się w dwóch wierszach', l => {
+    /* Uproszczenie (nazwane): przy 200% długie złożenia (de, nl, sv, da, nb, fi — „Forschungsübersichten”) łamią się w środku wyrazu, jak w każdym tekście iOS; to zwykły tekst do czytania,
+     * nie kontrolka o stałej szerokości, więc wystarczy, że wyraz zmieści się w dwóch wierszach (nic nie jest ucinane — bez numberOfLines). */
+    const avail = 320 - 2 * 14 - 2 * 10; const bad: string[] = [];
+    for (const k of KEYS) for (const x of words(trIn(l, k).replace(/\{\w+\}/g, '99'))) { if (SANS.regular.width(x, 14) > avail) bad.push(`${x} (100%)`); if (SANS.regular.width(x, 28) > 2 * avail) bad.push(`${x} (200%, >2 wiersze)`); }
+    expect([l, bad]).toEqual([l, []]);
+  });
+});

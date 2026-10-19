@@ -10,7 +10,7 @@ import { applyLang } from '@/lib/i18n';
 import { applyUnit } from '@/lib/units';
 import { LICENSES, LICENSE_TEXTS } from '@/lib/licenses.generated';
 import { fresh, saved, addWorkout, ex, pressAlert } from './helpers';
-import { renderApp, flushAll, screen, go, act, tap, swipeDelete, type as typeText } from './app';
+import { renderApp, flushAll, screen, go, act, tap, swipeDelete, type as typeText, openInfo } from './app';
 
 jest.setTimeout(60000);
 const NOW = new Date(2026, 9, 8, 18).getTime();
@@ -132,7 +132,7 @@ describe('SEC-08: Więcej → O aplikacji → Licencje open source', () => {
     await boot(undefined, '/more'); await tap(screen.getByText('O aplikacji')); await flushAll(10);
     expect(screen.getByLabelText(`Wersja, ${require('expo-constants').default.expoConfig?.version ?? '—'}`)).toBeTruthy(); expect(screen.getByText('Aplikacja nie zbiera danych: wszystko, co wpisujesz, zostaje w telefonie, bez konta, reklam i analityki.')).toBeTruthy(); expect(screen.getByText(`Pakiety open source: ${LICENSES.length}`)).toBeTruthy();
     await tap(screen.getByText('Licencje open source')); await flushAll(10);
-    expect(screen.getByText(`Pakiety (${LICENSES.length})`)).toBeTruthy(); expect(screen.getByText('Aplikacja korzysta z bibliotek open source. Niżej licencje (dotknij, by zobaczyć treść) oraz wszystkie pakiety npm, od których zależy aplikacja — także narzędzia budowania — z licencją i notką o prawach autorskich.')).toBeTruthy();
+    expect(screen.getByText(`Pakiety (${LICENSES.length})`)).toBeTruthy(); expect(screen.getByText('Licencje bibliotek open source. Dotknij, by zobaczyć treść.')).toBeTruthy(); await openInfo('licenses-intro'); expect(screen.getByText('Aplikacja korzysta z bibliotek open source. Niżej licencje (dotknij, by zobaczyć treść) oraz wszystkie pakiety npm, od których zależy aplikacja — także narzędzia budowania — z licencją i notką o prawach autorskich.')).toBeTruthy();
     expect(screen.getByText(`pakiety: ${LICENSES.filter(r => r[2].includes('OFL-1.1')).length} · treść wg ${LICENSE_TEXTS['OFL-1.1'].from}`)).toBeTruthy(); expect(screen.queryByText(LICENSE_TEXTS['OFL-1.1'].text)).toBeNull();
     await tap(screen.getByText('OFL-1.1')); await flushAll(5); expect(screen.getByText(LICENSE_TEXTS['OFL-1.1'].text)).toBeTruthy();
     expect(screen.getAllByText(/^@babel\/|^@expo/).length).toBeGreaterThan(0);

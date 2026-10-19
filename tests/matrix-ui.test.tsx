@@ -12,7 +12,7 @@ import { LOAD_LIMITS } from '@/lib/loads';
 import { addLocation } from '@/lib/locations';
 import { t as tr, exName } from '@/lib/i18n';
 import { setBodyMass, fresh, ex, addWorkout, pressAlert, withDemoTemplates } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard, swipeDelete, deleteActions, startEdit, exDraft, startTpl } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard, swipeDelete, deleteActions, startEdit, exDraft, startTpl, openInfo } from './app';
 import { loc } from './locations-fixtures';
 
 /* Zgoda na powiadomienia sterowana z testu (global.__notifDenied) — reszta jak w tests/setup.js. */
@@ -57,6 +57,7 @@ describe('/more/settings', () => {
     expect(screen.getByText('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')).toBeTruthy();
     expect(screen.getByLabelText('Podpowiedź progresji').props.accessibilityHint).toBe('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń');
     const ph0 = store.getState().settings.progressHint; await flip('Podpowiedź progresji', !ph0); expect(store.getState().settings.progressHint).toBe(!ph0);
+    expect(screen.queryByText(/^Timer odlicza w aplikacji/)).toBeNull(); await openInfo('notifications'); /* ⓘ 14.10.2026 */
     expect(screen.getByText('Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.')).toBeTruthy();
   });
 
@@ -101,11 +102,14 @@ describe('/more/language', () => {
 describe('/more/backup', () => {
   test('opisy eksportu, CSV i kopii automatycznej (wł./wył.); eksport JSON i CSV otwiera udostępnianie z tytułem', async () => {
     await renderApp(); await go('/more/backup'); await flushAll(10);
-    expect(screen.getByText('Eksport tworzy plik JSON z całą historią i szablonami — zapisz go w Plikach/iCloud albo wyślij sobie. Import przyjmuje ten sam format, także backup z wersji webowej.')).toBeTruthy();
+    expect(screen.getByText('Plik JSON z całą historią i szablonami. Import przyjmuje ten sam format.')).toBeTruthy(); expect(screen.queryByText(/^Eksport tworzy plik JSON/)).toBeNull(); /* ⓘ 14.10.2026: pełny opis pod ⓘ */
+    await openInfo('backup-intro'); expect(screen.getByText('Eksport tworzy plik JSON z całą historią i szablonami — zapisz go w Plikach/iCloud albo wyślij sobie. Import przyjmuje ten sam format, także backup z wersji webowej.')).toBeTruthy();
+    expect(screen.getByText('Dopisuje treningi z CSV — bez usuwania danych, z podglądem.')).toBeTruthy(); await openInfo('backup-csv'); expect(screen.getByText('Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.')).toBeTruthy();
     expect(screen.getByText('CSV: ciężar w jednostce z ustawień (kg), dystans w metrach.')).toBeTruthy();
     expect(AUTO_KEEP).toBe(10);
     expect(store.getState().settings.autoBackup).toBe(true);
-    expect(screen.getByText('Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie 10). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.')).toBeTruthy();
+    expect(screen.getByText('Kopie automatyczne znikają razem z aplikacją — przed jej usunięciem wyeksportuj backup.')).toBeTruthy(); /* utrata danych: ostrzeżenie zostaje na wierzchu */
+    await openInfo('backup-auto'); expect(screen.getByText('Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → Trening → Backup, ostatnie 10). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.')).toBeTruthy();
     Sharing.shareAsync.mockClear();
     await tap(screen.getByText('Eksportuj backup (plik JSON)')); await flushAll(20);
     expect(Sharing.shareAsync.mock.calls.pop()[1]).toMatchObject({ mimeType: 'application/json', dialogTitle: 'Backup treningów' });
@@ -137,6 +141,7 @@ describe('/more/bands', () => {
     const saved = await prepared(() => { store.getState().bands = []; });
     await renderApp({ saved }); await go('/more/bands'); await flushAll(10);
     /* MER-15 (audyt 0.10): zdanie prawdziwe dla gumy jako asysty i jako oporu */
+    expect(screen.getByText('Poziom: 1 = cienka, 7 = bardzo gruba.')).toBeTruthy(); await openInfo('bands-intro');
     expect(screen.getByText('Kolor i poziom trudności: 1 = cienka, 7 = bardzo gruba. Gumy nie mają kilogramów — przy serii zapisujesz, której gumy użyłeś. Guma jako asysta (np. podciąganie): rekordem są powtórzenia bez gumy, a postęp to zejście na niższy poziom. Guma jako opór: rekordy liczą serie z gumą.')).toBeTruthy();
     expect(screen.getByText('Brak gum. Dodaj pierwszą, by zapisywać asystę przy podciąganiu.')).toBeTruthy();
     await tap(screen.getByLabelText('Dodaj gumę')); await flushAll(5);
@@ -161,6 +166,7 @@ describe('/more/bands', () => {
 describe('/more/locations, /more/location/[id]', () => {
   test('lista miejsc: wyjaśnienie', async () => {
     await renderApp(); await go('/more/locations'); await flushAll(10);
+    expect(screen.getByText('Gdzie trenujesz i jaki sprzęt tam masz.')).toBeTruthy(); await openInfo('places-intro');
     expect(screen.getByText('Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.')).toBeTruthy();
   });
 
@@ -272,7 +278,8 @@ describe('/exercise/[id]', () => {
     await tap(byToggle('Partie główne (1 seria)', 'plecy')); expect(e().muscles).toContain('plecy');
     await tap(byToggle('Partie pomocnicze (0,5 serii)', 'plecy')); expect(e().secondaryMuscles).toContain('plecy'); expect(e().muscles).not.toContain('plecy');
     /* E1 (audyt 0.10): opis mówi prawdę o e1RM ćwiczeń z masą ciała (masa ciała z Ustawień, udział ze źródeł); E4: dopisek przy partiach */
-    expect(screen.getByText('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia. e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. 64% — badania z platformą siłową). Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')).toBeTruthy();
+    await openInfo('bw-rules'); expect(screen.getByText('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia. e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. 64% — badania z platformą siłową). Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')).toBeTruthy();
+    expect(screen.getByText('Przypisanie partii: uproszczenie.')).toBeTruthy(); await openInfo('muscle-note');
     expect(screen.getByText('Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')).toBeTruthy();
   });
 
@@ -368,7 +375,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
 
   test('opis pod treningiem; brak odhaczonych serii (z wpisaną, nieodhaczoną) → „Nic do zapisania…”, „Odrzuć trening”', async () => {
     await startWith(['Back Squat']);
-    expect(screen.getByText('Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.', { exact: false })).toBeTruthy(); /* + opis gestu (UI-07) */
+    expect(screen.queryByText(/Tapnij numer serii/)).toBeNull(); expect(screen.queryByText(/Przesuń serię albo nazwę ćwiczenia w lewo/)).toBeNull(); /* ⓘ 14.10.2026 (P2 A): opis gestów w Przewodniku, nie na ekranie treningu */
     await type(screen.getAllByLabelText('Powtórzenia')[0], '5'); expect(blk(0).sets[0].edited).toBe(true);
     await tap(finishBtn());
     expect(lastAlert()).toMatchObject({ title: 'Brak odhaczonych serii', msg: 'Nic do zapisania. Odrzucić ten trening?\nNieodhaczone serie z wpisanymi wynikami: 1 — nie zostaną zapisane. Seria zapisuje się po odhaczeniu ✓.' });
@@ -498,6 +505,7 @@ describe('/progress (+ Chart)', () => {
   test('bez ćwiczenia: opisy wykresów tygodniowych, „Brak serii w tym i poprzednim tygodniu.”, „Pokazano 40 z … — wpisz nazwę”', async () => {
     const saved = await prepared(() => { addWorkout(at(40), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });
     await renderApp({ saved }); await go('/progress'); await flushAll(10);
+    await openInfo('vol-week'); await openInfo('sets-part'); await openInfo('vol-part');
     expect(screen.getByText('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')).toBeTruthy();
     expect(screen.getByText('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')).toBeTruthy();
     expect(screen.getByText('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')).toBeTruthy();
@@ -602,9 +610,10 @@ describe('/template/[id], /reorder', () => {
     await tap(screen.getByLabelText(/^Start: /)); /* podgląd: Start przy treningu w toku z innego szablonu — ten sam przycisk (wyszarzony) i okno co w panelu dnia (docs/32 wzorzec 12) */
     expect(lastAlert()).toMatchObject({ title: 'Trening w toku', msg: 'Najpierw zakończ albo odrzuć bieżący trening.' });
     await startEdit(); /* edycja na żądanie (decyzja właściciela 08.10.2026): „Edytuj” → szkic → „Zapisz” */
-    expect(screen.getByText('Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.')).toBeTruthy();
+    expect(screen.queryByText(/^Dotknij etykiety serii/)).toBeNull(); /* ⓘ 14.10.2026 (P2 A): instrukcja gestów zeszła do Przewodnika */
     await openCard(0); await flushAll(5);
     /* MER-13 (audyt 0.10): opis jak prawdziwa podpowiedź („↑ spróbuj …”) */
+    expect(screen.getByText('Zakres 8–12: gdy ostatnio wszystkie serie miały ≥ 12 powt., pojawi się „↑”.')).toBeTruthy(); await tap(screen.getByTestId(/^info-range-/));
     expect(screen.getByText('Zakres powtórzeń: 8–12 — gdy ostatnio wszystkie serie robocze miały co najmniej 12 powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).')).toBeTruthy();
     expect(screen.getByText('Zamienniki')).toBeTruthy(); expect(screen.getByText(`📍 Siłownia: ${exName(ex('Machine Chest Press'))}`)).toBeTruthy();
     expect(store.getState().active!.templateId).not.toBe(tplB);
@@ -613,6 +622,7 @@ describe('/template/[id], /reorder', () => {
   test('/reorder: opis przeciągania; „Gotowe” wraca', async () => {
     const saved = await prepared(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addExerciseToActive(ex('Push Up')); });
     await renderApp({ saved }); await tap(screen.getByLabelText('Zmień kolejność ćwiczeń')); await flushAll(10);
+    expect(screen.getByText('Przeciągnij za ≡, by zmienić kolejność.')).toBeTruthy(); await openInfo('reorder');
     expect(screen.getByText('Przeciągnij za ≡, żeby zmienić kolejność. Superset przesuwa się w całości; kolejność w nim zmienisz uchwytami przy ćwiczeniach.')).toBeTruthy();
     await tap(screen.getByText('Gotowe')); await flushAll(10); expect(screen.getByText('Zakończ')).toBeTruthy();
   });
@@ -627,6 +637,7 @@ describe('/history/add, /history/edit/[id] (lib/edit)', () => {
   test('trening wstecz: opis; błędy daty, godziny, czasu trwania, przyszłości i nachodzenia na trening w toku', async () => {
     const saved = await prepared(() => { store.startEmpty(); store.getState().active!.startedAt = Date.now() - 2 * H; });
     await renderApp({ saved }); await go('/history/add'); await flushAll(10);
+    expect(screen.getByText('Ustaw termin i szablon — serie uzupełnisz w następnym kroku.')).toBeTruthy(); await openInfo('add-intro');
     expect(screen.getByText('Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).')).toBeTruthy();
     const now = Date.now(); const err = () => lastAlert();
     await when('2026-13-45', '18:00', '60'); expect(err()).toMatchObject({ title: 'Sprawdź datę i godzinę', msg: `Nieprawidłowa data. Wpisz RRRR-MM-DD, np. ${edit.dateText(now)}.` });
@@ -644,7 +655,7 @@ describe('/history/add, /history/edit/[id] (lib/edit)', () => {
   test('nowy trening wstecz: notatka (pole „np. samopoczucie, ból, sprzęt”), „Anuluj” → „Ten trening nie zostanie zapisany.”', async () => {
     await renderApp(); await go('/history/add'); await flushAll(10);
     await tap(screen.getByText('Pusty trening')); await flushAll(20);
-    expect(screen.getByText('Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.', { exact: false })).toBeTruthy(); /* + opis gestu (UI-07) */
+    expect(screen.getByText('Serie bez wyniku nie zostaną zapisane.')).toBeTruthy(); expect(screen.queryByText(/Tapnij numer serii/)).toBeNull(); /* ostrzeżenie o utracie danych zostaje; gesty — w Przewodniku (ⓘ 14.10.2026) */
     await type(screen.getByPlaceholderText('np. samopoczucie, ból, sprzęt'), 'zmęczony');
     expect(screen.getByDisplayValue('zmęczony')).toBeTruthy();
     await tap(screen.getByLabelText('Anuluj edycję sesji'));

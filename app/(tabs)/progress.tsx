@@ -46,7 +46,7 @@ type View_ = { exId: string; setExId: (id: string) => void; q: string; setQ: (q:
 
 function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: View_) {
   const { ex: exParam, s: sParam } = useLocalSearchParams<{ ex?: string; s?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
-  /* „Szczegóły w Postępach ›” z ekranu Trening (/progress?s=guard): przewinięcie do sekcji „Partie w tym tygodniu” (strażnik progresji, 14.10.2026); pozycję podaje onLayout sekcji */
+  /* „Szczegóły w Postępach ›” z ekranu Trening (/progress?s=guard): przewinięcie do sekcji „Strażnik progresji” (strażnik progresji, 14.10.2026); pozycję podaje onLayout sekcji */
   const listRef = useRef<ScrollView>(null); const guardY = useRef<number | null>(null); const wantGuard = useRef(false);
   const toGuard = () => { if (wantGuard.current && guardY.current != null) { wantGuard.current = false; listRef.current?.scrollTo({ y: guardY.current, animated: false }); scrollY.current = guardY.current; } };
   useEffect(() => { if (sParam === 'guard') { wantGuard.current = true; toGuard(); router.setParams({ s: '' }); /* inaczej powrót do zakładki znów przewijałby */ } }, [sParam]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -70,21 +70,18 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
       <ScrollView ref={listRef} testID="progress-scroll-list" {...scroll} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
         {any ? <>
           <PeriodSummary />
-          <GuardSection onLayoutY={y => { guardY.current = y; toGuard(); }} />{/* 14.10.2026: strażnik progresji — „Partie w tym tygodniu” */}
+          <GuardSection onLayoutY={y => { guardY.current = y; toGuard(); }} />{/* 14.10.2026: strażnik progresji — „Strażnik progresji” */}
           <ProgressTiles />{/* 11.10.2026: „Progresja” także tu — to samo wejście co z ekranu Trening (/progression) */}
-          <H2>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
+          <H2 infoId="vol-week" info={[t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.'), ...(weeks.some(w => isDeloadWeek(w.weekStart)) ? [t('D — tydzień oznaczony jako deload.')] : [])]}>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: volOut(w.volume) }))} fmt={v => v >= 1000 ? `${fmtNum(v / 1000, 1)}k` : `${v}`} />
           <H2 style={{ marginTop: 14 }}>{t('Serie robocze tygodniowo')}</H2>
           <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: w.sets }))} fmt={v => `${v}`} height={110} />
-          <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.')}{weeks.some(w => isDeloadWeek(w.weekStart)) ? ' ' + t('D — tydzień oznaczony jako deload.') : ''}</Muted>
-          <H2>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
+          {weeks.some(w => isDeloadWeek(w.weekStart)) ? <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('D — tydzień deload')}</Muted> : null}
+          <H2 infoId="sets-part" info={[t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }), t('Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.', { n: WEEKLY_SETS_MARK }), t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).'), t('Uproszczenie: drop set liczy się razem z serią, po której jest.'), t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')]}>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
           <MuscleCompare parts={SET_PARTS} curSplit={weeklySplitByMuscle(thisMonday())} prevSplit={weeklySplitByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} markOf={setsGoal} />
           {Object.values(weeklySplitByMuscle(thisMonday())).some(x => x.indirectSets > 0) ? <IndirectLegend /> : null}
-          <Muted style={{ fontSize: 12, marginTop: 4 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })} {t('Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.', { n: WEEKLY_SETS_MARK })} {t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; Pelland i in. 2026 — jedno źródło).')} {t('Uproszczenie: drop set liczy się razem z serią, po której jest.') /* D3 (audyt 0.10): brak źródła, jak liczyć drop sety w objętości tygodniowej — docs/research/22 */}</Muted>
-          <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')}</Muted>
-          <H2>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
+          <H2 infoId="vol-part" info={t('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')}>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
           <MuscleCompare cur={weeklyVolumeByMuscle(thisMonday())} prev={weeklyVolumeByMuscle(thisMonday(-1))} fmt={v => { const x = volOut(v); return x >= 10000 ? `${fmtNum(x / 1000, 1)}k` : fmtNum(Math.round(x)); }} />
-          <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')}</Muted>
         </> : <Empty>{t('Wykresy pojawią się po pierwszym zakończonym treningu.')}</Empty>}
         <BodyMassSection />
         <H2 style={{ marginTop: 8 }}>{t('Ćwiczenie')}</H2>

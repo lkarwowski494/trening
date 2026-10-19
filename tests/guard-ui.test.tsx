@@ -1,6 +1,6 @@
 /*
  * „Strażnik progresji” — ekrany (specyfikacja zatwierdzona 14.10.2026, docs/18): ekran Trening („Ten tydzień”: sylwetka w kolorach progresu, legenda, najwyżej dwa zdania,
- * przycisk do Postępów) i Postępy („Partie w tym tygodniu”: grupy od problemów, wiersze, rozwijanie, pasek serii). Logika: tests/guard.test.ts. Rodzaje (docs/20): ekran
+ * przycisk do Postępów) i Postępy („Strażnik progresji”: grupy od problemów, wiersze, rozwijanie, pasek serii). Logika: tests/guard.test.ts. Rodzaje (docs/20): ekran
  * (każdy element i komunikat), scenariusz (Trening → „Szczegóły w Postępach” → sekcja → rozwinięcie partii), macierz (stan kierunku × motyw × język), VoiceOver (role,
  * etykiety, stan rozwinięcia), wygląd (jasny/ciemny, kontrast tokenu `less`, 320 pt, skala tekstu 2,0: legenda zawija się, nic nie ucięte).
  */
@@ -13,7 +13,7 @@ import { light, dark } from '@/lib/theme';
 import { mixHex as mixOf } from '@/lib/musclemap';
 import { exName } from '@/lib/i18n';
 import { fresh, saved, ex, addWorkout } from './helpers';
-import { renderApp, flushAll, screen, tap, act } from './app';
+import { renderApp, flushAll, screen, tap, act, openInfo } from './app';
 import { within } from '@testing-library/react-native';
 
 import { SIGN_CHAR } from '@/components/Guard';
@@ -118,16 +118,22 @@ describe('ekran Trening: „Ten tydzień” ze strażnikiem (wariant C)', () => 
 });
 
 describe('scenariusz: Trening → „Szczegóły w Postępach” → sekcja → rozwinięcie partii', () => {
-  test('stuknięcie przycisku otwiera Postępy z sekcją „Partie w tym tygodniu”; stuknięcie wiersza rozwija szczegóły i zwija je ponownie', async () => {
+  test('stuknięcie przycisku otwiera Postępy z sekcją „Strażnik progresji”; stuknięcie wiersza rozwija szczegóły i zwija je ponownie', async () => {
     await boot(mixed); await tap(screen.getByTestId('guard-more')); await flushAll(10);
-    expect(screen.getByTestId('guard-section')).toBeTruthy(); expect(screen.getAllByText('Partie w tym tygodniu').length).toBeGreaterThan(0);
+    expect(screen.getByTestId('guard-section')).toBeTruthy(); expect(screen.getAllByText('Strażnik progresji').length).toBeGreaterThan(0);
     const r = within(screen.getByTestId('grow-czworogłowe')); const btn = r.getByRole('button'); expect(btn.props.accessibilityState.expanded).toBe(false); expect(has('gdet-czworogłowe')).toBe(false);
     await tap(btn); await flushAll(5); expect(within(screen.getByTestId('grow-czworogłowe')).getByRole('button').props.accessibilityState.expanded).toBe(true); expect(has('gdet-czworogłowe')).toBe(true);
     await tap(within(screen.getByTestId('grow-czworogłowe')).getByRole('button')); await flushAll(5); expect(has('gdet-czworogłowe')).toBe(false);
   });
 });
 
-describe('Postępy: „Partie w tym tygodniu”', () => {
+describe('Postępy: „Strażnik progresji”', () => {
+  test('nagłówek sekcji to nazwa funkcji (decyzja właściciela 14.10.2026): PL „Strażnik progresji”, EN „Progress Guard”, bez starego „Partie w tym tygodniu”', async () => {
+    for (const [locale, name, old] of [['pl', 'Strażnik progresji', 'Partie w tym tygodniu'], ['en', 'Progress Guard', 'Muscle groups this week']] as const) {
+      await boot(mixed, '/progress', locale); const sec = within(screen.getByTestId('guard-section'));
+      expect([locale, sec.getAllByText(name).length]).toEqual([locale, 1]); expect(sec.queryByText(old)).toBeNull();
+    }
+  });
   test('grupy w kolejności: poniżej celu, mniej, bez porównania, tyle samo, więcej; na końcu „Bez serii: …”; każda partia w jednej grupie (poniżej celu wygrywa z „mniej”)', async () => {
     await boot(() => {
       mixed(); addWorkout(at(9, 3), [['Barbell Curl', sets(3, 30, 10)]], 'pb'); addWorkout(at(9, 7), [['Barbell Curl', sets(3, 30, 10)]], 'cb');
@@ -171,19 +177,19 @@ describe('Postępy: „Partie w tym tygodniu”', () => {
     await boot(() => { mixed(); store.toggleDeloadWeek(NOW.getTime()); }, '/progress'); expect(has('ggrp-deload')).toBe(true); for (const g of ['below', 'down', 'up', 'unknown']) expect(has(`ggrp-${g}`)).toBe(false);
     expect(within(screen.getByTestId('ggrp-deload')).getByText('TYDZIEŃ DELOADU — BEZ PORÓWNANIA')).toBeTruthy();
   });
-  test('objaśnienie metody jest widoczne w sekcji (tymczasowo, do przeniesienia pod ⓘ): tonaż na sesję, pominięte ćwiczenia, ≥, uproszczenie 0,5', async () => {
-    await boot(mixed, '/progress'); const i = within(screen.getByTestId('guard-info'));
-    expect(i.getByText(/średnio na sesję ćwiczenia/)).toBeTruthy(); expect(i.getByText(/nowe w tym tygodniu albo nierobione teraz/)).toBeTruthy(); expect(i.getByText(/Plan bez ciężarów \(≥\)/)).toBeTruthy(); expect(i.getByText(/Pelland i in\. 2026 — jedno źródło/)).toBeTruthy();
+  test('objaśnienie metody jest pod ⓘ przy nagłówku „Strażnik progresji” (zwinięte na starcie): tonaż na sesję, pominięte ćwiczenia, ≥, uproszczenie 0,5', async () => {
+    await boot(mixed, '/progress'); expect(screen.queryByTestId('info-text-guard-method')).toBeNull(); await openInfo('guard-method'); const i = within(screen.getByTestId('info-text-guard-method'));
+    expect(i.getByText(/średnio na sesję ćwiczenia/)).toBeTruthy(); expect(i.getByText(/nowe w tym tygodniu albo nierobione teraz/)).toBeTruthy(); expect(i.getByText(/Plan bez ciężarów \(≥\)/)).toBeTruthy(); expect(i.getByText(/metaanaliza Pelland i in\. 2026/)).toBeTruthy();
   });
   test('EN: tytuł sekcji, grupy, wiersze i rozwinięcie po angielsku', async () => {
-    await boot(mixed, '/progress', 'en'); expect(screen.getAllByText('Muscle groups this week').length).toBeGreaterThan(0); expect(within(screen.getByTestId('grow-dwugłowe')).getByText('no comparison — new this week')).toBeTruthy();
+    await boot(mixed, '/progress', 'en'); expect(screen.getAllByText('Progress Guard').length).toBeGreaterThan(0); expect(within(screen.getByTestId('grow-dwugłowe')).getByText('no comparison — new this week')).toBeTruthy();
     expect(within(screen.getByTestId('ggrp-below')).getByText('BELOW GOAL EVEN WITH THE PLAN')).toBeTruthy();
   });
 });
 
 describe('Postępy: teksty objaśnień i powody pominięcia (dokładne brzmienie)', () => {
   test('objaśnienie metody — trzy akapity i legenda skali (dokładne zdania)', async () => {
-    await boot(mixed, '/progress'); const i = within(screen.getByTestId('guard-info'));
+    await boot(mixed, '/progress'); expect(screen.queryByTestId('info-text-guard-method')).toBeNull(); await openInfo('guard-method'); const i = within(screen.getByTestId('info-text-guard-method'));
     expect(i.getByText('Kierunek dla partii liczymy tylko na ćwiczeniach, które były w obu tygodniach. Ćwiczenia bez punktu odniesienia — nowe w tym tygodniu albo nierobione teraz — pomijamy w obu tygodniach.')).toBeTruthy();
     expect(i.getByText('Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł, liczymy to jako więcej.')).toBeTruthy();
     expect(i.getByText('Ten tydzień = wykonane + plan. Plan bez ciężarów (≥) — bez porównania. Tydzień deloadu nie jest porównywany.')).toBeTruthy();

@@ -31,6 +31,9 @@ for lang in ${LANGS//,/ }; do
     # trening w toku „teraz”: czasy treningu i przerwy przesunięte o czas od zapisu danych (__sklepSavedAt) — jak w chwili zapisu w danych pokazowych
     node -e 'const fs=require("fs"); const s=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); const d = s.__sklepSavedAt ? Date.now() - s.__sklepSavedAt : 0;
       if (s.active && d) { for (const k of ["startedAt","createdAt","updatedAt"]) if (typeof s.active[k] === "number") s.active[k] += d; for (const e of s.active.exercises || []) for (const x of e.sets || []) if (typeof x.completedAt === "number") x.completedAt += d; }
+      /* godzina startu spójna z zegarem 9:41 na pasku stanu: strefa treningu (tzOffsetMin, jak trening zaczęty w innej strefie) dobrana tak, by start = 9:41 − czas trwania */
+      if (s.active && typeof s.active.startedAt === "number") { const now = Date.now(), u = new Date(s.active.startedAt), want = 9 * 60 + 41 - Math.round((now - s.active.startedAt) / 60000);
+        let tz = ((want - (u.getUTCHours() * 60 + u.getUTCMinutes())) % 1440 + 1440) % 1440; if (tz > 840) tz -= 1440; s.active.tzOffsetMin = tz; }
       if (s.timer && typeof s.timer.restEndAt === "number" && d) s.timer.restEndAt += d; delete s.__sklepSavedAt; fs.writeFileSync(process.argv[2], JSON.stringify(s))' "$STATE" "$OUT/.state.json"
     python3 -I -c '
 import sqlite3, sys

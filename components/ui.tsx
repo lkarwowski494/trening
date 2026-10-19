@@ -5,13 +5,22 @@ import { decimalComma, lang, upper, LOCALE_UPPER, t as tr } from '@/lib/i18n';
 import { useRouter } from 'expo-router';
 import { wu } from '@/lib/units';
 import { EmptyBarArt } from '@/components/EmptyBarArt';
+import { InfoTip, InfoButton, InfoBox, useInfoOpen } from '@/components/InfoTip';
+
+/** Zwykły tekst nagłówka (etykieta ⓘ dla VoiceOver; bez wersalików). */
+const plainOf = (c: React.ReactNode): string => React.Children.toArray(c).map(x => typeof x === 'string' || typeof x === 'number' ? String(x) : '').join('');
 
 export function Screen({ children, style }: { children: React.ReactNode; style?: StyleProp<ViewStyle> }) {
   const t = useTheme();
   return <View style={[{ flex: 1, backgroundColor: t.bg, paddingHorizontal: 14 }, style]}>{children}</View>;
 }
 export function H1({ children }: { children: React.ReactNode }) { const t = useTheme(); return <Text accessibilityLanguage={lang()} accessibilityRole="header" /* runda 68 */ style={{ color: t.text, fontSize: 24, fontFamily: F.heavy }}>{children}</Text>; }
-export function H2({ children, style }: { children: React.ReactNode; style?: StyleProp<TextStyle> }) { const t = useTheme(); return <Text accessibilityLanguage={lang()} accessibilityRole="header" style={[{ color: t.text, fontSize: 17, fontFamily: F.semibold, marginBottom: 8 }, style]}>{children}</Text>; }
+/** `info` = objaśnienie pod ⓘ przy nagłówku (docs/32 wzorzec 27): wymaga `infoId` (testID i scenariusze Maestro); etykieta VoiceOver z tekstu nagłówka. */
+export function H2({ children, style, info, infoId }: { children: React.ReactNode; style?: StyleProp<TextStyle>; info?: React.ReactNode | string[]; infoId?: string }) {
+  const t = useTheme();
+  const head = (bare: boolean) => <Text accessibilityLanguage={lang()} accessibilityRole="header" style={[{ color: t.text, fontSize: 17, fontFamily: F.semibold }, bare ? null : { marginBottom: 8 }, style]}>{children}</Text>;
+  return info && infoId ? <InfoTip id={infoId} label={plainOf(children)} info={info} style={{ marginBottom: 8 }}>{head(true)}</InfoTip> : head(false);
+}
 export function Muted({ children, style, numberOfLines, accessibilityRole, accessibilityLabel, maxFontSizeMultiplier = TEXT_SCALE_MAX, adjustsFontSizeToFit, selectable, testID }: { /** tekst do zaznaczenia i skopiowania (np. adres wsparcia po nieudanym otwarciu poczty) */ selectable?: boolean; testID?: string; children: React.ReactNode; style?: StyleProp<TextStyle>; numberOfLines?: number; /** A11-19: nagłówek kolumny jednej linii zmniejsza krój zamiast „…” */ adjustsFontSizeToFit?: boolean; accessibilityRole?: 'header'; accessibilityLabel?: string; /** A11-07: NUM_SCALE_MAX w kolumnach o stałej szerokości */ maxFontSizeMultiplier?: number }) { const t = useTheme(); return <Text accessibilityLanguage={lang()} selectable={selectable} testID={testID} numberOfLines={numberOfLines} adjustsFontSizeToFit={adjustsFontSizeToFit} minimumFontScale={adjustsFontSizeToFit ? 0.7 : undefined} accessibilityRole={accessibilityRole} accessibilityLabel={accessibilityLabel} maxFontSizeMultiplier={maxFontSizeMultiplier} style={[{ color: t.muted, fontSize: 14, fontFamily: F.regular }, style]}>{children}</Text>; }
 export function Txt({ children, style, accessibilityRole, maxFontSizeMultiplier }: { children: React.ReactNode; style?: StyleProp<TextStyle>; accessibilityRole?: 'header'; maxFontSizeMultiplier?: number }) { const t = useTheme(); return <Text accessibilityLanguage={lang()} accessibilityRole={accessibilityRole} maxFontSizeMultiplier={maxFontSizeMultiplier} style={[{ color: t.text, fontSize: 16, fontFamily: F.regular }, style]}>{children}</Text>; }
 
@@ -61,9 +70,11 @@ export function useOnce(ms = 1000) { const last = React.useRef(0); return (fn: (
 export const FieldLabel = React.createContext<string | undefined>(undefined);
 /** Runda 49: kontekst pola w wierszu listy (np. nazwa ćwiczenia w szablonie) — podpowiedź VoiceOver dla pól bez własnej. */
 export const FieldHint = React.createContext<string | undefined>(undefined);
-export function Field({ label, children }: { label: string; children: React.ReactNode }) {
+/** `info` = objaśnienie pod ⓘ przy etykiecie pola (docs/32 wzorzec 27); wymaga `infoId`. */
+export function Field({ label, children, info, infoId }: { label: string; children: React.ReactNode; info?: React.ReactNode | string[]; infoId?: string }) {
   const t = useTheme();
-  return <View style={{ marginBottom: 12 }}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: t.muted, fontSize: 14, marginBottom: 5, fontFamily: F.regular }}>{label}</Text><FieldLabel.Provider value={label}>{children}</FieldLabel.Provider></View>;
+  const head = (bare: boolean) => <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={[{ color: t.muted, fontSize: 14, fontFamily: F.regular }, bare ? null : { marginBottom: 5 }]}>{label}</Text>;
+  return <View style={{ marginBottom: 12 }}>{info && infoId ? <InfoTip id={infoId} label={label} info={info} style={{ marginBottom: 5 }}>{head(true)}</InfoTip> : head(false)}<FieldLabel.Provider value={label}>{children}</FieldLabel.Provider></View>;
 }
 export function Input(props: TextInputProps & { center?: boolean }) {
   const t = useTheme(); const label = React.useContext(FieldLabel); const hint = React.useContext(FieldHint);
@@ -127,18 +138,20 @@ export function Chip({ label, on, onPress, toggle, a11yLabel, a11yHint, disabled
  * P-002 (02.10.2026): ustawienia jak w Ustawieniach iOS (Apple HIG: przełącznik dla wł./wył., kontrolka segmentowa dla 1 z 2–4).
  * Wiersz z opisem po lewej i systemowym przełącznikiem po prawej — zamiast przycisku na całą szerokość.
  */
-export function SwitchRow({ label, detail, value, onChange, disabled, a11yLabel }: { label: string; detail?: string; value: boolean; onChange: (v: boolean) => void; disabled?: boolean; /** P-003 (audyt M7): pełna etykieta dla VoiceOver, np. „Ławka regulowana: ze skosem w dół” */ a11yLabel?: string }) {
-  const t = useTheme();
-  return (
-    <View style={[s.switchRow, { borderBottomColor: t.line }]}>
+export function SwitchRow({ label, detail, value, onChange, disabled, a11yLabel, info, infoId }: { label: string; detail?: string; value: boolean; onChange: (v: boolean) => void; disabled?: boolean; /** P-003 (audyt M7): pełna etykieta dla VoiceOver, np. „Ławka regulowana: ze skosem w dół” */ a11yLabel?: string; /** objaśnienie pod ⓘ przy etykiecie (docs/32 wzorzec 27; wymaga `infoId`); rozwija się pod całym wierszem */ info?: React.ReactNode | string[]; infoId?: string }) {
+  const t = useTheme(); const [open, toggle] = useInfoOpen(); const hasInfo = !!(info && infoId);
+  const labelEl = <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: t.text, fontSize: 16, fontFamily: F.regular, flexShrink: 1 }}>{label}</Text>;
+  const row = (
+    <View style={[s.switchRow, { borderBottomColor: t.line }, hasInfo && { borderBottomWidth: 0 }]}>
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: t.text, fontSize: 16, fontFamily: F.regular }}>{label}</Text>
+        {hasInfo ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 4 }}>{labelEl}<InfoButton id={infoId!} label={label} open={open} onToggle={toggle} /></View> : labelEl}
         {detail ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: t.muted, fontSize: 13, marginTop: 2, fontFamily: F.regular }}>{detail}</Text> : null}
       </View>
       <Switch accessibilityLanguage={lang()} testID={'sw-' + label} /* E2E (Maestro): przełącznik po id, nie po kolejności tekstu i przełącznika */ value={value} disabled={disabled} onValueChange={onChange} trackColor={{ true: t.accent, false: t.ctrlLine }} ios_backgroundColor={t.ctrlLine} /* A11-06: tor wyłączonego ≥ 3:1 */
         accessibilityRole="switch" accessibilityLabel={a11yLabel ?? label} accessibilityHint={detail} accessibilityState={{ checked: value, disabled: !!disabled }} />
     </View>
   );
+  return hasInfo ? <View style={{ borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: t.line }}>{row}{open ? <InfoBox id={infoId!} info={info} /> : null}</View> : row;
 }
 /** Kontrolka segmentowa: jedna z kilku opcji w jednym wąskim pasku (język, jednostka).
  * Audyt 0.10 (A11-12): na 320 pt długie jednowyrazowe opcje (de „Muskelaufbau”, sv „Fettförbränning”) łamały się w środku wyrazu — opcja z jednym
@@ -166,7 +179,11 @@ export function upperText(children: React.ReactNode): { text: React.ReactNode; l
   if (!LOCALE_UPPER.includes(lang()) || !parts.every(x => typeof x === 'string' || typeof x === 'number')) return { text: children, style: { textTransform: 'uppercase' } };
   const plain = parts.join(''); return { text: upper(plain), label: plain, style: {} };
 }
-export function SectionTitle({ children }: { children: React.ReactNode }) { const t = useTheme(); const u = upperText(children); return <Text accessibilityLanguage={lang()} accessibilityRole="header" accessibilityLabel={u.label} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={[{ color: t.muted, fontSize: 13, fontFamily: F.semibold, letterSpacing: 0.5, marginTop: 22, marginBottom: 4 }, u.style]}>{u.text}</Text>; }
+export function SectionTitle({ children, info, infoId }: { children: React.ReactNode; info?: React.ReactNode | string[]; infoId?: string }) {
+  const t = useTheme(); const u = upperText(children);
+  const head = (bare: boolean) => <Text accessibilityLanguage={lang()} accessibilityRole="header" accessibilityLabel={u.label} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={[{ color: t.muted, fontSize: 13, fontFamily: F.semibold, letterSpacing: 0.5 }, bare ? null : { marginTop: 22, marginBottom: 4 }, u.style]}>{u.text}</Text>;
+  return info && infoId ? <InfoTip id={infoId} label={plainOf(children)} info={info} style={{ marginTop: 22, marginBottom: 4 }}>{head(true)}</InfoTip> : head(false);
+}
 /** Pusty stan: grafika gryfu bez talerzy (motyw z ikony, 09.10.2026; dekoracja ukryta przed VoiceOver) i tekst. */
 export function Empty({ children }: { children: React.ReactNode }) { const t = useTheme(); return <View style={[s.empty, { borderColor: t.line }]}><EmptyBarArt /><Text accessibilityLanguage={lang()} style={{ color: t.muted, textAlign: 'center', fontFamily: F.regular }}>{children}</Text></View>; }
 /** Wzorzec „nie ma takiego …” (docs/32 wzorzec 15): obiekt z adresu nie istnieje (usunięty, stary link) — pusty stan z grafiką i przyciskiem „Wróć”. */

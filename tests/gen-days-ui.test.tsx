@@ -140,6 +140,11 @@ describe('1 dzień — każdy język na 320 pt', () => {
     const out = tIn(l, 'Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')
       .replace('{k}', '3').replace('{a}', '150').replace('{b}', '300').replace('{c}', '75').replace('{d}', '150');
     const basis = `• ${tIn(l, 'Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.').replace('{k}', '3').replace('{n}', '2')}`;
+    /* ⓘ (14.10.2026): opis celu, „Cardio poza planem” (WHO) i „Na czym to oparte” są pod ⓘ — zwinięte nie renderują tekstu, na wierzchu krótki podpis w danym języku */
+    const short = tIn(l, 'Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.');
+    for (const x of [goal, out, basis]) expect([l, 'zwinięte', screen.queryAllByText(x).length]).toEqual([l, 'zwinięte', 0]);
+    expect([l, 'podpis', screen.queryAllByText(short).length]).toEqual([l, 'podpis', 1]);
+    for (const id of ['gen-goal', 'gen-cardio-out', 'gen-basis']) { expect(screen.getByTestId(`info-${id}`).props.accessibilityLabel.startsWith(tIn(l, 'Więcej informacji: {name}').split('{name}')[0])).toBe(true); /* etykieta VoiceOver w języku aplikacji */ await tap(screen.getByTestId(`info-${id}`)); }
     for (const x of [tIn(l, KEYS[0]), goal, out, basis]) expect([l, screen.queryAllByText(x).length]).toEqual([l, 1]);
     expect([l, screen.getByText(new RegExp(` ${tIn(l, 'FBW')}$`)).props.accessibilityRole]).toEqual([l, 'header']); expect(screen.getByTestId('gen-fbw')).toBeTruthy();
     if (l !== 'pl') expect([l, [KEYS[0], 'Cardio poza planem', 'sesja cardio w planie od'].filter(k => all.includes(k))]).toEqual([l, []]);

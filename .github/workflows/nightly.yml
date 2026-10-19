@@ -5,7 +5,7 @@
 #   1. losowe sekwencje działań z nowym ziarnem i 10× więcej przebiegów niż przy każdym commicie (ziarno w logu — do odtworzenia);
 #      pełny zestaw z losowym ziarnem testów własności fast-check (PROP_SEED=random; przy każdym wypchnięciu — stałe, TST2-07),
 #   2. testy mutacyjne (Stryker): ile celowo wprowadzonych błędów w logice testy wykrywają — raport jako artefakt,
-#   3. E2E na innym symulatorze (mały ekran) przy ciemnym wyglądzie systemu — wywołanie e2e-ios.yml.
+#   3. E2E na innym symulatorze (mały ekran) przy ciemnym wyglądzie systemu — pełny katalog (pakiet pelny), wywołanie e2e-ios.yml z podsumowaniem niestabilności.
 # Strefy czasowe: osobny tests-tz.yml.
 name: Nocne testy
 on:
@@ -70,7 +70,11 @@ jobs:
           retention-days: 1
           path: .stryker-tmp/report.json
   e2e-maly-ekran-ciemny:
+    # 19.10.2026 (decyzja właściciela): pełny katalog scenariuszy nocą, niewiążąco — z ponowieniem pojedynczych nieudanych, żeby MIERZYĆ niestabilność
+    # (podsumowanie przebiegu + artefakt e2e-wyniki: przeszedł / przeszedł w ponowieniu / padł dwa razy, czasy). Warunek gotowości bramki App Store:
+    # 3 kolejne nocne pełne przebiegi zielone BEZ ponowień (docs/38, „Pakiet podstawowy E2E”). Pakiet podstawowy biegnie przy każdym wydaniu TestFlight.
     uses: ./.github/workflows/e2e-ios.yml
     with:
+      pakiet: pelny
       urzadzenie: 'iPhone SE|iPhone 16e|iPhone 17e'
       wyglad: dark

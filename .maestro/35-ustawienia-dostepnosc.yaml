@@ -42,24 +42,41 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: "Light"
 - tapOn: "kg"
 - tapOn: "List"
+- assertVisible: "Workout view"  # etykieta pola widoku treningu (przełącznik z tą samą etykietą dostępności)
+- tapOn: { id: "info-workout-view" }  # 14.10.2026: opis widoku jest pod ⓘ (docs/32 wzorzec 27)
 - assertVisible: "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.|List: exercises and sets as in earlier versions, without the card."
 # --- domyślna przerwa 45 s (pole liczbowe; fokus zdejmuje stuknięcie w etykietę nad polem) ---
 - scrollUntilVisible: { element: "90", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "90"
-- eraseText: 3
-- inputText: "45"
-- tapOn: "Workout view"
+# run 39148365522: po „tapOn 90” kursor stanął na początku (wpis „45” + „90” = 4590 → limit 1800 s, w treningu „rest 30:00”), eraseText 3 nic nie usunął. Podwójne stuknięcie zaznacza całą liczbę,
+# wpis zastępuje zaznaczenie; sprawdzenie wartości pola i powtórka wpisu (znaki osobno — jak 31)
+- retry:
+    maxRetries: 2
+    commands:
+      - doubleTapOn: { text: "[0-9]+", below: "Default rest \\(s\\)", index: 0 }
+      - eraseText: 5
+      - inputText: "4"
+      - inputText: "5"
+      - assertVisible: { text: "45", below: "Default rest \\(s\\)" }
+# runy 38563966851, 38607952098, 39156881838, 39165840217 (zrzuty 105/106): po wpisie liczby klawiatura NIE znika — ani po stuknięciu etykiety „Workout view” (pod paskiem albo pod klawiaturą:
+# stuknięcie trafiało w klawisze), ani zwykłego tekstu; stuknięcia w elementy pod klawiaturą dopisywały cyfry do przerwy (45 → 4590 → limit 1800 s, w treningu „rest 30:00”).
+# Klawiaturę zdejmuje opuszczenie ekranu: „Back” i ponowne wejście w Ustawienia (wartość zostaje zapisana — sprawdza ją „rest of 0:45” w treningu)
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
 - takeScreenshot: 105-przerwa-45
 # --- przełączniki: dźwięk, ekran włączony, podpowiedź progresji, RPE/RIR, kopia automatyczna ---
+- scrollUntilVisible: { element: { id: "sw-Sound and vibration at the end of rest" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Sound and vibration at the end of rest" }
+- scrollUntilVisible: { element: { id: "sw-Keep screen on during workout" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Keep screen on during workout" }
-- scrollUntilVisible: { element: { id: "sw-Progression hint" }, direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-Progression hint" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Progression hint" }
-- scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-RPE / RIR per set" }
-- scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000 }
+- scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000, centerElement: true }
 - tapOn: "RIR"
-- scrollUntilVisible: { element: { id: "sw-Automatic backup after every workout" }, direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-Automatic backup after every workout" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Automatic backup after every workout" }
 - takeScreenshot: 106-przelaczniki
 # --- cel serii na partię: ręcznie dla pierwszej partii ---
@@ -68,6 +85,8 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - extendedWaitUntil: { visible: "Manual", timeout: 15000 }
 - takeScreenshot: 107-cele-partii
 - tapOn: { text: "Manual", index: 0 }
+# run 39174616058: po ponownym wejściu w Ustawienia pole celu leży pod dolną krawędzią (zrzut) — przewinięcie na środek przed stuknięciem
+- scrollUntilVisible: { element: { id: "set-goal-.*", index: 0 }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "set-goal-.*", index: 0 }
 - eraseText: 3
 - inputText: "12"

@@ -29,9 +29,8 @@ export default function PickTemplateScreen() {
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 40 }}>
         {!total ? <Empty>{t('Nie masz jeszcze szablonów.')}</Empty> : !groups.length ? <Empty>{t('Nic nie pasuje.')}</Empty> : null}
         {groups.map(g => <React.Fragment key={g.folder ?? ''}>{g.folder ? <SectionTitle>{g.folder}</SectionTitle> : null}{g.items.map(tpl => { const lw = fin.find(x => x.templateId === tpl.id); const sets = tplWorkSets(tpl); return (
-          <Item key={tpl.id} title={tpl.name} sub={`${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}${lw ? ' · ' + t('ostatnio') + ' ' + fmtDate(wallTs(lw)) : ''}`} onPress={() => router.push(`/template/${tpl.id}`)}
+          <Item key={tpl.id} title={tpl.name} sub={`${tpl.items.length} ${t('ćw.')} · ${sets} ${tp(sets, 'seria|serie|serii')}${lw ? ' · ' + t('ostatnio') + ' ' + fmtDate(wallTs(lw)) : ''}`} onPress={() => router.push(`/template/${tpl.id}`)} accessibilityHint={t('Wiersz otwiera podgląd szablonu, „Start” zaczyna trening.')}
             right={tpl.items.length ? <Btn title={t('Start')} kind="primary" small accessibilityLabel={t('Start: {name}', { name: tpl.name })} onPress={once(() => { if (chosen.current) return; if (getState().active) { chosen.current = true; goHome(); return; } startTemplate(tpl, () => { chosen.current = true; goHome(); }); })} /> : undefined} />); })}</React.Fragment>)}
-        {total && groups.length ? <Muted style={{ fontSize: 12, marginTop: 8 }}>{t('Wiersz otwiera podgląd szablonu, „Start” zaczyna trening.')}</Muted> : null}
       </ScrollView>
     </Screen>
   );

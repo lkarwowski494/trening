@@ -76,10 +76,25 @@ name: Regularny użytkownik — historia, plan, restart, kopia
 - extendedWaitUntil: { visible: "Start with fewer sets: 4 instead of 6 working sets.*", timeout: 15000 }
 - tapOn: "Fewer sets"
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
-- tapOn: { id: "w-0-0" }
-- inputText: "40"
-- tapOn: { id: "r-0-0" }
-- inputText: "10"
+# run 38607952098 (34: „Now: 40 kg × 10” → na ekranie 40 × 0): na wolnym symulatorze zginął pierwszy znak „10” — jak 31 i 15: znaki osobno, sprawdzenie pola, powtórka wpisu
+- retry:
+    maxRetries: 1
+    commands:
+      - tapOn: { id: "w-0-0" }
+      - waitForAnimationToEnd
+      - eraseText: 5
+      - inputText: "4"
+      - inputText: "0"
+      - assertVisible: { id: "w-0-0", text: "40" }
+- retry:
+    maxRetries: 1
+    commands:
+      - tapOn: { id: "r-0-0" }
+      - waitForAnimationToEnd
+      - eraseText: 5
+      - inputText: "1"
+      - inputText: "0"
+      - assertVisible: { id: "r-0-0", text: "10" }
 - tapOn: { text: "Set 1 done — Bench Press \\(Dumbbell\\)" }
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
 # --- restart w trakcie przerwy (aplikacja zabita, jak w 02): przerwa trwa dalej, wpisane wartości zostają ---
@@ -134,9 +149,14 @@ name: Regularny użytkownik — historia, plan, restart, kopia
       - extendedWaitUntil: { visible: "80 kg, .*", timeout: 15000 }
 - tapOn: "Back"
 - scrollUntilVisible: { element: "80 kg · measured .*", direction: DOWN, timeout: 30000 }
-- scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 60000, centerElement: true }
-- tapOn: "Bench Press \\(Dumbbell\\)"
-- extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }
+# run 38607952098: po przewinięciu lista jeszcze się toczyła i stuknięcie nie otworzyło ćwiczenia (zrzut: lista wciąż w Postępach) — czekamy na koniec ruchu, całość z powtórką
+- retry:
+    maxRetries: 2
+    commands:
+      - scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 60000, centerElement: true }
+      - waitForAnimationToEnd
+      - tapOn: "Bench Press \\(Dumbbell\\)"
+      - extendedWaitUntil: { visible: "RECORDS", timeout: 15000 }
 - assertVisible: "Max weight"
 - takeScreenshot: 96-rekordy
 # --- kopia zapasowa: ekran z eksportem/importem (pliku nie da się wskazać w Maestro) i ekran importu CSV ---

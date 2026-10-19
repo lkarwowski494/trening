@@ -19,7 +19,7 @@ import { ExerciseFigure } from '@/components/ExerciseFigure';
 const BASIS: Record<CueBasisKind, () => string> = { org: () => t('biblioteki ćwiczeń organizacji szkoleniowych'), site: () => t('specjalistyczne serwisy treningowe'), maker: () => t('materiały producenta sprzętu'), study: () => t('badania naukowe') };
 const LABEL: Record<CueSection, () => string> = { setup: () => t('Ustawienie'), move: () => t('Ruch'), tips: () => t('Wskazówki'), mistakes: () => t('Częste błędy') };
 
-export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercise, 'lib' | 'libKey'>; /** UX2-05: otwarte z „ⓘ Technika” (trening, szablon) — od razu rozwinięte */ initialOpen?: boolean }) {
+export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercise, 'lib' | 'libKey'>; /** UX2-05: otwarte z „Technika ›” (trening, szablon) — od razu rozwinięte */ initialOpen?: boolean }) {
   const th = useTheme(); const [open, setOpen] = useState(!!initialOpen);
   const c = cuesFor(exercise); if (!c) return null;
   return (
@@ -42,11 +42,11 @@ export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercis
 }
 
 /**
- * UX2-05 (audyt kontrolny 1, wariant A+B): „ⓘ Technika” przy ćwiczeniu w treningu na żywo, w podglądzie i w edytorze szablonu — otwiera podgląd
+ * UX2-05 (audyt kontrolny 1, wariant A+B): „Technika ›” przy ćwiczeniu w treningu na żywo, w podglądzie i w edytorze szablonu — otwiera podgląd
  * ćwiczenia z rozwiniętą sekcją „Technika” na górze (`?cues=1`); ten sam komponent wskazówek i figury, bez kopii treści. Tylko ćwiczenia, które mają
  * wskazówki (lib/cues.hasCues — bez wczytywania słowników). Przejście z blokadą podwójnego tapnięcia (Btn nav, UI2-02).
  */
 export function TechniqueLink({ exercise, name }: { exercise: Pick<Exercise, 'id' | 'lib' | 'libKey'> | null | undefined; /** nazwa w etykiecie VoiceOver (z numerem wystąpienia, gdy ćwiczenie powtarza się) */ name: string }) {
   const router = useRouter(); if (!exercise || !hasCues(exercise)) return null;
-  return <Btn nav small kind="ghost" title={`ⓘ ${t('Technika')}`} accessibilityLabel={t('Technika: {name}', { name })} onPress={() => router.push(`/exercise/${exercise.id}?cues=1`)} />;
+  return <Btn nav small kind="ghost" title={`${t('Technika')} ›`} accessibilityLabel={t('Technika: {name}', { name })} onPress={() => router.push(`/exercise/${exercise.id}?cues=1`)} />;
 }

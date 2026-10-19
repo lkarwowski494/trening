@@ -72,7 +72,7 @@ describe('podział scenariuszy na części', () => {
 describe('polecenie „czesc” (krok „Plan części” w workflow)', () => {
   const run = (n: number, only = '') => {
     const out = path.join(tmp(), 'czesc'); const gh = path.join(tmp(), 'out.txt'); fs.writeFileSync(gh, '');
-    const log = execFileSync('node', [script, 'czesc', String(n), '--out', out], { encoding: 'utf8', env: { ...process.env, ONLY: only, GITHUB_OUTPUT: gh } });
+    const log = execFileSync('node', [script, 'czesc', String(n), '--out', out], { encoding: 'utf8', env: { ...process.env, ONLY: only, PAKIET: 'pelny' /* 19.10.2026: domyślny pakiet to podstawowy — te testy dotyczą pełnego podziału (pakiet: tests/e2e-pakiet.test.ts) */, GITHUB_OUTPUT: gh } });
     const o = Object.fromEntries(fs.readFileSync(gh, 'utf8').trim().split('\n').map(l => l.split('='))) as Record<string, string>;
     return { log, o, files: fs.existsSync(out) ? scenarios(out) : [], sub: fs.existsSync(path.join(out, 'subflows')) };
   };
@@ -129,7 +129,7 @@ describe('e2e-ios.yml po podziale na części', () => {
 
   test('artefakty porażek mają numer części w nazwie (nie nadpisują się); jedyny artefakt bez numeru to aplikacja i log builda z zadania build', () => {
     const names = [...wf.matchAll(/actions\/upload-artifact@v4[\s\S]*?\n\s+name: (\S+)/g)].map(m => m[1]).sort();
-    expect(names).toEqual(['e2e-ios-${{', 'e2e-ios-eksperymenty', 'trening-sim-app', 'xcodebuild-log-sim'].sort()); /* 14.10.2026: osobne, niewiążące zadanie eksperymentów 40–42 (decyzja właściciela) */
+    expect(names).toEqual(['e2e-ios-${{', 'e2e-ios-eksperymenty', 'e2e-wyniki', 'trening-sim-app', 'xcodebuild-log-sim'].sort()); /* 14.10.2026: osobne, niewiążące zadanie eksperymentów 40–42 (decyzja właściciela) */
     expect(job('e2e')).toMatch(/name: e2e-ios-\$\{\{ matrix\.shard \}\}/);
     expect(job('e2e')).not.toMatch(/name: e2e-ios\n/);
   });

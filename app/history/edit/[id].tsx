@@ -76,7 +76,7 @@ export default function EditWorkout() {
         {!w.exercises.length ? <Empty>{t('Brak ćwiczeń — dodaj pierwsze.')}</Empty> : null}
         <Btn nav title={t('+ Dodaj ćwiczenie')} block style={{ marginTop: 12 }} onPress={() => router.push(`/picker?target=${encodeURIComponent('edit:' + key)}`)} />
         <View style={{ marginTop: 16 }}><Muted style={{ marginBottom: 5 }}>{t('Notatka do treningu')}</Muted><Input maxLength={1000} value={w.note} onChangeText={v => { w.note = v; touchDraft(); }} placeholder={t('np. samopoczucie, ból, sprzęt')} accessibilityLabel={t('Notatka do treningu')} multiline /><MedicalNote /></View>
-        <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{t('Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.')} {t('Przesuń serię albo nazwę ćwiczenia w lewo, by je usunąć.') /* UI-07 (audyt 0.10) */}</Muted>
+        <Muted style={{ textAlign: 'center', fontSize: 13, marginVertical: 10 }}>{t('Serie bez wyniku nie zostaną zapisane.') /* utrata danych zostaje na wierzchu; gesty (typ serii, usuwanie) — w Przewodniku, 14.10.2026 */}</Muted>
       </ScrollView>
     </Screen>
   );

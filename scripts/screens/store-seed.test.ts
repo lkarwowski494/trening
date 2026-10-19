@@ -57,7 +57,8 @@ export function demoCsv(now: number, n = 142): string {
   for (let i = 0; i < n; i++) {
     const d = new Date(start.getTime() + (Math.floor(i / 3) * 7 + [0, 2, 4][i % 3]) * DAY); const [name, exs] = days[i % 2];
     const ds = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} 18:${pad(5 + (i % 4) * 10)}:00`;
-    for (const [ex, w, r] of exs) for (let s = 1; s <= 3; s++) out.push([ds, name, '1h 2m', ex, s, round(w + i * 0.12, 2.5), r, '', '', '', '', ''].join(','));
+    /* liczba serii różna dla ćwiczeń i sesji (koordynator 19.10.2026: „Serie: 213” przy każdym ćwiczeniu wyglądało sztucznie) */
+    exs.forEach(([ex, w, r], k) => { const ns = [[4, 3, 3], [4, 2, 3]][i % 2][k] + ((Math.floor(i / 2) + k) % (k + 2 + (i % 2)) === 0 ? 1 : 0); for (let s = 1; s <= ns; s++) out.push([ds, name, '1h 2m', ex, s, round(w + i * 0.12, 2.5), r, '', '', '', '', ''].join(',')); });
   }
   return out.join('\n') + '\n';
 }
@@ -144,7 +145,11 @@ test('dane pokazowe do zrzutów App Store (wszystkie języki aplikacji, 4 warian
     fs.writeFileSync(path.join(out, `state-${lng}-trening.json`), JSON.stringify(tr));
     /* trening w domu (hantle + ławka): Push — okno „Dostosuj” z zamianami */
     st.active = null; st.timer = { ...st.timer, restEndAt: null, restSetId: null };
-    store.startFromTemplate(tpls.push); st.active!.locationId = home.id; st.active!.startedAt = now - 2 * 60e3; store.save(); await store.flush();
+    store.startFromTemplate(tpls.push); st.active!.locationId = home.id; st.active!.startedAt = now - 2 * 60e3;
+    /* koordynator 19.10.2026: przy 3 zamianach dolna połowa okna była pusta — dwa ćwiczenia na wyciągu/maszynie dodane do treningu (5 zamian) */
+    for (const n of ['Cable Fly', 'Reverse Pec Deck']) store.addExerciseToActive(exByName(n));
+    store.save(); await store.flush();
+    expect((require('@/lib/adapt') as typeof import('@/lib/adapt')).adaptCandidates(st.active!, home.id).length).toBeGreaterThanOrEqual(5);
     fs.writeFileSync(path.join(out, `state-${lng}-adapt.json`), snap({ __sklepSavedAt: now }));
     const r = routes(squat.id); expect(r).toHaveLength(9);
     fs.writeFileSync(path.join(out, `routes-${lng}.json`), JSON.stringify(r));

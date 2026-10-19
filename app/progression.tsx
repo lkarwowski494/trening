@@ -78,13 +78,12 @@ export default function ProgressionScreen() {
           caption={t('Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.')} />
         <H2 style={{ marginTop: 16 }}>{t('Objętość per partia ({u})', { u: wu() })}</H2>
         <MuscleRows rows={volumeBars(c.rows)} metric="volume" names={periods} />
-        <H2 style={{ marginTop: 10 }}>{t('Serie per partia')}</H2>
+        <H2 style={{ marginTop: 10 }} infoId="prog-sets" info={kind === 'week'
+          ? t('Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.')
+          : t('Objętość = ciężar × powtórzenia × mnożnik ćwiczenia (jak w Postępach); rozgrzewka poza. Partia główna liczy całość, pomocnicza połowę.')}>{t('Serie per partia')}</H2>
         <MuscleRows rows={setBars(c.setRows, kind !== 'month')} metric="sets" names={periods} />
         {c.setRows.some(r => r.doneSplit.indirectSets + r.plannedSplit.indirectSets > 0) ? <IndirectLegend /> : null}
         {kind !== 'month' ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })}</Muted> : null}
-        <Muted style={{ fontSize: 12, marginTop: 8 }}>{kind === 'week'
-          ? t('Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.')
-          : t('Objętość = ciężar × powtórzenia × mnożnik ćwiczenia (jak w Postępach); rozgrzewka poza. Partia główna liczy całość, pomocnicza połowę.')}</Muted>
       </>}
     </ScrollView></Screen>
   );

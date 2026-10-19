@@ -10,7 +10,7 @@ import * as plan from '@/lib/plan';
 import { applyLang } from '@/lib/i18n';
 import { SCHEMA_VERSION } from '@/lib/seed';
 import { fresh, saved, withDemoTemplates, addWorkout, pressAlert } from './helpers';
-import { renderApp, flushAll, screen, tap, act, go, swipeDelete } from './app';
+import { renderApp, flushAll, screen, tap, act, go, swipeDelete, openInfo } from './app';
 import { fireEvent, within } from '@testing-library/react-native';
 const dayPanel = () => within(screen.getByTestId('day-panel-wrap')); /* przycisk „Dopisz trening wstecz” jest też w nagłówku Kalendarza — panel dnia osobno */
 import { FlatList, Linking } from 'react-native';
@@ -163,6 +163,8 @@ describe('UX-13 A, MER-16 — panel dnia: 3 akcje, „Więcej opcji”, jedna li
   test('UX-13 A / MER-16: lista „Przesuń albo pomiń” — oba tryby właściciela, zamiana, wolne; kolejność opisana; stopka warunkowa', async () => {
     const t = await boot(ids => { plan.setWeekDay(3, ids[0]); plan.setWeekDay(5, ids[1]); });
     await openDay('2026-10-08'); await tap(screen.getByText('Przesuń albo pomiń')); await flushAll(5);
+    expect(screen.getByText('Możliwości w kolejności')).toBeTruthy(); expect(screen.getByLabelText('Więcej informacji: Możliwości w kolejności').props.accessibilityState).toEqual({ expanded: false });
+    expect(screen.queryByText(/^Kolejność: najpierw zmiany/)).toBeNull(); await openInfo('move-list'); /* ⓘ 14.10.2026: kolejność i uproszczenie pod ⓘ */
     expect(screen.getByText(/^Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu 10 dni/)).toBeTruthy();
     await showAll();
     const titles = plan.suggest('2026-10-08').map(x => x.kind); expect(titles).toEqual(expect.arrayContaining(['shift', 'move', 'swap', 'skip']));
@@ -292,6 +294,7 @@ describe('macierz — podpowiedzi VoiceOver i teksty pomocnicze ekranów planu (
     expect(screen.getByTestId('day-more')).toBeTruthy(); expect(screen.getByText('Mniej opcji')).toBeTruthy();
     await tap(screen.getByLabelText('Więcej opcji')); await flushAll(5); expect(screen.queryByTestId('day-more')).toBeNull(); expect(screen.getByText('Więcej opcji')).toBeTruthy();
     await tap(screen.getByText('Przesuń albo pomiń')); await flushAll(5);
+    await openInfo('move-list');
     expect(screen.getByText(`Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu ${plan.RETURN_DAYS} dni, potem bez utraty treningów, bez nowych par dzień po dniu z tymi samymi partiami i z najmniejszą liczbą zmienionych dni.`)).toBeTruthy();
     const simpl = 'Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).';
     expect(screen.getByText(new RegExp('^' + simpl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))).toBeTruthy();

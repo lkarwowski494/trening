@@ -7,7 +7,7 @@ import * as plan from '@/lib/plan';
 import * as timer from '@/lib/timer';
 import { applyLang } from '@/lib/i18n';
 import { fresh, ex, saved } from './helpers';
-import { renderApp, flushAll, screen, tap, act, go, type, startTpl } from './app';
+import { renderApp, flushAll, screen, tap, act, go, type, startTpl, openInfo } from './app';
 import { loc } from './locations-fixtures';
 import { presetEquipment } from '@/lib/equipment';
 import { LANGS, type Lang } from '@/lib/i18n';
@@ -113,6 +113,7 @@ describe('B — panel dnia w planie', () => {
   test('„Więcej opcji” → „📍 Miejsce na te dni”: miejsca z listy, „Inne miejsce…”, „Od/Do”, dzień po dniu; bez „Ustaw miejsce”, dopóki nie wybrano miejsca', async () => {
     await boot({ url: '/history', fn: plan3 }); await open(); expect(screen.queryByText('📍 Miejsce na te dni')).toBeNull(); await tap(screen.getByText('Więcej opcji')); await flushAll(5);
     await tap(screen.getByText('📍 Miejsce na te dni')); await flushAll(5); expect(screen.getByTestId('place-range')).toBeTruthy();
+    expect(screen.getByText('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.')).toBeTruthy(); await openInfo('place-range'); /* ⓘ 14.10.2026 */
     expect(screen.getByText('Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.')).toBeTruthy(); expect(screen.getByText('Inne miejsce…')).toBeTruthy();
     expect(screen.getByText(/^Od: /)).toBeTruthy(); expect(screen.getByTestId('place-to').props.children).toMatch(/^Do: /); expect(screen.queryByText('Ustaw miejsce')).toBeNull(); expect(screen.queryByText('Usuń miejsce')).toBeNull();
   });
@@ -177,6 +178,7 @@ describe('języki i wygląd (docs/20 rodzaj 7)', () => {
     const T = dict(l); const txt = (k: string) => T[k];
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/history', code: l === 'en' ? 'en' : l }); jest.setSystemTime(THU.getTime()); await flushAll(10);
     await tap(screen.getByTestId('cal-2026-10-09')); await flushAll(5); await tap(screen.getByLabelText(txt('Więcej opcji'))); await flushAll(5); await tap(screen.getByText(txt('📍 Miejsce na te dni'))); await flushAll(5);
+    expect(screen.getByText(txt('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.'))).toBeTruthy(); await openInfo('place-range');
     expect(screen.getByText(txt('Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.'))).toBeTruthy();
     expect(screen.getByText(txt('Inne miejsce…'))).toBeTruthy(); expect(screen.getByText(new RegExp('^' + esc(txt('Od: {day}').split('{day}')[0])))).toBeTruthy(); expect(new RegExp('^' + esc(txt('Do: {day}').split('{day}')[0])).test(screen.getByTestId('place-to').props.children)).toBe(true);
     await tap(screen.getAllByText('Hotel')[0]); expect(screen.getByText(txt('Ustaw miejsce'))).toBeTruthy();

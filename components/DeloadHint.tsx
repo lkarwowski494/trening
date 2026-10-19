@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Btn, Muted } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { useTheme } from '@/lib/theme';
 import { toggleDeloadWeek, useTick, fmtDayKey } from '@/lib/store';
 import { deloadHint, snoozeDeloadHint, DELOAD_EVERY } from '@/lib/deload';
@@ -22,7 +23,9 @@ export function DeloadHint() {
   const box = { padding: 10, borderRadius: 10, backgroundColor: th.surface2, marginBottom: 10, gap: 6 } as const;
   if (h.kind === 'suggest') return (
     <View testID="deload-hint" style={box}>
-      <Muted style={{ fontSize: 13 }}>{t('Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.', { n: h.weeks, a: DELOAD_EVERY[0], b: DELOAD_EVERY[1] })}</Muted>
+      <InfoTip id="deload" label={t('Tygodnie treningu bez deloadu: {n}.', { n: h.weeks })} info={t('Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.', { n: h.weeks, a: DELOAD_EVERY[0], b: DELOAD_EVERY[1] })}>
+        <Muted style={{ fontSize: 13 }}>{t('Tygodnie treningu bez deloadu: {n}.', { n: h.weeks })}</Muted>
+      </InfoTip>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         <Btn small title={t('Zaplanuj deload od {date}', { date: day(h.from) })} onPress={() => toggleDeloadWeek(keyTs(h.from))} />
         <Btn small kind="ghost" title={t('Nie teraz')} accessibilityHint={t('Podpowiedź wróci w przyszłym tygodniu.')} onPress={() => snoozeDeloadHint(h.from)} />{/* audyt 0.10 D4 (UX-06) */}

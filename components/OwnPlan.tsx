@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { ScrollView, View, Alert } from 'react-native';
 import { useRouter, useNavigation } from 'expo-router';
 import { Field, Chip, Muted, Txt, Btn, SectionTitle } from '@/components/ui';
+import { InfoTip } from '@/components/InfoTip';
 import { DayPicker, daysOk } from '@/components/DayPicker';
 import { getState, useTick, newTemplate, SAVED_PLANS_MAX } from '@/lib/store';
 import { ownTemplates, ownSessionsFor, ownPlan, ownProposal, ownWarnings, ownCounts, saveOwnPlan, weeklySetsList, OWN_MAX, MIN_DAYS, SECONDARY_SHARE } from '@/lib/generator';
@@ -62,7 +63,9 @@ export function OwnPlan({ header }: { header?: React.ReactNode }) {
   return (
     <ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       {header}
-      <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.')}</Muted>
+      <InfoTip id="own-intro" label={t('Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.')} info={t('Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.')} style={{ marginBottom: 8 }}>
+        <Muted style={{ fontSize: 13 }}>{t('Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.')}</Muted>
+      </InfoTip>
       {!all.length ? <View style={{ gap: 8 }}>
         <Txt style={{ fontSize: 14 }}>{t('Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.')}</Txt>
         <Btn nav small title={t('+ Nowy szablon')} onPress={() => { const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1`); }} style={{ alignSelf: 'flex-start' }} />
@@ -79,13 +82,12 @@ export function OwnPlan({ header }: { header?: React.ReactNode }) {
           <Txt accessibilityRole="header" style={{ fontSize: 15, marginBottom: 6 }}>{r.days.map((id, i) => (id ? `${wd(i)} ${nameOf(id)}` : null)).filter(Boolean).join(' · ')}</Txt>
           {r.seq.length > chosen.length ? <Muted style={{ fontSize: 13, marginBottom: 6 }}>{t('Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.', { n: r.sessions, k: chosen.length, seq: r.seq.map(nameOf).join(' → ') })}</Muted> : null}
           {ownCounts(r).map(c => <Muted key={c.id} style={{ fontSize: 13 }}>{t('{name}: {n}× w tygodniu', { name: nameOf(c.id), n: c.n })}</Muted>)}
-          <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie, jedno źródło): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, true) })}</Muted>
+          <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, true) })}</Muted>
           {warn.map(w => <Txt key={w.kind} style={{ fontSize: 13, marginTop: 6 }}>{w.text}</Txt>)}
-          <SectionTitle>{t('Na czym to oparte')}</SectionTitle>
-          {[t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).') /* ten sam tekst co lista przesunięć w Kalendarzu (docs/research/23) */,
-            t('Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (jedno źródło). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.', { n: MIN_DAYS, h: fmtNum(SECONDARY_SHARE, 1) }) /* ten sam tekst co generator (R1) */,
+          <SectionTitle infoId="own-basis" info={[t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).') /* ten sam tekst co lista przesunięć w Kalendarzu (docs/research/23) */,
+            t('Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.', { n: MIN_DAYS, h: fmtNum(SECONDARY_SHARE, 1) }) /* ten sam tekst co generator (R1) */,
             t('Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.'),
-          ].map(x => <Muted key={x} style={{ fontSize: 12, marginBottom: 4 }}>{`• ${x}`}</Muted>)}
+          ].map(x => `• ${x}`)}>{t('Na czym to oparte')}</SectionTitle>
           <Btn title={t('Zapisz plan')} kind="primary" block onPress={save} style={{ marginTop: 14 }} />
         </>}
       </>}

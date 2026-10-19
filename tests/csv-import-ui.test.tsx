@@ -8,7 +8,7 @@ import * as store from '@/lib/store';
 import { applyLang, t } from '@/lib/i18n';
 import { applyUnit } from '@/lib/units';
 import { fresh, saved, addWorkout, pressAlert } from './helpers';
-import { renderApp, flushAll, screen, go, act, tap, type as typeText } from './app';
+import { renderApp, flushAll, screen, go, act, tap, type as typeText, openInfo } from './app';
 
 jest.setTimeout(60000);
 const NOW = new Date(2026, 9, 11, 12).getTime();
@@ -28,12 +28,14 @@ afterEach(() => { applyLang('pl'); applyUnit('kg'); jest.restoreAllMocks(); jest
 describe('ekran importu CSV', () => {
   test('ekran Kopia zapasowa ma przycisk i opis importu; przycisk otwiera ekran importu bez podglądu', async () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10); await go('/more/backup'); await flushAll(10);
+    expect(screen.getByText(t('Dopisuje treningi z CSV — bez usuwania danych, z podglądem.'))).toBeTruthy(); await openInfo('backup-csv'); /* ⓘ 14.10.2026: pełny opis pod ⓘ */
     expect(screen.getByText(t('Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.'))).toBeTruthy();
     await tap(screen.getByText(t('Importuj historię z pliku CSV'))); await flushAll(800);
     expect(screen.getByText(t('Wybierz plik CSV'))).toBeTruthy(); expect(screen.queryByText(t('Podgląd importu'))).toBeNull();
   });
   test('ekran importu: tytuł, opis (obecne dane nietknięte, podgląd przed zapisem) i etykieta zmiany dopasowania wiersza', async () => {
-    await boot(); expect(screen.getByText(t('Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.'))).toBeTruthy();
+    await boot(); expect(screen.getByText(t('Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.'))).toBeTruthy(); await openInfo('import-intro');
+    expect(screen.getByText(t('Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.'))).toBeTruthy();
     expect(screen.queryAllByText(t('Import historii z CSV')).length).toBeGreaterThanOrEqual(0); /* tytuł nagłówka (Stack) — tekst t() użyty w app/_layout.tsx */
     await choose(fx('import-formatA.csv')); expect(screen.getByLabelText(`Plank, Plank, ${t('Zmień dopasowanie')}`)).toBeTruthy();
   });
