@@ -89,7 +89,7 @@ export function finishWorkout(at?: number): Workout | null {
   const st = getState(); const w = st.active; if (!w) return null;
   /* T4a: cofnięty zegar nie daje końca przed startem */
   w.finishedAt = Math.max(w.startedAt, at != null && Number.isFinite(at) ? Math.min(at, Date.now()) : Date.now());
-  delete w.staleAck; delete w.watchEvents; /* 0.20: dziennik zdarzeń zegarka tylko w treningu w toku (sesja zegarka `watch` zostaje do rozstrzygnięcia zapisu w Zdrowiu) */
+  delete w.staleAck; delete w.watchEvents; delete w.watchLastAt; /* 0.20: dziennik zdarzeń zegarka tylko w treningu w toku (sesja zegarka `watch` zostaje do rozstrzygnięcia zapisu w Zdrowiu) */
   /* 08.10.2026: pauza trwająca przy „Zakończ” kończy się z treningiem; pauza po końcu (auto-zapis na ostatniej serii) nie liczy się */
   closePause(w, w.finishedAt);
   w.exercises = w.exercises.map(e => {
@@ -151,7 +151,7 @@ export function putHistoryWorkout(w: Workout, replaceId: string | null): boolean
     delete e.occ; /* Q-016 */
   }); /* E2: tylko trening w toku */
   normalizeGroups(w.exercises);
-  delete w.staleAck; delete w.watchEvents; delete w.watch;
+  delete w.staleAck; delete w.watchEvents; delete w.watchLastAt; delete w.watch;
   /* Audyt M4: start w tej samej milisekundzie co inna sesja (albo trening w toku) — rekordy liczą się „przed startem” (<), więc obie
    * dostałyby PR, a „Poprzednio” zależałoby od kolejności wstawienia. Przesuwamy start, koniec i godziny serii o 1 s, aż start jest unikalny. */
   {

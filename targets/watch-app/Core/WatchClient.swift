@@ -54,6 +54,29 @@ struct ClientState: Codable, Equatable {
   var finished: Bool
   var upgrade: String?
   var restEndedSent: String?
+
+  /// Klucze zapisu — jawne, bo odczyt (`init(from:)` w rozszerzeniu niżej) jest tolerancyjny wobec starszego kształtu.
+  enum CodingKeys: String, CodingKey { case cfg, seq, connected, base, queue, history, undo, confirmSkip, finished, upgrade, restEndedSent }
+}
+
+/// M1-audytor-generalny-005: zapis w starszym kształcie (bez pól dodanych później: historia migawek, „Cofnij”, znaczniki) nie może zerować stanu — wcześniej jeden brakujący
+/// klucz dawał `nil` z `load()`, a zegarek zaczynał od `initialClient` (kolejka niewysłanych serii znikała, licznik zdarzeń wracał do 0). Brakujące pola dostają wartości
+/// z `initialClient`; wymagane zostaje tylko `cfg` (`WatchStore` i tak nadpisuje go bieżącą konfiguracją).
+extension ClientState {
+  init(from decoder: Decoder) throws {
+    let c = try decoder.container(keyedBy: CodingKeys.self)
+    cfg = try c.decode(ClientConfig.self, forKey: .cfg)
+    seq = try c.decodeIfPresent(Int.self, forKey: .seq) ?? 0
+    connected = try c.decodeIfPresent(Bool.self, forKey: .connected) ?? true
+    base = try c.decodeIfPresent(WatchSnapshot.self, forKey: .base)
+    queue = try c.decodeIfPresent([QueuedEvent].self, forKey: .queue) ?? []
+    history = try c.decodeIfPresent([WatchSnapshot].self, forKey: .history) ?? []
+    undo = try c.decodeIfPresent(ClientUndo.self, forKey: .undo)
+    confirmSkip = try c.decodeIfPresent(Bool.self, forKey: .confirmSkip) ?? false
+    finished = try c.decodeIfPresent(Bool.self, forKey: .finished) ?? false
+    upgrade = try c.decodeIfPresent(String.self, forKey: .upgrade)
+    restEndedSent = try c.decodeIfPresent(String.self, forKey: .restEndedSent)
+  }
 }
 
 func initialClient(_ cfg: ClientConfig) -> ClientState {

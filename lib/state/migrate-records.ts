@@ -189,6 +189,7 @@ export const fixWorkout = (raw: any, owner: string, w: any) => {
    * sesja zegarka (`watch`) w treningu w toku albo zakończonym, który czeka na Zdrowie, i tylko z poprawnymi liczbami. */
   if (w === raw.active && Array.isArray(w.watchEvents)) w.watchEvents = w.watchEvents.filter((x: unknown) => typeof x === 'string' && x.length > 0 && x.length <= 64).slice(-200); else delete w.watchEvents;
   if (w.watchEvents?.length === 0) delete w.watchEvents;
+  if (!w.watchEvents || !Number.isFinite(w.watchLastAt)) delete w.watchLastAt; /* M1-005: godzina najnowszego zdarzenia — tylko z dziennikiem i jako liczba */
   {
     const k = w.watch; const keep = isObj(k) && (w === raw.active || (w.healthPending === true && !w.healthUUID)) && (k.client === 'apple' || k.client === 'garmin') && tsOf(k.startedAt) != null;
     if (!keep) delete w.watch; else {

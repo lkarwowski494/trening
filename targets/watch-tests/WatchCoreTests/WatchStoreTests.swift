@@ -28,6 +28,52 @@ final class WatchStoreTests: XCTestCase {
     "{\"v\":1,\"kind\":\"session\",\"action\":\"\(action)\",\"workoutId\":\"\(id)\",\"save\":\(save)}"
   }
 
+  /// M1-audytor-generalny-005: zapis stanu w starszym kształcie (bez historii migawek, „Cofnij” i znaczników) zachowuje kolejkę niewysłanych serii i licznik zdarzeń —
+  /// wcześniej jeden brakujący klucz zerował cały stan zegarka (niewysłane serie ginęły, a eventId zaczynały się od apple-1).
+  func testPersistenceKeepsQueueFromOlderShape() {
+    let suite = "watch-tests-older-shape-\(UUID().uuidString)"
+    guard let defaults = UserDefaults(suiteName: suite) else { return XCTFail("UserDefaults suite") }
+    defer { defaults.removePersistentDomain(forName: suite) }
+    let old = """
+    {"cfg":{"client":"apple","app":"0.19.0","session":true},"seq":7,"connected":false,"base":null,
+     "queue":[{"ev":{"v":1,"kind":"event","eventId":"apple-7","workoutId":"workout-1","baseRev":3,"at":1760000000000,"client":"apple","type":"done","setId":"set-9"},"ackRev":null}]}
+    """
+    defaults.set(Data(old.utf8), forKey: "watch.client.v1")
+    let loaded = UserDefaultsPersistence(defaults: defaults).load()
+    XCTAssertNotNil(loaded)
+    XCTAssertEqual(loaded?.seq, 7)
+    XCTAssertEqual(loaded?.queue.count, 1)
+    XCTAssertEqual(loaded?.queue.first?.ev.eventId, "apple-7")
+    XCTAssertEqual(loaded?.history, [])
+    XCTAssertEqual(loaded?.confirmSkip, false)
+    XCTAssertEqual(loaded?.finished, false)
+    XCTAssertNil(loaded?.undo)
+    // Store startuje na takim zapisie bez utraty kolejki i bez cofnięcia licznika.
+    let s = makeStore(persisted: loaded)
+    XCTAssertEqual(s.state.seq, 7)
+    XCTAssertEqual(s.state.queue.count, 1)
+  }
+
+  /// Zapis pełny (obecny kształt) odczytuje się 1:1 — zmiana dekodera nie zmienia wyniku dla poprawnych danych.
+  func testPersistenceRoundTripKeepsCurrentShape() {
+    let suite = "watch-tests-roundtrip-\(UUID().uuidString)"
+    guard let defaults = UserDefaults(suiteName: suite) else { return XCTFail("UserDefaults suite") }
+    defer { defaults.removePersistentDomain(forName: suite) }
+    var st = initialClient(apple); st.seq = 3; st.confirmSkip = true; st.finished = true; st.upgrade = "watch"; st.restEndedSent = "set-1"
+    let p = UserDefaultsPersistence(defaults: defaults)
+    p.save(st)
+    XCTAssertEqual(p.load(), st)
+  }
+
+  /// Zapis bez wymaganego `cfg` (uszkodzony) nadal daje nil — wtedy zegarek zaczyna od stanu początkowego, jak dotąd.
+  func testPersistenceWithoutConfigIsNil() {
+    let suite = "watch-tests-no-cfg-\(UUID().uuidString)"
+    guard let defaults = UserDefaults(suiteName: suite) else { return XCTFail("UserDefaults suite") }
+    defer { defaults.removePersistentDomain(forName: suite) }
+    defaults.set(Data("{\"seq\":4}".utf8), forKey: "watch.client.v1")
+    XCTAssertNil(UserDefaultsPersistence(defaults: defaults).load())
+  }
+
   func testStartActivatesTransportSendsHelloAndGetsWelcome() async {
     let s = makeStore()
     s.start(); await settle()
