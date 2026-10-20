@@ -52,10 +52,9 @@ export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercis
 function SafetyNote({ inside }: { inside?: boolean }) {
   const th = useTheme();
   return (
-    <View testID="exercise-safety" accessible accessibilityLanguage={lang()} accessibilityLabel={`${t('Asekuracja')}. ${t('Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.')}`}
-      style={inside ? { marginTop: 4, paddingBottom: 10 } : { borderTopWidth: 1, borderBottomWidth: 1, borderColor: th.line, marginBottom: 14, paddingVertical: 10 }}>
-      <Text importantForAccessibility="no" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontSize: 13, fontFamily: F.semibold, marginBottom: 2 }}>{t('Asekuracja')}</Text>
-      <Text importantForAccessibility="no" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontSize: 15, fontFamily: F.regular, lineHeight: 21 }}>{t('Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.')}</Text>
+    <View testID="exercise-safety" style={inside ? { marginTop: 4, paddingBottom: 10 } : { borderTopWidth: 1, borderBottomWidth: 1, borderColor: th.line, marginBottom: 14, paddingVertical: 10 }}>
+      <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontSize: 13, fontFamily: F.semibold, marginBottom: 2 }}>{t('Asekuracja')}</Text>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontSize: 15, fontFamily: F.regular, lineHeight: 21 }}>{t('Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.')}</Text>
     </View>
   );
 }
