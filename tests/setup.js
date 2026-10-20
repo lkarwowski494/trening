@@ -59,7 +59,7 @@ jest.mock('expo-iap', () => {
     purchaseUpdatedListener: (l) => { g().listeners.updated.push(l); return { remove: () => { g().listeners.updated = g().listeners.updated.filter(x => x !== l); } }; },
     purchaseErrorListener: (l) => { g().listeners.error.push(l); return { remove: () => { g().listeners.error = g().listeners.error.filter(x => x !== l); } }; },
     isEligibleForIntroOfferIOS: async (...a) => { rec('isEligibleForIntroOfferIOS', a); return g().eligible; },
-    subscriptionStatusIOS: async (...a) => { rec('subscriptionStatusIOS', a); maybeFail(); return g().status; },
+    subscriptionStatusIOS: async (...a) => { rec('subscriptionStatusIOS', a); maybeFail(); if (g().statusFail) throw new Error(g().statusFail); return g().status; },
     openRedeemOfferCode: async (...a) => { rec('openRedeemOfferCode', a); return null; },
     deepLinkToSubscriptions: async (...a) => { rec('deepLinkToSubscriptions', a); },
   };

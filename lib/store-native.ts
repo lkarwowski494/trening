@@ -63,17 +63,23 @@ const code = (e: unknown): string => String(((e ?? {}) as Rec).code ?? '');
 /**
  * Uprawnienia: aktywne z currentEntitlements + subskrypcje w karencji płatności (P7 A, Billing Grace Period). Biblioteka (pod openiap 3.6.0) przy
  * onlyIncludeActiveItemsIOS odrzuca transakcje z expirationDate w przeszłości, więc subskrybent w karencji nie pojawia się na liście — dla subskrypcji bez
- * aktywnego uprawnienia pytamy o status odnowienia i przyjmujemy gracePeriodExpirationDate jako koniec dostępu. Błąd odczytu statusu → wyjątek (`unknown`).
+ * aktywnego uprawnienia pytamy o status odnowienia i przyjmujemy gracePeriodExpirationDate jako koniec dostępu. Audyt M1-012: błąd tego zapytania
+ * pomocniczego nie unieważnia odczytu zakupów — zwracamy uprawnienia z getAvailablePurchases; dopiero gdy nie ma żadnego uprawnienia, a zapytanie
+ * rzuciło (nie wiemy, czy ktoś jest w karencji), przekazujemy wyjątek (`unknown`, nigdy `free`). Błąd samego getAvailablePurchases → wyjątek jak dotąd.
  */
 async function readEntitlements(m: IapModule): Promise<Entitlement[]> {
   const rows = await withTimeout(m.getAvailablePurchases({ onlyIncludeActiveItemsIOS: true }));
   const out = rows.map(entitlementFromPurchase).filter((e): e is Entitlement => !!e); const now = Date.now();
+  let statusError: unknown = null;
   for (const plan of SUBSCRIPTION_PLANS) {
     if (out.some(e => e.plan === plan && e.expiresAt != null && e.expiresAt > now)) continue;
-    for (const st of await withTimeout(m.subscriptionStatusIOS(PRODUCT_IDS[plan]))) {
-      const g = num(st?.renewalInfo?.gracePeriodExpirationDate); if (g != null && g > now && st.state !== 'revoked') out.push({ plan, source: 'purchase', expiresAt: g });
-    }
+    try {
+      for (const st of await withTimeout(m.subscriptionStatusIOS(PRODUCT_IDS[plan]))) {
+        const g = num(st?.renewalInfo?.gracePeriodExpirationDate); if (g != null && g > now && st.state !== 'revoked') out.push({ plan, source: 'purchase', expiresAt: g });
+      }
+    } catch (e) { statusError ??= e; }
   }
+  if (statusError != null && !out.length) throw statusError;
   return out;
 }
 
