@@ -75,3 +75,10 @@ export function equipSlotFor(w: Workout, e: WExercise, set: WSet): EquipVis[] {
   }
   return equipVisFor(w, e, { ...set, weight: 10 });
 }
+
+/**
+ * Wysokość miejsca na grafikę zapamiętana z `onLayout` (karta „teraz”). Szum zmiennoprzecinkowy układu (np. 101,00000762939453 dla minHeight 101) zaokrąglony
+ * w górę dawał o 1 pt więcej przy każdym przeliczeniu — miejsce rosło bez końca (E2E 39410740673: pusty obszar ok. 520 pt w karcie, „Set done” i wiersze serii
+ * poza ekranem). Tolerancja 0,05 pt: wynik stabilny wobec własnego minHeight.
+ */
+export const slotHeight = (layoutH: number): number => Math.max(0, Math.ceil(layoutH - 0.05));
