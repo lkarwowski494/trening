@@ -54,6 +54,7 @@ Odpowiadaj po polsku.
 |---|---|---|
 | 20.10 19:30 | 1. E2E na audyt-m1 | w toku — brak maszyn macOS u GitHuba od 13:00 UTC, ponawiane |
 | 20.10 20:15 | 5. przegląd tłumaczeń przez API | w toku — programista przygotowuje skrypt i workflow na gałęzi `przeglad-tlumaczen` (decyzje: Opus effort medium, limit 50 USD/przebieg, auto-reload w konsoli wyłączony); właściciel: sekret `ANTHROPIC_API_KEY` w GitHub (instrukcja po gotowym workflow) |
+| 20.10 20:40 | 5. przegląd tłumaczeń przez API | właściciel dodał sekret `ANTHROPIC_API_KEY` (osobny klucz „Trening — przegląd tłumaczeń”); konsola Anthropic: brak metody płatności, limit wydatków 200 USD, auto-reload wyłączony — przekroczenie kredytów niemożliwe. Przy migracji repo do Apps4Brew dodać ten sekret ponownie. |
 
 ## Zasady pracy obowiązujące (skrót; pełne w CLAUDE.md i docs/18)
 - Podział pracy na agentów według obszaru plików (CLAUDE.md, 20.10.2026); pliki generowane i pełne verify raz po scaleniu.
