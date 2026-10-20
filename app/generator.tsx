@@ -19,6 +19,7 @@ import { fmtNum } from '@/lib/units';
 import { SAVED_PLANS_MAX } from '@/lib/store';
 import { cancelButton } from '@/lib/confirm';
 import { weekdayLabels } from '@/lib/calendar';
+import { lacksSafety } from '@/lib/equipment';
 
 /*
  * Generator szablonów i planu tygodnia (decyzje właściciela 08.10.2026, wariant A; docs/24). Na wyraźne polecenie: założenia → podgląd → zapis po
@@ -49,7 +50,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
   const set = (p: Partial<GenInput>) => setInp(x => { const n = { ...x, ...p }; const al = GEN_SESSIONS[n.goal]; const k = (n.days ?? []).length;
     if (p.goal && p.goal !== x.goal && !al.includes(k)) { n.sessions = al.find(v => v >= k) ?? al[al.length - 1]; n.days = genProposal(n); } return n; });
   const lim = GEN_SESSIONS[inp.goal]; const ok = daysOk(inp.days ?? [], lim[0], lim[lim.length - 1]);
-  const nLoc = visibleLocations().length; const r = useMemo(() => generate(inp), [inp, rev]); /* rev: miejsca i sprzęt zmienione po „+ Dodaj miejsce” */ const warn = previewWarnings(r, inp);
+  const genPlace = visibleLocations().find(l => l.id === inp.locationId) ?? null; const nLoc = visibleLocations().length; const r = useMemo(() => generate(inp), [inp, rev]); /* rev: miejsca i sprzęt zmienione po „+ Dodaj miejsce” */ const warn = previewWarnings(r, inp);
   const unloaded = warn.find(w => w.kind === 'unloaded');
   /* uwaga pod celem przy zbyt małej liczbie dni (decyzja właściciela 09.10.2026 B, docs/18): ostrzeżenie „oneday” (1 dzień siłowy) stoi pod celem,
    * a nie w podglądzie — jedno miejsce, bez powtórzenia; przy celu „Ogólny” ma tekst dla zdrowia (WHO/PAG, docs/research/30) */
@@ -140,8 +141,8 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
       {r.templates.map(tp => (
         <View key={tp.key} testID={`gen-${tp.key}`} style={{ marginBottom: 10 }}>
           <H2 style={{ marginBottom: 4 }}>{tp.name}</H2>
-          {tp.items.length ? tp.items.map(it => { const e = exById(it.exerciseId); return (
-            <Muted key={it.exerciseId} style={{ fontSize: 13 }}>{glue(it.targetSec ? t('{ex} — {n} min, umiarkowane tempo', { ex: exName(e), n: Math.round(Number(it.targetSec) / 60) }) : t('{ex} — {s} × {a}–{b}, przerwa {r}', { ex: exName(e), s: it.sets, a: it.repMin ?? '', b: it.repMax ?? '', r: fmtSec(it.restSec) })) /* A11-19: „8–12” bez złamania */}</Muted>); })
+          {tp.items.length ? tp.items.map(it => { const e = exById(it.exerciseId); const noSafe = !!e && lacksSafety(e, genPlace); return (
+            <Muted key={it.exerciseId} style={{ fontSize: 13 }}>{glue(it.targetSec ? t('{ex} — {n} min, umiarkowane tempo', { ex: exName(e), n: Math.round(Number(it.targetSec) / 60) }) : t('{ex} — {s} × {a}–{b}, przerwa {r}', { ex: exName(e), s: it.sets, a: it.repMin ?? '', b: it.repMax ?? '', r: fmtSec(it.restSec) })) /* A11-19: „8–12” bez złamania */}{noSafe ? ' · ' + t('bez asekuracji w stojakach') : ''}</Muted>); }) /* audyt M1-015: miejsce bez ramion asekuracyjnych */
             : <Muted style={{ fontSize: 13 }}>{t('Brak ćwiczeń dostępnych w tym miejscu.')}</Muted>}
         </View>))}
       <Muted style={{ fontSize: 13 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, inp.goal === 'hypertrophy' || inp.goal === 'cut') })}</Muted>

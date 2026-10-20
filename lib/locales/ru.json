@@ -1697,5 +1697,8 @@
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "При последних запусках приложение неожиданно закрылось.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Автоматическая копия после каждой тренировки: Файлы → На iPhone → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Не удалось сохранить копию после тренировки",
- "Ostatnia udana kopia: {date}": "Последняя успешная копия: {date}"
+ "Ostatnia udana kopia: {date}": "Последняя успешная копия: {date}",
+ "Asekuracja": "Страховка",
+ "bez asekuracji w stojakach": "в стойке нет страховочных упоров",
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Упражнение со штангой над телом или на плечах: установите в стойке страховочные упоры так, чтобы можно было безопасно опустить штангу, или тренируйтесь со страхующим."
 }

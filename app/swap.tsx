@@ -6,7 +6,7 @@ import { Screen, Item, Muted, Empty, SectionTitle, Chip, Input, SearchField, Mis
 import { getState, useTick, exById, swapBlock, swapImpl, canUndoSwap, locationById, visibleExercises, newExercise, save, exerciseInHistory, restoreExercise, exercisesInUse, inCoreList, libShowAll, setLibShowAll } from '@/lib/store';
 import { LibScopeChip } from '@/components/LibScope';
 import { useCloseHeader } from '@/components/CloseButton';
-import { availability, capsOf, missingLabel } from '@/lib/equipment';
+import { availability, capsOf, missingLabel, SAFETY_CAP } from '@/lib/equipment';
 import { draftOf, useDraftTick, draftSwapExercise, canRestoreExercise, draftRestoreExercise, draftImplChoices, draftSetImpl, swapTargetOk } from '@/lib/edit';
 import { swapCandidates, reasonText, otherImpls, implLabel, parseSwapTarget, SWAP_TOP, SWAP_PAGE, sortOthers } from '@/lib/swap';
 import { afterSwap, confirmUndoSwap } from '@/components/ActiveWorkout';
@@ -83,8 +83,8 @@ export default function SwapScreen() {
             {place ? <Chip label={locOn ? `📍 ${place.name} ✕` : `+ 📍 ${place.name}`} on={locOn} onPress={() => { setLocOn(x => !x); setLim(SWAP_PAGE); }} a11yLabel={locOn ? t('Filtr miejsca: {l}', { l: place.name }) : t('Filtr miejsca wyłączony: {l}', { l: place.name })} a11yHint={locOn ? t('Tapnij, by zdjąć.') : t('Tapnij, by pokazać tylko dostępne.')} /* A11-18 */ /> : null}
           </View>
           <SearchField value={q} onChangeText={v => { setQ(v); setLim(SWAP_PAGE); }} placeholder={t('Szukaj ćwiczenia…')} />
-          {others.length ? othersSorted.slice(0, lim).map(b => { const av = caps ? availability(b, place, caps) : null; const miss = av && !av.ok ? ' · ' + t('brak: {m}', { m: missingLabel(av.missing) }) : '';
-            return <Item key={b.id} title={exName(b)} sub={`${t(b.equipment)}${miss}`} icon="⇄" dim={!!miss} onPress={() => pick(b.id)} />; }) : !archived.length && !canCreate ? <Empty>{t('Nic nie pasuje.')}</Empty> : null}
+          {others.length ? othersSorted.slice(0, lim).map(b => { const av = caps ? availability(b, place, caps) : null; const miss = av && !av.ok ? ' · ' + t('brak: {m}', { m: missingLabel(av.missing) }) : ''; const safe = av && av.ok && av.missingRecommended.includes(SAFETY_CAP) ? ' · ' + t('bez asekuracji w stojakach') : '' /* audyt M1-015 */;
+            return <Item key={b.id} title={exName(b)} sub={`${t(b.equipment)}${miss}${safe}`} icon="⇄" dim={!!miss} onPress={() => pick(b.id)} />; }) : !archived.length && !canCreate ? <Empty>{t('Nic nie pasuje.')}</Empty> : null}
           {others.length > lim ? <Item title={t('Pokaż więcej ({n})', { n: others.length - lim })} icon="▾" onPress={() => setLim(x => x + SWAP_PAGE * 2)} accessibilityLabel={t('Pokaż więcej ćwiczeń: zostało {n}', { n: others.length - lim })} /> : null}
           {archived.map(b => <Item key={'a' + b.id} title={t('Przywróć „{name}”', { name: exName(b) })} sub={exerciseInHistory(b.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} icon="↺" onPress={() => { if (chosen.current) return; restoreExercise(b); pick(b.id); }} />)}
           {canCreate ? <Item title={t('Utwórz „{name}”', { name: q.trim() })} sub={t('nowe ćwiczenie własne')} icon="+" onPress={() => { if (chosen.current) return; const n = newExercise(q.replace(/\s+/g, ' ').trim()); if (ex) { n.metric = ex.metric; n.group = ex.group; n.muscles = [...ex.muscles]; save(n); } pick(n.id); }} /> : null}

@@ -1697,5 +1697,8 @@
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Appen lukkede uventet ved de seneste opstarter.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatisk backup efter hver træning: Filer → På min iPhone → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Backuppen efter træningen kunne ikke gemmes",
- "Ostatnia udana kopia: {date}": "Seneste vellykkede backup: {date}"
+ "Ostatnia udana kopia: {date}": "Seneste vellykkede backup: {date}",
+ "Asekuracja": "Sikring",
+ "bez asekuracji w stojakach": "ingen sikkerhedsarme i stativet",
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Øvelse med stang over kroppen eller på skuldrene: sæt sikkerhedsarme i stativet, så du trygt kan lægge stangen fra dig, eller træn med en spotter."
 }

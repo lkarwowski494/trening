@@ -315,6 +315,12 @@ export function availability(ex: Pick<Exercise, 'requires' | 'recommended'>, loc
   const missing = (ex.requires ?? []).filter(g => !g.some(c => caps.has(c)));
   return { ok: !missing.length, missing, missingRecommended: (ex.recommended ?? []).filter(c => !caps.has(c)) };
 }
+/** Możliwość „ramiona asekuracyjne w stojakach” (power rack, stojaki z opcją „z asekuracją”) — zalecana w katalogu przy sztandze nad ciałem lub na barkach. */
+export const SAFETY_CAP = 'rack.safeties';
+/** Katalog zaleca ramiona asekuracyjne przy tym ćwiczeniu (29 wpisów; audyt M1-015). */
+export const needsSafety = (ex: Pick<Exercise, 'recommended'>): boolean => (ex.recommended ?? []).includes(SAFETY_CAP);
+/** Ćwiczenie zaleca asekurację, a wybrane miejsce jej nie daje. Brak miejsca („bez ograniczeń sprzętu” = pełna siłownia) → bez ostrzeżenia. */
+export const lacksSafety = (ex: Pick<Exercise, 'recommended'>, loc: Location | null | undefined, caps: Set<string> = capsOf(loc)): boolean => !!loc && needsSafety(ex) && !caps.has(SAFETY_CAP);
 /** „ławka skośna, drążek / kółka gimnastyczne” — dopisek do niedostępnego ćwiczenia. */
 export const missingLabel = (missing: string[][]) => missing.map(g => g.map(capLabel).join(' / ')).join(', ');
 

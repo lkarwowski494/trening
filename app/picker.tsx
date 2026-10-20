@@ -7,7 +7,7 @@ import { getState, addExerciseToActive, newExercise, save, visibleExercises, exe
 import { LibScopeChip } from '@/components/LibScope';
 import { useCloseHeader } from '@/components/CloseButton';
 import { afterSwap } from '@/components/ActiveWorkout';
-import { availability, capsOf, missingLabel, type Availability } from '@/lib/equipment';
+import { availability, capsOf, missingLabel, SAFETY_CAP, type Availability } from '@/lib/equipment';
 import { uid } from '@/lib/seed';
 import { draftAddExercise, draftOf, draftSwapExercise, swapTargetOk } from '@/lib/edit';
 import { templateForEdit, noteDraftEffect } from '@/lib/draft';
@@ -60,8 +60,8 @@ export default function PickerScreen() {
   };
   let last = ''; const rows: React.ReactNode[] = [];
   list.forEach(e => { if (!g && !ql && e.group !== last) { last = e.group; rows.push(<Muted key={'g' + e.group} accessibilityRole="header" style={{ fontSize: 12, fontFamily: F.semibold, paddingTop: 12, paddingBottom: 2 }}>{t(e.group)}</Muted>); }
-    const a = avail(e); const miss = a && !a.ok ? ' · ' + t('brak: {m}', { m: missingLabel(a.missing) }) : ''; const was = ql ? former(e) : undefined;
-    rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${was ? ' · ' + t('dawniej: {n}', { n: exName({ name: was, lib: true }) }) : ''}${miss}`} onPress={() => choose(e)} icon="+" dim={!!miss} />); });
+    const a = avail(e); const miss = a && !a.ok ? ' · ' + t('brak: {m}', { m: missingLabel(a.missing) }) : ''; const safe = a && a.ok && a.missingRecommended.includes(SAFETY_CAP) ? ' · ' + t('bez asekuracji w stojakach') : '' /* audyt M1-015 */; const was = ql ? former(e) : undefined;
+    rows.push(<Item key={e.id} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${was ? ' · ' + t('dawniej: {n}', { n: exName({ name: was, lib: true }) }) : ''}${miss}${safe}`} onPress={() => choose(e)} icon="+" dim={!!miss} />); });
   // Usunięte ćwiczenie o pasującej nazwie można przywrócić razem z historią, zamiast tworzyć puste nowe (runda 4).
   const archived = ql ? st.exercises.filter(e => e.archived && swapOk(e) && (fold(e.name).includes(ql) || fold(exName(e)).includes(ql))) : [];
   archived.forEach(e => rows.push(<Item key={'a' + e.id} title={t('Przywróć „{name}”', { name: exName(e) })} sub={exerciseInHistory(e.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} onPress={() => { if (chosen.current) return; restoreExercise(e); fxNote('restored', e.id); choose(e); }} icon="↺" />));

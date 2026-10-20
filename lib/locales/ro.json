@@ -1697,5 +1697,8 @@
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplicația s-a închis neașteptat la ultimele porniri.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Backup automat după fiecare antrenament: Fișiere → Pe iPhone-ul meu → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Copia după antrenament nu a putut fi salvată",
- "Ostatnia udana kopia: {date}": "Ultima copie reușită: {date}"
+ "Ostatnia udana kopia: {date}": "Ultima copie reușită: {date}",
+ "Asekuracja": "Siguranță",
+ "bez asekuracji w stojakach": "fără brațe de siguranță în rack",
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Exercițiu cu bara deasupra corpului sau pe umeri: reglează brațele de siguranță din rack astfel încât să poți lăsa bara în siguranță sau antrenează-te cu un partener care te asigură."
 }

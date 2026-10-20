@@ -1697,5 +1697,8 @@
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Η εφαρμογή έκλεισε απροσδόκητα στις τελευταίες εκκινήσεις.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Αυτόματο αντίγραφο μετά από κάθε προπόνηση: Αρχεία → Στο iPhone μου → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Το αντίγραφο μετά την προπόνηση δεν αποθηκεύτηκε",
- "Ostatnia udana kopia: {date}": "Τελευταίο επιτυχές αντίγραφο: {date}"
+ "Ostatnia udana kopia: {date}": "Τελευταίο επιτυχές αντίγραφο: {date}",
+ "Asekuracja": "Ασφάλιση",
+ "bez asekuracji w stojakach": "χωρίς βραχίονες ασφαλείας στη βάση",
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Άσκηση με μπάρα πάνω από το σώμα ή στους ώμους: ρύθμισε στη βάση τους βραχίονες ασφαλείας ώστε να μπορείς να αφήσεις με ασφάλεια τη μπάρα ή προπονήσου με άτομο που σε ασφαλίζει."
 }

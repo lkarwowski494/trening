@@ -1697,5 +1697,8 @@
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Lietotne pēdējās palaišanas reizēs negaidīti aizvērās.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automātisks dublējums pēc katra treniņa: Faili → Manā iPhone → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Neizdevās saglabāt dublējumu pēc treniņa",
- "Ostatnia udana kopia: {date}": "Pēdējais veiksmīgais dublējums: {date}"
+ "Ostatnia udana kopia: {date}": "Pēdējais veiksmīgais dublējums: {date}",
+ "Asekuracja": "Drošība",
+ "bez asekuracji w stojakach": "statīvā nav drošības balstu",
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Vingrinājums ar stieni virs ķermeņa vai uz pleciem: iestatiet statīvā drošības balstus tā, lai stieni varētu droši nolikt, vai trenējieties ar palīgu."
 }

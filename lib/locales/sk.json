@@ -1697,5 +1697,8 @@
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplikácia sa pri posledných spusteniach neočakávane zavrela.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatická záloha po každom tréningu: Súbory → Na mojom iPhone → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Zálohu po tréningu sa nepodarilo uložiť",
- "Ostatnia udana kopia: {date}": "Posledná úspešná záloha: {date}"
+ "Ostatnia udana kopia: {date}": "Posledná úspešná záloha: {date}",
+ "Asekuracja": "Istenie",
+ "bez asekuracji w stojakach": "bez bezpečnostných ramien v stojane",
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Cvik s činkou nad telom alebo na pleciach: nastavte v stojane bezpečnostné ramená tak, aby bolo možné činku bezpečne odložiť, alebo cvičte s dopomocou partnera."
 }

@@ -1697,5 +1697,8 @@
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "L’app si è chiusa in modo imprevisto negli ultimi avvii.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Backup automatico dopo ogni allenamento: File → Sul mio iPhone → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Impossibile salvare il backup dopo l’allenamento",
- "Ostatnia udana kopia: {date}": "Ultimo backup riuscito: {date}"
+ "Ostatnia udana kopia: {date}": "Ultimo backup riuscito: {date}",
+ "Asekuracja": "Sicurezza",
+ "bez asekuracji w stojakach": "senza bracci di sicurezza nel rack",
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Esercizio con bilanciere sopra il corpo o sulle spalle: regola nel rack i bracci di sicurezza in modo da poter appoggiare il bilanciere in sicurezza, oppure allenati con qualcuno che ti assista."
 }

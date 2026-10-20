@@ -460,6 +460,10 @@
   "en": "safety arms"
  },
  {
+  "pl": "Asekuracja",
+  "en": "Spotting and safety"
+ },
+ {
   "pl": "Asysta gumą",
   "en": "Band assistance"
  },
@@ -522,6 +526,10 @@
  {
   "pl": "Beczka (keg)",
   "en": "Keg"
+ },
+ {
+  "pl": "bez asekuracji w stojakach",
+  "en": "no safety arms in the rack"
  },
  {
   "pl": "bez ciężaru",
@@ -1056,6 +1064,10 @@
   "pl": "ćwiczenie wraca do planu|ćwiczenia wracają do planu|ćwiczeń wraca do planu",
   "en": "exercise returns to your plan|exercises return to your plan",
   "plural": true
+ },
+ {
+  "pl": "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.",
+  "en": "Barbell exercise over the body or on the shoulders: set safety arms in the rack so the bar can be put down safely, or train with a spotter."
  },
  {
   "pl": "Ćwiczenie zostanie bez zmian.",

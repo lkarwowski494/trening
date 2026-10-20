@@ -1697,5 +1697,8 @@
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Programa netikėtai užsidarė per paskutinius paleidimus.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automatinė atsarginė kopija po kiekvienos treniruotės: „Failai“ → Mano iPhone → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Nepavyko išsaugoti atsarginės kopijos po treniruotės",
- "Ostatnia udana kopia: {date}": "Paskutinė sėkminga kopija: {date}"
+ "Ostatnia udana kopia: {date}": "Paskutinė sėkminga kopija: {date}",
+ "Asekuracja": "Saugumas",
+ "bez asekuracji w stojakach": "stove nėra apsauginių ramsčių",
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Pratimas su štanga virš kūno arba ant pečių: nustatykite stovo apsauginius ramsčius taip, kad štangą būtų galima saugiai padėti, arba treniruokitės su pagalbininku."
 }

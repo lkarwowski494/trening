@@ -1172,4 +1172,8 @@ export const EN: Record<string, string> = {
   'Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.': 'Automatic backup after each workout: Files → On My iPhone → {app} → Backup.',
   'Nie udało się zapisać kopii po treningu': 'Could not save the backup after your workout',
   'Ostatnia udana kopia: {date}': 'Last successful backup: {date}',
+  /* audyt M1-015: asekuracja przy sztandze nad ciałem lub na barkach */
+  'Asekuracja': 'Spotting and safety',
+  'Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.': 'Barbell exercise over the body or on the shoulders: set safety arms in the rack so the bar can be put down safely, or train with a spotter.',
+  'bez asekuracji w stojakach': 'no safety arms in the rack',
 };

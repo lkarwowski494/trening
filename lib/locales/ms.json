@@ -1697,5 +1697,8 @@
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplikasi ditutup secara tidak dijangka pada beberapa pelancaran terakhir.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Sandaran automatik selepas setiap latihan: Fail → Pada iPhone Saya → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Sandaran selepas latihan tidak dapat disimpan",
- "Ostatnia udana kopia: {date}": "Sandaran berjaya terakhir: {date}"
+ "Ostatnia udana kopia: {date}": "Sandaran berjaya terakhir: {date}",
+ "Asekuracja": "Keselamatan",
+ "bez asekuracji w stojakach": "tiada lengan keselamatan pada rak",
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Latihan dengan bar di atas badan atau di bahu: laraskan lengan keselamatan pada rak supaya bar boleh diletakkan dengan selamat, atau berlatih dengan pengawas."
 }
