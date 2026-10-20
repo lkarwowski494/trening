@@ -573,5 +573,7 @@
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Backup automático após cada treino: Arquivos → No meu iPhone → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Não foi possível salvar o backup após o treino",
  "Ostatnia udana kopia: {date}": "Último backup bem-sucedido: {date}",
- "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "No fim do descanso, o celular envia uma notificação, mesmo com a tela bloqueada. É preciso permissão de notificações — o iOS pede depois de “Continuar”."
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "No fim do descanso, o celular envia uma notificação, mesmo com a tela bloqueada. É preciso permissão de notificações — o iOS pede depois de “Continuar”.",
+ "Zmień w ustawieniach iOS": "Alterar nos Ajustes do iOS",
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "O nome sob o ícone e o texto da permissão do Saúde só mudam de idioma depois de você definir o idioma do app nos Ajustes do iOS."
 }

@@ -1697,5 +1697,7 @@
  "bez asekuracji w stojakach": "ei turvatankoja telineessä",
  "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Liike tangolla kehon yläpuolella tai hartioilla: aseta telineen turvatangot niin, että tangon saa laskettua turvallisesti, tai treenaa varmistajan kanssa.",
  "Powiadomienie na koniec przerwy": "Ilmoitus palautuksen lopussa",
- "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Palautuksen lopussa puhelin lähettää ilmoituksen — myös lukitulla näytöllä. Siihen tarvitaan ilmoituslupa — iOS kysyy sitä ”Jatka”-painalluksen jälkeen."
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Palautuksen lopussa puhelin lähettää ilmoituksen — myös lukitulla näytöllä. Siihen tarvitaan ilmoituslupa — iOS kysyy sitä ”Jatka”-painalluksen jälkeen.",
+ "Zmień w ustawieniach iOS": "Vaihda iOS:n Asetuksissa",
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Kuvakkeen alla oleva nimi ja Terveys-luvan teksti vaihtavat kieltä vasta, kun asetat sovelluksen kielen iOS:n Asetuksissa."
 }

@@ -1697,5 +1697,7 @@
  "bez asekuracji w stojakach": "statīvā nav drošības balstu",
  "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Vingrinājums ar stieni virs ķermeņa vai uz pleciem: iestatiet statīvā drošības balstus tā, lai stieni varētu droši nolikt, vai trenējieties ar palīgu.",
  "Powiadomienie na koniec przerwy": "Paziņojums atpūtas beigās",
- "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Atpūtas beigās tālrunis nosūtīs paziņojumu — arī ar bloķētu ekrānu. Vajadzīga paziņojumu atļauja — iOS to prasīs pēc “Turpināt”."
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Atpūtas beigās tālrunis nosūtīs paziņojumu — arī ar bloķētu ekrānu. Vajadzīga paziņojumu atļauja — iOS to prasīs pēc “Turpināt”.",
+ "Zmień w ustawieniach iOS": "Mainīt iOS iestatījumos",
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Nosaukums zem ikonas un Veselības atļaujas teksts maina valodu tikai pēc tam, kad iestatīsi lietotnes valodu iOS iestatījumos."
 }

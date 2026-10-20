@@ -6,6 +6,7 @@
 #   "Search exercises…", "Bench Press \(Barbell\),.*"  ← jak przepływy 06 i 07
 #   "Language, Phone setting"   ← Item 'Język' + sub 'Jak w telefonie' (app/more/settings.tsx; accessibilityLabel „{title}, {sub}”)
 #   "Polski", "English"         ← LANG_NAME (lib/i18n.ts; Item w app/more/language.tsx)
+#   "Change in iOS Settings.*"  ← 'Zmień w ustawieniach iOS' + wyjaśnienie (Item pod listą języków; Linking.openSettings), M1-064
 #   PL po zmianie języka (klucze z kodu): "Ustawienia" (tytuł ekranu, app/_layout.tsx), "Wygląd", "Jednostka ciężaru",
 #                               "Język, Polski" (Item „{title}, {sub}”), "Wróć" (headerBackTitle), "Więcej" (nagłówek H1 w app/(tabs)/more.tsx),
 #                               "Jak w telefonie" (pozycja „auto” na liście języków)
@@ -31,6 +32,10 @@ name: Język, wygląd i jednostka
 - tapOn: "Language, Phone setting"
 - extendedWaitUntil: { visible: "Polski", timeout: 30000 }
 - takeScreenshot: 50-lista-jezykow
+# M1-064 (DEC-18): pod listą wiersz „Change in iOS Settings” (nazwa pod ikoną i opis zgody Zdrowia zmienia język dopiero w ustawieniach iOS) — tylko sprawdzamy, nie stukamy (wyszedłby z aplikacji)
+- scrollUntilVisible: { element: "Change in iOS Settings.*", direction: DOWN, timeout: 30000 }
+- assertVisible: "Change in iOS Settings.*"
+- scrollUntilVisible: { element: "Polski", direction: UP, timeout: 30000 }
 - tapOn: "Polski"
 # Wybór wraca do Ustawień — teksty i tytuł ekranu po polsku
 - extendedWaitUntil: { visible: "Język, Polski", timeout: 30000 }

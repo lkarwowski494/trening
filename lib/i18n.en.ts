@@ -1173,4 +1173,6 @@ export const EN: Record<string, string> = {
   'bez asekuracji w stojakach': 'no safety arms in the rack',
   'Powiadomienie na koniec przerwy': 'Notification at the end of rest',
   'Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.': 'At the end of a rest the phone sends a notification — even when the screen is locked. It needs notification permission — iOS asks for it after “Continue”.',
+  'Zmień w ustawieniach iOS': 'Change in iOS Settings',
+  'Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.': 'The name under the icon and the Health permission text change language only after you set the app language in iOS Settings.',
 };

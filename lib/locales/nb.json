@@ -1697,5 +1697,7 @@
  "bez asekuracji w stojakach": "ingen sikkerhetsarmer i stativet",
  "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Øvelse med stang over kroppen eller på skuldrene: still inn sikkerhetsarmene i stativet slik at du trygt kan legge fra deg stangen, eller tren med en spotter.",
  "Powiadomienie na koniec przerwy": "Varsel når hvilen er slutt",
- "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Når hvilen er slutt, sender telefonen et varsel — også med låst skjerm. Det krever tillatelse for varsler — iOS spør etter «Fortsett»."
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Når hvilen er slutt, sender telefonen et varsel — også med låst skjerm. Det krever tillatelse for varsler — iOS spør etter «Fortsett».",
+ "Zmień w ustawieniach iOS": "Endre i iOS-innstillingene",
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Navnet under ikonet og teksten i Helse-tillatelsen bytter språk først når du velger appspråk i iOS-innstillingene."
 }

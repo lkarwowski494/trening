@@ -1697,5 +1697,7 @@
  "bez asekuracji w stojakach": "fără brațe de siguranță în rack",
  "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Exercițiu cu bara deasupra corpului sau pe umeri: reglează brațele de siguranță din rack astfel încât să poți lăsa bara în siguranță sau antrenează-te cu un partener care te asigură.",
  "Powiadomienie na koniec przerwy": "Notificare la sfârșitul pauzei",
- "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "La sfârșitul pauzei telefonul trimite o notificare — chiar și cu ecranul blocat. E nevoie de permisiunea pentru notificări — iOS o va cere după „Continuă”."
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "La sfârșitul pauzei telefonul trimite o notificare — chiar și cu ecranul blocat. E nevoie de permisiunea pentru notificări — iOS o va cere după „Continuă”.",
+ "Zmień w ustawieniach iOS": "Schimbă în Configurări iOS",
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Numele de sub pictogramă și textul permisiunii Sănătate își schimbă limba abia după ce setezi limba aplicației în Configurări iOS."
 }

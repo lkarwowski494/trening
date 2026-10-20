@@ -2901,6 +2901,10 @@
   "en": "Plan name"
  },
  {
+  "pl": "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.",
+  "en": "The name under the icon and the Health permission text change language only after you set the app language in iOS Settings."
+ },
+ {
   "pl": "Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.",
   "en": "Library exercise names are in English in all languages except Polish."
  },
@@ -6734,6 +6738,10 @@
  {
   "pl": "Zmień szablon",
   "en": "Change template"
+ },
+ {
+  "pl": "Zmień w ustawieniach iOS",
+  "en": "Change in iOS Settings"
  },
  {
   "pl": "Zmierz",

@@ -1697,5 +1697,7 @@
  "bez asekuracji w stojakach": "pas de bras de sécurité dans le rack",
  "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Exercice avec une barre au-dessus du corps ou sur les épaules : réglez les bras de sécurité du rack pour pouvoir poser la barre sans risque, ou entraînez-vous avec un partenaire qui vous pare.",
  "Powiadomienie na koniec przerwy": "Notification en fin de repos",
- "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "À la fin du repos, le téléphone envoie une notification — même écran verrouillé. Il faut l’autorisation des notifications — iOS la demandera après « Continuer »."
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "À la fin du repos, le téléphone envoie une notification — même écran verrouillé. Il faut l’autorisation des notifications — iOS la demandera après « Continuer ».",
+ "Zmień w ustawieniach iOS": "Modifier dans Réglages iOS",
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Le nom sous l’icône et le texte de l’autorisation Santé ne changent de langue qu’une fois la langue de l’app définie dans Réglages iOS."
 }
