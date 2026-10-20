@@ -316,6 +316,34 @@ Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audi
 
 Ryzyko i warunek zamknięcia: R-010 w `docs/40-lekcje.md` (blokuje wydanie w App Store; TestFlight bez blokady).
 
+### Przegląd tłumaczeń przez API Anthropic (decyzja właściciela 20.10.2026)
+
+Drugi przegląd treści krytycznej (R-010) robi Claude przez Message Batches, z kredytów API właściciela. Przegląd **niczego nie zmienia** w słownikach — daje raport do przejrzenia;
+poprawki nanosi człowiek albo agent (rola tłumacz), a treść merytoryczną (zdanie asekuracji) sprawdza badacz.
+
+*Co jest przeglądane (jedno żądanie na język, 34 języki w tym `en`; `es-419` i `pt-BR` po złożeniu z nakładką):* (a) zdanie medyczne i trzy klucze asekuracji; (b) wszystkie zdania wskazówek techniki
+(`lib/cues/text`, 306 na język); (c) klucze dodane lub zmienione w `lib/locales/_source.json` od commitu `8273448` (`--od`, tryb różnicy: dziś 32 klucze). Razem 342 zdania na język. Do modelu idą polskie źródło, angielski
+i tłumaczenie oraz rejestr języka z docs/16 (np. fr „vous”, tr „siz”); model ma ocenić znaczenie, złagodzenie lub wzmocnienie twierdzeń medycznych i bezpieczeństwa, formę grzecznościową, naturalność, zmienne `{…}` i liczbę mnogą.
+Osobno, bez API, skrypt sprawdza zgodność zmiennych `{…}` i brak tłumaczenia (kontrola lokalna).
+
+*Jak uruchomić* (Actions → „Przegląd tłumaczeń (API, ręcznie)” → Run workflow; plik musi być na gałęzi domyślnej, żeby przycisk się pojawił):
+1. Pierwszy przebieg: `tylko_szacuj` = tak (domyślnie) — wypisuje szacunek kosztu, nic płatnego nie jest wysyłane (z kluczem liczy tokeny endpointem `count_tokens`, który jest darmowy).
+2. Przebieg dowodowy: `tylko_szacuj` = nie, `limit` = 2 (dwa języki, ok. 0,5 USD) — sprawdź raport w artefakcie `raport-tlumaczen`.
+3. Pełny przebieg: `limit` puste, `tylko_szacuj` = nie. `model`: `opus` (domyślnie, `claude-opus-5-5`, effort `medium`) albo `sonnet` (`claude-sonnet-5-5`).
+4. Szacunek powyżej **50 USD** zatrzymuje przebieg (pierwszy krok), chyba że `zgoda_koszt` = `tak`. Jeśli batch nie skończy się w 2 godziny, skrypt kończy się kodem 4 i podaje numer batcha; wyniki odbiera `node scripts/i18n/przeglad-api.mjs --wznow <numer>` (wymaga klucza lokalnie).
+
+*Koszt według szacunku (Message Batches −50%, ceny ze skilla claude-api z 06.10.2026: Opus 5.5 4/20 USD, Sonnet 5.5 2/10 USD za mln tokenów wejścia/wyjścia):* pełny przebieg ok. 1,2 mln tokenów wejścia i ok. 0,6 mln wyjścia —
+**Opus ok. 8,7 USD, Sonnet ok. 4,3 USD**. Wejście jest przybliżone (bez klucza) i celowo zawyżone; wyjście wynika z założeń (20% zdań z poprawką, ok. 10 000 tokenów myślenia na żądanie; stałe `SZACUNEK_WYJSCIA` w skrypcie),
+więc rzeczywisty koszt sprawdź po przebiegu dowodowym (zużycie widać w konsoli API).
+
+*Jak czytać raport:* `podsumowanie.md` — tabela języków (zdań, ok, uwagi krytyczne/średnie/niskie, bez odpowiedzi, kontrola lokalna) i lista uwag krytycznych z propozycją poprawki i powodem. `<język>.json` — pełne uwagi tego języka
+(`klucz`, `pl`, `tlumaczenie`, `poprawka`, `powod`, `waga`), `brak_odpowiedzi` (zdania, do których model nie dał wpisu), `blad` (np. odpowiedź ucięta) i `kontrola_lokalna`. Wagi: **krytyczna** = zmiana znaczenia, złagodzenie lub wzmocnienie
+twierdzenia medycznego albo bezpieczeństwa, uszkodzona zmienna, zły rejestr w zdaniu medycznym (idzie do poprawy przed wydaniem w App Store); **średnia** = niejasność, nienaturalność, niespójna terminologia; **niska** = styl, interpunkcja.
+Propozycje modelu bywają błędne — każdą krytyczną potwierdź (rola tłumacz), zanim trafi do słownika. Przegląd modelem nie zamyka R-010 sam z siebie: wpis „drugi przegląd” w tabeli wyżej i w docs/40 zmienia się po poprawkach i testach.
+
+*Bezpieczeństwo:* repozytorium jest publiczne — klucz jest tylko w sekrecie `ANTHROPIC_API_KEY`, użytym w jednym kroku (zmienna środowiskowa), skrypt go nie wypisuje; artefakt zawiera tylko przetworzone raporty (bez nagłówków i surowych odpowiedzi), retencja 7 dni;
+strażnik: `tests/przeglad-tlumaczen.test.ts` i `tests/public-repo.test.ts`.
+
 ## Nazwa aplikacji (decyzja właściciela 05.10.2026)
 
 *Pod ikoną* (`APP_NAME` w `lib/i18n.ts`, jedno źródło prawdy; `locales/<kod>.json` musi się zgadzać — test `tests/i18n-locales.test.ts`):
