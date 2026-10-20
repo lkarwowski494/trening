@@ -48,20 +48,15 @@ describe('t13 logic', () => {
     log('L6', p.map(x => x.details), 'prev best', best);
     expect(p).toEqual([]);
   });
-  test('L7 performance: prMap over many sessions', async () => {
+  test('L7 prMap over many sessions: rekordy zimny i ciepły cache zgodne', async () => {
     await fresh(); const names = ['Back Squat', 'Bench Press (hantle)', 'Pull Up', 'Plank', 'Bieg', 'Leg Press'];
     const base = at(2018, 1, 1);
     for (let i = 0; i < 2500; i++) { const st = store.getState(); const w = addWorkoutNoSave(base + i * 86400e3, names.map(n => [n, [{ weight: 50 + i % 30, reps: 5, addKg: i % 3, durationSec: 60, distanceM: 3000 }, { weight: 50, reps: 5, durationSec: 60, distanceM: 2000 }, { weight: 50, reps: 5 }]] as any)); st.workouts.push(w); }
     store.save();
     const live = addWorkoutNoSave(at(2026, 9, 30), names.map(n => [n, [{ weight: 90, reps: 5, durationSec: 60, distanceM: 3000 }, { weight: 90, reps: 5 }]] as any));
-    stats.prMap(live); // warm caches
-    const t0 = performance.now(); for (let i = 0; i < 20; i++) stats.prMap(live); const ms = (performance.now() - t0) / 20;
-    // eslint-disable-next-line no-console
-    log('L7 prMap ms/render', ms.toFixed(2));
-    store.save(); const t1 = performance.now(); stats.prMap(live); const cold = performance.now() - t1;
-    // eslint-disable-next-line no-console
-    log('L7 prMap cold ms', cold.toFixed(1));
-    expect(ms).toBeLessThan(16);
+    /* M1-060: czas prMap mierzy zestaw perf (scripts/perf/records.perf.tsx, z limitem 16 ms); tu tylko wynik — te same rekordy po zimnym i ciepłym cache */
+    const warm = stats.prMap(live); expect(warm.size).toBeGreaterThan(0);
+    store.save(); const cold = stats.prMap(live); expect([...cold.keys()].sort()).toEqual([...warm.keys()].sort());
   });
 });
 

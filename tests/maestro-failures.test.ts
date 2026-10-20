@@ -73,9 +73,9 @@ test('e2e-ios.yml: całość powtarzana najwyżej raz i tylko, gdy sterownik XCT
   expect(step.match(/guard maestro --device/g)).toHaveLength(3); const alarm = Number(step.match(/MAESTRO_ALARM:-(\d+)/)![1]); const jobMin = Number(require('fs').readFileSync(require('path').join(__dirname, '..', '.github/workflows/e2e-ios.yml'), 'utf8').split('\n  e2e:\n')[1].match(/timeout-minutes: (\d+)/)![1]); /* 13.10.2026: limit zadania „e2e” (części), nie „build” */
   /* 06.10.2026: 10 scenariuszy — strażnik ≥ 30 min na podejście; limit zadania mieści build (~40 min) i 2 podejścia, żeby powtórka nie była ucinana */
   expect(alarm).toBeGreaterThanOrEqual(1800); expect(jobMin).toBeGreaterThanOrEqual(15 + 2 * alarm / 60); /* po podziale na części build jest osobnym zadaniem — tu symulator ~10 min + 2 podejścia */
-  const d = fs.mkdtempSync(path.join(require('os').tmpdir(), 'mh-')); fs.writeFileSync(path.join(d, 'maestro'), '#!/bin/bash\nsleep 30\n', { mode: 0o755 });
-  const t0 = Date.now(); let rc = 0; try { bash('bash', ['-e', '-c', body], { cwd: d, env: { ...process.env, PATH: `${d}:${process.env.PATH}`, SIM: 'x', MAESTRO_ALARM: '1' }, stdio: 'pipe' }); } catch (e: any) { rc = e.status; }
-  expect(rc).not.toBe(0); expect(Date.now() - t0).toBeLessThan(15000); /* zawieszenie przerwane, bez powtórki (brak komunikatu sterownika) */
+  const d = fs.mkdtempSync(path.join(require('os').tmpdir(), 'mh-')); fs.writeFileSync(path.join(d, 'maestro'), '#!/bin/bash\nsleep 30\ntouch dokonczyl\n', { mode: 0o755 });
+  let rc = 0; try { bash('bash', ['-e', '-c', body], { cwd: d, env: { ...process.env, PATH: `${d}:${process.env.PATH}`, SIM: 'x', MAESTRO_ALARM: '1' }, stdio: 'pipe' }); } catch (e: any) { rc = e.status; }
+  expect(rc).not.toBe(0); expect(fs.existsSync(path.join(d, 'dokonczyl'))).toBe(false); /* zawieszenie przerwane (atrapa nie doczekała końca 30 s — bez pomiaru zegara, M1-060), bez powtórki (brak komunikatu sterownika) */
   fs.writeFileSync(path.join(d, 'maestro'), '#!/bin/bash\nkill -9 $$\n', { mode: 0o755 }); let rc2 = 0; /* proces zabity sygnałem — porażka, nie sukces */
   try { bash('bash', ['-e', '-c', body], { cwd: d, env: { ...process.env, PATH: `${d}:${process.env.PATH}`, SIM: 'x' }, stdio: 'pipe' }); } catch (e: any) { rc2 = e.status; }
   expect(rc2).toBe(137);

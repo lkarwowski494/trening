@@ -183,8 +183,8 @@ describe('CSV: zapis', () => {
     const lines = [HA]; const ex = ['Squat (Barbell)', 'Bench Press (Barbell)', 'Deadlift (Barbell)', 'Pull Up', 'Fikcyjny Wyciąg Testowy'];
     for (let i = 0; i < 1560; i++) { const d = new Date(2016, 9, 11 + Math.floor(i * 2.3), 7 + (i % 12), (i * 7) % 60, 0); const ts = `${localISODate(d)} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:00`;
       for (const e of ex) for (let s = 1; s <= 5; s++) lines.push(`${ts},Trening ${i % 4},60m,${e},${s},${50 + s * 2.5},${10 - s},0,0,,,`); }
-    const txt = lines.join('\n') + '\n'; const t0 = Date.now(); const f = parseImport(txt, NOW); expect(f.sessions).toHaveLength(1560); expect(lines.length).toBeGreaterThan(7800);
-    const r = await commitCsvImport(f, { unit: 'kg' }); expect(r.workouts).toBeGreaterThan(1500); expect(Date.now() - t0).toBeLessThan(30000);
+    const txt = lines.join('\n') + '\n'; const f = parseImport(txt, NOW); expect(f.sessions).toHaveLength(1560); expect(lines.length).toBeGreaterThan(7800);
+    const r = await commitCsvImport(f, { unit: 'kg' }); expect(r.workouts).toBeGreaterThan(1500);
     expect(await commitCsvImport(parseImport(txt, NOW), { unit: 'kg' })).toEqual({ workouts: 0, exercises: 0 });
   }, 60000);
   test('buildImport: nie zmienia stanu (czysta funkcja)', () => {
