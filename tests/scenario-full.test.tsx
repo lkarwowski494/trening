@@ -93,7 +93,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByLabelText('Jak w telefonie, wybrany')).toBeTruthy(); expect(screen.getByText('Polski')).toBeTruthy(); expect(screen.getByText('Українська')).toBeTruthy();
     await tap(screen.getByText('English')); await flushAll(10);
     expect(S().settings.language).toBe('en');
-    expect(screen.getByLabelText('Language, English')).toBeTruthy(); expect(screen.getByText('Appearance')).toBeTruthy(); expect(screen.getByText('Weight unit')).toBeTruthy();
+    expect(screen.getByLabelText('Language, English')).toBeTruthy(); expect(screen.getByText('Appearance')).toBeTruthy(); expect(screen.getByText('Measurement system')).toBeTruthy();
     expect(screen.queryByText('Wygląd')).toBeNull();
     /* EN: nazwy z biblioteki po angielsku, interfejs po angielsku */
     await go('/exercises'); await flushAll(10); expect(screen.getByPlaceholderText('Search exercises…')).toBeTruthy(); /* 11.10.2026: tytuł ekranu jest w nagłówku stosu (w Jest się nie renderuje) */
@@ -110,8 +110,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByLabelText('Jasny')); expect(S().settings.theme).toBe('light'); expect(setScheme).toHaveBeenLastCalledWith('light');
     setScheme.mockRestore();
     /* jednostki kg → lb → kg */
-    await tap(screen.getByLabelText('lb')); expect(S().settings.unit).toBe('lb'); expect(screen.getByLabelText('lb').props.accessibilityState.selected).toBe(true);
-    await tap(screen.getByLabelText('kg')); expect(S().settings.unit).toBe('kg');
+    await tap(screen.getByTestId('unit-system-lb')); expect(S().settings.unit).toBe('lb'); expect(screen.getByTestId('unit-system-lb').props.accessibilityState.selected).toBe(true);
+    await tap(screen.getByTestId('unit-system-kg')); expect(S().settings.unit).toBe('kg');
     /* domyślna przerwa: limit 0–1800, puste pole nie zmienia, zapis liczby całkowitej */
     const rest = screen.getByLabelText('Domyślna przerwa (s)'); expect(rest.props.value).toBe('90');
     await type(rest, '5000'); expect(S().settings.defaultRest).toBe(1800);
