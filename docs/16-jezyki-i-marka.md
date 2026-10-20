@@ -262,6 +262,60 @@ język telefonu (np. zh-Hant na telefonie ja) — React Native nie przekazuje j�
 (5) opisy w App Store (część po dwukropku w nazwie, podtytuł, opis, słowa kluczowe) po japońsku, koreańsku i chińsku — do przejrzenia przy ASO;
 (6) chiński uproszczony (zh-Hans) — osobna decyzja produktowa.
 
+## Treść krytyczna w 34 językach — zapis kontroli (20.10.2026, audyt M1-049)
+
+Treść krytyczna = zdanie medyczne („Aplikacja nie udziela porad medycznych …”), zdanie i etykiety o asekuracji (M1-015) oraz zdania wskazówek techniki (`lib/cues/text`). Języków docelowych jest 34 (`LANGS` bez polskiego).
+Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audit-m1-049-critical-content.test.ts`); drift pada w `tests/audit-m1-049-critical-content.test.ts`.
+
+**Co kontrola potwierdza (automatycznie):** zdanie medyczne i trzy klucze asekuracji są w każdym z 34 języków i różnią się od tekstu źródłowego (nie jest to przeciek polskiego ani zapasowego angielskiego); komplet zdań wskazówek jest w każdym języku
+(warianty es-419 i pt-BR to nakładki na es i pt — liczone po złożeniu). Kontrola **nie ocenia poprawności** tłumaczenia.
+
+<!-- gen:krytyczne -->
+| kod | zdanie medyczne | asekuracja (3 klucze) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd wskazówek (native speaker) |
+|---|---|---|---|---|---|
+| en | tak | tak | 306/306 | brak zapisu | niewykonany |
+| cs | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| sk | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| hu | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| ro | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| bg | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| hr | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| sl | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| sr | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| lt | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| lv | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| et | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| uk | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| es | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| es-419 | tak | tak | 306/306 | brak zapisu | niewykonany |
+| pt | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| pt-BR | tak | tak | 306/306 | brak zapisu | niewykonany |
+| de | tak | tak | 306/306 | brak zapisu | niewykonany |
+| fr | tak | tak | 306/306 | brak zapisu | niewykonany |
+| it | tak | tak | 306/306 | brak zapisu | niewykonany |
+| nl | tak | tak | 306/306 | brak zapisu | niewykonany |
+| sv | tak | tak | 306/306 | brak zapisu | niewykonany |
+| da | tak | tak | 306/306 | brak zapisu | niewykonany |
+| nb | tak | tak | 306/306 | brak zapisu | niewykonany |
+| fi | tak | tak | 306/306 | brak zapisu | niewykonany |
+| tr | tak | tak | 306/306 | brak zapisu | niewykonany |
+| el | tak | tak | 306/306 | brak zapisu | niewykonany |
+| id | tak | tak | 306/306 | brak zapisu | niewykonany |
+| ms | tak | tak | 306/306 | brak zapisu | niewykonany |
+| vi | tak | tak | 306/306 | brak zapisu | niewykonany |
+| ru | tak | tak | 306/306 | brak zapisu | niewykonany |
+| ja | tak | tak | 306/306 | brak zapisu | niewykonany |
+| ko | tak | tak | 306/306 | brak zapisu | niewykonany |
+| zh-Hant | tak | tak | 306/306 | brak zapisu | niewykonany |
+<!-- /gen:krytyczne -->
+
+**Czego nie ma (stan na 20.10.2026):**
+- **Drugi przegląd wskazówek techniki: niewykonany** w żadnym języku; w repozytorium nie ma jego zapisu. Tłumaczył agent AI; niezależną recenzję drugim agentem zapisano tylko dla 14 języków pierwszej fali (proces 05.10.2026, akapit w sekcji „Języki”). Przegląd przez native speakerów jest w backlogu (docs/18) — **[OTWARTE]**.
+- **Forma zwracania się w fr i tr nie jest ujednolicona — [OTWARTE]**, do poprawy przez tłumacza (nie zmieniana w tej partii): rejestr zapisany w tabeli wyżej to „vous” (fr) i „siz” (tr), a zdanie medyczne brzmi w fr „consulte” (forma „tu”), w tr „danış” (forma „sen”), podczas gdy wskazówki techniki w tr używają formy grzecznościowej („kaldırın”), a w fr formy „vous” (np. „Levez”).
+- Zdanie asekuracji i zdanie medyczne bez weryfikacji merytorycznej badacza (zdanie asekuracji: „DO WERYFIKACJI BADACZA”, docs/10, sekcja „Asekuracja”).
+
+Ryzyko i warunek zamknięcia: R-010 w `docs/40-lekcje.md` (blokuje wydanie w App Store; TestFlight bez blokady).
+
 ## Nazwa aplikacji (decyzja właściciela 05.10.2026)
 
 *Pod ikoną* (`APP_NAME` w `lib/i18n.ts`, jedno źródło prawdy; `locales/<kod>.json` musi się zgadzać — test `tests/i18n-locales.test.ts`):
