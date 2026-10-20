@@ -86,7 +86,7 @@ export function SearchField({ placeholder, value, onChangeText, autoFocus }: { p
   return <Input value={value} onChangeText={onChangeText} placeholder={placeholder} accessibilityLabel={placeholder} maxLength={80} autoCorrect={false} autoFocus={autoFocus} clearButtonMode="while-editing" returnKeyType="search" />;
 }
 /** Audyt cd60eec MEDIUM: wąskie pola (ciężar 56 pt, RPE 40 pt) — krój mono (0,6 em na znak) ucinał „102,5”; krój tekstu z cyframi tabelarycznymi. */
-export const NUM_FONT = { fontFamily: F.regular, fontVariant: ['tabular-nums' as const] };
+export const NUM_FONT = { get fontFamily() { return F.regular; } /* M1-024: krój zależy od „Pogrubiony tekst” w chwili renderu */, fontVariant: ['tabular-nums' as const] };
 /**
  * Audyt 0.10 (A11-11): IBM Plex Mono nie ma liter greckich (ma łacinę, cyrylicę i cyfry) — w tekście krojem mono litery greckie (np. el „προηγ.”,
  * „σωματικό βάρος”, skrót koloru gumy) dostają krój tekstu Plex Sans (`bold` — SemiBold), zamiast kroju zastępczego iOS w środku liczby.

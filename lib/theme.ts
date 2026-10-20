@@ -1,4 +1,5 @@
 import { Appearance, useColorScheme } from 'react-native';
+import { useA11yPrefs, boldTextOn } from './a11yPrefs';
 
 /*
  * Styl marki „Tuleja” (decyzja właściciela 07.10.2026: „Podoba mi się grafika B”; docs/16, docs/21 pkt 6). Jedno źródło kolorów i krojów pisma.
@@ -27,7 +28,7 @@ export const TEXT_SCALE_MAX = 2;
 export const NUM_SCALE_MAX = 1.3;
 /** Wygląd z ustawień (decyzja 05.10.2026, domyślnie jasny — potwierdzone 07.10.2026). Nadpisuje tryb systemu dla całej aplikacji. */
 export function applyTheme(x: 'light' | 'dark' | 'auto' | undefined) { try { Appearance.setColorScheme(x === 'dark' ? 'dark' : x === 'auto' ? 'unspecified' : 'light'); } catch { /* bez natywnego modułu (web) — tryb systemu */ } }
-export function useTheme(): Theme { return useColorScheme() === 'light' ? light : dark; }
+export function useTheme(): Theme { useA11yPrefs(); /* M1-024: komponent odświeża się też po zmianie „Pogrubiony tekst” (krój F czytany przy renderze) */ return useColorScheme() === 'light' ? light : dark; }
 
 /**
  * Kroje pisma (Google Fonts, licencja OFL) — decyzje właściciela 07.10.2026 (rano wariant A „mieszany”, wieczorem bez Tektur — docs/18):
@@ -36,10 +37,19 @@ export function useTheme(): Theme { return useColorScheme() === 'light' ? light 
  * heavy i display to dziś ten sam plik — dwie nazwy zostają, żeby rolę dało się zmienić w jednym miejscu. Oba kroje mają polskie znaki i cyrylicę (test: tests/matrix-i18n.test.tsx) — jeden zestaw dla każdego języka; Plex Mono nie ma liter greckich (A11-11: components/ui.tsx monoSafe).
  * Nazwy = klucze w `FONT_FILES` (ładowane w app/_layout.tsx). Z własnym krojem nie ustawiamy fontWeight — grubość wybiera rodzina.
  */
-export const F = {
+const F_BASE = {
   regular: 'IBMPlexSans_400Regular', semibold: 'IBMPlexSans_600SemiBold', heavy: 'IBMPlexSans_700Bold', display: 'IBMPlexSans_700Bold',
   mono: 'IBMPlexMono_500Medium', monoBold: 'IBMPlexMono_600SemiBold',
 } as const;
+/** M1-audytor-generalny-024 („Pogrubiony tekst” w iOS): rola o stopień grubsza — 400→600, 600→700 (Plex Sans), Mono 500→600; 700 i Mono 600 to najgrubsze załadowane kroje
+ * (bez dociągania nowych plików; monoBold zostaje, więc w trybie pogrubionym mono i monoBold się zrównują). Własny krój nie dziedziczy wagi od systemu, dlatego robi to ta tabela. */
+const F_BOLD: Record<keyof typeof F_BASE, string> = { regular: F_BASE.semibold, semibold: F_BASE.heavy, heavy: F_BASE.heavy, display: F_BASE.display, mono: F_BASE.monoBold, monoBold: F_BASE.monoBold };
+const role = (r: keyof typeof F_BASE): string => (boldTextOn() ? F_BOLD[r] : F_BASE[r]);
+/** Kroje jako getter — wartość zależy od ustawienia „Pogrubiony tekst” w chwili renderu (useTheme() odświeża komponent przy zmianie). */
+export const F = {
+  get regular() { return role('regular'); }, get semibold() { return role('semibold'); }, get heavy() { return role('heavy'); }, get display() { return role('display'); },
+  get mono() { return role('mono'); }, get monoBold() { return role('monoBold'); },
+};
 /**
  * Fala 4 (09.10.2026, docs/16 „Fala 4”, wariant A): japoński, koreański i chiński tradycyjny zostają przy IBM Plex — Plex nie ma kana, kanji
  * ani hangula, więc te znaki iOS rysuje krojem zastępczym z systemowej listy kaskadowej (Core Text; React Native rysuje tekst przez NSTextStorage,
@@ -54,9 +64,9 @@ export const F = {
 export const FALLBACK_SCRIPTS = /[\u1100-\u11FF\u3000-\u303F\u3040-\u30FF\u3130-\u318F\u31F0-\u31FF\u3400-\u4DBF\u4E00-\u9FFF\uAC00-\uD7AF\uF900-\uFAFF\uFF00-\uFFEF]/;
 /* eslint-disable @typescript-eslint/no-var-requires */
 export const FONT_FILES = {
-  [F.regular]: require('@expo-google-fonts/ibm-plex-sans/400Regular/IBMPlexSans_400Regular.ttf'),
-  [F.semibold]: require('@expo-google-fonts/ibm-plex-sans/600SemiBold/IBMPlexSans_600SemiBold.ttf'),
-  [F.heavy]: require('@expo-google-fonts/ibm-plex-sans/700Bold/IBMPlexSans_700Bold.ttf'), /* = F.display */
-  [F.mono]: require('@expo-google-fonts/ibm-plex-mono/500Medium/IBMPlexMono_500Medium.ttf'),
-  [F.monoBold]: require('@expo-google-fonts/ibm-plex-mono/600SemiBold/IBMPlexMono_600SemiBold.ttf'),
+  [F_BASE.regular]: require('@expo-google-fonts/ibm-plex-sans/400Regular/IBMPlexSans_400Regular.ttf'),
+  [F_BASE.semibold]: require('@expo-google-fonts/ibm-plex-sans/600SemiBold/IBMPlexSans_600SemiBold.ttf'),
+  [F_BASE.heavy]: require('@expo-google-fonts/ibm-plex-sans/700Bold/IBMPlexSans_700Bold.ttf'), /* = display */
+  [F_BASE.mono]: require('@expo-google-fonts/ibm-plex-mono/500Medium/IBMPlexMono_500Medium.ttf'),
+  [F_BASE.monoBold]: require('@expo-google-fonts/ibm-plex-mono/600SemiBold/IBMPlexMono_600SemiBold.ttf'),
 };

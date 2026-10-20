@@ -17,6 +17,7 @@ import { t, lang } from '@/lib/i18n';
 import * as timer from '@/lib/timer';
 import { restoreObjDrafts, dropRestored, type RestoredDraft } from '@/lib/draft';
 import { useTheme, F, FONT_FILES } from '@/lib/theme';
+import { initA11yPrefs } from '@/lib/a11yPrefs';
 import * as Font from 'expo-font';
 import { Intro } from '@/components/Intro';
 import { takeColdStart } from '@/lib/intro';
@@ -40,6 +41,7 @@ export default function RootLayout() {
   /* `retry` — „Spróbuj ponownie” na ekranie błędu: strażnik pętli awarii liczy ten start od zera (M1-audytor-generalny-003) */
   const start = (retry = false) => { setErr(null); Promise.all([init({ guard: true, retry }), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ restored = restoreObjDrafts(); /* UX2-03 = DAT2-06: szkice edycji sprzed zamknięcia aplikacji */ cancelLegacyReminders().catch(() => {}); /* decyzja 09.10.2026: bez przypomnienia o podpisie — stare odwołane */ initEntitlements().catch(() => {}); /* 0.17.0: sklep tylko przy PAYWALL.ENABLED */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => setErr(e instanceof Error ? e.message : String(e))); };
   useEffect(() => { start(); }, []);
+  useEffect(() => initA11yPrefs(), []); /* M1-024: „Pogrubiony tekst” z ustawień iOS (odczyt i nasłuch) */
   /* M1-audytor-generalny-003: „kamień” strażnika pętli awarii — pierwszy ekran działa BOOT_STABLE_MS po starcie (albo aplikacja idzie do tła). Wyjątek przy rysowaniu
    * odmontowuje ten komponent (ErrorBoundary niżej), więc licznik nie jest zerowany, a ponowna awaria prowadzi do ekranu awaryjnego. */
   const readyRef = useRef(false); readyRef.current = ready;
