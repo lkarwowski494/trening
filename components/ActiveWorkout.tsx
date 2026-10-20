@@ -214,6 +214,8 @@ function insteadLine(e: WExercise): string {
   return [tr('zamiast: {name}', { name: exName(A) }), last ? tr('ostatnio {s}', { s: last }) : ''].filter(Boolean).join(' · ');
 }
 
+/** M1-audytor-generalny-034: linki tekstowe na ekranie treningu — minHeight 32 + hitSlop 6 z góry i z dołu = pole dotyku 44 pt (HIG). */
+const LINK_BOX = { minHeight: 32, justifyContent: 'center' } as const; const LINK_SLOP = { top: 6, bottom: 6, left: 6, right: 6 } as const;
 /** P-003 E1: „📍 Dom ▾” pod nazwą treningu (tylko gdy są miejsca) — zmiana miejsca tylko dla tej sesji; nic nie jest przepisywane
  * ani zamieniane (A-002) — zmienia się filtr wyboru ćwiczeń, plakietki braku sprzętu i podpowiedzi. */
 function LocationChip({ w }: { w: Workout }) {
@@ -225,7 +227,7 @@ function LocationChip({ w }: { w: Workout }) {
     const l = locs[i]; const a = getState().active; if (!l || !a || a.id !== w.id) return; const was = a.locationId; setActiveLocation(l.id); /* decyzja 8c: przyrządy bloków wg nowego miejsca */
     /* 0.18 (docs/33, P2 A): miejsce z brakami albo z ćwiczeniami do przywrócenia — okno „Dostosuj do: X” otwiera się samo (tylko propozycje do przejrzenia) */
     const cur = getState().active; if (cur && was !== l.id && (adaptCandidates(cur, l.id).length || restoreCandidates(cur, l.id).length)) router.push('/adapt'); });
-  return <Pressable accessibilityLanguage={lang()} onPress={pick} accessibilityRole="button" accessibilityLabel={tr('Miejsce treningu: {l}', { l: name })} accessibilityHint={tr('Tapnij, by zmienić.')} /* A11-18 */ hitSlop={6} style={{ alignSelf: 'flex-start', paddingVertical: 4 }}>
+  return <Pressable accessibilityLanguage={lang()} onPress={pick} accessibilityRole="button" accessibilityLabel={tr('Miejsce treningu: {l}', { l: name })} accessibilityHint={tr('Tapnij, by zmienić.')} /* A11-18 */ hitSlop={LINK_SLOP} style={[LINK_BOX, { alignSelf: 'flex-start' }]}>
     <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.accent, fontSize: 14, fontFamily: F.semibold }}>{`📍 ${name} ▾`}</Text></Pressable>;
 }
 
@@ -235,7 +237,7 @@ function AdaptLine({ w }: { w: Workout }) {
   const th = useTheme(); const router = useRouter(); const once = useOnce();
   const na = w.locationId ? adaptCandidates(w, w.locationId).length : 0; const nr = w.locationId ? restoreCandidates(w, w.locationId).length : 0; if (!na && !nr) return null;
   const text = na ? tr('{n} {w} · Dostosuj', { n: na, w: tp(na, 'ćwiczenie bez sprzętu|ćwiczenia bez sprzętu|ćwiczeń bez sprzętu') }) : tr('{n} {w} · Dostosuj', { n: nr, w: tp(nr, 'ćwiczenie wraca do planu|ćwiczenia wracają do planu|ćwiczeń wraca do planu') });
-  return <Pressable testID="adapt-line" accessibilityLanguage={lang()} onPress={once(() => router.push('/adapt'))} accessibilityRole="button" accessibilityLabel={text} accessibilityHint={tr('Otwiera propozycje zamian na to miejsce.')} hitSlop={6} style={{ alignSelf: 'flex-start', paddingVertical: 4 }}>
+  return <Pressable testID="adapt-line" accessibilityLanguage={lang()} onPress={once(() => router.push('/adapt'))} accessibilityRole="button" accessibilityLabel={text} accessibilityHint={tr('Otwiera propozycje zamian na to miejsce.')} hitSlop={LINK_SLOP} style={[LINK_BOX, { alignSelf: 'flex-start' }]}>
     <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.accent, fontSize: 14, fontFamily: F.semibold }}>{text}</Text></Pressable>;
 }
 
@@ -389,7 +391,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         <Muted numberOfLines={2} style={{ fontSize: 13, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{headMeta}</Muted>
       </View>}</SwipeRow>
       {insteadTxt || remember ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, flexShrink: 1 }}>{insteadTxt || (e.impl ? tr('przyrząd: {impl}', { impl: implLabel(e.impl) }) : '')}</Muted>{canUndoSwap(e) ? <Btn title={tr('↺ cofnij')} small kind="ghost" accessibilityLabel={tr('Cofnij zamianę: {name}', { name: nm })} onPress={() => confirmUndoSwap(e.id)} /> : null}{remember && place ? <Btn title={tr('Zawsze w: {l}', { l: place.name })} small kind="ghost" accessibilityLabel={tr('Zawsze w: {l} — {name}', { l: place.name, name: nm })} accessibilityHint={tr('Zapisuje zamiennik w szablonie dla tego miejsca.')} onPress={() => rememberAlt(e.id)} /> : null}</View> : null}
-      {hint && place ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={tr('Zamień na zamiennik: {name}', { name: hintName })} onPress={openSwap} hitSlop={8} style={{ flexShrink: 1 }}><Muted style={{ fontSize: 12, textDecorationLine: 'underline' }}>{tr('Zwykle w: {l} — {name}. Zamienić?', { l: place.name, name: hintName })}</Muted></Pressable><Btn title="✕" small kind="ghost" accessibilityLabel={tr('Nie zamieniaj: {name}', { name: hintName })} onPress={() => skipAlt(e.id)} /></View> : null}
+      {hint && place ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={tr('Zamień na zamiennik: {name}', { name: hintName })} onPress={openSwap} hitSlop={LINK_SLOP} style={[LINK_BOX, { flexShrink: 1 }]}><Muted style={{ fontSize: 12, textDecorationLine: 'underline' }}>{tr('Zwykle w: {l} — {name}. Zamienić?', { l: place.name, name: hintName })}</Muted></Pressable><Btn title="✕" small kind="ghost" accessibilityLabel={tr('Nie zamieniaj: {name}', { name: hintName })} onPress={() => skipAlt(e.id)} /></View> : null}
       {place && avail && !avail.ok ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Pressable accessibilityLanguage={lang()} accessibilityRole="button" disabled={!swappable} accessibilityLabel={tr('Brak sprzętu w: {l}. Brakuje: {m}', { l: place.name, m: missingLabel(avail.missing) })} accessibilityHint={swappable ? tr('Otwiera zamianę ćwiczenia') : undefined} onPress={openSwap} hitSlop={8} style={{ flexShrink: 1 }}><Muted style={{ fontSize: 12, color: t.danger, textDecorationLine: swappable ? 'underline' : 'none' }}>{tr('brak sprzętu w: {l}', { l: place.name })} ({missingLabel(avail.missing)})</Muted></Pressable></View> : null}
       {prevElsewhere || offNote ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{[prevElsewhere ? tr('Poprzednio: {l}', { l: prevElsewhere }) : '', offNote].filter(Boolean).join(' · ')}</Muted> : null}
       <View style={[s.row, { gap: W.gap }]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" /* A11-18: nagłówki kolumn „#”, „✓”, „▶” — szum dla VoiceOver; każde pole ma własną etykietę (jak w historii) */>
