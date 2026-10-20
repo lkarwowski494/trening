@@ -32,7 +32,7 @@ function setNum(k: typeof SET_NUM[number], v: unknown): number | '' {
   const x = k === 'addKg' ? n : Math.max(0, n);
   const r = k === 'rpe' ? Math.min(10, x) : k === 'reps' ? Math.floor(x)
       : k === 'durationSec' ? Math.min(86400, Math.round(x)) /* runda 61: doba, jak cel stopera */
-      : k === 'distanceM' ? Math.round(x) /* runda 57: pełne s i m jak w polach i stoperze */ : x;
+      : k === 'distanceM' ? kg2(x) /* runda 57: pełne s i m jak w polach i stoperze; M2-LOK07-01: dystans w yd zapisuje się z dokładnością do cm (dane całkowite bez zmian) */ : x;
   return k === 'weight' || k === 'addKg' ? kg2(snapL(r) as number) : r;
 }
 /** Schemat 16 (E2, docs/14 pkt 2.2, M1–M4) — pola zamiany bloku; po sanityzacji exerciseId i impl. Istnienia ćwiczenia swappedFrom nie sprawdzamy
