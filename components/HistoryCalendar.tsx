@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t as tr, tp, lang } from '@/lib/i18n';
-import { monthGrid, shiftMonth, weekdayLabels, monthTitle, dayTitle, dayKey } from '@/lib/calendar';
+import { regionWeekStart, monthGrid, shiftMonth, weekdayLabels, monthTitle, dayTitle, dayKey } from '@/lib/calendar';
 import { dayStatusFrom, planInForce, planTplName } from '@/lib/plan';
 import { isDeloadWeek } from '@/lib/store';
 import type { Workout } from '@/lib/seed';
@@ -29,7 +29,9 @@ export const CAL_FACE = { w: MINI_ICON.w + 14, h: 44 } as const;
 export function HistoryCalendar({ byDay, selected, onSelect, onMonth }: { byDay: Map<string, Workout[]>; selected: string | null; onSelect: (key: string | null) => void; /** UX-16 A (audyt 0.10): oglądany miesiąc po przewinięciu strzałką — lista sesji idzie za nim */ onMonth?: (y: number, m: number) => void }) {
   /* bez przewijania miesięcy kalendarz idzie za dzisiejszą datą (powrót z tła w nowym miesiącu — store.refreshViews) */
   const t = useTheme(); const now = new Date(); const [picked, setYm] = useState<{ y: number; m: number } | null>(null); const ym = picked ?? { y: now.getFullYear(), m: now.getMonth() };
-  const today = dayKey(Date.now()); const weeks = monthGrid(ym.y, ym.m); const heads = weekdayLabels();
+  const today = dayKey(Date.now()); const first = regionWeekStart(); const weeks = monthGrid(ym.y, ym.m, first); const heads = weekdayLabels(first); const monIdx = (1 - first + 7) % 7; /* tydzień deload liczy się od poniedziałku — komórka poniedziałku w wierszu */
+  const monCell = (w: ReturnType<typeof monthGrid>[number]) => w[monIdx];
+  const weekDeload = (w: ReturnType<typeof monthGrid>[number]) => { const c = monCell(w); return isDeloadWeek(new Date(c.y, c.m, c.d, 12).getTime()); };
   const nav = (delta: number) => { const n = shiftMonth(ym.y, ym.m, delta); setYm(n); onMonth?.(n.y, n.m); };
   const arrow = (label: string, glyph: string, delta: number) => (
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} onPress={() => nav(delta)} hitSlop={8} style={({ pressed }) => ({ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.5 : 1 })}>
@@ -45,8 +47,8 @@ export function HistoryCalendar({ byDay, selected, onSelect, onMonth }: { byDay:
       <View style={{ flexDirection: 'row' }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
         {heads.map((h, i) => <Text accessibilityLanguage={lang()} key={i} maxFontSizeMultiplier={1.2} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7} /* A11-19: lv „Ceturtdiena” bez „…” */ style={{ flex: 1, textAlign: 'center', color: t.muted, fontSize: 12, fontFamily: F.semibold }}>{h}</Text>)}
       </View>
-      {weeks.map((w, wi) => { const dl = isDeloadWeek(new Date(+w[0].key.slice(0, 4), +w[0].key.slice(5, 7) - 1, +w[0].key.slice(8, 10), 12).getTime()); /* 08.10.2026: tydzień deload — tło wiersza; audyt 0.10 A11-05: ramka muted */ return (
-        <View key={wi} testID={dl ? `cal-deload-${w[0].key}` : undefined} style={{ flexDirection: 'row', borderRadius: 18, backgroundColor: dl ? t.surface2 : 'transparent', borderWidth: 1, borderColor: dl ? t.muted : 'transparent' }}>
+      {weeks.map((w, wi) => { const dl = weekDeload(w); /* 08.10.2026: tydzień deload — tło wiersza; audyt 0.10 A11-05: ramka muted */ return (
+        <View key={wi} testID={dl ? `cal-deload-${monCell(w).key}` : undefined} style={{ flexDirection: 'row', borderRadius: 18, backgroundColor: dl ? t.surface2 : 'transparent', borderWidth: 1, borderColor: dl ? t.muted : 'transparent' }}>
           {w.map(c => { const ws = c.inMonth ? byDay.get(c.key) ?? [] : []; const n = ws.length; const on = selected === c.key; const isToday = c.key === today;
             const st = c.inMonth ? dayStatusFrom(c.key, ws, today) : null; const status = st?.status ?? 'rest'; const name = planTplName(st?.templateId);
             const mark = c.inMonth ? dayMark(status, status === 'rest' && planInForce(c.key, today)) : null; /* odpoczynek tylko w dniu z obowiązującym planem */ const missed = status === 'missed'; const other = status === 'other'; const planned = status === 'planned';
@@ -64,7 +66,7 @@ export function HistoryCalendar({ byDay, selected, onSelect, onMonth }: { byDay:
                   : <View accessibilityElementsHidden importantForAccessibility="no-hide-descendants">{face}</View>}
               </View>); })}
         </View>); })}
-      {weeks.some(w => isDeloadWeek(new Date(+w[0].key.slice(0, 4), +w[0].key.slice(5, 7) - 1, +w[0].key.slice(8, 10), 12).getTime())) ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: t.muted, fontSize: 12, marginTop: 4, fontFamily: F.regular }}>{tr('Wiersz w ramce — tydzień deload.')}</Text> : null}
+      {weeks.some(weekDeload) ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: t.muted, fontSize: 12, marginTop: 4, fontFamily: F.regular }}>{tr('Wiersz w ramce — tydzień deload.')}</Text> : null}
     </View>
   );
 }

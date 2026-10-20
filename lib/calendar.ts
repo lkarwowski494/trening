@@ -12,9 +12,14 @@ export type Cell = { y: number; m: number; d: number; key: string; inMonth: bool
 export const dayKey = (ts: number) => { const x = new Date(ts); return keyOf(x.getFullYear(), x.getMonth(), x.getDate()); };
 const keyOf = (y: number, m: number, d: number) => `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
 
-/** Siatka miesiąca `m` (0–11): pełne tygodnie od poniedziałku; dni sąsiednich miesięcy z inMonth = false. 4–6 tygodni. */
-export function monthGrid(y: number, m: number): Cell[][] {
-  const first = new Date(y, m, 1); const lead = (first.getDay() + 6) % 7; const days = new Date(y, m + 1, 0).getDate();
+/** Pierwszy dzień tygodnia z ustawień regionu telefonu jako indeks dnia JS (0 = niedziela … 6 = sobota); brak lub zła wartość → poniedziałek (1). Tylko kalendarz Historii (M1-065); plan i statystyki zostają od poniedziałku. */
+export function regionWeekStart(): number {
+  try { const L = require('expo-localization'); const fw = L.getCalendars?.()?.[0]?.firstWeekday; return Number.isInteger(fw) && fw >= 1 && fw <= 7 ? fw - 1 : 1; } catch { return 1; }
+}
+
+/** Siatka miesiąca `m` (0–11): pełne tygodnie od dnia `first` (0 = niedziela, domyślnie poniedziałek); dni sąsiednich miesięcy z inMonth = false. 4–6 tygodni. */
+export function monthGrid(y: number, m: number, first = 1): Cell[][] {
+  const firstDay = new Date(y, m, 1); const lead = (firstDay.getDay() - first + 7) % 7; const days = new Date(y, m + 1, 0).getDate();
   const weeks = Math.ceil((lead + days) / 7); const out: Cell[][] = [];
   for (let w = 0; w < weeks; w++) out.push(Array.from({ length: 7 }, (_, i) => { const x = new Date(y, m, 1 - lead + w * 7 + i); return { y: x.getFullYear(), m: x.getMonth(), d: x.getDate(), key: keyOf(x.getFullYear(), x.getMonth(), x.getDate()), inMonth: x.getMonth() === m }; }));
   return out;
@@ -30,8 +35,8 @@ export function workoutsByDay(ws: readonly Workout[]): Map<string, Workout[]> {
 /** Miesiąc przesunięty o `delta` (np. −1 — poprzedni). */
 export const shiftMonth = (y: number, m: number, delta: number) => { const x = new Date(y, m + delta, 1); return { y: x.getFullYear(), m: x.getMonth() }; };
 
-/** Skróty dni tygodnia od poniedziałku w języku aplikacji (Intl). 2024-01-01 to poniedziałek. */
-export const weekdayLabels = (): string[] => Array.from({ length: 7 }, (_, i) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'short' }));
+/** Skróty dni tygodnia od dnia `first` (domyślnie poniedziałek; 0 = niedziela) w języku aplikacji (Intl). 2024-01-01 to poniedziałek. */
+export const weekdayLabels = (first = 1): string[] => Array.from({ length: 7 }, (_, i) => new Date(2024, 0, 1 + ((first + 6 + i) % 7)).toLocaleDateString(locale(), { weekday: 'short' }));
 /** Pełne nazwy dni tygodnia od poniedziałku w języku aplikacji (Intl) — etykiety VoiceOver przycisków dni (components/DayPicker). */
 export const weekdayNames = (): string[] => Array.from({ length: 7 }, (_, i) => new Date(2024, 0, 1 + i).toLocaleDateString(locale(), { weekday: 'long' }));
 /** Tytuł miesiąca, np. „październik 2026”. */

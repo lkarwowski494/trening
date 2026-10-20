@@ -17,7 +17,7 @@ jest.mock('expo-sqlite', () => ({
     runAsync: async (_q, k, v) => { const f = global.__dbFail; if (typeof f === 'function' ? f(k, _q) : f) throw new Error('disk full'); if (/^\s*DELETE/i.test(_q)) global.__kv.delete(k); else global.__kv.set(k, v); }, /* runda 71: __dbFail może być funkcją (k, zapytanie) — awaria tylko wybranego klucza */
   }); },
 }));
-jest.mock('expo-localization', () => ({ getLocales: () => global.__locales }));
+jest.mock('expo-localization', () => ({ getLocales: () => global.__locales, getCalendars: () => global.__calendars ?? [{ firstWeekday: 2 }] }));
 jest.mock('expo-notifications', () => ({
   setNotificationHandler: jest.fn(),
   /* audyt 0.10 I1 / TST-06: stan zgody sterowany przez test (global.__notifPerm; domyślnie zgoda), prośby liczone w global.__notifPermAsked */
