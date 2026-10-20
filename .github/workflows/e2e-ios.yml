@@ -171,11 +171,12 @@ jobs:
           [ -n "$LIST" ] || { echo "Brak symulatorów iOS $SDK — wybór z całej listy"; LIST=$(xcrun simctl list devices available); }
           DEV=""
           for pat in ${WANT:+"$WANT"} "iPhone 17 \(" "iPhone 16 \(" "iPhone"; do  # WANT: wejście „urzadzenie” (nocny przebieg — mały ekran)
-            DEV=$(printf '%s\n' "$LIST" | grep -m1 -E "$pat" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/' || true)  # || true: krok działa z -eo pipefail
+            DEV=$(printf '%s\n' "$LIST" | node scripts/ci/sim-wybor.mjs "$pat" || true)  # najwęższy z pasujących (M1-058); || true: krok działa z -eo pipefail
             [ -n "$DEV" ] && break
           done
           [ -n "$DEV" ] || { echo "::error::Brak dostępnego symulatora iPhone'a"; xcrun simctl list devices available; exit 1; }
           echo "Symulator: $(printf '%s\n' "$LIST" | grep -m1 "$DEV" | sed -E 's/^ +//') (SDK symulatora $SDK)"
+          echo "Ekran: $(printf '%s\n' "$LIST" | node scripts/ci/sim-wybor.mjs "$pat" --opis)"  # szerokość ekranu wybranego symulatora w logu (M1-058)
           echo "SIM=$DEV" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEV" || true
           xcrun simctl bootstatus "$DEV" -b
@@ -353,11 +354,12 @@ jobs:
           [ -n "$LIST" ] || { echo "Brak symulatorów iOS $SDK — wybór z całej listy"; LIST=$(xcrun simctl list devices available); }
           DEV=""
           for pat in ${WANT:+"$WANT"} "iPhone 17 \(" "iPhone 16 \(" "iPhone"; do  # WANT: wejście „urzadzenie” (nocny przebieg — mały ekran)
-            DEV=$(printf '%s\n' "$LIST" | grep -m1 -E "$pat" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/' || true)  # || true: krok działa z -eo pipefail
+            DEV=$(printf '%s\n' "$LIST" | node scripts/ci/sim-wybor.mjs "$pat" || true)  # najwęższy z pasujących (M1-058); || true: krok działa z -eo pipefail
             [ -n "$DEV" ] && break
           done
           [ -n "$DEV" ] || { echo "::error::Brak dostępnego symulatora iPhone'a"; xcrun simctl list devices available; exit 1; }
           echo "Symulator: $(printf '%s\n' "$LIST" | grep -m1 "$DEV" | sed -E 's/^ +//') (SDK symulatora $SDK)"
+          echo "Ekran: $(printf '%s\n' "$LIST" | node scripts/ci/sim-wybor.mjs "$pat" --opis)"  # szerokość ekranu wybranego symulatora w logu (M1-058)
           echo "SIM=$DEV" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEV" || true
           xcrun simctl bootstatus "$DEV" -b
