@@ -16,6 +16,13 @@ export const light: Record<'bg' | 'surface' | 'surface2' | 'line' | 'ctrlLine' |
 /** Ciemna wersja: grafitowe tło, papierowy tekst, ten sam niebieski (jaśniejszy). */
 export const dark: typeof light = { bg: '#121316', surface: '#1b1d21', surface2: '#26282d', line: '#3a3d43', ctrlLine: '#74777e', text: '#eceae4', muted: '#a6a9af', accent: '#6f9bf2', accentInk: '#121316', done: '#1f2e24', doneLine: '#4e9a6a', danger: '#ec7a72', dangerInk: '#121316', band: '#5fc3c9', less: '#F0A050' };
 export type Theme = typeof dark;
+/**
+ * M1-audytor-generalny-031 („Zwiększ kontrast” w iOS: AccessibilityInfo.isDarkerSystemColorsEnabled): warianty palet o wyższym kontraście. Tła i tekst główny bez zmian;
+ * podnosimy tekst pomocniczy i akcent (muted, accent, band: ≥ 7:1 do bg, surface i surface2) oraz elementy (line — także tory pasków, ctrlLine, doneLine, less: ≥ 4,5:1).
+ * Progi 7:1 / 4,5:1 — propozycja do zatwierdzenia przez właściciela (WCAG 1.4.6 / 1.4.11). Test: tests/audit-m1-031-contrast.test.tsx.
+ */
+export const lightHC: Theme = { ...light, line: '#65635d', ctrlLine: '#5b5f66', muted: '#33363b', accent: '#143f8c', band: '#0a4a4f', less: '#8F4500', doneLine: '#236640' };
+export const darkHC: Theme = { ...dark, line: '#8d9097', ctrlLine: '#9a9da4', muted: '#c9ccd1', accent: '#9db9f7', band: '#8fdadf', less: '#f7c080', doneLine: '#74c08f', danger: '#f5a39d' };
 /* Motyw z ikony (decyzja właściciela 09.10.2026): czerwień talerza 25 kg (lib/discColors.ts PLATE_COLORS.red #D7263D, IWF) nie może mylić się z „Usuń”.
  * Jasny danger przesunięty z #b3261e (ΔE2000 9,7 do talerza, kontrast luminancji 1,32:1) na ciemną cegłę #7f1d1d (ΔE2000 17,9; 2,02:1); ciemny
  * #ec7a72 (łososiowy) — ΔE2000 17,3; 1,79:1. Do tego kształt: talerz zawsze jako zaokrąglony prostokąt przy gryfie z liczbą obok, danger tylko
@@ -28,7 +35,10 @@ export const TEXT_SCALE_MAX = 2;
 export const NUM_SCALE_MAX = 1.3;
 /** Wygląd z ustawień (decyzja 05.10.2026, domyślnie jasny — potwierdzone 07.10.2026). Nadpisuje tryb systemu dla całej aplikacji. */
 export function applyTheme(x: 'light' | 'dark' | 'auto' | undefined) { try { Appearance.setColorScheme(x === 'dark' ? 'dark' : x === 'auto' ? 'unspecified' : 'light'); } catch { /* bez natywnego modułu (web) — tryb systemu */ } }
-export function useTheme(): Theme { useA11yPrefs(); /* M1-024: komponent odświeża się też po zmianie „Pogrubiony tekst” (krój F czytany przy renderze) */ return useColorScheme() === 'light' ? light : dark; }
+export function useTheme(): Theme {
+  const { contrast } = useA11yPrefs(); /* M1-024/031: komponent odświeża się też po zmianie „Pogrubiony tekst” (krój F czytany przy renderze) i „Zwiększ kontrast” */
+  const lightScheme = useColorScheme() === 'light'; return contrast ? (lightScheme ? lightHC : darkHC) : lightScheme ? light : dark;
+}
 
 /**
  * Kroje pisma (Google Fonts, licencja OFL) — decyzje właściciela 07.10.2026 (rano wariant A „mieszany”, wieczorem bez Tektur — docs/18):
