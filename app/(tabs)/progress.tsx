@@ -126,9 +126,11 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
         {sh ? <Btn nav small title={t('Masa ciała — pomiary')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => router.push('/more/bodymass')} /> : null}
         <H2 style={{ marginTop: 16 }}>{t('Sesje')}</H2>
         {[...sessions].reverse().slice(0, 20).map((s, i) => (
-          <View key={i} style={{ paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: th.line }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Txt style={{ fontFamily: F.semibold }}>{fmtDate(s.shown)}</Txt><Muted>{t('najlepsza')} {setSummary(ex, s.bestSet)}{s.volume ? ` · ${t('obj.')} ${fmtVol(s.volume)}` : ''}{s.bestE1rm ? ` · e1RM ${fmtW(s.bestE1rm, false)}` : ''}</Muted></View>
-            <Muted style={{ fontSize: 13 }}>{s.sets.map(x => setSummary(ex, x)).join(' · ')}</Muted>
+          <View key={i} testID={`session-row-${i}`} style={{ paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: th.line }}>
+            {/* M1-audytor-generalny-033: data w całości w pierwszym wierszu, podsumowanie pod nią (zawija się), odstęp 8 pt — zamiast rzędu „data | podsumowanie” */}
+            <Txt testID={`session-date-${i}`} style={{ fontFamily: F.semibold }}>{fmtDate(s.shown)}</Txt>
+            <Muted testID={`session-summary-${i}`} style={{ marginTop: 8 }}>{t('najlepsza')} {setSummary(ex, s.bestSet)}{s.volume ? ` · ${t('obj.')} ${fmtVol(s.volume)}` : ''}{s.bestE1rm ? ` · e1RM ${fmtW(s.bestE1rm, false)}` : ''}</Muted>
+            <Muted style={{ fontSize: 13, marginTop: 4 }}>{s.sets.map(x => setSummary(ex, x)).join(' · ')}</Muted>
           </View>))}
       </> : <Empty>{t('Brak zapisanych sesji z tym ćwiczeniem.')}</Empty>}
     </ScrollView>
