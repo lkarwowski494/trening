@@ -17,6 +17,24 @@ Powód: limit tygodniowy konta koordynatora na wyczerpaniu (decyzja właściciel
 6. Potem: **M3 Redesigner w nowej sesji czatu** z najświeższego `lkarwowski494/prompts` (`git pull`, `node tools/assemble.mjs M3-redesigner --galaz redesign/trening-<data> --plik m3.md`), wejścia obowiązkowe: 026, 029 (+gałąź m3-wejscie/029-ikony), 030, 036, DEC-05 (głos domyślnie wył.), DEC-06 (bez paska talerzy), DEC-28/29 (system miar).
 7. Potem: jeden reaudyt końcowy (M1, nowy LOK-07), kontrola na telefonie (R-004 powiadomienie pilne, głos, mile, nowe ekrany), zrzuty i opis sklepu, 1.0.
 
+## Kontekst i plan całości (przeczytaj najpierw)
+**Cel:** wydać aplikację Trening (iOS + Apple Watch, Expo/React Native, 35 języków, bez konta, dane tylko na telefonie) w App Store jako **1.0** „w pełnym standardzie”. Właściciel: Łukasz (nie ekspert dziedzinowy, nie używa Terminala). Studio: Apps4Brew (strona apps4brew.com/trening/ — polityka prywatności i wsparcie już opublikowane; osobne repo strony studia).
+
+**Model monetyzacji (STAŁY, nie proponować zmian):** 0,99 USD/mies., **6,99 USD/rok**, 14,99 USD dożywotnio; 14 dni oferty wprowadzającej; po niej 4 treningi/mies. za darmo. Zakupy włączane od 1.0.
+
+**Droga do App Store (kolejność ustalona z właścicielem):**
+1. Naprawy audytu M1 (M2) na `audyt-m1` → PR → `main` → TestFlight. ← *tu jesteśmy (kroki 1–6 niżej)*
+2. **M3 Redesigner** (biblioteka `lkarwowski494/prompts`, najświeższa wersja przy starcie) w nowym czacie: AS IS na działającej aplikacji (zrzuty/nagrania z E2E w CI + nagrania z telefonu właściciela), propozycje TO BE do decyzji właściciela (STOP-y), projekt od zera, wdrożenie partiami, weryfikacja. Obowiązkowe wejścia: zadania audytu 026 (układ Postępów), 029 (ikony zamiast emoji; WIP na gałęzi `m3-wejscie/029-ikony`), 030 (duży tekst, Large Content Viewer), 036 (tokeny pisma i promieni); głos domyślnie wyłączony (DEC-05); brak paska talerzy (DEC-06); System miar (DEC-28/29).
+3. **Jeden reaudyt końcowy** (M1, z nowym LOK-07 — systemy miar) po M3; naprawy tym samym procesem (M2).
+4. Pełny katalog E2E w trybie ścisłym (bramka App Store, CLAUDE.md) + 3 czyste noce.
+5. **Kontrola na telefonie** (lista „tylko telefon”): powiadomienie „pilne” w trybie skupienia (R-004), głos, mile/jardy, nowe ekrany, Apple Watch, Zdrowie, zakup w piaskownicy (K-012).
+6. Zrzuty do sklepu (ciemny motyw, ramki i podpisy, 9 ekranów wg scenorysu z 19.10; generator `store-screenshots.yml`) i opis sklepu (docs/15) — **dopiero po M3**; akceptacja właściciela (podpisy EN też).
+7. App Store Connect (kroki właściciela niżej: cena 6,99, oferta 14 dni, adres polityki, etykieta prywatności, ankieta wiekowa), migracja repo do organizacji **Apps4Brew** (właściciel: puste repo + sekrety), wersja **1.0** („Co nowego” czyszczone), wysłanie do Apple, ręczne wydanie po akceptacji, wydanie stopniowe wg docs/42.
+
+**Otwarte u właściciela (poza listą kroków):** Google Workspace (w toku, sekcja „W toku u właściciela”), próg i data premiery dla decyzji o Androidzie (docs/wzrost.md), ewentualny przegląd sekretów GitHub (K-019).
+
+**Gdzie co jest:** decyzje z datą → docs/18; lekcje i rejestr ryzyk (otwarte blokują wydanie) → docs/40; wymagania (BRD) → docs/brd; plan wydania 1.0 → docs/42; droga do sklepu → docs/41 (gałąź f020-sklep, częściowo na main); ceny → docs/monetyzacja.md; języki → docs/16 i docs/lokalizacja; research konkurencji i rejestr decyzji merytorycznych → Google Drive „Trening App” (nie w repo). Backlog bez priorytetu → docs/21 (wspominać tylko zbiorczo).
+
 ## Podział między konta (decyzja właściciela 20.10.2026)
 - **Obecne konto** domyka kroki 1–6 z listy „Co biegnie / co zrobić najpierw” (E2E → PR i scalenie → TestFlight → dowody → przegląd tłumaczeń przez API → przegląd badacza) i **nie zaczyna kroku 7 (M3) ani dalszych**.
 - **Nowe konto** zaczyna od pierwszego niezakończonego kroku według sekcji „Dziennik przekazania” niżej (normalnie od kroku 7: M3 w nowym czacie).
