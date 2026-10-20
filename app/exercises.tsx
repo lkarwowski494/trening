@@ -7,7 +7,7 @@ import { useExercisesTick, useCfgTick, newExercise, visibleExercises, getState, 
 import { LibScopeChip } from '@/components/LibScope';
 import { SwipeRow } from '@/components/SwipeRow';
 import { GROUPS, formerMatch, type Exercise } from '@/lib/seed';
-import { t, exName, fold, collator, lang } from '@/lib/i18n';
+import { t, exName, exNameLang, fold, collator, lang } from '@/lib/i18n';
 import { useAddHeader } from '@/components/AddButton';
 
 /*
@@ -40,7 +40,7 @@ export default function ExercisesScreen() {
     const e = r.e;
     if (r.kind === 'arch') return <Item title={t('Przywróć „{name}”', { name: exName(e) })} sub={exerciseInHistory(e.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} icon="↺" onPress={() => { restoreExercise(e); setQ(''); router.push(`/exercise/${e.id}`); }} />;
     /* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (z ekranu ćwiczenia przycisk zniknął); treść potwierdzenia jak wcześniej (runda 40) */
-    return <SwipeRow testID={`lib-row-${index}`} /* E2E 27: pozycja na liście (z nagłówkami grup) — przy jednym wyniku wyszukiwania 1 */ label={t('Usuń z biblioteki: {name}', { name: exName(e) })} title={t('Usunąć ćwiczenie?')} message={() => [exerciseInHistory(e.id) ? t('Zniknie z list i szablonów; historia, wykresy i eksport zostaną.') : t('Zniknie z list i szablonów.'), getState().active?.exercises.some(x => x.exerciseId === e.id) ? t('W trwającym treningu zostanie oznaczone jako usunięte.') : ''].filter(Boolean).join(' ')} onDelete={() => { const cur = getState().exercises.find(x => x.id === e.id); if (cur && !cur.archived) deleteExercise(e.id); }}>{a11y => <Item a11y={a11y} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${e.tempo ? ' · ' + t('tempo') + ' ' + e.tempo : ''}${r.kind === 'ex' && r.was ? ' · ' + t('dawniej: {n}', { n: exName({ name: r.was, lib: true }) }) : ''}`} onPress={() => router.push(`/exercise/${e.id}`)} />}</SwipeRow>;
+    return <SwipeRow testID={`lib-row-${index}`} /* E2E 27: pozycja na liście (z nagłówkami grup) — przy jednym wyniku wyszukiwania 1 */ label={t('Usuń z biblioteki: {name}', { name: exName(e) })} title={t('Usunąć ćwiczenie?')} message={() => [exerciseInHistory(e.id) ? t('Zniknie z list i szablonów; historia, wykresy i eksport zostaną.') : t('Zniknie z list i szablonów.'), getState().active?.exercises.some(x => x.exerciseId === e.id) ? t('W trwającym treningu zostanie oznaczone jako usunięte.') : ''].filter(Boolean).join(' ')} onDelete={() => { const cur = getState().exercises.find(x => x.id === e.id); if (cur && !cur.archived) deleteExercise(e.id); }}>{a11y => <Item a11y={a11y} titleLang={exNameLang(e)} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${e.tempo ? ' · ' + t('tempo') + ' ' + e.tempo : ''}${r.kind === 'ex' && r.was ? ' · ' + t('dawniej: {n}', { n: exName({ name: r.was, lib: true }) }) : ''}`} onPress={() => router.push(`/exercise/${e.id}`)} />}</SwipeRow>;
   };
   const addHeader = useAddHeader(t('Dodaj ćwiczenie'), () => { const e = newExercise(); router.push(`/exercise/${e.id}?edit=1&new=1`); });
   const empty = <><Empty>{t('Nic nie pasuje.')}</Empty>{ql ? <Btn title={t('Utwórz „{name}”', { name: q.trim() })} block onPress={once(() => { const e = newExercise(q.replace(/\s+/g, ' ').trim()); setQ(''); router.push(`/exercise/${e.id}?edit=1&new=1`); })} /> : null}</>;

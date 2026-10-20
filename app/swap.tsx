@@ -11,7 +11,7 @@ import { draftOf, useDraftTick, draftSwapExercise, canRestoreExercise, draftRest
 import { swapCandidates, reasonText, otherImpls, implLabel, parseSwapTarget, SWAP_TOP, SWAP_PAGE, sortOthers } from '@/lib/swap';
 import { afterSwap, confirmUndoSwap } from '@/components/ActiveWorkout';
 import { emitAdaptPick } from '@/lib/adaptPick';
-import { t, exName, locale, fold, lang } from '@/lib/i18n';
+import { t, exName, exNameLang, locale, fold, lang } from '@/lib/i18n';
 import type { Exercise, Impl, WExercise } from '@/lib/seed';
 
 /**
@@ -70,7 +70,7 @@ export default function SwapScreen() {
         {restore ? <Item title={t('↺ cofnij zamianę: {name}', { name: exName(restore.ex) })} icon="" /* A11-18: bez drugiego „↺” */ accessibilityLabel={t('Cofnij zamianę: {name}', { name: exName(restore.ex) })} onPress={restore.go} /> : null}
         {base ? <><SectionTitle>{t('Propozycje')}</SectionTitle>
           {props.length ? props.map((c, i) => { const b = exById(c.exId)!; const sub = [reasonText(c), c.inWorkout ? t('już w treningu') : ''].filter(Boolean).join(' · ');
-            return <Item key={c.exId} title={exName(b)} sub={sub} icon="⇄" onPress={() => pick(c.exId)} accessibilityLabel={t('Propozycja {n}: {name}', { n: i + 1, name: exName(b) }) + (sub ? `, ${sub}` : '')} />; })
+            return <Item key={c.exId} titleLang={exNameLang(b)} title={exName(b)} sub={sub} icon="⇄" onPress={() => pick(c.exId)} accessibilityLabel={t('Propozycja {n}: {name}', { n: i + 1, name: exName(b) }) + (sub ? `, ${sub}` : '')} />; })
             : <Empty>{t('Brak podobnych ćwiczeń w tym miejscu — rozwiń „Inne”.')}</Empty>}</> : null}
         {ex && impls.length ? <><SectionTitle>{t('Ten sam ruch, inny przyrząd')}</SectionTitle>
           {impls.map(i => <Item key={i} title={`${exName(ex)} — ${implLabel(i)}`} sub={e.impl ? t('zamiast: {name}', { name: implLabel(e.impl) }) : undefined} icon="⇄" onPress={() => pickImpl(i)} accessibilityLabel={t('Inny przyrząd: {impl}', { impl: implLabel(i) })} />)}</> : null}
@@ -84,7 +84,7 @@ export default function SwapScreen() {
           </View>
           <SearchField value={q} onChangeText={v => { setQ(v); setLim(SWAP_PAGE); }} placeholder={t('Szukaj ćwiczenia…')} />
           {others.length ? othersSorted.slice(0, lim).map(b => { const av = caps ? availability(b, place, caps) : null; const miss = av && !av.ok ? ' · ' + t('brak: {m}', { m: missingLabel(av.missing) }) : ''; const safe = av && av.ok && av.missingRecommended.includes(SAFETY_CAP) ? ' · ' + t('bez asekuracji w stojakach') : '' /* audyt M1-015 */;
-            return <Item key={b.id} title={exName(b)} sub={`${t(b.equipment)}${miss}${safe}`} icon="⇄" dim={!!miss} onPress={() => pick(b.id)} />; }) : !archived.length && !canCreate ? <Empty>{t('Nic nie pasuje.')}</Empty> : null}
+            return <Item key={b.id} titleLang={exNameLang(b)} title={exName(b)} sub={`${t(b.equipment)}${miss}${safe}`} icon="⇄" dim={!!miss} onPress={() => pick(b.id)} />; }) : !archived.length && !canCreate ? <Empty>{t('Nic nie pasuje.')}</Empty> : null}
           {others.length > lim ? <Item title={t('Pokaż więcej ({n})', { n: others.length - lim })} icon="▾" onPress={() => setLim(x => x + SWAP_PAGE * 2)} accessibilityLabel={t('Pokaż więcej ćwiczeń: zostało {n}', { n: others.length - lim })} /> : null}
           {archived.map(b => <Item key={'a' + b.id} title={t('Przywróć „{name}”', { name: exName(b) })} sub={exerciseInHistory(b.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} icon="↺" onPress={() => { if (chosen.current) return; restoreExercise(b); pick(b.id); }} />)}
           {canCreate ? <Item title={t('Utwórz „{name}”', { name: q.trim() })} sub={t('nowe ćwiczenie własne')} icon="+" onPress={() => { if (chosen.current) return; const n = newExercise(q.replace(/\s+/g, ' ').trim()); if (ex) { n.metric = ex.metric; n.group = ex.group; n.muscles = [...ex.muscles]; save(n); } pick(n.id); }} /> : null}

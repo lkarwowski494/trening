@@ -127,6 +127,10 @@ export function exName(e: { name: string; lib?: boolean } | undefined | null): s
   return e.name.replace(/\(([^)]+)\)/g, (m, inner: string) => Object.prototype.hasOwnProperty.call(EX_PAREN, inner) ? `(${EX_PAREN[inner]})` : m);
 }
 
+/** M1-audytor-generalny-038: język wymowy (VoiceOver) dla samej nazwy ćwiczenia. Nazwy biblioteki są po angielsku w każdym języku poza polskim (DEC-13), więc czyta je
+ * głos angielski; ćwiczenia własne i przemianowane (lib = false) — głos języka interfejsu. Dotyczy tylko elementów z samą nazwą (nagłówek, tytuł wiersza). */
+export function exNameLang(e: { lib?: boolean } | undefined | null): Lang { return current !== 'pl' && e?.lib ? 'en' : current; }
+
 // Język systemu od razu przy starcie modułu — ekran błędu startu (zanim wczytają się ustawienia) też jest przetłumaczony (runda 3).
 applyLang('auto');
 

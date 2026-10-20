@@ -4,7 +4,7 @@
 import * as RN from 'react-native';
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
-import { applyLang, t, type Lang } from '@/lib/i18n';
+import { applyLang, t, exName, type Lang } from '@/lib/i18n';
 import { LOCALES } from '@/lib/locales';
 import { renderApp, flushAll, screen, go, tap, openCard } from './app';
 import { fresh, withDemoTemplates } from './helpers';
@@ -19,11 +19,14 @@ afterEach(() => { applyLang('pl'); jest.restoreAllMocks(); });
 /** Elementy czytane przez VoiceOver (tekst, element accessible, pole, przełącznik) bez accessibilityLanguage = l (A11-09, A11N-01). */
 function langGaps(l: Lang): { n: number; bad: string[] } {
   const bad: string[] = []; let n = 0;
+  /* M1-038 (DEC-13): nazwy ćwiczeń z biblioteki są po angielsku — element z taką nazwą (tytuł wiersza, nagłówek) ma accessibilityLanguage = en (wyjątek od „język aplikacji”) */
+  const libNames = [...new Set(store.getState().exercises.filter(e => e.lib).map(e => exName(e)))];
+  const isLibName = (s: string) => libNames.some(nm => s.includes(nm));
   const walk = (x: Node, inText: boolean) => {
     if (!x || typeof x !== 'object') return; const p = x.props ?? {};
     if (p.accessibilityElementsHidden || p.importantForAccessibility === 'no-hide-descendants' || p['aria-hidden'] || flat(p.style).display === 'none') return;
     const reads = typeof x.type === 'string' && p.accessible !== false && ((x.type === 'Text' && !inText) || p.accessible === true || x.type === 'TextInput' || /Switch/.test(x.type));
-    if (reads) { n++; if (p.accessibilityLanguage !== l) bad.push(`${x.type} „${String(p.accessibilityLabel ?? str(x)).slice(0, 40)}”`); }
+    if (reads) { n++; if (p.accessibilityLanguage !== l && !(p.accessibilityLanguage === 'en' && l !== 'pl' && isLibName(String(p.accessibilityLabel ?? str(x))))) bad.push(`${x.type} „${String(p.accessibilityLabel ?? str(x)).slice(0, 40)}”`); }
     for (const c of x.children ?? []) walk(c, inText || x.type === 'Text');
   };
   walk(screen.UNSAFE_root, false);

@@ -6,7 +6,7 @@ import { getState, useTick, fmtDayKey } from '@/lib/store';
 import { isSafetyError, isPersistError } from '@/lib/backup';
 import { pickCsv, commitCsvImport } from '@/lib/csvimport';
 import { analyze, normName, isImportError, type ParsedFile, type ImportErrorCode } from '@/lib/csvparse';
-import { t, exName } from '@/lib/i18n';
+import { t, exName, exNameLang } from '@/lib/i18n';
 import type { Unit } from '@/lib/units';
 
 /** Import historii z CSV (decyzja właściciela 11.10.2026): podgląd przed zapisem jest obowiązkowy; nic się nie zmienia, dopóki nie „Importuj”. */
@@ -63,7 +63,7 @@ export default function ImportCsv() {
               {open ? <View style={{ gap: 6, paddingVertical: 6 }}>
                 <Item title={t('Nowe ćwiczenie')} selected={!ex} icon={!ex ? '✓' : undefined} onPress={() => { setMapping(m => ({ ...m, [r.name]: 'new' })); setEditing(null); }} />
                 <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} />
-                {hits.map(e => <Item key={e.id} title={exName(e)} selected={ex?.id === e.id} icon={ex?.id === e.id ? '✓' : undefined} onPress={() => { setMapping(m => ({ ...m, [r.name]: e.id })); setEditing(null); }} />)}
+                {hits.map(e => <Item key={e.id} titleLang={exNameLang(e)} title={exName(e)} selected={ex?.id === e.id} icon={ex?.id === e.id ? '✓' : undefined} onPress={() => { setMapping(m => ({ ...m, [r.name]: e.id })); setEditing(null); }} />)}
               </View> : null}
             </View>); })}
           {a.fresh.length ? <Btn title={t('Importuj')} kind="primary" block loading={working} onPress={run} /> : <Muted>{t('Nie ma nowych treningów do dodania — wszystkie są już w historii.')}</Muted>}
