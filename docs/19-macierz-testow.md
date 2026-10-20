@@ -11,8 +11,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|---|
 | EKRAN | 32 | 32 | 0 |
 | UI | 343 | 343 | 0 |
-| TEKST | 1095 | 1094 | 0 |
-| LOGIKA | 894 | 889 | 0 |
+| TEKST | 1095 | 1095 | 0 |
+| LOGIKA | 894 | 894 | 0 |
 | WYMIAR | 112 | 112 | 0 |
 
 ## EKRAN
@@ -20,7 +20,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Pozycja | Źródło | Testy (pierwsze 3) |
 |---|---|---|
 | /history | app/(tabs)/history.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +56 |
-| / | app/(tabs)/index.tsx | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +203 |
+| / | app/(tabs)/index.tsx | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +204 |
 | /more | app/(tabs)/more.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx +67 |
 | /progress | app/(tabs)/progress.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +35 |
 | /adapt | app/adapt.tsx | tests/a11y-routes.ts, tests/adapt-ui.test.tsx, tests/close-button-guard.test.tsx +1 |
@@ -58,7 +58,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|
 | {label}: {v}, poprzednio {p} | components/PeriodSummary.tsx | tests/period-summary.test.tsx, tests/progression-ui.test.tsx |
 | {label}: {v}, poprzednio {p}, {d} | app/progression.tsx | tests/period-summary.test.tsx, tests/progression-ui.test.tsx |
-| {n} min | app/generator.tsx | tests/adapt-ui.test.tsx, tests/app.tsx, tests/audit-0.10-gen-ui.test.tsx +78 |
+| {n} min | app/generator.tsx | tests/adapt-ui.test.tsx, tests/app.tsx, tests/audit-0.10-gen-ui.test.tsx +79 |
 | {n} z {all} | components/DragList.tsx | (tylko parametry — pokrycie przez test ekranu) |
 | {title} ({sub}): objętość {v}, {p}; serie {s}, {d} | components/Dashboard.tsx | tests/progression-ui.test.tsx |
 | ↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń | app/more/settings.tsx | tests/matrix-ui.test.tsx |
@@ -94,7 +94,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | cel s | app/template/[id].tsx | tests/matrix-invariants.test.ts, tests/release-0.16.test.tsx, tests/scenario-full.test.tsx +10 |
 | Cel serii: {part} | app/more/settings.tsx | tests/set-goals-ui.test.tsx, tests/set-goals.test.ts |
 | Cele partii | app/more/settings.tsx | tests/interaction-patterns.test.tsx |
-| co | components/LoadEditor.tsx | tests/access.test.ts, tests/adapt-ui.test.tsx, tests/audit-0.10-data-ui.test.tsx +192 |
+| co | components/LoadEditor.tsx | tests/access.test.ts, tests/adapt-ui.test.tsx, tests/audit-0.10-data-ui.test.tsx +193 |
 | Co logujesz w serii | app/exercise/[id].tsx | tests/edit-on-demand.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +3 |
 | Cofnij | components/ActiveWorkout.tsx | tests/adapt-ui.test.tsx, tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx +7 |
 | Cofnij zamianę: {name} | app/swap.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx, tests/swap-ui.test.tsx |
@@ -856,7 +856,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | nic więcej do zrobienia | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/voice.test.ts +5 |
 | Nic więcej do zrobienia — możesz zakończyć trening. | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
 | Nic więcej do zrobienia (część pominięta) | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/skip-today.test.tsx |
-| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +244 |
+| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +245 |
 | Nie ma nowych treningów do dodania — wszystkie są już w historii. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Nie ma takiego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego miejsca. | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |
@@ -1046,7 +1046,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Poprawki: Postępy pamiętają wybrane ćwiczenie, import bez godzin pokazuje „godzina nieznana”, a teksty pomocy zgadzają się z nazwami zakładek. | lib/whatsnew.ts | tests/whats-new.test.tsx |
 | poprz. | app/progression.tsx | tests/dashboard.test.tsx, tests/guard-ui.test.tsx, tests/period-bars.test.tsx +1 |
 | Poprzedni miesiąc | app/progression.tsx | tests/audit-0.10-ui.test.tsx, tests/audit-m1-032-total-bars.test.tsx, tests/history-calendar.test.tsx +2 |
-| Poprzedni okres | components/PeriodSummary.tsx | tests/motyw-miesiac.test.tsx, tests/period-summary.test.tsx |
+| Poprzedni okres | components/PeriodSummary.tsx | tests/audit-m1-p3-coverage.test.tsx, tests/motyw-miesiac.test.tsx, tests/period-summary.test.tsx |
 | Poprzedni plan | app/generator.tsx | tests/audit-0.10-tst-ui.test.tsx, tests/mutation-plan.test.ts |
 | Poprzedni tydzień | app/(tabs)/progress.tsx | tests/audit-m1-032-total-bars.test.tsx, tests/deload-week.test.tsx, tests/period-bars.test.tsx +4 |
 | Poprzedni tydzień jest oznaczony jako deload. | app/progression.tsx | tests/deload-week.test.tsx, tests/progression-ui.test.tsx |
@@ -1230,7 +1230,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Tej sesji nie ma już w historii. | lib/edit.ts | tests/edit-history.test.tsx |
 | tempo | app/exercises.tsx | tests/generator-ui.test.tsx, tests/i18n-wave2.test.ts, tests/matrix-data-shared.ts +3 |
 | Ten miesiąc | app/progression.tsx | tests/audit-m1-032-total-bars.test.tsx, tests/period-bars.test.tsx, tests/set-split-ui.test.tsx |
-| Ten okres | components/ProgressBars.tsx | WYJĄTEK: BRAK |
+| Ten okres | components/ProgressBars.tsx | tests/audit-m1-p3-coverage.test.tsx |
 | Ten plan jeszcze nie obowiązuje. Zmień nazwę i dni, potem „Ustaw jako aktywny”. | app/plan.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/plans-multi-ui.test.tsx |
 | ten sam ruch | lib/swap.ts | tests/swap-ui.test.tsx |
 | Ten sam ruch, inny przyrząd | app/adapt.tsx | tests/matrix-logic.test.tsx, tests/scenario-full.test.tsx, tests/swap-ui.test.tsx |
@@ -1504,12 +1504,12 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 
 | Pozycja | Źródło | Testy (pierwsze 3) |
 |---|---|---|
-| a11yPrefs.a11yPrefs | lib/a11yPrefs.ts | tests/audit-m1-024-bold.test.tsx |
-| a11yPrefs.setA11yPrefs | lib/a11yPrefs.ts | tests/audit-m1-024-bold.test.tsx, tests/audit-m1-031-contrast.test.tsx |
-| a11yPrefs.boldTextOn | lib/a11yPrefs.ts | WYJĄTEK: BRAK |
-| a11yPrefs.useA11yPrefs | lib/a11yPrefs.ts | WYJĄTEK: BRAK |
+| a11yPrefs.a11yPrefs | lib/a11yPrefs.ts | tests/audit-m1-024-bold.test.tsx, tests/audit-m1-p3-coverage.test.tsx |
+| a11yPrefs.setA11yPrefs | lib/a11yPrefs.ts | tests/audit-m1-024-bold.test.tsx, tests/audit-m1-031-contrast.test.tsx, tests/audit-m1-p3-coverage.test.tsx |
+| a11yPrefs.boldTextOn | lib/a11yPrefs.ts | tests/audit-m1-p3-coverage.test.tsx |
+| a11yPrefs.useA11yPrefs | lib/a11yPrefs.ts | tests/audit-m1-p3-coverage.test.tsx |
 | a11yPrefs.initA11yPrefs | lib/a11yPrefs.ts | tests/audit-m1-024-bold.test.tsx |
-| a11yPrefs.__resetA11yPrefsForTests | lib/a11yPrefs.ts | tests/audit-m1-024-bold.test.tsx, tests/audit-m1-031-contrast.test.tsx |
+| a11yPrefs.__resetA11yPrefsForTests | lib/a11yPrefs.ts | tests/audit-m1-024-bold.test.tsx, tests/audit-m1-031-contrast.test.tsx, tests/audit-m1-p3-coverage.test.tsx |
 | access.entitlementEnd | lib/access.ts | tests/access.test.ts, tests/subscription-invariants.test.ts |
 | access.entitlementActive | lib/access.ts | tests/access.test.ts, tests/audit-m1-012-status.test.ts, tests/store-adapter.test.ts |
 | access.access | lib/access.ts | tests/access.test.ts, tests/entitlement.test.ts, tests/subscription-ui.test.tsx |
@@ -1873,7 +1873,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | motif.planPct | lib/motif.ts | tests/matrix-invariants.test.ts, tests/motyw.test.tsx |
 | motif.weekProgress | lib/motif.ts | tests/matrix-invariants.test.ts, tests/motyw.test.tsx, tests/plan-wczesniej.test.ts |
 | motif.monthWeeks | lib/motif.ts | tests/matrix-invariants.test.ts, tests/motyw-miesiac.test.tsx, tests/plan-wczesniej.test.ts |
-| motif.contrast | lib/motif.ts | tests/audit-m1-031-contrast.test.tsx, tests/matrix-a11y.test.tsx, tests/motyw.test.tsx +2 |
+| motif.contrast | lib/motif.ts | tests/audit-m1-031-contrast.test.tsx, tests/audit-m1-p3-coverage.test.tsx, tests/matrix-a11y.test.tsx +3 |
 | motif.needsEdge | lib/motif.ts | tests/motyw.test.tsx |
 | musclemap.shadeLevel | lib/musclemap.ts | tests/muscle-map.test.tsx |
 | musclemap.mixHex | lib/musclemap.ts | tests/muscle-map.test.tsx |
@@ -1949,10 +1949,10 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | planReminder.cancelLegacyReminders | lib/planReminder.ts | tests/rm-signing.test.tsx |
 | planReminder.reminderPermission | lib/planReminder.ts | tests/audit-0.10-plan.test.ts, tests/mutation-bounds.test.ts |
 | planReminder.askReminderPermission | lib/planReminder.ts | tests/audit-0.10-plan.test.ts, tests/e2e-102-reminder.test.tsx, tests/mutation-bounds.test.ts |
-| planReminder.restExplainDismissed | lib/planReminder.ts | WYJĄTEK: BRAK |
-| planReminder.dismissRestExplain | lib/planReminder.ts | WYJĄTEK: BRAK |
-| planReminder.requestRestNotificationPermission | lib/planReminder.ts | WYJĄTEK: BRAK |
-| planReminder.__resetReminderAsk | lib/planReminder.ts | tests/app.tsx, tests/helpers.ts |
+| planReminder.restExplainDismissed | lib/planReminder.ts | tests/audit-m1-p3-coverage.test.tsx |
+| planReminder.dismissRestExplain | lib/planReminder.ts | tests/audit-m1-p3-coverage.test.tsx |
+| planReminder.requestRestNotificationPermission | lib/planReminder.ts | tests/audit-m1-p3-coverage.test.tsx |
+| planReminder.__resetReminderAsk | lib/planReminder.ts | tests/app.tsx, tests/audit-m1-p3-coverage.test.tsx, tests/helpers.ts |
 | plural.pluralIndex | lib/plural.ts | tests/audit-m1-042-plural-guard.test.ts, tests/i18n-multi.test.ts, tests/i18n-wave2.test.ts +3 |
 | products.planOfProduct | lib/products.ts | tests/store-adapter.test.ts |
 | products.isSubscriptionPlan | lib/products.ts | tests/store-adapter.test.ts |
@@ -2199,7 +2199,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.setSummary | lib/state/sets.ts | tests/audit-k1-bl-mer.test.tsx, tests/audit-r83.test.tsx, tests/audit-r83b.test.tsx +10 |
 | store.setScore | lib/state/sets.ts | tests/audit-perf-equiv.test.ts, tests/catalog-library25.test.tsx, tests/logic.test.ts |
 | store.setHasValue | lib/state/sets.ts | tests/matrix-dim-metrics.test.tsx, tests/matrix-logic.test.tsx |
-| store.volume | lib/state/sets.ts | tests/audit-0.10-stats.test.ts, tests/audit-close-d.test.ts, tests/audit-k1-data.test.ts +25 |
+| store.volume | lib/state/sets.ts | tests/audit-0.10-stats.test.ts, tests/audit-close-d.test.ts, tests/audit-k1-data.test.ts +26 |
 | store.usesBand | lib/state/sets.ts | tests/band-exercises.test.tsx, tests/matrix-dim-catalog.test.tsx, tests/matrix-invariants.test.ts +1 |
 | store.applyPrefs | lib/state/settings.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-plan.test.ts, tests/audit-0.10-stats-ui.test.tsx +16 |
 | store.setModule | lib/state/settings.ts | tests/matrix-logic.test.tsx |
