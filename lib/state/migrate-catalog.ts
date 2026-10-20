@@ -8,7 +8,7 @@ import { metricFor, loadModeFor, loadMult, musclesFor, hasTime, hasReps, hasWeig
     libExercise, LIB_EXTRA_REVS, LIB_EXTRA_REV, LIB_MUSCLE_FIXES, LIB_FIELD_FIXES, LIB_RENAMED, LIB_MERGED, LIB_RETIRED, libExtraRevOf, LIB_BASE_NAMES_V1, own,
     type Exercise, LIB_KEYS, LIB_DISPLAY_NAME, catalogKey, libKeyCandidates, type LoadMode } from '../seed';
 import { CATALOG, CATALOG_REV } from '../catalog.generated';
-import { isObj, arr, parseNum, idOf } from './util';
+import { isObj, arr, parseNum, idOf, REST_MAX } from './util';
 
 /* audyt 04.10 (LOW): reguła danych sprzed schematu 10 tylko dla pierwszych 125 nazw (pierwsza wersja — także później scalone i przemianowane) —
  * własne ćwiczenie „Svend Press” z web 0.3 nie staje się biblioteką */
@@ -66,7 +66,7 @@ export function migrateExercises(raw: any, owner: string, stamp: (o: any, fallba
       e.metric = g && ((g.w && !hasWeight(lib)) || (g.r && !hasReps(lib))) ? (g.w ? 'weight_reps' : 'reps') : lib;
     }
     if (!['per_dumbbell', 'total', 'unilateral'].includes(e.loadMode)) e.loadMode = loadModeFor(e.equipment, nm);
-    for (const k of ['restSec', 'restWarmupSec']) { const v = parseNum(e[k]); e[k] = v == null || v < 0 ? null : Math.min(1800, Math.round(v)); }
+    for (const k of ['restSec', 'restWarmupSec']) { const v = parseNum(e[k]); e[k] = v == null || v < 0 ? null : Math.min(REST_MAX, Math.round(v)); }
     if (!Array.isArray(e.muscles)) { const [a, b] = musclesFor(nm, e.group); e.muscles = a; e.secondaryMuscles = b; }
     if (!Array.isArray(e.secondaryMuscles)) e.secondaryMuscles = [];
     e.muscles = e.muscles.filter((x: unknown) => typeof x === 'string');

@@ -1,7 +1,7 @@
 import * as Notifications from 'expo-notifications';
 import * as Haptics from 'expo-haptics';
 import { Platform } from 'react-native';
-import { getState, setTimerState, findSet, fmtTime as fmtTimeNow, wallTs, STALE_ASK_MS, lastActivity, staleRef, staleKind } from './store';
+import { getState, setTimerState, findSet, fmtTime as fmtTimeNow, wallTs, STALE_ASK_MS, lastActivity, staleRef, staleKind, DURATION_MAX_SEC } from './store';
 import { restLabel, timedLabel } from './live';
 import * as LA from '@/modules/rest-activity';
 import { t } from './i18n';
@@ -157,7 +157,7 @@ async function reschedule() {
 export const S = { on: false, startAt: 0, targetSec: 0, setId: null as string | null, alarmed: false };
 export async function startSet(setId: string, targetSec: number) {
   if (T.on) await stop(); // jeden timer naraz (runda 19: wycofane równoległe działanie z rundy 18)
-  S.on = true; S.startAt = Date.now(); S.targetSec = Math.min(86400, Math.max(0, Math.round(targetSec || 0))); /* runda 55: jak przy wczytaniu */ S.setId = setId; S.alarmed = false;
+  S.on = true; S.startAt = Date.now(); S.targetSec = Math.min(DURATION_MAX_SEC, Math.max(0, Math.round(targetSec || 0))); /* runda 55: jak przy wczytaniu */ S.setId = setId; S.alarmed = false;
   setTimerState({ setStartAt: S.startAt, setTarget: S.targetSec, setId });
   // Live Activity tylko dla serii z celem — widżet odlicza w dół; seria bez celu liczy w górę wyłącznie w aplikacji.
   if (S.targetSec > 0) laStart('set', labels.subtitle || t('seria {s} s', { s: S.targetSec }), S.startAt + S.targetSec * 1000, S.targetSec);
@@ -179,7 +179,7 @@ export async function stopSet(): Promise<{ setId: string | null; sec: number; en
   const raw = S.on ? Math.round((Date.now() - S.startAt) / 1000) : 0;
   /* T8: seria z celem skończyła się o starcie + cel — także gdy aplikacja (zabita, w tle) dowiaduje się o tym godziny później */
   const endAt = S.on && S.targetSec > 0 && raw > S.targetSec ? S.startAt + S.targetSec * 1000 : Date.now();
-  const sec = Math.min(86400, S.targetSec > 0 ? Math.min(raw, S.targetSec) : raw); /* runda 62: doba, jak pole i wczytanie */ const id = S.setId;
+  const sec = Math.min(DURATION_MAX_SEC, S.targetSec > 0 ? Math.min(raw, S.targetSec) : raw); /* runda 62: doba, jak pole i wczytanie */ const id = S.setId;
   const wasOn = S.on; S.on = false; S.setId = null; setTimerState({ setStartAt: null, setTarget: 0, setId: null }); await cancelSetScheduled(); if (wasOn) laEnd('set'); emit();
   return { setId: id, sec, endAt };
 }
@@ -221,7 +221,7 @@ const staleBodyCore = (kind: StaleKind, at: number, prompt: boolean, fmtTime: (t
     ? (prompt ? t('Ostatnia rozgrzewka o {t}, bez serii roboczych. Kontynuować czy odrzucić?', { t: fmtTime(at) }) : t('Ostatnia rozgrzewka o {t}, bez serii roboczych. Otwórz, by kontynuować albo odrzucić.', { t: fmtTime(at) }))
     : (prompt ? t('Trening rozpoczęty o {t}, bez odhaczonych serii. Kontynuować czy odrzucić?', { t: fmtTime(at) }) : t('Trening rozpoczęty o {t}, bez odhaczonych serii. Otwórz, by kontynuować albo odrzucić.', { t: fmtTime(at) }));
 export async function scheduleStaleReminder(fromMs: number, lastSetMs = fromMs, kind: StaleKind = 'work', pausedAt?: number | null, tz?: number) {
-  await cancelStaleReminder(); const secs = Math.round((fromMs + STALE_ASK_MS - Date.now()) / 1000); if (!(secs >= 1) || secs > 86400) return;
+  await cancelStaleReminder(); const secs = Math.round((fromMs + STALE_ASK_MS - Date.now()) / 1000); if (!(secs >= 1) || secs > DURATION_MAX_SEC) return;
   try { await Notifications.scheduleNotificationAsync({ identifier: STALE_ID, content: { title: t('Trening wciąż trwa'), body: staleBody(kind, lastSetMs, false, pausedAt, tz), sound: soundOn() }, trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: secs, repeats: false } }); } catch {}
 }
 

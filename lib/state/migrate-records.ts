@@ -6,7 +6,7 @@
 import { tIn } from '../i18n';
 import { snapLegacyLb } from '../units';
 import { uid, DEFAULT_REST, SET_KINDS, IMPLS, type TemplateAlt } from '../seed';
-import { isObj, arr, parseNum, idOf, tsOf, intIn, kg2, REPS_MAX } from './util';
+import { isObj, arr, parseNum, idOf, tsOf, intIn, kg2, REPS_MAX, REST_MAX, DURATION_MAX_SEC } from './util';
 import { cleanTz } from './time';
 import { PRE_KEYS } from './setvals';
 import { normalizeGroups } from './groups';
@@ -31,7 +31,7 @@ function setNum(k: typeof SET_NUM[number], v: unknown): number | '' {
   if (n == null) return '';
   const x = k === 'addKg' ? n : Math.max(0, n);
   const r = k === 'rpe' ? Math.min(10, x) : k === 'reps' ? Math.floor(x)
-      : k === 'durationSec' ? Math.min(86400, Math.round(x)) /* runda 61: doba, jak cel stopera */
+      : k === 'durationSec' ? Math.min(DURATION_MAX_SEC, Math.round(x)) /* runda 61: doba, jak cel stopera */
       : k === 'distanceM' ? Math.round(x) /* runda 57: pełne s i m jak w polach i stoperze */ : x;
   return k === 'weight' || k === 'addKg' ? kg2(snapL(r) as number) : r;
 }
@@ -53,7 +53,7 @@ function fixAlternates(it: any) {
   const seen = new Set<string>(); const out: TemplateAlt[] = [];
   for (const x of arr(it.alternates)) {
     const locationId = idOf(x.locationId), exerciseId = idOf(x.exerciseId); if (!locationId || !exerciseId || seen.has(locationId)) continue;
-    const v = parseNum(x.restSec); const restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v));
+    const v = parseNum(x.restSec); const restSec = v == null || v < 0 ? null : Math.min(REST_MAX, Math.round(v));
     const a: TemplateAlt = { locationId, exerciseId, restSec }; if ((IMPLS as readonly unknown[]).includes(x.impl)) a.impl = x.impl;
     if (exerciseId === it.exerciseId && !a.impl) continue; seen.add(locationId); out.push(a);
   }
@@ -72,7 +72,7 @@ export function fixTemplates(raw: any, stamp: (o: any, fallbackTs?: number) => v
       it.exerciseId = idOf(it.exerciseId);
       {
         const v = parseNum(it.targetSec);
-        it.targetSec = v == null || v < 0 ? '' : Math.min(86400, Math.round(v));
+        it.targetSec = v == null || v < 0 ? '' : Math.min(DURATION_MAX_SEC, Math.round(v));
       } /* runda 51 */
       it.groupId = idOf(it.groupId);
       it.sets = intIn(it.sets, 1, 50) ?? 1; /* runda 15: liczba, nie tekst z importu */
@@ -80,8 +80,8 @@ export function fixTemplates(raw: any, stamp: (o: any, fallbackTs?: number) => v
       for (const k of ['repMin', 'repMax']) it[k] = intIn(it[k], 1, 100);
       {
         const v = parseNum(it.restSec);
-        it.restSec = v == null || v < 0 ? null : Math.min(1800, Math.round(v));
-      } /* runda 49: także tekst, jak przerwa ćwiczenia */ /* runda 17: limit 1800 */
+        it.restSec = v == null || v < 0 ? null : Math.min(REST_MAX, Math.round(v));
+      } /* runda 49: także tekst, jak przerwa ćwiczenia */
       {
         const v = parseNum(it.startWeight);
         it.startWeight = v == null ? '' : kg2(snapL(v) as number);
@@ -224,7 +224,7 @@ export const fixWorkout = (raw: any, owner: string, w: any) => {
     e.groupId = idOf(e.groupId);
     {
       const v = parseNum(e.restSec);
-      e.restSec = v == null || v < 0 ? DEFAULT_REST : Math.min(1800, Math.round(v));
+      e.restSec = v == null || v < 0 ? DEFAULT_REST : Math.min(REST_MAX, Math.round(v));
     }
     e.sets = arr(e.sets);
     e.sets.forEach(fixSet);
@@ -274,7 +274,7 @@ function fixRows(it: any) {
   };
   it.rows = it.rows.filter(isObj).slice(0, 50).map((r: any) => ({ id: typeof r.id === 'string' && r.id ? r.id : uid(),
       kind: (SET_KINDS as readonly string[]).includes(r.kind) ? r.kind : 'normal',
-    reps: num(r.reps, 0, REPS_MAX), weight: (v => v == null ? '' : kg2(snapL(v) as number))(parseNum(r.weight)), durationSec: num(r.durationSec, 0, 86400),
+    reps: num(r.reps, 0, REPS_MAX), weight: (v => v == null ? '' : kg2(snapL(v) as number))(parseNum(r.weight)), durationSec: num(r.durationSec, 0, DURATION_MAX_SEC),
         distanceM: num(r.distanceM, 0, 1e6), ...(typeof r.bandId === 'string' && r.bandId ? { bandId: r.bandId } : {}) }));
   syncItem(it);
 }
