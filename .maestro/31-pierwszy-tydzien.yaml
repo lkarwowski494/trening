@@ -96,7 +96,8 @@ name: Pierwszy tydzień nowego użytkownika
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
 - assertVisible: "Workout progress: 1 of 18 sets"
 - takeScreenshot: 83-przerwa
-# pauza treningu w przerwie i wznowienie
+# pauza treningu w przerwie i wznowienie (nagłówek treningu może być przewinięty w górę — przycisk „⋯” przy ćwiczeniu, M1-028, podnosi nagłówki)
+- scrollUntilVisible: { element: "Pause workout", direction: UP, timeout: 15000 }
 - tapOn: "Pause workout"
 - extendedWaitUntil: { visible: "Resume workout", timeout: 15000 }
 - assertVisible: ".* · paused"
