@@ -27,7 +27,7 @@ async function progression(locale: 'pl' | 'en', sc: 'light' | 'dark') {
 describe('podpis mapy mięśni w Progresji', () => {
   test.each([['pl', 'light'], ['pl', 'dark'], ['en', 'light'], ['en', 'dark']] as const)('%s / %s: podpis nie odwołuje się do jasności i opisuje siłę koloru', async (lg, sc) => {
     await progression(lg, sc);
-    const cap = screen.getByTestId('muscle-map').findAll((n: { type: unknown; props: { children?: unknown } }) => n.type === 'Text' && typeof n.props.children === 'string' && /w okresie porównawczym|comparison period/.test(n.props.children as string)).map((n: { props: { children: string } }) => n.props.children);
+    const cap = screen.getByTestId('muscle-map').findAll((n: { type: unknown; props: { children?: unknown } }) => n.type === 'Text' && typeof n.props.children === 'string' && /w okresie porównawczym|comparison period/.test(n.props.children as string)).map(n => n.props.children as string);
     expect(cap).toHaveLength(1);
     expect(cap[0]).toBe(lg === 'pl' ? NEW_PL : 'Highlighted muscle groups have more volume than in the comparison period; the stronger the colour, the bigger the increase. Grey — no increase.');
     expect(cap[0]).not.toMatch(/ciemni|jaśni|darker|lighter|dark|bright/i);

@@ -8,7 +8,7 @@ import { periodTitle } from '@/lib/period';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { fmtVol, wu } from '@/lib/units';
 import { MuscleMap } from '@/components/MuscleMap';
-import { MuscleRows, IndirectLegend, SegBar, SegLegend, setBars, volumeBars } from '@/components/ProgressBars';
+import { MuscleRows, IndirectLegend, SegBar, SegLegend, HatchBar, PeriodLine, setBars, volumeBars } from '@/components/ProgressBars';
 import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t, tp, locale, lang } from '@/lib/i18n';
 import { fmtDayMonth } from '@/lib/calendar';
@@ -28,14 +28,14 @@ function periodLabels(c: Comparison): { cur: string; prev: string } {
   return { cur: periodTitle('week', c.cur.start), prev: periodTitle('week', c.prev.start) };
 }
 
-/** Dwa słupki: bieżący (wykonane + zaplanowane) i poprzedni — wspólna skala. */
-function TotalBars({ id, done, planned, prev, curLabel, prevLabel }: { id: string; done: number; planned: number; prev: number; curLabel: string; prevLabel: string }) {
+/** Dwa słupki na wspólnej osi (M1-audytor-generalny-032, 20.10.2026): okres 1 (wykonane + zaplanowane) — pełny kolor, okres 2 — szary z prążkami (HatchBar), przy każdym
+ * nazwa okresu i liczba (PeriodLine) — ten sam język co paski partii; okresów nie odróżnia sama kolejność ani kolor. */
+function TotalBars({ id, done, planned, prev, curName, prevName, curText, prevText }: { id: string; done: number; planned: number; prev: number; curName: string; prevName: string; curText: string; prevText: string }) {
   const max = Math.max(1, done + planned, prev);
   return (
-    <View testID={`total-${id}`} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ gap: 4, marginTop: 6 }}>
-      <SegBar testID={`total-${id}-cur`} done={done} planned={planned} max={max} height={10} />
-      <SegBar testID={`total-${id}-prev`} done={prev} max={max} height={10} />
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', gap: 8 }}><Muted style={{ fontSize: 11, flexShrink: 1 }}>{curLabel}</Muted><Muted style={{ fontSize: 11, flexShrink: 1, textAlign: 'right' }}>{prevLabel}</Muted></View>
+    <View testID={`total-${id}`} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ gap: 2, marginTop: 4 }}>
+      <PeriodLine n={1} id={`total-${id}`} name={curName} text={curText}><SegBar testID={`total-${id}-cur`} done={done} planned={planned} max={max} height={10} /></PeriodLine>
+      <PeriodLine n={2} id={`total-${id}`} name={prevName} text={prevText}><HatchBar testID={`total-${id}-prev`} pct={Math.min(100, (100 * prev) / max)} height={10} /></PeriodLine>
     </View>);
 }
 
@@ -68,9 +68,9 @@ export default function ProgressionScreen() {
       {empty ? <View testID="progress-empty"><Muted style={{ fontSize: 13 }}>{t('Brak treningów w tym i poprzednim okresie.')}</Muted></View> : <>
         <View style={{ padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
           {rowText('volume', t('Objętość'), vol, fmtVol(c.before.volume), volPct, c.planned ? `${fmtVol(c.done.volume)} + ${c.unknown ? '≥ ' : ''}${fmtVol(plannedV)}` : undefined, c.unknown ? `${t('co najmniej {n}', { n: fmtVol(c.total.volume) })}, ${t('część zaplanowanych serii nie ma ciężaru')}` : undefined)}
-          <TotalBars id="volume" done={c.done.volume} planned={plannedV} prev={c.before.volume} curLabel={`${t('Ten okres')}: ${vol}`} prevLabel={`${t('Poprzedni okres')}: ${fmtVol(c.before.volume)}`} />
+          <TotalBars id="volume" done={c.done.volume} planned={plannedV} prev={c.before.volume} curName={periods[0]} prevName={periods[1]} curText={vol} prevText={fmtVol(c.before.volume)} />
           {rowText('sets', t('Serie robocze'), String(c.total.sets), String(c.before.sets), setsPct, c.planned ? `${c.done.sets} + ${plannedS}` : undefined)}
-          <TotalBars id="sets" done={c.done.sets} planned={plannedS} prev={c.before.sets} curLabel={`${t('Ten okres')}: ${c.total.sets}`} prevLabel={`${t('Poprzedni okres')}: ${c.before.sets}`} />
+          <TotalBars id="sets" done={c.done.sets} planned={plannedS} prev={c.before.sets} curName={periods[0]} prevName={periods[1]} curText={String(c.total.sets)} prevText={String(c.before.sets)} />
           {rowText('workouts', t('Treningi'), String(c.total.workouts), String(c.before.workouts), pctText(c.before.workouts ? Math.round(((c.total.workouts - c.before.workouts) / c.before.workouts) * 100) : null), c.planned ? `${c.done.workouts} + ${c.planned.workouts}` : undefined)}
           {c.planned ? <SegLegend /> : null}
         </View>
