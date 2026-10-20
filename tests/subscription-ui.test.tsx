@@ -32,22 +32,22 @@ async function boot(opts: { on?: boolean; ents?: Entitlement[] | null; live?: nu
 afterEach(() => { PAYWALL.ENABLED = false; resetEntitlementsForTests(); resetStoreAdapterForTests(); applyLang('pl'); jest.restoreAllMocks(); jest.useRealTimers(); });
 const txt = (s: string | RegExp) => screen.queryByText(s); const lbl = (s: string | RegExp) => screen.queryByLabelText(s);
 
-describe('ekran zakupu: ceny, plany, miesiąc za darmo', () => {
-  test('EN, kwalifikacja do próby: trzy plany w kolejności roczny, miesięczny, na zawsze; ceny dokładnie ze sklepu; tekst „1 month free, then …”; cena po próbie w etykiecie VoiceOver', async () => {
+describe('ekran zakupu: ceny, plany, 14 dni za darmo', () => {
+  test('EN, kwalifikacja do próby: trzy plany w kolejności roczny, miesięczny, na zawsze; ceny dokładnie ze sklepu; tekst „14 days free, then …”; cena po próbie w etykiecie VoiceOver', async () => {
     await boot({ locale: 'en' });
     expect(require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions()?.title).toBe('Full version'); /* H1 zdublowany z nagłówkiem usunięty (N28) */
     const labels = ['yearly', 'monthly', 'lifetime'].map(p => screen.getByTestId(`plan-${p}`).props.accessibilityLabel);
-    expect(labels).toEqual([`Yearly, 1 month free, then ${FAKE_PRICES.yearly}/year`, `Monthly, 1 month free, then ${FAKE_PRICES.monthly}/month`, `Forever, ${FAKE_PRICES.lifetime} one-time`]);
+    expect(labels).toEqual([`Yearly, 14 days free, then ${FAKE_PRICES.yearly}/year`, `Monthly, 14 days free, then ${FAKE_PRICES.monthly}/month`, `Forever, ${FAKE_PRICES.lifetime} one-time`]);
     const order = screen.getAllByTestId(/^plan-/).map(n => n.props.testID); expect(order).toEqual(['plan-yearly', 'plan-monthly', 'plan-lifetime']);
     expect(screen.getByTestId('plan-yearly').props.accessibilityState.selected).toBe(true); expect(screen.getByTestId('plan-monthly').props.accessibilityState.selected).toBe(false);
-    expect(screen.getByText('Start your free month')).toBeTruthy(); expect(screen.getByText('The subscription renews automatically until you cancel it in your Apple account settings.')).toBeTruthy();
+    expect(screen.getByText('Start 14 days free')).toBeTruthy(); expect(screen.getByText('The subscription renews automatically until you cancel it in your Apple account settings.')).toBeTruthy();
     expect(screen.getByText('Without a purchase: 4 live workouts per month; history, backup and export are always available.')).toBeTruthy();
     expect(screen.queryByTestId('paywall-limit')).toBeNull();
   });
   test('PL: teksty po polsku, okresy „miesiąc”/„rok”', async () => {
-    await boot(); expect(screen.getByTestId('plan-monthly').props.accessibilityLabel).toBe(`Miesięcznie, 1 miesiąc za darmo, potem ${FAKE_PRICES.monthly}/miesiąc`);
-    expect(screen.getByTestId('plan-yearly').props.accessibilityLabel).toBe(`Rocznie, 1 miesiąc za darmo, potem ${FAKE_PRICES.yearly}/rok`); expect(screen.getByTestId('plan-lifetime').props.accessibilityLabel).toBe(`Na zawsze, ${FAKE_PRICES.lifetime} jednorazowo`);
-    expect(screen.getByText('Zacznij miesiąc za darmo')).toBeTruthy(); expect(screen.getByText('Bez zakupu: 4 treningi na żywo w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.')).toBeTruthy();
+    await boot(); expect(screen.getByTestId('plan-monthly').props.accessibilityLabel).toBe(`Miesięcznie, 14 dni za darmo, potem ${FAKE_PRICES.monthly}/miesiąc`);
+    expect(screen.getByTestId('plan-yearly').props.accessibilityLabel).toBe(`Rocznie, 14 dni za darmo, potem ${FAKE_PRICES.yearly}/rok`); expect(screen.getByTestId('plan-lifetime').props.accessibilityLabel).toBe(`Na zawsze, ${FAKE_PRICES.lifetime} jednorazowo`);
+    expect(screen.getByText('Zacznij 14 dni za darmo')).toBeTruthy(); expect(screen.getByText('Bez zakupu: 4 treningi na żywo w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.')).toBeTruthy();
   });
   test('próba wykorzystana (brak kwalifikacji): bez „za darmo”, przycisk „Subskrybuj”; plan na zawsze: „Kup na zawsze”', async () => {
     await boot({ locale: 'en', fn: f => { f.trialEligible = false; } }); expect(screen.getByTestId('plan-yearly').props.accessibilityLabel).toBe(`Yearly, ${FAKE_PRICES.yearly}/year`);
@@ -56,7 +56,7 @@ describe('ekran zakupu: ceny, plany, miesiąc za darmo', () => {
     await tap(screen.getByTestId('plan-monthly')); expect(screen.getByTestId('plan-monthly').props.accessibilityState.selected).toBe(true); expect(screen.getByText('Subscribe')).toBeTruthy();
   });
   test('ładowanie cen: wskaźnik i tekst, przycisk zakupu jeszcze nie ma', async () => {
-    await boot({ locale: 'en', fn: f => { f.getProducts = () => new Promise(() => {}); } }); expect(screen.getByTestId('paywall-loading')).toBeTruthy(); expect(screen.getByText('Loading prices…')).toBeTruthy(); expect(screen.queryByText('Start your free month')).toBeNull();
+    await boot({ locale: 'en', fn: f => { f.getProducts = () => new Promise(() => {}); } }); expect(screen.getByTestId('paywall-loading')).toBeTruthy(); expect(screen.getByText('Loading prices…')).toBeTruthy(); expect(screen.queryByText('Start 14 days free')).toBeNull();
   });
   test('offline: „Ceny są niedostępne…” i „Spróbuj ponownie”; ponowienie po powrocie sieci pokazuje ceny; ceny z kodu nigdy', async () => {
     await boot({ locale: 'en', fn: f => { f.offline = true; } }); expect(screen.getByTestId('paywall-offline')).toBeTruthy(); expect(screen.getByText('Prices are unavailable without an internet connection.')).toBeTruthy();
@@ -65,22 +65,22 @@ describe('ekran zakupu: ceny, plany, miesiąc za darmo', () => {
     expect(screen.getByText('Restore purchases')).toBeTruthy(); expect(screen.getByText('Redeem code')).toBeTruthy();
   });
   test('sklep nie zna naszych produktów (pusta lista) — komunikat jak offline', async () => {
-    await boot({ locale: 'en', fn: f => { f.getProducts = async () => []; } }); expect(screen.getByTestId('paywall-empty')).toBeTruthy(); expect(screen.queryByText('Start your free month')).toBeNull();
+    await boot({ locale: 'en', fn: f => { f.getProducts = async () => []; } }); expect(screen.getByTestId('paywall-empty')).toBeTruthy(); expect(screen.queryByText('Start 14 days free')).toBeNull();
   });
 });
 
 describe('ekran zakupu: zakup, przywracanie, kod, linki', () => {
   test('wybór miesięcznego i zakup: wywołanie sklepu dla właściwego planu, stan „zakupione” z datą końca próby i przyciskiem „Zarządzaj”; dane treningowe nietknięte', async () => {
     await boot({ locale: 'en', live: 2 }); const before = JSON.stringify(S().workouts);
-    await tap(screen.getByTestId('plan-monthly')); await tap(screen.getByText('Start your free month')); await settle();
+    await tap(screen.getByTestId('plan-monthly')); await tap(screen.getByText('Start 14 days free')); await settle();
     expect(fake.calls.purchase).toBe(1); expect(fake.entitlements()![0].plan).toBe('monthly'); expect(screen.getByTestId('paywall-owned')).toBeTruthy(); expect(screen.getByText('You have the full version')).toBeTruthy();
     expect(screen.getByText(/^Free trial until /)).toBeTruthy(); expect(screen.getByText('Manage subscription')).toBeTruthy(); expect(JSON.stringify(S().workouts)).toBe(before);
     await tap(screen.getByText('Manage subscription')); expect(fake.calls.manageSubscriptions).toBe(1);
   });
   test('anulowanie w oknie Apple: bez komunikatu i bez zmiany; oczekiwanie na zgodę (Ask to Buy): komunikat; błąd: alert „Nie udało się”', async () => {
-    await boot({ locale: 'en' }); fake.nextPurchase = 'cancelled'; await tap(screen.getByText('Start your free month')); await settle(); expect(screen.queryByTestId('paywall-note')).toBeNull(); expect(screen.queryByTestId('paywall-owned')).toBeNull(); expect(global.__alerts).toHaveLength(0);
-    fake.nextPurchase = 'pending'; await tap(screen.getByText('Start your free month')); await settle(); expect(screen.getByTestId('paywall-note').props.children).toBe('Waiting for approval from the family organizer.');
-    fake.nextPurchase = 'error'; await tap(screen.getByText('Start your free month')); await settle(); expect(global.__alerts.find(a => a.title === "Couldn't complete the purchase")!.msg).toBe('Please try again.'); expect(fake.entitlements()).toEqual([]);
+    await boot({ locale: 'en' }); fake.nextPurchase = 'cancelled'; await tap(screen.getByText('Start 14 days free')); await settle(); expect(screen.queryByTestId('paywall-note')).toBeNull(); expect(screen.queryByTestId('paywall-owned')).toBeNull(); expect(global.__alerts).toHaveLength(0);
+    fake.nextPurchase = 'pending'; await tap(screen.getByText('Start 14 days free')); await settle(); expect(screen.getByTestId('paywall-note').props.children).toBe('Waiting for approval from the family organizer.');
+    fake.nextPurchase = 'error'; await tap(screen.getByText('Start 14 days free')); await settle(); expect(global.__alerts.find(a => a.title === "Couldn't complete the purchase")!.msg).toBe('Please try again.'); expect(fake.entitlements()).toEqual([]);
   });
   test('Przywróć zakupy: przywrócono / brak zakupów dla konta / błąd sieci (EN i PL), przycisk działa też bez cen (offline)', async () => {
     await boot({ locale: 'en' }); await tap(screen.getByText('Restore purchases')); await settle(); expect(screen.getByTestId('paywall-note').props.children).toBe('No purchases found for this Apple account.');

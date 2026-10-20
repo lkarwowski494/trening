@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4400-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4406-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-45-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -62,8 +62,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Komunikaty i teksty | 1091 (z testem: 1091) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 886 (z testem: 886) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 112 (z testem: 112) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 344 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 4400 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 345 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 4406 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 152 (Maestro: 125, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 13) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 45 (w głównym przebiegu: 42, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -98,11 +98,11 @@ Stan przełącznika płatności: `PAYWALL.ENABLED` = `false` (`lib/access.ts`) �
 
 | Plan | Rodzaj | Cena referencyjna (USD, plik `store/Trening.storekit`) |
 |---|---|---|
-| Miesięczny | subskrypcja odnawiana co miesiąc, pierwsze 1 miesiąc bezpłatnie | 0.99 |
-| Roczny | subskrypcja odnawiana co rok, pierwsze 1 miesiąc bezpłatnie | 4.99 |
+| Miesięczny | subskrypcja odnawiana co miesiąc, pierwsze 14 dni bezpłatnie | 0.99 |
+| Roczny | subskrypcja odnawiana co rok, pierwsze 14 dni bezpłatnie | 4.99 |
 | Dożywotni | zakup jednorazowy | 14.99 |
 
-Okres próbny w kodzie: 1 miesiąc (`TRIAL_MONTHS`, `lib/products.ts`); karencja offline dla zapamiętanego dostępu: 7 dni (`OFFLINE_GRACE_DAYS`).
+Okres próbny w kodzie: 14 dni (`TRIAL_DAYS`, `lib/products.ts`); karencja offline dla zapamiętanego dostępu: 7 dni (`OFFLINE_GRACE_DAYS`).
 <!-- /gen:pricing -->
 
 Płatne funkcje zależą od jednego przełącznika w jednym module, więc przejście na model darmowy to zmiana jednej wartości i wydanie.

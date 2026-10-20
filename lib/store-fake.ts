@@ -4,7 +4,7 @@
  * Zegar: Date.now() (testy ustawiają fałszywy zegar Jesta). Ceny to wartości testowe, nie ceny sklepu.
  */
 import type { Entitlement, EntitlementPlan } from '@/lib/access';
-import { PRODUCT_IDS, SUBSCRIPTION_PLANS, TRIAL_MONTHS } from '@/lib/products';
+import { PRODUCT_IDS, SUBSCRIPTION_PLANS, TRIAL_DAYS } from '@/lib/products';
 import type { PurchaseOutcome, StoreAdapter, StoreProduct } from '@/lib/store-adapter';
 
 const DAY_MS = 86400e3;
@@ -51,7 +51,7 @@ export function createFakeStore(initial: Entitlement[] | null = []): StoreAdapte
       const forced = ctl.nextPurchase; ctl.nextPurchase = null; if (forced && forced !== 'success') return forced === 'error' ? { status: 'error', message: 'fake' } : { status: forced };
       const now = Date.now(); const trial = SUBSCRIPTION_PLANS.includes(plan) && ctl.trialEligible; ctl.trialEligible = ctl.trialEligible && !SUBSCRIPTION_PLANS.includes(plan);
       const periodMs = plan === 'yearly' ? 365 * DAY_MS : 30 * DAY_MS;
-      const e: Entitlement = plan === 'lifetime' ? { plan, source: 'purchase', expiresAt: null } : { plan, source: 'purchase', expiresAt: now + (trial ? TRIAL_MONTHS * 30 * DAY_MS : periodMs), ...(trial ? { trial: true as const } : {}) };
+      const e: Entitlement = plan === 'lifetime' ? { plan, source: 'purchase', expiresAt: null } : { plan, source: 'purchase', expiresAt: now + (trial ? TRIAL_DAYS * DAY_MS : periodMs), ...(trial ? { trial: true as const } : {}) };
       ent = [...(ent ?? []).filter(x => x.plan === 'lifetime' || plan === 'lifetime'), e]; emit(); return { status: 'success' };
     },
     async restore() { ctl.calls.restore++; if (ctl.offline) throw offlineError(); if (ctl.restorable.length) { ent = [...(ent ?? []), ...ctl.restorable]; ctl.restorable = []; emit(); } return ent ?? []; },

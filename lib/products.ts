@@ -21,8 +21,8 @@ export const PLAN_ORDER: readonly EntitlementPlan[] = ['yearly', 'monthly', 'lif
 export const SUBSCRIPTION_PLANS: readonly EntitlementPlan[] = ['monthly', 'yearly'];
 /** [DO POTWIERDZENIA w App Store Connect] Nazwa referencyjna grupy subskrypcji (docs/27 rozdz. 6 pkt 3); w aplikacji nieużywana, tylko w pliku `.storekit`. */
 export const SUBSCRIPTION_GROUP_NAME = 'Pełna wersja';
-/** Długość okresu próbnego w miesiącach — oferta wprowadzająca Apple, w obu planach subskrypcji (docs/15, 09.10.2026 pkt 2). */
-export const TRIAL_MONTHS = 1;
+/** Długość okresu próbnego w dniach — oferta wprowadzająca Apple (2 tygodnie, w ASC „2 weeks”), w obu planach subskrypcji. Model stały, decyzja właściciela 19.10.2026 (zastępuje „1 miesiąc” z 09.10.2026); audyt M1-011. */
+export const TRIAL_DAYS = 14;
 
 export const planOfProduct = (productId: string): EntitlementPlan | null => (Object.keys(PRODUCT_IDS) as EntitlementPlan[]).find(p => PRODUCT_IDS[p] === productId) ?? null;
 export const isSubscriptionPlan = (p: EntitlementPlan): boolean => SUBSCRIPTION_PLANS.includes(p);

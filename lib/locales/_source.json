@@ -76,6 +76,10 @@
   "en": "{d} direct, {w} indirect (secondary sets: {n})"
  },
  {
+  "pl": "{days} dni za darmo, potem {price}/{period}",
+  "en": "{days} days free, then {price}/{period}"
+ },
+ {
   "pl": "{ex} — {n} min, umiarkowane tempo",
   "en": "{ex} — {n} min, moderate pace"
  },
@@ -330,10 +334,6 @@
  {
   "pl": "📍 Miejsce na te dni",
   "en": "📍 Place for these days"
- },
- {
-  "pl": "1 miesiąc za darmo, potem {price}/{period}",
-  "en": "1 month free, then {price}/{period}"
  },
  {
   "pl": "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.",
@@ -6364,8 +6364,8 @@
   "en": "Start with fewer sets: {a} instead of {b} working sets? Same weights, the template stays unchanged."
  },
  {
-  "pl": "Zacznij miesiąc za darmo",
-  "en": "Start your free month"
+  "pl": "Zacznij {days} dni za darmo",
+  "en": "Start {days} days free"
  },
  {
   "pl": "Zacznij trening na telefonie",

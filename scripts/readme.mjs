@@ -218,7 +218,7 @@ const BLOCKS = {
   pricing() {
     const acc = read('lib/access.ts'); const prod = read('lib/products.ts');
     const enabled = /ENABLED:\s*(true|false),/.exec(acc)?.[1]; const free = /FREE_LIVE_PER_MONTH:\s*(\d+)/.exec(acc)?.[1]; const grace = /OFFLINE_GRACE_DAYS:\s*(\d+)/.exec(acc)?.[1];
-    const trial = /TRIAL_MONTHS\s*=\s*(\d+)/.exec(prod)?.[1]; if (!enabled || !free || !grace || !trial) fail('lib/access.ts / lib/products.ts: brak PAYWALL albo TRIAL_MONTHS');
+    const trial = /TRIAL_DAYS\s*=\s*(\d+)/.exec(prod)?.[1]; if (!enabled || !free || !grace || !trial) fail('lib/access.ts / lib/products.ts: brak PAYWALL albo TRIAL_DAYS');
     const kit = JSON.parse(read('store/Trening.storekit'));
     const subs = kit.subscriptionGroups.flatMap(g => g.subscriptions); const sub = p => subs.find(s => s.recurringSubscriptionPeriod === p) ?? fail(`store/Trening.storekit: brak subskrypcji ${p}`);
     const life = kit.products.find(p => p.type === 'NonConsumable') ?? fail('store/Trening.storekit: brak zakupu jednorazowego');
@@ -227,12 +227,12 @@ const BLOCKS = {
       ? `bez pełnej wersji dostępnych jest ${free} treningów na żywo w miesiącu kalendarzowym; zapisane wyniki, historia, kopia i eksport zostają zawsze dostępne.`
       : 'wszystkie funkcje są dostępne bez limitu, dopóki właściciel nie włączy płatności (zmiana jednej wartości i wydanie).'}`, '');
     L.push('| Plan | Rodzaj | Cena referencyjna (USD, plik `store/Trening.storekit`) |', '|---|---|---|');
-    const months = n => (n === 1 ? 'miesiąc' : n >= 2 && n <= 4 ? 'miesiące' : 'miesięcy');
-    const intro = s => s.introductoryOffer?.paymentMode === 'free' ? `, pierwsze ${s.introductoryOffer.numberOfPeriods * (s.introductoryOffer.subscriptionPeriod === 'P1M' ? 1 : 12)} ${months(s.introductoryOffer.numberOfPeriods * (s.introductoryOffer.subscriptionPeriod === 'P1M' ? 1 : 12))} bezpłatnie` : '';
+    const days = p => ({ P3D: 3, P1W: 7, P2W: 14, P1M: 30, P2M: 60, P3M: 90 })[p] ?? fail(`store/Trening.storekit: nieznany okres oferty ${p}`);
+    const intro = s => s.introductoryOffer?.paymentMode === 'free' ? `, pierwsze ${s.introductoryOffer.numberOfPeriods * days(s.introductoryOffer.subscriptionPeriod)} dni bezpłatnie` : '';
     L.push(`| Miesięczny | subskrypcja odnawiana co miesiąc${intro(sub('P1M'))} | ${sub('P1M').displayPrice} |`);
     L.push(`| Roczny | subskrypcja odnawiana co rok${intro(sub('P1Y'))} | ${sub('P1Y').displayPrice} |`);
     L.push(`| Dożywotni | zakup jednorazowy | ${life.displayPrice} |`, '');
-    L.push(`Okres próbny w kodzie: ${trial} ${months(+trial)} (\`TRIAL_MONTHS\`, \`lib/products.ts\`); karencja offline dla zapamiętanego dostępu: ${grace} dni (\`OFFLINE_GRACE_DAYS\`).`);
+    L.push(`Okres próbny w kodzie: ${trial} dni (\`TRIAL_DAYS\`, \`lib/products.ts\`); karencja offline dla zapamiętanego dostępu: ${grace} dni (\`OFFLINE_GRACE_DAYS\`).`);
     return L.join('\n');
   },
   workflows() {

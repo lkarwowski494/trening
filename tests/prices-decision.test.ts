@@ -17,11 +17,11 @@ describe('ceny M1 (13.10.2026, stan App Store Connect 14.10.2026)', () => {
     const v = (s: string) => parseFloat(s.replace(',', '.'));
     expect(Math.round(v(PLN_PRICES.monthly) * 4)).toBe(Math.round(v(PLN_PRICES.yearly))); expect(Math.round(v(PLN_PRICES.yearly) * 3)).toBe(Math.round(v(PLN_PRICES.lifetime)));
   });
-  test('ASC w .storekit: Family Sharing we wszystkich trzech, darmowy miesiąc (P1M) w obu subskrypcjach, roczna poziom 1, miesięczna poziom 2', () => {
+  test('ASC w .storekit: Family Sharing we wszystkich trzech, darmowe 14 dni (P2W) w obu subskrypcjach, roczna poziom 1, miesięczna poziom 2', () => {
     const f = JSON.parse(read('store/Trening.storekit'));
     const subs = f.subscriptionGroups.flatMap((g: any) => g.subscriptions); const all = [...f.products, ...subs];
     expect(all).toHaveLength(3); for (const x of all) expect(x.familyShareable).toBe(true);
-    for (const x of subs) expect(x.introductoryOffer).toMatchObject({ paymentMode: 'free', subscriptionPeriod: 'P1M', numberOfPeriods: 1 });
+    for (const x of subs) expect(x.introductoryOffer).toMatchObject({ paymentMode: 'free', subscriptionPeriod: 'P2W', numberOfPeriods: 1 });
     const sub = (id: string) => subs.find((x: any) => x.productID.endsWith(id));
     expect(sub('.yearly').groupNumber).toBe(1); expect(sub('.monthly').groupNumber).toBe(2);
     expect(sub('.monthly').recurringSubscriptionPeriod).toBe('P1M'); expect(sub('.yearly').recurringSubscriptionPeriod).toBe('P1Y');
@@ -58,7 +58,7 @@ describe('ceny M1 (13.10.2026, stan App Store Connect 14.10.2026)', () => {
     expect(d).toContain('4.99 PLN and 19.99 PLN in Poland');
     expect(d).toMatch(/ZMIANA CEN \(decyzja właściciela 13\.10\.2026[^)]*docs\/18/);
   });
-  test('docs/18: wpis z 14.10.2026 opisuje ceny PL, Family Sharing, darmowy miesiąc, poziomy, Billing Grace Period i Standard EULA', () => {
+  test('docs/18: wpis z 14.10.2026 opisuje ceny PL, Family Sharing, darmowe 14 dni, poziomy, Billing Grace Period i Standard EULA', () => {
     const d = read('docs/18-przekazanie.md'); const i = d.indexOf('14.10.2026 (właściciel): ceny w App Store Connect'); expect(i).toBeGreaterThan(-1);
     const e = d.slice(i, i + 4000);
     for (const k of ['4,99 zł', '19,99 zł', '59,99 zł', '24,99', '69,99', 'Family Sharing', 'armowy miesiąc', 'poziom 1', 'poziom 2', 'Billing Grace Period', '3 dni', 'All Renewals', 'Standard EULA', 'DSA', '9+']) expect(e).toContain(k);

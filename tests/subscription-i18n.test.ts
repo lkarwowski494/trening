@@ -11,10 +11,10 @@ const PAIRS: [string, string][] = [
   ['rok', 'year'],
   ['miesiąc', 'month'],
   ['{price} jednorazowo', '{price} one-time'],
-  ['1 miesiąc za darmo, potem {price}/{period}', '1 month free, then {price}/{period}'],
+  ['{days} dni za darmo, potem {price}/{period}', '{days} days free, then {price}/{period}'],
   ['{price}/{period}', '{price}/{period}'],
   ['Kup na zawsze', 'Buy forever'],
-  ['Zacznij miesiąc za darmo', 'Start your free month'],
+  ['Zacznij {days} dni za darmo', 'Start {days} days free'],
   ['Subskrybuj', 'Subscribe'],
   ['Czeka na zgodę organizatora rodziny.', 'Waiting for approval from the family organizer.'],
   ['Przywrócono zakupy.', 'Purchases restored.'],
@@ -55,10 +55,10 @@ test('wszystkie klucze 0.17.0: te same {parametry} w polskim i angielskim, niepu
   for (const [pl, en] of PAIRS) { expect(en.trim()).not.toBe(''); expect(p(en)).toBe(p(pl)); }
 });
 test('t() w obu językach podstawia parametry (cena, okres, data, liczby) i nie zostawia nawiasów', () => {
-  const args: Record<string, string | number> = { price: '3,99 zł', period: 'miesiąc', date: '1 lis', n: 4, limit: 4, s: 'treningi' };
+  const args: Record<string, string | number> = { price: '3,99 zł', period: 'miesiąc', date: '1 lis', n: 4, limit: 4, s: 'treningi', days: 14 };
   for (const lang of ['pl', 'en'] as const) { applyLang(lang); for (const [pl] of PAIRS) { if (pl.includes('|')) continue; const r = t(pl, args); expect(r).not.toMatch(/\{\w+\}/); expect(r.length).toBeGreaterThan(0); } }
-  applyLang('en'); expect(t('1 miesiąc za darmo, potem {price}/{period}', { price: '$4.99', period: 'year' })).toBe('1 month free, then $4.99/year');
-  applyLang('pl'); expect(t('1 miesiąc za darmo, potem {price}/{period}', { price: '19,99 zł', period: 'rok' })).toBe('1 miesiąc za darmo, potem 19,99 zł/rok');
+  applyLang('en'); expect(t('{days} dni za darmo, potem {price}/{period}', { days: 14, price: '$4.99', period: 'year' })).toBe('14 days free, then $4.99/year');
+  applyLang('pl'); expect(t('{days} dni za darmo, potem {price}/{period}', { days: 14, price: '19,99 zł', period: 'rok' })).toBe('14 dni za darmo, potem 19,99 zł/rok');
 });
 test('liczebnik „trening|treningi|treningów” (limit darmowych treningów): polski 1/2/5, angielski 1/4', () => {
   applyLang('pl'); expect([1, 2, 4, 5, 22].map(n => tp(n, 'trening|treningi|treningów'))).toEqual(['trening', 'treningi', 'treningi', 'treningów', 'treningi']);

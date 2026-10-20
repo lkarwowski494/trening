@@ -249,7 +249,7 @@
    "kroki": [
     "Zrób pierwszy trening (build ze sztucznym sklepem: limit 1)",
     "Spróbuj zacząć drugi",
-    "Ekran zakupu zamiast startu; „Rozpocznij miesiąc za darmo” odblokowuje"
+    "Ekran zakupu zamiast startu; „Zacznij 14 dni za darmo” odblokowuje"
    ],
    "wynik": "Limit działa; zakup (sztuczny sklep) odblokowuje start; „Zarejestruj trening z przeszłości” nadal możliwe.",
    "ekrany": [
@@ -257,7 +257,7 @@
    ],
    "scenariusz": "21-subskrypcja.yaml",
    "znaczniki": [
-    "Start your free month"
+    "Start 14 days free"
    ]
   },
   {

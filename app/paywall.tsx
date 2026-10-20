@@ -7,26 +7,26 @@ import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t, tp, lang } from '@/lib/i18n';
 import { fmtDate } from '@/lib/store';
 import { entitlementActive, type EntitlementPlan } from '@/lib/access';
-import { PLAN_ORDER, PRIVACY_URL, TERMS_URL, isFakeStoreBuild } from '@/lib/products';
+import { PLAN_ORDER, PRIVACY_URL, TERMS_URL, TRIAL_DAYS, isFakeStoreBuild } from '@/lib/products';
 import { getStoreAdapter, type StoreProduct } from '@/lib/store-adapter';
 import type { FakeStoreControl } from '@/lib/store-fake';
 import { useAccess, purchasePlan, restorePurchases, paywallConfig, refreshEntitlements, nextMonthDay } from '@/lib/entitlement';
 import { useAnnounce } from '@/lib/announce';
 
 /*
- * Ekran zakupu (docs/27 rozdz. 5, wydanie 0.17.0): ceny wyłącznie z App Store (displayPrice), „1 miesiąc za darmo, potem {cena}/{okres}” tylko dla osób
+ * Ekran zakupu (docs/27 rozdz. 5, wydanie 0.17.0): ceny wyłącznie z App Store (displayPrice), „14 dni za darmo, potem {cena}/{okres}” tylko dla osób
  * uprawnionych do próby, „Przywróć zakupy”, linki Prywatność + Warunki (standardowa licencja Apple, P9 A). Stany: ładowanie, brak sieci, błąd, zakupione.
  * Dostęp z Ustawień → „Subskrypcja” (tylko gdy PAYWALL.ENABLED) oraz automatycznie przy starcie treningu ponad limit (reason=limit) i raz po pierwszym treningu
  * (reason=first, P2 B). Żadna akcja tego ekranu nie zmienia treningów ani danych użytkownika.
  */
 export const planName = (p: EntitlementPlan): string => (p === 'yearly' ? t('Rocznie') : p === 'monthly' ? t('Miesięcznie') : t('Na zawsze'));
 const periodWord = (p: StoreProduct['period']): string => (p === 'year' ? t('rok') : t('miesiąc'));
-/** Wiersz ceny planu: z miesiącem za darmo (osoba uprawniona do próby), sama cena okresowa albo cena jednorazowa. */
+/** Wiersz ceny planu: z okresem próbnym (14 dni) (osoba uprawniona do próby), sama cena okresowa albo cena jednorazowa. */
 export function priceLine(p: StoreProduct): string {
   if (p.period === null) return t('{price} jednorazowo', { price: p.displayPrice });
-  return p.trial ? t('1 miesiąc za darmo, potem {price}/{period}', { price: p.displayPrice, period: periodWord(p.period) }) : t('{price}/{period}', { price: p.displayPrice, period: periodWord(p.period) });
+  return p.trial ? t('{days} dni za darmo, potem {price}/{period}', { days: TRIAL_DAYS, price: p.displayPrice, period: periodWord(p.period) }) : t('{price}/{period}', { price: p.displayPrice, period: periodWord(p.period) });
 }
-const ctaLabel = (p: StoreProduct): string => (p.period === null ? t('Kup na zawsze') : p.trial ? t('Zacznij miesiąc za darmo') : t('Subskrybuj'));
+const ctaLabel = (p: StoreProduct): string => (p.period === null ? t('Kup na zawsze') : p.trial ? t('Zacznij {days} dni za darmo', { days: TRIAL_DAYS }) : t('Subskrybuj'));
 
 export default function PaywallScreen() {
   const th = useTheme(); const router = useRouter(); const headerOpts = useCloseHeader(); /* zasada 13.10.2026: „Zamknij” w nagłówku zawsze (także reason=settings); „Nie teraz” na dole zostaje */ const { reason } = useLocalSearchParams<{ reason?: string }>(); const view = useAccess();
