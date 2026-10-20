@@ -3085,9 +3085,9 @@
    "wersja": "0.20",
    "realnosc": "realny",
    "kroki": [
-    "Ustawienia → Trening → „Zapowiedzi głosowe” (domyślnie „W słuchawkach”, opis pod ⓘ)",
+    "Ustawienia → Trening → „Zapowiedzi głosowe” (nowa instalacja: domyślnie „Wyłączone”, opis pod ⓘ)",
     "„Także przez głośnik” → „Posłuchaj przykładu” (aplikacja działa dalej)",
-    "„Wyłączone” → restart: wybór zachowany; powrót do „W słuchawkach”"
+    "„W słuchawkach” → restart: wybór zachowany; powrót do „Wyłączone”"
    ],
    "wynik": "Wybór zapisany i trwały; przykład nie psuje ekranu (dźwięku symulator nie odtwarza).",
    "ekrany": [

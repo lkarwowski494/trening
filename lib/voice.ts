@@ -12,7 +12,7 @@ import type { Workout } from './seed';
  * Głos w słuchawkach (0.20 „Zegarki i głos”; docs/36-glos.md; decyzje właściciela 13.10.2026): na POCZĄTKU przerwy telefon mówi to samo, co pokazuje zegarek i podpis
  * przerwy (lib/live.ts restCue: ćwiczenie, ciężar, liczba powtórzeń — bez talerzy), a przy rekordzie najpierw „Nowy rekord!”. Koniec przerwy to osobny krótki sygnał —
  * dotychczasowe powiadomienie lokalne (dźwięk + wibracja), nie mowa. Mówi telefon. Wybór „Zapowiedzi głosowe” (19.10.2026, decyzja właściciela; zastępuje przełącznik głośnika):
- * Wyłączone / W słuchawkach (domyślnie; bez słuchawek cisza) / Także przez głośnik — w Ustawieniach i przyciskiem „Głos” na ekranie treningu (zmiana trwała).
+ * Wyłączone (domyślnie dla nowej instalacji od 20.10.2026, DEC-05) / W słuchawkach (bez słuchawek cisza) / Także przez głośnik — w Ustawieniach i przyciskiem „Głos” na ekranie treningu (zmiana trwała).
  * Etap 1: tylko przy aplikacji na wierzchu (bez trybu audio w tle — docs/36 rozdz. 5). Muzykę ściszamy na czas zdania (moduł natywny VoiceCue).
  * Tu jest cała LOGIKA (kiedy i co mówi) — czysta i testowana; moduł natywny tylko wykonuje.
  */
@@ -22,8 +22,11 @@ export type VoiceReason = typeof VOICE_REASONS[number];
 /** Wybór „Zapowiedzi głosowe” (19.10.2026): kolejność opcji w Ustawieniach i w arkuszu na ekranie treningu. */
 export const VOICE_SETTINGS = ['off', 'headphones', 'speaker'] as const;
 export type VoiceSetting = typeof VOICE_SETTINGS[number];
-/** Domyślnie „W słuchawkach” (decyzja właściciela 19.10.2026) — w danych brak pola `Settings.voice`. */
+/** Sens BRAKU pola `Settings.voice` w zapisanych danych: „W słuchawkach” (tak działało od wydania 0.20, decyzja 19.10.2026). Zostaje, żeby użytkownik, który
+ * ustawienia nie ruszał, nie stracił zachowania po aktualizacji (DEC-05, 20.10.2026: bez migracji i bez zmiany schematu). */
 export const VOICE_DEFAULT: VoiceSetting = 'headphones';
+/** Nowa instalacja (DEC-05, decyzja właściciela 20.10.2026, zastępuje „W słuchawkach” z 19.10): głos wyłączony — seed zapisuje to JAWNIE (lib/seed.ts seedState). */
+export const VOICE_NEW_INSTALL: VoiceSetting = 'off';
 export interface VoiceInput { sound: boolean; setting: VoiceSetting; headphones: boolean; appActive: boolean; screenReader: boolean }
 export interface VoiceDecision { mode: VoiceMode; reason: VoiceReason }
 
@@ -41,11 +44,11 @@ export function voicePolicy(i: VoiceInput): VoiceDecision {
   return { mode: 'speak', reason: i.headphones ? 'headphones' : 'speaker' };
 }
 
-/** Bieżący wybór „Zapowiedzi głosowe” (brak pola albo zła wartość = domyślna). */
-export function voiceSetting(s: { voice?: unknown } = getState().settings): VoiceSetting { return s.voice === 'off' || s.voice === 'speaker' ? s.voice : VOICE_DEFAULT; }
-/** Zmiana wyboru (Ustawienia i przycisk „Głos” na ekranie treningu) — trwała; w danych tylko odstępstwo od domyślnej. „Wyłączone” przerywa trwającą zapowiedź. */
+/** Bieżący wybór „Zapowiedzi głosowe” (brak pola albo zła wartość = VOICE_DEFAULT, sens danych sprzed 20.10.2026; nowa instalacja ma pole jawnie). */
+export function voiceSetting(s: { voice?: unknown } = getState().settings): VoiceSetting { return s.voice === 'off' || s.voice === 'speaker' || s.voice === 'headphones' ? s.voice : VOICE_DEFAULT; }
+/** Zmiana wyboru (Ustawienia i przycisk „Głos” na ekranie treningu) — trwała; od 20.10.2026 zawsze jawna wartość (brak pola = „W słuchawkach” tylko w danych starszych). „Wyłączone” przerywa trwającą zapowiedź. */
 export function setVoiceSetting(v: VoiceSetting): void {
-  const s = getState().settings; if (v === 'off' || v === 'speaker') s.voice = v; else delete s.voice; /* VOICE_DEFAULT ('headphones') = brak pola */ saveCfg(); if (v === 'off') silenceVoice();
+  const s = getState().settings; s.voice = v; saveCfg(); if (v === 'off') silenceVoice();
 }
 const VOICE_LABEL: Record<VoiceSetting, () => string> = { off: () => t('Wyłączone'), headphones: () => t('W słuchawkach'), speaker: () => t('Także przez głośnik') };
 /** Nazwa opcji w języku interfejsu (Ustawienia, arkusz i etykieta VoiceOver przycisku na ekranie treningu). */

@@ -181,9 +181,10 @@ export function migrate(raw: any): State {
     healthSync: typeof s.healthSync === 'boolean' ? s.healthSync : d.healthSync,
     ...((r => r ? { reviewAsked: r } : {})(normalizeReviewAsked(s.reviewAsked))), /* 0.17.0 (docs/26): tylko poprawna para {at, version}; przyszła data (zegar cofnięty, uszkodzone dane) = brak pola */
     ...((n => n != null ? { ideaShownAt: n } : {})(normalizeIdeaShownAt(s.ideaShownAt))), /* 0.20 (docs/34): tylko nieujemna liczba całkowita */
-    /* 19.10.2026 „Zapowiedzi głosowe”: zapis tylko odstępstwa od „W słuchawkach”; dane 0.20 bez pola `voice`: voiceSpeaker true → „Także przez głośnik”, inaczej domyślna.
-     * Zła wartość `voice` = domyślna (bez sięgania do dawnego pola). Dawne `voiceSpeaker` znika (jedno źródło) — idempotentne. */
-    ...((v => v === 'off' || v === 'speaker' ? { voice: v } : {})(s.voice !== undefined ? s.voice : s.voiceSpeaker === true ? 'speaker' : undefined)),
+    /* 19.10.2026 „Zapowiedzi głosowe”; dane 0.20 bez pola `voice`: voiceSpeaker true → „Także przez głośnik”, inaczej brak pola.
+     * 20.10.2026 (DEC-05): poprawna wartość (off, headphones, speaker) zostaje jawnie; BRAK pola nadal znaczy „W słuchawkach” (lib/voice.ts VOICE_DEFAULT) — użytkownik,
+     * który ustawienia nie ruszał, nie traci zachowania; „Wyłączone” dla nowej instalacji zapisuje seed. Zła wartość = brak pola. Dawne `voiceSpeaker` znika — idempotentne. */
+    ...((v => v === 'off' || v === 'speaker' || v === 'headphones' ? { voice: v } : {})(s.voice !== undefined ? s.voice : s.voiceSpeaker === true ? 'speaker' : undefined)),
     ...(s.healthRead === true ? { healthRead: true as const } : {}), /* 0.16.0 (P2 A): tylko włączenie zapisane; zła wartość = wyłączony */
     /* runda 75 */
     progressHint: typeof s.progressHint === 'boolean' ? s.progressHint : d.progressHint,

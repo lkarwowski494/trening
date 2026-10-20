@@ -36,7 +36,7 @@ Przy rekordzie przed zapowiedzią „Nowy rekord!” (ta sama detekcja co plakie
 | 0 | „Zapowiedzi głosowe”: Wyłączone (19.10.2026) | cisza — zawsze, także w słuchawkach i przy VoiceOverze (powód `voice-off`) |
 | 1 | „Dźwięk i wibracja” wyłączone w Ustawieniach | cisza (wspólny wyłącznik dźwięków przerwy) |
 | 2 | aplikacja w tle / nieaktywna | cisza (etap 1, rozdz. 5) |
-| 3 | brak słuchawek przy „W słuchawkach” (domyślnie) | cisza |
+| 3 | brak słuchawek przy „W słuchawkach” | cisza |
 | 4 | VoiceOver włączony | `announce()` — głos i tempo VoiceOvera użytkownika, bez własnej syntezy równolegle |
 | 5 | słuchawki (przewodowe, Bluetooth, USB) | mowa |
 | 6 | głośnik telefonu przy „Także przez głośnik” | mowa |
@@ -47,11 +47,16 @@ Koniec przerwy: dotychczasowe powiadomienie lokalne (dźwięk + wibracja, dział
 
 ## 3. Ustawienia (Więcej → Ustawienia → Trening)
 
-- **19.10.2026 (decyzja właściciela, zastępuje przełącznik z 0.20):** „Zapowiedzi głosowe” — jeden wybór **Wyłączone / W słuchawkach / Także przez głośnik**, domyślnie „W słuchawkach”; opis pod ⓘ.
+- **19.10.2026 (decyzja właściciela, zastępuje przełącznik z 0.20):** „Zapowiedzi głosowe” — jeden wybór **Wyłączone / W słuchawkach / Także przez głośnik**, domyślnie „W słuchawkach” (od 20.10.2026 domyślnie „Wyłączone” — niżej); opis pod ⓘ.
   Pole `Settings.voice` (`'off' | 'speaker'`, zapisywane tylko odstępstwo; brak = W słuchawkach; `lib/voice.ts` VOICE_SETTINGS, VOICE_DEFAULT). Migracja (`lib/state/migrate.ts`):
   dawne `voiceSpeaker: true` → „Także przez głośnik”, brak → „W słuchawkach”, zła wartość `voice` → domyślna; `voiceSpeaker` znika (jedno źródło). Pole przechodzi przez kopię (eksport → import, ta sama migracja).
   SCHEMA_VERSION bez zmian (pole opcjonalne, jak `healthRead`); **zmiana schematu ustawień — nie w jednym wydaniu z aktualizacją SDK** (CLAUDE.md). Powrót do 0.20 (kopia z nowszej wersji):
   0.20 nie zna `voice` (zostaje jako nieznane ustawienie) — mówi jak przy „W słuchawkach”; po powrocie do nowszej wersji wybór wraca.
+- **20.10.2026 (decyzja właściciela, DEC-05; audyt M1 zadanie 027):** nowa instalacja ma zapowiedzi głosowe **domyślnie wyłączone**. Wdrożenie bez migracji i bez zmiany schematu: `seedState` zapisuje jawnie
+  `Settings.voice = 'off'`; BRAK pola w zapisanych danych nadal znaczy „W słuchawkach” (`VOICE_DEFAULT`), więc istniejący użytkownik, który ustawienia nie ruszał, nie traci zachowania; każdy wybór w aplikacji
+  zapisuje się jawnie (`'off' | 'headphones' | 'speaker'`). Odrzucone: (B) migracja do schematu 20 zapisująca jawne „W słuchawkach” istniejącym instalacjom przy domyślnym „off” w kodzie — zmiana schematu
+  i zgodności kopii (kopia 20 odrzucana przez 19) bez zysku; (C) globalne „off” także dla istniejących — zmienia zachowanie ludziom, którzy go nie wybierali. Test: `tests/audit-m1-027-voice-default.test.ts`
+  (zapisy z wydanych buildów, także z usuniętym polem).
 - Ten sam wybór na ekranie treningu: przycisk „🎧 Głos” pod „Zakończ” (ikona = stan: 🔇 / 🎧 / 🔊; VoiceOver „Zapowiedzi głosowe: W słuchawkach”) → arkusz z trzema opcjami (bieżąca z ✓) i Anuluj;
   zmiana trwała, to samo pole co w Ustawieniach. Odrzucone: przełączanie po kolei jednym stuknięciem (przypadkowe „głośnik” na siłowni, do „Wyłączone” przez głośnik), osobny wiersz pod miejscem i miejsce w wierszu zegara obok „Pauza” (wyższy nagłówek, przesunięta lista — E2E 31 na interpreterze).
 - „Posłuchaj przykładu” — przykładowa zapowiedź w języku i jednostce aplikacji.

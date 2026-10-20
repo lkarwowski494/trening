@@ -1,5 +1,5 @@
 # Zapowiedzi głosowe w Ustawieniach (19.10.2026, decyzja właściciela; katalog przepływów W2-03): wybór „Voice announcements” Off / In headphones / Also through the speaker
-# (domyślnie In headphones, trwały po restarcie) i przycisk „Posłuchaj przykładu” (aplikacja po stuknięciu dalej działa). Dźwięku symulator nie słychać, a to, czy symulator ma głos
+# (DEC-05, 20.10.2026: nowa instalacja domyślnie Off; trwały po restarcie) i przycisk „Posłuchaj przykładu” (aplikacja po stuknięciu dalej działa). Dźwięku symulator nie słychać, a to, czy symulator ma głos
 # dla języka, nie jest zagwarantowane — wskazówki „Brak głosu…” scenariusz więc nie wymaga i nie wyklucza (tekst i warianty: Jest, tests/voice-ui.test.tsx).
 # Mowa w przerwie, słuchawki i ściszanie muzyki: tylko telefon (W2-04). Przycisk „Głos” na ekranie treningu: 54-glos-w-treningu.yaml.
 #
@@ -19,10 +19,10 @@ name: Zapowiedzi głosowe — ustawienia
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
 - extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
-# --- domyślnie „In headphones”, opis pod ⓘ ---
-- scrollUntilVisible: { element: { id: "voice-mode-headphones" }, direction: DOWN, timeout: 60000, centerElement: true }
-- assertVisible: { id: "voice-mode-headphones", selected: true }
-- assertVisible: { id: "voice-mode-off", selected: false }
+# --- domyślnie „Off” (nowa instalacja), opis pod ⓘ ---
+- scrollUntilVisible: { element: { id: "voice-mode-off" }, direction: DOWN, timeout: 60000, centerElement: true }
+- assertVisible: { id: "voice-mode-off", selected: true }
+- assertVisible: { id: "voice-mode-headphones", selected: false }
 - assertVisible: { id: "voice-mode-speaker", selected: false }
 - tapOn: { id: "info-voice-mode" }
 - assertVisible: "At the start of the rest the phone announces.*"
@@ -31,7 +31,7 @@ name: Zapowiedzi głosowe — ustawienia
 # --- „Also through the speaker” ---
 - tapOn: { id: "voice-mode-speaker" }
 - assertVisible: { id: "voice-mode-speaker", selected: true }
-- assertVisible: { id: "voice-mode-headphones", selected: false }
+- assertVisible: { id: "voice-mode-off", selected: false }
 # --- „Posłuchaj przykładu”: nic się nie psuje (mowa na symulatorze może być cicha albo jej nie być) ---
 - scrollUntilVisible: { element: "Listen to an example", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Listen to an example"
@@ -39,9 +39,9 @@ name: Zapowiedzi głosowe — ustawienia
 - assertVisible: "Listen to an example"
 - assertVisible: { id: "voice-mode-speaker", selected: true }
 - takeScreenshot: 111-glos-po-przykladzie
-# --- „Off” i trwałość po restarcie ---
-- tapOn: { id: "voice-mode-off" }
-- assertVisible: { id: "voice-mode-off", selected: true }
+# --- „In headphones” i trwałość po restarcie ---
+- tapOn: { id: "voice-mode-headphones" }
+- assertVisible: { id: "voice-mode-headphones", selected: true }
 - stopApp
 - launchApp:
     clearState: false
@@ -50,8 +50,8 @@ name: Zapowiedzi głosowe — ustawienia
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
 - extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
-- scrollUntilVisible: { element: { id: "voice-mode-off" }, direction: DOWN, timeout: 60000, centerElement: true }
-- assertVisible: { id: "voice-mode-off", selected: true }
-# --- powrót do domyślnej ---
-- tapOn: { id: "voice-mode-headphones" }
+- scrollUntilVisible: { element: { id: "voice-mode-headphones" }, direction: DOWN, timeout: 60000, centerElement: true }
 - assertVisible: { id: "voice-mode-headphones", selected: true }
+# --- powrót do „Off” ---
+- tapOn: { id: "voice-mode-off" }
+- assertVisible: { id: "voice-mode-off", selected: true }
