@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "最後に成功したバックアップ：{date}",
  "Asekuracja": "安全対策",
  "bez asekuracji w stojakach": "ラックに安全バーなし",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "バーベルを体の上や肩に担ぐ種目：バーを安全に下ろせるようラックのセーフティーバーを調整するか、補助者と一緒に行ってください。"
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "バーベルを体の上や肩に担ぐ種目：バーを安全に下ろせるようラックのセーフティーバーを調整するか、補助者と一緒に行ってください。",
+ "Powiadomienie na koniec przerwy": "休憩終了の通知",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "休憩が終わると、画面がロック中でも通知が届きます。通知の許可が必要です — 「続ける」の後に iOS が許可を求めます。"
 }

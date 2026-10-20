@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "Paskutinė sėkminga kopija: {date}",
  "Asekuracja": "Saugumas",
  "bez asekuracji w stojakach": "stove nėra apsauginių ramsčių",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Pratimas su štanga virš kūno arba ant pečių: nustatykite stovo apsauginius ramsčius taip, kad štangą būtų galima saugiai padėti, arba treniruokitės su pagalbininku."
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Pratimas su štanga virš kūno arba ant pečių: nustatykite stovo apsauginius ramsčius taip, kad štangą būtų galima saugiai padėti, arba treniruokitės su pagalbininku.",
+ "Powiadomienie na koniec przerwy": "Pranešimas poilsio pabaigoje",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Poilsio pabaigoje telefonas atsiųs pranešimą — net ir užrakintu ekranu. Reikia pranešimų leidimo — iOS jo paprašys po „Tęsti“."
 }

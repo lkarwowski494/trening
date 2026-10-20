@@ -8,6 +8,7 @@
 # Literały (EN z lib/i18n.en.ts):
 #   "Reminder for planned workouts"                                 ← okno aplikacji o zgodę po pierwszym planie (lib/planReminder.ts); przy odmowie z góry NIE pojawia się
 #   "No notification permission — reminders and end-of-rest alerts will not arrive.*" + testID perm-denied ← app/more/settings.tsx (przełącznik przypomnienia, audyt 0.10 I1)
+#   perm-denied-workout ← linia na ekranie treningu przy odmowie (components/ActiveWorkout.tsx, M1-035)
 #   "Open iOS Settings" / "Check notification permission" / "No permission"  ← przyciski i okno 'Brak zgody' z odesłaniem do Ustawień iOS
 tags:
   - eksperyment
@@ -49,6 +50,11 @@ name: Eksperyment — odmowa zgody na powiadomienia
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - runFlow: subflows/start-szablonu.yaml
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+# M1-035: odmowa widoczna na ekranie treningu — jedna linia z przyciskiem do Ustawień iOS (bez okna z pytaniem)
+- assertVisible: { id: "perm-denied-workout" }
+- assertVisible: "No notification permission — reminders and end-of-rest alerts will not arrive.*"
+- assertVisible: "Open iOS Settings"
+- takeScreenshot: 120-trening-bez-zgody
 - tapOn: { text: "Set 1 done.*", index: 0 }
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
 - assertVisible: "rest of 1:30"

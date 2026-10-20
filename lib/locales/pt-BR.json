@@ -572,5 +572,6 @@
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "O app fechou inesperadamente nas últimas aberturas.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Backup automático após cada treino: Arquivos → No meu iPhone → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Não foi possível salvar o backup após o treino",
- "Ostatnia udana kopia: {date}": "Último backup bem-sucedido: {date}"
+ "Ostatnia udana kopia: {date}": "Último backup bem-sucedido: {date}",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "No fim do descanso, o celular envia uma notificação, mesmo com a tela bloqueada. É preciso permissão de notificações — o iOS pede depois de “Continuar”."
 }

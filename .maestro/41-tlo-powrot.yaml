@@ -18,6 +18,7 @@ name: Eksperyment — tło i powrót w trakcie przerwy
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 - runFlow: subflows/start-szablonu.yaml
+- tapOn: { text: "Continue", optional: true }   # M1-035: wyjaśnienie aplikacji przed prośbą o zgodę na powiadomienia (tylko gdy iOS jeszcze nie pytał)
 - tapOn: { text: "Allow", optional: true }   # start treningu może poprosić o zgodę na powiadomienia (okno systemowe) — tu zezwalamy, odmowę sprawdza 40
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - tapOn: { text: "Set 1 done.*", index: 0 }

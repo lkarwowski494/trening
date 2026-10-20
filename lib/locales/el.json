@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "Τελευταίο επιτυχές αντίγραφο: {date}",
  "Asekuracja": "Ασφάλιση",
  "bez asekuracji w stojakach": "χωρίς βραχίονες ασφαλείας στη βάση",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Άσκηση με μπάρα πάνω από το σώμα ή στους ώμους: ρύθμισε στη βάση τους βραχίονες ασφαλείας ώστε να μπορείς να αφήσεις με ασφάλεια τη μπάρα ή προπονήσου με άτομο που σε ασφαλίζει."
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Άσκηση με μπάρα πάνω από το σώμα ή στους ώμους: ρύθμισε στη βάση τους βραχίονες ασφαλείας ώστε να μπορείς να αφήσεις με ασφάλεια τη μπάρα ή προπονήσου με άτομο που σε ασφαλίζει.",
+ "Powiadomienie na koniec przerwy": "Ειδοποίηση στο τέλος του διαλείμματος",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Στο τέλος του διαλείμματος το τηλέφωνο στέλνει γνωστοποίηση — ακόμη και με κλειδωμένη οθόνη. Χρειάζεται άδεια γνωστοποιήσεων — το iOS θα τη ζητήσει μετά το «Συνέχεια»."
 }

@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "Последња успешна копија: {date}",
  "Asekuracja": "Осигурање",
  "bez asekuracji w stojakach": "без сигурносних руку у сталку",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Вежба са шипком изнад тела или на раменима: постави сигурносне руке у сталку тако да шипку можеш безбедно да одложиш, или вежбај уз особу која те осигурава."
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Вежба са шипком изнад тела или на раменима: постави сигурносне руке у сталку тако да шипку можеш безбедно да одложиш, или вежбај уз особу која те осигурава.",
+ "Powiadomienie na koniec przerwy": "Обавештење на крају одмора",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "На крају одмора телефон шаље обавештење — и када је екран закључан. Потребна је дозвола за обавештења — iOS ће је затражити после „Настави“."
 }

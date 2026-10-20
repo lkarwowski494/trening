@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "Viimane õnnestunud varukoopia: {date}",
  "Asekuracja": "Kindlustus",
  "bez asekuracji w stojakach": "riiulil pole turvakäsi",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Harjutus kangiga keha kohal või õlgadel: sea riiulile turvakäed nii, et saaksid kangi ohutult maha panna, või treeni kaaslasega, kes sind kindlustab."
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Harjutus kangiga keha kohal või õlgadel: sea riiulile turvakäed nii, et saaksid kangi ohutult maha panna, või treeni kaaslasega, kes sind kindlustab.",
+ "Powiadomienie na koniec przerwy": "Teavitus pausi lõpus",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Pausi lõpus saadab telefon teavituse — ka lukustatud ekraani korral. Selleks on vaja teavituste luba — iOS küsib seda pärast „Jätka“."
 }

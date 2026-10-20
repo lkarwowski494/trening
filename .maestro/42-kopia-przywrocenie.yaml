@@ -19,6 +19,7 @@ name: Eksperyment — przywrócenie danych z pliku kopii
 - runFlow: subflows/szablon-testowy.yaml
 # --- trening z szablonu: po „Finish” powstaje kopia automatyczna (Ustawienia: „Automatic backup after every workout”, domyślnie włączona) ---
 - runFlow: subflows/start-szablonu.yaml
+- tapOn: { text: "Continue", optional: true }   # M1-035: wyjaśnienie aplikacji przed prośbą o zgodę na powiadomienia (tylko gdy iOS jeszcze nie pytał)
 - tapOn: { text: "Allow", optional: true }   # start treningu może poprosić o zgodę na powiadomienia (okno systemowe)
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - tapOn: { text: "Set 1 done.*", index: 0 }
@@ -69,5 +70,6 @@ name: Eksperyment — przywrócenie danych z pliku kopii
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - runFlow: subflows/start-szablonu.yaml
+- tapOn: { text: "Continue", optional: true }   # M1-035: wyjaśnienie aplikacji przed prośbą o zgodę na powiadomienia (tylko gdy iOS jeszcze nie pytał)
 - tapOn: { text: "Allow", optional: true }   # start treningu może poprosić o zgodę na powiadomienia (okno systemowe)
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }

@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "Letztes erfolgreiches Backup: {date}",
  "Asekuracja": "Sicherung",
  "bez asekuracji w stojakach": "keine Sicherheitsarme im Rack",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Übung mit Langhantel über dem Körper oder auf den Schultern: Stelle im Rack Sicherheitsarme so ein, dass du die Stange sicher ablegen kannst, oder trainiere mit einer Sicherungsperson."
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Übung mit Langhantel über dem Körper oder auf den Schultern: Stelle im Rack Sicherheitsarme so ein, dass du die Stange sicher ablegen kannst, oder trainiere mit einer Sicherungsperson.",
+ "Powiadomienie na koniec przerwy": "Mitteilung am Ende der Pause",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Am Ende der Pause sendet das iPhone eine Mitteilung — auch bei gesperrtem Bildschirm. Dafür ist die Mitteilungsberechtigung nötig — iOS fragt danach, sobald du auf „Weiter“ tippst."
 }

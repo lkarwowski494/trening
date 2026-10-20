@@ -77,5 +77,15 @@ export async function askReminderPermission(): Promise<void> {
     { text: t('Nie teraz'), style: 'cancel' }, { text: t('Dalej'), onPress: () => { Notifications.requestPermissionsAsync().catch(() => {}); } },
   ]);
 }
+/** M1-audytor-generalny-035: ekran treningu — zgoda na powiadomienie o końcu przerwy. Przy „jeszcze nie pytano”: najpierw krótkie wyjaśnienie (jak przypomnienie z planu),
+ * dopiero po „Dalej” pytanie systemu; „Nie teraz” nic nie woła. Raz na uruchomienie aplikacji; przy odmowie lub zgodzie — bez okna (odmowę pokazuje linia na ekranie). */
+let askedRestThisRun = false;
+export async function askRestNotificationPermission(): Promise<void> {
+  if (askedRestThisRun) return; askedRestThisRun = true;
+  if ((await reminderPermission()) !== 'undetermined') return;
+  await new Promise<void>(resolve => Alert.alert(t('Powiadomienie na koniec przerwy'), t('Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.'), [
+    { text: t('Nie teraz'), style: 'cancel', onPress: () => resolve() }, { text: t('Dalej'), onPress: () => { Notifications.requestPermissionsAsync().catch(() => {}).finally(() => resolve()); } },
+  ]));
+}
 /** Tylko dla testów (nowe „uruchomienie”). */
-export function __resetReminderAsk() { askedThisRun = false; }
+export function __resetReminderAsk() { askedThisRun = false; askedRestThisRun = false; }

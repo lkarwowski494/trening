@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "Последняя успешная копия: {date}",
  "Asekuracja": "Страховка",
  "bez asekuracji w stojakach": "в стойке нет страховочных упоров",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Упражнение со штангой над телом или на плечах: установите в стойке страховочные упоры так, чтобы можно было безопасно опустить штангу, или тренируйтесь со страхующим."
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Упражнение со штангой над телом или на плечах: установите в стойке страховочные упоры так, чтобы можно было безопасно опустить штангу, или тренируйтесь со страхующим.",
+ "Powiadomienie na koniec przerwy": "Уведомление в конце отдыха",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "В конце отдыха телефон пришлёт уведомление — даже при заблокированном экране. Нужно разрешение на уведомления — iOS запросит его после «Далее»."
 }

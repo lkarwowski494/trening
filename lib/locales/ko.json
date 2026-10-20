@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "마지막으로 성공한 백업: {date}",
  "Asekuracja": "안전 장치",
  "bez asekuracji w stojakach": "랙에 안전 바 없음",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "바벨을 몸 위나 어깨에 올리고 하는 운동: 바를 안전하게 내려놓을 수 있도록 랙의 안전 바를 설정하거나 보조자와 함께 운동하세요."
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "바벨을 몸 위나 어깨에 올리고 하는 운동: 바를 안전하게 내려놓을 수 있도록 랙의 안전 바를 설정하거나 보조자와 함께 운동하세요.",
+ "Powiadomienie na koniec przerwy": "휴식 종료 알림",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "휴식이 끝나면 화면이 잠겨 있어도 알림이 옵니다. 알림 권한이 필요합니다 — ‘계속’ 후에 iOS가 권한을 요청합니다."
 }

@@ -1171,4 +1171,6 @@ export const EN: Record<string, string> = {
   'Asekuracja': 'Spotting and safety',
   'Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.': 'Barbell exercise over the body or on the shoulders: set safety arms in the rack so the bar can be put down safely, or train with a spotter.',
   'bez asekuracji w stojakach': 'no safety arms in the rack',
+  'Powiadomienie na koniec przerwy': 'Notification at the end of rest',
+  'Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.': 'At the end of a rest the phone sends a notification — even when the screen is locked. It needs notification permission — iOS asks for it after “Continue”.',
 };

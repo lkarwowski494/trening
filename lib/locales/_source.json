@@ -2773,6 +2773,10 @@
   "en": "At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Plan tab."
  },
  {
+  "pl": "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.",
+  "en": "At the end of a rest the phone sends a notification — even when the screen is locked. It needs notification permission — iOS asks for it after “Continue”."
+ },
+ {
   "pl": "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.",
   "en": "At the start of the rest the phone announces the next exercise, weight and reps. In headphones — only with headphones connected; Also through the speaker — also without headphones, through the phone speaker (even in silent mode); Off — no announcements."
  },
@@ -4091,6 +4095,10 @@
  {
   "pl": "Powiadomienia działają",
   "en": "Notifications work"
+ },
+ {
+  "pl": "Powiadomienie na koniec przerwy",
+  "en": "Notification at the end of rest"
  },
  {
   "pl": "Powtórz ostatni",

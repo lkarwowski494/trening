@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "Última copia correcta: {date}",
  "Asekuracja": "Seguridad",
  "bez asekuracji w stojakach": "sin brazos de seguridad en el rack",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Ejercicio con barra sobre el cuerpo o sobre los hombros: coloca en el rack los brazos de seguridad para poder dejar la barra con seguridad, o entrena con alguien que te asegure."
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Ejercicio con barra sobre el cuerpo o sobre los hombros: coloca en el rack los brazos de seguridad para poder dejar la barra con seguridad, o entrena con alguien que te asegure.",
+ "Powiadomienie na koniec przerwy": "Aviso al final del descanso",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Al terminar el descanso, el teléfono enviará una notificación, incluso con la pantalla bloqueada. Hace falta permiso de notificaciones: iOS lo pedirá tras «Continuar»."
 }

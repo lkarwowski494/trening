@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "Poslední úspěšná záloha: {date}",
  "Asekuracja": "Jištění",
  "bez asekuracji w stojakach": "bez bezpečnostních ramen ve stojanu",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Cvik s velkou činkou nad tělem nebo na ramenou: nastavte ve stojanu bezpečnostní ramena tak, aby šlo činku bezpečně odložit, nebo cvičte s dopomocí parťáka."
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Cvik s velkou činkou nad tělem nebo na ramenou: nastavte ve stojanu bezpečnostní ramena tak, aby šlo činku bezpečně odložit, nebo cvičte s dopomocí parťáka.",
+ "Powiadomienie na koniec przerwy": "Upozornění na konec pauzy",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Na konci pauzy telefon pošle oznámení — i při zamčené obrazovce. Je potřeba oprávnění k oznámením — iOS o něj požádá po „Pokračovat“."
 }

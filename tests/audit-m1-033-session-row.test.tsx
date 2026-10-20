@@ -23,14 +23,14 @@ describe('wiersz sesji w Postępach', () => {
     await boot(w, lg);
     /* przyczyna z audytu: najbliższy kontener podsumowania nie może być rzędem rozsuniętym (date | summary) */
     const summaries = screen.getAllByText(/^najlepsza |^best /); expect(summaries.length).toBe(2);
-    for (const sm of summaries) { let n = sm.parent; while (n && !(typeof n.type === 'string' && n.type === 'View')) n = n.parent; const st = flat(n!); expect([st.flexDirection ?? 'column', st.justifyContent]).toEqual(['column', undefined]); }
+    for (const sm of summaries) { let n = sm.parent; while (n && (n.type as unknown) !== 'View') n = n.parent; const st = flat(n!); expect([st.flexDirection ?? 'column', st.justifyContent]).toEqual(['column', undefined]); }
     const rows = screen.getAllByTestId(/^session-row-\d+$/); expect(rows.length).toBe(2);
     for (const r of rows) {
       const st = flat(r); expect(st.flexDirection ?? 'column').toBe('column'); expect(st.justifyContent).toBeUndefined();
       const [date, summary] = [screen.getByTestId(r.props.testID.replace('row', 'date')), screen.getByTestId(r.props.testID.replace('row', 'summary'))];
       expect(date.props.numberOfLines).toBeUndefined(); expect(summary.props.numberOfLines).toBeUndefined(); /* zawija się, nie ucina */
       expect(Number(flat(summary).marginTop ?? 0)).toBeGreaterThanOrEqual(8);
-      const kids = r.findAll((n: { props: { testID?: string } }) => /^session-(date|summary)-/.test(n.props.testID ?? '')).map((n: { props: { testID: string } }) => n.props.testID.split('-')[1]);
+      const kids = r.findAll(n => /^session-(date|summary)-/.test(n.props.testID ?? '')).map(n => String(n.props.testID).split('-')[1]);
       expect(kids.indexOf('date')).toBeLessThan(kids.indexOf('summary'));
     }
   });

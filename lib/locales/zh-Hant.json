@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "上次成功的備份：{date}",
  "Asekuracja": "安全防護",
  "bez asekuracji w stojakach": "架上沒有安全桿",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "槓鈴在身體上方或扛在肩上的動作：請在架上調好安全桿，讓你能安全放下槓鈴，或請保護者在旁協助。"
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "槓鈴在身體上方或扛在肩上的動作：請在架上調好安全桿，讓你能安全放下槓鈴，或請保護者在旁協助。",
+ "Powiadomienie na koniec przerwy": "休息結束通知",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "休息結束時，即使螢幕鎖定，手機也會發出通知。需要允許通知 — 按「繼續」後 iOS 會詢問。"
 }

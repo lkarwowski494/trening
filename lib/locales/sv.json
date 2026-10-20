@@ -1695,5 +1695,7 @@
  "Ostatnia udana kopia: {date}": "Senaste lyckade säkerhetskopia: {date}",
  "Asekuracja": "Säkerhet",
  "bez asekuracji w stojakach": "inga säkerhetsarmar i stället",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Övning med skivstång över kroppen eller på axlarna: ställ in säkerhetsarmarna i stället så att du kan lägga ner stången säkert, eller träna med en spotter."
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Övning med skivstång över kroppen eller på axlarna: ställ in säkerhetsarmarna i stället så att du kan lägga ner stången säkert, eller träna med en spotter.",
+ "Powiadomienie na koniec przerwy": "Avisering när vilan är slut",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "När vilan är slut skickar telefonen en notis — även med låst skärm. Det kräver behörighet för notiser — iOS frågar efter ”Fortsätt”."
 }
