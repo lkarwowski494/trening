@@ -88,6 +88,7 @@ Wszystko, czego aplikacja uczy albo co twierdzi (treść, liczby, zalecenia, reg
   przegląd systematyczny, metaanaliza, stanowisko organizacji naukowej), które zawiera to twierdzenie wprost, czyni regułę ustaloną. Jedno źródło
   szczebla 3–5 — oznaczenie „jedno źródło”, nie „ustalone”. „Uproszczenie” (także analogia do innego ćwiczenia) i „konwencja” oznacza się niezależnie
   od liczby źródeł. Źródło szczebla 2 tylko zacytowane obok, bez tego twierdzenia, nie liczy się.
+- Rejestr twierdzeń (M1-048, DEC-16): tekst dziedzinowy w interfejsie (powołujący się na źródło albo nazywający swoją wagę: uproszczenie, konwencja, jedno źródło) ma wpis w `docs/research/rejestr-twierdzen.json`; `npm run check:claims` (część verify) blokuje tekst bez wpisu i zmianę brzmienia bez ponownego przeglądu. Nowy albo zmieniony tekst: `node scripts/claims.mjs --stub`, po przeglądzie źródeł `--rehash <ID>`.
 - Każde twierdzenie ma **przeczytane** źródło (adres i cytat albo dokładne wskazanie miejsca). Streszczenie z wyszukiwarki nie jest źródłem. Czego nie da się potwierdzić, trafia do otwartych pytań, nie do aplikacji.
 - Źródła według hierarchii poniżej; przy sprzeczności wygrywa wyższy szczebel. Przy sprzeczności na tym samym szczeblu podaj część wspólną (przedział, „zwykle”) i pokaż różnicę.
 - Właściciel nie jest ekspertem dziedzinowym i **nie rozstrzyga kwestii merytorycznych**: rozstrzyga je ta hierarchia. Właściciela pytaj o sprawy produktowe (zakres, funkcje, wygląd, koszty, kolejność prac), zawsze z co najmniej dwiema opcjami, kompromisami i rekomendacją.

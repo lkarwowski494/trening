@@ -24,7 +24,7 @@ Brak któregoś rodzaju wymaga zapisanego powodu w docs/09 (wiersz tej zmiany), 
 - **Automatycznie (`npm run verify`, commit nie przejdzie):** `check:matrix` — każdy ekran, element UI, komunikat, funkcja `lib/` i wartość
   wymiaru ma test (rodzaje 1, 2, 4); od 09.10.2026 (audyt 0.10 M5) dowodem jest tylko KOD testu — wzmianka w komentarzu, tytule testu albo
   w imporcie się nie liczy, a wymiary (tablice stałych i typy-unie z `lib/`) bramka generuje sama; `check:i18n` (kod → słownik) i test martwych
-  kluczy (słownik → kod, `tests/audit-0.10-tst.test.ts`) (7); typy (`tsc`); losowe sekwencje (5) przy każdym `jest`; każda trasa z `app/`
+  kluczy (słownik → kod, `tests/audit-0.10-tst.test.ts`) (7); typy (`tsc`); `check:claims` — każdy tekst dziedzinowy interfejsu ma wpis w rejestrze twierdzeń (`docs/research/rejestr-twierdzen.json`), zmiana brzmienia wymaga ponownego przeglądu (M1-048); losowe sekwencje (5) przy każdym `jest`; każda trasa z `app/`
   w przeglądzie dostępności i macierzy wszystkich języków z `LANGS` (`tests/routes.ts`).
 - **Przy przeglądzie zmiany (agent, przed commitem):** rodzaje 3, 5 (dopisanie akcji), 6, 8, 9 — wiersz w docs/09 wymienia testy każdego rodzaju
   albo powód „nie dotyczy”. Bramka sprawdza obecność testu, nie jego jakość: sama wzmianka tekstu w teście to za mało (CLAUDE.md).

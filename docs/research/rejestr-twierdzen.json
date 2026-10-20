@@ -1,0 +1,559 @@
+{
+ "_opis": "Rejestr twierdzeń dla tekstów dziedzinowych interfejsu (M1-audytor-generalny-048, DEC-16). Tekst dziedzinowy = tekst słownika (klucz polski w lib/i18n.en.ts) z cytowanym źródłem albo oznaczeniem wagi (uproszczenie, konwencja, jedno źródło…; wzorzec DOMAIN_RE w scripts/claims.mjs). Każdy ma wpis: id, kotwica (początek polskiego tekstu), skrot i skrotEn (skróty polskiego tekstu i angielskiego brzmienia z chwili przeglądu), rodzaje, zrodla (tak jak w tekście), dokument + fraza (miejsce w repo z uzasadnieniem; fraza musi w nim występować), przeglad (data: kto, zakres). Kontrola: npm run check:claims (część verify) — brak wpisu, brak tekstu albo zmiana brzmienia bez ponownego przeglądu = błąd. Po zmianie brzmienia: sprawdź źródła (badacz), zaktualizuj wpis, wykonaj node scripts/claims.mjs --rehash <ID> --przeglad \"<data: kto, co sprawdzono>\". Nowy tekst: node scripts/claims.mjs --stub. Stan 20.10.2026: wpisy założone z kodu i docs (programista); przegląd merytoryczny badacza jest otwarty — nie oznacza zatwierdzenia treści. Ograniczenie: kontrola obejmuje teksty, które same się oznaczają źródłem lub wagą; teksty dziedzinowe bez takiego oznaczenia wymagają dopisania oznaczenia albo wpisu ręcznie.",
+ "twierdzenia": [
+  {
+   "id": "T-001",
+   "kotwica": "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE",
+   "skrot": "078f300c9e",
+   "skrotEn": "53f6653e8c",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "Zourdos i in., JSCR 2016"
+   ],
+   "dokument": "docs/research/34-rpe-wysilek.md",
+   "fraza": "Zourdos",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-002",
+   "kotwica": "Propozycja według Twoich założeń — przejrzysz ją",
+   "skrot": "96b3e6d901",
+   "skrotEn": "1546299271",
+   "rodzaje": [
+    "konwencja",
+    "uproszczenie",
+    "przegląd badań"
+   ],
+   "zrodla": [],
+   "dokument": "docs/24-generator-i-plany.md",
+   "fraza": "przejrzenia przed zapisem",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-003",
+   "kotwica": "Progresja: gdy zrobisz górę zakresu powtórzeń, d",
+   "skrot": "6df68447b8",
+   "skrotEn": "69e407646e",
+   "rodzaje": [
+    "konwencja"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/zakresy-powtorzen-cele-2026-10.md",
+   "fraza": "Progresja",
+   "uwaga": "[OTWARTE — krok „dołóż ciężar” to konwencja; podstawa progu 2–10% (ACSM 2009) nie jest potwierdzona w ACSM 2026; docs/10 pkt 4.4 do aktualizacji w zadaniu M1-046, DEC-14]",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-004",
+   "kotwica": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; d",
+   "skrot": "440b7e2ce1",
+   "skrotEn": "e69e23bd52",
+   "rodzaje": [
+    "uproszczenie",
+    "przegląd badań"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/23-regeneracja-partii.md",
+   "fraza": "dzień przerwy",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-005",
+   "kotwica": "Każda główna partia co najmniej {n} dni w tygodn",
+   "skrot": "cad3ce14e9",
+   "skrotEn": "a4a35663a7",
+   "rodzaje": [
+    "konwencja",
+    "uproszczenie",
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "ACSM 2026",
+    "WHO",
+    "Pelland i in. 2026"
+   ],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "ACSM 2026",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-006",
+   "kotwica": "Serie: {s} na ćwiczenie — ACSM 2026 zaleca co na",
+   "skrot": "ddd08bd098",
+   "skrotEn": "1f9a1fe672",
+   "rodzaje": [
+    "uproszczenie",
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "ACSM 2026"
+   ],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "ACSM 2026",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-007",
+   "kotwica": "Liczba serii z czasu sesji: (minuty − {w} min ro",
+   "skrot": "c62850ceaf",
+   "skrotEn": "2af72726e5",
+   "rodzaje": [
+    "uproszczenie"
+   ],
+   "zrodla": [],
+   "dokument": "docs/24-generator-i-plany.md",
+   "fraza": "budżet serii = (minuty",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-008",
+   "kotwica": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez ob",
+   "skrot": "ce333887d5",
+   "skrotEn": "df7c56fbef",
+   "rodzaje": [
+    "uproszczenie",
+    "przegląd badań"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/zakresy-powtorzen-cele-2026-10.md",
+   "fraza": "6–12",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-009",
+   "kotwica": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (A",
+   "skrot": "4460a8cf7b",
+   "skrotEn": "0a0f29c990",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "ACSM 2026"
+   ],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "ACSM 2026",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-010",
+   "kotwica": "Przerwy: {a} min po ciężkich seriach boju główne",
+   "skrot": "e9cc6bbd1e",
+   "skrotEn": "db36e2fcd6",
+   "rodzaje": [
+    "uproszczenie",
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "ACSM 2026"
+   ],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "ACSM 2026",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-011",
+   "kotwica": "Cardio: jedna sesja umiarkowanego wysiłku w osob",
+   "skrot": "639a6e61cf",
+   "skrotEn": "0aa43c9229",
+   "rodzaje": [
+    "konwencja"
+   ],
+   "zrodla": [],
+   "dokument": "docs/24-generator-i-plany.md",
+   "fraza": "Cardio (redukcja)",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-012",
+   "kotwica": "Serie na partię w tygodniu (pomocnicza = {h} ser",
+   "skrot": "3f1dbf681f",
+   "skrotEn": "959f926e9b",
+   "rodzaje": [
+    "uproszczenie"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/24-przypisanie-partii.md",
+   "fraza": "pomocnicz",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-013",
+   "kotwica": "Cardio w planie: {n} min tygodniowo. Zalecenie W",
+   "skrot": "13534b373d",
+   "skrotEn": "923b5e66eb",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "WHO"
+   ],
+   "dokument": "docs/research/30-cel-ogolny.md",
+   "fraza": "WHO 2020",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-014",
+   "kotwica": "Przypisanie partii mięśniowych — uproszczenie, n",
+   "skrot": "21c074b538",
+   "skrotEn": "4d489e0779",
+   "rodzaje": [
+    "uproszczenie"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/24-przypisanie-partii.md",
+   "fraza": "pomocnicz",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-015",
+   "kotwica": "e1RM w ćwiczeniach z masą ciała liczy się tylko ",
+   "skrot": "62a0da875a",
+   "skrotEn": "0ea4bbca07",
+   "rodzaje": [
+    "uproszczenie"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/masa-ciala-e1rm-2026-10.md",
+   "fraza": "podciąg",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-016",
+   "kotwica": "Uproszczenie: drop set liczy się razem z serią, ",
+   "skrot": "ede238cf0b",
+   "skrotEn": "5587a40ae7",
+   "rodzaje": [
+    "uproszczenie"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "drop set",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-017",
+   "kotwica": "Opcjonalnie, tylko w telefonie. Z nią aplikacja ",
+   "skrot": "7aa7c937b8",
+   "skrotEn": "6f0da58692",
+   "rodzaje": [
+    "uproszczenie"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/masa-ciala-e1rm-2026-10.md",
+   "fraza": "pompk",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-018",
+   "kotwica": "e1RM: wzór Epleya na {p}% masy ciała z dnia tren",
+   "skrot": "467dc23f3c",
+   "skrotEn": "3725d32827",
+   "rodzaje": [
+    "uproszczenie",
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "Epley"
+   ],
+   "dokument": "docs/research/masa-ciala-e1rm-2026-10.md",
+   "fraza": "Epley",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-019",
+   "kotwica": "Przypisanie partii mięśniowych — jedno źródło, n",
+   "skrot": "1d514279c9",
+   "skrotEn": "d289f291f9",
+   "rodzaje": [
+    "jedno źródło"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/24-przypisanie-partii.md",
+   "fraza": "pomocnicz",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-020",
+   "kotwica": "Więcej dni niż szablonów: szablony po kolei (A, ",
+   "skrot": "538ca490fe",
+   "skrotEn": "1ea4c80d67",
+   "rodzaje": [
+    "konwencja"
+   ],
+   "zrodla": [],
+   "dokument": "docs/24-generator-i-plany.md",
+   "fraza": "szablony po kolei",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-021",
+   "kotwica": "Tygodnie treningu z rzędu bez deloadu: {n}. Tren",
+   "skrot": "7191d09555",
+   "skrotEn": "0540665d34",
+   "rodzaje": [
+    "jedno źródło"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "jeden zespół",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-022",
+   "kotwica": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.",
+   "skrot": "e5a840fed3",
+   "skrotEn": "93572224a1",
+   "rodzaje": [
+    "uproszczenie"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/23-regeneracja-partii.md",
+   "fraza": "dzień przerwy",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-023",
+   "kotwica": "Cardio: od {k} dni w tygodniu jedna sesja w osob",
+   "skrot": "e6beb12333",
+   "skrotEn": "9f3900dcb3",
+   "rodzaje": [
+    "konwencja"
+   ],
+   "zrodla": [],
+   "dokument": "docs/24-generator-i-plany.md",
+   "fraza": "Cardio (redukcja)",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-024",
+   "kotwica": "Cardio poza planem: sesja cardio jest w planie o",
+   "skrot": "171da47f19",
+   "skrotEn": "d69bbb6c74",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "WHO"
+   ],
+   "dokument": "docs/research/30-cel-ogolny.md",
+   "fraza": "WHO 2020",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-025",
+   "kotwica": "Ogólny (dla zdrowia i sprawności): {s} serie na ",
+   "skrot": "5ae4bf7658",
+   "skrotEn": "54eab5b813",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "WHO"
+   ],
+   "dokument": "docs/research/30-cel-ogolny.md",
+   "fraza": "WHO 2020",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-026",
+   "kotwica": "Powtórzenia: {a}–{b} (wytyczne USA 2018, ACSM 20",
+   "skrot": "5454967b15",
+   "skrotEn": "6ca1b9ea33",
+   "rodzaje": [
+    "uproszczenie",
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "ACSM 2011",
+    "wytyczne USA 2018"
+   ],
+   "dokument": "docs/research/30-cel-ogolny.md",
+   "fraza": "ACSM 2011",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-027",
+   "kotwica": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — ",
+   "skrot": "d5560a1b0b",
+   "skrotEn": "2653336335",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "ACSM 2011",
+    "WHO",
+    "wytyczne USA 2018"
+   ],
+   "dokument": "docs/research/30-cel-ogolny.md",
+   "fraza": "ACSM 2011",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-028",
+   "kotwica": "Przerwy: {b} min po wielostawowych, {c} min po j",
+   "skrot": "d3bd0733e6",
+   "skrotEn": "4742eda3a4",
+   "rodzaje": [
+    "uproszczenie",
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "ACSM 2026"
+   ],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "ACSM 2026",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-029",
+   "kotwica": "Cardio: przy {k}–{m} dniach możesz zamienić dni ",
+   "skrot": "8577b9108b",
+   "skrotEn": "32777a6d0e",
+   "rodzaje": [
+    "konwencja",
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "ACSM 2011",
+    "WHO",
+    "wytyczne USA 2018"
+   ],
+   "dokument": "docs/research/30-cel-ogolny.md",
+   "fraza": "ACSM 2011",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-030",
+   "kotwica": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}",
+   "skrot": "2b30526135",
+   "skrotEn": "a6823c8fce",
+   "rodzaje": [
+    "uproszczenie",
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "ACSM 2026",
+    "ACSM 2011"
+   ],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "ACSM 2026",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-031",
+   "kotwica": "{k} dzień siłowy w tygodniu to mniej niż zalecen",
+   "skrot": "412336a454",
+   "skrotEn": "783ea52fd8",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "WHO",
+    "wytyczne USA 2018"
+   ],
+   "dokument": "docs/research/30-cel-ogolny.md",
+   "fraza": "WHO 2020",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-032",
+   "kotwica": "Stanowisko ACSM 2026: przy co najmniej {n} seria",
+   "skrot": "90f3cb823d",
+   "skrotEn": "2c8100b0dd",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "ACSM 2026"
+   ],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "ACSM 2026",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-033",
+   "kotwica": "Uproszczenie: partia pomocnicza ćwiczenia liczy ",
+   "skrot": "eaad9ca37d",
+   "skrotEn": "5a8a8e03a5",
+   "rodzaje": [
+    "uproszczenie",
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "Pelland i in. 2026"
+   ],
+   "dokument": "docs/research/32-serie-na-partie.md",
+   "fraza": "Pelland",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-034",
+   "kotwica": "Kreska w „Ten tydzień” i w Postępach. Automatycz",
+   "skrot": "50c2d4042a",
+   "skrotEn": "899b7bc8b4",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "ACSM 2026"
+   ],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "ACSM 2026",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-035",
+   "kotwica": "Przypisanie partii: jedno źródło.",
+   "skrot": "e4ddd63f35",
+   "skrotEn": "e06721eb2f",
+   "rodzaje": [
+    "jedno źródło"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/24-przypisanie-partii.md",
+   "fraza": "pomocnicz",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-036",
+   "kotwica": "Przypisanie partii: przegląd badań.",
+   "skrot": "2d31b40181",
+   "skrotEn": "914449831f",
+   "rodzaje": [
+    "przegląd badań"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/24-przypisanie-partii.md",
+   "fraza": "pomocnicz",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-037",
+   "kotwica": "Przypisanie partii mięśniowych — ustalone na pod",
+   "skrot": "3390826e77",
+   "skrotEn": "a8c561ea4f",
+   "rodzaje": [
+    "przegląd badań"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/24-przypisanie-partii.md",
+   "fraza": "pomocnicz",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-038",
+   "kotwica": "Przypisanie partii: uproszczenie.",
+   "skrot": "26199c1767",
+   "skrotEn": "73999470c0",
+   "rodzaje": [
+    "uproszczenie"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/24-przypisanie-partii.md",
+   "fraza": "pomocnicz",
+   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  }
+ ]
+}
