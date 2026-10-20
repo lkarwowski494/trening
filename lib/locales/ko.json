@@ -1452,7 +1452,7 @@
  "Zapisz zmiany w szablonie": "루틴 변경 사항 저장",
  "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "예정됨 = 플랜의 나머지 날짜에 대한 루틴을 루틴의 값으로 계산한 것입니다(없는 값은 ‘이전’에서). 플랜에 기반한 계산이며 예측이 아닙니다. 주 부위는 1세트, 보조 부위는 0.5세트로 계산합니다.",
  "Zaplanowane: {text} ({days})": "계획: {text}({days})",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "강조된 부위는 비교 기간보다 볼륨이 큽니다. 색이 진할수록 증가폭이 큽니다. 회색 — 증가 없음.",
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.": "강조된 부위는 비교 기간보다 볼륨이 큽니다. 색이 선명할수록 증가폭이 큽니다. 회색 — 증가 없음.",
  "Zmień szablon": "루틴 변경",
  "zrobiony wcześniej: {name}": "앞서 완료: {name}",
  "Zrobiony wcześniej: {name}": "앞서 완료: {name}",

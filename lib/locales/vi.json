@@ -1452,7 +1452,7 @@
  "Zapisz zmiany w szablonie": "Lưu thay đổi trong mẫu",
  "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "Theo kế hoạch = các mẫu từ kế hoạch của bạn cho những ngày còn lại trong tuần, tính từ giá trị trong mẫu (giá trị thiếu — lấy từ “Lần trước”). Đây là phép tính từ kế hoạch của bạn, không phải dự đoán. Nhóm cơ chính tính 1 hiệp, nhóm cơ phụ tính 0,5.",
  "Zaplanowane: {text} ({days})": "Theo kế hoạch: {text} ({days})",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "Các nhóm cơ được tô sáng có khối lượng lớn hơn kỳ so sánh; càng đậm thì mức tăng càng lớn. Xám — không tăng.",
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.": "Các nhóm cơ được tô sáng có khối lượng lớn hơn kỳ so sánh; màu càng rõ thì mức tăng càng lớn. Xám — không tăng.",
  "Zmień szablon": "Đổi mẫu",
  "zrobiony wcześniej: {name}": "đã xong trước đó: {name}",
  "Zrobiony wcześniej: {name}": "Đã xong trước đó: {name}",

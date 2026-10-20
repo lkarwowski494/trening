@@ -6640,8 +6640,8 @@
   "en": "Always at {l} — {name}"
  },
  {
-  "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.",
-  "en": "Highlighted muscle groups have more volume than in the comparison period; the darker, the bigger the increase. Grey — no increase."
+  "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+  "en": "Highlighted muscle groups have more volume than in the comparison period; the stronger the colour, the bigger the increase. Grey — no increase."
  },
  {
   "pl": "zaznaczone: {n} z {m}",

@@ -1637,7 +1637,7 @@
  "Zatrzymaj animację": "Pozastavit animaci",
  "Zawsze w: {l}": "Vždy v místě {l}",
  "Zawsze w: {l} — {name}": "Vždy v místě {l} – {name}",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "Zvýrazněné partie mají větší objem než v porovnávaném období; čím tmavší, tím větší nárůst. Šedá — bez nárůstu.",
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.": "Zvýrazněné partie mají větší objem než v porovnávaném období; čím sytější barva, tím větší nárůst. Šedá — bez nárůstu.",
  "zaznaczone: {n} z {m}": "vybráno: {n} z {m}",
  "Zdejmij oznaczenie deload": "Zrušit označení deload",
  "ze skosem w dół": "s negativním sklonem",

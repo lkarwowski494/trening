@@ -1637,7 +1637,7 @@
  "Zatrzymaj animację": "Animáció szüneteltetése",
  "Zawsze w: {l}": "Mindig itt: {l}",
  "Zawsze w: {l} — {name}": "Mindig itt: {l} — {name}",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "A kiemelt testrészeknek nagyobb a volumenük, mint az összehasonlított időszakban; minél sötétebb, annál nagyobb a növekedés. Szürke — nincs növekedés.",
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.": "A kiemelt testrészeknek nagyobb a volumenük, mint az összehasonlított időszakban; minél erősebb a szín, annál nagyobb a növekedés. Szürke — nincs növekedés.",
  "zaznaczone: {n} z {m}": "kiválasztva: {n}/{m}",
  "Zdejmij oznaczenie deload": "Deload jelölés törlése",
  "ze skosem w dół": "negatív dőléssel",

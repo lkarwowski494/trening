@@ -926,7 +926,7 @@ export const EN: Record<string, string> = {
   'Partie z większą objętością': 'Muscle groups with more volume',
   'Partie z większą objętością niż poprzednio: {list}': 'Muscle groups with more volume than before: {list}',
   'Żadna partia nie ma większej objętości niż poprzednio.': 'No muscle group has more volume than before.',
-  'Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.': 'Highlighted muscle groups have more volume than in the comparison period; the darker, the bigger the increase. Grey — no increase.',
+  'Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.': 'Highlighted muscle groups have more volume than in the comparison period; the stronger the colour, the bigger the increase. Grey — no increase.',
   'Objętość per partia ({u})': 'Volume per muscle group ({u})',
   'Serie per partia': 'Sets per muscle group',
   'Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.': 'Planned = templates from your plan for the rest of the week, calculated from the values in the template (missing ones from “Previous”). It is arithmetic on your plan, not a forecast. A main muscle group counts 1 set, a secondary one 0.5.',

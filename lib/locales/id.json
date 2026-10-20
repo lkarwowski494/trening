@@ -1452,7 +1452,7 @@
  "Zapisz zmiany w szablonie": "Simpan perubahan pada templat",
  "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "Terencana = templat dari rencana Anda untuk sisa hari dalam minggu, dihitung dari nilai di templat (yang kosong — dari “Sebelumnya”). Ini perhitungan dari rencana Anda, bukan prakiraan. Kelompok otot utama dihitung 1 set, pendukung 0,5.",
  "Zaplanowane: {text} ({days})": "Direncanakan: {text} ({days})",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "Kelompok otot yang disorot memiliki volume lebih besar daripada periode pembanding; makin gelap, makin besar kenaikannya. Abu-abu — tanpa kenaikan.",
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.": "Kelompok otot yang disorot memiliki volume lebih besar daripada periode pembanding; makin pekat warnanya, makin besar kenaikannya. Abu-abu — tanpa kenaikan.",
  "Zmień szablon": "Ganti templat",
  "zrobiony wcześniej: {name}": "selesai lebih awal: {name}",
  "Zrobiony wcześniej: {name}": "Selesai lebih awal: {name}",

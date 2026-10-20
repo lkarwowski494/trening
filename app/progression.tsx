@@ -77,7 +77,7 @@ export default function ProgressionScreen() {
         {c.unknown ? <View testID="progress-unknown"><Muted style={{ fontSize: 12, marginTop: 6 }}>{t('„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.', { n, s: tp(n, 'seria|serie|serii') })}</Muted></View> : null}
         <MuscleMap sets={improved} title={t('Partie z większą objętością')} legend={false}
           label={Object.keys(improved).length ? t('Partie z większą objętością niż poprzednio: {list}', { list: c.rows.filter(r => r.volumeUp).map(r => t(r.muscle)).join(', ') }) : t('Żadna partia nie ma większej objętości niż poprzednio.')}
-          caption={t('Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.')} />
+          caption={t('Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.')} />
         <H2 style={{ marginTop: 16 }}>{t('Objętość per partia ({u})', { u: wu() })}</H2>
         <MuscleRows rows={volumeBars(c.rows)} metric="volume" names={periods} />
         <H2 style={{ marginTop: 10 }} infoId="prog-sets" info={kind === 'week'

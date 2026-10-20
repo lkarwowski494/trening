@@ -1637,7 +1637,7 @@
  "Zatrzymaj animację": "Παύση κινούμενης εικόνας",
  "Zawsze w: {l}": "Πάντα σε: {l}",
  "Zawsze w: {l} — {name}": "Πάντα σε: {l} — {name}",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "Τα επισημασμένα μέρη σώματος έχουν μεγαλύτερο όγκο από την περίοδο σύγκρισης· όσο πιο σκούρο, τόσο μεγαλύτερη η αύξηση. Γκρι — χωρίς αύξηση.",
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.": "Τα επισημασμένα μέρη σώματος έχουν μεγαλύτερο όγκο από την περίοδο σύγκρισης· όσο πιο έντονο το χρώμα, τόσο μεγαλύτερη η αύξηση. Γκρι — χωρίς αύξηση.",
  "zaznaczone: {n} z {m}": "επιλεγμένα: {n} από {m}",
  "Zdejmij oznaczenie deload": "Αφαίρεση σήμανσης αποφόρτισης",
  "ze skosem w dół": "με αρνητική κλίση",

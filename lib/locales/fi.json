@@ -1637,7 +1637,7 @@
  "Zatrzymaj animację": "Keskeytä animaatio",
  "Zawsze w: {l}": "Aina paikassa {l}",
  "Zawsze w: {l} — {name}": "Aina paikassa {l} — {name}",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "Korostetuilla lihasryhmillä on enemmän volyymia kuin vertailujaksolla; mitä tummempi, sitä suurempi kasvu. Harmaa — ei kasvua.",
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.": "Korostetuilla lihasryhmillä on enemmän volyymia kuin vertailujaksolla; mitä voimakkaampi väri, sitä suurempi kasvu. Harmaa — ei kasvua.",
  "zaznaczone: {n} z {m}": "valittu: {n}/{m}",
  "Zdejmij oznaczenie deload": "Poista kevennysmerkintä",
  "ze skosem w dół": "laskevalla selkänojalla",

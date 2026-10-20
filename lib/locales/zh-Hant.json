@@ -1452,7 +1452,7 @@
  "Zapisz zmiany w szablonie": "儲存範本的變更",
  "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "已計畫 = 根據範本中的數值，計算計畫中本週其餘日子的範本（缺少的取自「上次」）。這是依你的計畫所做的計算，並非預測。主要肌群算 1 組，輔助肌群算 0.5 組。",
  "Zaplanowane: {text} ({days})": "計畫：{text}（{days}）",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "標示的肌群訓練量高於比較期間；顏色越深，增幅越大。灰色 — 沒有增加。",
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.": "標示的肌群訓練量高於比較期間；顏色越鮮明，增幅越大。灰色 — 沒有增加。",
  "Zmień szablon": "變更範本",
  "zrobiony wcześniej: {name}": "已提前完成：{name}",
  "Zrobiony wcześniej: {name}": "已提前完成：{name}",

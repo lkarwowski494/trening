@@ -1452,7 +1452,7 @@
  "Zapisz zmiany w szablonie": "テンプレートの変更を保存",
  "Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.": "予定 = プランの残りの日のテンプレートを、テンプレートの値から計算したものです（ない値は「前回」から）。プランに基づく計算であり、予測ではありません。主な部位は 1 セット、補助の部位は 0.5 セットとして数えます。",
  "Zaplanowane: {text} ({days})": "予定: {text}（{days}）",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "強調表示された部位は、比較期間よりボリュームが増えています。色が濃いほど増加が大きく、グレーは増加なしです。",
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.": "強調表示された部位は、比較期間よりボリュームが増えています。色が強いほど増加が大きく、グレーは増加なしです。",
  "Zmień szablon": "テンプレートを変更",
  "zrobiony wcześniej: {name}": "先に完了：{name}",
  "Zrobiony wcześniej: {name}": "先に完了：{name}",

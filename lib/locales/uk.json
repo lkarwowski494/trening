@@ -1637,7 +1637,7 @@
  "Zatrzymaj animację": "Призупинити анімацію",
  "Zawsze w: {l}": "Завжди в: {l}",
  "Zawsze w: {l} — {name}": "Завжди в: {l} — {name}",
- "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.": "Виділені частини тіла мають більший обсяг, ніж у періоді порівняння; чим темніше, тим більший приріст. Сірий — без приросту.",
+ "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.": "Виділені частини тіла мають більший обсяг, ніж у періоді порівняння; чим насиченіший колір, тим більший приріст. Сірий — без приросту.",
  "zaznaczone: {n} z {m}": "вибрано: {n} з {m}",
  "Zdejmij oznaczenie deload": "Зняти позначку розвантаження",
  "ze skosem w dół": "з від’ємним нахилом",
