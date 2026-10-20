@@ -40,3 +40,9 @@ test('36: przed wpisywaniem serii (w-0-0) karta zgody jest zamknięta — start 
   expect(i).toBeGreaterThan(0); expect(raw.indexOf('id: "w-0-0"')).toBeGreaterThan(i);
   const sub = steps('subflows/start-szablonu.yaml'); expect(sub[sub.length - 1]).toBe(NOT_NOW);
 });
+
+test('31 (run 39410740673): po wyborze zamiennika przewinięcie do „instead of: …” z wyśrodkowaniem zamiast samego czekania', () => {
+  const s = steps('31-pierwszy-tydzien.yaml'); const i = s.indexOf('- tapOn: "Suggestion 1: .*"');
+  expect(i).toBeGreaterThan(0);
+  expect(s[i + 1]).toBe('- scrollUntilVisible: { element: "instead of: Bent Over Row \\\\(Barbell\\\\).*", direction: UP, timeout: 30000, centerElement: true }');
+});

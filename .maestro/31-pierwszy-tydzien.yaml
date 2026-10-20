@@ -114,7 +114,8 @@ name: Pierwszy tydzień nowego użytkownika
 - tapOn: "Swap exercise: Bent Over Row \\(Barbell\\)"
 - extendedWaitUntil: { visible: "Suggestion 1: .*", timeout: 30000 }
 - tapOn: "Suggestion 1: .*"
-- extendedWaitUntil: { visible: "instead of: Bent Over Row \\(Barbell\\).*", timeout: 30000 }
+# run 39410740673: po wyborze zamiennika lista zostaje przewinięta niżej (zrzut kroku 103: „Overhead Press”, „Lat Pulldown”), a wiersz „instead of” leży nad ekranem — przewinięcie z wyśrodkowaniem
+- scrollUntilVisible: { element: "instead of: Bent Over Row \\(Barbell\\).*", direction: UP, timeout: 30000, centerElement: true }
 # pominięcie ćwiczenia „na dziś” i przywrócenie
 - scrollUntilVisible: { element: "Skip today: Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Skip today: Overhead Press \\(Barbell\\)"

@@ -13,7 +13,7 @@ import { EquipVisual } from '@/components/EquipVisual';
 import { SwipeRow, lastSetBlock, confirmDelete } from '@/components/SwipeRow';
 import { MedicalNote } from '@/components/MedicalNote';
 import { templateDiff, rememberTemplateUpdate } from '@/lib/tplsync';
-import { equipVisFor, equipSlotFor } from '@/lib/equipvis';
+import { equipVisFor, equipSlotFor, slotHeight } from '@/lib/equipvis';
 import Svg, { Circle } from 'react-native-svg';
 import { implLabel } from '@/lib/swap';
 import { SetBadge } from '@/components/SetBadge';
@@ -523,7 +523,7 @@ function FocusCard({ w, onDone, onFinish, onStartSet, onCardY, onRestY }: { w: W
       <Text accessibilityLanguage={lang()} accessible accessibilityLabel={tr('Teraz: {v}', { v: bigTxt })} adjustsFontSizeToFit numberOfLines={1} maxFontSizeMultiplier={1.2} style={{ color: t.text, fontSize: 64, lineHeight: 72, fontFamily: F.display }}>{big.num}{big.unit ? <Text accessibilityLanguage={lang()} style={{ fontSize: 18, fontFamily: F.semibold, color: t.muted }}>{` ${big.unit}`}</Text> : null}{big.tail}</Text>
       {p ? <Muted style={{ fontSize: 13 }}>{tr('ostatnio {s}', { s: setSummary(ex, p, 'calc') })}</Muted> : null}
       {vis.length || ghost.length ? (
-        <View style={{ gap: 10, minHeight: minH }} onLayout={ev => { const h = Math.ceil(ev.nativeEvent.layout.height); if (slot.key !== set.id || h > slot.h) setSlot({ key: set.id, h }); }}>
+        <View style={{ gap: 10, minHeight: minH }} onLayout={ev => { const h = slotHeight(ev.nativeEvent.layout.height); if (slot.key !== set.id || h > slot.h) setSlot({ key: set.id, h }); }}>
           {vis.map((v, i) => <EquipVisual key={i} v={v} />)}
           {ghost.length ? <View style={{ gap: 10, opacity: 0 }} pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">{ghost.map((v, i) => <EquipVisual key={i} v={v} />)}</View> : null}
         </View>) : null}
