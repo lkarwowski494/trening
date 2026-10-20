@@ -44,7 +44,7 @@ describe('A1 migracje', () => {
 describe('A2 start', () => {
   test('pusty telefon → dane startowe w języku systemu (EN)', async () => {
     const s = await fresh(undefined, 'en');
-    expect(s.templates).toEqual([]); /* decyzja 03.10.2026 (08:11): bez szablonów właściciela — ustawia je sam */ expect(s.bands[0].color).toBe('red');
+    expect(s.templates).toEqual([]); /* decyzja 03.10.2026 (08:11): bez szablonów właściciela — ustawia je sam */ expect(s.bands[0].color).toBe('czerwona'); expect(store.bandColor(s.bands[0])).toBe('red'); /* M1-040: klucz polski, nazwę w języku daje bandColor */
     expect(i18n.lang()).toBe('en'); expect(saved().schemaVersion).toBe(SCHEMA_VERSION);
   });
   test('nieczytelny zapis nie jest nadpisany — kopia i baner odzysku', async () => {

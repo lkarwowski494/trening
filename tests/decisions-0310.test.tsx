@@ -189,7 +189,7 @@ describe('decyzja 03.10.2026 (08:11) — aplikacja nie przenosi ani nie zmienia 
   const tplShape = (st: { templates: { id: string; name: string; items: { exerciseId: string; startWeight: number | ''; sets: number }[] }[] }) => st.templates.map(t => [t.id, t.name, t.items.map(i => [i.exerciseId, i.sets, i.startWeight])]);
   test('nowa instalacja: ZERO szablonów (PL i EN); biblioteka ćwiczeń i gumy jak dotąd', async () => {
     let st = await fresh(); expect(st.templates).toEqual([]); expect(st.exercises.map(e => e.libKey)).toEqual(LIB.map(l => l[0])); /* SEC2-01: klucz = nazwa kanoniczna, nazwa wyświetlana bywa ogólna (LIB_DISPLAY_NAME) */ expect(st.exercises.map(e => e.name)).toEqual(LIB.map(l => LIB_DISPLAY_NAME[l[0]] ?? l[0])); expect(st.bands.map(b => [b.color, b.level])).toEqual([['czerwona', 2], ['czarna', 4], ['fioletowa', 6]]);
-    st = await fresh(undefined, 'en'); expect(st.templates).toEqual([]); expect(st.bands.map(b => b.color)).toEqual(['red', 'black', 'purple']);
+    st = await fresh(undefined, 'en'); expect(st.templates).toEqual([]); expect(st.bands.map(b => b.color)).toEqual(['czerwona', 'czarna', 'fioletowa']); expect(st.bands.map(b => store.bandColor(b))).toEqual(['red', 'black', 'purple']); /* M1-040: seed zapisuje klucze polskie, język daje bandColor */
     expect(seedState('pl').templates).toEqual([]); expect(seedState('en').templates).toEqual([]);
   });
   test('przejście ze schematu 14: szablon z Deadlift (hantle) 48 kg zostaje 48 (migracja i start aplikacji); szablony z istniejącymi ćwiczeniami 1:1 (normalizacja jak w main — audit-r82b); historia bez zmian', async () => {

@@ -1,5 +1,6 @@
 import { getState, exById, isBW, locationById, listLocFor, pinnedImpl, liveBlockImpl } from './store';
 import { loadsFor } from './equipment';
+import { canonicalBandColor } from './state/sets';
 import { hasLoad } from './loads';
 import { hasWeight, type Exercise, type Impl, type WExercise, type WSet, type Workout } from './seed';
 
@@ -53,7 +54,7 @@ const BAND_HEX: Record<string, string> = {
   'pomarańczowa': '#E8590C', orange: '#E8590C', szara: '#8A8D93', grey: '#8A8D93', gray: '#8A8D93', 'różowa': '#E0619A', pink: '#E0619A',
   'brązowa': '#7A4E2D', brown: '#7A4E2D', 'biała': '#FFFFFF', white: '#FFFFFF',
 };
-export const bandHex = (color: string): string | null => BAND_HEX[color.trim().toLowerCase()] ?? null;
+export const bandHex = (color: string): string | null => BAND_HEX[color.trim().toLowerCase()] ?? BAND_HEX[canonicalBandColor(color.trim())] ?? null; /* M1-040: także nazwa w innym języku instalacji */
 
 /**
  * Miejsce na grafikę na karcie (decyzja właściciela 07.10.2026, wariant A; E2E run 37611882320): karta nie zmienia wysokości, gdy wpisujesz

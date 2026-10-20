@@ -2,7 +2,7 @@
 // przygotowanie pod wielu użytkowników (konto, trener–podopieczny) bez migracji "z bólem" później.
 // Backup z wersji webowej v0.3 (bez tych pól) jest nadal importowalny — migrate() w store.ts dopisuje brakujące pola.
 import * as Crypto from 'expo-crypto';
-import { tIn, fold, exName, type LangSetting, type Lang } from './i18n';
+import { fold, exName, type LangSetting, type Lang } from './i18n';
 import type { Unit } from './units';
 import type { LoadSpec } from './loads';
 import { GYM_FILL, OPT_FILL, EQUIP_FILL2 } from './equipment';
@@ -317,12 +317,11 @@ export function libKeyCandidates(e: FpFields): string[] {
  * Sam je ustawię.” — świeża instalacja ma `templates: []`; dawne cztery szablony żyją tylko w danych testowych: tests/fixtures/demo-templates.ts).
  * Nazwy gum w języku użytkownika; nazwy ćwiczeń z biblioteki zostają kanoniczne i tłumaczy je exName(). */
 export function seedState(lng: Lang = 'pl'): State {
-  const c = (pl: string) => tIn(lng, pl); /* nazwy gum w języku użytkownika (słowniki: lib/i18n) */
   const exercises: Exercise[] = LIB.map(r => libExercise(r));
   return {
     v: 2, schemaVersion: SCHEMA_VERSION, ownerId: LOCAL_OWNER,
     settings: { ...defaultSettings(), voice: 'off' /* DEC-05 (20.10.2026): zapowiedzi głosowe domyślnie wyłączone dla nowej instalacji; brak pola w starszych danych = „W słuchawkach” (lib/voice.ts) */ }, exercises,
-    bands: [{ ...base(), color: c('czerwona'), level: 2 }, { ...base(), color: c('czarna'), level: 4 }, { ...base(), color: c('fioletowa'), level: 6 }],
+    bands: [{ ...base(), color: 'czerwona', level: 2 }, { ...base(), color: 'czarna', level: 4 }, { ...base(), color: 'fioletowa', level: 6 }], /* M1-040: klucze polskie — nazwę w języku interfejsu daje bandColor() */
     templates: [], workouts: [], active: null, mornings: [], relations: [], feedback: [], instructions: [], timer: blankTimer(), libExtra: LIB_EXTRA_REVS[0], libExtraStep: LIB_EXTRA_REV, equipFill: GYM_FILL.rev /* nowa instalacja nie ma dawnych miejsc */, equipFill2: EQUIP_FILL2.rev, optFill: OPT_FILL.rev,
   };
 }
