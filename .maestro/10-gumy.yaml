@@ -72,6 +72,7 @@ name: Gumy w miejscu i w treningu
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
+- tapOn: { text: "Not now", optional: true }   # M1-035: karta „Notification at the end of rest” (czysta instalacja, zgoda nieustalona) przesuwa układ — chowamy ją przed dalszymi krokami
 - extendedWaitUntil: { visible: "\\+ Add exercise", timeout: 30000 }
 - tapOn: "\\+ Add exercise"
 - extendedWaitUntil: { visible: "Place filter: Home.*", timeout: 30000 }

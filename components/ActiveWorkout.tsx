@@ -32,7 +32,7 @@ import { adaptCandidates, restoreCandidates } from '@/lib/adapt';
 import { TestWatchPanel } from '@/components/TestWatchPanel';
 import { voiceSetting, setVoiceSetting, voiceSettingLabel, VOICE_SETTINGS, type VoiceSetting } from '@/lib/voice';
 import { takeAutoAdapt } from '@/lib/adaptPick';
-import { reminderPermission, askRestNotificationPermission, type ReminderPermission } from '@/lib/planReminder';
+import { reminderPermission, requestRestNotificationPermission, restExplainDismissed, dismissRestExplain, type ReminderPermission } from '@/lib/planReminder';
 
 /*
  * Trening w toku. Audyt 0.8.1:
@@ -51,10 +51,9 @@ export default function ActiveWorkout() {
   const st = getState(); const w = st.active!;
   const wake = st.settings.wakeLock !== false;
   useEffect(() => { if (!wake) return; activateKeepAwakeAsync('workout').catch(() => {}); return () => { deactivateKeepAwake('workout').catch(() => {}); }; }, [wake]);
-  /* M1-audytor-generalny-035: zgoda na powiadomienie o końcu przerwy — wyjaśnienie przed pytaniem systemu; odmowa widoczna jedną linią (niżej) */
+  /* M1-audytor-generalny-035: zgoda na powiadomienie o końcu przerwy — karta z wyjaśnieniem przed pytaniem systemu (tylko gdy iOS jeszcze nie pytał); odmowa widoczna jedną linią (niżej) */
   const [perm, setPerm] = useState<ReminderPermission | null>(null); const permTick = useForegroundTick();
   useEffect(() => { reminderPermission().then(setPerm).catch(() => {}); }, [permTick]);
-  useEffect(() => { askRestNotificationPermission().then(() => reminderPermission().then(setPerm)).catch(() => {}); }, []);
   /* 0.19 (docs/33 B, P4 A): start w dniu z miejscem z planu — okno „Dostosuj do: X” otwiera się samo (raz, tylko gdy są propozycje); nigdy automatyczna zamiana */
   useEffect(() => { const a = getState().active; if (a && takeAutoAdapt(a.id) && a.locationId && (adaptCandidates(a, a.locationId).length || restoreCandidates(a, a.locationId).length)) router.push('/adapt'); }, [w.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const [, force] = useState(0);
@@ -183,6 +182,11 @@ export default function ActiveWorkout() {
           <View style={{ alignItems: 'flex-end', gap: 6 }}><Btn title={tr('Zakończ')} kind="primary" onPress={finish} /><VoiceBtn /></View>
         </View>
         <TemplateNote w={w} />
+        {perm === 'undetermined' && !restExplainDismissed() ? <View testID="perm-explain-workout" style={{ gap: 6, marginBottom: 8, padding: 12, borderRadius: 10, backgroundColor: t.surface2 }}>
+          <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 15, fontFamily: F.semibold }}>{tr('Powiadomienie na koniec przerwy')}</Text>
+          <Muted style={{ fontSize: 13 }}>{tr('Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.')}</Muted>
+          <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap' }}><Btn small kind="primary" title={tr('Dalej')} onPress={() => { requestRestNotificationPermission().then(setPerm).catch(() => {}); }} /><Btn small kind="ghost" title={tr('Nie teraz')} onPress={() => { dismissRestExplain(); force(x => x + 1); }} /></View>
+        </View> : null}{/* M1-035: wyjaśnienie przed pierwszą prośbą o zgodę */}
         {perm === 'denied' ? <View testID="perm-denied-workout" style={{ gap: 6, marginBottom: 8 }}><Muted style={{ fontSize: 13 }}>{tr('Brak zgody na powiadomienia — przypomnienia i koniec przerwy nie przyjdą. Zgodę włączysz w Ustawieniach iOS.')}</Muted><Btn small title={tr('Otwórz Ustawienia iOS')} onPress={() => { Linking.openSettings().catch(() => {}); }} style={{ alignSelf: 'flex-start' }} /></View> : null}{/* M1-035: odmowa widoczna na ekranie treningu */}
         {st.settings.workoutView !== 'list' ? <FocusCard w={w} onDone={onDone} onFinish={finish} onStartSet={startSet} onCardY={y => { restY.current.card = y; checkRest(); }} onRestY={y => { restY.current.panel = y; checkRest(); }} /> : null}
         {w.exercises.map((e, ei) => <ExerciseBlock key={e.id} w={w} e={e} ei={ei} onDone={onDone} onStartSet={startSet} labels={labels} prs={prs} />)}

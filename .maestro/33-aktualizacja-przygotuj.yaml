@@ -27,6 +27,7 @@ name: Aktualizacja — dane w poprzedniej wersji
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - runFlow: subflows/start-szablonu.yaml
+- tapOn: { text: "Not now", optional: true }   # M1-035: karta „Notification at the end of rest” (czysta instalacja, zgoda nieustalona) przesuwa układ — chowamy ją przed dalszymi krokami
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - tapOn: { text: "Set 1 done.*", index: 0 }
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
@@ -98,6 +99,7 @@ name: Aktualizacja — dane w poprzedniej wersji
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - runFlow: subflows/start-szablonu.yaml
+- tapOn: { text: "Not now", optional: true }   # M1-035: karta „Notification at the end of rest” (czysta instalacja, zgoda nieustalona) przesuwa układ — chowamy ją przed dalszymi krokami
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 # run 38607952098 (34: „Now: 40 kg × 10” → na ekranie 40 × 0): na wolnym symulatorze zginął pierwszy znak „10” — jak 31 i 15: znaki osobno, sprawdzenie pola, powtórka wpisu
 - retry:
