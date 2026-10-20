@@ -36,8 +36,11 @@ final class WatchUITests: XCTestCase {
   private let sessionStart: [String: Any] = ["v": 1, "kind": "session", "action": "start", "workoutId": "workout-1", "save": true]
 
   @discardableResult
-  private func launch(_ messages: [[String: Any]]?, reachable: Bool = true, args: [String] = []) -> XCUIApplication {
+  private func launch(_ messages: [[String: Any]]?, reachable: Bool = true, undoSec: Int = 120, args: [String] = []) -> XCUIApplication {
     let app = XCUIApplication()
+    /* Okno „Cofnij” (5 s w aplikacji) liczy się od stuknięcia, a wolny symulator odpowiada na jedno zapytanie o element nawet 10–30 s (przebieg 39365741191) — więc testy
+       dostają okno 120 s (tylko Debug); skrócenie do 5 s sprawdzają testy logiki (ClientModelTests, WatchStoreTests). Bonus: układ ekranu przerwy nie przesuwa się w trakcie testu. */
+    app.launchEnvironment["WATCH_FAKE_UNDO_SEC"] = String(undoSec)
     if let m = messages { app.launchEnvironment["WATCH_FAKE_SNAPSHOT_JSON"] = json(m) }
     if !reachable { app.launchEnvironment["WATCH_FAKE_REACHABLE"] = "0" }
     app.launchArguments += args
@@ -46,8 +49,8 @@ final class WatchUITests: XCTestCase {
     return app
   }
   @discardableResult
-  private func launch(_ snapshot: String, lang: String? = nil, reachable: Bool = true, args: [String] = []) -> XCUIApplication {
-    launch([object(snapshot) { if let l = lang { $0["lang"] = l } }], reachable: reachable, args: args)
+  private func launch(_ snapshot: String, lang: String? = nil, reachable: Bool = true, undoSec: Int = 120, args: [String] = []) -> XCUIApplication {
+    launch([object(snapshot) { if let l = lang { $0["lang"] = l } }], reachable: reachable, undoSec: undoSec, args: args)
   }
 
   private func el(_ app: XCUIApplication, _ id: String) -> XCUIElement { app.descendants(matching: .any).matching(identifier: id).firstMatch }
@@ -136,10 +139,10 @@ final class WatchUITests: XCTestCase {
   }
 
   func testUndoDisappearsAfterWindow() {
-    let app = launch("set-first") // okno „Cofnij” 5 s
+    let app = launch("set-first", undoSec: 35) // okno „Cofnij” skrócone do 35 s (zapas na wolny symulator), przerwa trwa 90 s
     appears(app, "watch.primary"); el(app, "watch.primary").tap()
     appears(app, "watch.undo")
-    gone(app, "watch.undo", timeout: 12)
+    gone(app, "watch.undo", timeout: 60)
     XCTAssertTrue(el(app, "watch.timer").exists)
   }
 

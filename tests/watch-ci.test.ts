@@ -41,6 +41,17 @@ describe('scripts/ci/watch-screenshots.sh', () => {
     const app = fs.readFileSync(path.join(root, 'targets/watch-app/TreningWatchApp.swift'), 'utf8');
     expect(app).toMatch(/#if DEBUG[\s\S]*WATCH_FAKE_SNAPSHOT_JSON[\s\S]*#endif/); /* wydanie ignoruje zmienną: sztuczny transport tylko w Debug */
   });
+  test('okno „Cofnij” dłuższe w testach UI: zmienna tylko w Debug, każdy start w XCUITest ją ustawia, domyślnie 5 s w aplikacji (przebieg 39365741191)', () => {
+    const app = fs.readFileSync(path.join(root, 'targets/watch-app/TreningWatchApp.swift'), 'utf8');
+    const i = app.indexOf('WATCH_FAKE_UNDO_SEC'); expect(i).toBeGreaterThan(-1);
+    const before = app.slice(0, i); expect((before.match(/^\s*#if DEBUG/gm) || []).length).toBeGreaterThan((before.match(/^\s*#endif/gm) || []).length);
+    const client = fs.readFileSync(path.join(root, 'targets/watch-app/Core/WatchClient.swift'), 'utf8');
+    expect(client).toMatch(/var undoSec: Int\? = nil/); expect(client).toContain('s.cfg.undoSec ?? WatchLimits.undoSec');
+    expect(app).not.toMatch(/static let config = ClientConfig\([^)]*undoSec/); /* wydanie: nigdy nie ustawia okna */
+    const ui = fs.readFileSync(path.join(root, 'targets/watch-ui-tests/WatchUITests.swift'), 'utf8');
+    expect(ui.match(/launchEnvironment\["WATCH_FAKE_UNDO_SEC"\]/g)).toHaveLength(1); /* jedno miejsce uruchamiania: wszystkie testy dostają okno */
+    expect(ui).toMatch(/undoSec: Int = 120/);
+  });
   test('"all" bierze języki z labels.json (35)', () => {
     const labels = JSON.parse(fs.readFileSync(path.join(root, 'tests/fixtures/watch-app/labels.json'), 'utf8')); expect(Object.keys(labels)).toHaveLength(35);
     expect(sh).toContain('labels.json');

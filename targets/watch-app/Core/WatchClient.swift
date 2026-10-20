@@ -24,6 +24,9 @@ struct ClientConfig: Codable, Equatable {
   var client: WatchClientKind
   var app: String
   var session: Bool
+  /// Tylko testy interfejsu na symulatorze (konfiguracja Debug, zmienna WATCH_FAKE_UNDO_SEC): dłuższe okno „Cofnij” niż `WatchLimits.undoSec`, bo wolny symulator
+  /// potrafi odpowiadać na zapytania o element dłużej niż 5 s. W aplikacji z telefonem zawsze nil — obowiązuje WatchLimits.undoSec.
+  var undoSec: Int? = nil
 }
 
 /// Zdarzenie wysłane i jeszcze nieuwzględnione w migawce. `ackRev` = numer migawki z potwierdzenia: wpis znika dopiero, gdy przyjdzie migawka o tym numerze
@@ -281,7 +284,7 @@ func clientStep(_ s0: ClientState, _ ti: TimedInput) -> ClientStep {
     case .main, .differ:
       guard let n = n, view.actions.contains(.done) else { break }
       emit(b == .main ? .done : .differ, n.setId)
-      s.undo = ClientUndo(setId: n.setId, until: at + Double(WatchLimits.undoSec) * 1000)
+      s.undo = ClientUndo(setId: n.setId, until: at + Double(s.cfg.undoSec ?? WatchLimits.undoSec) * 1000)
       s.confirmSkip = false
     case .skip:
       if n != nil { s.confirmSkip = true }
