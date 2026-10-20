@@ -15,9 +15,9 @@ on:
         required: false
         default: 'pl,en'
       wyglad:
-        description: 'Motyw aplikacji na zrzutach: light albo dark'
+        description: 'Motyw aplikacji i symulatora na zrzutach: dark (decyzja właściciela 18.10.2026 — wszystkie zrzuty ciemne) albo light'
         required: false
-        default: 'light'
+        default: 'dark'
       aplikacja_z_przebiegu:
         description: 'Numer przebiegu TEGO workflow z gotową aplikacją (artefakt trening-sim-app-sklep, żyje 3 dni); pusty = zbuduj od nowa (~40 min)'
         required: false
@@ -133,15 +133,31 @@ jobs:
       - name: Symulator
         env:
           WZORZEC: ${{ matrix.wzorzec }}
+          WYGLAD: ${{ inputs.wyglad }}
         run: |
           DEV=$(xcrun simctl list devices available | grep -m1 -E "$WZORZEC" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/' || true)
           [ -n "$DEV" ] || { echo "::error::Brak symulatora pasującego do wzorca $WZORZEC"; xcrun simctl list devices available | grep -E 'iPhone' | sed -E 's/\([0-9A-F-]{36}\)//'; exit 1; }
           echo "SIM=$DEV" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEV" || true
           xcrun simctl bootstatus "$DEV" -b
+          [ "$WYGLAD" = light ] || xcrun simctl ui "$DEV" appearance dark   # pasek stanu i okna systemowe jak aplikacja (ciemne)
           xcrun simctl install "$DEV" app/Trening.app
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Install Maestro (akcje na ekranach — wykres e1RM, przewinięcie, kalendarz, wybór pliku CSV)
+        # jak e2e-ios.yml: zmienna repozytorium MAESTRO_VERSION przypina wersję (pusta = najnowsza)
+        env:
+          MAESTRO_VERSION: ${{ vars.MAESTRO_VERSION }}
+        run: |
+          [ -n "$MAESTRO_VERSION" ] || unset MAESTRO_VERSION
+          curl -fsSL "https://get.maestro.mobile.dev" | bash
+          echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
       - name: Zrzuty ekranu
         env:
+          MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'
+          MAESTRO_CLI_NO_ANALYTICS: '1'
           JEZYKI: ${{ inputs.jezyki }}
           ROZMIAR: ${{ matrix.rozmiar }}
         run: bash scripts/ci/store-screenshots.sh "$SIM" "sklep-zrzuty/$ROZMIAR" sklep-dane "$JEZYKI"
@@ -151,6 +167,7 @@ jobs:
           name: sklep-zrzuty-${{ matrix.rozmiar }}
           retention-days: 3
           if-no-files-found: ignore
+          include-hidden-files: true  # dzienniki Maestro w sklep-zrzuty/<rozmiar>/.maestro (przebieg 39155596330: bez nich nie było widać przyczyny porażki akcji)
           path: sklep-zrzuty
   ramki:
     name: podpisy i ramki (D-6)
@@ -216,7 +233,7 @@ jobs:
           xcrun simctl install "$DEV" app/Trening.app
       - name: Zrzut ekranu zakupu (pl, en)
         run: |
-          for l in pl en; do printf '[["zakup","/paywall"]]' > "sklep-dane/routes-$l.json"; done
+          for l in pl en; do printf '[["zakup","/paywall","jasny",""]]' > "sklep-dane/routes-$l.json"; done
           bash scripts/ci/store-screenshots.sh "$SIM" sklep-zakup sklep-dane "pl,en"
       - uses: actions/upload-artifact@v4
         if: always()

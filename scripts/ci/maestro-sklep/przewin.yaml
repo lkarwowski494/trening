@@ -1,0 +1,22 @@
+# Zrzuty do sklepu: sekcja strażnika progresji — nagłówek „Strażnik progresji” u góry, pod nim sylwetka, legenda i wiersze partii.
+# Łącze /progress?s=guard samo przewija sekcję pod tytuł ekranu (od 0.20 objaśnienie metody jest pod ⓘ). Historia: 39149701858/39162600481 — stały
+# procent ucinał sylwetkę; 39175724214 — legenda ukryta dla VoiceOver (Maestro jej nie widzi); 39219483481 i 39232931000 — dodatkowe przewijanie
+# po łączu wypychało nagłówek albo wciągało do kadru sekcję wyżej. Teraz przewijamy tylko wtedy, gdy nagłówka (przycisk ⓘ z etykietą
+# dostępności) nie widać — łącze nie zdążyło przewinąć. ⓘ nie jest dotykany — objaśnienie zostaje zwinięte.
+appId: pl.lukasz.trening
+---
+- waitForAnimationToEnd
+- runFlow:
+    when:
+      notVisible: { id: "info-guard-method" }
+    commands:
+      - scrollUntilVisible:
+          element: { id: "info-guard-method" }
+          direction: DOWN
+          centerElement: true
+          timeout: 20000
+      - swipe:
+          start: "50%, 70%"
+          end: "50%, 30%"
+          duration: 2000
+      - waitForAnimationToEnd

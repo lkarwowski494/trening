@@ -1,0 +1,20 @@
+# Zrzuty do sklepu: Import historii z CSV → podgląd. Plik trening-historia.csv (zmyślony, z scripts/screens/store-seed.test.ts) skrypt kładzie
+# w Dokumentach aplikacji (Pliki → Na moim iPhonie → Trening). Okno wyboru plików jest systemowe (język symulatora: angielski); kroki zależne
+# od ostatnio użytego miejsca są opcjonalne. Przycisk po polsku albo angielsku (zrzuty pl, en).
+appId: pl.lukasz.trening
+---
+- extendedWaitUntil: { visible: "Wybierz plik CSV|Choose a CSV file", timeout: 20000 }
+- waitForAnimationToEnd
+- retry:   # przebieg 39169554299: stuknięcie bywało gubione — okno plików się nie otwierało
+    maxRetries: 3
+    commands:
+      - tapOn: "Wybierz plik CSV|Choose a CSV file"
+      - extendedWaitUntil: { visible: "Browse|Recents|Cancel", timeout: 10000 }
+- tapOn: { text: "Browse", optional: true }
+- tapOn: { text: "On My iPhone", optional: true }
+- tapOn: { text: "Trening|Training", optional: true }   # folder aplikacji ma nazwę wyświetlaną w języku symulatora (przebieg 39162600481: „Training”)
+- retry:   # przebieg 39169554299: stuknięcie w sam podpis pliku nie wybierało go — stukamy w całą komórkę („trening-historia, csv, …”)
+    maxRetries: 3
+    commands:
+      - tapOn: "trening-historia, .*"
+      - extendedWaitUntil: { visible: "Podgląd importu|Import preview", timeout: 15000 }
