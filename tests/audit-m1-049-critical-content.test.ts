@@ -19,8 +19,9 @@ const SAFETY = [
   'Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.',
   'bez asekuracji w stojakach',
 ];
-/** Języki, w których w docs/16 (proces 05.10.2026) zapisano niezależną recenzję drugim agentem po tłumaczeniu. */
+/** Języki, w których w docs/16 zapisano niezależną recenzję drugim agentem po tłumaczeniu: 14 języków (proces 05.10.2026) i 10 języków wariantu B (proces 07.10.2026). */
 const REVIEWED_0510: readonly Lang[] = ['cs', 'sk', 'hu', 'ro', 'bg', 'hr', 'sl', 'sr', 'lt', 'lv', 'et', 'uk', 'es', 'pt'];
+const REVIEWED_0710: readonly Lang[] = ['de', 'fr', 'it', 'nl', 'sv', 'da', 'nb', 'fi', 'tr', 'el'];
 const START = '<!-- gen:krytyczne -->'; const END = '<!-- /gen:krytyczne -->';
 const TARGETS = LANGS.filter((l) => l !== 'pl');
 
@@ -35,7 +36,7 @@ function row(l: Lang): string {
   const med = present(l, MEDICAL) ? 'tak' : 'BRAK';
   const saf = SAFETY.every((k) => present(l, k)) ? 'tak' : 'BRAK';
   const c = cues(l); const have = plCueIds.filter((id) => typeof c[id] === 'string' && c[id].trim() !== '').length;
-  return `| ${l} | ${med} | ${saf} | ${have}/${plCueIds.length} | ${REVIEWED_0510.includes(l) ? 'tak (05.10.2026)' : 'brak zapisu'} | niewykonany |`;
+  return `| ${l} | ${med} | ${saf} | ${have}/${plCueIds.length} | ${REVIEWED_0510.includes(l) ? 'tak (05.10.2026)' : REVIEWED_0710.includes(l) ? 'tak (07.10.2026)' : 'brak zapisu'} | niewykonany |`;
 }
 const table = () => ['| kod | zdanie medyczne | asekuracja (3 klucze) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd wskazówek (native speaker) |', '|---|---|---|---|---|---|', ...TARGETS.map(row)].join('\n');
 

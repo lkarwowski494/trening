@@ -290,16 +290,16 @@ Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audi
 | es-419 | tak | tak | 306/306 | brak zapisu | niewykonany |
 | pt | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
 | pt-BR | tak | tak | 306/306 | brak zapisu | niewykonany |
-| de | tak | tak | 306/306 | brak zapisu | niewykonany |
-| fr | tak | tak | 306/306 | brak zapisu | niewykonany |
-| it | tak | tak | 306/306 | brak zapisu | niewykonany |
-| nl | tak | tak | 306/306 | brak zapisu | niewykonany |
-| sv | tak | tak | 306/306 | brak zapisu | niewykonany |
-| da | tak | tak | 306/306 | brak zapisu | niewykonany |
-| nb | tak | tak | 306/306 | brak zapisu | niewykonany |
-| fi | tak | tak | 306/306 | brak zapisu | niewykonany |
-| tr | tak | tak | 306/306 | brak zapisu | niewykonany |
-| el | tak | tak | 306/306 | brak zapisu | niewykonany |
+| de | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| fr | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| it | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| nl | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| sv | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| da | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| nb | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| fi | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| tr | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| el | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
 | id | tak | tak | 306/306 | brak zapisu | niewykonany |
 | ms | tak | tak | 306/306 | brak zapisu | niewykonany |
 | vi | tak | tak | 306/306 | brak zapisu | niewykonany |
@@ -310,7 +310,7 @@ Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audi
 <!-- /gen:krytyczne -->
 
 **Czego nie ma (stan na 20.10.2026):**
-- **Drugi przegląd wskazówek techniki: niewykonany** w żadnym języku; w repozytorium nie ma jego zapisu. Tłumaczył agent AI; niezależną recenzję drugim agentem zapisano tylko dla 14 języków pierwszej fali (proces 05.10.2026, akapit w sekcji „Języki”). Przegląd przez native speakerów jest w backlogu (docs/18) — **[OTWARTE]**.
+- **Drugi przegląd wskazówek techniki: niewykonany** w żadnym języku; w repozytorium nie ma jego zapisu. Tłumaczył agent AI; niezależną recenzję drugim agentem zapisano tylko dla 24 języków (14 z procesu 05.10.2026 i 10 z wariantu B, proces 07.10.2026 — akapity w sekcji „Języki”); dla fal 1–4 (pt-BR, es-419, id, ms, vi, ru, ja, ko, zh-Hant) tylko „bez recenzji native speakera”. Przegląd przez native speakerów jest w backlogu (docs/18) — **[OTWARTE]**.
 - **Forma zwracania się w fr i tr nie jest ujednolicona — [OTWARTE]**, do poprawy przez tłumacza (nie zmieniana w tej partii): rejestr zapisany w tabeli wyżej to „vous” (fr) i „siz” (tr), a zdanie medyczne brzmi w fr „consulte” (forma „tu”), w tr „danış” (forma „sen”), podczas gdy wskazówki techniki w tr używają formy grzecznościowej („kaldırın”), a w fr formy „vous” (np. „Levez”).
 - Zdanie asekuracji i zdanie medyczne bez weryfikacji merytorycznej badacza (zdanie asekuracji: „DO WERYFIKACJI BADACZA”, docs/10, sekcja „Asekuracja”).
 
