@@ -122,7 +122,9 @@ name: Język, wygląd i jednostka
 - scrollUntilVisible: { element: "distance", direction: DOWN, timeout: 30000 }
 - tapOn: "distance"
 - inputText: "100"
-- tapOn: "Change the values in the set row below."   # klawiatura numeryczna nie ma „schowaj” — fokus zdejmuje stuknięcie w tekst karty
+# klawiatura numeryczna nie ma „schowaj” — fokus zdejmuje stuknięcie w tekst NAD klawiaturą. Run 39427683836 (zrzut 57): przy dwóch ćwiczeniach tekst karty „Change the values…”
+# leży pod klawiaturą (stuknięcie trafiało w klawisz, klawiatura zostawała i zasłaniała pasek zakładek → „Settings” nie pojawiało się) — stukamy nazwę ćwiczenia „Running” (nagłówki kolumn są poza drzewem dostępności)
+- tapOn: "Running"
 # serii nie zaliczamy (uruchomiłoby odliczanie przerwy i zmieniło etykietę zakładki „Workout”)
 # jednostka yd (nagłówek kolumny i placeholder) jest poza drzewem dostępności; pokrywa ją tests/audit-m1-lok07-01-imperial-dist.test.tsx — tu: wpisana wartość zostaje w polu
 - assertVisible: "100"

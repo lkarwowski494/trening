@@ -19,8 +19,10 @@ name: Aktualizacja — dane w poprzedniej wersji
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
-- extendedWaitUntil: { visible: "Measurement system", timeout: 30000 }
-- tapOn: { id: "unit-system-kg" }
+# POPRZEDNIA wersja (v0.20.0-b1018) ma pole „Weight unit” (segmenty „kg”/„lb”, bez testID); bieżąca — „Measurement system” (segment „metric (kg, km, m)”, id unit-system-kg).
+# Run 39427683836: etykieta „Measurement system” nie istnieje w starej wersji. Selektory muszą pasować do OBU wersji.
+- extendedWaitUntil: { visible: "Weight unit|Measurement system", timeout: 30000 }
+- tapOn: "kg|metric \\(kg, km, m\\)"
 - tapOn: "Dark"
 - tapOn: "Back"
 # --- pierwszy trening: ciężar, powtórzenia, zakończenie ---
