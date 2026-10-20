@@ -105,7 +105,7 @@ describe('CSV: zapis', () => {
     const r = await commitCsvImport(f, { unit: 'kg' }); expect(r).toEqual({ workouts: 3, exercises: 2 });
     const st = store.getState(); expect(st.workouts).toHaveLength(before.w + 3); expect(st.exercises).toHaveLength(before.e + 2);
     const w = st.workouts.find(x => x.templateName === 'Push A')!; const bp = st.exercises.find(e => e.name === 'Bench Press (sztanga)')!;
-    expect(w.exercises[0].exerciseId).toBe(bp.id); expect(w.finishedAt! - w.startedAt).toBe(3120_000); expect(w.tzOffsetMin).toBe(-new Date(w.startedAt).getTimezoneOffset());
+    expect(w.exercises[0].exerciseId).toBe(bp.id); expect(w.finishedAt! - w.startedAt).toBe(3120_000); expect(w.tzOffsetMin).toBe(-new Date(w.startedAt).getTimezoneOffset() || 0);
     expect(w.exercises[0].sets.map(s => [s.weight, s.reps, s.kind, s.done])).toEqual([[60, 8, 'normal', true], [62.5, 6, 'normal', true], [40, 10, 'drop', true]]); expect(w.exercises[0].sets[1].rpe).toBe(8);
     const nw = st.exercises.find(e => e.name === 'Fikcyjny Wyciąg Testowy')!; expect(nw).toMatchObject({ metric: 'weight_reps', equipment: 'inne', group: 'inne' }); expect(nw.lib).toBeFalsy();
     expect(st.exercises.find(e => e.name === 'Squat (Barbell)')).toBeTruthy(); expect(st.workouts.map(x => x.startedAt)).toEqual([...st.workouts.map(x => x.startedAt)].sort((x, y) => x - y));
