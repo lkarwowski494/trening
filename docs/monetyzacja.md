@@ -27,7 +27,7 @@ Blok cenowy w opisie sklepu (docs/15) wstawia się dopiero z działającym zakup
 
 ## Bramka W0
 
-Wynik bramki W0: **[DO USTALENIA]** — w repozytorium nie ma zapisanego wyniku ani opisu bramki (materiały roli 02 leżą poza repozytorium, u właściciela). Wpisać wynik z datą i źródłem, gdy właściciel go dostarczy;
+Wynik bramki W0: **brak** (decyzja właściciela K-P4-3, 20.10.2026; zostaje **[DO USTALENIA]**) — w repozytorium nie ma zapisanego wyniku ani opisu bramki (materiały roli 02 leżą poza repozytorium, u właściciela). Wpisać wynik z datą i źródłem, gdy właściciel go dostarczy;
 informacja nie zmienia modelu.
 
 ## Historia (nieaktualne kwoty)

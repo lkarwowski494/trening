@@ -48,7 +48,7 @@ Dla Androida repo ma dziś jedną wzmiankę: biblioteka płatności „iOS+Andro
 
 | pole | wartość | status |
 |---|---|---|
-| metryka | [DO USTALENIA — właściciel, opcje poniżej] | otwarte |
+| metryka | **A + C** — pobrania miesięcznie z App Store Connect jako główna, zgłoszenia użytkowników o Androida uzupełniająco (właściciel, K-P4-1, 20.10.2026; odrzucone: B, C samodzielnie) | zdecydowane |
 | próg | [DO USTALENIA — właściciel; kandydat z docs/15: 100 pobrań miesięcznie — cel wzrostu z 06.10.2026, nie próg dla Androida] | otwarte |
 | minimalna próba | cały okres 8 tygodni od premiery; ocena wcześniej niedozwolona; minimalna liczba zdarzeń (np. odpowiedzi użytkowników) [DO USTALENIA — właściciel] | częściowo otwarte |
 | data oceny | premiera + 8 tygodni (56 dni); data kalendarzowa po ustaleniu daty premiery [DO USTALENIA — data premiery] | otwarte |
@@ -59,4 +59,4 @@ Opcje metryki (wybiera właściciel; rekomendacja pod listą):
 - **B. Odsetek kupujących po okresie próbnym** (docs/15: „zmierzymy po premierze w App Store Connect”). Plus: bliżej przychodu. Minus: okres próbny trwa 14 dni (`docs/monetyzacja.md`), więc przy małej liczbie pobrań w 8 tygodniach próba może być za mała.
 - **C. Zgłoszenia użytkowników o wersji na Androida** (wsparcie, opinie), liczone ręcznie. Plus: bezpośrednio o Androidzie, bez kosztów. Minus: zgłasza niewielka część użytkowników; brak metody liczenia w repo.
 
-**Rekomendacja:** A jako metryka główna z progiem wpisanym przed premierą, C jako uzupełnienie opisowe; B tylko jeśli liczba pobrań pozwoli na sensowną próbę. To rekomendacja do decyzji właściciela, nie decyzja. **Kolejny krok:** właściciel wybiera metrykę, próg i datę premiery; agent wpisuje je w tabeli powyżej (struktura pól jest pilnowana przez `tests/audit-m1-072-android-decision.test.ts`).
+**Decyzja właściciela (20.10.2026, K-P4-1): A + C** (zgodnie z rekomendacją); próg, minimalna próba i data premiery pozostają otwarte (tabela wyżej). **Rekomendacja:** A jako metryka główna z progiem wpisanym przed premierą, C jako uzupełnienie opisowe; B tylko jeśli liczba pobrań pozwoli na sensowną próbę. To rekomendacja do decyzji właściciela, nie decyzja. **Kolejny krok:** właściciel wybiera metrykę, próg i datę premiery; agent wpisuje je w tabeli powyżej (struktura pól jest pilnowana przez `tests/audit-m1-072-android-decision.test.ts`).

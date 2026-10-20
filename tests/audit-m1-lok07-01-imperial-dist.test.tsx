@@ -9,7 +9,7 @@ import * as store from '@/lib/store';
 import { fmtDist } from '@/lib/store';
 import { applyUnit, dIn, dOut, distUnit, isImperial, M_PER_MI, M_PER_YD, DIST_LONG_FROM_M } from '@/lib/units';
 import { applyLang, t } from '@/lib/i18n';
-import { spokenDist, spokenMeters, nowParts } from '@/lib/live';
+import { spokenDist, spokenMeters, nowParts, distParts } from '@/lib/live';
 import { fresh } from './helpers';
 import { renderApp, flushAll, screen, go, type, tap, act } from './app';
 
@@ -42,6 +42,10 @@ describe('głos i ekran blokady', () => {
     applyUnit('kg'); expect(spokenDist(400)).toBe(spokenMeters(400));
     applyUnit('lb'); expect(spokenDist(91.44)).toBe('100 jardów'); expect(spokenDist(0.9144)).toBe('1 jard'); expect(spokenDist(M_PER_MI)).toBe('1 mila'); expect(spokenDist(M_PER_MI * 5)).toBe('5 mil');
     applyLang('en'); expect(spokenDist(91.44)).toBe('100 yards'); expect(spokenDist(M_PER_MI)).toBe('1 mile'); expect(spokenDist(M_PER_MI * 5)).toBe('5 miles');
+  });
+  test('distParts: metryczny liczba i m; imperialny yd (zaokrąglone) albo mi od progu 1 mi', () => {
+    applyUnit('kg'); expect(distParts(400)).toEqual({ num: '400', unit: 'm' });
+    applyUnit('lb'); expect(distParts(400)).toEqual({ num: '437', unit: 'yd' }); expect(distParts(M_PER_MI)).toEqual({ num: '1', unit: 'mi' }); expect(distParts(5000)).toEqual({ num: '3,11', unit: 'mi' });
   });
   test('nowParts (ekran blokady / aktywność): imperialny — yd albo mi; metryczny bez zmian', async () => {
     await fresh(); const run = ex('Bieg'); const set = { distanceM: 400, durationSec: 100 } as never;

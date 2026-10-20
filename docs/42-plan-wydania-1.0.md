@@ -7,12 +7,12 @@ Droga do zgłoszenia (kroki, zależności, czas): `docs/41-droga-do-app-store.md
 
 Wydania w App Store nie zgłaszamy, dopóki wszystkie poniższe punkty nie są spełnione (rejestr ryzyk w `docs/40-lekcje.md`: otwarte ryzyko blokuje wydanie).
 
-1. **Rejestr ryzyk:** otwarte na 20.10.2026 — R-004 (uprawnienie powiadomień pilnych na telefonie; blokuje 1.0), R-005, R-006, R-007, R-008, R-009, R-010 (drugi przegląd treści krytycznej — blokuje App Store). Każde zamknięte z dowodem albo świadomie odłożone decyzją właściciela z datą.
+1. **Rejestr ryzyk:** otwarte na 20.10.2026 — R-004 (uprawnienie powiadomień pilnych na telefonie; blokuje 1.0), R-005, R-006, R-007, R-008, R-009, R-010 (drugi przegląd treści krytycznej — blokuje App Store; przegląd robi wyłącznie Claude, decyzja właściciela K-P4-2, 20.10.2026), R-011, R-012. Każde zamknięte z dowodem albo świadomie odłożone decyzją właściciela z datą.
 2. **Testy:** pełne `npm run verify` na commicie wydania, `tests.yml` zielony; pełny katalog E2E w **trybie ścisłym** (bez ponowień) po 3 kolejnych nocnych pełnych przebiegach zielonych bez ponowień (CLAUDE.md, `docs/38-przeplywy-i-luki-e2e.md` pkt 11).
 3. **Audyt:** pełny głęboki audyt całości przed upublicznieniem w App Store, naprawy KRYTYCZNYCH i WYSOKICH znalezisk bez drugiego audytu (CLAUDE.md „Audyty i wydania”, punkt 4; docs/41 A3–A4).
 4. **Wygląd:** redesign M3 przed 1.0; zrzuty do sklepu i opis dopiero po M3 (decyzja właściciela 20.10.2026, `docs/18-przekazanie.md`).
 5. **Droga do App Store:** punkty A–F z docs/41 spełnione (zakupy B1–B6, metadane D1–D11, prawo i kontakt E1–E6); opis sklepu zgodny z kodem (`docs/15-app-store.md`, test `tests/audit-m1-045-store-description.test.ts`).
-6. **Model płatności:** zgodny z `docs/monetyzacja.md`; wynik bramki W0 tam oznaczony **[DO USTALENIA]** — wpisać przed wydaniem, jeśli właściciel go dostarczy.
+6. **Model płatności:** zgodny z `docs/monetyzacja.md`; wynik bramki W0: brak (decyzja właściciela K-P4-3, 20.10.2026), zostaje **[DO USTALENIA]** — nie blokuje wydania.
 7. **Telefon:** lista kontrolna wydania (`docs/39-lista-kontrolna-wydania.md`) odhaczona przez właściciela na buildzie 1.0 z TestFlight.
 
 ## 2. Wydanie 1.0 — ręcznie, po kontroli na telefonie
@@ -39,7 +39,7 @@ Każda aktualizacja po 1.0 (1.0.1 i dalsze) idzie z włączonym wydaniem stopnio
 
 - Etapowanie obejmuje losową próbę użytkowników z włączonymi automatycznymi aktualizacjami; **każdy może pobrać aktualizację ręcznie w dowolnej chwili** (ta sama strona Apple) — wada nie dotknie więc tylko wskazanego odsetka.
 - **Wstrzymanie:** „During phased release, you may pause the release for up to 30 days, with no limit on the number of pauses.” (ta sama strona; przycisk „Pause Phased Release”).
-- W trakcie 7 dni właściciel co dzień sprawdza ocenę i opinie w App Store Connect (docs/15: liczby po premierze z „Analityka”) i zgłoszenia wsparcia; **[OTWARTE]** konkretne progi „stop” (ile zgłoszeń wstrzymuje etapowanie) — do ustalenia po pierwszych tygodniach, nie zgadujemy.
+- W trakcie 7 dni właściciel co dzień sprawdza ocenę i opinie w App Store Connect (docs/15: liczby po premierze z „Analityka”) i zgłoszenia wsparcia; **progi „stop” (decyzja właściciela K-P4-4, 20.10.2026):** pauza wydania stopniowego po pierwszym zgłoszeniu utraty danych lub awarii przy starcie albo po 3 zgłoszeniach innego błędu tego samego rodzaju; informacja na stronie wsparcia i w „Co nowego” poprawki.
 
 ## 4. Zły build
 
@@ -57,7 +57,7 @@ Zły build = znalezisko KRYTYCZNE albo WYSOKIE po wydaniu (utrata lub zepsucie d
 
 Odhaczana przez właściciela i agenta przed „Release”; wynik zapisany w docs/18 z datą.
 
-- [ ] **W1-01** Bramki z punktu 1 spełnione (ryzyka R-004…R-010 zamknięte albo odłożone decyzją z datą).
+- [ ] **W1-01** Bramki z punktu 1 spełnione (ryzyka R-004…R-012 zamknięte albo odłożone decyzją z datą).
 - [ ] **W1-02** Pełne `npm run verify` zielone na commicie wydania; pełny katalog E2E w trybie ścisłym zielony po 3 nocnych przebiegach.
 - [ ] **W1-03** Build 1.0 na TestFlight; lista `docs/39-lista-kontrolna-wydania.md` odhaczona na telefonie.
 - [ ] **W1-04** Zakup w piaskownicy (docs/39, US-13) i „Przywróć zakupy” sprawdzone.

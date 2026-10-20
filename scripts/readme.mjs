@@ -132,6 +132,7 @@ const TOP = {
   'package.json': 'zależności i polecenia npm; konfiguracja Jest',
   'package-lock.json': 'dokładne wersje zależności (npm ci)',
   'tsconfig.json': 'konfiguracja TypeScript',
+  'eslint.config.js': 'konfiguracja ESLint (npm run lint, część verify)',
   'babel.config.js': 'konfiguracja Babel', 'metro.config.js': 'konfiguracja bundlera Metro',
   'eas.json': 'ustawienia narzędzi Expo (obraz SDK, wersja Node)',
   'jest.mutation.config.js': 'konfiguracja testów mutacyjnych', 'jest.perf.config.js': 'konfiguracja testów wydajności',

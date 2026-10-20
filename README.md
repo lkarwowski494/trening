@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4521-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4685-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-45-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -59,11 +59,11 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Ćwiczenia w bibliotece | 709 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 343 (z testem: 343) | docs/19-macierz-testow.md |
-| Komunikaty i teksty | 1095 (z testem: 1095) | docs/19-macierz-testow.md |
-| Funkcje biblioteki `lib/` | 894 (z testem: 894) | docs/19-macierz-testow.md |
-| Wymiary (listy wartości i typy-unie) | 112 (z testem: 112) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 371 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 4521 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Komunikaty i teksty | 1100 (z testem: 1100) | docs/19-macierz-testow.md |
+| Funkcje biblioteki `lib/` | 902 (z testem: 902) | docs/19-macierz-testow.md |
+| Wymiary (listy wartości i typy-unie) | 113 (z testem: 113) | docs/19-macierz-testow.md |
+| Pliki testów Jest | 397 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 4685 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 152 (Maestro: 125, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 13) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 45 (w głównym przebiegu: 42, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -162,16 +162,18 @@ Kroki `npm run verify` (generowane z `package.json`):
 
 <!-- gen:verify-steps -->
 1. `npm run typecheck`
-2. `npm run check:i18n`
-3. `npm run check:cues`
-4. `npm run check:figures`
-5. `npm run check:readme`
-6. `jest`
-7. `npm run check:matrix`
-8. `npm run check:licenses`
-9. `npx expo export --platform ios --output-dir .expo/verify-export`
-10. sprzątanie katalogu tymczasowego eksportu
-11. `npm run verify:native`
+2. `npm run lint`
+3. `npm run check:i18n`
+4. `npm run check:cues`
+5. `npm run check:claims`
+6. `npm run check:figures`
+7. `npm run check:readme`
+8. `jest`
+9. `npm run check:matrix`
+10. `npm run check:licenses`
+11. `npx expo export --platform ios --output-dir .expo/verify-export`
+12. sprzątanie katalogu tymczasowego eksportu
+13. `npm run verify:native`
 <!-- /gen:verify-steps -->
 
 Natywnego builda nie da się sprawdzić na Linuksie: kompilacja — `ios-unsigned.yml`, scenariusze na symulatorze — `e2e-ios.yml`, telefon — TestFlight.
@@ -231,6 +233,7 @@ trening/
 ├── app.json                  konfiguracja aplikacji Expo (wersja, języki, uprawnienia, wtyczki)
 ├── babel.config.js           konfiguracja Babel
 ├── eas.json                  ustawienia narzędzi Expo (obraz SDK, wersja Node)
+├── eslint.config.js          konfiguracja ESLint (npm run lint, część verify)
 ├── jest.mutation.config.js   konfiguracja testów mutacyjnych
 ├── jest.perf.config.js       konfiguracja testów wydajności
 ├── metro.config.js           konfiguracja bundlera Metro
@@ -252,7 +255,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (36)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (39)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -290,6 +293,9 @@ trening/
 - [`docs/39-lista-kontrolna-wydania.md`](docs/39-lista-kontrolna-wydania.md) — 39. Lista kontrolna wydania dla właściciela (generowana — nie edytować ręcznie)
 - [`docs/40-lekcje.md`](docs/40-lekcje.md) — 40. Lekcje po błędach (lessons learnt)
 - [`docs/41-droga-do-app-store.md`](docs/41-droga-do-app-store.md) — 41. Droga do pierwszego wydania w App Store (stan 14.10.2026)
+- [`docs/42-plan-wydania-1.0.md`](docs/42-plan-wydania-1.0.md) — 42. Plan wydania 1.0 (decyzja właściciela 20.10.2026, audyt M1-068, DEC-22 wariant a)
+- [`docs/monetyzacja.md`](docs/monetyzacja.md) — Monetyzacja — model stały (jedno miejsce)
+- [`docs/wzrost.md`](docs/wzrost.md) — Wzrost: kanały startu i decyzja o Androidzie
 
 </details>
 <!-- /gen:docs-index -->
