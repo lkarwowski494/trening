@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "아이콘 아래 이름과 건강 권한 문구는 iOS 설정에서 앱 언어를 지정해야 언어가 바뀝니다.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "세트 삭제",
+ "Usuń ćwiczenie": "종목 삭제",
+ "Opcje ćwiczenia: {name}": "종목 옵션: {name}"
 }

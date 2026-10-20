@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "アイコン下の名前とヘルスケアの許可の文言は、iOS の「設定」でアプリの言語を設定したあとに切り替わります。",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "セットを削除",
+ "Usuń ćwiczenie": "種目を削除",
+ "Opcje ćwiczenia: {name}": "種目のオプション：{name}"
 }

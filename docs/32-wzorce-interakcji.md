@@ -40,7 +40,7 @@ bez własnego `headerLeft` (dawne „Wróć” w nagłówku edycji sesji usunię
 - **Zostaje na dole listy** dodawanie do edytowanego obiektu: „+ Dodaj ćwiczenie” (trening, szablon, sesja), serie, talerze.
 
 ### 5. Usuwanie — `tests/swipe-delete.test.tsx`
-Przesunięcie w lewo → „Usuń” → okno [Anuluj, Usuń (destructive)]; VoiceOver: akcja „Usuń …”. Jeden komponent `components/SwipeRow.tsx`. Okno z wyjaśnieniem blokady ma jedyny przycisk „OK”. Wyjątki: „Usuń odznaczone” w edytorze ciężarów, „✕” zakresu powtórzeń.
+Przesunięcie w lewo → „Usuń” → okno [Anuluj, Usuń (destructive)]; VoiceOver: akcja „Usuń …”. Jeden komponent `components/SwipeRow.tsx`. **Zmiana 19.10.2026 (DEC-12, M1-028; zastępuje decyzję z 07.10.2026 „bez usuwania z menu”):** gest zostaje, ale w treningu jest też widoczna alternatywa — „Usuń serię” w menu serii (arkusz po stuknięciu numeru serii) i „Usuń ćwiczenie” w menu ćwiczenia („⋯” w nagłówku, etykieta „Opcje ćwiczenia: {nazwa}”); oba prowadzą do tego samego okna potwierdzenia co gest (`confirmDelete` w `components/SwipeRow.tsx`), ostatnia seria bloku pokazuje to samo wyjaśnienie (`lastSetBlock`). Test: `tests/audit-m1-028-delete-menus.test.tsx`. Poza treningiem (szablon, edycja sesji) alternatywy w menu jeszcze nie ma — otwarte. Okno z wyjaśnieniem blokady ma jedyny przycisk „OK”. Wyjątki: „Usuń odznaczone” w edytorze ciężarów, „✕” zakresu powtórzeń.
 
 ### 6. Potwierdzanie akcji — S5
 `lib/confirm.ts`: `confirm({ title, message, action, destructive, … })`, `cancelButton()` („Anuluj”), `backToEditButton()` („Wróć do edycji”), `okButton()`. Ręczne `style: 'cancel'` zakazane. HIG Alerts: „Always use the title “Cancel” for a button that cancels an alert’s action.”

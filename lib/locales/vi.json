@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Tên dưới biểu tượng và nội dung quyền Sức khỏe chỉ đổi ngôn ngữ sau khi bạn đặt ngôn ngữ ứng dụng trong Cài đặt iOS.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Xóa hiệp",
+ "Usuń ćwiczenie": "Bỏ bài tập",
+ "Opcje ćwiczenia: {name}": "Tùy chọn bài tập: {name}"
 }

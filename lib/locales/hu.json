@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Az ikon alatti név és az Egészség engedély szövege csak akkor vált nyelvet, ha az alkalmazás nyelvét az iOS Beállításokban állítod be.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Sorozat törlése",
+ "Usuń ćwiczenie": "Gyakorlat eltávolítása",
+ "Opcje ćwiczenia: {name}": "Gyakorlat beállításai: {name}"
 }

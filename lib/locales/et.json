@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Ikooni all olev nimi ja Tervise loa tekst vahetavad keelt alles siis, kui määrad rakenduse keele iOS-i seadetes.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Kustuta seeria",
+ "Usuń ćwiczenie": "Eemalda harjutus",
+ "Opcje ćwiczenia: {name}": "Harjutuse valikud: {name}"
 }

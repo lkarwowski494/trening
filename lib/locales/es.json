@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "El nombre bajo el icono y el texto del permiso de Salud solo cambian de idioma cuando eliges el idioma de la app en Ajustes de iOS.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Eliminar serie",
+ "Usuń ćwiczenie": "Quitar ejercicio",
+ "Opcje ćwiczenia: {name}": "Opciones del ejercicio: {name}"
 }

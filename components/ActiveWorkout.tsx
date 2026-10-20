@@ -10,7 +10,7 @@ import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorko
 import { restLabel, setLabel, nowParts, counterLabel, timedLabel } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
-import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
+import { SwipeRow, lastSetBlock, confirmDelete } from '@/components/SwipeRow';
 import { MedicalNote } from '@/components/MedicalNote';
 import { templateDiff, rememberTemplateUpdate } from '@/lib/tplsync';
 import { equipVisFor, equipSlotFor } from '@/lib/equipvis';
@@ -27,7 +27,7 @@ import { markDoneEarly } from '@/lib/plan';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
 import { t as tr, tp, exName, exNameLang, lang, glue } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW } from '@/lib/units';
-import { cancelButton, confirmSkipTimedSet } from '@/lib/confirm';
+import { cancelButton, okButton, confirmSkipTimedSet } from '@/lib/confirm';
 import { adaptCandidates, restoreCandidates } from '@/lib/adapt';
 import { TestWatchPanel } from '@/components/TestWatchPanel';
 import { voiceSetting, setVoiceSetting, voiceSettingLabel, VOICE_SETTINGS, type VoiceSetting } from '@/lib/voice';
@@ -384,20 +384,29 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const parseRest = (v?: string) => { const x = (v ?? '').trim(); if (!x) return null; const n = Math.round(Number(x.replace(',', '.'))); return n >= 0 && isFinite(n) ? Math.min(REST_MAX, n) : null; }; // runda 11: ten sam limit co w edycji ćwiczenia i szablonu
   const setMenu = (set: WSet, si: number) => {
     /* 07.10.2026 wieczór: usuwanie serii — przesunięciem wiersza w lewo (deleteSet), nie z menu */
-    const labels = [tr('Seria normalna'), tr('Rozgrzewka (W)'), tr('Drop set (D)'), tr('Do upadku (F)'), set.note ? tr('Edytuj notatkę') : tr('Dodaj notatkę'), tr('Anuluj')];
+    const labels = [tr('Seria normalna'), tr('Rozgrzewka (W)'), tr('Drop set (D)'), tr('Do upadku (F)'), set.note ? tr('Edytuj notatkę') : tr('Dodaj notatkę'), tr('Usuń serię'), tr('Anuluj')]; /* M1-028: alternatywa dla gestu */
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
-    ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: labels.length - 1, title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
+    ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: labels.length - 1, destructiveButtonIndex: labels.length - 2, title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; save(st.active); }
       else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: tr('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
+      else if (i === 5) { /* M1-028: to samo potwierdzenie i ta sama blokada ostatniej serii co przy geście */
+        if (e.sets.length <= 1) { const b = lastSetBlock(); Alert.alert(b.title, b.message, [okButton()]); }
+        else confirmDelete({ title: tr('Usunąć serię?'), message: set.done ? tr('Seria jest już odhaczona.') : undefined, onDelete: () => deleteSet(set.id) });
+      }
     });
   };
   /* 07.10.2026 wieczór (docs/18): usuwanie serii przesunięciem w lewo, zawsze z potwierdzeniem; ostatniej serii bloku się nie usuwa (jak wcześniej) */
   const deleteSet = (id: string) => { const cur = getState().active?.exercises.find(x => x.id === e.id); if (!cur || cur.sets.length <= 1 || !cur.sets.some(x => x.id === id)) return; dropTimers([id]); removeSetById(getState().active!.exercises.indexOf(cur), id); };
+  const exMenu = () => ActionSheetIOS.showActionSheetWithOptions({ options: [tr('Usuń ćwiczenie'), tr('Anuluj')], cancelButtonIndex: 1, destructiveButtonIndex: 0, title: nm }, i => { /* M1-028: alternatywa dla gestu */
+    if (i === 0) confirmDelete({ title: tr('Usunąć z treningu?'), message: delMsg, onDelete: removeBlock }); });
   return (
     <View style={[s.ex, { borderBottomColor: t.line }]}>
       <SwipeRow testID={`ex-${ei}`} /* E2E 25 */ label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={delMsg} onDelete={removeBlock}>{a11y => <View style={s.exHead}>
         <Text accessibilityLanguage={exNameLang(ex)} {...a11y} accessibilityRole="header" style={{ color: t.text, fontSize: 17, fontFamily: F.semibold, flexGrow: 1, flexShrink: 1, minWidth: '58%' }}>{inSS ? <Text accessibilityLanguage={lang()} style={{ color: t.band }}>{`${ssTag(labels[e.groupId!])} · `}</Text> : null}{exName(ex)}{ex.archived ? <Text accessibilityLanguage={lang()} style={{ color: t.muted, fontSize: 13 }}>{' (' + tr('usunięte') + ')'}</Text> : null}</Text>
         <Muted numberOfLines={2} style={{ fontSize: 13, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{headMeta}</Muted>
+        <Pressable testID={`ex-menu-${ei}`} accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={tr('Opcje ćwiczenia: {name}', { name: nm })} onPress={exMenu} hitSlop={4} style={{ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}>
+          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 22, fontFamily: F.semibold }}>⋯</Text>
+        </Pressable>
       </View>}</SwipeRow>
       {insteadTxt || remember ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, flexShrink: 1 }}>{insteadTxt || (e.impl ? tr('przyrząd: {impl}', { impl: implLabel(e.impl) }) : '')}</Muted>{canUndoSwap(e) ? <Btn title={tr('↺ cofnij')} small kind="ghost" accessibilityLabel={tr('Cofnij zamianę: {name}', { name: nm })} onPress={() => confirmUndoSwap(e.id)} /> : null}{remember && place ? <Btn title={tr('Zawsze w: {l}', { l: place.name })} small kind="ghost" accessibilityLabel={tr('Zawsze w: {l} — {name}', { l: place.name, name: nm })} accessibilityHint={tr('Zapisuje zamiennik w szablonie dla tego miejsca.')} onPress={() => rememberAlt(e.id)} /> : null}</View> : null}
       {hint && place ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={tr('Zamień na zamiennik: {name}', { name: hintName })} onPress={openSwap} hitSlop={LINK_SLOP} style={[LINK_BOX, { flexShrink: 1 }]}><Muted style={{ fontSize: 12, textDecorationLine: 'underline' }}>{tr('Zwykle w: {l} — {name}. Zamienić?', { l: place.name, name: hintName })}</Muted></Pressable><Btn title="✕" small kind="ghost" accessibilityLabel={tr('Nie zamieniaj: {name}', { name: hintName })} onPress={() => skipAlt(e.id)} /></View> : null}

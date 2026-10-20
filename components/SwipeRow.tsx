@@ -38,6 +38,11 @@ type Props = {
 /** G4 (audyt 0.10 UI-07, wariant A): ostatniej serii bloku nie usuwa się w treningu, szablonie ani edycji historii — ta sama informacja wszędzie. */
 export const lastSetBlock = () => ({ title: tr('To ostatnia seria'), message: tr('Ćwiczenie ma co najmniej jedną serię. Żeby usunąć całe ćwiczenie, przesuń w lewo jego nazwę.') });
 
+/** M1-028 (DEC-12): jedno potwierdzenie usunięcia dla gestu przesunięcia i dla pozycji „Usuń …” w menu serii / ćwiczenia — to samo okno: „Anuluj” + „Usuń” (destrukcyjny). */
+export function confirmDelete({ title, message, onDelete, onCancel }: { title: string; message?: string; onDelete: () => void; onCancel?: () => void }) {
+  Alert.alert(title, message, [{ ...cancelButton(), onPress: onCancel }, { text: tr('Usuń'), style: 'destructive', onPress: onDelete }]);
+}
+
 /** UI-17 (audyt 0.10): odsłonięty może być tylko jeden wiersz — odsłonięcie innego zamyka poprzedni (jak w iOS). */
 let closeOpen: (() => void) | null = null;
 
@@ -51,10 +56,7 @@ export function SwipeRow({ label, title, message, onDelete, bg, style, testID, d
     openRef.current = to !== 0; setOpen(to !== 0); Animated.spring(x, { toValue: to, useNativeDriver: true, bounciness: 0 }).start();
     if (to !== 0) { if (closeOpen && closeOpen !== close) closeOpen(); closeOpen = close; } else if (closeOpen === close) closeOpen = null;
   };
-  const ask = () => Alert.alert(cur.current.title, typeof cur.current.message === 'function' ? cur.current.message() : cur.current.message, [
-    { ...cancelButton(), onPress: () => snap(0) },
-    { text: tr('Usuń'), style: 'destructive', onPress: () => { snap(0); cur.current.onDelete(); } },
-  ]);
+  const ask = () => confirmDelete({ title: cur.current.title, message: typeof cur.current.message === 'function' ? cur.current.message() : cur.current.message, onDelete: () => { snap(0); cur.current.onDelete(); }, onCancel: () => snap(0) });
   const explain = () => { const b = cur.current.blocked; if (b) Alert.alert(b.title, b.message, [okButton()]); };
   const pan = useRef(PanResponder.create({
     onMoveShouldSetPanResponder: (_e, g) => Math.abs(g.dx) > SWIPE.start && Math.abs(g.dx) > Math.abs(g.dy) * 1.5,

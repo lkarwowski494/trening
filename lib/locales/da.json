@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Navnet under ikonet og teksten i tilladelsen til Sundhed skifter først sprog, når du vælger appens sprog i iOS-indstillinger.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Slet sæt",
+ "Usuń ćwiczenie": "Fjern øvelse",
+ "Opcje ćwiczenia: {name}": "Valgmuligheder for øvelse: {name}"
 }

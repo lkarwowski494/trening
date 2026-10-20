@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Nosaukums zem ikonas un Veselības atļaujas teksts maina valodu tikai pēc tam, kad iestatīsi lietotnes valodu iOS iestatījumos.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Dzēst sēriju",
+ "Usuń ćwiczenie": "Noņemt vingrinājumu",
+ "Opcje ćwiczenia: {name}": "Vingrinājuma opcijas: {name}"
 }

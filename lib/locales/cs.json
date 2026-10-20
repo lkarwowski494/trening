@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Název pod ikonou a text oprávnění pro Zdraví změní jazyk, až když nastavíš jazyk aplikace v Nastavení iOS.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Smazat sérii",
+ "Usuń ćwiczenie": "Odebrat cvik",
+ "Opcje ćwiczenia: {name}": "Možnosti cviku: {name}"
 }

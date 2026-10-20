@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Pavadinimas po piktograma ir Sveikatos leidimo tekstas pakeičia kalbą tik tada, kai nustatai programėlės kalbą iOS nustatymuose.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Ištrinti seriją",
+ "Usuń ćwiczenie": "Pašalinti pratimą",
+ "Opcje ćwiczenia: {name}": "Pratimo parinktys: {name}"
 }

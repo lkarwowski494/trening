@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Numele de sub pictogramă și textul permisiunii Sănătate își schimbă limba abia după ce setezi limba aplicației în Configurări iOS.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Șterge seria",
+ "Usuń ćwiczenie": "Elimină exercițiul",
+ "Opcje ćwiczenia: {name}": "Opțiuni exercițiu: {name}"
 }

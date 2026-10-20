@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "De naam onder het icoon en de tekst van de Gezondheid-toestemming wisselen pas van taal als je de app-taal instelt in Instellingen.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Verwijder set",
+ "Usuń ćwiczenie": "Verwijder oefening",
+ "Opcje ćwiczenia: {name}": "Opties voor oefening: {name}"
 }

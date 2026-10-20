@@ -1178,4 +1178,7 @@ export const EN: Record<string, string> = {
   'SS {g}': 'SS {g}',
   'SS': 'SS',
   'PR': 'PR',
+  'Usuń serię': 'Delete set',
+  'Usuń ćwiczenie': 'Delete exercise',
+  'Opcje ćwiczenia: {name}': 'Exercise options: {name}',
 };

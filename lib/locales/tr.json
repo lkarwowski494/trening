@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Simgenin altındaki ad ve Sağlık izni metni, uygulama dilini iOS Ayarlar’da seçtikten sonra dil değiştirir.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Seti sil",
+ "Usuń ćwiczenie": "Egzersizi kaldır",
+ "Opcje ćwiczenia: {name}": "Egzersiz seçenekleri: {name}"
 }

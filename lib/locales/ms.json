@@ -1702,5 +1702,8 @@
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Nama di bawah ikon dan teks kebenaran Kesihatan hanya bertukar bahasa selepas anda menetapkan bahasa aplikasi dalam Seting iOS.",
  "SS {g}": "SS {g}",
  "SS": "SS",
- "PR": "PR"
+ "PR": "PR",
+ "Usuń serię": "Padam set",
+ "Usuń ćwiczenie": "Buang senaman",
+ "Opcje ćwiczenia: {name}": "Pilihan senaman: {name}"
 }

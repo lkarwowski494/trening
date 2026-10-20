@@ -3413,6 +3413,10 @@
   "en": "ankle straps"
  },
  {
+  "pl": "Opcje ćwiczenia: {name}",
+  "en": "Exercise options: {name}"
+ },
+ {
   "pl": "opcjonalne pole, nie wpływa na objętość",
   "en": "optional field, does not affect volume"
  },
@@ -5744,6 +5748,10 @@
   "en": "Delete"
  },
  {
+  "pl": "Usuń ćwiczenie",
+  "en": "Delete exercise"
+ },
+ {
   "pl": "Usuń ćwiczenie: {name}",
   "en": "Remove exercise: {name}"
  },
@@ -5774,6 +5782,10 @@
  {
   "pl": "Usuń pomiar: {v}, {d}",
   "en": "Delete measurement: {v}, {d}"
+ },
+ {
+  "pl": "Usuń serię",
+  "en": "Delete set"
  },
  {
   "pl": "Usuń serię {n} — {ex}",
