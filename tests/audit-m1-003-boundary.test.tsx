@@ -20,7 +20,7 @@ test('wyjątek przy rysowaniu pierwszego ekranu: ekran zastępczy z „Wyślij d
     (FS.writeAsStringAsync as jest.Mock).mockClear(); (Sharing.shareAsync as jest.Mock).mockClear();
     await tap(screen.getByText(t('Wyślij dane'))); await flushAll(20);
     expect(Sharing.shareAsync).toHaveBeenCalledTimes(1);
-    const written = (FS.writeAsStringAsync as jest.Mock).mock.calls.find(c => /trening-dane-/.test(String(c[0])));
+    const written = (FS.writeAsStringAsync as jest.Mock).mock.calls.find(c => /training-data-/.test(String(c[0])));
     expect(written).toBeTruthy(); const env = JSON.parse(written![1]); expect(env.format).toBe('trening-recovery'); expect(env.state.settings.defaultRest).toBe(77);
     expect(new Map(global.__kv)).toEqual(kv); /* żadna akcja nie zmienia bazy */
   } finally { spy.mockRestore(); }

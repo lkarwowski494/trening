@@ -20,7 +20,7 @@ describe('M1-003: pętla awarii przy starcie', () => {
     expect(store.isReadyForTests()).toBe(false); /* dane nie zostały załadowane */
     const kv = snapshot(); (FS.writeAsStringAsync as jest.Mock).mockClear(); (Sharing.shareAsync as jest.Mock).mockClear();
     await tap(screen.getByText(t('Wyślij dane'))); await flushAll(20);
-    expect(Sharing.shareAsync).toHaveBeenCalledTimes(1); const written = (FS.writeAsStringAsync as jest.Mock).mock.calls.find(c => /trening-dane-/.test(String(c[0])));
+    expect(Sharing.shareAsync).toHaveBeenCalledTimes(1); const written = (FS.writeAsStringAsync as jest.Mock).mock.calls.find(c => /training-data-/.test(String(c[0])));
     expect(JSON.parse(written![1]).state.settings.defaultRest).toBe(77); expect(snapshot()).toEqual(kv);
     await tap(screen.getByText(t('Spróbuj ponownie'))); await flushAll(50);
     expect(store.isReadyForTests()).toBe(true); expect(screen.queryByText(t('Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.'))).toBeNull();

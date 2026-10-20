@@ -43,7 +43,7 @@ describe('M1-004: ekran błędu startu — nie tylko ponowienie', () => {
     expect(screen.getByText('Nie udało się otworzyć danych.')).toBeTruthy(); expect(screen.getByText('boom-after-init')).toBeTruthy();
     const kv = snapshot(); (FS.writeAsStringAsync as jest.Mock).mockClear(); (Sharing.shareAsync as jest.Mock).mockClear();
     await tap(screen.getByText(t('Wyślij dane'))); await flushAll(20);
-    const written = (FS.writeAsStringAsync as jest.Mock).mock.calls.find(c => /trening-dane-/.test(String(c[0])));
+    const written = (FS.writeAsStringAsync as jest.Mock).mock.calls.find(c => /training-data-/.test(String(c[0])));
     expect(JSON.parse(written![1]).state.settings.defaultRest).toBe(55); expect(Sharing.shareAsync).toHaveBeenCalledTimes(1); expect(snapshot()).toEqual(kv);
   });
 });
@@ -60,7 +60,7 @@ describe('M1-004: exportLatestCopy i exportStartData', () => {
   test('exportStartData: gdy baza ma dane — wysyła je (nie kopię z Plików); gdy bazy nie ma — najnowszą kopię z puli', async () => {
     dir(['trening-2026-10-12-090000.json']); (Sharing.shareAsync as jest.Mock).mockClear(); (FS.writeAsStringAsync as jest.Mock).mockClear();
     await fresh(); expect(await exportStartData()).toBe(true);
-    expect((FS.writeAsStringAsync as jest.Mock).mock.calls.some(c => /trening-dane-/.test(String(c[0])))).toBe(true); expect((Sharing.shareAsync as jest.Mock).mock.calls.at(-1)![0]).not.toContain('Backup/');
+    expect((FS.writeAsStringAsync as jest.Mock).mock.calls.some(c => /training-data-/.test(String(c[0])))).toBe(true); expect((Sharing.shareAsync as jest.Mock).mock.calls.at(-1)![0]).not.toContain('Backup/');
     store.__resetForTests(); (Sharing.shareAsync as jest.Mock).mockClear(); expect(await exportStartData()).toBe(true);
     expect((Sharing.shareAsync as jest.Mock).mock.calls.at(-1)![0]).toBe('file:///doc/Backup/trening-2026-10-12-090000.json');
   });

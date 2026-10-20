@@ -40,7 +40,7 @@ describe('backup.exportBackup', () => {
     await backup.exportBackup();
     expect(FS.writeAsStringAsync).toHaveBeenCalledTimes(1);
     const [path, body] = FS.writeAsStringAsync.mock.calls[0];
-    expect(path).toBe(`file:///cache/trening-backup-${store.localISODate()}.json`);
+    expect(path).toBe(`file:///cache/training-backup-${store.localISODate()}.json`);
     const env = JSON.parse(body);
     expect(env).toMatchObject({ format: 'trening-backup', schemaVersion: SCHEMA_VERSION });
     expect(Number.isFinite(Date.parse(env.exportedAt))).toBe(true);
@@ -97,7 +97,7 @@ describe('backup.onHistoryEdited', () => {
     await backup.onHistoryEdited();
     const calls = FS.writeAsStringAsync.mock.calls as [string, string][];
     expect(calls).toHaveLength(1);
-    expect(calls[0][0]).toMatch(/^file:\/\/\/doc\/Backup\/trening-\d{4}-\d{2}-\d{2}-\d{6}\.json$/);
+    expect(calls[0][0]).toMatch(/^file:\/\/\/doc\/Backup\/training-\d{4}-\d{2}-\d{2}-\d{6}\.json$/);
     expect(JSON.parse(calls[0][1]).state.workouts[0].exercises[0].sets[0].weight).toBe(70);
   });
   test('kopia automatyczna wyłączona w Ustawieniach — nic nie jest zapisywane', async () => {
@@ -116,11 +116,11 @@ describe('backup.exportRecovery', () => {
     await fresh(); FS.writeAsStringAsync.mockClear();
     expect(await backup.exportRecovery()).toBe(false); expect(FS.writeAsStringAsync).not.toHaveBeenCalled();
   });
-  test('z nieczytelnym zapisem — surowy tekst w trening-odzysk-<data>.json, udostępniony; true', async () => {
+  test('z nieczytelnym zapisem — surowy tekst w training-recovery-<data>.json, udostępniony; true', async () => {
     await fresh('{zepsute'); FS.writeAsStringAsync.mockClear(); SH.shareAsync.mockClear();
     expect(await backup.exportRecovery()).toBe(true);
     const [path, body] = FS.writeAsStringAsync.mock.calls[0];
-    expect(path).toBe(`file:///cache/trening-odzysk-${store.localISODate()}.json`); expect(body).toBe('{zepsute');
+    expect(path).toBe(`file:///cache/training-recovery-${store.localISODate()}.json`); expect(body).toBe('{zepsute');
     expect(SH.shareAsync).toHaveBeenCalledWith(path, { mimeType: 'application/json', dialogTitle: 'Kopia nieczytelnych danych' });
   });
   test('błąd zapisu (np. brak miejsca) — false zamiast wyjątku', async () => {

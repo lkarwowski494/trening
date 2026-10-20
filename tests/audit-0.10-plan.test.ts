@@ -365,10 +365,10 @@ describe('macierz — funkcje pomocnicze planu i danych (audyt 0.10, każdy przy
       g.__notifPerm = { granted: false, canAskAgain: false, status: 'denied' }; global.__alerts.length = 0; await askReminderPermission(); expect(global.__alerts).toHaveLength(0);
     } finally { delete g.__notifPerm; delete g.__notifPermAsked; }
   });
-  test('backup.exportRawData (J1): surowe dane do pliku „trening-dane-<data>.json” i udostępnienie; brak danych — false', async () => {
+  test('backup.exportRawData (J1): surowe dane do pliku „training-data-<data>.json” i udostępnienie; brak danych — false', async () => {
     const { exportRawData } = require('@/lib/backup'); const fs = require('expo-file-system/legacy'); const sh = require('expo-sharing');
     await store.flush(); fs.writeAsStringAsync.mockClear(); sh.shareAsync.mockClear();
-    expect(await exportRawData()).toBe(true); expect(fs.writeAsStringAsync.mock.calls[0][0]).toBe('file:///cache/trening-dane-2026-10-08.json');
+    expect(await exportRawData()).toBe(true); expect(fs.writeAsStringAsync.mock.calls[0][0]).toBe('file:///cache/training-data-2026-10-08.json');
     expect(JSON.parse(fs.writeAsStringAsync.mock.calls[0][1]).format).toBe('trening-recovery'); expect(sh.shareAsync).toHaveBeenCalledTimes(1);
     global.__kv.clear(); expect(await exportRawData()).toBe(false);
   });

@@ -110,7 +110,7 @@ describe('CSV: zapis', () => {
     const nw = st.exercises.find(e => e.name === 'Fikcyjny Wyciąg Testowy')!; expect(nw).toMatchObject({ metric: 'weight_reps', equipment: 'inne', group: 'inne' }); expect(nw.lib).toBeFalsy();
     expect(st.exercises.find(e => e.name === 'Squat (Barbell)')).toBeTruthy(); expect(st.workouts.map(x => x.startedAt)).toEqual([...st.workouts.map(x => x.startedAt)].sort((x, y) => x - y));
     const plank = w.exercises[2].sets[0]; expect(plank).toMatchObject({ durationSec: 60, reps: '' });
-    const names = (FS.writeAsStringAsync as jest.Mock).mock.calls.map(c => String(c[0])); expect(names.some(n => /Backup\/trening-przed-importem-/.test(n))).toBe(true);
+    const names = (FS.writeAsStringAsync as jest.Mock).mock.calls.map(c => String(c[0])); expect(names.some(n => /Backup\/training-before-import-/.test(n))).toBe(true);
     expect(JSON.stringify(store.migrate(JSON.parse(JSON.stringify(st))))).toBe(JSON.stringify(store.migrate(JSON.parse(JSON.stringify(store.migrate(JSON.parse(JSON.stringify(st)))))))); /* migrate idempotentne po imporcie */
   });
   test('jednostka lb dla formatA: 135 lb → 61,23 kg (snapLb); kg bez zmian; formatB ignoruje wybór jednostki', async () => {

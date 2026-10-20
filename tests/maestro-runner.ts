@@ -36,7 +36,7 @@ function installVirtualFs(clear: boolean) {
   FS.readDirectoryAsync.mockImplementation(async (d: string) => [...files.keys()].filter(k => k.startsWith(d) && !k.slice(d.length).includes('/')).map(k => k.slice(d.length)));
   FS.deleteAsync.mockImplementation(async (p: string) => { files.delete(p); });
   DP.getDocumentAsync.mockImplementation(async () => {
-    const auto = [...files.keys()].filter(k => /\/Backup\/trening-\d/.test(k)).sort(); const uri = auto[auto.length - 1];
+    const auto = [...files.keys()].filter(k => /\/Backup\/training-\d/.test(k)).sort(); const uri = auto[auto.length - 1];
     return uri ? { canceled: false, assets: [{ uri, name: uri.split('/').pop() }] } : { canceled: true };
   });
 }

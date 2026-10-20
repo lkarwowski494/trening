@@ -93,7 +93,7 @@ describe('Q-019 kopia bezpieczeństwa — LOW 3 (nieczytelny zapis) i LOW 4 (wri
     await importFile(other);
     expect(global.__alerts.find(a => a.title === 'Nadpisać dane?')!.msg).toMatch(/Kopia obejmie też poprzednie, nieczytelne dane\.$/);
     expect(store.getRecovery()).toBeNull(); /* import wykonany */
-    const w = writes(/trening-przed-importem-/); expect(w).toHaveLength(1); expect(JSON.parse(w[0][1]).recovery).toBe('{nie json');
+    const w = writes(/training-before-import-/); expect(w).toHaveLength(1); expect(JSON.parse(w[0][1]).recovery).toBe('{nie json');
     expect(backup.parseBackup(w[0][1]).exercises.length).toBeGreaterThan(0); /* kopia dalej się importuje (state) */
   });
   test('LOW 3: „Wyczyść wszystkie dane” z nieczytelnym zapisem — kopia też go niesie; bez nieczytelnego zapisu pola recovery brak', async () => {
@@ -101,33 +101,33 @@ describe('Q-019 kopia bezpieczeństwa — LOW 3 (nieczytelny zapis) i LOW 4 (wri
     await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Wyczyść wszystkie dane')); expect(global.__alerts[global.__alerts.length - 1].msg).toMatch(/nieczytelne dane/);
     await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); }); await flushAll(50);
-    expect(JSON.parse(writes(/trening-przed-czyszczeniem-/)[0][1]).recovery).toBe('{zepsute');
-    FS.writeAsStringAsync.mockClear(); await backup.safetyBackup('reset'); expect(JSON.parse(writes(/przed-czyszczeniem/)[0][1])).not.toHaveProperty('recovery');
+    expect(JSON.parse(writes(/training-before-reset-/)[0][1]).recovery).toBe('{zepsute');
+    FS.writeAsStringAsync.mockClear(); await backup.safetyBackup('reset'); expect(JSON.parse(writes(/before-reset/)[0][1])).not.toHaveProperty('recovery');
   });
   test('LOW 4: błąd sprzątania puli po udanym zapisie nie przerywa importu', async () => {
     await fresh(); const other = JSON.stringify(backup.buildBackup()); await renderApp();
     await act(async () => { store.startEmpty(); }); await flushAll(5);
     FS.readDirectoryAsync.mockImplementation(async () => { throw new Error('EIO'); });
     await importFile(other);
-    expect(writes(/trening-przed-importem-/)).toHaveLength(1); expect(store.getState().active).toBeNull(); /* import się wykonał */
+    expect(writes(/training-before-import-/)).toHaveLength(1); expect(store.getState().active).toBeNull(); /* import się wykonał */
     expect(global.__alerts.some(a => a.title === 'Import przerwany')).toBe(false);
   });
   test('LOW 4: nieudany zapis — plik docelowy usuwany (nie zostaje ucięty JSON w puli), operacja przerwana', async () => {
     await fresh(); FS.writeAsStringAsync.mockImplementation(async () => { throw new Error('dysk pełny'); });
     await expect(backup.safetyBackup('import')).rejects.toThrow(/kopii bezpieczeństwa/);
-    const path = writes(/trening-przed-importem-/)[0][0]; expect((FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => c[0])).toEqual([path]);
+    const path = writes(/training-before-import-/)[0][0]; expect((FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => c[0])).toEqual([path]);
   });
   test('LOW 4: druga kopia w tej samej sekundzie dostaje -2 (nie nadpisuje); rotacja liczy pliki z przyrostkiem w swojej puli', async () => {
     await fresh(); jest.setSystemTime(new Date(2026, 9, 3, 12, 0, 5));
-    const first = 'file:///doc/Backup/trening-przed-importem-2026-10-03-120005.json';
+    const first = 'file:///doc/Backup/training-before-import-2026-10-03-120005.json';
     FS.getInfoAsync.mockImplementation(async (u: string) => ({ exists: u === 'file:///doc/Backup/' || u === first }));
-    const old = Array.from({ length: 10 }, (_, i) => `trening-przed-importem-2026-09-${String(10 + i).padStart(2, '0')}-070000.json`);
-    FS.readDirectoryAsync.mockImplementation(async () => [...old, 'trening-przed-importem-2026-10-03-120005.json', 'trening-przed-importem-2026-10-03-120005-2.json']);
-    expect(await backup.safetyBackup('import')).toBe('file:///doc/Backup/trening-przed-importem-2026-10-03-120005-2.json');
-    expect(writes(/./).map((c: any) => c[0])).toEqual(['file:///doc/Backup/trening-przed-importem-2026-10-03-120005-2.json']);
+    const old = Array.from({ length: 10 }, (_, i) => `training-before-import-2026-09-${String(10 + i).padStart(2, '0')}-070000.json`);
+    FS.readDirectoryAsync.mockImplementation(async () => [...old, 'training-before-import-2026-10-03-120005.json', 'training-before-import-2026-10-03-120005-2.json']);
+    expect(await backup.safetyBackup('import')).toBe('file:///doc/Backup/training-before-import-2026-10-03-120005-2.json');
+    expect(writes(/./).map((c: any) => c[0])).toEqual(['file:///doc/Backup/training-before-import-2026-10-03-120005-2.json']);
     expect((FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => c[0].split('/').pop())).toEqual([old[1], old[0]]); /* 12 w puli → 2 najstarsze */
-    FS.getInfoAsync.mockImplementation(async () => ({ exists: false })); FS.readDirectoryAsync.mockImplementation(async () => ['trening-2026-10-03-120005.json', 'trening-2026-10-03-120005-2.json']);
-    await act(async () => { store.getState().settings.autoBackup = true; }); expect(await backup.autoBackup()).toMatch(/\/Backup\/trening-2026-10-03-120005\.json$/);
+    FS.getInfoAsync.mockImplementation(async () => ({ exists: false })); FS.readDirectoryAsync.mockImplementation(async () => ['training-2026-10-03-120005.json', 'training-2026-10-03-120005-2.json']);
+    await act(async () => { store.getState().settings.autoBackup = true; }); expect(await backup.autoBackup()).toMatch(/\/Backup\/training-2026-10-03-120005\.json$/);
   });
 });
 
