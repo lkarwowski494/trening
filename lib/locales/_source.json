@@ -5428,16 +5428,16 @@
   "en": "Workouts"
  },
  {
-  "pl": "Treningi bez limitu. Bez reklam. Wszystko zostaje na Twoim telefonie.",
-  "en": "Unlimited workouts. No ads. Everything stays on your phone."
- },
- {
   "pl": "Treningi do dodania: {n}",
   "en": "Workouts to add: {n}"
  },
  {
   "pl": "Treningi i szablony z tym miejscem pokażą „(usunięte miejsce)”.",
   "en": "Workouts and templates with this place will show “(deleted place)”."
+ },
+ {
+  "pl": "Treningi na żywo bez miesięcznego limitu.",
+  "en": "Live workouts without the monthly limit."
  },
  {
   "pl": "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.",

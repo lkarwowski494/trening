@@ -1006,7 +1006,7 @@ export const EN: Record<string, string> = {
   'Nie udało się przywrócić zakupów. Sprawdź połączenie z internetem.': 'Couldn\'t restore purchases. Check your internet connection.',
   'Potrzebne połączenie z internetem.': 'An internet connection is needed.',
   'Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.': 'You\'ve used this month\'s free workouts ({n}). More from {date}.',
-  'Treningi bez limitu. Bez reklam. Wszystko zostaje na Twoim telefonie.': 'Unlimited workouts. No ads. Everything stays on your phone.',
+  'Treningi na żywo bez miesięcznego limitu.': 'Live workouts without the monthly limit.',
   'Masz dostęp na zawsze': 'You have access forever',
   'Masz pełną wersję': 'You have the full version',
   'Dostęp z Chmury rodzinnej': 'Access through Family Sharing',

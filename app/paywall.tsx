@@ -56,7 +56,7 @@ export default function PaywallScreen() {
   return (
     <Screen><Stack.Screen options={headerOpts} /><ScrollView testID="paywall-scroll" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       {reason === 'limit' && view.decision.resetsAt ? <Text testID="paywall-limit" accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.semibold, fontSize: 16, marginTop: 8 }}>{t('Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.', { n: view.decision.limit, date: fmtDate(nextMonthDay()) })}</Text> : null}
-      <Muted style={{ marginTop: 8, marginBottom: 12 }}>{t('Treningi bez limitu. Bez reklam. Wszystko zostaje na Twoim telefonie.')}</Muted>
+      <Muted style={{ marginTop: 8, marginBottom: 12 }}>{t('Treningi na żywo bez miesięcznego limitu.')}</Muted>
 
       {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line, borderRadius: 12, padding: 12, gap: 4, marginBottom: 12, backgroundColor: th.surface }}>
         <Text accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.heavy, fontSize: 17 }}>{lifetime ? t('Masz dostęp na zawsze') : t('Masz pełną wersję')}</Text>
