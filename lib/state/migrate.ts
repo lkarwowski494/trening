@@ -62,7 +62,7 @@ function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { loc
  * dopisuje brakujące pola, pomija uszkodzone wpisy (null, nie-obiekty) zamiast się wywracać.
  * Idempotentna — można ją wołać na stanie już zmigrowanym.
  */
-export function migrate(raw: any): State {
+export function migrate(raw: unknown): State {
   if (!isObj(raw) || !Array.isArray(raw.exercises) || !Array.isArray(raw.templates)) throw new Error('bad state');
   setLegacyLb(!((Number(raw.schemaVersion) || 0) >= 11));
   const owner: string = typeof raw.ownerId === 'string' && raw.ownerId ? raw.ownerId : LOCAL_OWNER;
