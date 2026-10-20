@@ -1,7 +1,7 @@
 # Styl „Tuleja” (07.10.2026): widok skupiony na bieżącej serii, przełącznik „Widok treningu”. 20.10.2026 (DEC-06, audyt M1): pasek talerzy „na każdą stronę” usunięty — scenariusz sprawdza, że go nie ma.
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts):
-#   "Weight unit" / "kg"          ← 'Jednostka ciężaru' / segment kg (app/more/settings.tsx) — symulator en-US startuje w lb (H4), E2E 89
+#   "Measurement system" / "kg"          ← 'System miar' / segment kg (app/more/settings.tsx) — symulator en-US startuje w lb (H4), E2E 89
 #   "Full gym,.*"                 ← LOCATION_PRESET_LABEL.gym.en + hint (preset: sztanga 20 kg + talerze 25…1,25)
 #   "Back Squat,.*"               ← nazwa z lib/seed.ts (picker: „{nazwa}, …”)
 #   w-0-0 / r-0-0                 ← testID pól ciężaru i powtórzeń serii (components/ActiveWorkout.tsx)
@@ -27,8 +27,8 @@ name: Widok skupiony (bez paska talerzy)
 - tapOn: "Settings"
 # E2E 89: świeża instalacja bierze jednostkę z regionu (H4, audyt 0.10 UX-12) — symulator en-US → lb („Now: 80 lb × 5”, talerze w lb).
 # Scenariusz sprawdza talerze w kg, więc najpierw kg (PRZED dodaniem miejsca — preset bierze talerze w bieżącej jednostce).
-- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
-- tapOn: "kg"
+- extendedWaitUntil: { visible: "Measurement system", timeout: 30000 }
+- tapOn: { id: "unit-system-kg" }
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }  # 11.10.2026: pozycja ekranu Więcej, nie Ustawień
 - tapOn: "Places and equipment"

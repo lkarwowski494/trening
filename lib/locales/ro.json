@@ -473,7 +473,6 @@
  "Jasny": "Luminos",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Și un singur antrenament pe săptămână aduce progres, dar de obicei puțin mai mic decât antrenamentele mai dese — mai ales pentru că într-o sesiune încap mai puține serii. La același număr de serii pe săptămână, diferența la creșterea musculară dispare, iar la forță scade.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "O sesiune: {v}. Graficul apare după a doua.",
- "Jednostka ciężaru": "Unitate de greutate",
  "Jednostka ciężaru w pliku": "Unitatea de greutate din fișier",
  "Jednostka sprzętu": "Unitatea echipamentului",
  "jednostronne (per strona, ×2)": "unilateral (pe parte, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "pietre atlas",
  "Kamienie atlas": "Pietre atlas",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Cardul seriei curente în antrenament; vizualizarea „Listă” ca înainte, la alegere în Configurări.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Fiecare grupă musculară principală cel puțin {n} zile pe săptămână (OMS 2020 — recomandare pentru sănătate; ACSM 2026: forța crește cu cel puțin {n} antrenamente pe săptămână). O zi în care grupa doar ajută contează ca {h} — o simplificare (metodă din meta-analiza lui Pelland et al. 2026). Împărțirea (full body, sus/jos) este o convenție — la același număr de serii dă rezultate similare.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Fiecare dintre aceste opțiuni revine la rutină în {n} zile.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Aici fiecare exercițiu are 1 serie — numărul de serii rămâne același (exercițiile cu 1 serie nu se scurtează). Aceleași greutăți.",
  "kettlebell": "kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Șterge seria",
  "Usuń ćwiczenie": "Elimină exercițiul",
- "Opcje ćwiczenia: {name}": "Opțiuni exercițiu: {name}"
+ "Opcje ćwiczenia: {name}": "Opțiuni exercițiu: {name}",
+ "System miar": "Sistem de măsură",
+ "metryczny (kg, km, m)": "metric (kg, km, m)",
+ "imperialny (lb, mi, yd)": "imperial (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "milă|mile|de mile",
+ "mili": "mile",
+ "jard|jardy|jardów": "yard|yarzi|de yarzi",
+ "jarda": "yarzi",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Fiecare grupă musculară principală cel puțin {n} zile pe săptămână (OMS 2020 — recomandare pentru sănătate; ACSM 2026: frecvența influențează forța, dar nu există dovezi pentru o relație doză–răspuns, iar la volum egal diferența scade). O zi în care grupa doar ajută contează ca {h} — o simplificare (metodă din meta-analiza lui Pelland et al. 2026). Împărțirea (full body, sus/jos) este o convenție — la același număr de serii dă rezultate similare.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Pasul (de ex. +2,5 kg) este o convenție, nu un rezultat al studiilor."
 }

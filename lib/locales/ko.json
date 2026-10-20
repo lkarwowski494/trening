@@ -370,7 +370,6 @@
  "Jasny": "라이트",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "주 1회 운동으로도 발전은 있지만, 보통 더 자주 운동할 때보다 조금 적습니다 — 주된 이유는 한 세션에 들어가는 세트 수가 적기 때문입니다. 주간 세트 수가 같으면 근육 성장의 차이는 사라지고 근력의 차이는 줄어듭니다.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "세션 1회: {v}. 두 번째 세션 후에 그래프가 나타납니다.",
- "Jednostka ciężaru": "무게 단위",
  "Jednostka sprzętu": "장비 단위",
  "jednostronne (per strona, ×2)": "한쪽씩(한쪽 기준, ×2)",
  "Jeszcze nie było w treningu.": "아직 운동에 사용되지 않았습니다.",
@@ -382,7 +381,6 @@
  "kamienie atlas": "아틀라스 스톤",
  "Kamienie atlas": "아틀라스 스톤",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "운동 중에는 현재 세트 카드가 표시되며, ‘목록’ 보기는 이전처럼 설정에서 선택할 수 있습니다.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "주요 부위마다 주 {n}일 이상(WHO 2020 — 건강을 위한 권고; ACSM 2026: 주 {n}회 이상 세션에서 근력이 향상). 부위가 보조로만 쓰이는 날은 {h}로 계산합니다 — 단순화(Pelland 외 2026 메타분석의 방법). 세션 분할(전신, 상체/하체)은 관례이며, 세트 수가 같으면 비슷한 효과를 냅니다.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "이 선택지는 모두 {n}일 안에 평소 일정으로 돌아갑니다.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "여기의 모든 종목은 1세트입니다 — 세트 수는 그대로입니다(1세트 종목은 줄이지 않습니다). 무게도 그대로입니다.",
  "kettlebell": "케틀벨",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "세트 삭제",
  "Usuń ćwiczenie": "종목 삭제",
- "Opcje ćwiczenia: {name}": "종목 옵션: {name}"
+ "Opcje ćwiczenia: {name}": "종목 옵션: {name}",
+ "System miar": "단위 체계",
+ "metryczny (kg, km, m)": "미터법 (kg, km, m)",
+ "imperialny (lb, mi, yd)": "야드파운드법 (lb, mi, yd)",
+ "{n} mi": "{n}mi",
+ "{n} yd": "{n}yd",
+ "mila|mile|mil": "마일",
+ "mili": "마일",
+ "jard|jardy|jardów": "야드",
+ "jarda": "야드",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "주요 부위마다 주 {n}일 이상(WHO 2020 — 건강을 위한 권고; ACSM 2026: 빈도는 근력에 영향을 주지만 용량–반응 관계의 근거는 없고, 총량이 같으면 차이가 줄어듭니다). 부위가 보조로만 쓰이는 날은 {h}로 계산합니다 — 단순화(Pelland 외 2026 메타분석의 방법). 세션 분할(전신, 상체/하체)은 관례이며, 세트 수가 같으면 비슷한 효과를 냅니다.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "증가 폭(예: +2,5 kg)은 관례이며 연구 결과가 아닙니다."
 }

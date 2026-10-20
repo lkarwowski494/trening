@@ -473,7 +473,6 @@
  "Jasny": "Hele",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Üks trenn nädalas annab samuti edenemist, kuid tavaliselt veidi vähem kui sagedasem treening — peamiselt seetõttu, et ühte trenni mahub vähem seeriaid. Sama seeriate arvu korral nädalas kaob vahe lihaskasvus ja jõus see väheneb.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Üks treening: {v}. Graafik ilmub pärast teist.",
- "Jednostka ciężaru": "Raskuse ühik",
  "Jednostka ciężaru w pliku": "Kaaluühik failis",
  "Jednostka sprzętu": "Varustuse ühik",
  "jednostronne (per strona, ×2)": "ühepoolne (poole kohta, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "atlase kivid",
  "Kamienie atlas": "Atlase kivid",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Käimasoleva seeria kaart treeningu ajal; vaade „Loend“ nagu varem, valitav seadetes.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Iga suurem lihasrühm vähemalt {n} päeval nädalas (WHO 2020 — tervisesoovitus; ACSM 2026: jõud kasvab vähemalt {n} treeninguga nädalas). Päev, mil lihasrühm ainult abistab, loetakse {h} — lihtsustus (meetod Pelland jt 2026 metaanalüüsist). Jaotus (kogu keha, üla-/alakeha) on kokkulepe — sama seeriate arvuga annab sarnaseid tulemusi.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Iga neist võimalustest naaseb rutiini {n} päeva jooksul.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Igal harjutusel on siin 1 seeria — seeriate arv jääb samaks (1 seeriaga harjutusi ei lühendata). Raskused samad.",
  "kettlebell": "sangpomm",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Kustuta seeria",
  "Usuń ćwiczenie": "Eemalda harjutus",
- "Opcje ćwiczenia: {name}": "Harjutuse valikud: {name}"
+ "Opcje ćwiczenia: {name}": "Harjutuse valikud: {name}",
+ "System miar": "Mõõtühikute süsteem",
+ "metryczny (kg, km, m)": "meetriline (kg, km, m)",
+ "imperialny (lb, mi, yd)": "inglise (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "miil|miili",
+ "mili": "miili",
+ "jard|jardy|jardów": "jard|jardi",
+ "jarda": "jardi",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Iga suurem lihasrühm vähemalt {n} päeval nädalas (WHO 2020 — tervisesoovitus; ACSM 2026: sagedus mõjutab jõudu, kuid annus–vastus seost pole tõendatud ja võrdse mahu korral erinevus väheneb). Päev, mil lihasrühm ainult abistab, loetakse {h} — lihtsustus (meetod Pelland jt 2026 metaanalüüsist). Jaotus (kogu keha, üla-/alakeha) on kokkulepe — sama seeriate arvuga annab sarnaseid tulemusi.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Samm (nt +2,5 kg) on kokkulepe, mitte uuringutulemus."
 }

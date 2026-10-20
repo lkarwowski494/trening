@@ -473,7 +473,6 @@
  "Jasny": "Ανοιχτό",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Μία προπόνηση την εβδομάδα φέρνει κι αυτή πρόοδο, συνήθως όμως λίγο μικρότερη από τη συχνότερη προπόνηση — κυρίως επειδή σε μία συνεδρία χωρούν λιγότερα σετ. Με τον ίδιο αριθμό σετ την εβδομάδα η διαφορά στη μυϊκή ανάπτυξη εξαφανίζεται, ενώ στη δύναμη μειώνεται.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Μία συνεδρία: {v}. Το γράφημα εμφανίζεται μετά τη δεύτερη.",
- "Jednostka ciężaru": "Μονάδα βάρους",
  "Jednostka ciężaru w pliku": "Μονάδα βάρους στο αρχείο",
  "Jednostka sprzętu": "Μονάδα εξοπλισμού",
  "jednostronne (per strona, ×2)": "μονόπλευρη (ανά πλευρά, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "πέτρες atlas",
  "Kamienie atlas": "Πέτρες atlas",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Κάρτα του τρέχοντος σετ στην προπόνηση· η προβολή «Λίστα» όπως πριν, με επιλογή στις Ρυθμίσεις.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Κάθε κύρια μυϊκή ομάδα τουλάχιστον {n} ημέρες την εβδομάδα (ΠΟΥ 2020 — σύσταση για την υγεία· ACSM 2026: η δύναμη αυξάνεται με τουλάχιστον {n} προπονήσεις την εβδομάδα). Μια ημέρα όπου η ομάδα μόνο βοηθά μετράει ως {h} — απλοποίηση (μέθοδος από τη μετα-ανάλυση των Pelland και συν. 2026). Ο διαχωρισμός (ολόσωμο, πάνω/κάτω) είναι σύμβαση — με τον ίδιο αριθμό σετ δίνει παρόμοια αποτελέσματα.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Κάθε μία από αυτές τις επιλογές επιστρέφει στη ρουτίνα μέσα σε {n} μέρες.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Κάθε άσκηση εδώ έχει 1 σετ — ο αριθμός των σετ μένει ίδιος (οι ασκήσεις με 1 σετ δεν μειώνονται). Ίδια βάρη.",
  "kettlebell": "kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Διαγραφή σετ",
  "Usuń ćwiczenie": "Αφαίρεση άσκησης",
- "Opcje ćwiczenia: {name}": "Επιλογές άσκησης: {name}"
+ "Opcje ćwiczenia: {name}": "Επιλογές άσκησης: {name}",
+ "System miar": "Σύστημα μονάδων",
+ "metryczny (kg, km, m)": "μετρικό (kg, km, m)",
+ "imperialny (lb, mi, yd)": "αγγλοσαξονικό (lb, mi, yd)",
+ "{n} mi": "{n} μίλ.",
+ "{n} yd": "{n} γιρδ.",
+ "mila|mile|mil": "μίλι|μίλια",
+ "mili": "μίλια",
+ "jard|jardy|jardów": "γιάρδα|γιάρδες",
+ "jarda": "γιάρδες",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Κάθε κύρια μυϊκή ομάδα τουλάχιστον {n} ημέρες την εβδομάδα (ΠΟΥ 2020 — σύσταση για την υγεία· ACSM 2026: η συχνότητα επηρεάζει τη δύναμη, αλλά δεν υπάρχουν στοιχεία για σχέση δόσης–απόκρισης και με ίσο όγκο η διαφορά μειώνεται). Μια ημέρα όπου η ομάδα μόνο βοηθά μετράει ως {h} — απλοποίηση (μέθοδος από τη μετα-ανάλυση των Pelland και συν. 2026). Ο διαχωρισμός (ολόσωμο, πάνω/κάτω) είναι σύμβαση — με τον ίδιο αριθμό σετ δίνει παρόμοια αποτελέσματα.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Το βήμα (π.χ. +2,5 kg) είναι σύμβαση, όχι αποτέλεσμα ερευνών."
 }

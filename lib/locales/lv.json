@@ -473,7 +473,6 @@
  "Jasny": "Gaišs",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Arī viens treniņš nedēļā dod progresu, taču parasti nedaudz mazāku nekā biežāki treniņi — galvenokārt tāpēc, ka vienā treniņā ietilpst mazāk sēriju. Ar vienādu sēriju skaitu nedēļā atšķirība muskuļu augšanā izzūd, bet spēkā samazinās.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Viena sesija: {v}. Grafiks parādīsies pēc otrās.",
- "Jednostka ciężaru": "Svara mērvienība",
  "Jednostka ciężaru w pliku": "Svara vienība failā",
  "Jednostka sprzętu": "Aprīkojuma mērvienība",
  "jednostronne (per strona, ×2)": "vienpusēji (katrai pusei, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "atlasa akmeņi",
  "Kamienie atlas": "Atlasa akmeņi",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Pašreizējās sērijas kartīte treniņā; skats “Saraksts” kā iepriekš, izvēlams Iestatījumos.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Katra galvenā muskuļu grupa vismaz {n} dienas nedēļā (PVO 2020 — veselības ieteikums; ACSM 2026: spēks pieaug, trenējoties vismaz {n} reizes nedēļā). Diena, kad grupa tikai palīdz, skaitās {h} — vienkāršojums (metode no Pelland u. c. 2026 metaanalīzes). Sadalījums (viss ķermenis, augša/apakša) ir vienošanās — pie tā paša sēriju skaita rezultāti ir līdzīgi.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Katra no šīm iespējām atgriežas rutīnā {n} dienu laikā.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Šeit katram vingrinājumam ir 1 sērija — sēriju skaits nemainās (vingrinājumi ar 1 sēriju netiek saīsināti). Svari nemainās.",
  "kettlebell": "svaru bumba",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Dzēst sēriju",
  "Usuń ćwiczenie": "Noņemt vingrinājumu",
- "Opcje ćwiczenia: {name}": "Vingrinājuma opcijas: {name}"
+ "Opcje ćwiczenia: {name}": "Vingrinājuma opcijas: {name}",
+ "System miar": "Mērvienību sistēma",
+ "metryczny (kg, km, m)": "metriskā (kg, km, m)",
+ "imperialny (lb, mi, yd)": "imperiālā (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "jūdžu|jūdze|jūdzes",
+ "mili": "jūdzes",
+ "jard|jardy|jardów": "jardu|jards|jardi",
+ "jarda": "jardi",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Katra galvenā muskuļu grupa vismaz {n} dienas nedēļā (PVO 2020 — veselības ieteikums; ACSM 2026: biežums ietekmē spēku, taču pierādījumu par devas un atbildes sakarību nav, un, ja apjoms ir vienāds, atšķirība mazinās). Diena, kad grupa tikai palīdz, skaitās {h} — vienkāršojums (metode no Pelland u. c. 2026 metaanalīzes). Sadalījums (viss ķermenis, augša/apakša) ir vienošanās — pie tā paša sēriju skaita rezultāti ir līdzīgi.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Solis (piem., +2,5 kg) ir vienošanās, nevis pētījumu rezultāts."
 }

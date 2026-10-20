@@ -473,7 +473,6 @@
  "Jasny": "Clair",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Un entraînement par semaine apporte aussi des progrès, mais en général un peu moins qu’un entraînement plus fréquent — surtout parce qu’une séance contient moins de séries. À nombre de séries égal par semaine, l’écart de prise de muscle disparaît et celui de force diminue.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Une séance : {v}. Le graphique apparaîtra après la deuxième.",
- "Jednostka ciężaru": "Unité de poids",
  "Jednostka ciężaru w pliku": "Unité de poids du fichier",
  "Jednostka sprzętu": "Unité du matériel",
  "jednostronne (per strona, ×2)": "unilatéral (par côté, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "pierres d’Atlas",
  "Kamienie atlas": "Pierres d’Atlas",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Carte de la série en cours pendant la séance ; la vue « Liste » comme avant, au choix dans les Réglages.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Chaque grand groupe musculaire au moins {n} jours par semaine (OMS 2020 — recommandation pour la santé ; ACSM 2026 : la force progresse avec au moins {n} séances par semaine). Un jour où le groupe ne fait qu’aider compte pour {h} — une simplification (méthode de la méta-analyse de Pelland et al. 2026). La répartition (full body, haut/bas) est une convention — à nombre de séries égal, les résultats sont similaires.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Chacune de ces possibilités revient à la routine en {n} jours.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Ici, chaque exercice a 1 série — le nombre de séries reste le même (les exercices à 1 série ne sont pas réduits). Mêmes charges.",
  "kettlebell": "kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Supprimer la série",
  "Usuń ćwiczenie": "Retirer l’exercice",
- "Opcje ćwiczenia: {name}": "Options de l’exercice : {name}"
+ "Opcje ćwiczenia: {name}": "Options de l’exercice : {name}",
+ "System miar": "Système d'unités",
+ "metryczny (kg, km, m)": "métrique (kg, km, m)",
+ "imperialny (lb, mi, yd)": "impérial (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "mille|milles",
+ "mili": "milles",
+ "jard|jardy|jardów": "yard|yards",
+ "jarda": "yards",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Chaque grand groupe musculaire au moins {n} jours par semaine (OMS 2020 — recommandation pour la santé ; ACSM 2026 : la fréquence influe sur la force, mais aucune relation dose-réponse n'est démontrée et, à volume égal, l'écart s'atténue). Un jour où le groupe ne fait qu’aider compte pour {h} — une simplification (méthode de la méta-analyse de Pelland et al. 2026). La répartition (full body, haut/bas) est une convention — à nombre de séries égal, les résultats sont similaires.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Le pas (p. ex. +2,5 kg) est une convention, pas un résultat d'études."
 }

@@ -46,7 +46,8 @@ export const multOf = (e: Exercise) => isBWx(e) ? 1 : e.loadMode === 'total' ? 1
 export const epley = (load: number, reps: number) => load > 0 && reps > 0 ? (reps === 1 ? load : load * (1 + reps / 30)) : 0;
 export const fmtPl = (v: number) => String(v).replace('.', ',');
 export const secTxt = (s: number) => { const m = Math.floor(s / 60), r = s % 60; return m ? `${m}:${String(r).padStart(2, '0')}` : `${r} s`; }; /* audyt 0.10 A11-17: jednostka przez t() („{n} s”) */
-export const distTxt = (m: number) => m >= 1000 ? `${fmtPl(m / 1000)} km` : `${m} m`;
+/** Oczekiwany dystans: metryczny m / km (od 1 km), imperialny (unit lb, M2-LOK07-01) yd / mi (od 1 mi = 1609,344 m) — niezależnie od lib/units. */
+export const distTxt = (m: number, u: Unit = 'kg') => u === 'lb' ? (m >= 1609.344 ? `${fmtPl(Math.round(m / 1609.344 * 100) / 100)} mi` : `${Math.round(m / 0.9144)} yd`) : m >= 1000 ? `${fmtPl(m / 1000)} km` : `${m} m`;
 export const setUnit = (u: Unit) => { S().settings.unit = u; store.applyPrefs(); store.save(); };
 /** Prosty parser CSV (cudzysłowy, przecinki w polach). */
 export function parseCsv(txt: string): string[][] {
@@ -96,9 +97,9 @@ export function doWorkout(ex: Exercise, r: Rep, u: Unit, kinds: SetKind[], agoMs
 export function expSummary(r: Rep, u: Unit, k: SetKind): string {
   const m = r.metric; const l = loadDisp(r, u, k);
   if (m === 'time') return secTxt(TIME_V[k]);
-  if (m === 'distance_time') return `${distTxt(DIST_V[k][0])} ${secTxt(DIST_V[k][1])}`;
+  if (m === 'distance_time') return `${distTxt(DIST_V[k][0], u)} ${secTxt(DIST_V[k][1])}`;
   if (m === 'weight_time') return `${fmtPl(Number(l) || 0)}${u}×${secTxt(TIME_V[k])}`;
-  if (m === 'weight_distance') return `${fmtPl(Number(l) || 0)}${u}×${distTxt(DIST_V[k][0])}`;
+  if (m === 'weight_distance') return `${fmtPl(Number(l) || 0)}${u}×${distTxt(DIST_V[k][0], u)}`;
   if (m === 'reps') return `${REPS_V[k]}`;
   return r.bw ? `${REPS_V[k]}${l ? '@+' + fmtPl(Number(l)) : ''}` : `${fmtPl(Number(l))}×${REPS_V[k]}`;
 }

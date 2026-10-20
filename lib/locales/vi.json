@@ -370,7 +370,6 @@
  "Jasny": "Sáng",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Một buổi tập mỗi tuần vẫn mang lại tiến bộ, nhưng thường ít hơn một chút so với tập thường xuyên hơn — chủ yếu vì một buổi chứa được ít hiệp hơn. Với cùng số hiệp mỗi tuần, khác biệt về tăng cơ biến mất và khác biệt về sức mạnh thu hẹp lại.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Một buổi tập: {v}. Biểu đồ sẽ hiện sau buổi thứ hai.",
- "Jednostka ciężaru": "Đơn vị khối lượng",
  "Jednostka sprzętu": "Đơn vị dụng cụ",
  "jednostronne (per strona, ×2)": "một bên (mỗi bên, ×2)",
  "Jeszcze nie było w treningu.": "Chưa có trong buổi tập nào.",
@@ -382,7 +381,6 @@
  "kamienie atlas": "đá atlas",
  "Kamienie atlas": "Đá atlas",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Thẻ hiệp hiện tại trong buổi tập; chế độ xem “Danh sách” như trước, chọn được trong Cài đặt.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Mỗi nhóm cơ chính ít nhất {n} ngày mỗi tuần (WHO 2020 — khuyến nghị cho sức khỏe; ACSM 2026: sức mạnh tăng khi tập ít nhất {n} buổi mỗi tuần). Ngày mà nhóm cơ chỉ hỗ trợ được tính là {h} — đơn giản hóa (phương pháp từ phân tích tổng hợp của Pelland và cs. 2026). Cách chia buổi (toàn thân, trên/dưới) là quy ước — với cùng số hiệp sẽ cho kết quả tương tự.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Mỗi lựa chọn này sẽ trở về nhịp thường lệ trong vòng {n} ngày.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Mỗi bài tập ở đây có 1 hiệp — số hiệp giữ nguyên (bài có 1 hiệp không bị cắt). Mức tạ giữ nguyên.",
  "kettlebell": "kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Xóa hiệp",
  "Usuń ćwiczenie": "Bỏ bài tập",
- "Opcje ćwiczenia: {name}": "Tùy chọn bài tập: {name}"
+ "Opcje ćwiczenia: {name}": "Tùy chọn bài tập: {name}",
+ "System miar": "Hệ đo lường",
+ "metryczny (kg, km, m)": "hệ mét (kg, km, m)",
+ "imperialny (lb, mi, yd)": "hệ Anh–Mỹ (lb, mi, yd)",
+ "{n} mi": "{n} dặm",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "dặm",
+ "mili": "dặm",
+ "jard|jardy|jardów": "yard",
+ "jarda": "yard",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Mỗi nhóm cơ chính ít nhất {n} ngày mỗi tuần (WHO 2020 — khuyến nghị cho sức khỏe; ACSM 2026: tần suất ảnh hưởng đến sức mạnh, nhưng chưa có bằng chứng về quan hệ liều–đáp ứng, và khi khối lượng bằng nhau thì chênh lệch giảm). Ngày mà nhóm cơ chỉ hỗ trợ được tính là {h} — đơn giản hóa (phương pháp từ phân tích tổng hợp của Pelland và cs. 2026). Cách chia buổi (toàn thân, trên/dưới) là quy ước — với cùng số hiệp sẽ cho kết quả tương tự.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Mức tăng (vd +2,5 kg) là quy ước, không phải kết quả nghiên cứu."
 }

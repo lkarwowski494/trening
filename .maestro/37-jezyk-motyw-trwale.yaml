@@ -19,7 +19,7 @@ name: Po zmianie języka i wyglądu — praca po polsku i restart
 - tapOn: "Settings"
 - extendedWaitUntil: { visible: "Appearance", timeout: 30000 }
 - tapOn: "Dark"
-- tapOn: "kg"
+- tapOn: { id: "unit-system-kg" }
 - tapOn: "Language, Phone setting"
 - extendedWaitUntil: { visible: "Polski", timeout: 30000 }
 - tapOn: "Polski"
@@ -93,7 +93,7 @@ name: Po zmianie języka i wyglądu — praca po polsku i restart
 - tapOn: "Więcej, .*"
 - tapOn: "Ustawienia"
 - extendedWaitUntil: { visible: "Język, Polski", timeout: 30000 }
-- assertVisible: "Jednostka ciężaru"
+- assertVisible: "System miar"
 - assertVisible: { text: "Ciemny", selected: true }   # wygląd i jednostka zostały po restarcie (stan segmentu = accessibilityState.selected)
-- assertVisible: { text: "kg", selected: true }
+- assertVisible: { id: "unit-system-kg", selected: true }
 - takeScreenshot: 116-ustawienia-po-restarcie

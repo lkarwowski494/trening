@@ -473,7 +473,6 @@
  "Jasny": "Açık",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Haftada bir antrenman da ilerleme sağlar, ancak genellikle daha sık antrenmandan biraz daha az — çoğunlukla tek seansa daha az set sığdığı için. Haftalık set sayısı aynı olduğunda kas gelişimindeki fark kaybolur, kuvvetteki fark ise azalır.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Tek oturum: {v}. Grafik ikinciden sonra görünür.",
- "Jednostka ciężaru": "Ağırlık birimi",
  "Jednostka ciężaru w pliku": "Dosyadaki ağırlık birimi",
  "Jednostka sprzętu": "Ekipman birimi",
  "jednostronne (per strona, ×2)": "tek taraflı (taraf başı, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "atlas taşları",
  "Kamienie atlas": "Atlas taşları",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Antrenmanda geçerli set kartı; “Liste” görünümü eskisi gibi, Ayarlar’dan seçilebilir.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Her büyük kas grubu haftada en az {n} gün (DSÖ 2020 — sağlık önerisi; ACSM 2026: güç haftada en az {n} seansla artar). Grubun yalnızca yardımcı olduğu gün {h} sayılır — bir basitleştirme (Pelland ve ark. 2026 meta-analizindeki yöntem). Bölümleme (tüm vücut, üst/alt) bir gelenektir — aynı set sayısıyla benzer sonuç verir.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Bu seçeneklerin her biri {n} gün içinde rutine döner.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Burada her egzersizde 1 set var — set sayısı aynı kalır (1 setlik egzersizler kısaltılmaz). Ağırlıklar aynı.",
  "kettlebell": "kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Seti sil",
  "Usuń ćwiczenie": "Egzersizi kaldır",
- "Opcje ćwiczenia: {name}": "Egzersiz seçenekleri: {name}"
+ "Opcje ćwiczenia: {name}": "Egzersiz seçenekleri: {name}",
+ "System miar": "Ölçü sistemi",
+ "metryczny (kg, km, m)": "metrik (kg, km, m)",
+ "imperialny (lb, mi, yd)": "imperyal (lb, mi, yd)",
+ "{n} mi": "{n} mil",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "mil|mil",
+ "mili": "mil",
+ "jard|jardy|jardów": "yarda|yarda",
+ "jarda": "yarda",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Her büyük kas grubu haftada en az {n} gün (DSÖ 2020 — sağlık önerisi; ACSM 2026: sıklık kuvveti etkiler, ancak doz–yanıt ilişkisine dair kanıt yoktur ve eşit hacimde fark azalır). Grubun yalnızca yardımcı olduğu gün {h} sayılır — bir basitleştirme (Pelland ve ark. 2026 meta-analizindeki yöntem). Bölümleme (tüm vücut, üst/alt) bir gelenektir — aynı set sayısıyla benzer sonuç verir.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Adım (örn. +2,5 kg) bir kuraldır, araştırma sonucu değildir."
 }

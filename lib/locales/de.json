@@ -473,7 +473,6 @@
  "Jasny": "Hell",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Ein Training pro Woche bringt auch Fortschritt, meist aber etwas weniger als häufigeres Training — vor allem, weil in eine Einheit weniger Sätze passen. Bei gleicher Satzzahl pro Woche verschwindet der Unterschied beim Muskelaufbau, bei der Kraft wird er kleiner.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Eine Einheit: {v}. Das Diagramm erscheint ab der zweiten.",
- "Jednostka ciężaru": "Gewichtseinheit",
  "Jednostka ciężaru w pliku": "Gewichtseinheit in der Datei",
  "Jednostka sprzętu": "Geräteeinheit",
  "jednostronne (per strona, ×2)": "einseitig (pro Seite, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "Atlas Stones",
  "Kamienie atlas": "Atlas Stones",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Karte des aktuellen Satzes im Training; die Ansicht „Liste“ wie bisher, wählbar in den Einstellungen.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Jede große Muskelgruppe an mindestens {n} Tagen pro Woche (WHO 2020 — eine Gesundheitsempfehlung; ACSM 2026: Kraft steigt bei mindestens {n} Einheiten pro Woche). Ein Tag, an dem die Gruppe nur unterstützt, zählt als {h} — eine Vereinfachung (Methode aus der Metaanalyse von Pelland et al. 2026). Die Aufteilung (Ganzkörper, Ober-/Unterkörper) ist eine Konvention — bei gleicher Satzzahl ähnliche Ergebnisse.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Jede dieser Möglichkeiten kehrt innerhalb von {n} Tagen zur Routine zurück.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Jede Übung hat hier 1 Satz — die Satzzahl bleibt gleich (Übungen mit 1 Satz werden nicht gekürzt). Gewichte unverändert.",
  "kettlebell": "Kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Satz löschen",
  "Usuń ćwiczenie": "Übung entfernen",
- "Opcje ćwiczenia: {name}": "Optionen für Übung: {name}"
+ "Opcje ćwiczenia: {name}": "Optionen für Übung: {name}",
+ "System miar": "Maßsystem",
+ "metryczny (kg, km, m)": "Metrisch (kg, km, m)",
+ "imperialny (lb, mi, yd)": "Imperial (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "Meile|Meilen",
+ "mili": "Meilen",
+ "jard|jardy|jardów": "Yard|Yards",
+ "jarda": "Yards",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Jede große Muskelgruppe an mindestens {n} Tagen pro Woche (WHO 2020 — eine Gesundheitsempfehlung; ACSM 2026: die Häufigkeit beeinflusst die Kraft, doch ein Dosis-Wirkungs-Zusammenhang ist nicht belegt, und bei gleichem Volumen schwächt sich der Unterschied ab). Ein Tag, an dem die Gruppe nur unterstützt, zählt als {h} — eine Vereinfachung (Methode aus der Metaanalyse von Pelland et al. 2026). Die Aufteilung (Ganzkörper, Ober-/Unterkörper) ist eine Konvention — bei gleicher Satzzahl ähnliche Ergebnisse.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Der Schritt (z. B. +2,5 kg) ist eine Konvention, kein Forschungsergebnis."
 }

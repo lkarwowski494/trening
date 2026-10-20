@@ -327,3 +327,20 @@ Każdy kierunek: ikona aplikacji, ikony zakładek SVG zamiast emoji, ten sam ekr
   „Wybór motywu, domyślnie jasna Kreda”. Ustawienia → Wygląd: Jasny (domyślnie, także dla dotychczasowych danych) / Ciemny / Jak w telefonie.
   `settings.theme`, `applyTheme` w `lib/theme.ts` (`Appearance.setColorScheme` — alerty, klawiatura i pasek stanu też). Ekran startowy kredowy
   (#F2F0EB) — pasuje do domyślnego wyglądu. Testy: `tests/theme-choice.test.tsx`.
+
+## System miar (LOK-07; decyzje właściciela 20.10.2026: DEC-28, DEC-29)
+
+Jedno ustawienie „System miar”: metryczny (kg, km, m) albo imperialny (lb, mi, yd) zastępuje „Jednostkę ciężaru”. Zapis bez zmian: masa w kg, dystans w metrach; pole `unit` zostaje (imperialny = `'lb'`), migracji danych brak. Nowa instalacja i reset: system z regionu telefonu (`measurementSystem` z expo-localization: `us`, `uk` → imperialny, `metric` → metryczny; bez danych region tagu, bez regionu metryczny). Istniejące dane nietknięte. Dystans zapisuje się z dokładnością do 1 cm (yardy bez dryfu); progi „duża jednostka” (1 km, 1 mi) są w `lib/units.ts` (`DIST_LONG_FROM_M`).
+
+| Miejsce | Wielkość | Helper | Imperialny |
+|---|---|---|---|
+| wiersz serii, podsumowanie, rekordy, wykres, historia, szablon (tekst) | dystans | `fmtDist` (lib/state/time.ts) | yd, od 1 mi mile |
+| pola wpisu dystansu (trening, edycja historii, szablon) | dystans | `dOut` / `dIn` / `distUnit` (lib/units.ts) | yd, zapis w m z dokładnością do cm |
+| ekran blokady / aktywność | dystans | `distParts` (lib/live.ts) | yd lub mi |
+| głos | dystans | `spokenDist` (lib/live.ts) | jardy, mile słowami |
+| masa (wszędzie) | ciężar | `wOut` / `wIn` / `fmtW` | lb |
+| eksport CSV | kolumna Distance | brak (metry, opisane w Ustawieniach: „dystans w metrach”) | wyjątek: format pliku, bez przeliczenia |
+| presety sprzętu (edytor ciężarów) | ciężary | `applyLoadPreset` + `convertSpec` | ciężary w lb |
+| etykiety presetów (np. „2×10 kg”, „5–200 lb”) | nazwa produktu | brak | wyjątek „nazwa produktu”: przeliczona nazwa opisywałaby nieistniejący produkt |
+
+Teksty nowego ustawienia i jednostek (mi, yd, mile, jardy) we wszystkich słownikach: do przeglądu tłumacza (M2-LOK07-01).

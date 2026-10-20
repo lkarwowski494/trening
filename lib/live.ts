@@ -1,6 +1,6 @@
-import { exById, focusSet, isBW, fmtSec, occurrence, occurrences } from './store';
+import { exById, focusSet, isBW, fmtSec, fmtDist, occurrence, occurrences } from './store';
 import { t, tp, exName, lang } from './i18n';
-import { wu, wOut, fmtNum } from './units';
+import { wu, wOut, fmtNum, isImperial, DIST_LONG_FROM_M, M_PER_MI, M_PER_YD } from './units';
 import { hasWeight, hasReps, hasTime, hasDistance, SET_KIND_MARK, type Exercise, type SetKind, type WExercise, type WSet, type Workout } from './seed';
 
 /*
@@ -70,6 +70,17 @@ function spokenNoun(n: number, many: string, frac: string): string {
 }
 /** Dystans w metrach do głosu: „400 metrów”, „1 metr”, „12,5 metra” (zamiast „400 m”, które syntezator literuje). */
 export const spokenMeters = (m: number): string => `${Number.isInteger(m) ? m : fmtNum(m, 2)} ${spokenNoun(m, 'metr|metry|metrów', 'metra')}`;
+/** Dystans do głosu w systemie użytkownika (M2-LOK07-01): metryczny jak `spokenMeters`; imperialny pełne jardy („100 jardów”) albo mile (od 1 mi, do 2 miejsc). */
+export function spokenDist(m: number): string {
+  if (!isImperial()) return spokenMeters(m);
+  if (m >= DIST_LONG_FROM_M.imperial) { const v = Math.round(m / M_PER_MI * 100) / 100; return `${Number.isInteger(v) ? v : fmtNum(v, 2)} ${spokenNoun(v, 'mila|mile|mil', 'mili')}`; }
+  const y = Math.round(m / M_PER_YD); return `${y} ${spokenNoun(y, 'jard|jardy|jardów', 'jarda')}`;
+}
+/** Dystans na ekran blokady / do wiersza serii: metryczny jak dotąd (liczba i „m”), imperialny yd albo mi (próg 1 mi). */
+export function distParts(m: number): { num: string; unit: string } {
+  if (!isImperial()) return { num: String(m), unit: 'm' };
+  return m >= DIST_LONG_FROM_M.imperial ? { num: fmtNum(m / M_PER_MI, 2), unit: 'mi' } : { num: String(Math.round(m / M_PER_YD)), unit: 'yd' };
+}
 /** Czas do głosu słowami: „45 sekund”, „1 minuta 30 sekund”, „25 minut”, „1 godzina 5 minut” (zamiast „45 s” i zegarowego „25:00”, które syntezator czyta jak skrót lub godzinę). */
 export function spokenDuration(sec: number): string {
   const s = Math.max(0, Math.round(sec)); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), r = s % 60; const out: string[] = [];
@@ -94,7 +105,7 @@ function loadText(ex: Exercise, set: WSet, spoken: boolean): string {
       out.push(p.num + (p.unit ? ' ' + (spoken ? spokenUnit(wOut(v)) : p.unit) : ''));
     }
   }
-  if (hasDistance(m) && Number(set.distanceM) > 0) out.push(spoken ? spokenMeters(Number(set.distanceM)) : `${set.distanceM} m`);
+  if (hasDistance(m) && Number(set.distanceM) > 0) out.push(spoken ? spokenDist(Number(set.distanceM)) : isImperial() ? fmtDist(Number(set.distanceM)) : `${set.distanceM} m`);
   { const n = Number(set.reps); if (hasReps(m) && n > 0) out.push(`${n} ${tp(n, 'powtórzenie|powtórzenia|powtórzeń')}`); }
   if (hasTime(m) && Number(set.durationSec) > 0) out.push(spoken ? spokenDuration(Number(set.durationSec)) : fmtSec(Number(set.durationSec)));
   return out.join(', ');
@@ -133,8 +144,8 @@ export function nowParts(ex: Exercise, set: WSet): { num: string; unit: string; 
   if (hasWeight(m)) {
     if (isBW(ex)) { const a = Number(set.addKg); if (empty(set.addKg) || !a) num = t('masa ciała'); else { num = (a > 0 ? '+' : '') + fmtNum(wOut(a), dig); unit = wu(); } }
     else if (empty(set.weight)) num = '—'; else { num = fmtNum(wOut(Number(set.weight)), dig); unit = wu(); }
-    if (hasReps(m)) rest.push(reps); if (hasDistance(m)) rest.push(empty(set.distanceM) ? '—' : `${set.distanceM} m`); /* ciężar + dystans (09.10.2026): „40 kg × 30 m” */ if (hasTime(m)) rest.push(time);
-  } else if (hasDistance(m)) { if (empty(set.distanceM)) num = '—'; else { num = String(set.distanceM); unit = 'm'; } sep = ' · '; if (hasTime(m)) rest.push(time); }
+    if (hasReps(m)) rest.push(reps); if (hasDistance(m)) rest.push(empty(set.distanceM) ? '—' : (d => `${d.num} ${d.unit}`)(distParts(Number(set.distanceM)))); /* ciężar + dystans (09.10.2026): „40 kg × 30 m” */ if (hasTime(m)) rest.push(time);
+  } else if (hasDistance(m)) { if (empty(set.distanceM)) num = '—'; else { ({ num, unit } = distParts(Number(set.distanceM))); } sep = ' · '; if (hasTime(m)) rest.push(time); }
   else if (hasReps(m)) { num = reps; if (hasTime(m)) rest.push(time); }
   else num = hasTime(m) ? time : '—';
   return { num, unit, tail: rest.map(x => sep + x).join('') };

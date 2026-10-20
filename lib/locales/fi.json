@@ -473,7 +473,6 @@
  "Jasny": "Vaalea",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Yksikin treeni viikossa tuo kehitystä, mutta yleensä hieman vähemmän kuin tiheämpi treenaaminen — lähinnä siksi, että yhteen treeniin mahtuu vähemmän sarjoja. Samalla viikoittaisella sarjamäärällä ero lihaskasvussa häviää ja voimassa pienenee.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Yksi treeni: {v}. Kaavio näkyy toisen jälkeen.",
- "Jednostka ciężaru": "Painoyksikkö",
  "Jednostka ciężaru w pliku": "Tiedoston painoyksikkö",
  "Jednostka sprzętu": "Välineiden yksikkö",
  "jednostronne (per strona, ×2)": "toispuoleinen (puolta kohden, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "atlas-kivet",
  "Kamienie atlas": "Atlas-kivet",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Nykyisen sarjan kortti treenin aikana; näkymä ”Lista” kuten ennen, valittavissa asetuksissa.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Jokainen suuri lihasryhmä vähintään {n} päivänä viikossa (WHO 2020 — terveyssuositus; ACSM 2026: voima kasvaa vähintään {n} treenillä viikossa). Päivä, jolloin ryhmä vain avustaa, lasketaan {h} — yksinkertaistus (menetelmä Pellandin ym. 2026 meta-analyysistä). Jako (koko keho, ylä-/alavartalo) on konventio — samalla sarjamäärällä tulokset ovat samankaltaisia.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Jokainen näistä vaihtoehdoista palaa rutiiniin {n} päivässä.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Jokaisessa liikkeessä on tässä 1 sarja — sarjamäärä pysyy ennallaan (1 sarjan liikkeitä ei lyhennetä). Painot ennallaan.",
  "kettlebell": "kahvakuula",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Poista sarja",
  "Usuń ćwiczenie": "Poista liike",
- "Opcje ćwiczenia: {name}": "Liikkeen valinnat: {name}"
+ "Opcje ćwiczenia: {name}": "Liikkeen valinnat: {name}",
+ "System miar": "Mittajärjestelmä",
+ "metryczny (kg, km, m)": "metrinen (kg, km, m)",
+ "imperialny (lb, mi, yd)": "brittiläinen (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "maili|mailia",
+ "mili": "mailia",
+ "jard|jardy|jardów": "jaardi|jaardia",
+ "jarda": "jaardia",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Jokainen suuri lihasryhmä vähintään {n} päivänä viikossa (WHO 2020 — terveyssuositus; ACSM 2026: tiheys vaikuttaa voimaan, mutta annos–vastesuhteesta ei ole näyttöä, ja yhtä suurella tilavuudella ero pienenee). Päivä, jolloin ryhmä vain avustaa, lasketaan {h} — yksinkertaistus (menetelmä Pellandin ym. 2026 meta-analyysistä). Jako (koko keho, ylä-/alavartalo) on konventio — samalla sarjamäärällä tulokset ovat samankaltaisia.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Askel (esim. +2,5 kg) on käytäntö, ei tutkimustulos."
 }

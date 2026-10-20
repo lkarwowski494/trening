@@ -370,7 +370,6 @@
  "Jasny": "淺色",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "每週一次訓練也會進步，但通常比更頻繁的訓練略少 — 主要因為一次訓練能做的組數較少。每週組數相同時，肌肉成長的差距會消失，肌力的差距也會縮小。",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "一次訓練：{v}。第二次之後會出現圖表。",
- "Jednostka ciężaru": "重量單位",
  "Jednostka sprzętu": "器材單位",
  "jednostronne (per strona, ×2)": "單側（每側，×2）",
  "Jeszcze nie było w treningu.": "還沒在任何訓練中使用過。",
@@ -382,7 +381,6 @@
  "kamienie atlas": "阿特拉斯石",
  "Kamienie atlas": "阿特拉斯石",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "訓練時顯示目前這組的卡片；「列表」檢視一樣可在「設定」中選擇。",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "每個主要肌群每週至少 {n} 天（WHO 2020 — 健康建議；ACSM 2026：每週至少 {n} 次訓練可提升肌力）。肌群只做輔助的那天算作 {h} — 簡化（方法來自 Pelland 等人 2026 的統合分析）。訓練分法（全身、上肢／下肢）是慣例 — 組數相同時效果相近。",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "這些選項都會在 {n} 天內回到原本的節奏。",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "這裡每個動作都只有 1 組 — 組數不變（只有 1 組的動作不會縮減）。重量也不變。",
  "kettlebell": "壺鈴",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "刪除這組",
  "Usuń ćwiczenie": "移除動作",
- "Opcje ćwiczenia: {name}": "動作選項：{name}"
+ "Opcje ćwiczenia: {name}": "動作選項：{name}",
+ "System miar": "度量衡系統",
+ "metryczny (kg, km, m)": "公制 (kg, km, m)",
+ "imperialny (lb, mi, yd)": "英制 (lb, mi, yd)",
+ "{n} mi": "{n} 英里",
+ "{n} yd": "{n} 碼",
+ "mila|mile|mil": "英里",
+ "mili": "英里",
+ "jard|jardy|jardów": "碼",
+ "jarda": "碼",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "每個主要肌群每週至少 {n} 天（WHO 2020 — 健康建議；ACSM 2026： 頻率會影響力量，但沒有劑量反應關係的證據，總量相同時差異會縮小）。肌群只做輔助的那天算作 {h} — 簡化（方法來自 Pelland 等人 2026 的統合分析）。訓練分法（全身、上肢／下肢）是慣例 — 組數相同時效果相近。",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "調整幅度（例如 +2,5 kg）是慣例，不是研究結果。"
 }

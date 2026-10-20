@@ -15,7 +15,7 @@ import { DraftHeader, HeaderButton, confirmDiscard } from '@/components/DraftHea
 import { MedicalNote } from '@/components/MedicalNote';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { t, tp, exName, lang } from '@/lib/i18n';
-import { wu, wField, wInKeep, fmtW } from '@/lib/units';
+import { wu, wField, wInKeep, fmtW, dIn, dOut, distUnit } from '@/lib/units';
 import { cancelButton } from '@/lib/confirm';
 
 /*
@@ -133,7 +133,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
               </Pressable>
               {hasWeight(m) ? <View style={s.cell}><NumInput weightTol decimal allowNegative={bw} value={wField(loadFieldValue(ex, set))} stored={loadFieldValue(ex, set)} onNum={(v, keep) => { writeLoad(ex, set, wInKeep(v, keep)); /* Q-021; audyt 83b (LOW 2): pole pokazuje to samo co ekran sesji (store.loadOf), wpis trafia do pola obecnego sprzętu */ touchDraft(); }} placeholder={bw ? '±0' : wu()} accessibilityLabel={ex ? loadLabel(ex, impl) : t('ciężar')} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 28 */ /></View> : null}
               {hasReps(m) ? <View style={s.cell}><NumInput value={set.reps} onNum={v => { set.reps = v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v))); touchDraft(); }} placeholder={t('pow.')} accessibilityLabel={t('Powtórzenia')} accessibilityHint={hint} testID={`reps-${ei}-${si}`} /* E2E (Maestro 05) */ /></View> : null}
-              {hasDistance(m) ? <View style={s.cell}><NumInput value={set.distanceM} onNum={v => { set.distanceM = v === '' ? '' : Math.max(0, Math.round(v)); touchDraft(); }} placeholder="m" accessibilityLabel={t('dystans')} accessibilityHint={hint} /></View> : null}
+              {hasDistance(m) ? <View style={s.cell}><NumInput value={dOut(set.distanceM)} stored={set.distanceM} onNum={(v, keep) => { set.distanceM = dIn(v, keep); touchDraft(); }} placeholder={distUnit()} accessibilityLabel={t('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={s.cell}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); touchDraft(); }} placeholder="s" accessibilityLabel={t('czas')} accessibilityHint={hint} /></View> : null}
               {showRpe ? <View style={s.cell}><NumInput decimal value={effortField(set.rpe)} onNum={v => { set.rpe = effortIn(v); touchDraft(); }} placeholder="—" accessibilityLabel={effortLabel()} accessibilityHint={hint} /></View> : null}
               {band ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityHint={`${hint}. ${t('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={t('Guma: {b}', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : t('brak') })} onPress={() => cycleBand(set)} style={[s.box, { width: 52, backgroundColor: th.surface2, borderColor: th.line }]}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? th.band : th.muted, fontSize: 13, fontFamily: F.semibold }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}

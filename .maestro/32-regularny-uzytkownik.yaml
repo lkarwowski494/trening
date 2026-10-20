@@ -21,8 +21,8 @@ name: Regularny użytkownik — historia, plan, restart, kopia
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
-- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
-- tapOn: "kg"
+- extendedWaitUntil: { visible: "Measurement system", timeout: 30000 }
+- tapOn: { id: "unit-system-kg" }
 - tapOn: "Back"
 - runFlow: subflows/plan-kazdego-dnia.yaml
 - tapOn: "Back"
@@ -178,7 +178,7 @@ name: Regularny użytkownik — historia, plan, restart, kopia
 - tapOn: "Back"
 # --- wyczyszczenie danych z pytaniem (kopia bezpieczeństwa powstaje przed): „No” zostawia dane, potem „Erase” czyści ---
 - tapOn: "Settings"
-- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
+- extendedWaitUntil: { visible: "Measurement system", timeout: 30000 }
 - scrollUntilVisible: { element: "Erase all data", direction: DOWN, timeout: 60000 }
 - tapOn: "Erase all data"
 - extendedWaitUntil: { visible: "Erase all data\\?", timeout: 15000 }

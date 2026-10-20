@@ -473,7 +473,6 @@
  "Jasny": "Svetlý",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Aj jeden tréning týždenne prináša pokrok, ale zvyčajne o niečo menší než častejší tréning — hlavne preto, že sa do jedného tréningu zmestí menej sérií. Pri rovnakom počte sérií týždenne rozdiel v raste svalov mizne a v sile sa zmenšuje.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Jeden tréning: {v}. Graf sa zobrazí po druhom.",
- "Jednostka ciężaru": "Jednotka váhy",
  "Jednostka ciężaru w pliku": "Jednotka hmotnosti v súbore",
  "Jednostka sprzętu": "Jednotka vybavenia",
  "jednostronne (per strona, ×2)": "jednostranné (na stranu, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "atlas kamene",
  "Kamienie atlas": "Atlas kamene",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Karta aktuálnej série v tréningu; zobrazenie „Zoznam“ ako predtým, voliteľné v Nastaveniach.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Každá hlavná partia aspoň {n} dni v týždni (WHO 2020 — odporúčanie pre zdravie; ACSM 2026: sila rastie pri aspoň {n} tréningoch týždenne). Deň, keď partia len pomáha, sa počíta ako {h} — zjednodušenie (metóda z metaanalýzy Pelland a kol. 2026). Rozdelenie (celé telo, horná/dolná časť) je konvencia — pri rovnakom počte sérií dáva podobné výsledky.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Každá z týchto možností sa vráti k rutine do {n} dní.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Každý cvik tu má 1 sériu — počet sérií zostáva rovnaký (cviky s 1 sériou sa neskracujú). Váhy bez zmeny.",
  "kettlebell": "kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Vymazať sériu",
  "Usuń ćwiczenie": "Odstrániť cvik",
- "Opcje ćwiczenia: {name}": "Možnosti cviku: {name}"
+ "Opcje ćwiczenia: {name}": "Možnosti cviku: {name}",
+ "System miar": "Sústava jednotiek",
+ "metryczny (kg, km, m)": "metrický (kg, km, m)",
+ "imperialny (lb, mi, yd)": "imperiálny (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "míľa|míle|míľ",
+ "mili": "míle",
+ "jard|jardy|jardów": "yard|yardy|yardov",
+ "jarda": "yardu",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Každá hlavná partia aspoň {n} dni v týždni (WHO 2020 — odporúčanie pre zdravie; ACSM 2026: frekvencia ovplyvňuje silu, ale dôkaz závislosti dávka–odpoveď chýba a pri rovnakom objeme rozdiel slabne). Deň, keď partia len pomáha, sa počíta ako {h} — zjednodušenie (metóda z metaanalýzy Pelland a kol. 2026). Rozdelenie (celé telo, horná/dolná časť) je konvencia — pri rovnakom počte sérií dáva podobné výsledky.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Krok (napr. +2,5 kg) je konvencia, nie výsledok štúdií."
 }

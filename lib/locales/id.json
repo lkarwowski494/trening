@@ -370,7 +370,6 @@
  "Jasny": "Terang",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Satu latihan per minggu tetap memberi kemajuan, tetapi biasanya sedikit lebih kecil daripada berlatih lebih sering — terutama karena lebih sedikit set yang muat dalam satu sesi. Dengan jumlah set per minggu yang sama, perbedaan pertumbuhan otot hilang dan perbedaan kekuatan mengecil.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Satu sesi: {v}. Grafik muncul setelah sesi kedua.",
- "Jednostka ciężaru": "Satuan beban",
  "Jednostka sprzętu": "Satuan alat",
  "jednostronne (per strona, ×2)": "unilateral (per sisi, ×2)",
  "Jeszcze nie było w treningu.": "Belum pernah ada di latihan.",
@@ -382,7 +381,6 @@
  "kamienie atlas": "batu atlas",
  "Kamienie atlas": "Batu atlas",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Kartu set saat ini selama latihan; tampilan “Daftar” seperti sebelumnya, dapat dipilih di Pengaturan.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Setiap kelompok otot utama minimal {n} hari per minggu (WHO 2020 — rekomendasi kesehatan; ACSM 2026: kekuatan meningkat dengan minimal {n} sesi per minggu). Hari ketika kelompok otot hanya membantu dihitung sebagai {h} — penyederhanaan (metode dari meta-analisis Pelland dkk. 2026). Pembagian sesi (full body, atas/bawah) adalah konvensi — dengan jumlah set yang sama hasilnya serupa.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Setiap pilihan ini kembali ke rutinitas dalam {n} hari.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Setiap gerakan di sini punya 1 set — jumlah set tetap sama (gerakan dengan 1 set tidak dipotong). Beban tidak berubah.",
  "kettlebell": "kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Hapus set",
  "Usuń ćwiczenie": "Hapus gerakan",
- "Opcje ćwiczenia: {name}": "Opsi gerakan: {name}"
+ "Opcje ćwiczenia: {name}": "Opsi gerakan: {name}",
+ "System miar": "Sistem satuan",
+ "metryczny (kg, km, m)": "metrik (kg, km, m)",
+ "imperialny (lb, mi, yd)": "imperial (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "mil",
+ "mili": "mil",
+ "jard|jardy|jardów": "yard",
+ "jarda": "yard",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Setiap kelompok otot utama minimal {n} hari per minggu (WHO 2020 — rekomendasi kesehatan; ACSM 2026: frekuensi memengaruhi kekuatan, tetapi tidak ada bukti hubungan dosis–respons, dan pada volume yang sama selisihnya mengecil). Hari ketika kelompok otot hanya membantu dihitung sebagai {h} — penyederhanaan (metode dari meta-analisis Pelland dkk. 2026). Pembagian sesi (full body, atas/bawah) adalah konvensi — dengan jumlah set yang sama hasilnya serupa.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Langkah (mis. +2,5 kg) adalah konvensi, bukan hasil penelitian."
 }

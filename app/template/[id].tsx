@@ -21,7 +21,7 @@ import { t, tp, exName, exNameLang, lang } from '@/lib/i18n';
 import { startTemplate, workoutInProgressNotice } from '@/lib/start';
 import { templateUsageText, assignNewTemplate, hasPlan } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
-import { wu, wField, wInKeep } from '@/lib/units';
+import { wu, wField, wInKeep, dIn, dOut, distUnit } from '@/lib/units';
 import { cancelButton } from '@/lib/confirm';
 
 /*
@@ -186,7 +186,7 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
             <View style={{ flex: 1 }}>{L.prevInline ? <Muted numberOfLines={1} style={{ fontSize: 13 }}>{prevTxt}</Muted> : null}</View>
             {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={!!ex && isBW(ex)} value={wField(r.weight)} stored={r.weight} placeholder={ex ? loadLabelShort(ex, impl) : wu()} testID={`tpl-w-${ii}-${k}`} /* E2E (Maestro 08): pole ciężaru wiersza k pozycji ii */ accessibilityLabel={ex ? loadLabel(ex, impl) : wu()} onNum={(v, keep) => tplEditRow(tpl, it.id, r.id, { weight: v === '' ? '' : wInKeep(ex && isBW(ex) ? v : Math.max(0, v), keep) })} /></View> : null}
             {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={r.reps} placeholder={it.repMin != null ? reps(it.repMin, it.repMax) : t('pow.')} testID={`tpl-r-${ii}-${k}`} /* E2E (Maestro 08) */ accessibilityLabel={t('Powtórzenia')} onNum={v => tplEditRow(tpl, it.id, r.id, { reps: v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v))) }) /* UI-16 */} /></View> : null}
-            {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={r.distanceM} placeholder="m" accessibilityLabel={t('dystans')} onNum={v => tplEditRow(tpl, it.id, r.id, { distanceM: v === '' ? '' : Math.max(0, Math.round(v)) })} /></View> : null}
+            {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={dOut(r.distanceM)} stored={r.distanceM} placeholder={distUnit()} accessibilityLabel={t('dystans')} onNum={(v, keep) => tplEditRow(tpl, it.id, r.id, { distanceM: dIn(v, keep) })} /></View> : null}
             {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={r.durationSec} placeholder={t('cel s')} accessibilityLabel={t('cel s')} onNum={v => tplEditRow(tpl, it.id, r.id, { durationSec: v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))) })} /></View> : null}
             {band ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityHint={`${nm}. ${t('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={t('Guma: {b}', { b: r.bandId ? bandA11y(bands.find(b => b.id === r.bandId)) : t('brak') })} onPress={() => tplCycleBand(tpl, it.id, r.id)} style={{ width: W.band, minHeight: 40, borderRadius: 8, borderWidth: 1, borderColor: th.line, backgroundColor: th.surface2, alignItems: 'center', justifyContent: 'center' }}><Txt style={{ color: r.bandId ? th.band : th.muted, fontSize: 13, fontFamily: F.semibold }}>{r.bandId ? shortBand(bands.find(b => b.id === r.bandId)) : '—'}</Txt></Pressable> : null}
           </View>}</SwipeRow>); })}

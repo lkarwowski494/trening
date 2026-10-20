@@ -31,7 +31,7 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - extendedWaitUntil: { visible: "Polski", timeout: 30000 }
 - tapOn: "Polski"
 - extendedWaitUntil: { visible: "Język, Polski", timeout: 30000 }
-- assertVisible: "Jednostka ciężaru"
+- assertVisible: "System miar"
 - tapOn: "Język, Polski"
 - extendedWaitUntil: { visible: "Jak w telefonie", timeout: 30000 }
 - tapOn: "Jak w telefonie"
@@ -40,7 +40,7 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: "Dark"
 - takeScreenshot: 104-ciemny
 - tapOn: "Light"
-- tapOn: "kg"
+- tapOn: { id: "unit-system-kg" }
 - tapOn: "List"
 - assertVisible: "Workout view"  # etykieta pola widoku treningu (przełącznik z tą samą etykietą dostępności)
 - tapOn: { id: "info-workout-view" }  # 14.10.2026: opis widoku jest pod ⓘ (docs/32 wzorzec 27)

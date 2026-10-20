@@ -10,6 +10,28 @@ export const KG_PER_LB = 0.45359237;
 let unit: Unit = 'kg';
 export const applyUnit = (u: Unit | undefined) => { unit = u === 'lb' ? 'lb' : 'kg'; };
 export const wu = (): Unit => unit;
+/*
+ * System miar (M2-LOK07-01, DEC-28, 20.10.2026): jedno ustawienie — metryczny (kg, km, m) albo imperialny (lb, mi, yd). Pole `unit` zostaje ('kg' | 'lb'),
+ * imperialny = 'lb'; zapis kanoniczny bez zmian: masa w kg, dystans w metrach (bez migracji). Dystans w polach wpisujemy w m / yd (krótka jednostka),
+ * a pokazujemy w km / mi od progu `DIST_LONG_FROM_M` (jedno miejsce na progi).
+ */
+export const M_PER_YD = 0.9144;
+export const M_PER_MI = 1609.344;
+/** Od jakiej długości (w metrach) dystans pokazujemy w dużej jednostce: metryczny 1 km, imperialny 1 mi. */
+export const DIST_LONG_FROM_M = { metric: 1000, imperial: M_PER_MI } as const;
+export const isImperial = (): boolean => unit === 'lb';
+/** Krótka jednostka dystansu w polach wpisu: m albo yd. */
+export const distUnit = (): 'm' | 'yd' => unit === 'lb' ? 'yd' : 'm';
+/** Dystans w metrach → liczba w polu wpisu (m albo pełne yardy). Metryczny: wartość bez zmian. */
+export const dOut = (m: number | '' | undefined | null): number | '' => m === '' || m == null ? '' : unit === 'lb' ? Math.round(Number(m) / M_PER_YD) : Number(m);
+/**
+ * Wpis w polu dystansu → metry do zapisu. Metryczny: pełne metry (jak dotąd, runda 55/56). Imperialny: yardy → metry z dokładnością do cm (zapis ma 2 miejsca,
+ * więc 6 yd → 5,49 m → znów „6 yd”; pełne metry gubiłyby yardy). `keep` = zapisane metry, gdy wpisana liczba jest tą, którą pole pokazywało (jak wInKeep).
+ */
+export const dIn = (v: number | '', keep?: number | ''): number | '' => {
+  if (v === '') return ''; if (typeof keep === 'number' && Number.isFinite(keep)) return keep;
+  const n = Math.max(0, Number(v)); return unit === 'lb' ? round(n * M_PER_YD, 2) : Math.round(n);
+};
 /** Zaokrąglenie symetryczne (połówki od zera) — −0,45 i 0,45 dają lustrzane wyniki (runda 28: asysta gumy = −nominał). */
 const round = (v: number, d: number) => { const f = 10 ** d; return Math.sign(v) * Math.round(Math.abs(v) * f) / f + 0; };
 /** kg → wartość do wyświetlenia (kg do 0,01; lb do 0,1). */

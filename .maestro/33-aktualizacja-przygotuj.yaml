@@ -19,8 +19,8 @@ name: Aktualizacja — dane w poprzedniej wersji
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
-- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
-- tapOn: "kg"
+- extendedWaitUntil: { visible: "Measurement system", timeout: 30000 }
+- tapOn: { id: "unit-system-kg" }
 - tapOn: "Dark"
 - tapOn: "Back"
 # --- pierwszy trening: ciężar, powtórzenia, zakończenie ---

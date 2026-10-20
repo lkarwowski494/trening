@@ -473,7 +473,6 @@
  "Jasny": "Šviesi",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Viena treniruotė per savaitę taip pat duoda pažangos, bet paprastai šiek tiek mažiau nei dažnesnės treniruotės — daugiausia todėl, kad į vieną treniruotę telpa mažiau serijų. Esant tam pačiam serijų skaičiui per savaitę, raumenų augimo skirtumas išnyksta, o jėgos — sumažėja.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Viena treniruotė: {v}. Diagrama atsiras po antrosios.",
- "Jednostka ciężaru": "Svorio vienetas",
  "Jednostka ciężaru w pliku": "Svorio vienetas faile",
  "Jednostka sprzętu": "Įrangos vienetas",
  "jednostronne (per strona, ×2)": "vienpusis (vienai pusei, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "atlaso akmenys",
  "Kamienie atlas": "Atlaso akmenys",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Dabartinės serijos kortelė treniruotėje; rodinys „Sąrašas“ kaip anksčiau, pasirenkamas Nustatymuose.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Kiekviena pagrindinė raumenų grupė bent {n} dienas per savaitę (PSO 2020 — sveikatos rekomendacija; ACSM 2026: jėga didėja, kai treniruojamasi bent {n} kartus per savaitę). Diena, kai grupė tik padeda, skaičiuojama kaip {h} — supaprastinimas (metodas iš Pelland ir kt. 2026 metaanalizės). Padalijimas (visas kūnas, viršus/apačia) yra susitarimas — esant tam pačiam serijų skaičiui rezultatai panašūs.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Kiekviena iš šių galimybių grįžta į įprastą per {n} d.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Čia kiekvienas pratimas turi 1 seriją — serijų skaičius nesikeičia (pratimai su 1 serija netrumpinami). Svoriai tie patys.",
  "kettlebell": "gira",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Ištrinti seriją",
  "Usuń ćwiczenie": "Pašalinti pratimą",
- "Opcje ćwiczenia: {name}": "Pratimo parinktys: {name}"
+ "Opcje ćwiczenia: {name}": "Pratimo parinktys: {name}",
+ "System miar": "Matavimo sistema",
+ "metryczny (kg, km, m)": "metrinė (kg, km, m)",
+ "imperialny (lb, mi, yd)": "imperinė (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "mylia|mylios|mylių",
+ "mili": "mylios",
+ "jard|jardy|jardów": "jardas|jardai|jardų",
+ "jarda": "jardo",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Kiekviena pagrindinė raumenų grupė bent {n} dienas per savaitę (PSO 2020 — sveikatos rekomendacija; ACSM 2026: dažnis veikia jėgą, bet nėra įrodymų apie dozės ir atsako ryšį, o esant tokiam pačiam krūviui skirtumas mažėja). Diena, kai grupė tik padeda, skaičiuojama kaip {h} — supaprastinimas (metodas iš Pelland ir kt. 2026 metaanalizės). Padalijimas (visas kūnas, viršus/apačia) yra susitarimas — esant tam pačiam serijų skaičiui rezultatai panašūs.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Žingsnis (pvz., +2,5 kg) yra susitarimas, o ne tyrimų rezultatas."
 }

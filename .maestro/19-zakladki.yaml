@@ -55,5 +55,5 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
 
 # --- Masa ciała nie jest już w Ustawieniach ---
 - tapOn: "Settings"
-- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
+- extendedWaitUntil: { visible: "Measurement system", timeout: 30000 }
 - assertNotVisible: "Body weight.*"

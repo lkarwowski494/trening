@@ -473,7 +473,6 @@
  "Jasny": "Светло",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "И један тренинг недељно доноси напредак, али обично нешто мањи него чешћи тренинг — углавном зато што у један тренинг стане мање серија. Уз исти број серија недељно разлика у расту мишића нестаје, а у снази се смањује.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Једна сесија: {v}. Графикон се појављује после друге.",
- "Jednostka ciężaru": "Јединица тежине",
  "Jednostka ciężaru w pliku": "Јединица тежине у датотеци",
  "Jednostka sprzętu": "Јединица опреме",
  "jednostronne (per strona, ×2)": "једнострано (по страни, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "атлас камење",
  "Kamienie atlas": "Атлас камење",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Картица тренутне серије током тренинга; приказ „Листа” као раније, по избору у Подешавањима.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Свака главна мишићна група најмање {n} дана недељно (СЗО 2020 — препорука за здравље; ACSM 2026: снага расте уз најмање {n} тренинга недељно). Дан у којем група само помаже рачуна се као {h} — поједностављење (метода из метаанализе Pelland и сар. 2026). Подела (цело тело, горњи/доњи део) је конвенција — уз исти број серија даје сличне резултате.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Свака од ових могућности враћа се на рутину у року од {n} дана.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Овде свака вежба има 1 серију — број серија остаје исти (вежбе са 1 серијом се не скраћују). Исте тежине.",
  "kettlebell": "кетлбел",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Обриши серију",
  "Usuń ćwiczenie": "Уклони вежбу",
- "Opcje ćwiczenia: {name}": "Опције вежбе: {name}"
+ "Opcje ćwiczenia: {name}": "Опције вежбе: {name}",
+ "System miar": "Систем мера",
+ "metryczny (kg, km, m)": "метрички (kg, km, m)",
+ "imperialny (lb, mi, yd)": "империјални (lb, mi, yd)",
+ "{n} mi": "{n} ми",
+ "{n} yd": "{n} јд",
+ "mila|mile|mil": "миља|миље|миља",
+ "mili": "миље",
+ "jard|jardy|jardów": "јард|јарда|јарди",
+ "jarda": "јарда",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Свака главна мишићна група најмање {n} дана недељно (СЗО 2020 — препорука за здравље; ACSM 2026: учесталост утиче на снагу, али нема доказа о односу дозе и одговора, а при истој запремини разлика слаби). Дан у којем група само помаже рачуна се као {h} — поједностављење (метода из метаанализе Pelland и сар. 2026). Подела (цело тело, горњи/доњи део) је конвенција — уз исти број серија даје сличне резултате.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Корак (нпр. +2,5 kg) је конвенција, а не резултат истраживања."
 }

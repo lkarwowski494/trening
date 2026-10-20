@@ -473,7 +473,6 @@
  "Jasny": "Claro",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Um treino por semana também dá progresso, mas normalmente um pouco menor do que treinar mais vezes — sobretudo porque cabem menos séries numa sessão. Com o mesmo número de séries por semana, a diferença no crescimento muscular desaparece e na força diminui.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Uma sessão: {v}. O gráfico aparece após a segunda.",
- "Jednostka ciężaru": "Unidade de peso",
  "Jednostka ciężaru w pliku": "Unidade de peso no ficheiro",
  "Jednostka sprzętu": "Unidade do equipamento",
  "jednostronne (per strona, ×2)": "unilateral (por lado, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "pedras atlas",
  "Kamienie atlas": "Pedras atlas",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Cartão da série atual durante o treino; a vista «Lista» como antes, à escolha nas Definições.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Cada grupo muscular principal pelo menos {n} dias por semana (OMS 2020 — recomendação de saúde; ACSM 2026: a força aumenta com pelo menos {n} sessões por semana). Um dia em que o grupo só ajuda conta como {h} — uma simplificação (método da meta-análise de Pelland et al. 2026). A divisão (corpo inteiro, superior/inferior) é uma convenção — com o mesmo número de séries dá resultados semelhantes.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Cada uma destas opções volta à rotina em {n} dias.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Aqui cada exercício tem 1 série — o número de séries não muda (os exercícios com 1 série não são reduzidos). Mesmos pesos.",
  "kettlebell": "kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Apagar série",
  "Usuń ćwiczenie": "Remover exercício",
- "Opcje ćwiczenia: {name}": "Opções do exercício: {name}"
+ "Opcje ćwiczenia: {name}": "Opções do exercício: {name}",
+ "System miar": "Sistema de medidas",
+ "metryczny (kg, km, m)": "métrico (kg, km, m)",
+ "imperialny (lb, mi, yd)": "imperial (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} jd",
+ "mila|mile|mil": "milha|milhas",
+ "mili": "milhas",
+ "jard|jardy|jardów": "jarda|jardas",
+ "jarda": "jardas",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Cada grupo muscular principal pelo menos {n} dias por semana (OMS 2020 — recomendação de saúde; ACSM 2026: a frequência influencia a força, mas não há provas de uma relação dose-resposta e, com o mesmo volume, a diferença diminui). Um dia em que o grupo só ajuda conta como {h} — uma simplificação (método da meta-análise de Pelland et al. 2026). A divisão (corpo inteiro, superior/inferior) é uma convenção — com o mesmo número de séries dá resultados semelhantes.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "O passo (p. ex. +2,5 kg) é uma convenção, não um resultado de estudos."
 }

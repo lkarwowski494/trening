@@ -473,7 +473,6 @@
  "Jasny": "Lys",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Én trening i uka gir også fremgang, men som regel litt mindre enn hyppigere trening — mest fordi færre sett får plass i én økt. Med samme antall sett per uke forsvinner forskjellen i muskelvekst, og forskjellen i styrke blir mindre.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Én økt: {v}. Diagrammet vises etter den andre.",
- "Jednostka ciężaru": "Vektenhet",
  "Jednostka ciężaru w pliku": "Vektenhet i filen",
  "Jednostka sprzętu": "Utstyrsenhet",
  "jednostronne (per strona, ×2)": "unilateral (per side, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "atlassteiner",
  "Kamienie atlas": "Atlassteiner",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Kort for gjeldende sett under økten; visningen «Liste» som før, kan velges i Innstillinger.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Hver store muskelgruppe minst {n} dager i uken (WHO 2020 — en helseanbefaling; ACSM 2026: styrken øker med minst {n} økter i uken). En dag der gruppen bare hjelper, teller som {h} — en forenkling (metode fra metaanalysen av Pelland m.fl. 2026). Inndelingen (helkropp, over-/underkropp) er en konvensjon — med samme antall sett gir den lignende resultater.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Hver av disse mulighetene går tilbake til rutinen innen {n} dager.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Hver øvelse her har 1 sett — antall sett er uendret (øvelser med 1 sett kortes ikke ned). Samme vekter.",
  "kettlebell": "kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Slett sett",
  "Usuń ćwiczenie": "Fjern øvelse",
- "Opcje ćwiczenia: {name}": "Valg for øvelse: {name}"
+ "Opcje ćwiczenia: {name}": "Valg for øvelse: {name}",
+ "System miar": "Målesystem",
+ "metryczny (kg, km, m)": "metrisk (kg, km, m)",
+ "imperialny (lb, mi, yd)": "imperial (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "engelsk mil|engelske mil",
+ "mili": "engelske mil",
+ "jard|jardy|jardów": "yard|yard",
+ "jarda": "yard",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Hver store muskelgruppe minst {n} dager i uken (WHO 2020 — en helseanbefaling; ACSM 2026: hyppighet påvirker styrken, men det er ikke belegg for en dose–respons-sammenheng, og ved lik mengde blir forskjellen mindre). En dag der gruppen bare hjelper, teller som {h} — en forenkling (metode fra metaanalysen av Pelland m.fl. 2026). Inndelingen (helkropp, over-/underkropp) er en konvensjon — med samme antall sett gir den lignende resultater.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Trinnet (f.eks. +2,5 kg) er en konvensjon, ikke et forskningsresultat."
 }

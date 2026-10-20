@@ -473,7 +473,6 @@
  "Jasny": "Світлий",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Одне тренування на тиждень теж дає прогрес, але зазвичай трохи менший, ніж частіші тренування — переважно тому, що в одне тренування вміщується менше підходів. За тієї самої кількості підходів на тиждень різниця в рості м’язів зникає, а в силі зменшується.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Одне тренування: {v}. Графік з’явиться після другого.",
- "Jednostka ciężaru": "Одиниця ваги",
  "Jednostka ciężaru w pliku": "Одиниця ваги у файлі",
  "Jednostka sprzętu": "Одиниця обладнання",
  "jednostronne (per strona, ×2)": "однобічно (на сторону, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "камені Атласа",
  "Kamienie atlas": "Камені Атласа",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Картка поточного підходу під час тренування; вигляд «Список» як раніше, на вибір у Параметрах.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Кожна основна м’язова група щонайменше {n} дні на тиждень (ВООЗ 2020 — рекомендація для здоров’я; ACSM 2026: сила зростає за щонайменше {n} тренувань на тиждень). День, коли група лише допомагає, рахується як {h} — спрощення (метод із метааналізу Pelland та співавт. 2026). Розподіл (усе тіло, верх/низ) — це домовленість: за тієї самої кількості підходів дає схожі результати.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Кожна з цих можливостей повертається до рутини протягом {n} днів.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Тут кожна вправа має 1 підхід — кількість підходів не змінюється (вправи з 1 підходом не скорочуються). Ваги ті самі.",
  "kettlebell": "гиря",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Видалити підхід",
  "Usuń ćwiczenie": "Вилучити вправу",
- "Opcje ćwiczenia: {name}": "Параметри вправи: {name}"
+ "Opcje ćwiczenia: {name}": "Параметри вправи: {name}",
+ "System miar": "Система мір",
+ "metryczny (kg, km, m)": "метрична (kg, km, m)",
+ "imperialny (lb, mi, yd)": "імперська (lb, mi, yd)",
+ "{n} mi": "{n} ми",
+ "{n} yd": "{n} ярд",
+ "mila|mile|mil": "миля|милі|миль",
+ "mili": "милі",
+ "jard|jardy|jardów": "ярд|ярди|ярдів",
+ "jarda": "ярда",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Кожна основна м’язова група щонайменше {n} дні на тиждень (ВООЗ 2020 — рекомендація для здоров’я; ACSM 2026: частота впливає на силу, але даних про залежність доза–відповідь немає, а при однаковому обсязі різниця зменшується). День, коли група лише допомагає, рахується як {h} — спрощення (метод із метааналізу Pelland та співавт. 2026). Розподіл (усе тіло, верх/низ) — це домовленість: за тієї самої кількості підходів дає схожі результати.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Крок (наприклад, +2,5 kg) — це умовність, а не результат досліджень."
 }

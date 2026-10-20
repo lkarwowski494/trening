@@ -1,7 +1,7 @@
 import { CATALOG_CAPS, type LoadSource } from './catalog.generated';
-import { achievable, noPlates, rangeValues, type LoadSpec, type LoadUnit } from './loads';
+import { achievable, noPlates, rangeValues, convertSpec, type LoadSpec, type LoadUnit } from './loads';
 import { lbl, t } from './i18n';
-import { fmtNum } from './units';
+import { fmtNum, isImperial } from './units';
 import type { Exercise, Location, LocEquip, LoadMode, Impl } from './seed';
 
 /*
@@ -213,7 +213,7 @@ export const LOAD_PRESETS: { id: string; item: string; label: L; spec: () => Loa
 
 /** Preset modelu: ciężary i — gdy model czegoś nie ma — odznaczone opcje (przenośna stacja z jedną linką; przegląd 06.10). Pozostałe opcje bez zmian:
  * wyposażenia dodatkowego (pas, opaski) źródła nie podają. */
-export function applyLoadPreset(entry: { load?: LoadSpec; opts: string[] }, p: typeof LOAD_PRESETS[number]) { entry.load = p.spec(); if (p.optsOff) entry.opts = entry.opts.filter(o => !p.optsOff!.includes(o)); }
+export function applyLoadPreset(entry: { load?: LoadSpec; opts: string[] }, p: typeof LOAD_PRESETS[number]) { const sp = p.spec(); entry.load = isImperial() && sp.unit === 'kg' ? convertSpec(sp, 'lb') : sp; /* M2-LOK07-03: etykieta zostaje w jednostce producenta (nazwa produktu), ciężary w systemie użytkownika */ if (p.optsOff) entry.opts = entry.opts.filter(o => !p.optsOff!.includes(o)); }
 
 /* ---------- presety miejsc ---------- */
 export const LOCATION_PRESETS = ['gym', 'home', 'bodyweight', 'hotel'] as const;

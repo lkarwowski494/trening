@@ -4,7 +4,7 @@
  * Zależy od: (żadnego modułu store); zewnętrzne: ../i18n, ../units.
  */
 import { t, locale } from '../i18n';
-import { fmtNum } from '../units';
+import { fmtNum, isImperial, DIST_LONG_FROM_M, M_PER_MI, M_PER_YD } from '../units';
 
 /** Data RRRR-MM-DD jako lokalna północ (Date.parse traktuje ją jako UTC). */
 export function localDateTs(iso: string): number {
@@ -17,7 +17,10 @@ export const fmtSec = (sec: number) => {
   const m = Math.floor(sec / 60), r = sec % 60;
   return m ? `${m}:${String(r).padStart(2, '0')}` : t('{n} s', { n: r }); /* A11-17: jednostka przez t() (uk „с”, el „δευτ.”, hu „mp”, tr „sn”) */
 };
-export const fmtDist = (m: number) => m >= 1000 ? t('{n} km', { n: fmtNum(m / 1000, 2) }) : t('{n} m', { n: Math.round(m) }); /* A11-17 */
+/** Dystans do wyświetlenia (A11-17): metryczny m / km (od 1 km), imperialny yd / mi (od 1 mi) — progi w units.DIST_LONG_FROM_M; jedyne miejsce z tekstami „{n} km”, „{n} m”, „{n} mi”, „{n} yd” (M2-LOK07-01). */
+export const fmtDist = (m: number) => isImperial()
+  ? (m >= DIST_LONG_FROM_M.imperial ? t('{n} mi', { n: fmtNum(m / M_PER_MI, 2) }) : t('{n} yd', { n: Math.round(m / M_PER_YD) }))
+  : (m >= DIST_LONG_FROM_M.metric ? t('{n} km', { n: fmtNum(m / 1000, 2) }) : t('{n} m', { n: Math.round(m) }));
 /** Zakres powtórzeń do wyświetlenia: „max”, „8”, „8–10”, a przy braku lub odwróconym „do” — „8+”. */
 export const reps = (min: number | null, max: number | null) => min == null ? t('max') /* A11-17 */
     : (max == null || max < min ? `${min}+` : min === max ? `${min}` : `${min}–${max}`);

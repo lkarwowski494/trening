@@ -370,7 +370,6 @@
  "Jasny": "ライト",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "週1回のトレーニングでも進歩はありますが、通常はもっと頻繁なトレーニングより少し小さくなります — 主な理由は、1回のセッションに入るセット数が少ないことです。週のセット数が同じなら、筋肉の増加の差はなくなり、筋力の差は小さくなります。",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "1回のセッション: {v}。2回目以降にグラフが表示されます。",
- "Jednostka ciężaru": "重量の単位",
  "Jednostka sprzętu": "器具の単位",
  "jednostronne (per strona, ×2)": "片側ずつ（片側あたり、×2）",
  "Jeszcze nie było w treningu.": "まだトレーニングで使われていません。",
@@ -382,7 +381,6 @@
  "kamienie atlas": "アトラスストーン",
  "Kamienie atlas": "アトラスストーン",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "トレーニング中は現在のセットのカード表示。「リスト」表示もこれまでどおり設定で選べます。",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "主な部位はそれぞれ週に少なくとも{n}日（WHO 2020 — 健康のための推奨；ACSM 2026：週に少なくとも{n}回のセッションで筋力が向上）。部位が補助的にしか働かない日は {h} と数えます — 簡略化（Pelland ほか 2026年のメタアナリシスの方法）。セッションの分け方（全身、上半身／下半身）は慣例です — セット数が同じなら効果は同程度です。",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "これらの選択肢はどれも{n}日以内にいつものルーティンに戻ります。",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "ここではどの種目も1セットです — セット数は変わりません（1セットの種目は減らしません）。重量も変わりません。",
  "kettlebell": "ケトルベル",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "セットを削除",
  "Usuń ćwiczenie": "種目を削除",
- "Opcje ćwiczenia: {name}": "種目のオプション：{name}"
+ "Opcje ćwiczenia: {name}": "種目のオプション：{name}",
+ "System miar": "単位系",
+ "metryczny (kg, km, m)": "メートル法 (kg, km, m)",
+ "imperialny (lb, mi, yd)": "ヤード・ポンド法 (lb, mi, yd)",
+ "{n} mi": "{n} マイル",
+ "{n} yd": "{n} ヤード",
+ "mila|mile|mil": "マイル",
+ "mili": "マイル",
+ "jard|jardy|jardów": "ヤード",
+ "jarda": "ヤード",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "主な部位はそれぞれ週に少なくとも{n}日（WHO 2020 — 健康のための推奨；ACSM 2026： 頻度は筋力に影響するが、用量反応関係を示す証拠はなく、総量が同じなら差は小さくなります）。部位が補助的にしか働かない日は {h} と数えます — 簡略化（Pelland ほか 2026年のメタアナリシスの方法）。セッションの分け方（全身、上半身／下半身）は慣例です — セット数が同じなら効果は同程度です。",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "刻み幅（例：+2,5 kg）は慣習であり、研究結果ではありません。"
 }

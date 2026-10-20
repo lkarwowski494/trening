@@ -473,7 +473,6 @@
  "Jasny": "Világos",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Heti egy edzés is hoz fejlődést, de általában valamivel kevesebbet, mint a gyakoribb edzés — főleg azért, mert egy edzésbe kevesebb sorozat fér. Azonos heti sorozatszámnál az izomnövekedésben a különbség eltűnik, az erőben csökken.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Egy edzés: {v}. A grafikon a második után jelenik meg.",
- "Jednostka ciężaru": "Súlyegység",
  "Jednostka ciężaru w pliku": "A fájl súlymértékegysége",
  "Jednostka sprzętu": "Eszköz egysége",
  "jednostronne (per strona, ×2)": "egyoldalas (oldalanként, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "atlaszkövek",
  "Kamienie atlas": "Atlaszkövek",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Az aktuális sorozat kártyája edzés közben; a „Lista” nézet a korábbiak szerint, a Beállításokban választható.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Minden fő izomcsoport legalább heti {n} napon (WHO 2020 — egészségügyi ajánlás; ACSM 2026: az erő heti legalább {n} edzéssel nő). Az a nap, amikor a csoport csak segít, {h}-nek számít — egyszerűsítés (módszer Pelland és mtsai 2026 metaanalíziséből). A felosztás (teljes test, felső/alsó) konvenció — azonos sorozatszámmal hasonló eredményt ad.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Mindegyik lehetőség {n} napon belül visszatér a rutinhoz.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Itt minden gyakorlat 1 sorozatos — a sorozatok száma nem változik (az 1 sorozatos gyakorlatokat nem rövidítjük). Azonos súlyok.",
  "kettlebell": "kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Sorozat törlése",
  "Usuń ćwiczenie": "Gyakorlat eltávolítása",
- "Opcje ćwiczenia: {name}": "Gyakorlat beállításai: {name}"
+ "Opcje ćwiczenia: {name}": "Gyakorlat beállításai: {name}",
+ "System miar": "Mértékegység-rendszer",
+ "metryczny (kg, km, m)": "metrikus (kg, km, m)",
+ "imperialny (lb, mi, yd)": "angolszász (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "mérföld|mérföld",
+ "mili": "mérföld",
+ "jard|jardy|jardów": "yard|yard",
+ "jarda": "yard",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Minden fő izomcsoport legalább heti {n} napon (WHO 2020 — egészségügyi ajánlás; ACSM 2026: a gyakoriság hatással van az erőre, de dózis–válasz összefüggésre nincs bizonyíték, azonos volumen mellett pedig a különbség csökken). Az a nap, amikor a csoport csak segít, {h}-nek számít — egyszerűsítés (módszer Pelland és mtsai 2026 metaanalíziséből). A felosztás (teljes test, felső/alsó) konvenció — azonos sorozatszámmal hasonló eredményt ad.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "A lépés (pl. +2,5 kg) megegyezés, nem kutatási eredmény."
 }

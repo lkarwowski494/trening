@@ -473,7 +473,6 @@
  "Jasny": "Licht",
  "Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.": "Eén training per week levert ook vooruitgang op, maar meestal iets minder dan vaker trainen — vooral omdat er in één sessie minder sets passen. Bij hetzelfde aantal sets per week verdwijnt het verschil in spiergroei en wordt het verschil in kracht kleiner.",
  "Jedna sesja: {v}. Wykres pojawi się po drugiej.": "Eén sessie: {v}. De grafiek verschijnt na de tweede.",
- "Jednostka ciężaru": "Gewichtseenheid",
  "Jednostka ciężaru w pliku": "Gewichtseenheid in het bestand",
  "Jednostka sprzętu": "Eenheid materiaal",
  "jednostronne (per strona, ×2)": "unilateraal (per kant, ×2)",
@@ -488,7 +487,6 @@
  "kamienie atlas": "atlas stones",
  "Kamienie atlas": "Atlas stones",
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Kaart van de huidige set tijdens de training; de weergave ‘Lijst’ zoals voorheen, te kiezen in Instellingen.",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Elke grote spiergroep op minstens {n} dagen per week (WHO 2020 — een gezondheidsadvies; ACSM 2026: kracht neemt toe bij minstens {n} trainingen per week). Een dag waarop de groep alleen helpt, telt als {h} — een vereenvoudiging (methode uit de meta-analyse van Pelland e.a. 2026). De verdeling (full body, boven/onder) is een conventie — met hetzelfde aantal sets vergelijkbare resultaten.",
  "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.": "Elk van deze mogelijkheden keert binnen {n} dagen terug naar de routine.",
  "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.": "Elke oefening heeft hier 1 set — het aantal sets blijft gelijk (oefeningen met 1 set worden niet ingekort). Gelijke gewichten.",
  "kettlebell": "kettlebell",
@@ -1705,5 +1703,16 @@
  "PR": "PR",
  "Usuń serię": "Verwijder set",
  "Usuń ćwiczenie": "Verwijder oefening",
- "Opcje ćwiczenia: {name}": "Opties voor oefening: {name}"
+ "Opcje ćwiczenia: {name}": "Opties voor oefening: {name}",
+ "System miar": "Maatsysteem",
+ "metryczny (kg, km, m)": "metrisch (kg, km, m)",
+ "imperialny (lb, mi, yd)": "imperiaal (lb, mi, yd)",
+ "{n} mi": "{n} mi",
+ "{n} yd": "{n} yd",
+ "mila|mile|mil": "mijl|mijl",
+ "mili": "mijl",
+ "jard|jardy|jardów": "yard|yards",
+ "jarda": "yards",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Elke grote spiergroep op minstens {n} dagen per week (WHO 2020 — een gezondheidsadvies; ACSM 2026: frequentie beïnvloedt kracht, maar een dosis-respons-verband is niet aangetoond en bij gelijk volume wordt het verschil kleiner). Een dag waarop de groep alleen helpt, telt als {h} — een vereenvoudiging (methode uit de meta-analyse van Pelland e.a. 2026). De verdeling (full body, boven/onder) is een conventie — met hetzelfde aantal sets vergelijkbare resultaten.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "De stap (bijv. +2,5 kg) is een afspraak, geen onderzoeksresultaat."
 }
