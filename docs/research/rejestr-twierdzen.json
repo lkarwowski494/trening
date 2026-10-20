@@ -62,8 +62,8 @@
   {
    "id": "T-005",
    "kotwica": "Każda główna partia co najmniej {n} dni w tygodn",
-   "skrot": "cad3ce14e9",
-   "skrotEn": "a4a35663a7",
+   "skrot": "f17648b6df",
+   "skrotEn": "93dfe5f40d",
    "rodzaje": [
     "konwencja",
     "uproszczenie",
@@ -76,7 +76,7 @@
    ],
    "dokument": "docs/research/22-serie-deload-generator.md",
    "fraza": "ACSM 2026",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "przeglad": "2026-10-20: tekst zmieniony w M1-046/047 (ACSM 2026: częstotliwość wpływa na siłę, bez dowodu dawka–odpowiedź); skrót zaktualizowany przy scaleniu partii 4, przegląd merytoryczny badacza: otwarte"
   },
   {
    "id": "T-006",
@@ -554,6 +554,20 @@
    "dokument": "docs/research/24-przypisanie-partii.md",
    "fraza": "pomocnicz",
    "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+  },
+  {
+   "id": "T-039",
+   "kotwica": "Krok zmiany (np. +2,5 kg) to konwencja, a nie wy",
+   "skrot": "0d7cc10aad",
+   "skrotEn": "5a219f8d3c",
+   "rodzaje": [
+    "otwarte"
+   ],
+   "zrodla": [],
+   "dokument": null,
+   "fraza": null,
+   "uwaga": "[OTWARTE — źródło do wskazania]",
+   "przeglad": "2026-10-20: dodane przy scaleniu partii 4 (zdanie z M1-046/047); źródło i przegląd badacza: otwarte"
   }
  ]
 }
