@@ -1,0 +1,316 @@
+[
+  {
+    "regula": "RD-01",
+    "id": "RD-01-W1",
+    "wejscie": {
+      "Ciężar [kg]": 100,
+      "Powtórzenia [-]": 5
+    },
+    "oczekiwane": {
+      "e1RM [kg]": 116.666667
+    },
+    "tolerancja": 0.000001,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: 100 × (1 + 5/30)",
+    "miejsce": "docs/brd/reguly.md:16"
+  },
+  {
+    "regula": "RD-01",
+    "id": "RD-01-W2",
+    "wejscie": {
+      "Ciężar [kg]": 100,
+      "Powtórzenia [-]": 1
+    },
+    "oczekiwane": {
+      "e1RM [kg]": 100
+    },
+    "tolerancja": 0,
+    "rodzaj": "granica",
+    "pochodzenie": "rachunek: jedno powtórzenie = ciężar",
+    "miejsce": "docs/brd/reguly.md:17"
+  },
+  {
+    "regula": "RD-01",
+    "id": "RD-01-W3",
+    "wejscie": {
+      "Ciężar [kg]": 100,
+      "Powtórzenia [-]": 0
+    },
+    "oczekiwane": {
+      "e1RM [kg]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "poniżej",
+    "pochodzenie": "rachunek: poza granicą powtórzenia ≥ 1",
+    "miejsce": "docs/brd/reguly.md:18"
+  },
+  {
+    "regula": "RD-01",
+    "id": "RD-01-W4",
+    "wejscie": {
+      "Ciężar [kg]": 100,
+      "Powtórzenia [-]": 10
+    },
+    "oczekiwane": {
+      "e1RM [kg]": 133.333333
+    },
+    "tolerancja": 0.000001,
+    "rodzaj": "powyżej",
+    "pochodzenie": "rachunek: 100 × (1 + 10/30)",
+    "miejsce": "docs/brd/reguly.md:19"
+  },
+  {
+    "regula": "RD-01",
+    "id": "RD-01-W5",
+    "wejscie": {
+      "Ciężar [kg]": -5,
+      "Powtórzenia [-]": 5
+    },
+    "oczekiwane": {
+      "e1RM [kg]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: ciężar ≤ 0 daje 0",
+    "miejsce": "docs/brd/reguly.md:20"
+  },
+  {
+    "regula": "RD-02",
+    "id": "RD-02-W1",
+    "wejscie": {
+      "RPE [-]": 8
+    },
+    "oczekiwane": {
+      "RIR [-]": 2
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: 10 − 8",
+    "miejsce": "docs/brd/reguly.md:32"
+  },
+  {
+    "regula": "RD-02",
+    "id": "RD-02-W2",
+    "wejscie": {
+      "RPE [-]": 5
+    },
+    "oczekiwane": {
+      "RIR [-]": 5
+    },
+    "tolerancja": 0,
+    "rodzaj": "granica",
+    "pochodzenie": "rachunek: 10 − 5; najniższe RPE przeliczane na RIR",
+    "miejsce": "docs/brd/reguly.md:33"
+  },
+  {
+    "regula": "RD-02",
+    "id": "RD-02-W3",
+    "wejscie": {
+      "RPE [-]": 4.5
+    },
+    "oczekiwane": {
+      "RIR [-]": 6
+    },
+    "tolerancja": 0,
+    "rodzaj": "poniżej",
+    "pochodzenie": "S-02: poniżej RPE 5 opisy słowne („lekko”); wartość 6 = RIR_MAX + 1 (pokazywane „6+”)",
+    "miejsce": "docs/brd/reguly.md:34"
+  },
+  {
+    "regula": "RD-02",
+    "id": "RD-02-W4",
+    "wejscie": {
+      "RPE [-]": 10
+    },
+    "oczekiwane": {
+      "RIR [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "powyżej",
+    "pochodzenie": "rachunek: 10 − 10",
+    "miejsce": "docs/brd/reguly.md:35"
+  },
+  {
+    "regula": "RD-02",
+    "id": "RD-02-W5",
+    "wejscie": {
+      "RPE [-]": 11
+    },
+    "oczekiwane": {
+      "RIR [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "rachunek: wartość poza skalą 1–10 ograniczona do zakresu (RIR 0)",
+    "miejsce": "docs/brd/reguly.md:36"
+  },
+  {
+    "regula": "RD-03",
+    "id": "RD-03-W1",
+    "wejscie": {
+      "Bezczynność [h]": 1
+    },
+    "oczekiwane": {
+      "pytanie [-]": 0,
+      "zakończenie [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "D-008: poniżej 2 h bez pytania",
+    "miejsce": "docs/brd/reguly.md:48"
+  },
+  {
+    "regula": "RD-03",
+    "id": "RD-03-W2",
+    "wejscie": {
+      "Bezczynność [h]": 2
+    },
+    "oczekiwane": {
+      "pytanie [-]": 1,
+      "zakończenie [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "granica",
+    "pochodzenie": "D-008: 2 h włącznie",
+    "miejsce": "docs/brd/reguly.md:49"
+  },
+  {
+    "regula": "RD-03",
+    "id": "RD-03-W3",
+    "wejscie": {
+      "Bezczynność [h]": 1.99
+    },
+    "oczekiwane": {
+      "pytanie [-]": 0,
+      "zakończenie [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "poniżej",
+    "pochodzenie": "D-008: tuż poniżej 2 h",
+    "miejsce": "docs/brd/reguly.md:50"
+  },
+  {
+    "regula": "RD-03",
+    "id": "RD-03-W4",
+    "wejscie": {
+      "Bezczynność [h]": 3
+    },
+    "oczekiwane": {
+      "pytanie [-]": 1,
+      "zakończenie [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "powyżej",
+    "pochodzenie": "D-008: między 2 h a 6 h tylko pytanie",
+    "miejsce": "docs/brd/reguly.md:51"
+  },
+  {
+    "regula": "RD-03",
+    "id": "RD-03-W5",
+    "wejscie": {
+      "Bezczynność [h]": 6
+    },
+    "oczekiwane": {
+      "pytanie [-]": 1,
+      "zakończenie [-]": 1
+    },
+    "tolerancja": 0,
+    "rodzaj": "granica",
+    "pochodzenie": "D-008: 6 h włącznie",
+    "miejsce": "docs/brd/reguly.md:52"
+  },
+  {
+    "regula": "RD-03",
+    "id": "RD-03-W6",
+    "wejscie": {
+      "Bezczynność [h]": 5.99
+    },
+    "oczekiwane": {
+      "pytanie [-]": 1,
+      "zakończenie [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "poniżej",
+    "pochodzenie": "D-008: tuż poniżej 6 h trening nie kończy się sam",
+    "miejsce": "docs/brd/reguly.md:53"
+  },
+  {
+    "regula": "RD-03",
+    "id": "RD-03-W7",
+    "wejscie": {
+      "Bezczynność [h]": -1
+    },
+    "oczekiwane": {
+      "pytanie [-]": 1,
+      "zakończenie [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "błąd",
+    "pochodzenie": "D-008: godzina ostatniej serii z przyszłości jest niewiarygodna — aplikacja pyta od razu, ale nie zapisuje sama (`lib/state/finish.ts`, T6)",
+    "miejsce": "docs/brd/reguly.md:54"
+  },
+  {
+    "regula": "RD-04",
+    "id": "RD-04-W1",
+    "wejscie": {
+      "Serie robocze [-]": 3,
+      "Serie rozgrzewkowe [-]": 0
+    },
+    "oczekiwane": {
+      "partia główna [-]": 3,
+      "partia pomocnicza [-]": 1.5
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: 3 × 1 i 3 × 0,5",
+    "miejsce": "docs/brd/reguly.md:66"
+  },
+  {
+    "regula": "RD-04",
+    "id": "RD-04-W2",
+    "wejscie": {
+      "Serie robocze [-]": 0,
+      "Serie rozgrzewkowe [-]": 0
+    },
+    "oczekiwane": {
+      "partia główna [-]": 0,
+      "partia pomocnicza [-]": 0
+    },
+    "tolerancja": 0,
+    "rodzaj": "granica",
+    "pochodzenie": "rachunek: brak serii",
+    "miejsce": "docs/brd/reguly.md:67"
+  },
+  {
+    "regula": "RD-04",
+    "id": "RD-04-W3",
+    "wejscie": {
+      "Serie robocze [-]": 3,
+      "Serie rozgrzewkowe [-]": 2
+    },
+    "oczekiwane": {
+      "partia główna [-]": 3,
+      "partia pomocnicza [-]": 1.5
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: rozgrzewka nie wchodzi do liczenia",
+    "miejsce": "docs/brd/reguly.md:68"
+  },
+  {
+    "regula": "RD-04",
+    "id": "RD-04-W4",
+    "wejscie": {
+      "Serie robocze [-]": 1,
+      "Serie rozgrzewkowe [-]": 0
+    },
+    "oczekiwane": {
+      "partia główna [-]": 1,
+      "partia pomocnicza [-]": 0.5
+    },
+    "tolerancja": 0,
+    "rodzaj": "typowy",
+    "pochodzenie": "rachunek: 1 × 1 i 1 × 0,5",
+    "miejsce": "docs/brd/reguly.md:69"
+  }
+]
