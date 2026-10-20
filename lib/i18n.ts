@@ -98,11 +98,18 @@ const dictOf = (l: Lang): Record<string, string> | undefined => l === 'en' ? EN 
 /** Tekst w języku `l`: polski — klucz; inne — słownik języka, brak → angielski, brak → polski. */
 function lookup(l: Lang, pl: string): string { return l === 'pl' ? pl : own(dictOf(l), pl) ?? own(EN, pl) ?? pl; }
 const enOf = (k: string): string | undefined => own(EN, k);
+/**
+ * Pseudolokalizacja (M1-audytor-generalny-066, DEC-20): tylko w buildzie deweloperskim (`__DEV__`) każdy tekst z t() jest w nawiasach ⟦…⟧ — tekst bez nawiasów na ekranie omija słownik
+ * (wpisany na sztywno). Włączenie: zmienna EXPO_PUBLIC_PSEUDO=1 przy `expo start`. Produkcja nigdy nie pokazuje nawiasów.
+ */
+let pseudo = typeof __DEV__ !== 'undefined' && __DEV__ && process.env.EXPO_PUBLIC_PSEUDO === '1';
+export function setPseudo(on: boolean) { pseudo = on && typeof __DEV__ !== 'undefined' && __DEV__; }
+export const isPseudo = () => pseudo && typeof __DEV__ !== 'undefined' && __DEV__;
 /** Tłumaczenie z interpolacją {nazwa}. */
 export function t(pl: string, params?: Record<string, string | number>): string {
   let s = lookup(current, pl);
   if (params) for (const k of Object.keys(params)) s = s.split(`{${k}}`).join(String(params[k]));
-  return s;
+  return isPseudo() ? `⟦${s}⟧` : s;
 }
 /** Etykieta zapisana parą {pl, en} (sprzęt, presety): polski / angielski wprost, inne języki — słownik po polskim tekście, brak → angielski. */
 export function lbl(x: { pl: string; en: string }): string { return current === 'pl' ? x.pl : current === 'en' ? x.en : own(LOCALES[current], x.pl) ?? x.en; }
