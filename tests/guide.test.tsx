@@ -30,7 +30,7 @@ describe('treść i logika', () => {
   test('cytowane w krokach nazwy przycisków („…”) to teksty z interfejsu — zmiana nazwy przycisku wymaga zmiany przewodnika', () => {
     const quoted = GUIDE.flatMap(g => g.steps()).flatMap(s => [...s.matchAll(/„([^”]+)”/g)].map(m => m[1]));
     expect(quoted.length).toBeGreaterThan(10);
-    const missing = quoted.map(q => (q === 'Zaplanuj deload od …' ? 'Zaplanuj deload od {date}' : q === 'Powtórz ostatni' ? 'Powtórz ostatni ({name})' /* przycisk z nazwą treningu */ : q)).filter(q => !(q in EN) && !['⇅ SS', '✂ SS', '↑'].includes(q) /* UI2-07: tekst przycisku bez tłumaczenia (symbol) — sprawdzany niżej w kodzie ekranów; ⓘ 14.10.2026: „✂ SS” i „↑” z dawnej stopki edytora szablonu */);
+    const missing = quoted.map(q => (q === 'Zaplanuj deload od …' ? 'Zaplanuj deload od {date}' : q === 'Powtórz ostatni' ? 'Powtórz ostatni ({name})' /* przycisk z nazwą treningu */ : q)).filter(q => !(q in EN) && !['⇅ SS', '✕ SS', '↑'].includes(q) /* UI2-07: tekst przycisku bez tłumaczenia (symbol) — sprawdzany niżej w kodzie ekranów; ⓘ 14.10.2026: „✕ SS” i „↑” z dawnej stopki edytora szablonu */);
     expect(missing).toEqual([]);
   });
   test('postęp i odhaczanie: nieznane id pomijane, bez powtórzeń, bez userTouched', () => {
@@ -46,7 +46,7 @@ describe('treść i logika', () => {
 
 test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści tematów albo wpisów', () => {
   const texts = [
-    '„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.',
+    '„Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.',
     '„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.',
     'Automatyczna kopia po każdym treningu trafia do Plików (Ustawienia).',
     'Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.', /* audyt 0.10 B2 A, B1 */
@@ -84,8 +84,8 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).',
     'W zakładce Plan stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.',
     '„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w zakładce Plan jest ten sam przycisk.',
-    /* ⓘ 14.10.2026 (P2 A): instrukcje gestów zeszły z ekranów do Przewodnika — typy serii W/D/F, notatka, tapnięcie numeru serii, ⇅ SS / ✂ SS, kolejność ≡ */
-    'Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.',
+    /* ⓘ 14.10.2026 (P2 A): instrukcje gestów zeszły z ekranów do Przewodnika — typy serii W/D/F, notatka, tapnięcie numeru serii, ⇅ SS / ✕ SS, kolejność ≡ */
+    'Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.',
     'Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.',
     'Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.',
   ];
@@ -155,11 +155,11 @@ describe('UI2-07 (audyt kontrolny 1): przewodnik cytuje to, co widać na ekranie
 describe('ⓘ (14.10.2026, P2 A): instrukcje gestów zeszły z ekranów do Przewodnika', () => {
   const fs2 = require('fs'); const read = (f: string) => fs2.readFileSync(path.join(__dirname, '..', f), 'utf8') as string;
   const steps = () => GUIDE.flatMap(g => g.steps());
-  test('Przewodnik opisuje: typy serii W/D/F, notatkę i tapnięcie numeru serii (trening, edycja sesji), „⇅ SS” / „✂ SS”, kolejność „≡ Kolejność”, przesunięcie w lewo', () => {
+  test('Przewodnik opisuje: typy serii W/D/F, notatkę i tapnięcie numeru serii (trening, edycja sesji), „⇅ SS” / „✕ SS”, kolejność „≡ Kolejność”, przesunięcie w lewo', () => {
     const all = steps().join('\n');
-    for (const x of ['numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę', 'numer serii, by zmienić typ (W, D, F) albo dodać notatkę', 'Dotknij etykiety serii, by zmienić typ', '„⇅ SS”', '„✂ SS”', '„≡ Kolejność”', 'w lewo']) expect([x, all.includes(x)]).toEqual([x, true]);
+    for (const x of ['numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę', 'numer serii, by zmienić typ (W, D, F) albo dodać notatkę', 'Dotknij etykiety serii, by zmienić typ', '„⇅ SS”', '„✕ SS”', '„≡ Kolejność”', 'w lewo']) expect([x, all.includes(x)]).toEqual([x, true]);
   });
-  test('cytowane symbole istnieją w interfejsie: „✂ SS” (szablon i trening), „≡ Kolejność” (trening), podpowiedź „↑ spróbuj”', () => {
+  test('cytowane symbole istnieją w interfejsie: „✕ SS” (szablon i trening), „≡ Kolejność” (trening), podpowiedź „↑ spróbuj”', () => {
     for (const f of ['app/template/[id].tsx', 'components/ActiveWorkout.tsx']) expect(read(f)).toContain("title={ssBtn('unlink')}");
     expect(read('components/ActiveWorkout.tsx')).toContain("tr('≡ Kolejność')"); expect(read('lib/i18n.en.ts')).toContain("'↑ spróbuj");
   });

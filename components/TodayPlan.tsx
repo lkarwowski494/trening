@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Muted, Txt, upperText, useOnce } from '@/components/ui';
+import { IconRow } from '@/components/Icon';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey } from '@/lib/store';
 import { plannedPlaceName, hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, planName, addDays, type DayStatus } from '@/lib/plan';
@@ -55,7 +56,7 @@ export function TodayPlan() {
         {(() => { const u = upperText(deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')); /* A11-02: wersaliki z regułami języka */ return <Muted accessibilityLabel={u.label} style={[{ fontSize: 12, fontFamily: F.semibold, letterSpacing: 0.5 }, u.style]}>{u.text}</Muted>; })()}
         <Txt style={{ fontFamily: F.semibold, fontSize: 18 }}>{title}</Txt>
         {cur.status === 'other' ? <Muted style={{ fontSize: 13 }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Muted> : null}
-        {plannedPlaceName(today) ? <Muted testID="today-place" accessibilityLabel={t('Miejsce treningu: {l}', { l: plannedPlaceName(today) })} style={{ fontSize: 13 }}>{`📍 ${plannedPlaceName(today)}`}</Muted> : null}
+        {plannedPlaceName(today) ? <IconRow icon="pin" color={th.muted} size={14}><Muted testID="today-place" accessibilityLabel={t('Miejsce treningu: {l}', { l: plannedPlaceName(today) })} style={{ fontSize: 13 }}>{plannedPlaceName(today)}</Muted></IconRow> : null}
         {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={once(() => router.push(`/template/${tpl.id}?edit=1`))} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
       </View> : deload ? <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{t('Tydzień deload')}</Muted> : null}
       <View testID="week-strip" style={{ flexDirection: 'row', gap: 2 }}>

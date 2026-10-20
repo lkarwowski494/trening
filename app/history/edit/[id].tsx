@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View, Text, Pressable, Alert, Keyboard, ActionSheetIOS, StyleSheet } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty, Missing } from '@/components/ui';
+import { IconRow } from '@/components/Icon';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
 import { visibleLocations, effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, ssTag, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
@@ -88,11 +89,11 @@ function LocationChip({ d }: { d: Draft }) {
   const th = useTheme(); const locs = visibleLocations(); const cur = d.w.locationId; /* 0.19: miejsca jednorazowe poza listą */
   if (!locs.length && !cur) return null;
   const name = cur ? locationLabel(cur) : t('bez miejsca');
-  if (!locs.length) return <Text accessibilityLanguage={lang()} accessibilityLabel={`${t('Miejsce')}: ${name}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontFamily: F.semibold, marginBottom: 10 }}>{`📍 ${name}`}</Text>;
+  if (!locs.length) return <View style={{ marginBottom: 10, alignSelf: 'flex-start' }}><IconRow icon="pin" color={th.muted}><Text accessibilityLanguage={lang()} accessibilityLabel={`${t('Miejsce')}: ${name}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontFamily: F.semibold }}>{name}</Text></IconRow></View>;
   const pick = () => { const none = cur ? [t('bez miejsca')] : []; ActionSheetIOS.showActionSheetWithOptions({ options: [...locs.map(l => l.name), ...none, t('Anuluj')], cancelButtonIndex: locs.length + none.length, title: t('Miejsce tego treningu') }, i => {
     if (i < locs.length) draftSetLocation(d.key, locs[i].id); else if (none.length && i === locs.length) draftSetLocation(d.key, null); }); };
   return <Pressable accessibilityLanguage={lang()} onPress={pick} accessibilityRole="button" accessibilityLabel={t('Miejsce treningu: {l}', { l: name })} accessibilityHint={t('Tapnij, by zmienić.')} hitSlop={6} style={{ alignSelf: 'flex-start', paddingVertical: 4, marginBottom: 6 }}>
-    <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.accent, fontSize: 14, fontFamily: F.semibold }}>{`📍 ${name} ▾`}</Text></Pressable>;
+    <IconRow icon="pin" color={th.accent}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.accent, fontSize: 14, fontFamily: F.semibold }}>{`${name} ▾`}</Text></IconRow></Pressable>;
 }
 
 function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; labels: Record<string, string> }) {

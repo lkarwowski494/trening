@@ -85,7 +85,7 @@ test('brak głosu: żaden klucz słownika ani język nie zawiera starej ścieżk
 describe('ekran treningu: przycisk „Głos” (19.10.2026: „ludzie odkryją to w trakcie treningu”)', () => {
   test('przycisk pod „Zakończ” (kolumna przycisku, nagłówek nie rośnie), etykieta VoiceOver z bieżącym wyborem; arkusz „Zapowiedzi głosowe” z trzema opcjami, bieżąca zaznaczona ✓, i Anuluj', async () => {
     await boot('pl', startH, '/'); const b = screen.getByTestId('voice-btn'); expect(b.props.accessibilityLabel).toBe('Zapowiedzi głosowe: W słuchawkach'); expect(b.props.accessibilityHint).toBe('Tapnij, by zmienić.');
-    expect(screen.getByText('🎧 Głos')).toBeTruthy(); expect(screen.getByLabelText('Pauza treningu')).toBeTruthy();
+    expect(screen.getByText('Głos')).toBeTruthy(); expect(screen.getByTestId('icon-headphones')).toBeTruthy(); expect(screen.getByLabelText('Pauza treningu')).toBeTruthy();
     await tap(b); const sh = G.__sheets.at(-1)!; expect(sh.opts.title).toBe('Zapowiedzi głosowe'); expect(sh.opts.options).toEqual(['Wyłączone', '✓ W słuchawkach', 'Także przez głośnik', 'Anuluj']); expect(sh.opts.cancelButtonIndex).toBe(3);
   });
   test('nowa instalacja: przycisk „Głos” pokazuje „Wyłączone” (DEC-05)', async () => {
@@ -94,9 +94,9 @@ describe('ekran treningu: przycisk „Głos” (19.10.2026: „ludzie odkryją t
   test('wybór w arkuszu zmienia ustawienie trwale (to samo co w Ustawieniach); ikona i etykieta za stanem; Anuluj nic nie zmienia', async () => {
     await boot('pl', startH, '/');
     await tap(screen.getByTestId('voice-btn')); await act(async () => { G.__pickSheet(0); }); await flushAll(5);
-    expect(S().settings.voice).toBe('off'); expect(screen.getByTestId('voice-btn').props.accessibilityLabel).toBe('Zapowiedzi głosowe: Wyłączone'); expect(screen.getByText('🔇 Głos')).toBeTruthy();
+    expect(S().settings.voice).toBe('off'); expect(screen.getByTestId('voice-btn').props.accessibilityLabel).toBe('Zapowiedzi głosowe: Wyłączone'); expect(screen.getByText('Głos')).toBeTruthy(); expect(screen.getByTestId('icon-speakerOff')).toBeTruthy();
     await tap(screen.getByTestId('voice-btn')); expect(G.__sheets.at(-1)!.opts.options[0]).toBe('✓ Wyłączone'); await act(async () => { G.__pickSheet(2); }); await flushAll(5);
-    expect(S().settings.voice).toBe('speaker'); expect(screen.getByText('🔊 Głos')).toBeTruthy();
+    expect(S().settings.voice).toBe('speaker'); expect(screen.getByText('Głos')).toBeTruthy(); expect(screen.getByTestId('icon-speaker')).toBeTruthy();
     await tap(screen.getByTestId('voice-btn')); await act(async () => { G.__pickSheet(3); }); await flushAll(5); expect(S().settings.voice).toBe('speaker'); /* Anuluj */
     await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/more/settings' }); await flushAll(10); expect(selected()).toEqual(['speaker']); /* trwałe: Ustawienia po restarcie */
     await tap(sel('headphones')); await flushAll(5); expect(S().settings.voice).toBe('headphones');
@@ -109,7 +109,7 @@ describe('ekran treningu: przycisk „Głos” (19.10.2026: „ludzie odkryją t
     await act(async () => { await completeSet(0, 1); }); await flushAll(5); expect(V().spoken).toHaveLength(1); V().headphones = false;
   });
   test('EN i 320 pt z dużym tekstem: przycisk po angielsku, arkusz po angielsku, wiersz zegara się zawija (bez wyjątków)', async () => {
-    await boot('en', startH, '/', 320); const b = screen.getByTestId('voice-btn'); expect(b.props.accessibilityLabel).toBe('Voice announcements: In headphones'); expect(screen.getByText('🎧 Voice')).toBeTruthy();
+    await boot('en', startH, '/', 320); const b = screen.getByTestId('voice-btn'); expect(b.props.accessibilityLabel).toBe('Voice announcements: In headphones'); expect(screen.getByText('Voice')).toBeTruthy();
     await tap(b); expect(G.__sheets.at(-1)!.opts.options).toEqual(['Off', '✓ In headphones', 'Also through the speaker', 'Cancel']); expect(G.__sheets.at(-1)!.opts.title).toBe('Voice announcements');
   });
 });

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Pressable, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Chip, Muted, Txt, H2, useOnce } from '@/components/ui';
+import { IconRow } from '@/components/Icon';
 import { InfoTip } from '@/components/InfoTip';
 import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey, newTemplate, visibleLocations, PLAN_PLACE_RANGE_MAX } from '@/lib/store';
 import { useTheme, F } from '@/lib/theme';
@@ -56,7 +57,7 @@ export function DayPanel({ day }: { day: string }) {
   else if (changed) lines.push(<Muted key="plan" style={{ fontSize: 13 }}>{t('zmiana planu')}</Muted>);
   if (activeHere) lines.push(<Muted key="active" style={{ fontSize: 13 }}>{t('Trening w toku')}</Muted>);
   const placeName = plannedPlaceName(day); /* 0.19 (docs/33 B): miejsce zapisane w planie na ten dzień */
-  if (placeName) lines.push(<Muted key="place" testID="day-place" accessibilityLabel={t('Miejsce treningu: {l}', { l: placeName })} style={{ fontSize: 15 }}>{`📍 ${placeName}`}</Muted>);
+  if (placeName) lines.push(<IconRow key="place" icon="pin" color={th.muted} size={15}><Muted testID="day-place" accessibilityLabel={t('Miejsce treningu: {l}', { l: placeName })} style={{ fontSize: 15 }}>{placeName}</Muted></IconRow>);
   const empty = !!tpl && !tpl.items.length && pending(st);
   if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="button" onPress={once(() => router.push(`/template/${tpl!.id}?edit=1`))} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
 
@@ -75,7 +76,7 @@ export function DayPanel({ day }: { day: string }) {
     { key: 'deload', el: <Btn small kind="ghost" title={deload ? t('Zdejmij oznaczenie deload') : t('Oznacz tydzień jako deload')} onPress={() => toggleDeloadWeek(keyTs(day))} /> },
   ];
   const canPlace = !past && visibleLocations().length > 0; /* 0.19: miejsce na dni — od dziś, gdy są miejsca (bez miejsc nie ma z czego wybierać) */
-  if (canPlace) secondary.push({ key: 'place', el: <Btn small kind="ghost" expanded={mode === 'place'} title={t('📍 Miejsce na te dni')} onPress={() => setMode(mode === 'place' ? 'none' : 'place')} /> });
+  if (canPlace) secondary.push({ key: 'place', el: <Btn small kind="ghost" expanded={mode === 'place'} icon="pin" title={t('Miejsce na te dni')} onPress={() => setMode(mode === 'place' ? 'none' : 'place')} /> });
   extra.push(...primary.splice(PRIMARY_MAX), ...secondary);
 
   return (

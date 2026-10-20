@@ -186,10 +186,10 @@ const POLITE_JA = /(ます|です|ません|ました|でした|ましょう|く
     expect(all('ko').filter(v => /(니다|세요|까요)[.?]/.test(v)).length).toBeGreaterThan(400);
   });
   test('terminologia siłowni jednolita: trening / ćwiczenie / seria / powtórzenia / przerwa / pauza / szablon / guma / do upadku / deload', () => {
-    const k = ['Trening', 'Ćwiczenie', 'Seria', 'Powtórzenia', 'Przerwa', '⏸ Pauza', 'Szablon', 'Guma', 'do upadku', 'Deload'];
-    expect(k.map(x => dict('ja')[x])).toEqual(['トレーニング', '種目', 'セット', '回数', '休憩', '⏸ 一時停止', 'テンプレート', 'バンド', '限界まで', 'ディロード']);
-    expect(k.map(x => dict('ko')[x])).toEqual(['운동', '종목', '세트', '반복 횟수', '휴식', '⏸ 일시정지', '루틴', '밴드', '실패 지점까지', '디로드']);
-    expect(k.map(x => dict('zh-Hant')[x])).toEqual(['訓練', '動作', '組', '次數', '休息', '⏸ 暫停', '範本', '彈力帶', '力竭', '減量']);
+    const k = ['Trening', 'Ćwiczenie', 'Seria', 'Powtórzenia', 'Przerwa', 'Pauza', 'Szablon', 'Guma', 'do upadku', 'Deload'];
+    expect(k.map(x => dict('ja')[x])).toEqual(['トレーニング', '種目', 'セット', '回数', '休憩', '一時停止', 'テンプレート', 'バンド', '限界まで', 'ディロード']);
+    expect(k.map(x => dict('ko')[x])).toEqual(['운동', '종목', '세트', '반복 횟수', '휴식', '일시정지', '루틴', '밴드', '실패 지점까지', '디로드']);
+    expect(k.map(x => dict('zh-Hant')[x])).toEqual(['訓練', '動作', '組', '次數', '休息', '暫停', '範本', '彈力帶', '力竭', '減量']);
   });
   test('cel generatora „Redukcja” ≠ „Deload” (zh-Hant: 減脂 vs 減量; ja: 減量 vs ディロード; ko: 감량 vs 디로드)', () => {
     for (const l of W4) expect([l, dict(l)['Redukcja'] !== dict(l)['Deload'], dict(l)['Redukcja'] !== dict(l)['Masa']]).toEqual([l, true, true]);

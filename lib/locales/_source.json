@@ -8,10 +8,6 @@
   "en": "“≥” — in the planned templates {n} {s} have no weight or reps (and no “Previous”): they count as sets but not toward volume."
  },
  {
-  "pl": "„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
-  "en": "“⏸ Pause” stops the workout clock; paused time doesn’t count towards the duration."
- },
- {
   "pl": "„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).",
   "en": "“Archive” in the preview hides a template; swiping left on the list deletes it (with confirmation)."
  },
@@ -26,6 +22,10 @@
  {
   "pl": "„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w zakładce Plan jest ten sam przycisk.",
   "en": "“Log a past workout” records a workout you didn’t log at the time; from a day in the Plan tab it is the same button."
+ },
+ {
+  "pl": "„Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+  "en": "“Pause” stops the workout clock; paused time doesn’t count towards the duration."
  },
  {
   "pl": "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.",
@@ -308,16 +308,8 @@
   "en": "≡ Reorder"
  },
  {
-  "pl": "⏸ Pauza",
-  "en": "⏸ Pause"
- },
- {
   "pl": "▶ Start",
   "en": "▶ Start"
- },
- {
-  "pl": "▶ Wznów",
-  "en": "▶ Resume"
  },
  {
   "pl": "●●● główna · ●● pomocnicza · ● stabilizacja",
@@ -330,10 +322,6 @@
  {
   "pl": "★ Miejsce główne — domyślne dla nowych treningów i szablonów bez własnego miejsca.",
   "en": "★ Main place — default for new workouts and for templates without their own place."
- },
- {
-  "pl": "📍 Miejsce na te dni",
-  "en": "📍 Place for these days"
  },
  {
   "pl": "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.",
@@ -1335,8 +1323,8 @@
   "en": "Adjust to: {l}"
  },
  {
-  "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
-  "en": "Tap a set label to change its type; swipe a row left to delete it. The rep range is optional — with it you get “↑” hints. “⇅ SS” links an exercise with the next one in a superset, “✂ SS” takes it out of the group. Order: “≡ Reorder”."
+  "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+  "en": "Tap a set label to change its type; swipe a row left to delete it. The rep range is optional — with it you get “↑” hints. “⇅ SS” links an exercise with the next one in a superset, “✕ SS” takes it out of the group. Order: “≡ Reorder”."
  },
  {
   "pl": "Dół A",
@@ -2644,6 +2632,10 @@
   "en": "A place for {a} – {b}. Pick the equipment you have there — no need to enter weights."
  },
  {
+  "pl": "Miejsce na te dni",
+  "en": "Place for these days"
+ },
+ {
   "pl": "Miejsce tego treningu",
   "en": "Place of this workout"
  },
@@ -3599,6 +3591,10 @@
  {
   "pl": "pauza",
   "en": "paused"
+ },
+ {
+  "pl": "Pauza",
+  "en": "Pause"
  },
  {
   "pl": "Pauza — czas treningu stoi. Odhaczenie serii wznawia.",
@@ -6314,6 +6310,10 @@
  {
   "pl": "Wyświetlane jako: {n}",
   "en": "Shown as: {n}"
+ },
+ {
+  "pl": "Wznów",
+  "en": "Resume"
  },
  {
   "pl": "Wznów animację",

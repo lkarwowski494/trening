@@ -47,12 +47,12 @@ describe('K1 (A11-01): przerwa ≠ pauza w każdym języku', () => {
   test('zestawy kluczy nie są puste (kontrola filtra)', () => {
     expect(REST_KEYS.length).toBeGreaterThanOrEqual(25); expect(PAUSE_KEYS.length).toBeGreaterThanOrEqual(5); expect(MIXED_KEYS.length).toBeGreaterThanOrEqual(1);
     expect(REST_KEYS).toEqual(expect.arrayContaining(['Przerwa', 'przerwa', 'przerwa {s}', 'Wydłuż przerwę o 15 sekund']));
-    expect(PAUSE_KEYS).toEqual(expect.arrayContaining(['⏸ Pauza', 'pauza', 'Pauza treningu']));
+    expect(PAUSE_KEYS).toEqual(expect.arrayContaining(['Pauza', 'pauza', 'Pauza treningu']));
   });
   test('słownik terminów obejmuje każdy język poza polskim', () => { expect(Object.keys(TERMS).sort()).toEqual([...NON_PL].sort()); });
-  test.each(NON_PL)('%s: wyrazy „Przerwa” i „⏸ Pauza” / „pauza” / „Pauza treningu” są rozłączne', l => {
+  test.each(NON_PL)('%s: wyrazy „Przerwa” i „Pauza” / „pauza” / „Pauza treningu” są rozłączne', l => {
     const rest = new Set([...words(tr(l, 'Przerwa')), ...words(tr(l, 'przerwa'))]);
-    const clash = ['⏸ Pauza', 'pauza', 'Pauza treningu'].flatMap(k => [...words(tr(l, k))].filter(w => rest.has(w)));
+    const clash = ['Pauza', 'pauza', 'Pauza treningu'].flatMap(k => [...words(tr(l, k))].filter(w => rest.has(w)));
     expect([l, clash]).toEqual([l, []]);
   });
   test.each(NON_PL)('%s: każdy tekst o przerwie ma termin przerwy i nie ma terminu pauzy; każdy tekst o pauzie odwrotnie', l => {

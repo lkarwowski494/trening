@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted, useOnce, monoSafe } from '@/components/ui';
+import { IconRow, type IconName } from '@/components/Icon';
 import { InfoTip } from '@/components/InfoTip';
 import { TechniqueLink } from '@/components/ExerciseCues';
 import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, typeSetValue, setActiveLocation, visibleLocations, lastActivity, staleSince, staleRef, staleKind, ackStale, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, ssTag, ssBtn, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
@@ -237,7 +238,7 @@ function LocationChip({ w }: { w: Workout }) {
     /* 0.18 (docs/33, P2 A): miejsce z brakami albo z ćwiczeniami do przywrócenia — okno „Dostosuj do: X” otwiera się samo (tylko propozycje do przejrzenia) */
     const cur = getState().active; if (cur && was !== l.id && (adaptCandidates(cur, l.id).length || restoreCandidates(cur, l.id).length)) router.push('/adapt'); });
   return <Pressable accessibilityLanguage={lang()} onPress={pick} accessibilityRole="button" accessibilityLabel={tr('Miejsce treningu: {l}', { l: name })} accessibilityHint={tr('Tapnij, by zmienić.')} /* A11-18 */ hitSlop={LINK_SLOP} style={[LINK_BOX, { alignSelf: 'flex-start' }]}>
-    <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.accent, fontSize: 14, fontFamily: F.semibold }}>{`📍 ${name} ▾`}</Text></Pressable>;
+    <IconRow icon="pin" color={t.accent}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.accent, fontSize: 14, fontFamily: F.semibold }}>{`${name} ▾`}</Text></IconRow></Pressable>;
 }
 
 /** 0.18 (docs/33, P2 A): wiersz pod chipem miejsca — „N ćwiczeń bez sprzętu · Dostosuj” (do ponownego otwarcia okna i przy starcie z miejscem z brakami);
@@ -266,7 +267,7 @@ function SessionClock({ w }: { w: Workout }) {
   return <View>
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
       <Muted style={{ fontSize: 13 }}>{tr('start')} {fmtTime(wallTs(w))} · {fmtDur(workoutDurSec(w))}{paused ? ` · ${tr('pauza')}` : ''}</Muted>
-      <Btn small kind={paused ? 'primary' : 'ghost'} title={paused ? tr('▶ Wznów') : tr('⏸ Pauza')} accessibilityLabel={paused ? tr('Wznów trening') : tr('Pauza treningu')} onPress={() => { if (paused) resumeWorkout(); else pauseWorkout(); force(x => x + 1); }} />
+      <Btn small kind={paused ? 'primary' : 'ghost'} icon={paused ? 'play' : 'pause'} title={paused ? tr('Wznów') : tr('Pauza')} accessibilityLabel={paused ? tr('Wznów trening') : tr('Pauza treningu')} onPress={() => { if (paused) resumeWorkout(); else pauseWorkout(); force(x => x + 1); }} />
     </View>
     {paused ? <InfoTip id="pause" label={tr('Pauza — czas treningu stoi. Odhaczenie serii wznawia.')} info={tr('Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.')}><Muted style={{ fontSize: 12 }}>{tr('Pauza — czas treningu stoi. Odhaczenie serii wznawia.')}</Muted></InfoTip> : null}
   </View>;
@@ -275,12 +276,12 @@ function SessionClock({ w }: { w: Workout }) {
 /** 19.10.2026 (decyzja właściciela: „ludzie odkryją to w trakcie treningu”): przycisk „Głos” pod „Zakończ” (w kolumnie przycisku — nie wydłuża nagłówka ani nie przesuwa
  * listy, jak dokładanie go do wiersza zegara; E2E 31 na interpreterze) — ikona pokazuje bieżący wybór „Zapowiedzi głosowe”,
  * stuknięcie otwiera arkusz z trzema opcjami (jak „📍” miejsca; bez przełączania po kolei — nie trafimy przypadkiem w głośnik). Zmiana jest trwała — to samo pole co w Ustawieniach. */
-const VOICE_ICON: Record<VoiceSetting, string> = { off: '🔇', headphones: '🎧', speaker: '🔊' };
+const VOICE_ICON: Record<VoiceSetting, IconName> = { off: 'speakerOff', headphones: 'headphones', speaker: 'speaker' };
 function VoiceBtn() {
   const [, force] = useState(0); const v = voiceSetting(); const cancel = VOICE_SETTINGS.length;
   const pick = () => ActionSheetIOS.showActionSheetWithOptions({ title: tr('Zapowiedzi głosowe'), options: [...VOICE_SETTINGS.map(k => (k === v ? '✓ ' : '') + voiceSettingLabel(k)), tr('Anuluj')], cancelButtonIndex: cancel }, i => {
     const k = VOICE_SETTINGS[i]; if (i === cancel || !k) return; setVoiceSetting(k); force(x => x + 1); });
-  return <Btn testID="voice-btn" small kind="ghost" title={`${VOICE_ICON[v]} ${tr('Głos')}`} accessibilityLabel={tr('Zapowiedzi głosowe: {mode}', { mode: voiceSettingLabel(v) })} accessibilityHint={tr('Tapnij, by zmienić.')} onPress={pick} />;
+  return <Btn testID="voice-btn" small kind="ghost" icon={VOICE_ICON[v]} title={tr('Głos')} accessibilityLabel={tr('Zapowiedzi głosowe: {mode}', { mode: voiceSettingLabel(v) })} accessibilityHint={tr('Tapnij, by zmienić.')} onPress={pick} />;
 }
 
 /** Runda 75 (T-016): postęp sesji, cienki pasek pod zegarem. Audyt 0.10 (D3, fala 2): serie ROBOCZE jedną funkcją store.workCount / workSetCount —
@@ -450,7 +451,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
       })}
       <View style={s.actions}>
         <Btn title={tr('+ seria')} small accessibilityHint={nm} onPress={() => addSet(ei)} /><Btn title={tr('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'warmup')} /><Btn title={tr('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'drop')} />
-        <Btn title={`⏱ ${fmtSec(e.restSec)}`} small accessibilityHint={`${nm}. ${tr('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={tr('Przerwa: {s}', { s: fmtSec(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (s)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ ...cancelButton() }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } else badRest(); } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); else badRest(); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
+        <Btn icon="timer" title={fmtSec(e.restSec)} small accessibilityHint={`${nm}. ${tr('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={tr('Przerwa: {s}', { s: fmtSec(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (s)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ ...cancelButton() }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } else badRest(); } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); else badRest(); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
         {ei + 1 < w.exercises.length && (!inSS || w.exercises[ei + 1].groupId !== e.groupId) ? <Btn title={ssBtn('link')} small kind="ghost" accessibilityLabel={tr('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(w.exercises, ei, w)} /> : null}
         {inSS ? <Btn title={ssBtn('unlink')} small kind="ghost" accessibilityLabel={tr('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(w.exercises, ei, w)} /> : null}
         <TechniqueLink exercise={ex} name={nm} />{/* UX2-05 (audyt kontrolny 1): wskazówki techniki i figura w trakcie treningu */}

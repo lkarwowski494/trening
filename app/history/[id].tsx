@@ -33,7 +33,7 @@ export default function HistoryDetail() {
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{w.templateName || t('Trening')}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj sesję')} onPress={once(() => { if (beginEdit(w.id)) router.push(`/history/edit/${encodeURIComponent(w.id)}`); })} /></View>
-      <Muted style={{ marginBottom: 14 }}>{whenText(w)} · {noClock(w) ? t('godzina nieznana') /* audyt 0.13: import bez godzin */ : fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}{w.locationId ? ` · 📍 ${locationLabel(w.locationId)}` /* T-057 */ : ''}{w.deload ? ` · ${t('deload — mniej serii')}` /* audyt 0.10 (D1+) */ : ''}</Muted>
+      <Muted style={{ marginBottom: 14 }}>{whenText(w)} · {noClock(w) ? t('godzina nieznana') /* audyt 0.13: import bez godzin */ : fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}{w.locationId ? ` · ${locationLabel(w.locationId)}` /* T-057 */ : ''}{w.deload ? ` · ${t('deload — mniej serii')}` /* audyt 0.10 (D1+) */ : ''}</Muted>
       <SessionHealth w={w} />{/* 0.16.0 (docs/29 5.7): tętno i aktywne kcal z treningu z zegarka (Apple Health) */}
       {nPR > 0 ? <RecordsCard count={nPR} prs={wprs} /> : null}
       {ideaLink ? <IdeaLink /> : null}

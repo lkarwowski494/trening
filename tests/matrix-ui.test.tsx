@@ -615,7 +615,7 @@ describe('/template/[id], /reorder', () => {
     /* MER-13 (audyt 0.10): opis jak prawdziwa podpowiedź („↑ spróbuj …”) */
     expect(screen.getByText('Zakres 8–12: gdy ostatnio wszystkie serie miały ≥ 12 powt., pojawi się „↑”.')).toBeTruthy(); await tap(screen.getByTestId(/^info-range-/));
     expect(screen.getByText('Zakres powtórzeń: 8–12 — gdy ostatnio wszystkie serie robocze miały co najmniej 12 powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).')).toBeTruthy();
-    expect(screen.getByText('Zamienniki')).toBeTruthy(); expect(screen.getByText(`📍 Siłownia: ${exName(ex('Machine Chest Press'))}`)).toBeTruthy();
+    expect(screen.getByText('Zamienniki')).toBeTruthy(); expect(screen.getByText(`Siłownia: ${exName(ex('Machine Chest Press'))}`)).toBeTruthy();
     expect(store.getState().active!.templateId).not.toBe(tplB);
   });
 

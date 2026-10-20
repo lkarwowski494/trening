@@ -469,7 +469,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "Stuknij „⏱” przy ćwiczeniu",
+    "Stuknij przycisk z ikoną minutnika przy ćwiczeniu",
     "Wpisz inną liczbę sekund",
     "„Zapamiętaj” zapisuje przerwę ćwiczenia na stałe, „Tylko teraz” tylko w tym treningu"
    ],
@@ -691,7 +691,7 @@
    "realnosc": "brzegowy",
    "kroki": [
     "Stopka bloku → „⇅ SS” łączy z następnym",
-    "„✂ SS” rozdziela"
+    "„✕ SS” rozdziela"
    ],
    "wynik": "W supersecie przerwa dopiero po rundzie.",
    "ekrany": [
@@ -731,7 +731,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "Chip „📍” → inne miejsce z brakami sprzętu",
+    "Chip z ikoną pinezki → inne miejsce z brakami sprzętu",
     "Okno „Dostosuj do: X” → „Zastosuj” albo „Anuluj”",
     "Powrót na siłownię: sekcja „Wraca z planu”"
    ],
@@ -752,7 +752,7 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "„📍” → „Inne miejsce (tylko dziś)…”",
+    "Chip z ikoną pinezki → „Inne miejsce (tylko dziś)…”",
     "Zestaw sprzętu → „Użyj” → okno Dostosuj → Zastosuj"
    ],
    "wynik": "Miejsce jednorazowe nie trafia na listę miejsc.",
@@ -3110,7 +3110,7 @@
    "wersja": "0.20",
    "realnosc": "realny",
    "kroki": [
-    "Trening w toku → przycisk „🎧 Głos” pod „Zakończ”",
+    "Trening w toku → przycisk „Głos” (ikona zależna od wyboru) pod „Zakończ”",
     "Arkusz „Zapowiedzi głosowe”: Wyłączone / ✓ W słuchawkach / Także przez głośnik / Anuluj",
     "„Wyłączone”, potem Anuluj (bez zmiany), potem „Także przez głośnik”",
     "Więcej → Ustawienia: „Zapowiedzi głosowe” pokazuje ten sam wybór"

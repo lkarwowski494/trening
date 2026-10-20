@@ -18,8 +18,8 @@
 #   "Today: Upper A", "Start planned workout: Upper A" ← components/TodayPlan.tsx
 #   "What's new", "In this version", "Close"   ← components/WhatsNew.tsx: 'Co nowego' (etykieta „i”), 'W tej wersji', 'Zamknij' (08.10.2026)
 #   0.19 (docs/33 B, miejsce na zakres dni): "Places and equipment", "Add place", "Full gym,.*", "Hotel,.*", "Available exercises: .*", "Back" ← jak 06 i 22 (dwa miejsca:
-#        pełna siłownia — główne, Hotel); "📍 Place for these days" ← '📍 Miejsce na te dni' (przycisk pod „More options”, components/DayPanel.tsx PlaceRange);
-#        "Hotel" (chip miejsca), "Set place", "Workout place: Hotel" (linijka „📍 Hotel” dnia — accessibilityLabel 'Miejsce treningu: {l}'), "Remove place" ('Usuń miejsce')
+#        pełna siłownia — główne, Hotel); "Place for these days" ← 'Miejsce na te dni' (przycisk pod „More options”, components/DayPanel.tsx PlaceRange);
+#        "Hotel" (chip miejsca), "Set place", "Workout place: Hotel" (linijka „Hotel” z ikoną pinezki dnia — accessibilityLabel 'Miejsce treningu: {l}'), "Remove place" ('Usuń miejsce')
 appId: pl.lukasz.trening
 name: Kalendarz z planem tygodnia
 ---
@@ -90,10 +90,10 @@ name: Kalendarz z planem tygodnia
 - tapOn: { text: ".*, planned: Upper A", index: 0 }
 - extendedWaitUntil: { visible: "Planned: Upper A", timeout: 15000 }
 - takeScreenshot: 61-panel-dnia
-# --- 0.19: „📍 Place for these days” — Hotel na wybrany dzień (zakres od–do: tu jeden dzień), linijka „📍 Hotel”, „Remove place” przywraca domyślne ---
+# --- 0.19: „Place for these days” — Hotel na wybrany dzień (zakres od–do: tu jeden dzień), linijka „Hotel” z ikoną pinezki, „Remove place” przywraca domyślne ---
 - tapOn: "More options"
-- extendedWaitUntil: { visible: "📍 Place for these days", timeout: 15000 }
-- tapOn: "📍 Place for these days"
+- extendedWaitUntil: { visible: "Place for these days", timeout: 15000 }
+- tapOn: "Place for these days"
 - extendedWaitUntil: { visible: "Hotel", timeout: 15000 }
 - scrollUntilVisible: { element: "Hotel", direction: DOWN, timeout: 30000, centerElement: true }  # niedziela / początek miesiąca: dłuższy kalendarz — chip pod krawędzią listy
 - tapOn: "Hotel"
@@ -115,7 +115,7 @@ name: Kalendarz z planem tygodnia
 - extendedWaitUntil: { visible: "Workout place: Hotel", timeout: 15000 }  # „Przywróć z planu” też nie rusza miejsca
 # --- „Remove place” przywraca miejsce domyślne ---
 - tapOn: "More options"
-- tapOn: "📍 Place for these days"
+- tapOn: "Place for these days"
 - extendedWaitUntil: { visible: "Remove place", timeout: 15000 }
 - scrollUntilVisible: { element: "Remove place", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Remove place"

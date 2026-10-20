@@ -73,7 +73,7 @@ export default function PickerScreen() {
       <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} autoFocus />
       {ctx ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 6, marginTop: 8 }}>
         {/* decyzja właściciela 04.10.2026: miejsce jako filtr-etykieta (jak etykieta w JIRA) — „📍 Dom ✕” zdejmuje filtr, „+ 📍 Dom” przywraca; wybór zapamiętany */}
-        <Chip label={showAll ? `+ 📍 ${ctx.name}` : `📍 ${ctx.name} ✕`} on={!showAll} onPress={() => { const v = !showAll; setAllOn(v); st.settings.pickerShowAll = v; save(); }} a11yLabel={showAll ? t('Filtr miejsca wyłączony: {l}', { l: ctx.name }) : t('Filtr miejsca: {l}', { l: ctx.name })} a11yHint={showAll ? t('Tapnij, by pokazać tylko dostępne.') : t('Tapnij, by zdjąć.')} /* A11-18: instrukcja w podpowiedzi */ />
+        <Chip icon="pin" lead={showAll ? '+' : undefined} label={showAll ? ctx.name : `${ctx.name} ✕`} on={!showAll} onPress={() => { const v = !showAll; setAllOn(v); st.settings.pickerShowAll = v; save(); }} a11yLabel={showAll ? t('Filtr miejsca wyłączony: {l}', { l: ctx.name }) : t('Filtr miejsca: {l}', { l: ctx.name })} a11yHint={showAll ? t('Tapnij, by pokazać tylko dostępne.') : t('Tapnij, by zdjąć.')} /* A11-18: instrukcja w podpowiedzi */ />
         <Muted style={{ fontSize: 12, flexShrink: 1 }}>{showAll ? t('niedostępne w: {l} są wyszarzone', { l: ctx.name }) : t('tylko dostępne w: {l}', { l: ctx.name }) + (hidden ? ' · ' + t('ukryte: {n}', { n: hidden }) : '')}</Muted>
       </View> : null}
       <LibScopeChip all={libAll} hidden={nicheHidden} searching={!!ql} onToggle={() => { const v = !libAll; setLibAll(v); setLibShowAll(v); }} />
