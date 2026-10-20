@@ -140,4 +140,5 @@ name: Kalendarz z planem tygodnia
 - assertNotVisible: "In this version|Test build [0-9]+ · .*"
 - scrollUntilVisible: { element: "Start planned workout: Upper A", direction: UP, timeout: 30000, centerElement: true }
 - tapOn: "Start planned workout: Upper A"
+- tapOn: { text: "Not now", optional: true }   # run 39399241275 (M1-035): karta zgody na powiadomienia spycha przycisk „Set done” poza ekran
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }

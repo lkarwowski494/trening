@@ -97,7 +97,11 @@ name: Pierwszy tydzień nowego użytkownika
 - assertVisible: "Workout progress: 1 of 18 sets"
 - takeScreenshot: 83-przerwa
 # pauza treningu w przerwie i wznowienie (nagłówek treningu może być przewinięty w górę — przycisk „⋯” przy ćwiczeniu, M1-028, podnosi nagłówki)
-- scrollUntilVisible: { element: "Pause workout", direction: UP, timeout: 15000 }
+# run 39399241275: po odhaczeniu serii lista jest przewinięta do karty „teraz”, a nagłówek z „Pause workout” leży nad ekranem — hierarchia iOS go zwraca (Maestro uznaje
+# za widoczny, scrollUntilVisible nie przewija), stuknięcie trafia w pasek stanu i „Resume workout” się nie pojawia. Jak w 13 (E2E 105): przesunięcie listy na początek.
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- waitForAnimationToEnd
 - tapOn: "Pause workout"
 - extendedWaitUntil: { visible: "Resume workout", timeout: 15000 }
 - assertVisible: ".* · paused"
