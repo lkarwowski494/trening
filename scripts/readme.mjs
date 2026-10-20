@@ -160,6 +160,7 @@ const WORKFLOW_ROLE = {
   'pages.yml': 'publikacja strony (prywatność, wsparcie)',
   'asc-iap-localizations.yml': 'lokalizacje produktów zakupu w App Store Connect',
   'store-screenshots.yml': 'zrzuty ekranu do App Store z symulatora (ręcznie)',
+  'przeglad-tlumaczen.yml': 'przegląd tłumaczeń treści krytycznej przez API Anthropic (ręcznie, płatny, limit kosztu)',
 };
 const TRIGGERS = [['push', 'wypchnięcie'], ['pull_request', 'zgłoszenie zmian'], ['schedule', 'harmonogram'], ['workflow_dispatch', 'ręcznie'], ['workflow_call', 'wywołanie z innego workflow'], ['workflow_run', 'po innym workflow']];
 

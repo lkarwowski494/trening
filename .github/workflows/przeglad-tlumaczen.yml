@@ -1,0 +1,80 @@
+# Przegląd tłumaczeń przez API Anthropic (decyzja właściciela 20.10.2026; ryzyko R-010, docs/16 „Treść krytyczna”). Tylko ręcznie, odczyt repozytorium.
+# Płatny z kredytów API właściciela (Message Batches, −50%). Klucz: sekret ANTHROPIC_API_KEY, użyty w JEDNYM kroku, jako zmienna środowiskowa; skrypt
+# nigdy go nie wypisuje. Słowniki NIE są zmieniane — wynik to artefakt `raport-tlumaczen` (7 dni). Limit kosztu 50 USD na przebieg (bez zgody: stop).
+name: Przegląd tłumaczeń (API, ręcznie)
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: 'Model przeglądu (domyślnie najnowszy Opus, effort medium)'
+        type: choice
+        default: opus
+        options: [opus, sonnet]
+      limit:
+        description: 'Tylko N pierwszych języków (puste = wszystkie 34); przebieg dowodowy: 2'
+        type: string
+        default: ''
+      tylko_szacuj:
+        description: 'Tylko szacunek kosztu, bez wysyłania niczego płatnego'
+        type: boolean
+        default: true
+      zgoda_koszt:
+        description: 'Zgoda na koszt powyżej 50 USD (tak / nie)'
+        type: choice
+        default: 'nie'
+        options: ['nie', 'tak']
+permissions:
+  contents: read
+concurrency:
+  group: przeglad-tlumaczen
+  cancel-in-progress: false
+jobs:
+  przeglad:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Szacunek kosztu bez klucza — stop powyżej 50 USD bez zgody
+        env:
+          WEJ_MODEL: ${{ inputs.model }}
+          WEJ_LIMIT: ${{ inputs.limit }}
+          WEJ_ZGODA: ${{ inputs.zgoda_koszt }}
+        run: |
+          set -eu
+          ARGS=(--szacuj --model "$WEJ_MODEL" --limit "$WEJ_LIMIT" --wyjscie raport-tlumaczen)
+          if [ "$WEJ_ZGODA" = "tak" ]; then ARGS+=(--zgoda-koszt); fi
+          node scripts/i18n/przeglad-api.mjs "${ARGS[@]}"
+      - name: Przegląd (szacunek dokładny lub batch)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          WEJ_MODEL: ${{ inputs.model }}
+          WEJ_LIMIT: ${{ inputs.limit }}
+          WEJ_ZGODA: ${{ inputs.zgoda_koszt }}
+          WEJ_SZACUJ: ${{ inputs.tylko_szacuj }}
+        run: |
+          set -eu
+          ARGS=(--model "$WEJ_MODEL" --limit "$WEJ_LIMIT" --wyjscie raport-tlumaczen)
+          if [ "$WEJ_ZGODA" = "tak" ]; then ARGS+=(--zgoda-koszt); fi
+          if [ "$WEJ_SZACUJ" = "true" ]; then ARGS+=(--szacuj); fi
+          node scripts/i18n/przeglad-api.mjs "${ARGS[@]}"
+      - name: Podsumowanie w logu przebiegu
+        if: always()
+        run: |
+          if [ -f raport-tlumaczen/podsumowanie.md ]; then cat raport-tlumaczen/podsumowanie.md >> "$GITHUB_STEP_SUMMARY"; fi
+          if [ -f raport-tlumaczen/szacunek.json ]; then node -e "const s=require('./raport-tlumaczen/szacunek.json');console.log('Szacunek: '+JSON.stringify(s.koszt_wg_modelu))" >> "$GITHUB_STEP_SUMMARY"; fi
+      - name: Artefakt (tylko raporty, 7 dni)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raport-tlumaczen
+          path: |
+            raport-tlumaczen/*.json
+            raport-tlumaczen/podsumowanie.md
+          if-no-files-found: ignore
+          retention-days: 7
