@@ -12,7 +12,7 @@ const ROOT = path.join(__dirname, '..');
 const SCRIPT = path.join(ROOT, 'scripts/i18n/przeglad-api.mjs');
 const wf = fs.readFileSync(path.join(ROOT, '.github/workflows/przeglad-tlumaczen.yml'), 'utf8');
 /** Wykonuje kod w module ESM z zaimportowanym skryptem jako `m`; wynik = JSON z console.log. */
-const run = (code: string, env: Record<string, string> = {}) => JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${JSON.stringify(SCRIPT)}; ${code}`], { env: { PATH: process.env.PATH ?? '', ...env }, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }));
+const run = (code: string, env: Record<string, string> = {}) => JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${JSON.stringify(SCRIPT)}; ${code}`], { env: { PATH: process.env.PATH ?? '', ...env } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }));
 
 const MED = 'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.';
 const ASE = 'Asekuracja';
