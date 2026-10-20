@@ -45,9 +45,12 @@ jobs:
     permissions:
       contents: read
       actions: read
+    outputs:
+      numer_e2e: ${{ steps.e2e.outputs.run }}  # numer zielonego przebiegu E2E — z jego artefaktu trening-sim-app zadanie „tag” robi plik wydania (M1-062)
     steps:
       - uses: actions/checkout@v5
       - name: Zielony przebieg E2E na tym commicie (albo awaryjne pominięcie z powodem)
+        id: e2e
         env:
           GH_TOKEN: ${{ github.token }}
           POMIN: ${{ inputs.pomin_bramke_e2e }}
@@ -67,6 +70,7 @@ jobs:
     environment: release
     outputs:
       numer: ${{ steps.nr.outputs.numer }}
+      numer_e2e: ${{ needs.bramka.outputs.numer_e2e }}
     runs-on: macos-26
     timeout-minutes: 90
     steps:
@@ -247,6 +251,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: read  # pobranie artefaktu trening-sim-app z zielonego przebiegu E2E tego commitu
     steps:
       - uses: actions/checkout@v5
       - uses: actions/download-artifact@v4
@@ -263,3 +268,19 @@ jobs:
           git tag "$T" && git push origin "$T"
           gh release create "$T" --verify-tag --latest=false --title "$T" --notes "Mapa źródeł JS buildu (symbolikacja stosu błędu: npx metro-symbolicate main.jsbundle.map < stos.txt)." mapy/main.jsbundle.map
           echo "## Tag $T" >> "$GITHUB_STEP_SUMMARY"
+          echo "T=$T" >> "$GITHUB_ENV"
+      - name: Plik wydania Trening-sim.zip — build symulatora z zielonego przebiegu E2E (poprzednia wersja dla testu aktualizacji; M1-062, DEC-27)
+        # Build symulatora jest bez podpisu i bez sekretów (publiczne repozytorium). Artefakt przebiegu żyje 1 dzień, plik wydania — bez limitu.
+        # Brak numeru przebiegu = bramka pominięta awaryjnie (ostrzeżenie); numer jest, a pliku nie ma = błąd (build w TestFlight już wysłany, tag zostaje).
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN: ${{ needs.build.outputs.numer_e2e }}
+        run: |
+          if [ -z "$RUN" ]; then
+            echo "::warning::Wydanie $T bez pliku Trening-sim.zip (bramka E2E pominięta awaryjnie) — następny test aktualizacji w E2E zakończy się błędem do czasu wydania z plikiem"
+            echo "Wydanie bez Trening-sim.zip (bramka pominięta)." >> "$GITHUB_STEP_SUMMARY"; exit 0
+          fi
+          gh run download "$RUN" --repo "$GITHUB_REPOSITORY" -n trening-sim-app -D sim || { echo "::error::Brak artefaktu trening-sim-app w przebiegu E2E #$RUN (wygasł albo przebieg użył aplikacji z innego przebiegu) — wydanie $T bez Trening-sim.zip"; exit 1; }
+          test -s sim/Trening-sim.zip || { echo "::error::Artefakt trening-sim-app bez Trening-sim.zip"; exit 1; }
+          gh release upload "$T" sim/Trening-sim.zip --repo "$GITHUB_REPOSITORY"
+          echo "Plik wydania: Trening-sim.zip z przebiegu E2E #$RUN" >> "$GITHUB_STEP_SUMMARY"

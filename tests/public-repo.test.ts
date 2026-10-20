@@ -319,3 +319,21 @@ describe('adresy e-mail w repozytorium', () => {
   });
   test('wyjątek licenses.generated.ts istnieje i jest plikiem generowanym', () => { expect(fs.readFileSync(join(root, EXEMPT[0]), 'utf8')).toMatch(/Wygenerowane/); });
 });
+
+/* M1-audytor-generalny-062 (DEC-27, 20.10.2026): plik wydania przy tagu z buildem symulatora — jedyny plik poza mapą źródeł; bez sekretów, bez podpisu. */
+describe('plik wydania z buildem symulatora (M1-062)', () => {
+  test('zadanie tag dołącza tylko Trening-sim.zip i mapę źródeł; build symulatora jest bez podpisu i bez sekretów', () => {
+    const tf = wf('testflight.yml'); const tag = tf.slice(tf.indexOf('\n  tag:\n'));
+    const uploads = [...tag.matchAll(/gh release (?:upload|create)[^\n]*/g)].map(m => m[0]);
+    expect(uploads.length).toBeGreaterThanOrEqual(2);
+    for (const u of uploads) expect(u).not.toMatch(/\.(ipa|p8|p12|mobileprovision|cer|xcarchive)\b|AuthKey|export/i);
+    expect(uploads.join('\n')).toContain('Trening-sim.zip'); expect(tag).not.toMatch(/secrets\./); expect(tag).toMatch(/GH_TOKEN: \$\{\{ github\.token \}\}/);
+    const e = wf('e2e-ios.yml'); const build = e.slice(e.indexOf('\n  build:\n'), e.indexOf('\n  e2e:\n'));
+    expect(build).toContain('CODE_SIGNING_ALLOWED=NO'); expect(build).not.toMatch(/secrets\.|ASC_KEY|\.p8/);
+    expect(e).not.toMatch(/contents: write/);
+  });
+  test('docs/31 opisuje plik wydania zamiast artefaktu jednodniowego jako źródła poprzedniej wersji', () => {
+    const d = readFileSync(join(__dirname, '../docs/31-scenariusze-z-zycia.md'), 'utf8');
+    expect(d).toContain('Trening-sim.zip'); expect(d).toContain('DEC-27');
+  });
+});
