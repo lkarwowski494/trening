@@ -137,6 +137,14 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 - **Strażnik lekkości (S17):** widoczny tekst pomocniczy (`<Muted>`, `detail=`) ma najwyżej **100 znaków** (polskie źródło) poza listą wyjątków z powodem.
 - Nowy ekran z objaśnieniem: tekst pod ⓘ, krótka linia na wierzchu (jeśli potrzebna), `infoId` unikalny na ekranie (testID `info-{id}` i `info-text-{id}`; scenariusz Maestro 52).
 
+### 28. Wersaliki i ciągi „A · B · C” (decyzja właściciela 20.10.2026, audyt M1-063, DEC-17 wariant a)
+- **Wersaliki tylko w nagłówkach grup** (`SectionTitle`, tytuł grupy w strażniku progresji). W treści, przyciskach, etykietach wierszy i komunikatach tekst pisany normalnie. Wersaliki robi `upper()` / `upperText()` z regułami języka (A11-02), nigdy `textTransform: 'uppercase'` poza `upperText()` w `components/ui.tsx`.
+- **Wyjątki z powodem:** (1) `components/TodayPlan.tsx` — nagłówek bloku „Dziś” i skróty dni tygodnia w pasku (etykiety kolumn, nie zdania); (2) `components/GuardSection.tsx` — tytuł grupy (nagłówek grupy); (3) `lib/state/sets.ts` `shortBand` — jedna litera koloru gumy, nie tekst. Nowe użycie wymaga zmiany tej decyzji i wpisu tutaj.
+- **„·” (kropka środkowa) tylko dla metadanych o stałej kolejności** (np. licencja · źródło w ekranie Licencje), czytanych jak etykiety. Zdania, powody i wartości zmiennej kolejności lub liczby elementów oddzielamy zwykłym zdaniem, przecinkiem albo osobną linią.
+- **Odrzucone:** wariant B — limit dwóch elementów w liniach pomocniczych ekranu treningu (zmieniałby układ ekranu treningu przed redesignem wyglądu).
+- **Stan kodu:** istniejące ciągi z `join(' · ')` o zmiennej kolejności (np. linie pomocnicze `app/swap.tsx`, `app/adapt.tsx`, `components/ActiveWorkout.tsx`) nie były przeglądane pod tym kątem — **[OTWARTE]** przegląd przy redesignie wyglądu; nowy kod stosuje regułę od 20.10.2026.
+- **Strażnik wersalików:** `tests/audit-m1-063-caps-separators.test.ts` (lista miejsc z `upperText()` / `upper()` i brak `textTransform: 'uppercase'`).
+
 ## Strażniki (S1–S17)
 | # | Strażnik | Plik | Stan |
 |---|---|---|---|
