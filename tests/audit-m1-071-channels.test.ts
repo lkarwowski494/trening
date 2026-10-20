@@ -5,6 +5,7 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
+import { namesIn, CFG } from './forbidden-names';
 
 const doc = fs.readFileSync(path.join(__dirname, '..', 'docs', 'wzrost.md'), 'utf8');
 const DATE = /\b\d{2}\.\d{2}\.\d{4}\b/g;
@@ -42,5 +43,5 @@ describe('docs/wzrost.md: tabela kanałów startu', () => {
     const act = doc.slice(doc.indexOf('## 4. Działania na start'), doc.indexOf('## 5.')); const n = (act.match(/^\d+\. /gm) ?? []).length;
     expect(n).toBeGreaterThanOrEqual(3); expect(n).toBeLessThanOrEqual(5);
   });
-  test('bez nazw aplikacji konkurencji w dokumencie', () => { expect(doc).not.toMatch(/\b(Hevy|Fitbod|Jefit|JEFIT|Liftosaur|FitNotes|StrongLifts)\b/); });
+  test('bez nazw aplikacji konkurencji w dokumencie (lista wspólna tests/forbidden-names.json)', () => { const apps = CFG.names.slice(0, 19); expect(namesIn(doc).filter((n) => apps.includes(n))).toEqual([]); });
 });
