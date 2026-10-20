@@ -1,0 +1,6 @@
+{
+  "_opis": "Adresy do App Store Connect (App Information → Privacy Policy URL; wersja → Support URL, Marketing URL). Decyzja właściciela 14.10.2026, D-2 A (docs/41): strony marki apps4brew.com, niezależne od repozytorium. Muszą być równe PRIVACY_URL i SUPPORT_URL w lib/products.ts (test: tests/store-urls.test.ts). Wpis: koordynator przez App Store Connect API albo właściciel ręcznie.",
+  "privacyPolicyUrl": "https://apps4brew.com/trening/privacy.html",
+  "supportUrl": "https://apps4brew.com/trening/support.html",
+  "marketingUrl": "https://apps4brew.com/"
+}

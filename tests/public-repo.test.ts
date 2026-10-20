@@ -242,7 +242,7 @@ describe('strona www aplikacji (GitHub Pages)', () => {
     const pl = body.slice(body.indexOf('<h2>Gdy do nas piszesz</h2>'), body.indexOf('<h2>Zmiany i kontakt</h2>')); const en = body.slice(body.indexOf('<h2>When you write to us</h2>'), body.indexOf('<h2>Changes and contact</h2>'));
     for (const w of ['Łukasz Karwowski, osoba fizyczna', 'support@apps4brew.com', 'adres e-mail, treść wiadomości, załączniki', 'wersja aplikacji i iOS', 'art. 6 ust. 1 lit. f RODO', '12 miesięcy od zamknięcia sprawy', 'Porkbun', 'Google (Gmail, Dysk)', 'dostawca narzędzi AI', 'dostęp do danych, sprostowanie, usunięcie, sprzeciw', 'PUODO', 'Aplikacja nadal niczego nie wysyła — e-mail wysyłasz Ty, swoją pocztą']) expect(pl).toContain(w);
     for (const w of ['Łukasz Karwowski, a natural person', 'support@apps4brew.com', 'email address, the message text, attachments', 'app and iOS versions', 'Article 6(1)(f) GDPR', '12 months after the case is closed', 'Porkbun', 'Google (Gmail, Drive)', 'provider of the AI tools', 'access, rectification, erasure, objection', 'PUODO', 'The app still sends nothing — you send the email, from your own mail app']) expect(en).toContain(w);
-    expect(h).toContain('Obowiązuje od 13 października 2026 r.'); expect(h).toContain('Effective 13 October 2026'); expect(h).not.toContain('12 października 2026');
+    expect(h).toContain('Obowiązuje od 14 października 2026 r.'); expect(h).toContain('Effective 14 October 2026'); expect(h).not.toContain('12 października 2026');
   });
 
   test('FAQ wsparcia zgodne z kodem: ścieżki menu i nazwy przycisków istnieją w tekstach aplikacji', () => {
