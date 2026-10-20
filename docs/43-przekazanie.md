@@ -17,6 +17,26 @@ Powód: limit tygodniowy konta koordynatora na wyczerpaniu (decyzja właściciel
 6. Potem: **M3 Redesigner w nowej sesji czatu** z najświeższego `lkarwowski494/prompts` (`git pull`, `node tools/assemble.mjs M3-redesigner --galaz redesign/trening-<data> --plik m3.md`), wejścia obowiązkowe: 026, 029 (+gałąź m3-wejscie/029-ikony), 030, 036, DEC-05 (głos domyślnie wył.), DEC-06 (bez paska talerzy), DEC-28/29 (system miar).
 7. Potem: jeden reaudyt końcowy (M1, nowy LOK-07), kontrola na telefonie (R-004 powiadomienie pilne, głos, mile, nowe ekrany), zrzuty i opis sklepu, 1.0.
 
+## Podział między konta (decyzja właściciela 20.10.2026)
+- **Obecne konto** domyka kroki 1–6 z listy „Co biegnie / co zrobić najpierw” (E2E → PR i scalenie → TestFlight → dowody → przegląd tłumaczeń przez API → przegląd badacza) i **nie zaczyna kroku 7 (M3) ani dalszych**.
+- **Nowe konto** zaczyna od pierwszego niezakończonego kroku według sekcji „Dziennik przekazania” niżej (normalnie od kroku 7: M3 w nowym czacie).
+- Ten plik jest aktualizowany po każdym kroku (sekcja „Dziennik przekazania”).
+
+## Pierwsza wiadomość dla nowego konta (wklej w Claude Code w chmurze, repo lkarwowski494/trening)
+```
+Jesteś koordynatorem projektu Trening (rola z CLAUDE.md). Kontynuujesz pracę po poprzednim koncie.
+Przeczytaj: CLAUDE.md, docs/43-przekazanie.md (stan, dziennik przekazania, kolejne kroki), końcówkę docs/18 i rejestr ryzyk w docs/40.
+Pobierz najnowszy stan: git fetch, gałąź main (albo audyt-m1, jeśli PR jeszcze nie scalony — patrz dziennik).
+Zacznij od pierwszego niezakończonego kroku w „Dzienniku przekazania” w docs/43, potem prowadź mnie dalej po jednym kroku.
+Odpowiadaj po polsku.
+```
+
+## Dziennik przekazania (aktualizowany po każdym kroku)
+| data i godzina (UTC) | krok | stan |
+|---|---|---|
+| 20.10 19:30 | 1. E2E na audyt-m1 | w toku — brak maszyn macOS u GitHuba od 13:00 UTC, ponawiane |
+| 20.10 20:15 | 5. przegląd tłumaczeń przez API | w toku — programista przygotowuje skrypt i workflow na gałęzi `przeglad-tlumaczen` (decyzje: Opus effort medium, limit 50 USD/przebieg, auto-reload w konsoli wyłączony); właściciel: sekret `ANTHROPIC_API_KEY` w GitHub (instrukcja po gotowym workflow) |
+
 ## Zasady pracy obowiązujące (skrót; pełne w CLAUDE.md i docs/18)
 - Podział pracy na agentów według obszaru plików (CLAUDE.md, 20.10.2026); pliki generowane i pełne verify raz po scaleniu.
 - Oszczędzanie limitu (docs/18, 20.10.2026): lżejsze modele dla ról wykonawczych, pakiet podstawowy E2E zamiast pełnego katalogu (pełny tylko przed App Store/po M3), jeden reaudyt, zwięzłe raporty, logi CI tylko filtrem.
