@@ -1,0 +1,150 @@
+# 43. Przekazanie pracy (stan 20.10.2026, ok. 19:30 UTC) — na nowe konto Claude
+
+Powód: limit tygodniowy konta koordynatora na wyczerpaniu (decyzja właściciela 20.10.2026: drugie konto). Ten plik + CLAUDE.md + docs/18 + docs/40 wystarczą do kontynuacji.
+
+## Stan
+- Gałąź **`audyt-m1`** (HEAD 590f7fc): naprawy M2 audytu M1 z 19.10.2026 — partie 1–4 (70 zadań minus 026/029/030/036 przekazane do M3) + LOK-07 (System miar, mile/jardy, domyślnie z regionu) + poprawki E2E (13/31/36, slotHeight). Pełne verify jednym ciągiem: EXIT 0 (8367 testów).
+- **Nie scalone do main.** PR jeszcze nie otwarty — czeka na zielone E2E.
+- Gałąź `m3-wejscie/029-ikony`: materiał (WIP ikon) dla M3 — nie scalać.
+- Statusy zadań M2 i paczka audytu: tylko lokalnie u właściciela / w katalogu `audit/` (poza repo, publiczne repo). Werdykt M1: P0 001 i 011 — naprawione w partiach 1–2.
+
+## Co biegnie / co zrobić najpierw (koordynator)
+1. E2E na `audyt-m1` (od 13:00 UTC brak maszyn macOS u GitHuba, ponawiane ~12×): run **39427683836** (pakiet podstawowy z testem aktualizacji; wejście `poprzednia_wersja_z_przebiegu=39409052958`) i **39427688524** (`tylko_scenariusze` 09 11 15 19 32 35 37, `poprzednia_wersja_z_przebiegu=brak`). Przy „not acquired by Runner” — ponawiać (`gh run rerun <id>`), skrypt `scratchpad`-owy watch-run nie przeżyje zmiany konta.
+2. Dowód 058 (mały ekran): `e2e-ios.yml`, `tylko_scenariusze: 01`, `urzadzenie: 'iPhone SE|iPhone 16e|iPhone 17e'`, `poprzednia_wersja_z_przebiegu: brak` — w logu „Ekran: … szerokość ekranu N pt”; jeśli 390 pt, zapytać właściciela, czy wystarczy.
+3. Plik poprzedniej wersji (062): artefakt `trening-sim-app` z run **39409052958** (build 0.20 b1018 na tagu `v0.20.0-b1018`) wygasa ok. 21.10 11:00 UTC. Jeśli wygaśnie: `gh workflow run e2e-ios.yml --ref v0.20.0-b1018 -f tylko_scenariusze=01`. Sesja Claude Code nie może tworzyć wydań (403) → krok właściciela K-062 niżej.
+4. Po zielonym E2E: PR `audyt-m1` → `main` (opis: partie, przebiegi dowodowe, ryzyka R-004…R-012 z docs/40), właściciel: K-062, potem scalenie. Po scaleniu `testflight.yml` (bramka E2E czeka na zielony pakiet na tym SHA).
+5. Potem: przegląd treści krytycznej w 34 językach (R-010) — wyłącznie Claude (rola tlumacz + badacz), teksty „do przeglądu tłumacza” z partii; przegląd badacza: rejestr twierdzeń (docs/research/rejestr-twierdzen.json), zdanie asekuracji (docs/10), R1 i docs/10 pkt 4.4.
+6. Potem: **M3 Redesigner w nowej sesji czatu** z najświeższego `lkarwowski494/prompts` (`git pull`, `node tools/assemble.mjs M3-redesigner --galaz redesign/trening-<data> --plik m3.md`), wejścia obowiązkowe: 026, 029 (+gałąź m3-wejscie/029-ikony), 030, 036, DEC-05 (głos domyślnie wył.), DEC-06 (bez paska talerzy), DEC-28/29 (system miar).
+7. Potem: jeden reaudyt końcowy (M1, nowy LOK-07), kontrola na telefonie (R-004 powiadomienie pilne, głos, mile, nowe ekrany), zrzuty i opis sklepu, 1.0.
+
+## Zasady pracy obowiązujące (skrót; pełne w CLAUDE.md i docs/18)
+- Podział pracy na agentów według obszaru plików (CLAUDE.md, 20.10.2026); pliki generowane i pełne verify raz po scaleniu.
+- Oszczędzanie limitu (docs/18, 20.10.2026): lżejsze modele dla ról wykonawczych, pakiet podstawowy E2E zamiast pełnego katalogu (pełny tylko przed App Store/po M3), jeden reaudyt, zwięzłe raporty, logi CI tylko filtrem.
+- Właściciel: po polsku, decyzje produktowe z ≥2 opcjami (AskUserQuestion), zadania dla niego po jednym z instrukcją krok po kroku; nie używa Terminala.
+- Zaplanowane zadania: dla Treningu brak aktywnych (lista w docs/18, 20.10.2026).
+
+## W toku u właściciela
+- Google Workspace (po weryfikacji DSA 20.10.2026): domena apps4brew.com w Porkbun, poczta dziś = przekierowanie Porkbun na prywatny Gmail (nikt jeszcze nie pisze). Krok 2 (rekord TXT weryfikacji Google w Porkbun) wydany; następny: MX Google (`smtp.google.com`, priorytet 1) zamiast przekierowania Porkbun + SPF `v=spf1 include:_spf.google.com ~all`, użytkownik `lukasz@`, aliasy `support@`, `kontakt@`. Nie ruszać rekordów A/CNAME strony.
+
+## Kroki właściciela (kopia z katalogu audytu)
+# Kroki właściciela — partia 2 napraw z audytu M1 (20.10.2026)
+
+Kroki robisz Ty (ja ich nie wykonuję). Jedno zadanie naraz; po każdym napisz „zrobione” albo wklej, co widzisz na ekranie.
+Model monetyzacji jest stały: 0,99 USD/mies., roczna i dożywotnia wg App Store Connect (patrz uwaga o cenie rocznej na końcu), próba 14 dni, 4 treningi w miesiącu po wygaśnięciu.
+
+## K-011. App Store Connect: oferta wprowadzająca 14 dni w obu subskrypcjach (M1-011)
+
+Kod i plik testowy `store/Trening.storekit` mówią już „14 dni” (2 tygodnie). W App Store Connect oferta ma być identyczna, bo to ona decyduje o tym, co Apple pokaże i naliczy.
+
+1. Wejdź na https://appstoreconnect.apple.com i zaloguj się.
+2. Moje aplikacje (My Apps) → Trening.
+3. Lewe menu → sekcja „Monetization” → „Subscriptions”.
+4. Otwórz grupę „Pełna wersja”.
+5. Kliknij subskrypcję **miesięczną**.
+6. Przewiń do sekcji „Subscription Prices” → obok niej „Introductory Offers” (Oferty wprowadzające) → ikona plusa „+” (albo „Create Introductory Offer”).
+   - Jeśli oferta „1 miesiąc” już istnieje: kliknij ją, a następnie „Edit”/„Delete” i utwórz nową. Apple nie pozwala zmienić długości istniejącej oferty — usuń starą (jeśli nikt jeszcze z niej nie skorzystał) i dodaj nową.
+7. Ustaw: Countries or Regions = wszystkie (All), Start Date = dzisiaj, End Date = bez daty końca (No End Date), Type = „Free” (Bezpłatna), Duration = **„2 Weeks” (2 tygodnie)**.
+8. Zapisz („Confirm”/„Save”).
+9. Wróć do grupy „Pełna wersja”, otwórz subskrypcję **roczną** i powtórz kroki 6–8 (ten sam typ „Free”, czas „2 Weeks”).
+10. Sprawdź na liście obu subskrypcji: w kolumnie ofert wprowadzających ma być „Free, 2 Weeks”.
+
+## K-012. Test w piaskownicy: dostęp po ponownej instalacji (M1-012)
+
+Test na iPhonie, wymaga builda z TestFlight z włączonymi zakupami (obecny build ma zakupy wyłączone, więc test zrobisz dopiero po włączeniu).
+
+1. App Store Connect → Users and Access → „Sandbox” → „Test Accounts” → „+”: utwórz konto testowe (dowolny adres e-mail, którego nie używasz w Apple ID; hasło zapisz).
+2. Na iPhonie: Ustawienia → App Store → na samym dole „Sandbox Account” → zaloguj kontem testowym.
+3. Zainstaluj build z TestFlight, otwórz Trening → ekran zakupu → kup dożywotni (okno Apple powie „Sandbox”).
+4. Sprawdź, że w Trening → Więcej → Subskrypcja widać „Masz dostęp na zawsze”.
+5. Usuń aplikację z telefonu (przytrzymaj ikonę → Usuń aplikację).
+6. Włącz tryb samolotowy (Centrum sterowania → samolot).
+7. Zainstaluj aplikację ponownie z TestFlight (potrzebna sieć na czas pobrania — pobierz najpierw, potem włącz tryb samolotowy) i otwórz ją.
+8. Oczekiwany wynik: aplikacja odczytuje zakup z urządzenia i pokazuje pełną wersję (bez ekranu zakupu przy starcie treningu), albo — jeśli Apple nie odpowiada — po wejściu w „Przywróć zakupy” po wyłączeniu trybu samolotowego.
+9. Wynik zapisz: „dostęp był od razu” / „dopiero po Przywróć zakupy” / „brak dostępu”.
+
+## K-013. Polityka prywatności: adres w App Store Connect (M1-013)
+
+Aplikacja linkuje teraz do https://apps4brew.com/trening/privacy.html (sprawdziłem 20.10.2026: strona odpowiada, ma sekcję Apple Watch i wersję 0.20.0). Adres w App Store Connect musi być identyczny.
+
+1. App Store Connect → Moje aplikacje → Trening → lewe menu „App Information”.
+2. Pole „Privacy Policy URL” ma być: `https://apps4brew.com/trening/privacy.html`. Jeśli jest inne (np. adres z github.io), zamień i kliknij „Save”.
+3. W zakładce wersji aplikacji: „Support URL” `https://apps4brew.com/trening/support.html`, „Marketing URL” `https://apps4brew.com/`.
+4. Uwaga na przyszłość: od teraz test pilnuje, żeby data wersji w `site/privacy.html` nie była niższa niż wersja z `app.json`. Przy każdym podniesieniu wersji trzeba zaktualizować stronę i opublikować ją w repo strony studia (eksport: `scripts/site/export-apps4brew.mjs` na gałęzi `f020-sklep`, po jej scaleniu).
+
+## K-019. Ustawienia GitHub: skanowanie sekretów, środowisko „release”, sekrety (M1-019)
+
+Robisz jedno po drugim w repozytorium GitHub → Settings.
+
+**A. Skanowanie sekretów i ochrona wypychania**
+1. Settings → (lewe menu) „Code security” (albo „Advanced Security”).
+2. „Secret scanning” → Enable. „Push protection” → Enable.
+
+**B. Środowisko „release” z zatwierdzeniem**
+1. Settings → Environments. Jeśli „release” już jest (powstaje samo przy pierwszym przebiegu `testflight.yml` z nowego kodu) — kliknij je; jeśli nie — „New environment”, nazwa `release`, „Configure environment”.
+2. „Required reviewers” → zaznacz → wpisz swoje konto → „Save protection rules”.
+3. Skutek: każdy przebieg TestFlight zatrzymuje się przy zadaniu „build” i czeka na Twoje „Approve” (po przejściu bramki E2E). Przebiegi dowodowe też.
+4. (Opcjonalnie, później) Przenieś `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8` z „Repository secrets” do „Environment secrets” środowiska release, wtedy tylko zatwierdzone zadanie je widzi. Zrób to dopiero po udanym przebiegu dowodowym.
+
+**C. Usunięcie nieużywanych sekretów**
+1. Settings → Secrets and variables → Actions → „Repository secrets”.
+2. Przy `EXPO_TOKEN`, `ASC_API_KEY_P8` i `APPLE_TEAM_ID` (jeśli są na liście) kliknij kosz → „Remove secret”. Zostają tylko `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8`.
+
+**D. Ochrona gałęzi main (M1-018)**
+1. Settings → Branches → „Add branch ruleset” (albo „Add classic branch protection rule”), gałąź `main`.
+2. Zaznacz „Require status checks to pass” i dodaj sprawdzenie z workflowu „Testy” (zadanie `verify`); „Block force pushes”.
+3. Zapisz („Create”).
+
+## Uwaga o cenie rocznej (do potwierdzenia przez koordynatora)
+Polecenie partii 2 podaje „6,99 USD/rok”, a kod, plik `store/Trening.storekit`, docs/15 i decyzja z 13–14.10.2026 mają **4,99 USD/rok** (6,99 to cena z 11.10.2026, zastąpiona 13.10.2026). Cen nie zmieniałem. Jeżeli stałą ceną rocznej ma być 6,99, to osobna decyzja i zmiana (kod, ASC, testy) — daj znać.
+
+## K-CENA. App Store Connect: cena roczna 6,99 USD (decyzja 20.10.2026)
+
+Kod, plik testowy `store/Trening.storekit` i dokumenty mówią już 6,99 USD/rok. W App Store Connect cena subskrypcji rocznej ma być taka sama. Jedno kliknięcie po drugim:
+
+1. https://appstoreconnect.apple.com → Moje aplikacje (My Apps) → Trening.
+2. Lewe menu → „Monetization” → „Subscriptions” → grupa „Pełna wersja”.
+3. Otwórz subskrypcję **roczną**.
+4. Sekcja „Subscription Prices” → „Current Pricing for New Subscribers” → „Edit” (albo „+ / Add Subscription Price”).
+5. Kraj bazowy: Stany Zjednoczone (United States), cena **6,99 USD** (wybierz punkt cenowy 6.99). Zostaw włączone automatyczne przeliczenie na inne kraje (Apple wylicza resztę z ceny bazowej).
+6. Kliknij „Next”, potem „Confirm”. Przy pytaniu o obecnych subskrybentów wybierz „Do not preserve current price” — jest to cena przed premierą, nikt jeszcze nie subskrybuje (jeśli nie ma takiej opcji, pomiń).
+7. Ceny w Polsce, strefie euro i Wielkiej Brytanii: sprawdź, czy po przeliczeniu EUR i GBP wyszło 6,99 (jeśli nie — popraw ręcznie na 6,99 € / 6,99 £); PL zostaje 19,99 zł.
+8. Napisz „zrobione” albo wklej, co widzisz w kolumnie ceny roczna.
+
+---
+
+# Kroki właściciela — partia 4 napraw (programista B, 20.10.2026)
+
+Jedno zadanie naraz; odpowiedz krótko (litera opcji albo „zrobione”).
+
+## K-P4-1. Decyzja o Androidzie po 8 tygodniach: metryka, próg, data (M1-072)
+
+W `docs/wzrost.md`, sekcja 5, są trzy opcje metryki i pola do wpisania. Model płatności zostaje stały (żadna opcja go nie dotyka).
+
+1. Wybierz metrykę: **A** pobrania miesięcznie z App Store Connect (prosta, ale mówi o sile wersji iOS, nie o Androidzie); **B** odsetek kupujących po 14 dniach próby (bliżej przychodu, ale przy małej liczbie pobrań próba będzie za mała); **C** zgłoszenia użytkowników o Androidzie (bezpośrednio o Androidzie, ale zgłasza ich niewielu). Rekomendacja: A jako główna, C jako uzupełnienie.
+2. Podaj próg dla wybranej metryki (liczbę). W dokumencie jest tylko kandydat z 06.10.2026: „100 pobrań miesięcznie” — to był cel wzrostu, nie próg dla Androida. Nie wpisuję liczby za Ciebie.
+3. Podaj planowaną datę premiery (z niej wyliczam datę oceny: premiera + 56 dni).
+4. Odpowiedz np. „A, próg 100, premiera 15.11.2026”; agent wpisze to do docs/wzrost.md.
+
+## K-P4-2. Drugi przegląd tłumaczeń przed wydaniem w App Store (ryzyko R-010, M1-049)
+
+Treść krytyczna (zdanie medyczne, asekuracja, wskazówki techniki) ma w 34 językach tylko kontrolę automatyczną (docs/16, sekcja „Treść krytyczna”). Ryzyko R-010 w docs/40 blokuje wydanie w App Store (TestFlight nie). Wybierz drogę:
+
+1. **A — przegląd przez Gemini** (masz subskrypcję): przygotuję prompt z listą zdań i prośbą o ocenę poprawności i formy (vous/siz w fr i tr); wynik sprawdzi badacz. Szybko i bez kosztu, ale to nadal model, nie native speaker.
+2. **B — native speakerzy dla wybranych języków** (np. największe rynki): wolniej i z kosztem, ale to jedyna kontrola poza modelem.
+3. **C — wydanie 1.0 w mniejszej liczbie języków** (pozostałe po przeglądzie): najbezpieczniejsze, ale zmienia zakres wydania.
+Rekomendacja: A teraz (tanio, od razu), B dla języków z największą liczbą spodziewanych użytkowników. Napisz literę.
+
+## K-P4-3. Wynik bramki W0 (jeśli istnieje)
+
+Jeśli masz wynik bramki W0 (raport roli 02 u Ciebie), wklej go albo podaj miejsce; wpiszę go jako informację w `docs/monetyzacja.md` (nie zmienia modelu). Jeśli nie ma — napisz „brak”, zostaje oznaczenie [DO USTALENIA].
+
+## K-P4-4. Plan wydania 1.0 (docs/42): przeczytaj i zatwierdź
+
+1. Otwórz `docs/42-plan-wydania-1.0.md` (5 części, ok. 5 minut).
+2. Sprawdź punkt 4 „Zły build” i napisz, czy zgadzasz się z kolejnością kroków.
+3. Dwie rzeczy zostawiłem otwarte dla Ciebie: progi „stop” dla wydania stopniowego (ile zgłoszeń wstrzymuje etapowanie) oraz czy i jak informować użytkowników przy złym buildzie.
+
+## K-062. Wydanie v0.20.0-b1018 z plikiem Trening-sim.zip (przed scaleniem PR M2)
+Sesja koordynatora nie może tworzyć wydań na GitHubie (403). Bez tego pliku pierwsze E2E po scaleniu (test aktualizacji 33–34) padnie i zablokuje TestFlight.
+1. github.com/lkarwowski494/trening → Actions → przebieg E2E na tagu v0.20.0-b1018 (run 39409052958) → sekcja Artifacts → pobierz „trening-sim-app” (zip; w środku jest Trening-sim.zip — rozpakuj RAZ, żeby mieć plik Trening-sim.zip). Artefakt żyje 1 dzień — inaczej koordynator zbuduje go ponownie.
+2. Code → Releases → Draft a new release → Choose a tag: v0.20.0-b1018 → tytuł „0.20.0 (build 1018)” → przeciągnij Trening-sim.zip → zaznacz „Set as a pre-release” → Publish release.
