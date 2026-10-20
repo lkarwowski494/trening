@@ -99,7 +99,7 @@ Stan przełącznika płatności: `PAYWALL.ENABLED` = `false` (`lib/access.ts`) �
 | Plan | Rodzaj | Cena referencyjna (USD, plik `store/Trening.storekit`) |
 |---|---|---|
 | Miesięczny | subskrypcja odnawiana co miesiąc, pierwsze 14 dni bezpłatnie | 0.99 |
-| Roczny | subskrypcja odnawiana co rok, pierwsze 14 dni bezpłatnie | 4.99 |
+| Roczny | subskrypcja odnawiana co rok, pierwsze 14 dni bezpłatnie | 6.99 |
 | Dożywotni | zakup jednorazowy | 14.99 |
 
 Okres próbny w kodzie: 14 dni (`TRIAL_DAYS`, `lib/products.ts`); karencja offline dla zapamiętanego dostępu: 7 dni (`OFFLINE_GRACE_DAYS`).

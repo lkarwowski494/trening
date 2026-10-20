@@ -33,9 +33,9 @@ describe('M1-011: okres próbny 14 dni', () => {
     try { for (const plan of ['monthly', 'yearly'] as const) { const f = createFakeStore([]); await f.purchase(plan); const e = (await f.currentEntitlements())[0]; expect(e.trial).toBe(true); expect(e.expiresAt).toBe(now + 14 * DAY); } } finally { jest.useRealTimers(); }
   });
   test('ekran zakupu: wiersz ceny i etykieta przycisku mówią „14” (pl i en); bez słowa „miesiąc za darmo”', () => {
-    const p = { plan: 'yearly', productId: 'x', displayPrice: '$4.99', period: 'year', trial: true } as const;
-    expect(priceLine(p)).toBe('14 dni za darmo, potem $4.99/rok'); expect(t('Zacznij {days} dni za darmo', { days: 14 })).toBe('Zacznij 14 dni za darmo');
-    applyLang('en'); expect(priceLine(p)).toBe('14 days free, then $4.99/year'); expect(t('Zacznij {days} dni za darmo', { days: 14 })).toBe('Start 14 days free');
+    const p = { plan: 'yearly', productId: 'x', displayPrice: '$6.99', period: 'year', trial: true } as const;
+    expect(priceLine(p)).toBe('14 dni za darmo, potem $6.99/rok'); expect(t('Zacznij {days} dni za darmo', { days: 14 })).toBe('Zacznij 14 dni za darmo');
+    applyLang('en'); expect(priceLine(p)).toBe('14 days free, then $6.99/year'); expect(t('Zacznij {days} dni za darmo', { days: 14 })).toBe('Start 14 days free');
   });
   test('słowniki: każdy z 35 języków ma oba teksty z {days} i bez starych kluczy „miesiąc”', () => {
     for (const k of KEYS) expect(EN[k]).toMatch(/\{days\}/);
