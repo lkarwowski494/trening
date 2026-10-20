@@ -7,6 +7,8 @@ import { SECONDARY_SHARE, addSplitSets, splitTotals, emptySplit, splitText, type
 import { t, tIn, lbl, locale, LANGS } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
 import { loadCapWarning } from './loadcap';
+import { REPS, HEAVY_PCT } from './genconst';
+export { REPS, HEAVY_PCT };
 import { weekdayLabels } from '@/lib/calendar';
 
 /*
@@ -66,12 +68,8 @@ export const GENERAL_CARDIO_FROM = GENERAL_LIFT_MAX + 1;
 export const CARDIO_SESSIONS = 1;
 /** Najmniej ćwiczeń w sesji, gdy budżet serii jest mały — konwencja. */
 export const MIN_EXERCISES = 3;
-/** Zakresy powtórzeń [od, do]: ciężki bój główny (≈ ≥ HEAVY_PCT% 1RM), dodatkowe przy sile, masa na siłowni, masa w domu / bez obciążenia (R3, R4). */
-export const REPS: Readonly<Record<'heavy' | 'strength' | 'gym' | 'home', readonly [number, number]>> = { heavy: [4, 6], strength: [6, 10], gym: [8, 12], home: [12, 20] };
 /** Przerwy (s): bój główny przy sile, wielostawowe (i dodatkowe przy sile), jednostawowe i core (R6 — uproszczenie). */
 export const REST = { heavy: 180, multi: 120, iso: 90 } as const;
-/** ACSM 2026 tab. 6 (siła): „Intensity: ≥80% 1RM (dose-response)”. */
-export const HEAVY_PCT = 80;
 /** Wysiłek: zwykle RIR[0]–RIR[1] powtórzeń w zapasie; ACSM 2026: „near-failure” albo RIR_ACSM (2–3); „insufficient evidence to quantify exact RIR”. */
 export const RIR: readonly [number, number] = [0, 3];
 export const RIR_ACSM: readonly [number, number] = [2, 3];
