@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Notificação no fim do descanso",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "No fim do descanso, o telemóvel envia uma notificação, mesmo com o ecrã bloqueado. É preciso permissão de notificações — o iOS pede-a depois de «Continuar».",
  "Zmień w ustawieniach iOS": "Alterar nas Definições do iOS",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "O nome sob o ícone e o texto da permissão de Saúde só mudam de idioma depois de definires o idioma da app nas Definições do iOS."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "O nome sob o ícone e o texto da permissão de Saúde só mudam de idioma depois de definires o idioma da app nas Definições do iOS.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

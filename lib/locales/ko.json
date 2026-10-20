@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "휴식 종료 알림",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "휴식이 끝나면 화면이 잠겨 있어도 알림이 옵니다. 알림 권한이 필요합니다 — ‘계속’ 후에 iOS가 권한을 요청합니다.",
  "Zmień w ustawieniach iOS": "iOS 설정에서 변경",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "아이콘 아래 이름과 건강 권한 문구는 iOS 설정에서 앱 언어를 지정해야 언어가 바뀝니다."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "아이콘 아래 이름과 건강 권한 문구는 iOS 설정에서 앱 언어를 지정해야 언어가 바뀝니다.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

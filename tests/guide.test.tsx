@@ -147,7 +147,8 @@ describe('UI2-07 (audyt kontrolny 1): przewodnik cytuje to, co widać na ekranie
     const all = GUIDE.flatMap(g => g.steps()).join('\n');
     expect(all).not.toContain('Połącz z następnym w superset');
     expect(all).toContain('⇅ SS');
-    const fs2 = require('fs'); for (const f of ['app/template/[id].tsx', 'components/ActiveWorkout.tsx']) expect(fs2.readFileSync(f, 'utf8')).toContain('title="⇅ SS"');
+    const fs2 = require('fs'); for (const f of ['app/template/[id].tsx', 'components/ActiveWorkout.tsx']) expect(fs2.readFileSync(f, 'utf8')).toContain("title={ssBtn('link')}"); /* M1-037: tytuł przycisku z słownika (lib/state/groups.ssBtn) */
+    expect(require('@/lib/state/groups').ssBtn('link')).toBe('⇅ SS');
   });
 });
 
@@ -159,7 +160,7 @@ describe('ⓘ (14.10.2026, P2 A): instrukcje gestów zeszły z ekranów do Przew
     for (const x of ['numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę', 'numer serii, by zmienić typ (W, D, F) albo dodać notatkę', 'Dotknij etykiety serii, by zmienić typ', '„⇅ SS”', '„✂ SS”', '„≡ Kolejność”', 'w lewo']) expect([x, all.includes(x)]).toEqual([x, true]);
   });
   test('cytowane symbole istnieją w interfejsie: „✂ SS” (szablon i trening), „≡ Kolejność” (trening), podpowiedź „↑ spróbuj”', () => {
-    for (const f of ['app/template/[id].tsx', 'components/ActiveWorkout.tsx']) expect(read(f)).toContain('title="✂ SS"');
+    for (const f of ['app/template/[id].tsx', 'components/ActiveWorkout.tsx']) expect(read(f)).toContain("title={ssBtn('unlink')}");
     expect(read('components/ActiveWorkout.tsx')).toContain("tr('≡ Kolejność')"); expect(read('lib/i18n.en.ts')).toContain("'↑ spróbuj");
   });
   test('ekrany nie powtarzają instrukcji gestów (zostaje tylko ostrzeżenie o seriach bez wyniku w edycji sesji)', () => {

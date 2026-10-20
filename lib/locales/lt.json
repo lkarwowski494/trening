@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Pranešimas poilsio pabaigoje",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Poilsio pabaigoje telefonas atsiųs pranešimą — net ir užrakintu ekranu. Reikia pranešimų leidimo — iOS jo paprašys po „Tęsti“.",
  "Zmień w ustawieniach iOS": "Keisti iOS nustatymuose",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Pavadinimas po piktograma ir Sveikatos leidimo tekstas pakeičia kalbą tik tada, kai nustatai programėlės kalbą iOS nustatymuose."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Pavadinimas po piktograma ir Sveikatos leidimo tekstas pakeičia kalbą tik tada, kai nustatai programėlės kalbą iOS nustatymuose.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

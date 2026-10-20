@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Notifikation ved hvilens slutning",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Når hvilen er slut, sender telefonen en notifikation — også med låst skærm. Det kræver tilladelse til notifikationer — iOS spørger efter „Fortsæt“.",
  "Zmień w ustawieniach iOS": "Skift i iOS-indstillinger",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Navnet under ikonet og teksten i tilladelsen til Sundhed skifter først sprog, når du vælger appens sprog i iOS-indstillinger."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Navnet under ikonet og teksten i tilladelsen til Sundhed skifter først sprog, når du vælger appens sprog i iOS-indstillinger.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

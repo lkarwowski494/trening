@@ -63,7 +63,7 @@ export const {
 } = historyMod;
 export type { Progression } from './state/history';
 export const { cleanLevels, nextBandId, cycleBand, deleteBand } = bandsMod;
-export const { normalizeGroups, groupLabels, linkWithNext, unlink, moveItem, removeItem, blockRanges, moveBlockOf, moveInGroup } = groupsMod;
+export const { normalizeGroups, groupLabels, ssTag, ssBtn, linkWithNext, unlink, moveItem, removeItem, blockRanges, moveBlockOf, moveInGroup } = groupsMod;
 export type { Grouped } from './state/groups';
 export const { pausedTotal, isPaused, workoutDurSec, noClock, whenText, cleanPauses, pauseWorkout, resumeWorkout } = pauseMod;
 export const {

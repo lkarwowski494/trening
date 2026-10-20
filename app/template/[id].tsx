@@ -12,7 +12,7 @@ import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
 import { availability } from '@/lib/equipment';
 import { implLabel } from '@/lib/swap';
-import { visibleLocations, getState, useTick, exById, save, dupTemplate, templateFolders, setTemplateFolder, setTemplateArchived, TEMPLATE_NOTE_MAX, groupLabels, linkWithNext, unlink, removeItem, restFor, isBW, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplEditRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand, workCount, tplWorkSets, fmtSec , REPS_MAX , REST_MAX } from '@/lib/store';
+import { visibleLocations, getState, useTick, exById, save, dupTemplate, templateFolders, setTemplateFolder, setTemplateArchived, TEMPLATE_NOTE_MAX, groupLabels, ssTag, ssBtn, linkWithNext, unlink, removeItem, restFor, isBW, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplEditRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand, workCount, tplWorkSets, fmtSec , REPS_MAX , REST_MAX } from '@/lib/store';
 import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dropUnsavedNew } from '@/lib/draft';
 import { nowParts } from '@/lib/live';
 import { useTheme, F } from '@/lib/theme';
@@ -79,7 +79,7 @@ function TemplatePreview({ tpl, onEdit }: { tpl: Template; onEdit: () => void })
       {tpl.items.map(it => { const ex = exById(it.exerciseId); const rows = tplRows(it); const kinds = rows.map(r => r.kind); const nm = exName(ex);
         const foot = [it.repMin != null ? `${t('zakres')} ${reps(it.repMin, it.repMax)}` : '', `${t('przerwa')} ${fmtSec(it.restSec ?? restFor(ex))}`].filter(Boolean).join(' · ');
         return <View key={it.id} style={{ borderBottomWidth: 1, borderBottomColor: th.line, paddingVertical: 8 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 4 }}><Txt a11yLang={exNameLang(ex)} accessibilityRole="header" style={{ fontFamily: F.semibold, flex: 1 }}>{it.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[it.groupId]} · `}</Txt> : null}{nm}</Txt><TechniqueLink exercise={ex} name={nm} />{/* UX2-05 */}</View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 4 }}><Txt a11yLang={exNameLang(ex)} accessibilityRole="header" style={{ fontFamily: F.semibold, flex: 1 }}>{it.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`${ssTag(labels[it.groupId])} · `}</Txt> : null}{nm}</Txt><TechniqueLink exercise={ex} name={nm} />{/* UX2-05 */}</View>
           {rows.map((r, k) => { const lbl = kindLabel(kinds, k); const txt = tplRowText(ex, r, it); return <View key={r.id} accessibilityLanguage={lang()} /* A11N-01 */ accessible accessibilityLabel={`${t('Seria {n}', { n: lbl })}${r.kind !== 'normal' ? ` (${t(SET_KIND_LABEL[r.kind])})` : ''}: ${txt}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 28 }}><View style={{ width: 32 }}><SetBadge kind={r.kind} label={lbl} /></View><Txt style={{ fontSize: 15 }}>{txt}</Txt></View>; })}
           <Muted style={{ fontSize: 13, marginTop: 2 }}>{foot}</Muted>
           {it.alternates?.length ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{`${t('Zamienniki')}: ${it.alternates.map(a => `📍 ${locationLabel(a.locationId)}: ${exName(exById(a.exerciseId))}${a.impl ? ` — ${implLabel(a.impl)}` : ''}`).join(', ')}`}</Muted> : null}
@@ -124,7 +124,7 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
           <SwipeRow testID={`tpl-item-${i}`} /* E2E 08 */ label={t('Usuń ćwiczenie: {name}', { name: nm })} title={t('Usunąć z szablonu?')} message={nm} onDelete={() => { const j = tpl.items.indexOf(it); /* LIVE2-01: ta pozycja (obiekt), nie pierwsza z tym samym id */ if (j >= 0) removeItem(tpl.items, j, tpl); }}>{a11y => <Pressable accessibilityLanguage={lang()} {...a11y} accessibilityRole="button" accessibilityLabel={nm} accessibilityValue={{ text: tplSummary(it) }} accessibilityState={{ expanded: open === it.id }} onPress={() => setOpen(o => o === it.id ? null : it.id)}
             style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', minHeight: 48, gap: 8, opacity: pressed ? 0.6 : 1 })}>
             <View style={{ flex: 1 }}>
-              <Txt a11yLang={exNameLang(ex)} style={{ fontFamily: F.semibold }}>{it.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[it.groupId]} · `}</Txt> : null}{exName(ex)}</Txt>
+              <Txt a11yLang={exNameLang(ex)} style={{ fontFamily: F.semibold }}>{it.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`${ssTag(labels[it.groupId])} · `}</Txt> : null}{exName(ex)}</Txt>
               {open !== it.id ? <Muted style={{ fontSize: 13 }}>{tplSummary(it)}</Muted> : null}
             </View>
             <Muted style={{ fontSize: 16 }}>{open === it.id ? '▾' : '▸'}</Muted>
@@ -134,8 +134,8 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
             {it.alternates?.length ? <Alternates tpl={tpl} itemId={it.id} /> : null}
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: 4, marginBottom: 6 }}>
               <TechniqueLink exercise={ex} name={nm} />{/* UX2-05 (audyt kontrolny 1): technika z edytora — szkic szablonu zostaje (ekran ćwiczenia na wierzchu) */}
-              {next && (!it.groupId || next.groupId !== it.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={t('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(tpl.items, i, tpl)} /> : null}
-              {it.groupId ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={t('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(tpl.items, i, tpl)} /> : null}
+              {next && (!it.groupId || next.groupId !== it.groupId) ? <Btn title={ssBtn('link')} small kind="ghost" accessibilityLabel={t('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(tpl.items, i, tpl)} /> : null}
+              {it.groupId ? <Btn title={ssBtn('unlink')} small kind="ghost" accessibilityLabel={t('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(tpl.items, i, tpl)} /> : null}
             </View>
           </> : null}
         </View>); })}

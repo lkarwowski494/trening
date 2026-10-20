@@ -30,6 +30,7 @@ const entries = (l: Lang) => Object.entries(dictOf(l));
 /** We wszystkich językach: symbole/wzory oraz angielskie nazwy z siłowni, których polski tekst
  * źródłowy używa bez tłumaczenia (te same w innych językach — tak jak nazwy ćwiczeń z biblioteki po angielsku, lib/i18n.ts exName). */
 const SAME_ANY = new Set([
+  'SS {g}' /* skróty supersetu i rekordu przez słownik (M1-037): ten sam zapis w każdym języku, do przeglądu tłumacza */, 'SS', 'PR',
   'Plan' /* nazwa zakładki (11.10.2026, dawniej Kalendarz): to samo słowo w en, de, nl, sv, da, nb, es, fr, ro, hr, tr */,
   'Plan: {name}' /* układ B (09.10.2026): „plan” to to samo słowo w wielu językach (en, de, nl, sv, da, nb, es, ro, hr, tr) */,
   /* marek i modeli sprzętu już nie ma (SEC2-01, decyzja 09.10.2026 (3) A — nazwy ogólne, tłumaczone) */

@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Paziņojums atpūtas beigās",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Atpūtas beigās tālrunis nosūtīs paziņojumu — arī ar bloķētu ekrānu. Vajadzīga paziņojumu atļauja — iOS to prasīs pēc “Turpināt”.",
  "Zmień w ustawieniach iOS": "Mainīt iOS iestatījumos",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Nosaukums zem ikonas un Veselības atļaujas teksts maina valodu tikai pēc tam, kad iestatīsi lietotnes valodu iOS iestatījumos."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Nosaukums zem ikonas un Veselības atļaujas teksts maina valodu tikai pēc tam, kad iestatīsi lietotnes valodu iOS iestatījumos.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

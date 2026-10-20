@@ -4,6 +4,7 @@
  */
 import { uid, type Base } from '../seed';
 import { save } from './core';
+import { t } from '../i18n';
 
 /* ---------- supersety (0.4) ---------- */
 export type Grouped = { groupId: string | null };
@@ -30,6 +31,10 @@ export function groupLabels(list: Grouped[]): Record<string, string> {
   });
   return out;
 }
+/** Etykieta grupy do wyświetlenia („SS A”) — przez słownik, żeby skrót dało się przetłumaczyć (M1-037). */
+export const ssTag = (g: string) => t('SS {g}', { g });
+/** Tytuł przycisku łączenia/rozdzielania supersetu („⇅ SS”, „✂ SS”) — skrót przez słownik (M1-037). */
+export const ssBtn = (kind: 'link' | 'unlink') => `${kind === 'link' ? '⇅' : '✂'} ${t('SS')}`;
 /** Łączy ćwiczenie i z następnym w superset; gdy oba są w różnych grupach — scala je w jedną. */
 export function linkWithNext(list: Grouped[], i: number, touched?: Base | null) {
   const a = list[i], b = list[i + 1]; if (!a || !b) return;

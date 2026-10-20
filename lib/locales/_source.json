@@ -4183,6 +4183,10 @@
   "en": "Balance dome / balance board"
  },
  {
+  "pl": "PR",
+  "en": "PR"
+ },
+ {
   "pl": "Progresja",
   "en": "Progression"
  },
@@ -4840,6 +4844,14 @@
  {
   "pl": "Sprzęt",
   "en": "Equipment"
+ },
+ {
+  "pl": "SS",
+  "en": "SS"
+ },
+ {
+  "pl": "SS {g}",
+  "en": "SS {g}"
  },
  {
   "pl": "stabilizacja",

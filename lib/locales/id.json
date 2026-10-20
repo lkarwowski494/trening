@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Notifikasi di akhir istirahat",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Di akhir istirahat, ponsel mengirim notifikasi — juga saat layar terkunci. Ini memerlukan izin notifikasi — iOS akan memintanya setelah “Lanjut”.",
  "Zmień w ustawieniach iOS": "Ubah di Pengaturan iOS",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Nama di bawah ikon dan teks izin Kesehatan baru berganti bahasa setelah kamu mengatur bahasa aplikasi di Pengaturan iOS."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Nama di bawah ikon dan teks izin Kesehatan baru berganti bahasa setelah kamu mengatur bahasa aplikasi di Pengaturan iOS.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

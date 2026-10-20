@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Ειδοποίηση στο τέλος του διαλείμματος",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Στο τέλος του διαλείμματος το τηλέφωνο στέλνει γνωστοποίηση — ακόμη και με κλειδωμένη οθόνη. Χρειάζεται άδεια γνωστοποιήσεων — το iOS θα τη ζητήσει μετά το «Συνέχεια».",
  "Zmień w ustawieniach iOS": "Αλλαγή στις Ρυθμίσεις iOS",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Το όνομα κάτω από το εικονίδιο και το κείμενο της άδειας Υγείας αλλάζουν γλώσσα μόνο αφού ορίσεις τη γλώσσα της εφαρμογής στις Ρυθμίσεις iOS."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Το όνομα κάτω από το εικονίδιο και το κείμενο της άδειας Υγείας αλλάζουν γλώσσα μόνο αφού ορίσεις τη γλώσσα της εφαρμογής στις Ρυθμίσεις iOS.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

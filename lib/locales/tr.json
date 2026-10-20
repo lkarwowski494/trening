@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Dinlenme bitişinde bildirim",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Dinlenme bittiğinde telefon, ekran kilitliyken bile bir bildirim gönderir. Bunun için bildirim izni gerekir — iOS bunu “Devam” sonrasında ister.",
  "Zmień w ustawieniach iOS": "iOS Ayarlar’da değiştir",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Simgenin altındaki ad ve Sağlık izni metni, uygulama dilini iOS Ayarlar’da seçtikten sonra dil değiştirir."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Simgenin altındaki ad ve Sağlık izni metni, uygulama dilini iOS Ayarlar’da seçtikten sonra dil değiştirir.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

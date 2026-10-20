@@ -1,4 +1,4 @@
-import { exById, focusSet, restAfter, isPaused, groupLabels } from '../store';
+import { exById, focusSet, restAfter, isPaused, groupLabels, ssTag } from '../store';
 import { t, lang, exName } from '../i18n';
 import { counterLabel, nowParts, restCue } from '../live';
 import { hasTime, type Workout } from '../seed';
@@ -23,7 +23,7 @@ export function watchNow(w: Workout, pos: { ei: number; si: number }): WatchNow 
   const big = nowParts(ex, set); const g = e.groupId ? groupLabels(w.exercises)[e.groupId] : null; const m = ex.metric ?? 'weight_reps';
   return {
     setId: set.id, blockId: e.id, title: clip(exName(ex), WATCH.TITLE_MAX), counter: clip(counterLabel(e, pos.si), WATCH.COUNTER_MAX),
-    load: clip(`${big.num}${big.unit ? ' ' + big.unit : ''}${big.tail}`, WATCH.LOAD_MAX), group: g ? `SS ${g}` : null,
+    load: clip(`${big.num}${big.unit ? ' ' + big.unit : ''}${big.tail}`, WATCH.LOAD_MAX), group: g ? ssTag(g) : null,
     timed: hasTime(m), targetSec: hasTime(m) && Number(set.durationSec) > 0 ? Math.round(Number(set.durationSec)) : null,
   };
 }

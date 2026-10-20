@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty, Missing } from '@/components/ui';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { visibleLocations, effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
+import { visibleLocations, effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, ssTag, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, draftSetLocation, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
@@ -116,7 +116,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
   return (
     <View style={[s.ex, { borderBottomColor: th.line }]}>
       {/* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (components/SwipeRow.tsx), bez przycisków */}
-      <SwipeRow label={t('Usuń ćwiczenie: {name}', { name: nm })} title={t('Usunąć z treningu?')} message={nm} onDelete={() => draftRemoveExercise(d.key, e.id)}>{a11y => <View accessibilityLanguage={lang()} {...a11y} accessible accessibilityRole="header" accessibilityLabel={nm}><Txt style={{ fontFamily: F.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId && labels[e.groupId] ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[e.groupId]} · `}</Txt> : null}{nm}{ex?.archived ? <Txt style={{ color: th.muted, fontSize: 13 }}>{' (' + t('usunięte') + ')'}</Txt> : null}</Txt></View>}</SwipeRow>
+      <SwipeRow label={t('Usuń ćwiczenie: {name}', { name: nm })} title={t('Usunąć z treningu?')} message={nm} onDelete={() => draftRemoveExercise(d.key, e.id)}>{a11y => <View accessibilityLanguage={lang()} {...a11y} accessible accessibilityRole="header" accessibilityLabel={nm}><Txt style={{ fontFamily: F.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId && labels[e.groupId] ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`${ssTag(labels[e.groupId])} · `}</Txt> : null}{nm}{ex?.archived ? <Txt style={{ color: th.muted, fontSize: 13 }}>{' (' + t('usunięte') + ')'}</Txt> : null}</Txt></View>}</SwipeRow>
       {off != null ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{t('ciężaru {w} nie ma tutaj — wpisz ciężar', { w: fmtW(off) })}</Muted> : null}
       <View style={s.row} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
         {heads.map((h, k) => <Muted key={k} numberOfLines={1} maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.head, k === 0 ? { width: 32, textAlign: 'left' } : { flex: 1 }]}>{h}</Muted>)}

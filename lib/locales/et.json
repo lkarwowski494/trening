@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Teavitus pausi lõpus",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Pausi lõpus saadab telefon teavituse — ka lukustatud ekraani korral. Selleks on vaja teavituste luba — iOS küsib seda pärast „Jätka“.",
  "Zmień w ustawieniach iOS": "Muuda iOS-i seadetes",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Ikooni all olev nimi ja Tervise loa tekst vahetavad keelt alles siis, kui määrad rakenduse keele iOS-i seadetes."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Ikooni all olev nimi ja Tervise loa tekst vahetavad keelt alles siis, kui määrad rakenduse keele iOS-i seadetes.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

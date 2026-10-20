@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Értesítés a pihenő végén",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "A pihenő végén a telefon értesítést küld — zárolt képernyő mellett is. Ehhez értesítési engedély kell — az iOS a „Tovább” után kéri.",
  "Zmień w ustawieniach iOS": "Módosítás az iOS Beállításokban",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Az ikon alatti név és az Egészség engedély szövege csak akkor vált nyelvet, ha az alkalmazás nyelvét az iOS Beállításokban állítod be."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Az ikon alatti név és az Egészség engedély szövege csak akkor vált nyelvet, ha az alkalmazás nyelvét az iOS Beállításokban állítod be.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

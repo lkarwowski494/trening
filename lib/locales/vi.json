@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Thông báo khi hết thời gian nghỉ",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Khi hết thời gian nghỉ, điện thoại sẽ gửi thông báo — kể cả khi màn hình đang khóa. Cần có quyền thông báo — iOS sẽ hỏi sau khi bạn bấm “Tiếp”.",
  "Zmień w ustawieniach iOS": "Đổi trong Cài đặt iOS",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Tên dưới biểu tượng và nội dung quyền Sức khỏe chỉ đổi ngôn ngữ sau khi bạn đặt ngôn ngữ ứng dụng trong Cài đặt iOS."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Tên dưới biểu tượng và nội dung quyền Sức khỏe chỉ đổi ngôn ngữ sau khi bạn đặt ngôn ngữ ứng dụng trong Cài đặt iOS.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "休息結束通知",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "休息結束時，即使螢幕鎖定，手機也會發出通知。需要允許通知 — 按「繼續」後 iOS 會詢問。",
  "Zmień w ustawieniach iOS": "在 iOS「設定」中更改",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "圖示下方的名稱與「健康」權限說明，要在 iOS「設定」中設定 App 語言後才會切換語言。"
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "圖示下方的名稱與「健康」權限說明，要在 iOS「設定」中設定 App 語言後才會切換語言。",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

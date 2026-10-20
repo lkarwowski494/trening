@@ -219,5 +219,7 @@
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Al empezar el descanso, el teléfono anuncia el siguiente ejercicio, el peso y las repeticiones. Con audífonos: solo con audífonos conectados; También por el altavoz: también sin audífonos, por el altavoz del teléfono (incluso en modo silencio); Desactivados: sin avisos.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Respaldo automático después de cada entrenamiento: Archivos → En mi iPhone → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "No se pudo guardar el respaldo después del entrenamiento",
- "Ostatnia udana kopia: {date}": "Último respaldo correcto: {date}"
+ "Ostatnia udana kopia: {date}": "Último respaldo correcto: {date}",
+ "Zmień w ustawieniach iOS": "Cambiar en Configuración de iOS",
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "El nombre bajo el icono y el texto del permiso de Salud solo cambian de idioma cuando eliges el idioma de la app en Configuración de iOS."
 }

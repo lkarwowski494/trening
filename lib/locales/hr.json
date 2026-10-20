@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Obavijest na kraju odmora",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Na kraju odmora telefon šalje obavijest — i kad je zaslon zaključan. Potrebno je dopuštenje za obavijesti — iOS će ga zatražiti nakon „Nastavi“.",
  "Zmień w ustawieniach iOS": "Promijeni u iOS Postavkama",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Naziv ispod ikone i tekst dopuštenja za Zdravlje mijenjaju jezik tek nakon što postaviš jezik aplikacije u iOS Postavkama."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Naziv ispod ikone i tekst dopuštenja za Zdravlje mijenjaju jezik tek nakon što postaviš jezik aplikacije u iOS Postavkama.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }

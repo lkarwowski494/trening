@@ -1699,5 +1699,8 @@
  "Powiadomienie na koniec przerwy": "Mitteilung am Ende der Pause",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Am Ende der Pause sendet das iPhone eine Mitteilung — auch bei gesperrtem Bildschirm. Dafür ist die Mitteilungsberechtigung nötig — iOS fragt danach, sobald du auf „Weiter“ tippst.",
  "Zmień w ustawieniach iOS": "In den iOS-Einstellungen ändern",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Der Name unter dem Symbol und der Text der Health-Berechtigung wechseln die Sprache erst, wenn du die App-Sprache in den iOS-Einstellungen festlegst."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Der Name unter dem Symbol und der Text der Health-Berechtigung wechseln die Sprache erst, wenn du die App-Sprache in den iOS-Einstellungen festlegst.",
+ "SS {g}": "SS {g}",
+ "SS": "SS",
+ "PR": "PR"
 }
