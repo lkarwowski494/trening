@@ -10,6 +10,8 @@
 # `tryb_scisly` = true: pełny katalog BEZ ponowień (przebiegi wydania do App Store). Podsumowanie przebiegu wypisuje scenariusze zielone dopiero w ponowieniu (niestabilność
 # widoczna, nie ukryta) i zapisuje czasy per scenariusz w artefakcie e2e-wyniki (scripts/ci/e2e-wyniki.mjs; pilnuje tests/e2e-pakiet.test.ts).
 name: E2E iOS (symulator)
+# Tytuł przebiegu czyta bramka TestFlight (scripts/ci/bramka-e2e.sh, audyt M1-018): „E2E iOS · <pakiet>” bez dopisków = przebieg pełnowartościowy na tym commicie.
+run-name: ${{ format('E2E iOS · {0}{1}{2}', (inputs.tryb_scisly == true && 'ścisły') || inputs.pakiet || 'podstawowy', inputs.tylko_scenariusze != '' && ' · tylko wybrane' || '', inputs.aplikacja_z_przebiegu != '' && ' · aplikacja z innego przebiegu' || '') }}
 on:
   # decyzja właściciela 06.10.2026 (wariant A): samoczynnie po wypchnięciu na main i gałęzie integracyjne (bez zmian tylko w dokumentacji)
   push:

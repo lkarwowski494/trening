@@ -1,7 +1,6 @@
 {
   "cli": {
-    "version": ">= 16.0.0",
-    "appVersionSource": "remote"
+    "version": ">= 16.0.0"
   },
   "build": {
     "base": {
@@ -13,15 +12,11 @@
     "adhoc": {
       "extends": "base",
       "distribution": "internal",
-      "ios": {
-        "autoIncrement": true
-      }
+      "ios": {}
     },
     "production": {
       "extends": "base",
-      "ios": {
-        "autoIncrement": true
-      }
+      "ios": {}
     }
   },
   "submit": {

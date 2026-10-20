@@ -22,7 +22,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   Kierunek (do decyzji, gdy przyjdzie czas): aplikacja dalej darmowa do pobrania, wersja Pro jako zakup w aplikacji;
   kto pobrał przed wersją płatną, ma Pro bez opłaty — StoreKit 2 `AppTransaction.originalAppVersion` (Apple podaje numer
   **buildu** z pierwszego pobrania, nie wersję marketingową). Wymóg już dziś: numery buildów tylko rosną i są zapisywane
-  (EAS `appVersionSource: remote` + `autoIncrement`). Płatna wersja = status tradera (DSA: adres i telefon publicznie) i PIT.
+  (od 08.10.2026 jedyne źródło to `BUILD_BASE` + numer przebiegu `testflight.yml`; liczniki EAS usunięte z `eas.json`, audyt M1-021). Płatna wersja = status tradera (DSA: adres i telefon publicznie) i PIT.
 - **Okres próbny dla nowych** (właściciel 05.10.2026: „Nowi użytkownicy powinni dostać 30 dni za darmo. Może nawet 60”;
   wcześniejsi — darmowo do końca, „chyba że zrezygnuje z darmowej subskrypcji, a później zdecyduje się wrócić”). Ustalenia:
   - Aplikacja płatna przy pobraniu nie może mieć okresu próbnego w App Store — okres próbny wymaga darmowego pobrania i zakupu w aplikacji.
@@ -248,7 +248,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
    - rekord aplikacji (bundle `pl.lukasz.trening`), nazwa, kategoria (Health & Fitness), ocena wieku;
    - App Privacy: „Data Not Collected”, do potwierdzenia;
    - klucz API (rola **Admin** — przegląd CI 06.10: podpis w chmurze przy eksporcie wymaga uprawnień do certyfikatów dystrybucyjnych) → sekrety repo.
-3. **Profil „App Store”:** certyfikat dystrybucyjny i profil App Store w EAS credentials. Dziś jest tylko ad hoc.
+3. **Profil „App Store”:** certyfikat dystrybucyjny i profil App Store — od 08.10.2026 podpis w chmurze Apple przy eksporcie (klucz API, `testflight.yml`), bez EAS credentials.
 4. **`ITSAppUsesNonExemptEncryption: false`** w `app.json` (aplikacja nie używa własnego szyfrowania). Do potwierdzenia przy audycie.
 5. **Zrzuty ekranu** (6,9″ i 6,5″) z symulatora — Maestro `takeScreenshot` albo `scripts/screens`. Opis PL/EN.
 6. **Strona polityki prywatności i wsparcia** na GitHub Pages.
@@ -504,3 +504,11 @@ Training is not medical advice. For pain, injuries or illness, consult a special
 7. **Twierdzenie „bez śledzenia”** — zgodne z `site/privacy.html` (brak wywołań sieciowych); zweryfikować przed wysyłką, jeśli dojdzie StoreKit.
 8. **Słowo „offline” w podtytule EN A i „bands” w słowach kluczowych** — czy zostają jako wyróżniki.
 9. Poza tym zadaniem: zrzuty ekranu, kategoria, rating wiekowy, adres URL wsparcia.
+
+## TestFlight po audycie M1 (20.10.2026): bramka E2E, środowisko „release”, manifest prywatności, mapy źródeł
+- **Bramka E2E (M1-018).** `testflight.yml` ma pierwsze zadanie „bramka” (`scripts/ci/bramka-e2e.sh`): wysyłka rusza dopiero, gdy na TYM SAMYM commicie istnieje zielony przebieg `e2e-ios.yml` z pakietem podstawowym (albo pełnym / ścisłym). Przebieg rozpoznaje po tytule (`run-name` w `e2e-ios.yml`: „E2E iOS · podstawowy”, bez dopisków „tylko wybrane” i „aplikacja z innego przebiegu”). Trwający przebieg: bramka czeka (do ok. 110 min); czerwony albo brak: błąd z instrukcją. Push samej dokumentacji (`docs/**`, `*.md`) nie uruchamia ani E2E, ani TestFlight.
+- **Jak dalej wydawać.** Normalnie: push na `main` uruchamia E2E (pakiet podstawowy) i TestFlight równocześnie; TestFlight czeka na wynik. Ręcznie: najpierw `e2e-ios.yml` (Run workflow, pakiet podstawowy) na gałęzi, potem `testflight.yml`. **Ścieżka awaryjna** (E2E padło z winy maszyny, nie kodu): `testflight.yml` → wejścia `pomin_bramke_e2e` = true i `powod` (obowiązkowy; trafia do podsumowania przebiegu). **Przebieg dowodowy** (zmiana budowania, podpisu, wysyłki — model po L-001): wejście `bez_wysylki` = true wykonuje pełną budowę, podpis i wszystkie strażniki, ale bez wysyłki do App Store Connect i bez tagu.
+- **Środowisko „release” (M1-019).** Zadanie `build` deklaruje `environment: release`. GitHub tworzy je samo przy pierwszym użyciu (bez reguł i sekretów — dokumentacja GitHub, „Managing environments”: „Running a workflow that references an environment that does not exist will create an environment with the referenced name”). Dopóki właściciel nie doda wymaganego zatwierdzenia, nic się nie zmienia; po dodaniu każdy przebieg `build` czeka na zatwierdzenie (po przejściu bramki E2E). Ustawienia GitHub — tylko właściciel (kroki: osobny plik).
+- **Manifest prywatności (M1-014).** Kategorie: FileTimestamp, UserDefaults, SystemBootTime (rdzeń RN) i DiskSpace (ExpoFileSystem jest prekompilowany, jego manifest nie wchodzi do zbioru). Po `pod install` skrypt `ensure-privacy-manifest.mjs --fix` dopisuje brakującą kategorię (powody E174.1 i 85F4.1 jak w manifeście modułu), a brak którejkolwiek jest błędem; po eksporcie `--check` sprawdza manifest w gotowej aplikacji z `.ipa`.
+- **Mapy źródeł JS (M1-023).** Archiwum dostaje `SOURCEMAP_FILE`; plik jest sprawdzany (niepusty), wysyłany jako artefakt `mapy-zrodel-b<numer>` (90 dni) i dołączany do GitHub Release przy tagu `v<wersja>-b<numer>` (trwale). Symbolikacja stosu: `npx metro-symbolicate main.jsbundle.map < stos.txt`.
+- **Klucz API (M1-020).** Zapis klucza `AuthKey.p8` na dysk maszyny następuje dopiero po archiwum i podpisie ad hoc, tuż przed eksportem (archiwum go nie potrzebuje).

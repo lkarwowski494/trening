@@ -15,7 +15,7 @@ describe('workflowy na publicznym repozytorium', () => {
       expect(y).toMatch(/on:\n\s+workflow_dispatch:/);
     }
     expect(wf('ios-unsigned.yml')).not.toMatch(/contents: write|^\s+push:/m);
-    const tf = wf('testflight.yml'); expect(tf).toMatch(/\non:\n  workflow_dispatch:\n  push:\n    branches: \[main\]\n/); /* dokładne wcięcie (12.10: `push:` pod workflow_dispatch przeszło luźny test) */ expect(tf.match(/contents: write/g)).toHaveLength(1);
+    const tf = wf('testflight.yml'); expect(tf).toMatch(/\non:\n  workflow_dispatch:\n    inputs:\n[\s\S]*?\n  push:\n    branches: \[main\]\n    paths-ignore: \['docs\/\*\*', '\*\*\/\*\.md'\]\n/); /* 20.10.2026 (M1-018): wejścia dispatch i paths-ignore */ /* dokładne wcięcie (12.10: `push:` pod workflow_dispatch przeszło luźny test) */ expect(tf.match(/contents: write/g)).toHaveLength(1);
     const tagJob = tf.slice(tf.indexOf('\n  tag:\n')); expect(tagJob.length).toBeGreaterThan(10); expect(tagJob).toMatch(/needs: build/);
     expect(tagJob).toMatch(/permissions:\n\s+contents: write/); expect(tagJob).not.toMatch(/secrets\./);
     expect(tf.slice(0, tf.indexOf('\n  tag:\n'))).not.toMatch(/contents: write/);
@@ -64,8 +64,8 @@ describe('workflowy na publicznym repozytorium', () => {
     expect(y.indexOf('AuthKey.p8"\n')).toBeGreaterThan(y.indexOf('pod install'));
     expect(y.indexOf('Sekrety obecne')).toBeLessThan(y.indexOf('npm ci')); /* brak sekretu kończy przebieg od razu */
     /* audyt SEC-02: xcodebuild wypisuje pełną linię poleceń (z identyfikatorami) — przed artefaktem logi są czyszczone; filtr sprawdzony na przykładzie */
-    const mask = y.indexOf('Identyfikatory klucza wycięte z logów przed artefaktem'); expect(mask).toBeGreaterThan(y.indexOf('Wysyłka do App Store Connect')); expect(mask).toBeLessThan(y.indexOf('actions/upload-artifact@v4'));
-    const step = y.slice(mask, y.indexOf('actions/upload-artifact@v4')); expect(step).toMatch(/if: failure\(\)/); expect(step).toContain('ios/xcodebuild.log export.log');
+    const mask = y.indexOf('Identyfikatory klucza wycięte z logów przed artefaktem'); expect(mask).toBeGreaterThan(y.indexOf('Wysyłka do App Store Connect')); expect(mask).toBeLessThan(y.indexOf('actions/upload-artifact@v4', mask)); /* 20.10.2026 (M1-023): wcześniej jest też artefakt map źródeł JS */
+    const step = y.slice(mask, y.indexOf('actions/upload-artifact@v4', mask)); expect(step).toMatch(/if: failure\(\)/); expect(step).toContain('ios/xcodebuild.log export.log');
     const exprs = [...step.matchAll(/-e "(s\/\$\{ASC_(?:KEY|ISSUER)_ID\}\/<[A-Z_]+>\/g)"/g)].map(m => m[1].replace('${ASC_KEY_ID}', 'ABC123DEFG').replace('${ASC_ISSUER_ID}', '69a6de70-0000-47e3-e053-5b8c7c11a4d1')); expect(exprs.length).toBe(2);
     const line = 'Command line invocation: xcodebuild -authenticationKeyID ABC123DEFG -authenticationKeyIssuerID 69a6de70-0000-47e3-e053-5b8c7c11a4d1\n';
     expect(execFileSync('sed', exprs.flatMap(e => ['-e', e]), { input: line }).toString()).toBe('Command line invocation: xcodebuild -authenticationKeyID <KEY_ID> -authenticationKeyIssuerID <ISSUER_ID>\n');
