@@ -13,6 +13,7 @@ import { normalizeGroups } from './groups';
 import { rowsFor } from './templates';
 import { purgeOrphans } from './exercises';
 import { prefillSets } from './start';
+import { REST_MAX } from './util';
 import type { AdaptChoice } from '../adapt';
 
 /* ---------- E2: zamiana ćwiczenia w treningu w toku (docs/14 pkt 3) ---------- */
@@ -64,7 +65,7 @@ function swapBlockIn(a: Workout, blockId: string, toExId: string, opts: { restSe
       blk.implPinned = true;
     }
   } /* W3 P5a: przyrząd z zamiennika per miejsce */
-  if (typeof opts.restSec === 'number' && opts.restSec >= 0) blk.restSec = Math.min(1800, Math.round(opts.restSec));
+  if (typeof opts.restSec === 'number' && opts.restSec >= 0) blk.restSec = Math.min(REST_MAX, Math.round(opts.restSec));
   blk.sets = prefillSets(B, left.map(x => x.kind), prevOfActiveBlock(a, blk), a.locationId, blk.impl, it?.targetSec ?? '', '', 0, !!blk.implPinned);
   return { goneSetIds: left.map(x => x.id), blockId: blk.id };
 }

@@ -16,7 +16,11 @@ while :; do
     printf '%s' "$title" | grep -Eq "$OK_TITLE" || continue
     if [ "$status" = completed ]; then [ "$concl" = success ] && good="$id" || failed="$id"; else running="$id"; fi
   done <<< "$rows"
-  if [ -n "$good" ]; then echo "Bramka E2E: OK — zielony przebieg e2e-ios.yml #$good na commicie ${SHA:0:7}"; exit 0; fi
+  if [ -n "$good" ]; then
+    echo "Bramka E2E: OK — zielony przebieg e2e-ios.yml #$good na commicie ${SHA:0:7}"
+    [ -n "${GITHUB_OUTPUT:-}" ] && echo "run=$good" >> "$GITHUB_OUTPUT"  # numer przebiegu: z jego artefaktu trening-sim-app zadanie „tag” robi plik wydania (M1-062)
+    exit 0
+  fi
   if [ -n "$running" ]; then
     [ "$n" -ge "$MAX" ] && { echo "::error::Bramka E2E: limit czekania ($MAX × ${POLL}s) — przebieg e2e-ios.yml #$running nadal trwa. Poczekaj na wynik i uruchom TestFlight ponownie."; exit 1; }
     echo "Bramka E2E: czekam na przebieg e2e-ios.yml #$running (sprawdzenie $n)"; sleep "$POLL"; continue

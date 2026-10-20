@@ -171,11 +171,12 @@ jobs:
           [ -n "$LIST" ] || { echo "Brak symulatorów iOS $SDK — wybór z całej listy"; LIST=$(xcrun simctl list devices available); }
           DEV=""
           for pat in ${WANT:+"$WANT"} "iPhone 17 \(" "iPhone 16 \(" "iPhone"; do  # WANT: wejście „urzadzenie” (nocny przebieg — mały ekran)
-            DEV=$(printf '%s\n' "$LIST" | grep -m1 -E "$pat" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/' || true)  # || true: krok działa z -eo pipefail
+            DEV=$(printf '%s\n' "$LIST" | node scripts/ci/sim-wybor.mjs "$pat" || true)  # najwęższy z pasujących (M1-058); || true: krok działa z -eo pipefail
             [ -n "$DEV" ] && break
           done
           [ -n "$DEV" ] || { echo "::error::Brak dostępnego symulatora iPhone'a"; xcrun simctl list devices available; exit 1; }
           echo "Symulator: $(printf '%s\n' "$LIST" | grep -m1 "$DEV" | sed -E 's/^ +//') (SDK symulatora $SDK)"
+          echo "Ekran: $(printf '%s\n' "$LIST" | node scripts/ci/sim-wybor.mjs "$pat" --opis)"  # szerokość ekranu wybranego symulatora w logu (M1-058)
           echo "SIM=$DEV" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEV" || true
           xcrun simctl bootstatus "$DEV" -b
@@ -230,32 +231,32 @@ jobs:
           fi
           exit $rc
       - name: Aktualizacja — wybór poprzedniej wersji
-        # 13.10.2026 (docs/31, persona C): poprzednia wersja aplikacji z artefaktu trening-sim-app wskazanego wejściem albo z ostatniego zielonego przebiegu na main.
-        # Artefakty żyją 1 dzień (ADR-031) — gdy go nie ma, test aktualizacji jest pominięty z ostrzeżeniem (nie z błędem: brak starej aplikacji to nie błąd nowej).
+        # 20.10.2026 (M1-062, DEC-27; zmienia decyzję 06.10.2026 o artefaktach 1 dzień — dla TEGO pliku): poprzednia wersja = plik Trening-sim.zip przy tagu wydania
+        # (zadanie „tag” w testflight.yml; build symulatora bez podpisu i sekretów). Brak poprzedniej wersji = PORAŻKA z komunikatem (scripts/ci/poprzednia-wersja.sh),
+        # nie zielone pominięcie. Wejście poprzednia_wersja_z_przebiegu: numer przebiegu z artefaktem trening-sim-app (ręcznie) albo „brak” (świadome pominięcie,
+        # np. pierwsze wydanie — tylko ręczny przebieg).
         id: prev
         if: ${{ !cancelled() && steps.plan.outputs.update == 'true' && inputs.poprzednia_wersja_z_przebiegu != 'brak' }}  # update=true tylko w jednej części (wybranej przez e2e-shards.mjs)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WANT_RUN: ${{ inputs.poprzednia_wersja_z_przebiegu }}
         run: |
-          RUN="$WANT_RUN"
-          if [ -z "$RUN" ]; then
-            RUN=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow e2e-ios.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId' 2>/dev/null || true)
+          if [ -n "$WANT_RUN" ]; then
+            echo "run=$WANT_RUN" >> "$GITHUB_OUTPUT"; echo "Poprzednia wersja: z artefaktu trening-sim-app przebiegu $WANT_RUN (wskazanego ręcznie)"
+          else
+            bash scripts/ci/poprzednia-wersja.sh "$GITHUB_REPOSITORY" "$GITHUB_SHA" poprzednia-wersja
+            echo "wydanie=true" >> "$GITHUB_OUTPUT"
           fi
-          [ "$RUN" = "$GITHUB_RUN_ID" ] && RUN=""
-          echo "run=$RUN" >> "$GITHUB_OUTPUT"
-          [ -n "$RUN" ] || echo "::warning::Test aktualizacji pominięty: brak przebiegu z poprzednią wersją aplikacji"
       - uses: actions/download-artifact@v4
         id: prevapp
         if: ${{ !cancelled() && steps.prev.outputs.run != '' }}
-        continue-on-error: true
         with:
           name: trening-sim-app
           run-id: ${{ steps.prev.outputs.run }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: poprzednia-wersja
       - name: Aktualizacja (poprzednia wersja → dane przez UI → bieżąca wersja bez odinstalowania → sprawdzenie)
-        if: ${{ !cancelled() && steps.prev.outputs.run != '' && steps.prevapp.outcome == 'success' }}
+        if: ${{ !cancelled() && (steps.prev.outputs.run != '' || steps.prev.outputs.wydanie == 'true') }}
         env:
           MAESTRO_DRIVER_STARTUP_TIMEOUT: '480000'
           MAESTRO_CLI_NO_ANALYTICS: '1'
@@ -265,7 +266,7 @@ jobs:
           NEW=ios/build/Build/Products/Release-iphonesimulator/Trening.app
           mkdir -p poprzednia-wersja/app e2e-out/aktualizacja
           unzip -q poprzednia-wersja/Trening-sim.zip -d poprzednia-wersja/app
-          test -d poprzednia-wersja/app/Trening.app || { echo "::warning::Artefakt poprzedniej wersji bez Trening.app — test aktualizacji pominięty"; exit 0; }
+          test -d poprzednia-wersja/app/Trening.app || { echo "::error::Poprzednia wersja (Trening-sim.zip) bez Trening.app — test aktualizacji nie może się odbyć"; exit 1; }
           guard() { perl -e '$t=shift; $p=fork; if(!$p){setpgrp(0,0); exec @ARGV; exit 127} $SIG{ALRM}=sub{kill "TERM",-$p; sleep 5; kill "KILL",-$p; exit 124}; alarm $t; waitpid($p,0); exit($? & 127 ? 128 + ($? & 127) : $? >> 8)' "${MAESTRO_ALARM_UPD:-1500}" "$@"; }
           echo "Poprzednia wersja: $(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' poprzednia-wersja/app/Trening.app/Info.plist) (build $(/usr/libexec/PlistBuddy -c 'Print CFBundleVersion' poprzednia-wersja/app/Trening.app/Info.plist)); bieżąca: $(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$NEW/Info.plist")"
           # Para 33–34 jest jednym scenariuszem aktualizacji: ponowienie (raz, tryb zwykły) powtarza OBIE części od czystej instalacji poprzedniej wersji; tryb ścisły — bez ponowień
@@ -353,11 +354,12 @@ jobs:
           [ -n "$LIST" ] || { echo "Brak symulatorów iOS $SDK — wybór z całej listy"; LIST=$(xcrun simctl list devices available); }
           DEV=""
           for pat in ${WANT:+"$WANT"} "iPhone 17 \(" "iPhone 16 \(" "iPhone"; do  # WANT: wejście „urzadzenie” (nocny przebieg — mały ekran)
-            DEV=$(printf '%s\n' "$LIST" | grep -m1 -E "$pat" | sed -E 's/.*\(([0-9A-F-]{36})\).*/\1/' || true)  # || true: krok działa z -eo pipefail
+            DEV=$(printf '%s\n' "$LIST" | node scripts/ci/sim-wybor.mjs "$pat" || true)  # najwęższy z pasujących (M1-058); || true: krok działa z -eo pipefail
             [ -n "$DEV" ] && break
           done
           [ -n "$DEV" ] || { echo "::error::Brak dostępnego symulatora iPhone'a"; xcrun simctl list devices available; exit 1; }
           echo "Symulator: $(printf '%s\n' "$LIST" | grep -m1 "$DEV" | sed -E 's/^ +//') (SDK symulatora $SDK)"
+          echo "Ekran: $(printf '%s\n' "$LIST" | node scripts/ci/sim-wybor.mjs "$pat" --opis)"  # szerokość ekranu wybranego symulatora w logu (M1-058)
           echo "SIM=$DEV" >> "$GITHUB_ENV"
           xcrun simctl boot "$DEV" || true
           xcrun simctl bootstatus "$DEV" -b

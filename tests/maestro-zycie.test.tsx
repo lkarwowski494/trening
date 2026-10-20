@@ -59,7 +59,7 @@ describe('config.yaml i workflow', () => {
     const a = upd.indexOf('simctl uninstall'), b = upd.indexOf('33-aktualizacja-przygotuj.yaml'), c = upd.indexOf('simctl install "$SIM" "$NEW"'), d = upd.indexOf('34-aktualizacja-sprawdz.yaml');
     expect([a, b, c, d].every(x => x > 0) && a < b && b < c && c < d).toBe(true);
     expect(upd.slice(c, d)).not.toMatch(/uninstall/); /* bieżąca wersja instalowana na tej samej instalacji */
-    expect(y).toMatch(/--branch main --status success/); expect(y).not.toMatch(/pull_request|contents: write/);
+    expect(y).toContain('scripts/ci/poprzednia-wersja.sh'); /* 20.10.2026 (M1-062, DEC-27): poprzednia wersja z pliku wydania, nie z „ostatniego zielonego przebiegu na main” */ expect(y).not.toMatch(/--branch main --status success/); expect(y).not.toMatch(/pull_request|contents: write/);
   });
 });
 

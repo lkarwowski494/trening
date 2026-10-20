@@ -8,7 +8,7 @@
 import { base, equipFields, loadModeFor, uid, type Exercise, type Group, type MetricType, type SetKind, type State, type Workout, type WExercise, type WSet } from './seed';
 import { snapLb } from './units';
 import { exName } from './i18n';
-import { clampName, NAME_MAX, REPS_MAX } from './state/util';
+import { clampName, NAME_MAX, REPS_MAX, DURATION_MAX_SEC } from './state/util';
 import { writeLoad } from './state/sets';
 import { fromWallTs, localISODate, tzOffsetAt, wallTs, workoutDay } from './state/time';
 
@@ -17,7 +17,7 @@ export const IMPORT_MAX_CHARS = 25_000_000;
 export const IMPORT_MAX_ROWS = 400_000;
 export const IMPORT_MIN_YEAR = 1990;
 export const IMPORT_WEIGHT_MAX_KG = 2000;
-export const IMPORT_DURATION_MAX_S = 86_400;
+export const IMPORT_DURATION_MAX_S = DURATION_MAX_SEC;
 export const IMPORT_NOTE_MAX = 500;
 
 export type CsvFormat = 'formatA' | 'formatB';

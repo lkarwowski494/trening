@@ -8,7 +8,7 @@ import { uid, defaultModules, defaultSettings, blankTimer, SCHEMA_VERSION, LOCAL
     BODY_MASS_LOG_MAX } from '../seed';
 import { equipById, blankLoad, fillGym, GYM_FILL, fillOpts, OPT_FILL, fillEquip2, EQUIP_FILL2 } from '../equipment';
 import { sanitizeLoadSpec } from '../loads';
-import { isObj, arr, parseNum, idOf, tsOf, intIn, kg2, clampName } from './util';
+import { isObj, arr, parseNum, idOf, tsOf, intIn, kg2, clampName, REST_MAX, DURATION_MAX_SEC } from './util';
 import { localDateTs, localISODate, workoutDay, realDay, DATE_KEY } from './time';
 import { cleanLevels } from './bands';
 import { normalizeGoals } from '../setParts';
@@ -62,7 +62,7 @@ function fixLocations(s: any, stamp: (o: any) => void, language: unknown): { loc
  * dopisuje brakujące pola, pomija uszkodzone wpisy (null, nie-obiekty) zamiast się wywracać.
  * Idempotentna — można ją wołać na stanie już zmigrowanym.
  */
-export function migrate(raw: any): State {
+export function migrate(raw: unknown): State {
   if (!isObj(raw) || !Array.isArray(raw.exercises) || !Array.isArray(raw.templates)) throw new Error('bad state');
   setLegacyLb(!((Number(raw.schemaVersion) || 0) >= 11));
   const owner: string = typeof raw.ownerId === 'string' && raw.ownerId ? raw.ownerId : LOCAL_OWNER;
@@ -156,7 +156,7 @@ export function migrate(raw: any): State {
   {
     const T = raw.timer, b = blankTimer() as any;
     for (const k of ['restEndAt', 'setStartAt']) if (T[k] != null) T[k] = tsOf(T[k]);
-    for (const k of ['restTotal', 'setTarget']) T[k] = intIn(T[k], 0, 86400) ?? b[k]; /* runda 52: doba to i tak koniec */
+    for (const k of ['restTotal', 'setTarget']) T[k] = intIn(T[k], 0, DURATION_MAX_SEC) ?? b[k]; /* runda 52: doba to i tak koniec */
     for (const k of ['restSetId', 'setId']) if (T[k] != null && typeof T[k] !== 'string') T[k] = null;
   } // runda 49
   raw.relations = arr(raw.relations); raw.feedback = arr(raw.feedback); raw.instructions = arr(raw.instructions);
@@ -168,7 +168,7 @@ export function migrate(raw: any): State {
   const unknownSettings = Object.fromEntries(Object.keys(s).filter(
       k => !SETTINGS_KEYS.has(k) && !PROTO_KEYS.has(k) && !legacy.has(k) && !MOVED_SETTINGS.has(k)).map(k => [k, s[k]]));
   raw.settings = { ...unknownSettings,
-    defaultRest: (v => v != null && v >= 0 ? Math.min(1800, Math.round(v)) : d.defaultRest)(parseNum(s.defaultRest)), // runda 17: ten sam limit co wszędzie
+    defaultRest: (v => v != null && v >= 0 ? Math.min(REST_MAX, Math.round(v)) : d.defaultRest)(parseNum(s.defaultRest)), // runda 17: ten sam limit co wszędzie
     sound: typeof s.sound === 'boolean' ? s.sound : d.sound,
     wakeLock: typeof s.wakeLock === 'boolean' ? s.wakeLock : d.wakeLock,
     showRpe: typeof s.showRpe === 'boolean' ? s.showRpe : d.showRpe,

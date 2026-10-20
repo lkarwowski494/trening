@@ -55,7 +55,7 @@ export const CFG_KEYS = ['settings', 'templates', 'weekPlan', 'savedPlans', 'pla
     'guideSeen'] as const;
 /** Nakłada nowszy klucz „cfg” na wczytany stan (przed migrate): tylko gdy jego numer zapisu jest wyższy niż pełnego „state” — wtedy pola
  * z „cfg” są nowsze (brak pola w „cfg” = pole usunięte). Zwraca, czy nałożono. Wspólne dla startu i importu kopii odzysku. */
-export function applyCfg(raw: any, c: any): boolean {
+export function applyCfg(raw: unknown, c: unknown): boolean {
   if (!isObj(raw) || !isObj(c) || !isObj(c.data) || !Number.isFinite(c.seq) || !(c.seq > (Number(raw.saveSeq) || 0))) return false;
   for (const k of CFG_KEYS) { if (k in c.data) raw[k] = c.data[k]; else delete raw[k]; }
   return true;

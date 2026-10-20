@@ -133,3 +133,25 @@ describe('e2e-wyniki.mjs — wyniki i niestabilność', () => {
     expect(JSON.parse(fs.readFileSync(outJson, 'utf8')).scenariusze.map((r: any) => [r.scenariusz, r.wynik])).toEqual([['A', 'przeszedl'], ['B', 'przeszedl_w_ponowieniu']]);
   });
 });
+
+/* M1-audytor-generalny-058: nocny przebieg „mały ekran” wybierał iPhone 17e (390 pt) — pierwszy z listy po modelu. Wybór po szerokości ekranu i jej zapis w logu. */
+describe('wybór symulatora według szerokości ekranu (M1-058)', () => {
+  const U = (n: number) => `0000000${n}-0000-0000-0000-000000000000`.slice(-36);
+  const lista = `-- iOS 26.5 --\n    iPhone 16e (${U(1)}) (Shutdown)\n    iPhone 17e (${U(2)}) (Shutdown)\n    iPhone 17 (${U(3)}) (Shutdown)\n    iPhone SE (3rd generation) (${U(4)}) (Shutdown)\n    iPad Pro (${U(5)}) (Shutdown)\n`;
+  const sel = (wz: string, extra: string[] = []) => execFileSync('node', [path.join(root, 'scripts/ci/sim-wybor.mjs'), wz, ...extra], { input: lista, encoding: 'utf8' }).trim();
+  test('spośród pasujących bierze najwęższy, nie pierwszy z listy', () => {
+    expect(sel('iPhone SE|iPhone 16e|iPhone 17e')).toBe(U(4));
+    expect(sel('iPhone 16e|iPhone 17e')).toBe(U(1));
+  });
+  test('wzorzec domyślny „iPhone 17 (” wskazuje iPhone 17 jak dotąd', () => { expect(sel('iPhone 17 \\(')).toBe(U(3)); });
+  test('brak dopasowania daje pusty wynik, a --opis podaje szerokość ekranu', () => {
+    expect(sel('iPhone 99')).toBe('');
+    expect(sel('iPhone 16e|iPhone 17e', ['--opis'])).toBe('iPhone 16e — szerokość ekranu 390 pt (próg małego ekranu: 375 pt)');
+  });
+  test('e2e-ios.yml używa wyboru w obu krokach „Simulator” i wypisuje szerokość ekranu w logu', () => {
+    expect(wf.match(/node scripts\/ci\/sim-wybor\.mjs "\$pat"/g)).toHaveLength(4); /* 2× wybór + 2× opis */
+    expect(wf.match(/sim-wybor\.mjs "\$pat" --opis/g)).toHaveLength(2);
+    expect(wf).not.toMatch(/grep -m1 -E "\$pat"/);
+  });
+  test('nocny pakiet „mały ekran” nadal prosi o SE i modele „e” (najwęższy wygrywa)', () => { expect(night).toMatch(/urzadzenie: 'iPhone SE\|iPhone 16e\|iPhone 17e'/); });
+});

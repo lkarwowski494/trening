@@ -34,7 +34,7 @@ import * as bootMod from './state/boot';
 import * as backupStatMod from './state/backupstat';
 import * as crashMod from './state/crashguard';
 
-export const { NAME_MAX, REPS_MAX, REST_MAX, clampName, PREMIGRATE_KEEP_MS } = utilMod;
+export const { NAME_MAX, REPS_MAX, REST_MAX, DURATION_MAX_SEC, clampName, PREMIGRATE_KEEP_MS } = utilMod;
 export const {
   localDateTs, fmtSec, fmtDist, reps, fmtDur, fmtDayKey, fmtDate, fmtTime, localISODate, tzOffsetAt, cleanTz, wallTs, fromWallTs, workoutDay,
   mondayKey

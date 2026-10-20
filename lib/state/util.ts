@@ -36,6 +36,8 @@ export const NAME_MAX = 80;
 export const REPS_MAX = 1000;
 /** Najdłuższa przerwa ustawiana ręcznie (s) — ćwiczenie, pozycja szablonu, zamiennik, trening. */
 export const REST_MAX = 1800;
+/** Najdłuższy czas serii, stopera i celu w szablonie (s) — doba; jedna granica dla pól, wczytania, importu CSV i stopera. */
+export const DURATION_MAX_SEC = 86400;
 /** M1-audytor-generalny-002: jak długo (ms) kopia surowego zapisu sprzed migracji schematu czeka w bazie (30 dni — liczba produktowa, nie merytoryczna). */
 export const PREMIGRATE_KEEP_MS = 30 * 24 * 3600e3;
 /** Runda 40: przycięcie do n jednostek UTF-16 bez rozcinania emoji (pary zastępczej) i bez spacji na końcu. */

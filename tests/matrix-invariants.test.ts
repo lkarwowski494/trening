@@ -309,7 +309,8 @@ async function step(x: Act, m: Model, where: string) {
         if (r) { dropTimers(r.skippedSetIds); othersSame(); ok(r.swapped + r.restored + r.skipped === chs.length, where, 'adaptActive: liczba zastosowanych wyborów');
           const still = new Set(adapt.adaptCandidates(act, L).map(z => z.blockId)); ok(chs.every(c => c.kind === 'skip' || !still.has(c.blockId)), where, 'zamieniony blok wciąż na liście do dostosowania');
           ok(chs.every(c => c.kind !== 'restore' || !adapt.restoreCandidates(act, L).some(z => z.blockId === c.blockId)), where, 'przywrócony blok wciąż na liście „Wraca z planu”');
-          implFresh(where); hit('adaptActive'); } } } break;
+          /* M1-056: przyrząd przelicza się tylko w blokach, których dotyczył wybór (zamiana/przywrócenie) — pozostałe zostają do następnej zmiany miejsca, jak przy undoSwap */
+          implFresh(where, chs.filter(c => c.kind !== 'skip').map(c => ({ id: c.blockId }))); hit('adaptActive'); } } } break;
     case 'setLoc': if (act && loc) { const prev = act.locationId; store.setActiveLocation(loc.id); if (prev !== loc.id) { implFresh(where); hit('setLoc'); } } break;
     case 'timerRest': if (act && blk) { const s = pick(blk.sets, x.b)!; store.setTimerState({ restEndAt: Date.now() + 60e3, restTotal: 60, restSetId: s.id }); } break;
     case 'timerSet': if (act && blk) { const s = pick(blk.sets, x.b)!; if (!s.done) store.setTimerState({ setStartAt: Date.now(), setTarget: x.c % 2 ? 30 : 0, setId: s.id }); } break;
@@ -815,4 +816,15 @@ describe('macierz niezmienników — znaleziska', () => {
     store.setEquipment(e, 'sztanga'); expect(store.implAtLoc(e, l.id)).toBe('barbell');
     expect(b.impl).toBe(store.implAtLoc(e, S().active!.locationId));
   });
+});
+
+/* M1-audytor-generalny-056: kontrprzykłady z nocy 20.10.2026 (MATRIX_SEED=1464523318) — dwie luki wyroczni, nie błędy aplikacji: po adaptActive przyrząd
+ * sprawdzano we WSZYSTKICH blokach, a przelicza się tylko ten, którego dotyczył wybór (blok bez zmiany w miejscu bez sprzętu zachowuje przyrząd z szablonu).
+ * Obie sekwencje zapisane jako testy przykładowe — nie zależą od losowania. */
+describe('macierz niezmienników — kontrprzykłady z nocy 20.10.2026 (adaptActive, przyrząd 8c/L5)', () => {
+  const CE: [string, Act[][], number][] = [
+    ['blok bez zmiany w miejscu bez sprzętu (Dom) zachowuje przyrząd z szablonu', [[{"t":"startTpl","a":0,"b":0,"c":0,"v":""},{"t":"tick","a":6,"b":44,"c":0,"v":""},{"t":"setLoc","a":21,"b":0,"c":0,"v":0},{"t":"tick","a":58,"b":11,"c":0,"v":""},{"t":"adaptActive","a":0,"b":19,"c":0,"v":""},{"t":"addSet","a":0,"b":0,"c":0,"v":0},{"t":"kind","a":0,"b":0,"c":0,"v":""},{"t":"finish","a":0,"b":0,"c":0,"v":""}],[{"t":"startTpl","a":0,"b":0,"c":0,"v":""},{"t":"draft","a":0,"b":0,"c":0,"v":0},{"t":"timerRest","a":0,"b":0,"c":0,"v":""},{"t":"skipEx","a":0,"b":0,"c":0,"v":""},{"t":"finish","a":0,"b":0,"c":0,"v":""}],[{"t":"tick","a":0,"b":0,"c":0,"v":0}],[{"t":"startTpl","a":0,"b":0,"c":0,"v":""},{"t":"acceptAlt","a":0,"b":0,"c":0,"v":0},{"t":"undoSwap","a":0,"b":0,"c":0,"v":0},{"t":"pause","a":0,"b":0,"c":0,"v":""},{"t":"finish","a":0,"b":0,"c":0,"v":""}],[{"t":"startTpl","a":0,"b":0,"c":0,"v":""},{"t":"swap","a":0,"b":0,"c":0,"v":""},{"t":"setLoc","a":0,"b":0,"c":0,"v":0},{"t":"type","a":0,"b":0,"c":0,"v":""},{"t":"finish","a":0,"b":0,"c":0,"v":""}],[{"t":"tick","a":0,"b":0,"c":0,"v":""}]], 6],
+    ['blok nietknięty przez swapImpl/adaptActive po zmianie miejsca', [[{"t":"startTpl","a":0,"b":0,"c":0,"v":""},{"t":"setLoc","a":7,"b":0,"c":0,"v":""},{"t":"addEx","a":0,"b":0,"c":0,"v":""},{"t":"tick","a":19,"b":0,"c":0,"v":0},{"t":"adaptActive","a":0,"b":0,"c":0,"v":""},{"t":"setLoc","a":0,"b":0,"c":0,"v":0},{"t":"adaptActive","a":0,"b":0,"c":21,"v":""},{"t":"tick","a":59,"b":0,"c":0,"v":0},{"t":"adaptActive","a":0,"b":0,"c":0,"v":0},{"t":"finish","a":0,"b":0,"c":0,"v":""}],[{"t":"startTpl","a":0,"b":0,"c":0,"v":""},{"t":"reload","a":0,"b":0,"c":0,"v":""},{"t":"tick","a":0,"b":0,"c":0,"v":0},{"t":"adaptActive","a":0,"b":0,"c":0,"v":0},{"t":"swapImpl","a":0,"b":0,"c":0,"v":0},{"t":"finish","a":0,"b":0,"c":0,"v":""}]], 2],
+  ];
+  test.each(CE)('%s', async (_n, seq, loc) => { try { await runSeq(seq.flat(), loc); } finally { units.applyUnit('kg'); edit.__resetDrafts(); } });
 });
