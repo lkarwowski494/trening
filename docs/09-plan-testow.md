@@ -371,3 +371,18 @@ Test najpierw (czerwony na 8273448), potem poprawka; raporty audytu poza repozyt
 | M1-008 | `tests/audit-m1-008-kopia-ui.test.tsx` | ekran, dane, języki | zielone | baner na ekranie Trening, klucz kv `autobackup` |
 | M1-009 | `tests/audit-m1-009-watch-edit.test.ts` | dane, regresja | zielone | edycja historii zachowuje `watch` i `healthPending` |
 | M1-010 | `tests/db-real-sqlite.test.ts` | dane | zielone | `node:sqlite` w pamięci; mutacja copyKv bez transakcji — czerwone |
+
+## 20.10.2026 — naprawy z audytu M1, partia 2 (gałąź `audyt-m1`, zakupy, prywatność, treść, wydanie; M2 Koordynator Napraw)
+Test najpierw (czerwony na 8273448), potem poprawka. E2E Maestro: zmienione teksty w scenariuszach 21 i 35 („14 days free, then …”, „Start 14 days free”) oraz asercja w 14 (brak dopisku asekuracji w pełnej siłowni). Zmiany workflowów (testflight.yml, e2e-ios.yml): przebieg dowodowy CI przed scaleniem (L-001), ryzyka R-007…R-009 w docs/40.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-011 (P0) | `tests/audit-m1-011-trial14.test.ts` (6) + zaktualizowane `store-adapter`, `prices-decision`, `subscription-i18n`, `subscription-ui`, `trial-reminder` | logika, ekran, dane, języki, macierz | zielone | `TRIAL_DAYS = 14`, oferta P2W w `.storekit`; ceny i limit 4 bez zmian; teksty (33 słowniki) do przeglądu tłumacza |
+| M1-012 | `tests/audit-m1-012-status.test.ts` (6) | logika, scenariusz | zielone | błąd zapytania o karencję nie unieważnia odczytu; bez żadnego uprawnienia wyjątek zostaje (unknown) |
+| M1-013 | `tests/audit-m1-013-privacy.test.ts` (3), `tests/store-urls.test.ts` | dane | zielone | adres polityki = App Store Connect; strona ≥ wersja aplikacji; sekcja Apple Watch |
+| M1-014 | `tests/audit-m1-workflows.test.ts` (skrypt manifestu: tryby check/fix, krok workflowu) | logika, dane | zielone; produkt — czeka na przebieg dowodowy (R-007) | |
+| M1-015 | `tests/audit-m1-015-asekuracja.test.tsx` (38: 29 ćwiczeń, ekran, wybór, generator) | logika, ekran, scenariusz, macierz, języki | zielone | treść zdania: DO WERYFIKACJI BADACZA (docs/10) |
+| M1-016 | `tests/audit-m1-016-paywall-benefit.test.tsx` (3) | ekran, języki | zielone | |
+| M1-017 | `tests/audit-m1-017-trial-ios16.test.ts` (5) | logika | zielone | próba z pierwszej transakcji ≤ 14 dni + 1 bez offerIOS |
+| M1-018, 019, 020, 021, 023 | `tests/audit-m1-workflows.test.ts` (bramka-e2e.sh na atrapie `gh`, kolejność kroków, środowisko, EAS, mapy źródeł) | logika, regresja | zielone; produkt — czeka na przebieg dowodowy (R-008, R-009) | |
+| M1-022 | `tests/audit-m1-workflows.test.ts` „M1-022” | regresja | zielone | pliki zrzutów do sklepu wzięte z f020-sklep |
