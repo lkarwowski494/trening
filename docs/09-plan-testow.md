@@ -188,6 +188,31 @@ Wspólny fragment to cytat ze źródła ograniczony do części wspólnej. Kolum
 
 Test regresji: `tests/cues-podobienstwo.test.ts` (34 klucze mają nowe teksty; teksty źródeł nie są trzymane w repozytorium). Pozostałe języki bez zmian — sens EN się nie zmienił.
 
+## Dziennik wydań (tagi `v*-b*`)
+
+Źródło: `git tag -l 'v*-b*'` i przebiegi `testflight.yml` (`gh run list`), stan 20.10.2026. BUILD = 1000 + numer przebiegu (`run_number`). Każdy nowy tag `v*-b*` dostaje wiersz w tym samym commicie, w którym powstaje (pilnuje `tests/audit-m1-050-release-log.test.ts`; M1-audytor-generalny-050: brakowało wiersza buildu 1019). Kolumna „przebieg” = numer przebiegu, w uwagach identyfikator przebiegu GitHub Actions.
+
+| tag | build | SHA | przebieg | wynik przebiegu / uwagi |
+|---|---|---|---|---|
+| `v0.11.0-b1005` | 1005 | `0d71775` | 5 | zielony, id 38030364651 |
+| `v0.12.0-b1006` | 1006 | `0c7fa8c` | 6 | czerwony, id 38207286308; przebieg czerwony; tag stoi na commicie tego przebiegu (czy build trafił do App Store Connect — otwarte, do sprawdzenia w App Store Connect) |
+| `v0.12.0-b1008` | 1008 | `bfe6ede` | 8 | zielony, id 38217750334 |
+| `v0.13.0-b1009` | 1009 | `2c4bcd9` | 9 | zielony, id 38294805184 |
+| `v0.14.0-b1010` | 1010 | `6c9e4fe` | 10 | zielony, id 38311331235 |
+| `v0.15.0-b1012` | 1012 | `d2b7c87` | 12 | zielony, id 38355743899 |
+| `v0.16.0-b1013` | 1013 | `d74cbaf` | 13 | zielony, id 38374133953 |
+| `v0.17.0-b1014` | 1014 | `72f7eef` | 14 | zielony, id 38413965421 |
+| `v0.18.0-b1015` | 1015 | `2732089` | 15 | zielony, id 38531086767 |
+| `v0.18.0-b1016` | 1016 | `243d42b` | 16 | zielony, id 38546857012 |
+| `v0.18.0-b1017` | 1017 | `b582312` | 17 | zielony, id 38578213243 |
+| `v0.20.0-b1018` | 1018 | `80e43fc` | 18 | zielony, id 39233940303 |
+| `v0.20.0-b1019` | 1019 | `b8b8a31` | 19 | zielony, id 39306743773; gałąź feature/e2-swap (nie main); zielony, 51 min |
+
+Przebiegi `testflight.yml` bez tagu `v*-b*`: 1–4 (przed wprowadzeniem tagów; wydanie 1 = build 1004, `ee637da`, patrz „Rundy”), 7 (czerwony, `c9d4c78`), 11 (czerwony, `d2b7c87`, powtórzony jako przebieg 12), 20 (czerwony, `8273448`, scalenie PR #13 na main), 21 (zielony, gałąź `audyt-m1`, `5542a68`, 20.10.2026).
+
+Uwaga: `actions/checkout` w `tests.yml` nie pobiera tagów, więc w CI test sprawdza tylko spójność tabeli; zestawienie z tagami działa lokalnie i na maszynie wydania (otwarte: `fetch-tags: true` w kroku checkout — zmiana workflowu, zgłoszona koordynatorowi).
+
+
 ## Rundy
 
 | Runda | Data | Automaty (pass/fail) | Przegląd świeżymi oczami | Nowe błędy | Licznik czystych rund |

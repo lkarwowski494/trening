@@ -6,8 +6,8 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 
 - **Publikacja:** „Jeszcze nie publikujemy, zastanowimy się nad tym za chwilę” — **nic nie jest wysyłane** do App Store Connect.
 - **Wysyłka (gdy przyjdzie czas):** GitHub Actions i klucz App Store Connect API (.p8).
-  - Build na darmowym macOS, jak `iphone-local.yml`. Wysyłka przez `xcrun altool`.
-  - Klucz tylko jako sekret GitHub, nigdy w repo (CLAUDE.md, ADR-031). Bez `eas submit`: limitów darmowego planu dla Submit nie sprawdzono.
+  - Build na darmowym macOS (`testflight.yml`; wcześniejsze workflowy EAS i `iphone-local.yml` usunięte 08.10.2026). Wysyłka po eksporcie do App Store Connect.
+  - Klucz tylko jako sekret GitHub, nigdy w repo (CLAUDE.md, ADR-031). Bez Expo/EAS — workflowy EAS usunięte 08.10.2026.
 - **Polityka prywatności:** GitHub Pages z tego repozytorium, z osobnego katalogu `site/` przez GitHub Actions (`.github/workflows/pages.yml`;
   decyzja właściciela 12.10.2026, audyt przed App Store F2, wariant A) — strona `site/privacy.html` (PL/EN, 08.10.2026, audyt N2; treść zgodna
   z kodem: brak wywołań sieciowych, HealthKit tylko zapis, powiadomienia lokalne). Publikowany jest tylko `site/` (trzy strony); reszta `docs/`
@@ -17,6 +17,9 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   Bez `.nojekyll` — artefakt z Actions jest podawany bez Jekylla.
   - Treść: brak zbierania danych, wszystko lokalnie na telefonie, HealthKit tylko zapis zakończonych treningów.
 - **Strona www i wsparcie (11.10.2026, marka Apps4Brew, PL/EN):** `site/index.html`, `site/support.html`; adres wsparcia (App Store Connect → Support URL): https://lkarwowski494.github.io/trening/support.html. Domena apps4brew.com po zakupie (bez CNAME); kontakt: GitHub Issues — adres e-mail do uzupełnienia po zakupie domeny.
+<!-- historia:start A -->
+*Historia decyzji (06–20.10.2026): kwoty, okresy próbne i modele z tego bloku są zastąpione — obowiązuje wyłącznie `docs/monetyzacja.md`. Treść zostaje jako zapis, dlaczego model wygląda tak, a nie inaczej.*
+
 - **Cena:** „Darmowa na start” (05.10.2026) — bez reklam i zakupów; w App Store Connect deklaracja „nie jestem traderem” (DSA), bez publicznego adresu.
 - ~~**Płatności później, wcześniejsi użytkownicy za darmo**~~ (odwołane 06.10.2026: płatna subskrypcja od pierwszej wersji, bez darmowych użytkowników; było — właściciel 05.10.2026: „Później najwyżej wprowadzimy płatności, ale tym, co już mają, to zostawimy darmową”).
   Kierunek (do decyzji, gdy przyjdzie czas): aplikacja dalej darmowa do pobrania, wersja Pro jako zakup w aplikacji;
@@ -39,18 +42,22 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   - Otwarte: ceny
     (miesięczna/roczna), data wprowadzenia płatności, Small Business Program (prowizja 15%).
   Konto: Apple Developer jako osoba fizyczna (Individual) — firma niepotrzebna.
+<!-- historia:end A -->
 - **Nazwa:** decyzja właściciela 05.10.2026 (potwierdzona 06.10) — `store/app-store-names.json` (12 lokalizacji App Store), szczegóły w docs/16 „Nazwa aplikacji”. Unikalność potwierdzi rezerwacja nazwy w App Store Connect.
 
 ## Wzrost i promocja — ustalenia (właściciel 06.10.2026)
 
 - **Cel:** powolne zdobywanie użytkowników, którzy zostają na stałe — bez ostrej, szybkiej promocji. „100 pobrań miesięcznie byłoby super.”
 - **Realistyczny punkt wyjścia (ocena agenta, nie dane):** bez promocji — rzędu kilkudziesięciu pobrań w pierwszym miesiącu, potem od kilku do kilkudziesięciu
-  miesięcznie; kategoria „dziennik treningów” zatłoczona (Strong, Hevy, Fitbod, JEFIT). Liczby do zweryfikowania po premierze (App Store Connect → Analityka).
+  miesięcznie; kategoria „dziennik treningów” zatłoczona (wiele popularnych aplikacji). Liczby do zweryfikowania po premierze (App Store Connect → Analityka).
 - **Kanały za 0 zł (zgoda właściciela 06.10: „Tak” — przygotować przy wydaniu):**
   1. ASO: słowa kluczowe i opisy w 12 lokalizacjach App Store (`store/app-store-names.json` + opisy), zrzuty ekranu w każdym języku (`npm run screens`).
      Największa szansa w mniejszych sklepach (cs, sk, lt, lv, et, hr, sl, ro, hu, bg) — mniejsza konkurencja, nazwa lokalna.
   2. Prośba o ocenę w aplikacji po kilku treningach (systemowe okno Apple) — do zaprojektowania (kiedy, ile razy), decyzja właściciela.
   3. Spokojne wpisy tam, gdzie są osoby trenujące (lokalne fora/grupy, Reddit np. r/homegym): bez konta, dane w telefonie, offline, domowa siłownia.
+<!-- historia:start B -->
+*Historia decyzji (06–20.10.2026): kwoty, okresy próbne i modele z tego bloku są zastąpione — obowiązuje wyłącznie `docs/monetyzacja.md`. Treść zostaje jako zapis, dlaczego model wygląda tak, a nie inaczej.*
+
 - **Model płatności — ZMIANA (właściciel 06.10.2026, wariant A):** subskrypcja roczna **odnawiana automatycznie, 29 zł/rok**, z **miesiącem
   za darmo** na start (oferta wprowadzająca App Store). Zastępuje „jednorazową płatność” z 05.10. Uzasadnienie: kto zostaje, ten odnawia bez
   wysiłku, przychód z kolejnych lat się sumuje; anulowanie jednym ruchem w Ustawieniach iOS. Odrzucone: B — subskrypcja nieodnawialna
@@ -147,6 +154,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
   odsetek kupujących po okresie próbnym zmierzymy po premierze w App Store Connect). Darmowych użytkowników nie będzie (decyzja 06.10).
   **Otwarte:** cena; podatek dochodowy od sprzedaży w App Store przy koncie osoby prywatnej — pytanie do księgowego
   (nie zgadujemy).
+<!-- historia:end B -->
 - **Sprzedaż bez rejestracji firmy (pytanie właściciela 09.10.2026; informacja, nie porada podatkowa — do potwierdzenia u księgowego):**
   - Apple: konto Individual (osoba fizyczna) wystarcza do umowy Paid Apps i statusu tradera DSA (dane kontaktowe osoby, skrytka dozwolona).
   - Prawo polskie: działalność nierejestrowana — od 2026 limit kwartalny 225% płacy minimalnej = **10 813,50 zł przychodu należnego na kwartał**
@@ -306,11 +314,16 @@ online, to będą to dodatkowo płatne funkcje.” Ustalenia:
   Apple pozwala łączyć zakup jednorazowy i subskrypcję w jednej aplikacji.
 - Otwarte: czy wcześniejsi użytkownicy dostają funkcje online za darmo; koszty serwera — przed wdrożeniem sprawdzić darmowe limity (zasada: 0 zł poza Apple).
 
+<!-- historia:start C -->
 ## Limit Expo na buildy lokalne (06.10.2026)
+*Historia: workflowy EAS i `iphone-local.yml` usunięte 08.10.2026; build i wysyłka tylko przez `testflight.yml` (sekcja niżej).*
+
 Przebieg `iphone-local.yml` 37422172177: build lokalny OK, ale `eas upload` odrzucony — „This account has used its local builds from the free plan
 this month, which will reset in 25 days (on Sun Nov 01 2026)”. Darmowy plan Expo liczy też buildy lokalne wysłane przez `eas upload`
 (wcześniej zakładano, że tylko buildy w chmurze — docs/13). Link instalacyjny przez Expo niedostępny do 01.11.2026.
 Do decyzji właściciela: TestFlight (testy wewnętrzne — bez recenzji Apple) albo instalacja pliku .ipa z komputera Mac; płatny plan Expo — nie (0 zł).
+
+<!-- historia:end C -->
 
 ## TestFlight — testy wewnętrzne (decyzja właściciela 06.10.2026: „TestFlight — testy wewnętrzne”)
 Workflow `.github/workflows/testflight.yml`: build i podpis tylko narzędziami Apple (xcodebuild z kluczem App Store Connect API, podpis
@@ -334,19 +347,19 @@ Zakres: 168 commitów ze wszystkich gałęzi, wiadomości, tagi, 289 plików z h
 - **Czysto:** brak kluczy prywatnych, certyfikatów, .p8/.p12/.mobileprovision/.env w całej historii; brak tokenów; brak prawdziwych UDID;
   autorzy commitów — tylko adresy noreply; workflowy tylko `workflow_dispatch`, `contents: read`, bez `pull_request(_target)` (forki bez sekretów);
   sekrety nie są wypisywane; brak logów CI w repo.
-- **WYSOKIE (sprawdzone):** stare przebiegi `iphone-eas.yml` sprzed maskowania UDID — lista przebiegów tego workflow jest pusta (0), nie ma czego usuwać.
-- **ŚREDNIE:** (1) `iphone-eas.yml`/`iphone-local.yml` — sekrety ustawione dla całego workflow (dostępne podczas `npm ci`/testów) — do przeniesienia
+- **WYSOKIE (sprawdzone):** stare przebiegi `iphone-eas.yml` (workflow usunięty 08.10.2026) sprzed maskowania UDID — lista przebiegów tego workflow jest pusta (0), nie ma czego usuwać.
+- **ŚREDNIE:** (1) `iphone-eas.yml`/`iphone-local.yml` (oba usunięte 08.10.2026) — sekrety ustawione dla całego workflow (dostępne podczas `npm ci`/testów) — do przeniesienia
   do pojedynczych kroków (otwarte; workflowy i tak nieużywane do 01.11 — limit Expo); (2) `testflight.yml` — klucz na dysku dopiero przed archiwum
   (naprawione); (3) `tests/fixtures/web03-backup.json` zawierał wagę ciała i wpisy z 02.10.2026 — właściciel: „Tak — zamień na zmyślone” (06.10): poranny wpis fikcyjny, daty przesunięte o 300 dni; stare wartości zostają w historii git (przepisanie historii — nie).
 - **NISKIE:** `ios-unsigned.yml` artefakty 1 dzień (naprawione); `.gitignore` dla `.env*`, `*.p8`, `*.p12`, `*.mobileprovision`, `*.cer` (naprawione);
   `appleTeamId` w `app.json` — Apple nie traktuje go jako sekretu (zostaje); Maestro instalowany bez przypiętej wersji (bez sekretów — zostaje).
 - Do sprawdzenia przez właściciela: GitHub → Settings → Actions → General → „Fork pull request workflows” — wymagane zatwierdzenie.
 
-## Metadane App Store — projekt PL/EN (11.10.2026, do akceptacji właściciela)
+## Metadane App Store — projekt PL/EN (11.10.2026, odświeżony 20.10.2026 do stanu kodu po audycie M1-045; do akceptacji właściciela)
 
 Projekt do przejrzenia; nic nie wysłano do App Store Connect. Liczby znaków policzone skryptem node (znaki Unicode). Tłumaczenia na pozostałe lokalizacje — później (nazwy już w `store/app-store-names.json`). Zasady: bez nazw innych aplikacji i marek (wytyczne Apple 2.3.7), bez twierdzeń zdrowotnych i obietnic efektów, bez superlatywów; jedyna liczba merytoryczna to e1RM (wzór Epleya, który aplikacja pokazuje ze źródłem).
 
-**Uwaga o stanie kodu (podstawa: commit 72be439, wydanie 0.12.0):** w kodzie nie ma jeszcze ekranu subskrypcji/zakupu (StoreKit), więc blok cenowy w opisie i hasło „pierwszy miesiąc za darmo” w tekście promocyjnym opisują decyzję, nie istniejącą funkcję — wstawić dopiero, gdy zakup trafi do wydania. Ceny wg najnowszej decyzji z 13.10.2026 (M1, docs/18; docs/15 wyżej): miesięczna 0,99 USD/EUR/GBP i 3,99 zł; roczna 4,99 USD/EUR/GBP i 19,99 zł; dożywotnia 14,99 USD/EUR/GBP i 59,99 zł; okres próbny 1 miesiąc; po wygaśnięciu 4 treningi na żywo na miesiąc; Family Sharing: tak.
+**Uwaga o stanie kodu (20.10.2026):** ekran zakupu i StoreKit są w kodzie, ale za przełącznikiem `PAYWALL.ENABLED = false` (bieżący TestFlight bez limitu i bez ekranu zakupu) — blok cenowy w opisie i hasło o darmowym okresie w tekście promocyjnym opisują decyzję; wstawić dopiero z włączonym zakupem. Kwoty i liczby modelu (0,99 / 6,99 / 14,99 USD, 14 dni, 4 treningi na żywo w miesiącu, ceny lokalne PL) są wyłącznie w `docs/monetyzacja.md`; poniższe teksty muszą się z nim zgadzać (pilnuje `tests/audit-m1-045-store-description.test.ts`). Opis zgodny z kodem: bez kalkulatora talerzy (usunięty 19.10.2026), z aplikacją na Apple Watch, zapowiedziami głosowymi (domyślnie wyłączone), odczytem i zapisem Apple Health (wytyczne 2.5.1: integracja ze Zdrowiem ma być wskazana w opisie — docs/41 D3) i systemem miar metrycznym/imperialnym.
 
 ### Polski (pl)
 
@@ -363,18 +376,18 @@ Projekt do przejrzenia; nic nie wysłano do App Store Connect. Liczby znaków po
 | Podtytuł A | 26 / 30 | ok |
 | Nazwa B | 7 / 30 | ok |
 | Podtytuł B | 29 / 30 | ok |
-| Słowa kluczowe | 95 / 100 | ok |
-| Tekst promocyjny | 142 / 170 | ok |
-| Opis | 2237 / 4000 | ok |
+| Słowa kluczowe | 87 / 100 | ok |
+| Tekst promocyjny | 141 / 170 | ok |
+| Opis | 2667 / 4000 | ok |
 | What's New 0.12.0 | 175 / 4000 | ok |
 
 **Słowa kluczowe** (dla wariantu A; bez słów z nazwy i podtytułu):
 
-`ćwiczenia,hantle,sztanga,siła,masa,rekordy,e1RM,szablony,kalendarz,offline,RPE,RIR,gumy,talerze`
+`ćwiczenia,hantle,sztanga,siła,masa,rekordy,e1RM,szablony,kalendarz,offline,RPE,RIR,gumy`
 
 **Tekst promocyjny:**
 
-Własne szablony, plan tygodnia, timer przerw i wykresy postępów. Wszystko offline na telefonie, bez konta i reklam. Pierwszy miesiąc za darmo.
+Własne szablony, plan tygodnia, timer przerw i wykresy postępów. Wszystko offline na telefonie, bez konta i reklam. Pierwsze 14 dni za darmo.
 
 **Opis:**
 
@@ -388,7 +401,11 @@ TRENING
 • Pauza treningu: czas pauzy nie wlicza się do czasu trwania
 • Opcjonalna skala wysiłku RPE albo RIR przy serii
 • Zamiana ćwiczenia w trakcie treningu, gdy brakuje sprzętu albo maszyna jest zajęta
-• Kalkulator talerzy na sztandze, taśmy i gumy z kolorami oporu, ciężar w kg lub lb
+• Taśmy i gumy z kolorami oporu; system miar metryczny (kg, km, m) albo imperialny (lb, mi, yd)
+• Opcjonalne zapowiedzi głosowe następnego ćwiczenia na początku przerwy (domyślnie wyłączone)
+
+APPLE WATCH
+• Aplikacja na Apple Watch: odhaczasz serie i widzisz odliczanie przerwy na nadgarstku (wymaga iPhone'a z Treningiem)
 
 PLAN I KALENDARZ
 • Plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii mięśni
@@ -404,12 +421,13 @@ POSTĘPY
 • Biblioteka ćwiczeń z krótkimi wskazówkami techniki
 
 TWOJE DANE
-• Kopia zapasowa i eksport do pliku JSON oraz CSV, import z kopii
+• Kopia zapasowa i eksport do pliku JSON oraz CSV, import z kopii i z plików CSV popularnych dzienników treningowych
 • Opcjonalny zapis zakończonych treningów do Apple Health
+• Opcjonalny odczyt z Apple Health (kroki, treningi, tętno, aktywna energia) — dane tylko wyświetlane na telefonie, nigdzie niewysyłane
 • Jasny, ciemny lub systemowy wygląd, 35 języków
 
 [BLOK CENOWY — do potwierdzenia przez właściciela]
-Pierwszy miesiąc za darmo. Potem subskrypcja: 4,99 zł miesięcznie lub 19,99 zł rocznie (odnawiana automatycznie, anulujesz w ustawieniach konta Apple), albo jednorazowy dostęp dożywotni za 59,99 zł. Subskrypcję i dostęp dożywotni można udostępnić w gronie rodziny (Chmura rodzinna). Bez subskrypcji możesz nadal zapisywać 4 treningi na żywo w miesiącu, a historia, kopia zapasowa i eksport działają zawsze.
+Subskrypcja z pierwszymi 14 dniami za darmo: potem 4,99 zł miesięcznie lub 19,99 zł rocznie (odnawiana automatycznie, anulujesz w ustawieniach konta Apple), albo jednorazowy dostęp dożywotni za 59,99 zł. Subskrypcję i dostęp dożywotni można udostępnić w gronie rodziny (Chmura rodzinna). Bez subskrypcji możesz nadal zapisywać 4 treningi na żywo w miesiącu, a historia, kopia zapasowa i eksport działają zawsze.
 
 Trening nie jest poradnikiem medycznym. W sprawie bólu, kontuzji lub chorób skonsultuj się ze specjalistą.
 ```
@@ -435,8 +453,8 @@ Trening nie jest poradnikiem medycznym. W sprawie bólu, kontuzji lub chorób sk
 | Nazwa B | 8 / 30 | ok |
 | Podtytuł B | 27 / 30 | ok |
 | Słowa kluczowe | 96 / 100 | ok |
-| Tekst promocyjny | 152 / 170 | ok |
-| Opis | 2232 / 4000 | ok |
+| Tekst promocyjny | 154 / 170 | ok |
+| Opis | 2652 / 4000 | ok |
 | What's New 0.12.0 | 186 / 4000 | ok |
 
 **Słowa kluczowe** (dla wariantu A; bez słów z nazwy i podtytułu):
@@ -445,7 +463,7 @@ Trening nie jest poradnikiem medycznym. W sprawie bólu, kontuzji lub chorób sk
 
 **Tekst promocyjny:**
 
-Your own templates, a weekly plan, rest timer and progress charts. Everything works offline on your phone, with no account and no ads. First month free.
+Your own templates, a weekly plan, rest timer and progress charts. Everything works offline on your phone, with no account and no ads. First 14 days free.
 
 **Opis:**
 
@@ -459,7 +477,11 @@ WORKOUTS
 • Workout pause: paused time is not counted in the duration
 • Optional RPE or RIR effort scale per set
 • Swap an exercise mid-workout when equipment is missing or a machine is taken
-• Plate calculator for the barbell, resistance bands with colours, weights in kg or lb
+• Resistance bands with colours; metric (kg, km, m) or imperial (lb, mi, yd) measurement system
+• Optional spoken announcements of the next exercise at the start of a rest (off by default)
+
+APPLE WATCH
+• Apple Watch app: tick off sets and see the rest countdown on your wrist (requires an iPhone with Training)
 
 PLAN AND CALENDAR
 • Weekly plan, moving workouts around and suggested changes that take muscle-group recovery into account
@@ -475,12 +497,13 @@ PROGRESS
 • Exercise library with short technique cues
 
 YOUR DATA
-• Backup and export to JSON and CSV files, import from a backup
+• Backup and export to JSON and CSV files, import from a backup and from CSV files of popular workout logs
 • Optional saving of finished workouts to Apple Health
+• Optional reading from Apple Health (steps, workouts, heart rate, active energy) — data is only displayed on your phone and never sent anywhere
 • Light, dark or system appearance, 35 languages
 
 [PRICING BLOCK — owner to confirm]
-First month free. Then a subscription: 0.99 per month or 6.99 per year (USD, EUR, GBP; 4.99 PLN and 19.99 PLN in Poland; renews automatically, cancel in your Apple account settings), or a one-time lifetime access purchase for 14.99 (59.99 PLN in Poland). Subscription and lifetime access can be shared with your family (Family Sharing). Without a subscription you can still log 4 live workouts per month; history, backup and export always work.
+Subscription with the first 14 days free, then 0.99 per month or 6.99 per year (USD, EUR, GBP; 4.99 PLN and 19.99 PLN in Poland; renews automatically, cancel in your Apple account settings), or a one-time lifetime access purchase for 14.99 (59.99 PLN in Poland). Subscription and lifetime access can be shared with your family (Family Sharing). Without a subscription you can still log 4 live workouts per month; history, backup and export always work.
 
 Training is not medical advice. For pain, injuries or illness, consult a specialist.
 ```
@@ -499,11 +522,11 @@ Training is not medical advice. For pain, injuries or illness, consult a special
 ### Do potwierdzenia przez właściciela
 
 1. **Cena w opisie i tekście promocyjnym** (blok cenowy, „pierwszy miesiąc za darmo”): wstawiać dopiero z działającym zakupem; czy podawać kwoty w opisie (zmieniają się w App Store Connect bez nowej wersji, w innych krajach inne), czy tylko „subskrypcja lub dostęp dożywotni” — Apple (3.1.2) wymaga jasnych warunków odnawiania.
-2. **Waluty w opisie:** EN podaje 0,99/4,99/14,99 w USD/EUR/GBP (opis jest jeden dla wszystkich krajów angielskiego) — czy tak, czy bez kwot.
+2. **Waluty w opisie:** EN podaje 0,99/6,99/14,99 w USD/EUR/GBP (opis jest jeden dla wszystkich krajów angielskiego) — czy tak, czy bez kwot.
 3. **Family Sharing:** decyzja TAK (11.10.2026), opis ją wspomina; otwarte w docs/15: czy włączenie jest nieodwracalne — sprawdzić w App Store Connect przed wysyłką.
 4. **Hasło „w cenie espresso lub taniej”** — pominięte; wymaga potwierdzenia cen espresso źródłami w każdym kraju (decyzja 09.10 pkt 3). **Zmiana (właściciel 11.10.2026, ok. 23:10): wyjątek od warunku źródeł — hasło wolno użyć bez potwierdzania cen espresso w każdym kraju** (hasło marketingowe, nie twierdzenie merytoryczne o treningu; ryzyko: w krajach z bardzo tanią kawą porównanie może być nieścisłe — Apple 2.3.1). Wstawić razem z blokiem cenowym, gdy zakup trafi do wydania.
-5. **„What's New 0.12.0”:** w `lib/whatsnew.ts` nie ma jeszcze wpisu 0.12.0 (najnowszy to 0.11.0). Projekt opiera się na zamianie ćwiczenia (E2, scalone w kodzie); po dopisaniu wpisu (35 języków, przez `t()`) tekst App Store dostosować do niego.
-6. **Zakres funkcji w opisie:** generator planu, zamiana ćwiczenia, Apple Health (tylko zapis), kopia JSON/CSV — potwierdzić, że wszystko trafia do 0.12.0.
+5. **„What's New 0.12.0”:** szkic z 11.10.2026 zostaje jako zapis; tekst „Co nowego” dla 1.0 powstaje z `lib/whatsnew.ts` przy wydaniu.
+6. **Zakres funkcji w opisie (odświeżony 20.10.2026 wg kodu):** generator planu, zamiana ćwiczenia, Apple Health (zapis i odczyt), Apple Watch, zapowiedzi głosowe, system miar, kopia/eksport JSON i CSV oraz import CSV — potwierdzić zakres 1.0 (docs/41, A4).
 7. **Twierdzenie „bez śledzenia”** — zgodne z `site/privacy.html` (brak wywołań sieciowych); zweryfikować przed wysyłką, jeśli dojdzie StoreKit.
 8. **Słowo „offline” w podtytule EN A i „bands” w słowach kluczowych** — czy zostają jako wyróżniki.
 9. Poza tym zadaniem: zrzuty ekranu, kategoria, rating wiekowy, adres URL wsparcia.
