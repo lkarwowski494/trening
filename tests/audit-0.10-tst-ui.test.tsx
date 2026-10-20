@@ -8,7 +8,6 @@ import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { equipVisFor } from '@/lib/equipvis';
 import { EquipVisual } from '@/components/EquipVisual';
-import { PlateBar } from '@/components/PlateBar';
 import { fresh, ex, addWorkout, pressAlert, withDemoTemplates } from './helpers';
 import { renderApp, flushAll, screen, go, tap, act, type, openCard, startEdit, saveEdit } from './app';
 
@@ -38,7 +37,7 @@ describe('ekran treningu', () => {
     expect((await screen.findByTestId('record-banner')).props.accessibilityLabel).toBe('Nowy rekord!');
   });
 
-  test('grafika sprzętu: guma przy podciąganiu z asystą — „asysta gumą: …”; sztanga bez talerzy — „sam gryf”', async () => {
+  test('grafika sprzętu: guma przy podciąganiu z asystą — „asysta gumą: …”', async () => {
     await fresh(); const b = S().bands[0]; store.startEmpty(); store.addExerciseToActive(ex('Pull Up'));
     const a = S().active!; const e = a.exercises[0]; e.sets[0].bandId = b.id; e.sets[0].reps = 8;
     const vis = equipVisFor(a, e, e.sets[0]); const band = vis.find(v => v.kind === 'band');
@@ -47,9 +46,6 @@ describe('ekran treningu', () => {
     expect(r.getByLabelText(new RegExp(`^asysta gumą: `))).toBeTruthy();
     /* ta sama guma przy ćwiczeniu z oporem gumy (bez asysty) — „guma: …” */
     const r2 = render(<EquipVisual v={{ ...band!, role: 'resist' } as never} />); expect(r2.getByLabelText(/^guma: /)).toBeTruthy(); expect(r2.queryByLabelText(/^asysta gumą/)).toBeNull();
-    const p = render(<PlateBar plan={{ unit: 'kg', base: 20, plates: [] }} />);
-    expect(p.getByLabelText('Na każdą stronę: sam gryf')).toBeTruthy(); expect(p.getByText(/sam gryf/)).toBeTruthy();
-    const p2 = render(<PlateBar plan={{ unit: 'kg', base: 20, plates: [10] }} />); expect(p2.queryByText(/sam gryf/)).toBeNull();
   });
 });
 

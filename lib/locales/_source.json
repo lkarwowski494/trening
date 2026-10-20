@@ -2769,14 +2769,6 @@
   "en": "The recommended option is at the top: it returns to routine without losing a workout, then avoids back-to-back days with the same muscle groups and changes the fewest days."
  },
  {
-  "pl": "Na każdą stronę",
-  "en": "Each side"
- },
- {
-  "pl": "Na każdą stronę: {p}",
-  "en": "Each side: {p}"
- },
- {
   "pl": "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
   "en": "At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Plan tab."
  },
@@ -2939,14 +2931,6 @@
  {
   "pl": "Nie",
   "en": "No"
- },
- {
-  "pl": "Nie da się ułożyć z talerzy ({l})",
-  "en": "Can’t be made with the plates ({l})"
- },
- {
-  "pl": "Nie da się ułożyć z talerzy ({l}) — najbliżej {v}",
-  "en": "Can’t be made with the plates ({l}) — nearest {v}"
  },
  {
   "pl": "Nie ma nowych treningów do dodania — wszystkie są już w historii.",
@@ -4579,10 +4563,6 @@
   "en": "Fewer than {n} days a week: {list} (a day with assisting work only = {h})."
  },
  {
-  "pl": "sam gryf",
-  "en": "empty bar"
- },
- {
   "pl": "sanki",
   "en": "sled"
  },
@@ -4818,8 +4798,8 @@
   "en": "Focused"
  },
  {
-  "pl": "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.",
-  "en": "Focused: the current set in big numbers and plates per side above the exercise list."
+  "pl": "Skupiony: bieżąca seria dużymi cyframi nad listą ćwiczeń.",
+  "en": "Focused: the current set in big numbers above the exercise list."
  },
  {
   "pl": "specjalistyczne serwisy treningowe",

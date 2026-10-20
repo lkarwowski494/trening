@@ -1,15 +1,13 @@
 /*
  * Styl „Tuleja” (decyzja właściciela 07.10.2026: grafika B, „wszystko naraz”, krój mieszany, domyślnie jasny; docs/16, docs/21 pkt 3 i 6):
- * kolory talerzy IWF, talerze „co nałożyć na stronę”, widok skupiony na bieżącej serii z przełącznikiem w ustawieniach.
- * Rodzaje testów (docs/20): logika (plates, focusSet, plateSpecFor), ekran (karta „teraz”, talerze, ustawienie), dane (migracja, restart),
- * języki (en), regresja (kontrast tekstu na talerzach). Macierz wymiarów: tests/matrix-tuleja.test.tsx. E2E: .maestro/11-widok-skupiony.yaml.
+ * widok skupiony na bieżącej serii z przełącznikiem w ustawieniach. 20.10.2026 (DEC-06, audyt M1): pasek talerzy „na każdą stronę” i kalkulator usunięte —
+ * testy ich logiki (platesPerSide, plateSpecFor, kolory IWF na talerzach) zniknęły razem z funkcją; zostaje test braku (niżej).
+ * Rodzaje testów (docs/20): logika (focusSet), ekran (karta „teraz”, ustawienie, brak paska talerzy), dane (migracja, restart), języki (en).
+ * Macierz wymiarów: tests/matrix-tuleja.test.tsx. E2E: .maestro/11-widok-skupiony.yaml.
  */
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { addLocation } from '@/lib/locations';
-import { plateSpecFor } from '@/lib/equipment';
-import { PLATE_COLORS, IWF_DISC, plateColor, plateInk, plateOutlined, platesPerSide, plateList, type PlateColor } from '@/lib/plates';
-import { toKg, type LoadSpec } from '@/lib/loads';
 import { applyUnit } from '@/lib/units';
 import { applyLang } from '@/lib/i18n';
 import { fresh, ex, saved } from './helpers';
@@ -17,75 +15,8 @@ import { renderApp, tap, flushAll, screen, act, fireEvent, openInfo } from './ap
 
 jest.setTimeout(60000);
 const S = () => store.getState();
-const GYM: LoadSpec = { kind: 'plates', unit: 'kg', base: 20, plates: [25, 20, 15, 10, 5, 2.5, 1.25].map(w => ({ w, n: 8 })) };
 beforeEach(async () => { await fresh(); });
 afterEach(async () => { applyUnit('kg'); applyLang('pl'); await timer.stop(); await timer.stopSet(); });
-
-describe('kolory talerzy IWF (lib/plates.ts)', () => {
-  test('kod barw IWF pkt 3.3.3.6: 25/2,5 czerwony, 20/2 niebieski, 15/1,5 żółty, 10/1 zielony, 5/0,5 biały', () => {
-    const want: [number, PlateColor][] = [[25, 'red'], [20, 'blue'], [15, 'yellow'], [10, 'green'], [5, 'white'], [2.5, 'red'], [2, 'blue'], [1.5, 'yellow'], [1, 'green'], [0.5, 'white']];
-    for (const [w, c] of want) expect([w, plateColor(w, 'kg')]).toEqual([w, c]);
-    expect(Object.keys(IWF_DISC)).toHaveLength(10);
-  });
-  test('poza kodem: 1,25 kg, talerze w funtach, wartości złe — bez koloru', () => {
-    for (const [w, u] of [[1.25, 'kg'], [45, 'lb'], [25, 'lb'], [NaN, 'kg'], [0, 'kg'], [-25, 'kg']] as const) expect([w, u, plateColor(w, u)]).toEqual([w, u, null]);
-  });
-  test('liczba na talerzu ma kontrast ≥ 4,5 z kolorem talerza (WCAG 1.4.3) — kolor nigdy nie jest jedyną informacją', () => {
-    const lum = (h: string) => { const c = h.slice(1).match(/../g)!.map(x => parseInt(x, 16) / 255).map(v => v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
-    const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
-    for (const c of Object.keys(PLATE_COLORS) as PlateColor[]) expect([c, ratio(plateInk(c), PLATE_COLORS[c]) >= 4.5]).toEqual([c, true]);
-    /* talerz bez obwódki odcina się od jasnego tła karty (≥ 3:1, WCAG 1.4.11); jasne talerze mają obwódkę */
-    for (const c of Object.keys(PLATE_COLORS) as PlateColor[]) expect([c, plateOutlined(c) || ratio(PLATE_COLORS[c], '#ffffff') >= 3]).toEqual([c, true]);
-    expect(plateOutlined(null)).toBe(true);
-  });
-});
-
-describe('talerze na stronę (platesPerSide)', () => {
-  test('typowe ciężary na gryfie 20 kg: najmniej talerzy', () => {
-    const per = (kg: number) => platesPerSide(kg, GYM)?.plates;
-    expect(per(80)).toEqual([25, 5]); expect(per(100)).toEqual([25, 15]); expect(per(60)).toEqual([20]); expect(per(140)).toEqual([25, 25, 10]);
-    expect(per(22.5)).toEqual([1.25]); expect(per(20)).toEqual([]);
-  });
-  test('ciężaru nie da się ułożyć → null: mniej niż gryf, nieparzysta reszta, za mało talerzy, zero i złe wartości', () => {
-    for (const kg of [15, 21, 0, -5, NaN, 20 + 2 * 8 / 2 * (25 + 20 + 15 + 10 + 5 + 2.5 + 1.25) + 5]) expect([kg, platesPerSide(kg, GYM)]).toEqual([kg, null]);
-  });
-  test('ograniczone talerze: przeszukiwanie z nawrotami (zachłanne 20 + … nie znajdzie 15 + 15)', () => {
-    const spec: LoadSpec = { kind: 'plates', unit: 'kg', base: 20, plates: [{ w: 20, n: 2 }, { w: 15, n: 4 }] };
-    expect(platesPerSide(80, spec)?.plates).toEqual([15, 15]); expect(platesPerSide(60, spec)?.plates).toEqual([20]); expect(platesPerSide(90, spec)?.plates).toEqual([20, 15]); expect(platesPerSide(110, spec)).toBeNull(); /* 45 na stronę: dwie 15 to za mało */
-  });
-  test('sztuki liczone na obie strony: nieparzysta liczba — jedna sztuka zostaje', () => {
-    expect(platesPerSide(70, { kind: 'plates', unit: 'kg', base: 20, plates: [{ w: 25, n: 3 }] })?.plates).toEqual([25]);
-    expect(platesPerSide(120, { kind: 'plates', unit: 'kg', base: 20, plates: [{ w: 25, n: 3 }] })).toBeNull();
-  });
-  test('opis w funtach: ciężar zapisany w kg (siatka lb) → talerze w lb', () => {
-    const lb: LoadSpec = { kind: 'plates', unit: 'lb', base: 45, plates: [{ w: 45, n: 8 }, { w: 25, n: 4 }, { w: 10, n: 4 }, { w: 5, n: 4 }, { w: 2.5, n: 4 }] };
-    for (const [tot, side] of [[225, [45, 45]], [135, [45]], [185, [45, 25]], [155, [45, 10]], [45, []]] as [number, number[]][]) expect([tot, platesPerSide(toKg(tot, 'lb'), lb)]).toEqual([tot, { unit: 'lb', base: 45, plates: side }]);
-  });
-  test('inny opis niż talerze (lista, stacja) albo brak opisu → null', () => {
-    expect(platesPerSide(20, { kind: 'list', unit: 'kg', items: [{ w: 20, on: true }] })).toBeNull();
-    expect(platesPerSide(20, { kind: 'electric', unit: 'kg', min: 1, max: 100, step: 1 })).toBeNull();
-    expect(platesPerSide(80, null)).toBeNull(); expect(platesPerSide(80, undefined)).toBeNull();
-  });
-  test('napis: przecinek wg języka (pl „2,5”, en „2.5”)', () => {
-    expect(plateList({ unit: 'kg', base: 20, plates: [25, 2.5] })).toBe('25 + 2,5');
-    applyLang('en'); expect(plateList({ unit: 'kg', base: 20, plates: [25, 2.5] })).toBe('25 + 2.5');
-  });
-});
-
-describe('opis talerzy przyrządu w miejscu (plateSpecFor)', () => {
-  beforeEach(async () => { await fresh(); });
-  test('sztanga w siłowni → opis talerzy; hantle, maszyna, masa ciała → null; bez miejsca → null', () => {
-    const l = addLocation('gym');
-    expect(plateSpecFor(ex('Bench Press (sztanga)'), l)?.kind).toBe('plates');
-    expect(plateSpecFor(ex('Bench Press (hantle)'), l)).toBeNull();
-    expect(plateSpecFor(ex('Bench Press (sztanga)'), null)).toBeNull();
-    expect(plateSpecFor(ex('Pull Up'), l)).toBeNull(); expect(plateSpecFor(ex('Leg Press'), l)).toBeNull(); expect(plateSpecFor(ex('Back Squat'), l)?.kind).toBe('plates');
-  });
-  test('gryf bez talerzy (decyzja 06.10.2026) → null, jak „ciężary nieznane”', () => {
-    const l = addLocation('gym'); const b = l.equipment.find(e => e.item === 'barbell')!; (b.load as any).plates = [];
-    expect(plateSpecFor(ex('Bench Press (sztanga)'), l)).toBeNull();
-  });
-});
 
 describe('seria „teraz” (store.focusSet)', () => {
   beforeEach(async () => { await fresh(); store.startEmpty(); });
@@ -130,14 +61,14 @@ async function gymWorkout(view: 'focus' | 'list' = 'focus') {
   await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10);
 }
 describe('ekran treningu: karta „teraz”', () => {
-  test('ćwiczenie, numer serii, duże „80 kg × 8” (audyt 0.10, UI-10: jednostka przy ciężarze), talerze 25 + 5 na stronę; „Seria zrobiona” odhacza serię i startuje przerwę, karta przechodzi dalej', async () => {
+  test('ćwiczenie, numer serii, duże „80 kg × 8” (audyt 0.10, UI-10: jednostka przy ciężarze), bez paska talerzy; „Seria zrobiona” odhacza serię i startuje przerwę, karta przechodzi dalej', async () => {
     await gymWorkout();
     expect(screen.getByText('seria 1 z 2')).toBeTruthy();
     expect(screen.getByLabelText('Teraz: 80 kg × 8')).toBeTruthy();
-    expect(screen.getByLabelText('Na każdą stronę: 25 + 5 kg')).toBeTruthy();
+    expect(screen.queryByLabelText(/Na każdą stronę/)).toBeNull(); expect(screen.queryByText(/Na każdą stronę|sam gryf/)).toBeNull(); /* DEC-06: bez paska talerzy */
     await tap(screen.getByText('Seria zrobiona')); await flushAll(10);
     expect(S().active!.exercises[0].sets[0].done).toBe(true); expect(timer.T.on).toBe(true);
-    expect(screen.getByText('seria 2 z 2')).toBeTruthy(); expect(screen.getByLabelText('Na każdą stronę: 25 + 15 kg')).toBeTruthy();
+    expect(screen.getByText('seria 2 z 2')).toBeTruthy(); expect(screen.getByLabelText('Teraz: 100 kg × 5')).toBeTruthy();
     await tap(screen.getByText('Seria zrobiona')); await flushAll(10);
     expect(screen.getByText('Wszystkie serie odhaczone')).toBeTruthy();
     await tap(screen.getByText('Zakończ trening')); await flushAll(10);
@@ -148,23 +79,22 @@ describe('ekran treningu: karta „teraz”', () => {
     expect(screen.getAllByLabelText('Seria zrobiona: Bench Press (sztanga), seria 1')).toHaveLength(1);
     expect(screen.getAllByLabelText('Seria 1 zrobiona — Bench Press (sztanga)')).toHaveLength(1); /* pole wyboru w wierszu */
   });
-  test('ciężar wpisany w wierszu zmienia kartę i talerze (wartości tylko w wierszu)', async () => {
+  test('ciężar wpisany w wierszu zmienia kartę (wartości tylko w wierszu)', async () => {
     await gymWorkout();
     await act(async () => { const a = S().active!; a.exercises[0].sets[0].weight = 60; store.save(a); }); await flushAll(10);
     await act(async () => { fireEvent(screen.getAllByLabelText('kg')[0], 'endEditing'); }); await flushAll(5);
-    expect(screen.getByLabelText('Teraz: 60 kg × 8')).toBeTruthy(); /* audyt 0.10 (UI-10) */ expect(screen.getByLabelText('Na każdą stronę: 20 kg')).toBeTruthy();
+    expect(screen.getByLabelText('Teraz: 60 kg × 8')).toBeTruthy(); /* audyt 0.10 (UI-10) */
   });
-  test('widok listy (ustawienie): jak w poprzednich wersjach — bez karty i bez talerzy (decyzja właściciela 07.10.2026: jedyna różnica to karta)', async () => {
+  test('widok listy (ustawienie): jak w poprzednich wersjach — bez karty (decyzja właściciela 07.10.2026: jedyna różnica to karta)', async () => {
     await gymWorkout('list');
     expect(screen.queryByText('Seria zrobiona')).toBeNull();
-    expect(screen.queryByText(/Na każdą stronę/)).toBeNull(); expect(screen.queryByLabelText(/Na każdą stronę/)).toBeNull();
   });
-  test('English: karta i talerze po angielsku, kropka dziesiętna', async () => {
+  test('English: karta po angielsku, bez paska talerzy (Each side)', async () => {
     await fresh(undefined, 'en'); addLocation('gym'); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)'));
     const a = S().active!; a.exercises[0].sets[0].weight = 45; a.exercises[0].sets[0].reps = 5; store.save(a); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'en' }); await flushAll(10);
     expect(screen.getByText('set 1 of 1')).toBeTruthy(); expect(screen.getByText('Set done')).toBeTruthy();
-    expect(screen.getByLabelText('Each side: 10 + 2.5 kg')).toBeTruthy();
+    expect(screen.queryByLabelText(/Each side/)).toBeNull(); expect(screen.queryByText(/empty bar/)).toBeNull();
   });
 });
 
@@ -172,7 +102,7 @@ describe('ekran Ustawień: „Widok treningu”', () => {
   test('kontrolka Skupiony / Lista z opisem; zmiana zapisuje się i zmienia ekran treningu', async () => {
     await fresh(); await renderApp({ url: '/more/settings' }); await flushAll(10);
     expect(screen.queryByText(/^Skupiony: bieżąca seria/)).toBeNull(); await openInfo('workout-view'); /* ⓘ 14.10.2026: opis widoku pod ⓘ przy polu */
-    expect(screen.getByText('Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.')).toBeTruthy();
+    expect(screen.getByText('Skupiony: bieżąca seria dużymi cyframi nad listą ćwiczeń.')).toBeTruthy();
     expect(screen.getByText('Skupiony')).toBeTruthy();
     await tap(screen.getByText('Lista')); await flushAll(5);
     expect(screen.getByText('Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.')).toBeTruthy(); /* opis zmienia się z wyborem */

@@ -12,7 +12,7 @@ import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import { monthWeeks, MONTH_WEEK_STATES, LOAD_ORDER } from '@/lib/motif';
 import { periodRange } from '@/lib/period';
-import { PLATE_COLORS } from '@/lib/plates';
+import { PLATE_COLORS } from '@/lib/discColors';
 import { light, dark } from '@/lib/theme';
 import { fresh, addWorkout, saved } from './helpers';
 import { renderApp, flushAll, screen, go, act } from './app';

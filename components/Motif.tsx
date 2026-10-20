@@ -1,12 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
-import { PLATE_COLORS, type PlateColor } from '@/lib/plates';
+import { PLATE_COLORS, type PlateColor } from '@/lib/discColors';
 import Svg, { Path, Rect } from 'react-native-svg';
 import { needsEdge, miniIcon, MINI_ICON, MARK_STROKE, restCup, REST_CUP, plateStack, plateStackHeight, PLATE_STACK, type DayMark } from '@/lib/motif';
 import type { Theme } from '@/lib/theme';
 
 /*
- * Motyw z ikony (decyzja właściciela 09.10.2026, zestaw pełny; liczby i reguły — lib/motif.ts, kolory — lib/plates.ts PLATE_COLORS).
+ * Motyw z ikony (decyzja właściciela 09.10.2026, zestaw pełny; liczby i reguły — lib/motif.ts, kolory — lib/discColors.ts PLATE_COLORS).
  * Wspólne części rysunków. Każdy element motywu to osobny komponent, który można przenieść w inne miejsce bez zmian (układ ekranu głównego
  * może się zmienić — ostrzeżenie koordynatora 09.10.2026): WeekStacks, EmptyBarArt, RecordsCard (components/*.tsx, bez grafiki od 11.10.2026), DayIcon i PlateStack (tu).
  * Grafiki dekoracyjne są ukryte przed VoiceOver; tam, gdzie grafika niesie informację, ta sama informacja jest tekstem obok i w etykiecie.

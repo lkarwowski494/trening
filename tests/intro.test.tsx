@@ -16,7 +16,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Intro } from '@/components/Intro';
 import { INTRO, INTRO_MOVE_MS, INTRO_MODES, introMode, introPieces, introFrame, pieceOffset, easeOutCubic, takeColdStart, __resetIntroForTests } from '@/lib/intro';
 import { ICON_BAR, ICON_PLATES, ICON_COLLAR, ICON_VIEWBOX, ICON_SCHEMES, iconColors, type IconRect } from '@/lib/brandIcon';
-import { PLATE_COLORS } from '@/lib/plates';
+import { PLATE_COLORS } from '@/lib/discColors';
 import { BRAND, dark } from '@/lib/theme';
 import { renderApp, flushAll, screen } from './app';
 import { Runner, DIR, load } from './maestro-runner';

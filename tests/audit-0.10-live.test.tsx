@@ -220,12 +220,11 @@ describe('F9: karta „teraz”, komunikaty i drobne poprawki', () => {
       expect([view, bare()]).toEqual([view, []]);
     }
   });
-  test('F9 (LIVE-17): ciężar spoza talerzy miejsca — podpis „Nie da się ułożyć z talerzy (miejsce) — najbliżej X”', async () => {
-    await fresh(); addLocation('gym'); S().settings.unit = 'lb'; applyUnit('lb'); store.startEmpty(); /* siłownia z talerzami w kg, aplikacja w lb (dowód audytu) */ store.addExerciseToActive(ex('Bench Press (sztanga)'));
+  test('F9 (LIVE-17, DEC-06 20.10.2026): ciężar spoza talerzy miejsca — nie ma już podpisu „Nie da się ułożyć z talerzy”, ciężar zostaje w dużej liczbie karty', async () => {
+    await fresh(); addLocation('gym'); S().settings.unit = 'lb'; applyUnit('lb'); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)'));
     Object.assign(S().active!.exercises[0].sets[0], { weight: wIn(225), reps: 5 }); await boot();
-    expect(screen.getByLabelText('Nie da się ułożyć z talerzy (Pełna siłownia) — najbliżej 226 lb')).toBeTruthy();
-    await act(async () => { const a = S().active!; a.exercises[0].sets[0].weight = 100; store.save(a); }); await flushAll(10);
-    expect(screen.queryByLabelText(/^Nie da się ułożyć/)).toBeNull(); expect(screen.getByLabelText(/^Na każdą stronę: /)).toBeTruthy();
+    expect(screen.queryByLabelText(/^Nie da się ułożyć/, { includeHiddenElements: true })).toBeNull(); expect(screen.queryByLabelText(/Na każdą stronę/, { includeHiddenElements: true })).toBeNull();
+    expect(screen.getByLabelText('Teraz: 225 lb × 5')).toBeTruthy();
   });
 });
 

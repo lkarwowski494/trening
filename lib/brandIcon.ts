@@ -1,11 +1,11 @@
-import { PLATE_COLORS, type PlateColor } from './plates';
+import { PLATE_COLORS, type PlateColor } from './discColors';
 import { BRAND, dark } from './theme';
 
 /*
  * Ikona aplikacji (styl „Tuleja”, 07.10.2026) jako dane — jedno źródło geometrii dla animacji startowej (components/Intro.tsx).
  * Jednostki = viewBox 0 0 120 120 plików assets/brand/icon*.svg i splash*.svg; tests/intro.test.tsx sprawdza, że pliki SVG mają dokładnie te
  * prostokąty i kolory (pliki rysują ikonę i ekran startowy iOS — scripts/brand/icon.mjs → assets/*.png).
- * Kolory talerzy: lib/plates.ts PLATE_COLORS (IWF). Wariant ciemny ikony iOS (assets/brand/icon-dark.svg) ma rozjaśnioną czerwień, niebieski
+ * Kolory talerzy: lib/discColors.ts PLATE_COLORS (IWF). Wariant ciemny ikony iOS (assets/brand/icon-dark.svg) ma rozjaśnioną czerwień, niebieski
  * i zieleń na ciemnym tle systemu — te trzy odcienie są tylko tutaj; gryf i zacisk w ciemnym = kolor tekstu motywu ciemnego.
  */
 export const ICON_VIEWBOX = 120;

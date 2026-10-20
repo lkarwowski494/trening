@@ -12,9 +12,9 @@ const root = path.join(__dirname, '..');
 afterEach(() => { load.mockReset(); load.mockImplementation(() => Promise.resolve()); });
 
 test('kolory Tulei: papierowe tło i atramentowy tekst za dnia, grafit po zmroku; akcent = niebieski talerza 20 kg', () => {
-  const { PLATE_COLORS } = require('@/lib/plates');
+  const { PLATE_COLORS } = require('@/lib/discColors');
   expect(light.bg).toBe(BRAND.paper); expect(light.text).toBe(BRAND.ink); expect(light.accent).toBe(BRAND.signal);
-  expect(BRAND.signal).toBe(PLATE_COLORS.blue); /* jedno źródło: kolor marki = talerz 20 kg (lib/plates.ts) */
+  expect(BRAND.signal).toBe(PLATE_COLORS.blue); /* jedno źródło: kolor marki = talerz 20 kg (lib/discColors.ts) */
   for (const old of ['#E8590C', '#F2F0EB', '#1E1F22', '#c2410c', '#ff8a3d']) expect(JSON.stringify([BRAND, light, dark]).toLowerCase()).not.toContain(old.toLowerCase());
   expect(Object.keys(dark).sort()).toEqual(Object.keys(light).sort());
 });
@@ -44,7 +44,7 @@ test('zakładki bez emoji (ikony SVG); ikona aplikacji i ekran startowy w kolora
   expect(JSON.stringify(app)).not.toMatch(/E8590C|F2F0EB/i);
   const notif = app.plugins.find((p: unknown) => Array.isArray(p) && p[0] === 'expo-notifications')[1]; expect(notif.color).toBe(BRAND.signal);
   /* ikona: koniec sztangi z talerzami w kolorach IWF (25 czerwony, 20 niebieski, 15 żółty, 10 zielony) — trzy warianty iOS */
-  const { PLATE_COLORS } = require('@/lib/plates');
+  const { PLATE_COLORS } = require('@/lib/discColors');
   for (const f of ['icon.svg', 'icon-dark.svg', 'icon-tinted.svg']) expect(fs.existsSync(path.join(root, 'assets/brand', f))).toBe(true);
   const svg = fs.readFileSync(path.join(root, 'assets/brand/icon.svg'), 'utf8');
   for (const c of [PLATE_COLORS.red, PLATE_COLORS.blue, PLATE_COLORS.yellow, PLATE_COLORS.green]) expect(svg.toLowerCase()).toContain(c.toLowerCase());

@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { useTheme, F } from '@/lib/theme';
-import { PlateBar } from '@/components/PlateBar';
 import { bandHex, type EquipVis } from '@/lib/equipvis';
 import { bandA11y } from '@/lib/store';
 import { t as tr, lang } from '@/lib/i18n';
@@ -16,7 +15,6 @@ export function EquipVisual({ v }: { v: EquipVis }) {
   const caption = (s: string) => <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 12, fontFamily: F.semibold }}>{s}</Text>;
   const box = (label: string, children: React.ReactNode) => <View accessibilityLanguage={lang()} accessible accessibilityRole="image" accessibilityLabel={label} style={{ gap: 4 }}>{caption(label)}{children}</View>;
   switch (v.kind) {
-    case 'plates': return <PlateBar plan={v.plan} />;
     case 'stack': {
       const label = tr('stos na {v}', { v: fmtW(v.kg) });
       return box(label, v.window ? (
@@ -46,10 +44,6 @@ export function EquipVisual({ v }: { v: EquipVis }) {
       const name = bandA11y({ color: v.color, level: v.level }); const label = v.role === 'assist' ? tr('asysta gumą: {v}', { v: name }) : tr('guma: {v}', { v: name });
       const hex = bandHex(v.color);
       return box(label, <View style={{ height: 14, width: 60 + v.level * 18, borderRadius: 7, backgroundColor: hex ?? t.surface2, borderWidth: !hex || hex === '#FFFFFF' ? 1.5 : 0, borderColor: t.text }} />);
-    }
-    case 'noplates': { /* audyt 0.10 (LIVE-17) */
-      const label = v.nearestKg != null ? tr('Nie da się ułożyć z talerzy ({l}) — najbliżej {v}', { l: v.place, v: fmtW(v.nearestKg) }) : tr('Nie da się ułożyć z talerzy ({l})', { l: v.place });
-      return <View accessibilityLanguage={lang()} accessible accessibilityLabel={label}>{caption(label)}</View>; /* podpis, nie rysunek */
     }
     case 'bodyweight': {
       const label = v.addKg > 0 ? tr('dociążenie: {v}', { v: fmtW(v.addKg) }) : tr('asysta: {v}', { v: fmtW(-v.addKg) });

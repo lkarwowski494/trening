@@ -2,7 +2,7 @@ import { Appearance, useColorScheme } from 'react-native';
 
 /*
  * Styl marki „Tuleja” (decyzja właściciela 07.10.2026: „Podoba mi się grafika B”; docs/16, docs/21 pkt 6). Jedno źródło kolorów i krojów pisma.
- * Zastępuje „Kredę” (05.10.2026). Papier i atrament jako tło i tekst; akcent = niebieski talerza 20 kg (kolory talerzy: lib/plates.ts).
+ * Zastępuje „Kredę” (05.10.2026). Papier i atrament jako tło i tekst; akcent = niebieski talerza 20 kg (kolory talerzy: lib/discColors.ts).
  * Kontrast (WCAG): tests/ux.test.tsx C5 — akcent #1F5FD1 na papierze 5,3:1, w ciemnym motywie jaśniejszy #6F9BF2.
  */
 export const BRAND = { paper: '#F4F3EF', ink: '#15171A', signal: '#1F5FD1' } as const;
@@ -15,7 +15,7 @@ export const light: Record<'bg' | 'surface' | 'surface2' | 'line' | 'ctrlLine' |
 /** Ciemna wersja: grafitowe tło, papierowy tekst, ten sam niebieski (jaśniejszy). */
 export const dark: typeof light = { bg: '#121316', surface: '#1b1d21', surface2: '#26282d', line: '#3a3d43', ctrlLine: '#74777e', text: '#eceae4', muted: '#a6a9af', accent: '#6f9bf2', accentInk: '#121316', done: '#1f2e24', doneLine: '#4e9a6a', danger: '#ec7a72', dangerInk: '#121316', band: '#5fc3c9', less: '#F0A050' };
 export type Theme = typeof dark;
-/* Motyw z ikony (decyzja właściciela 09.10.2026): czerwień talerza 25 kg (lib/plates.ts PLATE_COLORS.red #D7263D, IWF) nie może mylić się z „Usuń”.
+/* Motyw z ikony (decyzja właściciela 09.10.2026): czerwień talerza 25 kg (lib/discColors.ts PLATE_COLORS.red #D7263D, IWF) nie może mylić się z „Usuń”.
  * Jasny danger przesunięty z #b3261e (ΔE2000 9,7 do talerza, kontrast luminancji 1,32:1) na ciemną cegłę #7f1d1d (ΔE2000 17,9; 2,02:1); ciemny
  * #ec7a72 (łososiowy) — ΔE2000 17,3; 1,79:1. Do tego kształt: talerz zawsze jako zaokrąglony prostokąt przy gryfie z liczbą obok, danger tylko
  * jako tekst i przycisk ze słowem. Test: tests/motyw.test.tsx. */

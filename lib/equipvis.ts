@@ -1,7 +1,6 @@
 import { getState, exById, isBW, locationById, listLocFor, pinnedImpl, liveBlockImpl } from './store';
-import { loadsFor, plateSpecFor } from './equipment';
-import { hasLoad, achievable } from './loads';
-import { platesPerSide, type PlatePlan } from './plates';
+import { loadsFor } from './equipment';
+import { hasLoad } from './loads';
 import { hasWeight, type Exercise, type Impl, type WExercise, type WSet, type Workout } from './seed';
 
 /*
@@ -10,14 +9,13 @@ import { hasWeight, type Exercise, type Impl, type WExercise, type WSet, type Wo
  * Przyrząd bloku: liveBlockImpl (miejsca), bez miejsc — z rodzaju obciążenia ćwiczenia (loadSource).
  */
 export type EquipVis =
-  | { kind: 'plates'; plan: PlatePlan }
   | { kind: 'stack'; kg: number; window: { kg: number; pin: boolean }[] | null }
   | { kind: 'dumbbell' | 'kettlebell'; n: 1 | 2; eachKg: number }
   | { kind: 'electric'; kg: number }
   | { kind: 'band'; color: string; level: number; role: 'resist' | 'assist' }
-  | { kind: 'bodyweight'; addKg: number }
-  /** Audyt 0.10 (LIVE-17): ciężaru nie da się ułożyć z talerzy miejsca — podpis z miejscem i najbliższym osiągalnym ciężarem (null — żaden). */
-  | { kind: 'noplates'; place: string; nearestKg: number | null };
+  | { kind: 'bodyweight'; addKg: number };
+/* 20.10.2026 (DEC-06, audyt M1): rysunek „talerze na każdą stronę” (PlateBar) i jego kalkulator (platesPerSide, podpis „Nie da się ułożyć z talerzy”) usunięte.
+ * Sztanga, gryf EZ i trap bar nie mają grafiki — ciężar widać w dużej liczbie karty „teraz”. Opis „gryf + talerze” w miejscu zostaje (podpowiedzi ciężarów). */
 
 const SOURCE_IMPL: Partial<Record<NonNullable<Exercise['loadSource']>, Impl>> = { barbell: 'barbell', ez_bar: 'ez_bar', trap_bar: 'trap_bar', dumbbell: 'dumbbell', kettlebell: 'kettlebell', cable: 'cable', machine_stack: 'machine' };
 /** Przyrząd bloku: z miejsca treningu albo (bez miejsc) z rodzaju obciążenia ćwiczenia. Maszyna z talerzami (plate_loaded) — bez grafiki stosu. */
@@ -32,10 +30,6 @@ export function stackWindow(loads: readonly number[], kg: number, size = 5): { k
   return loads.slice(from, to).map((v, j) => ({ kg: v, pin: from + j === i }));
 }
 
-/** Najbliższy ciężar z listy osiągalnych (kg); remis — lżejszy; pusta lista — null (audyt 0.10, LIVE-17). */
-export function nearestLoad(loads: readonly number[], kg: number): number | null {
-  let best: number | null = null; for (const v of loads) if (best == null || Math.abs(v - kg) < Math.abs(best - kg) - 1e-9) best = v; return best;
-}
 /** Grafiki dla serii (kolejność wyświetlania): obciążenie przyrządu, potem guma. Pusta lista — bez grafiki (sama liczba na karcie). */
 export function equipVisFor(w: Workout, e: WExercise, set: WSet): EquipVis[] {
   const ex = exById(e.exerciseId); if (!ex) return [];
@@ -43,8 +37,7 @@ export function equipVisFor(w: Workout, e: WExercise, set: WSet): EquipVis[] {
   if (isBW(ex)) { const a = Number(set.addKg); if (hasWeight(m) && set.addKg !== '' && set.addKg != null && a) out.push({ kind: 'bodyweight', addKg: a }); }
   else if (hasWeight(m) && kg != null) {
     const impl = implFor(w, e); const loc = locationById(listLocFor(e, w.locationId));
-    if (impl === 'barbell' || impl === 'ez_bar' || impl === 'trap_bar') { const spec = plateSpecFor(ex, loc, pinnedImpl(e)); const plan = platesPerSide(kg, spec);
-      if (plan) out.push({ kind: 'plates', plan }); else if (spec && loc) out.push({ kind: 'noplates', place: loc.name, nearestKg: nearestLoad(achievable(spec), kg) }); /* audyt 0.10 (LIVE-17): zamiast pustego miejsca */ }
+    if (impl === 'barbell' || impl === 'ez_bar' || impl === 'trap_bar') { /* bez grafiki (DEC-06) */ }
     else if (impl === 'dumbbell' || impl === 'kettlebell') { const mode = ex.loadMode ?? 'total'; out.push(mode === 'unilateral' ? { kind: impl, n: 1, eachKg: kg } : mode === 'per_dumbbell' ? { kind: impl, n: 2, eachKg: kg } : { kind: impl, n: (ex.implements ?? 1) === 2 ? 2 : 1, eachKg: (ex.implements ?? 1) === 2 ? kg / 2 : kg }); }
     else if (impl === 'electric') out.push({ kind: 'electric', kg });
     else if (impl === 'machine' || impl === 'cable') { const l = loadsFor(ex, loc, pinnedImpl(e)); out.push({ kind: 'stack', kg, window: l.kind === 'loads' ? stackWindow(l.loads, kg) : null }); }
@@ -64,8 +57,8 @@ export const bandHex = (color: string): string | null => BAND_HEX[color.trim().t
 
 /**
  * Miejsce na grafikę na karcie (decyzja właściciela 07.10.2026, wariant A; E2E run 37611882320): karta nie zmienia wysokości, gdy wpisujesz
- * wartość w wierszu serii — inaczej pojawiające się talerze spychały wiersz pod klawiaturę. Ten sam przyrząd co equipVisFor, ale z wartością
- * zastępczą (niezależną od wpisanej): talerze — sam gryf, stos — okno wokół 3. pozycji listy, reszta — 10 kg. Rysowane niewidocznie.
+ * wartość w wierszu serii — inaczej pojawiająca się grafika spychała wiersz pod klawiaturę. Ten sam przyrząd co equipVisFor, ale z wartością
+ * zastępczą (niezależną od wpisanej): stos — okno wokół 3. pozycji listy, reszta — 10 kg. Rysowane niewidocznie.
  */
 export function equipSlotFor(w: Workout, e: WExercise, set: WSet): EquipVis[] {
   const ex = exById(e.exerciseId); if (!ex) return [];
@@ -73,10 +66,7 @@ export function equipSlotFor(w: Workout, e: WExercise, set: WSet): EquipVis[] {
   if (isBW(ex)) return equipVisFor(w, e, { ...set, addKg: 10 });
   const impl = implFor(w, e); const loc = locationById(listLocFor(e, w.locationId));
   const band = equipVisFor(w, e, { ...set, weight: '' });
-  if (impl === 'barbell' || impl === 'ez_bar' || impl === 'trap_bar') {
-    const spec = plateSpecFor(ex, loc, pinnedImpl(e));
-    return spec && spec.kind === 'plates' ? [{ kind: 'plates', plan: { unit: spec.unit, base: spec.base, plates: [] } }, ...band] : band;
-  }
+  if (impl === 'barbell' || impl === 'ez_bar' || impl === 'trap_bar') return band;
   if (impl === 'machine' || impl === 'cable') {
     const l = loadsFor(ex, loc, pinnedImpl(e));
     if (l.kind === 'loads' && l.loads.length) { const kg = l.loads[Math.min(2, l.loads.length - 1)]; return [{ kind: 'stack', kg, window: stackWindow(l.loads, kg) }, ...band]; }
