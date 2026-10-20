@@ -26,9 +26,9 @@ backlog) → docs/15 (App Store, ceny) → docs/09 (dziennik testów; stare rund
 8. Przepływy użytkownika → nawigacja, ekran główny, „Progresja” (tydzień/miesiąc), porządek przycisków; prompt do audytu UX.
 9. Apple Zdrowie: treningi z zegarka, inne aktywności jako cardio, kroki w planie tygodnia.
 10. Baza ćwiczeń: wskazówki i animacje (ExRx — brak API/licencji; MuscleWiki — płatne API i serwer).
-11. Nazwa wydawcy Apps4Brew. 12. Strona internetowa. 13. Ryzyko FitNotes.
+11. Nazwa wydawcy Apps4Brew. 12. Strona internetowa. 13. Ryzyko jednej z popularnych aplikacji (import CSV).
 
-**Import CSV (11.10.2026, gałąź agenta, bez pusha):** formatA + formatB zrobione (docs/21, „Import CSV z popularnych dzienników”), Hevy [OTWARTE]. Ekran `more/import`,
+**Import CSV (11.10.2026, gałąź agenta, bez pusha):** formatA + formatB zrobione (docs/21, „Import CSV z popularnych dzienników”), trzeci format [OTWARTE]. Ekran `more/import`,
 logika `lib/csvparse.ts`/`lib/csvimport.ts`, testy `csv-import-logic`/`csv-import-ui`, 31 słowników (26 kluczy; do sprawdzenia przez native speakera). E2E Maestro — pominięty (docs/09).
 
 ## Otwarte ryzyka
@@ -80,13 +80,13 @@ logika `lib/csvparse.ts`/`lib/csvimport.ts`, testy `csv-import-logic`/`csv-impor
 - 11.10.2026: **strona internetowa (pkt 12) — A**: jedna prosta strona Apps4Brew na GitHub Pages (docs/): opis i zrzuty, link do App Store,
   polityka prywatności, „Pomoc” (kontakt + FAQ), PL/EN; domena apps4brew.com podpinana po zakupie (właściciel — w przyszłym tygodniu).
   [OTWARTE]: adres kontaktu wsparcia (nie e-mail prywatny w publicznym repo — np. skrzynka w domenie po zakupie). Odrzucone: B (inny hosting), C (minimum).
-- 11.10.2026: **FitNotes (pkt 13) — A**: raport Gemini mylił się (FitNotes jest na iOS — App Store, 11.10.2026); poprawiona notatka
-  docs/research/raporty-rynkowe-2026-10.md, pozycjonowanie na różnicach (bez nazw konkurentów), import CSV z FitNotes dopisany do „Przed App Store”.
+- 11.10.2026: **Ryzyko jednej z popularnych aplikacji (pkt 13) — A**: raport Gemini mylił się (ta aplikacja jest na iOS — App Store, 11.10.2026); poprawiona notatka
+  docs/research/raporty-rynkowe-2026-10.md, pozycjonowanie na różnicach (bez nazw konkurentów), import CSV z tej aplikacji dopisany do „Przed App Store”.
   Korekta agenta: darmowy poziom to 4 treningi/miesiąc (docs/15, 09.10) — nie „bez limitu”, jak błędnie podał agent w rozmowie.
 - 11.10.2026: **aplikacja na Apple Watch — A jako priorytet po wejściu do App Store**: etap 1 — dodatek do telefonu (bieżąca seria,
   odhaczanie, przerwa, sesja treningowa z tętnem/kcal, WatchConnectivity; dane trzyma telefon), etap 2 — ewentualnie samodzielna. Natywny Swift
   (osobny target), test na zegarku właściciela. Odrzucone: B (przed App Store), C (tylko dane z Health).
-- 11.10.2026: **cennik zmieniony** (docs/15): roczna 6,99 USD (PL 19,99 zł bez zmian), dożywotnio 21,99 USD / 59,99 zł; miesięczna bez zmian;
+- 11.10.2026 (zastąpione 13.10.2026 i 20.10.2026 — obowiązuje docs/monetyzacja.md): **cennik zmieniony** (docs/15): roczna 6,99 USD (PL 19,99 zł bez zmian), dożywotnio 21,99 USD / 59,99 zł; miesięczna bez zmian;
   Family Sharing — tak. EUR/GBP jak USD — potwierdzone.
 - 11.10.2026: **docs/22 P2 — B**: „Z szablonu” w arkuszu „Inny trening” otwiera osobny pełnoekranowy wybór szablonu ze „Startem” (jak „Wybierz
   ćwiczenie”); czytelniejsze przy wielu szablonach (+1 stuknięcie). Odrzucone: A (lista w arkuszu).
