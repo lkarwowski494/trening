@@ -4,7 +4,7 @@ Przebieg: M3-2026-10-21 · gałąź `redesign/trening-2026-10-21` od `main` 6998
 Katalog roboczy przebiegu (`audit/M3-2026-10-21/`) jest poza gitem; tu tylko stan do wznowienia, bez treści prywatnych.
 
 ## Stan (21.10.2026)
-- E0 zakończony; **STOP 1 zatwierdzony 21.10.2026** (docs/18): bramka uchylona z zapisem, pełny przebieg, rola 04 build jako subagenci.
+- E0 zakończony; **STOP 1 zatwierdzony 21.10.2026** (docs/18): pełny przebieg; bramka opłacalności (rola 02, próg 500 USD/rok) biegnie równolegle z E1 — zmiana decyzji z 21.10, rola 04 build jako subagenci.
 - E1 w toku: subagent roli 04 (audit) mierzy AS IS; natywne zrzuty „przed” z nocnego E2E 39537208004.
 - Stan wyjściowy: `npm run verify` EXIT 0 (402 zestawy, 8519 testów, 1 pominięty; lint 0 błędów / 111 ostrzeżeń; macierz 2491 pozycji, 0 bez testu).
 - `npm run screens`: 324 zrzuty Expo web; 10 problemów układu przy szerokości 320 pt (generator — przycisk poza ekranem w 6 językach; historia/ustawienia — ucięty tekst w lv, el).
