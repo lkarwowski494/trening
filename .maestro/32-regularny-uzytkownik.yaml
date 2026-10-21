@@ -115,6 +115,8 @@ name: Regularny użytkownik — historia, plan, restart, kopia
 - assertVisible: ".* · paused"
 - tapOn: "Resume workout"
 - extendedWaitUntil: { visible: "Pause workout", timeout: 15000 }
+# L-013 (nocny run 39537208004, 390 pt; zrzut kroku „Skip”: zakładka „More”): wiersz serii 2 leży przy pasku zakładek — stuknięcie trafiało w zakładkę; wyśrodkowanie przed stuknięciem
+- scrollUntilVisible: { element: "Set 2 done — Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { text: "Set 2 done — Bench Press \\(Dumbbell\\)" }
 - tapOn: { text: "Skip", optional: true }
 - scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000 }
