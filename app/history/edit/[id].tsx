@@ -10,14 +10,15 @@ import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, ch
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet } from '@/lib/seed';
-import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
+import { SwipeRow, lastSetBlock, confirmDelete } from '@/components/SwipeRow';
+import { ExMenuButton } from '@/components/ExMenuButton';
 import { SetBadge } from '@/components/SetBadge';
 import { DraftHeader, HeaderButton, confirmDiscard } from '@/components/DraftHeader';
 import { MedicalNote } from '@/components/MedicalNote';
 import { useTheme, NUM_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
 import { t, tp, exName, lang } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW, dIn, dOut, distUnit } from '@/lib/units';
-import { cancelButton } from '@/lib/confirm';
+import { cancelButton, okButton } from '@/lib/confirm';
 
 /*
  * Docs/12: edycja zakończonego treningu i trening wstecz — wspólny edytor szkicu (lib/edit.ts). Wygląd jak szczegóły sesji,
@@ -103,11 +104,16 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
   const nOcc = occurrences(d.w.exercises, e.exerciseId); const nm = ex ? (nOcc > 1 ? `${exName(ex)} (${occurrence(d.w.exercises, ei) + 1})` : exName(ex)) : t('Usunięte ćwiczenie');
   const m = ex?.metric ?? 'weight_reps'; const bw = !!ex && isBW(ex); const band = usesBand(ex); /* 06.10.2026: także opór gumy */ const showRpe = st.settings.showRpe;
   const setMenu = (set: WSet, si: number) => {
-    const opts = [t('Seria normalna'), t('Rozgrzewka (W)'), t('Drop set (D)'), t('Do upadku (F)'), set.note ? t('Edytuj notatkę') : t('Dodaj notatkę'), t('Anuluj')];
+    /* 04-studio-projektowe-003: „Usuń serię” w menu jak w treningu (M1-028) — to samo okno i ta sama blokada ostatniej serii co przy geście */
+    const opts = [t('Seria normalna'), t('Rozgrzewka (W)'), t('Drop set (D)'), t('Do upadku (F)'), set.note ? t('Edytuj notatkę') : t('Dodaj notatkę'), t('Usuń serię'), t('Anuluj')];
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
-    ActionSheetIOS.showActionSheetWithOptions({ options: opts, cancelButtonIndex: 5, title: t('Seria {n}', { n: setLabel(e, si) }) }, i => {
+    ActionSheetIOS.showActionSheetWithOptions({ options: opts, cancelButtonIndex: 6, destructiveButtonIndex: 5, title: t('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; touchDraft(); }
       else if (i === 4) Alert.prompt?.(t('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: t('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); touchDraft(); } }], 'plain-text', set.note);
+      else if (i === 5) {
+        if (e.sets.length <= 1) { const b = lastSetBlock(); Alert.alert(b.title, b.message, [okButton()]); }
+        else confirmDelete({ title: t('Usunąć serię?'), message: nm, onDelete: () => draftRemoveSet(d.key, ei, set.id) });
+      }
     });
   };
   const cycleBand = (set: WSet) => { set.bandId = nextBandId(set.bandId, d.w.locationId ?? null); touchDraft(); }; /* ten sam cykl co w treningu (store.nextBandId) */
@@ -118,8 +124,8 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
   const heads = ['#', ...(hasWeight(m) ? [ex ? loadLabelShort(ex, impl) : wu()] : []), ...(hasReps(m) ? [t('Pow.')] : []), ...(hasDistance(m) ? ['m'] : []), ...(hasTime(m) ? [t('sek.')] : []), ...(showRpe ? [effortLabel()] : [])];
   return (
     <View style={[s.ex, { borderBottomColor: th.line }]}>
-      {/* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (components/SwipeRow.tsx), bez przycisków */}
-      <SwipeRow label={t('Usuń ćwiczenie: {name}', { name: nm })} title={t('Usunąć z treningu?')} message={nm} onDelete={() => draftRemoveExercise(d.key, e.id)}>{a11y => <View accessibilityLanguage={lang()} {...a11y} accessible accessibilityRole="header" accessibilityLabel={nm}><Txt style={{ ...font('body'), ...FW.semibold, marginBottom: 6 }}>{e.groupId && labels[e.groupId] ? <Txt style={{ color: th.band, ...FW.semibold }}>{`${ssTag(labels[e.groupId])} · `}</Txt> : null}{nm}{ex?.archived ? <Txt style={{ color: th.muted, ...font('footnote') }}>{' (' + t('usunięte') + ')'}</Txt> : null}</Txt></View>}</SwipeRow>
+      {/* usuwanie: przesunięcie w lewo (SwipeRow) albo „⋯” → „Usuń ćwiczenie” (04-studio-projektowe-003) — to samo okno */}
+      <SwipeRow label={t('Usuń ćwiczenie: {name}', { name: nm })} title={t('Usunąć z treningu?')} message={nm} onDelete={() => draftRemoveExercise(d.key, e.id)}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center' }}><View style={{ flex: 1 }} accessibilityLanguage={lang()} {...a11y} accessible accessibilityRole="header" accessibilityLabel={nm}><Txt style={{ ...font('body'), ...FW.semibold, marginBottom: 6 }}>{e.groupId && labels[e.groupId] ? <Txt style={{ color: th.band, ...FW.semibold }}>{`${ssTag(labels[e.groupId])} · `}</Txt> : null}{nm}{ex?.archived ? <Txt style={{ color: th.muted, ...font('footnote') }}>{' (' + t('usunięte') + ')'}</Txt> : null}</Txt></View><ExMenuButton testID={`edit-ex-menu-${ei}`} name={nm} onPress={() => ActionSheetIOS.showActionSheetWithOptions({ options: [t('Usuń ćwiczenie'), t('Anuluj')], cancelButtonIndex: 1, destructiveButtonIndex: 0, title: nm }, k => { if (k === 0) confirmDelete({ title: t('Usunąć z treningu?'), message: nm, onDelete: () => draftRemoveExercise(d.key, e.id) }); })} /></View>}</SwipeRow>
       {off != null ? <Muted style={{ ...font('footnote'), marginTop: -2, marginBottom: 6 }}>{t('ciężaru {w} nie ma tutaj — wpisz ciężar', { w: fmtW(off) })}</Muted> : null}
       <View style={s.row} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
         {heads.map((h, k) => <Muted key={k} numberOfLines={1} maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.head, font('footnote'), k === 0 ? { width: 32, textAlign: 'left' } : { flex: 1 }]}>{h}</Muted>)}

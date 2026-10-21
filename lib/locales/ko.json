@@ -1147,6 +1147,7 @@
  "Usuń miejsce: {name}": "장소 삭제: {name}",
  "Usuń odznaczone": "체크 해제한 항목 삭제",
  "Usuń plan: {name}": "플랜 삭제: {name}",
+ "Usuń plan": "플랜 삭제",
  "Usuń pomiar: {v}, {d}": "측정값 삭제: {v}, {d}",
  "Usuń serię {n} — {ex}": "{n}세트 삭제 — {ex}",
  "Usuń sesję": "세션 삭제",

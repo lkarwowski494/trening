@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View, Alert, Pressable, ActionSheetIOS, useWindowDimensions } from 'react-native';
 import { SetBadge, kindLabel } from '@/components/SetBadge';
-import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
+import { SwipeRow, lastSetBlock, confirmDelete } from '@/components/SwipeRow';
+import { ExMenuButton } from '@/components/ExMenuButton';
 import { IconRow } from '@/components/Icon';
 import { rowLayout } from '@/components/ActiveWorkout';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
@@ -24,7 +25,7 @@ import { templateUsageText, assignNewTemplate, hasPlan, removeTemplate } from '@
 import { DeleteButton } from '@/components/DeleteButton';
 import { askReminderPermission } from '@/lib/planReminder';
 import { wu, wField, wInKeep, dIn, dOut, distUnit } from '@/lib/units';
-import { cancelButton } from '@/lib/confirm';
+import { cancelButton, okButton } from '@/lib/confirm';
 
 /*
  * Szablon (decyzja właściciela 08.10.2026 ok. 21:30, docs/18): najpierw PODGLĄD „jak trening” ze „Start”; zmiany dopiero po „Edytuj” — edycja
@@ -124,15 +125,15 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
       {tpl.items.length > 1 ? <View style={{ flexDirection: 'row', marginBottom: 10 }}><Btn title={t('≡ Kolejność')} small accessibilityLabel={t('Zmień kolejność ćwiczeń')} onPress={once(() => router.push(`/reorder?target=template:${tpl.id}`))} /></View> : null}
       {tpl.items.map((it, i) => { const ex = exById(it.exerciseId); const next = tpl.items[i + 1]; const nOcc = occurrences(tpl.items, it.exerciseId); const nm = nOcc > 1 ? `${exName(ex)} (${occurrence(tpl.items, i) + 1})` : exName(ex); /* runda 67: dwie pozycje tego samego ćwiczenia rozróżnialne dla VoiceOver */ return (
         <View key={it.id} style={{ borderBottomWidth: 1, borderBottomColor: th.line, paddingVertical: 6, gap: 8 }}>
-          {/* 07.10.2026 wieczór: usuwanie przesunięciem nagłówka w lewo (components/SwipeRow.tsx), bez przycisku */}
-          <SwipeRow testID={`tpl-item-${i}`} /* E2E 08 */ label={t('Usuń ćwiczenie: {name}', { name: nm })} title={t('Usunąć z szablonu?')} message={nm} onDelete={() => { const j = tpl.items.indexOf(it); /* LIVE2-01: ta pozycja (obiekt), nie pierwsza z tym samym id */ if (j >= 0) removeItem(tpl.items, j, tpl); }}>{a11y => <Pressable accessibilityLanguage={lang()} {...a11y} accessibilityRole="button" accessibilityLabel={nm} accessibilityValue={{ text: tplSummary(it) }} accessibilityState={{ expanded: open === it.id }} onPress={() => setOpen(o => o === it.id ? null : it.id)}
-            style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', minHeight: 48, gap: 8, opacity: pressed ? 0.6 : 1 })}>
+          {/* usuwanie: przesunięcie nagłówka w lewo (SwipeRow) albo „⋯” → „Usuń ćwiczenie” (04-studio-projektowe-003) — to samo okno */}
+          <SwipeRow testID={`tpl-item-${i}`} /* E2E 08 */ label={t('Usuń ćwiczenie: {name}', { name: nm })} title={t('Usunąć z szablonu?')} message={nm} onDelete={() => { const j = tpl.items.indexOf(it); /* LIVE2-01: ta pozycja (obiekt), nie pierwsza z tym samym id */ if (j >= 0) removeItem(tpl.items, j, tpl); }}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center' }}><Pressable accessibilityLanguage={lang()} {...a11y} accessibilityRole="button" accessibilityLabel={nm} accessibilityValue={{ text: tplSummary(it) }} accessibilityState={{ expanded: open === it.id }} onPress={() => setOpen(o => o === it.id ? null : it.id)}
+            style={({ pressed }) => ({ flex: 1, flexDirection: 'row', alignItems: 'center', minHeight: 48, gap: 8, opacity: pressed ? 0.6 : 1 })}>
             <View style={{ flex: 1 }}>
               <Txt a11yLang={exNameLang(ex)} style={{ ...FW.semibold }}>{it.groupId ? <Txt style={{ color: th.band, ...FW.semibold }}>{`${ssTag(labels[it.groupId])} · `}</Txt> : null}{exName(ex)}</Txt>
               {open !== it.id ? <Muted style={{ ...font('footnote') }}>{tplSummary(it)}</Muted> : null}
             </View>
             <Muted style={{ ...font('body') }}>{open === it.id ? '▾' : '▸'}</Muted>
-          </Pressable>}</SwipeRow>
+          </Pressable><ExMenuButton testID={`tpl-item-menu-${i}`} name={nm} onPress={() => ActionSheetIOS.showActionSheetWithOptions({ options: [t('Usuń ćwiczenie'), t('Anuluj')], cancelButtonIndex: 1, destructiveButtonIndex: 0, title: nm }, k => { if (k === 0) confirmDelete({ title: t('Usunąć z szablonu?'), message: nm, onDelete: () => { const j = tpl.items.indexOf(it); if (j >= 0) removeItem(tpl.items, j, tpl); } }); })} /></View>}</SwipeRow>
           {open === it.id ? <>
             <TplRows tpl={tpl} it={it} ii={i} nm={nm} />
             {it.alternates?.length ? <Alternates tpl={tpl} itemId={it.id} /> : null}
@@ -156,9 +157,11 @@ function Alternates({ tpl, itemId }: { tpl: Template; itemId: string }) {
     <Muted style={{ ...font('footnote'), ...FW.semibold }}>{t('Zamienniki')}</Muted>
     {it.alternates.map(a => { const B = exById(a.exerciseId); const place = locationById(a.locationId); const av = B && place ? availability(B, place) : null;
       const name = `${locationLabel(a.locationId)}: ${exName(B)}${a.impl ? ` — ${implLabel(a.impl)}` : ''}`; const key = `${locationLabel(a.locationId)} — ${exName(B)}`;
-      return <SwipeRow key={a.locationId} label={t('Usuń zamiennik: {name}', { name: key })} title={t('Usunąć zamiennik?')} message={name} onDelete={() => { if (!it.alternates) return; it.alternates = it.alternates.filter(x => x !== a); if (!it.alternates.length) delete it.alternates; save(tpl); }}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+      const remove = () => { if (!it.alternates) return; it.alternates = it.alternates.filter(x => x !== a); if (!it.alternates.length) delete it.alternates; save(tpl); };
+      return <SwipeRow key={a.locationId} label={t('Usuń zamiennik: {name}', { name: key })} title={t('Usunąć zamiennik?')} message={name} onDelete={remove}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         <View style={{ flex: 1 }}><View accessibilityLanguage={lang()} {...a11y} accessible accessibilityLabel={name}><IconRow icon="pin" color={th.muted} size={15}><Txt style={{ ...font('callout') }}>{name}</Txt></IconRow></View>{av && !av.ok ? <Muted style={{ ...font('footnote'), color: th.danger }}>{t('brak sprzętu w: {l}', { l: place!.name })}</Muted> : null}</View>
         <View style={{ width: 72 }}><NumInput value={a.restSec ?? ''} onNum={v => { a.restSec = v === '' ? null : Math.min(REST_MAX, Math.max(0, Math.round(v))); save(tpl); }} placeholder={String(it.restSec ?? restFor(itEx))} accessibilityLabel={t('Przerwa zamiennika (s): {name}', { name: key })} /></View>
+        <Btn small kind="ghost" title={t('Usuń')} accessibilityLabel={t('Usuń zamiennik: {name}', { name: key })} onPress={() => confirmDelete({ title: t('Usunąć zamiennik?'), message: name, onDelete: remove })} />{/* 04-studio-projektowe-003: widoczna droga bez gestu — to samo okno */}
       </View>}</SwipeRow>; })}
   </View>;
 }
@@ -177,9 +180,15 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
   const int = (v: number | '', min: number, max: number) => v === '' ? null : Math.min(max, Math.max(min, Math.round(v)));
   let j = 0;
   const menu = (rowId: string, lbl: string) => {
-    /* 07.10.2026 wieczór: usuwanie serii — przesunięciem wiersza w lewo, nie z menu */
-    const labels = [t('Seria normalna'), t('Rozgrzewka (W)'), t('Drop set (D)'), t('Do upadku (F)'), t('Anuluj')]; const ks = ['normal', 'warmup', 'drop', 'failure'] as const;
-    ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: 4, title: t('Seria {n}', { n: lbl }) }, i => { if (i < 4) tplSetKind(tpl, it.id, rowId, ks[i]); });
+    /* 04-studio-projektowe-003: „Usuń serię” w menu jak w treningu (M1-028) — to samo okno i ta sama blokada ostatniej serii co przy geście */
+    const labels = [t('Seria normalna'), t('Rozgrzewka (W)'), t('Drop set (D)'), t('Do upadku (F)'), t('Usuń serię'), t('Anuluj')]; const ks = ['normal', 'warmup', 'drop', 'failure'] as const;
+    ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: 5, destructiveButtonIndex: 4, title: t('Seria {n}', { n: lbl }) }, i => {
+      if (i < 4) tplSetKind(tpl, it.id, rowId, ks[i]);
+      else if (i === 4) {
+        if (tplRows(it).length <= 1) { const b = lastSetBlock(); Alert.alert(b.title, b.message, [okButton()]); }
+        else confirmDelete({ title: t('Usunąć serię?'), message: nm, onDelete: () => { if (tplRows(it).length > 1) tplRemoveRow(tpl, it.id, rowId); } });
+      }
+    });
   };
   return (
     <FieldHint.Provider value={nm}><View style={{ gap: 2 }}>

@@ -1147,6 +1147,7 @@
  "Usuń miejsce: {name}": "場所を削除: {name}",
  "Usuń odznaczone": "チェックを外したものを削除",
  "Usuń plan: {name}": "プランを削除: {name}",
+ "Usuń plan": "プランを削除",
  "Usuń pomiar: {v}, {d}": "測定値を削除: {v}、{d}",
  "Usuń serię {n} — {ex}": "セット {n} を削除 — {ex}",
  "Usuń sesję": "セッションを削除",

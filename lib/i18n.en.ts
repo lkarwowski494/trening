@@ -416,7 +416,7 @@ export const EN: Record<string, string> = {
   'Nazwa planu': 'Plan name',
   'Mój plan': 'My plan',
   'Inne plany': 'Other plans',
-  'Usuń plan: {name}': 'Delete plan: {name}',
+  'Usuń plan: {name}': 'Delete plan: {name}', 'Usuń plan': 'Delete plan', /* 04-studio-projektowe-003: przycisk na dole zapisanego planu */
   'Usunąć ten plan?': 'Delete this plan?',
   'Ustaw jako aktywny': 'Make active',
   'Ustaw jako aktywny: {name}': 'Make active: {name}',

@@ -1,3 +1,4 @@
+import { DeleteButton } from '@/components/DeleteButton';
 import React, { useCallback, useRef, useState } from 'react';
 import { AccessibilityInfo } from 'react-native';
 import { ScrollView, View, Alert, Pressable } from 'react-native';
@@ -100,6 +101,8 @@ export default function PlanScreen() {
       <Btn nav small kind="ghost" title={t('Szablony')} accessibilityHint={t('Otwiera listę szablonów.')} onPress={() => openTemplates(router)} style={{ alignSelf: 'flex-start', marginBottom: 8 }} />
       <SectionTitle>{t('Dni tygodnia')}</SectionTitle>
       <DayRows days={saved.days} onSet={(i, x) => setSavedDay(saved.id, i, x)} target={i => assignTarget.saved(saved.id, i)} />
+      {/* 04-studio-projektowe-003: widoczna droga bez gestu — to samo okno co przesunięcie wiersza na liście „Inne plany” */}
+      <DeleteButton label={t('Usuń plan')} title={t('Usunąć ten plan?')} message={nameOr(saved.name)} onDelete={() => { deletePlan(saved.id); if (router.canGoBack()) router.back(); else router.replace('/plan'); }} />
     </ScrollView></Screen>);
   return <ActivePlan activate={activate} />;
 }

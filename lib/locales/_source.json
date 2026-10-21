@@ -5834,6 +5834,10 @@
   "en": "Remove unticked"
  },
  {
+  "pl": "Usuń plan",
+  "en": "Delete plan"
+ },
+ {
   "pl": "Usuń plan: {name}",
   "en": "Delete plan: {name}"
  },
