@@ -36,7 +36,9 @@ export function decideWatchEvent(ev: WatchEvent, ctx: DecideCtx): WatchDecision 
   const w = ctx.w;
   if (!w) return D('rejected', 'no-workout');
   if (ev.workoutId !== w.id) return D('rejected', 'other-workout');
-  if (w.watchEvents?.includes(ev.eventId)) return D('duplicate');
+  /* M1-audytor-generalny-005: ten sam eventId jest powtórzeniem tylko wtedy, gdy zdarzenie nie jest późniejsze od ostatnio zastosowanego — zegarek z wyzerowanym
+   * stanem liczy zdarzenia od nowa (apple-1, apple-2, …), ale jego godziny rosną. Dziennik bez watchLastAt (zapis sprzed zmiany) działa jak dotąd. */
+  if (w.watchEvents?.includes(ev.eventId) && (w.watchLastAt === undefined || ev.at <= w.watchLastAt)) return D('duplicate');
   if (ev.at < ctx.nowMs - WATCH.MAX_EVENT_AGE_MS || ev.at < w.startedAt - WATCH.CLOCK_TOL_MS) return D('rejected', 'stale-time');
   if (ev.at > ctx.nowMs + WATCH.MAX_FUTURE_MS) return D('rejected', 'future-time');
   switch (ev.type) {
@@ -69,9 +71,9 @@ export function decideWatchEvent(ev: WatchEvent, ctx: DecideCtx): WatchDecision 
   }
 }
 
-/** Zapamiętuje identyfikator zastosowanego zdarzenia w treningu (ograniczony dziennik; przeżywa restart). */
-function remember(w: Workout, id: string) {
-  const log = w.watchEvents ?? []; if (log.includes(id)) return; log.push(id); w.watchEvents = log.slice(-WATCH.EVENT_LOG_MAX); save(w);
+/** Zapamiętuje identyfikator zastosowanego zdarzenia w treningu (ograniczony dziennik; przeżywa restart) i godzinę najnowszego (watchLastAt). */
+function remember(w: Workout, id: string, at: number) {
+  const log = w.watchEvents ?? []; w.watchLastAt = Math.max(w.watchLastAt ?? at, at); if (!log.includes(id)) log.push(id); w.watchEvents = log.slice(-WATCH.EVENT_LOG_MAX); save(w);
 }
 
 /**
@@ -102,6 +104,6 @@ export async function applyWatchEvent(ev: WatchEvent, rev: number): Promise<Watc
     case 'sessionStarted': w.watch = { client: ev.client, startedAt: ev.at }; save(w); break;
     case 'sessionEnded': w.watch = { ...(w.watch ?? { client: ev.client, startedAt: ev.at }), endedAt: ev.at, saved: a.saved }; save(w); break;
   }
-  const cur = getState().active; if (cur && cur.id === ev.workoutId) remember(cur, ev.eventId);
+  const cur = getState().active; if (cur && cur.id === ev.workoutId) remember(cur, ev.eventId, ev.at);
   return ack();
 }

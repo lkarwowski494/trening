@@ -39,7 +39,9 @@ describe('E2E 91: interpreter odtwarza porażki scenariuszy z 224d229 w tym samy
   });
 
   test('13 — okno zgody na przypomnienie po pierwszym dniu planu zasłania wiersze dni', async () => {
-    await failsAt('13-kalendarz-plan.yaml', replace({ tapOn: { text: 'Not now', optional: true } }, []), 'tapOn "Tuesday, Rest"', /Nie znaleziono/);
+    /* przebieg 39399241275: „Not now” jest też po starcie treningu (karta zgody) — usuwamy PIERWSZE wystąpienie, to po pierwszym dniu planu */
+    const first = (c: Cmd[]) => { const i = c.findIndex(x => same(x, { tapOn: { text: 'Not now', optional: true } })); return [...c.slice(0, i), ...c.slice(i + 1)]; };
+    await failsAt('13-kalendarz-plan.yaml', first, 'tapOn "Tuesday, Rest"', /Nie znaleziono/);
   });
 
   test('15 — nagłówek „Packages (n)” pod licencjami, poza ekranem bez przewinięcia', async () => {

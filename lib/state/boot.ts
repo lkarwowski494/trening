@@ -5,21 +5,34 @@
  */
 import { t, detectLang, deviceUnit } from '../i18n';
 import { seedState, SCHEMA_VERSION, type State, type Exercise, type Template } from '../seed';
-import { isObj } from './util';
+import { isObj, PREMIGRATE_KEEP_MS } from './util';
 import { openDb } from './db';
 import {
   S, db, recovery, setS, setDb, seqAtLeast, setRecovery, applyCfg, persistNow, flush, DRAFTS_KEY, setSavedDrafts, clearRecovery, setNewerSchema,
-  emit, bump, save
+  emit, bump, save, getPersistError
 } from './core';
 import { migrate } from './migrate';
 import { applyPrefs } from './settings';
+import { BOOT_GUARD_KEY, parseBootGuard, decideBoot } from './crashguard';
+import { loadBackupStat } from './backupstat';
 
-export async function init(): Promise<void> {
+/** `guard` (start aplikacji z app/_layout.tsx) włącza strażnika pętli awarii (M1-audytor-generalny-003, lib/state/crashguard.ts); `retry` („Spróbuj ponownie”
+ * na ekranie błędu) liczy start od zera. Bez opcji (testy, narzędzia) strażnik nie działa. */
+export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Promise<void> {
   if (S) return;
   setDb(await openDb());
   await db!.execAsync('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)');
+  await loadBackupStat(); /* M1-audytor-generalny-008: data ostatniej udanej kopii po treningu i znacznik porażki */
+  if (opts.guard) {
+    const g = parseBootGuard((await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', BOOT_GUARD_KEY).catch(() => null))?.v);
+    const d = decideBoot(opts.retry ? { starts: 0 } : g);
+    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify(d.next)).catch(() => {});
+    /* tryb awaryjny: dane nie są ładowane ani zmieniane — ekran startu pozwala je wysłać (readRawData) albo spróbować ponownie */
+    if (d.mode === 'safe') throw Object.assign(new Error(t('Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.')), { crashLoop: true });
+  }
   const row = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'state');
   let needsPersist = false;
+  let liveTxt: string | null = null; let cfgTxt: string | null = null; /* surowe wiersze „live” i „cfg” — do kopii sprzed migracji (M1-002) */
   /* Audyt 0.10 J1 (DAT-05): baza zapisana przez nowszą wersję (wyższy schemat) — niczego nie migrujemy ani nie zapisujemy; ekran startu
    * mówi „zaktualizuj aplikację” i pozwala wysłać surowe dane (readRawData). */
   if (row) {
@@ -36,7 +49,7 @@ export async function init(): Promise<void> {
     try {
       const raw = JSON.parse(row.v); const before = raw?.schemaVersion;
       // Runda 69: nowszy trening w toku i timer z klucza „live” (zapisywanego przy każdej zmianie serii).
-      try { const lv = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'live'); const l = lv ? JSON.parse(lv.v) : null;
+      try { const lv = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'live'); liveTxt = lv ? lv.v : null; const l = lv ? JSON.parse(lv.v) : null;
         const fresher = l && typeof l === 'object' && (Number.isFinite(l.seq) && Number.isFinite(raw?.saveSeq) ? l.seq >= raw.saveSeq
             : Number(l.at) >= (Number(raw?.metaUpdatedAt) || 0));
         if (raw && typeof raw === 'object' && fresher && 'active' in l) {
@@ -45,9 +58,12 @@ export async function init(): Promise<void> {
         }
         seqAtLeast(Math.max(Number(raw?.saveSeq) || 0, Number(l?.seq) || 0)); } catch {}
       // PERF-03 (A): nowsza konfiguracja (szablony, ustawienia, plany) z małego klucza „cfg” — zapisanego bez przepisywania całej historii.
-      try { const cr = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg'); const c = cr ? JSON.parse(cr.v) : null;
+      try { const cr = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg'); cfgTxt = cr ? cr.v : null; const c = cr ? JSON.parse(cr.v) : null;
         if (applyCfg(raw, c)) seqAtLeast(Number(c.seq) || 0); } catch {}
       setS(migrate(raw)); needsPersist = before !== SCHEMA_VERSION;
+      /* M1-audytor-generalny-002: udana migracja nie może zostawić jedynie zmigrowanego zapisu — surowy zapis sprzed niej (wraz z „live” i „cfg”) czeka
+       * w bazie pod kluczem premigrate_<schemat> do upływu PREMIGRATE_KEEP_MS. Bez kopii (np. brak miejsca) zmigrowany stan nie nadpisuje starego „state”. */
+      if (needsPersist && !(await savePreMigrate(Number(before) || 0, row.v, liveTxt, cfgTxt))) needsPersist = false;
     } catch {
       // Nie nadpisujemy jedynej kopii danych: odkładamy ją pod osobny klucz i startujemy od czystego stanu.
       const key = `state_corrupt_${Date.now()}`;
@@ -55,15 +71,17 @@ export async function init(): Promise<void> {
       // Runda 69 (T1): trening w toku z klucza „live” trafia do tej samej kopii (osobny klucz) — wysyłany razem z nią.
       // T1b/T4a: stary „live” nie może nałożyć się na nowy, czysty stan przy następnym starcie — numer zapisu podbijamy najpierw,
       // a kopia i usunięcie mają osobne try (nieudana kopia nie zostawia „live” w bazie).
+      /* M1-audytor-generalny-001 (P0): „live” i „cfg” usuwamy z bazy WYŁĄCZNIE po udanej kopii. Nieudana kopia przerywa start (ekran błędu startu,
+       * „Spróbuj ponownie”) — nic nie jest nadpisywane czystym stanem, a następny start powtarza odkładanie. */
       let lv: { v: string } | null = null; try { lv = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'live'); } catch {}
       if (lv) { try { seqAtLeast(Number(JSON.parse(lv.v)?.seq) || 0); } catch {}
-        try { await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_live', lv.v); } catch {}
+        await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_live', lv.v);
         try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'live'); } catch {} }
       /* PERF-03 (A): tak samo „cfg” — nie może nałożyć się na czysty stan (numer zapisu wyżej, klucz usunięty, kopia obok nieczytelnego zapisu) */
-      try { const cv = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg');
-        if (cv) { try { seqAtLeast(Number(JSON.parse(cv.v)?.seq) || 0); } catch {}
-          try { await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_cfg', cv.v); } catch {}
-          try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'cfg'); } catch {} } } catch {}
+      let cv: { v: string } | null = null; try { cv = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'cfg'); } catch {}
+      if (cv) { try { seqAtLeast(Number(JSON.parse(cv.v)?.seq) || 0); } catch {}
+        await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', key + '_cfg', cv.v);
+        try { await db!.runAsync('DELETE FROM kv WHERE k = ?', 'cfg'); } catch {} }
       setRecovery({ key, at: Date.now() }); setS(null);
       // Runda 34: znacznik w bazie — komunikat i wysłanie kopii działają także po ponownym uruchomieniu.
       // Runda 35: gdy wcześniejsza kopia wciąż czeka na wysłanie, zostaje ona (zwykle to w niej jest prawdziwa historia).
@@ -95,7 +113,49 @@ export async function init(): Promise<void> {
   }
   applyPrefs();
   if (needsPersist) await persistNow().catch(() => {});
+  if (!getPersistError()) await prunePreMigrate();
   bump(true); emit();
+}
+/* ---------- M1-audytor-generalny-002: kopia surowego zapisu sprzed migracji ----------
+ * Klucz premigrate_<schemat sprzed migracji> trzyma kopertę jak kopia nieczytelnych danych (format „trening-recovery”: state, live, cfg) — da się ją
+ * wczytać importem (parseBackup) po poprawce migracji. Klucz „premigrate” to mały indeks { schemat: czas kopii }, żeby sprzątanie nie czytało
+ * kilkumegabajtowych kopii. Kopia znika po PREMIGRATE_KEEP_MS (lib/state/util.ts), o ile start się powiódł i zapis nie zgłasza błędu. */
+const PREMIGRATE_INDEX = 'premigrate';
+const preKey = (from: number) => `premigrate_${from}`;
+async function readPreIndex(): Promise<Record<string, number>> {
+  try { const r = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', PREMIGRATE_INDEX); const o = r ? JSON.parse(r.v) : null;
+    return isObj(o) ? Object.fromEntries(Object.entries(o).filter(([, v]) => typeof v === 'number' && Number.isFinite(v))) as Record<string, number> : {}; } catch { return {}; }
+}
+async function savePreMigrate(from: number, stateTxt: string, liveTxt: string | null, cfgTxt: string | null): Promise<boolean> {
+  const js = (x: string) => { try { return JSON.parse(x); } catch { return x; } };
+  const at = Date.now();
+  const env = { format: 'trening-recovery', note: 'state = zapis sprzed migracji schematu, live = trening w toku, cfg = konfiguracja', fromSchema: from, at, state: js(stateTxt),
+      ...(liveTxt != null ? { live: js(liveTxt) } : {}), ...(cfgTxt != null ? { cfg: js(cfgTxt) } : {}) };
+  try {
+    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', preKey(from), JSON.stringify(env));
+    const idx = await readPreIndex(); idx[String(from)] = at;
+    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', PREMIGRATE_INDEX, JSON.stringify(idx));
+    return true;
+  } catch { return false; }
+}
+async function prunePreMigrate(now = Date.now()): Promise<void> {
+  try {
+    const idx = await readPreIndex(); let changed = false;
+    for (const [from, at] of Object.entries(idx)) if (now - at > PREMIGRATE_KEEP_MS) { await db!.runAsync('DELETE FROM kv WHERE k = ?', preKey(Number(from))); delete idx[from]; changed = true; }
+    if (changed) await db!.runAsync(Object.keys(idx).length ? 'INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)' : 'DELETE FROM kv WHERE k = ?', PREMIGRATE_INDEX, ...(Object.keys(idx).length ? [JSON.stringify(idx)] : []));
+  } catch {}
+}
+/** Najnowsza kopia sprzed migracji (koperta JSON do wysłania albo wczytania importem); null — brak. */
+export async function readPreMigrate(): Promise<string | null> {
+  if (!db) return null;
+  const idx = await readPreIndex(); const from = Object.entries(idx).sort((a, b) => b[1] - a[1])[0]?.[0]; if (from == null) return null;
+  const r = await db.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', preKey(Number(from))).catch(() => null);
+  return r ? r.v : null;
+}
+/** „Kamień” strażnika pętli awarii: pierwszy ekran działa (BOOT_STABLE_MS po starcie albo wyjście do tła) — licznik kolejnych niedokończonych startów wraca do 0. */
+export async function markBootStable(): Promise<void> {
+  if (!db) return;
+  await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify({ starts: 0 })).catch(() => {});
 }
 /** Przywracany szkic przechodzi to samo porządkowanie co dane z bazy i importu (migrate na kopii stanu z obiektem szkicu); null — obiektu już nie ma. */
 export function sanitizeDraftObj(kind: 'exercise' | 'template', obj: unknown): Exercise | Template | null {

@@ -56,9 +56,9 @@ describe('syncTrialReminder', () => {
 
 describe('integracja z uprawnieniami', () => {
   async function boot(entitlements: Entitlement[] | null, on = true) { jest.useFakeTimers({ now: NOW }); await fresh(); ent.resetEntitlementsForTests(); PAYWALL.ENABLED = on; const f = createFakeStore(entitlements); setStoreAdapter(f); await ent.initEntitlements(); for (let i = 0; i < 8; i++) await Promise.resolve(); return f; }
-  test('zakup z miesiącem za darmo planuje przypomnienie na koniec próby − 2 dni; dożywotni sam (bez próby) je odwołuje; zwrot — też', async () => {
+  test('zakup z okresem próbnym 14 dni planuje przypomnienie na koniec próby − 2 dni; dożywotni sam (bez próby) je odwołuje; zwrot — też', async () => {
     const f = await boot([]); global.__notifications.length = 0; await ent.purchasePlan('monthly'); for (let i = 0; i < 8; i++) await Promise.resolve();
-    expect(global.__notifications).toHaveLength(1); expect(notes()[0].trigger.date.getTime()).toBe(NOW + 30 * DAY - REM);
+    expect(global.__notifications).toHaveLength(1); expect(notes()[0].trigger.date.getTime()).toBe(NOW + 14 * DAY - REM);
     global.__notifications.length = 0; global.__cancelled.length = 0; await ent.purchasePlan('lifetime'); for (let i = 0; i < 8; i++) await Promise.resolve(); expect(global.__notifications).toHaveLength(1); /* próba subskrypcji trwa obok dożywotniego — przypomnienie pozwala ją anulować (R8) */
     global.__notifications.length = 0; global.__cancelled.length = 0; f.setEntitlements([{ plan: 'lifetime', source: 'purchase', expiresAt: null }]); for (let i = 0; i < 8; i++) await Promise.resolve(); expect(global.__notifications).toEqual([]); expect(global.__cancelled).toContain(TRIAL_REMINDER_ID);
     f.setEntitlements([trial(NOW + 30 * DAY, { revokedAt: NOW - 1 })]); for (let i = 0; i < 8; i++) await Promise.resolve(); expect(global.__notifications).toEqual([]);

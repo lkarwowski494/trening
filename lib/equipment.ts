@@ -1,7 +1,7 @@
 import { CATALOG_CAPS, type LoadSource } from './catalog.generated';
-import { achievable, noPlates, rangeValues, type LoadSpec, type LoadUnit } from './loads';
+import { achievable, noPlates, rangeValues, convertSpec, type LoadSpec, type LoadUnit } from './loads';
 import { lbl, t } from './i18n';
-import { fmtNum } from './units';
+import { fmtNum, isImperial } from './units';
 import type { Exercise, Location, LocEquip, LoadMode, Impl } from './seed';
 
 /*
@@ -213,7 +213,7 @@ export const LOAD_PRESETS: { id: string; item: string; label: L; spec: () => Loa
 
 /** Preset modelu: ciężary i — gdy model czegoś nie ma — odznaczone opcje (przenośna stacja z jedną linką; przegląd 06.10). Pozostałe opcje bez zmian:
  * wyposażenia dodatkowego (pas, opaski) źródła nie podają. */
-export function applyLoadPreset(entry: { load?: LoadSpec; opts: string[] }, p: typeof LOAD_PRESETS[number]) { entry.load = p.spec(); if (p.optsOff) entry.opts = entry.opts.filter(o => !p.optsOff!.includes(o)); }
+export function applyLoadPreset(entry: { load?: LoadSpec; opts: string[] }, p: typeof LOAD_PRESETS[number]) { const sp = p.spec(); entry.load = isImperial() && sp.unit === 'kg' ? convertSpec(sp, 'lb') : sp; /* M2-LOK07-03: etykieta zostaje w jednostce producenta (nazwa produktu), ciężary w systemie użytkownika */ if (p.optsOff) entry.opts = entry.opts.filter(o => !p.optsOff!.includes(o)); }
 
 /* ---------- presety miejsc ---------- */
 export const LOCATION_PRESETS = ['gym', 'home', 'bodyweight', 'hotel'] as const;
@@ -315,6 +315,12 @@ export function availability(ex: Pick<Exercise, 'requires' | 'recommended'>, loc
   const missing = (ex.requires ?? []).filter(g => !g.some(c => caps.has(c)));
   return { ok: !missing.length, missing, missingRecommended: (ex.recommended ?? []).filter(c => !caps.has(c)) };
 }
+/** Możliwość „ramiona asekuracyjne w stojakach” (power rack, stojaki z opcją „z asekuracją”) — zalecana w katalogu przy sztandze nad ciałem lub na barkach. */
+export const SAFETY_CAP = 'rack.safeties';
+/** Katalog zaleca ramiona asekuracyjne przy tym ćwiczeniu (29 wpisów; audyt M1-015). */
+export const needsSafety = (ex: Pick<Exercise, 'recommended'>): boolean => (ex.recommended ?? []).includes(SAFETY_CAP);
+/** Ćwiczenie zaleca asekurację, a wybrane miejsce jej nie daje. Brak miejsca („bez ograniczeń sprzętu” = pełna siłownia) → bez ostrzeżenia. */
+export const lacksSafety = (ex: Pick<Exercise, 'recommended'>, loc: Location | null | undefined, caps: Set<string> = capsOf(loc)): boolean => !!loc && needsSafety(ex) && !caps.has(SAFETY_CAP);
 /** „ławka skośna, drążek / kółka gimnastyczne” — dopisek do niedostępnego ćwiczenia. */
 export const missingLabel = (missing: string[][]) => missing.map(g => g.map(capLabel).join(' / ')).join(', ');
 
@@ -408,15 +414,4 @@ export function implsAt(ex: Pick<Exercise, 'loadSource' | 'requires'>, loc: Loca
     }
   }
   return out;
-}
-/**
- * Styl „Tuleja” (07.10.2026): opis „gryf + talerze” przyrządu, z którego ćwiczenie bierze ciężar w miejscu — dla rysunku „co nałożyć na stronę”
- * (lib/plates.ts). Tylko sztanga, gryf EZ i trap bar liczone łącznie (ciężar serii = gryf + talerze z obu stron); hantle, maszyny, stacje — null.
- * Ten sam dobór pozycji co loadsFor (`prefer` — przyrząd przypięty w bloku). Gryf bez talerzy (noPlates) — null (ciężary nieznane, 06.10.2026).
- */
-export function plateSpecFor(ex: Pick<Exercise, 'loadSource' | 'requires' | 'recommended' | 'loadMode' | 'implements'>, loc: Location | null | undefined, prefer?: Impl): LoadSpec | null {
-  if (!loc || (ex.loadMode ?? 'total') !== 'total' || (ex.implements ?? 1) !== 1) return null;
-  const { res, impl } = resolveLoads(ex, loc, prefer); if (res.kind !== 'loads' || !(impl === 'barbell' || impl === 'ez_bar' || impl === 'trap_bar')) return null;
-  const e = loc.equipment.find(x => x.item === res.item && !x.off); const spec = e?.load;
-  return spec && spec.kind === 'plates' && !noPlates(spec) ? spec : null;
 }

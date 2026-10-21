@@ -16,7 +16,9 @@
  *  - 13:    progressHint, autoBackup, weighReminder,
  *  - 14:    miejsca (Settings.locations, mainLocationId, pickerShowAll), Workout/Template.locationId, wymagania sprzętowe ćwiczeń,
  *  - 15:    WExercise.impl,  16: swappedFrom/implPinned/splitFrom/altSkip, TemplateItem.alternates, motyw (05.10.2026),
- *  - 17:    TemplateItem.rows (kontrola — bieżący schemat).
+ *  - 17:    TemplateItem.rows,
+ *  - 18:    plan tygodnia (weekPlan), jego historia (planHistory) i zapisany plan z poprawkami dni (savedPlans.overrides) — M1-audytor-generalny-007,
+ *  - 19:    miejsce jednorazowe (Location.oneOff) użyte przez trening, miejsca na dni planu (planPlaces) i w zapisanym planie (SavedPlan.places) (bieżący schemat).
  * Usunięcia ZAMIERZONE (opisane w migrate): nieodhaczone serie w historii (runda 59), pusty trening w historii (runda 60), usunięte ćwiczenie
  * bez treningu (runda 41), pozycja szablonu z usuniętym ćwiczeniem (runda 43), bodyWeightKg/bodyweightPct (Q-001), nominalKg gumy (T-055).
  * Poza nimi każdy zapisany fakt ma przetrwać 1:1.
@@ -44,7 +46,7 @@ jest.setTimeout(120000);
 
 const LEGACY_45LB = 45 * KG_PER_LB; /* 20,41165665 kg — wpis „45 lb” w wersjach sprzed rundy 26 (surowe lb × 0,45359237) */
 const NOTE = 'ciężko, "bardzo"\nnowa linia 😀 ‮odwrócone‬ zero​width';
-const VERSIONS = Array.from({ length: SCHEMA_VERSION }, (_, i) => i + 1); /* 1..17 */
+const VERSIONS = Array.from({ length: SCHEMA_VERSION }, (_, i) => i + 1); /* 1..19 */
 const T0 = Date.UTC(2025, 2, 1, 9); const H = 3600e3;
 const LIB = seedState('pl').exercises; const libEx = (n: string) => { const e = LIB.find(x => x.name === n); if (!e) throw new Error('brak w katalogu: ' + n); return e; };
 
@@ -69,7 +71,8 @@ function shape(v: number, now: number): any {
     v: 2, ...(v >= 2 ? { schemaVersion: v } : {}) /* schemat 1 = goły stan bez numeru (web 0.3) */, ...(v >= 10 ? { ownerId: 'local' } : {}),
     settings: { defaultRest: 120, sound: false, wakeLock: false, ...(v >= 10 ? { showRpe: true, healthSync: false, modules: { training: true, diet: true }, language: v % 3 === 0 ? 'en' : 'pl', unit: v % 2 ? 'lb' : 'kg' } : {}),
       ...(v === 12 ? { bodyWeightKg: 81.5 } : {}), ...(v >= 13 ? { progressHint: false, autoBackup: false, weighReminder: true } : {}),
-      ...(v >= 14 ? { locations: [{ ...base('L1'), ownerId: 'local', createdAt: T0, updatedAt: T0, name: 'Dom', equipment: [{ item: 'db_fixed', opts: [] }] }], mainLocationId: 'L1', pickerShowAll: true } : {}),
+      ...(v >= 14 ? { locations: [{ ...base('L1'), ownerId: 'local', createdAt: T0, updatedAt: T0, name: 'Dom', equipment: [{ item: 'db_fixed', opts: [] }] },
+        ...(v >= 19 ? [{ ...base('L2'), ownerId: 'local', createdAt: T0, updatedAt: T0, name: 'Hotel', equipment: [{ item: 'wall', opts: [] }], oneOff: true }] : [])], mainLocationId: 'L1', pickerShowAll: true } : {}),
       ...(v >= 16 ? { theme: 'dark' } : {}) },
     exercises: [
       lib('ex-squat', 'Back Squat'), lib('ex-goblet', 'Goblet Squat', v >= 10 ? { loadMode: 'per_dumbbell' } /* od 10: świadomy wybór użytkownika — zostaje */ : v >= 5 ? { loadMode: 'per_dumbbell' } /* błąd ×2 sprzed 10 */ : {}),
@@ -94,12 +97,16 @@ function shape(v: number, now: number): any {
         block('b4', 'ex-pull', [set('s6', { weight: '', addKg: 10, reps: 6, bandId: 'band-r' })]),
         block('b5', 'ex-plank', [set('s7', pre10 ? { reps: 1 } /* web 0.3: tylko kg × powt. */ : { durationSec: 60 })]),
         block('b6', 'ex-old', [set('s8', { weight: 40, reps: 10 })]),
-      ], { templateId: null, templateName: '', note: '' }),
+      ], { templateId: null, templateName: '', note: '', ...(v >= 19 ? { locationId: 'L2' } : {}) }),
       wk('w3', T0 + 4 * 86400e3, [block('b7', 'ex-squat', [set('s9', { weight: 50, reps: 5, done: false })])]), /* sama nieodhaczona seria — trening znika (runda 60) */
     ],
     active: { ...wk('act', now - 10 * 60e3, [block('b8', 'ex-squat', [set('s10', { weight: 100, reps: 5, completedAt: now - 5 * 60e3 }), set('s11', { weight: 105, reps: '', done: false, completedAt: null })], v >= 16 ? { altSkip: true } : {})]), finishedAt: null },
     mornings: [{ ...base('m1'), date: '2025-3-1', bb: 70, sleepScore: 85, sleepH: 7.5, weight: 80.5 }],
     metaUpdatedAt: now - 60e3,
+    /* schemat 18 (audyt 0.10 A1): plan tygodnia, jego historia (odcinki „od dnia”) i zapisany plan z poprawkami dni; schemat 19: miejsca na dni planu (też w zapisanym planie) */
+    ...(v >= 18 ? { weekPlan: { days: ['tpl-a', null, null, 'tpl-a', null, null, null], name: 'Plan A' }, planHistory: [{ from: '2025-02-24', days: [null, 'tpl-a', null, null, null, null, null] }, { from: '2025-03-03', days: ['tpl-a', null, null, 'tpl-a', null, null, null] }],
+      savedPlans: [{ id: 'sp1', name: 'Plan B', days: [null, null, 'tpl-a', null, 'tpl-a', null, null], overrides: { '2025-03-12': null }, ...(v >= 19 ? { places: { '2025-03-14': 'L2' } } : {}) }] } : {}),
+    ...(v >= 19 ? { planPlaces: { '2025-03-05': 'L2' } } : {}),
   };
   return s;
 }
@@ -162,11 +169,18 @@ function expectPreserved(st: State, v: number, label: string) {
   expect(ctx([S.defaultRest, S.sound, S.wakeLock])).toEqual(ctx([120, false, false]));
   expect(ctx([S.showRpe, S.unit, S.language, S.modules.diet])).toEqual(ctx(v >= 10 ? [true, v % 2 ? 'lb' : 'kg', v % 3 === 0 ? 'en' : 'pl', true] : [d.showRpe, 'kg', 'auto', d.modules.diet]));
   expect(ctx([S.progressHint, S.autoBackup, S.weighReminder])).toEqual(ctx(v >= 13 ? [false, false, true] : [d.progressHint, d.autoBackup, d.weighReminder]));
-  expect(ctx([S.locations.map(l => [l.id, l.name, l.equipment.map(e => e.item)]), S.mainLocationId, S.pickerShowAll])).toEqual(ctx(v >= 14 ? [[['L1', 'Dom', ['db_fixed', 'wall'] /* EQUIP_FILL2 (09.10.2026): ściana dopisana raz */]], 'L1', true] : [[], null, false]));
+  expect(ctx([S.locations.map(l => [l.id, l.name, l.equipment.map(e => e.item)]), S.mainLocationId, S.pickerShowAll])).toEqual(ctx(v >= 14 ? [[['L1', 'Dom', ['db_fixed', 'wall'] /* EQUIP_FILL2 (09.10.2026): ściana dopisana raz */], ...(v >= 19 ? [['L2', 'Hotel', ['wall']]] : [])], 'L1', true] : [[], null, false]));
+  /* schemat 19: miejsce jednorazowe zostaje (odwołuje się do niego trening, plan i zapisany plan) ze znacznikiem; schemat 18: plan tygodnia, jego historia i zapisany plan 1:1 (M1-audytor-generalny-007) */
+  expect(ctx(S.locations.find(l => l.id === 'L2')?.oneOff)).toEqual(ctx(v >= 19 ? true : undefined));
+  expect(ctx(st.weekPlan)).toEqual(ctx(v >= 18 ? { days: ['tpl-a', null, null, 'tpl-a', null, null, null], name: 'Plan A' } : undefined));
+  expect(ctx(st.planHistory?.map(p => [p.from, p.days]))).toEqual(ctx(v >= 18 ? [['2025-02-24', [null, 'tpl-a', null, null, null, null, null]], ['2025-03-03', ['tpl-a', null, null, 'tpl-a', null, null, null]]] : undefined));
+  expect(ctx(st.savedPlans?.map(p => [p.id, p.name, p.days, p.overrides, p.places]))).toEqual(ctx(v >= 18 ? [['sp1', 'Plan B', [null, null, 'tpl-a', null, 'tpl-a', null, null], { '2025-03-12': null }, v >= 19 ? { '2025-03-14': 'L2' } : undefined]] : undefined));
+  expect(ctx(st.planPlaces)).toEqual(ctx(v >= 19 ? { '2025-03-05': 'L2' } : undefined));
+  expect(ctx(st.workouts.find(w => w.id === 'w2')?.locationId)).toEqual(ctx(v >= 19 ? 'L2' : v >= 14 ? 'L1' : undefined));
   expect(ctx(S.theme)).toEqual(ctx(v >= 16 ? 'dark' : 'light'));
 }
 
-describe('drabina migracji 1..17 → 17', () => {
+describe('drabina migracji 1..19 → 19', () => {
   test.each(VERSIONS)('schemat %i: bez utraty danych, niezmienniki, idempotencja, koperta, zapis → restart', async v => {
     const now = Date.now(); await fresh();
     const raw = shape(v, now);

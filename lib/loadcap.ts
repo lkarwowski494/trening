@@ -1,6 +1,7 @@
 import { getState, exById } from '@/lib/store';
 import { implAt, loadsFor } from '@/lib/equipment';
-import { REPS, HEAVY_PCT, type GenInput, type GenResult } from '@/lib/generator';
+import { REPS, HEAVY_PCT } from '@/lib/genconst';
+import type { GenInput, GenResult } from '@/lib/generator';
 import { t, exName } from '@/lib/i18n';
 import { fmtW } from '@/lib/units';
 import type { Impl } from '@/lib/seed';

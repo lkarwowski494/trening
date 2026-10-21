@@ -141,7 +141,7 @@ describe('regresja E2E 89', () => {
   test('jednostka z regionu (H4): symulator en-US startuje w lb — scenariusze z kg najpierw wybierają „kg” w Ustawieniach (przed dodaniem miejsca)', () => {
     const { deviceUnit } = require('@/lib/i18n'); expect(deviceUnit('en-US')).toBe('lb');
     for (const f of ['11-widok-skupiony.yaml', '15-masa-licencje.yaml']) {
-      const s = steps(f); const kg = s.findIndex(l => l.trim() === '- tapOn: "kg"'); const firstKg = s.findIndex(l => /\bkg\b/.test(l) && !/tapOn: "kg"/.test(l));
+      const s = steps(f); const kg = s.findIndex(l => l.trim() === '- tapOn: { id: "unit-system-kg" }'); const firstKg = s.findIndex(l => /\bkg\b/.test(l) && !/unit-system-kg/.test(l) && !/^\s*#/.test(l)); /* M2-LOK07-01: segment „System miar” wybierany po testID */
       const place = s.findIndex(l => /Places and equipment/.test(l));
       expect({ f, kg: kg >= 0 && kg < firstKg && (place < 0 || kg < place) }).toEqual({ f, kg: true });
     }

@@ -6,10 +6,11 @@
 #   "Search exercises…", "Bench Press \(Barbell\),.*"  ← jak przepływy 06 i 07
 #   "Language, Phone setting"   ← Item 'Język' + sub 'Jak w telefonie' (app/more/settings.tsx; accessibilityLabel „{title}, {sub}”)
 #   "Polski", "English"         ← LANG_NAME (lib/i18n.ts; Item w app/more/language.tsx)
-#   PL po zmianie języka (klucze z kodu): "Ustawienia" (tytuł ekranu, app/_layout.tsx), "Wygląd", "Jednostka ciężaru",
+#   "Change in iOS Settings.*"  ← 'Zmień w ustawieniach iOS' + wyjaśnienie (Item pod listą języków; Linking.openSettings), M1-064
+#   PL po zmianie języka (klucze z kodu): "Ustawienia" (tytuł ekranu, app/_layout.tsx), "Wygląd", "System miar",
 #                               "Język, Polski" (Item „{title}, {sub}”), "Wróć" (headerBackTitle), "Więcej" (nagłówek H1 w app/(tabs)/more.tsx),
 #                               "Jak w telefonie" (pozycja „auto” na liście języków)
-#   "Appearance", "Weight unit" ← 'Wygląd', 'Jednostka ciężaru' (Field + Segmented)
+#   "Appearance", "Measurement system" ← 'Wygląd', 'System miar' (Field + Segmented)
 #   "Light" / "Dark" / "Phone setting" ← 'Jasny' / 'Ciemny' / 'Jak w telefonie' (segmenty „Wygląd”; dokładne dopasowanie —
 #                               „Language, Phone setting” to inny element)
 #   "kg" / "lb"                 ← segmenty jednostki; w treningu nagłówek kolumny ciężaru = loadLabelShort (wu()) i etykieta pola (loadLabel)
@@ -31,12 +32,16 @@ name: Język, wygląd i jednostka
 - tapOn: "Language, Phone setting"
 - extendedWaitUntil: { visible: "Polski", timeout: 30000 }
 - takeScreenshot: 50-lista-jezykow
+# M1-064 (DEC-18): pod listą wiersz „Change in iOS Settings” (nazwa pod ikoną i opis zgody Zdrowia zmienia język dopiero w ustawieniach iOS) — tylko sprawdzamy, nie stukamy (wyszedłby z aplikacji)
+- scrollUntilVisible: { element: "Change in iOS Settings.*", direction: DOWN, timeout: 30000 }
+- assertVisible: "Change in iOS Settings.*"
+- scrollUntilVisible: { element: "Polski", direction: UP, timeout: 30000 }
 - tapOn: "Polski"
 # Wybór wraca do Ustawień — teksty i tytuł ekranu po polsku
 - extendedWaitUntil: { visible: "Język, Polski", timeout: 30000 }
 - assertVisible: "Ustawienia"
 - assertVisible: "Wygląd"
-- assertVisible: "Jednostka ciężaru"
+- assertVisible: "System miar"
 - assertNotVisible: "Appearance"
 - takeScreenshot: 51-ustawienia-po-polsku
 - tapOn: "Wróć"
@@ -81,7 +86,7 @@ name: Język, wygląd i jednostka
 - takeScreenshot: 54-wyglad-jasny
 
 # --- Jednostka: lb ---
-- tapOn: "lb"
+- tapOn: { id: "unit-system-lb" }
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Workout, tab.*", timeout: 30000 }
 - tapOn: "Workout, tab.*"
@@ -100,13 +105,37 @@ name: Język, wygląd i jednostka
 - assertVisible: "lb"
 - assertNotVisible: "kg"
 - takeScreenshot: 55-jednostka-lb
+# M2-LOK07-01 (DEC-28): w imperialnym pole dystansu ćwiczenia „Running” ma jednostkę yd (placeholder), nie m
+- scrollUntilVisible:
+    element: "\\+ Add exercise"
+    direction: DOWN
+    timeout: 30000
+    centerElement: true
+- tapOn: "\\+ Add exercise"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Running"
+- tapOn: { text: "Continue", optional: true }
+- extendedWaitUntil: { visible: "Running,.*", timeout: 30000 }
+- tapOn: "Running,.*"
+- extendedWaitUntil: { visible: "Set 1 done — Running", timeout: 30000 }
+- scrollUntilVisible: { element: "distance", direction: DOWN, timeout: 30000 }
+- tapOn: "distance"
+- inputText: "100"
+# klawiatura numeryczna nie ma „schowaj” — fokus zdejmuje stuknięcie w tekst NAD klawiaturą. Run 39427683836 (zrzut 57): przy dwóch ćwiczeniach tekst karty „Change the values…”
+# leży pod klawiaturą (stuknięcie trafiało w klawisz, klawiatura zostawała i zasłaniała pasek zakładek → „Settings” nie pojawiało się) — stukamy nazwę ćwiczenia „Running” (nagłówki kolumn są poza drzewem dostępności)
+- tapOn: "Running"
+# serii nie zaliczamy (uruchomiłoby odliczanie przerwy i zmieniło etykietę zakładki „Workout”)
+# jednostka yd (nagłówek kolumny i placeholder) jest poza drzewem dostępności; pokrywa ją tests/audit-m1-lok07-01-imperial-dist.test.tsx — tu: wpisana wartość zostaje w polu
+- assertVisible: "100"
+- takeScreenshot: 57-dystans-imperialny
 
 # --- Jednostka: z powrotem kg (trening w toku zostaje) ---
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
-- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
-- tapOn: "kg"
+- extendedWaitUntil: { visible: "Measurement system", timeout: 30000 }
+- tapOn: { id: "unit-system-kg" }
 - tapOn: "Back"
 # run 39185287611 (zrzut: wciąż „More”): stuknięcie zakładki tuż po „Back” trafiło w trwające przejście i zostało zignorowane — czekanie na koniec animacji i powtórka stuknięcia
 - waitForAnimationToEnd
@@ -124,7 +153,7 @@ name: Język, wygląd i jednostka
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
-- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
+- extendedWaitUntil: { visible: "Measurement system", timeout: 30000 }
 - scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 20000 }
 - tapOn: { id: "sw-RPE / RIR per set" }
 - scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000 }

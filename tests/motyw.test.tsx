@@ -19,7 +19,7 @@ import {
 } from '@/lib/motif';
 import type { DayStatus } from '@/lib/plan';
 import { CAL_FACE } from '@/components/HistoryCalendar';
-import { PLATE_COLORS } from '@/lib/plates';
+import { PLATE_COLORS } from '@/lib/discColors';
 import { light, dark, type Theme } from '@/lib/theme';
 import { SCHEMA_VERSION } from '@/lib/seed';
 import { prCount } from '@/lib/stats';
@@ -56,7 +56,7 @@ describe('logika', () => {
     LOAD_ORDER.forEach((c, i) => { expect(plateAt(i)).toBe(c); expect(plateAt(i + LOAD_ORDER.length)).toBe(c); });
     expect(plateAt(-1)).toBe('green'); expect(plateAt(2.7)).toBe('yellow'); /* złe dane: ujemne i ułamki nie wychodzą poza listę */
     for (let i = 1; i < LOAD_ORDER.length; i++) expect(PLATE_HEIGHT[LOAD_ORDER[i]]).toBeLessThan(PLATE_HEIGHT[LOAD_ORDER[i - 1]]);
-    /* ikona: prostokąty talerzy w tej samej kolejności (jedno źródło kolorów: lib/plates.ts) */
+    /* ikona: prostokąty talerzy w tej samej kolejności (jedno źródło kolorów: lib/discColors.ts) */
     const svg = fs.readFileSync(path.join(root, 'assets/brand/icon.svg'), 'utf8').toLowerCase();
     const pos = LOAD_ORDER.map(c => svg.indexOf(`fill="${PLATE_COLORS[c].toLowerCase()}"`)); expect(pos.every(p => p > 0)).toBe(true); expect([...pos].sort((a, b) => a - b)).toEqual(pos);
   });

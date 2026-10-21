@@ -41,6 +41,11 @@
      z warunkiem zamknięcia (automatyczne sprawdzenie albo konkretny krok dla właściciela). Otwarte ryzyko blokuje wydanie.
   3. *Telefon zaraz po buildzie:* po każdym TestFlight pierwsze zadanie właściciela to krótka lista kontrolna (ok. 5 min, krok po kroku)
      z punktami, których E2E na symulatorze nie sprawdzi (Zdrowie, ekran blokady, zakup, zegarek) — od razu, nie odkładane.
+- **Podział pracy na agentów (właściciel, 20.10.2026, wszystkie projekty):** zadanie dziel na niezależne kawałki według obszaru plików
+  (ok. 3–8 powiązanych zadań albo min. ok. 1 h pracy na agenta) i zlecaj je równolegle tylu agentom, ilu nie walczy o te same pliki
+  (każdy we własnym worktree i na własnej gałęzi). Zadanie niepodzielne albo kilka zadań tworzących jedną logikę/proces — jeden agent.
+  Pliki generowane (macierz, README) i pełne verify — raz, po scaleniu gałęzi. Odrzucone: „jak najmniejsze zadania” (narzut startu
+  agenta i scalania przewyższa zysk przy drobnych zadaniach). Cel: krótszy kontekst każdego agenta = mniej tokenów i szybciej.
 - Decyzje produktowe należą do właściciela: przedstaw co najmniej dwie opcje z kompromisami i rekomendację.
 - Szacowanie czasu (właściciel, 09.10.2026): estymacje zakładają, że zadanie wykonuje agent (z pracą równoległą), nie człowiek — podawaj
   czas pracy agenta. Osobno: na co realnie się czeka (CI, E2E, przegląd Apple, kolejka maszyn) i co wymaga czasu właściciela (decyzje,
@@ -88,6 +93,8 @@ Wszystko, czego aplikacja uczy albo co twierdzi (treść, liczby, zalecenia, reg
   przegląd systematyczny, metaanaliza, stanowisko organizacji naukowej), które zawiera to twierdzenie wprost, czyni regułę ustaloną. Jedno źródło
   szczebla 3–5 — oznaczenie „jedno źródło”, nie „ustalone”. „Uproszczenie” (także analogia do innego ćwiczenia) i „konwencja” oznacza się niezależnie
   od liczby źródeł. Źródło szczebla 2 tylko zacytowane obok, bez tego twierdzenia, nie liczy się.
+- BRD (M1-044, DEC-01): `docs/brd/` to katalog spełnianych wymagań odtworzony z kodu i docs (bez ocen wartości). **Nowa funkcja albo zmiana zachowania = aktualizacja BRD w tym samym commicie** (wymaganie BR, a przy liczeniu według wiedzy dziedzinowej — reguła RD z wektorami i `node scripts/kontrola-brd.mjs docs/brd --wektory > tests/wektory/brd.json`); kontrola: `node scripts/kontrola-brd.mjs docs/brd`, test `tests/audit-m1-044-brd.test.ts`.
+- Rejestr twierdzeń (M1-048, DEC-16): tekst dziedzinowy w interfejsie (powołujący się na źródło albo nazywający swoją wagę: uproszczenie, konwencja, jedno źródło) ma wpis w `docs/research/rejestr-twierdzen.json`; `npm run check:claims` (część verify) blokuje tekst bez wpisu i zmianę brzmienia bez ponownego przeglądu. Nowy albo zmieniony tekst: `node scripts/claims.mjs --stub`, po przeglądzie źródeł `--rehash <ID>`.
 - Każde twierdzenie ma **przeczytane** źródło (adres i cytat albo dokładne wskazanie miejsca). Streszczenie z wyszukiwarki nie jest źródłem. Czego nie da się potwierdzić, trafia do otwartych pytań, nie do aplikacji.
 - Źródła według hierarchii poniżej; przy sprzeczności wygrywa wyższy szczebel. Przy sprzeczności na tym samym szczeblu podaj część wspólną (przedział, „zwykle”) i pokaż różnicę.
 - Właściciel nie jest ekspertem dziedzinowym i **nie rozstrzyga kwestii merytorycznych**: rozstrzyga je ta hierarchia. Właściciela pytaj o sprawy produktowe (zakres, funkcje, wygląd, koszty, kolejność prac), zawsze z co najmniej dwiema opcjami, kompromisami i rekomendacją.

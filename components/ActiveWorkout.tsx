@@ -1,19 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, ScrollView, Pressable, Alert, StyleSheet, useWindowDimensions, ActionSheetIOS, Keyboard } from 'react-native';
+import { View, Text, ScrollView, Pressable, Alert, StyleSheet, useWindowDimensions, ActionSheetIOS, Keyboard, Linking } from 'react-native';
 import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
 import { Btn, Input, NumInput, Muted, useOnce, monoSafe } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
 import { TechniqueLink } from '@/components/ExerciseCues';
-import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, typeSetValue, setActiveLocation, visibleLocations, lastActivity, staleSince, staleRef, staleKind, ackStale, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
+import { effortLabel, effortField, effortIn, isPaused, workoutDurSec, pauseWorkout, resumeWorkout, progressionFor, skipExercise, unskipExercise, typeSetValue, setActiveLocation, visibleLocations, lastActivity, staleSince, staleRef, staleKind, ackStale, useForegroundTick, bandA11y, clampName, loadLabelShort, getState, useTick, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtDur, fmtSec, fmtTime, setSummary, roundRest, addSet, removeSet, removeSetById, removeExercise, finishWorkout, cancelWorkout, save, loadLabel, groupLabels, ssTag, ssBtn, linkWithNext, unlink, cycleBand, findSet, shortBand, setHasValue, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, focusSet, isDeloadWeek, wallTs, workCount, workSetCount, REPS_MAX, REST_MAX } from '@/lib/store';
 import { restLabel, setLabel, nowParts, counterLabel, timedLabel } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
 import { EquipVisual } from '@/components/EquipVisual';
-import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
+import { SwipeRow, lastSetBlock, confirmDelete } from '@/components/SwipeRow';
 import { MedicalNote } from '@/components/MedicalNote';
 import { templateDiff, rememberTemplateUpdate } from '@/lib/tplsync';
-import { equipVisFor, equipSlotFor } from '@/lib/equipvis';
+import { equipVisFor, equipSlotFor, slotHeight } from '@/lib/equipvis';
 import Svg, { Circle } from 'react-native-svg';
 import { implLabel } from '@/lib/swap';
 import { SetBadge } from '@/components/SetBadge';
@@ -25,13 +25,14 @@ import { onWorkoutSaved } from '@/lib/backup';
 import { markJustFinished } from '@/lib/review-run';
 import { markDoneEarly } from '@/lib/plan';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type WExercise, type WSet, type Workout } from '@/lib/seed';
-import { t as tr, tp, exName, lang, glue } from '@/lib/i18n';
-import { wu, wField, wInKeep, fmtW } from '@/lib/units';
-import { cancelButton, confirmSkipTimedSet } from '@/lib/confirm';
+import { t as tr, tp, exName, exNameLang, lang, glue } from '@/lib/i18n';
+import { wu, wField, wInKeep, fmtW, dIn, dOut, distUnit } from '@/lib/units';
+import { cancelButton, okButton, confirmSkipTimedSet } from '@/lib/confirm';
 import { adaptCandidates, restoreCandidates } from '@/lib/adapt';
 import { TestWatchPanel } from '@/components/TestWatchPanel';
 import { voiceSetting, setVoiceSetting, voiceSettingLabel, VOICE_SETTINGS, type VoiceSetting } from '@/lib/voice';
 import { takeAutoAdapt } from '@/lib/adaptPick';
+import { reminderPermission, requestRestNotificationPermission, restExplainDismissed, dismissRestExplain, type ReminderPermission } from '@/lib/planReminder';
 
 /*
  * Trening w toku. Audyt 0.8.1:
@@ -50,7 +51,9 @@ export default function ActiveWorkout() {
   const st = getState(); const w = st.active!;
   const wake = st.settings.wakeLock !== false;
   useEffect(() => { if (!wake) return; activateKeepAwakeAsync('workout').catch(() => {}); return () => { deactivateKeepAwake('workout').catch(() => {}); }; }, [wake]);
-  useEffect(() => { timer.ensurePermission().catch(() => {}); }, []);
+  /* M1-audytor-generalny-035: zgoda na powiadomienie o końcu przerwy — karta z wyjaśnieniem przed pytaniem systemu (tylko gdy iOS jeszcze nie pytał); odmowa widoczna jedną linią (niżej) */
+  const [perm, setPerm] = useState<ReminderPermission | null>(null); const permTick = useForegroundTick();
+  useEffect(() => { reminderPermission().then(setPerm).catch(() => {}); }, [permTick]);
   /* 0.19 (docs/33 B, P4 A): start w dniu z miejscem z planu — okno „Dostosuj do: X” otwiera się samo (raz, tylko gdy są propozycje); nigdy automatyczna zamiana */
   useEffect(() => { const a = getState().active; if (a && takeAutoAdapt(a.id) && a.locationId && (adaptCandidates(a, a.locationId).length || restoreCandidates(a, a.locationId).length)) router.push('/adapt'); }, [w.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const [, force] = useState(0);
@@ -179,6 +182,12 @@ export default function ActiveWorkout() {
           <View style={{ alignItems: 'flex-end', gap: 6 }}><Btn title={tr('Zakończ')} kind="primary" onPress={finish} /><VoiceBtn /></View>
         </View>
         <TemplateNote w={w} />
+        {perm === 'undetermined' && !restExplainDismissed() ? <View testID="perm-explain-workout" style={{ gap: 6, marginBottom: 8, padding: 12, borderRadius: 10, backgroundColor: t.surface2 }}>
+          <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 15, fontFamily: F.semibold }}>{tr('Powiadomienie na koniec przerwy')}</Text>
+          <Muted style={{ fontSize: 13 }}>{tr('Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.')}</Muted>
+          <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap' }}><Btn small kind="primary" title={tr('Dalej')} onPress={() => { requestRestNotificationPermission().then(setPerm).catch(() => {}); }} /><Btn small kind="ghost" title={tr('Nie teraz')} onPress={() => { dismissRestExplain(); force(x => x + 1); }} /></View>
+        </View> : null}{/* M1-035: wyjaśnienie przed pierwszą prośbą o zgodę */}
+        {perm === 'denied' ? <View testID="perm-denied-workout" style={{ gap: 6, marginBottom: 8 }}><Muted style={{ fontSize: 13 }}>{tr('Brak zgody na powiadomienia — przypomnienia i koniec przerwy nie przyjdą. Zgodę włączysz w Ustawieniach iOS.')}</Muted><Btn small title={tr('Otwórz Ustawienia iOS')} onPress={() => { Linking.openSettings().catch(() => {}); }} style={{ alignSelf: 'flex-start' }} /></View> : null}{/* M1-035: odmowa widoczna na ekranie treningu */}
         {st.settings.workoutView !== 'list' ? <FocusCard w={w} onDone={onDone} onFinish={finish} onStartSet={startSet} onCardY={y => { restY.current.card = y; checkRest(); }} onRestY={y => { restY.current.panel = y; checkRest(); }} /> : null}
         {w.exercises.map((e, ei) => <ExerciseBlock key={e.id} w={w} e={e} ei={ei} onDone={onDone} onStartSet={startSet} labels={labels} prs={prs} />)}
         <View style={{ flexDirection: 'row', gap: 8 }}><Btn title={tr('+ Dodaj ćwiczenie')} style={{ flex: 1 }} onPress={once(() => router.push('/picker?target=active'))} />{w.exercises.length > 1 ? <Btn title={tr('≡ Kolejność')} accessibilityLabel={tr('Zmień kolejność ćwiczeń')} onPress={once(() => router.push('/reorder?target=active'))} /> : null}</View>
@@ -214,6 +223,8 @@ function insteadLine(e: WExercise): string {
   return [tr('zamiast: {name}', { name: exName(A) }), last ? tr('ostatnio {s}', { s: last }) : ''].filter(Boolean).join(' · ');
 }
 
+/** M1-audytor-generalny-034: linki tekstowe na ekranie treningu — minHeight 32 + hitSlop 6 z góry i z dołu = pole dotyku 44 pt (HIG). */
+const LINK_BOX = { minHeight: 32, justifyContent: 'center' } as const; const LINK_SLOP = { top: 6, bottom: 6, left: 6, right: 6 } as const;
 /** P-003 E1: „📍 Dom ▾” pod nazwą treningu (tylko gdy są miejsca) — zmiana miejsca tylko dla tej sesji; nic nie jest przepisywane
  * ani zamieniane (A-002) — zmienia się filtr wyboru ćwiczeń, plakietki braku sprzętu i podpowiedzi. */
 function LocationChip({ w }: { w: Workout }) {
@@ -225,7 +236,7 @@ function LocationChip({ w }: { w: Workout }) {
     const l = locs[i]; const a = getState().active; if (!l || !a || a.id !== w.id) return; const was = a.locationId; setActiveLocation(l.id); /* decyzja 8c: przyrządy bloków wg nowego miejsca */
     /* 0.18 (docs/33, P2 A): miejsce z brakami albo z ćwiczeniami do przywrócenia — okno „Dostosuj do: X” otwiera się samo (tylko propozycje do przejrzenia) */
     const cur = getState().active; if (cur && was !== l.id && (adaptCandidates(cur, l.id).length || restoreCandidates(cur, l.id).length)) router.push('/adapt'); });
-  return <Pressable accessibilityLanguage={lang()} onPress={pick} accessibilityRole="button" accessibilityLabel={tr('Miejsce treningu: {l}', { l: name })} accessibilityHint={tr('Tapnij, by zmienić.')} /* A11-18 */ hitSlop={6} style={{ alignSelf: 'flex-start', paddingVertical: 4 }}>
+  return <Pressable accessibilityLanguage={lang()} onPress={pick} accessibilityRole="button" accessibilityLabel={tr('Miejsce treningu: {l}', { l: name })} accessibilityHint={tr('Tapnij, by zmienić.')} /* A11-18 */ hitSlop={LINK_SLOP} style={[LINK_BOX, { alignSelf: 'flex-start' }]}>
     <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.accent, fontSize: 14, fontFamily: F.semibold }}>{`📍 ${name} ▾`}</Text></Pressable>;
 }
 
@@ -235,7 +246,7 @@ function AdaptLine({ w }: { w: Workout }) {
   const th = useTheme(); const router = useRouter(); const once = useOnce();
   const na = w.locationId ? adaptCandidates(w, w.locationId).length : 0; const nr = w.locationId ? restoreCandidates(w, w.locationId).length : 0; if (!na && !nr) return null;
   const text = na ? tr('{n} {w} · Dostosuj', { n: na, w: tp(na, 'ćwiczenie bez sprzętu|ćwiczenia bez sprzętu|ćwiczeń bez sprzętu') }) : tr('{n} {w} · Dostosuj', { n: nr, w: tp(nr, 'ćwiczenie wraca do planu|ćwiczenia wracają do planu|ćwiczeń wraca do planu') });
-  return <Pressable testID="adapt-line" accessibilityLanguage={lang()} onPress={once(() => router.push('/adapt'))} accessibilityRole="button" accessibilityLabel={text} accessibilityHint={tr('Otwiera propozycje zamian na to miejsce.')} hitSlop={6} style={{ alignSelf: 'flex-start', paddingVertical: 4 }}>
+  return <Pressable testID="adapt-line" accessibilityLanguage={lang()} onPress={once(() => router.push('/adapt'))} accessibilityRole="button" accessibilityLabel={text} accessibilityHint={tr('Otwiera propozycje zamian na to miejsce.')} hitSlop={LINK_SLOP} style={[LINK_BOX, { alignSelf: 'flex-start' }]}>
     <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.accent, fontSize: 14, fontFamily: F.semibold }}>{text}</Text></Pressable>;
 }
 
@@ -345,7 +356,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   if (e.skipped) return (
     <View style={[s.ex, { borderBottomColor: t.line }]}>
       <SwipeRow label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={delMsg} onDelete={removeBlock}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-        <Text accessibilityLanguage={lang()} {...a11y} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 17, fontFamily: F.semibold, flexShrink: 1 }}>{exName(ex)}</Text>
+        <Text accessibilityLanguage={exNameLang(ex)} {...a11y} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 17, fontFamily: F.semibold, flexShrink: 1 }}>{exName(ex)}</Text>
         <Muted style={{ fontSize: 13, flexGrow: 1 }}>{tr('pominięte dziś')}</Muted>
         <Btn title={tr('Przywróć')} small kind="ghost" accessibilityLabel={tr('Przywróć ćwiczenie: {name}', { name: nm })} onPress={() => unskipExercise(e.id)} />
       </View>}</SwipeRow>
@@ -373,23 +384,32 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
   const parseRest = (v?: string) => { const x = (v ?? '').trim(); if (!x) return null; const n = Math.round(Number(x.replace(',', '.'))); return n >= 0 && isFinite(n) ? Math.min(REST_MAX, n) : null; }; // runda 11: ten sam limit co w edycji ćwiczenia i szablonu
   const setMenu = (set: WSet, si: number) => {
     /* 07.10.2026 wieczór: usuwanie serii — przesunięciem wiersza w lewo (deleteSet), nie z menu */
-    const labels = [tr('Seria normalna'), tr('Rozgrzewka (W)'), tr('Drop set (D)'), tr('Do upadku (F)'), set.note ? tr('Edytuj notatkę') : tr('Dodaj notatkę'), tr('Anuluj')];
+    const labels = [tr('Seria normalna'), tr('Rozgrzewka (W)'), tr('Drop set (D)'), tr('Do upadku (F)'), set.note ? tr('Edytuj notatkę') : tr('Dodaj notatkę'), tr('Usuń serię'), tr('Anuluj')]; /* M1-028: alternatywa dla gestu */
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
-    ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: labels.length - 1, title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
+    ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: labels.length - 1, destructiveButtonIndex: labels.length - 2, title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; save(st.active); }
       else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: tr('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
+      else if (i === 5) { /* M1-028: to samo potwierdzenie i ta sama blokada ostatniej serii co przy geście */
+        if (e.sets.length <= 1) { const b = lastSetBlock(); Alert.alert(b.title, b.message, [okButton()]); }
+        else confirmDelete({ title: tr('Usunąć serię?'), message: set.done ? tr('Seria jest już odhaczona.') : undefined, onDelete: () => deleteSet(set.id) });
+      }
     });
   };
   /* 07.10.2026 wieczór (docs/18): usuwanie serii przesunięciem w lewo, zawsze z potwierdzeniem; ostatniej serii bloku się nie usuwa (jak wcześniej) */
   const deleteSet = (id: string) => { const cur = getState().active?.exercises.find(x => x.id === e.id); if (!cur || cur.sets.length <= 1 || !cur.sets.some(x => x.id === id)) return; dropTimers([id]); removeSetById(getState().active!.exercises.indexOf(cur), id); };
+  const exMenu = () => ActionSheetIOS.showActionSheetWithOptions({ options: [tr('Usuń ćwiczenie'), tr('Anuluj')], cancelButtonIndex: 1, destructiveButtonIndex: 0, title: nm }, i => { /* M1-028: alternatywa dla gestu */
+    if (i === 0) confirmDelete({ title: tr('Usunąć z treningu?'), message: delMsg, onDelete: removeBlock }); });
   return (
     <View style={[s.ex, { borderBottomColor: t.line }]}>
       <SwipeRow testID={`ex-${ei}`} /* E2E 25 */ label={tr('Usuń ćwiczenie: {name}', { name: nm })} title={tr('Usunąć z treningu?')} message={delMsg} onDelete={removeBlock}>{a11y => <View style={s.exHead}>
-        <Text accessibilityLanguage={lang()} {...a11y} accessibilityRole="header" style={{ color: t.text, fontSize: 17, fontFamily: F.semibold, flexGrow: 1, flexShrink: 1, minWidth: '58%' }}>{inSS ? <Text accessibilityLanguage={lang()} style={{ color: t.band }}>{`SS ${labels[e.groupId!]} · `}</Text> : null}{exName(ex)}{ex.archived ? <Text accessibilityLanguage={lang()} style={{ color: t.muted, fontSize: 13 }}>{' (' + tr('usunięte') + ')'}</Text> : null}</Text>
+        <Text accessibilityLanguage={exNameLang(ex)} {...a11y} accessibilityRole="header" style={{ color: t.text, fontSize: 17, fontFamily: F.semibold, flexGrow: 1, flexShrink: 1, minWidth: '58%' }}>{inSS ? <Text accessibilityLanguage={lang()} style={{ color: t.band }}>{`${ssTag(labels[e.groupId!])} · `}</Text> : null}{exName(ex)}{ex.archived ? <Text accessibilityLanguage={lang()} style={{ color: t.muted, fontSize: 13 }}>{' (' + tr('usunięte') + ')'}</Text> : null}</Text>
         <Muted numberOfLines={2} style={{ fontSize: 13, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{headMeta}</Muted>
+        <Pressable testID={`ex-menu-${ei}`} accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={tr('Opcje ćwiczenia: {name}', { name: nm })} onPress={exMenu} hitSlop={4} style={{ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}>
+          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 22, fontFamily: F.semibold }}>⋯</Text>
+        </Pressable>
       </View>}</SwipeRow>
       {insteadTxt || remember ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Muted style={{ fontSize: 12, flexShrink: 1 }}>{insteadTxt || (e.impl ? tr('przyrząd: {impl}', { impl: implLabel(e.impl) }) : '')}</Muted>{canUndoSwap(e) ? <Btn title={tr('↺ cofnij')} small kind="ghost" accessibilityLabel={tr('Cofnij zamianę: {name}', { name: nm })} onPress={() => confirmUndoSwap(e.id)} /> : null}{remember && place ? <Btn title={tr('Zawsze w: {l}', { l: place.name })} small kind="ghost" accessibilityLabel={tr('Zawsze w: {l} — {name}', { l: place.name, name: nm })} accessibilityHint={tr('Zapisuje zamiennik w szablonie dla tego miejsca.')} onPress={() => rememberAlt(e.id)} /> : null}</View> : null}
-      {hint && place ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={tr('Zamień na zamiennik: {name}', { name: hintName })} onPress={openSwap} hitSlop={8} style={{ flexShrink: 1 }}><Muted style={{ fontSize: 12, textDecorationLine: 'underline' }}>{tr('Zwykle w: {l} — {name}. Zamienić?', { l: place.name, name: hintName })}</Muted></Pressable><Btn title="✕" small kind="ghost" accessibilityLabel={tr('Nie zamieniaj: {name}', { name: hintName })} onPress={() => skipAlt(e.id)} /></View> : null}
+      {hint && place ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={tr('Zamień na zamiennik: {name}', { name: hintName })} onPress={openSwap} hitSlop={LINK_SLOP} style={[LINK_BOX, { flexShrink: 1 }]}><Muted style={{ fontSize: 12, textDecorationLine: 'underline' }}>{tr('Zwykle w: {l} — {name}. Zamienić?', { l: place.name, name: hintName })}</Muted></Pressable><Btn title="✕" small kind="ghost" accessibilityLabel={tr('Nie zamieniaj: {name}', { name: hintName })} onPress={() => skipAlt(e.id)} /></View> : null}
       {place && avail && !avail.ok ? <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: -2, marginBottom: 6 }}><Pressable accessibilityLanguage={lang()} accessibilityRole="button" disabled={!swappable} accessibilityLabel={tr('Brak sprzętu w: {l}. Brakuje: {m}', { l: place.name, m: missingLabel(avail.missing) })} accessibilityHint={swappable ? tr('Otwiera zamianę ćwiczenia') : undefined} onPress={openSwap} hitSlop={8} style={{ flexShrink: 1 }}><Muted style={{ fontSize: 12, color: t.danger, textDecorationLine: swappable ? 'underline' : 'none' }}>{tr('brak sprzętu w: {l}', { l: place.name })} ({missingLabel(avail.missing)})</Muted></Pressable></View> : null}
       {prevElsewhere || offNote ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{[prevElsewhere ? tr('Poprzednio: {l}', { l: prevElsewhere }) : '', offNote].filter(Boolean).join(' · ')}</Muted> : null}
       <View style={[s.row, { gap: W.gap }]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" /* A11-18: nagłówki kolumn „#”, „✓”, „▶” — szum dla VoiceOver; każde pole ma własną etykietę (jak w historii) */>
@@ -397,7 +417,7 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
         {prevInline ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} style={[s.c, { flex: 1, textAlign: 'left' }]}>{tr('Poprzednio')}</Muted> : <View style={{ flex: 1 }} />}
         {hasWeight(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} numberOfLines={1} style={[s.c, { width: W.w }]}>{loadLabelShort(ex, impl)}</Muted> : null}
         {hasReps(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.reps }]}>{tr('Pow.')}</Muted> : null}
-        {hasDistance(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.dist }]}>m</Muted> : null}
+        {hasDistance(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.dist }]}>{distUnit()}</Muted> : null}
         {hasTime(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.time }]}>{tr('sek.')}</Muted> : null}
         {hasTime(m) ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.play }]}>▶</Muted> : null}
         {showRpe ? <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.c, { width: W.rpe }]}>{effortLabel()}</Muted> : null}
@@ -415,10 +435,10 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
               <Pressable accessibilityLanguage={lang()} {...a11y} onPress={() => setMenu(set, si)} hitSlop={8} accessibilityHint={`${hint}. ${tr('Tapnij, by zmienić typ lub dodać notatkę.')}`} /* runda 63; A11-18: instrukcja w podpowiedzi */ accessibilityRole="button" accessibilityLabel={tr('Seria {n}, typ: {k}', { n: lbl, k: tr(SET_KIND_LABEL[kind]) })} style={{ width: W.idx, minHeight: 44, justifyContent: 'center' }}>
                 <SetBadge kind={kind} label={lbl} note={!!set.note} />
               </Pressable>
-              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13, fontFamily: F.regular /* audyt 0.10 (LIVE-13 / UI-11) */ }}>{prevTxt}</Text> : null}{pr ? <Text accessibilityLanguage={lang()} accessibilityLabel={tr('Rekord: {list}', { list: pr.map(k => tr(k)).join(', ') })} /* A11-18: VoiceOver czyta, jaki rekord, nie „P R” */ maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontFamily: F.semibold }}>PR</Text> : null}</View>
+              <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 4 }}>{prevInline ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} numberOfLines={1} style={{ flexShrink: 1, color: t.muted, fontSize: 13, fontFamily: F.regular /* audyt 0.10 (LIVE-13 / UI-11) */ }}>{prevTxt}</Text> : null}{pr ? <Text accessibilityLanguage={lang()} accessibilityLabel={tr('Rekord: {list}', { list: pr.map(k => tr(k)).join(', ') })} /* A11-18: VoiceOver czyta, jaki rekord, nie „P R” */ maxFontSizeMultiplier={1.3} style={{ color: t.band, fontSize: 11, fontFamily: F.semibold }}>{tr('PR')}</Text> : null}</View>
               {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={bw} value={wField(bw ? set.addKg : set.weight)} stored={bw ? set.addKg : set.weight} onNum={(v, keep) => { typeSetValue(ei, si, 'load', wInKeep(v, keep)); /* runda 54: ciężar nieujemny (writeLoad); Q-021: ta sama liczba co na ekranie = te same kg; 11.10.2026: kaskada w dół */ }} placeholder={bw ? '±0' : wu()} style={doneStyle(set)} accessibilityLabel={loadLabel(ex, impl)} accessibilityHint={hint} testID={`w-${ei}-${si}`} /* E2E 11 */ /></View> : null}
               {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={set.reps} onNum={v => { typeSetValue(ei, si, 'reps', v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v)))); /* UI-16; kaskada w dół */ }} placeholder={reps(e.repMin, e.repMax)} style={doneStyle(set)} accessibilityLabel={tr('Powtórzenia')} accessibilityHint={hint} testID={`r-${ei}-${si}`} /></View> : null}
-              {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={set.distanceM} onNum={v => { typeSetValue(ei, si, 'distanceM', v === '' ? '' : Math.max(0, Math.round(v))); /* runda 55/56: pełne metry jak klawiatura; kaskada w dół */ }} placeholder="m" style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
+              {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={dOut(set.distanceM)} stored={set.distanceM} onNum={(v, keep) => { typeSetValue(ei, si, 'distanceM', dIn(v, keep)); /* runda 55/56: pełne metry jak klawiatura; kaskada w dół; LOK07-01: w imperialnym yardy → metry (cm) */ }} placeholder={distUnit()} style={doneStyle(set)} accessibilityLabel={tr('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={set.durationSec} onNum={v => { typeSetValue(ei, si, 'durationSec', v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v)))); /* runda 56: pełne sekundy jak klawiatura; kaskada w dół */ }} placeholder="s" style={doneStyle(set)} accessibilityLabel={tr('czas')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? (
                 <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={running ? tr('Stoper trwa') : tr('Start stopera serii')} accessibilityHint={hint} onPress={() => { if (!running) startTimed(w, e, set, si, onStartSet); }} style={[s.doneBtn, { width: W.play, backgroundColor: running ? t.accent : t.surface2, borderColor: running ? t.accent : t.line }]}>
@@ -440,8 +460,8 @@ function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w: Worko
       <View style={s.actions}>
         <Btn title={tr('+ seria')} small accessibilityHint={nm} onPress={() => addSet(ei)} /><Btn title={tr('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'warmup')} /><Btn title={tr('+ drop set')} small kind="ghost" accessibilityHint={nm} onPress={() => addSet(ei, 'drop')} />
         <Btn title={`⏱ ${fmtSec(e.restSec)}`} small accessibilityHint={`${nm}. ${tr('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={tr('Przerwa: {s}', { s: fmtSec(e.restSec) })} onPress={() => { Alert.prompt?.(tr('Przerwa (s)'), tr('Zapamiętać dla tego ćwiczenia?'), [{ ...cancelButton() }, { text: tr('Tylko teraz'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) { e.restSec = n; save(st.active); } else badRest(); } }, { text: tr('Zapamiętaj'), onPress: (v?: string) => { const n = parseRest(v); if (n != null) rememberRest(n); else badRest(); } }], 'plain-text', String(e.restSec), 'number-pad'); }} />
-        {ei + 1 < w.exercises.length && (!inSS || w.exercises[ei + 1].groupId !== e.groupId) ? <Btn title="⇅ SS" small kind="ghost" accessibilityLabel={tr('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(w.exercises, ei, w)} /> : null}
-        {inSS ? <Btn title="✂ SS" small kind="ghost" accessibilityLabel={tr('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(w.exercises, ei, w)} /> : null}
+        {ei + 1 < w.exercises.length && (!inSS || w.exercises[ei + 1].groupId !== e.groupId) ? <Btn title={ssBtn('link')} small kind="ghost" accessibilityLabel={tr('Połącz z następnym w superset')} accessibilityHint={nm} onPress={() => linkWithNext(w.exercises, ei, w)} /> : null}
+        {inSS ? <Btn title={ssBtn('unlink')} small kind="ghost" accessibilityLabel={tr('Wyjmij z supersetu')} accessibilityHint={nm} onPress={() => unlink(w.exercises, ei, w)} /> : null}
         <TechniqueLink exercise={ex} name={nm} />{/* UX2-05 (audyt kontrolny 1): wskazówki techniki i figura w trakcie treningu */}
         {swappable ? <Btn title={tr('⇄ zamień')} small kind="ghost" accessibilityLabel={tr('Zamień ćwiczenie: {name}', { name: nm })} onPress={openSwap} /> : null}
         {e.sets.some(x => !x.done) ? <Btn title={tr('Pomiń dziś')} small kind="ghost" accessibilityLabel={tr('Pomiń dziś: {name}', { name: nm })} onPress={skipToday} /> : null}
@@ -486,24 +506,24 @@ function FocusCard({ w, onDone, onFinish, onStartSet, onCardY, onRestY }: { w: W
   }
   const e = w.exercises[pos.ei]; const ex = exById(e.exerciseId)!; const set = e.sets[pos.si]; const m = ex.metric ?? 'weight_reps'; const lbl = setLabel(e, pos.si);
   const prev = prevOfActiveBlock(w, e); const p = hintFor(prev?.sets, e.sets, pos.si, ex);
-  const vis = equipVisFor(w, e, set); const ghost = vis.some(v => v.kind !== 'noplates') ? [] : equipSlotFor(w, e, set); const minH = slot.key === set.id ? slot.h : 0; const resting = timer.T.on;
+  const vis = equipVisFor(w, e, set); const ghost = vis.length ? [] : equipSlotFor(w, e, set); const minH = slot.key === set.id ? slot.h : 0; const resting = timer.T.on;
   /* Audyt 0.10 (UI-10 / LIVE-14, wariant A): „80 kg × 8” — jednostka przy ciężarze, ta sama treść dla VoiceOver; licznik bez drop setów */
   const big = nowParts(ex, set); const bigTxt = `${big.num}${big.unit ? ' ' + big.unit : ''}${big.tail}`; const counter = counterLabel(e, pos.si);
-  const name = exName(ex); const ss = e.groupId ? `SS ${groupLabels(w.exercises)[e.groupId]} · ` : '';
+  const name = exName(ex); const ss = e.groupId ? `${ssTag(groupLabels(w.exercises)[e.groupId])} · ` : '';
   /* Audyt 0.10 (LIVE-06, wariant A): seria na czas bez trwającego pomiaru — duży „▶ Start”, pod nim mały „Odhacz bez pomiaru” (czas z pola serii) */
   const timedIdle = hasTime(m) && !(timer.S.on && timer.S.setId === set.id);
   return (
     <View testID="focus-card" onLayout={cardLayout} style={[s.focus, { backgroundColor: t.surface, borderColor: t.text }]}>
       {resting ? restPanel : null}
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
-        <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 20, fontFamily: F.heavy, flexShrink: 1 }}>{ss}{resting ? tr('dalej: {name}', { name }) : name}</Text>
+        <Text accessibilityLanguage={resting ? lang() : exNameLang(ex)} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 20, fontFamily: F.heavy, flexShrink: 1 }}>{ss}{resting ? tr('dalej: {name}', { name }) : name}</Text>
         <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 14, fontFamily: F.semibold }}>{glue(counter) /* A11-19 */}</Text>
       </View>
       {ex.notes?.trim() ? <Muted numberOfLines={3} style={{ fontSize: 13 }}>{ex.notes.trim()}</Muted> : null}
       <Text accessibilityLanguage={lang()} accessible accessibilityLabel={tr('Teraz: {v}', { v: bigTxt })} adjustsFontSizeToFit numberOfLines={1} maxFontSizeMultiplier={1.2} style={{ color: t.text, fontSize: 64, lineHeight: 72, fontFamily: F.display }}>{big.num}{big.unit ? <Text accessibilityLanguage={lang()} style={{ fontSize: 18, fontFamily: F.semibold, color: t.muted }}>{` ${big.unit}`}</Text> : null}{big.tail}</Text>
       {p ? <Muted style={{ fontSize: 13 }}>{tr('ostatnio {s}', { s: setSummary(ex, p, 'calc') })}</Muted> : null}
       {vis.length || ghost.length ? (
-        <View style={{ gap: 10, minHeight: minH }} onLayout={ev => { const h = Math.ceil(ev.nativeEvent.layout.height); if (slot.key !== set.id || h > slot.h) setSlot({ key: set.id, h }); }}>
+        <View style={{ gap: 10, minHeight: minH }} onLayout={ev => { const h = slotHeight(ev.nativeEvent.layout.height); if (slot.key !== set.id || h > slot.h) setSlot({ key: set.id, h }); }}>
           {vis.map((v, i) => <EquipVisual key={i} v={v} />)}
           {ghost.length ? <View style={{ gap: 10, opacity: 0 }} pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">{ghost.map((v, i) => <EquipVisual key={i} v={v} />)}</View> : null}
         </View>) : null}

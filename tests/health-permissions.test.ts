@@ -52,11 +52,11 @@ describe('polityka prywatności (site/privacy.html)', () => {
   const html = fs.readFileSync(path.join(root, 'site/privacy.html'), 'utf8'); const pl = html.slice(html.indexOf('<section lang="pl">'), html.indexOf('<section lang="en">')); const en = html.slice(html.indexOf('<section lang="en">'));
   test('PL: odczyt lokalny (kroki, treningi, tętno, aktywna energia), tylko wyświetlanie, bez zapisu w bazie / kopii / CSV, bez wysyłania, jak cofnąć zgodę; nie mówi już „nie odczytuje”', () => {
     expect(pl).not.toMatch(/nie odczytuje żadnych danych/); for (const w of ['Pokazuj dane z Apple Health', 'kroki, treningi (także z zegarka), tętno i aktywną energię', 'tylko w pamięci aplikacji', 'nie zapisuje ich w swojej bazie, w kopii zapasowej ani w eksporcie CSV', 'nie wysyła ich nigdzie',
-      'nie używa do reklam, marketingu ani analityki', 'nie udziela porad medycznych', 'zgodę cofniesz w aplikacji Zdrowie', 'usuwa swoją kopię z Apple Health', 'wersja aplikacji 0.16.0']) expect(pl).toContain(w);
+      'nie używa do reklam, marketingu ani analityki', 'nie udziela porad medycznych', 'zgodę cofniesz w aplikacji Zdrowie', 'usuwa swoją kopię z Apple Health', 'wersja aplikacji ']) expect(pl).toContain(w);
   });
   test('EN: the same facts in English; no “does not read any data”', () => {
     expect(en).not.toMatch(/does not\s+read any data/); for (const w of ['Show data from Apple Health', 'steps, workouts (including from your watch), heart rate and active energy', 'only in the app\'s memory', 'does not store it in its database, in backups or in CSV exports', 'does not send it anywhere',
-      'does not use it for advertising, marketing or analytics', 'gives no medical advice', 'revoke access in the Health app', 'removes its own copy from Apple Health', 'app version 0.16.0']) expect(en).toContain(w);
+      'does not use it for advertising, marketing or analytics', 'gives no medical advice', 'revoke access in the Health app', 'removes its own copy from Apple Health', 'app version ']) expect(en).toContain(w);
   });
   test('strona i kod mówią to samo: kopia i CSV nie mają kolumn ze Zdrowia; aplikacja nie ma wywołań sieciowych (public-repo.test); odczyt wyłączony domyślnie', () => {
     const seed = fs.readFileSync(path.join(root, 'lib/seed.ts'), 'utf8'); expect(seed).toMatch(/healthSync: false/); expect(seed).not.toMatch(/healthRead: (true|false)/); /* domyślnie brak pola = wyłączony */

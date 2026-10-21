@@ -55,6 +55,8 @@ export function resolveLang(tag: string | null | undefined, code?: string | null
 }
 
 let deviceTag = 'pl-PL';
+/** M2-LOK07-02 (DEC-29): measurementSystem z expo-localization ('metric' | 'us' | 'uk'); brak = null → zapas z regionu tagu. */
+let deviceMeasure: string | null = null;
 let current: Lang = 'pl';
 
 /** Język systemu: obsługiwany → ten, każdy inny → angielski. Bez modułu natywnego (testy) → pl. */
@@ -62,7 +64,7 @@ export function detectLang(): Lang {
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const loc = (require('expo-localization') as typeof import('expo-localization')).getLocales()[0];
-    deviceTag = loc?.languageTag || deviceTag;
+    deviceTag = loc?.languageTag || deviceTag; deviceMeasure = typeof loc?.measurementSystem === 'string' ? loc.measurementSystem : null;
     return resolveLang(loc?.languageTag, loc?.languageCode);
   } catch { return 'pl'; }
 }
@@ -75,8 +77,14 @@ export const appName = () => APP_NAME[current];
 /** Regiony, w których ciężary podaje się zwyczajowo w funtach (H4 / UX-12, audyt 0.10) — tylko domyślna jednostka świeżej instalacji
  * (uproszczenie produktowe, nie twierdzenie pokazywane w aplikacji; jednostkę zmienia się w Ustawieniach). */
 export const LB_REGIONS = ['US', 'LR', 'MM'] as const;
-/** Domyślna jednostka masy z regionu urządzenia (np. en-US → lb). */
-export function deviceUnit(tag: string = deviceTag): 'kg' | 'lb' { const r = (tag.split(/[-_]/).find((x, i) => i > 0 && /^[A-Za-z]{2}$/.test(x)) ?? '').toUpperCase(); return (LB_REGIONS as readonly string[]).includes(r) ? 'lb' : 'kg'; }
+/** Systemy miar iOS uznawane za imperialne (DEC-29, 20.10.2026: 'us' i 'uk' → lb, mi, yd; 'metric' → kg, km, m). */
+export const IMPERIAL_SYSTEMS = ['us', 'uk'] as const;
+/** Domyślny system miar (jednostka masy `unit`, z którą idą dystanse) świeżej instalacji: z `measurementSystem` telefonu; bez niego — region tagu (en-US → lb), a bez regionu metryczny.
+ * Z jawnym tagiem (testy) tylko region. */
+export function deviceUnit(tag?: string): 'kg' | 'lb' {
+  if (tag === undefined && deviceMeasure) return (IMPERIAL_SYSTEMS as readonly string[]).includes(deviceMeasure) ? 'lb' : 'kg';
+  const r = ((tag ?? deviceTag).split(/[-_]/).find((x, i) => i > 0 && /^[A-Za-z]{2}$/.test(x)) ?? '').toUpperCase(); return (LB_REGIONS as readonly string[]).includes(r) ? 'lb' : 'kg';
+}
 /** Język tagu telefonu do porównania z językiem aplikacji (fala 4: chiński — zh-Hant tylko dla pisma tradycyjnego, zh-Hans-CN nie daje dat zh-Hant). */
 const deviceBase = () => { const b = deviceTag.split(/[-_]/)[0].toLowerCase(); return b === 'zh' ? (resolveLang(deviceTag) === 'zh-Hant' ? 'zh-Hant' : 'zh-Hans') : b; };
 export const locale = () => current === 'pl' ? 'pl-PL' : current === 'sr' ? 'sr-Cyrl-RS' : deviceBase() === baseLang(current) ? deviceTag : TAG[current];
@@ -90,11 +98,18 @@ const dictOf = (l: Lang): Record<string, string> | undefined => l === 'en' ? EN 
 /** Tekst w języku `l`: polski — klucz; inne — słownik języka, brak → angielski, brak → polski. */
 function lookup(l: Lang, pl: string): string { return l === 'pl' ? pl : own(dictOf(l), pl) ?? own(EN, pl) ?? pl; }
 const enOf = (k: string): string | undefined => own(EN, k);
+/**
+ * Pseudolokalizacja (M1-audytor-generalny-066, DEC-20): tylko w buildzie deweloperskim (`__DEV__`) każdy tekst z t() jest w nawiasach ⟦…⟧ — tekst bez nawiasów na ekranie omija słownik
+ * (wpisany na sztywno). Włączenie: zmienna EXPO_PUBLIC_PSEUDO=1 przy `expo start`. Produkcja nigdy nie pokazuje nawiasów.
+ */
+let pseudo = typeof __DEV__ !== 'undefined' && __DEV__ && process.env.EXPO_PUBLIC_PSEUDO === '1';
+export function setPseudo(on: boolean) { pseudo = on && typeof __DEV__ !== 'undefined' && __DEV__; }
+export const isPseudo = () => pseudo && typeof __DEV__ !== 'undefined' && __DEV__;
 /** Tłumaczenie z interpolacją {nazwa}. */
 export function t(pl: string, params?: Record<string, string | number>): string {
   let s = lookup(current, pl);
   if (params) for (const k of Object.keys(params)) s = s.split(`{${k}}`).join(String(params[k]));
-  return s;
+  return isPseudo() ? `⟦${s}⟧` : s;
 }
 /** Etykieta zapisana parą {pl, en} (sprzęt, presety): polski / angielski wprost, inne języki — słownik po polskim tekście, brak → angielski. */
 export function lbl(x: { pl: string; en: string }): string { return current === 'pl' ? x.pl : current === 'en' ? x.en : own(LOCALES[current], x.pl) ?? x.en; }
@@ -126,6 +141,10 @@ export function exName(e: { name: string; lib?: boolean } | undefined | null): s
   { const f = Object.prototype.hasOwnProperty.call(EX_FULL, e.name) ? EX_FULL[e.name] : undefined; if (f) return f; }
   return e.name.replace(/\(([^)]+)\)/g, (m, inner: string) => Object.prototype.hasOwnProperty.call(EX_PAREN, inner) ? `(${EX_PAREN[inner]})` : m);
 }
+
+/** M1-audytor-generalny-038: język wymowy (VoiceOver) dla samej nazwy ćwiczenia. Nazwy biblioteki są po angielsku w każdym języku poza polskim (DEC-13), więc czyta je
+ * głos angielski; ćwiczenia własne i przemianowane (lib = false) — głos języka interfejsu. Dotyczy tylko elementów z samą nazwą (nagłówek, tytuł wiersza). */
+export function exNameLang(e: { lib?: boolean } | undefined | null): Lang { return current !== 'pl' && e?.lib ? 'en' : current; }
 
 // Język systemu od razu przy starcie modułu — ekran błędu startu (zanim wczytają się ustawienia) też jest przetłumaczony (runda 3).
 applyLang('auto');

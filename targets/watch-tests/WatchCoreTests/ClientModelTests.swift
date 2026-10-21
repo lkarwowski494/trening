@@ -85,6 +85,20 @@ final class ClientModelTests: XCTestCase {
     XCTAssertTrue(late.out.isEmpty)
   }
 
+  /// Tylko testy interfejsu na symulatorze (Debug, WATCH_FAKE_UNDO_SEC): dłuższe okno „Cofnij”; bez ustawienia obowiązuje WatchLimits.undoSec.
+  func testConfiguredUndoWindowReplacesTheDefaultOneAndNilKeepsIt() {
+    XCTAssertNil(apple.undoSec)
+    var cfg = apple; cfg.undoSec = 120
+    var s = initialClient(cfg)
+    s = step(s, T0, .receive(.welcome(WatchWelcome(v: 1, kind: "welcome", ok: true, protocolVersion: 1, upgrade: nil)))).state
+    s = step(s, T0, .receive(.snapshot(Fixtures.snapshot("set-first")))).state
+    s = step(s, T0 + 1000, .press(.main)).state
+    let afterDefault = T0 + 1000 + Double(WatchLimits.undoSec) * 1000 + 1
+    XCTAssertTrue(clientView(s, nowMs: afterDefault).actions.contains(.undo), "okno 120 s trwa po 5 s")
+    XCTAssertEqual(events(step(s, afterDefault, .press(.undo))).first?.type, .undo)
+    XCTAssertFalse(clientView(s, nowMs: T0 + 1000 + 120_000 + 1).actions.contains(.undo), "po 120 s okno się kończy")
+  }
+
   func testDoneDuringRestStartsANewRestAndSupersedesTheOldEnd() {
     var s = started("rest-after-first")                                                       // przerwa po set-0-0 do T0+90 s, następna: set-0-1, po niej set-0-2
     s = step(s, T0 + 10_000, .press(.main)).state                                  // set-0-1 odhaczona w przerwie → nowa przerwa 90 s od T0+10 s

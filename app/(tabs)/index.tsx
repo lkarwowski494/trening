@@ -4,7 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Screen, H1, Muted, Item } from '@/components/ui';
 import ActiveWorkout from '@/components/ActiveWorkout';
 import { Alert } from 'react-native';
-import { getState, useTick, getPersistError, getRecovery, clearRecovery, flush } from '@/lib/store';
+import { getState, useTick, getPersistError, getRecovery, clearRecovery, flush, getBackupStat, fmtDate } from '@/lib/store';
+import { router } from 'expo-router';
 import { exportRecovery } from '@/lib/backup';
 import { TodayPlan } from '@/components/TodayPlan';
 import { WeekStats, FirstSteps } from '@/components/Dashboard';
@@ -17,9 +18,10 @@ import { fmtWeekdayDayMonth } from '@/lib/calendar';
 
 /** Problemy z zapisem: błąd zapisu na dysk albo nieczytelne dane przy starcie (kopia odłożona, nie nadpisana). */
 function DataBanners() {
-  const err = getPersistError(); const rec = getRecovery(); const auto = useAutoSavedNotice();
+  const err = getPersistError(); const rec = getRecovery(); const auto = useAutoSavedNotice(); const bk = getBackupStat();
   return <>
     {auto ? <Item title={t('Trening zapisał się sam')} sub={auto} icon="✕" accessibilityLabel={`${t('Trening zapisał się sam')}, ${auto}. ${t('Tapnij, by ukryć.')}`} onPress={() => setAutoSavedNotice(null)} /> : null}
+    {bk.failed ? <Item title={t('Nie udało się zapisać kopii po treningu')} sub={bk.okAt != null ? t('Ostatnia udana kopia: {date}', { date: fmtDate(bk.okAt) }) : t('Spróbuj ponownie.')} onPress={() => router.push('/more/backup')} /> : null /* M1-audytor-generalny-008: tapnięcie otwiera Kopię zapasową (ręczny eksport) */}
     {err ? <Item title={t('Nie udało się zapisać danych')} sub={t('Tapnij, by spróbować ponownie. Zrób też backup.')} onPress={() => flush()} /> : null}
     {rec ? <Item title={t('Poprzednich danych nie dało się odczytać')} sub={t('Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.')} onPress={() => Alert.alert(t('Poprzednich danych nie dało się odczytać'), t('Po ukryciu komunikatu kopii nie da się już wysłać z aplikacji — najpierw ją wyślij, jeśli jest potrzebna.'), [{ ...cancelButton() }, { text: t('Ukryj komunikat'), style: 'destructive' /* G5 (audyt 0.10 UI-14): kopii nie da się potem wysłać */, onPress: () => clearRecovery() }, { text: t('Wyślij kopię'), onPress: () => { exportRecovery().then(ok => { if (!ok) Alert.alert(t('Nie udało się wysłać kopii'), t('Spróbuj ponownie.')); }).catch(() => {}); } }])} /> : null /* runda 35: komunikat da się ukryć */}
   </>;

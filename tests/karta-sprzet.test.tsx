@@ -37,7 +37,7 @@ describe('logika (lib/equipvis.ts)', () => {
     const v = equipVisFor(st.a, st.e, st.set)[0]; expect(v.kind).toBe('stack');
     const db = block('Bench Press (hantle)', { weight: 22.5 }); expect(equipVisFor(db.a, db.e, db.set)).toEqual([{ kind: 'dumbbell', n: 2, eachKg: 22.5 }]);
     const kb = block('Kettlebell Press', { weight: 16 }); expect(equipVisFor(kb.a, kb.e, kb.set)).toEqual([{ kind: 'kettlebell', n: 1, eachKg: 16 }]);
-    const bb = block('Bench Press (sztanga)', { weight: 80 }); expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([{ kind: 'plates', plan: { unit: 'kg', base: 20, plates: [25, 5] } }]);
+    const bb = block('Bench Press (sztanga)', { weight: 80 }); expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([]); /* DEC-06: sztanga bez grafiki */
     const empty = block('Pec Deck'); expect(equipVisFor(empty.a, empty.e, empty.set)).toEqual([]);
   });
   test('stacja elektryczna: wartość „na urządzeniu”; masa ciała: dociążenie i asysta; guma: kolor, poziom, rola', () => {
@@ -55,9 +55,8 @@ describe('logika (lib/equipvis.ts)', () => {
   });
   test('equipSlotFor (decyzja A 07.10, E2E run 37611882320): miejsce na grafikę z przyrządu, niezależne od wpisanej wartości — karta nie zmienia wysokości przy wpisywaniu', () => {
     const g = addLocation('gym'); store.startEmpty(); S().active!.locationId = g.id;
-    const bb = block('Back Squat'); expect(equipSlotFor(bb.a, bb.e, bb.set)).toEqual([{ kind: 'plates', plan: { unit: 'kg', base: 20, plates: [] } }]);
-    bb.set.weight = 8035; expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([{ kind: 'noplates', place: g.name, nearestKg: expect.any(Number) }]); /* audyt 0.10 (LIVE-17): podpis zamiast pustego miejsca */
-    expect(equipSlotFor(bb.a, bb.e, bb.set)).toHaveLength(1); /* wartość spoza talerzy — miejsce zostaje */
+    const bb = block('Back Squat'); expect(equipSlotFor(bb.a, bb.e, bb.set)).toEqual([]); /* DEC-06 (20.10.2026): sztanga bez grafiki, więc i bez zarezerwowanego miejsca */
+    bb.set.weight = 8035; expect(equipVisFor(bb.a, bb.e, bb.set)).toEqual([]); /* ciężar spoza talerzy: ani rysunku, ani podpisu „Nie da się ułożyć z talerzy” */
     const st = block('Pec Deck'); expect(equipSlotFor(st.a, st.e, st.set)).toEqual([{ kind: 'stack', kg: 10, window: null }]); /* preset: lista stosu pusta (nieznane ciężary) */
     g.equipment.find(x => x.item === 'pec_deck')!.load = { kind: 'list', unit: 'kg', items: [5, 10, 15, 20, 25, 30, 35, 40].map(w => ({ w, on: true })) };
     const sv = equipSlotFor(st.a, st.e, st.set)[0]; expect(sv).toEqual({ kind: 'stack', kg: 15, window: [5, 10, 15, 20, 25].map(kg => ({ kg, pin: kg === 15 })) });
@@ -109,12 +108,11 @@ describe('ekran: karta „teraz”', () => {
     await tap(screen.getByLabelText('Start stopera serii')); await flushAll(10);
     expect(screen.getAllByRole('progressbar').some(x => /seria · (cel|bez celu)/.test(x.props.accessibilityLabel))).toBe(true);
   });
-  test('regresja E2E run 37611882320: pusty ciężar — niewidoczne miejsce na talerze (VoiceOver go nie czyta); po wpisaniu — prawdziwa grafika', async () => {
+  test('regresja E2E run 37611882320 (zmieniona 20.10.2026, DEC-06): sztanga — ani prawdziwa, ani niewidoczna grafika talerzy, przed i po wpisaniu ciężaru', async () => {
     await boot(() => { const g = addLocation('gym'); store.startEmpty(); S().active!.locationId = g.id; block('Back Squat', { reps: 5 }); });
-    expect(screen.queryByLabelText(/^Na każdą stronę/)).toBeNull();
-    expect(screen.getByLabelText(/^Na każdą stronę/, { includeHiddenElements: true })).toBeTruthy();
+    expect(screen.queryByLabelText(/^Na każdą stronę/, { includeHiddenElements: true })).toBeNull();
     await act(async () => { S().active!.exercises[0].sets[0].weight = 80; store.save(S().active!); }); await flushAll(10);
-    expect(screen.getByLabelText('Na każdą stronę: 25 + 5 kg')).toBeTruthy();
+    expect(screen.queryByLabelText(/^Na każdą stronę/, { includeHiddenElements: true })).toBeNull(); expect(screen.getByLabelText('Teraz: 80 kg × 5')).toBeTruthy();
   });
   test('English: podpisy grafik po angielsku', async () => {
     await fresh(undefined, 'en');

@@ -117,9 +117,9 @@ describe('Q-019 kopia bezpieczeństwa przed importem i „Wyczyść dane”', ()
     await renderApp(); await inProgress(); setupFs([...AUTO, ...SAFE, 'moj-plik.json']);
     await importFile(other);
     expect(store.getState().active).toBeNull(); /* import się wykonał */
-    const w = writes(/\/Backup\/trening-przed-importem-\d{4}-\d{2}-\d{2}-\d{6}\.json$/); expect(w).toHaveLength(1);
+    const w = writes(/\/Backup\/training-before-import-\d{4}-\d{2}-\d{2}-\d{6}\.json$/); expect(w).toHaveLength(1);
     const kopia = JSON.parse(w[0][1]); expect(kopia.format).toBe('trening-backup'); expect(kopia.state.active.exercises[0].sets[0]).toMatchObject({ weight: 100, reps: 5, done: true });
-    expect(writes(/\/Backup\/trening-\d{4}/)).toHaveLength(0); /* kopia automatyczna wyłączona — tylko kopia bezpieczeństwa */
+    expect(writes(/\/Backup\/training-\d{4}/)).toHaveLength(0); /* kopia automatyczna wyłączona — tylko kopia bezpieczeństwa */
     const del = (FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => c[0].split('/').pop()); expect(del).toEqual([SAFE[0]]); /* 10 + nowa → najstarsza z puli kopii bezpieczeństwa */
     expect(backup.parseBackup(w[0][1]).active!.exercises[0].sets[0].weight).toBe(100); /* kopię da się zaimportować */
   });
@@ -131,7 +131,7 @@ describe('Q-019 kopia bezpieczeństwa przed importem i „Wyczyść dane”', ()
   test('zły plik: nic nie jest zastępowane i nie powstaje kopia; nieudany zapis kopii przerywa import — dane bez zmian', async () => {
     await renderApp(); await inProgress(); setupFs([]);
     await importFile('{"to": "nie backup"}');
-    expect(writes(/przed-importem/)).toHaveLength(0); expect(store.getState().active).not.toBeNull();
+    expect(writes(/before-import/)).toHaveLength(0); expect(store.getState().active).not.toBeNull();
     await fresh(); const other = JSON.stringify(backup.buildBackup());
     await renderApp(); await inProgress(); setupFs([]); FS.writeAsStringAsync.mockImplementation(async () => { throw new Error('dysk pełny'); });
     await importFile(other);
@@ -142,7 +142,7 @@ describe('Q-019 kopia bezpieczeństwa przed importem i „Wyczyść dane”', ()
     await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 90, reps: 5 }]]]); await inProgress(); setupFs([...AUTO]);
     await go('/more/settings'); await flushAll(10);
     await tap(screen.getByText('Wyczyść wszystkie dane')); await act(async () => { pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); }); await flushAll(50);
-    const w = writes(/\/Backup\/trening-przed-czyszczeniem-\d{4}-\d{2}-\d{2}-\d{6}\.json$/); expect(w).toHaveLength(1);
+    const w = writes(/\/Backup\/training-before-reset-\d{4}-\d{2}-\d{2}-\d{6}\.json$/); expect(w).toHaveLength(1);
     const k = JSON.parse(w[0][1]).state; expect(k.workouts).toHaveLength(1); expect(k.active.exercises[0].sets[0].weight).toBe(100);
     expect(store.getState().workouts).toHaveLength(0); expect(store.getState().active).toBeNull(); expect(FS.deleteAsync).not.toHaveBeenCalled();
     await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 90, reps: 5 }]]]); setupFs([]); FS.writeAsStringAsync.mockImplementation(async () => { throw new Error('dysk pełny'); });

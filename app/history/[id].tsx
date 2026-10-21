@@ -4,7 +4,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Btn, Txt, useOnce, monoSafe, Missing } from '@/components/ui';
 import { beginEdit } from '@/lib/edit';
 import { templateFromWorkout, pendingTemplateUpdate, applyPendingTemplateUpdate, templateDiffText } from '@/lib/tplsync';
-import { effortLabel, effortText, workoutDurSec, noClock, whenText, getState, useTick, exById, isBW, bandById, loadLabel, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
+import { effortLabel, effortText, workoutDurSec, noClock, whenText, getState, useTick, exById, isBW, bandById, loadLabel, fmtDur, fmtSec, fmtDist, volume, deleteWorkout, groupLabels, ssTag, shortBand, bandA11y, loadLabelShort, blockImpl, shownLoad } from '@/lib/store';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL } from '@/lib/seed';
 import { setMarkOf } from '@/lib/live';
 import { earlyNote } from '@/lib/plan';
@@ -15,7 +15,7 @@ import { IdeaLink } from '@/components/IdeaLink';
 import { SessionHealth } from '@/components/HealthLines';
 import { useTheme, F } from '@/lib/theme';
 import { locationLabel } from '@/lib/locations';
-import { t, exName, lang } from '@/lib/i18n';
+import { t, exName, exNameLang, lang } from '@/lib/i18n';
 import { fmtW, fmtVol, fmtNum } from '@/lib/units';
 import { useAnnounce } from '@/lib/announce';
 
@@ -51,7 +51,7 @@ export default function HistoryDetail() {
         const heads = ['#', ...(showW ? [ex ? loadLabelShort(ex, impl) : t('ciężar')] : []), ...(hasReps(m) ? [t('Pow.')] : []), ...(hasDistance(m) ? ['m'] : []), ...(hasTime(m) ? [t('Czas')] : []), ...(rpe ? [effortLabel()] : []), ...(anyBand ? [t('Guma')] : []), t('Przerwa')];
         return (
         <View key={e.id ?? i} style={{ marginBottom: 16, borderBottomWidth: 1, borderBottomColor: th.line, paddingBottom: 8 }}>
-          <Txt accessibilityRole="header" style={{ fontFamily: F.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`SS ${labels[e.groupId]} · `}</Txt> : null}{exName(ex)}</Txt>
+          <Txt a11yLang={exNameLang(ex)} accessibilityRole="header" style={{ fontFamily: F.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`${ssTag(labels[e.groupId])} · `}</Txt> : null}{exName(ex)}</Txt>
           <View style={{ flexDirection: 'row' }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">{heads.map((h, k) => <Muted key={k} numberOfLines={1} adjustsFontSizeToFit style={{ flex: k === 0 ? 0.5 : 1, fontSize: 13, paddingRight: 6 }}>{h}</Muted>)}</View>
           {e.sets.map((s, si) => { const mk = setMarkOf(e.sets.map(x => x.kind === 'warmup' || x.warmup ? 'warmup' : x.kind), si); wn = parseInt(mk, 10) || 0; /* audyt 0.10 (LIVE-14): numeracja jak w treningu — drop set z numerem swojej serii */ const vals: (string | number)[] = [mk, ...(showW ? [fmtW(shownLoad(ex, s), false)] : []) /* Q-018/83b: widok jak CSV i edytor (store.loadOf) — po zmianie sprzętu nie 0 */, ...(hasReps(m) ? [s.reps || 0] : []), ...(hasDistance(m) ? [fmtDist(Number(s.distanceM) || 0)] : []), ...(hasTime(m) ? [fmtSec(Number(s.durationSec) || 0)] : []), ...(rpe ? [s.rpe !== '' && s.rpe != null ? effortText(Number(s.rpe)) : '—'] : []), ...(anyBand ? [s.bandId ? (bandById(s.bandId) ? shortBand(bandById(s.bandId)) : '?') : '—'] : []), s.actualRest ? fmtSec(s.actualRest) : '—'];
             const kindK = s.kind === 'warmup' || s.warmup ? 'warmup' : (s.kind ?? 'normal'); const spoken = vals.map((v, k) => k === 0 && kindK !== 'normal' ? (kindK === 'warmup' ? t(SET_KIND_LABEL.warmup) : `${wn} ${t(SET_KIND_LABEL[kindK])}`) /* runda 59: litera W/D/F słownie */ : anyBand && k === vals.length - 2 && s.bandId && bandById(s.bandId) ? bandA11y(bandById(s.bandId)) : v); /* runda 52: pełna nazwa gumy */

@@ -15,7 +15,7 @@ describe('workflowy na publicznym repozytorium', () => {
       expect(y).toMatch(/on:\n\s+workflow_dispatch:/);
     }
     expect(wf('ios-unsigned.yml')).not.toMatch(/contents: write|^\s+push:/m);
-    const tf = wf('testflight.yml'); expect(tf).toMatch(/\non:\n  workflow_dispatch:\n  push:\n    branches: \[main\]\n/); /* dokładne wcięcie (12.10: `push:` pod workflow_dispatch przeszło luźny test) */ expect(tf.match(/contents: write/g)).toHaveLength(1);
+    const tf = wf('testflight.yml'); expect(tf).toMatch(/\non:\n  workflow_dispatch:\n    inputs:\n[\s\S]*?\n  push:\n    branches: \[main\]\n    paths-ignore: \['docs\/\*\*', '\*\*\/\*\.md'\]\n/); /* 20.10.2026 (M1-018): wejścia dispatch i paths-ignore */ /* dokładne wcięcie (12.10: `push:` pod workflow_dispatch przeszło luźny test) */ expect(tf.match(/contents: write/g)).toHaveLength(1);
     const tagJob = tf.slice(tf.indexOf('\n  tag:\n')); expect(tagJob.length).toBeGreaterThan(10); expect(tagJob).toMatch(/needs: build/);
     expect(tagJob).toMatch(/permissions:\n\s+contents: write/); expect(tagJob).not.toMatch(/secrets\./);
     expect(tf.slice(0, tf.indexOf('\n  tag:\n'))).not.toMatch(/contents: write/);
@@ -44,13 +44,13 @@ describe('workflowy na publicznym repozytorium', () => {
   test('decyzja właściciela 08.10.2026 (audyt M4): workflowy EAS usunięte — żaden workflow nie używa Expo ani sekretów spoza klucza App Store Connect', () => {
     const fs = require('fs') as typeof import('fs'); const dir = join(__dirname, '../.github/workflows');
     const files = fs.readdirSync(dir).filter(f => f.endsWith('.yml')).sort();
-    expect(files).toEqual(['asc-iap-localizations.yml', 'e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'store-screenshots.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml', 'watch-sim.yml']);
+    expect(files).toEqual(['asc-iap-localizations.yml', 'e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'przeglad-tlumaczen.yml', 'store-screenshots.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml', 'watch-sim.yml']);
     expect(fs.existsSync(join(__dirname, '../scripts/eas'))).toBe(false);
     const allowed = ['secrets.GITHUB_TOKEN', 'secrets.ASC_KEY_ID', 'secrets.ASC_ISSUER_ID', 'secrets.ASC_KEY_P8'];
     for (const f of files) {
       const y = wf(f);
       expect([f, /EXPO_TOKEN|eas-cli|eas build|eas upload|ASC_API_KEY_P8|APPLE_TEAM_ID/.test(y)]).toEqual([f, false]);
-      for (const m of y.match(/secrets\.[A-Z_0-9]+/g) || []) expect([f, m, allowed.includes(m)]).toEqual([f, m, true]);
+      for (const m of y.match(/secrets\.[A-Z_0-9]+/g) || []) expect([f, m, allowed.includes(m) || (f === 'przeglad-tlumaczen.yml' && m === 'secrets.ANTHROPIC_API_KEY')]).toEqual([f, m, true]); /* 20.10.2026: klucz API Anthropic tylko w przeglądzie tłumaczeń (tests/przeglad-tlumaczen.test.ts) */
     }
   });
   test('TestFlight (06.10.2026): tylko narzędzia Apple, klucz API z sekretów — nigdy wypisywany, usuwany zawsze; logi 1 dzień; numer buildu rośnie', () => {
@@ -64,8 +64,8 @@ describe('workflowy na publicznym repozytorium', () => {
     expect(y.indexOf('AuthKey.p8"\n')).toBeGreaterThan(y.indexOf('pod install'));
     expect(y.indexOf('Sekrety obecne')).toBeLessThan(y.indexOf('npm ci')); /* brak sekretu kończy przebieg od razu */
     /* audyt SEC-02: xcodebuild wypisuje pełną linię poleceń (z identyfikatorami) — przed artefaktem logi są czyszczone; filtr sprawdzony na przykładzie */
-    const mask = y.indexOf('Identyfikatory klucza wycięte z logów przed artefaktem'); expect(mask).toBeGreaterThan(y.indexOf('Wysyłka do App Store Connect')); expect(mask).toBeLessThan(y.indexOf('actions/upload-artifact@v4'));
-    const step = y.slice(mask, y.indexOf('actions/upload-artifact@v4')); expect(step).toMatch(/if: failure\(\)/); expect(step).toContain('ios/xcodebuild.log export.log');
+    const mask = y.indexOf('Identyfikatory klucza wycięte z logów przed artefaktem'); expect(mask).toBeGreaterThan(y.indexOf('Wysyłka do App Store Connect')); expect(mask).toBeLessThan(y.indexOf('actions/upload-artifact@v4', mask)); /* 20.10.2026 (M1-023): wcześniej jest też artefakt map źródeł JS */
+    const step = y.slice(mask, y.indexOf('actions/upload-artifact@v4', mask)); expect(step).toMatch(/if: failure\(\)/); expect(step).toContain('ios/xcodebuild.log export.log');
     const exprs = [...step.matchAll(/-e "(s\/\$\{ASC_(?:KEY|ISSUER)_ID\}\/<[A-Z_]+>\/g)"/g)].map(m => m[1].replace('${ASC_KEY_ID}', 'ABC123DEFG').replace('${ASC_ISSUER_ID}', '69a6de70-0000-47e3-e053-5b8c7c11a4d1')); expect(exprs.length).toBe(2);
     const line = 'Command line invocation: xcodebuild -authenticationKeyID ABC123DEFG -authenticationKeyIssuerID 69a6de70-0000-47e3-e053-5b8c7c11a4d1\n';
     expect(execFileSync('sed', exprs.flatMap(e => ['-e', e]), { input: line }).toString()).toBe('Command line invocation: xcodebuild -authenticationKeyID <KEY_ID> -authenticationKeyIssuerID <ISSUER_ID>\n');
@@ -242,7 +242,7 @@ describe('strona www aplikacji (GitHub Pages)', () => {
     const pl = body.slice(body.indexOf('<h2>Gdy do nas piszesz</h2>'), body.indexOf('<h2>Zmiany i kontakt</h2>')); const en = body.slice(body.indexOf('<h2>When you write to us</h2>'), body.indexOf('<h2>Changes and contact</h2>'));
     for (const w of ['Łukasz Karwowski, osoba fizyczna', 'support@apps4brew.com', 'adres e-mail, treść wiadomości, załączniki', 'wersja aplikacji i iOS', 'art. 6 ust. 1 lit. f RODO', '12 miesięcy od zamknięcia sprawy', 'Porkbun', 'Google (Gmail, Dysk)', 'dostawca narzędzi AI', 'dostęp do danych, sprostowanie, usunięcie, sprzeciw', 'PUODO', 'Aplikacja nadal niczego nie wysyła — e-mail wysyłasz Ty, swoją pocztą']) expect(pl).toContain(w);
     for (const w of ['Łukasz Karwowski, a natural person', 'support@apps4brew.com', 'email address, the message text, attachments', 'app and iOS versions', 'Article 6(1)(f) GDPR', '12 months after the case is closed', 'Porkbun', 'Google (Gmail, Drive)', 'provider of the AI tools', 'access, rectification, erasure, objection', 'PUODO', 'The app still sends nothing — you send the email, from your own mail app']) expect(en).toContain(w);
-    expect(h).toContain('Obowiązuje od 13 października 2026 r.'); expect(h).toContain('Effective 13 October 2026'); expect(h).not.toContain('12 października 2026');
+    expect(h).toContain('Obowiązuje od 14 października 2026 r.'); expect(h).toContain('Effective 14 October 2026'); expect(h).not.toContain('12 października 2026');
   });
 
   test('FAQ wsparcia zgodne z kodem: ścieżki menu i nazwy przycisków istnieją w tekstach aplikacji', () => {
@@ -318,4 +318,22 @@ describe('adresy e-mail w repozytorium', () => {
     expect('@babel/core i git@github.com'.match(EMAIL_RE)).toEqual(['git@github.com']);
   });
   test('wyjątek licenses.generated.ts istnieje i jest plikiem generowanym', () => { expect(fs.readFileSync(join(root, EXEMPT[0]), 'utf8')).toMatch(/Wygenerowane/); });
+});
+
+/* M1-audytor-generalny-062 (DEC-27, 20.10.2026): plik wydania przy tagu z buildem symulatora — jedyny plik poza mapą źródeł; bez sekretów, bez podpisu. */
+describe('plik wydania z buildem symulatora (M1-062)', () => {
+  test('zadanie tag dołącza tylko Trening-sim.zip i mapę źródeł; build symulatora jest bez podpisu i bez sekretów', () => {
+    const tf = wf('testflight.yml'); const tag = tf.slice(tf.indexOf('\n  tag:\n'));
+    const uploads = [...tag.matchAll(/gh release (?:upload|create)[^\n]*/g)].map(m => m[0]);
+    expect(uploads.length).toBeGreaterThanOrEqual(2);
+    for (const u of uploads) expect(u).not.toMatch(/\.(ipa|p8|p12|mobileprovision|cer|xcarchive)\b|AuthKey|export/i);
+    expect(uploads.join('\n')).toContain('Trening-sim.zip'); expect(tag).not.toMatch(/secrets\./); expect(tag).toMatch(/GH_TOKEN: \$\{\{ github\.token \}\}/);
+    const e = wf('e2e-ios.yml'); const build = e.slice(e.indexOf('\n  build:\n'), e.indexOf('\n  e2e:\n'));
+    expect(build).toContain('CODE_SIGNING_ALLOWED=NO'); expect(build).not.toMatch(/secrets\.|ASC_KEY|\.p8/);
+    expect(e).not.toMatch(/contents: write/);
+  });
+  test('docs/31 opisuje plik wydania zamiast artefaktu jednodniowego jako źródła poprzedniej wersji', () => {
+    const d = readFileSync(join(__dirname, '../docs/31-scenariusze-z-zycia.md'), 'utf8');
+    expect(d).toContain('Trening-sim.zip'); expect(d).toContain('DEC-27');
+  });
 });

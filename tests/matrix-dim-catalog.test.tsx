@@ -92,7 +92,7 @@ describe('katalog — każde ćwiczenie ze świeżego stanu', () => {
   test('świeży stan w każdym języku ma ten sam katalog (nazwy kanoniczne, metryki, partie, wymagania)', () => {
     const ref = JSON.stringify(CATALOG0.map(e => [e.name, e.metric, e.loadMode, e.muscles, e.secondaryMuscles, e.requires, e.recommended, e.bandAssistable]));
     for (const l of LANGS) expect([l, JSON.stringify(seedState(l).exercises.map(e => [e.name, e.metric, e.loadMode, e.muscles, e.secondaryMuscles, e.requires, e.recommended, e.bandAssistable]))]).toEqual([l, ref]);
-    for (const l of LANGS) for (const b of seedState(l).bands) expect([l, b.color, tIn(l, b.color) === b.color]).toEqual([l, b.color, true]);
+    for (const l of LANGS) for (const b of seedState(l).bands) expect([l, b.color, ['czerwona', 'czarna', 'fioletowa'].includes(b.color)]).toEqual([l, b.color, true]); /* M1-040: klucze polskie; nazwę w języku daje bandColor (tests/audit-m1-040-band-colors) */
   });
 });
 

@@ -45,17 +45,17 @@ async function prepared(fn: () => void = () => {}, locale: 'pl' | 'en' = 'pl') {
 
 /* ======================================================================= /more/settings */
 describe('/more/settings', () => {
-  test('Jednostka ciężaru (segment kg/lb) przełącza jednostkę; opisy przełączników RPE i podpowiedzi progresji; przełączniki działają', async () => {
+  test('System miar (segment metryczny/imperialny) przełącza jednostkę (kg/lb); opisy przełączników RPE i podpowiedzi progresji; przełączniki działają', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
-    expect(screen.getAllByText('Jednostka ciężaru').length).toBeGreaterThan(0);
-    await tap(byHint('lb', 'Jednostka ciężaru')); await flushAll(5);
-    expect(store.getState().settings.unit).toBe('lb'); expect(byHint('lb', 'Jednostka ciężaru').props.accessibilityState.selected).toBe(true);
-    await tap(byHint('kg', 'Jednostka ciężaru')); expect(store.getState().settings.unit).toBe('kg');
+    expect(screen.getAllByText('System miar').length).toBeGreaterThan(0);
+    await tap(byHint('imperialny (lb, mi, yd)', 'System miar')); await flushAll(5);
+    expect(store.getState().settings.unit).toBe('lb'); expect(byHint('imperialny (lb, mi, yd)', 'System miar').props.accessibilityState.selected).toBe(true);
+    await tap(byHint('metryczny (kg, km, m)', 'System miar')); expect(store.getState().settings.unit).toBe('kg');
     expect(screen.getByText('opcjonalne pole, nie wpływa na objętość')).toBeTruthy();
     expect(screen.getByLabelText('RPE / RIR przy serii').props.accessibilityHint).toBe('opcjonalne pole, nie wpływa na objętość');
     const rpe0 = store.getState().settings.showRpe; await flip('RPE / RIR przy serii', !rpe0); expect(store.getState().settings.showRpe).toBe(!rpe0);
-    expect(screen.getByText('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')).toBeTruthy();
-    expect(screen.getByLabelText('Podpowiedź progresji').props.accessibilityHint).toBe('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń');
+    expect(screen.getByText('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.')).toBeTruthy();
+    expect(screen.getByLabelText('Podpowiedź progresji').props.accessibilityHint).toBe('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.');
     const ph0 = store.getState().settings.progressHint; await flip('Podpowiedź progresji', !ph0); expect(store.getState().settings.progressHint).toBe(!ph0);
     expect(screen.queryByText(/^Timer odlicza w aplikacji/)).toBeNull(); await openInfo('notifications'); /* ⓘ 14.10.2026 */
     expect(screen.getByText('Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.')).toBeTruthy();

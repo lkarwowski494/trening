@@ -114,11 +114,15 @@ Lista ręczna na telefon (TestFlight) — każda pozycja ma pokrycie zastępcze 
 
 Po głównym przebiegu Maestro (ten sam symulator, ten sam job — bez drugiego rozruchu), krok „Aktualizacja”:
 
-1. **Wybór poprzedniej wersji:** wejście `poprzednia_wersja_z_przebiegu` (numer przebiegu z artefaktem `trening-sim-app`); pusty = **ostatni zielony
-   przebieg na main** (`gh run list`, token `GITHUB_TOKEN`, uprawnienie `actions: read` już jest); „brak” = bez testu.
-2. Pobranie artefaktu (`actions/download-artifact@v4`, `continue-on-error`). **Artefakty żyją 1 dzień** (ADR-031, test `public-repo`), więc gdy
-   ostatni zielony przebieg na main jest starszy, krok jest **pomijany z ostrzeżeniem** (nie błąd: brak starej aplikacji to nie błąd nowej). Ominięcie:
-   wskazać świeży przebieg w wejściu albo uruchomić po zielonym przebiegu na main (nocny `nightly.yml` woła ten workflow).
+1. **Wybór poprzedniej wersji (od 20.10.2026, audyt M1-062, DEC-27 — zmienia decyzję 06.10.2026 o artefaktach 1 dzień dla tego jednego pliku):** pusty
+   wejście `poprzednia_wersja_z_przebiegu` = **plik `Trening-sim.zip` przy najnowszym wydaniu (GitHub Release) z innego commitu niż bieżący**
+   (`scripts/ci/poprzednia-wersja.sh`); plik dołącza zadanie „tag” w `testflight.yml` przy każdym wydaniu TestFlight — to build symulatora z zielonego
+   przebiegu E2E tego commitu, bez podpisu i bez sekretów (repozytorium publiczne; strażnik `tests/public-repo.test.ts`). Numer przebiegu w wejściu = ręcznie
+   artefakt `trening-sim-app` tego przebiegu; „brak” = świadome pominięcie (np. pierwsze wydanie), tylko ręcznie.
+2. **Brak poprzedniej wersji to porażka z komunikatem** (nie zielone pominięcie): skrypt kończy się błędem z instrukcją, a artefakt bez `Trening.app` też. Log
+   wypisuje wersję i build poprzedniej oraz bieżącej aplikacji. Artefakty przebiegów nadal żyją 1 dzień (ADR-031); dłużej żyje tylko plik wydania.
+   Pierwsze wydanie z plikiem: ręcznie dołączyć `Trening-sim.zip` z artefaktu świeżego zielonego przebiegu do istniejącego wydania (krok właściciela w raporcie M2)
+   albo uruchomić E2E z wejściem „brak”.
 3. `simctl uninstall` → instalacja **poprzedniej** → `maestro test .maestro/33-aktualizacja-przygotuj.yaml` (dane przez UI).
 4. `simctl install` **bieżącej** na tej samej instalacji (dane, ustawienia i trening w toku zostają) → `maestro test .maestro/34-aktualizacja-sprawdz.yaml`.
 

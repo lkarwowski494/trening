@@ -31,7 +31,7 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - extendedWaitUntil: { visible: "Polski", timeout: 30000 }
 - tapOn: "Polski"
 - extendedWaitUntil: { visible: "Język, Polski", timeout: 30000 }
-- assertVisible: "Jednostka ciężaru"
+- assertVisible: "System miar"
 - tapOn: "Język, Polski"
 - extendedWaitUntil: { visible: "Jak w telefonie", timeout: 30000 }
 - tapOn: "Jak w telefonie"
@@ -40,7 +40,7 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: "Dark"
 - takeScreenshot: 104-ciemny
 - tapOn: "Light"
-- tapOn: "kg"
+- tapOn: { id: "unit-system-kg" }
 - tapOn: "List"
 - assertVisible: "Workout view"  # etykieta pola widoku treningu (przełącznik z tą samą etykietą dostępności)
 - tapOn: { id: "info-workout-view" }  # 14.10.2026: opis widoku jest pod ⓘ (docs/32 wzorzec 27)
@@ -149,9 +149,9 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - takeScreenshot: 99-zakup-aktywny
 - scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000 }
 - tapOn: "Test store: expire access"
-# --- po wygaszeniu: ceny ze sklepu, miesiąc za darmo, przywracanie bez zakupów ---
-- scrollUntilVisible: { element: ".*1 month free, then .*", direction: UP, timeout: 60000 }
-- assertVisible: ".*1 month free, then .*"
+# --- po wygaszeniu: ceny ze sklepu, 14 dni za darmo, przywracanie bez zakupów ---
+- scrollUntilVisible: { element: ".*14 days free, then .*", direction: UP, timeout: 60000 }
+- assertVisible: ".*14 days free, then .*"
 - assertNotVisible: ".*You have access forever.*"
 - takeScreenshot: 99-zakup-ceny
 - scrollUntilVisible: { element: "Restore purchases", direction: DOWN, timeout: 60000 }
@@ -170,8 +170,8 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - extendedWaitUntil: { visible: "You've used this month's free workouts .*", timeout: 30000 }
 - assertVisible: "Log a past workout"
 - takeScreenshot: 99-limit
-- scrollUntilVisible: { element: "Start your free month", direction: DOWN, timeout: 60000 }
-- tapOn: "Start your free month"
+- scrollUntilVisible: { element: "Start 14 days free", direction: DOWN, timeout: 60000 }
+- tapOn: "Start 14 days free"
 - extendedWaitUntil: { visible: ".*You have the full version.*", timeout: 30000 }
 - scrollUntilVisible: { element: "Not now", direction: DOWN, timeout: 60000 }
 - tapOn: "Not now"

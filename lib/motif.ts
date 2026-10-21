@@ -1,10 +1,10 @@
-import type { PlateColor } from './plates';
+import type { PlateColor } from './discColors';
 import { weekTiles } from './dashboard';
 import { dayStatus, dayKeyOf, addDays, type DayStatus } from './plan';
 
 /*
- * Motyw z ikony w aplikacji (decyzja właściciela 09.10.2026, „zestaw pełny”; docs/18): gryf i talerze w kolorach IWF (lib/plates.ts PLATE_COLORS —
- * jedno źródło dla ikony, PlateBar i tych grafik). Tu tylko liczby i reguły; rysunki — components/Motif.tsx.
+ * Motyw z ikony w aplikacji (decyzja właściciela 09.10.2026, „zestaw pełny”; docs/18): gryf i talerze w kolorach IWF (lib/discColors.ts PLATE_COLORS —
+ * jedno źródło dla ikony i tych grafik). Tu tylko liczby i reguły; rysunki — components/Motif.tsx.
  * To grafika i podsumowanie danych użytkownika, nie zalecenie treningowe — progi niżej są umowne (uproszczenie wizualne), bez twierdzeń merytorycznych.
  * Kolor nigdy nie jest jedyną informacją (WCAG 1.4.1): zrobione = wypełnienie, zaplanowane = obwódka (kształt), obok stosów procent i „x z y”,
  * stan dnia w etykiecie i wartości VoiceOver.

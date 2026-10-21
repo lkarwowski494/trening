@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4348-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4738-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-45-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -58,12 +58,12 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Języki interfejsu | 35 | `lib/i18n.ts` (`LANGS`), `app.json`, docs/16-jezyki-i-marka.md |
 | Ćwiczenia w bibliotece | 709 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
-| Elementy UI (przyciski, pola, przełączniki) | 336 (z testem: 336) | docs/19-macierz-testow.md |
-| Komunikaty i teksty | 1088 (z testem: 1088) | docs/19-macierz-testow.md |
-| Funkcje biblioteki `lib/` | 875 (z testem: 875) | docs/19-macierz-testow.md |
-| Wymiary (listy wartości i typy-unie) | 112 (z testem: 112) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 331 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 4348 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Elementy UI (przyciski, pola, przełączniki) | 343 (z testem: 343) | docs/19-macierz-testow.md |
+| Komunikaty i teksty | 1100 (z testem: 1100) | docs/19-macierz-testow.md |
+| Funkcje biblioteki `lib/` | 903 (z testem: 903) | docs/19-macierz-testow.md |
+| Wymiary (listy wartości i typy-unie) | 113 (z testem: 113) | docs/19-macierz-testow.md |
+| Pliki testów Jest | 401 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 4738 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 152 (Maestro: 125, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 13) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 45 (w głównym przebiegu: 42, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -98,11 +98,11 @@ Stan przełącznika płatności: `PAYWALL.ENABLED` = `false` (`lib/access.ts`) �
 
 | Plan | Rodzaj | Cena referencyjna (USD, plik `store/Trening.storekit`) |
 |---|---|---|
-| Miesięczny | subskrypcja odnawiana co miesiąc, pierwsze 1 miesiąc bezpłatnie | 0.99 |
-| Roczny | subskrypcja odnawiana co rok, pierwsze 1 miesiąc bezpłatnie | 4.99 |
+| Miesięczny | subskrypcja odnawiana co miesiąc, pierwsze 14 dni bezpłatnie | 0.99 |
+| Roczny | subskrypcja odnawiana co rok, pierwsze 14 dni bezpłatnie | 6.99 |
 | Dożywotni | zakup jednorazowy | 14.99 |
 
-Okres próbny w kodzie: 1 miesiąc (`TRIAL_MONTHS`, `lib/products.ts`); karencja offline dla zapamiętanego dostępu: 7 dni (`OFFLINE_GRACE_DAYS`).
+Okres próbny w kodzie: 14 dni (`TRIAL_DAYS`, `lib/products.ts`); karencja offline dla zapamiętanego dostępu: 7 dni (`OFFLINE_GRACE_DAYS`).
 <!-- /gen:pricing -->
 
 Płatne funkcje zależą od jednego przełącznika w jednym module, więc przejście na model darmowy to zmiana jednej wartości i wydanie.
@@ -162,16 +162,18 @@ Kroki `npm run verify` (generowane z `package.json`):
 
 <!-- gen:verify-steps -->
 1. `npm run typecheck`
-2. `npm run check:i18n`
-3. `npm run check:cues`
-4. `npm run check:figures`
-5. `npm run check:readme`
-6. `jest`
-7. `npm run check:matrix`
-8. `npm run check:licenses`
-9. `npx expo export --platform ios --output-dir .expo/verify-export`
-10. sprzątanie katalogu tymczasowego eksportu
-11. `npm run verify:native`
+2. `npm run lint`
+3. `npm run check:i18n`
+4. `npm run check:cues`
+5. `npm run check:claims`
+6. `npm run check:figures`
+7. `npm run check:readme`
+8. `jest`
+9. `npm run check:matrix`
+10. `npm run check:licenses`
+11. `npx expo export --platform ios --output-dir .expo/verify-export`
+12. sprzątanie katalogu tymczasowego eksportu
+13. `npm run verify:native`
 <!-- /gen:verify-steps -->
 
 Natywnego builda nie da się sprawdzić na Linuksie: kompilacja — `ios-unsigned.yml`, scenariusze na symulatorze — `e2e-ios.yml`, telefon — TestFlight.
@@ -231,6 +233,7 @@ trening/
 ├── app.json                  konfiguracja aplikacji Expo (wersja, języki, uprawnienia, wtyczki)
 ├── babel.config.js           konfiguracja Babel
 ├── eas.json                  ustawienia narzędzi Expo (obraz SDK, wersja Node)
+├── eslint.config.js          konfiguracja ESLint (npm run lint, część verify)
 ├── jest.mutation.config.js   konfiguracja testów mutacyjnych
 ├── jest.perf.config.js       konfiguracja testów wydajności
 ├── metro.config.js           konfiguracja bundlera Metro
@@ -252,7 +255,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (35)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (40)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -289,6 +292,11 @@ trening/
 - [`docs/38-przeplywy-i-luki-e2e.md`](docs/38-przeplywy-i-luki-e2e.md) — 38. Przepływy użytkownika, luki E2E i czas przebiegu (13.10.2026)
 - [`docs/39-lista-kontrolna-wydania.md`](docs/39-lista-kontrolna-wydania.md) — 39. Lista kontrolna wydania dla właściciela (generowana — nie edytować ręcznie)
 - [`docs/40-lekcje.md`](docs/40-lekcje.md) — 40. Lekcje po błędach (lessons learnt)
+- [`docs/41-droga-do-app-store.md`](docs/41-droga-do-app-store.md) — 41. Droga do pierwszego wydania w App Store (stan 14.10.2026)
+- [`docs/42-plan-wydania-1.0.md`](docs/42-plan-wydania-1.0.md) — 42. Plan wydania 1.0 (decyzja właściciela 20.10.2026, audyt M1-068, DEC-22 wariant a)
+- [`docs/43-przekazanie.md`](docs/43-przekazanie.md) — 43. Przekazanie pracy (stan 20.10.2026, ok. 19:30 UTC) — na nowe konto Claude
+- [`docs/monetyzacja.md`](docs/monetyzacja.md) — Monetyzacja — model stały (jedno miejsce)
+- [`docs/wzrost.md`](docs/wzrost.md) — Wzrost: kanały startu i decyzja o Androidzie
 
 </details>
 <!-- /gen:docs-index -->
@@ -319,6 +327,7 @@ Workflowy (stan każdego z nich pokazują odznaki u góry dla trzech podstawowyc
 | `ios-unsigned.yml` | iOS — kompilacja | ręcznie | kompilacja natywna bez podpisu (sprawdzenie kodu, bez pliku do instalacji) |
 | `nightly.yml` | Nocne testy | harmonogram, ręcznie | noc: losowe sekwencje, testy mutacyjne, E2E na małym ekranie |
 | `pages.yml` | Pages | wypchnięcie, ręcznie | publikacja strony (prywatność, wsparcie) |
+| `przeglad-tlumaczen.yml` | Przegląd tłumaczeń (API, ręcznie) | ręcznie | przegląd tłumaczeń treści krytycznej przez API Anthropic (ręcznie, płatny, limit kosztu) |
 | `store-screenshots.yml` | Zrzuty do App Store | ręcznie | zrzuty ekranu do App Store z symulatora (ręcznie) |
 | `testflight.yml` | TestFlight (testy wewnętrzne) | wypchnięcie, ręcznie | testy, build, podpis i wysyłka do TestFlight narzędziami Apple |
 | `tests-tz.yml` | tests-tz | harmonogram, ręcznie | testy w różnych strefach czasowych |

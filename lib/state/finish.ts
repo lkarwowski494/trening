@@ -89,7 +89,7 @@ export function finishWorkout(at?: number): Workout | null {
   const st = getState(); const w = st.active; if (!w) return null;
   /* T4a: cofnięty zegar nie daje końca przed startem */
   w.finishedAt = Math.max(w.startedAt, at != null && Number.isFinite(at) ? Math.min(at, Date.now()) : Date.now());
-  delete w.staleAck; delete w.watchEvents; /* 0.20: dziennik zdarzeń zegarka tylko w treningu w toku (sesja zegarka `watch` zostaje do rozstrzygnięcia zapisu w Zdrowiu) */
+  delete w.staleAck; delete w.watchEvents; delete w.watchLastAt; /* 0.20: dziennik zdarzeń zegarka tylko w treningu w toku (sesja zegarka `watch` zostaje do rozstrzygnięcia zapisu w Zdrowiu) */
   /* 08.10.2026: pauza trwająca przy „Zakończ” kończy się z treningiem; pauza po końcu (auto-zapis na ostatniej serii) nie liczy się */
   closePause(w, w.finishedAt);
   w.exercises = w.exercises.map(e => {
@@ -133,7 +133,12 @@ export function putHistoryWorkout(w: Workout, replaceId: string | null): boolean
   if (replaceId != null) { const i = st.workouts.findIndex(x => x.id === replaceId); if (i < 0) return false;
     /* weryfikacja 2 (L3): znacznik Apple Health i data utworzenia z treningu ZAPISANEGO teraz, nie ze szkicu — zapis do Zdrowia mógł skończyć się w
      * trakcie edycji */
-    w.healthUUID = st.workouts[i].healthUUID; w.createdAt = st.workouts[i].createdAt; st.workouts.splice(i, 1); }
+    w.healthUUID = st.workouts[i].healthUUID; w.createdAt = st.workouts[i].createdAt;
+    /* M1-audytor-generalny-009: trening czekający na zapis w Zdrowiu (znacznik) i sesja zegarka też z treningu ZAPISANEGO teraz — edycja nie może zgubić sesji zegarka
+     * (raport zegarka „zapisano” ustawia wtedy znacznik „watch” i telefon nie zapisuje kopii → bez dubla w Zdrowiu), ani przywrócić znacznika po zapisie w Zdrowiu */
+    const prev = st.workouts[i]; const waiting = prev.healthPending === true && !prev.healthUUID;
+    if (waiting) { w.healthPending = true; if (prev.watch) w.watch = { ...prev.watch }; else delete w.watch; } else { delete w.healthPending; delete w.watch; }
+    st.workouts.splice(i, 1); }
   w.exercises.forEach(e => e.sets.forEach(s => {
     s.done = true;
     s.warmup = s.kind === 'warmup';
@@ -151,7 +156,7 @@ export function putHistoryWorkout(w: Workout, replaceId: string | null): boolean
     delete e.occ; /* Q-016 */
   }); /* E2: tylko trening w toku */
   normalizeGroups(w.exercises);
-  delete w.staleAck; delete w.watchEvents; delete w.watch;
+  delete w.staleAck; delete w.watchEvents; delete w.watchLastAt; if (replaceId == null) delete w.watch; /* trening wstecz nie ma sesji zegarka; przy edycji — patrz wyżej (009) */
   /* Audyt M4: start w tej samej milisekundzie co inna sesja (albo trening w toku) — rekordy liczą się „przed startem” (<), więc obie
    * dostałyby PR, a „Poprzednio” zależałoby od kolejności wstawienia. Przesuwamy start, koniec i godziny serii o 1 s, aż start jest unikalny. */
   {

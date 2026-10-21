@@ -31,8 +31,10 @@ import * as finishMod from './state/finish';
 import * as migrateMod from './state/migrate';
 import * as settingsMod from './state/settings';
 import * as bootMod from './state/boot';
+import * as backupStatMod from './state/backupstat';
+import * as crashMod from './state/crashguard';
 
-export const { NAME_MAX, REPS_MAX, REST_MAX, clampName } = utilMod;
+export const { NAME_MAX, REPS_MAX, REST_MAX, DURATION_MAX_SEC, clampName, PREMIGRATE_KEEP_MS } = utilMod;
 export const {
   localDateTs, fmtSec, fmtDist, reps, fmtDur, fmtDayKey, fmtDate, fmtTime, localISODate, tzOffsetAt, cleanTz, wallTs, fromWallTs, workoutDay,
   mondayKey
@@ -40,7 +42,7 @@ export const {
 export const { dbDirectory, copyKv } = dbMod;
 export type { KvDb } from './state/db';
 export const {
-  CFG_KEYS, applyCfg, flush, DRAFTS_KEY, registerDraftStore, draftsChanged, takeSavedDrafts, getPersistError, getRecovery, clearRecovery,
+  CFG_KEYS, applyCfg, flush, flushStrict, DRAFTS_KEY, registerDraftStore, draftsChanged, takeSavedDrafts, getPersistError, getRecovery, clearRecovery,
   getNewerSchema, markDraft, isDraftObj, save, saveCfg, getState, useStore, useTick, usePrefsTick, getHistRev, getRev, refreshViews,
   useForegroundTick, useHistTick, useCfgTick, memoHist, memoHistBy, setTimerState, isReadyForTests, __resetForTests
 } = coreMod;
@@ -61,7 +63,7 @@ export const {
 } = historyMod;
 export type { Progression } from './state/history';
 export const { cleanLevels, nextBandId, cycleBand, deleteBand } = bandsMod;
-export const { normalizeGroups, groupLabels, linkWithNext, unlink, moveItem, removeItem, blockRanges, moveBlockOf, moveInGroup } = groupsMod;
+export const { normalizeGroups, groupLabels, ssTag, ssBtn, linkWithNext, unlink, moveItem, removeItem, blockRanges, moveBlockOf, moveInGroup } = groupsMod;
 export type { Grouped } from './state/groups';
 export const { pausedTotal, isPaused, workoutDurSec, noClock, whenText, cleanPauses, pauseWorkout, resumeWorkout } = pauseMod;
 export const {
@@ -88,5 +90,7 @@ export const {
 } = finishMod;
 export const { migrate } = migrateMod;
 export const { applyPrefs, setModule } = settingsMod;
-export const { init, sanitizeDraftObj, readRawData, readRecovery, onStateReplaced, replaceState, resetAll } = bootMod;
+export const { init, sanitizeDraftObj, readRawData, readRecovery, readPreMigrate, markBootStable, onStateReplaced, replaceState, resetAll } = bootMod;
+export const { getBackupStat, noteBackup } = backupStatMod;
+export const { CRASH_LOOP_THRESHOLD, BOOT_STABLE_MS, BOOT_GUARD_KEY, parseBootGuard, decideBoot } = crashMod;
 export type { WExercise } from './seed';

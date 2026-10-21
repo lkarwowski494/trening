@@ -4,9 +4,9 @@
 #
 # Literały (EN z lib/i18n.en.ts):
 #   voice-btn                                   ← testID przycisku (components/ActiveWorkout.tsx VoiceBtn)
-#   "Voice announcements: In headphones"        ← etykieta VoiceOver przycisku ('Zapowiedzi głosowe: {mode}') — stan wyboru
+#   "Voice announcements: Off"                  ← etykieta VoiceOver przycisku ('Zapowiedzi głosowe: {mode}') — stan wyboru (DEC-05: nowa instalacja Off)
 #   "Voice announcements"                       ← tytuł arkusza ('Zapowiedzi głosowe')
-#   "Off" / "✓ In headphones" / "Also through the speaker" / "Cancel" ← pozycje arkusza (voiceSettingLabel; bieżąca z „✓ ”)
+#   "✓ Off" / "In headphones" / "Also through the speaker" / "Cancel" ← pozycje arkusza (voiceSettingLabel; bieżąca z „✓ ”)
 #   voice-mode-off / voice-mode-speaker         ← opcje wyboru w Ustawieniach (51-glos-ustawienia.yaml)
 appId: pl.lukasz.trening
 name: Zapowiedzi głosowe — przycisk na ekranie treningu
@@ -18,23 +18,23 @@ name: Zapowiedzi głosowe — przycisk na ekranie treningu
 - runFlow: subflows/szablon-testowy.yaml
 - runFlow: subflows/start-szablonu.yaml
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
-# --- przycisk pod „Finish”: domyślnie w słuchawkach ---
+# --- przycisk pod „Finish”: domyślnie wyłączone (nowa instalacja, DEC-05) ---
 - assertVisible: "Finish"
-- assertVisible: "Voice announcements: In headphones"
+- assertVisible: "Voice announcements: Off"
 - takeScreenshot: 112-glos-przycisk
-# --- arkusz: trzy opcje, bieżąca z ✓; „Off” ---
+# --- arkusz: trzy opcje, bieżąca z ✓; „In headphones” ---
 - tapOn: { id: "voice-btn" }
 - extendedWaitUntil: { visible: "Voice announcements", timeout: 15000 }
-- assertVisible: "✓ In headphones"
+- assertVisible: "✓ Off"
 - assertVisible: "Also through the speaker"
 - takeScreenshot: 113-glos-arkusz
-- tapOn: "Off"
-- extendedWaitUntil: { visible: "Voice announcements: Off", timeout: 15000 }
+- tapOn: "In headphones"
+- extendedWaitUntil: { visible: "Voice announcements: In headphones", timeout: 15000 }
 # --- Cancel nic nie zmienia ---
 - tapOn: { id: "voice-btn" }
-- extendedWaitUntil: { visible: "✓ Off", timeout: 15000 }
+- extendedWaitUntil: { visible: "✓ In headphones", timeout: 15000 }
 - tapOn: "Cancel"
-- extendedWaitUntil: { visible: "Voice announcements: Off", timeout: 15000 }
+- extendedWaitUntil: { visible: "Voice announcements: In headphones", timeout: 15000 }
 # --- „Also through the speaker” ---
 - tapOn: { id: "voice-btn" }
 - extendedWaitUntil: { visible: "Also through the speaker", timeout: 15000 }

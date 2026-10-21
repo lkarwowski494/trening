@@ -131,8 +131,8 @@ describe('„Progresja”: szczegóły', () => {
     expect(legendP('zaplanowane')).toBe(1);
     expect(screen.getByTestId('progress-unknown')).toBeTruthy(); expect(within(screen.getByTestId('progress-unknown')).getByText('„≥” — w zaplanowanych szablonach 1 seria nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.')).toBeTruthy();
     await openInfo('prog-sets'); expect(screen.getByText('Zaplanowane = szablony z planu na pozostałe dni tygodnia, policzone z wartości w szablonie (brakujące — z „Poprzednio”). To rachunek z Twojego planu, nie prognoza. Partia główna liczy 1 serię, pomocnicza 0,5.')).toBeTruthy();
-    expect(screen.getByText('Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.')).toBeTruthy();
-    expect(screen.queryAllByText(/^Ten okres: /, { includeHiddenElements: true })).toHaveLength(2); /* podpisy słupków objętości i serii: „Ten okres: …” / „Poprzedni okres: …” */
+    expect(screen.getByText('Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.')).toBeTruthy();
+    expect(within(screen.getByTestId('total-volume', { includeHiddenElements: true })).getAllByText('Ten tydzień', { includeHiddenElements: true })).toHaveLength(1); expect(within(screen.getByTestId('total-sets', { includeHiddenElements: true })).getAllByText('Poprzedni tydzień', { includeHiddenElements: true })).toHaveLength(1); /* M1-032: nazwa okresu przy każdym słupku sum (jak przy partiach) */
   });
   test('pusty poprzedni okres: w szczegółach przy objętości i seriach „brak poprzedniego okresu” (bez różnicy bezwzględnej i bez „—”)', async () => {
     await boot(() => { sq(9, 6, [{ weight: 100, reps: 5 }, { weight: 100, reps: 5 }]); }, '/progression?c=week');

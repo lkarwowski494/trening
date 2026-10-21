@@ -3,10 +3,10 @@ import { ScrollView, Alert, View } from 'react-native';
 import { Screen, Btn, Muted, Segmented, SectionTitle, Item, Input, SearchField } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
 import { getState, useTick, fmtDayKey } from '@/lib/store';
-import { isSafetyError } from '@/lib/backup';
+import { isSafetyError, isPersistError } from '@/lib/backup';
 import { pickCsv, commitCsvImport } from '@/lib/csvimport';
 import { analyze, normName, isImportError, type ParsedFile, type ImportErrorCode } from '@/lib/csvparse';
-import { t, exName } from '@/lib/i18n';
+import { t, exName, exNameLang } from '@/lib/i18n';
 import type { Unit } from '@/lib/units';
 
 /** Import historii z CSV (decyzja właściciela 11.10.2026): podgląd przed zapisem jest obowiązkowy; nic się nie zmienia, dopóki nie „Importuj”. */
@@ -30,7 +30,7 @@ export default function ImportCsv() {
     pickCsv().then(f => { if (f) { setFile(f); setMapping({}); setEditing(null); setQ(''); } }).catch(fail).finally(() => { busy.current = false; }); };
   const run = () => { if (busy.current || !file) return; busy.current = true; setWorking(true);
     commitCsvImport(file, { unit, mapping }).then(r => { setFile(null); Alert.alert(t('Zaimportowano'), t('Dodano treningi: {n}, nowe ćwiczenia: {m}.', { n: r.workouts, m: r.exercises })); })
-      .catch((e: unknown) => isSafetyError(e) ? Alert.alert(t('Import przerwany'), e.message) : fail(e)).finally(() => { busy.current = false; setWorking(false); }); };
+      .catch((e: unknown) => isSafetyError(e) ? Alert.alert(t('Import przerwany'), e.message) : isPersistError(e) ? Alert.alert(t('Nie udało się zapisać danych'), t('Spróbuj ponownie.')) /* M1-audytor-generalny-006 */ : fail(e)).finally(() => { busy.current = false; setWorking(false); }); };
   const targetOf = (name: string) => { const m = mapping[name]; const auto = a?.names.find(r => r.name === name)?.auto ?? null;
     const ex = m && m !== 'new' ? st.exercises.find(e => e.id === m) ?? null : m === 'new' ? null : auto; return ex; };
   const hits = useMemo(() => { const k = normName(q); const l = st.exercises.filter(e => !e.archived && (!k || normName(exName(e)).includes(k) || normName(e.name).includes(k)));
@@ -63,7 +63,7 @@ export default function ImportCsv() {
               {open ? <View style={{ gap: 6, paddingVertical: 6 }}>
                 <Item title={t('Nowe ćwiczenie')} selected={!ex} icon={!ex ? '✓' : undefined} onPress={() => { setMapping(m => ({ ...m, [r.name]: 'new' })); setEditing(null); }} />
                 <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} />
-                {hits.map(e => <Item key={e.id} title={exName(e)} selected={ex?.id === e.id} icon={ex?.id === e.id ? '✓' : undefined} onPress={() => { setMapping(m => ({ ...m, [r.name]: e.id })); setEditing(null); }} />)}
+                {hits.map(e => <Item key={e.id} titleLang={exNameLang(e)} title={exName(e)} selected={ex?.id === e.id} icon={ex?.id === e.id ? '✓' : undefined} onPress={() => { setMapping(m => ({ ...m, [r.name]: e.id })); setEditing(null); }} />)}
               </View> : null}
             </View>); })}
           {a.fresh.length ? <Btn title={t('Importuj')} kind="primary" block loading={working} onPress={run} /> : <Muted>{t('Nie ma nowych treningów do dodania — wszystkie są już w historii.')}</Muted>}

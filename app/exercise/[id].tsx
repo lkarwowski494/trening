@@ -10,7 +10,7 @@ import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dro
 import type { Exercise } from '@/lib/seed';
 import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, REGION_LABEL, muscleLoadOf, musclesSourced, formerNamesOf, muscleConfidence, unmappedMuscleOf, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
 import { BW_SHARE } from '@/lib/stats';
-import { t, exName, lang } from '@/lib/i18n';
+import { t, exName, exNameLang, lang } from '@/lib/i18n';
 import { ExerciseCues } from '@/components/ExerciseCues';
 
 const EQ: Equipment[] = ['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne'];
@@ -69,7 +69,7 @@ function Preview({ e, cuesOpen, onEdit, onOpen, onProgress }: { e: Exercise; /**
   const mus = (xs: readonly string[] | undefined) => (xs ?? []).length ? (xs ?? []).map(x => t(x)).join(', ') : '—';
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}><View style={{ flex: 1 }}><H1>{exName(e)}</H1></View>{/* podgląd: tylko nazwa w języku aplikacji (nazwa katalogowa — w edycji, przy „Wyświetlane jako”) */}<Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj ćwiczenie')} onPress={onEdit} /></View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}><View style={{ flex: 1 }}><H1 a11yLang={exNameLang(e)}>{exName(e)}</H1></View>{/* podgląd: tylko nazwa w języku aplikacji (nazwa katalogowa — w edycji, przy „Wyświetlane jako”) */}<Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj ćwiczenie')} onPress={onEdit} /></View>
       <ExerciseCues exercise={e} initialOpen={cuesOpen} />{/* wskazówki techniki, etap 1 (docs/18 08.10.2026 ok. 23:50) — UX2-05 (audyt kontrolny 1, wariant B): na górze podglądu, przed danymi konfiguracji */}
       <Row label={t('Partia')} value={t(e.group)} />
       <Row label={t('Sprzęt')} value={t(e.equipment)} />

@@ -188,7 +188,7 @@ describe('ekrany', () => {
     expect(sets(w.id)).toEqual([['82.5x5', '80x6']]); expect(byId(w.id).healthUUID).toBeNull();
     expect(screen.getAllByText('82,5').length).toBeGreaterThan(0); expect(screen.queryByLabelText('Zapisz sesję')).toBeNull();
     expect(saved().workouts.find(x => x.id === w.id)!.exercises[0].sets[0].weight).toBe(82.5);
-    expect(write.mock.calls.some(c => /\/Backup\/trening-[\d-]+\.json$/.test(c[0]))).toBe(true);
+    expect(write.mock.calls.some(c => /\/Backup\/training-[\d-]+\.json$/.test(c[0]))).toBe(true);
     spy.mockRestore(); expect(errs).toEqual([]); // bez ostrzeżeń Reacta (szkic zakładany w trakcie renderu edytora)
   });
 

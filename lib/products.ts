@@ -21,14 +21,17 @@ export const PLAN_ORDER: readonly EntitlementPlan[] = ['yearly', 'monthly', 'lif
 export const SUBSCRIPTION_PLANS: readonly EntitlementPlan[] = ['monthly', 'yearly'];
 /** [DO POTWIERDZENIA w App Store Connect] Nazwa referencyjna grupy subskrypcji (docs/27 rozdz. 6 pkt 3); w aplikacji nieużywana, tylko w pliku `.storekit`. */
 export const SUBSCRIPTION_GROUP_NAME = 'Pełna wersja';
-/** Długość okresu próbnego w miesiącach — oferta wprowadzająca Apple, w obu planach subskrypcji (docs/15, 09.10.2026 pkt 2). */
-export const TRIAL_MONTHS = 1;
+/** Długość okresu próbnego w dniach — oferta wprowadzająca Apple (2 tygodnie, w ASC „2 weeks”), w obu planach subskrypcji. Model stały, decyzja właściciela 19.10.2026 (zastępuje „1 miesiąc” z 09.10.2026); audyt M1-011. */
+export const TRIAL_DAYS = 14;
 
 export const planOfProduct = (productId: string): EntitlementPlan | null => (Object.keys(PRODUCT_IDS) as EntitlementPlan[]).find(p => PRODUCT_IDS[p] === productId) ?? null;
 export const isSubscriptionPlan = (p: EntitlementPlan): boolean => SUBSCRIPTION_PLANS.includes(p);
 
-/** Polityka prywatności (strona publikowana z `site/`; docs/15). Apple wymaga linku na ekranie zakupu (docs/27 5.4). */
-export const PRIVACY_URL = 'https://lkarwowski494.github.io/trening/privacy.html';
+/** Polityka prywatności (decyzja właściciela 14.10.2026, D-2 A — docs/41: strona marki apps4brew.com, adres niezależny od repozytorium; treść źródłowa
+ * w `site/privacy.html`). Apple wymaga linku na ekranie zakupu (docs/27 5.4). Ten sam adres w App Store Connect: store/app-store-urls.json. */
+export const PRIVACY_URL = 'https://apps4brew.com/trening/privacy.html';
+/** Strona wsparcia (D-2 A; App Store Connect → Support URL; treść źródłowa w `site/support.html`). */
+export const SUPPORT_URL = 'https://apps4brew.com/trening/support.html';
 /**
  * Warunki korzystania (Terms of Use) — decyzja właściciela 12.10.2026, P9 A: standardowa licencja Apple dla użytkownika (Licensed Application End User
  * License Agreement). Apple: „If you don’t provide a custom EULA, the standard EULA is applied to your app” (App Store Connect → Provide a custom license

@@ -31,7 +31,7 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
     commands:
       - tapOn: "Progress, tab.*"
       - extendedWaitUntil: { visible: "Progress", timeout: 10000 }
-- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 30000, centerElement: true }
 - takeScreenshot: 91-postepy-masa-ciala
 
 # --- Plan: kalendarz z planem i „Planning” ---
@@ -55,5 +55,5 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
 
 # --- Masa ciała nie jest już w Ustawieniach ---
 - tapOn: "Settings"
-- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
+- extendedWaitUntil: { visible: "Measurement system", timeout: 30000 }
 - assertNotVisible: "Body weight.*"

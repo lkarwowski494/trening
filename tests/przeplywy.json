@@ -249,7 +249,7 @@
    "kroki": [
     "Zrób pierwszy trening (build ze sztucznym sklepem: limit 1)",
     "Spróbuj zacząć drugi",
-    "Ekran zakupu zamiast startu; „Rozpocznij miesiąc za darmo” odblokowuje"
+    "Ekran zakupu zamiast startu; „Zacznij 14 dni za darmo” odblokowuje"
    ],
    "wynik": "Limit działa; zakup (sztuczny sklep) odblokowuje start; „Zarejestruj trening z przeszłości” nadal możliwe.",
    "ekrany": [
@@ -257,7 +257,7 @@
    ],
    "scenariusz": "21-subskrypcja.yaml",
    "znaczniki": [
-    "Start your free month"
+    "Start 14 days free"
    ]
   },
   {
@@ -485,22 +485,22 @@
   },
   {
    "id": "TR-09",
-   "tytul": "Widok skupiony: karta „teraz”, talerze na stronę, „Seria zrobiona”",
+   "tytul": "Widok skupiony: karta „teraz”, „Seria zrobiona”",
    "stan": "istniejacy",
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
     "Włącz miejsce z talerzami",
     "Start treningu ze sztangą",
-    "Karta „Teraz: 80 kg × 5” i rysunek talerzy; „Seria zrobiona”"
+    "Karta „Teraz: 80 kg × 5” (bez paska talerzy); „Seria zrobiona”"
    ],
-   "wynik": "Karta i talerze zgodne z ciężarem; po ostatniej serii „Wszystkie serie odhaczone”.",
+   "wynik": "Karta zgodna z ciężarem; po ostatniej serii „Wszystkie serie odhaczone”.",
    "ekrany": [
     "/"
    ],
    "scenariusz": "11-widok-skupiony.yaml",
    "znaczniki": [
-    "Each side",
+    "Now: 80 kg × 5",
     "All sets ticked off"
    ]
   },
@@ -2214,7 +2214,7 @@
    ],
    "scenariusz": "09-jezyk-wyglad.yaml",
    "znaczniki": [
-    "Weight unit"
+    "Measurement system"
    ]
   },
   {
@@ -3085,9 +3085,9 @@
    "wersja": "0.20",
    "realnosc": "realny",
    "kroki": [
-    "Ustawienia → Trening → „Zapowiedzi głosowe” (domyślnie „W słuchawkach”, opis pod ⓘ)",
+    "Ustawienia → Trening → „Zapowiedzi głosowe” (nowa instalacja: domyślnie „Wyłączone”, opis pod ⓘ)",
     "„Także przez głośnik” → „Posłuchaj przykładu” (aplikacja działa dalej)",
-    "„Wyłączone” → restart: wybór zachowany; powrót do „W słuchawkach”"
+    "„W słuchawkach” → restart: wybór zachowany; powrót do „Wyłączone”"
    ],
    "wynik": "Wybór zapisany i trwały; przykład nie psuje ekranu (dźwięku symulator nie odtwarza).",
    "ekrany": [

@@ -151,9 +151,9 @@ describe('SEC-09: pliki udostępniania nie zostają w Caches', () => {
   test('eksport kopii i CSV: plik usuwany po zamknięciu arkusza; także gdy arkusz rzuci błąd', async () => {
     await fresh(); const del = FS().deleteAsync as jest.Mock; del.mockClear();
     await backup.exportBackup(); await backup.exportCsv();
-    expect(del.mock.calls.map(c => c[0])).toEqual([`file:///cache/trening-backup-${store.localISODate()}.json`, `file:///cache/trening-${store.localISODate()}.csv`]);
+    expect(del.mock.calls.map(c => c[0])).toEqual([`file:///cache/training-backup-${store.localISODate()}.json`, `file:///cache/training-${store.localISODate()}.csv`]);
     const sh = require('expo-sharing').shareAsync as jest.Mock; sh.mockImplementationOnce(async () => { throw new Error('x'); }); del.mockClear();
-    await expect(backup.exportCsv()).rejects.toThrow('x'); expect(del).toHaveBeenCalledWith(`file:///cache/trening-${store.localISODate()}.csv`, { idempotent: true });
+    await expect(backup.exportCsv()).rejects.toThrow('x'); expect(del).toHaveBeenCalledWith(`file:///cache/training-${store.localISODate()}.csv`, { idempotent: true });
   });
   test('import: kopia z wyboru pliku (Caches) usuwana po odczycie; start sprząta pozostałości tylko z nazwami eksportu', async () => {
     await fresh(); const del = FS().deleteAsync as jest.Mock; del.mockClear();

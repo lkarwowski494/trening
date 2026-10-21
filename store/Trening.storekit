@@ -54,7 +54,7 @@
             "internalID" : "9A40D2B7",
             "numberOfPeriods" : 1,
             "paymentMode" : "free",
-            "subscriptionPeriod" : "P1M"
+            "subscriptionPeriod" : "P2W"
           },
           "localizations" : [
             {
@@ -84,7 +84,7 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "4.99",
+          "displayPrice" : "6.99",
           "familyShareable" : true,
           "groupNumber" : 1,
           "internalID" : "58E0C3D9",
@@ -92,7 +92,7 @@
             "internalID" : "B71F6A20",
             "numberOfPeriods" : 1,
             "paymentMode" : "free",
-            "subscriptionPeriod" : "P1M"
+            "subscriptionPeriod" : "P2W"
           },
           "localizations" : [
             {

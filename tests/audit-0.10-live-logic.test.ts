@@ -9,7 +9,6 @@ import { deloadCounts, repeatCounts, deloadLessText, startRepeatLast } from '@/l
 import { deloadKeep } from '@/lib/deload';
 import { beginEdit, draftSetWhen, checkDraft, commitDraft, activeEnd } from '@/lib/edit';
 import { applyUnit } from '@/lib/units';
-import { nearestLoad } from '@/lib/equipvis';
 import { fresh, ex, addWorkout, saved } from './helpers';
 import { buildBackup, parseBackup } from '@/lib/backup';
 import type { SetKind, Workout } from '@/lib/seed';
@@ -276,13 +275,6 @@ describe('D2 (MER-04, wariant A): tekst „o około 1/3–1/2 mniej serii (np. 2
     expect(deloadKeep(1)).toBe(1);
     const txt = deloadLessText(); expect(txt).toBe(`o około 1/3–1/2 mniej serii (np. ${deloadKeep(3)} z 3; ćwiczenia z 1 serią bez zmian)`);
     expect(txt).not.toMatch(/połow/);
-  });
-});
-
-describe('LIVE-17: ciężar, którego nie da się ułożyć z talerzy', () => {
-  test('LIVE-17: nearestLoad — najbliższy osiągalny (remis → lżejszy); pusta lista → null', () => {
-    expect(nearestLoad([20, 25, 30, 102.5], 102.05)).toBe(102.5); expect(nearestLoad([20, 25, 30], 27.5)).toBe(25); expect(nearestLoad([20, 25], 8035)).toBe(25);
-    expect(nearestLoad([], 50)).toBeNull(); expect(nearestLoad([20, 22.5], 21)).toBe(20);
   });
 });
 

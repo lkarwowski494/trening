@@ -188,6 +188,31 @@ Wspólny fragment to cytat ze źródła ograniczony do części wspólnej. Kolum
 
 Test regresji: `tests/cues-podobienstwo.test.ts` (34 klucze mają nowe teksty; teksty źródeł nie są trzymane w repozytorium). Pozostałe języki bez zmian — sens EN się nie zmienił.
 
+## Dziennik wydań (tagi `v*-b*`)
+
+Źródło: `git tag -l 'v*-b*'` i przebiegi `testflight.yml` (`gh run list`), stan 20.10.2026. BUILD = 1000 + numer przebiegu (`run_number`). Każdy nowy tag `v*-b*` dostaje wiersz w tym samym commicie, w którym powstaje (pilnuje `tests/audit-m1-050-release-log.test.ts`; M1-audytor-generalny-050: brakowało wiersza buildu 1019). Kolumna „przebieg” = numer przebiegu, w uwagach identyfikator przebiegu GitHub Actions.
+
+| tag | build | SHA | przebieg | wynik przebiegu / uwagi |
+|---|---|---|---|---|
+| `v0.11.0-b1005` | 1005 | `0d71775` | 5 | zielony, id 38030364651 |
+| `v0.12.0-b1006` | 1006 | `0c7fa8c` | 6 | czerwony, id 38207286308; przebieg czerwony; tag stoi na commicie tego przebiegu (czy build trafił do App Store Connect — otwarte, do sprawdzenia w App Store Connect) |
+| `v0.12.0-b1008` | 1008 | `bfe6ede` | 8 | zielony, id 38217750334 |
+| `v0.13.0-b1009` | 1009 | `2c4bcd9` | 9 | zielony, id 38294805184 |
+| `v0.14.0-b1010` | 1010 | `6c9e4fe` | 10 | zielony, id 38311331235 |
+| `v0.15.0-b1012` | 1012 | `d2b7c87` | 12 | zielony, id 38355743899 |
+| `v0.16.0-b1013` | 1013 | `d74cbaf` | 13 | zielony, id 38374133953 |
+| `v0.17.0-b1014` | 1014 | `72f7eef` | 14 | zielony, id 38413965421 |
+| `v0.18.0-b1015` | 1015 | `2732089` | 15 | zielony, id 38531086767 |
+| `v0.18.0-b1016` | 1016 | `243d42b` | 16 | zielony, id 38546857012 |
+| `v0.18.0-b1017` | 1017 | `b582312` | 17 | zielony, id 38578213243 |
+| `v0.20.0-b1018` | 1018 | `80e43fc` | 18 | zielony, id 39233940303 |
+| `v0.20.0-b1019` | 1019 | `b8b8a31` | 19 | zielony, id 39306743773; gałąź feature/e2-swap (nie main); zielony, 51 min |
+
+Przebiegi `testflight.yml` bez tagu `v*-b*`: 1–4 (przed wprowadzeniem tagów; wydanie 1 = build 1004, `ee637da`, patrz „Rundy”), 7 (czerwony, `c9d4c78`), 11 (czerwony, `d2b7c87`, powtórzony jako przebieg 12), 20 (czerwony, `8273448`, scalenie PR #13 na main), 21 (zielony, gałąź `audyt-m1`, `5542a68`, 20.10.2026).
+
+Uwaga: `actions/checkout` w `tests.yml` nie pobiera tagów, więc w CI test sprawdza tylko spójność tabeli; zestawienie z tagami działa lokalnie i na maszynie wydania (otwarte: `fetch-tags: true` w kroku checkout — zmiana workflowu, zgłoszona koordynatorowi).
+
+
 ## Rundy
 
 | Runda | Data | Automaty (pass/fail) | Przegląd świeżymi oczami | Nowe błędy | Licznik czystych rund |
@@ -355,3 +380,34 @@ Zakres: `lib/guard.ts` (kierunek partii, cel serii, deload, teksty), `components
 | E2E 39191946283 i 39196025031 (pełne, aplikacja z 39156881838; po 09 zielone osobno 39191185190) | 19.10.2026 | f020-e2e-fix | Za każdym razem inne scenariusze czerwone, żaden dwa razy z rzędu, aplikacja ta sama → niestabilność symulatora, nie kod: 39191946283 — **23** (zakładka „More” tuż po starcie ignorowana; zrzut: ekran „Workout”), **26** (podprzepływ planu: „Wednesday: Upper A” poza ekranem), **08** (zrzut: pole nazwy z zaznaczonym tekstem i klawiaturą — stuknięcie poszło w pole), „Plank” (krok 21, zrzut: karta „Start” obecna); 39196025031 — **19** (zakładka „Progress” tuż po starcie ignorowana). Poprawki tam, gdzie zrzut wskazuje miejsce: 23 i 19 — stuknięcie zakładki w `retry` z czekaniem na efekt; podprzepływ planu — przewinięcie do chipa dnia przed stuknięciem. 08 i Plank bez zmian (przeszły w 39185287611 i 39196025031). **Realność:** stuknięcie automatu w pasek zakładek tuż po starcie; nie dotyczy użytkownika | tests/maestro-e2e38563.test.tsx (24, strukturalne dla 23, 19, 26) | 24/24 | zrobione |
 
 | Pakiet podstawowy E2E, ponowienie pojedynczego scenariusza, tryb ścisły, pomiar niestabilności (decyzja właściciela 19.10.2026) | 19.10.2026 | f020-e2e-fix | `e2e-ios.yml`: wejścia `pakiet` (podstawowy domyślnie | pelny) i `tryb_scisly`; plan części z `scripts/ci/e2e-podstawowy.json` na 2 maszynach; ponowienie nieudanego scenariusza raz (osobno), test aktualizacji jako para; podsumowanie i artefakt `e2e-wyniki` (przeszedł / w ponowieniu / padł dwa razy + czasy); `nightly.yml` — pełny katalog. Powód: niestabilność symulatora (docs/38 pkt 11). Zmiana CLAUDE.md czeka na zatwierdzenie właściciela | tests/e2e-pakiet.test.ts (14), e2e-shards, public-repo | 14/14 | zrobione (przebieg pakietu w toku) |
+
+## 20.10.2026 — naprawy z audytu M1, partia 1 (gałąź `audyt-m1`, dane użytkownika; M2 Koordynator Napraw)
+Test najpierw (czerwony na 8273448), potem poprawka; raporty audytu poza repozytorium. Rodzaje testów: logika / ekran / dane / regresja / języki; E2E Maestro — bez zmian w scenariuszach (żaden zmieniony tekst ani ekran nie jest w `.maestro`; ryzyko strażnika pętli awarii przy szybkich restartach w scenariuszach opisane w docs/40, R-005).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-001 (P0) | `tests/audit-persist.test.ts` „M1-001”, „M1-001b” | dane, regresja | zielone | nieudana kopia „live”/„cfg” przerywa start zamiast kasować klucz |
+| M1-002 | `tests/audit-m1-002-premigrate.test.ts` (4), `tests/db-real-sqlite.test.ts` | dane, regresja | zielone | kopia `premigrate_<schemat>`, 30 dni (`PREMIGRATE_KEEP_MS`, liczba produktowa — do potwierdzenia); brak ścieżki użytkownika do tej kopii w UI (dopisane jako znalezisko w raporcie) |
+| M1-003 | `tests/crash-guard.test.ts`, `tests/audit-m1-003-guard-ui.test.tsx`, `tests/audit-m1-003-boundary.test.tsx` | logika, ekran, scenariusz, języki | zielone | próg 2 i „kamień” 1,5 s — liczby w `lib/state/crashguard.ts`; teksty do przeglądu tłumacza (33 języki) |
+| M1-004 | `tests/audit-m1-004-start-error.test.tsx` | ekran, języki | zielone | ekran błędu: wysłanie danych / najnowszej kopii z Plików, kontakt, wskazanie kopii |
+| M1-005 | `tests/audit-m1-005-watch-reset.test.ts`; Swift: `WatchStoreTests.testPersistenceKeepsQueueFromOlderShape`, `testPersistenceRoundTripKeepsCurrentShape`, `testPersistenceWithoutConfigIsNil` | logika, dane | Jest zielone; Swift — czeka na CI | `Workout.watchLastAt` (pole opcjonalne, bez zmiany schematu); Swift: przebieg `watch-sim.yml` |
+| M1-006 | `tests/audit-m1-006-import.test.ts`, `tests/audit-m1-006-import-ui.test.tsx` | dane, ekran, regresja | zielone | `flushStrict`, cofnięcie importu przy nieudanym zapisie |
+| M1-007 | `tests/matrix-migrations.test.tsx` (v18, v19), `tests/migrate-released.test.ts` + `tests/fixtures/released/` | dane, macierz | zielone | fixture’y z kodu tagów v0.11.0-b1005, v0.18.0-b1017, v0.20.0-b1018; schemat 17 nie był wydany |
+| M1-008 | `tests/audit-m1-008-kopia-ui.test.tsx` | ekran, dane, języki | zielone | baner na ekranie Trening, klucz kv `autobackup` |
+| M1-009 | `tests/audit-m1-009-watch-edit.test.ts` | dane, regresja | zielone | edycja historii zachowuje `watch` i `healthPending` |
+| M1-010 | `tests/db-real-sqlite.test.ts` | dane | zielone | `node:sqlite` w pamięci; mutacja copyKv bez transakcji — czerwone |
+
+## 20.10.2026 — naprawy z audytu M1, partia 2 (gałąź `audyt-m1`, zakupy, prywatność, treść, wydanie; M2 Koordynator Napraw)
+Test najpierw (czerwony na 8273448), potem poprawka. E2E Maestro: zmienione teksty w scenariuszach 21 i 35 („14 days free, then …”, „Start 14 days free”) oraz asercja w 14 (brak dopisku asekuracji w pełnej siłowni). Zmiany workflowów (testflight.yml, e2e-ios.yml): przebieg dowodowy CI przed scaleniem (L-001), ryzyka R-007…R-009 w docs/40.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-011 (P0) | `tests/audit-m1-011-trial14.test.ts` (6) + zaktualizowane `store-adapter`, `prices-decision`, `subscription-i18n`, `subscription-ui`, `trial-reminder` | logika, ekran, dane, języki, macierz | zielone | `TRIAL_DAYS = 14`, oferta P2W w `.storekit`; ceny i limit 4 bez zmian; teksty (33 słowniki) do przeglądu tłumacza |
+| M1-012 | `tests/audit-m1-012-status.test.ts` (6) | logika, scenariusz | zielone | błąd zapytania o karencję nie unieważnia odczytu; bez żadnego uprawnienia wyjątek zostaje (unknown) |
+| M1-013 | `tests/audit-m1-013-privacy.test.ts` (3), `tests/store-urls.test.ts` | dane | zielone | adres polityki = App Store Connect; strona ≥ wersja aplikacji; sekcja Apple Watch |
+| M1-014 | `tests/audit-m1-workflows.test.ts` (skrypt manifestu: tryby check/fix, krok workflowu) | logika, dane | zielone; produkt — czeka na przebieg dowodowy (R-007) | |
+| M1-015 | `tests/audit-m1-015-asekuracja.test.tsx` (38: 29 ćwiczeń, ekran, wybór, generator) | logika, ekran, scenariusz, macierz, języki | zielone | treść zdania: DO WERYFIKACJI BADACZA (docs/10) |
+| M1-016 | `tests/audit-m1-016-paywall-benefit.test.tsx` (3) | ekran, języki | zielone | |
+| M1-017 | `tests/audit-m1-017-trial-ios16.test.ts` (5) | logika | zielone | próba z pierwszej transakcji ≤ 14 dni + 1 bez offerIOS |
+| M1-018, 019, 020, 021, 023 | `tests/audit-m1-workflows.test.ts` (bramka-e2e.sh na atrapie `gh`, kolejność kroków, środowisko, EAS, mapy źródeł) | logika, regresja | zielone; produkt — czeka na przebieg dowodowy (R-008, R-009) | |
+| M1-022 | `tests/audit-m1-workflows.test.ts` „M1-022” | regresja | zielone | pliki zrzutów do sklepu wzięte z f020-sklep |

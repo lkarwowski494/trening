@@ -1,12 +1,12 @@
-# Styl „Tuleja” (07.10.2026): widok skupiony na bieżącej serii, talerze na stronę z talerzy miejsca, przełącznik „Widok treningu”.
+# Styl „Tuleja” (07.10.2026): widok skupiony na bieżącej serii, przełącznik „Widok treningu”. 20.10.2026 (DEC-06, audyt M1): pasek talerzy „na każdą stronę” usunięty — scenariusz sprawdza, że go nie ma.
 #
 # Literały (EN z lib/i18n.en.ts / lib/equipment.ts):
-#   "Weight unit" / "kg"          ← 'Jednostka ciężaru' / segment kg (app/more/settings.tsx) — symulator en-US startuje w lb (H4), E2E 89
+#   "Measurement system" / "kg"          ← 'System miar' / segment kg (app/more/settings.tsx) — symulator en-US startuje w lb (H4), E2E 89
 #   "Full gym,.*"                 ← LOCATION_PRESET_LABEL.gym.en + hint (preset: sztanga 20 kg + talerze 25…1,25)
 #   "Back Squat,.*"               ← nazwa z lib/seed.ts (picker: „{nazwa}, …”)
 #   w-0-0 / r-0-0                 ← testID pól ciężaru i powtórzeń serii (components/ActiveWorkout.tsx)
 #   "Now: 80 kg × 5"              ← 'Teraz: {v}' (karta „teraz”, accessibilityLabel dużej liczby; audyt 0.10 UI-10: jednostka przy ciężarze)
-#   "Each side: 25 \+ 5 kg"       ← 'Na każdą stronę: {p}' (components/PlateBar.tsx, accessibilityLabel rysunku)
+#   "Each side.*"                 ← dawne 'Na każdą stronę: {p}' (pasek talerzy usunięty 20.10.2026) — assertNotVisible
 #   "Set done.*"                  ← 'Seria zrobiona' (przycisk karty); etykieta VoiceOver „Set done: {ex}, set {n}” zastępuje tekst
 #                                   przycisku w drzewie dostępności — sam „Set done” nie pasuje (run 37600735711, krok 27)
 #   "All sets ticked off"         ← 'Wszystkie serie odhaczone'
@@ -14,7 +14,7 @@
 #   "Skip"                        ← 'Pomiń' (przerwa w karcie „teraz”, RestPanel w components/ActiveWorkout.tsx)
 #   "Workout view"/"List"/"Focused" ← 'Widok treningu' / 'Lista' / 'Skupiony' (app/more/settings.tsx)
 appId: pl.lukasz.trening
-name: Widok skupiony i talerze
+name: Widok skupiony (bez paska talerzy)
 ---
 - launchApp:
     clearState: true
@@ -27,8 +27,8 @@ name: Widok skupiony i talerze
 - tapOn: "Settings"
 # E2E 89: świeża instalacja bierze jednostkę z regionu (H4, audyt 0.10 UX-12) — symulator en-US → lb („Now: 80 lb × 5”, talerze w lb).
 # Scenariusz sprawdza talerze w kg, więc najpierw kg (PRZED dodaniem miejsca — preset bierze talerze w bieżącej jednostce).
-- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
-- tapOn: "kg"
+- extendedWaitUntil: { visible: "Measurement system", timeout: 30000 }
+- tapOn: { id: "unit-system-kg" }
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Places and equipment", timeout: 30000 }  # 11.10.2026: pozycja ekranu Więcej, nie Ustawień
 - tapOn: "Places and equipment"
@@ -63,9 +63,10 @@ name: Widok skupiony i talerze
 # (lista: keyboardShouldPersistTaps="handled"). W tamtym przebiegu talerze powiększały kartę i wiersz zjeżdżał pod klawiaturę — tap w
 # „r-0-0” trafiał w klawisz „3” (ciężar 8035); od wariantu A (07.10.2026) karta trzyma miejsce na grafikę, a „Now: 80 kg × 5” to sprawdza.
 - tapOn: "set.1.of.1"  # audyt 0.10 (A11-19): spacje nierozdzielające (NBSP) między liczbą a wyrazem — „.” zamiast spacji
-- extendedWaitUntil: { visible: "Each side: 25 \\+ 5 kg", timeout: 15000 }
-- assertVisible: "Now: 80 kg × 5"
-- takeScreenshot: 41-karta-teraz-talerze
+- extendedWaitUntil: { visible: "Now: 80 kg × 5", timeout: 15000 }
+- assertNotVisible: "Each side.*"  # DEC-06: pasek talerzy usunięty
+- assertNotVisible: "empty bar"
+- takeScreenshot: 41-karta-teraz
 - tapOn: "Set done.*"
 - extendedWaitUntil: { visible: "All sets ticked off", timeout: 15000 }
 # build 1004 (07.10.2026, pkt 3): przerwa w karcie — odliczanie i „Skip” w karcie, nie w dolnym pasku

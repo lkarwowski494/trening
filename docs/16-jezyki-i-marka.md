@@ -262,6 +262,88 @@ język telefonu (np. zh-Hant na telefonie ja) — React Native nie przekazuje j�
 (5) opisy w App Store (część po dwukropku w nazwie, podtytuł, opis, słowa kluczowe) po japońsku, koreańsku i chińsku — do przejrzenia przy ASO;
 (6) chiński uproszczony (zh-Hans) — osobna decyzja produktowa.
 
+## Treść krytyczna w 34 językach — zapis kontroli (20.10.2026, audyt M1-049)
+
+Treść krytyczna = zdanie medyczne („Aplikacja nie udziela porad medycznych …”), zdanie i etykiety o asekuracji (M1-015) oraz zdania wskazówek techniki (`lib/cues/text`). Języków docelowych jest 34 (`LANGS` bez polskiego).
+Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audit-m1-049-critical-content.test.ts`); drift pada w `tests/audit-m1-049-critical-content.test.ts`.
+
+**Co kontrola potwierdza (automatycznie):** zdanie medyczne i trzy klucze asekuracji są w każdym z 34 języków i różnią się od tekstu źródłowego (nie jest to przeciek polskiego ani zapasowego angielskiego); komplet zdań wskazówek jest w każdym języku
+(warianty es-419 i pt-BR to nakładki na es i pt — liczone po złożeniu). Kontrola **nie ocenia poprawności** tłumaczenia.
+
+<!-- gen:krytyczne -->
+| kod | zdanie medyczne | asekuracja (3 klucze) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd wskazówek (native speaker) |
+|---|---|---|---|---|---|
+| en | tak | tak | 306/306 | brak zapisu | niewykonany |
+| cs | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| sk | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| hu | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| ro | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| bg | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| hr | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| sl | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| sr | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| lt | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| lv | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| et | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| uk | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| es | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| es-419 | tak | tak | 306/306 | brak zapisu | niewykonany |
+| pt | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
+| pt-BR | tak | tak | 306/306 | brak zapisu | niewykonany |
+| de | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| fr | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| it | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| nl | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| sv | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| da | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| nb | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| fi | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| tr | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| el | tak | tak | 306/306 | tak (07.10.2026) | niewykonany |
+| id | tak | tak | 306/306 | brak zapisu | niewykonany |
+| ms | tak | tak | 306/306 | brak zapisu | niewykonany |
+| vi | tak | tak | 306/306 | brak zapisu | niewykonany |
+| ru | tak | tak | 306/306 | brak zapisu | niewykonany |
+| ja | tak | tak | 306/306 | brak zapisu | niewykonany |
+| ko | tak | tak | 306/306 | brak zapisu | niewykonany |
+| zh-Hant | tak | tak | 306/306 | brak zapisu | niewykonany |
+<!-- /gen:krytyczne -->
+
+**Czego nie ma (stan na 20.10.2026):**
+- **Drugi przegląd wskazówek techniki: niewykonany** w żadnym języku; w repozytorium nie ma jego zapisu. Tłumaczył agent AI; niezależną recenzję drugim agentem zapisano tylko dla 24 języków (14 z procesu 05.10.2026 i 10 z wariantu B, proces 07.10.2026 — akapity w sekcji „Języki”); dla fal 1–4 (pt-BR, es-419, id, ms, vi, ru, ja, ko, zh-Hant) tylko „bez recenzji native speakera”. Przegląd przez native speakerów jest w backlogu (docs/18) — **[OTWARTE]**.
+- **Forma zwracania się w fr i tr nie jest ujednolicona — [OTWARTE]**, do poprawy przez tłumacza (nie zmieniana w tej partii): rejestr zapisany w tabeli wyżej to „vous” (fr) i „siz” (tr), a zdanie medyczne brzmi w fr „consulte” (forma „tu”), w tr „danış” (forma „sen”), podczas gdy wskazówki techniki w tr używają formy grzecznościowej („kaldırın”), a w fr formy „vous” (np. „Levez”).
+- Zdanie asekuracji i zdanie medyczne bez weryfikacji merytorycznej badacza (zdanie asekuracji: „DO WERYFIKACJI BADACZA”, docs/10, sekcja „Asekuracja”).
+
+Ryzyko i warunek zamknięcia: R-010 w `docs/40-lekcje.md` (blokuje wydanie w App Store; TestFlight bez blokady).
+
+### Przegląd tłumaczeń przez API Anthropic (decyzja właściciela 20.10.2026)
+
+Drugi przegląd treści krytycznej (R-010) robi Claude przez Message Batches, z kredytów API właściciela. Przegląd **niczego nie zmienia** w słownikach — daje raport do przejrzenia;
+poprawki nanosi człowiek albo agent (rola tłumacz), a treść merytoryczną (zdanie asekuracji) sprawdza badacz.
+
+*Co jest przeglądane (jedno żądanie na język, 34 języki w tym `en`; `es-419` i `pt-BR` po złożeniu z nakładką):* (a) zdanie medyczne i trzy klucze asekuracji; (b) wszystkie zdania wskazówek techniki
+(`lib/cues/text`, 306 na język); (c) klucze dodane lub zmienione w `lib/locales/_source.json` od commitu `8273448` (`--od`, tryb różnicy: dziś 32 klucze). Razem 342 zdania na język. Do modelu idą polskie źródło, angielski
+i tłumaczenie oraz rejestr języka z docs/16 (np. fr „vous”, tr „siz”); model ma ocenić znaczenie, złagodzenie lub wzmocnienie twierdzeń medycznych i bezpieczeństwa, formę grzecznościową, naturalność, zmienne `{…}` i liczbę mnogą.
+Osobno, bez API, skrypt sprawdza zgodność zmiennych `{…}` i brak tłumaczenia (kontrola lokalna).
+
+*Jak uruchomić* (Actions → „Przegląd tłumaczeń (API, ręcznie)” → Run workflow; plik musi być na gałęzi domyślnej, żeby przycisk się pojawił):
+1. Pierwszy przebieg: `tylko_szacuj` = tak (domyślnie) — wypisuje szacunek kosztu, nic płatnego nie jest wysyłane (z kluczem liczy tokeny endpointem `count_tokens`, który jest darmowy).
+2. Przebieg dowodowy: `tylko_szacuj` = nie, `limit` = 2 (dwa języki, ok. 0,5 USD) — sprawdź raport w artefakcie `raport-tlumaczen`.
+3. Pełny przebieg: `limit` puste, `tylko_szacuj` = nie. `model`: `opus` (domyślnie, `claude-opus-5-5`, effort `medium`) albo `sonnet` (`claude-sonnet-5-5`).
+4. Szacunek powyżej **50 USD** zatrzymuje przebieg (pierwszy krok), chyba że `zgoda_koszt` = `tak`. Jeśli batch nie skończy się w 2 godziny, skrypt kończy się kodem 4 i podaje numer batcha; wyniki odbiera `node scripts/i18n/przeglad-api.mjs --wznow <numer>` (wymaga klucza lokalnie).
+
+*Koszt według szacunku (Message Batches −50%, ceny ze skilla claude-api z 06.10.2026: Opus 5.5 4/20 USD, Sonnet 5.5 2/10 USD za mln tokenów wejścia/wyjścia):* pełny przebieg ok. 1,2 mln tokenów wejścia i ok. 0,6 mln wyjścia —
+**Opus ok. 8,7 USD, Sonnet ok. 4,3 USD**. Wejście jest przybliżone (bez klucza) i celowo zawyżone; wyjście wynika z założeń (20% zdań z poprawką, ok. 10 000 tokenów myślenia na żądanie; stałe `SZACUNEK_WYJSCIA` w skrypcie),
+więc rzeczywisty koszt sprawdź po przebiegu dowodowym (zużycie widać w konsoli API).
+
+*Jak czytać raport:* `podsumowanie.md` — tabela języków (zdań, ok, uwagi krytyczne/średnie/niskie, bez odpowiedzi, kontrola lokalna) i lista uwag krytycznych z propozycją poprawki i powodem. `<język>.json` — pełne uwagi tego języka
+(`klucz`, `pl`, `tlumaczenie`, `poprawka`, `powod`, `waga`), `brak_odpowiedzi` (zdania, do których model nie dał wpisu), `blad` (np. odpowiedź ucięta) i `kontrola_lokalna`. Wagi: **krytyczna** = zmiana znaczenia, złagodzenie lub wzmocnienie
+twierdzenia medycznego albo bezpieczeństwa, uszkodzona zmienna, zły rejestr w zdaniu medycznym (idzie do poprawy przed wydaniem w App Store); **średnia** = niejasność, nienaturalność, niespójna terminologia; **niska** = styl, interpunkcja.
+Propozycje modelu bywają błędne — każdą krytyczną potwierdź (rola tłumacz), zanim trafi do słownika. Przegląd modelem nie zamyka R-010 sam z siebie: wpis „drugi przegląd” w tabeli wyżej i w docs/40 zmienia się po poprawkach i testach.
+
+*Bezpieczeństwo:* repozytorium jest publiczne — klucz jest tylko w sekrecie `ANTHROPIC_API_KEY`, użytym w jednym kroku (zmienna środowiskowa), skrypt go nie wypisuje; artefakt zawiera tylko przetworzone raporty (bez nagłówków i surowych odpowiedzi), retencja 7 dni;
+strażnik: `tests/przeglad-tlumaczen.test.ts` i `tests/public-repo.test.ts`.
+
 ## Nazwa aplikacji (decyzja właściciela 05.10.2026)
 
 *Pod ikoną* (`APP_NAME` w `lib/i18n.ts`, jedno źródło prawdy; `locales/<kod>.json` musi się zgadzać — test `tests/i18n-locales.test.ts`):
@@ -327,3 +409,20 @@ Każdy kierunek: ikona aplikacji, ikony zakładek SVG zamiast emoji, ten sam ekr
   „Wybór motywu, domyślnie jasna Kreda”. Ustawienia → Wygląd: Jasny (domyślnie, także dla dotychczasowych danych) / Ciemny / Jak w telefonie.
   `settings.theme`, `applyTheme` w `lib/theme.ts` (`Appearance.setColorScheme` — alerty, klawiatura i pasek stanu też). Ekran startowy kredowy
   (#F2F0EB) — pasuje do domyślnego wyglądu. Testy: `tests/theme-choice.test.tsx`.
+
+## System miar (LOK-07; decyzje właściciela 20.10.2026: DEC-28, DEC-29)
+
+Jedno ustawienie „System miar”: metryczny (kg, km, m) albo imperialny (lb, mi, yd) zastępuje „Jednostkę ciężaru”. Zapis bez zmian: masa w kg, dystans w metrach; pole `unit` zostaje (imperialny = `'lb'`), migracji danych brak. Nowa instalacja i reset: system z regionu telefonu (`measurementSystem` z expo-localization: `us`, `uk` → imperialny, `metric` → metryczny; bez danych region tagu, bez regionu metryczny). Istniejące dane nietknięte. Dystans zapisuje się z dokładnością do 1 cm (yardy bez dryfu); progi „duża jednostka” (1 km, 1 mi) są w `lib/units.ts` (`DIST_LONG_FROM_M`).
+
+| Miejsce | Wielkość | Helper | Imperialny |
+|---|---|---|---|
+| wiersz serii, podsumowanie, rekordy, wykres, historia, szablon (tekst) | dystans | `fmtDist` (lib/state/time.ts) | yd, od 1 mi mile |
+| pola wpisu dystansu (trening, edycja historii, szablon) | dystans | `dOut` / `dIn` / `distUnit` (lib/units.ts) | yd, zapis w m z dokładnością do cm |
+| ekran blokady / aktywność | dystans | `distParts` (lib/live.ts) | yd lub mi |
+| głos | dystans | `spokenDist` (lib/live.ts) | jardy, mile słowami |
+| masa (wszędzie) | ciężar | `wOut` / `wIn` / `fmtW` | lb |
+| eksport CSV | kolumna Distance | brak (metry, opisane w Ustawieniach: „dystans w metrach”) | wyjątek: format pliku, bez przeliczenia |
+| presety sprzętu (edytor ciężarów) | ciężary | `applyLoadPreset` + `convertSpec` | ciężary w lb |
+| etykiety presetów (np. „2×10 kg”, „5–200 lb”) | nazwa produktu | brak | wyjątek „nazwa produktu”: przeliczona nazwa opisywałaby nieistniejący produkt |
+
+Teksty nowego ustawienia i jednostek (mi, yd, mile, jardy) we wszystkich słownikach: do przeglądu tłumacza (M2-LOK07-01).

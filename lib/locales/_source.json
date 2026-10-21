@@ -76,6 +76,10 @@
   "en": "{d} direct, {w} indirect (secondary sets: {n})"
  },
  {
+  "pl": "{days} dni za darmo, potem {price}/{period}",
+  "en": "{days} days free, then {price}/{period}"
+ },
+ {
   "pl": "{ex} — {n} min, umiarkowane tempo",
   "en": "{ex} — {n} min, moderate pace"
  },
@@ -140,6 +144,10 @@
   "en": "{n} m"
  },
  {
+  "pl": "{n} mi",
+  "en": "{n} mi"
+ },
+ {
   "pl": "{n} min",
   "en": "{n} min"
  },
@@ -150,6 +158,10 @@
  {
   "pl": "{n} s",
   "en": "{n} s"
+ },
+ {
+  "pl": "{n} yd",
+  "en": "{n} yd"
  },
  {
   "pl": "{n} z {all}",
@@ -332,10 +344,6 @@
   "en": "📍 Place for these days"
  },
  {
-  "pl": "1 miesiąc za darmo, potem {price}/{period}",
-  "en": "1 month free, then {price}/{period}"
- },
- {
   "pl": "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.",
   "en": "10 new languages: German, French, Italian, Dutch, Swedish, Danish, Norwegian, Finnish, Turkish and Greek."
  },
@@ -404,6 +412,10 @@
   "en": "The app collects no data: everything you enter stays on your phone — no account, ads or analytics."
  },
  {
+  "pl": "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.",
+  "en": "The app closed unexpectedly during the last launches."
+ },
+ {
   "pl": "Aplikacja zamknęła się w trakcie edycji ćwiczenia „{name}”. Wrócić do edycji?",
   "en": "The app closed while you were editing the exercise “{name}”. Go back to editing?"
  },
@@ -456,6 +468,10 @@
   "en": "safety arms"
  },
  {
+  "pl": "Asekuracja",
+  "en": "Spotting and safety"
+ },
+ {
   "pl": "Asysta gumą",
   "en": "Band assistance"
  },
@@ -474,6 +490,10 @@
  {
   "pl": "Automatyczna kopia po każdym treningu trafia do Plików (Ustawienia).",
   "en": "An automatic backup after every workout goes to Files (Settings)."
+ },
+ {
+  "pl": "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.",
+  "en": "Automatic backup after each workout: Files → On My iPhone → {app} → Backup."
  },
  {
   "pl": "Automatycznie ({n})",
@@ -514,6 +534,10 @@
  {
   "pl": "Beczka (keg)",
   "en": "Keg"
+ },
+ {
+  "pl": "bez asekuracji w stojakach",
+  "en": "no safety arms in the rack"
  },
  {
   "pl": "bez ciężaru",
@@ -1050,6 +1074,10 @@
   "plural": true
  },
  {
+  "pl": "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.",
+  "en": "Barbell exercise over the body or on the shoulders: set safety arms in the rack so the bar can be put down safely, or train with a spotter."
+ },
+ {
   "pl": "Ćwiczenie zostanie bez zmian.",
   "en": "The exercise stays unchanged."
  },
@@ -1089,6 +1117,10 @@
  {
   "pl": "Dane w telefonie",
   "en": "Data on this phone"
+ },
+ {
+  "pl": "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.",
+  "en": "Your data on this phone was not changed — you can send it as a file."
  },
  {
   "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.",
@@ -1487,6 +1519,10 @@
   "en": "Edit template"
  },
  {
+  "pl": "Ekran nie mógł się wyświetlić.",
+  "en": "This screen could not be shown."
+ },
+ {
   "pl": "Ekran Trening w nowym układzie; „Powtórz ostatni” z nazwą i datą.",
   "en": "The Workout screen has a new layout; “Repeat last” shows the name and date."
  },
@@ -1765,6 +1801,10 @@
   "en": "and {n} more"
  },
  {
+  "pl": "imperialny (lb, mi, yd)",
+  "en": "imperial (lb, mi, yd)"
+ },
+ {
   "pl": "Import historii treningów z plików CSV popularnych dzienników (Więcej → Kopia zapasowa → „Importuj historię z pliku CSV”), z podglądem przed zapisem.",
   "en": "Import your workout history from CSV files of popular training logs (More → Backup → “Import history from a CSV file”), with a preview before saving."
  },
@@ -1886,6 +1926,15 @@
   "en": "Phone setting"
  },
  {
+  "pl": "jard|jardy|jardów",
+  "en": "yard|yards",
+  "plural": true
+ },
+ {
+  "pl": "jarda",
+  "en": "yards"
+ },
+ {
   "pl": "jarzmo (yoke)",
   "en": "yoke"
  },
@@ -1904,10 +1953,6 @@
  {
   "pl": "Jedna sesja: {v}. Wykres pojawi się po drugiej.",
   "en": "One session: {v}. The chart appears after the second."
- },
- {
-  "pl": "Jednostka ciężaru",
-  "en": "Weight unit"
  },
  {
   "pl": "Jednostka ciężaru w pliku",
@@ -1966,8 +2011,8 @@
   "en": "Current set card during a workout; the “List” view as before, selectable in Settings."
  },
  {
-  "pl": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
-  "en": "Each major muscle group on at least {n} days a week (WHO 2020 — a health recommendation; ACSM 2026: strength improves with at least {n} sessions a week). A day when the group only assists counts as {h} — a simplification (method from the Pelland et al. 2026 meta-analysis). The split (full body, upper/lower) is a convention — with the same number of sets it gives similar results."
+  "pl": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
+  "en": "Each major muscle group on at least {n} days a week (WHO 2020 — a health recommendation; ACSM 2026: frequency affects strength, but there is no evidence of a dose-response relationship, and with equal volume the difference shrinks). A day when the group only assists counts as {h} — a simplification (method from the Pelland et al. 2026 meta-analysis). The split (full body, upper/lower) is a convention — with the same number of sets it gives similar results."
  },
  {
   "pl": "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.",
@@ -2129,6 +2174,10 @@
  {
   "pl": "krok",
   "en": "step"
+ },
+ {
+  "pl": "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.",
+  "en": "The step (e.g. +2.5 kg) is a convention, not a research result."
  },
  {
   "pl": "kroki {n}",
@@ -2588,6 +2637,10 @@
   "en": "metres"
  },
  {
+  "pl": "metryczny (kg, km, m)",
+  "en": "metric (kg, km, m)"
+ },
+ {
   "pl": "Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.",
   "en": "Measure: tonnage (sets × reps × weight) averaged per session of the exercise, so a different number of sessions does not inflate the result. When tonnage fell but the working weight rose — or the weight was 0 before and is not now — it counts as more."
  },
@@ -2650,6 +2703,15 @@
  {
   "pl": "Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.",
   "en": "Target muscle outside the muscle-group map: {m} — not counted in sets per muscle or on the muscle map."
+ },
+ {
+  "pl": "mila|mile|mil",
+  "en": "mile|miles",
+  "plural": true
+ },
+ {
+  "pl": "mili",
+  "en": "miles"
  },
  {
   "pl": "min na stronę",
@@ -2741,16 +2803,12 @@
   "en": "The recommended option is at the top: it returns to routine without losing a workout, then avoids back-to-back days with the same muscle groups and changes the fewest days."
  },
  {
-  "pl": "Na każdą stronę",
-  "en": "Each side"
- },
- {
-  "pl": "Na każdą stronę: {p}",
-  "en": "Each side: {p}"
- },
- {
   "pl": "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
   "en": "At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Plan tab."
+ },
+ {
+  "pl": "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.",
+  "en": "At the end of a rest the phone sends a notification — even when the screen is locked. It needs notification permission — iOS asks for it after “Continue”."
  },
  {
   "pl": "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.",
@@ -2877,6 +2935,10 @@
   "en": "Plan name"
  },
  {
+  "pl": "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.",
+  "en": "The name under the icon and the Health permission text change language only after you set the app language in iOS Settings."
+ },
+ {
   "pl": "Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.",
   "en": "Library exercise names are in English in all languages except Polish."
  },
@@ -2911,14 +2973,6 @@
  {
   "pl": "Nie",
   "en": "No"
- },
- {
-  "pl": "Nie da się ułożyć z talerzy ({l})",
-  "en": "Can’t be made with the plates ({l})"
- },
- {
-  "pl": "Nie da się ułożyć z talerzy ({l}) — najbliżej {v}",
-  "en": "Can’t be made with the plates ({l}) — nearest {v}"
  },
  {
   "pl": "Nie ma nowych treningów do dodania — wszystkie są już w historii.",
@@ -3027,6 +3081,10 @@
  {
   "pl": "Nie udało się zapisać kopii bezpieczeństwa w Plikach — dane nie zostały zmienione.",
   "en": "Could not save the safety copy in Files — your data was not changed."
+ },
+ {
+  "pl": "Nie udało się zapisać kopii po treningu",
+  "en": "Could not save the backup after your workout"
  },
  {
   "pl": "Nie udało się zapisać w Apple Health",
@@ -3389,6 +3447,10 @@
   "en": "ankle straps"
  },
  {
+  "pl": "Opcje ćwiczenia: {name}",
+  "en": "Exercise options: {name}"
+ },
+ {
   "pl": "opcjonalne pole, nie wpływa na objętość",
   "en": "optional field, does not affect volume"
  },
@@ -3447,6 +3509,10 @@
  {
   "pl": "Ostatnia seria o {t}. Zakończyć trening z tą godziną końca?",
   "en": "Last set at {t}. Finish the workout with that end time?"
+ },
+ {
+  "pl": "Ostatnia udana kopia: {date}",
+  "en": "Last successful backup: {date}"
  },
  {
   "pl": "Ostatnie treningi",
@@ -4073,6 +4139,10 @@
   "en": "Notifications work"
  },
  {
+  "pl": "Powiadomienie na koniec przerwy",
+  "en": "Notification at the end of rest"
+ },
+ {
   "pl": "Powtórz ostatni",
   "en": "Repeat last"
  },
@@ -4149,6 +4219,10 @@
  {
   "pl": "Półkula balansowa / platforma balansowa",
   "en": "Balance dome / balance board"
+ },
+ {
+  "pl": "PR",
+  "en": "PR"
  },
  {
   "pl": "Progresja",
@@ -4543,10 +4617,6 @@
   "en": "Fewer than {n} days a week: {list} (a day with assisting work only = {h})."
  },
  {
-  "pl": "sam gryf",
-  "en": "empty bar"
- },
- {
   "pl": "sanki",
   "en": "sled"
  },
@@ -4782,8 +4852,8 @@
   "en": "Focused"
  },
  {
-  "pl": "Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.",
-  "en": "Focused: the current set in big numbers and plates per side above the exercise list."
+  "pl": "Skupiony: bieżąca seria dużymi cyframi nad listą ćwiczeń.",
+  "en": "Focused: the current set in big numbers above the exercise list."
  },
  {
   "pl": "specjalistyczne serwisy treningowe",
@@ -4812,6 +4882,14 @@
  {
   "pl": "Sprzęt",
   "en": "Equipment"
+ },
+ {
+  "pl": "SS",
+  "en": "SS"
+ },
+ {
+  "pl": "SS {g}",
+  "en": "SS {g}"
  },
  {
   "pl": "stabilizacja",
@@ -4960,6 +5038,10 @@
  {
   "pl": "Suwnica Smitha",
   "en": "Smith machine"
+ },
+ {
+  "pl": "System miar",
+  "en": "Measurement system"
  },
  {
   "pl": "Szablon",
@@ -5404,16 +5486,16 @@
   "en": "Workouts"
  },
  {
-  "pl": "Treningi bez limitu. Bez reklam. Wszystko zostaje na Twoim telefonie.",
-  "en": "Unlimited workouts. No ads. Everything stays on your phone."
- },
- {
   "pl": "Treningi do dodania: {n}",
   "en": "Workouts to add: {n}"
  },
  {
   "pl": "Treningi i szablony z tym miejscem pokażą „(usunięte miejsce)”.",
   "en": "Workouts and templates with this place will show “(deleted place)”."
+ },
+ {
+  "pl": "Treningi na żywo bez miesięcznego limitu.",
+  "en": "Live workouts without the monthly limit."
  },
  {
   "pl": "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.",
@@ -5704,6 +5786,10 @@
   "en": "Delete"
  },
  {
+  "pl": "Usuń ćwiczenie",
+  "en": "Delete exercise"
+ },
+ {
   "pl": "Usuń ćwiczenie: {name}",
   "en": "Remove exercise: {name}"
  },
@@ -5734,6 +5820,10 @@
  {
   "pl": "Usuń pomiar: {v}, {d}",
   "en": "Delete measurement: {v}, {d}"
+ },
+ {
+  "pl": "Usuń serię",
+  "en": "Delete set"
  },
  {
   "pl": "Usuń serię {n} — {ex}",
@@ -6340,8 +6430,8 @@
   "en": "Start with fewer sets: {a} instead of {b} working sets? Same weights, the template stays unchanged."
  },
  {
-  "pl": "Zacznij miesiąc za darmo",
-  "en": "Start your free month"
+  "pl": "Zacznij {days} dni za darmo",
+  "en": "Start {days} days free"
  },
  {
   "pl": "Zacznij trening na telefonie",
@@ -6624,8 +6714,8 @@
   "en": "Always at {l} — {name}"
  },
  {
-  "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im ciemniej, tym większy wzrost. Szare — bez wzrostu.",
-  "en": "Highlighted muscle groups have more volume than in the comparison period; the darker, the bigger the increase. Grey — no increase."
+  "pl": "Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.",
+  "en": "Highlighted muscle groups have more volume than in the comparison period; the stronger the colour, the bigger the increase. Grey — no increase."
  },
  {
   "pl": "zaznaczone: {n} z {m}",
@@ -6710,6 +6800,10 @@
  {
   "pl": "Zmień szablon",
   "en": "Change template"
+ },
+ {
+  "pl": "Zmień w ustawieniach iOS",
+  "en": "Change in iOS Settings"
  },
  {
   "pl": "Zmierz",

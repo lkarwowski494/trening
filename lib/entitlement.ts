@@ -57,6 +57,8 @@ async function apply(list: Entitlement[] | null, now: number) {
   if (list) { lastKnown = lastKnownFrom(list, now); await persist(lastKnown, now); void syncTrialReminder(list, now); }
   emit();
 }
+/** M1-audytor-generalny-041: po zmianie języka przypomnienie o końcu próby planowane ponownie (treść w nowym języku); bez odpowiedzi sklepu — bez zmian. */
+export function resyncTrialReminder(): Promise<void> { return ent ? syncTrialReminder(ent, Date.now()) : Promise.resolve(); }
 /** Odświeżenie uprawnień ze sklepu (start, powrót z tła, zdarzenie transakcji). Błąd odczytu → `unknown`, nigdy `free` (docs/30 3.3 pułapka 2). Współbieżne wywołania łączą się w jedno. */
 export function refreshEntitlements(): Promise<void> {
   if (!paywallOn()) return Promise.resolve();

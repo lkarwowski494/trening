@@ -13,7 +13,9 @@ import { restCue } from '@/lib/live';
 import { applyLang } from '@/lib/i18n';
 import { applyUnit } from '@/lib/units';
 import { fresh, saved, addWorkout } from './helpers';
-import { world, A, sid, NOW, teardownWorld } from './watch-world';
+import { world as world0, A, sid, NOW, teardownWorld } from './watch-world';
+/* DEC-05 (20.10.2026): nowa instalacja ma głos wyłączony — testy mowy działają na ustawieniu „W słuchawkach” (jak dane istniejącego użytkownika) */
+const world = async (o: Parameters<typeof world0>[0] = {}) => { const w = await world0(o); store.getState().settings.voice = 'headphones'; return w; };
 
 const V = () => global.__voice;
 beforeEach(() => { V().spoken.length = 0; V().stops = 0; V().headphones = false; V().hasVoice = true; __setScreenReaderForTests(false); });
@@ -124,21 +126,21 @@ describe('integracja z odhaczeniem serii', () => {
 
 describe('dane: ustawienie „Zapowiedzi głosowe” (Settings.voice; 19.10.2026)', () => {
   const S = () => store.getState().settings;
-  test('domyślnie „W słuchawkach” bez pola; zapis tylko odstępstwa (off / speaker); powrót do domyślnej usuwa pole', async () => {
-    await fresh(); expect('voice' in S()).toBe(false); expect(voiceSetting()).toBe('headphones');
-    setVoiceSetting('off'); expect(S().voice).toBe('off'); expect(voiceSetting()).toBe('off'); setVoiceSetting('speaker'); expect(S().voice).toBe('speaker');
-    setVoiceSetting('headphones'); expect('voice' in S()).toBe(false);
+  test('nowa instalacja: „Wyłączone” zapisane jawnie (DEC-05, 20.10.2026); każdy wybór zapisuje jawną wartość, także „W słuchawkach”', async () => {
+    await fresh(); expect(S().voice).toBe('off'); expect(voiceSetting()).toBe('off');
+    setVoiceSetting('speaker'); expect(S().voice).toBe('speaker'); expect(voiceSetting()).toBe('speaker');
+    setVoiceSetting('headphones'); expect(S().voice).toBe('headphones'); expect(voiceSetting()).toBe('headphones'); setVoiceSetting('off'); expect(S().voice).toBe('off');
   });
   test('wybór „Wyłączone” w trakcie zapowiedzi przerywa mowę', async () => { await fresh(); const s0 = V().stops; setVoiceSetting('off'); expect(V().stops).toBe(s0 + 1); });
-  test('migracja: voiceSpeaker true → „Także przez głośnik”; brak → „W słuchawkach”; dawne pole znika (jedno źródło)', async () => {
+  test('migracja: voiceSpeaker true → „Także przez głośnik”; brak pola → „W słuchawkach” (dane sprzed 20.10.2026); dawne pole znika (jedno źródło)', async () => {
     await fresh(); store.saveCfg(); await store.flush(); const disk = JSON.parse(JSON.stringify(saved()));
     const a = JSON.parse(JSON.stringify(disk)); a.settings.voiceSpeaker = true; delete a.settings.voice; await fresh(a); expect(S().voice).toBe('speaker'); expect('voiceSpeaker' in S()).toBe(false);
     const b = JSON.parse(JSON.stringify(disk)); delete b.settings.voiceSpeaker; delete b.settings.voice; await fresh(b); expect('voice' in S()).toBe(false); expect(voiceSetting()).toBe('headphones');
-    for (const old of [false, 'tak', 1, null]) { const d = JSON.parse(JSON.stringify(disk)); d.settings.voiceSpeaker = old; await fresh(d); expect([old, 'voice' in S(), 'voiceSpeaker' in S()]).toEqual([old, false, false]); }
+    for (const old of [false, 'tak', 1, null]) { const d = JSON.parse(JSON.stringify(disk)); delete d.settings.voice; d.settings.voiceSpeaker = old; await fresh(d); expect([old, 'voice' in S(), 'voiceSpeaker' in S()]).toEqual([old, false, false]); }
   });
-  test('migracja: poprawna wartość przechodzi (off, speaker; headphones = domyślna bez pola); zła wartość → domyślna; nowe pole wygrywa z dawnym', async () => {
+  test('migracja: poprawna wartość przechodzi jawnie (off, headphones, speaker); zła wartość → brak pola (= „W słuchawkach”); nowe pole wygrywa z dawnym', async () => {
     await fresh(); store.saveCfg(); await store.flush(); const disk = JSON.parse(JSON.stringify(saved()));
-    for (const [v, want] of [['off', 'off'], ['speaker', 'speaker'], ['headphones', undefined], ['loud', undefined], [true, undefined], [1, undefined], [null, undefined], [{}, undefined]] as const) {
+    for (const [v, want] of [['off', 'off'], ['speaker', 'speaker'], ['headphones', 'headphones'], ['loud', undefined], [true, undefined], [1, undefined], [null, undefined], [{}, undefined]] as const) {
       const d = JSON.parse(JSON.stringify(disk)); d.settings.voice = v; await fresh(d); expect([v, S().voice]).toEqual([v, want]);
     }
     const d = JSON.parse(JSON.stringify(disk)); d.settings.voice = 'off'; d.settings.voiceSpeaker = true; await fresh(d); expect(S().voice).toBe('off'); expect('voiceSpeaker' in S()).toBe(false);

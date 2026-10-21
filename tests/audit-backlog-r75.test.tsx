@@ -68,7 +68,7 @@ describe('T-012 kopia automatyczna', () => {
     const old = Array.from({ length: 12 }, (_, i) => `trening-2026-09-${String(10 + i).padStart(2, '0')}-080000.json`);
     const FS = fsMock([...old, 'inny-plik.txt']);
     const path = await backup.autoBackup();
-    expect(path).toMatch(/^file:\/\/\/doc\/Backup\/trening-\d{4}-\d{2}-\d{2}-\d{6}\.json$/); expect(FS.makeDirectoryAsync).toHaveBeenCalled();
+    expect(path).toMatch(/^file:\/\/\/doc\/Backup\/training-\d{4}-\d{2}-\d{2}-\d{6}\.json$/); expect(FS.makeDirectoryAsync).toHaveBeenCalled();
     const [p, txt] = (FS.writeAsStringAsync as jest.Mock).mock.calls[0]; expect(p).toBe(path); expect(JSON.parse(txt).format).toBe('trening-backup');
     expect((FS.deleteAsync as jest.Mock).mock.calls.map((c: any) => c[0])).toEqual([`file:///doc/Backup/${old[1]}`, `file:///doc/Backup/${old[0]}`]);
     store.getState().settings.autoBackup = false; (FS.writeAsStringAsync as jest.Mock).mockClear(); expect(await backup.autoBackup()).toBeNull(); expect(FS.writeAsStringAsync).not.toHaveBeenCalled();
@@ -82,7 +82,7 @@ describe('T-012 kopia automatyczna', () => {
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = store.getState().active!; Object.assign(a.exercises[0].sets[0], { weight: 100, reps: 5 }); store.save(a); store.toggleDone(0, 0); }); await flushAll(20);
     (FS.writeAsStringAsync as jest.Mock).mockClear();
     const { tap } = require('./app'); await tap(screen.getAllByText('Zakończ')[0]); pressAlert('Zakończyć trening?', 'Zakończ'); await flushAll(600);
-    expect((FS.writeAsStringAsync as jest.Mock).mock.calls.some((c: any) => /\/Backup\/trening-/.test(c[0]))).toBe(true);
+    expect((FS.writeAsStringAsync as jest.Mock).mock.calls.some((c: any) => /\/Backup\/training-/.test(c[0]))).toBe(true);
   });
 });
 

@@ -20,6 +20,7 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
 - runFlow: subflows/szablon-testowy.yaml
 - runFlow: subflows/start-szablonu.yaml
+- tapOn: { text: "Not now", optional: true }   # M1-035: karta „Notification at the end of rest” (czysta instalacja, zgoda nieustalona) przesuwa układ — chowamy ją przed dalszymi krokami
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 # --- omyłkowe ✓ i cofnięcie (stuknięcie ✓ jeszcze raz) ---
 - tapOn: { text: "Set 1 done.*", index: 0 }

@@ -3,7 +3,7 @@
  * roboczych, etykiety kolumny ciężaru, przerwa domyślna, opis i wynik serii, nazwy gum do wyświetlenia.
  * Zależy od: ./core, ./time, ./effort; zewnętrzne: ../seed, ../catalog.generated, ../units, ../i18n.
  */
-import { t, upper } from '../i18n';
+import { t, tIn, upper, fold, LANGS } from '../i18n';
 import { wu, wOut, KG_PER_LB, fmtW } from '../units';
 import { loadModeFor, loadMult, hasReps, hasWeight, own, type Impl, type SetKind, type Workout, type WSet, type Exercise, catalogKey } from '../seed';
 import { CABLES } from '../catalog.generated';
@@ -124,7 +124,16 @@ export const restFor = (ex: Exercise | undefined, warmup = false): number => {
 };
 /** Nazwa koloru gumy w języku interfejsu (kolory z zestawu startowego tłumaczone jak nazwy ćwiczeń z biblioteki) — runda 51: ta sama na ekranie Gumy,
  * w treningu, historii i CSV. */
-export const bandColor = (b: { color: string }) => t(b.color || '?');
+/* M1-audytor-generalny-040: kolory gum z zestawu startowego to polskie klucze słownika (seedState), tłumaczone na język interfejsu przy wyświetlaniu. Zapisy sprzed zmiany miały
+ * nazwę w języku INSTALACJI („red”, „Rot”) — rozpoznajemy ją po słownikach wszystkich języków i pokazujemy w bieżącym. Własne kolory użytkownika (inne napisy) bez zmian. */
+export const SEED_BAND_COLORS = ['czerwona', 'czarna', 'fioletowa'] as const;
+let seedColorIndex: Map<string, string> | null = null;
+/** Klucz koloru z zestawu startowego dla napisu w dowolnym języku; inny napis — bez zmian. */
+export function canonicalBandColor(c: string): string {
+  if (!seedColorIndex) { seedColorIndex = new Map(); for (const l of LANGS) for (const k of SEED_BAND_COLORS) seedColorIndex.set(fold(tIn(l, k)), k); }
+  return seedColorIndex.get(fold(c)) ?? c;
+}
+export const bandColor = (b: { color: string }) => t(canonicalBandColor(b.color) || '?');
 /** Skrót gumy do wąskiej kolumny: pierwsza litera koloru (po tłumaczeniu) + poziom; odporne na pusty kolor. */
 /* A11-02: wielka litera wg języka (tr „İ”, el bez tonosu) */
 // runda 52: emoji całe

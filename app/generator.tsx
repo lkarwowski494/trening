@@ -19,6 +19,7 @@ import { fmtNum } from '@/lib/units';
 import { SAVED_PLANS_MAX } from '@/lib/store';
 import { cancelButton } from '@/lib/confirm';
 import { weekdayLabels } from '@/lib/calendar';
+import { lacksSafety } from '@/lib/equipment';
 
 /*
  * Generator szablonów i planu tygodnia (decyzje właściciela 08.10.2026, wariant A; docs/24). Na wyraźne polecenie: założenia → podgląd → zapis po
@@ -49,7 +50,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
   const set = (p: Partial<GenInput>) => setInp(x => { const n = { ...x, ...p }; const al = GEN_SESSIONS[n.goal]; const k = (n.days ?? []).length;
     if (p.goal && p.goal !== x.goal && !al.includes(k)) { n.sessions = al.find(v => v >= k) ?? al[al.length - 1]; n.days = genProposal(n); } return n; });
   const lim = GEN_SESSIONS[inp.goal]; const ok = daysOk(inp.days ?? [], lim[0], lim[lim.length - 1]);
-  const nLoc = visibleLocations().length; const r = useMemo(() => generate(inp), [inp, rev]); /* rev: miejsca i sprzęt zmienione po „+ Dodaj miejsce” */ const warn = previewWarnings(r, inp);
+  const genPlace = visibleLocations().find(l => l.id === inp.locationId) ?? null; const nLoc = visibleLocations().length; const r = useMemo(() => generate(inp), [inp, rev]); /* rev: miejsca i sprzęt zmienione po „+ Dodaj miejsce” */ const warn = previewWarnings(r, inp);
   const unloaded = warn.find(w => w.kind === 'unloaded');
   /* uwaga pod celem przy zbyt małej liczbie dni (decyzja właściciela 09.10.2026 B, docs/18): ostrzeżenie „oneday” (1 dzień siłowy) stoi pod celem,
    * a nie w podglądzie — jedno miejsce, bez powtórzenia; przy celu „Ogólny” ma tekst dla zdrowia (WHO/PAG, docs/research/30) */
@@ -91,7 +92,7 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
     ]);
   };
   const basis = [
-    t('Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: siła rośnie przy co najmniej {n} sesjach tygodniowo). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.', { n: MIN_DAYS, h: fmtNum(SECONDARY_SHARE, 1) }),
+    t('Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.', { n: MIN_DAYS, h: fmtNum(SECONDARY_SHARE, 1) }),
     general ? t('Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. ACSM 2026 zaleca co najmniej {m}. Wytyczne USA 2018: jedna seria działa, {s}–{b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. {s} to dolna granica — uproszczenie.', { s: sets, b: GENERAL_SETS_RANGE[1], m: ACSM_MIN_SETS }) /* A11B-2: źródła rozdzielone — „jedna seria” = PAG 2018 (c8) i ACSM 2011 (c4), ACSM 2026 = co najmniej 2 (docs/research/22 7g) */
       : t('Serie: {s} na ćwiczenie — ACSM 2026 zaleca co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba {s} to uproszczenie.', { s: SETS_PER_EX, m: ACSM_MIN_SETS }),
     t('Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}) — uproszczenie, nie wynik badań.', { w: WARMUP_MIN, s: SET_WORK_SEC, r: r.avgRest, n: r.budget, k: sets, e: MIN_EXERCISES }),
@@ -140,8 +141,8 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
       {r.templates.map(tp => (
         <View key={tp.key} testID={`gen-${tp.key}`} style={{ marginBottom: 10 }}>
           <H2 style={{ marginBottom: 4 }}>{tp.name}</H2>
-          {tp.items.length ? tp.items.map(it => { const e = exById(it.exerciseId); return (
-            <Muted key={it.exerciseId} style={{ fontSize: 13 }}>{glue(it.targetSec ? t('{ex} — {n} min, umiarkowane tempo', { ex: exName(e), n: Math.round(Number(it.targetSec) / 60) }) : t('{ex} — {s} × {a}–{b}, przerwa {r}', { ex: exName(e), s: it.sets, a: it.repMin ?? '', b: it.repMax ?? '', r: fmtSec(it.restSec) })) /* A11-19: „8–12” bez złamania */}</Muted>); })
+          {tp.items.length ? tp.items.map(it => { const e = exById(it.exerciseId); const noSafe = !!e && lacksSafety(e, genPlace); return (
+            <Muted key={it.exerciseId} style={{ fontSize: 13 }}>{glue(it.targetSec ? t('{ex} — {n} min, umiarkowane tempo', { ex: exName(e), n: Math.round(Number(it.targetSec) / 60) }) : t('{ex} — {s} × {a}–{b}, przerwa {r}', { ex: exName(e), s: it.sets, a: it.repMin ?? '', b: it.repMax ?? '', r: fmtSec(it.restSec) })) /* A11-19: „8–12” bez złamania */}{noSafe ? ' · ' + t('bez asekuracji w stojakach') : ''}</Muted>); }) /* audyt M1-015: miejsce bez ramion asekuracyjnych */
             : <Muted style={{ fontSize: 13 }}>{t('Brak ćwiczeń dostępnych w tym miejscu.')}</Muted>}
         </View>))}
       <Muted style={{ fontSize: 13 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, inp.goal === 'hypertrophy' || inp.goal === 'cut') })}</Muted>

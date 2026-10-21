@@ -215,6 +215,21 @@
    "path": "tests/decisions-0310.test.tsx",
    "name": "ViShape",
    "reason": "asercja nazwy szablonu wpisanej przez użytkownika w kopii tests/fixtures/web03-backup.json (test importu tej kopii)"
+  },
+  {
+   "path": "tests/fixtures/released",
+   "name": "Assault Bike",
+   "reason": "zapis bazy z wydanego builda (tests/fixtures/released/, M1-audytor-generalny-007) — klucz katalogu w zapisanych danych użytkownika (Exercise.libKey; nazwa kanoniczna z tamtej wersji biblioteki), wygenerowany z kodu tagu, nie edytowany ręcznie"
+  },
+  {
+   "path": "tests/fixtures/released",
+   "name": "Bosu",
+   "reason": "zapis bazy z wydanego builda (tests/fixtures/released/, M1-audytor-generalny-007) — klucz katalogu w zapisanych danych użytkownika (Exercise.libKey; nazwa kanoniczna z tamtej wersji biblioteki), wygenerowany z kodu tagu, nie edytowany ręcznie"
+  },
+  {
+   "path": "tests/fixtures/released",
+   "name": "Ski Erg",
+   "reason": "zapis bazy z wydanego builda (tests/fixtures/released/, M1-audytor-generalny-007) — klucz katalogu w zapisanych danych użytkownika (Exercise.libKey; nazwa kanoniczna z tamtej wersji biblioteki), wygenerowany z kodu tagu, nie edytowany ręcznie"
   }
  ]
 }

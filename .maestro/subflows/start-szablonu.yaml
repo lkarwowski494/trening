@@ -8,3 +8,5 @@ appId: pl.lukasz.trening
 - tapOn: "From a template"
 - extendedWaitUntil: { visible: "Start: Upper A", timeout: 30000 }
 - tapOn: "Start: Upper A"
+# run 39399241275 (M1-035): karta „Notification at the end of rest” (czysta instalacja, zgoda nieustalona) wydłuża nagłówek — pola serii lądują pod klawiaturą, a „Set done” poza ekranem; chowamy ją od razu (opcjonalnie: przy zgodzie lub odmowie karty nie ma)
+- tapOn: { text: "Not now", optional: true }

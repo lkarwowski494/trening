@@ -55,7 +55,7 @@ export const CFG_KEYS = ['settings', 'templates', 'weekPlan', 'savedPlans', 'pla
     'guideSeen'] as const;
 /** Nakłada nowszy klucz „cfg” na wczytany stan (przed migrate): tylko gdy jego numer zapisu jest wyższy niż pełnego „state” — wtedy pola
  * z „cfg” są nowsze (brak pola w „cfg” = pole usunięte). Zwraca, czy nałożono. Wspólne dla startu i importu kopii odzysku. */
-export function applyCfg(raw: any, c: any): boolean {
+export function applyCfg(raw: unknown, c: unknown): boolean {
   if (!isObj(raw) || !isObj(c) || !isObj(c.data) || !Number.isFinite(c.seq) || !(c.seq > (Number(raw.saveSeq) || 0))) return false;
   for (const k of CFG_KEYS) { if (k in c.data) raw[k] = c.data[k]; else delete raw[k]; }
   return true;
@@ -95,6 +95,8 @@ async function persistRun(force = false) {
 }
 /** Wymusza natychmiastowy zapis (wyjście do tła, koniec treningu, import, reset). */
 export async function flush(): Promise<void> { await persistNow(true).catch(() => {}); await writeDrafts(); }
+/** M1-audytor-generalny-006: jak `flush`, ale błąd zapisu stanu NIE jest połykany — import musi wiedzieć, czy dane trafiły do bazy, zanim powie „Zaimportowano”. */
+export async function flushStrict(): Promise<void> { await persistNow(true); await writeDrafts(); }
 /* ---------- UX2-03 = DAT2-06 (audyt kontrolny 1, wariant A — zasada właściciela z 20:20): szkice edycji ćwiczenia i szablonu w bazie ----------
  * Osobny klucz kv (nie część stanu: bez zmiany schematu, poza kopią i „cfg”; starsza wersja go nie czyta). Treść daje lib/draft.ts (rejestracja),
  * zapis z opóźnieniem jak stan i natychmiast przy wyjściu do tła (flush). Przy starcie surowy tekst czeka na lib/draft.ts (takeSavedDrafts). */

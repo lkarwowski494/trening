@@ -11,7 +11,7 @@
  */
 import { Platform } from 'react-native';
 import type { Entitlement, EntitlementPlan } from '@/lib/access';
-import { PRODUCT_IDS, SUBSCRIPTION_PLANS, STORE_TIMING, planOfProduct } from '@/lib/products';
+import { PRODUCT_IDS, SUBSCRIPTION_PLANS, STORE_TIMING, TRIAL_DAYS, planOfProduct } from '@/lib/products';
 import type { PurchaseOutcome, StoreAdapter, StoreProduct } from '@/lib/store-adapter';
 
 /** Podzbiór expo-iap używany przez aplikację (kontrakt sprawdza tests/store-native-contract.test.ts na makiecie zgodnej z build/*.d.ts paczki). */
@@ -46,8 +46,13 @@ export function entitlementFromPurchase(p: unknown): Entitlement | null {
   const x = (p ?? {}) as Rec; const plan = typeof x.productId === 'string' ? planOfProduct(x.productId) : null; if (!plan) return null;
   const offerType = String(((x.offerIOS ?? {}) as Rec).type ?? '').toLowerCase();
   const source = String(x.ownershipTypeIOS ?? '').toLowerCase() === 'family_shared' ? 'family' : offerType === 'code' ? 'code' : 'purchase';
-  const offer = (x.offerIOS ?? {}) as Rec; const trial = offerType === 'introductory' && String(offer.paymentMode ?? '').toLowerCase() === 'free-trial';
-  return { plan, source, expiresAt: plan === 'lifetime' ? null : num(x.expirationDateIOS), revokedAt: num(x.revocationDateIOS), ...(trial ? { trial: true as const } : {}) };
+  const offer = (x.offerIOS ?? {}) as Rec; const exp = num(x.expirationDateIOS);
+  /* iOS 16.4–17.1 nie podaje offerIOS (audyt M1-017): pierwsza transakcja subskrypcji trwająca najwyżej TRIAL_DAYS (+1 dzień zapasu) to okres próbny;
+   * płatny okres to miesiąc albo rok, a odnowienie ma starszą datę transakcji pierwotnej. */
+  const bought = num(x.transactionDate); const first = num(x.originalTransactionDateIOS);
+  const inferred = offerType === '' && SUBSCRIPTION_PLANS.includes(plan) && source === 'purchase' && bought != null && first === bought && exp != null && exp > bought && exp - bought <= (TRIAL_DAYS + 1) * 86400e3;
+  const trial = inferred || (offerType === 'introductory' && String(offer.paymentMode ?? '').toLowerCase() === 'free-trial');
+  return { plan, source, expiresAt: plan === 'lifetime' ? null : exp, revokedAt: num(x.revocationDateIOS), ...(trial ? { trial: true as const } : {}) };
 }
 /** Wiersz z fetchProducts → produkt aplikacji (cena wyłącznie `displayPrice` Apple); obce identyfikatory pomijane. */
 export function productFromStore(p: unknown, trialEligible: boolean): StoreProduct | null {
@@ -63,17 +68,23 @@ const code = (e: unknown): string => String(((e ?? {}) as Rec).code ?? '');
 /**
  * Uprawnienia: aktywne z currentEntitlements + subskrypcje w karencji płatności (P7 A, Billing Grace Period). Biblioteka (pod openiap 3.6.0) przy
  * onlyIncludeActiveItemsIOS odrzuca transakcje z expirationDate w przeszłości, więc subskrybent w karencji nie pojawia się na liście — dla subskrypcji bez
- * aktywnego uprawnienia pytamy o status odnowienia i przyjmujemy gracePeriodExpirationDate jako koniec dostępu. Błąd odczytu statusu → wyjątek (`unknown`).
+ * aktywnego uprawnienia pytamy o status odnowienia i przyjmujemy gracePeriodExpirationDate jako koniec dostępu. Audyt M1-012: błąd tego zapytania
+ * pomocniczego nie unieważnia odczytu zakupów — zwracamy uprawnienia z getAvailablePurchases; dopiero gdy nie ma żadnego uprawnienia, a zapytanie
+ * rzuciło (nie wiemy, czy ktoś jest w karencji), przekazujemy wyjątek (`unknown`, nigdy `free`). Błąd samego getAvailablePurchases → wyjątek jak dotąd.
  */
 async function readEntitlements(m: IapModule): Promise<Entitlement[]> {
   const rows = await withTimeout(m.getAvailablePurchases({ onlyIncludeActiveItemsIOS: true }));
   const out = rows.map(entitlementFromPurchase).filter((e): e is Entitlement => !!e); const now = Date.now();
+  let statusError: unknown = null;
   for (const plan of SUBSCRIPTION_PLANS) {
     if (out.some(e => e.plan === plan && e.expiresAt != null && e.expiresAt > now)) continue;
-    for (const st of await withTimeout(m.subscriptionStatusIOS(PRODUCT_IDS[plan]))) {
-      const g = num(st?.renewalInfo?.gracePeriodExpirationDate); if (g != null && g > now && st.state !== 'revoked') out.push({ plan, source: 'purchase', expiresAt: g });
-    }
+    try {
+      for (const st of await withTimeout(m.subscriptionStatusIOS(PRODUCT_IDS[plan]))) {
+        const g = num(st?.renewalInfo?.gracePeriodExpirationDate); if (g != null && g > now && st.state !== 'revoked') out.push({ plan, source: 'purchase', expiresAt: g });
+      }
+    } catch (e) { statusError ??= e; }
   }
+  if (statusError != null && !out.length) throw statusError;
   return out;
 }
 

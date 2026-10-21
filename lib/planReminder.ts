@@ -77,5 +77,15 @@ export async function askReminderPermission(): Promise<void> {
     { text: t('Nie teraz'), style: 'cancel' }, { text: t('Dalej'), onPress: () => { Notifications.requestPermissionsAsync().catch(() => {}); } },
   ]);
 }
+/** M1-audytor-generalny-035: ekran treningu — zgoda na powiadomienie o końcu przerwy. Wyjaśnienie przed pierwszym pytaniem systemu to karta NA EKRANIE (nie okno modalne:
+ * start treningu nie jest blokowany, a ~30 scenariuszy E2E na czystej instalacji — gdzie zgoda jest „nieustalona” — nie musi okna zamykać); „Dalej” woła pytanie systemu,
+ * „Nie teraz” chowa kartę do końca uruchomienia aplikacji. */
+let restExplainHidden = false;
+export const restExplainDismissed = (): boolean => restExplainHidden;
+export const dismissRestExplain = (): void => { restExplainHidden = true; };
+export async function requestRestNotificationPermission(): Promise<ReminderPermission> {
+  try { await Notifications.requestPermissionsAsync(); } catch { /* błąd iOS: stan odczytamy poniżej */ }
+  return reminderPermission();
+}
 /** Tylko dla testów (nowe „uruchomienie”). */
-export function __resetReminderAsk() { askedThisRun = false; }
+export function __resetReminderAsk() { askedThisRun = false; restExplainHidden = false; }

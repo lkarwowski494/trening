@@ -93,7 +93,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByLabelText('Jak w telefonie, wybrany')).toBeTruthy(); expect(screen.getByText('Polski')).toBeTruthy(); expect(screen.getByText('Українська')).toBeTruthy();
     await tap(screen.getByText('English')); await flushAll(10);
     expect(S().settings.language).toBe('en');
-    expect(screen.getByLabelText('Language, English')).toBeTruthy(); expect(screen.getByText('Appearance')).toBeTruthy(); expect(screen.getByText('Weight unit')).toBeTruthy();
+    expect(screen.getByLabelText('Language, English')).toBeTruthy(); expect(screen.getByText('Appearance')).toBeTruthy(); expect(screen.getByText('Measurement system')).toBeTruthy();
     expect(screen.queryByText('Wygląd')).toBeNull();
     /* EN: nazwy z biblioteki po angielsku, interfejs po angielsku */
     await go('/exercises'); await flushAll(10); expect(screen.getByPlaceholderText('Search exercises…')).toBeTruthy(); /* 11.10.2026: tytuł ekranu jest w nagłówku stosu (w Jest się nie renderuje) */
@@ -110,8 +110,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByLabelText('Jasny')); expect(S().settings.theme).toBe('light'); expect(setScheme).toHaveBeenLastCalledWith('light');
     setScheme.mockRestore();
     /* jednostki kg → lb → kg */
-    await tap(screen.getByLabelText('lb')); expect(S().settings.unit).toBe('lb'); expect(screen.getByLabelText('lb').props.accessibilityState.selected).toBe(true);
-    await tap(screen.getByLabelText('kg')); expect(S().settings.unit).toBe('kg');
+    await tap(screen.getByTestId('unit-system-lb')); expect(S().settings.unit).toBe('lb'); expect(screen.getByTestId('unit-system-lb').props.accessibilityState.selected).toBe(true);
+    await tap(screen.getByTestId('unit-system-kg')); expect(S().settings.unit).toBe('kg');
     /* domyślna przerwa: limit 0–1800, puste pole nie zmienia, zapis liczby całkowitej */
     const rest = screen.getByLabelText('Domyślna przerwa (s)'); expect(rest.props.value).toBe('90');
     await type(rest, '5000'); expect(S().settings.defaultRest).toBe(1800);
@@ -579,7 +579,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(byHint('+ drop set', P)); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']); expect(screen.getByLabelText(`Seria 3D zrobiona — ${P}`)).toBeTruthy(); /* audyt 0.10 (LIVE-14): „3D” (wcześniej „4D”) */
     await swipeDelete(`Usuń serię 3D — ${P}`); expect(lastAlert()).toMatchObject({ title: 'Usunąć serię?', msg: undefined }); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(blk(P).sets.map(x => x.kind)).toEqual(['warmup', 'normal', 'normal', 'normal']); /* 07.10.2026 wieczór: potwierdzenie zawsze */
     const kindP = (n: string, k: string) => screen.getAllByLabelText(`Seria ${n}, typ: ${k}`).find(x => String(x.props.accessibilityHint).startsWith(h(n, P)))! /* A11-18: podpowiedź = kontekst + instrukcja */;
-    await tap(kindP('1', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Dodaj notatkę', 'Anuluj']);
+    await tap(kindP('1', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Dodaj notatkę', 'Usuń serię', 'Anuluj']);
     await sheet(4); expect(lastAlert()).toMatchObject({ title: 'Notatka do serii', prompt: true, def: '' });
     await act(async () => { pressAlert('Notatka do serii', 'Zapisz', '  chwyt nachwytem  '); }); await flushAll(5);
     expect(blk(P).sets[1].note).toBe('chwyt nachwytem'); expect(screen.getByText('chwyt nachwytem')).toBeTruthy();
@@ -700,7 +700,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('dobry dzień')).toBeTruthy(); expect(screen.getByText('Edytuj')).toBeTruthy(); expect(screen.queryByText('Usuń sesję')).toBeNull(); /* 07.10.2026 wieczór: usuwanie przesunięciem na liście Historii */
     expect(screen.getAllByText('SS A · ').length).toBe(3); expect(screen.getByText('chwyt nachwytem')).toBeTruthy();
     /* kopia automatyczna po treningu */
-    expect(write.mock.calls.some(([p]) => /\/Backup\/trening-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p))).toBe(true);
+    expect(write.mock.calls.some(([p]) => /\/Backup\/training-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p))).toBe(true);
     /* ekran główny: „Powtórz ostatni”, szablon z datą ostatniego treningu, bez podpowiedzi pierwszego razu */
     await go('/'); await flushAll(10);
     await tap(screen.getByLabelText('Inny trening')); await flushAll(5); /* układ B: arkusz „Inny trening” */ expect(screen.getByLabelText('Powtórz ostatni (Push A)')).toBeTruthy(); expect(screen.getByText(/^Push A · /)).toBeTruthy(); /* podpis: nazwa · data */ expect(screen.queryByText(/^Pierwszy raz\?/)).toBeNull();
@@ -858,7 +858,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await boot('/more'); await tap(screen.getByText('Kopia zapasowa (eksport / import)')); await flushAll(10);
     expect(screen.getByText(/^Kopie automatyczne znikają razem z aplikacją/)).toBeTruthy(); await openInfo('backup-auto'); expect(screen.getByText(/^Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam/)).toBeTruthy();
     await tap(screen.getByText('Eksportuj backup (plik JSON)')); await flushAll(10);
-    const [jp, json] = write.mock.calls.at(-1)!; expect(jp).toMatch(/^file:\/\/\/cache\/trening-backup-\d{4}-\d{2}-\d{2}\.json$/); expect(share).toHaveBeenLastCalledWith(jp, expect.objectContaining({ mimeType: 'application/json' }));
+    const [jp, json] = write.mock.calls.at(-1)!; expect(jp).toMatch(/^file:\/\/\/cache\/training-backup-\d{4}-\d{2}-\d{2}\.json$/); expect(share).toHaveBeenLastCalledWith(jp, expect.objectContaining({ mimeType: 'application/json' }));
     const env = JSON.parse(json); expect(env.format).toBe('trening-backup'); expect(env.schemaVersion).toBe(require('@/lib/seed').SCHEMA_VERSION);
     expect(env.state.workouts).toHaveLength(2); expect(env.state.templates.map((x: any) => x.name)).toEqual(['Push A']); expect(env.state.settings.locations).toHaveLength(4); expect(env.state.bands).toHaveLength(4);
     await tap(screen.getByText('Eksportuj historię do CSV')); await flushAll(10);
@@ -884,8 +884,8 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     write.mockClear();
     (DP.getDocumentAsync as jest.Mock).mockImplementationOnce(async () => ({ canceled: false, assets: [{ uri: 'file:///x.json' }] })); (FS.readAsStringAsync as jest.Mock).mockImplementationOnce(async () => json);
     await doImport(); expect(lastAlert().title).toBe('Zaimportowano');
-    expect(write.mock.calls.some(([p]) => /\/Backup\/trening-przed-importem-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p))).toBe(true);
-    const safety = JSON.parse(write.mock.calls.find(([p]) => /przed-importem/.test(p))![1]); expect(safety.state.templates).toHaveLength(0); /* kopia stanu sprzed importu */
+    expect(write.mock.calls.some(([p]) => /\/Backup\/training-before-import-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p))).toBe(true);
+    const safety = JSON.parse(write.mock.calls.find(([p]) => /before-import/.test(p))![1]); expect(safety.state.templates).toHaveLength(0); /* kopia stanu sprzed importu */
     expect(S().templates.map(x => x.name)).toEqual(['Push A']); expect(S().workouts).toHaveLength(2); expect(S().settings.locations).toHaveLength(4);
     expect(S().settings).toMatchObject({ language: 'pl', unit: 'kg', defaultRest: 120, showRpe: true, mainLocationId: loc('Dom testowy').id });
     const strip = (x: any) => JSON.parse(JSON.stringify(x, (k, v) => (k === 'updatedAt' || k === 'metaUpdatedAt' || k === 'saveSeq' || k === 'userTouched' ? undefined : v)));
@@ -904,7 +904,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByText('Wyczyść wszystkie dane')); expect(lastAlert().title).toBe('Wyczyścić wszystkie dane?');
     pressAlert('Wyczyścić wszystkie dane?', 'Anuluj'); await flushAll(10); expect(S().workouts).toHaveLength(2);
     await tap(screen.getByText('Wyczyść wszystkie dane')); pressAlert('Wyczyścić wszystkie dane?', 'Wyczyść'); await flushAll(50); await act(async () => { await store.flush(); }); await flushAll(10);
-    const sp = write.mock.calls.find(([p]) => /\/Backup\/trening-przed-czyszczeniem-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p)); expect(sp).toBeTruthy();
+    const sp = write.mock.calls.find(([p]) => /\/Backup\/training-before-reset-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p)); expect(sp).toBeTruthy();
     const safety = sp![1]; expect(JSON.parse(safety).state.workouts).toHaveLength(2);
     expect(S().workouts).toEqual([]); expect(S().templates).toEqual([]); expect(S().settings.locations).toEqual([]); expect(S().settings.mainLocationId).toBeNull();
     expect(S().settings).toMatchObject({ language: 'auto', unit: 'kg', defaultRest: 90, showRpe: false, theme: 'light' });

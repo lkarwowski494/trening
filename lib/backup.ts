@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
-import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, noClock, shownLoad, bandById, localISODate, flush, readRecovery, getRecovery, readRawData } from './store';
+import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, noClock, shownLoad, bandById, localISODate, flush, flushStrict, noteBackup, readRecovery, getRecovery, readRawData } from './store';
 import { t, exName } from './i18n';
 import { wOut } from './units';
 import { ensureAuthorization, ensureReadAuthorization, syncAfterFinish } from './health';
@@ -21,7 +21,8 @@ export function buildBackup(): BackupEnvelope {
  * Przy 2000 treningów to ok. 17 MB na plik. Pozostałości po przerwanym działaniu (zabita aplikacja) sprząta cleanShareLeftovers przy starcie.
  * Kopie w Plikach (Backup/ — automatyczne i bezpieczeństwa) zostają, bo to celowa pula.
  */
-const SHARE_RE = /^trening-(?:backup-|dane-|odzysk-)?\d{4}-\d{2}-\d{2}\.(?:json|csv)$/;
+/* M1-audytor-generalny-041: nazwy plików neutralne językowo (angielskie); wyrażenia rozpoznają też dawne polskie nazwy (pliki zostawione przez starsze wersje, kopie w Plikach) */
+const SHARE_RE = /^(?:trening-(?:backup-|dane-|odzysk-)?|training-(?:backup-|data-|recovery-)?)\d{4}-\d{2}-\d{2}\.(?:json|csv)$/;
 async function shareTemp(name: string, body: string, opts: { mimeType: string; dialogTitle: string }): Promise<boolean> {
   const path = `${FileSystem.cacheDirectory}${name}`;
   try {
@@ -37,17 +38,17 @@ export async function cleanShareLeftovers(): Promise<number> {
   return n;
 }
 export async function exportBackup(): Promise<void> {
-  await shareTemp(`trening-backup-${localISODate()}.json`, JSON.stringify(buildBackup()), { mimeType: 'application/json', dialogTitle: t('Backup treningów') });
+  await shareTemp(`training-backup-${localISODate()}.json`, JSON.stringify(buildBackup()), { mimeType: 'application/json', dialogTitle: t('Backup treningów') });
 }
 
 /** Runda 75 (T-012): automatyczna kopia JSON po każdym zapisanym treningu, w katalogu dokumentów aplikacji — widoczna w Plikach
  * (Na moim iPhonie → Trening → Backup) dzięki UIFileSharingEnabled. Trzymamy ostatnie AUTO_KEEP kopii; błąd zapisu nie przerywa niczego. */
 export const AUTO_DIR = 'Backup/'; export const AUTO_KEEP = 10;
-/** Kopie po treningu: trening-RRRR-MM-DD-GGMMSS[-N].json (grupa 1 = data i godzina — nazwy sortują się chronologicznie; grupa 2 = numer
+/** Kopie po treningu: training-RRRR-MM-DD-GGMMSS[-N].json (do 20.10.2026: trening-…; pula rozpoznaje oba) (grupa 1 = data i godzina — nazwy sortują się chronologicznie; grupa 2 = numer
  * kolejnej kopii z tej samej sekundy, od rundy 83b — LOW 4: wcześniej druga kopia w tej samej sekundzie nadpisywała pierwszą). */
-const AUTO_RE = /^trening-(\d{4}-\d{2}-\d{2}-\d{6})(?:-(\d{1,3}))?\.json$/;
+export const AUTO_RE = /^(?:trening|training)-(\d{4}-\d{2}-\d{2}-\d{6})(?:-(\d{1,3}))?\.json$/;
 /** Q-019: kopie bezpieczeństwa przed importem i „Wyczyść dane” — osobna pula (nie wypychają kopii po treningu i odwrotnie). */
-export const SAFETY_RE = /^trening-przed-(?:importem|czyszczeniem)-(\d{4}-\d{2}-\d{2}-\d{6})(?:-(\d{1,3}))?\.json$/;
+export const SAFETY_RE = /^(?:trening-przed-(?:importem|czyszczeniem)|training-before-(?:import|reset))-(\d{4}-\d{2}-\d{2}-\d{6})(?:-(\d{1,3}))?\.json$/;
 const stampOf = (d: Date) => `${localISODate(d)}-${String(d.getHours()).padStart(2, '0')}${String(d.getMinutes()).padStart(2, '0')}${String(d.getSeconds()).padStart(2, '0')}`;
 /** Klucz sortowania w puli: data i godzina, potem numer kopii z tej samej sekundy (bez numeru = 1). */
 const poolKey = (m: RegExpExecArray) => `${m[1]}-${(m[2] ?? '1').padStart(3, '0')}`;
@@ -80,7 +81,7 @@ async function writeKopia(prefix: string, re: RegExp, extra?: Record<string, unk
 }
 export async function autoBackup(): Promise<string | null> {
   if (!getState().settings.autoBackup || !FileSystem.documentDirectory) return null;
-  try { return await writeKopia('trening-', AUTO_RE); } catch { return null; }
+  try { const f = await writeKopia('training-', AUTO_RE); noteBackup(true); return f; } catch { noteBackup(false); return null; } /* M1-audytor-generalny-008: porażka widoczna na ekranie Trening */
 }
 /**
  * Q-019: kopia bezpieczeństwa tuż przed importem (zanim plik zastąpi dane) i przed „Wyczyść wszystkie dane” — ZAWSZE, także przy wyłączonej
@@ -97,12 +98,15 @@ export async function autoBackup(): Promise<string | null> {
 export async function safetyBackup(kind: 'import' | 'reset'): Promise<string> {
   try {
     const rec = getRecovery() ? await readRecovery() : null; /* błąd odczytu bazy → wyjątek → operacja przerwana */
-    return await writeKopia(kind === 'import' ? 'trening-przed-importem-' : 'trening-przed-czyszczeniem-', SAFETY_RE, rec != null ? { recovery: rec } : undefined);
+    return await writeKopia(kind === 'import' ? 'training-before-import-' : 'training-before-reset-', SAFETY_RE, rec != null ? { recovery: rec } : undefined);
   } catch { throw Object.assign(new Error(t('Nie udało się zapisać kopii bezpieczeństwa w Plikach — dane nie zostały zmienione.')), { safety: true }); }
 }
 /** Runda 83b (LOW 3): dopisek do potwierdzenia importu / czyszczenia, gdy kopia bezpieczeństwa obejmie też nieczytelny zapis (safetyBackup). */
 export const safetyRecoveryNote = (): string => getRecovery() ? ' ' + t('Kopia obejmie też poprzednie, nieczytelne dane.') : '';
 export const isSafetyError = (e: unknown): e is Error => e instanceof Error && (e as Error & { safety?: boolean }).safety === true;
+/** M1-audytor-generalny-006: import (kopii albo CSV), po którym zapis do bazy się nie udał — dane w aplikacji wracają do stanu sprzed importu, a wołający pokazuje błąd zamiast „Zaimportowano”. */
+export const persistFailure = (): Error => Object.assign(new Error(t('Nie udało się zapisać danych')), { persist: true });
+export const isPersistError = (e: unknown): e is Error => e instanceof Error && (e as Error & { persist?: boolean }).persist === true;
 /** Po zapisaniu treningu (przycisk „Zakończ”, pytanie o porzucony trening, cichy zapis po 6 h): Apple Health i kopia automatyczna — jedno miejsce. */
 export async function onWorkoutSaved(w: Workout): Promise<void> { await syncAfterFinish(w).catch(() => {}); await autoBackup(); /* po Zdrowiu — kopia ma już healthUUID (audyt T14) */ }
 /** Docs/12: po zapisaniu edycji treningu albo treningu wstecz — ta sama kopia automatyczna co po „Zakończ”. Apple Health świadomie
@@ -137,7 +141,7 @@ export function buildCsv(): string {
 /** Znacznik UTF-8 (BOM) na początku pliku CSV — bez niego arkusz kalkulacyjny w Windows czyta plik jako ANSI i psuje polskie litery. */
 export const CSV_BOM = '\uFEFF';
 export async function exportCsv(): Promise<void> {
-  await shareTemp(`trening-${localISODate()}.csv`, CSV_BOM + buildCsv() /* runda 75 (Q-007): BOM — arkusz kalkulacyjny czyta polskie znaki */, { mimeType: 'text/csv', dialogTitle: t('Eksport CSV') });
+  await shareTemp(`training-${localISODate()}.csv`, CSV_BOM + buildCsv() /* runda 75 (Q-007): BOM — arkusz kalkulacyjny czyta polskie znaki */, { mimeType: 'text/csv', dialogTitle: t('Eksport CSV') });
 }
 
 /** Przyjmuje kopertę (natywna ≥0.1.1) albo goły stan (web 0.3 / natywna 0.1.0). */
@@ -172,7 +176,10 @@ export async function importBackup(): Promise<boolean> {
   const uri = res.assets[0].uri; let txt: string;
   try { txt = await FileSystem.readAsStringAsync(uri); } finally { if (FileSystem.cacheDirectory && uri.startsWith(FileSystem.cacheDirectory)) await FileSystem.deleteAsync(uri, { idempotent: true }).catch(() => {}); /* SEC-09: kopia z wyboru pliku */ }
   const next = parseBackup(txt); await safetyBackup('import'); /* Q-019: dopiero gdy plik jest poprawny — przed zastąpieniem danych */
-  replaceState(next); await flush(); clearRecovery(); await recheckHealthAfterImport(); await scheduleWeighReminder(); /* runda 75: ustawienie z kopii */
+  const prev = JSON.parse(JSON.stringify(getState())) as State; /* punkt powrotu, gdy zapis do bazy się nie uda (M1-audytor-generalny-006) */
+  replaceState(next);
+  try { await flushStrict(); } catch { replaceState(prev); throw persistFailure(); } /* bez „Zaimportowano”, gdy dane nie trafiły do bazy; kopia bezpieczeństwa w Plikach już jest */
+  clearRecovery(); await recheckHealthAfterImport(); await scheduleWeighReminder(); /* runda 75: ustawienie z kopii */
   return true;
 }
 
@@ -181,12 +188,26 @@ export async function importBackup(): Promise<boolean> {
 export async function exportRawData(): Promise<boolean> {
   try {
     const txt = await readRawData(); if (!txt) return false;
-    return await shareTemp(`trening-dane-${localISODate()}.json`, txt, { mimeType: 'application/json', dialogTitle: t('Dane z nowszej wersji aplikacji') });
+    return await shareTemp(`training-data-${localISODate()}.json`, txt, { mimeType: 'application/json', dialogTitle: t('Dane z nowszej wersji aplikacji') });
   } catch { return false; }
 }
+/** M1-audytor-generalny-004: najnowsza kopia z Plików → Backup (kopie po treningu i bezpieczeństwa), udostępniona wprost z miejsca zapisu — dla ekranu błędu startu,
+ * gdy bazy nie da się otworzyć. Tylko odczyt: nic nie zmienia ani nie usuwa. false — brak kopii albo udostępnianie niedostępne. */
+export async function exportLatestCopy(): Promise<boolean> {
+  try {
+    if (!FileSystem.documentDirectory) return false;
+    const dir = FileSystem.documentDirectory + AUTO_DIR;
+    const files = (await FileSystem.readDirectoryAsync(dir)).map(f => [f, AUTO_RE.exec(f) ?? SAFETY_RE.exec(f)] as const).filter((x): x is readonly [string, RegExpExecArray] => !!x[1])
+      .sort((a, b) => (poolKey(a[1]) < poolKey(b[1]) ? 1 : poolKey(a[1]) > poolKey(b[1]) ? -1 : 0));
+    if (!files.length || !(await Sharing.isAvailableAsync())) return false;
+    await Sharing.shareAsync(dir + files[0][0], { mimeType: 'application/json', dialogTitle: t('Backup treningów') }); return true;
+  } catch { return false; }
+}
+/** Ekran błędu startu: najpierw surowe dane z bazy (exportRawData), gdy ich nie ma albo bazy nie da się otworzyć — najnowsza kopia z puli. */
+export async function exportStartData(): Promise<boolean> { return (await exportRawData()) || (await exportLatestCopy()); }
 export async function exportRecovery(): Promise<boolean> {
   try { // runda 36: każdy błąd (np. brak miejsca) = false → komunikat „Nie udało się”
     const txt = await readRecovery(); if (!txt) return false;
-    return await shareTemp(`trening-odzysk-${localISODate()}.json`, txt, { mimeType: 'application/json', dialogTitle: t('Kopia nieczytelnych danych') });
+    return await shareTemp(`training-recovery-${localISODate()}.json`, txt, { mimeType: 'application/json', dialogTitle: t('Kopia nieczytelnych danych') });
   } catch { return false; }
 }

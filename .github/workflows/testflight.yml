@@ -1,7 +1,10 @@
 # TestFlight — testy wewnętrzne (decyzja właściciela 06.10.2026, docs/15: limit Expo na buildy lokalne wyczerpany do 01.11.2026).
 # Build i podpis wyłącznie narzędziami Apple (bez Expo/EAS): xcodebuild archive z automatycznym podpisem przez klucz App Store Connect API,
 # eksport z wysyłką do App Store Connect. Tester wewnętrzny (właściciel) dostaje build w aplikacji TestFlight bez recenzji Apple.
-# Uruchamianie: Actions → „TestFlight (testy wewnętrzne)” → Run workflow (tylko ręcznie; sekrety niedostępne dla forków).
+# Uruchamianie: Actions → „TestFlight (testy wewnętrzne)” → Run workflow albo push na main (sekrety niedostępne dla forków).
+# 20.10.2026 (audyt M1-018): zadanie „bramka” — wysyłka czeka na ZIELONY przebieg e2e-ios.yml (pakiet podstawowy lub szerszy) dla TEGO SAMEGO commitu
+# (scripts/ci/bramka-e2e.sh); sama dokumentacja (docs/**, *.md) nie uruchamia ani E2E, ani TestFlight. Ścieżka awaryjna (awaria E2E, nie kodu): wejścia
+# pomin_bramke_e2e + powod — powód trafia do podsumowania przebiegu. Przebieg dowodowy bez wysyłki i bez tagu: wejście bez_wysylki (L-001).
 #
 # Sekrety repozytorium (Settings → Secrets and variables → Actions) — nigdy w repo:
 #   ASC_KEY_ID     — identyfikator klucza API (10 znaków)
@@ -13,15 +16,61 @@
 name: TestFlight (testy wewnętrzne)
 on:
   workflow_dispatch:
+    inputs:
+      bez_wysylki:
+        description: 'Przebieg dowodowy: pełna budowa, podpis i strażniki, ale BEZ wysyłki do App Store Connect i bez tagu (nie powstaje build w TestFlight)'
+        type: boolean
+        default: false
+      pomin_bramke_e2e:
+        description: 'AWARYJNIE: pomiń bramkę E2E (tylko gdy E2E zawiodło z winy maszyny, nie kodu); wymaga pola powod'
+        type: boolean
+        default: false
+      powod:
+        description: 'Powód pominięcia bramki E2E (obowiązkowy przy pomin_bramke_e2e; trafia do podsumowania przebiegu)'
+        required: false
+        default: ''
   push:
     branches: [main]
+    paths-ignore: ['docs/**', '**/*.md']
 permissions:
   contents: read
 concurrency:
   group: testflight
   cancel-in-progress: false
 jobs:
+  bramka:
+    name: bramka E2E (zielony pakiet podstawowy dla tego commitu)
+    runs-on: ubuntu-latest
+    timeout-minutes: 125
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      numer_e2e: ${{ steps.e2e.outputs.run }}  # numer zielonego przebiegu E2E — z jego artefaktu trening-sim-app zadanie „tag” robi plik wydania (M1-062)
+    steps:
+      - uses: actions/checkout@v5
+      - name: Zielony przebieg E2E na tym commicie (albo awaryjne pominięcie z powodem)
+        id: e2e
+        env:
+          GH_TOKEN: ${{ github.token }}
+          POMIN: ${{ inputs.pomin_bramke_e2e }}
+          POWOD: ${{ inputs.powod }}
+        run: |
+          if [ "$POMIN" = "true" ]; then
+            [ -n "$POWOD" ] || { echo "::error::pomin_bramke_e2e wymaga uzasadnienia w polu powod"; exit 1; }
+            echo "::warning::Bramka E2E POMINIĘTA awaryjnie"
+            { echo "## Bramka E2E pominięta awaryjnie"; echo "Commit: $GITHUB_SHA"; echo "Powód: $POWOD"; } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          bash scripts/ci/bramka-e2e.sh "$GITHUB_REPOSITORY" "$GITHUB_SHA"
   build:
+    needs: bramka
+    # 20.10.2026 (audyt M1-019): środowisko „release” — GitHub tworzy je przy pierwszym użyciu (bez reguł i sekretów); właściciel dodaje wymagane zatwierdzenie
+    # (docs/15, kroki właściciela). Zatwierdzenie dotyczy tego zadania, więc bramka E2E jest sprawdzana PRZED prośbą o zatwierdzenie.
+    environment: release
+    outputs:
+      numer: ${{ steps.nr.outputs.numer }}
+      numer_e2e: ${{ needs.bramka.outputs.numer_e2e }}
     runs-on: macos-26
     timeout-minutes: 90
     steps:
@@ -57,29 +106,24 @@ jobs:
       - name: Generate native iOS project (expo prebuild)
         run: npx expo prebuild --platform ios --no-install --clean
       - name: Numer buildu (aplikacja, widżet i zegarek ten sam CFBundleVersion)
+        id: nr
         # BUILD_BASE + numer przebiegu (wyrażenia GitHub Actions nie liczą — liczy powłoka)
         env:
           BUILD_BASE: ${{ vars.BUILD_BASE || '1000' }}
         run: |
           echo "BUILD_NUMBER=$((BUILD_BASE + GITHUB_RUN_NUMBER))" >> "$GITHUB_ENV"
+          echo "numer=$((BUILD_BASE + GITHUB_RUN_NUMBER))" >> "$GITHUB_OUTPUT"
           echo "EXPO_PUBLIC_BUILD_NUMBER=$((BUILD_BASE + GITHUB_RUN_NUMBER))" >> "$GITHUB_ENV"  # widoczny w „O aplikacji” (lib/version.ts)
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $((BUILD_BASE + GITHUB_RUN_NUMBER))" ios/Trening/Info.plist
       - name: Install pods
         run: cd ios && pod install
-      - name: Manifest prywatności (powstaje przy pod install — audyt NAT-04; ostrzeżenie, nie błąd)
+      - name: Manifest prywatności (powstaje przy pod install; audyt M1-014 — brak kategorii to BŁĄD, DiskSpace dopisywany, bo ExpoFileSystem jest prekompilowany)
         run: |
-          f=$(ls ios/*/PrivacyInfo.xcprivacy 2>/dev/null | head -1)
-          if [ -z "$f" ]; then echo "::warning::Brak PrivacyInfo.xcprivacy po pod install (docs/25 NAT-04)"; exit 0; fi
-          for c in NSPrivacyAccessedAPICategoryFileTimestamp NSPrivacyAccessedAPICategoryUserDefaults NSPrivacyAccessedAPICategorySystemBootTime NSPrivacyAccessedAPICategoryDiskSpace; do
-            grep -q "$c" "$f" || echo "::warning::$f bez kategorii $c (docs/25 NAT-04)"
-          done
-          echo "Manifest prywatności: $f"
+          set -o pipefail
+          files=$(ls ios/*/PrivacyInfo.xcprivacy 2>/dev/null) || { echo "::error::Brak PrivacyInfo.xcprivacy po pod install (docs/25 NAT-04)"; exit 1; }
+          node scripts/ci/ensure-privacy-manifest.mjs --fix $files
       - name: Platforma iOS zgodna z SDK wybranego Xcode (pobranie tylko, gdy jej brak)
         run: bash scripts/ci/ensure-ios-platform.sh
-      - name: Klucz API na dysk (dopiero po npm ci, testach, prebuild i pod install — audyt 06.10, ŚREDNIE)
-        env:
-          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
-        run: umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
       - name: Archiwum (bez podpisu — podpis dystrybucyjny dopiero przy eksporcie, 13.10.2026; uprawnienia osadza następny krok, 14.10.2026)
         # Świeży runner nie ma klucza prywatnego poprzedniego certyfikatu Apple Development, więc archiwum z podpisem automatycznym
         # tworzyło nowy certyfikat przy każdym przebiegu (limit -> build 1011). Certyfikat dystrybucyjny jest jeden na zespół (cloud-managed).
@@ -90,7 +134,17 @@ jobs:
           xcodebuild -workspace Trening.xcworkspace -scheme Trening -configuration Release -destination 'generic/platform=iOS' \
             -archivePath "$RUNNER_TEMP/Trening.xcarchive" archive \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO DEVELOPMENT_TEAM="$TEAM" CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
+            SOURCEMAP_FILE="$RUNNER_TEMP/main.jsbundle.map" \
             2>&1 | tee xcodebuild.log | xcbeautify
+      - name: Mapa źródeł JS (audyt M1-023 — bez niej stos błędu z telefonu nie ma nazw funkcji)
+        run: |
+          [ -s "$RUNNER_TEMP/main.jsbundle.map" ] || { echo "::error::Brak mapy źródeł JS ($RUNNER_TEMP/main.jsbundle.map) — SOURCEMAP_FILE nie zadziałał w fazie pakowania JS"; exit 1; }
+          ls -l "$RUNNER_TEMP/main.jsbundle.map"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mapy-zrodel-b${{ env.BUILD_NUMBER }}
+          retention-days: 90  # maksimum dla repozytorium publicznego; trwała kopia przy tagu wydania (zadanie tag)
+          path: ${{ runner.temp }}/main.jsbundle.map
       - name: Zegarek w archiwum (osadzony, ta sama wersja i numer buildu, HealthKit)
         # 0.20: cel pl.lukasz.trening.watchkitapp podpisuje się automatycznie tym samym kluczem API. Pierwszy przebieg tworzy App ID i profil zegarka —
         # jeśli Apple odmówi (HealthKit na App ID), właściciel dodaje App ID ręcznie (docs/35-zegarek-apple, latki-zegarek/README). Archiwum musi zawierać zegarek.
@@ -117,6 +171,10 @@ jobs:
           codesign --force -s - --entitlements ios/Trening/Trening.entitlements "$APP"
           bash scripts/ci/check-entitlements.sh "$APP" ios/Trening/Trening.entitlements "archiwum: aplikacja" scripts/ci/required-entitlements-app.txt
           bash scripts/ci/check-entitlements.sh "$APP/Watch/TreningWatch.app" ios/.targets/TreningWatch/generated.entitlements "archiwum: zegarek" scripts/ci/required-entitlements-watch.txt
+      - name: Klucz API na dysk (dopiero po archiwum i podpisie ad hoc, tuż przed eksportem — audyt M1-020; wcześniej audyt 06.10)
+        env:
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
       - name: Eksport do pliku .ipa (jeszcze bez wysyłki)
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
@@ -148,8 +206,11 @@ jobs:
           rc=0
           bash scripts/ci/check-entitlements.sh "$APP" ios/Trening/Trening.entitlements "ipa: aplikacja" scripts/ci/required-entitlements-app.txt || rc=1
           bash scripts/ci/check-entitlements.sh "$APP/Watch/TreningWatch.app" ios/.targets/TreningWatch/generated.entitlements "ipa: zegarek" scripts/ci/required-entitlements-watch.txt || rc=1
+          # audyt M1-014: manifest prywatności w gotowej aplikacji (nie tylko w katalogu projektu) ma wszystkie kategorie
+          node scripts/ci/ensure-privacy-manifest.mjs --check "$APP/PrivacyInfo.xcprivacy" || rc=1
           exit $rc
       - name: Wysyłka do App Store Connect
+        if: ${{ inputs.bez_wysylki != true }}
         env:
           ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
@@ -186,16 +247,40 @@ jobs:
             export.log
   tag:
     needs: build
+    if: ${{ inputs.bez_wysylki != true }}  # przebieg dowodowy nie wysyła builda, więc nie tworzy tagu
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: read  # pobranie artefaktu trening-sim-app z zielonego przebiegu E2E tego commitu
     steps:
       - uses: actions/checkout@v5
-      - name: Tag wydania
+      - uses: actions/download-artifact@v4
+        with:
+          name: mapy-zrodel-b${{ needs.build.outputs.numer }}
+          path: mapy
+      - name: Tag wydania i mapa źródeł JS przy tagu (audyt M1-023 — artefakt wygasa po 90 dniach, plik wydania nie)
         env:
           BUILD_BASE: ${{ vars.BUILD_BASE || '1000' }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           V=$(node -p "require('./app.json').expo.version")
           T="v$V-b$((BUILD_BASE + GITHUB_RUN_NUMBER))"
           git tag "$T" && git push origin "$T"
+          gh release create "$T" --verify-tag --latest=false --title "$T" --notes "Mapa źródeł JS buildu (symbolikacja stosu błędu: npx metro-symbolicate main.jsbundle.map < stos.txt)." mapy/main.jsbundle.map
           echo "## Tag $T" >> "$GITHUB_STEP_SUMMARY"
+          echo "T=$T" >> "$GITHUB_ENV"
+      - name: Plik wydania Trening-sim.zip — build symulatora z zielonego przebiegu E2E (poprzednia wersja dla testu aktualizacji; M1-062, DEC-27)
+        # Build symulatora jest bez podpisu i bez sekretów (publiczne repozytorium). Artefakt przebiegu żyje 1 dzień, plik wydania — bez limitu.
+        # Brak numeru przebiegu = bramka pominięta awaryjnie (ostrzeżenie); numer jest, a pliku nie ma = błąd (build w TestFlight już wysłany, tag zostaje).
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN: ${{ needs.build.outputs.numer_e2e }}
+        run: |
+          if [ -z "$RUN" ]; then
+            echo "::warning::Wydanie $T bez pliku Trening-sim.zip (bramka E2E pominięta awaryjnie) — następny test aktualizacji w E2E zakończy się błędem do czasu wydania z plikiem"
+            echo "Wydanie bez Trening-sim.zip (bramka pominięta)." >> "$GITHUB_STEP_SUMMARY"; exit 0
+          fi
+          gh run download "$RUN" --repo "$GITHUB_REPOSITORY" -n trening-sim-app -D sim || { echo "::error::Brak artefaktu trening-sim-app w przebiegu E2E #$RUN (wygasł albo przebieg użył aplikacji z innego przebiegu) — wydanie $T bez Trening-sim.zip"; exit 1; }
+          test -s sim/Trening-sim.zip || { echo "::error::Artefakt trening-sim-app bez Trening-sim.zip"; exit 1; }
+          gh release upload "$T" sim/Trening-sim.zip --repo "$GITHUB_REPOSITORY"
+          echo "Plik wydania: Trening-sim.zip z przebiegu E2E #$RUN" >> "$GITHUB_STEP_SUMMARY"

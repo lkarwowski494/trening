@@ -164,6 +164,7 @@ function visibleHelperTexts(): Lit[] {
 const INFO_MAX_CHARS = 100;
 /** Teksty, które zostają na wierzchu mimo długości — tylko z powodem (subskrypcja, zdrowie, utrata danych, błędy, prywatność, pusty stan z działaniem). Klucz = początek tekstu. */
 const LONG_OK: Record<string, string> = {
+  'Na koniec przerwy telefon wyśle powiadomienie': 'wyjaśnienie przed systemowym oknem zgody na powiadomienia (M1-035): musi być widoczne przed prośbą, nie pod ⓘ',
   'Aplikacja nie udziela porad medycznych.': 'zastrzeżenie zdrowotne (MedicalNote) — zasada właściciela: zdrowie zawsze na wierzchu',
   'Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi': 'ostrzeżenie: zmiana działa wstecz na dane',
   'Nie zapisano jeszcze w Apple Health': 'stan zapisu do Zdrowia (dane, ponowienie) — błąd/stan wymagający uwagi',

@@ -16,6 +16,7 @@ import { PlanReminderSync } from '@/components/PlanReminderSync';
 /** 11.10.2026 (docs/22, wariant A): Trening · Plan · Postępy · Więcej; Szablony i Ćwiczenia są pod Więcej. */
 const TAB_COUNT = 4;
 const tabA11y = (title: string, i: number, extra?: string) => [title, extra, tr('zakładka, {i} z {n}', { i, n: TAB_COUNT })].filter(Boolean).join(', ');
+// eslint-disable-next-line react/display-name -- funkcja renderująca ikonę zakładki (render prop), nazwa komponentu to TabIcon
 const icon = (name: TabIconName) => ({ color }: { color: ColorValue }) => <TabIcon name={name} color={color} />;
 const label = ({ color, position, children }: { focused: boolean; color: ColorValue; position: 'beside-icon' | 'below-icon'; children: string }) => <TabLabel color={color} position={position}>{children}</TabLabel>;
 

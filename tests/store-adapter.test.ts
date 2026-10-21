@@ -7,7 +7,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { ENTITLEMENT_PLANS, PAYWALL, entitlementActive } from '@/lib/access';
-import { PRODUCT_IDS, PLAN_ORDER, SUBSCRIPTION_PLANS, SUBSCRIPTION_GROUP_NAME, TRIAL_MONTHS, planOfProduct, isSubscriptionPlan, PRIVACY_URL, TERMS_URL, PAYWALL_MOMENTS,
+import { PRODUCT_IDS, PLAN_ORDER, SUBSCRIPTION_PLANS, SUBSCRIPTION_GROUP_NAME, TRIAL_DAYS, planOfProduct, isSubscriptionPlan, PRIVACY_URL, TERMS_URL, PAYWALL_MOMENTS,
   STORE_TIMING, E2E_FREE_LIVE_PER_MONTH, isFakeStoreBuild } from '@/lib/products';
 import { getStoreAdapter, setStoreAdapter, resetStoreAdapterForTests, E2E_START_ENTITLEMENTS } from '@/lib/store-adapter';
 import { createFakeStore, FAKE_PRICES } from '@/lib/store-fake';
@@ -34,7 +34,7 @@ describe('stałe w jednym miejscu (lib/products.ts)', () => {
     expect([...PLAN_ORDER].sort()).toEqual([...ENTITLEMENT_PLANS].sort()); expect(PLAN_ORDER[0]).toBe('yearly');
     expect([...SUBSCRIPTION_PLANS].sort()).toEqual(['monthly', 'yearly']);
     for (const p of ENTITLEMENT_PLANS) expect(isSubscriptionPlan(p)).toBe(p !== 'lifetime');
-    expect(TRIAL_MONTHS).toBe(1); expect(SUBSCRIPTION_GROUP_NAME).toBe('Pełna wersja');
+    expect(TRIAL_DAYS).toBe(14); expect(SUBSCRIPTION_GROUP_NAME).toBe('Pełna wersja');
   });
   test('decyzje właściciela 12.10.2026 jako stałe: P2 B (ekran po pierwszym treningu), P5 A (2 dni), liczby czasowe', () => {
     expect(PAYWALL_MOMENTS).toEqual({ AFTER_FIRST_WORKOUT: true, TRIAL_END_REMINDER_DAYS: 2 });
@@ -45,11 +45,11 @@ describe('stałe w jednym miejscu (lib/products.ts)', () => {
     expect(read('site/privacy.html').length).toBeGreaterThan(500);
     if (PAYWALL.ENABLED) { expect(TERMS_URL).toBeTruthy(); expect(PRIVACY_URL).toBeTruthy(); }
   });
-  test('plik store/Trening.storekit: te same trzy identyfikatory, próba 1 miesiąc w obu subskrypcjach, dożywotni bez okresu, Chmura rodzinna we wszystkich', () => {
+  test('plik store/Trening.storekit: te same trzy identyfikatory, próba 14 dni (P2W) w obu subskrypcjach, dożywotni bez okresu, Chmura rodzinna we wszystkich', () => {
     const f = JSON.parse(read('store/Trening.storekit')); const subs = f.subscriptionGroups.flatMap((g: any) => g.subscriptions); const prods = f.products;
     expect([...subs.map((s: any) => s.productID), ...prods.map((p: any) => p.productID)].sort()).toEqual(Object.values(PRODUCT_IDS).sort());
     expect(subs.find((s: any) => s.productID === PRODUCT_IDS.monthly).recurringSubscriptionPeriod).toBe('P1M'); expect(subs.find((s: any) => s.productID === PRODUCT_IDS.yearly).recurringSubscriptionPeriod).toBe('P1Y');
-    for (const s of subs) { expect(s.introductoryOffer).toMatchObject({ paymentMode: 'free', subscriptionPeriod: 'P' + TRIAL_MONTHS + 'M', numberOfPeriods: 1 }); expect(s.familyShareable).toBe(true); expect(s.subscriptionGroupID).toBe(f.subscriptionGroups[0].id); }
+    for (const s of subs) { expect(s.introductoryOffer).toMatchObject({ paymentMode: 'free', subscriptionPeriod: 'P' + TRIAL_DAYS / 7 + 'W', numberOfPeriods: 1 }); expect(s.familyShareable).toBe(true); expect(s.subscriptionGroupID).toBe(f.subscriptionGroups[0].id); }
     expect(prods[0]).toMatchObject({ productID: PRODUCT_IDS.lifetime, type: 'NonConsumable', familyShareable: true }); expect(f.subscriptionGroups[0].name).toBe(SUBSCRIPTION_GROUP_NAME);
   });
   test('ceny nie występują w kodzie ekranów: ani kwoty z walutą, ani „zł”/„$” w tekstach ekranu zakupu i karty (poza sztucznym sklepem)', () => {
@@ -114,7 +114,7 @@ describe('sztuczny sklep', () => {
       const f = createFakeStore(); let n = 0; f.onTransaction(() => { n++; });
       expect(await f.purchase(plan)).toEqual({ status: 'success' }); const e = (await f.currentEntitlements())[0];
       expect(e.plan).toBe(plan); expect(entitlementActive(e, now)).toBe(true); expect(n).toBe(1);
-      if (plan === 'lifetime') expect(e.expiresAt).toBeNull(); else { expect(e.expiresAt).toBe(now + 30 * DAY); expect(e.trial).toBe(true); }
+      if (plan === 'lifetime') expect(e.expiresAt).toBeNull(); else { expect(e.expiresAt).toBe(now + TRIAL_DAYS * DAY); expect(e.trial).toBe(true); }
     }
     const f = createFakeStore(); await f.purchase('monthly'); await f.purchase('yearly'); const e = (await f.currentEntitlements()); expect(e).toHaveLength(1); expect(e[0]).toMatchObject({ plan: 'yearly', expiresAt: now + 365 * DAY }); expect(e[0].trial).toBeUndefined();
   });

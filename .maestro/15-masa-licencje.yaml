@@ -4,7 +4,7 @@
 #   "More, tab.*" / "Progress, tab.*" ← zakładki Więcej / Postępy (etykieta „{label}, tab, {i} of 4”)
 #   "Body weight — measurements"      ← przycisk 'Masa ciała — pomiary' w sekcji 'Masa ciała' zakładki Postępy (app/(tabs)/progress.tsx)
 #   "80 kg · measured .*"             ← '{v} · pomiar z {d}' — ostatni pomiar w tej sekcji
-#   "Weight unit" / "kg"              ← 'Jednostka ciężaru' / segment kg (app/more/settings.tsx) — symulator en-US startuje w lb (H4, audyt 0.10), E2E 89
+#   "Measurement system" / "kg"              ← 'System miar' / segment kg (app/more/settings.tsx) — symulator en-US startuje w lb (H4, audyt 0.10), E2E 89
 #   "Body weight \(kg\)"              ← pole 'Masa ciała ({u})' (app/more/bodymass.tsx)
 #   "Save measurement" / "Measurements" ← 'Zapisz pomiar' / 'Pomiary'
 #   "80 kg, .*"                       ← wiersz pomiaru (Item: tytuł „80 kg”, opis = data)
@@ -27,11 +27,11 @@ name: Masa ciała z datą i licencje open source
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }
 - tapOn: "Settings"
 # E2E 89: jednostka z regionu (H4) — symulator en-US startuje w lb („Body weight (lb)”); scenariusz sprawdza kg
-- extendedWaitUntil: { visible: "Weight unit", timeout: 30000 }
-- tapOn: "kg"
+- extendedWaitUntil: { visible: "Measurement system", timeout: 30000 }
+- tapOn: { id: "unit-system-kg" }
 - tapOn: "Back"  # jednostka ustawiona; pomiary wpisuje się teraz w Postępach (P5 A)
 - tapOn: "Progress, tab.*"
-- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000 }
+- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Body weight — measurements"
 - extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }
 # E2E 105: na wolnym symulatorze ginął znak „80” (38002403800, 38009269888 — zapisane 0, okno „must be greater than zero”; 38014484054 — 8 kg;

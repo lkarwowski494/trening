@@ -9,4 +9,4 @@ appId: pl.lukasz.trening
 - tapOn: { text: "On My iPhone", optional: true }
 - tapOn: { text: "Trening", optional: true }
 - tapOn: { text: "Backup", optional: true }
-- tapOn: { text: "trening-2.*", index: 0 }
+- tapOn: { text: "training-2.*", index: 0 }

@@ -3,13 +3,13 @@
  *  1. plik błędny/obcy → ImportError przed jakąkolwiek zmianą stanu;
  *  2. kandydat = kopia JSON bieżącego stanu + nowe wpisy, przepuszczona przez `migrate` — wyjątek = zero zmian;
  *  3. kopia bezpieczeństwa w Plikach (safetyBackup, ta sama pula co przy imporcie kopii) PRZED zapisem; nieudana = import przerwany;
- *  4. zapis jedną zmianą stanu (push + save + flush); istniejące treningi, szablony, ustawienia i trening w toku nie są ruszane;
+ *  4. zapis jedną zmianą stanu (push + save + flushStrict); nieudany zapis do bazy cofa dopisane wpisy i rzuca błąd zapisu (M1-audytor-generalny-006); istniejące treningi, szablony, ustawienia i trening w toku nie są ruszane;
  *  5. idempotencja: ten sam plik drugi raz → wszystkie treningi są duplikatami (ten sam czas startu), 0 nowych ćwiczeń.
  */
 import * as FileSystem from 'expo-file-system/legacy';
 import * as DocumentPicker from 'expo-document-picker';
-import { getState, save, flush, migrate } from './store';
-import { safetyBackup } from './backup';
+import { getState, save, flushStrict, migrate } from './store';
+import { safetyBackup, persistFailure } from './backup';
 import { buildImport, parseImport, ImportError, IMPORT_MAX_CHARS, type ImportOptions, type ParsedFile } from './csvparse';
 
 /** Wybór pliku i odczyt (tylko odczyt — stan bez zmian). null = anulowano wybór. Rzuca ImportError. */
@@ -34,7 +34,10 @@ export async function commitCsvImport(file: ParsedFile, opts: ImportOptions): Pr
   const newW = next.workouts.filter(w => wIds.has(w.id)), newE = next.exercises.filter(e => eIds.has(e.id));
   if (newW.length !== plan.workouts.length || newE.length !== plan.exercises.length) throw new Error('import: migrate odrzuciło część danych');
   await safetyBackup('import'); /* Q-019: nieudana kopia przerywa import (dane bez zmian) */
+  const prevE = st.exercises.slice(), prevW = st.workouts.slice(), prevTouched = st.userTouched;
   st.exercises.push(...newE); st.workouts.push(...newW); st.workouts.sort((x, y) => x.startedAt - y.startedAt); st.userTouched = true;
-  save(); await flush();
+  save();
+  try { await flushStrict(); }
+  catch { st.exercises.splice(0, st.exercises.length, ...prevE); st.workouts.splice(0, st.workouts.length, ...prevW); st.userTouched = prevTouched; save(); throw persistFailure(); }
   return { workouts: newW.length, exercises: newE.length };
 }

@@ -8,7 +8,7 @@
 #   "More information: Workout view"                            ← etykieta VoiceOver 'Więcej informacji: {name}' (stała, także po rozwinięciu)
 #   "Focused: the current set in big numbers.*"                 ← 'Skupiony: bieżąca seria dużymi cyframi i talerze na stronę nad listą ćwiczeń.' (opis, który zszedł z wierzchu)
 #   "The line in “This week” and in Progress.*"                 ← 'Kreska w „Ten tydzień” i w Postępach. Automatycznie: …' (ACSM 2026 — źródło zostaje w tekście pod ⓘ)
-#   "At the start of the rest the phone announces.*"            ← opis pod ⓘ pola 'Zapowiedzi głosowe'; voice-mode-headphones ← opcja wyboru (selected)
+#   "At the start of the rest the phone announces.*"            ← opis pod ⓘ pola 'Zapowiedzi głosowe'; voice-mode-off ← opcja wyboru (selected; DEC-05: nowa instalacja domyślnie Off)
 #   "Dark" / "Light" / "Appearance"                              ← segmenty i pole Wygląd (app/more/settings.tsx)
 appId: pl.lukasz.trening
 name: Objaśnienia pod ⓘ — rozwijanie, zwijanie, ciemny wygląd
@@ -43,7 +43,7 @@ name: Objaśnienia pod ⓘ — rozwijanie, zwijanie, ciemny wygląd
 - assertNotVisible: "At the start of the rest the phone announces.*"
 - tapOn: { id: "info-voice-mode" }
 - assertVisible: "At the start of the rest the phone announces.*"
-- assertVisible: { id: "voice-mode-headphones", selected: true }
+- assertVisible: { id: "voice-mode-off", selected: true }
 - tapOn: { id: "info-voice-mode" }
 - assertNotVisible: "At the start of the rest the phone announces.*"
 # --- ciemny wygląd (JM-05): ⓘ i ramka tekstu czytelne, rozwijanie działa tak samo ---
