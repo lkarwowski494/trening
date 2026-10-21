@@ -9,10 +9,20 @@ const files = (d: string): string[] => readdirSync(d).flatMap(n => {
   return statSync(p).isDirectory() ? (n === 'locales' || n === 'cues' || n === 'figures' ? [] : files(p)) : /\.tsx?$/.test(n) && !/generated|i18n/.test(n) ? [p] : [];
 });
 
+/* Stryker (nightly.yml, mutacje) instrumentuje lib/: id mutantów to liczby w cudzysłowie, np. stryMutAct_9fa48("1800") — nie są literałami kodu
+   (run 39537208004: „plan.ts:80”). Wycinamy wywołania instrumentacji przed szukaniem. */
+const bezInstrumentacji = (l: string) => l.replace(/\bstry(MutAct|Cov)_\w+\(\s*(?:"\d+"\s*,?\s*)+\)?/g, '');
+
 describe('limity w jednym miejscu (M1-053)', () => {
+  test('instrumentacja Strykera nie daje fałszywych trafień, a prawdziwy literał zostaje', () => {
+    const wzor = /\b(1800|86400|86_400|1_800)\b/;
+    expect(bezInstrumentacji('if (stryMutAct_9fa48("1800")) {} else { stryCov_9fa48("1800", "1801"); x = 5; }')).not.toMatch(wzor);
+    expect(bezInstrumentacji('const t = stryMutAct_9fa48("12") ? 0 : 1800;')).toMatch(wzor);
+    expect(bezInstrumentacji('const d = 86400;')).toMatch(wzor);
+  });
   test('literały 1800 i 86400 występują w lib/ tylko w lib/state/util.ts', () => {
     const trafienia = files(LIB).filter(f => !f.endsWith('state/util.ts'))
-      .flatMap(f => readFileSync(f, 'utf8').split('\n').map((l, i) => [relative(LIB, f) + ':' + (i + 1), l.replace(/\/\*.*?\*\/|\/\/.*$/g, '')] as const))
+      .flatMap(f => readFileSync(f, 'utf8').split('\n').map((l, i) => [relative(LIB, f) + ':' + (i + 1), bezInstrumentacji(l).replace(/\/\*.*?\*\/|\/\/.*$/g, '')] as const))
       .filter(([, l]) => /\b(1800|86400|86_400|1_800)\b/.test(l)).map(([w]) => w);
     expect(trafienia).toEqual([]);
   });

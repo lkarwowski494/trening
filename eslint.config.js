@@ -5,7 +5,7 @@ module.exports = [
   ...expoConfig,
   {
     ignores: [
-      'node_modules/**', '.expo/**', 'dist/**', 'ios/**', 'android/**', 'coverage/**', '.stryker-tmp/**',
+      'node_modules/**', '.claude/**', '.expo/**', 'dist/**', 'ios/**', 'android/**', 'coverage/**', '.stryker-tmp/**',
       'site/**', 'store/**', 'scripts/**', 'tests/**', 'watch-fixtures/**', 'targets/**', 'modules/**',
     ],
   },

@@ -98,7 +98,8 @@
     ],
     "globalSetup": "<rootDir>/tests/global-setup.js",
     "modulePathIgnorePatterns": [
-      "<rootDir>/.stryker-tmp"
+      "<rootDir>/.stryker-tmp",
+      "<rootDir>/.claude/worktrees"
     ],
     "workerIdleMemoryLimit": "1500MB"
   }
