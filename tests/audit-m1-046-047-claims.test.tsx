@@ -35,7 +35,7 @@ describe('046: krok podpowiedzi to konwencja', () => {
 
 describe('047: brzmienie zgodne ze źródłem', () => {
   test('zdanie R1 (generator i własny plan): bez „siła rośnie przy”; mówi o braku dowodu dawka–odpowiedź', () => {
-    for (const f of ['app/generator.tsx', 'components/OwnPlan.tsx']) { const s = read(f); expect(s).not.toMatch(/siła rośnie przy/); expect(s).toMatch(/brak dowodów na zależność dawka–odpowiedź/); }
+    for (const f of ['app/generator.tsx', 'components/OwnPlan.tsx']) { const s = read(f); expect(s).not.toMatch(/siła rośnie przy/); expect(s).toMatch(/za mało dowodów, by stwierdzić zależność dawka–odpowiedź/); }
     expect(Object.keys(EN).some(k => /siła rośnie przy/.test(k))).toBe(false);
   });
   test('opis celu „Siła” i ostrzeżenie loadcap podają granicę z HEAVY_PCT (jedna stała, bez liczby wpisanej obok)', () => {

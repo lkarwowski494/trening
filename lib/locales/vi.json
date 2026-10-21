@@ -1693,7 +1693,7 @@
  "Ostatnia udana kopia: {date}": "Bản sao lưu thành công gần nhất: {date}",
  "Asekuracja": "Hỗ trợ và an toàn",
  "bez asekuracji w stojakach": "giá không có tay đỡ an toàn",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Bài tập với thanh tạ trên người hoặc trên vai: đặt tay đỡ an toàn trên giá sao cho bạn có thể đặt thanh tạ xuống an toàn, hoặc tập cùng người hỗ trợ.",
+ "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Bài tập với thanh tạ đặt trên thân mình hoặc nâng qua đầu và mặt: nên có biện pháp bảo hộ — giá có tay đỡ an toàn và người hỗ trợ.",
  "Powiadomienie na koniec przerwy": "Thông báo khi hết thời gian nghỉ",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Khi hết thời gian nghỉ, điện thoại sẽ gửi thông báo — kể cả khi màn hình đang khóa. Cần có quyền thông báo — iOS sẽ hỏi sau khi bạn bấm “Tiếp”.",
  "Zmień w ustawieniach iOS": "Đổi trong Cài đặt iOS",
@@ -1713,6 +1713,6 @@
  "mili": "dặm",
  "jard|jardy|jardów": "yard",
  "jarda": "yard",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Mỗi nhóm cơ chính ít nhất {n} ngày mỗi tuần (WHO 2020 — khuyến nghị cho sức khỏe; ACSM 2026: tần suất ảnh hưởng đến sức mạnh, nhưng chưa có bằng chứng về quan hệ liều–đáp ứng, và khi khối lượng bằng nhau thì chênh lệch giảm). Ngày mà nhóm cơ chỉ hỗ trợ được tính là {h} — đơn giản hóa (phương pháp từ phân tích tổng hợp của Pelland và cs. 2026). Cách chia buổi (toàn thân, trên/dưới) là quy ước — với cùng số hiệp sẽ cho kết quả tương tự.",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Mỗi nhóm cơ chính ít nhất {n} ngày mỗi tuần (WHO 2020 — khuyến nghị cho sức khỏe; ACSM 2026: tần suất ảnh hưởng đến sức mạnh, nhưng chưa đủ bằng chứng để xác lập quan hệ liều–đáp ứng, và khi khối lượng bằng nhau thì chênh lệch giảm). Ngày mà nhóm cơ chỉ hỗ trợ được tính là {h} — đơn giản hóa (phương pháp từ phân tích tổng hợp của Pelland và cs. 2026). Cách chia buổi (toàn thân, trên/dưới) là quy ước — với cùng số hiệp sẽ cho kết quả tương tự.",
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Mức tăng (vd +2,5 kg) là quy ước, không phải kết quả nghiên cứu."
 }

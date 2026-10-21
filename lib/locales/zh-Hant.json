@@ -1693,7 +1693,7 @@
  "Ostatnia udana kopia: {date}": "上次成功的備份：{date}",
  "Asekuracja": "安全防護",
  "bez asekuracji w stojakach": "架上沒有安全桿",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "槓鈴在身體上方或扛在肩上的動作：請在架上調好安全桿，讓你能安全放下槓鈴，或請保護者在旁協助。",
+ "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "槓鈴置於軀幹上，或在頭部與臉部上方移動的動作：建議做好安全防護 — 配有安全桿的架子，以及一位保護者。",
  "Powiadomienie na koniec przerwy": "休息結束通知",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "休息結束時，即使螢幕鎖定，手機也會發出通知。需要允許通知 — 按「繼續」後 iOS 會詢問。",
  "Zmień w ustawieniach iOS": "在 iOS「設定」中更改",
@@ -1713,6 +1713,6 @@
  "mili": "英里",
  "jard|jardy|jardów": "碼",
  "jarda": "碼",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "每個主要肌群每週至少 {n} 天（WHO 2020 — 健康建議；ACSM 2026：頻率會影響力量，但沒有劑量反應關係的證據，訓練量相同時差異會縮小）。肌群只做輔助的那天算作 {h} — 簡化（方法來自 Pelland 等人 2026 的統合分析）。訓練分法（全身、上肢／下肢）是慣例 — 組數相同時效果相近。",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "每個主要肌群每週至少 {n} 天（WHO 2020 — 健康建議；ACSM 2026：頻率會影響力量，但證據不足，無法確立劑量反應關係，訓練量相同時差異會縮小）。肌群只做輔助的那天算作 {h} — 簡化（方法來自 Pelland 等人 2026 的統合分析）。訓練分法（全身、上肢／下肢）是慣例 — 組數相同時效果相近。",
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "調整幅度（例如 +2.5 kg）是慣例，不是研究結果。"
 }

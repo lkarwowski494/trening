@@ -13,6 +13,7 @@
 #   "OK"                             ← 'OK' (trzeci przycisk okna „Zapisano” — zostaje na generatorze; audyt kontrolny 1, UI2-06)
 #   "Not now"                        ← 'Nie teraz' (okno zgody na przypomnienie — X-11: pierwszy plan z każdej drogi, components/PlanReminderSync)
 #   "Guide", "Read: .*", "Weekly plan and Calendar, unread", "Show: Weekly plan and Calendar" ← app/guide.tsx (przewodnik, 08.10.2026)
+#   ".*not enough evidence to establish a dose-response relationship.*" ← zdanie R1 pod ⓘ „Na czym to oparte” ('…za mało dowodów, by stwierdzić zależność dawka–odpowiedź…'; app/generator.tsx)
 #   ".*no safety arms in the rack.*"  ← 'bez asekuracji w stojakach' (dopisek przy ćwiczeniu z zaleceniem asekuracji w miejscu bez ramion; audyt M1-015)
 #   "day-N" (id)                     ← components/DayPicker.tsx: testID przycisku dnia (pon = 0); wybór dni (decyzja 09.10.2026 B)
 #   "Choose training days: 1 to 6\." ← 'Wybierz dni treningowe: od {a} do {b}.' (liczba dni poza zakresem, tu 0 — bez podglądu)
@@ -82,6 +83,7 @@ name: Generator szablonów i planu
 - scrollUntilVisible: { element: "What this is based on", direction: DOWN, timeout: 30000 }
 - tapOn: { id: "info-gen-basis" }  # 14.10.2026: „Na czym to oparte” — źródła pod ⓘ (treść bez zmian)
 - assertVisible: ".*Each major muscle group on at least.*"
+- assertVisible: ".*not enough evidence to establish a dose-response relationship.*"  # 21.10.2026: ACSM 2026 „za mało dowodów” (przegląd badacza), nie „brak dowodów”
 - takeScreenshot: 71-generator-zrodla
 - scrollUntilVisible: { element: "Save templates and plan", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Save templates and plan"

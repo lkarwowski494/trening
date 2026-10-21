@@ -1693,7 +1693,7 @@
  "Ostatnia udana kopia: {date}": "最後に成功したバックアップ：{date}",
  "Asekuracja": "補助・安全対策",
  "bez asekuracji w stojakach": "ラックにセーフティーバーなし",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "バーベルを体の上に構える、または肩に担ぐ種目：バーを安全に下ろせるようラックのセーフティーバーを調整するか、補助者と一緒に行ってください。",
+ "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "バーベルを体幹に載せる、または頭や顔の上で動かす種目：安全対策を推奨します — セーフティーバー付きのラックと補助者。",
  "Powiadomienie na koniec przerwy": "休憩終了の通知",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "休憩が終わると、画面がロック中でも通知が届きます。通知の許可が必要です — 「続ける」の後に iOS が許可を求めます。",
  "Zmień w ustawieniach iOS": "iOS の「設定」で変更",
@@ -1713,6 +1713,6 @@
  "mili": "マイル",
  "jard|jardy|jardów": "ヤード",
  "jarda": "ヤード",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "主な部位はそれぞれ週に少なくとも{n}日（WHO 2020 — 健康のための推奨；ACSM 2026：頻度は筋力に影響しますが、用量反応関係を示す証拠はなく、総量が同じなら差は小さくなります）。部位が補助的にしか働かない日は {h} と数えます — 簡略化（Pelland ほか 2026年のメタアナリシスの方法）。セッションの分け方（全身、上半身／下半身）は慣例です — セット数が同じなら効果は同程度です。",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "主な部位はそれぞれ週に少なくとも{n}日（WHO 2020 — 健康のための推奨；ACSM 2026：頻度は筋力に影響しますが、用量反応関係を示すには証拠が不十分で、総量が同じなら差は小さくなります）。部位が補助的にしか働かない日は {h} と数えます — 簡略化（Pelland ほか 2026年のメタアナリシスの方法）。セッションの分け方（全身、上半身／下半身）は慣例です — セット数が同じなら効果は同程度です。",
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "刻み幅（例：+2.5 kg）は慣習であり、研究結果ではありません。"
 }

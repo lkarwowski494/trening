@@ -1693,7 +1693,7 @@
  "Ostatnia udana kopia: {date}": "Последно успешно копие: {date}",
  "Asekuracja": "Подсигуряване и безопасност",
  "bez asekuracji w stojakach": "без предпазни опори в стойката",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Упражнение с щанга над тялото или на раменете: поставете предпазните опори в стойката така, че щангата да може да се остави безопасно, или тренирайте с партньор, който да ви подсигурява.",
+ "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Упражнение с щанга върху торса или над главата и лицето: препоръчва се подсигуряване — стойка с предпазни опори и партньор, който подсигурява.",
  "Powiadomienie na koniec przerwy": "Известие в края на почивката",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "В края на почивката телефонът ще изпрати известие — и при заключен екран. Нужно е разрешение за известия — iOS ще го поиска след „Напред“.",
  "Zmień w ustawieniach iOS": "Промяна в Настройки на iOS",
@@ -1713,6 +1713,6 @@
  "mili": "мили",
  "jard|jardy|jardów": "ярд|ярда",
  "jarda": "ярда",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Всяка основна мускулна група поне {n} дни седмично (СЗО 2020 — препоръка за здраве; ACSM 2026: честотата влияе на силата, но няма доказателства за зависимост доза–ефект, а при равен обем разликата намалява). Ден, в който групата само помага, се брои за {h} — опростяване (метод от метаанализа на Pelland и съавт. 2026). Разделението (цяло тяло, горна/долна част) е конвенция — при същия брой серии дава подобни резултати.",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Всяка основна мускулна група поне {n} дни седмично (СЗО 2020 — препоръка за здраве; ACSM 2026: честотата влияе на силата, но няма достатъчно доказателства, за да се установи зависимост доза–ефект, а при равен обем разликата намалява). Ден, в който групата само помага, се брои за {h} — опростяване (метод от метаанализа на Pelland и съавт. 2026). Разделението (цяло тяло, горна/долна част) е конвенция — при същия брой серии дава подобни резултати.",
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Стъпката (напр. +2,5 kg) е конвенция, а не резултат от изследвания."
 }

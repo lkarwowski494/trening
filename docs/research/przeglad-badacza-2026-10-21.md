@@ -24,6 +24,7 @@ Wnioski:
 
 **Maszyna Smitha:** Standard 3.2 dotyczy wolnych ciężarów („free weights”); maszyna Smitha (prowadnica) nie jest objęta tym zdaniem. **Dopisek nie powinien dotyczyć ćwiczeń na maszynie Smitha.** Czy przy maszynie Smitha potrzebna jest asekuracja — [OTWARTE], brak przeczytanego źródła. Wyciskanie w stojakach bez ramion asekuracyjnych to nadal wolny ciężar — dopisek ma zastosowanie.
 Do sprawdzenia przez programistę: czy któreś z 29 ćwiczeń z `recommended: ["rack.safeties"]` jest wykonywane na maszynie Smitha; jeśli tak — usunąć zalecenie z tego wpisu katalogu.
+**Sprawdzone 21.10:** żadne z 29 ćwiczeń nie jest wykonywane na maszynie Smitha (wszystkie mają `loadSource` sztanga lub sztanga EZ i nie mają `smith` w `requires`; ćwiczenia ze Smithem nie mają zalecenia `rack.safeties`) — zmiana katalogu niepotrzebna; pilnuje tego `tests/poprawki-tlumaczen-2026-10-21.test.ts`.
 
 **Nowe brzmienie (do naniesienia przez tłumacza/programistę; słowników nie edytowałem):**
 

@@ -1693,7 +1693,7 @@
  "Ostatnia udana kopia: {date}": "Son başarılı yedek: {date}",
  "Asekuracja": "Yardımcı ve güvenlik",
  "bez asekuracji w stojakach": "rafta güvenlik kolu yok",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Vücudun üzerinde veya omuzlarda halterle yapılan hareket: halteri güvenle bırakabilmeniz için rafta güvenlik kollarını ayarlayın ya da yardımcı biriyle antrenman yapın.",
+ "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Halterin gövdenin üzerinde olduğu veya baş ile yüzün üzerinde hareket ettiği hareket: güvenlik önlemi önerilir — güvenlik kollu bir raf ve yardımcı bir kişi.",
  "Powiadomienie na koniec przerwy": "Dinlenme bitişinde bildirim",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Dinlenme bittiğinde telefon, ekran kilitliyken bile bir bildirim gönderir. Bunun için bildirim izni gerekir — iOS bunu “Devam” sonrasında ister.",
  "Zmień w ustawieniach iOS": "iOS Ayarlar’da değiştir",
@@ -1713,6 +1713,6 @@
  "mili": "mil",
  "jard|jardy|jardów": "yarda|yarda",
  "jarda": "yarda",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Her büyük kas grubu haftada en az {n} gün (DSÖ 2020 — sağlık önerisi; ACSM 2026: sıklık kuvveti etkiler, ancak doz–yanıt ilişkisine dair kanıt yoktur ve eşit hacimde fark azalır). Grubun yalnızca yardımcı olduğu gün {h} sayılır — bir basitleştirme (Pelland ve ark. 2026 meta-analizindeki yöntem). Bölümleme (tüm vücut, üst/alt) yaygın bir uygulamadır — aynı set sayısıyla benzer sonuç verir.",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Her büyük kas grubu haftada en az {n} gün (DSÖ 2020 — sağlık önerisi; ACSM 2026: sıklık kuvveti etkiler, ancak doz–yanıt ilişkisini ortaya koymak için yeterli kanıt yoktur ve eşit hacimde fark azalır). Grubun yalnızca yardımcı olduğu gün {h} sayılır — bir basitleştirme (Pelland ve ark. 2026 meta-analizindeki yöntem). Bölümleme (tüm vücut, üst/alt) yaygın bir uygulamadır — aynı set sayısıyla benzer sonuç verir.",
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Adım (örn. +2,5 kg) yaygın bir uygulamadır, araştırma sonucu değildir."
 }

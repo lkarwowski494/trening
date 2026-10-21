@@ -19,7 +19,7 @@ import { loc } from './locations-fixtures';
 import { renderApp, flushAll, screen, go, type, tap, act } from './app';
 
 jest.setTimeout(120000);
-const NOTE = 'Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.';
+const NOTE = 'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.';
 const TAG = 'bez asekuracji w stojakach'; const TITLE = 'Asekuracja';
 const NEED = Object.entries(CATALOG).filter(([, c]) => c.recommended.includes('rack.safeties')).map(([k]) => k);
 const noSafe = () => loc('Bez ramion', [equipEntry('barbell'), equipEntry('bench_flat'), equipEntry('squat_stands')], 'nosafe');
