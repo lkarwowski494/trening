@@ -369,3 +369,5 @@ EN Progress Guard · bg Пазач на прогреса · cs Strážce progres
   e-maila i treści wsparcia, C — usunięcie stopki z mailto po 1.0); Q10 — **publikacja poprawionej polityki i strony wsparcia teraz** („Nawet jeżeli wydamy dziś, to Workspace i tak wejdzie przed
   publikacją w App Store.”), w brzmieniu z oboma stanami poczty — wykonuje koordynator w repo strony studia; Q11 A — projekty zaakceptowane (polityka, wsparcie, procedura bezpieczeństwa, notatki
   dla recenzenta, `store/asc-odpowiedzi.json`); manifest prywatności (R-007, WYD-09) i Q12 A (verify sprawdza zainstalowany hak, L-014) zleca koordynator programiście, poza M8.
+- 21.10.2026 (właściciel, Q13 roli M8 — przekazane przez koordynatora): **polityka prywatności i strona wsparcia zostają w dwóch językach (PL/EN)**, mimo 35 języków aplikacji.
+  Odrzucone: B — tłumaczenie dokumentów na 35 języków (praca przy każdej zmianie, ryzyko rozjazdu wersji). Strony opublikowane na apps4brew.com/trening/ 21.10.2026 (koordynator, repo strony studia).
