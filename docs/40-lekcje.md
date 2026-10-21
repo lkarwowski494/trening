@@ -36,7 +36,7 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
   (b) praktyka koordynatora bez reguły. Rekomendacja: (a).
 - **Akcje:**
   1. Sprawdzenie plików przed uwagą wizualną w przebiegu M3 (polecenia koordynatora od E3) — **zrobione** (ten wpis; dziennik `postep.md` M3).
-  2. Reguła w CLAUDE.md — **otwarte** (decyzja właściciela).
+  2. Reguła w CLAUDE.md — **zrobione** (decyzja właściciela 21.10.2026, wariant a; linia „Uwagi wizualne dla właściciela”).
 
 ## L-011 (20.10.2026, audyt M1) — zmiana etykiety w ustawieniach położyła scenariusze 33 i 34 testu aktualizacji (stara wersja ma inne etykiety)
 
