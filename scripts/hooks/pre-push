@@ -1,6 +1,7 @@
 #!/bin/sh
 # Hak pre-push (L-009, decyzja właściciela 21.10.2026): zatrzymuje wypchnięcie, gdy lint, README albo macierz testów są nieaktualne.
 # Dokładnie trzy sprawdzenia, w tej kolejności, przerwanie przy pierwszym błędzie: lint, check:readme, check:matrix.
+# Wyjątek: gdy zmiany względem origin/main to wyłącznie dokumenty (scripts/verify-docs.mjs --czy-dokumenty), lint jest pomijany.
 # Pełne `npm run verify` zostaje obowiązkiem przed wypchnięciem (CLAUDE.md) — hak łapie tylko najtańsze, najczęstsze pomyłki.
 # Instaluje go `npm ci` (skrypt `prepare` → scripts/hooks/instaluj.mjs ustawia core.hooksPath na scripts/hooks; nie w CI i nie w katalogu bez .git).
 # Czas (pomiar 21.10.2026, 4 rdzenie): ok. 35 s na wolnej maszynie (lint ok. 25 s, check:readme ok. 3 s, check:matrix ok. 7 s); ok. 120 s, gdy obok biegnie pełne verify.
@@ -35,7 +36,11 @@ sprawdz() {
   fi
 }
 
-sprawdz lint "popraw błędy zgłoszone przez eslint i dodaj poprawki do commitu."
+if node scripts/verify-docs.mjs --czy-dokumenty > /dev/null 2>&1; then
+  echo "hak pre-push: zmiany tylko w dokumentach (verify:docs) — pomijam lint" >&2
+else
+  sprawdz lint "popraw błędy zgłoszone przez eslint i dodaj poprawki do commitu."
+fi
 sprawdz check:readme "node scripts/readme.mjs --write (README jest generowane z kodu), potem git add README.md."
 sprawdz check:matrix "najpierw git add nowych plików testów (macierz liczy tylko pliki śledzone), potem node scripts/test-matrix.mjs --write (docs/19-macierz-testow.md) i git add docs; brakujące testy z listy dopisz, nie wyłączaj sprawdzenia."
 

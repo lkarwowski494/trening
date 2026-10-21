@@ -14,7 +14,8 @@
   wszystkie przypadki i wszystkie rodzaje z `docs/20-definicja-ukonczenia.md` (logika, ekran, scenariusz, macierz, niezmienniki, dane,
   języki/wygląd, regresja, E2E Maestro). Rodzaj pominięty tylko z zapisanym powodem w docs/09.
 - W trakcie pracy: `npm run test:fast` (tylko testy związane ze zmienionymi plikami, ~1 min). Przed wypchnięciem: pełne `npm run verify`
-  (typecheck, check:i18n, jest, `expo export --platform ios`, verify:native; ~12 min) — decyzja właściciela 11.10.2026, wariant B. Nowe teksty w UI
+  (typecheck, check:i18n, jest, `expo export --platform ios`, verify:native; ~12 min) — decyzja właściciela 11.10.2026, wariant B;
+  wyjątek: commit tylko z dokumentami: `npm run verify:docs` (właściciel 21.10.2026; 1–2 min, CI na PR i tak biegnie pełne). Nowe teksty w UI
   przez `t()` i słownik `lib/i18n.en.ts`. Hak pre-push (`scripts/hooks/pre-push`, instalowany przez `npm ci`; lint, check:readme, check:matrix, ok. 35 s)
   nie zastępuje verify; po wypchnięciu sprawdź wynik `tests.yml` i czekaj na zielony (L-009); obejście `git push --no-verify` tylko świadomie.
 - Zasada projektowa (właściciel, 13.10.2026): akcje i elementy tego samego typu działają w całej aplikacji tak samo — sposób wywołania, miejsce, wygląd, etykieta, potwierdzenie, informacja zwrotna, VoiceOver; katalog wzorców: `docs/32-wzorce-interakcji.md`; pilnowane testami-strażnikami (`tests/interaction-guards.test.ts`; zamykanie okien — każde okno wysuwane z dołu/modalne ma widoczny, spójny przycisk „Anuluj” po lewej w nagłówku, gest w dół tylko dodatkowo: `tests/close-button-guard.test.tsx`). Nowa funkcja najpierw sprawdza wzorzec w docs/32.

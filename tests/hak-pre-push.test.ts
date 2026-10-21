@@ -39,6 +39,7 @@ function repoProbne(): { dir: string; zdalne: string } {
   expect(git(dir, ['init', '-q', '-b', 'main']).status).toBe(0);
   mkdirSync(join(dir, 'scripts/hooks'), { recursive: true });
   for (const f of ['pre-push', 'instaluj.mjs']) copyFileSync(join(root, 'scripts/hooks', f), join(dir, 'scripts/hooks', f));
+  copyFileSync(join(root, 'scripts/verify-docs.mjs'), join(dir, 'scripts/verify-docs.mjs'));
   chmodSync(join(dir, 'scripts/hooks/pre-push'), 0o755);
   writeFileSync(join(dir, 'plik.txt'), '1\n');
   git(dir, ['add', '-A']);
@@ -178,6 +179,27 @@ describe('hak na prawdziwym git push (także z worktree)', () => {
     const obejscie = git(dir, ['push', '--no-verify', 'origin', 'zla'], zNpm(npm, 'check:readme'));
     expect(obejscie.status).toBe(0);
     expect(gałęzieZdalne(zdalne).sort()).toEqual(['main', 'zla']);
+  });
+  test('zmiany tylko w dokumentach (względem origin/main) pomijają lint; zmiana kodu przywraca wszystkie trzy', () => {
+    const { dir } = repoProbne();
+    zainstaluj(dir);
+    const npm = falszywyNpm();
+    expect(git(dir, ['push', '-u', 'origin', 'main'], zNpm(npm)).status).toBe(0);
+    writeFileSync(npm.log, '');
+    git(dir, ['checkout', '-q', '-b', 'dok']);
+    mkdirSync(join(dir, 'docs'));
+    writeFileSync(join(dir, 'docs/a.md'), 'opis\n');
+    git(dir, ['add', '-A']);
+    expect(git(dir, ['commit', '-q', '-m', 'dok']).status).toBe(0);
+    const dok = git(dir, ['push', 'origin', 'dok'], zNpm(npm));
+    expect(dok.status).toBe(0);
+    expect(wywolania(npm.log)).toEqual(['run check:readme', 'run check:matrix']);
+    expect(dok.stderr).toContain('tylko w dokumentach');
+    writeFileSync(npm.log, '');
+    writeFileSync(join(dir, 'plik.txt'), '2\n');
+    git(dir, ['commit', '-q', '-am', 'kod']);
+    expect(git(dir, ['push', 'origin', 'dok'], zNpm(npm)).status).toBe(0);
+    expect(wywolania(npm.log)).toEqual(['run lint', 'run check:readme', 'run check:matrix']);
   });
   test('usunięcie gałęzi na zdalnym nie uruchamia sprawdzeń', () => {
     const { dir, zdalne } = repoProbne();

@@ -22,6 +22,7 @@
     "mutation": "stryker run",
     "perf": "jest -c jest.perf.config.js",
     "test:fast": "node scripts/test-fast.mjs",
+    "verify:docs": "node scripts/verify-docs.mjs",
     "prepare": "node scripts/hooks/instaluj.mjs"
   },
   "dependencies": {
