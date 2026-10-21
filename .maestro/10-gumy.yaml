@@ -92,6 +92,7 @@ name: Gumy w miejscu i w treningu
 - extendedWaitUntil: { visible: "Place filter: Home.*", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Band Pull Apart"
+- pressKey: Enter
 - tapOn: { text: "Continue", optional: true }
 - extendedWaitUntil: { visible: "Band Pull Apart, .*", timeout: 30000 }
 - tapOn: "Band Pull Apart, .*"
@@ -118,6 +119,7 @@ name: Gumy w miejscu i w treningu
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Pull Up"
+- pressKey: Enter
 - tapOn: { text: "Continue", optional: true }
 - extendedWaitUntil: { visible: "Pull Up, .*", timeout: 30000 }
 - tapOn: "Pull Up, .*"
