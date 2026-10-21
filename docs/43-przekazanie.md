@@ -25,8 +25,8 @@ Powód: limit tygodniowy konta koordynatora na wyczerpaniu (decyzja właściciel
 **Droga do App Store (kolejność ustalona z właścicielem):**
 1. Naprawy audytu M1 (M2) na `audyt-m1` → PR → `main` → TestFlight. ← *tu jesteśmy (kroki 1–6 niżej)*
 2. **M3 Redesigner** (biblioteka `lkarwowski494/prompts`, najświeższa wersja przy starcie) w nowym czacie: AS IS na działającej aplikacji (zrzuty/nagrania z E2E w CI + nagrania z telefonu właściciela), propozycje TO BE do decyzji właściciela (STOP-y), projekt od zera, wdrożenie partiami, weryfikacja. Obowiązkowe wejścia: zadania audytu 026 (układ Postępów), 029 (ikony zamiast emoji; WIP na gałęzi `m3-wejscie/029-ikony`), 030 (duży tekst, Large Content Viewer), 036 (tokeny pisma i promieni); głos domyślnie wyłączony (DEC-05); brak paska talerzy (DEC-06); System miar (DEC-28/29).
-3. **Jeden reaudyt końcowy** (M1, z nowym LOK-07 — systemy miar) po M3; naprawy tym samym procesem (M2).
-4. Pełny katalog E2E w trybie ścisłym (bramka App Store, CLAUDE.md) + 3 czyste noce.
+3. Po M3: nowe brzmienia z przeglądu badacza (T-002, T-003, T-032) i powtórny przegląd tłumaczeń przez API; potem **pełny głęboki audyt M1 całej aplikacji** (z LOK-07; decyzja właściciela 21.10, zastępuje „jeden reaudyt”); naprawy blokerów procesem M2.
+4. **Jeden pełny katalog E2E na standardowym iPhonie** (1 ponowienie dozwolone; bramka App Store, CLAUDE.md — decyzja właściciela 21.10; noc nie blokuje).
 5. **Kontrola na telefonie** (lista „tylko telefon”): powiadomienie „pilne” w trybie skupienia (R-004), głos, mile/jardy, nowe ekrany, Apple Watch, Zdrowie, zakup w piaskownicy (K-012).
 6. Zrzuty do sklepu (ciemny motyw, ramki i podpisy, 9 ekranów wg scenorysu z 19.10; generator `store-screenshots.yml`) i opis sklepu (docs/15) — **dopiero po M3**; akceptacja właściciela (podpisy EN też).
 7. App Store Connect (kroki właściciela niżej: cena 6,99, oferta 14 dni, adres polityki, etykieta prywatności, ankieta wiekowa), migracja repo do organizacji **Apps4Brew** (właściciel: puste repo + sekrety), wersja **1.0** („Co nowego” czyszczone), wysłanie do Apple, ręczne wydanie po akceptacji, wydanie stopniowe wg docs/42.
@@ -34,6 +34,17 @@ Powód: limit tygodniowy konta koordynatora na wyczerpaniu (decyzja właściciel
 **Otwarte u właściciela (poza listą kroków):** Google Workspace (w toku, sekcja „W toku u właściciela”), próg i data premiery dla decyzji o Androidzie (docs/wzrost.md), ewentualny przegląd sekretów GitHub (K-019).
 
 **Gdzie co jest:** decyzje z datą → docs/18; lekcje i rejestr ryzyk (otwarte blokują wydanie) → docs/40; wymagania (BRD) → docs/brd; plan wydania 1.0 → docs/42; droga do sklepu → docs/41 (gałąź f020-sklep, częściowo na main); ceny → docs/monetyzacja.md; języki → docs/16 i docs/lokalizacja; research konkurencji i rejestr decyzji merytorycznych → Google Drive „Trening App” (nie w repo). Backlog bez priorytetu → docs/21 (wspominać tylko zbiorczo).
+
+## Harmonogram do 1.0 (szacunek z 21.10.2026, aktualizowany)
+| krok | szacowany termin | na co się czeka | czas właściciela |
+|---|---|---|---|
+| TestFlight z ton trenera + poprawki CI (main 8763e58) | 21.10 | build (TestFlight run 39578800586) | lista telefonu ok. 5 min |
+| M3: p1 → zrzuty kontrolne → p2–p6 → scalenie → TestFlight z nowym wyglądem | 22–23.10 | E2E na zrzuty i po partiach (1–2 h każde), maszyny macOS | ocena zrzutów, STOP p5d, zgoda na scalenie, telefon ok. 15 min |
+| Brzmienia badacza w 35 językach + przegląd tłumaczeń API | 23.10 | przebieg API (ok. 1 h) | 0 |
+| Pełny audyt M1 + naprawy blokerów | 24–26.10 | audyt kilka h agentów, naprawy, verify/E2E | decyzje przy znaleziskach |
+| Pełny katalog E2E + kontrola na telefonie + zrzuty i opis sklepu | 26–27.10 | 1 przebieg pełny (ok. 2 h), generator zrzutów | telefon ok. 30 min, akceptacja zrzutów/podpisów |
+| App Store Connect + wysyłka 1.0 | 27–28.10 | — | ok. 1 h (krok po kroku) |
+| Przegląd Apple → wydanie | **ok. 28–30.10** | przegląd Apple zwykle 1–3 dni [bez gwarancji] | ręczne wydanie po akceptacji |
 
 ## Podział między konta (decyzja właściciela 20.10.2026)
 - **Obecne konto** domyka kroki 1–6 z listy „Co biegnie / co zrobić najpierw” (E2E → PR i scalenie → TestFlight → dowody → przegląd tłumaczeń przez API → przegląd badacza) i **nie zaczyna kroku 7 (M3) ani dalszych**.
