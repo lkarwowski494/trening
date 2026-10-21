@@ -29,7 +29,7 @@ export function useFlip(face: string) {
   return reduce ? { opacity: v } : { opacity: v.interpolate({ inputRange: [0, 0.4, 1], outputRange: [0, 1, 1] }), transform: [{ perspective: 900 }, { rotateX: v.interpolate({ inputRange: [0, 1], outputRange: ['70deg', '0deg'] }) }] };
 }
 
-/** Pola serii (bez dotyku): stan niesie kształt, nie sam kolor. */
+/** Pola serii (bez dotyku — poza przewijaniem rzędu powyżej 12 pól palcem, 04-studio-projektowe-006): stan niesie kształt, nie sam kolor. */
 export function Fields({ w, ei, cur }: { w: Workout; ei: number; cur: number }) {
   const th = useTheme(); const e = w.exercises[ei]; const ex = exById(e.exerciseId)!; const { width, fontScale } = useWindowDimensions();
   const inner = width - 4 * SPACE.l; const L = fieldLayout(e.sets.length, inner, fontScale); const scroller = useRef<ScrollView>(null);
@@ -40,7 +40,7 @@ export function Fields({ w, ei, cur }: { w: Workout; ei: number; cur: number }) 
       <Text accessibilityLanguage={lang()} accessible={false} numberOfLines={1} maxFontSizeMultiplier={TEXT_SCALE.num} adjustsFontSizeToFit minimumFontScale={0.7} style={{ ...font('boardField'), color: fg }}>{state === 'done' && L.showResult ? compactResult(ex, s) : setLabel(e, i)}</Text></View>; };
   useEffect(() => { if (L.scroll) scroller.current?.scrollTo({ x: Math.max(0, cur * (SIZE.boardFieldMinWidth + 20 + SIZE.boardFieldGap) - 80), animated: false }); }, [L.scroll, cur]);
   const all = e.sets.map((_, i) => i);
-  return <View testID="board-fields" pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+  return <View testID="board-fields" pointerEvents={L.scroll ? 'box-none' : 'none'} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
     {L.scroll ? <ScrollView testID="board-fields-scroll" ref={scroller} horizontal showsHorizontalScrollIndicator={false} scrollEnabled contentContainerStyle={{ gap: SIZE.boardFieldGap }}>{all.map(cell)}</ScrollView>
       : Array.from({ length: L.rows }, (_, r) => <View key={r} style={{ flexDirection: 'row', gap: SIZE.boardFieldGap, marginTop: r ? SIZE.boardFieldGap : 0 }}>{all.slice(r * L.perRow, (r + 1) * L.perRow).map(cell)}{r === L.rows - 1 ? Array.from({ length: L.rows * L.perRow - e.sets.length }, (_, j) => <View key={'f' + j} style={{ flex: 1 }} />) : null}</View>)}
   </View>;

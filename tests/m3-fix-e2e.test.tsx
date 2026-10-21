@@ -113,3 +113,15 @@ describe('04-studio-projektowe-005: seria na czas — dokładnie jeden „Zakoń
     if (!timer.S.on) await tap(screen.getAllByText(/^▶/)[0]); await flushAll(20); expect(timer.S.on).toBe(true); expect(screen.getAllByText('Zakończ serię')).toHaveLength(1); expect(screen.queryByTestId('focus-finish-set')).toBeNull();
   });
 });
+
+describe('04-studio-projektowe-006: rząd ponad 12 pól przewijany palcem (etykieta VoiceOver „lista serii przewijana” zgodna z zachowaniem)', () => {
+  const HID = { includeHiddenElements: true } as const;
+  const run = async (n: number) => { await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); for (let i = 1; i < n; i++) store.addSet(0); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(20); };
+  test('15 serii: kontener pól przepuszcza dotyk do przewijanego rzędu (nie „none”), przewijanie włączone, opis mówi o przewijaniu', async () => {
+    await run(15); expect(screen.getByTestId('board-fields', HID).props.pointerEvents).not.toBe('none'); expect(screen.getByTestId('board-fields-scroll', HID).props.scrollEnabled).toBe(true);
+    expect(screen.getByTestId('board-desc').props.accessibilityLabel).toContain('lista serii przewijana');
+  });
+  test('8 serii: pola bez dotyku (pointerEvents none), bez przewijania i bez wzmianki o przewijaniu', async () => {
+    await run(8); expect(screen.getByTestId('board-fields', HID).props.pointerEvents).toBe('none'); expect(screen.queryByTestId('board-fields-scroll', HID)).toBeNull(); expect(screen.getByTestId('board-desc').props.accessibilityLabel).not.toContain('przewijana');
+  });
+});
