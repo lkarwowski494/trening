@@ -3007,8 +3007,8 @@
   "en": "You have no templates yet."
  },
  {
-  "pl": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.",
-  "en": "You have no templates with exercises. Create a template or choose “New templates and plan”."
+  "pl": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.",
+  "en": "You have no templates with exercises. Create a template or choose “Generate templates and plan”."
  },
  {
   "pl": "Nie można wyłączyć planu",
@@ -3205,10 +3205,6 @@
  {
   "pl": "Nowe rekordy: {n}",
   "en": "New records: {n}"
- },
- {
-  "pl": "Nowe szablony i plan",
-  "en": "New templates and plan"
  },
  {
   "pl": "nowe w tym tygodniu",

@@ -92,6 +92,9 @@
    "fontSize": 3,
    "borderRadius": 8
   },
+  "components/ExerciseFigure.tsx": {
+   "fontSize": 3
+  },
   "components/Guard.tsx": {
    "fontSize": 3
   },

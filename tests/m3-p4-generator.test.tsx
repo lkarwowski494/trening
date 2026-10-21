@@ -69,7 +69,7 @@ describe('ZM-03: zapis bez aktywnego planu — jeden krok, bez okien', () => {
   test('English: zdanie „Plan “…” is now active.” i brak okien', async () => {
     await boot('/plan', () => {}, 'en'); await tap(screen.getByText('Generate templates and plan')); await flushAll(1100);
     await tap(screen.getByText('Save templates and plan')); await flushAll(1100);
-    expect(titles()).toEqual([]); expect(screen.getByTestId('plan-notice').props.children).toMatch(/^Plan “.+” is now active\.$/);
+    expect(titles()).toEqual([]); expect(screen.getByTestId('plan-notice').props.children).toMatch(/^The plan “.+” is now active\.$/);
   });
 });
 
