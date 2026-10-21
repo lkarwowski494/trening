@@ -36,7 +36,7 @@ export function Fields({ w, ei, cur }: { w: Workout; ei: number; cur: number }) 
   const cell = (i: number) => { const s = e.sets[i]; const state = s.done ? 'done' : i === cur ? 'current' : 'pending'; const warm = s.kind === 'warmup';
     const bg = state === 'done' ? th.boardText : 'transparent'; const fg = state === 'done' ? th.board : state === 'current' ? th.boardText : th.boardMuted;
     return <View key={s.id} testID={`board-field-${i}`} accessibilityValue={{ text: state }} style={[{ flex: L.scroll ? undefined : 1, width: L.scroll ? SIZE.boardFieldMinWidth + 20 : undefined, minHeight: SIZE.boardFieldMin, borderRadius: RADIUS.field, alignItems: 'center', justifyContent: 'center', backgroundColor: bg,
-      borderWidth: state === 'current' ? 3 : 1, borderColor: state === 'current' ? th.now : th.boardEdge, borderStyle: warm && state === 'pending' ? 'dashed' : 'solid', paddingHorizontal: 2 }]}>
+      borderWidth: state === 'current' ? 3 : 1, borderColor: state === 'current' ? th.now : state === 'pending' ? th.boardMuted : th.boardEdge, borderStyle: warm && state === 'pending' ? 'dashed' : 'solid', paddingHorizontal: 2 }]}>
       <Text accessibilityLanguage={lang()} accessible={false} numberOfLines={1} maxFontSizeMultiplier={TEXT_SCALE.num} adjustsFontSizeToFit minimumFontScale={0.7} style={{ ...font('boardField'), color: fg }}>{state === 'done' && L.showResult ? compactResult(ex, s) : setLabel(e, i)}</Text></View>; };
   useEffect(() => { if (L.scroll) scroller.current?.scrollTo({ x: Math.max(0, cur * (SIZE.boardFieldMinWidth + 20 + SIZE.boardFieldGap) - 80), animated: false }); }, [L.scroll, cur]);
   const all = e.sets.map((_, i) => i);

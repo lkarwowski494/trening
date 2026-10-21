@@ -86,3 +86,15 @@ describe('04-studio-projektowe-001: cyfry tablicy jak w makiecie (render, nie ty
     const est = size * (6 * 0.6 + 0.3) + size * 0.45 * 0.7 + 2 * 4 + 28 + 4; expect(est).toBeLessThanOrEqual(inner); expect(size).toBeGreaterThanOrEqual(40);
   });
 });
+
+describe('04-studio-projektowe-004: kontur pola czekającego widoczny w każdej palecie', () => {
+  const { light, dark, lightHC, darkHC } = require('@/lib/theme');
+  const lum = (h: string) => { const c = h.slice(1).match(/../g)!.map((x: string) => parseInt(x, 16) / 255).map((v: number) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
+  const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+  test('render (jasny): kontur pola czekającego ma kolor inny niż tło tablicy i kontrast ≥ 3:1 do niego (we wszystkich czterech paletach)', async () => {
+    await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addSet(0); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(20);
+    const st = ([] as any[]).concat(screen.getByTestId('board-field-1', { includeHiddenElements: true }).props.style).flat(3).reduce((a: any, x: any) => ({ ...a, ...(x || {}) }), {});
+    expect(st.borderColor).not.toBe(light.board); expect(ratio(st.borderColor, light.board)).toBeGreaterThanOrEqual(3);
+    for (const [n, p] of [['jasny', light], ['ciemny', dark], ['jasny HC', lightHC], ['ciemny HC', darkHC]] as [string, any][]) expect([n, ratio(p.boardMuted, p.board) >= 3]).toEqual([n, true]);
+  });
+});
