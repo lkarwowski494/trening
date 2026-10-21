@@ -59,7 +59,9 @@ describe('docs/15 i docs/18: brak sprzecznych kwot i pozostałości EAS', () => 
   const OK = new Set(['0,99', '6,99', '14,99']);
   for (const [name, text] of [['docs/15', d15], ['docs/18', d18]] as const) {
     test(`${name}: kwoty USD/EUR/GBP inne niż 0,99 / 6,99 / 14,99 tylko w historii albo w wierszu „zastąpione/było”`, () => {
-      const bad = outsideHistory(text).filter(({ line }) => [...line.matchAll(AMOUNT)].some((x) => !OK.has(`${x[1]},${x[2]}`)) && PLAN_CTX.test(line) && !MARK.test(line)).map((x) => `${name}:${x.n}: ${x.line.trim().slice(0, 100)}`);
+      /* 21.10.2026 (właściciel): roczna w euro = przeliczenie Apple 7,99 € (docs/monetyzacja.md) — dozwolona tylko z walutą euro */
+      const ok = (x: RegExpMatchArray) => OK.has(`${x[1]},${x[2]}`) || (`${x[1]},${x[2]}` === '7,99' && /€|EUR/.test(x[0]));
+      const bad = outsideHistory(text).filter(({ line }) => [...line.matchAll(AMOUNT)].some((x) => !ok(x)) && PLAN_CTX.test(line) && !MARK.test(line)).map((x) => `${name}:${x.n}: ${x.line.trim().slice(0, 100)}`);
       expect(bad).toEqual([]);
     });
   }
