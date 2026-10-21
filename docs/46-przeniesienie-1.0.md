@@ -42,6 +42,8 @@ Każda z co najmniej dwiema opcjami i rekomendacją; pozycje listy oznaczone „
 - A (rekomendacja): przenosimy **po wydaniu 1.0 w App Store** — build i recenzja ze starego repo, nowe repo dostaje jeden commit ze stanem wydanym (tag `v1.0.0-b<numer>`); zgodne z regułą 21.10; do zmiany: nic w buildach. Wada: aktualizacja 1.0.1 pierwszy raz z nowego repo = pierwszy prawdziwy przebieg tam.
 - B: przenosimy **przed wysyłką do Apple** — pierwszy build do sklepu z nowego repo (wpis 18.10); wymaga dowodowego przebiegu `testflight.yml` w nowym repo przed wysyłką i zamyka okno na „samo repo bez wydania”.
 
+**Decyzja właściciela (21.10.2026, przez koordynatora): przyjęte wszystkie rekomendacje D1–D7** — D1: `wzrost`, `41`, `42` na Dysk, `monetyzacja.md` i `39` zostają; D2: w nowym repo świeże `docs/18` i `docs/40` od 1.0, stare na Dysk; D3: `.claude/agents` i `CLAUDE.md` zostają po przeglądzie; D4: research `24`, `25-biblioteka`, `27`, `31`, `33` zostaje; D5: makiety `docs/design` na Dysk, tokeny i specyfikacja zostają; D6: `Apps4Brew/trening`, bez GitHub Pages; D7: przeniesienie **po wydaniu 1.0 w App Store**.
+
 ## 3. Kroki właściciela (po jednym, krok po kroku z koordynatorem)
 
 Koordynator prowadzi po jednym zadaniu; poniżej kolejność i co ma być na końcu każdego. Wartości sekretów **nie wklejamy do czatu**.
