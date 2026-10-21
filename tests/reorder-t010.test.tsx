@@ -97,7 +97,7 @@ describe('ekran kolejności', () => {
     store.toggleDone(0, 0); const s0 = a.exercises[0].sets[0].id; await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(20);
     await tap(screen.getByText('≡ Kolejność')); await flushAll(50); layoutRows(60);
-    expect(screen.getByText('3 serie · ✓ 1')).toBeTruthy();
+    expect(screen.getByText('3 serie, ✓ 1')).toBeTruthy();
     await drag('drag-i:' + store.getState().active!.exercises[0].id, 200);
     const w = store.getState().active!; expect(w.exercises.map(e => store.getState().exercises.find(x => x.id === e.exerciseId)!.name)).toEqual(['Bench Press (sztanga)', 'Pull Up', 'Leg Press', 'Back Squat']);
     expect(w.exercises[3].sets[0]).toMatchObject({ id: s0, done: true }); expect(store.getState().templates.find(x => x.id === tpl.id)!.items[0].id).toBe('it-BackSquat'); // szablon nietknięty

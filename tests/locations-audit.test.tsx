@@ -8,7 +8,7 @@ import { loadsFor, equipEntry, availability, LOAD_PRESETS, equipLabel, presetEqu
 import { CATALOG, CATALOG_REV } from '@/lib/catalog.generated';
 import * as i18n from '@/lib/i18n';
 import { fresh, ex, addWorkout, set } from './helpers';
-import { renderApp, flushAll, screen, go, tap, type, act, expandEquip } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, expandEquip, placeInMenu } from './app';
 import { userHome, loc, presetSpec } from './locations-fixtures';
 
 jest.setTimeout(60000);
@@ -146,7 +146,7 @@ describe('M8 i uwagi LOW', () => {
   test('M8: „Poprzednio: …” tylko gdy poprzedni trening był w INNYM określonym miejscu (stare treningi bez miejsca — bez dopisku)', async () => {
     await fresh(); place(); addWorkout(Date.now() - 86400e3, [['Pull Up', [{ addKg: 0, reps: 8 }]]]); store.startEmpty(); store.addExerciseToActive(ex('Pull Up')); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(10);
-    expect(screen.getByText('Dom ▾')).toBeTruthy(); expect(screen.queryByText(/^Poprzednio: /)).toBeNull();
+    expect(await placeInMenu()).toBe('Miejsce treningu: Dom'); /* M3 p2: miejsce w menu „⋯” */ expect(screen.queryByText(/^Poprzednio: /)).toBeNull();
   });
   test('wynik achievable liczony raz na treść opisu i przeliczany po zmianie opisu', () => {
     const s = list([2, 4]); const a = achievable(s); expect(achievable(s)).toBe(a); (s as any).items.push({ w: 6, on: true }); expect(achievable(s)).toEqual([2, 4, 6]);

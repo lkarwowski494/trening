@@ -83,7 +83,7 @@ describe('S9: słownik terminów', () => {
   test('brak zakazanych wariantów: „anuluj bieżący trening”, „↺ przywróć” (zamiana), pierwsza osoba („ponowię”, „Ponawiam”)', () => {
     expect(dict).not.toMatch(/anuluj bieżący trening/); expect(dict).not.toMatch(/'↺ przywróć/); expect(dict).not.toMatch(/ponowię|Ponawiam|Zapisałem/);
   });
-  test('cofnięcie zamiany: ta sama akcja ma to samo słowo w treningu i w oknie zamiany', () => { expect(src.get('app/swap.tsx')).toContain("'↺ cofnij zamianę: {name}'"); expect(src.get('components/ActiveWorkout.tsx')).toContain("'↺ cofnij'"); });
+  test('cofnięcie zamiany: ta sama akcja ma to samo słowo w treningu i w oknie zamiany', () => { expect(src.get('app/swap.tsx')).toContain("'↺ cofnij zamianę: {name}'"); expect(src.get('components/WorkoutBlocks.tsx')).toContain("'↺ cofnij'"); /* M3 p2: bloki ćwiczeń przeniesione z ActiveWorkout do WorkoutBlocks */ });
 });
 
 describe('S10: puste stany', () => {
@@ -128,7 +128,8 @@ describe('S15: wyszukiwanie — jeden komponent SearchField', () => {
 
 describe('S16: arkusze akcji — najwyżej 4 opcje (z „Anuluj”) albo wyjątek z powodem', () => {
   const EXC: Record<string, string> = {
-    'components/ActiveWorkout.tsx': 'dwa arkusze: miejsce treningu (lista miejsc użytkownika — długość zmienna) i rodzaj serii (4 rodzaje + notatka + Anuluj; dwupoziomowy arkusz wydłużyłby najczęstszą akcję treningu)',
+    'components/ActiveWorkout.tsx': 'menu „⋯” treningu (miejsce — tylko gdy są miejsca, pauza, głos, notatka szablonu: do 4 pozycji + Anuluj, ale pozycje warunkowe — M3 p2, wzorzec 30), arkusz miejsca (lista miejsc użytkownika — długość zmienna) i arkusz głosu (3 opcje + Anuluj)',
+    'components/WorkoutBlocks.tsx': 'rodzaj serii (4 rodzaje + notatka + Anuluj; dwupoziomowy arkusz wydłużyłby najczęstszą akcję treningu) i menu ćwiczenia — wydzielone z ekranu treningu (M3 p2)',
     'app/history/edit/[id].tsx': 'jak w treningu: miejsce sesji i rodzaj serii (ta sama lista)',
     'app/template/[id].tsx': 'rodzaj serii szablonu: 4 rodzaje + Anuluj (zamknięty zbiór, bez notatki)',
   };
@@ -164,7 +165,6 @@ function visibleHelperTexts(): Lit[] {
 const INFO_MAX_CHARS = 100;
 /** Teksty, które zostają na wierzchu mimo długości — tylko z powodem (subskrypcja, zdrowie, utrata danych, błędy, prywatność, pusty stan z działaniem). Klucz = początek tekstu. */
 const LONG_OK: Record<string, string> = {
-  'Na koniec przerwy telefon wyśle powiadomienie': 'wyjaśnienie przed systemowym oknem zgody na powiadomienia (M1-035): musi być widoczne przed prośbą, nie pod ⓘ',
   'Aplikacja nie udziela porad medycznych.': 'zastrzeżenie zdrowotne (MedicalNote) — zasada właściciela: zdrowie zawsze na wierzchu',
   'Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi': 'ostrzeżenie: zmiana działa wstecz na dane',
   'Nie zapisano jeszcze w Apple Health': 'stan zapisu do Zdrowia (dane, ponowienie) — błąd/stan wymagający uwagi',

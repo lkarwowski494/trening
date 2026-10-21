@@ -48,8 +48,10 @@ test('regresja run 37611882320: scenariusz 11 nie używa hideKeyboard (klawiatur
   const fs = require('fs'); const path = require('path'); const { EN } = require('@/lib/i18n.en');
   const y = fs.readFileSync(path.join(__dirname, '..', '.maestro', '11-widok-skupiony.yaml'), 'utf8');
   expect(y).not.toMatch(/^- hideKeyboard/m);
-  /* audyt 0.10 (A11-19): licznik z NBSP (glue) — selektor z „.” zamiast spacji (regex Maestro: „.” pasuje do NBSP) */
-  expect(y).toContain(`- tapOn: "${EN['seria {n} z {all}'].replace('{n}', '1').replace('{all}', '1').replace(/ /g, '.')}"`);
+  /* audyt 0.10 (A11-19): licznik z NBSP (glue) — selektor z „.” zamiast spacji (regex Maestro: „.” pasuje do NBSP). M3 p2 (ZM-01): licznik jest częścią opisu tablicy (zwykłe spacje),
+   * a klawiaturę zdejmuje tapnięcie w nagłówek bloku — selektor opisu tablicy ma zwykłe spacje, bez NBSP */
+  expect(y).toContain(`- tapOn: "Back Squat"`);
+  expect(y).toContain(`"Back Squat, ${EN['seria {n} z {all}'].replace('{n}', '1').replace('{all}', '1')}\\\\. 80 kilograms, 5 reps.*"`);
 });
 
 test('regresja run 37645619096: każdy scenariusz .maestro/*.yaml jest na liście flows w config.yaml (inaczej Maestro go pomija)', () => {
@@ -179,9 +181,12 @@ describe('regresja E2E 91', () => {
   const y = (f: string) => fs.readFileSync(path.join(__dirname, '..', '.maestro', f), 'utf8') as string;
   const steps = (f: string) => y(f).split('\n').filter((l: string) => /^\s*- /.test(l)).map((l: string) => l.trim());
 
-  test('11: przed tapnięciem pola powtórzeń klawiatura numeryczna jest schowana (tap w tekst karty) — „Now: 805 kg”', () => {
-    const s = steps('11-widok-skupiony.yaml'); const i = s.indexOf('- tapOn: { id: "r-0-0" }');
-    expect(i).toBeGreaterThan(1); expect(s[i - 1]).toBe('- tapOn: "set.1.of.1"'); expect(s[i - 2]).toBe('- inputText: "80"');
+  /* M3 p2 (ZM-01): wpis idzie przez tablicę „teraz” (pola nad klawiaturą, nie w wierszu serii) — dawny warunek „schowaj klawiaturę przed tapnięciem r-0-0” nie dotyczy; zostaje
+   * reguła: po ostatnim wpisie klawiaturę zdejmuje tapnięcie w tekst (nazwa ćwiczenia), bez hideKeyboard, a dopiero potem sprawdzamy opis tablicy */
+  test('11: wpis na tablicy — po powtórzeniach klawiaturę zdejmuje tapnięcie w nazwę ćwiczenia, bez hideKeyboard (klawiatura numeryczna nie ma akcji)', () => {
+    const s = steps('11-widok-skupiony.yaml'); const i = s.indexOf('- inputText: "5"');
+    expect(i).toBeGreaterThan(1); expect(s[i - 2]).toMatch(/^- tapOn: \{ id: "board-input-reps" \}/); expect(s[i + 1]).toMatch(/^- tapOn: "Back Squat"/); expect(s[i + 2]).toMatch(/^- assertVisible: "Back Squat, set 1 of 1/);
+    expect(s.some((l: string) => /hideKeyboard/.test(l))).toBe(false);
   });
   test('15: nagłówek „Packages (n)” sprawdzany po przewinięciu (pod kilkunastoma licencjami)', () => {
     expect(y('15-masa-licencje.yaml')).toContain('- scrollUntilVisible: { element: "Packages \\\\(\\\\d+\\\\)", direction: DOWN');

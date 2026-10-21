@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, Animated, PanResponder, Platform, ScrollView, Text, View, type PanResponderInstance, type StyleProp, type ViewStyle } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import { useTheme } from '@/lib/theme';
+import { useTheme, font } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
 
 /*
@@ -95,7 +95,7 @@ export function DragList<T>({ items, keyOf, label, onMove, renderItem }: Props<T
       accessibilityValue={{ text: t('{n} z {all}', { n: i + 1, all: items.length }) }} accessibilityActions={[...acts, ...acts.map(a => ({ name: a.name === 'up' ? 'decrement' : 'increment' }))]}
       onAccessibilityAction={e => { const n = e.nativeEvent.actionName; const to = n === 'up' || n === 'decrement' ? i - 1 : n === 'down' || n === 'increment' ? i + 1 : i; if (to !== i && to >= 0 && to < items.length && latest.current.onMove(k, to) !== false) AccessibilityInfo.announceForAccessibility?.(t('{n} z {all}', { n: to + 1, all: latest.current.n })); }}
       hitSlop={6} style={{ width: 40, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}>
-      <Text accessibilityLanguage={lang()} style={{ color: dragging ? th.accent : th.muted, fontSize: 22, lineHeight: 24 }} maxFontSizeMultiplier={1.3}>≡</Text></View>;
+      <Text accessibilityLanguage={lang()} style={{ color: dragging ? th.accent : th.muted, ...font('boardField') }} maxFontSizeMultiplier={1.3}>≡</Text></View>;
     return <Animated.View key={k} onLayout={e => { heights.current.set(k, e.nativeEvent.layout.height); }}
       style={{ transform: [{ translateY: av(k) }], zIndex: dragging ? 10 : 0, ...(dragging ? { shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 10, shadowOffset: { width: 0, height: 4 } } : null) }}>
       {renderItem(x, handle, dragging)}</Animated.View>; })}</View>;

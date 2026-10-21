@@ -46,7 +46,7 @@ test('B2 start szablonu jednym tapnięciem, ✓ → przerwa i powiadomienie', as
   await startTemplate('Upper A');
   const checks = screen.getAllByLabelText(/^Seria 1 zrobiona/);
   await tap(checks[0]);
-  expect(await screen.findByText(/przerwa z/)).toBeTruthy();
+  expect(await screen.findByTestId('board-rest')).toBeTruthy(); /* M3 p2: przerwa na tablicy „teraz” (twarz „Przerwa”) */
   expect(timer.T.on).toBe(true); expect(global.__notifications.length).toBeGreaterThan(0);
 });
 

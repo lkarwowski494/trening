@@ -7,7 +7,7 @@ import * as plan from '@/lib/plan';
 import * as timer from '@/lib/timer';
 import { applyLang } from '@/lib/i18n';
 import { fresh, ex, saved } from './helpers';
-import { renderApp, flushAll, screen, tap, act, go, type, startTpl, openInfo } from './app';
+import { renderApp, flushAll, screen, tap, act, go, type, startTpl, openInfo, openPlaceSheet, placeInMenu } from './app';
 import { loc } from './locations-fixtures';
 import { presetEquipment } from '@/lib/equipment';
 import { LANGS, type Lang } from '@/lib/i18n';
@@ -34,7 +34,7 @@ async function boot(o: { start?: boolean; url?: string; locale?: 'pl' | 'en'; fn
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: o.locale ?? 'pl', url: o.url ?? '/' }); jest.setSystemTime(THU.getTime()); await flushAll(10);
   return tpl;
 }
-const sheetOpts = async () => { await tap(screen.getByLabelText(/^(Miejsce treningu|Workout place): /)); return (global as any).__sheets.at(-1) as { opts: { options: string[]; cancelButtonIndex: number; title: string }; cb: (i: number) => void }; };
+const sheetOpts = openPlaceSheet; /* M3 p2 (ZM-02): miejsce w menu „⋯” treningu */
 const pick = async (sh: { opts: { options: string[] }; cb: (i: number) => void }, name: string) => { const i = sh.opts.options.indexOf(name); expect(i).toBeGreaterThanOrEqual(0); await act(async () => { sh.cb(i); }); await flushAll(20); };
 const chip = (label: string | RegExp) => screen.getByLabelText(label);
 const ONCE = 'Inne miejsce (tylko dziś)…';
@@ -62,7 +62,7 @@ describe('A4 — arkusz „📍” i okno „Inne miejsce”', () => {
     const l = S().settings.locations.find(x => x.oneOff)!; expect(l).toMatchObject({ name: 'Tylko dziś', oneOff: true }); expect(l.equipment.map(e => e.item).sort()).toEqual(['floor_mat', 'wall']);
     expect(S().active!.locationId).toBe(l.id); expect(top()).toBe('adapt'); expect(title()).toBe('Dostosuj do: Tylko dziś');
     expect(S().active!.exercises.map(e => e.exerciseId)).toEqual(FBW.map(([n]) => ex(n).id)); /* nic nie zamienione samo (P4 A) */
-    await tap(screen.getByTestId('close-modal')); await flushAll(20); expect(screen.getByText(/^Tylko dziś/)).toBeTruthy();
+    await tap(screen.getByTestId('close-modal')); await flushAll(20); expect(await placeInMenu()).toBe('Miejsce treningu: Tylko dziś'); /* M3 p2: miejsce w menu „⋯” */
   });
   test('własna nazwa i ręcznie wybrany sprzęt; miejsce z pełnym sprzętem do ćwiczeń z planu — bez okna „Dostosuj” (wraca do treningu)', async () => {
     await boot({ start: true }); await pick(await sheetOpts(), ONCE); await type(screen.getByPlaceholderText('Tylko dziś'), 'Hotel Sopot');
@@ -100,10 +100,10 @@ describe('A4 — miejsca jednorazowe poza listami', () => {
   test('edytor szablonu: „Miejsce domyślne” bez jednorazowego', async () => {
     const tpl = await boot({ fn: withOnce }); await go(`/template/${tpl.id}?edit=1`); await flushAll(20); expect(screen.getByText('Miejsce domyślne')).toBeTruthy(); expect(screen.queryByText('Ukryte')).toBeNull(); expect(screen.getByText('Hotel')).toBeTruthy();
   });
-  test('trening w miejscu jednorazowym: chip „📍 Ukryte ▾” pokazuje nazwę, ale arkusz go nie wymienia; „Zawsze w” nie ma', async () => {
+  test('trening w miejscu jednorazowym: pozycja miejsca w menu „⋯” pokazuje nazwę, ale arkusz go nie wymienia; „Zawsze w” nie ma', async () => {
     await boot({ start: true, fn: () => { /* start w drugim kroku */ } });
     const o = require('@/lib/locations').addOneOffLocation('Ukryte', presetEquipment('hotel')); store.setActiveLocation(o.id); await act(async () => { await store.flush(); });
-    await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10); expect(screen.getByText('Ukryte ▾')).toBeTruthy(); const sh = await sheetOpts(); expect(sh.opts.options).not.toContain('Ukryte'); expect(screen.queryByText(/^Zawsze w:/)).toBeNull();
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10); expect(await placeInMenu()).toBe('Miejsce treningu: Ukryte'); const sh = await sheetOpts(); expect(sh.opts.options).not.toContain('Ukryte'); expect(screen.queryByText(/^Zawsze w:/)).toBeNull();
   });
 });
 
@@ -191,7 +191,7 @@ describe('języki i wygląd (docs/20 rodzaj 7)', () => {
   test('najdłuższa nazwa miejsca jednorazowego (80 znaków) w chipie, tytule okna „Dostosuj” i w kopii — bez błędu, nazwa przycięta tylko do NAME_MAX', async () => {
     await boot({ start: true }); const long = 'Ł'.repeat(120); await pick(await sheetOpts(), ONCE); await type(screen.getByPlaceholderText('Tylko dziś'), long); await tap(screen.getAllByText('Tylko masa ciała')[0]);
     await tap(screen.getByTestId('place-once-use')); await flushAll(20); const l = S().settings.locations.find(x => x.oneOff)!; expect(l.name).toHaveLength(store.NAME_MAX); expect(title()).toBe(`Dostosuj do: ${l.name}`);
-    await tap(screen.getByTestId('close-modal')); await flushAll(20); expect(screen.getByLabelText(`Miejsce treningu: ${l.name}`)).toBeTruthy();
+    await tap(screen.getByTestId('close-modal')); await flushAll(20); expect(await placeInMenu()).toBe(`Miejsce treningu: ${l.name}`);
   });
   test('ciemny motyw: okno „Inne miejsce” i panel miejsca na dni renderują się (motyw z Ustawień)', async () => {
     await boot({ start: true, fn: () => { S().settings.theme = 'dark'; } }); await pick(await sheetOpts(), ONCE); expect(screen.getByText('Gotowe zestawy')).toBeTruthy(); expect(S().settings.theme).toBe('dark');

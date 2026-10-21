@@ -94,7 +94,6 @@ name: Pierwszy tydzień nowego użytkownika
       - assertVisible: { id: "r-0-0", text: "10" }
 - tapOn: { text: "Set 1 done — Back Squat" }
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
-- assertVisible: "Workout progress: 1 of 18 sets"
 - takeScreenshot: 83-przerwa
 # pauza treningu w przerwie i wznowienie (nagłówek treningu może być przewinięty w górę — przycisk „⋯” przy ćwiczeniu, M1-028, podnosi nagłówki)
 # run 39399241275: po odhaczeniu serii lista jest przewinięta do karty „teraz”, a nagłówek z „Pause workout” leży nad ekranem — hierarchia iOS go zwraca (Maestro uznaje
@@ -102,11 +101,15 @@ name: Pierwszy tydzień nowego użytkownika
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - waitForAnimationToEnd
+- assertVisible: "Workout progress: 1 of 18 sets"  # M3 p2: po przewinięciu na początek (tablica „teraz” wydłuża ekran, nagłówek bywa nad ekranem po stuknięciu wiersza)
+# M3 p2 (ZM-02, wz. 30): pauza i wznowienie są w menu „⋯” („Workout options”), nie w nagłówku
+- tapOn: "Workout options"
 - tapOn: "Pause workout"
-- extendedWaitUntil: { visible: "Resume workout", timeout: 15000 }
-- assertVisible: ".* · paused"
+- extendedWaitUntil: { visible: ".* · paused", timeout: 15000 }
+- tapOn: "Workout options"
 - tapOn: "Resume workout"
-- extendedWaitUntil: { visible: "Pause workout", timeout: 15000 }
+- extendedWaitUntil: { visible: "Workout options", timeout: 15000 }
+- assertNotVisible: ".* · paused"
 - tapOn: "Skip"
 - assertNotVisible: "Skip"
 # zamiana ćwiczenia: martwy ciąg / wiosłowanie → propozycja

@@ -1866,7 +1866,8 @@ describe('B1 (build 1004; zmienione 11.10.2026): stała zachęta do planu (bez �
   test('11.10.2026: zachęta do planu = stały nagłówek „Bez planu tygodnia · Ustaw plan”; bez „Ukryj”, tekstu zachęty i przełącznika w Ustawieniach', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
     await boot();
-    expect(card().has('Bez planu tygodnia')).toBe(true); expect(card().has('Ustaw plan')).toBe(true);
+    /* M3 p2 (W1 c): „Ustaw plan” jest w nagłówku ekranu Start (PlanningButton), nazwa planu zostaje nad kalendarzem */
+    expect(card().has('Bez planu tygodnia')).toBe(true); expect(screen.getByTestId('planning-button').props.accessibilityLabel).toBe('Ustaw plan'); expect(card().has('Ustaw plan')).toBe(false);
     expect(screen.queryByLabelText('Ukryj zachętę do planu tygodnia')).toBeNull(); expect(card().has('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBe(false);
     await go('/more/settings'); await flushAll(10);
     expect(screen.queryByTestId('sw-Zachęta do planu tygodnia')).toBeNull(); expect(screen.queryByText('Zachęta do planu tygodnia')).toBeNull();
@@ -1876,7 +1877,8 @@ describe('B1 (build 1004; zmienione 11.10.2026): stała zachęta do planu (bez �
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
     await fresh(); const tp = store.newTemplate(); tp.name = 'Pull'; store.save(tp); setWeekDay(4, tp.id); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10);
-    expect(card().has('Planowanie')).toBe(true); expect(card().has('Plan tygodnia')).toBe(false);
+    /* M3 p2 (W1 c): „Planowanie” w nagłówku ekranu, nie na karcie */
+    expect(screen.getByTestId('planning-button').props.accessibilityLabel).toBe('Planowanie'); expect(card().has('Planowanie')).toBe(false); expect(card().has('Plan tygodnia')).toBe(false);
   });
   test.each(['pl', 'en'] as const)('pasek tygodnia pokazuje numer dnia pod skrótem (%s)', async (locale) => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });

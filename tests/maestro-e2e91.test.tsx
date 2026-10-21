@@ -34,7 +34,8 @@ describe('E2E 91: interpreter odtwarza porażki scenariuszy z 224d229 w tym samy
   test('10 — po przewinięciu do wiersza Pull Up karta „Set done” jest nad ekranem: `below: "Set done.*"` nie ma kotwicy', async () => {
     await failsAt('10-gumy.yaml', c => {
       const i = at(c, { scrollUntilVisible: { element: 'Set 1 done — Pull Up', direction: 'DOWN', timeout: 30000, centerElement: true } });
-      return [...c.slice(0, i), { scrollUntilVisible: { element: 'Band: none', direction: 'DOWN', timeout: 30000, centerElement: true } }, { tapOn: { text: 'Band: none', below: 'Set done.*' } }, ...c.slice(i + 2)];
+      /* M3 p2: tablica „teraz” jest niższa niż dawna karta i przy wierszu Pull Up jeszcze się mieści — do odtworzenia przewijamy do końca listy (tablica nad ekranem) */
+      return [...c.slice(0, i), { scrollUntilVisible: { element: '\\+ Add exercise', direction: 'DOWN', timeout: 30000, centerElement: true } }, { scrollUntilVisible: { element: 'Band: none', direction: 'DOWN', timeout: 30000, centerElement: true } }, { tapOn: { text: 'Band: none', below: 'Set done.*' } }, ...c.slice(i + 2)];
     }, 'tapOn {"text":"Band: none","below":"Set done.*"}', /Nie znaleziono/);
   });
 

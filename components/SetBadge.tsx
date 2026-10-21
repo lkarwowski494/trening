@@ -1,7 +1,7 @@
 /* Etykieta serii — wspólna dla treningu i szablonu (decyzja 05.10.2026: typ serii widoczny, nie ukryty pod cyfrą). */
 import React from 'react';
 import { View, Text } from 'react-native';
-import { useTheme, FW } from '@/lib/theme';
+import { useTheme, FW, font, RADIUS } from '@/lib/theme';
 import { type SetKind } from '@/lib/seed';
 import { setMarkOf } from '@/lib/live';
 import { lang } from '@/lib/i18n';
@@ -12,6 +12,6 @@ export function kindLabel(kinds: readonly SetKind[], i: number): string { return
 export function SetBadge({ kind, label, note }: { kind: SetKind; label: string; note?: boolean }) {
   const t = useTheme(); const txt = `${label}${note ? '•' : ''}`;
   return kind !== 'normal'
-    ? <View style={{ alignSelf: 'flex-start', backgroundColor: t.band, borderRadius: 6, paddingHorizontal: 4, paddingVertical: 1 }}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.bg, fontSize: 13, ...FW.semibold }}>{txt}</Text></View>
-    : <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 14, ...FW.regular }}>{txt}</Text>;
+    ? <View style={{ alignSelf: 'flex-start', backgroundColor: t.band, borderRadius: RADIUS.field, paddingHorizontal: 4, paddingVertical: 1 }}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.bg, ...font('footnote'), ...FW.semibold }}>{txt}</Text></View>
+    : <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.muted, ...font('callout'), ...FW.regular }}>{txt}</Text>;
 }

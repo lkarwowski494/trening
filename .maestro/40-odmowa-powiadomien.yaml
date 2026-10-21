@@ -50,11 +50,11 @@ name: Eksperyment — odmowa zgody na powiadomienia
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
 - runFlow: subflows/start-szablonu.yaml
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
-# M1-035: odmowa widoczna na ekranie treningu — jedna linia z przyciskiem do Ustawień iOS (bez okna z pytaniem)
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Skip", timeout: 15000 }
+# M1-035 / M3 p2 (ZM-02): odmowa widoczna przy PIERWSZEJ przerwie — jedna linia pod tablicą z przyciskiem do Ustawień iOS (bez okna z pytaniem), pokazana raz
 - assertVisible: { id: "perm-denied-workout" }
 - assertVisible: "No notification permission — reminders and end-of-rest alerts will not arrive.*"
 - assertVisible: "Open iOS Settings"
 - takeScreenshot: 120-trening-bez-zgody
-- tapOn: { text: "Set 1 done.*", index: 0 }
-- extendedWaitUntil: { visible: "Skip", timeout: 15000 }
-- assertVisible: "rest of 1:30"
+- assertVisible: "Rest, .* of 1 minute 30 seconds left.*"

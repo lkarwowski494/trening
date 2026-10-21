@@ -48,7 +48,8 @@ describe('K2 (A11-02): nagłówki wielkimi literami zgodnie z językiem', () => 
   });
   test('karta „Dziś” (dashboard): nagłówek wersalikami z regułami języka (el), bez textTransform', async () => {
     await bootIn('el', '/', () => { const id = store.getState().templates[0].id; for (let i = 0; i < 7; i++) plan.setWeekDay(i, id); });
-    const want = LOCALES.el!['Dziś'].toLocaleUpperCase('el');
+    /* M3 p2 (W3, wz. 28 pkt 4): tablica „Dziś” na starcie — „Dziś: {nazwa}” wersalikami z regułami języka (el: bez akcentów) */
+    const want = LOCALES.el!['Dziś: {name}'].replace('{name}', store.getState().templates[0].name).toLocaleUpperCase('el');
     expect(texts().some(x => str(x) === want)).toBe(true);
     expect(texts().filter(x => flat(x.props.style).textTransform === 'uppercase').map(str)).toEqual([]);
   });
@@ -201,7 +202,7 @@ describe('K3 (A11-18, A11-19): szum VoiceOver, podwójne glify, złamania linii'
   test('trening: nagłówki kolumn „#”, „✓”, „▶” ukryte przed VoiceOver; plakietka „PR” czytana jako rekord', async () => {
     await bootIn('pl', '/', () => { const st = store.getState(); store.startFromTemplate(st.templates[0]); });
     expect(screen.queryByText('#')).toBeNull(); expect(screen.getAllByText('#', { includeHiddenElements: true }).length).toBeGreaterThan(0);
-    const src = require('fs').readFileSync(require('path').join(__dirname, '..', 'components', 'ActiveWorkout.tsx'), 'utf8') as string;
+    const src = require('fs').readFileSync(require('path').join(__dirname, '..', 'components', 'WorkoutBlocks.tsx'), 'utf8') as string;
     expect(src).toMatch(/accessibilityLabel=\{tr\('Rekord: \{list\}'/);
   });
   test('zamiana: „↺ przywróć” i „Inne ▾” bez drugiego glifu obok; „Co nowego”: starsze wpisy bez „▸” w etykiecie', async () => {

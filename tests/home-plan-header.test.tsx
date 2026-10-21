@@ -27,10 +27,10 @@ const order = (...ids: string[]) => { const all = screen.UNSAFE_root.findAll((n:
 const labels = () => screen.getAllByRole('button').map(b => b.props.accessibilityLabel as string);
 
 describe('nagłówek planu nad kalendarzem', () => {
-  test('z planem: „Plan: nazwa” (nagłówek) i „Planowanie” w jednej karcie nad paskiem tygodnia; stuknięcie → ekran planu', async () => {
+  test('z planem: „Plan: nazwa” (nagłówek) i „Planowanie” w nagłówku ekranu (PlanningButton), nazwa planu nad paskiem tygodnia; stuknięcie → ekran planu', async () => {
     await boot(t => { setPlan(t, { 3: 0, 5: 1 }, 'Góra / Dół'); hist(); });
-    const h = within(screen.getByTestId('plan-header')); expect(h.getByText('Plan: Góra / Dół')).toBeTruthy(); expect(h.getByText('Planowanie')).toBeTruthy();
-    expect(h.getByText('Plan: Góra / Dół').props.accessibilityRole).toBe('header'); expect(screen.getByLabelText('Planowanie').props.accessibilityHint).toBe('Otwiera plan tygodnia, szablony i generator.');
+    const h = within(screen.getByTestId('plan-header')); expect(h.getByText('Plan: Góra / Dół')).toBeTruthy(); expect(h.queryByText('Planowanie')).toBeNull(); /* M3 p2 (W1 c): „Planowanie” w nagłówku ekranu (PlanningButton), nie w karcie */
+    expect(h.getByText('Plan: Góra / Dół').props.accessibilityRole).toBe('header'); expect(screen.getByTestId('planning-button')).toBe(screen.getByLabelText('Planowanie'));
     const [hd, strip, start] = order('plan-header', 'week-strip', 'start-panel'); expect(hd).toBeGreaterThanOrEqual(0); expect(hd).toBeLessThan(strip); expect(strip).toBeLessThan(start);
     await tap(screen.getByLabelText('Planowanie')); await flushAll(10); expect(stack()).toEqual(['(tabs)', 'plan']); expect(screen.getByDisplayValue('Góra / Dół')).toBeTruthy();
   });
@@ -39,7 +39,7 @@ describe('nagłówek planu nad kalendarzem', () => {
   });
   test('bez planu (są treningi): „Bez planu tygodnia” i „Ustaw plan” → ekran planu; nagłówek jest stałą zachętą — bez osobnego tekstu i „Ukryj” (11.10.2026)', async () => {
     await boot(() => { hist(); });
-    const h = within(screen.getByTestId('plan-header')); expect(h.getByText('Bez planu tygodnia')).toBeTruthy(); expect(h.getByText('Ustaw plan')).toBeTruthy(); expect(screen.queryByLabelText('Planowanie')).toBeNull();
+    const h = within(screen.getByTestId('plan-header')); expect(h.getByText('Bez planu tygodnia')).toBeTruthy(); expect(screen.getByTestId('planning-button')).toBe(screen.getByLabelText('Ustaw plan')); expect(screen.queryByLabelText('Planowanie')).toBeNull();
     expect(screen.queryByText('Ukryj')).toBeNull(); expect(screen.queryByLabelText('Ukryj zachętę do planu tygodnia')).toBeNull(); expect(screen.queryByText(/^Ustaw plan tygodnia, by widzieć/)).toBeNull();
     await tap(screen.getByLabelText('Ustaw plan')); await flushAll(10); expect(stack()).toEqual(['(tabs)', 'plan']);
   });

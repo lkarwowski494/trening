@@ -64,11 +64,12 @@ describe('ekran treningu: karta „teraz”', () => {
   test('ćwiczenie, numer serii, duże „80 kg × 8” (audyt 0.10, UI-10: jednostka przy ciężarze), bez paska talerzy; „Seria zrobiona” odhacza serię i startuje przerwę, karta przechodzi dalej', async () => {
     await gymWorkout();
     expect(screen.getByText('seria 1 z 2')).toBeTruthy();
-    expect(screen.getByLabelText('Teraz: 80 kg × 8')).toBeTruthy();
+    expect(screen.getByTestId('board-desc').props.accessibilityLabel).toContain('80 kilogramów, 8 powtórzeń'); /* M3 p2: opis tablicy dla VoiceOver zastąpił „Teraz: …” */
     expect(screen.queryByLabelText(/Na każdą stronę/)).toBeNull(); expect(screen.queryByText(/Na każdą stronę|sam gryf/)).toBeNull(); /* DEC-06: bez paska talerzy */
     await tap(screen.getByText('Seria zrobiona')); await flushAll(10);
     expect(S().active!.exercises[0].sets[0].done).toBe(true); expect(timer.T.on).toBe(true);
-    expect(screen.getByText('seria 2 z 2')).toBeTruthy(); expect(screen.getByLabelText('Teraz: 100 kg × 5')).toBeTruthy();
+    expect(screen.getByTestId('board-next').props.children).toMatch(/seria\s2\sz\s2,\s100\skg\s×\s5/); /* M3 p2: w przerwie tablica pokazuje zegar i „Następna: …” */
+    await tap(screen.getByText('Pomiń')); await flushAll(10); expect(screen.getByText('seria 2 z 2')).toBeTruthy(); expect(screen.getByTestId('board-desc').props.accessibilityLabel).toContain('100 kilogramów, 5 powtórzeń');
     await tap(screen.getByText('Seria zrobiona')); await flushAll(10);
     expect(screen.getByText('Wszystkie serie odhaczone')).toBeTruthy();
     await tap(screen.getByText('Zakończ trening')); await flushAll(10);
@@ -83,7 +84,7 @@ describe('ekran treningu: karta „teraz”', () => {
     await gymWorkout();
     await act(async () => { const a = S().active!; a.exercises[0].sets[0].weight = 60; store.save(a); }); await flushAll(10);
     await act(async () => { fireEvent(screen.getAllByLabelText('kg')[0], 'endEditing'); }); await flushAll(5);
-    expect(screen.getByLabelText('Teraz: 60 kg × 8')).toBeTruthy(); /* audyt 0.10 (UI-10) */
+    expect(screen.getByTestId('board-desc').props.accessibilityLabel).toContain('60 kilogramów, 8 powtórzeń'); /* audyt 0.10 (UI-10) */
   });
   test('widok listy (ustawienie): jak w poprzednich wersjach — bez karty (decyzja właściciela 07.10.2026: jedyna różnica to karta)', async () => {
     await gymWorkout('list');
@@ -109,7 +110,7 @@ describe('ekran Ustawień: „Widok treningu”', () => {
     expect(S().settings.workoutView).toBe('list'); await act(async () => { await store.flush(); }); expect(saved().settings.workoutView).toBe('list');
     await tap(screen.getByText('Skupiony')); await flushAll(5); expect(S().settings.workoutView).toBe('focus');
   });
-  test('karta pokazuje wskazówkę, gdzie zmienić wartości', async () => {
-    await gymWorkout(); expect(screen.getByText('Wartości zmienisz w wierszu serii poniżej.')).toBeTruthy();
+  test('M3 p2: wartości zmienia się na tablicy (liczba i ±), więc wskazówka „Wartości zmienisz w wierszu serii poniżej.” zniknęła', async () => {
+    await gymWorkout(); expect(screen.queryByText('Wartości zmienisz w wierszu serii poniżej.')).toBeNull(); expect(screen.getByTestId('board-value-weight')).toBeTruthy(); expect(screen.getByTestId('step-weight-up')).toBeTruthy();
   });
 });

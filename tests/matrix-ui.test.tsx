@@ -422,7 +422,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
     await startWith(['Plank'], () => { const e = store.getState().active!.exercises[0]; e.sets = [store.emptySet(), store.emptySet()]; });
     await tap(screen.getAllByLabelText('Start stopera serii')[0]); await flushAll(10);
     expect(screen.getByText('seria · bez celu')).toBeTruthy(); expect(screen.getByLabelText('Stoper trwa')).toBeTruthy(); expect(timer.S.on).toBe(true);
-    await flushAll(5000); await tap(screen.getByText('Zakończ serię')); await flushAll(10);
+    await flushAll(5000); await tap(screen.getByLabelText('Zakończ serię')); await flushAll(10); /* M3 p2 (ZM-05): ten sam tytuł „Zakończ serię” na tablicy i w dolnym pasku — pasek ma etykietę bez dopisku */
     expect(blk(0).sets[0].done).toBe(true); expect(Number(blk(0).sets[0].durationSec)).toBeGreaterThanOrEqual(5);
     await tap(screen.getAllByLabelText('Start stopera serii')[0]);
     expect(lastAlert()).toMatchObject({ title: 'Zmierzyć serię od nowa?', msg: 'Zapisany czas zostanie nadpisany.' });
@@ -441,9 +441,10 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
     expect(timer.labels.subtitle).toBe('dalej: Push Up, masa ciała'); /* 0.20: zapowiedź = restCue (ciężar i powtórzenia) */
   });
 
-  test('chip miejsca: menu „Miejsce tego treningu” zmienia miejsce sesji', async () => {
+  test('menu „⋯” → miejsce: arkusz „Miejsce tego treningu” zmienia miejsce sesji', async () => {
     await startWith(['Back Squat'], () => { addLocation('gym', 'Siłownia'); addLocation('home', 'Dom'); store.getState().active!.locationId = store.getState().settings.locations[0].id; });
-    await tap(screen.getByLabelText('Miejsce treningu: Siłownia'));
+    await tap(screen.getByLabelText('Opcje treningu')); await act(async () => { (global as any).__pickSheet(0); }); /* M3 p2 (ZM-02, wzorzec 30): miejsce jest w menu „⋯” treningu — pierwsza pozycja */
+    expect((global as any).__sheets[(global as any).__sheets.length - 2].opts.options[0]).toBe('Miejsce treningu: Siłownia');
     const sh = (global as any).__sheets[(global as any).__sheets.length - 1]; expect(sh.opts.title).toBe('Miejsce tego treningu'); expect(sh.opts.options).toEqual(['Siłownia', 'Dom', 'Inne miejsce (tylko dziś)…', 'Anuluj']); /* 0.19 (docs/33 A4): pozycja „Inne miejsce (tylko dziś)…” przed „Anuluj” */
     await act(async () => { (global as any).__pickSheet(1); }); await flushAll(5);
     expect(store.getState().active!.locationId).toBe(store.getState().settings.locations[1].id);

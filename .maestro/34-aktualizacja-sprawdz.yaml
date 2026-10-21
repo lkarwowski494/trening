@@ -8,10 +8,11 @@ name: Aktualizacja — dane po instalacji nowej wersji
 ---
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Pause workout", timeout: 90000 }
+- extendedWaitUntil: { visible: "Workout options", timeout: 90000 }
 - assertVisible: "Upper A"
 - assertVisible: "Workout progress: 1 of 6 sets"
-- assertVisible: "Now: 40 kg × 10"  # wpisane wartości i jednostka kg przetrwały aktualizację
+- assertVisible: { id: "w-0-0", text: "40" }  # wpisane wartości i jednostka kg przetrwały aktualizację (wiersz serii)
+- assertVisible: "(Bench Press \\(Dumbbell\\), set 2 of 3\\. 40 .*10 reps.*|Rest, .*Next: set 2 of 3, 40 kg × 10)"  # tablica „teraz”: seria 2 z wartościami z serii 1 (albo przerwa, jeśli jeszcze trwa)
 - takeScreenshot: 101-trening-w-toku-po-aktualizacji
 # --- dokończenie treningu ---
 - scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000 }

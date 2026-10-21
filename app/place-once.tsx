@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Chip, Field, Input, SectionTitle, SwitchRow, Missing } from '@/components/ui';
+import { font, SPACE } from '@/lib/theme';
 import { getState, useTick, setActiveLocation, pruneOneOff, NAME_MAX, fmtDayKey } from '@/lib/store';
 import { useCloseHeader, useDismiss } from '@/components/CloseButton';
 import { addOneOffLocation, ONE_OFF_DEFAULT_NAME, ONE_OFF_PRESETS } from '@/lib/locations';
@@ -58,7 +59,7 @@ export default function PlaceOnceScreen() {
         </View>
         <SectionTitle>{t('Sprzęt')}</SectionTitle>
         {EQUIP_GROUPS.map(g => <View key={g} style={{ marginBottom: 8 }}>
-          <Muted style={{ fontSize: 13, marginBottom: 4 }}>{equipLabel(EQUIP_GROUP_LABEL[g])}</Muted>
+          <Muted style={{ ...font('footnote'), marginBottom: SPACE.xs }}>{equipLabel(EQUIP_GROUP_LABEL[g])}</Muted>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
             {EQUIPMENT.filter(x => x.group === g).map(x => <Chip key={x.id} toggle label={equipLabel(x)} on={!!sel[x.id]} onPress={() => toggle(x.id, !sel[x.id])} />)}
           </View>
