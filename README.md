@@ -255,7 +255,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (41)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (42)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -296,6 +296,7 @@ trening/
 - [`docs/42-plan-wydania-1.0.md`](docs/42-plan-wydania-1.0.md) — 42. Plan wydania 1.0 (decyzja właściciela 20.10.2026, audyt M1-068, DEC-22 wariant a)
 - [`docs/43-przekazanie.md`](docs/43-przekazanie.md) — 43. Przekazanie pracy (stan 20.10.2026, ok. 19:30 UTC) — na nowe konto Claude
 - [`docs/44-prompt-nowe-konto.md`](docs/44-prompt-nowe-konto.md) — Prompt startowy — koordynator projektu Trening (nowe konto)
+- [`docs/45-widocznosc-w-sklepie.md`](docs/45-widocznosc-w-sklepie.md) — 45. Widoczność w sklepie (M5) — metadane App Store
 - [`docs/monetyzacja.md`](docs/monetyzacja.md) — Monetyzacja — model stały (jedno miejsce)
 - [`docs/wzrost.md`](docs/wzrost.md) — Wzrost: kanały startu i decyzja o Androidzie
 

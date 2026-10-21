@@ -23,6 +23,24 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 | R-011 | M1-058: `scripts/ci/sim-wybor.mjs` w obu krokach „Simulator” `e2e-ios.yml` (Node na maszynie macOS, format listy `simctl`); nie wiadomo, czy obraz macos-26 ma iPhone SE (375 pt) — bez niego „mały ekran” zostaje 390 pt (16e/17e), a log pokaże to wprost | przebieg `e2e-ios.yml` z wejściem `urzadzenie` jak w `nightly.yml` i `tylko_scenariusze: 01`: w logu „Ekran: … szerokość ekranu N pt”; decyzja co do braku SE (właściciel) | **zamknięte 21.10.2026** — dowód: nocny przebieg 39537208004 („Ekran: iPhone 17e — szerokość ekranu 390 pt”), SE niedostępny w obrazie macos-26; decyzja właściciela 21.10.2026: 390 pt wystarcza (docs/18) |
 | R-012 | M1-062 (DEC-27): test aktualizacji bierze poprzednią wersję z pliku wydania `Trening-sim.zip`; zadanie „tag” w `testflight.yml` ma go dołączać (pobranie artefaktu `trening-sim-app` z zielonego przebiegu E2E, `gh release upload`), a `poprzednia-wersja.sh` pobierać na GitHub Actions. Linux tego nie sprawdzi; do czasu pierwszego wydania z plikiem E2E z testem aktualizacji kończy się błędem (zamierzone) | dowód 1: plik `Trening-sim.zip` dołączony ręcznie do istniejącego wydania + `e2e-ios.yml` (pakiet podstawowy) zielony z logiem „Poprzednia wersja (plik wydania): <tag>” i wersją oraz buildem obu aplikacji; dowód 2: pierwsze prawdziwe wydanie TestFlight — krok „Plik wydania Trening-sim.zip” zielony, wydanie ma plik | **otwarte** — przebieg dowodowy do zlecenia (raport M2, partia 4)
 
+## L-014 (21.10.2026, M5) — wypchnięcie przed odczytem wyniku verify; nowy dokument w docs/ unieważnił README (powtórka L-009)
+
+- **Co się stało:** rola M5 (gałąź `widocznosc/trening-2026-10-21`) wypchnęła commit 83e59b1 (nowy `docs/45-widocznosc-w-sklepie.md`, wpis w docs/18)
+  w tej samej komendzie powłoki, w której czytała log verify — push wykonał się mimo `kod 1`. Verify padło najpierw na lint w pliku spoza gita
+  (narzędzie w katalogu przebiegu `audit/M5-…`, wykluczonym tylko w `.git/info/exclude`), a po jego pominięciu na `check:readme`
+  (spis dokumentów w README liczy pliki `docs/`). tests.yml 39616715121 na 83e59b1 — oczekiwany czerwony na `check:readme`; naprawa: README przegenerowane w następnym commicie.
+- **Przyczyna źródłowa:** (1) push nie był warunkowany kodem wyjścia verify (komenda „czytaj log; push” zamiast `verify && push`) — L-009 akcja (a), hak pre-push, wciąż otwarta,
+  więc nic mechanicznie nie zatrzymało wypchnięcia; (2) agent uznał zmianę „tylko dokumenty” za neutralną dla plików generowanych — nowy plik w `docs/` zmienia README;
+  (3) katalog przebiegu roli z biblioteki promptów leży w drzewie repo, a ESLint nie czyta `.git/info/exclude`, więc lokalne verify widzi pliki, których CI nie ma.
+- **Ocena zakresu: systemowa** (drugie wystąpienie klasy L-009: wypchnięcie bez zielonego verify; dotyczy każdej roli i gałęzi).
+  Opcje dla właściciela: (A) hak pre-push (`check:readme` + `check:matrix`, ok. 10 s) instalowany przez `npm ci` — mechanizm lokalny, łapie oba przypadki L-009 i L-014;
+  (B) skrypt `npm run push` = `verify && git push -u origin HEAD`, wymagany w CLAUDE.md i promptach ról — prostszy, ale omijalny zwykłym `git push`.
+  Rekomendacja: A (+ katalogi przebiegów ról poza drzewem repo albo `audit/` w ignorach ESLint — zgłoszone koordynatorowi jako zmiana biblioteki promptów).
+- **Akcje:**
+  1. README przegenerowane (`node scripts/readme.mjs --write`) i pełne verify (z wykluczeniem `audit/` z lint) przed kolejnym wypchnięciem — **w toku**.
+  2. Rola M5 w tym przebiegu wypycha tylko komendą warunkowaną kodem verify (`… && git push`) — **zrobione** (postanowienie do czasu decyzji A/B).
+  3. Decyzja właściciela A/B (wspólna z L-009) — **otwarte**.
+
 ## L-013 (21.10.2026) — nocny przebieg czerwony od 16.10 bez reakcji: mutacje nie mierzą się, martwa gałąź w liście nocnej, E2E 17e pada deterministycznie
 
 - **Co się stało:** przegląd nocnego przebiegu (run 39537208004, main 0fd4687; tester-e2e) — trzy niezależne przyczyny:
