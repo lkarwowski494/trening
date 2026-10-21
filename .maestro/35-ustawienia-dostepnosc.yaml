@@ -76,8 +76,10 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - tapOn: { id: "sw-Progression hint" }
 - scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-RPE / RIR per set" }
-- scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000, centerElement: true }
-- tapOn: "RIR"
+# E2E-35 (run 39676394005): „RIR” po tekście trafiało w nieostry cel (trening pokazał potem RPE) — segment ma testID `effort-scale-rir`; zaznaczenie sprawdzamy przed dalszymi krokami
+- scrollUntilVisible: { element: { id: "effort-scale-rir" }, direction: DOWN, timeout: 20000, centerElement: true }
+- tapOn: { id: "effort-scale-rir" }
+- assertVisible: { id: "effort-scale-rir", selected: true }
 - scrollUntilVisible: { element: { id: "sw-Automatic backup after every workout" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Automatic backup after every workout" }
 - takeScreenshot: 106-przelaczniki
