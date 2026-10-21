@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Aucune série avec un résultat.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Vous n’avez pas encore de lieux d’entraînement, donc le programme suppose une salle complète (barre, haltères, machines et poulies). Vous vous entraînez à la maison ou à l’hôtel ? Touchez « + Ajouter un lieu » et cochez votre équipement — le générateur choisira les exercices.",
  "Nie masz jeszcze szablonów.": "Vous n’avez pas encore de modèles.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Vous n’avez aucun modèle avec des exercices. Créez un modèle ou choisissez « Nouveaux modèles et programme ».",
  "Nie można wyłączyć planu": "Impossible de désactiver le programme",
  "nie podano — e1RM podciągania i pompek": "non renseigné — e1RM des tractions et des pompes",
  "Nie teraz": "Pas maintenant",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "nouvel exercice personnalisé",
  "Nowe miejsce": "Nouveau lieu",
  "Nowe rekordy: {n}": "Nouveaux records : {n}",
- "Nowe szablony i plan": "Nouveaux modèles et programme",
  "nowe w tym tygodniu": "nouveau cette semaine",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Nouvel écran Séance : la séance du jour, la semaine en chiffres et votre dernière séance ; guide des fonctions dans Plus.",
  "Nowy plan": "Nouveau programme",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "yard|yards",
  "jarda": "yards",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Chaque grand groupe musculaire au moins {n} jours par semaine (OMS 2020 — recommandation pour la santé ; ACSM 2026 : la fréquence influe sur la force, mais les preuves sont insuffisantes pour établir une relation dose-réponse et, à volume égal, l’écart s’atténue). Un jour où le groupe ne fait qu’aider compte pour {h} — une simplification (méthode de la méta-analyse de Pelland et al. 2026). La répartition (full body, haut/bas) est une convention — à nombre de séries égal, les résultats sont similaires.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Le pas (p. ex. +2,5 kg) est une convention, pas un résultat d’études."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Le pas (p. ex. +2,5 kg) est une convention, pas un résultat d’études.",
+ "Usuń szablon": "Supprimer le modèle",
+ "Usuń z biblioteki": "Supprimer de la bibliothèque",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Vous n’avez aucun modèle avec des exercices. Créez un modèle ou choisissez « Générer des modèles et un programme »."
 }

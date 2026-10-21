@@ -150,6 +150,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik jest na ekranie szablonów
     - Gdy dodaje szablon przyciskiem „+”
     - Wtedy szablon zawiera ćwiczenia, serie, zakres powtórzeń i przerwy wpisane przez użytkownika; aplikacja nie dodaje szablonów sama
+  - Scenariusz: Usunięcie szablonu z podglądu (ZM-04, W2 a, 21.10.2026)
+    - Zakładając, że użytkownik ogląda podgląd własnego szablonu
+    - Gdy stuka „Usuń szablon” na dole ekranu
+    - Wtedy pojawia się to samo okno potwierdzenia co po geście na liście (z informacją o skutkach dla planu), a po „Usuń” szablon znika; w trybie edycji przycisku nie ma
 
 ### BR-PLN-001: Plan tygodnia z kalendarzem
 - Przepływ: PR-03
@@ -194,6 +198,18 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik wybrał cel „Ogólny” i jeden dzień siłowy w tygodniu
     - Gdy generator przygotowuje plan
     - Wtedy pod celem pojawia się uwaga o małej liczbie dni z odniesieniem do zaleceń (docs/research/30-cel-ogolny.md)
+  - Scenariusz: Zapis, gdy nie ma aktywnego planu (ZM-03, 21.10.2026)
+    - Zakładając, że użytkownik nie ma aktywnego planu i przejrzał wynik generatora
+    - Gdy stuka „Zapisz szablony i plan”
+    - Wtedy szablony zostają zapisane, plan jest aktywny bez pytania i bez okna „Zapisano”, a aplikacja przechodzi do Planowania z jednym zdaniem „Plan „{nazwa}” jest teraz aktywny.”; zgodę na przypomnienie aplikacja zbiera przy pierwszym zaplanowanym dniu
+  - Scenariusz: Zapis, gdy aktywny plan już jest (ZM-03)
+    - Zakładając, że użytkownik ma aktywny plan
+    - Gdy stuka „Zapisz szablony i plan”
+    - Wtedy aplikacja pyta, czy nowy plan ustawić jako aktywny („Tylko zapisz” albo „Ustaw jako aktywny”), i potwierdza zapis oknem „Zapisano”; aktywny plan nie zmienia się bez zgody
+  - Scenariusz: Jeden tryb generatora (ZM-03)
+    - Zakładając, że użytkownik otwiera generator
+    - Gdy ogląda ekran
+    - Wtedy generator nie ma przełącznika trybu; „Plan z moich szablonów” jest osobnym wejściem w Planowaniu
 
 ### BR-GEN-002: Plan tygodnia z moich szablonów
 - Przepływ: PR-04
@@ -203,6 +219,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma własne szablony
     - Gdy wybiera „Plan z moich szablonów”
     - Wtedy aplikacja układa plan tygodnia według tych samych reguł co generator, a szablony zostają bez zmian
+  - Scenariusz: Zapis jak w generatorze (ZM-03, 21.10.2026)
+    - Zakładając, że użytkownik ułożył plan z własnych szablonów
+    - Gdy stuka „Zapisz plan”
+    - Wtedy bez aktywnego planu plan staje się aktywny bez pytania i bez okna „Zapisano” (zdanie na ekranie Planowanie); z aktywnym planem aplikacja pyta jak w generatorze
 
 ### BR-MJS-001: Miejsca i sprzęt: ćwiczenia dobierane do tego, czym użytkownik dysponuje
 - Przepływ: PR-09
@@ -270,6 +290,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie ma wskazówki techniki
     - Gdy użytkownik otwiera ćwiczenie
     - Wtedy sekcje „Ustawienie”, „Ruch”, „Wskazówki” i „Częste błędy” są po polsku lub w języku aplikacji; nazwa ćwiczenia z biblioteki zostaje po angielsku (decyzja 2026-10-19)
+  - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
+    - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
+    - Gdy stuka „Usuń z biblioteki” na dole ekranu
+    - Wtedy pojawia się to samo okno potwierdzenia co po geście na liście, a po „Usuń” ćwiczenie znika z biblioteki (historia zostaje); przy ćwiczeniu wbudowanym przycisku nie ma (decyzja STOP 3, 2026-10-21), a gest na liście działa jak dotąd
 
 ### BR-BIB-002: Informacja o asekuracji przy sztandze nad ciałem lub na barkach
 - Przepływ: PR-01

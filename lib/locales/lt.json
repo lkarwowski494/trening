@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Nėra serijos su rezultatu.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Dar neturite treniruočių vietų, todėl planas numato visą sporto salę (štanga, hanteliai, treniruokliai ir blokai). Treniruojatės namuose ar viešbutyje? Palieskite „+ Pridėti vietą“ ir pažymėkite įrangą — generatorius parinks pratimus.",
  "Nie masz jeszcze szablonów.": "Dar neturite šablonų.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Neturite šablonų su pratimais. Sukurkite šabloną arba pasirinkite „Nauji šablonai ir planas“.",
  "Nie można wyłączyć planu": "Plano išjungti negalima",
  "nie podano — e1RM podciągania i pompek": "neįvesta — prisitraukimų ir atsispaudimų e1RM",
  "Nie teraz": "Ne dabar",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "naujas savas pratimas",
  "Nowe miejsce": "Nauja vieta",
  "Nowe rekordy: {n}": "Nauji rekordai: {n}",
- "Nowe szablony i plan": "Nauji šablonai ir planas",
  "nowe w tym tygodniu": "nauja šią savaitę",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Naujas ekranas Treniruotė: šiandienos treniruotė, savaitė skaičiais ir paskutinė treniruotė; funkcijų vadovas skiltyje Daugiau.",
  "Nowy plan": "Naujas planas",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "jardas|jardai|jardų",
  "jarda": "jardo",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Kiekviena pagrindinė raumenų grupė bent {n} dienas per savaitę (PSO 2020 — sveikatos rekomendacija; ACSM 2026: dažnis veikia jėgą, bet įrodymų dozės ir atsako ryšiui nustatyti nepakanka, o esant tokiai pačiai apimčiai skirtumas mažėja). Diena, kai grupė tik padeda, skaičiuojama kaip {h} — supaprastinimas (metodas iš Pelland ir kt. 2026 metaanalizės). Padalijimas (visas kūnas, viršus/apačia) yra susitarimas — esant tam pačiam serijų skaičiui rezultatai panašūs.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Žingsnis (pvz., +2,5 kg) yra susitarimas, o ne tyrimų rezultatas."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Žingsnis (pvz., +2,5 kg) yra susitarimas, o ne tyrimų rezultatas.",
+ "Usuń szablon": "Ištrinti šabloną",
+ "Usuń z biblioteki": "Ištrinti iš bibliotekos",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Neturite šablonų su pratimais. Sukurkite šabloną arba pasirinkite „Sukurti šablonus ir planą“."
 }

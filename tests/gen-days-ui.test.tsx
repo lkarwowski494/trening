@@ -90,7 +90,7 @@ describe('generator: wybór dni', () => {
   });
   test('scenariusz: wybór dni → zapis „Ustaw jako aktywny” → plan ma dokładnie te dni → restart → te same dni; nazwa z liczbą dni', async () => {
     await boot('/generator');
-    await pickDays([1, 3, 5, 6]); await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
+    await pickDays([1, 3, 5, 6]); await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await flushAll(10); /* ZM-03 (21.10.2026): bez aktywnego planu zapis aktywuje plan bez pytania */
     expect(plan.planName()).toBe('Masa, 4× w tygodniu · Pełna siłownia');
     const days = plan.weekPlanDays(); expect(days.flatMap((x, d) => (x ? [d] : []))).toEqual([1, 3, 5, 6]);
     expect(days.map(id => (id ? S().templates.find(x => x.id === id)!.name : null))).toEqual(generate(inp({ days: [1, 3, 5, 6] })).days.map(ti => (ti == null ? null : generate(inp({ days: [1, 3, 5, 6] })).templates[ti].name)));
@@ -114,7 +114,7 @@ describe('„Plan z moich szablonów”: ten sam wybór dni', () => {
     await pickDays([0, 2, 3, 5, 6]); const r = ownPlan({ templateIds: ids, sessions: 5, days: [0, 2, 3, 5, 6] })!;
     expect(r.days.flatMap((x, d) => (x ? [d] : []))).toEqual([0, 2, 3, 5, 6]);
     expect(screen.getByText(r.days.map((id, i) => (id ? `${wd(i)} ${S().templates.find(x => x.id === id)!.name}` : null)).filter(Boolean).join(' · '))).toBeTruthy();
-    await tap(screen.getByText('Zapisz plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
+    await tap(screen.getByText('Zapisz plan')); await flushAll(5); await flushAll(10); /* ZM-03 (21.10.2026): bez aktywnego planu zapis aktywuje plan bez pytania */
     expect(plan.weekPlanDays()).toEqual(r.days); expect(plan.planName()).toBe('Moje szablony, 5× w tygodniu');
     await restart('/plan'); expect(plan.weekPlanDays()).toEqual(r.days);
   });

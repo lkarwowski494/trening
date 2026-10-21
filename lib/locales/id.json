@@ -586,7 +586,6 @@
  "Nie ma żadnej serii z wynikiem.": "Tidak ada set dengan hasil.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Anda belum punya tempat latihan, jadi rencana mengasumsikan gym lengkap (barbel, dumbel, mesin, dan kabel). Berlatih di rumah atau di hotel? Ketuk “+ Tambah tempat” dan centang alat Anda — pembuat rencana akan memilih gerakan yang sesuai.",
  "Nie masz jeszcze szablonów.": "Anda belum punya templat.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Anda belum punya templat berisi gerakan. Buat templat atau pilih “Templat dan rencana baru”.",
  "nie podano — e1RM podciągania i pompek": "tidak diisi — e1RM pull-up dan push-up",
  "Nie teraz": "Nanti saja",
  "Nie udało się": "Terjadi kesalahan",
@@ -620,7 +619,6 @@
  "nowe ćwiczenie własne": "gerakan kustom baru",
  "Nowe miejsce": "Tempat baru",
  "Nowe rekordy: {n}": "Rekor baru: {n}",
- "Nowe szablony i plan": "Templat dan rencana baru",
  "nowe w tym tygodniu": "baru minggu ini",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Layar Latihan baru: latihan hari ini, minggu dalam angka, dan latihan terakhir Anda; panduan fitur ada di Lainnya.",
  "Nowy plan": "Rencana baru",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "yard",
  "jarda": "yard",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Setiap kelompok otot utama minimal {n} hari per minggu (WHO 2020 — rekomendasi kesehatan; ACSM 2026: frekuensi memengaruhi kekuatan, tetapi bukti belum cukup untuk menetapkan hubungan dosis–respons, dan pada volume yang sama selisihnya mengecil). Hari ketika kelompok otot hanya membantu dihitung sebagai {h} — penyederhanaan (metode dari meta-analisis Pelland dkk. 2026). Pembagian sesi (full body, atas/bawah) adalah konvensi — dengan jumlah set yang sama hasilnya serupa.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Besar kenaikan (mis. +2,5 kg) adalah konvensi, bukan hasil penelitian."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Besar kenaikan (mis. +2,5 kg) adalah konvensi, bukan hasil penelitian.",
+ "Usuń szablon": "Hapus templat",
+ "Usuń z biblioteki": "Hapus dari pustaka",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Anda belum punya templat berisi gerakan. Buat templat atau pilih “Buat templat dan rencana”."
 }

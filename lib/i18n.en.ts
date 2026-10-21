@@ -793,12 +793,11 @@ export const EN: Record<string, string> = {
   'Inteligentna stacja kablowa — kompaktowa (1,5–35 kg/str.)': 'Smart cable machine — compact (1.5–35 kg/side)',
   'Superset ustawisz w szablonie: „Edytuj”, potem „⇅ SS” przy ćwiczeniu łączy je z następnym (w trakcie treningu ten sam przycisk jest przy ćwiczeniu) — przerwa liczy się po ostatnim ćwiczeniu grupy.': 'To set a superset in a template, tap “Edit”, then “⇅ SS” on an exercise links it with the next one (during a workout the same button is on the exercise) — the rest starts after the group’s last exercise.',
   'Gumy…': 'Bands…',
-  'Nowe szablony i plan': 'New templates and plan',
   'Plan z moich szablonów': 'Plan from my templates',
   'Po zapisie szablon trafi na ten dzień.': 'After saving, the template goes on this day.',
   'Szablony zostają bez zmian. Plan trafi do „Inne plany” albo od razu jako aktywny.': 'Your templates stay unchanged. The plan goes to “Other plans” or becomes active right away.',
   'Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.': 'A weekly plan from your templates, using the same rules as the generator — you review it before saving. Your templates stay unchanged.',
-  'Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.': 'You have no templates with exercises. Create a template or choose “New templates and plan”.',
+  'Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.': 'You have no templates with exercises. Create a template or choose “Generate templates and plan”.',
   'Szablon w planie: {name}': 'Template in the plan: {name}',
   'Najwyżej {n} szablonów — każdy dostaje co najmniej jeden dzień.': 'At most {n} templates — each one gets at least one day.',
   'Dni treningowe w tygodniu': 'Training days per week',
@@ -1192,4 +1191,7 @@ export const EN: Record<string, string> = {
   'jard|jardy|jardów': 'yard|yards',
   'jarda': 'yards',
   'Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.': 'The step (e.g. +2.5 kg) is a convention, not a research result.',
+  // M3 p4 (ZM-03, ZM-04)
+  'Usuń szablon': 'Delete template',
+  'Usuń z biblioteki': 'Delete from library',
 };

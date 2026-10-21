@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Nav nevienas sērijas ar rezultātu.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Jums vēl nav treniņu vietu, tāpēc plāns pieņem pilnu sporta zāli (stienis, hanteles, trenažieri un trosīšu bloki). Trenējaties mājās vai viesnīcā? Pieskarieties “+ Pievienot vietu” un atzīmējiet aprīkojumu — ģenerators izvēlēsieties vingrinājumus.",
  "Nie masz jeszcze szablonów.": "Jums vēl nav veidņu.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Jums nav veidņu ar vingrinājumiem. Izveidojiet veidni vai izvēlieties “Jaunas veidnes un plāns”.",
  "Nie można wyłączyć planu": "Plānu nevar izslēgt",
  "nie podano — e1RM podciągania i pompek": "nav ievadīts — pievilkšanās un atspiešanās e1RM",
  "Nie teraz": "Ne tagad",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "jauns pielāgots vingrinājums",
  "Nowe miejsce": "Jauna vieta",
  "Nowe rekordy: {n}": "Jauni rekordi: {n}",
- "Nowe szablony i plan": "Jaunas veidnes un plāns",
  "nowe w tym tygodniu": "jauns šonedēļ",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Jauns ekrāns Treniņš: šodienas treniņš, nedēļa skaitļos un pēdējais treniņš; funkciju ceļvedis sadaļā Vairāk.",
  "Nowy plan": "Jauns plāns",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "jardu|jards|jardi",
  "jarda": "jardi",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Katra galvenā muskuļu grupa vismaz {n} dienas nedēļā (PVO 2020 — veselības ieteikums; ACSM 2026: biežums ietekmē spēku, taču pierādījumu devas un atbildes sakarības noteikšanai nepietiek, un, ja apjoms ir vienāds, atšķirība mazinās). Diena, kad grupa tikai palīdz, skaitās {h} — vienkāršojums (metode no Pelland u. c. 2026 metaanalīzes). Sadalījums (viss ķermenis, augša/apakša) ir vienošanās — ar vienādu sēriju skaitu rezultāti ir līdzīgi.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Solis (piem., +2,5 kg) ir vienošanās, nevis pētījumu rezultāts."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Solis (piem., +2,5 kg) ir vienošanās, nevis pētījumu rezultāts.",
+ "Usuń szablon": "Dzēst veidni",
+ "Usuń z biblioteki": "Dzēst no bibliotēkas",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Jums nav veidņu ar vingrinājumiem. Izveidojiet veidni vai izvēlieties “Ģenerēt veidnes un plānu”."
 }

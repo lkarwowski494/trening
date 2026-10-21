@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "No hay ninguna serie con resultado.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Aún no tienes lugares de entrenamiento, así que el plan supone un gimnasio completo (barra, mancuernas, máquinas y poleas). ¿Entrenas en casa o en un hotel? Toca «+ Añadir lugar» y marca tu material — el generador elegirá los ejercicios.",
  "Nie masz jeszcze szablonów.": "Aún no tienes plantillas.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "No tienes plantillas con ejercicios. Crea una plantilla o elige «Nuevas plantillas y plan».",
  "Nie można wyłączyć planu": "No se puede desactivar el plan",
  "nie podano — e1RM podciągania i pompek": "sin indicar — e1RM de dominadas y flexiones",
  "Nie teraz": "Ahora no",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "nuevo ejercicio personalizado",
  "Nowe miejsce": "Nuevo lugar",
  "Nowe rekordy: {n}": "Nuevos récords: {n}",
- "Nowe szablony i plan": "Nuevas plantillas y plan",
  "nowe w tym tygodniu": "nuevo esta semana",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Nueva pantalla Entreno: el entreno de hoy, la semana en números y tu último entreno; guía de funciones en Más.",
  "Nowy plan": "Nuevo plan",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "yarda|yardas",
  "jarda": "yardas",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Cada grupo muscular principal al menos {n} días por semana (OMS 2020 — recomendación de salud; ACSM 2026: la frecuencia influye en la fuerza, pero no hay pruebas suficientes para establecer una relación dosis-respuesta y con el mismo volumen la diferencia se reduce). Un día en que el grupo solo ayuda cuenta como {h} — una simplificación (método del metaanálisis de Pelland y cols. 2026). La división (cuerpo completo, torso/pierna) es una convención — con el mismo número de series da resultados similares.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "El paso (p. ej. +2,5 kg) es una convención, no un resultado de estudios."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "El paso (p. ej. +2,5 kg) es una convención, no un resultado de estudios.",
+ "Usuń szablon": "Eliminar plantilla",
+ "Usuń z biblioteki": "Eliminar de la biblioteca",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "No tienes plantillas con ejercicios. Crea una plantilla o elige «Generar plantillas y plan»."
 }

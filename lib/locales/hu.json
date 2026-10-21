@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Nincs eredménnyel rendelkező sorozat.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Még nincs edzéshelyszíne, ezért a terv teljes edzőtermet feltételez (rúd, kézisúlyzók, gépek és csigák). Otthon vagy szállodában edz? Koppintson az „+ Új helyszín” gombra, és jelölje be az eszközeit — a generátor ehhez választ gyakorlatokat.",
  "Nie masz jeszcze szablonów.": "Még nincsenek sablonjai.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nincs gyakorlatokat tartalmazó sablonja. Hozzon létre egy sablont, vagy válassza az „Új sablonok és terv” lehetőséget.",
  "Nie można wyłączyć planu": "A terv nem kapcsolható ki",
  "nie podano — e1RM podciągania i pompek": "nincs megadva — húzódzkodás és fekvőtámasz e1RM-je",
  "Nie teraz": "Most nem",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "új saját gyakorlat",
  "Nowe miejsce": "Új helyszín",
  "Nowe rekordy: {n}": "Új rekordok: {n}",
- "Nowe szablony i plan": "Új sablonok és terv",
  "nowe w tym tygodniu": "új ezen a héten",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Új Edzés képernyő: a mai edzés, a hét számokban és a legutóbbi edzés; funkcióútmutató a Egyebek alatt.",
  "Nowy plan": "Új terv",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "yard|yard",
  "jarda": "yard",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Minden fő izomcsoport legalább heti {n} napon (WHO 2020 — egészségügyi ajánlás; ACSM 2026: a gyakoriság hatással van az erőre, de nincs elég bizonyíték a dózis–válasz összefüggés megállapításához, azonos volumen mellett pedig a különbség csökken). Az a nap, amikor az izomcsoport csak segít, {h} értékkel számít — egyszerűsítés (módszer Pelland és mtsai 2026-os metaanalíziséből). A felosztás (teljes test, felső/alsó) konvenció — azonos sorozatszámmal hasonló eredményt ad.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "A lépésköz (pl. +2,5 kg) konvenció, nem kutatási eredmény."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "A lépésköz (pl. +2,5 kg) konvenció, nem kutatási eredmény.",
+ "Usuń szablon": "Sablon törlése",
+ "Usuń z biblioteki": "Törlés a könyvtárból",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nincs gyakorlatokat tartalmazó sablonja. Hozzon létre egy sablont, vagy válassza az „Sablonok és terv generálása” lehetőséget."
 }

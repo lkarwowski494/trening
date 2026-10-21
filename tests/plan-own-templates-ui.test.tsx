@@ -29,17 +29,15 @@ const chip = (name: string) => screen.getByLabelText(`Szablon w planie: ${name}`
 const checkedDays = () => [0, 1, 2, 3, 4, 5, 6].filter(d => screen.getByTestId(`day-${d}`).props.accessibilityState.checked);
 const pickDays = async (ds: number[]) => { const cur = checkedDays(); for (let d = 0; d < 7; d++) if (cur.includes(d) !== ds.includes(d)) await tap(screen.getByTestId(`day-${d}`)); await flushAll(5); };
 
-describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
-  test('wybór trybu na ekranie generatora; ?mode=own otwiera od razu drugi tryb; tytuł ekranu', async () => {
+describe('generator i „Plan z moich szablonów”: osobne wejścia (ZM-03, 21.10.2026 — bez przełącznika trybu)', () => {
+  test('/generator to generator ze wstępem ⓘ; ?mode=own otwiera „Plan z moich szablonów” z własnym wstępem; tytuł ekranu', async () => {
     await boot('/generator');
-    expect(screen.getByText('Nowe szablony i plan').parent).toBeTruthy(); expect(screen.getByRole('button', { name: 'Nowe szablony i plan' }).props.accessibilityState.selected).toBe(true);
+    expect(screen.queryByRole('button', { name: 'Nowe szablony i plan' })).toBeNull(); /* ZM-03: przełącznika już nie ma (dawny test wyboru trybu zastąpiony) */
     await openInfo('gen-intro'); expect(screen.getByText(/^Propozycja według Twoich założeń/)).toBeTruthy(); /* ⓘ 14.10.2026 */
-    await tap(screen.getByRole('button', { name: 'Plan z moich szablonów' })); await flushAll(10);
+    await go('/generator?mode=own'); await flushAll(10);
     expect(screen.getByText('Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.')).toBeTruthy(); await openInfo('own-intro');
     expect(screen.getByText('Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.')).toBeTruthy();
-    expect(screen.queryByText(/^Propozycja według Twoich założeń/)).toBeNull();
-    await tap(screen.getByRole('button', { name: 'Nowe szablony i plan' })); await flushAll(10); await openInfo('gen-intro'); expect(screen.getByText(/^Propozycja według Twoich założeń/)).toBeTruthy();
-    await go('/generator?mode=own'); await flushAll(10); expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy();
+    expect(screen.queryByText(/^Propozycja według Twoich założeń/)).toBeNull(); expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy();
   });
   test('domyślnie wszystkie szablony z ćwiczeniami (pusty i z archiwum — nie); dni od liczby szablonów; podgląd zgodny z logiką; rotacja; ostrzeżenia; źródła', async () => {
     const t = await boot('/generator?mode=own', () => { const e = store.newTemplate(); e.name = 'Pusty'; store.save(e); });
@@ -75,7 +73,7 @@ describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
   });
   test('bez szablonów z ćwiczeniami: komunikat i „+ Nowy szablon” (edycja nowego szablonu)', async () => {
     await boot('/generator?mode=own', () => {}, { demo: false });
-    expect(screen.getByText('Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.')).toBeTruthy();
+    expect(screen.getByText('Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.')).toBeTruthy();
     await tap(screen.getByText('+ Nowy szablon')); await flushAll(10); expect(S().templates.length).toBe(1); expect(screen.getByLabelText('Zapisz szablon')).toBeTruthy();
   });
   test('zapis: pytanie jak w generatorze (activationNote); „Anuluj” nic nie zapisuje; „Tylko zapisz” → „Inne plany”; „Ustaw jako aktywny” → plan aktywny, „Planowanie”; szablony bez zmian; po restarcie to samo', async () => {
@@ -99,11 +97,12 @@ describe('generator: dwa tryby i „Plan z moich szablonów”', () => {
     await boot('/generator?mode=own', () => { S().savedPlans = Array.from({ length: store.SAVED_PLANS_MAX }, (_, i) => ({ id: `p${i}`, name: `P${i}`, days: [null, null, null, null, null, null, null] })); store.save(); });
     await tap(screen.getByText('Zapisz plan')); await flushAll(5); expect(lastAlert('Za dużo zapisanych planów')).toBeTruthy(); expect(lastAlert('Ustawić nowy plan jako aktywny?')).toBeUndefined();
   });
-  test('EN: tryby, podgląd i zapis po angielsku', async () => {
+  test('EN: ekran, podgląd i zapis po angielsku (ZM-03: bez przełącznika, bez pytania i bez okna „Saved” przy pierwszym planie)', async () => {
     await boot('/generator?mode=own', () => {}, { locale: 'en' });
-    expect(screen.getByText('Plan from my templates')).toBeTruthy(); expect(screen.getByText('New templates and plan')).toBeTruthy(); expect(screen.getByText('Training days per week')).toBeTruthy();
-    await tap(screen.getByText('Save plan')); await flushAll(5); await press('Make the new plan active?', 'Make active');
-    expect(lastAlert('Saved')!.msg).toBe('The plan “My templates, 4× a week” is now active.');
+    expect(screen.queryByText('New templates and plan')).toBeNull(); expect(screen.getByText('Training days per week')).toBeTruthy();
+    await tap(screen.getByText('Save plan')); await flushAll(10);
+    expect(lastAlert('Make the new plan active?')).toBeUndefined(); expect(lastAlert('Saved')).toBeUndefined();
+    expect(screen.getByTestId('plan-notice').props.children).toBe('The plan “My templates, 4× a week” is now active.');
   });
 });
 
@@ -122,7 +121,7 @@ describe('scenariusz (polecenie koordynatora 09.10.2026): plan A/B/A/B z „Plan
   test('ABAB → jednorazowo B→A tylko w jednej dacie (stały plan zostaje ABAB) → „Przywróć z planu” → „Przesuń plan o 1 dzień” → restart → nowy plan z moich szablonów pyta o zmiany dni i ich nie gubi', async () => {
     const t = await boot('/generator?mode=own'); const A = t[0], B = t[2];
     await tap(chip(t[1].name)); await tap(chip(t[3].name)); await flushAll(5); await pickDays([0, 1, 3, 5]);
-    await tap(screen.getByText('Zapisz plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
+    await tap(screen.getByText('Zapisz plan')); await flushAll(10); /* ZM-03: bez aktywnego planu — aktywny bez pytania */
     const abab = plan.weekPlanDays(); expect(abab.filter(Boolean)).toEqual([A.id, B.id, A.id, B.id]); /* pon A, wt B, czw A, sob B */
     expect(abab).toEqual([A.id, B.id, null, A.id, null, B.id, null]);
     /* wtorek 13.10 (następny tydzień): jednorazowo B → A — w tym tygodniu A, A, A, B; stały plan dalej A, B, A, B */

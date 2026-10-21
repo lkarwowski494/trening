@@ -9,6 +9,7 @@ import type { Template } from '@/lib/seed';
 import { SwipeRow } from '@/components/SwipeRow';
 import { t as tr, exName, lang } from '@/lib/i18n';
 import { useAddHeader } from '@/components/AddButton';
+import { font } from '@/lib/theme';
 
 export default function TemplatesScreen() {
   useCfgTick(); /* PERF-02: szablony zmieniają się bez zmiany historii */ const st = getState(); const router = useRouter(); const once = useOnce(); const [showArch, setShowArch] = useState(false); const arch = archivedTemplates();
@@ -26,7 +27,7 @@ export default function TemplatesScreen() {
         {st.templates.length ? <>
           {templateGroups().map(g => <React.Fragment key={g.folder ?? ''}>{g.folder ? <SectionTitle>{g.folder}</SectionTitle> : null}{g.items.map(x => row(x))}</React.Fragment>)}
           {!st.templates.some(x => !x.archived) ? <Empty>{tr('Brak szablonów — dodaj pierwszy.')}</Empty> : null /* UI-15 (audyt 0.10): same zarchiwizowane — pusty stan jak na ekranie Trening */}
-          {arch.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={tr('Archiwum ({n})', { n: arch.length })} accessibilityState={{ expanded: showArch }} onPress={() => setShowArch(v => !v)} style={{ paddingVertical: 12 }}><Muted style={{ fontSize: 13 }}>{`${showArch ? '▾' : '▸'} ${tr('Archiwum ({n})', { n: arch.length })}`}</Muted></Pressable> : null}
+          {arch.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={tr('Archiwum ({n})', { n: arch.length })} accessibilityState={{ expanded: showArch }} onPress={() => setShowArch(v => !v)} style={{ paddingVertical: 12 }}><Muted style={{ ...font('footnote') }}>{`${showArch ? '▾' : '▸'} ${tr('Archiwum ({n})', { n: arch.length })}`}</Muted></Pressable> : null}
           {showArch ? arch.map(x => row(x, 'tpl-arch')) : null}
         </> : <Empty>{tr('Brak szablonów — dodaj pierwszy.')}</Empty>}
       </ScrollView>

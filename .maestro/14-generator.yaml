@@ -6,11 +6,8 @@
 #   "Generate templates and plan"    ← 'Wygeneruj szablony i plan' (app/templates.tsx, app/plan.tsx)
 #   "Preview", "What this is based on" ← 'Podgląd', 'Na czym to oparte' (app/generator.tsx)
 #   "Save templates and plan"        ← 'Zapisz szablony i plan'
-#   "Make the new plan active\?"     ← 'Ustawić nowy plan jako aktywny?'
-#   "Make active"                    ← 'Ustaw jako aktywny' (przycisk w Alercie)
+#   "The plan .* is now active\\."           ← 'Plan „{name}” jest teraz aktywny.' (zdanie na ekranie planu po zapisie bez aktywnego planu — ZM-03, app/plan.tsx; okno pytania i „Saved” nie występują)
 #   "\\+ Add place"                   ← '+ Dodaj miejsce' (chip w generatorze przy braku miejsc — audyt 0.10 UX-10)
-#   "Saved", "Planning"              ← 'Zapisano', 'Planowanie' (potwierdzenie zapisu — audyt 0.10 UX-10)
-#   "OK"                             ← 'OK' (trzeci przycisk okna „Zapisano” — zostaje na generatorze; audyt kontrolny 1, UI2-06)
 #   "Not now"                        ← 'Nie teraz' (okno zgody na przypomnienie — X-11: pierwszy plan z każdej drogi, components/PlanReminderSync)
 #   "Guide", "Read: .*", "Weekly plan and Calendar, unread", "Show: Weekly plan and Calendar" ← app/guide.tsx (przewodnik, 08.10.2026)
 #   ".*not enough evidence to establish a dose-response relationship.*" ← zdanie R1 pod ⓘ „Na czym to oparte” ('…za mało dowodów, by stwierdzić zależność dawka–odpowiedź…'; app/generator.tsx)
@@ -87,14 +84,11 @@ name: Generator szablonów i planu
 - takeScreenshot: 71-generator-zrodla
 - scrollUntilVisible: { element: "Save templates and plan", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Save templates and plan"
-- extendedWaitUntil: { visible: "Make the new plan active\\?", timeout: 15000 }
-- tapOn: "Make active"
+# ZM-03 (21.10.2026): bez aktywnego planu zapis jest jednym krokiem — plan aktywny bez pytania i bez okna „Saved”, ekran Planowanie ze zdaniem „The plan “…” is now active.”
 # X-11 (audyt kontrolny 1): pierwszy plan → okno zgody na przypomnienie (zgoda na powiadomienia nieustalona na symulatorze); kolejność okien zależy od iOS
 - tapOn: { text: "Not now", optional: true }
-- extendedWaitUntil: { visible: "Saved", timeout: 15000 }
-- assertVisible: "OK"
-- tapOn: "Planning"  # 11.10.2026: przycisk okna „Saved” (dawniej „Weekly plan”)
-- tapOn: { text: "Not now", optional: true }
+- extendedWaitUntil: { visible: "The plan .* is now active\\.", timeout: 30000 }
+- assertNotVisible: "Make the new plan active\\?"
 - extendedWaitUntil: { visible: "Monday, Full Body A", timeout: 30000 }
 - scrollUntilVisible: { element: "Saturday, Full Body A", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 72-plan-z-generatora

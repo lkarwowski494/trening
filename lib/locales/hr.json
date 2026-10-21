@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Nema serije s rezultatom.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Još nemate mjesta treninga pa plan pretpostavlja potpunu teretanu (šipka, bučice, sprave i sajle). Trenirate kod kuće ili u hotelu? Dodirnite „+ Dodaj mjesto” i označite opremu — generator će odabrati vježbe.",
  "Nie masz jeszcze szablonów.": "Još nemate predložaka.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nemate predložaka s vježbama. Izradite predložak ili odaberite „Novi predlošci i plan”.",
  "Nie można wyłączyć planu": "Plan se ne može isključiti",
  "nie podano — e1RM podciągania i pompek": "nije uneseno — e1RM za zgibove i sklekove",
  "Nie teraz": "Ne sada",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "nova vlastita vježba",
  "Nowe miejsce": "Novo mjesto",
  "Nowe rekordy: {n}": "Novi rekordi: {n}",
- "Nowe szablony i plan": "Novi predlošci i plan",
  "nowe w tym tygodniu": "novo ovaj tjedan",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Novi zaslon Trening: današnji trening, tjedan u brojkama i zadnji trening; vodič kroz funkcije u Više.",
  "Nowy plan": "Novi plan",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "jard|jarda|jardi",
  "jarda": "jarda",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Svaka glavna mišićna skupina najmanje {n} dana tjedno (SZO 2020 — preporuka za zdravlje; ACSM 2026: učestalost utječe na snagu, ali nema dovoljno dokaza da bi se utvrdio odnos doze i odgovora, a pri jednakom volumenu razlika slabi). Dan u kojem skupina samo pomaže računa se kao {h} — pojednostavljenje (metoda iz metaanalize Pelland i sur. 2026.). Podjela (cijelo tijelo, gornji/donji dio) je konvencija — uz isti broj serija daje slične rezultate.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Korak (npr. +2,5 kg) je konvencija, a ne rezultat istraživanja."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Korak (npr. +2,5 kg) je konvencija, a ne rezultat istraživanja.",
+ "Usuń szablon": "Obriši predložak",
+ "Usuń z biblioteki": "Obriši iz knjižnice",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nemate predložaka s vježbama. Izradite predložak ili odaberite „Generiraj predloške i plan”."
 }

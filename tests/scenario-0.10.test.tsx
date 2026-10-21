@@ -53,7 +53,7 @@ test('kilka planów: „+ Nowy plan” → dzień → „Ustaw jako aktywny” �
 
 test('generator: zapis i aktywacja → restart → szablony w „Wygenerowane”, plan aktywny w Kalendarzu', async () => {
   await boot('/generator', () => { S().templates.length = 0; store.save(); });
-  await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
+  await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await flushAll(10); /* ZM-03 (21.10.2026): bez aktywnego planu zapis aktywuje plan bez pytania */
   const names = S().templates.map(x => [x.name, x.folder]); const days = plan.weekPlanDays();
   expect(names.length).toBeGreaterThan(1); expect(days.filter(Boolean).length).toBe(3);
   await restart('/templates');

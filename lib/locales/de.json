@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Kein Satz mit Ergebnis.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Du hast noch keine Trainingsorte, daher geht der Plan von einem kompletten Studio aus (Langhantel, Kurzhanteln, Maschinen und Kabelzüge). Du trainierst zu Hause oder im Hotel? Tippe auf „+ Ort hinzufügen“ und hake deine Geräte an — der Generator wählt passende Übungen.",
  "Nie masz jeszcze szablonów.": "Du hast noch keine Vorlagen.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Du hast keine Vorlagen mit Übungen. Erstelle eine Vorlage oder wähle „Neue Vorlagen und Plan“.",
  "Nie można wyłączyć planu": "Der Plan kann nicht ausgeschaltet werden",
  "nie podano — e1RM podciągania i pompek": "nicht angegeben — e1RM für Klimmzüge und Liegestütze",
  "Nie teraz": "Nicht jetzt",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "neue eigene Übung",
  "Nowe miejsce": "Neuer Ort",
  "Nowe rekordy: {n}": "Neue Rekorde: {n}",
- "Nowe szablony i plan": "Neue Vorlagen und Plan",
  "nowe w tym tygodniu": "neu in dieser Woche",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Neuer Bildschirm Training: heutiges Training, die Woche in Zahlen und dein letztes Training; Anleitung unter Mehr.",
  "Nowy plan": "Neuer Plan",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "Yard|Yards",
  "jarda": "Yards",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Jede große Muskelgruppe an mindestens {n} Tagen pro Woche (WHO 2020 — eine Gesundheitsempfehlung; ACSM 2026: die Häufigkeit beeinflusst die Kraft, doch die Belege reichen nicht aus, um einen Dosis-Wirkungs-Zusammenhang festzustellen, und bei gleichem Volumen schwächt sich der Unterschied ab). Ein Tag, an dem die Gruppe nur unterstützt, zählt als {h} — eine Vereinfachung (Methode aus der Metaanalyse von Pelland et al. 2026). Die Aufteilung (Ganzkörper, Ober-/Unterkörper) ist eine Konvention — bei gleicher Satzzahl liefert sie ähnliche Ergebnisse.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Der Schritt (z. B. +2,5 kg) ist eine Konvention, kein Forschungsergebnis."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Der Schritt (z. B. +2,5 kg) ist eine Konvention, kein Forschungsergebnis.",
+ "Usuń szablon": "Vorlage löschen",
+ "Usuń z biblioteki": "Aus der Bibliothek löschen",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du hast keine Vorlagen mit Übungen. Erstelle eine Vorlage oder wähle „Vorlagen und Plan erstellen“."
 }

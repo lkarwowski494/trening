@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Κανένα σετ με αποτέλεσμα.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Δεν έχετε ακόμη χώρους προπόνησης, οπότε το πρόγραμμα υποθέτει πλήρες γυμναστήριο (μπάρα, αλτήρες, μηχανήματα και τροχαλίες). Προπονείστε στο σπίτι ή σε ξενοδοχείο; Πατήστε «+ Προσθήκη χώρου» και σημειώστε τον εξοπλισμό — η γεννήτρια θα επιλέξει ασκήσεις.",
  "Nie masz jeszcze szablonów.": "Δεν έχετε ακόμη πρότυπα.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Δεν έχετε πρότυπα με ασκήσεις. Δημιουργήστε ένα πρότυπο ή επιλέξτε «Νέα πρότυπα και πρόγραμμα».",
  "Nie można wyłączyć planu": "Δεν μπορεί να απενεργοποιηθεί το πρόγραμμα",
  "nie podano — e1RM podciągania i pompek": "δεν έχει οριστεί — e1RM για έλξεις και κάμψεις",
  "Nie teraz": "Όχι τώρα",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "νέα προσαρμοσμένη άσκηση",
  "Nowe miejsce": "Νέος χώρος",
  "Nowe rekordy: {n}": "Νέα ρεκόρ: {n}",
- "Nowe szablony i plan": "Νέα πρότυπα και πρόγραμμα",
  "nowe w tym tygodniu": "νέο αυτή την εβδομάδα",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Νέα οθόνη Προπόνηση: η σημερινή προπόνηση, η εβδομάδα σε αριθμούς και η τελευταία προπόνηση· οδηγός λειτουργιών στο Περισσότερα.",
  "Nowy plan": "Νέο πρόγραμμα",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "γιάρδα|γιάρδες",
  "jarda": "γιάρδες",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Κάθε κύρια μυϊκή ομάδα τουλάχιστον {n} ημέρες την εβδομάδα (ΠΟΥ 2020 — σύσταση για την υγεία· ACSM 2026: η συχνότητα επηρεάζει τη δύναμη, αλλά τα στοιχεία δεν επαρκούν για να τεκμηριωθεί σχέση δόσης–απόκρισης και με ίσο όγκο η διαφορά μειώνεται). Μια ημέρα όπου η ομάδα μόνο βοηθά μετράει ως {h} — απλοποίηση (μέθοδος από τη μετα-ανάλυση των Pelland και συν. 2026). Ο διαχωρισμός (ολόσωμο, πάνω/κάτω) είναι σύμβαση — με τον ίδιο αριθμό σετ δίνει παρόμοια αποτελέσματα.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Το βήμα (π.χ. +2,5 kg) είναι σύμβαση, όχι αποτέλεσμα ερευνών."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Το βήμα (π.χ. +2,5 kg) είναι σύμβαση, όχι αποτέλεσμα ερευνών.",
+ "Usuń szablon": "Διαγραφή προτύπου",
+ "Usuń z biblioteki": "Διαγραφή από τη βιβλιοθήκη",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Δεν έχετε πρότυπα με ασκήσεις. Δημιουργήστε ένα πρότυπο ή επιλέξτε «Δημιουργία προτύπων και προγράμματος»."
 }

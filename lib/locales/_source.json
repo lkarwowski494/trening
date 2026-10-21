@@ -5834,6 +5834,10 @@
   "en": "Delete session: {name}"
  },
  {
+  "pl": "Usuń szablon",
+  "en": "Delete template"
+ },
+ {
   "pl": "Usuń szablon: {name}",
   "en": "Delete template: {name}"
  },
@@ -5844,6 +5848,10 @@
  {
   "pl": "Usuń usunięte ćwiczenie z treningu",
   "en": "Remove the deleted exercise from this workout"
+ },
+ {
+  "pl": "Usuń z biblioteki",
+  "en": "Delete from library"
  },
  {
   "pl": "Usuń z biblioteki: {name}",

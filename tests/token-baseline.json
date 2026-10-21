@@ -14,15 +14,6 @@
    "fontSize": 9,
    "borderRadius": 4
   },
-  "app/exercise/[id].tsx": {
-   "fontSize": 14
-  },
-  "app/exercises.tsx": {
-   "fontSize": 1
-  },
-  "app/generator.tsx": {
-   "fontSize": 12
-  },
   "app/guide.tsx": {
    "fontSize": 4,
    "borderRadius": 2
@@ -65,15 +56,8 @@
    "fontSize": 7,
    "borderRadius": 2
   },
-  "app/picker.tsx": {
-   "fontSize": 2
-  },
   "app/place-once.tsx": {
    "fontSize": 1
-  },
-  "app/plan.tsx": {
-   "fontSize": 6,
-   "borderRadius": 1
   },
   "app/progression.tsx": {
    "fontSize": 7,
@@ -82,13 +66,6 @@
   "app/reorder.tsx": {
    "fontSize": 3,
    "borderRadius": 1
-  },
-  "app/template/[id].tsx": {
-   "fontSize": 15,
-   "borderRadius": 1
-  },
-  "app/templates.tsx": {
-   "fontSize": 1
   },
   "components/ActiveWorkout.tsx": {
    "fontSize": 44,
@@ -104,10 +81,6 @@
   "components/DayPanel.tsx": {
    "fontSize": 16
   },
-  "components/DayPicker.tsx": {
-   "fontSize": 2,
-   "borderRadius": 1
-  },
   "components/DeloadHint.tsx": {
    "fontSize": 2,
    "borderRadius": 1
@@ -118,12 +91,6 @@
   "components/EquipVisual.tsx": {
    "fontSize": 3,
    "borderRadius": 8
-  },
-  "components/ExerciseCues.tsx": {
-   "fontSize": 8
-  },
-  "components/ExerciseFigure.tsx": {
-   "fontSize": 3
   },
   "components/Guard.tsx": {
    "fontSize": 3
@@ -139,12 +106,6 @@
    "fontSize": 5,
    "borderRadius": 2
   },
-  "components/IdeaLink.tsx": {
-   "fontSize": 2
-  },
-  "components/LibScope.tsx": {
-   "fontSize": 1
-  },
   "components/LoadEditor.tsx": {
    "fontSize": 5
   },
@@ -154,9 +115,6 @@
   "components/MuscleMap.tsx": {
    "fontSize": 6,
    "borderRadius": 1
-  },
-  "components/OwnPlan.tsx": {
-   "fontSize": 10
   },
   "components/PeriodSummary.tsx": {
    "fontSize": 12,
@@ -191,9 +149,6 @@
   "components/WhatsNew.tsx": {
    "fontSize": 5,
    "borderRadius": 3
-  },
-  "components/WhenFields.tsx": {
-   "fontSize": 1
   }
  }
 }
