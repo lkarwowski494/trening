@@ -22,6 +22,19 @@ name: Masa ciała z datą i licencje open source
     clearState: true
     permissions: { all: allow }
 - extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+# M3 p3 (ZM-06): bez historii Postępy mają tylko pusty stan — pomiary masy ciała pokazuje ekran z wykresem po pierwszym treningu
+- runFlow: subflows/szablon-testowy.yaml
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Skip", timeout: 30000 }
+- tapOn: "Skip"
+- assertNotVisible: "Skip"
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
 
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Settings", timeout: 30000 }

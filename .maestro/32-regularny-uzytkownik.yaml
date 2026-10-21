@@ -130,7 +130,7 @@ name: Regularny użytkownik — historia, plan, restart, kopia
 - tapOn: "Back"
 # --- masa ciała (jak 15) i rekordy ---
 - tapOn: "Progress, tab.*"
-- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- scrollUntilVisible: { element: "Summary", direction: DOWN, timeout: 30000 }  # M3 p3 (ZM-06): na górze Postępów jest wykres i rekordy ćwiczenia, „Summary” (ogólny przegląd) jest niżej
 # run 39427688524 (32, zrzut: wciąż Progress, „Body weight” przy samym pasku zakładek): bez centerElement przewijanie kończy się, gdy element ledwie wystaje, a stuknięcie trafia w pasek — jak w 29
 - scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Body weight — measurements"
@@ -155,7 +155,7 @@ name: Regularny użytkownik — historia, plan, restart, kopia
 - retry:
     maxRetries: 2
     commands:
-      - scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 60000, centerElement: true }
+      - scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\)", direction: UP, timeout: 60000, centerElement: true }  # M3 p3: wybór ćwiczenia jest nad sekcją masy ciała (ZM-06)
       - waitForAnimationToEnd
       - tapOn: "Bench Press \\(Dumbbell\\)"
       - extendedWaitUntil: { visible: "RECORDS", timeout: 15000 }

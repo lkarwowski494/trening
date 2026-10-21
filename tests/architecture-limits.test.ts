@@ -26,7 +26,6 @@ const WYJATKI: Record<string, [number, string]> = {
   'app/template/[id].tsx': [31744, 'ekran — poza zakresem partii 4 (M3)'],
   'components/ui.tsx': [30720, 'wspólne elementy interfejsu — poza zakresem partii 4 (M3)'],
   'components/ActiveWorkout.tsx': [80896, 'ekran treningu — podział należy do M3; limit ustala się po podziale, do tego czasu próg nie rośnie'],
-  'app/(tabs)/progress.tsx': [22528, 'ekran — poza zakresem partii 4 (M3)'],
   'app/generator.tsx': [22528, 'ekran — poza zakresem partii 4 (M3)'],
 };
 

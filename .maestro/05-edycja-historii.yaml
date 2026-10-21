@@ -105,7 +105,7 @@ name: Edycja historii i trening wstecz
 # Podsumowanie tygodnia / miesiąca w Postępach (08.10.2026, components/PeriodSummary.tsx): „Summary” ('Podsumowanie'), wiersz VoiceOver
 # „Workouts: N, previously M” ('{label}: {v}, poprzednio {p}'), „Month” ('Miesiąc'), „Previous period” ('Poprzedni okres').
 - tapOn: "Progress, tab.*"  # 11.10.2026: Postępy to zakładka (dawniej Więcej → Postępy)
-- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- scrollUntilVisible: { element: "Workouts: [0-9]+, previously .*", direction: DOWN, timeout: 30000 }  # M3 p3 (ZM-06): na górze Postępów jest wykres i rekordy ćwiczenia, „Summary” (ogólny przegląd) jest niżej
 - assertVisible: "Workouts: [1-9].*, previously .*"
 - takeScreenshot: 20-podsumowanie-tydzien
 # Tydzień deload (11.10.2026): Postępy nie mają już przełącznika „Deload week” — oznaczenie ustawia się w Kalendarzu (dzień → „More options” → „Mark week as deload”, niżej).

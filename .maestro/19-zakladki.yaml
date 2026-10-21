@@ -24,13 +24,34 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
 - assertNotVisible: "Calendar, tab.*"
 - takeScreenshot: 90-cztery-zakladki
 
-# --- Postępy: osobna zakładka; masa ciała w jej sekcji (nie w Ustawieniach) ---
+# --- Postępy: osobna zakładka; bez historii sam pusty stan z „Start a workout” (M3 p3, ZM-06) ---
 # run 39196025031 (zrzut: wciąż „Workout”): stuknięcie zakładki tuż po starcie zostało zignorowane — powtórka, aż pojawi się tytuł ekranu „Progress”
 - retry:
     maxRetries: 2
     commands:
       - tapOn: "Progress, tab.*"
       - extendedWaitUntil: { visible: "Progress", timeout: 10000 }
+- assertVisible: "Charts appear after your first finished workout."
+- assertVisible: "Start a workout"
+- assertNotVisible: "Search exercises…"
+- takeScreenshot: 91a-postepy-pusty
+- tapOn: "Start a workout"
+- extendedWaitUntil: { visible: "Other workout", timeout: 30000 }  # akcja pustego stanu prowadzi na ekran Trening
+# po pierwszym treningu Postępy mają wykres, wybór ćwiczenia i sekcję masy ciała (nie w Ustawieniach)
+- runFlow: subflows/szablon-testowy.yaml
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Skip", timeout: 30000 }
+- tapOn: "Skip"
+- assertNotVisible: "Skip"
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- tapOn: "Back"
+- tapOn: "Progress, tab.*"
+- extendedWaitUntil: { visible: "Progress", timeout: 10000 }
 - scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 30000, centerElement: true }
 - takeScreenshot: 91-postepy-masa-ciala
 

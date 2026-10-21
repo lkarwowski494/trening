@@ -4,15 +4,8 @@
   "app/(tabs)/_layout.tsx": {
    "fontSize": 1
   },
-  "app/(tabs)/history.tsx": {
-   "fontSize": 1
-  },
   "app/(tabs)/more.tsx": {
    "fontSize": 1
-  },
-  "app/(tabs)/progress.tsx": {
-   "fontSize": 9,
-   "borderRadius": 4
   },
   "app/exercise/[id].tsx": {
    "fontSize": 14
@@ -26,9 +19,6 @@
   "app/guide.tsx": {
    "fontSize": 4,
    "borderRadius": 2
-  },
-  "app/history/[id].tsx": {
-   "fontSize": 9
   },
   "app/more/about.tsx": {
    "fontSize": 2

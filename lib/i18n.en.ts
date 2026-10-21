@@ -1192,4 +1192,6 @@ export const EN: Record<string, string> = {
   'jard|jardy|jardów': 'yard|yards',
   'jarda': 'yards',
   'Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.': 'The step (e.g. +2.5 kg) is a convention, not a research result.',
+  // M3 p3 (Postępy i historia; teksty: docs/design/teksty.md pkt 4)
+  'Zacznij trening': 'Start a workout',
 };

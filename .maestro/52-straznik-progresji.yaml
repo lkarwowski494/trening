@@ -40,7 +40,7 @@ name: Strażnik progresji — sylwetka, zdanie o brakach, Postępy
 - takeScreenshot: 95-straznik-trening
 # --- Postępy: sekcja „Progress Guard”, rozwinięcie partii ---
 - tapOn: "Details in Progress"
-- extendedWaitUntil: { visible: "Progress Guard", timeout: 30000 }
+- scrollUntilVisible: { element: "Progress Guard", direction: DOWN, timeout: 30000 }  # M3 p3 (ZM-06): na górze Postępów jest wykres ćwiczenia; ekran przewija się do strażnika (s=guard), a gdyby nie — przewijamy
 # run 39169313185: stuknięcie „chest” nie rozwinęło wiersza (zrzut: wiersz przy górnej krawędzi, bez „Done”) — przewinięcie na środek, czekanie na koniec ruchu i powtórka stuknięcia
 - retry:
     maxRetries: 2

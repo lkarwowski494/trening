@@ -74,15 +74,14 @@ name: Błędne i skrajne dane
 - tapOn: "Back"
 # --- ekrany z takimi danymi nadal się otwierają (Postępy, Plan) ---
 - tapOn: "Progress, tab.*"
-- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- extendedWaitUntil: { visible: "Progress", timeout: 30000 }  # M3 p3 (ZM-06): Postępy z dziwnymi danymi się otwierają (na górze wykres i rekordy ćwiczenia)
 - tapOn: "Plan, tab.*"
 - extendedWaitUntil: { visible: "1 session", timeout: 30000 }
 # --- masa ciała: pusta, ponad limit, zła data, poprawna ---
 - tapOn: "Progress, tab.*"
-- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- extendedWaitUntil: { visible: "Progress", timeout: 30000 }  # M3 p3 (ZM-06): Postępy z dziwnymi danymi się otwierają (na górze wykres i rekordy ćwiczenia)
 - scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000, centerElement: true }
-# E2E 38494711499: po przewinięciu przycisk został przy samej górnej krawędzi listy (pod nagłówkiem „Progress”) i stuknięcie nie otworzyło ekranu — cofamy listę w dół o kilkanaście procent
-- swipe: { start: "50%, 40%", end: "50%, 55%", duration: 400 }
+# E2E 38494711499: po przewinięciu przycisk został przy samej górnej krawędzi listy (pod nagłówkiem „Progress”) — wtedy cofaliśmy listę swipe'm. M3 p3 (ZM-06): sekcja „Body weight” jest teraz na końcu Postępów (nie ma pod nią chipów), więc przycisk ląduje przy dolnej krawędzi, nie górnej — swipe usunięty
 - waitForAnimationToEnd
 - tapOn: "Body weight — measurements"
 - extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }

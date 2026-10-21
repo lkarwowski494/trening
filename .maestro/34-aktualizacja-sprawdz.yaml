@@ -35,7 +35,7 @@ name: Aktualizacja — dane po instalacji nowej wersji
 - tapOn: "Plan, tab.*"
 - extendedWaitUntil: { visible: "3 sessions", timeout: 30000 }  # nie „dziś”: instalacja trwa minuty i przebieg bywa przez północ UTC (docs/18)
 - tapOn: "Progress, tab.*"
-- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- scrollUntilVisible: { element: "Summary", direction: DOWN, timeout: 30000 }  # M3 p3 (ZM-06): na górze Postępów jest wykres i rekordy ćwiczenia, „Summary” (ogólny przegląd) jest niżej
 - scrollUntilVisible: { element: "80 kg · measured .*", direction: DOWN, timeout: 60000 }
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Templates", timeout: 30000 }
