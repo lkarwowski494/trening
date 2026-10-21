@@ -125,7 +125,7 @@ to sygnał ruchu, nie liczba wyszukań.
 | dziennik treningowy | 3 (fraza na 1. miejscu, 2 nazwy aplikacji) | ruch jest, mała konkurencja — potwierdza nazwę PL |
 | dziennik siłowni | 0 (bez „ł”: tylko sama fraza) | bardzo mały ruch — potwierdza odejście od dawnej nazwy |
 | timer przerw | 0 | mały ruch; „przerwy” zostaje w podtytule jako opis pracy |
-| notes treningowy | 0 | mały ruch — kandydat do zamiany w słowach kluczowych (pytanie do właściciela) |
+| notes treningowy | 0 | mały ruch — „notes” zamienione na „domu” (decyzja 21.10.2026) |
 | plan treningowy | 6 (m.in. „na siłownię”, „w domu”) | duży ruch; „w domu” wspiera nazwę bez „siłowni” |
 | gym log | ok. 10 (fraza na 1. miejscu) | potwierdza nazwę EN |
 | workout tracker | ok. 10 (fraza na 1. miejscu) | potwierdza podtytuł EN |
@@ -133,5 +133,5 @@ to sygnał ruchu, nie liczba wyszukań.
 | gym diary | 5 | słabszy; „diary” w słowach en-GB zostaje jako fraza drugiego planu |
 | workout log | ok. 9 | „workout” i „log” pokryte nazwą i podtytułem |
 
-Otwarte: zamiana „notes” → „domu” w słowach kluczowych PL (do decyzji właściciela). **[DO USTALENIA]** czy sklep łączy słowa z nazwy i słów kluczowych
+Decyzja właściciela 21.10.2026 (przekazane przez koordynatora, „Zgoda na zmianę”): w słowach kluczowych PL „notes” → „domu” (fraza „plan treningowy w domu”). Odrzucone: bez zmian. **[DO USTALENIA]** czy sklep łączy słowa z nazwy i słów kluczowych
 w jedną frazę („plan” + „treningowy”) — ocena pośrednio przy H-51.
