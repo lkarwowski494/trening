@@ -125,3 +125,17 @@ describe('04-studio-projektowe-006: rząd ponad 12 pól przewijany palcem (etyki
     await run(8); expect(screen.getByTestId('board-fields', HID).props.pointerEvents).toBe('none'); expect(screen.queryByTestId('board-fields-scroll', HID)).toBeNull(); expect(screen.getByTestId('board-desc').props.accessibilityLabel).not.toContain('przewijana');
   });
 });
+
+describe('04-studio-projektowe-007: przyciski ± mieszczą się w tablicy przy 320 pt', () => {
+  const RN = require('react-native');
+  const flat = (st: any) => ([] as any[]).concat(st).flat(3).reduce((a: any, x: any) => ({ ...a, ...(x || {}) }), {});
+  test.each([[320], [375], [390]])('%i pt: suma szerokości wiersza ± (koła 44 pt, etykiety, odstępy) ≤ szerokość wnętrza tablicy', async w => {
+    jest.spyOn(RN, 'useWindowDimensions').mockReturnValue({ width: w, height: 800, scale: 2, fontScale: 1 });
+    await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(20);
+    const up = (n: any, f: (x: any) => boolean) => { let p = n.parent; while (p && !f(p)) p = p.parent; return p; };
+    const group = (k: string) => up(screen.getByTestId(`step-${k}-down`), (x: any) => typeof flat(x.props.style).gap === 'number'); /* [−][jednostka][+] */
+    const groups = ['weight', 'reps'].map(k => { const g = group(k); const gap = flat(g.props.style).gap ?? 0; const label = (g.findAll((c: any) => typeof flat(c.props?.style).minWidth === 'number') as any[]).map((c: any) => flat(c.props.style).minWidth)[0] ?? 0; return 44 * 2 + label + 2 * gap; });
+    const rowGap = flat(up(group('weight'), (x: any) => typeof flat(x.props.style).gap === 'number')?.props.style).gap ?? 0; const total = groups.reduce((a, b) => a + b, 0) + rowGap;
+    expect(total).toBeLessThanOrEqual(w - 4 * 16);
+  });
+});

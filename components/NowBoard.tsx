@@ -57,6 +57,8 @@ export function NowBoard({ w, onDone, onFinish, onStartSet, onCardY, onRestY }: 
   const size = boardDigitSize('boardNumber', width, Math.max(3, boardDigitChars(strs)), PixelRatio.getFontScale(), innerW); /* 04-studio-projektowe-001: cyfry liczone jak w makiecie (bez „×” i jednostek), 24% szerokości ekranu */
   const vis = equipVisFor(w, e, set); const ghost = vis.length ? [] : equipSlotFor(w, e, set); const minH = slot.key === set.id ? slot.h : 0;
   const running = timer.S.on && timer.S.setId === set.id; const timedIdle = hasTime(m) && !running; const scrolls = fieldLayout(e.sets.length, innerW, 1).scroll;
+  /* 04-studio-projektowe-007: przy wąskim ekranie (320 pt) wiersz ± ciaśniej (odstęp 4, etykieta min. 24), żeby prawy „+” nie wychodził poza tablicę */
+  const tight = keys.length * (2 * SIZE.stepButton + 2 * SPACE.s + 32) + (keys.length - 1) * SPACE.s > innerW;
   const press = () => {
     const miss = missingKey(w, e, pos.si);
     if (miss) { setReq({ setId: set.id, key: miss, n: Date.now() }); playHaptic('missing'); announce(tr('Wpisz {co}, żeby zapisać serię.', { co: miss === 'weight' || miss === 'addKg' ? tr('ciężar') : miss === 'reps' ? tr('powtórzenia') : miss === 'durationSec' ? tr('czas') : tr('dystans') })); return; }
@@ -84,9 +86,9 @@ export function NowBoard({ w, onDone, onFinish, onStartSet, onCardY, onRestY }: 
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', gap: SPACE.s }}>
             {keys.map(k => { const dn = stepOf(w, e, k, -1, eff[k] ?? ''); const up = stepOf(w, e, k, 1, eff[k] ?? ''); return (
-              <View key={k} style={{ flexDirection: 'row', alignItems: 'center', gap: SPACE.s }}>
+              <View key={k} style={{ flexDirection: 'row', alignItems: 'center', gap: tight ? SPACE.xs : SPACE.s }}>
                 <StepBtn th={th} plus={false} testID={`step-${k}-down`} label={stepLabelKey(k, false, dn.amount)} disabled={dn.to == null} onPress={() => step(k, false)} />
-                <Text accessible={false} maxFontSizeMultiplier={maxScale('stepLabel')} style={{ ...font('stepLabel'), color: th.boardText, minWidth: 32, textAlign: 'center' }}>{unitOf(k)}</Text>
+                <Text accessible={false} maxFontSizeMultiplier={maxScale('stepLabel')} style={{ ...font('stepLabel'), color: th.boardText, minWidth: tight ? 24 : 32, textAlign: 'center' }}>{unitOf(k)}</Text>
                 <StepBtn th={th} plus testID={`step-${k}-up`} label={stepLabelKey(k, true, up.amount)} disabled={up.to == null} onPress={() => step(k, true)} />
               </View>); })}
           </View>
