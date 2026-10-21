@@ -35,7 +35,7 @@ export function DayPicker({ label, value, onChange, min, max }: { label: string;
         {short.map((s, d) => { const on = value.includes(d); return (
           <Pressable key={d} testID={`day-${d}`} accessibilityLanguage={lang()} accessibilityRole="switch" accessibilityLabel={long[d]} accessibilityHint={label} accessibilityState={{ checked: on }} onPress={() => toggle(d)}
             style={({ pressed }) => ({ width: cell, minHeight: DAY_TOUCH, alignItems: 'center', justifyContent: 'center', borderRadius: RADIUS.button, borderWidth: on ? 2 : 1, borderColor: on ? th.accent : th.ctrlLine, backgroundColor: on ? th.accent : th.surface2, opacity: pressed ? 0.7 : 1 })}>
-            <Text accessibilityLanguage={lang()} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7} maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ color: on ? th.accentInk : th.text, ...font('callout'), ...(on ? FW.semibold : FW.regular), paddingHorizontal: 2 }}>{s}</Text>
+            <Text accessibilityLanguage={lang()} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7} maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ color: on ? th.accentInk : th.text, ...font('footnote'), ...(on ? FW.semibold : FW.regular), paddingHorizontal: 2 }}>{s}</Text>
           </Pressable>); })}
       </View>
       {ok ? null : <Text testID="day-picker-range" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('footnote'), marginTop: 6, ...FW.regular }}>{daysRangeText(min, max)}</Text>}

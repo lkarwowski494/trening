@@ -21,7 +21,7 @@ export default function TemplatesScreen() {
     <Screen>
       <Stack.Screen options={addHeader} />
       <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginVertical: 10, gap: 8, flexWrap: 'wrap' }}>
-        <Btn nav title={tr('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} />{/* 08.10.2026: generator na polecenie (docs/24) */}
+        <Btn nav title={tr('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} style={{ maxWidth: '100%' }} />{/* 08.10.2026: generator na polecenie (docs/24) */}
       </View>{/* 11.10.2026 (docs/22, wariant A): ekran pod Więcej — tytuł w nagłówku stosu, bez własnego H1 */}
       <ScrollView>
         {st.templates.length ? <>
