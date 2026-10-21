@@ -27,8 +27,9 @@ const CI_BADGES = ['tests.yml', 'e2e-ios.yml', 'ios-unsigned.yml'];
 
 /* ---------- pliki śledzone przez git (bez git — przeszukanie katalogu) ---------- */
 function trackedFiles() {
-  try { return execFileSync('git', ['ls-files'], { cwd: root, encoding: 'utf8', maxBuffer: 1 << 26 }).split('\n').filter(Boolean); } catch { /* bez gita */ }
-  const out = []; const SKIP = new Set(['node_modules', '.git', '.expo', 'ios', 'android']);
+  /* 21.10.2026: przy nierozwiązanym konflikcie scalania `git ls-files` wypisuje plik raz na etap (1–3) → zdublowany wiersz drzewa w README; bez powtórzeń */
+  try { return [...new Set(execFileSync('git', ['ls-files'], { cwd: root, encoding: 'utf8', maxBuffer: 1 << 26 }).split('\n').filter(Boolean))]; } catch { /* bez gita */ }
+  const out = []; const SKIP = new Set(['node_modules', '.git', '.expo', 'ios', 'android', '.claude']); /* .claude/worktrees — kopie repo agentów */
   const walk = d => { for (const e of readdirSync(join(root, d), { withFileTypes: true })) { const p = d ? `${d}/${e.name}` : e.name; if (e.isDirectory()) { if (!SKIP.has(e.name)) walk(p); } else out.push(p); } };
   walk(''); return out;
 }
@@ -162,6 +163,7 @@ const WORKFLOW_ROLE = {
   'asc-kontrola.yml': 'kontrola ustawień App Store Connect (tylko odczyt; ręcznie; narzędzie z repozytorium narzędzi studia)',
   'store-screenshots.yml': 'zrzuty ekranu do App Store z symulatora (ręcznie)',
   'przeglad-tlumaczen.yml': 'przegląd tłumaczeń treści krytycznej przez API Anthropic (ręcznie, płatny, limit kosztu)',
+  'sprzatanie-galezi.yml': 'usuwanie gałęzi scalonych lub zatwierdzonych przez właściciela (ręcznie, podgląd domyślnie)',
 };
 const TRIGGERS = [['push', 'wypchnięcie'], ['pull_request', 'zgłoszenie zmian'], ['schedule', 'harmonogram'], ['workflow_dispatch', 'ręcznie'], ['workflow_call', 'wywołanie z innego workflow'], ['workflow_run', 'po innym workflow']];
 

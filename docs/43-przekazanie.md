@@ -25,8 +25,8 @@ Powód: limit tygodniowy konta koordynatora na wyczerpaniu (decyzja właściciel
 **Droga do App Store (kolejność ustalona z właścicielem):**
 1. Naprawy audytu M1 (M2) na `audyt-m1` → PR → `main` → TestFlight. ← *tu jesteśmy (kroki 1–6 niżej)*
 2. **M3 Redesigner** (biblioteka `lkarwowski494/prompts`, najświeższa wersja przy starcie) w nowym czacie: AS IS na działającej aplikacji (zrzuty/nagrania z E2E w CI + nagrania z telefonu właściciela), propozycje TO BE do decyzji właściciela (STOP-y), projekt od zera, wdrożenie partiami, weryfikacja. Obowiązkowe wejścia: zadania audytu 026 (układ Postępów), 029 (ikony zamiast emoji; WIP na gałęzi `m3-wejscie/029-ikony`), 030 (duży tekst, Large Content Viewer), 036 (tokeny pisma i promieni); głos domyślnie wyłączony (DEC-05); brak paska talerzy (DEC-06); System miar (DEC-28/29).
-3. **Jeden reaudyt końcowy** (M1, z nowym LOK-07 — systemy miar) po M3; naprawy tym samym procesem (M2).
-4. Pełny katalog E2E w trybie ścisłym (bramka App Store, CLAUDE.md) + 3 czyste noce.
+3. Po M3: nowe brzmienia z przeglądu badacza (T-002, T-003, T-032) i powtórny przegląd tłumaczeń przez API; potem **pełny głęboki audyt M1 całej aplikacji** (z LOK-07; decyzja właściciela 21.10, zastępuje „jeden reaudyt”); naprawy blokerów procesem M2.
+4. **Jeden pełny katalog E2E na standardowym iPhonie** (1 ponowienie dozwolone; bramka App Store, CLAUDE.md — decyzja właściciela 21.10; noc nie blokuje).
 5. **Kontrola na telefonie** (lista „tylko telefon”): powiadomienie „pilne” w trybie skupienia (R-004), głos, mile/jardy, nowe ekrany, Apple Watch, Zdrowie, zakup w piaskownicy (K-012).
 6. Zrzuty do sklepu (ciemny motyw, ramki i podpisy, 9 ekranów wg scenorysu z 19.10; generator `store-screenshots.yml`) i opis sklepu (docs/15) — **dopiero po M3**; akceptacja właściciela (podpisy EN też).
 7. App Store Connect (kroki właściciela niżej: cena 6,99, oferta 14 dni, adres polityki, etykieta prywatności, ankieta wiekowa), migracja repo do organizacji **Apps4Brew** (właściciel: puste repo + sekrety), wersja **1.0** („Co nowego” czyszczone), wysłanie do Apple, ręczne wydanie po akceptacji, wydanie stopniowe wg docs/42.
@@ -34,6 +34,17 @@ Powód: limit tygodniowy konta koordynatora na wyczerpaniu (decyzja właściciel
 **Otwarte u właściciela (poza listą kroków):** Google Workspace (w toku, sekcja „W toku u właściciela”), próg i data premiery dla decyzji o Androidzie (docs/wzrost.md), ewentualny przegląd sekretów GitHub (K-019).
 
 **Gdzie co jest:** decyzje z datą → docs/18; lekcje i rejestr ryzyk (otwarte blokują wydanie) → docs/40; wymagania (BRD) → docs/brd; plan wydania 1.0 → docs/42; droga do sklepu → docs/41 (gałąź f020-sklep, częściowo na main); ceny → docs/monetyzacja.md; języki → docs/16 i docs/lokalizacja; research konkurencji i rejestr decyzji merytorycznych → Google Drive „Trening App” (nie w repo). Backlog bez priorytetu → docs/21 (wspominać tylko zbiorczo).
+
+## Harmonogram do 1.0 (szacunek z 21.10.2026, aktualizowany; przebiegi macOS w oknie ok. 22:00–13:00 UTC — docs/18)
+| krok | szacowany termin | na co się czeka | czas właściciela |
+|---|---|---|---|
+| TestFlight z ton trenera + poprawki CI (main 8763e58) | 21.10 | build (TestFlight run 39578800586) | lista telefonu ok. 5 min |
+| M3: p1 → zrzuty kontrolne → p2–p6 → scalenie → TestFlight z nowym wyglądem | 22–23.10 | E2E na zrzuty i po partiach (1–2 h każde), maszyny macOS | ocena zrzutów, STOP p5d, zgoda na scalenie, telefon ok. 15 min |
+| Brzmienia badacza w 35 językach + przegląd tłumaczeń API | 23.10 | przebieg API (ok. 1 h) | 0 |
+| Pełny audyt M1 + naprawy blokerów | 24–26.10 | audyt kilka h agentów, naprawy, verify/E2E | decyzje przy znaleziskach |
+| Pełny katalog E2E + kontrola na telefonie + zrzuty i opis sklepu | 26–27.10 | 1 przebieg pełny (ok. 2 h), generator zrzutów | telefon ok. 30 min, akceptacja zrzutów/podpisów |
+| App Store Connect + wysyłka 1.0 | 27–28.10 | — | ok. 1 h (krok po kroku) |
+| Przegląd Apple → wydanie | **ok. 28–30.10** | przegląd Apple zwykle 1–3 dni [bez gwarancji] | ręczne wydanie po akceptacji |
 
 ## Podział między konta (decyzja właściciela 20.10.2026)
 - **Obecne konto** domyka kroki 1–6 z listy „Co biegnie / co zrobić najpierw” (E2E → PR i scalenie → TestFlight → dowody → przegląd tłumaczeń przez API → przegląd badacza) i **nie zaczyna kroku 7 (M3) ani dalszych**.
@@ -71,6 +82,26 @@ Odpowiadaj po polsku.
 | 21.10 07:30 | przekazanie | pełny prompt startowy w `docs/44-prompt-nowe-konto.md`; PR #17 (wyjątek „ton trenera” + ok. 1000 formalnych tekstów ekranów w 13 językach + wiersz b1022 w docs/09) czeka na E2E (run 39555291208) i scalenie — pierwsze zadanie nowego konta, jeśli nie scalone. |
 | 21.10 08:05 | nowe konto: start, PR #17 | PR #17 był już scalony (07:52, 69988ea); na main biegną E2E pakiet podstawowy (run 39565108193, maszyna przydzielona), Testy (39565108298), TestFlight (39565108351, czeka na bramkę E2E). Czerwony tests.yml po PR #16 (39549939632) = niestabilny test `health-query` (losowe id „8432ed24-…”), poprawka + lekcja L-012 na gałęzi `claude/optimistic-clarke-9tj0im`. tests-tz czerwony tylko na starej gałęzi `feature/e2-swap` (−0 vs 0; na main już poprawione). |
 | 21.10 08:15 | 7. M3 Redesigner | sesja M3 założona przez koordynatora („Trening — M3 Redesigner (redesign/trening-2026-10-21)”), prompt składany w sesji z najświeższego `prompts` (97ec212 lub nowszy); wejścia: 026, 029 (+`m3-wejscie/029-ikony`), 030, 036, DEC-05, DEC-06, DEC-28/29, wyjątek „ton trenera”. Czeka na STOP 1 (decyzje właściciela, m.in. bramka opłacalności — W0 brak). Nocny przebieg 21.10: mutacje i E2E mały ekran/ciemny czerwone — analiza tester-e2e w toku. |
+| 21.10 11:10 | koordynacja | PR #18 scalony (8763e58: test Zdrowia, Stryker, noc tylko main, worktree poza lint/Jest/tsc, R-011 zamknięte, decyzje 21.10 w docs/18). Na main E2E (39578800712) → TestFlight (39578800586, PR #17 + #18). Agenci: tester-e2e (17e), programista (zgłoszenie z nocy), badacz (rejestr twierdzeń). Kolejka prac koordynatora w tym pliku; przegląd koordynatora co godzinę (docs/18). M3 w swojej sesji za STOP 2 (decyzje właściciela). |
+| 21.10 18:25 | koordynacja | Scalone: #26 (M5: nazwy, podtytuły, słowa kluczowe w 33 lokalizacjach) i #25 (workflow „Sprzątanie gałęzi”, podgląd uruchomiony). Otwarte: #20 (koordynacja), #27 (kontrola ASC — zgoda właściciela na scalenie i pierwszy przebieg). Nowe sesje: M8 Formalności (STOP 1 rozstrzygnięty, e-maile wsparcia bez AI, sprawy prawne we własnym zakresie) i M1 Audyt (plan: wariant głęboki, start po kroku 4). M5: blok cenowy opisu z porównaniem do espresso (przypis MIMIT 1,06–1,51 €). Decyzje: docs/18. |
+
+## Kolejka prac koordynatora (stan bieżący; właściciel 21.10.2026: koordynator sam rozdziela pracę i przekazuje ją między agentami)
+Przegląd co godzinę (zaplanowane zadanie „Trening: koordynator — przegląd co godzinę”, docs/18) bierze stąd następne zadanie, gdy obszar plików jest wolny.
+
+| # | zadanie | rola / model | obszar plików | stan |
+|---|---|---|---|---|
+| 1 | Scenariusze E2E na iPhone 17e (klawiatura nad wierszem wyniku; 12, 31) + strażnik + przebieg dowodowy | tester-e2e / sonnet | `.maestro/`, `tests/maestro-*` | w toku (gałąź `e2e-maly-ekran`) |
+| 2 | Zgłoszenie (issue) z czerwonej nocy + przebieg dowodowy | programista / sonnet | `nightly.yml`, `scripts/ci/nocny-raport.mjs`, `tests/nocny-raport*` | w toku (gałąź `nocny-raport`; PR z workflowem → zgoda właściciela) |
+| 3 | Przegląd ok. 36 wpisów rejestru twierdzeń (T-001–T-038), T-003 | badacz-merytoryczny / opus | `docs/research/` | **zrobione 21.10** (912c123: 34 potwierdzone, 3 do zmiany brzmienia T-002/T-003/T-032; T-041 Helms i in. 2016 + wzorzec cytatu „i in. RRRR” w `claims.mjs`) |
+| 4 | Ciemny motyw w nocnym E2E rzeczywiście ciemny (L-013 akcja 4) | tester-e2e / sonnet | `.maestro/`, `e2e-ios.yml` | czeka na 1 i 2 (te same pliki) |
+| 5 | Wdrożenie brzmień z przeglądu badacza: T-002, T-003, T-032 (+ opcjonalnie T-021, komentarz T-008) w 35 językach + `claims.mjs --rehash` (raport `docs/research/przeglad-badacza-2026-10-21b.md`) | tlumacz / sonnet | `lib/i18n*`, `lib/locales/` | czeka na scalenie M3 (teksty UI) |
+| 6 | Powtórny przegląd tłumaczeń przez API (asekuracja, R1 + nowe teksty M3) | koordynator (workflow) | — | po M3 (jeden przebieg dla wszystkich nowych zdań) |
+| 7 | Przed App Store: **jeden pełny katalog E2E na standardowym iPhonie** (1 ponowienie dozwolone; decyzja właściciela 21.10 — noc nie blokuje), strefy (`tests-tz.yml`) | koordynator | — | po 10 (audyt i naprawy) |
+| 8 | Hak pre-push (lint + check:readme + check:matrix, `prepare`) + krok „sprawdź tests.yml po wypchnięciu” w `.claude/agents/*.md` (L-009; decyzja właściciela 21.10 w sesji M3, b78ddb3) | programista / sonnet | `scripts/hooks/`, `package.json`, `.claude/agents/` | w toku (gałąź `hak-pre-push`) |
+| 9 | Po TestFlight: lista „telefon zaraz po buildzie” (R-004 i lista „tylko telefon”) | koordynator → właściciel | — | po buildzie z main 8763e58 |
+| — | **Obszar M3** (gałąź `redesign/trening-2026-10-21`, partie p1–p6): `app/`, `components/`, `lib/` (theme, ekrany, teksty, słowniki), ikony, zegarek, `docs/design/`, `docs/32`, `docs/m3-stan.md`; scenariusze `.maestro/` po scaleniu main (ustalone z M3 21.10) | M3 | — | koordynator tu nie wchodzi |
+| 10 | Po kroku 4 (M3 scalone, brzmienia, przegląd tłumaczeń): **pełny głęboki audyt M1 całej aplikacji** (z LOK-07) + naprawy blokerów (M2) — decyzja właściciela 21.10 | M1 / M2 | — | po 5 i 6 |
+| 11 | Po audycie: pełny katalog E2E (poz. 7), telefon, zrzuty i opis sklepu, App Store Connect, migracja do Apps4Brew, 1.0. **M4 dopiero po wydaniu** (zakres 1.0 zamrożony) | wydawca / właściciel | — | po 10 |
 
 ## Zasady pracy obowiązujące (skrót; pełne w CLAUDE.md i docs/18)
 - Podział pracy na agentów według obszaru plików (CLAUDE.md, 20.10.2026); pliki generowane i pełne verify raz po scaleniu.
@@ -162,7 +193,7 @@ Kod, plik testowy `store/Trening.storekit` i dokumenty mówią już 6,99 USD/rok
 4. Sekcja „Subscription Prices” → „Current Pricing for New Subscribers” → „Edit” (albo „+ / Add Subscription Price”).
 5. Kraj bazowy: Stany Zjednoczone (United States), cena **6,99 USD** (wybierz punkt cenowy 6.99). Zostaw włączone automatyczne przeliczenie na inne kraje (Apple wylicza resztę z ceny bazowej).
 6. Kliknij „Next”, potem „Confirm”. Przy pytaniu o obecnych subskrybentów wybierz „Do not preserve current price” — jest to cena przed premierą, nikt jeszcze nie subskrybuje (jeśli nie ma takiej opcji, pomiń).
-7. Ceny w Polsce, strefie euro i Wielkiej Brytanii: sprawdź, czy po przeliczeniu EUR i GBP wyszło 6,99 (jeśli nie — popraw ręcznie na 6,99 € / 6,99 £); PL zostaje 19,99 zł.
+7. ~~Ceny w Polsce, strefie euro i Wielkiej Brytanii~~ — **zrobione 21.10.2026**: strefa euro 7,99 € (przeliczenie Apple, decyzja właściciela — bez ręcznej korekty na 6,99 €), GBP 6,99 £, PL 19,99 zł (docs/18, docs/monetyzacja.md).
 8. Napisz „zrobione” albo wklej, co widzisz w kolumnie ceny roczna.
 
 ---

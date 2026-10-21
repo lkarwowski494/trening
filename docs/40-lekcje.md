@@ -23,6 +23,25 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 | R-011 | M1-058: `scripts/ci/sim-wybor.mjs` w obu krokach „Simulator” `e2e-ios.yml` (Node na maszynie macOS, format listy `simctl`); nie wiadomo, czy obraz macos-26 ma iPhone SE (375 pt) — bez niego „mały ekran” zostaje 390 pt (16e/17e), a log pokaże to wprost | przebieg `e2e-ios.yml` z wejściem `urzadzenie` jak w `nightly.yml` i `tylko_scenariusze: 01`: w logu „Ekran: … szerokość ekranu N pt”; decyzja co do braku SE (właściciel) | **zamknięte 21.10.2026** — dowód: nocny przebieg 39537208004 („Ekran: iPhone 17e — szerokość ekranu 390 pt”), SE niedostępny w obrazie macos-26; decyzja właściciela 21.10.2026: 390 pt wystarcza (docs/18) |
 | R-012 | M1-062 (DEC-27): test aktualizacji bierze poprzednią wersję z pliku wydania `Trening-sim.zip`; zadanie „tag” w `testflight.yml` ma go dołączać (pobranie artefaktu `trening-sim-app` z zielonego przebiegu E2E, `gh release upload`), a `poprzednia-wersja.sh` pobierać na GitHub Actions. Linux tego nie sprawdzi; do czasu pierwszego wydania z plikiem E2E z testem aktualizacji kończy się błędem (zamierzone) | dowód 1: plik `Trening-sim.zip` dołączony ręcznie do istniejącego wydania + `e2e-ios.yml` (pakiet podstawowy) zielony z logiem „Poprzednia wersja (plik wydania): <tag>” i wersją oraz buildem obu aplikacji; dowód 2: pierwsze prawdziwe wydanie TestFlight — krok „Plik wydania Trening-sim.zip” zielony, wydanie ma plik | **otwarte** — przebieg dowodowy do zlecenia (raport M2, partia 4)
 
+## L-014 (21.10.2026, M5) — wypchnięcie przed odczytem wyniku verify; nowy dokument w docs/ unieważnił README (powtórka L-009)
+
+- **Co się stało:** rola M5 (gałąź `widocznosc/trening-2026-10-21`) wypchnęła commit 83e59b1 (nowy `docs/45-widocznosc-w-sklepie.md`, wpis w docs/18)
+  w tej samej komendzie powłoki, w której czytała log verify — push wykonał się mimo `kod 1`. Verify padło najpierw na lint w pliku spoza gita
+  (narzędzie w katalogu przebiegu `audit/M5-…`, wykluczonym tylko w `.git/info/exclude`), a po jego pominięciu na `check:readme`
+  (spis dokumentów w README liczy pliki `docs/`). tests.yml 39616715121 na 83e59b1 — oczekiwany czerwony na `check:readme`; naprawa: README przegenerowane w następnym commicie.
+- **Przyczyna źródłowa:** (1) push nie był warunkowany kodem wyjścia verify (komenda „czytaj log; push” zamiast `verify && push`) — L-009 akcja (a), hak pre-push, wciąż otwarta,
+  więc nic mechanicznie nie zatrzymało wypchnięcia; (2) agent uznał zmianę „tylko dokumenty” za neutralną dla plików generowanych — nowy plik w `docs/` zmienia README;
+  (3) katalog przebiegu roli z biblioteki promptów leży w drzewie repo, a ESLint nie czyta `.git/info/exclude`, więc lokalne verify widzi pliki, których CI nie ma.
+- **Ocena zakresu: systemowa** (drugie wystąpienie klasy L-009: wypchnięcie bez zielonego verify; dotyczy każdej roli i gałęzi).
+  Opcje dla właściciela: (A) hak pre-push (`check:readme` + `check:matrix`, ok. 10 s) instalowany przez `npm ci` — mechanizm lokalny, łapie oba przypadki L-009 i L-014;
+  (B) skrypt `npm run push` = `verify && git push -u origin HEAD`, wymagany w CLAUDE.md i promptach ról — prostszy, ale omijalny zwykłym `git push`.
+  Rekomendacja: A (+ katalogi przebiegów ról poza drzewem repo albo `audit/` w ignorach ESLint — zgłoszone koordynatorowi jako zmiana biblioteki promptów).
+- **Akcje:**
+  1. README przegenerowane (d404a85, tests.yml zielony) — **zrobione**; `audit/**` w ignorach ESLint (f64f979) — **zrobione**.
+  2. Rola M5 w tym przebiegu wypycha tylko komendą warunkowaną kodem verify (`… && git push`) — **zrobione** (postanowienie do czasu decyzji A/B).
+  3. Decyzja właściciela (wspólna z L-009): **A — hak pre-push** (lint + check:readme + check:matrix, instalowany przez `prepare`; PR #24 koordynatora) — **w toku**.
+     Dowód działania wypchnięcia warunkowego w M5: przebieg z nieaktualnym docs/19 zatrzymany lokalnie przed CI (21.10.2026).
+
 ## L-013 (21.10.2026) — nocny przebieg czerwony od 16.10 bez reakcji: mutacje nie mierzą się, martwa gałąź w liście nocnej, E2E 17e pada deterministycznie
 
 - **Co się stało:** przegląd nocnego przebiegu (run 39537208004, main 0fd4687; tester-e2e) — trzy niezależne przyczyny:
@@ -54,7 +73,7 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
      Run 39590138756 (świeży build z gałęzi, scenariusze 01 07 08 12 13 14 24 31 32 33 34): **11/11 zielonych za pierwszym razem**, w tym 12 i 31. **Zrobione** poza tym, że przyczyna `skipped today` pozostaje hipotezą (po poprawce zielone; zrzuty 46a/46b i 83a/83b rozstrzygną przy ewentualnym nawrocie).
      Wniosek procesowy: `aplikacja_z_przebiegu` bierze aplikację z innego commitu — przy gałęzi starszej/nowszej od niej scenariusze oczekują innego tekstu (jak L-011); do dowodu na gałęzi używać świeżego builda, gdy gałąź ma zmiany w `app/`, `lib/` lub tekstach.
   4. Ciemny motyw w nocnym E2E rzeczywiście ciemny (ustawienie „Auto” na starcie albo osobny scenariusz) — **otwarte**.
-  5. Mechanizm przeglądu nocy — właściciel 21.10: **B** (zgłoszenie z `nightly.yml`) — **w toku**.
+  5. Mechanizm przeglądu nocy (opcja A/B/C) — **decyzja właściciela 21.10.2026: B** (zadanie `zgloszenie` w `nightly.yml`: czerwona noc otwiera albo aktualizuje jedno zgłoszenie z etykietą `nocne-testy`, zielona zamyka z komentarzem; `scripts/ci/nocny-raport.mjs`, testy `tests/nocny-raport.test.ts` i strażnik uprawnień w `tests/public-repo.test.ts`). Licznik czystych nocy (pełny przebieg, zadania zielone, E2E bez ponowień) w znaczniku treści zgłoszenia — **zrobione w kodzie** (gałąź `nocny-raport`, zmiana workflowu → PR do zatwierdzenia przez właściciela); **przebieg dowodowy wykonany** (model pracy po L-001, gałąź `nocny-raport`, `workflow_dispatch` z `zgloszenie: true`): run 39582135412 (E2E pełny katalog, czerwony) otworzył zgłoszenie #19 z etykietą `nocne-testy` (tabela zadań, nazwy nieudanych zadań, 23 scenariusze „padł dwa razy” z artefaktu `e2e-wyniki`, bez logów); run 39597413805 (wszystkie zadania pominięte, zielony niepełny) zamknął je komentarzem. **Warunek zamknięcia akcji: scalenie PR przez właściciela** (zmiana workflowu); pierwsza prawdziwa noc po scaleniu zaktualizuje #19 (nośnik licznika). Otwarte: pełna zielona noc nie była jeszcze obserwowana na prawdziwym przebiegu (ścieżka „czysta noc +1” pokryta testami jednostkowymi i atrapą `gh`).
   6. R-011: obraz macos-26 nie ma iPhone SE — właściciel 21.10: 390 pt wystarcza — **zrobione** (R-011 zamknięte).
 
 ## L-012 (21.10.2026) — czerwony tests.yml na main: losowe id ćwiczenia zaczęło się od „8432”, liczby szukanej przez niezmiennik Zdrowia
@@ -104,6 +123,8 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 - Przyczyna źródłowa: zasada „pełne verify przed wypchnięciem” jest tylko poleceniem w CLAUDE.md i w promptach agentów; agent naprawiający CI uznał zmianę za „tylko testy” i pominął verify. Nic mechanicznie nie blokuje wypchnięcia z nieaktualnymi plikami generowanymi.
 - Ocena zakresu: systemowa (każdy agent, każda gałąź).
 - Akcje (do decyzji właściciela, ≥2 opcje): (a) hak pre-push w repo (`scripts/hooks/pre-push`: check:readme + check:matrix, ~10 s) instalowany przez `npm ci` (prepare) — mechanizm lokalny; (b) krok w promptach agentów + lista kontrolna koordynatora przed zleceniem wypchnięcia — słabszy, bo to postanowienie. Rekomendacja: (a). Stan: otwarte.
+- **Decyzja właściciela 21.10.2026** (podjęta w sesji M3, commit b78ddb3 na gałęzi redesign/trening-2026-10-21): (a) **i** (b) razem; odrzucone: tylko hak, tylko krok w poleceniach. Hak uruchamia lint, check:readme i check:matrix (ok. 35 s; lint dodany do pierwotnych ~10 s).
+- **Akcje — stan:** (a) hak pre-push `scripts/hooks/pre-push` + instalator `scripts/hooks/instaluj.mjs` (skrypt `prepare`; pomijany w CI i bez `.git`; ścieżka względna działa w worktree) — **zrobione** (gałąź `hak-pre-push`, test `tests/hak-pre-push.test.ts`). (b) krok „po wypchnięciu sprawdź wynik `tests.yml` i czekaj na zielony” w `.claude/agents/{programista,tester-e2e,tlumacz,wydawca}.md`, pilnowany tym samym testem (także: nowa rola z Bash musi być na liście albo mieć wyjątek z powodem) — **zrobione** (ta sama gałąź). Pozostaje świadome obejście `git push --no-verify`.
 - Druga obserwacja (tester): ukryte założenie „testy UI mieszczą się w oknach czasowych aplikacji” — naprawione konfiguracją okna w Debug (867f63e) i strażnikiem tests/watch-ci.test.ts.
 
 ## L-008 (20.10.2026, audyt M1) — `npm run lint` bez eslint w zależnościach sam instaluje pakiety i zmienia package.json

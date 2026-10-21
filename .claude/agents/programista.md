@@ -14,6 +14,7 @@ Jesteś programistą aplikacji Trening (Expo/React Native, TypeScript). Zasady: 
 - Pełne `npm run verify` uruchamiaj tylko wtedy, gdy żaden inny agent nie uruchamia testów na tej maszynie (4 rdzenie — równoległe
   przebiegi ubijają procesy Jest i dają fałszywe porażki); w razie wątpliwości `ps aux | grep jest`.
 - Po dwóch nieudanych podejściach do tej samej poprawki zatrzymaj się i opisz problem zamiast próbować dalej.
+- Po wypchnięciu (L-009): sprawdź wynik `tests.yml` dla swojego SHA (`mcp__github__actions_list`, narzędzie ładuj przez ToolSearch) i czekaj na zielony; czerwony przebieg napraw, zanim zgłosisz ukończenie. Hak `scripts/hooks/pre-push` (lint, check:readme, check:matrix) zatrzymuje oczywiste braki przed wypchnięciem; `git push --no-verify` tylko świadomie.
 
 Wynik: lista zmienionych plików, testy dodane (nazwy), wynik verify (liczby), ryzyka do sprawdzenia w E2E, czego celowo nie zrobiłeś.
 Nigdy: push na `main`, TestFlight, App Store Connect — tylko na polecenie właściciela.

@@ -6,12 +6,35 @@
 #      pełny zestaw z losowym ziarnem testów własności fast-check (PROP_SEED=random; przy każdym wypchnięciu — stałe, TST2-07),
 #   2. testy mutacyjne (Stryker): ile celowo wprowadzonych błędów w logice testy wykrywają — raport jako artefakt,
 #   3. E2E na innym symulatorze (mały ekran) przy ciemnym wyglądzie systemu — pełny katalog (pakiet pelny), wywołanie e2e-ios.yml z podsumowaniem niestabilności.
+#   4. zgłoszenie (21.10.2026, decyzja właściciela, L-013 akcja 5): po pozostałych zadaniach (`if: always()`) jedno zgłoszenie GitHub z etykietą `nocne-testy` —
+#      czerwona noc otwiera je albo aktualizuje (lista porażek, link do przebiegu, scenariusze E2E „padł dwa razy”), zielona zamyka z komentarzem; w treści
+#      licznik kolejnych czystych nocy (bramka „3 czyste noce”). Logika: scripts/ci/nocny-raport.mjs (testy: tests/nocny-raport.test.ts). Zgłoszenia są PUBLICZNE —
+#      tylko wyniki zadań i nazwy scenariuszy, bez treści logów. Uprawnienie do zapisu zgłoszeń (issues, poziom zadania) WYŁĄCZNIE w tym zadaniu; tylko token przebiegu, bez nowych sekretów.
+#      Ręcznie (Run workflow) zgłoszenie powstaje tylko z wejściem `zgloszenie`; wejścia `pomin_*` skracają przebieg dowodowy i działają wyłącznie przy ręcznym
+#      uruchomieniu (harmonogram zawsze uruchamia wszystko). Przebieg z pominiętymi zadaniami jest „niepełny” — nie liczy się do bramki.
 # Strefy czasowe: osobny tests-tz.yml.
 name: Nocne testy
 on:
   schedule:
     - cron: '41 2 * * *'
   workflow_dispatch:
+    inputs:
+      zgloszenie:
+        description: 'Utwórz / zaktualizuj / zamknij zgłoszenie z wynikiem (domyślnie tylko przebieg według harmonogramu) — do przebiegu dowodowego'
+        type: boolean
+        default: false
+      pomin_losowe:
+        description: 'Pomiń zadanie losowe (przebieg dowodowy; przebieg niepełny nie liczy się do bramki)'
+        type: boolean
+        default: false
+      pomin_mutacje:
+        description: 'Pomiń testy mutacyjne (przebieg dowodowy; przebieg niepełny nie liczy się do bramki)'
+        type: boolean
+        default: false
+      pomin_e2e:
+        description: 'Pomiń E2E (przebieg dowodowy; przebieg niepełny nie liczy się do bramki)'
+        type: boolean
+        default: false
 permissions:
   contents: read
   actions: read
@@ -20,6 +43,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   losowe:
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.pomin_losowe }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -41,6 +65,7 @@ jobs:
       - name: Pełny zestaw testów — losowe ziarno testów własności (PROP_SEED w logu, TST2-07)
         run: PROP_SEED=random npx jest --maxWorkers=2
   mutacje:
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.pomin_mutacje }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -73,8 +98,37 @@ jobs:
     # 19.10.2026 (decyzja właściciela): pełny katalog scenariuszy nocą, niewiążąco — z ponowieniem pojedynczych nieudanych, żeby MIERZYĆ niestabilność
     # (podsumowanie przebiegu + artefakt e2e-wyniki: przeszedł / przeszedł w ponowieniu / padł dwa razy, czasy). Warunek gotowości bramki App Store:
     # 3 kolejne nocne pełne przebiegi zielone BEZ ponowień (docs/38, „Pakiet podstawowy E2E”). Pakiet podstawowy biegnie przy każdym wydaniu TestFlight.
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.pomin_e2e }}
     uses: ./.github/workflows/e2e-ios.yml
     with:
       pakiet: pelny
       urzadzenie: 'iPhone SE|iPhone 16e|iPhone 17e'
       wyglad: dark
+  zgloszenie:
+    # L-013 akcja 5 (21.10.2026): sygnał nocny nie ginie — noc była czerwona od 16.10 bez reakcji. Zadanie działa po KAŻDYM wyniku pozostałych (też porażce i anulowaniu).
+    # Treść i decyzje: scripts/ci/nocny-raport.mjs. Wyniki E2E z artefaktu e2e-wyniki (zadanie „wyniki przebiegu (niestabilność)” w e2e-ios.yml); brak artefaktu nie przerywa raportu.
+    needs: [losowe, mutacje, e2e-maly-ekran-ciemny]
+    if: ${{ always() && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.zgloszenie)) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          sparse-checkout: scripts/ci
+      - uses: actions/download-artifact@v4
+        continue-on-error: true  # E2E pominięte, anulowane albo bez wyników — raport mówi wtedy „brak wyników E2E”
+        with:
+          name: e2e-wyniki
+          path: e2e-wyniki
+      - name: Zgłoszenie z wynikiem nocy (etykieta nocne-testy) i podsumowanie przebiegu
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          NEEDS_JSON: ${{ toJSON(needs) }}
+          E2E_WYNIKI: e2e-wyniki/e2e-wyniki.json
+        run: node scripts/ci/nocny-raport.mjs
