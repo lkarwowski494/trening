@@ -187,17 +187,17 @@ name: Pierwszy tydzień nowego użytkownika
 - takeScreenshot: 88-ten-tydzien
 # --- Postępy: podsumowanie i rekordy ćwiczenia ---
 - tapOn: "Progress, tab.*"
-- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- scrollUntilVisible: { element: "Workouts: [0-9]+, previously .*", direction: DOWN, timeout: 30000 }  # M3 p3 (ZM-06): na górze Postępów jest wykres i rekordy ćwiczenia, „Summary” (ogólny przegląd) jest niżej
 - assertVisible: "Workouts: [1-9].*, previously .*"
 - takeScreenshot: 90-postepy
-- assertVisible: "Muscle map: .*"
+- scrollUntilVisible: { element: "Muscle map: .*", direction: DOWN, timeout: 30000 }  # M3 p3: mapa mięśni jest w przeglądzie pod wyborem ćwiczenia
 # kafelki „Progression” (te same trzy porównania co dawniej na ekranie Trening) → szczegóły z dwoma słupkami na partię
 - scrollUntilVisible: { element: { id: "progress-tile-week" }, direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: { id: "progress-tile-week" }
 - extendedWaitUntil: { visible: "Progression", timeout: 30000 }
 - takeScreenshot: 89-progresja
 - tapOn: "Back"
-- scrollUntilVisible: { element: "Back Squat", direction: DOWN, timeout: 60000, centerElement: true }
+- scrollUntilVisible: { element: "Back Squat", direction: UP, timeout: 60000, centerElement: true }  # M3 p3: wybór ćwiczenia jest nad przeglądem (ZM-06)
 - tapOn: "Back Squat"
 - extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }
 - takeScreenshot: 91-rekordy-cwiczenia

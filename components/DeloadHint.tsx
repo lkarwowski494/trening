@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Btn, Muted } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
-import { useTheme } from '@/lib/theme';
+import { useTheme, font, RADIUS, SPACE } from '@/lib/theme';
 import { toggleDeloadWeek, useTick, fmtDayKey } from '@/lib/store';
 import { deloadHint, snoozeDeloadHint, DELOAD_EVERY } from '@/lib/deload';
 import { t, locale } from '@/lib/i18n';
@@ -20,20 +20,22 @@ const day = (k: string) => fmtDayKey(k); /* H3 (audyt 0.10): jeden format daty d
 export function DeloadHint() {
   useTick(); const th = useTheme(); const h = deloadHint(Date.now());
   if (h.kind === 'none') return null;
-  const box = { padding: 10, borderRadius: 10, backgroundColor: th.surface2, marginBottom: 10, gap: 6 } as const;
+  const box = { padding: SPACE.m, borderRadius: RADIUS.group, backgroundColor: th.surface2, marginBottom: SPACE.s, gap: SPACE.s } as const;
+  /* M3 p3 (układ 320 pt): przycisk z długim tekstem (ro, el: „Planifică descărcarea de la …”) zawija się w szerokości banera zamiast wychodzić poza ekran */
+  const fit = { flexShrink: 1, maxWidth: '100%' } as const;
   if (h.kind === 'suggest') return (
     <View testID="deload-hint" style={box}>
       <InfoTip id="deload" label={t('Tygodnie treningu bez deloadu: {n}.', { n: h.weeks })} info={t('Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.', { n: h.weeks, a: DELOAD_EVERY[0], b: DELOAD_EVERY[1] })}>
-        <Muted style={{ fontSize: 13 }}>{t('Tygodnie treningu bez deloadu: {n}.', { n: h.weeks })}</Muted>
+        <Muted style={font('footnote')}>{t('Tygodnie treningu bez deloadu: {n}.', { n: h.weeks })}</Muted>
       </InfoTip>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-        <Btn small title={t('Zaplanuj deload od {date}', { date: day(h.from) })} onPress={() => toggleDeloadWeek(keyTs(h.from))} />
-        <Btn small kind="ghost" title={t('Nie teraz')} accessibilityHint={t('Podpowiedź wróci w przyszłym tygodniu.')} onPress={() => snoozeDeloadHint(h.from)} />{/* audyt 0.10 D4 (UX-06) */}
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: SPACE.s }}>
+        <Btn small style={fit} title={t('Zaplanuj deload od {date}', { date: day(h.from) })} onPress={() => toggleDeloadWeek(keyTs(h.from))} />
+        <Btn small kind="ghost" style={fit} title={t('Nie teraz')} accessibilityHint={t('Podpowiedź wróci w przyszłym tygodniu.')} onPress={() => snoozeDeloadHint(h.from)} />{/* audyt 0.10 D4 (UX-06) */}
       </View>
     </View>);
   return (
     <View testID="deload-hint" style={box}>
-      <Muted style={{ fontSize: 13 }}>{h.kind === 'current' ? t('Ten tydzień: deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.', { less: deloadLessText() }) : t('Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.', { date: day(h.from), less: deloadLessText() })}</Muted>
-      <Btn small kind="ghost" title={t('Zdejmij oznaczenie deload')} onPress={() => toggleDeloadWeek(h.kind === 'current' ? Date.now() : keyTs(h.from))} style={{ alignSelf: 'flex-start' }} />
+      <Muted style={font('footnote')}>{h.kind === 'current' ? t('Ten tydzień: deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.', { less: deloadLessText() }) : t('Od {date}: tydzień deload. Przy starcie treningu zaproponuję {less}, ciężary bez zmian.', { date: day(h.from), less: deloadLessText() })}</Muted>
+      <Btn small kind="ghost" title={t('Zdejmij oznaczenie deload')} onPress={() => toggleDeloadWeek(h.kind === 'current' ? Date.now() : keyTs(h.from))} style={{ alignSelf: 'flex-start', ...fit }} />
     </View>);
 }

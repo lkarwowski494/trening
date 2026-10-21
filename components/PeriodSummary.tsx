@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { useTheme, F, FW } from '@/lib/theme';
+import { useTheme, F, FW, font, RADIUS } from '@/lib/theme';
 import { InfoTip } from '@/components/InfoTip';
 import { t, exName, locale, lang } from '@/lib/i18n';
 import { fmtSec, isDeloadWeek, useTick } from '@/lib/store';
@@ -23,10 +23,10 @@ function MonthWeeks({ start, end }: { start: number; end: number }) {
     <View testID="month-weeks" accessible accessibilityRole="text" accessibilityLanguage={lang()} accessibilityLabel={caption} style={{ marginBottom: 10, gap: 6 }}>
       <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 6, flexWrap: 'wrap' }}>
         {r.weeks.map((w, i) => w.state === 'none'
-          ? <View key={i} testID={`month-week-${i}`} {...a11yHidden} style={{ width: PLATE_STACK.w, height: 3, borderRadius: 1.5, backgroundColor: th.ctrlLine }} />
+          ? <View key={i} testID={`month-week-${i}`} {...a11yHidden} style={{ width: PLATE_STACK.w, height: 3, borderRadius: RADIUS.marker, backgroundColor: th.ctrlLine }} />
           : <PlateStack key={i} testID={`month-week-${i}`} filled={w.state === 'full'} bg={th.bg} th={th} />)}
       </View>
-      <Muted style={{ fontSize: 13 }}>{caption}</Muted>
+      <Muted style={{ ...font('footnote') }}>{caption}</Muted>
     </View>);
 }
 
@@ -41,7 +41,7 @@ export function PeriodSummary() {
   const arrow = (label: string, glyph: string, delta: number, disabled = false) => (
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ disabled }} disabled={disabled} onPress={() => setOffset(o => o + delta)} hitSlop={8}
       style={({ pressed }) => ({ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center', opacity: disabled ? 0.25 : pressed ? 0.5 : 1 })}>
-      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 22, ...FW.semibold }}>{glyph}</Text>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.text, ...font('sectionTitle'), ...FW.semibold }}>{glyph}</Text>
     </Pressable>);
   const rows: [string, string, string][] = [
     [t('Treningi'), `${s.workouts}`, `${s.prev.workouts}`],
@@ -56,27 +56,27 @@ export function PeriodSummary() {
       <Segmented label={t('Podsumowanie')} value={kind} onChange={pick} options={[['week', t('Tydzień')], ['month', t('Miesiąc')]]} />
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 6 }}>
         {arrow(t('Poprzedni okres'), '‹', -1)}
-        <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 16, fontFamily: F.heavy, flexShrink: 1, textAlign: 'center' }}>{periodTitle(kind, s.start)}</Text>
+        <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: th.text, ...font('body'), fontFamily: F.heavy, flexShrink: 1, textAlign: 'center' }}>{periodTitle(kind, s.start)}</Text>
         {arrow(t('Następny okres'), '›', 1, offset >= 0)}
       </View>
-      {deload ? <InfoTip id="period-deload" label={t('Tydzień deload (D na wykresach).')} info={t('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.')} style={{ marginBottom: 8 }}><Muted style={{ fontSize: 12 }}>{t('Tydzień deload (D na wykresach).')}</Muted></InfoTip> : null}{/* 11.10.2026: Postępy pokazują oznaczenie, nie zmieniają (chip „Tydzień deload” usunięty) */}
+      {deload ? <InfoTip id="period-deload" label={t('Tydzień deload (D na wykresach).')} info={t('Ten tydzień jest oznaczony jako deload (D na wykresach). Oznaczenie zmienisz w zakładce Plan: dzień → „Więcej opcji”.')} style={{ marginBottom: 8 }}><Muted style={{ ...font('footnote') }}>{t('Tydzień deload (D na wykresach).')}</Muted></InfoTip> : null}{/* 11.10.2026: Postępy pokazują oznaczenie, nie zmieniają (chip „Tydzień deload” usunięty) */}
       {kind === 'month' ? <MonthWeeks start={s.start} end={s.end} /> : null}
-      {prevDeload ? <Muted style={{ fontSize: 12, marginBottom: 6 }}>{t('Poprzedni tydzień jest oznaczony jako deload.')}</Muted> : null}
-      <View style={{ padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
+      {prevDeload ? <Muted style={{ ...font('footnote'), marginBottom: 6 }}>{t('Poprzedni tydzień jest oznaczony jako deload.')}</Muted> : null}
+      <View style={{ padding: 12, borderRadius: RADIUS.group, backgroundColor: th.surface2, gap: 6 }}>
         {rows.map(([l, v, p]) => (
           <View accessibilityLanguage={lang()} key={l} accessible accessibilityLabel={t('{label}: {v}, poprzednio {p}', { label: l, v, p })} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <Muted>{l}</Muted>
-            <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.monoBold, fontVariant: ['tabular-nums'] }}>{monoSafe(v, true)} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{'\u00a0'}<Muted style={{ fontSize: 12, fontFamily: F.mono, fontVariant: ['tabular-nums'] }}>{monoSafe(p)}</Muted>)</Muted>{/* A11-11: słowo krojem tekstu (Plex Mono bez greckich liter), liczba mono */}</Txt>
+            <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.monoBold, fontVariant: ['tabular-nums'] }}>{monoSafe(v, true)} <Muted style={{ ...font('footnote') }}>({t('poprz.')}{'\u00a0'}<Muted style={{ ...font('footnote'), fontFamily: F.mono, fontVariant: ['tabular-nums'] }}>{monoSafe(p)}</Muted>)</Muted>{/* A11-11: słowo krojem tekstu (Plex Mono bez greckich liter), liczba mono */}</Txt>
           </View>))}
       </View>
       <MuscleMap sets={splitTotals(split)} splits={split} />
-      <Muted style={{ fontSize: 12, ...FW.semibold, marginTop: 10, marginBottom: 4 }}>{t('Rekordy w tym okresie')}</Muted>
+      <Muted style={{ ...font('footnote'), ...FW.semibold, marginTop: 10, marginBottom: 4 }}>{t('Rekordy w tym okresie')}</Muted>
       {s.prs.length ? s.prs.map(({ workoutId, at, pr }) => (
         <View key={workoutId + pr.exercise.id + pr.set.id} style={{ paddingVertical: 4 }}>
-          <Txt style={{ fontSize: 14 }}>{exName(pr.exercise)} <Muted style={{ fontSize: 12 }}>· {short(at)}</Muted></Txt>
-          <Muted style={{ fontSize: 13 }}>{pr.details.join(' · ')}</Muted>
+          <Txt style={{ ...font('callout') }}>{exName(pr.exercise)} <Muted style={{ ...font('footnote') }}>· {short(at)}</Muted></Txt>
+          <Muted style={{ ...font('footnote') }}>{pr.details.join(' · ')}</Muted>
         </View>))
-        : <Muted style={{ fontSize: 13 }}>{s.workouts ? t('Bez nowych rekordów w tym okresie.') : t('Brak treningów w tym okresie.')}</Muted>}
+        : <Muted style={{ ...font('footnote') }}>{s.workouts ? t('Bez nowych rekordów w tym okresie.') : t('Brak treningów w tym okresie.')}</Muted>}
     </View>
   );
 }

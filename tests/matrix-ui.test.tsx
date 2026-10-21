@@ -510,20 +510,23 @@ describe('/progress (+ Chart)', () => {
     expect(screen.getByText('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')).toBeTruthy();
     expect(screen.getByText('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')).toBeTruthy();
     expect(screen.getAllByText('Brak serii w tym i poprzednim tygodniu.')).toHaveLength(2);
-    const n = store.getState().exercises.filter(e => !e.archived).length;
-    expect(screen.getByText(`Pokazano 40 z ${n} — wpisz nazwę, by zawęzić.`)).toBeTruthy();
+    /* ZM-06 (M3 p3): bez wpisanego tekstu chipy tylko ćwiczeń z danymi (tu jedno) — „Pokazano 40 z …” dopiero przy szerokim wyszukiwaniu */
+    expect(screen.queryByText(/^Pokazano 40 z/)).toBeNull();
+    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'e'); await flushAll(5);
+    expect(screen.getByText(/^Pokazano 40 z \d+ — wpisz nazwę, by zawęzić\.$/)).toBeTruthy();
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Back Squat'); await flushAll(5);
     expect(screen.queryByText(/^Pokazano 40 z/)).toBeNull();
   });
 
-  test('ćwiczenie z ciężarem (2 sesje): opis wykresu dla VoiceOver, „obj.” w sesjach; chip „Tapnij, by wybrać inne ćwiczenie.” wraca do listy', async () => {
+  test('ćwiczenie z ciężarem (2 sesje): opis wykresu dla VoiceOver, „obj.” w sesjach; wybrane ćwiczenie to zaznaczony chip, wyszukiwanie zostaje pod wykresem (ZM-06)', async () => {
     const saved = await prepared(() => { addWorkout(at(10), [['Back Squat', [{ weight: 100, reps: 5 }]]]); addWorkout(at(3), [['Back Squat', [{ weight: 110, reps: 5 }]]]); });
     await renderApp({ saved }); await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10);
     expect(screen.getByLabelText(/^Wykres, 2 sesje: od .+ do .+, najlepiej .+\.$/)).toBeTruthy();
     expect(tr('Wykres, {n} {s}: od {a} ({x}) do {b} ({y}), najlepiej {c} ({z}).', { n: 2, s: 'sesje', a: 'A', x: 'X', b: 'B', y: 'Y', c: 'C', z: 'Z' })).toBe('Wykres, 2 sesje: od A (X) do B (Y), najlepiej C (Z).');
     expect(screen.getAllByText(/ · obj\. /).length).toBe(2);
-    const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityHint).toBe('Tapnij, by wybrać inne ćwiczenie.');
-    await tap(chip); await flushAll(5); expect(screen.getByPlaceholderText('Szukaj ćwiczenia…')).toBeTruthy();
+    /* M3 p3 (ZM-06): chip „✕” z podpowiedzią „Tapnij, by wybrać inne ćwiczenie.” zastąpił wybór pod wykresem — wybrane ćwiczenie jest zaznaczonym chipem, wyszukiwanie zawsze na ekranie */
+    const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityState.selected).toBe(true);
+    expect(screen.getByPlaceholderText('Szukaj ćwiczenia…')).toBeTruthy();
   });
 
   /* E1 (audyt 0.10): „e1RM (dociążenie)” zniknęło — bez masy ciała w Ustawieniach wskazówka, z masą ciała e1RM (Epley) na masie + dociążeniu */

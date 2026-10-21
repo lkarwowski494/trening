@@ -336,7 +336,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await act(async () => { fireEvent(screen.getByLabelText('Asysta gumą'), 'valueChange', false); }); expect(bd().bandAssistable).toBe(false);
     expect(screen.queryByText(/^Uwaga: zmiana sprzętu/)).toBeNull(); /* bez historii — bez ostrzeżenia o przeliczeniu */
     expect(bench.restSec).toBeNull(); await saveEdit(); expect(bench).toMatchObject({ restSec: 100, restWarmupSec: 45, tempo: '3-1-1', notes: 'łokcie 45°', bandAssistable: false, muscles: ['klatka'], secondaryMuscles: ['triceps', 'barki'] });
-    await tap(screen.getByText('Postępy')); await flushAll(10); expect(screen.getByText('Brak zapisanych sesji z tym ćwiczeniem.')).toBeTruthy(); expect(screen.getByLabelText('Bench Press (hantle)')).toBeTruthy();
+    await tap(screen.getByText('Postępy')); await flushAll(10); /* ZM-06 (21.10.2026, M3 p3; zastępuje „wykres ćwiczenia bez sesji”): bez żadnej historii Postępy to sam pusty stan z „Zacznij trening” — bez chipów i wyszukiwania */ expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(); expect(screen.getByText('Zacznij trening')).toBeTruthy(); expect(screen.queryByLabelText('Bench Press (hantle)')).toBeNull();
     await go('/exercises'); await flushAll(10); /* 11.10.2026: „Postępy” z ćwiczenia przełącza na zakładkę (zamyka stos), więc biblioteka otwiera się od nowa */
     /* lista pokazuje tempo przy ćwiczeniu */
     expect(screen.getByLabelText('Bench Press (hantle), hantle · tempo 3-1-1')).toBeTruthy();
@@ -697,7 +697,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(w.exercises.every(e => e.sets.every(x => x.done))).toBe(true); expect(store.workingSets(w)).toBe(15); /* LIVE2-02: = liczba z okna „Zakończyć” */ /* nieodhaczone serie nie trafiają do historii */
     expect(global.__alerts.some(x => /rekord/i.test(x.title))).toBe(false); /* pierwszy trening nie jest rekordem */
     /* szczegóły sesji otwarte od razu */
-    expect(screen.getByText('dobry dzień')).toBeTruthy(); expect(screen.getByText('Edytuj')).toBeTruthy(); expect(screen.queryByText('Usuń sesję')).toBeNull(); /* 07.10.2026 wieczór: usuwanie przesunięciem na liście Historii */
+    expect(screen.getByText('dobry dzień')).toBeTruthy(); expect(screen.getByText('Edytuj')).toBeTruthy(); expect(screen.getAllByText('Usuń sesję')).toHaveLength(1); /* W2 (21.10.2026): przycisk „Usuń sesję” na dole szczegółów — zastępuje decyzję z 07.10.2026 wieczór (usuwanie przesunięciem na liście Historii */
     expect(screen.getAllByText('SS A · ').length).toBe(3); expect(screen.getByText('chwyt nachwytem')).toBeTruthy();
     /* kopia automatyczna po treningu */
     expect(write.mock.calls.some(([p]) => /\/Backup\/training-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p))).toBe(true);
@@ -827,7 +827,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('Najlepsza seria (objętość)')).toBeTruthy(); expect(screen.getByText(fmtVol(rec.bestSetVolume))).toBeTruthy();
     expect(screen.getByText('Sesje')).toBeTruthy(); expect(stats.sessionsFor(bench)).toHaveLength(2);
     for (const k of keys) { await tap(screen.getByLabelText(k.label)); expect(screen.getByLabelText(k.label).props.accessibilityState.selected).toBe(true); }
-    await tap(screen.getByLabelText('Bench Press (hantle)')); expect(screen.getByText('Serie robocze tygodniowo')).toBeTruthy(); /* „✕” — z powrotem przegląd */
+    expect(screen.getByLabelText('Bench Press (hantle)').props.accessibilityState.selected).toBe(true); expect(screen.getByText('Serie robocze tygodniowo')).toBeTruthy(); /* ZM-06: wybrane ćwiczenie zostaje wśród chipów, ogólny przegląd jest pod wyborem (dawniej „✕” wracał do przeglądu) */
     /* ćwiczenie na czas: wykres czasu, rekord najdłuższej serii */
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'plank'); await tap(screen.getByLabelText('Plank')); await flushAll(10);
     expect(screen.getByText('Najdłuższa seria')).toBeTruthy(); expect(stats.recordsFor(ex('Plank')).maxDuration).toBe(45); expect(screen.getAllByText(store.fmtSec(45)).length).toBeGreaterThan(0);

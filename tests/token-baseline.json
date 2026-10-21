@@ -4,32 +4,11 @@
   "app/(tabs)/_layout.tsx": {
    "fontSize": 1
   },
-  "app/(tabs)/history.tsx": {
-   "fontSize": 1
-  },
-  "app/(tabs)/progress.tsx": {
-   "fontSize": 9,
-   "borderRadius": 4
-  },
-  "app/history/[id].tsx": {
-   "fontSize": 9
-  },
-  "app/history/add.tsx": {
-   "fontSize": 2
-  },
-  "app/history/edit/[id].tsx": {
-   "fontSize": 12,
-   "borderRadius": 1
-  },
   "app/more/settings.tsx": {
    "fontSize": 5
   },
   "app/place-once.tsx": {
    "fontSize": 1
-  },
-  "app/progression.tsx": {
-   "fontSize": 7,
-   "borderRadius": 1
   },
   "app/reorder.tsx": {
    "fontSize": 3,
@@ -39,19 +18,12 @@
    "fontSize": 44,
    "borderRadius": 8
   },
-  "components/Chart.tsx": {
-   "fontSize": 1
-  },
   "components/Dashboard.tsx": {
    "fontSize": 18,
    "borderRadius": 4
   },
   "components/DayPanel.tsx": {
    "fontSize": 16
-  },
-  "components/DeloadHint.tsx": {
-   "fontSize": 2,
-   "borderRadius": 1
   },
   "components/DragList.tsx": {
    "fontSize": 1
@@ -70,31 +42,8 @@
    "fontSize": 25,
    "borderRadius": 6
   },
-  "components/HealthLines.tsx": {
-   "fontSize": 9
-  },
-  "components/HistoryCalendar.tsx": {
-   "fontSize": 5,
-   "borderRadius": 2
-  },
   "components/LoadEditor.tsx": {
    "fontSize": 5
-  },
-  "components/MuscleMap.tsx": {
-   "fontSize": 6,
-   "borderRadius": 1
-  },
-  "components/PeriodSummary.tsx": {
-   "fontSize": 12,
-   "borderRadius": 2
-  },
-  "components/ProgressBars.tsx": {
-   "fontSize": 10,
-   "borderRadius": 5
-  },
-  "components/RecordsCard.tsx": {
-   "fontSize": 4,
-   "borderRadius": 1
   },
   "components/SetBadge.tsx": {
    "fontSize": 2,

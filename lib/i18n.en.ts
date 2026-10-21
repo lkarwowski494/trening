@@ -1194,4 +1194,6 @@ export const EN: Record<string, string> = {
   // M3 p4 (ZM-03, ZM-04)
   'Usuń szablon': 'Delete template',
   'Usuń z biblioteki': 'Delete from library',
+  // M3 p3 (Postępy i historia; teksty: docs/design/teksty.md pkt 4)
+  'Zacznij trening': 'Start a workout',
 };

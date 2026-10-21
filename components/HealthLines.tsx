@@ -8,6 +8,7 @@ import { readEnabled, loadDay, loadWeek, loadWatchStats } from '@/lib/healthQuer
 import { stepsText, activityText, dayBlockSpoken, weekLineText, watchLineText, watchSpoken, hasWatchStats } from '@/lib/healthRead';
 import { useHealthLoad } from '@/lib/healthUse';
 import type { Workout } from '@/lib/seed';
+import { font } from '@/lib/theme';
 
 /*
  * Odczyt z Apple Health na ekranach (0.16.0, decyzje właściciela 12.10.2026 — docs/29): blok dnia w panelu dnia, linia pod „Ten tydzień”, linia przy sesji.
@@ -21,16 +22,16 @@ export function DayHealth({ day }: { day: string }) {
   useTick(); const today = dayKeyOf(Date.now()); const on = readEnabled() && day <= today;
   const r = useHealthLoad(on, `${day}|${sig()}`, () => loadDay(day));
   if (r.status === 'off') return null;
-  if (r.status === 'loading') return <View testID="health-day-loading" style={{ marginTop: 4 }}><Muted style={{ fontSize: 13 }}>{t('Apple Health…')}</Muted></View>;
+  if (r.status === 'loading') return <View testID="health-day-loading" style={{ marginTop: 4 }}><Muted style={{ ...font('footnote') }}>{t('Apple Health…')}</Muted></View>;
   const d = r.data; const acts = d?.activities ?? [];
   /* B14: „Kroki: 0” tylko w dniu minionym z innymi danymi; brak pomiaru (null) — bez linii */
   const steps = d && d.steps != null && (d.steps > 0 || (day < today && acts.length > 0)) ? d.steps : null;
-  if (steps == null && !acts.length) return <View testID="health-day-empty" style={{ marginTop: 4 }}><Muted style={{ fontSize: 13 }}>{t('Brak danych z Apple Health dla tego dnia. Jeśli dane powinny być, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })}</Muted></View>;
+  if (steps == null && !acts.length) return <View testID="health-day-empty" style={{ marginTop: 4 }}><Muted style={{ ...font('footnote') }}>{t('Brak danych z Apple Health dla tego dnia. Jeśli dane powinny być, sprawdź dostęp w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })}</Muted></View>;
   return (
     <View testID="health-day" accessible accessibilityLanguage={lang()} accessibilityLabel={dayBlockSpoken(steps, acts)} style={{ marginTop: 6, gap: 2 }}>
-      <Muted style={{ fontSize: 12 }}>{t('Apple Health')}</Muted>
-      {steps != null ? <Txt style={{ fontSize: 15 }}>{stepsText(steps)}</Txt> : null}
-      {acts.map(a => <Txt key={a.uuid} style={{ fontSize: 15 }}>{activityText(a)}</Txt>)}
+      <Muted style={{ ...font('footnote') }}>{t('Apple Health')}</Muted>
+      {steps != null ? <Txt style={{ ...font('callout') }}>{stepsText(steps)}</Txt> : null}
+      {acts.map(a => <Txt key={a.uuid} style={{ ...font('callout') }}>{activityText(a)}</Txt>)}
     </View>
   );
 }
@@ -39,16 +40,16 @@ export function DayHealth({ day }: { day: string }) {
 export function WeekHealthLine() {
   useTick(); const on = readEnabled(); const r = useHealthLoad(on, `${mondayKey(Date.now())}|${sig()}`, () => loadWeek());
   if (r.status === 'off') return null;
-  if (r.status === 'loading') return <View testID="week-health-loading" style={{ marginTop: 6 }}><Muted style={{ fontSize: 13 }}>{t('Apple Health…')}</Muted></View>;
+  if (r.status === 'loading') return <View testID="week-health-loading" style={{ marginTop: 6 }}><Muted style={{ ...font('footnote') }}>{t('Apple Health…')}</Muted></View>;
   const text = r.data ? weekLineText(r.data.avgSteps, r.data.others) : '';
-  return text ? <View testID="week-health" style={{ marginTop: 6 }}><Muted style={{ fontSize: 13 }}>{text}</Muted></View> : null;
+  return text ? <View testID="week-health" style={{ marginTop: 6 }}><Muted style={{ ...font('footnote') }}>{text}</Muted></View> : null;
 }
 
 /** Linia przy sesji: tętno śr./maks. i aktywne kcal z dopasowanego treningu z zegarka; bez dopasowania i bez wartości — nic (sesja bez zegarka to normalny przypadek). */
 export function SessionHealth({ w }: { w: Workout }) {
   useTick(); const on = readEnabled() && w.finishedAt != null && !noClock(w); const r = useHealthLoad(on, `${w.id}|${w.startedAt}|${w.finishedAt}|${sig()}`, () => loadWatchStats(w));
   if (r.status === 'off') return null;
-  if (r.status === 'loading') return <View testID="session-health-loading" style={{ marginBottom: 10 }}><Muted style={{ fontSize: 13 }}>{t('Apple Health…')}</Muted></View>;
+  if (r.status === 'loading') return <View testID="session-health-loading" style={{ marginBottom: 10 }}><Muted style={{ ...font('footnote') }}>{t('Apple Health…')}</Muted></View>;
   if (!hasWatchStats(r.data)) return null;
-  return <View testID="session-health" style={{ marginBottom: 10 }}><Muted style={{ fontSize: 13 }} accessibilityLabel={watchSpoken(r.data)}>{watchLineText(r.data)}</Muted></View>;
+  return <View testID="session-health" style={{ marginBottom: 10 }}><Muted style={{ ...font('footnote') }} accessibilityLabel={watchSpoken(r.data)}>{watchLineText(r.data)}</Muted></View>;
 }

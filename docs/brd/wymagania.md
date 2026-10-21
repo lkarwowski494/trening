@@ -163,6 +163,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma szablony
     - Gdy przypisuje je do dni tygodnia w planie
     - Wtedy plan powtarza się co tydzień, a ekran Trening pokazuje dzisiejszy trening z planu
+  - Scenariusz: „Planowanie” w nagłówku zakładki Plan (M3 p3, W1 c)
+    - Zakładając, że użytkownik jest w zakładce Plan
+    - Gdy chce przejść do planowania
+    - Wtedy przycisk „Planowanie” jest przy tytule, w tym samym miejscu co na ekranie Trening, i otwiera ekran planu
 
 ### BR-PLN-002: Kilka planów z wyborem aktywnego
 - Przepływ: PR-03
@@ -272,6 +276,36 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że w obu okresach są zapisane treningi
     - Gdy użytkownik otwiera Progresję
     - Wtedy widzi objętość, serie i treningi bieżącego okresu obok poprzedniego
+
+### BR-PST-005: Postępy: wykres i rekordy wybranego ćwiczenia na górze, wybór pod nimi
+- Przepływ: PR-05
+- Dowód potrzeby: J-03; decyzje właściciela 2026-10-21 (ZM-06, M1-026 = DEC-09, docs/design/to-be.md); testy `tests/m3-p3-postepy-historia.test.tsx`
+- Kryteria akceptacji:
+  - Scenariusz: Wykres i rekordy na górze
+    - Zakładając, że użytkownik ma zakończone treningi i nie wybrał ćwiczenia
+    - Gdy otwiera Postępy
+    - Wtedy na górze widzi wykres i rekordy ostatnio trenowanego ćwiczenia z danymi, pod nimi wybór ćwiczenia, a niżej sesje ćwiczenia i ogólny przegląd (okres do okresu, serie na partię)
+  - Scenariusz: Wybór ćwiczenia z danymi albo przez wyszukiwanie
+    - Zakładając, że biblioteka ma ćwiczenia bez historii
+    - Gdy użytkownik nie wpisał nic w wyszukiwanie
+    - Wtedy chipy wyboru pokazują tylko ćwiczenia z danymi, a pozostałe ćwiczenia są dostępne po wpisaniu nazwy; brak wyników to „Nic nie pasuje.”
+  - Scenariusz: Bez historii
+    - Zakładając, że użytkownik nie ma zakończonego treningu
+    - Gdy otwiera Postępy
+    - Wtedy widzi pusty stan z motywem graficznym, zdaniem o wykresach i przyciskiem „Zacznij trening”, który prowadzi na ekran Trening (bez wykresu, wyszukiwania i chipów); sekcja „Masa ciała” z wejściem do pomiarów zostaje pod nim
+
+### BR-HIS-001: Usuwanie sesji z historii: gest na liście i przycisk w szczegółach, to samo potwierdzenie
+- Przepływ: PR-05
+- Dowód potrzeby: decyzja właściciela 2026-10-21 (ZM-04, W2, docs/32 wzorzec 5); testy `tests/swipe-delete.test.tsx`, `tests/m3-p3-postepy-historia.test.tsx`
+- Kryteria akceptacji:
+  - Scenariusz: „Usuń sesję” na dole szczegółów
+    - Zakładając, że użytkownik otworzył zapisaną sesję
+    - Gdy stuka „Usuń sesję” na dole ekranu
+    - Wtedy pojawia się to samo okno [Anuluj, Usuń] co po geście przesunięcia na liście, z dopiskiem o kopii w Apple Health, jeśli sesja ją ma; „Anuluj” zostawia sesję, „Usuń” usuwa ją i wraca do listy
+  - Scenariusz: Brak wyniku w serii
+    - Zakładając, że seria zapisana w historii nie ma powtórzeń, czasu albo dystansu
+    - Gdy użytkownik ogląda sesję
+    - Wtedy w odpowiedniej komórce widzi „—”, a nie „0” (04-studio-projektowe-010); eksport CSV bez zmian
 
 ### BR-PST-004: Cel serii na partię w tygodniu: automatyczny albo ręczny
 - Przepływ: PR-05
