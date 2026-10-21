@@ -206,6 +206,7 @@ Test regresji: `tests/cues-podobienstwo.test.ts` (34 klucze mają nowe teksty; t
 | `v0.18.0-b1016` | 1016 | `243d42b` | 16 | zielony, id 38546857012 |
 | `v0.18.0-b1017` | 1017 | `b582312` | 17 | zielony, id 38578213243 |
 | `v0.20.0-b1018` | 1018 | `80e43fc` | 18 | zielony, id 39233940303 |
+| `v0.20.0-b1022` | 1022 | `0fd4687` | 22 | zielony, id 39534334516 |
 | `v0.20.0-b1019` | 1019 | `b8b8a31` | 19 | zielony, id 39306743773; gałąź feature/e2-swap (nie main); zielony, 51 min |
 
 Przebiegi `testflight.yml` bez tagu `v*-b*`: 1–4 (przed wprowadzeniem tagów; wydanie 1 = build 1004, `ee637da`, patrz „Rundy”), 7 (czerwony, `c9d4c78`), 11 (czerwony, `d2b7c87`, powtórzony jako przebieg 12), 20 (czerwony, `8273448`, scalenie PR #13 na main), 21 (zielony, gałąź `audyt-m1`, `5542a68`, 20.10.2026).
