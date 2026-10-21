@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4866-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4877-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-45-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -62,8 +62,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Komunikaty i teksty | 1100 (z testem: 1100) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 903 (z testem: 903) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 113 (z testem: 113) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 413 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 4866 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 414 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 4877 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 152 (Maestro: 125, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 13) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 45 (w głównym przebiegu: 42, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -255,7 +255,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (43)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (44)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -298,6 +298,7 @@ trening/
 - [`docs/44-prompt-nowe-konto.md`](docs/44-prompt-nowe-konto.md) — Prompt startowy — koordynator projektu Trening (nowe konto)
 - [`docs/45-formalnosci-asc.md`](docs/45-formalnosci-asc.md) — 45. Formalności App Store Connect przed wysyłką 1.0 (M8, stan 21.10.2026)
 - [`docs/45-widocznosc-w-sklepie.md`](docs/45-widocznosc-w-sklepie.md) — 45. Widoczność w sklepie (M5) — metadane App Store
+- [`docs/46-przeniesienie-1.0.md`](docs/46-przeniesienie-1.0.md) — 46. Przeniesienie czystej wersji 1.0 do Apps4Brew — lista kontrolna i narzędzie (21.10.2026)
 - [`docs/monetyzacja.md`](docs/monetyzacja.md) — Monetyzacja — model stały (jedno miejsce)
 - [`docs/wzrost.md`](docs/wzrost.md) — Wzrost: kanały startu i decyzja o Androidzie
 
