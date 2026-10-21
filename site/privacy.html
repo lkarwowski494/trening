@@ -19,10 +19,10 @@
 <main>
 <!-- Treść zgodna z kodem aplikacji (audyt 08.10.2026, docs/25 N2 i docs/audyt-0.10/SEC.md): brak wywołań sieciowych, HealthKit: zapis treningów
      oraz (od 0.16.0, docs/29) odczyt tylko do wyświetlenia — bez zapisu odczytanych danych w aplikacji, powiadomienia lokalne, dane w SQLite na urządzeniu. Test: tests/public-repo.test.ts. Zmiana działania aplikacji → zmiana tej strony. -->
-<!-- [DO WERYFIKACJI: badacz RODO/DPA] sekcje „Gdy do nas piszesz” / „When you write to us” (podstawa prawna, odbiorcy, retencja 12 miesięcy; decyzje: docs/34). -->
+<!-- Sekcje „Gdy do nas piszesz” / „When you write to us”: elementy art. 13 RODO sprawdzone przez M8 21.10.2026 (docs/45); bez AI w obsłudze wiadomości (decyzja właściciela 21.10.2026, Q8 C; docs/18). -->
 <section lang="pl">
 <h1>Trening — polityka prywatności</h1>
-<p class="muted">Obowiązuje od 14 października 2026 r. (wersja aplikacji 0.20.0).</p>
+<p class="muted">Obowiązuje od 21 października 2026 r. (wersja aplikacji 1.0.0).</p>
 
 <h2>W skrócie</h2>
 <p>Aplikacja Trening nie zbiera żadnych danych. Wszystko, co wpisujesz, zostaje na Twoim iPhonie, a dane odczytane z Apple Health (jeśli to włączysz) są tylko wyświetlane na telefonie. Aplikacja nie łączy się z internetem,
@@ -33,6 +33,7 @@ nie ma konta, reklam, analityki ani śledzenia.</p>
   <li>Treningi, szablony, plan tygodnia, ćwiczenia, miejsca i sprzęt oraz ustawienia oraz opcjonalne pomiary masy ciała z datą pomiaru (jeśli je wpiszesz)
       są zapisywane wyłącznie w pamięci Twojego urządzenia (baza SQLite aplikacji).</li>
   <li>Nikt poza Tobą — także twórca aplikacji — nie ma do nich dostępu. Aplikacja niczego nie wysyła.</li>
+  <li>Kopia zapasowa iPhone’a (w iCloud albo na komputerze), jeśli ją włączysz w iOS, obejmuje też dane aplikacji; podlega zasadom Apple.</li>
 </ul>
 
 <h2>Apple Health (opcjonalnie)</h2>
@@ -71,8 +72,11 @@ aplikacja usuwa ze swojej pamięci podręcznej po zamknięciu arkusza udostępni
 <p>Dane usuniesz w aplikacji (Więcej → Ustawienia → Wyczyść wszystkie dane) albo usuwając aplikację z telefonu. Kopie zapasowe
 zapisane w Plikach usuwasz w aplikacji Pliki.</p>
 
+<h2>Raporty awarii</h2>
+<p>Jeśli w ustawieniach iOS zgodzisz się udostępniać analizy deweloperom aplikacji, Apple może przekazać nam raporty awarii aplikacji na swoich zasadach. Aplikacja nie ma własnego mechanizmu raportów; raporty służą tylko do naprawiania błędów.</p>
+
 <h2>Dzieci</h2>
-<p>Aplikacja nie zbiera danych od nikogo, także od dzieci.</p>
+<p>Aplikacja nie jest skierowana do dzieci i nie zbiera danych od nikogo, także od dzieci.</p>
 
 <h2>Gdy do nas piszesz</h2>
 <p>Aplikacja nadal niczego nie wysyła — e-mail wysyłasz Ty, swoją pocztą. Jeśli napiszesz na support@apps4brew.com, przetwarzamy tę wiadomość tak:</p>
@@ -82,9 +86,12 @@ zapisane w Plikach usuwasz w aplikacji Pliki.</p>
   <li><strong>Cel:</strong> obsługa Twojego zapytania (odpowiedź, wyjaśnienie, naprawa błędu) oraz porządkowanie opinii o aplikacji.</li>
   <li><strong>Podstawa:</strong> art. 6 ust. 1 lit. f RODO (prawnie uzasadniony interes: obsługa zapytań i rozwój aplikacji).</li>
   <li><strong>Przechowywanie:</strong> 12 miesięcy od zamknięcia sprawy, potem usuwamy wiadomość; opinie bez danych osobowych mogą zostać w zanonimizowanej postaci.</li>
-  <li><strong>Odbiorcy i podmioty przetwarzające:</strong> Porkbun (przekierowanie poczty), Google (Gmail, Dysk) oraz dostawca narzędzi AI, których używamy do porządkowania opinii.
-      Nie sprzedajemy danych i nie używamy ich do reklam.</li>
-  <li><strong>Twoje prawa:</strong> dostęp do danych, sprostowanie, usunięcie, sprzeciw wobec przetwarzania oraz skarga do Prezesa Urzędu Ochrony Danych Osobowych (PUODO). Napisz na support@apps4brew.com.</li>
+  <li><strong>Odbiorcy i podmioty przetwarzające:</strong> Google (poczta Google Workspace i Dysk) oraz Porkbun (rejestrator domeny, który przekazuje pocztę do skrzynki).
+      Nie sprzedajemy danych, nie używamy ich do reklam i nie przekazujemy ich narzędziom sztucznej inteligencji.</li>
+  <li><strong>Przekazanie poza EOG:</strong> Google i Porkbun mogą przetwarzać dane w USA. Podstawą są standardowe klauzule umowne zatwierdzone przez Komisję Europejską albo decyzja Komisji o odpowiednim stopniu ochrony (Ramy ochrony danych UE–USA) dla certyfikowanych firm. Informację o zabezpieczeniach wyślemy na prośbę.</li>
+  <li><strong>Twoje prawa:</strong> dostęp do danych, sprostowanie, usunięcie, ograniczenie przetwarzania, sprzeciw wobec przetwarzania oraz skarga do Prezesa Urzędu Ochrony Danych Osobowych (PUODO). Napisz na support@apps4brew.com — odpowiemy bez zbędnej zwłoki, najpóźniej w ciągu miesiąca.</li>
+  <li><strong>Czy musisz podać dane:</strong> Pisanie do nas jest dobrowolne. Bez adresu e-mail nie możemy odpowiedzieć.</li>
+  <li><strong>Decyzje automatyczne:</strong> Nie podejmujemy decyzji opartych wyłącznie na zautomatyzowanym przetwarzaniu, w tym profilowania.</li>
 </ul>
 
 <h2>Zmiany i kontakt</h2>
@@ -96,7 +103,7 @@ Pytania: <a href="mailto:support@apps4brew.com">support@apps4brew.com</a>.</p>
 
 <section lang="en">
 <h1>Trening — Privacy Policy</h1>
-<p class="muted">Effective 14 October 2026 (app version 0.20.0).</p>
+<p class="muted">Effective 21 October 2026 (app version 1.0.0).</p>
 
 <h2>In short</h2>
 <p>The Trening app does not collect any data. Everything you enter stays on your iPhone, and data read from Apple Health (if you turn that on) is only displayed on your phone. The app does not connect to the internet and has
@@ -107,6 +114,7 @@ no account, ads, analytics or tracking.</p>
   <li>Workouts, templates, the weekly plan, exercises, places and equipment, settings, and optional body-mass measurements with their dates (if you enter them)
       are stored only on your device (the app's SQLite database).</li>
   <li>No one but you — including the developer — has access to them. The app sends nothing.</li>
+  <li>An iPhone backup (in iCloud or on a computer), if you turn it on in iOS, also includes the app’s data; it is subject to Apple’s terms.</li>
 </ul>
 
 <h2>Apple Health (optional)</h2>
@@ -144,8 +152,11 @@ export contains only workout sets (no body mass). A file prepared for sharing is
 <p>Delete your data in the app (More → Settings → Erase all data) or by deleting the app. Backups saved in Files are deleted in the
 Files app.</p>
 
+<h2>Crash reports</h2>
+<p>If you choose in iOS settings to share analytics with app developers, Apple may pass crash reports of the app to us under its own terms. The app has no crash-reporting mechanism of its own; the reports are used only to fix bugs.</p>
+
 <h2>Children</h2>
-<p>The app does not collect data from anyone, including children.</p>
+<p>The app is not directed at children and does not collect data from anyone, including children.</p>
 
 <h2>When you write to us</h2>
 <p>The app still sends nothing — you send the email, from your own mail app. If you write to support@apps4brew.com, we handle your message as follows:</p>
@@ -155,9 +166,12 @@ Files app.</p>
   <li><strong>Purpose:</strong> handling your enquiry (reply, clarification, bug fix) and sorting feedback about the app.</li>
   <li><strong>Legal basis:</strong> Article 6(1)(f) GDPR (legitimate interest: handling enquiries and improving the app).</li>
   <li><strong>Retention:</strong> 12 months after the case is closed, then we delete the message; feedback without personal data may remain in anonymised form.</li>
-  <li><strong>Recipients and processors:</strong> Porkbun (mail forwarding), Google (Gmail, Drive) and the provider of the AI tools we use to sort feedback.
-      We do not sell data and do not use it for advertising.</li>
-  <li><strong>Your rights:</strong> access, rectification, erasure, objection, and a complaint to the supervisory authority (in Poland: the President of the Personal Data Protection Office, PUODO). Write to support@apps4brew.com.</li>
+  <li><strong>Recipients and processors:</strong> Google (Google Workspace mail and Drive) and Porkbun (the domain registrar that forwards mail to the mailbox).
+      We do not sell data, do not use it for advertising and do not pass it to artificial-intelligence tools.</li>
+  <li><strong>Transfers outside the EEA:</strong> Google and Porkbun may process data in the USA. The basis is the standard contractual clauses approved by the European Commission or the Commission’s adequacy decision (EU–US Data Privacy Framework) for certified companies. We will send information about the safeguards on request.</li>
+  <li><strong>Your rights:</strong> access, rectification, erasure, restriction of processing, objection, and a complaint to the supervisory authority (in Poland: the President of the Personal Data Protection Office, PUODO). Write to support@apps4brew.com — we will reply without undue delay, within one month at the latest.</li>
+  <li><strong>Do you have to provide data:</strong> Writing to us is voluntary. Without an email address we cannot reply.</li>
+  <li><strong>Automated decisions:</strong> We do not make decisions based solely on automated processing, including profiling.</li>
 </ul>
 
 <h2>Changes and contact</h2>

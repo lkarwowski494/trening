@@ -13,6 +13,7 @@
       "unrestrictedWebAccess": false,
       "userGeneratedContent": false,
       "messagingAndChat": false,
+      "socialMedia": false,
       "advertising": false,
       "healthOrWellnessTopics": true,
       "medicalOrTreatmentInformation": "NONE",

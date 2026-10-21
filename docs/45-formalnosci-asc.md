@@ -22,7 +22,11 @@ Lista braków i raport M8 są prywatne (poza repo publicznym); tu tylko to, co t
 | Privacy Policy URL, Support URL | `store/app-store-urls.json` | 5.1.1(i), 1.5 | K-013 (docs/43) |
 | Kategoria | Health & Fitness | docs/41 D8 | wpisane |
 
-## Do decyzji i otwarte (STOP 1 M8, 21.10.2026)
-Pytania do właściciela (przez koordynatora): stan umowy Paid Apps, podatków i banku; skrzynka wsparcia; poprawki polityki prywatności (elementy
-art. 13 RODO w sekcji o e-mailach); kwestie do konsultacji (procedura podatności CRA, regulamin, ustawy stanowe USA o wieku, adres i telefon na stronie
-wsparcia); licencje OFL-1.1 (czcionki) i MPL-2.0 (narzędzie budowania). Decyzje wpisywane do docs/18 z datą.
+## Decyzje STOP 1 (21.10.2026) i otwarte
+Decyzje właściciela (STOP 1, przez koordynatora): docs/18, wpis 21.10.2026 „STOP 1 roli M8”. Skutki: polityka prywatności uzupełniona o elementy art. 13 RODO
+i bez AI w obsłudze wiadomości (`site/privacy.html`, `site/support.html`, test `tests/public-repo.test.ts`); procedura podatności, naruszeń i żądań:
+`docs/prawne/procedura-bezpieczenstwa.md`; licencje OFL-1.1 i MPL-2.0 dopuszczone.
+
+Otwarte do STOP 2: etykieta App Privacy wobec e-maila wysyłanego z aplikacji Poczta (warunek Apple „provided by the user in your app’s interface”);
+manifest prywatności w `app.json` (ryzyko R-007, docs/40); publikacja poprawionych stron na apps4brew.com (zgoda właściciela; opublikowana strona
+wsparcia mówi, że kopię automatyczną się „włącza”, a w kodzie jest domyślnie włączona — `tests/audit-m1-043-support-page.test.ts`).
