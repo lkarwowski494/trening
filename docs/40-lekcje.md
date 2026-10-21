@@ -29,6 +29,7 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 - Ocena zakresu: systemowa — każdy agent, który instaluje zależności z `--ignore-scripts` (częste w chmurze, żeby przyspieszyć albo ominąć skrypty pakietów), ma wyłączony hak bez żadnego sygnału.
 - Propozycja dla właściciela (≥2 opcje): (a) **verify sprawdza na starcie, że hak jest zainstalowany** (`git config core.hooksPath` = `scripts/hooks`, poza CI) i kończy się błędem z poleceniem `node scripts/hooks/instaluj.mjs` — mechanizm, 0 zł, ok. 0,5 h agenta (Rekomendowane); (b) zdanie w CLAUDE.md „`npm ci` bez `--ignore-scripts`” — tanie, ale to tylko polecenie; (c) oba.
 - Akcje — stan: hak zainstalowany ręcznie w tej sesji (zrobione); (a)/(b) czekają na decyzję właściciela (przekazane koordynatorowi ze STOP 2 M8).
+- Druga obserwacja (ta sama sesja): zmiana nazw testów w `tests/public-repo.test.ts` znów unieważniła `docs/19`; tym razem verify zatrzymał się na `check:matrix` przed wypchnięciem, a agent sprawdził linię `EXIT` (mechanizm z tej lekcji zadziałał). Wniosek: każda zmiana nazwy testu = `node scripts/test-matrix.mjs --write` przed verify.
 
 ## L-013 (21.10.2026) — nocny przebieg czerwony od 16.10 bez reakcji: mutacje nie mierzą się, martwa gałąź w liście nocnej, E2E 17e pada deterministycznie
 

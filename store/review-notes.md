@@ -50,6 +50,9 @@ APPLE WATCH (companion app, optional)
 VOICE ANNOUNCEMENTS (optional, off by default)
 - More > Settings > "Voice announcements": "Off", "In headphones" or "Also through the speaker". At the start of a rest the app announces the next exercise using on-device iOS speech synthesis. "Listen to an example" plays a sample.
 
+REST TIMER
+- The rest countdown also appears on the Lock Screen as a Live Activity. The end-of-rest notification is a local, time-sensitive notification so it can be delivered during a Focus; users can change this in iOS Settings. The app does not use push notifications.
+
 CONTACT
 - Support: support@apps4brew.com (also "Write to us" in More > About).
 ```
@@ -81,6 +84,9 @@ APPLE WATCH (aplikacja towarzysząca, opcjonalnie)
 
 ZAPOWIEDZI GŁOSOWE (opcjonalnie, domyślnie wyłączone)
 - Więcej → Ustawienia → „Zapowiedzi głosowe”: „Wyłączone”, „W słuchawkach” albo „Także przez głośnik”. Na początku przerwy aplikacja zapowiada następne ćwiczenie syntezatorem mowy iOS na urządzeniu. „Posłuchaj przykładu” odtwarza próbkę.
+
+PRZERWA
+- Odliczanie przerwy jest też widoczne na ekranie blokady jako Live Activity. Powiadomienie o końcu przerwy jest lokalne, z poziomem pilnym (time-sensitive), żeby dotarło także w trybie skupienia; użytkownik zmieni to w ustawieniach iOS. Aplikacja nie używa powiadomień push.
 
 KONTAKT
 - Wsparcie: support@apps4brew.com (także „Napisz do nas” w Więcej → O aplikacji).
