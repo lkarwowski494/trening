@@ -230,8 +230,6 @@ trening/
 ├── CLAUDE.md                 zasady pracy w repozytorium (obowiązują ludzi i agentów)
 ├── LICENSE                   prawa autorskie: wszelkie prawa zastrzeżone
 ├── README.md                 ten plik (bloki liczbowe generuje scripts/readme.mjs)
-├── README.md                 ten plik (bloki liczbowe generuje scripts/readme.mjs)
-├── README.md                 ten plik (bloki liczbowe generuje scripts/readme.mjs)
 ├── app.json                  konfiguracja aplikacji Expo (wersja, języki, uprawnienia, wtyczki)
 ├── babel.config.js           konfiguracja Babel
 ├── eas.json                  ustawienia narzędzi Expo (obraz SDK, wersja Node)
