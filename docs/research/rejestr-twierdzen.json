@@ -1,5 +1,5 @@
 {
- "_opis": "Rejestr twierdzeń dla tekstów dziedzinowych interfejsu (M1-audytor-generalny-048, DEC-16). Tekst dziedzinowy = tekst słownika (klucz polski w lib/i18n.en.ts) z cytowanym źródłem albo oznaczeniem wagi (uproszczenie, konwencja, jedno źródło…; wzorzec DOMAIN_RE w scripts/claims.mjs). Każdy ma wpis: id, kotwica (początek polskiego tekstu), skrot i skrotEn (skróty polskiego tekstu i angielskiego brzmienia z chwili przeglądu), rodzaje, zrodla (tak jak w tekście), dokument + fraza (miejsce w repo z uzasadnieniem; fraza musi w nim występować), przeglad (data: kto, zakres). Kontrola: npm run check:claims (część verify) — brak wpisu, brak tekstu albo zmiana brzmienia bez ponownego przeglądu = błąd. Po zmianie brzmienia: sprawdź źródła (badacz), zaktualizuj wpis, wykonaj node scripts/claims.mjs --rehash <ID> --przeglad \"<data: kto, co sprawdzono>\". Nowy tekst: node scripts/claims.mjs --stub. Stan 20.10.2026: wpisy założone z kodu i docs (programista); przegląd merytoryczny badacza jest otwarty — nie oznacza zatwierdzenia treści. Ograniczenie: kontrola obejmuje teksty, które same się oznaczają źródłem lub wagą; teksty dziedzinowe bez takiego oznaczenia wymagają dopisania oznaczenia albo wpisu ręcznie.",
+ "_opis": "Rejestr twierdzeń dla tekstów dziedzinowych interfejsu (M1-audytor-generalny-048, DEC-16). Tekst dziedzinowy = tekst słownika (klucz polski w lib/i18n.en.ts) z cytowanym źródłem albo oznaczeniem wagi (uproszczenie, konwencja, jedno źródło…; wzorzec DOMAIN_RE w scripts/claims.mjs). Każdy ma wpis: id, kotwica (początek polskiego tekstu), skrot i skrotEn (skróty polskiego tekstu i angielskiego brzmienia z chwili przeglądu), rodzaje, zrodla (tak jak w tekście), dokument + fraza (miejsce w repo z uzasadnieniem; fraza musi w nim występować), przeglad (data: kto, zakres). Kontrola: npm run check:claims (część verify) — brak wpisu, brak tekstu albo zmiana brzmienia bez ponownego przeglądu = błąd. Po zmianie brzmienia: sprawdź źródła (badacz), zaktualizuj wpis, wykonaj node scripts/claims.mjs --rehash <ID> --przeglad \"<data: kto, co sprawdzono>\". Nowy tekst: node scripts/claims.mjs --stub. Stan 20.10.2026: wpisy założone z kodu i docs (programista). Stan 21.10.2026: przegląd badacza wykonany dla wszystkich wpisów T-001–T-040 (docs/research/przeglad-badacza-2026-10-21.md i przeglad-badacza-2026-10-21b.md); wpisy z polem „uwaga” czekają na zmianę brzmienia w aplikacji i --rehash. Ograniczenie: kontrola obejmuje teksty, które same się oznaczają źródłem lub wagą; teksty dziedzinowe bez takiego oznaczenia wymagają dopisania oznaczenia albo wpisu ręcznie.",
  "twierdzenia": [
   {
    "id": "T-001",
@@ -12,9 +12,9 @@
    "zrodla": [
     "Zourdos i in., JSCR 2016"
    ],
-   "dokument": "docs/research/34-rpe-wysilek.md",
-   "fraza": "Zourdos",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-001",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: definicja skali RPE-RIR (Bastos 2024 przegląd zakresowy, Helms 2016, Zourdos 2016 streszczenie); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-002",
@@ -27,9 +27,10 @@
     "przegląd badań"
    ],
    "zrodla": [],
-   "dokument": "docs/24-generator-i-plany.md",
-   "fraza": "przejrzenia przed zapisem",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-002",
+   "uwaga": "Zmiana brzmienia zaproponowana 21.10.2026 (przeglad-badacza-2026-10-21b.md, „Zmiany tekstów”, pkt 1): „nie wynikają z badań” → „nie są bezpośrednim wynikiem badań”, reguły także z zaleceń organizacji (WHO, ACSM). --rehash po naniesieniu.",
+   "przeglad": "21.10.2026: badacz-merytoryczny — wymaga zmiany brzmienia (definicja uproszczenia w CLAUDE.md); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-003",
@@ -40,10 +41,10 @@
     "konwencja"
    ],
    "zrodla": [],
-   "dokument": "docs/research/zakresy-powtorzen-cele-2026-10.md",
-   "fraza": "Progresja",
-   "uwaga": "[OTWARTE — krok „dołóż ciężar” to konwencja; podstawa progu 2–10% (ACSM 2009) nie jest potwierdzona w ACSM 2026; docs/10 pkt 4.4 do aktualizacji w zadaniu M1-046, DEC-14]",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-003",
+   "uwaga": "Zmiana brzmienia i oznaczenia zaproponowana 21.10.2026 (przeglad-badacza-2026-10-21b.md, pkt 2): zasada stopniowego zwiększania obciążenia ma źródła S2 (ACSM 2009 streszczenie: +2–10% przy 1–2 powtórzeniach ponad zakres; ACSM 2011 tab. 2; ACSM 2026); konwencja = moment i krok. Po naniesieniu: rodzaje [konwencja, źródło cytowane w tekście], zrodla [ACSM 2009, ACSM 2011, ACSM 2026], usunąć uwagę, --rehash.",
+   "przeglad": "21.10.2026: badacz-merytoryczny — ACSM 2009 (2–10%, streszczenie), ACSM 2011 tab. 2 i s. 1343, ACSM 2026 Dyskusja; wymaga zmiany brzmienia; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-004",
@@ -52,12 +53,15 @@
    "skrotEn": "e69e23bd52",
    "rodzaje": [
     "uproszczenie",
-    "przegląd badań"
+    "przegląd badań",
+    "źródło cytowane w tekście"
    ],
-   "zrodla": [],
-   "dokument": "docs/research/23-regeneracja-partii.md",
-   "fraza": "dzień przerwy",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "zrodla": [
+    "ACSM"
+   ],
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-004",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie: ACSM 2011 tab. 2 (≥48 h), ACSM 2026 (1 vs >5 dni przy równej objętości), Pelland 2026; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-005",
@@ -91,9 +95,9 @@
    "zrodla": [
     "ACSM 2026"
    ],
-   "dokument": "docs/research/22-serie-deload-generator.md",
-   "fraza": "ACSM 2026",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-006",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 Dyskusja (co najmniej 2 serie, malejący zysk), Pelland 2026; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-007",
@@ -104,9 +108,9 @@
     "uproszczenie"
    ],
    "zrodla": [],
-   "dokument": "docs/24-generator-i-plany.md",
-   "fraza": "budżet serii = (minuty",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-007",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie bez źródła (rachunek budżetu czasu, tak nazwany); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-008",
@@ -115,12 +119,15 @@
    "skrotEn": "df7c56fbef",
    "rodzaje": [
     "uproszczenie",
-    "przegląd badań"
+    "przegląd badań",
+    "źródło cytowane w tekście"
    ],
-   "zrodla": [],
-   "dokument": "docs/research/zakresy-powtorzen-cele-2026-10.md",
-   "fraza": "6–12",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "zrodla": [
+    "ACSM"
+   ],
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-008",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 (30–100% 1RM), Lopez 2021 (przerost niezależny od obciążenia); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-009",
@@ -133,9 +140,9 @@
    "zrodla": [
     "ACSM 2026"
    ],
-   "dokument": "docs/research/22-serie-deload-generator.md",
-   "fraza": "ACSM 2026",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-009",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 (2–3 RIR, dokładnego RIR nie ustalono, upadek nieobowiązkowy), Robinson 2024; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-010",
@@ -149,9 +156,9 @@
    "zrodla": [
     "ACSM 2026"
    ],
-   "dokument": "docs/research/22-serie-deload-generator.md",
-   "fraza": "ACSM 2026",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-010",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 (przerwa bez wpływu na siłę), Singer 2024, ACSM 2011 s. 1343 — rozbieżne, uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-011",
@@ -162,9 +169,9 @@
     "konwencja"
    ],
    "zrodla": [],
-   "dokument": "docs/24-generator-i-plany.md",
-   "fraza": "Cardio (redukcja)",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-011",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako konwencja; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-012",
@@ -175,9 +182,9 @@
     "uproszczenie"
    ],
    "zrodla": [],
-   "dokument": "docs/research/24-przypisanie-partii.md",
-   "fraza": "pomocnicz",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-012",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: Pelland 2026 (metoda fractional 0,5), uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-013",
@@ -190,9 +197,9 @@
    "zrodla": [
     "WHO"
    ],
-   "dokument": "docs/research/30-cel-ogolny.md",
-   "fraza": "WHO 2020",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-013",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: WHO 2020 tab. 4 i zalecenia dla dorosłych (odcinki dowolnej długości), wytyczne USA 2018 tab. 4-1 (szybki marsz); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-014",
@@ -203,9 +210,9 @@
     "uproszczenie"
    ],
    "zrodla": [],
-   "dokument": "docs/research/24-przypisanie-partii.md",
-   "fraza": "pomocnicz",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-014",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta (docs/research/24, zasada 18.10.2026); danych per ćwiczenie nie powtarzano; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-015",
@@ -216,9 +223,9 @@
     "uproszczenie"
    ],
    "zrodla": [],
-   "dokument": "docs/research/masa-ciala-e1rm-2026-10.md",
-   "fraza": "podciąg",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-015",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: podciąganie Sánchez-Moreno 2017, Talaber 2022; pompki van den Tillaar 2020, Gouvali 2005 (platforma siłowa, 62,6–66,4%); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-016",
@@ -229,9 +236,10 @@
     "uproszczenie"
    ],
    "zrodla": [],
-   "dokument": "docs/research/22-serie-deload-generator.md",
-   "fraza": "drop set",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-016",
+   "uwaga": "[OTWARTE — sposób liczenia drop setów w seriach tygodniowych bez źródła rozstrzygającego; oznaczenie „uproszczenie” poprawne]",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie bez źródła (Sødal 2023, Havers 2026 nie rozstrzygają liczenia); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-017",
@@ -242,9 +250,9 @@
     "uproszczenie"
    ],
    "zrodla": [],
-   "dokument": "docs/research/masa-ciala-e1rm-2026-10.md",
-   "fraza": "pompk",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-017",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jak T-015; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-018",
@@ -258,9 +266,9 @@
    "zrodla": [
     "Epley"
    ],
-   "dokument": "docs/research/masa-ciala-e1rm-2026-10.md",
-   "fraza": "Epley",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-018",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: wzór Epleya (PLoS One 2025 PMC11940757, Beia 2024 tab. 1; zgodny z lib/stats.ts), udział 64% jak T-015; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-019",
@@ -271,9 +279,9 @@
     "jedno źródło"
    ],
    "zrodla": [],
-   "dokument": "docs/research/24-przypisanie-partii.md",
-   "fraza": "pomocnicz",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-019",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta (szczeble 3–5, zasada 18.10.2026); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-020",
@@ -284,9 +292,9 @@
     "konwencja"
    ],
    "zrodla": [],
-   "dokument": "docs/24-generator-i-plany.md",
-   "fraza": "szablony po kolei",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-020",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako konwencja; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-021",
@@ -297,9 +305,9 @@
     "jedno źródło"
    ],
    "zrodla": [],
-   "dokument": "docs/research/22-serie-deload-generator.md",
-   "fraza": "jeden zespół",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-021",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone (jedno źródło: Bell 2023, Rogerson 2024 — jeden zespół); opcjonalne doprecyzowanie „trenerzy i zawodnicy”; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-022",
@@ -310,9 +318,9 @@
     "uproszczenie"
    ],
    "zrodla": [],
-   "dokument": "docs/research/23-regeneracja-partii.md",
-   "fraza": "dzień przerwy",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-022",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie, jak T-004; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-023",
@@ -323,9 +331,9 @@
     "konwencja"
    ],
    "zrodla": [],
-   "dokument": "docs/24-generator-i-plany.md",
-   "fraza": "Cardio (redukcja)",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-023",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako konwencja (2 dni na partię — WHO 2020 tab. 4); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-024",
@@ -338,9 +346,9 @@
    "zrodla": [
     "WHO"
    ],
-   "dokument": "docs/research/30-cel-ogolny.md",
-   "fraza": "WHO 2020",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-024",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jak T-013; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-025",
@@ -353,9 +361,9 @@
    "zrodla": [
     "WHO"
    ],
-   "dokument": "docs/research/30-cel-ogolny.md",
-   "fraza": "WHO 2020",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-025",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: WHO 2020 tab. 4, wytyczne USA 2018 rozdz. 4, ACSM 2011 tab. 2; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-026",
@@ -370,9 +378,9 @@
     "ACSM 2011",
     "wytyczne USA 2018"
    ],
-   "dokument": "docs/research/30-cel-ogolny.md",
-   "fraza": "ACSM 2011",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-026",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: wytyczne USA 2018 rozdz. 4 (8–12), ACSM 2011 tab. 2 (8–12, kat. A); 12–20 uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-027",
@@ -387,9 +395,9 @@
     "WHO",
     "wytyczne USA 2018"
    ],
-   "dokument": "docs/research/30-cel-ogolny.md",
-   "fraza": "ACSM 2011",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-027",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2011 s. 1343, wytyczne USA 2018 rozdz. 4, WHO 2020 tab. 4, ACSM 2026 (upadek nieobowiązkowy); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-028",
@@ -403,9 +411,9 @@
    "zrodla": [
     "ACSM 2026"
    ],
-   "dokument": "docs/research/22-serie-deload-generator.md",
-   "fraza": "ACSM 2026",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-028",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jak T-010; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-029",
@@ -421,9 +429,9 @@
     "WHO",
     "wytyczne USA 2018"
    ],
-   "dokument": "docs/research/30-cel-ogolny.md",
-   "fraza": "ACSM 2011",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-029",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: WHO 2020 (brak dawka–odpowiedź dla ćwiczeń wzmacniających), wytyczne USA 2018 (rozłożyć w tygodniu), ACSM 2011 tab. 2; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-030",
@@ -438,9 +446,9 @@
     "ACSM 2026",
     "ACSM 2011"
    ],
-   "dokument": "docs/research/22-serie-deload-generator.md",
-   "fraza": "ACSM 2026",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-030",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 (≥ 2), wytyczne USA 2018 (1 działa, 2–3 lepiej), ACSM 2011 tab. 2 (2–4; jedna seria u starszych i początkujących); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-031",
@@ -454,9 +462,9 @@
     "WHO",
     "wytyczne USA 2018"
    ],
-   "dokument": "docs/research/30-cel-ogolny.md",
-   "fraza": "WHO 2020",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-031",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: wytyczne USA 2018 rozdz. 4 s. 62 (na początku 1 dzień), WHO 2020 tab. 4; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-032",
@@ -469,9 +477,10 @@
    "zrodla": [
     "ACSM 2026"
    ],
-   "dokument": "docs/research/22-serie-deload-generator.md",
-   "fraza": "ACSM 2026",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-032",
+   "uwaga": "Zmiana brzmienia zaproponowana 21.10.2026 (przeglad-badacza-2026-10-21b.md, pkt 3): „każdy trening siłowy” → „trening siłowy w różnych formach” (ACSM 2026: „RT of various forms compared with no exercise”). --rehash po naniesieniu.",
+   "przeglad": "21.10.2026: badacz-merytoryczny — ACSM 2026 (≥10 serii — potwierdzone; „każdy” mocniej niż źródło); wymaga zmiany brzmienia; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-033",
@@ -485,9 +494,9 @@
    "zrodla": [
     "Pelland i in. 2026"
    ],
-   "dokument": "docs/research/32-serie-na-partie.md",
-   "fraza": "Pelland",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-033",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: Pelland 2026 streszczenie (fractional 0,5); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-034",
@@ -500,9 +509,9 @@
    "zrodla": [
     "ACSM 2026"
    ],
-   "dokument": "docs/research/22-serie-deload-generator.md",
-   "fraza": "ACSM 2026",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-034",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 tab. 6 (≥10 serii/tydz.); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-035",
@@ -513,9 +522,9 @@
     "jedno źródło"
    ],
    "zrodla": [],
-   "dokument": "docs/research/24-przypisanie-partii.md",
-   "fraza": "pomocnicz",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-035",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta, jak T-019; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-036",
@@ -526,9 +535,9 @@
     "przegląd badań"
    ],
    "zrodla": [],
-   "dokument": "docs/research/24-przypisanie-partii.md",
-   "fraza": "pomocnicz",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-036",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta (jedno źródło szczebla 2 wprost, zasada 18.10.2026); docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-037",
@@ -539,9 +548,9 @@
     "przegląd badań"
    ],
    "zrodla": [],
-   "dokument": "docs/research/24-przypisanie-partii.md",
-   "fraza": "pomocnicz",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-037",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta, jak T-036; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-038",
@@ -552,9 +561,9 @@
     "uproszczenie"
    ],
    "zrodla": [],
-   "dokument": "docs/research/24-przypisanie-partii.md",
-   "fraza": "pomocnicz",
-   "przeglad": "2026-10-20: wpis z kodu i docs (M1-048, programista B); przegląd merytoryczny badacza: otwarte"
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "T-038",
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta, jak T-014; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-039",
