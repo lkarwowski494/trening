@@ -128,13 +128,13 @@ describe('E2E 38607952098: 33/34 — zgubiony pierwszy znak powtórzeń („10�
   const f33 = '33-aktualizacja-przygotuj.yaml', f34 = '34-aktualizacja-sprawdz.yaml';
   const dropFirst = () => { let n = 0; return (t: string, field: any) => { if (field.props.testID !== 'r-0-0') return t; n++; return n === 1 ? t.slice(1) : t; }; };
   const pair = async (cmds33: Cmd[], filter?: any) => { const r = new Runner(f33); if (filter) r.inputFilter = filter; await r.run(cmds33, f33); const r2 = new Runner(f34); await r2.run(load(join(DIR, f34)), f34); return r; };
-  test('scenariusz powtarza wpis powtórzeń — po aktualizacji „Now: 40 kg × 10”', async () => {
+  test('scenariusz powtarza wpis powtórzeń — po aktualizacji tablica „teraz” ma 40 kg × 10', async () => {
     const r = await pair(load(join(DIR, f33)), dropFirst()); expect(r.retries.length).toBe(1);
   });
-  test('wersja z przebiegu (jeden wpis „10”) przy zgubionym znaku: 34 zatrzymuje się na „Now: 40 kg × 10”', async () => {
+  test('wersja z przebiegu (jeden wpis „10”) przy zgubionym znaku: 34 zatrzymuje się na opisie tablicy „teraz” (40 kg × 10)', async () => {
     const cmds: Cmd[] = load(join(DIR, f33)); const k = cmds.findIndex(x => x && typeof x === 'object' && 'retry' in x && JSON.stringify(x).includes('"w-0-0"'));
     const old = [...cmds.slice(0, k), { tapOn: { id: 'w-0-0' } }, { inputText: '40' }, { tapOn: { id: 'r-0-0' } }, { inputText: '10' }, ...cmds.slice(k + 2)];
-    await expect(pair(old, dropFirst())).rejects.toThrow(/Now: 40 kg/);
+    await expect(pair(old, dropFirst())).rejects.toThrow(/34-aktualizacja-sprawdz\.yaml: assertVisible .*set 2 of 3/); /* M3 p2: opis tablicy „teraz” zastąpił kartę „Now: 40 kg × 10” */
   });
 });
 

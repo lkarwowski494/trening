@@ -38,7 +38,7 @@ describe('strażnik wersalików', () => {
   });
   test('upperText() używany tylko w components/ui.tsx (SectionTitle) i wskazanych wyjątkach', () => {
     const users = src.filter((f) => /\bupperText\(/.test(code(f))).sort();
-    expect(users).toEqual(['components/TodayPlan.tsx', 'components/ui.tsx']);
+    expect(users).toEqual(['components/NowBoard.tsx', 'components/TodayPlan.tsx', 'components/ui.tsx']); /* M3 p2 (W3 a, wz. 28 pkt 4): nazwa ćwiczenia na tablicy „teraz” i „Dziś: …” na starcie */
   });
   test('upper() z lib/i18n tylko w miejscach znanych (ui.tsx, tytuł grupy w GuardSection.tsx, skrót koloru gumy w lib/state/sets.ts)', () => {
     const users = src.filter((f) => /[^\w.]upper\(/.test(code(f)) && f !== 'lib/i18n.ts').sort();

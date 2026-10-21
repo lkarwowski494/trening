@@ -21,12 +21,15 @@ const lastAlert = (title?: string) => title ? [...global.__alerts].reverse().fin
 const titles = () => screen.UNSAFE_root.findAll((n: any) => n.type === 'RNSScreenStackHeaderConfig').map((n: any) => n.props.title);
 const dbl = async (el: any) => { await act(async () => { fireEvent.press(el); fireEvent.press(el); }); await flushAll(10); };
 const lastNotif = (id: string) => [...(global.__notifications as any[])].reverse().find(n => n.identifier === id);
+/** M3 p2 (ZM-02): pauza jest w menu „⋯” treningu (dawny przycisk „Pauza” przy zegarze zniknął) */
+const pauseViaMenu = async () => { await tap(screen.getByTestId('more-button')); const o = (global as any).__sheets[(global as any).__sheets.length - 1].opts.options as string[]; await act(async () => { (global as any).__pickSheet(o.indexOf('Pauza treningu')); }); await flushAll(10); };
 const T0 = new Date(2026, 9, 8, 17, 0).getTime(); const SEC = 1000, MIN = 60e3;
 
 describe('F2 (LIVE-02): karta „teraz” w supersecie z rozgrzewką w A', () => {
   test('F2 (LIVE-02): przycisk karty prowadzi AW → A1 → B1(przerwa) → A2…', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addExerciseToActive(ex('Pull Up'));
     store.addSet(0); store.addSet(1); store.addSet(0, 'warmup'); const a = S().active!; store.linkWithNext(a.exercises, 0, a);
+    a.exercises.forEach(e => e.sets.forEach(x => { x.weight = 60; x.reps = 5; })); /* M3 p2 (ZM-01): „Seria zrobiona” bez wyniku nie odhacza serii — serie mają wartości */
     ex('Bench Press (sztanga)').restWarmupSec = null as never; await boot();
     const out: string[] = [];
     for (let i = 0; i < 5; i++) { const w = S().active!; const p = store.focusSet(w)!; out.push(`${p.ei ? 'B' : 'A'}${p.si}`); await tap(screen.getByTestId('focus-done')); await flushAll(10); out[out.length - 1] += timer.T.on ? '(p)' : ''; await act(async () => { await timer.stop(); }); }
@@ -110,8 +113,8 @@ describe('F6 (LIVE-06 / LIVE-07): widok skupiony', () => {
     S().active!.exercises[0].sets.forEach(s => { s.durationSec = 30; }); await boot(); jest.setSystemTime(T0);
     expect(screen.getByText('▶ Start')).toBeTruthy(); expect(screen.queryByText('Seria zrobiona')).toBeNull();
     await tap(screen.getByLabelText('Start stopera: Plank, seria 1')); await flushAll(10);
-    expect(timer.S.on).toBe(true); expect(timer.S.setId).toBe(S().active!.exercises[0].sets[0].id); expect(screen.getByText('Seria zrobiona')).toBeTruthy();
-    await flushAll(12 * SEC); await tap(screen.getByTestId('focus-done')); await flushAll(10);
+    expect(timer.S.on).toBe(true); expect(timer.S.setId).toBe(S().active!.exercises[0].sets[0].id); expect(screen.getByTestId('focus-finish-set')).toBeTruthy(); expect(screen.queryByText('Seria zrobiona')).toBeNull(); /* M3 p2 (ZM-05): w trakcie pomiaru przycisk tablicy to „Zakończ serię” */
+    await flushAll(12 * SEC); await tap(screen.getByTestId('focus-finish-set')); await flushAll(10);
     expect(S().active!.exercises[0].sets[0]).toMatchObject({ done: true, durationSec: 12 });
     await act(async () => { await timer.stop(); }); await flushAll(10);
     await tap(screen.getByLabelText('Odhacz bez pomiaru: Plank, seria 2')); await flushAll(10);
@@ -122,7 +125,7 @@ describe('F6 (LIVE-06 / LIVE-07): widok skupiony', () => {
     S().active!.exercises[0].sets.forEach(s => { s.weight = 80; s.reps = 8; }); await boot();
     await tap(screen.getByLabelText('Seria 1 zrobiona — Bench Press (sztanga)')); await flushAll(10); expect(timer.T.on).toBe(true);
     expect(screen.getAllByText('Pomiń')).toHaveLength(1); /* przerwa w karcie */
-    await act(async () => { fireEvent(screen.getByTestId('focus-card'), 'layout', { nativeEvent: { layout: { x: 0, y: 120, width: 360, height: 420 } } }); fireEvent(screen.getByTestId('focus-rest'), 'layout', { nativeEvent: { layout: { x: 16, y: 16, width: 320, height: 64 } } }); });
+    await act(async () => { fireEvent(screen.getByTestId('focus-card'), 'layout', { nativeEvent: { layout: { x: 0, y: 120, width: 360, height: 420 } } }); fireEvent(screen.getByTestId('board-face'), 'layout', { nativeEvent: { layout: { x: 16, y: 16, width: 320, height: 64 } } }); });
     const sv = screen.getByTestId('workout-scroll');
     await act(async () => { fireEvent.scroll(sv, { nativeEvent: { contentOffset: { x: 0, y: 400 }, contentSize: { width: 360, height: 2000 }, layoutMeasurement: { width: 360, height: 700 } } }); }); await flushAll(10);
     expect(screen.getAllByText('Pomiń')).toHaveLength(2); /* karta poza ekranem — pasek przerwy na dole */
@@ -160,9 +163,9 @@ describe('F9: karta „teraz”, komunikaty i drobne poprawki', () => {
   test('F9 (UI-10 / LIVE-14, wariant A): „80 kg × 8” (jednostka przy ciężarze, także VoiceOver), „+10 kg × 8”, licznik bez drop setów', async () => {
     await fresh(); addLocation('gym'); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addSet(0); store.addSet(0); store.addSet(0, 'drop');
     S().active!.exercises[0].sets.forEach((s, i) => { s.weight = 80; s.reps = 8; if (i < 3) s.done = true; }); await boot();
-    expect(screen.getByLabelText('Teraz: 80 kg × 8')).toBeTruthy(); expect(screen.getByText('seria 3 z 3 · drop set')).toBeTruthy(); /* audyt: „seria 4D z 4”, „80 × 8 kg” */
+    expect(screen.getByTestId('board-desc').props.accessibilityLabel).toContain('80 kilogramów, 8 powtórzeń'); /* M3 p2: opis tablicy dla VoiceOver zastąpił „Teraz: …” */ expect(screen.getByText('seria 3 z 3 · drop set')).toBeTruthy(); /* audyt: „seria 4D z 4”, „80 × 8 kg” */
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Chest Dip')); Object.assign(S().active!.exercises[0].sets[0], { addKg: 10, reps: 8 }); await boot();
-    expect(screen.getByLabelText('Teraz: +10 kg × 8')).toBeTruthy(); expect(screen.getByText('seria 1 z 1')).toBeTruthy();
+    expect(screen.getByTestId('board-desc').props.accessibilityLabel).toContain('+10 kilogramów, 8 powtórzeń'); expect(screen.getByText('seria 1 z 1')).toBeTruthy();
   });
   test('F9 (LIVE-08): reszta tylko pominięta → „Nic więcej do zrobienia (część pominięta)”; nic nie odhaczono → osobny komunikat', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addSet(0); store.addSet(0);
@@ -176,7 +179,7 @@ describe('F9: karta „teraz”, komunikaty i drobne poprawki', () => {
     jest.useFakeTimers({ now: T0 }); await fresh(); S().settings.workoutView = 'list'; store.startEmpty(); store.addExerciseToActive(ex('Plank')); store.addSet(0);
     S().active!.exercises[0].sets.forEach(s => { s.durationSec = 60; }); S().active!.startedAt = T0; await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); jest.setSystemTime(T0); await flushAll(10);
-    jest.setSystemTime(T0 + 10 * MIN); await tap(screen.getByLabelText('Pauza treningu')); await flushAll(10);
+    jest.setSystemTime(T0 + 10 * MIN); await pauseViaMenu();
     jest.setSystemTime(T0 + 20 * MIN); await tap(screen.getAllByLabelText('Start stopera serii')[0]); await flushAll(10);
     expect(S().active!.pausedAt).toBeUndefined(); expect(S().active!.pauses).toEqual([[T0 + 10 * MIN, T0 + 20 * MIN]]);
     for (let i = 0; i < 130; i++) await flushAll(500);
@@ -187,7 +190,7 @@ describe('F9: karta „teraz”, komunikaty i drobne poprawki', () => {
     jest.useFakeTimers({ now: T0 }); await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); store.addSet(0);
     const a = S().active!; a.startedAt = T0; a.exercises[0].sets.forEach(s => { s.weight = 60; s.reps = 8; }); store.toggleDone(0, 0); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); jest.setSystemTime(T0 + 30 * MIN); await flushAll(10);
-    await tap(screen.getByLabelText('Pauza treningu')); await flushAll(10);
+    await pauseViaMenu();
     expect(lastNotif('stale-reminder')?.content.body).toBe('Ostatnia seria o 17:00. Otwórz, by zakończyć albo kontynuować.\nTrening w pauzie od 17:30.');
     jest.setSystemTime(T0 + 2 * 3600e3 + MIN); await flushAll(61 * SEC);
     expect(lastAlert('Trening wciąż trwa')!.msg).toBe('Ostatnia seria o 17:00. Zakończyć trening z tą godziną końca?\nTrening w pauzie od 17:30.');
@@ -224,7 +227,7 @@ describe('F9: karta „teraz”, komunikaty i drobne poprawki', () => {
     await fresh(); addLocation('gym'); S().settings.unit = 'lb'; applyUnit('lb'); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)'));
     Object.assign(S().active!.exercises[0].sets[0], { weight: wIn(225), reps: 5 }); await boot();
     expect(screen.queryByLabelText(/^Nie da się ułożyć/, { includeHiddenElements: true })).toBeNull(); expect(screen.queryByLabelText(/Na każdą stronę/, { includeHiddenElements: true })).toBeNull();
-    expect(screen.getByLabelText('Teraz: 225 lb × 5')).toBeTruthy();
+    expect(screen.getByTestId('board-desc').props.accessibilityLabel).toContain('225 funtów, 5 powtórzeń');
   });
 });
 

@@ -22,7 +22,7 @@ describe('L1: odhaczone serie bez ciężaru', () => {
     const a = store.getState().active!; a.exercises[0].sets[0].reps = 8; store.toggleDone(0, 0); a.exercises[1].sets[0].reps = 5; store.toggleDone(1, 0); await store.flush();
     expect(a.exercises[0].sets[0].weight).toBe(''); /* użytkownik wpisał tylko powtórzenia */
     await renderApp({ saved: JSON.parse(JSON.stringify(store.getState())) }); await flushAll(10);
-    expect(screen.getByText('Poprzednio: Siłownia · ciężaru 32 kg nie ma tutaj — wpisz ciężar')).toBeTruthy();
+    expect(screen.getByText('Poprzednio: Siłownia, ciężaru 32 kg nie ma tutaj — wpisz ciężar')).toBeTruthy();
     await tap(screen.getAllByText('Zakończ')[0]); const al = global.__alerts.filter(x => x.title === 'Zakończyć trening?').pop()!;
     expect(al.msg).toMatch(/Odhaczone serie bez ciężaru: 1\./); /* Pull Up (masa ciała) się nie liczy */ pressAlert('Zakończyć trening?', 'Anuluj');
   });

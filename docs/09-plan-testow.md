@@ -413,3 +413,15 @@ Test najpierw (czerwony na 8273448), potem poprawka. E2E Maestro: zmienione teks
 | M1-017 | `tests/audit-m1-017-trial-ios16.test.ts` (5) | logika | zielone | próba z pierwszej transakcji ≤ 14 dni + 1 bez offerIOS |
 | M1-018, 019, 020, 021, 023 | `tests/audit-m1-workflows.test.ts` (bramka-e2e.sh na atrapie `gh`, kolejność kroków, środowisko, EAS, mapy źródeł) | logika, regresja | zielone; produkt — czeka na przebieg dowodowy (R-008, R-009) | |
 | M1-022 | `tests/audit-m1-workflows.test.ts` „M1-022” | regresja | zielone | pliki zrzutów do sklepu wzięte z f020-sklep |
+
+## 21.10.2026 — przebudowa M3, partia p2 „trening” (gałąź `m3-p2`; ZM-01, ZM-02, ZM-05, haptyka, ekran Start)
+Test najpierw dla logiki i haptyki (czerwony na zaślepkach), testy ekranu pisane razem z kodem tablicy (nie przed nim — szczerze: kolejność dla UI była mieszana).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| ZM-01 tablica „teraz” | `tests/m3-p2-board-logic.test.ts` (30: wartości efektywne, `missingKey`, `stepOf` zgodny z `progressionFor`, `fieldLayout`, `compactResult`), `tests/m3-p2-board-ui.test.tsx` (40), `tests/m3-p2-matrix.test.tsx` (6) | logika, ekran, scenariusz, macierz, niezmienniki, języki, wygląd (Dynamic Type, wersaliki el) | zielone | krok ± czasu (5 s) i dystansu (50 m / 50 yd) to konwencja robocza [DO USTALENIA: badacz] |
+| Haptyka (ZM-01) | `tests/m3-p2-haptics.test.ts` (5) | logika | zielone | przełącznik dźwięku i wibracji bez zmian (rozdzielenie — p5d); **rodzaj pominięty: sprawdzenie na urządzeniu** (haptyki nie działają w symulatorze) — lista „tylko telefon” |
+| ZM-02 nagłówek i menu „⋯” | `tests/m3-p2-board-ui.test.tsx`, adaptowane: `pause`, `places-ui`, `locations-ui`, `locations-audit`, `audit-0.10-ui`, `audit-m1-034-hit-areas` | ekran, scenariusz, regresja | zielone | pauza, miejsce, głos i notatka szablonu przeniesione do menu; zgoda na powiadomienia przy pierwszej przerwie |
+| Ekran Start | `tests/m3-p2-start.test.tsx` (9: „Planowanie”, tablica „Dziś” wersalikami, motyw, zamykanie arkusza gestem w dół) | ekran, scenariusz | zielone | gest w dół: test z historią dotyku; **rodzaj pominięty: Maestro dla gestu** (interpreter nie odtwarza przeciągnięcia arkusza w oknie `Modal`) |
+| E2E Maestro | scenariusze 01, 02, 04, 11 (przepisany pod tablicę: wpis, ±, „Seria zrobiona” bez ciężaru), 22, 23, 25, 29, 31, 32, 34, 35, 36, 40, 41, 54 | scenariusz | zielone w interpreterze (`maestro-flows`); przebieg na symulatorze — koordynator (`tylko_scenariusze`) | `tests/maestro-layout.ts`: zawartość `Modal` nie wydłuża listy pod spodem |
+| Podgląd liczb (Large Content Viewer, DEC-10) | `tests/m3-p2-board-ui.test.tsx` (właściwości `accessibilityShowsLargeContentViewer`) | ekran, dostępność | zielone; **rodzaj pominięty: zachowanie podglądu na urządzeniu** (tylko telefon) | |

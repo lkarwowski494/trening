@@ -9,6 +9,8 @@ import { renderApp, flushAll, screen, tap, act, startTpl } from './app';
 import { loc } from './locations-fixtures';
 import { presetEquipment } from '@/lib/equipment';
 
+/** M3 p2 (ZM-02, wzorzec 30): miejsce treningu jest w menu „⋯” (dawny chip „📍 Dom ▾” pod nazwą) — otwiera menu, wybiera pozycję miejsca i zwraca arkusz miejsc */
+const openPlaceSheet = async () => { await tap(screen.getByTestId('more-button')); const m = (global as any).__sheets.at(-1); const i = (m.opts.options as string[]).findIndex(o => /^(Miejsce treningu|Workout place): /.test(o)); await act(async () => { m.cb(i); }); return (global as any).__sheets.at(-1); };
 jest.setTimeout(90000);
 afterEach(async () => { try { await timer.stop(); await timer.stopSet(); } catch { /* brak stanu */ } jest.useRealTimers(); });
 const S = () => store.getState();
@@ -18,7 +20,7 @@ const top = () => stack().at(-1);
 const FBW: [string, string][] = [['Bench Press (sztanga)', 'bench'], ['Overhead Press (sztanga)', 'ohp'], ['Pull Up', 'pull'], ['RDL (hantle/linki)', 'rdl']];
 const MON = new Date(2026, 9, 12, 9, 0), WED = new Date(2026, 9, 14, 9, 0);
 const pickPlace = async (name: string) => {
-  await tap(screen.getByLabelText(/^Miejsce treningu: /)); const sh = (global as any).__sheets.at(-1); await act(async () => { sh.cb((sh.opts.options as string[]).indexOf(name)); }); await flushAll(20);
+  const sh = await openPlaceSheet(); await act(async () => { sh.cb((sh.opts.options as string[]).indexOf(name)); }); await flushAll(20);
 };
 const doSet = async (bi: number, si: number) => { await act(async () => { blk(bi).sets[si].reps = 8; blk(bi).sets[si].weight = blk(bi).sets[si].weight === '' ? 20 : blk(bi).sets[si].weight; store.toggleDone(bi, si); }); await flushAll(5); };
 

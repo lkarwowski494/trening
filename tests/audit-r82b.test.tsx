@@ -87,7 +87,7 @@ describe('LOW 3 — dopisek z bieżących pól; jeden helper w treningu i edytor
   test('trening: źródło z innego, znanego miejsca (wartość wstrzymana, pole puste) — dopisek z prefiksem; wpisany ciężar chowa tylko dopisek', async () => {
     await fresh(); places(); hist(day(3), DB, [{ weight: 32, reps: 8 }], 'garage'); store.startFromTemplate(tplAt(DB, 'home'));
     expect(vals(store.getState().active!.exercises[0].sets)).toEqual([['', '']]); await show();
-    expect(screen.getByText('Poprzednio: Garaż · ' + NOTE('32 kg'))).toBeTruthy();
+    expect(screen.getByText('Poprzednio: Garaż, ' + NOTE('32 kg'))).toBeTruthy();
     await type(screen.getAllByLabelText('kg/hantel')[0], '24'); await flushAll(5); expect(screen.getByText('Poprzednio: Garaż')).toBeTruthy(); expect(screen.queryByText(/nie ma tutaj/)).toBeNull();
   });
   test('kilka serii: dopisek, dopóki którakolwiek seria robocza ma pustą albo wstawioną wartość spoza listy', async () => {

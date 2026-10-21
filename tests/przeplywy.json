@@ -485,22 +485,22 @@
   },
   {
    "id": "TR-09",
-   "tytul": "Widok skupiony: karta „teraz”, „Seria zrobiona”",
+   "tytul": "Widok skupiony: tablica „teraz”, ± i „Seria zrobiona” bez wartości",
    "stan": "istniejacy",
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
     "Włącz miejsce z talerzami",
     "Start treningu ze sztangą",
-    "Karta „Teraz: 80 kg × 5” (bez paska talerzy); „Seria zrobiona”"
+    "„Seria zrobiona” bez ciężaru ustawia kursor w polu; tablica „80 kg × 5” (bez paska talerzy), ± zmienia ciężar i powtórzenia; „Seria zrobiona”"
    ],
-   "wynik": "Karta zgodna z ciężarem; po ostatniej serii „Wszystkie serie odhaczone”.",
+   "wynik": "Tablica zgodna z ciężarem; seria bez wartości nie jest odhaczana; po ostatniej serii „Wszystkie serie odhaczone”.",
    "ekrany": [
     "/"
    ],
    "scenariusz": "11-widok-skupiony.yaml",
    "znaczniki": [
-    "Now: 80 kg × 5",
+    "Increase weight by 2.5 kg",
     "All sets ticked off"
    ]
   },
@@ -1018,7 +1018,7 @@
    ],
    "scenariusz": "36-przerwanie-szkice.yaml",
    "znaczniki": [
-    "Now: 40 lb × 10"
+    "40 pounds.*10 reps"
    ]
   },
   {
@@ -1102,7 +1102,7 @@
    "scenariusz": "29-bledne-dane.yaml",
    "znaczniki": [
     "w-0-0",
-    "× 1000"
+    "1000 reps"
    ]
   },
   {
@@ -2727,7 +2727,7 @@
    ],
    "scenariusz": "34-aktualizacja-sprawdz.yaml",
    "znaczniki": [
-    "Pause workout",
+    "Workout options",
     "Finish"
    ]
   },
@@ -3113,24 +3113,24 @@
   },
   {
    "id": "W2-07",
-   "tytul": "Przycisk „Głos” na ekranie treningu: zmiana zapowiedzi w trakcie treningu (trwała)",
+   "tytul": "Zapowiedzi głosowe w menu „⋯” na ekranie treningu: zmiana w trakcie treningu (trwała)",
    "stan": "nowy",
    "wersja": "0.20",
    "realnosc": "realny",
    "kroki": [
-    "Trening w toku → przycisk „Głos” (ikona zależna od wyboru) pod „Zakończ”",
+    "Trening w toku → menu „⋯” → „Zapowiedzi głosowe: …” (bieżący wybór w etykiecie)",
     "Arkusz „Zapowiedzi głosowe”: Wyłączone / ✓ W słuchawkach / Także przez głośnik / Anuluj",
     "„Wyłączone”, potem Anuluj (bez zmiany), potem „Także przez głośnik”",
     "Więcej → Ustawienia: „Zapowiedzi głosowe” pokazuje ten sam wybór"
    ],
-   "wynik": "Etykieta przycisku i ikona za bieżącym wyborem; wybór z treningu jest trwały i ten sam co w Ustawieniach; Anuluj nic nie zmienia.",
+   "wynik": "Etykieta pozycji menu za bieżącym wyborem; wybór z treningu jest trwały i ten sam co w Ustawieniach; Anuluj nic nie zmienia.",
    "ekrany": [
     "/",
     "/more/settings"
    ],
    "scenariusz": "54-glos-w-treningu.yaml",
    "znaczniki": [
-    "voice-btn",
+    "Workout options",
     "Voice announcements: In headphones",
     "✓ In headphones",
     "Also through the speaker",

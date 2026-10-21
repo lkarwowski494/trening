@@ -53,12 +53,12 @@ describe('aplikacja: ustawienie iOS → ekran treningu', () => {
   test('start z włączonym „Pogrubiony tekst”: opis zegara sesji (system 400) jest półgruby (600); zdarzenie systemowe przełącza wagę bez restartu', async () => {
     (AccessibilityInfo.isBoldTextEnabled as jest.Mock).mockResolvedValue(true);
     await gymWorkout(); await flushAll(10);
-    const clock = () => screen.getByText(/^start \d/); expect(weightOf(clock())).toBe('600');
+    const clock = () => screen.getByTestId('workout-clock'); expect(weightOf(clock())).toBe('600');
     expect(typeof handlers.boldTextChanged).toBe('function');
     await act(async () => { handlers.boldTextChanged(false); }); await flushAll(5); expect(weightOf(clock())).toBe('400');
     await act(async () => { handlers.boldTextChanged(true); }); await flushAll(5); expect(weightOf(clock())).toBe('600');
   });
   test('bez ustawienia: krój bazowy', async () => {
-    await gymWorkout(); expect(weightOf(screen.getByText(/^start \d/))).toBe('400');
+    await gymWorkout(); expect(weightOf(screen.getByTestId('workout-clock'))).toBe('400');
   });
 });

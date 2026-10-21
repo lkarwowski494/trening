@@ -11,7 +11,7 @@ import { beginEdit, draftSetWhen, commitDraft } from '@/lib/edit';
 import { buildCsv } from '@/lib/backup';
 import { periodSummary } from '@/lib/period';
 import { fresh, addWorkout, saved, ex } from './helpers';
-import { renderApp, flushAll, screen, tap, act, openInfo } from './app';
+import { renderApp, flushAll, screen, tap, act, openInfo, workoutMenu, menuPick } from './app';
 
 const T0 = new Date(2026, 9, 8, 17, 0).getTime(); const MIN = 60e3;
 const clock = (ms: number) => jest.setSystemTime(T0 + ms);
@@ -107,14 +107,15 @@ describe('ekran', () => {
   const boot = async (locale: 'pl' | 'en' = 'pl') => { await fresh(undefined, locale); start(); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale }); await flushAll(10); };
   test('„Pauza” zatrzymuje zegar treningu i pokazuje opis; „Wznów” — zegar liczy dalej bez czasu pauzy', async () => {
     await boot(); clock(5 * MIN); await flushAll(1000);
-    expect(screen.getByText(/^start \d{2}:\d{2} · 5:0\d$/)).toBeTruthy();
-    expect(screen.getByText('Pauza')).toBeTruthy(); expect(screen.getByTestId('icon-pause')).toBeTruthy(); /* M1-029: ikona zamiast emoji */ await tap(screen.getByLabelText('Pauza treningu')); await flushAll(10); expect(screen.getByText('Wznów')).toBeTruthy(); expect(screen.getByTestId('icon-play')).toBeTruthy(); expect(store.isPaused(store.getState().active)).toBe(true);
-    expect(screen.getByLabelText('Wznów trening')).toBeTruthy(); expect(screen.getByText(/ · pauza$/)).toBeTruthy();
+    expect(screen.getByTestId('workout-clock').props.children.join('')).toMatch(/^5:0\d$/);
+    /* M3 p2 (ZM-02): pauza i wznowienie są w menu „⋯”, nie w nagłówku */
+    expect((await workoutMenu()).opts.options).toContain('Pauza treningu'); await menuPick('Pauza treningu'); await flushAll(10); expect(store.isPaused(store.getState().active)).toBe(true);
+    expect((await workoutMenu()).opts.options).toContain('Wznów trening'); expect(screen.getByText(/ · pauza$/)).toBeTruthy();
     expect(screen.getByText('Pauza — czas treningu stoi. Odhaczenie serii wznawia.')).toBeTruthy(); expect(screen.queryByText(/^Zegar treningu stoi/)).toBeNull(); await openInfo('pause'); /* ⓘ 14.10.2026 */
     expect(screen.getByText('Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.')).toBeTruthy();
     const frozen = screen.getByText(/ · pauza$/).props.children; clock(9 * MIN); await flushAll(1000); expect(screen.getByText(/ · pauza$/).props.children).toEqual(frozen);
-    await tap(screen.getByLabelText('Wznów trening')); clock(10 * MIN); await flushAll(1000);
-    expect(screen.getByText(/^start \d{2}:\d{2} · 6:0\d$/)).toBeTruthy(); expect(screen.getByLabelText('Pauza treningu')).toBeTruthy();
+    await menuPick('Wznów trening'); clock(10 * MIN); await flushAll(1000);
+    expect(screen.getByTestId('workout-clock').props.children.join('')).toMatch(/^6:0\d$/); expect((await workoutMenu()).opts.options).toContain('Pauza treningu');
     expect(screen.queryByText(/odhaczenie serii wznawia trening/)).toBeNull();
   });
   test('ekran sesji w historii pokazuje czas bez pauz', async () => {
@@ -123,7 +124,7 @@ describe('ekran', () => {
     expect(screen.getByText(/ · 45:00/)).toBeTruthy();
   });
   test('English', async () => {
-    await boot('en'); await tap(screen.getByLabelText('Pause workout')); await flushAll(10);
-    expect(screen.getByLabelText('Resume workout')).toBeTruthy(); expect(screen.getByText(/ · paused$/)).toBeTruthy(); expect(screen.getByText('Resume')).toBeTruthy();
+    await boot('en'); expect((await workoutMenu()).opts.options).toContain('Pause workout'); await menuPick('Pause workout'); await flushAll(10);
+    expect((await workoutMenu()).opts.options).toContain('Resume workout'); expect(screen.getByText(/ · paused$/)).toBeTruthy();
   });
 });

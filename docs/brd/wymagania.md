@@ -55,7 +55,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Dowód potrzeby: J-01 (odtworzone z README.md); kod `lib/state/pause.ts`
 - Kryteria akceptacji:
   - Scenariusz: Czas pauzy nie wlicza się
-    - Zakładając, że trening w toku jest wstrzymany przyciskiem „Pauza”
+    - Zakładając, że trening w toku jest wstrzymany pozycją „Pauza treningu” w menu „⋯” nagłówka (M3 p2, ZM-02)
     - Gdy upływa czas, a potem użytkownik wznawia trening
     - Wtedy czas trwania treningu nie zawiera czasu pauzy
   - Scenariusz: Odhaczenie serii wznawia trening
@@ -70,7 +70,49 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Wybór widoku w ustawieniach
     - Zakładając, że użytkownik wybrał widok „Lista” w ustawieniach
     - Gdy rozpoczyna trening
-    - Wtedy ćwiczenia pokazane są jako lista serii; przy widoku „Skupiony” karta bieżącej serii
+    - Wtedy ćwiczenia pokazane są jako lista serii; przy widoku „Skupiony” tablica „teraz” z bieżącą serią (BR-TRN-009)
+  - Scenariusz: Widok „Lista” bez tablicy
+    - Zakładając, że wybrano widok „Lista”
+    - Gdy trwa trening z przerwą
+    - Wtedy tablicy „teraz” nie ma, a przerwa jest w dolnym pasku (ZM-01: tablica tylko w widoku „Skupiony”)
+
+### BR-TRN-009: Tablica „teraz”: wpis i krok ± na tablicy, „Seria zrobiona” bez wartości
+- Przepływ: PR-01
+- Dowód potrzeby: M3 p2 ZM-01 (docs/design/to-be.md, wzorzec 29 w docs/32); kod `lib/board.ts`, `components/NowBoard.tsx`; testy `tests/m3-p2-board-logic.test.ts`, `tests/m3-p2-board-ui.test.tsx`; **krok ± dla czasu (5 s) i dystansu (50 m / 50 yd) to konwencja robocza [DO USTALENIA: badacz]**, krok ciężaru i powtórzeń jak cicha podpowiedź progresji
+- Kryteria akceptacji:
+  - Scenariusz: Krok ± ciężaru w miejscu z opisanym sprzętem
+    - Zakładając, że bieżąca seria ma ciężar 80 kg, a miejsce treningu ma opisane talerze i sztangę
+    - Gdy użytkownik stuka „+” przy ciężarze
+    - Wtedy ciężar zmienia się na najbliższy dostępny większy (82,5 kg), a zmiana trafia do danych serii jak wpis w wierszu serii
+  - Scenariusz: Wpis liczby na tablicy
+    - Zakładając, że na tablicy widać ciężar i powtórzenia bieżącej serii
+    - Gdy użytkownik stuka liczbę i wpisuje wartość
+    - Wtedy pole otwiera się w tym samym miejscu, a wartość zapisuje się jak przy wpisie w wierszu serii
+  - Scenariusz: „Seria zrobiona” bez wartości
+    - Zakładając, że bieżąca seria nie ma ciężaru ani podpowiedzi „Poprzednio”
+    - Gdy użytkownik stuka „Seria zrobiona”
+    - Wtedy seria nie zostaje odhaczona, kursor trafia do pierwszego pustego pola, a telefon wibruje ostrzegawczo (gdy włączone „Dźwięk i wibracja na koniec przerwy”)
+  - Scenariusz: Brak wartości widać jako „—”
+    - Zakładając, że seria nie ma wartości
+    - Gdy ekran pokazuje ją na tablicy i w wierszu wyniku
+    - Wtedy zamiast „0” widać „—” (04-studio-projektowe-010)
+  - Scenariusz: Pola serii zależnie od liczby serii
+    - Zakładając, że ćwiczenie ma więcej niż 4 serie
+    - Gdy tablica pokazuje pola serii
+    - Wtedy do 4 serii pola pokazują wynik, 5–12 mieszczą się w 1–3 rzędach, powyżej 12 rząd się przewija (SET_FIELDS)
+
+### BR-TRN-010: Menu „⋯” w nagłówku treningu; „Zakończ” drugorzędny
+- Przepływ: PR-01 · PR-09
+- Dowód potrzeby: M3 p2 ZM-02 (wzorzec 30 w docs/32); kod `components/ActiveWorkout.tsx`; testy `tests/m3-p2-board-ui.test.tsx`
+- Kryteria akceptacji:
+  - Scenariusz: Nagłówek w jednej linii
+    - Zakładając, że trwa trening z nazwą i zegarem
+    - Gdy użytkownik widzi nagłówek
+    - Wtedy nazwa i czas są w jednej linii, a miejsce, pauza, zapowiedzi głosowe i notatka szablonu są w menu „⋯”
+  - Scenariusz: Zakończenie ostrzega o seriach bez wyniku
+    - Zakładając, że odhaczono serię bez ciężaru
+    - Gdy użytkownik stuka „Zakończ”
+    - Wtedy okno pyta o zakończenie i ostrzega o seriach bez wyniku
 
 ### BR-TRN-005: Zamiana ćwiczenia w trakcie treningu
 - Przepływ: PR-01
@@ -128,10 +170,14 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że przerwa trwa, a ekran telefonu jest zablokowany
     - Gdy przerwa dobiega końca
     - Wtedy przychodzi powiadomienie lokalne z dźwiękiem i wibracją (gdy włączone „Dźwięk i wibracja na koniec przerwy”)
+  - Scenariusz: Zgoda na powiadomienia przy pierwszej przerwie
+    - Zakładając, że zgoda na powiadomienia nie jest jeszcze ustalona
+    - Gdy zaczyna się pierwsza przerwa
+    - Wtedy pod tablicą pojawia się jeden wiersz z prośbą („Powiadamiaj” / „Nie teraz”), a pytanie systemu iOS dopiero po „Powiadamiaj” (M3 p2, ZM-02)
   - Scenariusz: Brak zgody na powiadomienia
     - Zakładając, że zgoda na powiadomienia nie została udzielona
-    - Gdy użytkownik otwiera ekran treningu
-    - Wtedy ekran informuje, że przypomnienia i koniec przerwy nie przyjdą, i wskazuje ustawienia iOS
+    - Gdy zaczyna się przerwa
+    - Wtedy ekran jednorazowo informuje, że przypomnienia i koniec przerwy nie przyjdą, i wskazuje ustawienia iOS
 
 ### BR-PRZ-002: Live Activity z odliczaniem przerwy
 - Przepływ: PR-02

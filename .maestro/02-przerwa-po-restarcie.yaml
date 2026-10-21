@@ -16,4 +16,5 @@ name: Przerwa po restarcie
 - launchApp:
     clearState: false
 - extendedWaitUntil: { visible: "Skip", timeout: 60000 }
+- assertVisible: "Rest, .* of 1 minute 30 seconds left.*"   # M3 p2 (ZM-01): przerwa po restarcie wraca jako zegar na tablicy „teraz” (opis: ile zostało z ilu)
 - takeScreenshot: 06-przerwa-po-restarcie

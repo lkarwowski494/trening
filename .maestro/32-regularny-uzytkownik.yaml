@@ -106,15 +106,20 @@ name: Regularny użytkownik — historia, plan, restart, kopia
 - tapOn: "Skip"
 - assertNotVisible: "Skip"
 # --- pauza, restart w pauzie, kontynuacja ---
+- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+- waitForAnimationToEnd
+# M3 p2 (ZM-02, wz. 30): pauza i wznowienie są w menu „⋯” („Workout options”), nie w nagłówku
+- tapOn: "Workout options"
 - tapOn: "Pause workout"
-- extendedWaitUntil: { visible: "Resume workout", timeout: 15000 }
+- extendedWaitUntil: { visible: ".* · paused", timeout: 15000 }
 - stopApp
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Resume workout", timeout: 60000 }
-- assertVisible: ".* · paused"
+- extendedWaitUntil: { visible: ".* · paused", timeout: 60000 }
+- tapOn: "Workout options"
 - tapOn: "Resume workout"
-- extendedWaitUntil: { visible: "Pause workout", timeout: 15000 }
+- extendedWaitUntil: { visible: "Workout options", timeout: 15000 }
+- assertNotVisible: ".* · paused"
 # L-013 (nocny run 39537208004, 390 pt; zrzut kroku „Skip”: zakładka „More”): wiersz serii 2 leży przy pasku zakładek — stuknięcie trafiało w zakładkę; wyśrodkowanie przed stuknięciem
 # M3 p1: wiersze i przyciski z tokenów systemu (52/44 pt) wydłużają ekran — przycisk drugiej serii bywa tuż pod krawędzią listy
 - scrollUntilVisible: { element: "Set 2 done — Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }

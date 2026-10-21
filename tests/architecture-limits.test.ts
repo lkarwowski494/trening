@@ -25,7 +25,8 @@ const WYJATKI: Record<string, [number, string]> = {
   'lib/state/migrate.ts': [24576, 'migracja schematu (jedna funkcja idempotentna); części już w migrate-records i migrate-catalog'],
   'app/template/[id].tsx': [31744, 'ekran — poza zakresem partii 4 (M3)'],
   'components/ui.tsx': [30720, 'wspólne elementy interfejsu — poza zakresem partii 4 (M3)'],
-  'components/ActiveWorkout.tsx': [80896, 'ekran treningu — podział należy do M3; limit ustala się po podziale, do tego czasu próg nie rośnie'],
+  'components/ActiveWorkout.tsx': [37632, 'ekran treningu: nagłówek, zakończenie, pytanie o porzucony trening, widok listy i dolny pasek; podział M3 p2 — bloki ćwiczeń i wiersze serii w WorkoutBlocks, tablica „teraz” w NowBoard / BoardControls / BoardFace'],
+  'components/WorkoutBlocks.tsx': [35072, 'bloki ćwiczeń z wierszami serii (zamiana, superset, menu serii) — wydzielone z ekranu treningu w M3 p2; dalszy podział wierszy serii osobnym commitem strukturalnym'],
   'app/generator.tsx': [22528, 'ekran — poza zakresem partii 4 (M3)'],
 };
 

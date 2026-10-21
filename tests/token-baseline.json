@@ -7,26 +7,9 @@
   "app/more/settings.tsx": {
    "fontSize": 5
   },
-  "app/place-once.tsx": {
-   "fontSize": 1
-  },
-  "app/reorder.tsx": {
-   "fontSize": 3,
-   "borderRadius": 1
-  },
-  "components/ActiveWorkout.tsx": {
-   "fontSize": 44,
-   "borderRadius": 8
-  },
   "components/Dashboard.tsx": {
    "fontSize": 18,
    "borderRadius": 4
-  },
-  "components/DayPanel.tsx": {
-   "fontSize": 16
-  },
-  "components/DragList.tsx": {
-   "fontSize": 1
   },
   "components/EquipVisual.tsx": {
    "fontSize": 3,
@@ -45,23 +28,11 @@
   "components/LoadEditor.tsx": {
    "fontSize": 5
   },
-  "components/SetBadge.tsx": {
-   "fontSize": 2,
-   "borderRadius": 1
-  },
   "components/StartError.tsx": {
    "fontSize": 3
   },
-  "components/StartPanel.tsx": {
-   "fontSize": 4,
-   "borderRadius": 2
-  },
   "components/SwipeRow.tsx": {
    "fontSize": 1
-  },
-  "components/TodayPlan.tsx": {
-   "fontSize": 10,
-   "borderRadius": 2
   }
  }
 }

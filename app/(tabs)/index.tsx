@@ -2,16 +2,19 @@ import React from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Screen, H1, Muted, Item } from '@/components/ui';
+import { PlanningButton } from '@/components/HeaderActions';
+import { StartMotif } from '@/components/Motif';
+import { hasPlan } from '@/lib/plan';
 import ActiveWorkout from '@/components/ActiveWorkout';
 import { Alert } from 'react-native';
-import { getState, useTick, getPersistError, getRecovery, clearRecovery, flush, getBackupStat, fmtDate } from '@/lib/store';
+import { getState, useTick, getPersistError, getRecovery, clearRecovery, flush, getBackupStat, fmtDate, finishedWorkouts } from '@/lib/store';
 import { router } from 'expo-router';
 import { exportRecovery } from '@/lib/backup';
 import { TodayPlan } from '@/components/TodayPlan';
 import { WeekStats, FirstSteps } from '@/components/Dashboard';
 import { WhatsNewHeader } from '@/components/WhatsNew';
 import { StartPanel } from '@/components/StartPanel';
-import { t, locale } from '@/lib/i18n';
+import { t } from '@/lib/i18n';
 import { cancelButton } from '@/lib/confirm';
 import { setAutoSavedNotice, useAutoSavedNotice } from '@/lib/notices';
 import { fmtWeekdayDayMonth } from '@/lib/calendar';
@@ -28,13 +31,17 @@ function DataBanners() {
 }
 
 function Home() {
+  const plan = hasPlan(); const showPlanning = plan || finishedWorkouts().length > 0; /* jak karta „Dziś” (components/TodayPlan) */
   /* Układ B „najpierw trening” (decyzja właściciela 09.10.2026, docs/18) po zmianach z 11.10.2026 (docs/22 krok 3; P2–P4, P8): nagłówek planu z „Planowaniem”
    * nad kalendarzem tygodnia (components/TodayPlan) → duży przycisk startu i „Inny trening” (arkusz: inny z planu, powtórz ostatni, z szablonu — pełnoekranowy
    * wybór ze Startem, pusty) → „Pierwsze kroki” (tylko nowa osoba) → „Ten tydzień” (kafelki, stosy planu, sylwetka i serie na partię: wykonane + zaplanowane)
    * (14.10.2026, uwaga właściciela z telefonu: sekcja „Progresja” zniknęła z tego ekranu — jest w Postępach). Lista „Zacznij z szablonu”, karta Planowania i wiersz „Plan: … Planowanie ›” usunięte jako duplikaty. */
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
-      <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela) */}<H1>{t('Trening')}</H1><Muted>{fmtWeekdayDayMonth(new Date())}</Muted></WhatsNewHeader>
+      {/* M3 p2 (W1 c, STOP E3): „Planowanie” w nagłówku ekranu — ta sama akcja w tym samym miejscu co w zakładce Plan; bez planu „Ustaw plan”; tylko gdy jest karta planu (jak dotąd) */}
+      {showPlanning ? <View style={{ alignItems: 'flex-end' }}><PlanningButton label={plan ? t('Planowanie') : t('Ustaw plan')} onPress={() => router.push('/plan')} /></View> : null}
+      <View><View pointerEvents="none" style={{ position: 'absolute', top: 0, right: 0 }}><StartMotif />{/* motyw A2 (sylwetka końca sztangi, 30% szerokości; znika przy „Zwiększ kontrast” i dużym tekście) */}</View>
+      <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela) */}<H1>{t('Trening')}</H1><Muted>{fmtWeekdayDayMonth(new Date())}</Muted></WhatsNewHeader></View>
       <DataBanners />
       <TodayPlan />{/* 08.10.2026: kalendarz z planem (decyzja 1A); 11.10.2026: z nagłówkiem planu i „Planowaniem” */}
       <StartPanel />
