@@ -88,7 +88,8 @@ Przegląd co godzinę (zaplanowane zadanie „Trening: koordynator — przegląd
 | 8 | Hak pre-push (lint + check:readme + check:matrix, `prepare`) + krok „sprawdź tests.yml po wypchnięciu” w `.claude/agents/*.md` (L-009; decyzja właściciela 21.10 w sesji M3, b78ddb3) | programista / sonnet | `scripts/hooks/`, `package.json`, `.claude/agents/` | w toku (gałąź `hak-pre-push`) |
 | 9 | Po TestFlight: lista „telefon zaraz po buildzie” (R-004 i lista „tylko telefon”) | koordynator → właściciel | — | po buildzie z main 8763e58 |
 | — | **Obszar M3** (gałąź `redesign/trening-2026-10-21`, partie p1–p6): `app/`, `components/`, `lib/` (theme, ekrany, teksty, słowniki), ikony, zegarek, `docs/design/`, `docs/32`, `docs/m3-stan.md`; scenariusze `.maestro/` po scaleniu main (ustalone z M3 21.10) | M3 | — | koordynator tu nie wchodzi |
-| 10 | Po M3: reaudyt końcowy M1 (z LOK-07), zrzuty i opis sklepu, App Store Connect, migracja do Apps4Brew, 1.0 | M1 / wydawca / właściciel | — | po M3 |
+| 10 | Po kroku 4 (M3 scalone, brzmienia, przegląd tłumaczeń): **pełny głęboki audyt M1 całej aplikacji** (z LOK-07) + naprawy blokerów (M2) — decyzja właściciela 21.10 | M1 / M2 | — | po 5 i 6 |
+| 11 | Po audycie: 3 czyste noce (tryb ścisły), telefon, zrzuty i opis sklepu, App Store Connect, migracja do Apps4Brew, 1.0. **M4 dopiero po wydaniu** (zakres 1.0 zamrożony) | wydawca / właściciel | — | po 10 |
 
 ## Zasady pracy obowiązujące (skrót; pełne w CLAUDE.md i docs/18)
 - Podział pracy na agentów według obszaru plików (CLAUDE.md, 20.10.2026); pliki generowane i pełne verify raz po scaleniu.
