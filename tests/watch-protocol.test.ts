@@ -80,12 +80,12 @@ describe('etykiety zegarka (35 języków)', () => {
   });
   test('polski i angielski: dokładne teksty; kolejność identyfikatorów; bieżący język po wywołaniu bez zmian', () => {
     applyLang('en'); expect(watchLabels()).toEqual({ done: 'Set done', differ: 'Done differently', skip: 'Skip', skipAsk: 'Skip this exercise?', cancel: 'Cancel', undo: 'Undo', rest: 'Rest', set: 'Set', pause: 'Workout paused',
-      connect: 'Connect to your phone', idle: 'Start a workout on your phone', finished: 'Workout finished', update: 'Update the watch app', nothingLeft: 'nothing more to do' });
+      connect: 'Connect to your phone', idle: 'Start a workout on your phone', finished: 'Workout finished', update: 'Update the watch app', nothingLeft: 'nothing more to do', finish: 'Finish set' }); /* M3 p6 (ZM-05): doszła etykieta `finish` */
     applyLang('de'); expect(watchLabelsFor('pl').done).toBe('Seria zrobiona'); expect(lang()).toBe('de');
   });
   test('polski: dokładne teksty wszystkich etykiet', () => {
     expect(watchLabelsFor('pl')).toEqual({ done: 'Seria zrobiona', differ: 'Zrobione inaczej', skip: 'Pomiń', skipAsk: 'Pominąć ćwiczenie?', cancel: 'Anuluj', undo: 'Cofnij', rest: 'Przerwa', set: 'Seria', pause: 'Trening wstrzymany',
-      connect: 'Połącz z telefonem', idle: 'Zacznij trening na telefonie', finished: 'Trening zakończony', update: 'Zaktualizuj aplikację na zegarku', nothingLeft: 'nic więcej do zrobienia' });
+      connect: 'Połącz z telefonem', idle: 'Zacznij trening na telefonie', finished: 'Trening zakończony', update: 'Zaktualizuj aplikację na zegarku', nothingLeft: 'nic więcej do zrobienia', finish: 'Zakończ serię' }); /* M3 p6 (ZM-05) */
   });
   test('etykiety wzorców docs/32: „Seria zrobiona”, „Pomiń”, „Anuluj”, „Cofnij” = teksty telefonu', () => {
     for (const l of LANGS) { const x = watchLabelsFor(l); applyLang(l); const { t } = require('@/lib/i18n'); expect([l, x.done, x.skip, x.cancel, x.undo]).toEqual([l, t('Seria zrobiona'), t('Pomiń'), t('Anuluj'), t('Cofnij')]); }

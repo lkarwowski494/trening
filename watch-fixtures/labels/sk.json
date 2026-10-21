@@ -12,5 +12,6 @@
  "idle": "Začnite tréning v telefóne",
  "finished": "Tréning dokončený",
  "update": "Aktualizujte aplikáciu v hodinkách",
- "nothingLeft": "už nič nezostáva"
+ "nothingLeft": "už nič nezostáva",
+ "finish": "Dokončiť sériu"
 }

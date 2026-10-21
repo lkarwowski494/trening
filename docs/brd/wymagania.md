@@ -319,6 +319,19 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy mija mniej niż 5 sekund i użytkownik stuka „Cofnij”
     - Wtedy odhaczenie jest cofnięte
 
+### BR-ZEG-002: Zegarek: w trakcie pomiaru serii na czas przycisk główny to „Zakończ serię”
+- Przepływ: PR-07
+- Dowód potrzeby: ZM-05; docs/32-wzorce-interakcji.md (wzorzec 24); docs/design/design-spec.md §10 wiersz 38
+- Kryteria akceptacji:
+  - Scenariusz: Pomiar trwa
+    - Zakładając, że telefon mierzy stoperem serię na czas, a zegarek jest połączony
+    - Gdy zegarek pokazuje tę serię
+    - Wtedy przycisk główny nazywa się „Zakończ serię”, jak na telefonie, a jego stuknięcie kończy pomiar i odhacza serię
+  - Scenariusz: Brak pomiaru
+    - Zakładając, że seria na czas nie jest mierzona albo seria nie jest na czas
+    - Gdy zegarek pokazuje tę serię
+    - Wtedy przycisk główny nazywa się „Seria zrobiona”
+
 ### BR-GLS-001: Zapowiedzi głosowe na początku przerwy, domyślnie wyłączone
 - Przepływ: PR-02
 - Dowód potrzeby: ZP-07; D-005; docs/36-glos.md

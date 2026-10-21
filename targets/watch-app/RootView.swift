@@ -78,12 +78,14 @@ private struct DoubleTapShortcut: ViewModifier {
   }
 }
 
-/// Przycisk główny: „Seria zrobiona”. Gest podwójnego stuknięcia (od watchOS 11) uruchamia dokładnie to samo.
+/// Przycisk główny: „Seria zrobiona”; w trakcie pomiaru serii na czas (telefon mierzy) — „Zakończ serię”, ta sama nazwa co na telefonie (M3 ZM-05, docs/32 wz. 24).
+/// Gest podwójnego stuknięcia (od watchOS 11) uruchamia dokładnie to samo.
 struct PrimaryButton: View {
   @ObservedObject var store: WatchStore
+  var measuring: Bool = false
   var body: some View {
     Button { store.press(.main) } label: {
-      Text(store.label(.done)).frame(maxWidth: .infinity).multilineTextAlignment(.center)
+      Text(store.label(measuring ? .finish : .done)).frame(maxWidth: .infinity).multilineTextAlignment(.center)
     }
     .buttonStyle(.borderedProminent)
     .modifier(DoubleTapShortcut())
@@ -108,7 +110,7 @@ struct SetView: View {
         }
         .accessibilityElement(children: .contain)
         if v.actions.contains(.done) {
-          PrimaryButton(store: store)
+          PrimaryButton(store: store, measuring: v.measuring)
           Button { store.press(.differ) } label: { Text(store.label(.differ)).frame(maxWidth: .infinity) }
             .accessibilityIdentifier("watch.differ")
         }
@@ -151,7 +153,7 @@ struct RestView: View {
           Button { store.press(.undo) } label: { Text(store.label(.undo)).frame(maxWidth: .infinity) }.accessibilityIdentifier("watch.undo")
         }
         if v.actions.contains(.done) {
-          PrimaryButton(store: store)
+          PrimaryButton(store: store, measuring: v.measuring)
         } else if v.busy {
           Text(store.label(.connect)).font(.footnote.weight(.semibold)).accessibilityIdentifier("watch.connect")
         } else {

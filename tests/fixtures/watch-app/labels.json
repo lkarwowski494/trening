@@ -14,6 +14,7 @@
   "finished": "Trening zakończony",
   "update": "Zaktualizuj aplikację na zegarku",
   "nothingLeft": "nic więcej do zrobienia",
+  "finish": "Zakończ serię",
   "workoutOn": "Trening wciąż trwa"
  },
  "en": {
@@ -31,6 +32,7 @@
   "finished": "Workout finished",
   "update": "Update the watch app",
   "nothingLeft": "nothing more to do",
+  "finish": "Finish set",
   "workoutOn": "Workout still in progress"
  },
  "cs": {
@@ -48,6 +50,7 @@
   "finished": "Trénink dokončen",
   "update": "Aktualizujte aplikaci v hodinkách",
   "nothingLeft": "už nic nezbývá",
+  "finish": "Dokončit sérii",
   "workoutOn": "Trénink stále probíhá"
  },
  "sk": {
@@ -65,6 +68,7 @@
   "finished": "Tréning dokončený",
   "update": "Aktualizujte aplikáciu v hodinkách",
   "nothingLeft": "už nič nezostáva",
+  "finish": "Dokončiť sériu",
   "workoutOn": "Tréning stále prebieha"
  },
  "hu": {
@@ -82,6 +86,7 @@
   "finished": "Az edzés véget ért",
   "update": "Frissítse az óra alkalmazását",
   "nothingLeft": "nincs több teendő",
+  "finish": "Sorozat befejezése",
   "workoutOn": "Az edzés még folyamatban van"
  },
  "ro": {
@@ -99,6 +104,7 @@
   "finished": "Antrenament încheiat",
   "update": "Actualizează aplicația de pe ceas",
   "nothingLeft": "nimic altceva de făcut",
+  "finish": "Termină seria",
   "workoutOn": "Antrenamentul este încă în curs"
  },
  "bg": {
@@ -116,6 +122,7 @@
   "finished": "Тренировката приключи",
   "update": "Обновете приложението на часовника",
   "nothingLeft": "нищо повече за правене",
+  "finish": "Край на серията",
   "workoutOn": "Тренировката все още продължава"
  },
  "hr": {
@@ -133,6 +140,7 @@
   "finished": "Trening završen",
   "update": "Ažuriraj aplikaciju na satu",
   "nothingLeft": "ništa više za odraditi",
+  "finish": "Završi seriju",
   "workoutOn": "Trening je još u tijeku"
  },
  "sl": {
@@ -150,6 +158,7 @@
   "finished": "Trening je končan",
   "update": "Posodobi aplikacijo na uri",
   "nothingLeft": "ni več ničesar za narediti",
+  "finish": "Končaj serijo",
   "workoutOn": "Trening še poteka"
  },
  "sr": {
@@ -167,6 +176,7 @@
   "finished": "Тренинг је завршен",
   "update": "Ажурирај апликацију на сату",
   "nothingLeft": "ништа више није преостало",
+  "finish": "Заврши серију",
   "workoutOn": "Тренинг је још у току"
  },
  "lt": {
@@ -184,6 +194,7 @@
   "finished": "Treniruotė baigta",
   "update": "Atnaujinkite programą laikrodyje",
   "nothingLeft": "daugiau nieko neliko",
+  "finish": "Baigti seriją",
   "workoutOn": "Treniruotė dar vyksta"
  },
  "lv": {
@@ -201,6 +212,7 @@
   "finished": "Treniņš pabeigts",
   "update": "Atjauniniet lietotni pulkstenī",
   "nothingLeft": "vairs nekas nav jādara",
+  "finish": "Pabeigt sēriju",
   "workoutOn": "Treniņš joprojām notiek"
  },
  "et": {
@@ -218,6 +230,7 @@
   "finished": "Treening lõppenud",
   "update": "Värskenda kellarakendust",
   "nothingLeft": "rohkem pole midagi teha",
+  "finish": "Lõpeta seeria",
   "workoutOn": "Treening veel käib"
  },
  "uk": {
@@ -235,6 +248,7 @@
   "finished": "Тренування завершено",
   "update": "Оновіть застосунок на годиннику",
   "nothingLeft": "більше нічого не лишилося",
+  "finish": "Завершити підхід",
   "workoutOn": "Тренування ще триває"
  },
  "es": {
@@ -252,6 +266,7 @@
   "finished": "Entrenamiento terminado",
   "update": "Actualiza la app del reloj",
   "nothingLeft": "nada más por hacer",
+  "finish": "Terminar serie",
   "workoutOn": "Entrenamiento aún en curso"
  },
  "es-419": {
@@ -269,6 +284,7 @@
   "finished": "Entrenamiento terminado",
   "update": "Actualiza la app del reloj",
   "nothingLeft": "nada más por hacer",
+  "finish": "Terminar serie",
   "workoutOn": "Entrenamiento aún en curso"
  },
  "pt": {
@@ -286,6 +302,7 @@
   "finished": "Treino terminado",
   "update": "Atualize a app do relógio",
   "nothingLeft": "nada mais para fazer",
+  "finish": "Terminar série",
   "workoutOn": "O treino ainda está em curso"
  },
  "pt-BR": {
@@ -303,6 +320,7 @@
   "finished": "Treino finalizado",
   "update": "Atualize o app do relógio",
   "nothingLeft": "nada mais para fazer",
+  "finish": "Terminar série",
   "workoutOn": "O treino ainda está em andamento"
  },
  "de": {
@@ -320,6 +338,7 @@
   "finished": "Training beendet",
   "update": "Uhr-App aktualisieren",
   "nothingLeft": "nichts mehr zu tun",
+  "finish": "Satz beenden",
   "workoutOn": "Training läuft noch"
  },
  "fr": {
@@ -337,6 +356,7 @@
   "finished": "Séance terminée",
   "update": "Mettez à jour l’app de la montre",
   "nothingLeft": "plus rien à faire",
+  "finish": "Terminer la série",
   "workoutOn": "Séance toujours en cours"
  },
  "it": {
@@ -354,6 +374,7 @@
   "finished": "Allenamento terminato",
   "update": "Aggiorna l’app dell’orologio",
   "nothingLeft": "nient’altro da fare",
+  "finish": "Termina serie",
   "workoutOn": "Allenamento ancora in corso"
  },
  "nl": {
@@ -371,6 +392,7 @@
   "finished": "Training beëindigd",
   "update": "Werk de app op het horloge bij",
   "nothingLeft": "niets meer te doen",
+  "finish": "Rond set af",
   "workoutOn": "Training loopt nog"
  },
  "sv": {
@@ -388,6 +410,7 @@
   "finished": "Passet avslutat",
   "update": "Uppdatera appen på klockan",
   "nothingLeft": "inget mer att göra",
+  "finish": "Avsluta set",
   "workoutOn": "Passet pågår fortfarande"
  },
  "da": {
@@ -405,6 +428,7 @@
   "finished": "Træning afsluttet",
   "update": "Opdater appen på uret",
   "nothingLeft": "intet mere at lave",
+  "finish": "Afslut sæt",
   "workoutOn": "Træningen er stadig i gang"
  },
  "nb": {
@@ -422,6 +446,7 @@
   "finished": "Økten er avsluttet",
   "update": "Oppdater appen på klokken",
   "nothingLeft": "ingenting mer å gjøre",
+  "finish": "Fullfør sett",
   "workoutOn": "Økten pågår fortsatt"
  },
  "fi": {
@@ -439,6 +464,7 @@
   "finished": "Treeni päättyi",
   "update": "Päivitä kellosovellus",
   "nothingLeft": "ei enää mitään tehtävää",
+  "finish": "Lopeta sarja",
   "workoutOn": "Treeni on yhä käynnissä"
  },
  "tr": {
@@ -456,6 +482,7 @@
   "finished": "Antrenman bitti",
   "update": "Saat uygulamasını güncelle",
   "nothingLeft": "yapılacak başka bir şey yok",
+  "finish": "Seti bitir",
   "workoutOn": "Antrenman hâlâ devam ediyor"
  },
  "el": {
@@ -473,6 +500,7 @@
   "finished": "Η προπόνηση ολοκληρώθηκε",
   "update": "Ενημερώστε την εφαρμογή του ρολογιού",
   "nothingLeft": "δεν απομένει τίποτα",
+  "finish": "Τέλος σετ",
   "workoutOn": "Η προπόνηση συνεχίζεται"
  },
  "id": {
@@ -490,6 +518,7 @@
   "finished": "Latihan selesai",
   "update": "Perbarui aplikasi di jam tangan",
   "nothingLeft": "tidak ada lagi yang perlu dikerjakan",
+  "finish": "Selesaikan set",
   "workoutOn": "Latihan masih berjalan"
  },
  "ms": {
@@ -507,6 +536,7 @@
   "finished": "Latihan tamat",
   "update": "Kemas kini aplikasi pada jam",
   "nothingLeft": "tiada lagi yang perlu dibuat",
+  "finish": "Tamatkan set",
   "workoutOn": "Latihan masih berjalan"
  },
  "vi": {
@@ -524,6 +554,7 @@
   "finished": "Buổi tập đã kết thúc",
   "update": "Cập nhật ứng dụng trên đồng hồ",
   "nothingLeft": "không còn gì phải làm",
+  "finish": "Kết thúc hiệp",
   "workoutOn": "Buổi tập vẫn đang diễn ra"
  },
  "ru": {
@@ -541,6 +572,7 @@
   "finished": "Тренировка завершена",
   "update": "Обновите приложение на часах",
   "nothingLeft": "больше ничего не осталось",
+  "finish": "Завершить подход",
   "workoutOn": "Тренировка ещё идёт"
  },
  "ja": {
@@ -558,6 +590,7 @@
   "finished": "トレーニングが終了しました",
   "update": "ウォッチのアプリを更新",
   "nothingLeft": "もうやることはありません",
+  "finish": "セットを終了",
   "workoutOn": "トレーニングはまだ続いています"
  },
  "ko": {
@@ -575,6 +608,7 @@
   "finished": "운동이 종료되었습니다",
   "update": "워치 앱 업데이트",
   "nothingLeft": "더 할 것이 없음",
+  "finish": "세트 종료",
   "workoutOn": "운동이 아직 진행 중입니다"
  },
  "zh-Hant": {
@@ -592,6 +626,7 @@
   "finished": "訓練已結束",
   "update": "更新手錶 App",
   "nothingLeft": "沒有其他要做的了",
+  "finish": "結束這組",
   "workoutOn": "訓練仍在進行中"
  }
 }

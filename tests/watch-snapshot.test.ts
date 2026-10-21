@@ -43,6 +43,18 @@ describe('faza set', () => {
     A().exercises[1].sets.forEach(x => { x.done = false; x.addKg = ''; }); A().exercises[0].sets.forEach(x => { x.done = true; });
     expect(snap().now).toMatchObject({ title: 'Pull Up', load: 'masa ciała × 8' });
   });
+  test('M3 p6 / ZM-05: pole `measuring` tylko w trakcie pomiaru TEJ serii na czas (inaczej pola nie ma); `after.now` go nie niesie', async () => {
+    await world(); A().exercises.slice(0, 2).forEach(e => e.sets.forEach(x => { x.done = true; }));
+    const plank = sid(2, 0);
+    expect(snap().now).not.toHaveProperty('measuring');
+    expect(snap({ measuring: plank }).now).toMatchObject({ title: 'Plank', timed: true, measuring: true });
+    expect(snap({ measuring: sid(2, 1) }).now).not.toHaveProperty('measuring'); /* pomiar innej serii */
+    expect(snap({ measuring: null }).now).not.toHaveProperty('measuring');
+    expect(snap({ measuring: plank }).after!.now).not.toHaveProperty('measuring');
+  });
+  test('M3 p6 / ZM-05: seria bez czasu nie dostaje `measuring`, nawet gdy id się zgadza', async () => {
+    await world(); expect(snap({ measuring: sid(0, 0) }).now).not.toHaveProperty('measuring');
+  });
   test('rozgrzewka i drop set: licznik jak karta „teraz”', async () => {
     await world(); store.addSet(0, 'warmup'); store.addSet(0, 'drop');
     expect(snap().now!.counter).toBe('rozgrzewka'); const e = A().exercises[0]; e.sets.filter(x => x.kind === 'warmup').forEach(x => { x.done = true; });
@@ -140,5 +152,11 @@ describe('WatchLink.snapshot: numer wersji rośnie tylko przy zmianie treści', 
     await world(); const { sent, link } = mk(); const a = link.push(); expect(a!.rev).toBe(1); expect(link.push()).toBeNull(); expect(sent).toHaveLength(1);
     A().exercises[0].sets[0].weight = 82.5; const b = link.push(); expect(b!.rev).toBe(2); expect(b!.now!.load).toBe('82,5 kg × 8');
     const c = link.push(true); expect(c!.rev).toBe(2); expect(sent).toHaveLength(3); link.stop();
+  });
+  test('M3 p6 / ZM-05: start i koniec pomiaru serii na czas zmieniają migawkę (`measuring`), więc zegarek przełącza etykietę', async () => {
+    await world(); A().exercises.slice(0, 2).forEach(e => e.sets.forEach(x => { x.done = true; })); const { link } = mk(); const a = link.push();
+    expect(a!.now).toMatchObject({ title: 'Plank' }); expect(a!.now).not.toHaveProperty('measuring');
+    await timer.startSet(sid(2, 0), 45); const b = link.push(); expect(b!.rev).toBe(a!.rev + 1); expect(b!.now).toMatchObject({ title: 'Plank', timed: true, measuring: true });
+    await timer.stopSet(); const c = link.push(); expect(c!.rev).toBe(b!.rev + 1); expect(c!.now).not.toHaveProperty('measuring'); link.stop();
   });
 });
