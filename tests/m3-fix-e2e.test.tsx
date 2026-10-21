@@ -58,3 +58,14 @@ describe('E2E-35: skala wysiłku RIR z Ustawień trafia do treningu', () => {
     const hid = { includeHiddenElements: true }; expect(screen.getAllByText('RIR', hid).length).toBeGreaterThan(0); expect(screen.queryAllByText('RPE', hid)).toHaveLength(0); /* nagłówek kolumny jest ukryty przed VoiceOver (A11-18) */
   });
 });
+
+describe('Scenariusze Maestro: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter', () => {
+  test('każdy inputText po „Search exercises…” ma zaraz po sobie (poza asercją wartości pola) pressKey: Enter', () => {
+    const fs = require('fs'); const path = require('path'); const dir = path.join(__dirname, '..', '.maestro'); const bad: string[] = [];
+    for (const f of fs.readdirSync(dir).filter((x: string) => x.endsWith('.yaml'))) {
+      const L: string[] = fs.readFileSync(path.join(dir, f), 'utf8').split('\n');
+      L.forEach((l, i) => { if (!/^\s*- inputText:/.test(l) || !/Search exercises/.test(L.slice(Math.max(0, i - 3), i).join('\n'))) return; if (/inputText/.test(L[i + 1] ?? '')) return; const next = L.slice(i + 1).find(x => x.trim() && !/^\s*- assertVisible/.test(x) && !/^\s*#/.test(x)) ?? ''; if (!/^\s*- pressKey: Enter/.test(next)) bad.push(`${f}:${i + 1}`); });
+    }
+    expect(bad).toEqual([]);
+  });
+});

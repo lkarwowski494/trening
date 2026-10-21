@@ -41,6 +41,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Hammer E2E"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Cable Hammer E2E, barbell.*", timeout: 15000 }
@@ -55,6 +56,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Hammer E2E"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Cable Hammer E2E,.*"
@@ -65,6 +67,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Zottman Curl E2E"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Create “Zottman Curl E2E”.*", timeout: 15000 }
@@ -94,6 +97,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Hammer E2E"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Cable Hammer E2E, barbell.*", timeout: 15000 }
