@@ -312,8 +312,8 @@ h1 { font-family: Tablica; font-size: 36px; margin: 0; } h2 { font-family: Tabli
 figure { margin: 0; font-size: 13px; } figcaption { margin-top: 6px; }
 .ciem { background: radial-gradient(circle at 30% 20%, #3a3f47, #1c1c1e); }
 </style></head><body><div class="ark" data-ekran="ikona">
-<h1>Ikona: obecny rysunek, pliki docelowe</h1>
-<p>Rysunek bez zmian (decyzja STOP E2, 21.10.2026). Nowy plik: <b>zegarek 1088×1088</b> (HIG App icons, tabela specyfikacji: watchOS „1088x1088 px”, kształt okrągły; odczyt 21.10.2026). iOS: <code>assets/icon.png</code> 1024 RGB bez przezroczystości (ikona.mjs kod 0), ciemny i barwiony — obecne pliki. Android: nie wydawany (DEC-26) — otwarte.</p>
+<h1>Ikona: obecny rysunek, pliki docelowe (zatwierdzone STOP E3, 21.10.2026)</h1>
+<p>Rysunek bez zmian (decyzja STOP E2, 21.10.2026). Nowy plik: <b>zegarek 1088×1088</b> (HIG App icons, tabela specyfikacji: watchOS „1088x1088 px”, kształt okrągły; odczyt 21.10.2026). iOS: <code>assets/icon.png</code> 1024 RGB bez przezroczystości (ikona.mjs kod 0), ciemny i barwiony — obecne pliki. Android: nie wydawany (DEC-26) — otwarte. Wpięcie zegarka 1088 i tła startu: <code>ikona/konfiguracja.md</code> (rola 08).</p>
 <h2>iPhone — jasna tapeta (180, 60, 40 i 29 pt)</h2>
 <div class="rz"><div class="tap tj">${ik('../../../assets/brand/icon.svg', 180)}${ik('../../../assets/brand/icon.svg', 60)}${ik('../../../assets/brand/icon.svg', 40)}${ik('../../../assets/brand/icon.svg', 29)}</div>
 <div class="tap tc">${ik('../../../assets/brand/icon.svg', 180)}${ik('../../../assets/brand/icon.svg', 60)}${ik('../../../assets/brand/icon.svg', 40)}${ik('../../../assets/brand/icon.svg', 29)}</div></div>
@@ -323,7 +323,7 @@ figure { margin: 0; font-size: 13px; } figcaption { margin-top: 6px; }
 <h2>Zegarek — maska okrągła (zegarek-1088.png; 196, 100 i 44 px)</h2>
 <div class="rz"><div class="tap tz">${kolo('zegarek-1088.png', 196)}${kolo('zegarek-1088.png', 100)}${kolo('zegarek-1088.png', 44)}</div>
 <p style="max-width:700px">Talerze mieszczą się w kole: najdalszy narożnik (talerz 25 kg, 30/16 w siatce 120) leży 53 jednostki od środka przy promieniu 60. Tło papieru, nie czarne (HIG watchOS: „Avoid using black for your icon’s background.”).</p></div>
-<h2>Ekran startowy i intro na tle motywu (propozycja: tło startu = bg z tokenów)</h2>
+<h2>Ekran startowy i intro na tle motywu (zatwierdzone STOP E3, 21.10.2026: tło startu = bg z tokenów)</h2>
 <div class="rz"><figure><div class="rz">${[0, 250, 450, 850].map((ms) => kadr(ms, false, T.light.bg)).join('')}</div><figcaption>jasny: ${T.light.bg} (dziś ${'#F4F3EF'}) — kadry 0, 250, 450, 850 ms (lib/intro.ts)</figcaption></figure>
 <figure><div class="rz">${kadr(0, true, T.dark.bg)}${kadr(850, true, T.dark.bg)}</div><figcaption>ciemny: ${T.dark.bg} (dziś #121316)</figcaption></figure></div>
 </div></body></html>

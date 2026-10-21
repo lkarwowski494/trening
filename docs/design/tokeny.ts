@@ -1,5 +1,5 @@
 /*
- * Propozycja modułu motywu — system E3 redesignu M3 (rola 04 build, 21.10.2026). NIE jest importowany przez aplikację: wdroży go rola 08
+ * Moduł tokenów — system E3 redesignu M3 (rola 04 build), zatwierdzony na STOP E3 (21.10.2026). NIE jest importowany przez aplikację: wdroży go rola 08
  * (partia p1 z audit/M3-2026-10-21/plan.md) w miejsce kolorów, krojów i liczb z lib/theme.ts. Opis i zasady użycia: docs/design/design-spec.md.
  *
  * Decyzje, z których wynika (docs/18-przekazanie.md, 21.10.2026): kierunek A „tablica podejść”, wariant A2 (barwy talerzy IWF jako subtelne tło
@@ -109,7 +109,7 @@ export const TYPE: Readonly<Record<TypeRole, TypeToken>> = {
   caption: { font: 'body', size: 11, lineHeight: 13, weight: '600', scale: 'pasek' },
   button: { font: 'body', size: 17, lineHeight: 22, weight: '600', scale: 'opis' },
   buttonPrimary: { font: 'body', size: 19, lineHeight: 24, weight: '700', scale: 'opis' },
-  /** Nazwa ćwiczenia na tablicy: wersaliki jak nazwisko na tablicy podejść (IWF 3.3.6.15) — przez upperText(), wyjątek DEC-17 do decyzji (STOP E3). */
+  /** Nazwa ćwiczenia na tablicy: wersaliki jak nazwisko na tablicy podejść (IWF 3.3.6.15) — przez upperText(); rozszerzenie wyjątku wz. 28 / DEC-17 zatwierdzone na STOP E3 (21.10.2026, W3 a; docs/32). */
   boardName: { font: 'title600', size: 24, lineHeight: 26, scale: 'opis', upper: true, tracking: 0.04 },
   boardMeta: { font: 'title600', size: 18, lineHeight: 22, scale: 'opis', tabular: true },
   boardNumber: { font: 'title700', size: 96, lineHeight: 91, scale: 'stala', fitWidth: 0.24, tabular: true },
@@ -151,7 +151,7 @@ export const RADIUS = {
 /** Wysokości i cele dotykowe (pt). Cel ≥ 44 (decyzja studia; minimum HIG 28). */
 export const SIZE = {
   hit: 44, buttonPrimary: 60, buttonSecondary: 52, stepButton: 44, rowMin: 52, boardFieldMin: 44,
-  /** Pole serii nie jest celem dotyku (seria poprawiana poza tablicą) — minimum szerokości przy liczeniu rzędów: 36 × skala liczb. [DO USTALENIA] w STOP E3. */
+  /** Pole serii nie jest celem dotyku (seria poprawiana poza tablicą) — minimum szerokości przy liczeniu rzędów: 36 × skala liczb. Decyzja STOP E3 (21.10.2026): pola bez dotyku. */
   boardFieldMinWidth: 36, boardFieldGap: 8,
   icon: 24, iconInline: 16, tabIcon: 26,
 } as const;
@@ -177,7 +177,7 @@ export const MOTION = {
 
 /*
  * Mapa haptyki (ZM-07: dwa przełączniki — „Dźwięk na koniec przerwy” i „Wibracje”). Każde zdarzenie haptyczne zależy tylko od „Wibracje”,
- * każdy dźwięk tylko od „Dźwięk na koniec przerwy”. expo-haptics; na web brak. Nowe zdarzenia oznaczone `nowe: true` — do decyzji (STOP E3).
+ * każdy dźwięk tylko od „Dźwięk na koniec przerwy”. expo-haptics; na web brak. Zdarzenia `nowe: true` zatwierdzone na STOP E3 (21.10.2026): „tick” przy ± i ostrzegawcza przy „Seria zrobiona” bez wyniku.
  */
 export type HapticEvent = { kiedy: string; haptyka: 'impactLight' | 'impactMedium' | 'selection' | 'notificationSuccess' | 'notificationWarning' | null; dzwiek: boolean; nowe?: true; zrodlo: string };
 export const HAPTICS: readonly HapticEvent[] = [
