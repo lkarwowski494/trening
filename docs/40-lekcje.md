@@ -33,8 +33,8 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 - **Ocena zakresu: systemowa** (każdy etap bez wydania na gałęzi roboczej może tak samo długo leżeć na czerwono). Propozycja dla właściciela: (a) w każdym poleceniu etapu M3 (i w szablonie koordynatora) krok po wypchnięciu: `gh run list --branch <gałąź> --limit 1` i przy czerwonym — naprawa przed STOP-em; plus hak pre-push z L-009 (a) rozszerzony o `lint` i `check:matrix`; (b) tylko krok w poleceniach (postanowienie, słabsze). Rekomendacja: (a) — hak łapie błąd przed wypchnięciem, krok `gh run` łapie resztę (Jest, eksport iOS).
 - **Akcje:**
   1. Naprawa lintu narzędzi i `docs/19` — **zrobione** (commit E4 roli 04, 21.10.2026).
-  2. Krok „sprawdź CI po wypchnięciu” w poleceniach etapów M3 — **otwarte** (koordynator, decyzja właściciela).
-  3. Hak pre-push z `lint` + `check:matrix` (L-009 a) — **otwarte** (decyzja właściciela).
+  2. Krok „sprawdź CI po wypchnięciu” w poleceniach etapów M3 — **zrobione** (decyzja właściciela 21.10.2026; polecenia M3 od partii p1).
+  3. Hak pre-push z `lint` + `check:readme` + `check:matrix` (L-009 a) — **w toku** (decyzja właściciela 21.10.2026; wdrożenie na main — koordynator projektu).
 
 ## L-012 (21.10.2026, M3) — błędna uwaga dla właściciela o makiecie: „w A2 ciemnym przyciski są ciemne”
 
