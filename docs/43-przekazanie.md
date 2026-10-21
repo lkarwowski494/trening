@@ -84,12 +84,12 @@ Przegląd co godzinę (zaplanowane zadanie „Trening: koordynator — przegląd
 | 4 | Ciemny motyw w nocnym E2E rzeczywiście ciemny (L-013 akcja 4) | tester-e2e / sonnet | `.maestro/`, `e2e-ios.yml` | czeka na 1 i 2 (te same pliki) |
 | 5 | Wdrożenie brzmień z przeglądu badacza: T-002, T-003, T-032 (+ opcjonalnie T-021, komentarz T-008) w 35 językach + `claims.mjs --rehash` (raport `docs/research/przeglad-badacza-2026-10-21b.md`) | tlumacz / sonnet | `lib/i18n*`, `lib/locales/` | czeka na scalenie M3 (teksty UI) |
 | 6 | Powtórny przegląd tłumaczeń przez API (asekuracja, R1 + nowe teksty M3) | koordynator (workflow) | — | po M3 (jeden przebieg dla wszystkich nowych zdań) |
-| 7 | Przebiegi dowodowe przed App Store: 3 czyste noce pełnego katalogu (tryb ścisły), strefy (`tests-tz.yml`) | koordynator | — | po 1, 2 i 4 |
+| 7 | Przed App Store: **jeden pełny katalog E2E na standardowym iPhonie** (1 ponowienie dozwolone; decyzja właściciela 21.10 — noc nie blokuje), strefy (`tests-tz.yml`) | koordynator | — | po 10 (audyt i naprawy) |
 | 8 | Hak pre-push (lint + check:readme + check:matrix, `prepare`) + krok „sprawdź tests.yml po wypchnięciu” w `.claude/agents/*.md` (L-009; decyzja właściciela 21.10 w sesji M3, b78ddb3) | programista / sonnet | `scripts/hooks/`, `package.json`, `.claude/agents/` | w toku (gałąź `hak-pre-push`) |
 | 9 | Po TestFlight: lista „telefon zaraz po buildzie” (R-004 i lista „tylko telefon”) | koordynator → właściciel | — | po buildzie z main 8763e58 |
 | — | **Obszar M3** (gałąź `redesign/trening-2026-10-21`, partie p1–p6): `app/`, `components/`, `lib/` (theme, ekrany, teksty, słowniki), ikony, zegarek, `docs/design/`, `docs/32`, `docs/m3-stan.md`; scenariusze `.maestro/` po scaleniu main (ustalone z M3 21.10) | M3 | — | koordynator tu nie wchodzi |
 | 10 | Po kroku 4 (M3 scalone, brzmienia, przegląd tłumaczeń): **pełny głęboki audyt M1 całej aplikacji** (z LOK-07) + naprawy blokerów (M2) — decyzja właściciela 21.10 | M1 / M2 | — | po 5 i 6 |
-| 11 | Po audycie: 3 czyste noce (tryb ścisły), telefon, zrzuty i opis sklepu, App Store Connect, migracja do Apps4Brew, 1.0. **M4 dopiero po wydaniu** (zakres 1.0 zamrożony) | wydawca / właściciel | — | po 10 |
+| 11 | Po audycie: pełny katalog E2E (poz. 7), telefon, zrzuty i opis sklepu, App Store Connect, migracja do Apps4Brew, 1.0. **M4 dopiero po wydaniu** (zakres 1.0 zamrożony) | wydawca / właściciel | — | po 10 |
 
 ## Zasady pracy obowiązujące (skrót; pełne w CLAUDE.md i docs/18)
 - Podział pracy na agentów według obszaru plików (CLAUDE.md, 20.10.2026); pliki generowane i pełne verify raz po scaleniu.
