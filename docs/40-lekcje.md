@@ -23,6 +23,23 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 | R-011 | M1-058: `scripts/ci/sim-wybor.mjs` w obu krokach „Simulator” `e2e-ios.yml` (Node na maszynie macOS, format listy `simctl`); nie wiadomo, czy obraz macos-26 ma iPhone SE (375 pt) — bez niego „mały ekran” zostaje 390 pt (16e/17e), a log pokaże to wprost | przebieg `e2e-ios.yml` z wejściem `urzadzenie` jak w `nightly.yml` i `tylko_scenariusze: 01`: w logu „Ekran: … szerokość ekranu N pt”; decyzja co do braku SE (właściciel) | **otwarte** — przebieg dowodowy do zlecenia (raport M2, partia 4)
 | R-012 | M1-062 (DEC-27): test aktualizacji bierze poprzednią wersję z pliku wydania `Trening-sim.zip`; zadanie „tag” w `testflight.yml` ma go dołączać (pobranie artefaktu `trening-sim-app` z zielonego przebiegu E2E, `gh release upload`), a `poprzednia-wersja.sh` pobierać na GitHub Actions. Linux tego nie sprawdzi; do czasu pierwszego wydania z plikiem E2E z testem aktualizacji kończy się błędem (zamierzone) | dowód 1: plik `Trening-sim.zip` dołączony ręcznie do istniejącego wydania + `e2e-ios.yml` (pakiet podstawowy) zielony z logiem „Poprzednia wersja (plik wydania): <tag>” i wersją oraz buildem obu aplikacji; dowód 2: pierwsze prawdziwe wydanie TestFlight — krok „Plik wydania Trening-sim.zip” zielony, wydanie ma plik | **otwarte** — przebieg dowodowy do zlecenia (raport M2, partia 4)
 
+## L-012 (21.10.2026) — czerwony tests.yml na main: losowe id ćwiczenia zaczęło się od „8432”, liczby szukanej przez niezmiennik Zdrowia
+
+- **Co się stało:** `tests.yml` na main po scaleniu PR #16 (run 39549939632, d171db1) czerwony: `tests/health-query.test.ts`, niezmiennik (a)
+  „wartości ze Zdrowia nie trafiają do stanu” znalazł „8432” (kroki z fałszywego Zdrowia) w losowym id ćwiczenia `"8432ed24-…"`. Aplikacja bez błędu
+  (ocena: **teoretyczny** dla użytkownika — tylko test; realny dla CI, ok. 1 na kilkaset przebiegów).
+- **Przyczyna źródłowa:** poprawka z 12.10 (ta sama liczba w środku id) wykluczyła tylko znaki **przed** liczbą; po liczbie dopuszczała litery hex,
+  więc id zaczynające się od niej nadal pasowało. Poprawka powstała z jednego przypadku, bez testu samego wzorca na wszystkich położeniach w UUID.
+  Głębiej: niezmiennik „brak liczby X” sprawdzany na danych z losowym UUID jest z natury niedeterministyczny.
+- **Ocena zakresu: systemowa** (drugie wystąpienie tej samej klasy; inne testy „brak wartości w JSON” mogą mieć to samo).
+  Opcje: (A) zawężony wzorzec + test samego wzorca na id z liczbą na początku, w środku i po „-” (**zrobione**, tanie, tylko ten test);
+  (B) deterministyczne `randomUUID` w testach (stałe ziarno w konfiguracji Jest) — usuwa całą klasę, ale zmienia dane we wszystkich testach
+  i może ukryć błędy zależne od unikalności id. Rekomendacja: A teraz, B dopiero przy trzecim wystąpieniu.
+- **Akcje:**
+  1. `tests/health-query.test.ts`: wzorzec `lone()` wyklucza litery i „-” także po liczbie; asercje wzorca na id „8432ed24-…”, „a-8432-b”, „18432”
+     oraz na wyciekach `8432`, `8432.5`, `"8432"` — **zrobione** (gałąź `claude/optimistic-clarke-9tj0im`).
+  2. Decyzja właściciela A/B dla całej klasy — **otwarte**.
+
 ## L-011 (20.10.2026, audyt M1) — zmiana etykiety w ustawieniach położyła scenariusze 33 i 34 testu aktualizacji (stara wersja ma inne etykiety)
 
 - **Co się stało:** E2E pakiet podstawowy (run 39427683836): 33 szukał „Measurement system” (LOK-07, partia 4) na POPRZEDNIEJ wersji (v0.20.0-b1018),
