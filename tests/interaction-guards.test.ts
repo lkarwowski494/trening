@@ -18,8 +18,8 @@ const hits = (re: RegExp, allow: string[] = []) => [...src].filter(([f, s]) => !
 const lines = (re: RegExp, allow: string[] = []) => [...src].filter(([f]) => !allow.includes(f)).flatMap(([f, s]) => s.split('\n').map((l, i) => [f, i + 1, l] as const).filter(([, , l]) => re.test(l)).map(([f2, n]) => `${f2}:${n}`));
 
 describe('S2/S1: nagłówki — przyciski tylko przez wspólne komponenty', () => {
-  test('headerLeft/headerRight tylko w DraftHeader, CloseButton, AddButton (poza resetem `: undefined`)', () => {
-    const own = ['components/DraftHeader.tsx', 'components/CloseButton.tsx', 'components/AddButton.tsx'];
+  test('headerLeft/headerRight tylko w DraftHeader, CloseButton, AddButton, EditHeader (poza resetem `: undefined`)', () => {
+    const own = ['components/DraftHeader.tsx', 'components/CloseButton.tsx', 'components/AddButton.tsx', 'components/EditHeader.tsx' /* M3 p5: „Edytuj” + „+” (W1 b) */];
     const bad = lines(/header(Left|Right)\s*:/, own).filter(x => { const [f, n] = x.split(':'); const l = src.get(f)!.split('\n')[+n - 1]; return !/header(Left|Right): undefined/.test(l.replace(/header(Left|Right): undefined[^}]*/g, 'header$1: undefined')) || /header(Left|Right): \(\)/.test(l); });
     expect(bad).toEqual([]);
   });

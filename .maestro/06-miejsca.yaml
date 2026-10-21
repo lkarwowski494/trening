@@ -61,6 +61,13 @@ name: Miejsca treningu i filtr ćwiczeń
 # Drążek odblokowuje m.in. Pull Up / Chin Up — licznik dostępnych ćwiczeń musi się zmienić
 - assertTrue: ${maestro.copiedText != output.dostepnePrzed}
 
+# --- Przycisk „Remove place” na dole ekranu miejsca (M3 p5, ZM-04, W2 a): to samo okno co gest; „Cancel” zostawia miejsce (to jedyne i główne — dalsze kroki go potrzebują) ---
+- scrollUntilVisible: { element: "Remove place", direction: DOWN, timeout: 90000 }
+- tapOn: "Remove place"
+- extendedWaitUntil: { visible: "Delete place?", timeout: 15000 }
+- tapOn: "Cancel"
+- scrollUntilVisible: { element: "Available exercises: .*", direction: UP, timeout: 90000 }
+
 # --- Powrót do zakładki Trening (miejsce → lista miejsc → ustawienia → zakładki) ---
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Add place", timeout: 30000 }
@@ -80,6 +87,7 @@ name: Miejsca treningu i filtr ćwiczeń
 - takeScreenshot: 23-picker-filtr-miejsca
 - tapOn: "Search exercises…"
 - inputText: "Pull"
+- pressKey: Enter
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Pull Up,.*", timeout: 30000 }
@@ -93,6 +101,7 @@ name: Miejsca treningu i filtr ćwiczeń
 - tapOn: "Pull"
 - eraseText: 10
 - inputText: "Lat Pull"
+- pressKey: Enter
 - tapOn: { text: "Continue", optional: true }
 - extendedWaitUntil: { visible: "Lat Pulldown,.*missing:.*", timeout: 30000 }
 - takeScreenshot: 25-picker-pokaz-wszystkie

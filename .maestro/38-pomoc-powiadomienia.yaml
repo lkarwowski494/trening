@@ -20,8 +20,8 @@ name: Przewodnik i przypomnienia
 - takeScreenshot: 113-przewodnik
 # --- temat „Backup” → Pokaż → ekran kopii → powrót ---
 - tapOn: "Backup, unread"
-- extendedWaitUntil: { visible: "Show: Backup", timeout: 15000 }
-- assertVisible: "Read: 1 of 10"
+# M3 p5: większe interlinie (font(rola)) wypychają przycisk ostatniego tematu poza ekran — licznik sprawdzamy u góry, potem przewijamy do przycisku
+- extendedWaitUntil: { visible: "Read: 1 of 10", timeout: 15000 }
 - scrollUntilVisible: { element: "Show: Backup", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Show: Backup"
 - extendedWaitUntil: { visible: "Export backup \\(JSON file\\)", timeout: 30000 }

@@ -7,6 +7,7 @@ import Constants from 'expo-constants';
 import { useHistTick } from '@/lib/store';
 import { t, appName } from '@/lib/i18n';
 import { guideProgress } from '@/lib/guide';
+import { font } from '@/lib/theme';
 
 export default function MoreScreen() {
   useHistTick(); /* odświeżenie licznika przewodnika */ const router = useRouter();
@@ -22,7 +23,7 @@ export default function MoreScreen() {
       <Item title={t('Kopia zapasowa (eksport / import)')} /* H2 (audyt 0.10): „Kopia zapasowa” zamiast „Backup” (folder w Plikach zostaje „Backup”) */ onPress={() => router.push('/more/backup')} />
       <Item title={t('Ustawienia')} onPress={() => router.push('/more/settings')} />
       <Item title={t('O aplikacji')} onPress={() => router.push('/more/about')} />{/* audyt 0.10 SEC-08: wersja i licencje open source */}
-      <Muted style={{ marginTop: 20, fontSize: 12 }}>{/* decyzja właściciela 06.10.2026: tylko numer wersji, małym drukiem */}{`${appName()} ${Constants.expoConfig?.version ?? ''}`}</Muted>
+      <Muted style={{ marginTop: 20, ...font('footnote') }}>{/* decyzja właściciela 06.10.2026: tylko numer wersji, małym drukiem */}{`${appName()} ${Constants.expoConfig?.version ?? ''}`}</Muted>
     </Screen></SafeAreaView>
   );
 }

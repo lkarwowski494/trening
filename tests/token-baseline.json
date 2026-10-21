@@ -7,9 +7,6 @@
   "app/(tabs)/history.tsx": {
    "fontSize": 1
   },
-  "app/(tabs)/more.tsx": {
-   "fontSize": 1
-  },
   "app/(tabs)/progress.tsx": {
    "fontSize": 9,
    "borderRadius": 4
@@ -23,10 +20,6 @@
   "app/generator.tsx": {
    "fontSize": 12
   },
-  "app/guide.tsx": {
-   "fontSize": 4,
-   "borderRadius": 2
-  },
   "app/history/[id].tsx": {
    "fontSize": 9
   },
@@ -37,33 +30,8 @@
    "fontSize": 12,
    "borderRadius": 1
   },
-  "app/more/about.tsx": {
-   "fontSize": 2
-  },
-  "app/more/backup.tsx": {
-   "fontSize": 4
-  },
-  "app/more/bodymass.tsx": {
-   "fontSize": 2
-  },
-  "app/more/import.tsx": {
-   "fontSize": 3
-  },
-  "app/more/language.tsx": {
-   "fontSize": 1
-  },
-  "app/more/licenses.tsx": {
-   "fontSize": 4
-  },
-  "app/more/location/[id].tsx": {
-   "fontSize": 5
-  },
   "app/more/settings.tsx": {
    "fontSize": 5
-  },
-  "app/paywall.tsx": {
-   "fontSize": 7,
-   "borderRadius": 2
   },
   "app/picker.tsx": {
    "fontSize": 2
@@ -148,9 +116,6 @@
   "components/LoadEditor.tsx": {
    "fontSize": 5
   },
-  "components/MedicalNote.tsx": {
-   "fontSize": 1
-  },
   "components/MuscleMap.tsx": {
    "fontSize": 6,
    "borderRadius": 1
@@ -187,10 +152,6 @@
   "components/TodayPlan.tsx": {
    "fontSize": 10,
    "borderRadius": 2
-  },
-  "components/WhatsNew.tsx": {
-   "fontSize": 5,
-   "borderRadius": 3
   },
   "components/WhenFields.tsx": {
    "fontSize": 1
