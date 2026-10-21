@@ -3,13 +3,12 @@
 # „Pierwsze kroki” → „Plan z moich szablonów” → podgląd → zapis i aktywacja → Plan tygodnia → „+ Nowy szablon” na wtorek → „Zapisz” → wtorek z nowym szablonem.
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "Plan from my templates"          ← 'Plan z moich szablonów' (components/Dashboard.tsx „Pierwsze kroki”, app/plan.tsx, wybór trybu w app/generator.tsx)
+#   "Plan from my templates"          ← 'Plan z moich szablonów' (components/Dashboard.tsx „Pierwsze kroki”, app/plan.tsx; bez przełącznika trybu w generatorze — ZM-03)
 #   "Training days per week"          ← 'Dni treningowe w tygodniu' (components/OwnPlan.tsx)
 #   "Template in the plan: Upper A"   ← 'Szablon w planie: {name}' (chip wyboru szablonu, przełącznik)
 #   "Preview", "Save plan"            ← 'Podgląd', 'Zapisz plan'
-#   "Make the new plan active\?", "Make active" ← 'Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny' (to samo okno co generator)
-#   "Planning"                        ← 'Planowanie' (przycisk okna „Saved” i tytuł ekranu planu)
-#   "Saved"                           ← 'Zapisano' (potwierdzenie zapisu)
+#   "The plan .* is now active\\."            ← 'Plan „{name}” jest teraz aktywny.' (ZM-03: zdanie na ekranie planu po zapisie bez aktywnego planu; bez okna pytania i „Saved”)
+#   "Planning"                        ← 'Planowanie' (przycisk w „Pierwszych krokach” i tytuł ekranu planu)
 #   "Not now"                        ← 'Nie teraz' (okno zgody na przypomnienie — X-11: pierwszy plan z każdej drogi, components/PlanReminderSync)
 #   "Monday, Upper A", "Tuesday, Rest" ← app/plan.tsx: wiersz dnia '{dzień}, {szablon albo Wolne}' (1 szablon × 3 dni → pon., śr., sob. po wyborze dni)
 #   "day-N" (id)                      ← components/DayPicker.tsx: testID przycisku dnia (pon = 0); wybór dni (decyzja 09.10.2026 B):
@@ -37,13 +36,11 @@ name: Plan z moich szablonów
 - takeScreenshot: 80-plan-z-moich-szablonow
 - scrollUntilVisible: { element: "Save plan", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Save plan"
-- extendedWaitUntil: { visible: "Make the new plan active\\?", timeout: 15000 }
-- tapOn: "Make active"
+# ZM-03 (21.10.2026): bez aktywnego planu zapis jest jednym krokiem — plan aktywny bez pytania i bez okna „Saved”, ekran Planowanie ze zdaniem „The plan “…” is now active.”
 # X-11 (audyt kontrolny 1): pierwszy plan → okno zgody na przypomnienie (zgoda na powiadomienia nieustalona na symulatorze); kolejność okien zależy od iOS
 - tapOn: { text: "Not now", optional: true }
-- extendedWaitUntil: { visible: "Saved", timeout: 15000 }
-- tapOn: "Planning"  # przycisk okna „Saved” (11.10.2026: dawniej „Weekly plan”)
-- tapOn: { text: "Not now", optional: true }
+- extendedWaitUntil: { visible: "The plan .* is now active\\.", timeout: 30000 }
+- assertNotVisible: "Make the new plan active\\?"
 - extendedWaitUntil: { visible: "Monday, Upper A", timeout: 30000 }
 - assertVisible: "Friday, Rest"
 - assertVisible: "Saturday, Upper A"

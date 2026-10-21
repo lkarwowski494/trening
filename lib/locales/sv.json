@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Det finns inget set med resultat.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Du har inga träningsplatser än, så planen utgår från ett fullt gym (skivstång, hantlar, maskiner och kabelmaskiner). Tränar du hemma eller på hotell? Tryck på ”+ Ny plats” och bocka för utrustningen — generatorn väljer övningar efter den.",
  "Nie masz jeszcze szablonów.": "Du har inga mallar än.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Du har inga mallar med övningar. Skapa en mall eller välj ”Nya mallar och plan”.",
  "Nie można wyłączyć planu": "Planen kan inte stängas av",
  "nie podano — e1RM podciągania i pompek": "inte angivet — e1RM för chins och armhävningar",
  "Nie teraz": "Inte nu",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "ny egen övning",
  "Nowe miejsce": "Ny plats",
  "Nowe rekordy: {n}": "Nya rekord: {n}",
- "Nowe szablony i plan": "Nya mallar och plan",
  "nowe w tym tygodniu": "ny den här veckan",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Ny skärm Träning: dagens pass, veckan i siffror och ditt senaste pass; funktionsguide under Mer.",
  "Nowy plan": "Ny plan",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "yard|yard",
  "jarda": "yard",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Varje stor muskelgrupp minst {n} dagar i veckan (WHO 2020 — en hälsorekommendation; ACSM 2026: frekvensen påverkar styrkan, men det finns för lite belägg för att fastställa ett dos–respons-samband, och vid lika volym minskar skillnaden). En dag då gruppen bara hjälper till räknas som {h} — en förenkling (metod från metaanalysen av Pelland m.fl. 2026). Uppdelningen (helkropp, över-/underkropp) är en konvention — med samma antal set ger den liknande resultat.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Steget (t.ex. +2,5 kg) är en konvention, inte ett forskningsresultat."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Steget (t.ex. +2,5 kg) är en konvention, inte ett forskningsresultat.",
+ "Usuń szablon": "Radera mall",
+ "Usuń z biblioteki": "Radera från biblioteket",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du har inga mallar med övningar. Skapa en mall eller välj ”Skapa mallar och plan”."
 }

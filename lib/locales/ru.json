@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Нет ни одного подхода с результатом.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "У вас ещё нет мест тренировок, поэтому план рассчитан на полноценный зал (штанга, гантели, тренажёры и блоки). Тренируетесь дома или в отеле? Нажмите «+ Добавить место» и отметьте оборудование — генератор подберёт упражнения.",
  "Nie masz jeszcze szablonów.": "У вас ещё нет шаблонов.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "У вас нет шаблонов с упражнениями. Создайте шаблон или выберите «Новые шаблоны и план».",
  "Nie można wyłączyć planu": "План нельзя отключить",
  "nie podano — e1RM podciągania i pompek": "не указана — e1RM подтягиваний и отжиманий",
  "Nie teraz": "Не сейчас",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "новое своё упражнение",
  "Nowe miejsce": "Новое место",
  "Nowe rekordy: {n}": "Новые рекорды: {n}",
- "Nowe szablony i plan": "Новые шаблоны и план",
  "nowe w tym tygodniu": "новое на этой неделе",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Новый экран «Тренировка»: сегодняшняя тренировка, неделя в цифрах и последняя тренировка; гид по функциям в разделе «Ещё».",
  "Nowy plan": "Новый план",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "ярд|ярда|ярдов",
  "jarda": "ярда",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Каждая основная мышечная группа не менее {n} дн. в неделю (ВОЗ 2020 — рекомендация для здоровья; ACSM 2026: частота влияет на силу, но данных недостаточно, чтобы установить зависимость доза–ответ, а при равном объёме разница уменьшается). День, когда группа работает только как вспомогательная, считается как {h} — упрощение (метод из метаанализа Pelland и соавт. 2026). Деление на тренировки (Full Body, верх/низ) — условность: при том же количестве подходов эффект похожий.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Шаг (например, +2,5 kg) — это условность, а не результат исследований."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Шаг (например, +2,5 kg) — это условность, а не результат исследований.",
+ "Usuń szablon": "Удалить шаблон",
+ "Usuń z biblioteki": "Удалить из библиотеки",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "У вас нет шаблонов с упражнениями. Создайте шаблон или выберите «Создать шаблоны и план»."
 }

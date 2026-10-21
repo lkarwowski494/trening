@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Nessuna serie con un risultato.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Non hai ancora luoghi di allenamento, quindi il piano presuppone una palestra completa (bilanciere, manubri, macchine e cavi). Ti alleni a casa o in hotel? Tocca «+ Aggiungi luogo» e spunta l’attrezzatura — il generatore sceglierà gli esercizi.",
  "Nie masz jeszcze szablonów.": "Non hai ancora schede.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Non hai schede con esercizi. Crea una scheda o scegli «Nuove schede e piano».",
  "Nie można wyłączyć planu": "Impossibile disattivare il piano",
  "nie podano — e1RM podciągania i pompek": "non indicato — e1RM di trazioni e flessioni",
  "Nie teraz": "Non ora",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "nuovo esercizio personalizzato",
  "Nowe miejsce": "Nuovo luogo",
  "Nowe rekordy: {n}": "Nuovi record: {n}",
- "Nowe szablony i plan": "Nuove schede e piano",
  "nowe w tym tygodniu": "nuovo questa settimana",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Nuova schermata Allenamento: l’allenamento di oggi, la settimana in numeri e l’ultimo allenamento; guida alle funzioni in Altro.",
  "Nowy plan": "Nuovo piano",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "iarda|iarde",
  "jarda": "iarde",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Ogni gruppo muscolare principale almeno {n} giorni a settimana (OMS 2020 — raccomandazione per la salute; ACSM 2026: la frequenza influisce sulla forza, ma non ci sono prove sufficienti per stabilire una relazione dose-risposta e a parità di volume la differenza si riduce). Un giorno in cui il gruppo fa solo da supporto conta come {h} — una semplificazione (metodo dalla metanalisi di Pelland et al. 2026). La suddivisione (full body, parte alta/bassa) è una convenzione — a parità di serie dà risultati simili.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "L’incremento (es. +2,5 kg) è una convenzione, non un risultato di studi."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "L’incremento (es. +2,5 kg) è una convenzione, non un risultato di studi.",
+ "Usuń szablon": "Elimina scheda",
+ "Usuń z biblioteki": "Elimina dalla libreria",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Non hai schede con esercizi. Crea una scheda o scegli «Genera schede e piano»."
 }

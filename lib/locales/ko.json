@@ -586,7 +586,6 @@
  "Nie ma żadnej serii z wynikiem.": "결과가 있는 세트가 없습니다.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "아직 운동 장소가 없어서 플랜은 모든 장비를 갖춘 헬스장(바벨, 덤벨, 머신, 케이블)을 기준으로 합니다. 집이나 호텔에서 운동하나요? ‘+ 장소 추가’를 탭하고 장비를 체크하면 생성기가 맞는 종목을 고릅니다.",
  "Nie masz jeszcze szablonów.": "아직 루틴이 없습니다.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "종목이 들어 있는 루틴이 없습니다. 루틴을 만들거나 ‘새 루틴 및 플랜’을 선택하세요.",
  "nie podano — e1RM podciągania i pompek": "입력 안 함 — 턱걸이와 푸시업의 e1RM용",
  "Nie teraz": "나중에",
  "Nie udało się": "실패했습니다",
@@ -620,7 +619,6 @@
  "nowe ćwiczenie własne": "새 사용자 종목",
  "Nowe miejsce": "새 장소",
  "Nowe rekordy: {n}": "새 기록: {n}",
- "Nowe szablony i plan": "새 루틴 및 플랜",
  "nowe w tym tygodniu": "이번 주 새로 함",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "새 운동 화면: 오늘의 운동, 숫자로 보는 이번 주, 지난 운동. 기능 가이드는 ‘더보기’에 있습니다.",
  "Nowy plan": "새 플랜",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "야드",
  "jarda": "야드",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "주요 부위마다 주 {n}일 이상(WHO 2020 — 건강을 위한 권고; ACSM 2026: 빈도는 근력에 영향을 주지만 용량–반응 관계를 입증할 근거가 부족하고, 볼륨이 같으면 차이가 줄어듭니다). 부위가 보조로만 쓰이는 날은 {h}로 계산합니다 — 단순화(Pelland 외 2026 메타분석의 방법). 세션 분할(전신, 상체/하체)은 관례이며, 세트 수가 같으면 비슷한 효과를 냅니다.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "증가 폭(예: +2.5 kg)은 관례이며 연구 결과가 아닙니다."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "증가 폭(예: +2.5 kg)은 관례이며 연구 결과가 아닙니다.",
+ "Usuń szablon": "루틴 삭제",
+ "Usuń z biblioteki": "라이브러리에서 삭제",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "종목이 들어 있는 루틴이 없습니다. 루틴을 만들거나 ‘루틴과 플랜 생성’을 선택하세요."
 }

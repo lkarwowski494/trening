@@ -109,6 +109,7 @@ name: Szablon jak trening — wiersze serii, karty, start
 - scrollUntilVisible: { element: "Range 8.12: when all sets last time had.*", direction: DOWN, timeout: 30000, centerElement: true }
 - assertNotVisible: "Rep range: 8.12 — when.*"
 - tapOn: { id: "info-range-.*" }
+# M3 p4: po przejściu opisów na font(rola) (lineHeight 18) rozwinięty opis ⓘ może wypaść poniżej ekranu — przewinięcie przed sprawdzeniem
 - scrollUntilVisible: { element: "Rep range: 8.12 — when.*", direction: DOWN, timeout: 30000 }
 - scrollUntilVisible: { element: { id: "info-range-.*" }, direction: UP, timeout: 30000, centerElement: true }
 - tapOn: { id: "info-range-.*" }

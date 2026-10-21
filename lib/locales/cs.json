@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Není žádná série s výsledkem.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Zatím nemáte žádná místa tréninku, takže plán počítá s plně vybavenou posilovnou (osa, jednoručky, stroje a kladky). Cvičíte doma nebo v hotelu? Klepněte na „+ Přidat místo“ a zaškrtni vybavení — generátor vybere cviky.",
  "Nie masz jeszcze szablonów.": "Zatím nemáte žádné šablony.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nemáte šablony s cviky. Vytvořte šablonu, nebo zvolte „Nové šablony a plán“.",
  "Nie można wyłączyć planu": "Plán nelze vypnout",
  "nie podano — e1RM podciągania i pompek": "nezadáno — e1RM shybů a kliků",
  "Nie teraz": "Teď ne",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "nový vlastní cvik",
  "Nowe miejsce": "Nové místo",
  "Nowe rekordy: {n}": "Nové rekordy: {n}",
- "Nowe szablony i plan": "Nové šablony a plán",
  "nowe w tym tygodniu": "nové tento týden",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Nová obrazovka Trénink: dnešní trénink, týden v číslech a poslední trénink; průvodce funkcemi v Další.",
  "Nowy plan": "Nový plán",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "yard|yardy|yardů",
  "jarda": "yardu",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Každá hlavní partie alespoň {n}× týdně (WHO 2020 — doporučení pro zdraví; ACSM 2026: frekvence ovlivňuje sílu, ale důkazů pro závislost dávka–odpověď je příliš málo a při stejném objemu rozdíl slábne). Den, kdy partie jen pomáhá, se počítá jako {h} — zjednodušení (metoda z metaanalýzy Pelland a kol. 2026). Rozdělení (celé tělo, horní/dolní) je konvence — při stejném počtu sérií dává podobné výsledky.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Krok změny (např. +2,5 kg) je konvence, ne výsledek studií."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Krok změny (např. +2,5 kg) je konvence, ne výsledek studií.",
+ "Usuń szablon": "Smazat šablonu",
+ "Usuń z biblioteki": "Smazat z knihovny",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nemáte šablony s cviky. Vytvořte šablonu, nebo zvolte „Vygenerovat šablony a plán“."
 }

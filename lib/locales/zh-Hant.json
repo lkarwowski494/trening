@@ -586,7 +586,6 @@
  "Nie ma żadnej serii z wynikiem.": "沒有任何有結果的組。",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "你還沒有訓練地點，所以計畫以設備齊全的健身房為前提（槓鈴、啞鈴、機械式器材與滑輪）。在家或飯店訓練嗎？點一下「+ 新增地點」並勾選器材 — 產生器會挑選合適的動作。",
  "Nie masz jeszcze szablonów.": "你還沒有範本。",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "你沒有包含動作的範本。請建立範本，或選擇「新範本與計畫」。",
  "nie podano — e1RM podciągania i pompek": "未輸入 — 用於引體向上與伏地挺身的 e1RM",
  "Nie teraz": "稍後再說",
  "Nie udało się": "發生錯誤",
@@ -620,7 +619,6 @@
  "nowe ćwiczenie własne": "新的自訂動作",
  "Nowe miejsce": "新地點",
  "Nowe rekordy: {n}": "新紀錄：{n}",
- "Nowe szablony i plan": "新範本與計畫",
  "nowe w tym tygodniu": "本週新增",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "全新的「訓練」畫面：今天的訓練、本週數字與上次訓練；功能導覽在「更多」中。",
  "Nowy plan": "新計畫",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "碼",
  "jarda": "碼",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "每個主要肌群每週至少 {n} 天（WHO 2020 — 健康建議；ACSM 2026：頻率會影響力量，但證據不足，無法確立劑量反應關係，訓練量相同時差異會縮小）。肌群只做輔助的那天算作 {h} — 簡化（方法來自 Pelland 等人 2026 的統合分析）。訓練分法（全身、上肢／下肢）是慣例 — 組數相同時效果相近。",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "調整幅度（例如 +2.5 kg）是慣例，不是研究結果。"
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "調整幅度（例如 +2.5 kg）是慣例，不是研究結果。",
+ "Usuń szablon": "刪除範本",
+ "Usuń z biblioteki": "從資料庫刪除",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "你沒有包含動作的範本。請建立範本，或選擇「產生範本與計畫」。"
 }

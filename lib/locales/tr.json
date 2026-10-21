@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Sonuçlu set yok.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Henüz antrenman yeriniz yok, bu yüzden plan tam bir salon varsayıyor (halter, dambıllar, makineler ve kablolar). Evde ya da otelde mi çalışıyorsunuz? “+ Yer ekle”ye dokunun ve ekipmanınızı işaretleyin — oluşturucu hareketleri buna göre seçer.",
  "Nie masz jeszcze szablonów.": "Henüz şablonunuz yok.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Egzersiz içeren şablonunuz yok. Bir şablon oluşturun ya da “Yeni şablonlar ve plan”ı seçin.",
  "Nie można wyłączyć planu": "Plan kapatılamıyor",
  "nie podano — e1RM podciągania i pompek": "girilmedi — barfiks ve şınav için e1RM",
  "Nie teraz": "Şimdi değil",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "yeni özel egzersiz",
  "Nowe miejsce": "Yeni yer",
  "Nowe rekordy: {n}": "Yeni rekorlar: {n}",
- "Nowe szablony i plan": "Yeni şablonlar ve plan",
  "nowe w tym tygodniu": "bu hafta yeni",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Yeni Antrenman ekranı: bugünkü antrenman, sayılarla hafta ve son antrenmanınız; özellik rehberi Daha Fazla altında.",
  "Nowy plan": "Yeni plan",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "yarda|yarda",
  "jarda": "yarda",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Her büyük kas grubu haftada en az {n} gün (DSÖ 2020 — sağlık önerisi; ACSM 2026: sıklık kuvveti etkiler, ancak doz–yanıt ilişkisini ortaya koymak için yeterli kanıt yoktur ve eşit hacimde fark azalır). Grubun yalnızca yardımcı olduğu gün {h} sayılır — bir basitleştirme (Pelland ve ark. 2026 meta-analizindeki yöntem). Bölümleme (tüm vücut, üst/alt) yaygın bir uygulamadır — aynı set sayısıyla benzer sonuç verir.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Adım (örn. +2,5 kg) yaygın bir uygulamadır, araştırma sonucu değildir."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Adım (örn. +2,5 kg) yaygın bir uygulamadır, araştırma sonucu değildir.",
+ "Usuń szablon": "Şablonu sil",
+ "Usuń z biblioteki": "Kütüphaneden sil",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Egzersiz içeren şablonunuz yok. Bir şablon oluşturun ya da “Şablon ve plan oluştur”ı seçin."
 }

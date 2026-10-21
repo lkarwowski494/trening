@@ -586,7 +586,6 @@
  "Nie ma żadnej serii z wynikiem.": "Không có hiệp nào có kết quả.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Bạn chưa có địa điểm tập, nên kế hoạch giả định một phòng gym đầy đủ (tạ đòn, tạ đơn, máy và cáp). Tập ở nhà hoặc khách sạn? Chạm “+ Thêm địa điểm” và đánh dấu dụng cụ của bạn — trình tạo sẽ chọn bài tập phù hợp.",
  "Nie masz jeszcze szablonów.": "Bạn chưa có mẫu nào.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Bạn chưa có mẫu nào có bài tập. Hãy tạo mẫu hoặc chọn “Mẫu và kế hoạch mới”.",
  "nie podano — e1RM podciągania i pompek": "chưa nhập — e1RM cho hít xà và chống đẩy",
  "Nie teraz": "Để sau",
  "Nie udało się": "Đã xảy ra lỗi",
@@ -620,7 +619,6 @@
  "nowe ćwiczenie własne": "bài tập tự tạo mới",
  "Nowe miejsce": "Địa điểm mới",
  "Nowe rekordy: {n}": "Kỷ lục mới: {n}",
- "Nowe szablony i plan": "Mẫu và kế hoạch mới",
  "nowe w tym tygodniu": "mới trong tuần này",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Màn hình Tập mới: buổi tập hôm nay, tuần qua các con số và buổi tập gần nhất; hướng dẫn tính năng trong mục Thêm.",
  "Nowy plan": "Kế hoạch mới",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "yard",
  "jarda": "yard",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Mỗi nhóm cơ chính ít nhất {n} ngày mỗi tuần (WHO 2020 — khuyến nghị cho sức khỏe; ACSM 2026: tần suất ảnh hưởng đến sức mạnh, nhưng chưa đủ bằng chứng để xác lập quan hệ liều–đáp ứng, và khi khối lượng bằng nhau thì chênh lệch giảm). Ngày mà nhóm cơ chỉ hỗ trợ được tính là {h} — đơn giản hóa (phương pháp từ phân tích tổng hợp của Pelland và cs. 2026). Cách chia buổi (toàn thân, trên/dưới) là quy ước — với cùng số hiệp sẽ cho kết quả tương tự.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Mức tăng (vd +2,5 kg) là quy ước, không phải kết quả nghiên cứu."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Mức tăng (vd +2,5 kg) là quy ước, không phải kết quả nghiên cứu.",
+ "Usuń szablon": "Xóa mẫu",
+ "Usuń z biblioteki": "Xóa khỏi thư viện",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Bạn chưa có mẫu nào có bài tập. Hãy tạo mẫu hoặc chọn “Tạo mẫu và kế hoạch”."
 }

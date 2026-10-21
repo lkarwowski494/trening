@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Er is geen set met een resultaat.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Je hebt nog geen trainingslocaties, dus het plan gaat uit van een complete gym (lange halter, dumbbells, machines en kabels). Train je thuis of in een hotel? Tik op ‘+ Voeg locatie toe’ en vink je materiaal aan — de generator kiest de oefeningen.",
  "Nie masz jeszcze szablonów.": "Je hebt nog geen sjablonen.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Je hebt geen sjablonen met oefeningen. Maak een sjabloon of kies ‘Nieuwe sjablonen en plan’.",
  "Nie można wyłączyć planu": "Plan kan niet worden uitgezet",
  "nie podano — e1RM podciągania i pompek": "niet ingevuld — e1RM voor optrekken en opdrukken",
  "Nie teraz": "Niet nu",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "nieuwe eigen oefening",
  "Nowe miejsce": "Nieuwe locatie",
  "Nowe rekordy: {n}": "Nieuwe records: {n}",
- "Nowe szablony i plan": "Nieuwe sjablonen en plan",
  "nowe w tym tygodniu": "nieuw deze week",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Nieuw scherm Training: de training van vandaag, de week in cijfers en je laatste training; functiegids onder Meer.",
  "Nowy plan": "Nieuw plan",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "yard|yard",
  "jarda": "yard",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Elke grote spiergroep op minstens {n} dagen per week (WHO 2020 — een gezondheidsadvies; ACSM 2026: frequentie beïnvloedt kracht, maar er is onvoldoende bewijs om een dosis-respons-verband vast te stellen en bij gelijk volume wordt het verschil kleiner). Een dag waarop de groep alleen helpt, telt als {h} — een vereenvoudiging (methode uit de meta-analyse van Pelland e.a. 2026). De verdeling (full body, boven/onder) is een conventie — met hetzelfde aantal sets geeft die vergelijkbare resultaten.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "De stap (bijv. +2,5 kg) is een conventie, geen onderzoeksresultaat."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "De stap (bijv. +2,5 kg) is een conventie, geen onderzoeksresultaat.",
+ "Usuń szablon": "Verwijder sjabloon",
+ "Usuń z biblioteki": "Verwijder uit bibliotheek",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Je hebt geen sjablonen met oefeningen. Maak een sjabloon of kies ‘Sjablonen en plan genereren’."
 }

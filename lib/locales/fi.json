@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Yhdessäkään sarjassa ei ole tulosta.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Sinulla ei ole vielä treenipaikkoja, joten suunnitelma olettaa täyden salin (tanko, käsipainot, laitteet ja taljat). Treenaatko kotona tai hotellissa? Napauta ”+ Lisää paikka” ja merkitse välineet — generaattori valitsee liikkeet.",
  "Nie masz jeszcze szablonów.": "Sinulla ei ole vielä pohjia.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Sinulla ei ole pohjia, joissa on liikkeitä. Luo pohja tai valitse ”Uudet pohjat ja suunnitelma”.",
  "Nie można wyłączyć planu": "Suunnitelmaa ei voi poistaa käytöstä",
  "nie podano — e1RM podciągania i pompek": "ei syötetty — leuanvetojen ja punnerrusten e1RM",
  "Nie teraz": "Ei nyt",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "uusi oma liike",
  "Nowe miejsce": "Uusi paikka",
  "Nowe rekordy: {n}": "Uusia ennätyksiä: {n}",
- "Nowe szablony i plan": "Uudet pohjat ja suunnitelma",
  "nowe w tym tygodniu": "uusi tällä viikolla",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Uusi näkymä Treeni: päivän treeni, viikko lukuina ja viimeisin treeni; toimintojen opas kohdassa Lisää.",
  "Nowy plan": "Uusi suunnitelma",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "jaardi|jaardia",
  "jarda": "jaardia",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Jokainen suuri lihasryhmä vähintään {n} päivänä viikossa (WHO 2020 — terveyssuositus; ACSM 2026: tiheys vaikuttaa voimaan, mutta näyttö ei riitä annos–vastesuhteen osoittamiseen, ja yhtä suurella volyymilla ero pienenee). Päivä, jolloin ryhmä vain avustaa, lasketaan arvolla {h} — yksinkertaistus (menetelmä Pellandin ym. 2026 meta-analyysistä). Jako (koko keho, ylä-/alavartalo) on konventio — samalla sarjamäärällä tulokset ovat samankaltaisia.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Askel (esim. +2,5 kg) on käytäntö, ei tutkimustulos."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Askel (esim. +2,5 kg) on käytäntö, ei tutkimustulos.",
+ "Usuń szablon": "Poista pohja",
+ "Usuń z biblioteki": "Poista kirjastosta",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Sinulla ei ole pohjia, joissa on liikkeitä. Luo pohja tai valitse ”Luo pohjat ja suunnitelma”."
 }

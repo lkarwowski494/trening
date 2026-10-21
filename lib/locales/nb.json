@@ -729,7 +729,6 @@
  "Nie ma żadnej serii z wynikiem.": "Det finnes ingen sett med resultat.",
  "Nie masz jeszcze miejsc treningu, więc plan zakłada pełną siłownię (sztanga, hantle, maszyny i wyciągi). Trenujesz w domu albo w hotelu? Stuknij „+ Dodaj miejsce” i zaznacz sprzęt — generator dobierze ćwiczenia.": "Du har ingen treningssteder ennå, så planen forutsetter et fullt gym (vektstang, manualer, maskiner og kabler). Trener du hjemme eller på hotell? Trykk på «+ Legg til sted» og kryss av for utstyret — generatoren velger øvelser deretter.",
  "Nie masz jeszcze szablonów.": "Du har ingen maler ennå.",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Du har ingen maler med øvelser. Lag en mal eller velg «Nye maler og plan».",
  "Nie można wyłączyć planu": "Planen kan ikke slås av",
  "nie podano — e1RM podciągania i pompek": "ikke oppgitt — e1RM for chins og armhevinger",
  "Nie teraz": "Ikke nå",
@@ -778,7 +777,6 @@
  "nowe ćwiczenie własne": "ny egen øvelse",
  "Nowe miejsce": "Nytt sted",
  "Nowe rekordy: {n}": "Nye rekorder: {n}",
- "Nowe szablony i plan": "Nye maler og plan",
  "nowe w tym tygodniu": "ny denne uken",
  "Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.": "Ny skjerm Trening: dagens økt, uken i tall og din siste økt; funksjonsveiledning under Mer.",
  "Nowy plan": "Ny plan",
@@ -1714,5 +1712,8 @@
  "jard|jardy|jardów": "yard|yard",
  "jarda": "yard",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Hver stor muskelgruppe minst {n} dager i uken (WHO 2020 — en helseanbefaling; ACSM 2026: hyppighet påvirker styrken, men det er for lite belegg til å fastslå en dose–respons-sammenheng, og ved likt volum blir forskjellen mindre). En dag der gruppen bare hjelper, teller som {h} — en forenkling (metode fra metaanalysen av Pelland m.fl. 2026). Inndelingen (helkropp, over-/underkropp) er en konvensjon — med samme antall sett gir den lignende resultater.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Trinnet (f.eks. +2,5 kg) er en konvensjon, ikke et forskningsresultat."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Trinnet (f.eks. +2,5 kg) er en konvensjon, ikke et forskningsresultat.",
+ "Usuń szablon": "Slett mal",
+ "Usuń z biblioteki": "Slett fra biblioteket",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du har ingen maler med øvelser. Lag en mal eller velg «Generer maler og plan»."
 }

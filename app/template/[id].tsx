@@ -16,11 +16,12 @@ import { implLabel } from '@/lib/swap';
 import { visibleLocations, getState, useTick, exById, save, dupTemplate, templateFolders, setTemplateFolder, setTemplateArchived, TEMPLATE_NOTE_MAX, groupLabels, ssTag, ssBtn, linkWithNext, unlink, removeItem, restFor, isBW, loadLabel, loadLabelShort, occurrence, occurrences, implAtLoc, startLocationId, locationById, tplRows, tplAddRow, tplRemoveRow, tplEditRow, tplSetKind, previousBlockFor, srcSetAt, setSummary, reps, usesBand, tplCycleBand, bandA11y, shortBand, workCount, tplWorkSets, fmtSec , REPS_MAX , REST_MAX } from '@/lib/store';
 import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dropUnsavedNew } from '@/lib/draft';
 import { nowParts } from '@/lib/live';
-import { useTheme, FW } from '@/lib/theme';
+import { useTheme, FW, font, RADIUS } from '@/lib/theme';
 import { hasTime, hasReps, hasWeight, hasDistance, SET_KIND_LABEL, type Template, type TemplateItem, type TRow, type Exercise, type WSet } from '@/lib/seed';
 import { t, tp, exName, exNameLang, lang } from '@/lib/i18n';
 import { startTemplate, workoutInProgressNotice } from '@/lib/start';
-import { templateUsageText, assignNewTemplate, hasPlan } from '@/lib/plan';
+import { templateUsageText, assignNewTemplate, hasPlan, removeTemplate } from '@/lib/plan';
+import { DeleteButton } from '@/components/DeleteButton';
 import { askReminderPermission } from '@/lib/planReminder';
 import { wu, wField, wInKeep, dIn, dOut, distUnit } from '@/lib/units';
 import { cancelButton } from '@/lib/confirm';
@@ -51,7 +52,7 @@ export default function TemplateScreen() {
       isNew.current = false; setEditing(false); };
     return <><DraftHeader title={isNew.current ? t('Nowy szablon') : t('Edycja szablonu')} onCancel={cancel} onSave={commit} cancelLabel={t('Anuluj edycję szablonu')} saveLabel={t('Zapisz szablon')} /><TemplateEditor tpl={d} /></>;
   }
-  return <><Stack.Screen options={{ title: t('Szablon'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><TemplatePreview tpl={real} onEdit={() => { if (beginObjDraft('template', id)) setEditing(true); } /* podwójne tapnięcie — ten sam szkic (beginObjDraft) */} /></>;
+  return <><Stack.Screen options={{ title: t('Szablon'), headerBackVisible: true, gestureEnabled: true, headerLeft: undefined, headerRight: undefined }} /><TemplatePreview tpl={real} onClose={close} onEdit={() => { if (beginObjDraft('template', id)) setEditing(true); } /* podwójne tapnięcie — ten sam szkic (beginObjDraft) */} /></>;
 }
 
 /** Tekst wiersza szablonu w podglądzie: wartości jak na karcie „teraz” (lib/live.nowParts — „60 kg × 8”); puste powtórzenia — zakres pozycji. */
@@ -62,7 +63,7 @@ export function tplRowText(ex: Exercise | undefined, r: TRow, it: TemplateItem):
   if (hasReps(ex.metric ?? 'weight_reps') && r.reps === '' && it.repMin != null) { const i = txt.lastIndexOf('—'); if (i >= 0) txt = txt.slice(0, i) + reps(it.repMin, it.repMax) + txt.slice(i + 1); }
   return txt;
 }
-function TemplatePreview({ tpl, onEdit }: { tpl: Template; onEdit: () => void }) {
+function TemplatePreview({ tpl, onEdit, onClose }: { tpl: Template; onEdit: () => void; onClose: () => void }) {
   const router = useRouter(); const th = useTheme(); const once = useOnce(); const busy = useRef(false);
   // Runda 9: start z ekranu otwartego z zakładki Szablony — zamykamy cały stos i przechodzimy na zakładkę główną.
   const goHome = () => { if (router.canDismiss()) router.dismissAll(); router.navigate('/'); };
@@ -74,21 +75,23 @@ function TemplatePreview({ tpl, onEdit }: { tpl: Template; onEdit: () => void })
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 120 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{tpl.name}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj szablon')} onPress={onEdit} /></View>
       <Muted style={{ marginTop: 2, marginBottom: 10 }}>{meta}</Muted>
-      {tpl.note ? <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${t('Notatka')}: ${tpl.note}`} style={{ borderLeftWidth: 3, borderLeftColor: th.accent, paddingLeft: 10, marginBottom: 12 }}><Txt style={{ fontSize: 15 }}>{tpl.note}</Txt></View> : null /* audyt 0.10 UX-10: notatka (z generatora — linijka wysiłku) */}
+      {tpl.note ? <View accessibilityLanguage={lang()} accessible accessibilityLabel={`${t('Notatka')}: ${tpl.note}`} style={{ borderLeftWidth: 3, borderLeftColor: th.accent, paddingLeft: 10, marginBottom: 12 }}><Txt style={{ ...font('callout') }}>{tpl.note}</Txt></View> : null /* audyt 0.10 UX-10: notatka (z generatora — linijka wysiłku) */}
       {tpl.items.length ? <Btn title={act && act.templateId === tpl.id ? t('Wróć do treningu') : t('Start')} kind={act && act.templateId !== tpl.id ? 'ghost' : 'primary'} block style={{ minHeight: 52, marginBottom: 12 }} accessibilityLabel={act && act.templateId === tpl.id ? undefined : t('Start: {name}', { name: tpl.name })} accessibilityHint={act && act.templateId !== tpl.id ? t('Trening w toku') : undefined} onPress={start} />
         : <Empty>{t('Szablon jest pusty — „Edytuj”, by dodać ćwiczenia.')}</Empty>}
       {tpl.items.map(it => { const ex = exById(it.exerciseId); const rows = tplRows(it); const kinds = rows.map(r => r.kind); const nm = exName(ex);
         const foot = [it.repMin != null ? `${t('zakres')} ${reps(it.repMin, it.repMax)}` : '', `${t('przerwa')} ${fmtSec(it.restSec ?? restFor(ex))}`].filter(Boolean).join(' · ');
         return <View key={it.id} style={{ borderBottomWidth: 1, borderBottomColor: th.line, paddingVertical: 8 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 4 }}><Txt a11yLang={exNameLang(ex)} accessibilityRole="header" style={{ ...FW.semibold, flex: 1 }}>{it.groupId ? <Txt style={{ color: th.band, ...FW.semibold }}>{`${ssTag(labels[it.groupId])} · `}</Txt> : null}{nm}</Txt><TechniqueLink exercise={ex} name={nm} />{/* UX2-05 */}</View>
-          {rows.map((r, k) => { const lbl = kindLabel(kinds, k); const txt = tplRowText(ex, r, it); return <View key={r.id} accessibilityLanguage={lang()} /* A11N-01 */ accessible accessibilityLabel={`${t('Seria {n}', { n: lbl })}${r.kind !== 'normal' ? ` (${t(SET_KIND_LABEL[r.kind])})` : ''}: ${txt}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 28 }}><View style={{ width: 32 }}><SetBadge kind={r.kind} label={lbl} /></View><Txt style={{ fontSize: 15 }}>{txt}</Txt></View>; })}
-          <Muted style={{ fontSize: 13, marginTop: 2 }}>{foot}</Muted>
-          {it.alternates?.length ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{`${t('Zamienniki')}: ${it.alternates.map(a => `${locationLabel(a.locationId)}: ${exName(exById(a.exerciseId))}${a.impl ? ` — ${implLabel(a.impl)}` : ''}`).join(', ')}`}</Muted> : null}
+          {rows.map((r, k) => { const lbl = kindLabel(kinds, k); const txt = tplRowText(ex, r, it); return <View key={r.id} accessibilityLanguage={lang()} /* A11N-01 */ accessible accessibilityLabel={`${t('Seria {n}', { n: lbl })}${r.kind !== 'normal' ? ` (${t(SET_KIND_LABEL[r.kind])})` : ''}: ${txt}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 28 }}><View style={{ width: 32 }}><SetBadge kind={r.kind} label={lbl} /></View><Txt style={{ ...font('callout') }}>{txt}</Txt></View>; })}
+          <Muted style={{ ...font('footnote'), marginTop: 2 }}>{foot}</Muted>
+          {it.alternates?.length ? <Muted style={{ ...font('footnote'), marginTop: 2 }}>{`${t('Zamienniki')}: ${it.alternates.map(a => `${locationLabel(a.locationId)}: ${exName(exById(a.exerciseId))}${a.impl ? ` — ${implLabel(a.impl)}` : ''}`).join(', ')}`}</Muted> : null}
         </View>; })}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 14 }}>
         {tpl.items.length ? <Btn title={t('Duplikuj')} small onPress={() => { if (busy.current) return; busy.current = true; const c = dupTemplate(tpl.id); router.replace(`/template/${c.id}`); }} /> : null}
         <Btn title={tpl.archived ? t('Przywróć z archiwum') : t('Archiwizuj')} small kind="ghost" onPress={archive} />
       </View>
+      {/* M3 ZM-04 / W2 a: „Usuń szablon” na dole podglądu (nie w szkicu) — to samo okno co gest na liście Szablony (skutki dla planu w pytaniu) */}
+      <DeleteButton label={t('Usuń szablon')} title={t('Usunąć szablon?')} message={[tpl.name, templateUsageText(tpl.id)].filter(Boolean).join('\n\n')} onDelete={() => { removeTemplate(tpl.id); onClose(); }} />
     </ScrollView></Screen>
   );
 }
@@ -126,9 +129,9 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
             style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', minHeight: 48, gap: 8, opacity: pressed ? 0.6 : 1 })}>
             <View style={{ flex: 1 }}>
               <Txt a11yLang={exNameLang(ex)} style={{ ...FW.semibold }}>{it.groupId ? <Txt style={{ color: th.band, ...FW.semibold }}>{`${ssTag(labels[it.groupId])} · `}</Txt> : null}{exName(ex)}</Txt>
-              {open !== it.id ? <Muted style={{ fontSize: 13 }}>{tplSummary(it)}</Muted> : null}
+              {open !== it.id ? <Muted style={{ ...font('footnote') }}>{tplSummary(it)}</Muted> : null}
             </View>
-            <Muted style={{ fontSize: 16 }}>{open === it.id ? '▾' : '▸'}</Muted>
+            <Muted style={{ ...font('body') }}>{open === it.id ? '▾' : '▸'}</Muted>
           </Pressable>}</SwipeRow>
           {open === it.id ? <>
             <TplRows tpl={tpl} it={it} ii={i} nm={nm} />
@@ -150,16 +153,16 @@ function Alternates({ tpl, itemId }: { tpl: Template; itemId: string }) {
   const th = useTheme(); const it = tpl.items.find(x => x.id === itemId); if (!it?.alternates?.length) return null;
   const itEx = exById(it.exerciseId);
   return <View style={{ gap: 4 }}>
-    <Muted style={{ fontSize: 12, ...FW.semibold }}>{t('Zamienniki')}</Muted>
+    <Muted style={{ ...font('footnote'), ...FW.semibold }}>{t('Zamienniki')}</Muted>
     {it.alternates.map(a => { const B = exById(a.exerciseId); const place = locationById(a.locationId); const av = B && place ? availability(B, place) : null;
       const name = `${locationLabel(a.locationId)}: ${exName(B)}${a.impl ? ` — ${implLabel(a.impl)}` : ''}`; const key = `${locationLabel(a.locationId)} — ${exName(B)}`;
       return <SwipeRow key={a.locationId} label={t('Usuń zamiennik: {name}', { name: key })} title={t('Usunąć zamiennik?')} message={name} onDelete={() => { if (!it.alternates) return; it.alternates = it.alternates.filter(x => x !== a); if (!it.alternates.length) delete it.alternates; save(tpl); }}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-        <View style={{ flex: 1 }}><View accessibilityLanguage={lang()} {...a11y} accessible accessibilityLabel={name}><IconRow icon="pin" color={th.muted} size={15}><Txt style={{ fontSize: 14 }}>{name}</Txt></IconRow></View>{av && !av.ok ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('brak sprzętu w: {l}', { l: place!.name })}</Muted> : null}</View>
+        <View style={{ flex: 1 }}><View accessibilityLanguage={lang()} {...a11y} accessible accessibilityLabel={name}><IconRow icon="pin" color={th.muted} size={15}><Txt style={{ ...font('callout') }}>{name}</Txt></IconRow></View>{av && !av.ok ? <Muted style={{ ...font('footnote'), color: th.danger }}>{t('brak sprzętu w: {l}', { l: place!.name })}</Muted> : null}</View>
         <View style={{ width: 72 }}><NumInput value={a.restSec ?? ''} onNum={v => { a.restSec = v === '' ? null : Math.min(REST_MAX, Math.max(0, Math.round(v))); save(tpl); }} placeholder={String(it.restSec ?? restFor(itEx))} accessibilityLabel={t('Przerwa zamiennika (s): {name}', { name: key })} /></View>
       </View>}</SwipeRow>; })}
   </View>;
 }
-function Col({ label, a11y, children }: { label: string; /** runda 71: pełna nazwa dla VoiceOver, gdy etykieta jest skrócona */ a11y?: string; children: React.ReactNode }) { return <View style={{ flex: 1, justifyContent: 'flex-end' }} /* runda 69: pola w jednej linii, gdy etykieta zawija się */><Muted style={{ fontSize: 11, marginBottom: 3 }} accessibilityLabel={a11y !== label ? a11y : undefined}>{label}</Muted><FieldLabel.Provider value={a11y ?? label}>{children}</FieldLabel.Provider></View>; }
+function Col({ label, a11y, children }: { label: string; /** runda 71: pełna nazwa dla VoiceOver, gdy etykieta jest skrócona */ a11y?: string; children: React.ReactNode }) { return <View style={{ flex: 1, justifyContent: 'flex-end' }} /* runda 69: pola w jednej linii, gdy etykieta zawija się */><Muted style={{ ...font('footnote'), marginBottom: 3 }} accessibilityLabel={a11y !== label ? a11y : undefined}>{label}</Muted><FieldLabel.Provider value={a11y ?? label}>{children}</FieldLabel.Provider></View>; }
 
 /**
  * Decyzja właściciela 05.10.2026 (docs/17): „Tworzenie szablonu to po prostu nieaktywny trening” — wiersze serii jak w treningu (typ, ostatnio,
@@ -184,14 +187,14 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
         return (
           <SwipeRow key={r.id} testID={`tpl-row-${ii}-${k}`} /* E2E 08 */ disabled={rows.length <= 1} blocked={lastSetBlock()} /* G4 */ label={t('Usuń serię {n} — {ex}', { n: lbl, ex: nm })} title={t('Usunąć serię?')} message={nm} onDelete={() => { if (tplRows(it).length > 1) tplRemoveRow(tpl, it.id, r.id); }}>{a11y => <View style={{ flexDirection: 'row', alignItems: 'center', gap: W.gap, minHeight: 48 }}>
             <Pressable accessibilityLanguage={lang()} {...a11y} onPress={() => menu(r.id, lbl)} hitSlop={8} accessibilityRole="button" accessibilityHint={t('Tapnij, by zmienić typ.')} /* A11-18 */ accessibilityLabel={t('Seria {n}, typ: {k}', { n: lbl, k: t(SET_KIND_LABEL[r.kind]) })} style={{ width: W.idx, minHeight: 44, justifyContent: 'center' }}><SetBadge kind={r.kind} label={lbl} /></Pressable>
-            <View style={{ flex: 1 }}>{L.prevInline ? <Muted numberOfLines={1} style={{ fontSize: 13 }}>{prevTxt}</Muted> : null}</View>
+            <View style={{ flex: 1 }}>{L.prevInline ? <Muted numberOfLines={1} style={{ ...font('footnote') }}>{prevTxt}</Muted> : null}</View>
             {hasWeight(m) ? <View style={{ width: W.w }}><NumInput weightTol decimal allowNegative={!!ex && isBW(ex)} value={wField(r.weight)} stored={r.weight} placeholder={ex ? loadLabelShort(ex, impl) : wu()} testID={`tpl-w-${ii}-${k}`} /* E2E (Maestro 08): pole ciężaru wiersza k pozycji ii */ accessibilityLabel={ex ? loadLabel(ex, impl) : wu()} onNum={(v, keep) => tplEditRow(tpl, it.id, r.id, { weight: v === '' ? '' : wInKeep(ex && isBW(ex) ? v : Math.max(0, v), keep) })} /></View> : null}
             {hasReps(m) ? <View style={{ width: W.reps }}><NumInput value={r.reps} placeholder={it.repMin != null ? reps(it.repMin, it.repMax) : t('pow.')} testID={`tpl-r-${ii}-${k}`} /* E2E (Maestro 08) */ accessibilityLabel={t('Powtórzenia')} onNum={v => tplEditRow(tpl, it.id, r.id, { reps: v === '' ? '' : Math.min(REPS_MAX, Math.max(0, Math.floor(v))) }) /* UI-16 */} /></View> : null}
             {hasDistance(m) ? <View style={{ width: W.dist }}><NumInput value={dOut(r.distanceM)} stored={r.distanceM} placeholder={distUnit()} accessibilityLabel={t('dystans')} onNum={(v, keep) => tplEditRow(tpl, it.id, r.id, { distanceM: dIn(v, keep) })} /></View> : null}
             {hasTime(m) ? <View style={{ width: W.time }}><NumInput value={r.durationSec} placeholder={t('cel s')} accessibilityLabel={t('cel s')} onNum={v => tplEditRow(tpl, it.id, r.id, { durationSec: v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))) })} /></View> : null}
-            {band ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityHint={`${nm}. ${t('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={t('Guma: {b}', { b: r.bandId ? bandA11y(bands.find(b => b.id === r.bandId)) : t('brak') })} onPress={() => tplCycleBand(tpl, it.id, r.id)} style={{ width: W.band, minHeight: 40, borderRadius: 8, borderWidth: 1, borderColor: th.line, backgroundColor: th.surface2, alignItems: 'center', justifyContent: 'center' }}><Txt style={{ color: r.bandId ? th.band : th.muted, fontSize: 13, ...FW.semibold }}>{r.bandId ? shortBand(bands.find(b => b.id === r.bandId)) : '—'}</Txt></Pressable> : null}
+            {band ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityHint={`${nm}. ${t('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={t('Guma: {b}', { b: r.bandId ? bandA11y(bands.find(b => b.id === r.bandId)) : t('brak') })} onPress={() => tplCycleBand(tpl, it.id, r.id)} style={{ width: W.band, minHeight: 40, borderRadius: RADIUS.button, borderWidth: 1, borderColor: th.line, backgroundColor: th.surface2, alignItems: 'center', justifyContent: 'center' }}><Txt style={{ color: r.bandId ? th.band : th.muted, ...font('footnote'), ...FW.semibold }}>{r.bandId ? shortBand(bands.find(b => b.id === r.bandId)) : '—'}</Txt></Pressable> : null}
           </View>}</SwipeRow>); })}
-      {!L.prevInline && src.length ? <Muted style={{ fontSize: 12 }}>{t('Poprzednio')}: {src.map(x => ex ? setSummary(ex, x, 'calc') : '').join(', ')}</Muted> : null}
+      {!L.prevInline && src.length ? <Muted style={{ ...font('footnote') }}>{t('Poprzednio')}: {src.map(x => ex ? setSummary(ex, x, 'calc') : '').join(', ')}</Muted> : null}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 4 }}>
         <Btn title={t('+ seria')} small accessibilityHint={nm} onPress={() => tplAddRow(tpl, it.id)} />
         <Btn title={t('+ rozgrzewka')} small kind="ghost" accessibilityHint={nm} onPress={() => tplAddRow(tpl, it.id, 'warmup')} />
@@ -209,9 +212,9 @@ function TplRows({ tpl, it, ii, nm }: { tpl: Template; it: TemplateItem; ii: num
       {/* MER-13 (audyt 0.10): opis zgodny z podpowiedzią („↑ spróbuj 62,5”, „↑ spróbuj 9 pow.”) i tylko tam, gdzie ona się pojawia (store.progressionFor:
        * ciężar + powtórzenia, zamknięty zakres, włączona w Ustawieniach) — przy zakresie otwartym „8+” jej nie ma */}
       {m === 'weight_reps' && it.repMin != null && it.repMax != null && it.repMax >= it.repMin && getState().settings.progressHint ? <InfoTip id={`range-${it.id}`} label={t('Zakres {r}: gdy ostatnio wszystkie serie miały ≥ {n} powt., pojawi się „↑”.', { r: reps(it.repMin, it.repMax), n: it.repMax })} info={t('Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze miały co najmniej {n} powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).', { r: reps(it.repMin, it.repMax), n: it.repMax })}>
-        <Muted style={{ fontSize: 12 }}>{t('Zakres {r}: gdy ostatnio wszystkie serie miały ≥ {n} powt., pojawi się „↑”.', { r: reps(it.repMin, it.repMax), n: it.repMax })}</Muted>
+        <Muted style={{ ...font('footnote') }}>{t('Zakres {r}: gdy ostatnio wszystkie serie miały ≥ {n} powt., pojawi się „↑”.', { r: reps(it.repMin, it.repMax), n: it.repMax })}</Muted>
       </InfoTip> : null}
-      {hasReps(m) && it.repMin != null && it.repMax != null && it.repMax < it.repMin ? <Muted style={{ fontSize: 12, color: th.danger }}>{t('„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+', { n: it.repMin })}</Muted> : null}
+      {hasReps(m) && it.repMin != null && it.repMax != null && it.repMax < it.repMin ? <Muted style={{ ...font('footnote'), color: th.danger }}>{t('„do” jest mniejsze niż „od” — zakres pokaże się jako {n}+', { n: it.repMin })}</Muted> : null}
     </View></FieldHint.Provider>
   );
 }

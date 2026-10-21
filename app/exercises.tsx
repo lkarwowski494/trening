@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, View } from 'react-native';
-import { FW } from '@/lib/theme';
+import { FW, font } from '@/lib/theme';
 import { useRouter, Stack } from 'expo-router';
 import { Screen, Item, Btn, Input, Muted, Empty, useOnce, SearchField } from '@/components/ui';
 import { useExercisesTick, useCfgTick, newExercise, visibleExercises, getState, exerciseInHistory, usesBand, restoreExercise, deleteExercise, exercisesInUse, inCoreList, libShowAll, setLibShowAll } from '@/lib/store';
@@ -9,6 +9,7 @@ import { SwipeRow } from '@/components/SwipeRow';
 import { GROUPS, formerMatch, type Exercise } from '@/lib/seed';
 import { t, exName, exNameLang, fold, collator, lang } from '@/lib/i18n';
 import { useAddHeader } from '@/components/AddButton';
+import { exerciseDeleteMessage } from '@/app/exercise/[id]';
 
 /*
  * Audyt 0.10 N3 / PERF-01: 854+ ćwiczeń — lista wirtualizowana (FlatList, jak wybór ćwiczenia), sortowanie raz na zmianę listy (jeden Intl.Collator),
@@ -36,11 +37,11 @@ export default function ExercisesScreen() {
     return { rows: out, count: usedAll ? all.filter(e => inCoreList(e, usedAll)).length : all.length, nicheHidden: hid }; /* licznik = ćwiczenia w bieżącym zakresie (domyślnie bez niszowych), niezależnie od szukania */
   }, [sig, usedKey, ql, L, libAll]); // eslint-disable-line react-hooks/exhaustive-deps
   const render = ({ item: r, index }: { item: Row; index: number }) => {
-    if (r.kind === 'group') return <Muted accessibilityRole="header" style={{ fontSize: 12, ...FW.semibold, paddingTop: 14, paddingBottom: 2 }}>{t(r.group)}</Muted>;
+    if (r.kind === 'group') return <Muted accessibilityRole="header" style={{ ...font('footnote'), ...FW.semibold, paddingTop: 14, paddingBottom: 2 }}>{t(r.group)}</Muted>;
     const e = r.e;
     if (r.kind === 'arch') return <Item title={t('Przywróć „{name}”', { name: exName(e) })} sub={exerciseInHistory(e.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} icon="↺" onPress={() => { restoreExercise(e); setQ(''); router.push(`/exercise/${e.id}`); }} />;
     /* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (z ekranu ćwiczenia przycisk zniknął); treść potwierdzenia jak wcześniej (runda 40) */
-    return <SwipeRow testID={`lib-row-${index}`} /* E2E 27: pozycja na liście (z nagłówkami grup) — przy jednym wyniku wyszukiwania 1 */ label={t('Usuń z biblioteki: {name}', { name: exName(e) })} title={t('Usunąć ćwiczenie?')} message={() => [exerciseInHistory(e.id) ? t('Zniknie z list i szablonów; historia, wykresy i eksport zostaną.') : t('Zniknie z list i szablonów.'), getState().active?.exercises.some(x => x.exerciseId === e.id) ? t('W trwającym treningu zostanie oznaczone jako usunięte.') : ''].filter(Boolean).join(' ')} onDelete={() => { const cur = getState().exercises.find(x => x.id === e.id); if (cur && !cur.archived) deleteExercise(e.id); }}>{a11y => <Item a11y={a11y} titleLang={exNameLang(e)} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${e.tempo ? ' · ' + t('tempo') + ' ' + e.tempo : ''}${r.kind === 'ex' && r.was ? ' · ' + t('dawniej: {n}', { n: exName({ name: r.was, lib: true }) }) : ''}`} onPress={() => router.push(`/exercise/${e.id}`)} />}</SwipeRow>;
+    return <SwipeRow testID={`lib-row-${index}`} /* E2E 27: pozycja na liście (z nagłówkami grup) — przy jednym wyniku wyszukiwania 1 */ label={t('Usuń z biblioteki: {name}', { name: exName(e) })} title={t('Usunąć ćwiczenie?')} message={() => exerciseDeleteMessage(e)} onDelete={() => { const cur = getState().exercises.find(x => x.id === e.id); if (cur && !cur.archived) deleteExercise(e.id); }}>{a11y => <Item a11y={a11y} titleLang={exNameLang(e)} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${e.tempo ? ' · ' + t('tempo') + ' ' + e.tempo : ''}${r.kind === 'ex' && r.was ? ' · ' + t('dawniej: {n}', { n: exName({ name: r.was, lib: true }) }) : ''}`} onPress={() => router.push(`/exercise/${e.id}`)} />}</SwipeRow>;
   };
   const addHeader = useAddHeader(t('Dodaj ćwiczenie'), () => { const e = newExercise(); router.push(`/exercise/${e.id}?edit=1&new=1`); });
   const empty = <><Empty>{t('Nic nie pasuje.')}</Empty>{ql ? <Btn title={t('Utwórz „{name}”', { name: q.trim() })} block onPress={once(() => { const e = newExercise(q.replace(/\s+/g, ' ').trim()); setQ(''); router.push(`/exercise/${e.id}?edit=1&new=1`); })} /> : null}</>;
