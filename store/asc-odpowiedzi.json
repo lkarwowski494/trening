@@ -1,0 +1,49 @@
+{
+  "_opis": "Oczekiwane odpowiedzi w App Store Connect przed wysyłką 1.0 (M8 Formalności, 21.10.2026; do akceptacji właściciela na STOP 2). Bez danych osobowych (repo publiczne): kontakt recenzji, dane DSA i copyright wpisuje właściciel tylko w App Store Connect. Format przejściowy — po scaleniu konfiguracji kontroli ASC u koordynatora (store/asc-kontrola.json) wartości przechodzą tam; nazwy pól API [DO USTALENIA] przez autora workflowu. Test: tests/store-asc-odpowiedzi.test.ts (zgodność z kodem). Opis i źródła: docs/45-formalnosci-asc.md.",
+  "appPrivacy": {
+    "dataCollected": false,
+    "tracking": false,
+    "_uzasadnienie": "Inwentarz danych M8 (21.10.2026): brak wywołań sieciowych i SDK analityki/reklam/awarii; dane na urządzeniu nie są „collected” (Apple: „Data that is processed only on device is not “collected”). E-mail do wsparcia wysyła użytkownik sam, z własnej woli, rzadko — wyjątek „Optional disclosure” (customer service requests). Dane zbierane przez Apple (zakupy, raporty awarii) — „You are not responsible for disclosing data collected by Apple”. Źródło: developer.apple.com/app-store/app-privacy-details/, odczyt 21.10.2026."
+  },
+  "ageRating": {
+    "wynikOczekiwany": "9+",
+    "odpowiedzi": {
+      "parentalControls": false,
+      "ageAssurance": false,
+      "unrestrictedWebAccess": false,
+      "userGeneratedContent": false,
+      "messagingAndChat": false,
+      "socialMedia": false,
+      "advertising": false,
+      "healthOrWellnessTopics": true,
+      "medicalOrTreatmentInformation": "NONE",
+      "profanityOrCrudeHumor": "NONE",
+      "horrorOrFearThemes": "NONE",
+      "alcoholTobaccoOrDrugUse": "NONE",
+      "matureOrSuggestiveThemes": "NONE",
+      "sexualContentOrNudity": "NONE",
+      "cartoonOrFantasyViolence": "NONE",
+      "realisticViolence": "NONE",
+      "gunsOrOtherWeapons": "NONE",
+      "simulatedGambling": "NONE",
+      "gambling": false,
+      "contests": "NONE",
+      "lootBoxes": false
+    },
+    "_uzasadnienie": "Apple: 9+ obejmuje „Health and wellness topics”; „Health or Wellness Topics: Content that provides self-care or lifestyle recommendations” — plan treningowy, wskazówki ćwiczeń. Brak diagnoz i prowadzenia leczenia (aplikacja odsyła do specjalisty) → medical NONE. Linki otwierają Safari, bez wbudowanej przeglądarki → unrestrictedWebAccess false. Źródło: developer.apple.com/help/app-store-connect/reference/app-information/age-ratings-values-and-definitions/, odczyt 21.10.2026. Klucze to nazwy pytań kwestionariusza, nie pola API."
+  },
+  "encryption": {
+    "usesNonExemptEncryption": false,
+    "_uzasadnienie": "app.json ios.infoPlist.ITSAppUsesNonExemptEncryption = false; brak własnych połączeń sieciowych, expo-crypto tylko randomUUID. Apple: wartość NO, gdy aplikacja z bibliotekami „doesn’t use encryption, or if it only uses forms of encryption that are exempt”. Źródło: developer.apple.com/documentation/security/complying-with-encryption-export-regulations, odczyt 21.10.2026."
+  },
+  "appReview": {
+    "signInRequired": false,
+    "notesFile": "store/review-notes.md"
+  },
+  "category": { "primary": "HEALTH_AND_FITNESS" },
+  "licenseAgreement": "STANDARD_APPLE_EULA",
+  "dsaTrader": true,
+  "familySharing": { "monthly": true, "yearly": true, "lifetime": true },
+  "introductoryOfferDays": 14,
+  "urlsFile": "store/app-store-urls.json"
+}

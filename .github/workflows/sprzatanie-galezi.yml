@@ -1,0 +1,38 @@
+# Sprzątanie gałęzi zdalnych (decyzja właściciela 21.10.2026, docs/18) — tylko ręcznie. Sesje Claude nie mogą usuwać gałęzi (403), więc robi to ten workflow
+# z GITHUB_TOKEN. Usuwa wyłącznie gałęzie w całości zawarte w main albo wpisane w scripts/ci/sprzatanie-zatwierdzone.json (zgoda właściciela);
+# nigdy main, gałęzi chronionych (scripts/ci/sprzatanie-galezi.mjs CHRONIONE) ani gałęzi z otwartym PR. Domyślnie podgląd (nic nie usuwa).
+name: Sprzątanie gałęzi (ręcznie)
+on:
+  workflow_dispatch:
+    inputs:
+      tryb:
+        description: 'podglad = tylko lista; usun = usuń gałęzie z listy'
+        type: choice
+        default: podglad
+        options: [podglad, usun]
+permissions:
+  contents: read
+concurrency:
+  group: sprzatanie-galezi
+  cancel-in-progress: false
+jobs:
+  sprzatanie:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Gałęzie do usunięcia (podgląd albo usunięcie)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TRYB: ${{ inputs.tryb }}
+        run: |
+          if [ "$TRYB" = "usun" ]; then node scripts/ci/sprzatanie-galezi.mjs --usun | tee wynik.txt; else node scripts/ci/sprzatanie-galezi.mjs | tee wynik.txt; fi
+          { echo '## Sprzątanie gałęzi'; echo '```'; cat wynik.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

@@ -18,7 +18,7 @@ const DICT = join(root, 'lib/i18n.en.ts');
 const REG = join(root, 'docs/research/rejestr-twierdzen.json');
 
 /** Wzorzec tekstu dziedzinowego (jedno miejsce). Minimalna długość odsiewa etykiety („Zalecenia”, „e1RM (Epley, per hantel)”). */
-export const DOMAIN_RE = /ACSM|\bWHO\b|Zourdos|Pelland|Mayhew|Epley|Brzycki|wytyczn|stanowisk|metaanaliz|przegląd(?:y|u|ów)? badań|uproszczeni|konwencj|jedno źródło|nie ustalon|ankiet|zalecen/i;
+export const DOMAIN_RE = /ACSM|\bWHO\b|Zourdos|Pelland|Mayhew|Epley|Brzycki|wytyczn|stanowisk|metaanaliz|przegląd(?:y|u|ów)? badań|uproszczeni|konwencj|jedno źródło|nie ustalon|ankiet|zalecen|\bi in\. \d{4}/i;
 export const MIN_LEN = 30;
 export const KINDS = ['uproszczenie', 'konwencja', 'jedno źródło', 'źródło cytowane w tekście', 'przegląd badań', 'otwarte'];
 export const hash = (s) => createHash('sha1').update(s, 'utf8').digest('hex').slice(0, 10);

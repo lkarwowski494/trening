@@ -12,7 +12,7 @@ const read = (f: string) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 const REG = 'docs/lokalizacja/jezyki.md';
 
 /** Kod języka aplikacji → kody lokalizacji App Store Connect z store/app-store-names.json (en ma dwa). */
-const ASC: Partial<Record<Lang, string[]>> = { en: ['en-US', 'en-GB'], es: ['es-ES'], 'es-419': ['es-MX'], pt: ['pt-PT'], de: ['de-DE'], fr: ['fr-FR'], nl: ['nl-NL'], nb: ['no'] };
+const ASC: Partial<Record<Lang, string[]>> = { en: ['en-US', 'en-GB', 'en-AU', 'en-CA'], es: ['es-ES'], 'es-419': ['es-MX'], pt: ['pt-PT'], de: ['de-DE'], fr: ['fr-FR'], nl: ['nl-NL'], nb: ['no'] };
 const NOT_ASC: readonly Lang[] = ['bg', 'sr', 'lt', 'lv', 'et']; /* store/iap-localizations.json „ascLocaleBrak”, sprawdzone 14.10.2026 */
 const SL_REJECTED: Lang = 'sl';
 const CHECK_FILES: Partial<Record<Lang, string>> = { 'pt-BR': 'tests/i18n-variants.test.ts', 'es-419': 'tests/i18n-variants.test.ts', id: 'tests/i18n-wave2.test.ts', ms: 'tests/i18n-wave2.test.ts', vi: 'tests/i18n-wave2.test.ts', ru: 'tests/i18n-wave3.test.ts', ja: 'tests/i18n-wave4.test.ts', ko: 'tests/i18n-wave4.test.ts', 'zh-Hant': 'tests/i18n-wave4.test.ts' };

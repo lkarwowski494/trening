@@ -61,12 +61,13 @@
   („not acquired by Runner”, brak maszyn macOS u GitHuba) — ponawiaj od razu, aż dostanie maszynę (właściciel, 08.10.2026).
 - E2E — podział (właściciel, 19.10.2026): wydanie TestFlight blokuje **pakiet podstawowy** (`scripts/ci/e2e-podstawowy.json`, wejście
   `pakiet: podstawowy`, jedno ponowienie pojedynczego scenariusza); **pełny katalog** biegnie w nocy (`nightly.yml`), niewiążąco, z pomiarem
-  niestabilności — przegląd zbiorczo raz dziennie, nie po każdej porażce. Wydanie do App Store blokuje pełny katalog w **trybie ścisłym**
-  (`tryb_scisly`, bez ponowień) — obowiązuje od 3 kolejnych nocnych pełnych przebiegów zielonych bez ponowień (docs/38 pkt 11). Przed oddaniem
+  niestabilności — przegląd zbiorczo raz dziennie, nie po każdej porażce. Wydanie do App Store blokuje **jeden pełny katalog E2E
+  na standardowym iPhonie** (jedno ponowienie scenariusza dozwolone) + pełny audyt + telefon; noc to sygnał (zgłoszenie `nocne-testy`), nie bramka —
+  porażka: błąd aplikacji → naprawa, błąd skryptu → backlog (właściciel 21.10.2026; zastępuje „3 czyste noce w trybie ścisłym”). Przed oddaniem
   pracy: szybki przebieg tylko zmienionych scenariuszy (`tylko_scenariusze`). Pełne verify na tej maszynie przez kolejkę (jeden naraz).
 - Workflowy (`.github/workflows`): zmiany wypycha koordynator na gałąź funkcji, właściciel zatwierdza scaleniem PR (14.10.2026); bez nowych sekretów,
   każda zmiana workflowu opisana w PR. Właściciela prowadzimy zadanie po zadaniu z instrukcją krok po kroku, nie zbiorczą listą.
-- Gałęzie: praca na gałęzi funkcji od `integration/0.9.0`; scalenie do `main` tylko na polecenie właściciela. Nie łącz aktualizacji SDK ze zmianą
+- Gałęzie: praca na gałęzi funkcji od `main` (właściciel 21.10.2026; `integration/0.9.0` usunięta przy sprzątaniu gałęzi); scalenie do `main` tylko na polecenie właściciela. Nie łącz aktualizacji SDK ze zmianą
   schematu danych w jednym wydaniu.
 
 ## Audyty i wydania (zasada właściciela 09.10.2026, wariant A)
