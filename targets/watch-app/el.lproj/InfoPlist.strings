@@ -1,4 +1,4 @@
 /* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
 "CFBundleDisplayName" = "Training";
-"NSHealthShareUsageDescription" = "Το ρολόι διαβάζει τον καρδιακό ρυθμό και την ενεργή ενέργεια κατά τη διάρκεια της προπόνησης. Τα δεδομένα δεν αποστέλλονται εκτός των συσκευών σου.";
+"NSHealthShareUsageDescription" = "Το ρολόι διαβάζει τον καρδιακό ρυθμό και την ενεργή ενέργεια κατά τη διάρκεια της προπόνησης. Τα δεδομένα δεν αποστέλλονται εκτός των συσκευών σας.";
 "NSHealthUpdateUsageDescription" = "Το ρολόι αποθηκεύει την ολοκληρωμένη προπόνηση δύναμης, με καρδιακό ρυθμό και ενεργή ενέργεια, στο Apple Health.";

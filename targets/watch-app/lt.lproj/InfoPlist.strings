@@ -1,4 +1,4 @@
 /* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
 "CFBundleDisplayName" = "Treniruotė";
-"NSHealthShareUsageDescription" = "Laikrodis nuskaito pulsą ir aktyviąją energiją vykstančios treniruotės metu. Duomenys nesiunčiami už tavo įrenginių ribų.";
+"NSHealthShareUsageDescription" = "Laikrodis nuskaito pulsą ir aktyviąją energiją vykstančios treniruotės metu. Duomenys nesiunčiami už jūsų įrenginių ribų.";
 "NSHealthUpdateUsageDescription" = "Laikrodis įrašo baigtą jėgos treniruotę su pulsu ir aktyvia energija į Apple Health.";

@@ -12,8 +12,10 @@ Języki (16): pl, en, cs, sk, hu, ro, bg, hr, sl, sr, lt, lv, et, uk, es, pt.
 | sr | serbski, **cyrylica**, ekawica | polecenia „Додирните”, przyciski „Сачувај” |
 | pt | **pt-PT** (Portugalia) | formalnie, bez „você”; „ecrã”, „telemóvel” |
 | es | **es-ES** (Hiszpania) | „tú”, „Ajustes”, „OK” jako Gotowe |
-| hr, sl, cs, sk, bg, lt, lv, ro, hu, uk | standard | formalny jak w iOS |
+| hr, sl, cs, sk, bg, lt, lv, ro, hu, uk | standard | formalny jak w iOS (ekrany, komunikaty, zdanie medyczne i bezpieczeństwa); **wyjątek: wskazówki techniki ćwiczeń (`lib/cues`) — „ton trenera”, forma „ty”** (decyzja właściciela 21.10.2026) |
 | et | standard | „sina” (jak Apple w iOS po estońsku) |
+
+*Wyjątek „ton trenera” (decyzja właściciela 21.10.2026):* wskazówki techniki ćwiczeń (`lib/cues/text/*.json`) zwracają się do użytkownika jak trener na siłowni — formą „ty” (np. cs „Zvedni…”, pt „Levanta…”) — także w językach, w których ekrany są formalne (bg, cs, el, hr, hu, lt, lv, pt, ro, sk, sl, sr, uk). Ekrany, komunikaty, zdanie medyczne i ostrzeżenia bezpieczeństwa zostają w rejestrze z tabeli. Odrzucone: wszystkie wskazówki formalnie (ok. 3000 zdań, brzmienie „urzędowe”). Przegląd tłumaczeń przez API nie zgłasza formy „ty” we wskazówkach (`scripts/i18n/przeglad-api.mjs`).
 
 *Jak to działa (jedno źródło prawdy):*
 - Klucz = polski tekst. Lista tekstów do przetłumaczenia generowana z kodu: `lib/locales/_source.json`
