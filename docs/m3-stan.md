@@ -3,13 +3,11 @@
 Przebieg: M3-2026-10-21 · gałąź `redesign/trening-2026-10-21` od `main` 69988ea · prompt roli: biblioteka `prompts` 97ec212 (prywatna, nie w tym repo).
 Katalog roboczy przebiegu (`audit/M3-2026-10-21/`) jest poza gitem; tu tylko stan do wznowienia, bez treści prywatnych.
 
-## Stan (21.10.2026)
-- E0 zakończony; **STOP 1 zatwierdzony 21.10.2026** (docs/18): pełny przebieg; bramka opłacalności (rola 02, próg 500 USD/rok) biegnie równolegle z E1 — zmiana decyzji z 21.10, rola 04 build jako subagenci.
-- E1 zakończony: analiza AS IS (15 przepływów, 14 znalezisk, propozycje T1–T8), bramka opłacalności (werdykt „wydać”, wynik normalny ok. 570 USD/rok przy progu 500 — blisko progu), weryfikacja przeciwna.
-- E2 → **STOP 2**: lista zmian ZM-01…07, element firmowy, skala tekstu, punkt kontrolny bramki — czeka na wybór właściciela.
-- Stan wyjściowy: `npm run verify` EXIT 0 (402 zestawy, 8519 testów, 1 pominięty; lint 0 błędów / 111 ostrzeżeń; macierz 2491 pozycji, 0 bez testu).
-- `npm run screens`: 324 zrzuty Expo web; 10 problemów układu przy szerokości 320 pt (generator — przycisk poza ekranem w 6 językach; historia/ustawienia — ucięty tekst w lv, el).
+## Stan (21.10.2026, ok. 22:50 UTC)
+- E0–E3 zakończone (decyzje właściciela w docs/18: STOP 1, 2, E1–E3 roli 04, STOP 3, punkt kontrolny p1, STOP p5d, doprecyzowanie ZM-06).
+- E4 wdrożenie: p1 system, p2 trening, p3 Postępy i historia, p4 szablony i generator, p5 Więcej, p5d ustawienia (pole haptics), p6 zegarek, poprawka wibracji przy ✓, teksty (rola 09) — scalone na tej gałęzi; ostatni commit cf6432b, tests.yml zielone.
+- Przebiegi macOS (E2E dotkniętych scenariuszy, ios-unsigned, watch-sim) — prowadzi koordynator projektu.
+- E5 w toku: weryfikacja w świeżym kontekście (rola 04 audit, rola 09 audit).
 
 ## Następny krok
-Po STOP 2: docs/design/to-be.md z zatwierdzonymi przepływami, wpisy decyzji w docs/18, ewentualnie rola 03 (zmiana zakresu), potem E3 — projekt od zera (rola 04 build, subagenci).
-Wznowienie: nowa sesja M3 z promptem złożonym `node tools/assemble.mjs M3-redesigner --galaz redesign/trening-2026-10-21`, start od tego pliku i `git log`.
+Wyniki E5 → poprawki P0/P1 (rola 08 fix) → raport końcowy M3 i STOP końcowy (przez koordynatora projektu). Wznowienie: prompt M3 z biblioteki `prompts`, ten plik i `git log`.
