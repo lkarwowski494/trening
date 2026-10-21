@@ -1,7 +1,8 @@
 # TestFlight — testy wewnętrzne (decyzja właściciela 06.10.2026, docs/15: limit Expo na buildy lokalne wyczerpany do 01.11.2026).
 # Build i podpis wyłącznie narzędziami Apple (bez Expo/EAS): xcodebuild archive z automatycznym podpisem przez klucz App Store Connect API,
 # eksport z wysyłką do App Store Connect. Tester wewnętrzny (właściciel) dostaje build w aplikacji TestFlight bez recenzji Apple.
-# Uruchamianie: Actions → „TestFlight (testy wewnętrzne)” → Run workflow albo push na main (sekrety niedostępne dla forków).
+# Uruchamianie: tylko ręcznie — Actions → „TestFlight (testy wewnętrzne)” → Run workflow, dla wersji uznanej za finalną (właściciel 21.10.2026:
+# testuje tylko wersję finalną; wcześniej także push na main). Sekrety niedostępne dla forków.
 # 20.10.2026 (audyt M1-018): zadanie „bramka” — wysyłka czeka na ZIELONY przebieg e2e-ios.yml (pakiet podstawowy lub szerszy) dla TEGO SAMEGO commitu
 # (scripts/ci/bramka-e2e.sh); sama dokumentacja (docs/**, *.md) nie uruchamia ani E2E, ani TestFlight. Ścieżka awaryjna (awaria E2E, nie kodu): wejścia
 # pomin_bramke_e2e + powod — powód trafia do podsumowania przebiegu. Przebieg dowodowy bez wysyłki i bez tagu: wejście bez_wysylki (L-001).
@@ -29,9 +30,6 @@ on:
         description: 'Powód pominięcia bramki E2E (obowiązkowy przy pomin_bramke_e2e; trafia do podsumowania przebiegu)'
         required: false
         default: ''
-  push:
-    branches: [main]
-    paths-ignore: ['docs/**', '**/*.md', 'tests/**', '.claude/**']
 permissions:
   contents: read
 concurrency:
