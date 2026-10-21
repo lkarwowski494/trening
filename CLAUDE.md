@@ -35,7 +35,8 @@
   akcje zapobiegawcze i ich stan oraz **ocena zakresu**: *lokalna* (naprawa dotyczy tylko tego przypadku) albo *systemowa* (ta sama luka
   może wrócić w innej postaci → propozycja zmiany modelu pracy dla właściciela, ≥ 2 opcje z rekomendacją). Akcja ma być
   mechanizmem (test, strażnik w CI, krok listy kontrolnej, reguła w CLAUDE.md), nie postanowieniem „uważać”. Właściciel dostaje skrót lekcji
-  w odpowiedzi. Przed wydaniem przejrzyj otwarte akcje z `docs/40`.
+  w odpowiedzi. Przed wydaniem przejrzyj otwarte akcje z `docs/40`. Na gałęzi nowa lekcja ma nagłówek `## L-NNN` (numer nadaje koordynator przy scalaniu do main:
+  `node scripts/numeruj-lekcje.mjs`; właściciel 21.10.2026, L-016).
 - **Model pracy po lekcji L-001 (decyzja właściciela 14.10.2026, wszystkie projekty):**
   1. *Przebieg dowodowy CI:* zmiana budowania, podpisu lub wysyłki (workflowy, skrypty CI) trafia do scalenia dopiero po prawdziwym przebiegu,
      który pokazuje wynik na gotowym produkcie (np. uprawnienia w wyeksportowanym pakiecie); testy samego pliku workflowu nie wystarczą.
