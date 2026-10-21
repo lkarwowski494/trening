@@ -1,4 +1,5 @@
 // zrzuty.mjs — użycie: node zrzuty.mjs <plik.html> <katalog-wyjścia> [kroje,oddzielone,przecinkami]
+// eslint-disable-next-line import/no-unresolved -- Playwright spoza projektu (scratchpad), nie zależność aplikacji (moduł render-i-krytyka)
 import { chromium } from 'playwright';
 import { mkdirSync } from 'node:fs';
 import { resolve, basename } from 'node:path';

@@ -29,6 +29,7 @@ async function main() {
   if (!plik) { console.error('Użycie: node warsztat.mjs <plik.html> [szerokość=390] [jednostka=4] [--rozmycie]'); process.exit(2); }
   const liczby = reszta.filter((x) => /^\d+$/.test(x)).map(Number);
   const [szerokosc = 390, jednostka = 4] = liczby;
+  // eslint-disable-next-line import/no-unresolved -- Playwright spoza projektu (scratchpad), nie zależność aplikacji (moduł render-i-krytyka)
   const { chromium } = await import('playwright');
   const b = await chromium.launch();
   const s = await b.newPage({ viewport: { width: szerokosc, height: 900 } });

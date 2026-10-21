@@ -2,6 +2,7 @@
 // Bez --alfa: PNG RGB bez kanału alfa, kod 1 przy przezroczystym pikselu (ikona iOS). Z --alfa: PNG RGBA (warstwy Androida, ekran startowy).
 import { readFileSync, writeFileSync } from 'node:fs';
 import { deflateSync } from 'node:zlib';
+import { Buffer } from 'node:buffer';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -30,6 +31,7 @@ async function main() {
   if (!plik || !wyjscie) { console.error('Użycie: node ikona.mjs <plik.svg> <wyjście.png> [rozmiar=1024] [--alfa]'); process.exit(2); }
   const alfa = reszta.includes('--alfa');
   const r = Number(reszta.find((x) => /^\d+$/.test(x)) || 1024);
+  // eslint-disable-next-line import/no-unresolved -- Playwright spoza projektu (scratchpad), nie zależność aplikacji (moduł render-i-krytyka)
   const { chromium } = await import('playwright');
   const b = await chromium.launch();
   const p = await b.newPage();
