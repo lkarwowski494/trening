@@ -1,0 +1,61 @@
+/* Wspólny chrom makiet E2 (M3, 21.10.2026): pasek stanu, nagłówek treningu (ZM-02), lista „Dalej”, pasek zakładek, panele poza ekranem.
+ * Kierunek ustawia tylko zmienne kolorów i krojów oraz własny element firmowy. Rozmiary w rem od --dt-tytul i --dt-tresc (skrypt zrzuty.mjs).
+ * DEC-10: opisy do 200% (--dt-opis), liczby w polach do 130% (--dt-liczba) z podglądem po przytrzymaniu; wariant „AX5” skryptu pokazuje, jak to wygląda. */
+@font-face { font-family: 'Zastepczy'; src: url('../fonty/source-sans-3/SourceSans3-var.ttf') format('truetype'); font-weight: 200 900; }
+:root {
+  --dt-tytul: 1; --dt-tresc: 1;
+  --dt-opis: min(var(--dt-tresc), 2);
+  --dt-liczba: min(var(--dt-tresc), 1.3);
+  --tresc: 'Zastepczy', sans-serif;
+  --j: 4px; /* jednostka odstępu */
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { background: #d9dbdd; font-family: var(--tresc); color: #1c1f23; padding: 32px; font-feature-settings: 'tnum' 1; }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
+.uklad { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; }
+.tel { width: var(--w, 390px); min-height: 844px; background: var(--bg); color: var(--tekst); display: flex; flex-direction: column; font-family: var(--tresc); border-radius: 0; position: relative; }
+.sb { display: flex; justify-content: space-between; align-items: center; height: 48px; padding: 0 28px; font-weight: 600; font-size: 1rem; }
+.sb-i { display: inline-flex; gap: 6px; align-items: center; }
+.sb-i i { display: inline-block; background: currentColor; border-radius: 2px; }
+.nag { display: flex; align-items: center; gap: var(--j); padding: 4px 8px 8px 16px; min-height: 52px; }
+.nag-t { flex: 1; font-family: var(--krój-tytul); font-size: calc(1.25rem * var(--dt-tytul)); line-height: 1.2; font-weight: var(--waga-tytul, 700); min-width: 0; }
+.nag-t .czas { font-family: var(--tresc); font-weight: 500; color: var(--tekst2); font-size: calc(1.0625rem * var(--dt-liczba)); margin-left: 8px; white-space: nowrap; }
+.ib { width: 44px; height: 44px; display: inline-grid; place-items: center; border-radius: 22px; color: var(--tekst); }
+.ib svg { width: 24px; height: 24px; }
+.bt { min-height: 44px; padding: 0 12px; font-size: calc(1.0625rem * var(--dt-opis)); font-weight: 600; color: var(--tekst); border-radius: 22px; }
+.przyc { width: 100%; min-height: 60px; border-radius: var(--r-przyc, 14px); background: var(--przycisk); color: var(--przycisk-tekst); font-size: calc(1.1875rem * var(--dt-opis)); font-weight: 700; padding: 8px 16px; line-height: 1.2; }
+.pm { width: 44px; height: 44px; border-radius: 22px; display: inline-grid; place-items: center; background: var(--pole); color: var(--tekst); flex: none; }
+.pm svg { width: 20px; height: 20px; }
+.opis { font-size: calc(0.9375rem * var(--dt-opis)); color: var(--tekst2); line-height: 1.35; }
+.lista { margin: 24px 0 0; padding: 0 16px; }
+.lista h2 { font-family: var(--krój-tytul); font-size: calc(1.0625rem * var(--dt-tytul)); font-weight: var(--waga-tytul, 700); margin: 0 0 8px 0; color: var(--tekst); }
+.lista ul { list-style: none; background: var(--powierzchnia); border-radius: 12px; }
+.lista li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; min-height: 52px; padding: 8px 16px; border-bottom: 1px solid var(--linia); font-size: calc(1.0625rem * var(--dt-opis)); line-height: 1.3; }
+.lista li:last-child { border-bottom: 0; }
+.lista li .n { flex: 1 1 55%; min-width: 0; }
+.lista li .d { margin-left: auto; color: var(--tekst2); font-size: calc(0.9375rem * var(--dt-opis)); white-space: nowrap; }
+.zakl { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--linia); background: var(--bg); padding: 4px 0 28px; }
+.zakl a { display: grid; justify-items: center; gap: 2px; font-size: calc(0.6875rem * var(--dt-opis)); color: var(--tekst2); text-decoration: none; font-weight: 600; padding-top: 4px; min-height: 48px; text-align: center; }
+.zakl a.ak { color: var(--tekst); }
+.zakl svg { width: 26px; height: 26px; }
+.przyklad { font-size: 11px; color: var(--tekst2); padding: 4px 16px 0; }
+/* panele poza ekranem (karta stylu, ikony, małe formaty) */
+.panel { width: 390px; background: #fff; color: #1c1f23; padding: 20px; border-radius: 4px; font-family: var(--tresc); font-size: 15px; line-height: 1.4; }
+.panel h2 { font-family: var(--krój-tytul); font-size: 26px; font-weight: var(--waga-tytul, 700); margin-bottom: 8px; line-height: 1.15; }
+.panel h3 { font-size: 15px; font-weight: 700; margin: 14px 0 4px; }
+.panel p, .panel li { font-size: 14px; }
+.panel ul { padding-left: 18px; }
+.pal { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+.pal div { display: flex; gap: 8px; align-items: center; font-size: 12px; line-height: 1.25; }
+.pal b { width: 28px; height: 28px; border-radius: 6px; flex: none; border: 1px solid #0002; }
+.ikony { display: flex; gap: 16px; align-items: flex-end; padding: 16px; border-radius: 12px; }
+.ikony img { display: block; }
+.ikony .i180 { width: 180px; height: 180px; border-radius: 40px; }
+.ikony .i60 { width: 60px; height: 60px; border-radius: 13.5px; }
+.ikony .i29 { width: 29px; height: 29px; border-radius: 6.5px; }
+.tapeta-j { background: linear-gradient(160deg, #cfd8e3, #eef1f4); }
+.tapeta-c { background: linear-gradient(160deg, #10151c, #2a3038); }
+.male { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+.blokada { width: 358px; border-radius: 22px; padding: 14px 16px; background: #1d1f22e6; color: #fff; }
+.zegarek { width: 184px; height: 224px; border-radius: 44px; background: #000; color: #fff; padding: 18px 16px; display: flex; flex-direction: column; gap: 6px; }

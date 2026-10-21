@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kierunek A — Tablica podejść</title>
+<!-- Makieta E2 (M3, rola 04 build, 21.10.2026). Plik wygenerowany; wszystkie nazwy ćwiczeń, ciężary, czasy i liczby serii na ekranach to [PRZYKŁAD].
+     Teksty interfejsu z lib/i18n (Seria zrobiona, Pomiń, Zakończ, seria {n} z {all}). Krój treści: na iOS SF Pro; w makiecie zastępczo Source Sans 3 (OFL). -->
+<link rel="stylesheet" href="wspolne.css">
+<style>
+@font-face { font-family: 'Tablica'; src: url('../fonty/barlow-condensed/BarlowCondensed-SemiBold.ttf'); font-weight: 600; }
+@font-face { font-family: 'Tablica'; src: url('../fonty/barlow-condensed/BarlowCondensed-Bold.ttf'); font-weight: 700; }
+:root { --krój-tytul: 'Tablica'; --bg: #E6E8E5; --tekst: #18202B; --tekst2: #4A5361; --linia: #CBD0CB; --pole: #D3D8D3; --powierzchnia: #F4F5F3; --przycisk: #13294B; --przycisk-tekst: #F5F1E6; --tablica: #13294B; --tablica-brzeg: #13294B; --tablica-tekst: #F5F1E6; --tablica-tekst2: #B7C1D0; --tablica-pole: #26446F; --zegar: #F2A900; --r-przyc: 8px; }
+[data-theme="dark"] { --bg: #161C24; --tekst: #E8EAED; --tekst2: #A3ACB8; --linia: #2C3440; --pole: #283244; --powierzchnia: #1E2530; --przycisk: #F5F1E6; --przycisk-tekst: #13294B; --tablica: #102544; --tablica-brzeg: #5675A8; --tablica-tekst: #F5F1E6; --tablica-tekst2: #AEB9CA; --tablica-pole: #22416D; --zegar: #F5B21C; }
+
+.pmp { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(148px * var(--dt-liczba))), 1fr)); gap: 8px; }
+.pmg { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.pmw { font-weight: 700; font-size: calc(1.375rem * var(--dt-liczba)); text-align: center; flex: 1; min-height: 44px; display: grid; place-items: center; line-height: 1; }
+.pmw small { font-size: calc(0.8125rem * var(--dt-opis)); font-weight: 600; opacity: .8; display: block; margin-top: 2px; }
+.prz { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 96px), 1fr)); gap: 8px; }
+.pm2 { min-height: 52px; padding: 4px 8px; white-space: nowrap; border-radius: var(--r-przyc, 14px); background: var(--pole); color: var(--tekst); font-weight: 700; font-size: calc(1.0625rem * var(--dt-opis)); }
+.pm2.prim { background: var(--przycisk); color: var(--przycisk-tekst); }
+.akcja { padding: 16px 16px 0; display: grid; gap: 8px; }
+.akcja .opis { text-align: center; }
+
+
+.tab { margin: 4px 16px 0; background: var(--tablica); color: var(--tablica-tekst); border-radius: 8px; padding: 16px; border: 1px solid var(--tablica-brzeg); }
+.tab-g { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-family: 'Tablica'; flex-wrap: wrap; }
+.tab-cw { font-size: calc(1.5rem * var(--dt-tytul)); text-transform: uppercase; letter-spacing: .04em; font-weight: 600; line-height: 1.1; }
+.tab-s { font-size: calc(1.125rem * var(--dt-opis)); color: var(--tablica-tekst2); white-space: nowrap; font-weight: 600; }
+.tab-l { display: flex; align-items: baseline; justify-content: center; gap: 10px; font-family: 'Tablica'; font-weight: 700; font-size: calc(6rem * var(--dt-liczba)); line-height: .95; margin: 12px 0 12px; flex-wrap: wrap; }
+.tab-l small { font-size: .3em; font-weight: 600; color: var(--tablica-tekst2); }
+.tab-l .x { font-size: .45em; color: var(--tablica-tekst2); font-weight: 600; }
+.tab-l.zeg { color: var(--zegar); font-size: calc(7rem * var(--dt-liczba)); }
+.tab .pm { background: var(--tablica-pole); color: var(--tablica-tekst); }
+.tab .pmw small { font-family: 'Tablica'; font-size: calc(1.125rem * var(--dt-opis)); color: var(--tablica-tekst); opacity: 1; font-weight: 600; }
+.pola { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px; }
+.pole { min-height: 48px; border-radius: 4px; display: grid; place-items: center; font-family: 'Tablica'; font-size: calc(1.25rem * var(--dt-liczba)); font-weight: 700; position: relative; }
+.pole.z { background: var(--tablica-tekst); color: var(--tablica); }
+.pole.t { box-shadow: inset 0 0 0 3px var(--zegar); }
+.pole.p { box-shadow: inset 0 0 0 1px var(--tablica-tekst2); color: var(--tablica-tekst2); font-weight: 600; }
+.nast { font-family: 'Tablica'; font-weight: 600; text-align: center; font-size: calc(1.25rem * var(--dt-opis)); color: var(--tablica-tekst); line-height: 1.2; }
+
+</style></head>
+<body>
+<div class="uklad">
+<main data-ekran="seria" class="tel" aria-label="Ekran treningu, stan seria"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><header class="nag"><h1 class="nag-t">Góra A<span class="czas">24:13</span></h1><button class="ib" aria-label="Opcje treningu"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg></button><button class="bt">Zakończ</button></header><section class="tab" aria-label="Karta teraz: Wyciskanie leżąc, seria 3 z 4, 80 kilogramów razy 6">
+<div class="tab-g"><span class="tab-cw">Wyciskanie leżąc</span><span class="tab-s">seria 3 z 4</span></div>
+<div class="tab-l" aria-hidden="true"><span>80<small> kg</small></span><span class="x">×</span><span>6</span></div>
+<div class="pmp"><div class="pmg"><button class="pm" aria-label="Zmniejsz ciężar o 2,5 kg"><svg viewBox="0 0 20 20"><path d="M4 10h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button><span class="pmw"><small>kg</small></span><button class="pm" aria-label="Zwiększ ciężar o 2,5 kg"><svg viewBox="0 0 20 20"><path d="M4 10h12M10 4v12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div><div class="pmg"><button class="pm" aria-label="Zmniejsz powtórzenia o 1"><svg viewBox="0 0 20 20"><path d="M4 10h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button><span class="pmw"><small>powt.</small></span><button class="pm" aria-label="Zwiększ powtórzenia o 1"><svg viewBox="0 0 20 20"><path d="M4 10h12M10 4v12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div></div>
+<div class="pola" role="img" aria-label="Serie ćwiczenia: 2 z 4 zrobione"><span class="pole z">80×6</span><span class="pole z">80×6</span><span class="pole t">3</span><span class="pole p">4</span></div>
+</section>
+<div class="akcja"><button class="przyc">Seria zrobiona</button><p class="opis">Poprzednio 77,5 kg × 6</p></div>
+<section class="lista"><h2>Dalej</h2><ul><li><span class="n">Wiosłowanie hantlem</span><span class="d">3 × 10, 32 kg</span></li><li><span class="n">Wyciskanie hantli na ławce skośnej</span><span class="d">3 × 8, 26 kg</span></li><li><span class="n">Podciąganie nachwytem</span><span class="d">3 × 6–8</span></li></ul></section><nav class="zakl"><a class="ak" aria-current="page"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13" cy="14" r="9"/><path d="M13 9v5l3 2M10 2h6"/></svg>Trening</a><a><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="20" height="18" rx="3"/><path d="M3 10h20M8 2v5M18 2v5"/></svg>Plan</a><a><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 22V13M11 22V7M17 22v-6M23 22V4"/></svg>Postępy</a><a><svg viewBox="0 0 26 26" fill="currentColor"><circle cx="6" cy="13" r="2.2"/><circle cx="13" cy="13" r="2.2"/><circle cx="20" cy="13" r="2.2"/></svg>Więcej</a></nav></main>
+<main data-ekran="przerwa" class="tel" aria-label="Ekran treningu, stan przerwa"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><header class="nag"><h1 class="nag-t">Góra A<span class="czas">24:13</span></h1><button class="ib" aria-label="Opcje treningu"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg></button><button class="bt">Zakończ</button></header><section class="tab" aria-label="Przerwa: zostało 1 minuta 47 sekund z 2 minut 30. Następna seria 4 z 4: 80 kilogramów razy 6">
+<div class="tab-g"><span class="tab-cw">Przerwa</span><span class="tab-s">z 2:30</span></div>
+<div class="tab-l zeg" aria-hidden="true">1:47</div>
+<p class="nast">Następna: seria 4 z 4, 80 kg × 6</p>
+<div class="pola" role="img" aria-label="Serie ćwiczenia: 3 z 4 zrobione"><span class="pole z">80×6</span><span class="pole z">80×6</span><span class="pole z">80×6</span><span class="pole t">4</span></div>
+</section>
+<div class="akcja"><div class="prz"><button class="pm2">−15 s</button><button class="pm2">+15 s</button><button class="pm2 prim">Pomiń</button></div></div>
+<section class="lista"><h2>Dalej</h2><ul><li><span class="n">Wiosłowanie hantlem</span><span class="d">3 × 10, 32 kg</span></li><li><span class="n">Wyciskanie hantli na ławce skośnej</span><span class="d">3 × 8, 26 kg</span></li><li><span class="n">Podciąganie nachwytem</span><span class="d">3 × 6–8</span></li></ul></section><nav class="zakl"><a class="ak" aria-current="page"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13" cy="14" r="9"/><path d="M13 9v5l3 2M10 2h6"/></svg>Trening</a><a><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="20" height="18" rx="3"/><path d="M3 10h20M8 2v5M18 2v5"/></svg>Plan</a><a><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 22V13M11 22V7M17 22v-6M23 22V4"/></svg>Postępy</a><a><svg viewBox="0 0 26 26" fill="currentColor"><circle cx="6" cy="13" r="2.2"/><circle cx="13" cy="13" r="2.2"/><circle cx="20" cy="13" r="2.2"/></svg>Więcej</a></nav></main>
+<aside class="panel" data-panel="karta"><h2>A — Tablica podejść</h2>
+<p><b>Idea.</b> Karta „teraz” to tablica podejścia z zawodów: ciężar do podjęcia, numer serii i zegar, czytelne z 2 m.</p>
+<h3>Element firmowy i dane</h3><p>Tablica: nazwa ćwiczenia, ciężar × powtórzenia następnej serii, pola serii (zrobione z wynikiem, bieżąca w ramce, czekające w konturze), w przerwie zegar. VoiceOver: „Wyciskanie leżąc, seria 3 z 4, 80 kg razy 6; zrobione 2 z 4”.</p>
+<h3>Paleta</h3><div class="pal">
+<div><b style="background:#13294B"></b>granat tablicy #13294B — tło tablic wyników w halach (wybór projektowy)</div>
+<div><b style="background:#F5F1E6"></b>biel cyfr #F5F1E6 — cyfry tablicy</div>
+<div><b style="background:#F2A900"></b>bursztyn zegara #F2A900 — tylko „teraz”: zegar i ramka bieżącej serii</div>
+<div><b style="background:#E6E8E5"></b>beton hali #E6E8E5 — tło</div>
+<div><b style="background:#18202B"></b>tusz #18202B — tekst</div></div>
+<h3>Kroje</h3><p>Tytuły i liczby tablicy: Barlow Condensed 600/700 (OFL) — wąskie cyfry tablic i oznaczeń sprzętu. Treść: systemowy (makieta: Source Sans 3).</p>
+<h3>Kształty i gęstość</h3><p>Prostokąty o małym promieniu (4–8 pt), jeden duży blok na górze, reszta lista iOS. Gęstość niska na karcie, standardowa niżej.</p>
+<h3>Ruch, haptyka, dźwięk</h3><p>„Seria zrobiona”: tablica przewraca się na zegar (pół obrotu klapki, ok. 250 ms; przy „Ogranicz ruch” przenikanie), jedno stuknięcie haptyki. 30 s przed końcem przerwy zegar zmienia stan i wibruje raz (analogia do sygnału zegara zawodów — konwencja, nie zalecenie).</p>
+<h3>Głos</h3><ul><li>Pusty: „Tablica czeka na pierwszy trening. Wybierz szablon i zacznij.”</li><li>Błąd: „Nie zapisaliśmy serii. Sprawdź wynik i stuknij jeszcze raz.”</li><li>Sukces: „Trening zapisany: 18 serii.”</li></ul>
+<h3>Ikona</h3><p>Trzy pola tablicy na granacie: dwa pełne (zrobione), trzecie w bursztynowej ramce (teraz).</p>
+<h3>Najmocniejszy argument</h3><p>Najlepiej czytelna z odległości: telefon na ławce, spojrzenie 1–3 s, a ciężar i numer serii są największe na ekranie.</p></aside>
+<aside class="panel" data-panel="male">
+<h3>Ikona — 180, 60 i 29 pt; jasna i ciemna</h3>
+<div class="ikony tapeta-j"><img class="i180" src="ikony/a-jasna.svg" alt="Ikona kierunku A"><img class="i60" src="ikony/a-jasna.svg" alt=""><img class="i29" src="ikony/a-jasna.svg" alt=""></div>
+<div class="ikony tapeta-c" style="margin-top:8px"><img class="i180" src="ikony/a-ciemna.svg" alt="Ikona kierunku A, wariant ciemny"><img class="i60" src="ikony/a-ciemna.svg" alt=""><img class="i29" src="ikony/a-ciemna.svg" alt=""></div>
+<h3>Ekran blokady (Live Activity przerwy) i zegarek</h3>
+<div class="male"><div class="blokada"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><div><div style="font-size:13px;color:#b7c1d0">Przerwa, Wyciskanie leżąc</div><div style="font-family:Tablica;font-weight:700;font-size:44px;line-height:1;color:#F2A900">1:47</div></div><div style="text-align:right"><div style="font-family:Tablica;font-weight:600;font-size:20px">80 kg × 6</div><div style="display:flex;gap:3px;margin-top:6px"><i style="width:18px;height:14px;background:#F5F1E6;border-radius:2px"></i><i style="width:18px;height:14px;background:#F5F1E6;border-radius:2px"></i><i style="width:18px;height:14px;background:#F5F1E6;border-radius:2px"></i><i style="width:18px;height:14px;box-shadow:inset 0 0 0 1.5px #F5F1E6;border-radius:2px"></i></div></div></div></div><div class="zegarek"><div style="font-size:13px;color:#b7c1d0">Seria 4 z 4</div><div style="font-family:Tablica;font-weight:700;font-size:50px;line-height:1;color:#F2A900">1:47</div><div style="font-family:Tablica;font-weight:600;font-size:24px">80 kg × 6</div><div style="display:flex;gap:3px;margin-top:auto"><i style="flex:1;height:16px;background:#F5F1E6;border-radius:2px"></i><i style="flex:1;height:16px;background:#F5F1E6;border-radius:2px"></i><i style="flex:1;height:16px;background:#F5F1E6;border-radius:2px"></i><i style="flex:1;height:16px;box-shadow:inset 0 0 0 1.5px #F5F1E6;border-radius:2px"></i></div></div></div>
+<p class="opis" style="color:#4c5562;margin-top:8px">Na ekranach wszystkie nazwy i liczby to [PRZYKŁAD]. Treść: na iOS SF Pro; w makiecie zastępczo Source Sans 3.</p>
+</aside>
+</div>
+</body></html>
