@@ -84,3 +84,6 @@ Generator: `node docs/design/narzedzia/a-warianty-gen.mjs`. Zrzuty 390 pt (jasny
 Kontrast: [`kontrast-a.json`](kontrast-a.json) → [`kontrast-a-wynik.txt`](kontrast-a-wynik.txt): 44 pary, wszystkie spełniają progi, kod 0. Zawiera tekst i tekst pomocniczy na każdej barwie talerza A2 w obu motywach.
 
 **Kroje tytułowe (E2 krok 6):** [`../kroje.html`](../kroje.html), zrzut [`../kroje.png`](../kroje.png). Pięć krojów na ekranie A1: Barlow Condensed (obecny), Oswald, Big Shoulders, Saira Condensed i Doto. Wszystkie OFL 1.1, pliki i licencje w `../fonty/<krój>/OFL.txt` (google/fonts, `ofl/`, pobrane 21.10.2026).
+
+## E3 (21.10.2026)
+System wybranego wariantu A2: [`../design-spec.md`](../design-spec.md), tokeny [`../tokeny.ts`](../tokeny.ts). Pliki krojów niewybranych w E2b (Archivo, Big Shoulders, Caveat, Chivo, Doto, Oswald, Saira Condensed) usunięte z `../fonty/` — zostały ich licencje. Makiety B, C, D i `../kroje.html` otwierają się teraz z krojem zastępczym; zapisem wyglądu są zrzuty PNG (`zrzuty/`, `../porownanie.png`, `../kroje.png`).
