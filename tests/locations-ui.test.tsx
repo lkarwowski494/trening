@@ -75,10 +75,10 @@ describe('Ustawienia → Miejsca treningu', () => {
 describe('trening i wybór ćwiczenia w miejscu', () => {
   test('chip „📍 Dom ▾” i zmiana miejsca tylko dla tej sesji', async () => {
     const saved = await savedWithPlaces(true); await renderApp({ saved }); await flushAll(10);
-    const chip = screen.getByLabelText('Miejsce treningu: Dom'); expect(screen.getByText('📍 Dom ▾')).toBeTruthy();
+    const chip = screen.getByLabelText('Miejsce treningu: Dom'); expect(screen.getByText('Dom ▾')).toBeTruthy();
     await tap(chip); await act(async () => { (global as any).__pickSheet(1); }); await flushAll(5);
     expect(store.getState().active!.locationId).toBe(store.getState().settings.locations[1].id); expect(store.getState().settings.mainLocationId).toBe('home');
-    expect(screen.getByText('📍 Siłownia ▾')).toBeTruthy();
+    expect(screen.getByText('Siłownia ▾')).toBeTruthy();
   });
   test('wybór ćwiczenia: domyślnie tylko dostępne w Dom; „Pokaż wszystkie” zapamiętany, niedostępne wyszarzone z „brak: …”', async () => {
     const saved = await savedWithPlaces(true); await renderApp({ saved }); await go('/picker?target=active'); await flushAll(10);
@@ -105,9 +105,9 @@ describe('trening i wybór ćwiczenia w miejscu', () => {
   test('szablon: miejsce domyślne (chipy) i start treningu w tym miejscu', async () => {
     const saved = await savedWithPlaces(false, true); await renderApp({ saved }); const tpl = store.getState().templates[0]; await go(`/template/${tpl.id}`); await flushAll(10); await startEdit();
     expect(screen.getByText('Miejsce domyślne')).toBeTruthy(); await tap(screen.getByText('Siłownia')); await saveEdit(); expect(store.getState().templates[0].locationId).toBe(store.getState().settings.locations[1].id);
-    expect(screen.getByText(/📍 Siłownia/)).toBeTruthy(); /* podgląd: miejsce domyślne */
+    expect(screen.getByText(/Siłownia/)).toBeTruthy(); /* podgląd: miejsce domyślne */
     await tap(screen.getByText('Start')); await flushAll(10); expect(store.getState().active!.locationId).toBe(store.getState().settings.locations[1].id);
-    expect(screen.getByText('📍 Siłownia ▾')).toBeTruthy();
+    expect(screen.getByText('Siłownia ▾')).toBeTruthy();
   });
   test('picker w edycji szablonu z miejscem domyślnym filtruje po tym miejscu', async () => {
     const saved = await savedWithPlaces(false, true); saved.templates[0].locationId = 'home'; await renderApp({ saved }); await go(`/picker?target=template:${saved.templates[0].id}`); await flushAll(10);

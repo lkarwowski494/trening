@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Pressable, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Item, useOnce } from '@/components/ui';
-import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, F, TEXT_SCALE_MAX, FW } from '@/lib/theme';
 import { fmtDate, fmtDayKey } from '@/lib/store';
 import { startTemplate, startRepeatLast, startEmptyWorkout } from '@/lib/start';
 import { mainStart, otherStarts, type MainStart, type OtherStart } from '@/lib/home';
@@ -48,9 +48,9 @@ export function StartPanel() {
         style={({ pressed }) => ({ minHeight: 56, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 16, backgroundColor: th.accent, opacity: pressed ? 0.8 : 1, flexDirection: 'row', alignItems: 'center', gap: 10 })}>
         <View style={{ flex: 1 }}>
           <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accentInk, fontFamily: F.heavy, fontSize: 18 }}>{x.title}</Text>
-          {x.sub ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accentInk, fontFamily: F.regular, fontSize: 13, marginTop: 2 }}>{x.sub}</Text> : null}
+          {x.sub ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accentInk, ...FW.regular, fontSize: 13, marginTop: 2 }}>{x.sub}</Text> : null}
         </View>
-        <Text accessibilityElementsHidden importantForAccessibility="no" style={{ color: th.accentInk, fontFamily: F.semibold, fontSize: 22 }}>›</Text>
+        <Text accessibilityElementsHidden importantForAccessibility="no" style={{ color: th.accentInk, ...FW.semibold, fontSize: 22 }}>›</Text>
       </Pressable>
       {m.kind !== 'resume' ? <Btn block title={t('Inny trening')} accessibilityLabel={t('Inny trening')} accessibilityHint={t('Inny z planu, powtórz ostatni, z szablonu albo pusty.')} onPress={() => setOpen(true)} /> : null}
       <Modal visible={open} transparent animationType="slide" onRequestClose={() => setOpen(false)} accessibilityViewIsModal>

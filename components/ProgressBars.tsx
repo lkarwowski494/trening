@@ -98,7 +98,7 @@ export function PeriodLine({ n, id, name, text, children }: { n: 1 | 2; id: stri
     <View style={{ marginTop: 4 }}>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'baseline', columnGap: 8 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, flexShrink: 1 }}><PeriodSwatch n={n} id={id} /><Muted style={{ fontSize: 12, flexShrink: 1 }}>{name}</Muted></View>
-        <Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right', maxWidth: '100%' }}>{monoSafe(text) /* A11-11: litery greckie krojem tekstu */}</Muted>
+        <Muted style={{ fontSize: 13, fontFamily: F.mono, fontVariant: ['tabular-nums'], flexShrink: 1, textAlign: 'right', maxWidth: '100%' }}>{monoSafe(text) /* A11-11: litery greckie krojem tekstu */}</Muted>
       </View>
       <View style={{ marginTop: 3 }}>{children}</View>
     </View>);
@@ -129,7 +129,7 @@ export function MuscleRows({ rows, metric, showPrev = true, names }: { rows: Bar
         </> : <>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
             <Txt style={{ fontSize: 14, flexShrink: 1 }}>{r.label}</Txt>
-            <Muted style={{ fontSize: 13, fontFamily: F.mono, flexShrink: 1, textAlign: 'right' }}>{monoSafe(value) /* A11-11: litery greckie krojem tekstu */}</Muted>
+            <Muted style={{ fontSize: 13, fontFamily: F.mono, fontVariant: ['tabular-nums'], flexShrink: 1, textAlign: 'right' }}>{monoSafe(value) /* A11-11: litery greckie krojem tekstu */}</Muted>
           </View>
           <View style={{ marginTop: 4 }}>{bar}</View>
         </>}

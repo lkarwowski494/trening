@@ -108,7 +108,7 @@ describe('ekran', () => {
   test('„Pauza” zatrzymuje zegar treningu i pokazuje opis; „Wznów” — zegar liczy dalej bez czasu pauzy', async () => {
     await boot(); clock(5 * MIN); await flushAll(1000);
     expect(screen.getByText(/^start \d{2}:\d{2} · 5:0\d$/)).toBeTruthy();
-    expect(screen.getByText('⏸ Pauza')).toBeTruthy(); await tap(screen.getByLabelText('Pauza treningu')); await flushAll(10); expect(screen.getByText('▶ Wznów')).toBeTruthy(); expect(store.isPaused(store.getState().active)).toBe(true);
+    expect(screen.getByText('Pauza')).toBeTruthy(); expect(screen.getByTestId('icon-pause')).toBeTruthy(); /* M1-029: ikona zamiast emoji */ await tap(screen.getByLabelText('Pauza treningu')); await flushAll(10); expect(screen.getByText('Wznów')).toBeTruthy(); expect(screen.getByTestId('icon-play')).toBeTruthy(); expect(store.isPaused(store.getState().active)).toBe(true);
     expect(screen.getByLabelText('Wznów trening')).toBeTruthy(); expect(screen.getByText(/ · pauza$/)).toBeTruthy();
     expect(screen.getByText('Pauza — czas treningu stoi. Odhaczenie serii wznawia.')).toBeTruthy(); expect(screen.queryByText(/^Zegar treningu stoi/)).toBeNull(); await openInfo('pause'); /* ⓘ 14.10.2026 */
     expect(screen.getByText('Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.')).toBeTruthy();
@@ -124,6 +124,6 @@ describe('ekran', () => {
   });
   test('English', async () => {
     await boot('en'); await tap(screen.getByLabelText('Pause workout')); await flushAll(10);
-    expect(screen.getByLabelText('Resume workout')).toBeTruthy(); expect(screen.getByText(/ · paused$/)).toBeTruthy(); expect(screen.getByText('▶ Resume')).toBeTruthy();
+    expect(screen.getByLabelText('Resume workout')).toBeTruthy(); expect(screen.getByText(/ · paused$/)).toBeTruthy(); expect(screen.getByText('Resume')).toBeTruthy();
   });
 });

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Pressable, Text, View, useWindowDimensions } from 'react-native';
 import { Field } from '@/components/ui';
-import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, NUM_SCALE_MAX, TEXT_SCALE_MAX, FW } from '@/lib/theme';
 import { weekdayLabels, weekdayNames } from '@/lib/calendar';
 import { t, lang } from '@/lib/i18n';
 import { useAnnounce } from '@/lib/announce';
@@ -35,10 +35,10 @@ export function DayPicker({ label, value, onChange, min, max }: { label: string;
         {short.map((s, d) => { const on = value.includes(d); return (
           <Pressable key={d} testID={`day-${d}`} accessibilityLanguage={lang()} accessibilityRole="switch" accessibilityLabel={long[d]} accessibilityHint={label} accessibilityState={{ checked: on }} onPress={() => toggle(d)}
             style={({ pressed }) => ({ width: cell, minHeight: DAY_TOUCH, alignItems: 'center', justifyContent: 'center', borderRadius: 10, borderWidth: on ? 2 : 1, borderColor: on ? th.accent : th.ctrlLine, backgroundColor: on ? th.accent : th.surface2, opacity: pressed ? 0.7 : 1 })}>
-            <Text accessibilityLanguage={lang()} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7} maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ color: on ? th.accentInk : th.text, fontFamily: on ? F.semibold : F.regular, fontSize: 14, paddingHorizontal: 2 }}>{s}</Text>
+            <Text accessibilityLanguage={lang()} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7} maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ color: on ? th.accentInk : th.text, ...(on ? FW.semibold : FW.regular), fontSize: 14, paddingHorizontal: 2 }}>{s}</Text>
           </Pressable>); })}
       </View>
-      {ok ? null : <Text testID="day-picker-range" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontSize: 13, marginTop: 6, fontFamily: F.regular }}>{daysRangeText(min, max)}</Text>}
+      {ok ? null : <Text testID="day-picker-range" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontSize: 13, marginTop: 6, ...FW.regular }}>{daysRangeText(min, max)}</Text>}
     </Field>
   );
 }

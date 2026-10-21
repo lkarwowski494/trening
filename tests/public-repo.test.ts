@@ -271,7 +271,7 @@ describe('zależności i konfiguracja natywna', () => {
   });
   test('NAT-07: ekran startowy z wariantem ciemnym (tło jak motyw ciemny), martwy moduł ExtensionStorage poza autolinkowaniem', () => {
     const app = JSON.parse(readFileSync(join(root, 'app.json'), 'utf8')); const sp = app.expo.plugins.find((p: unknown) => Array.isArray(p) && p[0] === 'expo-splash-screen')[1];
-    expect(sp.dark.backgroundColor).toBe(require('../lib/theme').dark.bg); expect(sp.backgroundColor).toBe('#F4F3EF');
+    expect(sp.dark.backgroundColor).toBe(require('../lib/theme').dark.bg); expect(sp.backgroundColor).toBe(require('../lib/theme').light.bg); /* M3 (STOP E3, docs/18): tło startu = bg z tokenów */
     expect(pkg.expo.autolinking.exclude).toEqual(['@bacons/apple-targets']);
   });
 });

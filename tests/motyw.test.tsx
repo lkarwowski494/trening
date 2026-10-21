@@ -273,7 +273,8 @@ describe('„Ten tydzień”: stosy talerzy z procentem planu (tylko przy planie
     const done = rects(screen.getByTestId('strip-mark-2026-10-05', { includeHiddenElements: true }));
     expect(done[0].fill).toBe(dark.text); expect(done.find(x => x.fill === PLATE_COLORS.blue)!.stroke).toBe(dark.text); expect(done.find(x => x.fill === PLATE_COLORS.red)!.stroke).toBeUndefined();
     expect(rects(stack(2)).every(x => x.fill === 'none' && x.stroke === dark.text)).toBe(true);
-    expect(rects(stack(0)).every(x => x.stroke === undefined)).toBe(true); /* na tle ekranu (bg) w ciemnym motywie każdy kolor ≥ 3:1 — bez obwódek */
+    /* M3 (STOP E3, docs/18): nowe tło ciemne #161C24 — niebieski talerz ma do niego 2,95:1 (< 3:1), więc dostaje obwódkę (needsEdge); pozostałe kolory ≥ 3:1 — bez obwódek */
+    expect(rects(stack(0)).filter(x => x.fill !== PLATE_COLORS.blue).every(x => x.stroke === undefined)).toBe(true); expect(rects(stack(0)).find(x => x.fill === PLATE_COLORS.blue)!.stroke).toBe(dark.text);
     expect(screen.getByText('67% of the weekly plan (2 of 3)')).toBeTruthy();
   });
 });
@@ -312,18 +313,28 @@ describe('odpoczynek: filiżanka espresso w dniu bez treningu w planie (decyzja 
 });
 
 /* ---------- 4. puste stany ---------- */
-describe('puste stany z grafiką gryfu (dekoracja, ukryta przed VoiceOver)', () => {
+/* M3 (STOP E3, docs/18): grafika pustych stanów to motyw A2 — gryf z talerzami w barwach motywu (palety motif*), 220 pt; znika od skali tekstu 1,4 i przy „Zwiększ kontrast”.
+ * Testy aplikacji działają domyślnie przy skali 2,0 (jak największe rozmiary iOS), więc grafikę oglądamy przy skali 1,0. */
+describe('puste stany z motywem A2 (dekoracja, ukryta przed VoiceOver)', () => {
+  const RN = require('react-native');
+  beforeEach(() => { jest.spyOn(RN.Dimensions, 'get').mockImplementation((() => ({ width: 390, height: 844, scale: 3, fontScale: 1 })) as never); });
+  afterEach(() => { jest.restoreAllMocks(); });
   test.each([['/templates', 'Brak szablonów — dodaj pierwszy.'], ['/history', 'Jeszcze pusto — pierwszy trening czeka.'], ['/more/locations', 'Brak miejsc — wszystkie ćwiczenia są dostępne, a podpowiedzi działają jak dotąd.'], ['/progress', 'Wykresy pojawią się po pierwszym zakończonym treningu.']] as const)('%s', async (route, text) => {
     await boot(); await go(route); await flushAll(10);
     expect(screen.getByText(text)).toBeTruthy();
     const art = screen.getAllByTestId('empty-art', { includeHiddenElements: true }); expect(art.length).toBeGreaterThan(0);
     for (const a of art) { expect(a.props.accessibilityElementsHidden).toBe(true); expect(a.props.importantForAccessibility).toBe('no-hide-descendants'); }
   });
-  test.each([['light', light], ['dark', dark]] as const)('wyszukiwanie bez wyników: grafika w kolorach motywu %s', async (n, th) => {
+  test.each([['light', light], ['dark', dark]] as const)('wyszukiwanie bez wyników: grafika w barwach motywu A2 (%s)', async (n, th) => {
     await boot(() => {}, 'pl', n); await go('/exercises'); await flushAll(10);
     const { fireEvent } = require('@testing-library/react-native'); await act(async () => { fireEvent.changeText(screen.getByPlaceholderText(/Szukaj/), 'qqqzzz'); }); await flushAll(10);
     expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
-    const fills = screen.getByTestId('empty-art', { includeHiddenElements: true }).findAll(x => typeof x.props.fill === 'string').map(x => String(x.props.fill)); expect(fills).toContain(th.muted); expect(fills).toContain(th.text);
+    const fills = screen.getByTestId('empty-art', { includeHiddenElements: true }).findAll(x => typeof x.props.fill === 'string').map(x => String(x.props.fill));
+    for (const k of ['motif25', 'motif20', 'motif15', 'motif10', 'motifBar'] as const) expect(fills).toContain(th[k]);
+  });
+  test('przy skali tekstu 2,0 (duży tekst) grafiki nie ma, tekst pustego stanu zostaje', async () => {
+    jest.restoreAllMocks(); await boot(); await go('/templates'); await flushAll(10);
+    expect(screen.getByText('Brak szablonów — dodaj pierwszy.')).toBeTruthy(); expect(screen.queryByTestId('empty-art', { includeHiddenElements: true })).toBeNull();
   });
 });
 

@@ -13,7 +13,7 @@ import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
 import { PeriodSummary } from '@/components/PeriodSummary';
 import { ProgressTiles } from '@/components/Dashboard';
 import { GuardSection } from '@/components/GuardSection';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, F, FW } from '@/lib/theme';
 import { hasWeight, hasReps, hasTime, hasDistance } from '@/lib/seed';
 import { t, exName, locale, fold, lang, collator } from '@/lib/i18n';
 import { fmtW, fmtVol, volOut, wu, fmtNum, KG_PER_LB } from '@/lib/units';
@@ -119,8 +119,8 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 12 }}>{keys.map(k => <Chip key={k.key} label={k.label} on={active?.key === k.key} onPress={() => setKey(k.key)} />)}</View>
         <View style={{ marginTop: 10 }}>{active ? <LineChart points={points} fmt={active.fmt} scale={active.scale} minStep={active.minStep} intOnly={active.intOnly} steps={active.time ? TIME_STEPS : undefined} /> : null}</View>
         {recRows.length ? <View style={{ marginTop: 12, padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
-          <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{t('REKORDY')}</Muted>
-          {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontFamily: F.monoBold, flexShrink: 1, textAlign: 'right', marginLeft: 8 }}>{monoSafe(v, true) /* A11-11 */}</Txt></View>)}
+          <Muted style={{ fontSize: 12, ...FW.semibold }}>{t('REKORDY')}</Muted>
+          {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontFamily: F.monoBold, fontVariant: ['tabular-nums'], flexShrink: 1, textAlign: 'right', marginLeft: 8 }}>{monoSafe(v, true) /* A11-11 */}</Txt></View>)}
         </View> : null}
         {bwNote ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{bwNote}</Muted> : null}
         {sh ? <Btn nav small title={t('Masa ciała — pomiary')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => router.push('/more/bodymass')} /> : null}
@@ -128,7 +128,7 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
         {[...sessions].reverse().slice(0, 20).map((s, i) => (
           <View key={i} testID={`session-row-${i}`} style={{ paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: th.line }}>
             {/* M1-audytor-generalny-033: data w całości w pierwszym wierszu, podsumowanie pod nią (zawija się), odstęp 8 pt — zamiast rzędu „data | podsumowanie” */}
-            <Txt testID={`session-date-${i}`} style={{ fontFamily: F.semibold }}>{fmtDate(s.shown)}</Txt>
+            <Txt testID={`session-date-${i}`} style={{ ...FW.semibold }}>{fmtDate(s.shown)}</Txt>
             <Muted testID={`session-summary-${i}`} style={{ marginTop: 8 }}>{t('najlepsza')} {setSummary(ex, s.bestSet)}{s.volume ? ` · ${t('obj.')} ${fmtVol(s.volume)}` : ''}{s.bestE1rm ? ` · e1RM ${fmtW(s.bestE1rm, false)}` : ''}</Muted>
             <Muted style={{ fontSize: 13, marginTop: 4 }}>{s.sets.map(x => setSummary(ex, x)).join(' · ')}</Muted>
           </View>))}

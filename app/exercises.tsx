@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, View } from 'react-native';
-import { F } from '@/lib/theme';
+import { FW } from '@/lib/theme';
 import { useRouter, Stack } from 'expo-router';
 import { Screen, Item, Btn, Input, Muted, Empty, useOnce, SearchField } from '@/components/ui';
 import { useExercisesTick, useCfgTick, newExercise, visibleExercises, getState, exerciseInHistory, usesBand, restoreExercise, deleteExercise, exercisesInUse, inCoreList, libShowAll, setLibShowAll } from '@/lib/store';
@@ -36,7 +36,7 @@ export default function ExercisesScreen() {
     return { rows: out, count: usedAll ? all.filter(e => inCoreList(e, usedAll)).length : all.length, nicheHidden: hid }; /* licznik = ćwiczenia w bieżącym zakresie (domyślnie bez niszowych), niezależnie od szukania */
   }, [sig, usedKey, ql, L, libAll]); // eslint-disable-line react-hooks/exhaustive-deps
   const render = ({ item: r, index }: { item: Row; index: number }) => {
-    if (r.kind === 'group') return <Muted accessibilityRole="header" style={{ fontSize: 12, fontFamily: F.semibold, paddingTop: 14, paddingBottom: 2 }}>{t(r.group)}</Muted>;
+    if (r.kind === 'group') return <Muted accessibilityRole="header" style={{ fontSize: 12, ...FW.semibold, paddingTop: 14, paddingBottom: 2 }}>{t(r.group)}</Muted>;
     const e = r.e;
     if (r.kind === 'arch') return <Item title={t('Przywróć „{name}”', { name: exName(e) })} sub={exerciseInHistory(e.id) ? t('usunięte ćwiczenie z historią') : t('usunięte ćwiczenie (w bieżącym treningu)')} icon="↺" onPress={() => { restoreExercise(e); setQ(''); router.push(`/exercise/${e.id}`); }} />;
     /* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (z ekranu ćwiczenia przycisk zniknął); treść potwierdzenia jak wcześniej (runda 40) */

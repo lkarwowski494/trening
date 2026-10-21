@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, F, TEXT_SCALE_MAX, FW } from '@/lib/theme';
 import { t as tr, lang, exName } from '@/lib/i18n';
 import { recordCards, type RecordCard, type RecordStat, type WorkoutPR } from '@/lib/stats';
 
@@ -23,8 +23,8 @@ export function RecordsCard({ count, prs }: { count: number; prs: readonly Worko
       <Text testID="record-banner" accessible accessibilityRole="header" accessibilityLanguage={lang()} accessibilityLabel={head} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.heavy, fontSize: 18 }}>{head}</Text>
       {cards.map(c => (
         <View key={c.exercise.id} testID={`record-ex-${c.exercise.id}`} accessible accessibilityLanguage={lang()} accessibilityLabel={cardLabel(c)} style={{ gap: 2 }}>
-          <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.semibold, fontSize: 16 }}>{exName(c.exercise)}</Text>
-          {c.stats.map(s => <Text key={s.kind} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.band, fontFamily: F.semibold, fontSize: 15 }}>{statLine(s)}</Text>)}
+          <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.semibold, fontSize: 16 }}>{exName(c.exercise)}</Text>
+          {c.stats.map(s => <Text key={s.kind} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.band, ...FW.semibold, fontSize: 15 }}>{statLine(s)}</Text>)}
           {c.bestSet ? <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontSize: 14 }}>{tr('Najlepsza seria: {s}', { s: c.bestSet })}</Text> : null}
         </View>))}
     </View>);

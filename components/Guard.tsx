@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import Svg, { Ellipse, Path, G, Defs, Pattern, Rect, Line, Circle, Polygon, Text as SvgText } from 'react-native-svg';
-import { useTheme, F, type Theme } from '@/lib/theme';
+import { useTheme, type Theme, FW } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
 import { PARTS, mixHex, type View as Side } from '@/lib/musclemap';
 import { guardWord, type GuardDir, type GuardPart } from '@/lib/guard';
@@ -34,7 +34,7 @@ export function SignChip({ dir, size = 18 }: { dir: GuardDir; size?: number }) {
   const glyph = dir === 'up' ? <Polygon points="9,4.5 13.5,12.5 4.5,12.5" fill={ink} />
     : dir === 'down' ? <Polygon points="9,13.5 4.5,5.5 13.5,5.5" fill={ink} />
     : dir === 'same' ? <G><Line x1="4.5" y1="7.5" x2="13.5" y2="7.5" stroke={line} strokeWidth="1.6" /><Line x1="4.5" y1="10.5" x2="13.5" y2="10.5" stroke={line} strokeWidth="1.6" /></G>
-    : dir === 'unknown' ? <SvgText x="9" y="13" textAnchor="middle" fontFamily={F.semibold} fontSize="12" fill={line}>?</SvgText>
+    : dir === 'unknown' ? <SvgText x="9" y="13" textAnchor="middle" fontFamily={FW.semibold.fontFamily} fontWeight={FW.semibold.fontWeight} fontSize="12" fill={line}>?</SvgText>
     : dir === 'new' ? <G><Line x1="9" y1="5" x2="9" y2="13" stroke={line} strokeWidth="1.6" /><Line x1="5" y1="9" x2="13" y2="9" stroke={line} strokeWidth="1.6" /></G>
     : dir === 'deload' ? <G><Line x1="4.5" y1="6.5" x2="13.5" y2="6.5" stroke={th.muted} strokeWidth="1.4" /><Line x1="4.5" y1="9" x2="13.5" y2="9" stroke={th.muted} strokeWidth="1.4" /><Line x1="4.5" y1="11.5" x2="13.5" y2="11.5" stroke={th.muted} strokeWidth="1.4" /></G>
     : <Circle cx="9" cy="9" r="3.4" fill="none" stroke={th.muted} strokeWidth="1.3" />;

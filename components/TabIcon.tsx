@@ -8,7 +8,7 @@
 import React from 'react';
 import Svg, { Path, Rect } from 'react-native-svg';
 import { Text, type ColorValue } from 'react-native';
-import { F } from '@/lib/theme';
+import { FW, font, maxScale } from '@/lib/theme';
 import { lang } from '@/lib/i18n';
 
 export type TabIconName = 'workout' | 'history' | 'progress' | 'more';
@@ -25,11 +25,12 @@ export function TabIcon({ name, color, size = 26 }: { name: TabIconName; color: 
   );
 }
 
-/** Audyt 0.10 (A11-03): etykieta zakładki — jedna linia jak w React Navigation (10 pt pod ikoną, 13 pt obok w poziomie), ale długie tłumaczenia
+/** Audyt 0.10 (A11-03): etykieta zakładki — jedna linia jak w React Navigation (11 pt pod ikoną, 13 pt obok w poziomie; M3: do 125%), ale długie tłumaczenia
  * (bg „Упражнения”, lv „Vingrinājumi”…) zmniejszają się do TAB_LABEL_MIN_SCALE zamiast „…” na ekranie 320 pt (SE i mini z Display Zoom).
- * allowFontScaling=false jak w BottomTabItem (iOS pokazuje etykietę w Large Content Viewer). Test: tests/matrix-i18n (W = 320) i audit-0.10-lang-ui. Używa: app/(tabs)/_layout.tsx. */
+ * M3 (DEC-10, design-spec §1): podpis rośnie z tekstem systemu do TEXT_SCALE.bar (125%), dalej mieści go zmniejszanie. Test: tests/matrix-i18n (W = 320) i audit-0.10-lang-ui. Używa: app/(tabs)/_layout.tsx. */
 export const TAB_LABEL_MIN_SCALE = 0.8;
 export function TabLabel({ color, position, children }: { color: ColorValue; position: 'beside-icon' | 'below-icon'; children: string }) {
-  return <Text accessibilityLanguage={lang()} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={TAB_LABEL_MIN_SCALE} allowFontScaling={false}
-    style={[{ color, fontFamily: F.semibold, textAlign: 'center', backgroundColor: 'transparent' }, position === 'below-icon' ? { fontSize: 10 } : { fontSize: 13, marginStart: 5, marginEnd: 12, lineHeight: 24 } /* jak labelBeside + labelBesideUikit */]}>{children}</Text>;
+  return <Text accessibilityLanguage={lang()} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={TAB_LABEL_MIN_SCALE}
+    maxFontSizeMultiplier={maxScale('caption') /* M3: pasek zakładek do 125% (DEC-10); dalej mieści go zmniejszanie do TAB_LABEL_MIN_SCALE */}
+    style={[{ color, textAlign: 'center', backgroundColor: 'transparent' }, position === 'below-icon' ? font('caption') : { ...font('footnote'), ...FW.semibold, marginStart: 5, marginEnd: 12, lineHeight: 24 } /* jak labelBeside + labelBesideUikit */]}>{children}</Text>;
 }

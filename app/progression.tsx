@@ -54,7 +54,7 @@ export default function ProgressionScreen() {
   const rowText = (id: string, label: string, value: string, p: string, pct: string, sub?: string, spoken?: string) => (
     <View testID={`psum-${id}`} accessibilityLanguage={lang()} accessible accessibilityLabel={t('{label}: {v}, poprzednio {p}, {d}', { label, v: (spoken ?? value) + (sub ? ` (${sub})` : ''), p, d: pct })} style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'baseline', columnGap: 8 }}>
       <Muted testID={`psum-${id}-label`} style={{ flexShrink: 0, maxWidth: '100%' }}>{label}</Muted>
-      <Txt testID={`psum-${id}-value`} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ fontFamily: F.monoBold, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{value} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{' '}{p}) {pct}</Muted></Txt>
+      <Txt testID={`psum-${id}-value`} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ fontFamily: F.monoBold, fontVariant: ['tabular-nums'], flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{value} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{' '}{p}) {pct}</Muted></Txt>
     </View>);
   return (
     <Screen><ScrollView testID="progression-screen" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>

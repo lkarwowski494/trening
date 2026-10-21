@@ -13,7 +13,7 @@ import { onSummaryShown } from '@/lib/review-run';
 import { RecordsCard } from '@/components/RecordsCard';
 import { IdeaLink } from '@/components/IdeaLink';
 import { SessionHealth } from '@/components/HealthLines';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, F, FW } from '@/lib/theme';
 import { locationLabel } from '@/lib/locations';
 import { t, exName, exNameLang, lang } from '@/lib/i18n';
 import { fmtW, fmtVol, fmtNum } from '@/lib/units';
@@ -29,11 +29,11 @@ export default function HistoryDetail() {
   const wprs = w ? workoutPRs(w) : []; const nPR = prCountOf(wprs);
   if (!w) return <Screen><Missing>{t('Brak sesji.')}</Missing></Screen>;
   const labels = groupLabels(w.exercises); const prs = prMap(w); let wn = 0; // numer serii roboczej
-  const cell = (v: React.ReactNode, flex = 1) => <Txt maxFontSizeMultiplier={1.3} /* jak wiersze serii w treningu (matrix-a11y, 06.10) */ style={{ flex, fontSize: 14, fontFamily: F.mono }}>{monoSafe(v) /* A11-11 */}</Txt>;
+  const cell = (v: React.ReactNode, flex = 1) => <Txt maxFontSizeMultiplier={1.3} /* jak wiersze serii w treningu (matrix-a11y, 06.10) */ style={{ flex, fontSize: 14, fontFamily: F.mono, fontVariant: ['tabular-nums'] }}>{monoSafe(v) /* A11-11 */}</Txt>;
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><View style={{ flex: 1 }}><H1>{w.templateName || t('Trening')}</H1></View><Btn title={t('Edytuj')} small accessibilityLabel={t('Edytuj sesję')} onPress={once(() => { if (beginEdit(w.id)) router.push(`/history/edit/${encodeURIComponent(w.id)}`); })} /></View>
-      <Muted style={{ marginBottom: 14 }}>{whenText(w)} · {noClock(w) ? t('godzina nieznana') /* audyt 0.13: import bez godzin */ : fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}{w.locationId ? ` · 📍 ${locationLabel(w.locationId)}` /* T-057 */ : ''}{w.deload ? ` · ${t('deload — mniej serii')}` /* audyt 0.10 (D1+) */ : ''}</Muted>
+      <Muted style={{ marginBottom: 14 }}>{whenText(w)} · {noClock(w) ? t('godzina nieznana') /* audyt 0.13: import bez godzin */ : fmtDur(workoutDurSec(w))}{volume(w) > 0 ? ` · ${t('objętość')} ${fmtVol(volume(w))}` : ''}{w.locationId ? ` · ${locationLabel(w.locationId)}` /* T-057 */ : ''}{w.deload ? ` · ${t('deload — mniej serii')}` /* audyt 0.10 (D1+) */ : ''}</Muted>
       <SessionHealth w={w} />{/* 0.16.0 (docs/29 5.7): tętno i aktywne kcal z treningu z zegarka (Apple Health) */}
       {nPR > 0 ? <RecordsCard count={nPR} prs={wprs} /> : null}
       {ideaLink ? <IdeaLink /> : null}
@@ -51,7 +51,7 @@ export default function HistoryDetail() {
         const heads = ['#', ...(showW ? [ex ? loadLabelShort(ex, impl) : t('ciężar')] : []), ...(hasReps(m) ? [t('Pow.')] : []), ...(hasDistance(m) ? ['m'] : []), ...(hasTime(m) ? [t('Czas')] : []), ...(rpe ? [effortLabel()] : []), ...(anyBand ? [t('Guma')] : []), t('Przerwa')];
         return (
         <View key={e.id ?? i} style={{ marginBottom: 16, borderBottomWidth: 1, borderBottomColor: th.line, paddingBottom: 8 }}>
-          <Txt a11yLang={exNameLang(ex)} accessibilityRole="header" style={{ fontFamily: F.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`${ssTag(labels[e.groupId])} · `}</Txt> : null}{exName(ex)}</Txt>
+          <Txt a11yLang={exNameLang(ex)} accessibilityRole="header" style={{ ...FW.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId ? <Txt style={{ color: th.band, ...FW.semibold }}>{`${ssTag(labels[e.groupId])} · `}</Txt> : null}{exName(ex)}</Txt>
           <View style={{ flexDirection: 'row' }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">{heads.map((h, k) => <Muted key={k} numberOfLines={1} adjustsFontSizeToFit style={{ flex: k === 0 ? 0.5 : 1, fontSize: 13, paddingRight: 6 }}>{h}</Muted>)}</View>
           {e.sets.map((s, si) => { const mk = setMarkOf(e.sets.map(x => x.kind === 'warmup' || x.warmup ? 'warmup' : x.kind), si); wn = parseInt(mk, 10) || 0; /* audyt 0.10 (LIVE-14): numeracja jak w treningu — drop set z numerem swojej serii */ const vals: (string | number)[] = [mk, ...(showW ? [fmtW(shownLoad(ex, s), false)] : []) /* Q-018/83b: widok jak CSV i edytor (store.loadOf) — po zmianie sprzętu nie 0 */, ...(hasReps(m) ? [s.reps || 0] : []), ...(hasDistance(m) ? [fmtDist(Number(s.distanceM) || 0)] : []), ...(hasTime(m) ? [fmtSec(Number(s.durationSec) || 0)] : []), ...(rpe ? [s.rpe !== '' && s.rpe != null ? effortText(Number(s.rpe)) : '—'] : []), ...(anyBand ? [s.bandId ? (bandById(s.bandId) ? shortBand(bandById(s.bandId)) : '?') : '—'] : []), s.actualRest ? fmtSec(s.actualRest) : '—'];
             const kindK = s.kind === 'warmup' || s.warmup ? 'warmup' : (s.kind ?? 'normal'); const spoken = vals.map((v, k) => k === 0 && kindK !== 'normal' ? (kindK === 'warmup' ? t(SET_KIND_LABEL.warmup) : `${wn} ${t(SET_KIND_LABEL[kindK])}`) /* runda 59: litera W/D/F słownie */ : anyBand && k === vals.length - 2 && s.bandId && bandById(s.bandId) ? bandA11y(bandById(s.bandId)) : v); /* runda 52: pełna nazwa gumy */
@@ -59,7 +59,7 @@ export default function HistoryDetail() {
             <View key={s.id}>
               {/* Runda 50: wiersz czytany przez VoiceOver jako całość „nagłówek: wartość” (wcześniej same liczby). */}
               <View accessibilityLanguage={lang()} accessible accessibilityLabel={heads.map((h, k) => `${k === 1 && showW && ex ? loadLabel(ex, impl) : h}: ${spoken[k]}`).join(', ')} style={{ flexDirection: 'row', paddingVertical: 4 }}>{vals.map((v, k) => <React.Fragment key={k}>{cell(v, k === 0 ? 0.5 : undefined)}</React.Fragment>)}</View>
-              {prs.get(s.id) ? <Muted style={{ fontSize: 12, color: th.band, fontFamily: F.semibold }}>PR: {prs.get(s.id)!.map(k => t(k)).join(', ')}</Muted> : null}
+              {prs.get(s.id) ? <Muted style={{ fontSize: 12, color: th.band, ...FW.semibold }}>PR: {prs.get(s.id)!.map(k => t(k)).join(', ')}</Muted> : null}
               {s.note ? <Muted style={{ fontSize: 13 }}>{s.note}</Muted> : null}
             </View>); })}
         </View>); })}

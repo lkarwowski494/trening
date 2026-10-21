@@ -3,7 +3,7 @@ import { ScrollView, View, Text, Pressable, Linking, ActivityIndicator, Alert } 
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useCloseHeader } from '@/components/CloseButton';
 import { Screen, Muted, Btn, SectionTitle } from '@/components/ui';
-import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, F, TEXT_SCALE_MAX, FW } from '@/lib/theme';
 import { t, tp, lang } from '@/lib/i18n';
 import { fmtDate } from '@/lib/store';
 import { entitlementActive, type EntitlementPlan } from '@/lib/access';
@@ -55,7 +55,7 @@ export default function PaywallScreen() {
   const fake = isFakeStoreBuild() ? (getStoreAdapter() as unknown as FakeStoreControl) : null;
   return (
     <Screen><Stack.Screen options={headerOpts} /><ScrollView testID="paywall-scroll" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
-      {reason === 'limit' && view.decision.resetsAt ? <Text testID="paywall-limit" accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.semibold, fontSize: 16, marginTop: 8 }}>{t('Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.', { n: view.decision.limit, date: fmtDate(nextMonthDay()) })}</Text> : null}
+      {reason === 'limit' && view.decision.resetsAt ? <Text testID="paywall-limit" accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.semibold, fontSize: 16, marginTop: 8 }}>{t('Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.', { n: view.decision.limit, date: fmtDate(nextMonthDay()) })}</Text> : null}
       <Muted style={{ marginTop: 8, marginBottom: 12 }}>{t('Treningi na żywo bez miesięcznego limitu.')}</Muted>
 
       {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line, borderRadius: 12, padding: 12, gap: 4, marginBottom: 12, backgroundColor: th.surface }}>
@@ -74,7 +74,7 @@ export default function PaywallScreen() {
           const on = p.plan === sel; const line = priceLine(p);
           return <Pressable key={p.plan} testID={`plan-${p.plan}`} accessibilityRole="radio" accessibilityState={{ selected: on }} accessibilityLanguage={lang()} accessibilityLabel={`${planName(p.plan)}, ${line}`} onPress={() => setSel(p.plan)}
             style={{ borderWidth: on ? 2 : 1, borderColor: on ? th.accent : th.line, borderRadius: 12, padding: 12, marginBottom: 8, backgroundColor: th.surface, minHeight: 56 }}>
-            <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontFamily: F.semibold, fontSize: 14 }}>{planName(p.plan)}</Text>
+            <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...FW.semibold, fontSize: 14 }}>{planName(p.plan)}</Text>
             <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.heavy, fontSize: 18 }}>{line}</Text>
           </Pressable>; }) : null}
         {chosen ? <Btn kind="primary" block title={ctaLabel(chosen)} style={{ marginTop: 4 }} onPress={() => { void buy(); }} /> : null}

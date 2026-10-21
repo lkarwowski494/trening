@@ -208,10 +208,10 @@ describe('Dynamic Type: skala czcionki 2,0 (największe rozmiary dostępności i
       for (const i of all.filter(x => x.type === 'TextInput')) R.inputs.push({ r, m: i.props.maxFontSizeMultiplier, multi: !!i.props.multiline });
       for (const tx of all.filter(x => x.type === 'Text')) {
         const st = flat(tx.props.style); const m = tx.props.maxFontSizeMultiplier; const fs = typeof st.fontSize === 'number' ? st.fontSize : 14;
-        if ((st.fontFamily === F.mono || st.fontFamily === F.monoBold) && !(m > 0)) R.monoNoLimit.push(`${r}: „${textOf(tx)}”`);
+        if ((st.fontFamily === F.mono || st.fontFamily === F.monoBold) && (st.fontVariant as string[] | undefined)?.includes('tabular-nums') /* M3 (docs/18): F.monoBold = F.heavy (Barlow 700), więc liczby w kolumnach poznajemy po cyfrach tabelarycznych */ && !(m > 0)) R.monoNoLimit.push(`${r}: „${textOf(tx)}”`);
         let p = tx.parent; while (p && !(p.props?.accessibilityRole === 'button' && typeof p.props?.onPress === 'function')) p = p.parent;
         const ps = p ? flat(p.props.style) : {}; /* Btn (ui.tsx s.btn): ramka 1, promień 10, min. wysokość 40/44 */
-        if (p && kind(p) === 'Pressable' && ps.borderRadius === 10 && ps.borderWidth === 1 && ps.minHeight >= 40 && (R.btnTexts++, !(m >= TEXT_SCALE_MAX))) R.btnNoLimit.push(`${r}: „${textOf(tx)}” (${m})`); /* A11-07: przyciski się zawijają — do 200% */
+        if (p && kind(p) === 'Pressable' && ps.borderRadius === 8 /* RADIUS.button (M3) */ && ps.borderWidth === 1 && ps.minHeight >= 44 && (R.btnTexts++, !(m >= TEXT_SCALE_MAX))) R.btnNoLimit.push(`${r}: „${textOf(tx)}” (${m})`); /* A11-07: przyciski się zawijają — do 200% */
         R.maxEff = Math.max(R.maxEff, fs * Math.min(2, m > 0 ? m : 2));
         const txt = textOf(tx); /* A11N-04: zdania (> 25 znaków z literami) rosną do 200%; niższy limit tylko z powodem (LONG_TEXT_OK) */
         if (txt.length > 25 && /\p{L}{3}/u.test(txt) && typeof m === 'number' && m < TEXT_SCALE_MAX && !LONG_TEXT_OK.some(re => re.test(txt))) R.longLow.push(`${r}: „${txt.slice(0, 50)}” (${m})`);

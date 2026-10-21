@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { View, Pressable, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Chip, Muted, Txt, H2, useOnce } from '@/components/ui';
+import { IconRow } from '@/components/Icon';
 import { InfoTip } from '@/components/InfoTip';
 import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey, newTemplate, visibleLocations, PLAN_PLACE_RANGE_MAX } from '@/lib/store';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, FW } from '@/lib/theme';
 import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, suggestionOrder, SUGGEST_FIRST, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, earlyWorkout, undoDoneEarly, plannedPlace, plannedPlaceName, setPlanPlace, clearPlanPlace, placeRun, type Suggestion } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
@@ -47,7 +48,7 @@ export function DayPanel({ day }: { day: string }) {
 
   /* ---- stan dnia ---- */
   const lines: React.ReactElement[] = [];
-  const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="button" accessibilityLabel={text} onPress={once(() => router.push(`/history/${wid}`))} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, minHeight: 44, justifyContent: 'center' })}><Txt style={{ fontSize: 15, color: th.accent, fontFamily: F.semibold }}>{`${text} ›`}</Txt></Pressable>;
+  const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="button" accessibilityLabel={text} onPress={once(() => router.push(`/history/${wid}`))} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, minHeight: 44, justifyContent: 'center' })}><Txt style={{ fontSize: 15, color: th.accent, ...FW.semibold }}>{`${text} ›`}</Txt></Pressable>;
   const ch = changed ? ` · ${t('zmiana planu')}` : '';
   if (st.early) { const w = earlyWorkout(day, today); lines.push(w ? link(w.id, t('Zrobiony wcześniej: {name}', { name: tplName(id) }), w.id) : <Txt key="early" style={{ fontSize: 15 }}>{t('Zrobiony wcześniej: {name}', { name: tplName(id) })}</Txt>); lines.push(<Muted key="early-free" style={{ fontSize: 13 }}>{t('Trening z tego dnia zrobiony wcześniej — dzień wolny.')}</Muted>); }
   else if (st.status === 'done' || st.status === 'other') doneOn(day).forEach(w => lines.push(link(w.id, st.status === 'done' ? t('Zrobione: {name}', { name: w.templateName || t('Trening') }) : t('Zrobiony inny trening: {name}', { name: w.templateName || t('Trening') }), w.id)));
@@ -56,7 +57,7 @@ export function DayPanel({ day }: { day: string }) {
   else if (changed) lines.push(<Muted key="plan" style={{ fontSize: 13 }}>{t('zmiana planu')}</Muted>);
   if (activeHere) lines.push(<Muted key="active" style={{ fontSize: 13 }}>{t('Trening w toku')}</Muted>);
   const placeName = plannedPlaceName(day); /* 0.19 (docs/33 B): miejsce zapisane w planie na ten dzień */
-  if (placeName) lines.push(<Muted key="place" testID="day-place" accessibilityLabel={t('Miejsce treningu: {l}', { l: placeName })} style={{ fontSize: 15 }}>{`📍 ${placeName}`}</Muted>);
+  if (placeName) lines.push(<IconRow key="place" icon="pin" color={th.muted} size={15}><Muted testID="day-place" accessibilityLabel={t('Miejsce treningu: {l}', { l: placeName })} style={{ fontSize: 15 }}>{placeName}</Muted></IconRow>);
   const empty = !!tpl && !tpl.items.length && pending(st);
   if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="button" onPress={once(() => router.push(`/template/${tpl!.id}?edit=1`))} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
 
@@ -75,7 +76,7 @@ export function DayPanel({ day }: { day: string }) {
     { key: 'deload', el: <Btn small kind="ghost" title={deload ? t('Zdejmij oznaczenie deload') : t('Oznacz tydzień jako deload')} onPress={() => toggleDeloadWeek(keyTs(day))} /> },
   ];
   const canPlace = !past && visibleLocations().length > 0; /* 0.19: miejsce na dni — od dziś, gdy są miejsca (bez miejsc nie ma z czego wybierać) */
-  if (canPlace) secondary.push({ key: 'place', el: <Btn small kind="ghost" expanded={mode === 'place'} title={t('📍 Miejsce na te dni')} onPress={() => setMode(mode === 'place' ? 'none' : 'place')} /> });
+  if (canPlace) secondary.push({ key: 'place', el: <Btn small kind="ghost" expanded={mode === 'place'} icon="pin" title={t('Miejsce na te dni')} onPress={() => setMode(mode === 'place' ? 'none' : 'place')} /> });
   extra.push(...primary.splice(PRIMARY_MAX), ...secondary);
 
   return (

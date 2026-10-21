@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
-import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, TEXT_SCALE_MAX, FW } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
 import { openSupportMail } from '@/lib/support';
 
@@ -16,7 +16,7 @@ export function IdeaLink() {
     <View testID="idea-link" style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
       <Pressable testID="idea-link-open" accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Czego Ci brakuje? Poproś o funkcję')} accessibilityHint={t('Otwiera aplikację Mail')}
         onPress={() => openSupportMail('idea')} style={{ flex: 1, minHeight: 44, justifyContent: 'center' }}>
-        <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontFamily: F.regular, fontSize: 14, textDecorationLine: 'underline' }}>{t('Czego Ci brakuje? Poproś o funkcję')}</Text>
+        <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...FW.regular, fontSize: 14, textDecorationLine: 'underline' }}>{t('Czego Ci brakuje? Poproś o funkcję')}</Text>
       </Pressable>
       <Pressable testID="idea-link-close" accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Zamknij')} onPress={() => setOpen(false)} style={{ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}>
         <Text accessible={false} importantForAccessibility="no" style={{ color: th.muted, fontSize: 20 }}>✕</Text>

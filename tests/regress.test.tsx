@@ -500,10 +500,10 @@ describe('runda 7', () => {
   test('R7-05 import backupu z BOM', async () => {
     await fresh(); const { parseBackup, buildBackup } = require('@/lib/backup'); expect(parseBackup('\uFEFF' + JSON.stringify(buildBackup())).workouts).toEqual([]);
   });
-  test('R7-06 wiersze list: cały wiersz (min. 56 pt) to pole dotyku, „+” w pickerze dodaje ćwiczenie', async () => {
+  test('R7-06 wiersze list: cały wiersz (min. 52 pt, M3) to pole dotyku, „+” w pickerze dodaje ćwiczenie', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); }); await go('/picker?target=active'); await flushAll(10);
     const plus = screen.getAllByText('+')[0]; let p: any = plus; while (p && !p.props?.onClick && !(typeof p.type === 'string' && p.props?.accessibilityRole === 'button')) p = p.parent;
-    expect(p).toBeTruthy(); const { StyleSheet } = require('react-native'); expect(StyleSheet.flatten(p.props.style).minHeight).toBeGreaterThanOrEqual(56);
+    expect(p).toBeTruthy(); const { StyleSheet } = require('react-native'); expect(StyleSheet.flatten(p.props.style).minHeight).toBeGreaterThanOrEqual(52); /* M3 (STOP E3, docs/18; design-spec §1): wiersz 52 pt (SIZE.rowMin), było 56 — cel dotyku nadal ≥ 44 */
     await tap(plus); expect(store.getState().active!.exercises).toHaveLength(1);
   });
   test('R7-07 Ćwiczenia: wyszukanie usuniętego pozwala je przywrócić, bez „Utwórz”', async () => {

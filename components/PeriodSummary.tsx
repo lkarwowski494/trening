@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, F, FW } from '@/lib/theme';
 import { InfoTip } from '@/components/InfoTip';
 import { t, exName, locale, lang } from '@/lib/i18n';
 import { fmtSec, isDeloadWeek, useTick } from '@/lib/store';
@@ -41,7 +41,7 @@ export function PeriodSummary() {
   const arrow = (label: string, glyph: string, delta: number, disabled = false) => (
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ disabled }} disabled={disabled} onPress={() => setOffset(o => o + delta)} hitSlop={8}
       style={({ pressed }) => ({ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center', opacity: disabled ? 0.25 : pressed ? 0.5 : 1 })}>
-      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 22, fontFamily: F.semibold }}>{glyph}</Text>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.text, fontSize: 22, ...FW.semibold }}>{glyph}</Text>
     </Pressable>);
   const rows: [string, string, string][] = [
     [t('Treningi'), `${s.workouts}`, `${s.prev.workouts}`],
@@ -66,11 +66,11 @@ export function PeriodSummary() {
         {rows.map(([l, v, p]) => (
           <View accessibilityLanguage={lang()} key={l} accessible accessibilityLabel={t('{label}: {v}, poprzednio {p}', { label: l, v, p })} style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <Muted>{l}</Muted>
-            <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.monoBold }}>{monoSafe(v, true)} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{'\u00a0'}<Muted style={{ fontSize: 12, fontFamily: F.mono }}>{monoSafe(p)}</Muted>)</Muted>{/* A11-11: słowo krojem tekstu (Plex Mono bez greckich liter), liczba mono */}</Txt>
+            <Txt maxFontSizeMultiplier={1.4} style={{ fontFamily: F.monoBold, fontVariant: ['tabular-nums'] }}>{monoSafe(v, true)} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{'\u00a0'}<Muted style={{ fontSize: 12, fontFamily: F.mono, fontVariant: ['tabular-nums'] }}>{monoSafe(p)}</Muted>)</Muted>{/* A11-11: słowo krojem tekstu (Plex Mono bez greckich liter), liczba mono */}</Txt>
           </View>))}
       </View>
       <MuscleMap sets={splitTotals(split)} splits={split} />
-      <Muted style={{ fontSize: 12, fontFamily: F.semibold, marginTop: 10, marginBottom: 4 }}>{t('Rekordy w tym okresie')}</Muted>
+      <Muted style={{ fontSize: 12, ...FW.semibold, marginTop: 10, marginBottom: 4 }}>{t('Rekordy w tym okresie')}</Muted>
       {s.prs.length ? s.prs.map(({ workoutId, at, pr }) => (
         <View key={workoutId + pr.exercise.id + pr.set.id} style={{ paddingVertical: 4 }}>
           <Txt style={{ fontSize: 14 }}>{exName(pr.exercise)} <Muted style={{ fontSize: 12 }}>· {short(at)}</Muted></Txt>

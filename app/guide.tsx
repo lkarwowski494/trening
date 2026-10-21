@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Pressable } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Screen, Muted, Txt, Btn } from '@/components/ui';
-import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
+import { useTheme, NUM_SCALE_MAX, FW } from '@/lib/theme';
 import { useTick } from '@/lib/store';
 import { GUIDE, guideSeen, guideProgress, markGuideSeen } from '@/lib/guide';
 import { t, lang } from '@/lib/i18n';
@@ -27,9 +27,9 @@ export default function GuideScreen() {
           <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityState={{ expanded: on }} accessibilityLabel={`${g.title()}, ${done ? t('przeczytane') : t('nieprzeczytane')}`}
             onPress={() => { if (!on) markGuideSeen(g.id); setOpen(on ? null : g.id); }} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 12, minHeight: 48 }}>
             <View style={{ width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center', backgroundColor: done ? th.accent : 'transparent', borderWidth: done ? 0 : 1.5, borderColor: th.line }}>
-              {done ? <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ color: th.accentInk, fontSize: 12, fontFamily: F.semibold }}>✓</Txt> : null}
+              {done ? <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} /* A11-07: znak w kółku 22–24 pt */ style={{ color: th.accentInk, fontSize: 12, ...FW.semibold }}>✓</Txt> : null}
             </View>
-            <Txt style={{ flex: 1, fontFamily: F.semibold }}>{g.title()}</Txt>
+            <Txt style={{ flex: 1, ...FW.semibold }}>{g.title()}</Txt>
             <Muted>{on ? '▾' : '▸'}</Muted>
           </Pressable>
           {on ? <View style={{ paddingHorizontal: 12, paddingBottom: 12, gap: 6 }}>

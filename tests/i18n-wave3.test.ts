@@ -153,8 +153,8 @@ describe('języki: jakość tekstów rosyjskich', () => {
   });
   test('terminologia siłowni jednolita: тренировка / упражнение / подход / повторения / отдых / пауза / шаблон / резинка / до отказа / разгрузка', () => {
     const d = ru();
-    expect([d['Trening'], d['Ćwiczenie'], d['Seria'], d['Powtórzenia'], d['Przerwa'], d['⏸ Pauza'], d['Szablon'], d['Guma'], d['do upadku'], d['Deload']])
-      .toEqual(['Тренировка', 'Упражнение', 'Подход', 'Повторения', 'Отдых', '⏸ Пауза', 'Шаблон', 'Резинка', 'до отказа', 'Разгрузка']);
+    expect([d['Trening'], d['Ćwiczenie'], d['Seria'], d['Powtórzenia'], d['Przerwa'], d['Pauza'], d['Szablon'], d['Guma'], d['do upadku'], d['Deload']])
+      .toEqual(['Тренировка', 'Упражнение', 'Подход', 'Повторения', 'Отдых', 'Пауза', 'Шаблон', 'Резинка', 'до отказа', 'Разгрузка']);
     /* seria = „подход” (nie kalka „серия”/„сет”), ćwiczenie = „упражнение” (nie „вправа”) */
     expect(allRu().filter(v => /(^|[^\p{L}])(сери[яиюей]|сет[ыа]?|сетов)([^\p{L}]|$)/u.test(v.toLowerCase().replace(/дроп-сет/g, '')))).toEqual([]); /* „дроп-сет” — termin siłowni */
   });

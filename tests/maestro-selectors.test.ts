@@ -249,7 +249,7 @@ test('22 (0.18): scenariusz „Dostosuj do miejsca” — angielskie literały z
   expect(s.slice(cancel + 1, line).some((l: string) => /Apply/.test(l))).toBe(false); /* „Cancel” niczego nie zastosował */
 });
 
-test('23 (0.19): scenariusz „Inne miejsce (tylko dziś)” — angielskie literały zgodne ze słownikiem, kolejność: arkusz 📍 → okno „Inne miejsce” → zestaw → „Use” → „Adjust to: Today only” → „Apply (1)” → „instead of” → lista miejsc bez miejsca jednorazowego', () => {
+test('23 (0.19): scenariusz „Inne miejsce (tylko dziś)” — angielskie literały zgodne ze słownikiem, kolejność: arkusz pinezki → okno „Inne miejsce” → zestaw → „Use” → „Adjust to: Today only” → „Apply (1)” → „instead of” → lista miejsc bez miejsca jednorazowego', () => {
   const { EN } = require('@/lib/i18n.en'); const s = readFileSync(join(dir, '23-miejsce-jednorazowe.yaml'), 'utf8').split('\n').filter((l: string) => l.startsWith('- '));
   const at = (re: RegExp, from = 0) => { const i = s.findIndex((l: string, k: number) => k >= from && re.test(l)); expect(i).toBeGreaterThanOrEqual(from); return i; };
   expect(EN['Inne miejsce (tylko dziś)…']).toBe('Another place (today only)…'); expect(EN['Tylko dziś']).toBe('Today only'); expect(EN['Użyj']).toBe('Use'); expect(EN['Gotowe zestawy']).toBe('Ready-made sets'); expect(EN['Zapisz jako miejsce']).toBe('Save as a place');
@@ -261,9 +261,9 @@ test('23 (0.19): scenariusz „Inne miejsce (tylko dziś)” — angielskie lite
 
 test('13 (0.19): miejsce na zakres dni w planie — Hotel w panelu dnia, linijka „Workout place: Hotel”, „Remove place” po „Set place”; scrollUntilVisible przed przyciskami pod krawędzią', () => {
   const { EN } = require('@/lib/i18n.en'); const s = readFileSync(join(dir, '13-kalendarz-plan.yaml'), 'utf8').split('\n').filter((l: string) => /^\s*- /.test(l)).map((l: string) => l.trim()); const at = (re: RegExp, from = 0) => { const i = s.findIndex((l: string, k: number) => k >= from && re.test(l)); expect(i).toBeGreaterThanOrEqual(from); return i; };
-  expect(EN['📍 Miejsce na te dni']).toBe('📍 Place for these days'); expect(EN['Ustaw miejsce']).toBe('Set place'); expect(EN['Usuń miejsce']).toBe('Remove place'); expect(EN['Miejsce treningu: {l}'].replace('{l}', 'Hotel')).toBe('Workout place: Hotel');
-  const open = at(/tapOn: "📍 Place for these days"/); const set = at(/tapOn: "Set place"/, open); expect(s[set - 1]).toMatch(/scrollUntilVisible: \{ element: "Set place"/); const line = at(/visible: "Workout place: Hotel"/, set);
-  const reopen = at(/tapOn: "📍 Place for these days"/, line); const rm = at(/tapOn: "Remove place"/, reopen); expect(s[rm - 1]).toMatch(/scrollUntilVisible: \{ element: "Remove place"/); at(/assertNotVisible: "Workout place: Hotel"/, rm);
+  expect(EN['Miejsce na te dni']).toBe('Place for these days'); expect(EN['Ustaw miejsce']).toBe('Set place'); expect(EN['Usuń miejsce']).toBe('Remove place'); expect(EN['Miejsce treningu: {l}'].replace('{l}', 'Hotel')).toBe('Workout place: Hotel');
+  const open = at(/tapOn: "Place for these days"/); const set = at(/tapOn: "Set place"/, open); expect(s[set - 1]).toMatch(/scrollUntilVisible: \{ element: "Set place"/); const line = at(/visible: "Workout place: Hotel"/, set);
+  const reopen = at(/tapOn: "Place for these days"/, line); const rm = at(/tapOn: "Remove place"/, reopen); expect(s[rm - 1]).toMatch(/scrollUntilVisible: \{ element: "Remove place"/); at(/assertNotVisible: "Workout place: Hotel"/, rm);
   expect(at(/tapOn: "Full gym,\.\*"/)).toBeLessThan(at(/tapOn: "Monday, Rest"/)); /* miejsca tworzone przed planem; główne = pełna siłownia, więc start „Upper A” bez okna */
 });
 

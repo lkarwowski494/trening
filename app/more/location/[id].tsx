@@ -10,7 +10,7 @@ import { setMainLocation, renameLocation, commitLocationName, duplicateLocation,
 import type { Location } from '@/lib/seed';
 import { EQUIPMENT, EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel, availability, capsOf } from '@/lib/equipment';
 import { t, lang } from '@/lib/i18n';
-import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, NUM_SCALE_MAX, TEXT_SCALE_MAX, FW } from '@/lib/theme';
 
 /*
  * P-003 E1: jedno miejsce — nazwa, „Ustaw jako główne”, sprzęt w grupach (przełączniki iOS, jak P-002), opcje pozycji, edytor ciężarów
@@ -37,8 +37,8 @@ export default function LocationEdit() {
         <View key={g}>
           <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={name} accessibilityValue={{ text: t('zaznaczone: {n} z {m}', { n, m: items.length }) }} accessibilityState={{ expanded: isOpen }} onPress={() => setOpen(o => o.includes(g) ? o.filter(x => x !== g) : [...o, g])}
             style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', minHeight: 48, marginTop: 10, borderBottomWidth: 1, borderBottomColor: th.line, opacity: pressed ? 0.6 : 1 })}>
-            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ flex: 1, color: th.text, fontSize: 16, fontFamily: F.semibold }}>{name}</Text>
-            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.4} style={{ color: n ? th.accent : th.muted, fontSize: 14, fontFamily: F.regular, marginRight: 8 }}>{t('{n} z {m}', { n, m: items.length })}</Text>
+            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ flex: 1, color: th.text, fontSize: 16, ...FW.semibold }}>{name}</Text>
+            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.4} style={{ color: n ? th.accent : th.muted, fontSize: 14, ...FW.regular, marginRight: 8 }}>{t('{n} z {m}', { n, m: items.length })}</Text>
             <Text accessible={false} style={{ color: th.muted, fontSize: 16 }}>{isOpen ? '▾' : '▸'}</Text>
           </Pressable>
           {isOpen ? items.map(x => { const e = activeEquip(l, x.id); return (

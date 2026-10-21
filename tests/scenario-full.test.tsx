@@ -533,7 +533,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(blk(P).sets.map(x => [x.addKg, x.reps, x.bandId ? store.bandById(x.bandId)!.level : null])).toEqual([['', 6, 2], ['', 6, null], [-5, 6, null]]);
     expect(blk(PL).sets.map(x => x.durationSec)).toEqual([45, 45]);
     /* nagłówek: nazwa, miejsce, zegar, postęp */
-    expect(screen.getByText('Push A')).toBeTruthy(); expect(screen.getByText('📍 Dom testowy ▾')).toBeTruthy();
+    expect(screen.getByText('Push A')).toBeTruthy(); expect(screen.getByText('Dom testowy ▾')).toBeTruthy();
     expect(screen.getByLabelText('Postęp treningu: 0 z 14 serii')).toBeTruthy(); /* serie robocze (audyt 0.10): 16 serii bez rozgrzewki i drop setu (drop liczy się z serią przed nim) */ expect(screen.getAllByText('SS A · ')).toHaveLength(2);
     expect(screen.getByText(/8–12 pow\. · superset · przerwa po rundzie 2:00 · 3-1-1/)).toBeTruthy(); /* zakres, superset, przerwa rundy, tempo z ćwiczenia */
     expect(screen.getByText('Notatka do treningu')).toBeTruthy(); expect(screen.getAllByText('RPE', { includeHiddenElements: true }).length).toBeGreaterThan(0); /* RPE włączone w Ustawieniach; nagłówek kolumny ukryty przed VoiceOver (audyt 0.10, A11-18) */
@@ -543,7 +543,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await sheet(2); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id);
     /* 0.18 (docs/33, P2 A): miejsce z brakami otwiera okno „Dostosuj do: X” samo — „Anuluj” nic nie zmienia, wiersz pod chipem zostaje */
     expect(screen.getByTestId('adapt-apply')).toBeTruthy(); await tap(screen.getByTestId('close-modal')); await flushAll(10); expect(screen.getByTestId('adapt-line')).toBeTruthy();
-    expect(screen.getByText('📍 Tylko masa ciała ▾')).toBeTruthy();
+    expect(screen.getByText('Tylko masa ciała ▾')).toBeTruthy();
     expect(screen.getAllByLabelText(/^Brak sprzętu w: Tylko masa ciała\. Brakuje: /).length).toBe(4); /* wszystko poza Plankiem */ expect(screen.queryByLabelText(`Zamień ćwiczenie (brak sprzętu): ${B}`)).toBeNull(); /* jedno „⇄ zamień” w stopce; plakietka = tekst otwierający arkusz */ expect(screen.getByLabelText(`Zamień ćwiczenie: ${B}`)).toBeTruthy();
     await tap(chipLoc()); await sheet(5); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id); /* Anuluj (0.19: po „Inne miejsce (tylko dziś)…” — indeks 5) */
     await tap(chipLoc()); await sheet(1); expect(S().active!.locationId).toBe(loc('Dom testowy').id); expect(screen.queryByLabelText(/^Brak sprzętu w:/)).toBeNull();
@@ -675,7 +675,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const a = S().active!; expect(a).toBeTruthy(); expect(a.templateName).toBe('Push A'); expect(a.note).toBe('dobry dzień');
     expect(timer.T.on).toBe(true); expect(timer.T.endAt).toBe(endAt); expect(screen.getByText('przerwa z 1:20')).toBeTruthy();
     expect(screen.getByLabelText('Postęp treningu: 15 z 16 serii')).toBeTruthy(); expect(screen.getByText('chwyt nachwytem')).toBeTruthy();
-    expect(screen.getByText('📍 Dom testowy ▾')).toBeTruthy();
+    expect(screen.getByText('Dom testowy ▾')).toBeTruthy();
     /* zakładka Trening z plakietką pozostałej przerwy, także z innej zakładki */
     await go('/history'); await flushAll(10); expect(screen.getByLabelText(/^Trening, przerwa \+?\d+:\d\d, zakładka, 1 z 4$/)).toBeTruthy(); /* każde przejście ekranu w testach przesuwa zegar — przerwa mogła już minąć (+) */
     await go('/'); await flushAll(10);
@@ -714,7 +714,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('1 sesja')).toBeTruthy();
     const vol = store.volume(w0); expect(vol).toBeGreaterThan(0);
     expect(store.workingSets(w0)).toBe(w0.exercises.reduce((a, e) => a + store.workCount(e.sets.map(x => x.kind)), 0)); /* X-15 / D3 (audyt 0.10) */
-    const where = w0.locationId ? ` · 📍 ${require('@/lib/locations').locationLabel(w0.locationId)}` : ''; /* T-057 (0.14.0): miejsce w liście i szczegółach */
+    const where = w0.locationId ? ` · ${require('@/lib/locations').locationLabel(w0.locationId)}` : ''; /* T-057 (0.14.0): miejsce w liście i szczegółach */
     expect(screen.getByLabelText(new RegExp(`^Push A, .* · ${store.workingSets(w0)} serii · ${require('@/lib/units').fmtVol(vol).replace(/[.()]/g, '\\$&')}${where}$`))).toBeTruthy();
     await tap(screen.getByText('Push A')); await flushAll(10);
     expect(screen.getByText(new RegExp(`· objętość ${require('@/lib/units').fmtVol(vol)}${where}$`))).toBeTruthy();
@@ -722,7 +722,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getAllByText(/^(SS A · )?Cable Curl$/)).toHaveLength(2);
     /* edycja: zmiana i „Anuluj” z pytaniem — historia bez zmian */
     await tap(screen.getByLabelText('Edytuj sesję')); await flushAll(10);
-    expect(screen.getByText('📍 Dom testowy ▾')).toBeTruthy(); /* T-057: miejsce do wyboru */ expect(screen.getByLabelText('Nazwa').props.value).toBe('Push A');
+    expect(screen.getByText('Dom testowy ▾')).toBeTruthy(); /* T-057: miejsce do wyboru */ expect(screen.getByLabelText('Nazwa').props.value).toBe('Push A');
     await type(screen.getByLabelText('Nazwa'), 'zmiana'); await tap(screen.getByLabelText('Anuluj edycję sesji'));
     expect(lastAlert()).toMatchObject({ title: 'Odrzucić zmiany?', msg: 'Sesja w historii zostanie bez zmian.' });
     pressAlert('Odrzucić zmiany?', 'Wróć do edycji'); await flushAll(5); expect(screen.getByLabelText('Nazwa').props.value).toBe('zmiana');

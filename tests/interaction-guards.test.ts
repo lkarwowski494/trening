@@ -24,7 +24,7 @@ describe('S2/S1: nagłówki — przyciski tylko przez wspólne komponenty', () =
     expect(bad).toEqual([]);
   });
   test('zakaz <Pressable w opcjach nagłówka: wspólne komponenty używają HeaderButton (44 pt, limit powiększenia)', () => {
-    expect(src.get('components/DraftHeader.tsx')).toMatch(/minHeight: 44, minWidth: 44/); expect(src.get('components/DraftHeader.tsx')).toMatch(/maxFontSizeMultiplier=\{1\.4\}/);
+    expect(src.get('components/DraftHeader.tsx')).toMatch(/minHeight: SIZE\.hit, minWidth: SIZE\.hit/) /* M3: 44 pt z tokenu SIZE.hit */; expect(src.get('components/DraftHeader.tsx')).toMatch(/maxFontSizeMultiplier=\{1\.4\}/);
     expect(src.get('components/CloseButton.tsx')).toContain('<HeaderButton'); expect(src.get('components/AddButton.tsx')).toMatch(/minHeight: 44, minWidth: 44/);
   });
 });
@@ -95,7 +95,7 @@ describe('S10: puste stany', () => {
 
 describe('S11: rozwijanie — ▸/▾, stan expanded', () => {
   test('zakaz znaków ⌃ ⌄ ▴ w interfejsie', () => { expect(lines(/[⌃⌄▴]/)).toEqual([]); });
-  test('plik z ▸/▾ jako znakiem rozwijania ma accessibilityState expanded (wyjątki: menu „📍 miejsce ▾” otwiera arkusz, nie rozwija)', () => {
+  test('plik z ▸/▾ jako znakiem rozwijania ma accessibilityState expanded (wyjątki: menu „miejsce ▾” z ikoną otwiera arkusz, nie rozwija)', () => {
     const menu = ['components/ActiveWorkout.tsx', 'app/history/edit/[id].tsx'];
     expect(hits(/[▸▾]/, [...menu, 'components/ui.tsx']).filter(f => !/expanded/.test(src.get(f)!))).toEqual([]);
   });

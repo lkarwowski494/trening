@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { Screen, Item, Muted, Txt } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
-import { F } from '@/lib/theme';
+import { F, FW } from '@/lib/theme';
 import { LICENSES, LICENSE_TEXTS, NATIVE_LICENSES } from '@/lib/licenses.generated';
 import { t } from '@/lib/i18n';
 
@@ -21,11 +21,11 @@ export default function LicensesScreen() {
     </InfoTip>
     {COUNTS.map(([id, n]) => <View key={id}>
       <Item title={id} sub={t('pakiety: {n} · treść wg {p}', { n, p: LICENSE_TEXTS[id].from })} icon={open === id ? '▾' : '▸'} expanded={open === id} onPress={() => setOpen(open === id ? null : id)} />
-      {open === id ? <Txt style={{ fontSize: 11, fontFamily: F.mono, marginVertical: 8 }}>{LICENSE_TEXTS[id].text}</Txt> : null}
+      {open === id ? <Txt style={{ fontSize: 11, fontFamily: F.mono, fontVariant: ['tabular-nums'], marginVertical: 8 }}>{LICENSE_TEXTS[id].text}</Txt> : null}
     </View>)}
-    <Muted accessibilityRole="header" style={{ fontSize: 12, fontFamily: F.semibold, paddingTop: 14 }}>{t('Biblioteki natywne iOS spoza npm ({n})', { n: NATIVE_LICENSES.length })}</Muted>
+    <Muted accessibilityRole="header" style={{ fontSize: 12, ...FW.semibold, paddingTop: 14 }}>{t('Biblioteki natywne iOS spoza npm ({n})', { n: NATIVE_LICENSES.length })}</Muted>
     {NATIVE_LICENSES.map(r => <Item key={r[0]} title={`${r[0]} ${r[1]}`} sub={[r[2], ...r[3]].join(' · ')} />)}
-    <Muted accessibilityRole="header" style={{ fontSize: 12, fontFamily: F.semibold, paddingTop: 14 }}>{t('Pakiety ({n})', { n: LICENSES.length })}</Muted>
+    <Muted accessibilityRole="header" style={{ fontSize: 12, ...FW.semibold, paddingTop: 14 }}>{t('Pakiety ({n})', { n: LICENSES.length })}</Muted>
   </View>;
   return (
     <Screen>

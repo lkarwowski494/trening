@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View, Text, Pressable, Alert, Keyboard, ActionSheetIOS, StyleSheet } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty, Missing } from '@/components/ui';
+import { IconRow } from '@/components/Icon';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
 import { visibleLocations, effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, ssTag, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
@@ -13,7 +14,7 @@ import { SwipeRow, lastSetBlock } from '@/components/SwipeRow';
 import { SetBadge } from '@/components/SetBadge';
 import { DraftHeader, HeaderButton, confirmDiscard } from '@/components/DraftHeader';
 import { MedicalNote } from '@/components/MedicalNote';
-import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
+import { useTheme, NUM_SCALE_MAX, FW } from '@/lib/theme';
 import { t, tp, exName, lang } from '@/lib/i18n';
 import { wu, wField, wInKeep, fmtW, dIn, dOut, distUnit } from '@/lib/units';
 import { cancelButton } from '@/lib/confirm';
@@ -88,11 +89,11 @@ function LocationChip({ d }: { d: Draft }) {
   const th = useTheme(); const locs = visibleLocations(); const cur = d.w.locationId; /* 0.19: miejsca jednorazowe poza listą */
   if (!locs.length && !cur) return null;
   const name = cur ? locationLabel(cur) : t('bez miejsca');
-  if (!locs.length) return <Text accessibilityLanguage={lang()} accessibilityLabel={`${t('Miejsce')}: ${name}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, fontFamily: F.semibold, marginBottom: 10 }}>{`📍 ${name}`}</Text>;
+  if (!locs.length) return <View style={{ marginBottom: 10, alignSelf: 'flex-start' }}><IconRow icon="pin" color={th.muted}><Text accessibilityLanguage={lang()} accessibilityLabel={`${t('Miejsce')}: ${name}`} maxFontSizeMultiplier={1.3} style={{ color: th.muted, fontSize: 14, ...FW.semibold }}>{name}</Text></IconRow></View>;
   const pick = () => { const none = cur ? [t('bez miejsca')] : []; ActionSheetIOS.showActionSheetWithOptions({ options: [...locs.map(l => l.name), ...none, t('Anuluj')], cancelButtonIndex: locs.length + none.length, title: t('Miejsce tego treningu') }, i => {
     if (i < locs.length) draftSetLocation(d.key, locs[i].id); else if (none.length && i === locs.length) draftSetLocation(d.key, null); }); };
   return <Pressable accessibilityLanguage={lang()} onPress={pick} accessibilityRole="button" accessibilityLabel={t('Miejsce treningu: {l}', { l: name })} accessibilityHint={t('Tapnij, by zmienić.')} hitSlop={6} style={{ alignSelf: 'flex-start', paddingVertical: 4, marginBottom: 6 }}>
-    <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.accent, fontSize: 14, fontFamily: F.semibold }}>{`📍 ${name} ▾`}</Text></Pressable>;
+    <IconRow icon="pin" color={th.accent}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: th.accent, fontSize: 14, ...FW.semibold }}>{`${name} ▾`}</Text></IconRow></Pressable>;
 }
 
 function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; labels: Record<string, string> }) {
@@ -116,7 +117,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
   return (
     <View style={[s.ex, { borderBottomColor: th.line }]}>
       {/* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (components/SwipeRow.tsx), bez przycisków */}
-      <SwipeRow label={t('Usuń ćwiczenie: {name}', { name: nm })} title={t('Usunąć z treningu?')} message={nm} onDelete={() => draftRemoveExercise(d.key, e.id)}>{a11y => <View accessibilityLanguage={lang()} {...a11y} accessible accessibilityRole="header" accessibilityLabel={nm}><Txt style={{ fontFamily: F.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId && labels[e.groupId] ? <Txt style={{ color: th.band, fontFamily: F.semibold }}>{`${ssTag(labels[e.groupId])} · `}</Txt> : null}{nm}{ex?.archived ? <Txt style={{ color: th.muted, fontSize: 13 }}>{' (' + t('usunięte') + ')'}</Txt> : null}</Txt></View>}</SwipeRow>
+      <SwipeRow label={t('Usuń ćwiczenie: {name}', { name: nm })} title={t('Usunąć z treningu?')} message={nm} onDelete={() => draftRemoveExercise(d.key, e.id)}>{a11y => <View accessibilityLanguage={lang()} {...a11y} accessible accessibilityRole="header" accessibilityLabel={nm}><Txt style={{ ...FW.semibold, fontSize: 17, marginBottom: 6 }}>{e.groupId && labels[e.groupId] ? <Txt style={{ color: th.band, ...FW.semibold }}>{`${ssTag(labels[e.groupId])} · `}</Txt> : null}{nm}{ex?.archived ? <Txt style={{ color: th.muted, fontSize: 13 }}>{' (' + t('usunięte') + ')'}</Txt> : null}</Txt></View>}</SwipeRow>
       {off != null ? <Muted style={{ fontSize: 12, marginTop: -2, marginBottom: 6 }}>{t('ciężaru {w} nie ma tutaj — wpisz ciężar', { w: fmtW(off) })}</Muted> : null}
       <View style={s.row} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
         {heads.map((h, k) => <Muted key={k} numberOfLines={1} maxFontSizeMultiplier={NUM_SCALE_MAX} style={[s.head, k === 0 ? { width: 32, textAlign: 'left' } : { flex: 1 }]}>{h}</Muted>)}
@@ -136,7 +137,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
               {hasDistance(m) ? <View style={s.cell}><NumInput value={dOut(set.distanceM)} stored={set.distanceM} onNum={(v, keep) => { set.distanceM = dIn(v, keep); touchDraft(); }} placeholder={distUnit()} accessibilityLabel={t('dystans')} accessibilityHint={hint} /></View> : null}
               {hasTime(m) ? <View style={s.cell}><NumInput value={set.durationSec} onNum={v => { set.durationSec = v === '' ? '' : Math.min(86400, Math.max(0, Math.round(v))); touchDraft(); }} placeholder="s" accessibilityLabel={t('czas')} accessibilityHint={hint} /></View> : null}
               {showRpe ? <View style={s.cell}><NumInput decimal value={effortField(set.rpe)} onNum={v => { set.rpe = effortIn(v); touchDraft(); }} placeholder="—" accessibilityLabel={effortLabel()} accessibilityHint={hint} /></View> : null}
-              {band ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityHint={`${hint}. ${t('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={t('Guma: {b}', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : t('brak') })} onPress={() => cycleBand(set)} style={[s.box, { width: 52, backgroundColor: th.surface2, borderColor: th.line }]}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? th.band : th.muted, fontSize: 13, fontFamily: F.semibold }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}
+              {band ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityHint={`${hint}. ${t('Tapnij, by zmienić.')}`} /* A11-18 */ accessibilityLabel={t('Guma: {b}', { b: set.bandId ? bandA11y(st.bands.find(b => b.id === set.bandId)) : t('brak') })} onPress={() => cycleBand(set)} style={[s.box, { width: 52, backgroundColor: th.surface2, borderColor: th.line }]}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: set.bandId ? th.band : th.muted, fontSize: 13, ...FW.semibold }}>{set.bandId ? shortBand(st.bands.find(b => b.id === set.bandId)) : '—'}</Text></Pressable> : null}
               <View style={{ width: 44 }} />
             </View>
             {ex && hasWeight(m) && (() => { const l = loadOf(ex, set); return !l.own && l.raw !== ''; })() ? <Muted style={{ fontSize: 12, marginLeft: 38, marginTop: -4, marginBottom: 6 }}>{t('Ciężar z innego sprzętu — nie liczy się do rekordów, dopóki go tu nie wpiszesz.') /* Q-026 (0.14.0) */}</Muted> : null}

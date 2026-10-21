@@ -186,10 +186,10 @@ const POLITE_JA = /(ます|です|ません|ました|でした|ましょう|く
     expect(all('ko').filter(v => /(니다|세요|까요)[.?]/.test(v)).length).toBeGreaterThan(400);
   });
   test('terminologia siłowni jednolita: trening / ćwiczenie / seria / powtórzenia / przerwa / pauza / szablon / guma / do upadku / deload', () => {
-    const k = ['Trening', 'Ćwiczenie', 'Seria', 'Powtórzenia', 'Przerwa', '⏸ Pauza', 'Szablon', 'Guma', 'do upadku', 'Deload'];
-    expect(k.map(x => dict('ja')[x])).toEqual(['トレーニング', '種目', 'セット', '回数', '休憩', '⏸ 一時停止', 'テンプレート', 'バンド', '限界まで', 'ディロード']);
-    expect(k.map(x => dict('ko')[x])).toEqual(['운동', '종목', '세트', '반복 횟수', '휴식', '⏸ 일시정지', '루틴', '밴드', '실패 지점까지', '디로드']);
-    expect(k.map(x => dict('zh-Hant')[x])).toEqual(['訓練', '動作', '組', '次數', '休息', '⏸ 暫停', '範本', '彈力帶', '力竭', '減量']);
+    const k = ['Trening', 'Ćwiczenie', 'Seria', 'Powtórzenia', 'Przerwa', 'Pauza', 'Szablon', 'Guma', 'do upadku', 'Deload'];
+    expect(k.map(x => dict('ja')[x])).toEqual(['トレーニング', '種目', 'セット', '回数', '休憩', '一時停止', 'テンプレート', 'バンド', '限界まで', 'ディロード']);
+    expect(k.map(x => dict('ko')[x])).toEqual(['운동', '종목', '세트', '반복 횟수', '휴식', '일시정지', '루틴', '밴드', '실패 지점까지', '디로드']);
+    expect(k.map(x => dict('zh-Hant')[x])).toEqual(['訓練', '動作', '組', '次數', '休息', '暫停', '範本', '彈力帶', '力竭', '減量']);
   });
   test('cel generatora „Redukcja” ≠ „Deload” (zh-Hant: 減脂 vs 減量; ja: 減量 vs ディロード; ko: 감량 vs 디로드)', () => {
     for (const l of W4) expect([l, dict(l)['Redukcja'] !== dict(l)['Deload'], dict(l)['Redukcja'] !== dict(l)['Masa']]).toEqual([l, true, true]);
@@ -226,24 +226,26 @@ function hasGlyph(file: string) {
   const seg = b.readUInt16BE(sub + 6) / 2, ends = sub + 14, starts = ends + 2 * seg + 2, deltas = starts + 2 * seg, ros = deltas + 2 * seg;
   return (ch: string) => { const cp = ch.codePointAt(0)!; for (let i = 0; i < seg; i++) { if (cp > b.readUInt16BE(ends + 2 * i)) continue; const st = b.readUInt16BE(starts + 2 * i); if (cp < st) return false; const d = b.readInt16BE(deltas + 2 * i), ro = b.readUInt16BE(ros + 2 * i); if (!ro) return ((cp + d) & 0xffff) > 0; const g = b.readUInt16BE(ros + 2 * i + ro + 2 * (cp - st)); return g ? ((g + d) & 0xffff) > 0 : false; } return false; };
 }
-describe('wygląd: wariant A — IBM Plex bez zmian, pismo CJK krojem zastępczym iOS', () => {
-  const FONTS = path.join(__dirname, '..', 'node_modules', '@expo-google-fonts');
-  const files = ['ibm-plex-sans/400Regular/IBMPlexSans_400Regular.ttf', 'ibm-plex-sans/600SemiBold/IBMPlexSans_600SemiBold.ttf', 'ibm-plex-sans/700Bold/IBMPlexSans_700Bold.ttf', 'ibm-plex-mono/500Medium/IBMPlexMono_500Medium.ttf'].map(f => hasGlyph(`${FONTS}/${f}`));
-  test('fakt: IBM Plex Sans i Mono nie mają kana, kanji ani hangula (dlatego krój zastępczy — docs/16 „Fala 4”)', () => {
-    expect(files.map(has => [...'あア日中한국訓'].some(ch => has(ch)))).toEqual([false, false, false, false]);
+/* M3 (STOP E3, docs/18): dawny wariant A (IBM Plex + pismo CJK krojem zastępczym) → Barlow Condensed (tytuły, liczby) + krój systemowy; pismo CJK, grecki i cyrylica nadal krojem zastępczym iOS. */
+describe('wygląd: Barlow Condensed + krój systemowy, pismo CJK (i grecki, cyrylica) krojem zastępczym iOS', () => {
+  const BARLOW = path.join(__dirname, '..', 'assets', 'fonts');
+  const files = ['BarlowCondensed-SemiBold.ttf', 'BarlowCondensed-Bold.ttf'].map(f => hasGlyph(`${BARLOW}/${f}`));
+  test('fakt: Barlow Condensed nie ma kana, kanji ani hangula (dlatego krój zastępczy — docs/16 „Fala 4”)', () => {
+    expect(files.map(has => [...'あア日中한국訓'].some(ch => has(ch)))).toEqual([false, false]);
   });
   test('jeden zestaw krojów dla każdego języka: F i FONT_FILES bez krojów CJK (rozmiar aplikacji bez zmian); FALLBACK_SCRIPTS obejmuje każdą literę CJK z tłumaczeń', () => {
-    expect(Object.values(F).every(f => /^IBMPlex(Sans|Mono)_/.test(f))).toBe(true);
+    expect(Object.values(F).every(f => f === 'System' || /^BarlowCondensed_/.test(f))).toBe(true);
     expect(Object.keys(FONT_FILES).some(k => /JP|KR|TC|CJK|Noto|PingFang|Hiragino/i.test(k))).toBe(false);
     for (const l of W4) {
       const missing = [...new Set(all(l).join('').match(/\p{L}/gu) ?? [])].filter(ch => !files[0](ch));
-      expect([l, missing.filter(ch => !FALLBACK_SCRIPTS.test(ch)).join('')]).toEqual([l, '']); /* łacina w tych językach (RPE, kg, nazwy) jest w Plex */
+      expect([l, missing.filter(ch => !FALLBACK_SCRIPTS.test(ch)).join('')]).toEqual([l, '']); /* łacina w tych językach (RPE, kg, nazwy) jest w Barlow */
       expect(missing.length).toBeGreaterThan(50);
     }
   });
-  test('FALLBACK_SCRIPTS bez \\p{scx=…} (Hermes) i bez znaków innych pism (łacina, cyrylica, grecki)', () => {
+  test('FALLBACK_SCRIPTS bez \\p{scx=…} (Hermes); obejmuje CJK, grecki i cyrylicę (M3), nie obejmuje łaciny', () => {
     expect(FALLBACK_SCRIPTS.source).not.toMatch(/\\p\{/);
-    expect([...'aąЖωé0'].some(ch => FALLBACK_SCRIPTS.test(ch))).toBe(false);
+    expect([...'aąéȘșğ0'].some(ch => FALLBACK_SCRIPTS.test(ch))).toBe(false);
     expect([...'あア日한、。「？'].every(ch => FALLBACK_SCRIPTS.test(ch))).toBe(true);
+    expect([...'Жωάїє'].every(ch => FALLBACK_SCRIPTS.test(ch))).toBe(true); /* STOP E3: Barlow nie ma greki ani cyrylicy */
   });
 });

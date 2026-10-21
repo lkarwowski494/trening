@@ -5,7 +5,7 @@ import { Screen, Btn, Muted, Txt, Empty, Missing } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
 import { DragList, DragScroll } from '@/components/DragList';
 import { getState, useTick, exById, groupLabels, ssTag, blockRanges, moveBlockOf, moveInGroup, occurrence, occurrences, workCount, workSetCount, tplRows, type Grouped } from '@/lib/store';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, FW } from '@/lib/theme';
 import { templateForEdit } from '@/lib/draft';
 import { t, tp, exName } from '@/lib/i18n';
 import type { Base, TemplateItem, WSet } from '@/lib/seed';
@@ -32,7 +32,7 @@ export default function ReorderScreen() {
   const sub = (r: Row) => { if ('sets' in r && Array.isArray(r.sets)) { const sets = r.sets as WSet[]; const n = workCount(sets.map(x => x.kind)), d = workSetCount(sets); return `${n} ${tp(n, 'seria|serie|serii')}${d ? ` · ✓ ${d}` : ''}`; } const n = workCount(tplRows(r as unknown as TemplateItem).map(x => x.kind)); return `${n} ${tp(n, 'seria|serie|serii')}`; };
   const blocks = blockRanges(list).map(([s, e]) => list.slice(s, e + 1));
   const card = (dragging: boolean) => ({ backgroundColor: dragging ? th.surface2 : th.surface, borderColor: dragging ? th.accent : th.line, borderWidth: 1, borderRadius: 10, marginBottom: 8, overflow: 'hidden' as const });
-  const line = (r: Row, handle: React.ReactNode, small?: boolean) => <View style={{ flexDirection: 'row', alignItems: 'center', minHeight: 48, paddingRight: 12 }}>{handle}<View style={{ flex: 1 }}><Txt style={{ fontFamily: small ? F.regular : F.semibold }}>{name(r)}</Txt><Muted style={{ fontSize: 12 }}>{sub(r)}</Muted></View></View>;
+  const line = (r: Row, handle: React.ReactNode, small?: boolean) => <View style={{ flexDirection: 'row', alignItems: 'center', minHeight: 48, paddingRight: 12 }}>{handle}<View style={{ flex: 1 }}><Txt style={small ? FW.regular : FW.semibold}>{name(r)}</Txt><Muted style={{ fontSize: 12 }}>{sub(r)}</Muted></View></View>;
   return (
     <Screen>
       <DragScroll contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
@@ -42,7 +42,7 @@ export default function ReorderScreen() {
         <DragList items={blocks} keyOf={b => b[0].groupId ? 'g:' + b[0].groupId : 'i:' + b[0].id} label={b => b[0].groupId ? `${t('superset')} ${labels[b[0].groupId]}: ${b.map(name).join(', ')}` : name(b[0])}
           onMove={(k, to) => { const b = blocks.find(x => (x[0].groupId ? 'g:' + x[0].groupId : 'i:' + x[0].id) === k); return !!b && moveBlockOf(list, b[0].id, to, owner); }}
           renderItem={(b, handle, dragging) => b[0].groupId ? <View style={card(dragging)}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', minHeight: 44 }}>{handle}<Txt style={{ color: th.band, fontFamily: F.semibold }}>{ssTag(labels[b[0].groupId])}</Txt><Muted style={{ fontSize: 12 }}>{` · ${b.length} ${tp(b.length, 'ćwiczenie|ćwiczenia|ćwiczeń')}`}</Muted></View>
+            <View style={{ flexDirection: 'row', alignItems: 'center', minHeight: 44 }}>{handle}<Txt style={{ color: th.band, ...FW.semibold }}>{ssTag(labels[b[0].groupId])}</Txt><Muted style={{ fontSize: 12 }}>{` · ${b.length} ${tp(b.length, 'ćwiczenie|ćwiczenia|ćwiczeń')}`}</Muted></View>
             <View style={{ borderTopWidth: 1, borderTopColor: th.line, marginLeft: 12 }}>
               <DragList items={b} keyOf={r => 'i:' + r.id} label={name} onMove={(k, to) => moveInGroup(list, k.slice(2), to, owner)} renderItem={(r, h, dr) => <View style={{ backgroundColor: dr ? th.surface2 : th.surface }}>{line(r, h, true)}</View>} />
             </View>
