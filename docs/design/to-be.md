@@ -45,6 +45,7 @@ W trakcie pomiaru karta i dolny pasek mają jedną nazwę: „Zakończ serię”
 1. Wykres i rekordy wybranego ćwiczenia na górze ekranu (DEC-09).
 2. Bez historii: sam pusty stan z akcją „Zacznij trening”.
 3. Z historią: chipy tylko ćwiczeń z danymi; pozostałe przez wyszukiwanie.
+4. Pod pustym stanem zostaje sekcja „Masa ciała” z wejściem do pomiarów (doprecyzowanie właściciela 21.10.2026, docs/18).
 
 ## ZM-07 — Dźwięk i wibracje (P11) — flaga danych
 1. Dwa przełączniki w Ustawieniach: „Dźwięk na koniec przerwy” i „Wibracje”.
