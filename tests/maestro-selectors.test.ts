@@ -266,7 +266,7 @@ test('23 (0.19): scenariusz „Inne miejsce (tylko dziś)” — angielskie lite
 
 test('13 (0.19): miejsce na zakres dni w planie — Hotel w panelu dnia, linijka „Workout place: Hotel”, „Remove place” po „Set place”; scrollUntilVisible przed przyciskami pod krawędzią', () => {
   const { EN } = require('@/lib/i18n.en'); const s = readFileSync(join(dir, '13-kalendarz-plan.yaml'), 'utf8').split('\n').filter((l: string) => /^\s*- /.test(l)).map((l: string) => l.trim()); const at = (re: RegExp, from = 0) => { const i = s.findIndex((l: string, k: number) => k >= from && re.test(l)); expect(i).toBeGreaterThanOrEqual(from); return i; };
-  expect(EN['Miejsce na te dni']).toBe('Place for these days'); expect(EN['Ustaw miejsce']).toBe('Set place'); expect(EN['Usuń miejsce']).toBe('Remove place'); expect(EN['Miejsce treningu: {l}'].replace('{l}', 'Hotel')).toBe('Workout place: Hotel');
+  expect(EN['Miejsce na te dni']).toBe('Place for these days'); expect(EN['Ustaw miejsce']).toBe('Set place'); expect(EN['Wyczyść miejsce']).toBe('Remove place'); expect(EN['Miejsce treningu: {l}'].replace('{l}', 'Hotel')).toBe('Workout place: Hotel');
   const open = at(/tapOn: "Place for these days"/); const set = at(/tapOn: "Set place"/, open); expect(s[set - 1]).toMatch(/scrollUntilVisible: \{ element: "Set place"/); const line = at(/visible: "Workout place: Hotel"/, set);
   const reopen = at(/tapOn: "Place for these days"/, line); const rm = at(/tapOn: "Remove place"/, reopen); expect(s[rm - 1]).toMatch(/scrollUntilVisible: \{ element: "Remove place"/); at(/assertNotVisible: "Workout place: Hotel"/, rm);
   expect(at(/tapOn: "Full gym,\.\*"/)).toBeLessThan(at(/tapOn: "Monday, Rest"/)); /* miejsca tworzone przed planem; główne = pełna siłownia, więc start „Upper A” bez okna */

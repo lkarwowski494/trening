@@ -58,8 +58,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Języki interfejsu | 35 | `lib/i18n.ts` (`LANGS`), `app.json`, docs/16-jezyki-i-marka.md |
 | Ćwiczenia w bibliotece | 709 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
-| Elementy UI (przyciski, pola, przełączniki) | 347 (z testem: 347) | docs/19-macierz-testow.md |
-| Komunikaty i teksty | 1101 (z testem: 1101) | docs/19-macierz-testow.md |
+| Elementy UI (przyciski, pola, przełączniki) | 348 (z testem: 348) | docs/19-macierz-testow.md |
+| Komunikaty i teksty | 1104 (z testem: 1104) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 918 (z testem: 918) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 118 (z testem: 118) | docs/19-macierz-testow.md |
 | Pliki testów Jest | 420 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |

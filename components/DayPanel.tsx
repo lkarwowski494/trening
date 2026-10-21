@@ -158,7 +158,7 @@ function PlaceRange({ day, onDone }: { day: string; onDone: () => void }) {
       </View>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         {pick ? <Btn small title={t('Ustaw miejsce')} onPress={setPlace} /> : null}
-        {plannedPlace(day) ? <Btn small kind="ghost" title={t('Usuń miejsce')} accessibilityLabel={run && run.from !== run.to ? t('Usuń miejsce: {a} – {b}', { a: shortDay(run.from), b: shortDay(run.to) }) : t('Usuń miejsce')} onPress={() => { clearPlanPlace(day); onDone(); }} /> : null}
+        {plannedPlace(day) ? <Btn small kind="ghost" title={t('Wyczyść miejsce')} accessibilityLabel={run && run.from !== run.to ? t('Wyczyść miejsce: {a} – {b}', { a: shortDay(run.from), b: shortDay(run.to) }) : t('Wyczyść miejsce')} onPress={() => { clearPlanPlace(day); onDone(); }} /> : null}
       </View>
     </View>
   );

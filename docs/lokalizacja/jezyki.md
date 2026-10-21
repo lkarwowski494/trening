@@ -48,3 +48,5 @@ Ryzyko dla wydania w App Store: R-010 w `docs/40-lekcje.md` (drugi przegląd prz
 <!-- rejestr:end -->
 
 Objaśnienia: „niewykonany” = brak zapisu przeglądu przez native speakera (nie zgadujemy); „brak zapisu” = w repozytorium nie ma śladu takiego działania; „web (Chromium), poza repo” = zrzuty orientacyjne z sesji, nie z symulatora iOS.
+
+**Partia tekstów M3 (21.10.2026, rola 09):** 38 kluczy dodanych lub zmienionych w redesignie M3 (przewodnik, tablica serii, ± i komunikaty VoiceOver, przełączniki dźwięku i wibracji, usuwanie) przejrzanych we wszystkich 34 słownikach (pl = źródło): zgodność parametrów, nazw przycisków cytowanych w zdaniach z ich tłumaczeniem w danym języku (kontrola skryptowa, 0 niezgodności), rejestr z tabeli docs/16, rozdzielenie „Usuń miejsce” (usunięcie miejsca) i „Wyczyść miejsce” (zdjęcie miejsca z dni planu; fi, id miały identyczne brzmienie obu — poprawione). Przegląd jest nadal maszynowy (AI); przegląd rodzimego użytkownika: niewykonany (jak wyżej).

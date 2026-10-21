@@ -464,8 +464,8 @@ export const EN: Record<string, string> = {
   'Pokaż: {name}': 'Show: {name}',
   'Przewodnik po funkcjach': 'Feature guide',
   'Trening i serie': 'Workouts and sets',
-  'Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.': 'Enter weight and reps, tick the set ✓ — the rest timer starts by itself.',
-  '„Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.': '“Pause” stops the workout clock; paused time doesn’t count towards the duration.',
+  'Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.': 'Tap the number on the board and enter weight and reps (or use + and −), then “Set done” — the rest timer starts by itself. If a value is missing, “Set done” moves the cursor to the empty field.',
+  'Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.': 'The ⋯ menu in the header: “Pause workout” stops the workout clock; paused time doesn’t count towards the duration.',
   'Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.': 'More → Templates: the + button in the header (Add template) creates a template: exercises, sets, rep range and rest.',
   'Plan tygodnia i Kalendarz': 'Weekly plan and Calendar',
   'Generator szablonów i planu': 'Template and plan generator',
@@ -665,7 +665,7 @@ export const EN: Record<string, string> = {
   'Ćwiczenie ma co najmniej jedną serię. Żeby usunąć całe ćwiczenie, przesuń w lewo jego nazwę.': 'An exercise keeps at least one set. To delete the whole exercise, swipe its name left.',
   'Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.': 'You’re starting with this version — below are changes for people who used earlier ones. The guide is a better place to start.',
   'Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.': 'A template opens in preview with “Start”; changes (including the folder) only after “Edit” — “Save” saves them.',
-  '„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).': '“Archive” in the preview hides a template; swiping left on the list deletes it (with confirmation).',
+  '„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).': '“Archive” in the preview hides a template; delete it with the “Delete template” button at the bottom of the preview or by swiping left on the list (with confirmation).',
   'Zmiany w trakcie treningu': 'Changes during a workout',
   '„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.': '“⇄ swap” next to an exercise replaces it with another only in this workout — the template stays.',
   '„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.': '“Skip today” skips the rest of an exercise’s sets in this workout.',
@@ -946,7 +946,7 @@ export const EN: Record<string, string> = {
   'więcej niż poprzednio': 'more than before',
   'Ustaw plan': 'Set a plan',
   'Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.': 'On the Workout screen tap the big “Start” button (next workout) or “Other workout” — there you pick a template, repeat the last workout or start an empty one.',
-  'Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.': 'At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Plan tab.',
+  'Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.': 'At the end tap “Finish” in the header (or “Finish workout” in the card after the last set) — the session goes to the Plan tab.',
   'Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.': 'On the Workout screen “Planning” (with no plan: “Set a plan”) opens the weekly plan, which assigns templates to days — the plan repeats every week.',
   'Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.': 'On the Workout screen “Progression” compares the week (done + planned) with the previous one and month with month.',
   /* 0.14.0 — wpis „Co nowego” */
@@ -1076,7 +1076,7 @@ export const EN: Record<string, string> = {
   'Gotowe zestawy': 'Ready-made sets',
   'Miejsce na te dni': 'Place for these days',
   'Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.': 'Starting a workout on these days uses this place before the template’s place, and the “Adjust” window suggests swaps. Nothing changes by itself.',
-  'Inne miejsce…': 'Another place…', 'Od: {day}': 'From: {day}', 'Do: {day}': 'To: {day}', 'Ustaw miejsce': 'Set place', 'Usuń miejsce': 'Remove place', 'Usuń miejsce: {a} – {b}': 'Remove place: {a} – {b}',
+  'Inne miejsce…': 'Another place…', 'Od: {day}': 'From: {day}', 'Do: {day}': 'To: {day}', 'Ustaw miejsce': 'Set place', 'Wyczyść miejsce': 'Remove place', 'Wyczyść miejsce: {a} – {b}': 'Remove place: {a} – {b}', /* M3 (rola 09): przycisk w panelu dnia planu zdejmuje miejsce z dni (EN „Remove”); „Usuń miejsce” = usunięcie samego miejsca (EN „Delete place”, jak „Delete session/template”) */
   /* 0.20 „Zegarki i głos”: zapowiedź (restCue), etykiety zegarka (lib/watch/labels.ts), serie do uzupełnienia, głos w Ustawieniach */
   'Zrobione inaczej': 'Done differently', 'Pominąć ćwiczenie?': 'Skip this exercise?', 'Połącz z telefonem': 'Connect to your phone',
   'Zacznij trening na telefonie': 'Start a workout on your phone', 'Trening zakończony': 'Workout finished', 'Trening wstrzymany': 'Workout paused',
@@ -1086,7 +1086,7 @@ export const EN: Record<string, string> = {
   'Zakończ mimo to': 'Finish anyway', 'Seria {n} uzupełniona — {ex}': 'Set {n} filled in — {ex}', 'Seria {n} do uzupełnienia — {ex}': 'Set {n} to fill in — {ex}',
   'Zapowiedzi głosowe': 'Voice announcements', 'Wyłączone': 'Off', 'W słuchawkach': 'In headphones', 'Także przez głośnik': 'Also through the speaker',
   'Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.': 'At the start of the rest the phone announces the next exercise, weight and reps. In headphones — only with headphones connected; Also through the speaker — also without headphones, through the phone speaker (even in silent mode); Off — no announcements.',
-  'Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.': 'Announcements work when “Sound at the end of rest” is on. You can change the same setting with the “Voice” button on the workout screen.', 'Zapowiedzi głosowe: {mode}': 'Voice announcements: {mode}',
+  'Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.': 'Announcements work when “Sound at the end of rest” is on. You can change the same setting in the “⋯” menu on the workout screen.', 'Zapowiedzi głosowe: {mode}': 'Voice announcements: {mode}',
   'Posłuchaj przykładu': 'Listen to an example',
   'Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.': 'More → Settings: “Sound at the end of rest” and “Haptics” are switched on separately.', /* Przewodnik, ZM-07 */
   /* głos (restCue.speech): pełna nazwa jednostki zamiast skrótu kg/lb; „kilograma”/„funta” = forma przy ułamku (CLDR) */
@@ -1185,6 +1185,7 @@ export const EN: Record<string, string> = {
   'jarda': 'yards',
   'Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.': 'The step (e.g. +2.5 kg) is a convention, not a research result.',
   // M3 p4 (ZM-03, ZM-04)
+  'Usuń miejsce': 'Delete place', /* rola 09: przycisk w szczegółach miejsca (usuwa miejsce); panel dnia planu: „Wyczyść miejsce” */
   'Usuń szablon': 'Delete template',
   'Usuń z biblioteki': 'Delete from library',
   // M3 p3 (Postępy i historia; teksty: docs/design/teksty.md pkt 4)
@@ -1210,5 +1211,9 @@ export const EN: Record<string, string> = {
   'lista serii przewijana': 'set list scrolls',
   'Przerwa, zostało {t} z {all}.': 'Rest, {t} of {all} left.',
   'Zakończ serię: {ex}, seria {n}': 'Finish set: {ex}, set {n}',
+  // M3 rola 09 (teksty): Przewodnik — nowe przepływy usuwania (ZM-04)
+  'Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.': 'Delete body weight measurements (“Body weight — measurements”) with “Edit” in the header or by swiping left.',
+  'Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.': 'Delete a place with the “Delete place” button at the bottom of its screen or by swiping left on the list; you can’t delete the main place while others exist.',
+  'Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.': 'Delete bands with “Edit” in the header of the bands screen or by swiping left.',
   '+ {n} {w}': '+ {n} more {w}', // M3 p2: tablica „Dziś” na starcie — „+ 4 ćwiczenia” ({w} z tp(): ćwiczenie|ćwiczenia|ćwiczeń)
 };

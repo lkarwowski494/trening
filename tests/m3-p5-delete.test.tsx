@@ -97,8 +97,8 @@ describe('szczegóły miejsca: „Usuń miejsce” na dole (ZM-04, W2 wariant a)
   test('przycisk jest ostatnim elementem ekranu, a wyjątek wz. 5 „Usuń odznaczone” (talerze) nie jest tym przyciskiem', async () => {
     await open(); expect(screen.queryAllByText('Usuń odznaczone')).toHaveLength(0); expect(screen.getByTestId('delete-button-wrap')).toBeTruthy();
   });
-  test('English: „Remove place” bez zmiany sensu — okno po angielsku', async () => {
-    await open(false, 'en'); await tap(screen.getByTestId('delete-object')); expect(lastAlert().buttons!.map((x: any) => x.text)).toEqual(['Cancel', 'Delete']);
+  test('English: „Delete place” (rola 09: wzorzec „Delete …” jak sesja i szablon) — okno po angielsku', async () => {
+    await open(false, 'en'); expect(screen.getByText('Delete place')).toBeTruthy(); await tap(screen.getByTestId('delete-object')); expect(lastAlert().buttons!.map((x: any) => x.text)).toEqual(['Cancel', 'Delete']);
   });
 });
 

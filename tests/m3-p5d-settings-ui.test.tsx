@@ -60,7 +60,7 @@ describe('Ustawienia: dwa przełączniki zamiast jednego', () => {
   });
   test('ⓘ „Zapowiedzi głosowe” odsyła do „Dźwięk na koniec przerwy”, nie do dawnego przełącznika', async () => {
     await boot(); await openInfo('voice-mode');
-    expect(screen.getByText('Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.')).toBeTruthy();
+    expect(screen.getByText('Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.')).toBeTruthy();
     expect(screen.queryByText(/Dźwięk i wibracja/)).toBeNull();
   });
 });

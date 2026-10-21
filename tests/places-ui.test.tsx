@@ -1,6 +1,6 @@
 /* 0.19 A4 i B — ekrany (docs/33; docs/20 rodzaj 2): arkusz „📍” z pozycją „Inne miejsce (tylko dziś)…”, okno „Inne miejsce” (app/place-once.tsx: nazwa,
  * „Zapisz jako miejsce”, gotowe zestawy, sprzęt, „Użyj”, „Anuluj”), listy miejsc bez miejsc jednorazowych (Miejsca i sprzęt, generator, edytor szablonu),
- * panel dnia w planie („📍 Miejsce na te dni”, zakres, „Ustaw miejsce”, „Usuń miejsce”, „📍 Hotel” w dniu i na karcie „Dziś”), samoczynne okno „Dostosuj”
+ * panel dnia w planie („📍 Miejsce na te dni”, zakres, „Ustaw miejsce”, „Wyczyść miejsce”, „📍 Hotel” w dniu i na karcie „Dziś”), samoczynne okno „Dostosuj”
  * po starcie w dniu z miejscem (P4 A). Scenariusz z życia — tests/places-scenario.test.tsx; logika — tests/places-oneoff-logic.test.ts, tests/plan-places.test.ts. */
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
@@ -115,7 +115,7 @@ describe('B — panel dnia w planie', () => {
     await tap(screen.getByText('Miejsce na te dni')); await flushAll(5); expect(screen.getByTestId('place-range')).toBeTruthy();
     expect(screen.getByText('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.')).toBeTruthy(); await openInfo('place-range'); /* ⓘ 14.10.2026 */
     expect(screen.getByText('Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.')).toBeTruthy(); expect(screen.getByText('Inne miejsce…')).toBeTruthy();
-    expect(screen.getByText(/^Od: /)).toBeTruthy(); expect(screen.getByTestId('place-to').props.children).toMatch(/^Do: /); expect(screen.queryByText('Ustaw miejsce')).toBeNull(); expect(screen.queryByText('Usuń miejsce')).toBeNull();
+    expect(screen.getByText(/^Od: /)).toBeTruthy(); expect(screen.getByTestId('place-to').props.children).toMatch(/^Do: /); expect(screen.queryByText('Ustaw miejsce')).toBeNull(); expect(screen.queryByText('Wyczyść miejsce')).toBeNull();
   });
   test('Hotel od piątku do niedzieli: „+” przesuwa „Do”, „−” nie schodzi poniżej „Od”; „Ustaw miejsce” zapisuje trzy dni; dni pokazują „📍 Hotel”', async () => {
     await boot({ url: '/history', fn: plan3 }); await open(); await tap(screen.getByText('Więcej opcji')); await tap(screen.getByText('Miejsce na te dni')); await flushAll(5);
@@ -126,10 +126,10 @@ describe('B — panel dnia w planie', () => {
     await tap(screen.getByTestId('cal-2026-10-11')); await flushAll(5); expect(screen.getByTestId('day-place').props.accessibilityLabel).toBe('Miejsce treningu: Hotel');
     await tap(screen.getByTestId('cal-2026-10-12')); await flushAll(5); expect(screen.queryByTestId('day-place')).toBeNull();
   });
-  test('„Usuń miejsce” (etykieta z zakresem) zdejmuje miejsce z całego zakresu; szablony i plan tygodnia bez zmian', async () => {
+  test('„Wyczyść miejsce” (etykieta z zakresem; M3 rola 09: wcześniej „Usuń miejsce” — to słowo zostało dla usunięcia samego miejsca) zdejmuje miejsce z całego zakresu; szablony i plan tygodnia bez zmian', async () => {
     await boot({ url: '/history', fn: () => { plan3(); plan.setPlanPlace('2026-10-09', '2026-10-11', HOTEL); } }); const tpls = JSON.stringify(S().templates); const wk = JSON.stringify(S().weekPlan);
     await open('2026-10-10'); await tap(screen.getByText('Więcej opcji')); await tap(screen.getByText('Miejsce na te dni')); await flushAll(5);
-    const del = screen.getByLabelText(/^Usuń miejsce: /); expect(del.props.accessibilityLabel).toMatch(/ – /); await tap(del); await flushAll(5);
+    const del = screen.getByLabelText(/^Wyczyść miejsce: /); expect(del.props.accessibilityLabel).toMatch(/ – /); await tap(del); await flushAll(5);
     expect(S().planPlaces).toBeUndefined(); expect(screen.queryByTestId('day-place')).toBeNull(); expect(JSON.stringify(S().templates)).toBe(tpls); expect(JSON.stringify(S().weekPlan)).toBe(wk);
   });
   test('„Inne miejsce…” z panelu: okno dla wybranego zakresu; „Użyj” ustawia miejsce jednorazowe na dni od–do (bez zmiany treningu w toku)', async () => {

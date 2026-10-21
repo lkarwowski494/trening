@@ -220,7 +220,7 @@ describe('A11N-02: rejestr grzecznościowy fr („vous”) i tr („siz”)', ()
   test('UI tr: zdania w formie „siz” — bez 2. os. lp. („eklersin”, „şablonun yok”, „… seç.”); etykiety przycisków bez zmian', () => {
     const tr = LOCALES.tr!;
     expect(Object.entries(tr).filter(([, v]) => trSen(v)).map(([k, v]) => `${k.slice(0, 40)}: ${v}`)).toEqual([]);
-    expect(tr['Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.']).toBe('Egzersiz içeren şablonunuz yok. Bir şablon oluşturun ya da “Şablon ve plan oluştur”ı seçin.'); /* M3 p4 ZM-03: odesłanie do generatora (bez przełącznika trybu) */
+    expect(tr['Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.']).toBe('Egzersiz içeren şablonunuz yok. Bir şablon oluşturun veya “Şablon ve plan oluştur” seçeneğini seçin.'); /* M3 p4 ZM-03: odesłanie do generatora (bez przełącznika trybu); M3 rola 09: brzmienie poprawione (sufiks „-ı” po cudzysłowie → „seçeneğini”) */
     for (const label of ['Egzersiz ekle', 'Planı kaydet', 'Sonuncuyu tekrarla', 'Haftayı deload olarak işaretle', 'Plandan başka, sonuncuyu tekrarla, şablondan veya boş.']) expect([label, trSen(label)]).toEqual([label, false]);
     for (const old of ['En az bir şablon seç.', 'setleri şablonlarda eklersin', 'Henüz şablonun yok.', 'Şablon boş — egzersiz ekle', 'Evde mi çalışıyorsun?']) expect([old, trSen(old)]).toEqual([old, true]);
   });

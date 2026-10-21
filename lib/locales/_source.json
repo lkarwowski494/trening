@@ -8,8 +8,8 @@
   "en": "“≥” — in the planned templates {n} {s} have no weight or reps (and no “Previous”): they count as sets but not toward volume."
  },
  {
-  "pl": "„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).",
-  "en": "“Archive” in the preview hides a template; swiping left on the list deletes it (with confirmation)."
+  "pl": "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).",
+  "en": "“Archive” in the preview hides a template; delete it with the “Delete template” button at the bottom of the preview or by swiping left on the list (with confirmation)."
  },
  {
   "pl": "„Bez ograniczeń sprzętu” = pełna siłownia (sztanga, hantle, maszyny i wyciągi).",
@@ -22,10 +22,6 @@
  {
   "pl": "„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w zakładce Plan jest ten sam przycisk.",
   "en": "“Log a past workout” records a workout you didn’t log at the time; from a day in the Plan tab it is the same button."
- },
- {
-  "pl": "„Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
-  "en": "“Pause” stops the workout clock; paused time doesn’t count towards the duration."
  },
  {
   "pl": "„Pomiń dziś” pomija resztę serii ćwiczenia w tym treningu.",
@@ -1737,6 +1733,10 @@
   "en": "Resistance bands"
  },
  {
+  "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+  "en": "Delete bands with “Edit” in the header of the bands screen or by swiping left."
+ },
+ {
   "pl": "Gumy…",
   "en": "Bands…"
  },
@@ -2616,6 +2616,10 @@
   "en": "Max reps assisted"
  },
  {
+  "pl": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+  "en": "The ⋯ menu in the header: “Pause workout” stops the workout clock; paused time doesn’t count towards the duration."
+ },
+ {
   "pl": "metr|metry|metrów",
   "en": "metre|metres",
   "plural": true
@@ -2675,6 +2679,10 @@
  {
   "pl": "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.",
   "en": "A place for this workout only. Pick the equipment you have there — no need to enter weights."
+ },
+ {
+  "pl": "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.",
+  "en": "Delete a place with the “Delete place” button at the bottom of its screen or by swiping left on the list; you can’t delete the main place while others exist."
  },
  {
   "pl": "miesiąc",
@@ -2795,8 +2803,8 @@
   "en": "The recommended option is at the top: it returns to routine without losing a workout, then avoids back-to-back days with the same muscle groups and changes the fewest days."
  },
  {
-  "pl": "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
-  "en": "At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Plan tab."
+  "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+  "en": "At the end tap “Finish” in the header (or “Finish workout” in the card after the last set) — the session goes to the Plan tab."
  },
  {
   "pl": "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.",
@@ -3907,6 +3915,10 @@
   "en": "Measurements"
  },
  {
+  "pl": "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.",
+  "en": "Delete body weight measurements (“Body weight — measurements”) with “Edit” in the header or by swiping left."
+ },
+ {
   "pl": "Pominąć ćwiczenie?",
   "en": "Skip this exercise?"
  },
@@ -4996,6 +5008,10 @@
   "en": "Tap a day in the Plan tab: “Move or skip” shows the options — move the plan by 1 day, move only this workout, swap or rest."
  },
  {
+  "pl": "Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.",
+  "en": "Tap the number on the board and enter weight and reps (or use + and −), then “Set done” — the rest timer starts by itself. If a value is missing, “Set done” moves the cursor to the empty field."
+ },
+ {
   "pl": "Subskrybuj",
   "en": "Subscribe"
  },
@@ -5807,11 +5823,7 @@
  },
  {
   "pl": "Usuń miejsce",
-  "en": "Remove place"
- },
- {
-  "pl": "Usuń miejsce: {a} – {b}",
-  "en": "Remove place: {a} – {b}"
+  "en": "Delete place"
  },
  {
   "pl": "Usuń miejsce: {name}",
@@ -6118,10 +6130,6 @@
   "en": "Enter {co} to save the set."
  },
  {
-  "pl": "Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.",
-  "en": "Enter weight and reps, tick the set ✓ — the rest timer starts by itself."
- },
- {
   "pl": "Wpisz liczbę sekund od 0 do {n}.",
   "en": "Enter a number of seconds from 0 to {n}."
  },
@@ -6268,6 +6276,14 @@
  {
   "pl": "Wyczyść",
   "en": "Erase"
+ },
+ {
+  "pl": "Wyczyść miejsce",
+  "en": "Remove place"
+ },
+ {
+  "pl": "Wyczyść miejsce: {a} – {b}",
+  "en": "Remove place: {a} – {b}"
  },
  {
   "pl": "Wyczyść wszystkie dane",
@@ -6694,8 +6710,8 @@
   "en": "Plan a deload from {date}"
  },
  {
-  "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.",
-  "en": "Announcements work when “Sound at the end of rest” is on. You can change the same setting with the “Voice” button on the workout screen."
+  "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+  "en": "Announcements work when “Sound at the end of rest” is on. You can change the same setting in the “⋯” menu on the workout screen."
  },
  {
   "pl": "Zapowiedzi głosowe",

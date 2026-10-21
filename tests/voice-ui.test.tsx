@@ -18,7 +18,7 @@ const S = () => store.getState();
 const V = () => global.__voice;
 const INFO = [
   'Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.',
-  'Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.',
+  'Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.',
 ];
 beforeEach(() => { V().spoken.length = 0; V().hasVoice = true; __setScreenReaderForTests(false); G.__sheets.length = 0; });
 afterEach(() => { applyLang('pl'); });

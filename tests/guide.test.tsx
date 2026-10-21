@@ -46,7 +46,7 @@ describe('treść i logika', () => {
 
 test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści tematów albo wpisów', () => {
   const texts = [
-    '„Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.',
+    'Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.', /* M3 rola 09 (ZM-02) */
     '„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.',
     'Automatyczna kopia po każdym treningu trafia do Plików (Ustawienia).',
     'Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.', /* audyt 0.10 B2 A, B1 */
@@ -54,7 +54,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.',
     'Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.',
     'Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.', /* docs/22 P2/P3 (11.10.2026) */
-    'Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.',
+    'Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.',
     'Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.',
     'Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.',
     'Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”.',
@@ -67,7 +67,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Trening i serie',
     'W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.',
     'Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.',
-    '„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).',
+    '„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).',
     'Zmiany w trakcie treningu', 'Edycja sesji i trening wstecz',
     'Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.',
     'W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian); ciężary i szablon bez zmian.', /* audyt 0.10 (D1, MER-04) */
@@ -75,7 +75,11 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku.',
     'Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.',
     'Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.',
-    'Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.',
+    'Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.', /* M3 rola 09 (ZM-01) */
+    /* M3 rola 09 (ZM-04): usuwanie bez gestu */
+    'Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.',
+    'Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.',
+    'Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.',
     'Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.',
     /* audyt 0.10 fala 2 (UI): temat „Zmiany w trakcie treningu” i „Edycja sesji i trening wstecz” */
     '„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.',

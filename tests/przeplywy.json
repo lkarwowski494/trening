@@ -1515,7 +1515,7 @@
    "kroki": [
     "Panel dnia → „Więcej opcji” → „Miejsce na te dni” → wybierz → „Ustaw miejsce”",
     "„Przesuń albo pomiń” → „Przesuń plan o 1 dzień” oraz „Przywróć z planu” (miejsce zostaje przy dacie)",
-    "„Usuń miejsce”"
+    "„Wyczyść miejsce”"
    ],
    "wynik": "Start w tych dniach ma miejsce z planu; przesunięcie treningu nie przenosi miejsca (należy do daty); po usunięciu wraca główne.",
    "ekrany": [
@@ -3221,8 +3221,8 @@
    ],
    "scenariusz": "06-miejsca.yaml",
    "znaczniki": [
-    "Remove place",
-    "Delete place"
+    "Delete place",
+    "Delete place?"
    ]
   }
  ],
