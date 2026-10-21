@@ -37,6 +37,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - tapOn: "Search exercises…"
 - inputText: "Back Squat"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Back Squat, barbell.*"
 - extendedWaitUntil: { visible: "Technique", timeout: 30000 }
 - assertNotVisible: "Setup"
@@ -65,6 +66,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - tapOn: "Search exercises…"
 - inputText: "Narrow Stance Squats"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Back Squat, barbell · formerly: Narrow Stance Squats", timeout: 15000 }
 - assertNotVisible: "Create .*"
 - takeScreenshot: 83-dawna-nazwa
@@ -81,6 +83,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - tapOn: "Search exercises…"
 - inputText: "Back Squat"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Back Squat, barbell"
 - scrollUntilVisible: { element: "Technique: Back Squat", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Technique: Back Squat"

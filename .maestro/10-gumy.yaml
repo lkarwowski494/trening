@@ -79,6 +79,7 @@ name: Gumy w miejscu i w treningu
 - tapOn: "Search exercises…"
 - inputText: "Band Pull Apart"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Band Pull Apart, .*", timeout: 30000 }
 - tapOn: "Band Pull Apart, .*"
 - extendedWaitUntil: { visible: "Set 1 done — Band Pull Apart", timeout: 30000 }
@@ -105,6 +106,7 @@ name: Gumy w miejscu i w treningu
 - tapOn: "Search exercises…"
 - inputText: "Pull Up"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Pull Up, .*", timeout: 30000 }
 - tapOn: "Pull Up, .*"
 - extendedWaitUntil: { visible: "Set 1 done — Pull Up", timeout: 30000 }
