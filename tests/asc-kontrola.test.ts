@@ -49,6 +49,15 @@ describe('store/asc-kontrola.json: oczekiwane wartości zgodne z docs/monetyzacj
     const euro: string[] = config.terytoria.grupy.strefaEuro; expect(new Set(euro).size).toBe(euro.length); expect(euro).toHaveLength(21);
     for (const t of ['DEU', 'FRA', 'ITA', 'ESP', 'NLD']) expect(euro).toContain(t);
   });
+  test('metadane: źródła opisują rzeczywiste pliki sklepu (kod lokalizacji → nazwa / podtytuł / słowa); gdy plik jest w repo, ścieżki i pola istnieją', () => {
+    expect(config.metadane.zrodla.map((z: any) => z.plik)).toEqual(['store/app-store-names.json', 'store/app-store-metadata.json']);
+    for (const z of config.metadane.zrodla) {
+      if (!fs.existsSync(path.join(ROOT, z.plik))) continue; /* app-store-metadata.json dojdzie ze scaleniem przebiegu M5 (docs/45) */
+      const dane = JSON.parse(read(z.plik)); const wpisy = Object.entries(dane[z.korzen]).filter(([k]) => !k.startsWith('_'));
+      expect(wpisy.length).toBeGreaterThan(20);
+      for (const [, wpis] of wpisy) for (const klucz of Object.values(z.pola) as (string | null)[]) expect(typeof (klucz === null ? wpis : (wpis as any)[klucz])).toBe('string');
+    }
+  });
   test('adresy: plik store/app-store-urls.json istnieje i ma trzy adresy; kategoria Health & Fitness, dodatkowa nie ustalona', () => {
     const u = JSON.parse(read(config.adresy.plik)); for (const k of ['privacyPolicyUrl', 'supportUrl', 'marketingUrl']) expect(u[k]).toMatch(/^https:\/\//);
     expect(config.kategoria).toEqual({ glowna: 'HEALTH_AND_FITNESS', dodatkowa: null });
@@ -87,16 +96,22 @@ describe('kontrole na atrapie API', () => {
   test('Family Sharing wyłączone wbrew decyzji → RÓŻNICA', () => { expect(row(drive('rodzina'), /Family Sharing yearly/)).toMatchObject({ status: 'RÓŻNICA' }); });
   test('kategoria inna niż oczekiwana → RÓŻNICA', () => { expect(row(drive('kategoria'), /Kategoria główna/)).toMatchObject({ status: 'RÓŻNICA', opis: 'Kategoria główna: jest LIFESTYLE, oczekiwane HEALTH_AND_FITNESS' }); });
   test('adresy: Privacy Policy URL inny w jednej lokalizacji → RÓŻNICA z kodem lokalizacji', () => { expect(row(drive('adres-roznica'), /^Privacy Policy URL/)).toMatchObject({ status: 'RÓŻNICA', opis: expect.stringContaining('pl') }); });
-  test('metadane z pliku: zgodne → OK dla pól i listy lokalizacji (w tym en-AU, en-CA)', () => {
+  test('metadane z plików w formacie sklepu (nazwy: names, podtytuł i słowa: lokalizacje): zgodne → OK dla pól i listy lokalizacji (w tym en-AU, en-CA)', () => {
     const r = drive('meta'); expect(r.code).toBe(0);
-    for (const n of ['Lista lokalizacji: 4 zgodnych', 'Nazwa: 4', 'Podtytuł: 4', 'Słowa kluczowe: 4', 'Tekst promocyjny: 4', 'Opis: 4']) expect(r.wyniki.find((x: any) => x.opis.startsWith(n))).toMatchObject({ status: 'OK' });
+    for (const n of ['Lista lokalizacji: 4 zgodnych', 'Nazwa: 4', 'Podtytuł: 4', 'Słowa kluczowe: 4']) expect(r.wyniki.find((x: any) => x.opis.startsWith(n))).toMatchObject({ status: 'OK' });
+    expect(r.wyniki.some((x: any) => /^(Tekst promocyjny|Opis):/.test(x.opis))).toBe(false); /* pól bez źródła nie kontrolujemy */
+  });
+  test('metadane: tylko jedno ze źródeł (nazwy) → BRAK DANYCH o brakującym pliku, a nazwy nadal porównane', () => {
+    const r = drive('meta-polowa'); expect(r.code).toBe(0);
+    expect(r.wyniki.find((x: any) => x.status === 'BRAK DANYCH' && /brakujące pliki: 1 z 2/.test(x.opis))).toBeTruthy();
+    expect(row(r, /^Nazwa:/)).toMatchObject({ status: 'OK' }); expect(row(r, /^Słowa kluczowe:/)).toBeUndefined();
   });
   test('metadane: różna nazwa w pl i słowa kluczowe w en-US → RÓŻNICA; brakująca lokalizacja en-CA w wersji, ale nie w App Information, nie psuje listy', () => {
     const r = drive('meta-roznica'); expect(r.code).toBe(1);
     expect(row(r, /^Nazwa:/).opis).toBe('Nazwa: różni się w 1 z 4: pl'); expect(row(r, /^Słowa kluczowe:/).opis).toBe('Słowa kluczowe: różni się w 1 z 4: en-US');
   });
   test('metadane: brak lokalizacji w App Store Connect → lista lokalizacji bez błędu, brakujące pole wersji liczone tylko dla istniejących', () => {
-    const r = drive('meta-lokale'); expect(row(r, /^Lista lokalizacji/).status).toBe('OK'); expect(row(r, /^Opis:/).opis).toBe('Opis: 3 lokalizacji zgodnych');
+    const r = drive('meta-lokale'); expect(row(r, /^Lista lokalizacji/).status).toBe('OK'); expect(row(r, /^Słowa kluczowe:/).opis).toBe('Słowa kluczowe: 3 lokalizacji zgodnych');
   });
   test('recenzent: dane osobowe nigdy w raporcie ani wierszach; puste pole kontaktu → RÓŻNICA; notatki z pliku porównane', () => {
     for (const mode of ['zgodne', 'notatki', 'notatki-roznica', 'recenzent-puste', 'szczegoly']) {

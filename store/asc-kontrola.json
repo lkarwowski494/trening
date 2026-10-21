@@ -23,6 +23,12 @@
   "kategoria": { "glowna": "HEALTH_AND_FITNESS", "dodatkowa": null },
   "wiek": {},
   "dostepnosc": { "terytoria": null },
-  "metadane": { "plik": "store/app-store-metadata.json", "komunikatBraku": "oczekiwane po scaleniu M5 (plik store/app-store-metadata.json)" },
+  "metadane": {
+    "zrodla": [
+      { "plik": "store/app-store-names.json", "korzen": "names", "pola": { "name": null } },
+      { "plik": "store/app-store-metadata.json", "korzen": "lokalizacje", "pola": { "subtitle": "subtitle", "keywords": "keywords" } }
+    ],
+    "komunikatBraku": "oczekiwane po scaleniu M5 (store/app-store-metadata.json)"
+  },
   "uwagiRecenzenta": { "plik": "store/review-notes.md", "komunikatBraku": "brak pliku store/review-notes.md na tej gałęzi" }
 }

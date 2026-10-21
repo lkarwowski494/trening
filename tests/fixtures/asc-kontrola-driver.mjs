@@ -96,7 +96,8 @@ if (mode === 'jwt') {
 } else {
   const klient = makeReadClient({ fetchFn: fakeFetch, token: 'TOKEN-XYZ' });
   const pliki = { 'store/app-store-urls.json': JSON.stringify(urls) };
-  if (['meta', 'meta-roznica', 'meta-lokale'].includes(mode)) pliki['store/app-store-metadata.json'] = JSON.stringify(META);
+  if (['meta', 'meta-roznica', 'meta-lokale', 'meta-polowa'].includes(mode)) pliki['store/app-store-names.json'] = JSON.stringify({ _opis: 'x', names: Object.fromEntries(LOKALE.map(l => [l, META.lokalizacje[l].name])) });
+  if (['meta', 'meta-roznica', 'meta-lokale'].includes(mode)) pliki['store/app-store-metadata.json'] = JSON.stringify({ _opis: 'x', lokalizacje: Object.fromEntries(LOKALE.map(l => [l, { subtitle: META.lokalizacje[l].subtitle, keywords: META.lokalizacje[l].keywords }])) });
   if (['notatki', 'notatki-roznica'].includes(mode)) pliki['store/review-notes.md'] = NOTATKI + '\n';
   const wynik = await uruchom({ client: klient, config, dzis: DZIS, czytajJson: p => (pliki[p] ? JSON.parse(pliki[p]) : null), czytajTekst: p => pliki[p] ?? null });
   out.code = wynik.code; out.liczby = wynik.liczby; out.wyniki = wynik.wyniki;
