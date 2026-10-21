@@ -6,7 +6,7 @@ Ten dokument jest jedynym miejscem, w którym zapisane są kwoty i liczby modelu
 
 ## Model
 
-| plan | USD / EUR / GBP | rodzaj |
+| plan | cena bazowa (USD; GBP jak USD, EUR — niżej) | rodzaj |
 |---|---|---|
 | miesięczna | 0,99 | subskrypcja odnawiana automatycznie |
 | roczna | 6,99 | subskrypcja odnawiana automatycznie |
@@ -15,10 +15,22 @@ Ten dokument jest jedynym miejscem, w którym zapisane są kwoty i liczby modelu
 - **Okres próbny:** **14 dni** — oferta wprowadzająca Apple (2 tygodnie) w obu subskrypcjach; dożywotnia bez okresu próbnego.
 - **Po wygaśnięciu subskrypcji lub próby:** **4 treningi na żywo** w miesiącu kalendarzowym za darmo; dopisywanie wstecz bez limitu; historia, kopia zapasowa i eksport zawsze (decyzje 09.10.2026 pkt 5 i 06.10.2026, docs/15 — historia).
 - **Chmura rodzinna (Family Sharing):** TAK dla subskrypcji i dostępu dożywotniego (11.10.2026). **[OTWARTE]** czy włączenie jest nieodwracalne — sprawdzić w App Store Connect przed wysyłką.
+- **Euro (21.10.2026, decyzja właściciela):** subskrypcja roczna **7,99 €** — przeliczenie Apple z ceny bazowej w USD (z VAT), bez ręcznej korekty w ~20 krajach strefy euro; odrzucone: ręcznie 6,99 € (zbyt dużo kliknięć). GBP roczna 6,99 £ (sprawdzone 21.10). Miesięczna w euro: 0,99 € (sprawdzone przez właściciela 21.10). **[OTWARTE]** dożywotnia w euro — sprawdzi workflow kontrolny App Store Connect.
 - **Ceny lokalne (Polska):** miesięczna 4,99 zł, roczna 19,99 zł, dożywotnia 59,99 zł — ustawione ręcznie w App Store Connect (14.10.2026, docs/18; 20.10.2026: „PL bez zmian”). Pozostałe kraje przelicza Apple z ceny bazowej.
   Ceny w App Store Connect ustawia właściciel (instrukcja: `kroki-wlasciciela.md`, K-CENA).
 - **Kody ofertowe Apple** (offer codes) na darmową subskrypcję: decyzja 09.10.2026 (wariant A), szczegóły wdrożenia: docs/27.
 - **Zasada cenowa (09.10.2026):** cena w kraju = lokalny próg zakupu impulsowego, nie przeliczenie kursowe — dotyczy ręcznych korekt cen lokalnych w App Store Connect.
+
+## Ceny w App Store Connect — oczekiwane (kontrola)
+
+Stan: 21.10.2026 (właściciel). Te kwoty czyta kontrola `store/asc-kontrola.json` (workflow „ASC kontrola ustawień”, tylko odczyt); zgodność tabeli z plikiem pilnuje `tests/asc-kontrola.test.ts`.
+Roczna w euro 7,99 € to przeliczenie Apple z ceny bazowej, miesięczna 0,99 €; dożywotna w euro i miesięczna w funtach — **[OTWARTE]** (kontrola je tylko wypisuje).
+
+| plan | USA (USD) | Polska (PLN) | strefa euro (EUR) | Wielka Brytania (GBP) |
+|---|---|---|---|---|
+| miesięczna | 0,99 | 4,99 | 0,99 | [OTWARTE] |
+| roczna | 6,99 | 19,99 | 7,99 | 6,99 |
+| dożywotnia | 14,99 | 59,99 | [OTWARTE] | [OTWARTE] |
 
 ## Stan wdrożenia w kodzie
 

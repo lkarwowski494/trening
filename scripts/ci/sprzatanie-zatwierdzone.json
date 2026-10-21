@@ -1,0 +1,10 @@
+{
+  "_opis": "Gałęzie NIE zawarte w main, których usunięcie zatwierdził właściciel (docs/18). Gałęzie scalone z main nie wymagają wpisu. SHA końca gałęzi — do odtworzenia (git push origin <sha>:refs/heads/<nazwa>).",
+  "galezie": [
+    { "galaz": "f020-applewatch", "sha": "89faf489b9a0", "powod": "treść w main (scalenie do 0.19; jedyny brakujący commit ma odpowiednik w main)", "zgoda": "21.10.2026" },
+    { "galaz": "claude/nazwa-lokalna", "sha": "598688ba9714", "powod": "zastąpiona — nazwy sklepu w main (store/app-store-names.json)", "zgoda": "21.10.2026" },
+    { "galaz": "f-metadane", "sha": "c6b998fd7a30", "powod": "zastąpiona przez f020-sklep", "zgoda": "21.10.2026" },
+    { "galaz": "f018-e2e-shard", "sha": "db7f9144d170", "powod": "zastąpiona — nowsza wersja podziału E2E w main", "zgoda": "21.10.2026" },
+    { "galaz": "f017-sklep-build", "sha": "c3e18bd4c8f7", "powod": "porzucona — tymczasowe wyłączenie Jest w CI (0.17)", "zgoda": "21.10.2026" }
+  ]
+}

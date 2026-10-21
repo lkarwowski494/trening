@@ -59,7 +59,9 @@ describe('docs/15 i docs/18: brak sprzecznych kwot i pozostałości EAS', () => 
   const OK = new Set(['0,99', '6,99', '14,99']);
   for (const [name, text] of [['docs/15', d15], ['docs/18', d18]] as const) {
     test(`${name}: kwoty USD/EUR/GBP inne niż 0,99 / 6,99 / 14,99 tylko w historii albo w wierszu „zastąpione/było”`, () => {
-      const bad = outsideHistory(text).filter(({ line }) => [...line.matchAll(AMOUNT)].some((x) => !OK.has(`${x[1]},${x[2]}`)) && PLAN_CTX.test(line) && !MARK.test(line)).map((x) => `${name}:${x.n}: ${x.line.trim().slice(0, 100)}`);
+      /* 21.10.2026 (właściciel): roczna w euro = przeliczenie Apple 7,99 € (docs/monetyzacja.md) — dozwolona tylko z walutą euro */
+      const ok = (x: RegExpMatchArray) => OK.has(`${x[1]},${x[2]}`) || (`${x[1]},${x[2]}` === '7,99' && /€|EUR/.test(x[0]));
+      const bad = outsideHistory(text).filter(({ line }) => [...line.matchAll(AMOUNT)].some((x) => !ok(x)) && PLAN_CTX.test(line) && !MARK.test(line)).map((x) => `${name}:${x.n}: ${x.line.trim().slice(0, 100)}`);
       expect(bad).toEqual([]);
     });
   }
@@ -103,6 +105,17 @@ describe('docs/15: projekt opisu sklepu zgodny z kodem', () => {
       expect(desc).toMatch(lang === 'PL' ? /odczyt[^\n]*Apple Health/i : /read[^\n]*Apple Health|reading[^\n]*Apple Health/i);
       expect(desc).toMatch(lang === 'PL' ? /imperialn/i : /imperial/i);
       expect(desc).not.toMatch(/kg lub lb|kg or lb/);
+    });
+    test(`${lang}: blok cenowy bez list kwot, plan miesięczny porównany z espresso + przypis MIMIT (decyzja właściciela 21.10.2026, docs/research/espresso-mimit-2026-10.md)`, () => {
+      expect(desc).not.toMatch(/\[(BLOK CENOWY|PRICING BLOCK)/);
+      expect(desc).toMatch(lang === 'PL' ? /plan miesięczny w cenie porównywalnej z jednym espresso w barze\*/ : /monthly plan for about the price of one espresso at a bar\*/);
+      const foot = desc.split('\n').find((l) => l.startsWith('* ')) ?? '';
+      expect(foot).toMatch(lang === 'PL' ? /od 1,06 € do 1,51 €/ : /EUR 1\.06–1\.51/);
+      expect(foot).toMatch(/MIMIT/); expect(foot).toMatch(/2026/);
+      /* poza przypisem żadnych kwot (ceny pokazuje App Store; zmieniają się bez nowej wersji opisu) */
+      const rest = desc.split('\n').filter((l) => !l.startsWith('* ')).join('\n');
+      expect(rest).not.toMatch(/\d+[.,]\d\d\s*(zł|PLN|USD|EUR|GBP|€|\$|£)|(USD|EUR|GBP|€|\$|£)\s*\d/);
+      expect(rest).toMatch(lang === 'PL' ? /Aktualne ceny widać w App Store przed zakupem/ : /Current prices are shown in the App Store before purchase/);
     });
     test(`${lang}: limity App Store i liczby w tabeli zgodne z tekstem`, () => {
       const d = [...desc.replace(/\n$/, '')].length; const p = [...promo(s)].length; const k = Buffer.byteLength(kw(s), 'utf8');

@@ -5,6 +5,7 @@ module.exports = [
   ...expoConfig,
   {
     ignores: [
+      'audit/**', /* katalogi przebiegów ról (poza gitem, .git/info/exclude) — M5, 21.10.2026 */
       'node_modules/**', '.claude/**', '.expo/**', 'dist/**', 'ios/**', 'android/**', 'coverage/**', '.stryker-tmp/**',
       'site/**', 'store/**', 'scripts/**', 'tests/**', 'watch-fixtures/**', 'targets/**', 'modules/**',
     ],
