@@ -145,8 +145,9 @@ describe('Postępy — bez historii: sam pusty stan z „Zacznij trening” (ZM-
   test('English: „Start a workout” i zdanie po angielsku', async () => {
     await boot(() => {}, '/progress', 'en'); await flushAll(10); expect(screen.getByText('Start a workout')).toBeTruthy(); expect(screen.getByText('Charts appear after your first finished workout.')).toBeTruthy();
   });
-  test('masa ciała: pomiary wpisane wcześniej nie giną z ekranu (wejście do pomiarów zostaje)', async () => {
-    await boot(() => { store.addBodyMass(80, '2026-10-01'); }, '/progress'); await flushAll(10); expect(screen.getByText('Masa ciała — pomiary')).toBeTruthy(); expect(screen.getByTestId('progress-start')).toBeTruthy();
+  test('masa ciała: wejście do pomiarów zostaje także bez historii (odstępstwo od „samego pustego stanu” — jedyna droga do pomiarów; tabs-four, audit-0.10-stats-ui)', async () => {
+    await boot(() => {}, '/progress'); await flushAll(10); expect(screen.getByText('Masa ciała — pomiary')).toBeTruthy(); expect(screen.getByTestId('progress-start')).toBeTruthy();
+    await boot(() => { store.addBodyMass(80, '2026-10-01'); }, '/progress'); await flushAll(10); expect(screen.getByText('Masa ciała — pomiary')).toBeTruthy();
   });
 });
 

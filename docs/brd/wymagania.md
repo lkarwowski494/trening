@@ -272,7 +272,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Bez historii
     - Zakładając, że użytkownik nie ma zakończonego treningu
     - Gdy otwiera Postępy
-    - Wtedy widzi sam pusty stan z motywem graficznym, zdaniem o wykresach i przyciskiem „Zacznij trening”, który prowadzi na ekran Trening
+    - Wtedy widzi pusty stan z motywem graficznym, zdaniem o wykresach i przyciskiem „Zacznij trening”, który prowadzi na ekran Trening (bez wykresu, wyszukiwania i chipów); sekcja „Masa ciała” z wejściem do pomiarów zostaje pod nim
 
 ### BR-HIS-001: Usuwanie sesji z historii: gest na liście i przycisk w szczegółach, to samo potwierdzenie
 - Przepływ: PR-05

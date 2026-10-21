@@ -84,12 +84,12 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
       {!all.length ? <Muted style={{ ...font('footnote'), marginTop: SPACE.s - 2 }}>{t('Nic nie pasuje.')}</Muted> : null}
       {all.length > 40 ? <Muted style={{ ...font('footnote'), marginTop: SPACE.s - 2 }}>{t('Pokazano {n} z {m} — wpisz nazwę, by zawęzić.', { n: 40, m: all.length })}</Muted> : null}
     </View>);
-  /* bez historii: sam pusty stan z motywem A2 i akcją „Zacznij trening” (ZM-06); pomiary masy ciała wpisane wcześniej zostają dostępne */
+  /* bez historii: pusty stan z motywem A2 i akcją „Zacznij trening” (ZM-06); bez wykresu, wyszukiwania i chipów */
   if (!any) return (
     <ScrollView ref={listRef} testID="progress-scroll" {...scroll} contentContainerStyle={{ paddingBottom: SPACE.xxxl }}>
       <Empty>{t('Wykresy pojawią się po pierwszym zakończonym treningu.')}</Empty>
       <Btn nav kind="primary" block testID="progress-start" title={t('Zacznij trening')} style={{ marginTop: SPACE.m }} onPress={() => router.navigate('/')} />
-      {bodyMassLog().length ? <BodyMassSection /> : null}
+      <BodyMassSection />{/* odstępstwo od „samego pustego stanu” (ZM-06): masa ciała to jedyne wejście do pomiarów i bywa wpisywana przed pierwszym treningiem (e1RM podciągania) */}
     </ScrollView>
   );
   return (
