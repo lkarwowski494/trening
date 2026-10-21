@@ -6,7 +6,7 @@ Ten dokument jest jedynym miejscem, w którym zapisane są kwoty i liczby modelu
 
 ## Model
 
-| plan | USD / EUR / GBP | rodzaj |
+| plan | cena bazowa (USD) | rodzaj |
 |---|---|---|
 | miesięczna | 0,99 | subskrypcja odnawiana automatycznie |
 | roczna | 6,99 | subskrypcja odnawiana automatycznie |
@@ -19,6 +19,17 @@ Ten dokument jest jedynym miejscem, w którym zapisane są kwoty i liczby modelu
   Ceny w App Store Connect ustawia właściciel (instrukcja: `kroki-wlasciciela.md`, K-CENA).
 - **Kody ofertowe Apple** (offer codes) na darmową subskrypcję: decyzja 09.10.2026 (wariant A), szczegóły wdrożenia: docs/27.
 - **Zasada cenowa (09.10.2026):** cena w kraju = lokalny próg zakupu impulsowego, nie przeliczenie kursowe — dotyczy ręcznych korekt cen lokalnych w App Store Connect.
+
+## Ceny w App Store Connect — oczekiwane (kontrola)
+
+Stan: 21.10.2026 (właściciel). Te kwoty czyta kontrola `store/asc-kontrola.json` (workflow „ASC kontrola ustawień”, tylko odczyt); zgodność tabeli z plikiem pilnuje `tests/asc-kontrola.test.ts`.
+Roczna w euro 7,99 € to przeliczenie Apple z ceny bazowej, miesięczna 0,99 €; dożywotna w euro i miesięczna w funtach — **[OTWARTE]** (kontrola je tylko wypisuje).
+
+| plan | USA (USD) | Polska (PLN) | strefa euro (EUR) | Wielka Brytania (GBP) |
+|---|---|---|---|---|
+| miesięczna | 0,99 | 4,99 | 0,99 | [OTWARTE] |
+| roczna | 6,99 | 19,99 | 7,99 | 6,99 |
+| dożywotnia | 14,99 | 59,99 | [OTWARTE] | [OTWARTE] |
 
 ## Stan wdrożenia w kodzie
 

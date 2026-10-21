@@ -1,0 +1,23 @@
+# Kontrola ustawień App Store Connect — TYLKO ODCZYT (decyzja właściciela 21.10.2026: „Super pomysl z tym workflow sprawdzajacym. Rob go.”).
+# Cienka warstwa tej aplikacji: wywołuje workflow wspólny (docelowo z repozytorium narzędzi studia — wtedy zmienia się tylko `uses:`).
+# Konfiguracja: store/asc-kontrola.json. Tylko ręcznie. Zmian w App Store Connect nie robi (żądania GET).
+name: ASC kontrola ustawień
+on:
+  workflow_dispatch:
+    inputs:
+      szczegoly:
+        description: 'Dołącz szczegóły (listy terytoriów, odpowiedzi wiekowe, lokalizacje)'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: asc-kontrola
+  cancel-in-progress: false
+jobs:
+  kontrola:
+    uses: ./.github/workflows/asc-kontrola-wspolna.yml
+    with:
+      config: store/asc-kontrola.json
+      szczegoly: ${{ inputs.szczegoly }}
+    secrets: inherit

@@ -1,0 +1,65 @@
+# Kontrola ustawień App Store Connect — TYLKO ODCZYT (warstwa wspólna, workflow wielokrotnego użytku; decyzja właściciela 21.10.2026).
+# Wywołujący podaje ścieżkę do pliku konfiguracji aplikacji; narzędzie (katalog z wejścia `narzedzia`) wysyła wyłącznie żądania GET do App Store Connect API.
+# Raport trafia do podsumowania przebiegu; kod wyjścia 1 = jest różnica (czerwony przebieg). Sekrety przekazuje wywołujący: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8.
+# Repozytorium może być publiczne: logi bez identyfikatorów klucza (maskowanie), klucz tylko w RUNNER_TEMP i usuwany zawsze.
+name: ASC kontrola (wspólna)
+on:
+  workflow_call:
+    inputs:
+      config:
+        description: 'Ścieżka do pliku konfiguracji aplikacji (względem katalogu głównego repozytorium wywołującego)'
+        type: string
+        required: true
+      szczegoly:
+        description: 'Dołącz szczegóły (listy terytoriów, odpowiedzi wiekowe, lokalizacje)'
+        type: boolean
+        default: false
+      narzedzia:
+        description: 'Katalog z narzędziem w obecnym repozytorium'
+        type: string
+        default: narzedzia/asc-kontrola
+    secrets:
+      ASC_KEY_ID:
+        required: true
+      ASC_ISSUER_ID:
+        required: true
+      ASC_KEY_P8:
+        required: true
+permissions:
+  contents: read
+jobs:
+  kontrola:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Klucz API do pliku tymczasowego (maskowany)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v"; exit 1; }; done
+          echo "::add-mask::$ASC_KEY_ID"; echo "::add-mask::$ASC_ISSUER_ID"
+          printf '%s\n' "$ASC_KEY_P8" | while IFS= read -r line; do case "$line" in -----*) ;; *) [ ${#line} -ge 20 ] && echo "::add-mask::$line" ;; esac; done; true
+          umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
+      - name: Kontrola (tylko odczyt)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          KONFIGURACJA: ${{ inputs.config }}
+          NARZEDZIA: ${{ inputs.narzedzia }}
+          SZCZEGOLY: ${{ inputs.szczegoly }}
+        run: |
+          set -o pipefail
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          opcje=(); [ "$SZCZEGOLY" = "true" ] && opcje+=(--szczegoly)
+          node "$NARZEDZIA/kontrola.mjs" --config "$KONFIGURACJA" "${opcje[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Usunięcie klucza z maszyny
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey.p8"

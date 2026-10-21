@@ -1,0 +1,28 @@
+{
+  "_opis": "Konfiguracja kontroli App Store Connect (tylko odczyt; narzędzie: narzedzia/asc-kontrola/, workflow: .github/workflows/asc-kontrola.yml). Decyzja właściciela 21.10.2026. Kwoty: jedno miejsce to docs/monetyzacja.md, ten plik je powiela dla kontroli — zgodność pilnuje tests/asc-kontrola.test.ts. null = wartość nie ustalona (kontrola tylko wypisuje).",
+  "aplikacja": { "bundleId": "pl.lukasz.trening" },
+  "produkty": [
+    { "klucz": "monthly", "productId": "pl.lukasz.trening.full.monthly", "rodzaj": "subskrypcja" },
+    { "klucz": "yearly", "productId": "pl.lukasz.trening.full.yearly", "rodzaj": "subskrypcja" },
+    { "klucz": "lifetime", "productId": "pl.lukasz.trening.full.lifetime", "rodzaj": "jednorazowy" }
+  ],
+  "terytoria": {
+    "wybrane": ["USA", "POL", "DEU", "FRA", "ITA", "ESP", "NLD", "GBR"],
+    "grupy": {
+      "strefaEuro": ["AUT", "BEL", "BGR", "HRV", "CYP", "EST", "FIN", "FRA", "DEU", "GRC", "IRL", "ITA", "LVA", "LTU", "LUX", "MLT", "NLD", "PRT", "SVK", "SVN", "ESP"]
+    }
+  },
+  "ceny": {
+    "monthly": { "USA": 0.99, "POL": 4.99, "strefaEuro": 0.99, "GBR": null },
+    "yearly": { "USA": 6.99, "POL": 19.99, "strefaEuro": 7.99, "GBR": 6.99 },
+    "lifetime": { "USA": 14.99, "POL": 59.99, "strefaEuro": null, "GBR": null }
+  },
+  "oferta": { "produkty": ["monthly", "yearly"], "tryb": "FREE_TRIAL", "czas": "TWO_WEEKS", "bezDatyKonca": true },
+  "rodzina": { "monthly": true, "yearly": true, "lifetime": true },
+  "adresy": { "plik": "store/app-store-urls.json" },
+  "kategoria": { "glowna": "HEALTH_AND_FITNESS", "dodatkowa": null },
+  "wiek": {},
+  "dostepnosc": { "terytoria": null },
+  "metadane": { "plik": "store/app-store-metadata.json", "komunikatBraku": "oczekiwane po scaleniu M5 (plik store/app-store-metadata.json)" },
+  "uwagiRecenzenta": { "plik": "store/review-notes.md", "komunikatBraku": "brak pliku store/review-notes.md na tej gałęzi" }
+}

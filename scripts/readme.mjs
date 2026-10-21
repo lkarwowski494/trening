@@ -120,6 +120,7 @@ const TOP = {
   '.maestro/': 'scenariusze E2E (Maestro, symulator iPhone) i podprzepływy',
   'scripts/': 'generatory i bramki: macierz testów, katalog przepływów, tłumaczenia, licencje, README',
   'docs/': 'dokumentacja i rejestr decyzji (po polsku), w tym dokumenty generowane z kodu',
+  'narzedzia/': 'narzędzia wspólne dla aplikacji studia: kontrola ustawień App Store Connect (tylko odczyt)',
   'site/': 'strona aplikacji: polityka prywatności i wsparcie (GitHub Pages)',
   'store/': 'konfiguracja sklepu: produkty zakupu (plik StoreKit), nazwy i lokalizacje do App Store Connect',
   'assets/': 'ikony, ekran startowy, grafiki',
@@ -159,6 +160,8 @@ const WORKFLOW_ROLE = {
   'watch-sim.yml': 'testy aplikacji na Apple Watch na symulatorze watchOS i zrzuty',
   'pages.yml': 'publikacja strony (prywatność, wsparcie)',
   'asc-iap-localizations.yml': 'lokalizacje produktów zakupu w App Store Connect',
+  'asc-kontrola.yml': 'kontrola ustawień App Store Connect (tylko odczyt; ręcznie)',
+  'asc-kontrola-wspolna.yml': 'warstwa wspólna kontroli App Store Connect (workflow wielokrotnego użytku)',
   'store-screenshots.yml': 'zrzuty ekranu do App Store z symulatora (ręcznie)',
   'przeglad-tlumaczen.yml': 'przegląd tłumaczeń treści krytycznej przez API Anthropic (ręcznie, płatny, limit kosztu)',
 };
