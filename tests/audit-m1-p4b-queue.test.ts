@@ -19,4 +19,12 @@ describe('docs/18 i docs/40 po przeniesieniu kolejki', () => {
     expect(ids).toEqual([...ids].sort((a, b) => b - a)); expect(new Set(ids).size).toBe(ids.length);
     expect(ids[0]).toBe(ids.length); /* L-001…L-N bez luk */
   });
+  /* L-016 (decyzja właściciela 21.10.2026): na gałęzi lekcja ma nagłówek „## L-NNN”, numer nadaje koordynator przy scalaniu
+     (scripts/numeruj-lekcje.mjs). Nienumerowane lekcje stoją nad numerowanymi; na main (push do main w tests.yml) — zakazane. */
+  test('docs/40: lekcje „## L-NNN” tylko na gałęziach, nad numerowanymi', () => {
+    const naglowki = [...d40.matchAll(/^## L-(\d{3}|NNN) /gm)].map((m) => m[1]);
+    const ostatniaRobocza = naglowki.lastIndexOf('NNN');
+    expect(naglowki.slice(0, ostatniaRobocza + 1).every((n) => n === 'NNN')).toBe(true);
+    if (process.env.GITHUB_REF_NAME === 'main') expect(ostatniaRobocza).toBe(-1);
+  });
 });
