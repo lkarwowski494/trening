@@ -6,7 +6,7 @@ module.exports = [
   {
     ignores: [
       'node_modules/**', '.claude/**', '.expo/**', 'dist/**', 'ios/**', 'android/**', 'coverage/**', '.stryker-tmp/**',
-      'site/**', 'store/**', 'scripts/**', 'narzedzia/**', 'tests/**', 'watch-fixtures/**', 'targets/**', 'modules/**',
+      'site/**', 'store/**', 'scripts/**', 'tests/**', 'watch-fixtures/**', 'targets/**', 'modules/**',
     ],
   },
   {

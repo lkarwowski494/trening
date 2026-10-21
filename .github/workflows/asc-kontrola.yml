@@ -1,6 +1,8 @@
 # Kontrola ustawień App Store Connect — TYLKO ODCZYT (decyzja właściciela 21.10.2026: „Super pomysl z tym workflow sprawdzajacym. Rob go.”).
-# Cienka warstwa tej aplikacji: wywołuje workflow wspólny (docelowo z repozytorium narzędzi studia — wtedy zmienia się tylko `uses:`).
-# Konfiguracja: store/asc-kontrola.json. Tylko ręcznie. Zmian w App Store Connect nie robi (żądania GET).
+# Cienka warstwa tej aplikacji: wywołuje workflow wspólny z repozytorium narzędzi studia (lkarwowski494/apps4brew-narzedzia), PRZYPIĘTY do pełnego SHA
+# (nie do gałęzi — wersję narzędzia podnosimy świadomie; zmiana SHA to zmiana workflow, opisana w PR). Narzędzie i jego testy: tamto repozytorium.
+# Konfiguracja aplikacji: store/asc-kontrola.json. Tylko ręcznie. Zmian w App Store Connect nie robi (żądania GET).
+# Sekrety przekazane jawnie (dziedziczenie wszystkich sekretów GitHub dokumentuje dla repozytoriów jednej organizacji): tylko ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8.
 name: ASC kontrola ustawień
 on:
   workflow_dispatch:
@@ -16,8 +18,11 @@ concurrency:
   cancel-in-progress: false
 jobs:
   kontrola:
-    uses: ./.github/workflows/asc-kontrola-wspolna.yml
+    uses: lkarwowski494/apps4brew-narzedzia/.github/workflows/asc-kontrola.yml@3d5617a537bbe9d7b384a9ad21b5a33fdd3c24dc
     with:
       config: store/asc-kontrola.json
       szczegoly: ${{ inputs.szczegoly }}
-    secrets: inherit
+    secrets:
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
