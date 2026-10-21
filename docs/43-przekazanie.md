@@ -193,7 +193,7 @@ Kod, plik testowy `store/Trening.storekit` i dokumenty mówią już 6,99 USD/rok
 4. Sekcja „Subscription Prices” → „Current Pricing for New Subscribers” → „Edit” (albo „+ / Add Subscription Price”).
 5. Kraj bazowy: Stany Zjednoczone (United States), cena **6,99 USD** (wybierz punkt cenowy 6.99). Zostaw włączone automatyczne przeliczenie na inne kraje (Apple wylicza resztę z ceny bazowej).
 6. Kliknij „Next”, potem „Confirm”. Przy pytaniu o obecnych subskrybentów wybierz „Do not preserve current price” — jest to cena przed premierą, nikt jeszcze nie subskrybuje (jeśli nie ma takiej opcji, pomiń).
-7. Ceny w Polsce, strefie euro i Wielkiej Brytanii: sprawdź, czy po przeliczeniu EUR i GBP wyszło 6,99 (jeśli nie — popraw ręcznie na 6,99 € / 6,99 £); PL zostaje 19,99 zł.
+7. ~~Ceny w Polsce, strefie euro i Wielkiej Brytanii~~ — **zrobione 21.10.2026**: strefa euro 7,99 € (przeliczenie Apple, decyzja właściciela — bez ręcznej korekty na 6,99 €), GBP 6,99 £, PL 19,99 zł (docs/18, docs/monetyzacja.md).
 8. Napisz „zrobione” albo wklej, co widzisz w kolumnie ceny roczna.
 
 ---
