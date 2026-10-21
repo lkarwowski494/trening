@@ -1693,7 +1693,7 @@
  "Ostatnia udana kopia: {date}": "Letztes erfolgreiches Backup: {date}",
  "Asekuracja": "Sicherung",
  "bez asekuracji w stojakach": "keine Sicherheitsarme im Rack",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Übung mit Langhantel über dem Körper oder auf den Schultern: Stelle im Rack Sicherheitsarme so ein, dass du die Stange sicher ablegen kannst, oder trainiere mit einer Sicherungsperson.",
+ "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Übung mit der Langhantel auf dem Rumpf oder über Kopf und Gesicht: Absicherung wird empfohlen — ein Rack mit Sicherheitsarmen und eine Sicherungsperson.",
  "Powiadomienie na koniec przerwy": "Mitteilung am Ende der Pause",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Am Ende der Pause sendet das iPhone eine Mitteilung — auch bei gesperrtem Bildschirm. Dafür ist die Mitteilungsberechtigung nötig — iOS fragt danach, sobald du auf „Weiter“ tippst.",
  "Zmień w ustawieniach iOS": "In den iOS-Einstellungen ändern",
@@ -1702,7 +1702,7 @@
  "SS": "SS",
  "PR": "PR",
  "Usuń serię": "Satz löschen",
- "Usuń ćwiczenie": "Übung entfernen",
+ "Usuń ćwiczenie": "Übung löschen",
  "Opcje ćwiczenia: {name}": "Optionen für Übung: {name}",
  "System miar": "Maßsystem",
  "metryczny (kg, km, m)": "Metrisch (kg, km, m)",
@@ -1713,6 +1713,6 @@
  "mili": "Meilen",
  "jard|jardy|jardów": "Yard|Yards",
  "jarda": "Yards",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Jede große Muskelgruppe an mindestens {n} Tagen pro Woche (WHO 2020 — eine Gesundheitsempfehlung; ACSM 2026: die Häufigkeit beeinflusst die Kraft, doch ein Dosis-Wirkungs-Zusammenhang ist nicht belegt, und bei gleichem Volumen schwächt sich der Unterschied ab). Ein Tag, an dem die Gruppe nur unterstützt, zählt als {h} — eine Vereinfachung (Methode aus der Metaanalyse von Pelland et al. 2026). Die Aufteilung (Ganzkörper, Ober-/Unterkörper) ist eine Konvention — bei gleicher Satzzahl ähnliche Ergebnisse.",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Jede große Muskelgruppe an mindestens {n} Tagen pro Woche (WHO 2020 — eine Gesundheitsempfehlung; ACSM 2026: die Häufigkeit beeinflusst die Kraft, doch die Belege reichen nicht aus, um einen Dosis-Wirkungs-Zusammenhang festzustellen, und bei gleichem Volumen schwächt sich der Unterschied ab). Ein Tag, an dem die Gruppe nur unterstützt, zählt als {h} — eine Vereinfachung (Methode aus der Metaanalyse von Pelland et al. 2026). Die Aufteilung (Ganzkörper, Ober-/Unterkörper) ist eine Konvention — bei gleicher Satzzahl liefert sie ähnliche Ergebnisse.",
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Der Schritt (z. B. +2,5 kg) ist eine Konvention, kein Forschungsergebnis."
 }

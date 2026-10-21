@@ -16,7 +16,7 @@ const run = (code: string, env: Record<string, string> = {}) => JSON.parse(execF
 
 const MED = 'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.';
 const ASE = 'Asekuracja';
-const ASE2 = 'Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.';
+const ASE2 = 'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.';
 const ASE3 = 'bez asekuracji w stojakach';
 
 /** Fixture: mały „projekt” z _source.json, słownikami fr/pt/pt-BR, wskazówkami pl/en/fr/pt/pt-BR i jedną nowością względem poprzedniego źródła. */

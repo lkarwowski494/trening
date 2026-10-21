@@ -16,7 +16,7 @@ const read = (f: string) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 const MEDICAL = 'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.';
 const SAFETY = [
   'Asekuracja',
-  'Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.',
+  'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.',
   'bez asekuracji w stojakach',
 ];
 /** Języki, w których w docs/16 zapisano niezależną recenzję drugim agentem po tłumaczeniu: 14 języków (proces 05.10.2026) i 10 języków wariantu B (proces 07.10.2026). */

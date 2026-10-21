@@ -37,7 +37,7 @@ const WERSJA_API = '2023-06-01';
 export const KRYTYCZNE_KLUCZE = [
   'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.',
   'Asekuracja',
-  'Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.',
+  'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.',
   'bez asekuracji w stojakach',
 ];
 

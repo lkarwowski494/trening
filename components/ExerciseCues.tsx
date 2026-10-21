@@ -54,7 +54,7 @@ function SafetyNote({ inside }: { inside?: boolean }) {
   return (
     <View testID="exercise-safety" style={inside ? { marginTop: 4, paddingBottom: 10 } : { borderTopWidth: 1, borderBottomWidth: 1, borderColor: th.line, marginBottom: 14, paddingVertical: 10 }}>
       <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontSize: 13, fontFamily: F.semibold, marginBottom: 2 }}>{t('Asekuracja')}</Text>
-      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontSize: 15, fontFamily: F.regular, lineHeight: 21 }}>{t('Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.')}</Text>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontSize: 15, fontFamily: F.regular, lineHeight: 21 }}>{t('Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.')}</Text>
     </View>
   );
 }
