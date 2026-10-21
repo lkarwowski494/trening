@@ -451,7 +451,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-UST-001: Dźwięk na koniec przerwy i wibracje to dwa osobne przełączniki
 - Przepływ: PR-08
-- Dowód potrzeby: ZM-07 (docs/design/to-be.md); decyzja właściciela 21.10.2026 (docs/18); kod `app/more/settings.tsx`, `lib/haptics.ts`
+- Dowód potrzeby: ZM-07 (docs/design/to-be.md); decyzja właściciela 21.10.2026 (docs/18); kod `app/more/settings.tsx`, `lib/haptics.ts`, `components/ActiveWorkout.tsx` (onDone)
 - Kryteria akceptacji:
   - Scenariusz: Dwa przełączniki w Ustawieniach
     - Zakładając, że użytkownik otwiera Ustawienia
@@ -461,6 +461,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik wyłączył „Wibracje”, a „Dźwięk na koniec przerwy” zostawił włączony
     - Gdy kończy się przerwa albo stoper serii
     - Wtedy powiadomienie ma dźwięk, a telefon nie wibruje (ani na końcu przerwy, ani przy ± i ostrzeżeniu na tablicy, ani przy przeciąganiu listy); przy odwrotnym ustawieniu odwrotnie
+  - Scenariusz: Krótka wibracja przy odhaczeniu serii
+    - Zakładając, że użytkownik ma włączone „Wibracje” (albo brak zapisanego wyboru i włączony „Dźwięk na koniec przerwy”)
+    - Gdy odhacza serię przez „Seria zrobiona” na tablicy albo przez ✓ w wierszu serii
+    - Wtedy telefon wibruje krótko, tak samo w obu miejscach; przy cofnięciu odhaczenia i przy wyłączonych „Wibracjach” nie wibruje
   - Scenariusz: Aktualizacja nic nie zmienia
     - Zakładając, że dane pochodzą z wersji bez przełącznika „Wibracje” (brak zapisanego wyboru)
     - Gdy aplikacja się uruchamia po aktualizacji

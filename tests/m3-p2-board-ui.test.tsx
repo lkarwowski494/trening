@@ -99,7 +99,7 @@ describe('ZM-01: „Seria zrobiona” bez wyniku', () => {
   });
   test('z podpowiedzią: jedno stuknięcie odhacza i startuje przerwę (trening z podpowiedziami nie wydłuża się)', async () => {
     await fresh(); addWorkout(Date.now() - 86400e3, [['Bench Press (sztanga)', [set({ weight: 80, reps: 6 }), set({ weight: 80, reps: 6 })]]]); const a = startBench(2); await boot();
-    await tap(screen.getByTestId('focus-done')); await flushAll(20); expect(A().exercises[0].sets[0].done).toBe(true); expect(A().exercises[0].sets[0].weight).toBe(80); expect(timer.T.on).toBe(true); expect(G.__haptics).toEqual([]);
+    await tap(screen.getByTestId('focus-done')); await flushAll(20); expect(A().exercises[0].sets[0].done).toBe(true); expect(A().exercises[0].sets[0].weight).toBe(80); expect(timer.T.on).toBe(true); expect(G.__haptics).toEqual(['impact:light']); /* ZM-07 pkt 2: krótka wibracja przy odhaczeniu */
   });
   test('szablon z dolną granicą zakresu: powtórzenia z szablonu, ciężar nadal do wpisania', async () => {
     await fresh(); const a = startBench(1); A().exercises[0].repMin = 8; await boot(); expect(within(screen.getByTestId('board-value-reps')).getByText('8')).toBeTruthy();

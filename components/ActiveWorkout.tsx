@@ -16,6 +16,7 @@ import { templateDiff, rememberTemplateUpdate } from '@/lib/tplsync';
 
 import { locationLabel } from '@/lib/locations';
 import * as timer from '@/lib/timer';
+import { playHaptic } from '@/lib/haptics';
 import { completeSet, finishTimedSet, isClosingSet, relabelRest } from '@/lib/setFlow';
 import { prMap } from '@/lib/stats';
 import { onWorkoutSaved } from '@/lib/backup';
@@ -60,7 +61,9 @@ export default function ActiveWorkout() {
   /** Odhaczenie serii: startuje przerwę; cofnięcie — zatrzymuje ją tylko, jeśli pochodziła z tej serii (lib/setFlow.ts — wspólne z zegarkiem). */
   const onDone = async (ei: number, si: number, at?: number) => {
     if (at == null) Keyboard.dismiss(); /* audyt przed telefonem: klawiatura numeryczna nie ma „Gotowe” i zasłaniała pasek przerwy po ✓ */
+    const was = !!getState().active?.exercises[ei]?.sets[si]?.done;
     await completeSet(ei, si, at);
+    if (!was && getState().active?.exercises[ei]?.sets[si]?.done) playHaptic('done'); /* ZM-07 pkt 2: ✓ w wierszu i „Seria zrobiona” — jedna ścieżka; cofnięcie bez wibracji */
   };
   /* Audyt 0.10 (LIVE-03/04): podpis trwającej przerwy liczony po każdej zmianie treningu („Pomiń dziś”, „Przywróć”, + seria, usunięcie, kolejność) —
    * zawsze ta sama następna seria co na karcie; bez zmiany nic się nie dzieje (timer.relabel porównuje). */
