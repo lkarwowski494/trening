@@ -35,6 +35,19 @@ describe('workflowy na publicznym repozytorium', () => {
     const n = wf('nightly.yml'); for (const y of [n, wf('tests-tz.yml')]) { expect(y).toContain(`vars.NIGHTLY_REFS || '["main"]'`); expect(y).not.toMatch(/feature\/e2-swap/); /* 21.10.2026: gałąź scalona (PR #13), noc na niej padała (run 39537208004) */ expect(y).toMatch(/ref: \$\{\{ matrix\.ref \}\}\n\s+persist-credentials: false/); } /* audyt TST-01: noc także na gałęzi wydania */ expect(n).toMatch(/MATRIX_SEED=random/); expect(n).toMatch(/npx stryker run/); expect(n).toMatch(/uses: \.\/\.github\/workflows\/e2e-ios\.yml/); expect(n).toMatch(/wyglad: dark/);
     const e = wf('e2e-ios.yml'); expect(e).toMatch(/workflow_call:/); expect(e).toMatch(/WANT: \$\{\{ inputs\.urzadzenie \}\}/); expect(e).toMatch(/simctl ui "\$DEV" appearance dark/);
   });
+  test('raport nocny (L-013 akcja 5, 21.10.2026): `issues: write` tylko w zadaniu zgloszenie, globalnie odczyt; token przebiegu, bez sekretów; zadanie działa zawsze (if: always())', () => {
+    const fs = require('fs') as typeof import('fs'); const dir = join(__dirname, '../.github/workflows');
+    for (const f of fs.readdirSync(dir).filter(x => x.endsWith('.yml') && x !== 'nightly.yml')) expect([f, /issues: write/.test(wf(f))]).toEqual([f, false]);
+    const y = wf('nightly.yml'); const i = y.indexOf('\n  zgloszenie:\n'); expect(i).toBeGreaterThan(0);
+    const przed = y.slice(0, i), job = y.slice(i);
+    expect(przed).not.toMatch(/issues: write/); expect(przed).toMatch(/\npermissions:\n  contents: read\n  actions: read\njobs:|\npermissions:\n  contents: read\n  actions: read\nconcurrency:/);
+    expect(y.match(/issues: write/g)).toHaveLength(1); expect(job).toMatch(/\n    permissions:\n      contents: read\n      actions: read\n      issues: write\n/);
+    expect(y).not.toMatch(/contents: write|secrets\./); expect(y.match(/github\.token/g)).toHaveLength(1); expect(job).toMatch(/GH_TOKEN: \$\{\{ github\.token \}\}/);
+    expect(job).toMatch(/\n    if: \$\{\{ always\(\) && /); expect(job).toMatch(/needs: \[losowe, mutacje, e2e-maly-ekran-ciemny\]/);
+    expect(job).toMatch(/node scripts\/ci\/nocny-raport\.mjs/); expect(job).not.toMatch(/persist-credentials: true/);
+    /* repozytorium publiczne: skrypt nie wypisuje treści logów ani nie sięga po sekrety / dane osobowe */
+    const sk = fs.readFileSync(join(__dirname, '../scripts/ci/nocny-raport.mjs'), 'utf8'); expect(sk).not.toMatch(/secrets\.|GITHUB_TOKEN|logs?\b.*download|actions\/jobs\/\d+\/logs|\/logs\b/);
+  });
   test('artefakty E2E trzymane 1 dzień', () => {
     const y = wf('e2e-ios.yml');
     const uploads = y.split('actions/upload-artifact@v4').length - 1;
