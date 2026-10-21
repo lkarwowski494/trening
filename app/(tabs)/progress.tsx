@@ -56,8 +56,11 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
   const toGuard = () => { if (wantGuard.current && guardY.current != null) { wantGuard.current = false; listRef.current?.scrollTo({ y: guardY.current, animated: false }); scrollY.current = guardY.current; } };
   useEffect(() => { if (sParam === 'guard') { wantGuard.current = true; toGuard(); router.setParams({ s: '' }); /* inaczej powrót do zakładki znów przewijałby */ } }, [sParam]); // eslint-disable-line react-hooks/exhaustive-deps
   /* przewinięcie (audyt 0.13): zapamiętywane w zakładce, przywracane przy ponownym zamontowaniu treści */
-  const scroll = { onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => { scrollY.current = e.nativeEvent.contentOffset.y; }, scrollEventThrottle: 32, contentOffset: { x: 0, y: scrollY.current } };
+  /* E2E-05: pozycja startowa tylko raz (przy montażu treści) — contentOffset zmieniany w każdym renderze cofał przewinięcie po stuknięciu ⓘ; późniejsze przewinięcia robi scrollTo */
+  const initialOffset = useRef({ x: 0, y: scrollY.current }).current;
+  const scroll = { onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => { scrollY.current = e.nativeEvent.contentOffset.y; }, scrollEventThrottle: 32, contentOffset: initialOffset };
   const any = hasAnyHistory();
+  const shownEx = useRef(exId); useEffect(() => { if (shownEx.current !== exId) { shownEx.current = exId; listRef.current?.scrollTo({ y: 0, animated: true }); /* nowy wykres jest na górze — pokazujemy go (tylko przy zmianie ćwiczenia) */ } }, [exId]);
   /* ZM-06: bez wyboru na górze jest ostatnio trenowane ćwiczenie z danymi (finishedWorkouts — od najnowszego) */
   const lastTrained = () => { for (const w of finishedWorkouts()) for (const e of w.exercises) { const x = exById(e.exerciseId); if (x && hasHistory(x.id)) return x; } return undefined; };
   const ex = (exId ? exById(exId) : undefined) ?? (any ? lastTrained() : undefined);
@@ -79,7 +82,7 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
   const chooser = (
     <View testID="progress-chooser">
       <H2 style={{ marginTop: SPACE.xl }}>{t('Ćwiczenie')}</H2>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: SPACE.s - 2, marginBottom: SPACE.s }}>{opts.map(e => <Chip key={e.id} label={exName(e) + (e.archived ? ` (${t('usunięte')})` : '')} on={e.id === ex?.id} a11yHint={e.id === ex?.id ? undefined : t('Tapnij, by wybrać inne ćwiczenie.')} onPress={() => { if (e.id !== ex?.id) { setExId(e.id); setKey(''); listRef.current?.scrollTo({ y: 0, animated: true }); /* nowy wykres jest na górze — pokazujemy go */ } }} />)}</View>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: SPACE.s - 2, marginBottom: SPACE.s }}>{opts.map(e => <Chip key={e.id} label={exName(e) + (e.archived ? ` (${t('usunięte')})` : '')} on={e.id === ex?.id} a11yHint={e.id === ex?.id ? undefined : t('Tapnij, by wybrać inne ćwiczenie.')} onPress={() => { if (e.id !== ex?.id) { setExId(e.id); setKey(''); } }} />)}</View>
       <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} />
       {!all.length ? <Muted style={{ ...font('footnote'), marginTop: SPACE.s - 2 }}>{t('Nic nie pasuje.')}</Muted> : null}
       {all.length > 40 ? <Muted style={{ ...font('footnote'), marginTop: SPACE.s - 2 }}>{t('Pokazano {n} z {m} — wpisz nazwę, by zawęzić.', { n: 40, m: all.length })}</Muted> : null}
