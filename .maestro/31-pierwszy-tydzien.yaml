@@ -118,8 +118,11 @@ name: Pierwszy tydzień nowego użytkownika
 - scrollUntilVisible: { element: "instead of: Bent Over Row \\(Barbell\\).*", direction: UP, timeout: 30000, centerElement: true }
 # pominięcie ćwiczenia „na dziś” i przywrócenie
 - scrollUntilVisible: { element: "Skip today: Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }
+- takeScreenshot: 83a-przed-pominieciem
 - tapOn: "Skip today: Overhead Press \\(Barbell\\)"
-- extendedWaitUntil: { visible: "skipped today", timeout: 15000 }
+- takeScreenshot: 83b-po-stukniecie-pomin
+# L-013 (nocny run 39537208004, iPhone 17e 390 pt; zrzut: koniec listy, bez wiersza): po zwinięciu ćwiczenia lista się skraca i przewija do końca — wiersz „skipped today” leży nad ekranem
+- scrollUntilVisible: { element: "skipped today", direction: UP, timeout: 30000, centerElement: true }
 - takeScreenshot: 84-pominiete
 - scrollUntilVisible: { element: "Restore exercise.*", direction: UP, timeout: 30000, centerElement: true }  # run 38363820424: wiersz „pominięte dziś” był nad ekranem — Maestro nie przewija przed stuknięciem
 - tapOn: "Restore exercise.*"

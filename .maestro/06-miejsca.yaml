@@ -81,6 +81,7 @@ name: Miejsca treningu i filtr ćwiczeń
 - tapOn: "Search exercises…"
 - inputText: "Pull"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Pull Up,.*", timeout: 30000 }
 - assertNotVisible: "Lat Pulldown,.*"
 - takeScreenshot: 24-picker-tylko-dostepne
