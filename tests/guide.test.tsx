@@ -67,9 +67,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Trening i serie',
     'W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.',
     'Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.',
-    '„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).', /* M3 p5: ZM-04 zastąpiło dawny tekst (docs/18, 21.10.2026) */
-    'Miejsce usuniesz przyciskiem na dole jego ekranu (poza miejscem głównym) albo przesunięciem w lewo na liście; gumy — „Edytuj” w nagłówku albo przesunięcie w lewo.',
-    'Pomiary masy ciała usuniesz po „Edytuj” w nagłówku ekranu pomiarów albo przesunięciem w lewo.',
+    '„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).',
     'Zmiany w trakcie treningu', 'Edycja sesji i trening wstecz',
     'Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.',
     'W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian); ciężary i szablon bez zmian.', /* audyt 0.10 (D1, MER-04) */
@@ -77,7 +75,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku.',
     'Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.',
     'Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.',
-    'Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.', /* M3 p5: ZM-01 zastąpiło dawny tekst (docs/18, 21.10.2026) */
+    'Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.',
     'Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.',
     /* audyt 0.10 fala 2 (UI): temat „Zmiany w trakcie treningu” i „Edycja sesji i trening wstecz” */
     '„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.',

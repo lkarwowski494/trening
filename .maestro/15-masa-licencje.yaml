@@ -59,7 +59,7 @@ name: Masa ciała z datą i licencje open source
 - tapOn: { id: "row-delete", index: 0 }
 - extendedWaitUntil: { visible: "Delete measurement?", timeout: 15000 }
 - tapOn: "Cancel"
-- assertVisible: "80 kg, .*"
+- extendedWaitUntil: { visible: "80 kg, .*", timeout: 15000 }
 - tapOn: { id: "edit-button" }
 - extendedWaitUntil: { visible: "Edit", timeout: 15000 }
 - tapOn: "Back"
