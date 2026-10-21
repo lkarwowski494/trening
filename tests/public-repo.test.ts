@@ -32,7 +32,7 @@ describe('workflowy na publicznym repozytorium', () => {
       expect([n, /permissions:\n\s+contents: read/.test(y), /contents: write|pull_request|^\s+push:/m.test(y), /secrets\./.test(y), /\n\s+schedule:\n/.test(y), /workflow_dispatch:/.test(y)]).toEqual([n, true, false, false, true, true]);
       const ups = y.split('actions/upload-artifact@v4').length - 1; expect([n, (y.match(/retention-days: 1\n/g) || []).length]).toEqual([n, ups]);
     }
-    const n = wf('nightly.yml'); for (const y of [n, wf('tests-tz.yml')]) { expect(y).toContain(`vars.NIGHTLY_REFS || '["main","feature/e2-swap"]'`); expect(y).toMatch(/ref: \$\{\{ matrix\.ref \}\}\n\s+persist-credentials: false/); } /* audyt TST-01: noc także na gałęzi wydania */ expect(n).toMatch(/MATRIX_SEED=random/); expect(n).toMatch(/npx stryker run/); expect(n).toMatch(/uses: \.\/\.github\/workflows\/e2e-ios\.yml/); expect(n).toMatch(/wyglad: dark/);
+    const n = wf('nightly.yml'); for (const y of [n, wf('tests-tz.yml')]) { expect(y).toContain(`vars.NIGHTLY_REFS || '["main"]'`); expect(y).not.toMatch(/feature\/e2-swap/); /* 21.10.2026: gałąź scalona (PR #13), noc na niej padała (run 39537208004) */ expect(y).toMatch(/ref: \$\{\{ matrix\.ref \}\}\n\s+persist-credentials: false/); } /* audyt TST-01: noc także na gałęzi wydania */ expect(n).toMatch(/MATRIX_SEED=random/); expect(n).toMatch(/npx stryker run/); expect(n).toMatch(/uses: \.\/\.github\/workflows\/e2e-ios\.yml/); expect(n).toMatch(/wyglad: dark/);
     const e = wf('e2e-ios.yml'); expect(e).toMatch(/workflow_call:/); expect(e).toMatch(/WANT: \$\{\{ inputs\.urzadzenie \}\}/); expect(e).toMatch(/simctl ui "\$DEV" appearance dark/);
   });
   test('artefakty E2E trzymane 1 dzień', () => {

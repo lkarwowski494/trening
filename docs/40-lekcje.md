@@ -20,12 +20,12 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 | R-008 | M1-023: `SOURCEMAP_FILE` przekazane jako ustawienie budowy `xcodebuild archive` może nie dotrzeć do fazy pakowania JS (Hermes: mapa musi być złożona) | ten sam przebieg dowodowy: krok „Mapa źródeł JS” zielony (plik niepusty), artefakt `mapy-zrodel-b<N>` obecny; po pierwszym wydaniu: mapa przy tagu i test symbolikacji (`npx metro-symbolicate`) na celowym błędzie JS | otwarte (partia 2 napraw M2, 20.10.2026) |
 | R-009 | M1-018: bramka E2E (`bramka-e2e.sh`) rozpoznaje przebieg po tytule `run-name`; przebieg dowodowy musi potwierdzić, że GitHub nadaje taki tytuł przebiegom z `push` i `workflow_dispatch`, a bramka blokuje i przepuszcza zgodnie z opisem | dowód 1: dispatch `testflight.yml` (`bez_wysylki: true`) na SHA bez zielonego E2E kończy się błędem w zadaniu „bramka” przed `npm ci`; dowód 2: po zielonym `e2e-ios.yml` (pakiet podstawowy) na tym samym SHA ten sam dispatch przechodzi bramkę | otwarte (partia 2 napraw M2, 20.10.2026) |
 | R-010 | M1-049: treść krytyczna (zdanie medyczne, asekuracja, zdania wskazówek techniki) w 34 językach ma tylko kontrolę automatyczną (komplet i różnica od źródła, docs/16 „Treść krytyczna”), bez drugiego przeglądu przez native speakera; forma zwracania się w fr („consulte”) i tr („danış”) niespójna z zapisanym rejestrem | (1) drugi przegląd wskazówek techniki i zdań medycznych/asekuracji zapisany dla każdego z 34 języków (kolumna „drugi przegląd” w docs/16 = wykonany, z datą i recenzentem) albo świadoma decyzja właściciela z datą, że wydanie w danym języku idzie bez niego; (2) fr i tr: zdanie medyczne i etykiety w formie z rejestru docs/16 (fr „vous”, tr „siz”), test zgodności; (3) opis ryzyka przeglądany przed wydaniem w App Store | otwarte (20.10.2026) — **blokuje wydanie w App Store, nie blokuje TestFlight** (wewnętrzna grupa testerów, decyzja 20.10.2026) |
-| R-011 | M1-058: `scripts/ci/sim-wybor.mjs` w obu krokach „Simulator” `e2e-ios.yml` (Node na maszynie macOS, format listy `simctl`); nie wiadomo, czy obraz macos-26 ma iPhone SE (375 pt) — bez niego „mały ekran” zostaje 390 pt (16e/17e), a log pokaże to wprost | przebieg `e2e-ios.yml` z wejściem `urzadzenie` jak w `nightly.yml` i `tylko_scenariusze: 01`: w logu „Ekran: … szerokość ekranu N pt”; decyzja co do braku SE (właściciel) | **otwarte** — przebieg dowodowy do zlecenia (raport M2, partia 4)
+| R-011 | M1-058: `scripts/ci/sim-wybor.mjs` w obu krokach „Simulator” `e2e-ios.yml` (Node na maszynie macOS, format listy `simctl`); nie wiadomo, czy obraz macos-26 ma iPhone SE (375 pt) — bez niego „mały ekran” zostaje 390 pt (16e/17e), a log pokaże to wprost | przebieg `e2e-ios.yml` z wejściem `urzadzenie` jak w `nightly.yml` i `tylko_scenariusze: 01`: w logu „Ekran: … szerokość ekranu N pt”; decyzja co do braku SE (właściciel) | **zamknięte 21.10.2026** — dowód: nocny przebieg 39537208004 („Ekran: iPhone 17e — szerokość ekranu 390 pt”), SE niedostępny w obrazie macos-26; decyzja właściciela 21.10.2026: 390 pt wystarcza (docs/18) |
 | R-012 | M1-062 (DEC-27): test aktualizacji bierze poprzednią wersję z pliku wydania `Trening-sim.zip`; zadanie „tag” w `testflight.yml` ma go dołączać (pobranie artefaktu `trening-sim-app` z zielonego przebiegu E2E, `gh release upload`), a `poprzednia-wersja.sh` pobierać na GitHub Actions. Linux tego nie sprawdzi; do czasu pierwszego wydania z plikiem E2E z testem aktualizacji kończy się błędem (zamierzone) | dowód 1: plik `Trening-sim.zip` dołączony ręcznie do istniejącego wydania + `e2e-ios.yml` (pakiet podstawowy) zielony z logiem „Poprzednia wersja (plik wydania): <tag>” i wersją oraz buildem obu aplikacji; dowód 2: pierwsze prawdziwe wydanie TestFlight — krok „Plik wydania Trening-sim.zip” zielony, wydanie ma plik | **otwarte** — przebieg dowodowy do zlecenia (raport M2, partia 4)
 | R-013 | M3 (STOP E3, 21.10.2026): ikona zegarka 1088×1088 we własnym `AppIcon.appiconset` (`docs/design/ikona/konfiguracja.md` §2) — nie wiadomo, czy `actool` przyjmie rozmiar 1088 w zestawie watchOS (Linux tego nie sprawdzi) | przebieg dowodowy `ios-unsigned.yml` na gałęzi partii p1: bez ostrzeżeń `actool` o AppIcon zegarka, `Assets.car` w `.app` zegarka; inaczej powrót do 1024 (opcja b ze STOP E3) | **zamknięte 21.10.2026** — przebieg `ios-unsigned.yml` nr 22 (39597639278) na commicie `f520f07` gałęzi M3: zielony; w logu cel `TreningWatch` — „Generate Asset Symbols Assets.xcassets” i „Emplaced …/TreningWatch.app/Assets.car”, bez ostrzeżeń o AppIcon ani o rozmiarze 1088 (`grep` logu: 0 trafień na actool/AppIcon przy celu zegarka). Jeśli ikona zegarka nie pokaże się na zegarku (lista „tylko telefon”) — wraca 1024 (opcja b ze STOP E3) |
 | R-014 | M3: treść krojem systemowym (`fontFamily: 'System'` + `fontWeight`) zamiast IBM Plex — nie wiadomo, czy iOS sam pogrubia go przy „Pogrubiony tekst” (M1-024 dotąd robił to ręcznie dla Plex) | lista „tylko telefon” po pierwszym TestFlight z partią p1: włączyć „Pogrubiony tekst” → treść i przyciski grubsze; jeśli nie — przesunięcie wagi w `font()` (`docs/design/theme.ts`) i test | otwarte (21.10.2026) |
 
-## L-013 (21.10.2026, M3) — `tests.yml` czerwony na każdym wypchnięciu gałęzi `redesign/trening-2026-10-21` (9 przebiegów)
+## L-015 (21.10.2026, M3) — `tests.yml` czerwony na każdym wypchnięciu gałęzi `redesign/trening-2026-10-21` (9 przebiegów)
 
 - **Co się stało:** od 09:17 każdy przebieg „Testy (każde wypchnięcie)” na gałęzi M3 kończył się błędem (39575739645 … 39584701537). Pierwszy: `check:matrix` — `docs/19-macierz-testow.md` nieaktualny po commicie `6212579` (koordynator, zmiana `tests/audit-m1-045-store-description.test.ts` bez `test-matrix.mjs --write`). Od `4d5cdfe` (rola 04, E2) wcześniej pada `lint`: narzędzia makiet w `docs/design/narzedzia/` (`ikona.mjs` — `Buffer` bez importu; `zrzuty.mjs`, `ikona.mjs`, `warsztat.mjs` — import `playwright`, którego nie ma w zależnościach). Za `lint` czekał trzeci błąd, zasłonięty wcześniejszym: `tests/public-repo.test.ts` (adres e-mail autora kroju w `docs/design/fonty/saira-condensed/OFL.txt`, krój odrzucony, plik TTF usunięty w E3). Nikt tego nie zauważył przez 8 wypchnięć; wykryte w E4 roli 04 przy przeglądzie `eslint docs/design`. Kod aplikacji i testy Jest były zielone (402/402 w przebiegu 39575739645).
 - **Przyczyna źródłowa:** (1) polecenia etapów M3 dla roli 04 wymagają przed commitem tylko wybranych testów (`readme.test.ts`), a nie `lint` ani `check:matrix`, a pliki `.mjs` w `docs/` nie są wyłączone z `eslint .` (wyłączone są `scripts/**`, `tests/**`) — narzędzia projektu traktowano jak „nie kod aplikacji”; (2) po wypchnięciu nikt nie sprawdza wyniku CI (`gh run list --branch …`) — ani subagent, ani koordynator; to ta sama luka co L-009 (wypchnięcie bez pełnego verify), tu na gałęzi bez wydania, więc czerwony stan nie blokował nikogo i nie był widoczny.
@@ -36,7 +36,7 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
   2. Krok „sprawdź CI po wypchnięciu” w poleceniach etapów M3 — **zrobione** (decyzja właściciela 21.10.2026; polecenia M3 od partii p1).
   3. Hak pre-push z `lint` + `check:readme` + `check:matrix` (L-009 a) — **w toku** (decyzja właściciela 21.10.2026; wdrożenie na main — koordynator projektu).
 
-## L-012 (21.10.2026, M3) — błędna uwaga dla właściciela o makiecie: „w A2 ciemnym przyciski są ciemne”
+## L-014 (21.10.2026, M3) — błędna uwaga dla właściciela o makiecie: „w A2 ciemnym przyciski są ciemne”
 
 - **Co się stało:** przy przekazaniu STOP E2b koordynator napisał właścicielowi, że na `docs/design/porownanie-a.png` w wariancie A2 (ciemny motyw)
   przyciski „Seria zrobiona” i „Pomiń” są ciemne, inaczej niż w A1. Projektant w E3 tego nie odtworzył; `cmp` pokazał, że zrzuty
@@ -50,6 +50,47 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 - **Akcje:**
   1. Sprawdzenie plików przed uwagą wizualną w przebiegu M3 (polecenia koordynatora od E3) — **zrobione** (ten wpis; dziennik `postep.md` M3).
   2. Reguła w CLAUDE.md — **zrobione** (decyzja właściciela 21.10.2026, wariant a; linia „Uwagi wizualne dla właściciela”).
+
+## L-013 (21.10.2026) — nocny przebieg czerwony od 16.10 bez reakcji: mutacje nie mierzą się, martwa gałąź w liście nocnej, E2E 17e pada deterministycznie
+
+- **Co się stało:** przegląd nocnego przebiegu (run 39537208004, main 0fd4687; tester-e2e) — trzy niezależne przyczyny:
+  (1) **mutacje (main)** padają w dry-run Strykera po ~2 min: strażnik `tests/limits-single-source.test.ts` (M1-053, 20.10) szuka literału 1800 w `lib/`,
+  a Stryker instrumentuje `lib/` i wstawia id mutantów jako liczby (`stryMutAct_9fa48("1800")` w `plan.ts:80`) — fałszywe trafienie; pomiaru siły testów brak;
+  (2) **mutacje i strefy na `feature/e2-swap`** — gałąź scalona w PR #13 dalej w domyślnym `NIGHTLY_REFS` (`nightly.yml`, `tests-tz.yml`), jej stary kod pada;
+  (3) **E2E pełny katalog na iPhone 17e (390 pt)** — 21 scenariuszy pada dwa razy na „Bench Press (Dumbbell)” w podprzepływie `szablon-testowy.yaml`
+  (wiersz wyników tuż nad klawiaturą, stuknięcie trafia w klawiaturę), plus 07, 12, 31 (do potwierdzenia zrzutem). Na iPhone 17 (pakiet podstawowy) te same zielone.
+  Ponadto: zadanie `e2e-maly-ekran-ciemny` w praktyce testuje **jasny** motyw (ustawienie aplikacji `theme: 'light'` po czystej instalacji przesłania wygląd systemu).
+- **Przyczyna źródłowa:** (a) zasada „przegląd nocy zbiorczo raz dziennie” (CLAUDE.md, 19.10) jest postanowieniem bez mechanizmu — przy pracy nad M2 i przekazaniu konta
+  nikt nie przeglądał nocy; czerwień od 16.10 nie miała właściciela; (b) strażnik z 20.10 nie był uruchomiony pod Strykerem (verify go nie uruchamia);
+  (c) lista nocnych gałęzi to stała w workflowie, nie wynika z tego, które gałęzie żyją; (d) scenariusze pisane i sprawdzane tylko na iPhone 17.
+- **Ocena zakresu: systemowa** (sygnał nocny ignorowany = brak bramki „3 czyste noce” przed App Store; licznik dziś 0).
+  Opcje dla właściciela: (A) koordynator na początku każdej sesji czyta wynik ostatniej nocy (krok w docs/43 „Zasady pracy”) — tanie, ale znów postanowienie;
+  (B) zadanie zbiorcze w `nightly.yml`, które przy czerwieni otwiera/aktualizuje jedno zgłoszenie (issue) z listą porażek — mechanizm, sygnał w GitHubie i w powiadomieniach;
+  (C) zaplanowane zadanie Claude raz dziennie (przegląd nocy, raport) — mechanizm, ale zużywa limit. Rekomendacja: B (+A jako uzupełnienie).
+- **Akcje:**
+  1. Strażnik limitów wycina instrumentację Strykera (`bezInstrumentacji`) + test na przykładzie z `plan.ts:80`; dowód: `MUT_TESTS=limits-single-source npx stryker run --dryRunOnly` EXIT 0 („Initial test run succeeded”) — **zrobione** (gałąź `claude/optimistic-clarke-9tj0im`).
+  2. Domyślny `NIGHTLY_REFS` = `["main"]` w `nightly.yml` i `tests-tz.yml`, strażnik w `tests/public-repo.test.ts` — **zrobione** (zmiana workflowu → PR do zatwierdzenia przez właściciela).
+  3. Scenariusze na małym ekranie: po `inputText` w wyszukiwarce wyboru ćwiczenia zamknięcie klawiatury przed stuknięciem wiersza (wspólny podprzepływ) + strażnik w `tests/maestro-selectors.test.ts`; 12 i 31 — zrzut przed stuknięciem — **w toku** (właściciel 21.10: teraz, równolegle z M3).
+  4. Ciemny motyw w nocnym E2E rzeczywiście ciemny (ustawienie „Auto” na starcie albo osobny scenariusz) — **otwarte**.
+  5. Mechanizm przeglądu nocy — właściciel 21.10: **B** (zgłoszenie z `nightly.yml`) — **w toku**.
+  6. R-011: obraz macos-26 nie ma iPhone SE — właściciel 21.10: 390 pt wystarcza — **zrobione** (R-011 zamknięte).
+
+## L-012 (21.10.2026) — czerwony tests.yml na main: losowe id ćwiczenia zaczęło się od „8432”, liczby szukanej przez niezmiennik Zdrowia
+
+- **Co się stało:** `tests.yml` na main po scaleniu PR #16 (run 39549939632, d171db1) czerwony: `tests/health-query.test.ts`, niezmiennik (a)
+  „wartości ze Zdrowia nie trafiają do stanu” znalazł „8432” (kroki z fałszywego Zdrowia) w losowym id ćwiczenia `"8432ed24-…"`. Aplikacja bez błędu
+  (ocena: **teoretyczny** dla użytkownika — tylko test; realny dla CI, ok. 1 na kilkaset przebiegów).
+- **Przyczyna źródłowa:** poprawka z 12.10 (ta sama liczba w środku id) wykluczyła tylko znaki **przed** liczbą; po liczbie dopuszczała litery hex,
+  więc id zaczynające się od niej nadal pasowało. Poprawka powstała z jednego przypadku, bez testu samego wzorca na wszystkich położeniach w UUID.
+  Głębiej: niezmiennik „brak liczby X” sprawdzany na danych z losowym UUID jest z natury niedeterministyczny.
+- **Ocena zakresu: systemowa** (drugie wystąpienie tej samej klasy; inne testy „brak wartości w JSON” mogą mieć to samo).
+  Opcje: (A) zawężony wzorzec + test samego wzorca na id z liczbą na początku, w środku i po „-” (**zrobione**, tanie, tylko ten test);
+  (B) deterministyczne `randomUUID` w testach (stałe ziarno w konfiguracji Jest) — usuwa całą klasę, ale zmienia dane we wszystkich testach
+  i może ukryć błędy zależne od unikalności id. Rekomendacja: A teraz, B dopiero przy trzecim wystąpieniu.
+- **Akcje:**
+  1. `tests/health-query.test.ts`: wzorzec `lone()` wyklucza litery i „-” także po liczbie; asercje wzorca na id „8432ed24-…”, „a-8432-b”, „18432”
+     oraz na wyciekach `8432`, `8432.5`, `"8432"` — **zrobione** (gałąź `claude/optimistic-clarke-9tj0im`).
+  2. Decyzja właściciela A/B dla całej klasy — **otwarte**.
 
 ## L-011 (20.10.2026, audyt M1) — zmiana etykiety w ustawieniach położyła scenariusze 33 i 34 testu aktualizacji (stara wersja ma inne etykiety)
 

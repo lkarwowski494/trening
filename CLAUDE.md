@@ -34,7 +34,7 @@
   może wrócić w innej postaci → propozycja zmiany modelu pracy dla właściciela, ≥ 2 opcje z rekomendacją). Akcja ma być
   mechanizmem (test, strażnik w CI, krok listy kontrolnej, reguła w CLAUDE.md), nie postanowieniem „uważać”. Właściciel dostaje skrót lekcji
   w odpowiedzi. Przed wydaniem przejrzyj otwarte akcje z `docs/40`.
-- **Uwagi wizualne dla właściciela (lekcja L-012, decyzja właściciela 21.10.2026):** różnicę między zrzutami lub wariantami zgłaszasz właścicielowi dopiero po sprawdzeniu plików źródłowych (`cmp`/różnica pikseli albo kadr w pełnej rozdzielczości) i z podaniem ścieżki; podgląd zmniejszonego arkusza nie jest dowodem.
+- **Uwagi wizualne dla właściciela (lekcja L-014, decyzja właściciela 21.10.2026):** różnicę między zrzutami lub wariantami zgłaszasz właścicielowi dopiero po sprawdzeniu plików źródłowych (`cmp`/różnica pikseli albo kadr w pełnej rozdzielczości) i z podaniem ścieżki; podgląd zmniejszonego arkusza nie jest dowodem.
 - **Model pracy po lekcji L-001 (decyzja właściciela 14.10.2026, wszystkie projekty):**
   1. *Przebieg dowodowy CI:* zmiana budowania, podpisu lub wysyłki (workflowy, skrypty CI) trafia do scalenia dopiero po prawdziwym przebiegu,
      który pokazuje wynik na gotowym produkcie (np. uprawnienia w wyeksportowanym pakiecie); testy samego pliku workflowu nie wystarczą.

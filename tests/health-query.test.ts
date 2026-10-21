@@ -203,8 +203,12 @@ describe('niezmienniki', () => {
     const s = session(at(DAY, 18)); W.steps[DAY] = 8432.5; W.workouts.push(watchStrength(at(DAY, 18, 2), 55, { hr: { avg: 128, max: 161 }, kcal: 312 }), watchOther(at(DAY, 7), 32));
     await Q.loadDay(DAY); await Q.loadWeek(at(DAY, 20)); await Q.loadWatchStats(s); await health.syncAfterFinish(s); await health.retryHealth(); await store.flush();
     const blobs = [JSON.stringify(S()), JSON.stringify(buildBackup()), buildCsv(), global.__kv.get('state') ?? '', global.__kv.get('cfg') ?? '', global.__kv.get('live') ?? ''];
-    /* liczby szukane jako samodzielne wartości — inaczej trafiają przypadkiem w losowe UUID/znaczniki czasu (verify 12.10: „8432” w id ćwiczenia) */
-    const lone = (n: string) => new RegExp(`(?<![0-9A-Za-z.-])${n}(?![0-9])`);
+    /* liczby szukane jako samodzielne wartości — inaczej trafiają przypadkiem w losowe UUID/znaczniki czasu (verify 12.10: „8432” w środku id;
+       tests.yml 21.10, run 39549939632: id zaczynające się od „8432ed24-” — stąd litery i „-” także po liczbie; „.” po liczbie zostaje, bo 8432.5 to wyciek) */
+    const lone = (n: string) => new RegExp(`(?<![0-9A-Za-z.-])${n}(?![0-9A-Za-z-])`);
+    expect('{"id":"8432ed24-eb02-4ff0-0dfa-83b390e29537","x":"a-8432-b","t":18432,"u":"5200abcd-0000"}').not.toMatch(lone('8432'));
+    expect('{"id":"5200abcd-0000-4000-8000-000000000000"}').not.toMatch(lone('5200'));
+    for (const leak of ['{"steps":8432}', '{"s":8432.5}', 'a,8432,b', '"8432"', 'x 5200\n']) expect(leak).toMatch(lone(leak.includes('5200') ? '5200' : '8432'));
     for (const b of blobs) { for (const n of ['8432', '5200']) expect(b).not.toMatch(lone(n)); for (const needle of ['"avgBpm"', '"maxBpm"', '"kcal"', '"steps"', WATCH_BUNDLE, 'bundleIdentifier', 'sourceRevision']) expect(b).not.toContain(needle); }
     expect(S().workouts.find(x => x.id === s.id)!.healthUUID).toBe('watch'); /* jedyny ślad: znacznik, nie dane zdrowotne */
   });
