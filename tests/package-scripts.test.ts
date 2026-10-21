@@ -17,6 +17,7 @@ const WYJATKI: Record<string, string> = {
   perf: 'zestaw wydajnościowy, nocny job',
   'test:fast': 'szybki cykl w trakcie pracy, nie bramka',
   test: 'skrót do jest; verify woła jest bezpośrednio',
+  prepare: 'hak pre-push (L-009): uruchamia go npm ci, nie bramka; instalator nigdy nie wywraca instalacji',
 };
 
 describe('skrypty package.json (M1-051, L-008)', () => {

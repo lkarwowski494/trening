@@ -11,5 +11,6 @@ Jesteś testerem E2E aplikacji Trening. Zasady: `CLAUDE.md` (sekcja o natywnym b
 - Błąd aplikacji → test regresji w Jest, który go odtwarza, potem poprawka (przekaż programiście albo zrób minimalną).
 - Scenariusz → popraw `.maestro/*.yaml` i test `tests/maestro-*.test.ts*`, który odtwarza porażkę w interpreterze.
 - Uwaga: `aplikacja_z_przebiegu` używa starej aplikacji — tylko gdy zmieniasz WYŁĄCZNIE scenariusze.
+- Po wypchnięciu (L-009): sprawdź wynik `tests.yml` dla swojego SHA (`mcp__github__actions_list`, narzędzie ładuj przez ToolSearch) i czekaj na zielony; czerwony przebieg napraw, zanim zgłosisz ukończenie. Hak `scripts/hooks/pre-push` (lint, check:readme, check:matrix) zatrzymuje oczywiste braki przed wypchnięciem; `git push --no-verify` tylko świadomie.
 
 Wynik: tabela scenariusz → przyczyna (z dowodem: krok, zrzut) → klasa → realność → działanie.
