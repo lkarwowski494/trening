@@ -13,9 +13,9 @@
     }
   },
   "ceny": {
-    "monthly": { "USA": 0.99, "POL": 4.99, "strefaEuro": 0.99, "GBR": null },
+    "monthly": { "USA": 0.99, "POL": 4.99, "strefaEuro": 0.99, "GBR": 0.99 },
     "yearly": { "USA": 6.99, "POL": 19.99, "strefaEuro": 7.99, "GBR": 6.99 },
-    "lifetime": { "USA": 14.99, "POL": 59.99, "strefaEuro": null, "GBR": null }
+    "lifetime": { "USA": 14.99, "POL": 59.99, "strefaEuro": 17.99, "GBR": 14.99 }
   },
   "oferta": { "produkty": ["monthly", "yearly"], "tryb": "FREE_TRIAL", "czas": "TWO_WEEKS", "bezDatyKonca": true },
   "rodzina": { "monthly": true, "yearly": true, "lifetime": true },

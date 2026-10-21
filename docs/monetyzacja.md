@@ -24,13 +24,13 @@ Ten dokument jest jedynym miejscem, w którym zapisane są kwoty i liczby modelu
 ## Ceny w App Store Connect — oczekiwane (kontrola)
 
 Stan: 21.10.2026 (właściciel). Te kwoty czyta kontrola `store/asc-kontrola.json` (workflow „ASC kontrola ustawień”, tylko odczyt); zgodność tabeli z plikiem pilnuje `tests/asc-kontrola.test.ts`.
-Roczna w euro 7,99 € to przeliczenie Apple z ceny bazowej, miesięczna 0,99 €; dożywotna w euro i miesięczna w funtach — **[OTWARTE]** (kontrola je tylko wypisuje).
+Roczna w euro 7,99 € i dożywotnia 17,99 € to przeliczenie Apple z ceny bazowej (decyzje właściciela 21.10.2026), miesięczna 0,99 €; funty jak USD (0,99 / 6,99 / 14,99 £) — stan potwierdzony kontrolą ASC 21.10.2026.
 
 | plan | USA (USD) | Polska (PLN) | strefa euro (EUR) | Wielka Brytania (GBP) |
 |---|---|---|---|---|
-| miesięczna | 0,99 | 4,99 | 0,99 | [OTWARTE] |
+| miesięczna | 0,99 | 4,99 | 0,99 | 0,99 |
 | roczna | 6,99 | 19,99 | 7,99 | 6,99 |
-| dożywotnia | 14,99 | 59,99 | [OTWARTE] | [OTWARTE] |
+| dożywotnia | 14,99 | 59,99 | 17,99 | 14,99 |
 
 ## Stan wdrożenia w kodzie
 
