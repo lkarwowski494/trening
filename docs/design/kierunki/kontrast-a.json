@@ -1,0 +1,186 @@
+{
+ "A1/A2 jasny tekst/tło": [
+  "#18202B",
+  "#E6E8E5"
+ ],
+ "A1/A2 jasny tekst2/tło": [
+  "#4A5361",
+  "#E6E8E5"
+ ],
+ "A1/A2 jasny tekst/lista i pasek tygodnia": [
+  "#18202B",
+  "#F4F5F3"
+ ],
+ "A1/A2 jasny tekst2/pasek tygodnia": [
+  "#4A5361",
+  "#F4F5F3"
+ ],
+ "A1/A2 jasny tekst/przycisk drugorzędny": [
+  "#18202B",
+  "#D3D8D3"
+ ],
+ "A1/A2 jasny cyfry/tablica": [
+  "#F5F1E6",
+  "#13294B"
+ ],
+ "A1/A2 jasny tekst2/tablica": [
+  "#B7C1D0",
+  "#13294B"
+ ],
+ "A1/A2 jasny zegar/tablica": [
+  "#F2A900",
+  "#13294B"
+ ],
+ "A1/A2 jasny przycisk główny": [
+  "#F5F1E6",
+  "#13294B"
+ ],
+ "A1/A2 jasny tekst pola zrobionego": [
+  "#13294B",
+  "#F5F1E6"
+ ],
+ "A1/A2 jasny kontur pola/tablica (element)": [
+  "#B7C1D0",
+  "#13294B",
+  3
+ ],
+ "A1/A2 jasny ramka bieżącej/tablica (element)": [
+  "#F2A900",
+  "#13294B",
+  3
+ ],
+ "A1/A2 jasny znacznik dnia/pasek tygodnia (element)": [
+  "#13294B",
+  "#F4F5F3",
+  3
+ ],
+ "A1/A2 jasny filiżanka/pasek tygodnia (element)": [
+  "#4A5361",
+  "#F4F5F3",
+  3
+ ],
+ "A1/A2 ciemny tekst/tło": [
+  "#E8EAED",
+  "#161C24"
+ ],
+ "A1/A2 ciemny tekst2/tło": [
+  "#A3ACB8",
+  "#161C24"
+ ],
+ "A1/A2 ciemny tekst/lista i pasek tygodnia": [
+  "#E8EAED",
+  "#1E2530"
+ ],
+ "A1/A2 ciemny tekst2/pasek tygodnia": [
+  "#A3ACB8",
+  "#1E2530"
+ ],
+ "A1/A2 ciemny tekst/przycisk drugorzędny": [
+  "#E8EAED",
+  "#283244"
+ ],
+ "A1/A2 ciemny cyfry/tablica": [
+  "#F5F1E6",
+  "#102544"
+ ],
+ "A1/A2 ciemny tekst2/tablica": [
+  "#AEB9CA",
+  "#102544"
+ ],
+ "A1/A2 ciemny zegar/tablica": [
+  "#F5B21C",
+  "#102544"
+ ],
+ "A1/A2 ciemny przycisk główny": [
+  "#13294B",
+  "#F5F1E6"
+ ],
+ "A1/A2 ciemny tekst pola zrobionego": [
+  "#102544",
+  "#F5F1E6"
+ ],
+ "A1/A2 ciemny kontur pola/tablica (element)": [
+  "#AEB9CA",
+  "#102544",
+  3
+ ],
+ "A1/A2 ciemny brzeg tablicy/tło (element)": [
+  "#5675A8",
+  "#161C24",
+  3
+ ],
+ "A1/A2 ciemny znacznik dnia/pasek tygodnia (element)": [
+  "#E8EAED",
+  "#1E2530",
+  3
+ ],
+ "A1/A2 ciemny filiżanka/pasek tygodnia (element)": [
+  "#A3ACB8",
+  "#1E2530",
+  3
+ ],
+ "A2 jasny tekst na talerzu 25 czerwony": [
+  "#18202B",
+  "#E4C9CA"
+ ],
+ "A2 jasny tekst2 na talerzu 25 czerwony": [
+  "#4A5361",
+  "#E4C9CA"
+ ],
+ "A2 jasny tekst na talerzu 20 niebieski": [
+  "#18202B",
+  "#C6D2E2"
+ ],
+ "A2 jasny tekst2 na talerzu 20 niebieski": [
+  "#4A5361",
+  "#C6D2E2"
+ ],
+ "A2 jasny tekst na talerzu 15 żółty": [
+  "#18202B",
+  "#E8E2C8"
+ ],
+ "A2 jasny tekst2 na talerzu 15 żółty": [
+  "#4A5361",
+  "#E8E2C8"
+ ],
+ "A2 jasny tekst na talerzu 10 zielony": [
+  "#18202B",
+  "#C9DCCF"
+ ],
+ "A2 jasny tekst2 na talerzu 10 zielony": [
+  "#4A5361",
+  "#C9DCCF"
+ ],
+ "A2 ciemny tekst na talerzu 25 czerwony": [
+  "#E8EAED",
+  "#40232D"
+ ],
+ "A2 ciemny tekst2 na talerzu 25 czerwony": [
+  "#A3ACB8",
+  "#40232D"
+ ],
+ "A2 ciemny tekst na talerzu 20 niebieski": [
+  "#E8EAED",
+  "#20304D"
+ ],
+ "A2 ciemny tekst2 na talerzu 20 niebieski": [
+  "#A3ACB8",
+  "#20304D"
+ ],
+ "A2 ciemny tekst na talerzu 15 żółty": [
+  "#E8EAED",
+  "#423D26"
+ ],
+ "A2 ciemny tekst2 na talerzu 15 żółty": [
+  "#A3ACB8",
+  "#423D26"
+ ],
+ "A2 ciemny tekst na talerzu 10 zielony": [
+  "#E8EAED",
+  "#1E3C34"
+ ],
+ "A2 ciemny tekst2 na talerzu 10 zielony": [
+  "#A3ACB8",
+  "#1E3C34"
+ ]
+}

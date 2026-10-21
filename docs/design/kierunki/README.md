@@ -70,3 +70,17 @@ Wszystkie kroje mają licencję SIL Open Font License 1.1, która pozwala osadzi
 
 ## Ikony
 `ikony/<k>-jasna.svg` i `ikony/<k>-ciemna.svg`. A–C to nowe szkice, a D to obecna ikona (`assets/brand/icon.svg`, `icon-dark.svg`). Kontrola `ikona.mjs` (1024 px, bez przezroczystości) dała kod 0 dla A, B, C (obu wariantów) i dla D w wersji jasnej. Obecna ikona ciemna D ma przezroczyste tło (wariant ciemny iOS), więc skrypt dla iOS zwraca 1. To zamierzone; do sprawdzenia w E3 przy plikach ikony. Pliki docelowe ikony (warstwy, Android, zegarek) powstają w E3 dla wybranego kierunku.
+
+## E2b — warianty A1 i A2 (21.10.2026, po wyborze kierunku A)
+Właściciel wybrał A i poprosił o dwa warianty obok siebie (docs/18, STOP E2). Ikona i intro zostają obecne. Strona: [`../porownanie-a.html`](../porownanie-a.html), zrzut: [`../porownanie-a.png`](../porownanie-a.png).
+
+| Plik | Wariant | Ekrany (`data-ekran`) |
+|---|---|---|
+| [`a1-tablica.html`](a1-tablica.html) | A1: A jak w E2 | seria, przerwa, start (Trening przed treningiem), postepy (pusty stan ZM-06) |
+| [`a2-tablica-talerze.html`](a2-tablica-talerze.html) | A2: A z barwami talerzy w tle startu i pustych stanów (krycie 16% jasny / 20% ciemny) | jak A1 |
+| [`a-serie.html`](a-serie.html) | pola serii dla 1–12 serii i tryb zapasowy > 12; zrzut [`../a-serie.png`](../a-serie.png) | arkusz |
+
+Generator: `node docs/design/narzedzia/a-warianty-gen.mjs`. Zrzuty 390 pt (jasny i ciemny) leżą w `zrzuty/a1-*`, `zrzuty/a2-*`, a pełny zestaw 320/390/430 × motyw × AX5 leży poza repo w katalogu roboczym audytu M3.
+Kontrast: [`kontrast-a.json`](kontrast-a.json) → [`kontrast-a-wynik.txt`](kontrast-a-wynik.txt): 44 pary, wszystkie spełniają progi, kod 0. Zawiera tekst i tekst pomocniczy na każdej barwie talerza A2 w obu motywach.
+
+**Kroje tytułowe (E2 krok 6):** [`../kroje.html`](../kroje.html), zrzut [`../kroje.png`](../kroje.png). Pięć krojów na ekranie A1: Barlow Condensed (obecny), Oswald, Big Shoulders, Saira Condensed i Doto. Wszystkie OFL 1.1, pliki i licencje w `../fonty/<krój>/OFL.txt` (google/fonts, `ofl/`, pobrane 21.10.2026).
