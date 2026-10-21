@@ -3,7 +3,7 @@ import { ScrollView, View, Text, Pressable, Linking, ActivityIndicator, Alert } 
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useCloseHeader } from '@/components/CloseButton';
 import { Screen, Muted, Btn, SectionTitle } from '@/components/ui';
-import { useTheme, F, TEXT_SCALE_MAX, FW } from '@/lib/theme';
+import { useTheme, TEXT_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
 import { t, tp, lang } from '@/lib/i18n';
 import { fmtDate } from '@/lib/store';
 import { entitlementActive, type EntitlementPlan } from '@/lib/access';
@@ -55,11 +55,11 @@ export default function PaywallScreen() {
   const fake = isFakeStoreBuild() ? (getStoreAdapter() as unknown as FakeStoreControl) : null;
   return (
     <Screen><Stack.Screen options={headerOpts} /><ScrollView testID="paywall-scroll" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
-      {reason === 'limit' && view.decision.resetsAt ? <Text testID="paywall-limit" accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...FW.semibold, fontSize: 16, marginTop: 8 }}>{t('Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.', { n: view.decision.limit, date: fmtDate(nextMonthDay()) })}</Text> : null}
+      {reason === 'limit' && view.decision.resetsAt ? <Text testID="paywall-limit" accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold, marginTop: 8 }}>{t('Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.', { n: view.decision.limit, date: fmtDate(nextMonthDay()) })}</Text> : null}
       <Muted style={{ marginTop: 8, marginBottom: 12 }}>{t('Treningi na żywo bez miesięcznego limitu.')}</Muted>
 
-      {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line, borderRadius: 12, padding: 12, gap: 4, marginBottom: 12, backgroundColor: th.surface }}>
-        <Text accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.heavy, fontSize: 17 }}>{lifetime ? t('Masz dostęp na zawsze') : t('Masz pełną wersję')}</Text>
+      {view.active ? <View testID="paywall-owned" accessible accessibilityLanguage={lang()} style={{ borderWidth: 1, borderColor: th.line, borderRadius: RADIUS.group, padding: 12, gap: 4, marginBottom: 12, backgroundColor: th.surface }}>
+        <Text accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{lifetime ? t('Masz dostęp na zawsze') : t('Masz pełną wersję')}</Text>
         {view.active.source === 'family' ? <Muted>{t('Dostęp z Chmury rodzinnej')}</Muted> : null}
         {!lifetime && view.active.expiresAt != null ? <Muted>{view.active.trial ? t('Okres próbny do {date}', { date: fmtDate(view.active.expiresAt) }) : view.active.source === 'code' ? t('Dostęp z kodu do {date}', { date: fmtDate(view.active.expiresAt) }) : t('Dostęp do {date}', { date: fmtDate(view.active.expiresAt) })}</Muted> : null}
         {lifetime && subActive ? <Muted>{t('Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.')}</Muted> : null}
@@ -73,21 +73,21 @@ export default function PaywallScreen() {
         {Array.isArray(products) ? PLAN_ORDER.map(plan => products.find(p => p.plan === plan)).filter((p): p is StoreProduct => !!p).map(p => {
           const on = p.plan === sel; const line = priceLine(p);
           return <Pressable key={p.plan} testID={`plan-${p.plan}`} accessibilityRole="radio" accessibilityState={{ selected: on }} accessibilityLanguage={lang()} accessibilityLabel={`${planName(p.plan)}, ${line}`} onPress={() => setSel(p.plan)}
-            style={{ borderWidth: on ? 2 : 1, borderColor: on ? th.accent : th.line, borderRadius: 12, padding: 12, marginBottom: 8, backgroundColor: th.surface, minHeight: 56 }}>
-            <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...FW.semibold, fontSize: 14 }}>{planName(p.plan)}</Text>
-            <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.heavy, fontSize: 18 }}>{line}</Text>
+            style={{ borderWidth: on ? 2 : 1, borderColor: on ? th.accent : th.line, borderRadius: RADIUS.group, padding: 12, marginBottom: 8, backgroundColor: th.surface, minHeight: 56 }}>
+            <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('callout'), ...FW.semibold }}>{planName(p.plan)}</Text>
+            <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{line}</Text>
           </Pressable>; }) : null}
         {chosen ? <Btn kind="primary" block title={ctaLabel(chosen)} style={{ marginTop: 4 }} onPress={() => { void buy(); }} /> : null}
-        {chosen && chosen.period !== null ? <Muted style={{ fontSize: 13, marginTop: 8 }}>{t('Subskrypcja odnawia się automatycznie, dopóki jej nie anulujesz w ustawieniach konta Apple.')}</Muted> : null}
+        {chosen && chosen.period !== null ? <Muted style={{ ...font('footnote'), marginTop: 8 }}>{t('Subskrypcja odnawia się automatycznie, dopóki jej nie anulujesz w ustawieniach konta Apple.')}</Muted> : null}
       </> : null}
 
       {note ? <Text testID="paywall-note" accessibilityLanguage={lang()} style={{ color: th.text, marginTop: 10 }}>{note}</Text> : null}
-      <Muted style={{ fontSize: 13, marginTop: 12 }}>{t('Bez zakupu: {n} {s} na żywo w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.', { n: cfg.FREE_LIVE_PER_MONTH, s: tp(cfg.FREE_LIVE_PER_MONTH, 'trening|treningi|treningów') })}</Muted>
+      <Muted style={{ ...font('footnote'), marginTop: 12 }}>{t('Bez zakupu: {n} {s} na żywo w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.', { n: cfg.FREE_LIVE_PER_MONTH, s: tp(cfg.FREE_LIVE_PER_MONTH, 'trening|treningi|treningów') })}</Muted>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
         <Btn small title={t('Przywróć zakupy')} onPress={() => { void restore(); }} />
         <Btn small title={t('Zrealizuj kod')} onPress={() => { void store(() => getStoreAdapter().redeemCode().then(() => refreshEntitlements())); }} />
       </View>
-      <Muted style={{ fontSize: 13, marginTop: 8 }}>{t('Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.')}</Muted>
+      <Muted style={{ ...font('footnote'), marginTop: 8 }}>{t('Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.')}</Muted>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 8 }}>
         {TERMS_URL ? <Btn small kind="ghost" title={t('Warunki korzystania')} accessibilityHint={t('Otwiera stronę w przeglądarce.')} onPress={() => open(TERMS_URL!)} /> : null}
         <Btn small kind="ghost" title={t('Prywatność')} accessibilityHint={t('Otwiera stronę w przeglądarce.')} onPress={() => open(PRIVACY_URL)} />
