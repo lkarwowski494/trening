@@ -350,7 +350,6 @@
  "Dziś wolne": "Šodien atpūta",
  "Dziś zrobione: {name}": "Šodien izdarīts: {name}",
  "Dziś: {name}": "Šodien: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Skaņa un vibrācija atpūtas beigās",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, katrai pusei)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, vienai hantelei)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "Austiņās",
  "Także przez głośnik": "Arī skaļrunī",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Atpūtas sākumā tālrunis paziņo nākamo vingrinājumu, svaru un atkārtojumus. Austiņās — tikai ar pievienotām austiņām; Arī skaļrunī — arī bez austiņām, caur tālruņa skaļruni (arī klusajā režīmā); Izslēgti — bez paziņojumiem.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Paziņojumi darbojas, ja ieslēgts “Skaņa un vibrācija atpūtas beigās”. To pašu iestatījumu var mainīt arī ar pogu “Balss” treniņa ekrānā.",
  "Zapowiedzi głosowe: {mode}": "Balss paziņojumi: {mode}",
  "Ekran nie mógł się wyświetlić.": "Šo ekrānu neizdevās parādīt.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dati tālrunī nav mainīti — varat tos nosūtīt kā failu.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Solis (piem., +2,5 kg) ir vienošanās, nevis pētījumu rezultāts.",
  "Usuń szablon": "Dzēst veidni",
  "Usuń z biblioteki": "Dzēst no bibliotēkas",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Jums nav veidņu ar vingrinājumiem. Izveidojiet veidni vai izvēlieties “Ģenerēt veidnes un plānu”."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Jums nav veidņu ar vingrinājumiem. Izveidojiet veidni vai izvēlieties “Ģenerēt veidnes un plānu”.",
+ "Dźwięk na koniec przerwy": "Skaņa atpūtas beigās",
+ "Wibracje": "Vibrācija",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Paziņojumi darbojas, ja ieslēgts “Skaņa atpūtas beigās”. To pašu iestatījumu var mainīt arī ar pogu “Balss” treniņa ekrānā.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Vairāk → Iestatījumi: “Skaņa atpūtas beigās” + “Vibrācija” — ieslēdz atsevišķi."
 }

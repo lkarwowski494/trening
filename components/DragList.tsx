@@ -3,6 +3,7 @@ import { AccessibilityInfo, Animated, PanResponder, Platform, ScrollView, Text, 
 import * as Haptics from 'expo-haptics';
 import { useTheme, font } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
+import { hapticsOn } from '@/lib/haptics';
 
 /*
  * T-010 (02.10.2026): lista z przeciąganiem za uchwyt „≡”. Bez nowych modułów natywnych — PanResponder + Animated z RN
@@ -41,7 +42,8 @@ export function DragScroll({ children, contentContainerStyle }: { children: Reac
   </ScrollCtx.Provider>;
 }
 
-const haptic = (kind: 'pick' | 'tick') => { if (Platform.OS === 'web') return; (kind === 'pick' ? Haptics.impactAsync?.(Haptics.ImpactFeedbackStyle?.Light) : Haptics.selectionAsync?.())?.catch?.(() => {}); };
+/** Wibracja przeciągania (chwyt / mijany wiersz) — tylko przy włączonych „Wibracjach” (ZM-07; lib/haptics hapticsOn). */
+export const dragHaptic = (kind: 'pick' | 'tick') => { if (Platform.OS === 'web' || !hapticsOn()) return; (kind === 'pick' ? Haptics.impactAsync?.(Haptics.ImpactFeedbackStyle?.Light) : Haptics.selectionAsync?.())?.catch?.(() => {}); };
 
 type Props<T> = {
   items: T[]; keyOf: (x: T) => string; /** nazwa dla VoiceOver */ label: (x: T) => string;
@@ -60,13 +62,13 @@ export function DragList<T>({ items, keyOf, label, onMove, renderItem }: Props<T
   const shift = (to: number) => { const s = d.current; const h = s.hs[s.from] ?? 0;
     s.keys.forEach((k, i) => { if (i === s.from) return; const v = s.from < i && i <= to ? -h : to <= i && i < s.from ? h : 0; Animated.timing(av(k), { toValue: v, duration: 120, useNativeDriver: NATIVE }).start(); }); };
   const update = () => { const s = d.current; if (!s.key) return; const total = s.dy + (sc ? sc.offset() - s.scroll0 : 0); av(s.key).setValue(total);
-    const to = dropIndex(s.hs, s.from, total); if (to !== s.to) { s.to = to; shift(to); haptic('tick'); } };
+    const to = dropIndex(s.hs, s.from, total); if (to !== s.to) { s.to = to; shift(to); dragHaptic('tick'); } };
   const stopAuto = () => { const s = d.current; if (s.timer) clearInterval(s.timer); s.timer = null; s.dir = 0; };
   const fns = useRef({ begin: (_k: string) => {}, move: (_dy: number, _y: number) => {}, end: (_c: boolean) => {} });
   fns.current = {
     begin: k => { const s = d.current; if (s.key) return; const ks = latest.current.keys; const from = ks.indexOf(k); if (from < 0) return;
       Object.assign(s, { key: k, from, to: from, keys: ks, hs: ks.map(x => heights.current.get(x) ?? 0), dy: 0, scroll0: sc?.offset() ?? 0, reset: false });
-      sc?.lock(true); setActive(k); haptic('pick'); },
+      sc?.lock(true); setActive(k); dragHaptic('pick'); },
     move: (dy, pageY) => { const s = d.current; if (!s.key) return; s.dy = dy; update();
       const dir = sc?.edge(pageY) ?? 0; s.dir = dir;
       if (dir && !s.timer && sc) s.timer = setInterval(() => { if (!d.current.dir) return; if (sc.step(d.current.dir)) update(); }, 16);

@@ -434,7 +434,7 @@ describe('runda 6', () => {
   });
   test('R6-06 przełączniki w ustawieniach mają nazwę i stan', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
-    const sw = screen.getAllByRole('switch'); expect(sw.map(x => x.props.accessibilityLabel)).toEqual(expect.arrayContaining(['Dźwięk i wibracja na koniec przerwy', 'Ekran włączony podczas treningu']));
+    const sw = screen.getAllByRole('switch'); expect(sw.map(x => x.props.accessibilityLabel)).toEqual(expect.arrayContaining(['Dźwięk na koniec przerwy', 'Wibracje', 'Ekran włączony podczas treningu']));
     expect(sw.every(x => typeof x.props.accessibilityState?.checked === 'boolean')).toBe(true);
   });
   test('R6-07 podwójne „Duplikuj” robi jedną kopię', async () => {

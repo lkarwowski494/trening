@@ -350,7 +350,6 @@
  "Dziś wolne": "Ma pihenő",
  "Dziś zrobione: {name}": "Ma kész: {name}",
  "Dziś: {name}": "Ma: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Hang és rezgés a pihenő végén",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, oldalanként)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, súlyzónként)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "Fejhallgatóban",
  "Także przez głośnik": "Hangszórón is",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "A pihenő elején a telefon bemondja a következő gyakorlatot, a súlyt és az ismétlést. Fejhallgatóban — csak csatlakoztatott fejhallgatóval; Hangszórón is — fejhallgató nélkül is, a telefon hangszóróján (néma módban is); Ki — nincs bejelentés.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "A bejelentések akkor működnek, ha a „Hang és rezgés a pihenő végén” be van kapcsolva. Ugyanezt a beállítást az edzés képernyőjén a „Hang” gombbal is módosíthatja.",
  "Zapowiedzi głosowe: {mode}": "Hangos bejelentések: {mode}",
  "Ekran nie mógł się wyświetlić.": "A képernyőt nem sikerült megjeleníteni.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "A telefonon lévő adatok nem változtak — elküldheti őket fájlként.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "A lépésköz (pl. +2,5 kg) konvenció, nem kutatási eredmény.",
  "Usuń szablon": "Sablon törlése",
  "Usuń z biblioteki": "Törlés a könyvtárból",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nincs gyakorlatokat tartalmazó sablonja. Hozzon létre egy sablont, vagy válassza az „Sablonok és terv generálása” lehetőséget."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nincs gyakorlatokat tartalmazó sablonja. Hozzon létre egy sablont, vagy válassza az „Sablonok és terv generálása” lehetőséget.",
+ "Dźwięk na koniec przerwy": "Hang a pihenő végén",
+ "Wibracje": "Rezgés",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "A bejelentések akkor működnek, ha a „Hang a pihenő végén” be van kapcsolva. Ugyanezt a beállítást az edzés képernyőjén a „Hang” gombbal is módosíthatja.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Egyebek → Beállítások: „Hang a pihenő végén” + „Rezgés” — külön kapcsolhatók be."
 }

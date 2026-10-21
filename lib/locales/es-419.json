@@ -221,5 +221,6 @@
  "Nie udało się zapisać kopii po treningu": "No se pudo guardar el respaldo después del entrenamiento",
  "Ostatnia udana kopia: {date}": "Último respaldo exitoso: {date}",
  "Zmień w ustawieniach iOS": "Cambiar en Configuración de iOS",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "El nombre bajo el ícono y el texto del permiso de Salud solo cambian de idioma cuando eliges el idioma de la app en Configuración de iOS."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "El nombre bajo el ícono y el texto del permiso de Salud solo cambian de idioma cuando eliges el idioma de la app en Configuración de iOS.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Más → Configuración: «Sonido al terminar el descanso» + «Vibración» — se activan por separado."
 }

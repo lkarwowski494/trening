@@ -350,7 +350,6 @@
  "Dziś wolne": "Hoy descanso",
  "Dziś zrobione: {name}": "Hecho hoy: {name}",
  "Dziś: {name}": "Hoy: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Sonido y vibración al terminar el descanso",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, por lado)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, por mancuerna)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "Con auriculares",
  "Także przez głośnik": "También por el altavoz",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Al empezar el descanso, el teléfono anuncia el siguiente ejercicio, el peso y las repeticiones. Con auriculares: solo con auriculares conectados; También por el altavoz: también sin auriculares, por el altavoz del teléfono (incluso en modo silencio); Desactivados: sin avisos.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Los avisos funcionan cuando «Sonido y vibración al terminar el descanso» está activado. El mismo ajuste se cambia con el botón «Voz» en la pantalla del entrenamiento.",
  "Zapowiedzi głosowe: {mode}": "Avisos de voz: {mode}",
  "Ekran nie mógł się wyświetlić.": "No se pudo mostrar esta pantalla.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Tus datos en el teléfono no han cambiado: puedes enviarlos como archivo.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "El paso (p. ej. +2,5 kg) es una convención, no un resultado de estudios.",
  "Usuń szablon": "Eliminar plantilla",
  "Usuń z biblioteki": "Eliminar de la biblioteca",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "No tienes plantillas con ejercicios. Crea una plantilla o elige «Generar plantillas y plan»."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "No tienes plantillas con ejercicios. Crea una plantilla o elige «Generar plantillas y plan».",
+ "Dźwięk na koniec przerwy": "Sonido al terminar el descanso",
+ "Wibracje": "Vibración",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Los avisos funcionan cuando «Sonido al terminar el descanso» está activado. El mismo ajuste se cambia con el botón «Voz» en la pantalla del entrenamiento.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Más → Ajustes: «Sonido al terminar el descanso» + «Vibración» — se activan por separado."
 }

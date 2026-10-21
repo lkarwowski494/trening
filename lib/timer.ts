@@ -5,8 +5,9 @@ import { getState, setTimerState, findSet, fmtTime as fmtTimeNow, wallTs, STALE_
 import { restLabel, timedLabel } from './live';
 import * as LA from '@/modules/rest-activity';
 import { t } from './i18n';
+import { hapticsOn } from './haptics';
 
-/** Ustawienie „Dźwięk i wibracja” (do 0.7.1 przełącznik istniał, ale nic nie wyłączał — T-039). */
+/** Ustawienie „Dźwięk na koniec przerwy” (do 0.7.1 przełącznik istniał, ale nic nie wyłączał — T-039); wibracje osobno: lib/haptics hapticsOn (ZM-07). */
 const soundOn = () => { try { return getState().settings.sound !== false; } catch { return true; } };
 
 /** Etykiety do Live Activity — ustawiane przez ekran treningu przed startem timera. `last` — przerwa po ostatniej serii treningu (audyt 0.10,
@@ -189,10 +190,10 @@ async function cancelSetScheduled() { try { await Notifications.cancelScheduledN
 
 /** Wywoływane cyklicznie z ekranu treningu: wibracja przy końcu serii/przerwy i zakończenie Live Activity po czasie. */
 export function tick() {
-  if (S.on && S.targetSec > 0 && !S.alarmed && Date.now() - S.startAt >= S.targetSec * 1000) { S.alarmed = true; laEnd('set'); /* runda 68: jak w onForeground — także bez ekranu treningu */ if (Platform.OS !== 'web' && soundOn()) Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {}); }
+  if (S.on && S.targetSec > 0 && !S.alarmed && Date.now() - S.startAt >= S.targetSec * 1000) { S.alarmed = true; laEnd('set'); /* runda 68: jak w onForeground — także bez ekranu treningu */ if (Platform.OS !== 'web' && hapticsOn()) Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {}); }
   if (!T.on) return;
   const left = Math.round((T.endAt - Date.now()) / 1000);
-  if (left <= 0 && !T.alarmed) { T.alarmed = true; if (Platform.OS !== 'web' && soundOn()) Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {}); laEnd('rest'); emit(); }
+  if (left <= 0 && !T.alarmed) { T.alarmed = true; if (Platform.OS !== 'web' && hapticsOn()) Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {}); laEnd('rest'); emit(); }
 }
 export function subscribe(cb: () => void) { listeners.add(cb); return () => { listeners.delete(cb); }; }
 function emit() { listeners.forEach(l => l()); }

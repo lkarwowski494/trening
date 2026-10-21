@@ -374,6 +374,25 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
     }
     expect([l, bad]).toEqual([l, []]);
   });
+  /* p5d (21.10.2026): segLayout (components/ui.tsx) zastępuje 2-liniowe zawijanie opcji układem w jednej linii albo jedna pod drugą. Szacunek szerokości (segEm) musi
+   * być nie mniejszy niż prawdziwa szerokość kroju (IBM Plex Sans półgruby jest szerszy od systemowego, więc to zapas) w KAŻDYM języku — inaczej układ
+   * uznałby, że etykieta się mieści, a krój zmniejszyłby ją poniżej SEG_MIN_SCALE albo uciął. Plus wynik układu na ekranach 390 i 320 pt w pl i en. */
+  test.each([...LANGS])('%s: segEm nie zaniża szerokości etykiet kontrolek Ustawień (Wygląd, System miar, Widok treningu, Zapowiedzi głosowe)', l => {
+    const { segEm } = require('@/components/ui') as typeof import('@/components/ui'); const px = 15;
+    const SEGS = [['Jasny', 'Ciemny', 'Jak w telefonie'], ['metryczny (kg, km, m)', 'imperialny (lb, mi, yd)'], ['Skupiony', 'Lista'], ['Wyłączone', 'W słuchawkach', 'Także przez głośnik']];
+    const est = (x: string) => segEm(x) * px, real = (x: string) => SANS.semibold.width(x, px); const bad: string[] = [];
+    for (const keys of SEGS) {
+      const tr = keys.map(k => trIn(l, k));
+      if (tr.reduce((a, x) => a + est(x), 0) < tr.reduce((a, x) => a + real(x), 0)) bad.push(`suma ${tr.join(' | ')}`); /* układ „weighted” i „column” liczy sumę */
+      for (const x of tr) if (est(x) < 0.9 * real(x)) bad.push(`${x}: ${est(x).toFixed(1)} < 0,9 × ${real(x).toFixed(1)}`); /* układ „equal” liczy najdłuższą; systemowy krój ≈ 10% węższy od IBM Plex Sans (zapas wyżej) */
+    }
+    expect([l, bad]).toEqual([l, []]);
+  });
+  test.each([['pl', 390], ['en', 390]] as const)('%s przy %s pt: wszystkie kontrolki Ustawień mieszczą się w jednym rzędzie (bez zawijania i bez układu kolumnowego)', (l, w) => {
+    const { segLayout } = require('@/components/ui') as typeof import('@/components/ui'); const width = w - 2 * 16;
+    const SEGS = [['Jasny', 'Ciemny', 'Jak w telefonie'], ['metryczny (kg, km, m)', 'imperialny (lb, mi, yd)'], ['Skupiony', 'Lista'], ['Wyłączone', 'W słuchawkach', 'Także przez głośnik']];
+    expect(SEGS.map(keys => segLayout(keys.map(k => trIn(l, k)), width, 15)).filter(m => m === 'column')).toEqual([]);
+  });
   /* 09.10.2026 (B): wybór trybu generatora („Nowe szablony i plan” / „Plan z moich szablonów”) — chipy w wierszu z zawijaniem (components/ui Chip:
    * 13 pt półgruby, padding 12, ramka 1); na 320 pt każdy wyraz mieści się w chipie na pełnej szerokości (bez łamania w środku wyrazu), także przy 200%. */
   test.each([...LANGS])('%s: chipy trybu generatora na ekranie 320 pt — żaden wyraz szerszy niż chip', l => {

@@ -350,7 +350,6 @@
  "Dziś wolne": "Šiandien poilsis",
  "Dziś zrobione: {name}": "Šiandien atlikta: {name}",
  "Dziś: {name}": "Šiandien: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Garsas ir vibracija poilsio pabaigoje",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, vienai pusei)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, vienam hanteliui)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "Ausinėse",
  "Także przez głośnik": "Ir per garsiakalbį",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Poilsio pradžioje telefonas praneša kitą pratimą, svorį ir pakartojimus. Ausinėse — tik prijungus ausines; Ir per garsiakalbį — ir be ausinių, per telefono garsiakalbį (net begarsiame režime); Išjungta — be pranešimų.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Pranešimai veikia, kai įjungta „Garsas ir vibracija poilsio pabaigoje“. Tą patį nustatymą pakeisite ir mygtuku „Balsas“ treniruotės ekrane.",
  "Zapowiedzi głosowe: {mode}": "Balso pranešimai: {mode}",
  "Ekran nie mógł się wyświetlić.": "Nepavyko parodyti šio ekrano.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Telefone esantys duomenys nepakeisti — galite juos išsiųsti kaip failą.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Žingsnis (pvz., +2,5 kg) yra susitarimas, o ne tyrimų rezultatas.",
  "Usuń szablon": "Ištrinti šabloną",
  "Usuń z biblioteki": "Ištrinti iš bibliotekos",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Neturite šablonų su pratimais. Sukurkite šabloną arba pasirinkite „Sukurti šablonus ir planą“."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Neturite šablonų su pratimais. Sukurkite šabloną arba pasirinkite „Sukurti šablonus ir planą“.",
+ "Dźwięk na koniec przerwy": "Garsas poilsio pabaigoje",
+ "Wibracje": "Vibracija",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Pranešimai veikia, kai įjungta „Garsas poilsio pabaigoje“. Tą patį nustatymą pakeisite ir mygtuku „Balsas“ treniruotės ekrane.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Daugiau → Nustatymai: „Garsas poilsio pabaigoje“ + „Vibracija“ — įjungiami atskirai."
 }

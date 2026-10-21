@@ -350,7 +350,6 @@
  "Dziś wolne": "Hvile i dag",
  "Dziś zrobione: {name}": "Udført i dag: {name}",
  "Dziś: {name}": "I dag: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Lyd og vibration, når hvilen er slut",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, pr. side)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, pr. håndvægt)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "I hovedtelefoner",
  "Także przez głośnik": "Også i højttaleren",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Når hvilen starter, annoncerer telefonen næste øvelse, vægt og gentagelser. I hovedtelefoner — kun med tilsluttede hovedtelefoner; Også i højttaleren — også uden hovedtelefoner, gennem telefonens højttaler (også i lydløs tilstand); Fra — ingen meddelelser.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Meddelelserne virker, når „Lyd og vibration, når hvilen er slut“ er slået til. Samme indstilling kan ændres med knappen „Stemme“ på træningsskærmen.",
  "Zapowiedzi głosowe: {mode}": "Stemmemeddelelser: {mode}",
  "Ekran nie mógł się wyświetlić.": "Skærmen kunne ikke vises.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dine data på telefonen er ikke ændret — du kan sende dem som en fil.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Trinnet (fx +2,5 kg) er en konvention, ikke et forskningsresultat.",
  "Usuń szablon": "Slet skabelon",
  "Usuń z biblioteki": "Slet fra biblioteket",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du har ingen skabeloner med øvelser. Opret en skabelon, eller vælg “Generér skabeloner og plan”."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du har ingen skabeloner med øvelser. Opret en skabelon, eller vælg “Generér skabeloner og plan”.",
+ "Dźwięk na koniec przerwy": "Lyd, når hvilen er slut",
+ "Wibracje": "Vibrationer",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Meddelelserne virker, når „Lyd, når hvilen er slut“ er slået til. Samme indstilling kan ændres med knappen „Stemme“ på træningsskærmen.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Mere → Indstillinger: „Lyd, når hvilen er slut“ + „Vibrationer“ — slås til hver for sig."
 }

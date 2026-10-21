@@ -91,7 +91,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: „Seria zrobiona” bez wartości
     - Zakładając, że bieżąca seria nie ma ciężaru ani podpowiedzi „Poprzednio”
     - Gdy użytkownik stuka „Seria zrobiona”
-    - Wtedy seria nie zostaje odhaczona, kursor trafia do pierwszego pustego pola, a telefon wibruje ostrzegawczo (gdy włączone „Dźwięk i wibracja na koniec przerwy”)
+    - Wtedy seria nie zostaje odhaczona, kursor trafia do pierwszego pustego pola, a telefon wibruje ostrzegawczo (gdy włączone „Wibracje”)
   - Scenariusz: Brak wartości widać jako „—”
     - Zakładając, że seria nie ma wartości
     - Gdy ekran pokazuje ją na tablicy i w wierszu wyniku
@@ -169,7 +169,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Koniec przerwy przy zablokowanym ekranie
     - Zakładając, że przerwa trwa, a ekran telefonu jest zablokowany
     - Gdy przerwa dobiega końca
-    - Wtedy przychodzi powiadomienie lokalne z dźwiękiem i wibracją (gdy włączone „Dźwięk i wibracja na koniec przerwy”)
+    - Wtedy przychodzi powiadomienie lokalne z dźwiękiem (gdy włączony „Dźwięk na koniec przerwy”); wibracja w aplikacji na wierzchu zależy od „Wibracje”
   - Scenariusz: Zgoda na powiadomienia przy pierwszej przerwie
     - Zakładając, że zgoda na powiadomienia nie jest jeszcze ustalona
     - Gdy zaczyna się pierwsza przerwa
@@ -448,6 +448,27 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik wybrał „W słuchawkach” i podłączył słuchawki
     - Gdy zaczyna się przerwa po odhaczeniu serii
     - Wtedy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia
+
+### BR-UST-001: Dźwięk na koniec przerwy i wibracje to dwa osobne przełączniki
+- Przepływ: PR-08
+- Dowód potrzeby: ZM-07 (docs/design/to-be.md); decyzja właściciela 21.10.2026 (docs/18); kod `app/more/settings.tsx`, `lib/haptics.ts`
+- Kryteria akceptacji:
+  - Scenariusz: Dwa przełączniki w Ustawieniach
+    - Zakładając, że użytkownik otwiera Ustawienia
+    - Gdy ogląda sekcję „Trening”
+    - Wtedy widzi osobne przełączniki „Dźwięk na koniec przerwy” i „Wibracje”, a dawnego „Dźwięk i wibracja na koniec przerwy” nie ma
+  - Scenariusz: Dźwięk tylko od dźwięku, wibracje tylko od wibracji
+    - Zakładając, że użytkownik wyłączył „Wibracje”, a „Dźwięk na koniec przerwy” zostawił włączony
+    - Gdy kończy się przerwa albo stoper serii
+    - Wtedy powiadomienie ma dźwięk, a telefon nie wibruje (ani na końcu przerwy, ani przy ± i ostrzeżeniu na tablicy, ani przy przeciąganiu listy); przy odwrotnym ustawieniu odwrotnie
+  - Scenariusz: Aktualizacja nic nie zmienia
+    - Zakładając, że dane pochodzą z wersji bez przełącznika „Wibracje” (brak zapisanego wyboru)
+    - Gdy aplikacja się uruchamia po aktualizacji
+    - Wtedy wibracje zachowują się jak „Dźwięk na koniec przerwy” (jak dotąd), schemat danych i zapis nie są zmieniane, a pierwsze przełączenie dźwięku nie przełącza wibracji
+  - Scenariusz: Wybór przetrwa kopię i powrót do starszej wersji
+    - Zakładając, że użytkownik zapisał wybór „Wibracje”
+    - Gdy eksportuje i importuje kopię albo otwiera dane w starszej wersji, a potem w nowej
+    - Wtedy wybór zostaje zachowany (starsza wersja trzyma pole jako nieznane)
 
 ### BR-DAN-001: Dane tylko w telefonie, bez konta
 - Przepływ: PR-06

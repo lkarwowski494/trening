@@ -350,7 +350,6 @@
  "Dziś wolne": "Heute frei",
  "Dziś zrobione: {name}": "Heute erledigt: {name}",
  "Dziś: {name}": "Heute: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Ton und Vibration am Ende der Pause",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, pro Seite)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, pro Kurzhantel)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "Über Kopfhörer",
  "Także przez głośnik": "Auch über Lautsprecher",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Zu Beginn der Pause sagt das Telefon die nächste Übung, das Gewicht und die Wiederholungen an. Über Kopfhörer — nur mit verbundenen Kopfhörern; Auch über Lautsprecher — auch ohne Kopfhörer, über den Lautsprecher des Telefons (auch im Stumm-Modus); Aus — keine Ansagen.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Ansagen funktionieren, wenn „Ton und Vibration am Ende der Pause“ eingeschaltet ist. Dieselbe Einstellung änderst du mit der Taste „Stimme“ auf dem Trainingsbildschirm.",
  "Zapowiedzi głosowe: {mode}": "Sprachansagen: {mode}",
  "Ekran nie mógł się wyświetlić.": "Dieser Bildschirm konnte nicht angezeigt werden.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Deine Daten auf dem Telefon wurden nicht verändert — du kannst sie als Datei senden.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Der Schritt (z. B. +2,5 kg) ist eine Konvention, kein Forschungsergebnis.",
  "Usuń szablon": "Vorlage löschen",
  "Usuń z biblioteki": "Aus der Bibliothek löschen",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du hast keine Vorlagen mit Übungen. Erstelle eine Vorlage oder wähle „Vorlagen und Plan erstellen“."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du hast keine Vorlagen mit Übungen. Erstelle eine Vorlage oder wähle „Vorlagen und Plan erstellen“.",
+ "Dźwięk na koniec przerwy": "Ton am Ende der Pause",
+ "Wibracje": "Vibration",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Ansagen funktionieren, wenn „Ton am Ende der Pause“ eingeschaltet ist. Dieselbe Einstellung änderst du mit der Taste „Stimme“ auf dem Trainingsbildschirm.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Mehr → Einstellungen: „Ton am Ende der Pause“ + „Vibration“ — lassen sich getrennt einschalten."
 }

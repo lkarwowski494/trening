@@ -159,7 +159,7 @@ export function SwitchRow({ label, detail, value, onChange, disabled, a11yLabel,
   );
   return hasInfo ? <View style={{ borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: t.line }}>{row}{open ? <InfoBox id={infoId!} info={info} /> : null}</View> : row;
 }
-export { Segmented, SEG_MIN_SCALE } from '@/components/Segmented'; /* strukturalnie (p5d): kontrolka segmentowa w osobnym pliku — limit rozmiaru components/ui.tsx (M1-054) */
+export { Segmented, SEG_MIN_SCALE, SEG_FIT_SCALE, SEG_PAD, segEm, segWeight, segLayout } from '@/components/Segmented'; /* strukturalnie (p5d): kontrolka segmentowa w osobnym pliku — limit rozmiaru components/ui.tsx (M1-054) */
 /** Nagłówek grupy ustawień (jak sekcje w Ustawieniach iOS). */
 /** Audyt 0.10 (A11-02): wersaliki. iOS robi textTransform 'uppercase' bez języka ([NSString uppercaseString]) — w el (tonos) i tr (i → İ)
  * to błąd, więc tam tekst zamienia `upper()` z regułami języka, a VoiceOver czyta zwykły zapis (słowo wersalikami bywa czytane jak skrót).

@@ -15,6 +15,7 @@ export const GUIDE: GuideTopic[] = [
     t('Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.'),
     t('Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.'),
     t('„Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.'),
+    t('Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.'), /* ZM-07 (p5d, 21.10.2026): cytaty = etykiety przełączników w Ustawieniach */
     t('Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.'),
   ] },
   { id: 'templates', route: '/templates', title: () => t('Szablony'), steps: () => [

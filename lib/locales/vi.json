@@ -267,7 +267,6 @@
  "Dziś wolne": "Hôm nay nghỉ",
  "Dziś zrobione: {name}": "Đã tập hôm nay: {name}",
  "Dziś: {name}": "Hôm nay: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Âm thanh và rung khi hết giờ nghỉ",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, mỗi bên)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, mỗi tạ đơn)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "Qua tai nghe",
  "Także przez głośnik": "Cả qua loa",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Khi bắt đầu nghỉ, điện thoại đọc bài tập tiếp theo, mức tạ và số lần. Qua tai nghe — chỉ khi đã kết nối tai nghe; Cả qua loa — cả khi không có tai nghe, qua loa điện thoại (kể cả ở chế độ im lặng); Tắt — không thông báo.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Thông báo hoạt động khi bật „Âm thanh và rung khi hết giờ nghỉ”. Có thể đổi cùng cài đặt này bằng nút „Giọng nói” trên màn hình buổi tập.",
  "Zapowiedzi głosowe: {mode}": "Thông báo bằng giọng nói: {mode}",
  "Ekran nie mógł się wyświetlić.": "Không thể hiển thị màn hình này.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dữ liệu trên điện thoại không bị thay đổi — bạn có thể gửi dưới dạng tệp.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Mức tăng (vd +2,5 kg) là quy ước, không phải kết quả nghiên cứu.",
  "Usuń szablon": "Xóa mẫu",
  "Usuń z biblioteki": "Xóa khỏi thư viện",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Bạn chưa có mẫu nào có bài tập. Hãy tạo mẫu hoặc chọn “Tạo mẫu và kế hoạch”."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Bạn chưa có mẫu nào có bài tập. Hãy tạo mẫu hoặc chọn “Tạo mẫu và kế hoạch”.",
+ "Dźwięk na koniec przerwy": "Âm thanh khi hết giờ nghỉ",
+ "Wibracje": "Rung",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Thông báo hoạt động khi bật „Âm thanh khi hết giờ nghỉ”. Có thể đổi cùng cài đặt này bằng nút „Giọng nói” trên màn hình buổi tập.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Thêm → Cài đặt: „Âm thanh khi hết giờ nghỉ” + „Rung” — bật riêng từng mục."
 }

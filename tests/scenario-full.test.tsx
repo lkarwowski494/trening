@@ -119,11 +119,15 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await type(rest, '120,4'); expect(S().settings.defaultRest).toBe(120);
     await endEdit(rest); await flushAll(5); expect(screen.getByLabelText('Domyślna przerwa (s)').props.value).toBe('120');
     /* przełączniki */
-    const sws: [string, keyof State['settings'], boolean][] = [['Dźwięk i wibracja na koniec przerwy', 'sound', true], ['Ekran włączony podczas treningu', 'wakeLock', true], ['RPE / RIR przy serii', 'showRpe', false], ['Podpowiedź progresji', 'progressHint', true], ['Automatyczna kopia po każdym treningu', 'autoBackup', true]];
+    const sws: [string, keyof State['settings'], boolean][] = [['Dźwięk na koniec przerwy', 'sound', true], ['Ekran włączony podczas treningu', 'wakeLock', true], ['RPE / RIR przy serii', 'showRpe', false], ['Podpowiedź progresji', 'progressHint', true], ['Automatyczna kopia po każdym treningu', 'autoBackup', true]];
     for (const [label, key, def] of sws) {
       expect(screen.getByLabelText(label).props.accessibilityState.checked).toBe(def); expect(S().settings[key]).toBe(def);
       await toggle(label, !def); expect(S().settings[key]).toBe(!def); expect(screen.getByLabelText(label).props.accessibilityState.checked).toBe(!def);
     }
+    /* ZM-07 (p5d): „Wibracje” — pierwsze przełączenie dźwięku wyżej utrwaliło dotychczasowy stan wibracji (włączone), a przełączenie dźwięku ich nie ruszyło; przełączenie wibracji zapisuje jawnie, dźwięk bez zmian */
+    expect(screen.getByLabelText('Wibracje').props.accessibilityState.checked).toBe(true); expect(S().settings.haptics).toBe(true);
+    await toggle('Wibracje', false); expect(S().settings.haptics).toBe(false); expect(S().settings.sound).toBe(false) /* dźwięk zostawiony wyżej na przeciwnej wartości — Wibracje go nie ruszają */; expect(screen.getByLabelText('Wibracje').props.accessibilityState.checked).toBe(false);
+    await toggle('Wibracje', true); expect(S().settings.haptics).toBe(true);
     /* zostawiamy: RPE włączone (pole RPE w treningu), reszta jak domyślnie */
     for (const [label, key, def] of sws) if (key !== 'showRpe') { await toggle(label, def); expect(S().settings[key]).toBe(def); }
     /* Apple Health: bez HealthKit (atrapa) — komunikat i przełącznik zostaje wyłączony */

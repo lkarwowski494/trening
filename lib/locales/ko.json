@@ -267,7 +267,6 @@
  "Dziś wolne": "오늘은 휴식",
  "Dziś zrobione: {name}": "오늘 완료: {name}",
  "Dziś: {name}": "오늘: {name}",
- "Dźwięk i wibracja na koniec przerwy": "휴식 종료 시 소리와 진동",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM(Epley, 한쪽 기준)",
  "e1RM (Epley, per hantel)": "e1RM(Epley, 덤벨 1개 기준)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "이어폰에서만",
  "Także przez głośnik": "스피커로도",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "휴식이 시작되면 휴대폰이 다음 운동, 무게, 횟수를 알려 줍니다. 이어폰에서만 — 이어폰이 연결된 경우에만, 스피커로도 — 이어폰 없이도 휴대폰 스피커로(무음 모드에서도), 끔 — 안내하지 않습니다.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "음성 안내는 ‘휴식 종료 시 소리와 진동’이 켜져 있을 때 작동합니다. 같은 설정은 운동 화면의 ‘음성’ 버튼으로도 바꿀 수 있습니다.",
  "Zapowiedzi głosowe: {mode}": "음성 안내: {mode}",
  "Ekran nie mógł się wyświetlić.": "이 화면을 표시할 수 없습니다.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "휴대폰의 데이터는 변경되지 않았습니다. 파일로 보낼 수 있습니다.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "증가 폭(예: +2.5 kg)은 관례이며 연구 결과가 아닙니다.",
  "Usuń szablon": "루틴 삭제",
  "Usuń z biblioteki": "라이브러리에서 삭제",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "종목이 들어 있는 루틴이 없습니다. 루틴을 만들거나 ‘루틴과 플랜 생성’을 선택하세요."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "종목이 들어 있는 루틴이 없습니다. 루틴을 만들거나 ‘루틴과 플랜 생성’을 선택하세요.",
+ "Dźwięk na koniec przerwy": "휴식 종료 시 소리",
+ "Wibracje": "진동",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "음성 안내는 ‘휴식 종료 시 소리’이 켜져 있을 때 작동합니다. 같은 설정은 운동 화면의 ‘음성’ 버튼으로도 바꿀 수 있습니다.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "더보기 → 설정: ‘휴식 종료 시 소리’ + ‘진동’ — 각각 따로 켭니다."
 }

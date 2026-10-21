@@ -5,7 +5,7 @@
 # Poza CI (docs/31 pkt 4): prawdziwy odczyt Zdrowia (HealthKit na symulatorze bez danych), prawdziwy StoreKit i okna Apple, przestawienie systemowej
 # wielkości tekstu i VoiceOver na żywo (Maestro nie włącza ustawień dostępności).
 #
-# Literały (EN z lib/i18n.en.ts): jak 09, 20, 21 oraz "Default rest \\(seconds\\)", "Sound and vibration at the end of rest", "Keep screen on during workout",
+# Literały (EN z lib/i18n.en.ts): jak 09, 20, 21 oraz "Default rest \\(seconds\\)", "Sound at the end of rest", "Haptics", "Keep screen on during workout",
 #   "RPE / RIR per set", "Progression hint", "Automatic backup after every workout", "Muscle group goals" (etykieta przycisku rozwijającego), "Workout view", "List", "Focused"
 appId: pl.lukasz.trening
 name: Ustawienia, dostępność, Zdrowie, subskrypcja
@@ -66,8 +66,10 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
 - takeScreenshot: 105-przerwa-45
 # --- przełączniki: dźwięk, ekran włączony, podpowiedź progresji, RPE/RIR, kopia automatyczna ---
-- scrollUntilVisible: { element: { id: "sw-Sound and vibration at the end of rest" }, direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: { id: "sw-Sound and vibration at the end of rest" }
+- scrollUntilVisible: { element: { id: "sw-Sound at the end of rest" }, direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: { id: "sw-Sound at the end of rest" }
+- scrollUntilVisible: { element: { id: "sw-Haptics" }, direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: { id: "sw-Haptics" }
 - scrollUntilVisible: { element: { id: "sw-Keep screen on during workout" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Keep screen on during workout" }
 - scrollUntilVisible: { element: { id: "sw-Progression hint" }, direction: DOWN, timeout: 30000, centerElement: true }

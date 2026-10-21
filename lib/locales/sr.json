@@ -350,7 +350,6 @@
  "Dziś wolne": "Данас одмор",
  "Dziś zrobione: {name}": "Данас урађено: {name}",
  "Dziś: {name}": "Данас: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Звук и вибрација на крају одмора",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, по страни)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, по бучици)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "У слушалицама",
  "Także przez głośnik": "И преко звучника",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "На почетку одмора телефон најављује следећу вежбу, тежину и понављања. У слушалицама — само са повезаним слушалицама; И преко звучника — и без слушалица, преко звучника телефона (и у нечујном режиму); Искључено — без најава.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Најаве раде када је укључено „Звук и вибрација на крају одмора”. Исто подешавање мењате и дугметом „Глас” на екрану тренинга.",
  "Zapowiedzi głosowe: {mode}": "Гласовне најаве: {mode}",
  "Ekran nie mógł się wyświetlić.": "Овај екран није могао да се прикаже.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Подаци на телефону нису промењени — можете их послати као датотеку.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Корак (нпр. +2,5 kg) је конвенција, а не резултат истраживања.",
  "Usuń szablon": "Обриши шаблон",
  "Usuń z biblioteki": "Обриши из библиотеке",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Немате шаблоне са вежбама. Направите шаблон или изаберите „Генериши шаблоне и план”."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Немате шаблоне са вежбама. Направите шаблон или изаберите „Генериши шаблоне и план”.",
+ "Dźwięk na koniec przerwy": "Звук на крају одмора",
+ "Wibracje": "Вибрација",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Најаве раде када је укључено „Звук на крају одмора”. Исто подешавање мењате и дугметом „Глас” на екрану тренинга.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Још → Подешавања: „Звук на крају одмора” + „Вибрација” — укључују се засебно."
 }

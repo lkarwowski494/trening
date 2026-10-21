@@ -350,7 +350,6 @@
  "Dziś wolne": "Vandaag rust",
  "Dziś zrobione: {name}": "Vandaag gedaan: {name}",
  "Dziś: {name}": "Vandaag: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Geluid en trilling aan het einde van de rust",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, per kant)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, per dumbbell)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "Via oordopjes",
  "Także przez głośnik": "Ook via de luidspreker",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Aan het begin van de rust kondigt de telefoon de volgende oefening, het gewicht en de herhalingen aan. Via oordopjes — alleen met verbonden oordopjes; Ook via de luidspreker — ook zonder oordopjes, via de luidspreker van de telefoon (ook in de stille modus); Uit — geen aankondigingen.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Aankondigingen werken als „Geluid en trilling aan het einde van de rust” aanstaat. Dezelfde instelling wijzig je ook met de knop „Stem” op het trainingsscherm.",
  "Zapowiedzi głosowe: {mode}": "Gesproken aankondigingen: {mode}",
  "Ekran nie mógł się wyświetlić.": "Dit scherm kon niet worden getoond.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Je gegevens op de telefoon zijn niet gewijzigd — je kunt ze als bestand versturen.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "De stap (bijv. +2,5 kg) is een conventie, geen onderzoeksresultaat.",
  "Usuń szablon": "Verwijder sjabloon",
  "Usuń z biblioteki": "Verwijder uit bibliotheek",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Je hebt geen sjablonen met oefeningen. Maak een sjabloon of kies ‘Sjablonen en plan genereren’."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Je hebt geen sjablonen met oefeningen. Maak een sjabloon of kies ‘Sjablonen en plan genereren’.",
+ "Dźwięk na koniec przerwy": "Geluid aan het einde van de rust",
+ "Wibracje": "Trilling",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Aankondigingen werken als „Geluid aan het einde van de rust” aanstaat. Dezelfde instelling wijzig je ook met de knop „Stem” op het trainingsscherm.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Meer → Instellingen: „Geluid aan het einde van de rust” + „Trilling” — zet je apart aan."
 }

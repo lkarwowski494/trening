@@ -350,7 +350,6 @@
  "Dziś wolne": "Сегодня выходной",
  "Dziś zrobione: {name}": "Сегодня выполнено: {name}",
  "Dziś: {name}": "Сегодня: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Звук и вибрация в конце отдыха",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Эпли, на сторону)",
  "e1RM (Epley, per hantel)": "e1RM (Эпли, на гантель)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "В наушниках",
  "Także przez głośnik": "Также через динамик",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "В начале отдыха телефон называет следующее упражнение, вес и повторения. В наушниках — только при подключённых наушниках; Также через динамик — и без наушников, через динамик телефона (даже в беззвучном режиме); Выключены — без подсказок.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Подсказки работают, когда включено «Звук и вибрация в конце отдыха». Ту же настройку можно изменить кнопкой «Голос» на экране тренировки.",
  "Zapowiedzi głosowe: {mode}": "Голосовые подсказки: {mode}",
  "Ekran nie mógł się wyświetlić.": "Не удалось показать этот экран.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Данные в телефоне не изменены — их можно отправить файлом.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Шаг (например, +2,5 kg) — это условность, а не результат исследований.",
  "Usuń szablon": "Удалить шаблон",
  "Usuń z biblioteki": "Удалить из библиотеки",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "У вас нет шаблонов с упражнениями. Создайте шаблон или выберите «Создать шаблоны и план»."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "У вас нет шаблонов с упражнениями. Создайте шаблон или выберите «Создать шаблоны и план».",
+ "Dźwięk na koniec przerwy": "Звук в конце отдыха",
+ "Wibracje": "Вибрация",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Подсказки работают, когда включено «Звук в конце отдыха». Ту же настройку можно изменить кнопкой «Голос» на экране тренировки.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Ещё → Настройки: «Звук в конце отдыха» + «Вибрация» — включаются отдельно."
 }

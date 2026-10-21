@@ -267,7 +267,6 @@
  "Dziś wolne": "Hari ini libur",
  "Dziś zrobione: {name}": "Selesai hari ini: {name}",
  "Dziś: {name}": "Hari ini: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Suara dan getar di akhir istirahat",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, per sisi)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, per dumbel)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "Lewat earphone",
  "Także przez głośnik": "Juga lewat speaker",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Di awal istirahat, ponsel mengumumkan latihan berikutnya, beban, dan repetisi. Lewat earphone — hanya saat earphone tersambung; Juga lewat speaker — juga tanpa earphone, lewat speaker ponsel (bahkan dalam mode senyap); Mati — tanpa pengumuman.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Pengumuman berfungsi saat „Suara dan getar di akhir istirahat” aktif. Pengaturan yang sama bisa diubah dengan tombol „Suara” di layar latihan.",
  "Zapowiedzi głosowe: {mode}": "Pengumuman suara: {mode}",
  "Ekran nie mógł się wyświetlić.": "Layar ini tidak dapat ditampilkan.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Data di ponsel Anda tidak berubah — Anda dapat mengirimkannya sebagai file.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Besar kenaikan (mis. +2,5 kg) adalah konvensi, bukan hasil penelitian.",
  "Usuń szablon": "Hapus templat",
  "Usuń z biblioteki": "Hapus dari pustaka",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Anda belum punya templat berisi gerakan. Buat templat atau pilih “Buat templat dan rencana”."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Anda belum punya templat berisi gerakan. Buat templat atau pilih “Buat templat dan rencana”.",
+ "Dźwięk na koniec przerwy": "Suara di akhir istirahat",
+ "Wibracje": "Getar",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Pengumuman berfungsi saat „Suara di akhir istirahat” aktif. Pengaturan yang sama bisa diubah dengan tombol „Suara” di layar latihan.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Lainnya → Pengaturan: „Suara di akhir istirahat” + „Getar” — diaktifkan secara terpisah."
 }

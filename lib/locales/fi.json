@@ -350,7 +350,6 @@
  "Dziś wolne": "Tänään lepo",
  "Dziś zrobione: {name}": "Tänään tehty: {name}",
  "Dziś: {name}": "Tänään: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Ääni ja värinä palautuksen lopussa",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, puolta kohden)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, käsipainoa kohden)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "Kuulokkeissa",
  "Także przez głośnik": "Myös kaiuttimesta",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Palautuksen alussa puhelin kertoo seuraavan liikkeen, painon ja toistot. Kuulokkeissa — vain kun kuulokkeet on yhdistetty; Myös kaiuttimesta — myös ilman kuulokkeita, puhelimen kaiuttimesta (myös äänettömällä); Pois — ei opastusta.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Opastus toimii, kun ”Ääni ja värinä palautuksen lopussa” on päällä. Saman asetuksen voi vaihtaa treeninäkymän ”Ääni”-painikkeella.",
  "Zapowiedzi głosowe: {mode}": "Ääniopastus: {mode}",
  "Ekran nie mógł się wyświetlić.": "Tätä näkymää ei voitu näyttää.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Puhelimen tietoja ei muutettu — voit lähettää ne tiedostona.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Askel (esim. +2,5 kg) on käytäntö, ei tutkimustulos.",
  "Usuń szablon": "Poista pohja",
  "Usuń z biblioteki": "Poista kirjastosta",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Sinulla ei ole pohjia, joissa on liikkeitä. Luo pohja tai valitse ”Luo pohjat ja suunnitelma”."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Sinulla ei ole pohjia, joissa on liikkeitä. Luo pohja tai valitse ”Luo pohjat ja suunnitelma”.",
+ "Dźwięk na koniec przerwy": "Ääni palautuksen lopussa",
+ "Wibracje": "Värinä",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Opastus toimii, kun ”Ääni palautuksen lopussa” on päällä. Saman asetuksen voi vaihtaa treeninäkymän ”Ääni”-painikkeella.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Lisää → Asetukset: ”Ääni palautuksen lopussa” + ”Värinä” — kytketään päälle erikseen."
 }

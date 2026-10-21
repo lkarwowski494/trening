@@ -1431,8 +1431,8 @@
   "en": "Today: {name}"
  },
  {
-  "pl": "Dźwięk i wibracja na koniec przerwy",
-  "en": "Sound and vibration at the end of rest"
+  "pl": "Dźwięk na koniec przerwy",
+  "en": "Sound at the end of rest"
  },
  {
   "pl": "e1RM",
@@ -5998,6 +5998,10 @@
   "en": "Version: {v} · iOS {os} · Language: {lang}"
  },
  {
+  "pl": "Wibracje",
+  "en": "Haptics"
+ },
+ {
   "pl": "Widok treningu",
   "en": "Workout view"
  },
@@ -6028,6 +6032,10 @@
  {
   "pl": "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",
   "en": "More → Templates: the + button in the header (Add template) creates a template: exercises, sets, rep range and rest."
+ },
+ {
+  "pl": "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.",
+  "en": "More → Settings: “Sound at the end of rest” and “Haptics” are switched on separately."
  },
  {
   "pl": "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.",
@@ -6686,8 +6694,8 @@
   "en": "Plan a deload from {date}"
  },
  {
-  "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.",
-  "en": "Announcements work when “Sound and vibration at the end of rest” is on. You can change the same setting with the “Voice” button on the workout screen."
+  "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.",
+  "en": "Announcements work when “Sound at the end of rest” is on. You can change the same setting with the “Voice” button on the workout screen."
  },
  {
   "pl": "Zapowiedzi głosowe",

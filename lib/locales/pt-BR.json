@@ -559,7 +559,6 @@
  "W słuchawkach": "Nos fones de ouvido",
  "Także przez głośnik": "Também pelo alto-falante",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "No início do descanso, o celular anuncia o próximo exercício, a carga e as repetições. Nos fones de ouvido — só com fones conectados; Também pelo alto-falante — também sem fones, pelo alto-falante do celular (até no modo silencioso); Desativados — sem avisos.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Os avisos funcionam quando “Som e vibração no fim do descanso” está ativado. Você muda a mesma configuração com o botão “Voz” na tela do treino.",
  "Ekran nie mógł się wyświetlić.": "Não foi possível exibir esta tela.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Os dados no celular não foram alterados. Você pode enviar tudo como um arquivo.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "O app fechou inesperadamente nas últimas vezes em que foi aberto.",
@@ -569,5 +568,7 @@
  "Zmień w ustawieniach iOS": "Alterar nos Ajustes do iOS",
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "O nome sob o ícone e o texto da permissão do Saúde só mudam de idioma depois de você definir o idioma do app nos Ajustes do iOS.",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Cada grupo muscular principal em pelo menos {n} dias por semana (OMS 2020 — recomendação de saúde; ACSM 2026: a frequência influencia a força, mas não há evidências suficientes para estabelecer uma relação dose-resposta e, com o mesmo volume, a diferença diminui). Um dia em que o grupo só auxilia conta como {h} — uma simplificação (método da metanálise de Pelland et al. 2026). A divisão (corpo inteiro, superior/inferior) é uma convenção — com o mesmo número de séries, dá resultados parecidos.",
- "Zacznij {days} dni za darmo": "Começar teste grátis de {days} dias"
+ "Zacznij {days} dni za darmo": "Começar teste grátis de {days} dias",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Os avisos funcionam quando “Som no fim do descanso” está ativado. Você muda a mesma configuração com o botão “Voz” na tela do treino.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Mais → Ajustes: “Som no fim do descanso” + “Vibração” — ativam-se em separado."
 }

@@ -350,7 +350,6 @@
  "Dziś wolne": "Hvile i dag",
  "Dziś zrobione: {name}": "Gjort i dag: {name}",
  "Dziś: {name}": "I dag: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Lyd og vibrering når hvilen er over",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, per side)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, per manual)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "I hodetelefoner",
  "Także przez głośnik": "Også i høyttaleren",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Når hvilen starter, sier telefonen neste øvelse, vekt og repetisjoner. I hodetelefoner — bare med tilkoblede hodetelefoner; Også i høyttaleren — også uten hodetelefoner, gjennom telefonens høyttaler (også i lydløs modus); Av — ingen meldinger.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Meldingene virker når «Lyd og vibrering når hvilen er over» er slått på. Samme innstilling kan endres med knappen «Stemme» på treningsskjermen.",
  "Zapowiedzi głosowe: {mode}": "Stemmemeldinger: {mode}",
  "Ekran nie mógł się wyświetlić.": "Skjermen kunne ikke vises.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Dataene på telefonen er ikke endret — du kan sende dem som en fil.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Trinnet (f.eks. +2,5 kg) er en konvensjon, ikke et forskningsresultat.",
  "Usuń szablon": "Slett mal",
  "Usuń z biblioteki": "Slett fra biblioteket",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du har ingen maler med øvelser. Lag en mal eller velg «Generer maler og plan»."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du har ingen maler med øvelser. Lag en mal eller velg «Generer maler og plan».",
+ "Dźwięk na koniec przerwy": "Lyd når hvilen er over",
+ "Wibracje": "Vibrering",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Meldingene virker når «Lyd når hvilen er over» er slått på. Samme innstilling kan endres med knappen «Stemme» på treningsskjermen.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Mer → Innstillinger: «Lyd når hvilen er over» + «Vibrering» — slås på hver for seg."
 }

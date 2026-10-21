@@ -350,7 +350,6 @@
  "Dziś wolne": "Σήμερα ξεκούραση",
  "Dziś zrobione: {name}": "Σήμερα έγινε: {name}",
  "Dziś: {name}": "Σήμερα: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Ήχος και δόνηση στο τέλος του διαλείμματος",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, ανά πλευρά)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, ανά αλτήρα)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "Στα ακουστικά",
  "Także przez głośnik": "Και από το ηχείο",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Στην αρχή του διαλείμματος το τηλέφωνο ανακοινώνει την επόμενη άσκηση, το βάρος και τις επαναλήψεις. Στα ακουστικά — μόνο με συνδεδεμένα ακουστικά· Και από το ηχείο — και χωρίς ακουστικά, από το ηχείο του τηλεφώνου (και στη σίγαση)· Απενεργοποιημένες — χωρίς ανακοινώσεις.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Οι ανακοινώσεις λειτουργούν όταν είναι ενεργό το «Ήχος και δόνηση στο τέλος του διαλείμματος». Την ίδια ρύθμιση αλλάζετε και με το κουμπί «Φωνή» στην οθόνη της προπόνησης.",
  "Zapowiedzi głosowe: {mode}": "Φωνητικές ανακοινώσεις: {mode}",
  "Ekran nie mógł się wyświetlić.": "Η οθόνη δεν μπόρεσε να εμφανιστεί.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Τα δεδομένα στο τηλέφωνο δεν άλλαξαν — μπορείτε να τα στείλετε ως αρχείο.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Το βήμα (π.χ. +2,5 kg) είναι σύμβαση, όχι αποτέλεσμα ερευνών.",
  "Usuń szablon": "Διαγραφή προτύπου",
  "Usuń z biblioteki": "Διαγραφή από τη βιβλιοθήκη",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Δεν έχετε πρότυπα με ασκήσεις. Δημιουργήστε ένα πρότυπο ή επιλέξτε «Δημιουργία προτύπων και προγράμματος»."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Δεν έχετε πρότυπα με ασκήσεις. Δημιουργήστε ένα πρότυπο ή επιλέξτε «Δημιουργία προτύπων και προγράμματος».",
+ "Dźwięk na koniec przerwy": "Ήχος στο τέλος του διαλείμματος",
+ "Wibracje": "Δονήσεις",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Οι ανακοινώσεις λειτουργούν όταν είναι ενεργό το «Ήχος στο τέλος του διαλείμματος». Την ίδια ρύθμιση αλλάζετε και με το κουμπί «Φωνή» στην οθόνη της προπόνησης.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Περισσότερα → Ρυθμίσεις: «Ήχος στο τέλος του διαλείμματος» + «Δονήσεις» — ενεργοποιούνται χωριστά."
 }

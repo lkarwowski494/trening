@@ -350,7 +350,6 @@
  "Dziś wolne": "Oggi riposo",
  "Dziś zrobione: {name}": "Fatto oggi: {name}",
  "Dziś: {name}": "Oggi: {name}",
- "Dźwięk i wibracja na koniec przerwy": "Suono e vibrazione a fine recupero",
  "e1RM": "e1RM",
  "e1RM (Epley, na stronę)": "e1RM (Epley, per lato)",
  "e1RM (Epley, per hantel)": "e1RM (Epley, per manubrio)",
@@ -1696,7 +1695,6 @@
  "W słuchawkach": "In cuffia",
  "Także przez głośnik": "Anche dall’altoparlante",
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "All’inizio del recupero il telefono annuncia l’esercizio successivo, il carico e le ripetizioni. In cuffia — solo con le cuffie collegate; Anche dall’altoparlante — anche senza cuffie, dall’altoparlante del telefono (anche in modalità silenziosa); Disattivati — nessun annuncio.",
- "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Gli annunci funzionano quando «Suono e vibrazione a fine recupero» è attivo. La stessa impostazione si cambia con il pulsante «Voce» nella schermata dell’allenamento.",
  "Zapowiedzi głosowe: {mode}": "Annunci vocali: {mode}",
  "Ekran nie mógł się wyświetlić.": "Non è stato possibile mostrare questa schermata.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "I dati sul telefono non sono stati modificati: puoi inviarli come file.",
@@ -1729,5 +1727,9 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "L’incremento (es. +2,5 kg) è una convenzione, non un risultato di studi.",
  "Usuń szablon": "Elimina scheda",
  "Usuń z biblioteki": "Elimina dalla libreria",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Non hai schede con esercizi. Crea una scheda o scegli «Genera schede e piano»."
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Non hai schede con esercizi. Crea una scheda o scegli «Genera schede e piano».",
+ "Dźwięk na koniec przerwy": "Suono a fine recupero",
+ "Wibracje": "Vibrazione",
+ "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Gli annunci funzionano quando «Suono a fine recupero» è attivo. La stessa impostazione si cambia con il pulsante «Voce» nella schermata dell’allenamento.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Altro → Impostazioni: «Suono a fine recupero» + «Vibrazione» — si attivano separatamente."
 }
