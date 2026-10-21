@@ -26,7 +26,7 @@ import { Fields, boardLabel, RestFace, TimedRing, RestControls, useRestLeft, use
  *  - „Seria zrobiona” bez wyniku nie odhacza serii: kursor trafia do brakującego pola, haptyka ostrzegawcza i ogłoszenie VoiceOver;
  *  - w przerwie tablica pokazuje zegar „teraz”, „z {s}” i następną serię; −15 / +15 / Pomiń pod tablicą; po upływie przerwy wraca tablica serii
  *    (1 stuknięcie na serię jak dotąd); seria na czas: „▶ Start”, w trakcie pomiaru „Zakończ serię” (jedna nazwa z dolnym paskiem, ZM-05);
- *  - VoiceOver: część z nazwą i liczbami to jeden element z opisem (rola obrazu), przyciski ± mają własne etykiety, pola serii są ukryte (opis je zawiera).
+ *  - VoiceOver: nagłówek z nazwą to jeden element z opisem zawierającym liczby (rola obrazu); wiersz liczb z polem wpisu i przyciski ± leżą POZA tą grupą (E2E-11: potomkowie grupy accessible są niewidoczni dla VoiceOver i XCTest), mają własne etykiety; pola serii są ukryte (opis je zawiera).
  * Widok listy (Ustawienia → Widok treningu) nie używa tablicy (decyzja STOP 3).
  */
 
@@ -73,13 +73,14 @@ export function NowBoard({ w, onDone, onFinish, onStartSet, onCardY, onRestY }: 
               <Text accessible={false} maxFontSizeMultiplier={maxScale('boardMeta')} style={{ ...font('boardMeta'), color: th.boardMuted }}>{monoSafe(glue(counter), true) /* A11-19; litery greckie krojem tekstu (A11-11) */}</Text>
             </View>
             {ex.notes?.trim() ? <Text accessible={false} numberOfLines={3} maxFontSizeMultiplier={maxScale('footnote')} style={{ ...font('footnote'), color: th.boardMuted }}>{ex.notes.trim()}</Text> : null}
-            <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: SPACE.xs, flexWrap: 'nowrap' }}>
-              {keys.map((k, i) => <React.Fragment key={k}>
-                {i ? <Text accessible={false} maxFontSizeMultiplier={1} style={{ ...font('boardMeta'), fontSize: Math.round(size * 0.45), color: th.boardMuted }}>{k === 'durationSec' && keys[0] === 'distanceM' ? '·' : '×'}</Text> : null}
-                <BoardNum w={w} ei={pos.ei} si={pos.si} k={k} eff={eff} size={size} req={req} />
-                {k === 'weight' || k === 'distanceM' || (k === 'addKg' && (eff.addKg ?? 0) !== 0) ? <Text accessible={false} maxFontSizeMultiplier={maxScale('stepLabel')} style={{ ...font('stepLabel'), color: th.boardMuted }}>{unitOf(k)}</Text> : null}
-              </React.Fragment>)}
-            </View>
+          </View>
+          {/* E2E-11: liczby i pole wpisu poza grupą accessible (iOS chowa potomków grupy przed VoiceOver i XCTest); opis tablicy wyżej zawiera te wartości */}
+          <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: SPACE.xs, flexWrap: 'nowrap' }}>
+            {keys.map((k, i) => <React.Fragment key={k}>
+              {i ? <Text accessible={false} maxFontSizeMultiplier={1} style={{ ...font('boardMeta'), fontSize: Math.round(size * 0.45), color: th.boardMuted }}>{k === 'durationSec' && keys[0] === 'distanceM' ? '·' : '×'}</Text> : null}
+              <BoardNum w={w} ei={pos.ei} si={pos.si} k={k} eff={eff} size={size} req={req} />
+              {k === 'weight' || k === 'distanceM' || (k === 'addKg' && (eff.addKg ?? 0) !== 0) ? <Text accessible={false} maxFontSizeMultiplier={maxScale('stepLabel')} style={{ ...font('stepLabel'), color: th.boardMuted }}>{unitOf(k)}</Text> : null}
+            </React.Fragment>)}
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', gap: SPACE.s }}>
             {keys.map(k => { const dn = stepOf(w, e, k, -1, eff[k] ?? ''); const up = stepOf(w, e, k, 1, eff[k] ?? ''); return (
