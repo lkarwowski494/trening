@@ -1,4 +1,4 @@
 /* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
 "CFBundleDisplayName" = "Treniņš";
-"NSHealthShareUsageDescription" = "Pulkstenis nolasa pulsu un aktīvo enerģiju notiekošā treniņa laikā. Dati netiek sūtīti ārpus tavu ierīču.";
+"NSHealthShareUsageDescription" = "Pulkstenis nolasa pulsu un aktīvo enerģiju notiekošā treniņa laikā. Dati netiek sūtīti ārpus jūsu ierīču.";
 "NSHealthUpdateUsageDescription" = "Pulkstenis saglabā pabeigto spēka treniņu ar pulsu un aktīvo enerģiju lietotnē Apple Health.";

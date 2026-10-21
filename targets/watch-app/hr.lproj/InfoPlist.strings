@@ -1,4 +1,4 @@
 /* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
 "CFBundleDisplayName" = "Trening";
-"NSHealthShareUsageDescription" = "Sat čita puls i aktivnu energiju tijekom treninga u tijeku. Podaci se ne šalju izvan tvojih uređaja.";
+"NSHealthShareUsageDescription" = "Sat čita puls i aktivnu energiju tijekom treninga u tijeku. Podaci se ne šalju izvan vaših uređaja.";
 "NSHealthUpdateUsageDescription" = "Sat sprema završeni trening snage, s pulsom i aktivnom energijom, u Apple Health.";

@@ -1,4 +1,4 @@
 /* Generowane: tests/watch-apple-i18n.test.ts (UPDATE_WATCH_APPLE=1) — nie edytuj ręcznie. */
 "CFBundleDisplayName" = "Treino";
-"NSHealthShareUsageDescription" = "O relógio lê a frequência cardíaca e a energia ativa durante o treino em curso. Os dados não são enviados para fora dos teus dispositivos.";
+"NSHealthShareUsageDescription" = "O relógio lê a frequência cardíaca e a energia ativa durante o treino em curso. Os dados não são enviados para fora dos seus dispositivos.";
 "NSHealthUpdateUsageDescription" = "O relógio guarda no Apple Health o treino de força terminado, com frequência cardíaca e energia ativa.";
