@@ -311,6 +311,20 @@ describe('regresja nocnego run 39537208004 (L-013): klawiatura schowana po wpisa
     expect(problems([...old.slice(0, 3), '- pressKey: Enter', old[3]]).bad).toEqual([]);
     expect(problems(['- tapOn: "Search exercises…"', '- inputText: "Hammer E2E"', '- extendedWaitUntil: { visible: "x", timeout: 1 }', '- tapOn: "Back"']).bad.length).toBe(1); /* także wyszukiwanie tylko z asercją */
   });
+  /* Pierwszy przebieg dowodowy na gałęzi (run 39578355425, 390 pt): po poprawce klawiatury wyszły trzy dalsze przyczyny małego ekranu — element przy dolnej krawędzi albo pod nią,
+   * a stuknięcie trafiało w pasek zakładek / panel nie był widoczny. Zrzuty: 32 — zakładka „More” po stuknięciu „Set 2 done”; 13 — edytor miejsca pod krawędzią; 08 — ⓘ zakresu przy krawędzi. */
+  test('08, 13, 32 (run 39578355425): stuknięcia przy dolnej krawędzi poprzedza przewinięcie z wyśrodkowaniem; „Remove place” i rozwinięty zakres szukane przewinięciem, nie samym oczekiwaniem', () => {
+    const s32 = stepsOf(join(dir, '32-regularny-uzytkownik.yaml')); const set2 = '- tapOn: { text: "Set 2 done — Bench Press \\\\(Dumbbell\\\\)" }';
+    const i = s32.indexOf(set2); expect(i).toBeGreaterThan(0);
+    expect(s32[i - 1]).toBe('- scrollUntilVisible: { element: "Set 2 done — Bench Press \\\\(Dumbbell\\\\)", direction: DOWN, timeout: 30000, centerElement: true }');
+    const s13 = stepsOf(join(dir, '13-kalendarz-plan.yaml'));
+    expect(s13.filter(l => /extendedWaitUntil: \{ visible: "Remove place"/.test(l))).toEqual([]);
+    expect(s13.filter(l => /^- scrollUntilVisible: \{ element: "Remove place", direction: DOWN, timeout: 30000, centerElement: true \}$/.test(l)).length).toBe(1);
+    const s08 = stepsOf(join(dir, '08-szablon-wiersze.yaml')); const tap = s08.findIndex(l => l === '- tapOn: { id: "info-range-.*" }');
+    expect(s08[tap - 1]).toBe('- assertNotVisible: "Rep range: 8.12 — when.*"'); expect(s08[tap - 2]).toMatch(/Range 8\.12: when all sets last time had\.\*", direction: DOWN, timeout: 30000, centerElement: true \}$/);
+    expect(s08[tap + 1]).toBe('- scrollUntilVisible: { element: "Rep range: 8.12 — when.*", direction: DOWN, timeout: 30000 }');
+    expect(s08.filter(l => /^- assertVisible: "Rep range: 8\.12/.test(l))).toEqual([]);
+  });
   /* 12 i 31: „Skip today” COMPLETED, a „skipped today” nie pojawia się na 390 pt. Hipoteza (zrzut 31: koniec listy bez wiersza): po zwinięciu ćwiczenia lista się skraca i przewija do końca,
    * wiersz leży nad ekranem — Maestro widzi tylko to, co na ekranie. Poprawka: wyśrodkowanie przed stuknięciem, zrzuty przed i po (rozstrzygną przy następnej porażce),
    * wiersz po stuknięciu wyszukiwany przewinięciem w górę (jak „Restore exercise” w 31, run 38363820424). */
