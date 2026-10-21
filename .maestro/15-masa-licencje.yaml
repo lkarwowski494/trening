@@ -31,7 +31,7 @@ name: Masa ciała z datą i licencje open source
 - tapOn: { id: "unit-system-kg" }
 - tapOn: "Back"  # jednostka ustawiona; pomiary wpisuje się teraz w Postępach (P5 A)
 - tapOn: "Progress, tab.*"
-- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000 }
+- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Body weight — measurements"
 - extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }
 # E2E 105: na wolnym symulatorze ginął znak „80” (38002403800, 38009269888 — zapisane 0, okno „must be greater than zero”; 38014484054 — 8 kg;

@@ -29,6 +29,7 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
   która ma „Weight unit” bez testID segmentu → porażka; 34 padł na „Pause workout”, bo 33 nie przygotował treningu w toku (skutek, nie osobna przyczyna).
   Ponadto 09 (po zmianie LOK-07 dystans w yd): klawiatura numeryczna została na ekranie, bo tekst karty „Change the values…” przy dwóch ćwiczeniach
   leży pod klawiaturą, a pasek zakładek jest zasłonięty → „Settings” nie pojawia się. 01: stuknięcie zakładki „More” zaraz po starcie zgubione (przeszło po ponowieniu).
+- **Dodatkowo (run 39427688524):** 32 padł na „Save measurement” — po scrollUntilVisible bez centerElement pozycja „Body weight — measurements” ledwie wystawała nad pasek zakładek i stuknięcie ją ominęło (zrzut: wciąż Progress); 29 miał już centerElement, 15/19/32/33 nie. Poprawione we wszystkich, strażnik w teście.
 - **Przyczyna źródłowa:** (1) test w Jest uruchamia 33 na BIEŻĄCYM UI, więc nie widzi, że etykiety starej wersji są inne; nic nie wiązało zmiany etykiety
   z listą scenariuszy, które działają na poprzedniej wersji. (2) interpreter szacuje układ i nie wykrył tekstu pod klawiaturą przy dwóch ćwiczeniach.
   (3) podprzepływ nie czekał na efekt stuknięcia zakładki (ta sama klasa co run 39185287611).

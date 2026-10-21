@@ -46,7 +46,7 @@ name: Aktualizacja — dane w poprzedniej wersji
 # --- masa ciała 80 kg (jak 15) ---
 - tapOn: "Progress, tab.*"
 - extendedWaitUntil: { visible: "Summary", timeout: 30000 }
-- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000 }
+- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Body weight — measurements"
 - extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }
 - retry:

@@ -1,5 +1,5 @@
 /**
- * Regresja po przebiegu E2E 39427683836 (audyt-m1, próba 17): trzy przyczyny po stronie scenariuszy.
+ * Regresja po przebiegach E2E 39427683836 (audyt-m1, próba 17) i 39427688524: trzy przyczyny po stronie scenariuszy.
  * Interpreter Jest nie odtwarza ich wprost (działa na bieżącym UI i szacuje układ), więc pilnujemy ich strażnikami na treści scenariuszy.
  */
 import { readFileSync } from 'fs';
@@ -41,4 +41,13 @@ describe('podprzepływ szablon-testowy — zakładka „More” po starcie', () 
     const s = bezKomentarzy(yaml('subflows/szablon-testowy.yaml'));
     expect(s).toMatch(/retry:[\s\S]*?tapOn: "More, tab\.\*"[\s\S]*?visible: "Templates"/);
   });
+});
+
+describe('run 39427688524 — „Body weight — measurements” w Postępach (32)', () => {
+  it.each(['15-masa-licencje.yaml', '19-zakladki.yaml', '29-bledne-dane.yaml', '32-regularny-uzytkownik.yaml', '33-aktualizacja-przygotuj.yaml'])(
+    '%s: przewijanie do pozycji centruje element (inaczej ląduje pod paskiem zakładek i stuknięcie je omija)', f => {
+      const l = bezKomentarzy(yaml(f)).split('\n').filter(x => x.includes('element: "Body weight — measurements"'));
+      expect(l.length).toBeGreaterThan(0);
+      for (const x of l) expect(x).toContain('centerElement: true');
+    });
 });

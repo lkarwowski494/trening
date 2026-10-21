@@ -130,7 +130,8 @@ name: Regularny użytkownik — historia, plan, restart, kopia
 # --- masa ciała (jak 15) i rekordy ---
 - tapOn: "Progress, tab.*"
 - extendedWaitUntil: { visible: "Summary", timeout: 30000 }
-- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000 }
+# run 39427688524 (32, zrzut: wciąż Progress, „Body weight” przy samym pasku zakładek): bez centerElement przewijanie kończy się, gdy element ledwie wystaje, a stuknięcie trafia w pasek — jak w 29
+- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Body weight — measurements"
 - extendedWaitUntil: { visible: "Save measurement", timeout: 30000 }
 - retry:
