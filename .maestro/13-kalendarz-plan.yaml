@@ -115,8 +115,8 @@ name: Kalendarz z planem tygodnia
 - extendedWaitUntil: { visible: "Workout place: Hotel", timeout: 15000 }  # „Przywróć z planu” też nie rusza miejsca
 # --- „Remove place” przywraca miejsce domyślne ---
 - tapOn: "More options"
-- tapOn: "Place for these days"
-- extendedWaitUntil: { visible: "Remove place", timeout: 15000 }
+- tapOn: "Place for these days"  # M3 p1 (M1-029): etykieta bez emoji 📍
+# L-013 (nocny run 39537208004, 390 pt): edytor miejsca otwiera się pod krawędzią ekranu — „Remove place” czeka przewinięcie (nie extendedWaitUntil na ekranie)
 - scrollUntilVisible: { element: "Remove place", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Remove place"
 - assertNotVisible: "Workout place: Hotel"

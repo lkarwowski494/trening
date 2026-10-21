@@ -22,6 +22,7 @@ name: Usuwanie przesunięciem w lewo i „Pomiń dziś”
 - tapOn: "Search exercises…"
 - inputText: "Back Squat"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 # run 38607952098: stuknięcie w wiersz „Back Squat” przy rozsuwającej się klawiaturze nie wybrało ćwiczenia (zrzut: wybór wciąż otwarty) — powtórka stuknięcia
 - retry:
     maxRetries: 2
@@ -58,10 +59,16 @@ name: Usuwanie przesunięciem w lewo i „Pomiń dziś”
 
 # --- „Pomiń dziś” ('Pomiń dziś' / 'pominięte dziś' / 'Przywróć'): blok zwija się do jednej linii; „Restore” go przywraca ---
 # przycisk ma etykietę VoiceOver „Skip today: Back Squat” — selektor z „.*” (lekcja z run 37600735711)
-- scrollUntilVisible: { element: "Skip today.*", direction: DOWN, timeout: 30000 }
+# L-013 (nocny run 39537208004, iPhone 17e 390 pt): stuknięcie „Skip today” COMPLETED, ale „skipped today” się nie pojawiło. Zrzut z 31 (ten sam mechanizm) pokazuje koniec listy bez
+# wiersza — po zwinięciu ćwiczenia lista się skraca i przewija do końca, wiersz zwinięty leży nad ekranem (hipoteza). Zrzuty przed i po stuknięciu rozstrzygną to w 12; wiersz
+# wyszukiwany przewinięciem w górę (jak „Restore” w 31, run 38363820424).
+- scrollUntilVisible: { element: "Skip today.*", direction: DOWN, timeout: 30000, centerElement: true }
+- takeScreenshot: 46a-przed-pominieciem
 - tapOn: "Skip today.*"
-- extendedWaitUntil: { visible: "skipped today", timeout: 15000 }
+- takeScreenshot: 46b-po-stukniecie-pomin
+- scrollUntilVisible: { element: "skipped today", direction: UP, timeout: 30000, centerElement: true }
 - assertNotVisible: "Set 1 done.*"
 - takeScreenshot: 46-pominiete-dzis
+- scrollUntilVisible: { element: "Restore exercise.*", direction: UP, timeout: 30000, centerElement: true }
 - tapOn: "Restore exercise.*"
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 15000 }

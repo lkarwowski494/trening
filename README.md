@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4816-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-4820-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-45-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -63,7 +63,7 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Funkcje biblioteki `lib/` | 907 (z testem: 907) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 116 (z testem: 116) | docs/19-macierz-testow.md |
 | Pliki testów Jest | 408 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 4816 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Przypadki testowe (statycznie) | 4820 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 152 (Maestro: 125, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 13) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 45 (w głównym przebiegu: 42, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -230,6 +230,8 @@ trening/
 ├── CLAUDE.md                 zasady pracy w repozytorium (obowiązują ludzi i agentów)
 ├── LICENSE                   prawa autorskie: wszelkie prawa zastrzeżone
 ├── README.md                 ten plik (bloki liczbowe generuje scripts/readme.mjs)
+├── README.md                 ten plik (bloki liczbowe generuje scripts/readme.mjs)
+├── README.md                 ten plik (bloki liczbowe generuje scripts/readme.mjs)
 ├── app.json                  konfiguracja aplikacji Expo (wersja, języki, uprawnienia, wtyczki)
 ├── babel.config.js           konfiguracja Babel
 ├── eas.json                  ustawienia narzędzi Expo (obraz SDK, wersja Node)
@@ -331,7 +333,7 @@ Workflowy (stan każdego z nich pokazują odznaki u góry dla trzech podstawowyc
 | `pages.yml` | Pages | wypchnięcie, ręcznie | publikacja strony (prywatność, wsparcie) |
 | `przeglad-tlumaczen.yml` | Przegląd tłumaczeń (API, ręcznie) | ręcznie | przegląd tłumaczeń treści krytycznej przez API Anthropic (ręcznie, płatny, limit kosztu) |
 | `store-screenshots.yml` | Zrzuty do App Store | ręcznie | zrzuty ekranu do App Store z symulatora (ręcznie) |
-| `testflight.yml` | TestFlight (testy wewnętrzne) | wypchnięcie, ręcznie | testy, build, podpis i wysyłka do TestFlight narzędziami Apple |
+| `testflight.yml` | TestFlight (testy wewnętrzne) | ręcznie | testy, build, podpis i wysyłka do TestFlight narzędziami Apple |
 | `tests-tz.yml` | tests-tz | harmonogram, ręcznie | testy w różnych strefach czasowych |
 | `tests.yml` | Testy (każde wypchnięcie) | wypchnięcie, ręcznie | pełne `npm run verify` przy każdym wypchnięciu |
 | `watch-sim.yml` | Zegarek — symulator | wypchnięcie, ręcznie | testy aplikacji na Apple Watch na symulatorze watchOS i zrzuty |

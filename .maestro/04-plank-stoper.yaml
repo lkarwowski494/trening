@@ -27,6 +27,7 @@ name: Plank ze stoperem
       - inputText: "k"
       - assertVisible: "Plank"  # wartość pola wyszukiwania (zgubiony znak = inny tekst)
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Plank, body weight"
 - extendedWaitUntil: { visible: "Start set stopwatch", timeout: 30000 }
 # Audyt 0.10 (LIVE-06, wariant A): karta „teraz” serii na czas — duży „▶ Start” ('Start stopera: {ex}, seria {n}') i mały

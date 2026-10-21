@@ -41,6 +41,7 @@ name: Po zmianie języka i wyglądu — praca po polsku i restart
 - tapOn: "Szukaj ćwiczenia…"
 - inputText: "Bench Press"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Bench Press \\(hantle\\), .*"
 - extendedWaitUntil: { visible: "Zapisz szablon", timeout: 30000 }
 - takeScreenshot: 109-szablon-po-polsku

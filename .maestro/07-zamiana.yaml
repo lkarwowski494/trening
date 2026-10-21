@@ -64,6 +64,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - tapOn: "Search exercises…"
 - inputText: "Bench"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Bench Press \\(Barbell\\),.*", timeout: 30000 }
 - tapOn: "Bench Press \\(Barbell\\),.*"
 - extendedWaitUntil: { visible: "no equipment at Home.*", timeout: 30000 }
@@ -101,6 +102,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - tapOn: "Search exercises…"
 - inputText: "Overhead Press"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Overhead Press \\(Barbell\\),.*", timeout: 30000 }
 - tapOn: "Overhead Press \\(Barbell\\),.*"
 - extendedWaitUntil: { visible: "Set 1 done — Overhead Press \\(Barbell\\)", timeout: 30000 }
