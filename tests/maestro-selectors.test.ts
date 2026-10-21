@@ -274,3 +274,53 @@ test('interpreter modeluje inset klawiatury tylko tam, gdzie aplikacja go ma (au
   /* założenie: edytor szablonu (tryb edycji) ma tę właściwość — w aplikacji lista da się przewinąć nad klawiaturę niezależnie od długości treści */
   expect(fs.readFileSync(path.join(__dirname, '..', 'app/template/[id].tsx'), 'utf8')).toMatch(/<ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive" automaticallyAdjustKeyboardInsets/);
 });
+
+/* Nocny pełny katalog 21.10.2026 (run 39537208004, iPhone 17e, 390 pt; L-013): po `inputText` w wyszukiwarce wyboru ćwiczenia klawiatura zostawała otwarta,
+ * a wiersz wyniku („Bench Press (Dumbbell), dumbbells”, w 07 „Bench Press (Barbell), …” pod chipem miejsca) leżał tuż nad nią albo pod nią —
+ * stuknięcie Maestro (w środek elementu) trafiało w klawiaturę. Na iPhone 17 (402×874) wiersz mieścił się nad klawiaturą, więc 21 scenariuszy było zielonych
+ * tylko na dużym ekranie. Reguła: między ostatnim `inputText` wyszukiwarki a następnym stuknięciem (poza „Continue” klawiatury) jest `pressKey: Enter`
+ * (klawisz „search” kończy edycję i chowa klawiaturę — tak samo jak po nazwie szablonu; `hideKeyboard` zostaje zakazany dla klawiatur bez akcji „schowaj”). */
+describe('regresja nocnego run 39537208004 (L-013): klawiatura schowana po wpisaniu w wyszukiwarce wyboru ćwiczenia', () => {
+  const SEARCH = /^- tapOn: "(?:Search exercises…|Szukaj ćwiczenia…)"/;
+  const stepsOf = (f: string) => readFileSync(f, 'utf8').split('\n').map(l => /^\s*-\s+(.*?)\s*(?:#.*)?$/.exec(l)?.[1]).filter((x): x is string => !!x).map(x => '- ' + x);
+  const isContinue = (s: string) => /^- tapOn: \{ text: "Continue", optional: true \}$/.test(s);
+  const problems = (list: string[]): { sites: number; bad: string[] } => {
+    const bad: string[] = []; let sites = 0;
+    list.forEach((s, i) => {
+      if (!SEARCH.test(s)) return;
+      /* ostatni inputText tej wyszukiwarki: kroki do następnego stuknięcia, które nie jest „Continue” */
+      let last = -1, end = list.length;
+      for (let k = i + 1; k < list.length; k++) {
+        if (/^- tapOn:/.test(list[k]) && !isContinue(list[k])) { end = k; break; }
+        if (/^- inputText:/.test(list[k])) last = k;
+      }
+      if (last < 0) return; sites++;
+      if (!list.slice(last + 1, end).some(x => x === '- pressKey: Enter')) bad.push(`${list[last]} (po ${s}) → następne stuknięcie: ${list[end] ?? '(koniec)'}`);
+    });
+    return { sites, bad };
+  };
+  test('każde wpisanie w wyszukiwarkę wyboru ćwiczenia kończy się „pressKey: Enter” przed stuknięciem wiersza (≥ 25 miejsc, także podprzepływ szablon-testowy)', () => {
+    let sites = 0; const bad: string[] = [];
+    for (const f of files(dir)) { const r = problems(stepsOf(f)); sites += r.sites; bad.push(...r.bad.map(b => `${f.split('/.maestro/')[1]}: ${b}`)); }
+    expect(sites).toBeGreaterThanOrEqual(25);
+    expect(bad).toEqual([]);
+  });
+  test('strażnik czerwienieje na dawnym kształcie (inputText → Continue → stuknięcie wiersza) i zieleni się po dodaniu Enter', () => {
+    const old = ['- tapOn: "Search exercises…"', '- inputText: "Bench Press"', '- tapOn: { text: "Continue", optional: true }', '- tapOn: "Bench Press \\\\(Dumbbell\\\\), dumbbells"'];
+    expect(problems(old).bad.length).toBe(1);
+    expect(problems([...old.slice(0, 3), '- pressKey: Enter', old[3]]).bad).toEqual([]);
+    expect(problems(['- tapOn: "Search exercises…"', '- inputText: "Hammer E2E"', '- extendedWaitUntil: { visible: "x", timeout: 1 }', '- tapOn: "Back"']).bad.length).toBe(1); /* także wyszukiwanie tylko z asercją */
+  });
+  /* 12 i 31: „Skip today” COMPLETED, a „skipped today” nie pojawia się na 390 pt. Hipoteza (zrzut 31: koniec listy bez wiersza): po zwinięciu ćwiczenia lista się skraca i przewija do końca,
+   * wiersz leży nad ekranem — Maestro widzi tylko to, co na ekranie. Poprawka: wyśrodkowanie przed stuknięciem, zrzuty przed i po (rozstrzygną przy następnej porażce),
+   * wiersz po stuknięciu wyszukiwany przewinięciem w górę (jak „Restore exercise” w 31, run 38363820424). */
+  test('12 i 31: „Skip today” — wyśrodkowanie i zrzut przed stuknięciem, zrzut po, „skipped today” przez przewinięcie w górę (nie samo oczekiwanie na ekranie)', () => {
+    for (const f of ['12-usuwanie-gestem.yaml', '31-pierwszy-tydzien.yaml']) {
+      const s = stepsOf(join(dir, f)); const tap = s.findIndex(l => /^- tapOn: "Skip today/.test(l)); expect({ f, tap: tap > 0 }).toEqual({ f, tap: true });
+      expect(s[tap - 1]).toMatch(/^- takeScreenshot: /); expect(s[tap - 2]).toMatch(/^- scrollUntilVisible: \{ element: "Skip today[^"]*", direction: DOWN, timeout: 30000, centerElement: true \}$/);
+      expect(s[tap + 1]).toMatch(/^- takeScreenshot: /);
+      expect(s[tap + 2]).toBe('- scrollUntilVisible: { element: "skipped today", direction: UP, timeout: 30000, centerElement: true }');
+      expect(s.filter(l => /extendedWaitUntil: \{ visible: "skipped today"/.test(l))).toEqual([]);
+    }
+  });
+});

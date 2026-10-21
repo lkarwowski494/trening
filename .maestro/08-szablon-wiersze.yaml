@@ -51,6 +51,7 @@ name: Szablon jak trening — wiersze serii, karty, start
 - tapOn: "Search exercises…"
 - inputText: "Bench Press"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Bench Press \\(Dumbbell\\), dumbbells"
 - extendedWaitUntil: { visible: "Bench Press \\(Dumbbell\\)", timeout: 30000 }
 - extendedWaitUntil: { visible: "\\+ set", timeout: 30000 }   # nowo dodane ćwiczenie — karta rozwinięta (decyzja 06.10.2026)
@@ -144,6 +145,7 @@ name: Szablon jak trening — wiersze serii, karty, start
 - tapOn: "Search exercises…"
 - inputText: "Bent Over Row"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Bent Over Row \\(Dumbbell\\), dumbbells"
 - extendedWaitUntil: { visible: "Bent Over Row \\(Dumbbell\\)", timeout: 30000 }
 - extendedWaitUntil: { visible: "Set 3, type: normal.*", timeout: 15000 }   # karta ćwiczenia 2 (3 zwykłe serie)

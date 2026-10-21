@@ -42,7 +42,12 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 - **Akcje:**
   1. Strażnik limitów wycina instrumentację Strykera (`bezInstrumentacji`) + test na przykładzie z `plan.ts:80`; dowód: `MUT_TESTS=limits-single-source npx stryker run --dryRunOnly` EXIT 0 („Initial test run succeeded”) — **zrobione** (gałąź `claude/optimistic-clarke-9tj0im`).
   2. Domyślny `NIGHTLY_REFS` = `["main"]` w `nightly.yml` i `tests-tz.yml`, strażnik w `tests/public-repo.test.ts` — **zrobione** (zmiana workflowu → PR do zatwierdzenia przez właściciela).
-  3. Scenariusze na małym ekranie: po `inputText` w wyszukiwarce wyboru ćwiczenia zamknięcie klawiatury przed stuknięciem wiersza (wspólny podprzepływ) + strażnik w `tests/maestro-selectors.test.ts`; 12 i 31 — zrzut przed stuknięciem — **w toku** (właściciel 21.10: teraz, równolegle z M3).
+  3. Scenariusze na małym ekranie: po `inputText` w wyszukiwarce wyboru ćwiczenia zamknięcie klawiatury przed stuknięciem wiersza + strażnik w `tests/maestro-selectors.test.ts`; 12 i 31 — zrzut przed stuknięciem — **w toku** (właściciel 21.10: teraz, równolegle z M3).
+     Stan (21.10.2026, gałąź `e2e-maly-ekran`): strażnik „każdy `inputText` po `tapOn` wyszukiwarki ma `pressKey: Enter` przed następnym stuknięciem (poza „Continue”)” (31 miejsc w 19 plikach, razem z `subflows/szablon-testowy.yaml`; czerwony przed poprawką)
+     + `pressKey: Enter` w 30 miejscach (klawisz „search” kończy edycję i chowa klawiaturę — wzorzec jak po nazwie szablonu; jedno wspólne wejście nie powstało, bo `runFlow` z `env:` nie jest obsługiwane przez interpreter
+     i nie da się go sprawdzić na Linuksie — strażnik pilnuje spójności zamiast kopiowania). 07, 08, 12 i podprzepływ obejmuje ta sama poprawka (07: wiersz pod chipem miejsca leży niżej niż w 08).
+     12 i 31: przyczyna `skipped today` — **hipoteza** (zrzut 31: koniec listy bez wiersza; po zwinięciu ćwiczenia lista się skraca i przewija do końca, wiersz leży nad ekranem): wyśrodkowanie + zrzuty przed i po stuknięciu
+     + `scrollUntilVisible … UP` zamiast czekania na ekranie; zrzuty rozstrzygną przy następnej porażce. Dowód na symulatorze: przebieg `e2e-ios.yml` na gałęzi (wynik niżej / w raporcie).
   4. Ciemny motyw w nocnym E2E rzeczywiście ciemny (ustawienie „Auto” na starcie albo osobny scenariusz) — **otwarte**.
   5. Mechanizm przeglądu nocy — właściciel 21.10: **B** (zgłoszenie z `nightly.yml`) — **w toku**.
   6. R-011: obraz macos-26 nie ma iPhone SE — właściciel 21.10: 390 pt wystarcza — **zrobione** (R-011 zamknięte).
