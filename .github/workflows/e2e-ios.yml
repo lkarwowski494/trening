@@ -16,7 +16,7 @@ on:
   # decyzja właściciela 06.10.2026 (wariant A): samoczynnie po wypchnięciu na main i gałęzie integracyjne (bez zmian tylko w dokumentacji)
   push:
     branches: [main, 'integration/**']
-    paths-ignore: ['docs/**', '**/*.md']
+    paths-ignore: ['docs/**', '**/*.md', 'tests/**', '.claude/**']
   workflow_dispatch:
     inputs:
       aplikacja_z_przebiegu:

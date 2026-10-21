@@ -116,7 +116,7 @@ name: Kalendarz z planem tygodnia
 # --- „Remove place” przywraca miejsce domyślne ---
 - tapOn: "More options"
 - tapOn: "📍 Place for these days"
-- extendedWaitUntil: { visible: "Remove place", timeout: 15000 }
+# L-013 (nocny run 39537208004, 390 pt): edytor miejsca otwiera się pod krawędzią ekranu — „Remove place” czeka przewinięcie (nie extendedWaitUntil na ekranie)
 - scrollUntilVisible: { element: "Remove place", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Remove place"
 - assertNotVisible: "Workout place: Hotel"
