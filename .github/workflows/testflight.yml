@@ -115,11 +115,11 @@ jobs:
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $((BUILD_BASE + GITHUB_RUN_NUMBER))" ios/Trening/Info.plist
       - name: Install pods
         run: cd ios && pod install
-      - name: Manifest prywatności (powstaje przy pod install; audyt M1-014 — brak kategorii to BŁĄD, DiskSpace dopisywany, bo ExpoFileSystem jest prekompilowany)
+      - name: Manifest prywatności (deklaracja w app.json ios.privacyManifests → prebuild → pod install; R-007 — brak kategorii to BŁĄD, nic nie jest dopisywane w CI)
         run: |
           set -o pipefail
           files=$(ls ios/*/PrivacyInfo.xcprivacy 2>/dev/null) || { echo "::error::Brak PrivacyInfo.xcprivacy po pod install (docs/25 NAT-04)"; exit 1; }
-          node scripts/ci/ensure-privacy-manifest.mjs --fix $files
+          node scripts/ci/ensure-privacy-manifest.mjs --check $files
       - name: Platforma iOS zgodna z SDK wybranego Xcode (pobranie tylko, gdy jej brak)
         run: bash scripts/ci/ensure-ios-platform.sh
       - name: Archiwum (bez podpisu — podpis dystrybucyjny dopiero przy eksporcie, 13.10.2026; uprawnienia osadza następny krok, 14.10.2026)

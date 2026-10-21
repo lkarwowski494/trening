@@ -9,6 +9,7 @@ import { spawnSync } from 'child_process';
 const root = join(__dirname, '..');
 const HAK = join(root, 'scripts/hooks/pre-push');
 const INSTALATOR = join(root, 'scripts/hooks/instaluj.mjs');
+const SPRAWDZ = join(root, 'scripts/hooks/sprawdz-instalacje.mjs');
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 const hakTekst = () => readFileSync(HAK, 'utf8');
 const bezKomentarzy = (s: string) => s.split('\n').filter(l => !/^\s*#/.test(l)).join('\n');
@@ -38,7 +39,7 @@ function repoProbne(): { dir: string; zdalne: string } {
   expect(git(zdalne, ['init', '--bare', '-q']).status).toBe(0);
   expect(git(dir, ['init', '-q', '-b', 'main']).status).toBe(0);
   mkdirSync(join(dir, 'scripts/hooks'), { recursive: true });
-  for (const f of ['pre-push', 'instaluj.mjs']) copyFileSync(join(root, 'scripts/hooks', f), join(dir, 'scripts/hooks', f));
+  for (const f of ['pre-push', 'instaluj.mjs', 'sprawdz-instalacje.mjs']) copyFileSync(join(root, 'scripts/hooks', f), join(dir, 'scripts/hooks', f));
   copyFileSync(join(root, 'scripts/verify-docs.mjs'), join(dir, 'scripts/verify-docs.mjs'));
   chmodSync(join(dir, 'scripts/hooks/pre-push'), 0o755);
   writeFileSync(join(dir, 'plik.txt'), '1\n');
@@ -252,5 +253,56 @@ describe('polecenia agentów, które wypychają: krok o wyniku tests.yml po wypc
     });
     const WYJATKI: Record<string, string> = { audytor: 'przegląd tylko do odczytu, niczego nie wypycha' };
     expect(zBash.filter(r => !WYPYCHAJA.includes(r) && !(r in WYJATKI))).toEqual([]);
+  });
+});
+
+/* L-014 (akcja 4): `npm run verify` zaczyna się od sprawdzenia, że hak jest zainstalowany (npm ci --ignore-scripts go nie instaluje). */
+describe('verify sprawdza zainstalowany hak pre-push (L-014)', () => {
+  const sprawdz = (dir: string, env: NodeJS.ProcessEnv = bezCI()) => spawnSync(process.execPath, [join(dir, 'scripts/hooks/sprawdz-instalacje.mjs')], { cwd: dir, env, encoding: 'utf8' });
+  test('pierwszy krok skryptu verify to sprawdzenie haka, przed typecheck', () => {
+    expect(pkg.scripts.verify.startsWith('node scripts/hooks/sprawdz-instalacje.mjs && npm run typecheck')).toBe(true);
+    expect(existsSync(SPRAWDZ)).toBe(true);
+  });
+  test('hak niezainstalowany: kod 1 i polecenie instalacji', () => {
+    const { dir } = repoProbne();
+    const r = sprawdz(dir);
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain('node scripts/hooks/instaluj.mjs');
+    expect(r.stderr).toMatch(/--ignore-scripts/);
+  });
+  test('hak zainstalowany (core.hooksPath = scripts/hooks): kod 0', () => {
+    const { dir } = repoProbne();
+    zainstaluj(dir);
+    expect(sprawdz(dir).status).toBe(0);
+  });
+  test('po poleceniu z komunikatu sprawdzenie przechodzi', () => {
+    const { dir } = repoProbne();
+    expect(sprawdz(dir).status).toBe(1);
+    expect(zainstaluj(dir).status).toBe(0);
+    expect(sprawdz(dir).status).toBe(0);
+  });
+  test('hak skopiowany do .git/hooks też się liczy', () => {
+    const { dir } = repoProbne();
+    mkdirSync(join(dir, '.git/hooks'), { recursive: true });
+    copyFileSync(join(dir, 'scripts/hooks/pre-push'), join(dir, '.git/hooks/pre-push'));
+    expect(sprawdz(dir).status).toBe(0);
+  });
+  test('cudzy core.hooksPath bez haka: kod 1', () => {
+    const { dir } = repoProbne();
+    git(dir, ['config', '--local', 'core.hooksPath', '.cudze-haki']);
+    expect(sprawdz(dir).status).toBe(1);
+  });
+  test('worktree współdzieli konfigurację: sprawdzenie przechodzi także tam', () => {
+    const { dir } = repoProbne();
+    zainstaluj(dir);
+    const wt = join(nowyKatalog('hak-wt2-'), 'wt');
+    expect(git(dir, ['worktree', 'add', '-q', '-b', 'f', wt]).status).toBe(0);
+    expect(sprawdz(wt).status).toBe(0);
+  });
+  test('w CI (zmienna CI) pomija z komunikatem, kod 0', () => {
+    const { dir } = repoProbne();
+    const r = sprawdz(dir, { ...bezCI(), CI: 'true' });
+    expect(r.status).toBe(0);
+    expect(r.stdout + r.stderr).toMatch(/CI/);
   });
 });
