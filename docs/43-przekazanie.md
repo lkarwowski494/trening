@@ -80,13 +80,14 @@ Przegląd co godzinę (zaplanowane zadanie „Trening: koordynator — przegląd
 |---|---|---|---|---|
 | 1 | Scenariusze E2E na iPhone 17e (klawiatura nad wierszem wyniku; 12, 31) + strażnik + przebieg dowodowy | tester-e2e / sonnet | `.maestro/`, `tests/maestro-*` | w toku (gałąź `e2e-maly-ekran`) |
 | 2 | Zgłoszenie (issue) z czerwonej nocy + przebieg dowodowy | programista / sonnet | `nightly.yml`, `scripts/ci/nocny-raport.mjs`, `tests/nocny-raport*` | w toku (gałąź `nocny-raport`; PR z workflowem → zgoda właściciela) |
-| 3 | Przegląd ok. 36 wpisów rejestru twierdzeń (T-001–T-038), T-003 | badacz-merytoryczny / opus | `docs/research/` | w toku (raport, bez zmian tekstów — M3) |
+| 3 | Przegląd ok. 36 wpisów rejestru twierdzeń (T-001–T-038), T-003 | badacz-merytoryczny / opus | `docs/research/` | **zrobione 21.10** (912c123: 34 potwierdzone, 3 do zmiany brzmienia T-002/T-003/T-032; T-041 Helms i in. 2016 + wzorzec cytatu „i in. RRRR” w `claims.mjs`) |
 | 4 | Ciemny motyw w nocnym E2E rzeczywiście ciemny (L-013 akcja 4) | tester-e2e / sonnet | `.maestro/`, `e2e-ios.yml` | czeka na 1 i 2 (te same pliki) |
-| 5 | Wdrożenie brzmień z przeglądu badacza (3) w 35 językach + `claims.mjs --rehash` | tlumacz / sonnet | `lib/i18n*`, `lib/locales/` | czeka na 3 i na M3 (teksty UI) |
+| 5 | Wdrożenie brzmień z przeglądu badacza: T-002, T-003, T-032 (+ opcjonalnie T-021, komentarz T-008) w 35 językach + `claims.mjs --rehash` (raport `docs/research/przeglad-badacza-2026-10-21b.md`) | tlumacz / sonnet | `lib/i18n*`, `lib/locales/` | czeka na scalenie M3 (teksty UI) |
 | 6 | Powtórny przegląd tłumaczeń przez API (asekuracja, R1 + nowe teksty M3) | koordynator (workflow) | — | po M3 (jeden przebieg dla wszystkich nowych zdań) |
 | 7 | Przebiegi dowodowe przed App Store: 3 czyste noce pełnego katalogu (tryb ścisły), strefy (`tests-tz.yml`) | koordynator | — | po 1, 2 i 4 |
 | 8 | Hak pre-push (L-009, decyzja właściciela otwarta) | programista / sonnet | `scripts/hooks/` | decyzja właściciela |
 | 9 | Po TestFlight: lista „telefon zaraz po buildzie” (R-004 i lista „tylko telefon”) | koordynator → właściciel | — | po buildzie z main 8763e58 |
+| — | **Obszar M3** (gałąź `redesign/trening-2026-10-21`, partie p1–p6): `app/`, `components/`, `lib/` (theme, ekrany, teksty, słowniki), ikony, zegarek, `docs/design/`, `docs/32`, `docs/m3-stan.md`; scenariusze `.maestro/` po scaleniu main (ustalone z M3 21.10) | M3 | — | koordynator tu nie wchodzi |
 | 10 | Po M3: reaudyt końcowy M1 (z LOK-07), zrzuty i opis sklepu, App Store Connect, migracja do Apps4Brew, 1.0 | M1 / wydawca / właściciel | — | po M3 |
 
 ## Zasady pracy obowiązujące (skrót; pełne w CLAUDE.md i docs/18)

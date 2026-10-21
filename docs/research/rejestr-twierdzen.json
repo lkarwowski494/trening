@@ -594,6 +594,22 @@
    "dokument": "docs/research/przeglad-badacza-2026-10-21.md",
    "fraza": "Standard 3.2",
    "przeglad": "21.10.2026: badacz-merytoryczny — NSCA 2017, Standard 3.2 (szczebel 2): sprzęt asekuracyjny i osoba asekurująca łącznie; przeniesienie na trening samodzielny = uproszczenie; docs/research/przeglad-badacza-2026-10-21.md"
+  },
+  {
+   "id": "T-041",
+   "kotwica": "RIR wpisuje się w zakresie 0–{max}; więcej niż {",
+   "skrot": "61e0dca28c",
+   "skrotEn": "5af8327549",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "zrodla": [
+    "Helms i in. 2016 (Strength Cond J 38(4):42–49, PMC4961270)"
+   ],
+   "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
+   "fraza": "Helms i in. 2016",
+   "uwaga": "Opis skali RIR/RPE według jej autorów (definicja skali, nie wynik badań nad skutkami) — jedno źródło wystarcza dla definicji; zgodne z RIR_MAX = 5, RPE_LIGHT = 4.",
+   "przeglad": "21.10.2026: badacz-merytoryczny — Helms i in. 2016 (Z11): opisy RIR dla 5–10, opisy wysiłku dla 1–4; RPE 3–4 = light effort; docs/research/przeglad-badacza-2026-10-21b.md"
   }
  ]
 }
