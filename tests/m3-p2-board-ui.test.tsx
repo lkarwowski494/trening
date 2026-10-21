@@ -149,11 +149,11 @@ describe('ZM-01: pola serii (bez dotyku)', () => {
 });
 
 describe('ZM-05: seria na czas — jedna nazwa „Zakończ serię” na tablicy i w dolnym pasku', () => {
-  test('bez pomiaru: „▶ Start” i „Odhacz bez pomiaru”; w trakcie pomiaru na tablicy i w pasku ten sam tytuł, różne etykiety VoiceOver', async () => {
+  test('bez pomiaru: „▶ Start” i „Odhacz bez pomiaru”; w trakcie pomiaru jeden przycisk „Zakończ serię” (na tablicy; pasek tylko w widoku listy — 04-studio-projektowe-005)', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Plank')); const a = S().active!; A().exercises[0].sets[0].durationSec = 30; await boot();
     expect(screen.getByTestId('focus-start')).toBeTruthy(); expect(screen.getByLabelText(/^Odhacz bez pomiaru: Plank/)).toBeTruthy(); expect(screen.queryByText('Zakończ serię')).toBeNull();
     await tap(screen.getByTestId('focus-start')); await flushAll(20); expect(timer.S.on).toBe(true);
-    expect(screen.getAllByText('Zakończ serię')).toHaveLength(2); expect(screen.getByLabelText('Zakończ serię')).toBeTruthy(); expect(screen.getByLabelText(/^Zakończ serię: Plank, seria 1/)).toBeTruthy();
+    expect(screen.getAllByText('Zakończ serię')).toHaveLength(1); /* 04-studio-projektowe-005 (zmiana oczekiwania, było 2): w widoku tablicy dolny pasek stopera nie dubluje przycisku z tablicy */ expect(screen.queryByLabelText('Zakończ serię')).toBeNull(); expect(screen.getByLabelText(/^Zakończ serię: Plank, seria 1/)).toBeTruthy();
     await tap(screen.getByTestId('focus-finish-set')); await flushAll(30); expect(timer.S.on).toBe(false); expect(A().exercises[0].sets[0].done).toBe(true);
   });
   test('„Odhacz bez pomiaru” bez czasu: kursor w polu czasu, seria nie odhaczona (jak ciężar)', async () => {

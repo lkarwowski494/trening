@@ -195,7 +195,7 @@ export default function ActiveWorkout() {
         {/* tylko build E2E z udawanym zegarkiem (lib/watch/test-mode.ts); poza nim null */}
         <TestWatchPanel />
       </ScrollView>
-      <TimerBar onFinishSet={() => finishTimedSet()} restInCard={board && !restOff} />
+      <TimerBar onFinishSet={() => finishTimedSet()} restInCard={board && !restOff} boardSetId={board ? () => { const p = focusSet(w); return p ? w.exercises[p.ei].sets[p.si].id : undefined; } : undefined} />
     </View>
   );
 }
@@ -295,10 +295,12 @@ function RestNotices({ perm, setPerm }: { perm: ReminderPermission | null; setPe
 }
 
 /** Dolny pasek: stoper serii czasowej (gdy trwa) albo timer przerwy. Odświeża się sam (250 ms), bez reszty ekranu. */
-function TimerBar({ onFinishSet, restInCard }: { onFinishSet: () => void; restInCard?: boolean }) {
+/** `boardSetId` (widok tablicy): id serii pokazanej na tablicy — pomiar tej serii kończy się przyciskiem na tablicy, więc pasek go nie dubluje (04-studio-projektowe-005). */
+function TimerBar({ onFinishSet, restInCard, boardSetId }: { onFinishSet: () => void; restInCard?: boolean; boardSetId?: () => string | undefined }) {
   const t = useTheme(); const [, force] = useState(0); const { width } = useWindowDimensions(); const big = width < 360 ? 28 : 34;
   useEffect(() => timer.subscribe(() => force(x => x + 1)), []);
   useEffect(() => { const i = setInterval(() => { if (timer.S.on || timer.T.on) force(x => x + 1); }, 250); return () => clearInterval(i); }, []);
+  if (timer.S.on && boardSetId && boardSetId() === timer.S.setId) return null;
   if (timer.S.on) {
     const el = timer.setElapsed(); const target = timer.S.targetSec; const left = target - el; const over = target > 0 && left <= 0;
     const txt = target > 0 ? (over ? '+' + fmtSec(-left) : fmtSec(left)) : fmtSec(el);

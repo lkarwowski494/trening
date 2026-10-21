@@ -98,3 +98,18 @@ describe('04-studio-projektowe-004: kontur pola czekającego widoczny w każdej 
     for (const [n, p] of [['jasny', light], ['ciemny', dark], ['jasny HC', lightHC], ['ciemny HC', darkHC]] as [string, any][]) expect([n, ratio(p.boardMuted, p.board) >= 3]).toEqual([n, true]);
   });
 });
+
+describe('04-studio-projektowe-005: seria na czas — dokładnie jeden „Zakończ serię”', () => {
+  const run = async (view: 'focus' | 'list') => {
+    await fresh(); S().settings.workoutView = view; store.startEmpty(); store.addExerciseToActive(ex('Plank')); S().active!.exercises[0].sets[0].durationSec = 30;
+    await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(20);
+  };
+  test('widok tablicy: po Start jest jeden przycisk (na tablicy), a „Zakończ serię” kończy pomiar', async () => {
+    await run('focus'); await tap(screen.getByTestId('focus-start')); await flushAll(20); expect(timer.S.on).toBe(true);
+    expect(screen.getAllByText('Zakończ serię')).toHaveLength(1); expect(screen.getByTestId('focus-finish-set')).toBeTruthy();
+  });
+  test('widok listy: pasek stopera jest jedynym przyciskiem „Zakończ serię” (bez tablicy)', async () => {
+    await run('list'); await tap(screen.getByLabelText(/Start/)); await flushAll(20);
+    if (!timer.S.on) await tap(screen.getAllByText(/^▶/)[0]); await flushAll(20); expect(timer.S.on).toBe(true); expect(screen.getAllByText('Zakończ serię')).toHaveLength(1); expect(screen.queryByTestId('focus-finish-set')).toBeNull();
+  });
+});
