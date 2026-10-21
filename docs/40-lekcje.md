@@ -23,6 +23,30 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 | R-011 | M1-058: `scripts/ci/sim-wybor.mjs` w obu krokach „Simulator” `e2e-ios.yml` (Node na maszynie macOS, format listy `simctl`); nie wiadomo, czy obraz macos-26 ma iPhone SE (375 pt) — bez niego „mały ekran” zostaje 390 pt (16e/17e), a log pokaże to wprost | przebieg `e2e-ios.yml` z wejściem `urzadzenie` jak w `nightly.yml` i `tylko_scenariusze: 01`: w logu „Ekran: … szerokość ekranu N pt”; decyzja co do braku SE (właściciel) | **otwarte** — przebieg dowodowy do zlecenia (raport M2, partia 4)
 | R-012 | M1-062 (DEC-27): test aktualizacji bierze poprzednią wersję z pliku wydania `Trening-sim.zip`; zadanie „tag” w `testflight.yml` ma go dołączać (pobranie artefaktu `trening-sim-app` z zielonego przebiegu E2E, `gh release upload`), a `poprzednia-wersja.sh` pobierać na GitHub Actions. Linux tego nie sprawdzi; do czasu pierwszego wydania z plikiem E2E z testem aktualizacji kończy się błędem (zamierzone) | dowód 1: plik `Trening-sim.zip` dołączony ręcznie do istniejącego wydania + `e2e-ios.yml` (pakiet podstawowy) zielony z logiem „Poprzednia wersja (plik wydania): <tag>” i wersją oraz buildem obu aplikacji; dowód 2: pierwsze prawdziwe wydanie TestFlight — krok „Plik wydania Trening-sim.zip” zielony, wydanie ma plik | **otwarte** — przebieg dowodowy do zlecenia (raport M2, partia 4)
 
+## L-013 (21.10.2026) — nocny przebieg czerwony od 16.10 bez reakcji: mutacje nie mierzą się, martwa gałąź w liście nocnej, E2E 17e pada deterministycznie
+
+- **Co się stało:** przegląd nocnego przebiegu (run 39537208004, main 0fd4687; tester-e2e) — trzy niezależne przyczyny:
+  (1) **mutacje (main)** padają w dry-run Strykera po ~2 min: strażnik `tests/limits-single-source.test.ts` (M1-053, 20.10) szuka literału 1800 w `lib/`,
+  a Stryker instrumentuje `lib/` i wstawia id mutantów jako liczby (`stryMutAct_9fa48("1800")` w `plan.ts:80`) — fałszywe trafienie; pomiaru siły testów brak;
+  (2) **mutacje i strefy na `feature/e2-swap`** — gałąź scalona w PR #13 dalej w domyślnym `NIGHTLY_REFS` (`nightly.yml`, `tests-tz.yml`), jej stary kod pada;
+  (3) **E2E pełny katalog na iPhone 17e (390 pt)** — 21 scenariuszy pada dwa razy na „Bench Press (Dumbbell)” w podprzepływie `szablon-testowy.yaml`
+  (wiersz wyników tuż nad klawiaturą, stuknięcie trafia w klawiaturę), plus 07, 12, 31 (do potwierdzenia zrzutem). Na iPhone 17 (pakiet podstawowy) te same zielone.
+  Ponadto: zadanie `e2e-maly-ekran-ciemny` w praktyce testuje **jasny** motyw (ustawienie aplikacji `theme: 'light'` po czystej instalacji przesłania wygląd systemu).
+- **Przyczyna źródłowa:** (a) zasada „przegląd nocy zbiorczo raz dziennie” (CLAUDE.md, 19.10) jest postanowieniem bez mechanizmu — przy pracy nad M2 i przekazaniu konta
+  nikt nie przeglądał nocy; czerwień od 16.10 nie miała właściciela; (b) strażnik z 20.10 nie był uruchomiony pod Strykerem (verify go nie uruchamia);
+  (c) lista nocnych gałęzi to stała w workflowie, nie wynika z tego, które gałęzie żyją; (d) scenariusze pisane i sprawdzane tylko na iPhone 17.
+- **Ocena zakresu: systemowa** (sygnał nocny ignorowany = brak bramki „3 czyste noce” przed App Store; licznik dziś 0).
+  Opcje dla właściciela: (A) koordynator na początku każdej sesji czyta wynik ostatniej nocy (krok w docs/43 „Zasady pracy”) — tanie, ale znów postanowienie;
+  (B) zadanie zbiorcze w `nightly.yml`, które przy czerwieni otwiera/aktualizuje jedno zgłoszenie (issue) z listą porażek — mechanizm, sygnał w GitHubie i w powiadomieniach;
+  (C) zaplanowane zadanie Claude raz dziennie (przegląd nocy, raport) — mechanizm, ale zużywa limit. Rekomendacja: B (+A jako uzupełnienie).
+- **Akcje:**
+  1. Strażnik limitów wycina instrumentację Strykera (`bezInstrumentacji`) + test na przykładzie z `plan.ts:80`; dowód: `MUT_TESTS=limits-single-source npx stryker run --dryRunOnly` EXIT 0 („Initial test run succeeded”) — **zrobione** (gałąź `claude/optimistic-clarke-9tj0im`).
+  2. Domyślny `NIGHTLY_REFS` = `["main"]` w `nightly.yml` i `tests-tz.yml`, strażnik w `tests/public-repo.test.ts` — **zrobione** (zmiana workflowu → PR do zatwierdzenia przez właściciela).
+  3. Scenariusze na małym ekranie: po `inputText` w wyszukiwarce wyboru ćwiczenia zamknięcie klawiatury przed stuknięciem wiersza (wspólny podprzepływ) + strażnik w `tests/maestro-selectors.test.ts`; 12 i 31 — zrzut przed stuknięciem — **otwarte** (decyzja właściciela: teraz czy po M3).
+  4. Ciemny motyw w nocnym E2E rzeczywiście ciemny (ustawienie „Auto” na starcie albo osobny scenariusz) — **otwarte**.
+  5. Mechanizm przeglądu nocy (opcja A/B/C) — **otwarte, decyzja właściciela**.
+  6. R-011: obraz macos-26 nie ma iPhone SE — najwęższy dostępny to 17e (390 pt, log „Ekran: iPhone 17e — szerokość ekranu 390 pt”) — **decyzja właściciela** (R-011 w rejestrze).
+
 ## L-012 (21.10.2026) — czerwony tests.yml na main: losowe id ćwiczenia zaczęło się od „8432”, liczby szukanej przez niezmiennik Zdrowia
 
 - **Co się stało:** `tests.yml` na main po scaleniu PR #16 (run 39549939632, d171db1) czerwony: `tests/health-query.test.ts`, niezmiennik (a)

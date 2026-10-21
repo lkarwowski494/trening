@@ -1,6 +1,6 @@
 # Nocny przebieg testów (polecenie właściciela 06.10.2026: „jeżeli nic nas nie kosztują, warto robić jak najpełniejsze i testować wszystko”).
 # Repozytorium publiczne (ADR-031): standardowe maszyny GitHuba (także macOS) bez opłat i bez limitu minut. Artefakty 1 dzień.
-# Co noc na gałęziach z listy NIGHTLY_REFS (zmienna repozytorium, JSON; domyślnie main i gałąź wydania — audyt TST-01: wcześniej tylko
+# Co noc na gałęziach z listy NIGHTLY_REFS (zmienna repozytorium, JSON; domyślnie main — dawna gałąź wydania scalona w PR #13, usunięta z listy 21.10.2026; audyt TST-01: wcześniej tylko
 # gałąź domyślna, więc kod idący do wydania nie był sprawdzany); ręcznie (Run workflow) na wybranej gałęzi. E2E nocą tylko na gałęzi domyślnej:
 #   1. losowe sekwencje działań z nowym ziarnem i 10× więcej przebiegów niż przy każdym commicie (ziarno w logu — do odtworzenia);
 #      pełny zestaw z losowym ziarnem testów własności fast-check (PROP_SEED=random; przy każdym wypchnięciu — stałe, TST2-07),
@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main","feature/e2-swap"]') || format('["{0}"]', github.ref_name)) }}
+        ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main"]') || format('["{0}"]', github.ref_name)) }}
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v5
@@ -45,7 +45,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main","feature/e2-swap"]') || format('["{0}"]', github.ref_name)) }}
+        ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main"]') || format('["{0}"]', github.ref_name)) }}
     timeout-minutes: 300
     steps:
       - uses: actions/checkout@v5
