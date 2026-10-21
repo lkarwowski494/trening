@@ -25,10 +25,15 @@ Ten dokument jest jedynym miejscem, w którym zapisane są kwoty i liczby modelu
 Zakupy są za przełącznikiem: `PAYWALL.ENABLED = false` (`lib/access.ts`), więc bieżący TestFlight działa bez limitu i bez ekranu zakupu. Włączenie = zmiana tej stałej + wydanie.
 Blok cenowy w opisie sklepu (docs/15) wstawia się dopiero z działającym zakupem.
 
-## Bramka W0
+## Bramka W0 — opłacalność (21.10.2026)
 
-Wynik bramki W0: **brak** (decyzja właściciela K-P4-3, 20.10.2026; zostaje **[DO USTALENIA]**) — w repozytorium nie ma zapisanego wyniku ani opisu bramki (materiały roli 02 leżą poza repozytorium, u właściciela). Wpisać wynik z datą i źródłem, gdy właściciel go dostarczy;
-informacja nie zmienia modelu.
+Bramkę przeprowadziła rola 02 (moduł „opłacalność”) 21.10.2026 na prośbę właściciela; zastępuje wcześniejszy zapis „brak” (K-P4-3). Raport i dane źródłowe (oceny konkurentów, ceny, kursy) są poza repozytorium, w katalogu przebiegu M3 u właściciela.
+
+- **Próg:** 500 USD netto/rok globalnie (po prowizji i VAT; decyzja właściciela 21.10.2026). Koszty pieniężne aplikacji: 0 USD (opłata Apple Developer to koszt portfela).
+- **Wynik (sam iOS, model stały):** pesymistyczny ok. 4 USD · normalny ok. **570 USD** · optymistyczny ok. 23 tys. USD/rok → werdykt **wydać**, ale tuż nad progiem. Wynik normalny przeliczony niezależnie przez weryfikatora (zgodny).
+- **Wrażliwość:** spadek o 25% jednego z głównych założeń (instalacje na ocenę, udział nowej aplikacji w ocenach kategorii, konwersja pobranie → płacący) daje ok. 427 USD („przerobić”). Instalacje na ocenę to założenie bez benchmarku (rozrzut 10×); konwersja z jednego raportu branżowego (szczebel 4) — oznaczenie „jedno źródło”.
+- **Prowizja:** liczona 15% (Small Business Program; zgłoszenie złożone 14.10.2026, docs/18). Przy 30% wynik normalny ok. 469 USD. Potwierdzenie przyjęcia przez Apple — krok właściciela.
+- **Punkt kontrolny (decyzja właściciela 21.10.2026):** po 8 tygodniach od premiery w App Store Connect (Analityka): **≥ ok. 310 pobrań miesięcznie** albo tempo **≥ 75 płacących rocznie**. Poniżej — przegląd modelu dotarcia i zakresu (nie cen; model stały). Ten sam termin co decyzja o Androidzie (DEC-26).
 
 ## Historia (nieaktualne kwoty)
 
