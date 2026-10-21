@@ -95,5 +95,26 @@ Odczyt 21.10.2026, iTunes Search API (`country=pl`), frazy: „dziennik treningo
 - Zmiana znaczenia świateł (M2: biały = „zrobione”, nie „zaliczone przez sędziego”) to uproszczenie i analogia — jeśli kierunek B wygra, tekst w aplikacji nie może sugerować oceny techniki (rejestr twierdzeń, `npm run check:claims`).
 - Sygnał 30 s przed końcem przerwy (M5/A) to analogia do zegara zawodów, nie zalecenie treningowe — przy wdrożeniu jako „konwencja”.
 
-## 6. Test generyczności
-Karty kontrolne (a) i (b) oraz porównanie pole po polu powstają na początku E2, przed kartami kierunków (procedura roli 04, E2 pkt 2).
+## 6. Test generyczności — karty kontrolne (E2 krok 2, napisane 21.10.2026 przed kartami kierunków)
+
+Karty kontrolne opisują, co powstałoby bez wiedzy o dziedzinie. Napisane przed kartami kierunków i bez patrzenia na nie (procedura roli 04, E2 pkt 2). Porównanie pole po polu: `docs/design/kierunki/README.md` i strona `docs/design/porownanie.html`.
+
+### Karta kontrolna (a) — dziennik siłowni bez wiedzy o dziedzinie
+- **Idea:** „śledź treningi, bij rekordy”.
+- **Element firmowy:** pierścień postępu treningu i płomień serii dni z rzędu.
+- **Paleta:** tło prawie czarne `#0E0E10`, karty `#1C1C1E`, akcent kwasowa limonka `#C6FF3D`, tekst biały, zieleń odhaczenia `#34C759`.
+- **Kroje:** tytuły Inter albo Space Grotesk Bold, kursywa wersalikami w hasłach; liczby w kroju mono.
+- **Układ:** duża liczba (objętość) + mała etykieta + trzy kafelki statystyk; pod spodem tabela serii „# / poprzednio / kg / powt. / ✓” z zielonym wierszem po odhaczeniu.
+- **Ruch:** każdy kafelek wjeżdża „fade + slide up”; konfetti przy rekordzie.
+- **Głos:** „Dawaj! Nowy rekord!”, „Ups, coś poszło nie tak”, „Brak treningów — czas zacząć!”.
+- **Ikona:** hantel pod kątem na gradiencie.
+
+### Karta kontrolna (b) — inna dziedzina, podobny przepływ (tryb gotowania krok po kroku z minutnikiem)
+- **Idea:** „jeden krok na raz”.
+- **Element firmowy:** okrągły minutnik z wycinkiem, który maleje.
+- **Paleta:** kremowe tło `#F4F1EA`, terakota `#D97757`, oliwka `#6B7A4B`, tusz `#2A2522`.
+- **Kroje:** kontrastowy szeryf na tytuły, sans na treść.
+- **Układ:** karta bieżącego kroku na całą szerokość, poprzedni i następny jako paski; przesunięcie w bok przechodzi dalej; ✓ na końcu kroku.
+- **Ruch:** wycinek minutnika obraca się płynnie; karta zjeżdża w bok.
+- **Głos:** „Gotowe! Smacznego”, „Coś przypaliło się po naszej stronie”, „Tu będą twoje przepisy”.
+- **Ikona:** minutnik albo łyżka na kremowym tle.
