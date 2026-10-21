@@ -23,6 +23,21 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 | R-011 | M1-058: `scripts/ci/sim-wybor.mjs` w obu krokach „Simulator” `e2e-ios.yml` (Node na maszynie macOS, format listy `simctl`); nie wiadomo, czy obraz macos-26 ma iPhone SE (375 pt) — bez niego „mały ekran” zostaje 390 pt (16e/17e), a log pokaże to wprost | przebieg `e2e-ios.yml` z wejściem `urzadzenie` jak w `nightly.yml` i `tylko_scenariusze: 01`: w logu „Ekran: … szerokość ekranu N pt”; decyzja co do braku SE (właściciel) | **otwarte** — przebieg dowodowy do zlecenia (raport M2, partia 4)
 | R-012 | M1-062 (DEC-27): test aktualizacji bierze poprzednią wersję z pliku wydania `Trening-sim.zip`; zadanie „tag” w `testflight.yml` ma go dołączać (pobranie artefaktu `trening-sim-app` z zielonego przebiegu E2E, `gh release upload`), a `poprzednia-wersja.sh` pobierać na GitHub Actions. Linux tego nie sprawdzi; do czasu pierwszego wydania z plikiem E2E z testem aktualizacji kończy się błędem (zamierzone) | dowód 1: plik `Trening-sim.zip` dołączony ręcznie do istniejącego wydania + `e2e-ios.yml` (pakiet podstawowy) zielony z logiem „Poprzednia wersja (plik wydania): <tag>” i wersją oraz buildem obu aplikacji; dowód 2: pierwsze prawdziwe wydanie TestFlight — krok „Plik wydania Trening-sim.zip” zielony, wydanie ma plik | **otwarte** — przebieg dowodowy do zlecenia (raport M2, partia 4)
 
+## L-012 (21.10.2026, M3) — błędna uwaga dla właściciela o makiecie: „w A2 ciemnym przyciski są ciemne”
+
+- **Co się stało:** przy przekazaniu STOP E2b koordynator napisał właścicielowi, że na `docs/design/porownanie-a.png` w wariancie A2 (ciemny motyw)
+  przyciski „Seria zrobiona” i „Pomiń” są ciemne, inaczej niż w A1. Projektant w E3 tego nie odtworzył; `cmp` pokazał, że zrzuty
+  A1 i A2 karty „teraz” (390 pt, jasny i ciemny) są identyczne bajt w bajt. Koordynator pomylił kolumny (A1 jasny, A2 jasny, A1 ciemny, A2 ciemny)
+  na obrazie zmniejszonym do ok. 40% (1720 → 730 px). Sprostowane w odpowiedzi do właściciela 21.10.2026; decyzji na tej podstawie nie podjęto.
+- **Przyczyna źródłowa:** twierdzenie o różnicy między wariantami oparte na podglądzie w małej skali, bez sprawdzenia plików źródłowych —
+  ta sama klasa co L-002 (opis bez sprawdzenia u źródła), tu dla obrazów.
+- **Ocena zakresu: systemowa** (każda uwaga wizualna z podglądu arkusza może być błędna tak samo). Propozycja dla właściciela: (a) reguła w CLAUDE.md —
+  uwaga o różnicy wizualnej dla właściciela tylko po sprawdzeniu plików (`cmp`/różnica pikseli albo kadr w pełnej rozdzielczości, ścieżka w uwadze);
+  (b) praktyka koordynatora bez reguły. Rekomendacja: (a).
+- **Akcje:**
+  1. Sprawdzenie plików przed uwagą wizualną w przebiegu M3 (polecenia koordynatora od E3) — **zrobione** (ten wpis; dziennik `postep.md` M3).
+  2. Reguła w CLAUDE.md — **otwarte** (decyzja właściciela).
+
 ## L-011 (20.10.2026, audyt M1) — zmiana etykiety w ustawieniach położyła scenariusze 33 i 34 testu aktualizacji (stara wersja ma inne etykiety)
 
 - **Co się stało:** E2E pakiet podstawowy (run 39427683836): 33 szukał „Measurement system” (LOK-07, partia 4) na POPRZEDNIEJ wersji (v0.20.0-b1018),
