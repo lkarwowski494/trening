@@ -23,10 +23,10 @@ test('13: po „Start planned workout: Upper A” karta zgody zamknięta przed c
   expect(i).toBeGreaterThan(0); expect(s[i + 1]).toBe(NOT_NOW); expect(s[i + 2]).toMatch(/^- extendedWaitUntil: \{ visible: "Set 1 done\.\*"/);
 });
 
-test('31: przed „Pause workout” lista przesunięta na początek (dwa przesunięcia w dół), nie samo scrollUntilVisible', () => {
-  const s = steps('31-pierwszy-tydzien.yaml'); const i = s.indexOf('- tapOn: "Pause workout"');
-  expect(i).toBeGreaterThan(3);
-  expect(s.slice(i - 3, i)).toEqual([
+test('31: przed pauzą (menu „⋯” → „Pause workout”) lista przesunięta na początek (dwa przesunięcia w dół), nie samo scrollUntilVisible', () => {
+  const s = steps('31-pierwszy-tydzien.yaml'); const i = s.indexOf('- tapOn: "Pause workout"'); /* M3 p2 (ZM-02): pauza w menu „⋯”, więc przed nią stuknięcie „Workout options” */
+  expect(i).toBeGreaterThan(4); expect(s[i - 1]).toBe('- tapOn: "Workout options"');
+  expect(s.slice(i - 4, i - 1)).toEqual([
     '- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }',
     '- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }',
     '- waitForAnimationToEnd',

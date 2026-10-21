@@ -101,7 +101,6 @@ name: Pierwszy tydzień nowego użytkownika
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - waitForAnimationToEnd
-- assertVisible: "Workout progress: 1 of 18 sets"  # M3 p2: po przewinięciu na początek (tablica „teraz” wydłuża ekran, nagłówek bywa nad ekranem po stuknięciu wiersza)
 # M3 p2 (ZM-02, wz. 30): pauza i wznowienie są w menu „⋯” („Workout options”), nie w nagłówku
 - tapOn: "Workout options"
 - tapOn: "Pause workout"
@@ -110,6 +109,7 @@ name: Pierwszy tydzień nowego użytkownika
 - tapOn: "Resume workout"
 - extendedWaitUntil: { visible: "Workout options", timeout: 15000 }
 - assertNotVisible: ".* · paused"
+- assertVisible: "Workout progress: 1 of 18 sets"  # M3 p2: po przewinięciu na początek (tablica „teraz” wydłuża ekran, nagłówek bywa nad ekranem po stuknięciu wiersza)
 - tapOn: "Skip"
 - assertNotVisible: "Skip"
 # zamiana ćwiczenia: martwy ciąg / wiosłowanie → propozycja
