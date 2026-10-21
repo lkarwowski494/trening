@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import Svg, { Ellipse, Path, G } from 'react-native-svg';
-import { useTheme } from '@/lib/theme';
+import { useTheme, font, RADIUS } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
 import { fmtNum } from '@/lib/units';
 import { splitLabel, type SetSplit } from '@/lib/setSplit';
@@ -26,19 +26,19 @@ export function MuscleMap({ sets, splits, title, label: given, caption, legend =
     })}</G>);
   return (
     <View accessibilityLanguage={lang()} testID="muscle-map" accessible accessibilityRole="image" accessibilityLabel={label} style={{ marginTop: 12 }}>
-      <Muted style={{ fontSize: 12, marginBottom: 6 }}>{title ?? t('Mapa mięśni')}</Muted>
+      <Muted style={{ ...font('footnote'), marginBottom: 6 }}>{title ?? t('Mapa mięśni')}</Muted>
       <View style={{ alignItems: 'center' }}>
         <Svg width="100%" height={height} viewBox="0 0 250 260" preserveAspectRatio="xMidYMid meet">{side('front', 0)}{side('back', 130)}</Svg>
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 2 }}>
-        <Muted style={{ fontSize: 12 }}>{t('Przód')}</Muted><Muted style={{ fontSize: 12 }}>{t('Tył')}</Muted>
+        <Muted style={{ ...font('footnote') }}>{t('Przód')}</Muted><Muted style={{ ...font('footnote') }}>{t('Tył')}</Muted>
       </View>
       {legend ? <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4, marginTop: 6 }}>
-        <Muted style={{ fontSize: 12, marginRight: 4 }}>{t('mniej')}</Muted>
-        {[0, 1, 2, 3, 4].map(l => <View key={l} style={{ width: 16, height: 10, borderRadius: 3, backgroundColor: shadeColor(l, th.line, th.accent) }} />)}
-        <Muted style={{ fontSize: 12, marginLeft: 4 }}>{t('więcej')}</Muted>
+        <Muted style={{ ...font('footnote'), marginRight: 4 }}>{t('mniej')}</Muted>
+        {[0, 1, 2, 3, 4].map(l => <View key={l} style={{ width: 16, height: 10, borderRadius: RADIUS.marker, backgroundColor: shadeColor(l, th.line, th.accent) }} />)}
+        <Muted style={{ ...font('footnote'), marginLeft: 4 }}>{t('więcej')}</Muted>
       </View> : null}
-      {caption ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{caption}</Muted> : null}{/* ⓘ 14.10.2026: domyślny podpis („Kolor względem partii…”) przeniesiony pod ⓘ przy „Podsumowanie” (PeriodSummary) */}
+      {caption ? <Muted style={{ ...font('footnote'), marginTop: 6 }}>{caption}</Muted> : null}{/* ⓘ 14.10.2026: domyślny podpis („Kolor względem partii…”) przeniesiony pod ⓘ przy „Podsumowanie” (PeriodSummary) */}
     </View>
   );
 }

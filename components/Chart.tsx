@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text, type LayoutChangeEvent } from 'react-native';
 import Svg, { Polyline, Circle, Line, Rect, Text as SvgText } from 'react-native-svg';
-import { useTheme, FW } from '@/lib/theme';
+import { useTheme, FW, font, TYPE } from '@/lib/theme';
 import { t as tr, tp, lang } from '@/lib/i18n';
 
 /*
  * Lekkie wykresy na react-native-svg (T-030). Bez bibliotek wykresowych — dwa kształty wystarczą:
  * linia z punktami (metryka per sesja w czasie) i słupki (tygodnie). Oba skalują się do szerokości kontenera.
+ * M3 p3: podpisy osi wykresu liniowego mają rozmiar roli „caption” (11 pt — minimum iOS), nie 10.
  */
 
 export interface Pt { x: number; y: number; label: string }
@@ -34,7 +35,7 @@ export function LineChart({ points, fmt, height = 180, color, scale = 1, minStep
   const t = useTheme(); const [w, setW] = React.useState(0);
   const onLayout = (e: LayoutChangeEvent) => setW(e.nativeEvent.layout.width);
   const c = color ?? t.accent;
-  if (points.length < 2) return <View onLayout={onLayout} style={{ height, justifyContent: 'center' }}><Text accessibilityLanguage={lang()} style={{ color: t.muted, textAlign: 'center', fontSize: 13, ...FW.regular }}>{points.length === 1 ? tr('Jedna sesja: {v}. Wykres pojawi się po drugiej.', { v: fmt(points[0].y) }) : tr('Brak danych do wykresu.')}</Text></View>;
+  if (points.length < 2) return <View onLayout={onLayout} style={{ height, justifyContent: 'center' }}><Text accessibilityLanguage={lang()} style={{ color: t.muted, textAlign: 'center', ...font('footnote'), ...FW.regular }}>{points.length === 1 ? tr('Jedna sesja: {v}. Wykres pojawi się po drugiej.', { v: fmt(points[0].y) }) : tr('Brak danych do wykresu.')}</Text></View>;
   const padR = 12, padT = 14, padB = 26;
   // Runda 69: podziałki liczone w jednostkach wyświetlanych (lb!), krok nie mniejszy niż rozdzielczość etykiet,
   // dla serii całkowitych (powtórzenia, sekundy) tylko kroki całkowite 1/2/5×10^k — etykiety się nie powtarzają i odpowiadają liniom.
@@ -51,12 +52,12 @@ export function LineChart({ points, fmt, height = 180, color, scale = 1, minStep
     <View accessibilityLanguage={lang()} onLayout={onLayout} style={{ height }} accessible accessibilityRole="image" accessibilityLabel={a11y}>
       {w > 0 ? (
         <Svg width={w} height={height}>
-          {ticks.map((v, i) => <React.Fragment key={i}><Line x1={padL} x2={w - padR} y1={Y(v)} y2={Y(v)} stroke={t.line} strokeWidth={1} /><SvgText fontFamily={FW.regular.fontFamily} x={padL - 6} y={Y(v) + 4} fill={t.muted} fontSize={10} textAnchor="end">{tickLabels[i]}</SvgText></React.Fragment>)}
+          {ticks.map((v, i) => <React.Fragment key={i}><Line x1={padL} x2={w - padR} y1={Y(v)} y2={Y(v)} stroke={t.line} strokeWidth={1} /><SvgText fontFamily={FW.regular.fontFamily} x={padL - 6} y={Y(v) + 4} fill={t.muted} fontSize={TYPE.caption.size} textAnchor="end">{tickLabels[i]}</SvgText></React.Fragment>)}
           <Polyline points={pts} fill="none" stroke={c} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
           {(points.length <= MAX_DOTS ? points : [...new Set([points[0], best, last])]).map((p, i) => <Circle key={i} cx={X(p.x)} cy={Y(p.y)} r={p === best ? 4.5 : 3} fill={p === best ? t.band : c} />)}
-          <SvgText fontFamily={FW.regular.fontFamily} x={padL} y={height - 8} fill={t.muted} fontSize={10}>{points[0].label}</SvgText>
-          <SvgText fontFamily={FW.regular.fontFamily} x={w - padR} y={height - 8} fill={t.muted} fontSize={10} textAnchor="end">{last.label}</SvgText>
-          {(() => { const bl = fmt(best.y); const half = 3 * bl.length; const bx = X(best.x); const anchor = bx + half > w - 2 ? 'end' : bx - half < padL ? 'start' : 'middle'; /* runda 69: nie na etykiecie osi */ const by = Y(best.y) - 8 < padT + 2 ? Y(best.y) + 16 : Y(best.y) - 8; return <SvgText fontFamily={FW.regular.fontFamily} x={anchor === 'end' ? Math.min(bx, w - 2) : anchor === 'start' ? Math.max(bx, padL) : bx} y={by} fill={t.band} fontSize={10} textAnchor={anchor}>{bl}</SvgText>; })() /* runda 13: etykieta rekordu nie wychodzi za krawędź */}
+          <SvgText fontFamily={FW.regular.fontFamily} x={padL} y={height - 8} fill={t.muted} fontSize={TYPE.caption.size}>{points[0].label}</SvgText>
+          <SvgText fontFamily={FW.regular.fontFamily} x={w - padR} y={height - 8} fill={t.muted} fontSize={TYPE.caption.size} textAnchor="end">{last.label}</SvgText>
+          {(() => { const bl = fmt(best.y); const half = 3 * bl.length; const bx = X(best.x); const anchor = bx + half > w - 2 ? 'end' : bx - half < padL ? 'start' : 'middle'; /* runda 69: nie na etykiecie osi */ const by = Y(best.y) - 8 < padT + 2 ? Y(best.y) + 16 : Y(best.y) - 8; return <SvgText fontFamily={FW.regular.fontFamily} x={anchor === 'end' ? Math.min(bx, w - 2) : anchor === 'start' ? Math.max(bx, padL) : bx} y={by} fill={t.band} fontSize={TYPE.caption.size} textAnchor={anchor}>{bl}</SvgText>; })() /* runda 13: etykieta rekordu nie wychodzi za krawędź */}
         </Svg>) : null}
     </View>
   );
