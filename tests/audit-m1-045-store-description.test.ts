@@ -106,6 +106,17 @@ describe('docs/15: projekt opisu sklepu zgodny z kodem', () => {
       expect(desc).toMatch(lang === 'PL' ? /imperialn/i : /imperial/i);
       expect(desc).not.toMatch(/kg lub lb|kg or lb/);
     });
+    test(`${lang}: blok cenowy bez list kwot, plan miesięczny porównany z espresso + przypis MIMIT (decyzja właściciela 21.10.2026, docs/research/espresso-mimit-2026-10.md)`, () => {
+      expect(desc).not.toMatch(/\[(BLOK CENOWY|PRICING BLOCK)/);
+      expect(desc).toMatch(lang === 'PL' ? /plan miesięczny w cenie porównywalnej z jednym espresso w barze\*/ : /monthly plan for about the price of one espresso at a bar\*/);
+      const foot = desc.split('\n').find((l) => l.startsWith('* ')) ?? '';
+      expect(foot).toMatch(lang === 'PL' ? /od 1,06 € do 1,51 €/ : /EUR 1\.06–1\.51/);
+      expect(foot).toMatch(/MIMIT/); expect(foot).toMatch(/2026/);
+      /* poza przypisem żadnych kwot (ceny pokazuje App Store; zmieniają się bez nowej wersji opisu) */
+      const rest = desc.split('\n').filter((l) => !l.startsWith('* ')).join('\n');
+      expect(rest).not.toMatch(/\d+[.,]\d\d\s*(zł|PLN|USD|EUR|GBP|€|\$|£)|(USD|EUR|GBP|€|\$|£)\s*\d/);
+      expect(rest).toMatch(lang === 'PL' ? /Aktualne ceny widać w App Store przed zakupem/ : /Current prices are shown in the App Store before purchase/);
+    });
     test(`${lang}: limity App Store i liczby w tabeli zgodne z tekstem`, () => {
       const d = [...desc.replace(/\n$/, '')].length; const p = [...promo(s)].length; const k = Buffer.byteLength(kw(s), 'utf8');
       expect(d).toBeLessThanOrEqual(4000); expect(p).toBeLessThanOrEqual(170); expect(k).toBeLessThanOrEqual(100);

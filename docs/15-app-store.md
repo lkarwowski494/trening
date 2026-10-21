@@ -378,7 +378,7 @@ Projekt do przejrzenia; nic nie wysłano do App Store Connect. Liczby znaków po
 | Podtytuł B | 29 / 30 | ok |
 | Słowa kluczowe | 87 / 100 | ok |
 | Tekst promocyjny | 141 / 170 | ok |
-| Opis | 2667 / 4000 | ok |
+| Opis | 2896 / 4000 | ok |
 | What's New 0.12.0 | 175 / 4000 | ok |
 
 **Słowa kluczowe** (dla wariantu A; bez słów z nazwy i podtytułu):
@@ -426,8 +426,9 @@ TWOJE DANE
 • Opcjonalny odczyt z Apple Health (kroki, treningi, tętno, aktywna energia) — dane tylko wyświetlane na telefonie, nigdzie niewysyłane
 • Jasny, ciemny lub systemowy wygląd, 35 języków
 
-[BLOK CENOWY — do potwierdzenia przez właściciela]
-Subskrypcja z pierwszymi 14 dniami za darmo: potem 4,99 zł miesięcznie lub 19,99 zł rocznie (odnawiana automatycznie, anulujesz w ustawieniach konta Apple), albo jednorazowy dostęp dożywotni za 59,99 zł. Subskrypcję i dostęp dożywotni można udostępnić w gronie rodziny (Chmura rodzinna). Bez subskrypcji możesz nadal zapisywać 4 treningi na żywo w miesiącu, a historia, kopia zapasowa i eksport działają zawsze.
+Subskrypcja: pierwsze 14 dni za darmo, potem plan miesięczny w cenie porównywalnej z jednym espresso w barze* albo plan roczny (oba odnawiane automatycznie, anulujesz w ustawieniach konta Apple), albo jednorazowy dostęp dożywotni. Aktualne ceny widać w App Store przed zakupem. Subskrypcję i dostęp dożywotni można udostępnić w Chmurze rodzinnej. Bez subskrypcji możesz nadal zapisywać 4 treningi na żywo w miesiącu, a historia, kopia zapasowa i eksport działają zawsze.
+
+* Średnia cena espresso w barze we Włoszech w 2026 r.: od 1,06 € do 1,51 € w zależności od prowincji (dane włoskiego Ministerstwa Przedsiębiorstw i Made in Italy – MIMIT, opracowanie C.r.c. i Assoutenti, sierpień 2026).
 
 Trening nie jest poradnikiem medycznym. W sprawie bólu, kontuzji lub chorób skonsultuj się ze specjalistą.
 ```
@@ -454,7 +455,7 @@ Trening nie jest poradnikiem medycznym. W sprawie bólu, kontuzji lub chorób sk
 | Podtytuł B | 27 / 30 | ok |
 | Słowa kluczowe | 96 / 100 | ok |
 | Tekst promocyjny | 154 / 170 | ok |
-| Opis | 2652 / 4000 | ok |
+| Opis | 2856 / 4000 | ok |
 | What's New 0.12.0 | 186 / 4000 | ok |
 
 **Słowa kluczowe** (dla wariantu A; bez słów z nazwy i podtytułu):
@@ -502,8 +503,9 @@ YOUR DATA
 • Optional reading from Apple Health (steps, workouts, heart rate, active energy) — data is only displayed on your phone and never sent anywhere
 • Light, dark or system appearance, 35 languages
 
-[PRICING BLOCK — owner to confirm]
-Subscription with the first 14 days free, then 0.99 per month or 6.99 per year (USD, EUR, GBP; 4.99 PLN and 19.99 PLN in Poland; renews automatically, cancel in your Apple account settings), or a one-time lifetime access purchase for 14.99 (59.99 PLN in Poland). Subscription and lifetime access can be shared with your family (Family Sharing). Without a subscription you can still log 4 live workouts per month; history, backup and export always work.
+Subscription: the first 14 days are free, then a monthly plan for about the price of one espresso at a bar* or a yearly plan (both renew automatically; cancel in your Apple account settings), or one-time lifetime access. Current prices are shown in the App Store before purchase. Subscription and lifetime access can be shared with your family (Family Sharing). Without a subscription you can still log 4 live workouts per month; history, backup and export always work.
+
+* Average price of an espresso at a bar in Italy in 2026: EUR 1.06–1.51 depending on the province (data from the Italian Ministry of Enterprises and Made in Italy – MIMIT, analysed by C.r.c. and Assoutenti, August 2026).
 
 Training is not medical advice. For pain, injuries or illness, consult a specialist.
 ```
@@ -523,10 +525,10 @@ Training is not medical advice. For pain, injuries or illness, consult a special
 
 ### Do potwierdzenia przez właściciela
 
-1. **Cena w opisie i tekście promocyjnym** (blok cenowy, „pierwszy miesiąc za darmo”): wstawiać dopiero z działającym zakupem; czy podawać kwoty w opisie (zmieniają się w App Store Connect bez nowej wersji, w innych krajach inne), czy tylko „subskrypcja lub dostęp dożywotni” — Apple (3.1.2) wymaga jasnych warunków odnawiania.
-2. **Waluty w opisie:** EN podaje 0,99/6,99/14,99 w USD/EUR/GBP (opis jest jeden dla wszystkich krajów angielskiego) — czy tak, czy bez kwot.
+1. **Rozstrzygnięte 21.10.2026 (właściciel, przekazane przez koordynatora; docs/18):** opis bez list kwot, plan miesięczny porównany z ceną espresso w barze, przypis: dane MIMIT (opracowanie C.r.c. i Assoutenti, sierpień 2026), źródło: docs/research/espresso-mimit-2026-10.md. Było: **Cena w opisie i tekście promocyjnym** (blok cenowy, „pierwszy miesiąc za darmo”): wstawiać dopiero z działającym zakupem; czy podawać kwoty w opisie (zmieniają się w App Store Connect bez nowej wersji, w innych krajach inne), czy tylko „subskrypcja lub dostęp dożywotni” — Apple (3.1.2) wymaga jasnych warunków odnawiania.
+2. **Rozstrzygnięte 21.10.2026 — bez kwot (pkt 1).** Było: **Waluty w opisie:** EN podaje 0,99/6,99/14,99 w USD/EUR/GBP (opis jest jeden dla wszystkich krajów angielskiego) — czy tak, czy bez kwot.
 3. **Family Sharing:** decyzja TAK (11.10.2026), opis ją wspomina; otwarte w docs/15: czy włączenie jest nieodwracalne — sprawdzić w App Store Connect przed wysyłką.
-4. **Hasło „w cenie espresso lub taniej”** — pominięte; wymaga potwierdzenia cen espresso źródłami w każdym kraju (decyzja 09.10 pkt 3). **Zmiana (właściciel 11.10.2026, ok. 23:10): wyjątek od warunku źródeł — hasło wolno użyć bez potwierdzania cen espresso w każdym kraju** (hasło marketingowe, nie twierdzenie merytoryczne o treningu; ryzyko: w krajach z bardzo tanią kawą porównanie może być nieścisłe — Apple 2.3.1). Wstawić razem z blokiem cenowym, gdy zakup trafi do wydania.
+4. **Zastąpione 21.10.2026 (pkt 1): porównanie planu miesięczny ↔ espresso w barze z przypisem źródła (docs/research/espresso-mimit-2026-10.md).** Było: **Hasło „w cenie espresso lub taniej”** — pominięte; wymaga potwierdzenia cen espresso źródłami w każdym kraju (decyzja 09.10 pkt 3). **Zmiana (właściciel 11.10.2026, ok. 23:10): wyjątek od warunku źródeł — hasło wolno użyć bez potwierdzania cen espresso w każdym kraju** (hasło marketingowe, nie twierdzenie merytoryczne o treningu; ryzyko: w krajach z bardzo tanią kawą porównanie może być nieścisłe — Apple 2.3.1). Wstawić razem z blokiem cenowym, gdy zakup trafi do wydania.
 5. **„What's New 0.12.0”:** szkic z 11.10.2026 zostaje jako zapis; tekst „Co nowego” dla 1.0 powstaje z `lib/whatsnew.ts` przy wydaniu.
 6. **Zakres funkcji w opisie (odświeżony 20.10.2026 wg kodu):** generator planu, zamiana ćwiczenia, Apple Health (zapis i odczyt), Apple Watch, zapowiedzi głosowe, system miar, kopia/eksport JSON i CSV oraz import CSV — potwierdzić zakres 1.0 (docs/41, A4).
 7. **Twierdzenie „bez śledzenia”** — zgodne z `site/privacy.html` (brak wywołań sieciowych); zweryfikować przed wysyłką, jeśli dojdzie StoreKit.
