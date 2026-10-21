@@ -365,3 +365,7 @@ EN Progress Guard · bg Пазач на прогреса · cs Strážce progres
   kanał zgłoszeń podatności = adres wsparcia (u 4 z 6 porównanych aplikacji brak osobnej strony bezpieczeństwa); strona wsparcia bez telefonu (6 z 6 tak robi; dane przedsiębiorcy są w App Store w UE);
   Q7 A — aplikacja **nie jest skierowana do dzieci** (COPPA i Kids Category nie dotyczą); Q8 C — **bez AI dla e-maili wsparcia** (zastępuje „AI” z 13.10.2026, docs/34; powód: umowa powierzenia
   Anthropic obejmuje tylko usługi komercyjne; odrzucone: A — AI tylko dla treści bez danych osobowych, B — Claude na warunkach komercyjnych z DPA, płatne). Wzmianki o AI usunięte ze stron polityki i wsparcia.
+- 21.10.2026 (właściciel, STOP 2 roli M8 — przekazane przez koordynatora): Q9 A — **App Privacy zostaje „Data Not Collected”** (uzasadnienie w docs/45; odrzucone: B — deklaracja
+  e-maila i treści wsparcia, C — usunięcie stopki z mailto po 1.0); Q10 — **publikacja poprawionej polityki i strony wsparcia teraz** („Nawet jeżeli wydamy dziś, to Workspace i tak wejdzie przed
+  publikacją w App Store.”), w brzmieniu z oboma stanami poczty — wykonuje koordynator w repo strony studia; Q11 A — projekty zaakceptowane (polityka, wsparcie, procedura bezpieczeństwa, notatki
+  dla recenzenta, `store/asc-odpowiedzi.json`); manifest prywatności (R-007, WYD-09) i Q12 A (verify sprawdza zainstalowany hak, L-014) zleca koordynator programiście, poza M8.

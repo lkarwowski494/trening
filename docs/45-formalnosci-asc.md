@@ -27,6 +27,10 @@ Decyzje właściciela (STOP 1, przez koordynatora): docs/18, wpis 21.10.2026 „
 i bez AI w obsłudze wiadomości (`site/privacy.html`, `site/support.html`, test `tests/public-repo.test.ts`); procedura podatności, naruszeń i żądań:
 `docs/prawne/procedura-bezpieczenstwa.md`; licencje OFL-1.1 i MPL-2.0 dopuszczone.
 
-Otwarte do STOP 2: etykieta App Privacy wobec e-maila wysyłanego z aplikacji Poczta (warunek Apple „provided by the user in your app’s interface”);
-manifest prywatności w `app.json` (ryzyko R-007, docs/40); publikacja poprawionych stron na apps4brew.com (zgoda właściciela; opublikowana strona
-wsparcia mówi, że kopię automatyczną się „włącza”, a w kodzie jest domyślnie włączona — `tests/audit-m1-043-support-page.test.ts`).
+## Decyzje STOP 2 (21.10.2026)
+- **App Privacy — „Data Not Collected” (Q9 A).** Uzasadnienie: aplikacja nie wysyła danych; wiadomość do wsparcia pisze i wysyła użytkownik w swojej aplikacji
+  Poczta, dobrowolnie i rzadko, poza główną funkcją aplikacji; polityka opisuje ją w sekcji „Gdy do nas piszesz”. Znane ryzyko: Apple wymienia wśród warunków
+  wyjątku „Optional disclosure” podanie danych „in your app’s interface”, a przycisk „Napisz do nas” otwiera Pocztę z dopisaną stopką (wersja, iOS, język) —
+  recenzent może uznać etykietę za niepełną; wtedy wariant B (Contact Info → Email Address, User Content → Customer Support, App Functionality, bez śledzenia).
+- **Publikacja stron (Q10):** teraz, w repo strony studia (koordynator); treść = `site/privacy.html` i `site/support.html` z tej gałęzi.
+- **Poza M8:** manifest prywatności w `app.json` (R-007, docs/40) i sprawdzanie haka w verify (L-014) — programista u koordynatora.
