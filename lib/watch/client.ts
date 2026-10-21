@@ -54,6 +54,8 @@ export interface ClientView {
   cue: string | null;
   restEndsAt: number | null; restTotalSec: number | null;
   paused: boolean; timed: boolean; targetSec: number | null;
+  /** telefon mierzy tę serię na czas: przycisk główny = „Zakończ serię” (M3 ZM-05) */
+  measuring: boolean;
   doneCount: number; totalCount: number; toFillCount: number;
   /** „Cofnij” widoczne do tej chwili (ms) albo null */
   undoUntil: number | null;
@@ -97,7 +99,7 @@ function project(base: WatchSnapshot, queue: QueuedEvent[], history: WatchSnapsh
 
 /** Widok do wyświetlenia w chwili `nowMs`. */
 export function clientView(s: ClientState, nowMs: number): ClientView {
-  const blank: ClientView = { screen: 'idle', title: '', counter: '', load: '', group: null, cue: null, restEndsAt: null, restTotalSec: null, paused: false, timed: false, targetSec: null,
+  const blank: ClientView = { screen: 'idle', title: '', counter: '', load: '', group: null, cue: null, restEndsAt: null, restTotalSec: null, paused: false, timed: false, targetSec: null, measuring: false,
     doneCount: 0, totalCount: 0, toFillCount: 0, undoUntil: null, confirmSkip: false, actions: [], offline: !s.connected, busy: false };
   if (s.upgrade === 'watch') return { ...blank, screen: 'update' };
   if (s.upgrade === 'phone') return { ...blank, screen: 'connect' }; /* telefon starszy od zegarka: aktualizację robi się na telefonie — zegarek prosi o połączenie */
@@ -113,7 +115,7 @@ export function clientView(s: ClientState, nowMs: number): ClientView {
   const actions: ClientAction[] = n && !L.blind ? ['done', 'differ', 'skip'] : [];
   if (undoUntil != null) actions.push('undo');
   return { ...base, screen: phase, title: n ? n.title : base.title, counter: n ? n.counter : '', load: n ? n.load : '', group: n?.group ?? null, cue: rest ? rest.cue : null,
-    restEndsAt: rest ? rest.endsAt : null, restTotalSec: rest ? rest.totalSec : null, timed: n?.timed ?? false, targetSec: n?.targetSec ?? null, undoUntil,
+    restEndsAt: rest ? rest.endsAt : null, restTotalSec: rest ? rest.totalSec : null, timed: n?.timed ?? false, targetSec: n?.targetSec ?? null, measuring: n?.measuring === true, undoUntil,
     confirmSkip: s.confirmSkip && !!n, actions, busy: s.queue.some(q => q.ev.type !== 'restEnded') || L.blind };
 }
 

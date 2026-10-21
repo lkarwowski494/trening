@@ -12,5 +12,6 @@
  "idle": "Empieza un entrenamiento en el teléfono",
  "finished": "Entrenamiento terminado",
  "update": "Actualiza la app del reloj",
- "nothingLeft": "nada más por hacer"
+ "nothingLeft": "nada más por hacer",
+ "finish": "Terminar serie"
 }

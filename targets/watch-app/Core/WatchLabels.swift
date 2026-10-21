@@ -5,7 +5,7 @@ import Foundation
 
 /// Wartości = klucze w lib/watchLabels.ts (WATCH_LABEL_KEYS: identyfikatory z protokołu + `workoutOn` tylko Apple); test porównuje obie listy.
 enum WatchLabelKey: String, CaseIterable {
-  case done, differ, skip, skipAsk, cancel, undo, rest, set, pause, connect, idle, finished, update, nothingLeft, workoutOn
+  case done, differ, skip, skipAsk, cancel, undo, rest, set, pause, connect, idle, finished, update, nothingLeft, finish, workoutOn
 }
 
 enum WatchLabels {

@@ -45,7 +45,7 @@ export class WatchLink {
   /** Bieżąca migawka (numer `rev` ostatnio wysłanej treści). */
   snapshot(): WatchSnapshot {
     const T = timer.T;
-    return buildSnapshot(getState().active, { rev: this.rev, nowMs: this.nowFn(), rest: { on: T.on && !T.alarmed, setId: T.setId, endAt: T.endAt, total: T.total } });
+    return buildSnapshot(getState().active, { rev: this.rev, nowMs: this.nowFn(), rest: { on: T.on && !T.alarmed, setId: T.setId, endAt: T.endAt, total: T.total }, measuring: timer.S.on ? timer.S.setId : null });
   }
   /** Wysyła migawkę, gdy treść się zmieniła (albo `force`). Zwraca wysłaną migawkę albo null. */
   push(force = false): WatchSnapshot | null {

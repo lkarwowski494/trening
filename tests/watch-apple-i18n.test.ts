@@ -7,7 +7,7 @@
  * - tests/fixtures/watch-app/lang-cases.json — przypadki resolveLang dla testu Swift (WatchLabels.resolve musi dawać to samo). */
 import * as fs from 'fs';
 import * as path from 'path';
-import { LANGS, resolveLang, applyLang } from '@/lib/i18n';
+import { LANGS, resolveLang, applyLang, t } from '@/lib/i18n';
 import { WATCH_LABEL_IDS, APPLE_ONLY_LABEL_IDS, WATCH_LABEL_KEYS, watchLabelTable, watchLabels, watchInfoPlist } from '@/lib/watchLabels';
 
 const root = path.join(__dirname, '..');
@@ -39,7 +39,8 @@ test('pliki zegarka zgodne z lib/watchLabels.ts (wszystkie języki — LANGS)', 
 
 test('klucze etykiet = identyfikatory protokołu + dodatki Apple', () => {
   expect([...WATCH_LABEL_KEYS]).toEqual([...WATCH_LABEL_IDS, ...APPLE_ONLY_LABEL_IDS]);
-  expect(WATCH_LABEL_IDS).toHaveLength(14);
+  expect(WATCH_LABEL_IDS).toHaveLength(15); /* M3 p6 (ZM-05, 21.10.2026): doszła etykieta `finish` „Zakończ serię” (było 14) */
+  expect(WATCH_LABEL_IDS).toContain('finish');
 });
 
 describe.each(WATCH_LABEL_KEYS)('etykieta zegarka %s', key => {
@@ -86,4 +87,9 @@ test('etykiety wspólne z protokołem są w tabeli zegarka identyczne z watch-fi
     expect(Object.keys(proto).sort()).toEqual([...WATCH_LABEL_IDS].sort());
     for (const id of WATCH_LABEL_IDS) expect([l, id, tab[l].labels[id]]).toEqual([l, id, proto[id]]);
   }
+});
+
+test('M3 p6 / ZM-05: etykieta zegarka `finish` = „Zakończ serię” z tego samego klucza słownika co przycisk telefonu, w każdym języku (jedna nazwa akcji pomiaru)', () => {
+  for (const l of LANGS) { applyLang(l); const w = watchLabels().finish; const p = t('Zakończ serię'); applyLang('pl'); expect([l, w]).toEqual([l, p]); }
+  expect(watchLabels().finish).toBe('Zakończ serię');
 });

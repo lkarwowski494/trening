@@ -12,5 +12,6 @@
  "idle": "Start een training op de telefoon",
  "finished": "Training beëindigd",
  "update": "Werk de app op het horloge bij",
- "nothingLeft": "niets meer te doen"
+ "nothingLeft": "niets meer te doen",
+ "finish": "Rond set af"
 }
