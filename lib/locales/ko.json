@@ -1691,11 +1691,11 @@
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "운동할 때마다 자동 백업: 파일 → 나의 iPhone → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "운동 후 백업을 저장하지 못했습니다",
  "Ostatnia udana kopia: {date}": "마지막으로 성공한 백업: {date}",
- "Asekuracja": "안전 장치",
+ "Asekuracja": "보조 및 안전",
  "bez asekuracji w stojakach": "랙에 안전 바 없음",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "바벨을 몸 위나 어깨에 올리고 하는 운동: 바를 안전하게 내려놓을 수 있도록 랙의 안전 바를 설정하거나 보조자와 함께 운동하세요.",
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "바벨을 몸 위나 어깨에 올리고 하는 운동: 바를 안전하게 내려놓을 수 있도록 랙의 안전 바 높이를 맞추거나 보조자와 함께 운동하세요.",
  "Powiadomienie na koniec przerwy": "휴식 종료 알림",
- "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "휴식이 끝나면 화면이 잠겨 있어도 알림이 옵니다. 알림 권한이 필요합니다 — ‘계속’ 후에 iOS가 권한을 요청합니다.",
+ "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "휴식이 끝나면 화면이 잠겨 있어도 알림이 옵니다. 알림 권한이 필요합니다 — ‘계속’을 누르면 iOS가 권한을 요청합니다.",
  "Zmień w ustawieniach iOS": "iOS 설정에서 변경",
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "아이콘 아래 이름과 건강 권한 문구는 iOS 설정에서 앱 언어를 지정해야 언어가 바뀝니다.",
  "SS {g}": "SS {g}",
@@ -1713,6 +1713,6 @@
  "mili": "마일",
  "jard|jardy|jardów": "야드",
  "jarda": "야드",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "주요 부위마다 주 {n}일 이상(WHO 2020 — 건강을 위한 권고; ACSM 2026: 빈도는 근력에 영향을 주지만 용량–반응 관계의 근거는 없고, 총량이 같으면 차이가 줄어듭니다). 부위가 보조로만 쓰이는 날은 {h}로 계산합니다 — 단순화(Pelland 외 2026 메타분석의 방법). 세션 분할(전신, 상체/하체)은 관례이며, 세트 수가 같으면 비슷한 효과를 냅니다.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "증가 폭(예: +2,5 kg)은 관례이며 연구 결과가 아닙니다."
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "주요 부위마다 주 {n}일 이상(WHO 2020 — 건강을 위한 권고; ACSM 2026: 빈도는 근력에 영향을 주지만 용량–반응 관계의 근거는 없고, 볼륨이 같으면 차이가 줄어듭니다). 부위가 보조로만 쓰이는 날은 {h}로 계산합니다 — 단순화(Pelland 외 2026 메타분석의 방법). 세션 분할(전신, 상체/하체)은 관례이며, 세트 수가 같으면 비슷한 효과를 냅니다.",
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "증가 폭(예: +2.5 kg)은 관례이며 연구 결과가 아닙니다."
 }

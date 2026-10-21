@@ -1,6 +1,6 @@
 {
  "bd.level": "Hüften und Schultern parallel zum Boden — ohne den Rumpf zu verdrehen.",
- "bd.move": "Hebe gleichzeitig den gegenüberliegenden Arm und das Bein bis auf Rumpfhöhe; zurück und Seite wechseln.",
+ "bd.move": "Hebe gleichzeitig einen Arm und das gegenüberliegende Bein bis auf Rumpfhöhe; zurück und Seite wechseln.",
  "bd.range": "Hebe Arm und Bein nur so hoch, wie du den unteren Rücken ohne Hohlkreuz halten kannst.",
  "bd.setup": "Vierfüßlerstand: Hände unter den Schultern, Knie unter den Hüften, Rücken neutral.",
  "bd.slow": "Hebe Arme und Beine langsam, ohne Ruck.",
@@ -72,7 +72,7 @@
  "curl.mis.elbows": "Die Ellbogen nach vorn oder vom Körper weg wandern lassen.",
  "curl.noSwing": "Rumpf ruhig halten: kein Schwingen, kein Zurücklehnen.",
  "db.back": "Unterer Rücken am Boden — kein Hohlkreuz.",
- "db.move": "Senke den gegenüberliegenden Arm und das Bein langsam Richtung Boden, ohne sie abzulegen; zurück und Seite wechseln.",
+ "db.move": "Senke einen Arm und das gegenüberliegende Bein langsam Richtung Boden, ohne sie abzulegen; zurück und Seite wechseln.",
  "db.setup": "Leg dich auf den Rücken, Arme nach oben gestreckt, Hüften und Knie im rechten Winkel gebeugt.",
  "db.slow": "Beweg dich langsam und atme normal weiter.",
  "dbdl.hips": "Schieb beim Aufrichten die Hüfte nach vorn bis zur vollen Streckung.",
@@ -183,7 +183,7 @@
  "nordic.move": "Neige dich so langsam wie möglich nach vorn und bremse die Bewegung mit der Oberschenkelrückseite.",
  "nordic.setup": "Knie dich auf eine weiche Unterlage; die Knöchel müssen fest gehalten werden (Partner, Rollen oder Fixierung).",
  "npu.hang": "Umfass die Griffe ganz (Daumen herum) und häng mit gestreckten Armen.",
- "ohp.bbSetup": "Nimm die Stange auf Schulterhöhe aus dem Ständer; Griff schulterbreit oder etwas breiter, Stange vorn auf den Schultern.",
+ "ohp.bbSetup": "Nimm die Stange auf Schulterhöhe aus dem Rack; Griff schulterbreit oder etwas breiter, Stange vorn auf den Schultern.",
  "ohp.dbSetup": "Hanteln an den Schultern, Ellbogen unter den Handgelenken.",
  "ohp.elbowsUnder": "Ellbogen die ganze Zeit unter den Handgelenken.",
  "ohp.feet": "Füße fest auf dem Boden.",
@@ -278,7 +278,7 @@
  "splank.noSag": "Hüfte weder durchhängen noch nach vorn oder hinten verdrehen lassen.",
  "splank.setup": "Leg dich auf die Seite, Ellbogen genau unter der Schulter, Füße übereinander.",
  "sq.back": "Rücken gerade, Brust raus.",
- "sq.bar": "Stange auf dem oberen Rücken, Hände breiter als die Schultern; heb sie aus dem Ständer und geh ein bis zwei Schritte zurück.",
+ "sq.bar": "Stange auf dem oberen Rücken, Hände breiter als die Schultern; heb sie aus dem Rack und geh ein bis zwei Schritte zurück.",
  "sq.depth": "Geh so tief, wie es deine Beweglichkeit mit geradem Rücken und ganzer Fußsohle am Boden erlaubt — meist mindestens bis die Oberschenkel waagerecht sind.",
  "sq.down": "Geh runter, indem du gleichzeitig die Hüfte nach hinten schiebst und die Knie beugst; steh auf, indem du den Boden mit den ganzen Füßen wegdrückst.",
  "sq.kneesPast": "Die Knie dürfen etwas über die Zehen hinausgehen — du musst sie nicht krampfhaft zurückhalten.",
@@ -302,7 +302,7 @@
  "walk.rails": "Nutze die Handläufe höchstens zum Gleichgewicht; stütz dich nicht schwer darauf und lehn dich nicht zurück, denn das verringert die Anstrengung.",
  "walk.upright": "Geh aufrecht mit stabilem Oberkörper.",
  "wall.back": "Halte den Rücken an der Wand und den Oberkörper aufrecht.",
- "wall.breath": "Atme normal; halte nicht die Luft an.",
+ "wall.breath": "Atme normal; halte die Luft nicht an.",
  "wall.depth": "Je tiefer du gehst (je kleiner der Kniewinkel), desto schwerer wird es; du kannst höher beginnen und die Position nach und nach absenken.",
  "wall.setup": "Lehne den Rücken an eine stabile Wand, geh mit den Füßen nach vorn und rutsch an der Wand bis zur gewählten Höhe hinunter."
 }

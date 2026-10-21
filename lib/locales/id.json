@@ -1687,13 +1687,13 @@
  "Zapowiedzi głosowe: {mode}": "Pengumuman suara: {mode}",
  "Ekran nie mógł się wyświetlić.": "Layar ini tidak dapat ditampilkan.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Data di ponsel Anda tidak berubah — Anda dapat mengirimkannya sebagai file.",
- "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplikasi menutup tiba-tiba pada beberapa peluncuran terakhir.",
+ "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Aplikasi tertutup secara tiba-tiba saat beberapa kali terakhir dibuka.",
  "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Cadangan otomatis setelah setiap latihan: File → Di iPhone Saya → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Cadangan setelah latihan tidak dapat disimpan",
- "Ostatnia udana kopia: {date}": "Cadangan berhasil terakhir: {date}",
- "Asekuracja": "Pengaman",
+ "Ostatnia udana kopia: {date}": "Cadangan terakhir yang berhasil: {date}",
+ "Asekuracja": "Spotter dan pengaman",
  "bez asekuracji w stojakach": "tanpa lengan pengaman di rak",
- "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Latihan dengan barbel di atas tubuh atau di bahu: atur lengan pengaman pada rak agar barbel dapat diletakkan dengan aman, atau berlatih dengan pendamping.",
+ "Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w stojakach ramiona asekuracyjne tak, aby dało się bezpiecznie odłożyć sztangę, albo ćwicz z osobą asekurującą.": "Latihan dengan barbel di atas tubuh atau di bahu: atur lengan pengaman pada rak agar barbel dapat diletakkan dengan aman, atau berlatih dengan spotter (orang yang berjaga dan siap membantu).",
  "Powiadomienie na koniec przerwy": "Notifikasi di akhir istirahat",
  "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.": "Di akhir istirahat, ponsel mengirim notifikasi — juga saat layar terkunci. Ini memerlukan izin notifikasi — iOS akan memintanya setelah “Lanjut”.",
  "Zmień w ustawieniach iOS": "Ubah di Pengaturan iOS",
@@ -1714,5 +1714,5 @@
  "jard|jardy|jardów": "yard",
  "jarda": "yard",
  "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Setiap kelompok otot utama minimal {n} hari per minggu (WHO 2020 — rekomendasi kesehatan; ACSM 2026: frekuensi memengaruhi kekuatan, tetapi tidak ada bukti hubungan dosis–respons, dan pada volume yang sama selisihnya mengecil). Hari ketika kelompok otot hanya membantu dihitung sebagai {h} — penyederhanaan (metode dari meta-analisis Pelland dkk. 2026). Pembagian sesi (full body, atas/bawah) adalah konvensi — dengan jumlah set yang sama hasilnya serupa.",
- "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Langkah (mis. +2,5 kg) adalah konvensi, bukan hasil penelitian."
+ "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Besar kenaikan (mis. +2,5 kg) adalah konvensi, bukan hasil penelitian."
 }

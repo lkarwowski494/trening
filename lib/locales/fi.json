@@ -1685,10 +1685,10 @@
  "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.": "Palautuksen alussa puhelin kertoo seuraavan liikkeen, painon ja toistot. Kuulokkeissa — vain kun kuulokkeet on yhdistetty; Myös kaiuttimesta — myös ilman kuulokkeita, puhelimen kaiuttimesta (myös äänettömällä); Pois — ei opastusta.",
  "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.": "Opastus toimii, kun ”Ääni ja värinä palautuksen lopussa” on päällä. Saman asetuksen voi vaihtaa treeninäkymän ”Ääni”-painikkeella.",
  "Zapowiedzi głosowe: {mode}": "Ääniopastus: {mode}",
- "Ekran nie mógł się wyświetlić.": "Näyttöä ei voitu näyttää.",
+ "Ekran nie mógł się wyświetlić.": "Tätä näkymää ei voitu näyttää.",
  "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.": "Puhelimen tietoja ei muutettu — voit lähettää ne tiedostona.",
  "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.": "Sovellus sulkeutui odottamatta viimeisillä käynnistyskerroilla.",
- "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automaattinen varmuuskopio treenin jälkeen: Tiedostot → Omalla iPhonella → {app} → Backup.",
+ "Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.": "Automaattinen varmuuskopio jokaisen treenin jälkeen: Tiedostot → Omalla iPhonella → {app} → Backup.",
  "Nie udało się zapisać kopii po treningu": "Treenin jälkeistä varmuuskopiota ei voitu tallentaa",
  "Ostatnia udana kopia: {date}": "Viimeisin onnistunut varmuuskopio: {date}",
  "Asekuracja": "Varmistus",
@@ -1713,6 +1713,6 @@
  "mili": "mailia",
  "jard|jardy|jardów": "jaardi|jaardia",
  "jarda": "jaardia",
- "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Jokainen suuri lihasryhmä vähintään {n} päivänä viikossa (WHO 2020 — terveyssuositus; ACSM 2026: tiheys vaikuttaa voimaan, mutta annos–vastesuhteesta ei ole näyttöä, ja yhtä suurella tilavuudella ero pienenee). Päivä, jolloin ryhmä vain avustaa, lasketaan {h} — yksinkertaistus (menetelmä Pellandin ym. 2026 meta-analyysistä). Jako (koko keho, ylä-/alavartalo) on konventio — samalla sarjamäärällä tulokset ovat samankaltaisia.",
+ "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale brak dowodów na zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.": "Jokainen suuri lihasryhmä vähintään {n} päivänä viikossa (WHO 2020 — terveyssuositus; ACSM 2026: tiheys vaikuttaa voimaan, mutta annos–vastesuhteesta ei ole näyttöä, ja yhtä suurella volyymilla ero pienenee). Päivä, jolloin ryhmä vain avustaa, lasketaan arvolla {h} — yksinkertaistus (menetelmä Pellandin ym. 2026 meta-analyysistä). Jako (koko keho, ylä-/alavartalo) on konventio — samalla sarjamäärällä tulokset ovat samankaltaisia.",
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Askel (esim. +2,5 kg) on käytäntö, ei tutkimustulos."
 }
