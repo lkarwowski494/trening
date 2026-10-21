@@ -139,3 +139,11 @@ describe('04-studio-projektowe-007: przyciski ± mieszczą się w tablicy przy 3
     expect(total).toBeLessThanOrEqual(w - 4 * 16);
   });
 });
+
+describe('lib/board: boardDigitChars (04-studio-projektowe-001)', () => {
+  const { boardDigitChars } = require('@/lib/board');
+  test('cyfry liczą się po 1, separator dziesiętny i dwukropek po pół, „—” za 1, słowo („masa ciała”) za 3; „×” i jednostki nie wchodzą', () => {
+    expect(boardDigitChars(['80', '6'])).toBe(3); expect(boardDigitChars(['187,5', '12'])).toBe(6.5); expect(boardDigitChars(['1:30', '—'])).toBe(4.5);
+    expect(boardDigitChars(['masa ciała', '8'])).toBe(4); expect(boardDigitChars([])).toBe(0);
+  });
+});

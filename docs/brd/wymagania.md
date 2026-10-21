@@ -521,6 +521,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że otwarto ekran miejsca, które wolno usunąć (nie główne, gdy są inne)
     - Gdy użytkownik stuka „Usuń miejsce” na dole ekranu
     - Wtedy pojawia się to samo okno co po geście na liście miejsc, a po potwierdzeniu miejsce znika i ekran wraca do listy
+  - Scenariusz: Usunięcie serii, ćwiczenia, zamiennika albo zapisanego planu poza treningiem bez gestu (04-studio-projektowe-003)
+    - Zakładając, że otwarto edytor szablonu, edycję sesji albo ekran zapisanego planu
+    - Gdy użytkownik wybiera „Usuń serię” w menu serii, „Usuń ćwiczenie” w „⋯” ćwiczenia, „Usuń” przy zamienniku albo „Usuń plan” na dole ekranu planu
+    - Wtedy pojawia się to samo okno [Anuluj, Usuń] co po geście; ostatnia seria bloku nie jest usuwana, a menu pokazuje to samo wyjaśnienie co gest
   - Scenariusz: Miejsce główne
     - Zakładając, że otwarto ekran miejsca głównego, a istnieją inne miejsca
     - Gdy użytkownik przegląda ekran
