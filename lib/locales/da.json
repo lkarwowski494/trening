@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Hvilen kører — giv besked, når den er slut?",
  "przerwa z {s}": "hvile på {s}",
  "Przerwa zamiennika (s): {name}": "Erstatningens hvile (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Hvile, {t} af {all} tilbage.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Hvile. Tid tilbage: {t}. I alt: {all}.",
  "Przerwa: {s}": "Hvile: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Hviletid: {a} min efter tunge sæt i hovedøvelsen, {b} min efter andre flerledsøvelser, {c} min efter enkeltledsøvelser og core — en forenkling; oversigterne er ikke entydige (ACSM 2026: hvilens længde ændrede ikke styrkefremgangen).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Hviletid: {b} min efter flerledsøvelser, {c} min efter enkeltledsøvelser og core — en forenkling; kilderne er ikke entydige (ACSM 2026: hvilens længde ændrede ikke styrkefremgangen).",

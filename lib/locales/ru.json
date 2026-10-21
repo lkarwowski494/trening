@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Идёт отдых — уведомить в конце?",
  "przerwa z {s}": "отдых из {s}",
  "Przerwa zamiennika (s): {name}": "Отдых замены (с): {name}",
- "Przerwa, zostało {t} z {all}.": "Отдых, осталось {t} из {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Отдых. Оставшееся время: {t}. Всего: {all}.",
  "Przerwa: {s}": "Отдых: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Отдых: {a} мин после тяжёлых подходов основного упражнения, {b} мин после других многосуставных, {c} мин после односуставных и кора — упрощение; обзоры неоднозначны (ACSM 2026: длительность отдыха не меняла прирост силы).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Отдых: {b} мин после многосуставных, {c} мин после односуставных и кора — упрощение; источники неоднозначны (ACSM 2026: длительность отдыха не меняла прирост силы).",

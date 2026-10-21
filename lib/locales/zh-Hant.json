@@ -836,7 +836,7 @@
  "Przerwa trwa — powiadomić na koniec?": "休息中 — 結束時通知你？",
  "przerwa z {s}": "休息時間 {s}",
  "Przerwa zamiennika (s): {name}": "替代動作休息（秒）：{name}",
- "Przerwa, zostało {t} z {all}.": "休息，剩餘 {t}（共 {all}）。",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "休息。剩餘時間：{t}。總計：{all}。",
  "Przerwa: {s}": "休息：{s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "休息：主要動作的大重量組後 {a} 分鐘，其他多關節動作後 {b} 分鐘，單關節動作與核心後 {c} 分鐘 — 簡化；研究回顧的結果不一致（ACSM 2026：休息長度並未改變肌力增長）。",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "休息：多關節動作後 {b} 分鐘，單關節動作與核心後 {c} 分鐘 — 簡化；資料來源的結果不一致（ACSM 2026：休息長度並未改變肌力增長）。",

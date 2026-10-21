@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Pauza trvá — upozornit na konci?",
  "przerwa z {s}": "pauza z {s}",
  "Przerwa zamiennika (s): {name}": "Pauza náhrady (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Pauza, zbývá {t} z {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Pauza. Zbývající čas: {t}. Celkem: {all}.",
  "Przerwa: {s}": "Pauza: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Pauzy: {a} min po těžkých sériích hlavního cviku, {b} min po ostatních vícekloubových, {c} min po jednokloubových a core — zjednodušení; přehledy nejsou jednoznačné (ACSM 2026: délka pauzy neměnila přírůstek síly).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Pauzy: {b} min po vícekloubových, {c} min po jednokloubových a core — zjednodušení; zdroje nejsou jednoznačné (ACSM 2026: délka pauzy neměnila přírůstek síly).",

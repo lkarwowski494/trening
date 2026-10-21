@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Recupero in corso — avvisare alla fine?",
  "przerwa z {s}": "recupero di {s}",
  "Przerwa zamiennika (s): {name}": "Recupero sostituto (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Recupero, restano {t} di {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Recupero. Tempo rimanente: {t}. Totale: {all}.",
  "Przerwa: {s}": "Recupero: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Recuperi: {a} min dopo le serie pesanti dell’esercizio principale, {b} min dopo gli altri multiarticolari, {c} min dopo i monoarticolari e il core — una semplificazione; le revisioni non concordano (ACSM 2026: la durata del recupero non ha cambiato l’aumento di forza).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Recuperi: {b} min dopo i multiarticolari, {c} min dopo i monoarticolari e il core — una semplificazione; le fonti non concordano (ACSM 2026: la durata del recupero non ha cambiato l’aumento di forza).",

@@ -1209,7 +1209,7 @@ export const EN: Record<string, string> = {
   'Serie: {d} z {n} zrobione': 'Sets: {d} of {n} done',
   'Rozgrzewki: {d} z {n} zrobione': 'Warm-ups: {d} of {n} done',
   'lista serii przewijana': 'set list scrolls',
-  'Przerwa, zostało {t} z {all}.': 'Rest, {t} of {all} left.',
+  'Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.': 'Rest. Time left: {t}. Total rest: {all}.', /* 09-lokalizacja-001: czas w mianowniku po dwukropku — bez „z {all}” (rekcja przyimka w pl, cs, sk, ru, uk, sl, lt) */
   'Zakończ serię: {ex}, seria {n}': 'Finish set: {ex}, set {n}',
   // M3 rola 09 (teksty): Przewodnik — nowe przepływy usuwania (ZM-04)
   'Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.': 'Delete body weight measurements (“Body weight — measurements”) with “Edit” in the header or by swiping left.',

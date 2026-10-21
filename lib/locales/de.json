@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Pause läuft — am Ende benachrichtigen?",
  "przerwa z {s}": "Pause von {s}",
  "Przerwa zamiennika (s): {name}": "Pause Ersatzübung (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Pause, noch {t} von {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Pause. Verbleibende Zeit: {t}. Gesamt: {all}.",
  "Przerwa: {s}": "Pause: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Pausen: {a} min nach schweren Sätzen der Hauptübung, {b} min nach anderen Mehrgelenkübungen, {c} min nach Eingelenkübungen und Core — eine Vereinfachung; die Übersichten sind uneinheitlich (ACSM 2026: die Pausenlänge änderte den Kraftzuwachs nicht).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Pausen: {b} min nach Mehrgelenkübungen, {c} min nach Eingelenkübungen und Core — eine Vereinfachung; die Quellen sind uneinheitlich (ACSM 2026: die Pausenlänge änderte den Kraftzuwachs nicht).",

@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Paus kestab — teavitada lõpus?",
  "przerwa z {s}": "paus kokku {s}",
  "Przerwa zamiennika (s): {name}": "Asenduse paus (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Paus, jäänud {t} / {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Paus. Järelejäänud aeg: {t}. Kokku: {all}.",
  "Przerwa: {s}": "Paus: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Pausid: {a} min pärast põhiharjutuse raskeid seeriaid, {b} min pärast teisi mitmeliigese harjutusi, {c} min pärast üheliigese ja kere harjutusi — lihtsustus; ülevaated pole üksmeelsed (ACSM 2026: pausi pikkus ei muutnud jõu kasvu).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Pausid: {b} min pärast mitmeliigese harjutusi, {c} min pärast üheliigese ja kere harjutusi — lihtsustus; allikad pole üksmeelsed (ACSM 2026: pausi pikkus ei muutnud jõu kasvu).",

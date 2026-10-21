@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Το διάλειμμα τρέχει — ειδοποίηση στο τέλος;",
  "przerwa z {s}": "διάλειμμα {s}",
  "Przerwa zamiennika (s): {name}": "Διάλειμμα υποκατάστατου (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Διάλειμμα, απομένουν {t} από {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Διάλειμμα. Χρόνος που απομένει: {t}. Συνολικά: {all}.",
  "Przerwa: {s}": "Διάλειμμα: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Διαλείμματα: {a} λεπ. μετά από βαριά σετ της κύριας άσκησης, {b} λεπ. μετά από άλλες πολυαρθρικές, {c} λεπ. μετά από μονοαρθρικές και κορμό — απλοποίηση· οι ανασκοπήσεις δεν συμφωνούν (ACSM 2026: η διάρκεια του διαλείμματος δεν άλλαξε την αύξηση της δύναμης).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Διαλείμματα: {b} λεπ. μετά από πολυαρθρικές, {c} λεπ. μετά από μονοαρθρικές και κορμό — απλοποίηση· οι πηγές δεν συμφωνούν (ACSM 2026: η διάρκεια του διαλείμματος δεν άλλαξε την αύξηση της δύναμης).",

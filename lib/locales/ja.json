@@ -836,7 +836,7 @@
  "Przerwa trwa — powiadomić na koniec?": "休憩中 — 終了時に通知しますか？",
  "przerwa z {s}": "{s} の休憩",
  "Przerwa zamiennika (s): {name}": "代替種目の休憩（秒）: {name}",
- "Przerwa, zostało {t} z {all}.": "休憩、残り{t}（全体 {all}）。",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "休憩。残り時間：{t}。全体：{all}。",
  "Przerwa: {s}": "休憩: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "休憩：メインのリフトの高重量セット後は{a}分、その他の多関節種目後は{b}分、単関節種目と体幹の後は{c}分 — 簡略化です。レビューの結果は一致していません（ACSM 2026：休憩の長さは筋力の向上を変えませんでした）。",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "休憩：多関節種目の後は{b}分、単関節種目と体幹の後は{c}分 — 簡略化です。資料の結果は一致していません（ACSM 2026：休憩の長さは筋力の向上を変えませんでした）。",

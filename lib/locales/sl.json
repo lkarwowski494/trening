@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Počitek poteka — obvestiti ob koncu?",
  "przerwa z {s}": "počitek od {s}",
  "Przerwa zamiennika (s): {name}": "Počitek nadomestka (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Počitek, preostalo {t} od {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Počitek. Preostali čas: {t}. Skupaj: {all}.",
  "Przerwa: {s}": "Počitek: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Počitki: {a} min po težkih serijah glavne vaje, {b} min po drugih večsklepnih, {c} min po enosklepnih in core — poenostavitev; pregledi niso enotni (ACSM 2026: dolžina počitka ni spremenila prirasta moči).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Počitki: {b} min po večsklepnih, {c} min po enosklepnih in core — poenostavitev; viri niso enotni (ACSM 2026: dolžina počitka ni spremenila prirasta moči).",

@@ -836,7 +836,7 @@
  "Przerwa trwa — powiadomić na koniec?": "휴식 중 — 끝나면 알려 드릴까요?",
  "przerwa z {s}": "{s} 휴식 중",
  "Przerwa zamiennika (s): {name}": "대체 종목 휴식(초): {name}",
- "Przerwa, zostało {t} z {all}.": "휴식, {all} 중 {t} 남음.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "휴식. 남은 시간: {t}. 전체: {all}.",
  "Przerwa: {s}": "휴식: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "휴식: 주요 리프트의 고중량 세트 후 {a}분, 기타 다관절 종목 후 {b}분, 단관절 종목과 코어 후 {c}분 — 단순화입니다. 리뷰 결과는 일치하지 않습니다(ACSM 2026: 휴식 길이는 근력 향상에 차이를 주지 않았습니다).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "휴식: 다관절 종목 후 {b}분, 단관절 종목과 코어 후 {c}분 — 단순화입니다. 자료의 결과는 일치하지 않습니다(ACSM 2026: 휴식 길이는 근력 향상에 차이를 주지 않았습니다).",

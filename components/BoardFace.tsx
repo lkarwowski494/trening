@@ -65,7 +65,7 @@ export function RestFace({ w, pos }: { w: Workout; pos: { ei: number; si: number
   const th = useTheme(); const { width } = useWindowDimensions(); const left = Math.max(0, Math.round((timer.T.endAt - Date.now()) / 1000)); const txt = fmtDur(left);
   const size = boardDigitSize('boardClock', width - 4 * SPACE.l, txt.length, PixelRatio.getFontScale());
   const nx = pos ? nextText(w, pos.ei, pos.si) : '';
-  return <View testID="board-rest" accessible accessibilityRole="image" accessibilityLanguage={lang()} accessibilityLabel={[tr('Przerwa, zostało {t} z {all}.', { t: spokenDuration(left), all: spokenDuration(timer.T.total) }), nx ? tr('Następna: {x}', { x: nx }) : ''].filter(Boolean).join(' ')} style={{ gap: SPACE.s }}>
+  return <View testID="board-rest" accessible accessibilityRole="image" accessibilityLanguage={lang()} accessibilityLabel={[tr('Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.', { t: spokenDuration(left), all: spokenDuration(timer.T.total) }), nx ? tr('Następna: {x}', { x: nx }) : ''].filter(Boolean).join(' ')} style={{ gap: SPACE.s }}>
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: SPACE.s }}>
       <Text accessibilityLanguage={lang()} accessibilityRole="header" accessible={false} maxFontSizeMultiplier={maxScale('boardName')} style={{ ...font('boardName'), color: th.boardText }}>{tr('Przerwa')}</Text>
       <Text accessibilityLanguage={lang()} accessible={false} maxFontSizeMultiplier={maxScale('boardMeta')} style={{ ...font('boardMeta'), color: th.boardMuted }}>{monoSafe(tr('z {s}', { s: fmtDur(timer.T.total) }), true)}</Text>

@@ -836,7 +836,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Đang nghỉ — báo khi hết giờ nghỉ?",
  "przerwa z {s}": "nghỉ trong {s}",
  "Przerwa zamiennika (s): {name}": "Thời gian nghỉ của bài thay thế (giây): {name}",
- "Przerwa, zostało {t} z {all}.": "Nghỉ, còn {t} trên {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Nghỉ. Thời gian còn lại: {t}. Tổng: {all}.",
  "Przerwa: {s}": "Nghỉ: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Nghỉ: {a} phút sau các hiệp nặng của bài chính, {b} phút sau các bài đa khớp khác, {c} phút sau các bài đơn khớp và core — đơn giản hóa; các tổng quan chưa thống nhất (ACSM 2026: thời gian nghỉ không làm thay đổi mức tăng sức mạnh).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Nghỉ: {b} phút sau các bài đa khớp, {c} phút sau các bài đơn khớp và core — đơn giản hóa; các nguồn chưa thống nhất (ACSM 2026: thời gian nghỉ không làm thay đổi mức tăng sức mạnh).",

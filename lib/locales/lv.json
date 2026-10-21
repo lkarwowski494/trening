@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Notiek atpūta — paziņot beigās?",
  "przerwa z {s}": "atpūta no {s}",
  "Przerwa zamiennika (s): {name}": "Aizstājēja atpūta (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Atpūta, atlicis {t} no {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Atpūta. Atlikušais laiks: {t}. Kopā: {all}.",
  "Przerwa: {s}": "Atpūta: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Atpūta: {a} min pēc galvenā vingrinājuma smagajām sērijām, {b} min pēc citiem daudzlocītavu, {c} min pēc vienas locītavas un korpusa vingrinājumiem — vienkāršojums; pārskati nav vienprātīgi (ACSM 2026: atpūtas ilgums nemainīja spēka pieaugumu).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Atpūta: {b} min pēc daudzlocītavu, {c} min pēc vienas locītavas un korpusa vingrinājumiem — vienkāršojums; avoti nav vienprātīgi (ACSM 2026: atpūtas ilgums nemainīja spēka pieaugumu).",

@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Odmor traje — obavijestiti na kraju?",
  "przerwa z {s}": "odmor od {s}",
  "Przerwa zamiennika (s): {name}": "Odmor zamjene (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Odmor, preostalo {t} od {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Odmor. Preostalo vrijeme: {t}. Ukupno: {all}.",
  "Przerwa: {s}": "Odmor: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Odmori: {a} min nakon teških serija glavne vježbe, {b} min nakon ostalih višezglobnih, {c} min nakon jednozglobnih i core — pojednostavljenje; pregledni radovi nisu jednoznačni (ACSM 2026: duljina odmora nije mijenjala porast snage).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Odmori: {b} min nakon višezglobnih, {c} min nakon jednozglobnih i core — pojednostavljenje; izvori nisu jednoznačni (ACSM 2026: duljina odmora nije mijenjala porast snage).",

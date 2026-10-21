@@ -4353,12 +4353,12 @@
   "en": "Substitute rest (s): {name}"
  },
  {
-  "pl": "Przerwa, zostało {t} z {all}.",
-  "en": "Rest, {t} of {all} left."
- },
- {
   "pl": "Przerwa: {s}",
   "en": "Rest: {s}"
+ },
+ {
+  "pl": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+  "en": "Rest. Time left: {t}. Total rest: {all}."
  },
  {
   "pl": "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).",

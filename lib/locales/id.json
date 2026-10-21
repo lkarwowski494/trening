@@ -836,7 +836,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Istirahat berlangsung — beri tahu saat selesai?",
  "przerwa z {s}": "istirahat dari {s}",
  "Przerwa zamiennika (s): {name}": "Istirahat gerakan pengganti (dtk): {name}",
- "Przerwa, zostało {t} z {all}.": "Istirahat, sisa {t} dari {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Istirahat. Sisa waktu: {t}. Total: {all}.",
  "Przerwa: {s}": "Istirahat: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Istirahat: {a} mnt setelah set berat gerakan utama, {b} mnt setelah gerakan multi-sendi lainnya, {c} mnt setelah gerakan isolasi dan core — penyederhanaan; tinjauan penelitian tidak seragam (ACSM 2026: lama istirahat tidak mengubah peningkatan kekuatan).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Istirahat: {b} mnt setelah gerakan multi-sendi, {c} mnt setelah gerakan satu sendi dan core — penyederhanaan; sumbernya tidak seragam (ACSM 2026: lama istirahat tidak mengubah peningkatan kekuatan).",

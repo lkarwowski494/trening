@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Repos en cours — prévenir à la fin ?",
  "przerwa z {s}": "repos de {s}",
  "Przerwa zamiennika (s): {name}": "Repos du substitut (s) : {name}",
- "Przerwa, zostało {t} z {all}.": "Repos, il reste {t} sur {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Repos. Temps restant : {t}. Total : {all}.",
  "Przerwa: {s}": "Repos : {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Repos : {a} min après les séries lourdes de l’exercice principal, {b} min après les autres polyarticulaires, {c} min après les monoarticulaires et le gainage — une simplification ; les revues ne concordent pas (ACSM 2026 : la durée du repos n’a pas changé le gain de force).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Repos : {b} min après les polyarticulaires, {c} min après les monoarticulaires et le gainage — une simplification ; les sources ne concordent pas (ACSM 2026 : la durée du repos n’a pas changé le gain de force).",

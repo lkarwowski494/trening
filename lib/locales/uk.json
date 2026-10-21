@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Триває відпочинок — повідомити наприкінці?",
  "przerwa z {s}": "відпочинок із {s}",
  "Przerwa zamiennika (s): {name}": "Відпочинок для заміни (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Відпочинок, залишилось {t} із {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Відпочинок. Залишився час: {t}. Усього: {all}.",
  "Przerwa: {s}": "Відпочинок: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Відпочинок: {a} хв після важких підходів основної вправи, {b} хв після інших багатосуглобових, {c} хв після односуглобових і кор — спрощення; огляди неоднозначні (ACSM 2026: тривалість відпочинку не змінювала приросту сили).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Відпочинок: {b} хв після багатосуглобових, {c} хв після односуглобових і кор — спрощення; джерела неоднозначні (ACSM 2026: тривалість відпочинку не змінювала приросту сили).",

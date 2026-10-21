@@ -35,10 +35,10 @@ describe('M3 p2: komunikaty i funkcje tablicy „teraz”', () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); store.addSet(0); A().exercises[0].sets[0].kind = 'warmup'; await boot();
     expect(label()).toContain(tr('Rozgrzewki: {d} z {n} zrobione', { d: 0, n: 1 })); expect(label()).toContain('Rozgrzewki: 0 z 1 zrobione');
   });
-  test('„Przerwa, zostało {t} z {all}.” — zegar na tablicy w przerwie czytany jako ile zostało z ilu', async () => {
+  test('„Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.” — zegar na tablicy w przerwie czytany jako ile zostało i ile trwa całość (09-lokalizacja-001: bez przyimka przed liczbą)', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); A().exercises[0].sets[0].weight = 100; A().exercises[0].sets[0].reps = 5; await boot();
     await tap(screen.getByTestId('focus-done')); await flushAll(30);
-    const rest = screen.getByTestId('board-rest').props.accessibilityLabel as string; expect(rest.startsWith('Przerwa, zostało ')).toBe(true); expect(rest).toMatch(/^Przerwa, zostało .+ z .+\./);
+    const rest = screen.getByTestId('board-rest').props.accessibilityLabel as string; expect(rest.startsWith('Przerwa. Pozostały czas: ')).toBe(true); expect(rest).toMatch(/^Przerwa\. Pozostały czas: .+\. Cała przerwa: .+\./); expect(rest).not.toMatch(/ z \d+ (minut|sekund)/); /* dawniej „z 2 minuty” (zły przypadek) */
   });
   test('„Wpisz {co}, żeby zapisać serię.” — „Seria zrobiona” bez wartości ogłasza brakujące pole i wibruje ostrzegawczo; hapticsOn() zależy od przełącznika dźwięku', async () => {
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); await boot();

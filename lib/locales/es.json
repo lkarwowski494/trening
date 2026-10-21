@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "El descanso está en curso — ¿avisar al terminar?",
  "przerwa z {s}": "descanso de {s}",
  "Przerwa zamiennika (s): {name}": "Descanso del sustituto (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Descanso, quedan {t} de {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Descanso. Tiempo restante: {t}. Total: {all}.",
  "Przerwa: {s}": "Descanso: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Descansos: {a} min tras las series pesadas del ejercicio principal, {b} min tras otros multiarticulares, {c} min tras los monoarticulares y el core — una simplificación; las revisiones no coinciden (ACSM 2026: la duración del descanso no cambió la ganancia de fuerza).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Descansos: {b} min tras los multiarticulares, {c} min tras los monoarticulares y el core — una simplificación; las fuentes no coinciden (ACSM 2026: la duración del descanso no cambió la ganancia de fuerza).",

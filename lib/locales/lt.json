@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Poilsis vyksta — pranešti pabaigoje?",
  "przerwa z {s}": "iš {s} poilsio",
  "Przerwa zamiennika (s): {name}": "Pakaitalo poilsis (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Poilsis, liko {t} iš {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Poilsis. Likęs laikas: {t}. Iš viso: {all}.",
  "Przerwa: {s}": "Poilsis: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Poilsis: {a} min po sunkių pagrindinio pratimo serijų, {b} min po kitų daugiasąnarių, {c} min po vienasąnarių ir liemens pratimų — supaprastinimas; apžvalgos nevienareikšmės (ACSM 2026: poilsio trukmė nekeitė jėgos prieaugio).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Poilsis: {b} min po daugiasąnarių, {c} min po vienasąnarių ir liemens pratimų — supaprastinimas; šaltiniai nevienareikšmiai (ACSM 2026: poilsio trukmė nekeitė jėgos prieaugio).",

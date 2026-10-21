@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Vilan pågår — avisera när den är slut?",
  "przerwa z {s}": "vila på {s}",
  "Przerwa zamiennika (s): {name}": "Ersättarens vila (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Vila, {t} av {all} kvar.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Vila. Tid kvar: {t}. Totalt: {all}.",
  "Przerwa: {s}": "Vila: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Vila: {a} min efter tunga set i huvudövningen, {b} min efter andra flerledsövningar, {c} min efter enledsövningar och core — en förenkling; översikterna är inte entydiga (ACSM 2026: vilans längd ändrade inte styrkeökningen).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Vila: {b} min efter flerledsövningar, {c} min efter enledsövningar och core — en förenkling; källorna är inte entydiga (ACSM 2026: vilans längd ändrade inte styrkeökningen).",

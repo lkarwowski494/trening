@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Одмор траје — обавестити на крају?",
  "przerwa z {s}": "одмор од {s}",
  "Przerwa zamiennika (s): {name}": "Одмор замене (s): {name}",
- "Przerwa, zostało {t} z {all}.": "Одмор, преостало {t} од {all}.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Одмор. Преостало време: {t}. Укупно: {all}.",
  "Przerwa: {s}": "Одмор: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Одмори: {a} мин после тешких серија главне вежбе, {b} мин после осталих вишезглобних, {c} мин после једнозглобних и кор вежби — поједностављење; прегледни радови нису једнозначни (ACSM 2026: дужина одмора није мењала пораст снаге).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Одмори: {b} мин после вишезглобних, {c} мин после једнозглобних и кор вежби — поједностављење; извори нису једнозначни (ACSM 2026: дужина одмора није мењала пораст снаге).",

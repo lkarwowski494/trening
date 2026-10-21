@@ -1051,7 +1051,7 @@
  "Przerwa trwa — powiadomić na koniec?": "Dinlenme sürüyor — bitince bildirilsin mi?",
  "przerwa z {s}": "dinlenme: {s}",
  "Przerwa zamiennika (s): {name}": "Alternatif egzersiz dinlenmesi (sn): {name}",
- "Przerwa, zostało {t} z {all}.": "Dinlenme, {all} içinden {t} kaldı.",
+ "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Dinlenme. Kalan süre: {t}. Toplam: {all}.",
  "Przerwa: {s}": "Dinlenme: {s}",
  "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Dinlenme: ana hareketin ağır setlerinden sonra {a} dk, diğer çok eklemli hareketlerden sonra {b} dk, tek eklemli ve core hareketlerinden sonra {c} dk — bir basitleştirme; derlemeler tutarlı değil (ACSM 2026: dinlenme süresi güç artışını değiştirmedi).",
  "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).": "Dinlenme: çok eklemli hareketlerden sonra {b} dk, tek eklemli ve core hareketlerinden sonra {c} dk — bir basitleştirme; kaynaklar tutarlı değil (ACSM 2026: dinlenme süresi güç artışını değiştirmedi).",

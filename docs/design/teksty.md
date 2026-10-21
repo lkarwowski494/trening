@@ -22,7 +22,7 @@ Dla roli 09 (tłumacz, 35 języków, DEC-21) i roli 08 (klucze w `lib/i18n.en.ts
 | 16 | Serie: {d} z {n} zrobione | Sets: {d} of {n} done | opis tablicy dla VoiceOver (design-spec §2) | nowy |
 | 17 | Rozgrzewki: {d} z {n} zrobione | Warm-ups: {d} of {n} done | j.w., gdy ćwiczenie ma serie rozgrzewkowe | nowy |
 | 18 | lista serii przewijana | set list scrolls | j.w., dopisek przy > 12 polach | nowy |
-| 19 | Przerwa, zostało {t} z {all}. | Rest, {t} of {all} left. | opis tablicy w przerwie (VoiceOver); dalej pkt 2 | nowy |
+| 19 | Przerwa. Pozostały czas: {t}. Cała przerwa: {all}. | Rest. Time left: {t}. Total rest: {all}. | opis tablicy w przerwie (VoiceOver); dalej pkt 2 | nowy |
 | 20 | Usuń szablon | Delete template | przycisk `danger` na dole podglądu szablonu (ZM-04, wz. 5) | nowy |
 | 21 | Usuń z biblioteki | Delete from library | przycisk `danger` na dole ekranu ćwiczenia (ZM-04); słowo jak akcja gestu „Usuń z biblioteki: {name}” — **nie** „Usuń ćwiczenie”, które w treningu znaczy usunięcie z treningu | nowy |
 | 22 | Usuń sesję · Usuń miejsce · Edytuj · Gotowe · Planowanie · Zakończ serię · Seria zrobiona · Wykresy pojawią się po pierwszym zakończonym treningu. · Ćwiczenie · Nie teraz | (bez zmian) | ZM-04 (sesja, miejsce), ZM-04 listy, W1 c, ZM-05, ZM-01, ZM-06 (nagłówek wyboru w Postępach) | jest |
