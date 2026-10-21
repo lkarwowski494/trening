@@ -61,6 +61,7 @@ name: Plan z moich szablonów
 - tapOn: "Search exercises…"
 - inputText: "Bent Over Row"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Bent Over Row \\(Dumbbell\\), dumbbells"
 - extendedWaitUntil: { visible: "Bent Over Row \\(Dumbbell\\)", timeout: 30000 }
 - tapOn: "Save template"

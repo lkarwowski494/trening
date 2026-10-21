@@ -515,6 +515,8 @@ Training is not medical advice. For pain, injuries or illness, consult a special
 
 ### Rekomendacja nazwy i podtytułu
 
+**Zastąpione 21.10.2026 (STOP 2 M5, docs/45):** nazwy, podtytuły i słowa kluczowe wszystkich lokalizacji — `store/app-store-names.json` i `store/app-store-metadata.json` (PL „Trening: dziennik treningowy” / „Serie i przerwy. Bez konta”; EN podtytuł „Workout tracker. No account.”). Warianty A/B niżej i wyżej zostają jako zapis; opis i tekst promocyjny z tego dokumentu obowiązują do czasu M3.
+
 - **Wariant A (rekomendowany):** nazwa z rejestru (decyzja 05.10/06.10, `store/app-store-names.json`) zawiera słowa wyszukiwane przez ludzi („dziennik siłowni”, „gym log”, „rest timer”), a podtytuł dokłada plan i serie. Kompromis: dłuższa nazwa w sklepie, mniej „markowa”.
 - **Wariant B:** krótka nazwa „Trening”/„Training” (jak nazwa pod ikoną), opis funkcji w podtytule. Kompromis: bardzo ogólne słowo — trudniej o unikalność nazwy w App Store Connect i słabsza widoczność w wyszukiwaniu; słowa kluczowe trzeba by przeliczyć.
 - Decyzja należy do właściciela. Liczby znaków w tabelach wyżej.

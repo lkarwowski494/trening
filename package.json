@@ -21,7 +21,9 @@
     "screens": "node scripts/screens/run.mjs",
     "mutation": "stryker run",
     "perf": "jest -c jest.perf.config.js",
-    "test:fast": "node scripts/test-fast.mjs"
+    "test:fast": "node scripts/test-fast.mjs",
+    "verify:docs": "node scripts/verify-docs.mjs",
+    "prepare": "node scripts/hooks/instaluj.mjs"
   },
   "dependencies": {
     "@bacons/apple-targets": "^5.0.0",

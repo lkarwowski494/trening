@@ -41,6 +41,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - tapOn: "Search exercises…"
 - inputText: "Hammer E2E"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Cable Hammer E2E, barbell.*", timeout: 15000 }
 # --- użycie własnego ćwiczenia w treningu ---
 - tapOn: "Back"
@@ -54,6 +55,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - tapOn: "Search exercises…"
 - inputText: "Hammer E2E"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Cable Hammer E2E,.*"
 - extendedWaitUntil: { visible: "Set 1 done — Cable Hammer E2E", timeout: 30000 }
 # --- ćwiczenie, którego nie ma nigdzie: „Utwórz „…”” z wyboru ćwiczenia ---
@@ -63,6 +65,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - tapOn: "Search exercises…"
 - inputText: "Zottman Curl E2E"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Create “Zottman Curl E2E”.*", timeout: 15000 }
 - takeScreenshot: 94-utworz-z-wyboru
 - tapOn: "Create “Zottman Curl E2E”.*"
@@ -91,6 +94,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - tapOn: "Search exercises…"
 - inputText: "Hammer E2E"
 - tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Cable Hammer E2E, barbell.*", timeout: 15000 }
 - swipe: { from: { id: "lib-row-1" }, direction: LEFT, duration: 400 }
 - runFlow:
