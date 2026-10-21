@@ -1850,15 +1850,19 @@
    "wersja": "0.19",
    "realnosc": "brzegowy",
    "kroki": [
-    "Miejsce → „Gumy” → poziomy / kolor / usuń"
+    "Miejsce → „Gumy” → poziomy / kolor / usuń",
+    "Ekran Gumy → „Edytuj” w nagłówku → przycisk usunięcia przy gumie → okno [Anuluj, Usuń] (to samo co gest); „+” znika, „Gotowe” kończy tryb"
    ],
-   "wynik": "Poziomy i kolor zapisane; usunięcie pyta o skutki w historii.",
+   "wynik": "Poziomy i kolor zapisane; usunięcie pyta o skutki w historii. Tryb „Edytuj” daje widoczną drogę usunięcia obok gestu.",
    "ekrany": [
     "/more/bands"
    ],
    "scenariusz": "10-gumy.yaml",
    "znaczniki": [
-    "Band colour"
+    "Band colour",
+    "edit-button",
+    "row-delete",
+    "Delete band"
    ]
   },
   {
@@ -2041,15 +2045,19 @@
    "wersja": "0.19",
    "realnosc": "realny",
    "kroki": [
-    "Postępy → „Masa ciała — pomiary” → wpisz → „Zapisz pomiar”"
+    "Postępy → „Masa ciała — pomiary” → wpisz → „Zapisz pomiar”",
+    "„Edytuj” w nagłówku → przycisk usunięcia przy pomiarze → okno [Anuluj, Usuń]; „Anuluj” zostawia pomiar; „Gotowe” kończy tryb"
    ],
-   "wynik": "Pomiar na liście i w sekcji Postępów.",
+   "wynik": "Pomiar na liście i w sekcji Postępów. Usunięcie pomiaru ma widoczną drogę obok gestu.",
    "ekrany": [
     "/more/bodymass"
    ],
    "scenariusz": "15-masa-licencje.yaml",
    "znaczniki": [
-    "Save measurement"
+    "Save measurement",
+    "edit-button",
+    "row-delete",
+    "Delete measurement"
    ]
   },
   {
@@ -3193,6 +3201,26 @@
     "zastepnik": [],
     "kontrola": "Wg docs/35 (lista ręczna wydania 0.20): parowanie, pierwsza seria z zegarka, przerwa z wibracją, zasięg w kieszeni, „Cofnij”, „Pomiń”."
    }
+  },
+  {
+   "id": "US-19",
+   "tytul": "Usunięcie miejsca przyciskiem na dole ekranu miejsca (okno jak przy geście, Anuluj zostawia)",
+   "stan": "istniejacy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Więcej → Miejsca i sprzęt → miejsce → przewiń na dół → „Usuń miejsce”",
+    "Okno „Usunąć miejsce?” [Anuluj, Usuń] — to samo co przy geście na liście; „Anuluj” zostawia miejsce"
+   ],
+   "wynik": "Miejsce da się usunąć bez gestu (miejsca głównego, gdy są inne, nie usuwa się — brak przycisku).",
+   "ekrany": [
+    "/more/location/[id]"
+   ],
+   "scenariusz": "06-miejsca.yaml",
+   "znaczniki": [
+    "Remove place",
+    "Delete place"
+   ]
   }
  ],
  "pominiete": [

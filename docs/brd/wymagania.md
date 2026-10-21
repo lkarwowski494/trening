@@ -367,6 +367,23 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik uruchamia nową wersję
     - Wtedy dane są przeniesione do nowego schematu, a kopia zapisu sprzed migracji istnieje
 
+### BR-DAN-004: Usuwanie poza treningiem: widoczna droga obok gestu, to samo potwierdzenie
+- Przepływ: PR-09, PR-05
+- Dowód potrzeby: decyzja właściciela 21.10.2026 (docs/18, M3 ZM-04, W1 b, W2 a); docs/32 wzorzec 5; testy `tests/m3-p5-delete.test.tsx`, `tests/swipe-delete.test.tsx`
+- Kryteria akceptacji:
+  - Scenariusz: Usunięcie pomiaru masy ciała albo gumy bez gestu
+    - Zakładając, że lista pomiarów albo gum ma co najmniej jeden wiersz
+    - Gdy użytkownik stuka „Edytuj” w nagłówku, a potem przycisk usunięcia przy wierszu
+    - Wtedy pojawia się to samo okno [Anuluj, Usuń] co po geście przesunięcia, „Anuluj” nic nie usuwa, a „Usuń” usuwa jeden wiersz
+  - Scenariusz: Usunięcie miejsca ze szczegółów
+    - Zakładając, że otwarto ekran miejsca, które wolno usunąć (nie główne, gdy są inne)
+    - Gdy użytkownik stuka „Usuń miejsce” na dole ekranu
+    - Wtedy pojawia się to samo okno co po geście na liście miejsc, a po potwierdzeniu miejsce znika i ekran wraca do listy
+  - Scenariusz: Miejsce główne
+    - Zakładając, że otwarto ekran miejsca głównego, a istnieją inne miejsca
+    - Gdy użytkownik przegląda ekran
+    - Wtedy przycisku „Usuń miejsce” nie ma (jak gestu)
+
 ### BR-JEZ-001: Interfejs w wielu językach
 - Przepływ: PR-08
 - Dowód potrzeby: J-04; docs/16-jezyki-i-marka.md; NFR-JEZ-001

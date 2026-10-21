@@ -1192,4 +1192,9 @@ export const EN: Record<string, string> = {
   'jard|jardy|jardów': 'yard|yards',
   'jarda': 'yards',
   'Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.': 'The step (e.g. +2.5 kg) is a convention, not a research result.',
+  // M3 p5
+  'Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.': 'Tap the number on the board and enter weight and reps (or use + and −), then “Set done” — the rest timer starts by itself. If a value is missing, “Set done” moves the cursor to the empty field.',
+  '„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).': '“Archive” in the preview hides a template; delete it with the button at the bottom of the preview or by swiping left in the list (with confirmation).',
+  'Miejsce usuniesz przyciskiem na dole jego ekranu (poza miejscem głównym) albo przesunięciem w lewo na liście; gumy — „Edytuj” w nagłówku albo przesunięcie w lewo.': 'Delete a place with the button at the bottom of its screen (not the main place) or by swiping left in the list; bands — “Edit” in the header or swipe left.',
+  'Pomiary masy ciała usuniesz po „Edytuj” w nagłówku ekranu pomiarów albo przesunięciem w lewo.': 'Delete body mass measurements with “Edit” in the header of the measurements screen or by swiping left.',
 };

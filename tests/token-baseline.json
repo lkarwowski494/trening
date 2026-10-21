@@ -30,12 +30,6 @@
    "fontSize": 12,
    "borderRadius": 1
   },
-  "app/more/bodymass.tsx": {
-   "fontSize": 2
-  },
-  "app/more/location/[id].tsx": {
-   "fontSize": 5
-  },
   "app/more/settings.tsx": {
    "fontSize": 5
   },

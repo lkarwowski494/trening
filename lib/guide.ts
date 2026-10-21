@@ -13,14 +13,14 @@ export type GuideTopic = { id: string; title: () => string; steps: () => string[
 export const GUIDE: GuideTopic[] = [
   { id: 'workout', route: '/', title: () => t('Trening i serie'), steps: () => [
     t('Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.'),
-    t('Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.'),
+    t('Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.') /* M3 ZM-01 */,
     t('„Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.'),
     t('Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.'),
   ] },
   { id: 'templates', route: '/templates', title: () => t('Szablony'), steps: () => [
     t('Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.'),
     t('Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.'), /* edycja na żądanie, 08.10.2026 */
-    t('„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).'),
+    t('„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).') /* M3 ZM-04 */,
     t('Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.'), /* ⓘ (14.10.2026): dawna stopka edytora szablonu przeniesiona z ekranu do Przewodnika */
   ] },
   /* H1 (audyt 0.10, UX-09): tematy, których brakowało — zmiany w trakcie treningu i historia */
@@ -58,10 +58,12 @@ export const GUIDE: GuideTopic[] = [
     t('Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.', { n: WEEKLY_SETS_MARK }), /* LOG2-05: próg w jednym miejscu */
     t('Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.'),
     t('Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.'),
+    t('Pomiary masy ciała usuniesz po „Edytuj” w nagłówku ekranu pomiarów albo przesunięciem w lewo.'),
   ] },
   { id: 'places', route: '/more/locations', title: () => t('Miejsca i sprzęt'), steps: () => [
     t('Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.'),
     t('Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.'),
+    t('Miejsce usuniesz przyciskiem na dole jego ekranu (poza miejscem głównym) albo przesunięciem w lewo na liście; gumy — „Edytuj” w nagłówku albo przesunięcie w lewo.'),
   ] },
   { id: 'backup', route: '/more/backup', title: () => t('Kopia zapasowa'), steps: () => [
     t('Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku.'),

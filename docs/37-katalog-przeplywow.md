@@ -7,19 +7,19 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **152** (realny: 130, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **153** (realny: 131, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
 | `nowy` | 20 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
-| `istniejacy` | 113 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
+| `istniejacy` | 114 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
 | `aktualizacja` | 6 | Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34). |
 | `kopia` | 4 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
 | `jezyk-motyw` | 9 | Po zmianie języka, wyglądu lub jednostki: zmienione w Ustawieniach, sprawdzane też po restarcie. |
 
 | Pokrycie | Przepływów |
 |---|---|
-| Maestro | 125 |
+| Maestro | 126 |
 | Maestro (eksperyment) | 4 |
 | Jest | 10 |
 | Telefon | 13 |
@@ -140,7 +140,7 @@ Przepływów w katalogu: **152** (realny: 130, brzegowy: 22); pominięte jako te
 | SZ-10 | **Nowe własne ćwiczenie: nazwa, partia, sprzęt, co zapisywać** — Ćwiczenia → „+ Nowe” → wypełnij → „Zapisz ćwiczenie” → Użyj w treningu przez wybór ćwiczenia | Ćwiczenie w bibliotece i do wyboru w treningu. | `istniejacy` | realny | Maestro: `.maestro/27-biblioteka-cwiczen.yaml` |
 | SZ-11 | **Edycja ćwiczenia (Anuluj / Zapisz / Odrzuć) i trwałość po restarcie** — Ćwiczenie → „Edytuj” → zmień → „Zapisz” → restart | Zmiana trwała po restarcie. | `istniejacy` | realny | Maestro: `.maestro/16-edycja-na-zadanie.yaml` |
 | SZ-12 | **Usunięcie lub archiwizacja ćwiczenia i przywrócenie z wyszukiwania** — Ćwiczenia → przesuń własne ćwiczenie w lewo → potwierdź → Wyszukaj nazwę → „Przywróć „…”” | Ćwiczenie znika z wyboru, historia zachowuje nazwę; przywrócenie działa. | `istniejacy` | brzegowy | Maestro: `.maestro/27-biblioteka-cwiczen.yaml` |
-| SZ-13 | **Gumy oporowe: poziomy, kolory, dodanie i usunięcie** — Miejsce → „Gumy” → poziomy / kolor / usuń | Poziomy i kolor zapisane; usunięcie pyta o skutki w historii. | `istniejacy` | brzegowy | Maestro: `.maestro/10-gumy.yaml` |
+| SZ-13 | **Gumy oporowe: poziomy, kolory, dodanie i usunięcie** — Miejsce → „Gumy” → poziomy / kolor / usuń → Ekran Gumy → „Edytuj” w nagłówku → przycisk usunięcia przy gumie → okno [Anuluj, Usuń] (to samo co gest); „+” znika, „Gotowe” kończy tryb | Poziomy i kolor zapisane; usunięcie pyta o skutki w historii. Tryb „Edytuj” daje widoczną drogę usunięcia obok gestu. | `istniejacy` | brzegowy | Maestro: `.maestro/10-gumy.yaml` |
 
 ## HI — Historia i postępy
 
@@ -155,7 +155,7 @@ Przepływów w katalogu: **152** (realny: 130, brzegowy: 22); pominięte jako te
 | HI-07 | **Wykres i rekordy ćwiczenia (max ciężar, objętość sesji, e1RM)** — Postępy → wybierz ćwiczenie → Rekordy i wykres; „Ostatnie treningi” → sesja | Rekordy zgodne z historią. | `istniejacy` | realny | Maestro: `.maestro/31-pierwszy-tydzien.yaml` |
 | HI-08 | **Rekord w kończonym treningu (plakietka rekordu, karta rekordów sesji)** — Dwa treningi z rosnącym ciężarem → Drugi: po zakończeniu karta rekordów na ekranie sesji | Rekord oznaczony tylko tam, gdzie jest nowy. | `istniejacy` | realny | Maestro: `.maestro/28-dluga-historia.yaml` |
 | HI-09 | **Progresja: tydzień vs poprzedni, partie z postępem** — Postępy → kafelek „Ten tydzień vs poprzedni” → Progresja (dwa słupki na partię) | Porównanie tygodnia z poprzednim. | `istniejacy` | realny | Maestro: `.maestro/31-pierwszy-tydzien.yaml` |
-| HI-10 | **Masa ciała z datą: pomiar, lista pomiarów, jednostka** — Postępy → „Masa ciała — pomiary” → wpisz → „Zapisz pomiar” | Pomiar na liście i w sekcji Postępów. | `istniejacy` | realny | Maestro: `.maestro/15-masa-licencje.yaml` |
+| HI-10 | **Masa ciała z datą: pomiar, lista pomiarów, jednostka** — Postępy → „Masa ciała — pomiary” → wpisz → „Zapisz pomiar” → „Edytuj” w nagłówku → przycisk usunięcia przy pomiarze → okno [Anuluj, Usuń]; „Anuluj” zostawia pomiar; „Gotowe” kończy tryb | Pomiar na liście i w sekcji Postępów. Usunięcie pomiaru ma widoczną drogę obok gestu. | `istniejacy` | realny | Maestro: `.maestro/15-masa-licencje.yaml` |
 | HI-11 | **Cel serii na partię: automatyczny i ręczny** — Ustawienia → „Cele partii” → partia → Ręcznie → liczba | Kreska celu w „Ten tydzień” i Postępach zgodna. | `istniejacy` | realny | Maestro: `.maestro/35-ustawienia-dostepnosc.yaml` |
 | HI-12 | **Kafelki „Ten tydzień” jako jeden przycisk do Postępów** — Zakładka Trening → kafelki → Postępy | Przejście do Postępów z jedną etykietą VoiceOver. | `istniejacy` | realny | Maestro: `.maestro/01-trening-z-szablonu.yaml` |
 | HI-13 | **Strażnik progresji na ekranie Trening: sylwetka w kolorach progresu, legenda, zdanie o brakach celu serii** — Zrób pierwszy trening w tygodniu z planem tygodnia na pozostałe dni → Na zakładce Trening w „Ten tydzień” przewiń do sylwetki → Sylwetka ma opis stanów partii (więcej, tyle samo, mniej, bez porównania, nowe), a pod nią legenda i zdanie o partiach poniżej celu nawet z planem albo „Z planem wszystkie trenowane partie dojdą do celu” → Pierwszy tydzień nie ma poprzedniego, więc partie są „nowe” i nie ma zdania o spadkach | Sylwetka pokazuje kierunek zmiany tygodnia, zdanie podaje partie poniżej celu serii po całym planie; przycisk „Szczegóły w Postępach” prowadzi do Postępów. | `nowy` | realny | Maestro: `.maestro/52-straznik-progresji.yaml` |
@@ -184,6 +184,7 @@ Przepływów w katalogu: **152** (realny: 130, brzegowy: 22); pominięte jako te
 | US-16 | **Wyczyszczenie wszystkich danych: pytanie, „Nie” zostawia dane, potem „Wyczyść”** — Ustawienia → „Wyczyść wszystkie dane” → Anuluj → jeszcze raz → Wyczyść → Powrót do „Pierwszych kroków” | Przed czyszczeniem powstaje kopia bezpieczeństwa; po czyszczeniu stan jak nowy. | `istniejacy` | realny | Maestro: `.maestro/32-regularny-uzytkownik.yaml` |
 | US-17 | **„Poproś o nową funkcję” obok „Napisz do nas” (Więcej → O aplikacji)** — Więcej → O aplikacji → Pod wersją są dwa wiersze: „Napisz do nas” i „Poproś o nową funkcję” → Stuknięcie „Poproś o nową funkcję” → wiadomość e-mail do wsparcia z tematem „Pomysł: ” i szablonem (tylko ręcznie na telefonie z Pocztą) | Oba wiersze są widoczne; „Poproś o nową funkcję” otwiera pocztę tą samą drogą co „Napisz do nas”; bez poczty — okno z adresem wsparcia. | `istniejacy` | brzegowy | Maestro: `.maestro/15-masa-licencje.yaml` |
 | US-18 | **Objaśnienie pod ⓘ: rozwiń w miejscu, zwiń, źródło zostaje w tekście** — Ustawienia → przy „Widok treningu” stuknij ⓘ → Przeczytaj opis pod polem; stuknij ⓘ ponownie → To samo przy nagłówku „Cel serii na partię w tygodniu” (źródło ACSM) i przy polu „Zapowiedzi głosowe” | Tekst objaśniający pojawia się pod nagłówkiem i znika po drugim stuknięciu; ⓘ nie zmienia wyboru; na wierzchu zostaje tylko krótki opis; stan nie jest zapamiętywany. | `istniejacy` | realny | Maestro: `.maestro/53-objasnienia-info.yaml` |
+| US-19 | **Usunięcie miejsca przyciskiem na dole ekranu miejsca (okno jak przy geście, Anuluj zostawia)** — Więcej → Miejsca i sprzęt → miejsce → przewiń na dół → „Usuń miejsce” → Okno „Usunąć miejsce?” [Anuluj, Usuń] — to samo co przy geście na liście; „Anuluj” zostawia miejsce | Miejsce da się usunąć bez gestu (miejsca głównego, gdy są inne, nie usuwa się — brak przycisku). | `istniejacy` | realny | Maestro: `.maestro/06-miejsca.yaml` |
 
 ## DA — Kopia, eksport, import, czyszczenie danych
 
