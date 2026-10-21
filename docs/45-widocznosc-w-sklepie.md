@@ -114,3 +114,24 @@ indeksowanie języka dodatkowego, odmian i złożeń (pomiar); sl — brak sygna
 
 **Kontrola dowodów i sekretów:** pliki grup przeszły `sprawdz-raport.mjs` (kod 0); metadane `sprawdz-wydanie.mjs metadane` (kod 0); strażnik nazw innych
 aplikacji (`tests/forbidden-names.test.ts`) i test publicznego repo zielone; surowe dane konkurencji tylko w katalogu przebiegu poza gitem (do przeniesienia na Dysk).
+
+## Podpowiedzi wyszukiwarki z telefonu właściciela (21.10.2026, storefront Polska)
+
+Zrzuty listy podpowiedzi App Store dla 10 fraz (właściciel, ok. 17:58–18:00 czasu PL; przekazane przez koordynatora; zrzuty poza repo). Liczba podpowiedzi
+to sygnał ruchu, nie liczba wyszukań.
+
+| Fraza | Podpowiedzi | Wniosek |
+|---|---|---|
+| dziennik treningowy | 3 (fraza na 1. miejscu, 2 nazwy aplikacji) | ruch jest, mała konkurencja — potwierdza nazwę PL |
+| dziennik siłowni | 0 (bez „ł”: tylko sama fraza) | bardzo mały ruch — potwierdza odejście od dawnej nazwy |
+| timer przerw | 0 | mały ruch; „przerwy” zostaje w podtytule jako opis pracy |
+| notes treningowy | 0 | mały ruch — kandydat do zamiany w słowach kluczowych (pytanie do właściciela) |
+| plan treningowy | 6 (m.in. „na siłownię”, „w domu”) | duży ruch; „w domu” wspiera nazwę bez „siłowni” |
+| gym log | ok. 10 (fraza na 1. miejscu) | potwierdza nazwę EN |
+| workout tracker | ok. 10 (fraza na 1. miejscu) | potwierdza podtytuł EN |
+| rest timer | ok. 10 | potwierdza nazwę EN |
+| gym diary | 5 | słabszy; „diary” w słowach en-GB zostaje jako fraza drugiego planu |
+| workout log | ok. 9 | „workout” i „log” pokryte nazwą i podtytułem |
+
+Otwarte: zamiana „notes” → „domu” w słowach kluczowych PL (do decyzji właściciela). **[DO USTALENIA]** czy sklep łączy słowa z nazwy i słów kluczowych
+w jedną frazę („plan” + „treningowy”) — ocena pośrednio przy H-51.
