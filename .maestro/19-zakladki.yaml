@@ -31,7 +31,7 @@ name: Cztery zakładki — Szablony i Ćwiczenia pod Więcej
     commands:
       - tapOn: "Progress, tab.*"
       - extendedWaitUntil: { visible: "Progress", timeout: 10000 }
-- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Body weight — measurements", direction: DOWN, timeout: 30000, centerElement: true }
 - takeScreenshot: 91-postepy-masa-ciala
 
 # --- Plan: kalendarz z planem i „Planning” ---

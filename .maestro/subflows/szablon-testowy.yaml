@@ -23,7 +23,12 @@
 appId: pl.lukasz.trening
 ---
 # Wydanie 1 (11.10.2026): ekran główny nie ma już listy szablonów ani „+ New template”. Wydanie 2: szablon powstaje w Więcej → Szablony („+ New”).
-- tapOn: "More, tab.*"
+# run 39427683836 (01, zrzut: wciąż ekran główny): stuknięcie zakładki zaraz po starcie zostało zignorowane — powtórka do pojawienia się pozycji „Templates”
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "More, tab.*"
+      - extendedWaitUntil: { visible: "Templates", timeout: 8000 }
 - tapOn: "Templates"
 - extendedWaitUntil: { visible: "Add template", timeout: 30000 }
 - tapOn: "Add template"
