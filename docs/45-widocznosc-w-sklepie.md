@@ -9,8 +9,8 @@ numerowane w `docs/`, nowy podkatalog wymagałby zmiany generatora README).
 ## Stan (21.10.2026)
 
 - E0–E3 zakończone: frazy w 7 grupach języków, krytyka, przegląd tłumacza, decyzje STOP 2; pola zapisane w `store/app-store-names.json` (nazwy)
-  i `store/app-store-metadata.json` (podtytuł, słowa kluczowe) — jedno źródło, test `tests/store-metadata.test.ts`. Otwarte: kategoria dodatkowa (pyt. 4),
-  nazwa hr (pytanie dodatkowe). Zrzuty, tekst promocyjny i opis — po M3. Nic nie wysłano do App Store Connect.
+  i `store/app-store-metadata.json` (podtytuł, słowa kluczowe) — jedno źródło, test `tests/store-metadata.test.ts`. Otwarte: kategoria dodatkowa (pyt. 4).
+  Zrzuty, tekst promocyjny i opis — po M3. Nic nie wysłano do App Store Connect.
 - Surowe dane badania (wyniki wyszukiwania, recenzje, nazwy innych aplikacji) leżą poza repozytorium (katalog przebiegu), docelowo na Dysku
   właściciela („05 Research konkurencji”); tutaj tylko wnioski bez nazw innych aplikacji (wytyczne Apple 2.3.7, CLAUDE.md).
 
@@ -57,7 +57,7 @@ odczyt 21.10.2026; policzone skryptem `storefronty.mjs` (moduł roli 10) dla 31 
 - 21.10.2026 (właściciel, STOP 2 M5, przekazane przez koordynatora): **podtytuły PL „Serie i przerwy. Bez konta”, EN „Workout tracker. No account.”** —
   zastępują D-4 z 14.10.2026 (docs/41). Odrzucone: D-4 bez zmian; D-4 z poprawką EN „Clean workout log. No account.” (oba D-4 powtarzały słowo z nazwy).
 - 21.10.2026 (właściciel, STOP 2 M5, przekazane przez koordynatora): **zmiana części nazwy po dwukropku w ro, nl-NL, da, no, es-MX, it, el, ms** — po przeglądzie
-  tłumacza (da: „styrkedagbog” zamiast „dagbog til gym”). Odrzucone: tylko el, ms, es-MX; bez zmian nazw. hr — pytanie dodatkowe, do decyzji zostaje bez zmian.
+  tłumacza (da: „styrkedagbog” zamiast „dagbog til gym”; hr „dnevnik za teretanu” dopisane z przeglądu tłumacza — koordynator 21.10). Odrzucone: tylko el, ms, es-MX; bez zmian nazw.
 - 21.10.2026 (właściciel, STOP 2 M5, przekazane przez koordynatora): **podtytuły i słowa kluczowe we wszystkich lokalizacjach wg rekomendacji**, pola
   niepewne po przeglądzie tłumacza. Odrzucone: tylko PL/EN przed 1.0.
 - 21.10.2026 (STOP 2 M5): kategoria dodatkowa — **otwarte**; do decyzji bez kategorii dodatkowej (główna Health & Fitness bez zmian, potwierdzona w wynikach
@@ -77,3 +77,35 @@ odrzucone na STOP 1). Australia, Nowa Zelandia i Kanada mają teraz stronę w j�
   „smartwatch” w ko i zh-Hant, bo aplikacja działa tylko z Apple Watch), przegląd językowy roli tłumacz.
 - **[DO USTALENIA]** czy słowa kluczowe języka dodatkowego (np. pl w Polsce) liczą się w wyszukiwaniu storefrontu i czy sklep łączy odmiany i złożenia — pomiar.
 - Do potwierdzenia przez native speakera: nazwy da i hr, podtytuł sl (dla sl brak sygnału ruchu w wyszukiwarce).
+
+## Raport końcowy (E4, 21.10.2026)
+
+**Podsumowanie.** Pokrycie storefrontów językiem domyślnym: 171 → 174 ze 175 (nowe en-AU, en-CA). Przed: podtytuł i słowa kluczowe tylko PL/EN (projekt);
+po: 33 lokalizacje z nazwą, podtytułem i słowami kluczowymi z badania fraz w swoim języku, po krytyce i przeglądzie tłumacza; 10 nazw zmienionych
+(pl, ro, nl-NL, da, no, es-MX, it, el, ms, hr). Kategoria główna bez zmian. Zużycie subagentów: ok. 1,3 mln tokenów (szacunek całości 1,2–2,5 mln; bez koordynacji M5), 0 zł.
+
+**Hipotezy pomiaru** (format modułu pomiaru prywatnego; ocena 26.12.2026, ok. 8 tygodni od premiery 1.0 — ten sam punkt kontrolny co bramka W0).
+Progi i minimalne próby to **propozycja M5 do decyzji właściciela** (bez benchmarku — [OCENA]); oczekiwane n z punktu kontrolnego W0 (ok. 310 pobrań/mies.).
+
+| H | Metryka (App Analytics) | Próg (propozycja) | Zastępnik przy pustej komórce |
+|---|---|---|---|
+| H-51 | pobrania pierwszorazowe z „App Store Search” ÷ wszystkie pobrania pierwszorazowe | ≥ 50% | wyświetlenia z wyszukiwania w tygodniu |
+| H-52 | pobrania ÷ odsłony strony z „App Store Search” (konwersja z wyszukiwania) | ≥ 30% | pobrania z wyszukiwania w tygodniu |
+| H-53 | pobrania z wyszukiwania ÷ wszystkie pobrania w storefrontach z językiem lokalnym tylko dodatkowym (POL, CZE, SVK, UKR, DNK, NOR, FIN, TUR, GRC, IDN, MYS, VNM) | ≥ 40% | wyświetlenia z wyszukiwania w POL |
+
+H-53 rozstrzyga **[DO USTALENIA]** z pokrycia: czy słowa kluczowe języka dodatkowego działają w wyszukiwaniu storefrontu.
+
+**Plan po wydaniu** (moduł widoczności roli 10; każde działanie za osobną zgodą):
+- strony niestandardowe (do 70) — warunek startu: kanał z własnym ruchem (społeczności z planu marketingu) albo druga praca aplikacji (np. trening w domu);
+- testy strony (do 3 wersji, do 90 dni) — warunek: ruch, przy którym App Store Connect szacuje zakończenie testu w horyzoncie; przy małym ruchu najpierw zrzuty i tekst;
+- wydarzenia w aplikacji — tylko prawdziwe i ograniczone w czasie (np. duża aktualizacja); nie codzienne zadania ani promocje cen.
+
+**Kroki właściciela** (przez koordynatora): (1) kategoria dodatkowa — decyzja; (2) progi H-51–H-53 — decyzja; (3) zrzuty podpowiedzi wyszukiwarki
+(10 fraz, instrukcja wysłana 21.10); (4) wpis pól do App Store Connect z wersją 1.0 i scalenie gałęzi do `main` — osobna zgoda; (5) native speaker dla nazw da, hr
+i podtytułu sl, jeśli dostępny.
+
+**Nie sprawdzono:** liczby wyszukań (bez płatnych narzędzi); podpowiedzi wyszukiwarki tylko z nieoficjalnego punktu (zrzuty z telefonu w toku);
+indeksowanie języka dodatkowego, odmian i złożeń (pomiar); sl — brak sygnału ruchu; podpisy i kolejność zrzutów — po M3 (założenie kolejności w katalogu przebiegu).
+
+**Kontrola dowodów i sekretów:** pliki grup przeszły `sprawdz-raport.mjs` (kod 0); metadane `sprawdz-wydanie.mjs metadane` (kod 0); strażnik nazw innych
+aplikacji (`tests/forbidden-names.test.ts`) i test publicznego repo zielone; surowe dane konkurencji tylko w katalogu przebiegu poza gitem (do przeniesienia na Dysk).
