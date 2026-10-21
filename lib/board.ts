@@ -123,3 +123,6 @@ export function compactResult(ex: Exercise, s: Pick<WSet, 'weight' | 'addKg' | '
   if (isBW(ex) && hasReps(m) && !load) return parts.join('×');
   return parts.join(hasDistance(m) && hasTime(m) ? ' ' : '×');
 }
+
+/** Liczba „znaków cyfrowych” wiersza liczb tablicy (04-studio-projektowe-001): cyfry i znaki jak „—” liczą się za 1, separator dziesiętny i dwukropek za pół; „×” i jednostki nie wchodzą (makieta liczy same cyfry). */
+export const boardDigitChars = (shown: readonly string[]): number => shown.reduce((a, s) => a + (/\d|^—$/.test(s) ? [...s].reduce((b, c) => b + (/[.,:]/.test(c) ? 0.5 : 1), 0) : 3), 0); /* słowo („masa ciała”) ma mniejszy krój — liczy się jak 3 cyfry */

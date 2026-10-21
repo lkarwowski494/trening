@@ -7,7 +7,7 @@ import { exById, focusSet, prevOfActiveBlock, hintFor, typeSetValue, setSummary,
 import { counterLabel, setLabel } from '@/lib/live';
 import { equipVisFor, equipSlotFor, slotHeight } from '@/lib/equipvis';
 import { EquipVisual } from '@/components/EquipVisual';
-import { boardKeys, effectiveValues, missingKey, stepOf, fieldLayout, type BoardKey } from '@/lib/board';
+import { boardKeys, boardDigitChars, effectiveValues, missingKey, stepOf, fieldLayout, type BoardKey } from '@/lib/board';
 import { playHaptic } from '@/lib/haptics';
 import { announce } from '@/lib/announce';
 import { finishTimedSet } from '@/lib/setFlow';
@@ -53,8 +53,8 @@ export function NowBoard({ w, onDone, onFinish, onStartSet, onCardY, onRestY }: 
   const e = w.exercises[pos.ei]; const ex = exById(e.exerciseId)!; const set = e.sets[pos.si]; const m = ex.metric ?? 'weight_reps'; const keys = boardKeys(ex);
   const eff = effectiveValues(w, e, pos.si); const lbl = setLabel(e, pos.si); const prev = prevOfActiveBlock(w, e); const p = hintFor(prev?.sets, e.sets, pos.si, ex);
   const name = exName(ex); const ss = e.groupId ? `${ssTag(groupLabels(w.exercises)[e.groupId])} · ` : ''; const counter = counterLabel(e, pos.si);
-  const innerW = width - 4 * SPACE.l; const strs = keys.map(k => shownValue(ex, k, eff[k] ?? '')); const chars = strs.join(' × ').length + keys.filter(k => k !== 'reps' && k !== 'durationSec').length * 3;
-  const size = boardDigitSize('boardNumber', innerW, Math.max(4, chars), PixelRatio.getFontScale());
+  const innerW = width - 4 * SPACE.l; const strs = keys.map(k => shownValue(ex, k, eff[k] ?? ''));
+  const size = boardDigitSize('boardNumber', width, Math.max(3, boardDigitChars(strs)), PixelRatio.getFontScale(), innerW); /* 04-studio-projektowe-001: cyfry liczone jak w makiecie (bez „×” i jednostek), 24% szerokości ekranu */
   const vis = equipVisFor(w, e, set); const ghost = vis.length ? [] : equipSlotFor(w, e, set); const minH = slot.key === set.id ? slot.h : 0;
   const running = timer.S.on && timer.S.setId === set.id; const timedIdle = hasTime(m) && !running; const scrolls = fieldLayout(e.sets.length, innerW, 1).scroll;
   const press = () => {

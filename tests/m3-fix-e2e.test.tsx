@@ -69,3 +69,20 @@ describe('Scenariusze Maestro: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze
     expect(bad).toEqual([]);
   });
 });
+
+describe('04-studio-projektowe-001: cyfry tablicy jak w makiecie (render, nie tylko funkcja)', () => {
+  const RN = require('react-native'); const { within } = require('@testing-library/react-native');
+  const sizeAt = async (w: number, weight: number, reps: number, lb = false) => {
+    const { applyUnit } = require('@/lib/units');
+    jest.spyOn(RN, 'useWindowDimensions').mockReturnValue({ width: w, height: 800, scale: 2, fontScale: 1 });
+    await fresh(); S().settings.unit = lb ? 'lb' : 'kg'; applyUnit(lb ? 'lb' : 'kg'); store.startEmpty(); store.addExerciseToActive(ex('Bench Press (sztanga)')); Object.assign(S().active!.exercises[0].sets[0], { weight, reps });
+    await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(20);
+    const st = (id: string) => ([] as any[]).concat(within(screen.getByTestId(id)).getByText(/\d/).props.style).flat(3).reduce((a: any, x: any) => ({ ...a, ...(x || {}) }), {});
+    const out = { w: st('board-value-weight').fontSize as number, r: st('board-value-reps').fontSize as number }; applyUnit('kg'); return out;
+  };
+  test('390 pt, „80 × 6”: cyfry co najmniej 80 pt (wzorzec ok. 93)', async () => { const s = await sizeAt(390, 80, 6); expect(s.w).toBeGreaterThanOrEqual(80); expect(s.w).toBe(s.r); });
+  test.each([[320], [375], [390], [430]])('%i pt, „187,5 lb × 12”: szacunek szerokości wiersza (cyfra 0,6 em, przecinek 0,3 em, „×” 0,45 kroju, „lb”) mieści się w tablicy', async w => {
+    const size = (await sizeAt(w, 85, 12, true)).w; const inner = w - 4 * 16;
+    const est = size * (6 * 0.6 + 0.3) + size * 0.45 * 0.7 + 2 * 4 + 28 + 4; expect(est).toBeLessThanOrEqual(inner); expect(size).toBeGreaterThanOrEqual(40);
+  });
+});

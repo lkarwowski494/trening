@@ -81,11 +81,12 @@ export function titleMaxScale(width: number): number {
 }
 /**
  * Cyfry tablicy dopasowane do szerokości (design-spec §1 „Skala”): najmniejsze z — rozmiar roli × min(skala tekstu, 1,3), szerokość × fitWidth,
- * 105% szerokości / liczba znaków (żeby „187,5 lb × 12” mieściło się w jednym wierszu przy 320 pt). `fontScale` = PixelRatio.getFontScale().
+ * 105% szerokości miejsca / liczba znaków (żeby „187,5 lb × 12” mieściło się w jednym wierszu przy 320 pt). `fontScale` = PixelRatio.getFontScale().
+ * `avail` (04-studio-projektowe-001) = szerokość miejsca na wiersz liczb (ekran bez marginesów); domyślnie `width`. Udział szerokości ekranu (fitWidth) liczy się od `width`, jak w makiecie.
  */
-export function boardDigitSize(role: 'boardNumber' | 'boardClock', width: number, chars: number, fontScale: number): number {
+export function boardDigitSize(role: 'boardNumber' | 'boardClock', width: number, chars: number, fontScale: number, avail: number = width): number {
   const x = TYPE[role];
-  return Math.floor(Math.min(x.size * Math.min(fontScale, TEXT_SCALE.num), width * (x.fitWidth ?? 1), (width * 1.05) / Math.max(1, chars)));
+  return Math.floor(Math.min(x.size * Math.min(fontScale, TEXT_SCALE.num), width * (x.fitWidth ?? 1), (avail * 1.05) / Math.max(1, chars)));
 }
 
 /**
