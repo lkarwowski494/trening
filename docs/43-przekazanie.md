@@ -35,7 +35,7 @@ Powód: limit tygodniowy konta koordynatora na wyczerpaniu (decyzja właściciel
 
 **Gdzie co jest:** decyzje z datą → docs/18; lekcje i rejestr ryzyk (otwarte blokują wydanie) → docs/40; wymagania (BRD) → docs/brd; plan wydania 1.0 → docs/42; droga do sklepu → docs/41 (gałąź f020-sklep, częściowo na main); ceny → docs/monetyzacja.md; języki → docs/16 i docs/lokalizacja; research konkurencji i rejestr decyzji merytorycznych → Google Drive „Trening App” (nie w repo). Backlog bez priorytetu → docs/21 (wspominać tylko zbiorczo).
 
-## Harmonogram do 1.0 (szacunek z 21.10.2026, aktualizowany)
+## Harmonogram do 1.0 (szacunek z 21.10.2026, aktualizowany; przebiegi macOS w oknie ok. 22:00–13:00 UTC — docs/18)
 | krok | szacowany termin | na co się czeka | czas właściciela |
 |---|---|---|---|
 | TestFlight z ton trenera + poprawki CI (main 8763e58) | 21.10 | build (TestFlight run 39578800586) | lista telefonu ok. 5 min |
