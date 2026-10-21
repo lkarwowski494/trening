@@ -41,7 +41,7 @@ describe('M1-018: TestFlight czeka na zielony pakiet podstawowy E2E dla tego sam
   test('wyzwalacze: dispatch z wejściami i push na main bez zmian samej dokumentacji (te same paths-ignore co e2e-ios.yml)', () => {
     const t = wf('testflight.yml'); const e = wf('e2e-ios.yml');
     const pi = (y: string) => /paths-ignore: (\[[^\]]*\])/.exec(y.slice(y.indexOf('push:')))?.[1];
-    expect(pi(t)).toBe("['docs/**', '**/*.md']"); expect(pi(t)).toBe(pi(e));
+    expect(pi(t)).toBe("['docs/**', '**/*.md', 'tests/**', '.claude/**']"); /* 21.10.2026 (właściciel): zmiany samych testów Jest i plików agentów nie budują aplikacji */ expect(pi(t)).toBe(pi(e));
     for (const k of ['bez_wysylki', 'pomin_bramke_e2e', 'powod']) expect(t).toContain(`      ${k}:`);
   });
   test('e2e-ios.yml: run-name koduje pakiet i zawężenia, żeby bramka rozpoznała pełnowartościowy przebieg', () => {

@@ -15,7 +15,7 @@ describe('workflowy na publicznym repozytorium', () => {
       expect(y).toMatch(/on:\n\s+workflow_dispatch:/);
     }
     expect(wf('ios-unsigned.yml')).not.toMatch(/contents: write|^\s+push:/m);
-    const tf = wf('testflight.yml'); expect(tf).toMatch(/\non:\n  workflow_dispatch:\n    inputs:\n[\s\S]*?\n  push:\n    branches: \[main\]\n    paths-ignore: \['docs\/\*\*', '\*\*\/\*\.md'\]\n/); /* 20.10.2026 (M1-018): wejścia dispatch i paths-ignore */ /* dokładne wcięcie (12.10: `push:` pod workflow_dispatch przeszło luźny test) */ expect(tf.match(/contents: write/g)).toHaveLength(1);
+    const tf = wf('testflight.yml'); expect(tf).toMatch(/\non:\n  workflow_dispatch:\n    inputs:\n[\s\S]*?\n  push:\n    branches: \[main\]\n    paths-ignore: \['docs\/\*\*', '\*\*\/\*\.md', 'tests\/\*\*', '\.claude\/\*\*'\]\n/); /* 20.10.2026 (M1-018): wejścia dispatch i paths-ignore */ /* dokładne wcięcie (12.10: `push:` pod workflow_dispatch przeszło luźny test) */ expect(tf.match(/contents: write/g)).toHaveLength(1);
     const tagJob = tf.slice(tf.indexOf('\n  tag:\n')); expect(tagJob.length).toBeGreaterThan(10); expect(tagJob).toMatch(/needs: build/);
     expect(tagJob).toMatch(/permissions:\n\s+contents: write/); expect(tagJob).not.toMatch(/secrets\./);
     expect(tf.slice(0, tf.indexOf('\n  tag:\n'))).not.toMatch(/contents: write/);

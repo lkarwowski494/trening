@@ -31,7 +31,7 @@ on:
         default: ''
   push:
     branches: [main]
-    paths-ignore: ['docs/**', '**/*.md']
+    paths-ignore: ['docs/**', '**/*.md', 'tests/**', '.claude/**']
 permissions:
   contents: read
 concurrency:
