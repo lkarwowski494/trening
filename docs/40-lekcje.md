@@ -35,6 +35,7 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
   2. Polecenie `verify` w tle w przebiegu M3 kończy się odczytem `tail -1` pliku dowodu, a decyzja o commicie zależy od tej linii — **zrobione** (praktyka M3 od 21.10; wzór w `audit/…/postep.md`).
   3. Generator README odporny na konflikt scalania — **w toku** (koordynator projektu, `sprzatanie-galezi`); do tego czasu kolejność „rozwiąż → git add → --write” w scalaniach M3 — **zrobione** (praktyka M3).
   4. Hak pre-push — **w toku** (koordynator, L-015).
+  5. **Powtórzenie 21.10.2026 ~21:00:** d2b9d5a (poprawka wibracji przy ✓) wypchnięte z nieaktualnym `docs/19` — lokalne `verify` EXIT 0, CI (39674286427) czerwone na `check:matrix`; naprawione w 4abd1b7 (CI 39677132378 zielone). Przyczyna nieustalona (macierz przegenerowana przed ostatnią zmianą testów albo różnica środowiska). Trzecie wystąpienie klasy „pliki generowane” w M3 → mechanizm: hak pre-push (w toku, koordynator) — do czasu jego scalenia polecenia M3 każą przegenerować macierz i README **bezpośrednio przed** końcowym `verify`, po ostatniej zmianie plików.
 
 ## L-015 (21.10.2026, M3) — `tests.yml` czerwony na każdym wypchnięciu gałęzi `redesign/trening-2026-10-21` (9 przebiegów)
 
