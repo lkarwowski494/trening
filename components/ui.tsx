@@ -159,23 +159,7 @@ export function SwitchRow({ label, detail, value, onChange, disabled, a11yLabel,
   );
   return hasInfo ? <View style={{ borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: t.line }}>{row}{open ? <InfoBox id={infoId!} info={info} /> : null}</View> : row;
 }
-/** Kontrolka segmentowa: jedna z kilku opcji w jednym wąskim pasku (język, jednostka).
- * Audyt 0.10 (A11-12): na 320 pt długie jednowyrazowe opcje (de „Muskelaufbau”, sv „Fettförbränning”) łamały się w środku wyrazu — opcja z jednym
- * wyrazem ma jedną linię, a krój zmniejsza się do SEG_MIN_SCALE; opcja z kilku wyrazów — 2 linie (też ze zmniejszaniem zamiast „…”).
- * Przy powiększonym tekście (Dynamic Type > 100%) opcje układają się jedna pod drugą na pełnej szerokości (rosną do 200%); w poziomie krój
- * się nie powiększa (jak UISegmentedControl — iOS pokazuje wtedy Large Content Viewer). A11-15: pole dotyku opcji ≥ 44 pt (HIG). Test szerokości: tests/matrix-i18n (W = 320). */
-export const SEG_MIN_SCALE = 0.75;
-export function Segmented<T extends string>({ options, value, onChange, label, testID }: { options: [T, string][]; value: T; onChange: (v: T) => void; label: string; /** stały identyfikator (E2E): opcja dostaje `${testID}-${klucz}` */ testID?: string }) {
-  const t = useTheme(); const stacked = useWindowDimensions().fontScale > 1; /* A11-07/A11-12: przy powiększonym tekście opcje jedna pod drugą (pełna szerokość, rosną do 200%) — jak układy iOS przy rozmiarach dostępności */
-  return (
-    <View accessibilityLanguage={lang()} accessibilityRole="radiogroup" accessibilityLabel={label} style={[s.seg, stacked && { flexDirection: 'column' }, { backgroundColor: t.surface2, borderColor: t.line }]}>
-      {options.map(([k, l]) => { const on = k === value; return (
-        <Pressable testID={testID ? `${testID}-${k}` : undefined} accessibilityLanguage={lang()} key={k} onPress={() => { if (!on) onChange(k); }} accessibilityRole="button" accessibilityLabel={l} accessibilityHint={label} accessibilityState={{ selected: on }} style={[s.segItem, stacked && { flex: 0, alignSelf: 'stretch' }, on && { backgroundColor: t.accent }]}>
-          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={stacked ? TEXT_SCALE_MAX : 1} numberOfLines={stacked ? undefined : /\s/.test(l.trim()) ? 2 : 1} adjustsFontSizeToFit={!stacked} minimumFontScale={SEG_MIN_SCALE} style={{ color: on ? t.accentInk : t.text, ...plain('callout'), ...(on ? FW.semibold : FW.regular), textAlign: 'center' }}>{l}</Text>
-        </Pressable>); })}
-    </View>
-  );
-}
+export { Segmented, SEG_MIN_SCALE } from '@/components/Segmented'; /* strukturalnie (p5d): kontrolka segmentowa w osobnym pliku — limit rozmiaru components/ui.tsx (M1-054) */
 /** Nagłówek grupy ustawień (jak sekcje w Ustawieniach iOS). */
 /** Audyt 0.10 (A11-02): wersaliki. iOS robi textTransform 'uppercase' bez języka ([NSString uppercaseString]) — w el (tonos) i tr (i → İ)
  * to błąd, więc tam tekst zamienia `upper()` z regułami języka, a VoiceOver czyta zwykły zapis (słowo wersalikami bywa czytane jak skrót).
@@ -200,8 +184,6 @@ export function Missing({ children }: { children: React.ReactNode }) {
 
 const s = StyleSheet.create({
   switchRow: { flexDirection: 'row', alignItems: 'center', gap: SPACE.m, paddingVertical: SPACE.s, minHeight: SIZE.rowMin, borderBottomWidth: StyleSheet.hairlineWidth },
-  seg: { flexDirection: 'row', borderWidth: 1, borderRadius: RADIUS.button, padding: 2, alignSelf: 'stretch' },
-  segItem: { flex: 1, minHeight: SIZE.hit, alignItems: 'center', justifyContent: 'center', borderRadius: RADIUS.field, paddingHorizontal: 6 },
   btn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: SPACE.m, paddingHorizontal: SPACE.l, borderRadius: RADIUS.button, borderWidth: 1, minHeight: SIZE.hit },
   item: { flexDirection: 'row', alignItems: 'center', gap: SPACE.s, paddingRight: SPACE.xs, borderBottomWidth: 1 },
   itemPress: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: SPACE.s, paddingVertical: 10 /* wiersz z podpisem: 20 + 22 + 20 = 62 pt (dotąd 64) — układ ekranów z klawiaturą (E2E) bez przesunięć w dół */, paddingHorizontal: SPACE.xs, minHeight: SIZE.rowMin },
