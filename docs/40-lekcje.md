@@ -37,9 +37,10 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
   (B) skrypt `npm run push` = `verify && git push -u origin HEAD`, wymagany w CLAUDE.md i promptach ról — prostszy, ale omijalny zwykłym `git push`.
   Rekomendacja: A (+ katalogi przebiegów ról poza drzewem repo albo `audit/` w ignorach ESLint — zgłoszone koordynatorowi jako zmiana biblioteki promptów).
 - **Akcje:**
-  1. README przegenerowane (`node scripts/readme.mjs --write`) i pełne verify (z wykluczeniem `audit/` z lint) przed kolejnym wypchnięciem — **w toku**.
+  1. README przegenerowane (d404a85, tests.yml zielony) — **zrobione**; `audit/**` w ignorach ESLint (f64f979) — **zrobione**.
   2. Rola M5 w tym przebiegu wypycha tylko komendą warunkowaną kodem verify (`… && git push`) — **zrobione** (postanowienie do czasu decyzji A/B).
-  3. Decyzja właściciela A/B (wspólna z L-009) — **otwarte**.
+  3. Decyzja właściciela (wspólna z L-009): **A — hak pre-push** (lint + check:readme + check:matrix, instalowany przez `prepare`; PR #24 koordynatora) — **w toku**.
+     Dowód działania wypchnięcia warunkowego w M5: przebieg z nieaktualnym docs/19 zatrzymany lokalnie przed CI (21.10.2026).
 
 ## L-013 (21.10.2026) — nocny przebieg czerwony od 16.10 bez reakcji: mutacje nie mierzą się, martwa gałąź w liście nocnej, E2E 17e pada deterministycznie
 

@@ -9,7 +9,7 @@ numerowane w `docs/`, nowy podkatalog wymagałby zmiany generatora README).
 ## Stan (21.10.2026)
 
 - E0–E3 zakończone: frazy w 7 grupach języków, krytyka, przegląd tłumacza, decyzje STOP 2; pola zapisane w `store/app-store-names.json` (nazwy)
-  i `store/app-store-metadata.json` (podtytuł, słowa kluczowe) — jedno źródło, test `tests/store-metadata.test.ts`. Otwarte: kategoria dodatkowa (pyt. 4).
+  i `store/app-store-metadata.json` (podtytuł, słowa kluczowe) — jedno źródło, test `tests/store-metadata.test.ts`. Kategoria dodatkowa: brak.
   Zrzuty, tekst promocyjny i opis — po M3. Nic nie wysłano do App Store Connect.
 - Surowe dane badania (wyniki wyszukiwania, recenzje, nazwy innych aplikacji) leżą poza repozytorium (katalog przebiegu), docelowo na Dysku
   właściciela („05 Research konkurencji”); tutaj tylko wnioski bez nazw innych aplikacji (wytyczne Apple 2.3.7, CLAUDE.md).
@@ -60,8 +60,13 @@ odczyt 21.10.2026; policzone skryptem `storefronty.mjs` (moduł roli 10) dla 31 
   tłumacza (da: „styrkedagbog” zamiast „dagbog til gym”; hr „dnevnik za teretanu” dopisane z przeglądu tłumacza — koordynator 21.10). Odrzucone: tylko el, ms, es-MX; bez zmian nazw.
 - 21.10.2026 (właściciel, STOP 2 M5, przekazane przez koordynatora): **podtytuły i słowa kluczowe we wszystkich lokalizacjach wg rekomendacji**, pola
   niepewne po przeglądzie tłumacza. Odrzucone: tylko PL/EN przed 1.0.
-- 21.10.2026 (STOP 2 M5): kategoria dodatkowa — **otwarte**; do decyzji bez kategorii dodatkowej (główna Health & Fitness bez zmian, potwierdzona w wynikach
-  wyszukiwania wszystkich grup). Rosja — poza zakresem 1.0 (koordynator).
+- 21.10.2026 (właściciel, STOP końcowy M5, przekazane przez koordynatora): **kategoria dodatkowa — brak** („Brak (Recommended)”); główna Health & Fitness
+  bez zmian. Odrzucone: Sports (pojedyncze wyniki, ryzyko nietrafnej kategorii). Rosja — poza zakresem 1.0 (koordynator).
+- 21.10.2026 (właściciel, STOP końcowy M5, przekazane przez koordynatora): **nazwa hr „Trening: dnevnik za teretanu”** („Tak (Recommended)”). Odrzucone: bez zmian.
+- 21.10.2026 (właściciel, STOP końcowy M5, przekazane przez koordynatora): **progi hipotez H-51 ≥ 50%, H-52 ≥ 30%, H-53 ≥ 40%, ocena 26.12.2026**
+  („Przyjąć (Recommended)”). Odrzucone: bez progów (sam odczyt metryk).
+- 21.10.2026 (właściciel, STOP końcowy M5, przekazane przez koordynatora): **PR do `main` teraz, wpis do App Store Connect razem z wersją 1.0**
+  („PR do main teraz, wpis do ASC z 1.0 (Recommended)”); PR otwiera i scala koordynator. Odrzucone: osobna wersja tylko z metadanymi; scalenie po M3.
 
 ## Pokrycie storefrontów — po zmianach (21.10.2026)
 
@@ -85,9 +90,9 @@ po: 33 lokalizacje z nazwą, podtytułem i słowami kluczowymi z badania fraz w 
 (pl, ro, nl-NL, da, no, es-MX, it, el, ms, hr). Kategoria główna bez zmian. Zużycie subagentów: ok. 1,3 mln tokenów (szacunek całości 1,2–2,5 mln; bez koordynacji M5), 0 zł.
 
 **Hipotezy pomiaru** (format modułu pomiaru prywatnego; ocena 26.12.2026, ok. 8 tygodni od premiery 1.0 — ten sam punkt kontrolny co bramka W0).
-Progi i minimalne próby to **propozycja M5 do decyzji właściciela** (bez benchmarku — [OCENA]); oczekiwane n z punktu kontrolnego W0 (ok. 310 pobrań/mies.).
+Progi: **decyzja właściciela 21.10.2026** (STOP końcowy; propozycja M5 bez benchmarku — [OCENA]); minimalne próby: propozycja M5; oczekiwane n z punktu kontrolnego W0 (ok. 310 pobrań/mies.).
 
-| H | Metryka (App Analytics) | Próg (propozycja) | Zastępnik przy pustej komórce |
+| H | Metryka (App Analytics) | Próg (decyzja 21.10.2026) | Zastępnik przy pustej komórce |
 |---|---|---|---|
 | H-51 | pobrania pierwszorazowe z „App Store Search” ÷ wszystkie pobrania pierwszorazowe | ≥ 50% | wyświetlenia z wyszukiwania w tygodniu |
 | H-52 | pobrania ÷ odsłony strony z „App Store Search” (konwersja z wyszukiwania) | ≥ 30% | pobrania z wyszukiwania w tygodniu |
@@ -100,8 +105,8 @@ H-53 rozstrzyga **[DO USTALENIA]** z pokrycia: czy słowa kluczowe języka dodat
 - testy strony (do 3 wersji, do 90 dni) — warunek: ruch, przy którym App Store Connect szacuje zakończenie testu w horyzoncie; przy małym ruchu najpierw zrzuty i tekst;
 - wydarzenia w aplikacji — tylko prawdziwe i ograniczone w czasie (np. duża aktualizacja); nie codzienne zadania ani promocje cen.
 
-**Kroki właściciela** (przez koordynatora): (1) kategoria dodatkowa — decyzja; (2) progi H-51–H-53 — decyzja; (3) zrzuty podpowiedzi wyszukiwarki
-(10 fraz, instrukcja wysłana 21.10); (4) wpis pól do App Store Connect z wersją 1.0 i scalenie gałęzi do `main` — osobna zgoda; (5) native speaker dla nazw da, hr
+**Kroki właściciela** (przez koordynatora): (1)–(2) kategoria i progi — rozstrzygnięte 21.10.2026; (3) zrzuty podpowiedzi wyszukiwarki
+(10 fraz, instrukcja wysłana 21.10); (4) wpis pól do App Store Connect z wersją 1.0 (zgoda 21.10.2026; wpisuje koordynator/właściciel przy kroku ASC); scalenie do `main` — PR koordynatora; (5) native speaker dla nazw da, hr
 i podtytułu sl, jeśli dostępny.
 
 **Nie sprawdzono:** liczby wyszukań (bez płatnych narzędzi); podpowiedzi wyszukiwarki tylko z nieoficjalnego punktu (zrzuty z telefonu w toku);
