@@ -6,6 +6,8 @@
 # (maskowanie), klucz tylko w RUNNER_TEMP i usuwany zawsze.
 name: ASC metadane sklepu
 on:
+  push:
+    branches: [dowod-asc-metadane]
   workflow_dispatch:
     inputs:
       tryb:
