@@ -135,3 +135,20 @@ to sygnał ruchu, nie liczba wyszukań.
 
 Decyzja właściciela 21.10.2026 (przekazane przez koordynatora, „Zgoda na zmianę”): w słowach kluczowych PL „notes” → „domu” (fraza „plan treningowy w domu”). Odrzucone: bez zmian. **[DO USTALENIA]** czy sklep łączy słowa z nazwy i słów kluczowych
 w jedną frazę („plan” + „treningowy”) — ocena pośrednio przy H-51.
+
+## Opisy i teksty promocyjne w 33 lokalizacjach (22.10.2026, po redesignie M3)
+
+- Jedno źródło: `store/app-store-metadata.json` (pola `description`, `promotionalText`); docs/15 już nie powtarza tekstów. Testy: `tests/store-metadata.test.ts`
+  (każda lokalizacja: limity 4000 / 170, linki Warunków i Polityki prywatności, liczby z kodu — 35 języków, 14 dni, 4 treningi; przypis espresso; bez kwot poza
+  przypisem; bez nazw marek; en-AU = en-GB, en-CA = en-US), `tests/audit-m1-045-store-description.test.ts` (PL/EN: funkcje i nazwy widoków zgodne z kodem po M3).
+- Zgodność z kodem po M3 (kontrola 22.10.2026): nazwy „Widok treningu: Skupiony / Lista”, „Dostosuj do miejsca”, „Gumy”; dodane automatyczna kopia po treningu,
+  osobne dźwięk i wibracje; brak wywołań sieciowych w `app/`, `lib/`, `components/` (twierdzenie „bez konta, bez reklam, bez śledzenia” zgodne).
+- Blok subskrypcji zostaje — decyzja D-1 z 14.10.2026 (docs/18: płatności od 1.0; potwierdził koordynator 22.10.2026). **Warunek:** opis jest prawdziwy dopiero
+  z `PAYWALL.ENABLED = true` (dziś `false`, `lib/access.ts`) — włączenie i test w piaskownicy to osobne zadanie koordynatora przed wydaniem. Tekst promocyjny bez
+  wzmianki o 14 dniach (prawdziwy w obu stanach).
+- Linki Warunków (standardowa umowa licencyjna Apple) i Polityki prywatności w opisie — zabezpieczenie przy subskrypcjach (nie przeczytałem wymogu wprost
+  w wytycznych z 21.10.2026; koszt zerowy).
+- Zdanie medyczne we wszystkich językach = tekst ze słownika aplikacji („Aplikacja nie udziela porad medycznych…”), już przetłumaczony i przejrzany.
+- Tłumaczenia: 6 grup (rola tłumacz), potem 3 przeglądy spójności (rejestr wg docs/16, lokalne nazwy aplikacji iOS, nazwy funkcji ze słownika, naturalność).
+  Poprawione m.in. rejestr formalny hu, ro, pt-PT. **Do sprawdzenia przez native speakera (jeśli dostępny):** ton formalny hu i ro, nazwa „prowincji”
+  w przypisie (hu, ja, ko, zh-Hant), „Apple Health” zamiast lokalnej nazwy aplikacji Zdrowie (otwarte w docs/16), nazwy aplikacji Pliki w tr, el, id, ms, vi.
