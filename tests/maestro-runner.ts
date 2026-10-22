@@ -46,6 +46,10 @@ export const isExperimental = (file: string) => { try { return /^tags:\n\s+- eks
 export const DIR = process.env.MAESTRO_DIR ?? join(__dirname, '..', '.maestro');
 /** Region symulatora w e2e-ios.yml (domyślny obraz iOS: en-US → lb, H4 audytu 0.10). */
 export const SIM_TAG = 'en-US';
+/** Zegar scenariusza w Jest: MAESTRO_NOW albo dzisiejsza data o 12:00 czasu lokalnego (zegar Jest idzie krokami do przodu, więc przy prawdziwym
+ * zegarze scenariusz uruchomiony tuż przed północą przekraczał przełom doby i etykieta „today” wskazywała inny dzień niż sesja — tests.yml 39679369474). */
+export const maestroNow = (env: string | undefined = process.env.MAESTRO_NOW, real = new Date()) => env ? new Date(env) : new Date(real.getFullYear(), real.getMonth(), real.getDate(), 12, 0, 0);
+
 /** Zgoda na powiadomienia na świeżym symulatorze (E2E 91: okno „Reminder for planned workouts” po pierwszym dniu planu w 13). */
 /** Najkrótszy odstęp między stuknięciami Maestro (polecenie trwa na symulatorze ≥ 1 s; zapas: 1100 ms > domyślna blokada useOnce 1000 ms). */
 export const TAP_GAP_MS = 1100;
@@ -297,7 +301,7 @@ export class Runner {
           });
           /* UX2-03: ponowny start na tej samej bazie — także klucz szkiców edycji (store.DRAFTS_KEY) */
           const kv = !clear && global.__kv.has(store.DRAFTS_KEY) ? { [store.DRAFTS_KEY]: global.__kv.get(store.DRAFTS_KEY)! } : undefined;
-          await renderApp({ locale: 'en', tag: SIM_TAG, saved: st, kv }); if (process.env.MAESTRO_NOW) jest.setSystemTime(new Date(process.env.MAESTRO_NOW)); /* docs/31: scenariusze „z życia” sprawdzane w różne dni tygodnia i na granicy miesiąca (zegar symulatora to zegar maszyny) */ await this.tick(100);
+          await renderApp({ locale: 'en', tag: SIM_TAG, saved: st, kv }); jest.setSystemTime(maestroNow()); /* docs/31: scenariusze „z życia” sprawdzane w różne dni tygodnia i na granicy miesiąca (zegar symulatora to zegar maszyny) */ await this.tick(100);
           this.focused = null; this.revealed = null; this.scrollY = new WeakMap(); this.alertSeen = 0 /* UX2-03: renderApp czyści okna — każde obecne powstało przy tym starcie (np. pytanie o szkic) */; this.alertOpen = null; this.alertStack = []; this.sheetSeen = (global as any).__sheets.length; this.sheetOpen = null; break;
         }
         case 'stopApp': await act(async () => { await store.flush(); }); break;
