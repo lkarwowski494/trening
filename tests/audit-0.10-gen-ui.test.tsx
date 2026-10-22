@@ -60,7 +60,7 @@ describe('C4 / MER-06, MER-07, MER-08, MER-12, MER-17: „Na czym to oparte” i
       'Zakresy powtórzeń (masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań).',
       'Wysiłek: zwykle 0–3 powtórzenia w zapasie (ACSM 2026: blisko upadku albo 2–3; dokładnej liczby nie ustalono); do upadku nie trzeba.',
       'Przerwy: 3 min po ciężkich seriach boju głównego, 2 min po innych wielostawowych, 1,5 min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).',
-      'Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar — konwencja.',
+      'Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.',
     ]) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     const head = 'Serie na partię w tygodniu (pomocnicza = 0,5 serii — uproszczenie): klatka '; /* MER-17 */
     expect(screen.getAllByText(/^Serie na partię w tygodniu/).map(n => String(n.props.children)).filter(x => x.startsWith(head))).toHaveLength(1);

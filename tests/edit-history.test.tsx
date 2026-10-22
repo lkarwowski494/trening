@@ -16,8 +16,10 @@ import { renderApp, flushAll, screen, go, tap, type, act, swipeDelete, deleteAct
 jest.setTimeout(30000);
 afterEach(async () => { edit.__resetDrafts(); try { store.getState(); } catch { return; } await timer.stop(); await timer.stopSet(); });
 
-/** n dni temu o godzinie h (czas lokalny). */
-const day = (n: number, h = 18, m = 0) => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate() - n, h, m).getTime(); };
+/** n dni temu o godzinie h (czas lokalny). Dzień odniesienia ustalony RAZ przy wczytaniu pliku: test, który przekracza północ
+ * (zegar testu idzie do przodu), nie przesuwa „dwóch dni temu” o dobę w trakcie scenariusza. */
+const DAY0 = new Date();
+const day = (n: number, h = 18, m = 0) => { const d = DAY0; return new Date(d.getFullYear(), d.getMonth(), d.getDate() - n, h, m).getTime(); };
 const BP = 'Bench Press (sztanga)';
 const byId = (id: string) => store.getState().workouts.find(w => w.id === id)!;
 const sets = (id: string) => byId(id).exercises.map(e => e.sets.map(s => `${s.weight}x${s.reps}`));
