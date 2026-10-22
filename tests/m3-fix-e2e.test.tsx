@@ -7,6 +7,10 @@ import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fresh, ex, saved, addWorkout, set } from './helpers';
 import { renderApp, tap, flushAll, screen, act, fireEvent, openInfo } from './app';
+import { within } from '@testing-library/react-native';
+import fs from 'fs';
+import path from 'path';
+import { EN } from '@/lib/i18n.en';
 
 jest.setTimeout(120000);
 const S = () => store.getState();
@@ -45,6 +49,24 @@ describe('E2E-05: Postępy — ⓘ nie zmienia przewinięcia', () => {
   test('wybór chipa ćwiczenia nadal pokazuje wykres tego ćwiczenia', async () => {
     await boot(); await tap(screen.getByLabelText('Bench Press (sztanga)')); await flushAll(10);
     expect(screen.getByTestId('progress-chooser')).toBeTruthy(); expect(screen.getAllByText(/Bench Press/).length).toBeGreaterThan(0);
+  });
+});
+
+describe('E2E-32 (przebieg 39726518856, 22.10.2026): rekordy ćwiczenia z hantlami w Postępach — asercja scenariusza 32 na wierszu rekordu, nie na chipie wykresu', () => {
+  /* Przyczyna: „Max weight” trafiało przed M3 w chip metryki („max weight”, Maestro bez rozróżniania wielkości liter). Od ZM-06 ostatnio trenowane ćwiczenie jest już wybrane,
+   * stuknięcie jego chipa nic nie zmienia (bez przewinięcia na górę), a karta z chipami metryk leży nad krawędzią; widoczne są „RECORDS” i wiersze rekordów. */
+  const boot = async () => { await fresh(); addWorkout(Date.now() - 864e5, [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]], 'Góra A'); await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/progress' }); await flushAll(10); };
+  test('ostatnio trenowane ćwiczenie z hantlami jest wybrane na górze, a jego grupa rekordów ma wiersz „Max ciężar (per hantel)”', async () => {
+    await boot();
+    expect(screen.getByTestId('progress-hero')).toBeTruthy();
+    expect(within(screen.getByTestId('progress-records')).getByText('Max ciężar (per hantel)')).toBeTruthy();
+  });
+  test('scenariusz 32: asercja po „RECORDS” to angielska etykieta tego wiersza rekordu (nie chip metryki „max weight” nad krawędzią)', () => {
+    const flow = fs.readFileSync(path.join(__dirname, '../.maestro/32-regularny-uzytkownik.yaml'), 'utf8');
+    const after = flow.slice(flow.indexOf('extendedWaitUntil: { visible: "RECORDS"'));
+    const assert = /- assertVisible: "([^"]+)"/.exec(after)![1].replace(/\\\\/g, '');
+    expect(assert).toBe(EN['Max ciężar (per hantel)']);
+    expect(assert.toLowerCase()).not.toBe(EN['max ciężar'].toLowerCase());
   });
 });
 

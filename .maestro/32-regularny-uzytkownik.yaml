@@ -166,7 +166,8 @@ name: Regularny użytkownik — historia, plan, restart, kopia
       - waitForAnimationToEnd
       - tapOn: "Bench Press \\(Dumbbell\\)"
       - extendedWaitUntil: { visible: "RECORDS", timeout: 15000 }
-- assertVisible: "Max weight"
+# E2E 39726518856 (146e710, krok 200): „Max weight” trafiało przed M3 w chip metryki wykresu („max weight”); od ZM-06 to ćwiczenie jest już wybrane (ostatnio trenowane), stuknięcie chipa nic nie zmienia, a karta wykresu leży nad krawędzią — sprawdzamy wiersz rekordu pod „RECORDS”
+- assertVisible: "Max weight \\(per dumbbell\\)"
 - takeScreenshot: 96-rekordy
 # --- kopia zapasowa: ekran z eksportem/importem (pliku nie da się wskazać w Maestro) i ekran importu CSV ---
 - tapOn: "More, tab.*"
