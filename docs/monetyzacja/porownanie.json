@@ -1,0 +1,1461 @@
+{
+ "data": "2026-10-22",
+ "prowizja": {
+  "stawka": 0.15,
+  "zrodlo": "developer.apple.com/app-store/small-business-program, „reduced commission rate of 15%”, odczyt 2026-10-22 (przyjęcie do programu: krok właściciela)"
+ },
+ "podatek_efektywny": {
+  "stawka": 0.12,
+  "zrodlo": "[OCENA] średni podatek w cenie brutto przy mieszance sklepów (USA bez VAT w cenie, PL 23% — ustawa o VAT Dz.U. 2026 poz. 1263 art. 146ef, odczyt 2026-10-22, UE ok. 20%)"
+ },
+ "pobrania_rocznie": {
+  "pesymistyczny": {
+   "wartosc": 1200,
+   "zrodlo": "[OCENA] 100 pobrań/mies. — cel właściciela z 06.10.2026 (docs/wzrost.md)"
+  },
+  "normalny": {
+   "wartosc": 3720,
+   "zrodlo": "bramka W0 21.10.2026 (docs/monetyzacja.md): 310 pobrań/mies., konwersja pobranie→płacący 2%"
+  },
+  "optymistyczny": {
+   "wartosc": 12000,
+   "zrodlo": "[OCENA] ok. 3× normalnego"
+  }
+ },
+ "modele": {
+  "A0 obecny (odnawiane + 4 treningi)": {
+   "plany": {
+    "miesieczna": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "roczna": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0.05,
+      "zrodlo": "[OCENA] poniżej mediany RC 6,9%"
+     },
+     "konwersja_po_probie": {
+      "w": 0.2,
+      "zrodlo": "[OCENA] poniżej mediany RC 37,7%; najniższy próg cen: pobranie→płatny 1,4% (RevenueCat, State of Subscription Apps 2026 (revenuecat.com/state-of-subscription-apps), odczyt 2026-10-22, szczebel 4, jedno źródło)"
+     },
+     "zakup_bez_proby": {
+      "w": 0.001,
+      "zrodlo": "[OCENA] dożywotni bez próby i późne zakupy z 4 treningów"
+     },
+     "kara_ocen": {
+      "w": 0.1,
+      "zrodlo": "[OCENA] skargi „próba pobrała opłatę” 0,9% recenzji, śr. 1,26★ (rynek.md, próbka 6115 recenzji 2026-10-22)"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.8,
+       "roczna": 0.22
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0.069,
+      "zrodlo": "pobranie→próba, Health & Fitness, mediana: RevenueCat, State of Subscription Apps 2026 (revenuecat.com/state-of-subscription-apps), odczyt 2026-10-22, szczebel 4, jedno źródło"
+     },
+     "konwersja_po_probie": {
+      "w": 0.29,
+      "zrodlo": "[OCENA] 37,7% (RC, próba→płatny H&F) skalowane tak, by pobranie→płacący ≈ 2% jak w bramka W0 21.10.2026 (docs/monetyzacja.md): 310 pobrań/mies., konwersja pobranie→płacący 2%"
+     },
+     "zakup_bez_proby": {
+      "w": 0.002,
+      "zrodlo": "[OCENA] jw."
+     },
+     "kara_ocen": {
+      "w": 0.03,
+      "zrodlo": "[OCENA] jw."
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.85,
+       "roczna": 0.28
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0.09,
+      "zrodlo": "[OCENA] powyżej mediany RC"
+     },
+     "konwersja_po_probie": {
+      "w": 0.377,
+      "zrodlo": "mediana próba→płatny H&F: RevenueCat, State of Subscription Apps 2026 (revenuecat.com/state-of-subscription-apps), odczyt 2026-10-22, szczebel 4, jedno źródło"
+     },
+     "zakup_bez_proby": {
+      "w": 0.004,
+      "zrodlo": "[OCENA]"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA]"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.88,
+       "roczna": 0.35
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    }
+   }
+  },
+  "V1 blokada": {
+   "plany": {
+    "30dni": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "3mies": {
+     "cena": 2.49,
+     "miesiace": 3
+    },
+    "rok": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0.12,
+      "zrodlo": "[OCENA] start próby bez przyszłej opłaty; analogia FirstPageSage, free trial conversion benchmarks (SaaS, nie aplikacje mobilne), odczyt 2026-10-22, szczebel 4, analogia: 8,5% vs 2,5% (×3,4) wobec RC 6,9%, mocno obniżone"
+     },
+     "konwersja_po_probie": {
+      "w": 0.06,
+      "zrodlo": "[OCENA] próba bez przyszłej opłaty: FirstPageSage, free trial conversion benchmarks (SaaS, nie aplikacje mobilne), odczyt 2026-10-22, szczebel 4, analogia 18,2% vs 48,8% (×0,37) wobec RC 37,7% ≈ 14%; pes. 6%"
+     },
+     "zakup_bez_proby": {
+      "w": 0.001,
+      "zrodlo": "[OCENA] dożywotni bez próby"
+     },
+     "kara_ocen": {
+      "w": 0.25,
+      "zrodlo": "[OCENA] twarda blokada: skargi na blokadę 3,6% recenzji, śr. 2,10★; najostrzejsze przy odcięciu danych (rynek.md); u nas dane zostają"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.25,
+       "3mies": 0.15,
+       "rok": 0.4,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.4,
+       "3mies": 0.4,
+       "rok": 0.1
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0.2,
+      "zrodlo": "[OCENA] jw., norm. 20%"
+     },
+     "konwersja_po_probie": {
+      "w": 0.12,
+      "zrodlo": "[OCENA] jw., norm. 12%"
+     },
+     "zakup_bez_proby": {
+      "w": 0.002,
+      "zrodlo": "[OCENA]"
+     },
+     "kara_ocen": {
+      "w": 0.1,
+      "zrodlo": "[OCENA] twarda blokada: skargi na blokadę 3,6% recenzji, śr. 2,10★; najostrzejsze przy odcięciu danych (rynek.md); u nas dane zostają"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.25,
+       "3mies": 0.15,
+       "rok": 0.4,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.55,
+       "3mies": 0.55,
+       "rok": 0.25
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0.35,
+      "zrodlo": "[OCENA] jw., opt. 35%"
+     },
+     "konwersja_po_probie": {
+      "w": 0.2,
+      "zrodlo": "[OCENA] jw., opt. 20%"
+     },
+     "zakup_bez_proby": {
+      "w": 0.004,
+      "zrodlo": "[OCENA]"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] twarda blokada: skargi na blokadę 3,6% recenzji, śr. 2,10★; najostrzejsze przy odcięciu danych (rynek.md); u nas dane zostają"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.25,
+       "3mies": 0.15,
+       "rok": 0.4,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.7000000000000001,
+       "3mies": 0.7000000000000001,
+       "rok": 0.4
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    }
+   }
+  },
+  "V2 blokada": {
+   "plany": {
+    "30dni": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "rok": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0.12,
+      "zrodlo": "[OCENA] start próby bez przyszłej opłaty; analogia FirstPageSage, free trial conversion benchmarks (SaaS, nie aplikacje mobilne), odczyt 2026-10-22, szczebel 4, analogia: 8,5% vs 2,5% (×3,4) wobec RC 6,9%, mocno obniżone"
+     },
+     "konwersja_po_probie": {
+      "w": 0.06,
+      "zrodlo": "[OCENA] próba bez przyszłej opłaty: FirstPageSage, free trial conversion benchmarks (SaaS, nie aplikacje mobilne), odczyt 2026-10-22, szczebel 4, analogia 18,2% vs 48,8% (×0,37) wobec RC 37,7% ≈ 14%; pes. 6%"
+     },
+     "zakup_bez_proby": {
+      "w": 0.001,
+      "zrodlo": "[OCENA] dożywotni bez próby"
+     },
+     "kara_ocen": {
+      "w": 0.25,
+      "zrodlo": "[OCENA] twarda blokada: skargi na blokadę 3,6% recenzji, śr. 2,10★; najostrzejsze przy odcięciu danych (rynek.md); u nas dane zostają"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.4,
+       "rok": 0.1
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0.2,
+      "zrodlo": "[OCENA] jw., norm. 20%"
+     },
+     "konwersja_po_probie": {
+      "w": 0.12,
+      "zrodlo": "[OCENA] jw., norm. 12%"
+     },
+     "zakup_bez_proby": {
+      "w": 0.002,
+      "zrodlo": "[OCENA]"
+     },
+     "kara_ocen": {
+      "w": 0.1,
+      "zrodlo": "[OCENA] twarda blokada: skargi na blokadę 3,6% recenzji, śr. 2,10★; najostrzejsze przy odcięciu danych (rynek.md); u nas dane zostają"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.55,
+       "rok": 0.25
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0.35,
+      "zrodlo": "[OCENA] jw., opt. 35%"
+     },
+     "konwersja_po_probie": {
+      "w": 0.2,
+      "zrodlo": "[OCENA] jw., opt. 20%"
+     },
+     "zakup_bez_proby": {
+      "w": 0.004,
+      "zrodlo": "[OCENA]"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] twarda blokada: skargi na blokadę 3,6% recenzji, śr. 2,10★; najostrzejsze przy odcięciu danych (rynek.md); u nas dane zostają"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.7000000000000001,
+       "rok": 0.4
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    }
+   }
+  },
+  "V1 + 4 treningi": {
+   "plany": {
+    "30dni": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "3mies": {
+     "cena": 2.49,
+     "miesiace": 3
+    },
+    "rok": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0.12,
+      "zrodlo": "[OCENA] start próby bez przyszłej opłaty; analogia FirstPageSage, free trial conversion benchmarks (SaaS, nie aplikacje mobilne), odczyt 2026-10-22, szczebel 4, analogia: 8,5% vs 2,5% (×3,4) wobec RC 6,9%, mocno obniżone"
+     },
+     "konwersja_po_probie": {
+      "w": 0.042,
+      "zrodlo": "[OCENA] próba bez przyszłej opłaty: FirstPageSage, free trial conversion benchmarks (SaaS, nie aplikacje mobilne), odczyt 2026-10-22, szczebel 4, analogia 18,2% vs 48,8% (×0,37) wobec RC 37,7% ≈ 14%; pes. 6%; ×0,7 za miękką zaporę"
+     },
+     "zakup_bez_proby": {
+      "w": 0.001,
+      "zrodlo": "[OCENA] dożywotni bez próby"
+     },
+     "kara_ocen": {
+      "w": 0.05,
+      "zrodlo": "[OCENA] miękka zapora (4 treningi/mies.) jak dziś"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.25,
+       "3mies": 0.15,
+       "rok": 0.4,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.4,
+       "3mies": 0.4,
+       "rok": 0.1
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0.2,
+      "zrodlo": "[OCENA] jw., norm. 20%"
+     },
+     "konwersja_po_probie": {
+      "w": 0.084,
+      "zrodlo": "[OCENA] jw., norm. 12%"
+     },
+     "zakup_bez_proby": {
+      "w": 0.002,
+      "zrodlo": "[OCENA]"
+     },
+     "kara_ocen": {
+      "w": 0.02,
+      "zrodlo": "[OCENA] miękka zapora (4 treningi/mies.) jak dziś"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.25,
+       "3mies": 0.15,
+       "rok": 0.4,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.55,
+       "3mies": 0.55,
+       "rok": 0.25
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0.35,
+      "zrodlo": "[OCENA] jw., opt. 35%"
+     },
+     "konwersja_po_probie": {
+      "w": 0.14,
+      "zrodlo": "[OCENA] jw., opt. 20%"
+     },
+     "zakup_bez_proby": {
+      "w": 0.004,
+      "zrodlo": "[OCENA]"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] miękka zapora (4 treningi/mies.) jak dziś"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.25,
+       "3mies": 0.15,
+       "rok": 0.4,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.7000000000000001,
+       "3mies": 0.7000000000000001,
+       "rok": 0.4
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    }
+   }
+  },
+  "V2 + 4 treningi": {
+   "plany": {
+    "30dni": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "rok": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0.12,
+      "zrodlo": "[OCENA] start próby bez przyszłej opłaty; analogia FirstPageSage, free trial conversion benchmarks (SaaS, nie aplikacje mobilne), odczyt 2026-10-22, szczebel 4, analogia: 8,5% vs 2,5% (×3,4) wobec RC 6,9%, mocno obniżone"
+     },
+     "konwersja_po_probie": {
+      "w": 0.042,
+      "zrodlo": "[OCENA] próba bez przyszłej opłaty: FirstPageSage, free trial conversion benchmarks (SaaS, nie aplikacje mobilne), odczyt 2026-10-22, szczebel 4, analogia 18,2% vs 48,8% (×0,37) wobec RC 37,7% ≈ 14%; pes. 6%; ×0,7 za miękką zaporę"
+     },
+     "zakup_bez_proby": {
+      "w": 0.001,
+      "zrodlo": "[OCENA] dożywotni bez próby"
+     },
+     "kara_ocen": {
+      "w": 0.05,
+      "zrodlo": "[OCENA] miękka zapora (4 treningi/mies.) jak dziś"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.4,
+       "rok": 0.1
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0.2,
+      "zrodlo": "[OCENA] jw., norm. 20%"
+     },
+     "konwersja_po_probie": {
+      "w": 0.084,
+      "zrodlo": "[OCENA] jw., norm. 12%"
+     },
+     "zakup_bez_proby": {
+      "w": 0.002,
+      "zrodlo": "[OCENA]"
+     },
+     "kara_ocen": {
+      "w": 0.02,
+      "zrodlo": "[OCENA] miękka zapora (4 treningi/mies.) jak dziś"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.55,
+       "rok": 0.25
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0.35,
+      "zrodlo": "[OCENA] jw., opt. 35%"
+     },
+     "konwersja_po_probie": {
+      "w": 0.14,
+      "zrodlo": "[OCENA] jw., opt. 20%"
+     },
+     "zakup_bez_proby": {
+      "w": 0.004,
+      "zrodlo": "[OCENA]"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] miękka zapora (4 treningi/mies.) jak dziś"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.7000000000000001,
+       "rok": 0.4
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    }
+   }
+  },
+  "M4 odnawiane": {
+   "plany": {
+    "miesieczna": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "roczna": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01403,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=4"
+     },
+     "kara_ocen": {
+      "w": 0.06,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.8,
+       "roczna": 0.22
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01997,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=4"
+     },
+     "kara_ocen": {
+      "w": 0.03,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.85,
+       "roczna": 0.28
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.02889,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=4"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.88,
+       "roczna": 0.35
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    }
+   }
+  },
+  "M5 odnawiane": {
+   "plany": {
+    "miesieczna": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "roczna": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01309,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0.05,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.8,
+       "roczna": 0.22
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01877,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0.025,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.85,
+       "roczna": 0.28
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.02724,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.88,
+       "roczna": 0.35
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    }
+   }
+  },
+  "M6 odnawiane": {
+   "plany": {
+    "miesieczna": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "roczna": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01217,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=6"
+     },
+     "kara_ocen": {
+      "w": 0.04,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.8,
+       "roczna": 0.22
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01756,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=6"
+     },
+     "kara_ocen": {
+      "w": 0.02,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.85,
+       "roczna": 0.28
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.02555,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=6"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.3,
+       "roczna": 0.55,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] udział planów: RC podaje ~68% planów rocznych w kategorii (sprzeczność w źródle), obniżone, bo miesięczny 0,99 USD jest tani; dożywotni 15%"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.88,
+       "roczna": 0.35
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    }
+   }
+  },
+  "M4 bez odnawiania": {
+   "plany": {
+    "30dni": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "rok": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01403,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=4"
+     },
+     "kara_ocen": {
+      "w": 0.06,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.4,
+       "rok": 0.1
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01997,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=4"
+     },
+     "kara_ocen": {
+      "w": 0.03,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.55,
+       "rok": 0.25
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.02889,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=4"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.7000000000000001,
+       "rok": 0.4
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    }
+   }
+  },
+  "M5 bez odnawiania": {
+   "plany": {
+    "30dni": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "rok": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01309,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0.05,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.4,
+       "rok": 0.1
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01877,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0.025,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.55,
+       "rok": 0.25
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.02724,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.7000000000000001,
+       "rok": 0.4
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    }
+   }
+  },
+  "M6 bez odnawiania": {
+   "plany": {
+    "30dni": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "rok": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01217,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=6"
+     },
+     "kara_ocen": {
+      "w": 0.04,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.4,
+       "rok": 0.1
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01756,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=6"
+     },
+     "kara_ocen": {
+      "w": 0.02,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.55,
+       "rok": 0.25
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.02555,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=6"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "30dni": 0.35,
+       "rok": 0.45,
+       "dozywotnia": 0.2
+      },
+      "zrodlo": "[OCENA] udział planów: bez odnawiania dożywotni atrakcyjniejszy (pochwały zakupu jednorazowego w recenzjach, rynek.md); 3 mies. bierze ok. 2/3 z 30 dni i 1/3 z roku (kanibalizacja + kotwica)"
+     },
+     "kolejna": {
+      "w": {
+       "30dni": 0.7000000000000001,
+       "rok": 0.4
+      },
+      "zrodlo": "[OCENA] p-stwo kolejnej płatności po końcu okresu; metoda w docs/monetyzacja-badanie-2026-10.md, rozdz. Rachunek"
+     }
+    }
+   }
+  },
+  "M5 odnawiane + 3 mies.": {
+   "plany": {
+    "miesieczna": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "3mies": {
+     "cena": 2.49,
+     "miesiace": 3
+    },
+    "roczna": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01309,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0.05,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.2,
+       "3mies": 0.15,
+       "roczna": 0.5,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] jak A0 (30/55/15), 3 mies. bierze 15 pkt: 10 z miesięcznej, 5 z rocznej (2/3 i 1/3, jak w V1)"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.8,
+       "3mies": 0.512,
+       "roczna": 0.22
+      },
+      "zrodlo": "[OCENA] odnowienie 3 mies. = (odnowienie miesięczne)^3; reszta jak A0"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01877,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0.025,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.2,
+       "3mies": 0.15,
+       "roczna": 0.5,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] jak A0 (30/55/15), 3 mies. bierze 15 pkt: 10 z miesięcznej, 5 z rocznej (2/3 i 1/3, jak w V1)"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.85,
+       "3mies": 0.614,
+       "roczna": 0.28
+      },
+      "zrodlo": "[OCENA] odnowienie 3 mies. = (odnowienie miesięczne)^3; reszta jak A0"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.02724,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.2,
+       "3mies": 0.15,
+       "roczna": 0.5,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] jak A0 (30/55/15), 3 mies. bierze 15 pkt: 10 z miesięcznej, 5 z rocznej (2/3 i 1/3, jak w V1)"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.88,
+       "3mies": 0.681,
+       "roczna": 0.35
+      },
+      "zrodlo": "[OCENA] odnowienie 3 mies. = (odnowienie miesięczne)^3; reszta jak A0"
+     }
+    }
+   }
+  }
+ }
+}

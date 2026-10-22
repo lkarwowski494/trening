@@ -1,6 +1,7 @@
 # Monetyzacja — model stały (jedno miejsce)
 
 Stan: 20.10.2026. Model jest **stały** (decyzja właściciela 19.10.2026; cena roczna 6,99 USD — 20.10.2026, docs/18): żadna naprawa ani decyzja nie zmienia ceny, okresu próbnego, limitu ani podziału darmowe/płatne.
+**22.10.2026: właściciel otworzył badanie zmiany modelu** (docs/18, wpis z 22.10.2026; wynik: `docs/monetyzacja-badanie-2026-10.md`). Do wyboru na STOP E2 model niżej obowiązuje bez zmian.
 Ten dokument jest jedynym miejscem, w którym zapisane są kwoty i liczby modelu. Inne dokumenty (docs/15, docs/18, docs/27) opisują historię decyzji i odsyłają tutaj; zgodność z kodem pilnuje `tests/audit-m1-045-store-description.test.ts`
 (stałe w kodzie: `FAKE_PRICES` i `PLN_PRICES` w `lib/store-fake.ts`, `TRIAL_DAYS` w `lib/products.ts`, `PAYWALL.FREE_LIVE_PER_MONTH` w `lib/access.ts`, plik `store/Trening.storekit`).
 
