@@ -8,6 +8,16 @@ Niczego z tych decyzji nie zmienia; gdzie decyzji brak — opcje w rozdz. 7 („
 serwera i bez konta; bez zakupu zostają 4 treningi na żywo w miesiącu kalendarzowym, a dane użytkownika (historia, kopia, eksport) są
 dostępne zawsze.
 
+## Zmiana modelu: M5 S1 (22.10.2026) — obowiązuje zamiast P1, P2, P4, P5 i „4 treningów” niżej
+
+Decyzja właściciela 22.10.2026 (docs/18; badanie i kontrakt: `docs/monetyzacja-badanie-2026-10.md` rozdz. 10–11; liczby: `docs/monetyzacja.md`). Wdrożone w kodzie tego samego dnia:
+- **Limit:** cała aplikacja darmowa do 5 dni treningowych w miesiącu kalendarzowym (`PAYWALL.FREE_TRAINING_DAYS_PER_MONTH`); dzień = data startu ukończonego treningu na żywo wg strefy treningu; kolejny trening tego samego dnia zawsze wolno zacząć (`canStartLive`). Przełącznik `PAYWALL.ENABLED = true`.
+- **Bez okresu próbnego** (P1, P5 uchylone): usunięte `TRIAL_DAYS`, `lib/trialReminder.ts`, pole `Entitlement.trial`, wnioskowanie próby (M1-012/M1-017), teksty „14 dni za darmo”; oferty wprowadzające w App Store Connect do usunięcia (R-M5-3, docs/40).
+- **Ekran zakupu** (P2 uchylone): tylko przy starcie ponad limit (tekst wariantu B: pochwała, autor niezależny, bez reklam i zbierania danych, data powrotu dni) i z Ustawień (nagłówek „Train 5 days a month for free…”); `maybeShowPaywallAfterFirstWorkout` i `AFTER_FIRST_WORKOUT` usunięte.
+- **Dzień zużywa tylko trening na żywo > 20 minut** (`MIN_LIVE_MINUTES_FOR_DAY`); dni zapisane osobno (`State.liveDays`), usunięcie treningu dnia nie zwraca; dopisanie treningu nigdy nie zużywa dnia (decyzje 22.10.2026, docs/18).
+- **Licznik** na ekranie startu („Pozostało X z 5 darmowych dni treningowych w tym miesiącu”, tylko stan free) i w Ustawieniach → „Subskrypcja” (P4 rozszerzone).
+- Bez zmian: P3 B, P6 A, P7 A, P8 A, P9 A, funkcje zawsze dostępne, drogi startu `GUARDED_STARTS`. Prośba o ocenę: `REVIEW.MIN_WORKOUTS` 3 (docs/26).
+
 ## Decyzje właściciela (12.10.2026)
 
 Właściciel przyjął rekomendacje agenta („zgodnie z rekomendacją”). Wdrożone w 0.17.0 (kod: `lib/products.ts`, `lib/access.ts`, `lib/entitlement.ts`; testy: docs/09):

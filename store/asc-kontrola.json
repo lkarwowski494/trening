@@ -1,5 +1,5 @@
 {
-  "_opis": "Konfiguracja kontroli App Store Connect (tylko odczyt; narzędzie: repozytorium lkarwowski494/apps4brew-narzedzia (asc-kontrola/), workflow: .github/workflows/asc-kontrola.yml). Decyzja właściciela 21.10.2026. Kwoty: jedno miejsce to docs/monetyzacja.md, ten plik je powiela dla kontroli — zgodność pilnuje tests/asc-kontrola.test.ts. null = wartość nie ustalona (kontrola tylko wypisuje).",
+  "_opis": "Konfiguracja kontroli App Store Connect (tylko odczyt; narzędzie: repozytorium lkarwowski494/apps4brew-narzedzia (asc-kontrola/), workflow: .github/workflows/asc-kontrola.yml). Decyzja właściciela 21.10.2026. Kwoty: jedno miejsce to docs/monetyzacja.md, ten plik je powiela dla kontroli — zgodność pilnuje tests/asc-kontrola.test.ts. null = wartość nie ustalona (kontrola tylko wypisuje). Oferty wprowadzające (okres próbny): model M5 S1 (22.10.2026) ich NIE ma — „oferta.brak = true” oznacza, że kontrola ma zgłosić każdą ofertę wprowadzającą na miesięcznej i rocznej (ryzyko R-M5-3, docs/40).",
   "aplikacja": { "bundleId": "pl.lukasz.trening" },
   "produkty": [
     { "klucz": "monthly", "productId": "pl.lukasz.trening.full.monthly", "rodzaj": "subskrypcja" },
@@ -17,7 +17,7 @@
     "yearly": { "USA": 6.99, "POL": 19.99, "strefaEuro": 7.99, "GBR": 6.99 },
     "lifetime": { "USA": 14.99, "POL": 59.99, "strefaEuro": 17.99, "GBR": 14.99 }
   },
-  "oferta": { "produkty": ["monthly", "yearly"], "tryb": "FREE_TRIAL", "czas": "TWO_WEEKS", "bezDatyKonca": true },
+  "oferta": { "produkty": ["monthly", "yearly"], "brak": true },
   "rodzina": { "monthly": true, "yearly": true, "lifetime": true },
   "adresy": { "plik": "store/app-store-urls.json" },
   "kategoria": { "glowna": "HEALTH_AND_FITNESS", "dodatkowa": null },

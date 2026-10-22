@@ -21,9 +21,6 @@ export const PLAN_ORDER: readonly EntitlementPlan[] = ['yearly', 'monthly', 'lif
 export const SUBSCRIPTION_PLANS: readonly EntitlementPlan[] = ['monthly', 'yearly'];
 /** [DO POTWIERDZENIA w App Store Connect] Nazwa referencyjna grupy subskrypcji (docs/27 rozdz. 6 pkt 3); w aplikacji nieużywana, tylko w pliku `.storekit`. */
 export const SUBSCRIPTION_GROUP_NAME = 'Pełna wersja';
-/** Długość okresu próbnego w dniach — oferta wprowadzająca Apple (2 tygodnie, w ASC „2 weeks”), w obu planach subskrypcji. Model stały, decyzja właściciela 19.10.2026 (zastępuje „1 miesiąc” z 09.10.2026); audyt M1-011. */
-export const TRIAL_DAYS = 14;
-
 export const planOfProduct = (productId: string): EntitlementPlan | null => (Object.keys(PRODUCT_IDS) as EntitlementPlan[]).find(p => PRODUCT_IDS[p] === productId) ?? null;
 export const isSubscriptionPlan = (p: EntitlementPlan): boolean => SUBSCRIPTION_PLANS.includes(p);
 
@@ -41,17 +38,6 @@ export const SUPPORT_URL = 'https://apps4brew.com/trening/support.html';
  */
 export const TERMS_URL = 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/';
 
-/**
- * Decyzje właściciela 12.10.2026 (docs/27 „Decyzje właściciela (12.10.2026)”) wdrożone w kodzie jako stałe — wszystko nadal za PAYWALL.ENABLED.
- * P4 B (bez okna przed ostatnim darmowym treningiem), P7 A i P8 A (App Store Connect) nie mają stałych: nic do wdrożenia w aplikacji poza obsługą karencji.
- */
-export const PAYWALL_MOMENTS = {
-  /** P2 B: ekran zakupu raz po pierwszym ukończonym treningu na żywo (osoba bez pełnego dostępu), potem tylko Ustawienia i start ponad limit. */
-  AFTER_FIRST_WORKOUT: true,
-  /** P5 A: lokalne powiadomienie tyle dni przed końcem okresu próbnego (zgoda na powiadomienia jak przy przerwach). */
-  TRIAL_END_REMINDER_DAYS: 2,
-} as const;
-
 /** Limity czasowe wywołań sklepu (ms) — jedno miejsce. */
 export const STORE_TIMING = {
   /** Odpowiedź sklepu na pobranie cen / uprawnień dłużej niż tyle = jak brak odpowiedzi (offline, „unknown”). */
@@ -60,6 +46,7 @@ export const STORE_TIMING = {
   REVIEW_DELAY_MS: 1500,
 } as const;
 
-/** Wyłącznie build E2E na symulatorze (e2e-ios.yml): sztuczny sklep + limit 1 trening. Nigdy TestFlight ani App Store (test pilnuje workflowów). */
-export const E2E_FREE_LIVE_PER_MONTH = 1;
+/** Wyłącznie build E2E na symulatorze (e2e-ios.yml): sztuczny sklep + limit 0 dni treningowych (po wygaśnięciu dostępu pierwszy start otwiera ekran zakupu; limit ≥ 1 nie
+ * zablokowałby kolejnego treningu tego samego dnia). Nigdy TestFlight ani App Store (test pilnuje workflowów). */
+export const E2E_FREE_TRAINING_DAYS = 0;
 export const isFakeStoreBuild = (): boolean => process.env.EXPO_PUBLIC_STORE_FAKE === '1';

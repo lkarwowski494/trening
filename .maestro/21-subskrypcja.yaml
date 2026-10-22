@@ -1,14 +1,16 @@
-# Subskrypcja (0.17.0, docs/27): build E2E ze sztucznym sklepem (EXPO_PUBLIC_STORE_FAKE=1, e2e-ios.yml): przełącznik subskrypcji włączony, limit darmowych treningów = 1,
-# start z dostępem „na zawsze”. Przepływ: karta „Subscription” w Ustawieniach → ekran zakupu (stan „zakupione”) → wygaszenie dostępu panelem „Test store” →
-# ceny z (sztucznego) sklepu i „14 days free, then …” → „Restore purchases” bez zakupów → drugi trening na żywo zablokowany ekranem zakupu →
-# zakup (14 dni za darmo) → trening startuje. Prawdziwy StoreKit i okna Apple: lista ręczna w piaskownicy (docs/27 7.2).
+# Subskrypcja (0.17.0, docs/27; M5 S1 22.10.2026): build E2E ze sztucznym sklepem (EXPO_PUBLIC_STORE_FAKE=1, e2e-ios.yml): przełącznik subskrypcji włączony, limit darmowych dni treningowych = 0
+# (E2E_FREE_TRAINING_DAYS; scenariusz nie wytrzyma 20 minut treningu, więc krótki trening nie zużywa dnia i limit 0 blokuje pierwszy start), start z dostępem „na zawsze”. Przepływ: karta „Subscription” w Ustawieniach → ekran zakupu (stan „zakupione”) →
+# wygaszenie dostępu panelem „Test store” (wygasa „teraz”) → nagłówek „Train 5 days a month for free…”, nazwy planów i ceny z (sztucznego)
+# sklepu, bez „days free” → „Restore purchases” bez zakupów → licznik dni na ekranie startu → start ponad limit otwiera ekran zakupu z tekstem „We're proud of you!” → zakup → trening startuje.
+# Prawdziwy StoreKit i okna Apple: lista ręczna w piaskownicy (docs/27 7.2).
 #
 # Literały (EN z lib/i18n.en.ts):
 #   "Subscription", "Full version", ".*You have access forever.*", "You have the full version"  ← components/SubscriptionCard.tsx, app/paywall.tsx
 #   "Test store: expire access"                                             ← panel tylko w buildzie E2E (app/paywall.tsx, bez t())
-#   ".*14 days free, then .*", "Restore purchases", "No purchases found for this Apple account."
-#   "You've used this month's free workouts .*"                             ← 'Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.'
-#   "Start 14 days free", "Log a past workout", "Not now", "Close" (id close-modal)
+#   "Train 5 days a month for free.*", "Training is part of my week", "Restore purchases", "No purchases found for this Apple account."
+#   ".*free training days left this month.*"                                ← 'Pozostało {n} z {limit} darmowych dni treningowych w tym miesiącu' (components/StartPanel.tsx)
+#   "We're proud of you!", ".*no ads, no data collection.*"                 ← tekst przy starcie ponad limit (app/paywall.tsx, reason=limit)
+#   "Subscribe", "Log a past workout", "Not now", "Close" (id close-modal)
 #   "Empty workout", "Other workout", "Finish", "Set 1 done.*", "Skip", "Finish workout\?", "Session", "Upper A" ← jak flow 05
 appId: pl.lukasz.trening
 name: Subskrypcja — ekran zakupu i limit
@@ -40,9 +42,11 @@ name: Subskrypcja — ekran zakupu i limit
 - takeScreenshot: 99-zakup-aktywny
 - scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000 }
 - tapOn: "Test store: expire access"
-# --- po wygaszeniu: ceny ze sklepu, 14 dni za darmo, przywracanie bez zakupów ---
-- scrollUntilVisible: { element: ".*14 days free, then .*", direction: UP, timeout: 60000 }
-- assertVisible: ".*14 days free, then .*"
+# --- po wygaszeniu: ceny ze sklepu, nazwy planów, nagłówek z limitem 5 dni (M5 S1), przywracanie bez zakupów ---
+- scrollUntilVisible: { element: "Train 5 days a month for free.*", direction: UP, timeout: 60000 }
+- assertVisible: "Train 5 days a month for free.*"
+- assertVisible: ".*Training is part of my week.*"
+- assertNotVisible: ".*days free.*"
 - assertNotVisible: ".*You have access forever.*"
 - takeScreenshot: 99-zakup-ceny
 - scrollUntilVisible: { element: "Restore purchases", direction: DOWN, timeout: 60000 }
@@ -54,17 +58,20 @@ name: Subskrypcja — ekran zakupu i limit
 - tapOn: { id: "close-modal" }
 - extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
 - tapOn: "Back"
-# --- drugi trening na żywo ponad limit 1: ekran zakupu zamiast startu ---
+# --- start po wygaśnięciu dostępu ponad limit dni (build E2E: limit 0 dni; krótki trening < 20 min nie zużywa dnia): licznik na ekranie startu, potem ekran zakupu zamiast startu ---
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- assertVisible: ".*free training days left this month.*"
+- takeScreenshot: 99-licznik-dni
 - tapOn: "Other workout"
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
-- extendedWaitUntil: { visible: "You've used this month's free workouts .*", timeout: 30000 }
-- assertVisible: "Log a past workout"
+- extendedWaitUntil: { visible: "We're proud of you!", timeout: 30000 }
+- assertVisible: ".*no ads, no data collection.*"
+- scrollUntilVisible: { element: "Log a past workout", direction: DOWN, timeout: 60000 }
 - takeScreenshot: 99-limit
-- scrollUntilVisible: { element: "Start 14 days free", direction: DOWN, timeout: 60000 }
-- tapOn: "Start 14 days free"
+- scrollUntilVisible: { element: "Subscribe", direction: DOWN, timeout: 60000 }
+- tapOn: "Subscribe"
 - extendedWaitUntil: { visible: ".*You have the full version.*", timeout: 30000 }
 - scrollUntilVisible: { element: "Not now", direction: DOWN, timeout: 60000 }
 - tapOn: "Not now"
@@ -74,5 +81,5 @@ name: Subskrypcja — ekran zakupu i limit
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
 - extendedWaitUntil: { visible: "Finish", timeout: 30000 }
-- assertNotVisible: "You've used this month's free workouts .*"
+- assertNotVisible: "We're proud of you!"
 - takeScreenshot: 99-start-po-zakupie

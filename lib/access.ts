@@ -1,6 +1,6 @@
 /*
- * Dostęp do funkcji w modelu subskrypcji (docs/27 rozdz. 2, 3.4–3.6, 4.4 wydanie N; decyzja właściciela 12.10.2026: monetyzacja B — subskrypcja
- * na start, z możliwością przejścia na darmowe zmianą JEDNEJ wartości: PAYWALL.ENABLED).
+ * Dostęp do funkcji w modelu M5 S1 (docs/monetyzacja.md; docs/27 rozdz. 2, 3.4–3.6; decyzja właściciela 22.10.2026: cała aplikacja darmowa do
+ * 5 dni treningowych w miesiącu, Pro — subskrypcja albo dostęp dożywotni — zdejmuje limit; wcześniej, 12.10.2026: przełącznik PAYWALL.ENABLED).
  *
  * Moduł jest CZYSTY: bez StoreKit, bez magazynu, bez Date.now() i bez strefy telefonu w środku — czas i przesunięcie strefy przychodzą
  * jako argumenty. Podłączony w 0.17.0: lib/entitlement.ts (stan, zapamiętany wynik, strażnik startu w lib/start.ts), adapter sklepu lib/store-adapter.ts, ekran zakupu app/paywall.tsx.
@@ -11,8 +11,8 @@
 export interface PaywallConfig {
   /** Główny przełącznik: false → zawsze pełny dostęp, bez limitu (model darmowy = zmiana tej wartości + wydanie). */
   ENABLED: boolean;
-  /** Darmowe treningi na żywo w miesiącu kalendarzowym w stanie `free` (docs/15, 09.10.2026 pkt 5). */
-  FREE_LIVE_PER_MONTH: number;
+  /** Darmowe DNI TRENINGOWE w miesiącu kalendarzowym w stanie `free` (M5 S1, decyzja właściciela 22.10.2026; dzień = data startu ukończonego treningu na żywo). */
+  FREE_TRAINING_DAYS_PER_MONTH: number;
   /** Decyzja właściciela 12.10.2026, P3 B (docs/27): czy treningi rozpoczęte w stanie `full` liczą się do limitu miesiąca, w którym dostęp wygasł.
    * false = wariant B, WYBRANY (liczone tylko starty od chwili wygaśnięcia); true = wariant A (limit „4 w miesiącu” bez wyjątków). */
   COUNT_FULL_STARTS_IN_EXPIRY_MONTH: boolean;
@@ -21,11 +21,14 @@ export interface PaywallConfig {
   OFFLINE_GRACE_DAYS: number;
 }
 export const PAYWALL: PaywallConfig = {
-  ENABLED: false,
-  FREE_LIVE_PER_MONTH: 4,
+  ENABLED: true,
+  FREE_TRAINING_DAYS_PER_MONTH: 5,
   COUNT_FULL_STARTS_IN_EXPIRY_MONTH: false,
   OFFLINE_GRACE_DAYS: 7,
 };
+
+/** Trening na żywo zużywa dzień limitu, dopiero gdy trwał DŁUŻEJ niż tyle minut (czas bez pauz, jak `workoutDurSec` w historii) — decyzja właściciela 22.10.2026: „Limit używają tylko sesje w treningu na żywo które trwały ponad 20 minut”. Jedno miejsce. */
+export const MIN_LIVE_MINUTES_FOR_DAY = 20;
 
 const MIN_MS = 60e3;
 const DAY_MS = 86400e3;
@@ -38,7 +41,7 @@ export type AccessLevel = 'full' | 'free';
 
 export const ENTITLEMENT_PLANS = ['monthly', 'yearly', 'lifetime'] as const;
 export type EntitlementPlan = (typeof ENTITLEMENT_PLANS)[number];
-/** Skąd uprawnienie: zakup, Chmura rodzinna (`ownershipType = familyShared`), kod ofertowy. Okres próbny to oferta zakupu (source: purchase). */
+/** Skąd uprawnienie: zakup, Chmura rodzinna (`ownershipType = familyShared`), kod ofertowy. */
 export const ENTITLEMENT_SOURCES = ['purchase', 'family', 'code'] as const;
 export type EntitlementSource = (typeof ENTITLEMENT_SOURCES)[number];
 
@@ -46,12 +49,10 @@ export type EntitlementSource = (typeof ENTITLEMENT_SOURCES)[number];
 export interface Entitlement {
   plan: EntitlementPlan;
   source: EntitlementSource;
-  /** Koniec opłaconego okresu (próby); null/brak = bez końca (dożywotni). Subskrypcja bez daty = uszkodzone dane → nieaktywna. */
+  /** Koniec opłaconego okresu; null/brak = bez końca (dożywotni). Subskrypcja bez daty = uszkodzone dane → nieaktywna. */
   expiresAt?: number | null;
   /** Koniec okresu karencji płatności (Billing Grace Period): dostęp trwa do późniejszego z expiresAt i graceUntil. */
   graceUntil?: number | null;
-  /** Okres próbny (oferta wprowadzająca „za darmo”) — potrzebne tylko do przypomnienia przed jego końcem (lib/trialReminder.ts); nie wpływa na dostęp. */
-  trial?: true;
   /** Zwrot / cofnięcie (też wyjście z rodziny): od tej chwili uprawnienie nie działa. */
   revokedAt?: number | null;
 }
@@ -143,7 +144,7 @@ export function freeSince(entitlements: readonly Entitlement[] | null | undefine
 
 /* ---------- licznik treningów na żywo ---------- */
 
-/** Start treningu na żywo (z historii/aktywnego; wołający wybiera tylko treningi ze znacznikiem „na żywo” — docs/27 4.3, bez treningów wstecz). */
+/** Start dnia treningowego: ukończonego treningu na żywo > 20 min (zapisane dni `State.liveDays`, nie historia; wołający wybiera tylko treningi ze znacznikiem „na żywo” — docs/27 4.3, bez wstecz; trwający i anulowany nie wchodzą). */
 export interface LiveStart { startedAt: number; /** przesunięcie strefy przy starcie, min na wschód od UTC (Workout.tzOffsetMin); brak = bieżące */ tzOffsetMin?: number }
 
 /** Klucz miesiąca RRRR-MM dla chwili `ts` na zegarze o przesunięciu `offMin` (minuty na wschód od UTC). Czyste, niezależne od strefy procesu. */
@@ -158,20 +159,52 @@ export function nextMonthStart(ts: number, offMin: number): number {
   return Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1) - off * MIN_MS;
 }
 
-/**
- * Ile treningów na żywo zużyło limit w bieżącym miesiącu (docs/27 „Licznik 4 treningów”): start w miesiącu `now` (miesiąc startu wg strefy
- * startu — `tzOffsetMin` treningu; bieżący miesiąc wg `nowOffMin`). Trening rozpoczęty 31. o 23:30 liczy się do miesiąca startu.
- * `freeSince` (P3): przy COUNT_FULL_STARTS_IN_EXPIRY_MONTH = false starty sprzed tej chwili nie liczą się (rozpoczęte w `full`).
- */
-export function freeUsed(starts: readonly LiveStart[], now: number, nowOffMin: number, freeSinceTs: number | null = null, cfg: PaywallConfig = PAYWALL): number {
-  const cur = monthKey(now, nowOffMin); let n = 0;
+/** Klucz dnia RRRR-MM-DD dla chwili `ts` na zegarze o przesunięciu `offMin` (minuty na wschód od UTC). Czyste, niezależne od strefy procesu. */
+export function dayKey(ts: number, offMin: number): string {
+  const d = new Date(ts + (finite(offMin) ? offMin : 0) * MIN_MS);
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+}
+
+/** Dni treningowe bieżącego miesiąca (klucze dni): różne daty STARTU ukończonych treningów na żywo; data i miesiąc wg strefy startu (`tzOffsetMin` treningu).
+ * `freeSince` (P3): przy COUNT_FULL_STARTS_IN_EXPIRY_MONTH = false starty sprzed tej chwili nie liczą się (rozpoczęte w `full`). */
+function trainingDays(starts: readonly LiveStart[], now: number, nowOffMin: number, freeSinceTs: number | null, cfg: PaywallConfig): Set<string> {
+  const cur = monthKey(now, nowOffMin); const days = new Set<string>();
   for (const s of starts) {
     if (!s || !finite(s.startedAt)) continue;
-    if (monthKey(s.startedAt, s.tzOffsetMin ?? nowOffMin) !== cur) continue;
+    const off = s.tzOffsetMin ?? nowOffMin;
+    if (monthKey(s.startedAt, off) !== cur) continue;
     if (!cfg.COUNT_FULL_STARTS_IN_EXPIRY_MONTH && freeSinceTs != null && s.startedAt < freeSinceTs) continue;
-    n++;
+    days.add(dayKey(s.startedAt, off));
   }
-  return n;
+  return days;
+}
+
+/**
+ * Ile dni treningowych zużyło limit w bieżącym miesiącu (docs/monetyzacja.md, M5 S1): liczba RÓŻNYCH dni (data startu wg strefy startu) z ukończonym
+ * treningiem na żywo. Drugi trening tego samego dnia nie zużywa limitu. Trening rozpoczęty 31. o 23:50 liczy się do dnia i miesiąca startu.
+ * `starts` — tylko ukończone treningi na żywo (wołający odfiltrowuje trening w toku, wstecz i anulowany). `freeSince` (P3): jak w `trainingDays`.
+ */
+export function freeUsed(starts: readonly LiveStart[], now: number, nowOffMin: number, freeSinceTs: number | null = null, cfg: PaywallConfig = PAYWALL): number {
+  return trainingDays(starts, now, nowOffMin, freeSinceTs, cfg).size;
+}
+
+/** Czy ukończony trening na żywo o takim czasie trwania (s, bez pauz) zużywa dzień limitu. */
+export const qualifiesForDay = (durationSec: number): boolean => finite(durationSec) && durationSec > MIN_LIVE_MINUTES_FOR_DAY * 60;
+
+/** Najdłużej pamiętane dni treningowe (ms wstecz od najnowszego zapisu): wystarcza na bieżący miesiąc i cofnięcie zegara; starsze odpadają przy zapisie. */
+const KEEP_DAYS_MS = 400 * DAY_MS;
+/**
+ * Zapis dnia treningowego (M5 S1, decyzja właściciela 22.10.2026: dni zapisane OSOBNO w danych użytkownika, usunięcie treningu nie zwraca dnia): dodaje start
+ * kwalifikującego się treningu na żywo do listy dni — jeden wpis na dzień (data startu wg strefy startu), z NAJPÓŹNIEJSZYM startem tego dnia (P3 B porównuje start z chwilą wygaśnięcia).
+ * Zwraca nową listę posortowaną rosnąco; stare wpisy (ponad KEEP_DAYS_MS przed najnowszym) odpadają.
+ */
+export function recordLiveDay(days: readonly LiveStart[], start: LiveStart): LiveStart[] {
+  if (!start || !finite(start.startedAt)) return days.filter(d => d && finite(d.startedAt));
+  const off = (s: LiveStart) => (finite(s.tzOffsetMin) ? (s.tzOffsetMin as number) : 0);
+  const key = (s: LiveStart) => dayKey(s.startedAt, off(s)); const byDay = new Map<string, LiveStart>();
+  for (const d of [...days, start]) { if (!d || !finite(d.startedAt)) continue; const k = key(d); const cur = byDay.get(k); if (!cur || d.startedAt > cur.startedAt) byDay.set(k, { startedAt: d.startedAt, ...(finite(d.tzOffsetMin) ? { tzOffsetMin: d.tzOffsetMin } : {}) }); }
+  const all = [...byDay.values()].sort((a, b) => a.startedAt - b.startedAt); const newest = all[all.length - 1].startedAt;
+  return all.filter(d => d.startedAt >= newest - KEEP_DAYS_MS);
 }
 
 export interface StartDecision {
@@ -179,9 +212,9 @@ export interface StartDecision {
   allowed: boolean;
   state: AccessState;
   level: AccessLevel;
-  /** Pozostałe darmowe treningi w miesiącu (Infinity przy pełnym dostępie). */
+  /** Pozostałe darmowe dni treningowe w miesiącu (Infinity przy pełnym dostępie). */
   remaining: number;
-  /** Zużyte w tym miesiącu (0 przy pełnym dostępie). */
+  /** Zużyte dni treningowe w tym miesiącu (0 przy pełnym dostępie). */
   used: number;
   limit: number;
   /** Kiedy limit się odnowi (ms) — tylko gdy zablokowano. */
@@ -191,18 +224,19 @@ export interface StartDecision {
 }
 
 /**
- * Strażnik startu treningu na żywo (docs/27 2, 3.4): jedyny blokowany przypadek to start PONAD limit w stanie `free`. Trening w toku nigdy
- * nie jest przerywany (strażnik działa tylko przy starcie), trening wstecz i „Kontynuuj” porzuconego nie przechodzą przez tę funkcję.
- * `starts` — treningi na żywo (zakończone lub trwający); `nowOffMin` — bieżące przesunięcie strefy telefonu (tzOffsetAt).
+ * Strażnik startu treningu na żywo (docs/27 2, 3.4; M5 S1): jedyny blokowany przypadek to start PONAD limit dni w stanie `free` — gdy w miesiącu jest
+ * już `FREE_TRAINING_DAYS_PER_MONTH` dni treningowych, a dziś jeszcze nie jest dniem treningowym (kolejny trening tego samego dnia zawsze wolno).
+ * Trening w toku nigdy nie jest przerywany (strażnik działa tylko przy starcie), trening wstecz i „Kontynuuj” porzuconego nie przechodzą przez tę funkcję.
+ * `starts` — ukończone treningi na żywo; `nowOffMin` — bieżące przesunięcie strefy telefonu (tzOffsetAt).
  */
 export function canStartLive(
   ctx: AccessContext, entitlements: readonly Entitlement[] | null | undefined, starts: readonly LiveStart[], now: number, nowOffMin: number,
   cfg: PaywallConfig = PAYWALL,
 ): StartDecision {
-  const eff = effectiveAccess(ctx, entitlements, now, cfg); const limit = cfg.FREE_LIVE_PER_MONTH;
+  const eff = effectiveAccess(ctx, entitlements, now, cfg); const limit = cfg.FREE_TRAINING_DAYS_PER_MONTH;
   if (eff.level === 'full') return { allowed: true, state: eff.state, level: 'full', remaining: Infinity, used: 0, limit, resetsAt: null, silent: false };
-  const used = freeUsed(starts, now, nowOffMin, freeSince(entitlements, now), cfg);
-  const allowed = used < limit;
+  const days = trainingDays(starts, now, nowOffMin, freeSince(entitlements, now), cfg); const used = days.size;
+  const allowed = used < limit || days.has(dayKey(now, nowOffMin));
   return { allowed, state: eff.state, level: 'free', remaining: Math.max(0, limit - used), used, limit, resetsAt: allowed ? null : nextMonthStart(now, nowOffMin), silent: eff.silent && allowed };
 }
 

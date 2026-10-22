@@ -2,7 +2,7 @@
  * żeby formularz w sklepie nie rozjechał się z aplikacją; bez danych osobowych (repo publiczne — CLAUDE.md). */
 import * as fs from 'fs';
 import * as path from 'path';
-import { TRIAL_DAYS, PRODUCT_IDS } from '@/lib/products';
+import { PRODUCT_IDS } from '@/lib/products';
 
 const read = (p: string) => fs.readFileSync(path.join(__dirname, '..', p), 'utf8');
 const asc = JSON.parse(read('store/asc-odpowiedzi.json'));
@@ -19,8 +19,8 @@ describe('store/asc-odpowiedzi.json', () => {
     expect(deps.filter(d => /analytics|sentry|crashlytics|firebase|amplitude|mixpanel|segment|bugsnag|admob|ads|tracking|facebook|appsflyer|adjust/i.test(d))).toEqual([]);
     expect(appJson.ios.infoPlist.NSUserTrackingUsageDescription).toBeUndefined();
   });
-  test('okres próbny = TRIAL_DAYS; Family Sharing dla każdego produktu z PRODUCT_IDS', () => {
-    expect(asc.introductoryOfferDays).toBe(TRIAL_DAYS);
+  test('brak ofert wprowadzających (M5 S1, R-M5-3); Family Sharing dla każdego produktu z PRODUCT_IDS', () => {
+    expect(asc.introductoryOffers).toBe('none'); expect(asc.introductoryOfferDays).toBeUndefined();
     expect(Object.keys(asc.familySharing).sort()).toEqual(Object.keys(PRODUCT_IDS).sort());
   });
   test('pliki, do których odsyła, istnieją; bez konta → bez logowania dla recenzenta', () => {

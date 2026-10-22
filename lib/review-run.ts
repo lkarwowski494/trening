@@ -9,7 +9,7 @@ import { reviewDecision, ideaDecision, type ReviewBlockReason } from '@/lib/revi
 import { STORE_TIMING } from '@/lib/products';
 import { getState, saveCfg, finishedWorkouts, getPersistError } from '@/lib/store';
 import { workoutPRs, prCountOf } from '@/lib/stats';
-import { nextStartBlocked, maybeShowPaywallAfterFirstWorkout } from '@/lib/entitlement';
+import { nextStartBlocked } from '@/lib/entitlement';
 import type { Workout } from '@/lib/seed';
 
 interface ReviewModule { isAvailableAsync(): Promise<boolean>; requestReview(): Promise<void> }
@@ -53,12 +53,12 @@ export function ideaLinkDue(w: Workout, now: number = Date.now()): boolean {
 }
 
 /**
- * Wejście z ekranu podsumowania: najpierw ewentualny ekran zakupu po pierwszym treningu (P2 B), w przeciwnym razie prośba o ocenę po krótkim opóźnieniu
- * (karta rekordów zdąża się pokazać). Zwraca anulowanie opóźnionej prośby (wyjście z ekranu).
+ * Wejście z ekranu podsumowania: prośba o ocenę po krótkim opóźnieniu (karta rekordów zdąża się pokazać). Od M5 S1 (22.10.2026) ekran zakupu nie otwiera się
+ * samoczynnie po pierwszym treningu (pokazuje się tylko przy starcie ponad limit i z Ustawień). Zwraca anulowanie opóźnionej prośby (wyjście z ekranu).
  */
 export function onSummaryShown(w: Workout, onIdeaLink?: () => void): () => void {
   if (!takeJustFinished(w.id)) return () => {};
   let off = false; let timer: ReturnType<typeof setTimeout> | null = null;
-  void maybeShowPaywallAfterFirstWorkout(w.id).then(opened => { if (off || opened) return; if (onIdeaLink && ideaLinkDue(w)) onIdeaLink(); timer = setTimeout(() => { void maybeRequestReview(w); }, STORE_TIMING.REVIEW_DELAY_MS); });
+  void Promise.resolve().then(() => { if (off) return; if (onIdeaLink && ideaLinkDue(w)) onIdeaLink(); timer = setTimeout(() => { void maybeRequestReview(w); }, STORE_TIMING.REVIEW_DELAY_MS); });
   return () => { off = true; if (timer) clearTimeout(timer); };
 }

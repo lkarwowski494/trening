@@ -1,7 +1,7 @@
-# Notatki dla recenzenta App Store (App Review Information → Notes) — wersja 21.10.2026
+# Notatki dla recenzenta App Store (App Review Information → Notes) — wersja 22.10.2026
 
 Szkic do akceptacji właściciela (docs/41-droga-do-app-store.md, pozycje A5 i B5). Odświeżenie M8 (21.10.2026) wersji z 14.10.2026 (gałąź `f020-sklep`):
-okres próbny 14 dni (`TRIAL_DAYS`, decyzja 19.10.2026) zamiast miesiąca; zapowiedzi głosowe domyślnie wyłączone po instalacji (`VOICE_NEW_INSTALL`, DEC-05)
+M5 S1 (22.10.2026): darmowe do 5 dni treningowych w miesiącu, bez okresu próbnego i bez ofert wprowadzających; zapowiedzi głosowe domyślnie wyłączone po instalacji (`VOICE_NEW_INSTALL`, DEC-05)
 i nowe etykiety ustawienia; kalkulator talerzy usunięty 19.10.2026 — nie występuje w notatkach. Test: `tests/store-review-notes.test.ts`
 (limit pola, teksty przycisków z `lib/i18n.en.ts`, liczby i stany domyślne z kodu, brak danych osobowych).
 
@@ -16,11 +16,12 @@ Warianty zależą od `PAYWALL.ENABLED` w buildzie wysyłanym do recenzji (decyzj
 **Warunki przed wklejeniem** (agent na buildzie 1.0, po redesignie M3 — ścieżki ekranów mogą się zmienić; test pilnuje tylko etykiet):
 - [ ] ścieżki i nazwy przycisków na buildzie do recenzji (Settings → „Subscription” widoczne tylko przy `PAYWALL.ENABLED = true`);
 - [ ] skrzynka support@apps4brew.com działa (docs/41 E4) — inaczej usunąć akapit CONTACT;
-- [ ] oferta wprowadzająca w App Store Connect = 2 tygodnie w obu subskrypcjach (docs/43 K-011).
+- [ ] brak ofert wprowadzających w App Store Connect w obu subskrypcjach (ryzyko R-M5-3, docs/40; zamyka kontrola ASC).
 
 Źródła: pole Notes „can contain up to 4000 bytes” (developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/,
 odczyt 14.10.2026); notatka subskrypcji „Required if the subscription offers introductory pricing”
-(developer.apple.com/help/app-store-connect/reference/app-information/required-localizable-and-editable-properties/, odczyt 14.10.2026).
+(developer.apple.com/help/app-store-connect/reference/app-information/required-localizable-and-editable-properties/, odczyt 14.10.2026) — od M5 S1 bez ofert wprowadzających
+notatka nie jest wymagana, zostaje krótki opis drogi do ekranu zakupu.
 
 ## English (do wklejenia)
 
@@ -31,10 +32,10 @@ NO ACCOUNT, NO SERVER
 - The app has no sign-in and no backend. Everything is stored on the device; the app makes no network requests of its own. No demo account is needed.
 - To see the app with data quickly: on the Workout tab tap "Other workout", add an exercise and tick a set; or use "Log a past workout" to add a session in the past.
 
-IN-APP PURCHASES (one subscription group "Full version": monthly and yearly auto-renewable subscriptions with a 14-day free introductory offer, plus a one-time lifetime unlock)
-- Where to find them: More > Settings, section "Subscription" > "Full version". The purchase screen also opens once after the first finished workout.
+IN-APP PURCHASES (one subscription group "Full version": monthly and yearly auto-renewable subscriptions plus a one-time lifetime unlock; no introductory offers or free trials)
+- Where to find them: More > Settings, section "Subscription" > "Full version". The purchase screen also opens when a workout is started after the free limit is used.
 - The purchase screen shows the price and period from the App Store, "Restore purchases", "Redeem code", and links to the Privacy Policy and the Terms of Use (Apple's standard EULA).
-- Without an active purchase, after the 14-day free period the app still allows 4 live workouts per calendar month; history, backup and export always work.
+- Without an active purchase the whole app is free for up to 5 training days per calendar month (several workouts on the same day count as one day); history, backup and export always work. The Workout tab shows how many free days are left.
 - Family Sharing is enabled for all three products.
 
 APPLE HEALTH (optional, off by default)
@@ -66,10 +67,10 @@ BEZ KONTA I BEZ SERWERA
 - Aplikacja nie ma logowania ani zaplecza. Wszystko zostaje na urządzeniu; aplikacja sama nie wykonuje żadnych połączeń sieciowych. Konto demonstracyjne nie jest potrzebne.
 - Żeby szybko zobaczyć dane: w zakładce Trening „Inny trening”, dodaj ćwiczenie i odhacz serię; albo „Dopisz trening wstecz”.
 
-ZAKUPY W APLIKACJI (grupa subskrypcji „Pełna wersja”: miesięczna i roczna odnawiane automatycznie z ofertą wprowadzającą 14 dni za darmo oraz jednorazowy dostęp dożywotni)
-- Gdzie: Więcej → Ustawienia, sekcja „Subskrypcja” → „Pełna wersja”. Ekran zakupu otwiera się też raz po pierwszym zakończonym treningu.
+ZAKUPY W APLIKACJI (grupa subskrypcji „Pełna wersja”: miesięczna i roczna odnawiane automatycznie oraz jednorazowy dostęp dożywotni; bez ofert wprowadzających i okresów próbnych)
+- Gdzie: Więcej → Ustawienia, sekcja „Subskrypcja” → „Pełna wersja”. Ekran zakupu otwiera się też przy starcie treningu po wykorzystaniu darmowych dni.
 - Ekran zakupu pokazuje cenę i okres z App Store, „Przywróć zakupy”, „Zrealizuj kod” i linki do polityki prywatności oraz warunków (standardowa licencja Apple).
-- Bez zakupu, po 14 dniach okresu próbnego, aplikacja pozwala na 4 treningi na żywo w miesiącu kalendarzowym; historia, kopia i eksport działają zawsze.
+- Bez zakupu cała aplikacja jest darmowa do 5 dni treningowych w miesiącu kalendarzowym (kilka treningów tego samego dnia to jeden dzień); historia, kopia i eksport działają zawsze. Zakładka Trening pokazuje, ile darmowych dni zostało.
 - Chmura rodzinna włączona we wszystkich trzech produktach.
 
 APPLE HEALTH (opcjonalnie, domyślnie wyłączone)
@@ -92,8 +93,8 @@ KONTAKT
 - Wsparcie: support@apps4brew.com (także „Napisz do nas” w Więcej → O aplikacji).
 ```
 
-## Notatka do każdej subskrypcji (Subscription → App Review Information → Review Notes; wymagana przy ofercie wprowadzającej)
+## Notatka do każdej subskrypcji (Subscription → App Review Information → Review Notes; opcjonalna — bez ofert wprowadzających)
 
 ```text
-14-day free introductory offer for new subscribers. Purchase screen: More > Settings > Subscription > Full version.
+Auto-renewable subscription without introductory offers. Purchase screen: More > Settings > Subscription > Full version, or when starting a workout after the 5 free training days of the month are used.
 ```

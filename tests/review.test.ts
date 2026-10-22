@@ -7,15 +7,15 @@ const base: ReviewInput = { now: NOW, finishedWorkouts: 5, justFinishedHasRecord
 const w = (o: Partial<ReviewInput>): ReviewInput => ({ ...base, ...o });
 
 describe('stałe w jednym miejscu', () => {
-  test('N = 5, odstęp 14 dni', () => { expect(REVIEW).toEqual({ MIN_WORKOUTS: 5, MIN_GAP_DAYS: 14 }); });
+  test('N = 3 (M5 S1, 22.10.2026; wcześniej 5), odstęp 14 dni', () => { expect(REVIEW).toEqual({ MIN_WORKOUTS: 3, MIN_GAP_DAYS: 14 }); });
 });
 
 describe('shouldAskForReview — przypadki', () => {
   test('5. trening z rekordem, nigdy nie prosiliśmy → pytamy', () => { expect(shouldAskForReview(base)).toBe(true); expect(reviewDecision(base)).toBe('ask'); });
-  test.each([0, 1, 2, 3, 4])('%i ukończonych treningów (poniżej N) → nie (pierwszy trening też)', n => { expect(reviewDecision(w({ finishedWorkouts: n }))).toBe('tooFewWorkouts'); });
+  test.each([0, 1, 2])('%i ukończonych treningów (poniżej N) → nie (pierwszy trening też)', n => { expect(reviewDecision(w({ finishedWorkouts: n }))).toBe('tooFewWorkouts'); });
   test.each([5, 6, 50, 1000])('%i ukończonych (N i więcej) z rekordem → pytamy', n => { expect(shouldAskForReview(w({ finishedWorkouts: n }))).toBe(true); });
   test('brak rekordu w ostatnim treningu → nie (czekamy do następnego)', () => { expect(reviewDecision(w({ justFinishedHasRecord: false }))).toBe('noRecord'); });
-  test('rekord, ale za mało treningów → powód „za mało treningów” (próg przed rekordem)', () => { expect(reviewDecision(w({ finishedWorkouts: 3, justFinishedHasRecord: false }))).toBe('tooFewWorkouts'); });
+  test('rekord, ale za mało treningów → powód „za mało treningów” (próg przed rekordem)', () => { expect(reviewDecision(w({ finishedWorkouts: 2, justFinishedHasRecord: false }))).toBe('tooFewWorkouts'); });
   test('odstęp: dzień przed progiem → nie; równo 14 dni → tak; po progu → tak', () => {
     const last = (ms: number) => ({ at: NOW - ms, version: '0.16.0' });
     expect(reviewDecision(w({ lastAsked: last(14 * DAY - 1) }))).toBe('tooSoon');

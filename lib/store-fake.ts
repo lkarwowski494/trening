@@ -4,7 +4,7 @@
  * Zegar: Date.now() (testy ustawiają fałszywy zegar Jesta). Ceny to wartości testowe, nie ceny sklepu.
  */
 import type { Entitlement, EntitlementPlan } from '@/lib/access';
-import { PRODUCT_IDS, SUBSCRIPTION_PLANS, TRIAL_DAYS } from '@/lib/products';
+import { PRODUCT_IDS } from '@/lib/products';
 import type { PurchaseOutcome, StoreAdapter, StoreProduct } from '@/lib/store-adapter';
 
 const DAY_MS = 86400e3;
@@ -19,8 +19,6 @@ export interface FakeStoreControl {
   offline: boolean;
   /** Następny zakup kończy się tym wynikiem (potem wraca do `success`). */
   nextPurchase: PurchaseOutcome['status'] | null;
-  /** Czy użytkownik jest jeszcze uprawniony do darmowego miesiąca (po pierwszej próbie: false). */
-  trialEligible: boolean;
   /** Ustawia uprawnienia (null = jak przed pierwszą odpowiedzią sklepu — odczyt rzuca wyjątek) i wysyła zdarzenie transakcji. */
   setEntitlements(e: Entitlement[] | null): void;
   entitlements(): Entitlement[] | null;
@@ -36,7 +34,7 @@ export function createFakeStore(initial: Entitlement[] | null = []): StoreAdapte
   const emit = () => { if (!ctl.offline) listeners.forEach(l => l()); };
   const offlineError = () => new Error('Brak połączenia (sztuczny sklep)');
   const ctl: StoreAdapter & FakeStoreControl = {
-    kind: 'fake', offline: false, nextPurchase: null, trialEligible: true, restorable: [],
+    kind: 'fake', offline: false, nextPurchase: null, restorable: [],
     calls: { purchase: 0, restore: 0, getProducts: 0, currentEntitlements: 0, redeemCode: 0, manageSubscriptions: 0 },
     entitlements: () => ent,
     setEntitlements(e) { ent = e; emit(); },
@@ -44,14 +42,14 @@ export function createFakeStore(initial: Entitlement[] | null = []): StoreAdapte
     async getProducts(): Promise<StoreProduct[]> {
       ctl.calls.getProducts++; if (ctl.offline) throw offlineError();
       return (Object.keys(PRODUCT_IDS) as EntitlementPlan[]).map(plan => ({ plan, productId: PRODUCT_IDS[plan], displayPrice: FAKE_PRICES[plan],
-        period: plan === 'monthly' ? 'month' as const : plan === 'yearly' ? 'year' as const : null, trial: SUBSCRIPTION_PLANS.includes(plan) && ctl.trialEligible }));
+        period: plan === 'monthly' ? 'month' as const : plan === 'yearly' ? 'year' as const : null }));
     },
     async purchase(plan): Promise<PurchaseOutcome> {
       ctl.calls.purchase++; if (ctl.offline) return { status: 'error', message: 'offline' };
       const forced = ctl.nextPurchase; ctl.nextPurchase = null; if (forced && forced !== 'success') return forced === 'error' ? { status: 'error', message: 'fake' } : { status: forced };
-      const now = Date.now(); const trial = SUBSCRIPTION_PLANS.includes(plan) && ctl.trialEligible; ctl.trialEligible = ctl.trialEligible && !SUBSCRIPTION_PLANS.includes(plan);
+      const now = Date.now();
       const periodMs = plan === 'yearly' ? 365 * DAY_MS : 30 * DAY_MS;
-      const e: Entitlement = plan === 'lifetime' ? { plan, source: 'purchase', expiresAt: null } : { plan, source: 'purchase', expiresAt: now + (trial ? TRIAL_DAYS * DAY_MS : periodMs), ...(trial ? { trial: true as const } : {}) };
+      const e: Entitlement = plan === 'lifetime' ? { plan, source: 'purchase', expiresAt: null } : { plan, source: 'purchase', expiresAt: now + periodMs };
       ent = [...(ent ?? []).filter(x => x.plan === 'lifetime' || plan === 'lifetime'), e]; emit(); return { status: 'success' };
     },
     async restore() { ctl.calls.restore++; if (ctl.offline) throw offlineError(); if (ctl.restorable.length) { ent = [...(ent ?? []), ...ctl.restorable]; ctl.restorable = []; emit(); } return ent ?? []; },

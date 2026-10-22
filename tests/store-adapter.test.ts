@@ -7,8 +7,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { ENTITLEMENT_PLANS, PAYWALL, entitlementActive } from '@/lib/access';
-import { PRODUCT_IDS, PLAN_ORDER, SUBSCRIPTION_PLANS, SUBSCRIPTION_GROUP_NAME, TRIAL_DAYS, planOfProduct, isSubscriptionPlan, PRIVACY_URL, TERMS_URL, PAYWALL_MOMENTS,
-  STORE_TIMING, E2E_FREE_LIVE_PER_MONTH, isFakeStoreBuild } from '@/lib/products';
+import { PRODUCT_IDS, PLAN_ORDER, SUBSCRIPTION_PLANS, SUBSCRIPTION_GROUP_NAME, planOfProduct, isSubscriptionPlan, PRIVACY_URL, TERMS_URL,
+  STORE_TIMING, E2E_FREE_TRAINING_DAYS, isFakeStoreBuild } from '@/lib/products';
 import { getStoreAdapter, setStoreAdapter, resetStoreAdapterForTests, E2E_START_ENTITLEMENTS } from '@/lib/store-adapter';
 import { createFakeStore, FAKE_PRICES } from '@/lib/store-fake';
 import { createNativeStore, entitlementFromPurchase, productFromStore } from '@/lib/store-native';
@@ -34,22 +34,21 @@ describe('stałe w jednym miejscu (lib/products.ts)', () => {
     expect([...PLAN_ORDER].sort()).toEqual([...ENTITLEMENT_PLANS].sort()); expect(PLAN_ORDER[0]).toBe('yearly');
     expect([...SUBSCRIPTION_PLANS].sort()).toEqual(['monthly', 'yearly']);
     for (const p of ENTITLEMENT_PLANS) expect(isSubscriptionPlan(p)).toBe(p !== 'lifetime');
-    expect(TRIAL_DAYS).toBe(14); expect(SUBSCRIPTION_GROUP_NAME).toBe('Pełna wersja');
+    expect(SUBSCRIPTION_GROUP_NAME).toBe('Pełna wersja');
   });
-  test('decyzje właściciela 12.10.2026 jako stałe: P2 B (ekran po pierwszym treningu), P5 A (2 dni), liczby czasowe', () => {
-    expect(PAYWALL_MOMENTS).toEqual({ AFTER_FIRST_WORKOUT: true, TRIAL_END_REMINDER_DAYS: 2 });
-    expect(STORE_TIMING).toEqual({ CALL_TIMEOUT_MS: 15000, REVIEW_DELAY_MS: 1500 }); expect(E2E_FREE_LIVE_PER_MONTH).toBe(1);
+  test('liczby czasowe sklepu; limit buildu E2E = 0 dni (M5 S1: limit ≥ 1 nie zablokowałby kolejnego treningu tego samego dnia)', () => {
+    expect(STORE_TIMING).toEqual({ CALL_TIMEOUT_MS: 15000, REVIEW_DELAY_MS: 1500 }); expect(E2E_FREE_TRAINING_DAYS).toBe(0);
   });
   test('P9 A: link do standardowej licencji Apple i do polityki prywatności; włączenie PAYWALL.ENABLED wymaga obu linków (Apple 3.1.2)', () => {
     expect(TERMS_URL).toBe('https://www.apple.com/legal/internet-services/itunes/dev/stdeula/'); expect(PRIVACY_URL).toMatch(/^https:\/\/.+\/privacy\.html$/);
     expect(read('site/privacy.html').length).toBeGreaterThan(500);
     if (PAYWALL.ENABLED) { expect(TERMS_URL).toBeTruthy(); expect(PRIVACY_URL).toBeTruthy(); }
   });
-  test('plik store/Trening.storekit: te same trzy identyfikatory, próba 14 dni (P2W) w obu subskrypcjach, dożywotni bez okresu, Chmura rodzinna we wszystkich', () => {
+  test('plik store/Trening.storekit: te same trzy identyfikatory, subskrypcje bez oferty wprowadzającej (M5 S1), dożywotni bez okresu, Chmura rodzinna we wszystkich', () => {
     const f = JSON.parse(read('store/Trening.storekit')); const subs = f.subscriptionGroups.flatMap((g: any) => g.subscriptions); const prods = f.products;
     expect([...subs.map((s: any) => s.productID), ...prods.map((p: any) => p.productID)].sort()).toEqual(Object.values(PRODUCT_IDS).sort());
     expect(subs.find((s: any) => s.productID === PRODUCT_IDS.monthly).recurringSubscriptionPeriod).toBe('P1M'); expect(subs.find((s: any) => s.productID === PRODUCT_IDS.yearly).recurringSubscriptionPeriod).toBe('P1Y');
-    for (const s of subs) { expect(s.introductoryOffer).toMatchObject({ paymentMode: 'free', subscriptionPeriod: 'P' + TRIAL_DAYS / 7 + 'W', numberOfPeriods: 1 }); expect(s.familyShareable).toBe(true); expect(s.subscriptionGroupID).toBe(f.subscriptionGroups[0].id); }
+    for (const s of subs) { expect(s.introductoryOffer).toBeUndefined(); expect(s.familyShareable).toBe(true); expect(s.subscriptionGroupID).toBe(f.subscriptionGroups[0].id); }
     expect(prods[0]).toMatchObject({ productID: PRODUCT_IDS.lifetime, type: 'NonConsumable', familyShareable: true }); expect(f.subscriptionGroups[0].name).toBe(SUBSCRIPTION_GROUP_NAME);
   });
   test('ceny nie występują w kodzie ekranów: ani kwoty z walutą, ani „zł”/„$” w tekstach ekranu zakupu i karty (poza sztucznym sklepem)', () => {
@@ -67,9 +66,9 @@ describe('wybór adaptera: prawdziwy w buildach dla telefonu, sztuczny tylko prz
   test('adapter jest zapamiętany; setStoreAdapter podmienia, null wraca do domyślnego', () => {
     const a = getStoreAdapter(); expect(getStoreAdapter()).toBe(a); const f = createFakeStore(); setStoreAdapter(f); expect(getStoreAdapter()).toBe(f); setStoreAdapter(null); expect(getStoreAdapter()).toBe(a);
   });
-  test('paywallConfig: zwykły build = PAYWALL; build E2E = przełącznik włączony i limit 1 (reszta bez zmian)', () => {
+  test('paywallConfig: zwykły build = PAYWALL; build E2E = przełącznik włączony i limit 0 dni (reszta bez zmian)', () => {
     expect(paywallConfig()).toBe(PAYWALL); process.env.EXPO_PUBLIC_STORE_FAKE = '1';
-    expect(paywallConfig()).toEqual({ ...PAYWALL, ENABLED: true, FREE_LIVE_PER_MONTH: 1 });
+    expect(paywallConfig()).toEqual({ ...PAYWALL, ENABLED: true, FREE_TRAINING_DAYS_PER_MONTH: 0 });
   });
   test('STRAŻ: zmienna sztucznego sklepu jest ustawiana tylko w e2e-ios.yml; testflight.yml ma krok blokujący; reszta workflowów, app.json, eas.json i pliki .env jej nie zna', () => {
     const wf = fs.readdirSync(path.join(root, '.github/workflows')).filter(f => /\.ya?ml$/.test(f));
@@ -90,7 +89,7 @@ describe('bez sieci poza StoreKit (R9 z docs/27, docs/30 3.1)', () => {
   test('kod aplikacji nie używa usługi weryfikacji (kitApi, verifyPurchaseWithProvider, iapkit*), fetch/XMLHttpRequest w warstwie sklepu ani getActiveSubscriptions/hasActiveSubscriptions', () => {
     const bad = /kitApi|verifyPurchaseWithProvider|verifyPurchase\b|iapkit|KitApiError|hasActiveSubscriptions|getActiveSubscriptions/i;
     expect(SRC.filter(f => bad.test(noComments(read(f))))).toEqual([]);
-    for (const f of ['lib/store-native.ts', 'lib/store-adapter.ts', 'lib/store-fake.ts', 'lib/entitlement.ts', 'lib/products.ts', 'lib/trialReminder.ts', 'lib/review-run.ts']) expect(noComments(read(f))).not.toMatch(/\bfetch\(|XMLHttpRequest|WebSocket/);
+    for (const f of ['lib/store-native.ts', 'lib/store-adapter.ts', 'lib/store-fake.ts', 'lib/entitlement.ts', 'lib/products.ts', 'lib/review-run.ts']) expect(noComments(read(f))).not.toMatch(/\bfetch\(|XMLHttpRequest|WebSocket/);
   });
   test('app.json: wtyczka expo-iap bez opcji (żadnego klucza iapkit, alternatywnych sklepów ani Androida), brak extra.iapkitApiKey', () => {
     const app = JSON.parse(read('app.json')).expo; expect(app.plugins).toContain('expo-iap'); expect(JSON.stringify(app)).not.toMatch(/iapkit|onside|vega|alternativeBilling/i);
@@ -103,20 +102,19 @@ describe('bez sieci poza StoreKit (R9 z docs/27, docs/30 3.1)', () => {
 });
 
 describe('sztuczny sklep', () => {
-  test('produkty: trzy plany z cenami testowymi; okres: miesiąc/rok/brak; próba tylko w subskrypcjach i tylko dla uprawnionych', async () => {
+  test('produkty: trzy plany z cenami testowymi; okres: miesiąc/rok/brak; bez pola próby', async () => {
     const f = createFakeStore(); const ps = await f.getProducts(); expect(ps.map(p => p.plan).sort()).toEqual([...ENTITLEMENT_PLANS].sort());
-    for (const p of ps) { expect(p.displayPrice).toBe(FAKE_PRICES[p.plan]); expect(p.productId).toBe(PRODUCT_IDS[p.plan]); expect(p.period).toBe(p.plan === 'monthly' ? 'month' : p.plan === 'yearly' ? 'year' : null); expect(p.trial).toBe(p.plan !== 'lifetime'); }
-    f.trialEligible = false; expect((await f.getProducts()).every(p => !p.trial)).toBe(true);
+    for (const p of ps) { expect(p.displayPrice).toBe(FAKE_PRICES[p.plan]); expect(p.productId).toBe(PRODUCT_IDS[p.plan]); expect(p.period).toBe(p.plan === 'monthly' ? 'month' : p.plan === 'yearly' ? 'year' : null); expect(Object.keys(p)).not.toContain('trial'); }
   });
-  test('zakup każdego planu: uprawnienie aktywne; próba tylko raz (kolejny zakup już bez próby); dożywotni bez końca; nasłuch dostaje zdarzenie', async () => {
+  test('zakup każdego planu: uprawnienie aktywne; okres opłacony od razu (30 / 365 dni); kolejny zakup zastępuje; dożywotni bez końca; nasłuch dostaje zdarzenie', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 14, 12).getTime() }); const now = Date.now();
     for (const plan of ENTITLEMENT_PLANS) {
       const f = createFakeStore(); let n = 0; f.onTransaction(() => { n++; });
       expect(await f.purchase(plan)).toEqual({ status: 'success' }); const e = (await f.currentEntitlements())[0];
       expect(e.plan).toBe(plan); expect(entitlementActive(e, now)).toBe(true); expect(n).toBe(1);
-      if (plan === 'lifetime') expect(e.expiresAt).toBeNull(); else { expect(e.expiresAt).toBe(now + TRIAL_DAYS * DAY); expect(e.trial).toBe(true); }
+      if (plan === 'lifetime') expect(e.expiresAt).toBeNull(); else { expect(e.expiresAt).toBe(now + (plan === 'yearly' ? 365 : 30) * DAY); expect(Object.keys(e)).not.toContain("trial"); }
     }
-    const f = createFakeStore(); await f.purchase('monthly'); await f.purchase('yearly'); const e = (await f.currentEntitlements()); expect(e).toHaveLength(1); expect(e[0]).toMatchObject({ plan: 'yearly', expiresAt: now + 365 * DAY }); expect(e[0].trial).toBeUndefined();
+    const f = createFakeStore(); await f.purchase('monthly'); await f.purchase('yearly'); const e = (await f.currentEntitlements()); expect(e).toHaveLength(1); expect(e[0]).toMatchObject({ plan: 'yearly', expiresAt: now + 365 * DAY }); expect(Object.keys(e[0])).not.toContain("trial");
   });
   test('wymuszone wyniki zakupu (anulowanie, oczekiwanie, błąd) nie zmieniają uprawnień; potem znów sukces', async () => {
     const f = createFakeStore(); for (const s of ['cancelled', 'pending', 'error'] as const) { f.nextPurchase = s; expect((await f.purchase('monthly')).status).toBe(s); expect(f.entitlements()).toEqual([]); }
@@ -142,28 +140,25 @@ describe('natywny adapter na makiecie expo-iap 5.8.1', () => {
   test.each(ENTITLEMENT_PLANS.map(p => [p]))('uprawnienie z zakupu planu %s: plan, źródło „purchase”, koniec z expirationDateIOS (dożywotni: null)', plan => {
     const e = entitlementFromPurchase(buy(plan))!; expect(e).toMatchObject({ plan, source: 'purchase', revokedAt: null }); expect(e.expiresAt).toBe(plan === 'lifetime' ? null : buy(plan).expirationDateIOS);
   });
-  test('źródła i znaczniki: family_shared → family, kod ofertowy → code, oferta wprowadzająca „free-trial” → trial, zwrot → revokedAt, nieznany produkt i śmieci → null', () => {
+  test('źródła i znaczniki: family_shared → family, kod ofertowy → code, zwrot → revokedAt, nieznany produkt i śmieci → null', () => {
     expect(entitlementFromPurchase(buy('yearly', { ownershipTypeIOS: 'family_shared' }))!.source).toBe('family');
     expect(entitlementFromPurchase(buy('monthly', { offerIOS: { id: 'x', type: 'code', paymentMode: 'free-trial' } }))!.source).toBe('code');
-    expect(entitlementFromPurchase(buy('monthly', { offerIOS: { id: 'x', type: 'introductory', paymentMode: 'free-trial' } }))!.trial).toBe(true);
-    expect(entitlementFromPurchase(buy('monthly', { offerIOS: { id: 'x', type: 'introductory', paymentMode: 'pay-as-you-go' } }))!.trial).toBeUndefined();
+    expect(entitlementFromPurchase(buy('monthly', { offerIOS: { id: 'x', type: 'introductory', paymentMode: 'free-trial' } }))!.source).toBe('purchase'); /* oferta wprowadzająca nie tworzy pola próby (M5 S1) */
     expect(entitlementFromPurchase(buy('monthly', { revocationDateIOS: 123 }))!.revokedAt).toBe(123);
     expect(entitlementFromPurchase(buy('monthly', { expirationDateIOS: 'x' }))!.expiresAt).toBeNull();
     for (const bad of [null, undefined, 5, {}, { productId: 'obcy' }, { productId: 7 }]) expect(entitlementFromPurchase(bad)).toBeNull();
   });
-  test('produkt ze sklepu: cena wyłącznie displayPrice, okres z jednostki, próba tylko z ofertą „free-trial” i kwalifikacją; bez ceny / obcy → null', () => {
-    expect(productFromStore(prod('monthly'), true)).toEqual({ plan: 'monthly', productId: PRODUCT_IDS.monthly, displayPrice: '3,99 zł', period: 'month', trial: true });
-    expect(productFromStore(prod('yearly'), true)!.period).toBe('year'); expect(productFromStore(prod('yearly'), false)!.trial).toBe(false);
-    expect(productFromStore(prod('monthly', { introductoryPricePaymentModeIOS: 'pay-up-front' }), true)!.trial).toBe(false);
-    expect(productFromStore(prod('lifetime'), true)).toMatchObject({ period: null, trial: false });
-    for (const bad of [null, {}, { id: 'obcy', displayPrice: '1' }, prod('monthly', { displayPrice: '' }), prod('monthly', { displayPrice: undefined })]) expect(productFromStore(bad, true)).toBeNull();
+  test('produkt ze sklepu: cena wyłącznie displayPrice, okres z jednostki, bez pola próby; bez ceny / obcy → null', () => {
+    expect(productFromStore(prod('monthly'))).toEqual({ plan: 'monthly', productId: PRODUCT_IDS.monthly, displayPrice: '3,99 zł', period: 'month' });
+    expect(productFromStore(prod('yearly'))!.period).toBe('year'); expect(productFromStore(prod('lifetime'))).toMatchObject({ period: null });
+    for (const bad of [null, {}, { id: 'obcy', displayPrice: '1' }, prod('monthly', { displayPrice: '' }), prod('monthly', { displayPrice: undefined })]) expect(productFromStore(bad)).toBeNull();
   });
-  test('getProducts: jedno połączenie, trzy identyfikatory, kwalifikacja do próby pytana raz dla grupy; nieznane produkty pominięte', async () => {
+  test('getProducts: jedno połączenie, trzy identyfikatory, bez pytania o kwalifikację do próby; nieznane produkty pominięte', async () => {
     iap().products = [prod('monthly'), prod('yearly'), prod('lifetime'), { id: 'obcy', displayPrice: '1' }]; const s = createNativeStore();
-    const ps = await s.getProducts(); expect(ps.map(p => p.plan).sort()).toEqual([...ENTITLEMENT_PLANS].sort()); expect(ps.find(p => p.plan === 'monthly')!.trial).toBe(true);
+    const ps = await s.getProducts(); expect(ps.map(p => p.plan).sort()).toEqual([...ENTITLEMENT_PLANS].sort());
     const calls = iap().calls; expect(calls.filter((c: any[]) => c[0] === 'initConnection')).toHaveLength(1); expect(calls.find((c: any[]) => c[0] === 'fetchProducts')![1]).toEqual({ skus: Object.values(PRODUCT_IDS), type: 'all' });
-    expect(calls.filter((c: any[]) => c[0] === 'isEligibleForIntroOfferIOS')).toEqual([['isEligibleForIntroOfferIOS', 'G1']]);
-    iap().eligible = false; expect((await s.getProducts()).every(p => !p.trial)).toBe(true); expect(calls.filter((c: any[]) => c[0] === 'initConnection')).toHaveLength(1);
+    expect(calls.filter((c: any[]) => c[0] === 'isEligibleForIntroOfferIOS')).toEqual([]);
+    await s.getProducts(); expect(calls.filter((c: any[]) => c[0] === 'initConnection')).toHaveLength(1);
   });
   test('getProducts: błąd sklepu i brak odpowiedzi w czasie → wyjątek (offline); pusta lista produktów to odpowiedź, nie błąd', async () => {
     iap().fail = 'offline'; await expect(createNativeStore().getProducts()).rejects.toThrow(); iap().fail = null; expect(await createNativeStore().getProducts()).toEqual([]);

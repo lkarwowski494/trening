@@ -7,8 +7,6 @@ import * as path from 'path';
 import { namesIn } from './forbidden-names';
 import { PRIVACY_URL, TERMS_URL } from '@/lib/products';
 import { LANGS } from '@/lib/i18n';
-import { PAYWALL } from '@/lib/access';
-import { TRIAL_DAYS } from '@/lib/products';
 
 const read = (f: string) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', f), 'utf8'));
 const names = read('store/app-store-names.json').names as Record<string, string>;
@@ -49,10 +47,10 @@ describe('store/app-store-metadata.json', () => {
       const foot = d.split('\n').filter((x) => x.startsWith('* '));
       const rest = d.split('\n').filter((x) => !x.startsWith('* ')).join('\n').replace(TERMS_URL, '').replace(PRIVACY_URL, '');
       expect({ l, d: [...d].length > 800 && [...d].length <= 4000, p: p.length > 40 && [...p].length <= 170, terms: d.includes(TERMS_URL), privacy: d.includes(PRIVACY_URL),
-        jezyki: new RegExp(`(^|\\D)${LANGS.length}(\\D|$)`).test(d), proba: new RegExp(`(^|\\D)${TRIAL_DAYS}(\\D|$)`).test(d), limit: new RegExp(`(^|\\D)${PAYWALL.FREE_LIVE_PER_MONTH}(\\D|$)`).test(d),
+        jezyki: new RegExp(`(^|\\D)${LANGS.length}(\\D|$)`).test(d), /* M5 S1 (22.10.2026): stałe TRIAL_DAYS i FREE_LIVE_PER_MONTH usunięte; liczbę dni treningowych i brak „free trial” w opisach doda test w gałęzi opisy-m5s1 razem z nowymi opisami */
         przypis: foot.length === 1 && /1[.,]06/.test(foot[0]) && /1[.,]51/.test(foot[0]) && /MIMIT/.test(foot[0]) && /2026/.test(foot[0]),
         kwoty: /\d+[.,]\d\d\s*(zł|PLN|USD|EUR|GBP|€|\$|£)|(USD|EUR|GBP|€|\$|£)\s*\d/.test(rest + p), marki: namesIn(`${d} ${p}`) })
-        .toEqual({ l, d: true, p: true, terms: true, privacy: true, jezyki: true, proba: true, limit: true, przypis: true, kwoty: false, marki: [] });
+        .toEqual({ l, d: true, p: true, terms: true, privacy: true, jezyki: true, przypis: true, kwoty: false, marki: [] });
     }
   });
   test('en-AU = en-GB i en-CA = en-US także w opisie i tekście promocyjnym (decyzja STOP 1, 21.10.2026)', () => {

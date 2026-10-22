@@ -16,6 +16,7 @@ import { normalizeReviewAsked, normalizeIdeaShownAt } from '../review';
 import { normalizeGroups } from './groups';
 import { SAVED_PLANS_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays, normPlanHistory, cleanOverrides, cleanDoneEarly, appendPlanSegment, cleanPlanPlaces } from './weekplan';
 import { unusedOneOffIds } from './places';
+import { qualifiesForDay, recordLiveDay, monthKey } from '../access';
 import { setLegacyLb, snapL, posNum, fixTemplates, fixWorkout, freshIds, uniqueIds } from './migrate-records';
 import { migrateExercises, retireCatalog } from './migrate-catalog';
 
@@ -285,6 +286,24 @@ export function migrate(raw: unknown): State {
     for (const l of raw.settings.locations) fillOpts(l);
     raw.optFill = OPT_FILL.rev;
   } /* bieżnia: nachylenie (05.10.2026), raz */
+  /* M5 S1 (22.10.2026): dni treningowe limitu darmowego — State.liveDays zapisywane przy ukończeniu treningu na żywo > 20 min. Poprawne wpisy zostają (dni, usunięcie treningu ich nie zwraca);
+   * brak pola albo uszkodzone → uzupełnione z istniejącej historii: dni BIEŻĄCEGO miesiąca z ukończonych treningów na żywo > MIN_LIVE_MINUTES_FOR_DAY (czas bez pauz). Idempotentne; pusta lista = brak pola. */
+  {
+    const good = Array.isArray(raw.liveDays) && raw.liveDays.every((d: unknown) => isObj(d) && Number.isFinite(d.startedAt) && (d.tzOffsetMin === undefined || Number.isFinite(d.tzOffsetMin)));
+    let list: { startedAt: number; tzOffsetMin?: number }[] = [];
+    if (good) for (const d of raw.liveDays) list = recordLiveDay(list, { startedAt: d.startedAt, ...(d.tzOffsetMin !== undefined ? { tzOffsetMin: d.tzOffsetMin } : {}) });
+    else {
+      const nowTs = Date.now(); const cur = monthKey(nowTs, -new Date(nowTs).getTimezoneOffset());
+      for (const w of raw.workouts as import('../seed').Workout[]) {
+        if (w.live !== true || w.finishedAt == null || !Number.isFinite(w.startedAt)) continue;
+        const paused = Array.isArray(w.pauses) ? w.pauses.reduce((n: number, p: [number, number]) => n + Math.max(0, (Number(p?.[1]) || 0) - (Number(p?.[0]) || 0)), 0) : 0;
+        if (!qualifiesForDay(Math.max(0, (w.finishedAt - w.startedAt - paused) / 1000))) continue;
+        if (monthKey(w.startedAt, w.tzOffsetMin ?? -new Date(w.startedAt).getTimezoneOffset()) !== cur) continue;
+        list = recordLiveDay(list, { startedAt: w.startedAt, ...(Number.isFinite(w.tzOffsetMin) ? { tzOffsetMin: w.tzOffsetMin } : {}) });
+      }
+    }
+    if (list.length) raw.liveDays = list; else delete raw.liveDays;
+  }
   raw.ownerId = owner;
   if (!Number.isFinite(raw.v)) raw.v = 2; if (raw.metaUpdatedAt != null && tsOf(raw.metaUpdatedAt) == null) delete raw.metaUpdatedAt; /* runda 53 */
   /* audyt 0.10 J1: numer schematu nigdy w dół (dane z nowszej wersji zatrzymuje init i import) */

@@ -1,6 +1,6 @@
 /*
  * 0.17.0, uprawnienia w działaniu (lib/entitlement.ts): zapamiętany ostatni wynik, offline 7 dni (P6 A), unknown, nasłuch od startu, strażnik startu na wszystkich
- * drogach (GUARDED_STARTS), P3 B, zmiana miesiąca (fałszywy zegar), ekran zakupu po pierwszym treningu (P2 B), niezmiennik „zakup nie dotyka treningów”, zachowanie
+ * drogach (GUARDED_STARTS), P3 B, zmiana miesiąca (fałszywy zegar), brak ekranu zakupu po pierwszym treningu (M5 S1; dawne P2 B), niezmiennik „zakup nie dotyka treningów”, zachowanie
  * bez zmian przy PAYWALL.ENABLED = false. Rodzaje (docs/20): logika, scenariusz (restart + zegar), dane (klucz kv poza stanem i kopią), macierz (drogi startu × stany).
  */
 import * as store from '@/lib/store';
@@ -17,7 +17,9 @@ const DAY = 86400e3;
 const at = (y: number, m: number, d: number, h = 12) => new Date(y, m - 1, d, h).getTime();
 const NOW = at(2026, 10, 14);
 const S = () => store.getState();
-const live = (when: number) => { const w = addWorkout(when, [['Back Squat', [{ weight: 100, reps: 5, done: true }]]], 'Live'); w.live = true; w.tzOffsetMin = -new Date(when).getTimezoneOffset(); return w; };
+const live = (when: number) => { const w = addWorkout(when, [['Back Squat', [{ weight: 100, reps: 5, done: true }]]], 'Live'); w.live = true; w.tzOffsetMin = -new Date(when).getTimezoneOffset(); store.recordLiveDayFor(w); return w; };
+/** Ukończony trening na żywo `i`-tego dnia przed NOW (różne dni = różne dni treningowe, M5 S1). */
+const liveDay = (i: number) => live(NOW - (i + 1) * DAY);
 const back = (when: number) => addWorkout(when, [['Back Squat', [{ weight: 100, reps: 5, done: true }]]], 'Past');
 const sub = (end: number, extra: Partial<Entitlement> = {}): Entitlement => ({ plan: 'monthly', source: 'purchase', expiresAt: end, ...extra });
 const life: Entitlement = { plan: 'lifetime', source: 'purchase', expiresAt: null };
@@ -54,7 +56,7 @@ describe('nextMonthDay: pierwszy dzień następnego miesiąca do tekstu „Kolej
 describe('PAYWALL.ENABLED = false: zachowanie aplikacji bez zmian', () => {
   test('nic nie rusza sklepu ani bazy; strażnik wpuszcza każdą drogę nawet przy 99 treningach; widok: pełny dostęp, bez limitu', async () => {
     await boot([], { on: false }); for (let i = 0; i < 12; i++) live(NOW - i * 60e3);
-    await ent.refreshEntitlements(); await ent.maybeShowPaywallAfterFirstWorkout('x', open);
+    await ent.refreshEntitlements();
     expect(fake.calls.currentEntitlements).toBe(0); expect(fake.listenerCount()).toBe(0); expect(global.__kv.has('access')).toBe(false); expect(global.__kv.has('paywallSeen')).toBe(false);
     for (const k of GUARDED_STARTS) expect(ent.guardLiveStart(k, NOW, open)).toBe(true);
     expect(opened).toEqual([]); const v = ent.accessNow(NOW); expect(v).toMatchObject({ enabled: false, state: 'full', level: 'full' }); expect(v.decision.allowed).toBe(true);
@@ -97,7 +99,7 @@ describe('offline i unknown (P6 A: 7 dni)', () => {
     await fresh(st); ent.resetEntitlementsForTests(); global.__kv.set('access', kv); fake = createFakeStore(null); setStoreAdapter(fake); await ent.initEntitlements(); await flush();
     expect(ent.accessNow(NOW)).toMatchObject({ state: 'unknown', level: 'full', silent: false });
     await fresh(st); ent.resetEntitlementsForTests(); global.__kv.delete('access'); fake = createFakeStore(null); setStoreAdapter(fake); await ent.initEntitlements(); await flush();
-    expect(ent.accessNow(NOW)).toMatchObject({ state: 'unknown', level: 'free', silent: true }); for (let i = 0; i < 4; i++) { expect(ent.guardLiveStart('empty', NOW, open)).toBe(true); live(NOW - 1000 - i); }
+    expect(ent.accessNow(NOW)).toMatchObject({ state: 'unknown', level: 'free', silent: true }); for (let i = 0; i < 5; i++) { expect(ent.guardLiveStart('empty', NOW, open)).toBe(true); liveDay(i); }
     expect(ent.guardLiveStart('empty', NOW, open)).toBe(false); expect(opened).toEqual(['/paywall?reason=limit']);
   });
   test('uszkodzony wpis w kv (nie JSON, zły poziom) → jak brak wpisu, bez wyjątku', async () => {
@@ -106,27 +108,29 @@ describe('offline i unknown (P6 A: 7 dni)', () => {
 });
 
 describe('strażnik startu treningu na żywo', () => {
-  test.each(GUARDED_STARTS.map(k => [k]))('droga „%s”: 4 darmowe starty przechodzą, 5. otwiera ekran zakupu (reason=limit) i zwraca false', async kind => {
-    await boot([]); for (let i = 0; i < 4; i++) { expect(ent.guardLiveStart(kind, NOW, open)).toBe(true); live(NOW - 60e3 * (i + 1)); }
+  test.each(GUARDED_STARTS.map(k => [k]))('droga „%s”: 5 darmowych dni przechodzi, 6. dzień otwiera ekran zakupu (reason=limit) i zwraca false; ten sam dzień przechodzi', async kind => {
+    await boot([]); for (let i = 0; i < 5; i++) { expect(ent.guardLiveStart(kind, NOW, open)).toBe(true); liveDay(i); }
     expect(opened).toEqual([]); expect(ent.guardLiveStart(kind, NOW, open)).toBe(false); expect(opened).toEqual(['/paywall?reason=limit']); expect(ent.nextStartBlocked(NOW)).toBe(true);
+    live(NOW - 1000); expect(ent.guardLiveStart(kind, NOW, open)).toBe(true); expect(opened).toHaveLength(1); /* dziś już trening → ten sam dzień */
   });
   test('trening wstecz i treningi bez znacznika nie liczą się; trening w toku nie jest blokowany (strażnik wpuszcza)', async () => {
     await boot([]); for (let i = 0; i < 9; i++) back(NOW - 60e3 * (i + 1)); expect(ent.liveStarts()).toEqual([]); expect(ent.guardLiveStart('empty', NOW, open)).toBe(true);
-    for (let i = 0; i < 4; i++) live(NOW - 1000 * (i + 1)); expect(ent.guardLiveStart('template', NOW, open)).toBe(false);
-    S().active = { ...back(NOW - 5000), finishedAt: null, live: true } as never; store.getState().workouts.pop(); expect(ent.guardLiveStart('template', NOW, open)).toBe(true); expect(ent.liveStarts()).toHaveLength(5);
+    for (let i = 0; i < 5; i++) liveDay(i); expect(ent.guardLiveStart('template', NOW, open)).toBe(false);
+    S().active = { ...back(NOW - 5000), finishedAt: null, live: true } as never; store.getState().workouts.pop(); expect(ent.guardLiveStart('template', NOW, open)).toBe(true); expect(ent.liveStarts()).toHaveLength(5); /* trwający nie wchodzi do licznika */
   });
   test('pełny dostęp (subskrypcja, dożywotni, rodzina, kod) — bez limitu; po wygaśnięciu P3 B: starty sprzed wygaśnięcia nie liczą się, po — tak', async () => {
-    for (const e of [sub(NOW + DAY), life, sub(NOW + DAY, { source: 'family' }), sub(NOW + DAY, { source: 'code' })]) { await boot([e]); for (let i = 0; i < 9; i++) live(NOW - 1000 * (i + 1)); expect(ent.guardLiveStart('empty', NOW, open)).toBe(true); }
-    await boot([sub(NOW - 2 * DAY)]); for (let i = 0; i < 6; i++) live(NOW - 3 * DAY - i * 60e3); for (let i = 0; i < 4; i++) { expect(ent.guardLiveStart('empty', NOW, open)).toBe(true); live(NOW - DAY + i * 60e3); }
+    for (const e of [sub(NOW + DAY), life, sub(NOW + DAY, { source: 'family' }), sub(NOW + DAY, { source: 'code' })]) { await boot([e]); for (let i = 0; i < 9; i++) liveDay(i); expect(ent.guardLiveStart('empty', NOW, open)).toBe(true); }
+    await boot([sub(NOW - 6 * DAY)]); for (let i = 6; i < 12; i++) liveDay(i); for (let i = 0; i < 5; i++) { expect(ent.guardLiveStart('empty', NOW, open)).toBe(true); liveDay(i); }
     expect(ent.guardLiveStart('empty', NOW, open)).toBe(false);
-    PAYWALL.COUNT_FULL_STARTS_IN_EXPIRY_MONTH = true; expect(ent.accessNow(NOW).decision.used).toBe(10);
+    PAYWALL.COUNT_FULL_STARTS_IN_EXPIRY_MONTH = true; expect(ent.accessNow(NOW).decision.used).toBe(11); /* wariant A: 6 dni sprzed wygaśnięcia + 5 po */
   });
-  test('scenariusz z fałszywym zegarem: wygaśnięcie → 4 treningi → 5. zablokowany → nowy miesiąc odblokowuje; zakup w trakcie odblokowuje od razu', async () => {
-    const oct31 = at(2026, 10, 31, 9); await boot([sub(oct31 - 5 * DAY)], { now: oct31 });
-    for (let i = 0; i < 4; i++) { expect(ent.guardLiveStart('empty', oct31, open)).toBe(true); live(oct31 + i * 60e3); }
-    expect(ent.guardLiveStart('empty', oct31 + 3600e3, open)).toBe(false); jest.setSystemTime(at(2026, 11, 1, 0) + 60e3);
-    expect(ent.guardLiveStart('empty', Date.now(), open)).toBe(true); live(Date.now()); expect(ent.accessNow(Date.now()).decision.used).toBe(1);
-    for (let i = 0; i < 3; i++) live(Date.now() + i); expect(ent.guardLiveStart('empty', Date.now(), open)).toBe(false);
+  test('scenariusz z fałszywym zegarem: wygaśnięcie → 5 dni → nowy dzień zablokowany, ten sam dzień wolny → nowy miesiąc odblokowuje; zakup odblokowuje od razu', async () => {
+    const d = (day: number, h = 9) => at(2026, 10, day, h); const oct31 = d(31); await boot([sub(d(26))], { now: d(27) });
+    for (const day of [27, 28, 29, 30, 31]) { jest.setSystemTime(d(day)); expect(ent.guardLiveStart('empty', d(day), open)).toBe(true); live(d(day)); }
+    expect(ent.accessNow(oct31).decision).toMatchObject({ used: 5, allowed: true }); expect(ent.guardLiveStart('empty', oct31 + 3600e3, open)).toBe(true); /* 31.10. już był dniem treningowym */
+    jest.setSystemTime(at(2026, 11, 1, 0) + 60e3); expect(ent.guardLiveStart('empty', Date.now(), open)).toBe(true); expect(ent.accessNow(Date.now()).decision.used).toBe(0);
+    for (const day of [1, 2, 3, 4, 5]) live(at(2026, 11, day, 9)); jest.setSystemTime(at(2026, 11, 6, 9));
+    expect(ent.guardLiveStart('empty', Date.now(), open)).toBe(false); expect(opened).toEqual(['/paywall?reason=limit']);
     expect((await ent.purchasePlan('yearly')).status).toBe('success'); expect(ent.guardLiveStart('empty', Date.now(), open)).toBe(true);
   });
 });
@@ -139,7 +143,7 @@ describe('akcje użytkownika nie dotykają danych treningowych', () => {
     expect(snap()).toBe(before);
   });
   test('w stanie free dane są dostępne: kopia zapasowa zawiera wszystkie treningi (także ponad limit), historia bez zmian', async () => {
-    await boot([]); for (let i = 0; i < 6; i++) live(NOW - 1000 * (i + 1)); expect(ent.guardLiveStart('empty', NOW, open)).toBe(false); expect(buildBackup().state.workouts).toHaveLength(6);
+    await boot([]); for (let i = 0; i < 6; i++) liveDay(i); expect(ent.guardLiveStart('empty', NOW, open)).toBe(false); expect(buildBackup().state.workouts).toHaveLength(6);
   });
   test('przywracanie: restored (aktywne uprawnienie), none (konto bez zakupów), error (brak sieci — stan bez zmian)', async () => {
     await boot([]); expect(await ent.restorePurchases()).toBe('none'); fake.restorable = [life]; expect(await ent.restorePurchases()).toBe('restored'); expect(ent.accessNow(NOW).active).toMatchObject({ plan: 'lifetime' });
@@ -151,19 +155,10 @@ describe('akcje użytkownika nie dotykają danych treningowych', () => {
   });
 });
 
-describe('P2 B: ekran zakupu raz po pierwszym ukończonym treningu na żywo', () => {
-  test('free + pierwszy trening na żywo → otwiera /paywall?reason=first i zapisuje znacznik; drugi raz nigdy', async () => {
-    await boot([]); const w = live(NOW - 1000); expect(await ent.maybeShowPaywallAfterFirstWorkout(w.id, open)).toBe(true); expect(opened).toEqual(['/paywall?reason=first']); expect(global.__kv.get('paywallSeen')).toBe('1');
-    expect(await ent.maybeShowPaywallAfterFirstWorkout(w.id, open)).toBe(false); expect(opened).toHaveLength(1);
-  });
-  test.each([
-    ['pełny dostęp', () => [sub(NOW + DAY)] as Entitlement[] | null], ['sklep bez odpowiedzi i bez zapamiętanego wyniku', () => null],
-  ])('nie otwiera: %s', async (_n, mk) => { await boot(mk()); const w = live(NOW - 1000); expect(await ent.maybeShowPaywallAfterFirstWorkout(w.id, open)).toBe(false); expect(opened).toEqual([]); expect(global.__kv.has('paywallSeen')).toBe(false); });
-  test('nie otwiera: drugi trening, trening wstecz, inny id, przełącznik wyłączony', async () => {
-    await boot([]); const a = live(NOW - 5000); const b = live(NOW - 1000); expect(await ent.maybeShowPaywallAfterFirstWorkout(b.id, open)).toBe(false);
-    await boot([]); const p = back(NOW - 1000); expect(await ent.maybeShowPaywallAfterFirstWorkout(p.id, open)).toBe(false);
-    await boot([]); const c = live(NOW - 1000); expect(await ent.maybeShowPaywallAfterFirstWorkout('inny', open)).toBe(false); expect(a.id).not.toBe(c.id);
-    await boot([], { on: false }); const d = live(NOW - 1000); expect(await ent.maybeShowPaywallAfterFirstWorkout(d.id, open)).toBe(false); expect(opened).toEqual([]);
+describe('M5 S1: ekran zakupu nie otwiera się sam po pierwszym treningu', () => {
+  test('brak funkcji i znacznika „paywallSeen”: po ukończeniu pierwszego treningu na żywo nic nie otwiera ekranu zakupu', async () => {
+    expect((ent as unknown as Record<string, unknown>).maybeShowPaywallAfterFirstWorkout).toBeUndefined(); expect((ent as unknown as Record<string, unknown>).PAYWALL_SEEN_KEY).toBeUndefined();
+    await boot([]); live(NOW - 1000); expect(opened).toEqual([]); expect(global.__kv.has('paywallSeen')).toBe(false);
   });
 });
 
@@ -171,7 +166,7 @@ describe('startEmptyWorkout: pusty trening przez strażnik', () => {
   test('wolno → trening w toku, `after` wywołane; ponad limit → ekran zakupu, brak treningu, `after` nie; przełącznik wyłączony → zawsze startuje', async () => {
     await boot([]); const router = require('expo-router').router; const push = jest.spyOn(router, 'push').mockImplementation(() => {}); let after = 0;
     expect(startEmptyWorkout(() => { after++; })).toBe(true); expect(S().active).not.toBeNull(); expect(after).toBe(1); S().active = null;
-    for (let i = 0; i < 4; i++) live(NOW - 1000 * (i + 1)); expect(startEmptyWorkout(() => { after++; })).toBe(false); expect(S().active).toBeNull(); expect(after).toBe(1); expect(push).toHaveBeenCalledWith('/paywall?reason=limit');
+    for (let i = 0; i < 5; i++) liveDay(i); expect(startEmptyWorkout(() => { after++; })).toBe(false); expect(S().active).toBeNull(); expect(after).toBe(1); expect(push).toHaveBeenCalledWith('/paywall?reason=limit');
     PAYWALL.ENABLED = false; expect(startEmptyWorkout()).toBe(true); expect(S().active).not.toBeNull(); push.mockRestore();
   });
   test('start przy trwającym treningu nie tworzy drugiego (jak dotąd), strażnik go nie blokuje', async () => { await boot([]); expect(startEmptyWorkout()).toBe(true); expect(startEmptyWorkout()).toBe(false); expect(S().active).not.toBeNull(); });
