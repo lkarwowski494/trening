@@ -70,7 +70,7 @@ name: Subskrypcja — ekran zakupu i limit
 - assertVisible: ".*no ads, no data collection.*"
 - scrollUntilVisible: { element: "Log a past workout", direction: DOWN, timeout: 60000 }
 - takeScreenshot: 99-limit
-- scrollUntilVisible: { element: "Subscribe", direction: DOWN, timeout: 60000 }
+- scrollUntilVisible: { element: "Subscribe", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Subscribe"
 - extendedWaitUntil: { visible: ".*You have the full version.*", timeout: 30000 }
 - scrollUntilVisible: { element: "Not now", direction: DOWN, timeout: 60000 }
