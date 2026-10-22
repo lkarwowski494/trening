@@ -164,3 +164,6 @@ w jedną frazę („plan” + „treningowy”) — ocena pośrednio przy H-51.
   i Polityki prywatności. Wytyczna 3.1.2(a) (odczyt 21.10.2026) dotyczy dopuszczalnych subskrypcji (stała wartość, okres ≥ 7 dni, wszystkie urządzenia), nie treści opisu.
 - **Warunek prawdziwości:** opis zgadza się z aplikacją dopiero po scaleniu kodu M5 S1 (`PAYWALL.ENABLED = true`, `FREE_TRAINING_DAYS_PER_MONTH = 5`; inny agent)
   i usunięciu ofert wprowadzających w App Store Connect (krok właściciela, kontrakt rozdz. 11). Test `tests/store-metadata.test.ts` sprawdza zgodność liczby 5 ze stałą w kodzie, gdy ta już istnieje.
+- Tłumaczenia bloku i tekstu promocyjnego (3 grupy, rola tłumacz, 22.10.2026) — do sprawdzenia przez native speakera: odmiana „Pro” (fi, hr, ru, tr), odpowiednik
+  „dnia treningowego” (ja, ko, zh-Hant, sl, fi), „dopisywanie treningów wstecz” podane opisowo zamiast nazwy przycisku „Dopisz trening wstecz” (wszystkie poza pl/en),
+  skrócone teksty promocyjne fr-FR („pub”) i el.
