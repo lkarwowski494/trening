@@ -80,6 +80,8 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - tapOn: "Workout note"   # tekst nad polem zdejmuje fokus (hideKeyboard na klawiaturze bez „Gotowe” pada — E2E 38471218362)
 # --- usunięcie ćwiczenia przesunięciem nagłówka bloku ---
 - scrollUntilVisible: { element: "Bent Over Row \\(Dumbbell\\)", direction: UP, timeout: 30000 }
+# E2E 39702654990: nagłówek bloku po przewinięciu leży na górnej krawędzi (ex-1 [16,-19][386,30]) i przesunięcie trafiało pod pasek statusu — zsuwamy listę w dół
+- swipe: { start: "50%, 35%", end: "50%, 75%", duration: 400 }
 - swipe: { from: { id: "ex-1" }, direction: LEFT, duration: 400 }
 - runFlow:
     when: { visible: { id: "ex-1-del" } }

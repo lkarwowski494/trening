@@ -113,11 +113,11 @@ name: Edycja historii i trening wstecz
 - scrollUntilVisible: { element: "Muscle map: .*", direction: DOWN, timeout: 20000 }
 - takeScreenshot: 20b-mapa-miesni
 # Kreska celu serii na partię (pakiet C, 08.10.2026; od 12.10.2026 cel automatyczny albo ręczny z Settings): opis kreski „Line = weekly goal of sets…” (ACSM 2026).
-- scrollUntilVisible: { element: { id: "info-sets-part" }, direction: DOWN, timeout: 20000 }  # 14.10.2026: opis kreski pod ⓘ przy „Sets per muscle group”
+- scrollUntilVisible: { element: { id: "info-sets-part" }, direction: DOWN, timeout: 20000, centerElement: true }  # 14.10.2026: opis kreski pod ⓘ przy „Sets per muscle group”
 - tapOn: { id: "info-sets-part" }
 - assertVisible: "Line = weekly goal of sets per muscle group: 10 automatically.*"
 - takeScreenshot: 20c-kreska-10-serii
-- scrollUntilVisible: { element: "Month", direction: UP, timeout: 20000 }  # run 37738868663: po przewinięciu do mapy i kreski „Month” jest nad ekranem
+- scrollUntilVisible: { element: "Month", direction: UP, timeout: 20000, centerElement: true }  # run 37738868663: po przewinięciu do mapy i kreski „Month” jest nad ekranem
 - tapOn: "Month"
 - tapOn: "Previous period"
 - assertVisible: "Workouts: .*, previously .*"
