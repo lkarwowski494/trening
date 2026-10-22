@@ -23,6 +23,10 @@ on:
         type: choice
         default: 'nie'
         options: ['nie', 'tak']
+      wznow:
+        description: 'Odbiór wyników wysłanego wcześniej batcha (identyfikator msgbatch_… z logu przebiegu, który przekroczył czas oczekiwania); puste = nowy przegląd'
+        type: string
+        default: ''
 permissions:
   contents: read
 concurrency:
@@ -57,11 +61,16 @@ jobs:
           WEJ_LIMIT: ${{ inputs.limit }}
           WEJ_ZGODA: ${{ inputs.zgoda_koszt }}
           WEJ_SZACUJ: ${{ inputs.tylko_szacuj }}
+          WEJ_WZNOW: ${{ inputs.wznow }}
         run: |
           set -eu
           ARGS=(--model "$WEJ_MODEL" --limit "$WEJ_LIMIT" --wyjscie raport-tlumaczen)
           if [ "$WEJ_ZGODA" = "tak" ]; then ARGS+=(--zgoda-koszt); fi
           if [ "$WEJ_SZACUJ" = "true" ]; then ARGS+=(--szacuj); fi
+          if [ -n "$WEJ_WZNOW" ]; then
+            [[ "$WEJ_WZNOW" =~ ^msgbatch_[A-Za-z0-9]+$ ]] || { echo "::error::wznow: oczekiwany identyfikator msgbatch_…"; exit 1; }
+            ARGS+=(--wznow "$WEJ_WZNOW")
+          fi
           node scripts/i18n/przeglad-api.mjs "${ARGS[@]}"
       - name: Podsumowanie w logu przebiegu
         if: always()

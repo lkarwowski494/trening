@@ -274,6 +274,12 @@ describe('przegląd tłumaczeń API: strażnik workflowu (styl public-repo.test.
     expect(wf).toMatch(/tylko_szacuj:\n\s+description:[^\n]*\n\s+type: boolean\n\s+default: true/);
     expect(wf).toMatch(/zgoda_koszt:\n\s+description:[^\n]*\n\s+type: choice\n\s+default: 'nie'\n\s+options: \['nie', 'tak'\]/);
   });
+  test('wejście wznow (22.10.2026): odbiór wyników batcha po przekroczeniu czasu — domyślnie puste, tylko identyfikator msgbatch_…, przez env, przekazane jako --wznow', () => {
+    expect(wf).toMatch(/wznow:\n\s+description:[^\n]*\n\s+type: string\n\s+default: ''/);
+    expect(wf).toMatch(/WEJ_WZNOW: \$\{\{ inputs\.wznow \}\}/);
+    expect(wf).toMatch(/\[\[ "\$WEJ_WZNOW" =~ \^msgbatch_\[A-Za-z0-9\]\+\$ \]\] \|\| \{[^\n]*exit 1; \}/);
+    expect(wf).toMatch(/ARGS\+=\(--wznow "\$WEJ_WZNOW"\)/);
+  });
   test('sekret ANTHROPIC_API_KEY w dokładnie jednym kroku, jako zmienna env; żaden inny sekret', () => {
     const uzycia = wf.match(/secrets\.[A-Z_0-9]+/g) ?? [];
     expect(uzycia).toEqual(['secrets.ANTHROPIC_API_KEY']);
