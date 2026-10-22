@@ -11,7 +11,7 @@ Ryzyko dla wydania w App Store: R-010 w `docs/40-lekcje.md` (drugi przegląd prz
 | kod | język | fala (decyzja) | tłumaczenie | recenzja drugim agentem | drugi przegląd (native speaker) | kontrole automatyczne | zrzuty z symulatora | nazwa w App Store | opis w App Store | zakupy (ASC) |
 |---|---|---|---|---|---|---|---|---|---|---|
 | `pl` | Polski | bazowy (język źródłowy) | autor (teksty źródłowe w kodzie) | — | niewykonany (język źródłowy) | locales; cues | zrzuty sklepu (`store/screenshot-captions.json`); Maestro 09, 37 | pl | projekt (docs/15) | wersja bazowa |
-| `en` | English | bazowy (T-040) | słownik `lib/i18n.en.ts` (T-040) | — | niewykonany | locales; cues; krytyczne (049) | zrzuty sklepu (`store/screenshot-captions.json`); Maestro 09, 37 | en-US, en-GB | projekt (docs/15) | wersja bazowa |
+| `en` | English | bazowy (T-040) | słownik `lib/i18n.en.ts` (T-040) | — | niewykonany | locales; cues; krytyczne (049) | zrzuty sklepu (`store/screenshot-captions.json`); Maestro 09, 37 | en-US, en-GB, en-AU, en-CA | projekt (docs/15) | wersja bazowa |
 | `cs` | Čeština | 05.10.2026 — 14 języków (docs/16) | agent AI, osobny na język | tak (05.10.2026) | niewykonany | locales; cues; krytyczne (049) | brak zapisu | cs | brak (docs/41 D4) | tak |
 | `sk` | Slovenčina | 05.10.2026 — 14 języków (docs/16) | agent AI, osobny na język | tak (05.10.2026) | niewykonany | locales; cues; krytyczne (049) | brak zapisu | sk | brak (docs/41 D4) | tak |
 | `hu` | Magyar | 05.10.2026 — 14 języków (docs/16) | agent AI, osobny na język | tak (05.10.2026) | niewykonany | locales; cues; krytyczne (049) | brak zapisu | hu | brak (docs/41 D4) | tak |

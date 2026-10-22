@@ -15,12 +15,12 @@ Specyfikacja źródłowa: raport analityka z 13.10.2026 (w transkrypcie; skrót 
 
 ## 2. Obieg sprawy
 1. **Zbieranie** — przegląd skrzynki, recenzji, TestFlight i Issues (rytm: pkt 3).
-2. **Porządkowanie** (agent): kategoria (błąd / pomysł / pytanie / pochwała / inne), duplikaty (łączymy w jedną sprawę z licznikiem), **ocena realności** wg CLAUDE.md, „Audyty i wydania” pkt 6
+2. **Porządkowanie** (właściciel czyta skrzynkę; agent pracuje wyłącznie na sprawach zanonimizowanych — bez adresów, imion, podpisów, załączników; decyzja właściciela 21.10.2026, Q8 C: bez AI dla e-maili wsparcia): kategoria (błąd / pomysł / pytanie / pochwała / inne), duplikaty (łączymy w jedną sprawę z licznikiem), **ocena realności** wg CLAUDE.md, „Audyty i wydania” pkt 6
    (realny / brzegowy / teoretyczny, z krokami w aplikacji) oraz **próg wydań** (KRYTYCZNE i WYSOKIE blokują wydanie; ŚREDNIE i NISKIE → backlog z wersją).
 3. **Zapis** w arkuszu Dysku „Trening App / 06 Opinie”: zakładka *Zgłoszenia z danymi osobowymi* (adres, treść, data, status; dostęp ograniczony), zakładka *Sprawy zanonimizowane*
    (kategoria, realność, ważność, wersja aplikacji, status, bez danych osobowych — tylko ta trafia do analiz i do repozytorium w postaci wniosków), zakładka *Mierniki*.
 4. **Decyzja właściciela** — co robimy (naprawa teraz / backlog z wersją / nie planujemy). Decyzje produktowe: co najmniej dwie opcje i rekomendacja (CLAUDE.md).
-5. **Odpowiedź** — agent przygotowuje **szkic** wg szablonów (na Dysku, PL/EN), wysyła **właściciel** (decyzja 3A; po miesiącu bez wpadek możliwe przejście na wysyłkę po akceptacji zbiorczej — wariant B, do decyzji).
+5. **Odpowiedź** — agent przygotowuje **szkic** wg szablonów na podstawie sprawy zanonimizowanej (bez danych osobowych; adresata i zwroty osobiste dopisuje właściciel) (na Dysku, PL/EN), wysyła **właściciel** (decyzja 3A; po miesiącu bez wpadek możliwe przejście na wysyłkę po akceptacji zbiorczej — wariant B, do decyzji).
 6. **„Zrobione w X”** — po wydaniu osoba, która poprosiła, dostaje wiadomość z numerem wersji; w „Co nowego” dopisek „na Waszą prośbę” (decyzja 6B, bez imion i danych).
 
 ## 3. Rytm i pilne
@@ -32,9 +32,9 @@ Specyfikacja źródłowa: raport analityka z 13.10.2026 (w transkrypcie; skrót 
 ## 4. Prywatność
 - **Zero danych osobowych w repozytorium** (publiczne, ADR-031): adresy, treści wiadomości, nazwiska, UDID. Pilnuje test w `tests/public-repo.test.ts` (adresy e-mail w `docs/`, `site/`, `lib/`, `app/` tylko z listy:
   support@apps4brew.com, hello@apps4brew.com; skan plików, nie historii; wyjątek: wygenerowany `lib/licenses.generated.ts` z autorami pakietów). W repo trafiają wyłącznie wnioski zanonimizowane.
-- **Zakres dostępu agenta do skrzynki**: tylko skrzynka wsparcia (nie prywatna poczta właściciela); odczyt i szkice; **bez wysyłki bez akceptacji właściciela**; **bez usuwania** poza retencją.
+- **Agent nie ma dostępu do skrzynki ani do zakładki z danymi osobowymi** (decyzja właściciela 21.10.2026, Q8 C — zastępuje wcześniejszy dostęp do odczytu i szkiców): treść wiadomości z danymi osobowymi nie trafia do narzędzi AI; agent dostaje tylko zakładkę *Sprawy zanonimizowane*.
 - **Retencja**: 12 miesięcy od zamknięcia sprawy (decyzja 7A), potem usunięcie wiadomości i wiersza z zakładki z danymi osobowymi; zanonimizowana sprawa zostaje.
-- Podstawa prawna i odbiorcy: `site/privacy.html` (art. 6 ust. 1 lit. f RODO; Porkbun, Google, dostawca narzędzi AI). **[OTWARTE]** weryfikacja przez badacza RODO/DPA (patrz pkt 6).
+- Podstawa prawna i odbiorcy: `site/privacy.html` (art. 6 ust. 1 lit. f RODO; Google Workspace, Porkbun; bez narzędzi AI). Elementy art. 13 RODO sprawdzone przez M8 21.10.2026 (docs/45); naruszenia i żądania osób: `docs/prawne/procedura-bezpieczenstwa.md`.
 - Załączniki: kopia zapasowa z danymi tylko na prośbę; po sprawie usuwana razem z wiadomością.
 
 ## 5. Mierniki (zakładka *Mierniki*)
@@ -44,8 +44,8 @@ liczba eskalacji pilnych; liczba wpadek w szkicach (warunek przejścia z wariant
 ## 6. Otwarte (do badacza, wyniki dopisać z datą)
 - Rola klucza App Store Connect wystarczająca do czytania recenzji (najmniejsza możliwa) — decyzja 5A zakłada potwierdzenie.
 - App Privacy (etykieta w App Store) wobec opcjonalnego kontaktu e-mail przez przycisk w aplikacji.
-- RODO/DPA przy skrzynce Gmail jako narzędziu właściciela (osoba fizyczna): umowy powierzenia, retencja 12 mies. — zastrzeżenie do decyzji 7A.
-- Warunki dostawcy narzędzi AI (czy treść wiadomości może być przetwarzana, retencja po stronie dostawcy).
+- RODO/DPA przy skrzynce Gmail (M8, 21.10.2026): Gmail konsumencki nie ma umowy powierzenia; Google Workspace ma Cloud Data Processing Addendum ze standardowymi klauzulami umownymi (workspace.google.com/terms/dpa_terms.html, odczyt 21.10.2026) — rozwiązane po przełączeniu MX na Workspace (krok właściciela w toku). Retencja 12 mies. bez zmian.
+- ~~Warunki dostawcy narzędzi AI~~ — nie dotyczy od 21.10.2026 (Q8 C: bez AI dla e-maili wsparcia; powód: umowa powierzenia Anthropic obejmuje tylko usługi komercyjne, nie plan konsumencki).
 
 ## 7. Decyzje właściciela (13.10.2026)
 1. **1C** — osobna skrzynka Gmail tylko dla wsparcia (zakłada właściciel); support@apps4brew.com i hello@apps4brew.com przekierowane przez Porkbun. Odrzucone: A (etykieta w prywatnej poczcie), B (ręczne przeglądanie).

@@ -49,6 +49,10 @@ describe('kontrola rejestru twierdzeń (dane sztuczne)', () => {
     expect(check({ [TEXT]: EN_T }, { twierdzenia: [entry({ dokument: null, fraza: null })] }, docs).join('\n')).toMatch(/\[OTWARTE/);
     expect(check({ [TEXT]: EN_T }, { twierdzenia: [entry({ dokument: null, fraza: null, uwaga: '[OTWARTE — brak]' })] }, docs)).toEqual([]);
   });
+  test('cytat autora „Nazwisko i in. RRRR” bez innych znaczników też wymaga wpisu (przegląd badacza 21.10.2026: tekst z Helms i in. 2016 był poza kontrolą)', () => {
+    const cyt = 'RIR wpisuje się w zakresie od zera do pięciu powtórzeń w zapasie (Helms i in. 2016).';
+    expect(check({ [cyt]: 'RIR from 0 to 5 (Helms et al. 2016).' }, { twierdzenia: [] }, docs).join('\n')).toMatch(/bez ID w rejestrze/);
+  });
   test('powtórzone ID i nieznany rodzaj → błąd', () => {
     const e = check({ [TEXT]: EN_T }, { twierdzenia: [entry(), entry({ kotwica: 'inna kotwica dłuższa niż dwadzieścia' }), entry({ id: 'T-002', rodzaje: ['zmyślony'] })] }, docs).join('\n');
     expect(e).toMatch(/id powtórzone/); expect(e).toMatch(/rodzaje spośród/);
