@@ -59,7 +59,7 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Ćwiczenia w bibliotece | 709 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 349 (z testem: 349) | docs/19-macierz-testow.md |
-| Komunikaty i teksty | 1104 (z testem: 1104) | docs/19-macierz-testow.md |
+| Komunikaty i teksty | 1105 (z testem: 1105) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 919 (z testem: 919) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 118 (z testem: 118) | docs/19-macierz-testow.md |
 | Pliki testów Jest | 438 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
