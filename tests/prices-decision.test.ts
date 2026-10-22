@@ -54,13 +54,16 @@ describe('ceny M1 (13.10.2026, stan App Store Connect 14.10.2026)', () => {
     expect(row('Dostęp dożywotni')).toContain(`${pl(FAKE_PRICES.lifetime)} USD`); expect(row('Dostęp dożywotni')).toContain(PLN_PRICES.lifetime);
     expect(d).toContain('13.10.2026');
   });
-  test('docs/15: opis EN i blok cen podają ceny M1; odesłanie do docs/18', () => {
+  test('docs/15: zapis zmian cen zostaje (13.10, 20.10); blok cenowy opisu bez kwot — decyzja właściciela 21.10.2026 (docs/18, docs/research/espresso-mimit-2026-10.md)', () => {
     const d = read('docs/15-app-store.md');
-    expect(d).toContain(`0.99 per month or ${num(FAKE_PRICES.yearly)} per year`);
-    expect(d).toContain(`lifetime access purchase for ${num(FAKE_PRICES.lifetime)}`);
-    expect(d).toContain(`${PLN_PRICES.monthly} miesięcznie lub ${PLN_PRICES.yearly} rocznie`); expect(d).toContain(`dożywotni za ${PLN_PRICES.lifetime}`);
-    expect(d).toContain('4.99 PLN and 19.99 PLN in Poland'); expect(d).toContain('ZMIANA CENY ROCZNEJ (decyzja właściciela 20.10.2026');
+    expect(d).toContain('ZMIANA CENY ROCZNEJ (decyzja właściciela 20.10.2026');
     expect(d).toMatch(/ZMIANA CEN \(decyzja właściciela 13\.10\.2026[^)]*docs\/18/);
+    /* 21.10.2026: kwoty z opisu usunięte (opis EN widzą kraje z innymi cenami; ceny pokazuje App Store) — wcześniejsze asercje kwot w opisie zastąpione */
+    expect(d).not.toContain(`0.99 per month or ${num(FAKE_PRICES.yearly)} per year`);
+    expect(d).not.toContain(`${PLN_PRICES.monthly} miesięcznie lub ${PLN_PRICES.yearly} rocznie`);
+    expect(d).toContain('plan miesięczny w cenie porównywalnej z jednym espresso w barze*');
+    expect(d).toContain('monthly plan for about the price of one espresso at a bar*');
+    expect(read('docs/18-przekazanie.md')).toMatch(/opis bez list kwot/);
   });
   test('docs/18: wpis z 14.10.2026 opisuje ceny PL, Family Sharing, darmowe 14 dni, poziomy, Billing Grace Period i Standard EULA', () => {
     const d = read('docs/18-przekazanie.md'); const i = d.indexOf('14.10.2026 (właściciel): ceny w App Store Connect'); expect(i).toBeGreaterThan(-1);

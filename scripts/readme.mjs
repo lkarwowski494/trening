@@ -160,6 +160,7 @@ const WORKFLOW_ROLE = {
   'watch-sim.yml': 'testy aplikacji na Apple Watch na symulatorze watchOS i zrzuty',
   'pages.yml': 'publikacja strony (prywatność, wsparcie)',
   'asc-iap-localizations.yml': 'lokalizacje produktów zakupu w App Store Connect',
+  'asc-kontrola.yml': 'kontrola ustawień App Store Connect (tylko odczyt; ręcznie; narzędzie z repozytorium narzędzi studia)',
   'store-screenshots.yml': 'zrzuty ekranu do App Store z symulatora (ręcznie)',
   'przeglad-tlumaczen.yml': 'przegląd tłumaczeń treści krytycznej przez API Anthropic (ręcznie, płatny, limit kosztu)',
   'sprzatanie-galezi.yml': 'usuwanie gałęzi scalonych lub zatwierdzonych przez właściciela (ręcznie, podgląd domyślnie)',
