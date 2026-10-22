@@ -35,7 +35,7 @@ Uruchomienie: `node --experimental-strip-types docs/design/narzedzia/e3-gen.mjs`
 
 **Przycisk główny w ciemnym motywie jest jasny (krem na granacie tekstu).** Reguła: przycisk główny = `accent` + `accentInk` w obu motywach; w ciemnym akcentem jest krem cyfr tablicy. Dzięki temu przycisk nie zlewa się z granatową tablicą nad nim i jest najjaśniejszym punktem pod tablicą.
 
-**Motyw A2 (MOTIF):** tylko start (sylwetka końca sztangi, ok. 30% szerokości, prawy górny róg) i puste stany (gryf z talerzami, 220 pt). Nigdy na tablicy, przy liczbach kg, w paskach, listach ani przyciskach; barwa nic nie znaczy (decyzja 09.10.2026). Znika przy „Zwiększ kontrast” i od skali tytułu 1,4 (ok. AX2); ukryty dla VoiceOver. Górna granica krycia 24%.
+**Motyw A2 (MOTIF):** tylko puste stany (gryf z talerzami, 220 pt); na starcie od 22.10.2026 zamiast sylwetki w rogu mała ikonka sztangi po tytule „Trening” (`TitleBarbell`, bez krycia, jeden kolor tekstu). Nigdy na tablicy, przy liczbach kg, w paskach, listach ani przyciskach; barwa nic nie znaczy (decyzja 09.10.2026). Znika przy „Zwiększ kontrast” i od skali tytułu 1,4 (ok. AX2); ukryty dla VoiceOver. Górna granica krycia 24%.
 
 ### Pismo (TYPE, TEXT_SCALE)
 - Tytuły, tablica i liczby: **Barlow Condensed 600/700** (OFL, `fonty/barlow-condensed/OFL.txt`). Treść, przyciski, listy: **krój systemowy** (SF Pro, bez `fontFamily`).

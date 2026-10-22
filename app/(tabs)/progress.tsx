@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, H1, Muted, Chip, Empty, H2, Btn, SearchField } from '@/components/ui';
+import { Screen, TabHeader, H1, Muted, Chip, Empty, H2, Btn, SearchField } from '@/components/ui';
 import { isDeloadWeek, useTick, exById, finishedWorkouts, fmtDate, getState, bodyMassLog, latestBodyMass, localDateTs } from '@/lib/store';
 import { hasHistory, weeklyTotals, hasAnyHistory, weeklySplitByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, setsGoal, type ChartKey } from '@/lib/stats';
 
@@ -42,7 +43,7 @@ export default function ProgressTab() {
   const view: View_ = { exId, setExId: (id: string) => { scrollY.current = 0; setExId(id); }, q, setQ, chartKey: key, setKey, scrollY }; /* uwaga: `key` jest zarezerwowaną nazwą propsa w React */
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
-      <View style={{ marginVertical: 10 }}><H1>{t('Postępy')}</H1></View>
+      <TabHeader><H1>{t('Postępy')}</H1></TabHeader>
       {focused ? <Progress {...view} /> : null}
     </Screen></SafeAreaView>
   );
@@ -110,7 +111,7 @@ function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: Vi
       <H2 style={{ marginTop: 14 }}>{t('Serie robocze tygodniowo')}</H2>
       <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: w.sets }))} fmt={v => `${v}`} height={110} />
       {weeks.some(w => isDeloadWeek(w.weekStart)) ? <Muted style={{ ...font('footnote'), marginTop: SPACE.xs, marginBottom: SPACE.l }}>{t('D — tydzień deload')}</Muted> : null}
-      <H2 infoId="sets-part" info={[t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }), t('Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.', { n: WEEKLY_SETS_MARK }), t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).'), t('Uproszczenie: drop set liczy się razem z serią, po której jest.'), t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')]}>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
+      <H2 infoId="sets-part" info={[t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }), t('Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.', { n: WEEKLY_SETS_MARK }), t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).'), t('Uproszczenie: drop set liczy się razem z serią, po której jest.'), t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')]}>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
       <MuscleCompare parts={SET_PARTS} curSplit={weeklySplitByMuscle(thisMonday())} prevSplit={weeklySplitByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} markOf={setsGoal} />
       {Object.values(weeklySplitByMuscle(thisMonday())).some(x => x.indirectSets > 0) ? <IndirectLegend /> : null}
       <H2 infoId="vol-part" info={t('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')}>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>

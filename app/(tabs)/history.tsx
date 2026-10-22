@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { View } from 'react-native';
+import { FlatList } from '@/components/Scroll';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, H1, Item, Muted, Empty, Btn, Chip } from '@/components/ui';
+import { Screen, TabHeader, H1, Item, Muted, Empty, Btn, Chip } from '@/components/ui';
 import { wallTs, workoutDurSec, noClock, whenText, useHistTick, finishedWorkouts, fmtDur, volume, deleteWorkout, workingSets } from '@/lib/store';
 import { SwipeRow } from '@/components/SwipeRow';
 import { PlanningButton } from '@/components/HeaderActions';
@@ -35,7 +36,7 @@ export default function HistoryScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
       {/* M3 p3 (W1 c, decyzja STOP 3): „Planowanie” w nagłówku, w tym samym miejscu co na ekranie Trening (PlanningButton, prawy górny róg przy tytule) */}
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: SPACE.s + 2 }}><H1>{t('Plan')}</H1><PlanningButton label={t('Planowanie')} onPress={() => router.push('/plan')} /></View>
+      <TabHeader row><H1>{t('Plan')}</H1><PlanningButton label={t('Planowanie')} onPress={() => router.push('/plan')} /></TabHeader>
       {/* 08.10.2026 (decyzja 1A): kalendarz z planem tygodnia nad listą sesji — zawsze, także bez historii (planowanie) */}
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: SPACE.s, marginBottom: SPACE.s, flexWrap: 'wrap' }}>
         {/* Docs/12: trening wstecz — jak w popularnych aplikacjach treningowych */}

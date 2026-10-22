@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { View } from 'react-native';
+import { FlatList } from '@/components/Scroll';
 import { FW, font } from '@/lib/theme';
 import { useRouter, Stack } from 'expo-router';
 import { Screen, Item, Btn, Input, Muted, Empty, useOnce, SearchField } from '@/components/ui';

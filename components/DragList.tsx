@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, PanResponder, Platform, ScrollView, Text, View, type PanResponderInstance, type StyleProp, type ViewStyle } from 'react-native';
+import { AccessibilityInfo, Animated, PanResponder, Platform, Text, View, type PanResponderInstance, type StyleProp, type ViewStyle } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import * as Haptics from 'expo-haptics';
 import { useTheme, font } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';

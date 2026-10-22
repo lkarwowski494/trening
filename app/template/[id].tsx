@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ScrollView, View, Alert, Pressable, ActionSheetIOS, useWindowDimensions } from 'react-native';
+import { View, Alert, Pressable, ActionSheetIOS, useWindowDimensions } from 'react-native';
+import { ScrollView, ScrollView as HScroll } from '@/components/Scroll';
 import { SetBadge, kindLabel } from '@/components/SetBadge';
 import { SwipeRow, lastSetBlock, confirmDelete } from '@/components/SwipeRow';
 import { ExMenuButton } from '@/components/ExMenuButton';
@@ -10,7 +11,6 @@ import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
 import { TechniqueLink } from '@/components/ExerciseCues';
 import { Screen, Field, Input, NumInput, Btn, Muted, Txt, H1, Empty, FieldLabel, FieldHint, useOnce, Chip, Missing } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
-import { ScrollView as HScroll } from 'react-native';
 import { locationLabel } from '@/lib/locations';
 import { availability } from '@/lib/equipment';
 import { implLabel } from '@/lib/swap';

@@ -1,9 +1,11 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Screen, H1, Muted, Item } from '@/components/ui';
 import { PlanningButton } from '@/components/HeaderActions';
-import { StartMotif } from '@/components/Motif';
+import { TitleBarbell } from '@/components/Motif';
+import { SPACE } from '@/lib/theme';
 import { hasPlan } from '@/lib/plan';
 import ActiveWorkout from '@/components/ActiveWorkout';
 import { Alert } from 'react-native';
@@ -40,8 +42,10 @@ function Home() {
     <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
       {/* M3 p2 (W1 c, STOP E3): „Planowanie” w nagłówku ekranu — ta sama akcja w tym samym miejscu co w zakładce Plan; bez planu „Ustaw plan”; tylko gdy jest karta planu (jak dotąd) */}
       {showPlanning ? <View style={{ alignItems: 'flex-end' }}><PlanningButton label={plan ? t('Planowanie') : t('Ustaw plan')} onPress={() => router.push('/plan')} /></View> : null}
-      <View><View pointerEvents="none" style={{ position: 'absolute', top: 0, right: 0 }}><StartMotif />{/* motyw A2 (sylwetka końca sztangi, 30% szerokości; znika przy „Zwiększ kontrast” i dużym tekście) */}</View>
-      <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela) */}<H1>{t('Trening')}</H1><Muted>{fmtWeekdayDayMonth(new Date())}</Muted></WhatsNewHeader></View>
+      <WhatsNewHeader>{/* 08.10.2026: „i” — Co nowego (decyzja właściciela); 22.10.2026: mała ikonka sztangi po tytule zamiast dużej sylwetki w rogu (nachodziła na wiersz planu) */}
+        <View testID="title-row" style={{ flexDirection: 'row', alignItems: 'center', gap: SPACE.s }}><View style={{ flexShrink: 1 }}><H1>{t('Trening')}</H1></View><TitleBarbell /></View>
+        <Muted>{fmtWeekdayDayMonth(new Date())}</Muted>
+      </WhatsNewHeader>
       <DataBanners />
       <TodayPlan />{/* 08.10.2026: kalendarz z planem (decyzja 1A); 11.10.2026: z nagłówkiem planu i „Planowaniem” */}
       <StartPanel />

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { ScrollView, View, Alert } from 'react-native';
+import { View, Alert } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { useRouter, useNavigation } from 'expo-router';
 import { Field, Chip, Muted, Txt, Btn, SectionTitle } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';

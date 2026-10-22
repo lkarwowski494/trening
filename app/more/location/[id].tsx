@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ScrollView, View, Alert, Pressable, Text } from 'react-native';
+import { View, Alert, Pressable, Text } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { BandColorInput } from '@/components/BandColorInput';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Field, Input, Btn, Muted, SwitchRow, Chip, useOnce, Missing } from '@/components/ui';

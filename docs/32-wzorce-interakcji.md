@@ -170,7 +170,12 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 - Prośba o zgodę na powiadomienia przy **pierwszej przerwie**, wierszem pod tablicą („Przerwa trwa — powiadomić na koniec?”), nie w nagłówku; po odmowie komunikat raz, potem tylko w Ustawieniach. Przycisk odroczenia „Nie teraz” (wyjątek nazwany wzorca 6).
 - Menu „⋯” to arkusz akcji z „Anuluj” (wzorzec 9, S16 — lista z powodem, jeśli przekroczy 3 opcje + Anuluj).
 
-## Strażniki (S1–S17)
+### 31. Nagłówek ekranu zakładki i wskaźnik przewijania (właściciel 22.10.2026, docs/18)
+- Nagłówek Trening / Plan / Postępy / Więcej to wspólny `TabHeader` (`HEADER` w tokenach): ten sam odstęp pod bezpiecznym obszarem i pod tytułem; zmiana odstępu — w jednym miejscu.
+- Ikonka dekoracyjna przy tytule (Trening: mała sztanga po napisie) stoi w wierszu tytułu, nie nad nim; ukryta dla VoiceOver, etykieta nagłówka bez zmian.
+- Przewijanie: `ScrollView`, `FlatList` i `SectionList` tylko z `components/Scroll.tsx`; wskaźnik przewijania (pionowy i poziomy) ukryty na wszystkich ekranach — nie ma „kreski” przy krawędzi w treści.
+
+## Strażniki (S1–S18)
 | # | Strażnik | Plik | Stan |
 |---|---|---|---|
 | S1 | okno modalne / arkusz ma „Anuluj” w nagłówku (render każdego okna, PL/EN, jasny/ciemny) | `tests/close-button-guard.test.tsx` | jest |
@@ -190,6 +195,7 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 | S15 | pola wyszukiwania tylko przez `SearchField` | j.w. | jest |
 | S16 | arkusze akcji: wyjątki z powodem | j.w. | jest (wyjątki: lista miejsc użytkownika ma zmienną długość; rodzaje serii to 4 + notatka + Anuluj — dwupoziomowy arkusz wydłużyłby najczęstszą akcję treningu) |
 | S17 | ⓘ: jeden komponent (etykieta, rola, `expanded`, pole 44 pt), teksty przeniesione tylko jako `info=`, widoczny tekst pomocniczy ≤ 100 znaków poza listą wyjątków z powodem, gesty tylko w Przewodniku | j.w. + `tests/info-tip.test.tsx`, `tests/matrix-i18n.test.tsx` (szerokość 320 pt), `.maestro/53-objasnienia-info.yaml` | jest |
+| S18 | przewijanie: ScrollView/FlatList/SectionList tylko z `components/Scroll.tsx` (wskaźnik ukryty), brak `persistentScrollbar`/`flashScrollIndicators` | `tests/interaction-guards.test.ts`, `tests/trening-naglowek.test.tsx` | jest |
 
 ## Słownik terminów
 Anuluj (rezygnacja; okna i potwierdzenia) · Wróć (strzałka, przycisk „nie ma takiego …”) · Wróć do edycji (tylko odrzucanie zmian) · Zamknij (tylko panel „Co nowego”) · Cofnij (ostatnia zmiana) · Przywróć (usunięte / zarchiwizowane / pominięte) ·

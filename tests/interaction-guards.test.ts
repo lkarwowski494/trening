@@ -17,6 +17,19 @@ const src = new Map(code.map(f => [rel(f), readFileSync(f, 'utf8')]));
 const hits = (re: RegExp, allow: string[] = []) => [...src].filter(([f, s]) => !allow.includes(f) && re.test(s)).map(([f]) => f);
 const lines = (re: RegExp, allow: string[] = []) => [...src].filter(([f]) => !allow.includes(f)).flatMap(([f, s]) => s.split('\n').map((l, i) => [f, i + 1, l] as const).filter(([, , l]) => re.test(l)).map(([f2, n]) => `${f2}:${n}`));
 
+/* ---------- S18: wskaźnik przewijania (docs/32 wzorzec 31; właściciel 22.10.2026: kreska przy prawej krawędzi, zakładka Trening i „Planowanie”) ---------- */
+describe('S18: przewijanie — jedna zasada dla wszystkich ekranów (wskaźnik ukryty)', () => {
+  test('ScrollView, FlatList i SectionList tylko ze wspólnego components/Scroll.tsx (nie z react-native)', () => {
+    const bad = lines(/import\s*\{[^}]*\b(ScrollView|FlatList|SectionList)\b[^}]*\}\s*from\s*'react-native'/, ['components/Scroll.tsx']);
+    expect(bad).toEqual([]);
+  });
+  test('wspólny komponent ukrywa wskaźniki; żaden ekran ich nie włącza z powrotem', () => {
+    const s = src.get('components/Scroll.tsx')!; expect(s.match(/showsVerticalScrollIndicator=\{false\}/g)!.length).toBeGreaterThanOrEqual(2); expect(s.match(/showsHorizontalScrollIndicator=\{false\}/g)!.length).toBeGreaterThanOrEqual(2);
+    expect(lines(/shows(Vertical|Horizontal)ScrollIndicator=\{(true|!)/, ['components/Scroll.tsx'])).toEqual([]);
+    expect(lines(/persistentScrollbar|flashScrollIndicators/, [])).toEqual([]);
+  });
+});
+
 describe('S2/S1: nagłówki — przyciski tylko przez wspólne komponenty', () => {
   test('headerLeft/headerRight tylko w DraftHeader, CloseButton, AddButton, EditHeader (poza resetem `: undefined`)', () => {
     const own = ['components/DraftHeader.tsx', 'components/CloseButton.tsx', 'components/AddButton.tsx', 'components/EditHeader.tsx' /* M3 p5: „Edytuj” + „+” (W1 b) */];
