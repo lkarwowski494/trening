@@ -93,9 +93,10 @@ describe('store/app-store-metadata.json: opis i tekst promocyjny PL/EN zgodne z 
     test(`${lang}: bez kalkulatora talerzy (opis, słowa kluczowe, tekst promocyjny)`, () => {
       expect(desc + promo + kw).not.toMatch(/talerz|\bplates?\b/i);
     });
-    test(`${lang}: pierwsze ${TRIAL_DAYS} dni (nie „miesiąc”), liczba języków = LANGS.length`, () => {
-      expect(desc).toMatch(new RegExp(`${TRIAL_DAYS} (dni|days)`));
-      expect(desc + promo).not.toMatch(/Pierwszy miesiąc|First month/i);
+    test(`${lang}: model M5 S1 (22.10.2026) — darmowe do 5 dni treningowych w miesiącu, Pro bez limitu, bez okresu próbnego; liczba języków = LANGS.length`, () => {
+      expect(desc + promo).not.toMatch(/14 (dni|days)|free trial|okres próbny|Pierwszy miesiąc|First month|4 treningi|4 live/i);
+      expect(desc).toMatch(pl ? /5 dni treningowych w miesiącu/ : /5 training days a month/);
+      expect(desc).toMatch(/\bPro\b/);
       expect(desc).toContain(`${LANGS.length} ${pl ? 'języków' : 'languages'}`);
     });
     test(`${lang}: Apple Watch, zapowiedzi głosowe, odczyt i zapis Apple Health, system miar; nazwy widoków jak w interfejsie`, () => {
