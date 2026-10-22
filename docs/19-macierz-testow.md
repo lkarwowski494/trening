@@ -447,7 +447,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +283 |
 | {n} rozgrz. | app/history/edit/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/scenario-full.test.tsx |
 | {n} s | lib/state/time.ts | (tylko parametry) |
-| {n} yd | lib/state/time.ts | tests/architecture-limits.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +67 |
+| {n} yd | lib/state/time.ts | tests/architecture-limits.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +68 |
 | {n} z {m} | app/more/location/[id].tsx | (tylko parametry) |
 | {name} · w planie na: {day} | components/StartPanel.tsx | tests/home-b.test.tsx |
 | {name}, wybrany | app/more/language.tsx | tests/audit-0.10-lang-ui.test.tsx, tests/matrix-logic.test.tsx, tests/scenario-full.test.tsx |
@@ -793,7 +793,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Masz pełną wersję | app/paywall.tsx | tests/subscription-i18n.test.ts |
 | maszyna | lib/swap.ts | tests/catalog-library25.test.tsx, tests/invariants.test.ts, tests/locations-audit.test.tsx +4 |
 | materiały producenta sprzętu | components/ExerciseCues.tsx | tests/audit-k1-bl-mer.test.tsx |
-| max | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-k1-bl-mer.test.tsx, tests/e2e-pakiet.test.ts +45 |
+| max | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-k1-bl-mer.test.tsx, tests/e2e-pakiet.test.ts +46 |
 | max ± | lib/stats.ts | tests/i18n-wave2.test.ts, tests/matrix-i18n.test.tsx, tests/regress.test.tsx +1 |
 | max ciężar | lib/stats.ts | tests/m3-fix-e2e.test.tsx, tests/matrix-i18n.test.tsx |
 | Max ciężar | components/ExerciseProgress.tsx | tests/m3-fix-e2e.test.tsx, tests/m3-p3-postepy-historia.test.tsx, tests/regress.test.tsx +1 |

@@ -136,12 +136,17 @@ name: Pierwszy tydzień nowego użytkownika
 - tapOn: { text: "\\+ set", index: 0 }
 - extendedWaitUntil: { visible: "Set 4 done — .*", timeout: 15000 }  # runy 38364646107, 38370760163: stuknięty „+ set” to pierwszy widoczny na urządzeniu (nie zawsze Back Squat) — nazwa dowolna
 # zakończenie (część serii nieodhaczona — świadomie)
-- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }  # run 38375488119: przycisk „Finish” był ucięty u góry — przewinięcie na początek listy
-- swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
-- waitForAnimationToEnd
+# run 39855279042 (b31bcd3, część 2, krok 118): po „+ set” lista była przewinięta głębiej niż zwykle (stuknięty „+ set” leżał w niższym ćwiczeniu), dwa przesunięcia
+# o 55% ekranu zatrzymały się na bloku „Back Squat” (zrzut: „Set done”, nagłówek z „Finish” wciąż nad ekranem, poza hierarchią — „Element not found: Finish”),
+# a powtórzenie samego stuknięcia niczego nie przewijało. Przewijanie jest teraz WEWNĄTRZ retry: każde powtórzenie przesuwa listę dalej (2 × swipe),
+# potem przewinięcie do „Finish” z wyśrodkowaniem (działa, gdy „Finish” jest poza hierarchią; wzór 07, 50) i dopiero stuknięcie. Aplikacja bez zmian.
 - retry:  # run 38375488119: stuknięcie „Finish” w trakcie odliczania/przewijania bywa gubione — okno pytania się nie pokazało
-    maxRetries: 2
+    maxRetries: 3
     commands:
+      - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+      - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
+      - waitForAnimationToEnd
+      - scrollUntilVisible: { element: "Finish", direction: UP, timeout: 30000, centerElement: true }
       - tapOn: "Finish"
       - extendedWaitUntil: { visible: "Finish workout\\?", timeout: 8000 }
 - takeScreenshot: 85-pytanie-o-zakonczenie
@@ -200,9 +205,16 @@ name: Pierwszy tydzień nowego użytkownika
 - extendedWaitUntil: { visible: "Progression", timeout: 30000 }
 - takeScreenshot: 89-progresja
 - tapOn: "Back"
-- scrollUntilVisible: { element: "Back Squat", direction: UP, timeout: 60000, centerElement: true }  # M3 p3: wybór ćwiczenia jest nad przeglądem (ZM-06)
-- tapOn: "Back Squat"
-- extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }
+# run 39855279042 (ponowienie, krok 175): po stuknięciu „Back Squat” (już wybrane) karta rekordów leży nad chipami, a nagłówek „RECORDS” — pod nagłówkiem ekranu, poza
+# hierarchią (zrzut: wiersze „Max weight”…, bez nagłówka). Jak w 32: stuknięcie i przewinięcie do nagłówka w jednym retry.
+- retry:
+    maxRetries: 2
+    commands:
+      - scrollUntilVisible: { element: "Back Squat", direction: UP, timeout: 60000, centerElement: true }  # M3 p3: wybór ćwiczenia jest nad przeglądem (ZM-06)
+      - waitForAnimationToEnd
+      - tapOn: "Back Squat"
+      - scrollUntilVisible: { element: "RECORDS", direction: UP, timeout: 30000, centerElement: true }
+      - extendedWaitUntil: { visible: "RECORDS", timeout: 15000 }
 - takeScreenshot: 91-rekordy-cwiczenia
 - assertVisible: "Max weight"
 - assertVisible: "Best session \\(volume\\)"
