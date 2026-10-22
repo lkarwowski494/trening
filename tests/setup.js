@@ -28,7 +28,9 @@ jest.mock('expo-notifications', () => ({
   getAllScheduledNotificationsAsync: async () => [],
   SchedulableTriggerInputTypes: { TIME_INTERVAL: 'timeInterval', DATE: 'date', WEEKLY: 'weekly' },
 }));
-jest.mock('expo-haptics', () => ({ notificationAsync: async () => {}, selectionAsync: async () => {}, impactAsync: async () => {}, NotificationFeedbackType: { Success: 'success' }, ImpactFeedbackStyle: { Light: 'light' } }));
+/* M3 p2: wywołania haptyki zapisywane w global.__haptics (test sprawdza, KTÓRA haptyka i czy w ogóle — zależnie od przełącznika dźwięku/wibracji) */
+global.__haptics = [];
+jest.mock('expo-haptics', () => ({ notificationAsync: async (t) => { global.__haptics.push('notification:' + t); }, selectionAsync: async () => { global.__haptics.push('selection'); }, impactAsync: async (s) => { global.__haptics.push('impact:' + s); }, NotificationFeedbackType: { Success: 'success', Warning: 'warning' }, ImpactFeedbackStyle: { Light: 'light' } }));
 jest.mock('expo-keep-awake', () => ({ activateKeepAwakeAsync: jest.fn(async () => {}), deactivateKeepAwake: jest.fn(async () => {}) }));
 /* SDK 54: kod używa wyłącznie starego API z „expo-file-system/legacy” (główne wejście to nowe API File/Directory, a stare funkcje
  * rzucają tam w czasie działania). Import z głównego wejścia — w kodzie albo w teście — kończy się tu błędem, żeby pominięty import nie przeszedł niezauważony. */

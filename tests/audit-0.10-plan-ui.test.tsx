@@ -122,7 +122,7 @@ describe('A6–A8', () => {
 describe('A9, A11-05, D4 — pasek tygodnia, kalendarz, deload', () => {
   test('A9 (UX-08): pod paskiem najbliższe treningi z nazwą; tapnięcie dnia otwiera ten dzień w Kalendarzu', async () => {
     const t = await boot(ids => since(() => { plan.setWeekDay(1, ids[0]); plan.setWeekDay(4, ids[1]); plan.setWeekDay(5, ids[2]); }), '/');
-    expect(screen.getByText(`Następne: jutro — ${t[1].name} · sob., 10 paź — ${t[2].name} · wt., 13 paź — ${t[0].name}`)).toBeTruthy();
+    expect(screen.getByText(`Następne: jutro — ${t[1].name}, sob., 10 paź — ${t[2].name}, wt., 13 paź — ${t[0].name}`)).toBeTruthy();
     await tap(screen.getByTestId('strip-2026-10-06')); await flushAll(10);
     expect(screen.getByTestId('day-panel')).toBeTruthy(); expect(screen.getByText('wtorek, 6 października')).toBeTruthy(); expect(screen.getByText(`Opuszczony: ${t[0].name}`)).toBeTruthy();
   });
@@ -137,13 +137,13 @@ describe('A9, A11-05, D4 — pasek tygodnia, kalendarz, deload', () => {
     await go('/'); await flushAll(10);
     expect(screen.getByLabelText(`czwartek, 8 października, dziś, odpoczynek, tydzień deload`)).toBeTruthy(); /* dzień bez treningu w planie — odpoczynek (decyzja 09.10.2026 wieczór) */
   });
-  test('D4 (UX-06): „Oznacz tydzień jako deload” w panelu dnia — także przyszły tydzień; karta „Dziś · Tydzień deload”', async () => {
+  test('D4 (UX-06): „Oznacz tydzień jako deload” w panelu dnia — także przyszły tydzień; karta Start pokazuje „Tydzień deload”', async () => {
     await boot(ids => { plan.setWeekDay(0, ids[0]); });
     await openDay('2026-10-21'); await tap(screen.getByText('Więcej opcji')); await flushAll(5);
     await tap(screen.getByText('Oznacz tydzień jako deload')); await flushAll(5);
     expect(store.isDeloadWeek(at('2026-10-21'))).toBe(true); expect(screen.getByText('Zdejmij oznaczenie deload')).toBeTruthy();
     act(() => { store.toggleDeloadWeek(NOW.getTime()); }); await go('/'); await flushAll(10);
-    expect(screen.getByText('Dziś · Tydzień deload')).toBeTruthy();
+    expect(screen.getByText('Tydzień deload')).toBeTruthy(); /* M3 p2: osobna linia na tablicy „Dziś” (bez „Dziś · ”) */
   });
   test('D4 (UX-06): podpowiedź deload ma „Nie teraz” — znika do następnego tygodnia', async () => {
     await boot(() => { for (let w = 1; w <= 5; w++) addWorkout(at('2026-10-06') - w * 7 * 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]); addWorkout(at('2026-10-06'), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });

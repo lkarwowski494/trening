@@ -100,7 +100,7 @@ describe('D3 / UI-13: liczba serii roboczych na ekranach — rozgrzewka poza, dr
   });
   test('trening w toku — Kolejność liczy serie robocze, ✓ — odhaczone robocze', async () => {
     await boot(() => { S().templates.push(tplD()); store.startFromTemplate(S().templates.find(t => t.id === 'td')!); const a = S().active!; a.exercises[0].sets[0].done = true; a.exercises[0].sets[1].done = true; store.save(a); });
-    await go('/reorder?target=active'); await flushAll(10); expect(screen.getByText('3 serie · ✓ 1')).toBeTruthy();
+    await go('/reorder?target=active'); await flushAll(10); expect(screen.getByText('3 serie, ✓ 1')).toBeTruthy();
   });
   test('Historia (lista) i edycja historii: „3 serie” (edycja: „3 serie · 1 rozgrz.”); Postępy: opis uproszczenia drop setu', async () => {
     let id = ''; await boot(() => { id = sqDrop(6).id; }, '/history');

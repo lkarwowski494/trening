@@ -2,21 +2,23 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, H1, Muted, Txt, Chip, Input, Empty, H2, monoSafe, Btn, SearchField } from '@/components/ui';
-import { isDeloadWeek, useTick, exById, setSummary, fmtDate, fmtSec, fmtDist, isBW, getState, bodyMassLog, latestBodyMass, localDateTs } from '@/lib/store';
-import { sessionsFor, recordsFor, hasHistory, chartKeysFor, totalKind, fmtTotal, weeklyTotals, hasAnyHistory, weeklySplitByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, setsGoal, fmtE1, bwShare, type ChartKey } from '@/lib/stats';
-import { MUSCLES } from '@/lib/seed';
+import { Screen, H1, Muted, Chip, Empty, H2, Btn, SearchField } from '@/components/ui';
+import { isDeloadWeek, useTick, exById, finishedWorkouts, fmtDate, getState, bodyMassLog, latestBodyMass, localDateTs } from '@/lib/store';
+import { hasHistory, weeklyTotals, hasAnyHistory, weeklySplitByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, setsGoal, type ChartKey } from '@/lib/stats';
+
 import { SET_PARTS } from '@/lib/setParts';
-import { splitText, splitLabel, splitTotals, emptySplit, type SetSplit } from '@/lib/setSplit';
-import { Seg, IndirectLegend, PeriodLine, HatchBar, prevText } from '@/components/ProgressBars';
-import { LineChart, BarChart, TIME_STEPS } from '@/components/Chart';
+
+import { IndirectLegend } from '@/components/ProgressBars';
+import { LineChart, BarChart } from '@/components/Chart';
+import { exerciseParts } from '@/components/ExerciseProgress';
+import { MuscleCompare } from '@/components/MuscleCompare';
 import { PeriodSummary } from '@/components/PeriodSummary';
 import { ProgressTiles } from '@/components/Dashboard';
 import { GuardSection } from '@/components/GuardSection';
-import { useTheme, F } from '@/lib/theme';
-import { hasWeight, hasReps, hasTime, hasDistance } from '@/lib/seed';
-import { t, exName, locale, fold, lang, collator } from '@/lib/i18n';
-import { fmtW, fmtVol, volOut, wu, fmtNum, KG_PER_LB } from '@/lib/units';
+import { useTheme, font, SPACE } from '@/lib/theme';
+
+import { t, exName, fold, collator } from '@/lib/i18n';
+import { fmtW, volOut, wu, fmtNum, KG_PER_LB } from '@/lib/units';
 import { fmtDayMonth, fmtDayMonthYear } from '@/lib/calendar';
 
 /*
@@ -29,7 +31,10 @@ export default function ProgressTab() {
   /* Zakładka zostaje zamontowana po pierwszym otwarciu, a Postępy słuchają każdej zmiany stanu (useTick) — poza zakładką nie renderujemy treści,
    * żeby wpisy serii w treningu nie przeliczały wykresów w tle (jak R13-04 dla pozostałych zakładek). Stan widoku (wybrane ćwiczenie, szukanie, wykres,
    * przewinięcie) trzyma sama zakładka, a nie odmontowywana treść — po powrocie z ekranu stosu (np. „Masa ciała — pomiary”) wszystko jest jak było
-   * (audyt 0.13, 0.14.0). */
+   * (audyt 0.13, 0.14.0).
+ * M3 p3 (ZM-06, DEC-09, M1-026; design-spec §10 wiersz 7): wykres i rekordy wybranego ćwiczenia są NA GÓRZE (bez wyboru — ostatnio trenowane ćwiczenie z danymi), pod nimi wybór:
+ * chipy tylko ćwiczeń z danymi, reszta przez wyszukiwanie; potem sesje ćwiczenia i ogólny przegląd (okres vs okres, strażnik, serie per partia). Bez historii — sam
+ * pusty stan z motywem A2 i przyciskiem „Zacznij trening”. */
   const focused = useIsFocused(); const { ex: exParam } = useLocalSearchParams<{ ex?: string }>();
   const [exId, setExId] = useState(exParam ?? ''); const [q, setQ] = useState(''); const [key, setKey] = useState<ChartKey | ''>('');
   const scrollY = useRef(0);
@@ -45,94 +50,72 @@ export default function ProgressTab() {
 type View_ = { exId: string; setExId: (id: string) => void; q: string; setQ: (q: string) => void; chartKey: ChartKey | ''; setKey: (k: ChartKey | '') => void; scrollY: React.MutableRefObject<number> };
 
 function Progress({ exId, setExId, q, setQ, chartKey: key, setKey, scrollY }: View_) {
-  const { ex: exParam, s: sParam } = useLocalSearchParams<{ ex?: string; s?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
+  const { s: sParam } = useLocalSearchParams<{ s?: string }>(); useTick(); const th = useTheme(); const router = useRouter();
   /* „Szczegóły w Postępach ›” z ekranu Trening (/progress?s=guard): przewinięcie do sekcji „Strażnik progresji” (strażnik progresji, 14.10.2026); pozycję podaje onLayout sekcji */
   const listRef = useRef<ScrollView>(null); const guardY = useRef<number | null>(null); const wantGuard = useRef(false);
   const toGuard = () => { if (wantGuard.current && guardY.current != null) { wantGuard.current = false; listRef.current?.scrollTo({ y: guardY.current, animated: false }); scrollY.current = guardY.current; } };
   useEffect(() => { if (sParam === 'guard') { wantGuard.current = true; toGuard(); router.setParams({ s: '' }); /* inaczej powrót do zakładki znów przewijałby */ } }, [sParam]); // eslint-disable-line react-hooks/exhaustive-deps
   /* przewinięcie (audyt 0.13): zapamiętywane w zakładce, przywracane przy ponownym zamontowaniu treści */
-  const scroll = { onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => { scrollY.current = e.nativeEvent.contentOffset.y; }, scrollEventThrottle: 32, contentOffset: { x: 0, y: scrollY.current } };
-  const ex = exId ? exById(exId) : undefined;
+  /* E2E-05: pozycja startowa tylko raz (przy montażu treści) — contentOffset zmieniany w każdym renderze cofał przewinięcie po stuknięciu ⓘ; późniejsze przewinięcia robi scrollTo */
+  const initialOffset = useRef({ x: 0, y: scrollY.current }).current;
+  const scroll = { onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => { scrollY.current = e.nativeEvent.contentOffset.y; }, scrollEventThrottle: 32, contentOffset: initialOffset };
+  const any = hasAnyHistory();
+  const shownEx = useRef(exId); useEffect(() => { if (shownEx.current !== exId) { shownEx.current = exId; listRef.current?.scrollTo({ y: 0, animated: true }); /* nowy wykres jest na górze — pokazujemy go (tylko przy zmianie ćwiczenia) */ } }, [exId]);
+  /* ZM-06: bez wyboru na górze jest ostatnio trenowane ćwiczenie z danymi (finishedWorkouts — od najnowszego) */
+  const lastTrained = () => { for (const w of finishedWorkouts()) for (const e of w.exercises) { const x = exById(e.exerciseId); if (x && hasHistory(x.id)) return x; } return undefined; };
+  const ex = (exId ? exById(exId) : undefined) ?? (any ? lastTrained() : undefined);
   // Ćwiczenia z historią najpierw (runda 2: wcześniej 30 pierwszych alfabetycznie, bez informacji o reszcie).
   const withHist = (e: { id: string }) => hasHistory(e.id); /* runda 74: bez liczenia sesji każdego ćwiczenia */
   // Także usunięte (zarchiwizowane) ćwiczenia z historią — okno usuwania obiecuje, że wykresy zostają (runda 4).
   const pool = getState().exercises.filter(e => !e.archived || withHist(e));
   const ql = fold(q.trim()); // runda 6: spacja na końcu nie gubi wyników
-  const all = pool.filter(e => !ql || fold(e.name).includes(ql) || fold(exName(e)).includes(ql)).sort((a, b) => Number(withHist(b)) - Number(withHist(a)) || collator().compare(exName(a), exName(b)));
-  const opts = all.slice(0, 40);
+  /* ZM-06: bez wpisanego tekstu chipy tylko ćwiczeń z danymi; reszta biblioteki — przez wyszukiwanie (wyniki: z danymi najpierw) */
+  const all = pool.filter(e => ql ? fold(e.name).includes(ql) || fold(exName(e)).includes(ql) : withHist(e)).sort((a, b) => Number(withHist(b)) - Number(withHist(a)) || collator().compare(exName(a), exName(b)));
+  const opts = all.slice(0, 40); if (ex && !opts.some(o => o.id === ex.id)) opts.unshift(ex); /* wybrane ćwiczenie zawsze widać wśród chipów */
   const short = (ts: number) => fmtDayMonth(ts);
   // Runda 14: etykiety osi wykresu z rokiem, gdy nie bieżący (wykres ponad rok: „29 wrz 2025 … 29 wrz”).
   const shortY = (ts: number) => new Date(ts).getFullYear() !== new Date().getFullYear() ? fmtDayMonthYear(ts) : short(ts);
 
-  if (!ex) {
-    const weeks = weeklyTotals(8); const any = hasAnyHistory();
-    return (
-      <ScrollView ref={listRef} testID="progress-scroll-list" {...scroll} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: 40 }}>
-        {any ? <>
-          <PeriodSummary />
-          <GuardSection onLayoutY={y => { guardY.current = y; toGuard(); }} />{/* 14.10.2026: strażnik progresji — „Strażnik progresji” */}
-          <ProgressTiles />{/* 11.10.2026: „Progresja” także tu — to samo wejście co z ekranu Trening (/progression) */}
-          <H2 infoId="vol-week" info={[t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.'), ...(weeks.some(w => isDeloadWeek(w.weekStart)) ? [t('D — tydzień oznaczony jako deload.')] : [])]}>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
-          <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: volOut(w.volume) }))} fmt={v => v >= 1000 ? `${fmtNum(v / 1000, 1)}k` : `${v}`} />
-          <H2 style={{ marginTop: 14 }}>{t('Serie robocze tygodniowo')}</H2>
-          <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: w.sets }))} fmt={v => `${v}`} height={110} />
-          {weeks.some(w => isDeloadWeek(w.weekStart)) ? <Muted style={{ fontSize: 12, marginTop: 4, marginBottom: 14 }}>{t('D — tydzień deload')}</Muted> : null}
-          <H2 infoId="sets-part" info={[t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }), t('Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.', { n: WEEKLY_SETS_MARK }), t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).'), t('Uproszczenie: drop set liczy się razem z serią, po której jest.'), t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')]}>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
-          <MuscleCompare parts={SET_PARTS} curSplit={weeklySplitByMuscle(thisMonday())} prevSplit={weeklySplitByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} markOf={setsGoal} />
-          {Object.values(weeklySplitByMuscle(thisMonday())).some(x => x.indirectSets > 0) ? <IndirectLegend /> : null}
-          <H2 infoId="vol-part" info={t('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')}>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
-          <MuscleCompare cur={weeklyVolumeByMuscle(thisMonday())} prev={weeklyVolumeByMuscle(thisMonday(-1))} fmt={v => { const x = volOut(v); return x >= 10000 ? `${fmtNum(x / 1000, 1)}k` : fmtNum(Math.round(x)); }} />
-        </> : <Empty>{t('Wykresy pojawią się po pierwszym zakończonym treningu.')}</Empty>}
-        <BodyMassSection />
-        <H2 style={{ marginTop: 8 }}>{t('Ćwiczenie')}</H2>
-        <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} />
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>{opts.map(e => <Chip key={e.id} label={exName(e) + (e.archived ? ` (${t('usunięte')})` : '')} on={false} onPress={() => { setExId(e.id); setKey(''); }} />)}</View>
-        {!opts.length ? <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Nic nie pasuje.')}</Muted> : null}
-        {all.length > opts.length ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{t('Pokazano {n} z {m} — wpisz nazwę, by zawęzić.', { n: opts.length, m: all.length })}</Muted> : null}
-      </ScrollView>
-    );
-  }
-
-  const sessions = sessionsFor(ex); const rec = recordsFor(ex); const keys = chartKeysFor(ex);
-  // Runda 12: domyślnie pierwszy wykres, który ma dane (np. „max pow.” dla pompek bez dociążenia i bez masy ciała).
-  const active = keys.find(k => k.key === key) ?? keys.find(k => sessions.some(s => s[k.key] !== 0)) ?? keys[0];
-  const points = active ? sessions.filter(s => s[active.key] !== 0 || (active.key === 'maxLoad' && isBW(ex) && s.hasLoad)).map(s => ({ x: s.date, y: s[active.key], get label() { return shortY(s.shown); /* X2-02: data na zegarze strefy startu */ } /* runda 74: data formatowana tylko dla punktów, które ją pokazują (pierwszy, ostatni, najlepszy) */ })) : []; /* runda 61/62: ±0 z wykonanej serii to wynik; sesja bez wykonanej serii — brak punktu */ /* runda 61: masa ciała bez asysty (±0) to wynik — dzień bez gumy */ // asysta (ujemne ±) też jest wynikiem
-  const m = ex.metric ?? 'weight_reps'; const kg = (v: number) => fmtW(v);
-  const recRows: [string, string][] = [];
-  /* Runda 73: rekord = suma na treningu (pierwszy wiersz) + e1RM; pozostałe wiersze to maksima informacyjne */
-  { const tk = totalKind(ex); if (tk && rec.bestTotal > 0) recRows.push([tk === 'objętość treningu' ? t('Najlepszy trening (objętość)') : tk === 'suma powtórzeń' ? t('Najwięcej powtórzeń na treningu') : tk === 'łączny czas' ? t('Najdłużej łącznie na treningu') : t('Najdłuższy dystans na treningu'), fmtTotal(ex, rec.bestTotal)]); }
-  if (rec.bestE1rm) recRows.push([isBW(ex) ? 'e1RM (Epley)' : ex.loadMode === 'per_dumbbell' ? t('e1RM (Epley, per hantel)') : ex.loadMode === 'unilateral' ? t('e1RM (Epley, na stronę)') : 'e1RM (Epley)', fmtE1(ex, rec.bestE1rm, rec.bestE1rmBm)]); /* runda 59; E1 (audyt 0.10): masa ciała — „126,7 kg (masa ciała + 46,7)” */
-  /* E1: dlaczego e1RM ćwiczenia z masą ciała jest albo go nie ma (masa ciała z Ustawień, udział masy ciała ze źródeł) */
-  const sh = isBW(ex) && hasWeight(m) && hasReps(m) ? bwShare(ex) : undefined;
-  const bwNote = !isBW(ex) || !hasWeight(m) || !hasReps(m) ? '' : !sh ? t('Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.') : !bodyMassLog().length ? t('e1RM pojawi się po wpisaniu masy ciała w Postępach.') : [t('e1RM: wzór Epleya na {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).', { p: Math.round(sh * 100) }), ...(sessions.some(x => x.bodyMass == null) ? [t('Treningi sprzed pierwszego pomiaru ({d}) — bez e1RM.', { d: fmtDate(localDateTs(bodyMassLog()[0].date)) })] : [])].join(' '); /* fala 2: masa ciała z datą */
-  if (hasWeight(m) && rec.maxLoad) recRows.push([isBW(ex) ? t('Max dociążenie') : (ex.loadMode === 'per_dumbbell' ? t('Max ciężar (per hantel)') : ex.loadMode === 'unilateral' ? t('Max ciężar (na stronę)') : t('Max ciężar')), kg(rec.maxLoad)]);
-  if (rec.bestSetVolume) recRows.push([t('Najlepsza seria (objętość)'), fmtVol(rec.bestSetVolume)]);
-  if (hasReps(m) && isBW(ex)) { /* T7: jak próg rekordu — bez asysty osobno, z asystą tylko gdy więcej */ if (rec.maxRepsFree) recRows.push([t('Max powtórzeń bez asysty'), `${rec.maxRepsFree}`]); if (rec.maxReps > rec.maxRepsFree) recRows.push([t('Max powtórzeń z asystą'), `${rec.maxReps}`]); }
-  else if (hasReps(m) && rec.maxReps) recRows.push([t('Max powtórzeń w serii'), `${rec.maxReps}`]);
-  if (hasTime(m) && m !== 'distance_time' && rec.maxDuration) recRows.push([t('Najdłuższa seria'), fmtSec(rec.maxDuration)]);
-  if (hasDistance(m) && rec.maxDistance) recRows.push([t('Najdłuższy dystans'), fmtDist(rec.maxDistance)]);
-
+  /* ---------- góra ekranu: wykres i rekordy wybranego ćwiczenia (ZM-06, DEC-09) ---------- */
+  const weeks = weeklyTotals(8);
+  const parts = ex ? exerciseParts({ ex, key, setKey, th, shortY }) : null;
+  const chooser = (
+    <View testID="progress-chooser">
+      <H2 style={{ marginTop: SPACE.xl }}>{t('Ćwiczenie')}</H2>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: SPACE.s - 2, marginBottom: SPACE.s }}>{opts.map(e => <Chip key={e.id} label={exName(e) + (e.archived ? ` (${t('usunięte')})` : '')} on={e.id === ex?.id} a11yHint={e.id === ex?.id ? undefined : t('Tapnij, by wybrać inne ćwiczenie.')} onPress={() => { if (e.id !== ex?.id) { setExId(e.id); setKey(''); } }} />)}</View>
+      <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} />
+      {!all.length ? <Muted style={{ ...font('footnote'), marginTop: SPACE.s - 2 }}>{t('Nic nie pasuje.')}</Muted> : null}
+      {all.length > 40 ? <Muted style={{ ...font('footnote'), marginTop: SPACE.s - 2 }}>{t('Pokazano {n} z {m} — wpisz nazwę, by zawęzić.', { n: 40, m: all.length })}</Muted> : null}
+    </View>);
+  /* bez historii: pusty stan z motywem A2 i akcją „Zacznij trening” (ZM-06); bez wykresu, wyszukiwania i chipów */
+  if (!any) return (
+    <ScrollView ref={listRef} testID="progress-scroll" {...scroll} contentContainerStyle={{ paddingBottom: SPACE.xxxl }}>
+      <Empty>{t('Wykresy pojawią się po pierwszym zakończonym treningu.')}</Empty>
+      <Btn nav kind="primary" block testID="progress-start" title={t('Zacznij trening')} style={{ marginTop: SPACE.m }} onPress={() => router.navigate('/')} />
+      <BodyMassSection />{/* odstępstwo od „samego pustego stanu” (ZM-06): masa ciała to jedyne wejście do pomiarów i bywa wpisywana przed pierwszym treningiem (e1RM podciągania) */}
+    </ScrollView>
+  );
   return (
-    <ScrollView testID="progress-scroll" {...scroll} keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: 40 }}>
-      <Chip label={`${exName(ex)}  ✕`} a11yLabel={exName(ex)} a11yHint={t('Tapnij, by wybrać inne ćwiczenie.')} on onPress={() => { setExId(''); if (exParam) router.setParams({ ex: '' }); /* inaczej powrót do zakładki otwierałby znów to ćwiczenie */ }} />
-      {sessions.length ? <>
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 12 }}>{keys.map(k => <Chip key={k.key} label={k.label} on={active?.key === k.key} onPress={() => setKey(k.key)} />)}</View>
-        <View style={{ marginTop: 10 }}>{active ? <LineChart points={points} fmt={active.fmt} scale={active.scale} minStep={active.minStep} intOnly={active.intOnly} steps={active.time ? TIME_STEPS : undefined} /> : null}</View>
-        {recRows.length ? <View style={{ marginTop: 12, padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
-          <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{t('REKORDY')}</Muted>
-          {recRows.map(([l, v]) => <View key={l} style={{ flexDirection: 'row', justifyContent: 'space-between' }}><Muted>{l}</Muted><Txt style={{ fontFamily: F.monoBold, flexShrink: 1, textAlign: 'right', marginLeft: 8 }}>{monoSafe(v, true) /* A11-11 */}</Txt></View>)}
-        </View> : null}
-        {bwNote ? <Muted style={{ fontSize: 12, marginTop: 6 }}>{bwNote}</Muted> : null}
-        {sh ? <Btn nav small title={t('Masa ciała — pomiary')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => router.push('/more/bodymass')} /> : null}
-        <H2 style={{ marginTop: 16 }}>{t('Sesje')}</H2>
-        {[...sessions].reverse().slice(0, 20).map((s, i) => (
-          <View key={i} testID={`session-row-${i}`} style={{ paddingVertical: 8, borderBottomWidth: 1, borderBottomColor: th.line }}>
-            {/* M1-audytor-generalny-033: data w całości w pierwszym wierszu, podsumowanie pod nią (zawija się), odstęp 8 pt — zamiast rzędu „data | podsumowanie” */}
-            <Txt testID={`session-date-${i}`} style={{ fontFamily: F.semibold }}>{fmtDate(s.shown)}</Txt>
-            <Muted testID={`session-summary-${i}`} style={{ marginTop: 8 }}>{t('najlepsza')} {setSummary(ex, s.bestSet)}{s.volume ? ` · ${t('obj.')} ${fmtVol(s.volume)}` : ''}{s.bestE1rm ? ` · e1RM ${fmtW(s.bestE1rm, false)}` : ''}</Muted>
-            <Muted style={{ fontSize: 13, marginTop: 4 }}>{s.sets.map(x => setSummary(ex, x)).join(' · ')}</Muted>
-          </View>))}
-      </> : <Empty>{t('Brak zapisanych sesji z tym ćwiczeniem.')}</Empty>}
+    <ScrollView ref={listRef} testID="progress-scroll" {...scroll} keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingBottom: SPACE.xxxl }}>
+      {!parts || parts.empty ? <Empty>{t('Brak zapisanych sesji z tym ćwiczeniem.')}</Empty> : parts.top}
+      {chooser}
+      {parts?.sessions}
+      {/* znacznik początku ogólnego przeglądu; sekcje są bezpośrednio w ScrollView, żeby onLayout strażnika dawał pozycję w treści (przewinięcie z ekranu Trening) */}
+      <View testID="progress-overview" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={{ height: 0 }} />
+      <PeriodSummary />
+      <GuardSection onLayoutY={y => { guardY.current = y; toGuard(); }} />{/* 14.10.2026: strażnik progresji — „Strażnik progresji” */}
+      <ProgressTiles />{/* 11.10.2026: „Progresja” także tu — to samo wejście co z ekranu Trening (/progression) */}
+      <H2 infoId="vol-week" info={[t('Tygodnie od poniedziałku. Objętość = ciężar × powtórzenia × mnożnik ćwiczenia; rozgrzewka poza.'), ...(weeks.some(w => isDeloadWeek(w.weekStart)) ? [t('D — tydzień oznaczony jako deload.')] : [])]}>{t('Objętość tygodniowo ({u})', { u: wu() })}</H2>
+      <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: volOut(w.volume) }))} fmt={v => v >= 1000 ? `${fmtNum(v / 1000, 1)}k` : `${v}`} />
+      <H2 style={{ marginTop: 14 }}>{t('Serie robocze tygodniowo')}</H2>
+      <BarChart bars={weeks.map(w => ({ label: short(w.weekStart) + (isDeloadWeek(w.weekStart) ? ' D' : ''), value: w.sets }))} fmt={v => `${v}`} height={110} />
+      {weeks.some(w => isDeloadWeek(w.weekStart)) ? <Muted style={{ ...font('footnote'), marginTop: SPACE.xs, marginBottom: SPACE.l }}>{t('D — tydzień deload')}</Muted> : null}
+      <H2 infoId="sets-part" info={[t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }), t('Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.', { n: WEEKLY_SETS_MARK }), t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).'), t('Uproszczenie: drop set liczy się razem z serią, po której jest.'), t('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')]}>{t('Serie per partia — ten tydzień vs poprzedni')}</H2>
+      <MuscleCompare parts={SET_PARTS} curSplit={weeklySplitByMuscle(thisMonday())} prevSplit={weeklySplitByMuscle(thisMonday(-1))} fmt={v => fmtNum(v, 1)} markOf={setsGoal} />
+      {Object.values(weeklySplitByMuscle(thisMonday())).some(x => x.indirectSets > 0) ? <IndirectLegend /> : null}
+      <H2 infoId="vol-part" info={t('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')}>{t('Objętość per partia ({u}) — ten tydzień vs poprzedni', { u: wu() })}</H2>
+      <MuscleCompare cur={weeklyVolumeByMuscle(thisMonday())} prev={weeklyVolumeByMuscle(thisMonday(-1))} fmt={v => { const x = volOut(v); return x >= 10000 ? `${fmtNum(x / 1000, 1)}k` : fmtNum(Math.round(x)); }} />
+      <BodyMassSection />
     </ScrollView>
   );
 }
@@ -144,34 +127,8 @@ function BodyMassSection() {
   const points = log.map(x => ({ x: localDateTs(x.date), y: x.kg, label: fmtDayMonthYear(localDateTs(x.date)) }));
   return <>
     <H2 style={{ marginTop: 14 }}>{t('Masa ciała')}</H2>
-    <Muted style={{ fontSize: 13, marginBottom: 6 }}>{b ? t('{v} · pomiar z {d}', { v: fmtW(b.kg), d: fmtDate(localDateTs(b.date)) }) : t('nie podano — e1RM podciągania i pompek')}</Muted>
+    <Muted style={{ ...font('footnote'), marginBottom: 6 }}>{b ? t('{v} · pomiar z {d}', { v: fmtW(b.kg), d: fmtDate(localDateTs(b.date)) }) : t('nie podano — e1RM podciągania i pompek')}</Muted>
     {log.length >= 2 ? <LineChart points={points} fmt={v => fmtW(v)} scale={lb ? 1 / KG_PER_LB : 1} minStep={lb ? 0.1 : 0.01} /> : null}
     <Btn nav small title={t('Masa ciała — pomiary')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => router.push('/more/bodymass')} />
   </>;
-}
-
-/** Porównanie partii: ten tydzień vs poprzedni — DWA słupki na partię na wspólnej osi (14.10.2026): wyżej okres 1 (pełny), niżej okres 2 (szary z prążkami), przy każdym
- * nazwa okresu i liczby; serie albo objętość (06.10.2026). `mark` — pionowa kreska (pakiet C: WEEKLY_SETS_MARK przy seriach, ACSM 2026); oś obejmuje kreskę i oba słupki. */
-function MuscleCompare({ cur: curIn, prev: prevIn, curSplit, prevSplit, fmt, markOf, parts = MUSCLES }: { cur?: Record<string, number>; prev?: Record<string, number>; /** serie (13.10.2026): podział bezpośrednio / pośrednio zamiast samych sum — odcinki paska i podpis „6 + 1,5 pośrednio (3 serie) / 10” */ curSplit?: Record<string, SetSplit>; prevSplit?: Record<string, SetSplit>; fmt: (v: number) => string; /** kreska celu wiersza (serie: cel części) */ markOf?: (part: string) => number; parts?: readonly string[] }) {
-  const th = useTheme(); const cur = curSplit ? splitTotals(curSplit) : curIn ?? {}; const prev = prevSplit ? splitTotals(prevSplit) : prevIn ?? {};
-  const rows = parts.filter(mu => (cur[mu] ?? 0) > 0 || (prev[mu] ?? 0) > 0); const max = Math.max(1, ...rows.map(mu => Math.max(markOf?.(mu) ?? 0, cur[mu] ?? 0, prev[mu] ?? 0)));
-  if (!rows.length) return <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym i poprzednim tygodniu.')}</Muted>;
-  const n1 = t('Ten tydzień'), n2 = t('Poprzedni tydzień'); const prevEmpty = !rows.some(mu => (prev[mu] ?? 0) > 0);
-  return <>{rows.map(mu => { const c = cur[mu] ?? 0, p = prev[mu] ?? 0; const mark = markOf?.(mu); const label = t(mu); const sp = curSplit ? curSplit[mu] ?? emptySplit() : undefined; const ind = sp?.indirectWeighted ?? 0;
-    const shown = sp ? splitText(sp, mark) : fmt(c); const bid = curSplit ? 'cbar' : 'cvol'; const kind = curSplit ? 'sets' : 'vol'; /* serie / objętość: osobne testID */ const pv = prevText(p, fmt, prevEmpty);
-    return (
-    <View accessibilityLanguage={lang()} testID={`crow-${kind}-${mu}`} key={mu} style={{ marginBottom: 10 }} accessible accessibilityLabel={`${label}: ${n1} ${sp ? splitLabel(sp) : fmt(c)}, ${n2} ${pv}${mark ? ', ' + t('cel {n}', { n: fmt(mark) }) : ''}${mark && c >= mark ? ', ' + t('co najmniej {n}', { n: mark }) : ''}`}>
-      <Txt style={{ fontSize: 14 }}>{label}</Txt>
-      <PeriodLine n={1} id={`${kind}-${mu}`} name={n1} text={shown}>
-        <View style={{ height: 8, backgroundColor: th.line, borderRadius: 4 }}>
-          <View testID={`${bid}-${mu}`} style={{ width: `${Math.round(100 * c / max)}%`, height: 8, borderRadius: 4, overflow: 'hidden', flexDirection: 'row' }}>
-            {c - ind > 0 ? <Seg testID={`${bid}-${mu}-direct`} width={`${(100 * (c - ind)) / c}%`} color={th.accent} /> : null}
-            {ind > 0 ? <Seg testID={`${bid}-${mu}-indirect`} width={`${(100 * ind) / c}%`} color={th.accent} indirect edge={c - ind > 0} /> : null}
-          </View>
-          {c === 0 ? <View testID={`${bid}-${mu}-zero`} style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, backgroundColor: th.accent, borderRadius: 4 }} /> : null}
-          {mark ? <View testID={`mark-${mu}`} style={{ position: 'absolute', left: `${Math.round(100 * mark / max)}%`, top: -3, width: 2, height: 14, marginLeft: -1, backgroundColor: th.text }} /> : null}
-        </View>
-      </PeriodLine>
-      <PeriodLine n={2} id={`${kind}-${mu}`} name={n2} text={pv}><HatchBar testID={`${bid}-prev-${mu}`} pct={Math.round(100 * p / max)} /></PeriodLine>
-    </View>); })}</>;
 }

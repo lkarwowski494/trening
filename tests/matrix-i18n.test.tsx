@@ -43,8 +43,8 @@ const SAME_ANY = new Set([
 /** W jednym języku: wyraz pokrewny o tym samym zapisie i znaczeniu (słowa sprawdzone w języku docelowym). */
 const SAME_IN: Partial<Record<Lang, string[]>> = {
   cs: ['Od: {day}', 'Do: {day}' /* 0.19: cs/sk/hr/sl „Od / Do” = „od / do” (zakres dni miejsca w planie) */, 'sekunda|sekundy|sekund' /* cs: sekunda = to samo słowo (głos 14.10.2026) */, 'rok' /* rok = rok (0.17.0, okres rozliczenia) */, 'minuta|minuty|minut' /* cs: minuta|minuty|minut = to samo słowo (0.16.0) */, 'guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.' /* strana */, 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…' /* guma (UI2-09) */, 'do', 'od', 'krok', 'obj.' /* objem */, 'REKORDY', 'Guma: {b}' /* guma (A11-18: etykieta bez instrukcji) */ /* „pauza” (08.10.2026) usunięte 09.10.2026: pauza treningu = „pozastavit”, A11-01 */],
-  sk: ['Od: {day}', 'Do: {day}' /* 0.19: cs/sk/hr/sl „Od / Do” = „od / do” (zakres dni miejsca w planie) */, 'metra' /* sk: genitív sg. „metra” = polski zapis (forma przy ułamku, głos 14.10.2026) */, 'rok' /* rok = rok (0.17.0) */, 'guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', 'Teraz: {v}' /* teraz = teraz (słow.) */, 'Guma: {b}' /* A11-18 */ /* „pauza” usunięte 09.10.2026: pauza treningu = „pozastaviť”, A11-01 */],
-  hr: ['jarda' /* hr/sl: jarda = jard (yd), ten sam zapis co polski mianownik (LOK07-01) */, 'Od: {day}', 'Do: {day}' /* 0.19: cs/sk/hr/sl „Od / Do” = „od / do” (zakres dni miejsca w planie) */, 'metra', 'kilograma' /* hr/sl: dopełniacz lp. „kilograma” = polski zapis (forma przy ułamku, głos 14.10.2026) */, 'Dodaj plan' /* chorw. „dodaj plan” = to samo (13.10.2026) */, 'guma: {v}' /* guma (07.10.2026) */, 'Masa' /* masa = masa (chorw., cel generatora 08.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', '⏸ Pauza' /* pauza = pauza (08.10.2026) */, 'Dodane: {list}.' /* dodane = dodane (chorw., ćwiczenia z treningu do szablonu, audyt 0.10 H5) */],
+  sk: ['Od: {day}', 'Do: {day}' /* 0.19: cs/sk/hr/sl „Od / Do” = „od / do” (zakres dni miejsca w planie) */, 'metra' /* sk: genitív sg. „metra” = polski zapis (forma przy ułamku, głos 14.10.2026) */, 'rok' /* rok = rok (0.17.0) */, 'guma: {v}' /* guma (07.10.2026) */, '{n} z {all}', '{n} z {m}', '{u}/str.', 'guma', 'Guma', 'gumy', 'Gumy', 'Gumy…', 'do', 'od', 'krok', 'obj.', 'REKORDY', 'nie', 'Nie' /* „nie” = nie (słow.) */, 'Partia' /* svalová partia */, 'sek.', /* M3 p2: „Teraz: {v}” usunięte (opis tablicy dla VoiceOver zastąpił etykietę „Teraz: …”) */ 'Guma: {b}' /* A11-18 */ /* „pauza” usunięte 09.10.2026: pauza treningu = „pozastaviť”, A11-01 */],
+  hr: ['jarda' /* hr/sl: jarda = jard (yd), ten sam zapis co polski mianownik (LOK07-01) */, 'Od: {day}', 'Do: {day}' /* 0.19: cs/sk/hr/sl „Od / Do” = „od / do” (zakres dni miejsca w planie) */, 'metra', 'kilograma' /* hr/sl: dopełniacz lp. „kilograma” = polski zapis (forma przy ułamku, głos 14.10.2026) */, 'Dodaj plan' /* chorw. „dodaj plan” = to samo (13.10.2026) */, 'guma: {v}' /* guma (07.10.2026) */, 'Masa' /* masa = masa (chorw., cel generatora 08.10.2026) */, '{u}/str.' /* strana */, 'do', 'od', 'Dom', 'normalna', 'sek.', 'Trening' /* APP_NAME.hr */, 'pauza', 'Pauza' /* pauza = pauza (08.10.2026) */, 'Dodane: {list}.' /* dodane = dodane (chorw., ćwiczenia z treningu do szablonu, audyt 0.10 H5) */],
   sl: ['jarda' /* hr/sl: jarda = jard (yd) (LOK07-01) */, 'Od: {day}', 'Do: {day}' /* 0.19: cs/sk/hr/sl „Od / Do” = „od / do” (zakres dni miejsca w planie) */, 'metra', 'kilograma', 'funta' /* sl: dopełniacz lp. = polski zapis (forma przy ułamku, głos 14.10.2026) */, '{u}/str.' /* stran */, 'do', 'od', 'Dom', 'sek.', 'Trening' /* APP_NAME.sl */, 'Treningi' /* sl: mn. „trening” — to samo słowo */, 'Dodane: {list}.' /* dodane = dodane (słoweń., audyt 0.10 H5) */],
   ro: ['seria {n}', 'Seria {n}', 'Seria {n} — {ex}', 'serii', 'e1RM {v} (seria {s})' /* rum. seria = seria (forma z rodzajnikiem), serii = serie */],
   lt: ['guma: {v}' /* guma (07.10.2026) */, '{u}/hant.' /* hantelis */, 'guma', 'Guma', 'Guma: {b}' /* guma */, 'sek.'],
@@ -250,7 +250,9 @@ function ttf(file: string) {
 const FONT_DIR = require('path').join(__dirname, '..', 'node_modules', '@expo-google-fonts') as string;
 const SANS = { regular: ttf(`${FONT_DIR}/ibm-plex-sans/400Regular/IBMPlexSans_400Regular.ttf`), semibold: ttf(`${FONT_DIR}/ibm-plex-sans/600SemiBold/IBMPlexSans_600SemiBold.ttf`) };
 const BOLD = ttf(`${FONT_DIR}/ibm-plex-sans/700Bold/IBMPlexSans_700Bold.ttf`); /* nagłówki i duże liczby (decyzja właściciela 07.10.2026 wieczór: zamiast Tektur) */
-const PLEX = ttf(`${FONT_DIR}/ibm-plex-mono/500Medium/IBMPlexMono_500Medium.ttf`);
+/* Szerokości tekstu krojem systemowym (SF Pro) szacujemy dalej krojem IBM Plex Sans (pakiet w devDependencies — tylko do pomiaru, nie jest dołączony do aplikacji od M3). */
+const BARLOW_DIR = require('path').join(__dirname, '..', 'assets', 'fonts') as string;
+const BARLOW = { semibold: ttf(`${BARLOW_DIR}/BarlowCondensed-SemiBold.ttf`), bold: ttf(`${BARLOW_DIR}/BarlowCondensed-Bold.ttf`) }; /* tytuły i liczby od M3 (STOP E3, docs/18) */
 const trIn = (l: Lang, k: string) => l === 'pl' ? k : dictOf(l)[k] ?? EN[k] ?? k;
 /**
  * Fala 4 (09.10.2026): jednostki, między którymi wolno złamać wiersz. Bez pisma CJK — wyrazy rozdzielone spacją (jak dotąd, bez zmian dla innych
@@ -285,37 +287,34 @@ const words = (s: string) => units(s).map(u => u.t);
 /** Litery (\p{L}) użyte w tekstach języka — bez symboli (strzałki, ★, ✓ są celowo z kroju systemowego, także po polsku). */
 const lettersOf = (l: Lang) => [...new Set((l === 'pl' ? SOURCE : Object.values(dictOf(l))).join('').match(/\p{L}/gu) ?? [])];
 
-describe('kroje pisma marki (IBM Plex Sans 400/600/700, IBM Plex Mono) mają znaki każdego języka', () => {
+describe('kroje pisma marki (Barlow Condensed 600/700 — tytuły i liczby; treść krojem systemowym) i pisma zastępcze każdego języka', () => {
   /* @matrix LANGS */
-  /* Styl „Tuleja” (decyzja właściciela 07.10.2026, wariant A „mieszany”): jeden zestaw krojów dla każdego języka — wcześniej Archivo bez cyrylicy
-   * wymagał zamiany kroju dla bg/sr/uk (06.10.2026). Każda litera tłumaczeń musi być w kroju tekstu (Plex Sans 400/600) i nagłówków (Plex Sans 700; do 07.10.2026 wieczór Tektur). */
-  /* Fala 4 (09.10.2026, docs/16, wariant A): wyjątek tylko dla pisma CJK (FALLBACK_SCRIPTS — kana, kanji, hangul) w ja, ko, zh-Hant; łacina w tych
-   * językach (RPE, kg, nazwy ćwiczeń) dalej musi być w Plex, a w żadnym innym języku nie ma znaków CJK. */
+  /* M3 (STOP E3, docs/18; dawniej IBM Plex Sans/Mono, styl „Tuleja” z 07.10.2026): treść i przyciski idą krojem systemowym iOS (SF Pro ma łacinę, grekę i cyrylicę), a Barlow
+   * Condensed — tytuły, tablica i liczby — nie ma greki ani cyrylicy. Reguła: każda litera tłumaczeń jest w Barlow (SemiBold i Bold) ALBO należy do pism idących celowo krojem
+   * zastępczym systemu (FALLBACK_SCRIPTS: grecki, cyrylica, CJK); żadnej innej litery (łacina, rozszerzenia) kroj zastępczy nie ratuje po cichu. */
   const CJK_LANGS: readonly Lang[] = ['ja', 'ko', 'zh-Hant'];
-  test.each([...LANGS])('%s: każda litera tłumaczeń jest w IBM Plex Sans 400/600/700 (bez zastępowania krojem systemowym; ja/ko/zh-Hant — tylko pismo CJK krojem zastępczym)', l => {
-    expect([l, lettersOf(l).filter(ch => !(SANS.regular.has(ch) && SANS.semibold.has(ch) && BOLD.has(ch)) && !(CJK_LANGS.includes(l) && FALLBACK_SCRIPTS.test(ch))).join('')]).toEqual([l, '']);
-    if (!CJK_LANGS.includes(l)) expect([l, lettersOf(l).filter(ch => FALLBACK_SCRIPTS.test(ch)).join('')]).toEqual([l, '']);
-    else expect([l, lettersOf(l).filter(ch => FALLBACK_SCRIPTS.test(ch)).length > 100]).toEqual([l, true]); /* kontrola: słownik naprawdę w piśmie CJK */
+  const SCRIPT_LANGS: readonly Lang[] = ['el', 'bg', 'ru', 'uk', 'sr'];
+  test.each([...LANGS])('%s: każda litera tłumaczeń jest w Barlow Condensed 600/700 albo w piśmie zastępczym (FALLBACK_SCRIPTS)', l => {
+    expect([l, lettersOf(l).filter(ch => !(BARLOW.semibold.has(ch) && BARLOW.bold.has(ch)) && !FALLBACK_SCRIPTS.test(ch)).join('')]).toEqual([l, '']);
+    const fallback = lettersOf(l).filter(ch => FALLBACK_SCRIPTS.test(ch));
+    if (CJK_LANGS.includes(l)) expect([l, fallback.length > 100]).toEqual([l, true]); /* kontrola: słownik naprawdę w piśmie CJK */
+    else if (SCRIPT_LANGS.includes(l)) expect([l, fallback.length > 20]).toEqual([l, true]); /* grecki / cyrylica: kontrola jak wyżej */
+    else expect([l, fallback.join('')]).toEqual([l, '']); /* łacińskie: żadnej litery w piśmie zastępczym */
   });
-  test('jeden zestaw krojów dla wszystkich języków: F wskazuje Plex Sans / Plex Mono, każdy z plikiem; bez Tektur', () => {
+  test('FALLBACK_SCRIPTS nie obejmuje żadnej litery, którą Barlow ma (zakresy nie „łapią” łaciny)', () => {
+    for (let cp = 0x20; cp < 0x250; cp++) { const ch = String.fromCodePoint(cp); if (BARLOW.bold.has(ch)) expect([ch, FALLBACK_SCRIPTS.test(ch)]).toEqual([ch, false]); }
+    for (const ch of [...'αωάЖжщя']) expect([ch, BARLOW.bold.has(ch)]).toEqual([ch, false]); /* fakt z E3 przypięty: Barlow nie ma greki ani cyrylicy */
+  });
+  test('jeden zestaw krojów dla wszystkich języków: FONT_FILES = Barlow 600/700 (każdy z plikiem), treść krojem systemowym; bez IBM Plex i Tektur', () => {
     const th = require('@/lib/theme');
-    expect([th.F.regular, th.F.semibold, th.F.heavy, th.F.display]).toEqual(['IBMPlexSans_400Regular', 'IBMPlexSans_600SemiBold', 'IBMPlexSans_700Bold', 'IBMPlexSans_700Bold']);
-    expect(Object.keys(th.FONT_FILES).sort()).toEqual([...new Set(Object.values(th.F).map(String))].sort());
-    expect(JSON.stringify(Object.keys(th.FONT_FILES))).not.toMatch(/Tektur/); expect(require('../package.json').dependencies['@expo-google-fonts/tektur']).toBeUndefined();
+    expect([th.F.heavy, th.F.display, th.F.mono, th.F.monoBold]).toEqual(['BarlowCondensed_700Bold', 'BarlowCondensed_700Bold', 'BarlowCondensed_600SemiBold', 'BarlowCondensed_700Bold']);
+    expect([th.F.regular, th.F.semibold]).toEqual(['System', 'System']);
+    expect(Object.keys(th.FONT_FILES).sort()).toEqual(['BarlowCondensed_600SemiBold', 'BarlowCondensed_700Bold']);
+    expect(JSON.stringify(Object.keys(th.FONT_FILES))).not.toMatch(/Tektur|IBMPlex/); expect(require('../package.json').dependencies['@expo-google-fonts/tektur']).toBeUndefined();
     expect(th.applyFontsFor).toBeUndefined(); expect(th.CYRILLIC_LANGS).toBeUndefined();
   });
-  test('IBM Plex Sans Bold (duże liczby w widoku skupionym) ma cyfry i znaki liczb (przecinek, kropka, ×, :)', () => {
-    expect([...'0123456789,.:×−-'].filter(ch => !BOLD.has(ch))).toEqual([]);
-  });
-  /* Audyt 0.10 (A11-11): docs/16 twierdził, że Plex Mono ma greckie litery — nie ma. Litery, których brakuje w Plex Mono, to dokładnie te, które
-   * monoSafe (components/ui.tsx) przełącza na krój tekstu; inne litery (łacina, cyrylica) są w Plex Mono. */
-  test.each([...LANGS])('%s: litery spoza IBM Plex Mono to tylko te, które monoSafe przełącza na Plex Sans (MONO_MISSING)', l => {
-    const { MONO_MISSING } = require('@/components/ui') as typeof import('@/components/ui');
-    expect([l, lettersOf(l).filter(ch => !PLEX.has(ch) && !MONO_MISSING.test(ch) && !(CJK_LANGS.includes(l) && FALLBACK_SCRIPTS.test(ch)) /* fala 4: CJK — krój zastępczy w Plex Sans i Mono jednakowo */).join('')]).toEqual([l, '']);
-    if (l === 'el') expect(lettersOf(l).filter(ch => /\p{Script=Greek}/u.test(ch)).some(ch => !PLEX.has(ch))).toBe(true); /* fakt z A11-11 przypięty */
-  });
-  test('IBM Plex Mono (liczby: czas, ciężar) ma cyfry i znaki liczb we wszystkich regionach (przecinek, kropka, minus U+2212, ×, –, :)', () => {
-    expect([...'0123456789,.:−-+×–—…/ ±%'].filter(ch => ch !== ' ' && !PLEX.has(ch))).toEqual([]);
+  test('Barlow Condensed (liczby: czas, ciężar, powtórzenia) ma cyfry i znaki liczb we wszystkich regionach (przecinek, kropka, minus U+2212, ×, –, :) w obu wagach', () => {
+    for (const f of [BARLOW.semibold, BARLOW.bold]) expect([...'0123456789,.:−-+×–—…/ ±%'].filter(ch => ch !== ' ' && !f.has(ch))).toEqual([]);
   });
 });
 
@@ -375,11 +374,30 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
     }
     expect([l, bad]).toEqual([l, []]);
   });
+  /* p5d (21.10.2026): segLayout (components/ui.tsx) zastępuje 2-liniowe zawijanie opcji układem w jednej linii albo jedna pod drugą. Szacunek szerokości (segEm) musi
+   * być nie mniejszy niż prawdziwa szerokość kroju (IBM Plex Sans półgruby jest szerszy od systemowego, więc to zapas) w KAŻDYM języku — inaczej układ
+   * uznałby, że etykieta się mieści, a krój zmniejszyłby ją poniżej SEG_MIN_SCALE albo uciął. Plus wynik układu na ekranach 390 i 320 pt w pl i en. */
+  test.each([...LANGS])('%s: segEm nie zaniża szerokości etykiet kontrolek Ustawień (Wygląd, System miar, Widok treningu, Zapowiedzi głosowe)', l => {
+    const { segEm } = require('@/components/ui') as typeof import('@/components/ui'); const px = 15;
+    const SEGS = [['Jasny', 'Ciemny', 'Jak w telefonie'], ['metryczny (kg, km, m)', 'imperialny (lb, mi, yd)'], ['Skupiony', 'Lista'], ['Wyłączone', 'W słuchawkach', 'Także przez głośnik']];
+    const est = (x: string) => segEm(x) * px, real = (x: string) => SANS.semibold.width(x, px); const bad: string[] = [];
+    for (const keys of SEGS) {
+      const tr = keys.map(k => trIn(l, k));
+      if (tr.reduce((a, x) => a + est(x), 0) < tr.reduce((a, x) => a + real(x), 0)) bad.push(`suma ${tr.join(' | ')}`); /* układ „weighted” i „column” liczy sumę */
+      for (const x of tr) if (est(x) < 0.9 * real(x)) bad.push(`${x}: ${est(x).toFixed(1)} < 0,9 × ${real(x).toFixed(1)}`); /* układ „equal” liczy najdłuższą; systemowy krój ≈ 10% węższy od IBM Plex Sans (zapas wyżej) */
+    }
+    expect([l, bad]).toEqual([l, []]);
+  });
+  test.each([['pl', 390], ['en', 390]] as const)('%s przy %s pt: wszystkie kontrolki Ustawień mieszczą się w jednym rzędzie (bez zawijania i bez układu kolumnowego)', (l, w) => {
+    const { segLayout } = require('@/components/ui') as typeof import('@/components/ui'); const width = w - 2 * 16;
+    const SEGS = [['Jasny', 'Ciemny', 'Jak w telefonie'], ['metryczny (kg, km, m)', 'imperialny (lb, mi, yd)'], ['Skupiony', 'Lista'], ['Wyłączone', 'W słuchawkach', 'Także przez głośnik']];
+    expect(SEGS.map(keys => segLayout(keys.map(k => trIn(l, k)), width, 15)).filter(m => m === 'column')).toEqual([]);
+  });
   /* 09.10.2026 (B): wybór trybu generatora („Nowe szablony i plan” / „Plan z moich szablonów”) — chipy w wierszu z zawijaniem (components/ui Chip:
    * 13 pt półgruby, padding 12, ramka 1); na 320 pt każdy wyraz mieści się w chipie na pełnej szerokości (bez łamania w środku wyrazu), także przy 200%. */
   test.each([...LANGS])('%s: chipy trybu generatora na ekranie 320 pt — żaden wyraz szerszy niż chip', l => {
     const avail = 320 - 2 * 14 - 2 * 12 - 2 * 1; const bad: string[] = [];
-    for (const k of ['Nowe szablony i plan', 'Plan z moich szablonów']) for (const x of words(trIn(l, k))) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
+    for (const k of ['Plan z moich szablonów'] /* M3 p4 ZM-03: przełącznik trybu generatora zniknął; zostaje przycisk „Plan z moich szablonów” w Planowaniu (Btn small) */) for (const x of words(trIn(l, k))) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
     expect([l, bad]).toEqual([l, []]);
   });
   /* Korekta właściciela 09.10.2026 ok. 17:00: postęp tygodnia „60% planu tygodnia (3 z 5)” obok stosów talerzy (components/WeekStacks: 15 pt półgruby,
@@ -447,7 +465,7 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
   });
   test('czytnik TTF liczy szerokości jak krój (kontrola: „i” węższe niż „m”, szerokość rośnie liniowo z rozmiarem)', () => {
     const f = SANS.semibold; expect(f.width('i', 10)).toBeLessThan(f.width('m', 10)); expect(f.width('Trening', 20)).toBeCloseTo(2 * f.width('Trening', 10), 6);
-    expect(f.has('ą') && f.has('ő') && f.has('ș') && f.has('ė') && f.has('ā')).toBe(true); expect(PLEX.width('0000', 10)).toBeCloseTo(4 * PLEX.width('0', 10), 6);
+    expect(f.has('ą') && f.has('ő') && f.has('ș') && f.has('ė') && f.has('ā')).toBe(true); expect(BARLOW.semibold.width('0000', 10)).toBeCloseTo(4 * BARLOW.semibold.width('0', 10), 6) /* cyfry Barlow o stałej szerokości (tabular) */;
   });
 });
 

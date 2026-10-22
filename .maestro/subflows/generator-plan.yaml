@@ -11,12 +11,8 @@ appId: pl.lukasz.trening
 - scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
 - scrollUntilVisible: { element: "Save templates and plan", direction: DOWN, timeout: 30000 }  # bez centerElement: przycisk jest na końcu listy i nie da się go wyśrodkować (run 38369572843, zrzut: widoczny na dole)
 - tapOn: "Save templates and plan"
-- extendedWaitUntil: { visible: "Make the new plan active\\?", timeout: 15000 }
-- tapOn: "Make active"
-- tapOn: { text: "Not now", optional: true }
-- extendedWaitUntil: { visible: "Saved", timeout: 15000 }
-- tapOn: "Planning"
-- tapOn: { text: "Not now", optional: true }
+- tapOn: { text: "Not now", optional: true }  # zgoda na przypomnienie (pierwszy plan); ZM-03: bez pytania „Make the new plan active?” i bez okna „Saved” — plan aktywny, zdanie na ekranie planu
+- extendedWaitUntil: { visible: "The plan .* is now active\\.", timeout: 30000 }
 - extendedWaitUntil: { visible: "Monday, Full Body A", timeout: 30000 }
 - scrollUntilVisible: { element: "Saturday, Full Body A", direction: DOWN, timeout: 30000 }
 - tapOn: "Back"

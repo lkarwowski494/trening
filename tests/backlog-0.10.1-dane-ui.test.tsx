@@ -135,7 +135,7 @@ describe('X-11: prośba o zgodę na powiadomienia przy KAŻDEJ drodze powstania 
   test('X-11: generator „Ustaw jako aktywny” na świeżej instalacji, zgoda nieustalona → wyjaśnienie i prośba (jedno okno)', async () => {
     await bootPlan(() => {}, '/generator'); expect(plan.hasPlan()).toBe(false);
     await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5);
-    await act(async () => { pressAlert('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny'); }); await flushAll(10);
+    await flushAll(10); /* ZM-03 (21.10.2026): bez aktywnego planu zapis aktywuje plan bez pytania */
     expect(plan.hasPlan()).toBe(true); expect(global.__alerts.filter(a => a.title === REM)).toHaveLength(1);
   });
   test('X-11: Plan tygodnia → „Ustaw jako aktywny” zapisanego planu przy braku planu → prośba (jedno okno)', async () => {

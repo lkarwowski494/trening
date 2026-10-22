@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, Animated, PanResponder, Platform, ScrollView, Text, View, type PanResponderInstance, type StyleProp, type ViewStyle } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import { useTheme } from '@/lib/theme';
+import { useTheme, font } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
+import { hapticsOn } from '@/lib/haptics';
 
 /*
  * T-010 (02.10.2026): lista z przeciąganiem za uchwyt „≡”. Bez nowych modułów natywnych — PanResponder + Animated z RN
@@ -41,7 +42,8 @@ export function DragScroll({ children, contentContainerStyle }: { children: Reac
   </ScrollCtx.Provider>;
 }
 
-const haptic = (kind: 'pick' | 'tick') => { if (Platform.OS === 'web') return; (kind === 'pick' ? Haptics.impactAsync?.(Haptics.ImpactFeedbackStyle?.Light) : Haptics.selectionAsync?.())?.catch?.(() => {}); };
+/** Wibracja przeciągania (chwyt / mijany wiersz) — tylko przy włączonych „Wibracjach” (ZM-07; lib/haptics hapticsOn). */
+export const dragHaptic = (kind: 'pick' | 'tick') => { if (Platform.OS === 'web' || !hapticsOn()) return; (kind === 'pick' ? Haptics.impactAsync?.(Haptics.ImpactFeedbackStyle?.Light) : Haptics.selectionAsync?.())?.catch?.(() => {}); };
 
 type Props<T> = {
   items: T[]; keyOf: (x: T) => string; /** nazwa dla VoiceOver */ label: (x: T) => string;
@@ -60,13 +62,13 @@ export function DragList<T>({ items, keyOf, label, onMove, renderItem }: Props<T
   const shift = (to: number) => { const s = d.current; const h = s.hs[s.from] ?? 0;
     s.keys.forEach((k, i) => { if (i === s.from) return; const v = s.from < i && i <= to ? -h : to <= i && i < s.from ? h : 0; Animated.timing(av(k), { toValue: v, duration: 120, useNativeDriver: NATIVE }).start(); }); };
   const update = () => { const s = d.current; if (!s.key) return; const total = s.dy + (sc ? sc.offset() - s.scroll0 : 0); av(s.key).setValue(total);
-    const to = dropIndex(s.hs, s.from, total); if (to !== s.to) { s.to = to; shift(to); haptic('tick'); } };
+    const to = dropIndex(s.hs, s.from, total); if (to !== s.to) { s.to = to; shift(to); dragHaptic('tick'); } };
   const stopAuto = () => { const s = d.current; if (s.timer) clearInterval(s.timer); s.timer = null; s.dir = 0; };
   const fns = useRef({ begin: (_k: string) => {}, move: (_dy: number, _y: number) => {}, end: (_c: boolean) => {} });
   fns.current = {
     begin: k => { const s = d.current; if (s.key) return; const ks = latest.current.keys; const from = ks.indexOf(k); if (from < 0) return;
       Object.assign(s, { key: k, from, to: from, keys: ks, hs: ks.map(x => heights.current.get(x) ?? 0), dy: 0, scroll0: sc?.offset() ?? 0, reset: false });
-      sc?.lock(true); setActive(k); haptic('pick'); },
+      sc?.lock(true); setActive(k); dragHaptic('pick'); },
     move: (dy, pageY) => { const s = d.current; if (!s.key) return; s.dy = dy; update();
       const dir = sc?.edge(pageY) ?? 0; s.dir = dir;
       if (dir && !s.timer && sc) s.timer = setInterval(() => { if (!d.current.dir) return; if (sc.step(d.current.dir)) update(); }, 16);
@@ -95,7 +97,7 @@ export function DragList<T>({ items, keyOf, label, onMove, renderItem }: Props<T
       accessibilityValue={{ text: t('{n} z {all}', { n: i + 1, all: items.length }) }} accessibilityActions={[...acts, ...acts.map(a => ({ name: a.name === 'up' ? 'decrement' : 'increment' }))]}
       onAccessibilityAction={e => { const n = e.nativeEvent.actionName; const to = n === 'up' || n === 'decrement' ? i - 1 : n === 'down' || n === 'increment' ? i + 1 : i; if (to !== i && to >= 0 && to < items.length && latest.current.onMove(k, to) !== false) AccessibilityInfo.announceForAccessibility?.(t('{n} z {all}', { n: to + 1, all: latest.current.n })); }}
       hitSlop={6} style={{ width: 40, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}>
-      <Text accessibilityLanguage={lang()} style={{ color: dragging ? th.accent : th.muted, fontSize: 22, lineHeight: 24 }} maxFontSizeMultiplier={1.3}>≡</Text></View>;
+      <Text accessibilityLanguage={lang()} style={{ color: dragging ? th.accent : th.muted, ...font('boardField') }} maxFontSizeMultiplier={1.3}>≡</Text></View>;
     return <Animated.View key={k} onLayout={e => { heights.current.set(k, e.nativeEvent.layout.height); }}
       style={{ transform: [{ translateY: av(k) }], zIndex: dragging ? 10 : 0, ...(dragging ? { shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 10, shadowOffset: { width: 0, height: 4 } } : null) }}>
       {renderItem(x, handle, dragging)}</Animated.View>; })}</View>;

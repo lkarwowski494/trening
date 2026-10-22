@@ -1,9 +1,11 @@
 // Pierwszy krok `npm run verify` (L-014, decyzja właściciela 21.10.2026): hak pre-push musi być zainstalowany.
 // `prepare` (instaluj.mjs) nie biegnie przy `npm ci --ignore-scripts`, a wtedy czerwony commit można wypchnąć bez sprawdzeń (L-009, L-014).
-// OK, gdy hak, który git wywoła przy pushu, to scripts/hooks/pre-push (core.hooksPath) albo plik w katalogu haków repozytorium (.git/hooks).
+// OK, gdy hak, który git wywoła przy pushu (wg core.hooksPath albo .git/hooks), jest wykonywalny i ma TĘ SAMĄ TREŚĆ co scripts/hooks/pre-push
+// bieżącego checkoutu. Porównujemy treść, nie ścieżkę: core.hooksPath bywa bezwzględne i wskazuje scripts/hooks innego worktree tego samego repo
+// (konfiguracja jest wspólna dla worktree), a to nadal ten sam hak (22.10.2026).
 // W CI (zmienna CI) i poza repozytorium git (paczka) sprawdzenie pomijamy z komunikatem.
 import { execFileSync } from 'node:child_process';
-import { accessSync, constants, existsSync, realpathSync } from 'node:fs';
+import { accessSync, constants, existsSync, readFileSync, realpathSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const git = (...args) => execFileSync('git', args, { stdio: ['ignore', 'pipe', 'ignore'], encoding: 'utf8' }).trim();
@@ -16,8 +18,7 @@ let ok = false;
 try {
   const hak = rzecz(git('rev-parse', '--path-format=absolute', '--git-path', 'hooks/pre-push'));
   const naszHak = rzecz('scripts/hooks/pre-push');
-  const wGicie = join(rzecz(git('rev-parse', '--path-format=absolute', '--git-common-dir')), 'hooks', 'pre-push');
-  if (existsSync(hak) && (hak === naszHak || hak === wGicie)) { accessSync(hak, constants.X_OK); ok = true; }
+  if (existsSync(hak) && readFileSync(hak, 'utf8') === readFileSync(naszHak, 'utf8')) { accessSync(hak, constants.X_OK); ok = true; }
 } catch { /* brak gita albo hak nie do wykonania — traktujemy jak brak instalacji */ }
 
 if (!ok) {

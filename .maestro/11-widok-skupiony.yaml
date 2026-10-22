@@ -5,7 +5,9 @@
 #   "Full gym,.*"                 ← LOCATION_PRESET_LABEL.gym.en + hint (preset: sztanga 20 kg + talerze 25…1,25)
 #   "Back Squat,.*"               ← nazwa z lib/seed.ts (picker: „{nazwa}, …”)
 #   w-0-0 / r-0-0                 ← testID pól ciężaru i powtórzeń serii (components/ActiveWorkout.tsx)
-#   "Now: 80 kg × 5"              ← 'Teraz: {v}' (karta „teraz”, accessibilityLabel dużej liczby; audyt 0.10 UI-10: jednostka przy ciężarze)
+#   "Back Squat, set 1 of 1\\. 80 kilograms, 5 reps.*" ← opis tablicy „teraz” (M3 p2, ZM-01: accessibilityLabel grupy; liczby czytane z jednostką)
+#   board-input-weight / board-value-reps ← testID pola ciężaru (wpis na tablicy) i liczby powtórzeń (stuknięcie otwiera wpis)
+#   "Increase weight by 2.5 kg" / "Decrease weight by 2.5 kg" / "Add one rep" / "Remove one rep" ← przyciski ± tablicy
 #   "Each side.*"                 ← dawne 'Na każdą stronę: {p}' (pasek talerzy usunięty 20.10.2026) — assertNotVisible
 #   "Set done.*"                  ← 'Seria zrobiona' (przycisk karty); etykieta VoiceOver „Set done: {ex}, set {n}” zastępuje tekst
 #                                   przycisku w drzewie dostępności — sam „Set done” nie pasuje (run 37600735711, krok 27)
@@ -48,33 +50,48 @@ name: Widok skupiony (bez paska talerzy)
 - tapOn: "\\+ Add exercise"
 - tapOn: "Search exercises…"
 - inputText: "Back Squat"
+- pressKey: Enter   # po wpisie w polu szukania ćwiczeń zawsze Enter (reguła z main) — klawiatura znika, lista zostaje przefiltrowana
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Back Squat,.*"
 - extendedWaitUntil: { visible: "Set done.*", timeout: 30000 }
-- takeScreenshot: 40-karta-teraz-pusta
-- tapOn: { id: "w-0-0" }
-- inputText: "80"
-# E2E 91 (run z 1080a40): klawiatura numeryczna zasłania wiersz serii (karta „teraz” + licznik postępu nad wierszem) — tap w „r-0-0” przy
-# otwartej klawiaturze nie trafił w pole i „5” dopisało się do ciężaru („Now: 805 kg”). Najpierw chowamy klawiaturę tapnięciem w tekst karty.
-- tapOn: "set.1.of.1"
-- tapOn: { id: "r-0-0" }
-- inputText: "5"
-# Klawiatura numeryczna nie ma akcji „schowaj” (run 37611882320: hideKeyboard nie działa) — tapnięcie w zwykły tekst karty ją chowa
-# (lista: keyboardShouldPersistTaps="handled"). W tamtym przebiegu talerze powiększały kartę i wiersz zjeżdżał pod klawiaturę — tap w
-# „r-0-0” trafiał w klawisz „3” (ciężar 8035); od wariantu A (07.10.2026) karta trzyma miejsce na grafikę, a „Now: 80 kg × 5” to sprawdza.
-- tapOn: "set.1.of.1"  # audyt 0.10 (A11-19): spacje nierozdzielające (NBSP) między liczbą a wyrazem — „.” zamiast spacji
-- extendedWaitUntil: { visible: "Now: 80 kg × 5", timeout: 15000 }
+- takeScreenshot: 40-tablica-pusta
+# M3 p2 (ZM-01, wz. 29): „Set done” bez ciężaru nie odhacza serii — ustawia kursor w polu ciężaru na tablicy (komunikatu nie ma, brak wartości widać po polu)
+- tapOn: "Set done.*"
+- extendedWaitUntil: { visible: { id: "board-input-weight" }, timeout: 15000 }
+- assertVisible: "Workout progress: 0 of 1 sets"
+- assertNotVisible: "Skip"
+# wpis na tablicy: ciężar w polu, które dostało kursor, powtórzenia po stuknięciu liczby; na wolnym symulatorze ginie pierwszy znak (31, 15, 04) — znaki osobno i sprawdzenie skutku
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: { id: "board-input-weight" }
+      - eraseText: 10
+      - inputText: "8"
+      - inputText: "0"
+      - tapOn: { id: "board-value-reps" }
+      - tapOn: { id: "board-input-reps" }   # stuknięcie liczby otwiera pole z kursorem; drugie stuknięcie w samo pole nic nie zmienia
+      - eraseText: 10
+      - inputText: "5"
+      - tapOn: "Back Squat"   # klawiatura numeryczna nie ma „Gotowe”; fokus zdejmuje stuknięcie w nazwę ćwiczenia nad wierszami (nagłówek bloku)
+      - assertVisible: "Back Squat, set 1 of 1\\. 80 kilograms, 5 reps.*"
 - assertNotVisible: "Each side.*"  # DEC-06: pasek talerzy usunięty
 - assertNotVisible: "empty bar"
-- takeScreenshot: 41-karta-teraz
+- takeScreenshot: 41-tablica-z-wartosciami
+# ± na tablicy: ciężar o najbliższy dostępny talerz (miejsce z opisanym sprzętem: 82,5), powtórzenia o 1
+- tapOn: "Increase weight by 2.5 kg"
+- assertVisible: "Back Squat, set 1 of 1\\. 82.5 kilograms, 5 reps.*"
+- tapOn: "Decrease weight by 2.5 kg"
+- tapOn: "Add one rep"
+- assertVisible: "Back Squat, set 1 of 1\\. 80 kilograms, 6 reps.*"
+- tapOn: "Remove one rep"
+- assertVisible: "Back Squat, set 1 of 1\\. 80 kilograms, 5 reps.*"
 - tapOn: "Set done.*"
-- extendedWaitUntil: { visible: "All sets ticked off", timeout: 15000 }
-# build 1004 (07.10.2026, pkt 3): przerwa w karcie — odliczanie i „Skip” w karcie, nie w dolnym pasku
-- assertVisible: "Skip"
-- takeScreenshot: 42-wszystko-odhaczone-przerwa-w-karcie
+- extendedWaitUntil: { visible: "Skip", timeout: 15000 }  # build 1004: przerwa w tablicy — odliczanie i „Skip”, nie w dolnym pasku
+- takeScreenshot: 42-przerwa-w-tablicy
 - tapOn: "Skip"
 - assertNotVisible: "Skip"
+- extendedWaitUntil: { visible: "All sets ticked off", timeout: 15000 }
 
 # --- przełącznik: widok listy chowa kartę ---
 - tapOn: "More, tab.*"

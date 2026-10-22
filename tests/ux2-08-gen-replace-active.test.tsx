@@ -67,7 +67,7 @@ describe('UX2-08 — ekran generatora', () => {
   const Q = 'Zastąpić poprzednio wygenerowane, nieużywane szablony?';
 
   test('wygeneruj → „Ustaw jako aktywny” → wygeneruj znowu: pytanie mówi o aktywnym planie; „Zastąp” — bez „(2)”, nowy plan aktywny od razu', async () => {
-    await boot(); await saveBtn(); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
+    await boot(); await saveBtn(); await flushAll(10); /* ZM-03: pierwszy plan aktywny bez pytania */
     await go('/generator'); await flushAll(10); await tap(screen.getByText('Siła')); await flushAll(5); global.__alerts.length = 0; await saveBtn();
     const a = lastAlert(Q)!; expect(a).toBeTruthy();
     expect(a.msg).toBe('Bez treningów: FBW A, FBW B. To zastąpi też aktywny plan „Masa, 3× w tygodniu · Pełna siłownia”, zrobiony tylko z tych szablonów — „Zastąp” je usunie i ustawi nowy plan jako aktywny w jego miejsce, „Zostaw” doda nowe obok.');
@@ -78,7 +78,7 @@ describe('UX2-08 — ekran generatora', () => {
     expect(lastAlert('Zapisano')!.msg).toBe('Szablony: FBW A, FBW B — w folderze „Wygenerowane” na liście Szablony.\nPlan „Siła, 3× w tygodniu · Pełna siłownia” jest teraz aktywny.');
   });
   test('„Zostaw” — jak dotąd: pytanie o aktywację, nowe szablony obok', async () => {
-    await boot(); await saveBtn(); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny'); await go('/generator'); await flushAll(10); await saveBtn();
+    await boot(); await saveBtn(); await flushAll(10); /* ZM-03: pierwszy plan aktywny bez pytania */ await go('/generator'); await flushAll(10); await saveBtn();
     await press(Q, 'Zostaw'); await press('Ustawić nowy plan jako aktywny?', 'Tylko zapisz');
     expect(S().templates.map(x => x.name)).toEqual(['FBW A', 'FBW B', 'FBW A (2)', 'FBW B (2)']); expect(plan.planName()).toBe('Masa, 3× w tygodniu · Pełna siłownia');
   });

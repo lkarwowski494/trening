@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, Animated, PanResponder, Alert, StyleSheet, type StyleProp, type ViewStyle, type AccessibilityActionEvent } from 'react-native';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, FW } from '@/lib/theme';
 import { t as tr, lang } from '@/lib/i18n';
 import { cancelButton, okButton } from '@/lib/confirm';
 
@@ -81,7 +81,7 @@ export function SwipeRow({ label, title, message, onDelete, bg, style, testID, d
         accessibilityElementsHidden={!open} importantForAccessibility={open ? 'auto' : 'no-hide-descendants'}>
         <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} onPress={ask} testID={testID ? `${testID}-del` : undefined}
           style={({ pressed }) => ({ width: SWIPE.button, backgroundColor: t.danger, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.8 : 1 })}>
-          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.dangerInk /* A11-04 */, fontFamily: F.semibold, fontSize: 15 }}>{tr('Usuń')}</Text>
+          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.dangerInk /* A11-04 */, ...FW.semibold, fontSize: 15 }}>{tr('Usuń')}</Text>
         </Pressable>
       </View>
       <Animated.View {...pan.panHandlers} style={{ transform: [{ translateX: x }], backgroundColor: bg ?? t.bg }}>

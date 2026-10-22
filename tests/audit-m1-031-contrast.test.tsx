@@ -60,7 +60,7 @@ describe('useTheme + ustawienie systemu', () => {
     (AccessibilityInfo.isDarkerSystemColorsEnabled as jest.Mock).mockResolvedValue(true);
     await fresh(); store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10);
-    const muted = () => { const el = screen.getByText(/^start \d/); const st = (RN.StyleSheet.flatten(el.props.style as never) as { color?: string }); return st.color; };
+    const muted = () => { const el = screen.getByTestId('workout-clock'); const st = (RN.StyleSheet.flatten(el.props.style as never) as { color?: string }); return st.color; };
     expect(muted()).toBe(lightHC.muted);
     expect(typeof handlers.darkerSystemColorsChanged).toBe('function');
     await act(async () => { handlers.darkerSystemColorsChanged(false); }); await flushAll(5); expect(muted()).toBe(light.muted);

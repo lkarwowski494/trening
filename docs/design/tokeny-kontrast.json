@@ -1,0 +1,1052 @@
+{
+ "jasny: text/bg": [
+  "#18202B",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny: muted/bg": [
+  "#4A5361",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny: accent (tekst przycisku w nagłówku)/bg": [
+  "#13294B",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny: band (tekst gumy)/bg": [
+  "#0F6469",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny: danger (tekst „Usuń …”)/bg": [
+  "#7F1D1D",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny: ctrlLine (element)/bg": [
+  "#6B7380",
+  "#E6E8E5",
+  3
+ ],
+ "jasny: doneLine (element)/bg": [
+  "#2A7248",
+  "#E6E8E5",
+  3
+ ],
+ "jasny: less (element)/bg": [
+  "#A35200",
+  "#E6E8E5",
+  3
+ ],
+ "jasny: text/surface": [
+  "#18202B",
+  "#F4F5F3",
+  4.5
+ ],
+ "jasny: muted/surface": [
+  "#4A5361",
+  "#F4F5F3",
+  4.5
+ ],
+ "jasny: accent (tekst przycisku w nagłówku)/surface": [
+  "#13294B",
+  "#F4F5F3",
+  4.5
+ ],
+ "jasny: band (tekst gumy)/surface": [
+  "#0F6469",
+  "#F4F5F3",
+  4.5
+ ],
+ "jasny: danger (tekst „Usuń …”)/surface": [
+  "#7F1D1D",
+  "#F4F5F3",
+  4.5
+ ],
+ "jasny: ctrlLine (element)/surface": [
+  "#6B7380",
+  "#F4F5F3",
+  3
+ ],
+ "jasny: doneLine (element)/surface": [
+  "#2A7248",
+  "#F4F5F3",
+  3
+ ],
+ "jasny: less (element)/surface": [
+  "#A35200",
+  "#F4F5F3",
+  3
+ ],
+ "jasny: text/surface2": [
+  "#18202B",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny: muted/surface2": [
+  "#4A5361",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny: accent (tekst przycisku w nagłówku)/surface2": [
+  "#13294B",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny: band (tekst gumy)/surface2": [
+  "#0F6469",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny: danger (tekst „Usuń …”)/surface2": [
+  "#7F1D1D",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny: ctrlLine (element)/surface2": [
+  "#6B7380",
+  "#D3D8D3",
+  3
+ ],
+ "jasny: doneLine (element)/surface2": [
+  "#2A7248",
+  "#D3D8D3",
+  3
+ ],
+ "jasny: less (element)/surface2": [
+  "#A35200",
+  "#D3D8D3",
+  3
+ ],
+ "jasny: text/done (wiersz zrobiony)": [
+  "#18202B",
+  "#D5E3D8",
+  4.5
+ ],
+ "jasny: doneLine/done (element)": [
+  "#2A7248",
+  "#D5E3D8",
+  3
+ ],
+ "jasny: przycisk główny accentInk/accent": [
+  "#F5F1E6",
+  "#13294B",
+  4.5
+ ],
+ "jasny: przycisk główny/bg (element)": [
+  "#13294B",
+  "#E6E8E5",
+  3
+ ],
+ "jasny: przycisk drugorzędny text/surface2": [
+  "#18202B",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny: dangerInk/danger": [
+  "#FFFFFF",
+  "#7F1D1D",
+  4.5
+ ],
+ "jasny: tablica ikona ± boardText/boardField (element)": [
+  "#F5F1E6",
+  "#26446F",
+  3
+ ],
+ "jasny: tablica cyfry boardText/board": [
+  "#F5F1E6",
+  "#13294B",
+  4.5
+ ],
+ "jasny: tablica opis boardMuted/board": [
+  "#B7C1D0",
+  "#13294B",
+  4.5
+ ],
+ "jasny: tablica zegar now/board (duży tekst)": [
+  "#F2A900",
+  "#13294B",
+  3
+ ],
+ "jasny: tablica zegar now/board jako tekst zwykły": [
+  "#F2A900",
+  "#13294B",
+  4.5
+ ],
+ "jasny: tablica ± boardText/boardField": [
+  "#F5F1E6",
+  "#26446F",
+  4.5
+ ],
+ "jasny: pole zrobione board/boardText (tekst)": [
+  "#13294B",
+  "#F5F1E6",
+  4.5
+ ],
+ "jasny: pole czekające kontur boardMuted/board (element)": [
+  "#B7C1D0",
+  "#13294B",
+  3
+ ],
+ "jasny: pole bieżące ramka now/board (element)": [
+  "#F2A900",
+  "#13294B",
+  3
+ ],
+ "jasny: tablica brzeg/bg (element)": [
+  "#13294B",
+  "#E6E8E5",
+  3
+ ],
+ "jasny: znacznik dnia accent/surface (element)": [
+  "#13294B",
+  "#F4F5F3",
+  3
+ ],
+ "jasny: text/motif25": [
+  "#18202B",
+  "#E4C9CA",
+  4.5
+ ],
+ "jasny: muted/motif25": [
+  "#4A5361",
+  "#E4C9CA",
+  4.5
+ ],
+ "jasny: text/motif20": [
+  "#18202B",
+  "#C6D2E2",
+  4.5
+ ],
+ "jasny: muted/motif20": [
+  "#4A5361",
+  "#C6D2E2",
+  4.5
+ ],
+ "jasny: text/motif15": [
+  "#18202B",
+  "#E8E2C8",
+  4.5
+ ],
+ "jasny: muted/motif15": [
+  "#4A5361",
+  "#E8E2C8",
+  4.5
+ ],
+ "jasny: text/motif10": [
+  "#18202B",
+  "#C9DCCF",
+  4.5
+ ],
+ "jasny: muted/motif10": [
+  "#4A5361",
+  "#C9DCCF",
+  4.5
+ ],
+ "jasny: text/motifBar": [
+  "#18202B",
+  "#C2C8C2",
+  4.5
+ ],
+ "jasny: muted/motifBar": [
+  "#4A5361",
+  "#C2C8C2",
+  4.5
+ ],
+ "ciemny: text/bg": [
+  "#E8EAED",
+  "#161C24",
+  4.5
+ ],
+ "ciemny: muted/bg": [
+  "#A3ACB8",
+  "#161C24",
+  4.5
+ ],
+ "ciemny: accent (tekst przycisku w nagłówku)/bg": [
+  "#F5F1E6",
+  "#161C24",
+  4.5
+ ],
+ "ciemny: band (tekst gumy)/bg": [
+  "#5FC3C9",
+  "#161C24",
+  4.5
+ ],
+ "ciemny: danger (tekst „Usuń …”)/bg": [
+  "#EC7A72",
+  "#161C24",
+  4.5
+ ],
+ "ciemny: ctrlLine (element)/bg": [
+  "#7C8594",
+  "#161C24",
+  3
+ ],
+ "ciemny: doneLine (element)/bg": [
+  "#5FA97C",
+  "#161C24",
+  3
+ ],
+ "ciemny: less (element)/bg": [
+  "#F0A050",
+  "#161C24",
+  3
+ ],
+ "ciemny: text/surface": [
+  "#E8EAED",
+  "#1E2530",
+  4.5
+ ],
+ "ciemny: muted/surface": [
+  "#A3ACB8",
+  "#1E2530",
+  4.5
+ ],
+ "ciemny: accent (tekst przycisku w nagłówku)/surface": [
+  "#F5F1E6",
+  "#1E2530",
+  4.5
+ ],
+ "ciemny: band (tekst gumy)/surface": [
+  "#5FC3C9",
+  "#1E2530",
+  4.5
+ ],
+ "ciemny: danger (tekst „Usuń …”)/surface": [
+  "#EC7A72",
+  "#1E2530",
+  4.5
+ ],
+ "ciemny: ctrlLine (element)/surface": [
+  "#7C8594",
+  "#1E2530",
+  3
+ ],
+ "ciemny: doneLine (element)/surface": [
+  "#5FA97C",
+  "#1E2530",
+  3
+ ],
+ "ciemny: less (element)/surface": [
+  "#F0A050",
+  "#1E2530",
+  3
+ ],
+ "ciemny: text/surface2": [
+  "#E8EAED",
+  "#283244",
+  4.5
+ ],
+ "ciemny: muted/surface2": [
+  "#A3ACB8",
+  "#283244",
+  4.5
+ ],
+ "ciemny: accent (tekst przycisku w nagłówku)/surface2": [
+  "#F5F1E6",
+  "#283244",
+  4.5
+ ],
+ "ciemny: band (tekst gumy)/surface2": [
+  "#5FC3C9",
+  "#283244",
+  4.5
+ ],
+ "ciemny: danger (tekst „Usuń …”)/surface2": [
+  "#EC7A72",
+  "#283244",
+  4.5
+ ],
+ "ciemny: ctrlLine (element)/surface2": [
+  "#7C8594",
+  "#283244",
+  3
+ ],
+ "ciemny: doneLine (element)/surface2": [
+  "#5FA97C",
+  "#283244",
+  3
+ ],
+ "ciemny: less (element)/surface2": [
+  "#F0A050",
+  "#283244",
+  3
+ ],
+ "ciemny: text/done (wiersz zrobiony)": [
+  "#E8EAED",
+  "#1F2E26",
+  4.5
+ ],
+ "ciemny: doneLine/done (element)": [
+  "#5FA97C",
+  "#1F2E26",
+  3
+ ],
+ "ciemny: przycisk główny accentInk/accent": [
+  "#13294B",
+  "#F5F1E6",
+  4.5
+ ],
+ "ciemny: przycisk główny/bg (element)": [
+  "#F5F1E6",
+  "#161C24",
+  3
+ ],
+ "ciemny: przycisk drugorzędny text/surface2": [
+  "#E8EAED",
+  "#283244",
+  4.5
+ ],
+ "ciemny: dangerInk/danger": [
+  "#161C24",
+  "#EC7A72",
+  4.5
+ ],
+ "ciemny: tablica ikona ± boardText/boardField (element)": [
+  "#F5F1E6",
+  "#22416D",
+  3
+ ],
+ "ciemny: tablica cyfry boardText/board": [
+  "#F5F1E6",
+  "#102544",
+  4.5
+ ],
+ "ciemny: tablica opis boardMuted/board": [
+  "#AEB9CA",
+  "#102544",
+  4.5
+ ],
+ "ciemny: tablica zegar now/board (duży tekst)": [
+  "#F5B21C",
+  "#102544",
+  3
+ ],
+ "ciemny: tablica zegar now/board jako tekst zwykły": [
+  "#F5B21C",
+  "#102544",
+  4.5
+ ],
+ "ciemny: tablica ± boardText/boardField": [
+  "#F5F1E6",
+  "#22416D",
+  4.5
+ ],
+ "ciemny: pole zrobione board/boardText (tekst)": [
+  "#102544",
+  "#F5F1E6",
+  4.5
+ ],
+ "ciemny: pole czekające kontur boardMuted/board (element)": [
+  "#AEB9CA",
+  "#102544",
+  3
+ ],
+ "ciemny: pole bieżące ramka now/board (element)": [
+  "#F5B21C",
+  "#102544",
+  3
+ ],
+ "ciemny: tablica brzeg/bg (element)": [
+  "#5675A8",
+  "#161C24",
+  3
+ ],
+ "ciemny: znacznik dnia accent/surface (element)": [
+  "#F5F1E6",
+  "#1E2530",
+  3
+ ],
+ "ciemny: text/motif25": [
+  "#E8EAED",
+  "#40232D",
+  4.5
+ ],
+ "ciemny: muted/motif25": [
+  "#A3ACB8",
+  "#40232D",
+  4.5
+ ],
+ "ciemny: text/motif20": [
+  "#E8EAED",
+  "#20304D",
+  4.5
+ ],
+ "ciemny: muted/motif20": [
+  "#A3ACB8",
+  "#20304D",
+  4.5
+ ],
+ "ciemny: text/motif15": [
+  "#E8EAED",
+  "#423D26",
+  4.5
+ ],
+ "ciemny: muted/motif15": [
+  "#A3ACB8",
+  "#423D26",
+  4.5
+ ],
+ "ciemny: text/motif10": [
+  "#E8EAED",
+  "#1E3C34",
+  4.5
+ ],
+ "ciemny: muted/motif10": [
+  "#A3ACB8",
+  "#1E3C34",
+  4.5
+ ],
+ "ciemny: text/motifBar": [
+  "#E8EAED",
+  "#333C49",
+  4.5
+ ],
+ "ciemny: muted/motifBar": [
+  "#A3ACB8",
+  "#333C49",
+  4.5
+ ],
+ "jasny HC: text/bg": [
+  "#18202B",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny HC: muted/bg": [
+  "#353C47",
+  "#E6E8E5",
+  7
+ ],
+ "jasny HC: accent (tekst przycisku w nagłówku)/bg": [
+  "#13294B",
+  "#E6E8E5",
+  7
+ ],
+ "jasny HC: band (tekst gumy)/bg": [
+  "#08454A",
+  "#E6E8E5",
+  7
+ ],
+ "jasny HC: danger (tekst „Usuń …”)/bg": [
+  "#7F1D1D",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny HC: ctrlLine (element)/bg": [
+  "#4A5361",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny HC: doneLine (element)/bg": [
+  "#1F5A38",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny HC: less (element)/bg": [
+  "#8A4300",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny HC: line jako tor (element)/bg": [
+  "#545B66",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny HC: text/surface": [
+  "#18202B",
+  "#F4F5F3",
+  4.5
+ ],
+ "jasny HC: muted/surface": [
+  "#353C47",
+  "#F4F5F3",
+  7
+ ],
+ "jasny HC: accent (tekst przycisku w nagłówku)/surface": [
+  "#13294B",
+  "#F4F5F3",
+  7
+ ],
+ "jasny HC: band (tekst gumy)/surface": [
+  "#08454A",
+  "#F4F5F3",
+  7
+ ],
+ "jasny HC: danger (tekst „Usuń …”)/surface": [
+  "#7F1D1D",
+  "#F4F5F3",
+  4.5
+ ],
+ "jasny HC: ctrlLine (element)/surface": [
+  "#4A5361",
+  "#F4F5F3",
+  4.5
+ ],
+ "jasny HC: doneLine (element)/surface": [
+  "#1F5A38",
+  "#F4F5F3",
+  4.5
+ ],
+ "jasny HC: less (element)/surface": [
+  "#8A4300",
+  "#F4F5F3",
+  4.5
+ ],
+ "jasny HC: line jako tor (element)/surface": [
+  "#545B66",
+  "#F4F5F3",
+  4.5
+ ],
+ "jasny HC: text/surface2": [
+  "#18202B",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny HC: muted/surface2": [
+  "#353C47",
+  "#D3D8D3",
+  7
+ ],
+ "jasny HC: accent (tekst przycisku w nagłówku)/surface2": [
+  "#13294B",
+  "#D3D8D3",
+  7
+ ],
+ "jasny HC: band (tekst gumy)/surface2": [
+  "#08454A",
+  "#D3D8D3",
+  7
+ ],
+ "jasny HC: danger (tekst „Usuń …”)/surface2": [
+  "#7F1D1D",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny HC: ctrlLine (element)/surface2": [
+  "#4A5361",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny HC: doneLine (element)/surface2": [
+  "#1F5A38",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny HC: less (element)/surface2": [
+  "#8A4300",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny HC: line jako tor (element)/surface2": [
+  "#545B66",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny HC: text/done (wiersz zrobiony)": [
+  "#18202B",
+  "#D5E3D8",
+  4.5
+ ],
+ "jasny HC: doneLine/done (element)": [
+  "#1F5A38",
+  "#D5E3D8",
+  4.5
+ ],
+ "jasny HC: przycisk główny accentInk/accent": [
+  "#F5F1E6",
+  "#13294B",
+  7
+ ],
+ "jasny HC: przycisk główny/bg (element)": [
+  "#13294B",
+  "#E6E8E5",
+  3
+ ],
+ "jasny HC: przycisk drugorzędny text/surface2": [
+  "#18202B",
+  "#D3D8D3",
+  4.5
+ ],
+ "jasny HC: dangerInk/danger": [
+  "#FFFFFF",
+  "#7F1D1D",
+  4.5
+ ],
+ "jasny HC: tablica ikona ± boardText/boardField (element)": [
+  "#F5F1E6",
+  "#2E4F7E",
+  4.5
+ ],
+ "jasny HC: tablica cyfry boardText/board": [
+  "#F5F1E6",
+  "#13294B",
+  4.5
+ ],
+ "jasny HC: tablica opis boardMuted/board": [
+  "#D3DAE4",
+  "#13294B",
+  7
+ ],
+ "jasny HC: tablica zegar now/board (duży tekst)": [
+  "#FFC233",
+  "#13294B",
+  4.5
+ ],
+ "jasny HC: tablica zegar now/board jako tekst zwykły": [
+  "#FFC233",
+  "#13294B",
+  4.5
+ ],
+ "jasny HC: tablica ± boardText/boardField": [
+  "#F5F1E6",
+  "#2E4F7E",
+  4.5
+ ],
+ "jasny HC: pole zrobione board/boardText (tekst)": [
+  "#13294B",
+  "#F5F1E6",
+  4.5
+ ],
+ "jasny HC: pole czekające kontur boardMuted/board (element)": [
+  "#D3DAE4",
+  "#13294B",
+  4.5
+ ],
+ "jasny HC: pole bieżące ramka now/board (element)": [
+  "#FFC233",
+  "#13294B",
+  4.5
+ ],
+ "jasny HC: tablica brzeg/bg (element)": [
+  "#13294B",
+  "#E6E8E5",
+  3
+ ],
+ "jasny HC: znacznik dnia accent/surface (element)": [
+  "#13294B",
+  "#F4F5F3",
+  3
+ ],
+ "jasny HC: text/motif25": [
+  "#18202B",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny HC: muted/motif25": [
+  "#353C47",
+  "#E6E8E5",
+  7
+ ],
+ "jasny HC: text/motif20": [
+  "#18202B",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny HC: muted/motif20": [
+  "#353C47",
+  "#E6E8E5",
+  7
+ ],
+ "jasny HC: text/motif15": [
+  "#18202B",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny HC: muted/motif15": [
+  "#353C47",
+  "#E6E8E5",
+  7
+ ],
+ "jasny HC: text/motif10": [
+  "#18202B",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny HC: muted/motif10": [
+  "#353C47",
+  "#E6E8E5",
+  7
+ ],
+ "jasny HC: text/motifBar": [
+  "#18202B",
+  "#E6E8E5",
+  4.5
+ ],
+ "jasny HC: muted/motifBar": [
+  "#353C47",
+  "#E6E8E5",
+  7
+ ],
+ "ciemny HC: text/bg": [
+  "#E8EAED",
+  "#161C24",
+  4.5
+ ],
+ "ciemny HC: muted/bg": [
+  "#C9CED6",
+  "#161C24",
+  7
+ ],
+ "ciemny HC: accent (tekst przycisku w nagłówku)/bg": [
+  "#F5F1E6",
+  "#161C24",
+  7
+ ],
+ "ciemny HC: band (tekst gumy)/bg": [
+  "#8FDADF",
+  "#161C24",
+  7
+ ],
+ "ciemny HC: danger (tekst „Usuń …”)/bg": [
+  "#F5A39D",
+  "#161C24",
+  4.5
+ ],
+ "ciemny HC: ctrlLine (element)/bg": [
+  "#A3ACB8",
+  "#161C24",
+  4.5
+ ],
+ "ciemny HC: doneLine (element)/bg": [
+  "#74C08F",
+  "#161C24",
+  4.5
+ ],
+ "ciemny HC: less (element)/bg": [
+  "#F7C080",
+  "#161C24",
+  4.5
+ ],
+ "ciemny HC: line jako tor (element)/bg": [
+  "#959EAB",
+  "#161C24",
+  4.5
+ ],
+ "ciemny HC: text/surface": [
+  "#E8EAED",
+  "#1E2530",
+  4.5
+ ],
+ "ciemny HC: muted/surface": [
+  "#C9CED6",
+  "#1E2530",
+  7
+ ],
+ "ciemny HC: accent (tekst przycisku w nagłówku)/surface": [
+  "#F5F1E6",
+  "#1E2530",
+  7
+ ],
+ "ciemny HC: band (tekst gumy)/surface": [
+  "#8FDADF",
+  "#1E2530",
+  7
+ ],
+ "ciemny HC: danger (tekst „Usuń …”)/surface": [
+  "#F5A39D",
+  "#1E2530",
+  4.5
+ ],
+ "ciemny HC: ctrlLine (element)/surface": [
+  "#A3ACB8",
+  "#1E2530",
+  4.5
+ ],
+ "ciemny HC: doneLine (element)/surface": [
+  "#74C08F",
+  "#1E2530",
+  4.5
+ ],
+ "ciemny HC: less (element)/surface": [
+  "#F7C080",
+  "#1E2530",
+  4.5
+ ],
+ "ciemny HC: line jako tor (element)/surface": [
+  "#959EAB",
+  "#1E2530",
+  4.5
+ ],
+ "ciemny HC: text/surface2": [
+  "#E8EAED",
+  "#283244",
+  4.5
+ ],
+ "ciemny HC: muted/surface2": [
+  "#C9CED6",
+  "#283244",
+  7
+ ],
+ "ciemny HC: accent (tekst przycisku w nagłówku)/surface2": [
+  "#F5F1E6",
+  "#283244",
+  7
+ ],
+ "ciemny HC: band (tekst gumy)/surface2": [
+  "#8FDADF",
+  "#283244",
+  7
+ ],
+ "ciemny HC: danger (tekst „Usuń …”)/surface2": [
+  "#F5A39D",
+  "#283244",
+  4.5
+ ],
+ "ciemny HC: ctrlLine (element)/surface2": [
+  "#A3ACB8",
+  "#283244",
+  4.5
+ ],
+ "ciemny HC: doneLine (element)/surface2": [
+  "#74C08F",
+  "#283244",
+  4.5
+ ],
+ "ciemny HC: less (element)/surface2": [
+  "#F7C080",
+  "#283244",
+  4.5
+ ],
+ "ciemny HC: line jako tor (element)/surface2": [
+  "#959EAB",
+  "#283244",
+  4.5
+ ],
+ "ciemny HC: text/done (wiersz zrobiony)": [
+  "#E8EAED",
+  "#1F2E26",
+  4.5
+ ],
+ "ciemny HC: doneLine/done (element)": [
+  "#74C08F",
+  "#1F2E26",
+  4.5
+ ],
+ "ciemny HC: przycisk główny accentInk/accent": [
+  "#13294B",
+  "#F5F1E6",
+  7
+ ],
+ "ciemny HC: przycisk główny/bg (element)": [
+  "#F5F1E6",
+  "#161C24",
+  3
+ ],
+ "ciemny HC: przycisk drugorzędny text/surface2": [
+  "#E8EAED",
+  "#283244",
+  4.5
+ ],
+ "ciemny HC: dangerInk/danger": [
+  "#161C24",
+  "#F5A39D",
+  4.5
+ ],
+ "ciemny HC: tablica ikona ± boardText/boardField (element)": [
+  "#F5F1E6",
+  "#22416D",
+  4.5
+ ],
+ "ciemny HC: tablica cyfry boardText/board": [
+  "#F5F1E6",
+  "#102544",
+  4.5
+ ],
+ "ciemny HC: tablica opis boardMuted/board": [
+  "#D3DAE4",
+  "#102544",
+  7
+ ],
+ "ciemny HC: tablica zegar now/board (duży tekst)": [
+  "#FFC233",
+  "#102544",
+  4.5
+ ],
+ "ciemny HC: tablica zegar now/board jako tekst zwykły": [
+  "#FFC233",
+  "#102544",
+  4.5
+ ],
+ "ciemny HC: tablica ± boardText/boardField": [
+  "#F5F1E6",
+  "#22416D",
+  4.5
+ ],
+ "ciemny HC: pole zrobione board/boardText (tekst)": [
+  "#102544",
+  "#F5F1E6",
+  4.5
+ ],
+ "ciemny HC: pole czekające kontur boardMuted/board (element)": [
+  "#D3DAE4",
+  "#102544",
+  4.5
+ ],
+ "ciemny HC: pole bieżące ramka now/board (element)": [
+  "#FFC233",
+  "#102544",
+  4.5
+ ],
+ "ciemny HC: tablica brzeg/bg (element)": [
+  "#8FA6CC",
+  "#161C24",
+  3
+ ],
+ "ciemny HC: znacznik dnia accent/surface (element)": [
+  "#F5F1E6",
+  "#1E2530",
+  3
+ ],
+ "ciemny HC: text/motif25": [
+  "#E8EAED",
+  "#161C24",
+  4.5
+ ],
+ "ciemny HC: muted/motif25": [
+  "#C9CED6",
+  "#161C24",
+  7
+ ],
+ "ciemny HC: text/motif20": [
+  "#E8EAED",
+  "#161C24",
+  4.5
+ ],
+ "ciemny HC: muted/motif20": [
+  "#C9CED6",
+  "#161C24",
+  7
+ ],
+ "ciemny HC: text/motif15": [
+  "#E8EAED",
+  "#161C24",
+  4.5
+ ],
+ "ciemny HC: muted/motif15": [
+  "#C9CED6",
+  "#161C24",
+  7
+ ],
+ "ciemny HC: text/motif10": [
+  "#E8EAED",
+  "#161C24",
+  4.5
+ ],
+ "ciemny HC: muted/motif10": [
+  "#C9CED6",
+  "#161C24",
+  7
+ ],
+ "ciemny HC: text/motifBar": [
+  "#E8EAED",
+  "#161C24",
+  4.5
+ ],
+ "ciemny HC: muted/motifBar": [
+  "#C9CED6",
+  "#161C24",
+  7
+ ]
+}

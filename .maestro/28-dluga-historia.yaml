@@ -8,6 +8,7 @@
 #   "Cancel session editing" / "Save session"                 ← nagłówek edytora sesji
 #   "PR: .*"                                                  ← 'PR: {rodzaje}' (wiersz rekordu pod serią w sesji, app/history/[id].tsx)
 #   session-N / session-N-del / "Delete this session from history\\?" ← testID wiersza listy sesji w Planie (app/(tabs)/history.tsx), przycisk pod nim, pytanie ('Usunąć tę sesję z historii?')
+#   delete-object / "Delete session"                          ← przycisk „Usuń sesję” na dole szczegółów sesji (components/DeleteButton.tsx, app/history/[id].tsx; M3 p3) — to samo okno co gest
 appId: pl.lukasz.trening
 name: Długa historia — kilka sesji, rekordy, usunięcie sesji
 ---
@@ -122,16 +123,19 @@ name: Długa historia — kilka sesji, rekordy, usunięcie sesji
 - extendedWaitUntil: { visible: "4 sessions", timeout: 30000 }
 - takeScreenshot: 97-historia-cztery-sesje
 # --- Postępy: podsumowanie i rekordy ćwiczenia z kilku sesji ---
+# M3 p3 (ZM-06, DEC-09): na górze Postępów jest wykres i rekordy ćwiczenia (bez wyboru — ostatnio trenowane), pod nimi wybór (chipy ćwiczeń z danymi), niżej
+# sesje ćwiczenia i ogólny przegląd („Summary”)
 - tapOn: "Progress, tab.*"
-- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
-- assertVisible: "Workouts: [0-9]+, previously .*"
+- extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }
 - scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 60000, centerElement: true }
-- tapOn: "Bench Press \\(Dumbbell\\)"
+- tapOn: "Bench Press \\(Dumbbell\\)"  # chip wyboru (ćwiczenie ma dane); nowy wykres jest na górze
 - extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }
 - assertVisible: "Max weight.*"
 - assertVisible: "e1RM \\(Epley.*"
 - assertVisible: "Chart, 4 sessions.*"
 - takeScreenshot: 98-rekordy-cwiczenia-historia
+- scrollUntilVisible: { element: "Workouts: [0-9]+, previously .*", direction: DOWN, timeout: 60000 }
+- assertVisible: "Workouts: [0-9]+, previously .*"
 # --- usunięcie najnowszej sesji przesunięciem: Anuluj zostawia, Usuń usuwa ---
 - tapOn: "Plan, tab.*"
 - extendedWaitUntil: { visible: "Log a past workout", timeout: 30000 }
@@ -156,3 +160,18 @@ name: Długa historia — kilka sesji, rekordy, usunięcie sesji
 - tapOn: { point: "68%, 56%" }
 - extendedWaitUntil: { visible: "3 sessions", timeout: 30000 }
 - takeScreenshot: 99-po-usunieciu-sesji
+# --- „Delete session” na dole szczegółów (M3 p3, ZM-04 / W2): to samo okno co gest przesunięcia, z tą samą treścią; gest zostaje skrótem (wyżej) ---
+- tapOn: { text: "Upper A, .*", index: 0 }  # najnowsza sesja na liście (otwarcie szczegółów)
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- scrollUntilVisible: { element: { id: "delete-object" }, direction: DOWN, timeout: 30000, centerElement: true }
+- assertVisible: "Delete session"
+- takeScreenshot: 99a-usun-sesje-przycisk
+- tapOn: { id: "delete-object" }
+- extendedWaitUntil: { visible: "Delete this session from history\\?", timeout: 15000 }
+- tapOn: { text: "Cancel", below: "Delete this session from history\\?" }
+- assertVisible: "Delete session"
+- tapOn: { id: "delete-object" }
+- extendedWaitUntil: { visible: "Delete this session from history\\?", timeout: 15000 }
+- tapOn: { text: "Delete", below: "Delete this session from history\\?" }
+- extendedWaitUntil: { visible: "2 sessions", timeout: 30000 }  # po usunięciu — z powrotem lista Planu
+- takeScreenshot: 99b-po-usunieciu-przyciskiem

@@ -74,7 +74,7 @@ describe('sayRestStart: trasa dźwięku', () => {
   test('„Wyłączone” przez ✓ na telefonie: przerwa startuje, zapowiedzi brak', async () => {
     await world(); V().headphones = true; store.getState().settings.voice = 'off'; await completeSet(0, 0); await tick(); expect(timer.T.on).toBe(true); expect(V().spoken).toEqual([]);
   });
-  test('„Dźwięk i wibracja” wyłączone: cisza także w słuchawkach', async () => {
+  test('„Dźwięk na koniec przerwy” wyłączony: cisza także w słuchawkach', async () => {
     await world(); V().headphones = true; store.getState().settings.sound = false; const r = await sayRestStart(A(), sid(0, 0)); expect(V().spoken).toEqual([]); expect(r.reason).toBe('sound-off');
   });
   test('aplikacja w tle (etap 1: bez trybu audio w tle): cisza', async () => {

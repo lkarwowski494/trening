@@ -16,7 +16,7 @@ import { AppState } from 'react-native';
 import { t, lang } from '@/lib/i18n';
 import * as timer from '@/lib/timer';
 import { restoreObjDrafts, dropRestored, type RestoredDraft } from '@/lib/draft';
-import { useTheme, F, FONT_FILES } from '@/lib/theme';
+import { useTheme, FONT_FILES, FW, font } from '@/lib/theme';
 import { initA11yPrefs } from '@/lib/a11yPrefs';
 import * as Font from 'expo-font';
 import { Intro } from '@/components/Intro';
@@ -56,10 +56,10 @@ export default function RootLayout() {
   /* Audyt 0.10 J1 (DAT-05): dane z nowszej wersji aplikacji — niczego nie nadpisujemy; „zaktualizuj” i wysłanie surowych danych. */
   const newer = err ? getNewerSchema() : null;
   const body = newer != null ? <View testID="newer-data" style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}>
-    <Text accessibilityLanguage={lang()} accessibilityRole="header" style={{ color: th.text, fontSize: 18, textAlign: 'center', fontFamily: F.semibold }}>{t('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')}</Text>
+    <Text accessibilityLanguage={lang()} accessibilityRole="header" style={{ color: th.text, textAlign: 'center', ...font('sectionTitle') }}>{t('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')}</Text>
     <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center' }}>{t('Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.', { a: newer, b: SCHEMA_VERSION })}</Text>
-    <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={() => { exportRawData().then(ok => { if (!ok) Alert.alert(t('Nie udało się wysłać danych'), t('Spróbuj ponownie.')); }).catch(() => {}); }} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Wyślij dane')}</Text></Pressable>
-    <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={() => start(true)} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{t('Spróbuj ponownie')}</Text></Pressable>
+    <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={() => { exportRawData().then(ok => { if (!ok) Alert.alert(t('Nie udało się wysłać danych'), t('Spróbuj ponownie.')); }).catch(() => {}); }} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, ...font('button') }}>{t('Wyślij dane')}</Text></Pressable>
+    <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={() => start(true)} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, ...font('button') }}>{t('Spróbuj ponownie')}</Text></Pressable>
   </View>
   // Błąd startu (np. baza niedostępna, wyjątek po wczytaniu danych, pętla awarii) — komunikat, wysłanie danych, ponowienie i kontakt (M1-audytor-generalny-003, 004).
   : err ? <StartError title={t('Nie udało się otworzyć danych.')} message={t('Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.')} detail={err} onRetry={() => start(true)} />
@@ -95,7 +95,7 @@ function Root() {
   return (
     <>
       <StatusBar style="auto" />
-      <Stack screenOptions={{ headerStyle: { backgroundColor: th.bg }, headerTintColor: th.text, headerTitleStyle: { fontFamily: F.semibold }, headerShadowVisible: false, contentStyle: { backgroundColor: th.bg }, headerBackTitle: t('Wróć') }}>
+      <Stack screenOptions={{ headerStyle: { backgroundColor: th.bg }, headerTintColor: th.text, headerTitleStyle: { fontFamily: font('navTitle').fontFamily, fontSize: font('navTitle').fontSize }, headerShadowVisible: false, contentStyle: { backgroundColor: th.bg }, headerBackTitle: t('Wróć') }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="picker" options={{ presentation: 'modal', title: t('Wybierz ćwiczenie') }} />
         <Stack.Screen name="swap" options={{ presentation: 'modal', title: t('Zamień ćwiczenie') }} />

@@ -4,13 +4,15 @@ import { BandColorInput } from '@/components/BandColorInput';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Field, Input, Btn, Muted, SwitchRow, Chip, useOnce, Missing } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
+import { DeleteButton } from '@/components/DeleteButton';
+import { locationDeleteMessage } from '@/lib/deleteMessages';
 import LoadEditor from '@/components/LoadEditor';
 import { getState, useTick, locationById, visibleExercises, bandColor } from '@/lib/store';
 import { setMainLocation, renameLocation, commitLocationName, duplicateLocation, deleteLocation, canDeleteLocation, setEquip, setOpt, activeEquip, setBandLevel } from '@/lib/locations';
 import type { Location } from '@/lib/seed';
 import { EQUIPMENT, EQUIP_GROUPS, EQUIP_GROUP_LABEL, equipLabel, availability, capsOf } from '@/lib/equipment';
 import { t, lang } from '@/lib/i18n';
-import { useTheme, F, NUM_SCALE_MAX, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, NUM_SCALE_MAX, TEXT_SCALE_MAX, FW, font } from '@/lib/theme';
 
 /*
  * P-003 E1: jedno miejsce — nazwa, „Ustaw jako główne”, sprzęt w grupach (przełączniki iOS, jak P-002), opcje pozycji, edytor ciężarów
@@ -32,14 +34,14 @@ export default function LocationEdit() {
       <Field label={t('Nazwa')}><Input selectTextOnFocus maxLength={80} value={l.name} onChangeText={v => renameLocation(l, v)} onEndEditing={() => { commitLocationName(l, initialName.current); initialName.current = l.name; }} /></Field>
       {main ? <InfoTip id="main-place" label={t('★ Miejsce główne')} info={t('★ Miejsce główne — domyślne dla nowych treningów i szablonów bez własnego miejsca.')} style={{ marginBottom: 8 }}><Muted>{t('★ Miejsce główne')}</Muted></InfoTip>
         : <Btn title={t('Ustaw jako główne')} small style={{ alignSelf: 'flex-start', marginBottom: 8 }} onPress={() => setMainLocation(l.id)} />}
-      <Muted style={{ fontSize: 13 }}>{t('Dostępne ćwiczenia: {n} z {m}', { n: ok, m: all.length })}</Muted>
+      <Muted style={font('footnote')}>{t('Dostępne ćwiczenia: {n} z {m}', { n: ok, m: all.length })}</Muted>
       {EQUIP_GROUPS.map(g => { const items = EQUIPMENT.filter(x => x.group === g); const n = items.filter(x => activeEquip(l, x.id)).length; const isOpen = open.includes(g); const name = equipLabel(EQUIP_GROUP_LABEL[g]); return (
         <View key={g}>
           <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={name} accessibilityValue={{ text: t('zaznaczone: {n} z {m}', { n, m: items.length }) }} accessibilityState={{ expanded: isOpen }} onPress={() => setOpen(o => o.includes(g) ? o.filter(x => x !== g) : [...o, g])}
             style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', minHeight: 48, marginTop: 10, borderBottomWidth: 1, borderBottomColor: th.line, opacity: pressed ? 0.6 : 1 })}>
-            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ flex: 1, color: th.text, fontSize: 16, fontFamily: F.semibold }}>{name}</Text>
-            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.4} style={{ color: n ? th.accent : th.muted, fontSize: 14, fontFamily: F.regular, marginRight: 8 }}>{t('{n} z {m}', { n, m: items.length })}</Text>
-            <Text accessible={false} style={{ color: th.muted, fontSize: 16 }}>{isOpen ? '▾' : '▸'}</Text>
+            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ flex: 1, color: th.text, ...font('body'), ...FW.semibold }}>{name}</Text>
+            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.4} style={{ color: n ? th.accent : th.muted, ...font('callout'), ...FW.regular, marginRight: 8 }}>{t('{n} z {m}', { n, m: items.length })}</Text>
+            <Text accessible={false} style={{ color: th.muted, ...font('body') }}>{isOpen ? '▾' : '▸'}</Text>
           </Pressable>
           {isOpen ? items.map(x => { const e = activeEquip(l, x.id); return (
             <View key={x.id}>
@@ -52,6 +54,8 @@ export default function LocationEdit() {
       <View style={{ flexDirection: 'row', gap: 8, marginTop: 20 }}>
         <Btn title={t('Duplikuj')} onPress={once(() => { const c = duplicateLocation(l.id); if (c) router.replace(`/more/location/${c.id}`); })} />
       </View>
+      {/* M3 ZM-04, W2 a: „Usuń miejsce” na dole (tam, gdzie dozwolony jest też gest — nie dla miejsca głównego, gdy są inne); to samo okno co gest */}
+      {canDeleteLocation(l.id) ? <DeleteButton label={t('Usuń miejsce')} title={t('Usunąć miejsce?')} message={locationDeleteMessage(l.id)} onDelete={() => { if (deleteLocation(l.id)) back(); }} /> : null}
     </ScrollView></Screen>
   );
 }
@@ -61,7 +65,7 @@ function BandLevels({ l, levels, label }: { l: Location; levels?: number[]; labe
   const router = useRouter(); const bands = getState().bands; const on = levels ?? [...new Set(bands.map(b => b.level))];
   return (
     <View style={{ marginLeft: 16, marginBottom: 8, gap: 6 }}>
-      <Muted style={{ fontSize: 13, marginTop: 6 }}>{t('Poziomy gum, które masz w tym miejscu (1 = cienka, 7 = bardzo gruba).')}</Muted>
+      <Muted style={{ ...font('footnote'), marginTop: 6 }}>{t('Poziomy gum, które masz w tym miejscu (1 = cienka, 7 = bardzo gruba).')}</Muted>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{[1, 2, 3, 4, 5, 6, 7].map(n => <Chip key={n} toggle label={String(n)} on={on.includes(n)} a11yLabel={`${label}: ${t('poziom {n}', { n })}`} onPress={() => setBandLevel(l, n, !on.includes(n))} />)}</View>
       {on.map(n => { const b = bands.find(x => x.level === n); return b ? (
         <View key={n} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>

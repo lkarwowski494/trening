@@ -55,7 +55,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Dowód potrzeby: J-01 (odtworzone z README.md); kod `lib/state/pause.ts`
 - Kryteria akceptacji:
   - Scenariusz: Czas pauzy nie wlicza się
-    - Zakładając, że trening w toku jest wstrzymany przyciskiem „Pauza”
+    - Zakładając, że trening w toku jest wstrzymany pozycją „Pauza treningu” w menu „⋯” nagłówka (M3 p2, ZM-02)
     - Gdy upływa czas, a potem użytkownik wznawia trening
     - Wtedy czas trwania treningu nie zawiera czasu pauzy
   - Scenariusz: Odhaczenie serii wznawia trening
@@ -70,7 +70,49 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Wybór widoku w ustawieniach
     - Zakładając, że użytkownik wybrał widok „Lista” w ustawieniach
     - Gdy rozpoczyna trening
-    - Wtedy ćwiczenia pokazane są jako lista serii; przy widoku „Skupiony” karta bieżącej serii
+    - Wtedy ćwiczenia pokazane są jako lista serii; przy widoku „Skupiony” tablica „teraz” z bieżącą serią (BR-TRN-009)
+  - Scenariusz: Widok „Lista” bez tablicy
+    - Zakładając, że wybrano widok „Lista”
+    - Gdy trwa trening z przerwą
+    - Wtedy tablicy „teraz” nie ma, a przerwa jest w dolnym pasku (ZM-01: tablica tylko w widoku „Skupiony”)
+
+### BR-TRN-009: Tablica „teraz”: wpis i krok ± na tablicy, „Seria zrobiona” bez wartości
+- Przepływ: PR-01
+- Dowód potrzeby: M3 p2 ZM-01 (docs/design/to-be.md, wzorzec 29 w docs/32); kod `lib/board.ts`, `components/NowBoard.tsx`; testy `tests/m3-p2-board-logic.test.ts`, `tests/m3-p2-board-ui.test.tsx`; **krok ± dla czasu (5 s) i dystansu (50 m / 50 yd) to konwencja robocza [DO USTALENIA: badacz]**, krok ciężaru i powtórzeń jak cicha podpowiedź progresji
+- Kryteria akceptacji:
+  - Scenariusz: Krok ± ciężaru w miejscu z opisanym sprzętem
+    - Zakładając, że bieżąca seria ma ciężar 80 kg, a miejsce treningu ma opisane talerze i sztangę
+    - Gdy użytkownik stuka „+” przy ciężarze
+    - Wtedy ciężar zmienia się na najbliższy dostępny większy (82,5 kg), a zmiana trafia do danych serii jak wpis w wierszu serii
+  - Scenariusz: Wpis liczby na tablicy
+    - Zakładając, że na tablicy widać ciężar i powtórzenia bieżącej serii
+    - Gdy użytkownik stuka liczbę i wpisuje wartość
+    - Wtedy pole otwiera się w tym samym miejscu, a wartość zapisuje się jak przy wpisie w wierszu serii
+  - Scenariusz: „Seria zrobiona” bez wartości
+    - Zakładając, że bieżąca seria nie ma ciężaru ani podpowiedzi „Poprzednio”
+    - Gdy użytkownik stuka „Seria zrobiona”
+    - Wtedy seria nie zostaje odhaczona, kursor trafia do pierwszego pustego pola, a telefon wibruje ostrzegawczo (gdy włączone „Wibracje”)
+  - Scenariusz: Brak wartości widać jako „—”
+    - Zakładając, że seria nie ma wartości
+    - Gdy ekran pokazuje ją na tablicy i w wierszu wyniku
+    - Wtedy zamiast „0” widać „—” (04-studio-projektowe-010)
+  - Scenariusz: Pola serii zależnie od liczby serii
+    - Zakładając, że ćwiczenie ma więcej niż 4 serie
+    - Gdy tablica pokazuje pola serii
+    - Wtedy do 4 serii pola pokazują wynik, 5–12 mieszczą się w 1–3 rzędach, powyżej 12 rząd się przewija (SET_FIELDS)
+
+### BR-TRN-010: Menu „⋯” w nagłówku treningu; „Zakończ” drugorzędny
+- Przepływ: PR-01 · PR-09
+- Dowód potrzeby: M3 p2 ZM-02 (wzorzec 30 w docs/32); kod `components/ActiveWorkout.tsx`; testy `tests/m3-p2-board-ui.test.tsx`
+- Kryteria akceptacji:
+  - Scenariusz: Nagłówek w jednej linii
+    - Zakładając, że trwa trening z nazwą i zegarem
+    - Gdy użytkownik widzi nagłówek
+    - Wtedy nazwa i czas są w jednej linii, a miejsce, pauza, zapowiedzi głosowe i notatka szablonu są w menu „⋯”
+  - Scenariusz: Zakończenie ostrzega o seriach bez wyniku
+    - Zakładając, że odhaczono serię bez ciężaru
+    - Gdy użytkownik stuka „Zakończ”
+    - Wtedy okno pyta o zakończenie i ostrzega o seriach bez wyniku
 
 ### BR-TRN-005: Zamiana ćwiczenia w trakcie treningu
 - Przepływ: PR-01
@@ -127,11 +169,15 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
   - Scenariusz: Koniec przerwy przy zablokowanym ekranie
     - Zakładając, że przerwa trwa, a ekran telefonu jest zablokowany
     - Gdy przerwa dobiega końca
-    - Wtedy przychodzi powiadomienie lokalne z dźwiękiem i wibracją (gdy włączone „Dźwięk i wibracja na koniec przerwy”)
+    - Wtedy przychodzi powiadomienie lokalne z dźwiękiem (gdy włączony „Dźwięk na koniec przerwy”); wibracja w aplikacji na wierzchu zależy od „Wibracje”
+  - Scenariusz: Zgoda na powiadomienia przy pierwszej przerwie
+    - Zakładając, że zgoda na powiadomienia nie jest jeszcze ustalona
+    - Gdy zaczyna się pierwsza przerwa
+    - Wtedy pod tablicą pojawia się jeden wiersz z prośbą („Powiadamiaj” / „Nie teraz”), a pytanie systemu iOS dopiero po „Powiadamiaj” (M3 p2, ZM-02)
   - Scenariusz: Brak zgody na powiadomienia
     - Zakładając, że zgoda na powiadomienia nie została udzielona
-    - Gdy użytkownik otwiera ekran treningu
-    - Wtedy ekran informuje, że przypomnienia i koniec przerwy nie przyjdą, i wskazuje ustawienia iOS
+    - Gdy zaczyna się przerwa
+    - Wtedy ekran jednorazowo informuje, że przypomnienia i koniec przerwy nie przyjdą, i wskazuje ustawienia iOS
 
 ### BR-PRZ-002: Live Activity z odliczaniem przerwy
 - Przepływ: PR-02
@@ -150,6 +196,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik jest na ekranie szablonów
     - Gdy dodaje szablon przyciskiem „+”
     - Wtedy szablon zawiera ćwiczenia, serie, zakres powtórzeń i przerwy wpisane przez użytkownika; aplikacja nie dodaje szablonów sama
+  - Scenariusz: Usunięcie szablonu z podglądu (ZM-04, W2 a, 21.10.2026)
+    - Zakładając, że użytkownik ogląda podgląd własnego szablonu
+    - Gdy stuka „Usuń szablon” na dole ekranu
+    - Wtedy pojawia się to samo okno potwierdzenia co po geście na liście (z informacją o skutkach dla planu), a po „Usuń” szablon znika; w trybie edycji przycisku nie ma
 
 ### BR-PLN-001: Plan tygodnia z kalendarzem
 - Przepływ: PR-03
@@ -159,6 +209,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma szablony
     - Gdy przypisuje je do dni tygodnia w planie
     - Wtedy plan powtarza się co tydzień, a ekran Trening pokazuje dzisiejszy trening z planu
+  - Scenariusz: „Planowanie” w nagłówku zakładki Plan (M3 p3, W1 c)
+    - Zakładając, że użytkownik jest w zakładce Plan
+    - Gdy chce przejść do planowania
+    - Wtedy przycisk „Planowanie” jest przy tytule, w tym samym miejscu co na ekranie Trening, i otwiera ekran planu
 
 ### BR-PLN-002: Kilka planów z wyborem aktywnego
 - Przepływ: PR-03
@@ -194,6 +248,18 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik wybrał cel „Ogólny” i jeden dzień siłowy w tygodniu
     - Gdy generator przygotowuje plan
     - Wtedy pod celem pojawia się uwaga o małej liczbie dni z odniesieniem do zaleceń (docs/research/30-cel-ogolny.md)
+  - Scenariusz: Zapis, gdy nie ma aktywnego planu (ZM-03, 21.10.2026)
+    - Zakładając, że użytkownik nie ma aktywnego planu i przejrzał wynik generatora
+    - Gdy stuka „Zapisz szablony i plan”
+    - Wtedy szablony zostają zapisane, plan jest aktywny bez pytania i bez okna „Zapisano”, a aplikacja przechodzi do Planowania z jednym zdaniem „Plan „{nazwa}” jest teraz aktywny.”; zgodę na przypomnienie aplikacja zbiera przy pierwszym zaplanowanym dniu
+  - Scenariusz: Zapis, gdy aktywny plan już jest (ZM-03)
+    - Zakładając, że użytkownik ma aktywny plan
+    - Gdy stuka „Zapisz szablony i plan”
+    - Wtedy aplikacja pyta, czy nowy plan ustawić jako aktywny („Tylko zapisz” albo „Ustaw jako aktywny”), i potwierdza zapis oknem „Zapisano”; aktywny plan nie zmienia się bez zgody
+  - Scenariusz: Jeden tryb generatora (ZM-03)
+    - Zakładając, że użytkownik otwiera generator
+    - Gdy ogląda ekran
+    - Wtedy generator nie ma przełącznika trybu; „Plan z moich szablonów” jest osobnym wejściem w Planowaniu
 
 ### BR-GEN-002: Plan tygodnia z moich szablonów
 - Przepływ: PR-04
@@ -203,6 +269,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma własne szablony
     - Gdy wybiera „Plan z moich szablonów”
     - Wtedy aplikacja układa plan tygodnia według tych samych reguł co generator, a szablony zostają bez zmian
+  - Scenariusz: Zapis jak w generatorze (ZM-03, 21.10.2026)
+    - Zakładając, że użytkownik ułożył plan z własnych szablonów
+    - Gdy stuka „Zapisz plan”
+    - Wtedy bez aktywnego planu plan staje się aktywny bez pytania i bez okna „Zapisano” (zdanie na ekranie Planowanie); z aktywnym planem aplikacja pyta jak w generatorze
 
 ### BR-MJS-001: Miejsca i sprzęt: ćwiczenia dobierane do tego, czym użytkownik dysponuje
 - Przepływ: PR-09
@@ -253,6 +323,36 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik otwiera Progresję
     - Wtedy widzi objętość, serie i treningi bieżącego okresu obok poprzedniego
 
+### BR-PST-005: Postępy: wykres i rekordy wybranego ćwiczenia na górze, wybór pod nimi
+- Przepływ: PR-05
+- Dowód potrzeby: J-03; decyzje właściciela 2026-10-21 (ZM-06, M1-026 = DEC-09, docs/design/to-be.md); testy `tests/m3-p3-postepy-historia.test.tsx`
+- Kryteria akceptacji:
+  - Scenariusz: Wykres i rekordy na górze
+    - Zakładając, że użytkownik ma zakończone treningi i nie wybrał ćwiczenia
+    - Gdy otwiera Postępy
+    - Wtedy na górze widzi wykres i rekordy ostatnio trenowanego ćwiczenia z danymi, pod nimi wybór ćwiczenia, a niżej sesje ćwiczenia i ogólny przegląd (okres do okresu, serie na partię)
+  - Scenariusz: Wybór ćwiczenia z danymi albo przez wyszukiwanie
+    - Zakładając, że biblioteka ma ćwiczenia bez historii
+    - Gdy użytkownik nie wpisał nic w wyszukiwanie
+    - Wtedy chipy wyboru pokazują tylko ćwiczenia z danymi, a pozostałe ćwiczenia są dostępne po wpisaniu nazwy; brak wyników to „Nic nie pasuje.”
+  - Scenariusz: Bez historii
+    - Zakładając, że użytkownik nie ma zakończonego treningu
+    - Gdy otwiera Postępy
+    - Wtedy widzi pusty stan z motywem graficznym, zdaniem o wykresach i przyciskiem „Zacznij trening”, który prowadzi na ekran Trening (bez wykresu, wyszukiwania i chipów); sekcja „Masa ciała” z wejściem do pomiarów zostaje pod nim
+
+### BR-HIS-001: Usuwanie sesji z historii: gest na liście i przycisk w szczegółach, to samo potwierdzenie
+- Przepływ: PR-05
+- Dowód potrzeby: decyzja właściciela 2026-10-21 (ZM-04, W2, docs/32 wzorzec 5); testy `tests/swipe-delete.test.tsx`, `tests/m3-p3-postepy-historia.test.tsx`
+- Kryteria akceptacji:
+  - Scenariusz: „Usuń sesję” na dole szczegółów
+    - Zakładając, że użytkownik otworzył zapisaną sesję
+    - Gdy stuka „Usuń sesję” na dole ekranu
+    - Wtedy pojawia się to samo okno [Anuluj, Usuń] co po geście przesunięcia na liście, z dopiskiem o kopii w Apple Health, jeśli sesja ją ma; „Anuluj” zostawia sesję, „Usuń” usuwa ją i wraca do listy
+  - Scenariusz: Brak wyniku w serii
+    - Zakładając, że seria zapisana w historii nie ma powtórzeń, czasu albo dystansu
+    - Gdy użytkownik ogląda sesję
+    - Wtedy w odpowiedniej komórce widzi „—”, a nie „0” (04-studio-projektowe-010); eksport CSV bez zmian
+
 ### BR-PST-004: Cel serii na partię w tygodniu: automatyczny albo ręczny
 - Przepływ: PR-05
 - Dowód potrzeby: J-03; docs/research/32-serie-na-partie.md
@@ -270,6 +370,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie ma wskazówki techniki
     - Gdy użytkownik otwiera ćwiczenie
     - Wtedy sekcje „Ustawienie”, „Ruch”, „Wskazówki” i „Częste błędy” są po polsku lub w języku aplikacji; nazwa ćwiczenia z biblioteki zostaje po angielsku (decyzja 2026-10-19)
+  - Scenariusz: Usunięcie własnego ćwiczenia z podglądu (ZM-04, W2 a, 21.10.2026)
+    - Zakładając, że użytkownik ogląda podgląd ćwiczenia własnego
+    - Gdy stuka „Usuń z biblioteki” na dole ekranu
+    - Wtedy pojawia się to samo okno potwierdzenia co po geście na liście, a po „Usuń” ćwiczenie znika z biblioteki (historia zostaje); przy ćwiczeniu wbudowanym przycisku nie ma (decyzja STOP 3, 2026-10-21), a gest na liście działa jak dotąd
 
 ### BR-BIB-002: Informacja o asekuracji przy sztandze nad ciałem lub na barkach
 - Przepływ: PR-01
@@ -319,6 +423,19 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy mija mniej niż 5 sekund i użytkownik stuka „Cofnij”
     - Wtedy odhaczenie jest cofnięte
 
+### BR-ZEG-002: Zegarek: w trakcie pomiaru serii na czas przycisk główny to „Zakończ serię”
+- Przepływ: PR-07
+- Dowód potrzeby: ZM-05; docs/32-wzorce-interakcji.md (wzorzec 24); docs/design/design-spec.md §10 wiersz 38
+- Kryteria akceptacji:
+  - Scenariusz: Pomiar trwa
+    - Zakładając, że telefon mierzy stoperem serię na czas, a zegarek jest połączony
+    - Gdy zegarek pokazuje tę serię
+    - Wtedy przycisk główny nazywa się „Zakończ serię”, jak na telefonie, a jego stuknięcie kończy pomiar i odhacza serię
+  - Scenariusz: Brak pomiaru
+    - Zakładając, że seria na czas nie jest mierzona albo seria nie jest na czas
+    - Gdy zegarek pokazuje tę serię
+    - Wtedy przycisk główny nazywa się „Seria zrobiona”
+
 ### BR-GLS-001: Zapowiedzi głosowe na początku przerwy, domyślnie wyłączone
 - Przepływ: PR-02
 - Dowód potrzeby: ZP-07; D-005; docs/36-glos.md
@@ -331,6 +448,31 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik wybrał „W słuchawkach” i podłączył słuchawki
     - Gdy zaczyna się przerwa po odhaczeniu serii
     - Wtedy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia
+
+### BR-UST-001: Dźwięk na koniec przerwy i wibracje to dwa osobne przełączniki
+- Przepływ: PR-08
+- Dowód potrzeby: ZM-07 (docs/design/to-be.md); decyzja właściciela 21.10.2026 (docs/18); kod `app/more/settings.tsx`, `lib/haptics.ts`, `components/ActiveWorkout.tsx` (onDone)
+- Kryteria akceptacji:
+  - Scenariusz: Dwa przełączniki w Ustawieniach
+    - Zakładając, że użytkownik otwiera Ustawienia
+    - Gdy ogląda sekcję „Trening”
+    - Wtedy widzi osobne przełączniki „Dźwięk na koniec przerwy” i „Wibracje”, a dawnego „Dźwięk i wibracja na koniec przerwy” nie ma
+  - Scenariusz: Dźwięk tylko od dźwięku, wibracje tylko od wibracji
+    - Zakładając, że użytkownik wyłączył „Wibracje”, a „Dźwięk na koniec przerwy” zostawił włączony
+    - Gdy kończy się przerwa albo stoper serii
+    - Wtedy powiadomienie ma dźwięk, a telefon nie wibruje (ani na końcu przerwy, ani przy ± i ostrzeżeniu na tablicy, ani przy przeciąganiu listy); przy odwrotnym ustawieniu odwrotnie
+  - Scenariusz: Krótka wibracja przy odhaczeniu serii
+    - Zakładając, że użytkownik ma włączone „Wibracje” (albo brak zapisanego wyboru i włączony „Dźwięk na koniec przerwy”)
+    - Gdy odhacza serię przez „Seria zrobiona” na tablicy albo przez ✓ w wierszu serii
+    - Wtedy telefon wibruje krótko, tak samo w obu miejscach; przy cofnięciu odhaczenia i przy wyłączonych „Wibracjach” nie wibruje
+  - Scenariusz: Aktualizacja nic nie zmienia
+    - Zakładając, że dane pochodzą z wersji bez przełącznika „Wibracje” (brak zapisanego wyboru)
+    - Gdy aplikacja się uruchamia po aktualizacji
+    - Wtedy wibracje zachowują się jak „Dźwięk na koniec przerwy” (jak dotąd), schemat danych i zapis nie są zmieniane, a pierwsze przełączenie dźwięku nie przełącza wibracji
+  - Scenariusz: Wybór przetrwa kopię i powrót do starszej wersji
+    - Zakładając, że użytkownik zapisał wybór „Wibracje”
+    - Gdy eksportuje i importuje kopię albo otwiera dane w starszej wersji, a potem w nowej
+    - Wtedy wybór zostaje zachowany (starsza wersja trzyma pole jako nieznane)
 
 ### BR-DAN-001: Dane tylko w telefonie, bez konta
 - Przepływ: PR-06
@@ -366,6 +508,27 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że zapis pochodzi z poprzedniej wersji aplikacji
     - Gdy użytkownik uruchamia nową wersję
     - Wtedy dane są przeniesione do nowego schematu, a kopia zapisu sprzed migracji istnieje
+
+### BR-DAN-004: Usuwanie poza treningiem: widoczna droga obok gestu, to samo potwierdzenie
+- Przepływ: PR-09, PR-05
+- Dowód potrzeby: decyzja właściciela 21.10.2026 (docs/18, M3 ZM-04, W1 b, W2 a); docs/32 wzorzec 5; testy `tests/m3-p5-delete.test.tsx`, `tests/swipe-delete.test.tsx`
+- Kryteria akceptacji:
+  - Scenariusz: Usunięcie pomiaru masy ciała albo gumy bez gestu
+    - Zakładając, że lista pomiarów albo gum ma co najmniej jeden wiersz
+    - Gdy użytkownik stuka „Edytuj” w nagłówku, a potem przycisk usunięcia przy wierszu
+    - Wtedy pojawia się to samo okno [Anuluj, Usuń] co po geście przesunięcia, „Anuluj” nic nie usuwa, a „Usuń” usuwa jeden wiersz
+  - Scenariusz: Usunięcie miejsca ze szczegółów
+    - Zakładając, że otwarto ekran miejsca, które wolno usunąć (nie główne, gdy są inne)
+    - Gdy użytkownik stuka „Usuń miejsce” na dole ekranu
+    - Wtedy pojawia się to samo okno co po geście na liście miejsc, a po potwierdzeniu miejsce znika i ekran wraca do listy
+  - Scenariusz: Usunięcie serii, ćwiczenia, zamiennika albo zapisanego planu poza treningiem bez gestu (04-studio-projektowe-003)
+    - Zakładając, że otwarto edytor szablonu, edycję sesji albo ekran zapisanego planu
+    - Gdy użytkownik wybiera „Usuń serię” w menu serii, „Usuń ćwiczenie” w „⋯” ćwiczenia, „Usuń” przy zamienniku albo „Usuń plan” na dole ekranu planu
+    - Wtedy pojawia się to samo okno [Anuluj, Usuń] co po geście; ostatnia seria bloku nie jest usuwana, a menu pokazuje to samo wyjaśnienie co gest
+  - Scenariusz: Miejsce główne
+    - Zakładając, że otwarto ekran miejsca głównego, a istnieją inne miejsca
+    - Gdy użytkownik przegląda ekran
+    - Wtedy przycisku „Usuń miejsce” nie ma (jak gestu)
 
 ### BR-JEZ-001: Interfejs w wielu językach
 - Przepływ: PR-08
@@ -430,3 +593,5 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 - Miara: liczba kluczy słownika bez tłumaczenia w którymkolwiek języku z `LANGS`. Próg: 0. Metoda: `npm run check:i18n` oraz `tests/i18n-locales.test.ts`.
 ### NFR-DOS-001: Skalowanie tekstu systemowego
 - Miara: największa obsługiwana skala tekstu systemowego (Dynamic Type) w opisach. Próg: 2 (200%, `TEXT_SCALE_MAX` w `lib/theme.ts`). Metoda: test przeglądu dostępności `tests/matrix-a11y.test.tsx`.
+### NFR-WYG-001: Wygląd z jednego modułu tokenów
+- Miara: liczba literałów liczbowych `fontSize` i `borderRadius` w kodzie interfejsu poza `lib/theme.ts` i `lib/tokens.ts`; osobno liczba par barw palet (jasna, ciemna, obie „Zwiększ kontrast”) poniżej progu kontrastu (tekst 4,5:1, duży tekst i elementy 3:1, w „Zwiększ kontrast” tekst pomocniczy i akcent 7:1). Próg: literały — nie więcej niż w wykazie `tests/token-baseline.json` (zapadka, docelowo 0 po partiach p2–p5 redesignu M3); pary poniżej progu — 0 z 210. Metoda: testy `tests/m3-token-guard.test.ts`, `tests/m3-contrast.test.ts`, `tests/m3-theme.test.ts` (decyzje STOP E3 z 21.10.2026, docs/18; M1-036, M1-031).

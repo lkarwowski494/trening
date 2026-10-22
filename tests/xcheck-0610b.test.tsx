@@ -53,6 +53,6 @@ test('NISKIE (parytet #13): edytor historii pokazuje typ serii plakietką SetBad
   const tpl = src('app/template/[id].tsx'); expect(tpl.indexOf("{hasTime(m) ? <View style={{ width: W.time }}>")).toBeLessThan(tpl.indexOf("{band ? <Pressable accessibilityLanguage={lang()} accessibilityRole=\"button\"") /* A11-09/A11-18: atrybuty przycisku gumy */);
 });
 test('NISKIE (wygląd #7): etykiety wykresów i „Zamknij” w oknach w kroju aplikacji', () => {
-  const c = src('components/Chart.tsx'); expect((c.match(/<SvgText /g) ?? []).length).toBe((c.match(/<SvgText fontFamily=\{F\.regular\} /g) ?? []).length);
-  expect(src('components/DraftHeader.tsx')).toMatch(/fontSize: 17, fontFamily: bold \? F\.semibold : F\.regular/); /* 13.10.2026: jeden przycisk dla wszystkich okien */
+  const c = src('components/Chart.tsx'); expect((c.match(/<SvgText /g) ?? []).length).toBe((c.match(/<SvgText fontFamily=\{FW\.regular\.fontFamily\} /g) ?? []).length);
+  expect(src('components/DraftHeader.tsx')).toMatch(/\.\.\.font\('button'\), \.\.\.\(bold \? FW\.semibold : FW\.regular\)/); /* M3: rozmiar 17 z roli `button`, waga z FW */ /* 13.10.2026: jeden przycisk dla wszystkich okien */
 });

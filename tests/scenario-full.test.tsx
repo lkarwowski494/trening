@@ -16,7 +16,7 @@ import * as FS from 'expo-file-system/legacy';
 import * as DP from 'expo-document-picker';
 import * as Sharing from 'expo-sharing';
 import { within } from '@testing-library/react-native';
-import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft, fromHome, startTpl, openInfo } from './app';
+import { renderApp, tap, type, flushAll, screen, go, act, fireEvent, expandEquip, openPlaceSheet, placeInMenu, swipeDelete, deleteActions, startEdit, saveEdit, exDraft, tplDraft, fromHome, startTpl, openInfo } from './app';
 import { ex, pressAlert, saved } from './helpers';
 import type { State } from '@/lib/seed';
 import { loadSummary } from '@/components/LoadEditor';
@@ -119,11 +119,15 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await type(rest, '120,4'); expect(S().settings.defaultRest).toBe(120);
     await endEdit(rest); await flushAll(5); expect(screen.getByLabelText('Domyślna przerwa (s)').props.value).toBe('120');
     /* przełączniki */
-    const sws: [string, keyof State['settings'], boolean][] = [['Dźwięk i wibracja na koniec przerwy', 'sound', true], ['Ekran włączony podczas treningu', 'wakeLock', true], ['RPE / RIR przy serii', 'showRpe', false], ['Podpowiedź progresji', 'progressHint', true], ['Automatyczna kopia po każdym treningu', 'autoBackup', true]];
+    const sws: [string, keyof State['settings'], boolean][] = [['Dźwięk na koniec przerwy', 'sound', true], ['Ekran włączony podczas treningu', 'wakeLock', true], ['RPE / RIR przy serii', 'showRpe', false], ['Podpowiedź progresji', 'progressHint', true], ['Automatyczna kopia po każdym treningu', 'autoBackup', true]];
     for (const [label, key, def] of sws) {
       expect(screen.getByLabelText(label).props.accessibilityState.checked).toBe(def); expect(S().settings[key]).toBe(def);
       await toggle(label, !def); expect(S().settings[key]).toBe(!def); expect(screen.getByLabelText(label).props.accessibilityState.checked).toBe(!def);
     }
+    /* ZM-07 (p5d): „Wibracje” — pierwsze przełączenie dźwięku wyżej utrwaliło dotychczasowy stan wibracji (włączone), a przełączenie dźwięku ich nie ruszyło; przełączenie wibracji zapisuje jawnie, dźwięk bez zmian */
+    expect(screen.getByLabelText('Wibracje').props.accessibilityState.checked).toBe(true); expect(S().settings.haptics).toBe(true);
+    await toggle('Wibracje', false); expect(S().settings.haptics).toBe(false); expect(S().settings.sound).toBe(false) /* dźwięk zostawiony wyżej na przeciwnej wartości — Wibracje go nie ruszają */; expect(screen.getByLabelText('Wibracje').props.accessibilityState.checked).toBe(false);
+    await toggle('Wibracje', true); expect(S().settings.haptics).toBe(true);
     /* zostawiamy: RPE włączone (pole RPE w treningu), reszta jak domyślnie */
     for (const [label, key, def] of sws) if (key !== 'showRpe') { await toggle(label, def); expect(S().settings[key]).toBe(def); }
     /* Apple Health: bez HealthKit (atrapa) — komunikat i przełącznik zostaje wyłączony */
@@ -336,7 +340,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await act(async () => { fireEvent(screen.getByLabelText('Asysta gumą'), 'valueChange', false); }); expect(bd().bandAssistable).toBe(false);
     expect(screen.queryByText(/^Uwaga: zmiana sprzętu/)).toBeNull(); /* bez historii — bez ostrzeżenia o przeliczeniu */
     expect(bench.restSec).toBeNull(); await saveEdit(); expect(bench).toMatchObject({ restSec: 100, restWarmupSec: 45, tempo: '3-1-1', notes: 'łokcie 45°', bandAssistable: false, muscles: ['klatka'], secondaryMuscles: ['triceps', 'barki'] });
-    await tap(screen.getByText('Postępy')); await flushAll(10); expect(screen.getByText('Brak zapisanych sesji z tym ćwiczeniem.')).toBeTruthy(); expect(screen.getByLabelText('Bench Press (hantle)')).toBeTruthy();
+    await tap(screen.getByText('Postępy')); await flushAll(10); /* ZM-06 (21.10.2026, M3 p3; zastępuje „wykres ćwiczenia bez sesji”): bez żadnej historii Postępy to sam pusty stan z „Zacznij trening” — bez chipów i wyszukiwania */ expect(screen.getByText('Wykresy pojawią się po pierwszym zakończonym treningu.')).toBeTruthy(); expect(screen.getByText('Zacznij trening')).toBeTruthy(); expect(screen.queryByLabelText('Bench Press (hantle)')).toBeNull();
     await go('/exercises'); await flushAll(10); /* 11.10.2026: „Postępy” z ćwiczenia przełącza na zakładkę (zamyka stos), więc biblioteka otwiera się od nowa */
     /* lista pokazuje tempo przy ćwiczeniu */
     expect(screen.getByLabelText('Bench Press (hantle), hantle · tempo 3-1-1')).toBeTruthy();
@@ -422,9 +426,9 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(byHint('+ rozgrzewka', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal']); expect(kindBtn('W', 'rozgrzewkowa')).toBeTruthy();
     await tap(byHint('+ drop set', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal', 'drop']); expect(kindBtn('4D', 'drop set')).toBeTruthy(); /* audyt 0.10 (LIVE-14): drop set z numerem swojej serii (wcześniej „5D”) */
     await swipeDelete(`Usuń serię 4D — ${B}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal']);
-    await tap(kindBtn('4', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Anuluj']);
+    await tap(kindBtn('4', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Usuń serię', 'Anuluj']); /* 04-studio-projektowe-003: „Usuń serię” w menu serii szablonu (zmiana oczekiwania, było bez niej) */
     await sheet(3); expect(kinds()[4]).toBe('failure'); expect(kindBtn('4F', 'do upadku')).toBeTruthy();
-    await tap(kindBtn('4F', 'do upadku')); await sheet(4); expect(kinds()[4]).toBe('failure'); /* Anuluj */
+    await tap(kindBtn('4F', 'do upadku')); await sheet(5); expect(kinds()[4]).toBe('failure'); /* Anuluj (indeks 5 po dodaniu „Usuń serię”) */
     await swipeDelete(`Usuń serię 4F — ${B}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal']); /* usunięcie przesunięciem */
     await tap(byHint('+ drop set', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']);
     const wl = store.loadLabel(ex(B), store.implAtLoc(ex(B), store.startLocationId(tpl.locationId))); expect(wl).toBe('kg/hantel');
@@ -533,20 +537,20 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(blk(P).sets.map(x => [x.addKg, x.reps, x.bandId ? store.bandById(x.bandId)!.level : null])).toEqual([['', 6, 2], ['', 6, null], [-5, 6, null]]);
     expect(blk(PL).sets.map(x => x.durationSec)).toEqual([45, 45]);
     /* nagłówek: nazwa, miejsce, zegar, postęp */
-    expect(screen.getByText('Push A')).toBeTruthy(); expect(screen.getByText('📍 Dom testowy ▾')).toBeTruthy();
+    expect(screen.getByText('Push A')).toBeTruthy(); expect(await placeInMenu()).toBe('Miejsce treningu: Dom testowy'); /* M3 p2 (ZM-02): miejsce w menu „⋯” */
     expect(screen.getByLabelText('Postęp treningu: 0 z 14 serii')).toBeTruthy(); /* serie robocze (audyt 0.10): 16 serii bez rozgrzewki i drop setu (drop liczy się z serią przed nim) */ expect(screen.getAllByText('SS A · ')).toHaveLength(2);
-    expect(screen.getByText(/8–12 pow\. · superset · przerwa po rundzie 2:00 · 3-1-1/)).toBeTruthy(); /* zakres, superset, przerwa rundy, tempo z ćwiczenia */
+    expect(screen.getByText(/8–12 pow\., superset · przerwa po rundzie 2:00, 3-1-1/)).toBeTruthy(); /* zakres, superset, przerwa rundy, tempo z ćwiczenia */
     expect(screen.getByText('Notatka do treningu')).toBeTruthy(); expect(screen.getAllByText('RPE', { includeHiddenElements: true }).length).toBeGreaterThan(0); /* RPE włączone w Ustawieniach; nagłówek kolumny ukryty przed VoiceOver (audyt 0.10, A11-18) */
     /* zmiana miejsca tylko dla tej sesji: masa ciała → plakietka braku sprzętu; Anuluj; powrót do domu */
-    const chipLoc = () => screen.getByLabelText(/^Miejsce treningu: .*$/);
-    await tap(chipLoc()); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Pełna siłownia', 'Dom testowy', 'Tylko masa ciała', 'Hotel', 'Inne miejsce (tylko dziś)…', 'Anuluj']); /* 0.19 (docs/33 A4): pozycja „Inne miejsce (tylko dziś)…” */
+    const chipLoc = openPlaceSheet; /* M3 p2: miejsce w menu „⋯” treningu */
+    expect((await chipLoc()).opts.options).toEqual(['Pełna siłownia', 'Dom testowy', 'Tylko masa ciała', 'Hotel', 'Inne miejsce (tylko dziś)…', 'Anuluj']); /* 0.19 (docs/33 A4): pozycja „Inne miejsce (tylko dziś)…” */
     await sheet(2); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id);
     /* 0.18 (docs/33, P2 A): miejsce z brakami otwiera okno „Dostosuj do: X” samo — „Anuluj” nic nie zmienia, wiersz pod chipem zostaje */
     expect(screen.getByTestId('adapt-apply')).toBeTruthy(); await tap(screen.getByTestId('close-modal')); await flushAll(10); expect(screen.getByTestId('adapt-line')).toBeTruthy();
-    expect(screen.getByText('📍 Tylko masa ciała ▾')).toBeTruthy();
+    expect(await placeInMenu()).toBe('Miejsce treningu: Tylko masa ciała');
     expect(screen.getAllByLabelText(/^Brak sprzętu w: Tylko masa ciała\. Brakuje: /).length).toBe(4); /* wszystko poza Plankiem */ expect(screen.queryByLabelText(`Zamień ćwiczenie (brak sprzętu): ${B}`)).toBeNull(); /* jedno „⇄ zamień” w stopce; plakietka = tekst otwierający arkusz */ expect(screen.getByLabelText(`Zamień ćwiczenie: ${B}`)).toBeTruthy();
-    await tap(chipLoc()); await sheet(5); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id); /* Anuluj (0.19: po „Inne miejsce (tylko dziś)…” — indeks 5) */
-    await tap(chipLoc()); await sheet(1); expect(S().active!.locationId).toBe(loc('Dom testowy').id); expect(screen.queryByLabelText(/^Brak sprzętu w:/)).toBeNull();
+    await chipLoc(); await sheet(5); expect(S().active!.locationId).toBe(loc('Tylko masa ciała').id); /* Anuluj (0.19: po „Inne miejsce (tylko dziś)…” — indeks 5) */
+    await chipLoc(); await sheet(1); expect(S().active!.locationId).toBe(loc('Dom testowy').id); expect(screen.queryByLabelText(/^Brak sprzętu w:/)).toBeNull();
     expect(tpl.locationId).toBe(loc('Dom testowy').id); /* szablon bez zmian */
 
     /* wpisy w serii Bench 1: ciężar, powtórzenia, RPE */
@@ -561,12 +565,12 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(timer.T.on).toBe(false); /* rozgrzewka w trwającej rundzie supersetu — bez przerwy (Q-006) */
     /* ✓ Bench 1 (superset): bez przerwy w środku rundy; ✓ Cable 1 zamyka rundę → przerwa rundy 2:00 */
     await done(1, B); expect(timer.T.on).toBe(false); await flushAll(30000);
-    await done(1, C); expect(timer.T.on).toBe(true); expect(timer.T.total).toBe(120); expect(screen.getByText('przerwa z 2:00')).toBeTruthy();
+    await done(1, C); expect(timer.T.on).toBe(true); expect(timer.T.total).toBe(120); expect(screen.getByText('z 2:00')).toBeTruthy(); /* M3 p2: „z {s}” na tablicy w przerwie */
     expect(blk(C).sets[0].completedAt).toBeTruthy(); expect(blk(C).sets[0].actualRest).toBe(30); /* od poprzedniej odhaczonej serii */
     /* przerwa: −15, +15, Pomiń */
     const end0 = timer.T.endAt; await tap(screen.getByLabelText('Skróć przerwę o 15 sekund')); expect(timer.T.endAt).toBe(end0 - 15000);
     await tap(screen.getByLabelText('Wydłuż przerwę o 15 sekund')); await tap(screen.getByLabelText('Wydłuż przerwę o 15 sekund')); expect(timer.T.endAt).toBe(end0 + 15000);
-    await tap(screen.getByText('Pomiń')); expect(timer.T.on).toBe(false); expect(screen.queryByText(/^przerwa z/)).toBeNull();
+    await tap(screen.getByText('Pomiń')); expect(timer.T.on).toBe(false); expect(screen.queryByText(/^z \d+:\d{2}$/)).toBeNull();
     /* ✓ i cofnięcie ✓ (seria 2 Bench) — cofnięcie zdejmuje znacznik i godzinę */
     await done(2, B); expect(blk(B).sets[2].done).toBe(true); await done(2, B); expect(blk(B).sets[2].done).toBe(false); expect(blk(B).sets[2].completedAt).toBeNull();
     /* Pull Up: guma (cykl poziomów domu), ±kg, + rozgrzewka, + drop set, − seria, notatka i typ serii z menu */
@@ -615,7 +619,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByLabelText(`Inny przyrząd: ${other}`)); await flushAll(10);
     expect(names()).toEqual([B, C, C, P, BP, PL]); expect(blk(C, 0).sets).toHaveLength(1); expect(blk(C, 0).sets[0].done).toBe(true);
     expect(blk(C, 1).sets).toHaveLength(2); expect(blk(C, 1).implPinned).toBe(true); expect(blk(C, 1).impl).not.toBe(impl0); expect(blk(C, 1).groupId).toBe(blk(B).groupId); expect(blk(C, 1).splitFrom).toBe(blk(C, 0).id);
-    expect(screen.getAllByText('SS A · ')).toHaveLength(3); expect(screen.getByText(new RegExp(`^${other} · `))).toBeTruthy();
+    expect(screen.getAllByText('SS A · ')).toHaveLength(3); expect(screen.getByText(new RegExp(`^${other}, `))).toBeTruthy();
     expect(screen.queryByLabelText(`Zamień ćwiczenie: ${C} (1)`)).toBeNull(); /* blok z samymi odhaczonymi seriami — bez „⇄ zamień” */
 
     /* dodanie ćwiczeń w trakcie: filtr partii w oknie wyboru; usunięcie jednego z potwierdzeniem */
@@ -673,14 +677,14 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const endAt = carry!.timer?.restEndAt; expect(endAt).toBeTruthy();
     await boot('/');
     const a = S().active!; expect(a).toBeTruthy(); expect(a.templateName).toBe('Push A'); expect(a.note).toBe('dobry dzień');
-    expect(timer.T.on).toBe(true); expect(timer.T.endAt).toBe(endAt); expect(screen.getByText('przerwa z 1:20')).toBeTruthy();
+    expect(timer.T.on).toBe(true); expect(timer.T.endAt).toBe(endAt); expect(screen.getByText('z 1:20')).toBeTruthy(); /* M3 p2: „z {s}” na tablicy w przerwie */
     expect(screen.getByLabelText('Postęp treningu: 15 z 16 serii')).toBeTruthy(); expect(screen.getByText('chwyt nachwytem')).toBeTruthy();
-    expect(screen.getByText('📍 Dom testowy ▾')).toBeTruthy();
+    expect(await placeInMenu()).toBe('Miejsce treningu: Dom testowy');
     /* zakładka Trening z plakietką pozostałej przerwy, także z innej zakładki */
     await go('/history'); await flushAll(10); expect(screen.getByLabelText(/^Trening, przerwa \+?\d+:\d\d, zakładka, 1 z 4$/)).toBeTruthy(); /* każde przejście ekranu w testach przesuwa zegar — przerwa mogła już minąć (+) */
     await go('/'); await flushAll(10);
     /* koniec przerwy: „przerwa minęła” */
-    await flushAll(120000); expect(screen.queryByText('przerwa minęła') ?? screen.queryByText(/^przerwa z/)).toBeTruthy();
+    await flushAll(120000); expect(screen.queryByText('przerwa minęła') ?? screen.queryByText(/^z \d+:\d{2}$/)).toBeTruthy();
   });
 
   test('06c zakończenie treningu: potwierdzenie z ostrzeżeniami, zapis, szczegóły sesji, kopia automatyczna', async () => {
@@ -697,7 +701,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(w.exercises.every(e => e.sets.every(x => x.done))).toBe(true); expect(store.workingSets(w)).toBe(15); /* LIVE2-02: = liczba z okna „Zakończyć” */ /* nieodhaczone serie nie trafiają do historii */
     expect(global.__alerts.some(x => /rekord/i.test(x.title))).toBe(false); /* pierwszy trening nie jest rekordem */
     /* szczegóły sesji otwarte od razu */
-    expect(screen.getByText('dobry dzień')).toBeTruthy(); expect(screen.getByText('Edytuj')).toBeTruthy(); expect(screen.queryByText('Usuń sesję')).toBeNull(); /* 07.10.2026 wieczór: usuwanie przesunięciem na liście Historii */
+    expect(screen.getByText('dobry dzień')).toBeTruthy(); expect(screen.getByText('Edytuj')).toBeTruthy(); expect(screen.getAllByText('Usuń sesję')).toHaveLength(1); /* W2 (21.10.2026): przycisk „Usuń sesję” na dole szczegółów — zastępuje decyzję z 07.10.2026 wieczór (usuwanie przesunięciem na liście Historii */
     expect(screen.getAllByText('SS A · ').length).toBe(3); expect(screen.getByText('chwyt nachwytem')).toBeTruthy();
     /* kopia automatyczna po treningu */
     expect(write.mock.calls.some(([p]) => /\/Backup\/training-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p))).toBe(true);
@@ -714,7 +718,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('1 sesja')).toBeTruthy();
     const vol = store.volume(w0); expect(vol).toBeGreaterThan(0);
     expect(store.workingSets(w0)).toBe(w0.exercises.reduce((a, e) => a + store.workCount(e.sets.map(x => x.kind)), 0)); /* X-15 / D3 (audyt 0.10) */
-    const where = w0.locationId ? ` · 📍 ${require('@/lib/locations').locationLabel(w0.locationId)}` : ''; /* T-057 (0.14.0): miejsce w liście i szczegółach */
+    const where = w0.locationId ? ` · ${require('@/lib/locations').locationLabel(w0.locationId)}` : ''; /* T-057 (0.14.0): miejsce w liście i szczegółach */
     expect(screen.getByLabelText(new RegExp(`^Push A, .* · ${store.workingSets(w0)} serii · ${require('@/lib/units').fmtVol(vol).replace(/[.()]/g, '\\$&')}${where}$`))).toBeTruthy();
     await tap(screen.getByText('Push A')); await flushAll(10);
     expect(screen.getByText(new RegExp(`· objętość ${require('@/lib/units').fmtVol(vol)}${where}$`))).toBeTruthy();
@@ -722,7 +726,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getAllByText(/^(SS A · )?Cable Curl$/)).toHaveLength(2);
     /* edycja: zmiana i „Anuluj” z pytaniem — historia bez zmian */
     await tap(screen.getByLabelText('Edytuj sesję')); await flushAll(10);
-    expect(screen.getByText('📍 Dom testowy ▾')).toBeTruthy(); /* T-057: miejsce do wyboru */ expect(screen.getByLabelText('Nazwa').props.value).toBe('Push A');
+    expect(screen.getByText('Dom testowy ▾')).toBeTruthy(); /* T-057: miejsce do wyboru */ expect(screen.getByLabelText('Nazwa').props.value).toBe('Push A');
     await type(screen.getByLabelText('Nazwa'), 'zmiana'); await tap(screen.getByLabelText('Anuluj edycję sesji'));
     expect(lastAlert()).toMatchObject({ title: 'Odrzucić zmiany?', msg: 'Sesja w historii zostanie bez zmian.' });
     pressAlert('Odrzucić zmiany?', 'Wróć do edycji'); await flushAll(5); expect(screen.getByLabelText('Nazwa').props.value).toBe('zmiana');
@@ -827,7 +831,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('Najlepsza seria (objętość)')).toBeTruthy(); expect(screen.getByText(fmtVol(rec.bestSetVolume))).toBeTruthy();
     expect(screen.getByText('Sesje')).toBeTruthy(); expect(stats.sessionsFor(bench)).toHaveLength(2);
     for (const k of keys) { await tap(screen.getByLabelText(k.label)); expect(screen.getByLabelText(k.label).props.accessibilityState.selected).toBe(true); }
-    await tap(screen.getByLabelText('Bench Press (hantle)')); expect(screen.getByText('Serie robocze tygodniowo')).toBeTruthy(); /* „✕” — z powrotem przegląd */
+    expect(screen.getByLabelText('Bench Press (hantle)').props.accessibilityState.selected).toBe(true); expect(screen.getByText('Serie robocze tygodniowo')).toBeTruthy(); /* ZM-06: wybrane ćwiczenie zostaje wśród chipów, ogólny przegląd jest pod wyborem (dawniej „✕” wracał do przeglądu) */
     /* ćwiczenie na czas: wykres czasu, rekord najdłuższej serii */
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'plank'); await tap(screen.getByLabelText('Plank')); await flushAll(10);
     expect(screen.getByText('Najdłuższa seria')).toBeTruthy(); expect(stats.recordsFor(ex('Plank')).maxDuration).toBe(45); expect(screen.getAllByText(store.fmtSec(45)).length).toBeGreaterThan(0);

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Porównanie kierunków E2</title>
+<!-- Strona porównania E2 (M3, rola 04 build, 21.10.2026). Ekrany: zrzuty makiet z docs/design/kierunki/*.html (390 pt). Nazwy i liczby na ekranach: [PRZYKŁAD]. -->
+<style>
+@font-face { font-family: 'Zastepczy'; src: url('fonty/source-sans-3/SourceSans3-var.ttf'); font-weight: 200 900; }
+@font-face { font-family: 'Tablica'; src: url('fonty/barlow-condensed/BarlowCondensed-Bold.ttf'); font-weight: 700; }
+@font-face { font-family: 'Swiatla'; src: url('fonty/chivo/Chivo-var.ttf'); font-weight: 100 900; }
+@font-face { font-family: 'Kreda'; src: url('fonty/caveat/Caveat-var.ttf'); font-weight: 400 700; }
+@font-face { font-family: 'Odlew'; src: url('fonty/archivo/Archivo-var.ttf'); font-weight: 100 900; font-stretch: 62% 125%; }
+:root { --bg: #ECEDEB; --tekst: #1C1F23; --tekst2: #4C5260; --linia: #CDD0CC; --pow: #FFFFFF; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--tekst); font-family: 'Zastepczy', sans-serif; font-size: 16px; line-height: 1.4; padding: 32px; width: 1760px; }
+h1 { font-size: 32px; line-height: 1.15; margin-bottom: 4px; }
+.lead { color: var(--tekst2); max-width: 1100px; margin-bottom: 24px; }
+.kol { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.k { background: var(--pow); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.k h2 { font-size: 30px; line-height: 1.1; }
+.k .idea { font-size: 15px; }
+.ekr { display: flex; gap: 8px; }
+.ekr img { width: calc(50% - 4px); border-radius: 10px; border: 1px solid var(--linia); display: block; }
+.ikony { display: flex; gap: 12px; align-items: flex-end; background: linear-gradient(160deg, #cfd8e3, #eef1f4); padding: 12px; border-radius: 10px; }
+.ikony.c { background: linear-gradient(160deg, #10151c, #2a3038); }
+.ikony img { display: block; }
+.i96 { width: 96px; height: 96px; border-radius: 21px; } .i60 { width: 60px; height: 60px; border-radius: 13.5px; } .i29 { width: 29px; height: 29px; border-radius: 6.5px; }
+.arg { border-left: 4px solid var(--tekst); padding-left: 10px; font-size: 15px; }
+.uw { font-size: 14px; color: var(--tekst2); }
+section.dol { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+.blok { background: var(--pow); border-radius: 12px; padding: 20px; }
+.blok h3 { font-size: 22px; margin-bottom: 8px; }
+.blok p, .blok li { font-size: 15px; margin-bottom: 6px; }
+.blok ul { padding-left: 18px; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin-top: 8px; }
+th, td { text-align: left; vertical-align: top; border-top: 1px solid var(--linia); padding: 6px 8px 6px 0; }
+th { font-size: 13px; }
+.szer { grid-column: 1 / -1; }
+</style></head>
+<body>
+<h1>Cztery kierunki na tym samym ekranie: karta „teraz” w stanie „seria” i „przerwa”</h1>
+<p class="lead">Redesign M3, etap E2 (21.10.2026). Każdy kierunek to inny przedmiot ze świata zawodów i inny element firmowy niosący dane serii. Ekrany 390 pt, motyw jasny (pierwsza para) i ciemny (druga para). Makiety: <code>docs/design/kierunki/</code>. Treść na iOS: SF Pro; w makiecie zastępczo Source Sans 3. Nazwy i liczby na ekranach: [PRZYKŁAD].</p>
+<div class="kol">
+<article class="k">
+<h2 style="font-family:Tablica;font-weight:700">A — Tablica podejść</h2>
+<p class="idea">Karta „teraz” jest tablicą podejścia z zawodów: ciężar do podjęcia, numer serii i zegar czytelne z 2 m.</p>
+<div class="ekr"><img src="kierunki/zrzuty/a-tablica-podejsc-seria-390-light.png" alt="A, seria, jasny"><img src="kierunki/zrzuty/a-tablica-podejsc-przerwa-390-light.png" alt="A, przerwa, jasny"></div>
+<div class="ekr"><img src="kierunki/zrzuty/a-tablica-podejsc-seria-390-dark.png" alt="A, seria, ciemny"><img src="kierunki/zrzuty/a-tablica-podejsc-przerwa-390-dark.png" alt="A, przerwa, ciemny"></div>
+<div class="ikony"><img class="i96" src="kierunki/ikony/a-jasna.svg" alt="Ikona A"><img class="i60" src="kierunki/ikony/a-jasna.svg" alt=""><img class="i29" src="kierunki/ikony/a-jasna.svg" alt=""></div>
+<div class="ikony c"><img class="i96" src="kierunki/ikony/a-ciemna.svg" alt="Ikona A, ciemna"><img class="i60" src="kierunki/ikony/a-ciemna.svg" alt=""><img class="i29" src="kierunki/ikony/a-ciemna.svg" alt=""></div>
+<p class="arg"><b>Najmocniejszy argument:</b> najlepiej czyta się z odległości. Telefon leży na ławce, spojrzenie trwa 1–3 s, a ciężar i numer serii są największe na ekranie.</p>
+<p class="uw">Granat tablicy, bursztyn tylko dla „teraz” (zegar i ramka bieżącej serii). Krój: Barlow Condensed.</p>
+</article>
+<article class="k">
+<h2 style="font-family:Swiatla;font-weight:800">B — Światła sędziowskie</h2>
+<p class="idea">Każda seria to światło: po „Seria zrobiona” zapala się białe, pominięta seria dostaje czerwone z „×” (na próbę).</p>
+<div class="ekr"><img src="kierunki/zrzuty/b-swiatla-sedziowskie-seria-390-light.png" alt="B, seria, jasny"><img src="kierunki/zrzuty/b-swiatla-sedziowskie-przerwa-390-light.png" alt="B, przerwa, jasny"></div>
+<div class="ekr"><img src="kierunki/zrzuty/b-swiatla-sedziowskie-seria-390-dark.png" alt="B, seria, ciemny"><img src="kierunki/zrzuty/b-swiatla-sedziowskie-przerwa-390-dark.png" alt="B, przerwa, ciemny"></div>
+<div class="ikony"><img class="i96" src="kierunki/ikony/b-jasna.svg" alt="Ikona B"><img class="i60" src="kierunki/ikony/b-jasna.svg" alt=""><img class="i29" src="kierunki/ikony/b-jasna.svg" alt=""></div>
+<div class="ikony c"><img class="i96" src="kierunki/ikony/b-ciemna.svg" alt="Ikona B, ciemna"><img class="i60" src="kierunki/ikony/b-ciemna.svg" alt=""><img class="i29" src="kierunki/ikony/b-ciemna.svg" alt=""></div>
+<p class="arg"><b>Najmocniejszy argument:</b> najmocniejszy moment przy najczęstszej czynności. Każda seria zapala światło, a ten sam rząd świateł czyta się w każdym rozmiarze, od ekranu po zegarek.</p>
+<p class="uw">Interfejs czarno-biały, kolor tylko w świetle pominiętej serii. Krój: Chivo.</p>
+</article>
+<article class="k">
+<h2 style="font-family:Kreda;font-weight:700;font-size:36px">C — Kreska kredą</h2>
+<p class="idea">Seria to kreska, a piąta przekreśla cztery, jak trener liczy na tablicy. Cały trening widać jako rząd piątek.</p>
+<div class="ekr"><img src="kierunki/zrzuty/c-kreska-kreda-seria-390-light.png" alt="C, seria, jasny"><img src="kierunki/zrzuty/c-kreska-kreda-przerwa-390-light.png" alt="C, przerwa, jasny"></div>
+<div class="ekr"><img src="kierunki/zrzuty/c-kreska-kreda-seria-390-dark.png" alt="C, seria, ciemny"><img src="kierunki/zrzuty/c-kreska-kreda-przerwa-390-dark.png" alt="C, przerwa, ciemny"></div>
+<div class="ikony"><img class="i96" src="kierunki/ikony/c-jasna.svg" alt="Ikona C"><img class="i60" src="kierunki/ikony/c-jasna.svg" alt=""><img class="i29" src="kierunki/ikony/c-jasna.svg" alt=""></div>
+<div class="ikony c"><img class="i96" src="kierunki/ikony/c-ciemna.svg" alt="Ikona C, ciemna"><img class="i60" src="kierunki/ikony/c-ciemna.svg" alt=""><img class="i29" src="kierunki/ikony/c-ciemna.svg" alt=""></div>
+<p class="arg"><b>Najmocniejszy argument:</b> cały trening widać naraz bez czytania liczb. Ile zrobione, a ile zostało, pokazuje długość rzędu kresek.</p>
+<p class="uw">Jasny motyw to ołówek na papierze, ciemny to kreda na łupku. Krój tytułów: Caveat (pismo ręczne).</p>
+</article>
+<article class="k">
+<h2 style="font-family:Odlew;font-weight:800;font-stretch:112%;font-size:26px">D — Talerze IWF w środku</h2>
+<p class="idea">Ikona i intro przechodzą do treningu: każda zrobiona seria wsuwa talerz na gryf.</p>
+<div class="ekr"><img src="kierunki/zrzuty/d-talerze-iwf-seria-390-light.png" alt="D, seria, jasny"><img src="kierunki/zrzuty/d-talerze-iwf-przerwa-390-light.png" alt="D, przerwa, jasny"></div>
+<div class="ekr"><img src="kierunki/zrzuty/d-talerze-iwf-seria-390-dark.png" alt="D, seria, ciemny"><img src="kierunki/zrzuty/d-talerze-iwf-przerwa-390-dark.png" alt="D, przerwa, ciemny"></div>
+<div class="ikony"><img class="i96" src="kierunki/ikony/d-jasna.svg" alt="Ikona D (obecna)"><img class="i60" src="kierunki/ikony/d-jasna.svg" alt=""><img class="i29" src="kierunki/ikony/d-jasna.svg" alt=""></div>
+<div class="ikony c"><img class="i96" src="kierunki/ikony/d-ciemna.svg" alt="Ikona D, ciemna (obecna)"><img class="i60" src="kierunki/ikony/d-ciemna.svg" alt=""><img class="i29" src="kierunki/ikony/d-ciemna.svg" alt=""></div>
+<p class="arg"><b>Najmocniejszy argument:</b> jedyny kierunek, który buduje na rozpoznawalności, którą aplikacja już ma. Intro i ikona wracają przy każdej serii, więc „wow” jest spójne od pierwszej sekundy.</p>
+<p class="uw"><b>Konflikt do decyzji:</b> barwa talerza znaczy tu numer serii, a decyzja z 09.10.2026 mówi, że kolor talerza koduje tylko ciężar. Wariant zgodny z decyzją (talerze bez barw) jest w makiecie. Krój: Archivo szerokie.</p>
+</article>
+</div>
+
+<section class="dol">
+<div class="blok">
+<h3>Rekomendacja (z funkcji, nie z gustu)</h3>
+<p><b>A — Tablica podejść.</b> Główny przepływ (P01) dzieje się z odległości 1–2 m, w spojrzeniach po 1–3 s. A jako jedyny kierunek robi z <i>zadania</i> (ciężar × powtórzenia, numer serii, zegar) największy element ekranu. Wpis z ± (ZM-01) siedzi na tej samej tablicy, a pola serii przenoszą się na ekran blokady i zegarek bez zmiany znaczenia. „Wow” daje tu skala i ruch klapki przy prostym trackerze.</p>
+<p><b>Druga w kolejności: B.</b> Ma najmocniejszy moment i najczytelniejszy mały format. Liczby są w nim jednak mniejsze niż w A, a rząd świateł pokazuje postęp, nie zadanie.</p>
+<p><b>D</b> wygrywa ciągłością marki, ale zależy od rozstrzygnięcia konfliktu barw (pytanie P2). <b>C</b> ma najmniej „wow” na jasnym motywie, ale to najmocniejszy obraz całego treningu.</p>
+<p>Łączenie kierunków też jest wyborem, np. „tablica z A, a zamiast pól serii światła z B”.</p>
+<p>Opcjonalnie: test pięciosekundowy albo test preferencji z 5 osobami z siłowni, ok. 1 h czasu właściciela.</p>
+</div>
+<div class="blok">
+<h3>Test generyczności — skrót</h3>
+<p>Dwie karty kontrolne powstały przed kartami kierunków (<code>docs/design/01-swiat.md</code> §6): (a) dziennik siłowni bez wiedzy o dziedzinie, (b) tryb gotowania krok po kroku. Porównanie pole po polu z nimi i z „Kalibracją domyślnych wyborów”. Pełna tabela: <code>docs/design/kierunki/README.md</code>.</p>
+<table>
+<tr><th>Kierunek</th><th>Pokrycie znalezione</th><th>Co zmieniłem / decyzja</th></tr>
+<tr><td>A</td><td>Pierwsza wersja: prawie czarna tablica z bursztynem, czyli „ciemne tło + jaskrawy akcent” z karty (a). Do tego duża liczba jako „bohater” i wersaliki.</td><td>Tablica granatowa na jasnej hali; bursztyn tylko dla „teraz”. Wersaliki tylko w nazwie na tablicy (IWF 3.3.6.15). Duża liczba zostaje, bo to zadanie, a nie statystyka (bez kafelków i gradientu).</td></tr>
+<tr><td>B</td><td>Grafit + czerwień, czyli kalibracja „prawie czarne z cynobrowym akcentem”. Do tego koło przypominające pierścień postępu z (a).</td><td>Jasne tło, grafit tylko jako obudowa. Czerwień nie jest akcentem, tylko znakiem pominiętej serii z „×”. Światła są policzalne, nie wypełniają się procentem. Ikona bez „trzech kropek”.</td></tr>
+<tr><td>C</td><td>Pierwszy pomysł: kremowy papier, czyli karta (b) i druga fala kalibracji.</td><td>Chłodna biel magnezji <code>#F5F6F3</code>, bez szeryfu i bez terakoty. Żółć tylko na świeżej kresce.</td></tr>
+<tr><td>D</td><td>Papier <code>#F4F3EF</code> blisko kremu z kalibracji; sztanga to klisza kategorii; duża liczba jako „bohater”.</td><td>Paleta zostaje, bo to obecny motyw, który wskazał właściciel (wyjątek zapisany). Sztanga niesie dane, więc według lekcji z Treningu przestaje być kliszą. Krój zmieniony z Plex na Archivo.</td></tr>
+</table>
+</div>
+<div class="blok szer">
+<h3>Pytania do właściciela (szczegóły i opcje: STOP E2)</h3>
+<ul>
+<li><b>P1. Który kierunek</b> (albo jakie połączenie)? Rekomendacja: A.</li>
+<li><b>P2. Kierunek D: barwa talerza.</b> (a) Barwy w kolejności z ikony znaczą numer serii; zmienia to decyzję z 09.10.2026 i ma być nazwane konwencją. (b) Talerze bez barw, zgodnie z decyzją; barwy zostają tylko na ikonie i w intro. Rekomendacja: (a), jeśli wybierzesz D, bo bez barw D traci to, za co go cenisz.</li>
+<li><b>P3. Test z pięcioma osobami</b> przed wyborem: tak (ok. 1 h) / nie.</li>
+</ul>
+</div>
+</section>
+</body></html>

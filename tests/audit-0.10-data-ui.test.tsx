@@ -128,7 +128,7 @@ describe('PERF-02 / PERF-03 (A): szablony bez przeliczania historii; zapis konfi
 });
 
 describe('SEC-08: Więcej → O aplikacji → Licencje open source', () => {
-  test('wersja, liczba pakietów, licencje z treścią po dotknięciu; lista pakietów z notką o prawach autorskich (react, IBM Plex)', async () => {
+  test('wersja, liczba pakietów, licencje z treścią po dotknięciu; lista pakietów z notką o prawach autorskich (react, Barlow Condensed)', async () => {
     await boot(undefined, '/more'); await tap(screen.getByText('O aplikacji')); await flushAll(10);
     expect(screen.getByLabelText(`Wersja, ${require('expo-constants').default.expoConfig?.version ?? '—'}`)).toBeTruthy(); expect(screen.getByText('Aplikacja nie zbiera danych: wszystko, co wpisujesz, zostaje w telefonie, bez konta, reklam i analityki.')).toBeTruthy(); expect(screen.getByText(`Pakiety open source: ${LICENSES.length}`)).toBeTruthy();
     await tap(screen.getByText('Licencje open source')); await flushAll(10);
@@ -137,10 +137,10 @@ describe('SEC-08: Więcej → O aplikacji → Licencje open source', () => {
     await tap(screen.getByText('OFL-1.1')); await flushAll(5); expect(screen.getByText(LICENSE_TEXTS['OFL-1.1'].text)).toBeTruthy();
     expect(screen.getAllByText(/^@babel\/|^@expo/).length).toBeGreaterThan(0);
   });
-  test('dane listy: pakiety aplikacji z licencją, notki (React — Meta, IBM Plex — OFL z „Reserved Font Name”), treść MIT', () => {
+  test('dane listy: pakiety aplikacji z licencją, notki (React — Meta, Barlow Condensed — OFL, kroj dołączony jako plik od M3), treść MIT', () => {
     const by = (n: string) => LICENSES.find(r => r[0] === n)!;
     expect(by('react')[2]).toBe('MIT'); expect(by('react')[3].join(' ')).toMatch(/Meta Platforms/);
-    expect(by('@expo-google-fonts/ibm-plex-sans')[2]).toMatch(/OFL-1\.1/); expect(by('@expo-google-fonts/ibm-plex-sans')[3].join(' ')).toMatch(/IBM Corp\. with Reserved Font Name "Plex"/);
+    expect(by('Barlow Condensed (czcionka)')[2]).toBe('OFL-1.1'); expect(by('Barlow Condensed (czcionka)')[3].join(' ')).toMatch(/Copyright 2017 The Barlow Project Authors/); expect(LICENSES.some(r => /ibm-plex/.test(r[0]))).toBe(false); /* M3 (STOP E3, docs/18): IBM Plex nie jest dołączony do aplikacji */
     expect(LICENSE_TEXTS.MIT.text).toMatch(/Permission is hereby granted, free of charge/); expect(LICENSES.some(r => r[0] === 'jest')).toBe(false); /* bez devDependencies */
     expect(LICENSES.some(r => r[0] === 'query-string')).toBe(true); /* SEC-06: zostaje jako zależność expo-router — tylko bezpośrednia usunięta */
   });

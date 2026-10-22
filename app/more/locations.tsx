@@ -9,6 +9,7 @@ import { SwipeRow } from '@/components/SwipeRow';
 import { LOCATION_PRESETS, LOCATION_PRESET_LABEL, presetHint, equipLabel } from '@/lib/equipment';
 import { t, tp } from '@/lib/i18n';
 import { useAddHeader } from '@/components/AddButton';
+import { locationDeleteMessage } from '@/lib/deleteMessages';
 
 /* P-003 E1: Ustawienia → Miejsca treningu (docs/10, sekcja 5). Lista miejsc (główne oznaczone) i „+ Dodaj miejsce” z presetami. */
 export default function Locations() {
@@ -21,8 +22,7 @@ export default function Locations() {
       </InfoTip>
       {visibleLocations().map(l => { const main = l.id === s.mainLocationId; const n = l.equipment.filter(e => !e.off).length;
         /* 07.10.2026 wieczór: usuwanie przesunięciem w lewo (z ekranu miejsca przycisk zniknął); miejsca głównego się nie usuwa — bez gestu */
-        const used = getState().workouts.some(w => w.locationId === l.id) || getState().templates.some(x => x.locationId === l.id);
-        return <SwipeRow key={l.id} disabled={!canDeleteLocation(l.id)} blocked={{ title: t('To miejsce główne'), message: t('Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.') }} label={t('Usuń miejsce: {name}', { name: l.name })} title={t('Usunąć miejsce?')} message={[used ? t('Treningi i szablony z tym miejscem pokażą „(usunięte miejsce)”.') : '', getState().active?.locationId === l.id ? t('Trwający trening w tym miejscu trwa dalej; miejsce pokaże się jako „(usunięte miejsce)”.') : ''].filter(Boolean).join(' ') || undefined /* G3 (audyt 0.10 UI-06): skutki także dla treningu w toku */} onDelete={() => deleteLocation(l.id)}>{a11y => <Item a11y={a11y} title={(main ? '★ ' : '') + l.name} sub={[main ? t('główne') : '', `${n} ${tp(n, 'pozycja sprzętu|pozycje sprzętu|pozycji sprzętu')}`].filter(Boolean).join(' · ')} onPress={() => router.push(`/more/location/${l.id}`)} />}</SwipeRow>; })}
+        return <SwipeRow key={l.id} disabled={!canDeleteLocation(l.id)} blocked={{ title: t('To miejsce główne'), message: t('Miejsca głównego nie usuniesz — najpierw ustaw inne miejsce jako główne.') }} label={t('Usuń miejsce: {name}', { name: l.name })} title={t('Usunąć miejsce?')} message={locationDeleteMessage(l.id) /* G3 (audyt 0.10 UI-06): skutki także dla treningu w toku */} onDelete={() => deleteLocation(l.id)}>{a11y => <Item a11y={a11y} title={(main ? '★ ' : '') + l.name} sub={[main ? t('główne') : '', `${n} ${tp(n, 'pozycja sprzętu|pozycje sprzętu|pozycji sprzętu')}`].filter(Boolean).join(' · ')} onPress={() => router.push(`/more/location/${l.id}`)} />}</SwipeRow>; })}
       {visibleLocations().length ? null : <Empty>{t('Brak miejsc — wszystkie ćwiczenia są dostępne, a podpowiedzi działają jak dotąd.')}</Empty>}
       {adding ? <>
         <SectionTitle>{t('Nowe miejsce')}</SectionTitle>

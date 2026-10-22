@@ -1,7 +1,8 @@
 import React from 'react';
 import { Pressable, Text, Alert, Keyboard } from 'react-native';
 import { Stack } from 'expo-router';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, FW, font, SIZE } from '@/lib/theme';
+import { Icon, type IconName } from '@/components/Icon';
 import { t, lang } from '@/lib/i18n';
 import { backToEditButton } from '@/lib/confirm';
 
@@ -10,9 +11,9 @@ import { backToEditButton } from '@/lib/confirm';
  * i „Zapisz” po prawej, bez strzałki wstecz i bez gestu cofania (szkic nie przepada niezauważony); „Anuluj” przy zmianach pyta
  * „Odrzucić zmiany?” [Wróć, Odrzuć zmiany].
  */
-export function HeaderButton({ title, onPress, bold, label, testID }: { title: string; onPress: () => void; bold?: boolean; label?: string; testID?: string }) {
+export function HeaderButton({ title, onPress, bold, label, testID, icon }: { title: string; onPress: () => void; bold?: boolean; label?: string; testID?: string; /** M3 W1 a: przycisk-ikona („⋯”); `title`/`label` to wtedy tylko etykieta VoiceOver */ icon?: IconName }) {
   const th = useTheme();
-  return <Pressable testID={testID} accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label ?? title} hitSlop={10} onPress={onPress} style={{ minHeight: 44, minWidth: 44, justifyContent: 'center' }}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.4} /* nagłówek nawigacji — jak dotąd w edycji sesji */ style={{ color: th.accent, fontSize: 17, fontFamily: bold ? F.semibold : F.regular }}>{title}</Text></Pressable>;
+  return <Pressable testID={testID} accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label ?? title} hitSlop={10} onPress={onPress} style={{ minHeight: SIZE.hit, minWidth: SIZE.hit, justifyContent: 'center', alignItems: icon ? 'center' : undefined }}>{icon ? <Icon name={icon} color={th.accent} size={SIZE.icon} /> : <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.4} /* nagłówek nawigacji — jak dotąd w edycji sesji */ style={{ color: th.accent, ...font('button'), ...(bold ? FW.semibold : FW.regular) }}>{title}</Text>}</Pressable>;
 }
 /** Nagłówek trybu edycji: tytuł, „Anuluj” i „Zapisz”; gest cofania wyłączony. Etykiety VoiceOver mogą nazwać obiekt („Zapisz ćwiczenie”). */
 export function DraftHeader({ title, onCancel, onSave, cancelLabel, saveLabel }: { title?: string; onCancel: () => void; onSave: () => void; cancelLabel?: string; saveLabel?: string }) {

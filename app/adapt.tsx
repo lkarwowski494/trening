@@ -54,7 +54,7 @@ export default function AdaptScreen() {
     else if (c?.kind === 'impl') { const cur = exById(r.curExId); to = `${cur ? exName(cur) : from} — ${implLabel(c.impl)}`; why = t('Ten sam ruch, inny przyrząd'); }
     else if (c?.kind === 'skip') { to = t('Pomiń dziś'); why = t('szablon bez zmian'); }
     const note = def && r.shifted ? t('następna propozycja — pierwsza jest już zajęta przez inne ćwiczenie') : def && r.duplicate ? t('ta sama propozycja co przy innym ćwiczeniu — możesz zmienić') : ''; /* P3 A */
-    const sub = [t('brak: {m}', { m: missingLabel(r.missing) }), why, note].filter(Boolean).join(' · ');
+    const sub = [t('brak: {m}', { m: missingLabel(r.missing) }), why, note].filter(Boolean).join('\n'); /* wz. 28: powód i uwagi to zdania — osobne linie, nie „·” */
     return <Item key={r.blockId} title={`${from} → ${to}`} sub={sub} accessibilityHint={t('Otwiera wybór zamiennika.')} onPress={() => router.push(`/swap?target=adapt:${r.blockId}`)} />;
   };
   return (

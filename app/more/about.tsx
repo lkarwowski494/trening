@@ -8,6 +8,7 @@ import { t, appName } from '@/lib/i18n';
 import { SUPPORT_EMAIL, openSupportMail, openWebPage } from '@/lib/support';
 import { PRIVACY_URL, TERMS_URL } from '@/lib/products';
 import { versionLabel, BUILD_NUMBER } from '@/lib/version';
+import { font } from '@/lib/theme';
 
 /* Audyt 0.10 SEC-08: Więcej → O aplikacji — wersja i licencje open source (lista generowana skryptem scripts/licenses.mjs). */
 export default function AboutScreen() {
@@ -24,8 +25,8 @@ export default function AboutScreen() {
       <Item title={t('Wersja')} sub={versionLabel(Constants.expoConfig?.version, BUILD_NUMBER) /* „0.11.0 (1005)” — numerowanie wersji, 09.10.2026 */} />
       <Item title={t('Napisz do nas')} sub={SUPPORT_EMAIL} accessibilityLabel={t('Napisz do nas')} accessibilityHint={t('Otwiera aplikację Mail')} onPress={() => mail('feedback')} />
       <Item title={t('Poproś o nową funkcję')} accessibilityLabel={t('Poproś o nową funkcję')} accessibilityHint={t('Otwiera aplikację Mail')} onPress={() => mail('idea')} />
-      {mailFailed ? <Muted selectable testID="support-mail-fallback" style={{ fontSize: 14, marginVertical: 10 }}>{t('Napisz na: {mail}', { mail: SUPPORT_EMAIL })}</Muted> : null}
-      <Muted style={{ fontSize: 13, marginVertical: 10 }}>{t('Aplikacja nie zbiera danych: wszystko, co wpisujesz, zostaje w telefonie, bez konta, reklam i analityki.')}</Muted>
+      {mailFailed ? <Muted selectable testID="support-mail-fallback" style={{ ...font('callout'), marginVertical: 10 }}>{t('Napisz na: {mail}', { mail: SUPPORT_EMAIL })}</Muted> : null}
+      <Muted style={{ ...font('footnote'), marginVertical: 10 }}>{t('Aplikacja nie zbiera danych: wszystko, co wpisujesz, zostaje w telefonie, bez konta, reklam i analityki.')}</Muted>
       <Item title={t('Warunki korzystania')} accessibilityLabel={t('Warunki korzystania')} accessibilityHint={t('Otwiera stronę w przeglądarce.')} onPress={() => open(TERMS_URL)} />
       <Item title={t('Prywatność')} accessibilityLabel={t('Prywatność')} accessibilityHint={t('Otwiera stronę w przeglądarce.')} onPress={() => open(PRIVACY_URL)} />
       <Item title={t('Licencje open source')} sub={t('Pakiety open source: {n}', { n: LICENSES.length })} onPress={() => router.push('/more/licenses')} />

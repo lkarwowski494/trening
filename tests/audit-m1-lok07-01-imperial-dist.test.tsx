@@ -66,15 +66,18 @@ describe('ekrany: Ustawienia, trening, historia, postępy', () => {
   test('trening w imperialnym: pole dystansu w yd (placeholder), wpis 100 → 91,44 m w zapisie, pole nadal „100”; po restarcie bez zmian; wiersz historii „100 yd”', async () => {
     await renderApp(); await act(async () => { store.getState().settings.unit = 'lb'; require('@/lib/store').applyPrefs?.(); });
     await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Bieg')); }); await flushAll(10);
-    const f = screen.getAllByLabelText('dystans')[0]; expect(f.props.placeholder).toBe('yd');
+    /* M3 p2 (ZM-01): dystans wpisuje się na tablicy „teraz” — jednostka (yd) obok liczby, pole wpisu po stuknięciu */
+    expect(screen.getAllByText('yd').length).toBeGreaterThan(0); await tap(screen.getByTestId('board-value-distanceM')); await flushAll(5);
+    const f = screen.getByTestId('board-input-distanceM'); expect(f.props.placeholder).toBe('—');
     await type(f, '100'); await flushAll(5);
-    expect(store.getState().active!.exercises[0].sets[0].distanceM).toBe(91.44); expect(screen.getAllByLabelText('dystans')[0].props.value).toBe('100');
+    expect(store.getState().active!.exercises[0].sets[0].distanceM).toBe(91.44); expect(screen.getByTestId('board-input-distanceM').props.value).toBe('100');
     const raw = JSON.parse(JSON.stringify(store.getState())); expect(store.migrate(raw).active!.exercises[0].sets[0].distanceM).toBe(91.44); /* migracja nie obcina do pełnych metrów */
     await act(async () => { store.getState().active!.exercises[0].sets[0].durationSec = 30; }); expect(store.setSummary(ex('Bieg'), store.getState().active!.exercises[0].sets[0])).toContain('100 yd');
   });
   test('trening w metrycznym: placeholder „m”, wpis zapisuje pełne metry jak dotąd', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); store.addExerciseToActive(ex('Bieg')); }); await flushAll(10);
-    const f = screen.getAllByLabelText('dystans')[0]; expect(f.props.placeholder).toBe('m'); await type(f, '400.6'); await flushAll(5);
+    expect(screen.getAllByText('m').length).toBeGreaterThan(0); await tap(screen.getByTestId('board-value-distanceM')); await flushAll(5);
+    const f = screen.getByTestId('board-input-distanceM'); await type(f, '400.6'); await flushAll(5);
     expect(store.getState().active!.exercises[0].sets[0].distanceM).toBe(401);
   });
 });

@@ -1,0 +1,44 @@
+OK   13.31:1 (min 4.5) A1/A2 jasny tekst/tło #18202B na #E6E8E5
+OK   6.31:1 (min 4.5) A1/A2 jasny tekst2/tło #4A5361 na #E6E8E5
+OK   15.00:1 (min 4.5) A1/A2 jasny tekst/lista i pasek tygodnia #18202B na #F4F5F3
+OK   7.11:1 (min 4.5) A1/A2 jasny tekst2/pasek tygodnia #4A5361 na #F4F5F3
+OK   11.35:1 (min 4.5) A1/A2 jasny tekst/przycisk drugorzędny #18202B na #D3D8D3
+OK   12.86:1 (min 4.5) A1/A2 jasny cyfry/tablica #F5F1E6 na #13294B
+OK   7.99:1 (min 4.5) A1/A2 jasny tekst2/tablica #B7C1D0 na #13294B
+OK   7.22:1 (min 4.5) A1/A2 jasny zegar/tablica #F2A900 na #13294B
+OK   12.86:1 (min 4.5) A1/A2 jasny przycisk główny #F5F1E6 na #13294B
+OK   12.86:1 (min 4.5) A1/A2 jasny tekst pola zrobionego #13294B na #F5F1E6
+OK   7.99:1 (min 3) A1/A2 jasny kontur pola/tablica (element) #B7C1D0 na #13294B
+OK   7.22:1 (min 3) A1/A2 jasny ramka bieżącej/tablica (element) #F2A900 na #13294B
+OK   13.27:1 (min 3) A1/A2 jasny znacznik dnia/pasek tygodnia (element) #13294B na #F4F5F3
+OK   7.11:1 (min 3) A1/A2 jasny filiżanka/pasek tygodnia (element) #4A5361 na #F4F5F3
+OK   14.21:1 (min 4.5) A1/A2 ciemny tekst/tło #E8EAED na #161C24
+OK   7.47:1 (min 4.5) A1/A2 ciemny tekst2/tło #A3ACB8 na #161C24
+OK   12.79:1 (min 4.5) A1/A2 ciemny tekst/lista i pasek tygodnia #E8EAED na #1E2530
+OK   6.72:1 (min 4.5) A1/A2 ciemny tekst2/pasek tygodnia #A3ACB8 na #1E2530
+OK   10.69:1 (min 4.5) A1/A2 ciemny tekst/przycisk drugorzędny #E8EAED na #283244
+OK   13.58:1 (min 4.5) A1/A2 ciemny cyfry/tablica #F5F1E6 na #102544
+OK   7.73:1 (min 4.5) A1/A2 ciemny tekst2/tablica #AEB9CA na #102544
+OK   8.22:1 (min 4.5) A1/A2 ciemny zegar/tablica #F5B21C na #102544
+OK   12.86:1 (min 4.5) A1/A2 ciemny przycisk główny #13294B na #F5F1E6
+OK   13.58:1 (min 4.5) A1/A2 ciemny tekst pola zrobionego #102544 na #F5F1E6
+OK   7.73:1 (min 3) A1/A2 ciemny kontur pola/tablica (element) #AEB9CA na #102544
+OK   3.68:1 (min 3) A1/A2 ciemny brzeg tablicy/tło (element) #5675A8 na #161C24
+OK   12.79:1 (min 3) A1/A2 ciemny znacznik dnia/pasek tygodnia (element) #E8EAED na #1E2530
+OK   6.72:1 (min 3) A1/A2 ciemny filiżanka/pasek tygodnia (element) #A3ACB8 na #1E2530
+OK   10.55:1 (min 4.5) A2 jasny tekst na talerzu 25 czerwony #18202B na #E4C9CA
+OK   5.00:1 (min 4.5) A2 jasny tekst2 na talerzu 25 czerwony #4A5361 na #E4C9CA
+OK   10.71:1 (min 4.5) A2 jasny tekst na talerzu 20 niebieski #18202B na #C6D2E2
+OK   5.08:1 (min 4.5) A2 jasny tekst2 na talerzu 20 niebieski #4A5361 na #C6D2E2
+OK   12.61:1 (min 4.5) A2 jasny tekst na talerzu 15 żółty #18202B na #E8E2C8
+OK   5.98:1 (min 4.5) A2 jasny tekst2 na talerzu 15 żółty #4A5361 na #E8E2C8
+OK   11.42:1 (min 4.5) A2 jasny tekst na talerzu 10 zielony #18202B na #C9DCCF
+OK   5.41:1 (min 4.5) A2 jasny tekst2 na talerzu 10 zielony #4A5361 na #C9DCCF
+OK   11.64:1 (min 4.5) A2 ciemny tekst na talerzu 25 czerwony #E8EAED na #40232D
+OK   6.12:1 (min 4.5) A2 ciemny tekst2 na talerzu 25 czerwony #A3ACB8 na #40232D
+OK   10.95:1 (min 4.5) A2 ciemny tekst na talerzu 20 niebieski #E8EAED na #20304D
+OK   5.75:1 (min 4.5) A2 ciemny tekst2 na talerzu 20 niebieski #A3ACB8 na #20304D
+OK   9.04:1 (min 4.5) A2 ciemny tekst na talerzu 15 żółty #E8EAED na #423D26
+OK   4.75:1 (min 4.5) A2 ciemny tekst2 na talerzu 15 żółty #A3ACB8 na #423D26
+OK   9.95:1 (min 4.5) A2 ciemny tekst na talerzu 10 zielony #E8EAED na #1E3C34
+OK   5.23:1 (min 4.5) A2 ciemny tekst2 na talerzu 10 zielony #A3ACB8 na #1E3C34

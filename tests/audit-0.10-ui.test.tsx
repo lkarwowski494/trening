@@ -12,7 +12,7 @@ import { addLocation } from '@/lib/locations';
 import type { Template, Workout } from '@/lib/seed';
 import { fresh, ex, addWorkout, pressAlert, saved } from './helpers';
 import { within } from '@testing-library/react-native';
-import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, swipeDelete, deleteActions, openInfo } from './app';
+import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, swipeDelete, deleteActions, openInfo, menuPick } from './app';
 import { loc } from './locations-fixtures';
 
 jest.setTimeout(60000);
@@ -236,7 +236,8 @@ describe('H5 — „Zapisz jako szablon” i „Zaktualizować szablon?” (tylk
 describe('trening w toku: notatka szablonu, licznik serii roboczych, notka medyczna, opis gestu', () => {
   test('notatka szablonu widoczna w treningu (VoiceOver „Notatka szablonu: …”); licznik „Postęp treningu” liczy serie robocze (drop z serią, bez rozgrzewek)', async () => {
     await boot(() => { const t = mkTpl(); store.startFromTemplate(t); });
-    expect(screen.getByLabelText('Notatka szablonu: Wysiłek: zwykle 0–3 powtórzenia w zapasie (RIR); do upadku nie trzeba.')).toBeTruthy();
+    /* M3 p2 (ZM-02): notatka szablonu jest w menu „⋯” (alert z treścią), nie w osobnym wierszu */
+    await menuPick('Notatka szablonu'); expect((global as any).__alerts.at(-1)).toMatchObject({ title: 'Notatka szablonu', msg: 'Wysiłek: zwykle 0–3 powtórzenia w zapasie (RIR); do upadku nie trzeba.' });
     /* Bench: W + 2 normalne + drop = 2 robocze; Pull Up: 2 → 4 */
     expect(screen.getByLabelText('Postęp treningu: 0 z 4 serii')).toBeTruthy();
     await act(async () => { const a = S().active!; a.exercises[0].sets[0].done = true; store.save(a); }); await flushAll(5); expect(screen.getByLabelText('Postęp treningu: 0 z 4 serii')).toBeTruthy(); /* rozgrzewka */

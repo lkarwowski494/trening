@@ -1,0 +1,70 @@
+OK   13.31:1 (min 4.5) A jasny tekst/tło #18202B na #E6E8E5
+OK   6.31:1 (min 4.5) A jasny tekst2/tło #4A5361 na #E6E8E5
+OK   7.11:1 (min 4.5) A jasny tekst2/lista #4A5361 na #F4F5F3
+OK   11.35:1 (min 4.5) A jasny tekst/pole #18202B na #D3D8D3
+OK   12.86:1 (min 4.5) A jasny cyfry/tablica #F5F1E6 na #13294B
+OK   7.99:1 (min 4.5) A jasny tekst2/tablica #B7C1D0 na #13294B
+OK   7.22:1 (min 4.5) A jasny zegar/tablica #F2A900 na #13294B
+OK   12.86:1 (min 4.5) A jasny przycisk #F5F1E6 na #13294B
+OK   11.78:1 (min 3) A jasny tablica/tło (element) #13294B na #E6E8E5
+OK   7.99:1 (min 3) A jasny kontur pola/tablica #B7C1D0 na #13294B
+OK   14.21:1 (min 4.5) A ciemny tekst/tło #E8EAED na #161C24
+OK   7.47:1 (min 4.5) A ciemny tekst2/tło #A3ACB8 na #161C24
+OK   6.72:1 (min 4.5) A ciemny tekst2/lista #A3ACB8 na #1E2530
+OK   13.58:1 (min 4.5) A ciemny cyfry/tablica #F5F1E6 na #102544
+OK   7.73:1 (min 4.5) A ciemny tekst2/tablica #AEB9CA na #102544
+OK   8.22:1 (min 4.5) A ciemny zegar/tablica #F5B21C na #102544
+OK   12.86:1 (min 4.5) A ciemny przycisk #13294B na #F5F1E6
+OK   3.68:1 (min 3) A ciemny brzeg tablicy/tło #5675A8 na #161C24
+OK   14.48:1 (min 4.5) B jasny tekst/tło #1C1F23 na #EEF0F2
+OK   6.59:1 (min 4.5) B jasny tekst2/tło #4F555D na #EEF0F2
+OK   7.53:1 (min 4.5) B jasny tekst2/lista #4F555D na #FFFFFF
+OK   13.65:1 (min 4.5) B jasny tekst/obudowa #FFFFFF na #2A2E34
+OK   7.61:1 (min 4.5) B jasny tekst2/obudowa #BCC2CA na #2A2E34
+OK   11.95:1 (min 3) B jasny obudowa/tło (element) #2A2E34 na #EEF0F2
+OK   4.29:1 (min 3) B jasny zgaszone/obudowa #8A919B na #2A2E34
+OK   3.43:1 (min 3) B jasny czerwone/obudowa #EC3B43 na #2A2E34
+OK   3.43:1 (min 3) B jasny znak ×/czerwone #2A2E34 na #EC3B43
+OK   13.65:1 (min 4.5) B jasny przycisk #FFFFFF na #2A2E34
+OK   15.14:1 (min 4.5) B ciemny tekst/tło #ECEEF0 na #17191C
+OK   7.52:1 (min 4.5) B ciemny tekst2/tło #A4AAB2 na #17191C
+OK   6.66:1 (min 4.5) B ciemny tekst2/lista #A4AAB2 na #212428
+OK   12.50:1 (min 4.5) B ciemny tekst/obudowa #F4F5F6 na #2A2E34
+OK   6.91:1 (min 4.5) B ciemny tekst2/obudowa #B3B9C1 na #2A2E34
+OK   4.02:1 (min 3) B ciemny zgaszone/obudowa #858C96 na #2A2E34
+OK   3.66:1 (min 3) B ciemny czerwone/obudowa #F0444C na #2A2E34
+OK   3.66:1 (min 3) B ciemny znak ×/czerwone #2A2E34 na #F0444C
+OK   14.38:1 (min 4.5) B ciemny przycisk #1B1E22 na #ECEEF0
+OK   3.53:1 (min 3) B ciemny brzeg obudowy/tło #6A707A na #17191C
+OK   13.94:1 (min 4.5) C jasny tekst/tło #232725 na #F5F6F3
+OK   6.74:1 (min 4.5) C jasny tekst2/tło #515854 na #F5F6F3
+OK   7.31:1 (min 4.5) C jasny tekst2/lista #515854 na #FFFFFF
+OK   10.76:1 (min 4.5) C jasny przycisk #F5F6F3 na #2F3B36
+OK   10.76:1 (min 3) C jasny kreska/tło #2F3B36 na #F5F6F3
+OK   3.49:1 (min 3) C jasny kreska świeża/tło #A87C00 na #F5F6F3
+OK   3.15:1 (min 3) C jasny kreska czekająca/tło #848D87 na #F5F6F3
+OK   11.86:1 (min 4.5) C ciemny tekst/tło #EEF0EA na #26302C
+OK   7.24:1 (min 4.5) C ciemny tekst2/tło #B7BFB8 na #26302C
+OK   6.37:1 (min 4.5) C ciemny tekst2/lista #B7BFB8 na #2E3934
+OK   11.86:1 (min 4.5) C ciemny przycisk #26302C na #EEF0EA
+OK   8.54:1 (min 3) C ciemny kreska świeża/tło #F0C94A na #26302C
+OK   3.64:1 (min 3) C ciemny kreska czekająca/tło #7A8781 na #26302C
+OK   16.17:1 (min 4.5) D jasny tekst/tło #15171A na #F4F3EF
+OK   7.63:1 (min 4.5) D jasny tekst2/tło #4A4D53 na #F4F3EF
+OK   8.48:1 (min 4.5) D jasny tekst2/lista #4A4D53 na #FFFFFF
+OK   16.17:1 (min 4.5) D jasny przycisk #F4F3EF na #15171A
+OK   4.47:1 (min 3) D jasny talerz 25/tło #D7263D na #F4F3EF
+OK   5.23:1 (min 3) D jasny talerz 20/tło #1F5FD1 na #F4F3EF
+OK   10.72:1 (min 3) D jasny obrys talerza 15 (tusz)/talerz 15 #15171A na #F2C230
+OK   3.07:1 (min 3) D jasny talerz 10/tło #2E9E5B na #F4F3EF
+OK   3.15:1 (min 3) D jasny kontur czekający/tło #8C897F na #F4F3EF
+OK   14.64:1 (min 4.5) D ciemny tekst/tło #ECEAE4 na #17191C
+OK   7.48:1 (min 4.5) D ciemny tekst2/tło #A6A9AF na #17191C
+OK   6.84:1 (min 4.5) D ciemny tekst2/lista #A6A9AF na #1F2125
+OK   14.93:1 (min 4.5) D ciemny przycisk #15171A na #ECEAE4
+OK   10.28:1 (min 3) D ciemny gryf/tło #C3C6CB na #17191C
+OK   4.03:1 (min 3) D ciemny talerz 25/tło #E0364C na #17191C
+OK   3.99:1 (min 3) D ciemny talerz 20/tło #3A74E0 na #17191C
+OK   10.51:1 (min 3) D ciemny talerz 15/tło #F2C230 na #17191C
+OK   6.15:1 (min 3) D ciemny talerz 10/tło #36AD68 na #17191C
+OK   3.76:1 (min 3) D ciemny kontur czekający/tło #70747C na #17191C

@@ -82,7 +82,8 @@
   "idle",
   "finished",
   "update",
-  "nothingLeft"
+  "nothingLeft",
+  "finish"
  ],
  "clientScreens": [
   "idle",

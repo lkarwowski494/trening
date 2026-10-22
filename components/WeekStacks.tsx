@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, TEXT_SCALE_MAX, FW, font } from '@/lib/theme';
 import { weekProgress, type WeekProgress } from '@/lib/motif';
 import { t as tr, lang } from '@/lib/i18n';
 import { PlateStack } from '@/components/Motif';
@@ -19,6 +19,6 @@ export function WeekStacks({ progress: given }: { /** domyślnie bieżący tydzi
       <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 6 }}>
         {p.stacks.map((on, i) => <PlateStack key={i} testID={`week-stack-${i}`} filled={on} bg={th.bg} th={th} />)}
       </View>
-      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.semibold, fontSize: 15 }}>{txt}</Text>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('callout'), ...FW.semibold }}>{txt}</Text>
     </View>);
 }

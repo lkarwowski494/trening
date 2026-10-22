@@ -53,6 +53,15 @@ name: Masa ciała z datą i licencje open source
       - extendedWaitUntil: { visible: "80 kg, .*", timeout: 15000 }
 - assertVisible: "Measurements"
 - takeScreenshot: 70-masa-ciala-pomiary
+# M3 p5 (ZM-04, W1 b): „Edit” w nagłówku → przycisk usunięcia pomiaru → okno jak przy geście; „Cancel” zostawia pomiar (dalsze kroki czytają ostatni pomiar)
+- tapOn: { id: "edit-button" }
+- extendedWaitUntil: { visible: "Done", timeout: 15000 }
+- tapOn: { id: "row-delete", index: 0 }
+- extendedWaitUntil: { visible: "Delete measurement?", timeout: 15000 }
+- tapOn: "Cancel"
+- extendedWaitUntil: { visible: "80 kg, .*", timeout: 15000 }
+- tapOn: { id: "edit-button" }
+- extendedWaitUntil: { visible: "Edit", timeout: 15000 }
 - tapOn: "Back"
 - scrollUntilVisible: { element: "80 kg · measured .*", direction: DOWN, timeout: 30000 }  # sekcja 'Masa ciała' w Postępach pokazuje ostatni pomiar
 - tapOn: "More, tab.*"

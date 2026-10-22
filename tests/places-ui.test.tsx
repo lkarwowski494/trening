@@ -1,13 +1,13 @@
 /* 0.19 A4 i B — ekrany (docs/33; docs/20 rodzaj 2): arkusz „📍” z pozycją „Inne miejsce (tylko dziś)…”, okno „Inne miejsce” (app/place-once.tsx: nazwa,
  * „Zapisz jako miejsce”, gotowe zestawy, sprzęt, „Użyj”, „Anuluj”), listy miejsc bez miejsc jednorazowych (Miejsca i sprzęt, generator, edytor szablonu),
- * panel dnia w planie („📍 Miejsce na te dni”, zakres, „Ustaw miejsce”, „Usuń miejsce”, „📍 Hotel” w dniu i na karcie „Dziś”), samoczynne okno „Dostosuj”
+ * panel dnia w planie („📍 Miejsce na te dni”, zakres, „Ustaw miejsce”, „Wyczyść miejsce”, „📍 Hotel” w dniu i na karcie „Dziś”), samoczynne okno „Dostosuj”
  * po starcie w dniu z miejscem (P4 A). Scenariusz z życia — tests/places-scenario.test.tsx; logika — tests/places-oneoff-logic.test.ts, tests/plan-places.test.ts. */
 import * as store from '@/lib/store';
 import * as plan from '@/lib/plan';
 import * as timer from '@/lib/timer';
 import { applyLang } from '@/lib/i18n';
 import { fresh, ex, saved } from './helpers';
-import { renderApp, flushAll, screen, tap, act, go, type, startTpl, openInfo } from './app';
+import { renderApp, flushAll, screen, tap, act, go, type, startTpl, openInfo, openPlaceSheet, placeInMenu } from './app';
 import { loc } from './locations-fixtures';
 import { presetEquipment } from '@/lib/equipment';
 import { LANGS, type Lang } from '@/lib/i18n';
@@ -34,7 +34,7 @@ async function boot(o: { start?: boolean; url?: string; locale?: 'pl' | 'en'; fn
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: o.locale ?? 'pl', url: o.url ?? '/' }); jest.setSystemTime(THU.getTime()); await flushAll(10);
   return tpl;
 }
-const sheetOpts = async () => { await tap(screen.getByLabelText(/^(Miejsce treningu|Workout place): /)); return (global as any).__sheets.at(-1) as { opts: { options: string[]; cancelButtonIndex: number; title: string }; cb: (i: number) => void }; };
+const sheetOpts = openPlaceSheet; /* M3 p2 (ZM-02): miejsce w menu „⋯” treningu */
 const pick = async (sh: { opts: { options: string[] }; cb: (i: number) => void }, name: string) => { const i = sh.opts.options.indexOf(name); expect(i).toBeGreaterThanOrEqual(0); await act(async () => { sh.cb(i); }); await flushAll(20); };
 const chip = (label: string | RegExp) => screen.getByLabelText(label);
 const ONCE = 'Inne miejsce (tylko dziś)…';
@@ -62,7 +62,7 @@ describe('A4 — arkusz „📍” i okno „Inne miejsce”', () => {
     const l = S().settings.locations.find(x => x.oneOff)!; expect(l).toMatchObject({ name: 'Tylko dziś', oneOff: true }); expect(l.equipment.map(e => e.item).sort()).toEqual(['floor_mat', 'wall']);
     expect(S().active!.locationId).toBe(l.id); expect(top()).toBe('adapt'); expect(title()).toBe('Dostosuj do: Tylko dziś');
     expect(S().active!.exercises.map(e => e.exerciseId)).toEqual(FBW.map(([n]) => ex(n).id)); /* nic nie zamienione samo (P4 A) */
-    await tap(screen.getByTestId('close-modal')); await flushAll(20); expect(screen.getByText(/^📍 Tylko dziś/)).toBeTruthy();
+    await tap(screen.getByTestId('close-modal')); await flushAll(20); expect(await placeInMenu()).toBe('Miejsce treningu: Tylko dziś'); /* M3 p2: miejsce w menu „⋯” */
   });
   test('własna nazwa i ręcznie wybrany sprzęt; miejsce z pełnym sprzętem do ćwiczeń z planu — bez okna „Dostosuj” (wraca do treningu)', async () => {
     await boot({ start: true }); await pick(await sheetOpts(), ONCE); await type(screen.getByPlaceholderText('Tylko dziś'), 'Hotel Sopot');
@@ -100,10 +100,10 @@ describe('A4 — miejsca jednorazowe poza listami', () => {
   test('edytor szablonu: „Miejsce domyślne” bez jednorazowego', async () => {
     const tpl = await boot({ fn: withOnce }); await go(`/template/${tpl.id}?edit=1`); await flushAll(20); expect(screen.getByText('Miejsce domyślne')).toBeTruthy(); expect(screen.queryByText('Ukryte')).toBeNull(); expect(screen.getByText('Hotel')).toBeTruthy();
   });
-  test('trening w miejscu jednorazowym: chip „📍 Ukryte ▾” pokazuje nazwę, ale arkusz go nie wymienia; „Zawsze w” nie ma', async () => {
+  test('trening w miejscu jednorazowym: pozycja miejsca w menu „⋯” pokazuje nazwę, ale arkusz go nie wymienia; „Zawsze w” nie ma', async () => {
     await boot({ start: true, fn: () => { /* start w drugim kroku */ } });
     const o = require('@/lib/locations').addOneOffLocation('Ukryte', presetEquipment('hotel')); store.setActiveLocation(o.id); await act(async () => { await store.flush(); });
-    await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10); expect(screen.getByText('📍 Ukryte ▾')).toBeTruthy(); const sh = await sheetOpts(); expect(sh.opts.options).not.toContain('Ukryte'); expect(screen.queryByText(/^Zawsze w:/)).toBeNull();
+    await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10); expect(await placeInMenu()).toBe('Miejsce treningu: Ukryte'); const sh = await sheetOpts(); expect(sh.opts.options).not.toContain('Ukryte'); expect(screen.queryByText(/^Zawsze w:/)).toBeNull();
   });
 });
 
@@ -111,42 +111,42 @@ describe('B — panel dnia w planie', () => {
   const open = async (day = '2026-10-09') => { await tap(screen.getByTestId(`cal-${day}`)); await flushAll(5); };
   const plan3 = () => { jest.setSystemTime(new Date(2026, 8, 28, 9).getTime()); const t = S().templates[0]; plan.setWeekDay(0, t.id); plan.setWeekDay(2, t.id); plan.setWeekDay(5, t.id); jest.setSystemTime(THU.getTime()); };
   test('„Więcej opcji” → „📍 Miejsce na te dni”: miejsca z listy, „Inne miejsce…”, „Od/Do”, dzień po dniu; bez „Ustaw miejsce”, dopóki nie wybrano miejsca', async () => {
-    await boot({ url: '/history', fn: plan3 }); await open(); expect(screen.queryByText('📍 Miejsce na te dni')).toBeNull(); await tap(screen.getByText('Więcej opcji')); await flushAll(5);
-    await tap(screen.getByText('📍 Miejsce na te dni')); await flushAll(5); expect(screen.getByTestId('place-range')).toBeTruthy();
+    await boot({ url: '/history', fn: plan3 }); await open(); expect(screen.queryByText('Miejsce na te dni')).toBeNull(); await tap(screen.getByText('Więcej opcji')); await flushAll(5);
+    await tap(screen.getByText('Miejsce na te dni')); await flushAll(5); expect(screen.getByTestId('place-range')).toBeTruthy();
     expect(screen.getByText('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.')).toBeTruthy(); await openInfo('place-range'); /* ⓘ 14.10.2026 */
     expect(screen.getByText('Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.')).toBeTruthy(); expect(screen.getByText('Inne miejsce…')).toBeTruthy();
-    expect(screen.getByText(/^Od: /)).toBeTruthy(); expect(screen.getByTestId('place-to').props.children).toMatch(/^Do: /); expect(screen.queryByText('Ustaw miejsce')).toBeNull(); expect(screen.queryByText('Usuń miejsce')).toBeNull();
+    expect(screen.getByText(/^Od: /)).toBeTruthy(); expect(screen.getByTestId('place-to').props.children).toMatch(/^Do: /); expect(screen.queryByText('Ustaw miejsce')).toBeNull(); expect(screen.queryByText('Wyczyść miejsce')).toBeNull();
   });
   test('Hotel od piątku do niedzieli: „+” przesuwa „Do”, „−” nie schodzi poniżej „Od”; „Ustaw miejsce” zapisuje trzy dni; dni pokazują „📍 Hotel”', async () => {
-    await boot({ url: '/history', fn: plan3 }); await open(); await tap(screen.getByText('Więcej opcji')); await tap(screen.getByText('📍 Miejsce na te dni')); await flushAll(5);
+    await boot({ url: '/history', fn: plan3 }); await open(); await tap(screen.getByText('Więcej opcji')); await tap(screen.getByText('Miejsce na te dni')); await flushAll(5);
     await tap(screen.getByLabelText('Dzień wcześniej')); await flushAll(2); expect(screen.getByTestId('place-to').props.children).toBe(screen.getByText(/^Od: /).props.children.replace('Od: ', 'Do: '));
     await tap(screen.getByLabelText('Dzień później')); await tap(screen.getByLabelText('Dzień później')); await flushAll(2);
     await tap(chip('Hotel')); await tap(screen.getByText('Ustaw miejsce')); await flushAll(5);
-    expect(S().planPlaces).toEqual({ '2026-10-09': HOTEL, '2026-10-10': HOTEL, '2026-10-11': HOTEL }); expect(screen.getByTestId('day-place').props.children).toBe('📍 Hotel');
+    expect(S().planPlaces).toEqual({ '2026-10-09': HOTEL, '2026-10-10': HOTEL, '2026-10-11': HOTEL }); expect(screen.getByTestId('day-place').props.children).toBe('Hotel');
     await tap(screen.getByTestId('cal-2026-10-11')); await flushAll(5); expect(screen.getByTestId('day-place').props.accessibilityLabel).toBe('Miejsce treningu: Hotel');
     await tap(screen.getByTestId('cal-2026-10-12')); await flushAll(5); expect(screen.queryByTestId('day-place')).toBeNull();
   });
-  test('„Usuń miejsce” (etykieta z zakresem) zdejmuje miejsce z całego zakresu; szablony i plan tygodnia bez zmian', async () => {
+  test('„Wyczyść miejsce” (etykieta z zakresem; M3 rola 09: wcześniej „Usuń miejsce” — to słowo zostało dla usunięcia samego miejsca) zdejmuje miejsce z całego zakresu; szablony i plan tygodnia bez zmian', async () => {
     await boot({ url: '/history', fn: () => { plan3(); plan.setPlanPlace('2026-10-09', '2026-10-11', HOTEL); } }); const tpls = JSON.stringify(S().templates); const wk = JSON.stringify(S().weekPlan);
-    await open('2026-10-10'); await tap(screen.getByText('Więcej opcji')); await tap(screen.getByText('📍 Miejsce na te dni')); await flushAll(5);
-    const del = screen.getByLabelText(/^Usuń miejsce: /); expect(del.props.accessibilityLabel).toMatch(/ – /); await tap(del); await flushAll(5);
+    await open('2026-10-10'); await tap(screen.getByText('Więcej opcji')); await tap(screen.getByText('Miejsce na te dni')); await flushAll(5);
+    const del = screen.getByLabelText(/^Wyczyść miejsce: /); expect(del.props.accessibilityLabel).toMatch(/ – /); await tap(del); await flushAll(5);
     expect(S().planPlaces).toBeUndefined(); expect(screen.queryByTestId('day-place')).toBeNull(); expect(JSON.stringify(S().templates)).toBe(tpls); expect(JSON.stringify(S().weekPlan)).toBe(wk);
   });
   test('„Inne miejsce…” z panelu: okno dla wybranego zakresu; „Użyj” ustawia miejsce jednorazowe na dni od–do (bez zmiany treningu w toku)', async () => {
-    await boot({ url: '/history', fn: plan3 }); await open(); await tap(screen.getByText('Więcej opcji')); await tap(screen.getByText('📍 Miejsce na te dni')); await flushAll(5);
+    await boot({ url: '/history', fn: plan3 }); await open(); await tap(screen.getByText('Więcej opcji')); await tap(screen.getByText('Miejsce na te dni')); await flushAll(5);
     await tap(screen.getByLabelText('Dzień później')); await tap(screen.getByText('Inne miejsce…')); await flushAll(20);
     expect(top()).toBe('place-once'); expect(screen.getByText(/^Miejsce na dni .* – .*\. Wybierz sprzęt/)).toBeTruthy(); expect(screen.getByPlaceholderText('Inne miejsce')).toBeTruthy();
     await tap(screen.getAllByText('Hotel')[0]); await tap(screen.getByTestId('place-once-use')); await flushAll(20);
     const l = S().settings.locations.find(x => x.oneOff)!; expect(l.name).toBe('Inne miejsce'); expect(S().planPlaces).toEqual({ '2026-10-09': l.id, '2026-10-10': l.id }); expect(top()).toBe('(tabs)');
-    expect(screen.getByTestId('day-place').props.children).toBe('📍 Inne miejsce');
+    expect(screen.getByTestId('day-place').props.children).toBe('Inne miejsce');
   });
   test('dzień miniony i brak miejsc na liście: przycisk „📍 Miejsce na te dni” się nie pokazuje', async () => {
-    await boot({ url: '/history', fn: plan3 }); await open('2026-10-05'); await tap(screen.getByText('Więcej opcji')); expect(screen.queryByText('📍 Miejsce na te dni')).toBeNull();
-    await boot({ url: '/history', fn: () => { plan3(); S().settings.locations = []; S().settings.mainLocationId = null; } }); await open(); await tap(screen.getByText('Więcej opcji')); expect(screen.queryByText('📍 Miejsce na te dni')).toBeNull();
+    await boot({ url: '/history', fn: plan3 }); await open('2026-10-05'); await tap(screen.getByText('Więcej opcji')); expect(screen.queryByText('Miejsce na te dni')).toBeNull();
+    await boot({ url: '/history', fn: () => { plan3(); S().settings.locations = []; S().settings.mainLocationId = null; } }); await open(); await tap(screen.getByText('Więcej opcji')); expect(screen.queryByText('Miejsce na te dni')).toBeNull();
   });
   test('karta „Dziś”: „📍 Hotel” w dniu z miejscem; etykieta dnia w pasku tygodnia ma miejsce', async () => {
     await boot({ fn: () => { plan3(); plan.setPlanPlace('2026-10-08', '2026-10-09', HOTEL); jest.setSystemTime(new Date(2026, 8, 28, 9).getTime()); plan.setWeekDay(3, S().templates[0].id); jest.setSystemTime(THU.getTime()); } });
-    expect(screen.getByTestId('today-place').props.children).toBe('📍 Hotel'); expect(screen.getByTestId('strip-2026-10-09').props.accessibilityLabel).toMatch(/Miejsce treningu: Hotel/); expect(screen.getByTestId('strip-2026-10-10').props.accessibilityLabel).not.toMatch(/Miejsce treningu/);
+    expect(screen.getByTestId('today-place').props.children).toBe('Hotel'); expect(screen.getByTestId('strip-2026-10-09').props.accessibilityLabel).toMatch(/Miejsce treningu: Hotel/); expect(screen.getByTestId('strip-2026-10-10').props.accessibilityLabel).not.toMatch(/Miejsce treningu/);
   });
 });
 
@@ -177,12 +177,12 @@ describe('języki i wygląd (docs/20 rodzaj 7)', () => {
     store.startFromTemplate(tpl); await act(async () => { await store.flush(); });
     const T = dict(l); const txt = (k: string) => T[k];
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/history', code: l === 'en' ? 'en' : l }); jest.setSystemTime(THU.getTime()); await flushAll(10);
-    await tap(screen.getByTestId('cal-2026-10-09')); await flushAll(5); await tap(screen.getByLabelText(txt('Więcej opcji'))); await flushAll(5); await tap(screen.getByText(txt('📍 Miejsce na te dni'))); await flushAll(5);
+    await tap(screen.getByTestId('cal-2026-10-09')); await flushAll(5); await tap(screen.getByLabelText(txt('Więcej opcji'))); await flushAll(5); await tap(screen.getByText(txt('Miejsce na te dni'))); await flushAll(5);
     expect(screen.getByText(txt('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.'))).toBeTruthy(); await openInfo('place-range');
     expect(screen.getByText(txt('Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.'))).toBeTruthy();
     expect(screen.getByText(txt('Inne miejsce…'))).toBeTruthy(); expect(screen.getByText(new RegExp('^' + esc(txt('Od: {day}').split('{day}')[0])))).toBeTruthy(); expect(new RegExp('^' + esc(txt('Do: {day}').split('{day}')[0])).test(screen.getByTestId('place-to').props.children)).toBe(true);
     await tap(screen.getAllByText('Hotel')[0]); expect(screen.getByText(txt('Ustaw miejsce'))).toBeTruthy();
-    for (const k of ['Inne miejsce…', 'Ustaw miejsce', '📍 Miejsce na te dni']) if (l !== 'cs' && l !== 'sk' && l !== 'hr' && l !== 'sl') expect([k, screen.queryAllByText(k).length > 0 && T[k] !== k]).toEqual([k, false]);
+    for (const k of ['Inne miejsce…', 'Ustaw miejsce', 'Miejsce na te dni']) if (l !== 'cs' && l !== 'sk' && l !== 'hr' && l !== 'sl') expect([k, screen.queryAllByText(k).length > 0 && T[k] !== k]).toEqual([k, false]);
     await go('/place-once'); await flushAll(20);
     expect(screen.queryByLabelText(txt('Gotowe zestawy')) ?? screen.getByText(txt('Gotowe zestawy'))).toBeTruthy(); /* SectionTitle: wersaliki wg języka (tr, el), etykieta VoiceOver bez zmian */ expect(screen.getByText(txt('Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.'))).toBeTruthy();
     expect(screen.getByText(txt('Zapisz jako miejsce'))).toBeTruthy(); expect(screen.getByPlaceholderText(txt('Tylko dziś'))).toBeTruthy(); expect(screen.getByTestId('place-once-use').props.accessibilityLabel).toBe(txt('Użyj'));
@@ -191,7 +191,7 @@ describe('języki i wygląd (docs/20 rodzaj 7)', () => {
   test('najdłuższa nazwa miejsca jednorazowego (80 znaków) w chipie, tytule okna „Dostosuj” i w kopii — bez błędu, nazwa przycięta tylko do NAME_MAX', async () => {
     await boot({ start: true }); const long = 'Ł'.repeat(120); await pick(await sheetOpts(), ONCE); await type(screen.getByPlaceholderText('Tylko dziś'), long); await tap(screen.getAllByText('Tylko masa ciała')[0]);
     await tap(screen.getByTestId('place-once-use')); await flushAll(20); const l = S().settings.locations.find(x => x.oneOff)!; expect(l.name).toHaveLength(store.NAME_MAX); expect(title()).toBe(`Dostosuj do: ${l.name}`);
-    await tap(screen.getByTestId('close-modal')); await flushAll(20); expect(screen.getByLabelText(`Miejsce treningu: ${l.name}`)).toBeTruthy();
+    await tap(screen.getByTestId('close-modal')); await flushAll(20); expect(await placeInMenu()).toBe(`Miejsce treningu: ${l.name}`);
   });
   test('ciemny motyw: okno „Inne miejsce” i panel miejsca na dni renderują się (motyw z Ustawień)', async () => {
     await boot({ start: true, fn: () => { S().settings.theme = 'dark'; } }); await pick(await sheetOpts(), ONCE); expect(screen.getByText('Gotowe zestawy')).toBeTruthy(); expect(S().settings.theme).toBe('dark');
