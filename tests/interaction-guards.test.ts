@@ -131,7 +131,8 @@ describe('S16: arkusze akcji — najwyżej 4 opcje (z „Anuluj”) albo wyjąte
     'components/ActiveWorkout.tsx': 'menu „⋯” treningu (miejsce — tylko gdy są miejsca, pauza, głos, notatka szablonu: do 4 pozycji + Anuluj, ale pozycje warunkowe — M3 p2, wzorzec 30), arkusz miejsca (lista miejsc użytkownika — długość zmienna) i arkusz głosu (3 opcje + Anuluj)',
     'components/WorkoutBlocks.tsx': 'rodzaj serii (4 rodzaje + notatka + Anuluj; dwupoziomowy arkusz wydłużyłby najczęstszą akcję treningu) i menu ćwiczenia — wydzielone z ekranu treningu (M3 p2)',
     'app/history/edit/[id].tsx': 'jak w treningu: miejsce sesji i rodzaj serii (ta sama lista)',
-    'app/template/[id].tsx': 'rodzaj serii szablonu: 4 rodzaje + Anuluj (zamknięty zbiór, bez notatki)',
+    'app/template/[id].tsx': 'rodzaj serii szablonu: 4 rodzaje + „Usuń serię” (jak w treningu, M1-028; 04-studio-projektowe-003) + Anuluj (zamknięty zbiór, bez notatki)',
+    'components/ExMenuButton.tsx': 'menu „⋯” ćwiczenia w edytorze szablonu i edycji sesji: jedna pozycja „Usuń ćwiczenie” + Anuluj (jak w treningu, 04-studio-projektowe-003)',
   };
   test('wszystkie wywołania ActionSheetIOS są na liście wyjątków z powodem (nowe — czerwony test: najwyżej 4 opcje)', () => {
     const files = hits(/ActionSheetIOS\.showActionSheetWithOptions/); expect(files.sort()).toEqual(Object.keys(EXC).sort()); Object.values(EXC).forEach(v => expect(v.length).toBeGreaterThan(20));
