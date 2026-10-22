@@ -21,7 +21,7 @@ import { weekdayLabels } from '@/lib/calendar';
  * - R2 masa: serie na partię tygodniowo do celu (13.10.2026: cel serii z Ustawień per partia — stats.setsGoal; automatycznie WEEKLY_SETS_MARK = 10,
  *   dolny próg potwierdzony) — braki pokazywane, nie ukrywane; liczenie serii (pomocnicza × 0,5) to ta sama funkcja co na paskach (lib/setSplit);
  * - R3 siła: bój główny na początku, ≥ 80% 1RM ≈ 4–6 powt. — tylko z obciążeniem zewnętrznym (audyt 0.10 MER-01); 3 serie (ACSM: co najmniej 2);
- *   dodatkowe 6–10 = konwencja; bez obciążenia zewnętrznego plan jak „masa w domu” z ostrzeżeniem;
+ *   dodatkowe 6–10 = uproszczenie (jak w tekście; przegląd badacza 21.10.2026, T-008); bez obciążenia zewnętrznego plan jak „masa w domu” z ostrzeżeniem;
  * - R4 masa: 6–15 powt. na siłowni (tu 8–12), w domu lżej i bliżej upadku (tu 12–20) — zakres potwierdzony, liczby = uproszczenie;
  * - R5 wysiłek zwykle 0–3 RIR (ACSM 2026: blisko upadku albo 2–3; dokładnego RIR nie ustalono);
  * - R6 przerwy „zwykle”: siła 2–3 min, masa 1,5–2 min — uproszczenie (przeglądy niejednoznaczne); R7 baza wielostawowa + jednostawowe;

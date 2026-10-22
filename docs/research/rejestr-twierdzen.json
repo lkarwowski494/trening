@@ -19,8 +19,8 @@
   {
    "id": "T-002",
    "kotwica": "Propozycja według Twoich założeń — przejrzysz ją",
-   "skrot": "96b3e6d901",
-   "skrotEn": "1546299271",
+   "skrot": "2258960870",
+   "skrotEn": "fbade609eb",
    "rodzaje": [
     "konwencja",
     "uproszczenie",
@@ -29,22 +29,25 @@
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-002",
-   "uwaga": "Zmiana brzmienia zaproponowana 21.10.2026 (przeglad-badacza-2026-10-21b.md, „Zmiany tekstów”, pkt 1): „nie wynikają z badań” → „nie są bezpośrednim wynikiem badań”, reguły także z zaleceń organizacji (WHO, ACSM). --rehash po naniesieniu.",
-   "przeglad": "21.10.2026: badacz-merytoryczny — wymaga zmiany brzmienia (definicja uproszczenia w CLAUDE.md); docs/research/przeglad-badacza-2026-10-21b.md"
+   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-003",
    "kotwica": "Progresja: gdy zrobisz górę zakresu powtórzeń, d",
-   "skrot": "6df68447b8",
-   "skrotEn": "69e407646e",
+   "skrot": "9ba460a787",
+   "skrotEn": "75941604f7",
    "rodzaje": [
-    "konwencja"
+    "konwencja",
+    "źródło cytowane w tekście"
    ],
-   "zrodla": [],
+   "zrodla": [
+    "ACSM 2009",
+    "ACSM 2011",
+    "ACSM 2026"
+   ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-003",
-   "uwaga": "Zmiana brzmienia i oznaczenia zaproponowana 21.10.2026 (przeglad-badacza-2026-10-21b.md, pkt 2): zasada stopniowego zwiększania obciążenia ma źródła S2 (ACSM 2009 streszczenie: +2–10% przy 1–2 powtórzeniach ponad zakres; ACSM 2011 tab. 2; ACSM 2026); konwencja = moment i krok. Po naniesieniu: rodzaje [konwencja, źródło cytowane w tekście], zrodla [ACSM 2009, ACSM 2011, ACSM 2026], usunąć uwagę, --rehash.",
-   "przeglad": "21.10.2026: badacz-merytoryczny — ACSM 2009 (2–10%, streszczenie), ACSM 2011 tab. 2 i s. 1343, ACSM 2026 Dyskusja; wymaga zmiany brzmienia; docs/research/przeglad-badacza-2026-10-21b.md"
+   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-004",
@@ -298,16 +301,16 @@
   },
   {
    "id": "T-021",
-   "kotwica": "Tygodnie treningu z rzędu bez deloadu: {n}. Tren",
-   "skrot": "7191d09555",
-   "skrotEn": "0540665d34",
+   "kotwica": "Tygodnie treningu z rzędu bez deloadu: {n}. Delo",
+   "skrot": "0e5cea7409",
+   "skrotEn": "093fd4bbbf",
    "rodzaje": [
     "jedno źródło"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-021",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone (jedno źródło: Bell 2023, Rogerson 2024 — jeden zespół); opcjonalne doprecyzowanie „trenerzy i zawodnicy”; docs/research/przeglad-badacza-2026-10-21b.md"
+   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-022",
@@ -469,8 +472,8 @@
   {
    "id": "T-032",
    "kotwica": "Stanowisko ACSM 2026: przy co najmniej {n} seria",
-   "skrot": "90f3cb823d",
-   "skrotEn": "2c8100b0dd",
+   "skrot": "facd288299",
+   "skrotEn": "2d412e00e2",
    "rodzaje": [
     "źródło cytowane w tekście"
    ],
@@ -479,8 +482,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-032",
-   "uwaga": "Zmiana brzmienia zaproponowana 21.10.2026 (przeglad-badacza-2026-10-21b.md, pkt 3): „każdy trening siłowy” → „trening siłowy w różnych formach” (ACSM 2026: „RT of various forms compared with no exercise”). --rehash po naniesieniu.",
-   "przeglad": "21.10.2026: badacz-merytoryczny — ACSM 2026 (≥10 serii — potwierdzone; „każdy” mocniej niż źródło); wymaga zmiany brzmienia; docs/research/przeglad-badacza-2026-10-21b.md"
+   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md"
   },
   {
    "id": "T-033",
