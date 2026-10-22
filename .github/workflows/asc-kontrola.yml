@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   kontrola:
-    uses: lkarwowski494/apps4brew-narzedzia/.github/workflows/asc-kontrola.yml@3d5617a537bbe9d7b384a9ad21b5a33fdd3c24dc
+    uses: lkarwowski494/apps4brew-narzedzia/.github/workflows/asc-kontrola.yml@de55b38d758de925d9e1250ffcee8186ffdf4ef6
     with:
       config: store/asc-kontrola.json
       szczegoly: ${{ inputs.szczegoly }}
