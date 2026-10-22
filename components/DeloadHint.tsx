@@ -25,7 +25,7 @@ export function DeloadHint() {
   const fit = { flexShrink: 1, maxWidth: '100%' } as const;
   if (h.kind === 'suggest') return (
     <View testID="deload-hint" style={box}>
-      <InfoTip id="deload" label={t('Tygodnie treningu bez deloadu: {n}.', { n: h.weeks })} info={t('Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.', { n: h.weeks, a: DELOAD_EVERY[0], b: DELOAD_EVERY[1] })}>
+      <InfoTip id="deload" label={t('Tygodnie treningu bez deloadu: {n}.', { n: h.weeks })} info={t('Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — tak opisują praktykę trenerzy i zawodnicy w badaniach jednego zespołu (jedno źródło), nie wynik badań skuteczności.', { n: h.weeks, a: DELOAD_EVERY[0], b: DELOAD_EVERY[1] })}>
         <Muted style={font('footnote')}>{t('Tygodnie treningu bez deloadu: {n}.', { n: h.weeks })}</Muted>
       </InfoTip>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: SPACE.s }}>

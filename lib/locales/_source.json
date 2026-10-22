@@ -4237,8 +4237,8 @@
   "en": "Progression"
  },
  {
-  "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar — konwencja.",
-  "en": "Progression: when you reach the top of the rep range, add weight — a convention."
+  "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+  "en": "Progression: when you reach the top of the rep range, add weight. ACSM position stands recommend gradually increasing the load; the timing and the size of the step are a convention."
  },
  {
   "pl": "Propozycja {n}: {name}",
@@ -4249,8 +4249,8 @@
   "en": "A proposal to review before saving."
  },
  {
-  "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań; części oznaczone jako konwencja albo uproszczenie nie wynikają z badań.",
-  "en": "A proposal based on your assumptions — you review it before saving. The rules come from research reviews; parts marked as convention or simplification are not research findings."
+  "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań.",
+  "en": "A proposal based on your assumptions — you review it before saving. The rules come from research reviews and recommendations of organisations (WHO, ACSM); parts marked as a convention or a simplification are not direct research findings."
  },
  {
   "pl": "Propozycje",
@@ -4932,8 +4932,8 @@
   "en": "Power tower (pull-up + dip)"
  },
  {
-  "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.",
-  "en": "ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; any resistance training builds muscle compared with none."
+  "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+  "en": "ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; resistance training in its various forms builds muscle compared with none."
  },
  {
   "pl": "start",
@@ -5578,8 +5578,8 @@
   "en": "Training weeks without a deload: {n}."
  },
  {
-  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.",
-  "en": "Training weeks in a row without a deload: {n}. Coaches usually deload every {a}–{b} weeks — this is practice described in surveys by one research team (single source), not a finding on effectiveness."
+  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — tak opisują praktykę trenerzy i zawodnicy w badaniach jednego zespołu (jedno źródło), nie wynik badań skuteczności.",
+  "en": "Training weeks in a row without a deload: {n}. A deload usually comes every {a}–{b} weeks — this is practice described by coaches and athletes in studies by one research team (single source), not a finding on effectiveness."
  },
  {
   "pl": "Tygodnie z wykonanym planem: {done} z {n}",
