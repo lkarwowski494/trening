@@ -44,6 +44,6 @@
   "licenseAgreement": "STANDARD_APPLE_EULA",
   "dsaTrader": true,
   "familySharing": { "monthly": true, "yearly": true, "lifetime": true },
-  "introductoryOfferDays": 14,
+  "introductoryOffers": "none",
   "urlsFile": "store/app-store-urls.json"
 }

@@ -146,7 +146,7 @@ describe('README.md: wygenerowane liczby zgadzają się z niezależnym obliczeni
   });
   test('cennik: przełącznik i limity z lib/access.ts, plany z lib/products.ts, ceny tylko z store/Trening.storekit', () => {
     const acc = fs.readFileSync(path.join(root, 'lib/access.ts'), 'utf8');
-    const enabled = /ENABLED:\s*(true|false),/.exec(acc)![1]; const free = /FREE_LIVE_PER_MONTH:\s*(\d+)/.exec(acc)![1];
+    const enabled = /ENABLED:\s*(true|false),/.exec(acc)![1]; const free = /FREE_TRAINING_DAYS_PER_MONTH:\s*(\d+)/.exec(acc)![1];
     expect(gen('pricing')).toContain(`PAYWALL.ENABLED\` = \`${enabled}\``);
     expect(gen('pricing')).toContain(free);
     const kit = fs.readFileSync(path.join(root, 'store/Trening.storekit'), 'utf8');

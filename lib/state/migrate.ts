@@ -16,6 +16,7 @@ import { normalizeReviewAsked, normalizeIdeaShownAt } from '../review';
 import { normalizeGroups } from './groups';
 import { SAVED_PLANS_MAX, DELOAD_WEEKS_MAX, cleanPlanName, planDays, sameDays, normPlanHistory, cleanOverrides, cleanDoneEarly, appendPlanSegment, cleanPlanPlaces } from './weekplan';
 import { unusedOneOffIds } from './places';
+import { normalizeLiveDays } from './migrate-live';
 import { setLegacyLb, snapL, posNum, fixTemplates, fixWorkout, freshIds, uniqueIds } from './migrate-records';
 import { migrateExercises, retireCatalog } from './migrate-catalog';
 
@@ -285,6 +286,7 @@ export function migrate(raw: unknown): State {
     for (const l of raw.settings.locations) fillOpts(l);
     raw.optFill = OPT_FILL.rev;
   } /* bieżnia: nachylenie (05.10.2026), raz */
+  normalizeLiveDays(raw); /* M5 S1 (22.10.2026): State.liveDays — poprawne wpisy zostają, brak/uszkodzone → z historii (migrate-live.ts) */
   raw.ownerId = owner;
   if (!Number.isFinite(raw.v)) raw.v = 2; if (raw.metaUpdatedAt != null && tsOf(raw.metaUpdatedAt) == null) delete raw.metaUpdatedAt; /* runda 53 */
   /* audyt 0.10 J1: numer schematu nigdy w dół (dane z nowszej wersji zatrzymuje init i import) */

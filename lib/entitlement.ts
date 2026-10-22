@@ -9,8 +9,7 @@ import { useSyncExternalStore } from 'react';
 import { router } from 'expo-router';
 import { PAYWALL, ENTITLEMENT_PLANS, canStartLive, effectiveAccess, entitlementEnd, entitlementActive, type AccessContext, type EffectiveAccess, type Entitlement,
   type EntitlementPlan, type GuardedStart, type LastKnownAccess, type PaywallConfig, type StartDecision, type LiveStart } from '@/lib/access';
-import { PAYWALL_MOMENTS, E2E_FREE_LIVE_PER_MONTH, isFakeStoreBuild } from '@/lib/products';
-import { syncTrialReminder } from '@/lib/trialReminder';
+import { E2E_FREE_TRAINING_DAYS, isFakeStoreBuild } from '@/lib/products';
 import { getStoreAdapter, type PurchaseOutcome } from '@/lib/store-adapter';
 import { getState, tzOffsetAt, useTick } from '@/lib/store';
 import { db } from '@/lib/state/core';
@@ -18,8 +17,8 @@ import { db } from '@/lib/state/core';
 /** Klucz kv z ostatnim znanym wynikiem sklepu: poza stanem aplikacji i poza kopią (zakup należy do konta Apple, nie do danych treningowych). */
 export const ACCESS_KEY = 'access';
 
-/** Konfiguracja stosowana w aplikacji: PAYWALL z lib/access.ts; w buildzie E2E przełącznik włączony i limit 1 (żeby scenariusz Maestro był krótki). */
-export function paywallConfig(): PaywallConfig { return isFakeStoreBuild() ? { ...PAYWALL, ENABLED: true, FREE_LIVE_PER_MONTH: E2E_FREE_LIVE_PER_MONTH } : PAYWALL; }
+/** Konfiguracja stosowana w aplikacji: PAYWALL z lib/access.ts; w buildzie E2E przełącznik włączony i limit 0 dni (jednego dnia nie da się przekroczyć limitu ≥ 1 — scenariusz Maestro krótki). */
+export function paywallConfig(): PaywallConfig { return isFakeStoreBuild() ? { ...PAYWALL, ENABLED: true, FREE_TRAINING_DAYS_PER_MONTH: E2E_FREE_TRAINING_DAYS } : PAYWALL; }
 export const paywallOn = (): boolean => paywallConfig().ENABLED;
 
 /* ---------- stan ---------- */
@@ -54,11 +53,9 @@ async function load() {
 /** Zastosowanie odpowiedzi sklepu: tablica (także pusta) = sklep odpowiedział; null = brak odpowiedzi (`unknown`, ostatni zapamiętany wynik). */
 async function apply(list: Entitlement[] | null, now: number) {
   ent = list;
-  if (list) { lastKnown = lastKnownFrom(list, now); await persist(lastKnown, now); void syncTrialReminder(list, now); }
+  if (list) { lastKnown = lastKnownFrom(list, now); await persist(lastKnown, now); }
   emit();
 }
-/** M1-audytor-generalny-041: po zmianie języka przypomnienie o końcu próby planowane ponownie (treść w nowym języku); bez odpowiedzi sklepu — bez zmian. */
-export function resyncTrialReminder(): Promise<void> { return ent ? syncTrialReminder(ent, Date.now()) : Promise.resolve(); }
 /** Odświeżenie uprawnień ze sklepu (start, powrót z tła, zdarzenie transakcji). Błąd odczytu → `unknown`, nigdy `free` (docs/30 3.3 pułapka 2). Współbieżne wywołania łączą się w jedno. */
 export function refreshEntitlements(): Promise<void> {
   if (!paywallOn()) return Promise.resolve();
@@ -87,11 +84,9 @@ export interface AccessView extends EffectiveAccess {
   decision: StartDecision;
 }
 const RANK: Record<EntitlementPlan, number> = { lifetime: 3, yearly: 2, monthly: 1 };
-/** Treningi na żywo do licznika: zakończone i trwający ze znacznikiem `live` (docs/27 „Licznik”); trening wstecz i import go nie mają. */
-export function liveStarts(): LiveStart[] {
-  const st = getState(); const all = st.active ? [...st.workouts, st.active] : st.workouts;
-  return all.filter(w => w.live === true).map(w => ({ startedAt: w.startedAt, tzOffsetMin: w.tzOffsetMin }));
-}
+/** Dni treningowe do licznika (M5 S1, decyzja właściciela 22.10.2026): ZAPISANE osobno w stanie (`State.liveDays`), nie liczone z historii — usunięcie treningu nie zwraca dnia.
+ * Wpis powstaje przy ukończeniu („Zakończ” albo zapis po 6 h) treningu na żywo dłuższego niż MIN_LIVE_MINUTES_FOR_DAY; trwający, anulowany, krótki, wstecz i import nie zapisują. */
+export function liveStarts(): LiveStart[] { return getState().liveDays ?? []; }
 export function accessNow(now: number = Date.now()): AccessView {
   const cfg = paywallConfig(); const ctx: AccessContext = { lastKnown }; const eff = effectiveAccess(ctx, ent, now, cfg);
   const decision = canStartLive(ctx, ent, liveStarts(), now, tzOffsetAt(now), cfg);
@@ -118,8 +113,8 @@ export function guardLiveStart(_path: GuardedStart, now: number = Date.now(), op
 }
 /** Dzień (południe, czas telefonu) pierwszego dnia następnego miesiąca — do tekstu „Kolejne od …”. Liczony z dat kalendarza, nie z `resetsAt`: ten przy zmianie czasu (DST) w miesiącu bywa o godzinę przed północą (lib/access.ts nextMonthStart liczy ze stałego przesunięcia). */
 export const nextMonthDay = (now: number = Date.now()): number => { const d = new Date(now); return new Date(d.getFullYear(), d.getMonth() + 1, 1, 12).getTime(); };
-/** Czy po następnym treningu start będzie zablokowany (prośba o ocenę nie wchodzi w blokadę — docs/26 zasada 3). */
-export const nextStartBlocked = (now: number = Date.now()): boolean => paywallOn() && !accessNow(now).decision.allowed;
+/** Czy limit dni jest wyczerpany, więc start w NOWYM dniu byłby zablokowany (prośba o ocenę nie wchodzi w blokadę — docs/26 zasada 3; dziś już zaliczony dzień nie odblokowuje oceny). */
+export const nextStartBlocked = (now: number = Date.now()): boolean => { if (!paywallOn()) return false; const v = accessNow(now); return v.level === 'free' && v.decision.used >= v.decision.limit; };
 
 /* ---------- akcje użytkownika (ekran zakupu, Ustawienia) ---------- */
 /** Zakup planu; po sukcesie uprawnienia odświeżają się od razu (nasłuch dopełni resztę). Żadna z tych funkcji nie dotyka treningów. */
@@ -129,20 +124,4 @@ export async function purchasePlan(plan: EntitlementPlan): Promise<PurchaseOutco
 /** „Przywróć zakupy”: 'restored' (jest aktywne uprawnienie), 'none' (konto Apple bez zakupów), 'error' (brak sieci/błąd — stan bez zmian). */
 export async function restorePurchases(): Promise<'restored' | 'none' | 'error'> {
   try { const list = await getStoreAdapter().restore(); await apply(list, Date.now()); return list.some(e => entitlementActive(e, Date.now())) ? 'restored' : 'none'; } catch { return 'error'; }
-}
-
-/* ---------- ekran zakupu po pierwszym treningu (P2 B) ---------- */
-export const PAYWALL_SEEN_KEY = 'paywallSeen';
-/**
- * Raz po pierwszym ukończonym treningu na żywo: ekran zakupu z „Nie teraz” (decyzja właściciela 12.10.2026, P2 B). Tylko gdy przełącznik włączony, osoba nie ma
- * pełnego dostępu (stan jasny: sklep odpowiedział albo jest zapamiętany wynik) i ekranu jeszcze nie pokazano; znacznik w kv (poza kopią). Zwraca, czy otworzono.
- */
-export async function maybeShowPaywallAfterFirstWorkout(workoutId: string, open: (href: string) => void = href => router.push(href as never)): Promise<boolean> {
-  if (!PAYWALL_MOMENTS.AFTER_FIRST_WORKOUT || !paywallOn()) return false;
-  const finished = getState().workouts.filter(w => w.live === true);
-  if (finished.length !== 1 || finished[0].id !== workoutId) return false;
-  const v = accessNow(); if (v.level === 'full' || v.silent) return false;
-  try { if (await db?.getFirstAsync('SELECT v FROM kv WHERE k = ?', PAYWALL_SEEN_KEY)) return false; } catch { return false; }
-  try { await db?.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', PAYWALL_SEEN_KEY, '1'); } catch { return false; }
-  open('/paywall?reason=first'); return true;
 }

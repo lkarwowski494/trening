@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5201-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5233-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-45-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -59,11 +59,11 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Ćwiczenia w bibliotece | 709 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 349 (z testem: 349) | docs/19-macierz-testow.md |
-| Komunikaty i teksty | 1105 (z testem: 1105) | docs/19-macierz-testow.md |
+| Komunikaty i teksty | 1106 (z testem: 1106) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 920 (z testem: 920) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 118 (z testem: 118) | docs/19-macierz-testow.md |
 | Pliki testów Jest | 439 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 5201 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Przypadki testowe (statycznie) | 5233 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 153 (Maestro: 126, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 13) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 45 (w głównym przebiegu: 42, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -94,15 +94,15 @@ Aplikacja nie ma cen wpisanych na sztywno — wyświetla to, co zwraca App Store
 **referencyjne w dolarach**; ceny w innych walutach ustawia się w App Store Connect.
 
 <!-- gen:pricing -->
-Stan przełącznika płatności: `PAYWALL.ENABLED` = `false` (`lib/access.ts`) — wszystkie funkcje są dostępne bez limitu, dopóki właściciel nie włączy płatności (zmiana jednej wartości i wydanie).
+Stan przełącznika płatności: `PAYWALL.ENABLED` = `true` (`lib/access.ts`) — bez pełnej wersji można trenować na żywo do 5 dni treningowych w miesiącu kalendarzowym (kolejny trening tego samego dnia nie zużywa limitu); zapisane wyniki, historia, kopia i eksport zostają zawsze dostępne.
 
 | Plan | Rodzaj | Cena referencyjna (USD, plik `store/Trening.storekit`) |
 |---|---|---|
-| Miesięczny | subskrypcja odnawiana co miesiąc, pierwsze 14 dni bezpłatnie | 0.99 |
-| Roczny | subskrypcja odnawiana co rok, pierwsze 14 dni bezpłatnie | 6.99 |
+| Miesięczny | subskrypcja odnawiana co miesiąc | 0.99 |
+| Roczny | subskrypcja odnawiana co rok | 6.99 |
 | Dożywotni | zakup jednorazowy | 14.99 |
 
-Okres próbny w kodzie: 14 dni (`TRIAL_DAYS`, `lib/products.ts`); karencja offline dla zapamiętanego dostępu: 7 dni (`OFFLINE_GRACE_DAYS`).
+Bez okresu próbnego (model M5 S1, 22.10.2026); karencja offline dla zapamiętanego dostępu: 7 dni (`OFFLINE_GRACE_DAYS`).
 <!-- /gen:pricing -->
 
 Płatne funkcje zależą od jednego przełącznika w jednym module, więc przejście na model darmowy to zmiana jednej wartości i wydanie.

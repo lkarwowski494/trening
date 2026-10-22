@@ -1,5 +1,5 @@
 /*
- * 0.17.0, prośba o ocenę w działaniu (docs/26; decyzja właściciela 11.10.2026: B+A, N = 5, 14 dni, 1 na wersję, data w polu ustawień, bez linku w Ustawieniach):
+ * 0.17.0, prośba o ocenę w działaniu (docs/26; decyzja właściciela 11.10.2026: B+A, N = 5 → od 22.10.2026 (M5 S1) N = 3, 14 dni, 1 na wersję, data w polu ustawień, bez linku w Ustawieniach):
  * normalizacja pola Settings.reviewAsked (migrate/import/kopia), podłączenie bramki lib/review.ts po zakończeniu treningu na ekranie podsumowania (tylko StoreReview.requestReview
  * przez moduł), niezmienniki (nigdy w trakcie treningu, nigdy bez rekordu, nigdy częściej niż odstęp, nigdy własne okno). Rodzaje (docs/20): logika, ekran, scenariusz
  * (zakończenie treningu w interfejsie), dane (zapis → restart, kopia → import, SCHEMA_VERSION bez zmian), niezmienniki. E2E: pominięte z powodem w docs/09 (okno systemowe).
@@ -26,7 +26,7 @@ jest.mock('expo-constants', () => ({ __esModule: true, default: { expoConfig: { 
 const DAY = 86400e3; const NOW = new Date(2026, 9, 14, 12, 0).getTime(); const S = () => store.getState(); const VERSION = String(Constants.expoConfig?.version ?? '');
 /** n treningów na żywo z rosnącym ciężarem; ostatni (najnowszy) ma rekord. */
 function history(n: number, record = true) {
-  const out = []; for (let i = 0; i < n; i++) { const kg = record ? 60 + i * 5 : 100 - i; const w = addWorkout(NOW - (n - i) * 2 * DAY, [['Back Squat', [{ weight: kg, reps: 5, done: true }]]], 'Upper A'); w.live = true; out.push(w); }
+  const out = []; for (let i = 0; i < n; i++) { const kg = record ? 60 + i * 5 : 100 - i; const w = addWorkout(NOW - (n - i) * 2 * DAY, [['Back Squat', [{ weight: kg, reps: 5, done: true }]]], 'Upper A'); w.live = true; store.recordLiveDayFor(w); out.push(w); }
   return out;
 }
 const reset = () => { global.__review.available = true; global.__review.requested = 0; global.__review.fail = false; };
@@ -61,14 +61,14 @@ describe('dane: Settings.reviewAsked bez zmiany schematu', () => {
 });
 
 describe('maybeRequestReview: bramka + moduł systemowy', () => {
-  async function boot(n = 5, record = true) { jest.useFakeTimers({ now: NOW }); await fresh(); reset(); const ws = history(n, record); S().active = null; return ws[ws.length - 1]; }
-  test('5 treningów, rekord, nigdy nie prosiliśmy: system dostaje prośbę RAZ, data i wersja zapisane w ustawieniach (zapis w bazie)', async () => {
+  async function boot(n = 3, record = true) { jest.useFakeTimers({ now: NOW }); await fresh(); reset(); const ws = history(n, record); S().active = null; return ws[ws.length - 1]; }
+  test('3 treningi (N), rekord, nigdy nie prosiliśmy: system dostaje prośbę RAZ, data i wersja zapisane w ustawieniach (zapis w bazie)', async () => {
     const w = await boot(); expect(prCountOf(workoutPRs(w))).toBeGreaterThan(0);
     expect(await maybeRequestReview(w, NOW)).toBe('asked'); expect(global.__review.requested).toBe(1); expect(S().settings.reviewAsked).toEqual({ at: NOW, version: VERSION });
     await store.flush(); expect(JSON.parse(global.__kv.get('state')!).settings.reviewAsked).toEqual({ at: NOW, version: VERSION });
   });
   test.each([
-    ['za mało treningów (4)', 4, true, 'tooFewWorkouts'], ['brak rekordu', 5, false, 'noRecord'],
+    ['za mało treningów (2)', 2, true, 'tooFewWorkouts'], ['brak rekordu', 3, false, 'noRecord'],
   ])('%s → %s, system nie dostaje prośby', async (_n, n, rec, want) => { const w = await boot(n, rec); expect(await maybeRequestReview(w, NOW)).toBe(want); expect(global.__review.requested).toBe(0); expect(S().settings.reviewAsked).toBeUndefined(); });
   test('1 na wersję i odstęp 14 dni: ta sama wersja → sameVersion; inna wersja przed upływem 14 dni → tooSoon; po 14 dniach → asked; zegar cofnięty → clockBack', async () => {
     const w = await boot(); S().settings.reviewAsked = { at: NOW - 30 * DAY, version: VERSION }; expect(await maybeRequestReview(w, NOW)).toBe('sameVersion');
@@ -78,7 +78,8 @@ describe('maybeRequestReview: bramka + moduł systemowy', () => {
   });
   test('trening w toku → workoutActive; limit subskrypcji (następny start zablokowany) → blocked; błąd zapisu → lastFailed', async () => {
     const w = await boot(); S().active = { ...w, id: 'a', finishedAt: null } as never; expect(await maybeRequestReview(w, NOW)).toBe('workoutActive'); S().active = null;
-    PAYWALL.ENABLED = true; resetEntitlementsForTests(); setStoreAdapter(createFakeStore([])); expect(await maybeRequestReview(w, NOW)).toBe('blocked'); PAYWALL.ENABLED = false;
+    PAYWALL.ENABLED = true; resetEntitlementsForTests(); setStoreAdapter(createFakeStore([])); for (const d of [1, 3]) { const x = addWorkout(NOW - d * DAY, [['Back Squat', [{ weight: 50, reps: 5, done: true }]]], 'Upper A'); x.live = true; store.recordLiveDayFor(x); } /* 5 różnych dni = limit dni wyczerpany */
+    expect(await maybeRequestReview(w, NOW)).toBe('blocked'); PAYWALL.ENABLED = false;
     global.__dbFail = true; store.save(); await act(async () => { await store.flush().catch(() => {}); }); expect(await maybeRequestReview(w, NOW)).toBe('lastFailed'); global.__dbFail = false; expect(global.__review.requested).toBe(0);
   });
   test('TestFlight (moduł niedostępny): cicho, bez zapisu, bez zużycia odstępu; błąd modułu → error bez zapisu', async () => {
@@ -90,7 +91,7 @@ describe('maybeRequestReview: bramka + moduł systemowy', () => {
     await fc.assert(fc.asyncProperty(fc.array(fc.record({ dt: fc.integer({ min: 0, max: 40 }), ver: fc.constantFrom('a', 'b', VERSION), active: fc.boolean(), rec: fc.boolean() }), { maxLength: 12 }), async steps => {
       delete S().settings.reviewAsked; asks.length = 0; let t = NOW; global.__review.requested = 0;
       for (const s of steps) { t += s.dt * DAY; S().active = s.active ? ({ ...w, id: 'a', finishedAt: null } as never) : null; const before = global.__review.requested;
-        const want = s.active ? false : reviewDecision({ now: t, finishedWorkouts: 5, justFinishedHasRecord: prCountOf(workoutPRs(w)) > 0, version: VERSION, lastAsked: S().settings.reviewAsked ?? null, workoutActive: false });
+        const want = s.active ? false : reviewDecision({ now: t, finishedWorkouts: 3, justFinishedHasRecord: prCountOf(workoutPRs(w)) > 0, version: VERSION, lastAsked: S().settings.reviewAsked ?? null, workoutActive: false });
         const r = await maybeRequestReview(w, t); expect(global.__review.requested - before).toBe(r === 'asked' ? 1 : 0); if (r === 'asked') { asks.push(S().settings.reviewAsked!); expect(want === 'ask').toBe(true); }
         if (s.active) expect(r).toBe('workoutActive'); }
       for (let i = 1; i < asks.length; i++) { expect(asks[i].at - asks[i - 1].at).toBeGreaterThanOrEqual(REVIEW.MIN_GAP_DAYS * DAY); }
@@ -108,10 +109,10 @@ describe('znacznik świeżo zakończonego treningu i ekran podsumowania', () => 
     await act(async () => { jest.advanceTimersByTime(2); await Promise.resolve(); await Promise.resolve(); }); expect(global.__review.requested).toBe(1); off();
     markJustFinished(w.id); delete S().settings.reviewAsked; const cancel = onSummaryShown(w); await act(async () => { await Promise.resolve(); await Promise.resolve(); }); cancel(); await act(async () => { jest.advanceTimersByTime(5000); await Promise.resolve(); }); expect(global.__review.requested).toBe(1);
   });
-  test('pierwszeństwo: P2 B — przy pierwszym treningu bez pełnego dostępu otwiera się ekran zakupu zamiast prośby o ocenę', async () => {
+  test('M5 S1: po treningu ekran zakupu NIE otwiera się sam (dawne P2 B usunięte); prośba o ocenę idzie normalnie, gdy limit dni nie jest wyczerpany', async () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); reset(); PAYWALL.ENABLED = true; resetEntitlementsForTests(); setStoreAdapter(createFakeStore([])); const { initEntitlements } = require('@/lib/entitlement'); await initEntitlements();
-    const w = history(1)[0]; markJustFinished(w.id); const { router } = require('expo-router'); const push = jest.spyOn(router, 'push').mockImplementation(() => {});
-    onSummaryShown(w); await act(async () => { await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); jest.advanceTimersByTime(5000); }); expect(push).toHaveBeenCalledWith('/paywall?reason=first'); expect(global.__review.requested).toBe(0); push.mockRestore();
+    const ws = history(3); const w = ws[2]; markJustFinished(w.id); const { router } = require('expo-router'); const push = jest.spyOn(router, 'push').mockImplementation(() => {});
+    onSummaryShown(w); await act(async () => { for (let i = 0; i < 6; i++) await Promise.resolve(); jest.advanceTimersByTime(5000); await Promise.resolve(); await Promise.resolve(); }); expect(push).not.toHaveBeenCalled(); expect(global.__review.requested).toBe(1); push.mockRestore();
   });
 });
 
@@ -124,20 +125,21 @@ describe('scenariusz w interfejsie: zakończenie treningu', () => {
     await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'en' }); jest.setSystemTime(NOW); await flushAll(10);
     await act(async () => { const s = S().active!.exercises[0].sets[0]; s.weight = opts.record === false ? 40 : 200; s.reps = 5; store.toggleDone(0, 0); }); await flushAll(10);
   }
-  test('5. trening z rekordem: po „Finish” ekran sesji z kartą rekordów, po 1,5 s jedna systemowa prośba o ocenę; ekran nie ma własnego okna ani przycisku oceny', async () => {
-    await session(4); await finishOnScreen(); expect(screen.getByTestId('record-card')).toBeTruthy(); expect(global.__review.requested).toBe(0);
+  test('3. trening z rekordem: po „Finish” ekran sesji z kartą rekordów, po 1,5 s jedna systemowa prośba o ocenę; ekran nie ma własnego okna ani przycisku oceny', async () => {
+    await session(2); await finishOnScreen(); expect(screen.getByTestId('record-card')).toBeTruthy(); expect(global.__review.requested).toBe(0);
     await act(async () => { jest.advanceTimersByTime(STORE_TIMING.REVIEW_DELAY_MS + 50); await Promise.resolve(); await Promise.resolve(); }); expect(global.__review.requested).toBe(1); expect(S().settings.reviewAsked!.version).toBe(VERSION);
     expect(global.__alerts.filter(a => /rate|review|rating/i.test(String(a.title)))).toEqual([]); expect(screen.queryByText(/rate|review/i)).toBeNull();
     await act(async () => { jest.advanceTimersByTime(60000); await Promise.resolve(); }); expect(global.__review.requested).toBe(1);
   });
-  test('4. trening (poniżej N) i 5. bez rekordu: bez prośby; otwarcie sesji z historii nigdy nie prosi', async () => {
-    await session(3); await finishOnScreen(); await act(async () => { jest.advanceTimersByTime(5000); await Promise.resolve(); }); expect(global.__review.requested).toBe(0);
-    await session(4, { record: false }); await finishOnScreen(); await act(async () => { jest.advanceTimersByTime(5000); await Promise.resolve(); }); expect(global.__review.requested).toBe(0);
-    await session(4); const id = S().workouts[S().workouts.length - 1].id; await finishOnScreen(); await act(async () => { jest.advanceTimersByTime(5000); await Promise.resolve(); }); const n = global.__review.requested;
+  test('2. trening (poniżej N) i 3. bez rekordu: bez prośby; otwarcie sesji z historii nigdy nie prosi', async () => {
+    await session(1); await finishOnScreen(); await act(async () => { jest.advanceTimersByTime(5000); await Promise.resolve(); }); expect(global.__review.requested).toBe(0);
+    await session(2, { record: false }); await finishOnScreen(); await act(async () => { jest.advanceTimersByTime(5000); await Promise.resolve(); }); expect(global.__review.requested).toBe(0);
+    await session(2); const id = S().workouts[S().workouts.length - 1].id; await finishOnScreen(); await act(async () => { jest.advanceTimersByTime(5000); await Promise.resolve(); }); const n = global.__review.requested;
     await act(async () => { require('expo-router').router.push(`/history/${S().workouts.find((x: { id: string }) => x.id === id)!.id}`); }); await act(async () => { jest.advanceTimersByTime(5000); await Promise.resolve(); }); expect(global.__review.requested).toBe(n);
   });
-  test('P2 B w interfejsie: pierwszy trening bez pełnego dostępu → po zakończeniu ekran zakupu z „Not now”; drugi raz — nie; bez ekranu oceny', async () => {
+  test('M5 S1 w interfejsie: pierwszy trening bez pełnego dostępu → po zakończeniu bez ekranu zakupu (bez „Not now” i planów)', async () => {
     await session(0, { paywall: true }); await finishOnScreen(); await act(async () => { jest.advanceTimersByTime(300); await Promise.resolve(); await Promise.resolve(); }); await flushAll(50);
-    expect(screen.getByText('Not now')).toBeTruthy(); expect(screen.getByTestId('plan-yearly')).toBeTruthy(); expect(global.__review.requested).toBe(0); expect(screen.queryByTestId('paywall-limit')).toBeNull();
+    expect(screen.queryByText('Not now')).toBeNull(); expect(screen.queryByTestId('plan-yearly')).toBeNull(); expect(S().workouts).toHaveLength(1); expect(S().active).toBeNull();
   });
+
 });

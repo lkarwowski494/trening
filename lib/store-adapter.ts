@@ -18,8 +18,6 @@ export interface StoreProduct {
   displayPrice: string;
   /** Okres rozliczenia subskrypcji; null = zakup jednorazowy. */
   period: 'month' | 'year' | null;
-  /** Kwalifikuje się do darmowego miesiąca (oferta wprowadzająca, `isEligibleForIntroOffer`); false także gdy produkt nie ma oferty. */
-  trial: boolean;
 }
 
 export type PurchaseOutcome =

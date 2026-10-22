@@ -264,10 +264,10 @@ describe('scenariusz: 100 treningów przez ekran podsumowania (store + review-ru
     onSummaryShown(w, () => shown.push(i)); await act(async () => { for (let k = 0; k < 6; k++) await Promise.resolve(); jest.advanceTimersByTime(STORE_TIMING.REVIEW_DELAY_MS + 50); await Promise.resolve(); await Promise.resolve(); });
     return global.__review.requested - before;
   }
-  test('rekord co trening: ocena raz (5.), link co 10 (10, 20, …, 100); nigdy w jednym treningu', async () => {
+  test('rekord co trening: ocena raz (3.), link co 10 (10, 20, …, 100); nigdy w jednym treningu', async () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); resetReview(); const shown: number[] = []; const asked: number[] = [];
     for (let i = 1; i <= 100; i++) { if ((await finishNext(i, true, shown)) > 0) asked.push(i); }
-    expect(asked).toEqual([5]); expect(shown).toEqual([10, 20, 30, 40, 50, 60, 70, 80, 90, 100]); expect(S().settings.ideaShownAt).toBe(100);
+    expect(asked).toEqual([3]); expect(shown).toEqual([10, 20, 30, 40, 50, 60, 70, 80, 90, 100]); expect(S().settings.ideaShownAt).toBe(100);
   });
   test('rekord dopiero od 10.: ocena na 10., link przesunięty na 11. i dalej co 10 (11, 21, …, 91) — żadna reguła nie wyłącza drugiej', async () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); resetReview(); const shown: number[] = []; const asked: number[] = [];

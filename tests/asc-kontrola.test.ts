@@ -6,7 +6,7 @@
  */
 import * as fs from 'fs';
 import * as path from 'path';
-import { PRODUCT_IDS, TRIAL_DAYS } from '@/lib/products';
+import { PRODUCT_IDS } from '@/lib/products';
 import { FAKE_PRICES, PLN_PRICES } from '@/lib/store-fake';
 
 const ROOT = path.join(__dirname, '..');
@@ -36,9 +36,9 @@ describe('store/asc-kontrola.json: oczekiwane wartości zgodne z docs/monetyzacj
     }
     expect(config.produkty).toHaveLength(Object.keys(PRODUCT_IDS).length);
   });
-  test('identyfikator pakietu = app.json; oferta: 14 dni = TWO_WEEKS dla obu subskrypcji, bez dożywotniej', () => {
+  test('identyfikator pakietu = app.json; brak ofert wprowadzających w obu subskrypcjach (M5 S1, R-M5-3)', () => {
     expect(config.aplikacja.bundleId).toBe(JSON.parse(read('app.json')).expo.ios.bundleIdentifier);
-    expect(TRIAL_DAYS).toBe(14); expect(config.oferta).toEqual({ produkty: ['monthly', 'yearly'], tryb: 'FREE_TRIAL', czas: 'TWO_WEEKS', bezDatyKonca: true });
+    expect(config.oferta).toEqual({ produkty: ['monthly', 'yearly'], brak: true });
   });
   test('terytoria: wymagana ósemka, strefa euro 21 krajów bez powtórzeń i z krajami z listy wybranych', () => {
     expect(config.terytoria.wybrane).toEqual(['USA', 'POL', 'DEU', 'FRA', 'ITA', 'ESP', 'NLD', 'GBR']);

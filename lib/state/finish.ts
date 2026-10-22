@@ -8,7 +8,8 @@ import { S, flush, save, getState, setTimerState } from './core';
 import { setHasValue } from './sets';
 import { blankSet } from './setvals';
 import { normalizeGroups } from './groups';
-import { closePause, resumeWorkout } from './pause';
+import { closePause, resumeWorkout, workoutDurSec } from './pause';
+import { qualifiesForDay, recordLiveDay } from '../access';
 import { purgeOrphans } from './exercises';
 import { findSet, toggleDone } from './live';
 
@@ -85,6 +86,11 @@ export function autoFinishStale(now = Date.now()): Workout | null {
   return finishWorkout(lastActivity(a));
 }
 /** Zakończenie treningu; `at` — godzina końca (po czasie: ostatnia seria, nie chwila kliknięcia). */
+/** M5 S1: zapis dnia treningowego dla ukończonego treningu na żywo > 20 min (bez pauz); inne (wstecz, import, krótkie) nic nie zapisują. Zwraca, czy zapisano. */
+export function recordLiveDayFor(w: Workout): boolean {
+  if (w.live !== true || w.finishedAt == null || !qualifiesForDay(workoutDurSec(w))) return false;
+  const st = getState(); st.liveDays = recordLiveDay(st.liveDays ?? [], { startedAt: w.startedAt, ...(w.tzOffsetMin != null ? { tzOffsetMin: w.tzOffsetMin } : {}) }); return true;
+}
 export function finishWorkout(at?: number): Workout | null {
   const st = getState(); const w = st.active; if (!w) return null;
   /* T4a: cofnięty zegar nie daje końca przed startem */
@@ -105,7 +111,7 @@ export function finishWorkout(at?: number): Workout | null {
     return o;
   }).filter(e => e.sets.length);
   normalizeGroups(w.exercises);
-  st.workouts.push(w); st.active = null; st.userTouched = true; purgeOrphans(); save(w); flush();
+  st.workouts.push(w); st.active = null; st.userTouched = true; recordLiveDayFor(w); purgeOrphans(); save(w); flush();
   return w;
 }
 export function cancelWorkout() { getState().active = null; purgeOrphans(); save(); flush(); }

@@ -1,5 +1,7 @@
 # 26. Prośba o ocenę w sklepie — specyfikacja (11.10.2026)
 
+Zmiana 22.10.2026 (M5 S1): próg N = **3** ukończone treningi (`REVIEW.MIN_WORKOUTS`; wcześniej 5) — przy limicie 5 dni treningowych w miesiącu pierwsza prośba ma paść przed pierwszą blokadą startu; blokada limitem (zasada twarda 3) liczy się, gdy wszystkie darmowe dni miesiąca są zużyte (`nextStartBlocked`).
+
 Status: **projekt do decyzji właściciela, bez kodu.** Dotyczy pozycji „Przed App Store” w `docs/21-roadmapa-offline.md` (otwarte: moment i odstęp).
 Cytaty ≤ 2 zdania, czytane 11.10.2026 (treść stron Apple pobrana z publicznych danych JSON stron dokumentacji).
 
@@ -56,7 +58,7 @@ Wspólna bramka (czysta funkcja `shouldAskReview`): zasady twarde + minimalne za
 - Konkretne liczby (14/30) — **decyzja produktowa właściciela**; źródło daje tylko dolną granicę „tydzień–dwa”.
 
 ### Rekomendacja
-Wariant **B z bramką pozytywną z A**: po ≥ N-tym ukończonym treningu **i** gdy właśnie zakończony trening ma nowy rekord (brak rekordu → czekać do następnego treningu); odstęp **14 dni**, **max 1 na wersję**. Uzasadnienie: B daje pokrycie wszystkich użytkowników, rekord dodaje pozytywny kontekst; C odłożyć (rzadki, wymaga definicji sukcesu). N = 5 to **hipoteza bez źródła — do decyzji właściciela.**
+Wariant **B z bramką pozytywną z A**: po ≥ N-tym ukończonym treningu **i** gdy właśnie zakończony trening ma nowy rekord (brak rekordu → czekać do następnego treningu); odstęp **14 dni**, **max 1 na wersję**. Uzasadnienie: B daje pokrycie wszystkich użytkowników, rekord dodaje pozytywny kontekst; C odłożyć (rzadki, wymaga definicji sukcesu). N to **hipoteza bez źródła** (11.10.2026: 5; 22.10.2026: 3 — M5 S1).
 
 ## 4. Dane i natywny build
 

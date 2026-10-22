@@ -152,3 +152,18 @@ w jedną frazę („plan” + „treningowy”) — ocena pośrednio przy H-51.
 - Tłumaczenia: 6 grup (rola tłumacz), potem 3 przeglądy spójności (rejestr wg docs/16, lokalne nazwy aplikacji iOS, nazwy funkcji ze słownika, naturalność).
   Poprawione m.in. rejestr formalny hu, ro, pt-PT. **Do sprawdzenia przez native speakera (jeśli dostępny):** ton formalny hu i ro, nazwa „prowincji”
   w przypisie (hu, ja, ko, zh-Hant), „Apple Health” zamiast lokalnej nazwy aplikacji Zdrowie (otwarte w docs/16), nazwy aplikacji Pliki w tr, el, id, ms, vi.
+
+## Model płatności M5 S1 w opisach (22.10.2026)
+
+- Decyzja właściciela 22.10.2026 (model M5 S1; kontrakt: `docs/monetyzacja-badanie-2026-10.md` rozdz. 11 i wpis w docs/18 — gałąź `monetyzacja-badanie-2026-10-22`,
+  przekazane przez koordynatora): aplikacja darmowa bez okresu próbnego, **do 5 dni treningowych w miesiącu**, Pro bez limitu (miesięczna, roczna, dożywotni), ceny bez zmian.
+- Opisy i teksty promocyjne w 33 lokalizacjach: blok cenowy „Za darmo do 5 dni treningowych w miesiącu. Pro znosi limit…”, bez okresu próbnego (14 dni) i bez
+  „4 treningów na żywo”; tekst promocyjny mówi o 5 darmowych dniach. Porównanie planu miesięcznego z espresso zostaje — cena miesięczna bez zmian
+  (0,99 USD / 4,99 zł / 0,99 € / 0,99 £; kontrola ASC 21.10.2026), więc twierdzenie nadal prawdziwe (docs/research/espresso-mimit-2026-10.md).
+- Ujawnienia w opisie bez zmian: odnawianie automatyczne, anulowanie w ustawieniach konta Apple, aktualne ceny w App Store, Chmura rodzinna, linki Warunków
+  i Polityki prywatności. Wytyczna 3.1.2(a) (odczyt 21.10.2026) dotyczy dopuszczalnych subskrypcji (stała wartość, okres ≥ 7 dni, wszystkie urządzenia), nie treści opisu.
+- **Warunek prawdziwości:** opis zgadza się z aplikacją dopiero po scaleniu kodu M5 S1 (`PAYWALL.ENABLED = true`, `FREE_TRAINING_DAYS_PER_MONTH = 5`; inny agent)
+  i usunięciu ofert wprowadzających w App Store Connect (krok właściciela, kontrakt rozdz. 11). Test `tests/store-metadata.test.ts` sprawdza zgodność liczby 5 ze stałą w kodzie, gdy ta już istnieje.
+- Tłumaczenia bloku i tekstu promocyjnego (3 grupy, rola tłumacz, 22.10.2026) — do sprawdzenia przez native speakera: odmiana „Pro” (fi, hr, ru, tr), odpowiednik
+  „dnia treningowego” (ja, ko, zh-Hant, sl, fi), „dopisywanie treningów wstecz” podane opisowo zamiast nazwy przycisku „Dopisz trening wstecz” (wszystkie poza pl/en),
+  skrócone teksty promocyjne fr-FR („pub”) i el.

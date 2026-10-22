@@ -1,8 +1,8 @@
-/* lib/access.ts — stany dostępu, licznik 4 treningów, strażnik startu, funkcje zawsze dostępne (docs/27, wydanie 0.17 — logika bez UI). */
+/* lib/access.ts — stany dostępu, licznik 5 dni treningowych (M5 S1), strażnik startu, funkcje zawsze dostępne (docs/27, wydanie 0.17 — logika bez UI). */
 import fc from 'fast-check';
 import {
   PAYWALL, ACCESS_STATES, ENTITLEMENT_PLANS, ENTITLEMENT_SOURCES, ALWAYS_AVAILABLE, GUARDED_STARTS,
-  access, effectiveAccess, entitlementActive, entitlementEnd, freeSince, freeUsed, monthKey, nextMonthStart, canStartLive, isAlwaysAvailable,
+  access, effectiveAccess, entitlementActive, entitlementEnd, freeSince, freeUsed, monthKey, dayKey, nextMonthStart, canStartLive, isAlwaysAvailable,
   type PaywallConfig, type Entitlement, type LiveStart, type AccessContext,
 } from '@/lib/access';
 
@@ -13,12 +13,13 @@ const NOW = at(2026, 11, 15, 12, 0);
 const DAY = 86400e3;
 const sub = (plan: 'monthly' | 'yearly', end: number, extra: Partial<Entitlement> = {}): Entitlement => ({ plan, source: 'purchase', expiresAt: end, ...extra });
 const life: Entitlement = { plan: 'lifetime', source: 'purchase' };
-const starts = (n: number, ts = NOW - DAY): LiveStart[] => Array.from({ length: n }, (_, i) => ({ startedAt: ts + i * 60e3, tzOffsetMin: 0 }));
+/** n startów w n RÓŻNYCH dniach (od `ts` wstecz co dobę) — licznik liczy dni treningowe, nie treningi (M5 S1). */
+const starts = (n: number, ts = NOW - DAY): LiveStart[] => Array.from({ length: n }, (_, i) => ({ startedAt: ts - i * DAY, tzOffsetMin: 0 }));
 const OFFS = [-600, -480, -300, 0, 60, 120, 330, 345, 525, 720, 840];
 
 describe('stałe w jednym miejscu', () => {
-  test('wartości domyślne: przełącznik WYŁĄCZONY, limit 4, P3 = B (nie liczy), P6 = 7 dni', () => {
-    expect(PAYWALL).toEqual({ ENABLED: false, FREE_LIVE_PER_MONTH: 4, COUNT_FULL_STARTS_IN_EXPIRY_MONTH: false, OFFLINE_GRACE_DAYS: 7 });
+  test('wartości domyślne: limit 5 dni treningowych, P3 = B (nie liczy), P6 = 7 dni; przełącznik w Jest wyłączony (setup.js), w źródle włączony (tests/m5s1-dni-treningowe)', () => {
+    expect(PAYWALL).toEqual({ ENABLED: false, FREE_TRAINING_DAYS_PER_MONTH: 5, COUNT_FULL_STARTS_IN_EXPIRY_MONTH: false, OFFLINE_GRACE_DAYS: 7 });
   });
   test('wymiary: stany, plany, źródła, funkcje zawsze dostępne, drogi startu', () => {
     expect(ACCESS_STATES).toEqual(['full', 'free', 'unknown', 'testflight']);
@@ -163,23 +164,24 @@ describe('miesiąc kalendarzowy — granice, strefy', () => {
   test('licznik: pusta lista → 0', () => { expect(freeUsed([], NOW, 0)).toBe(0); });
 });
 
-describe('canStartLive() — limit 4 w stanie free', () => {
+describe('canStartLive() — limit 5 dni treningowych w stanie free', () => {
   const can = (ent: Entitlement[] | null, st: LiveStart[], ctx: AccessContext = {}, now = NOW, off = 0) => canStartLive(ctx, ent, st, now, off, ON);
-  test.each([0, 1, 2, 3])('%i zużyte → start dozwolony (zostaje 4 − n)', n => {
-    const d = can([], starts(n)); expect(d.allowed).toBe(true); expect(d.used).toBe(n); expect(d.remaining).toBe(4 - n); expect(d.limit).toBe(4); expect(d.resetsAt).toBeNull(); expect(d.level).toBe('free');
+  test.each([0, 1, 2, 3, 4])('%i zużytych dni → start dozwolony (zostaje 5 − n)', n => {
+    const d = can([], starts(n)); expect(d.allowed).toBe(true); expect(d.used).toBe(n); expect(d.remaining).toBe(5 - n); expect(d.limit).toBe(5); expect(d.resetsAt).toBeNull(); expect(d.level).toBe('free');
   });
-  test.each([4, 5, 9])('%i zużyte → start zablokowany, limit wraca 1. dnia następnego miesiąca', n => {
+  test.each([5, 6, 9])('%i zużytych dni → start zablokowany, limit wraca 1. dnia następnego miesiąca', n => {
     const d = can([], starts(n)); expect(d.allowed).toBe(false); expect(d.remaining).toBe(0); expect(d.resetsAt).toBe(at(2026, 12, 1, 0, 0));
   });
   test('zmiana miesiąca odblokowuje (północ 1.12.), a ostatnia sekunda listopada jeszcze blokuje', () => {
-    const st = starts(4, at(2026, 11, 10, 10));
+    const st = starts(5, at(2026, 11, 10, 10));
     expect(can([], st, {}, at(2026, 11, 30, 23, 59)).allowed).toBe(false); expect(can([], st, {}, at(2026, 12, 1, 0, 0)).allowed).toBe(true);
   });
   test('trening rozpoczęty 31. o 23:30 liczy się do miesiąca startu, nie następnego', () => {
-    const st = starts(4, at(2026, 10, 31, 23, 30)); expect(can([], st, {}, at(2026, 11, 1, 8, 0)).allowed).toBe(true); expect(can([], st, {}, at(2026, 10, 31, 23, 45)).allowed).toBe(false);
+    const st = starts(5, at(2026, 10, 31, 23, 30)); expect(can([], st, {}, at(2026, 11, 1, 8, 0))).toMatchObject({ allowed: true, used: 0 }); expect(can([], st, {}, at(2026, 10, 31, 23, 45))).toMatchObject({ allowed: true, used: 5 }); /* w październiku limit wyczerpany, ale 31.10. już był dniem treningowym */
+    expect(can([], st, {}, at(2026, 11, 1, 8, 0)).used).toBe(0);
   });
-  test.each(OFFS.map(o => [o]))('strefa %i min: 4 starty w miesiącu blokują, nowy miesiąc na zegarze strefy odblokowuje', off => {
-    const st = Array.from({ length: 4 }, (_, i) => ({ startedAt: at(2026, 11, 3 + i, 9, 0, off), tzOffsetMin: off }));
+  test.each(OFFS.map(o => [o]))('strefa %i min: 5 dni w miesiącu blokują, nowy miesiąc na zegarze strefy odblokowuje', off => {
+    const st = Array.from({ length: 5 }, (_, i) => ({ startedAt: at(2026, 11, 3 + i, 9, 0, off), tzOffsetMin: off }));
     expect(can([], st, {}, at(2026, 11, 30, 23, 59, off), off).allowed).toBe(false); expect(can([], st, {}, at(2026, 12, 1, 0, 0, off), off).allowed).toBe(true);
   });
   test('pełny dostęp: bez limitu, licznik 0 (także przy 100 treningach w miesiącu)', () => {
@@ -189,39 +191,39 @@ describe('canStartLive() — limit 4 w stanie free', () => {
   });
   test('unknown bez pamięci: cichy, ale po przekroczeniu limitu odmowa z silent=false', () => {
     const ok = can(null, starts(2)); expect(ok.allowed).toBe(true); expect(ok.silent).toBe(true);
-    const no = can(null, starts(4)); expect(no.allowed).toBe(false); expect(no.silent).toBe(false);
+    const no = can(null, starts(5)); expect(no.allowed).toBe(false); expect(no.silent).toBe(false);
   });
   test('unknown z zapamiętanym full (offline) nie blokuje płacącego', () => {
     expect(can(null, starts(50), { lastKnown: { level: 'full', expiresAt: NOW + DAY } }).allowed).toBe(true);
     expect(can(null, starts(50), { lastKnown: { level: 'full', expiresAt: NOW - 8 * DAY } }).allowed).toBe(false);
   });
   test('testflight: limit według wyniku sklepu (piaskownica)', () => {
-    expect(can([life], starts(50), { testflight: true }).allowed).toBe(true); expect(can([], starts(4), { testflight: true }).allowed).toBe(false);
+    expect(can([life], starts(50), { testflight: true }).allowed).toBe(true); expect(can([], starts(5), { testflight: true }).allowed).toBe(false);
   });
   describe('[DO DECYZJI P3] treningi rozpoczęte w full po wygaśnięciu w tym samym miesiącu', () => {
     const expiry = at(2026, 11, 10, 12, 0);
     const ent = [sub('monthly', expiry)]; /* wygasła 10.11. */
     const st: LiveStart[] = [
-      ...[1, 2, 3].map(d => ({ startedAt: at(2026, 11, d, 9), tzOffsetMin: 0 })), /* 3 starty w full (przed wygaśnięciem) */
+      ...[1, 2, 3, 4].map(d => ({ startedAt: at(2026, 11, d, 9), tzOffsetMin: 0 })), /* 4 dni w full (przed wygaśnięciem) */
       { startedAt: at(2026, 11, 12, 9), tzOffsetMin: 0 }, /* 1 po wygaśnięciu */
     ];
-    test('domyślnie (wariant B, rekomendowany): liczą się tylko starty od wygaśnięcia → zostają 3', () => {
-      const d = can(ent, st); expect(d.used).toBe(1); expect(d.remaining).toBe(3); expect(d.allowed).toBe(true);
+    test('domyślnie (wariant B, rekomendowany): liczą się tylko dni od wygaśnięcia → zostają 4', () => {
+      const d = can(ent, st); expect(d.used).toBe(1); expect(d.remaining).toBe(4); expect(d.allowed).toBe(true);
     });
-    test('wariant A (stała true): wszystkie starty miesiąca → 4 zużyte, blokada', () => {
-      const d = canStartLive({}, ent, st, NOW, 0, { ...ON, COUNT_FULL_STARTS_IN_EXPIRY_MONTH: true }); expect(d.used).toBe(4); expect(d.allowed).toBe(false);
+    test('wariant A (stała true): wszystkie dni miesiąca → 5 zużytych, blokada', () => {
+      const d = canStartLive({}, ent, st, NOW, 0, { ...ON, COUNT_FULL_STARTS_IN_EXPIRY_MONTH: true }); expect(d.used).toBe(5); expect(d.allowed).toBe(false);
     });
     test('start dokładnie w chwili wygaśnięcia liczy się (od chwili wygaśnięcia włącznie); bez wygaśnięcia (nigdy nie kupił) liczą się wszystkie', () => {
       expect(can(ent, [{ startedAt: expiry, tzOffsetMin: 0 }]).used).toBe(1); expect(can(ent, [{ startedAt: expiry - 1, tzOffsetMin: 0 }]).used).toBe(0);
-      expect(can([], st).used).toBe(4);
+      expect(can([], st).used).toBe(5);
     });
   });
-  test('liczba w jednym miejscu: zmiana FREE_LIVE_PER_MONTH zmienia limit', () => {
-    const cfg = { ...ON, FREE_LIVE_PER_MONTH: 2 }; expect(canStartLive({}, [], starts(2), NOW, 0, cfg).allowed).toBe(false); expect(canStartLive({}, [], starts(1), NOW, 0, cfg).allowed).toBe(true);
+  test('liczba w jednym miejscu: zmiana FREE_TRAINING_DAYS_PER_MONTH zmienia limit', () => {
+    const cfg = { ...ON, FREE_TRAINING_DAYS_PER_MONTH: 2 }; expect(canStartLive({}, [], starts(2), NOW, 0, cfg).allowed).toBe(false); expect(canStartLive({}, [], starts(1), NOW, 0, cfg).allowed).toBe(true);
   });
   test('przełącznik: ta sama sytuacja zablokowana po włączeniu, dozwolona po wyłączeniu', () => {
-    expect(canStartLive({}, [], starts(4), NOW, 0, ON).allowed).toBe(false); expect(canStartLive({}, [], starts(4), NOW, 0, { ...ON, ENABLED: false }).allowed).toBe(true);
-    expect(canStartLive({}, [], starts(4), NOW, 0).allowed).toBe(true); /* domyślna konfiguracja: wyłączone */
+    expect(canStartLive({}, [], starts(5), NOW, 0, ON).allowed).toBe(false); expect(canStartLive({}, [], starts(5), NOW, 0, { ...ON, ENABLED: false }).allowed).toBe(true);
+    expect(canStartLive({}, [], starts(5), NOW, 0).allowed).toBe(true); /* domyślna konfiguracja: wyłączone */
   });
 });
 
@@ -239,11 +241,13 @@ describe('niezmienniki (fast-check)', () => {
       expect(access(ctx, ent, now, { ...PAYWALL, ENABLED: false })).toBe('full'); expect(canStartLive(ctx, ent, st, now, off, { ...PAYWALL, ENABLED: false }).allowed).toBe(true);
     }));
   });
-  test('w stanie free: zużyte ≤ liczba startów w miesiącu; allowed ⇔ used < limit; remaining = limit − used ≥ 0; odmowa ma datę odnowienia po „teraz”', () => {
+  test('w stanie free: zużyte ≤ liczba startów i ≤ 31; allowed ⇔ used < limit LUB dziś jest już dniem treningowym; remaining = limit − used ≥ 0; odmowa ma datę odnowienia po „teraz”', () => {
     fc.assert(fc.property(ctxA, entsA, fc.array(startA, { maxLength: 12 }), nowA, offA, (ctx, ent, st, now, off) => {
       const d = canStartLive(ctx, ent, st, now, off, ON);
       if (d.level === 'full') { expect(d.allowed).toBe(true); return; }
-      expect(d.used).toBeLessThanOrEqual(st.length); expect(d.allowed).toBe(d.used < 4); expect(d.remaining).toBe(Math.max(0, 4 - d.used));
+      expect(d.used).toBeLessThanOrEqual(st.length); expect(d.used).toBeLessThanOrEqual(31); expect(d.remaining).toBe(Math.max(0, 5 - d.used));
+      const fsince = freeSince(ent, now); const today = st.some(x => dayKey(x.startedAt, x.tzOffsetMin ?? off) === dayKey(now, off) && monthKey(x.startedAt, x.tzOffsetMin ?? off) === monthKey(now, off) && (PAYWALL.COUNT_FULL_STARTS_IN_EXPIRY_MONTH || fsince == null || x.startedAt >= fsince));
+      expect(d.allowed).toBe(d.used < 5 || today);
       if (!d.allowed) { expect(d.resetsAt!).toBeGreaterThan(now); expect(d.resetsAt! - now).toBeLessThanOrEqual(31 * DAY + DAY); expect(monthKey(d.resetsAt!, off)).not.toBe(monthKey(now, off)); } else expect(d.resetsAt).toBeNull();
     }));
   });

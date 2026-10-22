@@ -45,7 +45,10 @@ jest.mock('@kingstinct/react-native-healthkit', () => ({ default: { isHealthData
   /* 0.16.0 (odczyt, docs/29): domyślnie puste odpowiedzi; dane do testów — tests/health-world.ts (kontrakt 16.x przeczytany w paczce: queryStatisticsCollectionForQuantity, queryWorkoutSamples, deleteObjects, currentAppSource) */
   queryStatisticsCollectionForQuantity: async () => [], queryWorkoutSamples: async () => [], deleteObjects: async () => 0, currentAppSource: () => ({ name: 'Trening', bundleIdentifier: 'com.test.trening' }) } }), { virtual: true });
 /* 0.17.0 (docs/30): expo-iap 5.8.1 i expo-store-review — makiety z kontraktem zgodnym z build/*.d.ts paczki; stan w global.__iap / global.__review sterowany z testów.
- * Domyślnie: sklep bez produktów i bez zakupów, prośba o ocenę dostępna. Aplikacja przez nie nie przechodzi, dopóki PAYWALL.ENABLED = false. */
+ * Domyślnie: sklep bez produktów i bez zakupów, prośba o ocenę dostępna. Aplikacja przez nie nie przechodzi, dopóki PAYWALL.ENABLED = false.
+ * M5 S1 (22.10.2026): w kodzie PAYWALL.ENABLED = true, ale w Jest przełącznik jest domyślnie WYŁĄCZONY (testy dziedzin nie zależą od limitu dni); testy dostępu włączają go
+ * jawnie i przywracają false w afterEach. Wartość w źródle pilnuje tests/m5s1-dni-treningowe.test.ts (odczyt pliku). */
+jest.mock('@/lib/access', () => { const a = jest.requireActual('@/lib/access'); a.PAYWALL.ENABLED = false; return a; });
 global.__iap = { calls: [], products: [], purchases: [], status: [], eligible: true, fail: null, purchaseError: null, listeners: { updated: [], error: [] } };
 jest.mock('expo-iap', () => {
   const g = () => global.__iap; const rec = (n, a) => { g().calls.push([n, ...a]); };

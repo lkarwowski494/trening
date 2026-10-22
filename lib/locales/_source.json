@@ -52,6 +52,10 @@
   "en": "(deleted place)"
  },
  {
+  "pl": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+  "en": "{app} is made by an independent developer: no ads, no data collection. If it helps you, choose a plan to keep training without limits. Your free days come back on {date}."
+ },
+ {
   "pl": "{c}, poziom {n}",
   "en": "{c}, level {n}"
  },
@@ -70,10 +74,6 @@
  {
   "pl": "{d} bezpośrednio, {w} pośrednio (serie pomocnicze: {n})",
   "en": "{d} direct, {w} indirect (secondary sets: {n})"
- },
- {
-  "pl": "{days} dni za darmo, potem {price}/{period}",
-  "en": "{days} days free, then {price}/{period}"
  },
  {
   "pl": "{ex} — {n} min, umiarkowane tempo",
@@ -110,6 +110,10 @@
  {
   "pl": "{label}: {v}, poprzednio {p}, {d}",
   "en": "{label}: {v}, before {p}, {d}"
+ },
+ {
+  "pl": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
+  "en": "{n} of {limit} free training days {left} this month."
  },
  {
   "pl": "{n} {w} · Dostosuj",
@@ -588,8 +592,8 @@
   "en": "Not used in any workout: {list}. This also replaces the active plan “{plan}”, made only of these templates — “Replace” deletes them and makes the new plan active in its place, “Keep” adds the new ones alongside."
  },
  {
-  "pl": "Bez zakupu: {n} {s} na żywo w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.",
-  "en": "Without a purchase: {n} live {s} per month; history, backup and export are always available."
+  "pl": "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.",
+  "en": "Without a purchase: up to {n} training days per month; history, backup and export always available."
  },
  {
   "pl": "Bez zmian",
@@ -774,6 +778,10 @@
  {
   "pl": "Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening?",
   "en": "It was shortened in a deload week: {a} instead of {b} working sets. Repeat the full workout?"
+ },
+ {
+  "pl": "Cały rok treningów, rozliczany rocznie.",
+  "en": "A whole year of workouts, billed yearly."
  },
  {
   "pl": "cały sprzęt; sztanga {bar} {u} + talerze {max}…{min} {u}; hantle {a}–{b} {u} co {step}",
@@ -1123,8 +1131,8 @@
   "en": "Data from a newer app version — update the app"
  },
  {
-  "pl": "Darmowe treningi w tym miesiącu: {n} z {limit}",
-  "en": "Free workouts this month: {n} of {limit}"
+  "pl": "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}",
+  "en": "Free training days this month: {n} of {limit} used"
  },
  {
   "pl": "Data (RRRR-MM-DD)",
@@ -1951,6 +1959,10 @@
   "en": "unilateral (per side, ×2)"
  },
  {
+  "pl": "Jesteśmy z Ciebie dumni!",
+  "en": "We're proud of you!"
+ },
+ {
   "pl": "Jeszcze nie było w treningu.",
   "en": "Not in any workout yet."
  },
@@ -2697,10 +2709,6 @@
   "en": "Month over month"
  },
  {
-  "pl": "Miesięcznie",
-  "en": "Monthly"
- },
- {
   "pl": "Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.",
   "en": "Target muscle outside the muscle-group map: {m} — not counted in sets per muscle or on the muscle map."
  },
@@ -2817,10 +2825,6 @@
  {
   "pl": "na urządzeniu: {v}",
   "en": "on the device: {v}"
- },
- {
-  "pl": "Na zawsze",
-  "en": "Forever"
  },
  {
   "pl": "Nadpisać dane?",
@@ -3431,18 +3435,6 @@
   "en": "OK"
  },
  {
-  "pl": "Okres próbny do {date}",
-  "en": "Free trial until {date}"
- },
- {
-  "pl": "Okres próbny dobiega końca",
-  "en": "Your free trial is ending"
- },
- {
-  "pl": "Okres próbny kończy się {date}. Jeśli nie chcesz subskrypcji, anuluj ją w ustawieniach konta Apple.",
-  "en": "Your free trial ends on {date}. If you don't want the subscription, cancel it in your Apple account settings."
- },
- {
   "pl": "opaski na kostki",
   "en": "ankle straps"
  },
@@ -3797,6 +3789,14 @@
  {
   "pl": "Pliki → Na moim iPhonie → {app} → Backup, ostatnie {n}",
   "en": "Files → On My iPhone → {app} → Backup, last {n}"
+ },
+ {
+  "pl": "Płacisz co miesiąc i kończysz, kiedy chcesz.",
+  "en": "Pay month by month and stop whenever you like."
+ },
+ {
+  "pl": "Płacisz raz i masz na zawsze.",
+  "en": "Pay once, keep it forever."
  },
  {
   "pl": "Po dopisaniu zakresu byłoby ciężarów: {c} — najwyżej {n}. Zwiększ krok albo usuń odznaczone.",
@@ -4565,10 +4565,6 @@
   "en": "done {n}×"
  },
  {
-  "pl": "Rocznie",
-  "en": "Yearly"
- },
- {
   "pl": "rok",
   "en": "year"
  },
@@ -5165,6 +5161,10 @@
   "en": "Search templates…"
  },
  {
+  "pl": "Szukam swojego rytmu",
+  "en": "Still finding my rhythm"
+ },
+ {
   "pl": "szyja",
   "en": "neck"
  },
@@ -5445,6 +5445,14 @@
   "en": "Workout started at {t}, no sets ticked. Open to continue or discard."
  },
  {
+  "pl": "Trening to część mojego tygodnia",
+  "en": "Training is part of my week"
+ },
+ {
+  "pl": "Trening to moje życie",
+  "en": "Training is my life"
+ },
+ {
   "pl": "Trening w pauzie od {t}.",
   "en": "Workout paused since {t}."
  },
@@ -5505,11 +5513,6 @@
   "en": "A workout you didn’t log at the time. Set the date and pick a template — you’ll fill in the sets in the next step (values from your last workout before that date)."
  },
  {
-  "pl": "trening|treningi|treningów",
-  "en": "workout|workouts",
-  "plural": true
- },
- {
   "pl": "Treningi",
   "en": "Workouts"
  },
@@ -5522,16 +5525,16 @@
   "en": "Workouts and templates with this place will show “(deleted place)”."
  },
  {
-  "pl": "Treningi na żywo bez miesięcznego limitu.",
-  "en": "Live workouts without the monthly limit."
- },
- {
   "pl": "Treningi nadal czekają na zapis w Apple Health. Sprawdź zgodę w aplikacji Zdrowie: profil → Aplikacje → {app}.",
   "en": "Workouts are still waiting to be saved to Apple Health. Check the permission in the Health app: profile → Apps → {app}."
  },
  {
   "pl": "Treningi sprzed pierwszego pomiaru ({d}) — bez e1RM.",
   "en": "Workouts before the first measurement ({d}) — no e1RM."
+ },
+ {
+  "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
+  "en": "Train {n} days a month for free. Pro removes the limit. Cancel anytime in your Apple ID settings."
  },
  {
   "pl": "triceps",
@@ -5978,6 +5981,10 @@
   "en": "In a deload week “Start” and “Repeat last” offer “Fewer sets”: {less}; weights and template unchanged."
  },
  {
+  "pl": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+  "en": "You've trained hard this month and used all {n} free training days. Good job!"
+ },
+ {
   "pl": "w tym tygodniu",
   "en": "this week"
  },
@@ -6330,10 +6337,6 @@
   "en": "Done: {text}"
  },
  {
-  "pl": "Wykorzystano limit darmowych treningów w tym miesiącu ({n}). Kolejne od {date}.",
-  "en": "You've used this month's free workouts ({n}). More from {date}."
- },
- {
   "pl": "Wykres słupkowy: {v}",
   "en": "Bar chart: {v}"
  },
@@ -6480,10 +6483,6 @@
  {
   "pl": "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.",
   "en": "Start with fewer sets: {a} instead of {b} working sets? Same weights, the template stays unchanged."
- },
- {
-  "pl": "Zacznij {days} dni za darmo",
-  "en": "Start {days} days free"
  },
  {
   "pl": "Zacznij trening",
@@ -6900,6 +6899,11 @@
  {
   "pl": "zostaje to ćwiczenie",
   "en": "this exercise stays"
+ },
+ {
+  "pl": "Został|Zostały|Zostało",
+  "en": "left|left",
+  "plural": true
  },
  {
   "pl": "Zostaw",

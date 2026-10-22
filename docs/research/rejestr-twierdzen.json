@@ -612,6 +612,38 @@
    "fraza": "Helms i in. 2016",
    "uwaga": "Opis skali RIR/RPE według jej autorów (definicja skali, nie wynik badań nad skutkami) — jedno źródło wystarcza dla definicji; zgodne z RIR_MAX = 5, RPE_LIGHT = 4.",
    "przeglad": "21.10.2026: badacz-merytoryczny — Helms i in. 2016 (Z11): opisy RIR dla 5–10, opisy wysiłku dla 1–4; RPE 3–4 = light effort; docs/research/przeglad-badacza-2026-10-21b.md"
+  },
+  {
+   "id": "T-042",
+   "kotwica": "{app} tworzy niezależny deweloper: bez reklam",
+   "skrot": "6067b8fa85",
+   "skrotEn": "a86e46009e",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "dokument": "docs/18-przekazanie.md",
+   "fraza": "Data Not Collected",
+   "zrodla": [
+    "App Store Connect, App Privacy „Data Not Collected” (opublikowane 14.10.2026, docs/18; docs/45 Q9 A z 21.10.2026)"
+   ],
+   "uwaga": "Twierdzenie „bez zbierania danych” (no data collection): podstawa to etykieta App Privacy „Data Not Collected” — dane zostają w telefonie, zakupy obsługuje Apple. Twierdzenie o produkcie, nie o wiedzy dziedzinowej; zmiana zbierania danych (nowy SDK, serwer) wymaga zmiany etykiety i tego tekstu.",
+   "przeglad": "22.10.2026: programista (M5 S1), App Privacy Data Not Collected (docs/18 14.10.2026), tekst ekranu zakupu przy limicie, wariant B (nazwa aplikacji przez app)"
+  },
+  {
+   "id": "T-043",
+   "kotwica": "{app} tworzy niezależny deweloper: bez reklam",
+   "skrot": "6067b8fa85",
+   "skrotEn": "a86e46009e",
+   "rodzaje": [
+    "źródło cytowane w tekście"
+   ],
+   "dokument": "docs/18-przekazanie.md",
+   "fraza": "Data Not Collected",
+   "zrodla": [
+    "App Store Connect, App Privacy „Data Not Collected” (brak reklam i śledzenia); brak zależności reklamowych w package.json"
+   ],
+   "uwaga": "Twierdzenie „bez reklam” (no ads): aplikacja nie zawiera SDK reklamowego ani śledzącego, a etykieta App Privacy deklaruje brak zbierania danych (reklamy wymagałyby deklaracji). Dodanie reklam wymaga zmiany tekstu.",
+   "przeglad": "22.10.2026: programista (M5 S1), App Privacy Data Not Collected (docs/18 14.10.2026), tekst ekranu zakupu przy limicie, wariant B (nazwa aplikacji przez app)"
   }
  ]
 }

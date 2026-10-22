@@ -157,9 +157,11 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - takeScreenshot: 99-zakup-aktywny
 - scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000 }
 - tapOn: "Test store: expire access"
-# --- po wygaszeniu: ceny ze sklepu, 14 dni za darmo, przywracanie bez zakupów ---
-- scrollUntilVisible: { element: ".*14 days free, then .*", direction: UP, timeout: 60000 }
-- assertVisible: ".*14 days free, then .*"
+# --- po wygaszeniu: ceny ze sklepu, nazwy planów, nagłówek z limitem 5 dni (M5 S1), przywracanie bez zakupów ---
+- scrollUntilVisible: { element: "Train 5 days a month for free.*", direction: UP, timeout: 60000 }
+- assertVisible: "Train 5 days a month for free.*"
+- assertVisible: ".*Training is part of my week.*"
+- assertNotVisible: ".*days free.*"
 - assertNotVisible: ".*You have access forever.*"
 - takeScreenshot: 99-zakup-ceny
 - scrollUntilVisible: { element: "Restore purchases", direction: DOWN, timeout: 60000 }
@@ -169,17 +171,20 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - swipe: { start: "50%, 10%", end: "50%, 90%", duration: 400 }
 - extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
 - tapOn: "Back"
-# --- drugi trening na żywo ponad limit 1: ekran zakupu zamiast startu ---
+# --- start po wygaśnięciu dostępu ponad limit dni (build E2E: limit 0 dni; krótki trening < 20 min nie zużywa dnia): licznik na ekranie startu, potem ekran zakupu zamiast startu ---
 - tapOn: "Workout, tab.*"
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
+- assertVisible: ".*free training days left this month.*"
+- takeScreenshot: 99-licznik-dni
 - tapOn: "Other workout"
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
-- extendedWaitUntil: { visible: "You've used this month's free workouts .*", timeout: 30000 }
-- assertVisible: "Log a past workout"
+- extendedWaitUntil: { visible: "We're proud of you!", timeout: 30000 }
+- assertVisible: ".*no ads, no data collection.*"
+- scrollUntilVisible: { element: "Log a past workout", direction: DOWN, timeout: 60000 }
 - takeScreenshot: 99-limit
-- scrollUntilVisible: { element: "Start 14 days free", direction: DOWN, timeout: 60000 }
-- tapOn: "Start 14 days free"
+- scrollUntilVisible: { element: "Subscribe", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Subscribe"
 - extendedWaitUntil: { visible: ".*You have the full version.*", timeout: 30000 }
 - scrollUntilVisible: { element: "Not now", direction: DOWN, timeout: 60000 }
 - tapOn: "Not now"
@@ -189,5 +194,5 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - scrollUntilVisible: { element: "Empty workout", direction: DOWN, timeout: 60000 }
 - tapOn: "Empty workout"
 - extendedWaitUntil: { visible: "Finish", timeout: 30000 }
-- assertNotVisible: "You've used this month's free workouts .*"
+- assertNotVisible: "We're proud of you!"
 - takeScreenshot: 99-start-po-zakupie

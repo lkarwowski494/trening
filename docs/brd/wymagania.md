@@ -565,18 +565,64 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy zmienia jednostkę na lb
     - Wtedy wartości pokazują się w lb, a zapis w danych zostaje w kg
 
-### BR-ZAK-001: Model dostępu zgodny z modelem stałym
+### BR-ZAK-001: Model dostępu zgodny z modelem stałym (M5 S1)
 - Przepływ: PR-08
-- Dowód potrzeby: ZP-06; docs/monetyzacja.md
+- Dowód potrzeby: ZP-06; docs/monetyzacja.md; decyzja właściciela 22.10.2026 (docs/18)
 - Kryteria akceptacji:
-  - Scenariusz: Zakupy wyłączone w obecnych buildach
-    - Zakładając, że build ma `PAYWALL.ENABLED` = false
-    - Gdy użytkownik korzysta z aplikacji
-    - Wtedy dostęp jest pełny i bez limitu treningów (ekran zakupu wyłączony)
-  - Scenariusz: Limit po włączeniu zakupów
-    - Zakładając, że zakupy są włączone, a użytkownik nie ma aktywnej subskrypcji ani zakupu dożywotniego
-    - Gdy użytkownik rozpoczyna kolejny trening na żywo w miesiącu
-    - Wtedy limit i okres próbny wynikają wyłącznie z docs/monetyzacja.md (`PAYWALL.FREE_LIVE_PER_MONTH`, `TRIAL_DAYS`)
+  - Scenariusz: Zakupy włączone
+    - Zakładając, że build ma `PAYWALL.ENABLED` = true
+    - Gdy użytkownik nie ma aktywnej subskrypcji ani zakupu dożywotniego
+    - Wtedy cała aplikacja działa, a limit dotyczy wyłącznie startu treningu na żywo (historia, edycja, dopisywanie wstecz, kopia i eksport zawsze dostępne)
+  - Scenariusz: Limit dni treningowych
+    - Zakładając, że zakupy są włączone, a użytkownik jest na darmowym poziomie
+    - Gdy w bieżącym miesiącu kalendarzowym ma już tyle dni z ukończonym treningiem na żywo, ile wynosi limit z docs/monetyzacja.md (`PAYWALL.FREE_TRAINING_DAYS_PER_MONTH`), i zaczyna trening w nowym dniu
+    - Wtedy start jest zablokowany, a aplikacja pokazuje ekran zakupu
+  - Scenariusz: Brak okresu próbnego
+    - Zakładając, że użytkownik otwiera ekran zakupu
+    - Gdy ogląda plany
+    - Wtedy nie ma oferty wprowadzającej ani okresu próbnego, a cena za okres jest najwyraźniejszym elementem planu
+
+### BR-ZAK-002: Dzień treningowy jako jednostka limitu
+- Przepływ: PR-08
+- Dowód potrzeby: ZP-06; docs/monetyzacja-badanie-2026-10.md rozdz. 11
+- Kryteria akceptacji:
+  - Scenariusz: Kilka treningów jednego dnia
+    - Zakładając, że użytkownik ukończył dwa treningi na żywo tego samego dnia
+    - Gdy sprawdza licznik
+    - Wtedy zużył jeden dzień, a kolejny trening tego dnia może zacząć nawet przy wyczerpanym limicie
+  - Scenariusz: Co się liczy
+    - Zakładając, że użytkownik ma trening wstecz (także z dzisiejszą datą), anulowany, trwający i trening na żywo krótszy niż 20 minut
+    - Gdy sprawdza licznik
+    - Wtedy żaden z nich nie zużywa dnia i żaden nie jest blokowany; liczy się trening na żywo dłuższy niż 20 minut (bez pauz), zakończony „Zakończ” albo zapisany po 6 godzinach bez aktywności
+  - Scenariusz: Usunięcie treningu
+    - Zakładając, że użytkownik zużył dzień treningiem na żywo
+    - Gdy usuwa ten trening z historii
+    - Wtedy dzień nie wraca do limitu, bo dni są zapisane osobno w danych użytkownika i w kopii zapasowej
+  - Scenariusz: Trening przez północ
+    - Zakładając, że trening zaczął się 31. dnia miesiąca przed północą, a skończył po niej
+    - Gdy zaczyna się nowy miesiąc
+    - Wtedy trening liczy się do dnia i miesiąca startu, a w nowym miesiącu licznik jest pełny
+  - Scenariusz: Licznik na ekranie startu
+    - Zakładając, że użytkownik jest na darmowym poziomie
+    - Gdy otwiera ekran startu treningu
+    - Wtedy widzi, ile darmowych dni treningowych zostało w tym miesiącu
+
+### BR-ZAK-003: Ekran zakupu bez presji
+- Przepływ: PR-08
+- Dowód potrzeby: ZP-06; docs/monetyzacja-badanie-2026-10.md rozdz. 11; rejestr twierdzeń T-042, T-043
+- Kryteria akceptacji:
+  - Scenariusz: Start ponad limit
+    - Zakładając, że użytkownik zaczyna trening po wykorzystaniu darmowych dni
+    - Gdy otwiera się ekran zakupu
+    - Wtedy widzi pochwałę, informację o autorze (niezależny deweloper, bez reklam, bez zbierania danych) i datę, od której darmowe dni wracają, oraz może dopisać trening wstecz albo zamknąć ekran
+  - Scenariusz: Ekran z Ustawień
+    - Zakładając, że użytkownik otwiera ekran zakupu z Ustawień
+    - Gdy ogląda nagłówek
+    - Wtedy czyta, że może trenować darmowo określoną liczbę dni w miesiącu, że Pro zdejmuje limit i że subskrypcję anuluje w ustawieniach Apple ID
+  - Scenariusz: Brak samoczynnych okien
+    - Zakładając, że użytkownik kończy pierwszy trening
+    - Gdy ekran podsumowania się wyświetla
+    - Wtedy ekran zakupu nie otwiera się sam
 
 ### BR-PRV-001: Zastrzeżenie medyczne widoczne w aplikacji
 - Przepływ: PR-01

@@ -1,8 +1,8 @@
 /*
  * 0.17.0, niezmienniki subskrypcji (docs/27 7.1 pkt 5, docs/20 rodzaj 5): losowe sekwencje działań użytkownika i sklepu na PRAWDZIWYM strażniku (lib/entitlement.ts) i
  * sztucznym sklepie, z fałszywym zegarem. Po każdym kroku: (1) zakup/przywracanie/odświeżenie/wygaśnięcie/zwrot/sieć nie zmieniają treningów, (2) strażnik wpuszcza ⇔ pełny dostęp albo
- * limit nie wyczerpany (niezależny model licznika: start w bieżącym miesiącu po ostatnim wygaśnięciu), (3) w stanie free w żadnym miesiącu nie powstaje więcej niż 4 treningi na żywo
- * od ostatniego wygaśnięcia, (4) dane treningowe (kopia) zawsze zawierają wszystkie treningi, (5) trening wstecz nigdy nie jest blokowany ani liczony. Ziarno: MATRIX_SEED jak w matrix-invariants.
+ * limit dni nie wyczerpany albo dziś już jest dniem treningowym (niezależny model licznika: różne dni startów w bieżącym miesiącu po ostatnim wygaśnięciu), (3) w stanie free w żadnym miesiącu nie powstaje więcej niż 5 dni treningowych
+ * od ostatniego wygaśnięcia (M5 S1), (4) dane treningowe (kopia) zawsze zawierają wszystkie treningi, (5) trening wstecz nigdy nie jest blokowany ani liczony. Ziarno: MATRIX_SEED jak w matrix-invariants.
  */
 import fc from 'fast-check';
 import * as store from '@/lib/store';
@@ -24,6 +24,7 @@ const actArb: fc.Arbitrary<Act> = fc.oneof(
   { weight: 8, arbitrary: fc.constant<Act>({ k: 'start' }) }, { weight: 2, arbitrary: fc.constant<Act>({ k: 'back' }) },
   { weight: 4, arbitrary: fc.integer({ min: 1, max: 45 }).map(d => ({ k: 'days', d }) as Act) }, { weight: 1, arbitrary: fc.constant<Act>({ k: 'family' }) },
 );
+const dayOf = (ts: number) => { const d = new Date(ts); return d.getFullYear() * 400 + d.getMonth() * 32 + d.getDate(); };
 const monthOf = (ts: number) => { const d = new Date(ts); return d.getFullYear() * 12 + d.getMonth(); };
 const snapW = () => JSON.stringify(store.getState().workouts);
 afterEach(() => { PAYWALL.ENABLED = false; ent.resetEntitlementsForTests(); resetStoreAdapterForTests(); jest.useRealTimers(); });
@@ -47,12 +48,12 @@ test(`niezmienniki subskrypcji w losowych sekwencjach (ziarno ${SEED})`, async (
       else if (a.k === 'back') { addWorkout(now - 1000, [['Back Squat', [{ weight: 100, reps: 5, done: true }]]], 'Past'); backs++; }
       else {
         const v = ent.accessNow(now); const open0 = open.mock.calls.length; const ok = ent.guardLiveStart('empty', now, open);
-        const since = lastExpiry(now); const used = live.filter(t => monthOf(t) === monthOf(now) && (since == null || t >= since)).length;
-        const expected = v.level === 'full' || used < PAYWALL.FREE_LIVE_PER_MONTH;
+        const since = lastExpiry(now); const days = new Set(live.filter(t => monthOf(t) === monthOf(now) && (since == null || t >= since)).map(dayOf)); const used = days.size;
+        const expected = v.level === 'full' || used < PAYWALL.FREE_TRAINING_DAYS_PER_MONTH || days.has(dayOf(now));
         expect({ ok, expected, level: v.level, used }).toEqual({ ok: expected, expected, level: v.level, used });
         expect(open.mock.calls.length - open0).toBe(ok ? 0 : 1);
-        if (ok) { const w = addWorkout(now, [['Back Squat', [{ weight: 100, reps: 5, done: true }]]], 'Live'); w.live = true; w.tzOffsetMin = -new Date(now).getTimezoneOffset(); live.push(now);
-          if (v.level === 'free') { const since2 = lastExpiry(now); const freeInMonth = live.filter(t => monthOf(t) === monthOf(now) && (since2 == null || t >= since2)).length; expect(freeInMonth).toBeLessThanOrEqual(PAYWALL.FREE_LIVE_PER_MONTH); } }
+        if (ok) { const w = addWorkout(now, [['Back Squat', [{ weight: 100, reps: 5, done: true }]]], 'Live'); w.live = true; w.tzOffsetMin = -new Date(now).getTimezoneOffset(); store.recordLiveDayFor(w); live.push(now);
+          if (v.level === 'free') { const since2 = lastExpiry(now); const freeInMonth = new Set(live.filter(t => monthOf(t) === monthOf(now) && (since2 == null || t >= since2)).map(dayOf)).size; expect(freeInMonth).toBeLessThanOrEqual(PAYWALL.FREE_TRAINING_DAYS_PER_MONTH); } }
       }
       if (['buy', 'expire', 'refund', 'restore', 'offline', 'refresh', 'days', 'family'].includes(a.k)) expect(snapW()).toBe(before);
       expect(buildBackup().state.workouts).toHaveLength(live.length + backs);
