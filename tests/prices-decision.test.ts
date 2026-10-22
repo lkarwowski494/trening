@@ -61,8 +61,9 @@ describe('ceny M1 (13.10.2026, stan App Store Connect 14.10.2026)', () => {
     /* 21.10.2026: kwoty z opisu usunięte (opis EN widzą kraje z innymi cenami; ceny pokazuje App Store) — wcześniejsze asercje kwot w opisie zastąpione */
     expect(d).not.toContain(`0.99 per month or ${num(FAKE_PRICES.yearly)} per year`);
     expect(d).not.toContain(`${PLN_PRICES.monthly} miesięcznie lub ${PLN_PRICES.yearly} rocznie`);
-    expect(d).toContain('plan miesięczny w cenie porównywalnej z jednym espresso w barze*');
-    expect(d).toContain('monthly plan for about the price of one espresso at a bar*');
+    const m = JSON.parse(read('store/app-store-metadata.json')).lokalizacje; /* od 22.10.2026 opis w jednym miejscu: store/app-store-metadata.json */
+    expect(m.pl.description).toContain('plan miesięczny w cenie porównywalnej z jednym espresso w barze*');
+    expect(m['en-US'].description).toContain('monthly plan for about the price of one espresso at a bar*');
     expect(read('docs/18-przekazanie.md')).toMatch(/opis bez list kwot/);
   });
   test('docs/18: wpis z 14.10.2026 opisuje ceny PL, Family Sharing, darmowe 14 dni, poziomy, Billing Grace Period i Standard EULA', () => {
