@@ -59,17 +59,34 @@ name: Kalendarz z planem tygodnia
 # run 37973427584 (249e373): od X-11 okno zgody pokazuje PlanReminderSync po zmianie stanu planu — chwilę po wyborze dnia; krótkie czekanie
 - extendedWaitUntil: { visible: "Not now", timeout: 8000, optional: true }
 - tapOn: { text: "Not now", optional: true }
-- tapOn: "Tuesday, Rest"
-- tapOn: "Tuesday: Upper A"
-- tapOn: "Wednesday, Rest"
-- tapOn: "Wednesday: Upper A"
+# run 39855279042 (część 2, krok 73): „Wednesday: Upper A” nie znaleziony — w zrzucie rozwinięty „Saturday” (karta zgody znikła/pojawiła się chwilę po stuknięciu „Tuesday”,
+# układ przesunął się o jej wysokość między odczytem hierarchii a stuknięciem i „Wednesday, Rest” trafiło w inny wiersz); przeszło w ponowieniu. Każdy dzień w retry (wiersz → szablon).
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Tuesday, Rest"
+      - tapOn: "Tuesday: Upper A"
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Wednesday, Rest"
+      - tapOn: "Wednesday: Upper A"
 - scrollUntilVisible: { element: "Sunday, Rest", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "Thursday, Rest"
-- tapOn: "Thursday: Upper A"
-- tapOn: "Friday, Rest"
-- tapOn: "Friday: Upper A"
-- tapOn: "Saturday, Rest"
-- tapOn: "Saturday: Upper A"
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Thursday, Rest"
+      - tapOn: "Thursday: Upper A"
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Friday, Rest"
+      - tapOn: "Friday: Upper A"
+- retry:
+    maxRetries: 2
+    commands:
+      - tapOn: "Saturday, Rest"
+      - tapOn: "Saturday: Upper A"
 - scrollUntilVisible: { element: "Sunday, Rest", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Sunday, Rest"
 - scrollUntilVisible: { element: "Sunday: Upper A", direction: DOWN, timeout: 30000, centerElement: true }  # 11.10.2026: wyższy nagłówek planu — chipy rozwiniętego wiersza pod ekranem
