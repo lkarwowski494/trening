@@ -59,7 +59,7 @@ export function raport(d) {
   for (const m of Object.keys(d.modele)) {
     const S = d.modele[m].scenariusze.normalny; const baza = policz(d, m, 'normalny').wplyw;
     const parts = [];
-    for (const k of ['start_proby', 'konwersja_po_probie', 'kara_ocen']) {
+    for (const k of ['start_proby', 'konwersja_po_probie', 'zakup_bez_proby', 'kara_ocen']) {
       if (!S[k].w) continue;
       const lo = policz(d, m, 'normalny', { [k]: Math.min(1, S[k].w * 0.75) }).wplyw, hi = policz(d, m, 'normalny', { [k]: Math.min(1, S[k].w * 1.25) }).wplyw;
       parts.push(`${k} ${f(lo)}–${f(hi)}`);

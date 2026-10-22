@@ -122,3 +122,34 @@ Plan awaryjny przy odrzuceniu z 3.1.1 (OP-1): usunąć „14-day Trial” i zost
 | OP-7 | wytyczne Komisji do art. 6a dyrektywy 98/6/WE — strona EUR-Lex blokuje odczyt automatyczny | nieistotne po decyzji „bez procentów”; zamknięte warunkowo |
 
 Kroki po wyborze (nie wcześniej): wpis decyzji w docs/18 słowami właściciela, aktualizacja `docs/monetyzacja.md` (model), BRD, kontrakt płatności (E3), zlecenia dla ról 05/08/tłumacza/M5.
+
+## 10. Model M — darmowe do N dni treningowych w miesiącu (zlecenie właściciela 22.10.2026, badanie)
+
+**Model:** cała aplikacja darmowa; blokada tylko na „Zacznij trening” (każda droga startu z `GUARDED_STARTS` — także zegarek, bo startuje z telefonu, docs/35), gdy w miesiącu jest już N dni treningowych (N = 4, 5 albo 6). Dzień treningowy = dzień z co najmniej jednym ukończonym treningiem na żywo; drugi trening tego samego dnia nie zużywa limitu. Pro (0,99 / 6,99 / 14,99 USD) zdejmuje limit. Bez okresu próbnego.
+
+**Reguły sklepu:** limit użycia to nie okres próbny w rozumieniu 3.1.1 (kalibracja biblioteki ról: licznik użyć to limit darmowej wersji), więc **znika ryzyko OP-1** (próba „XX-day Trial” z planami nieodnawialnymi). „Pro w subskrypcji” da się zrobić na dwa sposoby:
+- **S1 — subskrypcje odnawiane + dożywotni** (produkty już są w App Store Connect, kod jest; usunąć tylko ofertę wprowadzającą 14 dni). Obowiązują ujawnienia 3.1.2(a) i „Zarządzaj subskrypcją”. Nie ma próby, która sama zamienia się w opłatę, ale nagłówek „No subscriptions. Nothing renews by itself…” **nie pasuje** — ekran ofert potrzebuje innego nagłówka.
+- **S2 — 30 dni / rok bez odnawiania + dożywotni** (jak V2; nagłówek „No subscriptions…” prawdziwy; wymaga liczenia końca okresu w aplikacji i nowych produktów — rozdz. 3).
+
+**Reguła liczenia (propozycja do decyzji, zgodna z dzisiejszym licznikiem docs/27):** dzień = data **startu** treningu na zegarze z jego strefą (trening 23:50–00:40 liczy się do dnia startu); liczy się trening zakończony „Zakończ” albo zapisany automatycznie po 6 h bez aktywności (`autoFinishStale`) — niekończenie treningu nie obchodzi limitu, bo w toku może być tylko jeden; anulowany się nie liczy. Start dozwolony, gdy dni w miesiącu < N **albo dziś już jest dniem treningowym**. Miesiąc od północy 1. dnia (jak dziś). Usunięcie treningu z historii zwalnia dzień (**brzegowy**, kosztem własnych danych → bez naprawy); zmiana daty w telefonie (**teoretyczny**).
+
+**Rachunek** (`limit-dni.mjs` + `limit-dni.json`: rozkład częstotliwości 1–5/tydz. [OCENA], retencja [OCENA], dni w miesiącu ~ dwumian, pierwszy miesiąc niepełny; p-stwo zakupu przy blokadzie dobrane tak, by N=4 dało 1,4 / 2,0 / 2,9 płacących na 100 pobrań — RevenueCat SOSA 2026 i W0; potem `porownanie.mjs`, kod 0):
+
+| model | pes. USD/rok | norm. USD/rok | opt. USD/rok | aktywni, którzy w pełnym miesiącu trafią na limit |
+|---|---|---|---|---|
+| A0 obecny | 76 | 549 | 3385 | — |
+| V2 blokada | 39 | 509 | 5766 | — |
+| M4 odnawiane (S1) | 101 | **498** | 2578 | 90% |
+| M5 odnawiane (S1) | 95 | **471** | 2431 | 86% |
+| M6 odnawiane (S1) | 90 | **443** | 2280 | 82% |
+| M4 bez odnawiania (S2) | 85 | 421 | 2251 | 90% |
+| M5 bez odnawiania (S2) | 80 | 398 | 2123 | 86% |
+| M6 bez odnawiania (S2) | 75 | 374 | 1991 | 82% |
+
+Wrażliwość (normalny): M5 S1 — zakup przy blokadzie ×0,75/×1,25: 353–588; odnowienia: 399–753. **Wnioski:** (1) każdy dodatkowy darmowy dzień to ok. −6% wpływu — mało, bo przy założonym rozkładzie większość aktywnych trenuje częściej niż 6 dni w miesiącu; (2) **N = 5 ma prosty sens dla użytkownika: trening raz w tygodniu jest zawsze darmowy** (miesiąc ma najwyżej 5 tych samych dni tygodnia), przy N = 4 osoba trenująca raz w tygodniu trafia na limit w miesiącach z pięcioma takimi dniami; (3) M z S1 i A0 różnią się mniej niż rozrzut założeń — obie kalibracje stoją na tym samym ok. 2% płacących; (4) S2 daje ok. 15% mniej niż S1 przez brak automatycznych odnowień (to są także płatności, o których ludzie zapominają).
+
+**Etyka:** brak próby zamieniającej się w opłatę (główne źródło skarg 1,26★); limit jawny od pierwszego ekranu i w opisie sklepu („darmowe do N dni treningowych w miesiącu”); licznik widoczny przed startem („Zostały 2 z 5 dni w tym miesiącu”), bez okien zakupu w trakcie pracy (P2 B: raz po pierwszym treningu — do ponownej decyzji); dane, historia, eksport, trening wstecz, edycja zawsze dostępne (`ALWAYS_AVAILABLE` bez zmian); skarga „niskie limity darmowej wersji” (docs/research/skargi-wnioski-2026-10.md, pkt 1) — ryzyko przy N = 4.
+
+**Skutki dla 1.0 (M + S1):** `lib/access.ts` (`freeUsed` → dni ukończonych treningów + wyjątek „dziś”, `FREE_LIVE_PER_MONTH` → N, `ENABLED` → true), usunięcie oferty wprowadzającej (`TRIAL_DAYS`, przypomnienie o końcu próby, teksty ekranu zakupu), teksty „4 treningi” → „N dni treningowych” w 35 językach, testy licznika i regresji, Maestro `21-subskrypcja`, opisy App Store (blok subskrypcji, 33 lokalizacje), App Store Connect: usunąć oferty wprowadzające z dwóch subskrypcji (właściciel, ok. 10 min). Czas agenta ok. 3–5 h (praca równoległa: kod + tłumacz + M5), właściciela ok. 15 min + test w piaskownicy ok. 20 min. **Mieści się w terminie 29–31.10 z zapasem; to najmniejsza zmiana ze wszystkich badanych.** M + S2: jak V2 (rozdz. 7) bez blokady i bez próby — ok. 6–9 h agenta.
+
+**Do decyzji przy M (gdy właściciel zechce):** N (4 / 5 / 6; rachunek: 498 / 471 / 443 USD przy S1); S1 czy S2; trening wstecz (a) bez limitu jak dziś — dane zawsze wolno wpisać, mała furtka dla osób z notatnikiem, (b) liczony do limitu; nagłówek ekranu ofert przy S1.
