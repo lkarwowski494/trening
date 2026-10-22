@@ -1,0 +1,73 @@
+{
+ "data": "2026-10-22",
+ "limity": [
+  4,
+  5,
+  6
+ ],
+ "czestosc": {
+  "w": [
+   {
+    "na_tydzien": 1,
+    "udzial": 0.15
+   },
+   {
+    "na_tydzien": 2,
+    "udzial": 0.25
+   },
+   {
+    "na_tydzien": 3,
+    "udzial": 0.3
+   },
+   {
+    "na_tydzien": 4,
+    "udzial": 0.2
+   },
+   {
+    "na_tydzien": 5,
+    "udzial": 0.1
+   }
+  ],
+  "zrodlo": "[OCENA] rozkład tygodniowej liczby treningów osób prowadzących dziennik siłowy; metoda: generator planów Treningu obejmuje 2–6 sesji/tydz. (docs/24), środek ciężkości 3/tydz.; brak danych z aplikacji (brak analityki — prywatność). Do sprawdzenia po premierze: tylko pośrednio (liczba płacących)"
+ },
+ "retencja": {
+  "w": {
+   "pesymistyczny": [
+    1,
+    0.35,
+    0.22,
+    0.18
+   ],
+   "normalny": [
+    1,
+    0.5,
+    0.35,
+    0.3
+   ],
+   "optymistyczny": [
+    1,
+    0.6,
+    0.45,
+    0.4
+   ]
+  },
+  "dalej": 0.9,
+  "zrodlo": "[OCENA] odsetek aktywnych w kolejnych miesiącach po pierwszym treningu; potem ×0,9/mies.; metoda: ocena agenta, bez benchmarku czytanego dziś"
+ },
+ "aktywacja": {
+  "w": {
+   "pesymistyczny": 0.3,
+   "normalny": 0.4,
+   "optymistyczny": 0.5
+  },
+  "zrodlo": "[OCENA] odsetek pobierających, którzy ukończą ≥ 1 trening w aplikacji"
+ },
+ "kupno_przy_blokadzie": {
+  "w": {
+   "pesymistyczny": 0.019,
+   "normalny": 0.0137,
+   "optymistyczny": 0.0126
+  },
+  "zrodlo": "[OCENA] p-stwo zakupu przy każdym trafieniu na blokadę, dobrane tak, by N=4 dało płacących na pobranie: pes. 1,4% (RevenueCat SOSA 2026, najniższy próg cen, pobranie→płatny), norm. 2,0% (W0, docs/monetyzacja.md; RevenueCat freemium 2,1%), opt. 2,9% (RevenueCat, Health & Fitness pobranie→płatny); odczyt 2026-10-22, szczebel 4, jedno źródło"
+ }
+}

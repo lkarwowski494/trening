@@ -1,0 +1,38 @@
+{
+ "data": "2026-10-22",
+ "waluta": "PLN",
+ "vat": {
+  "stawka": 0.23,
+  "zrodlo": "ustawa o VAT, Dz.U. 2026 poz. 1263, art. 146ef ust. 1 pkt 1 („wynosi 23 %”), odczyt 2026-10-22"
+ },
+ "prowizja": {
+  "stawka": 0.15,
+  "zrodlo": "developer.apple.com/app-store/small-business-program, „reduced commission rate of 15%”, odczyt 2026-10-22"
+ },
+ "kursy": {
+  "USD": {
+   "kurs": 3.8886,
+   "zrodlo": "api.nbp.pl tabela 206/A/NBP/2026 z 2026-10-22, odczyt 2026-10-22"
+  }
+ },
+ "koszty_roczne": [],
+ "produkty": [
+  {
+   "id": "30 dni / miesięczna (4,99 zł)",
+   "cena_brutto": 4.99
+  },
+  {
+   "id": "3 mies. (propozycja 11,99 zł, [DO USTALENIA])",
+   "cena_brutto": 11.99
+  },
+  {
+   "id": "rok / roczna (19,99 zł)",
+   "cena_brutto": 19.99
+  },
+  {
+   "id": "dożywotnia (59,99 zł)",
+   "cena_brutto": 59.99
+  }
+ ],
+ "lejek": []
+}
