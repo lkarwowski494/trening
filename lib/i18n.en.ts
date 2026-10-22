@@ -1005,7 +1005,6 @@ export const EN: Record<string, string> = {
   'Warunki korzystania': 'Terms of Use',
   'Otwiera stronę w przeglądarce.': 'Opens the page in your browser.',
   'Prywatność': 'Privacy',
-  'trening|treningi|treningów': 'workout|workouts',
   'Subskrypcja': 'Subscription',
   /* M5 S1 (22.10.2026): ekran zakupu bez okresu próbnego, limit dni treningowych, licznik na ekranie startu */
   'Trening to część mojego tygodnia': 'Training is part of my week',
@@ -1018,11 +1017,10 @@ export const EN: Record<string, string> = {
   'Jesteśmy z Ciebie dumni!': 'We\'re proud of you!',
   'W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!': 'You\'ve trained hard this month and used all {n} free training days. Good job!',
   '{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.': '{app} is made by an independent developer: no ads, no data collection. If it helps you, choose a plan to keep training without limits. Your free days come back on {date}.',
-  'Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.': 'Without a purchase: up to {n} training days per month; history, backup and export are always available.',
-  'Wykorzystano limit darmowych dni treningowych w tym miesiącu ({n}). Kolejne od {date}.': 'You\'ve used this month\'s free training days ({n}). More from {date}.',
+  'Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.': 'Without a purchase: up to {n} training days per month; history, backup and export always available.',
   'Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}': 'Free training days this month: {n} of {limit} used',
-  '{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.': '{n} of {limit} free training days {left} this month',
-  'Został|Zostały|Zostało': 'left|left|left',
+  '{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.': '{n} of {limit} free training days {left} this month.',
+  'Został|Zostały|Zostało': 'left|left',
   /* wzorce interakcji (13.10.2026, docs/32) */
   'Dodaj szablon': 'Add template',
   'Dodaj miejsce': 'Add place',

@@ -113,7 +113,7 @@
  },
  {
   "pl": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
-  "en": "{n} of {limit} free training days {left} this month"
+  "en": "{n} of {limit} free training days {left} this month."
  },
  {
   "pl": "{n} {w} · Dostosuj",
@@ -592,8 +592,8 @@
   "en": "Not used in any workout: {list}. This also replaces the active plan “{plan}”, made only of these templates — “Replace” deletes them and makes the new plan active in its place, “Keep” adds the new ones alongside."
  },
  {
-  "pl": "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.",
-  "en": "Without a purchase: up to {n} training days per month; history, backup and export are always available."
+  "pl": "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.",
+  "en": "Without a purchase: up to {n} training days per month; history, backup and export always available."
  },
  {
   "pl": "Bez zmian",
@@ -5509,11 +5509,6 @@
   "en": "A workout you didn’t log at the time. Set the date and pick a template — you’ll fill in the sets in the next step (values from your last workout before that date)."
  },
  {
-  "pl": "trening|treningi|treningów",
-  "en": "workout|workouts",
-  "plural": true
- },
- {
   "pl": "Treningi",
   "en": "Workouts"
  },
@@ -6338,10 +6333,6 @@
   "en": "Done: {text}"
  },
  {
-  "pl": "Wykorzystano limit darmowych dni treningowych w tym miesiącu ({n}). Kolejne od {date}.",
-  "en": "You've used this month's free training days ({n}). More from {date}."
- },
- {
   "pl": "Wykres słupkowy: {v}",
   "en": "Bar chart: {v}"
  },
@@ -6907,7 +6898,7 @@
  },
  {
   "pl": "Został|Zostały|Zostało",
-  "en": "left|left|left",
+  "en": "left|left",
   "plural": true
  },
  {

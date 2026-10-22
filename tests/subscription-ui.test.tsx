@@ -43,14 +43,14 @@ describe('ekran zakupu: ceny, nazwy i opisy planów (bez okresu próbnego)', () 
     const order = screen.getAllByTestId(/^plan-/).map(n => n.props.testID); expect(order).toEqual(['plan-yearly', 'plan-monthly', 'plan-lifetime']);
     expect(screen.getByTestId('plan-yearly').props.accessibilityState.selected).toBe(true); expect(screen.getByTestId('plan-monthly').props.accessibilityState.selected).toBe(false);
     expect(screen.getByText('Subscribe')).toBeTruthy(); expect(screen.getByText('The subscription renews automatically until you cancel it in your Apple account settings.')).toBeTruthy();
-    expect(screen.getByText('Without a purchase: up to 5 training days per month; history, backup and export are always available.')).toBeTruthy();
+    expect(screen.getByText('Without a purchase: up to 5 training days per month; history, backup and export always available.')).toBeTruthy();
     expect(screen.queryByTestId('paywall-limit')).toBeNull();
   });
   test('PL: teksty po polsku, okresy „miesiąc”/„rok”', async () => {
     await boot(); expect(screen.getByTestId('plan-monthly').props.accessibilityLabel).toBe(`Szukam swojego rytmu, ${FAKE_PRICES.monthly}/miesiąc. Płacisz co miesiąc i kończysz, kiedy chcesz.`);
     expect(screen.getByTestId('plan-yearly').props.accessibilityLabel).toBe(`Trening to część mojego tygodnia, ${FAKE_PRICES.yearly}/rok. Cały rok treningów, rozliczany rocznie.`); expect(screen.getByTestId('plan-lifetime').props.accessibilityLabel).toBe(`Trening to moje życie, ${FAKE_PRICES.lifetime} jednorazowo. Płacisz raz i masz na zawsze.`);
     expect(screen.getByText('Subskrybuj')).toBeTruthy(); expect(screen.getByText('Trenuj 5 dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.')).toBeTruthy();
-    expect(screen.getByText('Bez zakupu: do 5 dni treningowych w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.')).toBeTruthy();
+    expect(screen.getByText('Bez zakupu: do 5 dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.')).toBeTruthy();
   });
   test('przycisk: „Subskrybuj” dla subskrypcji, „Kup na zawsze” dla planu dożywotniego; informacja o odnawianiu tylko przy subskrypcji', async () => {
     await boot({ locale: 'en' }); expect(screen.getByText('Subscribe')).toBeTruthy();
@@ -193,14 +193,14 @@ describe('useAccess (hook widoku)', () => {
 
 describe('ekran startu: licznik darmowych dni treningowych', () => {
   test('free: „5 of 5…” bez treningów, „3 of 5 free training days left this month” po 2 dniach (EN), po polsku z odmianą (Zostały 3 / Został 1 / Zostało 0); testID start-free-days', async () => {
-    await boot({ locale: 'en', live: 0, url: '/' }); expect(screen.getByTestId('start-free-days').props.children).toBe('5 of 5 free training days left this month');
-    await boot({ locale: 'en', live: 2, url: '/' }); expect(screen.getByTestId('start-free-days').props.children).toBe('3 of 5 free training days left this month');
+    await boot({ locale: 'en', live: 0, url: '/' }); expect(screen.getByTestId('start-free-days').props.children).toBe('5 of 5 free training days left this month.');
+    await boot({ locale: 'en', live: 2, url: '/' }); expect(screen.getByTestId('start-free-days').props.children).toBe('3 of 5 free training days left this month.');
     await boot({ locale: 'pl', live: 2, url: '/' }); expect(screen.getByTestId('start-free-days').props.children).toBe('Zostały 3 z 5 darmowych dni treningowych w tym miesiącu.');
     await boot({ locale: 'pl', live: 4, url: '/' }); expect(screen.getByTestId('start-free-days').props.children).toBe('Został 1 z 5 darmowych dni treningowych w tym miesiącu.');
     await boot({ locale: 'pl', live: 5, url: '/' }); expect(screen.getByTestId('start-free-days').props.children).toBe('Zostało 0 z 5 darmowych dni treningowych w tym miesiącu.');
   });
   test('limit wyczerpany: „0 of 5…”', async () => {
-    await boot({ locale: 'en', live: 5, url: '/' }); expect(screen.getByTestId('start-free-days').props.children).toBe('0 of 5 free training days left this month');
+    await boot({ locale: 'en', live: 5, url: '/' }); expect(screen.getByTestId('start-free-days').props.children).toBe('0 of 5 free training days left this month.');
   });
   test('nie pokazuje się: pełny dostęp (subskrypcja, dożywotni), przełącznik wyłączony, sklep bez odpowiedzi i bez zapamiętanego wyniku, trening w toku', async () => {
     await boot({ locale: 'en', ents: [life], url: '/' }); expect(screen.queryByTestId('start-free-days')).toBeNull();

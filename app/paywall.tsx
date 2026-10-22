@@ -89,7 +89,7 @@ export default function PaywallScreen() {
       </> : null}
 
       {note ? <Text testID="paywall-note" accessibilityLanguage={lang()} style={{ color: th.text, marginTop: 10 }}>{note}</Text> : null}
-      <Muted style={{ ...font('footnote'), marginTop: 12 }}>{t('Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia zapasowa i eksport są zawsze dostępne.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Muted>
+      <Muted style={{ ...font('footnote'), marginTop: 12 }}>{t('Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Muted>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
         <Btn small title={t('Przywróć zakupy')} onPress={() => { void restore(); }} />
         <Btn small title={t('Zrealizuj kod')} onPress={() => { void store(() => getStoreAdapter().redeemCode().then(() => refreshEntitlements())); }} />
