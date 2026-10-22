@@ -1,7 +1,7 @@
 /*
  * Redesign M3, partia p1 — test systemu wyglądu. Zastępuje tests/brand-tuleja.test.tsx (styl „Tuleja”, 07.10.2026): TE SAME PYTANIA na nowe wartości,
  * po decyzjach STOP E3 z 21.10.2026 (docs/18): paleta „hala/tablica” (docs/design/design-spec.md §1), krój Barlow Condensed zamiast IBM Plex,
- * tło ekranu startowego i intro = bg z tokenów, akcent zegarka, widżetu i Live Activity z palety, ikona zegarka 1088. Rysunek ikony iPhone i intro
+ * tło ekranu startowego i intro = bg z tokenów, akcent zegarka, widżetu i Live Activity z palety, ikona zegarka 1024 (opcja b, 22.10.2026). Rysunek ikony iPhone i intro
  * zostaje przy „Tulei” (decyzja STOP E2) — te pytania zostają bez zmian.
  */
 import * as fs from 'fs';
@@ -97,13 +97,12 @@ test('kolor akcentu rozszerzenia widżetu i zegarka = akcent palety (jasny grana
   }
 });
 
-test('ikona zegarka 1088 (STOP E3): własny zestaw AppIcon.appiconset z plikiem 1088×1088 RGB bez przezroczystości, bez pola icon: (wtyczka robi 1024)', () => {
+test('ikona zegarka (STOP E3, opcja b po odrzuceniu wysyłki build 1026, 22.10.2026): pole icon: w konfiguracji celu — wtyczka ustawia wtedy ASSETCATALOG_COMPILER_APPICON_NAME (a z niego CFBundleIconName); bez niego App Store Connect odrzuca wysyłkę (lekcja w docs/40, R-013)', () => {
+  const cfg = fs.readFileSync(path.join(root, 'targets/watch-app/expo-target.config.js'), 'utf8');
+  expect(cfg).toMatch(/^\s*icon: '\.\.\/\.\.\/assets\/icon\.png',/m);
   const dir = path.join(root, 'targets/watch-app/Assets.xcassets/AppIcon.appiconset');
   const c = JSON.parse(fs.readFileSync(path.join(dir, 'Contents.json'), 'utf8')) as { images: { filename: string; size: string; platform: string }[] };
-  expect(c.images).toEqual([{ filename: 'App-Icon-1088x1088.png', idiom: 'universal', size: '1088x1088', platform: 'watchos' }]);
-  const png = path.join(dir, 'App-Icon-1088x1088.png');
-  expect(pngInfo(png)).toEqual({ w: 1088, h: 1088, bitDepth: 8, colorType: 2 }); /* typ 2 = RGB bez kanału alfa */
-  expect(fs.readFileSync(png).equals(fs.readFileSync(path.join(root, 'docs/design/ikona/zegarek-1088.png')))).toBe(true);
-  expect(fs.existsSync(path.join(dir, 'App-Icon-1024x1024@1x.png'))).toBe(false);
-  expect(fs.readFileSync(path.join(root, 'targets/watch-app/expo-target.config.js'), 'utf8')).not.toMatch(/^\s*icon:/m);
+  expect(c.images).toEqual([{ filename: 'App-Icon-1024x1024@1x.png', idiom: 'universal', size: '1024x1024', platform: 'watchos' }]);
+  expect(pngInfo(path.join(dir, 'App-Icon-1024x1024@1x.png'))).toMatchObject({ w: 1024, h: 1024 });
+  expect(fs.existsSync(path.join(dir, 'App-Icon-1088x1088.png'))).toBe(false);
 });
