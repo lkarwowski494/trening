@@ -25,6 +25,22 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 | R-013 | M3 (STOP E3, 21.10.2026): ikona zegarka. **Ponownie otwarte 22.10.2026:** build podglądowy 1026 (testflight.yml 39723671701, eaafa44) odrzucony przy wysyłce — „Missing Icons… CFBundleIconFiles” i brak `CFBundleIconName` w `pl.lukasz.trening.watchkitapp` (lekcja L-021 niżej). Poprawka: powrót do pola `icon:` (1024, opcja b ze STOP E3), wtyczka ustawia `ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon`; `verify:native` sprawdza to ustawienie w obu konfiguracjach celu zegarka | najbliższy `testflight.yml` z wysyłką (bez `bez_wysylki`): krok „Wysyłka do App Store Connect” zielony, bez błędów o ikonie zegarka; potem ikona widoczna na zegarku (lista „tylko telefon”) | **otwarte** — poprzednie zamknięcie (21.10, `ios-unsigned.yml` 39597639278) opierało się na przebiegu, który nie wykonuje walidacji Apple |
 | R-014 | M3: treść krojem systemowym (`fontFamily: 'System'` + `fontWeight`) zamiast IBM Plex — nie wiadomo, czy iOS sam pogrubia go przy „Pogrubiony tekst” (M1-024 dotąd robił to ręcznie dla Plex) | lista „tylko telefon” po pierwszym TestFlight z partią p1: włączyć „Pogrubiony tekst” → treść i przyciski grubsze; jeśli nie — przesunięcie wagi w `font()` (`docs/design/theme.ts`) i test | otwarte (21.10.2026) |
 
+## L-023 (22.10.2026) — strażnik L-014 blokował verify w worktree agentów, dwóch agentów obeszło verify
+
+- **Co się stało:** `scripts/hooks/sprawdz-instalacje.mjs` (pierwszy krok `npm run verify`, L-014) zgłaszał „hak pre-push NIE jest zainstalowany” w każdym git worktree agenta.
+  Dwóch agentów (22.10.2026) nie mogło uruchomić pełnego verify i je obeszło — dokładnie to, przed czym strażnik miał chronić.
+- **Przyczyna źródłowa:** `core.hooksPath` jest konfiguracją współdzieloną przez worktree i było ustawione bezwzględnie na `scripts/hooks` głównego checkoutu.
+  Kontrola porównywała ścieżkę haka ze ścieżką `scripts/hooks/pre-push` bieżącego worktree, więc ten sam hak z innego katalogu uchodził za „inny”;
+  `instaluj.mjs` pomijał ustawienie („już ustawione”). Test L-014 sprawdzał worktree tylko dla ścieżki względnej, którą sam ustawia instalator — nie dla bezwzględnej ustawionej ręcznie albo starszym instalatorem.
+  Dlaczego nie złapane: strażnik testowano w wariancie „szczęśliwym”, bez wariantu, w którym konfiguracja pochodzi od innego checkoutu.
+- **Decyzja o poprawce:** kontrola porównuje **treść** haka, który git faktycznie wywoła (wg `core.hooksPath` albo `.git/hooks`, po realpath), z `scripts/hooks/pre-push` bieżącego checkoutu;
+  wymagane też prawo wykonania. Zostawiono bez zmian `instaluj.mjs` (ścieżka względna `scripts/hooks` jest poprawna dla worktree, bo git liczy ją od katalogu worktree;
+  nadal nie nadpisujemy cudzego ustawienia) — bezwzględna wartość z innego worktree jest akceptowana tylko wtedy, gdy hak jest identyczny, więc nie osłabia ochrony:
+  hak o innej treści, brak haka lub brak ustawienia nadal blokują. Zamiana na ścieżkę względną przez instalator byłaby nadpisaniem cudzej konfiguracji i znika, gdy główny checkout zniknie.
+- **Akcje:** test `tests/hak-pre-push.test.ts` („core.hooksPath bezwzględny, wskazujący na inny worktree”: identyczny hak, dowiązanie symboliczne — przechodzi;
+  brak ustawienia, katalog bez haka, hak o innej treści, hak niewykonywalny — blokuje) i poprawka kontroli — **zrobione**.
+- **Ocena zakresu: lokalna** (luka w jednym strażniku; klasa „strażnik zbyt wąski przy pracy w worktree” objęta dodanym wariantem).
+
 ## L-022 (22.10.2026, M3) — E2E 39726518856: scenariusz 32 pada w kroku 200 („Max weight”) — asercja trafiała przypadkiem w chip wykresu
 
 - **Co się stało:** na 146e710 scenariusz 32 („Regularny użytkownik”) padał deterministycznie (także przy ponowieniu): po stuknięciu „Bench Press (Dumbbell)” w Postępach „RECORDS” widoczne, „Max weight” nie. Ocena: **błąd scenariusza**, aplikacja pokazuje rekord „Max weight (per dumbbell)” poprawnie (test render niżej).
