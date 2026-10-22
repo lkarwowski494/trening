@@ -184,6 +184,7 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - scrollUntilVisible: { element: "Log a past workout", direction: DOWN, timeout: 60000 }
 - takeScreenshot: 99-limit
 - scrollUntilVisible: { element: "Subscribe", direction: DOWN, timeout: 60000, centerElement: true }
+- waitForAnimationToEnd
 - tapOn: "Subscribe"
 - extendedWaitUntil: { visible: ".*You have the full version.*", timeout: 30000 }
 - scrollUntilVisible: { element: "Not now", direction: DOWN, timeout: 60000 }
