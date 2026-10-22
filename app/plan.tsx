@@ -1,7 +1,8 @@
 import { DeleteButton } from '@/components/DeleteButton';
 import React, { useCallback, useRef, useState } from 'react';
 import { AccessibilityInfo } from 'react-native';
-import { ScrollView, View, Alert, Pressable } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
+import { View, Alert, Pressable } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack, useFocusEffect } from 'expo-router';
 import { takePlanNotice } from '@/components/OwnPlan';
 import { Screen, Chip, Muted, Txt, Btn, Item, Field, Input, SectionTitle, Missing } from '@/components/ui';

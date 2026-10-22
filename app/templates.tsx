@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { useRouter, Stack } from 'expo-router';
 import { Screen, Item, Btn, Empty, useOnce, SectionTitle, Muted } from '@/components/ui';
 import { Pressable } from 'react-native';

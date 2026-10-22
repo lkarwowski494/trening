@@ -1,5 +1,5 @@
+import { ScrollView } from '@/components/Scroll';
 import React, { useEffect, useRef, useState } from 'react';
-import { ScrollView } from 'react-native';
 import { useRouter, Stack } from 'expo-router';
 import { Screen, Item, Muted, Empty, SectionTitle, SwitchRow, Missing } from '@/components/ui';
 import { getState, useTick, exById, locationById, adaptActive } from '@/lib/store';

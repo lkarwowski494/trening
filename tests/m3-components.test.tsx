@@ -8,10 +8,10 @@ import React from 'react';
 import { Alert, StyleSheet, Text, View, AccessibilityInfo } from 'react-native';
 import * as RN from 'react-native';
 import { render, fireEvent } from '@testing-library/react-native';
-import { light, dark, lightHC, FONT, RADIUS, SIZE, MOTIF, ICON, titleMaxScale, type Theme } from '@/lib/theme';
+import { light, dark, lightHC, FONT, TYPE, RADIUS, SIZE, MOTIF, ICON, titleMaxScale, type Theme } from '@/lib/theme';
 import { setA11yPrefs, __resetA11yPrefsForTests } from '@/lib/a11yPrefs';
 import { Btn, H1, H2, SectionTitle, Item, Chip, Input, Segmented, Empty, Screen, Muted } from '@/components/ui';
-import { BarMotif, StartMotif } from '@/components/Motif';
+import { BarMotif, TitleBarbell } from '@/components/Motif';
 import { DeleteButton } from '@/components/DeleteButton';
 import { EditButton, MoreButton, PlanningButton } from '@/components/HeaderActions';
 import { Icon, ICON_NAMES } from '@/components/Icon';
@@ -111,16 +111,16 @@ describe('motyw A2 (design-spec §1)', () => {
       const art = r.getByTestId('bar-motif', { includeHiddenElements: true }); expect(art.props.accessibilityElementsHidden).toBe(true);
       for (const k of ['motif25', 'motif20', 'motif15', 'motif10', 'motifBar'] as const) expect(fills(r)).toContain(p[k]); r.unmount(); }
   });
-  test('start: sylwetka ok. 30% szerokości ekranu w prawym górnym rogu', () => {
-    const r = render(<StartMotif />); const m = r.getByTestId('start-motif', { includeHiddenElements: true });
-    expect(st(m)).toMatchObject({ position: 'absolute', top: 0, right: 0 }); const w = Number(st(r.getByTestId('bar-motif', { includeHiddenElements: true })).width ?? 0) || 0;
-    expect(JSON.stringify(r.toJSON())).toContain(`"width":${Math.round(390 * MOTIF.startWidthRatio)}`); expect(w).toBeGreaterThanOrEqual(0);
+  test('start (22.10.2026): mała ikonka sztangi po tytule — wysokość ok. titleIconRatio × rozmiar tytułu, jeden kolor tekstu, bez pozycji absolutnej, ukryta dla VoiceOver; rośnie z tekstem, nie dalej niż tytuł', () => {
+    for (const [s, p] of [['light', light], ['dark', dark]] as const) { scheme = s; win = { ...win, fontScale: 1 };
+      const r = render(<TitleBarbell />); const m = r.getByTestId('title-barbell', { includeHiddenElements: true });
+      expect(m.props.accessibilityElementsHidden).toBe(true); expect(m.props.importantForAccessibility).toBe('no-hide-descendants'); expect(st(m).position).toBeUndefined();
+      expect(st(m).height).toBe(Math.round(TYPE.largeTitle.size * MOTIF.titleIconRatio)); expect(new Set(r.UNSAFE_root.findAll(x => typeof x.props.fill === 'string').map(x => String(x.props.fill)))).toEqual(new Set([p.text]));
+      r.unmount(); }
+    win = { ...win, fontScale: 3 }; const big = render(<TitleBarbell />); expect(Number(st(big.getByTestId('title-barbell', { includeHiddenElements: true })).height)).toBeLessThanOrEqual(Math.round(TYPE.largeTitle.size * MOTIF.titleIconRatio * titleMaxScale(390)));
   });
-  test('znika przy „Zwiększ kontrast” i od skali tekstu 1,4 (nie zajmuje miejsca tytułu); przy 1,39 jest', () => {
-    win = { ...win, fontScale: 1.39 }; expect(render(<StartMotif />).queryByTestId('start-motif', { includeHiddenElements: true })).not.toBeNull();
-    win = { ...win, fontScale: 1.4 }; expect(render(<StartMotif />).queryByTestId('start-motif', { includeHiddenElements: true })).toBeNull();
-    win = { ...win, fontScale: 1 }; setA11yPrefs({ contrast: true }); expect(render(<StartMotif />).queryByTestId('start-motif', { includeHiddenElements: true })).toBeNull();
-    expect(render(<Empty>Brak</Empty>).queryByTestId('bar-motif', { includeHiddenElements: true })).toBeNull();
+  test('sylwetka na starcie z rogu ekranu została usunięta (nie ma StartMotif); Empty nadal ma gryf z talerzami', () => {
+    expect(render(<Empty>Brak</Empty>).queryByTestId('bar-motif', { includeHiddenElements: true })).not.toBeNull(); /* skala tekstu 1: motyw pustych stanów znika dopiero od 1,4 */
   });
   test('Empty: ramka RADIUS.group, gryf z talerzami 220 pt nad zdaniem; nic poza dekoracją i tekstem', () => {
     const r = render(<Empty>Nie ma jeszcze treningów.</Empty>);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { View } from 'react-native';
+import { FlatList } from '@/components/Scroll';
 import { Screen, Item, Muted, Txt } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
 import { FW, font } from '@/lib/theme';

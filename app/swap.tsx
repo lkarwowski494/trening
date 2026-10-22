@@ -1,5 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { ScrollView, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme, F } from '@/lib/theme';
 import { Screen, Item, Muted, Empty, SectionTitle, Chip, Input, SearchField, Missing } from '@/components/ui';

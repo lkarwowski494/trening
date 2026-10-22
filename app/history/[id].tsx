@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, View, Alert } from 'react-native';
+import { View, Alert } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, H1, Muted, Btn, Txt, useOnce, monoSafe, Missing } from '@/components/ui';
 import { DeleteButton } from '@/components/DeleteButton';

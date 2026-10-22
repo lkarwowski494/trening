@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Field, Input, NumInput, Btn, Muted, Chip, SwitchRow, H1, Txt, useOnce, Missing } from '@/components/ui';
 import { InfoTip, InfoButton, InfoBox, useInfoOpen } from '@/components/InfoTip';

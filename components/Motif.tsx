@@ -3,7 +3,7 @@ import { View, useWindowDimensions } from 'react-native';
 import { PLATE_COLORS, type PlateColor } from '@/lib/discColors';
 import Svg, { Path, Rect } from 'react-native-svg';
 import { needsEdge, MINI_ICON, MARK_STROKE, restCup, REST_CUP, MARK_FILL, MARK_SQUARE, plateStack, plateStackHeight, PLATE_STACK, type DayMark } from '@/lib/motif';
-import { useTheme, MOTIF, SPACE, RADIUS, type Theme } from '@/lib/theme';
+import { useTheme, MOTIF, RADIUS, TYPE, titleMaxScale, type Theme } from '@/lib/theme';
 import { useA11yPrefs } from '@/lib/a11yPrefs';
 import { ICON_BAR, ICON_PLATES, ICON_COLLAR } from '@/lib/brandIcon';
 
@@ -63,8 +63,7 @@ export function PlateStack({ filled, bg, th, testID }: { filled: boolean; bg: st
 }
 
 /*
- * Motyw A2 (M3, STOP E3 21.10.2026; docs/design/design-spec.md §1): koniec sztangi z talerzami w barwach IWF jako subtelne tło — tylko na starcie (sylwetka ok. 30% szerokości
- * ekranu, prawy górny róg) i w pustych stanach (gryf z talerzami, 220 pt). Barwy talerzy w paletach (motif25/20/15/10, motifBar: krycie 16% / 20% policzone z góry),
+ * Motyw A2 (M3, STOP E3 21.10.2026; docs/design/design-spec.md §1): koniec sztangi z talerzami w barwach IWF jako subtelne tło — tylko w pustych stanach (od 22.10.2026 nie na starcie: tam mała ikonka po tytule, TitleBarbell) i w pustych stanach (gryf z talerzami, 220 pt). Barwy talerzy w paletach (motif25/20/15/10, motifBar: krycie 16% / 20% policzone z góry),
  * więc w tym pliku nie ma przezroczystości. Nigdy na tablicy, przy liczbach kg, w paskach, listach ani przyciskach; barwa nic nie znaczy (decyzja 09.10.2026).
  * Znika przy „Zwiększ kontrast” i od skali tekstu 1,4; ukryty dla VoiceOver. Geometria z rysunku ikony (lib/brandIcon).
  */
@@ -87,9 +86,20 @@ export function BarMotif({ width }: { width: number }) {
       </Svg>
     </View>);
 }
-/** Sylwetka na ekranie Start: ok. 30% szerokości ekranu w prawym górnym rogu (ekran Start umieszcza ją w p2). */
-export function StartMotif() {
-  const { width } = useWindowDimensions(); const visible = useMotifVisible();
-  if (!visible) return null;
-  return <View testID="start-motif" pointerEvents="none" {...a11yHidden} style={{ position: 'absolute', top: 0, right: 0, paddingTop: SPACE.xs }}><BarMotif width={Math.round(width * MOTIF.startWidthRatio)} /></View>;
+/**
+ * Mała ikonka sztangi zaraz po napisie „Trening” (decyzja właściciela 22.10.2026, docs/18; zastąpiła dużą sylwetkę w prawym górnym rogu, która nachodziła na wiersz planu):
+ * ten sam rysunek co ikona (gryf, cztery talerze, zacisk), jeden kolor tekstu, wysokość ok. wysokości liter tytułu (TITLE_ICON). Stoi w wierszu obok tytułu, nie nad nim —
+ * nie nachodzi na nic; rośnie z tekstem tak jak tytuł (do titleMaxScale). Dekoracja: ukryta dla VoiceOver, etykieta nagłówka bez zmian.
+ */
+export function TitleBarbell() {
+  const th = useTheme(); const { width, fontScale } = useWindowDimensions(); const { x, y, w, h } = MOTIF_VIEW;
+  const height = Math.round(TYPE.largeTitle.size * MOTIF.titleIconRatio * Math.min(fontScale, titleMaxScale(width))); const wd = Math.round((height * w) / h);
+  return (
+    <View testID="title-barbell" {...a11yHidden} style={{ width: wd, height }}>
+      <Svg width={wd} height={height} viewBox={`${x} ${y} ${w} ${h}`} accessible={false}>
+        <Rect x={ICON_BAR.x} y={ICON_BAR.y} width={ICON_BAR.w} height={ICON_BAR.h} rx={ICON_BAR.rx} fill={th.text} />
+        {ICON_PLATES.map((p, i) => <Rect key={i} x={p.x} y={p.y} width={p.w} height={p.h} rx={p.rx} fill={th.text} />)}
+        <Rect x={ICON_COLLAR.x} y={ICON_COLLAR.y} width={ICON_COLLAR.w} height={ICON_COLLAR.h} rx={ICON_COLLAR.rx} fill={th.text} />
+      </Svg>
+    </View>);
 }
