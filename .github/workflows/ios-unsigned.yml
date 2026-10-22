@@ -40,6 +40,10 @@ jobs:
         run: /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${{ github.run_number }}" ios/Trening/Info.plist
       - name: Install pods
         run: cd ios && pod install
+      - name: Manifest prywatności w projekcie (R-007 — deklaracja z app.json ios.privacyManifests, komplet kategorii bez łatki)
+        run: |
+          files=$(ls ios/*/PrivacyInfo.xcprivacy 2>/dev/null) || { echo "::error::Brak PrivacyInfo.xcprivacy po pod install"; exit 1; }
+          node scripts/ci/ensure-privacy-manifest.mjs --check $files
       - name: Platforma iOS zgodna z SDK wybranego Xcode (pobranie tylko, gdy jej brak)
         run: bash scripts/ci/ensure-ios-platform.sh
       - name: Build (no code signing)
@@ -62,6 +66,9 @@ jobs:
           test "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleVersion' "$W/Info.plist")" = "${{ github.run_number }}"
           test "$(/usr/libexec/PlistBuddy -c 'Print :WKCompanionAppBundleIdentifier' "$W/Info.plist")" = "pl.lukasz.trening"
           /usr/libexec/PlistBuddy -c 'Print :WKBackgroundModes:0' "$W/Info.plist" | grep -qx workout-processing
+          # R-007: manifest prywatności w gotowej aplikacji ma komplet kategorii (dowód w logu: „manifest prywatności OK”)
+          node ../scripts/ci/ensure-privacy-manifest.mjs --check "$APP/PrivacyInfo.xcprivacy"
+          plutil -p "$APP/PrivacyInfo.xcprivacy"
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
