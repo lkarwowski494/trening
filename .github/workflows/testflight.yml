@@ -207,6 +207,17 @@ jobs:
           # audyt M1-014: manifest prywatności w gotowej aplikacji (nie tylko w katalogu projektu) ma wszystkie kategorie
           node scripts/ci/ensure-privacy-manifest.mjs --check "$APP/PrivacyInfo.xcprivacy" || rc=1
           exit $rc
+      - name: Walidacja Apple na gotowym .ipa (tylko przy bez_wysylki — przy wysyłce tę samą kontrolę robi eksport z wysyłką; 22.10.2026, docs/18)
+        # Przebieg dowodowy ma wykryć to, co odrzuci App Store Connect (np. brak CFBundleIconName w zegarku, build 39723671701) — ios-unsigned.yml tego nie waliduje.
+        # Ryzyka pakietu zamyka odtąd tylko ten krok (docs/40, Rejestr ryzyk). Sekrety ASC te same co w eksporcie; klucz tylko w pliku tymczasowym poza repozytorium.
+        if: ${{ inputs.bez_wysylki == true }}
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          set -o pipefail
+          bash scripts/ci/waliduj-ipa.sh "$(ls "$RUNNER_TEMP"/export/*.ipa | head -n 1)" "$RUNNER_TEMP/AuthKey.p8" validate.log
+          echo "## Przebieg dowodowy: walidacja Apple .ipa OK (bez wysyłki)" >> "$GITHUB_STEP_SUMMARY"
       - name: Wysyłka do App Store Connect
         if: ${{ inputs.bez_wysylki != true }}
         env:
@@ -230,7 +241,7 @@ jobs:
           ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
         run: |
           [ -n "$ASC_KEY_ID" ] && [ -n "$ASC_ISSUER_ID" ] || exit 0
-          for f in ios/xcodebuild.log export.log; do
+          for f in ios/xcodebuild.log export.log validate.log; do
             [ -f "$f" ] || continue
             sed -i '' -e "s/${ASC_KEY_ID}/<KEY_ID>/g" -e "s/${ASC_ISSUER_ID}/<ISSUER_ID>/g" "$f"
             if grep -qF -e "$ASC_KEY_ID" -e "$ASC_ISSUER_ID" "$f"; then rm -f "$f"; echo "::warning::$f usunięty — maskowanie nie zadziałało"; fi
@@ -243,6 +254,7 @@ jobs:
           path: |
             ios/xcodebuild.log
             export.log
+            validate.log
   tag:
     needs: build
     if: ${{ inputs.bez_wysylki != true }}  # przebieg dowodowy nie wysyła builda, więc nie tworzy tagu
