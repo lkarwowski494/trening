@@ -896,6 +896,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Savaitės planas iš jūsų šablonų pagal tas pačias taisykles kaip generatoriuje — peržiūrėsite jį prieš išsaugodami. Šablonai lieka nepakitę.",
  "Plan z moich szablonów": "Planas iš mano šablonų",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Planas iš jūsų šablonų — peržiūrai. Šablonai nekeičiami.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Planas pakeistas: {day} — ankstesnės dienos pagal ankstesnį planą",
  "Plan: {name}": "Planas: {name}",
  "Planowanie": "Planavimas",
  "plecy": "nugara",

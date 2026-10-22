@@ -896,6 +896,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Een weekplan uit je sjablonen volgens dezelfde regels als de generator — je bekijkt het voordat je opslaat. Je sjablonen blijven ongewijzigd.",
  "Plan z moich szablonów": "Plan uit mijn sjablonen",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Plan uit je sjablonen — om te bekijken. De sjablonen blijven ongewijzigd.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Plan gewijzigd op {day} — eerdere dagen volgen het vorige plan",
  "Plan: {name}": "Plan: {name}",
  "Planowanie": "Planning",
  "plecy": "rug",

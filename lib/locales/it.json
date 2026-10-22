@@ -896,6 +896,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Un piano settimanale dalle tue schede con le stesse regole del generatore — lo controlli prima di salvarlo. Le schede restano invariate.",
  "Plan z moich szablonów": "Piano dalle mie schede",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Piano dalle tue schede — da rivedere. Le schede restano invariate.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Piano modificato: {day} — i giorni precedenti seguono il piano precedente",
  "Plan: {name}": "Piano: {name}",
  "Planowanie": "Pianificazione",
  "plecy": "schiena",

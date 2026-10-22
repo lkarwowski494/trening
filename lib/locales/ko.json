@@ -724,6 +724,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "생성기와 같은 규칙으로 내 루틴에서 주간 플랜을 만듭니다 — 저장하기 전에 검토할 수 있습니다. 루틴은 그대로 유지됩니다.",
  "Plan z moich szablonów": "내 루틴으로 플랜",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "내 루틴으로 만든 플랜 — 검토용입니다. 루틴은 바뀌지 않습니다.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "플랜 변경일: {day} — 이전 날짜는 이전 플랜 기준",
  "Plan: {name}": "플랜: {name}",
  "Planowanie": "계획",
  "plecy": "등",

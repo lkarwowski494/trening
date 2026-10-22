@@ -896,6 +896,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "En ukeplan fra malene dine etter de samme reglene som generatoren — du ser gjennom den før lagring. Malene forblir uendret.",
  "Plan z moich szablonów": "Plan fra mine maler",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Plan fra malene dine — til gjennomgang. Malene er uendret.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Plan endret {day} — tidligere dager følger forrige plan",
  "Plan: {name}": "Plan: {name}",
  "Planowanie": "Planlegging",
  "plecy": "rygg",

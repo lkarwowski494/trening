@@ -724,6 +724,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Kế hoạch tuần từ các mẫu của bạn, theo cùng quy tắc với trình tạo — bạn xem lại trước khi lưu. Các mẫu của bạn giữ nguyên.",
  "Plan z moich szablonów": "Kế hoạch từ mẫu của tôi",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Kế hoạch từ các mẫu của bạn — để xem lại. Các mẫu không thay đổi.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Kế hoạch đổi vào {day} — các ngày trước theo kế hoạch cũ",
  "Plan: {name}": "Kế hoạch: {name}",
  "Planowanie": "Lên kế hoạch",
  "plecy": "lưng",

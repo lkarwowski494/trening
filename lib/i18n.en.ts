@@ -842,6 +842,7 @@ export const EN: Record<string, string> = {
   'RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).': 'Enter RIR from 0 to {max}; more than {max} reps in reserve is saved as “light” (RPE {light}), because below RPE {min} the scale describes effort in words, not reps in reserve (Helms et al. 2016).',
   'Najcięższy ciężar w miejscu dla boju głównego ({list}): {w}. Ciężkie serie {a}–{b} powtórzeń (ok. {p}% maksimum) mogą być z nim za lekkie — jeśli {b} powtórzeń wychodzi lekko, rób więcej powtórzeń, bliżej upadku. Siła też wtedy rośnie, ale zwykle mniej niż przy dużym ciężarze.': 'Heaviest weight at this place for the main lift ({list}): {w}. Heavy sets of {a}–{b} reps (about {p}% of max) may be too light with it — if {b} reps feel light, do more reps, closer to failure. Strength still increases, but usually less than with heavy loads.',
   '{p}% planu tygodnia ({done} z {n})': '{p}% of the weekly plan ({done} of {n})',
+  'Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu': 'Plan changed on {day} — earlier days follow the previous plan',
   'Postęp tygodnia: {p}% planu, zrobione {done} z {n} treningów z planu': 'Weekly progress: {p}% of the plan, {done} of {n} planned workouts done',
   'zaplanowane': 'planned',
   'Tygodnie z wykonanym planem: {done} z {n}': 'Weeks with the plan done: {done} of {n}',

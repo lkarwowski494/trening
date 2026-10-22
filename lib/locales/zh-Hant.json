@@ -724,6 +724,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "依照與產生器相同的規則，用你的範本建立每週計畫 — 儲存前可以先檢視。範本不會改變。",
  "Plan z moich szablonów": "用我的範本排計畫",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "以你的範本產生的計畫——供檢視。範本不會更改。",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "計畫變更於 {day}，先前的日子依舊計畫計算",
  "Plan: {name}": "計畫：{name}",
  "Planowanie": "規劃",
  "plecy": "背部",

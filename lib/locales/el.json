@@ -896,6 +896,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Εβδομαδιαίο πρόγραμμα από τα πρότυπά σας με τους ίδιους κανόνες με τη γεννήτρια — το ελέγχετε πριν την αποθήκευση. Τα πρότυπα μένουν ως έχουν.",
  "Plan z moich szablonów": "Πρόγραμμα από τα πρότυπά μου",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Πρόγραμμα από τα πρότυπά σας — προς έλεγχο. Τα πρότυπα μένουν ως έχουν.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Το πρόγραμμα άλλαξε: {day} — οι προηγούμενες ημέρες ακολουθούν το προηγούμενο πρόγραμμα",
  "Plan: {name}": "Πρόγραμμα: {name}",
  "Planowanie": "Σχεδιασμός",
  "plecy": "πλάτη",

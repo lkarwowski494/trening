@@ -896,6 +896,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Nädalaplaan sinu mallidest samade reeglite järgi nagu generaatoris — vaatad selle enne salvestamist üle. Mallid jäävad muutmata.",
  "Plan z moich szablonów": "Plaan minu mallidest",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Plaan sinu mallidest — ülevaatamiseks. Mallid jäävad muutmata.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Plaan muudetud: {day} — varasemad päevad järgivad eelmist plaani",
  "Plan: {name}": "Plaan: {name}",
  "Planowanie": "Planeerimine",
  "plecy": "selg",

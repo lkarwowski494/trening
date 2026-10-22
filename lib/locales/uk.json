@@ -896,6 +896,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Тижневий план із ваших шаблонів за тими самими правилами, що й генератор, — переглянете його перед збереженням. Шаблони залишаться без змін.",
  "Plan z moich szablonów": "План з моїх шаблонів",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "План із ваших шаблонів — для перегляду. Шаблони без змін.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "План змінено: {day} — попередні дні за попереднім планом",
  "Plan: {name}": "План: {name}",
  "Planowanie": "Планування",
  "plecy": "спина",

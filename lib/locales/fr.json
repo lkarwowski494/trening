@@ -896,6 +896,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Un programme de la semaine à partir de vos modèles, avec les mêmes règles que le générateur — vous le vérifiez avant d’enregistrer. Vos modèles restent inchangés.",
  "Plan z moich szablonów": "Programme à partir de mes modèles",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Plan issu de vos modèles — à relire. Les modèles restent inchangés.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Plan modifié : {day} — les jours précédents suivent l’ancien plan",
  "Plan: {name}": "Plan : {name}",
  "Planowanie": "Planification",
  "plecy": "dos",

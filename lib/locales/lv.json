@@ -896,6 +896,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Nedēļas plāns no tavām veidnēm pēc tiem pašiem noteikumiem kā ģeneratorā — pirms saglabāšanas to pārskatīsiet. Veidnes paliek nemainītas.",
  "Plan z moich szablonów": "Plāns no manām veidnēm",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Plāns no jūsu veidnēm — pārskatīšanai. Veidnes paliek nemainītas.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Plāns mainīts: {day} — iepriekšējās dienas pēc iepriekšējā plāna",
  "Plan: {name}": "Plāns: {name}",
  "Planowanie": "Plānošana",
  "plecy": "mugura",
