@@ -7,7 +7,7 @@ import { LANGS, applyLang, lang, t, type Lang } from '../i18n';
  * (ćwiczenie, seria, ciężar, zapowiedź przerwy) przychodzą gotowe z telefonu.
  * Wzorce docs/32: etykiety jak na telefonie („Seria zrobiona”, „Pomiń”, „Anuluj”, „Cofnij”), „Pomiń” pyta o potwierdzenie.
  */
-export const WATCH_LABEL_IDS = ['done', 'differ', 'skip', 'skipAsk', 'cancel', 'undo', 'rest', 'set', 'pause', 'connect', 'idle', 'finished', 'update', 'nothingLeft'] as const;
+export const WATCH_LABEL_IDS = ['done', 'differ', 'skip', 'skipAsk', 'cancel', 'undo', 'rest', 'set', 'pause', 'connect', 'idle', 'finished', 'update', 'nothingLeft', 'finish'] as const;
 export type WatchLabelId = typeof WATCH_LABEL_IDS[number];
 
 /** Etykiety w bieżącym języku aplikacji. Każdy tekst jako literał w wywołaniu tłumaczenia, żeby check:i18n widział klucze. */
@@ -16,6 +16,7 @@ export function watchLabels(): Record<WatchLabelId, string> {
     done: t('Seria zrobiona'), differ: t('Zrobione inaczej'), skip: t('Pomiń'), skipAsk: t('Pominąć ćwiczenie?'), cancel: t('Anuluj'), undo: t('Cofnij'),
     rest: t('Przerwa'), set: t('Seria'), pause: t('Trening wstrzymany'), connect: t('Połącz z telefonem'), idle: t('Zacznij trening na telefonie'),
     finished: t('Trening zakończony'), update: t('Zaktualizuj aplikację na zegarku'), nothingLeft: t('nic więcej do zrobienia'),
+    finish: t('Zakończ serię'), /* M3 ZM-05: w trakcie pomiaru serii na czas przycisk główny — ta sama nazwa co na telefonie */
   };
 }
 /** Etykiety dla języka `l` (język aplikacji zostaje taki, jaki był). */

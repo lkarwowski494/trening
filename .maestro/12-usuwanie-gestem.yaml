@@ -21,6 +21,7 @@ name: Usuwanie przesunięciem w lewo i „Pomiń dziś”
 - tapOn: "\\+ Add exercise"
 - tapOn: "Search exercises…"
 - inputText: "Back Squat"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 # run 38607952098: stuknięcie w wiersz „Back Squat” przy rozsuwającej się klawiaturze nie wybrało ćwiczenia (zrzut: wybór wciąż otwarty) — powtórka stuknięcia

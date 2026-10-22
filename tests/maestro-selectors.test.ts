@@ -48,8 +48,10 @@ test('regresja run 37611882320: scenariusz 11 nie używa hideKeyboard (klawiatur
   const fs = require('fs'); const path = require('path'); const { EN } = require('@/lib/i18n.en');
   const y = fs.readFileSync(path.join(__dirname, '..', '.maestro', '11-widok-skupiony.yaml'), 'utf8');
   expect(y).not.toMatch(/^- hideKeyboard/m);
-  /* audyt 0.10 (A11-19): licznik z NBSP (glue) — selektor z „.” zamiast spacji (regex Maestro: „.” pasuje do NBSP) */
-  expect(y).toContain(`- tapOn: "${EN['seria {n} z {all}'].replace('{n}', '1').replace('{all}', '1').replace(/ /g, '.')}"`);
+  /* audyt 0.10 (A11-19): licznik z NBSP (glue) — selektor z „.” zamiast spacji (regex Maestro: „.” pasuje do NBSP). M3 p2 (ZM-01): licznik jest częścią opisu tablicy (zwykłe spacje),
+   * a klawiaturę zdejmuje tapnięcie w nagłówek bloku — selektor opisu tablicy ma zwykłe spacje, bez NBSP */
+  expect(y).toContain(`- tapOn: "Back Squat"`);
+  expect(y).toContain(`"Back Squat, ${EN['seria {n} z {all}'].replace('{n}', '1').replace('{all}', '1')}\\\\. 80 kilograms, 5 reps.*"`);
 });
 
 test('regresja run 37645619096: każdy scenariusz .maestro/*.yaml jest na liście flows w config.yaml (inaczej Maestro go pomija)', () => {
@@ -179,9 +181,12 @@ describe('regresja E2E 91', () => {
   const y = (f: string) => fs.readFileSync(path.join(__dirname, '..', '.maestro', f), 'utf8') as string;
   const steps = (f: string) => y(f).split('\n').filter((l: string) => /^\s*- /.test(l)).map((l: string) => l.trim());
 
-  test('11: przed tapnięciem pola powtórzeń klawiatura numeryczna jest schowana (tap w tekst karty) — „Now: 805 kg”', () => {
-    const s = steps('11-widok-skupiony.yaml'); const i = s.indexOf('- tapOn: { id: "r-0-0" }');
-    expect(i).toBeGreaterThan(1); expect(s[i - 1]).toBe('- tapOn: "set.1.of.1"'); expect(s[i - 2]).toBe('- inputText: "80"');
+  /* M3 p2 (ZM-01): wpis idzie przez tablicę „teraz” (pola nad klawiaturą, nie w wierszu serii) — dawny warunek „schowaj klawiaturę przed tapnięciem r-0-0” nie dotyczy; zostaje
+   * reguła: po ostatnim wpisie klawiaturę zdejmuje tapnięcie w tekst (nazwa ćwiczenia), bez hideKeyboard, a dopiero potem sprawdzamy opis tablicy */
+  test('11: wpis na tablicy — po powtórzeniach klawiaturę zdejmuje tapnięcie w nazwę ćwiczenia, bez hideKeyboard (klawiatura numeryczna nie ma akcji)', () => {
+    const s = steps('11-widok-skupiony.yaml'); const i = s.indexOf('- inputText: "5"');
+    expect(i).toBeGreaterThan(1); expect(s[i - 2]).toMatch(/^- tapOn: \{ id: "board-input-reps" \}/); expect(s[i + 1]).toMatch(/^- tapOn: "Back Squat"/); expect(s[i + 2]).toMatch(/^- assertVisible: "Back Squat, set 1 of 1/);
+    expect(s.some((l: string) => /hideKeyboard/.test(l))).toBe(false);
   });
   test('15: nagłówek „Packages (n)” sprawdzany po przewinięciu (pod kilkunastoma licencjami)', () => {
     expect(y('15-masa-licencje.yaml')).toContain('- scrollUntilVisible: { element: "Packages \\\\(\\\\d+\\\\)", direction: DOWN');
@@ -249,7 +254,7 @@ test('22 (0.18): scenariusz „Dostosuj do miejsca” — angielskie literały z
   expect(s.slice(cancel + 1, line).some((l: string) => /Apply/.test(l))).toBe(false); /* „Cancel” niczego nie zastosował */
 });
 
-test('23 (0.19): scenariusz „Inne miejsce (tylko dziś)” — angielskie literały zgodne ze słownikiem, kolejność: arkusz 📍 → okno „Inne miejsce” → zestaw → „Use” → „Adjust to: Today only” → „Apply (1)” → „instead of” → lista miejsc bez miejsca jednorazowego', () => {
+test('23 (0.19): scenariusz „Inne miejsce (tylko dziś)” — angielskie literały zgodne ze słownikiem, kolejność: arkusz pinezki → okno „Inne miejsce” → zestaw → „Use” → „Adjust to: Today only” → „Apply (1)” → „instead of” → lista miejsc bez miejsca jednorazowego', () => {
   const { EN } = require('@/lib/i18n.en'); const s = readFileSync(join(dir, '23-miejsce-jednorazowe.yaml'), 'utf8').split('\n').filter((l: string) => l.startsWith('- '));
   const at = (re: RegExp, from = 0) => { const i = s.findIndex((l: string, k: number) => k >= from && re.test(l)); expect(i).toBeGreaterThanOrEqual(from); return i; };
   expect(EN['Inne miejsce (tylko dziś)…']).toBe('Another place (today only)…'); expect(EN['Tylko dziś']).toBe('Today only'); expect(EN['Użyj']).toBe('Use'); expect(EN['Gotowe zestawy']).toBe('Ready-made sets'); expect(EN['Zapisz jako miejsce']).toBe('Save as a place');
@@ -261,9 +266,9 @@ test('23 (0.19): scenariusz „Inne miejsce (tylko dziś)” — angielskie lite
 
 test('13 (0.19): miejsce na zakres dni w planie — Hotel w panelu dnia, linijka „Workout place: Hotel”, „Remove place” po „Set place”; scrollUntilVisible przed przyciskami pod krawędzią', () => {
   const { EN } = require('@/lib/i18n.en'); const s = readFileSync(join(dir, '13-kalendarz-plan.yaml'), 'utf8').split('\n').filter((l: string) => /^\s*- /.test(l)).map((l: string) => l.trim()); const at = (re: RegExp, from = 0) => { const i = s.findIndex((l: string, k: number) => k >= from && re.test(l)); expect(i).toBeGreaterThanOrEqual(from); return i; };
-  expect(EN['📍 Miejsce na te dni']).toBe('📍 Place for these days'); expect(EN['Ustaw miejsce']).toBe('Set place'); expect(EN['Usuń miejsce']).toBe('Remove place'); expect(EN['Miejsce treningu: {l}'].replace('{l}', 'Hotel')).toBe('Workout place: Hotel');
-  const open = at(/tapOn: "📍 Place for these days"/); const set = at(/tapOn: "Set place"/, open); expect(s[set - 1]).toMatch(/scrollUntilVisible: \{ element: "Set place"/); const line = at(/visible: "Workout place: Hotel"/, set);
-  const reopen = at(/tapOn: "📍 Place for these days"/, line); const rm = at(/tapOn: "Remove place"/, reopen); expect(s[rm - 1]).toMatch(/scrollUntilVisible: \{ element: "Remove place"/); at(/assertNotVisible: "Workout place: Hotel"/, rm);
+  expect(EN['Miejsce na te dni']).toBe('Place for these days'); expect(EN['Ustaw miejsce']).toBe('Set place'); expect(EN['Wyczyść miejsce']).toBe('Remove place'); expect(EN['Miejsce treningu: {l}'].replace('{l}', 'Hotel')).toBe('Workout place: Hotel');
+  const open = at(/tapOn: "Place for these days"/); const set = at(/tapOn: "Set place"/, open); expect(s[set - 1]).toMatch(/scrollUntilVisible: \{ element: "Set place"/); const line = at(/visible: "Workout place: Hotel"/, set);
+  const reopen = at(/tapOn: "Place for these days"/, line); const rm = at(/tapOn: "Remove place"/, reopen); expect(s[rm - 1]).toMatch(/scrollUntilVisible: \{ element: "Remove place"/); at(/assertNotVisible: "Workout place: Hotel"/, rm);
   expect(at(/tapOn: "Full gym,\.\*"/)).toBeLessThan(at(/tapOn: "Monday, Rest"/)); /* miejsca tworzone przed planem; główne = pełna siłownia, więc start „Upper A” bez okna */
 });
 

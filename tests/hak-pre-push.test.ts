@@ -1,7 +1,7 @@
 /* L-009 (decyzja właściciela 21.10.2026): hak pre-push w repo (lint + check:readme + check:matrix), instalowany przez `prepare`,
    plus krok „sprawdź wynik tests.yml po wypchnięciu” w poleceniach dla agentów, które wypychają. Sprawdzamy hak na prawdziwym git push
    (także z worktree), z podstawionym `npm`, żeby nie uruchamiać lintu w teście. */
-import { chmodSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'fs';
+import { chmodSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, symlinkSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import { spawnSync } from 'child_process';
@@ -9,6 +9,7 @@ import { spawnSync } from 'child_process';
 const root = join(__dirname, '..');
 const HAK = join(root, 'scripts/hooks/pre-push');
 const INSTALATOR = join(root, 'scripts/hooks/instaluj.mjs');
+const SPRAWDZ = join(root, 'scripts/hooks/sprawdz-instalacje.mjs');
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 const hakTekst = () => readFileSync(HAK, 'utf8');
 const bezKomentarzy = (s: string) => s.split('\n').filter(l => !/^\s*#/.test(l)).join('\n');
@@ -38,7 +39,7 @@ function repoProbne(): { dir: string; zdalne: string } {
   expect(git(zdalne, ['init', '--bare', '-q']).status).toBe(0);
   expect(git(dir, ['init', '-q', '-b', 'main']).status).toBe(0);
   mkdirSync(join(dir, 'scripts/hooks'), { recursive: true });
-  for (const f of ['pre-push', 'instaluj.mjs']) copyFileSync(join(root, 'scripts/hooks', f), join(dir, 'scripts/hooks', f));
+  for (const f of ['pre-push', 'instaluj.mjs', 'sprawdz-instalacje.mjs']) copyFileSync(join(root, 'scripts/hooks', f), join(dir, 'scripts/hooks', f));
   copyFileSync(join(root, 'scripts/verify-docs.mjs'), join(dir, 'scripts/verify-docs.mjs'));
   chmodSync(join(dir, 'scripts/hooks/pre-push'), 0o755);
   writeFileSync(join(dir, 'plik.txt'), '1\n');
@@ -252,5 +253,103 @@ describe('polecenia agentów, które wypychają: krok o wyniku tests.yml po wypc
     });
     const WYJATKI: Record<string, string> = { audytor: 'przegląd tylko do odczytu, niczego nie wypycha' };
     expect(zBash.filter(r => !WYPYCHAJA.includes(r) && !(r in WYJATKI))).toEqual([]);
+  });
+});
+
+/* L-014 (akcja 4): `npm run verify` zaczyna się od sprawdzenia, że hak jest zainstalowany (npm ci --ignore-scripts go nie instaluje). */
+describe('verify sprawdza zainstalowany hak pre-push (L-014)', () => {
+  const sprawdz = (dir: string, env: NodeJS.ProcessEnv = bezCI()) => spawnSync(process.execPath, [join(dir, 'scripts/hooks/sprawdz-instalacje.mjs')], { cwd: dir, env, encoding: 'utf8' });
+  test('pierwszy krok skryptu verify to sprawdzenie haka, przed typecheck', () => {
+    expect(pkg.scripts.verify.startsWith('node scripts/hooks/sprawdz-instalacje.mjs && npm run typecheck')).toBe(true);
+    expect(existsSync(SPRAWDZ)).toBe(true);
+  });
+  test('hak niezainstalowany: kod 1 i polecenie instalacji', () => {
+    const { dir } = repoProbne();
+    const r = sprawdz(dir);
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain('node scripts/hooks/instaluj.mjs');
+    expect(r.stderr).toMatch(/--ignore-scripts/);
+  });
+  test('hak zainstalowany (core.hooksPath = scripts/hooks): kod 0', () => {
+    const { dir } = repoProbne();
+    zainstaluj(dir);
+    expect(sprawdz(dir).status).toBe(0);
+  });
+  test('po poleceniu z komunikatu sprawdzenie przechodzi', () => {
+    const { dir } = repoProbne();
+    expect(sprawdz(dir).status).toBe(1);
+    expect(zainstaluj(dir).status).toBe(0);
+    expect(sprawdz(dir).status).toBe(0);
+  });
+  test('hak skopiowany do .git/hooks też się liczy', () => {
+    const { dir } = repoProbne();
+    mkdirSync(join(dir, '.git/hooks'), { recursive: true });
+    copyFileSync(join(dir, 'scripts/hooks/pre-push'), join(dir, '.git/hooks/pre-push'));
+    expect(sprawdz(dir).status).toBe(0);
+  });
+  test('cudzy core.hooksPath bez haka: kod 1', () => {
+    const { dir } = repoProbne();
+    git(dir, ['config', '--local', 'core.hooksPath', '.cudze-haki']);
+    expect(sprawdz(dir).status).toBe(1);
+  });
+  test('worktree współdzieli konfigurację: sprawdzenie przechodzi także tam', () => {
+    const { dir } = repoProbne();
+    zainstaluj(dir);
+    const wt = join(nowyKatalog('hak-wt2-'), 'wt');
+    expect(git(dir, ['worktree', 'add', '-q', '-b', 'f', wt]).status).toBe(0);
+    expect(sprawdz(wt).status).toBe(0);
+  });
+  /* Agenci pracują w worktree, a core.hooksPath bywa ustawione bezwzględnie na scripts/hooks innego checkoutu tego samego repo. */
+  describe('core.hooksPath bezwzględny, wskazujący na inny worktree (22.10.2026)', () => {
+    const zWorktree = () => {
+      const { dir } = repoProbne();
+      const wt = join(nowyKatalog('hak-wt3-'), 'wt');
+      expect(git(dir, ['worktree', 'add', '-q', '-b', 'g', wt]).status).toBe(0);
+      return { dir, wt };
+    };
+    test('hooksPath = scripts/hooks głównego checkoutu (identyczny hak): kontrola w worktree przechodzi', () => {
+      const { dir, wt } = zWorktree();
+      git(dir, ['config', '--local', 'core.hooksPath', join(dir, 'scripts/hooks')]);
+      expect(sprawdz(wt).status).toBe(0);
+      expect(sprawdz(dir).status).toBe(0);
+    });
+    test('to samo przez dowiązanie symboliczne (realpath)', () => {
+      const { dir, wt } = zWorktree();
+      const link = join(nowyKatalog('hak-link-'), 'haki');
+      symlinkSync(join(dir, 'scripts/hooks'), link);
+      git(dir, ['config', '--local', 'core.hooksPath', link]);
+      expect(sprawdz(wt).status).toBe(0);
+    });
+    test('hooksPath nieustawione: nadal kod 1 w worktree', () => {
+      const { wt } = zWorktree();
+      expect(sprawdz(wt).status).toBe(1);
+    });
+    test('hooksPath wskazuje katalog bez naszego haka: kod 1', () => {
+      const { dir, wt } = zWorktree();
+      git(dir, ['config', '--local', 'core.hooksPath', nowyKatalog('hak-pusty-')]);
+      expect(sprawdz(wt).status).toBe(1);
+    });
+    test('hooksPath wskazuje hak o innej treści: kod 1', () => {
+      const { dir, wt } = zWorktree();
+      const inny = nowyKatalog('hak-inny-');
+      writeFileSync(join(inny, 'pre-push'), '#!/bin/sh\nexit 0\n');
+      chmodSync(join(inny, 'pre-push'), 0o755);
+      git(dir, ['config', '--local', 'core.hooksPath', inny]);
+      expect(sprawdz(wt).status).toBe(1);
+    });
+    test('hak o tej samej treści, ale niewykonywalny: kod 1', () => {
+      const { dir, wt } = zWorktree();
+      const kopia = nowyKatalog('hak-nx-');
+      copyFileSync(join(dir, 'scripts/hooks/pre-push'), join(kopia, 'pre-push'));
+      chmodSync(join(kopia, 'pre-push'), 0o644);
+      git(dir, ['config', '--local', 'core.hooksPath', kopia]);
+      expect(sprawdz(wt).status).toBe(1);
+    });
+  });
+  test('w CI (zmienna CI) pomija z komunikatem, kod 0', () => {
+    const { dir } = repoProbne();
+    const r = sprawdz(dir, { ...bezCI(), CI: 'true' });
+    expect(r.status).toBe(0);
+    expect(r.stdout + r.stderr).toMatch(/CI/);
   });
 });

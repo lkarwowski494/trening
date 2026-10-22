@@ -117,6 +117,8 @@ struct ClientView: Codable, Equatable {
   var paused: Bool
   var timed: Bool
   var targetSec: Int?
+  /// telefon mierzy tę serię na czas: przycisk główny = „Zakończ serię” (M3 ZM-05)
+  var measuring: Bool
   var doneCount: Int
   var totalCount: Int
   var toFillCount: Int
@@ -185,7 +187,7 @@ private func project(_ base: WatchSnapshot, _ queue: [QueuedEvent], _ history: [
 /// Widok do wyświetlenia w chwili `nowMs`.
 func clientView(_ s: ClientState, nowMs: Double) -> ClientView {
   let blank = ClientView(screen: .idle, title: "", counter: "", load: "", group: nil, cue: nil, restEndsAt: nil, restTotalSec: nil, paused: false, timed: false,
-                         targetSec: nil, doneCount: 0, totalCount: 0, toFillCount: 0, undoUntil: nil, confirmSkip: false, actions: [], offline: !s.connected, busy: false)
+                         targetSec: nil, measuring: false, doneCount: 0, totalCount: 0, toFillCount: 0, undoUntil: nil, confirmSkip: false, actions: [], offline: !s.connected, busy: false)
   func with(_ screen: ClientScreen, _ edit: (inout ClientView) -> Void = { _ in }) -> ClientView {
     var v = blank; v.screen = screen; edit(&v); return v
   }
@@ -215,6 +217,7 @@ func clientView(_ s: ClientState, nowMs: Double) -> ClientView {
   v.restTotalSec = rest?.totalSec
   v.timed = n?.timed ?? false
   v.targetSec = n?.targetSec
+  v.measuring = n?.measuring ?? false
   v.undoUntil = undoUntil
   v.confirmSkip = s.confirmSkip && n != nil
   v.actions = actions

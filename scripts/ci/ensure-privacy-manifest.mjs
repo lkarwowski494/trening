@@ -6,13 +6,10 @@
 // Użycie: node scripts/ci/ensure-privacy-manifest.mjs --check|--fix <plik.xcprivacy> [...]
 import { readFileSync, writeFileSync } from 'node:fs';
 
-/** Kategoria → powody użycia (kody Apple), dopisywane przy --fix. FileTimestamp, UserDefaults i SystemBootTime dokłada rdzeń React Native. */
-export const REQUIRED = {
-  NSPrivacyAccessedAPICategoryFileTimestamp: ['C617.1'],
-  NSPrivacyAccessedAPICategoryUserDefaults: ['CA92.1'],
-  NSPrivacyAccessedAPICategorySystemBootTime: ['35F9.1'],
-  NSPrivacyAccessedAPICategoryDiskSpace: ['E174.1', '85F4.1'],
-};
+/** Kategoria → powody użycia (kody Apple). Jedno źródło: `ios.privacyManifests` w app.json (R-007, 21.10.2026) — Expo zapisuje je do PrivacyInfo.xcprivacy przy prebuild,
+ *  a agregacja CocoaPods dokłada resztę z podów. --fix zostaje tylko jako ręczne awaryjne uzupełnienie (workflowy używają --check, żeby łatka nie maskowała braku deklaracji). */
+const manifest = JSON.parse(readFileSync(new URL('../../app.json', import.meta.url), 'utf8')).expo.ios.privacyManifests;
+export const REQUIRED = Object.fromEntries(manifest.NSPrivacyAccessedAPITypes.map(t => [t.NSPrivacyAccessedAPIType, t.NSPrivacyAccessedAPITypeReasons]));
 const KEY = '<key>NSPrivacyAccessedAPITypes</key>';
 const [mode, ...files] = process.argv.slice(2);
 if (!['--check', '--fix'].includes(mode) || !files.length) { console.error('Użycie: ensure-privacy-manifest.mjs --check|--fix <plik> [...]'); process.exit(2); }

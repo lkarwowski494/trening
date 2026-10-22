@@ -109,9 +109,8 @@ describe('wspólne komponenty ekranów', () => {
     await tap(screen.getByLabelText('Dzień wcześniej')); expect(screen.getByLabelText('Data pomiaru (RRRR-MM-DD)').props.value).toBe('2026-10-12'); await tap(screen.getByLabelText('Dzień później')); await tap(screen.getByLabelText('Dzień później')); expect(screen.getByLabelText('Data pomiaru (RRRR-MM-DD)').props.value).toBe('2026-10-14');
   });
   test('masa ciała: pusta lista to <Empty> „Brak pomiarów.”', async () => { await boot('/more/bodymass'); expect(screen.getByText('Brak pomiarów.')).toBeTruthy(); });
-  test('Segmented zamiast dwóch chipów: tryb generatora („Generator szablonów i planu”) przełącza i zaznacza wybór', async () => {
-    await boot('/generator'); const g = screen.getByLabelText('Generator szablonów i planu'); expect(g.props.accessibilityRole).toBe('radiogroup');
-    expect(screen.getByLabelText('Nowe szablony i plan').props.accessibilityState.selected).toBe(true); await tap(screen.getByLabelText('Plan z moich szablonów')); expect(screen.getByLabelText('Plan z moich szablonów').props.accessibilityState.selected).toBe(true);
+  test('Segmented: generator nie ma już przełącznika trybu (ZM-03, 21.10.2026 zastępuje dawny wybór trybu); Segmented zostaje w Ustawieniach i Postępach', async () => {
+    await boot('/generator'); expect(screen.queryByLabelText('Generator szablonów i planu')).toBeNull();
   });
   test('Btn loading: wskaźnik, stan busy+disabled VoiceOver, brak wywołania onPress; Btn expanded', () => {
     const fn = jest.fn(); const r = render(<><Btn title="Eksport" loading onPress={fn} /><Btn title="Więcej" expanded onPress={fn} /></>);

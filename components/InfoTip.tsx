@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, Text, View, type StyleProp, type ViewStyle } from 'react-native';
-import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, TEXT_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
 import { lang, t } from '@/lib/i18n';
 
 /*
@@ -28,7 +28,7 @@ export function InfoButton({ id, label, open, onToggle }: { id: string; label: s
     <Pressable testID={infoTestId(id)} accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={t('Więcej informacji: {name}', { name: label })}
       accessibilityHint={t('Pokazuje objaśnienie pod nagłówkiem.')} accessibilityState={{ expanded: open }} hitSlop={INFO_HIT_SLOP} onPress={onToggle}
       style={{ width: INFO_SIZE, height: INFO_SIZE, borderRadius: INFO_SIZE / 2, borderWidth: 1.5, borderColor: open ? th.accent : th.muted, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-      <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={INFO_GLYPH_SCALE_MAX} style={{ color: open ? th.accent : th.muted, fontSize: 14, lineHeight: 18, fontFamily: F.semibold }}>i</Text>
+      <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={INFO_GLYPH_SCALE_MAX} style={{ color: open ? th.accent : th.muted, ...font('callout'), ...FW.semibold }}>i</Text>
     </Pressable>
   );
 }
@@ -36,9 +36,9 @@ export function InfoButton({ id, label, open, onToggle }: { id: string; label: s
 export function InfoBox({ id, info }: { id: string; info: React.ReactNode | string[] }) {
   const th = useTheme(); const paras = Array.isArray(info) ? info : null;
   const body = (x: React.ReactNode, k?: number) => typeof x === 'string'
-    ? <Text key={k} accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontSize: 14, fontFamily: F.regular }}>{x}</Text>
+    ? <Text key={k} accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('callout') }}>{x}</Text>
     : <React.Fragment key={k}>{x}</React.Fragment>;
-  return <View testID={infoTextTestId(id)} style={{ backgroundColor: th.surface2, borderRadius: 10, padding: 10, marginTop: 4, marginBottom: 6, gap: 6 }}>{paras ? paras.map((p, i) => body(p, i)) : body(info as React.ReactNode)}</View>;
+  return <View testID={infoTextTestId(id)} style={{ backgroundColor: th.surface2, borderRadius: RADIUS.group, padding: 10, marginTop: 4, marginBottom: 6, gap: 6 }}>{paras ? paras.map((p, i) => body(p, i)) : body(info as React.ReactNode)}</View>;
 }
 /** Stan rozwinięcia: świadomie bez zapamiętywania (P4 A) — każde wejście na ekran zaczyna od zwiniętego. */
 export function useInfoOpen() { const [open, setOpen] = React.useState(false); return [open, () => setOpen(v => !v)] as const; }

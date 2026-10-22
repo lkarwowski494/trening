@@ -22,9 +22,18 @@ final class WatchLabelsTests: XCTestCase {
   func testSharedLabelsEqualTheProtocolLabelFixtures() throws {
     for lang in WatchLabels.languages {
       let proto = try JSONSerialization.jsonObject(with: Fixtures.data("labels/\(lang).json")) as! [String: String]
-      XCTAssertEqual(proto.count, 14, lang)
+      XCTAssertEqual(proto.count, 15, lang) /* M3 p6: doszło `finish` („Zakończ serię”) */
       for (id, text) in proto { XCTAssertEqual(WatchLabels.table[lang]?[id], text, "\(lang).\(id)") }
     }
+  }
+
+  /// M3 ZM-05: etykieta pomiaru jest w każdym języku i różni się od „Seria zrobiona” (dwie nazwy dwóch różnych stanów); po polsku „Zakończ serię”.
+  func testFinishLabelExistsInEveryLanguageAndDiffersFromDone() {
+    for lang in WatchLabels.languages {
+      XCTAssertFalse(WatchLabels.text(.finish, lang: lang).isEmpty, lang)
+      XCTAssertNotEqual(WatchLabels.text(.finish, lang: lang), WatchLabels.text(.done, lang: lang), lang)
+    }
+    XCTAssertEqual(WatchLabels.text(.finish, lang: "pl"), "Zakończ serię")
   }
 
   func testTextFallsBackToEnglishThenKey() {

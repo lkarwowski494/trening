@@ -7,6 +7,7 @@ Stan: 20.10.2026 (audyt M1: zadania 071 i 072; DEC-25, DEC-26). Dokument zebrany
 ## 1. Cel i przekaz (z docs)
 
 - Cel (właściciel 06.10.2026): powolne zdobywanie użytkowników, którzy zostają na stałe, bez ostrej szybkiej promocji; „100 pobrań miesięcznie byłoby super.” Liczby punktu wyjścia w docs/15 to ocena agenta, nie dane — do sprawdzenia po premierze w App Store Connect (Analityka).
+- Cel wzrostu wyprowadzony z progu opłacalności (decyzja właściciela 21.10.2026): **ok. 310 pobrań miesięcznie** (≈ 75 płacących rocznie przy konwersji 2%); wcześniejsze „100 pobrań miesięcznie” daje ok. 160 USD/rok, poniżej progu 500 USD (docs/monetyzacja.md, „Bramka W0”).
 - Przekaz (docs/18, 13.10.2026): prywatność, cena, języki, offline, prostota. Wpisy o premierze z **nowego konta twórcy** (nie z konta osobistego).
 - Zasada kanałów: wpis tam, gdzie są osoby trenujące, **spokojnie, bez linku, dopóki zasady kanału nie są przeczytane** (docs/15: „Spokojne wpisy tam, gdzie są osoby trenujące”).
 

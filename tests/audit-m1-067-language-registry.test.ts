@@ -43,8 +43,13 @@ describe('rejestr języków (docs/lokalizacja/jezyki.md)', () => {
     const covered = new Set(r.flatMap((x) => ASC[x.kod as Lang] ?? (NOT_ASC.includes(x.kod as Lang) ? [] : [x.kod])));
     expect([...names].filter((n) => !covered.has(n))).toEqual([]);
   });
-  test('opis w App Store: projekt tylko pl i en (docs/15); pozostałe brak', () => {
-    for (const x of r) expect(x.cells[9]).toMatch(['pl', 'en'].includes(x.kod) ? /^projekt/ : /^brak/);
+  test('opis w App Store: każdy język z lokalizacją App Store ma opis w store/app-store-metadata.json (M5, 22.10.2026); języki poza ASC — brak', () => {
+    const meta = JSON.parse(read('store/app-store-metadata.json')).lokalizacje as Record<string, { description?: string }>;
+    for (const x of r) {
+      const l = x.kod as Lang; const codes = ASC[l] ?? (NOT_ASC.includes(l) ? [] : [l]);
+      if (codes.length) { for (const c of codes) expect([c, !!meta[c]?.description]).toEqual([c, true]); expect(x.cells[9]).toMatch(/^store\/app-store-metadata\.json/); }
+      else expect(x.cells[9]).toMatch(/^brak/);
+    }
   });
   test('zakupy: tłumaczenie w store/iap-localizations.json; poza ASC: bg sr lt lv et; sl odrzucony 14.10.2026', () => {
     const iap = Object.keys(JSON.parse(read('store/iap-localizations.json')).tlumaczenia as Record<string, string>);

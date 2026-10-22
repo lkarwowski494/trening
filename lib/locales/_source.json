@@ -8,12 +8,8 @@
   "en": "“≥” — in the planned templates {n} {s} have no weight or reps (and no “Previous”): they count as sets but not toward volume."
  },
  {
-  "pl": "„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
-  "en": "“⏸ Pause” stops the workout clock; paused time doesn’t count towards the duration."
- },
- {
-  "pl": "„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).",
-  "en": "“Archive” in the preview hides a template; swiping left on the list deletes it (with confirmation)."
+  "pl": "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).",
+  "en": "“Archive” in the preview hides a template; delete it with the “Delete template” button at the bottom of the preview or by swiping left on the list (with confirmation)."
  },
  {
   "pl": "„Bez ograniczeń sprzętu” = pełna siłownia (sztanga, hantle, maszyny i wyciągi).",
@@ -276,6 +272,10 @@
   "en": "⇄ swap"
  },
  {
+  "pl": "+ {n} {w}",
+  "en": "+ {n} more {w}"
+ },
+ {
   "pl": "+ Dodaj ćwiczenie",
   "en": "+ Add exercise"
  },
@@ -316,16 +316,8 @@
   "en": "≡ Reorder"
  },
  {
-  "pl": "⏸ Pauza",
-  "en": "⏸ Pause"
- },
- {
   "pl": "▶ Start",
   "en": "▶ Start"
- },
- {
-  "pl": "▶ Wznów",
-  "en": "▶ Resume"
  },
  {
   "pl": "●●● główna · ●● pomocnicza · ● stabilizacja",
@@ -338,10 +330,6 @@
  {
   "pl": "★ Miejsce główne — domyślne dla nowych treningów i szablonów bez własnego miejsca.",
   "en": "★ Main place — default for new workouts and for templates without their own place."
- },
- {
-  "pl": "📍 Miejsce na te dni",
-  "en": "📍 Place for these days"
  },
  {
   "pl": "10 nowych języków: niemiecki, francuski, włoski, niderlandzki, szwedzki, duński, norweski, fiński, turecki i grecki.",
@@ -1343,8 +1331,8 @@
   "en": "Adjust to: {l}"
  },
  {
-  "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
-  "en": "Tap a set label to change its type; swipe a row left to delete it. The rep range is optional — with it you get “↑” hints. “⇅ SS” links an exercise with the next one in a superset, “✂ SS” takes it out of the group. Order: “≡ Reorder”."
+  "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+  "en": "Tap a set label to change its type; swipe a row left to delete it. The rep range is optional — with it you get “↑” hints. “⇅ SS” links an exercise with the next one in a superset, “✕ SS” takes it out of the group. Order: “≡ Reorder”."
  },
  {
   "pl": "Dół A",
@@ -1423,10 +1411,6 @@
   "en": "today"
  },
  {
-  "pl": "Dziś",
-  "en": "Today"
- },
- {
   "pl": "dziś w planie · {n} ćw.",
   "en": "planned for today · {n} ex."
  },
@@ -1443,8 +1427,8 @@
   "en": "Today: {name}"
  },
  {
-  "pl": "Dźwięk i wibracja na koniec przerwy",
-  "en": "Sound and vibration at the end of rest"
+  "pl": "Dźwięk na koniec przerwy",
+  "en": "Sound at the end of rest"
  },
  {
   "pl": "e1RM",
@@ -1648,10 +1632,6 @@
   "en": "glute-ham raise"
  },
  {
-  "pl": "Głos",
-  "en": "Voice"
- },
- {
   "pl": "główna",
   "en": "primary"
  },
@@ -1751,6 +1731,10 @@
  {
   "pl": "Gumy oporowe",
   "en": "Resistance bands"
+ },
+ {
+  "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+  "en": "Delete bands with “Edit” in the header of the bands screen or by swiping left."
  },
  {
   "pl": "Gumy…",
@@ -2268,6 +2252,10 @@
   "en": "List of options: move the plan, move only this workout, swap or rest — with muscle-group recovery in mind."
  },
  {
+  "pl": "lista serii przewijana",
+  "en": "set list scrolls"
+ },
+ {
   "pl": "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.",
   "en": "List: exercises and sets as in earlier versions, without the card."
  },
@@ -2628,6 +2616,10 @@
   "en": "Max reps assisted"
  },
  {
+  "pl": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+  "en": "The ⋯ menu in the header: “Pause workout” stops the workout clock; paused time doesn’t count towards the duration."
+ },
+ {
   "pl": "metr|metry|metrów",
   "en": "metre|metres",
   "plural": true
@@ -2669,6 +2661,10 @@
   "en": "A place for {a} – {b}. Pick the equipment you have there — no need to enter weights."
  },
  {
+  "pl": "Miejsce na te dni",
+  "en": "Place for these days"
+ },
+ {
   "pl": "Miejsce tego treningu",
   "en": "Place of this workout"
  },
@@ -2683,6 +2679,10 @@
  {
   "pl": "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.",
   "en": "A place for this workout only. Pick the equipment you have there — no need to enter weights."
+ },
+ {
+  "pl": "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.",
+  "en": "Delete a place with the “Delete place” button at the bottom of its screen or by swiping left on the list; you can’t delete the main place while others exist."
  },
  {
   "pl": "miesiąc",
@@ -2803,12 +2803,8 @@
   "en": "The recommended option is at the top: it returns to routine without losing a workout, then avoids back-to-back days with the same muscle groups and changes the fewest days."
  },
  {
-  "pl": "Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
-  "en": "At the end tap “Finish” (at the top or in the card after the last set) — the session goes to the Plan tab."
- },
- {
-  "pl": "Na koniec przerwy telefon wyśle powiadomienie — także przy zablokowanym ekranie. Potrzebna jest zgoda na powiadomienia — iOS zapyta o nią po „Dalej”.",
-  "en": "At the end of a rest the phone sends a notification — even when the screen is locked. It needs notification permission — iOS asks for it after “Continue”."
+  "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+  "en": "At the end tap “Finish” in the header (or “Finish workout” in the card after the last set) — the session goes to the Plan tab."
  },
  {
   "pl": "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.",
@@ -2905,6 +2901,14 @@
  {
   "pl": "Następna seria.",
   "en": "Next set."
+ },
+ {
+  "pl": "Następna: {x}",
+  "en": "Next: {x}"
+ },
+ {
+  "pl": "Następne ćwiczenia",
+  "en": "Up next"
  },
  {
   "pl": "Następne: {list}",
@@ -3015,8 +3019,8 @@
   "en": "You have no templates yet."
  },
  {
-  "pl": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.",
-  "en": "You have no templates with exercises. Create a template or choose “New templates and plan”."
+  "pl": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.",
+  "en": "You have no templates with exercises. Create a template or choose “Generate templates and plan”."
  },
  {
   "pl": "Nie można wyłączyć planu",
@@ -3213,10 +3217,6 @@
  {
   "pl": "Nowe rekordy: {n}",
   "en": "New records: {n}"
- },
- {
-  "pl": "Nowe szablony i plan",
-  "en": "New templates and plan"
  },
  {
   "pl": "nowe w tym tygodniu",
@@ -3451,6 +3451,10 @@
   "en": "Exercise options: {name}"
  },
  {
+  "pl": "Opcje treningu",
+  "en": "Workout options"
+ },
+ {
   "pl": "opcjonalne pole, nie wpływa na objętość",
   "en": "optional field, does not affect volume"
  },
@@ -3537,10 +3541,6 @@
  {
   "pl": "Otwiera listę szablonów.",
   "en": "Opens the template list."
- },
- {
-  "pl": "Otwiera plan tygodnia, szablony i generator.",
-  "en": "Opens the weekly plan, templates and the generator."
  },
  {
   "pl": "Otwiera Postępy.",
@@ -3637,6 +3637,10 @@
  {
   "pl": "pauza",
   "en": "paused"
+ },
+ {
+  "pl": "Pauza",
+  "en": "Pause"
  },
  {
   "pl": "Pauza — czas treningu stoi. Odhaczenie serii wznawia.",
@@ -3911,6 +3915,10 @@
   "en": "Measurements"
  },
  {
+  "pl": "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.",
+  "en": "Delete body weight measurements (“Body weight — measurements”) with “Edit” in the header or by swiping left."
+ },
+ {
   "pl": "Pominąć ćwiczenie?",
   "en": "Skip this exercise?"
  },
@@ -4131,16 +4139,16 @@
   "en": "reps from"
  },
  {
+  "pl": "Powiadamiaj",
+  "en": "Notify me"
+ },
+ {
   "pl": "Powiadomienia",
   "en": "Notifications"
  },
  {
   "pl": "Powiadomienia działają",
   "en": "Notifications work"
- },
- {
-  "pl": "Powiadomienie na koniec przerwy",
-  "en": "Notification at the end of rest"
  },
  {
   "pl": "Powtórz ostatni",
@@ -4229,8 +4237,8 @@
   "en": "Progression"
  },
  {
-  "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar — konwencja.",
-  "en": "Progression: when you reach the top of the rep range, add weight — a convention."
+  "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+  "en": "Progression: when you reach the top of the rep range, add weight. ACSM position stands recommend gradually increasing the load; the timing and the size of the step are a convention."
  },
  {
   "pl": "Propozycja {n}: {name}",
@@ -4241,8 +4249,8 @@
   "en": "A proposal to review before saving."
  },
  {
-  "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań; części oznaczone jako konwencja albo uproszczenie nie wynikają z badań.",
-  "en": "A proposal based on your assumptions — you review it before saving. The rules come from research reviews; parts marked as convention or simplification are not research findings."
+  "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań.",
+  "en": "A proposal based on your assumptions — you review it before saving. The rules come from research reviews and recommendations of organisations (WHO, ACSM); parts marked as a convention or a simplification are not direct research findings."
  },
  {
   "pl": "Propozycje",
@@ -4333,6 +4341,10 @@
   "en": "Working rest (s)"
  },
  {
+  "pl": "Przerwa trwa — powiadomić na koniec?",
+  "en": "Resting — notify you when it ends?"
+ },
+ {
   "pl": "przerwa z {s}",
   "en": "rest of {s}"
  },
@@ -4343,6 +4355,10 @@
  {
   "pl": "Przerwa: {s}",
   "en": "Rest: {s}"
+ },
+ {
+  "pl": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+  "en": "Rest. Time left: {t}. Total rest: {all}."
  },
  {
   "pl": "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).",
@@ -4593,6 +4609,10 @@
   "en": "Warm-up (W)"
  },
  {
+  "pl": "Rozgrzewki: {d} z {n} zrobione",
+  "en": "Warm-ups: {d} of {n} done"
+ },
+ {
   "pl": "rozgrzewkowa",
   "en": "warm-up"
  },
@@ -4763,6 +4783,10 @@
   "en": "Sets from this session will be lost."
  },
  {
+  "pl": "Serie: {d} z {n} zrobione",
+  "en": "Sets: {d} of {n} done"
+ },
+ {
   "pl": "Serie: {n}",
   "en": "Sets: {n}"
  },
@@ -4908,8 +4932,8 @@
   "en": "Power tower (pull-up + dip)"
  },
  {
-  "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; każdy trening siłowy daje przyrost w porównaniu z brakiem treningu.",
-  "en": "ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; any resistance training builds muscle compared with none."
+  "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+  "en": "ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; resistance training in its various forms builds muscle compared with none."
  },
  {
   "pl": "start",
@@ -4982,6 +5006,10 @@
  {
   "pl": "Stuknij dzień w zakładce Plan: „Przesuń albo pomiń” pokazuje możliwości — przesunięcie planu o 1 dzień, tylko tego treningu, zamianę albo wolne.",
   "en": "Tap a day in the Plan tab: “Move or skip” shows the options — move the plan by 1 day, move only this workout, swap or rest."
+ },
+ {
+  "pl": "Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.",
+  "en": "Tap the number on the board and enter weight and reps (or use + and −), then “Set done” — the rest timer starts by itself. If a value is missing, “Set done” moves the cursor to the empty field."
  },
  {
   "pl": "Subskrybuj",
@@ -5337,10 +5365,6 @@
   "en": "now"
  },
  {
-  "pl": "Teraz: {v}",
-  "en": "Now: {v}"
- },
- {
   "pl": "tętno maks. {max} /min",
   "en": "max heart rate {max} /min"
  },
@@ -5554,8 +5578,8 @@
   "en": "Training weeks without a deload: {n}."
  },
  {
-  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Trenerzy zwykle robią deload co {a}–{b} tygodni — to praktyka opisana w ankietach jednego zespołu badaczy (jedno źródło), nie wynik badań skuteczności.",
-  "en": "Training weeks in a row without a deload: {n}. Coaches usually deload every {a}–{b} weeks — this is practice described in surveys by one research team (single source), not a finding on effectiveness."
+  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — tak opisują praktykę trenerzy i zawodnicy w badaniach jednego zespołu (jedno źródło), nie wynik badań skuteczności.",
+  "en": "Training weeks in a row without a deload: {n}. A deload usually comes every {a}–{b} weeks — this is practice described by coaches and athletes in studies by one research team (single source), not a finding on effectiveness."
  },
  {
   "pl": "Tygodnie z wykonanym planem: {done} z {n}",
@@ -5799,11 +5823,7 @@
  },
  {
   "pl": "Usuń miejsce",
-  "en": "Remove place"
- },
- {
-  "pl": "Usuń miejsce: {a} – {b}",
-  "en": "Remove place: {a} – {b}"
+  "en": "Delete place"
  },
  {
   "pl": "Usuń miejsce: {name}",
@@ -5812,6 +5832,10 @@
  {
   "pl": "Usuń odznaczone",
   "en": "Remove unticked"
+ },
+ {
+  "pl": "Usuń plan",
+  "en": "Delete plan"
  },
  {
   "pl": "Usuń plan: {name}",
@@ -5838,6 +5862,10 @@
   "en": "Delete session: {name}"
  },
  {
+  "pl": "Usuń szablon",
+  "en": "Delete template"
+ },
+ {
   "pl": "Usuń szablon: {name}",
   "en": "Delete template: {name}"
  },
@@ -5848,6 +5876,10 @@
  {
   "pl": "Usuń usunięte ćwiczenie z treningu",
   "en": "Remove the deleted exercise from this workout"
+ },
+ {
+  "pl": "Usuń z biblioteki",
+  "en": "Delete from library"
  },
  {
   "pl": "Usuń z biblioteki: {name}",
@@ -5958,10 +5990,6 @@
   "en": "In saved plans: {names}."
  },
  {
-  "pl": "Wartości zmienisz w wierszu serii poniżej.",
-  "en": "Change the values in the set row below."
- },
- {
   "pl": "Warunki korzystania",
   "en": "Terms of Use"
  },
@@ -5984,6 +6012,10 @@
  {
   "pl": "Wersja: {v} · iOS {os} · Język: {lang}",
   "en": "Version: {v} · iOS {os} · Language: {lang}"
+ },
+ {
+  "pl": "Wibracje",
+  "en": "Haptics"
  },
  {
   "pl": "Widok treningu",
@@ -6016,6 +6048,10 @@
  {
   "pl": "Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.",
   "en": "More → Templates: the + button in the header (Add template) creates a template: exercises, sets, rep range and rest."
+ },
+ {
+  "pl": "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.",
+  "en": "More → Settings: “Sound at the end of rest” and “Haptics” are switched on separately."
  },
  {
   "pl": "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.",
@@ -6094,8 +6130,8 @@
   "en": "Values entered for the substitute will be lost."
  },
  {
-  "pl": "Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.",
-  "en": "Enter weight and reps, tick the set ✓ — the rest timer starts by itself."
+  "pl": "Wpisz {co}, żeby zapisać serię.",
+  "en": "Enter {co} to save the set."
  },
  {
   "pl": "Wpisz liczbę sekund od 0 do {n}.",
@@ -6246,6 +6282,14 @@
   "en": "Erase"
  },
  {
+  "pl": "Wyczyść miejsce",
+  "en": "Remove place"
+ },
+ {
+  "pl": "Wyczyść miejsce: {a} – {b}",
+  "en": "Remove place: {a} – {b}"
+ },
+ {
   "pl": "Wyczyść wszystkie dane",
   "en": "Erase all data"
  },
@@ -6374,6 +6418,10 @@
   "en": "Resume workout"
  },
  {
+  "pl": "z {s}",
+  "en": "of {s}"
+ },
+ {
   "pl": "z asekuracją",
   "en": "with safety arms"
  },
@@ -6434,6 +6482,10 @@
   "en": "Start {days} days free"
  },
  {
+  "pl": "Zacznij trening",
+  "en": "Start a workout"
+ },
+ {
   "pl": "Zacznij trening na telefonie",
   "en": "Start a workout on your phone"
  },
@@ -6464,6 +6516,10 @@
  {
   "pl": "Zakończ serię",
   "en": "Finish set"
+ },
+ {
+  "pl": "Zakończ serię: {ex}, seria {n}",
+  "en": "Finish set: {ex}, set {n}"
  },
  {
   "pl": "Zakończ trening",
@@ -6658,8 +6714,8 @@
   "en": "Plan a deload from {date}"
  },
  {
-  "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.",
-  "en": "Announcements work when “Sound and vibration at the end of rest” is on. You can change the same setting with the “Voice” button on the workout screen."
+  "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+  "en": "Announcements work when “Sound at the end of rest” is on. You can change the same setting in the “⋯” menu on the workout screen."
  },
  {
   "pl": "Zapowiedzi głosowe",
@@ -6814,6 +6870,22 @@
   "en": "Time this set again?"
  },
  {
+  "pl": "Zmniejsz ciężar o {n}",
+  "en": "Decrease weight by {n}"
+ },
+ {
+  "pl": "Zmniejsz czas o {n}",
+  "en": "Decrease time by {n}"
+ },
+ {
+  "pl": "Zmniejsz dystans o {n}",
+  "en": "Decrease distance by {n}"
+ },
+ {
+  "pl": "Zmniejsz powtórzenia o 1",
+  "en": "Remove one rep"
+ },
+ {
   "pl": "Zniknie z list i szablonów; historia, wykresy i eksport zostaną.",
   "en": "It disappears from lists and templates; history, charts and export keep it."
  },
@@ -6868,6 +6940,22 @@
  {
   "pl": "Zrobiony wcześniej: {name}",
   "en": "Done early: {name}"
+ },
+ {
+  "pl": "Zwiększ ciężar o {n}",
+  "en": "Increase weight by {n}"
+ },
+ {
+  "pl": "Zwiększ czas o {n}",
+  "en": "Increase time by {n}"
+ },
+ {
+  "pl": "Zwiększ dystans o {n}",
+  "en": "Increase distance by {n}"
+ },
+ {
+  "pl": "Zwiększ powtórzenia o 1",
+  "en": "Add one rep"
  },
  {
   "pl": "Zwiń inne ćwiczenia",

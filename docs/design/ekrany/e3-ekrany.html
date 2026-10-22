@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System E3 — ekrany TO BE (pl)</title>
+<!-- Plik wygenerowany: node --experimental-strip-types docs/design/narzedzia/e3-gen.mjs (tokeny: docs/design/tokeny.ts). Rola 04 build, M3, 21.10.2026.
+     Nazwy szablonów, ciężary, daty i liczby — [PRZYKŁAD]. Nazwy ćwiczeń: biblioteka lib/seed.ts (poza pl po angielsku, DEC-13).
+     Teksty: lib/i18n (pl), lib/locales/el.json; nowe teksty (brak w i18n): Następne ćwiczenia | Następna: {x} | z {s} | Zacznij trening — dla el propozycja do przeglądu tłumacza.
+     Krój treści: na iOS SF Pro; w makiecie zastępczo Source Sans 3 (OFL). Barlow Condensed nie ma greki ani cyrylicy: litery idą krojem zastępczym (tu Source Sans 3, na iOS SF Pro), cyfry zostają w Barlow.
+     „Zwiększ kontrast”: atrybut data-kontrast="hc" na <html>. -->
+<link rel="stylesheet" href="../kierunki/wspolne.css">
+<style>
+:root { --bg:#E6E8E5;--tekst:#18202B;--tekst2:#4A5361;--linia:#CBD0CB;--ctrl:#6B7380;--pole:#D3D8D3;--powierzchnia:#F4F5F3;--przycisk:#13294B;--przycisk-tekst:#F5F1E6;--akcent:#13294B;--danger:#7F1D1D;--tablica:#13294B;--tablica-brzeg:#13294B;--tablica-tekst:#F5F1E6;--tablica-tekst2:#B7C1D0;--tablica-pole:#26446F;--zegar:#F2A900;--znacznik:#13294B;--motyw-gryf:#C2C8C2;--m0:#E4C9CA;--m1:#C6D2E2;--m2:#E8E2C8;--m3:#C9DCCF;--motyw-widoczny:1 }
+[data-theme="dark"] { --bg:#161C24;--tekst:#E8EAED;--tekst2:#A3ACB8;--linia:#2C3440;--ctrl:#7C8594;--pole:#283244;--powierzchnia:#1E2530;--przycisk:#F5F1E6;--przycisk-tekst:#13294B;--akcent:#F5F1E6;--danger:#EC7A72;--tablica:#102544;--tablica-brzeg:#5675A8;--tablica-tekst:#F5F1E6;--tablica-tekst2:#AEB9CA;--tablica-pole:#22416D;--zegar:#F5B21C;--znacznik:#F5F1E6;--motyw-gryf:#333C49;--m0:#40232D;--m1:#20304D;--m2:#423D26;--m3:#1E3C34;--motyw-widoczny:1 }
+[data-kontrast="hc"] { --bg:#E6E8E5;--tekst:#18202B;--tekst2:#353C47;--linia:#545B66;--ctrl:#4A5361;--pole:#D3D8D3;--powierzchnia:#F4F5F3;--przycisk:#13294B;--przycisk-tekst:#F5F1E6;--akcent:#13294B;--danger:#7F1D1D;--tablica:#13294B;--tablica-brzeg:#13294B;--tablica-tekst:#F5F1E6;--tablica-tekst2:#D3DAE4;--tablica-pole:#2E4F7E;--zegar:#FFC233;--znacznik:#13294B;--motyw-gryf:#E6E8E5;--m0:#E6E8E5;--m1:#E6E8E5;--m2:#E6E8E5;--m3:#E6E8E5;--motyw-widoczny:0 }
+[data-theme="dark"][data-kontrast="hc"] { --bg:#161C24;--tekst:#E8EAED;--tekst2:#C9CED6;--linia:#959EAB;--ctrl:#A3ACB8;--pole:#283244;--powierzchnia:#1E2530;--przycisk:#F5F1E6;--przycisk-tekst:#13294B;--akcent:#F5F1E6;--danger:#F5A39D;--tablica:#102544;--tablica-brzeg:#8FA6CC;--tablica-tekst:#F5F1E6;--tablica-tekst2:#D3DAE4;--tablica-pole:#22416D;--zegar:#FFC233;--znacznik:#F5F1E6;--motyw-gryf:#161C24;--m0:#161C24;--m1:#161C24;--m2:#161C24;--m3:#161C24;--motyw-widoczny:0 }
+
+@font-face { font-family: 'Tablica'; src: url('../fonty/barlow-condensed/BarlowCondensed-SemiBold.ttf'); font-weight: 600; }
+@font-face { font-family: 'Tablica'; src: url('../fonty/barlow-condensed/BarlowCondensed-Bold.ttf'); font-weight: 700; }
+:root { --kroj-t: 'Tablica', var(--tresc); --krój-tytul: var(--kroj-t); --r-przyc: 8px; --dt-pasek: min(var(--dt-tresc), 1.25); }
+.tel { overflow-x: clip; } .tel > * { position: relative; z-index: 1; }
+.nag-t { font-size: calc(1.25rem * var(--dt-pasek)); }
+.nag .bt { font-size: calc(1.0625rem * var(--dt-pasek)); white-space: nowrap; }
+.nag-t .czas { font-size: calc(1.0625rem * var(--dt-pasek)) !important; }
+.zakl a span { font-size: calc(0.6875rem * var(--dt-pasek)); }
+.zakl svg { width: 26px; height: 26px; }
+.pmp { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(148px * var(--dt-liczba))), 1fr)); gap: 8px; }
+.pmg { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.pmw { text-align: center; flex: 1; min-height: 44px; display: grid; place-items: center; line-height: 1; }
+.pm svg { width: 20px; height: 20px; }
+.prz { display: flex; flex-wrap: wrap; gap: 8px; }
+.prz .pm2 { flex: 1 1 auto; white-space: nowrap; } .prz .pm2.prim { flex-grow: 2; }
+.pm2 { min-height: 52px; padding: 4px 8px; border-radius: 8px; background: var(--pole); color: var(--tekst); font-weight: 700; font-size: calc(1.0625rem * var(--dt-opis)); line-height: 1.2; }
+.pm2.prim { background: var(--przycisk); color: var(--przycisk-tekst); }
+.przyc { font-size: calc(1.1875rem * var(--dt-opis)); min-height: 60px; border-radius: 8px; }
+.akcja { padding: 16px 16px 0; display: grid; gap: 8px; }
+.akcja .opis { text-align: center; }
+.tab { margin: 4px 16px 0; background: var(--tablica); color: var(--tablica-tekst); border-radius: 8px; padding: 16px; border: 1px solid var(--tablica-brzeg); }
+.tab-g { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-family: var(--kroj-t); flex-wrap: wrap; }
+.tab-cw { font-size: calc(1.5rem * var(--dt-tytul)); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; line-height: 1.1; min-width: 0; overflow-wrap: anywhere; }
+.tab-s { font-size: calc(1.125rem * var(--dt-opis)); color: var(--tablica-tekst2); white-space: nowrap; font-weight: 600; }
+.tab-l { display: flex; align-items: baseline; justify-content: center; gap: 8px; font-family: var(--kroj-t); font-weight: 700; font-size: min(calc(6rem * var(--dt-liczba)), calc(var(--w, 390px) * 0.24), calc(var(--w, 390px) * 1.05 / var(--zn, 3))); line-height: .95; margin: 12px 0; flex-wrap: wrap; font-variant-numeric: tabular-nums; }
+.tab-l small { font-size: .3em; font-weight: 600; color: var(--tablica-tekst2); }
+.tab-l .x { font-size: .45em; color: var(--tablica-tekst2); font-weight: 600; }
+.tab-l .pusta { color: var(--tablica-tekst2); }
+.tab-l.zeg { color: var(--zegar); font-size: min(calc(7rem * var(--dt-liczba)), calc(var(--w, 390px) * 0.3)); }
+.tab .pm { background: var(--tablica-pole); color: var(--tablica-tekst); }
+.tab .pmw small { font-family: var(--kroj-t); font-size: calc(1.125rem * var(--dt-opis)); color: var(--tablica-tekst); font-weight: 600; }
+.pola { display: grid; gap: 8px; margin-top: 12px; position: relative; }
+.pola.zapas { overflow-x: auto; scrollbar-width: none; }
+.pole { min-height: calc(44px * var(--dt-liczba)); border-radius: 4px; display: grid; place-items: center; font-family: var(--kroj-t); font-size: calc(1.25rem * var(--dt-liczba)); font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.pole.z { background: var(--tablica-tekst); color: var(--tablica); }
+.pole.t { box-shadow: inset 0 0 0 3px var(--zegar); }
+.pole.p { box-shadow: inset 0 0 0 1px var(--tablica-tekst2); color: var(--tablica-tekst2); font-weight: 600; }
+.nast { font-family: var(--kroj-t); font-weight: 600; text-align: center; font-size: calc(1.25rem * var(--dt-opis)); color: var(--tablica-tekst); line-height: 1.2; }
+.lista h2 { font-size: calc(1.0625rem * var(--dt-tytul)); }
+.dt { padding: 4px 16px 0; }
+.dt h1 { font-family: var(--kroj-t); font-weight: 700; font-size: min(calc(2.125rem * var(--dt-tytul)), calc(var(--w, 390px) * 0.13)); line-height: 1.1; }
+.dt p { margin-top: 2px; }
+.pasek { display: flex; justify-content: space-between; align-items: center; padding: 0 8px; min-height: 44px; gap: 8px; }
+.pasek .tyt { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; font-size: calc(1.0625rem * var(--dt-pasek)); text-align: center; flex: 1; }
+.bt3 { min-height: 44px; padding: 0 8px; font-weight: 600; font-size: calc(1.0625rem * var(--dt-pasek)); white-space: nowrap; color: var(--akcent); display: inline-flex; align-items: center; gap: 2px; }
+.bt3 svg { width: 22px; height: 22px; }
+.tydz { margin: 24px 16px 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; background: var(--powierzchnia); border-radius: 12px; padding: 8px 4px; }
+.tydz div { display: grid; justify-items: center; gap: 4px; padding: 8px 0; border-radius: 8px; min-width: 0; font-size: calc(0.8125rem * min(var(--dt-pasek), 1.1)); color: var(--tekst2); line-height: 1.1; text-align: center; white-space: nowrap; overflow: hidden; }
+.tydz div b { font-family: var(--kroj-t); font-size: calc(1.125rem * min(var(--dt-liczba), 1.2)); color: var(--tekst); font-weight: 700; }
+.tydz div.dzis { box-shadow: inset 0 0 0 2px var(--znacznik); }
+.zn { width: 20px; height: 20px; border-radius: 3px; display: block; }
+.zn.zr { background: var(--znacznik); } .zn.pl { box-shadow: inset 0 0 0 2px var(--znacznik); }
+.tydz svg { width: 22px; height: 22px; color: var(--tekst2); }
+.tab.dzis-t .tab-l { font-size: min(calc(3.5rem * var(--dt-liczba)), calc(var(--w, 390px) * 0.16)); justify-content: flex-start; margin: 8px 0 4px; }
+.tab ul { list-style: none; margin-top: 8px; border-top: 1px solid var(--tablica-pole); }
+.tab li { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 8px 0; border-bottom: 1px solid var(--tablica-pole); font-size: calc(1.0625rem * var(--dt-opis)); line-height: 1.3; }
+.tab li .n { flex: 1 1 55%; min-width: 0; } .tab li .d { color: var(--tablica-tekst2); white-space: nowrap; margin-left: auto; font-variant-numeric: tabular-nums; }
+.przyc2 { width: 100%; min-height: 52px; border-radius: 8px; background: var(--pole); color: var(--tekst); font-weight: 700; font-size: calc(1.0625rem * var(--dt-opis)); padding: 4px 16px; line-height: 1.2; }
+.pusty { margin: 40px 16px 0; display: grid; justify-items: center; gap: 16px; text-align: center; }
+.pusty .opis { max-width: 30ch; font-size: calc(1.0625rem * var(--dt-opis)); color: var(--tekst); line-height: 1.3; }
+.pusty .przyc { max-width: 320px; }
+.motyw-start { position: absolute; z-index: 0; top: 72px; right: 14px; width: calc(var(--w, 390px) * 0.3); height: auto; aspect-ratio: 1; pointer-events: none; opacity: calc(clamp(0, calc((1.4 - var(--dt-tytul)) * 100), 1) * var(--motyw-widoczny)); }
+.motyw-pusty { width: 220px; max-width: 100%; height: auto; opacity: var(--motyw-widoczny); }
+[data-kontrast="hc"] .motyw-pusty { display: none; }
+/* Postępy (DEC-09: wykres i rekordy wybranego ćwiczenia na górze; ZM-06: chipy tylko ćwiczeń z danymi) */
+.chipy { display: flex; gap: 8px; padding: 0 16px; flex-wrap: wrap; }
+.chip { min-height: 44px; padding: 4px 12px; border-radius: 999px; background: var(--pole); color: var(--tekst); font-size: calc(0.9375rem * var(--dt-opis)); font-weight: 600; line-height: 1.2; max-width: 100%; text-align: left; }
+.chip.wyb { background: var(--przycisk); color: var(--przycisk-tekst); }
+.szuk { margin: 8px 16px 0; min-height: 44px; border-radius: 10px; background: var(--pole); display: flex; align-items: center; gap: 8px; padding: 4px 12px; color: var(--tekst2); font-size: calc(1.0625rem * var(--dt-opis)); }
+.szuk svg { width: calc(20px * var(--dt-liczba)); height: calc(20px * var(--dt-liczba)); flex: none; }
+.wykres { margin: 16px 16px 0; background: var(--powierzchnia); border-radius: 12px; padding: 16px; }
+.wykres h2 { font-family: var(--kroj-t); font-size: calc(1.0625rem * var(--dt-tytul)); font-weight: 700; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; overflow-wrap: anywhere; }
+.wykres .wm { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: 4px; color: var(--tekst2); font-size: calc(0.9375rem * var(--dt-opis)); }
+.wykres .wv { font-family: var(--kroj-t); font-weight: 700; color: var(--tekst); font-size: calc(1.75rem * var(--dt-liczba)); line-height: 1; font-variant-numeric: tabular-nums; }
+.wykres h2 span { font-size: calc(1.75rem * var(--dt-liczba)); line-height: 1; font-variant-numeric: tabular-nums; }
+.wykres svg { width: 100%; height: auto; display: block; margin-top: 8px; color: var(--akcent); }
+.wykres .os { display: flex; justify-content: space-between; font-size: calc(0.8125rem * var(--dt-opis)); color: var(--tekst2); margin-top: 4px; }
+.grupa-t { padding: 24px 32px 8px; font-size: calc(0.8125rem * var(--dt-opis)); color: var(--tekst2); font-weight: 600; letter-spacing: .03em; }
+.grupa { margin: 0 16px; background: var(--powierzchnia); border-radius: 12px; list-style: none; }
+.grupa li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; min-height: 52px; padding: 12px 16px; border-bottom: 1px solid var(--linia); font-size: calc(1.0625rem * var(--dt-opis)); line-height: 1.3; }
+.grupa li:last-child { border-bottom: 0; }
+.grupa li .n { flex: 1 1 50%; min-width: 0; } .grupa li .v { margin-left: auto; font-family: var(--kroj-t); font-weight: 700; font-size: calc(1.125rem * var(--dt-liczba)); white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* szczegóły sesji (ZM-04) */
+.meta { padding: 4px 16px 0; }
+.blok { margin: 24px 16px 0; }
+.blok h2 { font-family: var(--kroj-t); font-weight: 700; font-size: calc(1.0625rem * var(--dt-tytul)); margin-bottom: 8px; overflow-wrap: anywhere; }
+.tabs { width: 100%; border-collapse: collapse; background: var(--powierzchnia); border-radius: 12px; overflow: hidden; font-variant-numeric: tabular-nums; }
+.tabs th { text-align: left; font-size: calc(0.8125rem * var(--dt-liczba)); color: var(--tekst2); font-weight: 600; padding: 8px 16px 4px; }
+.tabs th:first-child, .tabs td:first-child { width: 3.5em; }
+.tabs td { padding: 8px 16px; border-top: 1px solid var(--linia); font-size: calc(1.0625rem * var(--dt-liczba)); }
+.btn-row { margin: 24px 16px 0; display: grid; gap: 8px; }
+.btn-danger { width: 100%; min-height: 52px; border-radius: 8px; background: var(--powierzchnia); color: var(--danger); font-weight: 600; font-size: calc(1.0625rem * var(--dt-opis)); padding: 4px 16px; }
+.koniec { height: 40px; }
+/* okno potwierdzenia (systemowe, UIAlertController — tu tylko podgląd wyglądu) */
+.alert-tlo { position: absolute; inset: 0; background: rgba(0,0,0,.4); z-index: 5 !important; display: grid; place-items: center; padding: 16px; }
+.alert { width: min(calc(270px * var(--dt-opis)), 100%); background: var(--powierzchnia); border-radius: 14px; text-align: center; color: var(--tekst); overflow: hidden; }
+.alert .tr { padding: 16px 16px 12px; }
+.alert b { display: block; font-size: calc(1.0625rem * var(--dt-opis)); line-height: 1.3; }
+.alert p { font-size: calc(0.8125rem * var(--dt-opis)); margin-top: 4px; line-height: 1.35; }
+.alert .pr { display: flex; flex-wrap: wrap; border-top: 1px solid var(--linia); }
+.alert .pr button { flex: 1 1 50%; min-height: 44px; font-size: calc(1.0625rem * var(--dt-opis)); color: var(--akcent); padding: 8px; }
+.alert .pr button + button { border-left: 1px solid var(--linia); }
+.alert .pr .ds { color: var(--danger); font-weight: 600; }
+
+</style>
+<script>(function () {
+  var GAP = 8, MIN = 36, MAXW = 3, LIMIT = 12, WYN = 4;
+  function dt(el) { var p = document.createElement('i'); p.style.cssText = 'position:absolute;visibility:hidden;width:calc(100px * var(--dt-liczba))'; el.appendChild(p); var v = p.offsetWidth / 100; p.remove(); return v || 1; }
+  function rysuj(el) {
+    var s = el.dataset.serie.split(','), cur = +el.dataset.teraz, w = (el.dataset.wyniki || '').split(','), n = s.length;
+    el.innerHTML = ''; var d = dt(el), W = el.clientWidth, minW = MIN * d, font = 20 * d;
+    var fit = Math.max(1, Math.floor((W + GAP) / (minW + GAP))), rows = 1, cols, zapas = n > LIMIT; el.classList.toggle('zapas', zapas);
+    if (zapas) { cols = n; el.style.gridTemplateColumns = 'repeat(' + n + ', ' + Math.max(minW, 44) + 'px)'; }
+    else { while (rows < MAXW && Math.ceil(n / rows) > fit) rows++; cols = Math.min(Math.ceil(n / rows), fit); if (rows === 1) cols = Math.max(cols, Math.min(WYN, fit)); el.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)'; }
+    var fw = zapas ? Math.max(minW, 44) : (W - GAP * (cols - 1)) / cols;
+    s.forEach(function (lab, i) { var f = document.createElement('span'); var st = i < cur ? 'z' : i === cur ? 't' : 'p';
+      f.className = 'pole ' + st + (lab === 'W' ? ' w' : ''); var txt = lab;
+      if (st === 'z' && w[i] && rows === 1 && !zapas && n <= WYN && w[i].length * 0.48 * font + 10 <= fw) txt = w[i];
+      f.textContent = txt; el.appendChild(f); });
+  }
+  function wszystkie() { document.querySelectorAll('.pola[data-serie]').forEach(rysuj); }
+  window.addEventListener('load', wszystkie); new MutationObserver(wszystkie).observe(document.documentElement, { attributes: true });
+  document.addEventListener('DOMContentLoaded', wszystkie);
+})();</script></head>
+<body>
+<div class="uklad">
+<main data-ekran="seria" class="tel"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><header class="nag"><h1 class="nag-t">Góra A<span class="czas">24:13</span></h1><button class="ib" aria-label="Opcje treningu"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18.5" cy="12" r="1.8" fill="currentColor"/></svg></button><button class="bt">Zakończ</button></header><section class="tab" aria-label="Bench Press (sztanga), seria 3 z 4, 80 kg × 6">
+<div class="tab-g"><span class="tab-cw">Bench Press (sztanga)</span><span class="tab-s">seria 3 z 4</span></div>
+<div class="tab-l" aria-hidden="true" style="--zn:3"><span>80<small> kg</small></span><span class="x">×</span><span>6</span></div>
+<div class="pmp"><div class="pmg"><button class="pm" aria-label="−2,5 kg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button><span class="pmw"><small>kg</small></span><button class="pm" aria-label="+2,5 kg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button></div><div class="pmg"><button class="pm" aria-label="−1 powt."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button><span class="pmw"><small>powt.</small></span><button class="pm" aria-label="+1 powt."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button></div></div>
+<div class="pola" role="img" aria-label="serii: 2 / 4" data-serie="1,2,3,4" data-teraz="2" data-wyniki="80×6,80×6,80×6,80×6"></div>
+</section>
+<div class="akcja"><button class="przyc">Seria zrobiona</button><p class="opis">Poprzednio: 77,5 kg × 6</p></div>
+<section class="lista"><h2>Następne ćwiczenia</h2><ul><li><span class="n">One Arm Row (hantle)</span><span class="d">3 × 10, 32 kg</span></li><li><span class="n">Incline Bench Press (hantle)</span><span class="d">3 × 8, 26 kg</span></li><li><span class="n">Pull Up</span><span class="d">3 × 6–8</span></li></ul></section><nav class="zakl"><a class="ak" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5M9.5 3h5"/></svg><span>Trening</span></a><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span>Plan</span></a><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20v-7M10 20V8M15 20v-5M20 20V5"/></svg><span>Postępy</span></a><a><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18.5" cy="12" r="1.8" fill="currentColor"/></svg><span>Więcej</span></a></nav></main>
+<main data-ekran="seria-lb" class="tel"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><header class="nag"><h1 class="nag-t">Góra A<span class="czas">24:13</span></h1><button class="ib" aria-label="Opcje treningu"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18.5" cy="12" r="1.8" fill="currentColor"/></svg></button><button class="bt">Zakończ</button></header><section class="tab" aria-label="Bench Press (sztanga), seria 3 z 4, 187,5 lb × 12">
+<div class="tab-g"><span class="tab-cw">Bench Press (sztanga)</span><span class="tab-s">seria 3 z 4</span></div>
+<div class="tab-l" aria-hidden="true" style="--zn:7"><span>187,5<small> lb</small></span><span class="x">×</span><span>12</span></div>
+<div class="pmp"><div class="pmg"><button class="pm" aria-label="−5 lb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button><span class="pmw"><small>lb</small></span><button class="pm" aria-label="+5 lb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button></div><div class="pmg"><button class="pm" aria-label="−1 powt."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button><span class="pmw"><small>powt.</small></span><button class="pm" aria-label="+1 powt."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button></div></div>
+<div class="pola" role="img" aria-label="serii: 2 / 4" data-serie="1,2,3,4" data-teraz="2" data-wyniki="185×12,185×12"></div>
+</section>
+<div class="akcja"><button class="przyc">Seria zrobiona</button><p class="opis">Poprzednio: 182,5 lb × 12</p></div>
+<section class="lista"><h2>Następne ćwiczenia</h2><ul><li><span class="n">One Arm Row (hantle)</span><span class="d">3 × 10, 32 kg</span></li><li><span class="n">Incline Bench Press (hantle)</span><span class="d">3 × 8, 26 kg</span></li><li><span class="n">Pull Up</span><span class="d">3 × 6–8</span></li></ul></section><nav class="zakl"><a class="ak" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5M9.5 3h5"/></svg><span>Trening</span></a><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span>Plan</span></a><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20v-7M10 20V8M15 20v-5M20 20V5"/></svg><span>Postępy</span></a><a><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18.5" cy="12" r="1.8" fill="currentColor"/></svg><span>Więcej</span></a></nav></main>
+<main data-ekran="przerwa" class="tel"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><header class="nag"><h1 class="nag-t">Góra A<span class="czas">24:13</span></h1><button class="ib" aria-label="Opcje treningu"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18.5" cy="12" r="1.8" fill="currentColor"/></svg></button><button class="bt">Zakończ</button></header><section class="tab" aria-label="Przerwa 1:47 / 2:30">
+<div class="tab-g"><span class="tab-cw">Przerwa</span><span class="tab-s">z 2:30</span></div>
+<div class="tab-l zeg" aria-hidden="true">1:47</div>
+<p class="nast">Następna: seria 4 z 4, 80 kg × 6</p>
+<div class="pola" role="img" aria-label="serii: 3 / 4" data-serie="1,2,3,4" data-teraz="3" data-wyniki="80×6,80×6,80×6,80×6"></div>
+</section>
+<div class="akcja"><div class="prz"><button class="pm2">−15 s</button><button class="pm2">+15 s</button><button class="pm2 prim">Pomiń</button></div></div>
+<section class="lista"><h2>Następne ćwiczenia</h2><ul><li><span class="n">One Arm Row (hantle)</span><span class="d">3 × 10, 32 kg</span></li><li><span class="n">Incline Bench Press (hantle)</span><span class="d">3 × 8, 26 kg</span></li><li><span class="n">Pull Up</span><span class="d">3 × 6–8</span></li></ul></section><nav class="zakl"><a class="ak" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5M9.5 3h5"/></svg><span>Trening</span></a><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span>Plan</span></a><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20v-7M10 20V8M15 20v-5M20 20V5"/></svg><span>Postępy</span></a><a><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18.5" cy="12" r="1.8" fill="currentColor"/></svg><span>Więcej</span></a></nav></main>
+<main data-ekran="start" class="tel"><svg class="motyw-start" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><rect x="10" y="56" width="98" height="8" rx="2" fill="var(--motyw-gryf)"/><rect x="30" y="16" width="15" height="88" rx="4" fill="var(--m0)"/><rect x="48" y="23" width="14" height="74" rx="4" fill="var(--m1)"/><rect x="65" y="31" width="12" height="58" rx="4" fill="var(--m2)"/><rect x="80" y="38" width="10" height="44" rx="3" fill="var(--m3)"/><rect x="93" y="49" width="7" height="22" rx="2" fill="var(--motyw-gryf)"/></svg><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><div class="pasek"><span></span><button class="bt3">Planowanie</button></div><div class="dt"><h1>Trening</h1><p class="opis">środa, 21 października</p><p class="opis">Plan: Mięśnie, 3× w tygodniu</p></div>
+<div class="tydz" role="list"><div role="listitem">pon.<b>19</b><i class="zn zr"></i></div><div role="listitem">wt.<b>20</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z M16 10h1.5a2 2 0 0 1 0 4H16 M4 20h13"/></svg></div><div role="listitem" class="dzis">śr.<b>21</b><i class="zn pl"></i></div><div role="listitem">czw.<b>22</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z M16 10h1.5a2 2 0 0 1 0 4H16 M4 20h13"/></svg></div><div role="listitem">pt.<b>23</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z M16 10h1.5a2 2 0 0 1 0 4H16 M4 20h13"/></svg></div><div role="listitem">sob.<b>24</b><i class="zn pl"></i></div><div role="listitem">niedz.<b>25</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z M16 10h1.5a2 2 0 0 1 0 4H16 M4 20h13"/></svg></div></div>
+<section class="tab dzis-t" aria-label="Dziś: Dół B">
+<div class="tab-g"><span class="tab-cw">Dziś: Dół B</span><span class="tab-s">6 ćw.</span></div>
+<ul><li><span class="n">Back Squat</span><span class="d">4 × 5, 100 kg</span></li><li><span class="n">RDL (sztanga)</span><span class="d">3 × 8, 80 kg</span></li><li><span class="n">+ 4 ćwiczenia</span></li></ul>
+</section>
+<div class="akcja"><button class="przyc">Start: Dół B</button><button class="przyc2">Inny trening</button><p class="opis">Następne: sob., 24 paź — Góra A</p></div>
+<nav class="zakl"><a class="ak" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5M9.5 3h5"/></svg><span>Trening</span></a><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span>Plan</span></a><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20v-7M10 20V8M15 20v-5M20 20V5"/></svg><span>Postępy</span></a><a><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18.5" cy="12" r="1.8" fill="currentColor"/></svg><span>Więcej</span></a></nav></main>
+<main data-ekran="postepy" class="tel"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><div class="dt"><h1>Postępy</h1></div>
+<section class="wykres"><h2>Bench Press (sztanga)</h2><p class="wm"><span>Max ciężar</span><span class="wv">82,5 kg</span></p><svg viewBox="0 0 300 120" role="img" aria-label="Max ciężar: 72,5 → 82,5 kg"><path d="M0 108H300M0 70H300M0 33H300" stroke="var(--linia)" stroke-width="1"/><polyline points="8.0,89.3 48.6,70.5 89.1,70.5 129.7,51.8 170.3,51.8 210.9,33.0 251.4,33.0 292.0,14.3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="8.0" cy="89.3" r="3.5" fill="var(--powierzchnia)" stroke="currentColor" stroke-width="2"/><circle cx="48.6" cy="70.5" r="3.5" fill="var(--powierzchnia)" stroke="currentColor" stroke-width="2"/><circle cx="89.1" cy="70.5" r="3.5" fill="var(--powierzchnia)" stroke="currentColor" stroke-width="2"/><circle cx="129.7" cy="51.8" r="3.5" fill="var(--powierzchnia)" stroke="currentColor" stroke-width="2"/><circle cx="170.3" cy="51.8" r="3.5" fill="var(--powierzchnia)" stroke="currentColor" stroke-width="2"/><circle cx="210.9" cy="33.0" r="3.5" fill="var(--powierzchnia)" stroke="currentColor" stroke-width="2"/><circle cx="251.4" cy="33.0" r="3.5" fill="var(--powierzchnia)" stroke="currentColor" stroke-width="2"/><circle cx="292.0" cy="14.3" r="5" fill="currentColor" stroke="currentColor" stroke-width="2"/></svg><div class="os"><span>31 sie</span><span>19 paź</span></div></section>
+<div class="grupa-t">REKORDY</div>
+<ul class="grupa"><li><span class="n">Max ciężar</span><span class="v">82,5 kg</span></li><li><span class="n">Najlepsza seria (objętość)</span><span class="v">80 kg × 8</span></li><li><span class="n">Max powtórzeń w serii</span><span class="v">12</span></li><li><span class="n">Sesje</span><span class="v">14</span></li></ul>
+<div class="grupa-t">ĆWICZENIE</div>
+<div class="chipy" role="radiogroup"><button class="chip wyb" role="radio" aria-checked="true">Bench Press (sztanga)</button><button class="chip" role="radio" aria-checked="false">Back Squat</button><button class="chip" role="radio" aria-checked="false">RDL (sztanga)</button></div>
+<div class="szuk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg><span>Szukaj ćwiczenia…</span></div>
+<div class="koniec"></div><nav class="zakl"><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5M9.5 3h5"/></svg><span>Trening</span></a><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span>Plan</span></a><a class="ak" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20v-7M10 20V8M15 20v-5M20 20V5"/></svg><span>Postępy</span></a><a><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18.5" cy="12" r="1.8" fill="currentColor"/></svg><span>Więcej</span></a></nav></main>
+<main data-ekran="postepy-pusty" class="tel"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><div class="dt"><h1>Postępy</h1></div>
+<div class="pusty"><svg class="motyw-pusty" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><rect x="10" y="56" width="98" height="8" rx="2" fill="var(--motyw-gryf)"/><rect x="30" y="16" width="15" height="88" rx="4" fill="var(--m0)"/><rect x="48" y="23" width="14" height="74" rx="4" fill="var(--m1)"/><rect x="65" y="31" width="12" height="58" rx="4" fill="var(--m2)"/><rect x="80" y="38" width="10" height="44" rx="3" fill="var(--m3)"/><rect x="93" y="49" width="7" height="22" rx="2" fill="var(--motyw-gryf)"/></svg><p class="opis">Wykresy pojawią się po pierwszym zakończonym treningu.</p><button class="przyc">Zacznij trening</button></div>
+<nav class="zakl"><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="7"/><path d="M12 13.5V9.5M9.5 3h5"/></svg><span>Trening</span></a><a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><span>Plan</span></a><a class="ak" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20v-7M10 20V8M15 20v-5M20 20V5"/></svg><span>Postępy</span></a><a><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18.5" cy="12" r="1.8" fill="currentColor"/></svg><span>Więcej</span></a></nav></main>
+<main data-ekran="sesja" class="tel"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><div class="pasek"><button class="bt3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Wróć</button><span class="tyt">Trening</span><button class="bt3">Edytuj</button></div>
+<div class="dt"><h1>Góra A</h1></div>
+<div class="meta"><p class="opis">pon., 19 paź, 18:05</p><p class="opis">52 min, 16 serii, 6840 kg</p></div>
+<section class="blok"><h2>Bench Press (sztanga)</h2><table class="tabs"><thead><tr><th>#</th><th>ciężar</th><th>Pow.</th></tr></thead><tbody><tr><td>1</td><td>80 kg</td><td>6</td></tr><tr><td>2</td><td>80 kg</td><td>6</td></tr><tr><td>3</td><td>80 kg</td><td>6</td></tr><tr><td>4</td><td>80 kg</td><td>5</td></tr></tbody></table></section>
+<section class="blok"><h2>One Arm Row (hantle)</h2><table class="tabs"><thead><tr><th>#</th><th>ciężar</th><th>Pow.</th></tr></thead><tbody><tr><td>1</td><td>32 kg</td><td>10</td></tr><tr><td>2</td><td>32 kg</td><td>10</td></tr><tr><td>3</td><td>32 kg</td><td>9</td></tr></tbody></table></section>
+<div class="btn-row"><button class="przyc2">Zapisz jako szablon</button></div>
+<div class="btn-row"><button class="btn-danger">Usuń sesję</button></div>
+<div class="koniec"></div></main>
+<main data-ekran="sesja-usun" class="tel"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><div class="pasek"><button class="bt3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Wróć</button><span class="tyt">Trening</span><button class="bt3">Edytuj</button></div>
+<div class="dt"><h1>Góra A</h1></div>
+<div class="meta"><p class="opis">pon., 19 paź, 18:05</p><p class="opis">52 min, 16 serii, 6840 kg</p></div>
+<section class="blok"><h2>Bench Press (sztanga)</h2><table class="tabs"><thead><tr><th>#</th><th>ciężar</th><th>Pow.</th></tr></thead><tbody><tr><td>1</td><td>80 kg</td><td>6</td></tr><tr><td>2</td><td>80 kg</td><td>6</td></tr><tr><td>3</td><td>80 kg</td><td>6</td></tr><tr><td>4</td><td>80 kg</td><td>5</td></tr></tbody></table></section>
+<section class="blok"><h2>One Arm Row (hantle)</h2><table class="tabs"><thead><tr><th>#</th><th>ciężar</th><th>Pow.</th></tr></thead><tbody><tr><td>1</td><td>32 kg</td><td>10</td></tr><tr><td>2</td><td>32 kg</td><td>10</td></tr><tr><td>3</td><td>32 kg</td><td>9</td></tr></tbody></table></section>
+<div class="btn-row"><button class="przyc2">Zapisz jako szablon</button></div>
+<div class="btn-row"><button class="btn-danger">Usuń sesję</button></div>
+<div class="koniec"></div><div class="alert-tlo" role="alertdialog" aria-label="Usunąć tę sesję z historii?"><div class="alert"><div class="tr"><b>Usunąć tę sesję z historii?</b><p>Góra A, pon., 19 paź</p><p>Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie.</p></div><div class="pr"><button>Anuluj</button><button class="ds">Usuń</button></div></div></div></main>
+</div>
+</body></html>

@@ -12,5 +12,6 @@
  "idle": "Starta ett pass på telefonen",
  "finished": "Passet avslutat",
  "update": "Uppdatera appen på klockan",
- "nothingLeft": "inget mer att göra"
+ "nothingLeft": "inget mer att göra",
+ "finish": "Avsluta set"
 }

@@ -17,7 +17,7 @@
     "check:claims": "node scripts/claims.mjs --check",
     "check:figures": "node scripts/figures/gen.mjs --check",
     "check:readme": "node scripts/readme.mjs --check",
-    "verify": "npm run typecheck && npm run lint && npm run check:i18n && npm run check:cues && npm run check:claims && npm run check:figures && npm run check:readme && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
+    "verify": "node scripts/hooks/sprawdz-instalacje.mjs && npm run typecheck && npm run lint && npm run check:i18n && npm run check:cues && npm run check:claims && npm run check:figures && npm run check:readme && jest && npm run check:matrix && npm run check:licenses && npx expo export --platform ios --output-dir .expo/verify-export && node -e \"require('fs').rmSync('.expo/verify-export',{recursive:true,force:true})\" && npm run verify:native",
     "screens": "node scripts/screens/run.mjs",
     "mutation": "stryker run",
     "perf": "jest -c jest.perf.config.js",
@@ -27,8 +27,6 @@
   },
   "dependencies": {
     "@bacons/apple-targets": "^5.0.0",
-    "@expo-google-fonts/ibm-plex-mono": "^0.4.1",
-    "@expo-google-fonts/ibm-plex-sans": "^0.4.1",
     "@kingstinct/react-native-healthkit": "^16.1.0",
     "expo": "~57.0.26",
     "expo-asset": "~57.0.18",
@@ -61,6 +59,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.0",
+    "@expo-google-fonts/ibm-plex-mono": "^0.4.1",
+    "@expo-google-fonts/ibm-plex-sans": "^0.4.1",
     "@expo/metro-runtime": "~57.0.16",
     "@stryker-mutator/core": "^8.7.1",
     "@stryker-mutator/jest-runner": "^8.7.1",

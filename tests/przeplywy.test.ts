@@ -120,7 +120,7 @@ describe('testID dodane dla scenariuszy (13.10.2026)', () => {
     ['app/(tabs)/history.tsx', 'session-', '28-dluga-historia.yaml', 'session-0-del'], ['app/plan.tsx', 'plan-saved-', '26-plan-zarzadzanie.yaml', 'plan-saved-0-del'],
     ['app/plan.tsx', 'testID="plan-name"', '26-plan-zarzadzanie.yaml', 'plan-name'], ['app/exercises.tsx', 'lib-row-', '27-biblioteka-cwiczen.yaml', 'lib-row-1-del'],
     ['components/ActiveWorkout.tsx', 'testID="workout-note"', '25-trening-narzedzia.yaml', 'workout-note'],
-    ['components/ActiveWorkout.tsx', 'testID={`ex-${ei}`}', '25-trening-narzedzia.yaml', 'ex-1-del'], ['app/history/edit/[id].tsx', 'testID={`w-${ei}-${si}`}', '28-dluga-historia.yaml', 'w-0-0'],
+    ['components/WorkoutBlocks.tsx', 'testID={`ex-${ei}`}', '25-trening-narzedzia.yaml', 'ex-1-del'] /* M3 p2: bloki ćwiczeń w WorkoutBlocks */, ['app/history/edit/[id].tsx', 'testID={`w-${ei}-${si}`}', '28-dluga-historia.yaml', 'w-0-0'],
   ];
   test.each(ids)('%s: „%s” w źródle i „%s” użyte w %s', (src, inSrc, sc, inSc) => {
     expect(read(src)).toContain(inSrc); expect(yamlCode(sc)).toContain(inSc);

@@ -28,7 +28,7 @@ const json = (x: unknown) => JSON.stringify(x, null, 1) + '\n';
 type Files = Record<string, string>;
 
 const rest = () => ({ on: timer.T.on, setId: timer.T.setId, endAt: timer.T.endAt, total: timer.T.total });
-const snap = (rev = 1, withRest = false) => alias(buildSnapshot(A(), { rev, nowMs: Date.now(), rest: withRest ? rest() : null }), aliasMap());
+const snap = (rev = 1, withRest = false, measuring: string | null = null) => alias(buildSnapshot(A(), { rev, nowMs: Date.now(), rest: withRest ? rest() : null, measuring }), aliasMap());
 
 async function build(): Promise<Files> {
   const f: Files = {};
@@ -59,7 +59,7 @@ async function build(): Promise<Files> {
   const S = await snapshots();
   const named: Record<string, unknown> = { idle: S.idle, 'set-first': S.set1, 'skipped-block': S.skipped, 'rest-after-first': S.rest1, 'to-fill': S.fill, paused: S.paused, 'rest-main-in-rest': S.rest2, 'after-two-done': S.after2, 'last-rest': S.lastRest, done: S.done };
   await world({ ss: true }); named['superset-mid-round'] = snap(1); A().exercises[0].sets[0].done = true; named['superset-end-of-round'] = snap(2);
-  await world(); A().exercises.slice(0, 2).forEach(e => e.sets.forEach(x => { x.done = true; })); named['timed-set'] = snap(1);
+  await world(); A().exercises.slice(0, 2).forEach(e => e.sets.forEach(x => { x.done = true; })); named['timed-set'] = snap(1); named['timed-set-measuring'] = snap(1, false, A().exercises[2].sets[0].id); /* M3 p6 (ZM-05): trwa pomiar → `now.measuring` */
   await world(); A().exercises[0].sets.forEach(x => { x.done = true; }); named['bodyweight-set'] = snap(1);
   await world({ unit: 'lb' }); named['unit-lb'] = snap(1); applyUnit('kg');
   for (const l of ['de', 'ja', 'pt-BR'] as const) { await world(); await completeSet(0, 0); applyLang(l); named[`lang-${l}`] = snap(2, true); }

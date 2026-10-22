@@ -2,12 +2,14 @@ import { MedicalNote } from '@/components/MedicalNote';
 import { SubscriptionCard } from '@/components/SubscriptionCard';
 import { paywallOn } from '@/lib/entitlement';
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Alert, View, Linking } from 'react-native';
+import { Alert, View, Linking } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { Screen, Field, NumInput, Btn, Muted, SwitchRow, Segmented, SectionTitle, Item } from '@/components/ui';
 import { useRouter } from 'expo-router';
 import { getState, useTick, save, saveCfg, resetAll, applyPrefs, useForegroundTick, REST_MAX, RIR_MAX, RPE_LIGHT } from '@/lib/store';
 import { DEFAULT_REST, type ThemeSetting, type WorkoutView } from '@/lib/seed';
 import * as timer from '@/lib/timer';
+import { hapticsEnabled } from '@/lib/haptics';
 import { sampleVoice, voiceAvailable, voiceSetting, setVoiceSetting, voiceSettingLabel, VOICE_SETTINGS, type VoiceSetting } from '@/lib/voice';
 import { PLAN_REMINDER_HOUR, reminderPermission, type ReminderPermission } from '@/lib/planReminder';
 import { safetyBackup, safetyRecoveryNote, AUTO_KEEP } from '@/lib/backup';
@@ -37,9 +39,12 @@ export default function SettingsScreen() {
       <SectionTitle>{t('Trening')}</SectionTitle>
       <Field label={t('Widok treningu')} infoId="workout-view" info={s.workoutView === 'list' ? t('Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.') : t('Skupiony: bieżąca seria dużymi cyframi nad listą ćwiczeń.')}><Segmented label={t('Widok treningu')} options={[['focus', t('Skupiony')], ['list', t('Lista')]] as [WorkoutView, string][]} value={s.workoutView ?? 'focus'} onChange={v => { s.workoutView = v; saveCfg(); }} /></Field>
       <Field label={t('Domyślna przerwa (s)')}><NumInput value={s.defaultRest} onNum={v => { if (v === '') return; s.defaultRest = Math.min(REST_MAX, Math.max(0, Math.round(v))) /* UI2-09: limit z jednego miejsca */; saveCfg(); }} placeholder={String(DEFAULT_REST)} /></Field>
-      <SwitchRow label={t('Dźwięk i wibracja na koniec przerwy')} value={s.sound} onChange={v => { s.sound = v; saveCfg(); timer.refreshScheduled().catch(() => {}); timer.refreshStale().catch(() => {}); }} />
-      {/* 19.10.2026 (decyzja właściciela): jeden wybór zamiast przełącznika „Głos także przez głośnik telefonu”; to samo zmienia przycisk „Głos” na ekranie treningu */}
-      <Field label={t('Zapowiedzi głosowe')} infoId="voice-mode" info={[t('Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.'), t('Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.')]}>
+      {/* ZM-07 (p5d, 21.10.2026): dwa przełączniki. „Wibracje” (s.haptics) — brak pola = jak dźwięk (lib/haptics hapticsEnabled), więc po aktualizacji nic się nie zmienia;
+          pierwsze przełączenie „Dźwięku” utrwala dotychczasowy stan wibracji, żeby przełączniki były od tej chwili niezależne (nie przełącza ich po cichu). */}
+      <SwitchRow label={t('Dźwięk na koniec przerwy')} value={s.sound} onChange={v => { if (s.haptics === undefined) s.haptics = hapticsEnabled(s); s.sound = v; saveCfg(); timer.refreshScheduled().catch(() => {}); timer.refreshStale().catch(() => {}); }} />
+      <SwitchRow label={t('Wibracje')} value={hapticsEnabled(s)} onChange={v => { s.haptics = v; saveCfg(); }} />
+      {/* 19.10.2026 (decyzja właściciela): jeden wybór zamiast przełącznika „Głos także przez głośnik telefonu”; to samo zmienia pozycja „Zapowiedzi głosowe” w menu „⋯” na ekranie treningu */}
+      <Field label={t('Zapowiedzi głosowe')} infoId="voice-mode" info={[t('Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.'), t('Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.')]}>
         <Segmented testID="voice-mode" label={t('Zapowiedzi głosowe')} options={VOICE_SETTINGS.map(v => [v, voiceSettingLabel(v)] as [VoiceSetting, string])} value={voiceSetting(s)} onChange={setVoiceSetting} />
       </Field>
       <Btn title={t('Posłuchaj przykładu')} small onPress={() => { sampleVoice().catch(() => {}); }} />
@@ -47,7 +52,7 @@ export default function SettingsScreen() {
       <SwitchRow label={t('Ekran włączony podczas treningu')} value={s.wakeLock} onChange={v => { s.wakeLock = v; saveCfg(); }} />
       <SwitchRow label={t('RPE / RIR przy serii')} detail={t('opcjonalne pole, nie wpływa na objętość')} value={s.showRpe} onChange={v => { s.showRpe = v; saveCfg(); }} />
       {s.showRpe ? <>
-        <Field label={t('Skala wysiłku')} infoId="effort-scale" info={[t('RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.'), t('RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).', { max: RIR_MAX, light: RPE_LIGHT, min: 10 - RIR_MAX })]}><Segmented label={t('Skala wysiłku')} options={[['rpe', 'RPE'], ['rir', 'RIR']] as ['rpe' | 'rir', string][]} value={s.effortScale ?? 'rpe'} onChange={v => { if (v === 'rir') s.effortScale = v; else delete s.effortScale; saveCfg(); }} /></Field>
+        <Field label={t('Skala wysiłku')} infoId="effort-scale" info={[t('RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.'), t('RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).', { max: RIR_MAX, light: RPE_LIGHT, min: 10 - RIR_MAX })]}><Segmented label={t('Skala wysiłku')} testID="effort-scale" options={[['rpe', 'RPE'], ['rir', 'RIR']] as ['rpe' | 'rir', string][]} value={s.effortScale ?? 'rpe'} onChange={v => { if (v === 'rir') s.effortScale = v; else delete s.effortScale; saveCfg(); }} /></Field>
       </> : null}
       <SwitchRow label={t('Podpowiedź progresji')} detail={t('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń') + ' ' + t('Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.')} value={s.progressHint} onChange={v => { s.progressHint = v; saveCfg(); }} />
       {/* 11.10.2026 (docs/22, P5 A): „Masa ciała” przeniesiona do zakładki Postępy (sekcja „Masa ciała”) — z Ustawień wejście zniknęło */}

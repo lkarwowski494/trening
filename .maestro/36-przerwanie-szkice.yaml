@@ -4,7 +4,7 @@
 #
 # Literały (EN z lib/i18n.en.ts):
 #   w-0-0 / r-0-0                                    ← testID pól ciężaru i powtórzeń (components/ActiveWorkout.tsx)
-#   "Now: 40 lb × 10"                                ← karta „teraz” ('Teraz: {v}'); symulator en-US startuje w lb (H4, E2E 89)
+#   "Bench Press \(Dumbbell\), set 1 of 3\. 40 pounds.*10 reps.*" ← opis tablicy „teraz” (accessibilityLabel; M3 p2); symulator en-US startuje w lb (H4, E2E 89)
 #   "Unsaved changes" / "Discard changes" / "Back to editing" ← okno po restarcie (app/_layout.tsx askRestored): 'Niezapisane zmiany' / 'Odrzuć zmiany' / 'Wróć do edycji'
 #   "Edit template" / "Save template" / "Name"        ← podgląd i edycja szablonu (app/template/[id].tsx)
 appId: pl.lukasz.trening
@@ -27,14 +27,15 @@ name: Przerwanie — trening i szkic szablonu po restarcie
       - tapOn: { id: "r-0-0" }
       - eraseText: 10
       - inputText: "10"
-      - tapOn: "Change the values in the set row below."   # E2E 38471218362: klawiatura numeryczna nie ma „Gotowe” — hideKeyboard pada; fokus zdejmuje stuknięcie w tekst karty
-      - assertVisible: "Now: 40 lb × 10"
+      - tapOn: "Bench Press \\(Dumbbell\\)"   # E2E 38471218362: klawiatura numeryczna nie ma „Gotowe” — hideKeyboard pada; fokus zdejmuje stuknięcie w nazwę ćwiczenia nad wierszami (nagłówek bloku) (M3 p2: tekst „Change the values…” zniknął)
+      - scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\), set 1 of 3\\. 40 pounds.*10 reps.*", direction: UP, timeout: 20000 }   # M3 fix: tablica z większymi cyframi (04-studio-projektowe-001) jest wyższa — po wpisie lista bywa przewinięta pod jej opis
+      - assertVisible: "Bench Press \\(Dumbbell\\), set 1 of 3\\. 40 pounds.*10 reps.*"
 - stopApp
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Pause workout", timeout: 60000 }
+- extendedWaitUntil: { visible: "Workout options", timeout: 60000 }
 - assertVisible: "Workout progress: 0 of 6 sets"
-- assertVisible: "Now: 40 lb × 10"
+- assertVisible: "Bench Press \\(Dumbbell\\), set 1 of 3\\. 40 pounds.*10 reps.*"
 - takeScreenshot: 105-po-restarcie-trening
 - tapOn: { text: "Set 1 done.*", index: 0 }
 - extendedWaitUntil: { visible: "Workout progress: 1 of 6 sets", timeout: 15000 }

@@ -1,11 +1,13 @@
 import React from 'react';
-import { ScrollView, Linking } from 'react-native';
+import { Linking } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { useRouter } from 'expo-router';
 import { Screen, Item, Muted } from '@/components/ui';
 import { getState, useTick, save, applyPrefs } from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { resyncTrialReminder } from '@/lib/entitlement';
 import { t, lang, LANGS, LANG_NAME, type LangSetting } from '@/lib/i18n';
+import { font } from '@/lib/theme';
 
 /** Wybór języka (decyzja właściciela 05.10.2026: lista zamiast przełącznika; 07.10.2026: 26 języków). Nazwy języków w nich samych. */
 export default function LanguageScreen() {
@@ -15,7 +17,7 @@ export default function LanguageScreen() {
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
       {opts.map(([k, name]) => <Item key={k} title={name} icon={k === cur ? '✓' : ' '} onPress={() => pick(k)} accessibilityLabel={k === cur ? t('{name}, wybrany', { name }) : name} a11yLang={k === 'auto' ? lang() : k} /* A11-09: nazwa języka czytana jego głosem */ />)}
-      <Muted style={{ fontSize: 12, marginTop: 12 }}>{t('Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.')}</Muted>
+      <Muted style={{ ...font('footnote'), marginTop: 12 }}>{t('Nazwy ćwiczeń z biblioteki są po angielsku we wszystkich językach poza polskim.')}</Muted>
       {/* M1-audytor-generalny-064 (DEC-18, 20.10.2026): nazwa pod ikoną i opis zgody Zdrowia zależą od języka aplikacji ustawionego w iOS — wybór w aplikacji ich nie zmienia */}
       <Item title={t('Zmień w ustawieniach iOS')} sub={t('Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.')} icon="›" onPress={() => { Linking.openSettings().catch(() => {}); }} />
     </ScrollView></Screen>

@@ -83,20 +83,20 @@ describe('ekran: karta „teraz”', () => {
   test('masa ciała: asysta „asysta: 15 kg” i dociążenie „dociążenie: 10 kg”', async () => {
     await boot(() => { store.startEmpty(); block('Pull Up', { addKg: -15, reps: 6 }); store.addSet(0); const a = S().active!; a.exercises[0].sets[1].addKg = 10; });
     expect(screen.getByLabelText('asysta: 15 kg')).toBeTruthy();
-    await tap(screen.getByText('Seria zrobiona')); await flushAll(10); expect(screen.getByLabelText('dociążenie: 10 kg')).toBeTruthy();
+    await tap(screen.getByText('Seria zrobiona')); await flushAll(10); await tap(screen.getByText('Pomiń')); await flushAll(10); expect(screen.getByLabelText('dociążenie: 10 kg')).toBeTruthy(); /* M3 p2: w przerwie tablica pokazuje zegar — grafika następnej serii wraca po przerwie */
   });
   test('hantle: „hantle: 2 × 22,5 kg”', async () => {
     await boot(() => { store.startEmpty(); block('Bench Press (hantle)', { weight: 22.5, reps: 10 }); });
     expect(screen.getByLabelText('hantle: 2 × 22,5 kg')).toBeTruthy();
   });
-  test('przerwa w karcie (pkt 3): po „Seria zrobiona” odliczanie i −15/+15/Pomiń w karcie (jeden zestaw na ekranie), nagłówek „dalej: …”; Pomiń kończy przerwę', async () => {
+  test('przerwa w karcie (pkt 3): po „Seria zrobiona” odliczanie i −15/+15/Pomiń w karcie (jeden zestaw na ekranie), wiersz „Następna: …” na tablicy; Pomiń kończy przerwę', async () => {
     await boot(() => { store.startEmpty(); block('Bench Press (hantle)', { weight: 22.5, reps: 10 }); store.addSet(0); });
     await tap(screen.getByText('Seria zrobiona')); await flushAll(10);
     expect(timer.T.on).toBe(true);
     expect(screen.getAllByLabelText('Skróć przerwę o 15 sekund')).toHaveLength(1);
-    expect(screen.getByText('dalej: Bench Press (hantle)')).toBeTruthy();
+    expect(screen.getByTestId('board-next').props.children).toMatch(/^Następna:\sseria\s2\sz\s2/);
     await tap(screen.getByText('Pomiń')); await flushAll(10);
-    expect(timer.T.on).toBe(false); expect(screen.queryByText('dalej: Bench Press (hantle)')).toBeNull();
+    expect(timer.T.on).toBe(false); expect(screen.queryByTestId('board-next')).toBeNull();
   });
   test('widok listy: przerwa w dolnym pasku jak dotąd (bez karty)', async () => {
     await boot(() => { S().settings.workoutView = 'list'; store.startEmpty(); block('Bench Press (hantle)', { weight: 22.5, reps: 10 }); store.addSet(0); });
@@ -112,7 +112,7 @@ describe('ekran: karta „teraz”', () => {
     await boot(() => { const g = addLocation('gym'); store.startEmpty(); S().active!.locationId = g.id; block('Back Squat', { reps: 5 }); });
     expect(screen.queryByLabelText(/^Na każdą stronę/, { includeHiddenElements: true })).toBeNull();
     await act(async () => { S().active!.exercises[0].sets[0].weight = 80; store.save(S().active!); }); await flushAll(10);
-    expect(screen.queryByLabelText(/^Na każdą stronę/, { includeHiddenElements: true })).toBeNull(); expect(screen.getByLabelText('Teraz: 80 kg × 5')).toBeTruthy();
+    expect(screen.queryByLabelText(/^Na każdą stronę/, { includeHiddenElements: true })).toBeNull(); expect(screen.getByTestId('board-desc').props.accessibilityLabel).toContain('80 kilogramów, 5 powtórzeń');
   });
   test('English: podpisy grafik po angielsku', async () => {
     await fresh(undefined, 'en');

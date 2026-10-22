@@ -60,6 +60,20 @@ name: Gumy w miejscu i w treningu
 - scrollUntilVisible: { element: "Band colour: level 4", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 60-gumy-w-miejscu
 
+# --- Ekran Gumy: tryb usuwania (M3 p5, ZM-04, W1 b): „Edit” → przycisk usunięcia gumy → okno jak przy geście; „Cancel” zostawia gumę ---
+- scrollUntilVisible: { element: "Bands…", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Bands…"
+- extendedWaitUntil: { visible: "Add band", timeout: 30000 }
+- tapOn: { id: "edit-button" }
+- extendedWaitUntil: { visible: "Done", timeout: 15000 }
+- assertNotVisible: "Add band"
+- tapOn: { id: "row-delete", index: 0 }
+- extendedWaitUntil: { visible: "Delete band?", timeout: 15000 }
+- tapOn: "Cancel"
+- tapOn: { id: "edit-button" }
+- extendedWaitUntil: { visible: "Add band", timeout: 15000 }
+- tapOn: "Back"
+
 # --- Powrót do zakładki Trening ---
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Add place", timeout: 30000 }
@@ -78,6 +92,7 @@ name: Gumy w miejscu i w treningu
 - extendedWaitUntil: { visible: "Place filter: Home.*", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Band Pull Apart"
+- pressKey: Enter
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Band Pull Apart, .*", timeout: 30000 }
@@ -105,6 +120,7 @@ name: Gumy w miejscu i w treningu
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Pull Up"
+- pressKey: Enter
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Pull Up, .*", timeout: 30000 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, F, FW } from '@/lib/theme';
 import { bandHex, type EquipVis } from '@/lib/equipvis';
 import { bandA11y } from '@/lib/store';
 import { t as tr, lang } from '@/lib/i18n';
@@ -12,7 +12,7 @@ import { fmtW } from '@/lib/units';
  */
 export function EquipVisual({ v }: { v: EquipVis }) {
   const t = useTheme();
-  const caption = (s: string) => <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 12, fontFamily: F.semibold }}>{s}</Text>;
+  const caption = (s: string) => <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.muted, fontSize: 12, ...FW.semibold }}>{s}</Text>;
   const box = (label: string, children: React.ReactNode) => <View accessibilityLanguage={lang()} accessible accessibilityRole="image" accessibilityLabel={label} style={{ gap: 4 }}>{caption(label)}{children}</View>;
   switch (v.kind) {
     case 'stack': {
@@ -22,7 +22,7 @@ export function EquipVisual({ v }: { v: EquipVis }) {
           {v.window.map((r, i) => (
             <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
               <View style={{ width: 120, height: 18, borderRadius: 4, backgroundColor: r.pin ? t.text : t.surface2, borderWidth: 1, borderColor: t.line, alignItems: 'center', justifyContent: 'center' }}>
-                <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: r.pin ? t.bg : t.muted, fontSize: 11, fontFamily: F.monoBold }}>{fmtW(r.kg, false)}</Text>
+                <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: r.pin ? t.bg : t.muted, fontSize: 11, fontFamily: F.monoBold, fontVariant: ['tabular-nums'] }}>{fmtW(r.kg, false)}</Text>
               </View>
               {r.pin ? <View style={{ width: 22, height: 6, borderRadius: 3, backgroundColor: t.accent }} /> : null}
             </View>))}
@@ -38,7 +38,7 @@ export function EquipVisual({ v }: { v: EquipVis }) {
     }
     case 'electric': {
       const label = tr('na urządzeniu: {v}', { v: fmtW(v.kg) });
-      return box(label, <View style={{ alignSelf: 'flex-start', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 6, backgroundColor: t.text }}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: t.bg, fontSize: 20, fontFamily: F.monoBold }}>{fmtW(v.kg)}</Text></View>);
+      return box(label, <View style={{ alignSelf: 'flex-start', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 6, backgroundColor: t.text }}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: t.bg, fontSize: 20, fontFamily: F.monoBold, fontVariant: ['tabular-nums'] }}>{fmtW(v.kg)}</Text></View>);
     }
     case 'band': {
       const name = bandA11y({ color: v.color, level: v.level }); const label = v.role === 'assist' ? tr('asysta gumą: {v}', { v: name }) : tr('guma: {v}', { v: name });

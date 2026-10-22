@@ -1,9 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, useWindowDimensions } from 'react-native';
 import { PLATE_COLORS, type PlateColor } from '@/lib/discColors';
 import Svg, { Path, Rect } from 'react-native-svg';
-import { needsEdge, miniIcon, MINI_ICON, MARK_STROKE, restCup, REST_CUP, plateStack, plateStackHeight, PLATE_STACK, type DayMark } from '@/lib/motif';
-import type { Theme } from '@/lib/theme';
+import { needsEdge, MINI_ICON, MARK_STROKE, restCup, REST_CUP, MARK_FILL, MARK_SQUARE, plateStack, plateStackHeight, PLATE_STACK, type DayMark } from '@/lib/motif';
+import { useTheme, MOTIF, RADIUS, TYPE, titleMaxScale, type Theme } from '@/lib/theme';
+import { useA11yPrefs } from '@/lib/a11yPrefs';
+import { ICON_BAR, ICON_PLATES, ICON_COLLAR } from '@/lib/brandIcon';
 
 /*
  * Motyw z ikony (decyzja właściciela 09.10.2026, zestaw pełny; liczby i reguły — lib/motif.ts, kolory — lib/discColors.ts PLATE_COLORS).
@@ -20,24 +22,17 @@ export function Plate({ color, loaded = true, h, w = 10, bg, th, testID }: { col
 }
 
 /**
- * Znacznik dnia (pasek tygodnia na karcie „Dziś” i kalendarz; korekta właściciela 09.10.2026 ok. 17:00): zrobione — mała ikona aplikacji w kolorach
- * (gryf w kolorze tekstu — w ciemnym motywie jasny), zaplanowane — sama obwódka ikony w kolorze tekstu, opuszczone — obwódka wyszarzona (ctrlLine).
- * Odpoczynek (dzień bez treningu w aktywnym planie; decyzja właściciela 09.10.2026 wieczór) — filiżanka espresso (RestCup).
- * Geometria: lib/motif.miniIcon i restCup. Dekoracja: stan dnia czyta VoiceOver z etykiety i wartości dnia.
+ * Znacznik dnia (pasek tygodnia na karcie „Dziś” i kalendarz; makieta A2, decyzja właściciela 22.10.2026, docs/18): zrobione — kwadrat pełny w kolorze znacznika,
+ * zaplanowane — kontur tego samego koloru, opuszczone — kontur wyszarzony (ctrlLine). Bez barw talerzy (te tylko jako tło startu). Odpoczynek (dzień bez
+ * treningu w aktywnym planie) — filiżanka (RestCup). Geometria: lib/motif.MARK_SQUARE, MINI_ICON, restCup. Dekoracja: stan dnia czyta VoiceOver z etykiety i wartości dnia.
  */
 export function DayIcon({ mark, bg, th }: { mark: DayMark; bg: string; th: Theme }) {
-  const parts = miniIcon(); const { w, h } = MINI_ICON;
-  if (mark === 'done') return (
-    <View {...a11yHidden} testID="day-icon-done"><Svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} accessible={false}>
-      {parts.map((p, i) => { const fill = p.color ? PLATE_COLORS[p.color] : th.text; const edge = !!p.color && needsEdge(fill, bg);
-        return <Rect key={i} x={edge ? p.x + 0.4 : p.x} y={edge ? p.y + 0.4 : p.y} width={edge ? p.w - 0.8 : p.w} height={edge ? p.h - 0.8 : p.h} rx={p.rx} fill={fill} stroke={edge ? th.text : undefined} strokeWidth={edge ? 0.8 : undefined} />; })}
-    </Svg></View>);
+  const { w, h } = MINI_ICON; const { size, sw } = MARK_SQUARE; const x = (w - size) / 2; const y = (h - size) / 2;
   if (mark === 'rest') return <RestCup color={th[MARK_STROKE.rest]} />;
-  const stroke = th[MARK_STROKE[mark]]; const sw = 1;
   return (
     <View {...a11yHidden} testID={`day-icon-${mark}`}><Svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} accessible={false}>
-      {parts.map((p, i) => p.part === 'bar' ? <Rect key={i} x={0} y={h / 2 - sw / 2} width={w} height={sw} fill={stroke} />
-        : <Rect key={i} x={p.x + sw / 2} y={p.y + sw / 2} width={p.w - sw} height={p.h - sw} rx={p.rx} fill={bg} stroke={stroke} strokeWidth={sw} />)}
+      {mark === 'done' ? <Rect x={x} y={y} width={size} height={size} rx={RADIUS.marker} fill={th[MARK_FILL.done]} />
+        : <Rect x={x + sw / 2} y={y + sw / 2} width={size - sw} height={size - sw} rx={RADIUS.marker} fill="none" stroke={th[MARK_STROKE[mark]]} strokeWidth={sw} />}
     </Svg></View>);
 }
 
@@ -65,4 +60,46 @@ export function PlateStack({ filled, bg, th, testID }: { filled: boolean; bg: st
         return filled ? <Rect key={i} x={edge ? p.x + 0.5 : p.x} y={edge ? p.y + 0.5 : p.y} width={edge ? p.w - 1 : p.w} height={edge ? p.h - 1 : p.h} rx={p.rx} fill={fill} stroke={edge ? th.text : undefined} strokeWidth={edge ? 1 : undefined} />
           : <Rect key={i} x={p.x + sw / 2} y={p.y + sw / 2} width={p.w - sw} height={p.h - sw} rx={p.rx} fill="none" stroke={th.text} strokeWidth={sw} />; })}
     </Svg></View>);
+}
+
+/*
+ * Motyw A2 (M3, STOP E3 21.10.2026; docs/design/design-spec.md §1): koniec sztangi z talerzami w barwach IWF jako subtelne tło — tylko w pustych stanach (od 22.10.2026 nie na starcie: tam mała ikonka po tytule, TitleBarbell) i w pustych stanach (gryf z talerzami, 220 pt). Barwy talerzy w paletach (motif25/20/15/10, motifBar: krycie 16% / 20% policzone z góry),
+ * więc w tym pliku nie ma przezroczystości. Nigdy na tablicy, przy liczbach kg, w paskach, listach ani przyciskach; barwa nic nie znaczy (decyzja 09.10.2026).
+ * Znika przy „Zwiększ kontrast” i od skali tekstu 1,4; ukryty dla VoiceOver. Geometria z rysunku ikony (lib/brandIcon).
+ */
+const MOTIF_VIEW = { x: 6, y: 12, w: 106, h: 96 } as const;
+const MOTIF_PLATE_KEY = { red: 'motif25', blue: 'motif20', yellow: 'motif15', green: 'motif10', white: 'motifBar' } as const;
+/** Czy motyw jest widoczny: nie przy „Zwiększ kontrast” i nie od skali tekstu MOTIF.hideFromFontScale (zająłby miejsce tytułu). */
+export function useMotifVisible(): boolean {
+  const { fontScale } = useWindowDimensions(); const { contrast } = useA11yPrefs();
+  return !(contrast && MOTIF.hideWhenIncreasedContrast) && fontScale < MOTIF.hideFromFontScale;
+}
+/** Rysunek: gryf, cztery talerze (25, 20, 15, 10 kg) i zacisk w barwach motywu. Bez logiki widoczności — ta jest w StartMotif i EmptyBarArt. */
+export function BarMotif({ width }: { width: number }) {
+  const th = useTheme(); const { x, y, w, h } = MOTIF_VIEW;
+  return (
+    <View testID="bar-motif" {...a11yHidden} style={{ width, height: (width * h) / w }}>
+      <Svg width={width} height={(width * h) / w} viewBox={`${x} ${y} ${w} ${h}`} accessible={false}>
+        <Rect x={ICON_BAR.x} y={ICON_BAR.y} width={ICON_BAR.w} height={ICON_BAR.h} rx={ICON_BAR.rx} fill={th.motifBar} />
+        {ICON_PLATES.map((p, i) => <Rect key={i} x={p.x} y={p.y} width={p.w} height={p.h} rx={p.rx} fill={th[MOTIF_PLATE_KEY[p.color]]} />)}
+        <Rect x={ICON_COLLAR.x} y={ICON_COLLAR.y} width={ICON_COLLAR.w} height={ICON_COLLAR.h} rx={ICON_COLLAR.rx} fill={th.motifBar} />
+      </Svg>
+    </View>);
+}
+/**
+ * Mała ikonka sztangi zaraz po napisie „Trening” (decyzja właściciela 22.10.2026, docs/18; zastąpiła dużą sylwetkę w prawym górnym rogu, która nachodziła na wiersz planu):
+ * ten sam rysunek co ikona (gryf, cztery talerze, zacisk), jeden kolor tekstu, wysokość ok. wysokości liter tytułu (TITLE_ICON). Stoi w wierszu obok tytułu, nie nad nim —
+ * nie nachodzi na nic; rośnie z tekstem tak jak tytuł (do titleMaxScale). Dekoracja: ukryta dla VoiceOver, etykieta nagłówka bez zmian.
+ */
+export function TitleBarbell() {
+  const th = useTheme(); const { width, fontScale } = useWindowDimensions(); const { x, y, w, h } = MOTIF_VIEW;
+  const height = Math.round(TYPE.largeTitle.size * MOTIF.titleIconRatio * Math.min(fontScale, titleMaxScale(width))); const wd = Math.round((height * w) / h);
+  return (
+    <View testID="title-barbell" {...a11yHidden} style={{ width: wd, height }}>
+      <Svg width={wd} height={height} viewBox={`${x} ${y} ${w} ${h}`} accessible={false}>
+        <Rect x={ICON_BAR.x} y={ICON_BAR.y} width={ICON_BAR.w} height={ICON_BAR.h} rx={ICON_BAR.rx} fill={th.text} />
+        {ICON_PLATES.map((p, i) => <Rect key={i} x={p.x} y={p.y} width={p.w} height={p.h} rx={p.rx} fill={th.text} />)}
+        <Rect x={ICON_COLLAR.x} y={ICON_COLLAR.y} width={ICON_COLLAR.w} height={ICON_COLLAR.h} rx={ICON_COLLAR.rx} fill={th.text} />
+      </Svg>
+    </View>);
 }

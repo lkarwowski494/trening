@@ -1,7 +1,8 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { FlatList, ScrollView, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
+import { FlatList, ScrollView } from '@/components/Scroll';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, FW, font } from '@/lib/theme';
 import { Screen, Input, Chip, Item, Muted, Empty, SearchField } from '@/components/ui';
 import { getState, addExerciseToActive, newExercise, save, visibleExercises, exerciseInHistory, locationById, swapBlock, exById, usesBand, restoreExercise, exercisesInUse, inCoreList, libShowAll, setLibShowAll } from '@/lib/store';
 import { LibScopeChip } from '@/components/LibScope';
@@ -59,7 +60,7 @@ export default function PickerScreen() {
     if (router.canGoBack()) router.back(); else router.replace('/');
   };
   let last = ''; const rows: React.ReactNode[] = [];
-  list.forEach(e => { if (!g && !ql && e.group !== last) { last = e.group; rows.push(<Muted key={'g' + e.group} accessibilityRole="header" style={{ fontSize: 12, fontFamily: F.semibold, paddingTop: 12, paddingBottom: 2 }}>{t(e.group)}</Muted>); }
+  list.forEach(e => { if (!g && !ql && e.group !== last) { last = e.group; rows.push(<Muted key={'g' + e.group} accessibilityRole="header" style={{ ...font('footnote'), ...FW.semibold, paddingTop: 12, paddingBottom: 2 }}>{t(e.group)}</Muted>); }
     const a = avail(e); const miss = a && !a.ok ? ' · ' + t('brak: {m}', { m: missingLabel(a.missing) }) : ''; const safe = a && a.ok && a.missingRecommended.includes(SAFETY_CAP) ? ' · ' + t('bez asekuracji w stojakach') : '' /* audyt M1-015 */; const was = ql ? former(e) : undefined;
     rows.push(<Item key={e.id} titleLang={exNameLang(e)} title={exName(e)} sub={`${t(e.equipment)}${usesBand(e) ? ' · ' + t('guma') : ''}${was ? ' · ' + t('dawniej: {n}', { n: exName({ name: was, lib: true }) }) : ''}${miss}${safe}`} onPress={() => choose(e)} icon="+" dim={!!miss} />); });
   // Usunięte ćwiczenie o pasującej nazwie można przywrócić razem z historią, zamiast tworzyć puste nowe (runda 4).
@@ -73,8 +74,8 @@ export default function PickerScreen() {
       <SearchField value={q} onChangeText={setQ} placeholder={t('Szukaj ćwiczenia…')} autoFocus />
       {ctx ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 6, marginTop: 8 }}>
         {/* decyzja właściciela 04.10.2026: miejsce jako filtr-etykieta (jak etykieta w JIRA) — „📍 Dom ✕” zdejmuje filtr, „+ 📍 Dom” przywraca; wybór zapamiętany */}
-        <Chip label={showAll ? `+ 📍 ${ctx.name}` : `📍 ${ctx.name} ✕`} on={!showAll} onPress={() => { const v = !showAll; setAllOn(v); st.settings.pickerShowAll = v; save(); }} a11yLabel={showAll ? t('Filtr miejsca wyłączony: {l}', { l: ctx.name }) : t('Filtr miejsca: {l}', { l: ctx.name })} a11yHint={showAll ? t('Tapnij, by pokazać tylko dostępne.') : t('Tapnij, by zdjąć.')} /* A11-18: instrukcja w podpowiedzi */ />
-        <Muted style={{ fontSize: 12, flexShrink: 1 }}>{showAll ? t('niedostępne w: {l} są wyszarzone', { l: ctx.name }) : t('tylko dostępne w: {l}', { l: ctx.name }) + (hidden ? ' · ' + t('ukryte: {n}', { n: hidden }) : '')}</Muted>
+        <Chip icon="pin" lead={showAll ? '+' : undefined} label={showAll ? ctx.name : `${ctx.name} ✕`} on={!showAll} onPress={() => { const v = !showAll; setAllOn(v); st.settings.pickerShowAll = v; save(); }} a11yLabel={showAll ? t('Filtr miejsca wyłączony: {l}', { l: ctx.name }) : t('Filtr miejsca: {l}', { l: ctx.name })} a11yHint={showAll ? t('Tapnij, by pokazać tylko dostępne.') : t('Tapnij, by zdjąć.')} /* A11-18: instrukcja w podpowiedzi */ />
+        <Muted style={{ ...font('footnote'), flexShrink: 1 }}>{showAll ? t('niedostępne w: {l} są wyszarzone', { l: ctx.name }) : t('tylko dostępne w: {l}', { l: ctx.name }) + (hidden ? ' · ' + t('ukryte: {n}', { n: hidden }) : '')}</Muted>
       </View> : null}
       <LibScopeChip all={libAll} hidden={nicheHidden} searching={!!ql} onToggle={() => { const v = !libAll; setLibAll(v); setLibShowAll(v); }} />
       <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false} style={{ flexGrow: 0, flexShrink: 0, marginVertical: 8 }} /* runda 69: chipy nie są ściskane do zera */>

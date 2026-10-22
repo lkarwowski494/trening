@@ -36,9 +36,13 @@ export type DayMark = (typeof DAY_MARKS)[number];
  * w dzień odpoczynku — 'done' (stan dnia 'done'). */
 export const dayMark = (s: DayStatus, inPlan = false): DayMark | null =>
   s === 'done' || s === 'other' ? 'done' : s === 'planned' ? 'planned' : s === 'missed' ? 'missed' : s === 'rest' && inPlan ? 'rest' : null;
-/** Kolor obwódki (klucz motywu): zaplanowany — kolor tekstu; opuszczony i odpoczynek — ctrlLine (stonowany, by nie konkurował z dniami treningowymi,
- * nadal ≥ 3:1 do tła w obu motywach — WCAG 1.4.11, test). Odpoczynek od opuszczonego odróżnia kształt (filiżanka, nie ikona), nie kolor. */
-export const MARK_STROKE: Readonly<Record<Exclude<DayMark, 'done'>, 'text' | 'ctrlLine'>> = { planned: 'text', missed: 'ctrlLine', rest: 'ctrlLine' };
+/** Znaczniki dni jak w makiecie A2 (decyzja właściciela 22.10.2026, docs/18; 04-studio-projektowe-008): zrobione — kwadrat pełny w kolorze znacznika (`accent`),
+ * zaplanowane — kontur tego samego koloru, opuszczone i odpoczynek — `ctrlLine` (stonowany; odpoczynek od opuszczonego odróżnia kształt: filiżanka).
+ * Wszystkie ≥ 3:1 do tła w obu motywach (WCAG 1.4.11, test). Barwy talerzy IWF nie występują w znacznikach — tylko jako tło startu (BarMotif). */
+export const MARK_FILL = { done: 'accent' } as const;
+export const MARK_STROKE: Readonly<Record<Exclude<DayMark, 'done'>, 'accent' | 'ctrlLine'>> = { planned: 'accent', missed: 'ctrlLine', rest: 'ctrlLine' };
+/** Kwadrat znacznika (pt): bok mieści się w polu MINI_ICON (wysokość), obwódka konturu. Promień — RADIUS.marker. */
+export const MARK_SQUARE = { size: 18, sw: 2 } as const;
 
 /**
  * Filiżanka espresso na spodku (dzień odpoczynku): własny rysunek z płaskich kształtów jak ikona aplikacji (zaokrąglone prostokąty, kształt bez

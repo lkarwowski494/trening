@@ -60,7 +60,7 @@ describe('C4 / MER-06, MER-07, MER-08, MER-12, MER-17: „Na czym to oparte” i
       'Zakresy powtórzeń (masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań).',
       'Wysiłek: zwykle 0–3 powtórzenia w zapasie (ACSM 2026: blisko upadku albo 2–3; dokładnej liczby nie ustalono); do upadku nie trzeba.',
       'Przerwy: 3 min po ciężkich seriach boju głównego, 2 min po innych wielostawowych, 1,5 min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).',
-      'Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar — konwencja.',
+      'Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.',
     ]) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     const head = 'Serie na partię w tygodniu (pomocnicza = 0,5 serii — uproszczenie): klatka '; /* MER-17 */
     expect(screen.getAllByText(/^Serie na partię w tygodniu/).map(n => String(n.props.children)).filter(x => x.startsWith(head))).toHaveLength(1);
@@ -90,7 +90,7 @@ describe('C3 / UX-10: miejsce, ponowne generowanie, potwierdzenie, notatka', () 
     await act(async () => { addLocation('bodyweight', 'Plener'); }); await flushAll(5); expect(screen.getByText('Plener')).toBeTruthy();
   });
   test('ponowne generowanie: pytanie o zastąpienie nieużywanych → „Zastąp” bez „(2)”; „Zostaw” — nowe obok; potwierdzenie z linkiem do folderu', async () => {
-    await boot('/generator'); await saveBtn(); await press('Ustawić nowy plan jako aktywny?', 'Tylko zapisz');
+    await boot('/generator', () => { plan.setPlanName('Obecny'); }); await saveBtn(); await press('Ustawić nowy plan jako aktywny?', 'Tylko zapisz'); /* ZM-03: pytanie tylko przy aktywnym planie */
     expect(lastAlert('Zapisano')!.msg).toBe('Szablony: FBW A, FBW B — w folderze „Wygenerowane” na liście Szablony.\nPlan „Masa, 3× w tygodniu · Pełna siłownia” jest w „Inne plany”.');
     expect(lastAlert('Zapisano')!.buttons!.map(b => b.text)).toEqual(['Pokaż szablony', 'Planowanie', 'OK']); /* UI2-06: „OK” zostaje na generatorze */
     await press('Zapisano', 'Pokaż szablony'); expect(screen.getByText('Wygenerowane')).toBeTruthy(); expect(screen.getByText('FBW A')).toBeTruthy();
@@ -103,7 +103,7 @@ describe('C3 / UX-10: miejsce, ponowne generowanie, potwierdzenie, notatka', () 
     expect(S().templates.map(x => x.name)).toEqual(['FBW A', 'FBW B', 'FBW A (2)', 'FBW B (2)']); expect(lastAlert('Zapisano')!.msg).toMatch(/^Szablony: FBW A \(2\), FBW B \(2\) — /);
   });
   test('szablon użyty w treningu nie jest proponowany; plan z nim zostaje i trzyma drugi szablon; bez planu — tylko nieużyty', async () => {
-    await boot('/generator', () => { const r = saveGenerated(generate(inp()), inp(), false); addWorkout(NOW.getTime() - 864e5, [['Back Squat', [{ weight: 100, reps: 5 }]]]).templateId = r.templateIds[0]; });
+    await boot('/generator', () => { plan.setPlanName('Obecny'); const r = saveGenerated(generate(inp()), inp(), false); addWorkout(NOW.getTime() - 864e5, [['Back Squat', [{ weight: 100, reps: 5 }]]]).templateId = r.templateIds[0]; });
     await saveBtn(); expect(lastAlert('Zastąpić poprzednio wygenerowane, nieużywane szablony?')).toBeUndefined(); expect(lastAlert('Ustawić nowy plan jako aktywny?')).toBeTruthy();
     await press('Ustawić nowy plan jako aktywny?', 'Anuluj'); await act(async () => { plan.deletePlan(plan.savedPlans()[0].id); }); await saveBtn();
     expect(lastAlert('Zastąpić poprzednio wygenerowane, nieużywane szablony?')!.msg).toBe('Bez treningów i poza aktywnym planem: FBW B. „Zastąp” je usunie, „Zostaw” doda nowe obok.');
@@ -121,7 +121,7 @@ describe('C3 / UX-10: miejsce, ponowne generowanie, potwierdzenie, notatka', () 
     expect(S().templates.find(x => x.id === id)!.note).toBeUndefined();
   });
   test('English: nazwy przy tworzeniu w bieżącym języku, chip „+ Add place”, ostrzeżenia po angielsku', async () => {
-    await boot('/generator', () => {}, 'en');
+    await boot('/generator', () => { plan.setPlanName('Current'); }, 'en'); /* ZM-03: pytanie tylko przy aktywnym planie */
     expect(screen.getByText('+ Add place')).toBeTruthy(); expect(screen.getByText(/^With no places, the plan assumes a full gym/)).toBeTruthy(); await openInfo('gen-no-places'); expect(screen.getByText(/^You have no training places yet/)).toBeTruthy();
     await tap(screen.getByText('Save templates and plan')); await flushAll(5); await press('Make the new plan active?', 'Save only');
     expect(S().templates.map(x => [x.name, x.folder, x.note])).toEqual([['Full Body A', 'Generated', 'Effort: usually 0–3 reps in reserve (RIR); training to failure is not needed.'], ['Full Body B', 'Generated', 'Effort: usually 0–3 reps in reserve (RIR); training to failure is not needed.']]);

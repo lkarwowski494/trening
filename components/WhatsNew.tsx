@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Btn, H2, Muted, Txt } from '@/components/ui';
-import { useTheme, F } from '@/lib/theme';
+import { Btn, H2, Muted, Txt, TabHeader } from '@/components/ui';
+import { useTheme, FW, font, RADIUS } from '@/lib/theme';
 import { WHATS_NEW, whatsNewUnseen, markWhatsNewSeen, type WhatsNewEntry } from '@/lib/whatsnew';
 import { finishedWorkouts } from '@/lib/store';
 import { t, locale, lang } from '@/lib/i18n';
@@ -19,30 +19,30 @@ export function WhatsNewButton({ open, onPress }: { open: boolean; onPress: () =
   return (
     <Pressable accessibilityLanguage={lang()} testID="whats-new-i" onPress={onPress} hitSlop={8} accessibilityRole="button" accessibilityState={{ expanded: open }}
       accessibilityLabel={dot ? t('Co nowego — są nowe zmiany') : t('Co nowego')}
-      style={({ pressed }) => ({ width: 32, height: 32, borderRadius: 16, borderWidth: 1.5, borderColor: open ? th.accent : th.line, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.7 : 1 })}>
-      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: open ? th.accent : th.text, fontSize: 17, fontFamily: F.semibold }}>✦</Text>{/* 9A (11.10.2026): iskierki zamiast litery „i” (kropka bez zmian; testID zostaje dla E2E) */}
-      {dot ? <View testID="whats-new-dot" style={{ position: 'absolute', top: -2, right: -2, width: 10, height: 10, borderRadius: 5, backgroundColor: th.accent, borderWidth: 1.5, borderColor: th.bg }} /> : null}
+      style={({ pressed }) => ({ width: 32, height: 32, borderRadius: RADIUS.round, borderWidth: 1.5, borderColor: open ? th.accent : th.line, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.7 : 1 })}>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: open ? th.accent : th.text, ...font('body'), ...FW.semibold }}>✦</Text>{/* 9A (11.10.2026): iskierki zamiast litery „i” (kropka bez zmian; testID zostaje dla E2E) */}
+      {dot ? <View testID="whats-new-dot" style={{ position: 'absolute', top: -2, right: -2, width: 10, height: 10, borderRadius: RADIUS.round, backgroundColor: th.accent, borderWidth: 1.5, borderColor: th.bg }} /> : null}
     </Pressable>
   );
 }
 
 function Entry({ e }: { e: WhatsNewEntry }) {
-  return <View style={{ gap: 4 }}>{e.items().map(x => <Txt key={x} style={{ fontSize: 14 }}>{`• ${x}`}</Txt>)}</View>;
+  return <View style={{ gap: 4 }}>{e.items().map(x => <Txt key={x} style={font('callout')}>{`• ${x}`}</Txt>)}</View>;
 }
 
 export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
   const th = useTheme(); const router = useRouter(); const [older, setOlder] = useState<string | null>(null);
   const [cur, ...rest] = WHATS_NEW;
   return (
-    <View testID="whats-new" style={{ marginBottom: 10, padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 8 }}>
+    <View testID="whats-new" style={{ marginBottom: 10, padding: 12, borderRadius: RADIUS.group, backgroundColor: th.surface2, gap: 8 }}>
       <H2 style={{ marginBottom: 0 }}>{t('Co nowego')}</H2>
-      {!finishedWorkouts().length ? <Muted style={{ fontSize: 13 }}>{t('Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.')}</Muted> : null /* UX-12 A (audyt 0.10): nowa osoba */}
-      <Muted style={{ fontSize: 13 }}>{entryTitle(cur)}</Muted>
+      {!finishedWorkouts().length ? <Muted style={font('footnote')}>{t('Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.')}</Muted> : null /* UX-12 A (audyt 0.10): nowa osoba */}
+      <Muted style={font('footnote')}>{entryTitle(cur)}</Muted>
       <Entry e={cur} />
       {rest.map(e => { const on = older === e.id; return (
         <View key={e.id} style={{ gap: 4 }}>
           <Pressable accessibilityLanguage={lang()} onPress={() => setOlder(on ? null : e.id)} accessibilityRole="button" accessibilityLabel={entryTitle(e)} /* A11-18: bez „▸/▾” w etykiecie (stan niesie expanded) */ accessibilityState={{ expanded: on }} hitSlop={6} /* A11-15: 32 + 2×6 = 44 pt */ style={{ minHeight: 32, justifyContent: 'center' }}>
-            <Muted style={{ fontSize: 13, fontFamily: F.semibold }}>{`${on ? '▾' : '▸'} ${entryTitle(e)}`}</Muted>
+            <Muted style={{ ...font('footnote'), ...FW.semibold }}>{`${on ? '▾' : '▸'} ${entryTitle(e)}`}</Muted>
           </Pressable>
           {on ? <Entry e={e} /> : null}
         </View>); })}
@@ -58,10 +58,10 @@ export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
 export function WhatsNewHeader({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   return <>
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginVertical: 10 }}>
+    <TabHeader row style={{ justifyContent: 'flex-start', gap: 12 }}>
       <WhatsNewButton open={open} onPress={() => { if (!open) markWhatsNewSeen(); setOpen(!open); }} />
       <View style={{ flex: 1 }}>{children}</View>
-    </View>
+    </TabHeader>
     {open ? <WhatsNewPanel onClose={() => setOpen(false)} /> : null}
   </>;
 }

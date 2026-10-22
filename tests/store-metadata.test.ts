@@ -5,11 +5,15 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { namesIn } from './forbidden-names';
+import { PRIVACY_URL, TERMS_URL } from '@/lib/products';
+import { LANGS } from '@/lib/i18n';
+import { PAYWALL } from '@/lib/access';
+import { TRIAL_DAYS } from '@/lib/products';
 
 const read = (f: string) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', f), 'utf8'));
 const names = read('store/app-store-names.json').names as Record<string, string>;
 const meta = read('store/app-store-metadata.json');
-const L = meta.lokalizacje as Record<string, { subtitle: string; keywords: string }>;
+const L = meta.lokalizacje as Record<string, { subtitle: string; keywords: string; description: string; promotionalText: string }>;
 const words = (s: string) => s.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(Boolean);
 
 describe('store/app-store-metadata.json', () => {
@@ -38,6 +42,22 @@ describe('store/app-store-metadata.json', () => {
     for (const l of ['en-US', 'en-GB', 'en-AU', 'en-CA']) expect([l, L[l].subtitle]).toEqual([l, 'Workout tracker. No account.']);
     expect([names['en-AU'], L['en-AU']]).toEqual([names['en-GB'], L['en-GB']]);
     expect([names['en-CA'], L['en-CA']]).toEqual([names['en-US'], L['en-US']]);
+  });
+  test('opis i tekst promocyjny w każdej lokalizacji (M5, 22.10.2026): limity 4000 / 170 znaków, linki Warunków i Polityki prywatności, liczby z kodu, przypis espresso', () => {
+    for (const [l, v] of Object.entries(L)) {
+      const d = v.description ?? ''; const p = v.promotionalText ?? '';
+      const foot = d.split('\n').filter((x) => x.startsWith('* '));
+      const rest = d.split('\n').filter((x) => !x.startsWith('* ')).join('\n').replace(TERMS_URL, '').replace(PRIVACY_URL, '');
+      expect({ l, d: [...d].length > 800 && [...d].length <= 4000, p: p.length > 40 && [...p].length <= 170, terms: d.includes(TERMS_URL), privacy: d.includes(PRIVACY_URL),
+        jezyki: new RegExp(`(^|\\D)${LANGS.length}(\\D|$)`).test(d), proba: new RegExp(`(^|\\D)${TRIAL_DAYS}(\\D|$)`).test(d), limit: new RegExp(`(^|\\D)${PAYWALL.FREE_LIVE_PER_MONTH}(\\D|$)`).test(d),
+        przypis: foot.length === 1 && /1[.,]06/.test(foot[0]) && /1[.,]51/.test(foot[0]) && /MIMIT/.test(foot[0]) && /2026/.test(foot[0]),
+        kwoty: /\d+[.,]\d\d\s*(zł|PLN|USD|EUR|GBP|€|\$|£)|(USD|EUR|GBP|€|\$|£)\s*\d/.test(rest + p), marki: namesIn(`${d} ${p}`) })
+        .toEqual({ l, d: true, p: true, terms: true, privacy: true, jezyki: true, proba: true, limit: true, przypis: true, kwoty: false, marki: [] });
+    }
+  });
+  test('en-AU = en-GB i en-CA = en-US także w opisie i tekście promocyjnym (decyzja STOP 1, 21.10.2026)', () => {
+    expect([L['en-AU'].description, L['en-AU'].promotionalText]).toEqual([L['en-GB'].description, L['en-GB'].promotionalText]);
+    expect([L['en-CA'].description, L['en-CA'].promotionalText]).toEqual([L['en-US'].description, L['en-US'].promotionalText]);
   });
   test('bez nazw innych aplikacji i marek (wytyczna 2.3.7) i bez kwot w polach', () => {
     for (const [l, v] of Object.entries(L)) {

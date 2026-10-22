@@ -20,6 +20,16 @@ final class ClientModelTests: XCTestCase {
     XCTAssertEqual(r.out.count, 1)
   }
 
+  /// M3 ZM-05: `measuring` z migawki trafia do widoku (przycisk główny „Zakończ serię”); brak pola (starszy telefon) = false; przycisk nadal wysyła `done`.
+  func testViewCarriesMeasuringFlagFromSnapshot() {
+    let m = started("timed-set-measuring")
+    XCTAssertTrue(clientView(m, nowMs: T0).measuring); XCTAssertTrue(clientView(m, nowMs: T0).timed)
+    XCTAssertFalse(clientView(started("timed-set"), nowMs: T0).measuring)
+    XCTAssertFalse(clientView(started("set-first"), nowMs: T0).measuring)
+    let e = events(step(m, T0 + 5, .press(.main)))
+    XCTAssertEqual(e.count, 1); XCTAssertEqual(e[0].type, .done) // „Zakończ serię” = to samo zdarzenie co „Seria zrobiona”: telefon kończy pomiar (completeSet)
+  }
+
   func testPressesWithoutAWorkoutDoNothing() {
     var s = initialClient(apple)
     for b in [ClientButton.main, .differ, .skip, .confirmSkip, .cancelSkip, .undo] {

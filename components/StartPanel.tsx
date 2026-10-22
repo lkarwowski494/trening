@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Modal, Pressable, Text, View } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Animated, Modal, PanResponder, Pressable, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Item, useOnce } from '@/components/ui';
-import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, TEXT_SCALE_MAX, font, RADIUS, SIZE, SPACE } from '@/lib/theme';
 import { fmtDate, fmtDayKey } from '@/lib/store';
 import { startTemplate, startRepeatLast, startEmptyWorkout } from '@/lib/start';
 import { mainStart, otherStarts, type MainStart, type OtherStart } from '@/lib/home';
@@ -16,6 +16,8 @@ import { CloseButton } from '@/components/CloseButton';
  * w karcie (rozstrzygnięcie: karta zostaje informacją o tygodniu, akcja startu jest pełnej szerokości i łatwa do trafienia — opis w raporcie).
  * Samodzielny komponent — można go przenieść bez zmian.
  */
+/** Przesunięcie w dół (pt), od którego arkusz „Inny trening” się zamyka (albo szybki gest, vy > 1). */
+const SHEET_CLOSE_DY = 90;
 const dayWord = (k: string) => (k === addDays(dayKeyOf(Date.now()), 1) ? t('jutro') : fmtDayKey(k));
 
 function mainText(m: MainStart): { title: string; sub?: string; label: string } {
@@ -33,6 +35,14 @@ export function StartPanel() {
   const m = mainStart(); const x = mainText(m);
   const go = () => { if (m.kind === 'plan' || m.kind === 'planNext' || m.kind === 'next') startTemplate(m.tpl); else if (m.kind === 'empty') startEmptyWorkout(); else router.push('/'); };
   const others = open ? otherStarts(m) : [];
+  /* 04-studio-projektowe-007: arkusz „Inny trening” zamyka się też gestem w dół (jak arkusze systemowe) — tylko dodatkowo, przycisk „Anuluj” zostaje (zasada 13.10.2026, tests/close-button-guard) */
+  const dy = useRef(new Animated.Value(0)).current; const closeRef = useRef(() => {}); closeRef.current = () => { setOpen(false); };
+  const pan = useRef(PanResponder.create({
+    onMoveShouldSetPanResponder: (_, g) => g.dy > 8 && Math.abs(g.dy) > Math.abs(g.dx) * 1.5,
+    onPanResponderMove: (_, g) => { dy.setValue(Math.max(0, g.dy)); },
+    onPanResponderRelease: (_, g) => { if (g.dy > SHEET_CLOSE_DY || g.vy > 1) { closeRef.current(); dy.setValue(0); } else Animated.spring(dy, { toValue: 0, useNativeDriver: true }).start(); },
+    onPanResponderTerminate: () => { Animated.spring(dy, { toValue: 0, useNativeDriver: true }).start(); },
+  })).current;
   const pick = (f: () => void) => once(() => { setOpen(false); f(); });
   const row = (o: OtherStart) => {
     switch (o.kind) {
@@ -45,26 +55,26 @@ export function StartPanel() {
   return (
     <View testID="start-panel" style={{ marginTop: 10, gap: 8 }}>
       <Pressable accessibilityLanguage={lang()} testID="start-main" accessibilityRole="button" accessibilityLabel={x.label} onPress={once(go)}
-        style={({ pressed }) => ({ minHeight: 56, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 16, backgroundColor: th.accent, opacity: pressed ? 0.8 : 1, flexDirection: 'row', alignItems: 'center', gap: 10 })}>
+        style={({ pressed }) => ({ minHeight: SIZE.buttonPrimary, borderRadius: RADIUS.button, paddingVertical: SPACE.m, paddingHorizontal: SPACE.l, backgroundColor: th.accent, opacity: pressed ? 0.8 : 1, flexDirection: 'row', alignItems: 'center', gap: SPACE.m })}>
         <View style={{ flex: 1 }}>
-          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accentInk, fontFamily: F.heavy, fontSize: 18 }}>{x.title}</Text>
-          {x.sub ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accentInk, fontFamily: F.regular, fontSize: 13, marginTop: 2 }}>{x.sub}</Text> : null}
+          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accentInk, ...font('buttonPrimary') }}>{x.title}</Text>
+          {x.sub ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.accentInk, ...font('footnote'), marginTop: 2 }}>{x.sub}</Text> : null}
         </View>
-        <Text accessibilityElementsHidden importantForAccessibility="no" style={{ color: th.accentInk, fontFamily: F.semibold, fontSize: 22 }}>›</Text>
+        <Text accessibilityElementsHidden importantForAccessibility="no" style={{ color: th.accentInk, ...font('sectionTitle') }}>›</Text>
       </Pressable>
       {m.kind !== 'resume' ? <Btn block title={t('Inny trening')} accessibilityLabel={t('Inny trening')} accessibilityHint={t('Inny z planu, powtórz ostatni, z szablonu albo pusty.')} onPress={() => setOpen(true)} /> : null}
       <Modal visible={open} transparent animationType="slide" onRequestClose={() => setOpen(false)} accessibilityViewIsModal>
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <Pressable testID="other-sheet-scrim" accessible={false} importantForAccessibility="no" onPress={() => setOpen(false)} /* tło: stuknięcie zamyka jako dodatek; przycisk „Anuluj” jest w nagłówku arkusza (zasada 13.10.2026) */ style={{ ...{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }, backgroundColor: 'rgba(0,0,0,0.4)' }} />
-          <View testID="other-sheet" style={{ backgroundColor: th.surface, borderTopLeftRadius: 16, borderTopRightRadius: 16, paddingHorizontal: 16, paddingTop: 8, paddingBottom: 34 }}>
-            <View style={{ alignSelf: 'center', width: 40, height: 5, borderRadius: 3, backgroundColor: th.line, marginBottom: 8 }} accessibilityElementsHidden importantForAccessibility="no" />
+          <Animated.View testID="other-sheet" {...pan.panHandlers} style={{ backgroundColor: th.surface, borderTopLeftRadius: 16, borderTopRightRadius: 16, paddingHorizontal: SPACE.l, paddingTop: SPACE.s, paddingBottom: 34, transform: [{ translateY: dy }] }}>
+            <View style={{ alignSelf: 'center', width: 40, height: 5, borderRadius: RADIUS.marker, backgroundColor: th.line, marginBottom: SPACE.s }} accessibilityElementsHidden importantForAccessibility="no" />
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
               <CloseButton onPress={() => setOpen(false)} />
-              <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ flex: 1, textAlign: 'center', color: th.text, fontFamily: F.heavy, fontSize: 17 }}>{t('Inny trening')}</Text>
+              <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ flex: 1, textAlign: 'center', color: th.text, ...font('sectionTitle') }}>{t('Inny trening')}</Text>
               <View style={{ width: 44 }} accessibilityElementsHidden importantForAccessibility="no" />{/* równowaga dla „Anuluj” po lewej — tytuł na środku */}
             </View>
             {others.map(row)}
-          </View>
+          </Animated.View>
         </View>
       </Modal>
     </View>);

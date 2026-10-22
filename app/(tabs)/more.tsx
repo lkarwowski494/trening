@@ -2,17 +2,18 @@ import React from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Screen, H1, Item, Muted } from '@/components/ui';
+import { Screen, TabHeader, H1, Item, Muted } from '@/components/ui';
 import Constants from 'expo-constants';
 import { useHistTick } from '@/lib/store';
 import { t, appName } from '@/lib/i18n';
 import { guideProgress } from '@/lib/guide';
+import { font } from '@/lib/theme';
 
 export default function MoreScreen() {
   useHistTick(); /* odświeżenie licznika przewodnika */ const router = useRouter();
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
-      <View style={{ marginVertical: 10 }}><H1>{t('Więcej')}</H1></View>
+      <TabHeader><H1>{t('Więcej')}</H1></TabHeader>
       {/* 11.10.2026 (docs/22, wariant A): Szablony i Ćwiczenia zeszły z paska zakładek — na górze Więcej; Postępy mają własną zakładkę */}
       <Item title={t('Szablony')} onPress={() => router.push('/templates')} />
       <Item title={t('Ćwiczenia')} onPress={() => router.push('/exercises')} />
@@ -22,7 +23,7 @@ export default function MoreScreen() {
       <Item title={t('Kopia zapasowa (eksport / import)')} /* H2 (audyt 0.10): „Kopia zapasowa” zamiast „Backup” (folder w Plikach zostaje „Backup”) */ onPress={() => router.push('/more/backup')} />
       <Item title={t('Ustawienia')} onPress={() => router.push('/more/settings')} />
       <Item title={t('O aplikacji')} onPress={() => router.push('/more/about')} />{/* audyt 0.10 SEC-08: wersja i licencje open source */}
-      <Muted style={{ marginTop: 20, fontSize: 12 }}>{/* decyzja właściciela 06.10.2026: tylko numer wersji, małym drukiem */}{`${appName()} ${Constants.expoConfig?.version ?? ''}`}</Muted>
+      <Muted style={{ marginTop: 20, ...font('footnote') }}>{/* decyzja właściciela 06.10.2026: tylko numer wersji, małym drukiem */}{`${appName()} ${Constants.expoConfig?.version ?? ''}`}</Muted>
     </Screen></SafeAreaView>
   );
 }

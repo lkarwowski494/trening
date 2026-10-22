@@ -30,6 +30,7 @@ name: Edycja na żądanie — ekran ćwiczenia
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Back Squat"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Back Squat, barbell.*"
@@ -67,6 +68,7 @@ name: Edycja na żądanie — ekran ćwiczenia
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Back Squat"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Back Squat, barbell.*"

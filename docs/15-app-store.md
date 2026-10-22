@@ -377,61 +377,13 @@ Projekt do przejrzenia; nic nie wysłano do App Store Connect. Liczby znaków po
 | Nazwa B | 7 / 30 | ok |
 | Podtytuł B | 29 / 30 | ok |
 | Słowa kluczowe | 87 / 100 | ok |
-| Tekst promocyjny | 141 / 170 | ok |
-| Opis | 2896 / 4000 | ok |
 | What's New 0.12.0 | 175 / 4000 | ok |
 
 **Słowa kluczowe** (dla wariantu A; bez słów z nazwy i podtytułu):
 
 `ćwiczenia,hantle,sztanga,siła,masa,rekordy,e1RM,szablony,kalendarz,offline,RPE,RIR,gumy`
 
-**Tekst promocyjny:**
-
-Własne szablony, plan tygodnia, timer przerw i wykresy postępów. Wszystko offline na telefonie, bez konta i reklam. Pierwsze 14 dni za darmo.
-
-**Opis:**
-
-```text
-Trening to dziennik treningowy na siłownię i do domu. Zapisujesz serie, ciężary i powtórzenia, a aplikacja liczy resztę: objętość, rekordy i szacowany maksymalny ciężar (e1RM, wzór Epleya). Działa w całości na telefonie, bez konta, bez reklam i bez śledzenia.
-
-TRENING
-• Własne szablony treningów, porządkowane w folderach i archiwum
-• Widok „Skupiony” (jedna seria na ekranie) albo klasyczna lista
-• Timer przerw z powiadomieniem na koniec, także przy zablokowanym ekranie
-• Pauza treningu: czas pauzy nie wlicza się do czasu trwania
-• Opcjonalna skala wysiłku RPE albo RIR przy serii
-• Zamiana ćwiczenia w trakcie treningu, gdy brakuje sprzętu albo maszyna jest zajęta
-• Taśmy i gumy z kolorami oporu; system miar metryczny (kg, km, m) albo imperialny (lb, mi, yd)
-• Opcjonalne zapowiedzi głosowe następnego ćwiczenia na początku przerwy (domyślnie wyłączone)
-
-APPLE WATCH
-• Aplikacja na Apple Watch: odhaczasz serie i widzisz odliczanie przerwy na nadgarstku (wymaga iPhone'a z Treningiem)
-
-PLAN I KALENDARZ
-• Plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii mięśni
-• Opcjonalny generator szablonu i planu tygodnia na Twoje polecenie: wybierasz cel, miejsce, liczbę dni i długość sesji, wynik przeglądasz przed zapisem
-• Miejsca i sprzęt: ćwiczenia dobierane do tego, czym dysponujesz
-• Przypomnienie o treningu z planu rano w dniu treningu
-
-POSTĘPY
-• Historia treningów, rekordy i wykresy dla każdego ćwiczenia
-• Podsumowanie tygodnia i miesiąca z mapą mięśni, liczbą serii na partię i rekordami okresu
-• Porównanie bieżącego okresu z poprzednim (objętość, serie, treningi)
-• Masa ciała z datą, podpowiedź progresji przy ćwiczeniu
-• Biblioteka ćwiczeń z krótkimi wskazówkami techniki
-
-TWOJE DANE
-• Kopia zapasowa i eksport do pliku JSON oraz CSV, import z kopii i z plików CSV popularnych dzienników treningowych
-• Opcjonalny zapis zakończonych treningów do Apple Health
-• Opcjonalny odczyt z Apple Health (kroki, treningi, tętno, aktywna energia) — dane tylko wyświetlane na telefonie, nigdzie niewysyłane
-• Jasny, ciemny lub systemowy wygląd, 35 języków
-
-Subskrypcja: pierwsze 14 dni za darmo, potem plan miesięczny w cenie porównywalnej z jednym espresso w barze* albo plan roczny (oba odnawiane automatycznie, anulujesz w ustawieniach konta Apple), albo jednorazowy dostęp dożywotni. Aktualne ceny widać w App Store przed zakupem. Subskrypcję i dostęp dożywotni można udostępnić w Chmurze rodzinnej. Bez subskrypcji możesz nadal zapisywać 4 treningi na żywo w miesiącu, a historia, kopia zapasowa i eksport działają zawsze.
-
-* Średnia cena espresso w barze we Włoszech w 2026 r.: od 1,06 € do 1,51 € w zależności od prowincji (dane włoskiego Ministerstwa Przedsiębiorstw i Made in Italy – MIMIT, opracowanie C.r.c. i Assoutenti, sierpień 2026).
-
-Trening nie jest poradnikiem medycznym. W sprawie bólu, kontuzji lub chorób skonsultuj się ze specjalistą.
-```
+**Tekst promocyjny i opis:** od 22.10.2026 jedno źródło dla wszystkich 33 lokalizacji — `store/app-store-metadata.json` (pola `promotionalText`, `description`; test `tests/store-metadata.test.ts` i `tests/audit-m1-045-store-description.test.ts`); tu nie powtarzamy (zasada jednego miejsca). Opis po redesignie M3: docs/45.
 
 **Co nowego (0.12.0):**
 
@@ -454,61 +406,13 @@ Trening nie jest poradnikiem medycznym. W sprawie bólu, kontuzji lub chorób sk
 | Nazwa B | 8 / 30 | ok |
 | Podtytuł B | 27 / 30 | ok |
 | Słowa kluczowe | 96 / 100 | ok |
-| Tekst promocyjny | 154 / 170 | ok |
-| Opis | 2856 / 4000 | ok |
 | What's New 0.12.0 | 186 / 4000 | ok |
 
 **Słowa kluczowe** (dla wariantu A; bez słów z nazwy i podtytułu):
 
 `workout,exercise,strength,barbell,dumbbell,templates,calendar,records,e1RM,RPE,RIR,lifting,bands`
 
-**Tekst promocyjny:**
-
-Your own templates, a weekly plan, rest timer and progress charts. Everything works offline on your phone, with no account and no ads. First 14 days free.
-
-**Opis:**
-
-```text
-Training is a workout log for the gym and for home. You record sets, weights and reps, and the app works out the rest: volume, records and estimated one-rep max (e1RM, Epley formula). It runs entirely on your phone, with no account, no ads and no tracking.
-
-WORKOUTS
-• Your own workout templates, organised in folders and an archive
-• "Focus" view (one set on screen) or the classic list
-• Rest timer with an end-of-rest notification, also with the screen locked
-• Workout pause: paused time is not counted in the duration
-• Optional RPE or RIR effort scale per set
-• Swap an exercise mid-workout when equipment is missing or a machine is taken
-• Resistance bands with colours; metric (kg, km, m) or imperial (lb, mi, yd) measurement system
-• Optional spoken announcements of the next exercise at the start of a rest (off by default)
-
-APPLE WATCH
-• Apple Watch app: tick off sets and see the rest countdown on your wrist (requires an iPhone with Training)
-
-PLAN AND CALENDAR
-• Weekly plan, moving workouts around and suggested changes that take muscle-group recovery into account
-• Optional generator for a template and weekly plan on your command: you choose the goal, place, number of days and session length, and review the result before saving
-• Places and equipment: exercises matched to what you have
-• Morning reminder on the day of a planned workout
-
-PROGRESS
-• Workout history, records and charts for every exercise
-• Weekly and monthly summary with a muscle map, sets per muscle group and records of the period
-• Comparison of the current period with the previous one (volume, sets, workouts)
-• Body weight with a date, a progression hint on each exercise
-• Exercise library with short technique cues
-
-YOUR DATA
-• Backup and export to JSON and CSV files, import from a backup and from CSV files of popular workout logs
-• Optional saving of finished workouts to Apple Health
-• Optional reading from Apple Health (steps, workouts, heart rate, active energy) — data is only displayed on your phone and never sent anywhere
-• Light, dark or system appearance, 35 languages
-
-Subscription: the first 14 days are free, then a monthly plan for about the price of one espresso at a bar* or a yearly plan (both renew automatically; cancel in your Apple account settings), or one-time lifetime access. Current prices are shown in the App Store before purchase. Subscription and lifetime access can be shared with your family (Family Sharing). Without a subscription you can still log 4 live workouts per month; history, backup and export always work.
-
-* Average price of an espresso at a bar in Italy in 2026: EUR 1.06–1.51 depending on the province (data from the Italian Ministry of Enterprises and Made in Italy – MIMIT, analysed by C.r.c. and Assoutenti, August 2026).
-
-Training is not medical advice. For pain, injuries or illness, consult a specialist.
-```
+**Promotional text and description:** since 22.10.2026 in `store/app-store-metadata.json` (one source for all 33 localisations) — see the Polish section above.
 
 **What's New (0.12.0):**
 
@@ -539,6 +443,6 @@ Training is not medical advice. For pain, injuries or illness, consult a special
 - **Bramka E2E (M1-018).** `testflight.yml` ma pierwsze zadanie „bramka” (`scripts/ci/bramka-e2e.sh`): wysyłka rusza dopiero, gdy na TYM SAMYM commicie istnieje zielony przebieg `e2e-ios.yml` z pakietem podstawowym (albo pełnym / ścisłym). Przebieg rozpoznaje po tytule (`run-name` w `e2e-ios.yml`: „E2E iOS · podstawowy”, bez dopisków „tylko wybrane” i „aplikacja z innego przebiegu”). Trwający przebieg: bramka czeka (do ok. 110 min); czerwony albo brak: błąd z instrukcją. Push samej dokumentacji (`docs/**`, `*.md`) nie uruchamia ani E2E, ani TestFlight.
 - **Jak dalej wydawać.** Normalnie: push na `main` uruchamia E2E (pakiet podstawowy) i TestFlight równocześnie; TestFlight czeka na wynik. Ręcznie: najpierw `e2e-ios.yml` (Run workflow, pakiet podstawowy) na gałęzi, potem `testflight.yml`. **Ścieżka awaryjna** (E2E padło z winy maszyny, nie kodu): `testflight.yml` → wejścia `pomin_bramke_e2e` = true i `powod` (obowiązkowy; trafia do podsumowania przebiegu). **Przebieg dowodowy** (zmiana budowania, podpisu, wysyłki — model po L-001): wejście `bez_wysylki` = true wykonuje pełną budowę, podpis i wszystkie strażniki, ale bez wysyłki do App Store Connect i bez tagu.
 - **Środowisko „release” (M1-019).** Zadanie `build` deklaruje `environment: release`. GitHub tworzy je samo przy pierwszym użyciu (bez reguł i sekretów — dokumentacja GitHub, „Managing environments”: „Running a workflow that references an environment that does not exist will create an environment with the referenced name”). Dopóki właściciel nie doda wymaganego zatwierdzenia, nic się nie zmienia; po dodaniu każdy przebieg `build` czeka na zatwierdzenie (po przejściu bramki E2E). Ustawienia GitHub — tylko właściciel (kroki: osobny plik).
-- **Manifest prywatności (M1-014).** Kategorie: FileTimestamp, UserDefaults, SystemBootTime (rdzeń RN) i DiskSpace (ExpoFileSystem jest prekompilowany, jego manifest nie wchodzi do zbioru). Po `pod install` skrypt `ensure-privacy-manifest.mjs --fix` dopisuje brakującą kategorię (powody E174.1 i 85F4.1 jak w manifeście modułu), a brak którejkolwiek jest błędem; po eksporcie `--check` sprawdza manifest w gotowej aplikacji z `.ipa`.
+- **Manifest prywatności (M1-014, R-007).** Deklaracja w `app.json` → `ios.privacyManifests` (jedno źródło): FileTimestamp C617.1, UserDefaults CA92.1, SystemBootTime 35F9.1, DiskSpace E174.1 + 85F4.1 (ExpoFileSystem jest prekompilowany, jego manifest nie wchodzi do zbioru CocoaPods, więc kategorię deklarujemy sami). Prebuild zapisuje je do `ios/Trening/PrivacyInfo.xcprivacy`, `pod install` dokłada manifesty podów; `ensure-privacy-manifest.mjs --check` (kategorie czyta z `app.json`) sprawdza plik po `pod install` (`testflight.yml`, `ios-unsigned.yml`) i manifest w gotowej aplikacji; brak którejkolwiek kategorii jest błędem. Test: `tests/privacy-manifest.test.ts`, `verify:native`.
 - **Mapy źródeł JS (M1-023).** Archiwum dostaje `SOURCEMAP_FILE`; plik jest sprawdzany (niepusty), wysyłany jako artefakt `mapy-zrodel-b<numer>` (90 dni) i dołączany do GitHub Release przy tagu `v<wersja>-b<numer>` (trwale). Symbolikacja stosu: `npx metro-symbolicate main.jsbundle.map < stos.txt`.
 - **Klucz API (M1-020).** Zapis klucza `AuthKey.p8` na dysk maszyny następuje dopiero po archiwum i podpisie ad hoc, tuż przed eksportem (archiwum go nie potrzebuje).

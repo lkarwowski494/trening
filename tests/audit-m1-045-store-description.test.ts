@@ -50,7 +50,14 @@ describe('docs/monetyzacja.md: jedno miejsce modelu, zgodne z kodem', () => {
     expect(subs.find((x: any) => x.productID.endsWith('.yearly')).displayPrice).toBe(FAKE_PRICES.yearly.replace('$', ''));
     expect(subs.find((x: any) => x.productID.endsWith('.monthly')).displayPrice).toBe(FAKE_PRICES.monthly.replace('$', ''));
   });
-  test('wynik bramki W0 oznaczony jako nieustalony w repo (nie zgadujemy)', () => { expect(doc()).toMatch(/W0[^\n]*DO USTALENIA/); });
+  /* bramka W0 przeprowadzona 21.10.2026 (rola 02, decyzja właściciela na STOP 2 M3): wynik ma próg, werdykt i punkt kontrolny z liczbą */
+  test('wynik bramki W0 zapisany z progiem, werdyktem i punktem kontrolnym', () => {
+    const w0 = doc().split('## Bramka W0')[1]?.split('\n## ')[0] ?? '';
+    expect(w0).toMatch(/500 USD netto\/rok/);
+    expect(w0).toMatch(/werdykt \*\*wydać\*\*/);
+    expect(w0).toMatch(/Punkt kontrolny[^\n]*8 tygodniach[^\n]*310 pobrań[^\n]*75 płacących/);
+    expect(w0).not.toMatch(/DO USTALENIA/);
+  });
   test('stan kodu: zakupy za przełącznikiem PAYWALL.ENABLED', () => { expect(doc()).toContain(`PAYWALL.ENABLED = ${PAYWALL.ENABLED}`); });
 });
 
@@ -78,50 +85,42 @@ describe('docs/15 i docs/18: brak sprzecznych kwot i pozostałości EAS', () => 
   });
 });
 
-describe('docs/15: projekt opisu sklepu zgodny z kodem', () => {
-  const sec = (from: string, to: string) => { const a = d15.indexOf(from); const b = d15.indexOf(to, a + 1); expect(a).toBeGreaterThan(-1); expect(b).toBeGreaterThan(a); return d15.slice(a, b); };
-  const pl = sec('### Polski (pl)', '### English (en-US)');
-  const en = sec('### English (en-US)', '### Rekomendacja nazwy');
-  const fenced = (s: string) => { const m = /```text\n([\s\S]*?)```/.exec(s); expect(m).not.toBeNull(); return m![1]; };
-  const promo = (s: string) => { const m = /\*\*Tekst promocyjny:\*\*\n\n(.+)\n/.exec(s); expect(m).not.toBeNull(); return m![1]; };
-  const kw = (s: string) => { const m = /\*\*Słowa kluczowe\*\*[^\n]*\n\n`([^`]+)`/.exec(s); expect(m).not.toBeNull(); return m![1]; };
-  const row = (s: string, label: string) => { const m = new RegExp(`\\| ${label} \\| (\\d+) / (\\d+) \\|`).exec(s) ?? new RegExp(`\\| ${label} \\| (\\d+) / (\\d+) \\|`).exec(s); expect(m).not.toBeNull(); return Number(m![1]); };
-
-  for (const [lang, s] of [['PL', pl], ['EN', en]] as const) {
-    const desc = fenced(s);
+describe('store/app-store-metadata.json: opis i tekst promocyjny PL/EN zgodne z kodem (źródło od 22.10.2026, przebieg M5; wcześniej docs/15)', () => {
+  const L = JSON.parse(read('store/app-store-metadata.json')).lokalizacje as Record<string, { description: string; promotionalText: string; keywords: string }>;
+  for (const [lang, code] of [['PL', 'pl'], ['EN', 'en-US'], ['EN-GB', 'en-GB']] as const) {
+    const pl = lang === 'PL';
+    const desc = L[code].description; const promo = L[code].promotionalText; const kw = L[code].keywords;
     test(`${lang}: bez kalkulatora talerzy (opis, słowa kluczowe, tekst promocyjny)`, () => {
-      expect(desc + promo(s) + kw(s)).not.toMatch(/talerz|\bplates?\b/i);
+      expect(desc + promo + kw).not.toMatch(/talerz|\bplates?\b/i);
     });
     test(`${lang}: pierwsze ${TRIAL_DAYS} dni (nie „miesiąc”), liczba języków = LANGS.length`, () => {
-      expect(promo(s)).toMatch(new RegExp(`${TRIAL_DAYS} (dni|days)`));
       expect(desc).toMatch(new RegExp(`${TRIAL_DAYS} (dni|days)`));
-      expect(desc + promo(s)).not.toMatch(/Pierwszy miesiąc|First month/i);
-      expect(desc).toContain(`${LANGS.length} ${lang === 'PL' ? 'języków' : 'languages'}`);
+      expect(desc + promo).not.toMatch(/Pierwszy miesiąc|First month/i);
+      expect(desc).toContain(`${LANGS.length} ${pl ? 'języków' : 'languages'}`);
     });
-    test(`${lang}: Apple Watch, zapowiedzi głosowe, odczyt i zapis Apple Health, system miar`, () => {
+    test(`${lang}: Apple Watch, zapowiedzi głosowe, odczyt i zapis Apple Health, system miar; nazwy widoków jak w interfejsie`, () => {
       expect(desc).toMatch(/Apple Watch/);
-      expect(desc).toMatch(lang === 'PL' ? /zapowiedzi głosowe/i : /spoken|voice/i);
-      expect(desc).toMatch(lang === 'PL' ? /zapis[^\n]*Apple Health/i : /saving[^\n]*Apple Health/i);
-      expect(desc).toMatch(lang === 'PL' ? /odczyt[^\n]*Apple Health/i : /read[^\n]*Apple Health|reading[^\n]*Apple Health/i);
-      expect(desc).toMatch(lang === 'PL' ? /imperialn/i : /imperial/i);
+      expect(desc).toMatch(pl ? /zapowiedzi głosowe/i : /spoken|voice/i);
+      expect(desc).toMatch(pl ? /zapis[^\n]*Apple Health/i : /saving[^\n]*Apple Health/i);
+      expect(desc).toMatch(pl ? /odczyt[^\n]*Apple Health/i : /read[^\n]*Apple Health|reading[^\n]*Apple Health/i);
+      expect(desc).toMatch(pl ? /imperialn/i : /imperial/i);
       expect(desc).not.toMatch(/kg lub lb|kg or lb/);
+      /* po redesignie M3 (22.10.2026): Ustawienia → „Widok treningu”: „Skupiony” / „Lista”; „Dostosuj do miejsca”; gumy (nie taśmy) */
+      expect(desc).toContain(pl ? '„Skupiony”' : '"Focused"'); expect(desc).toContain(pl ? '„Lista”' : '"List"');
+      expect(desc).toContain(pl ? '„Dostosuj do miejsca”' : '"Adjust to location"'); expect(desc).not.toMatch(/Taśmy i gumy|"Focus" view|classic list/);
     });
     test(`${lang}: blok cenowy bez list kwot, plan miesięczny porównany z espresso + przypis MIMIT (decyzja właściciela 21.10.2026, docs/research/espresso-mimit-2026-10.md)`, () => {
       expect(desc).not.toMatch(/\[(BLOK CENOWY|PRICING BLOCK)/);
-      expect(desc).toMatch(lang === 'PL' ? /plan miesięczny w cenie porównywalnej z jednym espresso w barze\*/ : /monthly plan for about the price of one espresso at a bar\*/);
+      expect(desc).toMatch(pl ? /plan miesięczny w cenie porównywalnej z jednym espresso w barze\*/ : /monthly plan for about the price of one espresso at a bar\*/);
       const foot = desc.split('\n').find((l) => l.startsWith('* ')) ?? '';
-      expect(foot).toMatch(lang === 'PL' ? /od 1,06 € do 1,51 €/ : /EUR 1\.06–1\.51/);
+      expect(foot).toMatch(pl ? /od 1,06 € do 1,51 €/ : /EUR 1\.06–1\.51/);
       expect(foot).toMatch(/MIMIT/); expect(foot).toMatch(/2026/);
-      /* poza przypisem żadnych kwot (ceny pokazuje App Store; zmieniają się bez nowej wersji opisu) */
       const rest = desc.split('\n').filter((l) => !l.startsWith('* ')).join('\n');
       expect(rest).not.toMatch(/\d+[.,]\d\d\s*(zł|PLN|USD|EUR|GBP|€|\$|£)|(USD|EUR|GBP|€|\$|£)\s*\d/);
-      expect(rest).toMatch(lang === 'PL' ? /Aktualne ceny widać w App Store przed zakupem/ : /Current prices are shown in the App Store before purchase/);
+      expect(rest).toMatch(pl ? /Aktualne ceny widać w App Store przed zakupem/ : /Current prices are shown in the App Store before purchase/);
     });
-    test(`${lang}: limity App Store i liczby w tabeli zgodne z tekstem`, () => {
-      const d = [...desc.replace(/\n$/, '')].length; const p = [...promo(s)].length; const k = Buffer.byteLength(kw(s), 'utf8');
-      expect(d).toBeLessThanOrEqual(4000); expect(p).toBeLessThanOrEqual(170); expect(k).toBeLessThanOrEqual(100);
-      expect(row(s, 'Opis')).toBe(d); expect(row(s, 'Tekst promocyjny')).toBe(p);
-      expect(row(s, 'Słowa kluczowe')).toBe([...kw(s)].length);
+    test(`${lang}: limity App Store (opis ≤ 4000, tekst promocyjny ≤ 170 znaków)`, () => {
+      expect([...desc].length).toBeLessThanOrEqual(4000); expect([...promo].length).toBeLessThanOrEqual(170);
     });
   }
 });

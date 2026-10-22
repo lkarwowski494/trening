@@ -12,5 +12,6 @@
  "idle": "Aloita treeni puhelimella",
  "finished": "Treeni päättyi",
  "update": "Päivitä kellosovellus",
- "nothingLeft": "ei enää mitään tehtävää"
+ "nothingLeft": "ei enää mitään tehtävää",
+ "finish": "Lopeta sarja"
 }

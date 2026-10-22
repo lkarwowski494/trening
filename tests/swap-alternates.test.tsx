@@ -131,9 +131,9 @@ describe('W3 — ekrany', () => {
     tpl.items[1].alternates = [{ locationId: 'home', exerciseId: ex('Leg Press').id, restSec: null }];
     tpl.items[2].alternates = [{ locationId: 'home', exerciseId: ex('RDL (hantle/linki)').id, restSec: null, impl: 'electric' }]; store.save(tpl); await store.flush();
     await renderApp({ saved: JSON.parse(JSON.stringify(st())) }); await go(`/template/${tpl.id}`); await flushAll(20); await startEdit();
-    /* 06.10.2026: karty zwinięte, otwarta jedna */ await openCard(2); expect(screen.getByText('📍 Dom: RDL (hantle/linki) — stacja')).toBeTruthy();
+    /* 06.10.2026: karty zwinięte, otwarta jedna */ await openCard(2); expect(screen.getByText('Dom: RDL (hantle/linki) — stacja')).toBeTruthy();
     await openCard(1); expect(screen.getByText(/brak sprzętu w: Dom/)).toBeTruthy(); /* Leg Press w Domu */
-    await openCard(0); expect(screen.getByText('📍 Dom: Bench Press (hantle)')).toBeTruthy(); expect(screen.getByText('📍 (usunięte miejsce): Push Up')).toBeTruthy();
+    await openCard(0); expect(screen.getByText('Dom: Bench Press (hantle)')).toBeTruthy(); expect(screen.getByText('(usunięte miejsce): Push Up')).toBeTruthy();
     await type(screen.getByLabelText('Przerwa zamiennika (s): Dom — Bench Press (hantle)'), '75'); expect(tplDraft(tpl.id).items[0].alternates![0].restSec).toBe(75);
     await swipeDelete('Usuń zamiennik: Dom — Bench Press (hantle)'); expect(tplDraft(tpl.id).items[0].alternates).toHaveLength(2);
     await act(async () => pressAlert('Usunąć zamiennik?', 'Usuń')); await flushAll(5); await saveEdit();

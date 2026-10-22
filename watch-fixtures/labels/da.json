@@ -12,5 +12,6 @@
  "idle": "Start en træning på telefonen",
  "finished": "Træning afsluttet",
  "update": "Opdater appen på uret",
- "nothingLeft": "intet mere at lave"
+ "nothingLeft": "intet mere at lave",
+ "finish": "Afslut sæt"
 }

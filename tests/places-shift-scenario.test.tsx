@@ -24,13 +24,13 @@ test('Hotel pt.–niedz.; przesunięcie piątkowego treningu na sobotę nie rusz
   await act(async () => { await store.flush(); });
   await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/history' }); jest.setSystemTime(THU.getTime()); await flushAll(10);
 
-  await tap(screen.getByTestId('cal-2026-10-09')); await flushAll(5); expect(screen.getByTestId('day-place').props.children).toBe('📍 Hotel');
+  await tap(screen.getByTestId('cal-2026-10-09')); await flushAll(5); expect(screen.getByTestId('day-place').props.children).toBe('Hotel');
   await tap(screen.getByText('Przesuń albo pomiń')); await flushAll(5);
   await tap(screen.getByLabelText('Zastosuj: Przesuń plan o 1 dzień')); await flushAll(10);
   expect(plan.plannedOn('2026-10-09')).toBeNull(); expect(plan.plannedOn('2026-10-10')).toBe(tpl.id); /* trening poszedł na sobotę */
   expect(S().planPlaces).toEqual(HOTEL3); /* miejsca dat bez zmian */
-  expect(screen.getByTestId('day-place').props.children).toBe('📍 Hotel'); /* piątek, już wolny: miejsce zostaje przy dacie */
-  await tap(screen.getByTestId('cal-2026-10-10')); await flushAll(5); expect(screen.getByTestId('day-place').props.children).toBe('📍 Hotel');
+  expect(screen.getByTestId('day-place').props.children).toBe('Hotel'); /* piątek, już wolny: miejsce zostaje przy dacie */
+  await tap(screen.getByTestId('cal-2026-10-10')); await flushAll(5); expect(screen.getByTestId('day-place').props.children).toBe('Hotel');
 
   await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); jest.setSystemTime(SAT.getTime()); await flushAll(10);
   expect(S().planPlaces).toEqual(HOTEL3); await startTpl('FBW'); expect(S().active!.locationId).toBe('hotel');

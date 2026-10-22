@@ -1,11 +1,15 @@
-import React, { useRef, useState } from 'react';
-import { ScrollView, View, Alert, Pressable } from 'react-native';
-import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
+import { DeleteButton } from '@/components/DeleteButton';
+import React, { useCallback, useRef, useState } from 'react';
+import { AccessibilityInfo } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
+import { View, Alert, Pressable } from 'react-native';
+import { useLocalSearchParams, useRouter, Stack, useFocusEffect } from 'expo-router';
+import { takePlanNotice } from '@/components/OwnPlan';
 import { Screen, Chip, Muted, Txt, Btn, Item, Field, Input, SectionTitle, Missing } from '@/components/ui';
 import { SwipeRow } from '@/components/SwipeRow';
 import { getState, useTick, templateGroups, newTemplate, SAVED_PLANS_MAX } from '@/lib/store';
 import { ownTemplates } from '@/lib/generator';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, F, FW, font } from '@/lib/theme';
 import { weekPlanDays, setWeekDay, planName, setPlanName, typePlanName, savedPlans, newPlan, setSavedDay, typeSavedName, renamePlan, activatePlan, deactivatePlan, hasActivePlan, deletePlan, plansFull, activationNote, savedChanges, hasPlan, assignTarget, type PlanDays } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
@@ -25,6 +29,8 @@ import { weekdayLabels, weekdayNames } from '@/lib/calendar';
  * - I1: pierwszy dzień w planie — prośba o zgodę na powiadomienia (przypomnienie rano).
  * - UI2-08 (audyt kontrolny 1): zapisany plan (/plan?id=…) ma w nagłówku swoją nazwę (bez nazwy — „Inny plan”), nie „Plan tygodnia”.
  */
+/** Średnica znacznika stanu planu (koło ✓) — okrągły, więc promień to połowa. */
+const TOGGLE = 26;
 const weekdayName = (i: number) => weekdayNames()[i];
 const weekdayShort = (i: number) => weekdayLabels()[i];
 const tplName = (id: string | null) => (id ? getState().templates.find(x => x.id === id && !x.archived)?.name ?? '' : '');
@@ -43,8 +49,8 @@ function PlanToggle({ name, active, onPress }: { name: string; active: boolean; 
       accessibilityLabel={active ? t('Wyłącz plan: {name}', { name }) : t('Ustaw jako aktywny: {name}', { name })} accessibilityValue={{ text: active ? t('aktywny') : t('nieaktywny') }}
       accessibilityHint={active ? t('Kalendarz od dziś będzie pusty.') : t('Pyta o potwierdzenie.')} onPress={onPress}
       style={({ pressed }) => ({ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.6 : 1 })}>
-      <View style={{ width: 26, height: 26, borderRadius: 13, borderWidth: 2, borderColor: active ? th.accent : th.text, backgroundColor: active ? th.accent : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
-        {active ? <Txt style={{ color: th.bg, fontSize: 15, lineHeight: 20 /* ≥ 1,28 × fontSize — diakrytyki (test i18n-wave2) */, fontFamily: F.heavy }}>✓</Txt> : null}
+      <View style={{ width: TOGGLE, height: TOGGLE, borderRadius: TOGGLE / 2, borderWidth: 2, borderColor: active ? th.accent : th.text, backgroundColor: active ? th.accent : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
+        {active ? <Txt style={{ color: th.bg, ...font('callout'), lineHeight: 20 /* ≥ 1,28 × fontSize — diakrytyki (test i18n-wave2) */, fontFamily: F.heavy }}>✓</Txt> : null}
       </View>
     </Pressable>);
 }
@@ -60,16 +66,16 @@ function DayRows({ days, onSet, target }: { days: PlanDays; onSet: (i: number, i
     <View key={i} testID={`plan-day-${i}`} style={{ borderBottomWidth: 1, borderBottomColor: th.line }}>
       <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={`${weekdayName(i)}, ${nm}`} accessibilityHint={t('Wybierz szablon na ten dzień.')} accessibilityState={{ expanded: isOpen }} onPress={() => setOpen(isOpen ? null : i)}
         style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 48, gap: 8, opacity: pressed ? 0.6 : 1 })}>
-        <Txt style={{ fontFamily: F.semibold }}>{weekdayName(i)}</Txt>
+        <Txt style={{ ...FW.semibold }}>{weekdayName(i)}</Txt>
         <Txt style={{ flexShrink: 1, textAlign: 'right', color: tplName(id) ? th.text : th.muted }}>{`${nm} ${isOpen ? '▾' : '▸'}`}</Txt>
       </Pressable>
       {isOpen ? <View style={{ paddingBottom: 10, gap: 6 }}>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}><Chip label={t('Wolne')} on={!tplName(id)} a11yLabel={`${weekdayName(i)}: ${t('Wolne')}`} onPress={() => { onSet(i, null); setOpen(null); }} /></View>
         {groups.map(g => <View key={g.folder ?? ''} style={{ gap: 4 }}>
-          {g.folder ? <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{g.folder}</Muted> : null}
+          {g.folder ? <Muted style={{ ...font('footnote'), ...FW.semibold }}>{g.folder}</Muted> : null}
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>{g.items.map(x => <Chip key={x.id} label={x.name} on={x.id === id} a11yLabel={`${weekdayName(i)}: ${x.name}`} onPress={() => { onSet(i, x.id); setOpen(null); }} />)}</View>
         </View>)}
-        {!groups.length ? <Muted style={{ fontSize: 13 }}>{t('Nie masz jeszcze szablonów.')}</Muted> : null}
+        {!groups.length ? <Muted style={{ ...font('footnote') }}>{t('Nie masz jeszcze szablonów.')}</Muted> : null}
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
           <Btn nav small kind="ghost" title={t('+ Nowy szablon')} accessibilityLabel={`${weekdayName(i)}: ${t('+ Nowy szablon')}`} accessibilityHint={t('Po zapisie szablon trafi na ten dzień.')} onPress={() => create(i)} />
           <Btn nav small kind="ghost" title={t('Szablony ›')} accessibilityLabel={`${weekdayName(i)}: ${t('Szablony')}`} accessibilityHint={t('Otwiera listę szablonów.')} onPress={() => openTemplates(router)} />
@@ -89,13 +95,15 @@ export default function PlanScreen() {
   if (saved) return ( /* B2 A: zapisany plan edytowany przed aktywacją */
     <Screen><Stack.Screen options={{ title: saved.name || t('Inny plan') }} />{/* UI2-08: nie „Plan tygodnia” — to nie aktywny plan */}
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
-      <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Ten plan jeszcze nie obowiązuje. Zmień nazwę i dni, potem „Ustaw jako aktywny”.')}</Muted>
+      <Muted style={{ ...font('footnote'), marginBottom: 8 }}>{t('Ten plan jeszcze nie obowiązuje. Zmień nazwę i dni, potem „Ustaw jako aktywny”.')}</Muted>
       <Field label={t('Nazwa planu')}><Input testID="plan-name" value={saved.name} maxLength={40} accessibilityLabel={t('Nazwa planu')} onChangeText={v => typeSavedName(saved.id, v)} onEndEditing={() => { renamePlan(saved.id, savedPlans().find(p => p.id === saved.id)?.name ?? '', initial.current); initial.current = savedPlans().find(p => p.id === saved.id)?.name ?? initial.current; }} /></Field>
-      {savedChanges(saved.id) ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Zmiany pojedynczych dni zapisane z tym planem: {n} — wrócą po aktywacji.', { n: savedChanges(saved.id) })}</Muted> : null}
+      {savedChanges(saved.id) ? <Muted style={{ ...font('footnote'), marginBottom: 8 }}>{t('Zmiany pojedynczych dni zapisane z tym planem: {n} — wrócą po aktywacji.', { n: savedChanges(saved.id) })}</Muted> : null}
       <Btn nav title={t('Ustaw jako aktywny')} kind="primary" small accessibilityLabel={t('Ustaw jako aktywny: {name}', { name: nameOr(saved.name) })} onPress={() => activate(saved.id, saved.name, () => { if (router.canGoBack()) router.back(); else router.replace('/plan'); })} style={{ alignSelf: 'flex-start', marginBottom: 8 }} />
       <Btn nav small kind="ghost" title={t('Szablony')} accessibilityHint={t('Otwiera listę szablonów.')} onPress={() => openTemplates(router)} style={{ alignSelf: 'flex-start', marginBottom: 8 }} />
       <SectionTitle>{t('Dni tygodnia')}</SectionTitle>
       <DayRows days={saved.days} onSet={(i, x) => setSavedDay(saved.id, i, x)} target={i => assignTarget.saved(saved.id, i)} />
+      {/* 04-studio-projektowe-003: widoczna droga bez gestu — to samo okno co przesunięcie wiersza na liście „Inne plany” */}
+      <DeleteButton label={t('Usuń plan')} title={t('Usunąć ten plan?')} message={nameOr(saved.name)} onDelete={() => { deletePlan(saved.id); if (router.canGoBack()) router.back(); else router.replace('/plan'); }} />
     </ScrollView></Screen>);
   return <ActivePlan activate={activate} />;
 }
@@ -107,17 +115,21 @@ function ActivePlan({ activate }: { activate: (id: string, name: string) => void
     if (plansFull()) { Alert.alert(t('Nie można wyłączyć planu'), t('W „Inne plany” jest już {n} planów — usuń któryś, by wyłączyć obecny.', { n: SAVED_PLANS_MAX })); return; }
     Alert.alert(t('Wyłączyć plan?'), [t('Kalendarz od dziś będzie pusty.'), activationNote() ? activationNote() : ''].filter(Boolean).join('\n'), [{ ...cancelButton() }, { text: t('Wyłącz'), style: 'destructive', onPress: () => { deactivatePlan(); } }]); };
   const addHeader = useAddHeader(!plansFull() ? t('Dodaj plan') : null, () => { const nid = newPlan(); if (nid) router.push(`/plan?id=${nid}`); }, t('Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.')); /* 13.10.2026: „+” w nagłówku; UI2-02: blokada podwójnego tapnięcia w AddButton */
+  /* ZM-03: zdanie potwierdzenia po zapisie z generatora (istniejący klucz „jest teraz aktywny” — docs/design/teksty.md #23 proponuje „jest aktywny”, tłumacz może zmienić brzmienie) (pierwszy plan aktywny bez pytania) — tylko do opuszczenia ekranu, VoiceOver je ogłasza */
+  const [notice, setNotice] = useState<string | null>(null);
+  useFocusEffect(useCallback(() => { const n = takePlanNotice(); if (n) { const msg = t('Plan „{name}” jest teraz aktywny.', { name: n }); setNotice(msg); AccessibilityInfo.announceForAccessibility?.(msg); } return () => setNotice(null); }, []));
   const setDay = (i: number, x: string | null) => { const had = hasPlan(); setWeekDay(i, x); if (!had && hasPlan()) askReminderPermission().catch(() => {}); };
   return (
     <Screen><Stack.Screen options={addHeader} /><ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
-      {hasActivePlan() ? <View testID="active-plan-row" style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><PlanToggle name={nameOr(planName() || t('Mój plan'))} active onPress={off} /><Txt style={{ flex: 1, fontFamily: F.semibold }}>{t('Aktywny plan')}</Txt></View> : null}
+      {notice ? <Txt testID="plan-notice" style={{ ...FW.semibold, marginBottom: 8 }}>{notice}</Txt> : null}
+      {hasActivePlan() ? <View testID="active-plan-row" style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}><PlanToggle name={nameOr(planName() || t('Mój plan'))} active onPress={off} /><Txt style={{ flex: 1, ...FW.semibold }}>{t('Aktywny plan')}</Txt></View> : null}
       <Field label={t('Nazwa planu')}><Input testID="plan-name" value={planName()} placeholder={t('Mój plan')} maxLength={40} accessibilityLabel={t('Nazwa planu')} onChangeText={typePlanName} onEndEditing={() => setPlanName(planName())} /></Field>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 4 }}>
         <Btn nav title={t('Szablony')} small accessibilityHint={t('Otwiera listę szablonów.')} onPress={() => openTemplates(router)} />{/* 11.10.2026: z Planowania do szablonów (docs/22 problem 3) */}
-        <Btn nav title={t('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} />{/* 08.10.2026: generator (docs/24) */}
+        <Btn nav title={t('Wygeneruj szablony i plan')} small onPress={() => router.push('/generator')} style={{ maxWidth: '100%' }} />{/* 08.10.2026: generator (docs/24) */}
         {ownTemplates().length ? <Btn nav title={t('Plan z moich szablonów')} small onPress={() => router.push('/generator?mode=own')} /> : null}{/* 09.10.2026 (B) */}
       </View>
-      {plansFull() ? <Muted style={{ fontSize: 13 }}>{t('W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.', { n: SAVED_PLANS_MAX })}</Muted> : null}
+      {plansFull() ? <Muted style={{ ...font('footnote') }}>{t('W „Inne plany” jest już {n} planów — usuń któryś, by dodać nowy.', { n: SAVED_PLANS_MAX })}</Muted> : null}
       {other.length ? <>
         <SectionTitle infoId="other-plans" info={t('Obowiązuje jeden plan naraz. Po okresie przejściowym wrócisz do poprzedniego jednym przyciskiem. Tapnij plan, by zmienić jego nazwę i dni.')}>{t('Inne plany')}</SectionTitle>
         {shown.map((p, pi) => { const n = savedChanges(p.id); return <SwipeRow key={p.id} testID={`plan-saved-${pi}`} /* E2E 26 */ label={t('Usuń plan: {name}', { name: nameOr(p.name) })} title={t('Usunąć ten plan?')} message={nameOr(p.name)} onDelete={() => deletePlan(p.id)}>

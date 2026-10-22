@@ -19,12 +19,12 @@ describe('UX2-02 — miejsce w podglądzie szablonu', () => {
     let id = ''; await boot(() => { addLocation('gym', 'Siłownia'); id = mkTpl().id; });
     await go(`/template/${id}`); await flushAll(10);
     expect(screen.queryByText(/usunięte miejsce/)).toBeNull();
-    expect(screen.getByText(/📍 Siłownia \(główne\)/)).toBeTruthy();
+    expect(screen.getByText(/Siłownia \(główne\)/)).toBeTruthy();
   });
   test('szablon z przypisanym miejscem: jego nazwa; po usunięciu tego miejsca — „(usunięte miejsce)”', async () => {
     let id = ''; let dom = ''; await boot(() => { addLocation('gym', 'Siłownia'); dom = addLocation('bodyweight', 'Dom').id; id = mkTpl(dom).id; });
     await go(`/template/${id}`); await flushAll(10);
-    expect(screen.getByText(/📍 Dom/)).toBeTruthy(); expect(screen.queryByText(/główne/)).toBeNull();
+    expect(screen.getByText(/Dom/)).toBeTruthy(); expect(screen.queryByText(/główne/)).toBeNull();
     await act(async () => { deleteLocation(dom); }); await go(`/template/${id}`); await flushAll(10);
     expect(screen.getByText(/usunięte miejsce/)).toBeTruthy();
   });

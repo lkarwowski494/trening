@@ -4,6 +4,8 @@ import { lang, type Lang } from '@/lib/i18n';
 import { demoTemplates } from './fixtures/demo-templates';
 
 declare global { // eslint-disable-next-line no-var
+  var __haptics: string[]; /* M3 p2: zapis wywołań expo-haptics (tests/setup.js) */
+  // eslint-disable-next-line no-var
   var __kv: Map<string, string>; var __dbFail: boolean; var __locales: { languageCode: string; languageTag: string }[]; var __alerts: { title: string; msg?: string; buttons?: { text: string; onPress?: (v?: string) => void; style?: string }[]; prompt?: boolean; def?: string }[]; var __notifications: unknown[]; var __cancelled: string[]; var __la: unknown[];
   // eslint-disable-next-line no-var
   var __voice: { spoken: [string, string][]; stops: number; headphones: boolean; hasVoice: boolean }; /* 0.20: atrapa modułu głosu (tests/setup.js) */

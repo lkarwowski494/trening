@@ -1,5 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { ScrollView, Alert, View } from 'react-native';
+import { Alert, View } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { Screen, Btn, Muted, Segmented, SectionTitle, Item, Input, SearchField } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
 import { getState, useTick, fmtDayKey } from '@/lib/store';
@@ -8,6 +9,7 @@ import { pickCsv, commitCsvImport } from '@/lib/csvimport';
 import { analyze, normName, isImportError, type ParsedFile, type ImportErrorCode } from '@/lib/csvparse';
 import { t, exName, exNameLang } from '@/lib/i18n';
 import type { Unit } from '@/lib/units';
+import { font } from '@/lib/theme';
 
 /** Import historii z CSV (decyzja właściciela 11.10.2026): podgląd przed zapisem jest obowiązkowy; nic się nie zmienia, dopóki nie „Importuj”. */
 const ERR: Record<ImportErrorCode, () => string> = {
@@ -52,9 +54,9 @@ export default function ImportCsv() {
           <Muted>{t('Nowe ćwiczenia: {n}', { n: a.created })}</Muted>
           {file.weightUnit == null ? <View style={{ gap: 6 }}>
             <Segmented label={t('Jednostka ciężaru w pliku')} options={[['kg', 'kg'], ['lb', 'lb']]} value={unit} onChange={setUnit} />
-            <Muted style={{ fontSize: 13 }}>{t('Plik nie podaje, czy ciężary są w kg, czy w lb. Domyślnie: jednostka z Ustawień.')}</Muted></View> : null}
-          {file.sessions.some(s => s.dateOnly) ? <Muted style={{ fontSize: 13 }}>{t('Plik nie podaje godzin treningów — dzień, w którym masz już trening, zostanie pominięty jako duplikat.')}</Muted> : null}
-          {file.hasDistance ? <Muted style={{ fontSize: 13 }}>{t('Dystans w pliku przyjęto jako metry.')}</Muted> : null}
+            <Muted style={font('footnote')}>{t('Plik nie podaje, czy ciężary są w kg, czy w lb. Domyślnie: jednostka z Ustawień.')}</Muted></View> : null}
+          {file.sessions.some(s => s.dateOnly) ? <Muted style={font('footnote')}>{t('Plik nie podaje godzin treningów — dzień, w którym masz już trening, zostanie pominięty jako duplikat.')}</Muted> : null}
+          {file.hasDistance ? <Muted style={font('footnote')}>{t('Dystans w pliku przyjęto jako metry.')}</Muted> : null}
           {a.names.length ? <SectionTitle>{t('Ćwiczenia z pliku')}</SectionTitle> : null}
           {a.names.map(r => { const ex = targetOf(r.name); const open = editing === r.name;
             return (<View key={r.name}>

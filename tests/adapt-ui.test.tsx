@@ -8,6 +8,8 @@ import { renderApp, flushAll, screen, tap, act, go, fireEvent } from './app';
 import { loc } from './locations-fixtures';
 import { presetEquipment } from '@/lib/equipment';
 
+/** M3 p2 (ZM-02, wzorzec 30): miejsce treningu jest w menu „⋯” (dawny chip „📍 Dom ▾” pod nazwą) — otwiera menu, wybiera pozycję miejsca i zwraca arkusz miejsc */
+const openPlaceSheet = async () => { await tap(screen.getByTestId('more-button')); const m = (global as any).__sheets.at(-1); const i = (m.opts.options as string[]).findIndex(o => /^(Miejsce treningu|Workout place): /.test(o)); await act(async () => { m.cb(i); }); return (global as any).__sheets.at(-1); };
 jest.setTimeout(60000);
 const S = () => store.getState();
 const blk = (i: number) => S().active!.exercises[i];
@@ -27,7 +29,7 @@ async function savedWorld(names: [string, string][] = FBW, locale: 'pl' | 'en' =
 const boot = async (names?: [string, string][], locale: 'pl' | 'en' = 'pl', theme: 'light' | 'dark' = 'light') => { await renderApp({ saved: await savedWorld(names, locale, theme), locale }); await flushAll(20); };
 /** „📍” → wybór miejsca w arkuszu akcji (jak w aplikacji). */
 const pickPlace = async (name: string) => {
-  await tap(screen.getByLabelText(/^(Miejsce treningu|Workout place): /)); const sh = (global as any).__sheets.at(-1); const i = (sh.opts.options as string[]).indexOf(name); expect(i).toBeGreaterThanOrEqual(0);
+  const sh = await openPlaceSheet(); const i = (sh.opts.options as string[]).indexOf(name); expect(i).toBeGreaterThanOrEqual(0);
   await act(async () => { sh.cb(i); }); await flushAll(20);
 };
 const toggle = async (i: number, v: boolean) => { await act(async () => { fireEvent(screen.getAllByRole('switch')[i], 'valueChange', v); }); await flushAll(5); };
@@ -170,7 +172,7 @@ describe('stany brzegowe okna', () => {
 
 describe.each([['pl', 'light'], ['en', 'dark']] as const)('okno w języku %s, motyw %s', (locale, theme) => {
   test('nagłówek, linijka, wiersze i przyciski — bez polskich tekstów w EN', async () => {
-    await boot(undefined, locale, theme); await tap(screen.getByLabelText(/^(Miejsce treningu|Workout place): /));
+    await boot(undefined, locale, theme); await openPlaceSheet();
     const sh = (global as any).__sheets.at(-1); const i = (sh.opts.options as string[]).indexOf('Hotel'); await act(async () => { sh.cb(i); }); await flushAll(20);
     expect(top()).toBe('adapt');
     if (locale === 'pl') { expect(screen.getByText('Zamiany tylko w tym treningu — szablon i plan bez zmian.')).toBeTruthy(); expect(screen.getByTestId('adapt-apply').props.accessibilityLabel).toBe('Zastosuj (3)'); expect(screen.getByTestId('close-modal').props.accessibilityLabel).toBe('Anuluj'); }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { useLocalSearchParams } from 'expo-router';
 import { Screen, Muted, Txt, Chip, H2 } from '@/components/ui';
 import { useTick } from '@/lib/store';
@@ -9,7 +10,7 @@ import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import { fmtVol, wu } from '@/lib/units';
 import { MuscleMap } from '@/components/MuscleMap';
 import { MuscleRows, IndirectLegend, SegBar, SegLegend, HatchBar, PeriodLine, setBars, volumeBars } from '@/components/ProgressBars';
-import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, F, TEXT_SCALE_MAX, font, RADIUS } from '@/lib/theme';
 import { t, tp, locale, lang } from '@/lib/i18n';
 import { fmtDayMonth } from '@/lib/calendar';
 
@@ -54,7 +55,7 @@ export default function ProgressionScreen() {
   const rowText = (id: string, label: string, value: string, p: string, pct: string, sub?: string, spoken?: string) => (
     <View testID={`psum-${id}`} accessibilityLanguage={lang()} accessible accessibilityLabel={t('{label}: {v}, poprzednio {p}, {d}', { label, v: (spoken ?? value) + (sub ? ` (${sub})` : ''), p, d: pct })} style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'baseline', columnGap: 8 }}>
       <Muted testID={`psum-${id}-label`} style={{ flexShrink: 0, maxWidth: '100%' }}>{label}</Muted>
-      <Txt testID={`psum-${id}-value`} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ fontFamily: F.monoBold, flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{value} <Muted style={{ fontSize: 12 }}>({t('poprz.')}{' '}{p}) {pct}</Muted></Txt>
+      <Txt testID={`psum-${id}-value`} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ fontFamily: F.monoBold, fontVariant: ['tabular-nums'], flexShrink: 1, flexGrow: 1, textAlign: 'right' }}>{value} <Muted style={{ ...font('footnote') }}>({t('poprz.')}{' '}{p}) {pct}</Muted></Txt>
     </View>);
   return (
     <Screen><ScrollView testID="progression-screen" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 40 }}>
@@ -62,11 +63,11 @@ export default function ProgressionScreen() {
         {KINDS.map(k => <Chip key={k} label={names[k]} on={kind === k} onPress={() => setKind(k)} a11yLabel={t('Porównanie: {name}', { name: names[k] })} />)}
       </View>
       <H2 style={{ marginTop: 12 }}>{kind === 'week' ? t('Ten tydzień vs poprzedni') : kind === 'prevWeek' ? t('Poprzedni tydzień vs 2 tyg. temu') : t('Miesiąc do miesiąca')}</H2>
-      <View testID="progress-periods"><Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('{cur} wobec {prev}', { cur: lb.cur, prev: lb.prev })}</Muted></View>
-      {kind === 'month' ? <Muted style={{ fontSize: 12, marginBottom: 8 }}>{t('Porównanie tych samych dni miesiąca: 1–{n}.', { n: new Date(c.cur.end - 1).getDate() })}</Muted> : null}
-      {c.deloadCur || c.deloadPrev ? <Muted style={{ fontSize: 12, marginBottom: 8 }}>{[c.deloadCur ? t('Ten tydzień jest oznaczony jako deload.') : '', c.deloadPrev ? t('Poprzedni tydzień jest oznaczony jako deload.') : ''].filter(Boolean).join(' ')}</Muted> : null}
-      {empty ? <View testID="progress-empty"><Muted style={{ fontSize: 13 }}>{t('Brak treningów w tym i poprzednim okresie.')}</Muted></View> : <>
-        <View style={{ padding: 12, borderRadius: 10, backgroundColor: th.surface2, gap: 6 }}>
+      <View testID="progress-periods"><Muted style={{ ...font('footnote'), marginBottom: 8 }}>{t('{cur} wobec {prev}', { cur: lb.cur, prev: lb.prev })}</Muted></View>
+      {kind === 'month' ? <Muted style={{ ...font('footnote'), marginBottom: 8 }}>{t('Porównanie tych samych dni miesiąca: 1–{n}.', { n: new Date(c.cur.end - 1).getDate() })}</Muted> : null}
+      {c.deloadCur || c.deloadPrev ? <Muted style={{ ...font('footnote'), marginBottom: 8 }}>{[c.deloadCur ? t('Ten tydzień jest oznaczony jako deload.') : '', c.deloadPrev ? t('Poprzedni tydzień jest oznaczony jako deload.') : ''].filter(Boolean).join(' ')}</Muted> : null}
+      {empty ? <View testID="progress-empty"><Muted style={{ ...font('footnote') }}>{t('Brak treningów w tym i poprzednim okresie.')}</Muted></View> : <>
+        <View style={{ padding: 12, borderRadius: RADIUS.group, backgroundColor: th.surface2, gap: 6 }}>
           {rowText('volume', t('Objętość'), vol, fmtVol(c.before.volume), volPct, c.planned ? `${fmtVol(c.done.volume)} + ${c.unknown ? '≥ ' : ''}${fmtVol(plannedV)}` : undefined, c.unknown ? `${t('co najmniej {n}', { n: fmtVol(c.total.volume) })}, ${t('część zaplanowanych serii nie ma ciężaru')}` : undefined)}
           <TotalBars id="volume" done={c.done.volume} planned={plannedV} prev={c.before.volume} curName={periods[0]} prevName={periods[1]} curText={vol} prevText={fmtVol(c.before.volume)} />
           {rowText('sets', t('Serie robocze'), String(c.total.sets), String(c.before.sets), setsPct, c.planned ? `${c.done.sets} + ${plannedS}` : undefined)}
@@ -74,7 +75,7 @@ export default function ProgressionScreen() {
           {rowText('workouts', t('Treningi'), String(c.total.workouts), String(c.before.workouts), pctText(c.before.workouts ? Math.round(((c.total.workouts - c.before.workouts) / c.before.workouts) * 100) : null), c.planned ? `${c.done.workouts} + ${c.planned.workouts}` : undefined)}
           {c.planned ? <SegLegend /> : null}
         </View>
-        {c.unknown ? <View testID="progress-unknown"><Muted style={{ fontSize: 12, marginTop: 6 }}>{t('„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.', { n, s: tp(n, 'seria|serie|serii') })}</Muted></View> : null}
+        {c.unknown ? <View testID="progress-unknown"><Muted style={{ ...font('footnote'), marginTop: 6 }}>{t('„≥” — w zaplanowanych szablonach {n} {s} nie ma ciężaru ani powtórzeń (i nie ma „Poprzednio”): liczą się do serii, ale nie do objętości.', { n, s: tp(n, 'seria|serie|serii') })}</Muted></View> : null}
         <MuscleMap sets={improved} title={t('Partie z większą objętością')} legend={false}
           label={Object.keys(improved).length ? t('Partie z większą objętością niż poprzednio: {list}', { list: c.rows.filter(r => r.volumeUp).map(r => t(r.muscle)).join(', ') }) : t('Żadna partia nie ma większej objętości niż poprzednio.')}
           caption={t('Zaznaczone partie, w których objętość jest większa niż w okresie porównawczym; im mocniejszy kolor, tym większy wzrost. Szare — bez wzrostu.')} />
@@ -85,7 +86,7 @@ export default function ProgressionScreen() {
           : t('Objętość = ciężar × powtórzenia × mnożnik ćwiczenia (jak w Postępach); rozgrzewka poza. Partia główna liczy całość, pomocnicza połowę.')}>{t('Serie per partia')}</H2>
         <MuscleRows rows={setBars(c.setRows, kind !== 'month')} metric="sets" names={periods} />
         {c.setRows.some(r => r.doneSplit.indirectSets + r.plannedSplit.indirectSets > 0) ? <IndirectLegend /> : null}
-        {kind !== 'month' ? <Muted style={{ fontSize: 12, marginTop: 2 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })}</Muted> : null}
+        {kind !== 'month' ? <Muted style={{ ...font('footnote'), marginTop: 2 }}>{t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK })}</Muted> : null}
       </>}
     </ScrollView></Screen>
   );

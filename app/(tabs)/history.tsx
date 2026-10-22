@@ -1,16 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { View } from 'react-native';
+import { FlatList } from '@/components/Scroll';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, H1, Item, Muted, Empty, Btn, Chip } from '@/components/ui';
-import { wallTs, getState, workoutDurSec, noClock, whenText, fmtDate, useHistTick, finishedWorkouts, fmtDur, volume, deleteWorkout, workingSets } from '@/lib/store';
+import { Screen, TabHeader, H1, Item, Muted, Empty, Btn, Chip } from '@/components/ui';
+import { wallTs, workoutDurSec, noClock, whenText, useHistTick, finishedWorkouts, fmtDur, volume, deleteWorkout, workingSets } from '@/lib/store';
 import { SwipeRow } from '@/components/SwipeRow';
+import { PlanningButton } from '@/components/HeaderActions';
+import { sessionDelete } from '@/components/sessionDelete';
 import { HistoryCalendar } from '@/components/HistoryCalendar';
 import { DayPanel } from '@/components/DayPanel';
 import { DeloadHint } from '@/components/DeloadHint';
 import { workoutsByDay } from '@/lib/calendar';
 import { locationLabel } from '@/lib/locations';
 import { t, tp } from '@/lib/i18n';
+import { font, SPACE } from '@/lib/theme';
 import { fmtVol } from '@/lib/units';
 import type { Workout } from '@/lib/seed';
 
@@ -31,12 +35,13 @@ export default function HistoryScreen() {
   useEffect(() => { if (day) toPanel(); else panelY.current = null; }, [day]);
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: 10 }}><H1>{t('Plan')}</H1><Muted>{all.length} {tp(all.length, 'sesja|sesje|sesji')}</Muted></View>
+      {/* M3 p3 (W1 c, decyzja STOP 3): „Planowanie” w nagłówku, w tym samym miejscu co na ekranie Trening (PlanningButton, prawy górny róg przy tytule) */}
+      <TabHeader row><H1>{t('Plan')}</H1><PlanningButton label={t('Planowanie')} onPress={() => router.push('/plan')} /></TabHeader>
       {/* 08.10.2026 (decyzja 1A): kalendarz z planem tygodnia nad listą sesji — zawsze, także bez historii (planowanie) */}
-      <View style={{ flexDirection: 'row', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
-        <Btn nav title={t('Planowanie')} small onPress={() => router.push('/plan')} />
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: SPACE.s, marginBottom: SPACE.s, flexWrap: 'wrap' }}>
         {/* Docs/12: trening wstecz — jak w popularnych aplikacjach treningowych */}
         <Btn nav title={t('Dopisz trening wstecz')} small onPress={() => router.push('/history/add')} />
+        <Muted>{all.length} {tp(all.length, 'sesja|sesje|sesji')}</Muted>
       </View>
       {/* Runda 69 (wydajność): FlatList renderuje tylko widoczne wiersze — przy 1000+ sesjach ekran otwierał się sekundy. */}
       <FlatList ref={list} data={ws} keyExtractor={w => w.id} initialNumToRender={15} windowSize={7} ListHeaderComponent={<>
@@ -44,8 +49,8 @@ export default function HistoryScreen() {
         <HistoryCalendar byDay={byDay} selected={day} onSelect={setDay} onMonth={(y, m) => { setDay(null); setMonth({ y, m }); }} />
         {day ? <View testID="day-panel-wrap" onLayout={e => { const first = panelY.current == null; panelY.current = e.nativeEvent.layout.y; if (first) toPanel(); }}><DayPanel day={day} /></View> : null}
         {day || month ? <View style={{ flexDirection: 'row', marginBottom: 6 }}><Chip label={t('Pokaż wszystkie')} on={false} onPress={() => { setDay(null); setMonth(null); }} /></View> : null}
-        {!day && month && !ws.length && all.length ? <Muted style={{ fontSize: 13, marginBottom: 8 }}>{t('Brak treningów w tym miesiącu.')}</Muted> : null}
-      </>} renderItem={({ item: w, index }) => <SwipeRow testID={`session-${index}`} /* E2E 28 */ label={t('Usuń sesję: {name}', { name: `${w.templateName || t('Trening')}, ${whenText(w)}` })} title={t('Usunąć tę sesję z historii?')} message={[`${w.templateName || t('Trening')}, ${fmtDate(wallTs(w))}`, w.healthUUID === 'watch' ? t('Trening z zegarka w Apple Health zostanie — usuniesz go w aplikacji Zdrowie.') : w.healthUUID ? t('Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie.') : ''].filter(Boolean).join('\n') /* G3 (audyt 0.10 DAT-09) */} onDelete={() => deleteWorkout(w.id)}>{a11y => <Item a11y={a11y} title={w.templateName || t('Trening')} sub={(() => { const n = workingSets(w) /* X-15, D3 (audyt 0.10): jak kafelki, Postępy i Zdrowie */; const v = volume(w); return [whenText(w), noClock(w) ? t('godzina nieznana') /* audyt 0.13: import bez godzin */ : fmtDur(workoutDurSec(w)) /* bez pauz (08.10.2026) */, `${n} ${tp(n, 'seria|serie|serii')}`, v ? fmtVol(v) : '', w.locationId ? `📍 ${locationLabel(w.locationId)}` /* T-057 */ : '', w.deload ? t('deload — mniej serii') /* audyt 0.10 (D1+): trening skrócony w tygodniu deload */ : ''].filter(Boolean).join(' · '); })()} onPress={() => router.push(`/history/${w.id}`)} />}</SwipeRow>} ListEmptyComponent={all.length ? null : <Empty>{t('Jeszcze pusto — pierwszy trening czeka.')}</Empty>} />
+        {!day && month && !ws.length && all.length ? <Muted style={{ ...font('footnote'), marginBottom: SPACE.s }}>{t('Brak treningów w tym miesiącu.')}</Muted> : null}
+      </>} renderItem={({ item: w, index }) => { const del = sessionDelete(w) /* jedno okno dla gestu i przycisku w szczegółach (M3 p3, ZM-04) */; return <SwipeRow testID={`session-${index}`} /* E2E 28 */ label={del.label} title={del.title} message={del.message} onDelete={() => deleteWorkout(w.id)}>{a11y => <Item a11y={a11y} title={w.templateName || t('Trening')} sub={(() => { const n = workingSets(w) /* X-15, D3 (audyt 0.10): jak kafelki, Postępy i Zdrowie */; const v = volume(w); return [whenText(w), noClock(w) ? t('godzina nieznana') /* audyt 0.13: import bez godzin */ : fmtDur(workoutDurSec(w)) /* bez pauz (08.10.2026) */, `${n} ${tp(n, 'seria|serie|serii')}`, v ? fmtVol(v) : '', w.locationId ? locationLabel(w.locationId) /* T-057 */ : '', w.deload ? t('deload — mniej serii') /* audyt 0.10 (D1+): trening skrócony w tygodniu deload */ : ''].filter(Boolean).join(' · '); })()} onPress={() => router.push(`/history/${w.id}`)} />}</SwipeRow>; }} ListEmptyComponent={all.length ? null : <Empty>{t('Jeszcze pusto — pierwszy trening czeka.')}</Empty>} />
     </Screen></SafeAreaView>
   );
 }
