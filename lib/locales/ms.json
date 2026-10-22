@@ -724,6 +724,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Pelan mingguan daripada templat anda, menggunakan peraturan yang sama seperti penjana — anda menyemaknya sebelum menyimpan. Templat anda tidak berubah.",
  "Plan z moich szablonów": "Pelan daripada templat saya",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Pelan daripada templat anda — untuk disemak. Templat tidak berubah.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Pelan diubah pada {day} — hari sebelumnya mengikut pelan terdahulu",
  "Plan: {name}": "Pelan: {name}",
  "Planowanie": "Perancangan",
  "plecy": "belakang",

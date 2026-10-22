@@ -3751,6 +3751,10 @@
   "en": "A plan from your templates — to review. Templates stay unchanged."
  },
  {
+  "pl": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+  "en": "Plan changed on {day} — earlier days follow the previous plan"
+ },
+ {
   "pl": "Plan: {name}",
   "en": "Plan: {name}"
  },

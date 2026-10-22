@@ -904,6 +904,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Un plan semanal con tus plantillas, con las mismas reglas que el generador — lo revisas antes de guardar. Tus plantillas no cambian.",
  "Plan z moich szablonów": "Plan con mis plantillas",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Plan con tus plantillas, para revisar. Las plantillas no cambian.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Plan cambiado el {day}: los días anteriores siguen el plan anterior",
  "Plan: {name}": "Plan: {name}",
  "Planowanie": "Planificación",
  "plecy": "espalda",

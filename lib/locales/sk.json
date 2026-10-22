@@ -904,6 +904,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Týždenný plán z vašich šablón podľa rovnakých pravidiel ako generátor — pred uložením si ho pozriete. Šablóny zostanú bez zmeny.",
  "Plan z moich szablonów": "Plán z mojich šablón",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Plán z vašich šablón — na kontrolu. Šablóny bez zmeny.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Plán zmenený: {day} — skoršie dni podľa predchádzajúceho plánu",
  "Plan: {name}": "Plán: {name}",
  "Planowanie": "Plánovanie",
  "plecy": "chrbát",

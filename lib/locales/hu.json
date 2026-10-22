@@ -904,6 +904,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Heti terv a sablonjaiból, ugyanazokkal a szabályokkal, mint a generátorban — mentés előtt átnézi. A sablonok nem változnak.",
  "Plan z moich szablonów": "Terv a saját sablonjaimból",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Terv a saját sablonjaiból — átnézésre. A sablonok változatlanok.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "A terv módosítva: {day} — a korábbi napok az előző terv szerint",
  "Plan: {name}": "Terv: {name}",
  "Planowanie": "Tervezés",
  "plecy": "hát",

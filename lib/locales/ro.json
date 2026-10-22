@@ -904,6 +904,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Un plan săptămânal din șabloanele dvs., după aceleași reguli ca generatorul — îl verificați înainte de salvare. Șabloanele rămân neschimbate.",
  "Plan z moich szablonów": "Plan din șabloanele mele",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Plan din șabloanele dvs. — de verificat. Șabloanele rămân neschimbate.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Plan modificat: {day} — zilele anterioare urmează planul precedent",
  "Plan: {name}": "Plan: {name}",
  "Planowanie": "Planificare",
  "plecy": "spate",
