@@ -48,7 +48,8 @@ describe('K2 (A11-02): nagłówki wielkimi literami zgodnie z językiem', () => 
   });
   test('karta „Dziś” (dashboard): nagłówek wersalikami z regułami języka (el), bez textTransform', async () => {
     await bootIn('el', '/', () => { const id = store.getState().templates[0].id; for (let i = 0; i < 7; i++) plan.setWeekDay(i, id); });
-    const want = LOCALES.el!['Dziś'].toLocaleUpperCase('el');
+    /* M3 p2 (W3, wz. 28 pkt 4): tablica „Dziś” na starcie — „Dziś: {nazwa}” wersalikami z regułami języka (el: bez akcentów) */
+    const want = LOCALES.el!['Dziś: {name}'].replace('{name}', store.getState().templates[0].name).toLocaleUpperCase('el');
     expect(texts().some(x => str(x) === want)).toBe(true);
     expect(texts().filter(x => flat(x.props.style).textTransform === 'uppercase').map(str)).toEqual([]);
   });
@@ -67,7 +68,7 @@ describe('K2 (A11-03): etykiety zakładek na wąskim ekranie', () => {
     for (const k of ['Trening', 'Plan', 'Postępy', 'Więcej']) {
       const els = texts().filter(x => str(x) === t(k) && x.props.numberOfLines === 1); /* etykieta zakładki (nie tytuł ekranu) */
       expect([k, els.length > 0]).toEqual([k, true]);
-      for (const el of els) expect([k, el.props.adjustsFontSizeToFit, el.props.minimumFontScale, el.props.allowFontScaling]).toEqual([k, true, TAB_LABEL_MIN_SCALE, false]);
+      for (const el of els) expect([k, el.props.adjustsFontSizeToFit, el.props.minimumFontScale, el.props.maxFontSizeMultiplier]).toEqual([k, true, TAB_LABEL_MIN_SCALE, 1.25]); /* M3 (DEC-10, design-spec §1): podpis zakładki rośnie do 125% (było: bez skalowania) */
     }
   });
 });
@@ -109,8 +110,9 @@ describe('K2 (A11-09): VoiceOver czyta głosem języka aplikacji', () => {
   });
 });
 
-describe('K3 (A11-11): krój mono (IBM Plex Mono) bez liter greckich', () => {
-  test('el: Postępy (podsumowanie „προηγ.”, rekordy), szczegóły sesji, trening w toku — żaden tekst krojem mono nie zawiera liter greckich', async () => {
+/* M3 (STOP E3, docs/18): krój liczb to Barlow Condensed z cyframi tabelarycznymi (dawniej IBM Plex Mono); ma tę samą lukę — brak liter greckich — więc komórki liczb dalej idą przez monoSafe. Tytuły Barlow (bez cyfr tabelarycznych) mogą mieć litery greckie: ich litery rysuje krój zastępczy systemu (decyzja E3). */
+describe('K3 (A11-11): krój liczb (Barlow Condensed, cyfry tabelaryczne) bez liter greckich', () => {
+  test('el: Postępy (podsumowanie „προηγ.”, rekordy), szczegóły sesji, trening w toku — żaden tekst w komórce liczb nie zawiera liter greckich', async () => {
     const { F } = require('@/lib/theme');
     let wid = '';
     await bootIn('el', '/progress', () => {
@@ -118,21 +120,21 @@ describe('K3 (A11-11): krój mono (IBM Plex Mono) bez liter greckich', () => {
       store.startFromTemplate(st.templates[0]); store.toggleDone(0, 0);
     });
     const greekInMono: string[] = []; let monoSeen = 0;
-    const walk = (x: Node, fam?: string) => {
+    const walk = (x: Node, fam?: string, tab = false) => {
       if (x == null) return;
-      if (typeof x === 'string') { if (fam === F.mono || fam === F.monoBold) { monoSeen++; if (/\p{Script=Greek}/u.test(x)) greekInMono.push(x); } return; }
-      if (Array.isArray(x)) { x.forEach(c => walk(c, fam)); return; }
-      if (typeof x !== 'object') return; walk(x.children, flat(x.props?.style).fontFamily ?? fam);
+      if (typeof x === 'string') { if (tab && (fam === F.mono || fam === F.monoBold)) { monoSeen++; if (/\p{Script=Greek}/u.test(x)) greekInMono.push(x); } return; }
+      if (Array.isArray(x)) { x.forEach(c => walk(c, fam, tab)); return; }
+      if (typeof x !== 'object') return; const sty = flat(x.props?.style); walk(x.children, sty.fontFamily ?? fam, sty.fontVariant ? (sty.fontVariant as string[]).includes('tabular-nums') : tab);
     };
     for (const r of ['/progress', `/history/${wid}`, '/']) { await go(r); await flushAll(10); walk(screen.UNSAFE_root); }
     expect(monoSeen).toBeGreaterThan(5); expect(greekInMono).toEqual([]);
   });
-  test('monoSafe: litery greckie krojem tekstu, reszta bez zmian (łacina i cyrylica są w Plex Mono)', () => {
-    const { monoSafe } = require('@/components/ui'); const { F } = require('@/lib/theme');
+  test('monoSafe: litery greckie krojem tekstu, reszta bez zmian (cyrylicę krój zastępczy systemu dobiera sam — FALLBACK_SCRIPTS)', () => {
+    const { monoSafe } = require('@/components/ui'); const { FW } = require('@/lib/theme');
     expect(monoSafe('12,5 kg')).toBe('12,5 kg'); expect(monoSafe('12 кг')).toBe('12 кг'); expect(monoSafe(5)).toBe(5);
     const parts = monoSafe('80 (προηγ. 75)', true) as Node[];
     expect(parts.filter((p: Node) => typeof p === 'string').join('|')).toBe('80 (|. 75)');
-    expect(parts.filter((p: Node) => typeof p !== 'string').map((p: Node) => [p.props.children, p.props.style.fontFamily])).toEqual([['προηγ', F.semibold]]);
+    expect(parts.filter((p: Node) => typeof p !== 'string').map((p: Node) => [p.props.children, p.props.style])).toEqual([['προηγ', FW.semibold]]);
   });
 });
 
@@ -179,7 +181,7 @@ describe('K2/K3: kontrast, pola dotyku, przełącznik-chip, wyszarzone wiersze',
     const rows = screen.UNSAFE_root.findAll((n: Node) => typeof n.type === 'string' && n.props.accessibilityRole === 'button' && /brak|niedost/i.test(String(n.props.accessibilityLabel ?? '')));
     expect(rows.length).toBeGreaterThan(0);
     for (const r of rows.slice(0, 5)) { expect(flat(r.props.style).opacity ?? 1).toBe(1); }
-    const dimTitles = texts().filter(x => [light.muted, dark.muted].includes(flat(x.props.style).color) && flat(x.props.style).fontSize === 16);
+    const dimTitles = texts().filter(x => [light.muted, dark.muted].includes(flat(x.props.style).color) && flat(x.props.style).fontSize === 17 /* M3: tytuł wiersza 17 (rola bodyStrong), było 16 */);
     expect(dimTitles.length).toBeGreaterThan(0);
   });
 });
@@ -200,7 +202,7 @@ describe('K3 (A11-18, A11-19): szum VoiceOver, podwójne glify, złamania linii'
   test('trening: nagłówki kolumn „#”, „✓”, „▶” ukryte przed VoiceOver; plakietka „PR” czytana jako rekord', async () => {
     await bootIn('pl', '/', () => { const st = store.getState(); store.startFromTemplate(st.templates[0]); });
     expect(screen.queryByText('#')).toBeNull(); expect(screen.getAllByText('#', { includeHiddenElements: true }).length).toBeGreaterThan(0);
-    const src = require('fs').readFileSync(require('path').join(__dirname, '..', 'components', 'ActiveWorkout.tsx'), 'utf8') as string;
+    const src = require('fs').readFileSync(require('path').join(__dirname, '..', 'components', 'WorkoutBlocks.tsx'), 'utf8') as string;
     expect(src).toMatch(/accessibilityLabel=\{tr\('Rekord: \{list\}'/);
   });
   test('zamiana: „↺ przywróć” i „Inne ▾” bez drugiego glifu obok; „Co nowego”: starsze wpisy bez „▸” w etykiecie', async () => {

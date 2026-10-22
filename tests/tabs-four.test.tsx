@@ -143,15 +143,16 @@ describe('przepływy dalej osiągalne (docs/22 4.5): Szablony, Ćwiczenia, Post�
     await boot('/', () => { lastTrain(); }); await tap(screen.getByTestId('week-tiles')); await flushAll(10);
     expect(screen.getByRole('header', { name: 'Postępy' })).toBeTruthy(); expect(treesOf().filter(n => n === '(tabs)').length).toBe(1);
   });
-  test('C4 ćwiczenie (Więcej → Ćwiczenia → ćwiczenie → „Postępy”) otwiera wykres ćwiczenia w zakładce Postępy; ✕ i powrót do zakładki nie otwierają go znowu', async () => {
+  test('C4 ćwiczenie (Więcej → Ćwiczenia → ćwiczenie → „Postępy”) otwiera wykres ćwiczenia w zakładce Postępy; wybór zostaje po przełączeniu zakładek (ZM-06)', async () => {
     await boot('/', () => { lastTrain(); }); const id = ex('Back Squat').id;
     await go(`/exercise/${id}`); await flushAll(10); await tap(screen.getByText('Postępy')); await flushAll(10);
     expect(screen.getByLabelText('Back Squat')).toBeTruthy(); expect(screen.getByText('REKORDY')).toBeTruthy(); expect(treesOf().filter(n => n === '(tabs)').length).toBe(1);
-    await tap(screen.getByLabelText('Back Squat')); await flushAll(10); expect(screen.getByText('Ćwiczenie')).toBeTruthy(); expect(screen.queryByText('REKORDY')).toBeNull();
-    await tab('Trening'); await tab('Postępy'); expect(screen.queryByText('REKORDY')).toBeNull(); expect(screen.getByRole('header', { name: 'Progresja' })).toBeTruthy();
+    /* ZM-06 (M3 p3): chip „✕” zniknął — wybrane ćwiczenie zostaje zaznaczone, a wybór i ogólny przegląd są pod wykresem; stan widoku zakładki przeżywa przełączenie zakładek (audyt 0.13) */
+    await tap(screen.getByLabelText('Back Squat')); await flushAll(10); expect(screen.getByText('Ćwiczenie')).toBeTruthy(); expect(screen.getByText('REKORDY')).toBeTruthy();
+    await tab('Trening'); await tab('Postępy'); expect(screen.getByText('REKORDY')).toBeTruthy(); expect(screen.getByRole('header', { name: 'Progresja' })).toBeTruthy();
   });
   test('C4 Postępy → szukanie → chip ćwiczenia → wykres (2 stuknięcia od zakładki)', async () => {
-    await boot('/', () => { lastTrain(); }); await tab('Postępy'); await tap(screen.getByText('Back Squat')); await flushAll(10);
+    await boot('/', () => { lastTrain(); }); await tab('Postępy'); await tap(screen.getByLabelText('Back Squat')); await flushAll(10); /* chip wyboru (wykres jest już na górze — ZM-06) */
     expect(screen.getByText('REKORDY')).toBeTruthy();
   });
   test('C10 ćwiczenie z masą ciała → „Masa ciała — pomiary” prowadzi do ekranu pomiarów', async () => {

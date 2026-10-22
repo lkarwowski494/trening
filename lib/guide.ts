@@ -13,15 +13,16 @@ export type GuideTopic = { id: string; title: () => string; steps: () => string[
 export const GUIDE: GuideTopic[] = [
   { id: 'workout', route: '/', title: () => t('Trening i serie'), steps: () => [
     t('Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.'),
-    t('Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.'),
-    t('„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.'),
-    t('Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.'),
+    t('Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.'), /* M3 ZM-01 */
+    t('Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.'), /* M3 ZM-02: pauza w menu „⋯”; cytat = pozycja menu */
+    t('Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.'), /* ZM-07 (p5d, 21.10.2026): cytaty = etykiety przełączników w Ustawieniach */
+    t('Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.'), /* M3 ZM-02 */
   ] },
   { id: 'templates', route: '/templates', title: () => t('Szablony'), steps: () => [
     t('Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy.'),
     t('Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.'), /* edycja na żądanie, 08.10.2026 */
-    t('„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).'),
-    t('Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.'), /* ⓘ (14.10.2026): dawna stopka edytora szablonu przeniesiona z ekranu do Przewodnika */
+    t('„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).'), /* M3 ZM-04 */
+    t('Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.'), /* ⓘ (14.10.2026): dawna stopka edytora szablonu przeniesiona z ekranu do Przewodnika */
   ] },
   /* H1 (audyt 0.10, UX-09): tematy, których brakowało — zmiany w trakcie treningu i historia */
   { id: 'during', route: '/', title: () => t('Zmiany w trakcie treningu'), steps: () => [
@@ -58,10 +59,13 @@ export const GUIDE: GuideTopic[] = [
     t('Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.', { n: WEEKLY_SETS_MARK }), /* LOG2-05: próg w jednym miejscu */
     t('Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.'),
     t('Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.'),
+    t('Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.'), /* M3 ZM-04, W1 b */
   ] },
   { id: 'places', route: '/more/locations', title: () => t('Miejsca i sprzęt'), steps: () => [
     t('Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.'),
     t('Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.'),
+    t('Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.'), /* M3 ZM-04, W2 a */
+    t('Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.'), /* M3 ZM-04, W1 b */
   ] },
   { id: 'backup', route: '/more/backup', title: () => t('Kopia zapasowa'), steps: () => [
     t('Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku.'),

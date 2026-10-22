@@ -51,10 +51,10 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
 
 ## Funkcje systemowe (powiadomienia, widżet, Zdrowie, sklep)
 
-- [ ] **ZD-01** Wibracja przy odhaczeniu serii i na koniec przerwy
-  - Co zrobić i czego oczekiwać: Z włączonym dźwiękiem i wibracją odhacz serię (krótkie stuknięcie), poczekaj do końca przerwy (sygnał); wyłącz „Dźwięk i wibracja” — cisza.
+- [ ] **ZD-01** Wibracja na koniec przerwy i stopera serii; osobne przełączniki „Dźwięk na koniec przerwy” i „Wibracje”
+  - Co zrobić i czego oczekiwać: Z włączonymi „Dźwięk na koniec przerwy” i „Wibracje” poczekaj do końca przerwy (wibracja i sygnał); wyłącz „Wibracje” — sygnał bez wibracji; wyłącz „Dźwięk na koniec przerwy” — bez sygnału, a wibracja zależy już tylko od „Wibracje”.
   - Dlaczego nie automat: Silnik haptyczny nie istnieje na symulatorze, a Maestro go nie czyta.
-  - Pokrycie zastępcze w Jest: `tests/timer-logic.test.ts`, `tests/e2e-102-reminder.test.tsx`
+  - Pokrycie zastępcze w Jest: `tests/timer-logic.test.ts`, `tests/e2e-102-reminder.test.tsx`, `tests/m3-p5d-haptics.test.ts`, `tests/m3-p5d-haptics-done.test.tsx`
 - [ ] **ZD-02** Instalacja z TestFlight na prawdziwym telefonie: pierwsze uruchomienie, ikona, nazwa, animacja startowa
   - Co zrobić i czego oczekiwać: Po instalacji: ikona i nazwa poprawne, animacja startowa krótka (stuknięcie pomija), „Pierwsze kroki”, brak komunikatu o błędzie danych.
   - Dlaczego nie automat: Podpis, ikona, ekran startowy i środowisko prawdziwego urządzenia istnieją dopiero w buildzie z TestFlight.

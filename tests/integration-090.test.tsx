@@ -98,7 +98,7 @@ describe('(1) edycja treningu z miejscem', () => {
   test('ekran edycji: zapis treningu z miejscem zostawia miejsce (UI)', async () => {
     await fresh(); const { home, h2 } = placesAndHistory(); await renderApp({ saved: snapshot() });
     await go(`/history/${h2.id}`); await flushAll(20); await tap(screen.getByText('Edytuj')); await flushAll(20);
-    expect(screen.getByText('📍 Dom ▾')).toBeTruthy(); // T-057 (0.14.0): miejsce do wyboru (wcześniej tylko do odczytu)
+    expect(screen.getByText('Dom ▾')).toBeTruthy(); // T-057 (0.14.0): miejsce do wyboru (wcześniej tylko do odczytu)
     await type(screen.getAllByLabelText(/^kg/)[0], '22'); await tap(screen.getByText('Zapisz')); await flushAll(50);
     expect(byId(h2.id).locationId).toBe(home); expect(byId(h2.id).exercises[0].sets[0].weight).toBe(22); expect(prevW(ex(DB).id, 'dumbbell')).toEqual([22]);
   });
@@ -130,7 +130,7 @@ describe('(2) trening wstecz przy istniejących miejscach', () => {
     await fresh(); const { home } = placesAndHistory(); homeTpl(home); await renderApp({ saved: snapshot() });
     await go('/history'); await flushAll(20); await tap(screen.getByText('Dopisz trening wstecz')); await flushAll(20);
     await type(screen.getByLabelText('Data (RRRR-MM-DD)'), edit.dateText(day(8))); await flushAll(800); await tap(screen.getByText('Dom')); await flushAll(50);
-    expect(screen.getByText('📍 Dom ▾')).toBeTruthy(); expect(screen.getAllByLabelText(/^kg/)[0].props.value).toBe('20'); /* T-057: miejsce do wyboru */
+    expect(screen.getByText('Dom ▾')).toBeTruthy(); expect(screen.getAllByLabelText(/^kg/)[0].props.value).toBe('20'); /* T-057: miejsce do wyboru */
     await tap(screen.getByText('Zapisz')); await flushAll(50);
     const w = store.getState().workouts.find(x => x.templateName === 'Dom')!; expect(w.startedAt).toBe(day(8)); expect(w.locationId).toBe(home);
   });
@@ -159,8 +159,8 @@ describe('(3) wybór ćwiczenia w edytorze (target edit:<klucz>)', () => {
 
   test('ekran edycji treningu z usuniętym miejscem: „📍 (usunięte miejsce) ▾”; trening bez miejsca przy istniejących miejscach — „📍 bez miejsca ▾” (T-057: do wyboru) (UI)', async () => {
     await fresh(); const { h1, h2 } = placesAndHistory(); h1.locationId = 'usuniete'; delete h2.locationId; store.save(); await renderApp({ saved: snapshot() });
-    await go(`/history/edit/${h1.id}`); await flushAll(20); expect(screen.getByText('📍 (usunięte miejsce) ▾')).toBeTruthy();
-    await go(`/history/edit/${h2.id}`); await flushAll(20); expect(screen.queryByText(/usunięte/)).toBeNull(); expect(screen.getByText('📍 bez miejsca ▾')).toBeTruthy();
+    await go(`/history/edit/${h1.id}`); await flushAll(20); expect(screen.getByText('(usunięte miejsce) ▾')).toBeTruthy();
+    await go(`/history/edit/${h2.id}`); await flushAll(20); expect(screen.queryByText(/usunięte/)).toBeNull(); expect(screen.getByText('bez miejsca ▾')).toBeTruthy();
   });
 
   test('nieistniejący szkic: pełna lista, wybór nic nie psuje', async () => {
@@ -296,9 +296,9 @@ describe('T-057 (0.14.0): miejsce treningu w edytorze historii (wybór i zmiana)
     await fresh(); const { gym, h2 } = placesAndHistory(); await renderApp({ saved: snapshot() });
     await go(`/history/${h2.id}`); await flushAll(20); await tap(screen.getByText('Edytuj')); await flushAll(20);
     await tap(screen.getByLabelText('Miejsce treningu: Dom')); expect(sheetOpts()).toEqual(['Dom', 'Siłownia', 'bez miejsca', 'Anuluj']);
-    await act(async () => { (global as any).__pickSheet(3); }); expect(screen.getByText('📍 Dom ▾')).toBeTruthy();
+    await act(async () => { (global as any).__pickSheet(3); }); expect(screen.getByText('Dom ▾')).toBeTruthy();
     await tap(screen.getByLabelText('Miejsce treningu: Dom')); await act(async () => { (global as any).__pickSheet(1); }); await flushAll(10);
-    expect(screen.getByText('📍 Siłownia ▾')).toBeTruthy(); expect(screen.getByLabelText('Miejsce treningu: Siłownia')).toBeTruthy();
+    expect(screen.getByText('Siłownia ▾')).toBeTruthy(); expect(screen.getByLabelText('Miejsce treningu: Siłownia')).toBeTruthy();
     await tap(screen.getByText('Zapisz')); await flushAll(50); expect(byId(h2.id).locationId).toBe(gym);
   });
   test('ekran edycji: trening bez miejsca przy istniejących miejscach — „bez miejsca ▾”, wybór bez opcji „bez miejsca”', async () => {
@@ -307,12 +307,12 @@ describe('T-057 (0.14.0): miejsce treningu w edytorze historii (wybór i zmiana)
     await tap(screen.getByLabelText('Miejsce treningu: bez miejsca')); expect(sheetOpts()).toEqual(['Dom', 'Siłownia', 'Anuluj']); await act(async () => { (global as any).__pickSheet(0); }); await flushAll(10);
     await tap(screen.getByText('Zapisz')); await flushAll(50); expect(byId(old.id).locationId).toBe(home);
   });
-  test('Historia i szczegóły sesji pokazują miejsce („📍 Dom”); sesja bez miejsca — bez tego wpisu', async () => {
+  test('Historia i szczegóły sesji pokazują miejsce („… · Dom”, bez emoji — M1-029); sesja bez miejsca — bez tego wpisu', async () => {
     await fresh(); const { h2 } = placesAndHistory(); const old = addWorkout(day(4), [['Pull Up', [{ reps: 8 }]]], 'Stary'); store.save();
     await renderApp({ saved: snapshot(), url: '/history' }); await flushAll(20);
-    const rows = screen.queryAllByText(/ · /).map((n: any) => [n.props.children].flat().join('')); const withPlace = rows.filter((x: string) => /📍/.test(x));
-    expect(withPlace).toHaveLength(3); expect(withPlace.every((x: string) => /📍 (Dom|Siłownia)/.test(x))).toBe(true); expect(rows.filter((x: string) => !/📍/.test(x)).length).toBeGreaterThan(0);
-    await go(`/history/${h2.id}`); await flushAll(10); expect(screen.queryAllByText(/📍 Dom/).length).toBeGreaterThan(0);
-    await go(`/history/${old.id}`); await flushAll(10); expect(screen.queryAllByText(/📍/)).toHaveLength(0);
+    const rows = screen.queryAllByText(/ · /).map((n: any) => [n.props.children].flat().join('')); const PL = /(^| · )(Dom|Siłownia)( · |$)/; const withPlace = rows.filter((x: string) => PL.test(x));
+    expect(withPlace).toHaveLength(3); expect(withPlace.every((x: string) => PL.test(x))).toBe(true); expect(rows.filter((x: string) => !PL.test(x)).length).toBeGreaterThan(0);
+    await go(`/history/${h2.id}`); await flushAll(10); expect(screen.queryAllByText(/Dom/).length).toBeGreaterThan(0);
+    await go(`/history/${old.id}`); await flushAll(10); expect(screen.queryAllByText(/(Dom|Siłownia)/)).toHaveLength(0);
   });
 });

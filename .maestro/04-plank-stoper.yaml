@@ -26,6 +26,7 @@ name: Plank ze stoperem
       - inputText: "n"
       - inputText: "k"
       - assertVisible: "Plank"  # wartość pola wyszukiwania (zgubiony znak = inny tekst)
+      - pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Plank, body weight"
@@ -35,8 +36,8 @@ name: Plank ze stoperem
 - assertVisible: "Start stopwatch: Plank, set 1"
 - assertVisible: "Tick without timing: Plank, set 1"
 - tapOn: { text: "Start set stopwatch", index: 0 }
-- assertVisible: "Finish set"
+- assertVisible: "Finish set: Plank, set 1"   # 04-studio-projektowe-005: w widoku tablicy jest jeden przycisk „Finish set” — na tablicy (etykieta VoiceOver z ćwiczeniem i serią); dolny pasek stopera tylko w widoku listy
 - takeScreenshot: 08-stoper
-- tapOn: "Finish set"
-- assertNotVisible: "Finish set"
+- tapOn: "Finish set: Plank, set 1"
+- assertNotVisible: "Finish set.*"
 - takeScreenshot: 09-plank-zapisany

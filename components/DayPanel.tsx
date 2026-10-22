@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { View, Pressable, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn, Chip, Muted, Txt, H2, useOnce } from '@/components/ui';
+import { IconRow } from '@/components/Icon';
 import { InfoTip } from '@/components/InfoTip';
 import { workoutDay, getState, useTick, isDeloadWeek, toggleDeloadWeek, fmtDayKey, newTemplate, visibleLocations, PLAN_PLACE_RANGE_MAX } from '@/lib/store';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, FW, font } from '@/lib/theme';
 import { plannedOn, isChanged, setDayPlan, resetDay, addDays, dayKeyOf, suggest, suggestionOrder, SUGGEST_FIRST, applySuggestion, dayStatus, doneOn, pending, planTplName, hasPlan, assignTarget, RETURN_DAYS, earlyWorkout, undoDoneEarly, plannedPlace, plannedPlaceName, setPlanPlace, clearPlanPlace, placeRun, type Suggestion } from '@/lib/plan';
 import { askReminderPermission } from '@/lib/planReminder';
 import { t, locale, lang } from '@/lib/i18n';
@@ -47,18 +48,18 @@ export function DayPanel({ day }: { day: string }) {
 
   /* ---- stan dnia ---- */
   const lines: React.ReactElement[] = [];
-  const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="button" accessibilityLabel={text} onPress={once(() => router.push(`/history/${wid}`))} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, minHeight: 44, justifyContent: 'center' })}><Txt style={{ fontSize: 15, color: th.accent, fontFamily: F.semibold }}>{`${text} ›`}</Txt></Pressable>;
+  const link = (key: string, text: string, wid: string) => <Pressable accessibilityLanguage={lang()} key={key} accessibilityRole="button" accessibilityLabel={text} onPress={once(() => router.push(`/history/${wid}`))} hitSlop={6} style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1, minHeight: 44, justifyContent: 'center' })}><Txt style={{ ...font('callout'), color: th.accent, ...FW.semibold }}>{`${text} ›`}</Txt></Pressable>;
   const ch = changed ? ` · ${t('zmiana planu')}` : '';
-  if (st.early) { const w = earlyWorkout(day, today); lines.push(w ? link(w.id, t('Zrobiony wcześniej: {name}', { name: tplName(id) }), w.id) : <Txt key="early" style={{ fontSize: 15 }}>{t('Zrobiony wcześniej: {name}', { name: tplName(id) })}</Txt>); lines.push(<Muted key="early-free" style={{ fontSize: 13 }}>{t('Trening z tego dnia zrobiony wcześniej — dzień wolny.')}</Muted>); }
+  if (st.early) { const w = earlyWorkout(day, today); lines.push(w ? link(w.id, t('Zrobiony wcześniej: {name}', { name: tplName(id) }), w.id) : <Txt key="early" style={{ ...font('callout') }}>{t('Zrobiony wcześniej: {name}', { name: tplName(id) })}</Txt>); lines.push(<Muted key="early-free" style={{ ...font('footnote') }}>{t('Trening z tego dnia zrobiony wcześniej — dzień wolny.')}</Muted>); }
   else if (st.status === 'done' || st.status === 'other') doneOn(day).forEach(w => lines.push(link(w.id, st.status === 'done' ? t('Zrobione: {name}', { name: w.templateName || t('Trening') }) : t('Zrobiony inny trening: {name}', { name: w.templateName || t('Trening') }), w.id)));
-  if (st.status === 'other' || st.status === 'planned' || st.status === 'missed') lines.push(<Txt key="plan" style={{ fontSize: 15 }}>{(past ? t('Opuszczony: {name}', { name: tplName(id) }) : t('Zaplanowany: {name}', { name: tplName(id) })) + ch}</Txt>);
-  else if (st.status === 'rest') lines.push(<Txt key="plan" style={{ fontSize: 15 }}>{t('Wolne') + ch}</Txt>);
-  else if (changed) lines.push(<Muted key="plan" style={{ fontSize: 13 }}>{t('zmiana planu')}</Muted>);
-  if (activeHere) lines.push(<Muted key="active" style={{ fontSize: 13 }}>{t('Trening w toku')}</Muted>);
+  if (st.status === 'other' || st.status === 'planned' || st.status === 'missed') lines.push(<Txt key="plan" style={{ ...font('callout') }}>{(past ? t('Opuszczony: {name}', { name: tplName(id) }) : t('Zaplanowany: {name}', { name: tplName(id) })) + ch}</Txt>);
+  else if (st.status === 'rest') lines.push(<Txt key="plan" style={{ ...font('callout') }}>{t('Wolne') + ch}</Txt>);
+  else if (changed) lines.push(<Muted key="plan" style={{ ...font('footnote') }}>{t('zmiana planu')}</Muted>);
+  if (activeHere) lines.push(<Muted key="active" style={{ ...font('footnote') }}>{t('Trening w toku')}</Muted>);
   const placeName = plannedPlaceName(day); /* 0.19 (docs/33 B): miejsce zapisane w planie na ten dzień */
-  if (placeName) lines.push(<Muted key="place" testID="day-place" accessibilityLabel={t('Miejsce treningu: {l}', { l: placeName })} style={{ fontSize: 15 }}>{`📍 ${placeName}`}</Muted>);
+  if (placeName) lines.push(<IconRow key="place" icon="pin" color={th.muted} size={15}><Muted testID="day-place" accessibilityLabel={t('Miejsce treningu: {l}', { l: placeName })} style={{ ...font('callout') }}>{placeName}</Muted></IconRow>);
   const empty = !!tpl && !tpl.items.length && pending(st);
-  if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="button" onPress={once(() => router.push(`/template/${tpl!.id}?edit=1`))} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
+  if (empty) lines.push(<Pressable accessibilityLanguage={lang()} key="empty" accessibilityRole="button" onPress={once(() => router.push(`/template/${tpl!.id}?edit=1`))} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}><Muted style={{ ...font('footnote') }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable>);
 
   /* ---- akcje: główne (najwyżej 3) i „Więcej opcji” ---- */
   const primary: Act[] = []; const extra: Act[] = [];
@@ -75,7 +76,7 @@ export function DayPanel({ day }: { day: string }) {
     { key: 'deload', el: <Btn small kind="ghost" title={deload ? t('Zdejmij oznaczenie deload') : t('Oznacz tydzień jako deload')} onPress={() => toggleDeloadWeek(keyTs(day))} /> },
   ];
   const canPlace = !past && visibleLocations().length > 0; /* 0.19: miejsce na dni — od dziś, gdy są miejsca (bez miejsc nie ma z czego wybierać) */
-  if (canPlace) secondary.push({ key: 'place', el: <Btn small kind="ghost" expanded={mode === 'place'} title={t('📍 Miejsce na te dni')} onPress={() => setMode(mode === 'place' ? 'none' : 'place')} /> });
+  if (canPlace) secondary.push({ key: 'place', el: <Btn small kind="ghost" expanded={mode === 'place'} icon="pin" title={t('Miejsce na te dni')} onPress={() => setMode(mode === 'place' ? 'none' : 'place')} /> });
   extra.push(...primary.splice(PRIMARY_MAX), ...secondary);
 
   return (
@@ -91,7 +92,7 @@ export function DayPanel({ day }: { day: string }) {
       {mode === 'move' && movable ? <MoveList day={day} onDone={close} /> : null}
       {mode === 'place' && canPlace ? <PlaceRange day={day} onDone={close} /> : null}
       {mode === 'pick' ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
-        {live.length ? live.map(x => <Chip key={x.id} label={x.name} on={x.id === id} onPress={() => pickTpl(x.id)} />) : <Muted style={{ fontSize: 13 }}>{t('Nie masz jeszcze szablonów.')}</Muted>}
+        {live.length ? live.map(x => <Chip key={x.id} label={x.name} on={x.id === id} onPress={() => pickTpl(x.id)} />) : <Muted style={{ ...font('footnote') }}>{t('Nie masz jeszcze szablonów.')}</Muted>}
         {/* docs/18 09.10.2026 (B): nowy szablon — po „Zapisz” trafia na ten dzień (zmiana pojedynczego dnia) */}
         <Btn nav small kind="ghost" title={t('+ Nowy szablon')} accessibilityHint={t('Po zapisie szablon trafi na ten dzień.')} onPress={() => { close(); const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1&assign=${encodeURIComponent(assignTarget.day(day))}`); }} />
       </View> : null}
@@ -120,12 +121,12 @@ function MoveList({ day, onDone }: { day: string; onDone: () => void }) {
   return (
     <View testID="suggestions" style={{ marginTop: 8, gap: 8 }}>
       <InfoTip id="move-list" label={t('Możliwości w kolejności')} info={[t('Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu {n} dni, potem bez utraty treningów, bez nowych par dzień po dniu z tymi samymi partiami i z najmniejszą liczbą zmienionych dni.', { n: RETURN_DAYS }), simplification]}>
-        <Muted style={{ fontSize: 12 }}>{t('Możliwości w kolejności')}</Muted>
+        <Muted style={{ ...font('footnote') }}>{t('Możliwości w kolejności')}</Muted>
       </InfoTip>
       {shown.map((sg, i) => { const { title, details } = suggestionTexts(day, sg); return (
         <View key={`${sg.kind}-${sg.to ?? ''}`} style={{ gap: 2 }}>
-          <Txt style={{ fontSize: 14 }}>{i === 0 && list.length > 1 ? `${title} · ${t('polecane')}` : title}</Txt>
-          {details.map((d, j) => <Muted key={j} style={{ fontSize: 12 }}>{d}</Muted>)}
+          <Txt style={{ ...font('callout') }}>{i === 0 && list.length > 1 ? `${title} · ${t('polecane')}` : title}</Txt>
+          {details.map((d, j) => <Muted key={j} style={{ ...font('footnote') }}>{d}</Muted>)}
           <Btn small title={t('Zastosuj')} accessibilityLabel={t('Zastosuj: {title}', { title })} onPress={() => { applySuggestion(sg); onDone(); }} style={{ alignSelf: 'flex-start', marginTop: 2 }} />
         </View>); })}
       {!all && list.length > SUGGEST_FIRST ? <Btn small kind="ghost" title={t('Więcej możliwości ({n})', { n: list.length - SUGGEST_FIRST })} onPress={() => setAll(true)} style={{ alignSelf: 'flex-start' }} /> : null}
@@ -143,21 +144,21 @@ function PlaceRange({ day, onDone }: { day: string; onDone: () => void }) {
   return (
     <View testID="place-range" style={{ marginTop: 8, gap: 8 }}>
       <InfoTip id="place-range" label={t('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.')} info={t('Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.')}>
-        <Muted style={{ fontSize: 12 }}>{t('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.')}</Muted>
+        <Muted style={{ ...font('footnote') }}>{t('Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo.')}</Muted>
       </InfoTip>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         {locs.map(l => <Chip key={l.id} label={l.name} on={pick === l.id} onPress={() => setPick(l.id)} />)}
         <Btn nav small kind="ghost" title={t('Inne miejsce…')} onPress={() => router.push(`/place-once?from=${day}&to=${to}`)} />
       </View>
       <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
-        <Txt style={{ fontSize: 14 }}>{t('Od: {day}', { day: shortDay(day) })}</Txt>
-        <Muted testID="place-to" style={{ fontSize: 14 }}>{t('Do: {day}', { day: shortDay(to) })}</Muted>
+        <Txt style={{ ...font('callout') }}>{t('Od: {day}', { day: shortDay(day) })}</Txt>
+        <Muted testID="place-to" style={{ ...font('callout') }}>{t('Do: {day}', { day: shortDay(to) })}</Muted>
         <Btn small kind="ghost" title="−" accessibilityLabel={t('Dzień wcześniej')} accessibilityHint={t('Do: {day}', { day: shortDay(to) })} onPress={() => { if (to > day) setTo(addDays(to, -1)); }} />
         <Btn small kind="ghost" title="+" accessibilityLabel={t('Dzień później')} accessibilityHint={t('Do: {day}', { day: shortDay(to) })} onPress={() => { if (to < last) setTo(addDays(to, 1)); }} />
       </View>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
         {pick ? <Btn small title={t('Ustaw miejsce')} onPress={setPlace} /> : null}
-        {plannedPlace(day) ? <Btn small kind="ghost" title={t('Usuń miejsce')} accessibilityLabel={run && run.from !== run.to ? t('Usuń miejsce: {a} – {b}', { a: shortDay(run.from), b: shortDay(run.to) }) : t('Usuń miejsce')} onPress={() => { clearPlanPlace(day); onDone(); }} /> : null}
+        {plannedPlace(day) ? <Btn small kind="ghost" title={t('Wyczyść miejsce')} accessibilityLabel={run && run.from !== run.to ? t('Wyczyść miejsce: {a} – {b}', { a: shortDay(run.from), b: shortDay(run.to) }) : t('Wyczyść miejsce')} onPress={() => { clearPlanPlace(day); onDone(); }} /> : null}
       </View>
     </View>
   );

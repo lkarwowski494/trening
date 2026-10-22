@@ -95,6 +95,13 @@ describe('model: przypadki brzegowe', () => {
   test('seria na czas: widok niesie timed i cel', () => {
     const t = { ...S.set1, now: { ...S.set1.now!, timed: true, targetSec: 45, load: '45 s' } }; const { st } = feed([{ at: 1, input: { t: 'receive', msg: t } }]); expect(clientView(st, 2)).toMatchObject({ timed: true, targetSec: 45, load: '45 s' });
   });
+  test('M3 p6 / ZM-05: widok niesie `measuring` z migawki (domyślnie false); projekcja lokalna go nie zmienia', () => {
+    const t = { ...S.set1, now: { ...S.set1.now!, timed: true, targetSec: 45, load: '45 s', measuring: true } };
+    expect(clientView(feed([{ at: 1, input: { t: 'receive', msg: t } }]).st, 2)).toMatchObject({ timed: true, measuring: true });
+    expect(clientView(feed([{ at: 1, input: { t: 'receive', msg: S.set1 } }]).st, 2)).toMatchObject({ measuring: false });
+    const st = feed([{ at: 1, input: { t: 'receive', msg: t } }, { at: 2, input: { t: 'connection', reachable: false } }]).st;
+    expect(clientView(st, 3)).toMatchObject({ measuring: true, offline: true });
+  });
   test('historia migawek ograniczona (WATCH.CLIENT_HISTORY)', () => {
     let st = initialClient(cfg); for (let i = 1; i <= 10; i++) st = clientStep(st, { at: i, input: { t: 'receive', msg: { ...S.set1, rev: i } } }).state; expect(st.history).toHaveLength(WATCH.CLIENT_HISTORY);
   });

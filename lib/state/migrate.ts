@@ -21,7 +21,7 @@ import { migrateExercises, retireCatalog } from './migrate-catalog';
 
 /** Pola Settings znane tej wersji — pola domyślne plus opcjonalne (nowe pole opcjonalne dopisz tutaj, inaczej jego zła wartość z importu
  * przejdzie jak nieznane ustawienie); reszta zostaje bez zmian — audyt 0.10 J1. */
-const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll', 'weeklySetGoals', 'healthRead', 'reviewAsked', 'voice', 'voiceSpeaker' /* 0.20, zastąpione przez voice (19.10.2026) — znane, więc nie zostaje jako nieznane */, 'ideaShownAt']);
+const SETTINGS_KEYS = new Set([...Object.keys(defaultSettings()), 'effortScale', 'planReminder', 'libShowAll', 'weeklySetGoals', 'healthRead', 'reviewAsked', 'voice', 'haptics', 'voiceSpeaker' /* 0.20, zastąpione przez voice (19.10.2026) — znane, więc nie zostaje jako nieznane */, 'ideaShownAt']);
 /** Ustawienia przeniesione poza Settings — nie zostają jako „nieznane” (J1): masa ciała bez daty → State.bodyMassLog (fala 2 audytu 0.10). */
 const MOVED_SETTINGS = new Set(['bodyMass']);
 const PROTO_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
@@ -185,6 +185,7 @@ export function migrate(raw: unknown): State {
      * 20.10.2026 (DEC-05): poprawna wartość (off, headphones, speaker) zostaje jawnie; BRAK pola nadal znaczy „W słuchawkach” (lib/voice.ts VOICE_DEFAULT) — użytkownik,
      * który ustawienia nie ruszał, nie traci zachowania; „Wyłączone” dla nowej instalacji zapisuje seed. Zła wartość = brak pola. Dawne `voiceSpeaker` znika — idempotentne. */
     ...((v => v === 'off' || v === 'speaker' || v === 'headphones' ? { voice: v } : {})(s.voice !== undefined ? s.voice : s.voiceSpeaker === true ? 'speaker' : undefined)),
+    ...(typeof s.haptics === 'boolean' ? { haptics: s.haptics } : {}), /* 21.10.2026 (ZM-07): „Wibracje” — tylko poprawna wartość; BRAK pola = za `sound` (lib/haptics), nic nie dopisujemy i nie podnosimy schematu; zła wartość = brak */
     ...(s.healthRead === true ? { healthRead: true as const } : {}), /* 0.16.0 (P2 A): tylko włączenie zapisane; zła wartość = wyłączony */
     /* runda 75 */
     progressHint: typeof s.progressHint === 'boolean' ? s.progressHint : d.progressHint,

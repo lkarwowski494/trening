@@ -12,5 +12,6 @@
  "idle": "Start a workout on your phone",
  "finished": "Workout finished",
  "update": "Update the watch app",
- "nothingLeft": "nothing more to do"
+ "nothingLeft": "nothing more to do",
+ "finish": "Finish set"
 }

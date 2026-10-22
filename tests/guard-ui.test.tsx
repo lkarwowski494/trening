@@ -240,7 +240,7 @@ describe('wygląd: jasny / ciemny, kontrast, wąski ekran, duża czcionka', () =
     const L = (h: string) => { const c = [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(v => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
     const cr = (a: string, b: string) => { const x = L(a), y = L(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
     for (const th of [light, dark]) for (const bg of [th.bg, th.surface, th.surface2]) expect([th.less, bg, cr(th.less, bg) >= 3]).toEqual([th.less, bg, true]);
-    expect(light.less).toBe('#B85C00'); expect(dark.less).toBe('#F0A050'); expect(light.less).not.toBe(light.danger); expect(dark.less).not.toBe(dark.danger);
+    expect(light.less).toBe('#A35200') /* M3 (STOP E3, docs/18): nowa paleta „hala”, kontrast do bg/surface/surface2 ≥ 3:1 sprawdzony wyżej */; expect(dark.less).toBe('#F0A050'); expect(light.less).not.toBe(light.danger); expect(dark.less).not.toBe(dark.danger);
   });
   test('ciemny motyw: sylwetka i legenda w kolorach ciemnego motywu (akcent #6f9bf2, tło powierzchni #26282d)', async () => {
     await boot(mixed, '/', 'pl', undefined, 'dark'); expect(stateOf('klatka')).toEqual(['up']); expect(stateOf('czworogłowe')).toEqual(['down']);

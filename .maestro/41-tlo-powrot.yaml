@@ -5,7 +5,7 @@
 # Interpreter w Jest (tests/maestro-runner.ts): Home → AppState 'background', `launchApp: { stopApp: false }` → 12 s w tle i AppState 'active'.
 #
 # Literały (EN z lib/i18n.en.ts):
-#   "rest of 1:30" / "Workout progress: 1 of 6 sets" / "Pause workout"   ← jak 01, 31
+#   "Rest\\. Time left: .*Total rest: 1 minute 30 seconds.*" (opis tablicy w przerwie) / "Workout progress: 1 of 6 sets" / "Workout options"   ← jak 01, 31
 #   w-0-1 / r-0-1                                                          ← testID pól drugiej serii (wpisane przed pójściem w tło)
 tags:
   - eksperyment
@@ -23,15 +23,15 @@ name: Eksperyment — tło i powrót w trakcie przerwy
 - extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
 - tapOn: { text: "Set 1 done.*", index: 0 }
 - tapOn: { text: "Allow", optional: true }   # pierwsza przerwa prosi o zgodę na powiadomienia — gdyby Maestro pokazał okno systemowe, zezwalamy (nie sprawdzamy tu odmowy: 40)
-- extendedWaitUntil: { visible: "rest of 1:30", timeout: 15000 }
+- extendedWaitUntil: { visible: "Rest\\. Time left: .*Total rest: 1 minute 30 seconds.*", timeout: 15000 }
 - retry:
     maxRetries: 2
     commands:
       - tapOn: { id: "w-0-1" }
       - eraseText: 10
       - inputText: "35"
-      - tapOn: "Change the values in the set row below."   # klawiatura numeryczna nie ma „Gotowe” (E2E 38471218362)
-      - assertVisible: "Now: 35 .* × .*"
+      - tapOn: "Bench Press \\(Dumbbell\\)"   # klawiatura numeryczna nie ma „Gotowe” (E2E 38471218362); fokus zdejmuje stuknięcie w nazwę ćwiczenia nad wierszami (nagłówek bloku)
+      - assertVisible: "Rest\\. .*Next: set 2 of 3, 35 .*"   # w przerwie tablica pokazuje zegar i „Następna: seria 2 z 3” z wpisaną wagą
 # --- aplikacja w tle: Home, kilkanaście sekund, powrót bez restartu ---
 - pressKey: Home
 - extendedWaitUntil: { visible: "Tego-tekstu-nie-ma-na-ekranie", timeout: 12000, optional: true }
@@ -41,9 +41,9 @@ name: Eksperyment — tło i powrót w trakcie przerwy
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - waitForAnimationToEnd
-- extendedWaitUntil: { visible: "Pause workout", timeout: 30000 }
+- extendedWaitUntil: { visible: "Workout options", timeout: 30000 }
 - assertVisible: "Workout progress: 1 of 6 sets"
-- assertNotVisible: "rest of 0:00"
+- assertNotVisible: "Rest\\. Time left: 0 seconds.*"
 - takeScreenshot: 120-po-powrocie-z-tla
 # --- czas w tle odliczył się z przerwy: pasek przerwy pokazuje mniej niż pełne 1:30 (albo przerwa się skończyła) ---
 - assertNotVisible: "1:30"

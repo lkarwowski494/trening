@@ -18,7 +18,7 @@ const S = () => store.getState();
 const V = () => global.__voice;
 const INFO = [
   'Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.',
-  'Zapowiedzi działają, gdy włączony jest „Dźwięk i wibracja na koniec przerwy”. To samo ustawienie zmienisz przyciskiem „Głos” na ekranie treningu.',
+  'Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.',
 ];
 beforeEach(() => { V().spoken.length = 0; V().hasVoice = true; __setScreenReaderForTests(false); G.__sheets.length = 0; });
 afterEach(() => { applyLang('pl'); });
@@ -82,34 +82,39 @@ test('brak głosu: żaden klucz słownika ani język nie zawiera starej ścieżk
   expect(all.filter(x => /Treści mówione|Spoken Content/.test(x))).toEqual([]);
 });
 
-describe('ekran treningu: przycisk „Głos” (19.10.2026: „ludzie odkryją to w trakcie treningu”)', () => {
-  test('przycisk pod „Zakończ” (kolumna przycisku, nagłówek nie rośnie), etykieta VoiceOver z bieżącym wyborem; arkusz „Zapowiedzi głosowe” z trzema opcjami, bieżąca zaznaczona ✓, i Anuluj', async () => {
-    await boot('pl', startH, '/'); const b = screen.getByTestId('voice-btn'); expect(b.props.accessibilityLabel).toBe('Zapowiedzi głosowe: W słuchawkach'); expect(b.props.accessibilityHint).toBe('Tapnij, by zmienić.');
-    expect(screen.getByText('🎧 Głos')).toBeTruthy(); expect(screen.getByLabelText('Pauza treningu')).toBeTruthy();
-    await tap(b); const sh = G.__sheets.at(-1)!; expect(sh.opts.title).toBe('Zapowiedzi głosowe'); expect(sh.opts.options).toEqual(['Wyłączone', '✓ W słuchawkach', 'Także przez głośnik', 'Anuluj']); expect(sh.opts.cancelButtonIndex).toBe(3);
+/* M3 p2 (ZM-02, wzorzec 30; decyzja STOP 2 z 21.10.2026): przycisk „Głos” pod „Zakończ” (19.10.2026: „ludzie odkryją to w trakcie treningu”) przeszedł do menu „⋯” treningu — ta sama funkcja,
+ * ten sam arkusz z trzema opcjami, ta sama trwała zmiana (to samo pole co w Ustawieniach). */
+const openMenu = async () => { await tap(screen.getByTestId('more-button')); return G.__sheets.at(-1)!; };
+const voiceItem = (sh: { opts: { options: string[] } }) => sh.opts.options.findIndex(x => /^(Zapowiedzi głosowe|Voice announcements): /.test(x));
+const openVoice = async () => { const m = await openMenu(); await act(async () => { G.__pickSheet(voiceItem(m)); }); await flushAll(5); return G.__sheets.at(-1)!; };
+describe('ekran treningu: „Zapowiedzi głosowe” w menu „⋯”', () => {
+  test('menu „⋯” ma pozycję z bieżącym wyborem; arkusz „Zapowiedzi głosowe” z trzema opcjami, bieżąca zaznaczona ✓, i Anuluj; przycisku „Głos” w treści już nie ma', async () => {
+    await boot('pl', startH, '/'); expect(screen.queryByTestId('voice-btn')).toBeNull(); expect(screen.queryByText('Głos')).toBeNull();
+    const m = await openMenu(); expect(m.opts.options).toContain('Zapowiedzi głosowe: W słuchawkach'); expect(m.opts.options[m.opts.options.length - 1]).toBe('Anuluj');
+    await act(async () => { G.__pickSheet(voiceItem(m)); }); const sh = G.__sheets.at(-1)!; expect(sh.opts.title).toBe('Zapowiedzi głosowe'); expect(sh.opts.options).toEqual(['Wyłączone', '✓ W słuchawkach', 'Także przez głośnik', 'Anuluj']); expect(sh.opts.cancelButtonIndex).toBe(3);
   });
-  test('nowa instalacja: przycisk „Głos” pokazuje „Wyłączone” (DEC-05)', async () => {
-    await boot('pl', start, '/'); expect(screen.getByTestId('voice-btn').props.accessibilityLabel).toBe('Zapowiedzi głosowe: Wyłączone');
+  test('nowa instalacja: pozycja menu pokazuje „Wyłączone” (DEC-05)', async () => {
+    await boot('pl', start, '/'); expect((await openMenu()).opts.options).toContain('Zapowiedzi głosowe: Wyłączone');
   });
-  test('wybór w arkuszu zmienia ustawienie trwale (to samo co w Ustawieniach); ikona i etykieta za stanem; Anuluj nic nie zmienia', async () => {
+  test('wybór w arkuszu zmienia ustawienie trwale (to samo co w Ustawieniach); pozycja menu za stanem; Anuluj nic nie zmienia', async () => {
     await boot('pl', startH, '/');
-    await tap(screen.getByTestId('voice-btn')); await act(async () => { G.__pickSheet(0); }); await flushAll(5);
-    expect(S().settings.voice).toBe('off'); expect(screen.getByTestId('voice-btn').props.accessibilityLabel).toBe('Zapowiedzi głosowe: Wyłączone'); expect(screen.getByText('🔇 Głos')).toBeTruthy();
-    await tap(screen.getByTestId('voice-btn')); expect(G.__sheets.at(-1)!.opts.options[0]).toBe('✓ Wyłączone'); await act(async () => { G.__pickSheet(2); }); await flushAll(5);
-    expect(S().settings.voice).toBe('speaker'); expect(screen.getByText('🔊 Głos')).toBeTruthy();
-    await tap(screen.getByTestId('voice-btn')); await act(async () => { G.__pickSheet(3); }); await flushAll(5); expect(S().settings.voice).toBe('speaker'); /* Anuluj */
+    await openVoice(); await act(async () => { G.__pickSheet(0); }); await flushAll(5);
+    expect(S().settings.voice).toBe('off'); expect((await openMenu()).opts.options).toContain('Zapowiedzi głosowe: Wyłączone');
+    expect((await openVoice()).opts.options[0]).toBe('✓ Wyłączone'); await act(async () => { G.__pickSheet(2); }); await flushAll(5);
+    expect(S().settings.voice).toBe('speaker'); expect((await openMenu()).opts.options).toContain('Zapowiedzi głosowe: Także przez głośnik');
+    await openVoice(); await act(async () => { G.__pickSheet(3); }); await flushAll(5); expect(S().settings.voice).toBe('speaker'); /* Anuluj */
     await act(async () => { await store.flush(); }); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/more/settings' }); await flushAll(10); expect(selected()).toEqual(['speaker']); /* trwałe: Ustawienia po restarcie */
     await tap(sel('headphones')); await flushAll(5); expect(S().settings.voice).toBe('headphones');
   });
   test('„Wyłączone” z ekranu treningu: kolejne odhaczenie serii (słuchawki) bez zapowiedzi; powrót do „W słuchawkach” — zapowiedź wraca', async () => {
     await boot('pl', startH, '/'); V().headphones = true;
-    await tap(screen.getByTestId('voice-btn')); await act(async () => { G.__pickSheet(0); }); await flushAll(5);
+    await openVoice(); await act(async () => { G.__pickSheet(0); }); await flushAll(5);
     await act(async () => { await completeSet(0, 0); }); await flushAll(5); expect(V().spoken).toEqual([]); expect(S().active!.exercises[0].sets[0].done).toBe(true);
-    await tap(screen.getByTestId('voice-btn')); await act(async () => { G.__pickSheet(1); }); await flushAll(5); expect(S().settings.voice).toBe('headphones');
+    await openVoice(); await act(async () => { G.__pickSheet(1); }); await flushAll(5); expect(S().settings.voice).toBe('headphones');
     await act(async () => { await completeSet(0, 1); }); await flushAll(5); expect(V().spoken).toHaveLength(1); V().headphones = false;
   });
-  test('EN i 320 pt z dużym tekstem: przycisk po angielsku, arkusz po angielsku, wiersz zegara się zawija (bez wyjątków)', async () => {
-    await boot('en', startH, '/', 320); const b = screen.getByTestId('voice-btn'); expect(b.props.accessibilityLabel).toBe('Voice announcements: In headphones'); expect(screen.getByText('🎧 Voice')).toBeTruthy();
-    await tap(b); expect(G.__sheets.at(-1)!.opts.options).toEqual(['Off', '✓ In headphones', 'Also through the speaker', 'Cancel']); expect(G.__sheets.at(-1)!.opts.title).toBe('Voice announcements');
+  test('EN i 320 pt z dużym tekstem: menu i arkusz po angielsku', async () => {
+    await boot('en', startH, '/', 320); const m = await openMenu(); expect(m.opts.options).toContain('Voice announcements: In headphones');
+    await act(async () => { G.__pickSheet(voiceItem(m)); }); expect(G.__sheets.at(-1)!.opts.options).toEqual(['Off', '✓ In headphones', 'Also through the speaker', 'Cancel']); expect(G.__sheets.at(-1)!.opts.title).toBe('Voice announcements');
   });
 });

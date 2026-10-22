@@ -30,7 +30,8 @@ async function run13(cmds: Cmd[]) {
   await r.run(cmds.slice(0, i + 1), f);
   const c = r.find({ id: 'whats-new-i' }, true)[0]; const b = c?.node ? r.screenBox(c.node as any) : null;
   expect(b?.sc).toBeTruthy();
-  r.scrollY.set(r.scrollKey(b!.sc!), RUN_SCROLL);
+  /* M3 p2: nad nagłówkiem ekranu Start doszedł wiersz „Planowanie” — stałe przewinięcie 54 pt nie wynosi już „i” pod pasek stanu; odtwarzamy sytuację z przebiegu (i na y = 27) */
+  const top = r.vpTop(b!.sc!); r.scrollY.set(r.scrollKey(b!.sc!), r.curScroll(b!.sc!, top) + b!.y - (81 - RUN_SCROLL));
   await r.run(cmds.slice(i + 1), f);
 }
 /** Przebieg 38014484054: pierwsza próba gubi drugi znak masy ciała („80” → „8”; przy wpisywaniu po znaku — „0”). */

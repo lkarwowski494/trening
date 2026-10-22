@@ -30,7 +30,7 @@ async function world() {
 describe('pola dotyku linków na ekranie treningu', () => {
   test('chip miejsca, wiersz „Dostosuj” i podpowiedź zamiennika mają pole ≥ 44 pt', async () => {
     await world();
-    const chip = screen.getByLabelText(/^Miejsce treningu: /); const adapt = screen.getByTestId('adapt-line'); const hint = screen.getByLabelText(/^Zamień na zamiennik: /);
-    for (const [n, el] of [['chip miejsca', chip], ['Dostosuj', adapt], ['zamiennik', hint]] as const) expect([n, touchH(el) >= MIN_PT]).toEqual([n, true]);
+    /* M3 p2 (ZM-02): chip miejsca przeniesiony do menu „⋯” — sprawdzamy przycisk „⋯” */ const chip = screen.getByTestId('more-button'); const adapt = screen.getByTestId('adapt-line'); const hint = screen.getByLabelText(/^Zamień na zamiennik: /);
+    for (const [n, el] of [['przycisk ⋯ (miejsce w menu)', chip], ['Dostosuj', adapt], ['zamiennik', hint]] as const) expect([n, touchH(el) >= MIN_PT]).toEqual([n, true]);
   });
 });

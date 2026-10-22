@@ -122,7 +122,6 @@
  "Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.": "Más → Lugares y equipo: casa, gimnasio, hotel — cada uno con su equipo y sus pesos.",
  "Wolna ściana (stanie na rękach, wall sit)": "Pared libre (parada de manos, sentadilla isométrica en pared)",
  "Wpisane wartości zamiennika przepadną.": "Se perderán los valores ingresados para el sustituto.",
- "Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.": "Ingresa peso y repeticiones, marca la serie ✓ — el descanso se cuenta solo.",
  "Wpisz masę ciała.": "Ingresa el peso corporal.",
  "Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.": "Gráficos de ejercicios y récords; durante el entrenamiento el récord aparece junto a la serie.",
  "Wypełnij": "Llenar",
@@ -162,7 +161,6 @@
  "Ławka regulowana": "Banco ajustable",
  "łydki": "pantorrillas",
  "„Bez ograniczeń sprzętu” = pełna siłownia (sztanga, hantle, maszyny i wyciągi).": "«Sin límites de equipo» = gimnasio completo (barra, mancuernas, máquinas y poleas).",
- "„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.": "«⏸ Pausa» detiene el reloj del entrenamiento; el tiempo de pausa no cuenta en la duración.",
  "Od 0.10: biblioteka ćwiczeń uporządkowana — podobne warianty scalone, rzadsze widać po wyłączeniu filtra „Podstawowe” (Twoje treningi bez zmian); masa ciała z datą i e1RM w podciąganiu i pompkach, wskazówki techniki z rysunkiem ruchu, „Zapisz jako szablon” w historii.": "Desde la 0.10: biblioteca de ejercicios ordenada — variantes parecidas fusionadas, las menos comunes aparecen al desactivar el filtro «Básicos» (tus entrenamientos no cambian); peso corporal con fecha y e1RM en dominadas y flexiones, indicaciones de técnica con dibujo del movimiento, «Guardar como plantilla» en el historial.",
  "„Technika”: wskazówki do ćwiczenia otworzysz też z treningu i z szablonu.": "«Técnica»: las indicaciones del ejercicio se abren también desde el entrenamiento y desde la plantilla.",
  "35 języków; język zmienisz w Ustawieniach.": "35 idiomas; el idioma se cambia en Configuración.",
@@ -221,5 +219,12 @@
  "Nie udało się zapisać kopii po treningu": "No se pudo guardar el respaldo después del entrenamiento",
  "Ostatnia udana kopia: {date}": "Último respaldo exitoso: {date}",
  "Zmień w ustawieniach iOS": "Cambiar en Configuración de iOS",
- "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "El nombre bajo el ícono y el texto del permiso de Salud solo cambian de idioma cuando eliges el idioma de la app en Configuración de iOS."
+ "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "El nombre bajo el ícono y el texto del permiso de Salud solo cambian de idioma cuando eliges el idioma de la app en Configuración de iOS.",
+ "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Más → Configuración: «Sonido al terminar el descanso» y «Vibración» se activan por separado.",
+ "Wpisz {co}, żeby zapisać serię.": "Para guardar la serie, ingresa: {co}.",
+ "Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.": "Toca el número del marcador e ingresa peso y repeticiones (o usa + y −); después, «Serie hecha» — el descanso se cuenta solo. Si falta algún valor, «Serie hecha» lleva el cursor al campo vacío.",
+ "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.": "Menú ⋯ en el encabezado: «Pausar entrenamiento» detiene el reloj del entrenamiento; el tiempo de pausa no cuenta en la duración.",
+ "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Al final, «Terminar» en el encabezado (o «Terminar entrenamiento» en la tarjeta tras la última serie) — la sesión pasa a la pestaña Plan.",
+ "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Las mediciones de peso corporal («Peso corporal — mediciones») se eliminan con «Editar» en el encabezado o deslizando a la izquierda.",
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Las bandas se eliminan con «Editar» en el encabezado de su pantalla o deslizando a la izquierda."
 }

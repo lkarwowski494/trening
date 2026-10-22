@@ -8,10 +8,11 @@ name: Aktualizacja — dane po instalacji nowej wersji
 ---
 - launchApp:
     clearState: false
-- extendedWaitUntil: { visible: "Pause workout", timeout: 90000 }
+- extendedWaitUntil: { visible: "Workout options", timeout: 90000 }
 - assertVisible: "Upper A"
 - assertVisible: "Workout progress: 1 of 6 sets"
-- assertVisible: "Now: 40 kg × 10"  # wpisane wartości i jednostka kg przetrwały aktualizację
+- assertVisible: { id: "w-0-0", text: "40" }  # wpisane wartości i jednostka kg przetrwały aktualizację (wiersz serii)
+- assertVisible: "(Bench Press \\(Dumbbell\\), set 2 of 3\\. 40 .*10 reps.*|Rest\\. .*Next: set 2 of 3, 40 kg × 10)"  # tablica „teraz”: seria 2 z wartościami z serii 1 (albo przerwa, jeśli jeszcze trwa)
 - takeScreenshot: 101-trening-w-toku-po-aktualizacji
 # --- dokończenie treningu ---
 - scrollUntilVisible: { element: "Finish", direction: UP, timeout: 60000 }
@@ -35,7 +36,7 @@ name: Aktualizacja — dane po instalacji nowej wersji
 - tapOn: "Plan, tab.*"
 - extendedWaitUntil: { visible: "3 sessions", timeout: 30000 }  # nie „dziś”: instalacja trwa minuty i przebieg bywa przez północ UTC (docs/18)
 - tapOn: "Progress, tab.*"
-- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- scrollUntilVisible: { element: "Summary", direction: DOWN, timeout: 30000 }  # M3 p3 (ZM-06): na górze Postępów jest wykres i rekordy ćwiczenia, „Summary” (ogólny przegląd) jest niżej
 - scrollUntilVisible: { element: "80 kg · measured .*", direction: DOWN, timeout: 60000 }
 - tapOn: "More, tab.*"
 - extendedWaitUntil: { visible: "Templates", timeout: 30000 }
@@ -55,3 +56,12 @@ name: Aktualizacja — dane po instalacji nowej wersji
 - tapOn: "Places and equipment"
 - extendedWaitUntil: { visible: "★ Home, main · 1 equipment item", timeout: 30000 }   # miejsce z poprzedniej wersji, z jedną pozycją sprzętu (hantle)
 - takeScreenshot: 104-miejsce-po-aktualizacji
+# ZM-07 (p5d, 21.10.2026): nowy przełącznik „Haptics” istnieje po aktualizacji z danych bez pola (wibracje za dźwiękiem — wartość sprawdza Jest: tests/m3-p5d-haptics.test.ts, dane 0.20)
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
+- scrollUntilVisible: { element: { id: "sw-Haptics" }, direction: DOWN, timeout: 60000, centerElement: true }
+- assertVisible: { id: "sw-Sound at the end of rest" }
+- assertVisible: { id: "sw-Haptics" }
+- takeScreenshot: 104b-wibracje-po-aktualizacji

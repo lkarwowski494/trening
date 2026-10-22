@@ -31,16 +31,17 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - assertVisible: "Workout progress: 0 of 6 sets"
 # --- przerwa: +15 s, −15 s, Skip ---
 - tapOn: { text: "Set 1 done — Bench Press \\(Dumbbell\\)" }
-- extendedWaitUntil: { visible: "rest of 1:30", timeout: 15000 }
+- extendedWaitUntil: { visible: "Rest\\. Time left: .*Total rest: 1 minute 30 seconds.*", timeout: 15000 }
 - tapOn: "Extend rest by 15 seconds"
-- extendedWaitUntil: { visible: "rest of 1:45", timeout: 15000 }
+- extendedWaitUntil: { visible: "Rest\\. Time left: .*Total rest: 1 minute 45 seconds.*", timeout: 15000 }
 - tapOn: "Shorten rest by 15 seconds"
 - tapOn: "Shorten rest by 15 seconds"
-- extendedWaitUntil: { visible: "rest of 1:15", timeout: 15000 }
+- extendedWaitUntil: { visible: "Rest\\. Time left: .*Total rest: 1 minute 15 seconds.*", timeout: 15000 }
 - takeScreenshot: 76-przerwa-plus-minus
 - tapOn: "Skip"
 - assertNotVisible: "Skip"
 # --- przerwa ćwiczenia: okno, „Zapamiętaj” ---
+- scrollUntilVisible: { element: "Rest: 1:30", direction: DOWN, timeout: 30000, centerElement: true }  # M3 p2: tablica „teraz” wydłuża ekran — przycisk przerwy ćwiczenia jest niżej
 - tapOn: { text: "Rest: 1:30", index: 0 }
 - extendedWaitUntil: { visible: "Remember", timeout: 15000 }
 - takeScreenshot: 77-przerwa-cwiczenia
@@ -79,6 +80,8 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - tapOn: "Workout note"   # tekst nad polem zdejmuje fokus (hideKeyboard na klawiaturze bez „Gotowe” pada — E2E 38471218362)
 # --- usunięcie ćwiczenia przesunięciem nagłówka bloku ---
 - scrollUntilVisible: { element: "Bent Over Row \\(Dumbbell\\)", direction: UP, timeout: 30000 }
+# E2E 39702654990: nagłówek bloku po przewinięciu leży na górnej krawędzi (ex-1 [16,-19][386,30]) i przesunięcie trafiało pod pasek statusu — zsuwamy listę w dół
+- swipe: { start: "50%, 35%", end: "50%, 75%", duration: 400 }
 - swipe: { from: { id: "ex-1" }, direction: LEFT, duration: 400 }
 - runFlow:
     when: { visible: { id: "ex-1-del" } }
@@ -89,7 +92,7 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - tapOn: { text: "Delete", below: "Remove from workout\\?" }
 - extendedWaitUntil: { notVisible: "Bent Over Row \\(Dumbbell\\)", timeout: 15000 }
 # --- zakończenie: notatka treningu i notatka serii w zapisanej sesji ---
-- scrollUntilVisible: { element: "Pause workout", direction: UP, timeout: 30000 }
+- scrollUntilVisible: { element: "Workout options", direction: UP, timeout: 30000 }
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - swipe: { start: "50%, 30%", end: "50%, 85%", duration: 400 }
 - waitForAnimationToEnd

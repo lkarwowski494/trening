@@ -12,5 +12,6 @@
  "idle": "Začni trening v telefonu",
  "finished": "Trening je končan",
  "update": "Posodobi aplikacijo na uri",
- "nothingLeft": "ni več ničesar za narediti"
+ "nothingLeft": "ni več ničesar za narediti",
+ "finish": "Končaj serijo"
 }

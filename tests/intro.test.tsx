@@ -92,7 +92,7 @@ describe('dane marki: ikona i ekran startowy = geometria i kolory z lib/brandIco
       let rs = rects(svg); if (s === 'light') { expect(rs[0]).toEqual({ width: '120', height: '120', fill: BRAND.paper }); rs = rs.slice(1); }
       expect(rs.map(norm)).toEqual([asSvg(ICON_BAR, c.ink), ...ICON_PLATES.map(p => asSvg(p, c.plate[p.color])), asSvg(ICON_COLLAR, c.ink)]);
     }
-    expect(iconColors('light').plate).toBe(PLATE_COLORS); expect(iconColors('light').ink).toBe(BRAND.ink); expect(iconColors('dark').ink).toBe(dark.text); expect(iconColors('dark').bg).toBe(dark.bg);
+    expect(iconColors('light').plate).toBe(PLATE_COLORS); expect(iconColors('light').ink).toBe(BRAND.ink); expect(iconColors('dark').ink).toBe('#ECEAE4') /* M3 (STOP E3, docs/18): tusz gryfu w ciemnym wariancie ikony zostaje (rysunek ikony bez zmian), choć dark.text zmieniło się z paletą */; expect(iconColors('dark').bg).toBe(dark.bg);
   });
   test('ekran startowy: sam gryf (splash.svg / splash-dark.svg), PNG 1024 z gryfem w tym miejscu, przezroczyste poza nim; app.json wskazuje te pliki i tła motywów', () => {
     for (const s of ICON_SCHEMES) {

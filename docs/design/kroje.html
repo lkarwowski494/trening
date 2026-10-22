@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><title>Kroje tytułowe A1</title>
+<!-- E2 krok 6 (M3, 21.10.2026): pięć krojów tytułowych na ekranie kluczowym wariantu A1. Pliki krojów i licencje: docs/design/fonty/<krój>/OFL.txt (google/fonts, katalog ofl/, pobrane 21.10.2026).
+     Opisy pochodzenia — z DESCRIPTION/ARTICLE autorów w google/fonts (odczyt 21.10.2026); zdania „w świecie dziedziny” to ocena projektowa, nie fakt źródłowy. Dane [PRZYKŁAD]. -->
+<link rel="stylesheet" href="kierunki/wspolne.css">
+<style>@font-face { font-family: 'Tablica'; src: url('fonty/barlow-condensed/BarlowCondensed-SemiBold.ttf'); font-weight: 600; }
+@font-face { font-family: 'Tablica'; src: url('fonty/barlow-condensed/BarlowCondensed-Bold.ttf'); font-weight: 700; }
+@font-face { font-family: 'Oswald'; src: url('fonty/oswald/Oswald-var.ttf'); font-weight: 200 700; }
+@font-face { font-family: 'Big Shoulders'; src: url('fonty/big-shoulders/BigShoulders-var.ttf'); font-weight: 100 900; }
+@font-face { font-family: 'Saira Condensed'; src: url('fonty/saira-condensed/SairaCondensed-SemiBold.ttf'); font-weight: 600; }
+@font-face { font-family: 'Saira Condensed'; src: url('fonty/saira-condensed/SairaCondensed-Bold.ttf'); font-weight: 700; }
+@font-face { font-family: 'Doto'; src: url('fonty/doto/Doto-var.ttf'); font-weight: 100 900; }
+:root { --bg: #E6E8E5; --tekst: #18202B; --tekst2: #4A5361; --linia: #CBD0CB; --pole: #D3D8D3; --powierzchnia: #F4F5F3; --przycisk: #13294B; --przycisk-tekst: #F5F1E6; --tablica: #13294B; --tablica-brzeg: #13294B; --tablica-tekst: #F5F1E6; --tablica-tekst2: #B7C1D0; --tablica-pole: #26446F; --zegar: #F2A900; --znacznik: #13294B; --r-przyc: 8px; } 
+:root { --kroj-t: 'Tablica'; --krój-tytul: var(--kroj-t); --w-t1: 600; --w-t2: 700; }
+.pmp { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(148px * var(--dt-liczba))), 1fr)); gap: 8px; }
+.pmg { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+.pmw { font-weight: 700; font-size: calc(1.375rem * var(--dt-liczba)); text-align: center; flex: 1; min-height: 44px; display: grid; place-items: center; line-height: 1; }
+.prz { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 96px), 1fr)); gap: 8px; }
+.pm2 { min-height: 52px; padding: 4px 8px; white-space: nowrap; border-radius: var(--r-przyc); background: var(--pole); color: var(--tekst); font-weight: 700; font-size: calc(1.0625rem * var(--dt-opis)); }
+.pm2.prim { background: var(--przycisk); color: var(--przycisk-tekst); }
+.akcja { padding: 16px 16px 0; display: grid; gap: 8px; }
+.akcja .opis { text-align: center; }
+.tel { overflow-x: clip; }
+.tel > * { position: relative; z-index: 1; }
+.tab { margin: 4px 16px 0; background: var(--tablica); color: var(--tablica-tekst); border-radius: 8px; padding: 16px; border: 1px solid var(--tablica-brzeg); }
+.tab-g { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-family: var(--kroj-t); flex-wrap: wrap; }
+.tab-cw { font-size: calc(1.5rem * var(--dt-tytul)); text-transform: uppercase; letter-spacing: .04em; font-weight: var(--w-t1); line-height: 1.1; }
+.tab-s { font-size: calc(1.125rem * var(--dt-opis)); color: var(--tablica-tekst2); white-space: nowrap; font-weight: var(--w-t1); }
+.tab-l { display: flex; align-items: baseline; justify-content: center; gap: 10px; font-family: var(--kroj-t); font-weight: var(--w-t2); font-size: min(calc(6rem * var(--dt-liczba)), calc(var(--w, 390px) * 0.24)); line-height: .95; margin: 12px 0; flex-wrap: wrap; }
+.tab-l small { font-size: .3em; font-weight: var(--w-t1); color: var(--tablica-tekst2); }
+.tab-l .x { font-size: .45em; color: var(--tablica-tekst2); font-weight: var(--w-t1); }
+.tab-l.zeg { color: var(--zegar); font-size: min(calc(7rem * var(--dt-liczba)), calc(var(--w, 390px) * 0.3)); }
+.tab .pm { background: var(--tablica-pole); color: var(--tablica-tekst); }
+.tab .pmw small { font-family: var(--kroj-t); font-size: calc(1.125rem * var(--dt-opis)); color: var(--tablica-tekst); font-weight: var(--w-t1); }
+.pola { display: grid; gap: 6px; margin-top: 12px; position: relative; }
+.pola.zapas { overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 32px), transparent); }
+.pole { min-height: calc(44px * var(--dt-liczba)); border-radius: 4px; display: grid; place-items: center; font-family: var(--kroj-t); font-size: calc(1.25rem * var(--dt-liczba)); font-weight: var(--w-t2); white-space: nowrap; }
+.pole.z { background: var(--tablica-tekst); color: var(--tablica); }
+.pole.t { box-shadow: inset 0 0 0 3px var(--zegar); }
+.pole.p { box-shadow: inset 0 0 0 1px var(--tablica-tekst2); color: var(--tablica-tekst2); font-weight: var(--w-t1); }
+.pole.w.p { box-shadow: none; outline: 1px dashed var(--tablica-tekst2); outline-offset: -1px; }
+.nast { font-family: var(--kroj-t); font-weight: var(--w-t1); text-align: center; font-size: calc(1.25rem * var(--dt-opis)); color: var(--tablica-tekst); line-height: 1.2; }
+/* duży tytuł iOS */
+.dt { padding: 4px 16px 0; }
+.dt h1 { font-family: var(--kroj-t); font-weight: var(--w-t2); font-size: calc(2.25rem * var(--dt-tytul)); line-height: 1.1; }
+.dt p { margin-top: 2px; }
+.plan { margin: 16px 16px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.plan .n { flex: 1 1 60%; font-weight: 600; font-size: calc(1.0625rem * var(--dt-opis)); line-height: 1.3; }
+.plan .bt2 { min-height: 44px; padding: 0 14px; border-radius: var(--r-przyc); background: var(--pole); font-weight: 600; font-size: calc(1rem * var(--dt-opis)); }
+.tydz { margin: 20px 16px 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; background: var(--powierzchnia); border-radius: 12px; padding: 8px 4px; }
+.tydz div { display: grid; justify-items: center; gap: 4px; padding: 6px 0; border-radius: 8px; min-width: 0; font-size: calc(0.8125rem * min(var(--dt-opis), 1.25)); color: var(--tekst2); line-height: 1.1; text-align: center; }
+.tydz div b { font-size: calc(1.0625rem * min(var(--dt-liczba), 1.2)); color: var(--tekst); font-weight: 700; }
+.tydz div.dzis { box-shadow: inset 0 0 0 2px var(--znacznik); }
+.zn { width: 20px; height: 20px; border-radius: 3px; display: block; }
+.zn.zr { background: var(--znacznik); }
+.zn.pl { box-shadow: inset 0 0 0 2px var(--znacznik); }
+.zn.od { width: 22px; height: 20px; color: var(--tekst2); }
+.tab.dzis-t .tab-l { font-size: min(calc(3.5rem * var(--dt-liczba)), calc(var(--w, 390px) * 0.16)); justify-content: flex-start; margin: 8px 0 4px; }
+.tab ul { list-style: none; margin-top: 8px; border-top: 1px solid var(--tablica-pole); }
+.tab li { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 8px 0; border-bottom: 1px solid var(--tablica-pole); font-size: calc(1rem * var(--dt-opis)); line-height: 1.3; }
+.tab li .n { flex: 1 1 55%; } .tab li .d { color: var(--tablica-tekst2); white-space: nowrap; margin-left: auto; }
+.przyc2 { width: 100%; min-height: 52px; border-radius: var(--r-przyc); background: var(--pole); color: var(--tekst); font-weight: 700; font-size: calc(1.0625rem * var(--dt-opis)); }
+.pusty { margin: 40px 16px 0; display: grid; justify-items: center; gap: 16px; text-align: center; }
+.pusty .tytul { font-family: var(--kroj-t); font-weight: var(--w-t2); font-size: calc(1.5rem * var(--dt-tytul)); line-height: 1.15; }
+.pusty .opis { max-width: 30ch; }
+.pusty .przyc { max-width: 320px; }
+.mini-tab { width: 220px; max-width: 100%; background: var(--tablica); color: var(--tablica-tekst2); border-radius: 8px; padding: 14px; font-family: var(--kroj-t); font-weight: var(--w-t2); font-size: 2.25rem; line-height: 1; text-align: center; border: 1px solid var(--tablica-brzeg); }
+.mini-tab .r { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 12px; }
+.mini-tab .r i { height: 22px; border-radius: 3px; box-shadow: inset 0 0 0 1px var(--tablica-tekst2); }
+/* A2: motyw talerzy w tle */
+.motyw-start { position: absolute; z-index: 0; top: 72px; right: 14px; width: calc(var(--w, 390px) * 0.3); height: auto; aspect-ratio: 1; pointer-events: none; opacity: clamp(0, calc((1.4 - var(--dt-tytul)) * 2.5), 1); }
+.pasek { display: flex; justify-content: flex-end; padding: 0 8px; min-height: 44px; }
+.bt3 { min-height: 44px; padding: 0 12px; font-weight: 600; font-size: calc(1.0625rem * var(--dt-opis)); color: var(--tekst); }
+.pusty .opis.duzy { font-size: calc(1.0625rem * var(--dt-opis)); color: var(--tekst); }
+.motyw-pusty { width: 220px; max-width: 100%; height: auto; }
+
+.tel { min-height: 0; padding-bottom: 16px; }
+.kroje { display: flex; gap: 24px; align-items: flex-start; padding: 24px; background: #d9dbdd; width: max-content; }
+.kk { width: 360px; } .kk .tel { width: 360px; --w: 360px; }
+.kopis { padding: 12px 4px 0; font-size: 14px; line-height: 1.4; } .kopis h3 { font-size: 17px; margin-bottom: 4px; } .kopis p { margin-top: 4px; }
+</style><script>
+(function () {
+  var GAP = 6, MIN = 36, MAXW = 3, LIMIT = 12;
+  function dt(el) { var p = document.createElement('i'); p.style.cssText = 'position:absolute;visibility:hidden;width:calc(100px * var(--dt-liczba))'; el.appendChild(p); var v = p.offsetWidth / 100; p.remove(); return v || 1; }
+  function rysuj(el) {
+    var s = el.dataset.serie.split(','), cur = +el.dataset.teraz, w = (el.dataset.wyniki || '').split(','), n = s.length;
+    el.innerHTML = ''; var d = dt(el), W = el.clientWidth, minW = MIN * d, font = 20 * d;
+    var fit = Math.max(1, Math.floor((W + GAP) / (minW + GAP))), rows = 1, cols;
+    var zapas = n > LIMIT; el.classList.toggle('zapas', zapas);
+    if (zapas) { cols = n; el.style.gridTemplateColumns = 'repeat(' + n + ', ' + Math.max(minW, 44) + 'px)'; }
+    else { while (rows < MAXW && Math.ceil(n / rows) > fit) rows++; cols = Math.min(Math.ceil(n / rows), fit); if (rows === 1) cols = Math.max(cols, Math.min(4, fit)); el.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)'; }
+    var fw = zapas ? Math.max(minW, 44) : (W - GAP * (cols - 1)) / cols;
+    var zr = 0, rozg = 0, rozgZr = 0;
+    s.forEach(function (lab, i) {
+      var f = document.createElement('span'); var stan = i < cur ? 'z' : i === cur ? 't' : 'p';
+      f.className = 'pole ' + stan + (lab === 'W' ? ' w' : ''); var txt = lab;
+      if (stan === 'z' && w[i] && rows === 1 && !zapas && w[i].length * 0.48 * font + 10 <= fw) txt = w[i];
+      f.textContent = txt; el.appendChild(f);
+      if (lab === 'W') { rozg++; if (i < cur) rozgZr++; } else if (i < cur) zr++;
+    });
+    var rob = n - rozg;
+    el.setAttribute('aria-label', (rozg ? 'Rozgrzewki: ' + rozgZr + ' z ' + rozg + ' zrobione; ' : '') + 'serie: ' + zr + ' z ' + rob + ' zrobione' + (zapas ? '; lista serii przewijana' : ''));
+    if (zapas) el.scrollLeft = Math.max(0, cur * (fw + GAP) - W / 2 + fw / 2);
+  }
+  function wszystkie() { document.querySelectorAll('.pola[data-serie]').forEach(rysuj); }
+  window.addEventListener('load', wszystkie);
+  new MutationObserver(wszystkie).observe(document.documentElement, { attributes: true });
+  if (window.ResizeObserver) { var ro = new ResizeObserver(wszystkie); document.addEventListener('DOMContentLoaded', function () { document.querySelectorAll('.pola[data-serie]').forEach(function (e) { ro.observe(e); }); }); }
+  document.addEventListener('DOMContentLoaded', wszystkie);
+})();</script></head><body style="padding:0">
+<div class="kroje" data-ekran="kroje"><div class="kk"><main class="tel" style="--kroj-t:'Tablica';--w-t1:600;--w-t2:700"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><header class="nag"><h1 class="nag-t" style="font-family:var(--kroj-t)">Góra A<span class="czas">24:13</span></h1><button class="ib" aria-label="Opcje treningu"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg></button><button class="bt">Zakończ</button></header><section class="tab"><div class="tab-g"><span class="tab-cw">Wyciskanie leżąc</span><span class="tab-s">seria 3 z 4</span></div>
+<div class="tab-l"><span>80<small> kg</small></span><span class="x">×</span><span>6</span></div><div class="pola" role="img" data-serie="1,2,3,4" data-teraz="2" data-wyniki="80×6,80×6,80×6,80×6"></div></section>
+<section class="tab" style="margin-top:12px"><div class="tab-g"><span class="tab-cw">Przerwa</span><span class="tab-s">z 2:30</span></div><div class="tab-l zeg" style="font-size:5rem">1:47</div><p class="nast">Następna: seria 4 z 4, 80 kg × 6</p></section>
+<div class="dt" style="margin-top:12px"><h1 style="font-size:1.75rem">Planowanie</h1><p class="opis">Żółć, ąęłńóśźż — 0123456789</p></div></main>
+<div class="kopis"><h3>Barlow Condensed 600/700 (obecny w A)</h3><p><b>Pochodzenie:</b> Opis autora (google/fonts, DESCRIPTION): wzorowany na oznaczeniach publicznych Kalifornii — tablice rejestracyjne, znaki drogowe, autobusy i pociągi.</p><p><b>W świecie dziedziny:</b> Wąski grotesk o niskim kontraście, jak oznaczenia sprzętu i tablice informacyjne. Pochodzenie: oznakowanie drogowe w USA, nie sport.</p><p><b>Licencja:</b> OFL 1.1</p></div></div>
+<div class="kk"><main class="tel" style="--kroj-t:'Oswald';--w-t1:500;--w-t2:700"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><header class="nag"><h1 class="nag-t" style="font-family:var(--kroj-t)">Góra A<span class="czas">24:13</span></h1><button class="ib" aria-label="Opcje treningu"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg></button><button class="bt">Zakończ</button></header><section class="tab"><div class="tab-g"><span class="tab-cw">Wyciskanie leżąc</span><span class="tab-s">seria 3 z 4</span></div>
+<div class="tab-l"><span>80<small> kg</small></span><span class="x">×</span><span>6</span></div><div class="pola" role="img" data-serie="1,2,3,4" data-teraz="2" data-wyniki="80×6,80×6,80×6,80×6"></div></section>
+<section class="tab" style="margin-top:12px"><div class="tab-g"><span class="tab-cw">Przerwa</span><span class="tab-s">z 2:30</span></div><div class="tab-l zeg" style="font-size:5rem">1:47</div><p class="nast">Następna: seria 4 z 4, 80 kg × 6</p></section>
+<div class="dt" style="margin-top:12px"><h1 style="font-size:1.75rem">Planowanie</h1><p class="opis">Żółć, ąęłńóśźż — 0123456789</p></div></main>
+<div class="kopis"><h3>Oswald 500/700</h3><p><b>Pochodzenie:</b> Opis autora: przerobienie klasycznego stylu „Alternate Gothic”.</p><p><b>W świecie dziedziny:</b> Wąski gotyk plakatowy, kształtem bliski napisom z afiszy sportowych (ocena projektowa). Najbliżej szablonu kategorii, bo to bardzo częsty krój nagłówków.</p><p><b>Licencja:</b> OFL 1.1</p></div></div>
+<div class="kk"><main class="tel" style="--kroj-t:'Big Shoulders';--w-t1:700;--w-t2:800"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><header class="nag"><h1 class="nag-t" style="font-family:var(--kroj-t)">Góra A<span class="czas">24:13</span></h1><button class="ib" aria-label="Opcje treningu"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg></button><button class="bt">Zakończ</button></header><section class="tab"><div class="tab-g"><span class="tab-cw">Wyciskanie leżąc</span><span class="tab-s">seria 3 z 4</span></div>
+<div class="tab-l"><span>80<small> kg</small></span><span class="x">×</span><span>6</span></div><div class="pola" role="img" data-serie="1,2,3,4" data-teraz="2" data-wyniki="80×6,80×6,80×6,80×6"></div></section>
+<section class="tab" style="margin-top:12px"><div class="tab-g"><span class="tab-cw">Przerwa</span><span class="tab-s">z 2:30</span></div><div class="tab-l zeg" style="font-size:5rem">1:47</div><p class="nast">Następna: seria 4 z 4, 80 kg × 6</p></section>
+<div class="dt" style="margin-top:12px"><h1 style="font-size:1.75rem">Planowanie</h1><p class="opis">Żółć, ąęłńóśźż — 0123456789</p></div></main>
+<div class="kopis"><h3>Big Shoulders 700/800</h3><p><b>Pochodzenie:</b> Opis autora: wąski gotyk amerykański dla systemu identyfikacji Chicago; formy z historii kolei i akcji publicznych.</p><p><b>W świecie dziedziny:</b> Szyldowy, wysoki gotyk jak napisy na halach i tablicach wyników. Kontekst miejski z innego kraju, a nie sportowy.</p><p><b>Licencja:</b> OFL 1.1</p></div></div>
+<div class="kk"><main class="tel" style="--kroj-t:'Saira Condensed';--w-t1:600;--w-t2:700"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><header class="nag"><h1 class="nag-t" style="font-family:var(--kroj-t)">Góra A<span class="czas">24:13</span></h1><button class="ib" aria-label="Opcje treningu"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg></button><button class="bt">Zakończ</button></header><section class="tab"><div class="tab-g"><span class="tab-cw">Wyciskanie leżąc</span><span class="tab-s">seria 3 z 4</span></div>
+<div class="tab-l"><span>80<small> kg</small></span><span class="x">×</span><span>6</span></div><div class="pola" role="img" data-serie="1,2,3,4" data-teraz="2" data-wyniki="80×6,80×6,80×6,80×6"></div></section>
+<section class="tab" style="margin-top:12px"><div class="tab-g"><span class="tab-cw">Przerwa</span><span class="tab-s">z 2:30</span></div><div class="tab-l zeg" style="font-size:5rem">1:47</div><p class="nast">Następna: seria 4 z 4, 80 kg × 6</p></section>
+<div class="dt" style="margin-top:12px"><h1 style="font-size:1.75rem">Planowanie</h1><p class="opis">Żółć, ąęłńóśźż — 0123456789</p></div></main>
+<div class="kopis"><h3>Saira Condensed 600/700</h3><p><b>Pochodzenie:</b> Opis autora: system sans serif w wielu szerokościach (Omnibus-Type).</p><p><b>W świecie dziedziny:</b> Kanciaste, techniczne cyfry jak na wyświetlaczach i oznaczeniach sprzętu. Najsłabsze zakorzenienie w dziedzinie, bo krój nie ma historii.</p><p><b>Licencja:</b> OFL 1.1 (nazwa zastrzeżona „Saira”)</p></div></div>
+<div class="kk"><main class="tel" style="--kroj-t:'Doto';--w-t1:900;--w-t2:900"><div class="sb"><span>9:41</span><span class="sb-i" aria-hidden="true"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px;border-radius:5px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><header class="nag"><h1 class="nag-t" style="font-family:var(--kroj-t)">Góra A<span class="czas">24:13</span></h1><button class="ib" aria-label="Opcje treningu"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="19" cy="12" r="2" fill="currentColor"/></svg></button><button class="bt">Zakończ</button></header><section class="tab"><div class="tab-g"><span class="tab-cw">Wyciskanie leżąc</span><span class="tab-s">seria 3 z 4</span></div>
+<div class="tab-l"><span>80<small> kg</small></span><span class="x">×</span><span>6</span></div><div class="pola" role="img" data-serie="1,2,3,4" data-teraz="2" data-wyniki="80×6,80×6,80×6,80×6"></div></section>
+<section class="tab" style="margin-top:12px"><div class="tab-g"><span class="tab-cw">Przerwa</span><span class="tab-s">z 2:30</span></div><div class="tab-l zeg" style="font-size:5rem">1:47</div><p class="nast">Następna: seria 4 z 4, 80 kg × 6</p></section>
+<div class="dt" style="margin-top:12px"><h1 style="font-size:1.75rem">Planowanie</h1><p class="opis">Żółć, ąęłńóśźż — 0123456789</p></div></main>
+<div class="kopis"><h3>Doto 900 (matryca punktowa)</h3><p><b>Pochodzenie:</b> Opis autora: krój inspirowany bitmapą, każdy znak z matrycy 6×10 punktów.</p><p><b>W świecie dziedziny:</b> Najbliżej elektronicznej tablicy wyników z diodami. Tylko do liczb i krótkich nazw; słabiej czytelny w małym rozmiarze.</p><p><b>Licencja:</b> OFL 1.1</p></div></div></div>
+</body></html>

@@ -101,6 +101,28 @@ final class WatchUITests: XCTestCase {
     XCTAssertTrue(el(app, "watch.differ").exists)
   }
 
+  /// M3 ZM-05 (docs/32 wz. 24): w trakcie pomiaru serii na czas (migawka `now.measuring`) przycisk główny to „Zakończ serię”; bez pomiaru — „Seria zrobiona”.
+  func testPrimaryButtonSaysFinishSetWhileMeasuring() {
+    let app = launch("timed-set-measuring")
+    appears(app, "watch.primary")
+    XCTAssertEqual(el(app, "watch.primary").label, "Zakończ serię")
+    XCTAssertTrue(el(app, "watch.primary").isEnabled)
+  }
+
+  /// Język z migawki, nie z systemu: etykieta pomiaru z tabeli (pełną pętlę 35 języków robi XCTest WatchLabelsTests — tu jeden inny język, żeby nie wydłużać wolnego symulatora).
+  func testFinishSetLabelFollowsSnapshotLanguage() throws {
+    let labels = try JSONSerialization.jsonObject(with: fixture("labels.json", apple: true)) as! [String: [String: String]]
+    let app = launch("timed-set-measuring", lang: "de")
+    appears(app, "watch.primary")
+    XCTAssertEqual(el(app, "watch.primary").label, labels["de"]!["finish"])
+  }
+
+  func testPrimaryButtonSaysSetDoneForTimedSetWithoutMeasurement() {
+    let app = launch("timed-set")
+    appears(app, "watch.primary")
+    XCTAssertEqual(el(app, "watch.primary").label, "Seria zrobiona")
+  }
+
   func testPausedBadge() { let app = launch("paused"); appears(app, "watch.paused") }
 
   func testSupersetGroupLabelIsShown() {

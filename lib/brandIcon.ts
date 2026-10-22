@@ -1,5 +1,5 @@
 import { PLATE_COLORS, type PlateColor } from './discColors';
-import { BRAND, dark } from './theme';
+import { BRAND, light, dark } from './theme';
 
 /*
  * Ikona aplikacji (styl „Tuleja”, 07.10.2026) jako dane — jedno źródło geometrii dla animacji startowej (components/Intro.tsx).
@@ -26,7 +26,9 @@ export const ICON_SCHEMES = ['light', 'dark'] as const;
 export type IconScheme = (typeof ICON_SCHEMES)[number];
 /** Odcienie talerzy wariantu ciemnego ikony iOS (assets/brand/icon-dark.svg); żółty i biały bez zmian. */
 const DARK_PLATES: Readonly<Record<PlateColor, string>> = { red: '#E8414F', blue: '#4A82F0', yellow: PLATE_COLORS.yellow, green: '#3FBE72', white: PLATE_COLORS.white };
-/** Kolory ikony i ekranu startowego: tło (= tło ekranu startowego w app.json i tło motywu), gryf/zacisk, talerze. */
+/** Tusz gryfu ikony w ciemnym wariancie — rysunek ikony bez zmian (STOP E2), więc nie zależy od palety interfejsu (dark.text zmieniło się w M3). */
+const DARK_INK = '#ECEAE4';
+/** Kolory ikony i ekranu startowego: tło (= bg z palety = tło ekranu startowego w app.json, STOP E3 21.10.2026), gryf/zacisk, talerze. */
 export function iconColors(s: IconScheme): { bg: string; ink: string; plate: Readonly<Record<PlateColor, string>> } {
-  return s === 'dark' ? { bg: dark.bg, ink: dark.text, plate: DARK_PLATES } : { bg: BRAND.paper, ink: BRAND.ink, plate: PLATE_COLORS };
+  return s === 'dark' ? { bg: dark.bg, ink: DARK_INK, plate: DARK_PLATES } : { bg: light.bg, ink: BRAND.ink, plate: PLATE_COLORS };
 }

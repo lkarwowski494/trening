@@ -7,6 +7,7 @@ import { WhenFields } from '@/components/WhenFields';
 import { getState, useTick, exById, tplWorkSets } from '@/lib/store';
 import { beginPast, defaultPastWhen, parseWhen, activeOverlapError } from '@/lib/edit';
 import { t, tp } from '@/lib/i18n';
+import { font } from '@/lib/theme';
 
 /*
  * Docs/12: trening wstecz (jak dopisywanie minionego treningu w popularnych aplikacjach treningowych). Najpierw termin
@@ -32,12 +33,12 @@ export default function AddPastWorkout() {
   return (
     <Screen><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       <InfoTip id="add-intro" label={t('Ustaw termin i szablon — serie uzupełnisz w następnym kroku.')} info={t('Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).')} style={{ marginBottom: 12 }}>
-        <Muted style={{ fontSize: 13 }}>{t('Ustaw termin i szablon — serie uzupełnisz w następnym kroku.')}</Muted>
+        <Muted style={{ ...font('footnote') }}>{t('Ustaw termin i szablon — serie uzupełnisz w następnym kroku.')}</Muted>
       </InfoTip>
       <WhenFields date={when.date} time={when.time} min={when.min} onChange={p => setWhen(x => ({ ...x, ...p }))} />
       <H2 style={{ marginTop: 16 }}>{t('Z szablonu')}</H2>
       {tpls.map(row)}
-      {!tpls.length ? <Muted style={{ fontSize: 13 }}>{t('Brak szablonów z ćwiczeniami — utworzysz je w Więcej → Szablony. Możesz też zacząć od pustego treningu.')}</Muted> : null}
+      {!tpls.length ? <Muted style={{ ...font('footnote') }}>{t('Brak szablonów z ćwiczeniami — utworzysz je w Więcej → Szablony. Możesz też zacząć od pustego treningu.')}</Muted> : null}
       <Item title={t('Pusty trening')} sub={t('ćwiczenia dodasz w następnym kroku')} onPress={() => start(null)} />
       {arch.length ? <><SectionTitle>{t('Archiwum')}</SectionTitle>{arch.map(row)}</> : null}
     </ScrollView></Screen>

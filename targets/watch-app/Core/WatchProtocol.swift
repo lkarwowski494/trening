@@ -22,6 +22,7 @@ struct WatchNow: Codable, Equatable {
   var group: String?        // „SS A”
   var timed: Bool
   var targetSec: Int?
+  var measuring: Bool?      // M3 (ZM-05): telefon mierzy tę serię na czas → przycisk główny „Zakończ serię”; pole bywa nieobecne (starszy telefon)
 }
 
 /// Przerwa w toku; `cue` = ten sam tekst co głos w słuchawkach.

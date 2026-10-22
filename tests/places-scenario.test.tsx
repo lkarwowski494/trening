@@ -32,11 +32,11 @@ test('Hotel piątek–niedziela: ustawienie w panelu dnia → przypomnienie z �
 
   /* piątek: panel dnia soboty? nie — „Hotel” ustawiam od piątku (dzień wolny w planie) do niedzieli */
   await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/history' }); jest.setSystemTime(FRI.getTime()); await flushAll(10);
-  await tap(screen.getByTestId('cal-2026-10-09')); await flushAll(5); await tap(screen.getByText('Więcej opcji')); await flushAll(5); await tap(screen.getByText('📍 Miejsce na te dni')); await flushAll(5);
+  await tap(screen.getByTestId('cal-2026-10-09')); await flushAll(5); await tap(screen.getByText('Więcej opcji')); await flushAll(5); await tap(screen.getByText('Miejsce na te dni')); await flushAll(5);
   await tap(screen.getByLabelText('Dzień później')); await tap(screen.getByLabelText('Dzień później')); await flushAll(2);
   await tap(screen.getByLabelText('Hotel')); await tap(screen.getByText('Ustaw miejsce')); await flushAll(5);
-  expect(S().planPlaces).toEqual({ '2026-10-09': 'hotel', '2026-10-10': 'hotel', '2026-10-11': 'hotel' }); expect(screen.getByTestId('day-place').props.children).toBe('📍 Hotel');
-  await tap(screen.getByTestId('cal-2026-10-10')); await flushAll(5); expect(screen.getByTestId('day-place').props.children).toBe('📍 Hotel'); /* sobota: plan z FBW, miejsce z piątkowego zakresu */
+  expect(S().planPlaces).toEqual({ '2026-10-09': 'hotel', '2026-10-10': 'hotel', '2026-10-11': 'hotel' }); expect(screen.getByTestId('day-place').props.children).toBe('Hotel');
+  await tap(screen.getByTestId('cal-2026-10-10')); await flushAll(5); expect(screen.getByTestId('day-place').props.children).toBe('Hotel'); /* sobota: plan z FBW, miejsce z piątkowego zakresu */
 
   /* sobota rano, restart: przypomnienie o 8:00 z miejscem */
   global.__notifications.length = 0; jest.setSystemTime(SAT_EARLY.getTime()); await restart(SAT_EARLY);

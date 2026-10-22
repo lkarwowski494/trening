@@ -18,13 +18,13 @@ const hits = (re: RegExp, allow: string[] = []) => [...src].filter(([f, s]) => !
 const lines = (re: RegExp, allow: string[] = []) => [...src].filter(([f]) => !allow.includes(f)).flatMap(([f, s]) => s.split('\n').map((l, i) => [f, i + 1, l] as const).filter(([, , l]) => re.test(l)).map(([f2, n]) => `${f2}:${n}`));
 
 describe('S2/S1: nagłówki — przyciski tylko przez wspólne komponenty', () => {
-  test('headerLeft/headerRight tylko w DraftHeader, CloseButton, AddButton (poza resetem `: undefined`)', () => {
-    const own = ['components/DraftHeader.tsx', 'components/CloseButton.tsx', 'components/AddButton.tsx'];
+  test('headerLeft/headerRight tylko w DraftHeader, CloseButton, AddButton, EditHeader (poza resetem `: undefined`)', () => {
+    const own = ['components/DraftHeader.tsx', 'components/CloseButton.tsx', 'components/AddButton.tsx', 'components/EditHeader.tsx' /* M3 p5: „Edytuj” + „+” (W1 b) */];
     const bad = lines(/header(Left|Right)\s*:/, own).filter(x => { const [f, n] = x.split(':'); const l = src.get(f)!.split('\n')[+n - 1]; return !/header(Left|Right): undefined/.test(l.replace(/header(Left|Right): undefined[^}]*/g, 'header$1: undefined')) || /header(Left|Right): \(\)/.test(l); });
     expect(bad).toEqual([]);
   });
   test('zakaz <Pressable w opcjach nagłówka: wspólne komponenty używają HeaderButton (44 pt, limit powiększenia)', () => {
-    expect(src.get('components/DraftHeader.tsx')).toMatch(/minHeight: 44, minWidth: 44/); expect(src.get('components/DraftHeader.tsx')).toMatch(/maxFontSizeMultiplier=\{1\.4\}/);
+    expect(src.get('components/DraftHeader.tsx')).toMatch(/minHeight: SIZE\.hit, minWidth: SIZE\.hit/) /* M3: 44 pt z tokenu SIZE.hit */; expect(src.get('components/DraftHeader.tsx')).toMatch(/maxFontSizeMultiplier=\{1\.4\}/);
     expect(src.get('components/CloseButton.tsx')).toContain('<HeaderButton'); expect(src.get('components/AddButton.tsx')).toMatch(/minHeight: 44, minWidth: 44/);
   });
 });
@@ -57,9 +57,9 @@ describe('S5: potwierdzenia — rezygnacja zawsze „Anuluj” (jedna stała w l
 });
 
 describe('S6: wybór i przełączniki (miejsca naprawione)', () => {
-  test('„Asysta gumą” to SwitchRow; tryb generatora i Tydzień/Miesiąc to Segmented; partie mięśni to Chip toggle', () => {
+  test('„Asysta gumą” to SwitchRow; Tydzień/Miesiąc to Segmented (tryb generatora zniknął — ZM-03, 21.10.2026); partie mięśni to Chip toggle', () => {
     expect(src.get('app/exercise/[id].tsx')).toMatch(/<SwitchRow label=\{t\('Asysta gumą'\)\}/); expect(src.get('app/exercise/[id].tsx')).not.toMatch(/<Field label=\{t\('Asysta gumą'\)\}>/);
-    expect(src.get('app/generator.tsx')).toContain('<Segmented'); expect(src.get('components/PeriodSummary.tsx')).toContain('<Segmented');
+    expect(src.get('app/generator.tsx')).not.toContain('<Segmented'); /* ZM-03: generator bez przełącznika trybu */ expect(src.get('components/PeriodSummary.tsx')).toContain('<Segmented');
     expect((src.get('app/exercise/[id].tsx')!.match(/<Chip toggle key=\{mu\}/g) ?? [])).toHaveLength(2);
   });
 });
@@ -83,7 +83,7 @@ describe('S9: słownik terminów', () => {
   test('brak zakazanych wariantów: „anuluj bieżący trening”, „↺ przywróć” (zamiana), pierwsza osoba („ponowię”, „Ponawiam”)', () => {
     expect(dict).not.toMatch(/anuluj bieżący trening/); expect(dict).not.toMatch(/'↺ przywróć/); expect(dict).not.toMatch(/ponowię|Ponawiam|Zapisałem/);
   });
-  test('cofnięcie zamiany: ta sama akcja ma to samo słowo w treningu i w oknie zamiany', () => { expect(src.get('app/swap.tsx')).toContain("'↺ cofnij zamianę: {name}'"); expect(src.get('components/ActiveWorkout.tsx')).toContain("'↺ cofnij'"); });
+  test('cofnięcie zamiany: ta sama akcja ma to samo słowo w treningu i w oknie zamiany', () => { expect(src.get('app/swap.tsx')).toContain("'↺ cofnij zamianę: {name}'"); expect(src.get('components/WorkoutBlocks.tsx')).toContain("'↺ cofnij'"); /* M3 p2: bloki ćwiczeń przeniesione z ActiveWorkout do WorkoutBlocks */ });
 });
 
 describe('S10: puste stany', () => {
@@ -95,7 +95,7 @@ describe('S10: puste stany', () => {
 
 describe('S11: rozwijanie — ▸/▾, stan expanded', () => {
   test('zakaz znaków ⌃ ⌄ ▴ w interfejsie', () => { expect(lines(/[⌃⌄▴]/)).toEqual([]); });
-  test('plik z ▸/▾ jako znakiem rozwijania ma accessibilityState expanded (wyjątki: menu „📍 miejsce ▾” otwiera arkusz, nie rozwija)', () => {
+  test('plik z ▸/▾ jako znakiem rozwijania ma accessibilityState expanded (wyjątki: menu „miejsce ▾” z ikoną otwiera arkusz, nie rozwija)', () => {
     const menu = ['components/ActiveWorkout.tsx', 'app/history/edit/[id].tsx'];
     expect(hits(/[▸▾]/, [...menu, 'components/ui.tsx']).filter(f => !/expanded/.test(src.get(f)!))).toEqual([]);
   });
@@ -128,9 +128,11 @@ describe('S15: wyszukiwanie — jeden komponent SearchField', () => {
 
 describe('S16: arkusze akcji — najwyżej 4 opcje (z „Anuluj”) albo wyjątek z powodem', () => {
   const EXC: Record<string, string> = {
-    'components/ActiveWorkout.tsx': 'dwa arkusze: miejsce treningu (lista miejsc użytkownika — długość zmienna) i rodzaj serii (4 rodzaje + notatka + Anuluj; dwupoziomowy arkusz wydłużyłby najczęstszą akcję treningu)',
+    'components/ActiveWorkout.tsx': 'menu „⋯” treningu (miejsce — tylko gdy są miejsca, pauza, głos, notatka szablonu: do 4 pozycji + Anuluj, ale pozycje warunkowe — M3 p2, wzorzec 30), arkusz miejsca (lista miejsc użytkownika — długość zmienna) i arkusz głosu (3 opcje + Anuluj)',
+    'components/WorkoutBlocks.tsx': 'rodzaj serii (4 rodzaje + notatka + Anuluj; dwupoziomowy arkusz wydłużyłby najczęstszą akcję treningu) i menu ćwiczenia — wydzielone z ekranu treningu (M3 p2)',
     'app/history/edit/[id].tsx': 'jak w treningu: miejsce sesji i rodzaj serii (ta sama lista)',
-    'app/template/[id].tsx': 'rodzaj serii szablonu: 4 rodzaje + Anuluj (zamknięty zbiór, bez notatki)',
+    'app/template/[id].tsx': 'rodzaj serii szablonu: 4 rodzaje + „Usuń serię” (jak w treningu, M1-028; 04-studio-projektowe-003) + Anuluj (zamknięty zbiór, bez notatki)',
+    'components/ExMenuButton.tsx': 'menu „⋯” ćwiczenia w edytorze szablonu i edycji sesji: jedna pozycja „Usuń ćwiczenie” + Anuluj (jak w treningu, 04-studio-projektowe-003)',
   };
   test('wszystkie wywołania ActionSheetIOS są na liście wyjątków z powodem (nowe — czerwony test: najwyżej 4 opcje)', () => {
     const files = hits(/ActionSheetIOS\.showActionSheetWithOptions/); expect(files.sort()).toEqual(Object.keys(EXC).sort()); Object.values(EXC).forEach(v => expect(v.length).toBeGreaterThan(20));
@@ -164,7 +166,6 @@ function visibleHelperTexts(): Lit[] {
 const INFO_MAX_CHARS = 100;
 /** Teksty, które zostają na wierzchu mimo długości — tylko z powodem (subskrypcja, zdrowie, utrata danych, błędy, prywatność, pusty stan z działaniem). Klucz = początek tekstu. */
 const LONG_OK: Record<string, string> = {
-  'Na koniec przerwy telefon wyśle powiadomienie': 'wyjaśnienie przed systemowym oknem zgody na powiadomienia (M1-035): musi być widoczne przed prośbą, nie pod ⓘ',
   'Aplikacja nie udziela porad medycznych.': 'zastrzeżenie zdrowotne (MedicalNote) — zasada właściciela: zdrowie zawsze na wierzchu',
   'Uwaga: zmiana sprzętu, trybu liczenia lub metryki przelicza też dawne treningi': 'ostrzeżenie: zmiana działa wstecz na dane',
   'Nie zapisano jeszcze w Apple Health': 'stan zapisu do Zdrowia (dane, ponowienie) — błąd/stan wymagający uwagi',

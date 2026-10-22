@@ -105,7 +105,7 @@ name: Edycja historii i trening wstecz
 # Podsumowanie tygodnia / miesiąca w Postępach (08.10.2026, components/PeriodSummary.tsx): „Summary” ('Podsumowanie'), wiersz VoiceOver
 # „Workouts: N, previously M” ('{label}: {v}, poprzednio {p}'), „Month” ('Miesiąc'), „Previous period” ('Poprzedni okres').
 - tapOn: "Progress, tab.*"  # 11.10.2026: Postępy to zakładka (dawniej Więcej → Postępy)
-- extendedWaitUntil: { visible: "Summary", timeout: 30000 }
+- scrollUntilVisible: { element: "Workouts: [0-9]+, previously .*", direction: DOWN, timeout: 30000 }  # M3 p3 (ZM-06): na górze Postępów jest wykres i rekordy ćwiczenia, „Summary” (ogólny przegląd) jest niżej
 - assertVisible: "Workouts: [1-9].*, previously .*"
 - takeScreenshot: 20-podsumowanie-tydzien
 # Tydzień deload (11.10.2026): Postępy nie mają już przełącznika „Deload week” — oznaczenie ustawia się w Kalendarzu (dzień → „More options” → „Mark week as deload”, niżej).
@@ -113,11 +113,11 @@ name: Edycja historii i trening wstecz
 - scrollUntilVisible: { element: "Muscle map: .*", direction: DOWN, timeout: 20000 }
 - takeScreenshot: 20b-mapa-miesni
 # Kreska celu serii na partię (pakiet C, 08.10.2026; od 12.10.2026 cel automatyczny albo ręczny z Settings): opis kreski „Line = weekly goal of sets…” (ACSM 2026).
-- scrollUntilVisible: { element: { id: "info-sets-part" }, direction: DOWN, timeout: 20000 }  # 14.10.2026: opis kreski pod ⓘ przy „Sets per muscle group”
+- scrollUntilVisible: { element: { id: "info-sets-part" }, direction: DOWN, timeout: 20000, centerElement: true }  # 14.10.2026: opis kreski pod ⓘ przy „Sets per muscle group”
 - tapOn: { id: "info-sets-part" }
 - assertVisible: "Line = weekly goal of sets per muscle group: 10 automatically.*"
 - takeScreenshot: 20c-kreska-10-serii
-- scrollUntilVisible: { element: "Month", direction: UP, timeout: 20000 }  # run 37738868663: po przewinięciu do mapy i kreski „Month” jest nad ekranem
+- scrollUntilVisible: { element: "Month", direction: UP, timeout: 20000, centerElement: true }  # run 37738868663: po przewinięciu do mapy i kreski „Month” jest nad ekranem
 - tapOn: "Month"
 - tapOn: "Previous period"
 - assertVisible: "Workouts: .*, previously .*"
