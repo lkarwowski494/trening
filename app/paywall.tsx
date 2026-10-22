@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, Linking, ActivityIndicator, Alert } from 'react-native';
 import { ScrollView } from '@/components/Scroll';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
@@ -34,7 +34,7 @@ const ctaLabel = (p: StoreProduct): string => (p.period === null ? t('Kup na zaw
 export default function PaywallScreen() {
   const th = useTheme(); const router = useRouter(); const headerOpts = useCloseHeader(); /* zasada 13.10.2026: „Zamknij” w nagłówku zawsze (także reason=settings); „Nie teraz” na dole zostaje */ const { reason } = useLocalSearchParams<{ reason?: string }>(); const view = useAccess();
   const [products, setProducts] = useState<StoreProduct[] | 'loading' | 'unavailable'>('loading'); const [sel, setSel] = useState<EntitlementPlan>('yearly');
-  const [busy, setBusy] = useState(false); const [note, setNote] = useState<string | null>(null);
+  const scrollRef = useRef<ScrollView>(null); const [busy, setBusy] = useState(false); const [note, setNote] = useState<string | null>(null);
   const load = useCallback(() => { setProducts('loading'); getStoreAdapter().getProducts().then(p => { setProducts(p); }).catch(() => setProducts('unavailable')); }, []);
   useEffect(load, [load]);
   useEffect(() => { if (Array.isArray(products) && products.length && !products.some(p => p.plan === sel)) setSel(products[0].plan); }, [products, sel]);
@@ -45,6 +45,7 @@ export default function PaywallScreen() {
     if (!chosen || busy) return; setBusy(true); setNote(null);
     try {
       const r = await purchasePlan(chosen.plan);
+      if (r.status === 'success') scrollRef.current?.scrollTo({ y: 0, animated: false }); /* karta „Masz pełną wersję” jest na górze; zakup robi się na dole długiego ekranu — bez przewinięcia nic się nie zmienia w polu widzenia (E2E 39825973624) */
       if (r.status === 'pending') setNote(t('Czeka na zgodę organizatora rodziny.'));
       else if (r.status === 'error') Alert.alert(t('Nie udało się dokończyć zakupu'), t('Spróbuj ponownie.'));
     } finally { setBusy(false); }
@@ -57,7 +58,7 @@ export default function PaywallScreen() {
   useAnnounce(note); /* teksty o limicie czytają stałą produktu (PAYWALL), nie konfigurację buildu E2E (limit 0) */
   const fake = isFakeStoreBuild() ? (getStoreAdapter() as unknown as FakeStoreControl) : null;
   return (
-    <Screen><Stack.Screen options={headerOpts} /><ScrollView testID="paywall-scroll" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
+    <Screen><Stack.Screen options={headerOpts} /><ScrollView ref={scrollRef} testID="paywall-scroll" contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       {reason === 'limit' && view.decision.resetsAt ? <View testID="paywall-limit" style={{ marginTop: 8, marginBottom: 12, gap: 6 }}>{/* wariant B (decyzja właściciela 22.10.2026): pochwała, jawny limit, kim jest autor, kiedy wracają dni */}
         <Text accessibilityRole="header" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('sectionTitle') }}>{t('Jesteśmy z Ciebie dumni!')}</Text>
         <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold }}>{t('W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH })}</Text>
