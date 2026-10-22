@@ -1,0 +1,58 @@
+{
+ "jezyk": "ro",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 394,
+ "uwagi": [
+  {
+   "klucz": "Asekuracja",
+   "rodzaj": "krytyczne",
+   "pl": "Asekuracja",
+   "tlumaczenie": "Siguranță și spotter",
+   "poprawka": "Siguranță și asigurare",
+   "powod": "Anglicyzm „spotter” jest niespójny z terminologią z zdania 3 („asigurarea”, „partener care asigură”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "Progresie: când atingi capătul de sus al intervalului de repetări, adaugă greutate. Creșterea treptată a încărcăturii este recomandată de pozițiile ACSM; momentul și mărimea pasului sunt o convenție.",
+   "poprawka": "Progresie: când atingeți capătul de sus al intervalului de repetări, adăugați greutate. Creșterea treptată a încărcăturii este recomandată de pozițiile ACSM; momentul și mărimea pasului sunt o convenție.",
+   "powod": "Forma „ty” („atingi”, „adaugă”) w zwykłym tekście, który nie jest wskazówką techniki. Rejestr wymaga formy grzecznościowej.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "La final, „Termină” în antet (sau „Termină antrenamentul” în card după ultima serie) — sesiunea ajunge în fila Plan.",
+   "poprawka": "La final, atingeți „Termină” în antet (sau „Termină antrenamentul” în card după ultima serie) — sesiunea ajunge în fila Plan.",
+   "powod": "Eliptyczna konstrukcja bez czasownika brzmi po rumuńsku nienaturalnie. Dodano „atingeți” zgodnie z en („tap”).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań.",
+   "rodzaj": "nowe",
+   "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań.",
+   "tlumaczenie": "O propunere după ipotezele dvs. — o verificați înainte de salvare. Regulile provin din sinteze ale cercetărilor și din recomandări ale unor organizații (OMS, ACSM); părțile marcate ca convenție sau simplificare nu sunt rezultate directe ale cercetării.",
+   "poprawka": "O propunere conform criteriilor dvs. — o verificați înainte de salvare. Regulile provin din sinteze ale cercetărilor și din recomandări ale unor organizații (OMS, ACSM); părțile marcate ca convenție sau simplificare nu sunt rezultate directe ale cercetării.",
+   "powod": "„ipotezele dvs.” brzmi nienaturalnie jako odpowiednik „założeń” użytkownika (jego ustawień i wyborów).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "lpd.pull",
+   "rodzaj": "wskazowka",
+   "pl": "Ściągnij drążek w dół przed twarzą do górnej części klatki.",
+   "tlumaczenie": "Trage bara pe lângă față în jos, până la partea de sus a pieptului.",
+   "poprawka": "Trage bara în jos, prin fața feței, până la partea de sus a pieptului.",
+   "powod": "„pe lângă față” znaczy „obok twarzy”, a w źródle jest „przed twarzą”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

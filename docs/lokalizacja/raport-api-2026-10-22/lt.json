@@ -1,0 +1,67 @@
+{
+ "jezyk": "lt",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 393,
+ "uwagi": [
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Pabaigoje „Baigti“ viršuje (arba „Baigti treniruotę“ kortelėje po paskutinės serijos) — sesija patenka į skiltį „Planas“.",
+   "poprawka": "Pabaigoje bakstelėkite „Baigti“ viršuje (arba „Baigti treniruotę“ kortelėje po paskutinės serijos) — sesija pateks į skiltį „Planas“.",
+   "powod": "Brak czasownika (polecenia) w pierwszej części zdania, przez co brzmi niegramatycznie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "ACSM 2026 pozicija: bent {n} serijų kūno daliai per savaitę raumenų augimas buvo didesnis nei esant mažesnei apimčiai; jėgos treniruotės įvairiomis formomis duoda augimą, palyginti su treniruočių nebuvimu.",
+   "poprawka": "ACSM 2026 pozicija: bent {n} serijų raumenų grupei per savaitę raumenų augimas buvo didesnis nei esant mažesnei apimčiai; jėgos treniruotės įvairiomis formomis duoda augimą, palyginti su treniruočių nebuvimu.",
+   "powod": "Niespójna terminologia: „kūno daliai” zamiast „raumenų grupei” używanego dla „partia” w innych zdaniach.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Pranešimai veikia, kai įjungta „Garsas poilsio pabaigoje“. Tą patį nustatymą pakeisite ir meniu „⋯“ treniruotės ekrane.",
+   "poprawka": "Pranešimai veikia, kai įjungtas nustatymas „Garsas poilsio pabaigoje“. Tą patį nustatymą pakeisite ir meniu „⋯“ treniruotės ekrane.",
+   "powod": "Błąd zgody rodzaju: „įjungta” przy rodzaju męskim „Garsas”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "push.rigid",
+   "rodzaj": "wskazowka",
+   "pl": "Tułów sztywny — biodra nie opadają i nie unoszą się.",
+   "tlumaczenie": "Kūnas įtemptas — klubai nenusvyra ir tu jų nekeli.",
+   "poprawka": "Kūnas įtemptas — klubai nei nusvyra, nei kyla aukštyn.",
+   "powod": "Nienaturalna konstrukcja „ir tu jų nekeli” — zmienia podmiot i brzmi niezręcznie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "lp.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Nie schodź tak nisko, by miednica odrywała się od oparcia, a dolne plecy zaokrąglały.",
+   "tlumaczenie": "Nesileisk taip giliai, kad dubuo atsikeltų nuo sėdynės ir juosmuo susilenktų.",
+   "poprawka": "Nesileisk taip giliai, kad dubuo atsikeltų nuo atlošo ir juosmuo susilenktų.",
+   "powod": "Polskie „od oparcia” to oparcie pleców, a nie siedzisko („sėdynė”).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "wall.breath",
+   "rodzaj": "wskazowka",
+   "pl": "Oddychaj normalnie — nie wstrzymuj oddechu.",
+   "tlumaczenie": "Kvėpuok įprastai; nelaikyk kvapo.",
+   "poprawka": "Kvėpuok įprastai; nesulaikyk kvapo.",
+   "powod": "Utarte wyrażenie to „sulaikyti kvapą”; „nelaikyk kvapo” brzmi nienaturalnie.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

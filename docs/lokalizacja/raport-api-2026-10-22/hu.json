@@ -1,0 +1,94 @@
+{
+ "jezyk": "hu",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 390,
+ "uwagi": [
+  {
+   "klucz": "Asekuracja",
+   "rodzaj": "krytyczne",
+   "pl": "Asekuracja",
+   "tlumaczenie": "Biztonság és segítő",
+   "poprawka": "Biztosítás",
+   "powod": "Terminologia niespójna z poz. 3, gdzie ten sam termin to „biztosítás”. „Biztonság és segítő” jest nienaturalne jako nagłówek.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "rodzaj": "nowe",
+   "pl": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "tlumaczenie": "A(z) {app} alkalmazást egy független fejlesztő készíti: reklámok és adatgyűjtés nélkül. Ha segít Önnek, válasszon csomagot, és edzen korlátok nélkül. Az ingyenes napok ekkor térnek vissza: {date}.",
+   "poprawka": "A(z) {app} alkalmazást egy független fejlesztő készíti: reklámok és adatgyűjtés nélkül. Ha segít Önnek, válasszon csomagot, és eddzen korlátok nélkül. Az ingyenes napok ekkor térnek vissza: {date}.",
+   "powod": "Błędna forma trybu rozkazującego: poprawnie „eddzen”, nie „edzen”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Az ACSM 2026-os állásfoglalása: testrészenként heti legalább {n} sorozattal nagyobb volt az izomnövekedés, mint kisebb volumennel; az erőedzés különféle formái növekedést hoznak az edzés nélküli állapothoz képest.",
+   "poprawka": "Az ACSM 2026-os állásfoglalása: izomcsoportonként heti legalább {n} sorozattal nagyobb volt az izomnövekedés, mint kisebb volumennel; az erőedzés különféle formái növekedést hoznak az edzés nélküli állapothoz képest.",
+   "powod": "Niespójna terminologia: „partia” to w innych zdaniach (25, 83) „izomcsoport”, tu użyto „testrész”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
+   "rodzaj": "nowe",
+   "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
+   "tlumaczenie": "Edzen ingyen havonta {n} napot. A Pro feloldja a korlátot. Bármikor lemondhatja az Apple-fiókja beállításaiban.",
+   "poprawka": "Eddzen ingyen havonta {n} napot. A Pro feloldja a korlátot. Bármikor lemondhatja az Apple-fiókja beállításaiban.",
+   "powod": "Błędna forma trybu rozkazującego: poprawnie „Eddzen”, nie „Edzen”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "rodzaj": "nowe",
+   "pl": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "tlumaczenie": "Ebben a hónapban keményen edz, és felhasználja az összes ingyenes edzésnapot ({n}). Szép munka!",
+   "poprawka": "Ebben a hónapban keményen edzett, és felhasználta az összes ingyenes edzésnapot ({n}). Szép munka!",
+   "powod": "Czas teraźniejszy („felhasználja”) brzmi po węgiersku jak przyszłość lub zwyczaj. Komunikat dotyczy wykorzystanego już limitu, więc naturalny jest czas przeszły.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "bp.control",
+   "rodzaj": "wskazowka",
+   "pl": "Opuszczaj ciężar powoli — bez odbijania od klatki.",
+   "tlumaczenie": "Lassan engedd le a súlyt — ne pattintsd le a mellkasodról.",
+   "poprawka": "Lassan engedd le a súlyt — ne pattintsd vissza a mellkasodról.",
+   "powod": "„ne pattintsd le” znaczy coś innego; chodzi o odbijanie sztangi od klatki („visszapattintani”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "bss.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Stań tyłem do ławki i oprzyj na niej grzbiet tylnej stopy; przednia stopa wysunięta.",
+   "tlumaczenie": "Állj háttal a padnak, és tedd rá a hátsó lábad lábfejét; az első talp elöl.",
+   "poprawka": "Állj háttal a padnak, és tedd rá a hátsó lábad lábfejét; az első láb előrébb.",
+   "powod": "„az első talp elöl” jest nienaturalne; chodzi o wysuniętą przednią nogę.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "carry.walk",
+   "rodzaj": "wskazowka",
+   "pl": "Idź spokojnym, kontrolowanym krokiem na ustalony dystans albo czas.",
+   "tlumaczenie": "Menj nyugodt, kontrollált tempóban egy megadott távot vagy ideig.",
+   "poprawka": "Menj nyugodt, kontrollált tempóban egy megadott távon vagy ideig.",
+   "powod": "Niezgodność przypadków: „távot vagy ideig” brzmi niegramatycznie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "scr.control",
+   "rodzaj": "wskazowka",
+   "pl": "Wracaj powoli, bez odbijania ciężaru na końcu.",
+   "tlumaczenie": "Lassan térj vissza, a végén ne rántsa vissza a súly.",
+   "poprawka": "Lassan térj vissza, és a végén ne hagyd visszapattanni a súlyt.",
+   "powod": "Przekład zmienia podmiot (to ciężar „rántja”). Źródło mówi o niedopuszczeniu do odbicia ciężaru.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}
