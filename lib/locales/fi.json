@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "”Arkistoi” esikatselussa piilottaa pohjan; sen voi poistaa esikatselun alareunan painikkeella ”Poista pohja” tai pyyhkäisemällä listassa vasemmalle (vahvistuksella).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Kehonpainon mittaukset (”Kehonpaino — mittaukset”) voi poistaa painikkeella ”Muokkaa” yläpalkissa tai pyyhkäisemällä vasemmalle.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Paikan voi poistaa sen näytön alareunan painikkeella ”Poista paikka” tai pyyhkäisemällä listassa vasemmalle; pääpaikkaa ei voi poistaa, jos muita paikkoja on.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Kuminauhat voi poistaa painikkeella ”Muokkaa” niiden näytön yläpalkissa tai pyyhkäisemällä vasemmalle."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Kuminauhat voi poistaa painikkeella ”Muokkaa” niiden näytön yläpalkissa tai pyyhkäisemällä vasemmalle.",
+ "Trening to część mojego tygodnia": "Treeni on osa viikkoani",
+ "Szukam swojego rytmu": "Etsin vielä omaa rytmiäni",
+ "Trening to moje życie": "Treeni on elämäni",
+ "Cały rok treningów, rozliczany rocznie.": "Kokonainen vuosi treenejä, laskutetaan vuosittain.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Maksat joka kuukausi ja lopetat, kun haluat.",
+ "Płacisz raz i masz na zawsze.": "Maksat kerran ja omistat sen ikuisesti.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Treenaa ilmaiseksi {n} päivää kuukaudessa. Pro poistaa rajan. Voit peruuttaa milloin tahansa Apple-tilisi asetuksissa.",
+ "Jesteśmy z Ciebie dumni!": "Olemme ylpeitä sinusta!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Tässä kuussa treenaat kovaa ja käytät kaikki ilmaiset treenipäivät ({n}). Hyvää työtä!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "Tämän sovelluksen ({app}) tekee riippumaton kehittäjä: ei mainoksia, ei tietojen keräämistä. Jos se auttaa sinua, valitse tilaus ja treenaa ilman rajaa. Ilmaiset päivät palaavat: {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Ilman ostoa: enintään {n} treenipäivää kuukaudessa; historia, varmuuskopio ja vienti ovat aina käytettävissä.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ilmaiset treenipäivät tässä kuussa: {n} / {limit} käytetty",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Ilmaisia treenipäiviä {left} tässä kuussa: {n} / {limit}.",
+ "Został|Zostały|Zostało": "jäljellä|jäljellä"
 }

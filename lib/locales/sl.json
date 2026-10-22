@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "»Arhiviraj« v predogledu skrije predlogo; izbrišete jo z gumbom »Izbriši predlogo« na dnu predogleda ali s potegom v levo na seznamu (s potrditvijo).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Meritve telesne teže (»Telesna teža — meritve«) izbrišete z »Uredi« v glavi ali s potegom v levo.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Lokacijo izbrišete z gumbom »Izbriši lokacijo« na dnu njenega zaslona ali s potegom v levo na seznamu; glavne lokacije ni mogoče izbrisati, dokler obstajajo druge.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Elastike izbrišete z »Uredi« v glavi njihovega zaslona ali s potegom v levo."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Elastike izbrišete z »Uredi« v glavi njihovega zaslona ali s potegom v levo.",
+ "Trening to część mojego tygodnia": "Trening je del mojega tedna",
+ "Szukam swojego rytmu": "Iščem svoj ritem",
+ "Trening to moje życie": "Trening je moje življenje",
+ "Cały rok treningów, rozliczany rocznie.": "Celo leto treningov z letnim obračunom.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Plačujete vsak mesec in nehate, ko želite.",
+ "Płacisz raz i masz na zawsze.": "Plačate enkrat in imate za vedno.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Trenirajte brezplačno {n} dni na mesec. Pro odstrani omejitev. Kadar koli lahko prekličete v nastavitvah računa Apple.",
+ "Jesteśmy z Ciebie dumni!": "Ponosni smo na vas!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Ta mesec trenirate zavzeto in porabite vse brezplačne dni treninga ({n}). Odlično!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} ustvarja neodvisen razvijalec: brez oglasov in brez zbiranja podatkov. Če vam pomaga, izberite načrt in trenirajte brez omejitev. Brezplačni dnevi se vrnejo {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Brez nakupa: do {n} dni treninga na mesec; zgodovina, varnostna kopija in izvoz so vedno na voljo.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Brezplačni dnevi treninga ta mesec: porabljeno {n} od {limit}",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} od {limit} brezplačnih dni treninga ta mesec.",
+ "Został|Zostały|Zostało": "Ostaja|Ostajata|Ostajajo|Ostaja"
 }

@@ -222,5 +222,7 @@
  "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.": "Menú ⋯ en el encabezado: «Pausar entrenamiento» detiene el reloj del entrenamiento; el tiempo de pausa no cuenta en la duración.",
  "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Al final, «Terminar» en el encabezado (o «Terminar entrenamiento» en la tarjeta tras la última serie) — la sesión pasa a la pestaña Plan.",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Las mediciones de peso corporal («Peso corporal — mediciones») se eliminan con «Editar» en el encabezado o deslizando a la izquierda.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Las bandas se eliminan con «Editar» en el encabezado de su pantalla o deslizando a la izquierda."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Las bandas se eliminan con «Editar» en el encabezado de su pantalla o deslizando a la izquierda.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Entrena gratis {n} días al mes. Pro quita el límite. Puedes cancelar cuando quieras en la configuración de tu cuenta de Apple.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Sin compra: hasta {n} días de entrenamiento al mes; el historial, el respaldo y la exportación siempre están disponibles."
 }

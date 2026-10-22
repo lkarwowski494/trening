@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "«Archivar» en la vista previa oculta la plantilla; puedes eliminarla con el botón «Eliminar plantilla» al final de la vista previa o deslizando a la izquierda en la lista (con confirmación).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Las mediciones de peso corporal («Peso corporal — mediciones») se eliminan con «Editar» en la cabecera o deslizando a la izquierda.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Un lugar se elimina con el botón «Eliminar lugar» al final de su pantalla o deslizando a la izquierda en la lista; el lugar principal no se puede eliminar mientras haya otros.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Las bandas se eliminan con «Editar» en la cabecera de su pantalla o deslizando a la izquierda."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Las bandas se eliminan con «Editar» en la cabecera de su pantalla o deslizando a la izquierda.",
+ "Trening to część mojego tygodnia": "Entrenar es parte de mi semana",
+ "Szukam swojego rytmu": "Estoy buscando mi ritmo",
+ "Trening to moje życie": "Entrenar es mi vida",
+ "Cały rok treningów, rozliczany rocznie.": "Un año entero de entrenamientos, con cobro anual.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Pagas cada mes y lo dejas cuando quieras.",
+ "Płacisz raz i masz na zawsze.": "Pagas una vez y es tuyo para siempre.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Entrena gratis {n} días al mes. Pro quita el límite. Puedes cancelar cuando quieras en los ajustes de tu cuenta de Apple.",
+ "Jesteśmy z Ciebie dumni!": "¡Estamos orgullosos de ti!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Este mes entrenas duro y usas todos los días de entrenamiento gratuitos ({n}). ¡Buen trabajo!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} la crea un desarrollador independiente: sin anuncios y sin recopilar datos. Si te ayuda, elige un plan y entrena sin límite. Los días gratuitos vuelven el {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Sin compra: hasta {n} días de entrenamiento al mes; el historial, la copia de seguridad y la exportación siempre están disponibles.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Días de entrenamiento gratuitos este mes: {n} de {limit} usados",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} de {limit} días de entrenamiento gratuitos este mes.",
+ "Został|Zostały|Zostało": "Queda|Quedan"
 }

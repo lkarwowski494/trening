@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "預覽中的「封存」會隱藏範本；要刪除，請按預覽底部的「刪除範本」按鈕，或在列表中向左滑動（需確認）。",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "體重測量（「體重 — 測量」）可用標題列的「編輯」刪除，或向左滑動刪除。",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "地點可用其畫面底部的「刪除地點」按鈕，或在列表中向左滑動來刪除；仍有其他地點時，無法刪除主要地點。",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "彈力帶可用其畫面標題列的「編輯」刪除，或向左滑動刪除。"
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "彈力帶可用其畫面標題列的「編輯」刪除，或向左滑動刪除。",
+ "Trening to część mojego tygodnia": "訓練是我每週的一部分",
+ "Szukam swojego rytmu": "我正在尋找自己的節奏",
+ "Trening to moje życie": "訓練就是我的生活",
+ "Cały rok treningów, rozliczany rocznie.": "整年訓練，按年計費。",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "按月付款，想停就停。",
+ "Płacisz raz i masz na zawsze.": "一次付款，永久擁有。",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "每月可免費訓練 {n} 天。Pro 解除天數限制。你可以隨時在 Apple 帳號設定中取消。",
+ "Jesteśmy z Ciebie dumni!": "我們為你感到驕傲！",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "這個月你訓練得很努力，已用完所有免費訓練日（{n} 天）。做得好！",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} 由獨立開發者製作：沒有廣告，也不蒐集資料。如果它對你有幫助，請選擇方案，不受限制地訓練。免費天數會在 {date} 恢復。",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "不購買也可以：每月最多 {n} 個訓練日；歷史記錄、備份與匯出隨時可用。",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "本月免費訓練日：已使用 {n} / {limit}",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "本月 {limit} 個免費訓練日中，{left} {n} 個。",
+ "Został|Zostały|Zostało": "還剩"
 }

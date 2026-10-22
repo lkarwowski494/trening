@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "“Arsipkan” di pratinjau menyembunyikan templat; hapus dengan tombol “Hapus templat” di bagian bawah pratinjau atau geser ke kiri di daftar (dengan konfirmasi).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Pengukuran berat badan (“Berat badan — pengukuran”) dihapus lewat “Edit” di header atau dengan menggeser ke kiri.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Hapus tempat dengan tombol “Hapus tempat” di bagian bawah layarnya atau geser ke kiri di daftar; tempat utama tidak bisa dihapus selama masih ada tempat lain.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Karet dihapus lewat “Edit” di header layarnya atau dengan menggeser ke kiri."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Karet dihapus lewat “Edit” di header layarnya atau dengan menggeser ke kiri.",
+ "Trening to część mojego tygodnia": "Latihan adalah bagian dari minggu saya",
+ "Szukam swojego rytmu": "Saya sedang mencari ritme saya",
+ "Trening to moje życie": "Latihan adalah hidup saya",
+ "Cały rok treningów, rozliczany rocznie.": "Setahun penuh latihan, ditagih per tahun.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Bayar setiap bulan dan berhenti kapan saja.",
+ "Płacisz raz i masz na zawsze.": "Bayar sekali dan miliki selamanya.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Berlatih gratis {n} hari per bulan. Pro menghilangkan batasnya. Anda bisa membatalkan kapan saja di pengaturan akun Apple.",
+ "Jesteśmy z Ciebie dumni!": "Kami bangga pada Anda!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Bulan ini Anda berlatih keras dan memakai semua hari latihan gratis ({n}). Kerja bagus!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} dibuat oleh pengembang independen: tanpa iklan, tanpa pengumpulan data. Jika membantu Anda, pilih paket dan berlatih tanpa batas. Hari gratis kembali pada {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Tanpa pembelian: hingga {n} hari latihan per bulan; riwayat, cadangan, dan ekspor selalu tersedia.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Hari latihan gratis bulan ini: terpakai {n} dari {limit}",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} dari {limit} hari latihan gratis bulan ini.",
+ "Został|Zostały|Zostało": "Tersisa"
 }

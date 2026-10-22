@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "”Arkivera” i förhandsvisningen döljer mallen; du raderar den med knappen ”Radera mall” längst ned i förhandsvisningen eller genom att svepa åt vänster i listan (med bekräftelse).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Kroppsviktsmätningar (”Kroppsvikt — mätningar”) raderar du med ”Redigera” högst upp eller genom att svepa åt vänster.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Du raderar en plats med knappen ”Radera plats” längst ned på platsens skärm eller genom att svepa åt vänster i listan; huvudplatsen kan inte raderas så länge det finns andra.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Du raderar band med ”Redigera” högst upp på deras skärm eller genom att svepa åt vänster."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Du raderar band med ”Redigera” högst upp på deras skärm eller genom att svepa åt vänster.",
+ "Trening to część mojego tygodnia": "Träning är en del av min vecka",
+ "Szukam swojego rytmu": "Jag letar efter min rytm",
+ "Trening to moje życie": "Träning är mitt liv",
+ "Cały rok treningów, rozliczany rocznie.": "Ett helt år av träning, faktureras årligen.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Du betalar varje månad och slutar när du vill.",
+ "Płacisz raz i masz na zawsze.": "Du betalar en gång och har det för alltid.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Träna {n} dagar i månaden gratis. Pro tar bort gränsen. Du kan avsluta när du vill i inställningarna för ditt Apple-konto.",
+ "Jesteśmy z Ciebie dumni!": "Vi är stolta över dig!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Den här månaden tränar du hårt och använder alla gratis träningsdagar ({n}). Bra jobbat!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} görs av en oberoende utvecklare: utan reklam och utan datainsamling. Om den hjälper dig, välj en plan och träna utan gräns. De gratis dagarna kommer tillbaka {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Utan köp: upp till {n} träningsdagar i månaden; historik, backup och export finns alltid kvar.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Gratis träningsdagar den här månaden: {n} av {limit} använda",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} av {limit} gratis träningsdagar den här månaden {left}.",
+ "Został|Zostały|Zostało": "kvar|kvar"
 }

@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "‘Archiveren’ in het voorbeeld verbergt het sjabloon; verwijderen kan met de knop ‘Verwijder sjabloon’ onderaan het voorbeeld of door in de lijst naar links te vegen (met bevestiging).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Lichaamsgewichtmetingen (‘Lichaamsgewicht — metingen’) verwijder je via ‘Wijzig’ bovenaan of door naar links te vegen.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Een locatie verwijder je met de knop ‘Verwijder locatie’ onderaan het scherm van de locatie of door in de lijst naar links te vegen; de hoofdlocatie kun je niet verwijderen zolang er andere zijn.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Banden verwijder je via ‘Wijzig’ bovenaan hun scherm of door naar links te vegen."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Banden verwijder je via ‘Wijzig’ bovenaan hun scherm of door naar links te vegen.",
+ "Trening to część mojego tygodnia": "Trainen hoort bij mijn week",
+ "Szukam swojego rytmu": "Ik zoek mijn ritme",
+ "Trening to moje życie": "Trainen is mijn leven",
+ "Cały rok treningów, rozliczany rocznie.": "Een heel jaar trainen, jaarlijks afgerekend.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Je betaalt elke maand en stopt wanneer je wilt.",
+ "Płacisz raz i masz na zawsze.": "Je betaalt één keer en hebt het voor altijd.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Train {n} dagen per maand gratis. Pro haalt de limiet weg. Je kunt altijd opzeggen in de instellingen van je Apple Account.",
+ "Jesteśmy z Ciebie dumni!": "We zijn trots op je!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Deze maand train je hard en gebruik je alle gratis trainingsdagen ({n}). Goed bezig!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} wordt gemaakt door een onafhankelijke ontwikkelaar: zonder advertenties en zonder dataverzameling. Als de app je helpt, kies dan een abonnement en train zonder limiet. De gratis dagen komen terug op {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Zonder aankoop: tot {n} trainingsdagen per maand; geschiedenis, back-up en export blijven altijd beschikbaar.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Gratis trainingsdagen deze maand: {n} van {limit} gebruikt",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} van {limit} gratis trainingsdagen deze maand {left}.",
+ "Został|Zostały|Zostało": "over|over"
 }

@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "プレビューの「アーカイブ」でテンプレートを非表示にします。削除するには、プレビュー下部の「テンプレートを削除」ボタンを押すか、リストで左にスワイプします（確認あり）。",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "体重の測定（「体重 — 測定」）は、ヘッダーの「編集」から、または左にスワイプして削除できます。",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "場所は、その画面の下部にある「場所を削除」ボタンか、リストで左にスワイプして削除できます。ほかの場所がある間は、メインの場所は削除できません。",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "バンドは、その画面のヘッダーの「編集」から、または左にスワイプして削除できます。"
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "バンドは、その画面のヘッダーの「編集」から、または左にスワイプして削除できます。",
+ "Trening to część mojego tygodnia": "トレーニングは私の1週間の一部",
+ "Szukam swojego rytmu": "自分のリズムを探し中",
+ "Trening to moje życie": "トレーニングは私の人生",
+ "Cały rok treningów, rozliczany rocznie.": "1年分のトレーニング、年額でのお支払い。",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "毎月お支払いいただき、好きなときにやめられます。",
+ "Płacisz raz i masz na zawsze.": "1回のお支払いで、ずっとお使いいただけます。",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "毎月{n}日まで無料でトレーニングできます。Pro で制限がなくなります。解約はいつでも Apple アカウントの設定から行えます。",
+ "Jesteśmy z Ciebie dumni!": "あなたを誇りに思います！",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "今月はハードにトレーニングし、無料のトレーニング日（{n}日）をすべて使いました。よくがんばりました！",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} は個人の独立系デベロッパーが作っています。広告なし、データ収集なし。役に立っていると感じたら、プランを選んで制限なしでトレーニングしましょう。無料日は{date}に戻ります。",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "購入なしの場合：月に最大{n}日までトレーニングできます。履歴、バックアップ、書き出しはいつでも利用できます。",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "今月の無料トレーニング日：{limit}日中{n}日使用",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "今月の無料トレーニング日は{limit}日のうち、{n}日{left}。",
+ "Został|Zostały|Zostało": "残っています"
 }

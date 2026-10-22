@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "„Archyvuoti“ peržiūroje paslepia šabloną; ištrinti galite mygtuku „Ištrinti šabloną“ peržiūros apačioje arba braukdami į kairę sąraše (su patvirtinimu).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Kūno svorio matavimus („Kūno svoris — matavimai“) ištrinsite bakstelėję „Redaguoti“ antraštėje arba braukdami į kairę.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Vietą ištrinsite mygtuku „Ištrinti vietą“ jos ekrano apačioje arba braukdami į kairę sąraše; pagrindinės vietos ištrinti negalima, kol yra kitų.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Gumas ištrinsite bakstelėję „Redaguoti“ jų ekrano antraštėje arba braukdami į kairę."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Gumas ištrinsite bakstelėję „Redaguoti“ jų ekrano antraštėje arba braukdami į kairę.",
+ "Trening to część mojego tygodnia": "Treniruotės yra mano savaitės dalis",
+ "Szukam swojego rytmu": "Ieškau savo ritmo",
+ "Trening to moje życie": "Treniruotės yra mano gyvenimas",
+ "Cały rok treningów, rozliczany rocznie.": "Ištisi metai treniruočių, apmokestinama kasmet.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Mokate kas mėnesį ir nustojate, kada norite.",
+ "Płacisz raz i masz na zawsze.": "Sumokate vieną kartą ir turite visam laikui.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Treniruokitės nemokamai iki {n} dienų per mėnesį. Pro panaikina apribojimą. Atšaukti galite bet kada savo „Apple“ paskyros nustatymuose.",
+ "Jesteśmy z Ciebie dumni!": "Didžiuojamės jumis!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Šį mėnesį sunkiai treniruojatės ir išnaudojate visas nemokamas treniruočių dienas ({n}). Puikus darbas!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "„{app}“ kuria nepriklausomas kūrėjas: be reklamos ir be duomenų rinkimo. Jei ji jums padeda, pasirinkite planą ir treniruokitės be apribojimų. Nemokamos dienos sugrįš {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Be pirkimo: iki {n} treniruočių dienų per mėnesį; istorija, atsarginė kopija ir eksportas visada prieinami.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Nemokamos treniruočių dienos šį mėnesį: panaudota {n} iš {limit}",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} iš {limit} nemokamų treniruočių dienų šį mėnesį.",
+ "Został|Zostały|Zostało": "Lieka|Lieka|Lieka"
 }

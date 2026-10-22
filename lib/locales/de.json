@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "„Archivieren“ in der Vorschau blendet die Vorlage aus; löschen kannst du sie mit der Taste „Vorlage löschen“ unten in der Vorschau oder durch Wischen nach links in der Liste (mit Bestätigung).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Körpergewicht-Messungen („Körpergewicht — Messungen“) löschst du über „Bearbeiten“ in der Kopfzeile oder durch Wischen nach links.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Einen Ort löschst du mit der Taste „Ort löschen“ unten auf seinem Bildschirm oder durch Wischen nach links in der Liste; den Hauptort kannst du nicht löschen, solange es andere gibt.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Bänder löschst du über „Bearbeiten“ in der Kopfzeile ihres Bildschirms oder durch Wischen nach links."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Bänder löschst du über „Bearbeiten“ in der Kopfzeile ihres Bildschirms oder durch Wischen nach links.",
+ "Trening to część mojego tygodnia": "Training gehört zu meiner Woche",
+ "Szukam swojego rytmu": "Ich suche meinen Rhythmus",
+ "Trening to moje życie": "Training ist mein Leben",
+ "Cały rok treningów, rozliczany rocznie.": "Ein ganzes Jahr Training, jährlich abgerechnet.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Du zahlst jeden Monat und hörst auf, wann du willst.",
+ "Płacisz raz i masz na zawsze.": "Du zahlst einmal und hast es für immer.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Trainiere {n} Tage im Monat kostenlos. Pro hebt das Limit auf. Du kannst jederzeit in den Einstellungen deines Apple-Accounts kündigen.",
+ "Jesteśmy z Ciebie dumni!": "Wir sind stolz auf dich!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Diesen Monat trainierst du hart und nutzt alle kostenlosen Trainingstage ({n}). Gut gemacht!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} wird von einem unabhängigen Entwickler gemacht: ohne Werbung, ohne Datensammlung. Wenn es dir hilft, wähle einen Plan und trainiere ohne Limit. Die kostenlosen Tage kommen am {date} zurück.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Ohne Kauf: bis zu {n} Trainingstage pro Monat; Verlauf, Backup und Export sind immer verfügbar.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Kostenlose Trainingstage in diesem Monat: {n} von {limit} genutzt",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} von {limit} kostenlosen Trainingstagen in diesem Monat {left}.",
+ "Został|Zostały|Zostało": "übrig|übrig"
 }

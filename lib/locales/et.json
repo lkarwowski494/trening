@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "„Arhiveeri“ eelvaates peidab malli; kustutada saab nupuga „Kustuta mall“ eelvaate allosas või loendis vasakule libistades (kinnitusega).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Kehakaalu mõõtmisi („Kehakaal — mõõtmised“) saab kustutada nupuga „Muuda“ päises või vasakule libistades.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Koha saab kustutada nupuga „Kustuta koht“ selle ekraani allosas või loendis vasakule libistades; põhikohta ei saa kustutada, kuni on teisi.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Kummisid saab kustutada nupuga „Muuda“ nende ekraani päises või vasakule libistades."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Kummisid saab kustutada nupuga „Muuda“ nende ekraani päises või vasakule libistades.",
+ "Trening to część mojego tygodnia": "Treening on osa minu nädalast",
+ "Szukam swojego rytmu": "Otsin oma rütmi",
+ "Trening to moje życie": "Treening on minu elu",
+ "Cały rok treningów, rozliczany rocznie.": "Terve aasta treeninguid, arveldus kord aastas.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Maksad iga kuu ja lõpetad, millal tahad.",
+ "Płacisz raz i masz na zawsze.": "Maksad ühe korra ja see on sinu igaveseks.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Treeni tasuta kuni {n} päeva kuus. Pro eemaldab piirangu. Võid igal ajal tühistada oma Apple’i konto seadetes.",
+ "Jesteśmy z Ciebie dumni!": "Oleme sinu üle uhked!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Sel kuul treenid kõvasti ja kasutad ära kõik tasuta treeningpäevad ({n}). Hea töö!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} on sõltumatu arendaja tehtud: ilma reklaamideta ja andmeid kogumata. Kui see sind aitab, vali plaan ja treeni piiranguteta. Tasuta päevad naasevad {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Ilma ostuta: kuni {n} treeningpäeva kuus; ajalugu, varukoopia ja eksport on alati saadaval.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Tasuta treeningpäevad sel kuul: kasutatud {n} / {limit}",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Sel kuul on tasuta treeningpäevi {left}: {n} / {limit}.",
+ "Został|Zostały|Zostało": "jäänud|jäänud"
 }

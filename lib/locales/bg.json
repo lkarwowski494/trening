@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "„Архивирай“ в прегледа скрива шаблона; можете да го изтриете с бутона „Изтриване на шаблона“ най-долу в прегледа или с плъзгане наляво в списъка (с потвърждение).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Измерванията на телесното тегло („Телесно тегло — измервания“) се изтриват чрез „Редактиране“ в заглавието или с плъзгане наляво.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Място изтривате с бутона „Изтриване на мястото“ най-долу на неговия екран или с плъзгане наляво в списъка; основното място не може да се изтрие, докато има други.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Ластиците се изтриват чрез „Редактиране“ в заглавието на техния екран или с плъзгане наляво."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Ластиците се изтриват чрез „Редактиране“ в заглавието на техния екран или с плъзгане наляво.",
+ "Trening to część mojego tygodnia": "Тренировката е част от моята седмица",
+ "Szukam swojego rytmu": "Търся своя ритъм",
+ "Trening to moje życie": "Тренировката е моят живот",
+ "Cały rok treningów, rozliczany rocznie.": "Цяла година тренировки с годишно таксуване.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Плащате всеки месец и спирате, когато поискате.",
+ "Płacisz raz i masz na zawsze.": "Плащате веднъж и го имате завинаги.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Тренирайте безплатно {n} дни на месец. Pro премахва ограничението. Можете да откажете по всяко време в настройките на Apple акаунта си.",
+ "Jesteśmy z Ciebie dumni!": "Гордеем се с вас!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Този месец тренирате здраво и използвате всички безплатни тренировъчни дни ({n}). Браво!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} се създава от независим разработчик: без реклами и без събиране на данни. Ако ви помага, изберете план и тренирайте без ограничение. Безплатните дни се връщат на {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Без покупка: до {n} тренировъчни дни на месец; историята, резервното копие и експортът винаги са налични.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Безплатни тренировъчни дни този месец: използвани {n} от {limit}",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} от {limit} безплатни тренировъчни дни този месец.",
+ "Został|Zostały|Zostało": "Остава|Остават"
 }

@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "“Lưu trữ” trong phần xem trước sẽ ẩn mẫu; để xóa, dùng nút “Xóa mẫu” ở cuối phần xem trước hoặc vuốt sang trái trong danh sách (có xác nhận).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Số đo cân nặng (“Cân nặng — số đo”) được xóa bằng “Sửa” ở đầu màn hình hoặc bằng cách vuốt sang trái.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Xóa địa điểm bằng nút “Xóa địa điểm” ở cuối màn hình của nó hoặc vuốt sang trái trong danh sách; không thể xóa địa điểm chính khi vẫn còn địa điểm khác.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Dây kháng lực được xóa bằng “Sửa” ở đầu màn hình của chúng hoặc bằng cách vuốt sang trái."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Dây kháng lực được xóa bằng “Sửa” ở đầu màn hình của chúng hoặc bằng cách vuốt sang trái.",
+ "Trening to część mojego tygodnia": "Tập luyện là một phần trong tuần của tôi",
+ "Szukam swojego rytmu": "Tôi đang tìm nhịp của riêng mình",
+ "Trening to moje życie": "Tập luyện là cuộc sống của tôi",
+ "Cały rok treningów, rozliczany rocznie.": "Cả năm tập luyện, thanh toán theo năm.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Bạn trả theo tháng và dừng bất cứ khi nào muốn.",
+ "Płacisz raz i masz na zawsze.": "Bạn trả một lần và dùng mãi mãi.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Tập miễn phí {n} ngày mỗi tháng. Pro gỡ bỏ giới hạn. Bạn có thể hủy bất cứ lúc nào trong cài đặt tài khoản Apple.",
+ "Jesteśmy z Ciebie dumni!": "Chúng tôi tự hào về bạn!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Tháng này bạn tập rất chăm chỉ và dùng hết các ngày tập miễn phí ({n}). Làm tốt lắm!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} do một nhà phát triển độc lập tạo ra: không quảng cáo, không thu thập dữ liệu. Nếu ứng dụng giúp ích cho bạn, hãy chọn một gói và tập không giới hạn. Các ngày miễn phí sẽ trở lại vào {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Không mua: tối đa {n} ngày tập mỗi tháng; lịch sử, bản sao lưu và xuất dữ liệu luôn có sẵn.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ngày tập miễn phí tháng này: đã dùng {n}/{limit}",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n}/{limit} ngày tập miễn phí trong tháng này.",
+ "Został|Zostały|Zostało": "Còn"
 }

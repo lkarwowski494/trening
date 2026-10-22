@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "“Arhivēt” priekšskatījumā paslēpj veidni; dzēst var ar pogu “Dzēst veidni” priekšskatījuma apakšā vai pavelkot pa kreisi sarakstā (ar apstiprinājumu).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Ķermeņa svara mērījumus (“Ķermeņa svars — mērījumi”) var dzēst, galvenē pieskaroties “Rediģēt” vai pavelkot pa kreisi.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Vietu var dzēst ar pogu “Dzēst vietu” tās ekrāna apakšā vai pavelkot pa kreisi sarakstā; galveno vietu nevar dzēst, kamēr ir citas.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Gumijas var dzēst, to ekrāna galvenē pieskaroties “Rediģēt” vai pavelkot pa kreisi."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Gumijas var dzēst, to ekrāna galvenē pieskaroties “Rediģēt” vai pavelkot pa kreisi.",
+ "Trening to część mojego tygodnia": "Treniņš ir daļa no manas nedēļas",
+ "Szukam swojego rytmu": "Meklēju savu ritmu",
+ "Trening to moje życie": "Treniņš ir mana dzīve",
+ "Cały rok treningów, rozliczany rocznie.": "Vesels gads treniņu ar ikgadēju norēķinu.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Maksājat katru mēnesi un beidzat, kad vēlaties.",
+ "Płacisz raz i masz na zawsze.": "Samaksājat vienreiz un paturat uz visiem laikiem.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Bezmaksas treniņi: līdz {n} dienām mēnesī. Pro noņem ierobežojumu. Atcelt varat jebkurā laikā sava Apple konta iestatījumos.",
+ "Jesteśmy z Ciebie dumni!": "Esam lepni par jums!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Šomēnes jūs trenējaties cītīgi un izmantojat visas bezmaksas treniņu dienas ({n}). Labs darbs!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} veido neatkarīgs izstrādātājs: bez reklāmām un bez datu vākšanas. Ja tā jums palīdz, izvēlieties plānu un trenējieties bez ierobežojumiem. Bezmaksas dienas atgriezīsies {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Bez pirkuma: līdz {n} treniņu dienām mēnesī; vēsture, dublējums un eksports vienmēr ir pieejami.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Bezmaksas treniņu dienas šomēnes: izmantotas {n} no {limit}",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} bezmaksas treniņu dienu skaits šomēnes: {n} no {limit}.",
+ "Został|Zostały|Zostało": "Neizmantotu|Neizmantotu|Neizmantotu"
 }

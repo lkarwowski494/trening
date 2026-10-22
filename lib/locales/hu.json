@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "Az előnézetben az „Archiválás” elrejti a sablont; törölni az előnézet alján lévő „Sablon törlése” gombbal vagy a listán balra húzva lehet (megerősítéssel).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "A testsúlymérések („Testsúly — mérések”) törléséhez használja a fejlécben lévő „Szerkesztés” gombot, vagy húzza balra a sort.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "A helyszínt a képernyője alján lévő „Helyszín törlése” gombbal vagy a listán balra húzva törölheti; a fő helyszín nem törölhető, amíg vannak mások.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "A gumiszalagokat a képernyőjük fejlécében lévő „Szerkesztés” gombbal vagy balra húzással törölheti."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "A gumiszalagokat a képernyőjük fejlécében lévő „Szerkesztés” gombbal vagy balra húzással törölheti.",
+ "Trening to część mojego tygodnia": "Az edzés a hetem része",
+ "Szukam swojego rytmu": "Még keresem a ritmusomat",
+ "Trening to moje życie": "Az edzés az életem",
+ "Cały rok treningów, rozliczany rocznie.": "Egy egész év edzés, évente számlázva.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Havonta fizet, és akkor hagyja abba, amikor akarja.",
+ "Płacisz raz i masz na zawsze.": "Egyszer fizet, és örökre az öné.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Edzen ingyen havonta {n} napot. A Pro feloldja a korlátot. Bármikor lemondhatja az Apple-fiókja beállításaiban.",
+ "Jesteśmy z Ciebie dumni!": "Büszkék vagyunk Önre!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Ebben a hónapban keményen edz, és felhasználja az összes ingyenes edzésnapot ({n}). Szép munka!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "A(z) {app} alkalmazást egy független fejlesztő készíti: reklámok és adatgyűjtés nélkül. Ha segít Önnek, válasszon csomagot, és edzen korlátok nélkül. Az ingyenes napok ekkor térnek vissza: {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Vásárlás nélkül: havonta legfeljebb {n} edzésnap; az előzmények, a biztonsági mentés és az exportálás mindig elérhető.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ingyenes edzésnapok ebben a hónapban: {limit} közül {n} felhasználva",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{limit} ingyenes edzésnapból {n} {left} ebben a hónapban.",
+ "Został|Zostały|Zostało": "maradt|maradt"
 }

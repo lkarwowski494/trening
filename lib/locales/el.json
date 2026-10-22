@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "Η «Αρχειοθέτηση» στην προεπισκόπηση κρύβει το πρότυπο· για διαγραφή πατήστε «Διαγραφή προτύπου» στο κάτω μέρος της προεπισκόπησης ή σύρετε αριστερά στη λίστα (με επιβεβαίωση).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Τις μετρήσεις σωματικού βάρους («Σωματικό βάρος — μετρήσεις») τις διαγράφετε με το «Επεξεργασία» στην κεφαλίδα ή σύροντας αριστερά.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Έναν χώρο τον διαγράφετε με το κουμπί «Διαγραφή χώρου» στο κάτω μέρος της οθόνης του ή σύροντας αριστερά στη λίστα· τον κύριο χώρο δεν τον διαγράφετε όσο υπάρχουν άλλοι.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Τα λάστιχα τα διαγράφετε με το «Επεξεργασία» στην κεφαλίδα της οθόνης τους ή σύροντας αριστερά."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Τα λάστιχα τα διαγράφετε με το «Επεξεργασία» στην κεφαλίδα της οθόνης τους ή σύροντας αριστερά.",
+ "Trening to część mojego tygodnia": "Η προπόνηση είναι μέρος της εβδομάδας μου",
+ "Szukam swojego rytmu": "Ψάχνω τον ρυθμό μου",
+ "Trening to moje życie": "Η προπόνηση είναι η ζωή μου",
+ "Cały rok treningów, rozliczany rocznie.": "Ένα ολόκληρο έτος προπονήσεων, με ετήσια χρέωση.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Πληρώνετε κάθε μήνα και σταματάτε όποτε θέλετε.",
+ "Płacisz raz i masz na zawsze.": "Πληρώνετε μία φορά και το έχετε για πάντα.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Προπονηθείτε δωρεάν {n} ημέρες τον μήνα. Το Pro αίρει το όριο. Μπορείτε να ακυρώσετε όποτε θέλετε στις ρυθμίσεις του λογαριασμού σας Apple.",
+ "Jesteśmy z Ciebie dumni!": "Είμαστε περήφανοι για εσάς!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Αυτόν τον μήνα προπονείστε σκληρά και χρησιμοποιείτε όλες τις δωρεάν ημέρες προπόνησης ({n}). Μπράβο!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "Το {app} δημιουργείται από έναν ανεξάρτητο προγραμματιστή: χωρίς διαφημίσεις, χωρίς συλλογή δεδομένων. Αν σας βοηθά, επιλέξτε ένα πλάνο και προπονηθείτε χωρίς όριο. Οι δωρεάν ημέρες επιστρέφουν στις {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Χωρίς αγορά: έως {n} ημέρες προπόνησης τον μήνα· το ιστορικό, το αντίγραφο ασφαλείας και η εξαγωγή είναι πάντα διαθέσιμα.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Δωρεάν ημέρες προπόνησης αυτόν τον μήνα: χρησιμοποιήθηκαν {n} από {limit}",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} από {limit} δωρεάν ημέρες προπόνησης αυτόν τον μήνα.",
+ "Został|Zostały|Zostało": "Απομένει|Απομένουν"
 }

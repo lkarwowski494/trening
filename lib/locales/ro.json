@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "„Arhivează” din previzualizare ascunde șablonul; îl ștergeți cu butonul „Șterge șablonul” din partea de jos a previzualizării sau glisând spre stânga în listă (cu confirmare).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Măsurătorile greutății corpului („Greutatea corpului — măsurători”) se șterg cu „Editează” din antet sau glisând spre stânga.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Locația se șterge cu butonul „Șterge locația” din partea de jos a ecranului ei sau glisând spre stânga în listă; locația principală nu poate fi ștearsă cât timp există altele.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Benzile se șterg cu „Editează” din antetul ecranului lor sau glisând spre stânga."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Benzile se șterg cu „Editează” din antetul ecranului lor sau glisând spre stânga.",
+ "Trening to część mojego tygodnia": "Antrenamentul face parte din săptămâna mea",
+ "Szukam swojego rytmu": "Îmi caut ritmul",
+ "Trening to moje życie": "Antrenamentul este viața mea",
+ "Cały rok treningów, rozliczany rocznie.": "Un an întreg de antrenamente, facturat anual.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Plătiți lunar și vă opriți când doriți.",
+ "Płacisz raz i masz na zawsze.": "Plătiți o singură dată și îl aveți pentru totdeauna.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Antrenați-vă gratuit {n} zile pe lună. Pro elimină limita. Puteți anula oricând din configurările contului dvs. Apple.",
+ "Jesteśmy z Ciebie dumni!": "Suntem mândri de dumneavoastră!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Luna aceasta vă antrenați intens și folosiți toate zilele de antrenament gratuite ({n}). Felicitări!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "Aplicația {app} este creată de un dezvoltator independent: fără reclame și fără colectarea datelor. Dacă vă ajută, alegeți un plan și antrenați-vă fără limită. Zilele gratuite revin pe {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Fără achiziție: până la {n} zile de antrenament pe lună; istoricul, copia de siguranță și exportul sunt mereu disponibile.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Zile de antrenament gratuite luna aceasta: {n} din {limit} folosite",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} din {limit} zile de antrenament gratuite luna aceasta.",
+ "Został|Zostały|Zostało": "Rămâne|Rămân|Rămân"
 }

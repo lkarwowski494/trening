@@ -1723,5 +1723,19 @@
  "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).": "Önizlemedeki “Arşivle” şablonu gizler; silmek için önizlemenin altındaki “Şablonu sil” düğmesini kullanın veya listede sola kaydırın (onayla).",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Vücut ağırlığı ölçümlerini (“Vücut ağırlığı — ölçümler”) üstteki “Düzenle” ile veya sola kaydırarak silebilirsiniz.",
  "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.": "Bir yeri, ekranının altındaki “Yeri sil” düğmesiyle veya listede sola kaydırarak silebilirsiniz; başka yerler varken ana yer silinemez.",
- "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Bantları, ekranlarının üstündeki “Düzenle” ile veya sola kaydırarak silebilirsiniz."
+ "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Bantları, ekranlarının üstündeki “Düzenle” ile veya sola kaydırarak silebilirsiniz.",
+ "Trening to część mojego tygodnia": "Antrenman haftamın bir parçası",
+ "Szukam swojego rytmu": "Ritmimi arıyorum",
+ "Trening to moje życie": "Antrenman hayatım",
+ "Cały rok treningów, rozliczany rocznie.": "Bir yıl boyunca antrenman, yıllık faturalandırılır.",
+ "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Her ay ödersiniz, istediğiniz zaman bırakırsınız.",
+ "Płacisz raz i masz na zawsze.": "Bir kez ödersiniz, sonsuza kadar sizin olur.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Ayda {n} gün ücretsiz antrenman yapın. Pro sınırı kaldırır. İstediğiniz zaman Apple hesabınızın ayarlarından iptal edebilirsiniz.",
+ "Jesteśmy z Ciebie dumni!": "Sizinle gurur duyuyoruz!",
+ "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Bu ay sıkı antrenman yapıyor ve tüm ücretsiz antrenman günlerini ({n}) kullanıyorsunuz. Aferin!",
+ "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "Uygulama ({app}) bağımsız bir geliştirici tarafından yapılır: reklamsız, veri toplamadan. Size yardımcı oluyorsa bir plan seçin ve sınırsız antrenman yapın. Ücretsiz günler şu tarihte geri gelir: {date}.",
+ "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Satın almadan: ayda en fazla {n} antrenman günü; geçmiş, yedek ve dışa aktarma her zaman kullanılabilir.",
+ "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Bu ayki ücretsiz antrenman günleri: {n} / {limit} kullanıldı",
+ "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Bu ay {limit} ücretsiz antrenman gününden {n} tanesi {left}.",
+ "Został|Zostały|Zostało": "kaldı|kaldı"
 }
