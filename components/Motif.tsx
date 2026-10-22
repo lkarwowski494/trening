@@ -2,8 +2,8 @@ import React from 'react';
 import { View, useWindowDimensions } from 'react-native';
 import { PLATE_COLORS, type PlateColor } from '@/lib/discColors';
 import Svg, { Path, Rect } from 'react-native-svg';
-import { needsEdge, miniIcon, MINI_ICON, MARK_STROKE, restCup, REST_CUP, plateStack, plateStackHeight, PLATE_STACK, type DayMark } from '@/lib/motif';
-import { useTheme, MOTIF, SPACE, type Theme } from '@/lib/theme';
+import { needsEdge, MINI_ICON, MARK_STROKE, restCup, REST_CUP, MARK_FILL, MARK_SQUARE, plateStack, plateStackHeight, PLATE_STACK, type DayMark } from '@/lib/motif';
+import { useTheme, MOTIF, SPACE, RADIUS, type Theme } from '@/lib/theme';
 import { useA11yPrefs } from '@/lib/a11yPrefs';
 import { ICON_BAR, ICON_PLATES, ICON_COLLAR } from '@/lib/brandIcon';
 
@@ -22,24 +22,17 @@ export function Plate({ color, loaded = true, h, w = 10, bg, th, testID }: { col
 }
 
 /**
- * Znacznik dnia (pasek tygodnia na karcie „Dziś” i kalendarz; korekta właściciela 09.10.2026 ok. 17:00): zrobione — mała ikona aplikacji w kolorach
- * (gryf w kolorze tekstu — w ciemnym motywie jasny), zaplanowane — sama obwódka ikony w kolorze tekstu, opuszczone — obwódka wyszarzona (ctrlLine).
- * Odpoczynek (dzień bez treningu w aktywnym planie; decyzja właściciela 09.10.2026 wieczór) — filiżanka espresso (RestCup).
- * Geometria: lib/motif.miniIcon i restCup. Dekoracja: stan dnia czyta VoiceOver z etykiety i wartości dnia.
+ * Znacznik dnia (pasek tygodnia na karcie „Dziś” i kalendarz; makieta A2, decyzja właściciela 22.10.2026, docs/18): zrobione — kwadrat pełny w kolorze znacznika,
+ * zaplanowane — kontur tego samego koloru, opuszczone — kontur wyszarzony (ctrlLine). Bez barw talerzy (te tylko jako tło startu). Odpoczynek (dzień bez
+ * treningu w aktywnym planie) — filiżanka (RestCup). Geometria: lib/motif.MARK_SQUARE, MINI_ICON, restCup. Dekoracja: stan dnia czyta VoiceOver z etykiety i wartości dnia.
  */
 export function DayIcon({ mark, bg, th }: { mark: DayMark; bg: string; th: Theme }) {
-  const parts = miniIcon(); const { w, h } = MINI_ICON;
-  if (mark === 'done') return (
-    <View {...a11yHidden} testID="day-icon-done"><Svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} accessible={false}>
-      {parts.map((p, i) => { const fill = p.color ? PLATE_COLORS[p.color] : th.text; const edge = !!p.color && needsEdge(fill, bg);
-        return <Rect key={i} x={edge ? p.x + 0.4 : p.x} y={edge ? p.y + 0.4 : p.y} width={edge ? p.w - 0.8 : p.w} height={edge ? p.h - 0.8 : p.h} rx={p.rx} fill={fill} stroke={edge ? th.text : undefined} strokeWidth={edge ? 0.8 : undefined} />; })}
-    </Svg></View>);
+  const { w, h } = MINI_ICON; const { size, sw } = MARK_SQUARE; const x = (w - size) / 2; const y = (h - size) / 2;
   if (mark === 'rest') return <RestCup color={th[MARK_STROKE.rest]} />;
-  const stroke = th[MARK_STROKE[mark]]; const sw = 1;
   return (
     <View {...a11yHidden} testID={`day-icon-${mark}`}><Svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} accessible={false}>
-      {parts.map((p, i) => p.part === 'bar' ? <Rect key={i} x={0} y={h / 2 - sw / 2} width={w} height={sw} fill={stroke} />
-        : <Rect key={i} x={p.x + sw / 2} y={p.y + sw / 2} width={p.w - sw} height={p.h - sw} rx={p.rx} fill={bg} stroke={stroke} strokeWidth={sw} />)}
+      {mark === 'done' ? <Rect x={x} y={y} width={size} height={size} rx={RADIUS.marker} fill={th[MARK_FILL.done]} />
+        : <Rect x={x + sw / 2} y={y + sw / 2} width={size - sw} height={size - sw} rx={RADIUS.marker} fill="none" stroke={th[MARK_STROKE[mark]]} strokeWidth={sw} />}
     </Svg></View>);
 }
 
