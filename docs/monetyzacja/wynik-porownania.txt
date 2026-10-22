@@ -1,0 +1,31 @@
+Porównanie modeli (2026-10-22); prowizja 15%; podatek efektywny 12%; horyzont kohorty 24 mies.
+| model | pesymistyczny: płacący · USD/płac. · USD/rok | normalny: płacący · USD/płac. · USD/rok | optymistyczny: płacący · USD/płac. · USD/rok |
+|---|---|---|---|
+| A0 obecny (odnawiane + 4 treningi) | 12 · 6,39 · **76** | 79 · 6,91 · **549** | 455 · 7,44 · **3385** |
+| V1 blokada | 7 · 5,39 · **40** | 87 · 5,97 · **520** | 888 · 6,76 · **6005** |
+| V2 blokada | 7 · 5,34 · **39** | 87 · 5,84 · **509** | 888 · 6,49 · **5766** |
+| V1 + 4 treningi | 7 · 5,39 · **37** | 69 · 5,97 · **409** | 636 · 6,76 · **4301** |
+| V2 + 4 treningi | 7 · 5,34 · **37** | 69 · 5,84 · **401** | 636 · 6,49 · **4130** |
+| M4 odnawiane | 16 · 6,39 · **101** | 72 · 6,91 · **498** | 347 · 7,44 · **2578** |
+| M5 odnawiane | 15 · 6,39 · **95** | 68 · 6,91 · **471** | 327 · 7,44 · **2431** |
+| M6 odnawiane | 14 · 6,39 · **90** | 64 · 6,91 · **443** | 307 · 7,44 · **2280** |
+| M4 bez odnawiania | 16 · 5,34 · **85** | 72 · 5,84 · **421** | 347 · 6,49 · **2251** |
+| M5 bez odnawiania | 15 · 5,34 · **80** | 68 · 5,84 · **398** | 327 · 6,49 · **2123** |
+| M6 bez odnawiania | 14 · 5,34 · **75** | 64 · 5,84 · **374** | 307 · 6,49 · **1991** |
+| M5 odnawiane + 3 mies. | 15 · 6,27 · **94** | 68 · 6,80 · **463** | 327 · 7,33 · **2396** |
+
+Wrażliwość (scenariusz normalny, jedna wielkość ×0,75 i ×1,25):
+- A0 obecny (odnawiane + 4 treningi) (baza 549): start_proby 424–674; konwersja_po_probie 424–674; zakup_bez_proby 537–562; kara_ocen 553–545; kolejna 465–878
+- V1 blokada (baza 520): start_proby 400–640; konwersja_po_probie 400–640; zakup_bez_proby 510–530; kara_ocen 534–505; kolejna 487–568
+- V2 blokada (baza 509): start_proby 391–626; konwersja_po_probie 391–626; zakup_bez_proby 499–518; kara_ocen 523–495; kolejna 484–544
+- V1 + 4 treningi (baza 409): start_proby 318–501; konwersja_po_probie 318–501; zakup_bez_proby 398–420; kara_ocen 411–407; kolejna 384–447
+- V2 + 4 treningi (baza 401): start_proby 311–490; konwersja_po_probie 311–490; zakup_bez_proby 390–411; kara_ocen 403–398; kolejna 381–428
+- M4 odnawiane (baza 498): zakup_bez_proby 374–623; kara_ocen 502–494; kolejna 422–797
+- M5 odnawiane (baza 471): zakup_bez_proby 353–588; kara_ocen 474–468; kolejna 399–753
+- M6 odnawiane (baza 443): zakup_bez_proby 332–553; kara_ocen 445–440; kolejna 375–708
+- M4 bez odnawiania (baza 421): zakup_bez_proby 316–526; kara_ocen 424–418; kolejna 400–450
+- M5 bez odnawiania (baza 398): zakup_bez_proby 298–497; kara_ocen 400–395; kolejna 378–425
+- M6 bez odnawiania (baza 374): zakup_bez_proby 281–468; kara_ocen 376–372; kolejna 356–400
+- M5 odnawiane + 3 mies. (baza 463): zakup_bez_proby 347–579; kara_ocen 466–460; kolejna 399–678
+
+Przybliżenie z danych wejściowych ([OCENA] z metodą w pliku danych), nie prognoza; bez podatku dochodowego.
