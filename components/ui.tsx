@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, Pressable, Switch, Text, TextInput, View, StyleSheet, useWindowDimensions, type ViewStyle, type TextStyle, type TextInputProps, type StyleProp } from 'react-native';
-import { useTheme, FW, font, maxScale, titleMaxScale, TEXT_SCALE_MAX, NUM_SCALE_MAX, RADIUS, SIZE, SPACE } from '@/lib/theme';
+import { useTheme, FW, font, maxScale, titleMaxScale, TEXT_SCALE_MAX, NUM_SCALE_MAX, RADIUS, SIZE, SPACE, HEADER } from '@/lib/theme';
 import { decimalComma, lang, upper, LOCALE_UPPER, t as tr, type Lang } from '@/lib/i18n';
 import { useRouter } from 'expo-router';
 import { wu } from '@/lib/units';
@@ -20,6 +20,13 @@ export function Screen({ children, style }: { children: React.ReactNode; style?:
 }
 /** Duży tytuł (M3: Barlow Condensed 700, 34/38; rośnie z tekstem systemu najwyżej do 13% szerokości ekranu — titleMaxScale). */
 export function H1({ children, a11yLang }: { children: React.ReactNode; /** M1-038: język wymowy (nazwa ćwiczenia z biblioteki → en) */ a11yLang?: Lang }) { const t = useTheme(); const { width } = useWindowDimensions(); return <Text accessibilityLanguage={a11yLang ?? lang()} accessibilityRole="header" /* runda 68 */ maxFontSizeMultiplier={titleMaxScale(width)} style={{ color: t.text, ...font('largeTitle') }}>{children}</Text>; }
+/**
+ * Nagłówek ekranu zakładki (Trening, Plan, Postępy, Więcej; właściciel 22.10.2026, docs/32 wzorzec 31): jeden odstęp pod bezpiecznym obszarem (HEADER.top) i pod
+ * nagłówkiem (HEADER.bottom) — poprawka we wspólnym miejscu, nie w jednym ekranie. `row` — tytuł z przyciskiem w jednej linii (np. „Planowanie”).
+ */
+export function TabHeader({ children, row, style, testID = 'tab-header' }: { children: React.ReactNode; row?: boolean; style?: StyleProp<ViewStyle>; testID?: string }) {
+  return <View testID={testID} style={[{ marginTop: HEADER.top, marginBottom: HEADER.bottom }, row ? { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' } : null, style]}>{children}</View>;
+}
 /** `info` = objaśnienie pod ⓘ przy nagłówku (docs/32 wzorzec 27): wymaga `infoId` (testID i scenariusze Maestro); etykieta VoiceOver z tekstu nagłówka. */
 export function H2({ children, style, info, infoId }: { children: React.ReactNode; style?: StyleProp<TextStyle>; info?: React.ReactNode | string[]; infoId?: string }) {
   const t = useTheme();

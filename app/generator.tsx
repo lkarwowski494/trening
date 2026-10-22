@@ -1,6 +1,7 @@
 import { MedicalNote } from '@/components/MedicalNote';
 import React, { useMemo, useState } from 'react';
-import { ScrollView, View, Alert } from 'react-native';
+import { View, Alert } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { useRouter, useLocalSearchParams, Stack } from 'expo-router';
 import { OwnPlan, usePlanReturn, useActivatedReturn } from '@/components/OwnPlan';
 import { DayPicker, daysOk } from '@/components/DayPicker';

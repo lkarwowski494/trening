@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, ScrollView, Pressable, Alert, StyleSheet, useWindowDimensions, ActionSheetIOS, Keyboard, Linking } from 'react-native';
+import { View, Text, Pressable, Alert, StyleSheet, useWindowDimensions, ActionSheetIOS, Keyboard, Linking } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { useRouter } from 'expo-router';
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import { useTheme, FW, font, maxScale, RADIUS, SPACE } from '@/lib/theme';

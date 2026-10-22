@@ -1,5 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { FlatList, ScrollView, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
+import { FlatList, ScrollView } from '@/components/Scroll';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTheme, FW, font } from '@/lib/theme';
 import { Screen, Input, Chip, Item, Muted, Empty, SearchField } from '@/components/ui';

@@ -1,5 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
-import { ScrollView, Alert, View } from 'react-native';
+import { Alert, View } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { Screen, Btn, Muted, Segmented, SectionTitle, Item, Input, SearchField } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
 import { getState, useTick, fmtDayKey } from '@/lib/store';

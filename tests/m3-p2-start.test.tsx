@@ -2,7 +2,7 @@
  * M3 p2 — ekran Start (design-spec §10 wiersz 3; W1 c, W3 a, A2; docs/32 wzorce 19 i 28 pkt 4; 04-studio-projektowe-007):
  *  - „Planowanie” (bez planu „Ustaw plan”) w nagłówku ekranu jako PlanningButton — nie w karcie planu;
  *  - tablica „Dziś”: „Dziś: …” wersalikami (upperText), liczba ćwiczeń, 2 pierwsze ćwiczenia i „+ n ćwiczeń”;
- *  - motyw A2 (sylwetka końca sztangi) znika przy „Zwiększ kontrast”;
+ *  - ekran Start: mała ikonka sztangi po tytule (od 22.10.2026; wcześniej sylwetka w rogu);
  *  - arkusz „Inny trening”: „Anuluj” po lewej jak dotąd, dodatkowo gest w dół zamyka arkusz.
  */
 import { Dimensions, StyleSheet } from 'react-native';
@@ -65,10 +65,11 @@ describe('tablica „Dziś” (W3 a)', () => {
   });
 });
 
-describe('motyw A2 na starcie (StartMotif)', () => {
-  test('sylwetka jest na ekranie Start, ukryta dla VoiceOver; „Zwiększ kontrast” ją usuwa', async () => {
-    normalText(); await boot(t => { setPlan(t, { 3: 0 }); hist(); }); const m = screen.getByTestId('start-motif', { includeHiddenElements: true }); expect(m.props.accessibilityElementsHidden).toBe(true);
-    await act(async () => { setA11yPrefs({ contrast: true }); }); await flushAll(10); expect(screen.queryByTestId('start-motif', { includeHiddenElements: true })).toBeNull();
+describe('motyw A2 na starcie (22.10.2026: duża sylwetka usunięta, mała ikonka po tytule)', () => {
+  test('nie ma sylwetki w rogu; ikonka po tytule jest i ukryta dla VoiceOver także przy „Zwiększ kontrast” (szczegóły: tests/trening-naglowek.test.tsx)', async () => {
+    normalText(); await boot(t => { setPlan(t, { 3: 0 }); hist(); }); expect(screen.queryByTestId('start-motif', { includeHiddenElements: true })).toBeNull();
+    const m = screen.getByTestId('title-barbell', { includeHiddenElements: true }); expect(m.props.accessibilityElementsHidden).toBe(true);
+    await act(async () => { setA11yPrefs({ contrast: true }); }); await flushAll(10); expect(screen.getByTestId('title-barbell', { includeHiddenElements: true })).toBeTruthy();
   });
 });
 

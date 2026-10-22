@@ -65,9 +65,9 @@ export const MOTIF = {
   /** Górna granica krycia: przy ok. 25% tekst pomocniczy na żółtym w ciemnym spada poniżej 4,5:1 (pomiar STOP E2b). */
   opacityMax: 0.24,
   /** Tylko te miejsca. Nigdy: tablica „teraz”, sąsiedztwo liczb kg, paski, listy, przyciski. */
-  where: ['start: sylwetka końca sztangi obok dużego tytułu', 'puste stany: gryf z talerzami nad zdaniem i akcją'] as const,
-  /** Sylwetka na starcie: ok. 30% szerokości ekranu, prawy górny róg, pod paskiem nawigacji, nad paskiem tygodnia. */
-  startWidthRatio: 0.3,
+  where: ['start: mała ikonka sztangi zaraz po tytule „Trening”', 'puste stany: gryf z talerzami nad zdaniem i akcją'] as const,
+  /** Ikonka sztangi po tytule „Trening” (22.10.2026, zastąpiła sylwetkę 30% szerokości w rogu): wysokość = ten ułamek rozmiaru tytułu, rośnie jak tytuł. */
+  titleIconRatio: 0.75,
   emptyWidthPt: 220,
   /** Znika przy dużym tekście (zająłby miejsce tytułu): od skali tytułu 1,4 (ok. AX2) — PixelRatio.getFontScale() ≥ 1,4. */
   hideFromFontScale: 1.4,
@@ -128,6 +128,8 @@ export const TEXT_SCALE_EXCEPTION = 'DEC-10: opisy do 200%, liczby do 130% + Lar
 
 /** Odstępy: jedna jednostka 4 pt; każdy odstęp jej wielokrotnością. Margines ekranu 16, między grupami 24, w grupie 8. */
 export const SPACE = { unit: 4, xs: 4, s: 8, m: 12, l: 16, xl: 24, xxl: 32, xxxl: 40 } as const;
+/** Nagłówek ekranu zakładki (TabHeader, docs/32 wzorzec 31): tytuł zaczyna się tuż pod bezpiecznym obszarem (22.10.2026: wcześniej 10 pt nad tytułem). */
+export const HEADER = { top: 0, bottom: SPACE.s } as const;
 
 /*
  * Promienie wg hierarchii (M1-036; nie jeden promień na wszystko): kontener > tablica i przycisk > pole > znacznik.

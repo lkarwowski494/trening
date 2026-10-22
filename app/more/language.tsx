@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, Linking } from 'react-native';
+import { Linking } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { useRouter } from 'expo-router';
 import { Screen, Item, Muted } from '@/components/ui';
 import { getState, useTick, save, applyPrefs } from '@/lib/store';

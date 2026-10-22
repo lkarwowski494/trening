@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Pressable, Text } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Btn, H2, Muted, Txt } from '@/components/ui';
+import { Btn, H2, Muted, Txt, TabHeader } from '@/components/ui';
 import { useTheme, FW, font, RADIUS } from '@/lib/theme';
 import { WHATS_NEW, whatsNewUnseen, markWhatsNewSeen, type WhatsNewEntry } from '@/lib/whatsnew';
 import { finishedWorkouts } from '@/lib/store';
@@ -58,10 +58,10 @@ export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
 export function WhatsNewHeader({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   return <>
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginVertical: 10 }}>
+    <TabHeader row style={{ justifyContent: 'flex-start', gap: 12 }}>
       <WhatsNewButton open={open} onPress={() => { if (!open) markWhatsNewSeen(); setOpen(!open); }} />
       <View style={{ flex: 1 }}>{children}</View>
-    </View>
+    </TabHeader>
     {open ? <WhatsNewPanel onClose={() => setOpen(false)} /> : null}
   </>;
 }

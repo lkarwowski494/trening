@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Pressable } from 'react-native';
+import { View, Pressable } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Screen, Muted, Txt, Btn } from '@/components/ui';
 import { useTheme, NUM_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useIsFocused, useLocalSearchParams, useRouter } from 'expo-router';
-import { Screen, H1, Muted, Chip, Empty, H2, Btn, SearchField } from '@/components/ui';
+import { Screen, TabHeader, H1, Muted, Chip, Empty, H2, Btn, SearchField } from '@/components/ui';
 import { isDeloadWeek, useTick, exById, finishedWorkouts, fmtDate, getState, bodyMassLog, latestBodyMass, localDateTs } from '@/lib/store';
 import { hasHistory, weeklyTotals, hasAnyHistory, weeklySplitByMuscle, weeklyVolumeByMuscle, thisMonday, WEEKLY_SETS_MARK, setsGoal, type ChartKey } from '@/lib/stats';
 
@@ -42,7 +43,7 @@ export default function ProgressTab() {
   const view: View_ = { exId, setExId: (id: string) => { scrollY.current = 0; setExId(id); }, q, setQ, chartKey: key, setKey, scrollY }; /* uwaga: `key` jest zarezerwowaną nazwą propsa w React */
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}><Screen>
-      <View style={{ marginVertical: 10 }}><H1>{t('Postępy')}</H1></View>
+      <TabHeader><H1>{t('Postępy')}</H1></TabHeader>
       {focused ? <Progress {...view} /> : null}
     </Screen></SafeAreaView>
   );

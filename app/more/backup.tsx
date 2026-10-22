@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { ScrollView, Alert } from 'react-native';
+import { Alert } from 'react-native';
+import { ScrollView } from '@/components/Scroll';
 import { Screen, Btn, Muted } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
 import { exportBackup, importBackup, exportCsv, isSafetyError, isPersistError, safetyRecoveryNote, AUTO_KEEP } from '@/lib/backup';
