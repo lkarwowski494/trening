@@ -153,3 +153,51 @@ Wrażliwość (normalny): M5 S1 — zakup przy blokadzie ×0,75/×1,25: 353–58
 **Skutki dla 1.0 (M + S1):** `lib/access.ts` (`freeUsed` → dni ukończonych treningów + wyjątek „dziś”, `FREE_LIVE_PER_MONTH` → N, `ENABLED` → true), usunięcie oferty wprowadzającej (`TRIAL_DAYS`, przypomnienie o końcu próby, teksty ekranu zakupu), teksty „4 treningi” → „N dni treningowych” w 35 językach, testy licznika i regresji, Maestro `21-subskrypcja`, opisy App Store (blok subskrypcji, 33 lokalizacje), App Store Connect: usunąć oferty wprowadzające z dwóch subskrypcji (właściciel, ok. 10 min). Czas agenta ok. 3–5 h (praca równoległa: kod + tłumacz + M5), właściciela ok. 15 min + test w piaskownicy ok. 20 min. **Mieści się w terminie 29–31.10 z zapasem; to najmniejsza zmiana ze wszystkich badanych.** M + S2: jak V2 (rozdz. 7) bez blokady i bez próby — ok. 6–9 h agenta.
 
 **Do decyzji przy M (gdy właściciel zechce):** N (4 / 5 / 6; rachunek: 498 / 471 / 443 USD przy S1); S1 czy S2; trening wstecz (a) bez limitu jak dziś — dane zawsze wolno wpisać, mała furtka dla osób z notatnikiem, (b) liczony do limitu; nagłówek ekranu ofert przy S1.
+
+## 11. E3 — kontrakt płatności M5 S1 (decyzja właściciela 22.10.2026, docs/18)
+
+Model wybrany: **M5 S1**. `docs/monetyzacja.md` (jedyne miejsce kwot i liczb, pilnowane testem `audit-m1-045`) zmienia się **w tym samym commicie co kod** — inaczej test zgodności dokumentu z kodem będzie czerwony.
+
+### Produkty (bez zmian identyfikatorów)
+| produkt | ID (`lib/products.ts`) | typ | cena USD / PLN / EUR / GBP | Family Sharing | oferta wprowadzająca |
+|---|---|---|---|---|---|
+| miesięczna „Still finding my rhythm” | `pl.lukasz.trening.full.monthly` | auto-renewable | 0,99 / 4,99 zł / 0,99 € / 0,99 £ | tak (bez zmian) | **usunąć** |
+| roczna „Training is part of my week” | `pl.lukasz.trening.full.yearly` | auto-renewable | 6,99 / 19,99 zł / 7,99 € / 6,99 £ | tak | **usunąć** |
+| dożywotnia „Training is my life” | `pl.lukasz.trening.full.lifetime` | Non-Consumable | 14,99 / 59,99 zł / 17,99 € / 14,99 £ | tak | — |
+
+### Logika dostępu (zmiany w `lib/access.ts`)
+- `PAYWALL.ENABLED = true`; `FREE_LIVE_PER_MONTH` → **`FREE_TRAINING_DAYS_PER_MONTH = 5`** (jedno miejsce).
+- `freeUsed` → liczba **różnych dni** (data startu wg `tzOffsetMin` treningu) w bieżącym miesiącu z ukończonym treningiem na żywo (zakończony albo zapisany po 6 h; trwający i anulowany się nie liczą; trening wstecz i edycja nie są treningiem na żywo). P3 B bez zmian (po wygaśnięciu Pro liczą się dni od chwili wygaśnięcia).
+- `canStartLive`: dozwolone, gdy `level = full` **albo** dni < 5 **albo dziś jest już dniem treningowym**. Reszta (`ALWAYS_AVAILABLE`, `GUARDED_STARTS`, karencja offline 7 dni, `unknown`/`testflight`) bez zmian.
+- Wektory do testów (N = 5, miesiąc bieżący, `free`):
+
+| scenariusz | ukończone treningi na żywo w miesiącu | dziś | oczekiwane |
+|---|---|---|---|
+| nowy użytkownik | brak | — | start dozwolony, „Zostało 5 z 5” |
+| dwa treningi jednego dnia | 2 × dzień 3 | dzień 3 | dozwolony, zużyty 1 dzień |
+| limit, dziś już trening | dni 1, 4, 8, 12, 15 (dziś = 15) | 15 | **dozwolony** (ten sam dzień) |
+| limit, nowy dzień | dni 1, 4, 8, 12, 15 | 16 | **zablokowany**, odnowienie 1. dnia następnego miesiąca |
+| trening przez północ | start 31.10 23:50, koniec 1.11 00:40 | 1.11 | liczy się do października; listopad 0 dni |
+| trening wstecz | 6 treningów wstecz, 0 na żywo | — | dozwolony (wstecz się nie liczy) |
+| anulowany | anulowany dziś, 4 dni wcześniej | nowy dzień | dozwolony (4 dni) |
+| trwający | trwa trening (5. dzień jeszcze nieukończony) | — | start innego blokuje strażnik „trening w toku” (F7), nie limit |
+| Pro aktywne / dożywotni | dowolne | — | dozwolony, bez licznika |
+| Pro wygasło 10.10 | dni 2, 5, 8 (przed), 12, 14 (po) | 20 | dozwolony, zużyte 2 (P3 B) |
+
+### Ekran zakupu i teksty (zmiany; projekt ekranu — rola 04 w systemie M3)
+- Pokazuje się **tylko** przy starcie ponad limit i z Ustawień (usunąć `PAYWALL_MOMENTS.AFTER_FIRST_WORKOUT`); na ekranie startu licznik „Zostały {n} z 5 darmowych dni w tym miesiącu” (tylko w `free`).
+- Nagłówek roboczy: „Train 5 days a month for free. Pro removes the limit. Cancel anytime in your Apple ID settings.” (do przeglądu właściciela przy tekstach), plany w kolejności roczna, miesięczna, dożywotnia (`PLAN_ORDER` bez zmian), nazwy z docs/18, opisy bez liczb i porównań.
+- Usunąć: ofertę wprowadzającą i jej teksty („14 dni za darmo”, wnioskowanie M1-012/M1-017), przypomnienie o końcu próby (`lib/trialReminder.ts`, `TRIAL_END_REMINDER_DAYS`), `TRIAL_DAYS`.
+- Ujawnienia bez zmian (3.1.2(a)): cena za okres jako najwyraźniejszy element, długość okresu, odnawianie i jak anulować, „Przywróć zakupy”, polityka prywatności i warunki (Apple EULA), „Zarządzaj subskrypcją”, „Zrealizuj kod”.
+- Opis App Store (M5, 33 lokalizacje): „Darmowe do 5 dni treningowych w miesiącu; Pro bez limitu — subskrypcja miesięczna, roczna albo dostęp dożywotni”, bez „free trial”.
+
+### Kroki właściciela w App Store Connect (po scaleniu kodu, przed testem w piaskownicy)
+1. Subskrypcje → grupa „Pełna wersja” → miesięczna → Subscription Prices / Introductory Offers → usuń ofertę „2 weeks free” (ok. 3 min).
+2. To samo dla rocznej (ok. 3 min).
+3. Sprawdź kontrolą ASC (workflow „ASC kontrola ustawień”) — oczekiwane wartości w `store/asc-kontrola.json` zaktualizuje programista (brak oferty wprowadzającej).
+4. Test w piaskownicy (lista „tylko telefon”): 5 dni → blokada → zakup miesięcznej → limit zdjęty → przywracanie (ok. 20 min).
+
+### Ryzyka do „Rejestru ryzyk” (docs/40)
+- R-M5-1: licznik dni z historii — usunięcie treningu zwalnia dzień (brzegowy, bez naprawy).
+- R-M5-2: zmiana daty w telefonie (teoretyczny, bez naprawy).
+- R-M5-3: produkty w ASC z ofertą wprowadzającą przy wydaniu 1.0 — warunek zamknięcia: kontrola ASC zielona bez ofert.
