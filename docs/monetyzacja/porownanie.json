@@ -1329,6 +1329,133 @@
      }
     }
    }
+  },
+  "M5 odnawiane + 3 mies.": {
+   "plany": {
+    "miesieczna": {
+     "cena": 0.99,
+     "miesiace": 1
+    },
+    "3mies": {
+     "cena": 2.49,
+     "miesiace": 3
+    },
+    "roczna": {
+     "cena": 6.99,
+     "miesiace": 12
+    },
+    "dozywotnia": {
+     "cena": 14.99,
+     "miesiace": null
+    }
+   },
+   "scenariusze": {
+    "pesymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01309,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0.05,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.2,
+       "3mies": 0.15,
+       "roczna": 0.5,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] jak A0 (30/55/15), 3 mies. bierze 15 pkt: 10 z miesięcznej, 5 z rocznej (2/3 i 1/3, jak w V1)"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.8,
+       "3mies": 0.512,
+       "roczna": 0.22
+      },
+      "zrodlo": "[OCENA] odnowienie 3 mies. = (odnowienie miesięczne)^3; reszta jak A0"
+     }
+    },
+    "normalny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.01877,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0.025,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.2,
+       "3mies": 0.15,
+       "roczna": 0.5,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] jak A0 (30/55/15), 3 mies. bierze 15 pkt: 10 z miesięcznej, 5 z rocznej (2/3 i 1/3, jak w V1)"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.85,
+       "3mies": 0.614,
+       "roczna": 0.28
+      },
+      "zrodlo": "[OCENA] odnowienie 3 mies. = (odnowienie miesięczne)^3; reszta jak A0"
+     }
+    },
+    "optymistyczny": {
+     "start_proby": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "konwersja_po_probie": {
+      "w": 0,
+      "zrodlo": "brak próby w tym modelu"
+     },
+     "zakup_bez_proby": {
+      "w": 0.02724,
+      "zrodlo": "wynik limit-dni.mjs (limit-dni.json), N=5"
+     },
+     "kara_ocen": {
+      "w": 0,
+      "zrodlo": "[OCENA] skargi na niskie limity darmowej wersji (docs/research/skargi-wnioski-2026-10.md, pkt 1); niższy limit = więcej; bez próby, która pobiera opłatę"
+     },
+     "udzial": {
+      "w": {
+       "miesieczna": 0.2,
+       "3mies": 0.15,
+       "roczna": 0.5,
+       "dozywotnia": 0.15
+      },
+      "zrodlo": "[OCENA] jak A0 (30/55/15), 3 mies. bierze 15 pkt: 10 z miesięcznej, 5 z rocznej (2/3 i 1/3, jak w V1)"
+     },
+     "kolejna": {
+      "w": {
+       "miesieczna": 0.88,
+       "3mies": 0.681,
+       "roczna": 0.35
+      },
+      "zrodlo": "[OCENA] odnowienie 3 mies. = (odnowienie miesięczne)^3; reszta jak A0"
+     }
+    }
+   }
   }
  }
 }
