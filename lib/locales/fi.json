@@ -904,6 +904,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "Viikkosuunnitelma omista pohjistasi samoilla säännöillä kuin generaattorissa — tarkistat sen ennen tallennusta. Pohjat pysyvät ennallaan.",
  "Plan z moich szablonów": "Suunnitelma omista pohjista",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "Suunnitelma pohjistasi — tarkistettavaksi. Pohjat pysyvät ennallaan.",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "Suunnitelma muutettu: {day} — aiemmat päivät noudattavat edellistä suunnitelmaa",
  "Plan: {name}": "Suunnitelma: {name}",
  "Planowanie": "Suunnittelu",
  "plecy": "selkä",

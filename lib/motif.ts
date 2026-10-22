@@ -1,6 +1,6 @@
 import type { PlateColor } from './discColors';
 import { weekTiles } from './dashboard';
-import { dayStatus, dayKeyOf, addDays, type DayStatus } from './plan';
+import { dayStatus, dayKeyOf, addDays, planChangedInWeek, weekdayIdx, type DayStatus } from './plan';
 
 /*
  * Motyw z ikony w aplikacji (decyzja właściciela 09.10.2026, „zestaw pełny”; docs/18): gryf i talerze w kolorach IWF (lib/discColors.ts PLATE_COLORS —
@@ -93,7 +93,7 @@ export function planPct(done: number, total: number): number {
   if (done >= total) return 100;
   return Math.min(99, Math.max(1, Math.round((done / total) * 100)));
 }
-export type WeekProgress = { done: number; total: number; pct: number; stacks: boolean[] };
+export type WeekProgress = { done: number; total: number; pct: number; stacks: boolean[]; /** dzień zmiany planu w tym tygodniu (tylko gdy była; dopisek pod paskiem) */ changedOn?: string };
 /**
  * Postęp tygodnia jako N stosów talerzy (tylko przy aktywnym planie; bez planu null — aplikacja nie wyznacza celu, decyzja 03.10.2026).
  * N = dni z treningiem w planie bieżącego tygodnia (z jednodniowymi zmianami — ten sam pasek co karta „Dziś”); pełne stosy = dni zrobione
@@ -102,7 +102,8 @@ export type WeekProgress = { done: number; total: number; pct: number; stacks: b
 export function weekProgress(now = Date.now()): WeekProgress | null {
   const w = weekTiles(now); const total = w.planned ?? 0; if (total <= 0) return null;
   const done = Math.max(0, Math.min(w.planDone ?? 0, total));
-  return { done, total, pct: planPct(done, total), stacks: Array.from({ length: total }, (_, i) => i < done) };
+  const changedOn = planChangedInWeek(now);
+  return { done, total, pct: planPct(done, total), stacks: Array.from({ length: total }, (_, i) => i < done), ...(changedOn ? { changedOn } : {}) };
 }
 
 /** Tydzień w podsumowaniu miesiąca (decyzja właściciela 09.10.2026 ok. 17:25): pełny — plan tygodnia wykonany w 100%, niepełny — mniej

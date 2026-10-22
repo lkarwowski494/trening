@@ -724,6 +724,7 @@
  "Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.": "作成機能と同じルールで、あなたのテンプレートから週間プランを作ります — 保存前に確認できます。テンプレートは変わりません。",
  "Plan z moich szablonów": "自分のテンプレートでプラン",
  "Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.": "テンプレートから作成したプラン。確認用です。テンプレートは変更されません。",
+ "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu": "プランを変更した日：{day}。それ以前の日は前のプランで数えています",
  "Plan: {name}": "プラン: {name}",
  "Planowanie": "プランニング",
  "plecy": "背中",

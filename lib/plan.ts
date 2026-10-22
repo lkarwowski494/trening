@@ -57,6 +57,13 @@ export function baseRaw(k: string, today = todayKey()): string | null { return s
 export function planInForce(k: string, today = todayKey()): boolean {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) return false; const d = segmentDays(k, today); return !!d && d.some(x => (k < today ? !!x : liveTemplate(x)));
 }
+/** Dzień (RRRR-MM-DD), od którego w bieżącym tygodniu (pon–nd) obowiązuje inny plan niż na początku tygodnia — ostatnia zmiana planu po poniedziałku,
+ * gdy był plan poprzedni z treningami; inaczej null (decyzja właściciela 22.10.2026, docs/18: dopisek pod paskiem postępu; liczby bez zmian). */
+export function planChangedInWeek(now = Date.now()): string | null {
+  const today = dayKeyOf(now); const mon = addDays(today, -weekdayIdx(today)); const h = planHistory(); if (h.length < 2) return null;
+  const last = h[h.length - 1]; const prev = h[h.length - 2];
+  return last.from > mon && last.from <= today && prev.days.some(Boolean) ? last.from : null;
+}
 /** Miniony dzień — surowe id (późniejsze usunięcie albo archiwizacja szablonu nie przepisuje przeszłości); dziś i dalej — tylko żywy szablon. */
 const resolve = (id: string | null | undefined, k: string, today: string): string | null => (k < today ? id || null : liveTemplate(id) ? id! : null);
 const rawOn = (k: string, today: string) => { const ov = getState().planOverrides; return ov && k in ov ? ov[k] : baseRaw(k, today); };

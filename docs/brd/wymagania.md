@@ -213,6 +213,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik jest w zakładce Plan
     - Gdy chce przejść do planowania
     - Wtedy przycisk „Planowanie” jest przy tytule, w tym samym miejscu co na ekranie Trening, i otwiera ekran planu
+  - Scenariusz: Postęp tygodnia po zmianie planu w trakcie tygodnia (decyzja właściciela 22.10.2026, wariant A; `lib/plan.planChangedInWeek`, `components/WeekStacks`)
+    - Zakładając, że użytkownik zmienił plan tygodnia w środku bieżącego tygodnia (nie w poniedziałek), a poprzedni plan miał treningi
+    - Gdy ogląda pasek postępu planu tygodnia na ekranie Trening
+    - Wtedy liczby zostają bez zmian (dni minione liczą się wg planu, który wtedy obowiązywał, audyt 0.10 A1; np. „2 z 6”), a pod paskiem stoi dopisek „Plan zmieniony w czw. — wcześniejsze dni wg poprzedniego planu” (dzień zmiany skrótem w języku aplikacji; ten sam tekst w etykiecie VoiceOver); w następnym tygodniu albo bez zmiany planu dopisku nie ma
 
 ### BR-PLN-002: Kilka planów z wyborem aktywnego
 - Przepływ: PR-03
