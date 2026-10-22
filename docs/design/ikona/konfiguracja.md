@@ -5,7 +5,9 @@ Decyzje: STOP E2 (rysunek ikony i intro bez zmian) i STOP E3 (zegarek 1088 przez
 ## 1. Ikona iPhone — bez zmian
 `app.json` → `ios.icon` `{ light: ./assets/icon.png, dark: ./assets/icon-dark.png, tinted: ./assets/icon-tinted.png }` zostaje. `ikona.svg` (warstwy `tlo.svg` + `pierwszy-plan.svg`) daje ten sam obraz co `assets/icon.png` (`ikona.mjs`, kod 0). Ikona `.icon` (Icon Composer, macOS): krok właściciela, warstwy w tym katalogu.
 
-## 2. Zegarek 1088×1088 — własny zestaw ikon
+## 2. Zegarek 1088×1088 — własny zestaw ikon (WYCOFANE 22.10.2026)
+**Stan 22.10.2026:** wycofane — build 1026 odrzucony przez App Store Connect (brak `CFBundleIconName` zegarka): bez pola `icon:` wtyczka nie ustawia też `ASSETCATALOG_COMPILER_APPICON_NAME` (`build/configuration-list.js`). Zegarek wrócił do `icon: '../../assets/icon.png'` (1024, opcja b ze STOP E3); `watch-AppIcon.appiconset/` i `zegarek-1088.png` zostają jako materiał na ewentualny powrót (docs/40, R-013 i lekcja z 22.10.2026). Opis niżej — stan historyczny.
+
 Powód: `@bacons/apple-targets` 5.0.0 przy polu `icon:` zawsze generuje zegarek w 1024 (`build/icon/with-ios-icon.js`, rozmiar na sztywno); bez pola `icon:` wtyczka nie rusza katalogu `Assets.xcassets/AppIcon.appiconset` celu (`build/with-widget.js:324`: `if (props.icon) withIosIcon(…)`).
 1. `targets/watch-app/expo-target.config.js`: usuń wiersz `icon: '../../assets/icon.png'` (komentarz: zestaw ikon własny, 1088, decyzja STOP E3 21.10.2026).
 2. `targets/watch-app/Assets.xcassets/AppIcon.appiconset/`: zastąp zawartość plikami z [`watch-AppIcon.appiconset/`](watch-AppIcon.appiconset/) (`Contents.json` z `"size": "1088x1088"`, `"platform": "watchos"`; PNG 1088×1088 RGB bez przezroczystości = `zegarek-1088.png`, `cmp` zgodny); usuń obecny plik PNG 1024.
