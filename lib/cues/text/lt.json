@@ -151,7 +151,7 @@
  "llc.move": "Sulenk kelius ir pritrauk volelį link sėdmenų; lėtai jį leisk.",
  "llc.setup": "Atsigulk ant pilvo, keliai ties treniruoklio sukimosi ašimi, volelis ant apatinės blauzdų dalies virš kulnų.",
  "lp.heels": "Stumk visa pėda — kulnai lieka ant platformos.",
- "lp.hips": "Nesileisk taip giliai, kad dubuo atsikeltų nuo sėdynės ir juosmuo susilenktų.",
+ "lp.hips": "Nesileisk taip giliai, kad dubuo atsikeltų nuo atlošo ir juosmuo susilenktų.",
  "lp.move": "Nustumk platformą tiesdamas klubus ir kelius; lėtai leisk ją lenkdamas kojas.",
  "lp.noLock": "Viršuje neužrakink kelių.",
  "lp.setup": "Nugara ir dubuo prie atlošo; visos pėdos ant platformos, keliai sulenkti maždaug stačiu kampu.",
@@ -223,7 +223,7 @@
  "pu.shoulders": "Prisitraukimą pradėk nuleisdamas mentes.",
  "push.mis.partial": "Judesio trumpinimas — nenusileidi pakankamai arba viršuje neištiesi rankų.",
  "push.move": "Lenkdamas alkūnes nuleisk krūtinę beveik iki grindų; atsistumk iki ištiestų rankų.",
- "push.rigid": "Kūnas įtemptas — klubai nenusvyra ir tu jų nekeli.",
+ "push.rigid": "Kūnas įtemptas — klubai nei nusvyra, nei kyla aukštyn.",
  "push.setup": "Delnai ant grindų pečių pločiu ar šiek tiek plačiau, kūnas tiesus nuo galvos iki kulnų.",
  "rcrunch.hips": "Judesį veda dubuo; nemosuok kojomis.",
  "rcrunch.move": "Susuk klubus nuo grindų link šonkaulių ir lėtai nuleisk atgal.",
@@ -302,7 +302,7 @@
  "walk.rails": "Turėklus naudok daugiausia pusiausvyrai; nesiremk į juos stipriai ir nesilenk atgal, nes tai sumažina krūvį.",
  "walk.upright": "Eik tiesiai su stabiliu liemeniu.",
  "wall.back": "Laikyk nugarą prie sienos, o liemenį tiesų.",
- "wall.breath": "Kvėpuok įprastai; nelaikyk kvapo.",
+ "wall.breath": "Kvėpuok įprastai; nesulaikyk kvapo.",
  "wall.depth": "Kuo žemiau nusileisi (kuo mažesnis kelių kampas), tuo sunkiau; gali pradėti aukščiau ir pamažu žeminti padėtį.",
  "wall.setup": "Atsiremk nugara į tvirtą sieną, pastatyk pėdas toliau į priekį ir nuslysk siena iki pasirinkto aukščio."
 }
