@@ -171,7 +171,7 @@
  "mc.setup": "Støtt deg på strake armer, hendene under eller litt foran skuldrene; ett bein bøyd under brystet, det andre strukket bakover.",
  "mc.stable": "Stødig overkropp og hoftene hele tiden i omtrent samme høyde.",
  "mc.straight": "Strekk det bakre beinet helt ved hvert bytte.",
- "mcp.blades": "Skulderbladene blir mot puten — ikke rull skuldrene fram til slutt.",
+ "mcp.blades": "Skulderbladene blir mot puten — ikke rull skuldrene fram på slutten av bevegelsen.",
  "mcp.move": "Press håndtakene fram til armene er strake; gå rolig tilbake.",
  "mcp.seat": "Still setet slik at håndtakene er ut for midten av brystet; ryggen mot puten, føttene i gulvet.",
  "mis.barAway": "Å la stangen gli bort fra kroppen.",
@@ -286,7 +286,7 @@
  "sq.mis.heels": "Hælene løfter seg fra gulvet.",
  "sq.mis.kneesIn": "Knærne faller innover.",
  "sq.stance": "Føttene omtrent i skulderbredde eller litt bredere, tærne lett utover.",
- "stepup.knee": "Hold kneet på steg-beinet i linje med tærne.",
+ "stepup.knee": "Hold kneet på beinet som står på kassen, i linje med tærne.",
  "stepup.move": "Sett hele foten på kassen og gå opp ved å strekke det beinet; gå kontrollert ned samme vei.",
  "stepup.setup": "Stå foran en stødig kasse eller benk med manualene ved siden.",
  "sumo.grip": "Grip stangen mellom beina, omtrent i skulderbredde.",
@@ -304,5 +304,5 @@
  "wall.back": "Hold ryggen mot veggen og overkroppen oppreist.",
  "wall.breath": "Pust normalt; ikke hold pusten.",
  "wall.depth": "Jo lavere du går (jo mindre knevinkel), jo vanskeligere blir det; du kan starte høyere og senke posisjonen gradvis.",
- "wall.setup": "Len ryggen mot en solid vegg, gå føttene fram og gli ned langs veggen til valgt høyde."
+ "wall.setup": "Len ryggen mot en solid vegg, flytt føttene fram og gli ned langs veggen til valgt høyde."
 }
