@@ -133,7 +133,7 @@ function TemplateEditor({ tpl }: { tpl: Template }) {
               {open !== it.id ? <Muted style={{ ...font('footnote') }}>{tplSummary(it)}</Muted> : null}
             </View>
             <Muted style={{ ...font('body') }}>{open === it.id ? '▾' : '▸'}</Muted>
-          </Pressable><ExMenuButton testID={`tpl-item-menu-${i}`} name={nm} onPress={() => ActionSheetIOS.showActionSheetWithOptions({ options: [t('Usuń ćwiczenie'), t('Anuluj')], cancelButtonIndex: 1, destructiveButtonIndex: 0, title: nm }, k => { if (k === 0) confirmDelete({ title: t('Usunąć z szablonu?'), message: nm, onDelete: () => { const j = tpl.items.indexOf(it); if (j >= 0) removeItem(tpl.items, j, tpl); } }); })} /></View>}</SwipeRow>
+          </Pressable><ExMenuButton testID={`tpl-item-menu-${i}`} name={nm} title={t('Usunąć z szablonu?')} onDelete={() => { const j = tpl.items.indexOf(it); if (j >= 0) removeItem(tpl.items, j, tpl); }} /></View>}</SwipeRow>
           {open === it.id ? <>
             <TplRows tpl={tpl} it={it} ii={i} nm={nm} />
             {it.alternates?.length ? <Alternates tpl={tpl} itemId={it.id} /> : null}

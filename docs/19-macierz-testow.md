@@ -325,7 +325,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Usunąć z treningu? | app/history/edit/[id].tsx | tests/audit-0.10-live.test.tsx, tests/audit-m1-028-delete-menus.test.tsx, tests/edit-history.test.tsx +5 |
 | Usunąć zamiennik? | app/template/[id].tsx | tests/swap-alternates.test.tsx, tests/swipe-delete.test.tsx |
 | Usuń | app/template/[id].tsx | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-live.test.tsx +30 |
-| Usuń ćwiczenie | app/history/edit/[id].tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-m1-028-delete-menus.test.tsx +9 |
+| Usuń ćwiczenie | components/ExMenuButton.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-m1-028-delete-menus.test.tsx +9 |
 | Usuń ćwiczenie: {name} | app/history/edit/[id].tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/edit-history.test.tsx +8 |
 | Usuń gumę: {name} | app/more/bands.tsx | tests/audit-r83.test.tsx, tests/audit-records-misc.test.tsx, tests/m3-p5-delete.test.tsx +5 |
 | Usuń miejsce | app/more/location/[id].tsx | tests/audit-0.10-ui.test.tsx, tests/guide.test.tsx, tests/locations-ui.test.tsx +5 |
@@ -374,7 +374,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Zakończ i zapisz | components/ActiveWorkout.tsx | tests/audit-close2-a.test.tsx, tests/audit-close2-c.test.tsx, tests/audit-journey-b.test.tsx +2 |
 | Zakończ mimo to | components/ActiveWorkout.tsx | tests/watch-fill-ui.test.tsx |
 | Zakończ serię | components/ActiveWorkout.tsx | tests/audit-r72-ui.test.tsx, tests/m3-fix-e2e.test.tsx, tests/m3-p2-board-ui.test.tsx +6 |
-| Zakończ serię: {ex}, seria {n} | components/NowBoard.tsx | tests/m3-p2-board-ui.test.tsx, tests/m3-p2-matrix.test.tsx |
+| Zakończ serię: {ex}, seria {n} | components/NowBoard.tsx | tests/m3-p2-board-ui.test.tsx, tests/m3-p2-matrix.test.tsx, tests/matrix-ui.test.tsx |
 | Zakończ trening | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/finish-single-button.test.tsx, tests/guide.test.tsx +2 |
 | Zakres {r}: gdy ostatnio wszystkie serie miały ≥ {n} powt., pojawi się „↑”. | app/template/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/matrix-ui.test.tsx |
 | Zamień ćwiczenie: {name} | app/history/edit/[id].tsx | tests/audit-0.10-live.test.tsx, tests/backlog-0410.test.tsx, tests/catalog-full.test.tsx +5 |

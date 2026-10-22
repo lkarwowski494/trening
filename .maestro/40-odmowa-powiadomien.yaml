@@ -57,4 +57,4 @@ name: Eksperyment — odmowa zgody na powiadomienia
 - assertVisible: "No notification permission — reminders and end-of-rest alerts will not arrive.*"
 - assertVisible: "Open iOS Settings"
 - takeScreenshot: 120-trening-bez-zgody
-- assertVisible: "Rest, .* of 1 minute 30 seconds left.*"
+- assertVisible: "Rest\\. Time left: .*Total rest: 1 minute 30 seconds.*"

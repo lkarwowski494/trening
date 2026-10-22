@@ -722,7 +722,7 @@
  "Usunięte: {list}.": "lib/tplsync.ts:105",
  "usunięty szablon": "lib/plan.ts:71",
  "Usuń": "app/template/[id].tsx:164, components/LoadEditor.tsx:73, components/SwipeRow.tsx:43",
- "Usuń ćwiczenie": "app/history/edit/[id].tsx:128, app/template/[id].tsx:136, components/WorkoutBlocks.tsx:143",
+ "Usuń ćwiczenie": "components/ExMenuButton.tsx:15, components/WorkoutBlocks.tsx:143",
  "Usuń gumę: {name}": "app/more/bands.tsx:33",
  "Usuń miejsce": "app/more/location/[id].tsx:58",
  "Usuń miejsce: {name}": "app/more/locations.tsx:25",

@@ -426,9 +426,9 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(byHint('+ rozgrzewka', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal']); expect(kindBtn('W', 'rozgrzewkowa')).toBeTruthy();
     await tap(byHint('+ drop set', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal', 'drop']); expect(kindBtn('4D', 'drop set')).toBeTruthy(); /* audyt 0.10 (LIVE-14): drop set z numerem swojej serii (wcześniej „5D”) */
     await swipeDelete(`Usuń serię 4D — ${B}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'normal']);
-    await tap(kindBtn('4', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Anuluj']);
+    await tap(kindBtn('4', 'normalna')); expect((global as any).__sheets.at(-1).opts.options).toEqual(['Seria normalna', 'Rozgrzewka (W)', 'Drop set (D)', 'Do upadku (F)', 'Usuń serię', 'Anuluj']); /* 04-studio-projektowe-003: „Usuń serię” w menu serii szablonu (zmiana oczekiwania, było bez niej) */
     await sheet(3); expect(kinds()[4]).toBe('failure'); expect(kindBtn('4F', 'do upadku')).toBeTruthy();
-    await tap(kindBtn('4F', 'do upadku')); await sheet(4); expect(kinds()[4]).toBe('failure'); /* Anuluj */
+    await tap(kindBtn('4F', 'do upadku')); await sheet(5); expect(kinds()[4]).toBe('failure'); /* Anuluj (indeks 5 po dodaniu „Usuń serię”) */
     await swipeDelete(`Usuń serię 4F — ${B}`); pressAlert('Usunąć serię?', 'Usuń'); await flushAll(5); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal']); /* usunięcie przesunięciem */
     await tap(byHint('+ drop set', B)); expect(kinds()).toEqual(['warmup', 'normal', 'normal', 'normal', 'drop']);
     const wl = store.loadLabel(ex(B), store.implAtLoc(ex(B), store.startLocationId(tpl.locationId))); expect(wl).toBe('kg/hantel');

@@ -36,9 +36,8 @@ name: Plank ze stoperem
 - assertVisible: "Start stopwatch: Plank, set 1"
 - assertVisible: "Tick without timing: Plank, set 1"
 - tapOn: { text: "Start set stopwatch", index: 0 }
-- assertVisible: "Finish set"   # M3 p2 (ZM-05): ta sama nazwa akcji w dolnym pasku stopera i na tablicy „teraz”
-- assertVisible: "Finish set: Plank, set 1"   # przycisk tablicy (etykieta VoiceOver zastępuje tekst „Finish set”)
+- assertVisible: "Finish set: Plank, set 1"   # 04-studio-projektowe-005: w widoku tablicy jest jeden przycisk „Finish set” — na tablicy (etykieta VoiceOver z ćwiczeniem i serią); dolny pasek stopera tylko w widoku listy
 - takeScreenshot: 08-stoper
-- tapOn: "Finish set"
-- assertNotVisible: "Finish set"
+- tapOn: "Finish set: Plank, set 1"
+- assertNotVisible: "Finish set.*"
 - takeScreenshot: 09-plank-zapisany

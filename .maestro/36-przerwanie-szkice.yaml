@@ -28,6 +28,7 @@ name: Przerwanie — trening i szkic szablonu po restarcie
       - eraseText: 10
       - inputText: "10"
       - tapOn: "Bench Press \\(Dumbbell\\)"   # E2E 38471218362: klawiatura numeryczna nie ma „Gotowe” — hideKeyboard pada; fokus zdejmuje stuknięcie w nazwę ćwiczenia nad wierszami (nagłówek bloku) (M3 p2: tekst „Change the values…” zniknął)
+      - scrollUntilVisible: { element: "Bench Press \\(Dumbbell\\), set 1 of 3\\. 40 pounds.*10 reps.*", direction: UP, timeout: 20000 }   # M3 fix: tablica z większymi cyframi (04-studio-projektowe-001) jest wyższa — po wpisie lista bywa przewinięta pod jej opis
       - assertVisible: "Bench Press \\(Dumbbell\\), set 1 of 3\\. 40 pounds.*10 reps.*"
 - stopApp
 - launchApp:

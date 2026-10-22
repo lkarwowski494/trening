@@ -31,12 +31,12 @@ name: Trening — cofnięcie, przerwa, notatki, superset, technika, odrzucenie
 - assertVisible: "Workout progress: 0 of 6 sets"
 # --- przerwa: +15 s, −15 s, Skip ---
 - tapOn: { text: "Set 1 done — Bench Press \\(Dumbbell\\)" }
-- extendedWaitUntil: { visible: "Rest, .* of 1 minute 30 seconds left.*", timeout: 15000 }
+- extendedWaitUntil: { visible: "Rest\\. Time left: .*Total rest: 1 minute 30 seconds.*", timeout: 15000 }
 - tapOn: "Extend rest by 15 seconds"
-- extendedWaitUntil: { visible: "Rest, .* of 1 minute 45 seconds left.*", timeout: 15000 }
+- extendedWaitUntil: { visible: "Rest\\. Time left: .*Total rest: 1 minute 45 seconds.*", timeout: 15000 }
 - tapOn: "Shorten rest by 15 seconds"
 - tapOn: "Shorten rest by 15 seconds"
-- extendedWaitUntil: { visible: "Rest, .* of 1 minute 15 seconds left.*", timeout: 15000 }
+- extendedWaitUntil: { visible: "Rest\\. Time left: .*Total rest: 1 minute 15 seconds.*", timeout: 15000 }
 - takeScreenshot: 76-przerwa-plus-minus
 - tapOn: "Skip"
 - assertNotVisible: "Skip"

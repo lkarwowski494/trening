@@ -88,6 +88,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 # a stuknięcie w niego trafiało w pasek stanu; przewinięcie w górę ze środkowaniem przed stuknięciem
 - scrollUntilVisible: { element: "Undo swap: Bench Press \\(Dumbbell\\)", direction: UP, timeout: 30000, centerElement: true }
 - tapOn: "Undo swap: Bench Press \\(Dumbbell\\)"
+- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Barbell\\)", direction: DOWN, timeout: 30000 }  # M3 fix: przycisk zamiany bywa pod krawędzią (większe cyfry tablicy, 04-studio-projektowe-001)
 - extendedWaitUntil: { visible: "Swap exercise: Bench Press \\(Barbell\\)", timeout: 30000 }
 - assertNotVisible: "instead of: .*"
 - scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Barbell\\)", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
@@ -110,6 +111,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - extendedWaitUntil: { visible: "Set 1 done — Overhead Press \\(Barbell\\)", timeout: 30000 }
 - scrollUntilVisible: { element: { text: "\\+ set", index: 1 }, direction: DOWN, timeout: 60000 }
 - tapOn: { text: "\\+ set", index: 1 }
+- scrollUntilVisible: { element: { text: "\\+ set", index: 1 }, direction: DOWN, timeout: 60000 }  # M3 fix: tablica z większymi cyframi (04-studio-projektowe-001) — po dodaniu serii „+ set” schodzi pod listę
 - tapOn: { text: "\\+ set", index: 1 }
 - scrollUntilVisible: { element: "Set 3 done — Overhead Press \\(Barbell\\)", direction: DOWN, timeout: 60000 }
 - tapOn: "Set 1 done — Overhead Press \\(Barbell\\)"
@@ -173,6 +175,7 @@ name: Zamiana ćwiczenia w trakcie treningu (E2 W1)
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }  # układ B (09.10.2026): ekran główny od karty „Dziś” i przycisku startu
 - runFlow: subflows/szablon-testowy.yaml
 - runFlow: subflows/start-szablonu.yaml
+- scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000 }  # M3 fix: przycisk zamiany bywa pod krawędzią (większe cyfry tablicy, 04-studio-projektowe-001)
 - extendedWaitUntil: { visible: "Swap exercise: Bench Press \\(Dumbbell\\)", timeout: 30000 }
 - scrollUntilVisible: { element: "Swap exercise: Bench Press \\(Dumbbell\\)", direction: DOWN, timeout: 30000, centerElement: true }  # run 37738868663: przycisk nad paskiem zakładek
 - tapOn: "Swap exercise: Bench Press \\(Dumbbell\\)"

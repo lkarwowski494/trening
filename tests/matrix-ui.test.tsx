@@ -421,15 +421,15 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
   test('stoper serii: bez celu „seria · bez celu” i „Stoper trwa”; z celem powiadomienie „Seria skończona / Minęło 30 s.”; ponowny pomiar pyta', async () => {
     await startWith(['Plank'], () => { const e = store.getState().active!.exercises[0]; e.sets = [store.emptySet(), store.emptySet()]; });
     await tap(screen.getAllByLabelText('Start stopera serii')[0]); await flushAll(10);
-    expect(screen.getByText('seria · bez celu')).toBeTruthy(); expect(screen.getByLabelText('Stoper trwa')).toBeTruthy(); expect(timer.S.on).toBe(true);
-    await flushAll(5000); await tap(screen.getByLabelText('Zakończ serię')); await flushAll(10); /* M3 p2 (ZM-05): ten sam tytuł „Zakończ serię” na tablicy i w dolnym pasku — pasek ma etykietę bez dopisku */
+    expect(screen.getByLabelText('seria · bez celu')).toBeTruthy(); /* 04-studio-projektowe-005: w widoku tablicy opis pomiaru niesie pierścień na tablicy, nie dolny pasek (zmiana oczekiwania: było tekst paska) */ expect(screen.getByLabelText('Stoper trwa')).toBeTruthy(); expect(timer.S.on).toBe(true);
+    await flushAll(5000); await tap(screen.getByLabelText(/^Zakończ serię: Plank, seria 1/)); await flushAll(10); /* 04-studio-projektowe-005: jeden przycisk „Zakończ serię” — na tablicy (dolny pasek tylko w widoku listy) */
     expect(blk(0).sets[0].done).toBe(true); expect(Number(blk(0).sets[0].durationSec)).toBeGreaterThanOrEqual(5);
     await tap(screen.getAllByLabelText('Start stopera serii')[0]);
     expect(lastAlert()).toMatchObject({ title: 'Zmierzyć serię od nowa?', msg: 'Zapisany czas zostanie nadpisany.' });
     await act(async () => { pressAlert('Zmierzyć serię od nowa?', 'Anuluj'); });
     await type(screen.getAllByLabelText('czas')[1], '30'); global.__notifications.length = 0;
     await tap(screen.getAllByLabelText('Start stopera serii')[1]); await flushAll(10);
-    expect(screen.getByText(/^seria · cel /)).toBeTruthy(); expect(timer.S.targetSec).toBe(30);
+    expect(screen.getByLabelText(/^seria · cel /)).toBeTruthy(); expect(timer.S.targetSec).toBe(30);
     expect((global.__notifications as any[]).find(n => n.content.title === 'Seria skończona').content.body).toBe('Minęło 30 s.');
   });
 
