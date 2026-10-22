@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { Btn, Input, Muted } from '@/components/ui';
 import { shiftDate } from '@/lib/edit';
 import { t } from '@/lib/i18n';
+import { font } from '@/lib/theme';
 
 /**
  * Docs/12: data, godzina startu i czas trwania treningu — w edytorze historii i przy dodawaniu treningu wstecz. Zwykłe pola tekstowe
@@ -33,7 +34,7 @@ export function WhenFields({ date, time, min, onChange }: { date: string; time: 
   );
 }
 const s = StyleSheet.create({
-  label: { marginBottom: 5, fontSize: 13 },
+  label: { marginBottom: 5, ...font('footnote') },
   row: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   arrow: { minWidth: 44, minHeight: 44 },
 });

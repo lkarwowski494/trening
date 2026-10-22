@@ -50,7 +50,14 @@ describe('docs/monetyzacja.md: jedno miejsce modelu, zgodne z kodem', () => {
     expect(subs.find((x: any) => x.productID.endsWith('.yearly')).displayPrice).toBe(FAKE_PRICES.yearly.replace('$', ''));
     expect(subs.find((x: any) => x.productID.endsWith('.monthly')).displayPrice).toBe(FAKE_PRICES.monthly.replace('$', ''));
   });
-  test('wynik bramki W0 oznaczony jako nieustalony w repo (nie zgadujemy)', () => { expect(doc()).toMatch(/W0[^\n]*DO USTALENIA/); });
+  /* bramka W0 przeprowadzona 21.10.2026 (rola 02, decyzja właściciela na STOP 2 M3): wynik ma próg, werdykt i punkt kontrolny z liczbą */
+  test('wynik bramki W0 zapisany z progiem, werdyktem i punktem kontrolnym', () => {
+    const w0 = doc().split('## Bramka W0')[1]?.split('\n## ')[0] ?? '';
+    expect(w0).toMatch(/500 USD netto\/rok/);
+    expect(w0).toMatch(/werdykt \*\*wydać\*\*/);
+    expect(w0).toMatch(/Punkt kontrolny[^\n]*8 tygodniach[^\n]*310 pobrań[^\n]*75 płacących/);
+    expect(w0).not.toMatch(/DO USTALENIA/);
+  });
   test('stan kodu: zakupy za przełącznikiem PAYWALL.ENABLED', () => { expect(doc()).toContain(`PAYWALL.ENABLED = ${PAYWALL.ENABLED}`); });
 });
 

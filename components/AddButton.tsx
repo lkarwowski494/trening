@@ -1,6 +1,6 @@
 import React, { useMemo, useRef } from 'react';
 import { Pressable, Text } from 'react-native';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, FW, font } from '@/lib/theme';
 import { lang } from '@/lib/i18n';
 import { useOnce } from '@/components/ui';
 
@@ -14,7 +14,7 @@ export const ADD_TEST_ID = 'add-button';
 export function AddButton({ label, hint, onPress, lock = true }: { label: string; hint?: string; onPress: () => void; /** blokada podwójnego tapnięcia (domyślnie tak); wyłączona tylko tam, gdzie akcja jest idempotentna (np. otwarcie listy w treści) */ lock?: boolean }) {
   const th = useTheme(); const once = useOnce();
   return <Pressable testID={ADD_TEST_ID} accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} accessibilityHint={hint} hitSlop={10} onPress={lock ? once(onPress) : onPress} style={{ minHeight: 44, minWidth: 44, alignItems: 'center', justifyContent: 'center' }}>
-    <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={1.4} style={{ color: th.accent, fontSize: 30, lineHeight: 39, fontFamily: F.regular }}>+</Text>
+    <Text accessibilityElementsHidden importantForAccessibility="no" maxFontSizeMultiplier={1.4} style={{ color: th.accent, ...font('largeTitle'), ...FW.regular }}>+</Text>
   </Pressable>;
 }
 

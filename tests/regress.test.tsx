@@ -434,7 +434,7 @@ describe('runda 6', () => {
   });
   test('R6-06 przełączniki w ustawieniach mają nazwę i stan', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
-    const sw = screen.getAllByRole('switch'); expect(sw.map(x => x.props.accessibilityLabel)).toEqual(expect.arrayContaining(['Dźwięk i wibracja na koniec przerwy', 'Ekran włączony podczas treningu']));
+    const sw = screen.getAllByRole('switch'); expect(sw.map(x => x.props.accessibilityLabel)).toEqual(expect.arrayContaining(['Dźwięk na koniec przerwy', 'Wibracje', 'Ekran włączony podczas treningu']));
     expect(sw.every(x => typeof x.props.accessibilityState?.checked === 'boolean')).toBe(true);
   });
   test('R6-07 podwójne „Duplikuj” robi jedną kopię', async () => {
@@ -463,7 +463,7 @@ describe('runda 6', () => {
   });
   test('R6-11 wyszukiwanie bez wyników pokazuje tekst (Ćwiczenia i Postępy, ze spacją na końcu)', async () => {
     await renderApp(); await go('/exercises'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'zzzz'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
-    await go('/progress'); await flushAll(10); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'plank '); expect(screen.getByText('Plank')).toBeTruthy();
+    addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]]]); await go('/progress'); await flushAll(10); /* ZM-06: wyszukiwanie w Postępach jest dopiero po pierwszym treningu */ await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'plank '); expect(screen.getByText('Plank')).toBeTruthy();
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'zzzz'); expect(screen.getByText('Nic nie pasuje.')).toBeTruthy();
   });
   test('R6-12 sama rozgrzewka: osobne okno z możliwością odrzucenia', async () => {
@@ -500,10 +500,10 @@ describe('runda 7', () => {
   test('R7-05 import backupu z BOM', async () => {
     await fresh(); const { parseBackup, buildBackup } = require('@/lib/backup'); expect(parseBackup('\uFEFF' + JSON.stringify(buildBackup())).workouts).toEqual([]);
   });
-  test('R7-06 wiersze list: cały wiersz (min. 56 pt) to pole dotyku, „+” w pickerze dodaje ćwiczenie', async () => {
+  test('R7-06 wiersze list: cały wiersz (min. 52 pt, M3) to pole dotyku, „+” w pickerze dodaje ćwiczenie', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); }); await go('/picker?target=active'); await flushAll(10);
     const plus = screen.getAllByText('+')[0]; let p: any = plus; while (p && !p.props?.onClick && !(typeof p.type === 'string' && p.props?.accessibilityRole === 'button')) p = p.parent;
-    expect(p).toBeTruthy(); const { StyleSheet } = require('react-native'); expect(StyleSheet.flatten(p.props.style).minHeight).toBeGreaterThanOrEqual(56);
+    expect(p).toBeTruthy(); const { StyleSheet } = require('react-native'); expect(StyleSheet.flatten(p.props.style).minHeight).toBeGreaterThanOrEqual(52); /* M3 (STOP E3, docs/18; design-spec §1): wiersz 52 pt (SIZE.rowMin), było 56 — cel dotyku nadal ≥ 44 */
     await tap(plus); expect(store.getState().active!.exercises).toHaveLength(1);
   });
   test('R7-07 Ćwiczenia: wyszukanie usuniętego pozwala je przywrócić, bez „Utwórz”', async () => {
@@ -1249,7 +1249,7 @@ describe('runda 49', () => {
     const name = store.exById(tpl.items[0].exerciseId)!.name;
     expect(deleteActions()).toContain(`Usuń ćwiczenie: ${name}`); expect(screen.getAllByLabelText('+ seria')[0].props.accessibilityHint).toBe(name); /* 07.10.2026 wieczór: akcja „usuń” zamiast przycisku */
     await go('/more/bands'); await flushAll(10); expect(deleteActions().filter(l => /^Usuń gumę: .+/.test(l)).length).toBe(store.getState().bands.length);
-    await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityHint).toMatch(/inne ćwiczenie/);
+    addWorkout(at(2026, 9, 1), [['Back Squat', [{ weight: 100, reps: 5 }]], ['Pull Up', [{ reps: 5 }]]]); await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10); const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityState.selected).toBe(true); /* ZM-06 (M3 p3): chip „✕” z podpowiedzią zastąpił wybór pod wykresem — wybrany chip jest zaznaczony, pozostałe mają podpowiedź „inne ćwiczenie” */ expect(screen.getByLabelText('Pull Up').props.accessibilityHint).toMatch(/inne ćwiczenie/);
     /* moduły schowane 05.10.2026 (decyzja właściciela) — chip „Trening” nie jest już wyświetlany */
   });
   test('R49-07 pusta nazwa wraca do ostatniej zapisanej, nie do tej sprzed otwarcia ekranu', async () => {
@@ -1866,7 +1866,8 @@ describe('B1 (build 1004; zmienione 11.10.2026): stała zachęta do planu (bez �
   test('11.10.2026: zachęta do planu = stały nagłówek „Bez planu tygodnia · Ustaw plan”; bez „Ukryj”, tekstu zachęty i przełącznika w Ustawieniach', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
     await boot();
-    expect(card().has('Bez planu tygodnia')).toBe(true); expect(card().has('Ustaw plan')).toBe(true);
+    /* M3 p2 (W1 c): „Ustaw plan” jest w nagłówku ekranu Start (PlanningButton), nazwa planu zostaje nad kalendarzem */
+    expect(card().has('Bez planu tygodnia')).toBe(true); expect(screen.getByTestId('planning-button').props.accessibilityLabel).toBe('Ustaw plan'); expect(card().has('Ustaw plan')).toBe(false);
     expect(screen.queryByLabelText('Ukryj zachętę do planu tygodnia')).toBeNull(); expect(card().has('Ustaw plan tygodnia, by widzieć tu dzisiejszy trening i dostawać przypomnienie.')).toBe(false);
     await go('/more/settings'); await flushAll(10);
     expect(screen.queryByTestId('sw-Zachęta do planu tygodnia')).toBeNull(); expect(screen.queryByText('Zachęta do planu tygodnia')).toBeNull();
@@ -1876,7 +1877,8 @@ describe('B1 (build 1004; zmienione 11.10.2026): stała zachęta do planu (bez �
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
     await fresh(); const tp = store.newTemplate(); tp.name = 'Pull'; store.save(tp); setWeekDay(4, tp.id); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())) }); await flushAll(10);
-    expect(card().has('Planowanie')).toBe(true); expect(card().has('Plan tygodnia')).toBe(false);
+    /* M3 p2 (W1 c): „Planowanie” w nagłówku ekranu, nie na karcie */
+    expect(screen.getByTestId('planning-button').props.accessibilityLabel).toBe('Planowanie'); expect(card().has('Planowanie')).toBe(false); expect(card().has('Plan tygodnia')).toBe(false);
   });
   test.each(['pl', 'en'] as const)('pasek tygodnia pokazuje numer dnia pod skrótem (%s)', async (locale) => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
@@ -2108,13 +2110,13 @@ describe('audyt 0.13 NISKIE (0.14.0): Postępy zachowują wybrane ćwiczenie, sz
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/progress' }); await flushAll(10);
   };
   const away = async () => { await go('/more/bodymass'); await flushAll(10); await act(async () => { router.back(); }); await flushAll(10); };
-  test('wybrane ćwiczenie i przewinięcie listy sesji przeżywają wejście na ekran stosu i powrót; zmiana ćwiczenia zaczyna od góry', async () => {
-    await boot(); await tap(screen.getByText('Back Squat')); await flushAll(10);
+  test('wybrane ćwiczenie i przewinięcie listy sesji przeżywają wejście na ekran stosu i powrót (ZM-06: ćwiczenie z danymi jest wybrane od razu, chip „✕” zniknął)', async () => {
+    await boot(); await tap(screen.getByLabelText('Back Squat')); await flushAll(10);
     expect(screen.getByLabelText('Back Squat')).toBeTruthy(); await act(async () => { fireEvent.scroll(screen.getByTestId('progress-scroll'), { nativeEvent: { contentOffset: { x: 0, y: 240 } } }); });
     await away();
     expect(screen.getByLabelText('Back Squat')).toBeTruthy(); expect(screen.getByTestId('progress-scroll').props.contentOffset).toEqual({ x: 0, y: 240 });
-    await tap(screen.getByLabelText('Back Squat')); await flushAll(10); /* ✕: wybór wraca do listy */
-    expect(screen.queryByTestId('progress-scroll')).toBeNull();
+    await tap(screen.getByLabelText('Back Squat')); await flushAll(10); /* zaznaczony chip: bez zmiany (dawniej „✕” wracał do listy) */
+    expect(screen.getByLabelText('Back Squat').props.accessibilityState.selected).toBe(true); expect(screen.getByTestId('progress-hero')).toBeTruthy();
   });
   test('wpisana nazwa w szukajce ćwiczeń przeżywa wejście na ekran stosu i powrót', async () => {
     await boot(); await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'squat'); await flushAll(10);

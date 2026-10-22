@@ -13,18 +13,20 @@ import { WATCH, WATCH_PROTOCOL, type WatchAfter, type WatchNow, type WatchRest, 
 
 /** Przerwa z timera telefonu (lib/timer.ts `T`), podawana wprost — migawka nie zna timera. */
 export interface SnapshotRest { on: boolean; setId: string | null; endAt: number; total: number }
-export interface SnapshotCtx { rev: number; nowMs: number; rest: SnapshotRest | null }
+/** `measuring` = id serii, którą telefon mierzy teraz stoperem (lib/timer.ts `S`), albo null/brak. */
+export interface SnapshotCtx { rev: number; nowMs: number; rest: SnapshotRest | null; measuring?: string | null }
 
 const clip = (s: string, n: number) => { const a = Array.from(s); return a.length <= n ? s : a.slice(0, n - 1).join('') + '…'; };
 
 /** Seria `pos` jako widok „teraz”; null, gdy ćwiczenia nie ma w bibliotece. */
-export function watchNow(w: Workout, pos: { ei: number; si: number }): WatchNow | null {
+export function watchNow(w: Workout, pos: { ei: number; si: number }, measuring?: string | null): WatchNow | null {
   const e = w.exercises[pos.ei]; const set = e?.sets[pos.si]; const ex = e && exById(e.exerciseId); if (!e || !set || !ex) return null;
   const big = nowParts(ex, set); const g = e.groupId ? groupLabels(w.exercises)[e.groupId] : null; const m = ex.metric ?? 'weight_reps';
   return {
     setId: set.id, blockId: e.id, title: clip(exName(ex), WATCH.TITLE_MAX), counter: clip(counterLabel(e, pos.si), WATCH.COUNTER_MAX),
     load: clip(`${big.num}${big.unit ? ' ' + big.unit : ''}${big.tail}`, WATCH.LOAD_MAX), group: g ? ssTag(g) : null,
     timed: hasTime(m), targetSec: hasTime(m) && Number(set.durationSec) > 0 ? Math.round(Number(set.durationSec)) : null,
+    ...(hasTime(m) && measuring === set.id ? { measuring: true } : {}),
   };
 }
 
@@ -40,7 +42,7 @@ function afterOf(w: Workout, pos: { ei: number; si: number }): WatchAfter {
 export function buildSnapshot(w: Workout | null, ctx: SnapshotCtx): WatchSnapshot {
   const head = { v: WATCH_PROTOCOL, kind: 'snapshot' as const, rev: ctx.rev, lang: lang() };
   if (!w) return { ...head, phase: 'idle', paused: false, workoutId: null, title: '', now: null, rest: null, after: null, doneCount: 0, totalCount: 0, toFillCount: 0 };
-  const pos = focusSet(w); const now = pos ? watchNow(w, pos) : null;
+  const pos = focusSet(w); const now = pos ? watchNow(w, pos, ctx.measuring) : null;
   let rest: WatchRest | null = null; const r = ctx.rest;
   if (r && r.on && r.setId && r.endAt > ctx.nowMs && w.exercises.some(e => e.sets.some(s => s.id === r.setId))) {
     const c = restCue(w, r.setId);

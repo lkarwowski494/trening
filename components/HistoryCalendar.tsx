@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
-import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, font, FW, RADIUS, TEXT_SCALE_MAX } from '@/lib/theme';
 import { t as tr, tp, lang } from '@/lib/i18n';
 import { regionWeekStart, monthGrid, shiftMonth, weekdayLabels, monthTitle, dayTitle, dayKey } from '@/lib/calendar';
 import { dayStatusFrom, planInForce, planTplName } from '@/lib/plan';
@@ -12,6 +12,8 @@ import { DayIcon } from '@/components/Motif';
 /** Wartość VoiceOver dnia ze znacznikiem (korekta właściciela 09.10.2026 ok. 17:00): „zrobione” albo „zaplanowane” — etykieta dnia bez zmian (E2E). */
 const markText = (m: DayMark): string => m === 'done' ? tr('zrobione') : m === 'rest' ? tr('odpoczynek') : tr('zaplanowane');
 /** Komórka dnia: numer nad ikoną dnia (lib/motif.MINI_ICON) — 38 × 44 pt, z hitSlop 4 cel ≥ 44 pt (A11-15). */
+/** Skrót nagłówka dnia tygodnia do szerokości komórki (M3 p3, układ 320 pt): „Ceturtd.” (lv) nie mieści się w 41 pt przy 11 pt — dłuższe niż 6 znaków skracamy do 3 liter z kropką; nagłówki są ukryte dla VoiceOver (dni mają pełne daty). */
+const headText = (h: string) => h.length > 6 ? `${h.slice(0, 3)}.` : h;
 export const CAL_FACE = { w: MINI_ICON.w + 14, h: 44 } as const;
 
 /*
@@ -35,26 +37,26 @@ export function HistoryCalendar({ byDay, selected, onSelect, onMonth }: { byDay:
   const nav = (delta: number) => { const n = shiftMonth(ym.y, ym.m, delta); setYm(n); onMonth?.(n.y, n.m); };
   const arrow = (label: string, glyph: string, delta: number) => (
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" accessibilityLabel={label} onPress={() => nav(delta)} hitSlop={8} style={({ pressed }) => ({ minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.5 : 1 })}>
-      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 22, fontFamily: F.semibold }}>{glyph}</Text>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.3} style={{ color: t.text, ...font('sectionTitle') }}>{glyph}</Text>
     </Pressable>);
   return (
     <View style={{ marginBottom: 10 }} testID="history-calendar">
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
         {arrow(tr('Poprzedni miesiąc'), '‹', -1)}
-        <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, fontSize: 17, fontFamily: F.heavy }}>{monthTitle(ym.y, ym.m)}</Text>
+        <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: t.text, ...font('sectionTitle') }}>{monthTitle(ym.y, ym.m)}</Text>
         {arrow(tr('Następny miesiąc'), '›', 1)}
       </View>
       <View style={{ flexDirection: 'row' }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-        {heads.map((h, i) => <Text accessibilityLanguage={lang()} key={i} maxFontSizeMultiplier={1.2} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7} /* A11-19: lv „Ceturtdiena” bez „…” */ style={{ flex: 1, textAlign: 'center', color: t.muted, fontSize: 12, fontFamily: F.semibold }}>{h}</Text>)}
+        {heads.map((h, i) => <Text accessibilityLanguage={lang()} key={i} maxFontSizeMultiplier={1.2} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7} /* A11-19: lv „Ceturtdiena” bez „…” */ style={{ flex: 1, textAlign: 'center', color: t.muted, ...font('caption') }}>{headText(h)}</Text>)}
       </View>
       {weeks.map((w, wi) => { const dl = weekDeload(w); /* 08.10.2026: tydzień deload — tło wiersza; audyt 0.10 A11-05: ramka muted */ return (
-        <View key={wi} testID={dl ? `cal-deload-${monCell(w).key}` : undefined} style={{ flexDirection: 'row', borderRadius: 18, backgroundColor: dl ? t.surface2 : 'transparent', borderWidth: 1, borderColor: dl ? t.muted : 'transparent' }}>
+        <View key={wi} testID={dl ? `cal-deload-${monCell(w).key}` : undefined} style={{ flexDirection: 'row', borderRadius: RADIUS.group, backgroundColor: dl ? t.surface2 : 'transparent', borderWidth: 1, borderColor: dl ? t.muted : 'transparent' }}>
           {w.map(c => { const ws = c.inMonth ? byDay.get(c.key) ?? [] : []; const n = ws.length; const on = selected === c.key; const isToday = c.key === today;
             const st = c.inMonth ? dayStatusFrom(c.key, ws, today) : null; const status = st?.status ?? 'rest'; const name = planTplName(st?.templateId);
             const mark = c.inMonth ? dayMark(status, status === 'rest' && planInForce(c.key, today)) : null; /* odpoczynek tylko w dniu z obowiązującym planem */ const missed = status === 'missed'; const other = status === 'other'; const planned = status === 'planned';
             const face = (
-              <View style={{ width: CAL_FACE.w, height: CAL_FACE.h, borderRadius: 10, alignItems: 'center', justifyContent: 'center', gap: 1, borderWidth: on || isToday ? 2 : 0, borderColor: on ? t.text : t.accent, backgroundColor: on ? t.surface2 : 'transparent' }}>
-                <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: c.inMonth ? (missed ? t.muted : t.text) : t.line, fontSize: 14, lineHeight: 18, fontFamily: n ? F.heavy : F.regular }}>{c.d}</Text>
+              <View style={{ width: CAL_FACE.w, height: CAL_FACE.h, borderRadius: RADIUS.button, alignItems: 'center', justifyContent: 'center', gap: 1, borderWidth: on || isToday ? 2 : 0, borderColor: on ? t.text : t.accent, backgroundColor: on ? t.surface2 : 'transparent' }}>
+                <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={1.2} style={{ color: c.inMonth ? (missed ? t.muted : t.text) : t.line, ...font('callout'), ...(n ? FW.bold : FW.regular) }}>{c.d}</Text>
                 <View style={{ height: MINI_ICON.h }}>{mark ? <DayIcon mark={mark} bg={on ? t.surface2 : dl ? t.surface2 : t.bg} th={t} /> : null}</View>
               </View>);
             const parts = [dayTitle(c), ...(isToday ? [tr('dziś')] : []), ...(n ? [`${n} ${tp(n, 'sesja|sesje|sesji')}`] : []), ...(other ? [tr('zrobiony inny trening')] : []), ...(st?.early ? [tr('zrobiony wcześniej: {name}', { name })] : []),
@@ -66,7 +68,7 @@ export function HistoryCalendar({ byDay, selected, onSelect, onMonth }: { byDay:
                   : <View accessibilityElementsHidden importantForAccessibility="no-hide-descendants">{face}</View>}
               </View>); })}
         </View>); })}
-      {weeks.some(weekDeload) ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: t.muted, fontSize: 12, marginTop: 4, fontFamily: F.regular }}>{tr('Wiersz w ramce — tydzień deload.')}</Text> : null}
+      {weeks.some(weekDeload) ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: t.muted, ...font('footnote'), marginTop: 4 }}>{tr('Wiersz w ramce — tydzień deload.')}</Text> : null}
     </View>
   );
 }

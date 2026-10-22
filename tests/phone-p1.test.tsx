@@ -2,6 +2,7 @@
 import * as store from '@/lib/store';
 import * as timer from '@/lib/timer';
 import { fireEvent } from '@testing-library/react-native';
+import { hapticsEnabled } from '@/lib/haptics';
 import { fresh, ex, legacyBandKg } from './helpers';
 import { renderApp, flushAll, screen, go, tap, act, openInfo } from './app';
 
@@ -29,7 +30,7 @@ describe('P-001 gumy: tylko kolor i poziom 1–7', () => {
 });
 
 describe('P-002 ustawienia: przełączniki iOS, segmenty, grupy', () => {
-  const SWITCHES = ['Dźwięk i wibracja na koniec przerwy', 'Ekran włączony podczas treningu', 'RPE / RIR przy serii', 'Podpowiedź progresji', 'Zapisuj zakończone treningi do Apple Health', 'Automatyczna kopia po każdym treningu'];
+  const SWITCHES = ['Dźwięk na koniec przerwy', 'Wibracje', 'Ekran włączony podczas treningu', 'RPE / RIR przy serii', 'Podpowiedź progresji', 'Zapisuj zakończone treningi do Apple Health', 'Automatyczna kopia po każdym treningu'];
   test('każda opcja wł./wył. to przełącznik z nazwą i stanem; brak dawnych przycisków „włączone/wyłączone”', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
     const sw = screen.getAllByRole('switch').map(x => x.props.accessibilityLabel);
@@ -38,7 +39,7 @@ describe('P-002 ustawienia: przełączniki iOS, segmenty, grupy', () => {
   });
   test('przełączenie zmienia ustawienie i stan VoiceOver (dźwięk, ekran, RPE, podpowiedź, kopia)', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10); const s = store.getState().settings;
-    const cases: [string, () => boolean][] = [['Dźwięk i wibracja na koniec przerwy', () => s.sound], ['Ekran włączony podczas treningu', () => s.wakeLock], ['RPE / RIR przy serii', () => s.showRpe], ['Podpowiedź progresji', () => s.progressHint], ['Automatyczna kopia po każdym treningu', () => s.autoBackup]];
+    const cases: [string, () => boolean][] = [['Dźwięk na koniec przerwy', () => s.sound], ['Wibracje', () => hapticsEnabled(s)], ['Ekran włączony podczas treningu', () => s.wakeLock], ['RPE / RIR przy serii', () => s.showRpe], ['Podpowiedź progresji', () => s.progressHint], ['Automatyczna kopia po każdym treningu', () => s.autoBackup]];
     for (const [label, get] of cases) {
       const before = get(); await act(async () => { fireEvent(screen.getByLabelText(label), 'valueChange', !before); }); await flushAll(5);
       expect(get()).toBe(!before); expect(screen.getByLabelText(label).props.accessibilityState.checked).toBe(!before);

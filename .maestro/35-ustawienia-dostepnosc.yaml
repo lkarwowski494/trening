@@ -5,7 +5,7 @@
 # Poza CI (docs/31 pkt 4): prawdziwy odczyt Zdrowia (HealthKit na symulatorze bez danych), prawdziwy StoreKit i okna Apple, przestawienie systemowej
 # wielkości tekstu i VoiceOver na żywo (Maestro nie włącza ustawień dostępności).
 #
-# Literały (EN z lib/i18n.en.ts): jak 09, 20, 21 oraz "Default rest \\(seconds\\)", "Sound and vibration at the end of rest", "Keep screen on during workout",
+# Literały (EN z lib/i18n.en.ts): jak 09, 20, 21 oraz "Default rest \\(seconds\\)", "Sound at the end of rest", "Haptics", "Keep screen on during workout",
 #   "RPE / RIR per set", "Progression hint", "Automatic backup after every workout", "Muscle group goals" (etykieta przycisku rozwijającego), "Workout view", "List", "Focused"
 appId: pl.lukasz.trening
 name: Ustawienia, dostępność, Zdrowie, subskrypcja
@@ -66,16 +66,22 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - extendedWaitUntil: { visible: "Language, Phone setting", timeout: 30000 }
 - takeScreenshot: 105-przerwa-45
 # --- przełączniki: dźwięk, ekran włączony, podpowiedź progresji, RPE/RIR, kopia automatyczna ---
-- scrollUntilVisible: { element: { id: "sw-Sound and vibration at the end of rest" }, direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: { id: "sw-Sound and vibration at the end of rest" }
+- scrollUntilVisible: { element: { id: "sw-Sound at the end of rest" }, direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: { id: "sw-Sound at the end of rest" }
+- scrollUntilVisible: { element: { id: "sw-Haptics" }, direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: { id: "sw-Haptics" }
 - scrollUntilVisible: { element: { id: "sw-Keep screen on during workout" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Keep screen on during workout" }
 - scrollUntilVisible: { element: { id: "sw-Progression hint" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Progression hint" }
 - scrollUntilVisible: { element: { id: "sw-RPE / RIR per set" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-RPE / RIR per set" }
-- scrollUntilVisible: { element: "RIR", direction: DOWN, timeout: 20000, centerElement: true }
-- tapOn: "RIR"
+# E2E-35 (run 39676394005): „RIR” po tekście trafiało w nieostry cel (trening pokazał potem RPE) — segment ma testID `effort-scale-rir`; zaznaczenie sprawdzamy przed dalszymi krokami
+- scrollUntilVisible: { element: { id: "effort-scale-rir" }, direction: DOWN, timeout: 20000, centerElement: true }
+# E2E 39702654990: segment bywa pod przezroczystym nagłówkiem Settings (Maestro uważa go za widoczny, więc centerElement go nie przewija) — zsuwamy listę w dół o ok. 100 pt
+- swipe: { start: "50%, 40%", end: "50%, 52%", duration: 400 }
+- tapOn: { id: "effort-scale-rir" }
+- assertVisible: { id: "effort-scale-rir", selected: true }
 - scrollUntilVisible: { element: { id: "sw-Automatic backup after every workout" }, direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { id: "sw-Automatic backup after every workout" }
 - takeScreenshot: 106-przelaczniki
@@ -102,6 +108,7 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Bench Press"
+- pressKey: Enter   # po wpisie w polu szukania ćwiczeń zawsze Enter (reguła z main) — klawiatura znika, lista zostaje przefiltrowana
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Bench Press \\(Barbell\\),.*", timeout: 30000 }
@@ -109,12 +116,12 @@ name: Ustawienia, dostępność, Zdrowie, subskrypcja
 - extendedWaitUntil: { visible: "Set 1 done — Bench Press \\(Barbell\\)", timeout: 30000 }
 - assertVisible: "RIR"
 - assertVisible: "Workout progress: 0 of 1 sets"
-- assertVisible: "Pause workout"
+- assertVisible: "Workout options"  # M3 p2: pauza w menu „⋯”
 - assertVisible: "Swap exercise: Bench Press \\(Barbell\\)"
 - assertVisible: "Skip today: Bench Press \\(Barbell\\)"
 - tapOn: "Set 1 done — Bench Press \\(Barbell\\)"
 - extendedWaitUntil: { visible: "Skip", timeout: 15000 }
-- assertVisible: "rest of 0:45"
+- assertVisible: "rest of 0:45"  # widok „Lista”: przerwa w dolnym pasku (bez tablicy „teraz”)
 - assertVisible: "Shorten rest by 15 seconds"
 - assertVisible: "Extend rest by 15 seconds"
 - takeScreenshot: 109-przerwa-45-w-treningu

@@ -33,8 +33,8 @@ export function groupLabels(list: Grouped[]): Record<string, string> {
 }
 /** Etykieta grupy do wyświetlenia („SS A”) — przez słownik, żeby skrót dało się przetłumaczyć (M1-037). */
 export const ssTag = (g: string) => t('SS {g}', { g });
-/** Tytuł przycisku łączenia/rozdzielania supersetu („⇅ SS”, „✂ SS”) — skrót przez słownik (M1-037). */
-export const ssBtn = (kind: 'link' | 'unlink') => `${kind === 'link' ? '⇅' : '✂'} ${t('SS')}`;
+/** Tytuł przycisku łączenia/rozdzielania supersetu („⇅ SS”, „✕ SS”) — skrót przez słownik (M1-037). */
+export const ssBtn = (kind: 'link' | 'unlink') => `${kind === 'link' ? '⇅' : '✕'} ${t('SS')}`;
 /** Łączy ćwiczenie i z następnym w superset; gdy oba są w różnych grupach — scala je w jedną. */
 export function linkWithNext(list: Grouped[], i: number, touched?: Base | null) {
   const a = list[i], b = list[i + 1]; if (!a || !b) return;
@@ -60,7 +60,7 @@ export function moveItem<T extends Grouped>(list: T[], i: number, d: number, tou
 export function removeItem<T extends Grouped>(list: T[], i: number, touched?: Base | null) { list.splice(i, 1); normalizeGroups(list); save(touched); }
 
 /* T-010 (02.10.2026): kolejność przeciąganiem. Przeciąga się bloki — pojedyncze ćwiczenie albo cały superset — a wewnątrz
- * supersetu jego ćwiczenia. Przesuwanie nigdy nie zmienia członkostwa w supersetach (od tego są „⇅ SS” i „✂”), więc
+ * supersetu jego ćwiczenia. Przesuwanie nigdy nie zmienia członkostwa w supersetach (od tego są „⇅ SS” i „✕ SS”), więc
  * upuszczenie ćwiczenia „w środek” cudzej grupy jej nie rozrywa. Pozycje wskazywane po id — lista mogła się zmienić od rysowania. */
 /** Bloki listy: [pierwszy, ostatni] indeks (włącznie) — ciągła grupa albo pojedyncza pozycja. */
 export function blockRanges(list: Grouped[]): [number, number][] {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { useTheme, F, TEXT_SCALE_MAX } from '@/lib/theme';
+import { useTheme, F, TEXT_SCALE_MAX, FW, font, RADIUS } from '@/lib/theme';
 import { t as tr, lang, exName } from '@/lib/i18n';
 import { recordCards, type RecordCard, type RecordStat, type WorkoutPR } from '@/lib/stats';
 
@@ -19,13 +19,13 @@ export const cardLabel = (c: RecordCard): string => [exName(c.exercise),
 export function RecordsCard({ count, prs }: { count: number; prs: readonly WorkoutPR[] }) {
   const th = useTheme(); const cards = recordCards(prs); const head = count === 1 ? tr('Nowy rekord!') : tr('Nowe rekordy: {n}', { n: count });
   return (
-    <View testID="record-card" style={{ borderRadius: 12, borderWidth: 1, borderColor: th.line, backgroundColor: th.surface, marginBottom: 14, padding: 12, gap: 10 }}>
-      <Text testID="record-banner" accessible accessibilityRole="header" accessibilityLanguage={lang()} accessibilityLabel={head} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.heavy, fontSize: 18 }}>{head}</Text>
+    <View testID="record-card" style={{ borderRadius: RADIUS.group, borderWidth: 1, borderColor: th.line, backgroundColor: th.surface, marginBottom: 14, padding: 12, gap: 10 }}>
+      <Text testID="record-banner" accessible accessibilityRole="header" accessibilityLanguage={lang()} accessibilityLabel={head} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), fontFamily: F.heavy }}>{head}</Text>
       {cards.map(c => (
         <View key={c.exercise.id} testID={`record-ex-${c.exercise.id}`} accessible accessibilityLanguage={lang()} accessibilityLabel={cardLabel(c)} style={{ gap: 2 }}>
-          <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, fontFamily: F.semibold, fontSize: 16 }}>{exName(c.exercise)}</Text>
-          {c.stats.map(s => <Text key={s.kind} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.band, fontFamily: F.semibold, fontSize: 15 }}>{statLine(s)}</Text>)}
-          {c.bestSet ? <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, fontSize: 14 }}>{tr('Najlepsza seria: {s}', { s: c.bestSet })}</Text> : null}
+          <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('body'), ...FW.semibold }}>{exName(c.exercise)}</Text>
+          {c.stats.map(s => <Text key={s.kind} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.band, ...font('callout'), ...FW.semibold }}>{statLine(s)}</Text>)}
+          {c.bestSet ? <Text maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('callout') }}>{tr('Najlepsza seria: {s}', { s: c.bestSet })}</Text> : null}
         </View>))}
     </View>);
 }

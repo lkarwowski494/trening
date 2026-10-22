@@ -30,7 +30,7 @@ describe('treść i logika', () => {
   test('cytowane w krokach nazwy przycisków („…”) to teksty z interfejsu — zmiana nazwy przycisku wymaga zmiany przewodnika', () => {
     const quoted = GUIDE.flatMap(g => g.steps()).flatMap(s => [...s.matchAll(/„([^”]+)”/g)].map(m => m[1]));
     expect(quoted.length).toBeGreaterThan(10);
-    const missing = quoted.map(q => (q === 'Zaplanuj deload od …' ? 'Zaplanuj deload od {date}' : q === 'Powtórz ostatni' ? 'Powtórz ostatni ({name})' /* przycisk z nazwą treningu */ : q)).filter(q => !(q in EN) && !['⇅ SS', '✂ SS', '↑'].includes(q) /* UI2-07: tekst przycisku bez tłumaczenia (symbol) — sprawdzany niżej w kodzie ekranów; ⓘ 14.10.2026: „✂ SS” i „↑” z dawnej stopki edytora szablonu */);
+    const missing = quoted.map(q => (q === 'Zaplanuj deload od …' ? 'Zaplanuj deload od {date}' : q === 'Powtórz ostatni' ? 'Powtórz ostatni ({name})' /* przycisk z nazwą treningu */ : q)).filter(q => !(q in EN) && !['⇅ SS', '✕ SS', '↑'].includes(q) /* UI2-07: tekst przycisku bez tłumaczenia (symbol) — sprawdzany niżej w kodzie ekranów; ⓘ 14.10.2026: „✕ SS” i „↑” z dawnej stopki edytora szablonu */);
     expect(missing).toEqual([]);
   });
   test('postęp i odhaczanie: nieznane id pomijane, bez powtórzeń, bez userTouched', () => {
@@ -46,7 +46,7 @@ describe('treść i logika', () => {
 
 test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści tematów albo wpisów', () => {
   const texts = [
-    '„⏸ Pauza” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.',
+    'Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.', /* M3 rola 09 (ZM-02) */
     '„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.',
     'Automatyczna kopia po każdym treningu trafia do Plików (Ustawienia).',
     'Kilka planów: przycisk + w nagłówku (Dodaj plan) tworzy kopię do zmiany, a „Ustaw jako aktywny” w „Inne plany” ją włącza — zmiany dni wracają razem z planem.', /* audyt 0.10 B2 A, B1 */
@@ -54,7 +54,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Lista ćwiczeń, zamiany i generator pokazują to, co da się zrobić w wybranym miejscu.',
     'Mapa mięśni i serie na partię z kreską 10 serii tygodniowo.',
     'Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.', /* docs/22 P2/P3 (11.10.2026) */
-    'Na koniec „Zakończ” (u góry albo w karcie po ostatniej serii) — sesja trafi do zakładki Plan.',
+    'Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.',
     'Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.',
     'Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.',
     'Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”.',
@@ -67,7 +67,7 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Trening i serie',
     'W Postępach oznaczony tydzień widać jako litera D na wykresach — tam się go nie zmienia.',
     'Szablon otwiera się w podglądzie ze „Start”; zmiany (także folder) dopiero po „Edytuj” — zapisuje je „Zapisz”.',
-    '„Archiwizuj” w podglądzie chowa szablon; przesunięcie w lewo na liście usuwa go (z potwierdzeniem).',
+    '„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).',
     'Zmiany w trakcie treningu', 'Edycja sesji i trening wstecz',
     'Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.',
     'W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: o około 1/3–1/2 mniej serii (np. 2 z 3; ćwiczenia z 1 serią bez zmian); ciężary i szablon bez zmian.', /* audyt 0.10 (D1, MER-04) */
@@ -75,7 +75,11 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku.',
     'Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami.',
     'Postępy: podsumowanie tygodnia lub miesiąca z poprzednim okresem obok.',
-    'Wpisz ciężar i powtórzenia, odhacz serię ✓ — przerwa odlicza się sama.',
+    'Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.', /* M3 rola 09 (ZM-01) */
+    /* M3 rola 09 (ZM-04): usuwanie bez gestu */
+    'Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.',
+    'Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.',
+    'Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.',
     'Wykresy ćwiczeń i rekordy; rekord w trakcie treningu widać przy serii.',
     /* audyt 0.10 fala 2 (UI): temat „Zmiany w trakcie treningu” i „Edycja sesji i trening wstecz” */
     '„⇄ zamień” przy ćwiczeniu zamienia je na inne tylko w tym treningu — szablon zostaje.',
@@ -84,8 +88,8 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).',
     'W zakładce Plan stuknij sesję, potem „Edytuj” — zmiany zapisuje „Zapisz”, „Anuluj” je odrzuca.',
     '„Dopisz trening wstecz” zapisze trening, którego nie zapisałeś na bieżąco; z dnia w zakładce Plan jest ten sam przycisk.',
-    /* ⓘ 14.10.2026 (P2 A): instrukcje gestów zeszły z ekranów do Przewodnika — typy serii W/D/F, notatka, tapnięcie numeru serii, ⇅ SS / ✂ SS, kolejność ≡ */
-    'Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✂ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.',
+    /* ⓘ 14.10.2026 (P2 A): instrukcje gestów zeszły z ekranów do Przewodnika — typy serii W/D/F, notatka, tapnięcie numeru serii, ⇅ SS / ✕ SS, kolejność ≡ */
+    'Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.',
     'Trening w toku zapisuje się na bieżąco. Tapnij numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę.',
     'Tapnij numer serii, by zmienić typ (W, D, F) albo dodać notatkę. Serie bez wyniku nie zostaną zapisane.',
   ];
@@ -147,7 +151,7 @@ describe('UI2-07 (audyt kontrolny 1): przewodnik cytuje to, co widać na ekranie
     const all = GUIDE.flatMap(g => g.steps()).join('\n');
     expect(all).not.toContain('Połącz z następnym w superset');
     expect(all).toContain('⇅ SS');
-    const fs2 = require('fs'); for (const f of ['app/template/[id].tsx', 'components/ActiveWorkout.tsx']) expect(fs2.readFileSync(f, 'utf8')).toContain("title={ssBtn('link')}"); /* M1-037: tytuł przycisku z słownika (lib/state/groups.ssBtn) */
+    const fs2 = require('fs'); for (const f of ['app/template/[id].tsx', 'components/WorkoutBlocks.tsx']) expect(fs2.readFileSync(f, 'utf8')).toContain("title={ssBtn('link')}"); /* M3 p2: bloki ćwiczeń w WorkoutBlocks */ /* M1-037: tytuł przycisku z słownika (lib/state/groups.ssBtn) */
     expect(require('@/lib/state/groups').ssBtn('link')).toBe('⇅ SS');
   });
 });
@@ -155,12 +159,12 @@ describe('UI2-07 (audyt kontrolny 1): przewodnik cytuje to, co widać na ekranie
 describe('ⓘ (14.10.2026, P2 A): instrukcje gestów zeszły z ekranów do Przewodnika', () => {
   const fs2 = require('fs'); const read = (f: string) => fs2.readFileSync(path.join(__dirname, '..', f), 'utf8') as string;
   const steps = () => GUIDE.flatMap(g => g.steps());
-  test('Przewodnik opisuje: typy serii W/D/F, notatkę i tapnięcie numeru serii (trening, edycja sesji), „⇅ SS” / „✂ SS”, kolejność „≡ Kolejność”, przesunięcie w lewo', () => {
+  test('Przewodnik opisuje: typy serii W/D/F, notatkę i tapnięcie numeru serii (trening, edycja sesji), „⇅ SS” / „✕ SS”, kolejność „≡ Kolejność”, przesunięcie w lewo', () => {
     const all = steps().join('\n');
-    for (const x of ['numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę', 'numer serii, by zmienić typ (W, D, F) albo dodać notatkę', 'Dotknij etykiety serii, by zmienić typ', '„⇅ SS”', '„✂ SS”', '„≡ Kolejność”', 'w lewo']) expect([x, all.includes(x)]).toEqual([x, true]);
+    for (const x of ['numer serii, by oznaczyć rozgrzewkę (W), drop set (D), serię do upadku (F) albo dodać notatkę', 'numer serii, by zmienić typ (W, D, F) albo dodać notatkę', 'Dotknij etykiety serii, by zmienić typ', '„⇅ SS”', '„✕ SS”', '„≡ Kolejność”', 'w lewo']) expect([x, all.includes(x)]).toEqual([x, true]);
   });
-  test('cytowane symbole istnieją w interfejsie: „✂ SS” (szablon i trening), „≡ Kolejność” (trening), podpowiedź „↑ spróbuj”', () => {
-    for (const f of ['app/template/[id].tsx', 'components/ActiveWorkout.tsx']) expect(read(f)).toContain("title={ssBtn('unlink')}");
+  test('cytowane symbole istnieją w interfejsie: „✕ SS” (szablon i trening), „≡ Kolejność” (trening), podpowiedź „↑ spróbuj”', () => {
+    for (const f of ['app/template/[id].tsx', 'components/WorkoutBlocks.tsx']) expect(read(f)).toContain("title={ssBtn('unlink')}");
     expect(read('components/ActiveWorkout.tsx')).toContain("tr('≡ Kolejność')"); expect(read('lib/i18n.en.ts')).toContain("'↑ spróbuj");
   });
   test('ekrany nie powtarzają instrukcji gestów (zostaje tylko ostrzeżenie o seriach bez wyniku w edycji sesji)', () => {

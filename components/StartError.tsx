@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Pressable, Alert } from 'react-native';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, FW } from '@/lib/theme';
 import { t, lang, appName } from '@/lib/i18n';
 import { exportStartData } from '@/lib/backup';
 import { openSupportMail } from '@/lib/support';
@@ -16,7 +16,7 @@ export function StartError({ title, message, detail, onRetry }: { title: string;
   const send = () => { exportStartData().then(ok => { if (!ok) Alert.alert(t('Nie udało się wysłać danych'), t('Spróbuj ponownie.')); }).catch(() => { Alert.alert(t('Nie udało się wysłać danych'), t('Spróbuj ponownie.')); }); };
   const link = (label: string, onPress: () => void) => (
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={onPress} style={{ padding: 12 }}>
-      <Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, fontFamily: F.semibold }}>{label}</Text>
+      <Text accessibilityLanguage={lang()} style={{ color: th.accent, fontSize: 16, ...FW.semibold }}>{label}</Text>
     </Pressable>);
   return (
     <View testID="start-error" style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}>

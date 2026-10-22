@@ -100,7 +100,7 @@ describe('przełącznik „Dni cardio w planie”', () => {
   });
   test('scenariusz: Ogólny, 5 dni, cardio włączone → zapis „Ustaw jako aktywny” → plan: 3 × FBW + 2 × Cardio na wybranych dniach → restart — bez zmian', async () => {
     await boot(); await goal('Ogólny'); await pickDays([0, 1, 2, 4, 5]); await toggle(true);
-    await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
+    await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await flushAll(10); /* ZM-03 (21.10.2026): bez aktywnego planu zapis aktywuje plan bez pytania */
     expect(plan.planName()).toBe('Ogólny, 5× w tygodniu · Pełna siłownia');
     const days = plan.weekPlanDays(); const names = days.map(id => (id ? S().templates.find(x => x.id === id)!.name : null));
     expect(names.filter(Boolean).sort()).toEqual(['Cardio', 'Cardio', 'FBW', 'FBW', 'FBW']); expect(days.flatMap((x, d) => (x ? [d] : []))).toEqual([0, 1, 2, 4, 5]);

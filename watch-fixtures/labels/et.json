@@ -12,5 +12,6 @@
  "idle": "Alusta treeningut telefonis",
  "finished": "Treening lõppenud",
  "update": "Värskenda kellarakendust",
- "nothingLeft": "rohkem pole midagi teha"
+ "nothingLeft": "rohkem pole midagi teha",
+ "finish": "Lõpeta seeria"
 }

@@ -1,0 +1,1415 @@
+{
+ "_comment": "Ustawienia (state.settings) zapisane przez kod sprzed p5d (commit 70dc56a; pole haptics nieznane tej wersji) po wczytaniu zapisu 0.20.0-b1018 z dopisanym haptics — krok „stara wersja” w ścieżce nowa → stara → nowa (ZM-07). Dane syntetyczne; nie edytować ręcznie.",
+ "cases": {
+  "sound-on-haptics-off": {
+   "sound": true,
+   "haptics": false,
+   "settings": {
+    "haptics": false,
+    "defaultRest": 105,
+    "sound": true,
+    "wakeLock": true,
+    "showRpe": false,
+    "healthSync": false,
+    "voice": "speaker",
+    "progressHint": true,
+    "autoBackup": true,
+    "weighReminder": false,
+    "modules": {
+     "training": true,
+     "diet": false,
+     "sleep": false,
+     "cardio": false,
+     "supplements": false,
+     "recommendations": false
+    },
+    "language": "auto",
+    "unit": "kg",
+    "theme": "light",
+    "workoutView": "focus",
+    "locations": [
+     {
+      "id": "118807c6-95d0-4dca-a33a-94e313d6e260",
+      "ownerId": "local",
+      "createdAt": 1791822600000,
+      "updatedAt": 1791822600000,
+      "name": "Dom",
+      "equipment": []
+     },
+     {
+      "id": "423fac69-b732-4274-690d-f04c597c6ae7",
+      "ownerId": "local",
+      "createdAt": 1791822600000,
+      "updatedAt": 1791822600000,
+      "name": "Siłownia",
+      "equipment": [
+       {
+        "item": "barbell",
+        "opts": [],
+        "load": {
+         "kind": "plates",
+         "unit": "kg",
+         "base": 20,
+         "plates": [
+          {
+           "w": 25,
+           "n": 8
+          },
+          {
+           "w": 20,
+           "n": 8
+          },
+          {
+           "w": 15,
+           "n": 8
+          },
+          {
+           "w": 10,
+           "n": 8
+          },
+          {
+           "w": 5,
+           "n": 8
+          },
+          {
+           "w": 2.5,
+           "n": 8
+          },
+          {
+           "w": 1.25,
+           "n": 8
+          }
+         ]
+        }
+       },
+       {
+        "item": "ez_bar",
+        "opts": [],
+        "load": {
+         "kind": "plates",
+         "unit": "kg",
+         "base": 10,
+         "plates": [
+          {
+           "w": 25,
+           "n": 8
+          },
+          {
+           "w": 20,
+           "n": 8
+          },
+          {
+           "w": 15,
+           "n": 8
+          },
+          {
+           "w": 10,
+           "n": 8
+          },
+          {
+           "w": 5,
+           "n": 8
+          },
+          {
+           "w": 2.5,
+           "n": 8
+          },
+          {
+           "w": 1.25,
+           "n": 8
+          }
+         ]
+        }
+       },
+       {
+        "item": "trap_bar",
+        "opts": [],
+        "load": {
+         "kind": "plates",
+         "unit": "kg",
+         "base": 20,
+         "plates": [
+          {
+           "w": 25,
+           "n": 8
+          },
+          {
+           "w": 20,
+           "n": 8
+          },
+          {
+           "w": 15,
+           "n": 8
+          },
+          {
+           "w": 10,
+           "n": 8
+          },
+          {
+           "w": 5,
+           "n": 8
+          },
+          {
+           "w": 2.5,
+           "n": 8
+          },
+          {
+           "w": 1.25,
+           "n": 8
+          }
+         ]
+        }
+       },
+       {
+        "item": "db_fixed",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": [
+          {
+           "w": 2.5,
+           "on": true
+          },
+          {
+           "w": 5,
+           "on": true
+          },
+          {
+           "w": 7.5,
+           "on": true
+          },
+          {
+           "w": 10,
+           "on": true
+          },
+          {
+           "w": 12.5,
+           "on": true
+          },
+          {
+           "w": 15,
+           "on": true
+          },
+          {
+           "w": 17.5,
+           "on": true
+          },
+          {
+           "w": 20,
+           "on": true
+          },
+          {
+           "w": 22.5,
+           "on": true
+          },
+          {
+           "w": 25,
+           "on": true
+          },
+          {
+           "w": 27.5,
+           "on": true
+          },
+          {
+           "w": 30,
+           "on": true
+          },
+          {
+           "w": 32.5,
+           "on": true
+          },
+          {
+           "w": 35,
+           "on": true
+          },
+          {
+           "w": 37.5,
+           "on": true
+          },
+          {
+           "w": 40,
+           "on": true
+          },
+          {
+           "w": 42.5,
+           "on": true
+          },
+          {
+           "w": 45,
+           "on": true
+          },
+          {
+           "w": 47.5,
+           "on": true
+          },
+          {
+           "w": 50,
+           "on": true
+          }
+         ]
+        }
+       },
+       {
+        "item": "kettlebell",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "landmine",
+        "opts": []
+       },
+       {
+        "item": "med_ball",
+        "opts": []
+       },
+       {
+        "item": "dip_belt",
+        "opts": []
+       },
+       {
+        "item": "plate",
+        "opts": []
+       },
+       {
+        "item": "sandbag",
+        "opts": []
+       },
+       {
+        "item": "chains",
+        "opts": []
+       },
+       {
+        "item": "bench_flat",
+        "opts": []
+       },
+       {
+        "item": "bench_adj",
+        "opts": [
+         "decline"
+        ]
+       },
+       {
+        "item": "bench_decline",
+        "opts": []
+       },
+       {
+        "item": "bench_press",
+        "opts": [
+         "incline"
+        ]
+       },
+       {
+        "item": "rack",
+        "opts": [
+         "pullup"
+        ]
+       },
+       {
+        "item": "squat_stands",
+        "opts": [
+         "safeties"
+        ]
+       },
+       {
+        "item": "smith",
+        "opts": []
+       },
+       {
+        "item": "preacher",
+        "opts": []
+       },
+       {
+        "item": "hyperext",
+        "opts": []
+       },
+       {
+        "item": "ghd",
+        "opts": []
+       },
+       {
+        "item": "box",
+        "opts": []
+       },
+       {
+        "item": "pullup_bar",
+        "opts": []
+       },
+       {
+        "item": "dip_bars",
+        "opts": []
+       },
+       {
+        "item": "power_tower",
+        "opts": []
+       },
+       {
+        "item": "rings",
+        "opts": []
+       },
+       {
+        "item": "suspension",
+        "opts": []
+       },
+       {
+        "item": "climbing_rope",
+        "opts": []
+       },
+       {
+        "item": "cable_cross",
+        "opts": [
+         "rope",
+         "ankle"
+        ],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "cable_single",
+        "opts": [
+         "rope",
+         "ankle"
+        ],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "lat_pulldown",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "cable_row",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "leg_press",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "hack_squat",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "leg_ext",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "leg_curl",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "chest_press",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "pec_deck",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "shoulder_press",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "hip_abd_add",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "calf_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "t_bar",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "row_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "pullover_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "ab_crunch_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "biceps_curl_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "triceps_ext_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "lateral_raise_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "glute_kickback_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "hip_thrust_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "belt_squat",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "pendulum_squat",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "lever_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "reverse_hyper",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "dip_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "bands",
+        "opts": []
+       },
+       {
+        "item": "ab_wheel",
+        "opts": []
+       },
+       {
+        "item": "floor_mat",
+        "opts": []
+       },
+       {
+        "item": "jump_rope",
+        "opts": []
+       },
+       {
+        "item": "stability_ball",
+        "opts": []
+       },
+       {
+        "item": "sliders",
+        "opts": []
+       },
+       {
+        "item": "sled",
+        "opts": []
+       },
+       {
+        "item": "battle_ropes",
+        "opts": []
+       },
+       {
+        "item": "foam_roller",
+        "opts": []
+       },
+       {
+        "item": "bosu",
+        "opts": []
+       },
+       {
+        "item": "wrist_roller",
+        "opts": []
+       },
+       {
+        "item": "neck_harness",
+        "opts": []
+       },
+       {
+        "item": "wall",
+        "opts": []
+       },
+       {
+        "item": "treadmill",
+        "opts": [
+         "incline"
+        ]
+       },
+       {
+        "item": "bike",
+        "opts": []
+       },
+       {
+        "item": "rower",
+        "opts": []
+       },
+       {
+        "item": "stair_climber",
+        "opts": []
+       },
+       {
+        "item": "elliptical",
+        "opts": []
+       },
+       {
+        "item": "ski_erg",
+        "opts": []
+       },
+       {
+        "item": "bicycle",
+        "opts": []
+       }
+      ]
+     },
+     {
+      "id": "bce02f47-f6c9-4385-c16a-fcd7ee0b6e39",
+      "ownerId": "local",
+      "createdAt": 1791822600000,
+      "updatedAt": 1791822600000,
+      "name": "Hotel",
+      "equipment": [],
+      "oneOff": true
+     }
+    ],
+    "mainLocationId": "423fac69-b732-4274-690d-f04c597c6ae7",
+    "pickerShowAll": false
+   }
+  },
+  "sound-off-haptics-on": {
+   "sound": false,
+   "haptics": true,
+   "settings": {
+    "haptics": true,
+    "defaultRest": 105,
+    "sound": false,
+    "wakeLock": true,
+    "showRpe": false,
+    "healthSync": false,
+    "voice": "speaker",
+    "progressHint": true,
+    "autoBackup": true,
+    "weighReminder": false,
+    "modules": {
+     "training": true,
+     "diet": false,
+     "sleep": false,
+     "cardio": false,
+     "supplements": false,
+     "recommendations": false
+    },
+    "language": "auto",
+    "unit": "kg",
+    "theme": "light",
+    "workoutView": "focus",
+    "locations": [
+     {
+      "id": "118807c6-95d0-4dca-a33a-94e313d6e260",
+      "ownerId": "local",
+      "createdAt": 1791822600000,
+      "updatedAt": 1791822600000,
+      "name": "Dom",
+      "equipment": []
+     },
+     {
+      "id": "423fac69-b732-4274-690d-f04c597c6ae7",
+      "ownerId": "local",
+      "createdAt": 1791822600000,
+      "updatedAt": 1791822600000,
+      "name": "Siłownia",
+      "equipment": [
+       {
+        "item": "barbell",
+        "opts": [],
+        "load": {
+         "kind": "plates",
+         "unit": "kg",
+         "base": 20,
+         "plates": [
+          {
+           "w": 25,
+           "n": 8
+          },
+          {
+           "w": 20,
+           "n": 8
+          },
+          {
+           "w": 15,
+           "n": 8
+          },
+          {
+           "w": 10,
+           "n": 8
+          },
+          {
+           "w": 5,
+           "n": 8
+          },
+          {
+           "w": 2.5,
+           "n": 8
+          },
+          {
+           "w": 1.25,
+           "n": 8
+          }
+         ]
+        }
+       },
+       {
+        "item": "ez_bar",
+        "opts": [],
+        "load": {
+         "kind": "plates",
+         "unit": "kg",
+         "base": 10,
+         "plates": [
+          {
+           "w": 25,
+           "n": 8
+          },
+          {
+           "w": 20,
+           "n": 8
+          },
+          {
+           "w": 15,
+           "n": 8
+          },
+          {
+           "w": 10,
+           "n": 8
+          },
+          {
+           "w": 5,
+           "n": 8
+          },
+          {
+           "w": 2.5,
+           "n": 8
+          },
+          {
+           "w": 1.25,
+           "n": 8
+          }
+         ]
+        }
+       },
+       {
+        "item": "trap_bar",
+        "opts": [],
+        "load": {
+         "kind": "plates",
+         "unit": "kg",
+         "base": 20,
+         "plates": [
+          {
+           "w": 25,
+           "n": 8
+          },
+          {
+           "w": 20,
+           "n": 8
+          },
+          {
+           "w": 15,
+           "n": 8
+          },
+          {
+           "w": 10,
+           "n": 8
+          },
+          {
+           "w": 5,
+           "n": 8
+          },
+          {
+           "w": 2.5,
+           "n": 8
+          },
+          {
+           "w": 1.25,
+           "n": 8
+          }
+         ]
+        }
+       },
+       {
+        "item": "db_fixed",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": [
+          {
+           "w": 2.5,
+           "on": true
+          },
+          {
+           "w": 5,
+           "on": true
+          },
+          {
+           "w": 7.5,
+           "on": true
+          },
+          {
+           "w": 10,
+           "on": true
+          },
+          {
+           "w": 12.5,
+           "on": true
+          },
+          {
+           "w": 15,
+           "on": true
+          },
+          {
+           "w": 17.5,
+           "on": true
+          },
+          {
+           "w": 20,
+           "on": true
+          },
+          {
+           "w": 22.5,
+           "on": true
+          },
+          {
+           "w": 25,
+           "on": true
+          },
+          {
+           "w": 27.5,
+           "on": true
+          },
+          {
+           "w": 30,
+           "on": true
+          },
+          {
+           "w": 32.5,
+           "on": true
+          },
+          {
+           "w": 35,
+           "on": true
+          },
+          {
+           "w": 37.5,
+           "on": true
+          },
+          {
+           "w": 40,
+           "on": true
+          },
+          {
+           "w": 42.5,
+           "on": true
+          },
+          {
+           "w": 45,
+           "on": true
+          },
+          {
+           "w": 47.5,
+           "on": true
+          },
+          {
+           "w": 50,
+           "on": true
+          }
+         ]
+        }
+       },
+       {
+        "item": "kettlebell",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "landmine",
+        "opts": []
+       },
+       {
+        "item": "med_ball",
+        "opts": []
+       },
+       {
+        "item": "dip_belt",
+        "opts": []
+       },
+       {
+        "item": "plate",
+        "opts": []
+       },
+       {
+        "item": "sandbag",
+        "opts": []
+       },
+       {
+        "item": "chains",
+        "opts": []
+       },
+       {
+        "item": "bench_flat",
+        "opts": []
+       },
+       {
+        "item": "bench_adj",
+        "opts": [
+         "decline"
+        ]
+       },
+       {
+        "item": "bench_decline",
+        "opts": []
+       },
+       {
+        "item": "bench_press",
+        "opts": [
+         "incline"
+        ]
+       },
+       {
+        "item": "rack",
+        "opts": [
+         "pullup"
+        ]
+       },
+       {
+        "item": "squat_stands",
+        "opts": [
+         "safeties"
+        ]
+       },
+       {
+        "item": "smith",
+        "opts": []
+       },
+       {
+        "item": "preacher",
+        "opts": []
+       },
+       {
+        "item": "hyperext",
+        "opts": []
+       },
+       {
+        "item": "ghd",
+        "opts": []
+       },
+       {
+        "item": "box",
+        "opts": []
+       },
+       {
+        "item": "pullup_bar",
+        "opts": []
+       },
+       {
+        "item": "dip_bars",
+        "opts": []
+       },
+       {
+        "item": "power_tower",
+        "opts": []
+       },
+       {
+        "item": "rings",
+        "opts": []
+       },
+       {
+        "item": "suspension",
+        "opts": []
+       },
+       {
+        "item": "climbing_rope",
+        "opts": []
+       },
+       {
+        "item": "cable_cross",
+        "opts": [
+         "rope",
+         "ankle"
+        ],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "cable_single",
+        "opts": [
+         "rope",
+         "ankle"
+        ],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "lat_pulldown",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "cable_row",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "leg_press",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "hack_squat",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "leg_ext",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "leg_curl",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "chest_press",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "pec_deck",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "shoulder_press",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "hip_abd_add",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "calf_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "t_bar",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "row_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "pullover_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "ab_crunch_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "biceps_curl_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "triceps_ext_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "lateral_raise_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "glute_kickback_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "hip_thrust_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "belt_squat",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "pendulum_squat",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "lever_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "reverse_hyper",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "dip_machine",
+        "opts": [],
+        "load": {
+         "kind": "list",
+         "unit": "kg",
+         "items": []
+        }
+       },
+       {
+        "item": "bands",
+        "opts": []
+       },
+       {
+        "item": "ab_wheel",
+        "opts": []
+       },
+       {
+        "item": "floor_mat",
+        "opts": []
+       },
+       {
+        "item": "jump_rope",
+        "opts": []
+       },
+       {
+        "item": "stability_ball",
+        "opts": []
+       },
+       {
+        "item": "sliders",
+        "opts": []
+       },
+       {
+        "item": "sled",
+        "opts": []
+       },
+       {
+        "item": "battle_ropes",
+        "opts": []
+       },
+       {
+        "item": "foam_roller",
+        "opts": []
+       },
+       {
+        "item": "bosu",
+        "opts": []
+       },
+       {
+        "item": "wrist_roller",
+        "opts": []
+       },
+       {
+        "item": "neck_harness",
+        "opts": []
+       },
+       {
+        "item": "wall",
+        "opts": []
+       },
+       {
+        "item": "treadmill",
+        "opts": [
+         "incline"
+        ]
+       },
+       {
+        "item": "bike",
+        "opts": []
+       },
+       {
+        "item": "rower",
+        "opts": []
+       },
+       {
+        "item": "stair_climber",
+        "opts": []
+       },
+       {
+        "item": "elliptical",
+        "opts": []
+       },
+       {
+        "item": "ski_erg",
+        "opts": []
+       },
+       {
+        "item": "bicycle",
+        "opts": []
+       }
+      ]
+     },
+     {
+      "id": "bce02f47-f6c9-4385-c16a-fcd7ee0b6e39",
+      "ownerId": "local",
+      "createdAt": 1791822600000,
+      "updatedAt": 1791822600000,
+      "name": "Hotel",
+      "equipment": [],
+      "oneOff": true
+     }
+    ],
+    "mainLocationId": "423fac69-b732-4274-690d-f04c597c6ae7",
+    "pickerShowAll": false
+   }
+  }
+ }
+}

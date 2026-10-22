@@ -85,17 +85,17 @@ test('5 sesji — ostrzeżenie o parach dzień po dniu; miejsce z listy miejsc; 
   expect(screen.getAllByText('Brak ćwiczeń dostępnych w tym miejscu.').length).toBeGreaterThan(0);
   expect(screen.queryByText('Zapisz szablony i plan')).toBeNull(); /* audyt 0.10 X-10: nic do zapisania — bez przycisku (puste szablony nie trafiają do planu) */
 });
-test('zapis: pytanie o aktywację; „Tylko zapisz” — szablony w „Wygenerowane”, plan w „Inne plany”; „Ustaw jako aktywny” — aktywny; „Anuluj” nic', async () => {
-  await boot('/generator');
+test('zapis z aktywnym planem: pytanie o aktywację; „Tylko zapisz” — szablony w „Wygenerowane”, plan w „Inne plany”; „Anuluj” nic; bez aktywnego planu — aktywny bez pytania (ZM-03, 21.10.2026)', async () => {
+  await boot('/generator', () => { plan.setPlanName('Obecny'); }); /* ZM-03: pytanie pojawia się tylko, gdy aktywny plan już jest */
   await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5);
-  /* audyt 0.10 B1: bez planu i bez zmian dni — bez obietnicy „Obecny plan zostanie…” (pusty plan nie jest zapisywany) */
-  expect(lastAlert('Ustawić nowy plan jako aktywny?')!.msg).toBe('Szablony trafią do folderu „Wygenerowane”, a plan — do „Inne plany” albo od razu jako aktywny.');
+  /* audyt 0.10 B1: okno mówi, co stanie się z obecnym planem; wariant „bez planu” (bez obietnicy) po ZM-03 nie pokazuje już okna (plan aktywny bez pytania) */
+  expect(lastAlert('Ustawić nowy plan jako aktywny?')!.msg).toBe('Szablony trafią do folderu „Wygenerowane”, a plan — do „Inne plany” albo od razu jako aktywny.\n\nObecny plan zostanie w „Inne plany” — wrócisz do niego jednym przyciskiem.');
   await press('Ustawić nowy plan jako aktywny?', 'Anuluj'); expect(S().templates).toHaveLength(0);
   await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Tylko zapisz');
   expect(S().templates.map(x => [x.name, x.folder])).toEqual([['FBW A', 'Wygenerowane'], ['FBW B', 'Wygenerowane']]);
   expect(plan.savedPlans().map(p => p.name)).toEqual(['Masa, 3× w tygodniu · Pełna siłownia']); /* UX-10: nazwa z miejscem */
   await press('Zapisano', 'Planowanie'); expect(screen.getByText('Inne plany')).toBeTruthy(); /* UX-10: potwierdzenie zapisu, potem Planowanie */
-  await boot('/generator'); await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); await press('Ustawić nowy plan jako aktywny?', 'Ustaw jako aktywny');
+  await boot('/generator'); await tap(screen.getByText('Zapisz szablony i plan')); await flushAll(5); expect(lastAlert('Ustawić nowy plan jako aktywny?')).toBeUndefined(); /* ZM-03: bez aktywnego planu — bez pytania */
   expect(plan.planName()).toBe('Masa, 3× w tygodniu · Pełna siłownia'); expect(plan.hasPlan()).toBe(true);
 });
 test('English', async () => {

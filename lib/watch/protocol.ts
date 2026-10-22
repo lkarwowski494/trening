@@ -82,6 +82,8 @@ export interface WatchNow {
   timed: boolean;
   /** cel czasu serii (s) albo null */
   targetSec: number | null;
+  /** M3 (ZM-05, wz. 24): telefon mierzy teraz tę serię na czas — przycisk główny zegarka to „Zakończ serię”. Pole jest tylko, gdy `true` (starszy klient je pomija). */
+  measuring?: boolean;
 }
 /** Przerwa w toku. `cue` = ten sam tekst co ekran i Live Activity (lib/live.ts restCue.text, jednostka skrótem); głos czyta wariant `speech` z pełną nazwą jednostki. */
 export interface WatchRest {

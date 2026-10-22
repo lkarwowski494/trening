@@ -31,7 +31,7 @@ export interface VoiceInput { sound: boolean; setting: VoiceSetting; headphones:
 export interface VoiceDecision { mode: VoiceMode; reason: VoiceReason }
 
 /**
- * Kiedy i jak mówimy. „Wyłączone” → nigdy (także przez VoiceOver). Dźwięk wyłączony w Ustawieniach (wspólny wyłącznik „Dźwięk i wibracja”) albo aplikacja w tle → cisza.
+ * Kiedy i jak mówimy. „Wyłączone” → nigdy (także przez VoiceOver). Dźwięk wyłączony w Ustawieniach (przełącznik „Dźwięk na koniec przerwy”; wibracje to osobny przełącznik „Wibracje”, ZM-07) albo aplikacja w tle → cisza.
  * Bez słuchawek przy „W słuchawkach” → cisza; „Także przez głośnik” mówi też bez słuchawek.
  * Przy włączonym VoiceOver nie odpalamy własnej syntezy równolegle — zapowiedź idzie przez `announce` (głos i tempo VoiceOvera użytkownika), z tą samą regułą trasy dźwięku.
  */

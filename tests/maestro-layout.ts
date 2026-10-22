@@ -47,6 +47,9 @@ function natW(n: LNode): number {
 /** Układa poddrzewo: zwraca zewnętrzną wysokość (z marginesami), zapisuje pozycje w `out` (y względem treści najbliższej listy przewijanej). */
 function place(n: LNode, x: number, y: number, w: number, scroll: LNode | null, horiz: LNode | null, out: Map<LNode, Box>, extra?: Record<string, any>): number {
   if (isHidden(n)) return 0;
+  /* M3 p2: okno modalne (Modal) to osobna warstwa nad ekranem — jego zawartość nie zajmuje miejsca w liście pod spodem (arkusz „Inny trening” leżał „pod widokiem listy”,
+   * gdy tablica „Dziś” wydłużyła ekran Start); układamy ją od góry ekranu, bez przewijania */
+  if (n.type === 'Modal') { for (const k of hostKids(n).filter(k => !isHidden(k))) place(k, 0, 0, SCREEN.w, null, null, out); if (!out.has(n)) out.set(n, { x: 0, y: 0, w: SCREEN.w, h: 0, scroll: null, horiz: null }); return 0; }
   const st = { ...flat(n.props.style), ...extra }; if (st.display === 'none') return 0;
   const e = edges(st); const ow = typeof st.width === 'number' ? st.width : typeof st.width === 'string' && st.width.endsWith('%') ? w * parseFloat(st.width) / 100 - e.ml - e.mr : w - e.ml - e.mr;
   const bx = x + e.ml, by = y + e.mt, iw = Math.max(1, ow - e.pl - e.pr);

@@ -7,6 +7,7 @@
 #   "Save exercise"                                 ← 'Zapisz ćwiczenie' (nagłówek edycji)
 #   lib-row-N / lib-row-N-del                       ← testID pozycji listy Ćwiczenia (z nagłówkami grup; przy jednym wyniku wyszukiwania N = 1), przycisk pod nią
 #   "Delete exercise\\?"                            ← 'Usunąć ćwiczenie?' (SwipeRow)
+#   "Delete from library"                           ← 'Usuń z biblioteki' (przycisk na dole podglądu ćwiczenia WŁASNEGO — ZM-04, W2 a; wbudowane go nie mają; to samo okno co gest)
 #   "Restore “X”"                                   ← 'Przywróć „{name}”' (pozycja listy wyszukiwania dla usuniętego ćwiczenia)
 #   "Create “X”"                                    ← 'Utwórz „{name}”' (przycisk w pustym wyniku wyszukiwania; w wyborze ćwiczenia i w bibliotece)
 appId: pl.lukasz.trening
@@ -40,6 +41,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Hammer E2E"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Cable Hammer E2E, barbell.*", timeout: 15000 }
@@ -54,6 +56,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Hammer E2E"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Cable Hammer E2E,.*"
@@ -64,6 +67,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Zottman Curl E2E"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Create “Zottman Curl E2E”.*", timeout: 15000 }
@@ -93,6 +97,7 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
 - tapOn: "Search exercises…"
 - inputText: "Hammer E2E"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - extendedWaitUntil: { visible: "Cable Hammer E2E, barbell.*", timeout: 15000 }
@@ -117,3 +122,14 @@ name: Biblioteka — własne ćwiczenie, usunięcie i przywrócenie
 - tapOn: "Restore “Cable Hammer E2E”.*"
 - extendedWaitUntil: { visible: "Edit exercise", timeout: 30000 }
 - assertVisible: "Cable Hammer E2E"
+# --- usunięcie przyciskiem na dole podglądu (ZM-04, W2 a, 21.10.2026): to samo okno co gest; Anuluj zostawia, Usuń usuwa i wraca do biblioteki ---
+- scrollUntilVisible: { element: "Delete from library", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Delete from library"
+- extendedWaitUntil: { visible: "Delete exercise\\?", timeout: 15000 }
+- tapOn: { text: "Cancel", below: "Delete exercise\\?" }
+- assertVisible: "Delete from library"
+- tapOn: "Delete from library"
+- extendedWaitUntil: { visible: "Delete exercise\\?", timeout: 15000 }
+- tapOn: { text: "Delete", below: "Delete exercise\\?" }
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- takeScreenshot: 96-po-usunieciu-przyciskiem

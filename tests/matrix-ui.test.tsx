@@ -421,15 +421,15 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
   test('stoper serii: bez celu „seria · bez celu” i „Stoper trwa”; z celem powiadomienie „Seria skończona / Minęło 30 s.”; ponowny pomiar pyta', async () => {
     await startWith(['Plank'], () => { const e = store.getState().active!.exercises[0]; e.sets = [store.emptySet(), store.emptySet()]; });
     await tap(screen.getAllByLabelText('Start stopera serii')[0]); await flushAll(10);
-    expect(screen.getByText('seria · bez celu')).toBeTruthy(); expect(screen.getByLabelText('Stoper trwa')).toBeTruthy(); expect(timer.S.on).toBe(true);
-    await flushAll(5000); await tap(screen.getByText('Zakończ serię')); await flushAll(10);
+    expect(screen.getByLabelText('seria · bez celu')).toBeTruthy(); /* 04-studio-projektowe-005: w widoku tablicy opis pomiaru niesie pierścień na tablicy, nie dolny pasek (zmiana oczekiwania: było tekst paska) */ expect(screen.getByLabelText('Stoper trwa')).toBeTruthy(); expect(timer.S.on).toBe(true);
+    await flushAll(5000); await tap(screen.getByLabelText(/^Zakończ serię: Plank, seria 1/)); await flushAll(10); /* 04-studio-projektowe-005: jeden przycisk „Zakończ serię” — na tablicy (dolny pasek tylko w widoku listy) */
     expect(blk(0).sets[0].done).toBe(true); expect(Number(blk(0).sets[0].durationSec)).toBeGreaterThanOrEqual(5);
     await tap(screen.getAllByLabelText('Start stopera serii')[0]);
     expect(lastAlert()).toMatchObject({ title: 'Zmierzyć serię od nowa?', msg: 'Zapisany czas zostanie nadpisany.' });
     await act(async () => { pressAlert('Zmierzyć serię od nowa?', 'Anuluj'); });
     await type(screen.getAllByLabelText('czas')[1], '30'); global.__notifications.length = 0;
     await tap(screen.getAllByLabelText('Start stopera serii')[1]); await flushAll(10);
-    expect(screen.getByText(/^seria · cel /)).toBeTruthy(); expect(timer.S.targetSec).toBe(30);
+    expect(screen.getByLabelText(/^seria · cel /)).toBeTruthy(); expect(timer.S.targetSec).toBe(30);
     expect((global.__notifications as any[]).find(n => n.content.title === 'Seria skończona').content.body).toBe('Minęło 30 s.');
   });
 
@@ -441,9 +441,10 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
     expect(timer.labels.subtitle).toBe('dalej: Push Up, masa ciała'); /* 0.20: zapowiedź = restCue (ciężar i powtórzenia) */
   });
 
-  test('chip miejsca: menu „Miejsce tego treningu” zmienia miejsce sesji', async () => {
+  test('menu „⋯” → miejsce: arkusz „Miejsce tego treningu” zmienia miejsce sesji', async () => {
     await startWith(['Back Squat'], () => { addLocation('gym', 'Siłownia'); addLocation('home', 'Dom'); store.getState().active!.locationId = store.getState().settings.locations[0].id; });
-    await tap(screen.getByLabelText('Miejsce treningu: Siłownia'));
+    await tap(screen.getByLabelText('Opcje treningu')); await act(async () => { (global as any).__pickSheet(0); }); /* M3 p2 (ZM-02, wzorzec 30): miejsce jest w menu „⋯” treningu — pierwsza pozycja */
+    expect((global as any).__sheets[(global as any).__sheets.length - 2].opts.options[0]).toBe('Miejsce treningu: Siłownia');
     const sh = (global as any).__sheets[(global as any).__sheets.length - 1]; expect(sh.opts.title).toBe('Miejsce tego treningu'); expect(sh.opts.options).toEqual(['Siłownia', 'Dom', 'Inne miejsce (tylko dziś)…', 'Anuluj']); /* 0.19 (docs/33 A4): pozycja „Inne miejsce (tylko dziś)…” przed „Anuluj” */
     await act(async () => { (global as any).__pickSheet(1); }); await flushAll(5);
     expect(store.getState().active!.locationId).toBe(store.getState().settings.locations[1].id);
@@ -510,20 +511,23 @@ describe('/progress (+ Chart)', () => {
     expect(screen.getByText('Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia.')).toBeTruthy();
     expect(screen.getByText('Objętość serii roboczych (ciężar × powtórzenia × mnożnik ćwiczenia); partia główna liczy całość, pomocnicza połowę. Ćwiczenia bez ciężaru (masa ciała, gumy) się nie liczą.')).toBeTruthy();
     expect(screen.getAllByText('Brak serii w tym i poprzednim tygodniu.')).toHaveLength(2);
-    const n = store.getState().exercises.filter(e => !e.archived).length;
-    expect(screen.getByText(`Pokazano 40 z ${n} — wpisz nazwę, by zawęzić.`)).toBeTruthy();
+    /* ZM-06 (M3 p3): bez wpisanego tekstu chipy tylko ćwiczeń z danymi (tu jedno) — „Pokazano 40 z …” dopiero przy szerokim wyszukiwaniu */
+    expect(screen.queryByText(/^Pokazano 40 z/)).toBeNull();
+    await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'e'); await flushAll(5);
+    expect(screen.getByText(/^Pokazano 40 z \d+ — wpisz nazwę, by zawęzić\.$/)).toBeTruthy();
     await type(screen.getByPlaceholderText('Szukaj ćwiczenia…'), 'Back Squat'); await flushAll(5);
     expect(screen.queryByText(/^Pokazano 40 z/)).toBeNull();
   });
 
-  test('ćwiczenie z ciężarem (2 sesje): opis wykresu dla VoiceOver, „obj.” w sesjach; chip „Tapnij, by wybrać inne ćwiczenie.” wraca do listy', async () => {
+  test('ćwiczenie z ciężarem (2 sesje): opis wykresu dla VoiceOver, „obj.” w sesjach; wybrane ćwiczenie to zaznaczony chip, wyszukiwanie zostaje pod wykresem (ZM-06)', async () => {
     const saved = await prepared(() => { addWorkout(at(10), [['Back Squat', [{ weight: 100, reps: 5 }]]]); addWorkout(at(3), [['Back Squat', [{ weight: 110, reps: 5 }]]]); });
     await renderApp({ saved }); await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10);
     expect(screen.getByLabelText(/^Wykres, 2 sesje: od .+ do .+, najlepiej .+\.$/)).toBeTruthy();
     expect(tr('Wykres, {n} {s}: od {a} ({x}) do {b} ({y}), najlepiej {c} ({z}).', { n: 2, s: 'sesje', a: 'A', x: 'X', b: 'B', y: 'Y', c: 'C', z: 'Z' })).toBe('Wykres, 2 sesje: od A (X) do B (Y), najlepiej C (Z).');
     expect(screen.getAllByText(/ · obj\. /).length).toBe(2);
-    const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityHint).toBe('Tapnij, by wybrać inne ćwiczenie.');
-    await tap(chip); await flushAll(5); expect(screen.getByPlaceholderText('Szukaj ćwiczenia…')).toBeTruthy();
+    /* M3 p3 (ZM-06): chip „✕” z podpowiedzią „Tapnij, by wybrać inne ćwiczenie.” zastąpił wybór pod wykresem — wybrane ćwiczenie jest zaznaczonym chipem, wyszukiwanie zawsze na ekranie */
+    const chip = screen.getByLabelText('Back Squat'); expect(chip.props.accessibilityState.selected).toBe(true);
+    expect(screen.getByPlaceholderText('Szukaj ćwiczenia…')).toBeTruthy();
   });
 
   /* E1 (audyt 0.10): „e1RM (dociążenie)” zniknęło — bez masy ciała w Ustawieniach wskazówka, z masą ciała e1RM (Epley) na masie + dociążeniu */
@@ -615,7 +619,7 @@ describe('/template/[id], /reorder', () => {
     /* MER-13 (audyt 0.10): opis jak prawdziwa podpowiedź („↑ spróbuj …”) */
     expect(screen.getByText('Zakres 8–12: gdy ostatnio wszystkie serie miały ≥ 12 powt., pojawi się „↑”.')).toBeTruthy(); await tap(screen.getByTestId(/^info-range-/));
     expect(screen.getByText('Zakres powtórzeń: 8–12 — gdy ostatnio wszystkie serie robocze miały co najmniej 12 powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload).')).toBeTruthy();
-    expect(screen.getByText('Zamienniki')).toBeTruthy(); expect(screen.getByText(`📍 Siłownia: ${exName(ex('Machine Chest Press'))}`)).toBeTruthy();
+    expect(screen.getByText('Zamienniki')).toBeTruthy(); expect(screen.getByText(`Siłownia: ${exName(ex('Machine Chest Press'))}`)).toBeTruthy();
     expect(store.getState().active!.templateId).not.toBe(tplB);
   });
 

@@ -1,14 +1,15 @@
 import React from 'react';
-import { View, Pressable } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Btn, Muted, Txt, upperText, useOnce } from '@/components/ui';
-import { useTheme, F, NUM_SCALE_MAX } from '@/lib/theme';
-import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey } from '@/lib/store';
+import { Muted, Txt, upperText, useOnce } from '@/components/ui';
+import { IconRow } from '@/components/Icon';
+import { useTheme, NUM_SCALE_MAX, FW, font, maxScale, RADIUS, SIZE, SPACE } from '@/lib/theme';
+import { getState, finishedWorkouts, useForegroundTick, isDeloadWeek, fmtDayKey, exById, reps } from '@/lib/store';
 import { plannedPlaceName, hasPlan, dayKeyOf, doneOn, upcoming, pending, planTplName, planName, addDays, type DayStatus } from '@/lib/plan';
 import { weekStrip } from '@/lib/dashboard';
 import { DayIcon } from '@/components/Motif';
 import { dayMark } from '@/lib/motif';
-import { t, locale, lang } from '@/lib/i18n';
+import { t, tp, lang, exName } from '@/lib/i18n';
 import { fmtWeekdayShort, fmtWeekdayDayMonth, fmtDayNum } from '@/lib/calendar';
 
 /*
@@ -25,6 +26,8 @@ const NEXT_COUNT = 3; const NEXT_DAYS = 14;
 const dateOf = (k: string) => new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, +k.slice(8, 10));
 const names = (k: string) => doneOn(k).map(w => w.templateName || t('Trening')).join(', ');
 
+/** Ile ćwiczeń szablonu widać na tablicy „Dziś” (reszta: „+ n ćwiczeń”). */
+const PREVIEW = 2;
 export function TodayPlan() {
   useForegroundTick(); const th = useTheme(); const router = useRouter(); const once = useOnce(); /* UI2-02 */
   const plan = hasPlan(); if (!plan && !finishedWorkouts().length) return null;
@@ -38,40 +41,46 @@ export function TodayPlan() {
     return m[d.status]();
   };
   const deload = isDeloadWeek(Date.now());
-  /* 11.10.2026 (docs/22 krok 3 pkt 1): nagłówek planu nad kalendarzem — nazwa planu (bez planu: „Bez planu tygodnia”) i obok przycisk „Planowanie”
-   * (bez planu: „Ustaw plan”) → ekran planu; dawny przycisk „Plan tygodnia” i wiersz „Plan: … Planowanie ›” pod „Ten tydzień” zniknęły. */
+  /* 11.10.2026 (docs/22 krok 3 pkt 1): nazwa planu nad kalendarzem (bez planu: „Bez planu tygodnia”). M3 p2 (W1 c, STOP E3): „Planowanie” / „Ustaw plan” jest w nagłówku ekranu Start
+   * (PlanningButton w app/(tabs)/index.tsx) — ta sama akcja w tym samym miejscu co w zakładce Plan; tu zostaje sama nazwa planu. */
   const planTitle = plan ? t('Plan: {name}', { name: planName() || t('Plan tygodnia') }) : t('Bez planu tygodnia');
-  const showDay = plan || cur.status === 'done'; /* blok „Dziś” — bez planu tylko gdy zrobiono trening */
+  const showDay = plan || cur.status === 'done'; /* tablica „Dziś” — bez planu tylko gdy zrobiono trening */
   const title = cur.early ? t('Zrobiony wcześniej: {name}', { name: name(id) }) : cur.status === 'done' ? t('Dziś zrobione: {name}', { name: names(today) }) : id ? t('Dziś: {name}', { name: name(id) }) : t('Dziś wolne');
   const next = plan ? upcoming(NEXT_DAYS, today).filter(x => x.date > today && x.templateId).slice(0, NEXT_COUNT) : [];
   const nextLabel = (k: string) => (k === addDays(today, 1) ? t('jutro') : fmtDayKey(k)); /* H3 (audyt 0.10) */
+  const showTpl = tpl && pending(cur) ? tpl : undefined; const shown = showTpl ? showTpl.items.slice(0, PREVIEW) : []; const n = showTpl ? showTpl.items.length - shown.length : 0; /* ile ćwiczeń ponad podgląd */
+  const u = upperText(title); /* W3 (wz. 28 pkt 4): „Dziś: …” wersalikami jak nazwisko na tablicy podejść; A11-02: reguły języka */
   return (
-    <View testID="today-plan" style={{ marginTop: 6, padding: 14, borderRadius: 12, backgroundColor: th.surface, borderWidth: 1, borderColor: th.line, gap: 10 }}>{/* pasek-akcent usunięty (korekta właściciela 09.10.2026 ok. 17:00: „nic nie znaczy”) */}
-      <View testID="plan-header" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-        <Txt accessibilityRole="header" style={{ fontFamily: F.semibold, fontSize: 16, flexShrink: 1 }}>{planTitle}</Txt>
-        <Btn nav small title={plan ? t('Planowanie') : t('Ustaw plan')} accessibilityHint={t('Otwiera plan tygodnia, szablony i generator.')} onPress={() => router.push('/plan')} />
-      </View>
-      {showDay ? <View>
-        {(() => { const u = upperText(deload ? `${t('Dziś')} · ${t('Tydzień deload')}` : t('Dziś')); /* A11-02: wersaliki z regułami języka */ return <Muted accessibilityLabel={u.label} style={[{ fontSize: 12, fontFamily: F.semibold, letterSpacing: 0.5 }, u.style]}>{u.text}</Muted>; })()}
-        <Txt style={{ fontFamily: F.semibold, fontSize: 18 }}>{title}</Txt>
-        {cur.status === 'other' ? <Muted style={{ fontSize: 13 }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Muted> : null}
-        {plannedPlaceName(today) ? <Muted testID="today-place" accessibilityLabel={t('Miejsce treningu: {l}', { l: plannedPlaceName(today) })} style={{ fontSize: 13 }}>{`📍 ${plannedPlaceName(today)}`}</Muted> : null}
-        {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={once(() => router.push(`/template/${tpl.id}?edit=1`))} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}><Muted style={{ fontSize: 13 }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Muted></Pressable> : null}
-      </View> : deload ? <Muted style={{ fontSize: 12, fontFamily: F.semibold }}>{t('Tydzień deload')}</Muted> : null}
-      <View testID="week-strip" style={{ flexDirection: 'row', gap: 2 }}>
+    <View testID="today-plan" style={{ marginTop: SPACE.xs, gap: SPACE.m }}>
+      <View testID="plan-header"><Txt accessibilityRole="header" style={{ ...font('callout'), color: th.muted }}>{planTitle}</Txt></View>
+      <View testID="week-strip" style={{ flexDirection: 'row', gap: 2, padding: SPACE.s, borderRadius: RADIUS.group, backgroundColor: th.surface }}>
         {days.map(d => {
           const place = plannedPlaceName(d.date); /* 0.19 (docs/33 B): miejsce zapisane w planie na ten dzień */
           const label = [fmtWeekdayDayMonth(dateOf(d.date)), ...(d.today ? [t('dziś')] : []), word(d), ...(place ? [t('Miejsce treningu: {l}', { l: place })] : []), ...(deload ? [t('tydzień deload')] : [])].join(', ');
           const mark = dayMark(d.status, d.inPlan);
           return (
-            <Pressable accessibilityLanguage={lang()} key={d.date} testID={`strip-${d.date}`} accessibilityRole="button" accessibilityLabel={label} accessibilityHint={t('Otwiera ten dzień w zakładce Plan.')} onPress={once(() => router.push(`/history?day=${d.date}`))} style={({ pressed }) => ({ flex: 1, minHeight: 44 /* A11-15 */, alignItems: 'center', gap: 4, paddingVertical: 3, borderRadius: 8, borderWidth: 2, borderColor: d.today ? th.accent : 'transparent', opacity: pressed ? 0.6 : 1 })}>
-              <View style={{ alignItems: 'center' }}>{(() => { const u = upperText(wd(d.date)); /* B1: skrót dnia wersalikami wg reguł języka (A11-02), pod nim numer dnia miesiąca */ return <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[{ fontSize: 11, fontFamily: d.today ? F.semibold : F.regular, color: d.today ? th.text : th.muted }, u.style]}>{u.text}</Muted>; })()}
-              <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ fontSize: 13, fontFamily: d.today ? F.heavy : F.semibold, color: d.today ? th.text : th.muted }}>{fmtDayNum(dateOf(d.date))}</Txt></View>
+            <Pressable accessibilityLanguage={lang()} key={d.date} testID={`strip-${d.date}`} accessibilityRole="button" accessibilityLabel={label} accessibilityHint={t('Otwiera ten dzień w zakładce Plan.')} onPress={once(() => router.push(`/history?day=${d.date}`))} style={({ pressed }) => ({ flex: 1, minHeight: SIZE.hit /* A11-15 */, alignItems: 'center', gap: SPACE.xs, paddingVertical: 3, borderRadius: RADIUS.button, borderWidth: 2, borderColor: d.today ? th.accent : 'transparent', opacity: pressed ? 0.6 : 1 })}>
+              <View style={{ alignItems: 'center' }}>{(() => { const w = upperText(wd(d.date)); /* B1: skrót dnia wersalikami wg reguł języka (A11-02), pod nim numer dnia miesiąca */ return <Muted maxFontSizeMultiplier={NUM_SCALE_MAX} style={[{ ...font('caption'), ...(d.today ? FW.semibold : FW.regular), color: d.today ? th.text : th.muted }, w.style]}>{w.text}</Muted>; })()}
+              <Txt maxFontSizeMultiplier={NUM_SCALE_MAX} style={{ ...font('sectionTitle'), color: d.today ? th.text : th.muted }}>{fmtDayNum(dateOf(d.date))}</Txt></View>
               {/* znacznik dnia — jedyny kod „zrobione / zaplanowane / odpoczynek” (lib/motif.dayMark; zrobiony inny trening = pełna ikona, że zaplanowany czeka — etykieta) */}
               <View testID={`strip-mark-${d.date}`} style={{ height: 20, alignItems: 'center', justifyContent: 'center' }}>{mark ? <DayIcon mark={mark} bg={th.surface} th={th} /> : null}</View>
             </Pressable>); })}
       </View>
-      {next.length ? <Muted style={{ fontSize: 13 }}>{t('Następne: {list}', { list: next.map(x => `${nextLabel(x.date)} — ${name(x.templateId)}`).join(' · ') })}</Muted> : null}
+      {showDay ? <View testID="today-board" style={{ backgroundColor: th.board, borderColor: th.boardEdge, borderWidth: 1, borderRadius: RADIUS.board, padding: SPACE.l, gap: SPACE.s }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: SPACE.s }}>
+          <Text accessibilityLanguage={lang()} accessibilityRole="header" accessibilityLabel={u.label} maxFontSizeMultiplier={maxScale('boardName')} style={[{ ...font('boardName'), color: th.boardText, flexShrink: 1 }, u.style]}>{u.text}</Text>
+          {showTpl ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('boardMeta')} style={{ ...font('boardMeta'), color: th.boardMuted }}>{`${showTpl.items.length} ${t('ćw.')}`}</Text> : null}
+        </View>
+        {deload ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('footnote')} style={{ ...font('footnote'), ...FW.semibold, color: th.boardMuted }}>{t('Tydzień deload')}</Text> : null}
+        {cur.status === 'other' ? <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('footnote')} style={{ ...font('footnote'), color: th.boardMuted }}>{t('Zrobiony inny trening: {name}', { name: names(today) })}</Text> : null}
+        {shown.map(it => { const x = exById(it.exerciseId); return x ? <View key={it.id} testID="today-item" style={{ flexDirection: 'row', justifyContent: 'space-between', gap: SPACE.s, borderTopWidth: 1, borderTopColor: th.boardField, paddingTop: SPACE.s }}>
+          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('body')} style={{ ...font('body'), color: th.boardText, flexShrink: 1 }}>{exName(x)}</Text>
+          <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('callout')} style={{ ...font('callout'), color: th.boardMuted }}>{`${it.sets} × ${reps(it.repMin, it.repMax)}`}</Text></View> : null; })}
+        {n > 0 ? <Text testID="today-more" accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('body')} style={{ ...font('body'), color: th.boardMuted, borderTopWidth: 1, borderTopColor: th.boardField, paddingTop: SPACE.s }}>{t('+ {n} {w}', { n, w: tp(n, 'ćwiczenie|ćwiczenia|ćwiczeń') })}</Text> : null}
+        {plannedPlaceName(today) ? <IconRow icon="pin" color={th.boardMuted} size={14}><Text testID="today-place" accessibilityLanguage={lang()} accessibilityLabel={t('Miejsce treningu: {l}', { l: plannedPlaceName(today) })} maxFontSizeMultiplier={maxScale('footnote')} style={{ ...font('footnote'), color: th.boardMuted }}>{plannedPlaceName(today)}</Text></IconRow> : null}
+        {tpl && pending(cur) && !tpl.items.length ? <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={once(() => router.push(`/template/${tpl.id}?edit=1`))} hitSlop={8} style={{ minHeight: SIZE.hit, justifyContent: 'center' }}><Text accessibilityLanguage={lang()} maxFontSizeMultiplier={maxScale('footnote')} style={{ ...font('footnote'), color: th.boardText }}>{t('Szablon jest pusty — dodaj ćwiczenia')}</Text></Pressable> : null}
+      </View> : deload ? <Muted style={{ ...font('footnote'), ...FW.semibold }}>{t('Tydzień deload')}</Muted> : null}
+      {next.length ? <Muted style={font('footnote')}>{t('Następne: {list}', { list: next.map(x => `${nextLabel(x.date)} — ${name(x.templateId)}`).join(', ') })}</Muted> : null}
     </View>
   );
 }

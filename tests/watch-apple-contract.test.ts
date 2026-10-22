@@ -18,7 +18,7 @@ const core = (f: string) => fs.readFileSync(path.join(root, 'targets/watch-app/C
 
 type T = 'string' | 'number' | 'boolean' | 'string[]' | 'now' | 'rest' | 'after' | 'phase' | 'etype' | 'client' | 'caps' | 'screen' | 'actions' | 'saction';
 type Field = { t: T; opt?: true };
-const NOW: Record<string, Field> = { setId: { t: 'string' }, blockId: { t: 'string' }, title: { t: 'string' }, counter: { t: 'string' }, load: { t: 'string' }, group: { t: 'string', opt: true }, timed: { t: 'boolean' }, targetSec: { t: 'number', opt: true } };
+const NOW: Record<string, Field> = { setId: { t: 'string' }, blockId: { t: 'string' }, title: { t: 'string' }, counter: { t: 'string' }, load: { t: 'string' }, group: { t: 'string', opt: true }, timed: { t: 'boolean' }, targetSec: { t: 'number', opt: true }, measuring: { t: 'boolean', opt: true } };
 const REST: Record<string, Field> = { setId: { t: 'string' }, startedAt: { t: 'number' }, endsAt: { t: 'number' }, totalSec: { t: 'number' }, cue: { t: 'string' }, last: { t: 'boolean' } };
 const AFTER: Record<string, Field> = { restSec: { t: 'number', opt: true }, cue: { t: 'string' }, last: { t: 'boolean' }, now: { t: 'now', opt: true } };
 const SNAPSHOT: Record<string, Field> = { v: { t: 'number' }, kind: { t: 'string' }, rev: { t: 'number' }, lang: { t: 'string' }, phase: { t: 'phase' }, paused: { t: 'boolean' }, workoutId: { t: 'string', opt: true }, title: { t: 'string' }, now: { t: 'now', opt: true }, rest: { t: 'rest', opt: true }, after: { t: 'after', opt: true }, doneCount: { t: 'number' }, totalCount: { t: 'number' }, toFillCount: { t: 'number' } };
@@ -27,7 +27,7 @@ const HELLO: Record<string, Field> = { v: { t: 'number' }, kind: { t: 'string' }
 const WELCOME: Record<string, Field> = { v: { t: 'number' }, kind: { t: 'string' }, ok: { t: 'boolean' }, protocol: { t: 'number' }, upgrade: { t: 'string', opt: true } };
 const ACK: Record<string, Field> = { v: { t: 'number' }, kind: { t: 'string' }, eventId: { t: 'string' }, status: { t: 'string' }, reason: { t: 'string', opt: true }, rev: { t: 'number' } };
 const SESSION: Record<string, Field> = { v: { t: 'number' }, kind: { t: 'string' }, action: { t: 'saction' }, workoutId: { t: 'string' }, save: { t: 'boolean' } };
-const VIEW: Record<string, Field> = { screen: { t: 'screen' }, title: { t: 'string' }, counter: { t: 'string' }, load: { t: 'string' }, group: { t: 'string', opt: true }, cue: { t: 'string', opt: true }, restEndsAt: { t: 'number', opt: true }, restTotalSec: { t: 'number', opt: true }, paused: { t: 'boolean' }, timed: { t: 'boolean' }, targetSec: { t: 'number', opt: true }, doneCount: { t: 'number' }, totalCount: { t: 'number' }, toFillCount: { t: 'number' }, undoUntil: { t: 'number', opt: true }, confirmSkip: { t: 'boolean' }, actions: { t: 'actions' }, offline: { t: 'boolean' }, busy: { t: 'boolean' } };
+const VIEW: Record<string, Field> = { screen: { t: 'screen' }, title: { t: 'string' }, counter: { t: 'string' }, load: { t: 'string' }, group: { t: 'string', opt: true }, cue: { t: 'string', opt: true }, restEndsAt: { t: 'number', opt: true }, restTotalSec: { t: 'number', opt: true }, paused: { t: 'boolean' }, timed: { t: 'boolean' }, targetSec: { t: 'number', opt: true }, measuring: { t: 'boolean' }, doneCount: { t: 'number' }, totalCount: { t: 'number' }, toFillCount: { t: 'number' }, undoUntil: { t: 'number', opt: true }, confirmSkip: { t: 'boolean' }, actions: { t: 'actions' }, offline: { t: 'boolean' }, busy: { t: 'boolean' } };
 const PROTO = JSON.parse(fs.readFileSync(path.join(dir, 'protocol.json'), 'utf8'));
 const PHASES: string[] = PROTO.phases; const EVENT_TYPES: string[] = PROTO.eventTypes; const CLIENTS: string[] = PROTO.clients; const SCREENS: string[] = PROTO.clientScreens;
 const ACTIONS: string[] = PROTO.clientActions; const SESSION_ACTIONS: string[] = PROTO.sessionActions;
@@ -75,6 +75,7 @@ describe('pliki wzorcowe protokołu: migawki z prawdziwego telefonu', () => {
     const by = (n: string) => readJson(`snapshots/${n}.json`);
     expect(by('superset-mid-round').now.group).toBeTruthy(); expect(by('timed-set').now.timed).toBe(true); expect(by('bodyweight-set').now.load).toMatch(/masa ciała|\+?\d+ kg/);
     expect(by('unit-lb').now.load).toMatch(/lb/); expect(by('paused').paused).toBe(true); expect(by('to-fill').toFillCount).toBeGreaterThan(0);
+    expect(by('timed-set-measuring').now).toMatchObject({ timed: true, measuring: true }); expect(by('timed-set').now.measuring).toBeUndefined(); /* M3 p6 (ZM-05) */
     expect(['de', 'ja', 'pt-BR'].map(l => by(`lang-${l}`).lang)).toEqual(['de', 'ja', 'pt-BR']);
   });
 });

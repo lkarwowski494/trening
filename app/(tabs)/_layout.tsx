@@ -4,7 +4,7 @@ import { fmtDur } from '@/lib/store';
 import { Tabs } from 'expo-router/js-tabs';
 import { PlatformPressable } from 'expo-router/react-navigation'; // router 57: `Tabs` z głównego 'expo-router' przestarzałe (ten sam komponent)
 import { AccessibilityInfo, type ColorValue } from 'react-native';
-import { useTheme, F } from '@/lib/theme';
+import { useTheme, FW } from '@/lib/theme';
 import { TabIcon, TabLabel, type TabIconName } from '@/components/TabIcon';
 import { t as tr, lang } from '@/lib/i18n';
 import { usePrefsTick } from '@/lib/store';
@@ -48,7 +48,7 @@ export default function TabsLayout() {
   return (<>
     <PlanReminderSync />{/* 08.10.2026: przypomnienie o treningu z planu */}
     <Tabs screenOptions={{ headerShown: false, tabBarStyle: { backgroundColor: t.surface, borderTopColor: t.line }, tabBarActiveTintColor: t.accent, tabBarInactiveTintColor: t.muted, tabBarLabel: label /* A11-03 */, tabBarButton: p => <PlatformPressable {...p} accessibilityLanguage={lang()} /> /* A11-09: przycisk zakładki czytany głosem języka aplikacji */, sceneStyle: { backgroundColor: t.bg } }}>
-      <Tabs.Screen name="index" options={{ title: tr('Trening'), tabBarIcon: icon('workout'), tabBarBadge: badge, tabBarAccessibilityLabel: tabA11y(tr('Trening'), 1, full ? tr('przerwa {s}', { s: full }) : undefined) /* runda 30: VoiceOver czyta przerwę */, tabBarBadgeStyle: { backgroundColor: t.accent, color: t.accentInk, fontSize: 11, fontFamily: F.semibold /* audyt 0.10 (UI-11) */ } }} />
+      <Tabs.Screen name="index" options={{ title: tr('Trening'), tabBarIcon: icon('workout'), tabBarBadge: badge, tabBarAccessibilityLabel: tabA11y(tr('Trening'), 1, full ? tr('przerwa {s}', { s: full }) : undefined) /* runda 30: VoiceOver czyta przerwę */, tabBarBadgeStyle: { backgroundColor: t.accent, color: t.accentInk, fontSize: 11, ...FW.semibold /* audyt 0.10 (UI-11) */ } }} />
       <Tabs.Screen name="history" options={{ title: tr('Plan') /* 11.10.2026: Kalendarz → Plan (docs/22 4.4) */, tabBarAccessibilityLabel: tabA11y(tr('Plan'), 2), tabBarIcon: icon('history') }} />
       <Tabs.Screen name="progress" options={{ title: tr('Postępy'), tabBarAccessibilityLabel: tabA11y(tr('Postępy'), 3), tabBarIcon: icon('progress') }} />
       <Tabs.Screen name="more" options={{ title: tr('Więcej'), tabBarAccessibilityLabel: tabA11y(tr('Więcej'), 4), tabBarIcon: icon('more') }} />

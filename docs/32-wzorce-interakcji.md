@@ -16,6 +16,8 @@ Toolbars, Action sheets, Toggles, Text fields, Feedback, Buttons, Undo and redo)
 7. (poza tą zmianą) generator dokładający ćwiczenia do celu — osobna zmiana po 0.17 (docs/21, backlog).
 8. **Przerwanie pomiaru serii (13.10.2026, wariant A):** pominięcie ćwiczenia pyta o potwierdzenie (`confirmSkipTimedSet`), zamiana ćwiczenia — zwykła i w oknie „Dostosuj do miejsca” — nie pyta. Zamierzona różnica: zamiana to celowy wybór innego ćwiczenia, pominięcie łatwo wybrać przypadkiem. Odrzucone B: pytanie także przy zamianie.
 
+9. **Redesign M3 (21.10.2026, STOP 2 i STOP E3; docs/18, wpisy z 21.10.2026):** zatwierdzone W1 (a) przyciski w nagłówku — wzorzec 19, W2 (a) „Usuń {obiekt}” na dole szczegółów — wzorzec 5, W3 (a) nazwa ćwiczenia na tablicy wersalikami — wzorzec 28; przepływy ZM-01…07 (`docs/design/to-be.md`) zmieniają wzorce 3, 5, 14, 15, 18, 19, 24 i dodają 29–30. Kod i strażniki dostosowuje rola 08 w partiach M3 (`docs/design/design-spec.md` §10); do tego czasu kod działa według stanu sprzed 21.10.2026.
+
 ## Katalog wzorców
 
 ### 1. Zamykanie okna (arkusz, okno modalne) — S1
@@ -40,7 +42,12 @@ bez własnego `headerLeft` (dawne „Wróć” w nagłówku edycji sesji usunię
 - **Zostaje na dole listy** dodawanie do edytowanego obiektu: „+ Dodaj ćwiczenie” (trening, szablon, sesja), serie, talerze.
 
 ### 5. Usuwanie — `tests/swipe-delete.test.tsx`
-Przesunięcie w lewo → „Usuń” → okno [Anuluj, Usuń (destructive)]; VoiceOver: akcja „Usuń …”. Jeden komponent `components/SwipeRow.tsx`. **Zmiana 19.10.2026 (DEC-12, M1-028; zastępuje decyzję z 07.10.2026 „bez usuwania z menu”):** gest zostaje, ale w treningu jest też widoczna alternatywa — „Usuń serię” w menu serii (arkusz po stuknięciu numeru serii) i „Usuń ćwiczenie” w menu ćwiczenia („⋯” w nagłówku, etykieta „Opcje ćwiczenia: {nazwa}”); oba prowadzą do tego samego okna potwierdzenia co gest (`confirmDelete` w `components/SwipeRow.tsx`), ostatnia seria bloku pokazuje to samo wyjaśnienie (`lastSetBlock`). Test: `tests/audit-m1-028-delete-menus.test.tsx`. Poza treningiem (szablon, edycja sesji) alternatywy w menu jeszcze nie ma — otwarte. Okno z wyjaśnieniem blokady ma jedyny przycisk „OK”. Wyjątki: „Usuń odznaczone” w edytorze ciężarów, „✕” zakresu powtórzeń.
+Przesunięcie w lewo → „Usuń” → okno [Anuluj, Usuń (destructive)]; VoiceOver: akcja „Usuń …”. Jeden komponent `components/SwipeRow.tsx`. **Zmiana 19.10.2026 (DEC-12, M1-028; zastępuje decyzję z 07.10.2026 „bez usuwania z menu”):** gest zostaje, ale w treningu jest też widoczna alternatywa — „Usuń serię” w menu serii (arkusz po stuknięciu numeru serii) i „Usuń ćwiczenie” w menu ćwiczenia („⋯” w nagłówku, etykieta „Opcje ćwiczenia: {nazwa}”); oba prowadzą do tego samego okna potwierdzenia co gest (`confirmDelete` w `components/SwipeRow.tsx`), ostatnia seria bloku pokazuje to samo wyjaśnienie (`lastSetBlock`). Test: `tests/audit-m1-028-delete-menus.test.tsx`. Okno z wyjaśnieniem blokady ma jedyny przycisk „OK”.
+**Zmiana 21.10.2026 (M3 ZM-04, W2 wariant a; docs/18; zamyka „poza treningiem — otwarte”):** gest zostaje jako skrót (DEC-12), a każde usuwanie poza treningiem ma widoczną drogę bez gestu:
+- **ekrany szczegółów** (sesja, szablon, ćwiczenie własne, miejsce inne niż główne; czy także ćwiczenie wbudowane, które gest dziś usuwa z biblioteki — `[DO USTALENIA]`, `docs/design/design-spec.md` §10): przycisk `Btn danger` „Usuń {obiekt}” na dole ekranu, jedyny przycisk destrukcyjny ekranu, oddzielony od innych akcji odstępem grupy (24 pt) → to samo okno co gest (`confirmDelete`, [Anuluj, Usuń]); etykieta jak akcja gestu (np. „Usuń sesję”, „Usuń szablon”, „Usuń z biblioteki”), w trybie podglądu, nie w szkicu;
+- **listy bez ekranu szczegółów** (pomiary masy ciała, gumy): „Edytuj” w nagłówku (wzorzec 19) → tryb usuwania jak listy iOS (przy wierszu przycisk usunięcia z etykietą „Usuń {obiekt}: {nazwa}”, „Gotowe” kończy tryb) → to samo okno;
+- **edytory poza treningiem (04-studio-projektowe-003, 21.10.2026):** jak w treningu (DEC-12) — „Usuń serię” w menu serii i „Usuń ćwiczenie” w „⋯” ćwiczenia (`components/ExMenuButton.tsx`) w edytorze szablonu i w edycji sesji; zamiennik w szablonie ma przycisk „Usuń” (etykieta „Usuń zamiennik: …”); zapisany plan (`/plan?id=`) ma na dole przycisk „Usuń plan” (DeleteButton) — wszystko prowadzi do tego samego okna co gest. Test: `tests/swipe-delete.test.tsx` („droga bez gestu”).
+- **bez zmian:** talerze i ciężary w edytorze miejsca mają już widoczne „Usuń odznaczone” (wyjątek wyżej); miejsce główne i ostatnia seria bloku — bez usuwania, jak dotąd. Odrzucone: „Usuń” w menu „⋯” nagłówka szczegółów (W2 b). Wyjątki: „Usuń odznaczone” w edytorze ciężarów, „✕” zakresu powtórzeń.
 
 ### 6. Potwierdzanie akcji — S5
 `lib/confirm.ts`: `confirm({ title, message, action, destructive, … })`, `cancelButton()` („Anuluj”), `backToEditButton()` („Wróć do edycji”), `okButton()`. Ręczne `style: 'cancel'` zakazane. HIG Alerts: „Always use the title “Cancel” for a button that cancels an alert’s action.”
@@ -69,14 +76,14 @@ Wszystkie drogi przez `lib/start.ts`. Przy treningu w toku „Start” z podglą
 „Zakończ” → pytanie z liczbami [Anuluj, Zakończ]; „Odrzuć trening” → [Anuluj, Odrzuć trening (destructive)].
 
 ### 14. Komunikaty o błędach i sukcesie — S8
-- Rutynowy sukces — widoczna zmiana bez okna; sukces bez widocznego wyniku (import, generator) — Alert z liczbami.
+- Rutynowy sukces — widoczna zmiana bez okna; sukces bez widocznego wyniku (import) — Alert z liczbami. **Generator (M3 ZM-03, 21.10.2026):** po „Zapisz szablony i plan” bez okien — przejście do Planowania z jednym zdaniem potwierdzenia na ekranie (ogłaszanym przez `announce`); pytanie o zastąpienie aktywnego planu zostaje (decyzja z konsekwencją, wzorzec 6).
 - Błąd akcji — Alert, którego **tytuł mówi, co się nie udało** („Nie udało się wyeksportować kopii”, „… zaimportować pliku”, „… dokończyć zakupu” itd.); zakaz tytułu „Nie udało się” bez dopowiedzenia.
 - Komunikat w treści ogłasza VoiceOver (`lib/announce.ts`: `announce`, `useAnnounce`); `accessibilityLiveRegion` zakazane (w React Native działa tylko na Androidzie). HIG Feedback: „Make sure all feedback is accessible.”
 - Informacja przy starcie nie blokuje (HIG Alerts: „Avoid showing an alert when your app starts.”): autozapis porzuconego treningu to wiersz „Trening zapisał się sam” na ekranie Trening (`lib/notices.ts`), znika po stuknięciu.
   Wyjątek: pytanie „Niezapisane zmiany” przy odzyskiwaniu szkicu po zamknięciu aplikacji (wymaga decyzji, nie jest informacją).
 
 ### 15. Puste stany i „nie ma takiego …” — S10
-Cała lista pusta → `Empty` (z akcją, jeśli jest); podsekcja → `Muted` (np. „Z szablonu” w treningu wstecz, gdzie zawsze jest też „Pusty trening”). „Nie ma takiego …” / „Brak sesji.” → `Missing` (`components/ui.tsx`: `Empty` + przycisk „Wróć”).
+Cała lista pusta → `Empty` (z akcją, jeśli jest; od M3 z grafiką motywu A2 — gryf z talerzami, dekoracja ukryta dla VoiceOver i przy „Zwiększ kontrast”); Postępy bez historii: sam pusty stan z akcją „Zacznij trening” (ZM-06, 21.10.2026); podsekcja → `Muted` (np. „Z szablonu” w treningu wstecz, gdzie zawsze jest też „Pusty trening”). „Nie ma takiego …” / „Brak sesji.” → `Missing` (`components/ui.tsx`: `Empty` + przycisk „Wróć”).
 
 ### 16. Długie akcje
 Eksport/import kopii, import CSV: `Btn loading` — wskaźnik w przycisku, przycisk nieaktywny, `accessibilityState busy`. HIG Buttons: „Configure a button to display an activity indicator when you need to provide feedback about an action that doesn’t instantly complete.”
@@ -86,10 +93,15 @@ Przejście w aplikacji → rola `button` (`Item`, `Btn nav`, blokada podwójnego
 Przycisk, który **przechodzi na inny ekran**, ma po tytule „›” (np. „Technika ›” przy ćwiczeniu — dawniej „ⓘ Technika”; ⓘ ma od 14.10.2026 wyłącznie znaczenie wzorca 26: rozwija tekst w miejscu).
 
 ### 18. Przyciski główne i drugorzędne
-`Btn`: `primary` (jedna główna akcja ekranu), `default`, `ghost`, `danger`. Wyjątki nazwane: duży Start (`StartPanel`) i karta „teraz” (decyzja „Tuleja” 07.10.2026).
+`Btn`: `primary` (jedna główna akcja ekranu), `default`, `ghost`, `danger`. Wyjątki nazwane: duży Start (`StartPanel`) i karta „teraz” (decyzja „Tuleja” 07.10.2026) — od M3 **tablica „teraz”** (element firmowy, wzorzec 29) z przyciskiem głównym „Seria zrobiona” pod nią.
+**M3 ZM-02 (21.10.2026):** na ekranie treningu główną akcją jest seria; „Zakończ” jest przyciskiem drugorzędnym w nagłówku (wzorzec 30), nie najmocniejszym akcentem ekranu. Przycisk główny = barwy `accent` + `accentInk` w obu motywach (w ciemnym jasny).
 
 ### 19. Nagłówki ekranów
-Zakładki — własne H1; stos — tytuł w nagłówku (ekrany pod Więcej bez H1); szczegóły: tytuł = rodzaj, H1 = nazwa. Ekran zakupu **bez** H1 powtarzającego tytuł. Przyciski w nagłówku: tylko wzorce 1, 3, 4.
+Zakładki — własne H1; stos — tytuł w nagłówku (ekrany pod Więcej bez H1); szczegóły: tytuł = rodzaj, H1 = nazwa. Ekran zakupu **bez** H1 powtarzającego tytuł. Przyciski w nagłówku: tylko wzorce 1, 3, 4 oraz **wyjątki nazwane z M3 (W1 wariant a, 21.10.2026; docs/18)** — każdy jako jeden wspólny komponent z `HeaderButton` (44 pt, limit powiększenia), dopuszczony przez strażnik S2:
+(a) trening w toku: „⋯” (menu treningu: miejsce, pauza, głos, notatka szablonu; etykieta „Opcje treningu”) i „Zakończ” (wzorzec 30);
+(b) listy z trybem usuwania bez ekranu szczegółów: „Edytuj” / „Gotowe” (wzorzec 5), obok „+” (wzorzec 4) — w trybie edycji „+” znika;
+(c) ekran Trening bez treningu w toku: „Planowanie” (przejście do planu, etykieta „Planowanie”; zastępuje przycisk pod nagłówkiem planu).
+Odrzucone: „Planowanie” w treści (W1 b). Szczegóły: tytuł środkowy skraca się wielokropkiem, przyciski nie (limit powiększenia przycisków jak dziś w `HeaderButton`: 1,4).
 
 ### 20. Rozwijanie i zwijanie — S11
 Znaki ▸/▾ (zakaz ⌃ ⌄ ▴), `accessibilityState.expanded` (`Btn expanded`, `Item expanded`), etykieta VoiceOver stała (np. „Więcej opcji”, „Cele partii”). Menu otwierające arkusz („📍 Dom ▾”) to nie rozwijanie.
@@ -106,7 +118,7 @@ Każdy `Pressable` ma `accessibilityLanguage = lang()` (albo `accessible={false}
 
 ### 24. Seria „do uzupełnienia” i prośba przed „Zakończ” (0.20, decyzja właściciela 13.10.2026)
 Seria odhaczona na zegarku jako „zrobione inaczej niż w planie” ma w wierszu napis „do uzupełnienia” (słowem, nie samym kolorem) i przycisk „Gotowe”. „Zakończ” z takimi seriami pyta najpierw: tytuł „Serie do uzupełnienia”, przyciski
-[Anuluj, Zakończ mimo to] — „Anuluj” wraca do treningu (wzorzec 6; jedyny przycisk potwierdzający to akcja, nie „Tak”). Rekord liczy się dopiero po uzupełnieniu. Zegarek ma te same etykiety co telefon („Seria zrobiona”, „Pomiń”,
+[Anuluj, Zakończ mimo to] — „Anuluj” wraca do treningu (wzorzec 6; jedyny przycisk potwierdzający to akcja, nie „Tak”). Rekord liczy się dopiero po uzupełnieniu. Zegarek ma te same etykiety co telefon (M3 ZM-05, 21.10.2026: w trakcie pomiaru serii na czas jedna nazwa „Zakończ serię” na tablicy, w dolnym pasku, w VoiceOver i na zegarku; po pomiarze „Seria zrobiona”; „Seria zrobiona”, „Pomiń”,
 „Anuluj”, „Cofnij”); „Pomiń” pyta o potwierdzenie na zegarku (decyzja 8), a przycisk i gest wywołują zawsze akcję główną ekranu. Szczegóły: docs/35.
 
 ### 25. Wykres „okres vs okres” — dwa słupki na partię (decyzja właściciela 14.10.2026, uwagi z testu na telefonie)
@@ -139,11 +151,24 @@ Ekrany mają być lekkie: **objaśnienia i źródła** chowają się pod ikoną 
 
 ### 28. Wersaliki i ciągi „A · B · C” (decyzja właściciela 20.10.2026, audyt M1-063, DEC-17 wariant a)
 - **Wersaliki tylko w nagłówkach grup** (`SectionTitle`, tytuł grupy w strażniku progresji). W treści, przyciskach, etykietach wierszy i komunikatach tekst pisany normalnie. Wersaliki robi `upper()` / `upperText()` z regułami języka (A11-02), nigdy `textTransform: 'uppercase'` poza `upperText()` w `components/ui.tsx`.
-- **Wyjątki z powodem:** (1) `components/TodayPlan.tsx` — nagłówek bloku „Dziś” i skróty dni tygodnia w pasku (etykiety kolumn, nie zdania); (2) `components/GuardSection.tsx` — tytuł grupy (nagłówek grupy); (3) `lib/state/sets.ts` `shortBand` — jedna litera koloru gumy, nie tekst. Nowe użycie wymaga zmiany tej decyzji i wpisu tutaj.
+- **Wyjątki z powodem:** (1) `components/TodayPlan.tsx` — nagłówek bloku „Dziś” i skróty dni tygodnia w pasku (etykiety kolumn, nie zdania); (2) `components/GuardSection.tsx` — tytuł grupy (nagłówek grupy); (3) `lib/state/sets.ts` `shortBand` — jedna litera koloru gumy, nie tekst; (4) **M3 W3 wariant a (21.10.2026, docs/18):** nazwa ćwiczenia na tablicy „teraz” i nagłówek „Dziś: …” na tablicy startu — jak nazwisko na tablicy podejść (przepisy IWF 3.3.6.15), przez `upperText()` (rozstrzelenie 4%, rola `boardName` w tokenach); przy dużym tekście nazwa łamie się na dwa wiersze, nie ucina. Odrzucone: nazwa na tablicy zwykłą pisownią (W3 b). Nowe użycie wymaga zmiany tej decyzji i wpisu tutaj.
 - **„·” (kropka środkowa) tylko dla metadanych o stałej kolejności** (np. licencja · źródło w ekranie Licencje), czytanych jak etykiety. Zdania, powody i wartości zmiennej kolejności lub liczby elementów oddzielamy zwykłym zdaniem, przecinkiem albo osobną linią.
 - **Odrzucone:** wariant B — limit dwóch elementów w liniach pomocniczych ekranu treningu (zmieniałby układ ekranu treningu przed redesignem wyglądu).
 - **Stan kodu:** istniejące ciągi z `join(' · ')` o zmiennej kolejności (np. linie pomocnicze `app/swap.tsx`, `app/adapt.tsx`, `components/ActiveWorkout.tsx`) nie były przeglądane pod tym kątem — **[OTWARTE]** przegląd przy redesignie wyglądu; nowy kod stosuje regułę od 20.10.2026.
 - **Strażnik wersalików:** `tests/audit-m1-063-caps-separators.test.ts` (lista miejsc z `upperText()` / `upper()` i brak `textTransform: 'uppercase'`).
+
+### 29. Tablica „teraz” — wynik serii, ±, haptyka (M3 ZM-01, ZM-05, ZM-07; decyzje 21.10.2026, docs/18)
+- **Wpis na tablicy:** ciężar i powtórzenia (albo czas / dystans) z podpowiedzi albo puste „—”. Stuknięcie liczby otwiera wpis (`NumInput`, wzorzec 10); obok liczby przyciski ± o krok sprzętu (okrągłe, 44 pt, etykiety „Zwiększ ciężar o {krok}” / „Zmniejsz ciężar o {krok}”, jednostka z `wu()`/`distUnit()`). Reguła kroku ± — sprawa merytoryczna (badacz), nie wzorzec.
+- **„Seria zrobiona” bez wartości** nie odhacza serii: kursor przechodzi do pustego pola, bez okna; haptyka ostrzegawcza i ogłoszenie VoiceOver (`announce`). Sesje zapisane wcześniej z pustymi seriami zostają bez zmian.
+- **Pola serii** (zrobiona — wypełnienie, bieżąca — ramka, czekająca — kontur, rozgrzewka — kontur kreskowany; stan niesie kształt, nie sam kolor) **nie są celem dotyku** (decyzja STOP E3): serię poprawia się w wierszu serii / menu serii (wzorzec 5). Do 4 pól z wynikiem, 5–12 w 1–3 rzędach, powyżej 12 przewijany rząd.
+- **VoiceOver:** tablica to jeden element z opisem danych („{ćwiczenie}, seria 3 z 4, 80 kilogramów razy 6. Serie: 2 z 4 zrobione”; w przerwie zegar i następna seria) — tekst w `docs/design/design-spec.md` §2.
+- **Haptyka i dźwięk (ZM-07):** dwa przełączniki w Ustawieniach — „Dźwięk na koniec przerwy” i „Wibracje”; każda haptyka zależy tylko od „Wibracje”, każdy dźwięk tylko od „Dźwięk…”. Zdarzenia: ✓ — lekkie stuknięcie; ± — „tick” (selection); „Seria zrobiona” bez wyniku — ostrzegawcza; koniec przerwy — sukces + dźwięk; usunięcie, zakończenie, błąd — bez haptyki (okno systemowe). Mapa: `HAPTICS` w tokenach. Wdrożenie (p5d, 21.10.2026): `Settings.haptics` (pole opcjonalne, bez zmiany schematu; brak pola = wibracje za `sound`, jedno miejsce reguły: `hapticsEnabled` w `lib/haptics.ts`); wibracje słuchają go w `lib/timer.ts` (koniec przerwy i stopera serii), na tablicy (± i ostrzegawcza) i w `DragList`; pierwsze przełączenie „Dźwięku” przy braku pola utrwala dotychczasowy stan „Wibracji”. Lekkie stuknięcie przy ✓ nie jest jeszcze zaimplementowane (do decyzji właściciela, także z zegarka).
+- **Seria na czas:** jedna nazwa „Zakończ serię” w trakcie pomiaru (wzorzec 24).
+
+### 30. Nagłówek treningu i prośba o zgodę na powiadomienia (M3 ZM-02, 21.10.2026, docs/18)
+- Nagłówek w jednej linii: nazwa i czas treningu; po prawej „⋯” (miejsce, pauza, głos, notatka szablonu) i „Zakończ” (wzorzec 19 a). Nad tablicą najwyżej 3–4 elementy.
+- Prośba o zgodę na powiadomienia przy **pierwszej przerwie**, wierszem pod tablicą („Przerwa trwa — powiadomić na koniec?”), nie w nagłówku; po odmowie komunikat raz, potem tylko w Ustawieniach. Przycisk odroczenia „Nie teraz” (wyjątek nazwany wzorca 6).
+- Menu „⋯” to arkusz akcji z „Anuluj” (wzorzec 9, S16 — lista z powodem, jeśli przekroczy 3 opcje + Anuluj).
 
 ## Strażniki (S1–S17)
 | # | Strażnik | Plik | Stan |

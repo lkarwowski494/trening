@@ -93,3 +93,12 @@ export const openTpl = async (name: string) => {
   if (!screen.queryByText(name)) { await tap(screen.getByLabelText(t('Inny trening'))); await flushAll(5); await tap(screen.getByLabelText(t('Z szablonu'))); await flushAll(10); }
   await tap(screen.getByText(name)); await flushAll(10);
 };
+/** M3 p2 (ZM-02, wzorzec 30): miejsce treningu to pozycja menu „⋯” treningu (dawny chip „📍 Dom ▾” pod nazwą). Otwiera menu i zwraca arkusz. */
+export const workoutMenu = async () => { await tap(screen.getByTestId('more-button')); return (global as any).__sheets.at(-1) as { opts: { options: string[]; cancelButtonIndex: number; title: string }; cb: (i: number) => void }; };
+const PLACE_ITEM = /^(Miejsce treningu|Workout place): /;
+/** Wybiera w menu „⋯” pozycję miejsca i zwraca arkusz miejsc („Miejsce tego treningu”). */
+export const openPlaceSheet = async () => { const m = await workoutMenu(); const i = m.opts.options.findIndex(o => PLACE_ITEM.test(o)); if (i < 0) throw new Error('menu „⋯” nie ma pozycji miejsca: ' + m.opts.options.join(' | ')); await act(async () => { m.cb(i); }); return (global as any).__sheets.at(-1) as { opts: { options: string[]; cancelButtonIndex: number; title: string }; cb: (i: number) => void }; };
+/** Pozycja miejsca z menu „⋯” (np. „Miejsce treningu: Dom”) albo undefined, gdy nie ma miejsc; menu zostaje otwarte w atrapie arkuszy (nie wpływa na ekran). */
+export const placeInMenu = async (): Promise<string | undefined> => (await workoutMenu()).opts.options.find(o => PLACE_ITEM.test(o));
+/** Wybiera w menu „⋯” pozycję o danej etykiecie (tekst albo wyrażenie); rzuca, gdy jej nie ma. */
+export const menuPick = async (label: string | RegExp) => { const m = await workoutMenu(); const i = m.opts.options.findIndex(o => typeof label === 'string' ? o === label : label.test(o)); if (i < 0) throw new Error('menu „⋯” nie ma pozycji ' + String(label) + ': ' + m.opts.options.join(' | ')); await act(async () => { m.cb(i); }); };

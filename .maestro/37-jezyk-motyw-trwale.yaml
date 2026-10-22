@@ -40,6 +40,7 @@ name: Po zmianie języka i wyglądu — praca po polsku i restart
 - extendedWaitUntil: { visible: "Szukaj ćwiczenia…", timeout: 30000 }
 - tapOn: "Szukaj ćwiczenia…"
 - inputText: "Bench Press"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter (klawiatura znika, lista zostaje przefiltrowana)
 - tapOn: { text: "Continue", optional: true }
 - pressKey: Enter   # chowa klawiaturę (L-013: na 390 pt wiersz wyniku leży przy niej)
 - tapOn: "Bench Press \\(hantle\\), .*"

@@ -22,7 +22,7 @@ test('slotHeight jest stabilny wobec szumu układu: wysokość zawartości, nie 
 test('slotHeight: wartości graniczne', () => {
   expect(slotHeight(0)).toBe(0); expect(slotHeight(-3)).toBe(0); expect(slotHeight(100)).toBe(100); expect(slotHeight(100.2)).toBe(101);
 });
-test('ActiveWorkout używa slotHeight (nie Math.ceil) przy zapamiętywaniu miejsca na grafikę', () => {
-  const src = readFileSync(join(__dirname, '..', 'components', 'ActiveWorkout.tsx'), 'utf8');
+test('tablica „teraz” (NowBoard, dawniej karta w ActiveWorkout) używa slotHeight (nie Math.ceil) przy zapamiętywaniu miejsca na grafikę', () => {
+  const src = readFileSync(join(__dirname, '..', 'components', 'NowBoard.tsx'), 'utf8');
   expect(src).toMatch(/const h = slotHeight\(ev\.nativeEvent\.layout\.height\)/);
 });
