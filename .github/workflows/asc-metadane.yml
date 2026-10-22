@@ -1,0 +1,87 @@
+# Wgranie metadanych sklepu (nazwy, podtytuły, słowa kluczowe, opisy, teksty promocyjne, adresy; 33 lokalizacje) z repozytorium do App Store Connect
+# przez API (polecenie właściciela 22.10.2026; skrypt scripts/asc/metadane.mjs, dane store/app-store-*.json). Tylko ręcznie.
+# tryb podglad (domyślny): tylko odczyt — pokazuje, co jest w ASC i w repo, bez zapisu; job bez środowiska (sekrety repozytorium, jak asc-iap-localizations.yml).
+# tryb zapis: osobny job w środowisku `release` (zatwierdzenie właściciela, jak testflight.yml); tworzy brakujące i aktualizuje różniące się, NIGDY nie usuwa.
+# Sekrety jak w testflight.yml: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8 (bez nowych). Repozytorium jest publiczne: logi bez identyfikatorów klucza
+# (maskowanie), klucz tylko w RUNNER_TEMP i usuwany zawsze.
+name: ASC metadane sklepu
+on:
+  workflow_dispatch:
+    inputs:
+      tryb:
+        description: 'podglad = tylko odczyt i lista zmian; zapis = utwórz brakujące i zaktualizuj różniące się (nigdy nie usuwa; wymaga zatwierdzenia release)'
+        type: choice
+        options: [podglad, zapis]
+        default: podglad
+permissions:
+  contents: read
+concurrency:
+  group: asc-metadane
+  cancel-in-progress: false
+jobs:
+  podglad:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Klucz API do pliku tymczasowego (maskowany)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/15 — kroki właściciela)"; exit 1; }; done
+          echo "::add-mask::$ASC_KEY_ID"; echo "::add-mask::$ASC_ISSUER_ID"
+          printf '%s\n' "$ASC_KEY_P8" | while IFS= read -r line; do case "$line" in -----*) ;; *) [ ${#line} -ge 20 ] && echo "::add-mask::$line" ;; esac; done; true
+          umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
+      - name: Podgląd (tylko odczyt)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          set -o pipefail
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          node scripts/asc/metadane.mjs --podglad | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Usunięcie klucza z maszyny
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey.p8"
+
+  zapis:
+    needs: podglad
+    if: ${{ inputs.tryb == 'zapis' }}
+    runs-on: ubuntu-latest
+    environment: release
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Klucz API do pliku tymczasowego (maskowany)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/15 — kroki właściciela)"; exit 1; }; done
+          echo "::add-mask::$ASC_KEY_ID"; echo "::add-mask::$ASC_ISSUER_ID"
+          printf '%s\n' "$ASC_KEY_P8" | while IFS= read -r line; do case "$line" in -----*) ;; *) [ ${#line} -ge 20 ] && echo "::add-mask::$line" ;; esac; done; true
+          umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
+      - name: Zapis metadanych (nigdy nie usuwa)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+        run: |
+          set -o pipefail
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          node scripts/asc/metadane.mjs --zapis | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Usunięcie klucza z maszyny
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey.p8"
