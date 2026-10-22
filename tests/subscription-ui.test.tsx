@@ -79,6 +79,12 @@ describe('ekran zakupu: zakup, przywracanie, kod, linki', () => {
     expect(screen.getByText(/^Access until /)).toBeTruthy(); expect(screen.getByText('Manage subscription')).toBeTruthy(); expect(JSON.stringify(S().workouts)).toBe(before);
     await tap(screen.getByText('Manage subscription')); expect(fake.calls.manageSubscriptions).toBe(1);
   });
+  test('po udanym zakupie ekran wraca na górę (karta „Masz pełną wersję” poza polem widzenia po zakupie z dołu — E2E 39825973624); anulowanie nie przewija', async () => {
+    await boot({ locale: 'en' }); const spy = jest.fn();
+    const proto = require('react-native').ScrollView.prototype; const orig = proto.scrollTo; proto.scrollTo = spy;
+    try { fake.nextPurchase = 'cancelled'; await tap(screen.getByText('Subscribe')); await settle(); expect(spy).not.toHaveBeenCalled();
+      await tap(screen.getByText('Subscribe')); await settle(); expect(screen.getByTestId('paywall-owned')).toBeTruthy(); expect(spy).toHaveBeenCalledWith({ y: 0, animated: false }); } finally { proto.scrollTo = orig; }
+  }, 60000);
   test('anulowanie w oknie Apple: bez komunikatu i bez zmiany; oczekiwanie na zgodę (Ask to Buy): komunikat; błąd: alert „Nie udało się”', async () => {
     await boot({ locale: 'en' }); fake.nextPurchase = 'cancelled'; await tap(screen.getByText('Subscribe')); await settle(); expect(screen.queryByTestId('paywall-note')).toBeNull(); expect(screen.queryByTestId('paywall-owned')).toBeNull(); expect(global.__alerts).toHaveLength(0);
     fake.nextPurchase = 'pending'; await tap(screen.getByText('Subscribe')); await settle(); expect(screen.getByTestId('paywall-note').props.children).toBe('Waiting for approval from the family organizer.');
