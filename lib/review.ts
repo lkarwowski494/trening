@@ -1,6 +1,6 @@
 /*
  * Prośba o ocenę w App Store — bramka (docs/26; decyzja właściciela 11.10.2026: moment B+A — po N-tym ukończonym treningu, gdy właśnie
- * zakończony trening ma nowy rekord; N = 5; odstęp 14 dni; max 1 na wersję aplikacji; data w polu ustawień).
+ * zakończony trening ma nowy rekord; N = 3 (od 22.10.2026; wcześniej 5); odstęp 14 dni; max 1 na wersję aplikacji; data w polu ustawień).
  *
  * Moduł jest CZYSTY: czas i dane przychodzą jako argumenty (bez Date.now(), bez magazynu, bez `expo-store-review`). Nic w aplikacji go dziś
  * nie woła (wydanie przygotowawcze 0.17; pole w Settings i wywołanie systemowego okna — osobna decyzja o schemacie). System Apple sam
@@ -9,8 +9,9 @@
 
 /** Liczby bramki — JEDNO miejsce (CLAUDE.md). */
 export const REVIEW = {
-  /** Minimalna liczba ukończonych treningów przed pierwszą prośbą (docs/26 pyt. 2; hipoteza bez źródła, decyzja właściciela 11.10.2026). */
-  MIN_WORKOUTS: 5,
+  /** Minimalna liczba ukończonych treningów przed pierwszą prośbą (docs/26 pyt. 2; hipoteza bez źródła, decyzja właściciela 11.10.2026: 5; M5 S1 22.10.2026: 3 — przy limicie 5 dni
+   * treningowych w miesiącu pierwsza prośba ma paść przed pierwszą blokadą, nie po niej). */
+  MIN_WORKOUTS: 3,
   /** Minimalny odstęp od poprzedniej prośby w dniach (HIG: „co najmniej tydzień lub dwa”; decyzja właściciela 11.10.2026: 14). */
   MIN_GAP_DAYS: 14,
 } as const;

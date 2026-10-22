@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Animated, Modal, PanResponder, Pressable, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Btn, Item, useOnce } from '@/components/ui';
+import { Btn, Item, Muted, useOnce } from '@/components/ui';
 import { useTheme, TEXT_SCALE_MAX, font, RADIUS, SIZE, SPACE } from '@/lib/theme';
 import { fmtDate, fmtDayKey } from '@/lib/store';
 import { startTemplate, startRepeatLast, startEmptyWorkout } from '@/lib/start';
@@ -9,6 +9,7 @@ import { mainStart, otherStarts, type MainStart, type OtherStart } from '@/lib/h
 import { dayKeyOf, addDays } from '@/lib/plan';
 import { t, tp, lang } from '@/lib/i18n';
 import { CloseButton } from '@/components/CloseButton';
+import { useAccess } from '@/lib/entitlement';
 
 /*
  * Ekran główny, układ B (decyzja właściciela 09.10.2026; docs/18): duży przycisk startu zależny od sytuacji (reguła — lib/home.ts mainStart)
@@ -32,7 +33,7 @@ function mainText(m: MainStart): { title: string; sub?: string; label: string } 
 
 export function StartPanel() {
   const th = useTheme(); const router = useRouter(); const once = useOnce(); const [open, setOpen] = useState(false);
-  const m = mainStart(); const x = mainText(m);
+  const m = mainStart(); const x = mainText(m); const acc = useAccess(); /* M5 S1: licznik darmowych dni treningowych (tylko stan free przy włączonym przełączniku) */
   const go = () => { if (m.kind === 'plan' || m.kind === 'planNext' || m.kind === 'next') startTemplate(m.tpl); else if (m.kind === 'empty') startEmptyWorkout(); else router.push('/'); };
   const others = open ? otherStarts(m) : [];
   /* 04-studio-projektowe-007: arkusz „Inny trening” zamyka się też gestem w dół (jak arkusze systemowe) — tylko dodatkowo, przycisk „Anuluj” zostaje (zasada 13.10.2026, tests/close-button-guard) */
@@ -63,6 +64,7 @@ export function StartPanel() {
         <Text accessibilityElementsHidden importantForAccessibility="no" style={{ color: th.accentInk, ...font('sectionTitle') }}>›</Text>
       </Pressable>
       {m.kind !== 'resume' ? <Btn block title={t('Inny trening')} accessibilityLabel={t('Inny trening')} accessibilityHint={t('Inny z planu, powtórz ostatni, z szablonu albo pusty.')} onPress={() => setOpen(true)} /> : null}
+      {m.kind !== 'resume' && acc.enabled && acc.level === 'free' && !acc.silent ? <Muted testID="start-free-days" style={{ textAlign: 'center' }}>{t('{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.', { left: tp(acc.decision.remaining, 'Został|Zostały|Zostało'), n: acc.decision.remaining, limit: acc.decision.limit })}</Muted> : null}
       <Modal visible={open} transparent animationType="slide" onRequestClose={() => setOpen(false)} accessibilityViewIsModal>
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <Pressable testID="other-sheet-scrim" accessible={false} importantForAccessibility="no" onPress={() => setOpen(false)} /* tło: stuknięcie zamyka jako dodatek; przycisk „Anuluj” jest w nagłówku arkusza (zasada 13.10.2026) */ style={{ ...{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }, backgroundColor: 'rgba(0,0,0,0.4)' }} />

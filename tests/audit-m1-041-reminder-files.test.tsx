@@ -1,39 +1,18 @@
 /*
- * M1-audytor-generalny-041: (a) przypomnienie o końcu okresu próbnego było planowane w języku z chwili synchronizacji i po zmianie języka zostawało w starym;
- * (b) nazwy plików kopii po polsku („trening-…”, „trening-przed-importem-…”). Po naprawie: wybór języka planuje przypomnienie ponownie (lib/entitlement.ts
- * resyncTrialReminder), nazwy plików są neutralne („training-…”, „training-before-import-…”), a wyrażenia puli kopii rozpoznają stare i nowe nazwy.
+ * M1-audytor-generalny-041: nazwy plików kopii po polsku („trening-…”, „trening-przed-importem-…”). Po naprawie nazwy plików są neutralne („training-…”,
+ * „training-before-import-…”), a wyrażenia puli kopii rozpoznają stare i nowe nazwy. Część (a) — przypomnienie o końcu okresu próbnego po zmianie języka —
+ * usunięta 22.10.2026 razem z okresem próbnym (M5 S1; strażnik braku oferty: tests/m5s1-bez-proby.test.ts).
  */
 import * as backup from '@/lib/backup';
-import { PAYWALL, type Entitlement } from '@/lib/access';
-import { TRIAL_REMINDER_ID } from '@/lib/trialReminder';
-import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter';
-import { createFakeStore } from '@/lib/store-fake';
+import { PAYWALL } from '@/lib/access';
+import { resetStoreAdapterForTests } from '@/lib/store-adapter';
 import * as ent from '@/lib/entitlement';
 import { applyLang } from '@/lib/i18n';
 import { fresh } from './helpers';
 import { renderApp, flushAll, screen, go, tap, act } from './app';
 
 jest.setTimeout(60000);
-const DAY = 86400e3; const NOW = new Date(2026, 9, 14, 12, 0).getTime();
-const trial = (end: number): Entitlement => ({ plan: 'monthly', source: 'purchase', expiresAt: end, trial: true });
-const notes = () => global.__notifications as { identifier: string; content: { title: string } }[];
 afterEach(() => { PAYWALL.ENABLED = false; ent.resetEntitlementsForTests(); resetStoreAdapterForTests(); applyLang('pl'); jest.useRealTimers(); jest.restoreAllMocks(); });
-
-describe('przypomnienie o końcu próby po zmianie języka', () => {
-  test('próba w toku (PL) → wybór English na ekranie Język → przypomnienie zaplanowane ponownie po angielsku (jedno, ten sam identyfikator)', async () => {
-    jest.useFakeTimers({ now: NOW }); await fresh(); ent.resetEntitlementsForTests(); PAYWALL.ENABLED = true; setStoreAdapter(createFakeStore([trial(NOW + 30 * DAY)])); await ent.initEntitlements(); for (let i = 0; i < 8; i++) await Promise.resolve();
-    expect(notes()).toHaveLength(1); expect(notes()[0].content.title).toBe('Okres próbny dobiega końca');
-    await renderApp({ url: '/more/language' }); await flushAll(10);
-    global.__notifications.length = 0; global.__cancelled.length = 0;
-    await tap(screen.getByText('English')); await act(async () => { for (let i = 0; i < 12; i++) await Promise.resolve(); }); await flushAll(10);
-    expect(global.__cancelled).toContain(TRIAL_REMINDER_ID); expect(notes()).toHaveLength(1); expect(notes()[0].identifier).toBe(TRIAL_REMINDER_ID); expect(notes()[0].content.title).toBe('Your free trial is ending');
-  });
-  test('bez próby (lub bez odpowiedzi sklepu) zmiana języka niczego nie planuje', async () => {
-    jest.useFakeTimers({ now: NOW }); await fresh(); ent.resetEntitlementsForTests(); PAYWALL.ENABLED = true; setStoreAdapter(createFakeStore([])); await ent.initEntitlements(); for (let i = 0; i < 8; i++) await Promise.resolve();
-    global.__notifications.length = 0; await ent.resyncTrialReminder(); expect(notes()).toEqual([]);
-    ent.resetEntitlementsForTests(); global.__cancelled.length = 0; await ent.resyncTrialReminder(); expect(global.__cancelled).toEqual([]); /* brak odpowiedzi sklepu → bez zmian */
-  });
-});
 
 describe('nazwy plików kopii', () => {
   const FS = require('expo-file-system/legacy'); const SH = require('expo-sharing');

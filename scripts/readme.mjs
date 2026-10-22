@@ -223,14 +223,14 @@ const BLOCKS = {
   },
   pricing() {
     const acc = read('lib/access.ts'); const prod = read('lib/products.ts');
-    const enabled = /ENABLED:\s*(true|false),/.exec(acc)?.[1]; const free = /FREE_LIVE_PER_MONTH:\s*(\d+)/.exec(acc)?.[1]; const grace = /OFFLINE_GRACE_DAYS:\s*(\d+)/.exec(acc)?.[1];
-    const trial = /TRIAL_DAYS\s*=\s*(\d+)/.exec(prod)?.[1]; if (!enabled || !free || !grace || !trial) fail('lib/access.ts / lib/products.ts: brak PAYWALL albo TRIAL_DAYS');
+    const enabled = /ENABLED:\s*(true|false),/.exec(acc)?.[1]; const free = /FREE_TRAINING_DAYS_PER_MONTH:\s*(\d+)/.exec(acc)?.[1]; const grace = /OFFLINE_GRACE_DAYS:\s*(\d+)/.exec(acc)?.[1];
+    if (!enabled || !free || !grace) fail('lib/access.ts: brak PAYWALL (ENABLED, FREE_TRAINING_DAYS_PER_MONTH, OFFLINE_GRACE_DAYS)');
     const kit = JSON.parse(read('store/Trening.storekit'));
     const subs = kit.subscriptionGroups.flatMap(g => g.subscriptions); const sub = p => subs.find(s => s.recurringSubscriptionPeriod === p) ?? fail(`store/Trening.storekit: brak subskrypcji ${p}`);
     const life = kit.products.find(p => p.type === 'NonConsumable') ?? fail('store/Trening.storekit: brak zakupu jednorazowego');
     const L = [];
     L.push(`Stan przełącznika płatności: \`PAYWALL.ENABLED\` = \`${enabled}\` (\`lib/access.ts\`) — ${enabled === 'true'
-      ? `bez pełnej wersji dostępnych jest ${free} treningów na żywo w miesiącu kalendarzowym; zapisane wyniki, historia, kopia i eksport zostają zawsze dostępne.`
+      ? `bez pełnej wersji można trenować na żywo do ${free} dni treningowych w miesiącu kalendarzowym (kolejny trening tego samego dnia nie zużywa limitu); zapisane wyniki, historia, kopia i eksport zostają zawsze dostępne.`
       : 'wszystkie funkcje są dostępne bez limitu, dopóki właściciel nie włączy płatności (zmiana jednej wartości i wydanie).'}`, '');
     L.push('| Plan | Rodzaj | Cena referencyjna (USD, plik `store/Trening.storekit`) |', '|---|---|---|');
     const days = p => ({ P3D: 3, P1W: 7, P2W: 14, P1M: 30, P2M: 60, P3M: 90 })[p] ?? fail(`store/Trening.storekit: nieznany okres oferty ${p}`);
@@ -238,7 +238,7 @@ const BLOCKS = {
     L.push(`| Miesięczny | subskrypcja odnawiana co miesiąc${intro(sub('P1M'))} | ${sub('P1M').displayPrice} |`);
     L.push(`| Roczny | subskrypcja odnawiana co rok${intro(sub('P1Y'))} | ${sub('P1Y').displayPrice} |`);
     L.push(`| Dożywotni | zakup jednorazowy | ${life.displayPrice} |`, '');
-    L.push(`Okres próbny w kodzie: ${trial} dni (\`TRIAL_DAYS\`, \`lib/products.ts\`); karencja offline dla zapamiętanego dostępu: ${grace} dni (\`OFFLINE_GRACE_DAYS\`).`);
+    L.push(`Bez okresu próbnego (model M5 S1, 22.10.2026); karencja offline dla zapamiętanego dostępu: ${grace} dni (\`OFFLINE_GRACE_DAYS\`).`);
     return L.join('\n');
   },
   workflows() {

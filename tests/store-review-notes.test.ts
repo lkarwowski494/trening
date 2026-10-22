@@ -4,7 +4,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { EN } from '@/lib/i18n.en';
 import { PAYWALL } from '@/lib/access';
-import { TRIAL_DAYS } from '@/lib/products';
 import { VOICE_NEW_INSTALL } from '@/lib/voice';
 import { defaultSettings } from '@/lib/seed';
 
@@ -24,10 +23,9 @@ describe('store/review-notes.md', () => {
     for (const q of quoted) expect([q, enValues.has(q)]).toEqual([q, true]);
     for (const q of [...pl.matchAll(/„([^”]+)”/g)].map(m => m[1])) expect([q, q in (EN as Record<string, string>)]).toEqual([q, true]);
   });
-  test('liczby zgodne z kodem: limit darmowych treningów w miesiącu i długość okresu próbnego (bez dawnego „miesiąca za darmo”)', () => {
-    expect(en).toContain(`${PAYWALL.FREE_LIVE_PER_MONTH} live workouts per calendar month`); expect(pl).toContain(`${PAYWALL.FREE_LIVE_PER_MONTH} treningi na żywo`);
-    for (const b of [en, subEn]) expect(b).toContain(`${TRIAL_DAYS}-day free`);
-    expect(pl).toContain(`${TRIAL_DAYS} dni`);
+  test('liczby zgodne z kodem: limit darmowych dni treningowych w miesiącu; bez okresu próbnego i bez ofert wprowadzających (M5 S1)', () => {
+    expect(en).toContain(`${PAYWALL.FREE_TRAINING_DAYS_PER_MONTH} training days per calendar month`); expect(pl).toContain(`${PAYWALL.FREE_TRAINING_DAYS_PER_MONTH} dni treningowych`);
+    for (const b of [en, subEn, pl]) expect(b).not.toMatch(/[0-9]+-day (free|trial)|[0-9]+ dni (za darmo|okresu próbnego)|free for [0-9]+ days|after the first finished workout|po pierwszym zakończonym treningu/i);
     expect(md).not.toMatch(/one-month|free month|darmow\w* (pierwsz\w* )?miesiąc/i);
   });
   test('stan domyślny zgodny z kodem: głos po instalacji wyłączony, zapis do Zdrowia wyłączony', () => {

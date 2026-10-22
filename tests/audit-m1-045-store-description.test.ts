@@ -1,6 +1,6 @@
 /*
  * M1-audytor-generalny-045: projekt opisu sklepu (docs/15) zgodny z kodem i modelem stałym. Sprawdza:
- *  - docs/monetyzacja.md = jedyne miejsce z modelem (ceny, 14 dni, 4 treningi/mies.) i zgadza się z kodem (FAKE_PRICES, PLN_PRICES, TRIAL_DAYS, PAYWALL, .storekit);
+ *  - docs/monetyzacja.md = jedyne miejsce z modelem (ceny, 5 dni treningowych/mies., brak okresu próbnego — M5 S1 22.10.2026) i zgadza się z kodem (FAKE_PRICES, PLN_PRICES, PAYWALL, .storekit);
  *  - docs/15 i docs/18 nie podają innych kwot USD/EUR/GBP poza blokami historii (<!-- historia:start --> … <!-- historia:end -->) albo wierszami oznaczonymi jako zastąpione;
  *  - pozostałości EAS (iphone-eas.yml, iphone-local.yml, eas submit/upload) tylko w blokach historii;
  *  - opis PL/EN: odczyt i zapis Zdrowia, Apple Watch, zapowiedzi głosowe, 14 dni; bez kalkulatora talerzy; liczba języków = LANGS.length;
@@ -10,7 +10,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { LANGS } from '@/lib/i18n';
 import { FAKE_PRICES, PLN_PRICES } from '@/lib/store-fake';
-import { TRIAL_DAYS } from '@/lib/products';
 import { PAYWALL } from '@/lib/access';
 import { namesIn, CFG } from './forbidden-names';
 
@@ -35,15 +34,14 @@ const PLAN_CTX = /roczn|miesięczn|dożywotn|subskrypcj|cennik/i;
 
 describe('docs/monetyzacja.md: jedno miejsce modelu, zgodne z kodem', () => {
   const doc = () => (fs.existsSync(path.join(ROOT, 'docs/monetyzacja.md')) ? read('docs/monetyzacja.md') : '');
-  test('ceny USD/EUR/GBP, PLN, okres próbny i limit zgodne z kodem i plikiem .storekit', () => {
+  test('ceny USD/EUR/GBP, PLN, limit dni i brak okresu próbnego zgodne z kodem i plikiem .storekit', () => {
     const m = doc();
     const usd = (s: string) => s.replace('$', '').replace('.', ',');
     expect(m).toContain(`| miesięczna | ${usd(FAKE_PRICES.monthly)} |`);
     expect(m).toContain(`| roczna | ${usd(FAKE_PRICES.yearly)} |`);
     expect(m).toContain(`| dożywotnia | ${usd(FAKE_PRICES.lifetime)} |`);
     expect(m).toContain(PLN_PRICES.monthly); expect(m).toContain(PLN_PRICES.yearly); expect(m).toContain(PLN_PRICES.lifetime);
-    expect(m).toContain(`**${TRIAL_DAYS} dni**`);
-    expect(m).toContain(`**${PAYWALL.FREE_LIVE_PER_MONTH} treningi na żywo**`);
+    expect(m).toContain(`**${PAYWALL.FREE_TRAINING_DAYS_PER_MONTH} dni treningowych**`); expect(m).toContain('**Bez okresu próbnego**'); expect(m).not.toMatch(/\*\*14 dni\*\*/);
     const f = JSON.parse(read('store/Trening.storekit'));
     const subs = f.subscriptionGroups.flatMap((g: any) => g.subscriptions);
     expect(f.products[0].displayPrice).toBe(FAKE_PRICES.lifetime.replace('$', ''));
@@ -58,7 +56,9 @@ describe('docs/monetyzacja.md: jedno miejsce modelu, zgodne z kodem', () => {
     expect(w0).toMatch(/Punkt kontrolny[^\n]*8 tygodniach[^\n]*310 pobrań[^\n]*75 płacących/);
     expect(w0).not.toMatch(/DO USTALENIA/);
   });
-  test('stan kodu: zakupy za przełącznikiem PAYWALL.ENABLED', () => { expect(doc()).toContain(`PAYWALL.ENABLED = ${PAYWALL.ENABLED}`); });
+  test('stan kodu: PAYWALL.ENABLED = true w źródle (w Jest wyłączony w setup.js — odczyt pliku)', () => {
+    const src = read('lib/access.ts'); expect(src).toMatch(/ENABLED: true,/); expect(doc()).toContain('PAYWALL.ENABLED = true');
+  });
 });
 
 describe('docs/15 i docs/18: brak sprzecznych kwot i pozostałości EAS', () => {
@@ -93,9 +93,10 @@ describe('store/app-store-metadata.json: opis i tekst promocyjny PL/EN zgodne z 
     test(`${lang}: bez kalkulatora talerzy (opis, słowa kluczowe, tekst promocyjny)`, () => {
       expect(desc + promo + kw).not.toMatch(/talerz|\bplates?\b/i);
     });
-    test(`${lang}: pierwsze ${TRIAL_DAYS} dni (nie „miesiąc”), liczba języków = LANGS.length`, () => {
-      expect(desc).toMatch(new RegExp(`${TRIAL_DAYS} (dni|days)`));
-      expect(desc + promo).not.toMatch(/Pierwszy miesiąc|First month/i);
+    test(`${lang}: model M5 S1 (22.10.2026) — darmowe do ${PAYWALL.FREE_TRAINING_DAYS_PER_MONTH} dni treningowych w miesiącu, Pro bez limitu, bez okresu próbnego; liczba języków = LANGS.length`, () => {
+      expect(desc + promo).not.toMatch(/14 (dni|days)|free trial|No subscriptions?|okres próbny|Pierwszy miesiąc|First month|4 treningi|4 live/i);
+      expect(desc).toContain(pl ? `${PAYWALL.FREE_TRAINING_DAYS_PER_MONTH} dni treningowych w miesiącu` : `${PAYWALL.FREE_TRAINING_DAYS_PER_MONTH} training days a month`);
+      expect(desc).toMatch(/\bPro\b/);
       expect(desc).toContain(`${LANGS.length} ${pl ? 'języków' : 'languages'}`);
     });
     test(`${lang}: Apple Watch, zapowiedzi głosowe, odczyt i zapis Apple Health, system miar; nazwy widoków jak w interfejsie`, () => {

@@ -1,0 +1,10 @@
+{
+ "_opis": "Zapis limitu darmowego i listy funkcji zawsze dostępnych z kolejnych wydań (wzorzec „limit tylko się luzuje”, decyzja właściciela 22.10.2026): liczba dni może rosnąć, nigdy maleć; ALWAYS_AVAILABLE może rosnąć, nigdy maleć. Nowe wydanie dopisuje wpis na końcu; test tests/m5s1-dni-zapis.test.ts porównuje kod z każdym wpisem.",
+ "wydania": [
+  {
+   "wydanie": "1.0 (M5 S1, 22.10.2026)",
+   "FREE_TRAINING_DAYS_PER_MONTH": 5,
+   "ALWAYS_AVAILABLE": ["history", "historyEdit", "backdated", "progress", "templatesAndPlan", "library", "settings", "backup", "restoreBackup", "exportCsv", "restorePurchases", "redeemCode", "manageSubscription"]
+  }
+ ]
+}

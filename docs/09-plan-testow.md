@@ -444,3 +444,15 @@ Decyzja właściciela (STOP przed p5d, docs/18): pole opcjonalne `Settings.hapti
 | E2E Maestro | `.maestro/35-ustawienia-dostepnosc.yaml` (przełączniki „Sound at the end of rest” i „Haptics”), `34-aktualizacja-sprawdz.yaml` (przełączniki po aktualizacji) | scenariusz | zielone w interpreterze; przebieg na symulatorze — koordynator (`tylko_scenariusze`) | scenariusze 33/34 nie używają zmienionych etykiet (L-011 sprawdzone) |
 | Wibracje na urządzeniu | — | — | **rodzaj pominięty: sprawdzenie na urządzeniu** (haptyki nie działają w symulatorze) | lista „tylko telefon” (ZD-01) |
 
+
+## 22.10.2026 — M5 S1: limit 5 dni treningowych, bez okresu próbnego (gałąź `monetyzacja-m5s1`)
+Test najpierw (10 wektorów kontraktu E3 czerwone na starym kodzie), potem kod. Zastępuje audyty M1-011 i M1-017 oraz część (a) M1-041 (okres próbny usunięty — strażnik braku oferty w `tests/m5s1-bez-proby.test.ts`).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Licznik dni treningowych | `tests/m5s1-dni-treningowe.test.ts` (wektory 1–10, granice dnia i miesiąca × strefy, trening wstecz / anulowany / trwający / zapis po 6 h, R-M5-1) i `tests/access.test.ts` (limit 5, niezmienniki fast-check: allowed ⇔ used < limit lub dziś już dzień treningowy) | logika, scenariusz, macierz, niezmienniki | zielone | `PAYWALL.ENABLED = true` w źródle; w Jest wyłączony w `tests/setup.js` |
+| Strażnik i dane | `tests/entitlement.test.ts` (5 dni, ten sam dzień, scenariusz z zegarem), `tests/subscription-invariants.test.ts` | logika, dane, scenariusz | zielone | |
+| Ekran zakupu, licznik, karta | `tests/subscription-ui.test.tsx` (nazwy i opisy planów, nagłówek z Ustawień, tekst wariantu B przy limicie, licznik `start-free-days`) | ekran, języki PL/EN, VoiceOver | zielone | tłumaczenia 33 języków: tłumacz na tej samej gałęzi |
+| Brak próby | `tests/m5s1-bez-proby.test.ts`, `tests/store-adapter.test.ts`, `tests/asc-kontrola.test.ts` | logika, dane, regresja | zielone | R-M5-3 zamyka kontrola ASC |
+| Prośba o ocenę | `tests/review.test.ts`, `tests/review-run.test.tsx`, `tests/idea-request.test.tsx` (N = 3; brak ekranu zakupu po pierwszym treningu) | logika, scenariusz | zielone | |
+| E2E Maestro | `.maestro/21-subskrypcja.yaml`, `.maestro/35-ustawienia-dostepnosc.yaml` (licznik dni, „We're proud of you!”, „Subscribe”; build E2E: limit 0 dni) | scenariusz | zielone w interpreterze; przebieg na symulatorze — koordynator | wpisy NU-11 i US-12 w `tests/przeplywy.json` |

@@ -17,11 +17,11 @@ describe('ceny M1 (13.10.2026, stan App Store Connect 14.10.2026)', () => {
     const v = (s: string) => parseFloat(s.replace(',', '.'));
     expect(Math.round(v(PLN_PRICES.monthly) * 4)).toBe(Math.round(v(PLN_PRICES.yearly))); expect(Math.round(v(PLN_PRICES.yearly) * 3)).toBe(Math.round(v(PLN_PRICES.lifetime)));
   });
-  test('ASC w .storekit: Family Sharing we wszystkich trzech, darmowe 14 dni (P2W) w obu subskrypcjach, roczna poziom 1, miesięczna poziom 2', () => {
+  test('ASC w .storekit: Family Sharing we wszystkich trzech, bez ofert wprowadzających (M5 S1), roczna poziom 1, miesięczna poziom 2', () => {
     const f = JSON.parse(read('store/Trening.storekit'));
     const subs = f.subscriptionGroups.flatMap((g: any) => g.subscriptions); const all = [...f.products, ...subs];
     expect(all).toHaveLength(3); for (const x of all) expect(x.familyShareable).toBe(true);
-    for (const x of subs) expect(x.introductoryOffer).toMatchObject({ paymentMode: 'free', subscriptionPeriod: 'P2W', numberOfPeriods: 1 });
+    for (const x of subs) expect(x.introductoryOffer).toBeUndefined();
     const sub = (id: string) => subs.find((x: any) => x.productID.endsWith(id));
     expect(sub('.yearly').groupNumber).toBe(1); expect(sub('.monthly').groupNumber).toBe(2);
     expect(sub('.monthly').recurringSubscriptionPeriod).toBe('P1M'); expect(sub('.yearly').recurringSubscriptionPeriod).toBe('P1Y');

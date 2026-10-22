@@ -29,7 +29,7 @@ Odtworzone z `README.md`, `CLAUDE.md`, `docs/15-app-store.md` i `docs/18-przekaz
 ### ZP-05: Offline, dane tylko w telefonie, bez konta
 - Zapis w lokalnej bazie; bez konta, reklam, analityki i śledzenia (README.md, docs/15-app-store.md, `site/privacy.html`).
 ### ZP-06: Model dostępu stały
-- Model monetyzacji jest stały (decyzja właściciela 2026-10-19); kwoty i liczby: `docs/monetyzacja.md`.
+- Model monetyzacji jest stały: M5 S1 (decyzja właściciela 2026-10-22; wcześniej model z 2026-10-19 z okresem próbnym); kwoty i liczby: `docs/monetyzacja.md`.
 ### ZP-07: Zapowiedzi głosowe domyślnie wyłączone
 - Decyzja właściciela 2026-10-20 (D-005 w tym BRD = DEC-05), docs/36-glos.md.
 ### ZP-08: Granica aplikacji

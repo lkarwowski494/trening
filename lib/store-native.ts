@@ -11,7 +11,7 @@
  */
 import { Platform } from 'react-native';
 import type { Entitlement, EntitlementPlan } from '@/lib/access';
-import { PRODUCT_IDS, SUBSCRIPTION_PLANS, STORE_TIMING, TRIAL_DAYS, planOfProduct } from '@/lib/products';
+import { PRODUCT_IDS, SUBSCRIPTION_PLANS, STORE_TIMING, planOfProduct } from '@/lib/products';
 import type { PurchaseOutcome, StoreAdapter, StoreProduct } from '@/lib/store-adapter';
 
 /** Podzbiór expo-iap używany przez aplikację (kontrakt sprawdza tests/store-native-contract.test.ts na makiecie zgodnej z build/*.d.ts paczki). */
@@ -24,7 +24,6 @@ export interface IapModule {
   finishTransaction(args: { purchase: unknown; isConsumable?: boolean }): Promise<void>;
   purchaseUpdatedListener(l: (p: unknown) => void): { remove(): void };
   purchaseErrorListener(l: (e: unknown) => void): { remove(): void };
-  isEligibleForIntroOfferIOS(groupId: string): Promise<boolean>;
   subscriptionStatusIOS(sku: string): Promise<{ state: string; renewalInfo?: { gracePeriodExpirationDate?: number | null } | null }[]>;
   openRedeemOfferCode(): Promise<unknown>;
   deepLinkToSubscriptions(opts?: Record<string, unknown>): Promise<void>;
@@ -41,26 +40,21 @@ const withTimeout = <T,>(p: Promise<T>): Promise<T> => new Promise<T>((res, rej)
 const num = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? v : null);
 type Rec = Record<string, unknown>;
 
-/** Zakup z expo-iap → uprawnienie aplikacji; nieznany produkt → null. Kod ofertowy (offerIOS.type = „code”) i Chmura rodzinna (ownership family_shared) rozpoznawane. */
+/** Zakup z expo-iap → uprawnienie aplikacji; nieznany produkt → null. Kod ofertowy (offerIOS.type = „code”) i Chmura rodzinna (ownership family_shared) rozpoznawane.
+ * Od M5 S1 (22.10.2026) nie ma oferty wprowadzającej (okresu próbnego): ani pola `trial`, ani wnioskowania z długości pierwszego okresu (dawne M1-012/M1-017). */
 export function entitlementFromPurchase(p: unknown): Entitlement | null {
   const x = (p ?? {}) as Rec; const plan = typeof x.productId === 'string' ? planOfProduct(x.productId) : null; if (!plan) return null;
   const offerType = String(((x.offerIOS ?? {}) as Rec).type ?? '').toLowerCase();
   const source = String(x.ownershipTypeIOS ?? '').toLowerCase() === 'family_shared' ? 'family' : offerType === 'code' ? 'code' : 'purchase';
-  const offer = (x.offerIOS ?? {}) as Rec; const exp = num(x.expirationDateIOS);
-  /* iOS 16.4–17.1 nie podaje offerIOS (audyt M1-017): pierwsza transakcja subskrypcji trwająca najwyżej TRIAL_DAYS (+1 dzień zapasu) to okres próbny;
-   * płatny okres to miesiąc albo rok, a odnowienie ma starszą datę transakcji pierwotnej. */
-  const bought = num(x.transactionDate); const first = num(x.originalTransactionDateIOS);
-  const inferred = offerType === '' && SUBSCRIPTION_PLANS.includes(plan) && source === 'purchase' && bought != null && first === bought && exp != null && exp > bought && exp - bought <= (TRIAL_DAYS + 1) * 86400e3;
-  const trial = inferred || (offerType === 'introductory' && String(offer.paymentMode ?? '').toLowerCase() === 'free-trial');
-  return { plan, source, expiresAt: plan === 'lifetime' ? null : exp, revokedAt: num(x.revocationDateIOS), ...(trial ? { trial: true as const } : {}) };
+  const exp = num(x.expirationDateIOS);
+  return { plan, source, expiresAt: plan === 'lifetime' ? null : exp, revokedAt: num(x.revocationDateIOS) };
 }
 /** Wiersz z fetchProducts → produkt aplikacji (cena wyłącznie `displayPrice` Apple); obce identyfikatory pomijane. */
-export function productFromStore(p: unknown, trialEligible: boolean): StoreProduct | null {
+export function productFromStore(p: unknown): StoreProduct | null {
   const x = (p ?? {}) as Rec; const plan = typeof x.id === 'string' ? planOfProduct(x.id) : null; if (!plan || typeof x.displayPrice !== 'string' || !x.displayPrice) return null;
   const unit = String(x.subscriptionPeriodUnitIOS ?? ''); const sub = SUBSCRIPTION_PLANS.includes(plan);
   const period = !sub ? null : unit === 'year' ? 'year' as const : unit === 'month' ? 'month' as const : null;
-  const hasTrial = sub && String(x.introductoryPricePaymentModeIOS ?? '') === 'free-trial';
-  return { plan, productId: x.id as string, displayPrice: x.displayPrice, period, trial: hasTrial && trialEligible };
+  return { plan, productId: x.id as string, displayPrice: x.displayPrice, period };
 }
 const DEFAULT_ERR = 'Nie udało się';
 const code = (e: unknown): string => String(((e ?? {}) as Rec).code ?? '');
@@ -96,10 +90,7 @@ export function createNativeStore(): StoreAdapter {
     async getProducts() {
       const m = iap(); await withTimeout(connect());
       const rows = (await withTimeout(m.fetchProducts({ skus: Object.values(PRODUCT_IDS), type: 'all' }))) ?? [];
-      /* Kwalifikacja do próby: jedna oferta wprowadzająca na grupę subskrypcji (docs/27 3.2) — pytamy raz o grupę pierwszej subskrypcji. */
-      const group = (rows as Rec[]).map(r => r.subscriptionGroupIdIOS).find(g => typeof g === 'string' && g) as string | undefined;
-      let eligible = false; if (group) { try { eligible = !!(await withTimeout(m.isEligibleForIntroOfferIOS(group))); } catch { eligible = false; } }
-      return rows.map(r => productFromStore(r, eligible)).filter((r): r is StoreProduct => !!r);
+      return rows.map(productFromStore).filter((r): r is StoreProduct => !!r);
     },
     async purchase(plan: EntitlementPlan): Promise<PurchaseOutcome> {
       const m = iap();

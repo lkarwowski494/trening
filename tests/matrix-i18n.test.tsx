@@ -188,7 +188,7 @@ describe('liczba mnoga: lib/plural.ts zgodnie z CLDR (Intl.PluralRules) i tp() w
     for (const d of ['app', 'components', 'lib']) walk(path.join(__dirname, '..', d));
     const args = files.flatMap(f => [...fs.readFileSync(f, 'utf8').matchAll(/\btp\(([^,]+),\s*'/g)].map(m => m[1].trim()));
     expect(args.length).toBeGreaterThan(10);
-    expect(args.filter(a => !/(\.length|^Math\.round\(.*\)?|^(n|sets|days|w|ws\.length|points\.length|last\.sets|last\.prs|m|otherCount|cfg\.FREE_LIVE_PER_MONTH|k|na|nr))$/.test(a))).toEqual([]);
+    expect(args.filter(a => !/(\.length|^Math\.round\(.*\)?|^(n|sets|days|w|ws\.length|points\.length|last\.sets|last\.prs|m|otherCount|cfg\.FREE_LIVE_PER_MONTH|acc\.decision\.remaining|acc\.decision\.remaining|k|na|nr))$/.test(a))).toEqual([]);
   });
 });
 

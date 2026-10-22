@@ -86,7 +86,7 @@ export const {
 } = swapMod;
 export const {
   STALE_ASK_MS, STALE_AUTO_MS, lastActivity, staleRef, staleKind, hasWorkDone, staleSince, ackStale, markActivity, resolveColdStopwatch,
-  autoFinishStale, finishWorkout, cancelWorkout, deleteWorkout, emptySet, setHasResult, putHistoryWorkout
+  autoFinishStale, finishWorkout, recordLiveDayFor, cancelWorkout, deleteWorkout, emptySet, setHasResult, putHistoryWorkout
 } = finishMod;
 export const { migrate } = migrateMod;
 export const { applyPrefs, setModule } = settingsMod;
