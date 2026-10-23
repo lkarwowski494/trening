@@ -11,7 +11,7 @@ import { openSupportMail } from '@/lib/support';
  * niezainicjowany). Akcje: „Wyślij dane” (surowe dane z bazy albo, gdy bazy nie da się otworzyć, najnowsza kopia z Plików → Backup), „Spróbuj ponownie”
  * i „Napisz do nas”; żadna z nich nie zmienia bazy (wysyłanie tylko czyta).
  */
-export function StartError({ title, message, detail, onRetry }: { title: string; message?: string; detail?: string; onRetry: () => void }) {
+export function StartError({ title, message, detail, diag, onRetry }: { title: string; message?: string; detail?: string; /** ZK-07: kod diagnostyczny ostatniego startu (lib/state/bootphase.ts), bez tłumaczenia i bez danych osobowych */ diag?: string; onRetry: () => void }) {
   const th = useTheme();
   const send = () => { exportStartData().then(ok => { if (!ok) Alert.alert(t('Nie udało się wysłać danych'), t('Spróbuj ponownie.')); }).catch(() => { Alert.alert(t('Nie udało się wysłać danych'), t('Spróbuj ponownie.')); }); };
   const link = (label: string, onPress: () => void) => (
@@ -23,6 +23,7 @@ export function StartError({ title, message, detail, onRetry }: { title: string;
       <Text accessibilityLanguage={lang()} accessibilityRole="header" style={{ color: th.text, fontSize: 17, textAlign: 'center' }}>{title}</Text>
       {message ? <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center' }}>{message}</Text> : null}
       {detail ? <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center' }}>{detail}</Text> : null}
+      {diag ? <Text testID="start-error-diag" selectable accessibilityLanguage="en" style={{ color: th.muted, textAlign: 'center', fontSize: 12 }}>{diag}</Text> : null}
       <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center', fontSize: 13 }}>{t('Automatyczna kopia po każdym treningu: Pliki → Na moim iPhonie → {app} → Backup.', { app: appName() })}</Text>
       {link(t('Wyślij dane'), send)}
       {link(t('Spróbuj ponownie'), onRetry)}
