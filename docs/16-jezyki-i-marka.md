@@ -269,7 +269,7 @@ język telefonu (np. zh-Hant na telefonie ja) — React Native nie przekazuje j�
 Treść krytyczna = zdanie medyczne („Aplikacja nie udziela porad medycznych …”), zdanie i etykiety o asekuracji (M1-015) oraz zdania wskazówek techniki (`lib/cues/text`). Języków docelowych jest 34 (`LANGS` bez polskiego).
 Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audit-m1-049-critical-content.test.ts`); drift pada w `tests/audit-m1-049-critical-content.test.ts`.
 
-**Co kontrola potwierdza (automatycznie):** zdanie medyczne i cztery klucze asekuracji (czwarty — wariant „osoba asekurująca”, M1-031, 23.10.2026; tłumaczenia agenta, do przeglądu) są w każdym z 34 języków i różnią się od tekstu źródłowego (nie jest to przeciek polskiego ani zapasowego angielskiego); komplet zdań wskazówek jest w każdym języku
+**Co kontrola potwierdza (automatycznie):** zdanie medyczne i cztery klucze asekuracji (czwarty — wariant „osoba asekurująca”, M1-031, 23.10.2026; drugi przegląd 31 języków wykonany 23.10.2026 przez Claude — rola tłumacz, bez zmian: `docs/lokalizacja/przeglad-m1-031-045-2026-10-23.md`) są w każdym z 34 języków i różnią się od tekstu źródłowego (nie jest to przeciek polskiego ani zapasowego angielskiego); komplet zdań wskazówek jest w każdym języku
 (warianty es-419 i pt-BR to nakładki na es i pt — liczone po złożeniu). Kontrola **nie ocenia poprawności** tłumaczenia.
 
 <!-- gen:krytyczne -->
