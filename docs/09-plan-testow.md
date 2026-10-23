@@ -477,3 +477,10 @@ Test najpierw (7 czerwonych na f2b0525: w chwili `ack` baza nie miała zmiany), 
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | M1-028 (05-architekt-001) | `tests/audit-m1b-028-watch-ack.test.ts` (7: differ, skip, sessionStarted, nieudany zapis → brak `ack` i ponowienie; differ na zapisach 3 wydanych buildów z `tests/fixtures/released`) | logika, dane, regresja | zielone | **realność: brzegowy, dotyczy danych** — kroki: telefon zablokowany, trening z zegarka, „zrobione inaczej”/pominięcie/start sesji, system ubija aplikację w tle w ciągu 300 ms. Protokół zegarka bez zmian. Rodzaj 9 (E2E): ubicie procesu w tle poza zasięgiem Maestro — pominięty; ekran bez zmian |
+
+## 23.10.2026 — naprawa M1-audytor-generalny-048 (DEC-06 a; gałąź `naprawa-m1-048-asc-release`)
+Test najpierw (2 czerwone na e8cc375: jeden job z `--$TRYB`, bez środowiska), potem podział `asc-iap-localizations.yml` na `plan` (`--dry-run`, bez środowiska) i `apply` (`--apply`, `environment: release`, `needs: plan`, tylko dla `tryb=apply`).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-048 (10-wydanie-004) | `tests/audit-m1-workflows.test.ts` „M1-048” (jeden job z `--apply` za `environment: release`; plan bez środowiska; bez nowych sekretów); `tests/public-repo.test.ts` (dostosowany) | niezmienniki | zielone | Bez zmian w UI i BRD. Pozostaje przebieg dowodowy (L-001): uruchomić workflow z `tryb=dry-run` (musi biec bez zatwierdzenia) i `tryb=apply` (job `apply` czeka na zatwierdzenie `release`) |
