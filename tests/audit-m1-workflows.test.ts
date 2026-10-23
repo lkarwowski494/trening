@@ -120,3 +120,18 @@ describe('M1-023: mapy źródeł JS buildu są archiwizowane', () => {
     const tag = y.slice(y.indexOf('\n  tag:\n')); expect(tag).toContain('download-artifact'); expect(tag).toMatch(/gh release (create|upload)/); expect(tag).toContain('bez_wysylki');
   });
 });
+
+describe('M1-048 (DEC-06 a): zapis lokalizacji produktów w App Store Connect tylko za środowiskiem „release”', () => {
+  const y = wf('asc-iap-localizations.yml'); const jobs = y.slice(y.indexOf('\njobs:\n') + 7).split(/\n(?=  [a-z-]+:\n)/);
+  const apply = jobs.filter(j => /--apply/.test(j)); const readOnly = jobs.filter(j => /--dry-run/.test(j));
+  test('dokładnie jeden job wykonuje --apply, deklaruje environment: release i działa tylko dla wejścia tryb=apply', () => {
+    expect(apply).toHaveLength(1); expect(apply[0]).toMatch(/\n    environment: release\n/); expect(apply[0]).toMatch(/if: \$\{\{ inputs\.tryb == 'apply' \}\}/);
+  });
+  test('tryb tylko-odczyt (--dry-run) jest osobnym jobem bez środowiska i bez --apply; apply czeka na plan', () => {
+    expect(readOnly).toHaveLength(1); expect(readOnly[0]).not.toContain('environment:'); expect(readOnly[0]).not.toContain('--apply'); expect(apply[0]).toMatch(/needs: /);
+  });
+  test('bez nowych sekretów: tylko ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8; wejście tryb nadal tylko przez zmienną środowiskową', () => {
+    expect([...new Set([...y.matchAll(/secrets\.(\w+)/g)].map(m => m[1]))].sort()).toEqual(['ASC_ISSUER_ID', 'ASC_KEY_ID', 'ASC_KEY_P8']);
+    expect(y).not.toMatch(/run:[^\n]*\$\{\{ inputs/);
+  });
+});

@@ -147,8 +147,8 @@ describe('workflowy na publicznym repozytorium', () => {
     expect(y).toContain('::add-mask::$ASC_KEY_ID'); expect(y).toContain('::add-mask::$ASC_ISSUER_ID'); expect(y).toMatch(/umask 077/);
     expect(y).not.toMatch(/echo[^\n]*\$\{?ASC_KEY_P8(?!" \|)/); expect(y).not.toMatch(/echo "\$ASC_KEY_(ID|P8)|echo "\$ASC_ISSUER_ID/);
     expect(y).toMatch(/- name: Usunięcie klucza z maszyny\n\s+if: always\(\)\n\s+run: rm -f "\$RUNNER_TEMP\/AuthKey\.p8"/);
-    expect(y).toMatch(/TRYB: \$\{\{ inputs\.tryb \}\}/); expect(y).not.toMatch(/run:[^\n]*\$\{\{ inputs/); /* wejście tylko przez zmienną środowiskową (bez wstrzyknięcia do powłoki) */
-    expect(y).toMatch(/case "\$TRYB" in dry-run\|apply\)/); expect(y).not.toMatch(/\bDELETE\b/);
+    expect(y).not.toMatch(/run:[^\n]*\$\{\{ inputs/); /* wejście tryb tylko w warunku job-a (bez wstrzyknięcia do powłoki); M1-048: dwa joby, apply za środowiskiem release */
+    expect(y).toContain('--dry-run'); expect(y).toContain('--apply'); expect(y).not.toMatch(/\bDELETE\b/);
   });
   test('deklaracja szyfrowania: aplikacja nie używa szyfrowania poza systemowym (bez pytania przy każdym buildzie w App Store Connect)', () => {
     expect(JSON.parse(readFileSync(join(__dirname, '../app.json'), 'utf8')).expo.ios.infoPlist.ITSAppUsesNonExemptEncryption).toBe(false);
