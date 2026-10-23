@@ -33,6 +33,22 @@ describe('store/review-notes.md', () => {
     expect(section(en, 'VOICE')).toContain('off by default'); expect(section(pl, 'ZAPOWIEDZI')).toContain('domyślnie wyłączone');
     expect(section(en, 'APPLE HEALTH')).toContain('off by default'); expect(section(pl, 'APPLE HEALTH')).toContain('domyślnie wyłączone');
   });
+  /* M1-audytor-generalny-045 (audyt 21.10.2026; 10-wydanie-001): wytyczna 3.1.2(a) — subskrypcja odnawiana musi dawać stałą wartość; aplikacja bez serwera
+   * uzasadnia ją regularnymi aktualizacjami (przykład z wytycznej: „consistent, substantive updates”) i alternatywą jednorazową. Wersje z dziennika wydań (docs/09). */
+  test('M1-045: akapit o stałej wartości subskrypcji w EN, PL i notatce subskrypcji; wersje zgodne z dziennikiem wydań; opis sklepu PL/EN to samo', () => {
+    const par = (t: string, head: string) => t.split('\n\n').find(p => p.startsWith(head)) ?? ''; const buy = par(en, 'IN-APP PURCHASES'); const kup = par(pl, 'ZAKUPY');
+    expect(buy).toMatch(/Ongoing value \(Guideline 3\.1\.2\(a\)\)/); expect(buy).toMatch(/updated regularly/); expect(buy).toMatch(/lifetime/);
+    expect(kup).toMatch(/Stała wartość subskrypcji \(wytyczna 3\.1\.2\(a\)\)/); expect(kup).toMatch(/regularnie aktualizowana/); expect(kup).toMatch(/dożywotni/);
+    expect(subEn).toMatch(/Ongoing value/); expect(subEn).toMatch(/regular updates/); expect(subEn).toMatch(/lifetime/);
+    const log = fs.readFileSync(path.join(__dirname, '../docs/09-plan-testow.md'), 'utf8');
+    for (const v of [...buy.matchAll(/version (\d+\.\d+) to (\d+\.\d+)/g)].flatMap(m => [m[1], m[2]])) expect([v, log.includes(`\`v${v}.0-b`)]).toEqual([v, true]);
+    expect(buy).toMatch(/version 0\.11 to 0\.20/); expect(kup).toMatch(/od wersji 0\.11 do 0\.20/);
+    expect(buy).toMatch(/Apple Watch app and voice announcements/); /* obie funkcje są w aplikacji (lib/watch, lib/voice) i w notatkach niżej */
+    expect(Buffer.byteLength(en, 'utf8')).toBeLessThanOrEqual(4000);
+    const L = JSON.parse(fs.readFileSync(path.join(__dirname, '../store/app-store-metadata.json'), 'utf8')).lokalizacje as Record<string, { description: string }>;
+    expect(L.pl.description).toContain('Subskrypcja finansuje dalszy rozwój: aplikacja jest regularnie aktualizowana, a nowe funkcje nie wymagają dodatkowych opłat.');
+    for (const k of ['en-US', 'en-GB', 'en-AU', 'en-CA']) expect([k, L[k].description.includes('The subscription funds continued development: the app is updated regularly, and new features come at no extra cost.')]).toEqual([k, true]);
+  });
   test('bez danych osobowych: jedyny adres e-mail to adres wsparcia, bez numerów telefonu i haseł', () => {
     expect([...md.matchAll(/[\w.+-]+@[\w-]+\.[\w.]+/g)].map(m => m[0]).filter(a => a !== 'support@apps4brew.com')).toEqual([]);
     expect(md).not.toMatch(/\+?\d[\d ]{8,}\d/); expect(md).not.toMatch(/password:|hasło:/i);
