@@ -60,3 +60,21 @@ W starej sesji działały: przegląd co godzinę `trig_01SafZZY42UAFJa7wGHWNiet`
 - Przed scaleniem: scal `origin/main` (konflikty: `lib/i18n.en.ts`, `lib/locales/_source.json`, docs). Brakuje wiersza b1030 w docs/09 (test `audit-m1-050-release-log` pada lokalnie przy tagu `v0.20.0-b1030`) — dopisać wiersz wydania b1030 (f2b0525, run 39881352744).
 - Propozycja zmiany CLAUDE.md (rejestr twierdzeń: tekst bez nazw źródeł; źródła w `lib/sources.ts`) — w docs/18 na tej gałęzi; decyzja właściciela.
 - **Decyzje właściciela do STOP (23.10):** zgoda na przekład do 6 USD (Opus, Batch); T-029 „W badaniach nie wykazano, że …”; oznaczenia pewności („wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”) — usunąć z tekstów UI w ogóle (zostają w rejestrze twierdzeń i na ekranie źródeł; dostosować `check:claims` i strażnik); nagłówek ⓘ „Zasady planu”. Szczegóły: docs/18 (23.10). Kolejność: dopracować gałąź → przekład (skrypt do napisania) → przegląd tłumacza → PR.
+
+## Stan sesji przejmującej (23.10, wieczór; sesja z małym limitem — może się urwać)
+Sesja z drugiego konta przejęła przekazanie i uruchomiła agentów, każdy na gałęzi od `origin/main`. Pracę wypychają po każdym commicie (z pustą gałęzią lub bez niej) i nie otwierają PR. **Gałąź, której nie ma na GitHubie, znaczy, że praca przepadła — zrób ją od zera według poniższej listy.**
+
+| Gałąź | Zakres | Stan |
+|---|---|---|
+| `integracja-2026-10-23` | scalenie `naprawa-m1-p2-teksty` + `naprawa-telefon-1030-b` + ta gałąź; wiersz b1030 w docs/09 (f2b0525, run 39881352744); verify | w toku → potem PR, E2E podstawowy, scalenie |
+| `naprawa-telefon-1030-a` | ZK-07 awaria przy 1. uruchomieniu po reinstalacji (BLOKER, test najpierw); ciemny motyw domyślnie dla nowych instalacji; próg dnia treningowego 7 min (było 20); „Co nowego” pokazuje 1018; jednostka w CSV | w toku |
+| `jezyk-naturalny-zrodla` | scalenie main; decyzje 23.10 (T-029, bez oznaczeń pewności w UI + `check:claims`/strażnik, ⓘ „Zasady planu”); `scripts/i18n/przeklad-api.mjs` (`--szacuj/--limit/--wznow/--zastosuj`) + `przeklad-tlumaczen.yml` (limit 6 USD, Opus medium, tylko workflow_dispatch; workflow musi być na main przed uruchomieniem — ewentualnie osobna mała gałąź `przeklad-workflow`) | w toku → przekład ≤ 6 USD → przegląd tłumacza → PR |
+| `naprawa-m1-p2-kod` | M1-013 (DEC-05), M1-017 (DEC-01), „Wyślij kopię”, zgody Zdrowia el/pt, M1-058, M1-041 | w toku |
+| `naprawa-m1-p2-tresci` | M1-031 cz. 2 (DEC-08 hantle), M1-032/034/035/036 | w toku |
+| `naprawa-m1-dec03-generator` | M1-016 (DEC-03 c) | w toku; po wypchnięciu E2E `tylko_scenariusze` (14 i pokrewne) |
+| `naprawa-m1-dec07-teksty` | od p2-teksty: K2, K4, K5 (+ fora w marketing.md), K6, K7, K8, K10 | w toku |
+| `naprawa-m1-dec07-ui` | po p2-kod: K1, K3, K9, kolejność planów (domyślny miesięczny), ZK-05, ZK-06 | **nierozpoczęte** |
+
+Uwaga: opisy M1-058, M1-041 i M1-032…036 mogły przepaść razem z raportem audytu. Agenci mają ich nie zgadywać, tylko zgłosić. Jeśli brak opisu, zapytaj właściciela albo sesję audytu.
+
+Dalej bez zmian (wyżej w tym pliku): wskazówka „tryb cichy = tylko wibracja” (właściciel wybrał A, 35 jęz. + test), `nightly.yml` stara reguła 3 nocy, decyzja R-009, `privacy.html`, propozycja CLAUDE.md, ścieżka wydania 1.0.
