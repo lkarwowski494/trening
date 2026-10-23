@@ -1169,6 +1169,7 @@ export const EN: Record<string, string> = {
   'Asekuracja': 'Spotting and safety',
   'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.': 'Barbell exercise with the bar on the trunk or over the head and face: safety equipment is recommended — a rack with safety arms, plus a spotter.',
   'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.': 'Barbell exercise with the bar on the trunk or over the head and face: a spotter is recommended.',
+  'Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.': 'Dumbbell exercise with the weights over the head or face: a spotter is recommended.',
   'bez asekuracji w stojakach': 'no safety arms in the rack',
   'Zmień w ustawieniach iOS': 'Change in iOS Settings',
   'Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.': 'The name under the icon and the Health permission text change language only after you set the app language in iOS Settings.',

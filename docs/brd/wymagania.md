@@ -381,7 +381,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-BIB-002: Informacja o asekuracji przy sztandze nad ciałem lub na barkach
 - Przepływ: PR-01
-- Dowód potrzeby: OG-02; NSCA 2017 Standard 3.2 (docs/research/przeglad-badacza-2026-10-23.md); testy `tests/audit-m1-015-asekuracja.test.tsx`, `tests/audit-m1-031-asekuracja-zakres.test.tsx`
+- Dowód potrzeby: OG-02; NSCA 2017 Standard 3.2 (docs/research/przeglad-badacza-2026-10-23.md); testy `tests/audit-m1-015-asekuracja.test.tsx`, `tests/audit-m1-031-asekuracja-zakres.test.tsx`, `tests/audit-m1-031-hantle-asekuracja.test.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Zdanie o asekuracji
     - Zakładając, że ćwiczenie ma w katalogu zalecenie ramion asekuracyjnych
@@ -395,6 +395,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że ćwiczenie katalogu jest wykonywane ze sztangą lub sztangą EZ
     - Gdy powstaje albo zmienia się wpis katalogu
     - Wtedy ma przypisaną jedną kategorię: „stojaki”, „osoba”, otwarte (ćwiczenia dynamiczne, sztanga na biodrach) albo poza zakresem — inaczej test zatrzymuje zmianę
+  - Scenariusz: Asekuracja przy hantlach nad głową lub twarzą (M1-031 cz. 2, DEC-08, 23.10.2026)
+    - Zakładając, że ćwiczenie z hantlami przemieszcza ciężar nad twarzą lub nad głową (np. wyciskanie hantli, rozpiętki, pullover, wyciskanie nad głowę)
+    - Gdy użytkownik otwiera to ćwiczenie
+    - Wtedy ekran pokazuje ramkę „Asekuracja” ze zdaniem „Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.”; ćwiczenia dynamiczne z hantlem, goblet i hip thrust (hantel) zostają bez ramki [OTWARTE]
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07

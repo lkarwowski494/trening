@@ -39,6 +39,7 @@ export const KRYTYCZNE_KLUCZE = [
   'Asekuracja',
   'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.',
   'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.', /* M1-031 */
+  'Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.', /* M1-031 cz. 2 */
   'bez asekuracji w stojakach',
 ];
 

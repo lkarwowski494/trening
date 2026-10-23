@@ -1,4 +1,4 @@
-import { CATALOG_CAPS, CATALOG_SPOTTER, type LoadSource } from './catalog.generated';
+import { CATALOG_CAPS, CATALOG_SPOTTER, CATALOG_SPOTTER_DB, type LoadSource } from './catalog.generated';
 import { achievable, noPlates, rangeValues, convertSpec, type LoadSpec, type LoadUnit } from './loads';
 import { lbl, t } from './i18n';
 import { fmtNum, isImperial } from './units';
@@ -322,6 +322,8 @@ export const needsSafety = (ex: Pick<Exercise, 'recommended'>): boolean => (ex.r
 /** Wariant „osoba asekurująca” (M1-031): ćwiczenie z biblioteki ze sztangą na tułowiu lub nad głową/twarzą, przy którym katalog nie przewiduje ramion asekuracyjnych
  * (CATALOG_SPOTTER). Edytowane wymagania (catalogRev „user”) i ćwiczenia własne — bez zdania, jak w wariancie „stojaki” (recommended czyszczone). */
 export const needsSpotter = (ex: Pick<Exercise, 'lib' | 'libKey' | 'catalogRev'>): boolean => !!ex.lib && !!ex.libKey && ex.catalogRev !== 'user' && CATALOG_SPOTTER.has(ex.libKey);
+/** Wariant „hantle nad głową lub twarzą” (M1-031 cz. 2, DEC-08; NSCA 2017 Standard 3.2, „free weights”): ćwiczenie z biblioteki z hantlami (CATALOG_SPOTTER_DB); reguły jak w needsSpotter. */
+export const needsSpotterDb = (ex: Pick<Exercise, 'lib' | 'libKey' | 'catalogRev'>): boolean => !!ex.lib && !!ex.libKey && ex.catalogRev !== 'user' && CATALOG_SPOTTER_DB.has(ex.libKey);
 /** Ćwiczenie zaleca asekurację, a wybrane miejsce jej nie daje. Brak miejsca („bez ograniczeń sprzętu” = pełna siłownia) → bez ostrzeżenia. */
 export const lacksSafety = (ex: Pick<Exercise, 'recommended'>, loc: Location | null | undefined, caps: Set<string> = capsOf(loc)): boolean => !!loc && needsSafety(ex) && !caps.has(SAFETY_CAP);
 /** „ławka skośna, drążek / kółka gimnastyczne” — dopisek do niedostępnego ćwiczenia. */

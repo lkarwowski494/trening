@@ -37,5 +37,20 @@ Sztanga trzymana w dłoniach poniżej barków (martwe ciągi, wiosłowania, ugin
 
 1. **Ćwiczenia dynamiczne** (Push Press, podrzuty, rwania, zarzuty, Clean and Press, Snatch Balance, Jerk Balance, Rack Delivery, wyskoki ze sztangą — 25 ćwiczeń): Standard 3.2 dosłownie je obejmuje (sztanga nad głową albo na przodzie barków), ale sposób asekuracji takich ćwiczeń (czy osoba asekurująca, czy wypuszczenie sztangi) opisuje przypis 7 — nieprzeczytany. Opracowania wtórne (strony do nauki do egzaminu) podają, że ćwiczeń dynamicznych się nie asekuruje — szczebel 5, nie liczy się. Do czasu przeczytania przypisu 7 aplikacja nie pokazuje przy nich zdania (nie wymyślamy procedury, której źródło nie daje). Krok: badacz z dostępem do NSCA Essentials (wyd. 4 lub 5), rozdział o technice ćwiczeń z wolnymi ciężarami, część o asekuracji.
 2. **Sztanga na biodrach** (Hip Thrust (sztanga), Glute Bridge (sztanga)): czy „supported on the trunk” obejmuje miednicę — źródło nie definiuje; bez zmiany.
-3. **Hantle nad twarzą lub głową** (wyciskanie hantli, rozpiętki, wyciskanie nad głowę): Standard 3.2 mówi o „free weights”, więc dosłownie obejmuje też hantle; sposób asekuracji hantli opisuje przypis 7 — nieprzeczytany. Rozszerzenie na hantle to też nowa grupa ćwiczeń poza zakresem znaleziska (sztanga/EZ) — do decyzji po przeczytaniu źródła.
+3. **Hantle nad twarzą lub głową** — rozstrzygnięte 23.10.2026 decyzją właściciela DEC-08 (a), zob. sekcja „Hantle: zakres DEC-08” niżej. Pozostają otwarte: sposób asekuracji hantli (przypis 7 — nieprzeczytany), hantle przy tułowiu, ćwiczenia dynamiczne z hantlem, kettlebell.
 4. Drugie niezależne źródło dla listy — niepotrzebne do ustalenia (szczebel 2, twierdzenie wprost), ale przypis 7 rozstrzygnąłby pkt 1 i 3.
+
+## Hantle: zakres DEC-08 (M1-031 cz. 2, 23.10.2026)
+
+Decyzja właściciela DEC-08 (a), 23.10.2026: ostrzeżenie o asekuracji także przy ćwiczeniach z hantlami nad głową lub twarzą. Podstawa: ten sam Standard 3.2 (s. 11, odczyt 23.10.2026 — `pdftotext`, tekst „free weights are supported on the trunk or moved over the head/face”); tekst nie rozróżnia sztangi i hantli, a hantle są wolnym ciężarem — reguła **ustalona** (jedno źródło szczebla 2 z twierdzeniem wprost, wyjątek z CLAUDE.md). W tekście Standardu nie ma słowa „dumbbell”; objęcie hantli wynika z pojęcia „free weights”, nie z osobnego zapisu.
+
+Zakres w katalogu (105 ćwiczeń z `loadSource: dumbbell`), kryterium jak dla sztangi: hantle przemieszczane nad twarzą (leżąc, na skosie) lub nad głową — **27 ćwiczeń**: wyciskania (płasko, skos, głową w dół, z podłogi, wąski chwyt, „squeeze”, jednorącz), rozpiętki (płasko, skos, głową w dół, jednorącz), pullover, skullcrushery i wyprosty ramion leżąc lub nad głową, Tate Press, wyciskania nad głowę (stojąc, siedząc, Arnold, jednorącz, See-Saw, Cuban), Front Raise to Overhead, Dumbbell Incline Shoulder Raise, Around The Worlds. Pełna lista z kategorią każdego ze 105 ćwiczeń jest w teście `tests/audit-m1-031-hantle-asekuracja.test.tsx` (strażnik nowych ćwiczeń). Granica „nad twarzą / nad głową” dla poszczególnych ćwiczeń to **konwencja projektu** (źródło jej nie definiuje).
+
+Zdanie: „Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.” — bez stojaków (hantli nie zakłada się na ramiona asekuracyjne; to **uproszczenie** — Standard wymaga też „appropriate safety equipment”, zdanie je pomija, jak w wariancie „osoba” dla sztangi; T-045).
+
+### Otwarte [OTWARTE] / [DO USTALENIA] — bez ramki
+- Ćwiczenia dynamiczne z hantlem (Snatch (hantel), Dumbbell Clean, Thruster (hantle), Dumbbell Seated Box Jump) — jak boje ze sztangą: sposób asekuracji w przypisie 7 (nieprzeczytany), właściciel nie ma dostępu do NSCA Essentials (DEC-08).
+- Hantel oparty o tułów (Goblet Squat) — „supported on the trunk”; poza zakresem DEC-08 (nad głową/twarzą); do decyzji po przeczytaniu źródła.
+- Hip Thrust (hantel) — jak sztanga na biodrach: czy „trunk” obejmuje miednicę, źródło nie definiuje.
+- Overhead Carry (hantle) — przenoszenie nad głową: Standard mówi „moved over the head/face”, ale asekuracja przenoszenia nie ma opisu w przeczytanym tekście.
+- Kettlebell nad głową (np. Turkish Get Up, Bent Press): także „free weights”, ale poza zakresem DEC-08 (tylko hantle); bez ramki.
