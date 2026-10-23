@@ -77,7 +77,7 @@ Pola nieznane są pomijane (zgodność w przód). Walidacja: wersja, rodzaj, typ
   W fazie `rest` pole `now` to **następna** seria (przycisk główny odhacza ją).
 - `after` — co zobaczy zegarek **po „Seria zrobiona” na bieżącej serii**, policzone przez telefon z góry: `restSec` (null = bez przerwy, środek rundy supersetu albo drop set po serii),
   `cue`, `last`, `now` (następna seria). Dzięki temu zegarek przechodzi do przerwy od razu, także bez telefonu.
-- `phase='rest'` po ostatniej serii treningu: `now` null, `rest.last` = true, `cue` = „nic więcej do zrobienia” (przerwa po ostatniej serii zostaje — decyzja LIVE-04 B). Po jej końcu `phase='done'`.
+- `phase='rest'` po ostatniej serii treningu: `now` null, `rest.last` = true, `cue` = „nic więcej do zrobienia” (przerwa po ostatniej serii zostaje — decyzja LIVE-04 B). Po jej końcu `phase='done'`. **Zegarek (decyzja właściciela 23.10.2026):** nie wyświetla tej zapowiedzi (`view.cue` = null przy `rest.last`), tylko jedną stałą etykietę `finishOnPhone` („Zakończ trening na telefonie”) pod odliczaniem i na ekranie `done` — wcześniej „nic więcej do zrobienia” stało dwa razy (zapowiedź + etykieta).
 - Pominięty blok („Pomiń dziś”) nie liczy się do `totalCount` i nie jest bieżącą serią.
 
 ### 3.4 Reguły (telefon)

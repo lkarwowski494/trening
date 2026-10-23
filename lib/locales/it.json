@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Senza acquisto: fino a {n} giorni di allenamento al mese; cronologia, backup ed esportazione sono sempre disponibili.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Giorni di allenamento gratuiti questo mese: usati {n} su {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} su {limit} giorni di allenamento gratuiti questo mese.",
- "Został|Zostały|Zostało": "Rimane|Rimangono"
+ "Został|Zostały|Zostało": "Rimane|Rimangono",
+ "Zakończ trening na telefonie": "Termina l'allenamento sul telefono"
 }
