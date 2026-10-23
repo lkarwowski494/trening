@@ -456,3 +456,10 @@ Test najpierw (10 wektorów kontraktu E3 czerwone na starym kodzie), potem kod. 
 | Brak próby | `tests/m5s1-bez-proby.test.ts`, `tests/store-adapter.test.ts`, `tests/asc-kontrola.test.ts` | logika, dane, regresja | zielone | R-M5-3 zamyka kontrola ASC |
 | Prośba o ocenę | `tests/review.test.ts`, `tests/review-run.test.tsx`, `tests/idea-request.test.tsx` (N = 3; brak ekranu zakupu po pierwszym treningu) | logika, scenariusz | zielone | |
 | E2E Maestro | `.maestro/21-subskrypcja.yaml`, `.maestro/35-ustawienia-dostepnosc.yaml` (licznik dni, „We're proud of you!”, „Subscribe”; build E2E: limit 0 dni) | scenariusz | zielone w interpreterze; przebieg na symulatorze — koordynator | wpisy NU-11 i US-12 w `tests/przeplywy.json` |
+
+## 23.10.2026 — naprawa M1-audytor-generalny-028 (audyt 21.10.2026, partia 1; gałąź `naprawa-m1-028-zegarek-ack`)
+Test najpierw (7 czerwonych na f2b0525: w chwili `ack` baza nie miała zmiany), potem poprawka w `lib/watch/link.ts`.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-028 (05-architekt-001) | `tests/audit-m1b-028-watch-ack.test.ts` (7: differ, skip, sessionStarted, nieudany zapis → brak `ack` i ponowienie; differ na zapisach 3 wydanych buildów z `tests/fixtures/released`) | logika, dane, regresja | zielone | **realność: brzegowy, dotyczy danych** — kroki: telefon zablokowany, trening z zegarka, „zrobione inaczej”/pominięcie/start sesji, system ubija aplikację w tle w ciągu 300 ms. Protokół zegarka bez zmian. Rodzaj 9 (E2E): ubicie procesu w tle poza zasięgiem Maestro — pominięty; ekran bez zmian |
