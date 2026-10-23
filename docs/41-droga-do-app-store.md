@@ -70,9 +70,9 @@ Legenda „Blokuje”: **TAK** — bez tego nie da się wysłać albo wysyłka �
 
 | # | Co | Kto | Wpis | Zależy od | Blokuje | Agent | Właściciel |
 |---|---|---|---|---|---|---|---|
-| B1 | Produkty, ceny, oferta 1 miesiąc, Family Sharing, lokalizacje 33 języków (bez `sl` — L-003) | **zrobione** (14.10.2026) | API/ręcznie | — | — | — | — |
+| B1 | Produkty, ceny, Family Sharing (dawna oferta wprowadzająca uchylona 22.10.2026 — M5 S1; brak ofert potwierdzony kontrolą ASC 39822823188), lokalizacje 33 języków (bez `sl` — L-003) | **zrobione** (14.10.2026) | API/ręcznie | — | — | — | — |
 | B2 | `PAYWALL.ENABLED = true` (lib/access.ts) + aktualizacja testów i scenariusza E2E 21 w zwykłym buildzie | agent | — | D-1, A4 | TAK | 1–2 h (+ CI) | — |
-| B3 | Piaskownica na telefonie (docs/39 US-13): zakup każdego planu, próba, „Przywróć zakupy”, wygaśnięcie | właściciel | — | B2, A7 | TAK (3.1.1 przywracanie; 2.1(b) zakupy „functional”) | — | 30–45 min (+10 min konto piaskownicy) |
+| B3 | Piaskownica na telefonie (docs/39 US-13): zakup każdego planu, „Przywróć zakupy” po ponownej instalacji, tryb samolotowy, zwrot, Chmura rodzinna, blokada po limicie dni; brak oferty wprowadzającej w arkuszu Apple | właściciel | — | B2, A7 | TAK (3.1.1 przywracanie; 2.1(b) zakupy „functional”) | — | 30–45 min (+10 min konto piaskownicy) |
 | B4 | **Zrzut ekranu zakupu do przeglądu** (pole „App Review Screenshot” przy każdym produkcie: „A screenshot of the In-App Purchase that clearly shows the item or service being offered”) — workflow `store-screenshots.yml`, wejście `zrzut_zakupu_z_przebiegu` (aplikacja E2E ze sztucznym sklepem) albo zrzut z piaskownicy | agent (CI) lub właściciel | API | B2 | TAK | 0,5 h (+ CI ~30 min) | 0 (albo 5 min zrzut z telefonu) |
 | B5 | „Review Notes” każdej subskrypcji — wymagane przy ofercie wprowadzającej („Required if the subscription offers introductory pricing”); propozycja w `store/review-notes.md` | agent | API | — | TAK | 10 min | — |
 | B6 | Pierwsze zakupy każdego typu **w tym samym zgłoszeniu co wersja aplikacji** („The first … In-App Purchase of each type must be submitted with a new app version”; grupa subskrypcji razem z subskrypcją) | właściciel (przy F1) | ręcznie | B4, B5 | TAK | — | w F1 |

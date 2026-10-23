@@ -184,11 +184,12 @@ final class WatchUITests: XCTestCase {
   }
 
   func testLastSetShowsNothingLeftAndNoPrimary() {
-    // ostatnia seria: after.now = nil → po „zrobione” przerwa z „nic więcej do zrobienia”
+    // ostatnia seria: after.now = nil → po „zrobione” przerwa z komunikatem „zakończ trening na telefonie” (raz)
     let app = launch([object("set-first") { o in var a = o["after"] as! [String: Any]; a["now"] = NSNull(); a["last"] = true; o["after"] = a }])
     appears(app, "watch.primary"); el(app, "watch.primary").tap()
     appears(app, "watch.timer")
     appears(app, "watch.nothing")
+    gone(app, "watch.cue")   // 23.10.2026: zapowiedź ostatniej przerwy nie dubluje komunikatu „zakończ na telefonie”
     gone(app, "watch.primary")
   }
 

@@ -212,7 +212,7 @@ func clientView(_ s: ClientState, nowMs: Double) -> ClientView {
   v.counter = n?.counter ?? ""
   v.load = n?.load ?? ""
   v.group = n?.group
-  v.cue = rest?.cue
+  v.cue = rest.flatMap { $0.last ? nil : $0.cue }   // ostatnia przerwa: zamiast zapowiedzi jedna etykieta „zakończ na telefonie” (lustro lib/watch/client.ts)
   v.restEndsAt = rest?.endsAt
   v.restTotalSec = rest?.totalSec
   v.timed = n?.timed ?? false
