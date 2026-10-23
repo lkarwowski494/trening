@@ -456,3 +456,10 @@ Test najpierw (10 wektorów kontraktu E3 czerwone na starym kodzie), potem kod. 
 | Brak próby | `tests/m5s1-bez-proby.test.ts`, `tests/store-adapter.test.ts`, `tests/asc-kontrola.test.ts` | logika, dane, regresja | zielone | R-M5-3 zamyka kontrola ASC |
 | Prośba o ocenę | `tests/review.test.ts`, `tests/review-run.test.tsx`, `tests/idea-request.test.tsx` (N = 3; brak ekranu zakupu po pierwszym treningu) | logika, scenariusz | zielone | |
 | E2E Maestro | `.maestro/21-subskrypcja.yaml`, `.maestro/35-ustawienia-dostepnosc.yaml` (licznik dni, „We're proud of you!”, „Subscribe”; build E2E: limit 0 dni) | scenariusz | zielone w interpreterze; przebieg na symulatorze — koordynator | wpisy NU-11 i US-12 w `tests/przeplywy.json` |
+
+## 23.10.2026 — naprawa M1-audytor-generalny-045 (audyt 21.10.2026, partia 1; gałąź `naprawa-m1-045-app-review`)
+Test najpierw (czerwony na f2b0525: blok IN-APP PURCHASES bez akapitu o stałej wartości), potem tekst w `store/review-notes.md` i `store/app-store-metadata.json`.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-045 (10-wydanie-001) | `tests/store-review-notes.test.ts` „M1-045” (akapit EN/PL i notatka subskrypcji: aktualizacje, alternatywa dożywotnia; wersje 0.11–0.20 obecne w dzienniku wydań; zdanie w opisie PL i 4 lokalizacjach EN; limit 4000 B) | dane, języki | zielone | **realność: brzegowy** (zależy od recenzenta, wytyczna 3.1.2(a)). Opis w pozostałych 28 lokalizacjach bez zdania — zadanie dla tłumacza. Ekran bez zmian, E2E nie dotyczy |
