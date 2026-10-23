@@ -1712,7 +1712,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Trinnet (fx +2,5 kg) er en konvention, ikke et forskningsresultat.",
  "Usuń szablon": "Slet skabelon",
  "Usuń z biblioteki": "Slet fra biblioteket",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du har ingen skabeloner med øvelser. Opret en skabelon, eller vælg “Generér skabeloner og plan”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Du har ingen skabeloner med øvelser. Opret en skabelon, eller vælg “Nye skabeloner og plan”.",
  "Dźwięk na koniec przerwy": "Lyd, når hvilen er slut",
  "Wibracje": "Vibrationer",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Mere → Indstillinger: “Lyd, når hvilen er slut” og “Vibrationer” slås til hver for sig.",
@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Uden køb: op til {n} træningsdage om måneden; historik, backup og eksport er altid tilgængelige.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Gratis træningsdage denne måned: {n} af {limit} brugt",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} af {limit} gratis træningsdage {left} denne måned.",
- "Został|Zostały|Zostało": "tilbage|tilbage"
+ "Został|Zostały|Zostało": "tilbage|tilbage",
+ "Nowe szablony i plan": "Nye skabeloner og plan"
 }

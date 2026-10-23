@@ -1712,7 +1712,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Стъпката (напр. +2,5 kg) е конвенция, а не резултат от изследвания.",
  "Usuń szablon": "Изтриване на шаблона",
  "Usuń z biblioteki": "Изтриване от библиотеката",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Нямате шаблони с упражнения. Създайте шаблон или изберете „Генерирай шаблони и план“.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Нямате шаблони с упражнения. Създайте шаблон или изберете „Нови шаблони и план“.",
  "Dźwięk na koniec przerwy": "Звук в края на почивката",
  "Wibracje": "Вибрации",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Още → Настройки: „Звук в края на почивката“ и „Вибрации“ се включват поотделно.",
@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Без покупка: до {n} тренировъчни дни на месец; историята, резервното копие и експортът винаги са налични.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Безплатни тренировъчни дни този месец: използвани {n} от {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} от {limit} безплатни тренировъчни дни този месец.",
- "Został|Zostały|Zostało": "Остава|Остават"
+ "Został|Zostały|Zostało": "Остава|Остават",
+ "Nowe szablony i plan": "Нови шаблони и план"
 }

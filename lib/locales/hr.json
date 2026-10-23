@@ -1712,7 +1712,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Korak (npr. +2,5 kg) je konvencija, a ne rezultat istraživanja.",
  "Usuń szablon": "Obriši predložak",
  "Usuń z biblioteki": "Obriši iz knjižnice",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nemate predložaka s vježbama. Izradite predložak ili odaberite „Generiraj predloške i plan”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nemate predložaka s vježbama. Izradite predložak ili odaberite „Novi predlošci i plan”.",
  "Dźwięk na koniec przerwy": "Zvuk na kraju odmora",
  "Wibracje": "Vibracija",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Više → Postavke: „Zvuk na kraju odmora” i „Vibracija” uključuju se zasebno.",
@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Bez kupnje: do {n} dana treninga mjesečno; povijest, sigurnosna kopija i izvoz uvijek su dostupni.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Besplatni dani treninga ovog mjeseca: iskorišteno {n} od {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} od {limit} besplatnih dana treninga ovog mjeseca.",
- "Został|Zostały|Zostało": "Preostaje|Preostaju|Preostaje"
+ "Został|Zostały|Zostało": "Preostaje|Preostaju|Preostaje",
+ "Nowe szablony i plan": "Novi predlošci i plan"
 }

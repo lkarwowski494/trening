@@ -1712,7 +1712,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "A lépésköz (pl. +2,5 kg) konvenció, nem kutatási eredmény.",
  "Usuń szablon": "Sablon törlése",
  "Usuń z biblioteki": "Törlés a könyvtárból",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nincs gyakorlatokat tartalmazó sablonja. Hozzon létre egy sablont, vagy válassza a „Sablonok és terv generálása” lehetőséget.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nincs gyakorlatokat tartalmazó sablonja. Hozzon létre egy sablont, vagy válassza az „Új sablonok és terv” lehetőséget.",
  "Dźwięk na koniec przerwy": "Hang a pihenő végén",
  "Wibracje": "Rezgés",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Egyebek → Beállítások: a „Hang a pihenő végén” és a „Rezgés” külön kapcsolható be.",
@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Vásárlás nélkül: havonta legfeljebb {n} edzésnap; az előzmények, a biztonsági mentés és az exportálás mindig elérhető.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ingyenes edzésnapok ebben a hónapban: {limit} közül {n} felhasználva",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{limit} ingyenes edzésnapból {n} {left} ebben a hónapban.",
- "Został|Zostały|Zostało": "maradt|maradt"
+ "Został|Zostały|Zostało": "maradt|maradt",
+ "Nowe szablony i plan": "Új sablonok és terv"
 }

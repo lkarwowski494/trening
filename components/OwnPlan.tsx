@@ -40,7 +40,7 @@ export const takePlanNotice = (): string | null => { const n = planNotice; planN
 /** Po zapisie planu, który stał się aktywny bez pytania: do Planowania ze zdaniem potwierdzenia (UI2-06: bez drugiego ekranu planu na stosie). */
 export function useActivatedReturn() { const toPlan = usePlanReturn(); return (name: string) => { planNotice = name; toPlan(); }; }
 
-export function OwnPlan() {
+export function OwnPlan({ header }: { header?: React.ReactNode }) {
   const rev = useTick(); const router = useRouter(); const toPlan = usePlanReturn(); const afterActivated = useActivatedReturn(); const all = ownTemplates();
   const [sel, setSel] = useState<string[]>(() => (all.length <= OWN_MAX ? all.map(x => x.id) : []));
   /* wybór dni (09.10.2026 B): na starcie propozycja rozkładu dla 3 dni (albo najbliższej dozwolonej liczby — ownProposal) */
@@ -73,11 +73,12 @@ export function OwnPlan() {
   const warn = r ? ownWarnings(r) : [];
   return (
     <ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
+      {header}
       <InfoTip id="own-intro" label={t('Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.')} info={t('Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.')} style={{ marginBottom: 8 }}>
         <Muted style={{ ...font('footnote') }}>{t('Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.')}</Muted>
       </InfoTip>
       {!all.length ? <View style={{ gap: 8 }}>
-        <Txt style={{ ...font('callout') }}>{t('Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.')}</Txt>
+        <Txt style={{ ...font('callout') }}>{t('Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.')}</Txt>
         <Btn nav small title={t('+ Nowy szablon')} onPress={() => { const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1`); }} style={{ alignSelf: 'flex-start' }} />
       </View> : <>
         <Field label={t('Szablony')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>

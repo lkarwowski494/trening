@@ -1712,7 +1712,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Pasul (de ex. +2,5 kg) este o convenție, nu un rezultat al studiilor.",
  "Usuń szablon": "Șterge șablonul",
  "Usuń z biblioteki": "Șterge din bibliotecă",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nu aveți șabloane cu exerciții. Creați un șablon sau alegeți „Generează șabloane și plan”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nu aveți șabloane cu exerciții. Creați un șablon sau alegeți „Șabloane noi și plan”.",
  "Dźwięk na koniec przerwy": "Sunet la finalul pauzei",
  "Wibracje": "Vibrații",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Mai mult → Configurări: „Sunet la finalul pauzei” și „Vibrații” se activează separat.",
@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Fără achiziție: până la {n} zile de antrenament pe lună; istoricul, copia de siguranță și exportul sunt mereu disponibile.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Zile de antrenament gratuite luna aceasta: {n} din {limit} folosite",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} din {limit} zile de antrenament gratuite luna aceasta.",
- "Został|Zostały|Zostało": "Rămâne|Rămân|Rămân"
+ "Został|Zostały|Zostało": "Rămâne|Rămân|Rămân",
+ "Nowe szablony i plan": "Șabloane noi și plan"
 }

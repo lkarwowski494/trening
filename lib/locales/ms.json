@@ -1712,7 +1712,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Langkah perubahan (cth. +2.5 kg) ialah konvensyen, bukan hasil kajian.",
  "Usuń szablon": "Padam templat",
  "Usuń z biblioteki": "Padam daripada pustaka",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Anda tiada templat dengan senaman. Cipta templat atau pilih “Jana templat dan pelan”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Anda tiada templat dengan senaman. Cipta templat atau pilih “Templat dan pelan baharu”.",
  "Dźwięk na koniec przerwy": "Bunyi pada akhir rehat",
  "Wibracje": "Getaran",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Lagi → Seting: “Bunyi pada akhir rehat” dan “Getaran” dihidupkan secara berasingan.",
@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Tanpa pembelian: sehingga {n} hari latihan sebulan; sejarah, sandaran dan eksport sentiasa tersedia.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Hari latihan percuma bulan ini: {n} daripada {limit} telah digunakan",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} daripada {limit} hari latihan percuma bulan ini.",
- "Został|Zostały|Zostało": "Berbaki"
+ "Został|Zostały|Zostało": "Berbaki",
+ "Nowe szablony i plan": "Templat dan pelan baharu"
 }

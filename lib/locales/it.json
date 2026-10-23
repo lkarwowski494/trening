@@ -1712,7 +1712,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "L’incremento (es. +2,5 kg) è una convenzione, non un risultato di studi.",
  "Usuń szablon": "Elimina scheda",
  "Usuń z biblioteki": "Elimina dalla libreria",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Non hai schede con esercizi. Crea una scheda o scegli «Genera schede e piano».",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Non hai schede con esercizi. Crea una scheda o scegli «Nuove schede e piano».",
  "Dźwięk na koniec przerwy": "Suono a fine recupero",
  "Wibracje": "Vibrazione",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Altro → Impostazioni: «Suono a fine recupero» e «Vibrazione» si attivano separatamente.",
@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Senza acquisto: fino a {n} giorni di allenamento al mese; cronologia, backup ed esportazione sono sempre disponibili.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Giorni di allenamento gratuiti questo mese: usati {n} su {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} su {limit} giorni di allenamento gratuiti questo mese.",
- "Został|Zostały|Zostało": "Rimane|Rimangono"
+ "Został|Zostały|Zostało": "Rimane|Rimangono",
+ "Nowe szablony i plan": "Nuove schede e piano"
 }
