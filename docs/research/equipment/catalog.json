@@ -1272,7 +1272,8 @@
    ]
   ],
   "recommended": [
-   "rack"
+   "rack",
+   "rack.safeties"
   ],
   "loadSource": "barbell",
   "pattern": "v_push",
@@ -1972,6 +1973,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "ez_bar",
   "pattern": "isolation",
   "alternativesNote": "Skullcrusher (hantle), Cable Overhead Extension, Triceps Pushdown",
@@ -5867,6 +5869,7 @@
   "recommended": [
    "bench.flat"
   ],
+  "spot": "spotter",
   "loadSource": "ez_bar",
   "pattern": "isolation",
   "muscleLoad": {
@@ -5904,6 +5907,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "barbell",
   "pattern": "isolation",
   "muscleLoad": {
@@ -7344,7 +7348,8 @@
    ]
   ],
   "recommended": [
-   "box"
+   "box",
+   "rack.safeties"
   ],
   "loadSource": "barbell",
   "pattern": "isolation",
@@ -9630,6 +9635,7 @@
    "barki"
   ],
   "recommended": [],
+  "spot": "spotter",
   "confidence": "medium",
   "note": "Light barbell starts on the thighs while lying on a flat bench (no rack needed); raise over the chest and continue behind the head.",
   "equipment": "sztanga",
@@ -9673,6 +9679,7 @@
   "loadMode": "total",
   "secondaryMuscles": [],
   "recommended": [],
+  "spot": "spotter",
   "confidence": "medium",
   "note": "Light barbell picked up from the floor behind the head on a decline bench; no rack needed.",
   "equipment": "sztanga",
@@ -10854,6 +10861,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "barbell",
   "pattern": "isolation",
   "muscleLoad": {
@@ -12563,7 +12571,8 @@
    ]
   ],
   "recommended": [
-   "bench.incline"
+   "bench.incline",
+   "rack.safeties"
   ],
   "loadSource": "barbell",
   "pattern": "v_push",
@@ -12605,7 +12614,8 @@
    ]
   ],
   "recommended": [
-   "rack"
+   "rack",
+   "rack.safeties"
   ],
   "loadSource": "barbell",
   "pattern": "v_push",
@@ -12651,7 +12661,9 @@
     "rack"
    ]
   ],
-  "recommended": [],
+  "recommended": [
+   "rack.safeties"
+  ],
   "loadSource": "barbell",
   "pattern": "v_push",
   "muscleLoad": {
@@ -13850,6 +13862,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "barbell",
   "pattern": "isolation",
   "muscleLoad": {
@@ -14227,7 +14240,9 @@
     "bench.uprights"
    ]
   ],
-  "recommended": [],
+  "recommended": [
+   "rack.safeties"
+  ],
   "loadSource": "barbell",
   "pattern": "isolation",
   "muscleLoad": {
@@ -17215,7 +17230,9 @@
     "rack.safeties"
    ]
   ],
-  "recommended": [],
+  "recommended": [
+   "rack.safeties"
+  ],
   "loadSource": "barbell",
   "pattern": "h_push",
   "muscleLoad": {
@@ -17543,6 +17560,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "ez_bar",
   "pattern": "isolation",
   "muscleLoad": {
@@ -17583,6 +17601,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "barbell",
   "pattern": "isolation",
   "muscleLoad": {
@@ -17624,6 +17643,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "barbell",
   "pattern": "isolation",
   "muscleLoad": {
@@ -17781,6 +17801,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "barbell",
   "pattern": "isolation",
   "muscleLoad": {
@@ -18788,7 +18809,8 @@
    ]
   ],
   "recommended": [
-   "rack"
+   "rack",
+   "rack.safeties"
   ],
   "loadSource": "barbell",
   "pattern": "squat",
@@ -18880,7 +18902,9 @@
     "rack"
    ]
   ],
-  "recommended": [],
+  "recommended": [
+   "rack.safeties"
+  ],
   "loadSource": "barbell",
   "pattern": "lunge_single_leg",
   "muscleLoad": {
@@ -18924,6 +18948,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "barbell",
   "pattern": "lunge_single_leg",
   "muscleLoad": {
@@ -18972,6 +18997,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "barbell",
   "pattern": "lunge_single_leg",
   "muscleLoad": {
@@ -19018,7 +19044,9 @@
     "plate"
    ]
   ],
-  "recommended": [],
+  "recommended": [
+   "rack.safeties"
+  ],
   "loadSource": "barbell",
   "pattern": "lunge_single_leg",
   "muscleLoad": {
@@ -19064,7 +19092,9 @@
     "box"
    ]
   ],
-  "recommended": [],
+  "recommended": [
+   "rack.safeties"
+  ],
   "loadSource": "barbell",
   "pattern": "lunge_single_leg",
   "muscleLoad": {
@@ -21958,7 +21988,9 @@
     "rack.safeties"
    ]
   ],
-  "recommended": [],
+  "recommended": [
+   "rack.safeties"
+  ],
   "loadSource": "barbell",
   "pattern": "hinge",
   "muscleLoad": {
@@ -22174,7 +22206,8 @@
    ]
   ],
   "recommended": [
-   "floor_mat"
+   "floor_mat",
+   "rack.safeties"
   ],
   "loadSource": "barbell",
   "pattern": "hinge",
@@ -23301,7 +23334,8 @@
    ]
   ],
   "recommended": [
-   "rack"
+   "rack",
+   "rack.safeties"
   ],
   "loadSource": "barbell",
   "pattern": "core_other",
@@ -24412,6 +24446,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "barbell",
   "pattern": "core_flexion",
   "muscleLoad": {
@@ -24454,6 +24489,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter",
   "loadSource": "barbell",
   "pattern": "core_other",
   "muscleLoad": {

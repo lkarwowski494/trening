@@ -18,18 +18,19 @@ const MED = 'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chor
 const ASE = 'Asekuracja';
 const ASE2 = 'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.';
 const ASE3 = 'bez asekuracji w stojakach';
+const ASE4 = 'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.'; /* M1-031 */
 
 /** Fixture: mały „projekt” z _source.json, słownikami fr/pt/pt-BR, wskazówkami pl/en/fr/pt/pt-BR i jedną nowością względem poprzedniego źródła. */
 function fixture(): { root: string; stare: { pl: string; en: string }[] } {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'przeglad-'));
   const w = (f: string, o: unknown) => { fs.mkdirSync(path.dirname(path.join(root, f)), { recursive: true }); fs.writeFileSync(path.join(root, f), JSON.stringify(o)); };
   const zrodlo = [
-    { pl: MED, en: 'The app does not give medical advice.' }, { pl: ASE, en: 'Spotting' }, { pl: ASE2, en: 'Set safeties.' }, { pl: ASE3, en: 'no spotter in racks' },
+    { pl: MED, en: 'The app does not give medical advice.' }, { pl: ASE, en: 'Spotting' }, { pl: ASE2, en: 'Set safeties.' }, { pl: ASE4, en: 'A spotter.' }, { pl: ASE3, en: 'no spotter in racks' },
     { pl: 'Zapisz {n} serii', en: 'Save {n} sets' }, { pl: 'Stare zdanie', en: 'Old sentence' }, { pl: 'Zmienione zdanie', en: 'Changed sentence NEW' }, { pl: 'Nowe zdanie', en: 'New sentence' },
   ];
   w('lib/locales/_source.json', zrodlo);
-  w('lib/locales/fr.json', { [MED]: 'L’app ne donne pas de conseil médical.', [ASE]: 'Assurance', [ASE2]: 'Réglez les sécurités.', [ASE3]: 'sans pareur', 'Zapisz {n} serii': 'Enregistrer {n} séries', 'Nowe zdanie': 'Nouvelle phrase', 'Zmienione zdanie': 'Phrase modifiée' });
-  w('lib/locales/pt.json', { [MED]: 'A app não dá aconselhamento médico.', [ASE]: 'Segurança', [ASE2]: 'Ajuste os apoios.', [ASE3]: 'sem apoio', 'Zapisz {n} serii': 'Guardar {n} séries', 'Nowe zdanie': 'Nova frase', 'Zmienione zdanie': 'Frase alterada' });
+  w('lib/locales/fr.json', { [MED]: 'L’app ne donne pas de conseil médical.', [ASE]: 'Assurance', [ASE2]: 'Réglez les sécurités.', [ASE4]: 'Un pareur.', [ASE3]: 'sans pareur', 'Zapisz {n} serii': 'Enregistrer {n} séries', 'Nowe zdanie': 'Nouvelle phrase', 'Zmienione zdanie': 'Phrase modifiée' });
+  w('lib/locales/pt.json', { [MED]: 'A app não dá aconselhamento médico.', [ASE]: 'Segurança', [ASE2]: 'Ajuste os apoios.', [ASE4]: 'Um parceiro.', [ASE3]: 'sem apoio', 'Zapisz {n} serii': 'Guardar {n} séries', 'Nowe zdanie': 'Nova frase', 'Zmienione zdanie': 'Frase alterada' });
   w('lib/locales/pt-BR.json', { 'Nowe zdanie': 'Nova frase (BR)' });
   w('lib/locales/en.json', {}); /* en jest w kodzie (i18n.en.ts), pliku nie ma — jezyki() i tak dodaje en */
   fs.unlinkSync(path.join(root, 'lib/locales/en.json'));
@@ -45,12 +46,12 @@ const fx = fixture();
 const R = JSON.stringify(fx.root); const S = JSON.stringify(fx.stare);
 
 describe('przegląd tłumaczeń API: zbieranie zdań', () => {
-  test('bez poprzedniego źródła: 4 zdania krytyczne + wskazówki posortowane po id, numeracja od 1', () => {
+  test('bez poprzedniego źródła: 5 zdań krytycznych + wskazówki posortowane po id, numeracja od 1', () => {
     const z = run(`console.log(JSON.stringify(m.zbierzZdania(${R}, null)))`);
-    expect(z.map((x: any) => x.rodzaj)).toEqual(['krytyczne', 'krytyczne', 'krytyczne', 'krytyczne', 'wskazowka', 'wskazowka']);
-    expect(z.map((x: any) => x.id)).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(z.map((x: any) => x.rodzaj)).toEqual(['krytyczne', 'krytyczne', 'krytyczne', 'krytyczne', 'krytyczne', 'wskazowka', 'wskazowka']);
+    expect(z.map((x: any) => x.id)).toEqual([1, 2, 3, 4, 5, 6, 7]);
     expect(z[0]).toMatchObject({ klucz: MED, pl: MED, en: 'The app does not give medical advice.' });
-    expect(z[4]).toMatchObject({ klucz: 'a.x', pl: 'Plecy neutralnie.', en: 'Keep your back neutral.' });
+    expect(z[5]).toMatchObject({ klucz: 'a.x', pl: 'Plecy neutralnie.', en: 'Keep your back neutral.' });
   });
   test('klucze dodane lub zmienione od --od (różnica _source.json) trafiają do przeglądu; niezmienione i krytyczne nie dublują się', () => {
     const z = run(`console.log(JSON.stringify(m.zbierzZdania(${R}, ${S})))`);
@@ -63,9 +64,9 @@ describe('przegląd tłumaczeń API: zbieranie zdań', () => {
     fs.writeFileSync(path.join(d, 'lib/locales/_source.json'), '[]');
     expect(() => run(`m.zbierzZdania(${JSON.stringify(d)}, null); console.log('{}')`)).toThrow();
   });
-  test('prawdziwe repozytorium: 4 zdania krytyczne istnieją w _source.json, wskazówek jest tyle, co w pl.json, a jezyki() daje 34', () => {
+  test('prawdziwe repozytorium: 5 zdań krytycznych istnieją w _source.json, wskazówek jest tyle, co w pl.json, a jezyki() daje 34', () => {
     const z = run(`console.log(JSON.stringify({ z: m.zbierzZdania(${JSON.stringify(ROOT)}, null).map(x => x.rodzaj), j: m.jezyki(${JSON.stringify(ROOT)}) }))`);
-    expect(z.z.filter((r: string) => r === 'krytyczne')).toHaveLength(4);
+    expect(z.z.filter((r: string) => r === 'krytyczne')).toHaveLength(5);
     expect(z.z.filter((r: string) => r === 'wskazowka')).toHaveLength(Object.keys(JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/cues/text/pl.json'), 'utf8'))).length);
     expect(z.j).toHaveLength(34); expect(z.j[0]).toBe('en'); expect(z.j).toEqual(expect.arrayContaining(['fr', 'tr', 'es-419', 'pt-BR', 'zh-Hant']));
   });
@@ -165,7 +166,7 @@ describe('przegląd tłumaczeń API: odpowiedź batcha (atrapa)', () => {
       const odczyt = m.odczytajLinie(JSON.stringify({ custom_id: 'tl-fr', result: { type: 'succeeded', message: { stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify(o) }] }, headers: { 'x-api-key': 'sekret' } } }));
       console.log(JSON.stringify(m.raportJezyka('fr', j, odczyt, { model: 'claude-opus-5-5', effort: 'medium', batch_id: 'msgbatch_1' })))`);
     expect(r.uwagi.map((u: any) => u.waga)).toEqual(['krytyczna', 'niska']); expect(r.brak_odpowiedzi).toHaveLength(1);
-    expect(r.zdan).toBe(8); expect(r.ok).toBe(4); /* 7 przetłumaczonych − 2 uwagi − 1 bez odpowiedzi (b.y bez tłumaczenia nie trafia do żądania) */
+    expect(r.zdan).toBe(9); expect(r.ok).toBe(5); /* 8 przetłumaczonych (z ASE4, M1-031) − 2 uwagi − 1 bez odpowiedzi (b.y bez tłumaczenia nie trafia do żądania) */
     expect(r.kontrola_lokalna.map((k: any) => k.problem)).toEqual(['brak tłumaczenia']);
     expect(JSON.stringify(r)).not.toMatch(/sekret|x-api-key|headers/i);
   });

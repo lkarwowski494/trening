@@ -1,7 +1,7 @@
 /*
  * M1-audytor-generalny-049: treść krytyczna (zdanie medyczne, asekuracja, wskazówki techniki) w 34 językach nie miała zapisanej kontroli ani zapisu, że drugiego
  * przeglądu wskazówek nie było. Test: (1) tabela „Treść krytyczna” w docs/16 jest generowana z danych (UPDATE_CRITICAL=1 przepisuje) — drift pada;
- * (2) kontrola automatyczna: każdy z 34 języków ma przetłumaczone zdanie medyczne i trzy klucze asekuracji oraz komplet zdań wskazówek;
+ * (2) kontrola automatyczna: każdy z 34 języków ma przetłumaczone zdanie medyczne i cztery klucze asekuracji (czwarty: M1-031) oraz komplet zdań wskazówek;
  * (3) ryzyko R-010 w rejestrze docs/40 z warunkiem zamknięcia i blokadą wydania w App Store (nie TestFlight).
  * Drugiego przeglądu tłumaczeń ten test nie zastępuje — to osobne zadanie (tłumacz / native speaker).
  */
@@ -17,6 +17,7 @@ const MEDICAL = 'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub 
 const SAFETY = [
   'Asekuracja',
   'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.',
+  'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.', /* M1-031 */
   'bez asekuracji w stojakach',
 ];
 /** Języki, w których w docs/16 zapisano niezależną recenzję drugim agentem po tłumaczeniu: 14 języków (proces 05.10.2026) i 10 języków wariantu B (proces 07.10.2026). */
@@ -38,7 +39,7 @@ function row(l: Lang): string {
   const c = cues(l); const have = plCueIds.filter((id) => typeof c[id] === 'string' && c[id].trim() !== '').length;
   return `| ${l} | ${med} | ${saf} | ${have}/${plCueIds.length} | ${REVIEWED_0510.includes(l) ? 'tak (05.10.2026)' : REVIEWED_0710.includes(l) ? 'tak (07.10.2026)' : 'brak zapisu'} | niewykonany |`;
 }
-const table = () => ['| kod | zdanie medyczne | asekuracja (3 klucze) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd wskazówek (native speaker) |', '|---|---|---|---|---|---|', ...TARGETS.map(row)].join('\n');
+const table = () => ['| kod | zdanie medyczne | asekuracja (4 klucze) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd wskazówek (native speaker) |', '|---|---|---|---|---|---|', ...TARGETS.map(row)].join('\n');
 
 describe('docs/16: kontrola treści krytycznej w 34 językach', () => {
   test('jest 34 języków docelowych (LANGS bez pl)', () => { expect(TARGETS).toHaveLength(34); });

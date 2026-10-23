@@ -584,7 +584,7 @@
   },
   {
    "id": "T-040",
-   "kotwica": "Ćwiczenie ze sztangą na tułowiu lub nad głową",
+   "kotwica": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja",
    "skrot": "1d88c19d53",
    "skrotEn": "b255c6f3df",
    "rodzaje": [
@@ -596,6 +596,23 @@
    "dokument": "docs/research/przeglad-badacza-2026-10-21.md",
    "fraza": "Standard 3.2",
    "przeglad": "21.10.2026: badacz-merytoryczny — NSCA 2017, Standard 3.2 (szczebel 2): sprzęt asekuracyjny i osoba asekurująca łącznie; przeniesienie na trening samodzielny = uproszczenie; docs/research/przeglad-badacza-2026-10-21.md"
+  },
+  {
+   "id": "T-044",
+   "kotwica": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba",
+   "skrot": "18b8de76e8",
+   "skrotEn": "ff73c8817e",
+   "rodzaje": [
+    "uproszczenie",
+    "konwencja"
+   ],
+   "zrodla": [
+    "NSCA 2017 (Standard 3.2)"
+   ],
+   "dokument": "docs/research/przeglad-badacza-2026-10-23.md",
+   "fraza": "Standard 3.2",
+   "uwaga": "M1-031 (06-tresci-001): wariant ramki bez stojaków. Uproszczenie: zdanie pomija sprzęt asekuracyjny (Standard 3.2: sprzęt „appropriate” oraz osoba). Konwencja projektu: podział ćwiczeń na wariant „stojaki” i „osoba” (źródło nie mówi, przy którym ćwiczeniu stojak jest właściwy). Otwarte: ćwiczenia dynamiczne, sztanga na biodrach, hantle — docs/research/przeglad-badacza-2026-10-23.md.",
+   "przeglad": "23.10.2026: badacz-merytoryczny (06-tresci fix, M1-031) — NSCA 2017 Standard 3.2 (s. 11, pdftotext, odczyt 23.10.2026): osoba asekurująca wymagana przy sztandze na tułowiu lub nad głową/twarzą; pominięcie sprzętu = uproszczenie; docs/research/przeglad-badacza-2026-10-23.md"
   },
   {
    "id": "T-041",

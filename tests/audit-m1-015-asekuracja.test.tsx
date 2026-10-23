@@ -27,8 +27,8 @@ const withSafe = () => loc('Z klatką', [equipEntry('barbell'), equipEntry('benc
 afterEach(() => { applyLang('pl'); });
 
 describe('M1-015: logika', () => {
-  test('katalog: dokładnie 29 ćwiczeń zaleca ramiona asekuracyjne; needsSafety zgodne z danymi dla całego katalogu', () => {
-    expect(NEED).toHaveLength(29);
+  test('katalog: dokładnie 43 ćwiczenia zalecają ramiona asekuracyjne (29 z M1-015 + 14 z M1-031); needsSafety zgodne z danymi dla całego katalogu', () => {
+    expect(NEED).toHaveLength(43);
     for (const [k, c] of Object.entries(CATALOG)) expect([k, needsSafety(c)]).toEqual([k, c.recommended.includes('rack.safeties')]);
   });
   test('lacksSafety: miejsce bez ramion → tak; klatka (power rack) → nie; brak miejsca („bez ograniczeń”) → nie; ćwiczenie bez zalecenia → nie', () => {

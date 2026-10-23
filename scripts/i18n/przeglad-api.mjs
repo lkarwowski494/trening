@@ -38,6 +38,7 @@ export const KRYTYCZNE_KLUCZE = [
   'Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.',
   'Asekuracja',
   'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.',
+  'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.', /* M1-031 */
   'bez asekuracji w stojakach',
 ];
 
