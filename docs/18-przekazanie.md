@@ -454,3 +454,16 @@ EN Progress Guard · bg Пазач на прогреса · cs Strážce progres
 - Walidacja (też w podglądzie): limity Apple (odczyt dokumentacji 22.10.2026) — nazwa 30, podtytuł 30, słowa kluczowe 100 B, opis 4000, tekst promocyjny 170; adresy https; brak nazw innych marek.
   Mapowanie kodów repo → ASC jawne (`no`, `es-MX`, `zh-Hant` bez zmian); `sl` pomijany (L-003: ASC odrzucił słoweński przy zakupach 14.10.2026 — dla opisów niesprawdzone, otwarte).
 - Otwarte: wpis do ASC nadal „razem z wersją 1.0” (decyzja 21.10.2026, docs/45) — workflow wolno uruchomić w trybie `zapis` dopiero po utworzeniu wersji 1.0 i po scaleniu nowej wersji opisów (model M5 S1).
+
+## 23.10.2026 — decyzje właściciela po audycie generalnym M1 (STOP 2, SHA a2e04b8)
+- Blokery partii 1 (M1-028, M1-031 cz. 1, M1-040, M1-045) naprawione i scalone (PR #52–#56). Bramka opłacalności po zmianie modelu: nazwany wyjątek (koordynator, 22.10) z kontrolą zastępczą — rola 02 sprawdza rachunek ok. 471 USD (388 USD przy prowizji 30%), punkt kontrolny 8 tyg. po premierze bez zmian.
+- DEC-01 (a): kalendarz rośnie do progu 130% (DEC-10) przed 1.0; podgląd liczb po przytrzymaniu — 1.0.1.
+- DEC-02 (a): forum z zakazem promocji usunięte z planu startu; wpis tylko po pisemnej zgodzie administracji.
+- DEC-03 (c): **przywrócić przełącznik trybu w generatorze przed 1.0** (wyjątek od zamrożenia zakresu na polecenie właściciela). Odrzucone: przyjęcie ZM-03 bez zmian; przegląd na telefonie.
+- DEC-04 (a): krok „zaimportuj historię” w Pierwszych krokach — 1.0.1.
+- DEC-05 (a): osobny komunikat „Sklep chwilowo niedostępny” przy pustej liście produktów (35 języków, test).
+- DEC-06 (a): tryb `apply` w `asc-iap-localizations.yml` za środowiskiem `release`; węższy klucz ASC po 1.0.
+- DEC-07 (c): każda pozycja produktowa P2 (nazwy płatnej części, turkus, „Planowanie”, strona wsparcia, cel szybkości zapisu, beta iOS i in.) — przegląd właściciela przed 1.0, karta z opcjami na każdą.
+- DEC-08 (a): ostrzeżenie o asekuracji dla ćwiczeń z hantlami nad głową/twarzą przed 1.0 (NSCA 2017 Std 3.2 „free weights” — reguła ustalona).
+- Partia 2 audytu (a): przed 1.0 (polityka prywatności bez okresu próbnego, strona produktu z limitem 5 dni, doprecyzowania treści wg źródeł, formy w el/pt, „Wyślij kopię”).
+- Boje wybuchowe (push press, rwanie, podrzut): właściciel nie ma dostępu do NSCA Essentials — bez ostrzeżenia, [DO USTALENIA] (jedno źródło szczebla 2 niedostępne).
