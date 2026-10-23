@@ -12,6 +12,6 @@
  "idle": "在手機上開始訓練",
  "finished": "訓練已結束",
  "update": "更新手錶 App",
- "nothingLeft": "沒有其他要做的了",
+ "finishOnPhone": "在手機上結束訓練",
  "finish": "結束這組"
 }

@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Без покупки: до {n} днів тренувань на місяць; історія, резервна копія й експорт завжди доступні.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Безкоштовні тренувальні дні цього місяця: використано {n} із {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} із {limit} безкоштовних тренувальних днів цього місяця.",
- "Został|Zostały|Zostało": "Залишився|Залишилося|Залишилося"
+ "Został|Zostały|Zostało": "Залишився|Залишилося|Залишилося",
+ "Zakończ trening na telefonie": "Завершіть тренування на телефоні"
 }

@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "購入なしの場合：月に最大{n}日までトレーニングできます。履歴、バックアップ、書き出しはいつでも利用できます。",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "今月の無料トレーニング日：{limit}日中{n}日使用",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "今月の無料トレーニング日は{limit}日のうち、{n}日{left}。",
- "Został|Zostały|Zostało": "残っています"
+ "Został|Zostały|Zostało": "残っています",
+ "Zakończ trening na telefonie": "iPhone でトレーニングを終了"
 }
