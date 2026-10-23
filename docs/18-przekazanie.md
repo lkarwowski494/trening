@@ -454,3 +454,17 @@ EN Progress Guard · bg Пазач на прогреса · cs Strážce progres
 - Walidacja (też w podglądzie): limity Apple (odczyt dokumentacji 22.10.2026) — nazwa 30, podtytuł 30, słowa kluczowe 100 B, opis 4000, tekst promocyjny 170; adresy https; brak nazw innych marek.
   Mapowanie kodów repo → ASC jawne (`no`, `es-MX`, `zh-Hant` bez zmian); `sl` pomijany (L-003: ASC odrzucił słoweński przy zakupach 14.10.2026 — dla opisów niesprawdzone, otwarte).
 - Otwarte: wpis do ASC nadal „razem z wersją 1.0” (decyzja 21.10.2026, docs/45) — workflow wolno uruchomić w trybie `zapis` dopiero po utworzeniu wersji 1.0 i po scaleniu nowej wersji opisów (model M5 S1).
+
+## 23.10.2026 — decyzje właściciela po audycie generalnym M1 (STOP 2, SHA a2e04b8)
+- Blokery partii 1 (M1-028, M1-031 cz. 1, M1-040, M1-045) naprawione i scalone (PR #52–#56). Bramka opłacalności po zmianie modelu: nazwany wyjątek (koordynator, 22.10) z kontrolą zastępczą — rola 02 sprawdza rachunek ok. 471 USD (388 USD przy prowizji 30%), punkt kontrolny 8 tyg. po premierze bez zmian.
+- DEC-01 (a): kalendarz rośnie do progu 130% (DEC-10) przed 1.0; podgląd liczb po przytrzymaniu — 1.0.1.
+- DEC-02 (a): forum z zakazem promocji usunięte z planu startu; wpis tylko po pisemnej zgodzie administracji.
+- DEC-03 (c): **przywrócić przełącznik trybu w generatorze przed 1.0** (wyjątek od zamrożenia zakresu na polecenie właściciela). Odrzucone: przyjęcie ZM-03 bez zmian; przegląd na telefonie.
+- DEC-04 (a): krok „zaimportuj historię” w Pierwszych krokach — 1.0.1.
+- DEC-05 (a): osobny komunikat „Sklep chwilowo niedostępny” przy pustej liście produktów (35 języków, test).
+- DEC-06 (a): tryb `apply` w `asc-iap-localizations.yml` za środowiskiem `release`; węższy klucz ASC po 1.0.
+- DEC-07 (c): każda pozycja produktowa P2 (nazwy płatnej części, turkus, „Planowanie”, strona wsparcia, cel szybkości zapisu, beta iOS i in.) — przegląd właściciela przed 1.0, karta z opcjami na każdą.
+- DEC-08 (a): ostrzeżenie o asekuracji dla ćwiczeń z hantlami nad głową/twarzą przed 1.0 (NSCA 2017 Std 3.2 „free weights” — reguła ustalona).
+- Partia 2 audytu (a): przed 1.0 (polityka prywatności bez okresu próbnego, strona produktu z limitem 5 dni, doprecyzowania treści wg źródeł, formy w el/pt, „Wyślij kopię”).
+- Boje wybuchowe (push press, rwanie, podrzut): właściciel nie ma dostępu do NSCA Essentials — bez ostrzeżenia, [DO USTALENIA] (jedno źródło szczebla 2 niedostępne).
+- DEC-07 — karty P2 (właściciel, 23.10.2026): K1 (a) jedna nazwa „Pełna wersja” (nagłówek ekranu zakupu, opis sklepu); K2 (a) turkus bez zmian do 1.0 jako „drugi akcent informacyjny”, porządek w 1.0.x; K3 (a) „Planowanie” w linii tytułu także na ekranie Trening; K4 (a) pytania o subskrypcję na stronie wsparcia PL/EN przed 1.0; K5 (a) reguły uczciwej promocji (ujawnienie autorstwa, bez próśb o oceny do znajomych, zgoda na e-maile do klubów) w planie startu i roli marketingu; K6 (a) nowy przekaz startowy „szybki zapis serii, także z zegarka; dane tylko na telefonie; bez konta” (zastępuje hasło z 13.10) i Apple Watch na stronie produktu; K7 budżet czasu właściciela **2 h tygodniowo przez 8 tygodni** po premierze, odpowiedzi na recenzje w 48 h; K8 (a) dopisek 471 USD (górna granica) / ok. 388 USD (prowizja 30%) w docs/monetyzacja.md, przeliczenie w punkcie kontrolnym; K9 (a) wymaganie „≤ 1 stuknięcie od ekranu treningu do odhaczonej serii” z testem; K10 (a) krok listy kontrolnej: beta iOS/watchOS (lipiec–sierpień) na symulatorze w CI i 5 min na telefonie.
