@@ -49,6 +49,41 @@ describe('store/review-notes.md', () => {
     expect(L.pl.description).toContain('Subskrypcja finansuje dalszy rozwój: aplikacja jest regularnie aktualizowana, a nowe funkcje nie wymagają dodatkowych opłat.');
     for (const k of ['en-US', 'en-GB', 'en-AU', 'en-CA']) expect([k, L[k].description.includes('The subscription funds continued development: the app is updated regularly, and new features come at no extra cost.')]).toEqual([k, true]);
   });
+  test('M1-045: zdanie o finansowaniu rozwoju subskrypcją jest w opisie każdej z 28 pozostałych lokalizacji (początek zdania, tłumaczenie 23.10.2026) i opis mieści się w 4000 znaków', () => {
+    const L = JSON.parse(fs.readFileSync(path.join(__dirname, '../store/app-store-metadata.json'), 'utf8')).lokalizacje as Record<string, { description: string }>;
+    const START: Record<string, string> = {
+      'cs': 'Předplatné financuje další vývoj:',
+      'sk': 'Predplatné financuje ďalší vývoj:',
+      'hu': 'Az előfizetés a további fejlesztést finanszírozza:',
+      'ro': 'Abonamentul finanțează dezvoltarea continuă:',
+      'hr': 'Pretplata financira daljnji razvoj:',
+      'sl': 'Naročnina financira nadaljnji razvoj:',
+      'uk': 'Підписка фінансує подальшу розробку:',
+      'es-ES': 'La suscripción financia el desarrollo continuo:',
+      'es-MX': 'La suscripción financia el desarrollo continuo:',
+      'pt-PT': 'A subscrição financia o desenvolvimento contínuo:',
+      'pt-BR': 'A assinatura financia o desenvolvimento contínuo:',
+      'de-DE': 'Das Abo finanziert die Weiterentwicklung:',
+      'fr-FR': 'L’abonnement finance le développement :',
+      'it': 'L’abbonamento finanzia lo sviluppo continuo:',
+      'nl-NL': 'Het abonnement financiert de verdere ontwikkeling:',
+      'sv': 'Prenumerationen finansierar den fortsatta utvecklingen:',
+      'da': 'Abonnementet finansierer den videre udvikling:',
+      'no': 'Abonnementet finansierer videre utvikling:',
+      'fi': 'Tilaus rahoittaa jatkokehitystä:',
+      'tr': 'Abonelik geliştirmenin sürmesini finanse eder:',
+      'el': 'Η συνδρομή χρηματοδοτεί τη συνεχιζόμενη ανάπτυξη:',
+      'id': 'Langganan membiayai pengembangan berkelanjutan:',
+      'ms': 'Langganan membiayai pembangunan berterusan:',
+      'vi': 'Gói đăng ký tài trợ cho việc tiếp tục phát triển:',
+      'ru': 'Подписка финансирует дальнейшую разработку:',
+      'ja': 'サブスクリプションは今後の開発に充てられます。',
+      'ko': '구독은 앱의 지속적인 개발에 쓰입니다.',
+      'zh-Hant': '訂閱費用用於持續開發：',
+    };
+    expect(Object.keys(START)).toHaveLength(28);
+    for (const [k, s] of Object.entries(START)) expect([k, L[k].description.includes(s), [...L[k].description].length <= 4000]).toEqual([k, true, true]);
+  });
   test('bez danych osobowych: jedyny adres e-mail to adres wsparcia, bez numerów telefonu i haseł', () => {
     expect([...md.matchAll(/[\w.+-]+@[\w-]+\.[\w.]+/g)].map(m => m[0]).filter(a => a !== 'support@apps4brew.com')).toEqual([]);
     expect(md).not.toMatch(/\+?\d[\d ]{8,}\d/); expect(md).not.toMatch(/password:|hasło:/i);

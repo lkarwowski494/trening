@@ -469,7 +469,7 @@ Test najpierw (czerwony na f2b0525: blok IN-APP PURCHASES bez akapitu o stałej 
 
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
-| M1-045 (10-wydanie-001) | `tests/store-review-notes.test.ts` „M1-045” (akapit EN/PL i notatka subskrypcji: aktualizacje, alternatywa dożywotnia; wersje 0.11–0.20 obecne w dzienniku wydań; zdanie w opisie PL i 4 lokalizacjach EN; limit 4000 B) | dane, języki | zielone | **realność: brzegowy** (zależy od recenzenta, wytyczna 3.1.2(a)). Opis w pozostałych 28 lokalizacjach bez zdania — zadanie dla tłumacza. Ekran bez zmian, E2E nie dotyczy |
+| M1-045 (10-wydanie-001) | `tests/store-review-notes.test.ts` „M1-045” (akapit EN/PL i notatka subskrypcji: aktualizacje, alternatywa dożywotnia; wersje 0.11–0.20 obecne w dzienniku wydań; zdanie w opisie PL i 4 lokalizacjach EN; limit 4000 B) | dane, języki | zielone | **realność: brzegowy** (zależy od recenzenta, wytyczna 3.1.2(a)). Opis w pozostałych 28 lokalizacjach: zdanie przetłumaczone 23.10.2026 (`docs/lokalizacja/przeglad-m1-031-045-2026-10-23.md`), test „28 pozostałych lokalizacji” w `store-review-notes`. Ekran bez zmian, E2E nie dotyczy |
 
 ## 23.10.2026 — naprawa M1-audytor-generalny-028 (audyt 21.10.2026, partia 1; gałąź `naprawa-m1-028-zegarek-ack`)
 Test najpierw (7 czerwonych na f2b0525: w chwili `ack` baza nie miała zmiany), potem poprawka w `lib/watch/link.ts`.
