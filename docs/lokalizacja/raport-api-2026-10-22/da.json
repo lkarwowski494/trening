@@ -1,0 +1,67 @@
+{
+ "jezyk": "da",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 393,
+ "uwagi": [
+  {
+   "klucz": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
+   "rodzaj": "nowe",
+   "pl": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
+   "tlumaczenie": "{n} af {limit} gratis træningsdage denne måned {left}.",
+   "poprawka": "{n} af {limit} gratis træningsdage {left} denne måned.",
+   "powod": "{left} („tilbage”) na końcu zdania po „denne måned” brzmi nienaturalnie; naturalny szyk wymaga go zaraz po rzeczowniku.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Til sidst “Afslut” i overskriften (eller “Afslut træning” i kortet efter sidste sæt) — sessionen havner på fanen Plan.",
+   "poprawka": "Tryk til sidst på “Afslut” i overskriften (eller “Afslut træning” i kortet efter sidste sæt) — sessionen havner på fanen Plan.",
+   "powod": "Brak czasownika („Til sidst “Afslut””) daje nienaturalne zdanie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "nordic.catch",
+   "rodzaj": "wskazowka",
+   "pl": "Gdy nie dasz rady dalej hamować, złap się dłońmi jak przy pompce.",
+   "tlumaczenie": "Når du ikke kan bremse mere, så grib fat med hænderne som i en push-up.",
+   "poprawka": "Når du ikke kan bremse mere, så tag fra med hænderne som i en push-up.",
+   "powod": "„grib fat” znaczy „chwyć coś” i nie oddaje sensu „złap się (podeprzyj) dłońmi”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "rodzaj": "nowe",
+   "pl": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "tlumaczenie": "{app} er lavet af en uafhængig udvikler: uden reklamer og uden dataindsamling. Hvis den hjælper dig, så vælg en plan og træn uden grænse. De gratis dage vender tilbage {date}.",
+   "poprawka": "{app} er lavet af en uafhængig udvikler: uden reklamer og uden dataindsamling. Hvis den hjælper dig, så vælg en plan og træn uden begrænsninger. Dine gratis dage kommer tilbage den {date}.",
+   "powod": "„uden grænse” i liczbie pojedynczej i „De gratis dage vender tilbage {date}” brzmią nienaturalnie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Tryk på et sæts etiket for at ændre typen; stryg en række til venstre for at slette den. Gentagelsesintervallet er valgfrit — med det får du »↑«-tips. »⇅ SS« forbinder en øvelse med den næste i et supersæt, »✕ SS« tager den ud af gruppen. Rækkefølge: »≡ Omarranger«.",
+   "poprawka": "Tryk på et sæts etiket for at ændre typen; stryg en række til venstre for at slette den. Gentagelsesintervallet er valgfrit — med det får du “↑”-tips. “⇅ SS” forbinder en øvelse med den næste i et supersæt, “✕ SS” tager den ud af gruppen. Rækkefølge: “≡ Omarranger”.",
+   "powod": "Cudzysłowy »« są niespójne z resztą tłumaczeń, które używają “”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "tlumaczenie": "Du sletter elastikker med “Rediger” i overskriften på deres skærm eller ved at stryge til venstre.",
+   "poprawka": "Du sletter elastikker med “Rediger” i overskriften på elastikskærmen eller ved at stryge til venstre.",
+   "powod": "„på deres skærm” jest niejasne; lepiej nazwać ekran wprost.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

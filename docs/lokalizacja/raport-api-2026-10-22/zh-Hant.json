@@ -1,0 +1,193 @@
+{
+ "jezyk": "zh-Hant",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 379,
+ "uwagi": [
+  {
+   "klucz": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+   "rodzaj": "nowe",
+   "pl": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+   "tlumaczenie": "計畫變更於 {day}，先前的日子依舊計畫計算",
+   "poprawka": "計畫變更於 {day}，先前的日子依先前的計畫計算",
+   "powod": "„依舊計畫” można odczytać jako „依舊” (nadal), co daje niejasny sens. Lepiej jednoznacznie: „依先前的計畫”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zmniejsz powtórzenia o 1",
+   "rodzaj": "nowe",
+   "pl": "Zmniejsz powtórzenia o 1",
+   "tlumaczenie": "減少一次",
+   "poprawka": "次數減少 1",
+   "powod": "„減少一次” znaczy raczej „zmniejsz jeden raz”, a nie „zmniejsz liczbę powtórzeń o 1”. Etykieta jest niejasna.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zwiększ powtórzenia o 1",
+   "rodzaj": "nowe",
+   "pl": "Zwiększ powtórzenia o 1",
+   "tlumaczenie": "增加一次",
+   "poprawka": "次數增加 1",
+   "powod": "„增加一次” znaczy raczej „zwiększ jeden raz”, a nie „zwiększ liczbę powtórzeń o 1”. Etykieta jest niejasna.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "bd.range",
+   "rodzaj": "wskazowka",
+   "pl": "Unoś rękę i nogę tylko tak wysoko, jak utrzymasz lędźwie bez wyginania.",
+   "tlumaczenie": "手臂和腿只抬到下背不拱起的高度。",
+   "poprawka": "手臂和腿只抬到下背不反弓的高度。",
+   "powod": "Niespójna terminologia: „拱” oznacza tu wyginanie lędźwi w łuk, a w innych zdaniach zaokrąglanie pleców (214, 246, 271, 345). Dla przeprostu lędźwi lepiej „反弓”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "bext.noArch",
+   "rodzaj": "wskazowka",
+   "pl": "Na górze kończ w linii prostej — bez wyginania lędźwi w łuk.",
+   "tlumaczenie": "在頂端以一直線結束，不要讓下背拱起。",
+   "poprawka": "在頂端以一直線結束，不要讓下背反弓。",
+   "powod": "„拱起” jest użyte też dla zaokrąglania pleców, przez co wskazówka jest dwuznaczna. Dla wyginania lędźwi w łuk lepiej „反弓”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "bp.mis.arch",
+   "rodzaj": "wskazowka",
+   "pl": "Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej.",
+   "tlumaczenie": "為了推更重而過度拱下背或讓臀部離開椅子。",
+   "poprawka": "為了推更重而讓下背過度反弓，或讓臀部離開椅子。",
+   "powod": "„拱下背” jest dwuznaczne, bo „拱背” w innych zdaniach oznacza zaokrąglanie. Dla przeprostu lędźwi lepiej „過度反弓”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "db.back",
+   "rodzaj": "wskazowka",
+   "pl": "Lędźwie przy podłodze — nie wyginaj pleców w łuk.",
+   "tlumaczenie": "下背貼地 — 不要拱起。",
+   "poprawka": "下背貼地 — 不要讓下背反弓。",
+   "powod": "„拱起” jest dwuznaczne, bo w innych zdaniach oznacza zaokrąglanie. Dla wyginania lędźwi w łuk lepiej „反弓”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "gb.noArch",
+   "rodzaj": "wskazowka",
+   "pl": "Nie wypychaj bioder wyżej niż linia tułowia — lędźwie bez przeprostu.",
+   "tlumaczenie": "不要把髖部推到高於身體線 — 下背不要拱。",
+   "poprawka": "不要把髖部推到高於身體線 — 下背不要過度反弓。",
+   "powod": "Przeprost lędźwi oddano jako „拱”, które w innych zdaniach oznacza zaokrąglanie pleców. To niespójne i dwuznaczne.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "hinge.back",
+   "rodzaj": "wskazowka",
+   "pl": "Plecy proste (neutralne) przez cały ruch — bez zaokrąglania.",
+   "tlumaczenie": "整個動作背部保持打直（中立）— 不要拱背。",
+   "poprawka": "整個動作背部保持打直（中立）— 不要圓背。",
+   "powod": "Zaokrąglanie pleców oddano jako „拱背”, czyli tym samym terminem, którego gdzie indziej użyto dla wyginania lędźwi w łuk. Lepiej „圓背”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "ht.mis.arch",
+   "rodzaj": "wskazowka",
+   "pl": "Przeprost w lędźwiach na górze zamiast wyprostu w biodrach.",
+   "tlumaczenie": "在頂端用拱下背代替伸展髖部。",
+   "poprawka": "在頂端用下背反弓代替伸展髖部。",
+   "powod": "„拱下背” jest dwuznaczne (w innych zdaniach „拱背” oznacza zaokrąglanie). Dla przeprostu lędźwi lepiej „反弓”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "ht.rigid",
+   "rodzaj": "wskazowka",
+   "pl": "Ruch tylko w biodrach — na górze nie wyginaj lędźwi w łuk.",
+   "tlumaczenie": "只動髖部 — 在頂端不要拱下背。",
+   "poprawka": "只動髖部 — 在頂端不要讓下背反弓。",
+   "powod": "„拱下背” jest dwuznaczne względem „拱背” jako zaokrąglania. Dla wyginania lędźwi lepiej „反弓”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "llc.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Biodra przyciśnięte do ławki — bez wyginania pleców.",
+   "tlumaczenie": "髖部緊貼訓練椅 — 不要拱背。",
+   "poprawka": "髖部緊貼訓練椅 — 不要讓下背反弓。",
+   "powod": "Źródło mówi o wyginaniu pleców w łuk, a „拱背” w innych zdaniach oznacza zaokrąglanie. Termin jest dwuznaczny.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "lp.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Nie schodź tak nisko, by miednica odrywała się od oparcia, a dolne plecy zaokrąglały.",
+   "tlumaczenie": "不要下得太深，以免骨盆離開座椅、下背拱起。",
+   "poprawka": "不要下得太深，以免骨盆離開座椅、下背變圓。",
+   "powod": "Zaokrąglanie dolnych pleców oddano jako „拱起”, czyli tak samo jak wyginanie lędźwi w łuk w innych zdaniach. Lepiej „變圓/圓背”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "mis.roundBack",
+   "rodzaj": "wskazowka",
+   "pl": "Zaokrąglanie pleców, żeby dociągnąć ciężar.",
+   "tlumaczenie": "為了完成動作而拱背。",
+   "poprawka": "為了完成動作而圓背。",
+   "powod": "Zaokrąglanie pleców oddano jako „拱背”, którego użyto też dla przeprostu lędźwi. Lepiej „圓背”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "plank.mis.sag",
+   "rodzaj": "wskazowka",
+   "pl": "Opadające biodra i wygięte w łuk lędźwie.",
+   "tlumaczenie": "臀部下垂、下背拱起。",
+   "poprawka": "臀部下垂、下背反弓。",
+   "powod": "„拱起” dla wygiętych w łuk lędźwi koliduje z „拱背” jako zaokrąglaniem w innych zdaniach. Lepiej „反弓”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "rt.back",
+   "rodzaj": "wskazowka",
+   "pl": "Plecy proste — nie garb się przy obrocie.",
+   "tlumaczenie": "背部打直 — 轉動時不要拱背。",
+   "poprawka": "背部打直 — 轉動時不要圓背。",
+   "powod": "„Garbienie się” oddano jako „拱背”, którego gdzie indziej użyto dla wyginania lędźwi w łuk. Lepiej „圓背”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.",
+   "rodzaj": "nowe",
+   "pl": "Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.",
+   "tlumaczenie": "手機上的資料未被更改——你可以將資料以檔案傳送。",
+   "poprawka": "手機上的資料未被更改 — 你可以將資料以檔案傳送。",
+   "powod": "Niespójna typografia: w pozostałych tekstach używana jest pauza „ — ” ze spacjami, tu „——”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Usuń z biblioteki",
+   "rodzaj": "nowe",
+   "pl": "Usuń z biblioteki",
+   "tlumaczenie": "從資料庫刪除",
+   "poprawka": "從動作庫刪除",
+   "powod": "„資料庫” oznacza bazę danych. Chodzi o bibliotekę ćwiczeń, więc naturalniej „動作庫”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "calf.edge",
+   "rodzaj": "wskazowka",
+   "pl": "Oprzyj przednią część stóp na podwyższeniu, pięty poza krawędzią.",
+   "tlumaczenie": "前腳掌踩在邊緣，腳跟懸空。",
+   "poprawka": "前腳掌踩在墊高處的邊緣，腳跟懸空。",
+   "powod": "Pominięto „na podwyższeniu” (na podwyższeniu/stopniu) z polskiego źródła.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "nordic.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Uklęknij na miękkim podłożu; kostki muszą być mocno przytrzymane (partner, wałki albo zaczep).",
+   "tlumaczenie": "跪在柔軟的表面上；腳踝必須牢牢固定（夥伴、滾輪或固定架）。",
+   "poprawka": "跪在柔軟的表面上；腳踝必須牢牢固定（夥伴、滾筒護墊或固定架）。",
+   "powod": "„滾輪” oznacza kółka. „Wałki” to wałki/poduszki dociskające, więc lepiej „滾筒護墊”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

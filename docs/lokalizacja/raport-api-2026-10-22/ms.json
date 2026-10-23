@@ -1,0 +1,58 @@
+{
+ "jezyk": "ms",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 394,
+ "uwagi": [
+  {
+   "klucz": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "tlumaczenie": "Getah dipadam melalui “Sunting” di pengepala skrinnya atau dengan leret ke kiri.",
+   "poprawka": "Padam band rintangan melalui “Sunting” di pengepala skrin band rintangan atau dengan leret ke kiri.",
+   "powod": "„Getah” oznacza po prostu gumę (materiał), więc w odniesieniu do gum treningowych jest niejasne. Lepiej „band rintangan”. „skrinnya” też jest niejednoznaczne.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Pendirian ACSM 2026: dengan sekurang-kurangnya {n} set bagi setiap kumpulan otot seminggu, pertumbuhan otot lebih besar daripada dengan isi padu lebih rendah; latihan kekuatan dalam pelbagai bentuk memberi pertumbuhan berbanding tanpa latihan.",
+   "poprawka": "Pendirian ACSM 2026: dengan sekurang-kurangnya {n} set bagi setiap kumpulan otot seminggu, pertumbuhan otot lebih besar daripada dengan volum lebih rendah; latihan kekuatan dalam pelbagai bentuk memberi pertumbuhan berbanding tanpa latihan.",
+   "powod": "Niespójna terminologia: „isi padu” zamiast „volum”, którego używają pozostałe teksty (25, 83).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Pengumuman berfungsi apabila “Bunyi pada akhir rehat” dihidupkan. Tetapan yang sama boleh diubah melalui menu “⋯” pada skrin latihan.",
+   "poprawka": "Pengumuman berfungsi apabila “Bunyi pada akhir rehat” dihidupkan. Seting yang sama boleh diubah melalui menu “⋯” pada skrin latihan.",
+   "powod": "Niespójna terminologia: „Tetapan” zamiast „Seting”, którego używają pozostałe teksty (37, 75, 84).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "lista serii przewijana",
+   "rodzaj": "nowe",
+   "pl": "lista serii przewijana",
+   "tlumaczenie": "senarai set boleh digulung",
+   "poprawka": "senarai set boleh ditatal",
+   "powod": "Standardowy termin interfejsu dla przewijania to „tatal”, nie „gulung”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "pl": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "tlumaczenie": "Rehat. Masa berbaki: {t}. Jumlah: {all}.",
+   "poprawka": "Rehat. Masa berbaki: {t}. Jumlah rehat: {all}.",
+   "powod": "Pominięto „rehat” w „Cała przerwa”, przez co komunikat (VoiceOver) jest mniej jasny.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

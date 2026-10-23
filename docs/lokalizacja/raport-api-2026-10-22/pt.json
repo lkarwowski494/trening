@@ -1,0 +1,76 @@
+{
+ "jezyk": "pt",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 392,
+ "uwagi": [
+  {
+   "klucz": "Płacisz raz i masz na zawsze.",
+   "rodzaj": "nowe",
+   "pl": "Płacisz raz i masz na zawsze.",
+   "tlumaczenie": "Paga uma só vez e fica para sempre.",
+   "poprawka": "Paga uma só vez e fica com ele para sempre.",
+   "powod": "„fica para sempre” znaczy „zostaje Pan na zawsze”, a nie „ma Pan to na zawsze”. Brakuje dopełnienia.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "Progressão: quando chegar ao topo do intervalo de repetições, aumente o peso. As posições do ACSM recomendam aumentar a carga gradualmente; o momento e o tamanho do passo são uma convenção.",
+   "poprawka": "Progressão: quando chegar ao topo do intervalo de repetições, aumente o peso. As tomadas de posição do ACSM recomendam aumentar a carga gradualmente; o momento e o tamanho do incremento são uma convenção.",
+   "powod": "„position stands” to po portugalsku „tomadas de posição”. Krok zmiany przetłumaczono w zdaniu 26 jako „incremento”, tu jako „passo”, więc terminologia jest niespójna.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "Aquecimento: {d} de {n} feitos",
+   "poprawka": "Séries de aquecimento: {d} de {n} feitas",
+   "powod": "Rzeczownik w liczbie pojedynczej („Aquecimento”) nie zgadza się z „feitos” w liczbie mnogiej. Lepiej mówić o seriach rozgrzewkowych, tak jak w zdaniu 55.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Posição do ACSM 2026: com pelo menos {n} séries por grupo muscular por semana, o crescimento muscular foi maior do que com menos volume; o treino de força nas suas várias formas dá crescimento em comparação com não treinar.",
+   "poprawka": "Tomada de posição do ACSM 2026: com pelo menos {n} séries por grupo muscular por semana, o crescimento muscular foi maior do que com menos volume; o treino de força, nas suas várias formas, produz crescimento muscular em comparação com não treinar.",
+   "powod": "Dla „position stand” należy użyć terminu „tomada de posição”, spójnie ze zdaniem 50. Sformułowanie „dá crescimento” brzmi nienaturalnie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Usuń plan",
+   "rodzaj": "nowe",
+   "pl": "Usuń plan",
+   "tlumaczenie": "Eliminar plano",
+   "poprawka": "Apagar plano",
+   "powod": "Pozostałe przyciski usuwania używają „Apagar”, tylko tu jest „Eliminar”. Terminologia jest niespójna.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "pl": "+ {n} {w}",
+   "tlumaczenie": "+ mais {n} {w}",
+   "poprawka": "+ {n} {w}",
+   "powod": "„+” i „mais” dublują to samo znaczenie; polskie źródło ma tylko „+”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "lat.elbows",
+   "rodzaj": "wskazowka",
+   "pl": "Łokcie lekko ugięte i prowadzą ruch — są na wysokości dłoni lub wyżej.",
+   "tlumaczenie": "Cotovelos ligeiramente fletidos e a liderar — à altura das mãos ou acima.",
+   "poprawka": "Cotovelos ligeiramente fletidos e a conduzir o movimento — à altura das mãos ou acima.",
+   "powod": "„a liderar” to kalka z angielskiego; „conduzir o movimento” brzmi naturalnie i zgadza się ze zdaniem 192.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

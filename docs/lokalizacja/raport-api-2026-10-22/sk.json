@@ -1,0 +1,148 @@
+{
+ "jezyk": "sk",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 384,
+ "uwagi": [
+  {
+   "klucz": "Usuń ćwiczenie",
+   "rodzaj": "nowe",
+   "pl": "Usuń ćwiczenie",
+   "tlumaczenie": "Odstrániť cvik",
+   "poprawka": "Vymazať cvik",
+   "powod": "Niespójna terminologia: w innych przyciskach jest „Vymazať”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Usuń plan",
+   "rodzaj": "nowe",
+   "pl": "Usuń plan",
+   "tlumaczenie": "Zmazať plán",
+   "poprawka": "Vymazať plán",
+   "powod": "Niespójna terminologia: w innych przyciskach jest „Vymazať”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Usuń serię",
+   "rodzaj": "nowe",
+   "pl": "Usuń serię",
+   "tlumaczenie": "Odstrániť sériu",
+   "poprawka": "Vymazať sériu",
+   "powod": "Niespójna terminologia: w innych przyciskach jest „Vymazať”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "z {s}",
+   "rodzaj": "nowe",
+   "pl": "z {s}",
+   "tlumaczenie": "celkom {s}",
+   "poprawka": "z {s}",
+   "powod": "„celkom” (łącznie) zmienia znaczenie „z {s}” jako części licznika „x z y”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Oznámenia fungujú, keď je zapnuté „Zvuk na konci pauzy“. Rovnaké nastavenie zmeníte v ponuke „⋯“ na obrazovke tréningu.",
+   "poprawka": "Oznámenia fungujú, keď je zapnutý „Zvuk na konci pauzy“. Rovnaké nastavenie zmeníte v ponuke „⋯“ na obrazovke tréningu.",
+   "powod": "Błąd zgody rodzaju: „Zvuk” jest rodzaju męskiego, więc „zapnutý”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.",
+   "rodzaj": "nowe",
+   "pl": "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.",
+   "tlumaczenie": "Aplikácia sa pri posledných spusteniach neočakávane zavrela.",
+   "poprawka": "Aplikácia sa pri posledných spusteniach neočakávane ukončila.",
+   "powod": "„zavrela” brzmi potocznie; w iOS przyjęte jest „ukončila”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "Rozcvička: {d} z {n} hotovo",
+   "poprawka": "Zahrievacie série: {d} z {n} hotovo",
+   "powod": "„Rozcvička” oznacza rozgrzewkę ogólną, a nie serie rozgrzewkowe. Licznik dotyczy serii.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "bj.move",
+   "rodzaj": "wskazowka",
+   "pl": "Krótkie ugięcie z zamachem rąk, wybij się, prostując biodra, kolana i stawy skokowe; wyląduj obiema stopami na skrzyni.",
+   "tlumaczenie": "Krátko sa podrepni so švihom rúk a vyskoč vystretím bedier, kolien a členkov; dopadni na bedňu oboma nohami.",
+   "poprawka": "Krátko sa prikrč so švihom rúk a vyskoč vystretím bedier, kolien a členkov; dopadni na bedňu oboma nohami.",
+   "powod": "„podrepni sa” jest nienaturalne.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "bp.mis.arch",
+   "rodzaj": "wskazowka",
+   "pl": "Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej.",
+   "tlumaczenie": "Prehnané prehnutie v driekoch alebo dvíhanie zadku z lavičky, aby si vytlačil viac.",
+   "poprawka": "Nadmerné prehýbanie v driekoch alebo dvíhanie sedacích svalov z lavičky, aby si vytlačil viac.",
+   "powod": "Powtórzenie „prehnané prehnutie” brzmi niezgrabnie. „zadok” jest potoczne; w innych zdaniach jest „sedacie svaly”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "cpress.base",
+   "rodzaj": "wskazowka",
+   "pl": "Dociskaj stopy do podłogi i napnij brzuch — tułów stabilny.",
+   "tlumaczenie": "Zatlač chodidlá do podlahy a zapni brucho, aby trup zostal stabilný.",
+   "poprawka": "Zatlač chodidlá do podlahy a spevni brucho, aby trup zostal stabilný.",
+   "powod": "„zapni brucho” jest nienaturalne; w innych zdaniach jest „spevni brucho”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "curl.mis.elbows",
+   "rodzaj": "wskazowka",
+   "pl": "Wysuwanie łokci do przodu albo od tułowia.",
+   "tlumaczenie": "Necháš lakte uchádzať dopredu alebo od tela.",
+   "poprawka": "Uchádzanie lakťov dopredu alebo od tela.",
+   "powod": "Opis błędu powinien mieć formę rzeczownikową, jak w źródle i w innych opisach błędów.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "ibp.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Połóż się na ławce skośnej: plecy i pośladki oparte, stopy na podłodze.",
+   "tlumaczenie": "Ľahni si na šikmú lavičku: chrbát a zadok opreté, chodidlá na zemi.",
+   "poprawka": "Ľahni si na šikmú lavičku: chrbát a sedacie svaly opreté, chodidlá na zemi.",
+   "powod": "„zadok” jest potoczne; w innych zdaniach jest „sedacie svaly”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "llc.move",
+   "rodzaj": "wskazowka",
+   "pl": "Zegnij kolana, przyciągając wałek w stronę pośladków; opuść go powoli.",
+   "tlumaczenie": "Pokrč kolená a pritiahni valec k zadku; pomaly ho spúšťaj.",
+   "poprawka": "Pokrč kolená a pritiahni valec k sedacím svalom; pomaly ho spúšťaj.",
+   "powod": "„zadok” jest potoczne; w innych zdaniach jest „sedacie svaly”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "mis.barAway",
+   "rodzaj": "wskazowka",
+   "pl": "Sztanga odjeżdża od ciała.",
+   "tlumaczenie": "Necháš činku odchádzať od tela.",
+   "poprawka": "Činka odchádza od tela.",
+   "powod": "Opis błędu powinien mieć formę opisową, jak w źródle, a nie zwrot w drugiej osobie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "wall.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Oprzyj plecy o stabilną ścianę, wysuń stopy w przód i zsuń się po ścianie do wybranej wysokości.",
+   "tlumaczenie": "Oprí chrbát o pevnú stenu, posuň chodidlá dopredu a zosuň sa po stene do zvolenej výšky.",
+   "poprawka": "Opri chrbát o pevnú stenu, posuň chodidlá dopredu a zosuň sa po stene do zvolenej výšky.",
+   "powod": "Literówka: „Oprí” zamiast „Opri”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}
