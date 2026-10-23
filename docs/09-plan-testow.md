@@ -487,3 +487,10 @@ Zmiana zachowania (nowy ekran, przepisane teksty); testy aktualizowane razem z k
 | Strażnik nazw źródeł | `tests/zrodla-wiedzy.test.ts` (wzorzec; lista ⇔ rejestr ⇔ docs/research; słowniki PL/EN, 33 języków, wskazówki, sprzęt, sklep, iOS, www; brak sieci w ekranie) | dane, logika, języki, niezmienniki | zielone | wyjątek: stare tłumaczenia kluczy z zestawu do przekładu |
 | Zestaw do przekładu | `tests/i18n-locales.test.ts` „zestaw do przekładu”, `tests/i18n-wave2/3/4.test.ts` (komplet z wyjątkiem „nowy”) | dane, języki | zielone | wyjątek znika po przekładzie |
 | Przepisane teksty | `tests/audit-0.10-gen-ui`, `generator-ui`, `gen-general*`, `audit011b`, `set-goals*`, `sets-mark`, `plan-own-templates-ui`, `matrix-ui`, `zrodlo-jedno`, `audit-k1-bl-mer` i in. (nowe brzmienia) | ekran, regresja | zielone | stopka wskazówek: test „brak stopki” zamiast „stopka bez nazw” |
+
+## 23.10.2026 — naprawa M1-audytor-generalny-048 (DEC-06 a; gałąź `naprawa-m1-048-asc-release`)
+Test najpierw (2 czerwone na e8cc375: jeden job z `--$TRYB`, bez środowiska), potem podział `asc-iap-localizations.yml` na `plan` (`--dry-run`, bez środowiska) i `apply` (`--apply`, `environment: release`, `needs: plan`, tylko dla `tryb=apply`).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-048 (10-wydanie-004) | `tests/audit-m1-workflows.test.ts` „M1-048” (jeden job z `--apply` za `environment: release`; plan bez środowiska; bez nowych sekretów); `tests/public-repo.test.ts` (dostosowany) | niezmienniki | zielone | Bez zmian w UI i BRD. Pozostaje przebieg dowodowy (L-001): uruchomić workflow z `tryb=dry-run` (musi biec bez zatwierdzenia) i `tryb=apply` (job `apply` czeka na zatwierdzenie `release`) |

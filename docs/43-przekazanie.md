@@ -140,8 +140,8 @@ Kod i plik testowy `store/Trening.storekit` mówią już „14 dni” (2 tygodni
 
 Test na iPhonie, wymaga builda z TestFlight z włączonymi zakupami (obecny build ma zakupy wyłączone, więc test zrobisz dopiero po włączeniu).
 
-1. App Store Connect → Users and Access → „Sandbox” → „Test Accounts” → „+”: utwórz konto testowe (dowolny adres e-mail, którego nie używasz w Apple ID; hasło zapisz).
-2. Na iPhonie: Ustawienia → App Store → na samym dole „Sandbox Account” → zaloguj kontem testowym.
+1. Konto testowe NIE jest potrzebne dla buildu z TestFlight: aplikacja z TestFlight sama działa w środowisku testowym Apple, kupujesz na swoim Apple ID bez opłaty, a subskrypcja odnawia się codziennie (do 6 razy w tygodniu). Źródło: https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/ (odczyt 23.10.2026). Konto Sandbox jest tylko dla aplikacji uruchamianych z Xcode (poprawka 23.10.2026, L-028).
+2. (pominięty — patrz pkt 1)
 3. Zainstaluj build z TestFlight, otwórz Trening → ekran zakupu → kup dożywotni (okno Apple powie „Sandbox”).
 4. Sprawdź, że w Trening → Więcej → Subskrypcja widać „Masz dostęp na zawsze”.
 5. Usuń aplikację z telefonu (przytrzymaj ikonę → Usuń aplikację).
