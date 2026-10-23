@@ -94,7 +94,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | cel s | app/template/[id].tsx | tests/matrix-invariants.test.ts, tests/release-0.16.test.tsx, tests/scenario-full.test.tsx +10 |
 | Cel serii: {part} | app/more/settings.tsx | tests/set-goals-ui.test.tsx, tests/set-goals.test.ts |
 | Cele partii | app/more/settings.tsx | tests/interaction-patterns.test.tsx |
-| co | components/LoadEditor.tsx | tests/access.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +238 |
+| co | components/LoadEditor.tsx | tests/access.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +239 |
 | Co logujesz w serii | app/exercise/[id].tsx | tests/edit-on-demand.test.tsx, tests/matrix-dim-langs1.test.tsx, tests/matrix-dim-langs2.test.tsx +3 |
 | Cofnij | components/DayPanel.tsx | tests/adapt-ui.test.tsx, tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx +7 |
 | Cofnij zamianę: {name} | app/swap.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx, tests/swap-ui.test.tsx |
@@ -1561,7 +1561,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | backup.onWorkoutSaved | lib/backup.ts | tests/audit-0.10-data.test.ts |
 | backup.onHistoryEdited | lib/backup.ts | tests/matrix-logic.test.tsx |
 | backup.strongDur | lib/backup.ts | tests/audit-0.10-stats.test.ts |
-| backup.buildCsv | lib/backup.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-stats.test.ts, tests/audit-backlog-q.test.tsx +24 |
+| backup.buildCsv | lib/backup.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-stats.test.ts, tests/audit-backlog-q.test.tsx +25 |
 | backup.exportCsv | lib/backup.ts | tests/access.test.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-backlog-q.test.tsx +2 |
 | backup.parseBackup | lib/backup.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-live-logic.test.ts +41 |
 | backup.recheckHealthAfterImport | lib/backup.ts | tests/audit-io-flows.test.tsx |
@@ -1599,7 +1599,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | csvparse.detectFormat | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.parseDurationA | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.parseTimeB | lib/csvparse.ts | tests/csv-import-logic.test.ts |
-| csvparse.parseImport | lib/csvparse.ts | tests/audit-m1-006-import.test.ts, tests/csv-import-logic.test.ts, tests/live-marker.test.ts +1 |
+| csvparse.parseImport | lib/csvparse.ts | tests/audit-m1-006-import.test.ts, tests/csv-import-logic.test.ts, tests/csv-jednostka-eksportu.test.ts +2 |
 | csvparse.normName | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.indexExercises | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.matchExercise | lib/csvparse.ts | tests/csv-import-logic.test.ts |
@@ -2101,7 +2101,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.isDraftObj | lib/state/core.ts | tests/edit-on-demand.test.tsx, tests/matrix-invariants.test.ts |
 | store.save | lib/state/core.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +198 |
 | store.saveCfg | lib/state/core.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-m1-027-voice-default.test.ts +11 |
-| store.getState | lib/state/core.ts | tests/a11y-routes.ts, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +258 |
+| store.getState | lib/state/core.ts | tests/a11y-routes.ts, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +259 |
 | store.useStore | lib/state/core.ts | tests/matrix-logic.test.tsx |
 | store.useTick | lib/state/core.ts | tests/audit-0.10-tst.test.ts |
 | store.usePrefsTick | lib/state/core.ts | tests/matrix-logic.test.tsx |
@@ -2240,7 +2240,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.setHasValue | lib/state/sets.ts | tests/matrix-dim-metrics.test.tsx, tests/matrix-logic.test.tsx |
 | store.volume | lib/state/sets.ts | tests/audit-0.10-stats.test.ts, tests/audit-close-d.test.ts, tests/audit-k1-data.test.ts +26 |
 | store.usesBand | lib/state/sets.ts | tests/band-exercises.test.tsx, tests/matrix-dim-catalog.test.tsx, tests/matrix-invariants.test.ts +1 |
-| store.applyPrefs | lib/state/settings.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-plan.test.ts, tests/audit-0.10-stats-ui.test.tsx +17 |
+| store.applyPrefs | lib/state/settings.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-plan.test.ts, tests/audit-0.10-stats-ui.test.tsx +18 |
 | store.setModule | lib/state/settings.ts | tests/matrix-logic.test.tsx |
 | store.assistLost | lib/state/setvals.ts | tests/swap-logic.test.ts |
 | store.cascadeDown | lib/state/setvals.ts | tests/cascade-sets.test.tsx |
@@ -2285,7 +2285,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.localDateTs | lib/state/time.ts | tests/audit-0.10-data-ui.test.tsx, tests/logic.test.ts, tests/matrix-time.test.ts |
 | store.fmtSec | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/i18n-wave3.test.ts, tests/i18n-wave4.test.ts +4 |
 | store.fmtDist | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-m1-lok07-01-imperial-dist.test.tsx, tests/i18n-wave3.test.ts +2 |
-| store.reps | lib/state/time.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts +200 |
+| store.reps | lib/state/time.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts +201 |
 | store.fmtDur | lib/state/time.ts | tests/regress.test.tsx |
 | store.fmtDayKey | lib/state/time.ts | tests/audit-0.10-ui.test.tsx, tests/csv-import-ui.test.tsx |
 | store.fmtDate | lib/state/time.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-m1-008-kopia-ui.test.tsx +9 |
@@ -2386,7 +2386,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | tplsync.rememberTemplateUpdate | lib/tplsync.ts | tests/tplsync-pending.test.ts |
 | tplsync.pendingTemplateUpdate | lib/tplsync.ts | tests/tplsync-pending.test.ts |
 | tplsync.applyPendingTemplateUpdate | lib/tplsync.ts | tests/tplsync-pending.test.ts |
-| units.applyUnit | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +44 |
+| units.applyUnit | lib/units.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +45 |
 | units.wu | lib/units.ts | tests/matrix-data-fuzz.test.ts, tests/matrix-dim-metrics.test.tsx, tests/units.test.ts |
 | units.isImperial | lib/units.ts | tests/audit-m1-lok07-01-imperial-dist.test.tsx |
 | units.distUnit | lib/units.ts | tests/audit-m1-lok07-01-imperial-dist.test.tsx |
@@ -2396,7 +2396,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | units.wField | lib/units.ts | tests/audit-close2-b.test.tsx, tests/logic.test.ts, tests/matrix-dim-metrics.test.tsx +1 |
 | units.wIn | lib/units.ts | tests/audit-0.10-live.test.tsx, tests/audit-backlog-r75.test.tsx, tests/audit-close-d.test.ts +16 |
 | units.wInKeep | lib/units.ts | tests/matrix-dim-metrics.test.tsx, tests/matrix-logic.test.tsx |
-| units.snapLb | lib/units.ts | tests/matrix-logic.test.tsx |
+| units.snapLb | lib/units.ts | tests/csv-jednostka-eksportu.test.ts, tests/matrix-logic.test.tsx |
 | units.snapLegacyLb | lib/units.ts | tests/matrix-migrations.test.tsx, tests/regress.test.tsx, tests/units.test.ts |
 | units.fmtNum | lib/units.ts | tests/matrix-i18n.test.tsx, tests/matrix-logic.test.tsx, tests/scenario-full.test.tsx +1 |
 | units.volOut | lib/units.ts | tests/regress.test.tsx, tests/units.test.ts |
