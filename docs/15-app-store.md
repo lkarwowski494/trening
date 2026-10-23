@@ -55,6 +55,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
      Największa szansa w mniejszych sklepach (cs, sk, lt, lv, et, hr, sl, ro, hu, bg) — mniejsza konkurencja, nazwa lokalna.
   2. Prośba o ocenę w aplikacji po kilku treningach (systemowe okno Apple) — do zaprojektowania (kiedy, ile razy), decyzja właściciela.
   3. Spokojne wpisy tam, gdzie są osoby trenujące (lokalne fora/grupy, Reddit np. r/homegym): bez konta, dane w telefonie, offline, domowa siłownia.
+     **Zmiana 23.10.2026 (DEC-02 a, M1-051):** fora i grupy są poza planem startu — wpis tylko po pisemnej zgodzie administracji, zgodnie z jej regulaminem (`docs/wzrost.md`).
 <!-- historia:start B -->
 *Historia decyzji (06–20.10.2026): kwoty, okresy próbne i modele z tego bloku są zastąpione — obowiązuje wyłącznie `docs/monetyzacja.md`. Treść zostaje jako zapis, dlaczego model wygląda tak, a nie inaczej.*
 
