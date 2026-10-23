@@ -3227,6 +3227,10 @@
   "en": "New records: {n}"
  },
  {
+  "pl": "Nowe szablony i plan",
+  "en": "New templates and plan"
+ },
+ {
   "pl": "nowe w tym tygodniu",
   "en": "new this week"
  },
@@ -6980,9 +6984,5 @@
  {
   "pl": "Żadna partia nie ma większej objętości niż poprzednio.",
   "en": "No muscle group has more volume than before."
- },
- {
-  "pl": "Nowe szablony i plan",
-  "en": "New templates and plan"
  }
 ]
