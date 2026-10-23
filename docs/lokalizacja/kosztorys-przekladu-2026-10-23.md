@@ -6,10 +6,9 @@ Zestaw: `docs/lokalizacja/zestaw-przekladu-2026-10-23.json` — 74 klucze (37 pr
 (skill claude-api, tabela „Current Models”, stan 2026-10-06): Opus 5.5 — 4 / 20 USD za mln tokenów (wejście / wyjście), Sonnet 5.5 — 2 / 10 USD; Message Batches −50%.
 
 ## Narzędzie do przekładu
-W portfelu **nie ma** narzędzia do przekładu przez API: `scripts/i18n/przeglad-api.mjs` to przegląd gotowych tłumaczeń (Message Batches, rejestry zwracania się, kosztorys `--szacuj`),
-`/home/user/prompts` (role, moduł `09-lokalizacja`) i `apps4brew-narzedzia` (tylko README) nie zawierają skryptu przekładu. Do przekładu trzeba dopisać skrypt wzorowany na
-`przeglad-api.mjs` (jedno żądanie na język, ten sam rejestr `REJESTR`, wynik do `lib/locales/<kod>.json`, kontrola zmiennych `{…}` i form liczby mnogiej `kontrolaLokalna`),
-potem uruchomić przegląd `przeglad-api.mjs` na nowych kluczach. Szkic instrukcji systemowej jest w `przeklad-szacuj.mjs` (SYSTEM).
+Napisane 23.10.2026 (gałąź `przeklad-workflow`): `scripts/i18n/przeklad-api.mjs` (Message Batches, `--szacuj`, `--limit`, `--wznow`, jedno żądanie na język, rejestr zwracania się z docs/16 — ten sam `REJESTR` co w `przeglad-api.mjs`, kontrola zmiennych `{…}`)
+i workflow `.github/workflows/przeklad-tlumaczen.yml` (tylko ręcznie, sekret w jednym kroku, limit 6 USD, artefakt 7 dni). Skrypt **nie zapisuje słowników**: wynik to propozycje (JSON na język);
+po przeglądzie tłumacza `node scripts/i18n/przeklad-api.mjs --zastosuj <katalog raportu>` nakłada je lokalnie na `lib/locales`.
 
 ## Szacunek
 Założenia (nie pomiar, celowo zawyżone): wejście = instrukcja + rejestr języka + 74 pary (PL, EN) ≈ 6,5 tys. tokenów na język; wyjście = tokeny angielskiego brzmienia × współczynnik długości
@@ -64,3 +63,8 @@ po przekładzie przegląd rolą tłumacza. Przekład wymaga zgody właściciela 
 | uk | 74 | 6623 | 8682 |
 | vi | 74 | 6627 | 7633 |
 | zh-Hant | 74 | 6640 | 6884 |
+
+## Aktualizacja 23.10.2026 (druga decyzja właściciela)
+Zgoda właściciela: przekład do **6 USD** (Opus, Batch, effort medium). Zestaw zmienił się (oznaczenia pewności usunięte z tekstów, „Zasady planu”, T-029): **75 pozycji** (38 „nowy”, 37 „zmieniony”) × 33 języki.
+Szacunek `node scripts/i18n/przeklad-api.mjs --szacuj` (bez sieci, przybliżenie): wejście ok. 317 tys., wyjście ok. 254 tys. tokenów → **Opus 5.5 ok. 3,17 USD**, Sonnet 5.5 ok. 1,59 USD (Batch −50%) — poniżej limitu 6 USD.
+Workflow z `tylko_szacuj` (domyślnie włączone) liczy dokładnie przez `count_tokens`; powyżej 6 USD staje bez wejścia `zgoda_koszt=tak`.
