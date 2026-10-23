@@ -484,3 +484,11 @@ Test najpierw (2 czerwone na e8cc375: jeden job z `--$TRYB`, bez środowiska), p
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | M1-048 (10-wydanie-004) | `tests/audit-m1-workflows.test.ts` „M1-048” (jeden job z `--apply` za `environment: release`; plan bez środowiska; bez nowych sekretów); `tests/public-repo.test.ts` (dostosowany) | niezmienniki | zielone | Bez zmian w UI i BRD. Pozostaje przebieg dowodowy (L-001): uruchomić workflow z `tryb=dry-run` (musi biec bez zatwierdzenia) i `tryb=apply` (job `apply` czeka na zatwierdzenie `release`) |
+
+### Partia 2 audytu M1 — kod (`naprawa-m1-p2-kod`, 23.10.2026)
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-017 (DEC-01) | `tests/m1-017-kalendarz-skala.test.tsx` (3: próg 1,3; numery dni i nagłówki; komórka z `minHeight`) | ekran, wymiar | zielone | Kalendarz miesiąca do 130% (`TEXT_SCALE.num`); podgląd liczb po przytrzymaniu — 1.0.1. Dawny M1-017 (próba iOS 16) uchylony wraz z okresem próbnym. |
+| M1-013 (DEC-05) | `tests/subscription-ui.test.tsx` „sklep nie zna naszych produktów”, „brak sieci … zostaje”; `tests/m1-013-sklep-niedostepny-jezyki.test.ts` (31 słowników + EN + `_source.json`) | ekran, języki | zielone | Teksty do przeglądu tłumacza (31 słowników; es-419, pt-BR dziedziczą). Rodzaj pominięty: E2E Maestro — brak scenariusza z pustą listą produktów (sklep w symulatorze zwraca produkty). |
+| formy zgód Zdrowia pt-BR | `tests/zgody-zdrowia-pt-forma.test.ts` (2) | języki | zielone | „apaga” zamiast „apague”; do przeglądu tłumacza. |
