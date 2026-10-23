@@ -1,0 +1,139 @@
+{
+ "jezyk": "sv",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 385,
+ "uwagi": [
+  {
+   "klucz": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
+   "rodzaj": "nowe",
+   "pl": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
+   "tlumaczenie": "{n} av {limit} gratis träningsdagar den här månaden {left}.",
+   "poprawka": "{n} av {limit} gratis träningsdagar {left} den här månaden.",
+   "powod": "{left} („kvar”) na końcu zdania daje nienaturalny szyk „… den här månaden kvar”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.",
+   "rodzaj": "nowe",
+   "pl": "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.",
+   "tlumaczenie": "Utan köp: upp till {n} träningsdagar i månaden; historik, backup och export finns alltid kvar.",
+   "poprawka": "Utan köp: upp till {n} träningsdagar i månaden; historik, säkerhetskopia och export finns alltid kvar.",
+   "powod": "Niespójna terminologia: gdzie indziej „säkerhetskopia”, tu „backup”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Tryck på en setetikett för att ändra typ; svep en rad åt vänster för att radera den. Repsintervallet är valfritt — med det får du ”↑”-tips. ”⇅ SS” kopplar ihop övningen med nästa i ett superset, ”✕ SS” tar ut den ur gruppen. Ordning: ”≡ Ordning”.",
+   "poprawka": "Tryck på en setetikett för att ändra typ; svep en rad åt vänster för att radera den. Repetitionsintervallet är valfritt — med det får du ”↑”-tips. ”⇅ SS” kopplar ihop övningen med nästa i ett superset, ”✕ SS” tar ut den ur gruppen. Ordning: ”≡ Ordning”.",
+   "powod": "Niespójna terminologia: „repsintervallet” zamiast używanego gdzie indziej „repetitionsintervallet”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.",
+   "rodzaj": "nowe",
+   "pl": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.",
+   "tlumaczenie": "Du har inga mallar med övningar. Skapa en mall eller välj ”Skapa mallar och plan”.",
+   "poprawka": "Du har inga mallar med övningar. Skapa en mall eller välj ”Generera mallar och plan”.",
+   "powod": "„Wygeneruj” oddane jako „Skapa”, przez co znaczenie zlewa się z „Utwórz”. Należy sprawdzić zgodność z etykietą przycisku.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — tak opisują praktykę trenerzy i zawodnicy w badaniach jednego zespołu (jedno źródło), nie wynik badań skuteczności.",
+   "rodzaj": "nowe",
+   "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — tak opisują praktykę trenerzy i zawodnicy w badaniach jednego zespołu (jedno źródło), nie wynik badań skuteczności.",
+   "tlumaczenie": "Träningsveckor i rad utan deload: {n}. En deload kommer vanligtvis var {a}–{b} vecka — så beskriver tränare och idrottare praxis i studier från en enda forskargrupp (en källa), inte ett forskningsresultat om effekten.",
+   "poprawka": "Träningsveckor i rad utan deload: {n}. En deload kommer vanligtvis med {a}–{b} veckors mellanrum — så beskriver tränare och idrottare praxis i studier från en enda forskargrupp (en källa), inte ett forskningsresultat om effekten.",
+   "powod": "„var {a}–{b} vecka” jest niegramatyczne przy zakresie liczb (forma liczebnika i liczby)",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Usuń ćwiczenie",
+   "rodzaj": "nowe",
+   "pl": "Usuń ćwiczenie",
+   "tlumaczenie": "Ta bort övning",
+   "poprawka": "Radera övning",
+   "powod": "Niespójność: „Usuń” tłumaczone gdzie indziej jako „Radera”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Usuń serię",
+   "rodzaj": "nowe",
+   "pl": "Usuń serię",
+   "tlumaczenie": "Ta bort set",
+   "poprawka": "Radera set",
+   "powod": "Niespójność: „Usuń” tłumaczone gdzie indziej jako „Radera”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "kb.move",
+   "rodzaj": "wskazowka",
+   "pl": "Cofnij biodra, przepuszczając kettlebell między nogami, potem energicznie wypchnij biodra w przód — kettlebell unosi się przed tobą.",
+   "tlumaczenie": "Skjut höften bakåt när kettlebellen svingar mellan benen och fäll sedan höften kraftfullt framåt — kettlebellen svingar upp framför dig.",
+   "poprawka": "Skjut höften bakåt när kettlebellen svingar mellan benen och för sedan höften kraftfullt framåt — kettlebellen svingar upp framför dig.",
+   "powod": "„fäll höften” oznacza zgięcie w biodrach, a źródło mówi o wypchnięciu bioder w przód (wyprost)",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "rodzaj": "nowe",
+   "pl": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "tlumaczenie": "{app} görs av en oberoende utvecklare: utan reklam och utan datainsamling. Om den hjälper dig, välj en plan och träna utan gräns. De gratis dagarna kommer tillbaka {date}.",
+   "poprawka": "{app} görs av en oberoende utvecklare: utan reklam och utan datainsamling. Om den hjälper dig, välj en plan och träna obegränsat. Dina gratisdagar kommer tillbaka {date}.",
+   "powod": "„träna utan gräns” brzmi nienaturalnie; „obegränsat” i „Dina gratisdagar” są bardziej idiomatyczne",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "tlumaczenie": "Du raderar band med ”Redigera” högst upp på deras skärm eller genom att svepa åt vänster.",
+   "poprawka": "Du raderar band med ”Redigera” högst upp på bandskärmen eller genom att svepa åt vänster.",
+   "powod": "„deras skärm” jest niejasne; źródło mówi o ekranie gum",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "rodzaj": "nowe",
+   "pl": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "tlumaczenie": "Menyn ⋯ överst: ”Pausa passet” stoppar passets klocka; paustid räknas inte in i längden.",
+   "poprawka": "Menyn ⋯ överst: ”Pausa passet” stoppar passets klocka; paustid räknas inte in i passets tid.",
+   "powod": "„längden” jest niejasne; chodzi o czas trwania treningu",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+   "rodzaj": "nowe",
+   "pl": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+   "tlumaczenie": "Planen ändrad {day} — tidigare dagar följer den förra planen",
+   "poprawka": "Planen ändrades {day} — tidigare dagar följer den förra planen",
+   "powod": "„Planen ändrad” brzmi nienaturalnie; lepiej z czasownikiem w czasie przeszłym",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zmniejsz powtórzenia o 1",
+   "rodzaj": "nowe",
+   "pl": "Zmniejsz powtórzenia o 1",
+   "tlumaczenie": "En rep mindre",
+   "poprawka": "Minska repetitionerna med 1",
+   "powod": "Niespójne z sąsiednimi etykietami („Minska … med {n}”); potoczne „rep”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zwiększ powtórzenia o 1",
+   "rodzaj": "nowe",
+   "pl": "Zwiększ powtórzenia o 1",
+   "tlumaczenie": "En rep till",
+   "poprawka": "Öka repetitionerna med 1",
+   "powod": "Niespójne z sąsiednimi etykietami („Öka … med {n}”); potoczne „rep”",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

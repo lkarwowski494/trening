@@ -463,3 +463,17 @@ Test najpierw (czerwony na f2b0525: 35 z 43 przypadków — 29 zamiast 43 z `rac
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | M1-031 | `tests/audit-m1-031-asekuracja-zakres.test.tsx` (43: kategoria każdego ze 137 ćwiczeń ze sztangą/EZ — strażnik nowych ćwiczeń, warianty „stojaki”/„osoba”, ramka na ekranie, EN, 33 słowniki, dopisek w wyborze ćwiczenia); zaktualizowane `audit-m1-015-asekuracja` i `poprawki-tlumaczen-2026-10-21` (29 → 43), `audit-m1-049-critical-content` (4 klucze asekuracji), `przeglad-tlumaczen` (5 zdań krytycznych) | logika, ekran, scenariusz, macierz, dane, języki, regresja | zielone | E2E Maestro pominięte: bez nowego ekranu i przepływu (ta sama ramka na ekranie ćwiczenia, inne dane katalogu); ekran i wybór ćwiczenia pokrywa test RNTL. Tłumaczenia nowego zdania (31 słowników) — agent, do przeglądu tłumacza (R-010). Otwarte: ćwiczenia dynamiczne, sztanga na biodrach, hantle (docs/research/przeglad-badacza-2026-10-23.md) |
+
+## 23.10.2026 — naprawa M1-audytor-generalny-045 (audyt 21.10.2026, partia 1; gałąź `naprawa-m1-045-app-review`)
+Test najpierw (czerwony na f2b0525: blok IN-APP PURCHASES bez akapitu o stałej wartości), potem tekst w `store/review-notes.md` i `store/app-store-metadata.json`.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-045 (10-wydanie-001) | `tests/store-review-notes.test.ts` „M1-045” (akapit EN/PL i notatka subskrypcji: aktualizacje, alternatywa dożywotnia; wersje 0.11–0.20 obecne w dzienniku wydań; zdanie w opisie PL i 4 lokalizacjach EN; limit 4000 B) | dane, języki | zielone | **realność: brzegowy** (zależy od recenzenta, wytyczna 3.1.2(a)). Opis w pozostałych 28 lokalizacjach bez zdania — zadanie dla tłumacza. Ekran bez zmian, E2E nie dotyczy |
+
+## 23.10.2026 — naprawa M1-audytor-generalny-028 (audyt 21.10.2026, partia 1; gałąź `naprawa-m1-028-zegarek-ack`)
+Test najpierw (7 czerwonych na f2b0525: w chwili `ack` baza nie miała zmiany), potem poprawka w `lib/watch/link.ts`.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-028 (05-architekt-001) | `tests/audit-m1b-028-watch-ack.test.ts` (7: differ, skip, sessionStarted, nieudany zapis → brak `ack` i ponowienie; differ na zapisach 3 wydanych buildów z `tests/fixtures/released`) | logika, dane, regresja | zielone | **realność: brzegowy, dotyczy danych** — kroki: telefon zablokowany, trening z zegarka, „zrobione inaczej”/pominięcie/start sesji, system ubija aplikację w tle w ciągu 300 ms. Protokół zegarka bez zmian. Rodzaj 9 (E2E): ubicie procesu w tle poza zasięgiem Maestro — pominięty; ekran bez zmian |

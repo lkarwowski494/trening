@@ -1,0 +1,103 @@
+{
+ "jezyk": "en",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 389,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Barbell exercise with the bar on the trunk or over the head and face: safety equipment is recommended — a rack with safety arms, plus a spotter.",
+   "poprawka": "Barbell exercise with the bar on the trunk or over the head and face: spotting is recommended — a rack with safety arms, plus a spotter.",
+   "powod": "„asekuracja” obejmuje też osobę asekurującą; „safety equipment” nie pasuje do spottera",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.",
+   "rodzaj": "nowe",
+   "pl": "Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.",
+   "tlumaczenie": "The app closed unexpectedly during the last launches.",
+   "poprawka": "The app closed unexpectedly the last few times it was opened.",
+   "powod": "„during the last launches” brzmi nienaturalnie",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wyczyść miejsce",
+   "rodzaj": "nowe",
+   "pl": "Wyczyść miejsce",
+   "tlumaczenie": "Remove place",
+   "poprawka": "Clear place",
+   "powod": "„Wyczyść” to wyczyszczenie przypisania; „Remove” myli się z „Delete place” (usunięcie miejsca)",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wyczyść miejsce: {a} – {b}",
+   "rodzaj": "nowe",
+   "pl": "Wyczyść miejsce: {a} – {b}",
+   "tlumaczenie": "Remove place: {a} – {b}",
+   "poprawka": "Clear place: {a} – {b}",
+   "powod": "„Wyczyść” to wyczyszczenie przypisania; „Remove” myli się z „Delete place” (usunięcie miejsca)",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "calf.edge",
+   "rodzaj": "wskazowka",
+   "pl": "Oprzyj przednią część stóp na podwyższeniu, pięty poza krawędzią.",
+   "tlumaczenie": "Put the balls of your feet on the edge, heels hanging off.",
+   "poprawka": "Put the balls of your feet on a raised surface, heels hanging off the edge.",
+   "powod": "pominięto „podwyższenie”; samo „the edge” jest niejasne",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Jesteśmy z Ciebie dumni!",
+   "rodzaj": "nowe",
+   "pl": "Jesteśmy z Ciebie dumni!",
+   "tlumaczenie": "We're proud of you!",
+   "poprawka": "We’re proud of you!",
+   "powod": "prosty apostrof; w pozostałych tekstach typograficzny ’",
+   "waga": "niska"
+  },
+  {
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "rodzaj": "nowe",
+   "pl": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "tlumaczenie": "You've trained hard this month and used all {n} free training days. Good job!",
+   "poprawka": "You’ve trained hard this month and used all {n} free training days. Good job!",
+   "powod": "prosty apostrof; w pozostałych tekstach typograficzny ’",
+   "waga": "niska"
+  },
+  {
+   "klucz": "bike.foot",
+   "rodzaj": "wskazowka",
+   "pl": "Na pedale opieraj przednią część stopy.",
+   "tlumaczenie": "Pedal with the front part of your foot, just behind the toes.",
+   "poprawka": "Keep the front part of your foot on the pedal.",
+   "powod": "dodano „just behind the toes”, czego nie ma w źródle",
+   "waga": "niska"
+  },
+  {
+   "klucz": "carry.noLean",
+   "rodzaj": "wskazowka",
+   "pl": "Nie przechylaj się ani w stronę ciężaru, ani od niego — idź wyprostowany.",
+   "tlumaczenie": "Keep your torso upright — don't tip toward the load or away from it; walk tall.",
+   "poprawka": "Keep your torso upright — don’t tip toward the load or away from it; walk tall.",
+   "powod": "prosty apostrof; w pozostałych tekstach typograficzny ’",
+   "waga": "niska"
+  },
+  {
+   "klucz": "lp.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Nie schodź tak nisko, by miednica odrywała się od oparcia, a dolne plecy zaokrąglały.",
+   "tlumaczenie": "Don’t go so deep that your pelvis lifts off the seat and your lower back rounds.",
+   "poprawka": "Don’t go so deep that your pelvis lifts off the backrest and your lower back rounds.",
+   "powod": "„oparcie” to backrest (jak w zdaniu 249), nie „seat”",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

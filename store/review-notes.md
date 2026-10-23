@@ -1,8 +1,8 @@
-# Notatki dla recenzenta App Store (App Review Information → Notes) — wersja 22.10.2026
+# Notatki dla recenzenta App Store (App Review Information → Notes) — wersja 23.10.2026
 
 Szkic do akceptacji właściciela (docs/41-droga-do-app-store.md, pozycje A5 i B5). Odświeżenie M8 (21.10.2026) wersji z 14.10.2026 (gałąź `f020-sklep`):
 M5 S1 (22.10.2026): darmowe do 5 dni treningowych w miesiącu, bez okresu próbnego i bez ofert wprowadzających; zapowiedzi głosowe domyślnie wyłączone po instalacji (`VOICE_NEW_INSTALL`, DEC-05)
-i nowe etykiety ustawienia; kalkulator talerzy usunięty 19.10.2026 — nie występuje w notatkach. Test: `tests/store-review-notes.test.ts`
+i nowe etykiety ustawienia; M1-audytor-generalny-045 (23.10.2026): akapit o stałej wartości subskrypcji (wytyczna 3.1.2(a); wersje 0.11–0.20 z dziennika wydań w docs/09); kalkulator talerzy usunięty 19.10.2026 — nie występuje w notatkach. Test: `tests/store-review-notes.test.ts`
 (limit pola, teksty przycisków z `lib/i18n.en.ts`, liczby i stany domyślne z kodu, brak danych osobowych).
 
 Do App Store Connect wkleja się **wersję angielską**; wersja polska jest dla właściciela. Bez danych osobowych: aplikacja nie ma konta, więc nie ma
@@ -37,6 +37,7 @@ IN-APP PURCHASES (one subscription group "Full version": monthly and yearly auto
 - The purchase screen shows the price and period from the App Store, "Restore purchases", "Redeem code", and links to the Privacy Policy and the Terms of Use (Apple's standard EULA).
 - Without an active purchase the whole app is free for up to 5 training days per calendar month (several workouts on the same day count as one day); history, backup and export always work. The Workout tab shows how many free days are left.
 - Family Sharing is enabled for all three products.
+- Ongoing value (Guideline 3.1.2(a)): the app is actively developed and updated regularly; during TestFlight testing it went from version 0.11 to 0.20 and gained, among others, the Apple Watch app and voice announcements. The subscription keeps the app usable without the monthly limit and includes every new feature at no extra cost. Users who prefer a single payment can choose the one-time lifetime unlock instead.
 
 APPLE HEALTH (optional, off by default)
 - More > Settings > "Save finished workouts to Apple Health": after the permission sheet, each finished workout is written to Health.
@@ -72,6 +73,7 @@ ZAKUPY W APLIKACJI (grupa subskrypcji „Pełna wersja”: miesięczna i roczna 
 - Ekran zakupu pokazuje cenę i okres z App Store, „Przywróć zakupy”, „Zrealizuj kod” i linki do polityki prywatności oraz warunków (standardowa licencja Apple).
 - Bez zakupu cała aplikacja jest darmowa do 5 dni treningowych w miesiącu kalendarzowym (kilka treningów tego samego dnia to jeden dzień); historia, kopia i eksport działają zawsze. Zakładka Trening pokazuje, ile darmowych dni zostało.
 - Chmura rodzinna włączona we wszystkich trzech produktach.
+- Stała wartość subskrypcji (wytyczna 3.1.2(a)): aplikacja jest rozwijana i regularnie aktualizowana; w testach TestFlight przeszła od wersji 0.11 do 0.20 i dostała m.in. aplikację na Apple Watch i zapowiedzi głosowe. Subskrypcja znosi miesięczny limit i obejmuje każdą nową funkcję bez dopłat. Kto woli jedną płatność, wybiera jednorazowy dostęp dożywotni.
 
 APPLE HEALTH (opcjonalnie, domyślnie wyłączone)
 - Więcej → Ustawienia → „Zapisuj zakończone treningi do Apple Health”: po zgodzie każdy zakończony trening trafia do Zdrowia.
@@ -96,5 +98,5 @@ KONTAKT
 ## Notatka do każdej subskrypcji (Subscription → App Review Information → Review Notes; opcjonalna — bez ofert wprowadzających)
 
 ```text
-Auto-renewable subscription without introductory offers. Purchase screen: More > Settings > Subscription > Full version, or when starting a workout after the 5 free training days of the month are used.
+Auto-renewable subscription without introductory offers. Purchase screen: More > Settings > Subscription > Full version, or when starting a workout after the 5 free training days of the month are used. Ongoing value: no monthly limit and all features added in regular updates; a one-time lifetime unlock is offered as an alternative.
 ```

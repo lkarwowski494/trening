@@ -1,0 +1,103 @@
+{
+ "jezyk": "es",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 389,
+ "uwagi": [
+  {
+   "klucz": "Asekuracja",
+   "rodzaj": "krytyczne",
+   "pl": "Asekuracja",
+   "tlumaczenie": "Seguridad y spotter",
+   "poprawka": "Asistencia y seguridad",
+   "powod": "„spotter” to anglicyzm i nie zgadza się z terminologią zdania 3 („compañero que asista”); ujednolicić termin asekuracji",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "Progresión: cuando llegues al tope del rango de repeticiones, sube el peso. Las posturas del ACSM recomiendan aumentar la carga de forma gradual; el momento y el tamaño del paso son una convención.",
+   "poprawka": "Progresión: cuando llegues al tope del rango de repeticiones, sube el peso. Los posicionamientos del ACSM recomiendan aumentar la carga de forma gradual; el momento y el tamaño del paso son una convención.",
+   "powod": "„posturas” oznacza postawę ciała; „position stand” po hiszpańsku to „posicionamiento”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "Calentamiento: {d} de {n} hechas",
+   "poprawka": "Series de calentamiento: {d} de {n} hechas",
+   "powod": "„Calentamiento” (r. męski, l. poj.) nie zgadza się z „hechas”; chodzi o serie rozgrzewkowe",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Postura del ACSM 2026: con al menos {n} series por grupo muscular a la semana, el crecimiento muscular fue mayor que con menos volumen; el entrenamiento de fuerza en sus distintas formas produce crecimiento frente a no entrenar.",
+   "poprawka": "Posicionamiento del ACSM 2026: con al menos {n} series por grupo muscular a la semana, el crecimiento muscular fue mayor que con menos volumen; el entrenamiento de fuerza en sus distintas formas produce crecimiento frente a no entrenar.",
+   "powod": "„Postura” to błędny termin dla „position stand”; poprawnie „posicionamiento”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Ejercicio con barra sobre el tronco o por encima de la cabeza y la cara: se recomienda protección — un rack con brazos de seguridad y un compañero que asista.",
+   "poprawka": "Ejercicio con barra sobre el tronco o por encima de la cabeza y la cara: se recomienda asistencia — un rack con brazos de seguridad y una persona que te asista.",
+   "powod": "„protección” jest mniej precyzyjne niż „asekuracja” i niespójne z nagłówkiem; „que asista” bez dopełnienia brzmi niepełnie",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Al final, «Terminar» en la cabecera (o «Terminar entrenamiento» en la tarjeta tras la última serie) — la sesión pasa a la pestaña Plan.",
+   "poprawka": "Al final, toca «Terminar» en la cabecera (o «Terminar entrenamiento» en la tarjeta tras la última serie): la sesión pasa a la pestaña Plan.",
+   "powod": "Brak czasownika, zdanie brzmi urywanie; dodano „toca”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "bp.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć sztangę nieco szerzej niż barki.",
+   "tlumaczenie": "Agarra la barra un poco más abierta que los hombros.",
+   "poprawka": "Sujeta la barra con las manos un poco más separadas que la anchura de los hombros.",
+   "powod": "„más abierta” odnosi się gramatycznie do sztangi, nie do chwytu",
+   "waga": "niska"
+  },
+  {
+   "klucz": "cgbp.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć sztangę na szerokość barków lub trochę węziej — nie bardzo wąsko.",
+   "tlumaczenie": "Agarra la barra a la anchura de los hombros o un poco más cerrada — no muy cerrada.",
+   "poprawka": "Agarra la barra con las manos a la anchura de los hombros o un poco más juntas, pero no demasiado.",
+   "powod": "„más cerrada” odnosi się gramatycznie do sztangi, nie do chwytu",
+   "waga": "niska"
+  },
+  {
+   "klucz": "curl.cableSetup",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć uchwyt dolnego wyciągu podchwytem, ręce wyprostowane w dół.",
+   "tlumaczenie": "Agarra el agarre de la polea baja en supino, con los brazos estirados hacia abajo.",
+   "poprawka": "Sujeta el agarre de la polea baja en supino, con los brazos estirados hacia abajo.",
+   "powod": "Powtórzenie „Agarra el agarre” brzmi nienaturalnie",
+   "waga": "niska"
+  },
+  {
+   "klucz": "pu.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć drążek nachwytem, trochę szerzej niż barki, i zawiśnij na prostych rękach.",
+   "tlumaczenie": "Agarra la barra en prono, un poco más abierta que los hombros, y cuélgate con los brazos estirados.",
+   "poprawka": "Agarra la barra en prono, con las manos un poco más separadas que la anchura de los hombros, y cuélgate con los brazos estirados.",
+   "powod": "„más abierta” odnosi się gramatycznie do sztangi, nie do chwytu",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

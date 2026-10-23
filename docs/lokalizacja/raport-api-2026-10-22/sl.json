@@ -1,0 +1,103 @@
+{
+ "jezyk": "sl",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 389,
+ "uwagi": [
+  {
+   "klucz": "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.",
+   "rodzaj": "nowe",
+   "pl": "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.",
+   "tlumaczenie": "Korak (npr. +2,5 kg) je dogovor, ne rezultat raziskav.",
+   "poprawka": "Korak (npr. +2,5 kg) je konvencija, ne rezultat raziskav.",
+   "powod": "W innych tekstach „konwencja” to „konvencija”, tu „dogovor”. Terminologia jest niespójna.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Na koncu »Končaj« v glavi (ali »Končaj trening« v kartici po zadnji seriji) — seja gre v zavihek Načrt.",
+   "poprawka": "Na koncu tapnite »Končaj« v glavi (ali »Končaj trening« v kartici po zadnji seriji) — seja se shrani v zavihek Načrt.",
+   "powod": "Brakuje czasownika, a „seja gre v zavihek” brzmi nienaturalnie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Przerwa trwa — powiadomić na koniec?",
+   "rodzaj": "nowe",
+   "pl": "Przerwa trwa — powiadomić na koniec?",
+   "tlumaczenie": "Počitek poteka — obvestiti ob koncu?",
+   "poprawka": "Počitek poteka — vas obvestim, ko se konča?",
+   "powod": "Bezokolicznik „obvestiti ob koncu?” brzmi nienaturalnie jako pytanie do użytkownika.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Stališče ACSM 2026: pri vsaj {n} serijah na mišično skupino na teden je bila rast mišic večja kot pri manjšem obsegu; trening moči v različnih oblikah prinese rast v primerjavi z odsotnostjo treninga.",
+   "poprawka": "Stališče ACSM 2026: pri vsaj {n} serijah na mišično skupino na teden je bila rast mišic večja kot pri manjšem volumnu; trening moči v različnih oblikah prinese rast v primerjavi z odsotnostjo treninga.",
+   "powod": "„Objętość” to w innych tekstach „volumen”, tu „obseg”. Terminologia jest niespójna.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "rodzaj": "nowe",
+   "pl": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "tlumaczenie": "Ta mesec trenirate zavzeto in porabite vse brezplačne dni treninga ({n}). Odlično!",
+   "poprawka": "Ta mesec trenirate zavzeto in ste porabili vse brezplačne dni treninga ({n}). Odlično!",
+   "powod": "Dokonane „porabite” w czasie teraźniejszym brzmi jak przyszłość; naturalny jest czas przeszły.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Obvestila delujejo, ko je vklopljeno »Zvok ob koncu počitka«. Isto nastavitev spremenite tudi v meniju »⋯« na zaslonu treninga.",
+   "poprawka": "Obvestila delujejo, ko je vklopljen »Zvok ob koncu počitka«. Isto nastavitev spremenite tudi v meniju »⋯« na zaslonu treninga.",
+   "powod": "Błąd zgody rodzaju: „Zvok” jest rodzaju męskiego, więc „vklopljen”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "curl.mis.elbows",
+   "rodzaj": "wskazowka",
+   "pl": "Wysuwanie łokci do przodu albo od tułowia.",
+   "tlumaczenie": "Komolcem dovoliš, da uhajajo naprej ali stran od telesa.",
+   "poprawka": "Uhajanje komolcev naprej ali stran od telesa.",
+   "powod": "Opis błędu powinien być nominalny, jak w pozostałych. „Komolcem dovoliš” brzmi nienaturalnie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "mis.barAway",
+   "rodzaj": "wskazowka",
+   "pl": "Sztanga odjeżdża od ciała.",
+   "tlumaczenie": "Drogu dovoliš, da se oddaljuje od telesa.",
+   "poprawka": "Drog se oddaljuje od telesa.",
+   "powod": "Opis błędu powinien być nominalny, jak w pozostałych. „Drogu dovoliš” brzmi nienaturalnie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Tapnite oznako serije, da spremenite vrsto; povlecite vrstico v levo, da jo izbrišete. Razpon ponovitev ni obvezen — z njim se prikazujejo namigi „↑“. „⇅ SS“ poveže vajo z naslednjo v superserijo, „✕ SS“ jo odstrani iz skupine. Vrstni red: „≡ Vrstni red“.",
+   "poprawka": "Tapnite oznako serije, da spremenite vrsto; povlecite vrstico v levo, da jo izbrišete. Razpon ponovitev ni obvezen — z njim se prikazujejo namigi »↑«. »⇅ SS« poveže vajo z naslednjo v superserijo, »✕ SS« jo odstrani iz skupine. Vrstni red: »≡ Vrstni red«.",
+   "powod": "Narekovaje „“ zastąpiono »«, jak w pozostałych tekstach aplikacji.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "Ogrevanje: {d} od {n} opravljenih",
+   "poprawka": "Ogrevalne serije: {d} od {n} opravljenih",
+   "powod": "Liczy się serie rozgrzewkowe, a „Ogrevanje” (lp.) jest niejasne.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

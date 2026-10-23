@@ -1,0 +1,40 @@
+{
+ "jezyk": "nl",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 396,
+ "uwagi": [
+  {
+   "klucz": "cfly.move",
+   "rodzaj": "wskazowka",
+   "pl": "Przy lekko ugiętych łokciach złącz dłonie przed klatką szerokim łukiem; wracaj powoli do rozłożenia rąk.",
+   "tlumaczenie": "Breng je handen met licht gebogen ellebogen in een brede boog voor je borst samen; ga langzaam terug met open armen.",
+   "poprawka": "Breng je handen met licht gebogen ellebogen in een brede boog voor je borst samen; ga langzaam terug tot je armen weer gespreid zijn.",
+   "powod": "„ga langzaam terug met open armen” sugeruje powrót z rozłożonymi rękami, a nie powrót do rozłożenia rąk.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Tik op een setlabel om het type te wijzigen; veeg een rij naar links om hem te verwijderen. Het herhalingsbereik is optioneel — daarmee krijg je “↑”-tips. “⇅ SS” koppelt een oefening aan de volgende in een superset, “✕ SS” haalt hem uit de groep. Volgorde: “≡ Volgorde”.",
+   "poprawka": "Tik op een setlabel om het type te wijzigen; veeg een rij naar links om hem te verwijderen. Het herhalingsbereik is optioneel — daarmee krijg je ‘↑’-tips. ‘⇅ SS’ koppelt een oefening aan de volgende in een superset, ‘✕ SS’ haalt hem uit de groep. Volgorde: ‘≡ Volgorde’.",
+   "powod": "Cudzysłowy “ ” niespójne z resztą tłumaczeń, które używają ‘ ’.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Usuń plan",
+   "rodzaj": "nowe",
+   "pl": "Usuń plan",
+   "tlumaczenie": "Plan verwijderen",
+   "poprawka": "Verwijder plan",
+   "powod": "Niespójna forma przycisku: pozostałe przyciski usuwania mają formę trybu rozkazującego („Verwijder …”).",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

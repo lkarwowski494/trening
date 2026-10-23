@@ -1,0 +1,67 @@
+{
+ "jezyk": "vi",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 393,
+ "uwagi": [
+  {
+   "klucz": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "tlumaczenie": "Dây kháng lực được xóa bằng “Sửa” ở đầu màn hình của chúng hoặc bằng cách vuốt sang trái.",
+   "poprawka": "Xóa dây kháng lực bằng “Sửa” ở đầu màn hình dây kháng lực hoặc vuốt sang trái.",
+   "powod": "„màn hình của chúng” brzmi nienaturalnie i niejasno; lepiej nazwać ekran wprost i użyć formy czynnej, jak w zdaniach 31 i 68.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "dl.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć sztangę nachwytem albo chwytem mieszanym, na szerokość barków lub trochę szerzej.",
+   "tlumaczenie": "Cầm đòn kiểu úp tay hoặc cầm tráo, rộng bằng vai hoặc hơn một chút.",
+   "poprawka": "Cầm đòn kiểu úp tay hoặc cầm hỗn hợp (một tay úp, một tay ngửa), rộng bằng vai hoặc hơn một chút.",
+   "powod": "„cầm tráo” to nieczytelny termin na chwyt mieszany; lepiej opisać go wprost.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "calf.edge",
+   "rodzaj": "wskazowka",
+   "pl": "Oprzyj przednią część stóp na podwyższeniu, pięty poza krawędzią.",
+   "tlumaczenie": "Đặt mũi bàn chân lên mép, gót chân để thả.",
+   "poprawka": "Đặt mũi bàn chân lên mép, gót chân để lơ lửng ngoài mép.",
+   "powod": "„gót chân để thả” brzmi nienaturalnie; lepiej opisać, że pięty wystają poza krawędź.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "calf.step",
+   "rodzaj": "wskazowka",
+   "pl": "Stań przednią częścią stóp na stabilnym stopniu, pięty poza krawędzią; przytrzymaj się czegoś dla równowagi.",
+   "tlumaczenie": "Đứng với mũi bàn chân trên một bậc chắc chắn, gót chân để thả; vịn vào vật gì đó để giữ thăng bằng.",
+   "poprawka": "Đứng với mũi bàn chân trên một bậc chắc chắn, gót chân để lơ lửng ngoài mép; vịn vào vật gì đó để giữ thăng bằng.",
+   "powod": "„gót chân để thả” brzmi nienaturalnie; ujednolicić ze zdaniem 122.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "llc.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Biodra przyciśnięte do ławki — bez wyginania pleców.",
+   "tlumaczenie": "Giữ hông ép xuống — không ưỡn lưng.",
+   "poprawka": "Giữ hông ép xuống ghế — không ưỡn lưng.",
+   "powod": "Pominięto „do ławki” z polskiego źródła.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "walk.rails",
+   "rodzaj": "wskazowka",
+   "pl": "Poręczy używaj najwyżej do równowagi — nie podpieraj się na nich mocno i nie odchylaj do tyłu, bo to zmniejsza wysiłek.",
+   "tlumaczenie": "Chỉ dùng tay vịn để giữ thăng bằng; đừng tì mạnh vào đó hay ngả người ra sau, vì làm vậy giảm sức vận động.",
+   "poprawka": "Chỉ dùng tay vịn để giữ thăng bằng; đừng tì mạnh vào đó hay ngả người ra sau, vì làm vậy giảm mức gắng sức.",
+   "powod": "„giảm sức vận động” brzmi nienaturalnie; „wysiłek” lepiej oddaje „mức gắng sức”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

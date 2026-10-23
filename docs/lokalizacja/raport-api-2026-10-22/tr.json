@@ -1,0 +1,121 @@
+{
+ "jezyk": "tr",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 387,
+ "uwagi": [
+  {
+   "klucz": "Asekuracja",
+   "rodzaj": "krytyczne",
+   "pl": "Asekuracja",
+   "tlumaczenie": "Yardımcı ve güvenlik",
+   "poprawka": "Yardımcı (spotter) ve güvenlik önlemleri",
+   "powod": "„Yardımcı ve güvenlik” jest niejasne: nie wiadomo, że chodzi o osobę asekurującą i zabezpieczenia.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Halterin gövdenin üzerinde olduğu veya baş ile yüzün üzerinde hareket ettiği hareket: güvenlik önlemi önerilir — güvenlik kollu bir raf ve yardımcı bir kişi.",
+   "poprawka": "Halterin gövde üzerinde ya da baş ve yüz üzerinde olduğu egzersiz: güvenlik önlemi önerilir — güvenlik kollu bir squat kafesi (rack) ve yardımcı bir kişi (spotter).",
+   "powod": "„raf” oznacza półkę, a nie stojak (rack). Powtórzenie „hareket… hareket” brzmi nienaturalnie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "bez asekuracji w stojakach",
+   "rodzaj": "krytyczne",
+   "pl": "bez asekuracji w stojakach",
+   "tlumaczenie": "rafta güvenlik kolu yok",
+   "poprawka": "squat kafesinde güvenlik kolu yok",
+   "powod": "Terminologia: „raf” (półka) zamiast stojaka (rack).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).",
+   "rodzaj": "nowe",
+   "pl": "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).",
+   "tlumaczenie": "Önizlemedeki “Arşivle” şablonu gizler; silmek için önizlemenin altındaki “Şablonu sil” düğmesini kullanın veya listede sola kaydırın (onayla).",
+   "poprawka": "Önizlemedeki “Arşivle” şablonu gizler; silmek için önizlemenin altındaki “Şablonu sil” düğmesini kullanın veya listede sola kaydırın (onay istenir).",
+   "powod": "„(onayla)” to tryb rozkazujący („potwierdź”), a źródło mówi „z potwierdzeniem”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "İlerleme: tekrar aralığının üst sınırına ulaşınca ağırlık ekleyin. Yükün kademeli artırılmasını ACSM görüş bildirimleri önerir; zamanlama ve adım büyüklüğü bir gelenektir.",
+   "poprawka": "İlerleme: tekrar aralığının üst sınırına ulaşınca ağırlık ekleyin. Yükün kademeli artırılmasını ACSM görüş bildirimleri önerir; zamanlama ve adım büyüklüğü yaygın bir uygulamadır.",
+   "powod": "Niespójna terminologia: „konwencja” w innych zdaniach to „yaygın bir uygulama”; „gelenek” (tradycja) jest mylące.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań.",
+   "rodzaj": "nowe",
+   "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań.",
+   "tlumaczenie": "Varsayımlarınıza göre bir öneri — kaydetmeden önce gözden geçirirsiniz. Kurallar araştırma derlemelerinden ve kuruluşların önerilerinden (DSÖ, ACSM) gelir; gelenek veya basitleştirme olarak işaretlenen kısımlar doğrudan araştırma bulgusu değildir.",
+   "poprawka": "Varsayımlarınıza göre bir öneri — kaydetmeden önce gözden geçirirsiniz. Kurallar araştırma derlemelerinden ve kuruluşların önerilerinden (DSÖ, ACSM) gelir; yaygın uygulama veya basitleştirme olarak işaretlenen kısımlar doğrudan araştırma bulgusu değildir.",
+   "powod": "Niespójna terminologia: „gelenek” zamiast „yaygın uygulama”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "ACSM 2026 görüşü: haftada vücut bölgesi başına en az {n} set ile kas gelişimi daha düşük hacme göre daha fazlaydı; çeşitli biçimlerdeki kuvvet antrenmanı hiç antrenman yapmamaya kıyasla gelişim sağlar.",
+   "poprawka": "ACSM 2026 görüşü: haftada kas grubu başına en az {n} set ile kas gelişimi daha düşük hacme göre daha fazlaydı; çeşitli biçimlerdeki kuvvet antrenmanı hiç antrenman yapmamaya kıyasla gelişim sağlar.",
+   "powod": "Niespójna terminologia: „partia” to w innych zdaniach „kas grubu”, nie „vücut bölgesi”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "rodzaj": "nowe",
+   "pl": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "tlumaczenie": "Bu ay sıkı antrenman yapıyor ve tüm ücretsiz antrenman günlerini ({n}) kullanıyorsunuz. Aferin!",
+   "poprawka": "Bu ay sıkı antrenman yapıyor ve tüm ücretsiz antrenman günlerini ({n}) kullanıyorsunuz. Harika iş!",
+   "powod": "„Aferin” brzmi protekcjonalnie (jak do dziecka) i nie pasuje do rejestru „siz”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Bildirimler “Dinlenme bitince ses” açıkken çalışır. Aynı ayarı antrenman ekranındaki “⋯” menüsünden de değiştirebilirsiniz.",
+   "poprawka": "Sesli duyurular “Dinlenme bitince ses” açıkken çalışır. Aynı ayarı antrenman ekranındaki “⋯” menüsünden de değiştirebilirsiniz.",
+   "powod": "„Bildirimler” to powiadomienia; chodzi o zapowiedzi dźwiękowe, więc tekst myli się z funkcją powiadomień.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "tlumaczenie": "Bantları, ekranlarının üstündeki “Düzenle” ile veya sola kaydırarak silebilirsiniz.",
+   "poprawka": "Bantları, bantlar ekranının üstündeki “Düzenle” ile veya sola kaydırarak silebilirsiniz.",
+   "powod": "„ekranlarının” jest dwuznaczne; chodzi o ekran gum.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "ohp.bbSetup",
+   "rodzaj": "wskazowka",
+   "pl": "Zdejmij sztangę ze stojaka na wysokości barków; chwyt na szerokość barków lub trochę szerzej, sztanga przy przedniej części barków.",
+   "tlumaczenie": "Halteri omuz yüksekliğindeki raftan alın; tutuş omuz genişliğinde veya biraz daha geniş olsun, halter omuzlarınızın ön kısmında dursun.",
+   "poprawka": "Halteri omuz yüksekliğindeki squat kafesinden (rack) alın; tutuş omuz genişliğinde veya biraz daha geniş olsun, halter omuzlarınızın ön kısmında dursun.",
+   "powod": "Terminologia: „raf” (półka) zamiast stojaka (rack). Należy ujednolicić ze zdaniami 3 i 4.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "sq.bar",
+   "rodzaj": "wskazowka",
+   "pl": "Sztanga na górze pleców, chwyt szerzej niż barki; zdejmij ją ze stojaka i cofnij się o krok lub dwa.",
+   "tlumaczenie": "Halter sırtınızın üst kısmında, eller omuzlardan geniş; halteri raftan alın ve bir iki adım geri çekilin.",
+   "poprawka": "Halter sırtınızın üst kısmında, eller omuzlardan geniş; halteri squat kafesinden (rack) alın ve bir iki adım geri çekilin.",
+   "powod": "Terminologia: „raf” (półka) zamiast stojaka (rack). Należy ujednolicić ze zdaniami 3 i 4.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

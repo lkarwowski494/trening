@@ -1,0 +1,76 @@
+{
+ "jezyk": "nb",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 392,
+ "uwagi": [
+  {
+   "klucz": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "tlumaczenie": "Du sletter strikker med «Rediger» øverst på skjermen deres eller ved å sveipe mot venstre.",
+   "poprawka": "Du sletter strikker med «Rediger» øverst på strikkskjermen eller ved å sveipe mot venstre.",
+   "powod": "„skjermen deres” jest dwuznaczne: może znaczyć „ich ekran” albo „wasz ekran” (forma mnoga lub grzecznościowa). Lepiej nazwać ekran wprost.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "ACSM 2026-posisjon: med minst {n} sett per muskelgruppe i uken var muskelveksten større enn med lavere volum; styrketrening i ulike former gir vekst sammenlignet med ingen trening.",
+   "poprawka": "ACSMs posisjonserklæring fra 2026: med minst {n} sett per muskelgruppe i uken var muskelveksten større enn med lavere volum; styrketrening i ulike former gir vekst sammenlignet med ingen trening.",
+   "powod": "Niespójna terminologia: „ACSM 2026-posisjon” zamiast „posisjonserklæring”, którego użyto w zdaniu 50.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "imperialny (lb, mi, yd)",
+   "rodzaj": "nowe",
+   "pl": "imperialny (lb, mi, yd)",
+   "tlumaczenie": "imperial (lb, mi, yd)",
+   "poprawka": "imperisk (lb, mi, yd)",
+   "powod": "„imperial” nie jest zwykłą norweską formą przymiotnika; naturalniej „imperisk”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Trening to część mojego tygodnia",
+   "rodzaj": "nowe",
+   "pl": "Trening to część mojego tygodnia",
+   "tlumaczenie": "Trening er en del av uka mi",
+   "poprawka": "Trening er en del av uken min",
+   "powod": "Forma „uka” jest niespójna z „uken” używanym w pozostałych tekstach.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "mcp.blades",
+   "rodzaj": "wskazowka",
+   "pl": "Łopatki zostają przy oparciu — nie wysuwaj barków w przód na końcu ruchu.",
+   "tlumaczenie": "Skulderbladene blir mot puten — ikke rull skuldrene fram til slutt.",
+   "poprawka": "Skulderbladene blir mot puten — ikke rull skuldrene fram på slutten av bevegelsen.",
+   "powod": "„til slutt” może znaczyć „w końcu, ostatecznie”, a nie „na końcu ruchu”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "stepup.knee",
+   "rodzaj": "wskazowka",
+   "pl": "Kolano nogi na podwyższeniu w linii palców stopy.",
+   "tlumaczenie": "Hold kneet på steg-beinet i linje med tærne.",
+   "poprawka": "Hold kneet på beinet som står på kassen, i linje med tærne.",
+   "powod": "Złożenie „steg-beinet” brzmi nienaturalnie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "wall.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Oprzyj plecy o stabilną ścianę, wysuń stopy w przód i zsuń się po ścianie do wybranej wysokości.",
+   "tlumaczenie": "Len ryggen mot en solid vegg, gå føttene fram og gli ned langs veggen til valgt høyde.",
+   "poprawka": "Len ryggen mot en solid vegg, flytt føttene fram og gli ned langs veggen til valgt høyde.",
+   "powod": "„gå føttene fram” brzmi nienaturalnie.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}
