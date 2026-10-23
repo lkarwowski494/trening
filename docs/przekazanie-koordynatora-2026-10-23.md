@@ -36,3 +36,8 @@ Kolejność scalania: p2-kod i p2-teksty przed dec07-*. Sesja audytu M1: `sessio
 
 ## Harmonogramy (claude-code-remote)
 W starej sesji działały: przegląd co godzinę `trig_01SafZZY42UAFJa7wGHWNiet` i status co 2 h `trig_019J9wEf44F1wLze9SZE5ypo` — wyłączone 23.10 przy przekazaniu; nowa sesja zakłada własne.
+
+## Dopiski (23.10, ok. 09:00 UTC)
+- `naprawa-m1-p2-teksty` gotowa do PR (cdc1486, tests.yml 39924315840 zielony): polityka prywatności bez okresu próbnego, docs/kroki właściciela wg M5 S1, rejestr ryzyk (R-M5-3, R-012, R-009 zamknięte — przy R-009 zastrzeżenie: warunek wymagał przebiegu ręcznego, był z pusha; zdecyduj, czy przyjąć), fora usunięte z planu, strona produktu z limitem. Po scaleniu: `privacy.html` na apps4brew.com publikuje właściciel (osobne repo).
+- Do zrobienia przez koordynatora: `nightly.yml` (ok. linii 100) ma starą regułę „3 kolejne nocne pełne przebiegi zielone bez ponowień” — zastąpiona decyzją 21.10 (jeden pełny katalog na standardowym iPhonie); zmiana workflowu z przebiegiem dowodowym.
+- Sesja audytu M1 wysyłała raporty do starej sesji koordynatora; od teraz jej raporty są też w pliku `audit/M1-2026-10-21/plan-napraw.json` w jej kontenerze — nowa sesja koordynatora może do niej napisać (send_message, `session_01CutnYQRJmzf8vJjq8wFJEb`), jeśli ma dostęp z tego samego konta; inaczej sprawdzaj gałęzie `naprawa-m1-*` na GitHubie (gotowe = wypchnięte, zielony tests.yml).
