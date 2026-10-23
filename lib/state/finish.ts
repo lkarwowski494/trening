@@ -86,7 +86,7 @@ export function autoFinishStale(now = Date.now()): Workout | null {
   return finishWorkout(lastActivity(a));
 }
 /** Zakończenie treningu; `at` — godzina końca (po czasie: ostatnia seria, nie chwila kliknięcia). */
-/** M5 S1: zapis dnia treningowego dla ukończonego treningu na żywo > 20 min (bez pauz); inne (wstecz, import, krótkie) nic nie zapisują. Zwraca, czy zapisano. */
+/** M5 S1: zapis dnia treningowego dla ukończonego treningu na żywo > MIN_LIVE_MINUTES_FOR_DAY (7 min) (bez pauz); inne (wstecz, import, krótkie) nic nie zapisują. Zwraca, czy zapisano. */
 export function recordLiveDayFor(w: Workout): boolean {
   if (w.live !== true || w.finishedAt == null || !qualifiesForDay(workoutDurSec(w))) return false;
   const st = getState(); st.liveDays = recordLiveDay(st.liveDays ?? [], { startedAt: w.startedAt, ...(w.tzOffsetMin != null ? { tzOffsetMin: w.tzOffsetMin } : {}) }); return true;
