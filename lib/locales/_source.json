@@ -4860,6 +4860,10 @@
   "en": "Effort scale RPE or RIR in Settings."
  },
  {
+  "pl": "Sklep chwilowo niedostępny",
+  "en": "Store temporarily unavailable"
+ },
+ {
   "pl": "skośne brzucha",
   "en": "obliques"
  },
@@ -6980,9 +6984,5 @@
  {
   "pl": "Żadna partia nie ma większej objętości niż poprzednio.",
   "en": "No muscle group has more volume than before."
- },
- {
-  "pl": "Sklep chwilowo niedostępny",
-  "en": "Store temporarily unavailable"
  }
 ]

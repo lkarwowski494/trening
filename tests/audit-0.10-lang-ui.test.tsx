@@ -168,7 +168,7 @@ describe('K2/K3: kontrast, pola dotyku, przełącznik-chip, wyszarzone wiersze',
     await go('/generator'); await flushAll(10); check(n => n.props.accessibilityHint === t('Cel'), 'Segmented (Cel)');
     await bootIn('pl', '/history', () => { const id = store.getState().templates[0].id; for (let i = 0; i < 7; i++) plan.setWeekDay(i, id); });
     const days = screen.UNSAFE_root.findAll((n: Node) => typeof n.type !== 'string' && /^cal-/.test(n.props.testID ?? '') && typeof n.props.onPress === 'function');
-    expect(days.length).toBeGreaterThan(27); for (const d of days.slice(0, 3)) { const face = flat(d.props.children?.props?.style); const hs = d.props.hitSlop; if (Math.min(face.height ?? 0, face.width ?? 0) + 2 * (typeof hs === 'number' ? hs : 0) < 44) small.push(`dzień kalendarza: ${face.height}+2×${hs}`); }
+    expect(days.length).toBeGreaterThan(27); for (const d of days.slice(0, 3)) { const face = flat(d.props.children?.props?.style); const hs = d.props.hitSlop; if (Math.min(Math.max(face.height ?? 0, face.minHeight ?? 0), face.width ?? 0) + 2 * (typeof hs === 'number' ? hs : 0) < 44) small.push(`dzień kalendarza: ${face.height ?? face.minHeight}+2×${hs}`); }
     await go('/'); await flushAll(10);
     for (const s of screen.UNSAFE_root.findAll((n: Node) => typeof n.type !== 'string' && /^strip-/.test(n.props.testID ?? '') && typeof n.props.onPress === 'function')) if (eff(s) < 44) small.push(`pasek tygodnia: ${eff(s)}`);
     expect(small).toEqual([]);
