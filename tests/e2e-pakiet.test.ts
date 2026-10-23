@@ -37,9 +37,10 @@ describe('pakiet podstawowy — lista', () => {
     expect(nums.includes('33')).toBe(nums.includes('34')); expect(nums).toContain('33');
     for (const n of ['31', '01', '05', '13', '21', '20', '35', '09', '53', '52']) expect(nums).toContain(n);
   });
-  test('docs/38 opisuje pakiet podstawowy, TestFlight/App Store, tryb ścisły i warunek 3 nocnych przebiegów', () => {
+  test('docs/38 opisuje pakiet podstawowy, TestFlight/App Store, tryb ścisły jako opcję i bramkę App Store z CLAUDE.md (21.10.2026: jeden pełny katalog na standardowym iPhonie, noc to sygnał — M1-047)', () => {
     const d = read('docs/' + fs.readdirSync(path.join(root, 'docs')).find(f => /^38-/.test(f))!);
-    expect(d).toMatch(/Pakiet podstawowy E2E/); expect(d).toMatch(/tryb ścisły/i); expect(d).toMatch(/3 kolejne nocne/i); expect(d).toMatch(/TestFlight/); expect(d).toMatch(/App Store/);
+    expect(d).toMatch(/Pakiet podstawowy E2E/); expect(d).toMatch(/tryb ścisły/i); expect(d).toMatch(/TestFlight/); expect(d).toMatch(/App Store/);
+    expect(d).toMatch(/App Store blokuje \*\*jeden pełny katalog E2E na standardowym iPhonie\*\*/); expect(d).toMatch(/Noc to sygnał, nie bramka/);
   });
 });
 
