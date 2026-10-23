@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Utan köp: upp till {n} träningsdagar i månaden; historik, säkerhetskopia och export finns alltid kvar.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Gratis träningsdagar den här månaden: {n} av {limit} använda",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} av {limit} gratis träningsdagar {left} den här månaden.",
- "Został|Zostały|Zostało": "kvar|kvar"
+ "Został|Zostały|Zostało": "kvar|kvar",
+ "Sklep chwilowo niedostępny": "Butiken är tillfälligt otillgänglig"
 }

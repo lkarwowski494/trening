@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Ohne Kauf: bis zu {n} Trainingstage pro Monat; Verlauf, Backup und Export sind immer verfügbar.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Kostenlose Trainingstage in diesem Monat: {n} von {limit} genutzt",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} von {limit} kostenlosen Trainingstagen in diesem Monat {left}.",
- "Został|Zostały|Zostało": "übrig|übrig"
+ "Został|Zostały|Zostało": "übrig|übrig",
+ "Sklep chwilowo niedostępny": "Store vorübergehend nicht verfügbar"
 }

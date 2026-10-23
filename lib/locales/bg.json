@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Без покупка: до {n} тренировъчни дни на месец; историята, резервното копие и експортът винаги са налични.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Безплатни тренировъчни дни този месец: използвани {n} от {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} от {limit} безплатни тренировъчни дни този месец.",
- "Został|Zostały|Zostało": "Остава|Остават"
+ "Został|Zostały|Zostało": "Остава|Остават",
+ "Sklep chwilowo niedostępny": "Магазинът временно не е достъпен"
 }

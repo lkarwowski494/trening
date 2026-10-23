@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Be pirkimo: iki {n} treniruočių dienų per mėnesį; istorija, atsarginė kopija ir eksportas visada prieinami.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Nemokamos treniruočių dienos šį mėnesį: panaudota {n} iš {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} iš {limit} nemokamų treniruočių dienų šį mėnesį.",
- "Został|Zostały|Zostało": "Lieka|Lieka|Lieka"
+ "Został|Zostały|Zostało": "Lieka|Lieka|Lieka",
+ "Sklep chwilowo niedostępny": "Parduotuvė laikinai nepasiekiama"
 }

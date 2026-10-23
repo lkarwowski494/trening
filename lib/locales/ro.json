@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Fără achiziție: până la {n} zile de antrenament pe lună; istoricul, copia de siguranță și exportul sunt mereu disponibile.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Zile de antrenament gratuite luna aceasta: {n} din {limit} folosite",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} din {limit} zile de antrenament gratuite luna aceasta.",
- "Został|Zostały|Zostało": "Rămâne|Rămân|Rămân"
+ "Został|Zostały|Zostało": "Rămâne|Rămân|Rămân",
+ "Sklep chwilowo niedostępny": "Magazinul este temporar indisponibil"
 }

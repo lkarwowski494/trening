@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Satın almadan: ayda en fazla {n} antrenman günü; geçmiş, yedek ve dışa aktarma her zaman kullanılabilir.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Bu ayki ücretsiz antrenman günleri: {n} / {limit} kullanıldı",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Bu ay {limit} ücretsiz antrenman gününden {n} tanesi {left}.",
- "Został|Zostały|Zostało": "kaldı|kaldı"
+ "Został|Zostały|Zostało": "kaldı|kaldı",
+ "Sklep chwilowo niedostępny": "Mağaza geçici olarak kullanılamıyor"
 }

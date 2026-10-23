@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Sin compra: hasta {n} días de entrenamiento al mes; el historial, la copia de seguridad y la exportación siempre están disponibles.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Días de entrenamiento gratuitos este mes: {n} de {limit} usados",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} de {limit} días de entrenamiento gratuitos este mes.",
- "Został|Zostały|Zostało": "Queda|Quedan"
+ "Został|Zostały|Zostało": "Queda|Quedan",
+ "Sklep chwilowo niedostępny": "Tienda no disponible temporalmente"
 }

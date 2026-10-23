@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Vásárlás nélkül: havonta legfeljebb {n} edzésnap; az előzmények, a biztonsági mentés és az exportálás mindig elérhető.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ingyenes edzésnapok ebben a hónapban: {limit} közül {n} felhasználva",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{limit} ingyenes edzésnapból {n} {left} ebben a hónapban.",
- "Został|Zostały|Zostało": "maradt|maradt"
+ "Został|Zostały|Zostało": "maradt|maradt",
+ "Sklep chwilowo niedostępny": "Az áruház átmenetileg nem érhető el"
 }

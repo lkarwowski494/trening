@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Bez pirkuma: līdz {n} treniņu dienām mēnesī; vēsture, dublējums un eksports vienmēr ir pieejami.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Bezmaksas treniņu dienas šomēnes: izmantotas {n} no {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} bezmaksas treniņu dienu skaits šomēnes: {n} no {limit}.",
- "Został|Zostały|Zostało": "Neizmantotu|Neizmantotu|Neizmantotu"
+ "Został|Zostały|Zostało": "Neizmantotu|Neizmantotu|Neizmantotu",
+ "Sklep chwilowo niedostępny": "Veikals īslaicīgi nav pieejams"
 }

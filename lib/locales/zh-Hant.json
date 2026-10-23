@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "不購買也可以：每月最多 {n} 個訓練日；歷史記錄、備份與匯出隨時可用。",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "本月免費訓練日：已使用 {n} / {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "本月 {limit} 個免費訓練日中，{left} {n} 個。",
- "Został|Zostały|Zostało": "還剩"
+ "Został|Zostały|Zostało": "還剩",
+ "Sklep chwilowo niedostępny": "商店暫時無法使用"
 }

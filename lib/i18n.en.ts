@@ -999,6 +999,7 @@ export const EN: Record<string, string> = {
   'Zarządzaj subskrypcją': 'Manage subscription',
   'Ładowanie cen…': 'Loading prices…',
   'Ceny są niedostępne bez połączenia z internetem.': 'Prices are unavailable without an internet connection.',
+  'Sklep chwilowo niedostępny': 'Store temporarily unavailable',
   'Subskrypcja odnawia się automatycznie, dopóki jej nie anulujesz w ustawieniach konta Apple.': 'The subscription renews automatically until you cancel it in your Apple account settings.',
   'Przywróć zakupy': 'Restore purchases',
   'Zrealizuj kod': 'Redeem code',
