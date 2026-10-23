@@ -426,6 +426,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że seria została odhaczona z zegarka
     - Gdy mija mniej niż 5 sekund i użytkownik stuka „Cofnij”
     - Wtedy odhaczenie jest cofnięte
+  - Scenariusz: Potwierdzenie dopiero po zapisie (M1-audytor-generalny-028, 23.10.2026)
+    - Zakładając, że telefon jest zablokowany, a zegarek wysyła zdarzenie (zrobione inaczej, pominięcie ćwiczenia, start sesji)
+    - Gdy telefon przyjmuje zdarzenie
+    - Wtedy zmiana jest zapisana w bazie, zanim zegarek dostanie potwierdzenie; nieudany zapis nie daje potwierdzenia i zegarek wysyła zdarzenie ponownie
 
 ### BR-ZEG-002: Zegarek: w trakcie pomiaru serii na czas przycisk główny to „Zakończ serię”
 - Przepływ: PR-07
