@@ -1,0 +1,58 @@
+{
+ "jezyk": "fr",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 394,
+ "uwagi": [
+  {
+   "klucz": "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}",
+   "rodzaj": "nowe",
+   "pl": "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}",
+   "tlumaczenie": "Jours d’entraînement gratuits ce mois-ci : {n} utilisés sur {limit}",
+   "poprawka": "Jours d’entraînement gratuits utilisés ce mois-ci : {n} sur {limit}",
+   "powod": "„{n} utilisés” jest niepoprawne dla n = 0 i 1, które po francusku wymagają liczby pojedynczej. Przeniesienie imiesłowu przed liczbę usuwa problem uzgodnienia.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+   "rodzaj": "nowe",
+   "pl": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+   "tlumaczenie": "Plan modifié : {day} — les jours précédents suivent l’ancien plan",
+   "poprawka": "Programme modifié : {day} — les jours précédents suivent l’ancien programme",
+   "powod": "Niespójna terminologia: „plan” zamiast „programme”, którego używają „Supprimer le programme” i „Générer des modèles et un programme”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "Échauffement : {d} sur {n} faits",
+   "poprawka": "Échauffements effectués : {d} sur {n}",
+   "powod": "„Échauffement” w liczbie pojedynczej przy liczeniu kilku serii. „{d} sur {n} faits” jest niepoprawne dla d = 0 i 1.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Serie: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Serie: {d} z {n} zrobione",
+   "tlumaczenie": "Séries : {d} sur {n} faites",
+   "poprawka": "Séries effectuées : {d} sur {n}",
+   "powod": "„{d} sur {n} faites” daje błędną liczbę mnogą dla d = 0 i 1.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "À la fin, « Terminer » en haut (ou « Terminer la séance » dans la carte après la dernière série) — la séance arrive dans l’onglet Plan.",
+   "poprawka": "À la fin, touchez « Terminer » dans l’en-tête (ou « Terminer la séance » dans la carte après la dernière série) — la séance arrive dans l’onglet Plan.",
+   "powod": "Brak czasownika. „en haut” jest niespójne z terminem „dans l’en-tête” używanym w innych tekstach.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

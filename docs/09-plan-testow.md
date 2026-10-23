@@ -463,3 +463,10 @@ Test najpierw (czerwony na f2b0525: blok IN-APP PURCHASES bez akapitu o stałej 
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | M1-045 (10-wydanie-001) | `tests/store-review-notes.test.ts` „M1-045” (akapit EN/PL i notatka subskrypcji: aktualizacje, alternatywa dożywotnia; wersje 0.11–0.20 obecne w dzienniku wydań; zdanie w opisie PL i 4 lokalizacjach EN; limit 4000 B) | dane, języki | zielone | **realność: brzegowy** (zależy od recenzenta, wytyczna 3.1.2(a)). Opis w pozostałych 28 lokalizacjach bez zdania — zadanie dla tłumacza. Ekran bez zmian, E2E nie dotyczy |
+
+## 23.10.2026 — naprawa M1-audytor-generalny-028 (audyt 21.10.2026, partia 1; gałąź `naprawa-m1-028-zegarek-ack`)
+Test najpierw (7 czerwonych na f2b0525: w chwili `ack` baza nie miała zmiany), potem poprawka w `lib/watch/link.ts`.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-028 (05-architekt-001) | `tests/audit-m1b-028-watch-ack.test.ts` (7: differ, skip, sessionStarted, nieudany zapis → brak `ack` i ponowienie; differ na zapisach 3 wydanych buildów z `tests/fixtures/released`) | logika, dane, regresja | zielone | **realność: brzegowy, dotyczy danych** — kroki: telefon zablokowany, trening z zegarka, „zrobione inaczej”/pominięcie/start sesji, system ubija aplikację w tle w ciągu 300 ms. Protokół zegarka bez zmian. Rodzaj 9 (E2E): ubicie procesu w tle poza zasięgiem Maestro — pominięty; ekran bez zmian |

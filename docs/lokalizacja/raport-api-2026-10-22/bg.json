@@ -1,0 +1,121 @@
+{
+ "jezyk": "bg",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 387,
+ "uwagi": [
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "Прогресия: когато стигнете горната граница на повторенията, добавете тежест. Постепенното увеличаване на натоварването се препоръчва от позициите на ACSM; моментът и големината на стъпката са конвенция.",
+   "poprawka": "Прогресия: когато стигнете горната граница на повторенията, добавете тежест. Постепенното увеличаване на натоварването се препоръчва от становищата на ACSM; моментът и големината на стъпката са конвенция.",
+   "powod": "„Position stand” to w terminologii bułgarskiej „становище”; „позиция” jest nienaturalne.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Позиция на ACSM 2026: при поне {n} серии на мускулна група седмично мускулният растеж е бил по-голям, отколкото при по-малък обем; силовите тренировки в различни форми водят до растеж спрямо липса на тренировки.",
+   "poprawka": "Становище на ACSM 2026: при поне {n} серии на мускулна група седмично мускулният растеж е бил по-голям, отколкото при по-малък обем; силовите тренировки в различни форми водят до растеж спрямо липса на тренировки.",
+   "powod": "„Stanowisko ACSM” należy oddać jako „становище”, tak samo jak w zdaniu 50.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
+   "rodzaj": "nowe",
+   "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
+   "tlumaczenie": "Тренирайте безплатно {n} дни на месец. Pro премахва ограничението. Можете да откажете по всяко време в настройките на Apple акаунта си.",
+   "poprawka": "Тренирайте безплатно {n} дни на месец. Pro премахва ограничението. Можете да анулирате по всяко време в настройките на Apple акаунта си.",
+   "powod": "„Откажете” jest niejednoznaczne. Przy anulowaniu subskrypcji naturalne jest „анулирате”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Usuń plan",
+   "rodzaj": "nowe",
+   "pl": "Usuń plan",
+   "tlumaczenie": "Изтрий плана",
+   "poprawka": "Изтриване на плана",
+   "powod": "Tryb rozkazujący w formie „ty” na przycisku jest niezgodny z rejestrem formalnym i z pozostałymi przyciskami („Изтриване на…”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wyczyść miejsce",
+   "rodzaj": "nowe",
+   "pl": "Wyczyść miejsce",
+   "tlumaczenie": "Премахни мястото",
+   "poprawka": "Премахване на мястото",
+   "powod": "Forma „ty” w etykiecie jest niezgodna z rejestrem formalnym i niespójna z innymi przyciskami.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Wyczyść miejsce: {a} – {b}",
+   "rodzaj": "nowe",
+   "pl": "Wyczyść miejsce: {a} – {b}",
+   "tlumaczenie": "Премахни мястото: {a} – {b}",
+   "poprawka": "Премахване на мястото: {a} – {b}",
+   "powod": "Forma „ty” jest niezgodna z rejestrem formalnym i niespójna z innymi przyciskami.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "cu.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć drążek podchwytem (dłonie do siebie), na szerokość barków, i zawiśnij na prostych rękach.",
+   "tlumaczenie": "Хвани лоста с подхват (дланите към теб) на ширината на раменете и вис на изпънати ръце.",
+   "poprawka": "Хвани лоста с подхват (дланите към теб) на ширината на раменете и увисни на изпънати ръце.",
+   "powod": "„Вис” to rzeczownik; potrzebny czasownik „увисни”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "llc.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Biodra przyciśnięte do ławki — bez wyginania pleców.",
+   "tlumaczenie": "Ханшът притиснат към облегалката — без извиване на гърба.",
+   "poprawka": "Ханшът притиснат към пейката — без извиване на гърба.",
+   "powod": "W oryginale jest „ławka”, a „облегалка” oznacza oparcie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "nordic.catch",
+   "rodzaj": "wskazowka",
+   "pl": "Gdy nie dasz rady dalej hamować, złap się dłońmi jak przy pompce.",
+   "tlumaczenie": "Когато вече не можеш да спираш, подпри се с ръце като при лицева опора.",
+   "poprawka": "Когато вече не можеш да задържаш спускането, подпри се с ръце като при лицева опора.",
+   "powod": "„Да спираш” niejasno oddaje „hamować” (kontrolowanie opadania).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "npu.hang",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć uchwyty pełnym chwytem (kciuk dookoła) i zawiśnij na prostych rękach.",
+   "tlumaczenie": "Хвани дръжките с цялата длан (палците обхващат) и вис на изпънати ръце.",
+   "poprawka": "Хвани дръжките с цялата длан (палците обхващат) и увисни на изпънати ръце.",
+   "powod": "„Вис” to rzeczownik; potrzebny czasownik „увисни”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "pu.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć drążek nachwytem, trochę szerzej niż barki, i zawiśnij na prostych rękach.",
+   "tlumaczenie": "Хвани лоста с прав хват малко по-широко от раменете и вис на изпънати ръце.",
+   "poprawka": "Хвани лоста с прав хват малко по-широко от раменете и увисни на изпънати ръце.",
+   "powod": "„Вис” to rzeczownik; potrzebny czasownik „увисни”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "rear.arms",
+   "rodzaj": "wskazowka",
+   "pl": "Ramiona idą w bok, nie w tył — dłonie kończą ruch mniej więcej na linii barków.",
+   "tlumaczenie": "Ръцете вървят встрани, а не назад — китките завършват приблизително на линията на раменете.",
+   "poprawka": "Ръцете вървят встрани, а не назад — дланите завършват приблизително на линията на раменете.",
+   "powod": "W oryginale są „dłonie”, nie „nadgarstki” („китките”).",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

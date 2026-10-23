@@ -1,5 +1,5 @@
 import { getState } from '../store';
-import { subscribe as subscribeStore } from '../state/core';
+import { subscribe as subscribeStore, persistNow } from '../state/core';
 import * as timer from '../timer';
 import { reportWatchSession } from '../health';
 import { applyWatchEvent } from './apply';
@@ -68,6 +68,9 @@ export class WatchLink {
       return;
     }
     const ack = await this.handleEvent(m);
+    /* M1-audytor-generalny-028: zegarek po `ack` nie ponawia zdarzenia, a `save` zapisuje z opóźnieniem — zmiana (także powtórka po nieudanym
+       zapisie) trafia do bazy PRZED potwierdzeniem; błąd zapisu → bez `ack`, zegarek wyśle zdarzenie ponownie */
+    if (ack.status === 'applied' || ack.status === 'duplicate') { try { await persistNow(); } catch { return; } }
     /* najpierw migawka, potem potwierdzenie z numerem tej migawki — zegarek zmienia widok jednym ruchem (lib/watch/client.ts: ackRev) */
     this.push(); this.tr.send({ ...ack, rev: this.rev });
   }

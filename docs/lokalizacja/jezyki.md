@@ -5,7 +5,7 @@ Stan: 20.10.2026 (audyt M1-067, DEC-21 wariant a). Rejestr obejmuje **wszystkie 
 Źródła kolumn: fala, tłumaczenie i recenzja — `docs/16-jezyki-i-marka.md`; kontrola treści krytycznej (zdanie medyczne, asekuracja, wskazówki) — tabela generowana w `docs/16` (sekcja „Treść krytyczna”, M1-049); nazwy sklepu — `store/app-store-names.json`; zakupy — `store/iap-localizations.json`; opis sklepu — `docs/15` (projekt tylko PL/EN, pozostałe lokalizacje: docs/41 D4).
 Kolumny „nazwa w App Store”, „opis w App Store” i „zakupy (ASC)” test wylicza z plików sklepu; „kontrole automatyczne” — z istnienia plików testów.
 
-Ryzyko dla wydania w App Store: R-010 w `docs/40-lekcje.md` (drugi przegląd przez native speakerów i forma zwracania się w fr i tr).
+Ryzyko dla wydania w App Store: R-010 w `docs/40-lekcje.md` (drugi przegląd treści krytycznej i forma zwracania się w fr i tr). Drugi przegląd robi wyłącznie Claude — rola tłumacz, potem badacz dla treści merytorycznej, bez native speakerów i bez Gemini (decyzja właściciela 20.10.2026, docs/18); przegląd przez API wykonany 22.10.2026, dowód: `docs/lokalizacja/raport-api-2026-10-22/`, decyzje poprawek: `docs/lokalizacja/przeglad-api-2026-10-22.md`. Nazwa kolumny „drugi przegląd (native speaker)” poniżej jest historyczna (pilnuje jej test rejestru); wpis wykonania w docs/16 — otwarte (R-010).
 
 <!-- rejestr:start -->
 | kod | język | fala (decyzja) | tłumaczenie | recenzja drugim agentem | drugi przegląd (native speaker) | kontrole automatyczne | zrzuty z symulatora | nazwa w App Store | opis w App Store | zakupy (ASC) |

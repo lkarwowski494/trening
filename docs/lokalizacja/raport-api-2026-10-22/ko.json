@@ -1,0 +1,67 @@
+{
+ "jezyk": "ko",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 393,
+ "uwagi": [
+  {
+   "klucz": "Jesteśmy z Ciebie dumni!",
+   "rodzaj": "nowe",
+   "pl": "Jesteśmy z Ciebie dumni!",
+   "tlumaczenie": "당신이 자랑스럽습니다!",
+   "poprawka": "저희는 정말 자랑스럽습니다!",
+   "powod": "„당신” brzmi w aplikacji nienaturalnie, a podmiot „my” zaginął",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "ACSM 2026 입장: 부위별로 주당 {n}세트 이상일 때 근육 성장이 더 적은 볼륨보다 컸으며, 다양한 형태의 근력 운동은 운동하지 않을 때보다 성장을 가져옵니다.",
+   "poprawka": "ACSM 2026 입장문: 부위별로 주당 {n}세트 이상일 때 더 적은 볼륨일 때보다 근육 성장이 컸으며, 다양한 형태의 근력 운동은 운동하지 않을 때보다 근육 성장을 가져옵니다.",
+   "powod": "Niespójny termin („입장” zamiast „입장문” jak w nr 50) i niezręczne porównanie",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "rodzaj": "nowe",
+   "pl": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "tlumaczenie": "이번 달에는 열심히 운동해서 무료 운동일({n}일)을 모두 사용했습니다. 잘하셨어요!",
+   "poprawka": "이번 달에는 열심히 운동해서 무료 운동일({n}일)을 모두 사용했습니다. 잘하셨습니다!",
+   "powod": "Końcówka -요 zamiast wymaganej -니다 w zdaniu oznajmującym",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "바벨을 몸통에 올리거나 머리와 얼굴 위로 움직이는 운동: 안전 장치를 권장합니다 — 안전 바가 있는 랙과 보조자.",
+   "poprawka": "바벨을 몸통에 올리거나 머리와 얼굴 위로 움직이는 운동: 안전 보조를 권장합니다 — 안전 바가 있는 랙과 보조자.",
+   "powod": "„asekuracja” obejmuje sprzęt i osobę; „안전 장치” (sprzęt) nie pasuje do osoby asekurującej",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "점진적 과부하: 반복 범위의 상한에 도달하면 무게를 늘리세요. 부하를 단계적으로 늘리라고 ACSM 입장문이 권고하며, 시기와 증량 폭은 관례입니다.",
+   "poprawka": "점진적 과부하: 반복 범위의 상한에 도달하면 무게를 늘리세요. ACSM 입장문은 부하를 단계적으로 늘리도록 권고하며, 시기와 증량 폭은 관례입니다.",
+   "powod": "Nienaturalny szyk zdania z podmiotem na końcu",
+   "waga": "niska"
+  },
+  {
+   "klucz": "erg.recovery",
+   "rodzaj": "wskazowka",
+   "pl": "Powrót w odwrotnej kolejności: ręce, tułów, dopiero potem ugięcie kolan.",
+   "tlumaczenie": "리커버리는 반대 순서로: 팔, 몸, 그리고 나서야 무릎을 굽히세요.",
+   "poprawka": "리커버리는 반대 순서로: 팔, 몸, 그다음에야 무릎을 굽히세요.",
+   "powod": "„그리고 나서야” to niepoprawna forma (norma: „그러고 나서야”)",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}
