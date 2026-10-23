@@ -256,7 +256,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (46)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (47)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -303,6 +303,7 @@ trening/
 - [`docs/m3-stan.md`](docs/m3-stan.md) — M3 Redesigner — stan przebiegu (plik stanu na wypadek utraty kontenera)
 - [`docs/monetyzacja-badanie-2026-10.md`](docs/monetyzacja-badanie-2026-10.md) — Badanie zmiany modelu monetyzacji (rola 02, build) — STOP E2
 - [`docs/monetyzacja.md`](docs/monetyzacja.md) — Monetyzacja — model stały (jedno miejsce)
+- [`docs/przekazanie-koordynatora-2026-10-23.md`](docs/przekazanie-koordynatora-2026-10-23.md) — Przekazanie koordynatora — 23.10.2026, ok. 09:00 UTC
 - [`docs/wzrost.md`](docs/wzrost.md) — Wzrost: kanały startu i decyzja o Androidzie
 
 </details>
