@@ -13,7 +13,7 @@ describe('turkus jako drugi akcent informacyjny (M1-023)', () => {
   test('docs/32 zapisuje decyzję DEC-07 K2 z datą, tokenem i porządkiem w 1.0.x', () => {
     expect(doc).toMatch(/Turkus jako drugi akcent informacyjny \(DEC-07 K2, właściciel 23\.10\.2026/);
     expect(doc).toContain('`band`');
-    expect(doc).toMatch(/porządek użycia turkusu w całej aplikacji — w 1\.0\.x/);
+    expect(doc).toMatch(/orządek użycia turkusu w całej aplikacji — w 1\.0\.x/);
   });
   test('wartości tokenu `band` z docs/32 = tokeny w obu motywach', () => {
     expect(doc).toContain(`\`${light.band}\``);

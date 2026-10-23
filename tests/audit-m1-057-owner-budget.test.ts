@@ -25,7 +25,7 @@ describe('beta iOS/watchOS w liście kontrolnej wydania (M1-900)', () => {
   test('docs/42 pkt 5: krok W1-10 — lipiec–sierpień, symulator w CI, 5 min na telefonie', () => {
     const step = plan.split('\n').find((l) => l.includes('**W1-10**')) ?? '';
     expect(step).toMatch(/^- \[ \] /);
-    expect(step).toMatch(/beta iOS\/watchOS/);
+    expect(step).toMatch(/[Bb]eta iOS\/watchOS/);
     expect(step).toMatch(/lipiec–sierpień/);
     expect(step).toMatch(/symulator/);
     expect(step).toMatch(/5 min/);

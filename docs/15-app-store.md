@@ -47,6 +47,8 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 
 ## Wzrost i promocja — ustalenia (właściciel 06.10.2026)
 
+- **Przekaz i reguły (23.10.2026, DEC-07 K5/K6):** przekaz startowy „szybki zapis serii, także z zegarka; dane tylko na telefonie; bez konta” (zastępuje hasło z 13.10.2026); reguły uczciwej promocji (ujawnienie autorstwa, bez próśb o oceny do znajomych, zgoda na e-maile do klubów, zakaz promocji na forach) — `docs/wzrost.md` pkt 6.
+
 - **Cel:** powolne zdobywanie użytkowników, którzy zostają na stałe — bez ostrej, szybkiej promocji. „100 pobrań miesięcznie byłoby super.”
 - **Realistyczny punkt wyjścia (ocena agenta, nie dane):** bez promocji — rzędu kilkudziesięciu pobrań w pierwszym miesiącu, potem od kilku do kilkudziesięciu
   miesięcznie; kategoria „dziennik treningów” zatłoczona (wiele popularnych aplikacji). Liczby do zweryfikowania po premierze (App Store Connect → Analityka).
