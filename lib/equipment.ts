@@ -1,4 +1,4 @@
-import { CATALOG_CAPS, type LoadSource } from './catalog.generated';
+import { CATALOG_CAPS, CATALOG_SPOTTER, type LoadSource } from './catalog.generated';
 import { achievable, noPlates, rangeValues, convertSpec, type LoadSpec, type LoadUnit } from './loads';
 import { lbl, t } from './i18n';
 import { fmtNum, isImperial } from './units';
@@ -317,8 +317,11 @@ export function availability(ex: Pick<Exercise, 'requires' | 'recommended'>, loc
 }
 /** Możliwość „ramiona asekuracyjne w stojakach” (power rack, stojaki z opcją „z asekuracją”) — zalecana w katalogu przy sztandze nad ciałem lub na barkach. */
 export const SAFETY_CAP = 'rack.safeties';
-/** Katalog zaleca ramiona asekuracyjne przy tym ćwiczeniu (29 wpisów; audyt M1-015). */
+/** Katalog zaleca ramiona asekuracyjne przy tym ćwiczeniu (wariant „stojaki”: 43 wpisy; audyt M1-015, zakres M1-031 — NSCA 2017 Standard 3.2). */
 export const needsSafety = (ex: Pick<Exercise, 'recommended'>): boolean => (ex.recommended ?? []).includes(SAFETY_CAP);
+/** Wariant „osoba asekurująca” (M1-031): ćwiczenie z biblioteki ze sztangą na tułowiu lub nad głową/twarzą, przy którym katalog nie przewiduje ramion asekuracyjnych
+ * (CATALOG_SPOTTER). Edytowane wymagania (catalogRev „user”) i ćwiczenia własne — bez zdania, jak w wariancie „stojaki” (recommended czyszczone). */
+export const needsSpotter = (ex: Pick<Exercise, 'lib' | 'libKey' | 'catalogRev'>): boolean => !!ex.lib && !!ex.libKey && ex.catalogRev !== 'user' && CATALOG_SPOTTER.has(ex.libKey);
 /** Ćwiczenie zaleca asekurację, a wybrane miejsce jej nie daje. Brak miejsca („bez ograniczeń sprzętu” = pełna siłownia) → bez ostrzeżenia. */
 export const lacksSafety = (ex: Pick<Exercise, 'recommended'>, loc: Location | null | undefined, caps: Set<string> = capsOf(loc)): boolean => !!loc && needsSafety(ex) && !caps.has(SAFETY_CAP);
 /** „ławka skośna, drążek / kółka gimnastyczne” — dopisek do niedostępnego ćwiczenia. */

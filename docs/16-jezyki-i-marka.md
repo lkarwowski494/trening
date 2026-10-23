@@ -269,11 +269,11 @@ język telefonu (np. zh-Hant na telefonie ja) — React Native nie przekazuje j�
 Treść krytyczna = zdanie medyczne („Aplikacja nie udziela porad medycznych …”), zdanie i etykiety o asekuracji (M1-015) oraz zdania wskazówek techniki (`lib/cues/text`). Języków docelowych jest 34 (`LANGS` bez polskiego).
 Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audit-m1-049-critical-content.test.ts`); drift pada w `tests/audit-m1-049-critical-content.test.ts`.
 
-**Co kontrola potwierdza (automatycznie):** zdanie medyczne i trzy klucze asekuracji są w każdym z 34 języków i różnią się od tekstu źródłowego (nie jest to przeciek polskiego ani zapasowego angielskiego); komplet zdań wskazówek jest w każdym języku
+**Co kontrola potwierdza (automatycznie):** zdanie medyczne i cztery klucze asekuracji (czwarty — wariant „osoba asekurująca”, M1-031, 23.10.2026; tłumaczenia agenta, do przeglądu) są w każdym z 34 języków i różnią się od tekstu źródłowego (nie jest to przeciek polskiego ani zapasowego angielskiego); komplet zdań wskazówek jest w każdym języku
 (warianty es-419 i pt-BR to nakładki na es i pt — liczone po złożeniu). Kontrola **nie ocenia poprawności** tłumaczenia.
 
 <!-- gen:krytyczne -->
-| kod | zdanie medyczne | asekuracja (3 klucze) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd wskazówek (native speaker) |
+| kod | zdanie medyczne | asekuracja (4 klucze) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd wskazówek (native speaker) |
 |---|---|---|---|---|---|
 | en | tak | tak | 306/306 | brak zapisu | niewykonany |
 | cs | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
@@ -323,7 +323,7 @@ Ryzyko i warunek zamknięcia: R-010 w `docs/40-lekcje.md` (blokuje wydanie w App
 Drugi przegląd treści krytycznej (R-010) robi Claude przez Message Batches, z kredytów API właściciela. Przegląd **niczego nie zmienia** w słownikach — daje raport do przejrzenia;
 poprawki nanosi człowiek albo agent (rola tłumacz), a treść merytoryczną (zdanie asekuracji) sprawdza badacz.
 
-*Co jest przeglądane (jedno żądanie na język, 34 języki w tym `en`; `es-419` i `pt-BR` po złożeniu z nakładką):* (a) zdanie medyczne i trzy klucze asekuracji; (b) wszystkie zdania wskazówek techniki
+*Co jest przeglądane (jedno żądanie na język, 34 języki w tym `en`; `es-419` i `pt-BR` po złożeniu z nakładką):* (a) zdanie medyczne i cztery klucze asekuracji; (b) wszystkie zdania wskazówek techniki
 (`lib/cues/text`, 306 na język); (c) klucze dodane lub zmienione w `lib/locales/_source.json` od commitu `8273448` (`--od`, tryb różnicy: dziś 32 klucze). Razem 342 zdania na język. Do modelu idą polskie źródło, angielski
 i tłumaczenie oraz rejestr języka z docs/16 (np. fr „vous”, tr „siz”); model ma ocenić znaczenie, złagodzenie lub wzmocnienie twierdzeń medycznych i bezpieczeństwa, formę grzecznościową, naturalność, zmienne `{…}` i liczbę mnogą.
 Osobno, bez API, skrypt sprawdza zgodność zmiennych `{…}` i brak tłumaczenia (kontrola lokalna).

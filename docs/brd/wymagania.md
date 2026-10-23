@@ -381,12 +381,20 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 
 ### BR-BIB-002: Informacja o asekuracji przy sztandze nad ciałem lub na barkach
 - Przepływ: PR-01
-- Dowód potrzeby: OG-02; test `tests/audit-m1-015-asekuracja.test.tsx`
+- Dowód potrzeby: OG-02; NSCA 2017 Standard 3.2 (docs/research/przeglad-badacza-2026-10-23.md); testy `tests/audit-m1-015-asekuracja.test.tsx`, `tests/audit-m1-031-asekuracja-zakres.test.tsx`
 - Kryteria akceptacji:
   - Scenariusz: Zdanie o asekuracji
     - Zakładając, że ćwiczenie ma w katalogu zalecenie ramion asekuracyjnych
     - Gdy użytkownik otwiera to ćwiczenie
     - Wtedy ekran pokazuje zdanie o asekuracji, a wybór ćwiczenia w miejscu bez ramion asekuracyjnych oznacza je „bez asekuracji w stojakach”
+  - Scenariusz: Asekuracja osobą bez stojaków (M1-031, 23.10.2026)
+    - Zakładając, że ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą nie przewiduje w katalogu stojaków (np. Skullcrusher (EZ), pullover, wykroki w marszu)
+    - Gdy użytkownik otwiera to ćwiczenie
+    - Wtedy ekran pokazuje ramkę „Asekuracja” ze zdaniem „zalecana osoba asekurująca”, a wybór ćwiczenia nie dopisuje „bez asekuracji w stojakach”
+  - Scenariusz: Zakres listy (M1-031)
+    - Zakładając, że ćwiczenie katalogu jest wykonywane ze sztangą lub sztangą EZ
+    - Gdy powstaje albo zmienia się wpis katalogu
+    - Wtedy ma przypisaną jedną kategorię: „stojaki”, „osoba”, otwarte (ćwiczenia dynamiczne, sztanga na biodrach) albo poza zakresem — inaczej test zatrzymuje zmianę
 
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07

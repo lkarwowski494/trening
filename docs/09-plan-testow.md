@@ -456,3 +456,10 @@ Test najpierw (10 wektorów kontraktu E3 czerwone na starym kodzie), potem kod. 
 | Brak próby | `tests/m5s1-bez-proby.test.ts`, `tests/store-adapter.test.ts`, `tests/asc-kontrola.test.ts` | logika, dane, regresja | zielone | R-M5-3 zamyka kontrola ASC |
 | Prośba o ocenę | `tests/review.test.ts`, `tests/review-run.test.tsx`, `tests/idea-request.test.tsx` (N = 3; brak ekranu zakupu po pierwszym treningu) | logika, scenariusz | zielone | |
 | E2E Maestro | `.maestro/21-subskrypcja.yaml`, `.maestro/35-ustawienia-dostepnosc.yaml` (licznik dni, „We're proud of you!”, „Subscribe”; build E2E: limit 0 dni) | scenariusz | zielone w interpreterze; przebieg na symulatorze — koordynator | wpisy NU-11 i US-12 w `tests/przeplywy.json` |
+
+## 23.10.2026 — M1-audytor-generalny-031 (06-tresci-001): zakres ramki „Asekuracja” według NSCA 2017 Standard 3.2 (gałąź `naprawa-m1-031-asekuracja`)
+Test najpierw (czerwony na f2b0525: 35 z 43 przypadków — 29 zamiast 43 z `rack.safeties`, brak `CATALOG_SPOTTER` i `needsSpotter`, brak ramki przy Overhead Press i Skullcrusher (EZ)), potem dane katalogu, generator i ramka.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-031 | `tests/audit-m1-031-asekuracja-zakres.test.tsx` (43: kategoria każdego ze 137 ćwiczeń ze sztangą/EZ — strażnik nowych ćwiczeń, warianty „stojaki”/„osoba”, ramka na ekranie, EN, 33 słowniki, dopisek w wyborze ćwiczenia); zaktualizowane `audit-m1-015-asekuracja` i `poprawki-tlumaczen-2026-10-21` (29 → 43), `audit-m1-049-critical-content` (4 klucze asekuracji), `przeglad-tlumaczen` (5 zdań krytycznych) | logika, ekran, scenariusz, macierz, dane, języki, regresja | zielone | E2E Maestro pominięte: bez nowego ekranu i przepływu (ta sama ramka na ekranie ćwiczenia, inne dane katalogu); ekran i wybór ćwiczenia pokrywa test RNTL. Tłumaczenia nowego zdania (31 słowników) — agent, do przeglądu tłumacza (R-010). Otwarte: ćwiczenia dynamiczne, sztanga na biodrach, hantle (docs/research/przeglad-badacza-2026-10-23.md) |

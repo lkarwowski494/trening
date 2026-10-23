@@ -49,7 +49,7 @@ describe('asekuracja: brzmienie z przeglądu badacza (sprzęt oraz osoba asekuru
 
 describe('Smith: zalecenie asekuracji nie dotyczy ćwiczeń na maszynie Smitha (NSCA 3.2 — wolne ciężary)', () => {
   const NEED = Object.entries(CATALOG).filter(([, c]) => c.recommended.includes('rack.safeties'));
-  test('jest 29 ćwiczeń z zaleceniem rack.safeties', () => { expect(NEED).toHaveLength(29); });
+  test('jest 43 ćwiczenia z zaleceniem rack.safeties (M1-031: zakres NSCA 3.2)', () => { expect(NEED).toHaveLength(43); });
   test.each(NEED.map(([k]) => k))('%s: sztanga lub sztanga EZ, bez maszyny Smitha', (k) => {
     const c = CATALOG[k]; expect(['barbell', 'ez_bar']).toContain(c.loadSource); expect(c.requires.flat()).not.toContain('smith');
   });
