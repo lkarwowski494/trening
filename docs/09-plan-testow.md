@@ -496,3 +496,13 @@ Teksty zależne od modelu M5 S1 (22.10.2026) i od zasad E2E z 21.10.2026. Każdy
 | M1-052 (11-wzrost-002) | `tests/audit-m1-052-site-pricing.test.ts` (4: liczba dni w docs/monetyzacja.md = `PAYWALL.FREE_TRAINING_DAYS_PER_MONTH`; PL „Za darmo do N dni treningowych w miesiącu” + Pro bez limitu; EN to samo; żadna inna liczba dni i żadne kwoty na stronie) | dane, języki | zielone | **realność: realny** (strona z wyszukiwarki lub linku wsparcia); publikacja przez `pages.yml` po scaleniu do main |
 | M1-053 (11-wzrost-003) | `tests/audit-m1-053-site-offline.test.ts` (2: polityka ma zastrzeżenie o zakupach PL/EN; każde zdanie „nie łączy się z internetem” / „does not connect to the internet” na stronie produktu ma to samo zastrzeżenie) | dane, języki | zielone | **realność: realny** (zakup bez sieci wymaga połączenia z App Store) |
 | M1-051 (11-wzrost-001, DEC-02 a) | `tests/audit-m1-071-channels.test.ts` — strażnik wzmocniony (5 nowych: tryby ze słownika; kanał z zakazem albo [DO PRZECZYTANIA] nie ma trybu z wpisem; forum i grupy „poza planem startu — wpis tylko po pisemnej zgodzie administracji”; SFD z adresem regulaminu, cytatem i datą odczytu 23.10.2026; reguła w docs/wzrost.md pkt 1 i docs/15, działania na start bez wpisów na forach) | dane, regresja | zielone | **realność: realny** (wpis wbrew regulaminowi forum); dawny test „SFD = tylko pomocna obecność bez linku” zastąpiony ostrzejszym trybem |
+
+## 23.10.2026 — naprawy M1, DEC-07 (karty P2: teksty, strona, plan startu; gałąź `naprawa-m1-dec07-teksty`)
+Dokumenty i strona, bez zmian kodu UI. Testy dokumentów i strony pilnują zapisu decyzji (rodzaje: dokument, strona, strażnik; E2E nie dotyczy — brak zmiany zachowania aplikacji).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-023 (K2) | `tests/audit-m1-023-turquoise.test.ts` (3: decyzja w docs/32; wartości `band` z tokenów; turkus ≠ akcent główny) | dokument, strażnik | zielone | porządek użycia turkusu — 1.0.x |
+| M1-050 (K4) | `tests/audit-m1-050-support-subscription.test.ts` (pytania PL/EN, limit = `PAYWALL.FREE_TRAINING_DAYS_PER_MONTH`, brak okresu próbnego, etykiety ze słownika, ścieżka z `SubscriptionCard`, bez kwot) | strona, strażnik | zielone | ceny tylko w App Store |
+| M1-055/056/012 (K5, K6, K8) | `tests/audit-m1-055-promo-rules.test.ts` (reguły promocji w docs/wzrost.md i roli marketingu; przekaz z zegarkiem w docs i na stronie; stare hasło oznaczone; 471/388 USD) | dokument, strona | zielone | |
+| M1-057/900 (K7, K10) | `tests/audit-m1-057-owner-budget.test.ts` (2 h × 8 tyg., 48 h; krok W1-10 beta iOS/watchOS) | dokument | zielone | |
