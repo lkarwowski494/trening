@@ -477,3 +477,10 @@ Test najpierw (7 czerwonych na f2b0525: w chwili `ack` baza nie miała zmiany), 
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | M1-028 (05-architekt-001) | `tests/audit-m1b-028-watch-ack.test.ts` (7: differ, skip, sessionStarted, nieudany zapis → brak `ack` i ponowienie; differ na zapisach 3 wydanych buildów z `tests/fixtures/released`) | logika, dane, regresja | zielone | **realność: brzegowy, dotyczy danych** — kroki: telefon zablokowany, trening z zegarka, „zrobione inaczej”/pominięcie/start sesji, system ubija aplikację w tle w ciągu 300 ms. Protokół zegarka bez zmian. Rodzaj 9 (E2E): ubicie procesu w tle poza zasięgiem Maestro — pominięty; ekran bez zmian |
+
+## 23.10.2026 — naprawy M1, partia 2: dokumenty i strony po M5 S1 (audyt 21.10.2026; gałąź `naprawa-m1-p2-teksty`)
+Teksty zależne od modelu M5 S1 (22.10.2026) i od zasad E2E z 21.10.2026. Każdy test najpierw czerwony na e8cc375, potem poprawka tekstu.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-046 (10-wydanie-002, 02-monetyzacja-002) | `tests/audit-m1-046-privacy-notifications.test.ts` (3: polityka PL/EN bez okresu próbnego przy „Bez okresu próbnego” w docs/monetyzacja.md; bez przypomnienia o ważeniu, bo kod go nie planuje; sekcja „Powiadomienia” wymienia przerwę, serię na czas, plan i niezakończony trening z `lib/timer.ts`/`lib/planReminder.ts`); `tests/public-repo.test.ts` — oczekiwany fragment zmieniony z próby na niezakończony trening | dane, języki, regresja | zielone | **realność: realny** (każdy, kto otworzy politykę); strona apps4brew.com — publikacja przez właściciela |
