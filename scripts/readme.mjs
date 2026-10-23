@@ -164,6 +164,7 @@ const WORKFLOW_ROLE = {
   'asc-kontrola.yml': 'kontrola ustawień App Store Connect (tylko odczyt; ręcznie; narzędzie z repozytorium narzędzi studia)',
   'store-screenshots.yml': 'zrzuty ekranu do App Store z symulatora (ręcznie)',
   'przeglad-tlumaczen.yml': 'przegląd tłumaczeń treści krytycznej przez API Anthropic (ręcznie, płatny, limit kosztu)',
+  'przeklad-tlumaczen.yml': 'przekład kluczy słownika na 33 języki przez API Anthropic (ręcznie, płatny, limit 6 USD; propozycje jako artefakt)',
   'sprzatanie-galezi.yml': 'usuwanie gałęzi scalonych lub zatwierdzonych przez właściciela (ręcznie, podgląd domyślnie)',
 };
 const TRIGGERS = [['push', 'wypchnięcie'], ['pull_request', 'zgłoszenie zmian'], ['schedule', 'harmonogram'], ['workflow_dispatch', 'ręcznie'], ['workflow_call', 'wywołanie z innego workflow'], ['workflow_run', 'po innym workflow']];
