@@ -264,21 +264,18 @@ describe('F7 — przyciski przejścia bez podwójnego ekranu', () => {
 });
 
 describe('podgląd ćwiczenia po scaleniu z fix-catalog i fix-cues: pewność partii, mięsień spoza mapy, wskazówki techniki', () => {
-  test('dopisek wg muscleConfidence: „mocne/umiarkowane” — bez dopisku, „jedno źródło” — własny, „uproszczenie” i własne ćwiczenie — ogólny; mięsień spoza mapy — linijka; EN', async () => {
+  test('bez dopisku o pewności (23.10.2026) niezależnie od muscleConfidence i dla własnego ćwiczenia; mięsień spoza mapy — linijka; EN', async () => {
     const { muscleConfidence, unmappedMuscleOf, musclesSourced } = require('@/lib/seed');
-    const ONE = 'Przypisanie partii mięśniowych — wstępne, jeszcze nieustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.';
-    const SIMPLE = 'Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.';
     await boot(); const all = S().exercises.filter(e => e.lib && !e.archived);
     const sourced = all.find(e => musclesSourced(e))!, one = all.find(e => !musclesSourced(e) && String(muscleConfidence(e) ?? '').startsWith('jedno źródło'))!;
     const simple = all.find(e => !musclesSourced(e) && String(muscleConfidence(e) ?? '').startsWith('brak źródła'))!, um = all.find(e => unmappedMuscleOf(e) === 'rotator_cuff')!;
     expect([!!sourced, !!one, !!simple, !!um]).toEqual([true, true, true, true]);
-    await go(`/exercise/${sourced.id}`); await flushAll(10); expect(screen.queryByText(ONE)).toBeNull(); expect(screen.queryByText(SIMPLE)).toBeNull();
-    const open = async () => { const b = screen.getAllByTestId('info-muscle-note'); await tap(b[b.length - 1]); }; /* ⓘ 14.10.2026: pełny dopisek pod ⓘ, na wierzchu krótki */
-    expect(screen.queryByTestId('info-muscle-note')).toBeNull(); /* ćwiczenie ze źródłami — bez dopisku i bez ⓘ */
-    await go(`/exercise/${one.id}`); await flushAll(10); expect(screen.getAllByText('Przypisanie partii: wstępne.').length).toBeGreaterThan(0); expect(screen.queryByText(ONE)).toBeNull(); await open(); expect(screen.getAllByText(ONE).length).toBeGreaterThan(0);
-    await go(`/exercise/${simple.id}`); await flushAll(10); expect(screen.getAllByText('Przypisanie partii: uproszczenie.').length).toBeGreaterThan(0); await open(); expect(screen.getAllByText(SIMPLE).length).toBeGreaterThan(0);
+    const noNote = () => { expect(screen.queryByText(/Przypisanie partii/)).toBeNull(); expect(screen.queryByTestId('info-muscle-note')).toBeNull(); }; /* 23.10.2026: dopisek pewności usunięty z UI (docs/18) */
+    await go(`/exercise/${sourced.id}`); await flushAll(10); noNote();
+    await go(`/exercise/${one.id}`); await flushAll(10); noNote();
+    await go(`/exercise/${simple.id}`); await flushAll(10); noNote();
     await go(`/exercise/${um.id}`); await flushAll(10); expect(screen.getAllByText('Mięsień docelowy spoza mapy partii: stożek rotatorów — nie liczy się w seriach na partię ani na mapie mięśni.').length).toBeGreaterThan(0);
-    const own = store.newExercise('Moje'); await go(`/exercise/${own.id}`); await flushAll(10); await open(); expect(screen.getAllByText(SIMPLE).length).toBeGreaterThan(0);
+    const own = store.newExercise('Moje'); await go(`/exercise/${own.id}`); await flushAll(10); noNote();
     for (const [k, v] of [['serratus_anterior', 'zębaty przedni'], ['tibialis_anterior', 'piszczelowy przedni'], ['hip_flexors', 'zginacze biodra']] as const) {
       const e = all.find(x => unmappedMuscleOf(x) === k); if (e) { await go(`/exercise/${e.id}`); await flushAll(10); expect(screen.getAllByText(`Mięsień docelowy spoza mapy partii: ${v} — nie liczy się w seriach na partię ani na mapie mięśni.`).length).toBeGreaterThan(0); }
     }

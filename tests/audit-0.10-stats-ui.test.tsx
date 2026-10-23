@@ -31,7 +31,7 @@ describe('E1: masa ciała (od 11.10.2026 w Postępach, dawniej w Ustawieniach) i
     await tap(screen.getByText('Masa ciała — pomiary')); await flushAll(5);
     const p = Math.round(BW_SHARE['Push Up'] * 100);
     expect(screen.getByText('Opcjonalnie, tylko w telefonie. Potrzebna do e1RM w podciąganiu i pompkach.')).toBeTruthy(); await openInfo('bodymass-intro'); /* ⓘ 14.10.2026 */
-    expect(screen.getByText(`Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. ${p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.`)).toBeTruthy();
+    expect(screen.getByText(`Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała) i w pompkach (ok. ${p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.`)).toBeTruthy();
     const f = screen.getByLabelText('Masa ciała (kg)'); expect(f.props.value).toBe(''); expect(screen.getByLabelText('Data pomiaru (RRRR-MM-DD)').props.value).toBe('2026-10-08');
     await typeText(f, '80,5'); await act(async () => { fireEvent.press(screen.getByText('Zapisz pomiar')); }); await flushAll(5);
     expect(S().bodyMassLog).toEqual([{ date: '2026-10-08', kg: 80.5 }]);
@@ -47,7 +47,7 @@ describe('E1: masa ciała (od 11.10.2026 w Postępach, dawniej w Ustawieniach) i
     expect(screen.getByText('e1RM pojawi się po wpisaniu masy ciała w Postępach.')).toBeTruthy(); expect(screen.getByText('Max dociążenie')).toBeTruthy();
     await act(async () => { setBodyMass(80); }); await flushAll(5);
     expect(screen.getAllByText('e1RM').length).toBeGreaterThan(0); expect(screen.getByText('126,67 kg (masa ciała + 46,67)')).toBeTruthy();
-    expect(screen.getByText('e1RM liczone z 100% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).')).toBeTruthy();
+    expect(screen.getByText('e1RM liczone z 100% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie.')).toBeTruthy();
   });
   test('Postępy Chest Dip (bez źródła udziału masy ciała): „Bez e1RM…” także z masą ciała; ćwiczenie z ciężarem — bez notki', async () => {
     await boot(() => { setBodyMass(80); addWorkout(at(9, 1), [['Chest Dip', [{ addKg: 10, reps: 5 }]], ['Back Squat', [{ weight: 100, reps: 5 }]]]); });
@@ -69,17 +69,14 @@ describe('E1: masa ciała (od 11.10.2026 w Postępach, dawniej w Ustawieniach) i
   });
 });
 
-describe('E4 / MER-10: przypisanie partii — „uproszczenie, nie wynik badań” na ekranie ćwiczenia', () => {
-  test('ćwiczenie z biblioteki i własne: dopisek przy partiach (do czasu źródeł dla danego ćwiczenia — seed.MUSCLE_SOURCES)', async () => {
-    /* research biblioteki (09.10.2026): Back Squat ma źródła („mocne”) — bez dopisku; Dead Bug — jedno źródło: dopisek zostaje */
+describe('E4 / MER-10 (zmiana 23.10.2026): przypisanie partii — bez dopisku o pewności na ekranie ćwiczenia (oznaczenia pewności poza interfejsem, docs/18)', () => {
+  test('ćwiczenie z biblioteki (ze źródłami, „jedno źródło”) i własne: żadnego dopisku „Przypisanie partii…” ani ⓘ muscle-note; pewność zostaje w katalogu', async () => {
     await boot(); await go(`/exercise/${ex('Back Squat').id}`); await flushAll(10);
-    expect(screen.queryByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeNull();
-    await go(`/exercise/${ex('Dead Bug').id}`); await flushAll(10); /* scalenie fix-ui: dopisek wg pewności (seed.muscleConfidence) — „jedno źródło” */
-    expect(screen.getByText('Przypisanie partii: wstępne.')).toBeTruthy(); await openInfo('muscle-note'); /* ⓘ 14.10.2026: oznaczenie na wierzchu, pełny dopisek pod ⓘ */
-    expect(screen.getByText(/^Przypisanie partii mięśniowych — wstępne, jeszcze nieustalone\./)).toBeTruthy(); expect(screen.queryByText(/^Przypisanie partii mięśniowych — uproszczenie/)).toBeNull();
+    expect(screen.queryByText(/Przypisanie partii/)).toBeNull();
+    await go(`/exercise/${ex('Dead Bug').id}`); await flushAll(10); /* dawniej „wstępne” (jedno źródło) */
+    expect(screen.queryByText(/Przypisanie partii/)).toBeNull(); expect(screen.queryByTestId('info-muscle-note')).toBeNull();
     const own = store.newExercise('Moje'); await flushAll(5); await go(`/exercise/${own.id}`); await flushAll(10);
-    expect(screen.getByText('Przypisanie partii: uproszczenie.')).toBeTruthy(); await openInfo('muscle-note');
-    expect(screen.getByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeTruthy();
+    expect(screen.queryByText(/Przypisanie partii/)).toBeNull(); expect(screen.queryByTestId('info-muscle-note')).toBeNull();
   });
 });
 
@@ -106,7 +103,7 @@ describe('D3 / UI-13: liczba serii roboczych na ekranach — rozgrzewka poza, dr
     let id = ''; await boot(() => { id = sqDrop(6).id; }, '/history');
     expect(screen.getAllByText(/ · 3 serie · /).length).toBeGreaterThan(0); expect(screen.queryByText(/ · 4 serie · /)).toBeNull();
     await go(`/history/edit/${id}`); await flushAll(20); expect(screen.getByText('3 serie · 1 rozgrz.')).toBeTruthy();
-    await go('/progress'); await flushAll(10); await openInfo('sets-part'); expect(screen.getByText(/Uproszczenie: drop set liczy się razem z serią, po której jest\./)).toBeTruthy();
+    await go('/progress'); await flushAll(10); await openInfo('sets-part'); expect(screen.getByText(/Drop set liczy się razem z serią, po której jest\./)).toBeTruthy();
   });
 });
 

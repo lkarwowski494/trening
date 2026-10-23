@@ -38,11 +38,11 @@ test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgod
   const r = generate({ goal: 'hypertrophy', locationId: null, sessions: 3, minutes: 60 });
   expect(screen.getByText(/^pon\.? FBW A · śr\.? FBW B · pt\.? FBW A$/)).toBeTruthy();
   const it = r.templates[0].items[0]; expect(screen.getByText(`${exName(store.exById(it.exerciseId))} — 3 × 8–\u206012, przerwa 2:00`)).toBeTruthy();
-  expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii — uproszczenie\): klatka \d/)).toBeTruthy(); /* MER-17 */
+  expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii\): klatka \d/)).toBeTruthy(); /* MER-17 */
   expect(screen.getByText(`Poniżej celu serii tygodniowo: ${r.below10.map(m => `${m} (${String(r.weeklySets[m]).replace('.', ',')}/${r.goals[m]})`).join(', ')}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.`)).toBeTruthy();
   /* audyt 0.10 (C2 atrybucja, C4 MER-06/07/12): wszystkie punkty „Zasady planu” — pełne brzmienie w tests/audit-0.10-gen-ui.test.tsx */
   for (const x of [/^• Każda główna partia co najmniej 2 dni w tygodniu — tyle zalecane jest dla zdrowia/, /^• Serie: 3 na ćwiczenie/, /^• Liczba serii z czasu sesji: \(minuty − 10 min rozgrzewki\) × 60 \/ \(40 s serii \+ średnia przerwa 105 s\) = 20;/,
-    /^• Zakresy powtórzeń \(masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10\)/, /^• Wysiłek: zwykle 0–3 powtórzenia w zapasie/, /^• Przerwy: 3 min/, /^• Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar\. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów; kiedy i o ile — to nasz wybór\.$/]) expect(screen.getByText(x)).toBeTruthy();
+    /^• Zakresy powtórzeń \(masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10\)/, /^• Wysiłek: zwykle 0–3 powtórzenia w zapasie/, /^• Przerwy: 3 min/, /^• Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar\. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów\.$/]) expect(screen.getByText(x)).toBeTruthy();
   await tap(screen.getByText('Siła')); await flushAll(5);
   expect(screen.getByText('Siła: bój główny na początku, 3 × 4–6 powtórzeń (ciężko, ok. 80% maksimum i więcej), pozostałe ćwiczenia 3 × 6–10.')).toBeTruthy(); /* LOG-11: liczby ze stałych */
   expect(screen.getAllByText(/ — 3 × 4–\u20606, przerwa 3:00$/).length).toBe(2); /* bój główny w FBW A i B */ expect(screen.queryByText(/^Poniżej 10 serii/)).toBeNull();
@@ -56,7 +56,7 @@ test('redukcja: 1–2 dni — same siłowe, cardio poza planem (WHO); od 3 dni �
   expect(screen.getByText('Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od 3 dni w tygodniu.')).toBeTruthy();
   expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy(); expect(screen.queryByTestId('gen-cardio')).toBeNull(); expect(screen.queryByText(/^Cardio w planie:/)).toBeNull();
   expect(screen.getByText('Cardio poza planem: sesja cardio jest w planie od 3 dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')).toBeTruthy();
-  expect(screen.getByText('• Cardio: od 3 dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej 2 dni) — to nasz wybór.')).toBeTruthy();
+  expect(screen.getByText('• Cardio: od 3 dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej 2 dni).')).toBeTruthy();
   expect(screen.getByTestId('gen-fbwA')).toBeTruthy(); expect(screen.getByTestId('gen-fbwB')).toBeTruthy();
   await pickDays([0]); expect(screen.getByTestId('gen-fbw')).toBeTruthy(); expect(screen.getByText(/^Jeden trening w tygodniu też daje postępy/)).toBeTruthy(); expect(screen.getByText('pon. FBW')).toBeTruthy();
   await pickDays(daysFor(3, { goal: 'cut' }));

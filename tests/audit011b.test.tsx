@@ -115,16 +115,16 @@ const allLangs = (key: string, params: string[]) => {
 
 describe('A11B-2: punkt „Serie” celu „Ogólny” — „jedna seria działa” to wytyczne USA 2018 (c8) i ACSM 2011 (c4), warto zrobić co najmniej 2 (22/7g)', () => {
   const KEY = 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.';
-  const OLD = 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b} (wytyczne USA 2018, ACSM 2011, ACSM 2026: jedna seria działa, więcej zwykle trochę lepiej); {s} to dolna granica — uproszczenie.';
+  const OLD = 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b} (wytyczne USA 2018, ACSM 2011, ACSM 2026: jedna seria działa, więcej zwykle trochę lepiej); {s} to dolna granica.';
   afterEach(() => { applyLang('pl'); }); /* jak tests/gen-general-ui: zegar udawany zostaje do sprzątania ekranu (useRealTimers przed nim zawiesza sprzątanie) */
   test('PL: tekst na ekranie z liczbami ze stałych (GENERAL_SETS, GENERAL_SETS_RANGE, ACSM_MIN_SETS); dawnego zdania nie ma', async () => {
     await showGenerator('pl'); const s = GENERAL_SETS, b = GENERAL_SETS_RANGE[1];
-    expect(screen.getByText(`• Serie: ${s} na ćwiczenie — dla zdrowia zwykle ${s}–${b}. Warto zrobić co najmniej ${ACSM_MIN_SETS}. Jedna seria już działa, ${s}–${b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. ${s} to dolna granica — uproszczenie.`)).toBeTruthy();
+    expect(screen.getByText(`• Serie: ${s} na ćwiczenie — dla zdrowia zwykle ${s}–${b}. Warto zrobić co najmniej ${ACSM_MIN_SETS}. Jedna seria już działa, ${s}–${b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. ${s} to dolna granica.`)).toBeTruthy();
     expect(screen.queryByText(/ACSM 2026: jedna seria/)).toBeNull();
   });
   test('EN: „ACSM 2026 recommends at least 2”; „one set works” przy US guidelines 2018', async () => {
     await showGenerator('en');
-    expect(screen.getByText('• Sets: 2 per exercise — for health usually 2–3. It is worth doing at least 2. One set already works, 2–3 may work better; for beginners and older adults one set can be enough. 2 is the lower end — a simplification.')).toBeTruthy();
+    expect(screen.getByText('• Sets: 2 per exercise — for health usually 2–3. It is worth doing at least 2. One set already works, 2–3 may work better; for beginners and older adults one set can be enough. 2 is the lower end.')).toBeTruthy();
     expect(screen.queryByText(/ACSM 2026: one set/)).toBeNull();
   });
   test('25 języków: nowy klucz ma {s} {b} {m}; w żadnym ACSM 2026 nie stoi przed dwukropkiem (przypisanie „jedna seria”); dawny klucz usunięty', () => {

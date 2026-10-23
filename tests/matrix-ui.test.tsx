@@ -54,8 +54,8 @@ describe('/more/settings', () => {
     expect(screen.getByText('opcjonalne pole, nie wpływa na objętość')).toBeTruthy();
     expect(screen.getByLabelText('RPE / RIR przy serii').props.accessibilityHint).toBe('opcjonalne pole, nie wpływa na objętość');
     const rpe0 = store.getState().settings.showRpe; await flip('RPE / RIR przy serii', !rpe0); expect(store.getState().settings.showRpe).toBe(!rpe0);
-    expect(screen.getByText('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń Krok zmiany (np. +2,5 kg) to nasz wybór, a nie wynik badań.')).toBeTruthy();
-    expect(screen.getByLabelText('Podpowiedź progresji').props.accessibilityHint).toBe('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń Krok zmiany (np. +2,5 kg) to nasz wybór, a nie wynik badań.');
+    expect(screen.getByText('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')).toBeTruthy();
+    expect(screen.getByLabelText('Podpowiedź progresji').props.accessibilityHint).toBe('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń');
     const ph0 = store.getState().settings.progressHint; await flip('Podpowiedź progresji', !ph0); expect(store.getState().settings.progressHint).toBe(!ph0);
     expect(screen.queryByText(/^Timer odlicza w aplikacji/)).toBeNull(); await openInfo('notifications'); /* ⓘ 14.10.2026 */
     expect(screen.getByText('Timer odlicza w aplikacji, a na koniec przerwy przychodzi powiadomienie — także przy zablokowanym telefonie.')).toBeTruthy();
@@ -278,9 +278,8 @@ describe('/exercise/[id]', () => {
     await tap(byToggle('Partie główne (1 seria)', 'plecy')); expect(e().muscles).toContain('plecy');
     await tap(byToggle('Partie pomocnicze (0,5 serii)', 'plecy')); expect(e().secondaryMuscles).toContain('plecy'); expect(e().muscles).not.toContain('plecy');
     /* E1 (audyt 0.10): opis mówi prawdę o e1RM ćwiczeń z masą ciała (masa ciała z Ustawień, udział ze źródeł); E4: dopisek przy partiach */
-    await openInfo('bw-rules'); expect(screen.getByText('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia. e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. 64%). Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')).toBeTruthy();
-    expect(screen.getByText('Przypisanie partii: uproszczenie.')).toBeTruthy(); await openInfo('muscle-note');
-    expect(screen.getByText('Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')).toBeTruthy();
+    await openInfo('bw-rules'); expect(screen.getByText('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia. e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała), pompki (ok. 64%). Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')).toBeTruthy();
+    expect(screen.queryByText(/Przypisanie partii/)).toBeNull(); expect(screen.queryByTestId('info-muscle-note')).toBeNull(); /* 23.10.2026: dopisek pewności poza interfejsem (docs/18) */
   });
 
   test('obciążenie partii z katalogu: legenda i „stabilizacja” w opisie VoiceOver', async () => {
