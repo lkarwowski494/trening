@@ -1,0 +1,184 @@
+{
+ "jezyk": "sr",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 380,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Вежба са шипком на трупу или изнад главе и лица: препоручује се осигурање — сталак са сигурносним држачима и особа која асистира.",
+   "poprawka": "Вежба са шипком на трупу или изнад главе и лица: препоручује се обезбеђење — сталак са сигурносним држачима и особа која асистира.",
+   "powod": "„Осигурање” znaczy po serbsku przede wszystkim „ubezpieczenie”, więc zalecenie asekuracji jest niejasne. Termin jest też niespójny z nagłówkiem nr 2.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).",
+   "rodzaj": "nowe",
+   "pl": "„Archiwizuj” w podglądzie chowa szablon; usuniesz go przyciskiem „Usuń szablon” na dole podglądu albo przesunięciem w lewo na liście (z potwierdzeniem).",
+   "tlumaczenie": "„Архивирај” у прегледу скрива шаблон; обришете га дугметом „Обриши шаблон” на дну прегледа или превлачењем улево на листи (уз потврду).",
+   "poprawka": "„Архивирај“ у прегледу скрива шаблон; можете га обрисати дугметом „Обриши шаблон“ на дну прегледа или превлачењем улево на листи (уз потврду).",
+   "powod": "Samo „обришете га” brzmi nienaturalnie, lepiej „можете га обрисати”. Ponadto cudzysłów ” zamiast “, niespójnie z resztą pliku.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.",
+   "rodzaj": "nowe",
+   "pl": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.",
+   "tlumaczenie": "Немате шаблоне са вежбама. Направите шаблон или изаберите „Генериши шаблоне и план”.",
+   "poprawka": "Немате шаблона са вежбама. Направите шаблон или изаберите „Генериши шаблоне и план“.",
+   "powod": "Po przeczeniu „немате” wymagany dopełniacz („шаблона”). Ponadto cudzysłów ” zamiast “.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+   "rodzaj": "nowe",
+   "pl": "Plan zmieniony w {day} — wcześniejsze dni wg poprzedniego planu",
+   "tlumaczenie": "План промењен: {day} — рани дани по претходном плану",
+   "poprawka": "План промењен: {day} — ранији дани по претходном плану",
+   "powod": "„рани дани” znaczy „wczesne dni”, a chodzi o „wcześniejsze dni” („ранији”).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Płacisz co miesiąc i kończysz, kiedy chcesz.",
+   "rodzaj": "nowe",
+   "pl": "Płacisz co miesiąc i kończysz, kiedy chcesz.",
+   "tlumaczenie": "Плаћате сваког месеца и престајете када желите.",
+   "poprawka": "Плаћате сваког месеца и отказујете кад год желите.",
+   "powod": "„престајете” brzmi nienaturalnie w kontekście subskrypcji.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Став ACSM-а 2026: уз најмање {n} серија по делу тела недељно раст мишића био је већи него уз мањи обим; тренинг снаге у различитим облицима доноси раст у односу на одсуство тренинга.",
+   "poprawka": "Став ACSM-а 2026: уз најмање {n} серија по мишићној групи недељно раст мишића био је већи него уз мањи волумен; тренинг снаге у различитим облицима доноси раст у односу на одсуство тренинга.",
+   "powod": "Terminologia niespójna z innymi tekstami: „део тела” zamiast „мишићна група”, „обим” zamiast „волумен”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
+   "rodzaj": "nowe",
+   "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
+   "tlumaczenie": "Тренирајте бесплатно {n} дана месечно. Pro уклања ограничење. Откажете можете у било ком тренутку у подешавањима свог Apple налога.",
+   "poprawka": "Тренирајте бесплатно {n} дана месечно. Pro уклања ограничење. Можете отказати у било ком тренутку у подешавањима свог Apple ID налога.",
+   "powod": "Konstrukcja „Откажете можете” jest niegramatyczna.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "rodzaj": "nowe",
+   "pl": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "tlumaczenie": "Овог месеца напорно тренирате и користите све бесплатне дане тренинга ({n}). Браво!",
+   "poprawka": "Овог месеца напорно тренирате и искористили сте све бесплатне дане тренинга ({n}). Браво!",
+   "powod": "„користите” sugeruje trwające korzystanie, a chodzi o wyczerpanie limitu.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "pallof.move",
+   "rodzaj": "wskazowka",
+   "pl": "Wypchnij uchwyt prosto przed siebie do wyprostu rąk, przytrzymaj chwilę i powoli wróć do klatki.",
+   "tlumaczenie": "Гурни ручку право испред себе док руке нису опружене, кратко задржи па је полако врати ка грудима.",
+   "poprawka": "Гурни ручку право испред себе до опружених руку, кратко задржи па је полако врати ка грудима.",
+   "powod": "„док руке нису опружене” znaczy „dopóki ręce nie są wyprostowane”, a chodzi o „aż do wyprostu”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "tlumaczenie": "Гуме бришете преко „Измени” у заглављу њиховог екрана или превлачењем улево.",
+   "poprawka": "Гуме бришете преко „Измени“ у заглављу њиховог екрана или превлачењем улево.",
+   "powod": "Cudzysłów zamykający ” zamiast “, niespójnie z resztą pliku.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "rodzaj": "nowe",
+   "pl": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "tlumaczenie": "Мени ⋯ у заглављу: „Паузирај тренинг” зауставља сат тренинга; време паузе се не рачуна у трајање.",
+   "poprawka": "Мени ⋯ у заглављу: „Паузирај тренинг“ зауставља сат тренинга; време паузе се не рачуна у трајање.",
+   "powod": "Cudzysłów zamykający ” zamiast “.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.",
+   "rodzaj": "nowe",
+   "pl": "Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.",
+   "tlumaczenie": "Место бришете дугметом „Обриши место” на дну његовог екрана или превлачењем улево на листи; главно место не можете обрисати док постоје друга.",
+   "poprawka": "Место бришете дугметом „Обриши место“ на дну његовог екрана или превлачењем улево на листи; главно место не можете обрисати док постоје друга.",
+   "powod": "Cudzysłów zamykający ” zamiast “.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "На крају „Заврши” у заглављу (или „Заврши тренинг” у картици после последње серије) — сесија иде на картицу План.",
+   "poprawka": "На крају додирните „Заврши“ у заглављу (или „Заврши тренинг“ у картици после последње серије) — сесија иде на картицу План.",
+   "powod": "Brak czasownika, przez co zdanie jest urwane. Ponadto cudzysłów ” zamiast “.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.",
+   "tlumaczenie": "Мерења телесне тежине („Телесна тежина — мерења”) бришете преко „Измени” у заглављу или превлачењем улево.",
+   "poprawka": "Мерења телесне тежине („Телесна тежина — мерења“) бришете преко „Измени“ у заглављу или превлачењем улево.",
+   "powod": "Cudzysłów zamykający ” zamiast “.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.",
+   "rodzaj": "nowe",
+   "pl": "Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.",
+   "tlumaczenie": "Додирните број на табли и унесите тежину и понављања (или користите + и −), затим „Серија готова” — одмор се одбројава сам. Ако вредност недостаје, „Серија готова” премешта курсор у празно поље.",
+   "poprawka": "Додирните број на табли и унесите тежину и понављања (или користите + и −), затим „Серија готова“ — одмор се одбројава сам. Ако вредност недостаје, „Серија готова“ премешта курсор у празно поље.",
+   "powod": "Cudzysłów zamykający ” zamiast “.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.",
+   "rodzaj": "nowe",
+   "pl": "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.",
+   "tlumaczenie": "Још → Подешавања: „Звук на крају одмора” и „Вибрација” укључују се засебно.",
+   "poprawka": "Још → Подешавања: „Звук на крају одмора“ и „Вибрација“ укључују се засебно.",
+   "powod": "Cudzysłów zamykający ” zamiast “.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Најаве раде када је укључено „Звук на крају одмора”. Исто подешавање мењате и у менију „⋯” на екрану тренинга.",
+   "poprawka": "Најаве раде када је укључено „Звук на крају одмора“. Исто подешавање мењате и у менију „⋯“ на екрану тренинга.",
+   "powod": "Cudzysłów zamykający ” zamiast “.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "curl.mis.elbows",
+   "rodzaj": "wskazowka",
+   "pl": "Wysuwanie łokci do przodu albo od tułowia.",
+   "tlumaczenie": "Пушташ лактове да одлазе напред или од тела.",
+   "poprawka": "Померање лактова напред или у страну од тела.",
+   "powod": "Opis błędu sformułowano jako zdanie w 2. osobie. W oryginale i w pozostałych opisach błędów jest to fraza rzeczownikowa.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "mis.barAway",
+   "rodzaj": "wskazowka",
+   "pl": "Sztanga odjeżdża od ciała.",
+   "tlumaczenie": "Пушташ да шипка одлази од тела.",
+   "poprawka": "Шипка се удаљава од тела.",
+   "powod": "Opis błędu sformułowano jako zdanie w 2. osobie, niespójnie z oryginałem i innymi opisami błędów.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

@@ -1,0 +1,76 @@
+{
+ "jezyk": "it",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 392,
+ "uwagi": [
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Alla fine «Termina» nell’intestazione (o «Termina allenamento» nel riquadro dopo l’ultima serie) — la sessione va nella sezione Piano.",
+   "poprawka": "Alla fine tocca «Termina» nell’intestazione (o «Termina allenamento» nel riquadro dopo l’ultima serie): la sessione va nella sezione Piano.",
+   "powod": "Brak czasownika. Po włosku zdanie jest niepełne i nienaturalne.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "Progressione: quando raggiungi il limite alto delle ripetizioni, aumenta il peso. Le posizioni dell’ACSM raccomandano di aumentare gradualmente il carico; il momento e la dimensione del passo sono una convenzione.",
+   "poprawka": "Progressione: quando raggiungi il limite superiore dell’intervallo di ripetizioni, aumenta il peso. I position stand dell’ACSM raccomandano di aumentare gradualmente il carico; il momento e l’entità dell’incremento sono una convenzione.",
+   "powod": "„Le posizioni” to nienaturalny odpowiednik „stanowisk ACSM”. „Passo” jest niespójne z „incremento” w zdaniu 26. „Limite alto delle ripetizioni” jest niespójne z „intervallo di ripetizioni”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Posizione dell’ACSM 2026: con almeno {n} serie per gruppo muscolare a settimana la crescita muscolare era maggiore che con un volume inferiore; l’allenamento di forza nelle sue varie forme dà crescita rispetto al non allenarsi.",
+   "poprawka": "Position stand dell’ACSM 2026: con almeno {n} serie per gruppo muscolare a settimana la crescita muscolare era maggiore che con un volume inferiore; l’allenamento di forza nelle sue varie forme fa crescere i muscoli rispetto al non allenarsi.",
+   "powod": "„Posizione dell’ACSM” jest nienaturalne i niespójne terminologicznie. Końcówka „dà crescita” brzmi niezręcznie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "lp.noLock",
+   "rodzaj": "wskazowka",
+   "pl": "Na górze nie blokuj kolan w przeproście.",
+   "tlumaczenie": "In alto non bloccare le ginocchia.",
+   "poprawka": "In alto non bloccare le ginocchia in iperestensione.",
+   "powod": "Pominięto „w przeproście”. Wskazówka traci doprecyzowanie, o jaki błąd chodzi.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Tocca l’etichetta di una serie per cambiarne il tipo; scorri una riga verso sinistra per eliminarla. L’intervallo di ripetizioni è facoltativo — con esso compaiono i suggerimenti “↑”. “⇅ SS” collega un esercizio al successivo in un superset, “✕ SS” lo toglie dal gruppo. Ordine: “≡ Riordina”.",
+   "poprawka": "Tocca l’etichetta di una serie per cambiarne il tipo; scorri una riga verso sinistra per eliminarla. L’intervallo di ripetizioni è facoltativo: se lo imposti, compaiono i suggerimenti «↑». «⇅ SS» collega un esercizio al successivo in un superset, «✕ SS» lo toglie dal gruppo. Ordine: «≡ Riordina».",
+   "powod": "Cudzysłów “” zamiast «» używanego w pozostałych tekstach. „Con esso” brzmi sztywno.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "rodzaj": "nowe",
+   "pl": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "tlumaczenie": "Questo mese ti stai allenando duramente e usi tutti i giorni di allenamento gratuiti ({n}). Ottimo lavoro!",
+   "poprawka": "Questo mese ti sei allenato duramente e hai usato tutti i giorni di allenamento gratuiti ({n}). Ottimo lavoro!",
+   "powod": "Czas teraźniejszy „usi tutti” brzmi nienaturalnie, skoro limit jest już wyczerpany.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "sq.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Schodź tak nisko, jak pozwala ruchomość przy prostych plecach i całych stopach na podłodze — zwykle co najmniej do równoległego ud.",
+   "tlumaczenie": "Scendi quanto ti permette la mobilità con la schiena dritta e i piedi interi a terra — di solito almeno fino alle cosce parallele.",
+   "poprawka": "Scendi quanto ti permette la mobilità con la schiena dritta e tutta la pianta dei piedi a terra — di solito almeno fino alle cosce parallele.",
+   "powod": "„I piedi interi a terra” brzmi nienaturalnie.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

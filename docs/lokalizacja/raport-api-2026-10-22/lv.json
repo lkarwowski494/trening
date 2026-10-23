@@ -1,0 +1,76 @@
+{
+ "jezyk": "lv",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 392,
+ "uwagi": [
+  {
+   "klucz": "erg.drive",
+   "rodzaj": "wskazowka",
+   "pl": "Pociągnięcie: najpierw nogi, potem odchylenie tułowia, na końcu ręce.",
+   "tlumaczenie": "Vēziens: vispirms kājas, tad rumpja atliekšana un beigās roku pievilkšana.",
+   "poprawka": "Vilkums: vispirms kājas, tad rumpja atliekšana un beigās roku pievilkšana.",
+   "powod": "„Vēziens” znaczy zamach, a nie pociągnięcie przy wiosłowaniu. Termin jest też niespójny z „Vilkuma beigās” (355).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "erg.finish",
+   "rodzaj": "wskazowka",
+   "pl": "Na końcu pociągnięcia nogi proste, tułów lekko odchylony, uchwyt tuż pod żebrami.",
+   "tlumaczenie": "Vēziena beigās kājas iztaisnotas, rumpis nedaudz atliekts, rokturis tieši zem ribām.",
+   "poprawka": "Vilkuma beigās kājas iztaisnotas, rumpis nedaudz atliekts, rokturis tieši zem ribām.",
+   "powod": "„Vēziens” to niewłaściwy termin dla pociągnięcia. Ujednolicono na „vilkums”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
+   "rodzaj": "nowe",
+   "pl": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
+   "tlumaczenie": "Katra galvenā muskuļu grupa vismaz {n} dienas nedēļā (PVO 2020 — veselības ieteikums; ACSM 2026: biežums ietekmē spēku, taču pierādījumu devas un atbildes sakarības noteikšanai nepietiek, un, ja apjoms ir vienāds, atšķirība mazinās). Diena, kad grupa tikai palīdz, skaitās {h} — vienkāršojums (metode no Pelland u. c. 2026 metaanalīzes). Sadalījums (viss ķermenis, augša/apakša) ir vienošanās — ar vienādu sēriju skaitu rezultāti ir līdzīgi.",
+   "poprawka": "Katra galvenā muskuļu grupa vismaz {n} dienas nedēļā (PVO 2020 — veselības ieteikums; ACSM 2026: biežums ietekmē spēku, taču pierādījumu devas un atbildes sakarības noteikšanai nepietiek, un, ja apjoms ir vienāds, atšķirība mazinās). Diena, kad grupa tikai palīdz, tiek ieskaitīta kā {h} — vienkāršojums (metode no Pelland u. c. 2026 metaanalīzes). Sadalījums (viss ķermenis, augša/apakša) ir vienošanās — ar vienādu sēriju skaitu rezultāti ir līdzīgi.",
+   "powod": "„skaitās {h}” bez „kā” jest niejasne. Lepiej „tiek ieskaitīta kā {h}” (liczy się jako).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "Beigās “Pabeigt” galvenē (vai “Pabeigt treniņu” kartītē pēc pēdējās sērijas) — sesija nonāk cilnē Plāns.",
+   "poprawka": "Beigās pieskarieties “Pabeigt” galvenē (vai “Pabeigt treniņu” kartītē pēc pēdējās sērijas) — sesija nonāks cilnē Plāns.",
+   "powod": "Zdanie bez czasownika brzmi po łotewsku nienaturalnie. Dodano „pieskarieties”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "db.back",
+   "rodzaj": "wskazowka",
+   "pl": "Lędźwie przy podłodze — nie wyginaj pleców w łuk.",
+   "tlumaczenie": "Jostasvieta uz grīdas — neieliecies.",
+   "poprawka": "Jostasvieta uz grīdas — neieliec muguru.",
+   "powod": "„neieliecies” nie wskazuje, co ma się nie wyginać. W źródle chodzi o plecy w łuk.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "pallof.noTwist",
+   "rodzaj": "wskazowka",
+   "pl": "Nie pozwól, by linka obróciła tułów — tułów i biodra zostają nieruchomo.",
+   "tlumaczenie": "Neļauj kabelim pagriezt rumpi; rumpis un gurni paliek nekustīgi.",
+   "poprawka": "Neļauj trosei pagriezt rumpi; rumpis un gurni paliek nekustīgi.",
+   "powod": "Niespójna terminologia: linka wyciągu to w innych zdaniach „trose” (194, 354), tu „kabelis”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "pallof.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Stań bokiem do wyciągu ustawionego mniej więcej na wysokości klatki; uchwyt trzymaj oburącz przy klatce, linka napięta.",
+   "tlumaczenie": "Nostājies ar sānu pret kabeli, kas iestatīts aptuveni krūšu augstumā; turi rokturi ar abām rokām pie krūtīm, kabelis nospriegots.",
+   "poprawka": "Nostājies ar sānu pret trīsi, kas iestatīts aptuveni krūšu augstumā; turi rokturi ar abām rokām pie krūtīm, trose nospriegota.",
+   "powod": "Niespójna terminologia: wyciąg to w innych zdaniach „trīsis”, a linka „trose”, tu „kabelis”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

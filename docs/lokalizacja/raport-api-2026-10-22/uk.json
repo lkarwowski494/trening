@@ -1,0 +1,130 @@
+{
+ "jezyk": "uk",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 386,
+ "uwagi": [
+  {
+   "klucz": "Asekuracja",
+   "rodzaj": "krytyczne",
+   "pl": "Asekuracja",
+   "tlumaczenie": "Страхування",
+   "poprawka": "Страховка",
+   "powod": "„Страхування” kojarzy się głównie z ubezpieczeniem; w kontekście siłowni naturalne jest „страховка”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "Прогресія: коли досягнете верхньої межі повторень, додайте вагу. Поступове збільшення навантаження рекомендують позиції ACSM; момент і розмір кроку — домовленість.",
+   "poprawka": "Прогресія: коли досягнете верхньої межі діапазону повторень, додайте вагу. Поступове збільшення навантаження рекомендують позиції ACSM; момент і розмір кроку — це умовність.",
+   "powod": "Niespójna terminologia: „konwencja” to w zd. 25 i 26 „умовність”, a tu „домовленість”. Dodatkowo „górę zakresu” lepiej oddaje „верхня межа діапазону”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań.",
+   "rodzaj": "nowe",
+   "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań.",
+   "tlumaczenie": "Пропозиція за вашими припущеннями — переглянете її перед збереженням. Правила взято з оглядів досліджень і рекомендацій організацій (ВООЗ, ACSM); частини, позначені як домовленість або спрощення, не є прямими результатами досліджень.",
+   "poprawka": "Пропозиція за вашими припущеннями — переглянете її перед збереженням. Правила взято з оглядів досліджень і рекомендацій організацій (ВООЗ, ACSM); частини, позначені як умовність або спрощення, не є прямими результатами досліджень.",
+   "powod": "Niespójna terminologia: „konwencja” powinna brzmieć „умовність”, jak w zd. 25 i 26.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Позиція ACSM 2026: за щонайменше {n} підходів на частину тіла на тиждень ріст м’язів був більшим, ніж за меншого обсягу; силове тренування в різних формах дає ріст порівняно з відсутністю тренувань.",
+   "poprawka": "Позиція ACSM 2026: за щонайменше {n} підходів на м’язову групу на тиждень ріст м’язів був більшим, ніж за меншого обсягу; силове тренування в різних формах дає ріст порівняно з відсутністю тренувань.",
+   "powod": "Niespójna terminologia: „partia” to w innych zdaniach „м’язова група”, a tu „частина тіла”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Підказки працюють, коли увімкнено «Звук в кінці відпочинку». Те саме налаштування можна змінити в меню «⋯» на екрані тренування.",
+   "poprawka": "Голосові оголошення працюють, коли увімкнено «Звук наприкінці відпочинку». Те саме налаштування можна змінити в меню «⋯» на екрані тренування.",
+   "powod": "„Zapowiedzi” (announcements) to nie „Підказки” (podpowiedzi), więc zmienia się znaczenie. Nazwa ustawienia musi być spójna ze zd. 18.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "rodzaj": "nowe",
+   "pl": "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.",
+   "tlumaczenie": "{app} створює незалежний розробник: без реклами та без збору даних. Якщо вона вам допомагає, оберіть план і тренуйтеся без обмежень. Безкоштовні дні повернуться {date}.",
+   "poprawka": "{app} створює незалежний розробник: без реклами та без збору даних. Якщо застосунок вам допомагає, оберіть план і тренуйтеся без обмежень. Безкоштовні дні повернуться {date}.",
+   "powod": "Zaimek „вона” nie zgadza się z rodzajem słowa „застосунок” (r. męski); lepiej nazwać podmiot wprost.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Dźwięk na koniec przerwy",
+   "rodzaj": "nowe",
+   "pl": "Dźwięk na koniec przerwy",
+   "tlumaczenie": "Звук в кінці відпочинку",
+   "poprawka": "Звук наприкінці відпочинку",
+   "powod": "Po spółgłosce eufonia wymaga „у”; „наприкінці” brzmi naturalniej.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "pl": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "tlumaczenie": "Відпочинок. Залишився час: {t}. Усього: {all}.",
+   "poprawka": "Відпочинок. Залишок часу: {t}. Увесь відпочинок: {all}.",
+   "powod": "„Залишився час” brzmi nienaturalnie; „Усього” gubi odniesienie do przerwy.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "Розминка: {d} із {n} виконано",
+   "poprawka": "Розминкові підходи: {d} із {n} виконано",
+   "powod": "„Rozgrzewki” to tu serie rozgrzewkowe, a nie jedna rozgrzewka; zachowuje analogię do zd. 55.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.",
+   "rodzaj": "nowe",
+   "pl": "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.",
+   "tlumaczenie": "Більше → Параметри: «Звук в кінці відпочинку» і «Вібрація» вмикаються окремо.",
+   "poprawka": "Більше → Параметри: «Звук наприкінці відпочинку» і «Вібрація» вмикаються окремо.",
+   "powod": "Nazwa ustawienia musi być spójna z poprawionym zd. 18 (eufonia).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "dl.grip",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć sztangę nachwytem albo chwytem mieszanym, na szerokość barków lub trochę szerzej.",
+   "tlumaczenie": "Візьми штангу прямим або різнохватом, на ширині плечей або трохи ширше.",
+   "poprawka": "Візьми штангу прямим хватом або різнохватом, на ширині плечей або трохи ширше.",
+   "powod": "Brak rzeczownika „хватом” po „прямим” daje niegramatyczną konstrukcję.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "push.rigid",
+   "rodzaj": "wskazowka",
+   "pl": "Tułów sztywny — biodra nie opadają i nie unoszą się.",
+   "tlumaczenie": "Тіло напружене — таз не провисає і ти його не піднімаєш.",
+   "poprawka": "Тіло напружене — таз не провисає й не піднімається.",
+   "powod": "Mieszanie konstrukcji („ти його не піднімаєш”) brzmi nienaturalnie; oryginał jest bezosobowy.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "sq.depth",
+   "rodzaj": "wskazowka",
+   "pl": "Schodź tak nisko, jak pozwala ruchomość przy prostych plecach i całych stopach na podłodze — zwykle co najmniej do równoległego ud.",
+   "tlumaczenie": "Опускайся настільки глибоко, наскільки дозволяє рухливість, із рівною спиною й повними стопами на підлозі — зазвичай щонайменше до горизонталі стегон.",
+   "poprawka": "Опускайся настільки глибоко, наскільки дозволяє рухливість, із рівною спиною й усією стопою на підлозі — зазвичай щонайменше до горизонталі стегон.",
+   "powod": "„Повними стопами” brzmi nienaturalnie; naturalne jest „усією стопою”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

@@ -1,0 +1,103 @@
+{
+ "jezyk": "hr",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 389,
+ "uwagi": [
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "Zagrijavanje: {d} od {n} gotovo",
+   "poprawka": "Zagrijavanje: odrađeno {d} od {n}",
+   "powod": "„gotovo” jest dwuznaczne (także „prawie”); „odrađeno” jest jednoznaczne",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Serie: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Serie: {d} z {n} zrobione",
+   "tlumaczenie": "Serije: {d} od {n} gotovo",
+   "poprawka": "Serije: odrađeno {d} od {n}",
+   "powod": "„gotovo” jest dwuznaczne (także „prawie”); „odrađeno” jest jednoznaczne",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Stav ACSM-a 2026.: uz najmanje {n} serija po dijelu tijela tjedno rast mišića bio je veći nego uz manji volumen; trening snage u različitim oblicima donosi rast u odnosu na nedostatak treninga.",
+   "poprawka": "Stav ACSM-a 2026.: uz najmanje {n} serija po mišićnoj skupini tjedno rast mišića bio je veći nego uz manji volumen; trening snage u različitim oblicima donosi rast u odnosu na izostanak treninga.",
+   "powod": "Niespójna terminologia („dio tijela” zamiast „mišićna skupina”, jak w innych zdaniach); „nedostatak treninga” brzmi nienaturalnie",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Najave rade kad je uključeno „Zvuk na kraju odmora”. Istu postavku mijenjate i u izborniku „⋯” na zaslonu treninga.",
+   "poprawka": "Najave rade kad je uključena opcija „Zvuk na kraju odmora”. Istu postavku mijenjate i u izborniku „⋯” na zaslonu treninga.",
+   "powod": "Błąd zgody rodzaju: „Zvuk” jest rodzaju męskiego, a stoi „uključeno”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
+   "rodzaj": "nowe",
+   "pl": "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.",
+   "tlumaczenie": "{left} {n} od {limit} besplatnih dana treninga ovaj mjesec.",
+   "poprawka": "{left} {n} od {limit} besplatnih dana treninga ovog mjeseca.",
+   "powod": "„ovaj mjesec” w funkcji okolicznika czasu jest potoczne; w standardzie: „ovog mjeseca”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}",
+   "rodzaj": "nowe",
+   "pl": "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}",
+   "tlumaczenie": "Besplatni dani treninga ovaj mjesec: iskorišteno {n} od {limit}",
+   "poprawka": "Besplatni dani treninga ovog mjeseca: iskorišteno {n} od {limit}",
+   "powod": "„ovaj mjesec” potoczne; w standardzie: „ovog mjeseca”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "Progresija: kad dosegnete gornju granicu ponavljanja, dodajte težinu. Postupno povećanje opterećenja preporučuju stavovi ACSM-a; trenutak i veličina koraka su konvencija.",
+   "poprawka": "Progresija: kad dosegnete gornju granicu raspona ponavljanja, dodajte težinu. Postupno povećanje opterećenja preporučuju stavovi ACSM-a; trenutak i veličina koraka su konvencija.",
+   "powod": "Pominięto „zakres” (raspon) i sens jest mniej precyzyjny",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Usuń plan",
+   "rodzaj": "nowe",
+   "pl": "Usuń plan",
+   "tlumaczenie": "Izbriši plan",
+   "poprawka": "Obriši plan",
+   "powod": "Niespójność z pozostałymi przyciskami („Obriši”)",
+   "waga": "niska"
+  },
+  {
+   "klucz": "db.move",
+   "rodzaj": "wskazowka",
+   "pl": "Powoli opuść przeciwną rękę i nogę w stronę podłogi, nie kładąc ich; wróć i zmień strony.",
+   "tlumaczenie": "Polako spuštaj suprotnu ruku i nogu prema podu, ali ih ne spuštaj na njega; vrati se i promijeni stranu.",
+   "poprawka": "Polako spuštaj suprotnu ruku i nogu prema podu, ali ih ne odlaži na pod; vrati se i promijeni stranu.",
+   "powod": "Niezręczne powtórzenie czasownika „spuštaj”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "pallof.move",
+   "rodzaj": "wskazowka",
+   "pl": "Wypchnij uchwyt prosto przed siebie do wyprostu rąk, przytrzymaj chwilę i powoli wróć do klatki.",
+   "tlumaczenie": "Gurni ručku ravno ispred sebe dok ruke nisu ispružene, kratko zadrži pa je polako vrati prema prsima.",
+   "poprawka": "Gurni ručku ravno ispred sebe dok ruke ne budu ispružene, kratko zadrži pa je polako vrati prema prsima.",
+   "powod": "„dok ruke nisu ispružene” jest niegramatyczne w znaczeniu „aż”; poprawnie: „dok ruke ne budu ispružene”",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

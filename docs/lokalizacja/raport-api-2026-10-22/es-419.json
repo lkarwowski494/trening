@@ -1,0 +1,85 @@
+{
+ "jezyk": "es-419",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 391,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Ejercicio con barra sobre el tronco o por encima de la cabeza y la cara: se recomienda protección — un rack con brazos de seguridad y un compañero que asista.",
+   "poprawka": "Ejercicio con barra sobre el tronco o por encima de la cabeza y la cara: se recomienda asistencia de seguridad — un rack con brazos de seguridad y una persona que te asista (spotter).",
+   "powod": "„protección” jest zbyt ogólne i niejasne wobec „asekuracja”; w zdaniu bezpieczeństwa termin powinien jednoznacznie oznaczać asekurację (sprzęt + osoba), spójnie z nagłówkiem „Seguridad y spotter”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "Progresión: cuando llegues al tope del rango de repeticiones, sube el peso. Las posturas del ACSM recomiendan aumentar la carga de forma gradual; el momento y el tamaño del paso son una convención.",
+   "poprawka": "Progresión: cuando llegues al tope del rango de repeticiones, sube el peso. Los posicionamientos del ACSM recomiendan aumentar la carga de forma gradual; el momento y el tamaño del paso son una convención.",
+   "powod": "„posturas” sugeruje postawę ciała; utarty termin dla „position stands” to „posicionamientos”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "Calentamiento: {d} de {n} hechas",
+   "poprawka": "Series de calentamiento: {d} de {n} hechas",
+   "powod": "Brak zgodności rodzaju i liczby: „Calentamiento” (r. męski, l. poj.) z „hechas” (r. żeński, l. mn.).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Postura del ACSM 2026: con al menos {n} series por grupo muscular a la semana, el crecimiento muscular fue mayor que con menos volumen; el entrenamiento de fuerza en sus distintas formas produce crecimiento frente a no entrenar.",
+   "poprawka": "Posicionamiento del ACSM 2026: con al menos {n} series por grupo muscular a la semana, el crecimiento muscular fue mayor que con menos volumen; el entrenamiento de fuerza en sus distintas formas produce crecimiento frente a no entrenar.",
+   "powod": "„Postura” jest mylące; termin „posicionamiento” jest spójny z poprawką w zdaniu 50.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.",
+   "rodzaj": "nowe",
+   "pl": "Stuknij liczbę na tablicy i wpisz ciężar oraz powtórzenia (albo użyj + i −), potem „Seria zrobiona” — przerwa odlicza się sama. Gdy brakuje wyniku, „Seria zrobiona” przenosi kursor do pustego pola.",
+   "tlumaczenie": "Toca el número del marcador e ingresa peso y repeticiones (o usa + y −); después, «Serie hecha» — el descanso se cuenta solo. Si falta algún valor, «Serie hecha» lleva el cursor al campo vacío.",
+   "poprawka": "Toca el número del marcador e ingresa peso y repeticiones (o usa + y −); después, «Serie hecha» — la cuenta regresiva del descanso empieza sola. Si falta algún valor, «Serie hecha» lleva el cursor al campo vacío.",
+   "powod": "„el descanso se cuenta solo” brzmi nienaturalnie i jest niejednoznaczne; chodzi o samoczynne odliczanie przerwy.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "rodzaj": "nowe",
+   "pl": "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!",
+   "tlumaczenie": "Este mes entrenas duro y usas todos los días de entrenamiento gratuitos ({n}). ¡Buen trabajo!",
+   "poprawka": "Este mes entrenaste duro y usaste todos los días de entrenamiento gratuitos ({n}). ¡Buen trabajo!",
+   "powod": "Czas teraźniejszy brzmi nienaturalnie, skoro wszystkie dni są już wykorzystane; w es-419 naturalny jest pretérito.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "pl": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "tlumaczenie": "Descanso. Tiempo restante: {t}. Total: {all}.",
+   "poprawka": "Descanso. Tiempo restante: {t}. Descanso total: {all}.",
+   "powod": "Pominięto „cała przerwa”; samo „Total” jest mniej jasne w komunikacie VoiceOver.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "curl.cableSetup",
+   "rodzaj": "wskazowka",
+   "pl": "Chwyć uchwyt dolnego wyciągu podchwytem, ręce wyprostowane w dół.",
+   "tlumaczenie": "Agarra el agarre de la polea baja en supino, con los brazos estirados hacia abajo.",
+   "poprawka": "Toma el agarre de la polea baja en supino, con los brazos estirados hacia abajo.",
+   "powod": "Powtórzenie „Agarra el agarre” brzmi niezręcznie.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

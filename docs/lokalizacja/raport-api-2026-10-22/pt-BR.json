@@ -1,0 +1,103 @@
+{
+ "jezyk": "pt-BR",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 389,
+ "uwagi": [
+  {
+   "klucz": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "rodzaj": "krytyczne",
+   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
+   "tlumaczenie": "Exercício com barra sobre o tronco ou acima da cabeça e do rosto: recomenda-se segurança — um rack com braços de segurança e um parceiro que faça a segurança.",
+   "poprawka": "Exercício com barra sobre o tronco ou acima da cabeça e do rosto: recomenda-se proteção — um rack com braços de segurança e um parceiro que faça a segurança.",
+   "powod": "„recomenda-se segurança” jest niejasne; asekuracja oznacza konkretne zabezpieczenie (sprzęt i osobę asekurującą).",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Płacisz raz i masz na zawsze.",
+   "rodzaj": "nowe",
+   "pl": "Płacisz raz i masz na zawsze.",
+   "tlumaczenie": "Você paga uma vez e fica para sempre.",
+   "poprawka": "Você paga uma vez e é seu para sempre.",
+   "powod": "„fica para sempre” jest dwuznaczne („zostajesz na zawsze”); chodzi o dostęp na zawsze.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "Progressão: quando você chegar ao topo do intervalo de repetições, aumente o peso. As posições do ACSM recomendam aumentar a carga gradualmente; o momento e o tamanho do passo são uma convenção.",
+   "poprawka": "Progressão: quando você chegar ao topo do intervalo de repetições, aumente o peso. Os posicionamentos do ACSM recomendam aumentar a carga gradualmente; o momento e o tamanho do incremento são uma convenção.",
+   "powod": "„position stand” to po portugalsku „posicionamento”, nie „posição”; „krok” w zdaniu 26 przetłumaczono jako „incremento”, więc terminologia jest niespójna.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "Aquecimento: {d} de {n} feitos",
+   "poprawka": "Aquecimentos: {d} de {n} feitos",
+   "powod": "Brak zgody liczby: „Aquecimento” w liczbie pojedynczej, a „feitos” w mnogiej.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Posição do ACSM 2026: com pelo menos {n} séries por grupo muscular por semana, o crescimento muscular foi maior do que com menos volume; o treino de força nas suas várias formas dá crescimento em comparação com não treinar.",
+   "poprawka": "Posicionamento do ACSM 2026: com pelo menos {n} séries por grupo muscular por semana, o crescimento muscular foi maior do que com menos volume; o treino de força nas suas várias formas promove crescimento muscular em comparação com não treinar.",
+   "powod": "Termin „posicionamento” zamiast „posição” (spójnie ze zdaniem 50); „dá crescimento” brzmi nienaturalnie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "+ {n} {w}",
+   "rodzaj": "nowe",
+   "pl": "+ {n} {w}",
+   "tlumaczenie": "+ mais {n} {w}",
+   "poprawka": "+ {n} {w}",
+   "powod": "„+ mais” to dublowanie znaczenia (plus i „mais” naraz).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Toque no rótulo de uma série para mudar o tipo; deslize uma linha para a esquerda para apagá-la. O intervalo de repetições é opcional — com ele aparecem as sugestões «↑». «⇅ SS» liga o exercício ao seguinte em uma supersérie, «✕ SS» tira ele do grupo. Ordem: «≡ Reordenar».",
+   "poprawka": "Toque no rótulo de uma série para mudar o tipo; deslize uma linha para a esquerda para apagá-la. O intervalo de repetições é opcional — com ele aparecem as sugestões “↑”. “⇅ SS” liga o exercício ao seguinte em uma supersérie, “✕ SS” o retira do grupo. Ordem: “≡ Reordenar”.",
+   "powod": "Cudzysłowy «» nie są używane w pt-BR i są niespójne z resztą tekstów; „tira ele” jest zbyt potoczne jak na tekst interfejsu.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "rodzaj": "nowe",
+   "pl": "Menu ⋯ w nagłówku: „Pauza treningu” zatrzymuje zegar treningu; czas pauzy nie liczy się do czasu trwania.",
+   "tlumaczenie": "Menu ⋯ no cabeçalho: «Pausar treino» para o relógio do treino; o tempo de pausa não conta para a duração.",
+   "poprawka": "Menu ⋯ no cabeçalho: “Pausar treino” para o relógio do treino; o tempo de pausa não conta para a duração.",
+   "powod": "Cudzysłowy «» nie są używane w pt-BR i są niespójne z resztą tekstów.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "No fim, “Terminar” no cabeçalho (ou “Terminar treino” no cartão após a última série) — a sessão passa para a aba Plano.",
+   "poprawka": "No fim, toque em “Terminar” no cabeçalho (ou em “Terminar treino” no cartão após a última série) — a sessão passa para a aba Plano.",
+   "powod": "Bez czasownika zdanie brzmi po portugalsku nienaturalnie.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "lat.elbows",
+   "rodzaj": "wskazowka",
+   "pl": "Łokcie lekko ugięte i prowadzą ruch — są na wysokości dłoni lub wyżej.",
+   "tlumaczenie": "Cotovelos levemente flexionados e à frente do movimento — na altura das mãos ou acima.",
+   "poprawka": "Cotovelos levemente flexionados e conduzindo o movimento — na altura das mãos ou acima.",
+   "powod": "„à frente do movimento” jest niejasne; w oryginale łokcie prowadzą ruch.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

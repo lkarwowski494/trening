@@ -1,0 +1,67 @@
+{
+ "jezyk": "cs",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 393,
+ "uwagi": [
+  {
+   "klucz": "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.",
+   "rodzaj": "nowe",
+   "pl": "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.",
+   "tlumaczenie": "Bez nákupu: až {n} tréninkových dní v měsíci; historie, záloha a export jsou vždy k dispozici.",
+   "poprawka": "Bez nákupu: tréninkové dny až {n} měsíčně; historie, záloha a export jsou vždy k dispozici.",
+   "powod": "„až {n} tréninkových dní” jest niepoprawne dla n = 2–4 (powinno być „dny”); przeredagowanie usuwa zależność formy od liczby",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Klepnutím na označení série změníte její typ; přetažením řádku doleva ho smažete. Rozsah opakování je volitelný — s ním se zobrazují tipy „↑“. „⇅ SS“ spojí cvik s dalším do supersérie, „✕ SS“ ho ze skupiny vyjme. Pořadí: „≡ Pořadí“.",
+   "poprawka": "Klepnutím na označení série změníte její typ; přejetím řádku doleva ho smažete. Rozsah opakování je volitelný — s ním se zobrazují tipy „↑“. „⇅ SS“ spojí cvik s dalším do supersérie, „✕ SS“ ho ze skupiny vyjme. Pořadí: „≡ Pořadí“.",
+   "powod": "Niespójna terminologia gestu: w pozostałych tekstach (i w iOS) „přejetím”, tu „přetažením” (przeciągnięcie)",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
+   "rodzaj": "nowe",
+   "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
+   "tlumaczenie": "Trénujte zdarma až {n} dní v měsíci. Pro odstraní limit. Zrušit můžete kdykoli v nastavení účtu Apple.",
+   "poprawka": "Tréninkové dny zdarma: až {n} měsíčně. Pro odstraní limit. Zrušit můžete kdykoli v nastavení účtu Apple.",
+   "powod": "„až {n} dní” jest niepoprawne dla n = 2–4 (powinno być „dny”); przeredagowanie usuwa zależność formy od liczby",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "dbp.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Usiądź z hantlami na udach, połóż się na ławce i ustaw hantle przy bokach klatki.",
+   "tlumaczenie": "Sedni si s jednoručkami na stehnech, lehni si na lavici a přenes je po stranách hrudníku.",
+   "poprawka": "Sedni si s jednoručkami na stehnech, lehni si na lavici a přenes je k bokům hrudníku.",
+   "powod": "„přenes je po stranách hrudníku” znaczy raczej „przenieś wzdłuż boków”; chodzi o ustawienie hantli przy bokach klatki",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Oznámení fungují, když je zapnuto „Zvuk na konci pauzy“. Stejné nastavení změníte v nabídce „⋯“ na obrazovce tréninku.",
+   "poprawka": "Oznámení fungují, když je zapnutý „Zvuk na konci pauzy“. Stejné nastavení změníte v nabídce „⋯“ na obrazovce tréninku.",
+   "powod": "Brak zgody rodzaju: „Zvuk” jest rodzaju męskiego, więc „zapnutý”, nie „zapnuto”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "bike.foot",
+   "rodzaj": "wskazowka",
+   "pl": "Na pedale opieraj przednią część stopy.",
+   "tlumaczenie": "Na pedálu měj přednoží, ne patu.",
+   "poprawka": "Na pedálu se opírej přední částí chodidla.",
+   "powod": "Dodane „ne patu”, którego nie ma w źródle; „přednoží” brzmi mniej naturalnie niż „přední část chodidla” (termin używany w innych wskazówkach)",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

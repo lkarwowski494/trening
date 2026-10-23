@@ -1,0 +1,94 @@
+{
+ "jezyk": "el",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 390,
+ "uwagi": [
+  {
+   "klucz": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "rodzaj": "nowe",
+   "pl": "Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”.",
+   "tlumaczenie": "Πάτα την ετικέτα σετ για αλλαγή τύπου· σύρε μια γραμμή αριστερά για διαγραφή. Το εύρος επαναλήψεων είναι προαιρετικό — με αυτό παίρνεις ενδείξεις «↑». Το «⇅ SS» ενώνει την άσκηση με την επόμενη σε superset, το «✕ SS» τη βγάζει. Σειρά: «≡ Σειρά».",
+   "poprawka": "Πατήστε την ετικέτα σετ για αλλαγή τύπου· σύρετε μια γραμμή αριστερά για διαγραφή. Το εύρος επαναλήψεων είναι προαιρετικό — με αυτό εμφανίζονται ενδείξεις «↑». Το «⇅ SS» ενώνει την άσκηση με την επόμενη σε superset, το «✕ SS» τη βγάζει από την ομάδα. Σειρά: «≡ Σειρά».",
+   "powod": "Forma „ty” (Πάτα, σύρε, παίρνεις) w zwykłym tekście interfejsu; rejestr Apple wymaga formy grzecznościowej. Pominięto też „z grupy”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Powiadamiaj",
+   "rodzaj": "nowe",
+   "pl": "Powiadamiaj",
+   "tlumaczenie": "Ειδοποίησέ με",
+   "poprawka": "Ειδοποίηση",
+   "powod": "Forma „ty” (Ειδοποίησέ με) na przycisku; rejestr Apple wymaga formy neutralnej lub grzecznościowej.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "Προθέρμανση: {d} από {n} ολοκληρώθηκαν",
+   "poprawka": "Σετ προθέρμανσης ολοκληρωμένα: {d} από {n}",
+   "powod": "„Προθέρμανση” (lp.) nie oddaje „serii rozgrzewkowych”. Czasownik „ολοκληρώθηκαν” nie zgadza się z {d}=1.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Θέση του ACSM 2026: με τουλάχιστον {n} σετ ανά μέρος σώματος την εβδομάδα η μυϊκή ανάπτυξη ήταν μεγαλύτερη απ’ ό,τι με μικρότερο όγκο· η προπόνηση δύναμης σε διάφορες μορφές φέρνει ανάπτυξη σε σχέση με καθόλου προπόνηση.",
+   "poprawka": "Θέση του ACSM 2026: με τουλάχιστον {n} σετ ανά μυϊκή ομάδα την εβδομάδα η μυϊκή ανάπτυξη ήταν μεγαλύτερη απ’ ό,τι με μικρότερο όγκο· η προπόνηση δύναμης σε διάφορες μορφές φέρνει ανάπτυξη σε σχέση με καθόλου προπόνηση.",
+   "powod": "Niespójna terminologia: „μέρος σώματος” zamiast „μυϊκή ομάδα”, użytego w innych zdaniach.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Serie: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Serie: {d} z {n} zrobione",
+   "tlumaczenie": "Σετ: {d} από {n} ολοκληρώθηκαν",
+   "poprawka": "Ολοκληρωμένα σετ: {d} από {n}",
+   "powod": "Czasownik „ολοκληρώθηκαν” nie zgadza się w liczbie z {d}=1.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Οι ανακοινώσεις λειτουργούν όταν είναι ενεργό το «Ήχος στο τέλος του διαλείμματος». Την ίδια ρύθμιση αλλάζετε και από το μενού «⋯» στην οθόνη της προπόνησης.",
+   "poprawka": "Οι ανακοινώσεις λειτουργούν όταν είναι ενεργή η επιλογή «Ήχος στο τέλος του διαλείμματος». Την ίδια ρύθμιση αλλάζετε και από το μενού «⋯» στην οθόνη της προπόνησης.",
+   "powod": "„ενεργό το «Ήχος…»” brzmi niezręcznie i jest niezgodne rodzajowo; lepiej „ενεργή η επιλογή”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "cfly.move",
+   "rodzaj": "wskazowka",
+   "pl": "Przy lekko ugiętych łokciach złącz dłonie przed klatką szerokim łukiem; wracaj powoli do rozłożenia rąk.",
+   "tlumaczenie": "Με ελαφρά λυγισμένους αγκώνες, φέρε τα χέρια μαζί μπροστά στο στήθος σε ευρύ τόξο· επέστρεψε αργά με ανοιχτά χέρια.",
+   "poprawka": "Με ελαφρά λυγισμένους αγκώνες, φέρε τα χέρια μαζί μπροστά στο στήθος σε ευρύ τόξο· επέστρεψε αργά ανοίγοντας τα χέρια.",
+   "powod": "„επέστρεψε αργά με ανοιχτά χέρια” sugeruje powrót z już rozłożonymi rękami, a nie powrót do ich rozłożenia.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "rcrunch.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Ruch prowadzi miednica — nie wymachuj nogami.",
+   "tlumaczenie": "Την κίνηση οδηγεί η λεκάνη· μην κουνάς τα πόδια.",
+   "poprawka": "Την κίνηση οδηγεί η λεκάνη· μην αιωρείς τα πόδια.",
+   "powod": "„μην κουνάς” (nie ruszaj) jest szersze niż „nie wymachuj”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "rear.move",
+   "rodzaj": "wskazowka",
+   "pl": "Unieś ramiona bokiem do wysokości barków, prostopadle do tułowia; opuść powoli.",
+   "tlumaczenie": "Σήκωσε τα χέρια στα πλάγια ως το ύψος των ώμων, κάθετα στον κορμό· κατέβα αργά.",
+   "poprawka": "Σήκωσε τα χέρια στα πλάγια ως το ύψος των ώμων, κάθετα στον κορμό· κατέβασέ τα αργά.",
+   "powod": "„κατέβα” oznacza „zejdź” (całym ciałem), a w oryginale opuszcza się ramiona.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

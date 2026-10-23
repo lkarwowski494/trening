@@ -1,0 +1,58 @@
+{
+ "jezyk": "ja",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 394,
+ "uwagi": [
+  {
+   "klucz": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
+   "rodzaj": "nowe",
+   "pl": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
+   "tlumaczenie": "主な部位はそれぞれ週に少なくとも{n}日（WHO 2020 — 健康のための推奨；ACSM 2026：頻度は筋力に影響しますが、用量反応関係を示すには証拠が不十分で、総量が同じなら差は小さくなります）。部位が補助的にしか働かない日は {h} と数えます — 簡略化（Pelland ほか 2026年のメタアナリシスの方法）。セッションの分け方（全身、上半身／下半身）は慣例です — セット数が同じなら効果は同程度です。",
+   "poprawka": "主な部位はそれぞれ週に少なくとも{n}日（WHO 2020 — 健康のための推奨；ACSM 2026：頻度は筋力に影響しますが、用量反応関係を示すには証拠が不十分で、ボリュームが同じなら差は小さくなります）。部位が補助的にしか働かない日は {h} と数えます — 簡略化（Pelland ほか 2026年のメタアナリシスの方法）。セッションの分け方（全身、上半身／下半身）は慣例です — セット数が同じなら効果は同程度です。",
+   "powod": "Niespójna terminologia: „objętość” to w innych tekstach „ボリューム”, tu „総量”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.",
+   "rodzaj": "nowe",
+   "pl": "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.",
+   "tlumaczenie": "刻み幅（例：+2.5 kg）は慣習であり、研究結果ではありません。",
+   "poprawka": "刻み幅（例：+2.5 kg）は慣例であり、研究結果ではありません。",
+   "powod": "Niespójna terminologia: „konwencja” to w pozostałych tekstach „慣例”, tu „慣習”.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "漸進：レップ範囲の上限に達したら重量を増やします。負荷を段階的に増やすことはACSMの見解で推奨されています。増やす時期と刻み幅は慣例です。",
+   "poprawka": "プログレッション：レップ範囲の上限に達したら重量を増やします。負荷を段階的に増やすことはACSMの見解で推奨されています。増やす時期と刻み幅は慣例です。",
+   "powod": "„漸進” samo w sobie brzmi nienaturalnie jako etykieta; w kontekście treningu zwykle używa się „プログレッション”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Rozgrzewki: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Rozgrzewki: {d} z {n} zrobione",
+   "tlumaczenie": "ウォームアップ: {n}件中{d}件完了",
+   "poprawka": "ウォームアップ: {n}セット中{d}セット完了",
+   "powod": "Licznik „件” jest nienaturalny dla serii rozgrzewkowych; naturalniej „セット”.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Serie: {d} z {n} zrobione",
+   "rodzaj": "nowe",
+   "pl": "Serie: {d} z {n} zrobione",
+   "tlumaczenie": "セット: {n}件中{d}件完了",
+   "poprawka": "セット: {n}セット中{d}セット完了",
+   "powod": "Licznik „件” jest nienaturalny dla serii; naturalniej „セット”.",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

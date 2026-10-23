@@ -1,0 +1,103 @@
+{
+ "jezyk": "ru",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 389,
+ "uwagi": [
+  {
+   "klucz": "Płacisz co miesiąc i kończysz, kiedy chcesz.",
+   "rodzaj": "nowe",
+   "pl": "Płacisz co miesiąc i kończysz, kiedy chcesz.",
+   "tlumaczenie": "Вы платите каждый месяц и заканчиваете, когда захотите.",
+   "poprawka": "Вы платите каждый месяц и отменяете подписку, когда захотите.",
+   "powod": "„заканчиваете” jest nienaturalne; chodzi o rezygnację z subskrypcji",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Позиция ACSM 2026: при не менее {n} подходов на мышечную группу в неделю рост мышц был больше, чем при меньшем объёме; силовая тренировка в разных формах даёт рост по сравнению с отсутствием тренировок.",
+   "poprawka": "Позиция ACSM 2026: при {n} и более подходах на мышечную группу в неделю рост мышц был больше, чем при меньшем объёме; силовая тренировка в разных формах даёт рост по сравнению с отсутствием тренировок.",
+   "powod": "„при не менее {n} подходов” to niegramatyczne zderzenie przypadków (при + dopełniacz)",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "rodzaj": "nowe",
+   "pl": "Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu.",
+   "tlumaczenie": "Подсказки работают, когда включено «Звук в конце отдыха». Ту же настройку можно изменить в меню «⋯» на экране тренировки.",
+   "poprawka": "Голосовые оповещения работают, когда включён «Звук в конце отдыха». Ту же настройку можно изменить в меню «⋯» на экране тренировки.",
+   "powod": "„Zapowiedzi” to zapowiedzi/oznajmienia, nie „подсказки” (wskazówki); ponadto „включено” nie zgadza się z rodzajem „Звук”",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "{n} yd",
+   "rodzaj": "nowe",
+   "pl": "{n} yd",
+   "tlumaczenie": "{n} ярд",
+   "poprawka": "{n} ярд.",
+   "powod": "„ярд” to pełne słowo w l. poj., niegramatyczne przy liczbach (np. „5 ярд”); skrót „ярд.” działa przy każdej liczbie",
+   "waga": "niska"
+  },
+  {
+   "klucz": "imperialny (lb, mi, yd)",
+   "rodzaj": "nowe",
+   "pl": "imperialny (lb, mi, yd)",
+   "tlumaczenie": "имперская (lb, mi, yd)",
+   "poprawka": "имперская (фунты, мили, ярды)",
+   "powod": "Łacińskie skróty jednostek są nienaturalne w rosyjskim interfejsie",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.",
+   "rodzaj": "nowe",
+   "pl": "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.",
+   "tlumaczenie": "Шаг (например, +2,5 kg) — это условность, а не результат исследований.",
+   "poprawka": "Шаг (например, +2,5 кг) — это условность, а не результат исследований.",
+   "powod": "Po rosyjsku jednostka to „кг”, nie łacińskie „kg”",
+   "waga": "niska"
+  },
+  {
+   "klucz": "metryczny (kg, km, m)",
+   "rodzaj": "nowe",
+   "pl": "metryczny (kg, km, m)",
+   "tlumaczenie": "метрическая (kg, km, m)",
+   "poprawka": "метрическая (кг, км, м)",
+   "powod": "Łacińskie skróty jednostek są nienaturalne; po rosyjsku: кг, км, м",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "rodzaj": "nowe",
+   "pl": "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.",
+   "tlumaczenie": "В конце нажмите «Завершить» в заголовке (или «Завершить тренировку» в карточке после последнего подхода) — сессия попадёт на вкладку «План».",
+   "poprawka": "В конце нажмите «Завершить» в заголовке (или «Завершить тренировку» в карточке после последнего подхода) — тренировка попадёт на вкладку «План».",
+   "powod": "„сессия” brzmi nienaturalnie w kontekście treningu",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "rodzaj": "nowe",
+   "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
+   "tlumaczenie": "Прогрессия: когда выполните верхнюю границу диапазона повторений, добавьте вес. Постепенное увеличение нагрузки рекомендуют позиции ACSM; момент и размер шага — условность.",
+   "poprawka": "Прогрессия: когда дойдёте до верхней границы диапазона повторений, добавьте вес. Постепенное увеличение нагрузки рекомендуют позиции ACSM; момент и размер шага — условность.",
+   "powod": "„выполните верхнюю границу” to nienaturalna kolokacja",
+   "waga": "niska"
+  },
+  {
+   "klucz": "rcrunch.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Ruch prowadzi miednica — nie wymachuj nogami.",
+   "tlumaczenie": "Движение ведёт таз; не раскачивай ногами.",
+   "poprawka": "Движение ведёт таз; не делай махов ногами.",
+   "powod": "„не раскачивай ногами” to niepoprawna konstrukcja",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

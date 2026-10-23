@@ -1,0 +1,226 @@
+{
+ "zrodlo": "przybliżenie (bez klucza), wyjście z założeń",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "zalozenia_wyjscia": {
+  "tokenyOk": 8,
+  "tokenyPoprawka": 90,
+  "udzialPoprawek": 0.2,
+  "myslenie": 10000
+ },
+ "jezykow": 34,
+ "zdan": 13566,
+ "tokeny_we": 1390979,
+ "tokeny_wy": 671024,
+ "koszt_usd": 9.492198,
+ "koszt_wg_modelu": {
+  "claude-opus-5-5": 9.492198,
+  "claude-sonnet-5-5": 4.746099
+ },
+ "wiersze": [
+  {
+   "jezyk": "en",
+   "zdan": 399,
+   "we": 29119,
+   "wy": 19736
+  },
+  {
+   "jezyk": "bg",
+   "zdan": 399,
+   "we": 46071,
+   "wy": 19736
+  },
+  {
+   "jezyk": "cs",
+   "zdan": 399,
+   "we": 39218,
+   "wy": 19736
+  },
+  {
+   "jezyk": "da",
+   "zdan": 399,
+   "we": 39974,
+   "wy": 19736
+  },
+  {
+   "jezyk": "de",
+   "zdan": 399,
+   "we": 41381,
+   "wy": 19736
+  },
+  {
+   "jezyk": "el",
+   "zdan": 399,
+   "we": 47256,
+   "wy": 19736
+  },
+  {
+   "jezyk": "es",
+   "zdan": 399,
+   "we": 41502,
+   "wy": 19736
+  },
+  {
+   "jezyk": "es-419",
+   "zdan": 399,
+   "we": 41545,
+   "wy": 19736
+  },
+  {
+   "jezyk": "et",
+   "zdan": 399,
+   "we": 39671,
+   "wy": 19736
+  },
+  {
+   "jezyk": "fi",
+   "zdan": 399,
+   "we": 40293,
+   "wy": 19736
+  },
+  {
+   "jezyk": "fr",
+   "zdan": 399,
+   "we": 42016,
+   "wy": 19736
+  },
+  {
+   "jezyk": "hr",
+   "zdan": 399,
+   "we": 39796,
+   "wy": 19736
+  },
+  {
+   "jezyk": "hu",
+   "zdan": 399,
+   "we": 40610,
+   "wy": 19736
+  },
+  {
+   "jezyk": "id",
+   "zdan": 399,
+   "we": 40938,
+   "wy": 19736
+  },
+  {
+   "jezyk": "it",
+   "zdan": 399,
+   "we": 41402,
+   "wy": 19736
+  },
+  {
+   "jezyk": "ja",
+   "zdan": 399,
+   "we": 41734,
+   "wy": 19736
+  },
+  {
+   "jezyk": "ko",
+   "zdan": 399,
+   "we": 41611,
+   "wy": 19736
+  },
+  {
+   "jezyk": "lt",
+   "zdan": 399,
+   "we": 40029,
+   "wy": 19736
+  },
+  {
+   "jezyk": "lv",
+   "zdan": 399,
+   "we": 40070,
+   "wy": 19736
+  },
+  {
+   "jezyk": "ms",
+   "zdan": 399,
+   "we": 41201,
+   "wy": 19736
+  },
+  {
+   "jezyk": "nb",
+   "zdan": 399,
+   "we": 39773,
+   "wy": 19736
+  },
+  {
+   "jezyk": "nl",
+   "zdan": 399,
+   "we": 41083,
+   "wy": 19736
+  },
+  {
+   "jezyk": "pt",
+   "zdan": 399,
+   "we": 41079,
+   "wy": 19736
+  },
+  {
+   "jezyk": "pt-BR",
+   "zdan": 399,
+   "we": 41241,
+   "wy": 19736
+  },
+  {
+   "jezyk": "ro",
+   "zdan": 399,
+   "we": 40802,
+   "wy": 19736
+  },
+  {
+   "jezyk": "ru",
+   "zdan": 399,
+   "we": 44844,
+   "wy": 19736
+  },
+  {
+   "jezyk": "sk",
+   "zdan": 399,
+   "we": 39522,
+   "wy": 19736
+  },
+  {
+   "jezyk": "sl",
+   "zdan": 399,
+   "we": 39680,
+   "wy": 19736
+  },
+  {
+   "jezyk": "sr",
+   "zdan": 399,
+   "we": 44496,
+   "wy": 19736
+  },
+  {
+   "jezyk": "sv",
+   "zdan": 399,
+   "we": 39835,
+   "wy": 19736
+  },
+  {
+   "jezyk": "tr",
+   "zdan": 399,
+   "we": 40382,
+   "wy": 19736
+  },
+  {
+   "jezyk": "uk",
+   "zdan": 399,
+   "we": 45172,
+   "wy": 19736
+  },
+  {
+   "jezyk": "vi",
+   "zdan": 399,
+   "we": 39940,
+   "wy": 19736
+  },
+  {
+   "jezyk": "zh-Hant",
+   "zdan": 399,
+   "we": 37693,
+   "wy": 19736
+  }
+ ]
+}

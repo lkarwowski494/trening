@@ -1,0 +1,31 @@
+{
+ "jezyk": "de",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 397,
+ "uwagi": [
+  {
+   "klucz": "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.",
+   "tlumaczenie": "Körpergewicht-Messungen („Körpergewicht — Messungen“) löschst du über „Bearbeiten“ in der Kopfzeile oder durch Wischen nach links.",
+   "poprawka": "Körpergewichtsmessungen („Körpergewicht — Messungen“) löschst du über „Bearbeiten“ in der Kopfzeile oder durch Wischen nach links.",
+   "powod": "Poprawna niemiecka forma złożenia to „Körpergewichtsmessungen” (z łącznikiem -s-, bez dywizu).",
+   "waga": "niska"
+  },
+  {
+   "klucz": "lp.hips",
+   "rodzaj": "wskazowka",
+   "pl": "Nie schodź tak nisko, by miednica odrywała się od oparcia, a dolne plecy zaokrąglały.",
+   "tlumaczenie": "Geh nicht so tief, dass das Becken vom Sitz abhebt und der untere Rücken rund wird.",
+   "poprawka": "Geh nicht so tief, dass das Becken von der Lehne abhebt und der untere Rücken rund wird.",
+   "powod": "Polskie „oparcie” to Lehne (oparcie pleców), nie Sitz (siedzisko).",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}

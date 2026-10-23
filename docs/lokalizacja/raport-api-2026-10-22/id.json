@@ -1,0 +1,67 @@
+{
+ "jezyk": "id",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "batch_id": "msgbatch_01ERD6bbDd8xuy225xob2jgC",
+ "zdan": 399,
+ "ok": 393,
+ "uwagi": [
+  {
+   "klucz": "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.",
+   "rodzaj": "nowe",
+   "pl": "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.",
+   "tlumaczenie": "Nama di bawah ikon dan teks izin Kesehatan baru berganti bahasa setelah kamu mengatur bahasa aplikasi di Pengaturan iOS.",
+   "poprawka": "Nama di bawah ikon dan teks izin Kesehatan baru berganti bahasa setelah Anda mengatur bahasa aplikasi di Pengaturan iOS.",
+   "powod": "Forma „kamu” zamiast wymaganej „Anda” w zwykłym zdaniu.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "rodzaj": "nowe",
+   "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "tlumaczenie": "Posisi ACSM 2026: dengan setidaknya {n} set per kelompok otot per minggu, pertumbuhan otot lebih besar daripada dengan volume lebih rendah; latihan beban dalam berbagai bentuk memberi pertumbuhan dibandingkan tanpa latihan.",
+   "poprawka": "Pernyataan sikap ACSM 2026: dengan setidaknya {n} set per kelompok otot per minggu, pertumbuhan otot lebih besar daripada dengan volume lebih rendah; latihan beban dalam berbagai bentuk memberi pertumbuhan dibandingkan tanpa latihan.",
+   "powod": "Niespójna terminologia: „Posisi ACSM” zamiast „pernyataan sikap ACSM” użytego w zdaniu 50.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "bj.setup",
+   "rodzaj": "wskazowka",
+   "pl": "Stań przed stabilną skrzynią, stopy na szerokość bioder lub węziej; wybierz wysokość, na którą pewnie wskoczysz.",
+   "tlumaczenie": "Berdiri di depan kotak yang stabil, kaki selebar pinggul atau lebih sempit; pilih tinggi yang bisa Anda daratkan dengan yakin.",
+   "poprawka": "Berdiri di depan kotak yang stabil, kaki selebar pinggul atau lebih sempit; pilih ketinggian yang bisa Anda lompati dan daratkan dengan yakin.",
+   "powod": "„tinggi yang bisa Anda daratkan” brzmi nienaturalnie.",
+   "waga": "średnia"
+  },
+  {
+   "klucz": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "rodzaj": "nowe",
+   "pl": "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.",
+   "tlumaczenie": "Karet dihapus lewat “Edit” di header layarnya atau dengan menggeser ke kiri.",
+   "poprawka": "Hapus karet lewat “Edit” di header layar karet atau dengan menggeser ke kiri.",
+   "powod": "„layarnya” jest niejednoznaczne; brak wskazania, że chodzi o ekran gum.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "rodzaj": "nowe",
+   "pl": "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.",
+   "tlumaczenie": "Istirahat. Sisa waktu: {t}. Total: {all}.",
+   "poprawka": "Istirahat. Sisa waktu: {t}. Total istirahat: {all}.",
+   "powod": "Pominięto „przerwa” przy „Cała przerwa”; samo „Total” jest niejasne w odczycie VoiceOver.",
+   "waga": "niska"
+  },
+  {
+   "klucz": "row1.noTwist",
+   "rodzaj": "wskazowka",
+   "pl": "Nie skręcaj tułowia, żeby podrzucić hantel.",
+   "tlumaczenie": "Jangan memutar badan untuk mengangkat dumbel.",
+   "poprawka": "Jangan memutar badan untuk menyentak dumbel ke atas.",
+   "powod": "„mengangkat” gubi sens „podrzucić” (szarpnięcie, wyrzut ciężaru).",
+   "waga": "niska"
+  }
+ ],
+ "brak_odpowiedzi": [],
+ "blad": null,
+ "kontrola_lokalna": []
+}
