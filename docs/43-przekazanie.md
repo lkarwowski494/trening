@@ -2,6 +2,8 @@
 
 Powód: limit tygodniowy konta koordynatora na wyczerpaniu (decyzja właściciela 20.10.2026: drugie konto). Ten plik + CLAUDE.md + docs/18 + docs/40 wystarczą do kontynuacji.
 
+> **Aktualizacja 23.10.2026 (M1-047):** opis modelu z tego dokumentu (oferta wprowadzająca, 4 treningi) jest nieaktualny — od 22.10.2026 obowiązuje model M5 S1 bez okresu próbnego (`docs/monetyzacja.md`); krok K-011 uchylony. Bramka E2E przed App Store: CLAUDE.md (21.10.2026) — jeden pełny katalog E2E na standardowym iPhonie.
+
 ## Stan
 - Gałąź **`audyt-m1`** (HEAD 590f7fc): naprawy M2 audytu M1 z 19.10.2026 — partie 1–4 (70 zadań minus 026/029/030/036 przekazane do M3) + LOK-07 (System miar, mile/jardy, domyślnie z regionu) + poprawki E2E (13/31/36, slotHeight). Pełne verify jednym ciągiem: EXIT 0 (8367 testów).
 - **Nie scalone do main.** PR jeszcze nie otwarty — czeka na zielone E2E.
@@ -20,7 +22,7 @@ Powód: limit tygodniowy konta koordynatora na wyczerpaniu (decyzja właściciel
 ## Kontekst i plan całości (przeczytaj najpierw)
 **Cel:** wydać aplikację Trening (iOS + Apple Watch, Expo/React Native, 35 języków, bez konta, dane tylko na telefonie) w App Store jako **1.0** „w pełnym standardzie”. Właściciel: Łukasz (nie ekspert dziedzinowy, nie używa Terminala). Studio: Apps4Brew (strona apps4brew.com/trening/ — polityka prywatności i wsparcie już opublikowane; osobne repo strony studia).
 
-**Model monetyzacji (STAŁY, nie proponować zmian):** 0,99 USD/mies., **6,99 USD/rok**, 14,99 USD dożywotnio; 14 dni oferty wprowadzającej; po niej 4 treningi/mies. za darmo. Zakupy włączane od 1.0.
+**Model monetyzacji (STAŁY, nie proponować zmian):** wyłącznie `docs/monetyzacja.md` (od 22.10.2026 model M5 S1: bez okresu próbnego; dawny zapis o ofercie wprowadzającej i 4 treningach uchylony). Zakupy włączane od 1.0.
 
 **Droga do App Store (kolejność ustalona z właścicielem):**
 1. Naprawy audytu M1 (M2) na `audyt-m1` → PR → `main` → TestFlight. ← *tu jesteśmy (kroki 1–6 niżej)*
@@ -29,7 +31,7 @@ Powód: limit tygodniowy konta koordynatora na wyczerpaniu (decyzja właściciel
 4. **Jeden pełny katalog E2E na standardowym iPhonie** (1 ponowienie dozwolone; bramka App Store, CLAUDE.md — decyzja właściciela 21.10; noc nie blokuje).
 5. **Kontrola na telefonie** (lista „tylko telefon”): powiadomienie „pilne” w trybie skupienia (R-004), głos, mile/jardy, nowe ekrany, Apple Watch, Zdrowie, zakup w piaskownicy (K-012).
 6. Zrzuty do sklepu (ciemny motyw, ramki i podpisy, 9 ekranów wg scenorysu z 19.10; generator `store-screenshots.yml`) i opis sklepu (docs/15) — **dopiero po M3**; akceptacja właściciela (podpisy EN też).
-7. App Store Connect (kroki właściciela niżej: cena 6,99, oferta 14 dni, adres polityki, etykieta prywatności, ankieta wiekowa), migracja repo do organizacji **Apps4Brew** (właściciel: puste repo + sekrety), wersja **1.0** („Co nowego” czyszczone), wysłanie do Apple, ręczne wydanie po akceptacji, wydanie stopniowe wg docs/42.
+7. App Store Connect (kroki właściciela niżej: cena 6,99, bez oferty wprowadzającej — K-011 uchylone 22.10.2026, adres polityki, etykieta prywatności, ankieta wiekowa), migracja repo do organizacji **Apps4Brew** (właściciel: puste repo + sekrety), wersja **1.0** („Co nowego” czyszczone), wysłanie do Apple, ręczne wydanie po akceptacji, wydanie stopniowe wg docs/42.
 
 **Otwarte u właściciela (poza listą kroków):** Google Workspace (w toku, sekcja „W toku u właściciela”), próg i data premiery dla decyzji o Androidzie (docs/wzrost.md), ewentualny przegląd sekretów GitHub (K-019).
 
@@ -118,23 +120,12 @@ Przegląd co godzinę (zaplanowane zadanie „Trening: koordynator — przegląd
 # Kroki właściciela — partia 2 napraw z audytu M1 (20.10.2026)
 
 Kroki robisz Ty (ja ich nie wykonuję). Jedno zadanie naraz; po każdym napisz „zrobione” albo wklej, co widzisz na ekranie.
-Model monetyzacji jest stały: 0,99 USD/mies., roczna i dożywotnia wg App Store Connect (patrz uwaga o cenie rocznej na końcu), próba 14 dni, 4 treningi w miesiącu po wygaśnięciu.
+Model monetyzacji: wyłącznie `docs/monetyzacja.md` (od 22.10.2026 M5 S1 bez okresu próbnego; opis modelu w tej kopii kroków uchylony).
 
-## K-011. App Store Connect: oferta wprowadzająca 14 dni w obu subskrypcjach (M1-011)
+## K-011. UCHYLONE 22.10.2026 — App Store Connect: oferta wprowadzająca (M1-011)
 
-Kod i plik testowy `store/Trening.storekit` mówią już „14 dni” (2 tygodnie). W App Store Connect oferta ma być identyczna, bo to ona decyduje o tym, co Apple pokaże i naliczy.
-
-1. Wejdź na https://appstoreconnect.apple.com i zaloguj się.
-2. Moje aplikacje (My Apps) → Trening.
-3. Lewe menu → sekcja „Monetization” → „Subscriptions”.
-4. Otwórz grupę „Pełna wersja”.
-5. Kliknij subskrypcję **miesięczną**.
-6. Przewiń do sekcji „Subscription Prices” → obok niej „Introductory Offers” (Oferty wprowadzające) → ikona plusa „+” (albo „Create Introductory Offer”).
-   - Jeśli oferta „1 miesiąc” już istnieje: kliknij ją, a następnie „Edit”/„Delete” i utwórz nową. Apple nie pozwala zmienić długości istniejącej oferty — usuń starą (jeśli nikt jeszcze z niej nie skorzystał) i dodaj nową.
-7. Ustaw: Countries or Regions = wszystkie (All), Start Date = dzisiaj, End Date = bez daty końca (No End Date), Type = „Free” (Bezpłatna), Duration = **„2 Weeks” (2 tygodnie)**.
-8. Zapisz („Confirm”/„Save”).
-9. Wróć do grupy „Pełna wersja”, otwórz subskrypcję **roczną** i powtórz kroki 6–8 (ten sam typ „Free”, czas „2 Weeks”).
-10. Sprawdź na liście obu subskrypcji: w kolumnie ofert wprowadzających ma być „Free, 2 Weeks”.
+Krok nieaktualny. Od 22.10.2026 obowiązuje model M5 S1 bez okresu próbnego i bez ofert wprowadzających (`docs/monetyzacja.md`). Nie zakładaj oferty.
+Kontrola ASC z 22.10.2026 (przebieg 39822823188) potwierdziła brak ofert na subskrypcji miesięcznej i rocznej (R-M5-3 w `docs/40-lekcje.md`). Jeśli w App Store Connect zobaczysz ofertę wprowadzającą, usuń ją i napisz do agenta, żeby uruchomił kontrolę ASC ponownie.
 
 ## K-012. Test w piaskownicy: dostęp po ponownej instalacji (M1-012)
 
@@ -208,7 +199,7 @@ Jedno zadanie naraz; odpowiedz krótko (litera opcji albo „zrobione”).
 
 W `docs/wzrost.md`, sekcja 5, są trzy opcje metryki i pola do wpisania. Model płatności zostaje stały (żadna opcja go nie dotyka).
 
-1. Wybierz metrykę: **A** pobrania miesięcznie z App Store Connect (prosta, ale mówi o sile wersji iOS, nie o Androidzie); **B** odsetek kupujących po 14 dniach próby (bliżej przychodu, ale przy małej liczbie pobrań próba będzie za mała); **C** zgłoszenia użytkowników o Androidzie (bezpośrednio o Androidzie, ale zgłasza ich niewielu). Rekomendacja: A jako główna, C jako uzupełnienie.
+1. Wybierz metrykę: **A** pobrania miesięcznie z App Store Connect (prosta, ale mówi o sile wersji iOS, nie o Androidzie); **B** odsetek kupujących po 14 dniach próby (bliżej przychodu, ale przy małej liczbie pobrań próba będzie za mała; opcja nieaktualna od 22.10.2026 — model bez okresu próbnego); **C** zgłoszenia użytkowników o Androidzie (bezpośrednio o Androidzie, ale zgłasza ich niewielu). Rekomendacja: A jako główna, C jako uzupełnienie.
 2. Podaj próg dla wybranej metryki (liczbę). W dokumencie jest tylko kandydat z 06.10.2026: „100 pobrań miesięcznie” — to był cel wzrostu, nie próg dla Androida. Nie wpisuję liczby za Ciebie.
 3. Podaj planowaną datę premiery (z niej wyliczam datę oceny: premiera + 56 dni).
 4. Odpowiedz np. „A, próg 100, premiera 15.11.2026”; agent wpisze to do docs/wzrost.md.
