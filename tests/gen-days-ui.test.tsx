@@ -137,9 +137,9 @@ describe('1 dzień — każdy język na 320 pt', () => {
     await tap(screen.getByText(tIn(l, 'Redukcja'))); await flushAll(5); await pickDays([2]);
     const all = (screen.toJSON() ? JSON.stringify(screen.toJSON()) : '');
     const goal = tIn(l, 'Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.').replace('{k}', '3');
-    const out = tIn(l, 'Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')
+    const out = tIn(l, 'Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')
       .replace('{k}', '3').replace('{a}', '150').replace('{b}', '300').replace('{c}', '75').replace('{d}', '150');
-    const basis = `• ${tIn(l, 'Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.').replace('{k}', '3').replace('{n}', '2')}`;
+    const basis = `• ${tIn(l, 'Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — to nasz wybór.').replace('{k}', '3').replace('{n}', '2')}`;
     /* ⓘ (14.10.2026): opis celu, „Cardio poza planem” (WHO) i „Na czym to oparte” są pod ⓘ — zwinięte nie renderują tekstu, na wierzchu krótki podpis w danym języku */
     const short = tIn(l, 'Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.');
     for (const x of [goal, out, basis]) expect([l, 'zwinięte', screen.queryAllByText(x).length]).toEqual([l, 'zwinięte', 0]);

@@ -54,22 +54,22 @@ describe('C4 / MER-06, MER-07, MER-08, MER-12, MER-17: „Na czym to oparte” i
   test('każdy parametr podglądu ma punkt ze źródłem albo oznaczeniem; liczby ze stałych', async () => {
     await boot('/generator'); expect(screen.queryByText(/^• Każda główna partia/)).toBeNull(); await openInfo('gen-basis'); /* ⓘ 14.10.2026: „Na czym to oparte” — punkty pod ⓘ */
     for (const x of [
-      'Każda główna partia co najmniej 2 dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako 0,5 — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.',
-      'Serie: 3 na ćwiczenie — ACSM 2026 zaleca co najmniej 2; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba 3 to uproszczenie.',
+      'Każda główna partia co najmniej 2 dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako 0,5 — uproszczenie. Podział na sesje (całe ciało, góra/dół) to nasz wybór — przy tej samej liczbie serii daje podobne efekty.',
+      'Serie: 3 na ćwiczenie — warto zrobić co najmniej 2; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba 3 to uproszczenie.',
       'Liczba serii z czasu sesji: (minuty − 10 min rozgrzewki) × 60 / (40 s serii + średnia przerwa 105 s) = 20; ćwiczeń = serie / 3 (co najmniej 3) — uproszczenie, nie wynik badań.',
-      'Zakresy powtórzeń (masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań).',
-      'Wysiłek: zwykle 0–3 powtórzenia w zapasie (ACSM 2026: blisko upadku albo 2–3; dokładnej liczby nie ustalono); do upadku nie trzeba.',
-      'Przerwy: 3 min po ciężkich seriach boju głównego, 2 min po innych wielostawowych, 1,5 min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).',
-      'Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.',
+      'Zakresy powtórzeń (masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.',
+      'Wysiłek: zwykle 0–3 powtórzenia w zapasie — blisko upadku albo 2–3; dokładna liczba nie jest ustalona. Do upadku nie trzeba.',
+      'Przerwy: 3 min po ciężkich seriach boju głównego, 2 min po innych wielostawowych, 1,5 min po jednostawowych i core — uproszczenie; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły).',
+      'Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów; kiedy i o ile — to nasz wybór.',
     ]) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     const head = 'Serie na partię w tygodniu (pomocnicza = 0,5 serii — uproszczenie): klatka '; /* MER-17 */
     expect(screen.getAllByText(/^Serie na partię w tygodniu/).map(n => String(n.props.children)).filter(x => x.startsWith(head))).toHaveLength(1);
     expect(screen.queryByText(/^• Cardio:/)).toBeNull();
     await tap(screen.getByText('Siła')); await flushAll(5); expect(screen.getByText(/średnia przerwa 150 s\) = 15;/)).toBeTruthy(); /* przerwa średnia siły */
     await tap(screen.getByText('Redukcja')); await flushAll(5);
-    expect(screen.getByText('• Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji — konwencja.')).toBeTruthy();
+    expect(screen.getByText('• Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji — to nasz wybór.')).toBeTruthy();
     expect(screen.getByText('Cardio w planie: 60 min tygodniowo.')).toBeTruthy(); await openInfo('gen-cardio-in');
-    expect(screen.getByText(/^Cardio w planie: 60 min tygodniowo\. Zalecenie WHO: co najmniej 150–300 min umiarkowanego wysiłku tygodniowo \(albo 75–150 min intensywnego\)/)).toBeTruthy();
+    expect(screen.getByText(/^Cardio w planie: 60 min tygodniowo\. Dla zdrowia warto mieć co najmniej 150–300 min umiarkowanego wysiłku tygodniowo \(albo 75–150 min intensywnego\)/)).toBeTruthy();
   });
 });
 

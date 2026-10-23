@@ -95,13 +95,13 @@ describe('0.14.0 wskazówki: logika i ekran', () => {
   });
   describe('komponent', () => {
     beforeEach(async () => { await fresh(); });
-    test('Bieg: po rozwinięciu tylko nagłówek „Wskazówki”, trzy punkty i podpis rodzajów źródeł; bez „Ustawienie” i „Ruch”', () => {
+    test('Bieg: po rozwinięciu tylko nagłówek „Wskazówki”, trzy punkty; bez „Ustawienie” i „Ruch”', () => {
       render(<ExerciseCues exercise={lib('Bieg')} />);
       fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
       expect(screen.getByRole('header', { name: 'Wskazówki' })).toBeTruthy();
       expect(screen.queryByRole('header', { name: 'Ustawienie' })).toBeNull(); expect(screen.queryByRole('header', { name: 'Ruch' })).toBeNull();
       for (const id of ['run.stride', 'run.bounce', 'run.under']) expect(screen.getByText(`• ${cueText(id, 'pl')}`)).toBeTruthy();
-      expect(screen.getByText('Na podstawie: biblioteki ćwiczeń organizacji szkoleniowych, badania naukowe. Własne sformułowania.')).toBeTruthy();
+      expect(screen.queryByText(/^Na podstawie/)).toBeNull(); /* 23.10.2026: źródła tylko w Ustawienia → Źródła wiedzy */
     });
     test('Nordic Curl po angielsku: trzy sekcje i zdania EN', () => {
       applyLang('en');

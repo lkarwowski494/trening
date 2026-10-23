@@ -62,18 +62,18 @@ describe('dane: pewność przypisania partii po zmianie zasady „jedno źródł
 });
 
 describe('języki: teksty U1–U3 bez „jedno źródło” (35 języków)', () => {
-  const U1_PL = 'Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.';
+  const U1_PL = 'Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie. Podział na sesje (całe ciało, góra/dół) to nasz wybór — przy tej samej liczbie serii daje podobne efekty.';
   const U2_PL = 'Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list}';
-  const U3_PL = 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).';
+  const U3_PL = 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).';
   const EKRANY = ['app/generator.tsx', 'components/OwnPlan.tsx', 'app/(tabs)/progress.tsx', 'components/GuardSection.tsx'];
   const NOWE = [U1_PL, U2_PL, U3_PL];
-  const NOWE_DOPISEK = ['Przypisanie partii: przegląd badań.', 'Przypisanie partii mięśniowych — ustalone na podstawie przeglądu badań dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.'];
+  const NOWE_DOPISEK = ['Przypisanie partii: potwierdzone.', 'Przypisanie partii mięśniowych — potwierdzone dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.'];
   const PREFIKSY = ['Każda główna partia co najmniej {n} dni', 'Serie na partię w tygodniu (pomocnicza', 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii'];
   const params = (x: string) => (x.match(/\{\w+\}/g) ?? []).sort().join(',');
 
   test('polski klucz: oznaczenie „uproszczenie” (i „konwencja” w U1) zostaje, „jedno źródło” znika — w kodzie ekranów i w słowniku EN', () => {
     for (const k of NOWE) { expect(k).not.toMatch(/jedno źródło/i); expect(typeof EN[k]).toBe('string'); expect(EN[k]).not.toMatch(/single source|one source/i); }
-    expect(EN[U1_PL]).toMatch(/simplification/); expect(EN[U1_PL]).toMatch(/convention/); expect(EN[U2_PL]).toMatch(/simplification/); expect(EN[U3_PL]).toMatch(/^Simplification/);
+    expect(EN[U1_PL]).toMatch(/simplification/); expect(EN[U1_PL]).toMatch(/our choice/); expect(EN[U2_PL]).toMatch(/simplification/); expect(EN[U3_PL]).toMatch(/^Simplification/);
     for (const f of EKRANY) for (const m of read(f).matchAll(/\bt\('((?:[^'\\]|\\.)*)'/g)) if (PREFIKSY.some(p => m[1].startsWith(p))) expect([f, m[1]]).toEqual([f, expect.not.stringMatching(/jedno źródło/)]);
     for (const k of NOWE) { const used = EKRANY.some(f => read(f).includes(k.replace(/'/g, "\\'"))); expect([k, used]).toEqual([k, true]); }
   });
@@ -91,7 +91,7 @@ describe('języki: teksty U1–U3 bez „jedno źródło” (35 języków)', () 
       for (const p of PREFIKSY) expect([l, p, Object.keys(d).filter(k => k.startsWith(p) && !NOWE.includes(k))]).toEqual([l, p, []]);
     });
     test('dopisek „przegląd badań” (krótki i ⓘ): przetłumaczony, inny niż polski, z kontrastem do „jedno źródło” i „uproszczenie”', () => {
-      const d = LOCALES[l]!; const inne = ['Przypisanie partii: jedno źródło.', 'Przypisanie partii: uproszczenie.'].map(k => d[k]);
+      const d = LOCALES[l]!; const inne = ['Przypisanie partii: wstępne.', 'Przypisanie partii: uproszczenie.'].map(k => d[k]);
       for (const k of NOWE_DOPISEK) { expect([l, k, typeof d[k]]).toEqual([l, k, 'string']); expect(d[k]).not.toBe(k); expect(params(d[k])).toBe(params(k)); }
       expect(inne.includes(d[NOWE_DOPISEK[0]])).toBe(false);
     });
@@ -126,22 +126,22 @@ describe('ekran ćwiczenia: dopisek „ustalone (przegląd)” (PL, EN, 320 pt) 
   jest.setTimeout(30000);
   const boot = async (locale: 'pl' | 'en' = 'pl', width?: number) => { jest.useFakeTimers({ now: new Date(2026, 9, 18, 12).getTime() }); await fresh(undefined, locale); store.save(); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, width }); await flushAll(10); await go(`/exercise/${ex('Lying Leg Raise').id}`); await flushAll(10); };
   afterEach(() => { applyLang('pl'); });
-  const REV = 'Przypisanie partii mięśniowych — ustalone na podstawie przeglądu badań dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.';
+  const REV = 'Przypisanie partii mięśniowych — potwierdzone dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.';
   test('PL: Lying Leg Raise — krótki „Przypisanie partii: przegląd badań.”, po ⓘ pełny tekst; bez „jedno źródło” i „uproszczenie”', async () => {
     await boot();
-    expect(screen.getAllByText('Przypisanie partii: przegląd badań.').length).toBeGreaterThan(0); expect(screen.queryByText('Przypisanie partii: jedno źródło.')).toBeNull(); expect(screen.queryByText('Przypisanie partii: uproszczenie.')).toBeNull();
+    expect(screen.getAllByText('Przypisanie partii: potwierdzone.').length).toBeGreaterThan(0); expect(screen.queryByText('Przypisanie partii: wstępne.')).toBeNull(); expect(screen.queryByText('Przypisanie partii: uproszczenie.')).toBeNull();
     await openInfo('muscle-note'); expect(screen.getAllByText(REV).length).toBeGreaterThan(0); expect(screen.queryByText(/jedno źródło, nie ustalone/)).toBeNull();
   });
   test('EN: Muscle group assignment: research review. + pełny tekst po ⓘ', async () => {
     await boot('en');
-    expect(screen.getAllByText('Muscle group assignment: research review.').length).toBeGreaterThan(0); await openInfo('muscle-note');
-    expect(screen.getAllByText('Muscle group assignment is established from a research review for this exercise. It drives sets per muscle, the muscle map, the generator and the calendar suggestions.').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Muscle group assignment: confirmed.').length).toBeGreaterThan(0); await openInfo('muscle-note');
+    expect(screen.getAllByText('Muscle group assignment is confirmed for this exercise. It drives sets per muscle, the muscle map, the generator and the calendar suggestions.').length).toBeGreaterThan(0);
   });
   test('320 pt (PL i EN): dopisek bez przycinania (numberOfLines) i bez błędów Reacta', async () => {
     const errs: string[] = []; jest.spyOn(console, 'error').mockImplementation((...a: unknown[]) => { const m = String(a[0]); if (!/not wrapped in act/.test(m)) errs.push(m.slice(0, 200)); });
     for (const locale of ['pl', 'en'] as const) {
       await boot(locale, 320);
-      const short = locale === 'pl' ? 'Przypisanie partii: przegląd badań.' : 'Muscle group assignment: research review.';
+      const short = locale === 'pl' ? 'Przypisanie partii: potwierdzone.' : 'Muscle group assignment: confirmed.';
       const nodes = screen.UNSAFE_root.findAll((n: { props: Record<string, unknown> }) => n.props.children === short); expect(nodes.length).toBeGreaterThan(0);
       expect(nodes.filter((n: { props: Record<string, unknown> }) => n.props.numberOfLines !== undefined)).toEqual([]);
     }

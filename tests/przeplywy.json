@@ -3224,6 +3224,28 @@
     "Delete place",
     "Delete place?"
    ]
+  },
+  {
+   "id": "US-20",
+   "tytul": "Źródła wiedzy: ekran w Ustawieniach (na czym opierają się liczby i zalecenia)",
+   "stan": "istniejacy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Więcej → Ustawienia → „Źródła wiedzy”",
+    "Lista źródeł pogrupowana tematami (plan, ruch dla zdrowia, wysiłek, szacowany maksymalny ciężar, lżejszy tydzień, asekuracja), sekcje o technice ćwiczeń, partiach mięśniowych i uproszczeniach",
+    "Strzałka powrotu w nagłówku → Ustawienia"
+   ],
+   "wynik": "Wszystkie źródła są w jednym miejscu, zwykłym tekstem, bez sieci; pozostałe ekrany nie mają przypisów do źródeł.",
+   "ekrany": [
+    "/more/sources",
+    "/more/settings"
+   ],
+   "scenariusz": "55-zrodla-wiedzy.yaml",
+   "znaczniki": [
+    "Sources of knowledge",
+    "Our simplifications and choices"
+   ]
   }
  ],
  "pominiete": [

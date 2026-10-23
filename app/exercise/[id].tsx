@@ -44,7 +44,7 @@ export default function ExerciseScreen() {
 /** Treść pytania przy usuwaniu ćwiczenia z biblioteki — ta sama dla gestu na liście i przycisku w podglądzie; liczona dopiero przy pytaniu (PERF-01). */
 export const exerciseDeleteMessage = (e: Exercise) => [exerciseInHistory(e.id) ? t('Zniknie z list i szablonów; historia, wykresy i eksport zostaną.') : t('Zniknie z list i szablonów.'), getState().active?.exercises.some(x => x.exerciseId === e.id) ? t('W trwającym treningu zostanie oznaczone jako usunięte.') : ''].filter(Boolean).join(' ');
 /** Opis zasad liczenia (masa ciała, e1RM, stoper, przerwa z szablonu) — ten sam w podglądzie i edycji. */
-const bwNote = () => [t('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.'), t('e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).', { p: Math.round(BW_SHARE['Push Up'] * 100) }), t('Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')].join(' ');
+const bwNote = () => [t('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.'), t('e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}%).', { p: Math.round(BW_SHARE['Push Up'] * 100) }), t('Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')].join(' ');
 /** Mięsień docelowy spoza mapy partii (lib/catalog.generated UNMAPPED_MUSCLES) — nazwa w UI. */
 const UNMAPPED_LABEL: Record<string, () => string> = { rotator_cuff: () => t('stożek rotatorów'), serratus_anterior: () => t('zębaty przedni'), tibialis_anterior: () => t('piszczelowy przedni'), hip_flexors: () => t('zginacze biodra') };
 /** E4 (audyt 0.10, MER-10) + research biblioteki (fix-catalog, 09.10.2026): dopisek o pewności przypisania partii — brak dopisku przy źródłach
@@ -52,11 +52,11 @@ const UNMAPPED_LABEL: Record<string, () => string> = { rotator_cuff: () => t('st
 function MuscleNote({ e, style }: { e: Exercise; style?: object }) {
   const conf = muscleConfidence(e) ?? ''; const um = unmappedMuscleOf(e);
   const note = musclesSourced(e) ? '' : conf.startsWith('ustalone')
-    ? t('Przypisanie partii mięśniowych — ustalone na podstawie przeglądu badań dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')
+    ? t('Przypisanie partii mięśniowych — potwierdzone dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')
     : conf.startsWith('jedno źródło')
-    ? t('Przypisanie partii mięśniowych — jedno źródło, nie ustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')
+    ? t('Przypisanie partii mięśniowych — wstępne, jeszcze nieustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')
     : t('Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.');
-  const short = conf.startsWith('ustalone') ? t('Przypisanie partii: przegląd badań.') : conf.startsWith('jedno źródło') ? t('Przypisanie partii: jedno źródło.') : t('Przypisanie partii: uproszczenie.');
+  const short = conf.startsWith('ustalone') ? t('Przypisanie partii: potwierdzone.') : conf.startsWith('jedno źródło') ? t('Przypisanie partii: wstępne.') : t('Przypisanie partii: uproszczenie.');
   return <>{note ? <InfoTip id="muscle-note" label={short} info={note} style={[{ marginBottom: 10 }, style]}><Muted style={{ ...font('footnote') }}>{short}</Muted></InfoTip> : null}
     {um ? <Muted style={{ ...font('footnote'), marginBottom: 10 }}>{t('Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.', { m: UNMAPPED_LABEL[um]?.() ?? um })}</Muted> : null}</>;
 }

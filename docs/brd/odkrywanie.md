@@ -34,6 +34,8 @@ Odtworzone z `README.md`, `CLAUDE.md`, `docs/15-app-store.md` i `docs/18-przekaz
 - Decyzja właściciela 2026-10-20 (D-005 w tym BRD = DEC-05), docs/36-glos.md.
 ### ZP-08: Granica aplikacji
 - Dieta, sen, suplementy i relacja trener–podopieczny poza zakresem (decyzja właściciela 2026-10-19, D-003).
+### ZP-09: Język naturalny, źródła w jednym miejscu
+- Aplikacja jest dla zwykłych ludzi, nie dla naukowców: teksty przy funkcjach nie mają przypisów (nazwy źródeł, autorów, organizacji, lat); źródła podstaw liczb i reguł są w jednym miejscu — Ustawienia → „Źródła wiedzy” (decyzja właściciela 2026-10-23, docs/18). Źródła zostają podstawą w rejestrze twierdzeń i dokumentach badacza (ZP-02).
 
 ## Ograniczenia
 

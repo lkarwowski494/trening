@@ -33,16 +33,16 @@ test('wejście z Szablonów i z Planu tygodnia', async () => {
 });
 test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgodny z logiką; opisy celów i „Na czym to oparte”', async () => {
   await boot('/generator'); await openInfo('gen-intro'); await openInfo('gen-goal'); await openInfo('gen-basis'); /* ⓘ 14.10.2026: wstęp, opis celu i „Na czym to oparte” pod ⓘ */
-  expect(screen.getByText('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań.')).toBeTruthy();
-  expect(screen.getByText('Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie 10), 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy(); /* audyt 0.10 MER-06: 0–3 (ACSM 2026: blisko upadku albo 2–3) */
+  expect(screen.getByText('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Opiera się na zaleceniach zdrowotnych i treningowych; gdzie coś jest naszym uproszczeniem albo wyborem, a nie wynikiem badań, piszemy o tym wprost.')).toBeTruthy();
+  expect(screen.getByText('Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie 10), 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy(); /* audyt 0.10 MER-06: 0–3 — blisko upadku albo 2–3) */
   const r = generate({ goal: 'hypertrophy', locationId: null, sessions: 3, minutes: 60 });
   expect(screen.getByText(/^pon\.? FBW A · śr\.? FBW B · pt\.? FBW A$/)).toBeTruthy();
   const it = r.templates[0].items[0]; expect(screen.getByText(`${exName(store.exById(it.exerciseId))} — 3 × 8–\u206012, przerwa 2:00`)).toBeTruthy();
   expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii — uproszczenie\): klatka \d/)).toBeTruthy(); /* MER-17 */
   expect(screen.getByText(`Poniżej celu serii tygodniowo: ${r.below10.map(m => `${m} (${String(r.weeklySets[m]).replace('.', ',')}/${r.goals[m]})`).join(', ')}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.`)).toBeTruthy();
   /* audyt 0.10 (C2 atrybucja, C4 MER-06/07/12): wszystkie punkty „Na czym to oparte” — pełne brzmienie w tests/audit-0.10-gen-ui.test.tsx */
-  for (const x of [/^• Każda główna partia co najmniej 2 dni w tygodniu \(WHO 2020/, /^• Serie: 3 na ćwiczenie/, /^• Liczba serii z czasu sesji: \(minuty − 10 min rozgrzewki\) × 60 \/ \(40 s serii \+ średnia przerwa 105 s\) = 20;/,
-    /^• Zakresy powtórzeń \(masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10\)/, /^• Wysiłek: zwykle 0–3 powtórzenia w zapasie/, /^• Przerwy: 3 min/, /^• Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar\. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja\.$/]) expect(screen.getByText(x)).toBeTruthy();
+  for (const x of [/^• Każda główna partia co najmniej 2 dni w tygodniu — tyle zalecane jest dla zdrowia/, /^• Serie: 3 na ćwiczenie/, /^• Liczba serii z czasu sesji: \(minuty − 10 min rozgrzewki\) × 60 \/ \(40 s serii \+ średnia przerwa 105 s\) = 20;/,
+    /^• Zakresy powtórzeń \(masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10\)/, /^• Wysiłek: zwykle 0–3 powtórzenia w zapasie/, /^• Przerwy: 3 min/, /^• Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar\. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów; kiedy i o ile — to nasz wybór\.$/]) expect(screen.getByText(x)).toBeTruthy();
   await tap(screen.getByText('Siła')); await flushAll(5);
   expect(screen.getByText('Siła: bój główny na początku, 3 × 4–6 powtórzeń (ciężko, ok. 80% maksimum i więcej), pozostałe ćwiczenia 3 × 6–10.')).toBeTruthy(); /* LOG-11: liczby ze stałych */
   expect(screen.getAllByText(/ — 3 × 4–\u20606, przerwa 3:00$/).length).toBe(2); /* bój główny w FBW A i B */ expect(screen.queryByText(/^Poniżej 10 serii/)).toBeNull();
@@ -55,8 +55,8 @@ test('redukcja: 1–2 dni — same siłowe, cardio poza planem (WHO); od 3 dni �
   expect(screen.getByText('Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.')).toBeTruthy();
   expect(screen.getByText('Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od 3 dni w tygodniu.')).toBeTruthy();
   expect(screen.getByText('Dni treningowe w tygodniu')).toBeTruthy(); expect(screen.queryByTestId('gen-cardio')).toBeNull(); expect(screen.queryByText(/^Cardio w planie:/)).toBeNull();
-  expect(screen.getByText('Cardio poza planem: sesja cardio jest w planie od 3 dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')).toBeTruthy();
-  expect(screen.getByText('• Cardio: od 3 dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej 2 dni) — konwencja.')).toBeTruthy();
+  expect(screen.getByText('Cardio poza planem: sesja cardio jest w planie od 3 dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')).toBeTruthy();
+  expect(screen.getByText('• Cardio: od 3 dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej 2 dni) — to nasz wybór.')).toBeTruthy();
   expect(screen.getByTestId('gen-fbwA')).toBeTruthy(); expect(screen.getByTestId('gen-fbwB')).toBeTruthy();
   await pickDays([0]); expect(screen.getByTestId('gen-fbw')).toBeTruthy(); expect(screen.getByText(/^Jeden trening w tygodniu też daje postępy/)).toBeTruthy(); expect(screen.getByText('pon. FBW')).toBeTruthy();
   await pickDays(daysFor(3, { goal: 'cut' }));
@@ -66,7 +66,7 @@ test('redukcja: 1–2 dni — same siłowe, cardio poza planem (WHO); od 3 dni �
   await tap(screen.getByText('45 min')); await flushAll(5);
   expect(screen.getByTestId('gen-cardio')).toBeTruthy(); expect(screen.getByText(/ — 45 min, umiarkowane tempo$/)).toBeTruthy();
   expect(screen.getByText('Cardio w planie: 45 min tygodniowo.')).toBeTruthy(); await openInfo('gen-cardio-in');
-  expect(screen.getByText('Cardio w planie: 45 min tygodniowo. Zalecenie WHO: co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')).toBeTruthy(); /* MER-08 */
+  expect(screen.getByText('Cardio w planie: 45 min tygodniowo. Dla zdrowia warto mieć co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')).toBeTruthy(); /* MER-08 */
 });
 test('5 sesji — ostrzeżenie o parach dzień po dniu; miejsce z listy miejsc; brak ćwiczeń — komunikat', async () => {
   await boot('/generator', () => { addLocation('bodyweight', 'Dom'); });

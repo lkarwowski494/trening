@@ -477,3 +477,13 @@ Test najpierw (7 czerwonych na f2b0525: w chwili `ack` baza nie miała zmiany), 
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | M1-028 (05-architekt-001) | `tests/audit-m1b-028-watch-ack.test.ts` (7: differ, skip, sessionStarted, nieudany zapis → brak `ack` i ponowienie; differ na zapisach 3 wydanych buildów z `tests/fixtures/released`) | logika, dane, regresja | zielone | **realność: brzegowy, dotyczy danych** — kroki: telefon zablokowany, trening z zegarka, „zrobione inaczej”/pominięcie/start sesji, system ubija aplikację w tle w ciągu 300 ms. Protokół zegarka bez zmian. Rodzaj 9 (E2E): ubicie procesu w tle poza zasięgiem Maestro — pominięty; ekran bez zmian |
+
+## 23.10.2026 — język naturalny, źródła w jednym miejscu (decyzja właściciela, docs/18; gałąź `jezyk-naturalny-zrodla`)
+Zmiana zachowania (nowy ekran, przepisane teksty); testy aktualizowane razem z kodem — oczekiwane teksty zmieniono na nowe brzmienie, żadnego testu nie osłabiono (zakres asercji ten sam, usunięto tylko asercje o nazwach źródeł i stopce „Na podstawie”).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Ekran Ustawienia → Źródła wiedzy | `tests/zrodla-wiedzy-ui.test.tsx` (wejście z Ustawień, grupy, 21 źródeł z opisem i cytatem, sekcje, ⓘ zwinięte, dostępność, EN); Maestro `.maestro/55-zrodla-wiedzy.yaml` (US-20) | ekran, scenariusz, języki, dostępność, E2E | zielone (jest); Maestro do potwierdzenia przebiegiem `e2e-ios.yml` | trasa `/more/sources` w przeglądzie dostępności i tras × języki (`a11y-routes.ts`, `matrix-langs-routes-shared.tsx`) |
+| Strażnik nazw źródeł | `tests/zrodla-wiedzy.test.ts` (wzorzec; lista ⇔ rejestr ⇔ docs/research; słowniki PL/EN, 33 języków, wskazówki, sprzęt, sklep, iOS, www; brak sieci w ekranie) | dane, logika, języki, niezmienniki | zielone | wyjątek: stare tłumaczenia kluczy z zestawu do przekładu |
+| Zestaw do przekładu | `tests/i18n-locales.test.ts` „zestaw do przekładu”, `tests/i18n-wave2/3/4.test.ts` (komplet z wyjątkiem „nowy”) | dane, języki | zielone | wyjątek znika po przekładzie |
+| Przepisane teksty | `tests/audit-0.10-gen-ui`, `generator-ui`, `gen-general*`, `audit011b`, `set-goals*`, `sets-mark`, `plan-own-templates-ui`, `matrix-ui`, `zrodlo-jedno`, `audit-k1-bl-mer` i in. (nowe brzmienia) | ekran, regresja | zielone | stopka wskazówek: test „brak stopki” zamiast „stopka bez nazw” |

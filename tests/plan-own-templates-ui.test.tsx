@@ -57,8 +57,8 @@ describe('generator i „Plan z moich szablonów”: osobne wejścia (ZM-03, 21.
     expect(screen.getByText(/^Rzadziej niż 2 dni w tygodniu: /)).toBeTruthy(); expect(screen.getByText(/^Poniżej celu serii tygodniowo: .+\. Cel ustawisz w Ustawieniach \(automatycznie dolny próg zalecany przy budowie masy\); serie dodasz w szablonach\.$/)).toBeTruthy();
     expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii/)).toBeTruthy();
     await openInfo('own-basis'); expect(screen.getByText(/^• Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami/)).toBeTruthy();
-    expect(screen.getByText(/^• Każda główna partia co najmniej 2 dni w tygodniu \(WHO 2020/)).toBeTruthy();
-    expect(screen.getByText('• Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.')).toBeTruthy();
+    expect(screen.getByText(/^• Każda główna partia co najmniej 2 dni w tygodniu — tyle zalecane jest dla zdrowia/)).toBeTruthy();
+    expect(screen.getByText('• Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — to nasz wybór.')).toBeTruthy();
     /* bez wyboru — komunikat, bez zapisu */
     await tap(chip(t[0].name)); await tap(chip(t[2].name)); await flushAll(5);
     expect(screen.getByText('Wybierz co najmniej jeden szablon.')).toBeTruthy(); expect(screen.queryByText('Zapisz plan')).toBeNull();

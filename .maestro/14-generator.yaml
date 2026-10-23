@@ -80,7 +80,7 @@ name: Generator szablonów i planu
 - scrollUntilVisible: { element: "What this is based on", direction: DOWN, timeout: 30000 }
 - tapOn: { id: "info-gen-basis" }  # 14.10.2026: „Na czym to oparte” — źródła pod ⓘ (treść bez zmian)
 - assertVisible: ".*Each major muscle group on at least.*"
-- assertVisible: ".*not enough evidence to establish a dose-response relationship.*"  # 21.10.2026: ACSM 2026 „za mało dowodów” (przegląd badacza), nie „brak dowodów”
+- assertVisible: ".*not enough evidence that more days give proportionally more.*"  # 21.10.2026: „za mało dowodów” (przegląd badacza), nie „brak dowodów”; 23.10.2026: brzmienie bez nazw źródeł
 - takeScreenshot: 71-generator-zrodla
 - scrollUntilVisible: { element: "Save templates and plan", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Save templates and plan"

@@ -16,13 +16,13 @@ jest.setTimeout(60000);
 afterEach(() => applyLang('pl'));
 const root = path.join(__dirname, '..');
 const read = (p: string) => fs.readFileSync(path.join(root, p), 'utf8');
-const CONV = 'Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.';
+const CONV = 'Krok zmiany (np. +2,5 kg) to nasz wybór, a nie wynik badań.';
 
 describe('046: krok podpowiedzi to konwencja', () => {
   test('Ustawienia: przy „Podpowiedź progresji” zdanie o konwencji (PL i EN)', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
     expect(screen.getByText(new RegExp(CONV.replace(/[()+]/g, '\\$&')))).toBeTruthy();
-    expect(EN[CONV]).toMatch(/convention/i);
+    expect(EN[CONV]).toMatch(/our choice/i);
   });
   test('zdanie jest w słownikach wszystkich języków (do przeglądu tłumacza)', () => {
     for (const [l, d] of Object.entries(LOCALES)) if (l !== 'es-419' && l !== 'pt-BR') expect([l, typeof (d as Record<string, string>)[CONV]]).toEqual([l, 'string']);
@@ -35,7 +35,7 @@ describe('046: krok podpowiedzi to konwencja', () => {
 
 describe('047: brzmienie zgodne ze źródłem', () => {
   test('zdanie R1 (generator i własny plan): bez „siła rośnie przy”; mówi o braku dowodu dawka–odpowiedź', () => {
-    for (const f of ['app/generator.tsx', 'components/OwnPlan.tsx']) { const s = read(f); expect(s).not.toMatch(/siła rośnie przy/); expect(s).toMatch(/za mało dowodów, by stwierdzić zależność dawka–odpowiedź/); }
+    for (const f of ['app/generator.tsx', 'components/OwnPlan.tsx']) { const s = read(f); expect(s).not.toMatch(/siła rośnie przy/); expect(s).toMatch(/nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej/); }
     expect(Object.keys(EN).some(k => /siła rośnie przy/.test(k))).toBe(false);
   });
   test('opis celu „Siła” i ostrzeżenie loadcap podają granicę z HEAVY_PCT (jedna stała, bez liczby wpisanej obok)', () => {

@@ -31,7 +31,7 @@ describe('E1: masa ciała (od 11.10.2026 w Postępach, dawniej w Ustawieniach) i
     await tap(screen.getByText('Masa ciała — pomiary')); await flushAll(5);
     const p = Math.round(BW_SHARE['Push Up'] * 100);
     expect(screen.getByText('Opcjonalnie, tylko w telefonie. Potrzebna do e1RM w podciąganiu i pompkach.')).toBeTruthy(); await openInfo('bodymass-intro'); /* ⓘ 14.10.2026 */
-    expect(screen.getByText(`Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. ${p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.`)).toBeTruthy();
+    expect(screen.getByText(`Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. ${p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.`)).toBeTruthy();
     const f = screen.getByLabelText('Masa ciała (kg)'); expect(f.props.value).toBe(''); expect(screen.getByLabelText('Data pomiaru (RRRR-MM-DD)').props.value).toBe('2026-10-08');
     await typeText(f, '80,5'); await act(async () => { fireEvent.press(screen.getByText('Zapisz pomiar')); }); await flushAll(5);
     expect(S().bodyMassLog).toEqual([{ date: '2026-10-08', kg: 80.5 }]);
@@ -43,23 +43,23 @@ describe('E1: masa ciała (od 11.10.2026 w Postępach, dawniej w Ustawieniach) i
   test('Postępy Pull Up: bez masy ciała — brak wiersza e1RM i wskazówka; z masą ciała — „126,67 kg (masa ciała + 46,67)” i opis uproszczenia', async () => {
     await boot(() => { addWorkout(at(9, 1), [['Pull Up', [{ addKg: 20, reps: 8 }]]]); });
     await go(`/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
-    expect(screen.queryByText('e1RM (Epley)')).toBeNull(); expect(screen.queryByText('e1RM (dociążenie)')).toBeNull();
+    expect(screen.queryByText(/masa ciała \+ /)).toBeNull(); expect(screen.queryByText('e1RM (dociążenie)')).toBeNull();
     expect(screen.getByText('e1RM pojawi się po wpisaniu masy ciała w Postępach.')).toBeTruthy(); expect(screen.getByText('Max dociążenie')).toBeTruthy();
     await act(async () => { setBodyMass(80); }); await flushAll(5);
-    expect(screen.getByText('e1RM (Epley)')).toBeTruthy(); expect(screen.getByText('126,67 kg (masa ciała + 46,67)')).toBeTruthy();
-    expect(screen.getByText('e1RM: wzór Epleya na 100% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).')).toBeTruthy();
+    expect(screen.getAllByText('e1RM').length).toBeGreaterThan(0); expect(screen.getByText('126,67 kg (masa ciała + 46,67)')).toBeTruthy();
+    expect(screen.getByText('e1RM liczone z 100% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).')).toBeTruthy();
   });
   test('Postępy Chest Dip (bez źródła udziału masy ciała): „Bez e1RM…” także z masą ciała; ćwiczenie z ciężarem — bez notki', async () => {
     await boot(() => { setBodyMass(80); addWorkout(at(9, 1), [['Chest Dip', [{ addKg: 10, reps: 5 }]], ['Back Squat', [{ weight: 100, reps: 5 }]]]); });
     await go(`/progress?ex=${ex('Chest Dip').id}`); await flushAll(10);
-    expect(screen.getByText('Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.')).toBeTruthy(); expect(screen.queryByText('e1RM (Epley)')).toBeNull();
+    expect(screen.getByText('Bez e1RM: nie wiadomo, jaką część masy ciała podnosisz w tym ćwiczeniu.')).toBeTruthy(); expect(screen.queryByText(/masa ciała \+ /)).toBeNull();
     await go(`/progress?ex=${ex('Back Squat').id}`); await flushAll(10);
-    expect(screen.getByText('e1RM (Epley)')).toBeTruthy(); expect(screen.queryByText(/^Bez e1RM|^e1RM pojawi się|^e1RM: wzór/)).toBeNull();
+    expect(screen.getAllByText('e1RM').length).toBeGreaterThan(0); expect(screen.queryByText(/^Bez e1RM|^e1RM pojawi się|^e1RM liczone/)).toBeNull();
   });
   test('ekran ćwiczenia: opis masy ciała mówi prawdę o e1RM (masa ciała z Ustawień, udział ze źródeł), bez „masa ciała nie wchodzi do obliczeń”', async () => {
     await boot(); await go(`/exercise/${ex('Pull Up').id}`); await flushAll(10);
     const p = Math.round(BW_SHARE['Push Up'] * 100);
-    await openInfo('bw-rules'); expect(screen.getByText(new RegExp(`liczy się tylko z masą ciała wpisaną w Postępach .*pompki \\(ok\\. ${p}% — badania z platformą siłową\\)\\.`))).toBeTruthy();
+    await openInfo('bw-rules'); expect(screen.getByText(new RegExp(`liczy się tylko z masą ciała wpisaną w Postępach .*pompki \\(ok\\. ${p}%\\)\\.`))).toBeTruthy();
     expect(screen.queryByText(/nie wchodzi do obliczeń/)).toBeNull();
   });
   test('EN: Progress body weight section and note', async () => {
@@ -75,8 +75,8 @@ describe('E4 / MER-10: przypisanie partii — „uproszczenie, nie wynik badań�
     await boot(); await go(`/exercise/${ex('Back Squat').id}`); await flushAll(10);
     expect(screen.queryByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeNull();
     await go(`/exercise/${ex('Dead Bug').id}`); await flushAll(10); /* scalenie fix-ui: dopisek wg pewności (seed.muscleConfidence) — „jedno źródło” */
-    expect(screen.getByText('Przypisanie partii: jedno źródło.')).toBeTruthy(); await openInfo('muscle-note'); /* ⓘ 14.10.2026: oznaczenie na wierzchu, pełny dopisek pod ⓘ */
-    expect(screen.getByText(/^Przypisanie partii mięśniowych — jedno źródło, nie ustalone\./)).toBeTruthy(); expect(screen.queryByText(/^Przypisanie partii mięśniowych — uproszczenie/)).toBeNull();
+    expect(screen.getByText('Przypisanie partii: wstępne.')).toBeTruthy(); await openInfo('muscle-note'); /* ⓘ 14.10.2026: oznaczenie na wierzchu, pełny dopisek pod ⓘ */
+    expect(screen.getByText(/^Przypisanie partii mięśniowych — wstępne, jeszcze nieustalone\./)).toBeTruthy(); expect(screen.queryByText(/^Przypisanie partii mięśniowych — uproszczenie/)).toBeNull();
     const own = store.newExercise('Moje'); await flushAll(5); await go(`/exercise/${own.id}`); await flushAll(10);
     expect(screen.getByText('Przypisanie partii: uproszczenie.')).toBeTruthy(); await openInfo('muscle-note');
     expect(screen.getByText(/^Przypisanie partii mięśniowych — uproszczenie, nie wynik badań\./)).toBeTruthy();

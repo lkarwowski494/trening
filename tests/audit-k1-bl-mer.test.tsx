@@ -35,15 +35,16 @@ describe('MER2-07: podpis wskazówek bez nazw organizacji i marek', () => {
     expect(cueBasis('xyz')).toEqual([]);
     for (const k of Object.keys(CUE_DATA.exercises)) { const b = cueBasis(k); expect(b.length).toBeGreaterThan(0); expect([...b].sort((x, y) => CUE_BASIS_KINDS.indexOf(x) - CUE_BASIS_KINDS.indexOf(y))).toEqual(b); }
   });
-  test('ekran: stopka opisuje rodzaje źródeł ogólnie (PL i EN), bez nazw; nadal „Własne sformułowania”', () => {
-    render(<ExerciseCues exercise={lib('Rowing Machine')} />);
-    fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
-    expect(screen.getByText('Na podstawie: biblioteki ćwiczeń organizacji szkoleniowych, materiały producenta sprzętu. Własne sformułowania.')).toBeTruthy();
-    render(<ExerciseCues exercise={lib('Back Squat')} />); fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
-    expect(screen.getByText('Na podstawie: biblioteki ćwiczeń organizacji szkoleniowych, specjalistyczne serwisy treningowe, badania naukowe. Własne sformułowania.')).toBeTruthy();
+  test('ekran: przy wskazówkach nie ma stopki ze źródłami (decyzja właściciela 23.10.2026 — źródła tylko w Ustawienia → Źródła wiedzy); zostaje zdanie o poradach medycznych', () => {
+    for (const k of ['Rowing Machine', 'Back Squat']) {
+      const { unmount } = render(<ExerciseCues exercise={lib(k)} />);
+      fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
+      expect(screen.queryByText(/^Na podstawie/)).toBeNull(); expect(screen.queryByText(/Własne sformułowania/)).toBeNull();
+      expect(screen.getByText(/^Aplikacja nie udziela porad medycznych/)).toBeTruthy(); unmount();
+    }
     applyLang('en'); render(<ExerciseCues exercise={lib('Back Squat')} />);
     fireEvent.press(screen.getByRole('button', { name: 'Technique' }));
-    expect(screen.getByText('Based on: exercise libraries of fitness education organisations, specialist training websites, scientific studies. Our own wording.')).toBeTruthy();
+    expect(screen.queryByText(/^Based on/)).toBeNull(); expect(screen.queryByText(/Our own wording/)).toBeNull();
   });
   test('regresja: żaden tekst aplikacji (słownik EN, 24 słowniki, wskazówki 26 języków, podpis każdego ćwiczenia w każdym języku) nie zawiera nazw źródeł', () => {
     const bad: string[] = [];
@@ -88,9 +89,9 @@ describe('MER2-08: RIR > 5 = „lekko”', () => {
   test('Ustawienia: opis skali RIR mówi o zakresie 0–5 i „lekko” (z parametrów RIR_MAX, RPE_LIGHT) — PL i EN', async () => {
     scale('rpe'); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/more/settings' }); await flushAll(10);
-    await openInfo('effort-scale'); expect(appScreen.getByText('RIR wpisuje się w zakresie 0–5; więcej niż 5 powtórzeń w zapasie zapisuje się jako „lekko” (RPE 4), bo poniżej RPE 5 skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).')).toBeTruthy();
+    await openInfo('effort-scale'); expect(appScreen.getByText('RIR wpisujesz w zakresie 0–5; więcej niż 5 powtórzeń w zapasie zapisze się jako „lekko” (RPE 4), bo poniżej RPE 5 skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.')).toBeTruthy();
     applyLang('en'); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/more/settings', locale: 'en' }); await flushAll(10);
-    await openInfo('effort-scale'); expect(appScreen.getByText('Enter RIR from 0 to 5; more than 5 reps in reserve is saved as “light” (RPE 4), because below RPE 5 the scale describes effort in words, not reps in reserve (Helms et al. 2016).')).toBeTruthy();
+    await openInfo('effort-scale'); expect(appScreen.getByText('Enter RIR from 0 to 5; more than 5 reps in reserve is saved as “light” (RPE 4), because below RPE 5 the scale describes effort in words, not reps in reserve.')).toBeTruthy();
   });
 });
 
@@ -241,9 +242,8 @@ describe('A11N-03: fr — spacja nierozdzielająca przed ; : ! ? » i po «', ()
     expect(Object.entries(LOCALES.fr!).filter(([, v]) => BAD.test(v)).map(([k]) => k.slice(0, 50))).toEqual([]);
     expect(Object.entries(cueDict('fr')).filter(([, v]) => BAD.test(v)).map(([k]) => k)).toEqual([]);
   });
-  test('ekran: stopka „Technika” i wskazówka po francusku mają NBSP („D’après\\u00a0:”, „…\\u00a0;”)', () => {
+  test('ekran: wskazówka po francusku ma NBSP („…\\u00a0;”)', () => {
     applyLang('fr'); render(<ExerciseCues exercise={lib('Bird Dog')} />); fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
-    expect(screen.getByText(/^D’après\u00a0: /, { normalizer: (x: string) => x } /* domyślny normalizator zamienia NBSP na spację */)).toBeTruthy();
     expect(screen.getByText(`• ${cueDict('fr')['bd.setup']}`, { normalizer: (x: string) => x }).props.children).toMatch(/pattes\u00a0: mains/);
   });
   test('bramka działa', () => { expect(BAD.test('À quatre pattes : mains')).toBe(true); expect(BAD.test('À quatre pattes\u00a0: mains')).toBe(false); expect(BAD.test('« Afficher\u00a0»')).toBe(true); });

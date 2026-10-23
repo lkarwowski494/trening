@@ -577,6 +577,36 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy zmienia jednostkę na lb
     - Wtedy wartości pokazują się w lb, a zapis w danych zostaje w kg
 
+### BR-JEZ-004: Teksty zwykłym językiem, bez przypisów do źródeł
+- Przepływ: PR-08
+- Dowód potrzeby: ZP-09; decyzja właściciela 2026-10-23 (docs/18); `tests/zrodla-wiedzy.test.ts`
+- Kryteria akceptacji:
+  - Scenariusz: Reguła z liczbami bez cytatu
+    - Zakładając, że użytkownik otwiera objaśnienie reguły (generator, plan, Postępy, Ustawienia)
+    - Gdy objaśnienie się wyświetla
+    - Wtedy tekst jest napisany zwykłym językiem i nie zawiera nazw źródeł, autorów, organizacji, norm ani lat publikacji
+  - Scenariusz: Uproszczenie nazwane wprost
+    - Zakładając, że reguła jest uproszczeniem albo wyborem aplikacji, a nie wynikiem badań
+    - Gdy użytkownik czyta jej objaśnienie
+    - Wtedy tekst mówi o tym zwykłymi słowami („uproszczenie”, „nasz wybór”)
+
+### BR-ZRO-001: Ekran „Źródła wiedzy” w Ustawieniach
+- Przepływ: PR-08
+- Dowód potrzeby: ZP-02, ZP-09; `app/more/sources.tsx`, `lib/sources.ts`; scenariusz Maestro 55
+- Kryteria akceptacji:
+  - Scenariusz: Wejście z Ustawień
+    - Zakładając, że użytkownik jest w Ustawieniach
+    - Gdy stuka „Źródła wiedzy”
+    - Wtedy otwiera się ekran z listą źródeł pogrupowaną tematami (plan, ruch dla zdrowia, wysiłek, szacowany maksymalny ciężar, lżejszy tydzień, asekuracja), z cytatem i zdaniem, do czego źródło służy, oraz sekcjami o technice ćwiczeń, partiach mięśniowych i uproszczeniach
+  - Scenariusz: Bez sieci
+    - Zakładając, że telefon nie ma połączenia z internetem
+    - Gdy użytkownik otwiera ekran
+    - Wtedy lista jest w pełni widoczna (same teksty, bez adresów i bez przejścia do przeglądarki)
+  - Scenariusz: Powrót
+    - Zakładając, że ekran jest otwarty
+    - Gdy użytkownik stuka strzałkę powrotu w nagłówku
+    - Wtedy wraca do Ustawień
+
 ### BR-ZAK-001: Model dostępu zgodny z modelem stałym (M5 S1)
 - Przepływ: PR-08
 - Dowód potrzeby: ZP-06; docs/monetyzacja.md; decyzja właściciela 22.10.2026 (docs/18)
@@ -652,7 +682,7 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
 ### NFR-DAN-001: Brak utraty danych przy aktualizacji
 - Miara: liczba zapisów z wydanych wersji, które po migracji tracą dane. Próg: 0. Metoda: testy `tests/migrate-released.test.ts` na zapisach z wydanych buildów (`tests/fixtures/released/`) i `tests/matrix-migrations.test.tsx`.
 ### NFR-JEZ-001: Kompletność tłumaczeń
-- Miara: liczba kluczy słownika bez tłumaczenia w którymkolwiek języku z `LANGS`. Próg: 0. Metoda: `npm run check:i18n` oraz `tests/i18n-locales.test.ts`.
+- Miara: liczba kluczy słownika bez tłumaczenia w którymkolwiek języku z `LANGS`. Próg: 0, z jednym nazwanym wyjątkiem (23.10.2026, decyzja właściciela o języku naturalnym): klucze z zestawu `docs/lokalizacja/zestaw-przekladu-2026-10-23.json` czekają na przekład na 33 języki (rodzaj „nowy” — angielski w zastępstwie; „zmieniony” — stare tłumaczenie); po przekładzie zestaw jest pusty i wyjątek znika. Metoda: `npm run check:i18n` oraz `tests/i18n-locales.test.ts`.
 ### NFR-DOS-001: Skalowanie tekstu systemowego
 - Miara: największa obsługiwana skala tekstu systemowego (Dynamic Type) w opisach. Próg: 2 (200%, `TEXT_SCALE_MAX` w `lib/theme.ts`). Metoda: test przeglądu dostępności `tests/matrix-a11y.test.tsx`.
 ### NFR-WYG-001: Wygląd z jednego modułu tokenów

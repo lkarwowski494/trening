@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { useTheme, TEXT_SCALE_MAX, FW, font } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
-import { cuesFor, hasCues, type CueSection, type CueBasisKind } from '@/lib/cues';
+import { cuesFor, hasCues, type CueSection } from '@/lib/cues';
 import { useRouter } from 'expo-router';
 import { Btn } from '@/components/ui';
 import type { Exercise } from '@/lib/seed';
@@ -14,10 +14,9 @@ import { needsSafety, needsSpotter } from '@/lib/equipment';
  * Zwinięta na starcie (ekran ćwiczenia zostaje krótki); nagłówek to przycisk z accessibilityState.expanded, treść — zwykły tekst
  * czytany przez VoiceOver (punkty bez znaku „•” w etykiecie) głosem języka aplikacji (accessibilityLanguage — audyt kontrolny 1 A11N-01). Kolory z motywu. Ćwiczenia bez wskazówek (własne, spoza bazowych) — nic.
  * Nad tekstem figura ruchu (etap 2–3, components/ExerciseFigure.tsx), gdy ćwiczenie ją ma.
- * Stopka: na czym oparte — rodzaje źródeł opisane ogólnie, bez nazw organizacji i marek (audyt kontrolny 1 MER2-07 = SEC2-02, decyzja właściciela
- * 09.10.2026 wariant A; pełna lista w docs/research/27) — i odesłanie do specjalisty — aplikacja nie udziela porad medycznych (CLAUDE.md).
+ * Stopka: tylko odesłanie do specjalisty — aplikacja nie udziela porad medycznych (CLAUDE.md). Podstawa wskazówek (rodzaje źródeł) — nie przy ćwiczeniu, lecz na ekranie
+ * Ustawienia → „Źródła wiedzy” (decyzja właściciela 23.10.2026, docs/18); pełna lista organizacji w docs/research/27.
  */
-const BASIS: Record<CueBasisKind, () => string> = { org: () => t('biblioteki ćwiczeń organizacji szkoleniowych'), site: () => t('specjalistyczne serwisy treningowe'), maker: () => t('materiały producenta sprzętu'), study: () => t('badania naukowe') };
 const LABEL: Record<CueSection, () => string> = { setup: () => t('Ustawienie'), move: () => t('Ruch'), tips: () => t('Wskazówki'), mistakes: () => t('Częste błędy') };
 
 export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercise, 'lib' | 'libKey' | 'recommended' | 'catalogRev'>; /** UX2-05: otwarte z „Technika ›” (trening, szablon) — od razu rozwinięte */ initialOpen?: boolean }) {
@@ -37,8 +36,7 @@ export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercis
           <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('footnote'), ...FW.semibold, marginBottom: 2 }}>{LABEL[s.id]()}</Text>
           {s.items.map((x, i) => <Text accessibilityLanguage={lang()} key={i} accessibilityLabel={x} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('callout'), ...FW.regular, lineHeight: 21, marginTop: 2 }}>{`• ${x}`}</Text>)}
         </View>)}
-        <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('footnote'), ...FW.regular, marginTop: 10 }}>{t('Na podstawie: {list}. Własne sformułowania.', { list: c.basis.map(k => BASIS[k]()).join(', ') })}</Text>
-        <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('footnote'), ...FW.regular, marginTop: 4 }}>{t('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.')}</Text>
+        <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('footnote'), ...FW.regular, marginTop: 10 }}>{t('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.')}</Text>
       </View> : null}
     </View>
   );

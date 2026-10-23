@@ -106,7 +106,7 @@ describe('K2 (A11-09): VoiceOver czyta głosem języka aplikacji', () => {
       if (url === '/more/language') continue; /* wiersze listy języków celowo w języku nazwy — osobny test wyżej */
       const g = langGaps('de'); n += g.n; bad.push(...g.bad.map(b => `${url}: ${b}`));
     }
-    expect(routes).toHaveLength(34); /* 0.19: + /place-once; 0.18: + /adapt; 0.17.0: + /paywall; 29 tras (+ wybór szablonu i Progresja, 11.10.2026; + /more/import, import CSV, 12.10.2026) + podgląd ćwiczenia z „Techniką” + /generator?mode=own (plan z moich szablonów, 09.10) */ expect(n).toBeGreaterThan(500); expect([...new Set(bad)]).toEqual([]);
+    expect(routes).toHaveLength(35); /* 23.10.2026: + /more/sources; 0.19: + /place-once; 0.18: + /adapt; 0.17.0: + /paywall; 29 tras (+ wybór szablonu i Progresja, 11.10.2026; + /more/import, import CSV, 12.10.2026) + podgląd ćwiczenia z „Techniką” + /generator?mode=own (plan z moich szablonów, 09.10) */ expect(n).toBeGreaterThan(500); expect([...new Set(bad)]).toEqual([]);
   });
 });
 

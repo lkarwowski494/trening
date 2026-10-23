@@ -18,8 +18,11 @@ const DICT = join(root, 'lib/i18n.en.ts');
 const REG = join(root, 'docs/research/rejestr-twierdzen.json');
 
 /** Wzorzec tekstu dziedzinowego (jedno miejsce). Minimalna długość odsiewa etykiety („Zalecenia”, „e1RM (Epley, per hantel)”). */
-export const DOMAIN_RE = /ACSM|\bWHO\b|Zourdos|Pelland|Mayhew|Epley|Brzycki|wytyczn|stanowisk|metaanaliz|przegląd(?:y|u|ów)? badań|uproszczeni|konwencj|jedno źródło|nie ustalon|ankiet|zalecen|\bi in\. \d{4}/i;
+export const DOMAIN_RE = /ACSM|\bWHO\b|Zourdos|Pelland|Mayhew|Epley|Brzycki|wytyczn|stanowisk|metaanaliz|przegląd(?:y|u|ów)? badań|uproszczeni|konwencj|jedno źródło|nie ustalon|ankiet|zalecen|nasz wybór|wstępn|\bi in\. \d{4}/i;
 export const MIN_LEN = 30;
+/** Teksty opisujące sam ekran „Źródła wiedzy” (Ustawienia → Źródła wiedzy; decyzja właściciela 23.10.2026): mówią o źródłach i uproszczeniach, ale niczego nie twierdzą
+ * o dziedzinie — poza kontrolą pokrycia (początek tekstu; każdy musi istnieć w słowniku, pilnuje tests/zrodla-wiedzy.test.ts). */
+export const POZA_REJESTREM = ['Na czym opierają się liczby i zalecenia', 'Liczby i zalecenia w aplikacji opierają się na', 'Gdy opieramy się na jednym źródle albo', 'Gdy reguła jest naszym uproszczeniem'];
 export const KINDS = ['uproszczenie', 'konwencja', 'jedno źródło', 'źródło cytowane w tekście', 'przegląd badań', 'otwarte'];
 export const hash = (s) => createHash('sha1').update(s, 'utf8').digest('hex').slice(0, 10);
 
@@ -31,7 +34,7 @@ export function loadDictionary() {
   return mod.exports.EN;
 }
 
-export const domainTexts = (EN) => Object.keys(EN).filter((k) => k.length >= MIN_LEN && DOMAIN_RE.test(k));
+export const domainTexts = (EN) => Object.keys(EN).filter((k) => k.length >= MIN_LEN && DOMAIN_RE.test(k) && !POZA_REJESTREM.some((p) => k.startsWith(p)));
 
 /** Kontrola; `readDoc(ścieżka)` zwraca treść dokumentu albo null. Zwraca listę błędów (pustą, gdy rejestr zgodny). */
 export function checkClaims(EN, registry, readDoc) {
