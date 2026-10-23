@@ -105,7 +105,7 @@ export function GuardSection({ onLayoutY }: { onLayoutY?: (y: number) => void })
         t('Kierunek dla partii liczymy tylko na ćwiczeniach, które były w obu tygodniach. Ćwiczenia bez punktu odniesienia — nowe w tym tygodniu albo nierobione teraz — pomijamy w obu tygodniach.'),
         t('Miara: tonaż (serie × powtórzenia × ciężar) średnio na sesję ćwiczenia, więc inna liczba sesji nie zawyża wyniku. Gdy tonaż spadł, a ciężar roboczy wzrósł — albo poprzednio ciężar wynosił 0, a teraz nie — liczymy to jako więcej.'),
         t('Ten tydzień = wykonane + plan. Plan bez ciężarów (≥) — bez porównania. Tydzień deloadu nie jest porównywany.'),
-        [t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }), t('Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).')].join(' '),
+        [t('Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', { n: WEEKLY_SETS_MARK }), t('Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).')].join(' '),
       ]}>{t('Strażnik progresji')}</H2>
       {!trained ? <Muted style={{ fontSize: 13 }}>{t('Brak serii w tym tygodniu.')}</Muted> : <>
         <GuardMap parts={g.parts} label={x.label} testID="guard-map-pg" />

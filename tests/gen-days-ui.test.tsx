@@ -126,7 +126,7 @@ describe('„Plan z moich szablonów”: ten sam wybór dni', () => {
 });
 
 /* 1 dzień w tygodniu (09.10.2026, docs/research/29): każdy język z LANGS na ekranie 320 pt — redukcja z 1 dniem: nazwa sesji FBW w nagłówku podglądu,
- * ostrzeżenie „oneday”, opis celu bez sesji cardio, „Cardio poza planem” (z liczbami WHO) i punkt „Na czym to oparte” w tym języku; bez tych tekstów
+ * ostrzeżenie „oneday”, opis celu bez sesji cardio, „Cardio poza planem” (z liczbami WHO) i punkt „Zasady planu” w tym języku; bez tych tekstów
  * po polsku (poza pl). Słownik (komplet, parametry, fr/tr) — tests/i18n-locales.test.ts, tests/matrix-i18n.test.tsx. */
 describe('1 dzień — każdy język na 320 pt', () => {
   const KEYS = ['Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.'];
@@ -139,8 +139,8 @@ describe('1 dzień — każdy język na 320 pt', () => {
     const goal = tIn(l, 'Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.').replace('{k}', '3');
     const out = tIn(l, 'Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.')
       .replace('{k}', '3').replace('{a}', '150').replace('{b}', '300').replace('{c}', '75').replace('{d}', '150');
-    const basis = `• ${tIn(l, 'Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — to nasz wybór.').replace('{k}', '3').replace('{n}', '2')}`;
-    /* ⓘ (14.10.2026): opis celu, „Cardio poza planem” (WHO) i „Na czym to oparte” są pod ⓘ — zwinięte nie renderują tekstu, na wierzchu krótki podpis w danym języku */
+    const basis = `• ${tIn(l, 'Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).').replace('{k}', '3').replace('{n}', '2')}`;
+    /* ⓘ (14.10.2026): opis celu, „Cardio poza planem” (WHO) i „Zasady planu” są pod ⓘ — zwinięte nie renderują tekstu, na wierzchu krótki podpis w danym języku */
     const short = tIn(l, 'Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.');
     for (const x of [goal, out, basis]) expect([l, 'zwinięte', screen.queryAllByText(x).length]).toEqual([l, 'zwinięte', 0]);
     expect([l, 'podpis', screen.queryAllByText(short).length]).toEqual([l, 'podpis', 1]);

@@ -106,7 +106,7 @@ const showGenerator = async (locale: 'pl' | 'en') => {
   jest.useFakeTimers({ now: NOW }); await fresh(undefined, locale); await act(async () => { await store.flush(); });
   await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale, url: '/generator' }); jest.setSystemTime(NOW.getTime()); await flushAll(10);
   await tap(screen.getByText(locale === 'pl' ? 'Ogólny' : 'General fitness')); await flushAll(5);
-  await openInfo('gen-basis'); /* ⓘ 14.10.2026: punkty „Na czym to oparte” pod ⓘ */
+  await openInfo('gen-basis'); /* ⓘ 14.10.2026: punkty „Zasady planu” pod ⓘ */
 };
 /** Wszystkie 25 tłumaczeń klucza (bez PL): parametry zachowane, tekst przetłumaczony. */
 const allLangs = (key: string, params: string[]) => {
@@ -114,7 +114,7 @@ const allLangs = (key: string, params: string[]) => {
 };
 
 describe('A11B-2: punkt „Serie” celu „Ogólny” — „jedna seria działa” to wytyczne USA 2018 (c8) i ACSM 2011 (c4), warto zrobić co najmniej 2 (22/7g)', () => {
-  const KEY = 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica — uproszczenie.';
+  const KEY = 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.';
   const OLD = 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b} (wytyczne USA 2018, ACSM 2011, ACSM 2026: jedna seria działa, więcej zwykle trochę lepiej); {s} to dolna granica — uproszczenie.';
   afterEach(() => { applyLang('pl'); }); /* jak tests/gen-general-ui: zegar udawany zostaje do sprzątania ekranu (useRealTimers przed nim zawiesza sprzątanie) */
   test('PL: tekst na ekranie z liczbami ze stałych (GENERAL_SETS, GENERAL_SETS_RANGE, ACSM_MIN_SETS); dawnego zdania nie ma', async () => {

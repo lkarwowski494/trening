@@ -43,7 +43,7 @@ describe('Ustawienia → Źródła wiedzy', () => {
     for (const l of LINES) expect(screen.getByText(l)).toBeTruthy();
     expect(screen.getByText('Opisy techniki są napisane własnymi słowami, na podstawie:')).toBeTruthy();
     expect(screen.getByText('Partie pracujące w ćwiczeniach ustalamy z przeglądów badań i badań aktywności mięśni.')).toBeTruthy();
-    expect(screen.getByText('Gdy reguła jest naszym uproszczeniem albo wyborem, piszemy o tym wprost przy niej.')).toBeTruthy();
+    expect(screen.getByText('Część reguł w aplikacji to nasze uproszczenia albo wybory, a nie wynik badań.')).toBeTruthy();
     expect(screen.getByText('Na czym opierają się liczby i zalecenia w aplikacji.')).toBeTruthy();
     expect(screen.getByText(/^Aplikacja nie udziela porad medycznych/)).toBeTruthy();
   });
@@ -52,7 +52,7 @@ describe('Ustawienia → Źródła wiedzy', () => {
     for (const x of [/^Liczby i zalecenia w aplikacji opierają się na/, /^Gdy opieramy się na jednym źródle albo na uproszczeniu/, /^Nie wszystko da się wyczytać z badań/]) expect(screen.queryByText(x)).toBeNull();
     await openInfo('sources-intro'); await openInfo('sources-muscles'); await openInfo('sources-ours');
     expect(screen.getByText('Liczby i zalecenia w aplikacji opierają się na stanowiskach organizacji naukowych, przeglądach badań i badaniach z recenzowanych czasopism. Tu są wszystkie źródła w jednym miejscu — w pozostałych miejscach aplikacji piszemy zwykłym językiem.')).toBeTruthy();
-    expect(screen.getByText('Gdy opieramy się na jednym źródle albo na uproszczeniu, mówi o tym opis ćwiczenia.')).toBeTruthy();
+    expect(screen.getByText('Przy części ćwiczeń przypisanie partii opiera się na jednym źródle albo na uproszczeniu.')).toBeTruthy();
     expect(screen.getByText('Nie wszystko da się wyczytać z badań. Przykłady: długość przerw w planie, krok zmiany ciężaru.')).toBeTruthy();
   });
   test('dostępność: nagłówki sekcji mają rolę header, wiersze źródeł nie są przyciskami (nic nie otwierają)', async () => {

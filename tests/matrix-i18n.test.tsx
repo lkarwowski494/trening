@@ -417,7 +417,7 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
     const KEYS = ['Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.',
       'Redukcja: trening jak na masę (chroni mięśnie); sesja cardio w planie od {k} dni w tygodniu.',
       'Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.',
-      'Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — to nasz wybór.'];
+      'Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).'];
     for (const k of KEYS) for (const x of words(trIn(l, k))) for (const sc of [1, 2]) if (SANS.regular.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
     for (const x of words(trIn(l, 'FBW'))) for (const sc of [1, 2]) if (SANS.semibold.width(x, 17 * sc) > avail) bad.push(`${x} (H2 17 pt, ${sc})`);
     expect([l, bad]).toEqual([l, []]);
@@ -435,7 +435,7 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
     const over = LANGS.flatMap(l => ['Siła', 'Masa', 'Redukcja', 'Ogólny'].map(k => trIn(l, k)).filter(s => words(s).some(x => SANS.semibold.width(x, 14 * SEG_MIN_SCALE) > avail)));
     expect(over.length).toBeGreaterThan(0);
   });
-  /* Cel „Ogólny”: opis celu, uwaga przy 1 dniu, przełącznik cardio z opisem, punkty „Na czym to oparte” (13 pt / 12 pt / 16 pt przełącznik, zawijane) —
+  /* Cel „Ogólny”: opis celu, uwaga przy 1 dniu, przełącznik cardio z opisem, punkty „Zasady planu” (13 pt / 12 pt / 16 pt przełącznik, zawijane) —
    * na 320 pt żaden wyraz nie szerszy niż wiersz, także przy 200%. Renderowanie w każdym języku: tests/gen-general-ui.test.tsx. */
   test.each([...LANGS])('%s: teksty celu „Ogólny” na ekranie 320 pt — bez łamania wyrazu przy 100% i 200%%', l => {
     const avail = 320 - 2 * 14; const bad: string[] = [];
@@ -443,11 +443,11 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
       'Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.',
       '{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.',
       'Dni cardio w planie', 'Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych.',
-      'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica — uproszczenie.',
-      'Powtórzenia: {a}–{b}; w domu i bez obciążenia {c}–{d} — uproszczenie: lżejszy ciężar, więcej powtórzeń.',
+      'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.',
+      'Powtórzenia: {a}–{b}; w domu i bez obciążenia {c}–{d} — lżejszy ciężar, więcej powtórzeń.',
       'Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.',
-      'Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły).',
-      'Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Nie ma dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji — to nasz wybór.',
+      'Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły).',
+      'Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). W badaniach nie wykazano, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.',
     ];
     for (const k of KEYS) for (const x of words(trIn(l, k))) for (const sc of [1, 2]) if (SANS.regular.width(x, (k === 'Dni cardio w planie' ? 16 : 13) * sc) > avail - (k === 'Dni cardio w planie' ? 51 + 12 : 0) /* przełącznik iOS 51 pt + odstęp */) bad.push(`${x} (${sc})`);
     expect([l, bad]).toEqual([l, []]);

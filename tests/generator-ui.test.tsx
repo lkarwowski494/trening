@@ -1,6 +1,6 @@
 /*
  * Ekran generatora (decyzje właściciela 08.10.2026, docs/24): wejście z Szablonów i z Planu tygodnia; założenia (cel, miejsce, sesje, czas);
- * opis celu; podgląd (dni, ćwiczenia z seriami i przerwą, serie na partię, braki do 10, pary dzień po dniu, cardio); „Na czym to oparte”
+ * opis celu; podgląd (dni, ćwiczenia z seriami i przerwą, serie na partię, braki do 10, pary dzień po dniu, cardio); „Zasady planu”
  * (konwencje i uproszczenia nazwane); zapis z pytaniem o aktywację; EN. Logika: tests/generator.test.ts. E2E: .maestro/14.
  */
 import * as store from '@/lib/store';
@@ -31,16 +31,16 @@ test('wejście z Szablonów i z Planu tygodnia', async () => {
   expect(screen.getByText('Propozycja do przejrzenia przed zapisem.')).toBeTruthy(); expect(screen.queryByText(/^Propozycja według Twoich założeń/)).toBeNull(); await openInfo('gen-intro'); expect(screen.getByText(/^Propozycja według Twoich założeń/)).toBeTruthy(); /* ⓘ 14.10.2026 */
   await boot('/plan'); await tap(screen.getByText('Wygeneruj szablony i plan')); await flushAll(10); expect(screen.getByText('Podgląd')).toBeTruthy();
 });
-test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgodny z logiką; opisy celów i „Na czym to oparte”', async () => {
-  await boot('/generator'); await openInfo('gen-intro'); await openInfo('gen-goal'); await openInfo('gen-basis'); /* ⓘ 14.10.2026: wstęp, opis celu i „Na czym to oparte” pod ⓘ */
-  expect(screen.getByText('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Opiera się na zaleceniach zdrowotnych i treningowych; gdzie coś jest naszym uproszczeniem albo wyborem, a nie wynikiem badań, piszemy o tym wprost.')).toBeTruthy();
+test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgodny z logiką; opisy celów i „Zasady planu”', async () => {
+  await boot('/generator'); await openInfo('gen-intro'); await openInfo('gen-goal'); await openInfo('gen-basis'); /* ⓘ 14.10.2026: wstęp, opis celu i „Zasady planu” pod ⓘ */
+  expect(screen.getByText('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Opiera się na zaleceniach zdrowotnych i treningowych.')).toBeTruthy();
   expect(screen.getByText('Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie 10), 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy(); /* audyt 0.10 MER-06: 0–3 — blisko upadku albo 2–3) */
   const r = generate({ goal: 'hypertrophy', locationId: null, sessions: 3, minutes: 60 });
   expect(screen.getByText(/^pon\.? FBW A · śr\.? FBW B · pt\.? FBW A$/)).toBeTruthy();
   const it = r.templates[0].items[0]; expect(screen.getByText(`${exName(store.exById(it.exerciseId))} — 3 × 8–\u206012, przerwa 2:00`)).toBeTruthy();
   expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii — uproszczenie\): klatka \d/)).toBeTruthy(); /* MER-17 */
   expect(screen.getByText(`Poniżej celu serii tygodniowo: ${r.below10.map(m => `${m} (${String(r.weeklySets[m]).replace('.', ',')}/${r.goals[m]})`).join(', ')}. Pomoże więcej sesji, dłuższy czas albo więcej sprzętu w miejscu.`)).toBeTruthy();
-  /* audyt 0.10 (C2 atrybucja, C4 MER-06/07/12): wszystkie punkty „Na czym to oparte” — pełne brzmienie w tests/audit-0.10-gen-ui.test.tsx */
+  /* audyt 0.10 (C2 atrybucja, C4 MER-06/07/12): wszystkie punkty „Zasady planu” — pełne brzmienie w tests/audit-0.10-gen-ui.test.tsx */
   for (const x of [/^• Każda główna partia co najmniej 2 dni w tygodniu — tyle zalecane jest dla zdrowia/, /^• Serie: 3 na ćwiczenie/, /^• Liczba serii z czasu sesji: \(minuty − 10 min rozgrzewki\) × 60 \/ \(40 s serii \+ średnia przerwa 105 s\) = 20;/,
     /^• Zakresy powtórzeń \(masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10\)/, /^• Wysiłek: zwykle 0–3 powtórzenia w zapasie/, /^• Przerwy: 3 min/, /^• Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar\. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów; kiedy i o ile — to nasz wybór\.$/]) expect(screen.getByText(x)).toBeTruthy();
   await tap(screen.getByText('Siła')); await flushAll(5);
@@ -100,7 +100,7 @@ test('zapis z aktywnym planem: pytanie o aktywację; „Tylko zapisz” — szab
 });
 test('English', async () => {
   await boot('/generator', () => {}, 'en');
-  expect(screen.getByText('Muscle')).toBeTruthy(); expect(screen.getByText('Preview')).toBeTruthy(); expect(screen.getByText('What this is based on')).toBeTruthy();
+  expect(screen.getByText('Muscle')).toBeTruthy(); expect(screen.getByText('Preview')).toBeTruthy(); expect(screen.getByText('Plan rules')).toBeTruthy();
   expect(screen.getByText(/^Mon\.? Full Body A · Wed\.? Full Body B · Fri\.? Full Body A$/)).toBeTruthy();
   expect(screen.getByText('Save templates and plan')).toBeTruthy(); expect(screen.getByText('No equipment limits')).toBeTruthy();
 });

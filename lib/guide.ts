@@ -45,7 +45,7 @@ export const GUIDE: GuideTopic[] = [
   ] },
   { id: 'generator', route: '/generator', title: () => t('Generator szablonów i planu'), steps: () => [
     t('„Wygeneruj szablony i plan” (Szablony albo Planowanie): wybierz cel, miejsce, liczbę i długość sesji.'),
-    t('Przejrzyj podgląd i „Na czym to oparte” — wynik zapisuje się dopiero po zatwierdzeniu.'),
+    t('Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.'),
     t('Szablony trafiają do folderu „Wygenerowane”, a plan do „Inne plany” albo od razu jako aktywny.'),
   ] },
   { id: 'deload', route: '/history' /* 11.10.2026: deload ustawia się w planie (Kalendarz); Postępy tylko pokazują oznaczenie */, title: () => t('Deload'), steps: () => [

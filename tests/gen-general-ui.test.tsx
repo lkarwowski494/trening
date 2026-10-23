@@ -52,7 +52,7 @@ describe('kolejność i cele', () => {
       await goal('Masa'); expect(screen.getByLabelText('Ogólny').props.accessibilityState.selected).toBe(false);
     }
   });
-  test('zmiana celu nie zmienia wybranych dni; „Ogólny” — opis celu z liczbami ze stałych i punkty „Na czym to oparte” dla zdrowia (bez RIR i boju)', async () => {
+  test('zmiana celu nie zmienia wybranych dni; „Ogólny” — opis celu z liczbami ze stałych i punkty „Zasady planu” dla zdrowia (bez RIR i boju)', async () => {
     await boot(); await pickDays([1, 3]); await goal('Ogólny'); expect(checkedDays()).toEqual([1, 3]);
     expect(screen.queryByText(GOAL_NOTE)).toBeNull(); await openInfo('gen-goal'); await openInfo('gen-basis'); expect(screen.getByText(GOAL_NOTE)).toBeTruthy(); /* ⓘ 14.10.2026 */
     for (const x of [/^• Serie: 2 na ćwiczenie — dla zdrowia zwykle 2–3\. Warto zrobić co najmniej 2\. /, /^• Powtórzenia: 8–12; w domu i bez obciążenia 12–20/, /^• Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne/, /^• Przerwy: 2 min po wielostawowych, 1,5 min po jednostawowych i core/, /^• Cardio: przy 4–6 dniach możesz zamienić dni powyżej 3/, /= 20; ćwiczeń = serie \/ 2 \(co najmniej 3\)/])
@@ -130,11 +130,11 @@ describe('„Ogólny” — każdy język na 320 pt', () => {
       p(tIn(l, 'Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.'), { s: 2, a: 8, b: 12, c: 12, d: 20, n: 2 }),
       tIn(l, 'Dni cardio w planie'), p(tIn(l, 'Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych.'), { k: 3 }),
       p(tIn(l, 'Dni treningowe w tygodniu (w tym {n} cardio)'), { n: 1 }),
-      `• ${p(tIn(l, 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica — uproszczenie.'), { s: 2, b: 3, m: 2 })}`,
-      `• ${p(tIn(l, 'Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Nie ma dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji — to nasz wybór.'), { k: 4, m: 6, j: 3 })}`,
+      `• ${p(tIn(l, 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.'), { s: 2, b: 3, m: 2 })}`,
+      `• ${p(tIn(l, 'Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). W badaniach nie wykazano, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.'), { k: 4, m: 6, j: 3 })}`,
       `• ${tIn(l, 'Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.')}`,
     ];
-    for (const x of [texts[0], ...texts.slice(4)]) expect([l, 'zwinięte', x, screen.queryAllByText(x).length]).toEqual([l, 'zwinięte', x, 0]); /* ⓘ (14.10.2026): opis celu i „Na czym to oparte” pod ⓘ */
+    for (const x of [texts[0], ...texts.slice(4)]) expect([l, 'zwinięte', x, screen.queryAllByText(x).length]).toEqual([l, 'zwinięte', x, 0]); /* ⓘ (14.10.2026): opis celu i „Zasady planu” pod ⓘ */
     expect([l, 'podpis', screen.queryAllByText(p(tIn(l, 'Cardio w planie: {n} min tygodniowo.'), { n: 60 })).length]).toEqual([l, 'podpis', 1]);
     for (const id of ['gen-goal', 'gen-basis']) await tap(screen.getByTestId(`info-${id}`));
     for (const x of texts) expect([l, x, screen.queryAllByText(x).length]).toEqual([l, x, 1]);

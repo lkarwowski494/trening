@@ -5,6 +5,7 @@
 // rodzaj, cytowane źródła i dokument w repo z uzasadnieniem (dokument musi zawierać wskazaną frazę — wskaźnik nie może być zmyślony).
 // verify (npm run check:claims) kończy się błędem, gdy: tekst dziedzinowy nie ma wpisu; wpis nie ma tekstu; skrót tekstu (PL albo EN) różni
 // się od zapisanego w przeglądzie (zmieniono brzmienie bez ponownego przeglądu); dokument albo fraza nie istnieje.
+// Dodatkowo (23.10.2026): markerErrors — w tekstach UI nie ma oznaczeń pewności (poza ekranem „Źródła wiedzy”).
 // Użycie: node scripts/claims.mjs --check | --stub (wpisy do wklejenia dla tekstów bez ID) | --rehash <ID>… --przeglad "<data: kto>" (po przeglądzie).
 import { fileURLToPath } from 'node:url';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
@@ -22,7 +23,13 @@ export const DOMAIN_RE = /ACSM|\bWHO\b|Zourdos|Pelland|Mayhew|Epley|Brzycki|wyty
 export const MIN_LEN = 30;
 /** Teksty opisujące sam ekran „Źródła wiedzy” (Ustawienia → Źródła wiedzy; decyzja właściciela 23.10.2026): mówią o źródłach i uproszczeniach, ale niczego nie twierdzą
  * o dziedzinie — poza kontrolą pokrycia (początek tekstu; każdy musi istnieć w słowniku, pilnuje tests/zrodla-wiedzy.test.ts). */
-export const POZA_REJESTREM = ['Na czym opierają się liczby i zalecenia', 'Liczby i zalecenia w aplikacji opierają się na', 'Gdy opieramy się na jednym źródle albo', 'Gdy reguła jest naszym uproszczeniem'];
+export const POZA_REJESTREM = ['Na czym opierają się liczby i zalecenia', 'Liczby i zalecenia w aplikacji opierają się na', 'Przy części ćwiczeń przypisanie partii opiera się na', 'Część reguł w aplikacji to nasze uproszczenia'];
+/** Oznaczenia pewności (decyzja właściciela 23.10.2026): „wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”, „konwencja” NIE występują w tekstach interfejsu —
+ * zostają w rejestrze twierdzeń (pole rodzaje) i na ekranie „Źródła wiedzy”. Wzorce dla klucza polskiego i angielskiego brzmienia. */
+export const MARKER_RE_PL = /uproszczeni|konwencj|jedno źródło|jednego źródła|jednym źródle|nasz(?:e|ym|a)? wyb|wstępn(?:e|a|y|ie)\b|potwierdzon/i;
+export const MARKER_RE_EN = /simplif|convention|single source|one source|our (?:own )?choice|preliminary|\bconfirmed\b/i;
+/** Teksty ekranu „Źródła wiedzy” (jedyne miejsce, gdzie oznaczenia wolno nazwać): początki kluczy polskich. */
+export const EKRAN_ZRODEL = [...POZA_REJESTREM, 'Nasze uproszczenia i wybory'];
 export const KINDS = ['uproszczenie', 'konwencja', 'jedno źródło', 'źródło cytowane w tekście', 'przegląd badań', 'otwarte'];
 export const hash = (s) => createHash('sha1').update(s, 'utf8').digest('hex').slice(0, 10);
 
@@ -34,8 +41,15 @@ export function loadDictionary() {
   return mod.exports.EN;
 }
 
+/** Błędy: teksty słownika (klucz PL albo wartość EN) z oznaczeniem pewności poza ekranem „Źródła wiedzy”. */
+export function markerErrors(EN) {
+  return Object.keys(EN).filter((k) => !EKRAN_ZRODEL.some((p) => k.startsWith(p)) && (MARKER_RE_PL.test(k) || MARKER_RE_EN.test(EN[k])))
+    .map((k) => `${k.slice(0, 90)}… — oznaczenie pewności w tekście interfejsu (wstępne/potwierdzone, jedno źródło, uproszczenie, nasz wybór, konwencja): usuń z tekstu, rodzaj zostaje w rejestrze twierdzeń i na ekranie „Źródła wiedzy”`);
+}
+
 export const domainTexts = (EN) => Object.keys(EN).filter((k) => k.length >= MIN_LEN && DOMAIN_RE.test(k) && !POZA_REJESTREM.some((p) => k.startsWith(p)));
 
+const hits0 = (EN, kotwica) => typeof kotwica === 'string' && Object.keys(EN).some((k) => k.startsWith(kotwica));
 /** Kontrola; `readDoc(ścieżka)` zwraca treść dokumentu albo null. Zwraca listę błędów (pustą, gdy rejestr zgodny). */
 export function checkClaims(EN, registry, readDoc) {
   const errs = []; const entries = registry.twierdzenia ?? [];
@@ -44,6 +58,8 @@ export function checkClaims(EN, registry, readDoc) {
     const w = `${e.id ?? '(bez id)'}`;
     if (!/^T-\d{3}$/.test(e.id ?? '')) errs.push(`${w}: id w formacie T-NNN`);
     if (ids.has(e.id)) errs.push(`${w}: id powtórzone`); ids.add(e.id);
+    /* wpis wycofany z interfejsu (tekst usunięty z aplikacji, np. oznaczenie pewności — decyzja 23.10.2026): zostaje w rejestrze jako ślad decyzji, bez kontroli tekstu */
+    if (typeof e.wycofane === 'string' && e.wycofane.length > 20) { if (hits0(EN, e.kotwica)) errs.push(`${w}: wpis wycofany, a tekst o kotwicy nadal jest w słowniku`); continue; }
     if (typeof e.kotwica !== 'string' || e.kotwica.length < 20) errs.push(`${w}: kotwica (początek polskiego tekstu, ≥ 20 znaków)`);
     if (!Array.isArray(e.rodzaje) || !e.rodzaje.length || e.rodzaje.some((k) => !KINDS.includes(k))) errs.push(`${w}: rodzaje spośród: ${KINDS.join(', ')}`);
     if (typeof e.przeglad !== 'string' || !e.przeglad) errs.push(`${w}: pole przeglad (data: kto, zakres)`);
@@ -80,7 +96,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     for (const e of registry.twierdzenia) if (ids.includes(e.id)) { const k = Object.keys(EN).find((x) => x.startsWith(e.kotwica)); if (!k) { console.error(`${e.id}: brak tekstu`); process.exit(1); } e.skrot = hash(k); e.skrotEn = hash(EN[k]); e.przeglad = przeglad; }
     writeFileSync(REG, JSON.stringify(registry, null, 1) + '\n'); console.log('zapisano', ids.join(', ')); process.exit(0);
   }
-  const errs = checkClaims(EN, registry, readDoc);
+  const errs = [...checkClaims(EN, registry, readDoc), ...markerErrors(EN)];
   if (errs.length) { console.error('Rejestr twierdzeń (docs/research/rejestr-twierdzen.json):\n' + errs.map((e) => '  ' + e).join('\n')); process.exit(1); }
   console.log(`twierdzenia: ${registry.twierdzenia.length} wpisów, ${domainTexts(EN).length} tekstów dziedzinowych, rejestr zgodny`);
 }

@@ -1,5 +1,5 @@
 {
- "_opis": "Rejestr twierdzeń dla tekstów dziedzinowych interfejsu (M1-audytor-generalny-048, DEC-16). Tekst dziedzinowy = tekst słownika (klucz polski w lib/i18n.en.ts) z cytowanym źródłem albo oznaczeniem wagi (uproszczenie, konwencja, jedno źródło…; wzorzec DOMAIN_RE w scripts/claims.mjs). Każdy ma wpis: id, kotwica (początek polskiego tekstu), skrot i skrotEn (skróty polskiego tekstu i angielskiego brzmienia z chwili przeglądu), rodzaje, zrodla (źródła podstawy twierdzenia; od 23.10.2026 NIE stoją w tekście interfejsu — widać je tylko na ekranie Ustawienia → Źródła wiedzy, lib/sources.ts; każde ma tam wpis, pilnuje tests/zrodla-wiedzy.test.ts), dokument + fraza (miejsce w repo z uzasadnieniem; fraza musi w nim występować), przeglad (data: kto, zakres). Kontrola: npm run check:claims (część verify) — brak wpisu, brak tekstu albo zmiana brzmienia bez ponownego przeglądu = błąd. Po zmianie brzmienia: sprawdź źródła (badacz), zaktualizuj wpis, wykonaj node scripts/claims.mjs --rehash <ID> --przeglad \"<data: kto, co sprawdzono>\". Nowy tekst: node scripts/claims.mjs --stub. Stan 20.10.2026: wpisy założone z kodu i docs (programista). Stan 21.10.2026: przegląd badacza wykonany dla wszystkich wpisów T-001–T-040 (docs/research/przeglad-badacza-2026-10-21.md i przeglad-badacza-2026-10-21b.md); wpisy z polem „uwaga” czekają na zmianę brzmienia w aplikacji i --rehash. Ograniczenie: kontrola obejmuje teksty, które same się oznaczają źródłem lub wagą; teksty dziedzinowe bez takiego oznaczenia wymagają dopisania oznaczenia albo wpisu ręcznie.",
+ "_opis": "Rejestr twierdzeń dla tekstów dziedzinowych interfejsu (M1-audytor-generalny-048, DEC-16). Tekst dziedzinowy = tekst słownika (klucz polski w lib/i18n.en.ts) z cytowanym źródłem albo oznaczeniem wagi (uproszczenie, konwencja, jedno źródło…; wzorzec DOMAIN_RE w scripts/claims.mjs). Każdy ma wpis: id, kotwica (początek polskiego tekstu), skrot i skrotEn (skróty polskiego tekstu i angielskiego brzmienia z chwili przeglądu), rodzaje, zrodla (źródła podstawy twierdzenia; od 23.10.2026 NIE stoją w tekście interfejsu — widać je tylko na ekranie Ustawienia → Źródła wiedzy, lib/sources.ts; każde ma tam wpis, pilnuje tests/zrodla-wiedzy.test.ts), dokument + fraza (miejsce w repo z uzasadnieniem; fraza musi w nim występować), przeglad (data: kto, zakres). Kontrola: npm run check:claims (część verify) — brak wpisu, brak tekstu albo zmiana brzmienia bez ponownego przeglądu = błąd. Po zmianie brzmienia: sprawdź źródła (badacz), zaktualizuj wpis, wykonaj node scripts/claims.mjs --rehash <ID> --przeglad \"<data: kto, co sprawdzono>\". Nowy tekst: node scripts/claims.mjs --stub. Stan 20.10.2026: wpisy założone z kodu i docs (programista). Stan 21.10.2026: przegląd badacza wykonany dla wszystkich wpisów T-001–T-040 (docs/research/przeglad-badacza-2026-10-21.md i przeglad-badacza-2026-10-21b.md); wpisy z polem „uwaga” czekają na zmianę brzmienia w aplikacji i --rehash. Ograniczenie: kontrola obejmuje teksty, które same się oznaczają źródłem lub wagą; teksty dziedzinowe bez takiego oznaczenia wymagają dopisania oznaczenia albo wpisu ręcznie. Stan 23.10.2026 (druga decyzja właściciela): oznaczenia pewności nie występują w tekstach interfejsu (pilnuje markerErrors w scripts/claims.mjs i tests/zrodla-wiedzy.test.ts); rodzaje (uproszczenie, konwencja, jedno źródło…) zostają tylko w tym rejestrze i na ekranie Źródła wiedzy. Pole „wycofane” (tekst) = tekst usunięty z interfejsu, wpis zostaje jako ślad decyzji i nie jest kontrolowany względem słownika.",
  "twierdzenia": [
   {
    "id": "T-001",
@@ -19,8 +19,8 @@
   {
    "id": "T-002",
    "kotwica": "Propozycja według Twoich założeń — przejrzysz ją",
-   "skrot": "fcbf310ab6",
-   "skrotEn": "413cc4a905",
+   "skrot": "88e258d6a2",
+   "skrotEn": "454ba81a11",
    "rodzaje": [
     "konwencja",
     "uproszczenie",
@@ -29,13 +29,13 @@
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-002",
-   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-003",
    "kotwica": "Progresja: gdy zrobisz górę zakresu powtórzeń, d",
-   "skrot": "49f0c13c94",
-   "skrotEn": "12ee2771a4",
+   "skrot": "53527f9d21",
+   "skrotEn": "8826ca2237",
    "rodzaje": [
     "konwencja",
     "źródło cytowane w tekście"
@@ -47,13 +47,13 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-003",
-   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-004",
-   "kotwica": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; d",
-   "skrot": "3fcd964480",
-   "skrotEn": "d305ab0379",
+   "kotwica": "Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rzą",
+   "skrot": "3c0cea843a",
+   "skrotEn": "a31be0b9f2",
    "rodzaje": [
     "uproszczenie",
     "przegląd badań",
@@ -64,13 +64,13 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-004",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie: ACSM 2011 tab. 2 (≥48 h), ACSM 2026 (1 vs >5 dni przy równej objętości), Pelland 2026; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie: ACSM 2011 tab. 2 (≥48 h), ACSM 2026 (1 vs >5 dni przy równej objętości), Pelland 2026; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-005",
    "kotwica": "Każda główna partia co najmniej {n} dni w tygodn",
-   "skrot": "c2f8a68028",
-   "skrotEn": "5a93562088",
+   "skrot": "b674741085",
+   "skrotEn": "b69059cf03",
    "rodzaje": [
     "konwencja",
     "uproszczenie",
@@ -84,13 +84,13 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21.md",
    "fraza": "za mało dowodów",
-   "przeglad": "21.10.2026: badacz-merytoryczny — WHO 2020 tab. 4, ACSM 2026 Discussion ('za mało dowodów'), Pelland 2026 (0,5), Ramos-Campo 2024 (podział); docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — WHO 2020 tab. 4, ACSM 2026 Discussion ('za mało dowodów'), Pelland 2026 (0,5), Ramos-Campo 2024 (podział); docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-006",
    "kotwica": "Serie: {s} na ćwiczenie — warto zrobić co najmni",
-   "skrot": "2361367b6c",
-   "skrotEn": "013c3e0d52",
+   "skrot": "06884aa0b1",
+   "skrotEn": "60d850a9b0",
    "rodzaje": [
     "uproszczenie",
     "źródło cytowane w tekście"
@@ -100,26 +100,26 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-006",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 Dyskusja (co najmniej 2 serie, malejący zysk), Pelland 2026; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 Dyskusja (co najmniej 2 serie, malejący zysk), Pelland 2026; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-007",
    "kotwica": "Liczba serii z czasu sesji: (minuty − {w} min ro",
-   "skrot": "c62850ceaf",
-   "skrotEn": "2af72726e5",
+   "skrot": "75eda2dc54",
+   "skrotEn": "f202126bd2",
    "rodzaje": [
     "uproszczenie"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-007",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie bez źródła (rachunek budżetu czasu, tak nazwany); docs/research/przeglad-badacza-2026-10-21b.md"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie bez źródła (rachunek budżetu czasu, tak nazwany); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-008",
    "kotwica": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez ob",
-   "skrot": "840e6a1b92",
-   "skrotEn": "e8ae8ecef7",
+   "skrot": "99fb4dd74c",
+   "skrotEn": "2226fd4d62",
    "rodzaje": [
     "uproszczenie",
     "przegląd badań",
@@ -130,7 +130,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-008",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 (30–100% 1RM), Lopez 2021 (przerost niezależny od obciążenia); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 (30–100% 1RM), Lopez 2021 (przerost niezależny od obciążenia); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-009",
@@ -150,8 +150,8 @@
   {
    "id": "T-010",
    "kotwica": "Przerwy: {a} min po ciężkich seriach boju główne",
-   "skrot": "0ade5b4263",
-   "skrotEn": "a16a082b91",
+   "skrot": "de697d44b3",
+   "skrotEn": "c5883eb2e7",
    "rodzaje": [
     "uproszczenie",
     "źródło cytowane w tekście"
@@ -161,33 +161,33 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-010",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 (przerwa bez wpływu na siłę), Singer 2024, ACSM 2011 s. 1343 — rozbieżne, uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 (przerwa bez wpływu na siłę), Singer 2024, ACSM 2011 s. 1343 — rozbieżne, uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-011",
    "kotwica": "Cardio: jedna sesja umiarkowanego wysiłku w osob",
-   "skrot": "158b8d1483",
-   "skrotEn": "0e10a7dbdb",
+   "skrot": "73422190b1",
+   "skrotEn": "4ef7bf877d",
    "rodzaje": [
     "konwencja"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-011",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako konwencja; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako konwencja; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-012",
    "kotwica": "Serie na partię w tygodniu (pomocnicza = {h} ser",
-   "skrot": "3f1dbf681f",
-   "skrotEn": "959f926e9b",
+   "skrot": "eca390066f",
+   "skrotEn": "344afc60b8",
    "rodzaje": [
     "uproszczenie"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-012",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: Pelland 2026 (metoda fractional 0,5), uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: Pelland 2026 (metoda fractional 0,5), uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-013",
@@ -215,26 +215,27 @@
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-014",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta (docs/research/24, zasada 18.10.2026); danych per ćwiczenie nie powtarzano; docs/research/przeglad-badacza-2026-10-21b.md"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta (docs/research/24, zasada 18.10.2026); danych per ćwiczenie nie powtarzano; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzon…",
+   "wycofane": "23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”) nie występują w tekstach aplikacji; wpis zostaje jako ślad decyzji i rodzaju (pewność przypisania partii jest w katalogu ćwiczeń i na ekranie Źródła wiedzy)"
   },
   {
    "id": "T-015",
    "kotwica": "e1RM w ćwiczeniach z masą ciała liczy się tylko ",
-   "skrot": "346843ef62",
-   "skrotEn": "32aeddb576",
+   "skrot": "1bff713a04",
+   "skrotEn": "8347fb5666",
    "rodzaje": [
     "uproszczenie"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-015",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: podciąganie Sánchez-Moreno 2017, Talaber 2022; pompki van den Tillaar 2020, Gouvali 2005 (platforma siłowa, 62,6–66,4%); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: podciąganie Sánchez-Moreno 2017, Talaber 2022; pompki van den Tillaar 2020, Gouvali 2005 (platforma siłowa, 62,6–66,4%); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-016",
-   "kotwica": "Uproszczenie: drop set liczy się razem z serią, ",
-   "skrot": "ede238cf0b",
-   "skrotEn": "5587a40ae7",
+   "kotwica": "Drop set liczy się razem z serią, po której jest",
+   "skrot": "0b3f8fca30",
+   "skrotEn": "04e2365883",
    "rodzaje": [
     "uproszczenie"
    ],
@@ -242,26 +243,26 @@
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-016",
    "uwaga": "[OTWARTE — sposób liczenia drop setów w seriach tygodniowych bez źródła rozstrzygającego; oznaczenie „uproszczenie” poprawne]",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie bez źródła (Sødal 2023, Havers 2026 nie rozstrzygają liczenia); docs/research/przeglad-badacza-2026-10-21b.md"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie bez źródła (Sødal 2023, Havers 2026 nie rozstrzygają liczenia); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-017",
    "kotwica": "Opcjonalnie, tylko w telefonie. Z nią aplikacja ",
-   "skrot": "5c3969f036",
-   "skrotEn": "5b78e8f60c",
+   "skrot": "184fd41bc6",
+   "skrotEn": "9c9935501a",
    "rodzaje": [
     "uproszczenie"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-017",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jak T-015; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jak T-015; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-018",
    "kotwica": "e1RM liczone z {p}% masy ciała z dnia treningu (",
-   "skrot": "18a9100b7d",
-   "skrotEn": "ace81cbc6d",
+   "skrot": "cd0c53df6e",
+   "skrotEn": "5b82c7c5f5",
    "rodzaje": [
     "uproszczenie",
     "źródło cytowane w tekście"
@@ -271,7 +272,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-018",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: wzór Epleya (PLoS One 2025 PMC11940757, Beia 2024 tab. 1; zgodny z lib/stats.ts), udział 64% jak T-015; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: wzór Epleya (PLoS One 2025 PMC11940757, Beia 2024 tab. 1; zgodny z lib/stats.ts), udział 64% jak T-015; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-019",
@@ -284,20 +285,21 @@
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-019",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta (szczeble 3–5, zasada 18.10.2026); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta (szczeble 3–5, zasada 18.10.2026); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzon…",
+   "wycofane": "23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”) nie występują w tekstach aplikacji; wpis zostaje jako ślad decyzji i rodzaju (pewność przypisania partii jest w katalogu ćwiczeń i na ekranie Źródła wiedzy)"
   },
   {
    "id": "T-020",
    "kotwica": "Więcej dni niż szablonów: szablony po kolei (A, ",
-   "skrot": "6e365feb96",
-   "skrotEn": "6493554a50",
+   "skrot": "a0e9b5fb1e",
+   "skrotEn": "09e968778d",
    "rodzaje": [
     "konwencja"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-020",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako konwencja; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako konwencja; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-021",
@@ -314,29 +316,29 @@
   },
   {
    "id": "T-022",
-   "kotwica": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.",
-   "skrot": "e5a840fed3",
-   "skrotEn": "93572224a1",
+   "kotwica": "Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.",
+   "skrot": "5e1d3eb20a",
+   "skrotEn": "63ca7ba2ea",
    "rodzaje": [
     "uproszczenie"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-022",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie, jak T-004; docs/research/przeglad-badacza-2026-10-21b.md"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako uproszczenie, jak T-004; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-023",
    "kotwica": "Cardio: od {k} dni w tygodniu jedna sesja w osob",
-   "skrot": "31df579e50",
-   "skrotEn": "a8d4f2344e",
+   "skrot": "9a1e27dae5",
+   "skrotEn": "eff237a866",
    "rodzaje": [
     "konwencja"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-023",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako konwencja (2 dni na partię — WHO 2020 tab. 4); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako konwencja (2 dni na partię — WHO 2020 tab. 4); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-024",
@@ -371,8 +373,8 @@
   {
    "id": "T-026",
    "kotwica": "Powtórzenia: {a}–{b}; w domu i bez obciążenia {c",
-   "skrot": "74b8820a90",
-   "skrotEn": "066e0aef48",
+   "skrot": "855edb0573",
+   "skrotEn": "5d98347534",
    "rodzaje": [
     "uproszczenie",
     "źródło cytowane w tekście"
@@ -383,7 +385,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-026",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: wytyczne USA 2018 rozdz. 4 (8–12), ACSM 2011 tab. 2 (8–12, kat. A); 12–20 uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: wytyczne USA 2018 rozdz. 4 (8–12), ACSM 2011 tab. 2 (8–12, kat. A); 12–20 uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-027",
@@ -405,8 +407,8 @@
   {
    "id": "T-028",
    "kotwica": "Przerwy: {b} min po wielostawowych, {c} min po j",
-   "skrot": "2653938a69",
-   "skrotEn": "5f55f6f433",
+   "skrot": "fa1f809249",
+   "skrotEn": "e3e928d9a4",
    "rodzaje": [
     "uproszczenie",
     "źródło cytowane w tekście"
@@ -416,13 +418,13 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-028",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jak T-010; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jak T-010; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-029",
    "kotwica": "Cardio: przy {k}–{m} dniach możesz zamienić dni ",
-   "skrot": "2cc708883d",
-   "skrotEn": "abeb220f8e",
+   "skrot": "d742f50527",
+   "skrotEn": "a80f51582c",
    "rodzaje": [
     "konwencja",
     "źródło cytowane w tekście"
@@ -434,13 +436,13 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-029",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: WHO 2020 (brak dawka–odpowiedź dla ćwiczeń wzmacniających), wytyczne USA 2018 (rozłożyć w tygodniu), ACSM 2011 tab. 2; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: WHO 2020 (brak dawka–odpowiedź dla ćwiczeń wzmacniających), wytyczne USA 2018 (rozłożyć w tygodniu), ACSM 2011 tab. 2; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (decyzja właściciela, docs/18): zdanie brzmi „W badaniach nie wykazano, że …” (treść wg wpisu: WHO 2020 — brak zależności dawka–odpowiedź dla ćwiczeń wzmacniających, bez nazwy w tekście); oznaczenie „konwencja” usunięte z tekstu; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-030",
    "kotwica": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}",
-   "skrot": "0ef7b9db74",
-   "skrotEn": "5a2803f50e",
+   "skrot": "bebee7e819",
+   "skrotEn": "2904bedd77",
    "rodzaje": [
     "uproszczenie",
     "źródło cytowane w tekście"
@@ -451,7 +453,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-030",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 (≥ 2), wytyczne USA 2018 (1 działa, 2–3 lepiej), ACSM 2011 tab. 2 (2–4; jedna seria u starszych i początkujących); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 (≥ 2), wytyczne USA 2018 (1 działa, 2–3 lepiej), ACSM 2011 tab. 2 (2–4; jedna seria u starszych i początkujących); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-031",
@@ -486,9 +488,9 @@
   },
   {
    "id": "T-033",
-   "kotwica": "Uproszczenie: partia pomocnicza ćwiczenia liczy ",
-   "skrot": "8e736f4c4d",
-   "skrotEn": "273a59e0bc",
+   "kotwica": "Partia pomocnicza ćwiczenia liczy się za pół ser",
+   "skrot": "0c660ec53c",
+   "skrotEn": "5f0ff91984",
    "rodzaje": [
     "uproszczenie",
     "źródło cytowane w tekście"
@@ -498,7 +500,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-033",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: Pelland 2026 streszczenie (fractional 0,5); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: Pelland 2026 streszczenie (fractional 0,5); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
   },
   {
    "id": "T-034",
@@ -526,7 +528,8 @@
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-035",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta, jak T-019; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta, jak T-019; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzon…",
+   "wycofane": "23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”) nie występują w tekstach aplikacji; wpis zostaje jako ślad decyzji i rodzaju (pewność przypisania partii jest w katalogu ćwiczeń i na ekranie Źródła wiedzy)"
   },
   {
    "id": "T-036",
@@ -539,7 +542,8 @@
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-036",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta (jedno źródło szczebla 2 wprost, zasada 18.10.2026); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta (jedno źródło szczebla 2 wprost, zasada 18.10.2026); docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzon…",
+   "wycofane": "23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”) nie występują w tekstach aplikacji; wpis zostaje jako ślad decyzji i rodzaju (pewność przypisania partii jest w katalogu ćwiczeń i na ekranie Źródła wiedzy)"
   },
   {
    "id": "T-037",
@@ -552,7 +556,8 @@
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-037",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta, jak T-036; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta, jak T-036; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzon…",
+   "wycofane": "23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”) nie występują w tekstach aplikacji; wpis zostaje jako ślad decyzji i rodzaju (pewność przypisania partii jest w katalogu ćwiczeń i na ekranie Źródła wiedzy)"
   },
   {
    "id": "T-038",
@@ -565,7 +570,8 @@
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-038",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta, jak T-014; docs/research/przeglad-badacza-2026-10-21b.md"
+   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jako etykieta, jak T-014; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzon…",
+   "wycofane": "23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”) nie występują w tekstach aplikacji; wpis zostaje jako ślad decyzji i rodzaju (pewność przypisania partii jest w katalogu ćwiczeń i na ekranie Źródła wiedzy)"
   },
   {
    "id": "T-039",
@@ -580,7 +586,8 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21.md",
    "fraza": "T-039",
-   "przeglad": "21.10.2026: badacz-merytoryczny — ACSM 2026 (PMC12965823) nie podaje kroku ani progu 2–10%; konwencja; docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "21.10.2026: badacz-merytoryczny — ACSM 2026 (PMC12965823) nie podaje kroku ani progu 2–10%; konwencja; docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzon…",
+   "wycofane": "23.10.2026 (druga decyzja właściciela, docs/18): tekst usunięty z interfejsu — oznaczenia pewności („wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”) nie występują w tekstach aplikacji; wpis zostaje jako ślad decyzji i rodzaju (pewność przypisania partii jest w katalogu ćwiczeń i na ekranie Źródła wiedzy)"
   },
   {
    "id": "T-040",

@@ -92,3 +92,56 @@ describe('niezmiennik: żaden tekst interfejsu poza ekranem „Źródła wiedzy�
     for (const f of ['app/more/sources.tsx', 'lib/sources.ts']) expect([f, /fetch\(|Linking|WebBrowser|https?:\/\/|openWebPage|XMLHttpRequest/.test(read(f).replace(/\/\*[\s\S]*?\*\//g, ''))]).toEqual([f, false]);
   });
 });
+
+/*
+ * Oznaczenia pewności w tekstach UI (decyzja właściciela 23.10.2026, docs/18): „wstępne/potwierdzone”, „jedno źródło”, „uproszczenie”, „nasz wybór”, „konwencja”
+ * nie występują w żadnym tekście interfejsu — zostają w rejestrze twierdzeń (pole rodzaje) i na ekranie „Źródła wiedzy”. Wzorce i lista tekstów ekranu: scripts/claims.mjs
+ * (MARKER_RE_PL, MARKER_RE_EN, EKRAN_ZRODEL); ta sama kontrola biegnie w `npm run check:claims`.
+ */
+import { execFileSync } from 'child_process';
+const CLAIMS = path.join(root, 'scripts/claims.mjs');
+const viaClaims = (code: string, ...args: string[]): unknown => JSON.parse(execFileSync('node', ['--input-type=module', '-e', `import * as c from ${JSON.stringify('file://' + CLAIMS)}; ${code}`, ...args], { encoding: 'utf8' }));
+
+describe('niezmiennik: brak oznaczeń pewności w tekstach UI (poza ekranem „Źródła wiedzy”)', () => {
+  test('strażnik rozpoznaje oznaczenia w PL i EN (każde z pięciu) i przepuszcza zwykłe zdania oraz teksty ekranu źródeł', () => {
+    const dict = {
+      'Serie: {s} to uproszczenie.': 'Sets: {s}.',
+      'Krok to nasz wybór.': 'The step is our choice.',
+      'Reguła to konwencja.': 'A rule.',
+      'Opiera się na jednym źródle.': 'Rests on one source.',
+      'Przypisanie partii: wstępne.': 'Assignment: preliminary.',
+      'Przypisanie partii: potwierdzone.': 'Assignment: confirmed.',
+      'Zwykłe zdanie bez oznaczeń, o seriach i przerwach.': 'A plain sentence about sets and rest.',
+      'Nasze uproszczenia i wybory': 'Our simplifications and choices', /* tytuł sekcji ekranu „Źródła wiedzy” */
+    };
+    const errs = viaClaims('process.stdout.write(JSON.stringify(c.markerErrors(JSON.parse(process.argv[1]))))', JSON.stringify(dict)) as string[];
+    expect(errs.map(e => e.split('… — ')[0]).sort()).toEqual(['Krok to nasz wybór.', 'Opiera się na jednym źródle.', 'Przypisanie partii: potwierdzone.', 'Przypisanie partii: wstępne.', 'Reguła to konwencja.', 'Serie: {s} to uproszczenie.'].sort());
+    const en = viaClaims('process.stdout.write(JSON.stringify(c.markerErrors(JSON.parse(process.argv[1]))))', JSON.stringify({ 'Zdanie A bez oznaczeń, dość długie.': 'This is a simplification.', 'Zdanie B bez oznaczeń, dość długie.': 'The assignment is confirmed.', 'Zdanie C bez oznaczeń, dość długie.': 'One source only; our choice.' })) as string[];
+    expect(en).toHaveLength(3);
+  });
+  test('słownik PL (klucze) i EN (wartości): zero tekstów z oznaczeniem pewności poza ekranem źródeł', () => {
+    expect(viaClaims('process.stdout.write(JSON.stringify(c.markerErrors(c.loadDictionary())))')).toEqual([]);
+  });
+  test('wskazówka progresji i opisy w Ustawieniach, generatorze, Postępach i ćwiczeniu nie mają oznaczeń (klucze usuniętych oznaczeń nie wracają)', () => {
+    for (const k of ['Przypisanie partii: wstępne.', 'Przypisanie partii: potwierdzone.', 'Przypisanie partii: uproszczenie.', 'Krok zmiany (np. +2,5 kg) to nasz wybór, a nie wynik badań.']) expect([k, EN[k]]).toEqual([k, undefined]);
+    expect(Object.keys(EN).filter(k => /^Przypisanie partii mięśniowych — /.test(k))).toEqual([]);
+    expect(read('app/exercise/[id].tsx')).not.toMatch(/Przypisanie partii/);
+  });
+  test('T-029 (decyzja 23.10.2026): zdanie o ćwiczeniach wzmacniających brzmi „W badaniach nie wykazano, że …”', () => {
+    const k = Object.keys(EN).find(x => x.startsWith('Cardio: przy {k}–{m} dniach'))!;
+    expect(k).toContain('W badaniach nie wykazano, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia');
+    expect(k).not.toMatch(/Nie ma dowodów|WHO/);
+    expect(EN[k]).toContain('Studies have not shown that more muscle-strengthening activity brings more health benefits');
+  });
+  test('nagłówek ⓘ w generatorze i Planie z moich szablonów: „Zasady planu” (nie „Na czym to oparte”)', () => {
+    expect(EN['Zasady planu']).toBe('Plan rules'); expect(EN['Na czym to oparte']).toBeUndefined();
+    for (const f of ['app/generator.tsx', 'components/OwnPlan.tsx']) { expect(read(f)).toMatch(/t\('Zasady planu'\)/); expect(read(f)).not.toMatch(/Na czym to oparte/); }
+    expect(EN['Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.']).toBeDefined();
+  });
+  test('rejestr twierdzeń zachowuje rodzaje (uproszczenie, konwencja…) i źródła mimo usunięcia z UI; wpisy wycofane z UI mają znacznik i powód', () => {
+    const reg = JSON.parse(read('docs/research/rejestr-twierdzen.json')).twierdzenia as { id: string; rodzaje: string[]; wycofane?: string }[];
+    expect(reg.filter(e => e.rodzaje.includes('uproszczenie')).length).toBeGreaterThan(10); expect(reg.filter(e => e.rodzaje.includes('konwencja')).length).toBeGreaterThan(3);
+    const out = reg.filter(e => e.wycofane); expect(out.map(e => e.id).sort()).toEqual(['T-014', 'T-019', 'T-035', 'T-036', 'T-037', 'T-038', 'T-039'].sort());
+    for (const e of out) expect([e.id, e.wycofane!.length > 20]).toEqual([e.id, true]);
+  });
+});

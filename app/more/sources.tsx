@@ -25,10 +25,10 @@ export default function SourcesScreen() {
       <SectionTitle>{t('Technika ćwiczeń')}</SectionTitle>
       <Muted style={{ ...font('callout'), marginBottom: 4 }}>{t('Opisy techniki są napisane własnymi słowami, na podstawie:')}</Muted>
       {CUE_SOURCE_LINES.map((line, i) => <Item key={i} title={line()} />)}
-      <SectionTitle infoId="sources-muscles" info={t('Gdy opieramy się na jednym źródle albo na uproszczeniu, mówi o tym opis ćwiczenia.')}>{t('Partie mięśniowe w ćwiczeniach')}</SectionTitle>
+      <SectionTitle infoId="sources-muscles" info={t('Przy części ćwiczeń przypisanie partii opiera się na jednym źródle albo na uproszczeniu.')}>{t('Partie mięśniowe w ćwiczeniach')}</SectionTitle>
       <Muted style={{ ...font('callout') }}>{t('Partie pracujące w ćwiczeniach ustalamy z przeglądów badań i badań aktywności mięśni.')}</Muted>
       <SectionTitle infoId="sources-ours" info={t('Nie wszystko da się wyczytać z badań. Przykłady: długość przerw w planie, krok zmiany ciężaru.')}>{t('Nasze uproszczenia i wybory')}</SectionTitle>
-      <Muted style={{ ...font('callout') }}>{t('Gdy reguła jest naszym uproszczeniem albo wyborem, piszemy o tym wprost przy niej.')}</Muted>
+      <Muted style={{ ...font('callout') }}>{t('Część reguł w aplikacji to nasze uproszczenia albo wybory, a nie wynik badań.')}</Muted>
       <MedicalNote style={{ marginTop: 18 }} />
     </ScrollView></Screen>
   );

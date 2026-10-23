@@ -62,9 +62,9 @@ describe('dane: pewność przypisania partii po zmianie zasady „jedno źródł
 });
 
 describe('języki: teksty U1–U3 bez „jedno źródło” (35 języków)', () => {
-  const U1_PL = 'Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie. Podział na sesje (całe ciało, góra/dół) to nasz wybór — przy tej samej liczbie serii daje podobne efekty.';
-  const U2_PL = 'Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list}';
-  const U3_PL = 'Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).';
+  const U1_PL = 'Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.';
+  const U2_PL = 'Serie na partię w tygodniu (pomocnicza = {h} serii): {list}';
+  const U3_PL = 'Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).';
   const EKRANY = ['app/generator.tsx', 'components/OwnPlan.tsx', 'app/(tabs)/progress.tsx', 'components/GuardSection.tsx'];
   const NOWE = [U1_PL, U2_PL, U3_PL];
   const NOWE_DOPISEK = ['Przypisanie partii: potwierdzone.', 'Przypisanie partii mięśniowych — potwierdzone dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.'];

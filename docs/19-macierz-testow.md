@@ -11,7 +11,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|---|
 | EKRAN | 33 | 33 | 0 |
 | UI | 351 | 351 | 0 |
-| TEKST | 1141 | 1141 | 0 |
+| TEKST | 1134 | 1130 | 0 |
 | LOGIKA | 921 | 921 | 0 |
 | WYMIAR | 121 | 121 | 0 |
 
@@ -59,7 +59,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|
 | {label}: {v}, poprzednio {p} | components/PeriodSummary.tsx | tests/period-summary.test.tsx, tests/progression-ui.test.tsx |
 | {label}: {v}, poprzednio {p}, {d} | app/progression.tsx | tests/period-summary.test.tsx, tests/progression-ui.test.tsx |
-| {n} min | app/generator.tsx | tests/adapt-ui.test.tsx, tests/app.tsx, tests/asc-metadane.test.ts +95 |
+| {n} min | app/generator.tsx | tests/adapt-ui.test.tsx, tests/app.tsx, tests/asc-metadane.test.ts +96 |
 | {n} z {all} | components/DragList.tsx | (tylko parametry — pokrycie przez test ekranu) |
 | {title} ({sub}): objętość {v}, {p}; serie {s}, {d} | components/Dashboard.tsx | tests/progression-ui.test.tsx |
 | ↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń | app/more/settings.tsx | tests/matrix-ui.test.tsx |
@@ -206,7 +206,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | opcjonalne pole, nie wpływa na objętość | app/more/settings.tsx | tests/matrix-ui.test.tsx |
 | Opcjonalnie, tylko w telefonie. Potrzebna do e1RM w podciąganiu i pompkach. | app/more/bodymass.tsx | tests/audit-0.10-stats-ui.test.tsx |
 | Otwórz Ustawienia iOS | app/more/settings.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-m1-035-notif-denied.test.tsx, tests/i18n-variants.test.ts +3 |
-| Partia | app/exercise/[id].tsx | tests/audit-k1-fala2b.test.tsx, tests/edit-on-demand.test.tsx, tests/interaction-guards.test.ts +4 |
+| Partia | app/exercise/[id].tsx | tests/audit-k1-fala2b.test.tsx, tests/edit-on-demand.test.tsx, tests/interaction-guards.test.ts +7 |
 | Partie główne (1 seria) | app/exercise/[id].tsx | tests/edit-on-demand.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Partie pomocnicze (0,5 serii) | app/exercise/[id].tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Partie z większą objętością | app/progression.tsx | tests/progression-ui.test.tsx |
@@ -562,12 +562,12 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Był skrócony w tygodniu deload: {a} zamiast {b} serii roboczych. Powtórzyć pełny trening? | lib/start.ts | tests/audit-0.10-live.test.tsx |
 | Cały rok treningów, rozliczany rocznie. | app/paywall.tsx | tests/subscription-i18n.test.ts, tests/subscription-ui.test.tsx |
 | cały sprzęt; sztanga {bar} {u} + talerze {max}…{min} {u}; hantle {a}–{b} {u} co {step} | lib/equipment.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/scenario-full.test.tsx |
-| Cardio | lib/generator.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/gen-days-ui.test.tsx +9 |
+| Cardio | lib/generator.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/gen-days-ui.test.tsx +10 |
 | Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki. | app/generator.tsx | tests/gen-days-ui.test.tsx, tests/generator-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki. | app/generator.tsx | tests/gen-days-ui.test.tsx, tests/gen-general-ui.test.tsx, tests/generator-ui.test.tsx +1 |
-| Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji — to nasz wybór. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx |
-| Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — to nasz wybór. | app/generator.tsx | tests/gen-days-ui.test.tsx, tests/generator-ui.test.tsx, tests/matrix-i18n.test.tsx |
-| Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Nie ma dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji — to nasz wybór. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
+| Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx |
+| Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni). | app/generator.tsx | tests/gen-days-ui.test.tsx, tests/generator-ui.test.tsx, tests/matrix-i18n.test.tsx |
+| Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). W badaniach nie wykazano, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | cel {n} | components/MuscleCompare.tsx | tests/adapt-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts +86 |
 | Cel serii na partię w tygodniu | app/more/settings.tsx | tests/release-0.14.test.tsx, tests/set-goals-ui.test.tsx, tests/set-goals.test.ts +1 |
 | Cel serii na partię w tygodniu ustawisz w Ustawieniach (Automatycznie albo Ręcznie); paski w „Ten tydzień” i w Postępach mierzą do tego celu, a partia pomocnicza ćwiczenia liczy się za pół serii. | lib/whatsnew.ts | tests/release-0.14.test.tsx, tests/whats-new.test.tsx |
@@ -592,6 +592,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Czeka na zapis w Apple Health: {n}. Zapis zostanie ponowiony przy uruchomieniu i powrocie do aplikacji. | app/more/settings.tsx | tests/audit-0.10-data-ui.test.tsx |
 | Czeka na zgodę organizatora rodziny. | app/paywall.tsx | tests/subscription-i18n.test.ts |
 | Częste błędy | components/ExerciseCues.tsx | tests/cues.test.tsx |
+| Część reguł w aplikacji to nasze uproszczenia albo wybory, a nie wynik badań. | app/more/sources.tsx | tests/zrodla-wiedzy-ui.test.tsx |
 | część zaplanowanych serii nie ma ciężaru | app/progression.tsx | tests/progression-ui.test.tsx |
 | Cztery zakładki: Trening, Plan, Postępy i Więcej. Szablony i Ćwiczenia znajdziesz teraz w Więcej. | lib/whatsnew.ts | tests/tabs-four.test.tsx, tests/whats-new.test.tsx |
 | Czy podział treningu na sesje (całe ciało, góra/dół) zmienia efekty. | lib/sources.ts | tests/zrodla-wiedzy-ui.test.tsx |
@@ -657,7 +658,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dotknij etykiety serii, by zmienić typ; przesuń wiersz w lewo, by go usunąć. Zakres powtórzeń jest opcjonalny — z nim pojawiają się podpowiedzi „↑”. „⇅ SS” łączy ćwiczenie z następnym w superset, „✕ SS” wyjmuje z grupy. Kolejność: „≡ Kolejność”. | lib/guide.ts | tests/guide.test.tsx |
 | Dół A | lib/generator.ts | tests/generator-ui.test.tsx |
 | Dół B | lib/generator.ts | tests/generator-ui.test.tsx |
-| drop set | lib/live.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-stats-ui.test.tsx, tests/guide.test.tsx +10 |
+| drop set | lib/live.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-stats-ui.test.tsx, tests/guide.test.tsx +9 |
+| Drop set liczy się razem z serią, po której jest. | app/(tabs)/progress.tsx | tests/sets-mark.test.tsx |
 | Dystans w pliku przyjęto jako metry. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Dzień po dniu te same główne partie: {list}. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku. | lib/generator.ts | tests/generator-ui.test.tsx |
 | Dzień wraca do planu — trening nie liczy się już jako zrobiony. | components/DayPanel.tsx | tests/plan-wczesniej-ui.test.tsx |
@@ -672,9 +674,9 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | e1RM {v} ({p}% masy ciała {d}; seria {s}) | lib/stats.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-stats-ui.test.tsx, tests/audit-k1-mer.test.tsx |
 | e1RM {v} (masa ciała {d}; seria {s}) | lib/stats.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-0.10-stats-ui.test.tsx +3 |
 | e1RM {v} (seria {s}) | lib/stats.ts | tests/audit-records-logic.test.ts, tests/audit-records-misc.test.tsx, tests/matrix-i18n.test.tsx +1 |
-| e1RM liczone z {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie). | components/ExerciseProgress.tsx | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-stats-ui.test.tsx |
+| e1RM liczone z {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie. | components/ExerciseProgress.tsx | WYJĄTEK: BRAK |
 | e1RM pojawi się po wpisaniu masy ciała w Postępach. | components/ExerciseProgress.tsx | tests/audit-0.10-stats-ui.test.tsx, tests/matrix-ui.test.tsx |
-| e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}%). | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
+| e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała), pompki (ok. {p}%). | app/exercise/[id].tsx | WYJĄTEK: BRAK |
 | Edycja ćwiczenia | app/exercise/[id].tsx | tests/edit-on-demand.test.tsx |
 | Edycja sesji | app/_layout.tsx | tests/audit-0.10-tst.test.ts, tests/guide.test.tsx |
 | Edycja sesji i trening wstecz | lib/guide.ts | tests/guide.test.tsx |
@@ -692,8 +694,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Filtr partii: {g} | app/swap.tsx | tests/audit-0.10-lang-ui.test.tsx, tests/catalog-full.test.tsx, tests/matrix-logic.test.tsx +3 |
 | Filtr: podstawowe ćwiczenia | components/LibScope.tsx | tests/catalog-library25.test.tsx |
 | Folder nie został utworzony. | app/template/[id].tsx | tests/edit-on-demand.test.tsx |
-| Gdy opieramy się na jednym źródle albo na uproszczeniu, mówi o tym opis ćwiczenia. | app/more/sources.tsx | tests/zrodla-wiedzy-ui.test.tsx |
-| Gdy reguła jest naszym uproszczeniem albo wyborem, piszemy o tym wprost przy niej. | app/more/sources.tsx | tests/zrodla-wiedzy-ui.test.tsx |
 | Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu. | app/more/locations.tsx | tests/matrix-ui.test.tsx |
 | Generator szablonów i planu | app/_layout.tsx | tests/generator-ui.test.tsx, tests/interaction-patterns.test.tsx, tests/m3-p4-generator.test.tsx +2 |
 | Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego. | lib/whatsnew.ts | tests/whats-new.test.tsx |
@@ -759,7 +759,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Kalendarz od dziś będzie pusty. | app/plan.tsx | tests/plan-wczesniej-ui.test.tsx |
 | Kalendarz zamiast Historii: plan tygodnia, przesuwanie treningów i propozycje zmian z myślą o regeneracji partii. | lib/whatsnew.ts | tests/whats-new.test.tsx |
 | Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach. | lib/whatsnew.ts | tests/whats-new.test.tsx |
-| Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie. Podział na sesje (całe ciało, góra/dół) to nasz wybór — przy tej samej liczbie serii daje podobne efekty. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/zrodlo-jedno.test.ts |
+| Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/zrodlo-jedno.test.ts |
 | Każda z tych możliwości wraca do rutyny w ciągu {n} dni. | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/plan-calendar-ui.test.tsx |
 | Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian. | lib/start.ts | tests/audit-0.10-live.test.tsx |
 | kettlebell | lib/swap.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-k1-bl-mer.test.tsx +10 |
@@ -783,13 +783,12 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Kopia zapasowa | app/_layout.tsx | tests/audit-0.10-ui.test.tsx, tests/guide.test.tsx, tests/public-repo.test.ts +4 |
 | Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień. | app/(tabs)/progress.tsx | tests/set-goals-ui.test.tsx, tests/set-goals.test.ts, tests/sets-mark.test.tsx |
 | Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}. | app/more/settings.tsx | tests/matrix-i18n.test.tsx, tests/set-goals-ui.test.tsx, tests/set-goals.test.ts |
-| Krok zmiany (np. +2,5 kg) to nasz wybór, a nie wynik badań. | app/more/settings.tsx | tests/audit-m1-046-047-claims.test.tsx, tests/matrix-ui.test.tsx |
 | kroki {n} | lib/healthRead.ts | tests/dashboard.test.tsx, tests/health-permissions.test.ts, tests/health-read-ui.test.tsx +5 |
 | Kroki dziennie (średnia z {d} dni): {n} | lib/healthRead.ts | tests/health-read-ui.test.tsx, tests/health-read.test.ts |
 | Kroki: {n} | lib/healthRead.ts | tests/health-read-ui.test.tsx, tests/health-read.test.ts |
 | Krótka animacja przy starcie: talerze wsuwają się na gryf. | lib/whatsnew.ts | tests/whats-new.test.tsx |
 | Kup na zawsze | app/paywall.tsx | tests/subscription-i18n.test.ts |
-| Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}) — uproszczenie, nie wynik badań. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/generator-ui.test.tsx |
+| Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}). To szacunek. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/generator-ui.test.tsx |
 | Liczby i zalecenia w aplikacji opierają się na stanowiskach organizacji naukowych, przeglądach badań i badaniach z recenzowanych czasopism. Tu są wszystkie źródła w jednym miejscu — w pozostałych miejscach aplikacji piszemy zwykłym językiem. | app/more/sources.tsx | tests/zrodla-wiedzy-ui.test.tsx |
 | Lista | app/more/settings.tsx | tests/audit-0.10-tst-ui.test.tsx, tests/audit-m1-045-store-description.test.ts, tests/audit-m1-068-release-plan.test.ts +7 |
 | lista ćwiczeń z filtrami, które możesz zdjąć | app/swap.tsx | tests/matrix-ui.test.tsx |
@@ -852,7 +851,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Moje szablony, {n}× w tygodniu | lib/generator.ts | tests/gen-days-ui.test.tsx, tests/plan-own-templates-ui.test.tsx, tests/plan-own-templates.test.ts |
 | Mój plan ({date}) | lib/plan.ts | tests/audit-0.10-plan.test.ts, tests/mutation-plan.test.ts, tests/plan-own-templates-ui.test.tsx +3 |
 | Na czym opierają się liczby i zalecenia | app/more/settings.tsx | tests/zrodla-wiedzy-ui.test.tsx, tests/zrodla-wiedzy.test.ts |
-| Na czym to oparte | app/generator.tsx | tests/guide.test.tsx |
 | Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień. | lib/guide.ts | tests/guide.test.tsx |
 | Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem. | lib/guide.ts | tests/guide.test.tsx |
 | Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty. | lib/guide.ts | tests/guide.test.tsx |
@@ -895,7 +893,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | nic więcej do zrobienia | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/voice.test.ts +5 |
 | Nic więcej do zrobienia — możesz zakończyć trening. | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
 | Nic więcej do zrobienia (część pominięta) | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/skip-today.test.tsx |
-| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +282 |
+| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +283 |
 | Nie ma nowych treningów do dodania — wszystkie są już w historii. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Nie ma takiego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego miejsca. | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |
@@ -986,7 +984,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Ogólne | app/more/settings.tsx | tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/phone-p1.test.tsx |
 | Ogólny | lib/generator.ts | tests/audit011b.test.tsx, tests/gen-general-ui.test.tsx, tests/gen-general.test.ts +3 |
 | Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
-| Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach. | app/more/bodymass.tsx | tests/audit-0.10-stats-ui.test.tsx |
+| Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała) i w pompkach (ok. {p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach. | app/more/bodymass.tsx | tests/audit-0.10-stats-ui.test.tsx |
 | Opisy techniki są napisane własnymi słowami, na podstawie: | app/more/sources.tsx | tests/zrodla-wiedzy-ui.test.tsx |
 | opuszczony: {name} | components/HistoryCalendar.tsx | tests/motyw.test.tsx, tests/plan-calendar-ui.test.tsx |
 | Opuszczony: {name} | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-k1-fala2b.test.tsx, tests/plan-calendar-ui.test.tsx |
@@ -1016,6 +1014,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | pakiety: {n} · treść wg {p} | app/more/licenses.tsx | tests/audit-0.10-data-ui.test.tsx, tests/licenses-native.test.tsx |
 | para: {a} ({r}); jeden hantel: {b} ({r1}) | components/LoadEditor.tsx | tests/locations-ui.test.tsx |
 | Partia główna liczy 1 serię, pomocnicza 0,5 (np. wyciskanie: klatka 1, triceps i barki po 0,5). Partie ustawisz w edycji ćwiczenia. | app/(tabs)/progress.tsx | tests/matrix-ui.test.tsx |
+| Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5). | app/(tabs)/progress.tsx | tests/set-goals.test.ts, tests/sets-mark.test.tsx, tests/zrodlo-jedno.test.ts |
 | Partie mięśniowe w ćwiczeniach | app/more/sources.tsx | tests/zrodla-wiedzy.test.ts |
 | Partie pracujące w ćwiczeniach ustalamy z przeglądów badań i badań aktywności mięśni. | app/more/sources.tsx | tests/zrodla-wiedzy-ui.test.tsx |
 | Partie z większą objętością niż poprzednio: {list} | app/progression.tsx | tests/progression-ui.test.tsx |
@@ -1028,7 +1027,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Pierwsze kroki | components/Dashboard.tsx | tests/dashboard.test.tsx |
 | Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”. | components/Dashboard.tsx | tests/dashboard.test.tsx, tests/edit-on-demand.test.tsx, tests/flows.test.tsx +2 |
 | piszczelowy przedni | app/exercise/[id].tsx | tests/audit-0.10-ui.test.tsx |
-| Plan | app/(tabs)/_layout.tsx | tests/adapt-ui.test.tsx, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx +157 |
+| Plan | app/(tabs)/_layout.tsx | tests/adapt-ui.test.tsx, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx +158 |
 | Plan „{name}” jest teraz aktywny. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/m3-p4-generator.test.tsx, tests/plan-own-templates-ui.test.tsx +1 |
 | Plan „{name}” jest w „Inne plany”. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/plan-own-templates-ui.test.tsx |
 | plan bez ciężaru lub powtórzeń | components/GuardSection.tsx | tests/guard-ui.test.tsx |
@@ -1112,7 +1111,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | powtórzenia | components/BoardControls.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/audit-0.10-stats-ui.test.tsx +32 |
 | powtórzenia do | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | powtórzenia od | app/template/[id].tsx | tests/audit-0.10-tst-ui.test.tsx, tests/scenario-full.test.tsx, tests/template-rows.test.tsx |
-| Powtórzenia: {a}–{b}; w domu i bez obciążenia {c}–{d} — uproszczenie: lżejszy ciężar, więcej powtórzeń. | app/generator.tsx | tests/matrix-i18n.test.tsx |
+| Powtórzenia: {a}–{b}; w domu i bez obciążenia {c}–{d} — lżejszy ciężar, więcej powtórzeń. | app/generator.tsx | tests/matrix-i18n.test.tsx |
 | poziom {n} | app/more/location/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/flows.test.tsx +7 |
 | Poziomy gum, które masz w tym miejscu (1 = cienka, 7 = bardzo gruba). | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |
 | Pozostałe akcje dla tego dnia. | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx |
@@ -1121,26 +1120,26 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Pozycja wyjściowa | lib/figures/index.ts | tests/audit-k1-bl-mer.test.tsx, tests/figures.test.tsx |
 | PR | components/WorkoutBlocks.tsx | tests/asc-metadane.test.ts, tests/audit-m1-037-ss-pr-dict.test.ts, tests/audit-m1-044-brd.test.ts +24 |
 | Progresja | app/_layout.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/dashboard.test.tsx, tests/generator-ui.test.tsx +4 |
-| Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów; kiedy i o ile — to nasz wybór. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/generator-ui.test.tsx |
-| Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Opiera się na zaleceniach zdrowotnych i treningowych; gdzie coś jest naszym uproszczeniem albo wyborem, a nie wynikiem badań, piszemy o tym wprost. | app/generator.tsx | tests/generator-ui.test.tsx |
+| Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx |
+| Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Opiera się na zaleceniach zdrowotnych i treningowych. | app/generator.tsx | tests/generator-ui.test.tsx |
 | Propozycje | app/swap.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/maestro-failures.test.ts, tests/matrix-logic.test.tsx +3 |
 | Przeciągnij za ≡, żeby zmienić kolejność. Superset przesuwa się w całości; kolejność w nim zmienisz uchwytami przy ćwiczeniach. | app/reorder.tsx | tests/matrix-i18n.test.tsx, tests/matrix-ui.test.tsx |
 | przeczytane | app/guide.tsx | tests/audit-0.10-ui.test.tsx, tests/guide.test.tsx, tests/tabs-four.test.tsx |
 | Przeczytane: {n} z {m} | app/(tabs)/more.tsx | tests/guide.test.tsx |
 | Przegląd tego, jak używa się skali powtórzeń w zapasie. | lib/sources.ts | tests/zrodla-wiedzy-ui.test.tsx |
-| Przejrzyj podgląd i „Na czym to oparte” — wynik zapisuje się dopiero po zatwierdzeniu. | lib/guide.ts | tests/guide.test.tsx |
+| Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu. | lib/guide.ts | tests/guide.test.tsx, tests/zrodla-wiedzy.test.ts |
 | Przenieś na {day} | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/plan-calendar-ui.test.tsx |
-| przerwa | app/template/[id].tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/audit-0.10-ui.test.tsx +35 |
+| przerwa | app/template/[id].tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/audit-0.10-ui.test.tsx +36 |
 | Przerwa | app/history/[id].tsx | tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/audit-0.10-live.test.tsx +24 |
-| przerwa {s} | app/(tabs)/_layout.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/audit-0.10-ui.test.tsx +35 |
-| przerwa {s} s | lib/timer.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/audit-0.10-ui.test.tsx +35 |
+| przerwa {s} | app/(tabs)/_layout.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/audit-0.10-ui.test.tsx +36 |
+| przerwa {s} s | lib/timer.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/audit-0.10-ui.test.tsx +36 |
 | przerwa minęła | components/ActiveWorkout.tsx | tests/m3-p2-board-ui.test.tsx, tests/scenario-full.test.tsx |
 | Przerwa minęła | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-io-flows.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Przerwa trwa — powiadomić na koniec? | components/ActiveWorkout.tsx | tests/audit-m1-035-notif-denied.test.tsx, tests/m3-p2-board-ui.test.tsx |
 | przerwa z {s} | components/ActiveWorkout.tsx | tests/release-0.20.test.tsx, tests/watch-scenarios.ts, tests/whats-new.test.tsx |
 | Przerwa. Pozostały czas: {t}. Cała przerwa: {all}. | components/BoardFace.tsx | tests/m3-fix-e2e-teksty.test.ts, tests/m3-p2-matrix.test.tsx |
-| Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły). | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/matrix-i18n.test.tsx |
-| Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły). | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/matrix-i18n.test.tsx |
+| Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły). | app/generator.tsx | tests/matrix-i18n.test.tsx |
+| Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły). | app/generator.tsx | tests/matrix-i18n.test.tsx |
 | Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem). | lib/guide.ts | tests/guide.test.tsx |
 | Przesuń niżej | components/DragList.tsx | tests/template-cards.test.tsx |
 | Przesuń plan o 1 dzień | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/places-shift-scenario.test.tsx, tests/plan-calendar-ui.test.tsx +1 |
@@ -1148,14 +1147,9 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Przesuń wyżej | components/DragList.tsx | tests/template-cards.test.tsx |
 | Przód | components/Guard.tsx | tests/muscle-map.test.tsx |
 | Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosły w badaniach bardziej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu. | app/(tabs)/progress.tsx | tests/set-goals.test.ts, tests/sets-mark.test.tsx |
+| Przy części ćwiczeń przypisanie partii opiera się na jednym źródle albo na uproszczeniu. | app/more/sources.tsx | tests/zrodla-wiedzy-ui.test.tsx |
 | Przycisk „Napisz do nas” w Więcej → O aplikacji. | lib/whatsnew.ts | tests/release-0.17.test.tsx, tests/whats-new.test.tsx |
 | Przyda się: {list}. | lib/generator.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/mutation-generator.test.ts |
-| Przypisanie partii mięśniowych — potwierdzone dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu. | app/exercise/[id].tsx | tests/zrodlo-jedno.test.ts |
-| Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu. | app/exercise/[id].tsx | tests/audit-0.10-ui.test.tsx, tests/matrix-ui.test.tsx |
-| Przypisanie partii mięśniowych — wstępne, jeszcze nieustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu. | app/exercise/[id].tsx | tests/audit-0.10-ui.test.tsx |
-| Przypisanie partii: potwierdzone. | app/exercise/[id].tsx | tests/zrodlo-jedno.test.ts |
-| Przypisanie partii: uproszczenie. | app/exercise/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
-| Przypisanie partii: wstępne. | app/exercise/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/zrodlo-jedno.test.ts |
 | przyrząd: {impl} | components/WorkoutBlocks.tsx | tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx +1 |
 | Przywrócono zakupy. | app/paywall.tsx | tests/subscription-i18n.test.ts |
 | Przywróć z archiwum | app/template/[id].tsx | tests/edit-on-demand.test.tsx, tests/template-folders.test.tsx |
@@ -1171,7 +1165,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali. | app/more/settings.tsx | tests/effort-scale.test.tsx |
 | RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie. | app/more/settings.tsx | tests/audit-k1-bl-mer.test.tsx |
 | robione {n}× | lib/swap.ts | tests/audit-0.10-plan-ui.test.tsx, tests/dashboard.test.tsx, tests/first-steps-empty.test.tsx +15 |
-| rok | app/paywall.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-io-more.test.tsx +38 |
+| rok | app/paywall.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-io-more.test.tsx +39 |
 | rozgrzewka | lib/live.ts | tests/audit-close2-a.test.tsx, tests/audit-stale-ui.test.tsx, tests/matrix-invariants.test.ts +9 |
 | Rozgrzewki: {d} z {n} zrobione | components/BoardFace.tsx | tests/m3-p2-board-ui.test.tsx, tests/m3-p2-matrix.test.tsx |
 | Ruch | components/ExerciseCues.tsx | tests/cues-014.test.tsx, tests/cues.test.tsx, tests/figures.test.tsx +1 |
@@ -1183,29 +1177,29 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Seria | lib/timer.ts | tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/audit-0.10-live.test.tsx +45 |
 | seria · bez celu | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | seria · cel {s} | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
-| seria {n} | lib/live.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +64 |
+| seria {n} | lib/live.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +65 |
 | Seria {n} | app/history/edit/[id].tsx | tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/audit-0.10-live.test.tsx +45 |
 | Seria {n} — {ex} | app/history/edit/[id].tsx | tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-lang.test.ts, tests/audit-0.10-live.test.tsx +45 |
-| seria {n} z {all} | lib/live.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +64 |
+| seria {n} z {all} | lib/live.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +65 |
 | seria {n} z {all} · drop set | lib/live.ts | tests/audit-0.10-live.test.tsx, tests/watch-cue.test.ts, tests/watch-snapshot.test.ts |
-| seria {s} s | lib/timer.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +64 |
+| seria {s} s | lib/timer.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +65 |
 | Seria jest już odhaczona. | components/WorkoutBlocks.tsx | tests/audit-m1-028-delete-menus.test.tsx, tests/matrix-ui.test.tsx |
 | Seria skończona | lib/timer.ts | tests/matrix-ui.test.tsx, tests/timer-logic.test.ts |
-| Serie | components/Dashboard.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-m1-044-brd.test.ts, tests/audit-m1-048-claims-registry.test.ts +22 |
+| Serie | components/Dashboard.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-m1-044-brd.test.ts, tests/audit-m1-048-claims-registry.test.ts +23 |
 | Serie bez ciężaru: {n}. | app/history/edit/[id].tsx | tests/integration-090.test.tsx |
 | Serie bez wyniku nie zostaną zapisane. | app/history/edit/[id].tsx | tests/guide.test.tsx, tests/matrix-ui.test.tsx |
 | Serie bez wyniku zostaną pominięte: {n}. | app/history/edit/[id].tsx | tests/edit-history.test.tsx, tests/scenario-full.test.tsx |
 | Serie do uzupełnienia | components/ActiveWorkout.tsx | tests/watch-fill-ui.test.tsx |
-| Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list} | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/generator-ui.test.tsx, tests/plan-own-templates-ui.test.tsx +2 |
+| Serie na partię w tygodniu (pomocnicza = {h} serii): {list} | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/generator-ui.test.tsx, tests/plan-own-templates-ui.test.tsx +2 |
 | Serie per partia | app/progression.tsx | tests/scenario-full.test.tsx |
 | Serie per partia — ten tydzień vs poprzedni | app/(tabs)/progress.tsx | tests/scenario-full.test.tsx |
 | Serie robocze | app/progression.tsx | tests/audit-m1-044-brd.test.ts, tests/m3-p3-postepy-historia.test.tsx, tests/period-summary.test.tsx +2 |
 | Serie robocze tygodniowo | app/(tabs)/progress.tsx | tests/m3-p3-postepy-historia.test.tsx, tests/scenario-full.test.tsx |
 | Serie z tej sesji przepadną. | components/ActiveWorkout.tsx | tests/matrix-ui.test.tsx |
 | Serie: {d} z {n} zrobione | components/BoardFace.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/dashboard.test.tsx, tests/first-steps-empty.test.tsx +13 |
-| Serie: {n} | app/more/import.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-m1-048-claims-registry.test.ts, tests/audit011b.test.tsx +6 |
-| Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica — uproszczenie. | app/generator.tsx | tests/audit011b.test.tsx, tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
-| Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba {s} to uproszczenie. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx |
+| Serie: {n} | app/more/import.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-m1-048-claims-registry.test.ts, tests/audit011b.test.tsx +7 |
+| Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica. | app/generator.tsx | tests/audit011b.test.tsx, tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
+| Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx |
 | Sesja | app/_layout.tsx | tests/audit-k1-fala2b.test.tsx, tests/edit-on-demand.test.tsx, tests/scenario-full.test.tsx +1 |
 | Sesja w historii zostanie bez zmian. | app/history/edit/[id].tsx | tests/scenario-full.test.tsx |
 | Sesje | components/ExerciseProgress.tsx | tests/audit-records-ui.test.tsx, tests/gen-days-ui.test.tsx, tests/scenario-full.test.tsx |
@@ -1354,10 +1348,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Uchwyt (jeden, {u}) | components/LoadEditor.tsx | tests/scenario-full.test.tsx |
 | Ukryj cele partii | app/more/settings.tsx | tests/set-goals-ui.test.tsx, tests/set-goals.test.ts |
 | ukryte: {n} | app/picker.tsx | tests/catalog-library25.test.tsx, tests/locations-ui.test.tsx, tests/scenario-full.test.tsx |
-| Uproszczenie: drop set liczy się razem z serią, po której jest. | app/(tabs)/progress.tsx | tests/audit-0.10-stats-ui.test.tsx, tests/sets-mark.test.tsx |
-| Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5). | app/(tabs)/progress.tsx | tests/set-goals-ui.test.tsx, tests/set-goals.test.ts, tests/sets-mark.test.tsx +1 |
-| Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku. | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx |
-| Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami. | components/DayPanel.tsx | tests/plan-calendar-ui.test.tsx |
 | Ustaw plan | app/(tabs)/index.tsx | tests/audit-0.10-ui.test.tsx, tests/dashboard.test.tsx, tests/guide.test.tsx +5 |
 | Ustaw plan tygodnia — zobaczysz tu dzisiejszy trening i dostaniesz przypomnienie. | components/Dashboard.tsx | tests/dashboard.test.tsx |
 | Ustawić „{name}” jako aktywny plan? | app/plan.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-tst-ui.test.tsx +3 |
@@ -1404,13 +1394,13 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Wersja: {v} · iOS {os} · Język: {lang} | lib/support.ts | tests/idea-request.test.tsx, tests/support-mail.test.tsx |
 | Wiersz otwiera podgląd szablonu, „Start” zaczyna trening. | app/pick-template.tsx | tests/pick-template.test.tsx |
 | Wiersz w ramce — tydzień deload. | components/HistoryCalendar.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/deload-ui.test.tsx |
-| więcej | components/MuscleMap.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/audit-0.10-live-logic.test.ts +28 |
+| więcej | components/MuscleMap.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/audit-0.10-live-logic.test.ts +29 |
 | Więcej | app/(tabs)/_layout.tsx | tests/audit-0.10-lang-ui.test.tsx, tests/audit-0.10-plan-ui.test.tsx, tests/audit-k1-fala2b.test.tsx +35 |
 | Więcej → Kopia zapasowa: eksport wszystkich danych do pliku i import z pliku. | lib/guide.ts | tests/guide.test.tsx |
 | Więcej → Miejsca i sprzęt: dom, siłownia, hotel — każdy ze swoim sprzętem i ciężarami. | lib/guide.ts | tests/guide.test.tsx |
 | Więcej → Szablony: przycisk + w nagłówku (Dodaj szablon) tworzy szablon: ćwiczenia, serie, zakres powtórzeń i przerwy. | lib/guide.ts | tests/guide.test.tsx |
 | Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno. | lib/guide.ts | tests/m3-p5d-settings-ui.test.tsx |
-| Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — to nasz wybór. | components/OwnPlan.tsx | tests/plan-own-templates-ui.test.tsx |
+| Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze. | components/OwnPlan.tsx | tests/plan-own-templates-ui.test.tsx |
 | więcej niż poprzednio | components/ProgressBars.tsx | tests/progression-ui.test.tsx |
 | Włącz powiadomienia dla {app} w Ustawieniach iOS. | app/more/settings.tsx | tests/matrix-ui.test.tsx |
 | Wobec tygodnia {d} (poprzedni był deloadem) | lib/guard.ts | tests/guard-ui.test.tsx, tests/guard.test.ts |
@@ -1487,7 +1477,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}. | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | Zakres jest niepoprawny: „max” musi być ≥ „min”, krok > 0. Ciężary nie są liczone. | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | Zakres powtórzeń: {r} — gdy ostatnio wszystkie serie robocze miały co najmniej {n} powt., przy ćwiczeniu pojawi się podpowiedź „↑ spróbuj …”: większy ciężar albo powtórzenie więcej (poza tygodniem deload). | app/template/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/matrix-ui.test.tsx |
-| Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku. | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx |
+| Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku. | app/generator.tsx | WYJĄTEK: BRAK |
 | Zakresy powtórzeń, liczba serii i przerwa między sesjami. | lib/sources.ts | tests/zrodla-wiedzy-ui.test.tsx |
 | Zaktualizuj aplikację na zegarku | lib/watch/labels.ts | tests/watch-protocol.test.ts |
 | Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej. | app/paywall.tsx | tests/subscription-i18n.test.ts, tests/subscription-ui.test.tsx |
@@ -1517,6 +1507,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Zapowiedzi działają, gdy włączony jest „Dźwięk na koniec przerwy”. To samo ustawienie zmienisz w menu „⋯” na ekranie treningu. | app/more/settings.tsx | tests/m3-p5d-settings-ui.test.tsx, tests/voice-ui.test.tsx |
 | Zapowiedzi głosowe na początku przerwy: ćwiczenie, ciężar i powtórzenia. | lib/whatsnew.ts | tests/release-0.20.test.tsx, tests/whats-new.test.tsx |
 | Zapowiedzi głosowe: {mode} | components/ActiveWorkout.tsx | tests/m3-p2-board-ui.test.tsx, tests/voice-ui.test.tsx |
+| Zasady planu | app/generator.tsx | tests/guide.test.tsx, tests/zrodla-wiedzy.test.ts |
 | Zastąpić poprzednio wygenerowane, nieużywane szablony? | app/generator.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/ux2-08-gen-replace-active.test.tsx |
 | Zastąpić wpisane ciężary? | components/LoadEditor.tsx | tests/locations-audit.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Zastosuj ({n}) | app/adapt.tsx | tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx, tests/maestro-selectors.test.ts +2 |
@@ -1552,6 +1543,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | zrobiony wcześniej: {name} | components/HistoryCalendar.tsx | tests/plan-wczesniej-ui.test.tsx |
 | Zrobiony wcześniej: {name} | components/DayPanel.tsx | tests/plan-wczesniej-ui.test.tsx |
 | Zwiń inne ćwiczenia | app/swap.tsx | tests/catalog-full.test.tsx, tests/matrix-logic.test.tsx, tests/matrix-ui.test.tsx |
+| Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku. | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx |
+| Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami. | components/DayPanel.tsx | WYJĄTEK: BRAK |
 | Zwykle w: {l} — {name}. Zamienić? | components/WorkoutBlocks.tsx | tests/scenario-full.test.tsx, tests/swap-alternates.test.tsx |
 | Żadna partia nie ma większej objętości niż poprzednio. | app/progression.tsx | tests/progression-ui.test.tsx |
 

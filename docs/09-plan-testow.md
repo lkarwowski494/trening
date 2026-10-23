@@ -494,3 +494,11 @@ Test najpierw (2 czerwone na e8cc375: jeden job z `--$TRYB`, bez środowiska), p
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | M1-048 (10-wydanie-004) | `tests/audit-m1-workflows.test.ts` „M1-048” (jeden job z `--apply` za `environment: release`; plan bez środowiska; bez nowych sekretów); `tests/public-repo.test.ts` (dostosowany) | niezmienniki | zielone | Bez zmian w UI i BRD. Pozostaje przebieg dowodowy (L-001): uruchomić workflow z `tryb=dry-run` (musi biec bez zatwierdzenia) i `tryb=apply` (job `apply` czeka na zatwierdzenie `release`) |
+
+## 23.10.2026 (druga decyzja właściciela) — oznaczenia pewności poza interfejsem, „Zasady planu”, T-029, przekład API
+Zmiana zachowania na polecenie właściciela; testy zmieniane razem z kodem — oczekiwane teksty zastąpiono nowym brzmieniem, żadnej asercji nie osłabiono ani nie wyłączono; asercje dopisków pewności przy ćwiczeniu (`tests/zrodlo-jedno.test.ts`, `audit-0.10-ui`, `audit-0.10-stats-ui`, `matrix-ui`) zamieniono na asercje ich braku.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Brak oznaczeń pewności w UI | `tests/zrodla-wiedzy.test.ts` „niezmiennik: brak oznaczeń pewności w tekstach UI” (strażnik rozpoznaje PL i EN; słownik bez oznaczeń; usunięte klucze nie wracają; T-029; „Zasady planu”; rejestr zachowuje rodzaje i wpisy wycofane); `tests/audit-m1-048-claims-registry.test.ts` | logika, dane, niezmienniki | zielone | `npm run check:claims` wykonuje tę samą kontrolę (`markerErrors`) |
+| Przekład przez API | `tests/przeklad-tlumaczen.test.ts` (zestaw, żądanie, odpowiedź, koszt i limit 6 USD, przebieg z atrapą fetch, `--zastosuj`, strażnik workflowu); `tests/public-repo.test.ts` | logika, dane, bezpieczeństwo | zielone | bez sieci; płatny przebieg tylko ręcznie (workflow), po zgodzie na koszt |
