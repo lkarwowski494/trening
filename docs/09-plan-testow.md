@@ -464,6 +464,13 @@ Test najpierw (czerwony na f2b0525: 35 z 43 przypadków — 29 zamiast 43 z `rac
 |---|---|---|---|---|
 | M1-031 | `tests/audit-m1-031-asekuracja-zakres.test.tsx` (43: kategoria każdego ze 137 ćwiczeń ze sztangą/EZ — strażnik nowych ćwiczeń, warianty „stojaki”/„osoba”, ramka na ekranie, EN, 33 słowniki, dopisek w wyborze ćwiczenia); zaktualizowane `audit-m1-015-asekuracja` i `poprawki-tlumaczen-2026-10-21` (29 → 43), `audit-m1-049-critical-content` (4 klucze asekuracji), `przeglad-tlumaczen` (5 zdań krytycznych) | logika, ekran, scenariusz, macierz, dane, języki, regresja | zielone | E2E Maestro pominięte: bez nowego ekranu i przepływu (ta sama ramka na ekranie ćwiczenia, inne dane katalogu); ekran i wybór ćwiczenia pokrywa test RNTL. Tłumaczenia nowego zdania (31 słowników) — agent, do przeglądu tłumacza (R-010). Otwarte: ćwiczenia dynamiczne, sztanga na biodrach, hantle (docs/research/przeglad-badacza-2026-10-23.md) |
 
+## 23.10.2026 — M1-audytor-generalny-031 cz. 2 (DEC-08 a): asekuracja przy hantlach nad głową lub twarzą (gałąź `naprawa-m1-p2-tresci`)
+Test najpierw (czerwony na origin/main 52202df: brak `CATALOG_SPOTTER_DB`, `needsSpotterDb` i zdania o hantlach), potem dane katalogu (`spot: "spotter_db"`), generator, ramka i słowniki.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| M1-031 cz. 2 | `tests/audit-m1-031-hantle-asekuracja.test.tsx` (kategoria każdego ze 105 ćwiczeń z hantlami — strażnik nowych ćwiczeń, 27 w `CATALOG_SPOTTER_DB`, rozłączność z wariantem sztangi i kettlebell, `needsSpotterDb`, ramka dla 27 ćwiczeń, brak ramki dla otwartych i poza zakresem, EN, 33 słowniki); zaktualizowane `audit-m1-049-critical-content` (5 kluczy asekuracji), `przeglad-tlumaczen` (6 zdań krytycznych) | logika, ekran, scenariusz, macierz, dane, języki, regresja | zielone | E2E Maestro pominięte: bez nowego ekranu i przepływu (ta sama ramka na ekranie ćwiczenia, inne dane katalogu). Tłumaczenia nowego zdania (31 słowników) — własne tłumaczenie agenta, **do przeglądu tłumacza** (R-010). Rejestr twierdzeń: T-045. Otwarte: ćwiczenia dynamiczne z hantlem, goblet, hip thrust (hantel), przenoszenie nad głową, kettlebell |
+
 ## 23.10.2026 — naprawa M1-audytor-generalny-045 (audyt 21.10.2026, partia 1; gałąź `naprawa-m1-045-app-review`)
 Test najpierw (czerwony na f2b0525: blok IN-APP PURCHASES bez akapitu o stałej wartości), potem tekst w `store/review-notes.md` i `store/app-store-metadata.json`.
 

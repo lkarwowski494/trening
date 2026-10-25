@@ -7,7 +7,7 @@ import { useRouter } from 'expo-router';
 import { Btn } from '@/components/ui';
 import type { Exercise } from '@/lib/seed';
 import { ExerciseFigure } from '@/components/ExerciseFigure';
-import { needsSafety, needsSpotter } from '@/lib/equipment';
+import { needsSafety, needsSpotter, needsSpotterDb } from '@/lib/equipment';
 
 /*
  * Sekcja „Technika” w podglądzie ćwiczenia (wskazówki techniki, etap 1 — decyzja właściciela 08.10.2026 ok. 23:50; dane: lib/cues).
@@ -22,7 +22,7 @@ const LABEL: Record<CueSection, () => string> = { setup: () => t('Ustawienie'), 
 
 export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercise, 'lib' | 'libKey' | 'recommended' | 'catalogRev'>; /** UX2-05: otwarte z „Technika ›” (trening, szablon) — od razu rozwinięte */ initialOpen?: boolean }) {
   const th = useTheme(); const [open, setOpen] = useState(!!initialOpen);
-  const c = cuesFor(exercise); const safety: SafetyKind | null = needsSafety(exercise) ? 'rack' : needsSpotter(exercise) ? 'spotter' : null;
+  const c = cuesFor(exercise); const safety: SafetyKind | null = needsSafety(exercise) ? 'rack' : needsSpotter(exercise) ? 'spotter' : needsSpotterDb(exercise) ? 'spotter_db' : null;
   if (!c) return safety ? <SafetyNote kind={safety} /> : null;
   return (
     <View testID="exercise-cues" style={{ borderTopWidth: 1, borderBottomWidth: 1, borderColor: th.line, marginBottom: 14 }}>
@@ -48,15 +48,15 @@ export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercis
  * Zdanie o asekuracji (audyt M1-015): ćwiczenia, przy których katalog zaleca ramiona asekuracyjne (sztanga nad ciałem lub na barkach). Treść ostrożna, bez liczb;
  * źródła i brzmienie do weryfikacji przez badacza merytorycznego (docs/10, „Asekuracja”). Ćwiczenie bez wskazówek techniki dostaje samą ramkę; ze wskazówkami —
  * zdanie na początku rozwiniętej sekcji „Technika”. M1-031 (NSCA 2017 Standard 3.2): dwa warianty — „rack” (stojaki z ramionami oraz osoba; recommended rack.safeties)
- * i „spotter” (sama osoba asekurująca; ćwiczenia, przy których katalog nie przewiduje stojaków — CATALOG_SPOTTER). Źródło i lista: docs/10, „Asekuracja”.
+ * i „spotter” (sama osoba asekurująca; ćwiczenia, przy których katalog nie przewiduje stojaków — CATALOG_SPOTTER); M1-031 cz. 2 (DEC-08): „spotter_db” — hantle nad głową lub twarzą (CATALOG_SPOTTER_DB). Źródło i lista: docs/10, „Asekuracja”.
  */
-type SafetyKind = 'rack' | 'spotter';
+type SafetyKind = 'rack' | 'spotter' | 'spotter_db';
 function SafetyNote({ inside, kind }: { inside?: boolean; kind: SafetyKind }) {
   const th = useTheme();
   return (
     <View testID="exercise-safety" style={inside ? { marginTop: 4, paddingBottom: 10 } : { borderTopWidth: 1, borderBottomWidth: 1, borderColor: th.line, marginBottom: 14, paddingVertical: 10 }}>
       <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('footnote'), ...FW.semibold, marginBottom: 2 }}>{t('Asekuracja')}</Text>
-      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('callout'), ...FW.regular, lineHeight: 21 }}>{kind === 'rack' ? t('Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.') : t('Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.')}</Text>
+      <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('callout'), ...FW.regular, lineHeight: 21 }}>{kind === 'rack' ? t('Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.') : kind === 'spotter' ? t('Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.') : t('Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.')}</Text>
     </View>
   );
 }
