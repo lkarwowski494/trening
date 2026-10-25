@@ -26,7 +26,7 @@
   o nim tylko zbiorczo jednym zdaniem („mamy też kilka rzeczy w backlogu bez priorytetu — chcesz je przejrzeć?”), bez wymieniania pozycji z nazwy,
   dopóki właściciel nie poprosi.
 - Role agentów (decyzja właściciela 11.10.2026, wariant B): `.claude/agents/` — analityk-produktu, badacz-merytoryczny (opus), programista,
-  tlumacz, tester-e2e, wydawca (sonnet), audytor (opus), marketing (opus, 13.10.2026 — dotarcie do kręgów zainteresowanych; niczego nie publikuje sam). Zlecaj zadanie właściwej roli; źródła wzorców: `docs/research/prompty-standardy-2026-10.md`.
+  tlumacz, tester-e2e, wydawca (sonnet), audytor (opus), marketing (opus, 13.10.2026 — dotarcie do kręgów zainteresowanych; niczego nie publikuje sam). recenzent-lokalizacji (opus, 25.10.2026): nowe i zmienione teksty UI oraz wskazówki techniki po tłumaczeniu — zwraca listę poprawek, nie poprawia sam. Teksty naturalne (właściciel, 25.10.2026): opieramy się na źródłach, ale nie pouczamy jak profesorowie — kryterium: czy tak powiedziałby trener albo kolega na siłowni w tym języku. Słownik terminów `docs/lokalizacja/slownik-terminow.json` obowiązuje tłumacza i przekład przez API (strażnik `tests/slownik-terminow.test.ts`). Zlecaj zadanie właściwej roli; źródła wzorców: `docs/research/prompty-standardy-2026-10.md`.
 - Gemini (subskrypcja właściciela, 11.10.2026): zadania, które pasują do Gemini (research rynku i opinii, przegląd tłumaczeń, wyszukanie adresów na start),
   zgłaszaj właścicielowi z gotowym promptem w pliku. Źródła i cytaty merytoryczne z Gemini zawsze sprawdza badacz (wnioski z prób: docs/18, 11.10.2026).
 - **Lekcje po błędach (zasada właściciela 14.10.2026, wszystkie projekty):** gdy coś poszło nie tak (błąd dotarł do właściciela lub testera,
