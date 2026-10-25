@@ -118,7 +118,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
             <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.danger, ...font('footnote'), ...FW.semibold }}>{t('Częsty błąd: {opis}', { opis: cueText(error.cue, lang()) })}</Text>
             {errors.length > 1
               ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-                  {errors.map((e, i) => <Pressable key={e.error} testID={`exercise-figure-v2-error-${e.error}`} onPress={() => setErrIdx(i)} accessibilityRole="button" accessibilityState={{ selected: i === errIdx }} accessibilityLabel={cueText(e.cue, lang())} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}>
+                  {errors.map((e, i) => <Pressable accessibilityLanguage={lang()} key={e.error} testID={`exercise-figure-v2-error-${e.error}`} onPress={() => setErrIdx(i)} accessibilityRole="button" accessibilityState={{ selected: i === errIdx }} accessibilityLabel={cueText(e.cue, lang())} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}>
                     <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: i === errIdx ? th.danger : th.muted, ...font('footnote'), ...(i === errIdx ? FW.semibold : FW.regular) }}>✕ {cueText(e.cue, lang())}</Text>
                   </Pressable>)}
                 </View>
