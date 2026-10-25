@@ -5981,6 +5981,10 @@
   "en": "In the current workout it will be marked as deleted."
  },
  {
+  "pl": "W trybie cichym telefon tylko wibruje",
+  "en": "In silent mode the phone only vibrates"
+ },
+ {
   "pl": "W tygodniu deload „Start” i „Powtórz ostatni” zaproponują „Mniej serii”: {less}; ciężary i szablon bez zmian.",
   "en": "In a deload week “Start” and “Repeat last” offer “Fewer sets”: {less}; weights and template unchanged."
  },
