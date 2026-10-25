@@ -1,0 +1,7461 @@
+{
+ "_opis": "Słownik terminów treningowych aplikacji (decyzja właściciela 25.10.2026). Jedno źródło: tego pliku używają strażnik tests/slownik-terminow.test.ts, przekład przez API (scripts/i18n/przeklad-api.mjs), rola tlumacz i recenzent-lokalizacji. Opis: docs/lokalizacja/slownik-terminow.md.",
+ "_zasada": "Teksty mają brzmieć naturalnie, tak jak mówi trener albo kolega na siłowni w danym języku (decyzja właściciela 25.10.2026). Termin zalecany = potoczny termin siłowni, nie naukowy, chyba że potoczny wprowadza w błąd. „zakazane” = terminy, które w danym języku znaczą coś innego albo brzmią jak przerwa w pracy / serial / odchudzanie; wzorzec to wyrażenie regularne (bez uwzględnienia wielkości liter, Unicode).",
+ "pewnosc": {
+  "wysoka": "standardowy termin siłowni, powszechnie znany; nadal bez recenzji native speakera",
+  "srednia": "termin plausibilny, nieweryfikowany przez native speakera",
+  "niska": "wątpliwość: do potwierdzenia przez native speakera (lista w docs/16)"
+ },
+ "pojecia": [
+  {
+   "id": "przerwa",
+   "pl": "przerwa między seriami",
+   "znaczenie": "odpoczynek między seriami (timer na koniec przerwy); NIE przerwa w pracy ani w szkole, NIE dzień wolny",
+   "kanon": "Przerwa",
+   "wykrywaj": "(?<![\\p{L}])przerw(a|y|ę|ie|ą|om|ach)(?![\\p{L}])",
+   "wyklucz": "dni\\w* przerwy|dzień przerwy|dniem przerwy|przerwie pomiar",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Przerwa",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Rest",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Pauza",
+     "zakazane": [
+      {
+       "wzorzec": "přestávk",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Pauza",
+     "zakazane": [
+      {
+       "wzorzec": "prestávk",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Pihenő",
+     "zakazane": [
+      {
+       "wzorzec": "szünet",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Pauză",
+     "zakazane": [
+      {
+       "wzorzec": "recrea[țt]i",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Почивка",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Odmor",
+     "zakazane": [
+      {
+       "wzorzec": "pauz",
+       "powod": "„pauza” to pauza treningu, nie przerwa między seriami (odmor)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Počitek",
+     "zakazane": [
+      {
+       "wzorzec": "odmor",
+       "powod": "„odmor” znaczy urlop/wakacje; między seriami „počitek”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Одмор",
+     "zakazane": [
+      {
+       "wzorzec": "пауз",
+       "powod": "„пауза” to pauza treningu, nie przerwa między seriami (одмор)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Poilsis",
+     "zakazane": [
+      {
+       "wzorzec": "pertrauk",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Atpūta",
+     "zakazane": [
+      {
+       "wzorzec": "starpbr[īi]|pārtraukum",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Paus",
+     "zakazane": [
+      {
+       "wzorzec": "vaheaeg|vahetund",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Відпочинок",
+     "zakazane": [
+      {
+       "wzorzec": "перерв",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Descanso",
+     "zakazane": [
+      {
+       "wzorzec": "receso|laboral",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Descanso",
+     "zakazane": [
+      {
+       "wzorzec": "receso|laboral",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Descanso",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])pausa(?![\\p{L}])",
+       "powod": "„pausa” to pauza treningu; między seriami „descanso”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Descanso",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])pausa(?![\\p{L}])",
+       "powod": "„pausa” to pauza treningu; między seriami „descanso”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Pause",
+     "zakazane": [
+      {
+       "wzorzec": "Unterbrechung|Arbeitspause",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Repos",
+     "zakazane": [
+      {
+       "wzorzec": "\\bpause\\b",
+       "powod": "„pause” to przerwa w pracy; w sali mówi się „repos”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Recupero",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Rust",
+     "zakazane": [
+      {
+       "wzorzec": "pauze",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Vila",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])rast(?![\\p{L}])",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Hvile",
+     "zakazane": [
+      {
+       "wzorzec": "frikvarter",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Hvile",
+     "zakazane": [
+      {
+       "wzorzec": "friminutt|lunsj",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Palautus",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Dinlenme",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])mola",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Διάλειμμα",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Istirahat",
+     "zakazane": [
+      {
+       "wzorzec": "jeda",
+       "powod": "„jeda” to pauza (treningu); między seriami „istirahat”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Rehat",
+     "zakazane": [
+      {
+       "wzorzec": "jeda",
+       "powod": "„jeda” to pauza (treningu); między seriami „rehat”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Nghỉ",
+     "zakazane": [
+      {
+       "wzorzec": "giải lao",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Отдых",
+     "zakazane": [
+      {
+       "wzorzec": "перерыв",
+       "powod": "znaczy przerwę w pracy/szkole, nie odpoczynek między seriami"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "インターバル",
+     "zakazane": [
+      {
+       "wzorzec": "休憩",
+       "powod": "休憩 to przerwa w pracy/szkole; na siłowni między seriami mówi się インターバル"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "휴식",
+     "zakazane": [
+      {
+       "wzorzec": "점심|휴게",
+       "powod": "dotyczy przerwy obiadowej/pokoju socjalnego"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "休息",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "przerwa_robocza",
+   "pl": "przerwa robocza (po seriach roboczych)",
+   "znaczenie": "czas odpoczynku po serii roboczej (w odróżnieniu od przerwy po rozgrzewce); nie „przerwa w pracy”",
+   "kanon": "Przerwa robocza",
+   "wykrywaj": "przerwa robocza",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Przerwa robocza",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Working rest",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Pauza po pracovní sérii",
+     "zakazane": [
+      {
+       "wzorzec": "pracovní pauza",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Pauza po pracovnej sérii",
+     "zakazane": [
+      {
+       "wzorzec": "pracovná pauza",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Pihenő munkasorozat után",
+     "zakazane": [
+      {
+       "wzorzec": "munkapihenő|munkaszünet",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Pauză după seriile de lucru",
+     "zakazane": [
+      {
+       "wzorzec": "pauz[ăa] de lucru",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Почивка след работните серии",
+     "zakazane": [
+      {
+       "wzorzec": "работна почивка",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Odmor nakon radnih serija",
+     "zakazane": [
+      {
+       "wzorzec": "radni odmor|radna pauza",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Počitek po delovnih serijah",
+     "zakazane": [
+      {
+       "wzorzec": "delovni počitek",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Одмор после радних серија",
+     "zakazane": [
+      {
+       "wzorzec": "радни одмор|радна пауза",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Poilsis po darbinių serijų",
+     "zakazane": [
+      {
+       "wzorzec": "darbinis poilsis",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Atpūta pēc darba sērijām",
+     "zakazane": [
+      {
+       "wzorzec": "darba atpūta",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Paus pärast tööseeriat",
+     "zakazane": [
+      {
+       "wzorzec": "tööpaus",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Відпочинок після робочих підходів",
+     "zakazane": [
+      {
+       "wzorzec": "відпочинок у робочих",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Descanso tras series efectivas",
+     "zakazane": [
+      {
+       "wzorzec": "descanso (laboral|de trabajo)",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Descanso tras series efectivas",
+     "zakazane": [
+      {
+       "wzorzec": "descanso (laboral|de trabajo)",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Descanso após séries de trabalho",
+     "zakazane": [
+      {
+       "wzorzec": "descanso de trabalho",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Descanso após séries de trabalho",
+     "zakazane": [
+      {
+       "wzorzec": "descanso de trabalho",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Pause nach Arbeitssätzen",
+     "zakazane": [
+      {
+       "wzorzec": "Arbeitspause",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Repos après série de travail",
+     "zakazane": [
+      {
+       "wzorzec": "pause de travail",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Recupero dopo le serie allenanti",
+     "zakazane": [
+      {
+       "wzorzec": "pausa (di )?lavoro",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Rust na werkset",
+     "zakazane": [
+      {
+       "wzorzec": "werkpauze",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Vila efter arbetsset",
+     "zakazane": [
+      {
+       "wzorzec": "arbetspaus",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Hvile efter arbejdssæt",
+     "zakazane": [
+      {
+       "wzorzec": "arbejdspause",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Hvile etter arbeidssett",
+     "zakazane": [
+      {
+       "wzorzec": "arbeidspause",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Työsarjojen palautus",
+     "zakazane": [
+      {
+       "wzorzec": "työtauko",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Çalışma setlerinden sonra dinlenme",
+     "zakazane": [
+      {
+       "wzorzec": "iş molası|çalışma molası",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Διάλειμμα μετά τα σετ εργασίας",
+     "zakazane": [
+      {
+       "wzorzec": "διάλειμμα εργασίας",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Istirahat setelah set kerja",
+     "zakazane": [
+      {
+       "wzorzec": "istirahat kerja",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Rehat selepas set kerja",
+     "zakazane": [
+      {
+       "wzorzec": "rehat kerja",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Nghỉ giữa hiệp chính",
+     "zakazane": [
+      {
+       "wzorzec": "nghỉ giải lao|nghỉ làm việc",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Отдых после рабочих подходов",
+     "zakazane": [
+      {
+       "wzorzec": "рабочий отдых",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "ワーキングセット後のインターバル",
+     "zakazane": [
+      {
+       "wzorzec": "仕事の|休憩",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "작업 세트 후 휴식",
+     "zakazane": [
+      {
+       "wzorzec": "업무 휴식",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "工作組後休息",
+     "zakazane": [
+      {
+       "wzorzec": "工作休息|上班",
+       "powod": "kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "przerwa_po_rozgrzewce",
+   "pl": "przerwa po rozgrzewce",
+   "znaczenie": "odpoczynek po serii rozgrzewkowej",
+   "kanon": "Przerwa po rozgrzewce",
+   "wykrywaj": "przerwa po rozgrzewce",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Przerwa po rozgrzewce",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Rest after warm-up",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Pauza po zahřívací sérii",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Pauza po rozcvičke",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Pihenő bemelegítés után",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Pauză după încălzire",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Почивка след загрявка",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Odmor nakon zagrijavanja",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Počitek po ogrevanju",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Одмор после загревања",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Poilsis po apšilimo",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Atpūta pēc iesildīšanās",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Paus pärast soojendust",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Відпочинок після розминки",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Descanso tras calentamiento",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Descanso tras calentamiento",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Descanso após aquecimento",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Descanso após aquecimento",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Pause nach Aufwärmsätzen",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Repos après échauffement",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Recupero dopo riscaldamento",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Rust na opwarmset",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Vila efter uppvärmning",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Hvile efter opvarmning",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Hvile etter oppvarming",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Palautus lämmittelyn jälkeen",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Isınma sonrası dinlenme",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Διάλειμμα μετά την προθέρμανση",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Istirahat setelah pemanasan",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Rehat selepas pemanasan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Nghỉ sau khởi động",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Отдых после разминки",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "ウォームアップ後のインターバル",
+     "zakazane": [
+      {
+       "wzorzec": "休憩",
+       "powod": "休憩 to przerwa w pracy/szkole; na siłowni インターバル"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "워밍업 후 휴식",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "熱身後休息",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "dzien_wolny",
+   "pl": "dzień wolny / odpoczynku",
+   "znaczenie": "dzień bez treningu w planie tygodnia; NIE pauza treningu",
+   "kanon": "odpoczynek",
+   "wykrywaj": "odpoczynk|dzień przerwy|dniem przerwy|(?<![\\p{L}])wolne(?![\\p{L}])|dzień wolny|dni wolne|dniu wolnym",
+   "wyklucz": "wolne ciężary",
+   "jezyki": {
+    "pl": {
+     "zalecany": "odpoczynek",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "rest day",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "den odpočinku",
+     "zakazane": [
+      {
+       "wzorzec": "pauz",
+       "powod": "„pauza” to przerwa/pauza, nie dzień wolny"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "deň odpočinku",
+     "zakazane": [
+      {
+       "wzorzec": "pauz",
+       "powod": "„pauza” to przerwa/pauza, nie dzień wolny"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "pihenőnap",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "zi de odihnă",
+     "zakazane": [
+      {
+       "wzorzec": "pauz",
+       "powod": "„pauză” to pauza, nie dzień wolny („zi liberă”)"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "ден за почивка",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "dan odmora",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "dan počitka",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "дан одмора",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "poilsio diena",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "atpūtas diena",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "puhkepäev",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "день відпочинку",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "día de descanso",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "día de descanso",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "dia de descanso",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "dia de descanso",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Ruhetag",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "jour de repos",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "giorno di riposo",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "rustdag",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "vilodag",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "hviledag",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "hviledag",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "lepopäivä",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "dinlenme günü",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "ημέρα ξεκούρασης",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "hari istirahat",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "hari rehat",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "ngày nghỉ",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "день отдыха",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "休息日",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "휴식일",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "休息日",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "pauza_treningu",
+   "pl": "pauza treningu",
+   "znaczenie": "wstrzymanie zegara treningu przyciskiem; to nie jest przerwa między seriami",
+   "kanon": "Pauza treningu",
+   "wykrywaj": "pauz",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Pauza treningu",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Pause workout",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Pozastavit trénink",
+     "zakazane": [
+      {
+       "wzorzec": "pauz",
+       "powod": "„pauza” to przerwa między seriami; pauzę treningu opisuje „pozastavit”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Pozastaviť tréning",
+     "zakazane": [
+      {
+       "wzorzec": "pauz",
+       "powod": "„pauza” to przerwa między seriami; pauzę treningu opisuje „pozastaviť”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Edzés szüneteltetése",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Întrerupe antrenamentul",
+     "zakazane": [
+      {
+       "wzorzec": "pauz",
+       "powod": "„pauză” to przerwa między seriami; pauza treningu to „întrerupe”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Пауза на тренировката",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Pauziraj trening",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Začasno ustavi trening",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Паузирај тренинг",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Pristabdyti treniruotę",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Apturēt treniņu",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Peata treening",
+     "zakazane": [
+      {
+       "wzorzec": "paus(?!eeri)",
+       "powod": "„paus” to przerwa między seriami; pauza treningu to „peata”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Призупинити тренування",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Pausar entrenamiento",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Pausar entrenamiento",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Pausar treino",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Pausar treino",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Training anhalten",
+     "zakazane": [
+      {
+       "wzorzec": "Pause",
+       "powod": "„Pause” to przerwa między seriami; pauzę treningu opisuje „anhalten”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Mettre la séance en pause",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Metti in pausa l’allenamento",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Training pauzeren",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Pausa passet",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Sæt træningen på pause",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Sett økten på pause",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Keskeytä treeni",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Antrenmanı duraklat",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Παύση προπόνησης",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Jeda latihan",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Jeda latihan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Tạm dừng buổi tập",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Пауза тренировки",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "トレーニングを一時停止",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "운동 일시정지",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "暫停訓練",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "seria",
+   "pl": "seria",
+   "znaczenie": "jedno podejście: kolejne powtórzenia bez odkładania ciężaru (ang. set)",
+   "kanon": "Seria",
+   "wykrywaj": "(?<![\\p{L}])seri(a|e|i|ę|ą|om|ach)(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Seria",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Set",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Série",
+     "pewnosc": "wysoka"
+    },
+    "sk": {
+     "zalecany": "Séria",
+     "pewnosc": "wysoka"
+    },
+    "hu": {
+     "zalecany": "Sorozat",
+     "pewnosc": "niska",
+     "uwaga": "w siłowniach używa się też „széria”/„szett”; do potwierdzenia przez native speakera"
+    },
+    "ro": {
+     "zalecany": "Serie",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Серия",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Serija",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Serija",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Серија",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Serija",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Sērija",
+     "pewnosc": "niska",
+     "uwaga": "„sērija” = seria/odcinek; w siłowniach też „pieeja” — do potwierdzenia"
+    },
+    "et": {
+     "zalecany": "Seeria",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Підхід",
+     "zakazane": [
+      {
+       "wzorzec": "серія",
+       "powod": "„серія” to odcinek; podejście to „підхід”"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "es": {
+     "zalecany": "Serie",
+     "pewnosc": "wysoka"
+    },
+    "es-419": {
+     "zalecany": "Serie",
+     "pewnosc": "wysoka"
+    },
+    "pt": {
+     "zalecany": "Série",
+     "pewnosc": "wysoka"
+    },
+    "pt-BR": {
+     "zalecany": "Série",
+     "pewnosc": "wysoka"
+    },
+    "de": {
+     "zalecany": "Satz",
+     "zakazane": [
+      {
+       "wzorzec": "Serie",
+       "powod": "„Serie” to serial/seria produktów; podejście to „Satz”"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "fr": {
+     "zalecany": "Série",
+     "pewnosc": "wysoka"
+    },
+    "it": {
+     "zalecany": "Serie",
+     "pewnosc": "wysoka"
+    },
+    "nl": {
+     "zalecany": "Set",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])serie(?![\\p{L}])",
+       "powod": "„serie” to serial; podejście to „set”"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "sv": {
+     "zalecany": "Set",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])serie(?![\\p{L}])",
+       "powod": "„serie” to serial; podejście to „set”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Sæt",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])serie(?![\\p{L}])",
+       "powod": "„serie” to serial; podejście to „sæt”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Sett",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])serie(?![\\p{L}])",
+       "powod": "„serie” to serial; podejście to „sett”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Sarja",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Set",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])seri(?![\\p{L}])",
+       "powod": "„seri” to seria/szybki; podejście to „set”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Σετ",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Set",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])seri(?![\\p{L}])",
+       "powod": "„seri” to serial; podejście to „set”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Set",
+     "zakazane": [
+      {
+       "wzorzec": "(?<![\\p{L}])siri(?![\\p{L}])",
+       "powod": "„siri” to serial; podejście to „set”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Hiệp",
+     "pewnosc": "niska",
+     "uwaga": "„hiệp” (też runda w boksie) obok „set” — do potwierdzenia"
+    },
+    "ru": {
+     "zalecany": "Подход",
+     "zakazane": [
+      {
+       "wzorzec": "серия",
+       "powod": "„серия” to odcinek/seria produktów; podejście to „подход”"
+      }
+     ],
+     "pewnosc": "wysoka"
+    },
+    "ja": {
+     "zalecany": "セット",
+     "pewnosc": "wysoka"
+    },
+    "ko": {
+     "zalecany": "세트",
+     "pewnosc": "wysoka"
+    },
+    "zh-Hant": {
+     "zalecany": "組",
+     "pewnosc": "wysoka"
+    }
+   }
+  },
+  {
+   "id": "seria_robocza",
+   "pl": "seria robocza",
+   "znaczenie": "seria właściwa (nie rozgrzewkowa); ang. working set",
+   "kanon": "Serie robocze",
+   "wykrywaj": "seri\\w* robocz|robocz\\w* seri",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Serie robocze",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Working sets",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Pracovní série",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Pracovné série",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Munkasorozatok",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Serii de lucru",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Работни серии",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Radne serije",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Delovne serije",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Радне серије",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Darbinės serijos",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Darba sērijas",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Tööseeriad",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Робочі підходи",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Series efectivas",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Series efectivas",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Séries de trabalho",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Séries de trabalho",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Arbeitssätze",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Séries de travail",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Serie allenanti",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Werksets",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Arbetsset",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Arbejdssæt",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Arbeidssett",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Työsarjat",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Çalışma setleri",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Σετ εργασίας",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Set kerja",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Set kerja",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Hiệp chính",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Рабочие подходы",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "ワーキングセット",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "작업 세트",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "工作組",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "rozgrzewka",
+   "pl": "rozgrzewka / seria rozgrzewkowa",
+   "znaczenie": "lekkie serie przed seriami roboczymi (oznaczenie W)",
+   "kanon": "rozgrzewka",
+   "wykrywaj": "rozgrzew",
+   "jezyki": {
+    "pl": {
+     "zalecany": "rozgrzewka",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "warm-up",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "zahřívací",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "rozcvička",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "bemelegítés",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "încălzire",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "загрявка",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "zagrijavanje",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "ogrevanje",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "загревање",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "apšilimas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "iesildīšanās",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "soojendus",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "розминка",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "calentamiento",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "calentamiento",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "aquecimento",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "aquecimento",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Aufwärmsatz",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "échauffement",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "riscaldamento",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "opwarming",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "uppvärmning",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "opvarmning",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "oppvarming",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "lämmittely",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "ısınma",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "προθέρμανση",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "pemanasan",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "pemanasan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "khởi động",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "разминка",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "ウォームアップ",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "워밍업",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "熱身",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "powtorzenie",
+   "pl": "powtórzenie",
+   "znaczenie": "jedno pełne wykonanie ruchu w serii (ang. rep)",
+   "kanon": "Powtórzenia",
+   "wykrywaj": "powtórzeń|powtórzenia|powtórzenie|powtórzeniami|powtórzeniom|powt\\.",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Powtórzenia",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Reps",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Opakování",
+     "pewnosc": "wysoka"
+    },
+    "sk": {
+     "zalecany": "Opakovania",
+     "pewnosc": "wysoka"
+    },
+    "hu": {
+     "zalecany": "Ismétlés",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Repetări",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Повторения",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Ponavljanja",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Ponovitve",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Понављања",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Kartojimai",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Atkārtojumi",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Kordused",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Повторення",
+     "pewnosc": "wysoka"
+    },
+    "es": {
+     "zalecany": "Repeticiones",
+     "pewnosc": "wysoka"
+    },
+    "es-419": {
+     "zalecany": "Repeticiones",
+     "pewnosc": "wysoka"
+    },
+    "pt": {
+     "zalecany": "Repetições",
+     "pewnosc": "wysoka"
+    },
+    "pt-BR": {
+     "zalecany": "Repetições",
+     "pewnosc": "wysoka"
+    },
+    "de": {
+     "zalecany": "Wiederholungen",
+     "pewnosc": "wysoka"
+    },
+    "fr": {
+     "zalecany": "Répétitions",
+     "pewnosc": "wysoka"
+    },
+    "it": {
+     "zalecany": "Ripetizioni",
+     "pewnosc": "wysoka"
+    },
+    "nl": {
+     "zalecany": "Herhalingen",
+     "pewnosc": "wysoka"
+    },
+    "sv": {
+     "zalecany": "Reps",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Gentagelser",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Repetisjoner",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Toistot",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Tekrar",
+     "pewnosc": "wysoka"
+    },
+    "el": {
+     "zalecany": "Επαναλήψεις",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Repetisi",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Ulangan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Số lần",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Повторения",
+     "pewnosc": "wysoka"
+    },
+    "ja": {
+     "zalecany": "回数",
+     "pewnosc": "wysoka"
+    },
+    "ko": {
+     "zalecany": "반복 횟수",
+     "pewnosc": "wysoka"
+    },
+    "zh-Hant": {
+     "zalecany": "次數",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "zakres_powtorzen",
+   "pl": "zakres powtórzeń",
+   "znaczenie": "przedział liczby powtórzeń w serii (np. 8–12); NIE przerwa i NIE zakres ruchu",
+   "kanon": "+ zakres powtórzeń",
+   "wykrywaj": "zakres\\w*\\s+(powtórzeń|\\{r\\})|zakresu powtórzeń",
+   "jezyki": {
+    "pl": {
+     "zalecany": "zakres powtórzeń",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "rep range",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "rozsah opakování",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "rozsah opakovaní",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "ismétlési tartomány",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "interval de repetări",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "диапазон на повторенията",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "raspon ponavljanja",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "razpon ponovitev",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "опсег понављања",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "pakartojimų intervalas",
+     "pewnosc": "niska",
+     "uwaga": "„intervalas” bywa przerwą; w siłowniach też „diapazonas” — do potwierdzenia"
+    },
+    "lv": {
+     "zalecany": "atkārtojumu diapazons",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "korduste vahemik",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "діапазон повторень",
+     "zakazane": [
+      {
+       "wzorzec": "інтервал",
+       "powod": "„інтервал” to przerwa/trening interwałowy; zakres to „діапазон”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "rango de repeticiones",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "rango de repeticiones",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "gama de repetições",
+     "zakazane": [
+      {
+       "wzorzec": "intervalo",
+       "powod": "„intervalo” w siłowni to przerwa między seriami; zakres to „gama”"
+      }
+     ],
+     "pewnosc": "niska",
+     "uwaga": "w Portugalii „intervalo” = przerwa między seriami, więc „gama”; do potwierdzenia przez native speakera"
+    },
+    "pt-BR": {
+     "zalecany": "faixa de repetições",
+     "zakazane": [
+      {
+       "wzorzec": "intervalo",
+       "powod": "w Brazylii „intervalo” to przerwa między seriami (i przerwa w pracy/szkole); zakres to „faixa”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Wdh.-Bereich",
+     "zakazane": [
+      {
+       "wzorzec": "Intervall",
+       "powod": "„Intervall” to trening interwałowy; zakres to „Bereich”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "plage de rép.",
+     "zakazane": [
+      {
+       "wzorzec": "intervalle",
+       "powod": "„intervalle” bywa przerwą; zakres to „plage”/„fourchette”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "range di ripetizioni",
+     "zakazane": [
+      {
+       "wzorzec": "intervall",
+       "powod": "„intervallo” bywa przerwą; zakres powtórzeń to „range”"
+      }
+     ],
+     "pewnosc": "niska",
+     "uwaga": "„range” to potoczne w siłowni; „intervallo” bywa przerwą — do potwierdzenia"
+    },
+    "nl": {
+     "zalecany": "herhalingsbereik",
+     "zakazane": [
+      {
+       "wzorzec": "interval",
+       "powod": "„interval” to trening interwałowy; zakres to „bereik”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "repsintervall",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "gent.-interval",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "rep.-område",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "toistoalue",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "tekrar aralığı",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "εύρος επαναλ.",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "rentang repetisi",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "julat ulangan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "khoảng lần lặp",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "диапазон повторений",
+     "zakazane": [
+      {
+       "wzorzec": "интервал",
+       "powod": "„интервал” to przerwa/trening interwałowy; zakres to „диапазон”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "レップ範囲",
+     "pewnosc": "niska",
+     "uwaga": "„レップ” to żargon siłowni; do potwierdzenia"
+    },
+    "ko": {
+     "zalecany": "반복 범위",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "次數範圍",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "zakres_ruchu",
+   "pl": "zakres ruchu",
+   "znaczenie": "amplituda ruchu w ćwiczeniu (ang. range of motion); NIE zakres powtórzeń",
+   "kanon": null,
+   "wykrywaj": "(pełny|skrócony|zmniejsz\\w*) zakres|zakres ruchu",
+   "jezyki": {
+    "pl": {
+     "zalecany": "zakres ruchu",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "range of motion",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "rozsah pohybu",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "rozsah pohybu",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "mozgástartomány",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "amplitudine",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "амплитуда",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "opseg pokreta",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "obseg gibanja",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "обим покрета",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "judesio amplitudė",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "kustības amplitūda",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "liikumisulatus",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "амплітуда",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "recorrido",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "recorrido",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "amplitude",
+     "zakazane": [
+      {
+       "wzorzec": "intervalo",
+       "powod": "„intervalo” to przerwa; zakres ruchu to „amplitude”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "amplitude",
+     "zakazane": [
+      {
+       "wzorzec": "intervalo",
+       "powod": "„intervalo” to przerwa; zakres ruchu to „amplitude”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Bewegungsumfang",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "amplitude",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "escursione",
+     "zakazane": [
+      {
+       "wzorzec": "intervall",
+       "powod": "„intervallo” bywa przerwą; zakres ruchu to „escursione”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "bewegingsbereik",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "rörelseomfång",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "bevægelsesudslag",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "bevegelsesutslag",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "liikelaajuus",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "hareket açıklığı",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "εύρος κίνησης",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "rentang gerak",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "julat gerakan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "biên độ chuyển động",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "амплитуда",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "可動域",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "가동범위",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "活動範圍",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "ciezar",
+   "pl": "ciężar",
+   "znaczenie": "obciążenie podnoszone w serii (kg/lb); NIE masa ciała",
+   "kanon": "ciężar",
+   "wykrywaj": "ciężar",
+   "jezyki": {
+    "pl": {
+     "zalecany": "ciężar",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "weight",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "váha",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "váha",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "súly",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "greutate",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "тежест",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "težina",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "teža",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "тежина",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "svoris",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "svars",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "raskus",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "вага",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "peso",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "peso",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "peso",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "peso",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Gewicht",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "charge",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "peso",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "gewicht",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "vikt",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "vægt",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "vekt",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "paino",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "ağırlık",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "βάρος",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "beban",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "beban",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "mức tạ",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "вес",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "重量",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "무게",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "重量",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "masa_ciala",
+   "pl": "masa ciała",
+   "znaczenie": "waga użytkownika (pomiary); także ćwiczenia z masą ciała",
+   "kanon": "Masa ciała",
+   "wykrywaj": "masa ciała|masą ciała|masy ciała",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Masa ciała",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Body weight",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Tělesná hmotnost",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Telesná hmotnosť",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Testsúly",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Greutatea corpului",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Телесно тегло",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Tjelesna težina",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Telesna teža",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Телесна тежина",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Kūno svoris",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Ķermeņa svars",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Kehakaal",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Маса тіла",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Peso corporal",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Peso corporal",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Peso corporal",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Peso corporal",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Körpergewicht",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Poids de corps",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Peso corporeo",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Lichaamsgewicht",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Kroppsvikt",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Kropsvægt",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Kroppsvekt",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Kehonpaino",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Vücut ağırlığı",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Σωματικό βάρος",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Berat badan",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Berat badan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Cân nặng",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Масса тела",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "体重",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "체중",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "體重",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "dociazenie",
+   "pl": "dociążenie",
+   "znaczenie": "dodatkowy ciężar do masy ciała (pas, kamizelka)",
+   "kanon": "Max dociążenie",
+   "wykrywaj": "dociąż",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Max dociążenie",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Max added weight",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Max. přidaná váha",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Max pridaná záťaž",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Max. extra súly",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Lest max.",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Макс. доп. тежест",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Maks. dodatna težina",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Maks. dodatna teža",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Макс. додатна тежина",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Maks. papildomas svoris",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Maks. papildsvars",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Max lisaraskus",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Макс. обтяження",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Lastre máximo",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Lastre máximo",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Lastro máx.",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Peso extra máx.",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Max. Zusatzgewicht",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Lest max",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Zavorra max",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Max extra gewicht",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Max extravikt",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Maks. ekstra vægt",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Maks ekstravekt",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Max lisäpaino",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Maks. ek ağırlık",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Μέγιστο πρόσθετο βάρος",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Beban tambahan maks",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Beban tambahan maks",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Tạ thêm tối đa",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Макс. доп. вес",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "最大加重",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "최대 추가 중량",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "最大負重",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "do_upadku",
+   "pl": "do upadku",
+   "znaczenie": "seria wykonywana do niemożności kolejnego powtórzenia (oznaczenie F)",
+   "kanon": "Do upadku (F)",
+   "wykrywaj": "upadk",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Do upadku",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "To failure",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Do selhání",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Do zlyhania",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Bukásig",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Până la epuizare",
+     "pewnosc": "niska",
+     "uwaga": "w siłowniach też „până la cedare”; do potwierdzenia"
+    },
+    "bg": {
+     "zalecany": "До отказ",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Do otkaza",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Do odpovedi",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "До отказа",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Iki nesėkmės",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera"
+    },
+    "lv": {
+     "zalecany": "Līdz atteicei",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Kuni väsimuseni",
+     "pewnosc": "niska",
+     "uwaga": "„väsimuseni” = do zmęczenia; do potwierdzenia"
+    },
+    "uk": {
+     "zalecany": "До відмови",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Al fallo",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Al fallo",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Até à falha",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Até a falha",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Bis zum Versagen",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Jusqu’à l’échec",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "A cedimento",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Tot falen",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Till failure",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Til udmattelse",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Til utmattelse",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Uupumukseen",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera"
+    },
+    "tr": {
+     "zalecany": "Tükenişe kadar",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera"
+    },
+    "el": {
+     "zalecany": "Έως αποτυχία",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera"
+    },
+    "id": {
+     "zalecany": "Sampai gagal",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Hingga gagal",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Đến kiệt sức",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "До отказа",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "限界まで",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "실패 지점까지",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "力竭",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "superset",
+   "pl": "superset",
+   "znaczenie": "dwa ćwiczenia wykonywane naprzemiennie bez przerwy",
+   "kanon": "superset",
+   "wykrywaj": "superset",
+   "jezyki": {
+    "pl": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "szuperszett",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "суперсерия",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "суперсет",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "superserija",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "supersets",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "superseeria",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "суперсет",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "superserie",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "superserie",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Supersatz",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "supersæt",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "supersett",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "supersarja",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "süperset",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "superset",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "суперсет",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "スーパーセット",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "슈퍼세트",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "超級組",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "drop_set",
+   "pl": "drop set",
+   "znaczenie": "seria z obniżaniem ciężaru bez przerwy (oznaczenie D)",
+   "kanon": "Drop set (D)",
+   "wykrywaj": "drop set",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Дроп сет",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Дроп сет",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Дроп-сет",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Dropsatz",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Dropset",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Dropset",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Dropsæt",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Dropsett",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Pudotussarja",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Drop set",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Дроп-сет",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "ドロップセット",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "드롭 세트",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "遞減組",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "deload",
+   "pl": "deload",
+   "znaczenie": "tydzień z mniejszą objętością dla regeneracji; NIE redukcja masy ciała",
+   "kanon": "Deload",
+   "wykrywaj": "deload",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Descărcare",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Разтоварване",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Rasterećenje",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Razbremenitev",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Растерећење",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Iškrova",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Atslodze",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Kergendus",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Розвантаження",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Descarga",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Descarga",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Descarga",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Deload",
+     "zakazane": [
+      {
+       "wzorzec": "descarga",
+       "powod": "„descarga” to spłuczka/wyładowanie; w Brazylii mówi się „deload”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Décharge",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Scarico",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Kevennys",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Αποφόρτιση",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Deload",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Разгрузка",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "ディロード",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "디로드",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "減載",
+     "zakazane": [
+      {
+       "wzorzec": "減量",
+       "powod": "„減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載”"
+      }
+     ],
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "plan",
+   "pl": "plan (tygodnia)",
+   "znaczenie": "przypisanie szablonów do dni tygodnia",
+   "kanon": "Plan",
+   "wykrywaj": "(?<![\\p{L}])plan(u|em|ie|y|ów|om|ami|ach)?(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Plán",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Plán",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Terv",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Načrt",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Planas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Plāns",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Plaan",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Plano",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Plano",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Piano",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Suunnitelma",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Plan",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Πρόγραμμα",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Rencana",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Pelan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Kế hoạch",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "План",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "プラン",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "플랜",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "計畫",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "szablon",
+   "pl": "szablon (treningu)",
+   "znaczenie": "zapisany zestaw ćwiczeń, serii i zakresów, z którego startuje trening",
+   "kanon": "Szablon",
+   "wykrywaj": "szablon",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Szablon",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Template",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Šablona",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Šablóna",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Sablon",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Șablon",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Шаблон",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Predložak",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Predloga",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Шаблон",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Šablonas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Veidne",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Mall",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Шаблон",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Plantilla",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Plantilla",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Modelo",
+     "pewnosc": "niska",
+     "uwaga": "„modelo” jest ogólne; w siłowniach „ficha/plano de treino” — do potwierdzenia"
+    },
+    "pt-BR": {
+     "zalecany": "Modelo",
+     "pewnosc": "niska",
+     "uwaga": "„modelo” jest ogólne; w siłowniach „ficha” — do potwierdzenia"
+    },
+    "de": {
+     "zalecany": "Vorlage",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Modèle",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Scheda",
+     "zakazane": [
+      {
+       "wzorzec": "modell",
+       "powod": "w włoskich siłowniach „scheda”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Sjabloon",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Mall",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Skabelon",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Mal",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Pohja",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Şablon",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Πρότυπο",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Templat",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Templat",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Mẫu",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Шаблон",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "テンプレート",
+     "pewnosc": "niska",
+     "uwaga": "„テンプレート” vs „メニュー” w siłowniach — do potwierdzenia"
+    },
+    "ko": {
+     "zalecany": "루틴",
+     "zakazane": [
+      {
+       "wzorzec": "템플릿",
+       "powod": "w koreańskich siłowniach „루틴”"
+      }
+     ],
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "範本",
+     "pewnosc": "niska",
+     "uwaga": "„範本” brzmi jak szablon dokumentu; w siłowniach tajwańskich „課表” — do potwierdzenia"
+    }
+   }
+  },
+  {
+   "id": "trening",
+   "pl": "trening",
+   "znaczenie": "jedna sesja treningowa (od startu do zakończenia)",
+   "kanon": "Trening",
+   "wykrywaj": "trening",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Trening",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Workout",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Trénink",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Tréning",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Edzés",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Antrenament",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Тренировка",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Trening",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Trening",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Тренинг",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Treniruotė",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Treniņš",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Treening",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Тренування",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Entreno",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Entreno",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Treino",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Treino",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Training",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Séance",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Allenamento",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Training",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Träning",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Træning",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Trening",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Treeni",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Antrenman",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Προπόνηση",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Latihan",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Latihan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Tập",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Тренировка",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "トレーニング",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "운동",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "訓練",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "trening_w_toku",
+   "pl": "trening w toku",
+   "znaczenie": "trening rozpoczęty i niezakończony („na żywo”)",
+   "kanon": "Trening w toku",
+   "wykrywaj": "trening w toku|trwającego treningu|treningu w toku",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Trening w toku",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Workout in progress",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Probíhající trénink",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Prebiehajúci tréning",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Folyamatban lévő edzés",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Antrenament în curs",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Тренировка в ход",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Trening u tijeku",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Trening v teku",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Тренинг у току",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Vyksta treniruotė",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Notiek treniņš",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Treening käib",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Тренування в процесі",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Entrenamiento en curso",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Entrenamiento en curso",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Treino em curso",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Treino em andamento",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Training läuft",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Séance en cours",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Allenamento in corso",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Training bezig",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Pågående pass",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Træning i gang",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Økt pågår",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Treeni käynnissä",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Devam eden antrenman",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Προπόνηση σε εξέλιξη",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Latihan sedang berjalan",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Latihan sedang berjalan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Buổi tập đang diễn ra",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Текущая тренировка",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "進行中のトレーニング",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "진행 중인 운동",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "進行中的訓練",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "trening_wstecz",
+   "pl": "trening wstecz",
+   "znaczenie": "trening dopisany po fakcie z datą z przeszłości",
+   "kanon": "Trening wstecz",
+   "wykrywaj": "trening wstecz|dopisz trening",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Trening wstecz",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Past workout",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Minulý trénink",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Minulý tréning",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Korábbi edzés",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Antrenament trecut",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Минала тренировка",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Prošli trening",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Pretekli trening",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Ранији тренинг",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Praėjusi treniruotė",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Pagātnes treniņš",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Varasem treening",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Минуле тренування",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Entrenamiento pasado",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Entrenamiento pasado",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Treino passado",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Treino passado",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Nachgetragenes Training",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Séance passée",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Allenamento passato",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Eerdere training",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Tidigare pass",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Tidligere træning",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Tidligere økt",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Aiempi treeni",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Geçmiş antrenman",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Παλιά προπόνηση",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Latihan lampau",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Latihan lepas",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Buổi tập đã qua",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Прошедшая тренировка",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "過去のトレーニング",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "지난 운동",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "補記訓練",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "dzien_treningowy",
+   "pl": "dzień treningowy",
+   "znaczenie": "dzień, w którym użytkownik trenował (liczy się do limitu miesięcznego)",
+   "kanon": "Dni treningowe w tygodniu",
+   "wykrywaj": "dni\\w* treningow|dzień treningowy",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Dni treningowe w tygodniu",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Training days per week",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Tréninkové dny v týdnu",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Tréningové dni v týždni",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Edzésnapok hetente",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Zile de antrenament pe săptămână",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Тренировъчни дни седмично",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Dani treninga u tjednu",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Dnevi treninga na teden",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Дани тренинга недељно",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Treniruočių dienos per savaitę",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Treniņu dienas nedēļā",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Treeningpäevi nädalas",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Тренувальні дні на тиждень",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Días de entrenamiento por semana",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Días de entrenamiento por semana",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Dias de treino por semana",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Dias de treino por semana",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Trainingstage pro Woche",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Jours d’entraînement par semaine",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Giorni di allenamento a settimana",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Trainingsdagen per week",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Träningsdagar per vecka",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Træningsdage pr. uge",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Treningsdager per uke",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Treenipäiviä viikossa",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Haftalık antrenman günü",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Ημέρες προπόνησης την εβδομάδα",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Hari latihan per minggu",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Hari latihan seminggu",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Số ngày tập mỗi tuần",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Тренировочные дни в неделю",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "週のトレーニング日数",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "주간 운동일 수",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "每週訓練天數",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "rekord",
+   "pl": "rekord",
+   "znaczenie": "najlepszy wynik (PR) w ćwiczeniu",
+   "kanon": "Nowy rekord!",
+   "wykrywaj": "rekord",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Nowy rekord",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "New record",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Nový rekord",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Nový rekord",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Új rekord",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Record nou",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Нов рекорд",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Novi rekord",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Nov rekord",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Нови рекорд",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Naujas rekordas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Jauns rekords",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Uus rekord",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Новий рекорд",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "¡Nuevo récord",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "¡Nuevo récord",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Novo recorde",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Novo recorde",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Neuer Rekord",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Nouveau record",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Nuovo record",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Nieuw record",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Nytt rekord",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Ny rekord",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Ny rekord",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Uusi ennätys",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Yeni rekor",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Νέο ρεκόρ",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Rekor baru",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Rekod baharu",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Kỷ lục mới",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Новый рекорд",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "新記録",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "새 기록",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "新紀錄",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "objetosc",
+   "pl": "objętość",
+   "znaczenie": "suma ciężar × powtórzenia (lub liczba serii) w okresie; NIE głośność",
+   "kanon": "Objętość",
+   "wykrywaj": "objętoś",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Objętość",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Volume",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Objem",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Objem",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Volumen",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Volum",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Обем",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Volumen",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Volumen",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Волумен",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Apimtis",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Apjoms",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Maht",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Обсяг",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Volumen",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Volumen",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Volume",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Volume",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Volumen",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Volume",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Volume",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Volume",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Volym",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Volumen",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Volum",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Volyymi",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Hacim",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Όγκος",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Volume",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Volum",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Khối lượng",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Объём",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "ボリューム",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "볼륨",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "訓練量",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "skala_wysilku",
+   "pl": "skala wysiłku (RPE/RIR)",
+   "znaczenie": "subiektywna ocena wysiłku w serii; skróty RPE i RIR zostają bez zmian",
+   "kanon": "Skala wysiłku",
+   "wykrywaj": "skala wysiłku|RPE|RIR",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Skala wysiłku",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Effort scale",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Škála úsilí",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Škála úsilia",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Erőfeszítési skála",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Scala efortului",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Скала на усилието",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Ljestvica napora",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Lestvica napora",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Скала напора",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Pastangų skalė",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Piepūles skala",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Pingutuse skaala",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Шкала зусилля",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Escala de esfuerzo",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Escala de esfuerzo",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Escala de esforço",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Escala de esforço",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Anstrengungsskala",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Échelle d’effort",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Scala di sforzo",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Inspanningsschaal",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Ansträngningsskala",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Anstrengelsesskala",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Anstrengelsesskala",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Rasitusasteikko",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Efor ölçeği",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Κλίμακα προσπάθειας",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Skala usaha",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Skala usaha",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Thang gắng sức",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Шкала усилия",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "強度のスケール",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "강도 척도",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "用力程度量表",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "asekuracja",
+   "pl": "asekuracja",
+   "znaczenie": "zabezpieczenie ćwiczącego: osoba asekurująca (spotter) i ramiona asekuracyjne; NIE ubezpieczenie",
+   "kanon": "Asekuracja",
+   "wykrywaj": "asekur",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Asekuracja",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Spotting and safety",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Jištění",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Istenie",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Biztosítás",
+     "pewnosc": "niska",
+     "uwaga": "„biztosítás” bywa ubezpieczeniem — do potwierdzenia"
+    },
+    "ro": {
+     "zalecany": "Siguranță și asigurare",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera"
+    },
+    "bg": {
+     "zalecany": "Подсигуряване и безопасност",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Sigurnost i asistencija",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera"
+    },
+    "sl": {
+     "zalecany": "Varovanje",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Асистенција и безбедност",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera"
+    },
+    "lt": {
+     "zalecany": "Pagalba ir saugumas",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera"
+    },
+    "lv": {
+     "zalecany": "Drošināšana un drošība",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Julgestus ja ohutus",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Страхування",
+     "pewnosc": "niska",
+     "uwaga": "„страхування” bywa ubezpieczeniem; w siłowniach też „страховка”/„спотінг” — do potwierdzenia"
+    },
+    "es": {
+     "zalecany": "Asistencia y seguridad",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Asistencia y seguridad",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Auxílio e segurança",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Auxílio e segurança",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Sicherung",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Parade et sécurité",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Assistenza e sicurezza",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Spotten en veiligheid",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Spotting och säkerhet",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Sikring",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Sikring",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Varmistus",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Yardımcı kişi ve güvenlik önlemleri",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Ασφάλεια και spotting",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Spotter dan pengaman",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Spotter dan keselamatan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Hỗ trợ và an toàn",
+     "pewnosc": "niska",
+     "uwaga": "do potwierdzenia przez native speakera"
+    },
+    "ru": {
+     "zalecany": "Страховка",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "補助・安全対策",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "보조 및 안전",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "安全防護",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "technika",
+   "pl": "technika",
+   "znaczenie": "poprawny sposób wykonania ćwiczenia (wskazówki techniki)",
+   "kanon": "Technika",
+   "wykrywaj": "technik",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Technika",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Technique",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Technika provedení",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Technika vykonania",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Kivitelezés",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Tehnică",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Техника",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Tehnika",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Tehnika",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Техника",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Atlikimo technika",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Tehnika",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Tehnika",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Техніка",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Técnica",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Técnica",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Técnica",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Técnica",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Technik",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Technique",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Tecnica",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Techniek",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Teknik",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Teknik",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Teknikk",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Tekniikka",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Teknik",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Τεχνική",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Teknik",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Teknik",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Kỹ thuật",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Техника",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "テクニック",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "자세",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "技巧",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "cwiczenie",
+   "pl": "ćwiczenie",
+   "znaczenie": "pojedynczy ruch w bibliotece (przysiad, wyciskanie)",
+   "kanon": "Ćwiczenie",
+   "wykrywaj": "ćwiczeni",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Ćwiczenie",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Exercise",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Cvik",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Cvik",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Gyakorlat",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Exercițiu",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Упражнение",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Vježba",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Vaja",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Вежба",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Pratimas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Vingrinājums",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Harjutus",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Вправа",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Ejercicio",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Ejercicio",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Exercício",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Exercício",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Übung",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Exercice",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Esercizio",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Oefening",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Övning",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Øvelse",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Øvelse",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Liike",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Egzersiz",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Άσκηση",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Gerakan",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Senaman",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Bài tập",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Упражнение",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "種目",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "종목",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "動作",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "cwiczenie_wlasne",
+   "pl": "ćwiczenie własne",
+   "znaczenie": "ćwiczenie dodane przez użytkownika do biblioteki",
+   "kanon": "nowe ćwiczenie własne",
+   "wykrywaj": "ćwiczeni\\w* własn|własn\\w* ćwiczeni",
+   "jezyki": {
+    "pl": {
+     "zalecany": "nowe ćwiczenie własne",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "new custom exercise",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "nový vlastní cvik",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "nový vlastný cvik",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "új saját gyakorlat",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "exercițiu nou personalizat",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "ново собствено упражнение",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "nova vlastita vježba",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "nova lastna vaja",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "нова прилагођена вежба",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "naujas savas pratimas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "jauns pielāgots vingrinājums",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "uus oma harjutus",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "нова власна вправа",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "nuevo ejercicio personalizado",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "nuevo ejercicio personalizado",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "novo exercício personalizado",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "novo exercício personalizado",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "neue eigene Übung",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "nouvel exercice personnalisé",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "nuovo esercizio personalizzato",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "nieuwe eigen oefening",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "ny egen övning",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "ny egen øvelse",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "ny egen øvelse",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "uusi oma liike",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "yeni özel egzersiz",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "νέα προσαρμοσμένη άσκηση",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "gerakan kustom baru",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "senaman tersuai baharu",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "bài tập tự tạo mới",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "новое своё упражнение",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "新しいオリジナル種目",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "새 사용자 종목",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "新的自訂動作",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "partia",
+   "pl": "partia (mięśniowa)",
+   "znaczenie": "grupa mięśni trenowana w ćwiczeniu (klatka, plecy…)",
+   "kanon": "Partia",
+   "wykrywaj": "partii|partia|partie|partią|partiom",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Partia",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Body part",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Partie",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Partia",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Testrész",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Grupă musculară",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Мускулна група",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Dio tijela",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Mišična skupina",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Део тела",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Kūno dalis",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Muskuļu grupa",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Lihasrühm",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Частина тіла",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Parte del cuerpo",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Parte del cuerpo",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Grupo muscular",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Grupo muscular",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Muskelgruppe",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Groupe musculaire",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Gruppo muscolare",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Lichaamsdeel",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Kroppsdel",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Muskelgruppe",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Kroppsdel",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Lihasryhmä",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Vücut bölgesi",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Μέρος σώματος",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Kelompok otot",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Kumpulan otot",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Nhóm cơ",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Мышечная группа",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "部位",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "부위",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "肌群",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "sesja",
+   "pl": "sesja",
+   "znaczenie": "zapisany trening w historii",
+   "kanon": "Sesja",
+   "wykrywaj": "sesj",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Sesja",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Session",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Trénink",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Tréning",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Edzés",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Sesiune",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Тренировка",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Sesija",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Trening",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Сесија",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Treniruotė",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Sesija",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Treening",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Тренування",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Sesión",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Sesión",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Sessão",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Sessão",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Einheit",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Séance",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Sessione",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Sessie",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Pass",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Session",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Økt",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Treeni",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Oturum",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Συνεδρία",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Sesi",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Sesi",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Buổi tập",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Тренировка",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "セッション",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "세션",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "訓練",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "progresja",
+   "pl": "progresja",
+   "znaczenie": "stopniowe zwiększanie obciążenia lub powtórzeń; podpowiedź „↑”",
+   "kanon": "Progresja",
+   "wykrywaj": "progresj",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Progresja",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Progression",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Progrese",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Progresia",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Progresszió",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Progresie",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Прогресия",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Progresija",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Progresija",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Прогресија",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Progresija",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Progresija",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Progressioon",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Прогресія",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Progresión",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Progresión",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Progressão",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Progressão",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Progression",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Progression",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Progressione",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Progressie",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Progression",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Progression",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Progresjon",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Progressio",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Progresyon",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Εξέλιξη",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Progresi",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Progresi",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Tiến triển",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Прогрессия",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "プログレッション",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "프로그레션",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "漸進",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "zamiennik",
+   "pl": "zamiennik",
+   "znaczenie": "inne ćwiczenie wykonujące podobny ruch",
+   "kanon": "Zamienniki",
+   "wykrywaj": "zamiennik",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Zamienniki",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Substitutes",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Náhrady",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Náhrady",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Helyettesítők",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Înlocuitori",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Заместители",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Zamjene",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Nadomestki",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Замене",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Pakaitalai",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Aizstājēji",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Asendused",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Заміни",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Sustitutos",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Sustitutos",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Substitutos",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Substitutos",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Ersatzübungen",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Substituts",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Sostituti",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Vervangers",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Ersättare",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Erstatninger",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Erstatninger",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Korvaavat liikkeet",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Alternatif egzersizler",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Υποκατάστατα",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Pengganti",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Pengganti",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Bài thay thế",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Замены",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "代替種目",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "대체 종목",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "替代動作",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "asysta",
+   "pl": "asysta (gumą / maszyną)",
+   "znaczenie": "odciążenie masy ciała w podciąganiu/dipach (guma, maszyna)",
+   "kanon": "Asysta gumą",
+   "wykrywaj": "asyst",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Asysta gumą",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Band assistance",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Dopomoc gumou",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Asistencia gumou",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Szalagos segítség",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Asistență cu bandă",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Асистенция с ластик",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Pomoć trake",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Pomoč z elastiko",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Асистенција гумом",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Pagalba su guma",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Palīdzība ar gumiju",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Kummiga abi",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Допомога резинкою",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Asistencia con banda",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Asistencia con banda",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Assistência com elástico",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Assistência com elástico",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Bandunterstützung",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Assistance élastique",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Assistenza con elastico",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Hulp met band",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Assistans med band",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Elastikassistance",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Strikkassistanse",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Kuminauha-avustus",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Bant yardımı",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Βοήθεια με λάστιχο",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Bantuan karet",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Bantuan getah",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Hỗ trợ bằng dây kháng lực",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Помощь резинкой",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "バンドの補助",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "밴드 보조",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "彈力帶輔助",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "tempo",
+   "pl": "tempo (ruchu)",
+   "znaczenie": "zapis szybkości faz ruchu, np. 3-1-1",
+   "kanon": "Tempo",
+   "wykrywaj": "(?<![\\p{L}])tempo(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Tempó",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Темпо",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Темпо",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Tempas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Temps",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Темп",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Cadenza",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Τέμπο",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Tempo",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Темп",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "テンポ",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "템포",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "節奏",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "sztanga",
+   "pl": "sztanga",
+   "znaczenie": "długa sztanga (gryf z talerzami)",
+   "kanon": "sztanga",
+   "wykrywaj": "sztang",
+   "jezyki": {
+    "pl": {
+     "zalecany": "sztanga",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "barbell",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "činka",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "činka",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "rúd",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "halteră",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "щанга",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "šipka",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "palica",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "шипка",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "štanga",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "stienis",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "kang",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "штанга",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "barra",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "barra",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "barra",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "barra",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Langhantel",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "barre",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "bilanciere",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "barbell",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "skivstång",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "vægtstang",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "vektstang",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "levytanko",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "halter",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "μπάρα",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "barbel",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "barbel",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "tạ đòn",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "штанга",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "バーベル",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "바벨",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "槓鈴",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "hantle",
+   "pl": "hantle",
+   "znaczenie": "ręczne ciężarki (para)",
+   "kanon": "hantle",
+   "wykrywaj": "hantl",
+   "jezyki": {
+    "pl": {
+     "zalecany": "hantle",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "dumbbells",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "jednoručky",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "jednoručky",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "kézisúlyzók",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "gantere",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "дъмбели",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "bučice",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "ročke",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "бучице",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "hanteliai",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "hanteles",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "hantlid",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "гантелі",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "mancuernas",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "mancuernas",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "halteres",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "halteres",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Kurzhanteln",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "haltères",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "manubri",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "dumbbells",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "hantlar",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "håndvægte",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "manualer",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "käsipainot",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "dambıllar",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "αλτήρες",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "dumbel",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "dumbel",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "tạ đơn",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "гантели",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "ダンベル",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "덤벨",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "啞鈴",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "maszyna",
+   "pl": "maszyna",
+   "znaczenie": "przyrząd z prowadzeniem ruchu",
+   "kanon": "maszyna",
+   "wykrywaj": "(?<![\\p{L}])maszyn",
+   "jezyki": {
+    "pl": {
+     "zalecany": "maszyna",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "machine",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "stroj",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "stroj",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "gép",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "aparat",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "машина",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "sprava",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "naprava",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "машина",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "treniruoklis",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "trenažieris",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "masin",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "тренажер",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "máquina",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "máquina",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "máquina",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "máquina",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Maschine",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "machine",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "macchina",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "machine",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "maskin",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "maskine",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "maskin",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "laite",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "makine",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "μηχάνημα",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "mesin",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "mesin",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "máy",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "тренажёр",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "マシン",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "머신",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "機器",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "wyciag",
+   "pl": "wyciągi",
+   "znaczenie": "wyciąg z linką (kabel)",
+   "kanon": "Wyciągi",
+   "wykrywaj": "wyciąg",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Wyciągi",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Cables",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Kladky",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Kladky",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Kábelek",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Helcometre",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Скрипци",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Sajle",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Škripci",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Сајле",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Blokai",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Bloki",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Plokid",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Блоки",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Poleas",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Poleas",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Polias",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Polias",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Kabelzüge",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Poulies",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Cavi",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Kabels",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Kablar",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Kabeltræk",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Kabler",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Taljat",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Kablolar",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Τροχαλίες",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Kabel",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Kabel",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Cáp",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Блоки",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "ケーブル",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "케이블",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "滑輪",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "guma_oporowa",
+   "pl": "guma oporowa",
+   "znaczenie": "taśma lub guma do oporu/asysty",
+   "kanon": "Gumy oporowe",
+   "wykrywaj": "gum(a|y|ę|ą|om|ach|ami)?(?![\\p{L}])",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Gumy oporowe",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Resistance bands",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Odporové gumy",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Odporové gumy",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Erősítő gumiszalagok",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Benzi elastice",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Ластици за съпротивление",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Elastične trake",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Elastike za vadbo",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Еластичне гуме",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Pasipriešinimo gumos",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Pretestības gumijas",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Vastupanukummid",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Еспандери-резинки",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Bandas elásticas",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Bandas elásticas",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Elásticos de resistência",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Elásticos de resistência",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Widerstandsbänder",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Élastiques de résistance",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Elastici di resistenza",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Weerstandsbanden",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Motståndsband",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Træningselastikker",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Treningsstrikker",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Vastuskuminauhat",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Direnç bantları",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Λάστιχα αντίστασης",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Karet resistansi",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Getah rintangan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Dây kháng lực",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Эспандеры-петли",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "トレーニングバンド",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "저항 밴드",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "阻力帶",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "talerz",
+   "pl": "talerz obciążeniowy",
+   "znaczenie": "krążek na sztangę",
+   "kanon": "talerz obciążeniowy",
+   "wykrywaj": "talerz",
+   "jezyki": {
+    "pl": {
+     "zalecany": "talerz obciążeniowy",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "weight plate",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "kotouč",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "záťažový kotúč",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "súlytárcsa",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "disc de greutate",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "диск за тежести",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "ploča za utege",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "utežna plošča",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "тег",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "svorio diskas",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "svaru disks",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "raskusketas",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "диск",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "disco de peso",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "disco de peso",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "disco de peso",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "anilha",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Hantelscheibe",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "disque de musculation",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "disco",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "gewichtsschijf",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "viktskiva",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "vægtskive",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "vektskive",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "painolevy",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "ağırlık plakası",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "δίσκος βάρους",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "pelat beban",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "plat beban",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "bánh tạ",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "блин",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "プレート",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "원판",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "槓片",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "kopia_zapasowa",
+   "pl": "kopia zapasowa",
+   "znaczenie": "plik z danymi treningu do przywrócenia",
+   "kanon": "Kopia zapasowa",
+   "wykrywaj": "kopi\\w* zapasow|backup",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Kopia zapasowa",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Backup",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Záloha",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Záloha",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Biztonsági mentés",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Copie de rezervă",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Резервно копие",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Sigurnosna kopija",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Varnostna kopija",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Резервна копија",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Atsarginė kopija",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Rezerves kopija",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Varukoopia",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Резервна копія",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Copia de seguridad",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Respaldo",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Cópia de segurança",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Backup",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Sicherung",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Sauvegarde",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Backup",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Back-up",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Säkerhetskopia",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Sikkerhedskopi",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Sikkerhetskopi",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Varmuuskopio",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Yedekleme",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Αντίγραφο ασφαλείας",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Cadangan",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Sandaran",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Sao lưu",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Резервная копия",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "バックアップ",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "백업",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "備份",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "zacznij_trening",
+   "pl": "zacznij trening",
+   "znaczenie": "przycisk rozpoczęcia treningu",
+   "kanon": "Zacznij trening",
+   "wykrywaj": "zacznij trening",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Zacznij trening",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Start a workout",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Zahájit trénink",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Začať tréning",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Edzés indítása",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Începe un antrenament",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Започване на тренировка",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Započni trening",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Začni trening",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Започни тренинг",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Pradėti treniruotę",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Sākt treniņu",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Alusta treeningut",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Почати тренування",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Empezar un entrenamiento",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Empezar un entrenamiento",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Iniciar um treino",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Iniciar um treino",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Training starten",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Démarrer une séance",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Inizia un allenamento",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Start een training",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Starta ett pass",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Start en træning",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Start en økt",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Aloita treeni",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Antrenmana başla",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Έναρξη προπόνησης",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Mulai latihan",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Mulakan latihan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Bắt đầu buổi tập",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Начать тренировку",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "トレーニングを始める",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "운동 시작",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "開始訓練",
+     "pewnosc": "srednia"
+    }
+   }
+  },
+  {
+   "id": "zakoncz_trening",
+   "pl": "zakończ trening",
+   "znaczenie": "przycisk zakończenia treningu",
+   "kanon": "Zakończ trening",
+   "wykrywaj": "zakończ trening",
+   "jezyki": {
+    "pl": {
+     "zalecany": "Zakończ trening",
+     "pewnosc": "srednia"
+    },
+    "en": {
+     "zalecany": "Finish workout",
+     "pewnosc": "srednia"
+    },
+    "cs": {
+     "zalecany": "Dokončit trénink",
+     "pewnosc": "srednia"
+    },
+    "sk": {
+     "zalecany": "Dokončiť tréning",
+     "pewnosc": "srednia"
+    },
+    "hu": {
+     "zalecany": "Edzés befejezése",
+     "pewnosc": "srednia"
+    },
+    "ro": {
+     "zalecany": "Termină antrenamentul",
+     "pewnosc": "srednia"
+    },
+    "bg": {
+     "zalecany": "Завършване на тренировката",
+     "pewnosc": "srednia"
+    },
+    "hr": {
+     "zalecany": "Završi trening",
+     "pewnosc": "srednia"
+    },
+    "sl": {
+     "zalecany": "Končaj trening",
+     "pewnosc": "srednia"
+    },
+    "sr": {
+     "zalecany": "Заврши тренинг",
+     "pewnosc": "srednia"
+    },
+    "lt": {
+     "zalecany": "Baigti treniruotę",
+     "pewnosc": "srednia"
+    },
+    "lv": {
+     "zalecany": "Pabeigt treniņu",
+     "pewnosc": "srednia"
+    },
+    "et": {
+     "zalecany": "Lõpeta treening",
+     "pewnosc": "srednia"
+    },
+    "uk": {
+     "zalecany": "Завершити тренування",
+     "pewnosc": "srednia"
+    },
+    "es": {
+     "zalecany": "Terminar entrenamiento",
+     "pewnosc": "srednia"
+    },
+    "es-419": {
+     "zalecany": "Terminar entrenamiento",
+     "pewnosc": "srednia"
+    },
+    "pt": {
+     "zalecany": "Terminar treino",
+     "pewnosc": "srednia"
+    },
+    "pt-BR": {
+     "zalecany": "Terminar treino",
+     "pewnosc": "srednia"
+    },
+    "de": {
+     "zalecany": "Training beenden",
+     "pewnosc": "srednia"
+    },
+    "fr": {
+     "zalecany": "Terminer la séance",
+     "pewnosc": "srednia"
+    },
+    "it": {
+     "zalecany": "Termina allenamento",
+     "pewnosc": "srednia"
+    },
+    "nl": {
+     "zalecany": "Rond training af",
+     "pewnosc": "srednia"
+    },
+    "sv": {
+     "zalecany": "Avsluta passet",
+     "pewnosc": "srednia"
+    },
+    "da": {
+     "zalecany": "Afslut træning",
+     "pewnosc": "srednia"
+    },
+    "nb": {
+     "zalecany": "Fullfør økten",
+     "pewnosc": "srednia"
+    },
+    "fi": {
+     "zalecany": "Lopeta treeni",
+     "pewnosc": "srednia"
+    },
+    "tr": {
+     "zalecany": "Antrenmanı bitir",
+     "pewnosc": "srednia"
+    },
+    "el": {
+     "zalecany": "Ολοκλήρωση προπόνησης",
+     "pewnosc": "srednia"
+    },
+    "id": {
+     "zalecany": "Selesaikan latihan",
+     "pewnosc": "srednia"
+    },
+    "ms": {
+     "zalecany": "Tamatkan latihan",
+     "pewnosc": "srednia"
+    },
+    "vi": {
+     "zalecany": "Kết thúc buổi tập",
+     "pewnosc": "srednia"
+    },
+    "ru": {
+     "zalecany": "Завершить тренировку",
+     "pewnosc": "srednia"
+    },
+    "ja": {
+     "zalecany": "トレーニングを終了",
+     "pewnosc": "srednia"
+    },
+    "ko": {
+     "zalecany": "운동 종료",
+     "pewnosc": "srednia"
+    },
+    "zh-Hant": {
+     "zalecany": "結束訓練",
+     "pewnosc": "srednia"
+    }
+   }
+  }
+ ]
+}
