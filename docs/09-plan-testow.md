@@ -539,3 +539,9 @@ Dokumenty i strona, bez zmian kodu UI. Testy dokumentów i strony pilnują zapis
 | M1-050 (K4) | `tests/audit-m1-050-support-subscription.test.ts` (pytania PL/EN, limit = `PAYWALL.FREE_TRAINING_DAYS_PER_MONTH`, brak okresu próbnego, etykiety ze słownika, ścieżka z `SubscriptionCard`, bez kwot) | strona, strażnik | zielone | ceny tylko w App Store |
 | M1-055/056/012 (K5, K6, K8) | `tests/audit-m1-055-promo-rules.test.ts` (reguły promocji w docs/wzrost.md i roli marketingu; przekaz z zegarkiem w docs i na stronie; stare hasło oznaczone; 471/388 USD) | dokument, strona | zielone | |
 | M1-057/900 (K7, K10) | `tests/audit-m1-057-owner-budget.test.ts` (2 h × 8 tyg., 48 h; krok W1-10 beta iOS/watchOS) | dokument | zielone | |
+## 25.10.2026 — wskazówka o trybie cichym przy dźwięku (decyzja właściciela 23.10.2026, wariant A; gałąź `tryb-cichy-wskazowka`)
+Zachowanie systemu bez zmian (tryb cichy: tylko wibracja); pod przełącznikiem „Dźwięk na koniec przerwy” krótka linia „W trybie cichym telefon tylko wibruje” (`SwitchRow.detail`, docs/32 wzorce 11 i 27, ≤ 100 znaków).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Wskazówka o trybie cichym | `tests/tryb-cichy-wskazowka.test.tsx` (PL: linia jedna, pod dźwiękiem, podpowiedź VoiceOver, „Wibracje” bez niej; EN: to samo; słownik EN ≤ 100 znaków; 33 słowniki mają niepusty klucz) | ekran, języki, niezmiennik, macierz (UI w `docs/19`) | zielone | 33 słowniki: własny krótki przekład (kopie EN odrzucają testy jakości i18n-variants/wave2-4); do recenzji native speakera. **Maestro pominięty:** tekst statyczny, bez nowego ekranu ani przepływu; widoczność sprawdza test ekranowy. |
