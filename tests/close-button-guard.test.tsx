@@ -53,7 +53,7 @@ describe('strażnik: źródła', () => {
   test('MODAL_URLS nie ma wpisów bez trasy modalnej', () => { expect(Object.keys(MODAL_URLS).sort()).toEqual(modalRoutes().map(r => r.name).sort()); });
   test('każdy <Modal> z react-native (arkusz) jest w pliku z <CloseButton>; nikt nie używa własnego przycisku „Zamknij” w oknach', () => {
     const files = [...walk(join(ROOT, 'app')), ...walk(join(ROOT, 'components'))].filter(x => /\.tsx$/.test(x) && !/CloseButton\.tsx$/.test(x) && /<Modal[\s>]/.test(src(x)));
-    expect(files.map(rel)).toEqual(['components/StartPanel.tsx']);
+    expect(files.map(rel)).toEqual(['components/FairRulesSheet.tsx', 'components/StartPanel.tsx']); /* 1.0: okno „Uczciwe zasady” — test ekranu: tests/monetyzacja-ui.test.tsx */
     for (const f of files) expect(src(f)).toContain('<CloseButton');
   });
   test('przycisk jest rysowany w jednym miejscu: testID close-modal tylko w components/CloseButton.tsx', () => {

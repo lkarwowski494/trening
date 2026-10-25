@@ -856,6 +856,10 @@
   "en": "Prices are unavailable without an internet connection."
  },
  {
+  "pl": "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.",
+  "en": "Want more? Pro removes the limit: subscribe, or pay once for good."
+ },
+ {
   "pl": "Ciemny",
   "en": "Dark"
  },
@@ -1803,6 +1807,10 @@
  {
   "pl": "hantle: {v}",
   "en": "dumbbells: {v}"
+ },
+ {
+  "pl": "Historia jest już w telefonie",
+  "en": "Your history is now on your phone"
  },
  {
   "pl": "Hotel",
@@ -3791,6 +3799,10 @@
   "en": "First steps"
  },
  {
+  "pl": "Pierwszy trening za Tobą!",
+  "en": "First workout done!"
+ },
+ {
   "pl": "Pierwszy trening: duży przycisk „Start” u góry albo „Pusty trening”.",
   "en": "First workout: the big “Start” button at the top, or “Empty workout”."
  },
@@ -4968,6 +4980,10 @@
   "en": "Effort scale RPE or RIR in Settings."
  },
  {
+  "pl": "Skąd ta cena? Poznaj indeks espresso.",
+  "en": "Why this price? See the espresso index."
+ },
+ {
   "pl": "Sklep chwilowo niedostępny",
   "en": "Store temporarily unavailable"
  },
@@ -5146,6 +5162,10 @@
  {
   "pl": "Suma powtórzeń",
   "en": "Total reps"
+ },
+ {
+  "pl": "Super, trenuję dalej!",
+  "en": "Awesome, keep training!"
  },
  {
   "pl": "superset",
@@ -5651,6 +5671,10 @@
  {
   "pl": "Treningi sprzed pierwszego pomiaru ({d}) — bez e1RM.",
   "en": "Workouts before the first measurement ({d}) — no e1RM."
+ },
+ {
+  "pl": "Trenuj {n} dni w miesiącu za darmo, bez końca.",
+  "en": "Train {n} days a month for free, no time limit."
  },
  {
   "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
@@ -6313,6 +6337,10 @@
   "en": "all exercises, including niche ones"
  },
  {
+  "pl": "Wszystkie funkcje działają od pierwszego dnia, bez konta i bez reklam. Dane zostają w telefonie.",
+  "en": "Every feature works from day one, with no account and no ads. Your data stays on your phone."
+ },
+ {
   "pl": "Wszystkie serie odhaczone",
   "en": "All sets ticked off"
  },
@@ -6611,6 +6639,10 @@
  {
   "pl": "Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.",
   "en": "You’re starting with this version — below are changes for people who used earlier ones. The guide is a better place to start."
+ },
+ {
+  "pl": "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.",
+  "en": "Imported workouts, records and charts are always available, even offline. Train {n} days a month for free — Pro removes the limit, with a one-time option too."
  },
  {
   "pl": "Zaimportowano",
@@ -7023,6 +7055,10 @@
  {
   "pl": "Zniknie z list i szablonów.",
   "en": "It disappears from lists and templates."
+ },
+ {
+  "pl": "Zobacz plany Pro ›",
+  "en": "See Pro plans ›"
  },
  {
   "pl": "zostaje to ćwiczenie",

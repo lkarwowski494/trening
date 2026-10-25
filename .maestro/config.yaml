@@ -18,6 +18,7 @@
 # 51 (14.10.2026, 0.20; 19.10.2026): zapowiedzi głosowe — wybór „Wyłączone / W słuchawkach / Także przez głośnik” i „Posłuchaj przykładu” w Ustawieniach.
 # 55 (23.10.2026): Źródła wiedzy — Ustawienia → „Sources of knowledge” (lista offline), powrót strzałką.
 # 54 (19.10.2026): przycisk „Głos” na ekranie treningu — arkusz z trzema opcjami, zmiana trwała (Ustawienia pokazują ten sam wybór).
+# 55 (25.10.2026, 1.0): okno „Uczciwe zasady” po pierwszym treningu na żywo w stanie free (dostęp wygasa w trakcie treningu — sztuczny sklep) → „See Pro plans” → ekran zakupu.
 # 52 (14.10.2026, strażnik progresji): sylwetka w kolorach progresu i zdanie o brakach celu na ekranie Trening → Postępy, sekcja „Strażnik progresji”, rozwinięcie partii.
 # 40–42 (EKSPERYMENTY): odmowa zgody na powiadomienia (40), tło i powrót (41), przywrócenie z pliku kopii (42) — tag `eksperyment`, NIE na liście flows (główny przebieg ich pomija,
 # bo nikt nie sprawdził jeszcze na symulatorze okien systemowych / Home / wyboru pliku); uruchamiane osobno (docs/38 pkt 5).
@@ -66,3 +67,4 @@ flows:
   - 53-objasnienia-info.yaml
   - 54-glos-w-treningu.yaml
   - 55-zrodla-wiedzy.yaml
+  - 56-uczciwe-zasady.yaml

@@ -281,6 +281,7 @@ export function migrate(raw: unknown): State {
     if (g.length) raw.guideSeen = g; else delete raw.guideSeen;
   } /* przewodnik (08.10.2026) */
   if (typeof raw.whatsNewSeen !== 'string' || !raw.whatsNewSeen || raw.whatsNewSeen.length > 40) delete raw.whatsNewSeen; /* „Co nowego” (08.10.2026) */
+  if (raw.seenFairRulesManifest !== true) delete raw.seenFairRulesManifest; /* 1.0: okno „Uczciwe zasady” pokazane — tylko true, stare kopie bez pola = jeszcze nie */
   if (raw.planHintHidden !== true) delete raw.planHintHidden; /* audyt 0.10 UX-16 A: tylko true (pole opcjonalne schematu 18) */
   if (raw.optFill !== OPT_FILL.rev) {
     for (const l of raw.settings.locations) fillOpts(l);

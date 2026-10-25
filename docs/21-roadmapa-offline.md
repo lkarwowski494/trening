@@ -104,6 +104,10 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
   exercise_title, superset_id, exercise_notes, set_index, set_type, weight_lbs|weight_kg, reps, distance_miles|distance_km, duration_seconds, rpe`; data
   w stylu „5 Jan 2026, 17:00”) pochodzi tylko z opisów osób trzecich — nie jest źródłem wg CLAUDE.md. Do dodania po przeczytaniu dokumentacji
   producenta albo pliku testowego od właściciela.
+- **Rozszerzenie 1.0 (25.10.2026, decyzja właściciela; kod: układ `generic` w `lib/csvgeneric.ts`, rdzeń `lib/csvcore.ts`):** każdy plik, który nie jest formatA ani formatB, a ma kolumnę daty i kolumnę ćwiczenia pod jednym z aliasów (`CSV_ALIASES`),
+  jest czytany po aliasach nagłówków (separator `,` `;` tab, BOM, cudzysłowy, kg/lb po nagłówku, typy serii, czas z końca − startu, trening = dzień przy braku nazwy, superserie). Układ opisany w sekcji „Hevy — [OTWARTE]” wyżej mieści się w tych aliasach
+  (`title, start_time, end_time, exercise_title, superset_id, set_index, set_type, weight_kg|weight_lbs, reps, distance_km|distance_miles, duration_seconds, rpe`; daty „5 Jan 2026, 17:00” obsługuje), ale **[OTWARTE]**: aliasy pochodzą ze specyfikacji właściciela, nie z przeczytanej dokumentacji producenta
+  (strona pomocy zwraca 403) — obsługa nie jest „potwierdzona”, dopóki nie sprawdzi jej plik testowy od właściciela. Testy na danych syntetycznych: `tests/monetyzacja-csv.test.ts`.
 - **Zasady importu (domyślne propozycje do akceptacji właściciela, każda widoczna/zmienialna na podglądzie):** (1) jednostka formatA — przełącznik kg/lb,
   domyślnie jednostka z Ustawień; formatB podaje jednostkę w kolumnach; (2) nazwy ćwiczeń: dokładne dopasowanie, potem znormalizowane (bez wielkości liter,
   spacji, nawiasów i znaków specjalnych; „(Barbell)” = „(sztanga)”, „(Dumbbell)” = „(hantle)”), reszta → nowe ćwiczenie użytkownika

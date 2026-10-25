@@ -37,7 +37,7 @@ describe('katalog przepływów — schemat', () => {
       expect([f.id, f.tytul.length > 10, f.wynik.length > 10, f.kroki.length > 0 && f.kroki.every(k => k.length > 3), f.ekrany.length > 0]).toEqual([f.id, true, true, true, true]);
       expect([f.id, f.stan in cat.stany]).toEqual([f.id, true]);
       expect([f.id, ['realny', 'brzegowy'].includes(f.realnosc)]).toEqual([f.id, true]); /* teoretyczne: tylko w `pominiete` z powodem (CLAUDE.md, pkt 6) */
-      expect([f.id, ['0.19', '0.20'].includes(f.wersja)]).toEqual([f.id, true]);
+      expect([f.id, ['0.19', '0.20', '1.0'].includes(f.wersja)]).toEqual([f.id, true]);
     }
   });
   test('każdy stan startowy (nowy, istniejący, aktualizacja, kopia, język/motyw) ma przepływy; liczba przepływów nie spada poniżej 100', () => {

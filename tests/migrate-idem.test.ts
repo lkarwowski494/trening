@@ -34,6 +34,7 @@ const planArb = {
   guideSeen: fc.oneof(fc.constant(undefined), val, fc.array(fc.oneof(val, fc.constantFrom('plan', 'deload', 'x'.repeat(41))), { maxLength: 4 })),
   whatsNewSeen: fc.oneof(fc.constant(undefined), val, fc.constantFrom('0.10.0', 'x'.repeat(41))),
   planHintHidden: fc.oneof(fc.constant(undefined), val, fc.boolean()),
+  seenFairRulesManifest: fc.oneof(fc.constant(undefined), val, fc.boolean()),
   bodyMassLog: fc.oneof(fc.constant(undefined), val, fc.array(fc.oneof(val, fc.record({ date: fc.oneof(keyArb, val), kg: fc.oneof(val, fc.constantFrom(80, 80.123, 0, -5, 1e6)) }, { requiredKeys: [] })), { maxLength: 4 })),
 };
 /** Pola treningu z 08–09.10: pauzy (przedziały nachodzące, odwrócone, poza treningiem), trwająca pauza, deload, „czeka na Zdrowie” (J2), strefa startu (J3). */

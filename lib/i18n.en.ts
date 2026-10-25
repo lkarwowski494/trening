@@ -1255,4 +1255,14 @@ export const EN: Record<string, string> = {
   'Przy części ćwiczeń przypisanie partii opiera się na jednym źródle albo na uproszczeniu.': 'For some exercises the muscle group assignment rests on a single source or on a simplification.',
   'Część reguł w aplikacji to nasze uproszczenia albo wybory, a nie wynik badań.': 'Some rules in the app are our simplifications or choices, not research findings.',
   'Nie wszystko da się wyczytać z badań. Przykłady: długość przerw w planie, krok zmiany ciężaru.': 'Not everything can be read from research. Examples: rest length in the plan, the weight step.',
+  /* 1.0 (docs/monetyzacja.md): okno „Uczciwe zasady” po pierwszym treningu na żywo i karta po imporcie CSV */
+  'Pierwszy trening za Tobą!': 'First workout done!',
+  'Wszystkie funkcje działają od pierwszego dnia, bez konta i bez reklam. Dane zostają w telefonie.': 'Every feature works from day one, with no account and no ads. Your data stays on your phone.',
+  'Trenuj {n} dni w miesiącu za darmo, bez końca.': 'Train {n} days a month for free, no time limit.',
+  'Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.': 'Want more? Pro removes the limit: subscribe, or pay once for good.',
+  'Super, trenuję dalej!': 'Awesome, keep training!',
+  'Zobacz plany Pro ›': 'See Pro plans ›',
+  'Historia jest już w telefonie': 'Your history is now on your phone',
+  'Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.': 'Imported workouts, records and charts are always available, even offline. Train {n} days a month for free — Pro removes the limit, with a one-time option too.',
+  'Skąd ta cena? Poznaj indeks espresso.': 'Why this price? See the espresso index.',
 };
