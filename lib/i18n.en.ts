@@ -591,6 +591,7 @@ export const EN: Record<string, string> = {
   'Kolor i poziom trudności: 1 = cienka, 7 = bardzo gruba. Gumy nie mają kilogramów — przy serii zapisujesz, której gumy użyłeś. Guma jako asysta (np. podciąganie): rekordem są powtórzenia bez gumy, a postęp to zejście na niższy poziom. Guma jako opór: rekordy liczą serie z gumą.': 'Colour and difficulty level: 1 = thin, 7 = very thick. Bands have no kilograms — for each set you record which band you used. Band as assistance (e.g. pull-ups): the record is reps without a band, and progress means moving to a lower level. Band as resistance: records count sets with the band.',
   'Uproszczenie: drop set liczy się razem z serią, po której jest.': 'Simplification: a drop set counts together with the set before it.',
   'nic więcej do zrobienia': 'nothing more to do',
+  'Zakończ trening na telefonie': 'Finish the workout on your phone',
   'Nic więcej do zrobienia — możesz zakończyć trening.': 'Nothing more to do — you can finish the workout.',
   'Trening w pauzie od {t}.': 'Workout paused since {t}.',
   'o około 1/3–1/2 mniej serii (np. {k} z {n}; ćwiczenia z 1 serią bez zmian)': 'about 1/3–1/2 fewer sets (e.g. {k} of {n}; exercises with 1 set unchanged)',

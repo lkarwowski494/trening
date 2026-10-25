@@ -12,6 +12,6 @@
  "idle": "Telefonda antrenman başlat",
  "finished": "Antrenman bitti",
  "update": "Saat uygulamasını güncelle",
- "nothingLeft": "yapılacak başka bir şey yok",
+ "finishOnPhone": "Antrenmanı telefonda bitir",
  "finish": "Seti bitir"
 }

@@ -456,6 +456,19 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy zegarek pokazuje tę serię
     - Wtedy przycisk główny nazywa się „Seria zrobiona”
 
+### BR-ZEG-003: Zegarek po ostatnim ćwiczeniu: „Zakończ trening na telefonie”, jeden raz
+- Przepływ: PR-07
+- Dowód potrzeby: decyzja właściciela 23.10.2026 (docs/18, test na telefonie W2-05, build 1030); `tests/watch-last-rest.test.ts`
+- Kryteria akceptacji:
+  - Scenariusz: Ostatnia przerwa
+    - Zakładając, że zegarek jest połączony, a użytkownik odhaczył ostatnią serię treningu
+    - Gdy zegarek pokazuje przerwę po ostatniej serii
+    - Wtedy pokazuje odliczanie i jeden komunikat „Zakończ trening na telefonie”; zapowiedź „nic więcej do zrobienia” z telefonu nie jest wyświetlana drugi raz
+  - Scenariusz: Po końcu przerwy
+    - Zakładając, że przerwa po ostatniej serii się skończyła
+    - Gdy zegarek pokazuje ekran bez następnej serii
+    - Wtedy widać ten sam komunikat „Zakończ trening na telefonie”, jeden raz
+
 ### BR-GLS-001: Zapowiedzi głosowe na początku przerwy, domyślnie wyłączone
 - Przepływ: PR-02
 - Dowód potrzeby: ZP-07; D-005; docs/36-glos.md
