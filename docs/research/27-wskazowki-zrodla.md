@@ -61,7 +61,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 465; unikalnych zdań: 306; źródeł: 230.
+- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 465; unikalnych zdań: 306; źródeł: 231.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 22.
 - Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 17 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc).
 
@@ -162,7 +162,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ruch**
 
-- Przyciągnij sztangę do dolnej części brzucha, potem opuść ją do pełnego wyprostu rąk. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis (towards the belly button)); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Execution (to upper waist)) `row.bbPull`
+- Przyciągnij sztangę do brzucha, potem opuść ją do pełnego wyprostu rąk. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis (towards the belly button)); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Execution (to upper waist)) `row.bbPull`
 
 **Wskazówki**
 
@@ -181,7 +181,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ruch**
 
-- Przyciągnij hantle do dolnej części brzucha, potem opuść je do pełnego wyprostu rąk. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis (towards the belly button)); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Execution (to upper waist)) `row.dbPull`
+- Przyciągnij hantle do brzucha, potem opuść je do pełnego wyprostu rąk. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis (towards the belly button)); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Execution (to upper waist)) `row.dbPull`
 
 **Wskazówki**
 
@@ -201,7 +201,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ruch**
 
-- Przyciągnij sztangę do dolnej części brzucha, potem opuść ją do pełnego wyprostu rąk. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Execution) `row.bbPull`
+- Przyciągnij sztangę do brzucha, potem opuść ją do pełnego wyprostu rąk. — ACE: [Bent Over Row (#12)](https://www.acefitness.org/resources/everyone/exercise-library/12/bent-over-row/) (opis); ExRx.net: [BBBentOverRow](https://web.archive.org/web/20230227195843/https://exrx.net/WeightExercises/BackGeneral/BBBentOverRow) (Execution) `row.bbPull`
 
 **Wskazówki**
 
@@ -728,7 +728,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Wskazówki**
 
-- Tułów wyprostowany przez cały ruch. — ACE: [Bulgarian Split Squat (#366)](https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/) (opis (back straight)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Step 2; Step 3 (upright posture)); ExRx.net: [DBSingleLegSplitSquat](https://web.archive.org/web/20220920153216/https://exrx.net/WeightExercises/Quadriceps/DBSingleLegSplitSquat) (Comments (torso upright)) `lunge.torso`
+- Plecy proste przez cały ruch. — ACE: [Bulgarian Split Squat (#366)](https://www.acefitness.org/resources/everyone/exercise-library/366/bulgarian-split-squat/) (opis (back straight)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Step 2; Step 3 (upright posture)); ExRx.net: [DBSingleLegSplitSquat](https://web.archive.org/web/20220920153216/https://exrx.net/WeightExercises/Quadriceps/DBSingleLegSplitSquat) (Comments (torso upright)) `lunge.torso`
 - Przednie kolano w linii palców stopy. — ExRx.net: [DBSingleLegSplitSquat](https://web.archive.org/web/20220920153216/https://exrx.net/WeightExercises/Quadriceps/DBSingleLegSplitSquat) (Comments); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes (front knee cave inward)) `lunge.knee`
 
 **Częste błędy**
@@ -747,7 +747,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Wskazówki**
 
-- Tułów wyprostowany przez cały ruch. — ACE: [Lunge (#363)](https://www.acefitness.org/resources/everyone/exercise-library/363/lunge/) (opis (back straight)); ExRx.net: [DBLunge](https://web.archive.org/web/20221218023658/https://exrx.net/WeightExercises/Quadriceps/DBLunge) (Comments (torso upright)) `lunge.torso`
+- Plecy proste przez cały ruch. — ACE: [Lunge (#363)](https://www.acefitness.org/resources/everyone/exercise-library/363/lunge/) (opis (back straight)); ExRx.net: [DBLunge](https://web.archive.org/web/20221218023658/https://exrx.net/WeightExercises/Quadriceps/DBLunge) (Comments (torso upright)) `lunge.torso`
 - Przednie kolano w linii palców stopy. — ExRx.net: [DBLunge](https://web.archive.org/web/20221218023658/https://exrx.net/WeightExercises/Quadriceps/DBLunge) (Comments (lead knee same direction as foot)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes (przysiad wykroczny — ten sam wzorzec)) `lunge.knee`
 
 **Częste błędy**
@@ -766,7 +766,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Wskazówki**
 
-- Tułów wyprostowany przez cały ruch. — ExRx.net: [DBWalkingLunge](https://web.archive.org/web/20221225223024/https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge) (Comments (torso upright)); ACE: [Walking Lunges With Twists (#139)](https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/) (Step 3 (keep the spine extended); wskazówka końcowa (tall, straight spine)) `lunge.torso`
+- Plecy proste przez cały ruch. — ExRx.net: [DBWalkingLunge](https://web.archive.org/web/20221225223024/https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge) (Comments (torso upright)); ACE: [Walking Lunges With Twists (#139)](https://www.acefitness.org/resources/everyone/exercise-library/139/walking-lunges-with-twists/) (Step 3 (keep the spine extended); wskazówka końcowa (tall, straight spine)) `lunge.torso`
 - Przednie kolano w linii palców stopy. — ExRx.net: [DBWalkingLunge](https://web.archive.org/web/20221225223024/https://exrx.net/WeightExercises/Quadriceps/DBWalkingLunge) (Comments (lead knee same direction as foot)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes (ten sam wzorzec)) `lunge.knee`
 
 **Częste błędy**
@@ -785,7 +785,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Wskazówki**
 
-- Tułów wyprostowany przez cały ruch. — ACE: [Reverse Lunge (#319)](https://www.acefitness.org/resources/everyone/exercise-library/319/reverse-lunge/) (opis (chest raised)); ExRx.net: [DBRearLunge](https://web.archive.org/web/20231227040116/https://exrx.net/WeightExercises/Quadriceps/DBRearLunge) (Comments (torso upright)) `lunge.torso`
+- Plecy proste przez cały ruch. — ACE: [Reverse Lunge (#319)](https://www.acefitness.org/resources/everyone/exercise-library/319/reverse-lunge/) (opis (chest raised)); ExRx.net: [DBRearLunge](https://web.archive.org/web/20231227040116/https://exrx.net/WeightExercises/Quadriceps/DBRearLunge) (Comments (torso upright)) `lunge.torso`
 - Przednie kolano w linii palców stopy. — ExRx.net: [DBRearLunge](https://web.archive.org/web/20231227040116/https://exrx.net/WeightExercises/Quadriceps/DBRearLunge) (Comments (forward knee same direction as foot)); NASM: [Bulgarian Split Squat](https://www.nasm.org/resource-center/exercise-library/bulgarian-split-squat) (Common Mistakes (ten sam wzorzec)) `lunge.knee`
 
 **Częste błędy**
@@ -804,7 +804,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Wskazówki**
 
-- Tułów wyprostowany przez cały ruch. — ACE: [Step Up (#28)](https://www.acefitness.org/resources/everyone/exercise-library/28/step-up/) (Step 2 (torso upright)); ExRx.net: [DBStepUp](https://web.archive.org/web/20220826035241/https://exrx.net/WeightExercises/Quadriceps/DBStepUp) (Comments (torso upright)) `lunge.torso`
+- Plecy proste przez cały ruch. — ACE: [Step Up (#28)](https://www.acefitness.org/resources/everyone/exercise-library/28/step-up/) (Step 2 (torso upright)); ExRx.net: [DBStepUp](https://web.archive.org/web/20220826035241/https://exrx.net/WeightExercises/Quadriceps/DBStepUp) (Comments (torso upright)) `lunge.torso`
 - Kolano nogi na podwyższeniu w linii palców stopy. — ACE: [Step Up (#28)](https://www.acefitness.org/resources/everyone/exercise-library/28/step-up/) (Step 2; wskazówka końcowa (knee aligned over your second toe)); ExRx.net: [DBStepUp](https://web.archive.org/web/20220826035241/https://exrx.net/WeightExercises/Quadriceps/DBStepUp) (Comments (lead knee same direction as foot)) `stepup.knee`
 
 ### Pistol Squat
@@ -964,7 +964,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 **Wskazówki**
 
 - Siła wybicia idzie z nóg i bioder — ręce kończą ruch. — ACE: [Push Press (#24)](https://www.acefitness.org/resources/everyone/exercise-library/24/push-press/) (opis (power from the hips through the shoulders and arms)); ExRx.net: [PushPress](https://web.archive.org/web/20220802212347/https://exrx.net/WeightExercises/OlympicLifts/PushPress) (Execution (explosively drive upward with legs)) `pp.legs`
-- Ugięcie krótkie, z tułowiem pionowo i napiętym. — ExRx.net: [PushPress](https://web.archive.org/web/20220802212347/https://exrx.net/WeightExercises/OlympicLifts/PushPress) (Preparation; Execution (torso tight; dip slightly)); ACE: [Push Press (#24)](https://www.acefitness.org/resources/everyone/exercise-library/24/push-press/) (opis (bend at the knees while keeping the back straight)) `pp.dip`
+- Ugięcie krótkie, tułów napięty. — ExRx.net: [PushPress](https://web.archive.org/web/20220802212347/https://exrx.net/WeightExercises/OlympicLifts/PushPress) (Preparation; Execution (torso tight; dip slightly)); ACE: [Push Press (#24)](https://www.acefitness.org/resources/everyone/exercise-library/24/push-press/) (opis (bend at the knees while keeping the back straight)) `pp.dip`
 
 ### Wyciskanie nad głowę (linki)
 
@@ -1259,7 +1259,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Częste błędy**
 
-- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (excessive lower back arching)); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (Foot position (butt won’t come off the bench)) `bp.mis.arch`
+- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (excessive lower back arching)); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (Foot position (butt won’t come off the bench)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
 ### Incline Bench Press (sztanga)
 
@@ -1279,7 +1279,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Częste błędy**
 
-- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Incline Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press) (Common Mistakes); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3; Step 4 (avoid any arching in the low back)) `bp.mis.arch`
+- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Incline Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press) (Common Mistakes); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3; Step 4 (avoid any arching in the low back)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
 ### Incline Bench Press (hantle)
 
@@ -1298,7 +1298,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Częste błędy**
 
-- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Two Arm Incline Dumbbell Chest Press](https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press) (Common Mistakes); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3; Step 4) `bp.mis.arch`
+- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Two Arm Incline Dumbbell Chest Press](https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press) (Common Mistakes); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3; Step 4); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
 ### Machine Chest Press
 
@@ -1428,7 +1428,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Częste błędy**
 
-- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 3; Step 4 (avoid any arching in the low back)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (sztanga — ta sama zasada)) `bp.mis.arch`
+- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 3; Step 4 (avoid any arching in the low back)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (sztanga — ta sama zasada)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
 ### Chest Fly (hantle)
 
@@ -1683,7 +1683,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Wskazówki**
 
-- Tułów wyprostowany przez cały ruch. — ACE: [Farmer’s Carry (#359)](https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/) (opis (plecy proste)); NSCA: [Taylor, Reed: Increase Hip and Trunk Stability with Loaded Carries…, NSCA Coach 7.3](https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf) (s. 52 („maintain an upright torso”)); NASM: [Best Abs Exercises (blog, H. Cherry, akt. 23.07.2026)](https://www.nasm.org/resource-center/blog/training/best-abs-exercises) ((wariant: ciężary nierówne) „Maintain a tall posture and level shoulders throughout the carry.”) `lunge.torso`
+- Plecy proste przez cały ruch. — ACE: [Farmer’s Carry (#359)](https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/) (opis (plecy proste)); NSCA: [Taylor, Reed: Increase Hip and Trunk Stability with Loaded Carries…, NSCA Coach 7.3](https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf) (s. 52 („maintain an upright torso”)); NASM: [Best Abs Exercises (blog, H. Cherry, akt. 23.07.2026)](https://www.nasm.org/resource-center/blog/training/best-abs-exercises) ((wariant: ciężary nierówne) „Maintain a tall posture and level shoulders throughout the carry.”) `lunge.torso`
 
 ### Suitcase Carry
 
@@ -1965,6 +1965,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | nasm-two-arm-dumbbell-chest-press-with-band | NASM | Two Arm Dumbbell Chest Press With Band | https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band | — |
 | nasm-two-arm-incline-dumbbell-chest-press | NASM | Two Arm Incline Dumbbell Chest Press | https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | — |
 | nordictrack-incline | NordicTrack | Incline treadmill benefits… (15.07.2025) | https://www.nordictrack.com/learn/incline-treadmill-benefits-why-it-works-better-than-flat-walking | — |
+| nsca-basics-2012 | NSCA | Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012 | https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf | — |
 | nsca-coach-7-3 | NSCA | Taylor, Reed: Increase Hip and Trunk Stability with Loaded Carries…, NSCA Coach 7.3 | https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | — |
 | pm-14636100 | Fry, Smith, Schilling (University of Memphis) | Fry i in. 2003, Effect of knee position on hip and knee torques during the barbell squat, J Strength Cond Res 17(4) — abstrakt | https://pubmed.ncbi.nlm.nih.gov/14636100/ | — |
 | pm-21659894 | Swinton i in. (Robert Gordon University) | Swinton i in. 2011, A biomechanical analysis of straight and hexagonal barbell deadlifts…, J Strength Cond Res 25(7) — abstrakt | https://pubmed.ncbi.nlm.nih.gov/21659894/ | — |

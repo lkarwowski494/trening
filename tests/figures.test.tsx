@@ -338,11 +338,13 @@ describe('sekcja „Technika” z figurą', () => {
   test('po rozwinięciu figura jest nad tekstem wskazówek; ćwiczenie z listy otwartej figur — same wskazówki', async () => {
     setReduce(true);
     render(<ExerciseCues exercise={lib('Back Squat')} />);
-    expect(screen.queryByTestId('exercise-figure')).toBeNull();
+    expect(screen.queryByTestId('exercise-figure-v2')).toBeNull();
     fireEvent.press(screen.getByRole('button', { name: 'Technika' })); await flush();
-    expect(screen.getByTestId('exercise-figure')).toBeTruthy();
+    /* figura v2 zastępuje v1 tam, gdzie rodzina v2 jest gotowa (Back Squat) */
+    expect(screen.getByTestId('exercise-figure-v2')).toBeTruthy();
+    expect(screen.queryByTestId('exercise-figure')).toBeNull();
     const json = JSON.stringify(screen.toJSON());
-    expect(json.indexOf('exercise-figure')).toBeLessThan(json.indexOf('["Ustawienie"]'));
+    expect(json.indexOf('exercise-figure-v2')).toBeLessThan(json.indexOf('["Ustawienie"]'));
     expect(json.indexOf('["Ustawienie"]')).toBeGreaterThan(0);
     render(<ExerciseCues exercise={lib('Crunch')} />);
     fireEvent.press(screen.getByRole('button', { name: 'Technika' })); await flush();

@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { useTheme, TEXT_SCALE_MAX, FW, font } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
-import { cuesFor, hasCues, type CueSection } from '@/lib/cues';
+import { cuesFor, cueText, type CueSection } from '@/lib/cues';
+import { catalogKey } from '@/lib/seed';
+import { figureSpec } from '@/lib/figures/v2';
+import { cueSelection, generalCueNote } from '@/lib/figures/v2/cueSets';
+import { hasTechnique } from '@/lib/figures/v2/ui';
+import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import { useRouter } from 'expo-router';
 import { Btn } from '@/components/ui';
 import type { Exercise } from '@/lib/seed';
@@ -22,7 +27,12 @@ const LABEL: Record<CueSection, () => string> = { setup: () => t('Ustawienie'), 
 export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercise, 'lib' | 'libKey' | 'recommended' | 'catalogRev'>; /** UX2-05: otwarte z „Technika ›” (trening, szablon) — od razu rozwinięte */ initialOpen?: boolean }) {
   const th = useTheme(); const [open, setOpen] = useState(!!initialOpen);
   const c = cuesFor(exercise); const safety: SafetyKind | null = needsSafety(exercise) ? 'rack' : needsSpotter(exercise) ? 'spotter' : needsSpotterDb(exercise) ? 'spotter_db' : null;
-  if (!c) return safety ? <SafetyNote kind={safety} /> : null;
+  /* grafiki 1.0 (25.10.2026, wariant A): figura v2 tam, gdzie istnieje rodzina ruchu (zastępuje v1); zestaw ogólny wskazówek wzorca z dopiskiem przy ćwiczeniach-analogiach — na razie tylko dla ćwiczeń z gotową rodziną v2 (reszta rodzin: kolejne etapy) */
+  const key = catalogKey(exercise); const v2 = !!key && !!figureSpec(key);
+  const sel = key ? cueSelection(key) : null; const note = sel ? generalCueNote(sel) : null;
+  const gen = v2 && sel && sel.mode === 'general' ? ([['tips', sel.ok], ['mistakes', sel.err]] as [CueSection, string[]][]).map(([id, ids]) => ({ id, items: ids.map(x => cueText(x, lang())).filter((x, i) => x !== ids[i]) })).filter(s => s.items.length) : [];
+  const sections = c ? c.sections : gen;
+  if (!c && !v2 && !sections.length) return safety ? <SafetyNote kind={safety} /> : null;
   return (
     <View testID="exercise-cues" style={{ borderTopWidth: 1, borderBottomWidth: 1, borderColor: th.line, marginBottom: 14 }}>
       <Pressable accessibilityLanguage={lang()} testID="exercise-cues-toggle" onPress={() => setOpen(o => !o)} accessibilityRole="button" accessibilityLabel={t('Technika')} accessibilityHint={t('Ustawienie, ruch, wskazówki i częste błędy.')} accessibilityState={{ expanded: open }} hitSlop={4} style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center' }}>
@@ -31,8 +41,9 @@ export function ExerciseCues({ exercise, initialOpen }: { exercise: Pick<Exercis
       </Pressable>
       {safety ? <SafetyNote kind={safety} inside /> /* widoczne także przy zwiniętej sekcji */ : null}
       {open ? <View style={{ paddingBottom: 12 }}>
-        <ExerciseFigure exercise={exercise} />
-        {c.sections.map(s => <View key={s.id} style={{ marginTop: 8 }}>
+        {v2 ? <ExerciseFigureV2 exercise={exercise} /> : <ExerciseFigure exercise={exercise} />}
+        {note && sections.length ? <Text testID="exercise-cues-general-note" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('footnote'), ...FW.semibold, marginTop: 8 }}>{note}</Text> : null}
+        {sections.map(s => <View key={s.id} style={{ marginTop: 8 }}>
           <Text accessibilityLanguage={lang()} accessibilityRole="header" maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.muted, ...font('footnote'), ...FW.semibold, marginBottom: 2 }}>{LABEL[s.id]()}</Text>
           {s.items.map((x, i) => <Text accessibilityLanguage={lang()} key={i} accessibilityLabel={x} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.text, ...font('callout'), ...FW.regular, lineHeight: 21, marginTop: 2 }}>{`• ${x}`}</Text>)}
         </View>)}
@@ -65,6 +76,6 @@ function SafetyNote({ inside, kind }: { inside?: boolean; kind: SafetyKind }) {
  * wskazówki (lib/cues.hasCues — bez wczytywania słowników). Przejście z blokadą podwójnego tapnięcia (Btn nav, UI2-02).
  */
 export function TechniqueLink({ exercise, name }: { exercise: Pick<Exercise, 'id' | 'lib' | 'libKey'> | null | undefined; /** nazwa w etykiecie VoiceOver (z numerem wystąpienia, gdy ćwiczenie powtarza się) */ name: string }) {
-  const router = useRouter(); if (!exercise || !hasCues(exercise)) return null;
+  const router = useRouter(); if (!exercise || !hasTechnique(exercise)) return null;
   return <Btn nav small kind="ghost" title={`${t('Technika')} ›`} accessibilityLabel={t('Technika: {name}', { name })} onPress={() => router.push(`/exercise/${exercise.id}?cues=1`)} />;
 }
