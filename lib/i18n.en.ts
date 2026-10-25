@@ -773,6 +773,7 @@ export const EN: Record<string, string> = {
   'piszczelowy przedni': 'tibialis anterior',
   'zginacze biodra': 'hip flexors',
   'Rysunek ruchu: {opis}': 'Movement drawing: {opis}',
+  'Ogólne wskazówki dla tego ruchu': 'General tips for this movement',
   'Zatrzymaj animację': 'Pause animation',
   'Wznów animację': 'Resume animation',
   'Pozycja wyjściowa': 'Starting position',
