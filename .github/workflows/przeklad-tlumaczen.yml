@@ -1,0 +1,91 @@
+# Przekład kluczy słownika na 33 języki przez API Anthropic (decyzja właściciela 23.10.2026; rejestr zwracania się: docs/16). Tylko ręcznie, odczyt repozytorium.
+# Płatny z kredytów API właściciela (Message Batches, −50%). Klucz: sekret ANTHROPIC_API_KEY, użyty w JEDNYM kroku, jako zmienna środowiskowa; skrypt
+# nigdy go nie wypisuje. Słowniki NIE są zmieniane — wynik to artefakt `raport-przekladu` (propozycje, 7 dni); nałożenie lokalnie po przeglądzie:
+# node scripts/i18n/przeklad-api.mjs --zastosuj. Limit kosztu 6 USD na przebieg (zgoda właściciela 23.10.2026; powyżej — stop bez zgody_koszt=tak).
+# Zestaw kluczy (docs/lokalizacja/zestaw-przekladu-*.json) leży na gałęzi z tekstami — uruchom ten workflow z tej gałęzi („Use workflow from”);
+# sam plik workflowu musi być na gałęzi domyślnej, żeby GitHub pokazał przycisk uruchomienia.
+name: Przekład tłumaczeń (API, ręcznie)
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: 'Model przekładu (domyślnie najnowszy Opus, effort medium)'
+        type: choice
+        default: opus
+        options: [opus, sonnet]
+      limit:
+        description: 'Tylko N pierwszych języków (puste = wszystkie 33); przebieg dowodowy: 2'
+        type: string
+        default: ''
+      tylko_szacuj:
+        description: 'Tylko szacunek kosztu, bez wysyłania niczego płatnego'
+        type: boolean
+        default: true
+      zgoda_koszt:
+        description: 'Zgoda na koszt powyżej 6 USD (tak / nie)'
+        type: choice
+        default: 'nie'
+        options: ['nie', 'tak']
+      wznow:
+        description: 'Odbiór wyników wysłanego wcześniej batcha (identyfikator msgbatch_… z logu przebiegu, który przekroczył czas oczekiwania); puste = nowy przekład'
+        type: string
+        default: ''
+permissions:
+  contents: read
+concurrency:
+  group: przeklad-tlumaczen
+  cancel-in-progress: false
+jobs:
+  przeklad:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Szacunek kosztu bez klucza — stop powyżej 6 USD bez zgody
+        env:
+          WEJ_MODEL: ${{ inputs.model }}
+          WEJ_LIMIT: ${{ inputs.limit }}
+          WEJ_ZGODA: ${{ inputs.zgoda_koszt }}
+        run: |
+          set -eu
+          ARGS=(--szacuj --model "$WEJ_MODEL" --limit "$WEJ_LIMIT" --wyjscie raport-przekladu)
+          if [ "$WEJ_ZGODA" = "tak" ]; then ARGS+=(--zgoda-koszt); fi
+          node scripts/i18n/przeklad-api.mjs "${ARGS[@]}"
+      - name: Przekład (szacunek dokładny lub batch)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          WEJ_MODEL: ${{ inputs.model }}
+          WEJ_LIMIT: ${{ inputs.limit }}
+          WEJ_ZGODA: ${{ inputs.zgoda_koszt }}
+          WEJ_SZACUJ: ${{ inputs.tylko_szacuj }}
+          WEJ_WZNOW: ${{ inputs.wznow }}
+        run: |
+          set -eu
+          ARGS=(--model "$WEJ_MODEL" --limit "$WEJ_LIMIT" --wyjscie raport-przekladu)
+          if [ "$WEJ_ZGODA" = "tak" ]; then ARGS+=(--zgoda-koszt); fi
+          if [ "$WEJ_SZACUJ" = "true" ]; then ARGS+=(--szacuj); fi
+          if [ -n "$WEJ_WZNOW" ]; then
+            [[ "$WEJ_WZNOW" =~ ^msgbatch_[A-Za-z0-9]+$ ]] || { echo "::error::wznow: oczekiwany identyfikator msgbatch_…"; exit 1; }
+            ARGS+=(--wznow "$WEJ_WZNOW")
+          fi
+          node scripts/i18n/przeklad-api.mjs "${ARGS[@]}"
+      - name: Podsumowanie w logu przebiegu
+        if: always()
+        run: |
+          if [ -f raport-przekladu/podsumowanie.md ]; then cat raport-przekladu/podsumowanie.md >> "$GITHUB_STEP_SUMMARY"; fi
+          if [ -f raport-przekladu/szacunek.json ]; then node -e "const s=require('./raport-przekladu/szacunek.json');console.log('Szacunek: '+JSON.stringify(s.koszt_wg_modelu))" >> "$GITHUB_STEP_SUMMARY"; fi
+      - name: Artefakt (tylko raporty, 7 dni)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raport-przekladu
+          path: |
+            raport-przekladu/*.json
+            raport-przekladu/podsumowanie.md
+          if-no-files-found: ignore
+          retention-days: 7
