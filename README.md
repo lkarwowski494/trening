@@ -60,8 +60,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 349 (z testem: 349) | docs/19-macierz-testow.md |
 | Komunikaty i teksty | 1109 (z testem: 1109) | docs/19-macierz-testow.md |
-| Funkcje biblioteki `lib/` | 990 (z testem: 989) | docs/19-macierz-testow.md |
-| Wymiary (listy wartości i typy-unie) | 138 (z testem: 137) | docs/19-macierz-testow.md |
+| Funkcje biblioteki `lib/` | 990 (z testem: 990) | docs/19-macierz-testow.md |
+| Wymiary (listy wartości i typy-unie) | 138 (z testem: 138) | docs/19-macierz-testow.md |
 | Pliki testów Jest | 459 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
 | Przypadki testowe (statycznie) | 5423 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 153 (Maestro: 126, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 13) | docs/37-katalog-przeplywow.md |

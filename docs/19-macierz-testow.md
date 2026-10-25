@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 349 | 349 | 0 |
 | TEKST | 1109 | 1109 | 0 |
-| LOGIKA | 990 | 989 | 0 |
+| LOGIKA | 990 | 990 | 0 |
 | WYMIAR | 138 | 138 | 0 |
 
 ## EKRAN
@@ -1798,7 +1798,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/rigs/squat.legChain | lib/figures/v2/rigs/squat.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/rigs/squat.kneeForHipHeight | lib/figures/v2/rigs/squat.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/rigs/squat.squatFrame | lib/figures/v2/rigs/squat.ts | tests/figures-v2-geometry.test.ts |
-| figures/v2/skeleton.trunkChord | lib/figures/v2/skeleton.ts | WYJĄTEK: BRAK |
+| figures/v2/skeleton.trunkChord | lib/figures/v2/skeleton.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/skeleton.legJoints | lib/figures/v2/skeleton.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/skeleton.solveSkeleton | lib/figures/v2/skeleton.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/skeleton.soleY | lib/figures/v2/skeleton.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-geometry.test.ts |

@@ -14,7 +14,7 @@ import {
   TEMPO, uAt, loopLength,
   sdPoly, gap, bodyColliders, equipColliders, checkFrame, holdChecks, TOL,
   muscleShapes, MUSCLES, MUSCLE_MIN_LOAD, MUSCLE_DATA, musclesFor, figureSpec, frameAt, shapeAttrs, TORSO_SIDE, TORSO_FRONT,
-  solveRoot, ease, legFK, mkFrame, legChain, kneeForHipHeight, FAMILIES, SQUAT, HINGE,
+  trunkChord, solveRoot, ease, legFK, mkFrame, legChain, kneeForHipHeight, FAMILIES, SQUAT, HINGE,
   type PoseIn, type V3, type Prop, type Frame,
 } from '@/lib/figures/v2';
 import { CATALOG } from '@/lib/catalog.generated';
@@ -62,6 +62,7 @@ describe('szkielet', () => {
     const a = solveSkeleton({ ...STAND, trunkPitch: 0 }), b = solveSkeleton({ ...STAND, trunkPitch: 0, spineBend: 40 });
     expect(a.shoulderC[1] - a.pelvis[1]).toBeCloseTo(BODY.trunk, 6); expect(b.shoulderC[1] - b.pelvis[1]).toBeLessThan(BODY.trunk); expect(b.spineMid[0]).toBeLessThan(a.spineMid[0]);
     expect(solveSkeleton({ ...STAND, trunkPitch: 90 }).shoulderC[0] - 4).toBeCloseTo(BODY.trunk, 6);
+    expect(trunkChord(0)).toBe(1); expect(trunkChord(40)).toBeLessThan(1); expect(b.shoulderC[1] - b.pelvis[1]).toBeCloseTo(BODY.trunk * trunkChord(40), 6);
   });
   test('kolano idzie w stronę palców (kneeOut), biodro, kolano i kostka zgodne z legJoints', () => {
     const p: PoseIn = { ...STAND, pelvis: [-10, 55, 0], legs: { R: { ankle: [0, 7, 20], toeOut: 20 }, L: { ankle: [0, 7, -20], toeOut: 20 } } };
