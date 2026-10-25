@@ -16,11 +16,16 @@ describe('tests-tz.yml — zadanie „zmiana-czasu” (A)', () => {
   });
   test('macierz obejmuje zmianę czasu w Europie jesienią i wiosną oraz w USA; każda chwila to ISO w UTC tuż po zmianie', () => {
     const poz = [...job.matchAll(/^\s*-\s*(\S+)\|(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)\s*$/gm)].map(m => [m[1], m[2]]);
-    expect(poz).toEqual(expect.arrayContaining([['Europe/Warsaw', '2026-10-25T02:30:00Z'], ['Europe/Warsaw', '2026-03-29T03:00:00Z'], ['America/Los_Angeles', '2026-11-01T10:30:00Z']]));
+    expect(poz).toEqual(expect.arrayContaining([['Europe/Warsaw', '2027-10-31T02:30:00Z'], ['Europe/Warsaw', '2027-03-28T03:00:00Z'], ['America/Los_Angeles', '2027-11-07T10:30:00Z']]));
     for (const [z, iso] of poz) { /* chwila ma być 0,5–3 h po przejściu — w strefie jest już nowe przesunięcie, a start sprzed kilku godzin wypada w starym */
       const t = Date.parse(iso); const off = (ms: number) => Date.parse(new Date(ms).toLocaleString('sv-SE', { timeZone: z }).replace(' ', 'T') + 'Z') - ms;
       expect([z, off(t - 8 * 3600e3) !== off(t)]).toEqual([z, true]);
     }
+  });
+  test('pliki z własnym zegarem są pominięte (scripts/ci/pin-wykluczenia.mjs), a reszta biegnie z przypiętym „teraz”', () => {
+    expect(tz).toMatch(/--testPathIgnorePatterns "\$\(node scripts\/ci\/pin-wykluczenia\.mjs\)"/);
+    const wyk = execFileSync('node', [path.join(root, 'scripts/ci/pin-wykluczenia.mjs')]).toString().trim().split('|');
+    expect(wyk).toEqual(expect.arrayContaining(['/tests/health-read-ui\\.test\\.tsx$'])); expect(wyk).not.toContain('/tests/edit-history\\.test\\.tsx$'); expect(wyk.length).toBeGreaterThan(50);
   });
   test('dawne zadanie jest bez zmian (macierz stref z matrix-time.test.ts)', () => { expect(tz).toMatch(/matrix:\s*\n\s*tz:\s*\n(\s*-\s*.+\n)+/); expect(tz).toMatch(/TZ=\$\{\{\s*matrix\.tz\s*\}\}\s+npx jest --maxWorkers=2/); });
 });
