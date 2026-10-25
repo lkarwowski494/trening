@@ -3,7 +3,7 @@
  * sprzęt. Brak kolorów — tylko role (palette.ts). Liczby wymiarów sprzętu w EQUIP (jedno miejsce).
  */
 import { add, mul, norm, sub, rad, type V2, type V3 } from './math';
-import { BODY, GIRTH, SIDES, type Side, type Skeleton } from './skeleton';
+import { BODY, GIRTH, SIDES, type Skeleton } from './skeleton';
 import { LAYER, type Prop, type Role, type Shape, type View } from './scene';
 
 /** Wymiary sprzętu (cm) — uproszczenie ilustracyjne. */

@@ -47,4 +47,3 @@ export function legFK(K: number, rule: ShinRule, ankle: V3, dz = 0): { knee: V3;
 }
 
 export const nearTo = (a: V3, b: V3): number => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
-export { add, mul };

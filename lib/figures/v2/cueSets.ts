@@ -9,11 +9,9 @@
  * Strażnik: wskazówka przypisana ćwiczeniu nie przeczy jego ruchowi — CUE_REQUIRES (poniżej) wiąże wskazówki z cechami wariantu rysunku (tests/figures-v2-cues.test.ts).
  */
 import { t } from '@/lib/i18n';
-import { CATALOG } from '../../catalog.generated';
-import { VARIANTS, type Variant } from './variants';
+import type { Variant } from './variants';
 
 type CueSetData = { meta: { newIds: string[] }; items: Record<string, { b: 'own' | 'general' | 'open'; f?: string; ok?: string[]; err?: string[] }> };
-/* eslint-disable-next-line @typescript-eslint/no-var-requires */
 export const CUE_SETS: CueSetData = require('./cue-sets.json');
 
 export type CuePolicy = 'A' | 'B';

@@ -8,9 +8,8 @@
  * Kąty bez podanego źródła (K_end, τ, rozstaw) to UPROSZCZENIE ILUSTRACYJNE.
  */
 import { BODY } from '../skeleton';
-import { add, mul, sag, type V3 } from '../math';
+import { add, type V3 } from '../math';
 import type { Frame, Prop, Contact } from '../scene';
-import { EQUIP } from '../draw';
 import { ease, legFK, mkFrame, solveRoot, trunkPoint, type ShinRule } from './common';
 import type { PoseIn } from '../skeleton';
 

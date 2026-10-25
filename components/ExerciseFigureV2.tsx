@@ -5,7 +5,7 @@ import { useTheme, TEXT_SCALE_MAX, FW, font, type Theme } from '@/lib/theme';
 import { t, lang, exName } from '@/lib/i18n';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { useReduceMotion } from '@/components/ExerciseFigure';
-import { figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, type FigureSpec, type Shape, type View as FView } from '@/lib/figures/v2';
+import { figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, type FigureSpec, type View as FView } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';
 
 /*
