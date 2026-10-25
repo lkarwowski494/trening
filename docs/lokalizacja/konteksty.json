@@ -844,7 +844,7 @@
  "Zmień szablon": "components/DayPanel.tsx:70",
  "Zmierz": "components/WorkoutBlocks.tsx:223",
  "Zmniejsz czas o {n}": "dynamiczny (lista, etykieta albo dane w kodzie)",
- "Zobacz plany Pro ›": "components/FairRulesSheet.tsx:35, components/ImportProCard.tsx:22",
+ "Zobacz plany Pro ›": "components/FairRulesSheet.tsx:37, components/ImportProCard.tsx:22",
  "zostaje to ćwiczenie": "app/swap.tsx:69",
  "Zostaw": "app/generator.tsx:93",
  "Zrealizuj kod": "app/paywall.tsx:96",

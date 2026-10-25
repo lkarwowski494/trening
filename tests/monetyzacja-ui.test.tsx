@@ -13,6 +13,7 @@ import { setStoreAdapter, resetStoreAdapterForTests } from '@/lib/store-adapter'
 import { createFakeStore } from '@/lib/store-fake';
 import { fairRulesDue, markFairRulesSeen, offerAudience } from '@/lib/fairrules';
 import { buildBackup, parseBackup } from '@/lib/backup';
+import { ESPRESSO_URL, PRIVACY_URL } from '@/lib/products';
 import { CLOSE_TEST_ID } from '@/components/CloseButton';
 import { fresh, saved, addWorkout, ex, pressAlert } from './helpers';
 import { renderApp, flushAll, screen, tap, act, go } from './app';
@@ -78,6 +79,28 @@ describe('MAN-01: okno „Uczciwe zasady” po pierwszym ukończonym treningu na
     await boot({ prior: 1 }); await finish(); await tap(screen.getByTestId('fair-rules-ok')); delete S().seenFairRulesManifest; const id = S().workouts[S().workouts.length - 1].id;
     await act(async () => { require('expo-router').router.push('/history'); }); await flushAll(10);
     await act(async () => { require('expo-router').router.push(`/history/${encodeURIComponent(id)}`); }); await flushAll(30); expect(win()).toBeNull();
+  });
+});
+
+describe('link „Skąd ta cena?” w oknie → strona indeksu espresso', () => {
+  test.each([['en', 'Why this price? See the espresso index.'], ['pl', 'Skąd ta cena? Poznaj indeks espresso.']] as const)('%s: przycisk z podpowiedzią „otwiera stronę w przeglądarce”, otwiera ESPRESSO_URL, okno zostaje otwarte i flaga się nie ustawia', async (locale, label) => {
+    const open = jest.spyOn(RN.Linking, 'openURL').mockResolvedValue(undefined as never); await boot({ locale }); await finish(locale);
+    const b = screen.getByTestId('fair-rules-espresso'); expect(b.props.accessibilityRole).toBe('button'); expect(b.props.accessibilityLabel).toBe(label);
+    expect(b.props.accessibilityHint).toBe(locale === 'en' ? 'Opens the page in your browser.' : 'Otwiera stronę w przeglądarce.');
+    await tap(b); await flushAll(10); expect(open).toHaveBeenCalledWith(ESPRESSO_URL); expect(win()).toBeTruthy(); expect(S().seenFairRulesManifest).toBeUndefined();
+  });
+  test('adres w jednym miejscu (lib/products.ts), na stronie marki jak polityka prywatności, i prowadzi do istniejącego pliku site/espresso.html', () => {
+    expect(ESPRESSO_URL.replace('espresso.html', '')).toBe(PRIVACY_URL.replace('privacy.html', '')); expect(ESPRESSO_URL).not.toMatch(/github/);
+    const file = ESPRESSO_URL.split('/').pop()!; expect(fs.existsSync(`site/${file}`)).toBe(true);
+    expect(fs.readFileSync('components/FairRulesSheet.tsx', 'utf8')).not.toMatch(/https?:\/\//);
+  });
+  test('strona: PL i EN, źródło cen espresso, ograniczenia porównania, bez kwot planów aplikacji i bez nazw innych aplikacji; karta po imporcie linku nie ma', () => {
+    const html = fs.readFileSync('site/espresso.html', 'utf8'); const body = html.replace(/<!--[\s\S]*?-->/g, '');
+    const pl = body.slice(body.indexOf('<section lang="pl"'), body.indexOf('<section lang="en"')); const en = body.slice(body.indexOf('<section lang="en"'));
+    for (const w of ['MIMIT', 'C.r.c.', 'Assoutenti', 'Teleborsa', '18 sierpnia 2026', '1,29 €', '1,06 €', '1,51 €', 'jedno źródło', 'Aktualną cenę zawsze widzisz w sklepie']) expect(pl).toContain(w);
+    for (const w of ['MIMIT', 'C.r.c.', 'Assoutenti', 'Teleborsa', '18 August 2026', '€1.29', '€1.06', '€1.51', 'one source', 'You always see the current price in the store']) expect(en).toContain(w);
+    for (const price of ['0,99', '6,99', '14,99', '4,99', '19,99', '59,99', '0.99', '6.99', '14.99', '7,99', '17,99']) expect(body).not.toContain(price);
+    expect(fs.readFileSync('components/ImportProCard.tsx', 'utf8')).not.toContain('espresso');
   });
 });
 

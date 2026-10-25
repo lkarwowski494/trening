@@ -1,10 +1,11 @@
 import React from 'react';
-import { Modal, Pressable, Text, View } from 'react-native';
+import { Linking, Modal, Pressable, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Btn } from '@/components/ui';
 import { CloseButton } from '@/components/CloseButton';
 import { markFairRulesSeen } from '@/lib/fairrules';
 import { PAYWALL } from '@/lib/access';
+import { ESPRESSO_URL } from '@/lib/products';
 import { useTheme, TEXT_SCALE_MAX, font, RADIUS, SPACE } from '@/lib/theme';
 import { t, lang } from '@/lib/i18n';
 
@@ -31,6 +32,7 @@ export function FairRulesSheet({ visible, onClose }: { visible: boolean; onClose
           {line('all', t('Wszystkie funkcje działają od pierwszego dnia, bez konta i bez reklam. Dane zostają w telefonie.'))}
           {line('free', t('Trenuj {n} dni w miesiącu za darmo, bez końca.', { n: PAYWALL.FREE_TRAINING_DAYS_PER_MONTH }))}
           {line('pro', t('Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.'))}
+          <Btn kind="ghost" small block testID="fair-rules-espresso" title={t('Skąd ta cena? Poznaj indeks espresso.')} accessibilityHint={t('Otwiera stronę w przeglądarce.')} onPress={() => { Linking.openURL(ESPRESSO_URL).catch(() => {}); }} />{/* link zewnętrzny: wzorzec 17 (docs/32); okno zostaje otwarte */}
           <Btn kind="primary" block testID="fair-rules-ok" title={t('Super, trenuję dalej!')} onPress={close} />
           <Btn nav kind="ghost" block testID="fair-rules-plans" title={t('Zobacz plany Pro ›')} onPress={plans} />
         </View>

@@ -1230,4 +1230,5 @@ export const EN: Record<string, string> = {
   'Zobacz plany Pro ›': 'See Pro plans ›',
   'Historia jest już w telefonie': 'Your history is now on your phone',
   'Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.': 'Imported workouts, records and charts are always available, even offline. Train {n} days a month for free — Pro removes the limit, with a one-time option too.',
+  'Skąd ta cena? Poznaj indeks espresso.': 'Why this price? See the espresso index.',
 };

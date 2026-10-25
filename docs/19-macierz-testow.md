@@ -10,7 +10,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Rodzaj | Pozycji | Z testem | Wyjątki |
 |---|---|---|---|
 | EKRAN | 32 | 32 | 0 |
-| UI | 351 | 351 | 0 |
+| UI | 352 | 352 | 0 |
 | TEKST | 1114 | 1114 | 0 |
 | LOGIKA | 938 | 938 | 0 |
 | WYMIAR | 118 | 118 | 0 |
@@ -278,6 +278,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Seria zrobiona: {ex}, seria {n} | components/NowBoard.tsx | tests/maestro-selectors.test.ts, tests/tuleja.test.tsx |
 | Sesja {d}: {s} | app/exercise/[id].tsx | tests/audit-k1-fala2b.test.tsx, tests/edit-on-demand.test.tsx, tests/scenario-full.test.tsx +1 |
 | Skala wysiłku | app/more/settings.tsx | tests/effort-scale.test.tsx, tests/whats-new.test.tsx |
+| Skąd ta cena? Poznaj indeks espresso. | components/FairRulesSheet.tsx | tests/monetyzacja-ui.test.tsx |
 | Skróć przerwę o 15 sekund | components/ActiveWorkout.tsx | tests/karta-sprzet.test.tsx, tests/m3-p2-board-ui.test.tsx, tests/scenario-full.test.tsx |
 | Sprawdź zgodę na powiadomienia | app/more/settings.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Spróbuj ponownie | app/paywall.tsx | tests/audit-m1-003-boundary.test.tsx, tests/audit-m1-003-guard-ui.test.tsx, tests/health-read-ui.test.tsx +3 |
@@ -983,7 +984,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Otwiera listę szablonów. | app/plan.tsx | tests/home-plan-header.test.tsx |
 | Otwiera Postępy. | components/Dashboard.tsx | tests/audit-0.10-ui.test.tsx, tests/guard-ui.test.tsx |
 | Otwiera propozycje zamian na to miejsce. | components/ActiveWorkout.tsx | tests/adapt-ui.test.tsx |
-| Otwiera stronę w przeglądarce. | app/more/about.tsx | tests/legal-links.test.tsx, tests/subscription-i18n.test.ts |
+| Otwiera stronę w przeglądarce. | app/more/about.tsx | tests/legal-links.test.tsx, tests/monetyzacja-ui.test.tsx, tests/subscription-i18n.test.ts |
 | Otwiera szczegóły Progresji. | components/Dashboard.tsx | tests/progression-ui.test.tsx |
 | Otwiera ten dzień w zakładce Plan. | components/TodayPlan.tsx | tests/audit-0.10-plan-ui.test.tsx |
 | Otwiera wybór zamiennika. | app/adapt.tsx | tests/adapt-ui.test.tsx |
