@@ -29,6 +29,8 @@ export const isSubscriptionPlan = (p: EntitlementPlan): boolean => SUBSCRIPTION_
 export const PRIVACY_URL = 'https://apps4brew.com/trening/privacy.html';
 /** Strona wsparcia (D-2 A; App Store Connect → Support URL; treść źródłowa w `site/support.html`). */
 export const SUPPORT_URL = 'https://apps4brew.com/trening/support.html';
+/** Strona „Skąd ta cena? Indeks espresso” (decyzja właściciela 25.10.2026; treść źródłowa w `site/espresso.html`, źródło cen: docs/research/espresso-mimit-2026-10.md). Link w oknie „Uczciwe zasady”. */
+export const ESPRESSO_URL = 'https://apps4brew.com/trening/espresso.html';
 /**
  * Warunki korzystania (Terms of Use) — decyzja właściciela 12.10.2026, P9 A: standardowa licencja Apple dla użytkownika (Licensed Application End User
  * License Agreement). Apple: „If you don’t provide a custom EULA, the standard EULA is applied to your app” (App Store Connect → Provide a custom license

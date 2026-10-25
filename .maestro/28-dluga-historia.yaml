@@ -131,7 +131,7 @@ name: Długa historia — kilka sesji, rekordy, usunięcie sesji
 - tapOn: "Bench Press \\(Dumbbell\\)"  # chip wyboru (ćwiczenie ma dane); nowy wykres jest na górze
 - extendedWaitUntil: { visible: "RECORDS", timeout: 30000 }
 - assertVisible: "Max weight.*"
-- assertVisible: "e1RM \\(Epley.*"
+- assertVisible: "e1RM.*"
 - assertVisible: "Chart, 4 sessions.*"
 - takeScreenshot: 98-rekordy-cwiczenia-historia
 - scrollUntilVisible: { element: "Workouts: [0-9]+, previously .*", direction: DOWN, timeout: 60000 }

@@ -369,9 +369,9 @@ describe('store.useStore', () => {
 describe('store.usePrefsTick', () => {
   test('klucz język|jednostka|motyw — zmienia się tylko przy zmianie preferencji', async () => {
     await fresh(); let renders = 0; const { result } = renderHook(() => { renders++; return store.usePrefsTick(); });
-    expect(result.current).toBe('auto|kg|light'); const r0 = renders;
+    expect(result.current).toBe('auto|kg|dark'); const r0 = renders;
     hookAct(() => { store.newTemplate(); }); expect(renders).toBe(r0); /* inna zmiana — bez przerysowania */
-    hookAct(() => { store.getState().settings.unit = 'lb'; store.save(); }); expect(result.current).toBe('auto|lb|light');
+    hookAct(() => { store.getState().settings.unit = 'lb'; store.save(); }); expect(result.current).toBe('auto|lb|dark');
     hookAct(() => { store.getState().settings.language = 'en'; store.getState().settings.theme = 'dark'; store.save(); }); expect(result.current).toBe('en|lb|dark');
   });
 });

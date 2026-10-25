@@ -16,6 +16,7 @@
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { createRequire } from 'node:module';
 import { CENY, MODELE, RABAT_BATCH, DOMYSLNY_MODEL, DOMYSLNY_EFFORT, EFFORTY, MAX_TOKENS, REJESTR, INTERWAL_S, CZEKAJ_MIN_DOMYSLNIE, jezyki, zmienne, nazwaJezyka, przyblizTokeny, tekstZadania, kosztUsd, klient, czekajNaBatch } from './przeglad-api.mjs';
 
 /** Powyżej tego szacunku (USD) przebieg zatrzymuje się, chyba że podano --zgoda-koszt (zgoda właściciela 23.10.2026: do 6 USD). */
@@ -24,6 +25,11 @@ export const ZESTAW_DOMYSLNY = 'docs/lokalizacja/zestaw-przekladu-2026-10-23.jso
 /** Założenia szacunku wyjścia (nie pomiar, zawyżone celowo): tokeny tłumaczenia ≈ tokeny angielskiego × WSPOLCZYNNIK języka; obwiednia JSON na klucz; myślenie modelu na żądanie (effort medium). */
 export const ZALOZENIA = { obwiednia: 12, myslenie: 3000 };
 export const WSPOLCZYNNIK = (kod) => (['ja', 'ko', 'zh-Hant'].includes(kod) ? 1.0 : ['el', 'bg', 'ru', 'uk', 'sr'].includes(kod) ? 1.6 : ['de', 'fi', 'hu', 'tr', 'nl', 'sv', 'da', 'nb', 'et', 'lt', 'lv', 'sl', 'hr', 'cs', 'sk', 'ro'].includes(kod) ? 1.35 : 1.25);
+
+/* Słownik terminów treningowych (decyzja właściciela 25.10.2026): docs/lokalizacja/slownik-terminow.json; moduł CommonJS, wspólny ze strażnikiem testowym. */
+const SLOWNIK_MOD = createRequire(import.meta.url)('./slownik.cjs');
+/** Słownik projektu; null tylko w atrapach projektu bez pliku (testy z fixture) — prawdziwy przebieg ma plik w repozytorium (pilnuje tests/slownik-terminow.test.ts). */
+export const slownikTerminow = (root) => (existsSync(join(root, SLOWNIK_MOD.PLIK_SLOWNIKA)) ? SLOWNIK_MOD.wczytaj(root) : null);
 
 const czytaj = (p) => JSON.parse(readFileSync(p, 'utf8'));
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -34,6 +40,7 @@ export const SYSTEM = [
   'To teksty interfejsu dla zwykłych użytkowników, nie dla naukowców: nie dodawaj nazw źródeł, autorów, organizacji, lat ani oznaczeń pewności („wstępne”, „potwierdzone”, „jedno źródło”, „uproszczenie”), jeśli nie ma ich w polskim tekście.',
   'Zdania ostrzegawcze (zdrowie, bezpieczeństwo, asekuracja) tłumacz wiernie, bez złagodzenia i bez wzmocnienia. Nazwy elementów interfejsu w cudzysłowach („…”) tłumacz tak, jak brzmią w tym języku w tym samym zestawie (spójnie).',
   'Jeśli podano „stare” tłumaczenie poprzedniego brzmienia, użyj go tylko jako wzoru terminologii — nie przenoś z niego nazw źródeł ani zdań, których nie ma w nowym polskim tekście.',
+  'Pisz naturalnie, tak jak powiedziałby trener albo kolega na siłowni w tym języku: potoczny termin siłowni zamiast naukowego żargonu i stylu podręcznikowego, bez zbędnych zastrzeżeń, krótko (ekran telefonu). Terminy treningowe tłumacz WYŁĄCZNIE według słownika terminów podanego dla języka (termin zalecany; terminów oznaczonych „NIE używaj” nie używaj nigdy, bo znaczą co innego albo brzmią jak przerwa w pracy).',
   'Formy liczby mnogiej oddzielone znakiem | zachowaj w liczbie i kolejności wymaganej przez język. Odpowiedz WYŁĄCZNIE jednym obiektem JSON, bez komentarza i bez bloku kodu: kluczem jest numer pozycji (tekst), wartością tłumaczenie (tekst).',
 ].join(' ');
 
@@ -57,7 +64,7 @@ export function stare(root, kod) {
   return existsSync(p) ? czytaj(p) : {};
 }
 
-export function budujZadanie(kod, pozycje, staraTresc = {}) {
+export function budujZadanie(kod, pozycje, staraTresc = {}, slownik = null) {
   const lista = pozycje.map((p) => {
     const o = { id: String(p.id), pl: p.pl, en: p.en };
     if (p.rodzaj === 'zmieniony' && typeof staraTresc[p.pl] === 'string') o.stare = staraTresc[p.pl];
@@ -66,19 +73,20 @@ export function budujZadanie(kod, pozycje, staraTresc = {}) {
   const user = [
     `Język docelowy: ${nazwaJezyka(kod)} (${kod}).`,
     `Rejestr i konwencje tego języka: ${REJESTR[kod] ?? 'jak w iOS danego języka'}.`,
+    ...(slownik ? [SLOWNIK_MOD.blokPromptu(slownik, kod)].filter(Boolean) : []),
     `Pozycji: ${lista.length}. Pole „pl” to tekst źródłowy, „en” angielski tekst odniesienia, „stare” (jeśli jest) — poprzednie tłumaczenie poprzedniego brzmienia.`,
     '', JSON.stringify(lista),
   ].join('\n');
   return { system: SYSTEM, messages: [{ role: 'user', content: user }] };
 }
 
-export function budujZadanieBatcha(kod, pozycje, staraTresc, { model, effort }) {
-  const z = budujZadanie(kod, pozycje, staraTresc);
+export function budujZadanieBatcha(kod, pozycje, staraTresc, { model, effort }, slownik = null) {
+  const z = budujZadanie(kod, pozycje, staraTresc, slownik);
   return { custom_id: `pr-${kod}`, params: { model, max_tokens: MAX_TOKENS, system: z.system, messages: z.messages, output_config: { effort } } };
 }
 
 /** Odpowiedź modelu → { blad, propozycje: {pl: tlumaczenie}, odrzucone: [{klucz, powod}] }. Tłumaczenie bez zgodnych zmiennych {…} albo puste trafia do „odrzucone”. */
-export function parsujOdpowiedz(tekst, pozycje) {
+export function parsujOdpowiedz(tekst, pozycje, kod = null, slownik = null) {
   const s = String(tekst ?? '').trim().replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '');
   const a = s.indexOf('{'); const b = s.lastIndexOf('}');
   if (a < 0 || b <= a) return { blad: 'brak obiektu JSON w odpowiedzi', propozycje: {}, odrzucone: pozycje.map((p) => ({ klucz: p.pl, powod: 'brak odpowiedzi' })) };
@@ -89,6 +97,8 @@ export function parsujOdpowiedz(tekst, pozycje) {
     const v = obj[String(p.id)];
     if (typeof v !== 'string' || !v.trim()) { odrzucone.push({ klucz: p.pl, powod: 'brak tłumaczenia w odpowiedzi' }); continue; }
     if (zmienne(p.pl).join('') !== zmienne(v).join('')) { odrzucone.push({ klucz: p.pl, powod: `zmienne: źródło ${zmienne(p.pl).join('') || '—'}, tłumaczenie ${zmienne(v).join('') || '—'}`, tlumaczenie: v }); continue; }
+    const naruszenia = kod && slownik ? SLOWNIK_MOD.sprawdz(slownik, kod, p.pl, v) : [];
+    if (naruszenia.length) { odrzucone.push({ klucz: p.pl, powod: `słownik terminów: ${naruszenia.map((n) => `${n.pojecie} /${n.wzorzec}/ — ${n.powod}`).join('; ')}`, tlumaczenie: v }); continue; }
     propozycje[p.pl] = v.trim();
   }
   return { blad: null, propozycje, odrzucone };
@@ -105,8 +115,8 @@ export function odczytajLinie(linia) {
   return { kod, blad: null, tekst, uzycie: m.usage ?? null };
 }
 
-export function raportJezyka(kod, pozycje, odczyt, meta) {
-  const p = odczyt.blad ? { blad: odczyt.blad, propozycje: {}, odrzucone: pozycje.map((x) => ({ klucz: x.pl, powod: 'brak odpowiedzi' })) } : parsujOdpowiedz(odczyt.tekst, pozycje);
+export function raportJezyka(kod, pozycje, odczyt, meta, slownik = null) {
+  const p = odczyt.blad ? { blad: odczyt.blad, propozycje: {}, odrzucone: pozycje.map((x) => ({ klucz: x.pl, powod: 'brak odpowiedzi' })) } : parsujOdpowiedz(odczyt.tekst, pozycje, kod, slownik);
   return { jezyk: kod, ...meta, pozycji: pozycje.length, przyjete: Object.keys(p.propozycje).length, blad: p.blad, odrzucone: p.odrzucone, propozycje: p.propozycje };
 }
 
@@ -122,8 +132,8 @@ export function podsumowanieMd(raporty, meta) {
 }
 
 /* ---------- szacunek kosztu ---------- */
-export function wiersz(kod, pozycje, staraTresc, model) {
-  const z = budujZadanie(kod, pozycje, staraTresc);
+export function wiersz(kod, pozycje, staraTresc, model, slownik = null) {
+  const z = budujZadanie(kod, pozycje, staraTresc, slownik);
   const wy = Math.ceil(pozycje.reduce((s, p) => s + przyblizTokeny(p.en) * WSPOLCZYNNIK(kod) + ZALOZENIA.obwiednia, 0)) + ZALOZENIA.myslenie;
   return { jezyk: kod, pozycji: pozycje.length, we: przyblizTokeny(tekstZadania(z)), wy, model };
 }
@@ -192,12 +202,13 @@ export async function main(argv, env, { fetchFn = fetch, log = console.log, root
   const stareTresc = Object.fromEntries(kody.map((k) => [k, stare(root, k)]));
   log(`pozycji: ${pozycje.length} (nowe ${pozycje.filter((p) => p.rodzaj === 'nowy').length}, zmienione ${pozycje.filter((p) => p.rodzaj === 'zmieniony').length}); języków: ${kody.length}; model ${o.model}, effort ${o.effort}`);
   mkdirSync(o.wyjscie, { recursive: true });
-  const zadania = kody.map((k) => budujZadanieBatcha(k, pozycje, stareTresc[k], o));
+  const slownik = slownikTerminow(root);
+  const zadania = kody.map((k) => budujZadanieBatcha(k, pozycje, stareTresc[k], o, slownik));
 
   if (!o.wznow) {
     const wiersze = [];
     for (const [i, k] of kody.entries()) {
-      const w = wiersz(k, pozycje, stareTresc[k], o.model);
+      const w = wiersz(k, pozycje, stareTresc[k], o.model, slownik);
       if (api) w.we = await api.liczTokeny(o.model, zadania[i].params);
       wiersze.push(w);
     }
@@ -218,7 +229,7 @@ export async function main(argv, env, { fetchFn = fetch, log = console.log, root
   const linie = (await api.wyniki(batch.results_url)).split('\n').filter((l) => l.trim());
   const odczyty = Object.fromEntries(linie.map((l) => { const r = odczytajLinie(l); return [r.kod, r]; }));
   const meta = { model: o.model, effort: o.effort, batch_id: id };
-  const raporty = kody.map((k) => raportJezyka(k, pozycje, odczyty[k] ?? { blad: 'brak wyniku w batchu', tekst: null }, meta));
+  const raporty = kody.map((k) => raportJezyka(k, pozycje, odczyty[k] ?? { blad: 'brak wyniku w batchu', tekst: null }, meta, slownik));
   for (const r of raporty) writeFileSync(join(o.wyjscie, `${r.jezyk}.json`), JSON.stringify(r, null, 1) + '\n');
   writeFileSync(join(o.wyjscie, 'podsumowanie.md'), podsumowanieMd(raporty, meta));
   log(`raport: ${o.wyjscie}/ (${raporty.length} języków, odrzucone pozycje: ${raporty.reduce((s, r) => s + r.odrzucone.length, 0)})`);

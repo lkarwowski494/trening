@@ -296,7 +296,7 @@ describe('macierz — podpowiedzi VoiceOver i teksty pomocnicze ekranów planu (
     await tap(screen.getByText('Przesuń albo pomiń')); await flushAll(5);
     await openInfo('move-list');
     expect(screen.getByText(`Kolejność: najpierw zmiany, po których plan wraca do rutyny w ciągu ${plan.RETURN_DAYS} dni, potem bez utraty treningów, bez nowych par dzień po dniu z tymi samymi partiami i z najmniejszą liczbą zmienionych dni.`)).toBeTruthy();
-    const simpl = 'Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).';
+    const simpl = 'Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku.';
     expect(screen.getByText(new RegExp('^' + simpl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))).toBeTruthy();
   });
   test('pasek tygodnia na ekranie Trening: dzień to przycisk z podpowiedzią „Otwiera ten dzień w zakładce Plan.”', async () => {

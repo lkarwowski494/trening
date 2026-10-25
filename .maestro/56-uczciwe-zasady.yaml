@@ -1,0 +1,56 @@
+# Okno „Uczciwe zasady” (1.0, decyzja właściciela 25.10.2026; docs/monetyzacja.md): build ze sztucznym sklepem (EXPO_PUBLIC_STORE_FAKE=1 tylko w e2e-ios.yml) startuje z dostępem „na zawsze”,
+# a okno pokazuje się tylko w stanie `free`. Dlatego trening startuje w stanie pełnym, w jego trakcie dostęp wygasa (panel „Test store”; trwający trening nigdy nie jest przerywany),
+# a po „Finish” (trening na żywo, stan free) na podsumowaniu pojawia się okno: tytuł, przycisk główny i drugorzędny. „See Pro plans” zamyka okno i otwiera ekran zakupu;
+# po jego zamknięciu okna już nie ma (pokazuje się raz). Przycisk główny zamykający okno, pozostałe warunki (full, drugi trening, PL/EN, motywy) i „Cancel” w nagłówku — Jest: tests/monetyzacja-ui.test.tsx.
+# Karta po imporcie CSV nie ma scenariusza (wybór pliku w systemowym oknie — wyjątek DA-08 w tests/przeplywy.json).
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Subscription", "Full version.*", "Test store: expire access"           ← components/SubscriptionCard.tsx, app/paywall.tsx (panel tylko w buildzie E2E, bez t())
+#   "Train 5 days a month for free.*"                                        ← nagłówek ekranu zakupu po wygaśnięciu (jak w 21)
+#   "First workout done!", "Awesome, keep training!", "See Pro plans.*"      ← components/FairRulesSheet.tsx
+#   "Finish", "Finish workout\?", "Session", "Set 1 done.*", "Skip"          ← jak flow 21
+appId: pl.lukasz.trening
+name: Uczciwe zasady — okno po pierwszym treningu
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- runFlow: subflows/szablon-testowy.yaml
+- runFlow: subflows/start-szablonu.yaml
+- extendedWaitUntil: { visible: "Set 1 done.*", timeout: 30000 }
+- tapOn: { text: "Set 1 done.*", index: 0 }
+- extendedWaitUntil: { visible: "Skip", timeout: 30000 }
+- tapOn: "Skip"
+- assertNotVisible: "Skip"
+# --- w trakcie treningu dostęp wygasa (Ustawienia → Subscription → Test store) ---
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
+- tapOn: "Full version.*"
+- scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000, centerElement: true }
+- tapOn: "Test store: expire access"
+- scrollUntilVisible: { element: "Train 5 days a month for free.*", direction: UP, timeout: 60000 }
+- assertVisible: "Train 5 days a month for free.*"
+- tapOn: { id: "close-modal" }
+- extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
+- tapOn: "Back"
+# --- powrót do treningu i „Finish” w stanie free → okno na podsumowaniu ---
+- tapOn: "Workout, tab.*"
+- extendedWaitUntil: { visible: "Finish", timeout: 30000 }
+- tapOn: "Finish"
+- extendedWaitUntil: { visible: "Finish workout\\?", timeout: 30000 }
+- tapOn: { text: "Finish", below: "Finish workout\\?" }
+- extendedWaitUntil: { visible: "First workout done!", timeout: 30000 }
+- assertVisible: "Awesome, keep training!"
+- assertVisible: "See Pro plans.*"
+- assertVisible: { id: "close-modal" }
+- takeScreenshot: 99-uczciwe-zasady
+# --- drugorzędny przycisk: okno znika, otwiera się ekran zakupu ---
+- tapOn: "See Pro plans.*"
+- extendedWaitUntil: { visible: "Train 5 days a month for free.*", timeout: 30000 }
+- assertNotVisible: "First workout done!"
+- tapOn: { id: "close-modal" }
+- extendedWaitUntil: { visible: "Session", timeout: 30000 }
+- assertNotVisible: "First workout done!"

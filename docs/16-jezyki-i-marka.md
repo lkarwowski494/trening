@@ -356,6 +356,12 @@ Batch `msgbatch_01HsrjDsBkKt9AEzypNeYU3Y` (Opus 5.5, 34 języki, 342 zdania na j
 - Do sprawdzenia przez native speakera (nie rozstrzygane tu): el „Γνωστοποιήσεις” vs „Ειδοποιήσεις” (spójnie z resztą aplikacji, Apple może używać drugiego), ms „Di iPhone Saya” vs „Pada iPhone Saya”, fi „Omalla iPhonella”, tr „yastıklı silindirler” i „emperyal”, hr/lv/lt etykiety spotting, hu „Biztonság és segítő”, uk/sr opisy sprzętu.
 - R-010: przegląd modelem wykonany i poprawki naniesione; wpis „drugi przegląd” w tabeli i w docs/40 nie zmienia się (nadal przegląd przez native speakerów jest otwarty).
 
+### Słownik terminów treningowych (decyzja właściciela 25.10.2026)
+
+Jedno źródło słownictwa dziedzinowego: `docs/lokalizacja/slownik-terminow.json` (opis: `docs/lokalizacja/slownik-terminow.md`) — termin zalecany (potoczny termin siłowni), terminy zakazane z powodem, pewność. Zasada nadrzędna: teksty mają być naturalne, jak mówi trener albo kolega na siłowni w danym języku. Pilnuje `tests/slownik-terminow.test.ts`; używają go przekład przez API oraz role `tlumacz` i `recenzent-lokalizacji`.
+
+*Otwarte (do native speakerów; nie zgadujemy):* lista wpisów z pewnością „niska” w `docs/lokalizacja/slownik-terminow.md` (sekcja „Do potwierdzenia przez native speakera”); przegląd native speakerów nadal niewykonany dla żadnego języka (R-010).
+
 ## Nazwa aplikacji (decyzja właściciela 05.10.2026)
 
 *Pod ikoną* (`APP_NAME` w `lib/i18n.ts`, jedno źródło prawdy; `locales/<kod>.json` musi się zgadzać — test `tests/i18n-locales.test.ts`):

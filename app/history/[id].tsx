@@ -15,6 +15,7 @@ import { prMap, workoutPRs, prCountOf } from '@/lib/stats';
 import { onSummaryShown } from '@/lib/review-run';
 import { RecordsCard } from '@/components/RecordsCard';
 import { IdeaLink } from '@/components/IdeaLink';
+import { FairRulesSheet } from '@/components/FairRulesSheet';
 import { SessionHealth } from '@/components/HealthLines';
 import { useTheme, font, FW } from '@/lib/theme';
 import { locationLabel } from '@/lib/locations';
@@ -29,8 +30,9 @@ export default function HistoryDetail() {
   const [tplSaved, setTplSaved] = React.useState(false); /* po „Zapisz zmiany w szablonie” — potwierdzenie zamiast przycisku */
   const { id } = useLocalSearchParams<{ id: string }>(); useTick(); const router = useRouter(); const th = useTheme(); const once = useOnce(); /* audyt (LOW): podwójne „Edytuj” nie otwiera dwóch edytorów */
   const w = getState().workouts.find(x => x.id === id); useAnnounce(tplSaved ? t('Szablon zaktualizowany.') : null);
+  const [fairRules, setFairRules] = React.useState(false); /* 1.0: okno „Uczciwe zasady” po pierwszym treningu na żywo (raz, tylko free) */
   const [ideaLink, setIdeaLink] = React.useState(false); /* 0.20 (docs/34): link „Poproś o funkcję” co N-ty trening, tylko na podsumowaniu świeżo zakończonego treningu */
-  React.useEffect(() => { const cur = getState().workouts.find(x => x.id === id); return cur ? onSummaryShown(cur, () => setIdeaLink(true)) : undefined; }, [id]); /* 0.17.0: tylko świeżo zakończony trening (markJustFinished) */
+  React.useEffect(() => { const cur = getState().workouts.find(x => x.id === id); return cur ? onSummaryShown(cur, () => setIdeaLink(true), () => setFairRules(true)) : undefined; }, [id]); /* 0.17.0: tylko świeżo zakończony trening (markJustFinished) */
   /* karta rekordów (11.10.2026, pkt 7): liczba i statystyki z jednego workoutPRs (E3: prCountOf); liczone przy każdym renderze, jak prMap niżej */
   const wprs = w ? workoutPRs(w) : []; const nPR = prCountOf(wprs);
   if (!w) return <Screen><Missing>{t('Brak sesji.')}</Missing></Screen>;
@@ -46,6 +48,7 @@ export default function HistoryDetail() {
       <SessionHealth w={w} />{/* 0.16.0 (docs/29 5.7): tętno i aktywne kcal z treningu z zegarka (Apple Health) */}
       {nPR > 0 ? <RecordsCard count={nPR} prs={wprs} /> : null}
       {ideaLink ? <IdeaLink /> : null}
+      <FairRulesSheet visible={fairRules} onClose={() => setFairRules(false)} />
       {earlyNote(w.id) ? <Muted style={{ marginBottom: 10, ...font('footnote') }}>{earlyNote(w.id)}</Muted> : null}{/* docs/18 pkt 4 (11.10.2026): trening policzony do wcześniejszego dnia planu */}
       {w.healthPending && !w.healthUUID ? <Muted style={{ marginBottom: 10, ...font('footnote') }}>{t('Nie zapisano jeszcze w Apple Health — zapis zostanie ponowiony przy następnym uruchomieniu aplikacji.')}</Muted> : null}{/* audyt 0.10 J2 */}
       {w.note ? <Muted style={{ marginBottom: 10 }}>{w.note}</Muted> : null}

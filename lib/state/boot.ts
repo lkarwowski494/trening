@@ -13,22 +13,46 @@ import {
 } from './core';
 import { migrate } from './migrate';
 import { applyPrefs } from './settings';
-import { BOOT_GUARD_KEY, parseBootGuard, decideBoot } from './crashguard';
+import { BOOT_GUARD_KEY, parseBootGuard, decideBoot, type BootMode } from './crashguard';
+import { BOOT_PHASE_KEY, parseBootPhase, describeBootPhase, type BootPhaseName } from './bootphase';
 import { loadBackupStat } from './backupstat';
 
+/* ZK-07: stan jednego startu (diagnostyka etapów i wyjście do tła przed otwarciem bazy). */
+let bootStartedAt = 0; let stableEarly = false; let bootPhaseCtx: { mode: BootMode; starts: number; hadData: boolean } | null = null;
+/** Czy w bazie są dane użytkownika do ochrony (zapis „state”, kopia nieczytelnych danych albo kopia sprzed migracji); świeża instalacja — nie. Błąd odczytu = są (ostrożnie). */
+async function hasUserData(): Promise<boolean> {
+  try {
+    for (const k of ['state', 'recovery', PREMIGRATE_INDEX]) if (await db!.getFirstAsync('SELECT k FROM kv WHERE k = ?', k)) return true;
+    return false;
+  } catch { return true; }
+}
+async function writePhase(phase: BootPhaseName): Promise<void> {
+  if (!bootPhaseCtx || !db) return;
+  const body = { phase, ms: Math.max(0, Date.now() - bootStartedAt), mode: bootPhaseCtx.mode, starts: bootPhaseCtx.starts, hadData: bootPhaseCtx.hadData, schema: SCHEMA_VERSION };
+  await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_PHASE_KEY, JSON.stringify(body)).catch(() => {});
+}
 /** `guard` (start aplikacji z app/_layout.tsx) włącza strażnika pętli awarii (M1-audytor-generalny-003, lib/state/crashguard.ts); `retry` („Spróbuj ponownie”
  * na ekranie błędu) liczy start od zera. Bez opcji (testy, narzędzia) strażnik nie działa. */
 export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Promise<void> {
   if (S) return;
+  bootStartedAt = Date.now(); stableEarly = false; bootPhaseCtx = null; /* ZK-07: nowy start */
   setDb(await openDb());
   await db!.execAsync('CREATE TABLE IF NOT EXISTS kv (k TEXT PRIMARY KEY, v TEXT NOT NULL)');
   await loadBackupStat(); /* M1-audytor-generalny-008: data ostatniej udanej kopii po treningu i znacznik porażki */
   if (opts.guard) {
     const g = parseBootGuard((await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', BOOT_GUARD_KEY).catch(() => null))?.v);
+    const prevPhase = parseBootPhase((await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', BOOT_PHASE_KEY).catch(() => null))?.v);
     const d = decideBoot(opts.retry ? { starts: 0 } : g);
-    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify(d.next)).catch(() => {});
+    /* ZK-07: tryb awaryjny chroni dane — bez żadnych danych (świeża instalacja) nie ma czego chronić, a ekran awaryjny zablokowałby pierwsze użycie. */
+    const hadData = await hasUserData();
+    /* ZK-07: wyjście do tła, zanim baza była otwarta (markBootStable), oznacza, że start nie zakończył się awarią — licznik zostaje 0. */
+    const mode: BootMode = hadData ? d.mode : 'normal';
+    const next = stableEarly && mode !== 'safe' ? { starts: 0 } : d.next;
+    await db!.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify(next)).catch(() => {});
+    bootPhaseCtx = { mode, starts: d.next.starts, hadData };
     /* tryb awaryjny: dane nie są ładowane ani zmieniane — ekran startu pozwala je wysłać (readRawData) albo spróbować ponownie */
-    if (d.mode === 'safe') throw Object.assign(new Error(t('Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.')), { crashLoop: true });
+    if (mode === 'safe') throw Object.assign(new Error(t('Aplikacja zamknęła się nieoczekiwanie przy ostatnich uruchomieniach.')), { crashLoop: true, bootDiag: describeBootPhase(prevPhase) });
+    await writePhase('begin');
   }
   const row = await db!.getFirstAsync<{ v: string }>('SELECT v FROM kv WHERE k = ?', 'state');
   let needsPersist = false;
@@ -115,6 +139,7 @@ export async function init(opts: { guard?: boolean; retry?: boolean } = {}): Pro
   if (needsPersist) await persistNow().catch(() => {});
   if (!getPersistError()) await prunePreMigrate();
   bump(true); emit();
+  await writePhase('loaded');
 }
 /* ---------- M1-audytor-generalny-002: kopia surowego zapisu sprzed migracji ----------
  * Klucz premigrate_<schemat sprzed migracji> trzyma kopertę jak kopia nieczytelnych danych (format „trening-recovery”: state, live, cfg) — da się ją
@@ -154,8 +179,10 @@ export async function readPreMigrate(): Promise<string | null> {
 }
 /** „Kamień” strażnika pętli awarii: pierwszy ekran działa (BOOT_STABLE_MS po starcie albo wyjście do tła) — licznik kolejnych niedokończonych startów wraca do 0. */
 export async function markBootStable(): Promise<void> {
+  stableEarly = true; /* ZK-07: wołane przed otwarciem bazy (wyjście do tła w trakcie ładowania) — init() zapisze licznik 0 */
   if (!db) return;
   await db.runAsync('INSERT OR REPLACE INTO kv (k, v) VALUES (?, ?)', BOOT_GUARD_KEY, JSON.stringify({ starts: 0 })).catch(() => {});
+  await writePhase('stable');
 }
 /** Przywracany szkic przechodzi to samo porządkowanie co dane z bazy i importu (migrate na kopii stanu z obiektem szkicu); null — obiektu już nie ma. */
 export function sanitizeDraftObj(kind: 'exercise' | 'template', obj: unknown): Exercise | Template | null {

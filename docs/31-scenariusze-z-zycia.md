@@ -64,6 +64,7 @@ Każdy `EKRAN` z `docs/19` ma wiersz (pilnuje tego `tests/maestro-zycie.test.tsx
 | `/more/location` | 06, 07, **31** | |
 | `/more/locations` | 06, 07, **31** | |
 | `/more/settings` | 09, 15, 20, 21, **32, 33, 35** | |
+| `/more/sources` | 55 | Źródła wiedzy (23.10.2026) |
 | `/paywall` | 21, **35** | build ze sztucznym sklepem |
 | `/pick-template` | 01–03, 05, 07, **31, 32, 33** | przez „Other workout” → „From a template” |
 | `/picker` | 01, 04, 06, 07, 09, **31, 35** | |

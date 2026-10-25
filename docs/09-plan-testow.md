@@ -486,6 +486,16 @@ Test najpierw (7 czerwonych na f2b0525: w chwili `ack` baza nie miała zmiany), 
 |---|---|---|---|---|
 | M1-028 (05-architekt-001) | `tests/audit-m1b-028-watch-ack.test.ts` (7: differ, skip, sessionStarted, nieudany zapis → brak `ack` i ponowienie; differ na zapisach 3 wydanych buildów z `tests/fixtures/released`) | logika, dane, regresja | zielone | **realność: brzegowy, dotyczy danych** — kroki: telefon zablokowany, trening z zegarka, „zrobione inaczej”/pominięcie/start sesji, system ubija aplikację w tle w ciągu 300 ms. Protokół zegarka bez zmian. Rodzaj 9 (E2E): ubicie procesu w tle poza zasięgiem Maestro — pominięty; ekran bez zmian |
 
+## 23.10.2026 — język naturalny, źródła w jednym miejscu (decyzja właściciela, docs/18; gałąź `jezyk-naturalny-zrodla`)
+Zmiana zachowania (nowy ekran, przepisane teksty); testy aktualizowane razem z kodem — oczekiwane teksty zmieniono na nowe brzmienie, żadnego testu nie osłabiono (zakres asercji ten sam, usunięto tylko asercje o nazwach źródeł i stopce „Na podstawie”).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| ~~Ekran Ustawienia → Źródła wiedzy~~ (usunięty 25.10.2026) | `tests/zrodla-wiedzy.test.ts` (ekran, plik, wpis w Ustawieniach, scenariusz i klucze nie istnieją; żaden tekst interfejsu, wskazówek, sklepu, uprawnień iOS ani `site/` nie ma nazw źródeł ani odwołań do badań i zaleceń — 35 języków) | niezmienniki, języki | zielone | rejestr wewnętrzny (`lib/cues/data.json`, `docs/research/rejestr-twierdzen.json`, `docs/research`) bez zmian |
+| Strażnik nazw źródeł | `tests/zrodla-wiedzy.test.ts` (wzorzec; lista ⇔ rejestr ⇔ docs/research; słowniki PL/EN, 33 języków, wskazówki, sprzęt, sklep, iOS, www; brak sieci w ekranie) | dane, logika, języki, niezmienniki | zielone | wyjątek: stare tłumaczenia kluczy z zestawu do przekładu |
+| Zestaw do przekładu | `tests/i18n-locales.test.ts` „zestaw do przekładu”, `tests/i18n-wave2/3/4.test.ts` (komplet z wyjątkiem „nowy”) | dane, języki | zielone | wyjątek znika po przekładzie |
+| Przepisane teksty | `tests/audit-0.10-gen-ui`, `generator-ui`, `gen-general*`, `audit011b`, `set-goals*`, `sets-mark`, `plan-own-templates-ui`, `matrix-ui`, `zrodlo-jedno`, `audit-k1-bl-mer` i in. (nowe brzmienia) | ekran, regresja | zielone | stopka wskazówek: test „brak stopki” zamiast „stopka bez nazw” |
+
 ## 23.10.2026 — naprawa M1-audytor-generalny-048 (DEC-06 a; gałąź `naprawa-m1-048-asc-release`)
 Test najpierw (2 czerwone na e8cc375: jeden job z `--$TRYB`, bez środowiska), potem podział `asc-iap-localizations.yml` na `plan` (`--dry-run`, bez środowiska) i `apply` (`--apply`, `environment: release`, `needs: plan`, tylko dla `tryb=apply`).
 
@@ -501,6 +511,13 @@ Test najpierw (2 czerwone na e8cc375: jeden job z `--$TRYB`, bez środowiska), p
 | M1-013 (DEC-05) | `tests/subscription-ui.test.tsx` „sklep nie zna naszych produktów”, „brak sieci … zostaje”; `tests/m1-013-sklep-niedostepny-jezyki.test.ts` (31 słowników + EN + `_source.json`) | ekran, języki | zielone | Teksty do przeglądu tłumacza (31 słowników; es-419, pt-BR dziedziczą). Rodzaj pominięty: E2E Maestro — brak scenariusza z pustą listą produktów (sklep w symulatorze zwraca produkty). |
 | formy zgód Zdrowia pt-BR | `tests/zgody-zdrowia-pt-forma.test.ts` (2) | języki | zielone | „apaga” zamiast „apague”; do przeglądu tłumacza. |
 
+## 23.10.2026 (druga decyzja właściciela) — oznaczenia pewności poza interfejsem, „Zasady planu”, T-029, przekład API
+Zmiana zachowania na polecenie właściciela; testy zmieniane razem z kodem — oczekiwane teksty zastąpiono nowym brzmieniem, żadnej asercji nie osłabiono ani nie wyłączono; asercje dopisków pewności przy ćwiczeniu (`tests/zrodlo-jedno.test.ts`, `audit-0.10-ui`, `audit-0.10-stats-ui`, `matrix-ui`) zamieniono na asercje ich braku.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Brak oznaczeń pewności w UI | `tests/zrodla-wiedzy.test.ts` „niezmiennik: brak oznaczeń pewności w tekstach UI” (strażnik rozpoznaje PL i EN; słownik bez oznaczeń; usunięte klucze nie wracają; T-029; „Zasady planu”; rejestr zachowuje rodzaje i wpisy wycofane); `tests/audit-m1-048-claims-registry.test.ts` | logika, dane, niezmienniki | zielone | `npm run check:claims` wykonuje tę samą kontrolę (`markerErrors`) |
+| Przekład przez API | `tests/przeklad-tlumaczen.test.ts` (zestaw, żądanie, odpowiedź, koszt i limit 6 USD, przebieg z atrapą fetch, `--zastosuj`, strażnik workflowu); `tests/public-repo.test.ts` | logika, dane, bezpieczeństwo | zielone | bez sieci; płatny przebieg tylko ręcznie (workflow), po zgodzie na koszt |
 ## 23.10.2026 — naprawy M1, partia 2: dokumenty i strony po M5 S1 (audyt 21.10.2026; gałąź `naprawa-m1-p2-teksty`)
 Teksty zależne od modelu M5 S1 (22.10.2026) i od zasad E2E z 21.10.2026. Każdy test najpierw czerwony na e8cc375, potem poprawka tekstu.
 
@@ -522,3 +539,9 @@ Dokumenty i strona, bez zmian kodu UI. Testy dokumentów i strony pilnują zapis
 | M1-050 (K4) | `tests/audit-m1-050-support-subscription.test.ts` (pytania PL/EN, limit = `PAYWALL.FREE_TRAINING_DAYS_PER_MONTH`, brak okresu próbnego, etykiety ze słownika, ścieżka z `SubscriptionCard`, bez kwot) | strona, strażnik | zielone | ceny tylko w App Store |
 | M1-055/056/012 (K5, K6, K8) | `tests/audit-m1-055-promo-rules.test.ts` (reguły promocji w docs/wzrost.md i roli marketingu; przekaz z zegarkiem w docs i na stronie; stare hasło oznaczone; 471/388 USD) | dokument, strona | zielone | |
 | M1-057/900 (K7, K10) | `tests/audit-m1-057-owner-budget.test.ts` (2 h × 8 tyg., 48 h; krok W1-10 beta iOS/watchOS) | dokument | zielone | |
+## 25.10.2026 — wskazówka o trybie cichym przy dźwięku (decyzja właściciela 23.10.2026, wariant A; gałąź `tryb-cichy-wskazowka`)
+Zachowanie systemu bez zmian (tryb cichy: tylko wibracja); pod przełącznikiem „Dźwięk na koniec przerwy” krótka linia „W trybie cichym telefon tylko wibruje” (`SwitchRow.detail`, docs/32 wzorce 11 i 27, ≤ 100 znaków).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Wskazówka o trybie cichym | `tests/tryb-cichy-wskazowka.test.tsx` (PL: linia jedna, pod dźwiękiem, podpowiedź VoiceOver, „Wibracje” bez niej; EN: to samo; słownik EN ≤ 100 znaków; 33 słowniki mają niepusty klucz) | ekran, języki, niezmiennik, macierz (UI w `docs/19`) | zielone | 33 słowniki: własny krótki przekład (kopie EN odrzucają testy jakości i18n-variants/wave2-4); do recenzji native speakera. **Maestro pominięty:** tekst statyczny, bez nowego ekranu ani przepływu; widoczność sprawdza test ekranowy. |

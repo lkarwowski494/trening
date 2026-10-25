@@ -124,8 +124,8 @@ describe('komponent ExerciseCues', () => {
     for (const h of ['Ustawienie', 'Ruch', 'Wskazówki', 'Częste błędy']) expect(screen.getByRole('header', { name: h })).toBeTruthy();
     const first = cueText(CUE_DATA.exercises['Deadlift (sztanga)'].setup[0].c, 'pl');
     expect(screen.getByText(`• ${first}`).props.accessibilityLabel).toBe(first);
-    /* audyt kontrolny 1 MER2-07 (decyzja właściciela 09.10.2026, wariant A): rodzaje źródeł zamiast nazw organizacji — tests/audit-k1-bl-mer */
-    expect(screen.getByText('Na podstawie: biblioteki ćwiczeń organizacji szkoleniowych, specjalistyczne serwisy treningowe. Własne sformułowania.')).toBeTruthy();
+    /* 23.10.2026 (docs/18): źródła tylko w Ustawienia → Źródła wiedzy; przy ćwiczeniu nie ma stopki „Na podstawie…” — tests/audit-k1-bl-mer */
+    expect(screen.queryByText(/^Na podstawie/)).toBeNull();
     expect(screen.getByText('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.')).toBeTruthy();
     fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
     expect(screen.queryByText('Ustawienie')).toBeNull();

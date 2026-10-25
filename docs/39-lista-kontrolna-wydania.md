@@ -40,7 +40,11 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
 - [ ] **DA-06** Import historii z pliku CSV popularnego dziennika: podgląd, dopisanie bez usuwania danych
   - Co zrobić i czego oczekiwać: Wyeksportuj CSV z innej aplikacji na iPhone’a, wybierz w „Importuj historię z pliku CSV”: podgląd liczb, import, powtórny import nie dubluje.
   - Dlaczego nie automat: Plik CSV trzeba wskazać w systemowym oknie wyboru plików, a na symulatorze CI nie ma pliku CSV innego dziennika.
-  - Pokrycie zastępcze w Jest: `tests/csv-import-ui.test.tsx`, `tests/csv-import-logic.test.ts`, `tests/backlog-0.10.1-dane-ui.test.tsx`
+  - Pokrycie zastępcze w Jest: `tests/csv-import-ui.test.tsx`, `tests/csv-import-logic.test.ts`, `tests/backlog-0.10.1-dane-ui.test.tsx`, `tests/monetyzacja-csv.test.ts`
+- [ ] **DA-08** Karta „Historia jest już w telefonie” po udanym imporcie CSV w stanie darmowym, przycisk do ekranu zakupu
+  - Co zrobić i czego oczekiwać: Na iPhonie w stanie darmowym zaimportuj plik CSV: pod komunikatem sukcesu jest karta; „Zobacz plany Pro ›” otwiera ekran zakupu.
+  - Dlaczego nie automat: Plik CSV trzeba wskazać w systemowym oknie wyboru plików, a na symulatorze CI nie ma pliku CSV do wskazania (jak DA-06).
+  - Pokrycie zastępcze w Jest: `tests/monetyzacja-ui.test.tsx`, `tests/monetyzacja-csv.test.ts`
 
 ## Po aktualizacji z poprzedniej wersji
 
@@ -73,4 +77,4 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
   - Co zrobić i czego oczekiwać: Wg docs/35 (lista ręczna wydania 0.20): parowanie, pierwsza seria z zegarka, przerwa z wibracją, zasięg w kieszeni, „Cofnij”, „Pomiń”.
   - Dlaczego nie automat: Zegarek, WatchConnectivity i Connect IQ nie istnieją na symulatorze iPhone’a w CI; Apple Watch bywa tylko wirtualny, zegarek Connect IQ tylko fizyczny.
 
-Razem punktów: **13**.
+Razem punktów: **14**.

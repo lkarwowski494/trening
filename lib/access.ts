@@ -27,8 +27,8 @@ export const PAYWALL: PaywallConfig = {
   OFFLINE_GRACE_DAYS: 7,
 };
 
-/** Trening na żywo zużywa dzień limitu, dopiero gdy trwał DŁUŻEJ niż tyle minut (czas bez pauz, jak `workoutDurSec` w historii) — decyzja właściciela 22.10.2026: „Limit używają tylko sesje w treningu na żywo które trwały ponad 20 minut”. Jedno miejsce. */
-export const MIN_LIVE_MINUTES_FOR_DAY = 20;
+/** Trening na żywo zużywa dzień limitu, dopiero gdy trwał DŁUŻEJ niż tyle minut (czas bez pauz, jak `workoutDurSec` w historii) — decyzja właściciela 22.10.2026: „Limit używają tylko sesje w treningu na żywo które trwały ponad 20 minut”; zmiana 23.10.2026 (test na telefonie, build 1030): próg 7 minut. Jedno miejsce. */
+export const MIN_LIVE_MINUTES_FOR_DAY = 7;
 
 const MIN_MS = 60e3;
 const DAY_MS = 86400e3;
@@ -144,7 +144,7 @@ export function freeSince(entitlements: readonly Entitlement[] | null | undefine
 
 /* ---------- licznik treningów na żywo ---------- */
 
-/** Start dnia treningowego: ukończonego treningu na żywo > 20 min (zapisane dni `State.liveDays`, nie historia; wołający wybiera tylko treningi ze znacznikiem „na żywo” — docs/27 4.3, bez wstecz; trwający i anulowany nie wchodzą). */
+/** Start dnia treningowego: ukończonego treningu na żywo > MIN_LIVE_MINUTES_FOR_DAY (7 min) (zapisane dni `State.liveDays`, nie historia; wołający wybiera tylko treningi ze znacznikiem „na żywo” — docs/27 4.3, bez wstecz; trwający i anulowany nie wchodzą). */
 export interface LiveStart { startedAt: number; /** przesunięcie strefy przy starcie, min na wschód od UTC (Workout.tzOffsetMin); brak = bieżące */ tzOffsetMin?: number }
 
 /** Klucz miesiąca RRRR-MM dla chwili `ts` na zegarze o przesunięciu `offMin` (minuty na wschód od UTC). Czyste, niezależne od strefy procesu. */

@@ -11,6 +11,7 @@
  * listy uzupełnione w tej fali (TERMS, matrix-i18n — ALT i kropka dziesiętna, i18n-variants, i18n-multi, cues-lazy).
  */
 import * as fs from 'fs';
+import { PENDING_NEW } from './pending-translation';
 import * as path from 'path';
 import { LANGS, resolveLang, applyLang, lang, locale, decimalComma, tp, detectLang, LANG_NAME, APP_NAME, ZH_HANT_REGIONS, type Lang } from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
@@ -99,9 +100,9 @@ describe('dane: komplet słownika UI i wskazówek techniki, pliki iOS i App Stor
   const params = (s: string) => (s.match(/\{\w+\}/g) ?? []).sort().join(',');
   test.each([...W4])('%s: każdy klucz źródła ma niepuste tłumaczenie z tymi samymi {parametrami}; bez nadmiarowych kluczy; wskazówki — każde zdanie', l => {
     const d = dict(l);
-    expect(src.filter(s => !d[s.pl]?.trim()).map(s => s.pl)).toEqual([]);
-    expect(src.filter(s => params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
-    expect(Object.keys(d).length).toBe(src.length);
+    expect(src.filter(s => !PENDING_NEW.has(s.pl) && !d[s.pl]?.trim()).map(s => s.pl)).toEqual([]);
+    expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
+    expect(Object.keys(d).length).toBe(src.length - PENDING_NEW.size); /* czekające na przekład: docs/lokalizacja/zestaw-przekladu-2026-10-23.json */
     const en = cueDict('en'), c = cueDict(l);
     expect(Object.keys(c).sort()).toEqual(Object.keys(en).sort());
     expect(Object.entries(c).filter(([, v]) => !v.trim())).toEqual([]);
@@ -125,7 +126,7 @@ describe('dane: komplet słownika UI i wskazówek techniki, pliki iOS i App Stor
   test('widżet: etykiety w RestLabels.swift i wybór zh-Hant z języka systemu (zh-Hant-TW, zh-HK…), uproszczony → angielski', () => {
     const dir = path.join(__dirname, '..', 'targets', 'rest-widget');
     const labels = fs.readFileSync(path.join(dir, 'RestLabels.swift'), 'utf8');
-    expect(labels).toContain('"ja": (rest: "休憩", set: "セット")'); expect(labels).toContain('"ko": (rest: "휴식", set: "세트")'); expect(labels).toContain('"zh-Hant": (rest: "休息", set: "組")');
+    expect(labels).toContain('"ja": (rest: "インターバル", set: "セット")'); expect(labels).toContain('"ko": (rest: "휴식", set: "세트")'); expect(labels).toContain('"zh-Hant": (rest: "休息", set: "組")');
     const swift = fs.readFileSync(path.join(dir, 'RestLiveActivity.swift'), 'utf8');
     expect(swift).toMatch(/if code == "zh" \{ code = \(pref\.contains\("Hant"\) \|\| pref\.hasSuffix\("-TW"\) \|\| pref\.hasSuffix\("-HK"\) \|\| pref\.hasSuffix\("-MO"\)\) \? "zh-Hant" : "en" \}/);
     for (const l of W4) expect(fs.existsSync(path.join(dir, `${l}.lproj`, 'InfoPlist.strings'))).toBe(true);
@@ -187,11 +188,11 @@ const POLITE_JA = /(ます|です|ません|ました|でした|ましょう|く
   });
   test('terminologia siłowni jednolita: trening / ćwiczenie / seria / powtórzenia / przerwa / pauza / szablon / guma / do upadku / deload', () => {
     const k = ['Trening', 'Ćwiczenie', 'Seria', 'Powtórzenia', 'Przerwa', 'Pauza', 'Szablon', 'Guma', 'do upadku', 'Deload'];
-    expect(k.map(x => dict('ja')[x])).toEqual(['トレーニング', '種目', 'セット', '回数', '休憩', '一時停止', 'テンプレート', 'バンド', '限界まで', 'ディロード']);
+    expect(k.map(x => dict('ja')[x])).toEqual(['トレーニング', '種目', 'セット', '回数', 'インターバル', '一時停止', 'テンプレート', 'バンド', '限界まで', 'ディロード']);
     expect(k.map(x => dict('ko')[x])).toEqual(['운동', '종목', '세트', '반복 횟수', '휴식', '일시정지', '루틴', '밴드', '실패 지점까지', '디로드']);
-    expect(k.map(x => dict('zh-Hant')[x])).toEqual(['訓練', '動作', '組', '次數', '休息', '暫停', '範本', '彈力帶', '力竭', '減量']);
+    expect(k.map(x => dict('zh-Hant')[x])).toEqual(['訓練', '動作', '組', '次數', '休息', '暫停', '範本', '彈力帶', '力竭', '減載']);
   });
-  test('cel generatora „Redukcja” ≠ „Deload” (zh-Hant: 減脂 vs 減量; ja: 減量 vs ディロード; ko: 감량 vs 디로드)', () => {
+  test('cel generatora „Redukcja” ≠ „Deload” (zh-Hant: 減脂 vs 減載; ja: 減量 vs ディロード; ko: 감량 vs 디로드)', () => {
     for (const l of W4) expect([l, dict(l)['Redukcja'] !== dict(l)['Deload'], dict(l)['Redukcja'] !== dict(l)['Masa']]).toEqual([l, true, true]);
     expect(dict('zh-Hant')['Redukcja']).toBe('減脂');
   });

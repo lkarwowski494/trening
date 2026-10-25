@@ -5,13 +5,13 @@
 #   "Planning"                       ← 'Planowanie' (przycisk w „Pierwszych krokach” na ekranie Trening; po pierwszym treningu — w nagłówku planu; otwiera ekran planu app/plan.tsx)
 #   "Generate templates and plan"    ← 'Wygeneruj szablony i plan' (app/templates.tsx, app/plan.tsx)
 #   "New templates and plan", "Plan from my templates" ← 'Nowe szablony i plan', 'Plan z moich szablonów' (przełącznik trybu generatora — DEC-03 c, app/generator.tsx)
-#   "Preview", "What this is based on" ← 'Podgląd', 'Na czym to oparte' (app/generator.tsx)
+#   "Preview", "Plan rules" ← 'Podgląd', 'Zasady planu' (app/generator.tsx)
 #   "Save templates and plan"        ← 'Zapisz szablony i plan'
 #   "The plan .* is now active\\."           ← 'Plan „{name}” jest teraz aktywny.' (zdanie na ekranie planu po zapisie bez aktywnego planu — ZM-03, app/plan.tsx; okno pytania i „Saved” nie występują)
 #   "\\+ Add place"                   ← '+ Dodaj miejsce' (chip w generatorze przy braku miejsc — audyt 0.10 UX-10)
 #   "Not now"                        ← 'Nie teraz' (okno zgody na przypomnienie — X-11: pierwszy plan z każdej drogi, components/PlanReminderSync)
 #   "Guide", "Read: .*", "Weekly plan and Calendar, unread", "Show: Weekly plan and Calendar" ← app/guide.tsx (przewodnik, 08.10.2026)
-#   ".*not enough evidence to establish a dose-response relationship.*" ← zdanie R1 pod ⓘ „Na czym to oparte” ('…za mało dowodów, by stwierdzić zależność dawka–odpowiedź…'; app/generator.tsx)
+#   ".*not enough evidence to establish a dose-response relationship.*" ← zdanie R1 pod ⓘ „Zasady planu” ('…za mało dowodów, by stwierdzić zależność dawka–odpowiedź…'; app/generator.tsx)
 #   ".*no safety arms in the rack.*"  ← 'bez asekuracji w stojakach' (dopisek przy ćwiczeniu z zaleceniem asekuracji w miejscu bez ramion; audyt M1-015)
 #   "day-N" (id)                     ← components/DayPicker.tsx: testID przycisku dnia (pon = 0); wybór dni (decyzja 09.10.2026 B)
 #   "Choose training days: 1 to 6\." ← 'Wybierz dni treningowe: od {a} do {b}.' (liczba dni poza zakresem, tu 0 — bez podglądu)
@@ -85,10 +85,10 @@ name: Generator szablonów i planu
 - tapOn: "Muscle"
 - scrollUntilVisible: { element: "Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 70-generator
-- scrollUntilVisible: { element: "What this is based on", direction: DOWN, timeout: 30000 }
-- tapOn: { id: "info-gen-basis" }  # 14.10.2026: „Na czym to oparte” — źródła pod ⓘ (treść bez zmian)
+- scrollUntilVisible: { element: "Plan rules", direction: DOWN, timeout: 30000 }
+- tapOn: { id: "info-gen-basis" }  # 14.10.2026: „Zasady planu” — źródła pod ⓘ (treść bez zmian)
 - assertVisible: ".*Each major muscle group on at least.*"
-- assertVisible: ".*not enough evidence to establish a dose-response relationship.*"  # 21.10.2026: ACSM 2026 „za mało dowodów” (przegląd badacza), nie „brak dowodów”
+- assertVisible: ".*not enough evidence that more days give proportionally more.*"  # 21.10.2026: „za mało dowodów” (przegląd badacza), nie „brak dowodów”; 23.10.2026: brzmienie bez nazw źródeł
 - takeScreenshot: 71-generator-zrodla
 - scrollUntilVisible: { element: "Save templates and plan", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Save templates and plan"

@@ -9,7 +9,7 @@
 #   "Showing all exercises, including niche ones"    ← 'Pokazane wszystkie ćwiczenia, także niszowe' (ten sam chip po zdjęciu filtra)
 #   "Search exercises…" / "Back Squat, barbell.*"             ← jak w 16
 #   "Technique"                                      ← 'Technika' (przycisk sekcji, components/ExerciseCues.tsx)
-#   "Setup" / "Based on: .*"                         ← 'Ustawienie' / 'Na podstawie: {list}. Własne sformułowania.'
+#   "Setup" / "The app does not give medical advice.*"  ← 'Ustawienie' / zdanie o poradach medycznych na końcu sekcji (stopka „Na podstawie…” usunięta 23.10.2026 — źródła są w Ustawienia → Źródła wiedzy)
 #   "Movement drawing: .*"                           ← 'Rysunek ruchu: {opis}' (etykieta VoiceOver obrazu figury, components/ExerciseFigure.tsx)
 #   "Pause animation" / "Resume animation"          ← 'Zatrzymaj animację' / 'Wznów animację' (przycisk pod figurą, WCAG 2.2.2)
 # Audyt kontrolny 1, fala 2b (09.10.2026):
@@ -53,7 +53,7 @@ name: Filtr „Podstawowe” i sekcja „Technika”
 - extendedWaitUntil: { visible: "Pause animation", timeout: 15000 }
 # E2E 91: sekcja zaczyna się rysunkiem ruchu (wysoki) — „Setup” jest pod krawędzią ekranu
 - scrollUntilVisible: { element: "Setup", direction: DOWN, timeout: 30000 }
-- scrollUntilVisible: { element: "Based on: .*", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "The app does not give medical advice.*", direction: DOWN, timeout: 30000 }
 - takeScreenshot: 81-technika
 
 # --- UX2-01: dawna nazwa (scalone 09.10) → obecne ćwiczenie, bez „Create …” ---

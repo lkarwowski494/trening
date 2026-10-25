@@ -3,6 +3,7 @@ import { Alert, View } from 'react-native';
 import { ScrollView } from '@/components/Scroll';
 import { Screen, Btn, Muted, Segmented, SectionTitle, Item, Input, SearchField } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
+import { ImportProCard } from '@/components/ImportProCard';
 import { getState, useTick, fmtDayKey } from '@/lib/store';
 import { isSafetyError, isPersistError } from '@/lib/backup';
 import { pickCsv, commitCsvImport } from '@/lib/csvimport';
@@ -22,16 +23,16 @@ const SHOWN = 6; /* podpowiedzi przy zmianie dopasowania */
 
 export default function ImportCsv() {
   useTick(); const st = getState(); const busy = useRef(false); const [working, setWorking] = useState(false);
-  const [file, setFile] = useState<ParsedFile | null>(null);
+  const [file, setFile] = useState<ParsedFile | null>(null); const [done, setDone] = useState(false); /* 1.0: karta „plany Pro” po udanym imporcie (tylko free) */
   const [unit, setUnit] = useState<Unit>(st.settings.unit === 'lb' ? 'lb' : 'kg'); /* domyślnie jednostka z Ustawień */
   const [mapping, setMapping] = useState<Record<string, string | 'new'>>({});
   const [editing, setEditing] = useState<string | null>(null); const [q, setQ] = useState('');
   const a = useMemo(() => file ? analyze(file, st, mapping) : null, [file, st, mapping]);
   const fail = (e: unknown) => isImportError(e) ? Alert.alert(t('Nie udało się zaimportować pliku'), ERR[e.code]()) : Alert.alert(t('Nie udało się zaimportować pliku'), t('Spróbuj ponownie.'));
   const pick = () => { if (busy.current) return; busy.current = true;
-    pickCsv().then(f => { if (f) { setFile(f); setMapping({}); setEditing(null); setQ(''); } }).catch(fail).finally(() => { busy.current = false; }); };
+    pickCsv().then(f => { if (f) { setFile(f); setDone(false); setMapping({}); setEditing(null); setQ(''); } }).catch(fail).finally(() => { busy.current = false; }); };
   const run = () => { if (busy.current || !file) return; busy.current = true; setWorking(true);
-    commitCsvImport(file, { unit, mapping }).then(r => { setFile(null); Alert.alert(t('Zaimportowano'), t('Dodano treningi: {n}, nowe ćwiczenia: {m}.', { n: r.workouts, m: r.exercises })); })
+    commitCsvImport(file, { unit, mapping }).then(r => { setFile(null); setDone(r.workouts > 0); Alert.alert(t('Zaimportowano'), t('Dodano treningi: {n}, nowe ćwiczenia: {m}.', { n: r.workouts, m: r.exercises })); })
       .catch((e: unknown) => isSafetyError(e) ? Alert.alert(t('Import przerwany'), e.message) : isPersistError(e) ? Alert.alert(t('Nie udało się zapisać danych'), t('Spróbuj ponownie.')) /* M1-audytor-generalny-006 */ : fail(e)).finally(() => { busy.current = false; setWorking(false); }); };
   const targetOf = (name: string) => { const m = mapping[name]; const auto = a?.names.find(r => r.name === name)?.auto ?? null;
     const ex = m && m !== 'new' ? st.exercises.find(e => e.id === m) ?? null : m === 'new' ? null : auto; return ex; };
@@ -42,6 +43,7 @@ export default function ImportCsv() {
       <InfoTip id="import-intro" label={t('Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.')} info={t('Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.')}>
         <Muted>{t('Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.')}</Muted>
       </InfoTip>
+      {done && !file ? <ImportProCard /> : null}
       <Btn title={t('Wybierz plik CSV')} kind={file ? 'default' : 'primary'} block onPress={pick} />
       {a && file ? (
         <View style={{ gap: 10 }}>
@@ -56,7 +58,7 @@ export default function ImportCsv() {
             <Segmented label={t('Jednostka ciężaru w pliku')} options={[['kg', 'kg'], ['lb', 'lb']]} value={unit} onChange={setUnit} />
             <Muted style={font('footnote')}>{t('Plik nie podaje, czy ciężary są w kg, czy w lb. Domyślnie: jednostka z Ustawień.')}</Muted></View> : null}
           {file.sessions.some(s => s.dateOnly) ? <Muted style={font('footnote')}>{t('Plik nie podaje godzin treningów — dzień, w którym masz już trening, zostanie pominięty jako duplikat.')}</Muted> : null}
-          {file.hasDistance ? <Muted style={font('footnote')}>{t('Dystans w pliku przyjęto jako metry.')}</Muted> : null}
+          {file.hasDistance && !file.distanceUnit ? <Muted style={font('footnote')}>{t('Dystans w pliku przyjęto jako metry.')}</Muted> : null}
           {a.names.length ? <SectionTitle>{t('Ćwiczenia z pliku')}</SectionTitle> : null}
           {a.names.map(r => { const ex = targetOf(r.name); const open = editing === r.name;
             return (<View key={r.name}>

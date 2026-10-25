@@ -3,7 +3,7 @@ import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
 import { applyCfg, wallTs, bandColor, getState, save, replaceState, clearRecovery, migrate, finishedWorkouts, exById, workoutDurSec, noClock, shownLoad, bandById, localISODate, flush, flushStrict, noteBackup, readRecovery, getRecovery, readRawData } from './store';
 import { t, exName } from './i18n';
-import { wOut } from './units';
+import { wOut, wu } from './units';
 import { ensureAuthorization, ensureReadAuthorization, syncAfterFinish } from './health';
 import { scheduleWeighReminder } from './timer';
 import { SCHEMA_VERSION, SET_KIND_MARK, type State, type Exercise, type WSet, type Workout } from './seed';
@@ -126,14 +126,17 @@ export function buildCsv(): string {
   const q = (v: unknown) => { let s = v == null ? '' : String(v); if (typeof v === 'string' && /^[=+\-@\t\r]/.test(s)) s = "'" + s; return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
   const pad = (n: number) => String(n).padStart(2, '0');
   const dt = (ts: number) => { const d = new Date(ts); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; };
-  const rows: string[] = ['Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE'];
+  /* Test na telefonie 1030 (23.10.2026): przy lb kolumny „Weight” i „Distance” nie mówiły, w czym są liczby. 12 kolumn zostaje (zgodność z popularnymi dziennikami, plik w kg bez zmian);
+   * przy lb dochodzą na końcu „Weight Unit” (lb) i „Distance Unit” (m — dystans zawsze w metrach) z wartością w każdym wierszu; import własnego pliku czyta jednostkę (lib/csvparse.ts). */
+  const lb = wu() === 'lb';
+  const rows: string[] = ['Date,Workout Name,Duration,Exercise Name,Set Order,Weight,Reps,Distance,Seconds,Notes,Workout Notes,RPE' + (lb ? ',Weight Unit,Distance Unit' : '')];
   for (const w of [...finishedWorkouts()].reverse()) {
     const nc = noClock(w); const dur = nc ? '' : strongDur(Math.round(workoutDurSec(w) / 60)); /* bez pauz (08.10.2026); sesja bez godziny i czasu (audyt 0.13) — sama data, puste Duration */
     w.exercises.forEach(e => { const ex = exById(e.exerciseId); /* T4b: usunięte ćwiczenie eksportujemy jako „?”, jak w historii — serie nie znikają z pliku */
       let n = 0; // numer zwykłej serii — rozgrzewka „W”, drop „D”, do upadku „F” nie przesuwają numeracji (LOG-14)
       e.sets.forEach(s => { const b = s.bandId ? bandById(s.bandId) : null; const bandTxt = b ? `${t('guma')} ${bandColor(b)} ${b.level}` : s.bandId ? `${t('guma')} ?` : ''; const mark = SET_KIND_MARK[s.kind ?? (s.warmup ? 'warmup' : 'normal')]; if (!mark) n++;
         const notes = [s.note, bandTxt].filter(Boolean).join('; ');
-        rows.push([(nc ? dt(wallTs(w)).slice(0, 10) : dt(wallTs(w))) /* J3: data i godzina w strefie startu */, w.templateName || t('Trening'), dur, exName(ex), mark || String(n), wOut(shownLoad(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport popularnych dzienników; T4b/Q-018/83b: store.shownLoad — jak ekran sesji w historii */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */].map(q).join(','));
+        rows.push([(nc ? dt(wallTs(w)).slice(0, 10) : dt(wallTs(w))) /* J3: data i godzina w strefie startu */, w.templateName || t('Trening'), dur, exName(ex), mark || String(n), wOut(shownLoad(ex, s)) /* runda 7: w jednostce użytkownika, jak eksport popularnych dzienników; T4b/Q-018/83b: store.shownLoad — jak ekran sesji w historii */, s.reps || 0, s.distanceM || 0, s.durationSec || 0, notes, w.note, s.rpe === '' || s.rpe == null ? '' : s.rpe /* runda 18: RIR 0 też */, ...(lb ? ['lb', 'm'] : [])].map(q).join(','));
       }); });
   }
   return rows.join('\n') + '\n';
