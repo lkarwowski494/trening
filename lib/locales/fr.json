@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Le pas (p. ex. +2,5 kg) est une convention, pas un résultat d’études.",
  "Usuń szablon": "Supprimer le modèle",
  "Usuń z biblioteki": "Supprimer de la bibliothèque",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Vous n’avez aucun modèle avec des exercices. Créez un modèle ou choisissez « Générer des modèles et un programme ».",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Vous n’avez aucun modèle avec des exercices. Créez un modèle ou choisissez « Nouveaux modèles et programme ».",
  "Dźwięk na koniec przerwy": "Son à la fin du repos",
  "Wibracje": "Vibrations",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Plus → Réglages : « Son à la fin du repos » et « Vibrations » s’activent séparément.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Jours d’entraînement gratuits utilisés ce mois-ci : {n} sur {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} sur {limit} jours d’entraînement gratuits ce mois-ci.",
  "Został|Zostały|Zostało": "Il reste|Il reste",
- "Sklep chwilowo niedostępny": "Boutique temporairement indisponible"
+ "Sklep chwilowo niedostępny": "Boutique temporairement indisponible",
+ "Nowe szablony i plan": "Nouveaux modèles et programme"
 }

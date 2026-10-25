@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Krok změny (např. +2,5 kg) je konvence, ne výsledek studií.",
  "Usuń szablon": "Smazat šablonu",
  "Usuń z biblioteki": "Smazat z knihovny",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nemáte šablony s cviky. Vytvořte šablonu, nebo zvolte „Vygenerovat šablony a plán“.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nemáte šablony s cviky. Vytvořte šablonu, nebo zvolte „Nové šablony a plán“.",
  "Dźwięk na koniec przerwy": "Zvuk na konci pauzy",
  "Wibracje": "Vibrace",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Další → Nastavení: „Zvuk na konci pauzy“ a „Vibrace“ se zapínají zvlášť.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Bezplatné tréninkové dny tento měsíc: využito {n} z {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} z {limit} bezplatných tréninkových dní tento měsíc.",
  "Został|Zostały|Zostało": "Zbývá|Zbývají|Zbývá",
- "Sklep chwilowo niedostępny": "Obchod je dočasně nedostupný"
+ "Sklep chwilowo niedostępny": "Obchod je dočasně nedostupný",
+ "Nowe szablony i plan": "Nové šablony a plán"
 }

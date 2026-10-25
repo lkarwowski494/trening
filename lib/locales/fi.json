@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Askel (esim. +2,5 kg) on konventio, ei tutkimustulos.",
  "Usuń szablon": "Poista pohja",
  "Usuń z biblioteki": "Poista kirjastosta",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Sinulla ei ole pohjia, joissa on liikkeitä. Luo pohja tai valitse ”Luo pohjat ja suunnitelma”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Sinulla ei ole pohjia, joissa on liikkeitä. Luo pohja tai valitse ”Uudet pohjat ja suunnitelma”.",
  "Dźwięk na koniec przerwy": "Ääni palautuksen lopussa",
  "Wibracje": "Värinä",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Lisää → Asetukset: ”Ääni palautuksen lopussa” ja ”Värinä” kytketään päälle erikseen.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ilmaiset treenipäivät tässä kuussa: {n} / {limit} käytetty",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Ilmaisia treenipäiviä {left} tässä kuussa: {n} / {limit}.",
  "Został|Zostały|Zostało": "jäljellä|jäljellä",
- "Sklep chwilowo niedostępny": "Kauppa ei ole tilapäisesti käytettävissä"
+ "Sklep chwilowo niedostępny": "Kauppa ei ole tilapäisesti käytettävissä",
+ "Nowe szablony i plan": "Uudet pohjat ja suunnitelma"
 }

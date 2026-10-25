@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Mức tăng (vd +2,5 kg) là quy ước, không phải kết quả nghiên cứu.",
  "Usuń szablon": "Xóa mẫu",
  "Usuń z biblioteki": "Xóa khỏi thư viện",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Bạn chưa có mẫu nào có bài tập. Hãy tạo mẫu hoặc chọn “Tạo mẫu và kế hoạch”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Bạn chưa có mẫu nào có bài tập. Hãy tạo mẫu hoặc chọn “Mẫu và kế hoạch mới”.",
  "Dźwięk na koniec przerwy": "Âm thanh khi hết giờ nghỉ",
  "Wibracje": "Rung",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Thêm → Cài đặt: “Âm thanh khi hết giờ nghỉ” và “Rung” được bật riêng từng mục.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ngày tập miễn phí tháng này: đã dùng {n}/{limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n}/{limit} ngày tập miễn phí trong tháng này.",
  "Został|Zostały|Zostało": "Còn",
- "Sklep chwilowo niedostępny": "Cửa hàng tạm thời không khả dụng"
+ "Sklep chwilowo niedostępny": "Cửa hàng tạm thời không khả dụng",
+ "Nowe szablony i plan": "Mẫu và kế hoạch mới"
 }

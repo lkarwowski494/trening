@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Solis (piem., +2,5 kg) ir vienošanās, nevis pētījumu rezultāts.",
  "Usuń szablon": "Dzēst veidni",
  "Usuń z biblioteki": "Dzēst no bibliotēkas",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Jums nav veidņu ar vingrinājumiem. Izveidojiet veidni vai izvēlieties “Ģenerēt veidnes un plānu”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Jums nav veidņu ar vingrinājumiem. Izveidojiet veidni vai izvēlieties “Jaunas veidnes un plāns”.",
  "Dźwięk na koniec przerwy": "Skaņa atpūtas beigās",
  "Wibracje": "Vibrācija",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Vairāk → Iestatījumi: “Skaņa atpūtas beigās” un “Vibrācija” ieslēdzami atsevišķi.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Bezmaksas treniņu dienas šomēnes: izmantotas {n} no {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} bezmaksas treniņu dienu skaits šomēnes: {n} no {limit}.",
  "Został|Zostały|Zostało": "Neizmantotu|Neizmantotu|Neizmantotu",
- "Sklep chwilowo niedostępny": "Veikals īslaicīgi nav pieejams"
+ "Sklep chwilowo niedostępny": "Veikals īslaicīgi nav pieejams",
+ "Nowe szablony i plan": "Jaunas veidnes un plāns"
 }

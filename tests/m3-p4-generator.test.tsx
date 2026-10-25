@@ -23,15 +23,15 @@ const stack = () => { const { store: rs } = require('expo-router/build/global-st
   while (st.routes.length === 1 && st.routes[0].name === '__root' && st.routes[0].state) st = st.routes[0].state; return st.routes.map(r => r.name); };
 const activePlanWithDay = () => { withDemoTemplates(); const tp = store.getState().templates[0]; plan.setWeekDay(0, tp.id); plan.setPlanName('Mój obecny'); };
 
-describe('generator: bez przełącznika trybu (04-studio-projektowe-001)', () => {
-  test('na /generator nie ma kontrolki „Nowe szablony i plan” / „Plan z moich szablonów”; Cel, Miejsce, Czas sesji i zapis są', async () => {
+describe('generator: przełącznik trybu przywrócony (DEC-03 c, 23.10.2026; pkt 5 ZM-03 odwrócony — szczegóły: tests/m1-dec03-przelacznik)', () => {
+  test('na /generator jest kontrolka „Nowe szablony i plan” / „Plan z moich szablonów”; Cel, Miejsce, Czas sesji i zapis są', async () => {
     await boot('/generator');
-    expect(screen.queryByText('Nowe szablony i plan')).toBeNull(); expect(screen.queryByLabelText('Generator szablonów i planu')).toBeNull();
+    expect(screen.getByText('Nowe szablony i plan')).toBeTruthy(); expect(screen.getByLabelText('Generator szablonów i planu')).toBeTruthy();
     expect(screen.getByText('Cel')).toBeTruthy(); expect(screen.getByText('Zapisz szablony i plan')).toBeTruthy();
   });
-  test('/generator?mode=own: ekran „Plan z moich szablonów” bez przełącznika', async () => {
+  test('/generator?mode=own: ekran „Plan z moich szablonów” z przełącznikiem', async () => {
     await boot('/generator?mode=own', () => { withDemoTemplates(); });
-    expect(screen.queryByText('Nowe szablony i plan')).toBeNull(); expect(screen.getByText('Zapisz plan')).toBeTruthy();
+    expect(screen.getByText('Nowe szablony i plan')).toBeTruthy(); expect(screen.getByText('Zapisz plan')).toBeTruthy();
   });
 });
 

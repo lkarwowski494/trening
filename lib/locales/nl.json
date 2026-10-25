@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "De stap (bijv. +2,5 kg) is een conventie, geen onderzoeksresultaat.",
  "Usuń szablon": "Verwijder sjabloon",
  "Usuń z biblioteki": "Verwijder uit bibliotheek",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Je hebt geen sjablonen met oefeningen. Maak een sjabloon of kies ‘Sjablonen en plan genereren’.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Je hebt geen sjablonen met oefeningen. Maak een sjabloon of kies ‘Nieuwe sjablonen en plan’.",
  "Dźwięk na koniec przerwy": "Geluid aan het einde van de rust",
  "Wibracje": "Trilling",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Meer → Instellingen: ‘Geluid aan het einde van de rust’ en ‘Trilling’ zet je apart aan.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Gratis trainingsdagen deze maand: {n} van {limit} gebruikt",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} van {limit} gratis trainingsdagen deze maand {left}.",
  "Został|Zostały|Zostało": "over|over",
- "Sklep chwilowo niedostępny": "Winkel tijdelijk niet beschikbaar"
+ "Sklep chwilowo niedostępny": "Winkel tijdelijk niet beschikbaar",
+ "Nowe szablony i plan": "Nieuwe sjablonen en plan"
 }

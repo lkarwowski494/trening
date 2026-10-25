@@ -260,10 +260,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że użytkownik ma aktywny plan
     - Gdy stuka „Zapisz szablony i plan”
     - Wtedy aplikacja pyta, czy nowy plan ustawić jako aktywny („Tylko zapisz” albo „Ustaw jako aktywny”), i potwierdza zapis oknem „Zapisano”; aktywny plan nie zmienia się bez zgody
-  - Scenariusz: Jeden tryb generatora (ZM-03)
+  - Scenariusz: Przełącznik trybu generatora (DEC-03 c, 23.10.2026 — odwraca punkt ZM-03)
     - Zakładając, że użytkownik otwiera generator
     - Gdy ogląda ekran
-    - Wtedy generator nie ma przełącznika trybu; „Plan z moich szablonów” jest osobnym wejściem w Planowaniu
+    - Wtedy u góry jest przełącznik „Nowe szablony i plan” / „Plan z moich szablonów” (zaznaczony jest tryb, w którym ekran otwarto); „Plan z moich szablonów” jest też wejściem w Planowaniu
 
 ### BR-GEN-002: Plan tygodnia z moich szablonów
 - Przepływ: PR-04

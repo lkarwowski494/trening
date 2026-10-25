@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Der Schritt (z. B. +2,5 kg) ist eine Konvention, kein Forschungsergebnis.",
  "Usuń szablon": "Vorlage löschen",
  "Usuń z biblioteki": "Aus der Bibliothek löschen",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du hast keine Vorlagen mit Übungen. Erstelle eine Vorlage oder wähle „Vorlagen und Plan erstellen“.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Du hast keine Vorlagen mit Übungen. Erstelle eine Vorlage oder wähle „Neue Vorlagen und Plan“.",
  "Dźwięk na koniec przerwy": "Ton am Ende der Pause",
  "Wibracje": "Vibration",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Mehr → Einstellungen: „Ton am Ende der Pause“ und „Vibration“ schaltest du getrennt ein.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Kostenlose Trainingstage in diesem Monat: {n} von {limit} genutzt",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} von {limit} kostenlosen Trainingstagen in diesem Monat {left}.",
  "Został|Zostały|Zostało": "übrig|übrig",
- "Sklep chwilowo niedostępny": "Store vorübergehend nicht verfügbar"
+ "Sklep chwilowo niedostępny": "Store vorübergehend nicht verfügbar",
+ "Nowe szablony i plan": "Neue Vorlagen und Plan"
 }

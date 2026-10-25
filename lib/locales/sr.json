@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Корак (нпр. +2,5 kg) је конвенција, а не резултат истраживања.",
  "Usuń szablon": "Обриши шаблон",
  "Usuń z biblioteki": "Обриши из библиотеке",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Немате шаблона са вежбама. Направите шаблон или изаберите „Генериши шаблоне и план”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Немате шаблоне са вежбама. Направите шаблон или изаберите „Нови шаблони и план”.",
  "Dźwięk na koniec przerwy": "Звук на крају одмора",
  "Wibracje": "Вибрација",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Још → Подешавања: „Звук на крају одмора” и „Вибрација” укључују се засебно.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Бесплатни дани тренинга овог месеца: искоришћено {n} од {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} од {limit} бесплатних дана тренинга овог месеца.",
  "Został|Zostały|Zostało": "Преостаје|Преостају|Преостаје",
- "Sklep chwilowo niedostępny": "Prodavnica je privremeno nedostupna"
+ "Sklep chwilowo niedostępny": "Prodavnica je privremeno nedostupna",
+ "Nowe szablony i plan": "Нови шаблони и план"
 }

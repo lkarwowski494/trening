@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "El paso (p. ej. +2,5 kg) es una convención, no un resultado de estudios.",
  "Usuń szablon": "Eliminar plantilla",
  "Usuń z biblioteki": "Eliminar de la biblioteca",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "No tienes plantillas con ejercicios. Crea una plantilla o elige «Generar plantillas y plan».",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "No tienes plantillas con ejercicios. Crea una plantilla o elige «Nuevas plantillas y plan».",
  "Dźwięk na koniec przerwy": "Sonido al terminar el descanso",
  "Wibracje": "Vibración",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Más → Ajustes: «Sonido al terminar el descanso» y «Vibración» se activan por separado.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Días de entrenamiento gratuitos este mes: {n} de {limit} usados",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} de {limit} días de entrenamiento gratuitos este mes.",
  "Został|Zostały|Zostało": "Queda|Quedan",
- "Sklep chwilowo niedostępny": "Tienda no disponible temporalmente"
+ "Sklep chwilowo niedostępny": "Tienda no disponible temporalmente",
+ "Nowe szablony i plan": "Nuevas plantillas y plan"
 }

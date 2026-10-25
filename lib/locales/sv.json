@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Steget (t.ex. +2,5 kg) är en konvention, inte ett forskningsresultat.",
  "Usuń szablon": "Radera mall",
  "Usuń z biblioteki": "Radera från biblioteket",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Du har inga mallar med övningar. Skapa en mall eller välj ”Skapa mallar och plan”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Du har inga mallar med övningar. Skapa en mall eller välj ”Nya mallar och plan”.",
  "Dźwięk na koniec przerwy": "Ljud när vilan är slut",
  "Wibracje": "Vibration",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Mer → Inställningar: ”Ljud när vilan är slut” och ”Vibration” slår du på var för sig.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Gratis träningsdagar den här månaden: {n} av {limit} använda",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} av {limit} gratis träningsdagar {left} den här månaden.",
  "Został|Zostały|Zostało": "kvar|kvar",
- "Sklep chwilowo niedostępny": "Butiken är tillfälligt otillgänglig"
+ "Sklep chwilowo niedostępny": "Butiken är tillfälligt otillgänglig",
+ "Nowe szablony i plan": "Nya mallar och plan"
 }

@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "調整幅度（例如 +2.5 kg）是慣例，不是研究結果。",
  "Usuń szablon": "刪除範本",
  "Usuń z biblioteki": "從動作庫刪除",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "你沒有包含動作的範本。請建立範本，或選擇「產生範本與計畫」。",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "你沒有包含動作的範本。請建立範本，或選擇「新範本與計畫」。",
  "Dźwięk na koniec przerwy": "休息結束時的聲音",
  "Wibracje": "震動",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "更多 → 設定：「休息結束時的聲音」與「震動」可分別開啟。",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "本月免費訓練日：已使用 {n} / {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "本月 {limit} 個免費訓練日中，{left} {n} 個。",
  "Został|Zostały|Zostało": "還剩",
- "Sklep chwilowo niedostępny": "商店暫時無法使用"
+ "Sklep chwilowo niedostępny": "商店暫時無法使用",
+ "Nowe szablony i plan": "新範本與計畫"
 }

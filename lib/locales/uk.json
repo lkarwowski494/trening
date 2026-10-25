@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Крок (наприклад, +2,5 kg) — це умовність, а не результат досліджень.",
  "Usuń szablon": "Видалити шаблон",
  "Usuń z biblioteki": "Видалити з бібліотеки",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "У вас немає шаблонів із вправами. Створіть шаблон або виберіть «Згенерувати шаблони й план».",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "У вас немає шаблонів із вправами. Створіть шаблон або виберіть «Нові шаблони й план».",
  "Dźwięk na koniec przerwy": "Звук наприкінці відпочинку",
  "Wibracje": "Вібрація",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Більше → Параметри: «Звук наприкінці відпочинку» і «Вібрація» вмикаються окремо.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Безкоштовні тренувальні дні цього місяця: використано {n} із {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} із {limit} безкоштовних тренувальних днів цього місяця.",
  "Został|Zostały|Zostało": "Залишився|Залишилося|Залишилося",
- "Sklep chwilowo niedostępny": "Магазин тимчасово недоступний"
+ "Sklep chwilowo niedostępny": "Магазин тимчасово недоступний",
+ "Nowe szablony i plan": "Нові шаблони й план"
 }

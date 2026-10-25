@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "증가 폭(예: +2.5 kg)은 관례이며 연구 결과가 아닙니다.",
  "Usuń szablon": "루틴 삭제",
  "Usuń z biblioteki": "라이브러리에서 삭제",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "종목이 들어 있는 루틴이 없습니다. 루틴을 만들거나 ‘루틴과 플랜 생성’을 선택하세요.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "종목이 들어 있는 루틴이 없습니다. 루틴을 만들거나 ‘새 루틴 및 플랜’을 선택하세요.",
  "Dźwięk na koniec przerwy": "휴식 종료 시 소리",
  "Wibracje": "진동",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "더보기 → 설정: ‘휴식 종료 시 소리’와 ‘진동’은 각각 따로 켭니다.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "이번 달 무료 운동일: {limit}일 중 {n}일 사용",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "이번 달 무료 운동일 {limit}일 중 {n}일 {left}.",
  "Został|Zostały|Zostało": "남았습니다",
- "Sklep chwilowo niedostępny": "스토어를 일시적으로 사용할 수 없습니다"
+ "Sklep chwilowo niedostępny": "스토어를 일시적으로 사용할 수 없습니다",
+ "Nowe szablony i plan": "새 루틴 및 플랜"
 }

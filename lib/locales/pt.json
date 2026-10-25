@@ -1713,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "O incremento (p. ex., +2,5 kg) é uma convenção, não um resultado de estudos.",
  "Usuń szablon": "Apagar modelo",
  "Usuń z biblioteki": "Apagar da biblioteca",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Não tem modelos com exercícios. Crie um modelo ou escolha «Gerar modelos e plano».",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Não tem modelos com exercícios. Crie um modelo ou escolha «Novos modelos e plano».",
  "Dźwięk na koniec przerwy": "Som no fim do descanso",
  "Wibracje": "Vibração",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Mais → Definições: «Som no fim do descanso» e «Vibração» ativam-se em separado.",
@@ -1741,5 +1741,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Dias de treino gratuitos este mês: {n} de {limit} usados",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} de {limit} dias de treino gratuitos este mês.",
  "Został|Zostały|Zostało": "Resta|Restam",
- "Sklep chwilowo niedostępny": "Loja temporariamente indisponível"
+ "Sklep chwilowo niedostępny": "Loja temporariamente indisponível",
+ "Nowe szablony i plan": "Novos modelos e plano"
 }
