@@ -32,10 +32,18 @@ describe('tests-tz.yml — zadanie „zmiana-czasu” (A)', () => {
 
 describe('nightly.yml — mutacje po modułach (B)', () => {
   const conf = JSON.parse(read('stryker.config.json')) as { mutate: string[]; thresholds: { break: number } };
-  const moduly = (/modul:\s*\[([^\]]+)\]/.exec(nightly)?.[1] ?? '').split(',').map(s => `lib/${s.trim()}.ts`).sort();
+  const wpisy = (/modul:\s*\[([^\]]+)\]/.exec(nightly)?.[1] ?? '').split(',').map(x => x.trim().replace(/['"]/g, ''));
+  const moduly = [...new Set(wpisy.map(w => `lib/${w.split(':')[0]}.ts`))].sort();
   test('macierz modułów = `mutate` ze stryker.config.json (dodanie modułu do konfiguracji bez zadania zostawia go niemierzonym)', () => { expect(moduly).toEqual([...conf.mutate].sort()); });
+  test('moduł podzielony na zakresy wierszy (`plan:od-do`): zakresy przylegają od wiersza 1 i sięgają końca pliku (nic nie zostaje niemierzone)', () => {
+    for (const m of new Set(wpisy.filter(w => w.includes(':')).map(w => w.split(':')[0]))) {
+      const zakresy = wpisy.filter(w => w.startsWith(m + ':')).map(w => w.split(':')[1].split('-').map(Number)); const dl = read(`lib/${m}.ts`).split('\n').length;
+      expect(zakresy[0][0]).toBe(1); zakresy.slice(1).forEach(([od], i) => expect(od).toBe(zakresy[i][1] + 1)); expect(zakresy[zakresy.length - 1][1]).toBeGreaterThanOrEqual(dl);
+    }
+    expect(wpisy.filter(w => w.startsWith('plan:')).length).toBeGreaterThan(1);
+  });
   test('zadanie modułu: konfiguracja z jednym modułem i bez progu break, limit czasu w granicach, raport jako artefakt', () => {
-    expect(nightly).toMatch(/c\.mutate=\['lib\/\$\{\{ matrix\.modul \}\}\.ts'\]/); expect(nightly).toMatch(/break: null/); expect(nightly).toMatch(/npx stryker run stryker\.modul\.json/);
+    expect(nightly).toMatch(/c\.mutate=\['lib\/'\+m\+'\.ts'\+\(r\?':'\+r:''\)\]/); expect(nightly).toMatch(/break: null/); expect(nightly).toMatch(/npx stryker run stryker\.modul\.json/);
     expect(nightly).toMatch(/name: mutacje-\$\{\{ strategy\.job-index \}\}/); expect(nightly).toMatch(/timeout-minutes: 300/);
   });
   test('podsumowanie: osobne zadanie zbiera raporty modułów (zgłoszenie nocne czyta wynik zadania „mutacje” — jak dotąd)', () => {

@@ -73,10 +73,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        modul: [units, stats, plan, generator, deload, deload-sets, planReminder, period, dashboard, timer, whatsnew, backup]
+        # plan.ts w jednym zadaniu przekraczał 5 h (przebieg dowodowy 25.10.2026) — cztery zakresy wierszy (`plan:od-do`), razem cały plik; pilnuje tests/nocne-workflowy.test.ts
+        modul: [units, stats, 'plan:1-130', 'plan:131-260', 'plan:261-390', 'plan:391-9999', generator, deload, deload-sets, planReminder, period, dashboard, timer, whatsnew, backup]
         ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main"]') || format('["{0}"]', github.ref_name)) }}
     timeout-minutes: 300
-    name: mutacje (${{ matrix.ref }}, lib/${{ matrix.modul }}.ts)
+    name: mutacje (${{ matrix.ref }}, ${{ matrix.modul }})
     steps:
       - uses: actions/checkout@v5
         with:
@@ -89,7 +90,7 @@ jobs:
       - run: npm ci
       - name: Konfiguracja Strykera tylko dla modułu (bez progu break)
         run: |
-          node -e "const c=require('./stryker.config.json'); c.mutate=['lib/${{ matrix.modul }}.ts']; c.thresholds={...c.thresholds, break: null}; require('fs').writeFileSync('stryker.modul.json', JSON.stringify(c, null, 2))"
+          node -e "const c=require('./stryker.config.json'); const [m, r]='${{ matrix.modul }}'.split(':'); c.mutate=['lib/'+m+'.ts'+(r?':'+r:'')]; c.thresholds={...c.thresholds, break: null}; require('fs').writeFileSync('stryker.modul.json', JSON.stringify(c, null, 2))"
       - name: Testy mutacyjne (Stryker, jeden moduł)
         run: npx stryker run stryker.modul.json --cleanTempDir false
       - uses: actions/upload-artifact@v4

@@ -490,3 +490,4 @@ EN Progress Guard · bg Пазач на прогреса · cs Strážce progres
   Przy okazji w komentarzach `nightly.yml` usunięto dawną regułę „3 czyste noce” jako bramkę App Store (uchylona 21.10.2026, M1-047); kod licznika w `scripts/ci/nocny-raport.mjs` bez zmian.
 - **Bez nowych sekretów i uprawnień.** Testy: `tests/nocne-workflowy.test.ts`, `tests/pin-now.test.ts`.
 - **Przebieg dowodowy (L-001):** przed scaleniem `tests-tz` i `Nocne testy` (z pominięciem losowych i E2E) uruchomione z gałęzi — numery przebiegów w opisie PR.
+- **Korekta po przebiegu dowodowym (25.10.2026):** `lib/plan.ts` w jednym zadaniu przekroczył 5 h (stats 2 h 49, reszta < 1 h 30) — plan dzielony na cztery zakresy wierszy (`plan:od-do`, Stryker `--mutate plik:od-do`); zakresy pilnuje `tests/nocne-workflowy.test.ts`. Testy czytające źródła natywne (Swift) wyłączone z konfiguracji mutacji (kopia Strykera pomija katalogi `ios`). `tests-tz` z chwilami 2027: przebieg 40219017780 zielony (10 zadań).
