@@ -1,7 +1,7 @@
 // Strażnik paczki aplikacji (decyzja właściciela 25.10.2026, docs/18: „całkiem anonimowo”): w wyeksportowanym pakiecie (`expo export --platform ios`, verify zostawia go w
 // .expo/verify-export do końca kroku) nie ma nazw źródeł ani organizacji — mimo że interfejs ich nie pokazuje, paczka nie ma ich nosić. Wzorce: lib/sources.ts
 // (SOURCE_NAME_PATTERNS, jedno miejsce). Jedyny wyjątek: stare tłumaczenia kluczy z zestawu do przekładu (rodzaj „zmieniony”, docs/lokalizacja/zestaw-przekladu-*.json —
-// to samo, co dopuszcza tests/zrodla-wiedzy.test.ts); wyjątek znika razem z wpisami zestawu (docs/40, rejestr ryzyk R-002).
+// to samo, co dopuszcza tests/zrodla-wiedzy.test.ts); wyjątek znika razem z wpisami zestawu (docs/40, rejestr ryzyk R-015).
 // Pakiet to bytecode Hermes: łańcuchy są ciągłe (ASCII/UTF-8 albo UTF-16LE, bez separatorów), więc skanujemy trzy widoki bajtów (utf8, utf16le od 0 i od 1) i
 // wzorzec jest bez „nie-litery przed” (w ciągłym zapisie poprzedzająca litera należy do sąsiedniego łańcucha).
 // Użycie: node scripts/check-bundle.mjs [katalog-eksportu]   (domyślnie .expo/verify-export; kod 1 = znaleziono nazwy lub brak pakietu)
