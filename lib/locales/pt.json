@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} de {limit} dias de treino gratuitos este mês.",
  "Został|Zostały|Zostało": "Resta|Restam",
  "Zakończ trening na telefonie": "Termine o treino no telemóvel",
- "Ogólne wskazówki dla tego ruchu": "Dicas gerais para este movimento"
+ "Ogólne wskazówki dla tego ruchu": "Dicas gerais para este movimento",
+ "Mięśnie główne: {lista}": "Músculos principais: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Músculos auxiliares: {lista}",
+ "Dobór mięśni: uproszczenie": "Escolha dos músculos: simplificação",
+ "Opuszczanie": "Descida",
+ "Wypychanie": "Empurrão",
+ "Wstawanie": "Levantar",
+ "Podnoszenie": "Elevação",
+ "Prostowanie": "Extensão",
+ "{faza} {n} s": "{faza} {n} s",
+ "Pokaż częsty błąd": "Mostrar erro comum",
+ "Ukryj częsty błąd": "Ocultar erro comum",
+ "Częsty błąd: {opis}": "Erro comum: {opis}"
 }

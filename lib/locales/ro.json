@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} din {limit} zile de antrenament gratuite luna aceasta.",
  "Został|Zostały|Zostało": "Rămâne|Rămân|Rămân",
  "Zakończ trening na telefonie": "Termină antrenamentul pe telefon",
- "Ogólne wskazówki dla tego ruchu": "Sfaturi generale pentru această mișcare"
+ "Ogólne wskazówki dla tego ruchu": "Sfaturi generale pentru această mișcare",
+ "Mięśnie główne: {lista}": "Mușchi principali: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Mușchi auxiliari: {lista}",
+ "Dobór mięśni: uproszczenie": "Alegerea mușchilor: simplificare",
+ "Opuszczanie": "Coborâre",
+ "Wypychanie": "Împingere",
+ "Wstawanie": "Ridicare în picioare",
+ "Podnoszenie": "Ridicare",
+ "Prostowanie": "Întindere",
+ "{faza} {n} s": "{faza} {n} s",
+ "Pokaż częsty błąd": "Arată greșeala frecventă",
+ "Ukryj częsty błąd": "Ascunde greșeala frecventă",
+ "Częsty błąd: {opis}": "Greșeală frecventă: {opis}"
 }

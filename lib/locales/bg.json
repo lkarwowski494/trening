@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} от {limit} безплатни тренировъчни дни този месец.",
  "Został|Zostały|Zostało": "Остава|Остават",
  "Zakończ trening na telefonie": "Завършете тренировката на телефона",
- "Ogólne wskazówki dla tego ruchu": "Общи съвети за това упражнение"
+ "Ogólne wskazówki dla tego ruchu": "Общи съвети за това упражнение",
+ "Mięśnie główne: {lista}": "Основни мускули: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Спомагателни мускули: {lista}",
+ "Dobór mięśni: uproszczenie": "Подбор на мускулите: опростяване",
+ "Opuszczanie": "Спускане",
+ "Wypychanie": "Изтласкване",
+ "Wstawanie": "Изправяне",
+ "Podnoszenie": "Вдигане",
+ "Prostowanie": "Изпъване",
+ "{faza} {n} s": "{faza} {n} с",
+ "Pokaż częsty błąd": "Покажи често срещана грешка",
+ "Ukryj częsty błąd": "Скрий често срещаната грешка",
+ "Częsty błąd: {opis}": "Честа грешка: {opis}"
 }

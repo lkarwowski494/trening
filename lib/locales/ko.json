@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "이번 달 무료 운동일 {limit}일 중 {n}일 {left}.",
  "Został|Zostały|Zostało": "남았습니다",
  "Zakończ trening na telefonie": "휴대폰에서 운동 종료",
- "Ogólne wskazówki dla tego ruchu": "이 동작의 일반적인 팁"
+ "Ogólne wskazówki dla tego ruchu": "이 동작의 일반적인 팁",
+ "Mięśnie główne: {lista}": "주동근: {lista}",
+ "Mięśnie pomocnicze: {lista}": "보조근: {lista}",
+ "Dobór mięśni: uproszczenie": "근육 선택: 단순화",
+ "Opuszczanie": "내리기",
+ "Wypychanie": "밀기",
+ "Wstawanie": "일어서기",
+ "Podnoszenie": "들어 올리기",
+ "Prostowanie": "펴기",
+ "{faza} {n} s": "{faza} {n}초",
+ "Pokaż częsty błąd": "흔한 실수 보기",
+ "Ukryj częsty błąd": "흔한 실수 숨기기",
+ "Częsty błąd: {opis}": "흔한 실수: {opis}"
 }

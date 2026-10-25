@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Ilmaisia treenipäiviä {left} tässä kuussa: {n} / {limit}.",
  "Został|Zostały|Zostało": "jäljellä|jäljellä",
  "Zakończ trening na telefonie": "Lopeta treeni puhelimella",
- "Ogólne wskazówki dla tego ruchu": "Yleisiä vinkkejä tähän liikkeeseen"
+ "Ogólne wskazówki dla tego ruchu": "Yleisiä vinkkejä tähän liikkeeseen",
+ "Mięśnie główne: {lista}": "Pääasialliset lihakset: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Apulihakset: {lista}",
+ "Dobór mięśni: uproszczenie": "Lihasten valinta: yksinkertaistus",
+ "Opuszczanie": "Lasku",
+ "Wypychanie": "Puristus",
+ "Wstawanie": "Ylösnousu",
+ "Podnoszenie": "Nosto",
+ "Prostowanie": "Ojennus",
+ "{faza} {n} s": "{faza} {n} s",
+ "Pokaż częsty błąd": "Näytä yleinen virhe",
+ "Ukryj częsty błąd": "Piilota yleinen virhe",
+ "Częsty błąd: {opis}": "Yleinen virhe: {opis}"
 }

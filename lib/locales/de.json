@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} von {limit} kostenlosen Trainingstagen in diesem Monat {left}.",
  "Został|Zostały|Zostało": "übrig|übrig",
  "Zakończ trening na telefonie": "Training am Telefon beenden",
- "Ogólne wskazówki dla tego ruchu": "Allgemeine Tipps für diese Bewegung"
+ "Ogólne wskazówki dla tego ruchu": "Allgemeine Tipps für diese Bewegung",
+ "Mięśnie główne: {lista}": "Hauptmuskeln: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Hilfsmuskeln: {lista}",
+ "Dobór mięśni: uproszczenie": "Muskelauswahl: Vereinfachung",
+ "Opuszczanie": "Absenken",
+ "Wypychanie": "Drücken",
+ "Wstawanie": "Aufstehen",
+ "Podnoszenie": "Heben",
+ "Prostowanie": "Strecken",
+ "{faza} {n} s": "{faza} {n} s",
+ "Pokaż częsty błąd": "Häufigen Fehler zeigen",
+ "Ukryj częsty błąd": "Häufigen Fehler ausblenden",
+ "Częsty błąd: {opis}": "Häufiger Fehler: {opis}"
 }

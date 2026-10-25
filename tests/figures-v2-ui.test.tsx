@@ -7,7 +7,8 @@ import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
-import { figurePalette, TEMPO, loopLength } from '@/lib/figures/v2';
+import { figurePalette, TEMPO, loopLength, figureSpec, MUSCLE_DATA } from '@/lib/figures/v2';
+import { errorsOf } from '@/lib/figures/v2/ui';
 import { applyLang } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
 
@@ -64,10 +65,48 @@ describe('komponent ExerciseFigureV2', () => {
     applyLang('en'); setReduce(false); render(<ExerciseFigureV2 exercise={lib('Deadlift (sztanga)')} name="Deadlift" />); await flush();
     expect(screen.getAllByTestId('exercise-figure-v2-image').pop()!.props.accessibilityLabel).toBe('Movement drawing: Deadlift'); expect(screen.getByRole('button', { name: 'Pause animation' })).toBeTruthy();
   });
-  test('bez liczb i kątów na rysunku: w drzewie nie ma tekstów z cyframi ani znakiem stopnia (kąty bez źródła nie są pokazywane)', async () => {
+  test('bez kątów na rysunku: żadnego znaku stopnia; cyfry tylko w liczniku faz (tempo w sekundach)', async () => {
     setReduce(true); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
     const texts = screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === RN.Text).flatMap((n: { props: { children?: unknown } }) => React.Children.toArray(n.props.children as React.ReactNode)).map(String);
-    for (const x of texts) expect([x, /[0-9°]/.test(x)]).toEqual([x, false]);
+    for (const x of texts) { expect([x, /°/.test(x)]).toEqual([x, false]); if (/[0-9]/.test(x)) expect([x, /^(Opuszczanie|Wstawanie|Wypychanie|Podnoszenie|Prostowanie) [0-9,]+ s/.test(x)]).toEqual([x, true]); }
+  });
+  test('licznik faz z tempem ilustracyjnym: Opuszczanie 2 s · Pauza · Wstawanie 1 s (przysiad); martwy ciąg z podłogi: Podnoszenie 1 s, Opuszczanie 2 s; podświetlona bieżąca faza przy animacji', async () => {
+    jest.useFakeTimers(); setReduce(false);
+    render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+    const ph = () => screen.getByTestId('exercise-figure-v2-phases');
+    expect(screen.getByText('Opuszczanie 2 s ·')).toBeTruthy(); expect(screen.getByText('Pauza ·')).toBeTruthy(); expect(screen.getByText('Wstawanie 1 s')).toBeTruthy(); expect(ph()).toBeTruthy();
+    await act(async () => { jest.advanceTimersByTime(TEMPO.holdMs + 500); });
+    expect(screen.getByText('Opuszczanie 2 s ·').props.style.color).toBe(light.accent);
+    screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Deadlift (sztanga)')} />); await flush();
+    expect(screen.getByText('Podnoszenie 1 s ·')).toBeTruthy(); expect(screen.getByText('Opuszczanie 2 s')).toBeTruthy();
+  });
+  test('izometria: bez licznika faz', async () => { setReduce(true); render(<ExerciseFigureV2 exercise={lib('Wall Sit')} />); await flush(); expect(screen.queryByTestId('exercise-figure-v2-phases')).toBeNull(); });
+  test('mięśnie zawsze widoczne z legendą: główne (czworogłowe) i pomocnicze; przy pewności „uproszczenie” dopisek', async () => {
+    setReduce(true); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+    expect(screen.getByText('Mięśnie główne: czworogłowe')).toBeTruthy(); expect(screen.getByText(/^Mięśnie pomocnicze: /)).toBeTruthy(); expect(screen.queryByTestId('exercise-figure-v2-simplified')).toBeNull();
+    const ids = pathsOf().length; expect(ids).toBeGreaterThan(60);
+    const simple = Object.keys(MUSCLE_DATA).find(k => figureSpec(k) && /uproszczenie/.test(MUSCLE_DATA[k].confidence));
+    expect(simple).toBeTruthy(); screen.unmount(); render(<ExerciseFigureV2 exercise={lib(simple!)} />); await flush();
+    expect(screen.getByTestId('exercise-figure-v2-simplified')).toBeTruthy(); expect(screen.getByText('Dobór mięśni: uproszczenie')).toBeTruthy();
+  });
+  test('przełącznik „Pokaż częsty błąd”: pokazuje opis błędu ze wskazówki i zmienia rysunek; „Ukryj” przywraca; ćwiczenie bez błędu nie ma przełącznika', async () => {
+    setReduce(true); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+    const d0 = pathsOf().join('|'); expect(screen.queryByTestId('exercise-figure-v2-error')).toBeNull();
+    fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' }));
+    expect(screen.getByTestId('exercise-figure-v2-error')).toBeTruthy(); expect(screen.getByText(/^Częsty błąd: /)).toBeTruthy(); expect(pathsOf().join('|')).not.toBe(d0);
+    expect(screen.getByTestId('exercise-figure-v2-error-kneesIn')).toBeTruthy(); fireEvent.press(screen.getByTestId('exercise-figure-v2-error-heels')); expect(screen.getAllByText(/pięt/i).length).toBeGreaterThan(0);
+    fireEvent.press(screen.getByRole('button', { name: 'Ukryj częsty błąd' })); expect(screen.queryByTestId('exercise-figure-v2-error')).toBeNull(); expect(pathsOf().join('|')).toBe(d0);
+    screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Wall Sit')} />); await flush(); expect(screen.queryByRole('button', { name: 'Pokaż częsty błąd' })).toBeNull();
+  });
+  test('błąd tempa (szarpanie) przyspiesza animację; przycisk błędu dostępny również w animacji', async () => {
+    jest.useFakeTimers(); setReduce(false);
+    const k = Object.keys(MUSCLE_DATA).find(x => figureSpec(x) && errorsOf(figureSpec(x)!).length === 1 && errorsOf(figureSpec(x)!)[0].error === 'jerk')!;
+    expect(k).toBeTruthy(); render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' }));
+    expect(screen.getByText(/Opuszczanie 0,5 s|Opuszczanie 0,4 s/)).toBeTruthy();
+  });
+  test('angielski: etykiety licznika, legendy i przełącznika po angielsku', async () => {
+    applyLang('en'); setReduce(false); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+    expect(screen.getByText('Lowering 2 s ·')).toBeTruthy(); expect(screen.getByText('Main muscles: quads')).toBeTruthy(); expect(screen.getByRole('button', { name: 'Show common mistake' })).toBeTruthy();
   });
   test.each([['light', light], ['dark', dark]] as const)('kolory z motywu (%s): skóra, ubranie, sprzęt i podłoga z tokenów (figurePalette)', async (mode, th) => {
     jest.spyOn(RN, 'useColorScheme').mockImplementation((() => mode) as never); setReduce(true);

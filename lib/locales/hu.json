@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{limit} ingyenes edzésnapból {n} {left} ebben a hónapban.",
  "Został|Zostały|Zostało": "maradt|maradt",
  "Zakończ trening na telefonie": "Fejezze be az edzést a telefonon",
- "Ogólne wskazówki dla tego ruchu": "Általános tippek ehhez a mozdulathoz"
+ "Ogólne wskazówki dla tego ruchu": "Általános tippek ehhez a mozdulathoz",
+ "Mięśnie główne: {lista}": "Fő izmok: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Segédizmok: {lista}",
+ "Dobór mięśni: uproszczenie": "Az izmok kiválasztása: egyszerűsítés",
+ "Opuszczanie": "Leengedés",
+ "Wypychanie": "Nyomás",
+ "Wstawanie": "Felállás",
+ "Podnoszenie": "Emelés",
+ "Prostowanie": "Kinyújtás",
+ "{faza} {n} s": "{faza} {n} mp",
+ "Pokaż częsty błąd": "Gyakori hiba megjelenítése",
+ "Ukryj częsty błąd": "Gyakori hiba elrejtése",
+ "Częsty błąd: {opis}": "Gyakori hiba: {opis}"
 }

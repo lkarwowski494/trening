@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} af {limit} gratis træningsdage {left} denne måned.",
  "Został|Zostały|Zostało": "tilbage|tilbage",
  "Zakończ trening na telefonie": "Afslut træningen på telefonen",
- "Ogólne wskazówki dla tego ruchu": "Generelle tips til denne bevægelse"
+ "Ogólne wskazówki dla tego ruchu": "Generelle tips til denne bevægelse",
+ "Mięśnie główne: {lista}": "Hovedmuskler: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Hjælpemuskler: {lista}",
+ "Dobór mięśni: uproszczenie": "Valg af muskler: forenkling",
+ "Opuszczanie": "Sænkning",
+ "Wypychanie": "Pres",
+ "Wstawanie": "Rejsning",
+ "Podnoszenie": "Løft",
+ "Prostowanie": "Strækning",
+ "{faza} {n} s": "{faza} {n} s",
+ "Pokaż częsty błąd": "Vis almindelig fejl",
+ "Ukryj częsty błąd": "Skjul almindelig fejl",
+ "Częsty błąd: {opis}": "Almindelig fejl: {opis}"
 }

@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "本月 {limit} 個免費訓練日中，{left} {n} 個。",
  "Został|Zostały|Zostało": "還剩",
  "Zakończ trening na telefonie": "在手機上結束訓練",
- "Ogólne wskazówki dla tego ruchu": "這個動作的一般提示"
+ "Ogólne wskazówki dla tego ruchu": "這個動作的一般提示",
+ "Mięśnie główne: {lista}": "主要肌群：{lista}",
+ "Mięśnie pomocnicze: {lista}": "輔助肌群：{lista}",
+ "Dobór mięśni: uproszczenie": "肌群選擇：簡化",
+ "Opuszczanie": "下放",
+ "Wypychanie": "推起",
+ "Wstawanie": "站起",
+ "Podnoszenie": "抬起",
+ "Prostowanie": "伸直",
+ "{faza} {n} s": "{faza} {n} 秒",
+ "Pokaż częsty błąd": "顯示常見錯誤",
+ "Ukryj częsty błąd": "隱藏常見錯誤",
+ "Częsty błąd: {opis}": "常見錯誤：{opis}"
 }

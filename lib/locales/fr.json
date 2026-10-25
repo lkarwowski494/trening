@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} sur {limit} jours d’entraînement gratuits ce mois-ci.",
  "Został|Zostały|Zostało": "Il reste|Il reste",
  "Zakończ trening na telefonie": "Terminez la séance sur le téléphone",
- "Ogólne wskazówki dla tego ruchu": "Conseils généraux pour ce mouvement"
+ "Ogólne wskazówki dla tego ruchu": "Conseils généraux pour ce mouvement",
+ "Mięśnie główne: {lista}": "Muscles principaux : {lista}",
+ "Mięśnie pomocnicze: {lista}": "Muscles auxiliaires : {lista}",
+ "Dobór mięśni: uproszczenie": "Choix des muscles : simplification",
+ "Opuszczanie": "Descente",
+ "Wypychanie": "Poussée",
+ "Wstawanie": "Remontée",
+ "Podnoszenie": "Soulevé",
+ "Prostowanie": "Extension",
+ "{faza} {n} s": "{faza} {n} s",
+ "Pokaż częsty błąd": "Montrer l’erreur fréquente",
+ "Ukryj częsty błąd": "Masquer l’erreur fréquente",
+ "Częsty błąd: {opis}": "Erreur fréquente : {opis}"
 }

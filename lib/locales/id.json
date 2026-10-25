@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} dari {limit} hari latihan gratis bulan ini.",
  "Został|Zostały|Zostało": "Tersisa",
  "Zakończ trening na telefonie": "Selesaikan latihan di ponsel",
- "Ogólne wskazówki dla tego ruchu": "Tips umum untuk gerakan ini"
+ "Ogólne wskazówki dla tego ruchu": "Tips umum untuk gerakan ini",
+ "Mięśnie główne: {lista}": "Otot utama: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Otot pendukung: {lista}",
+ "Dobór mięśni: uproszczenie": "Pemilihan otot: penyederhanaan",
+ "Opuszczanie": "Menurunkan",
+ "Wypychanie": "Mendorong",
+ "Wstawanie": "Berdiri",
+ "Podnoszenie": "Mengangkat",
+ "Prostowanie": "Meluruskan",
+ "{faza} {n} s": "{faza} {n} dtk",
+ "Pokaż częsty błąd": "Tampilkan kesalahan umum",
+ "Ukryj częsty błąd": "Sembunyikan kesalahan umum",
+ "Częsty błąd: {opis}": "Kesalahan umum: {opis}"
 }

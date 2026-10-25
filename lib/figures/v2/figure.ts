@@ -14,6 +14,8 @@ import { muscleShapes } from './muscles';
 import { MUSCLE_DATA, type MuscleEntry } from './muscles.generated';
 import type { Frame, Shape, View } from './scene';
 import type { V3 } from './math';
+import { GUIDES, trailShapes, type GuideId } from './guides';
+import { phasesOf, type Phase, type PhaseNames } from './anim';
 import { ERRORS, type ErrorId, type Fault } from './errors';
 import { ease } from './rigs/common';
 
@@ -90,9 +92,31 @@ export function errorMarks(f: Frame, view: View, error: ErrorId): Shape[] {
 }
 
 const boxCache = new Map<string, Box>();
-/** Wspólny kadr całej pętli (próbkowanie co 1/20): rysunek nie skacze między klatkami. */
-export function boxFor(spec: FigureSpec, view: View): Box {
-  const id = spec.key + '|' + view; const hit = boxCache.get(id); if (hit) return hit;
-  const lists: Shape[][] = []; for (let i = 0; i <= 20; i++) lists.push(shapesAt(spec, spec.static ? 1 : i / 20, view));
+/** Wspólny kadr całej pętli (próbkowanie co 1/20; z pozami błędów, żeby przełączenie błędu nie zmieniało kadru): rysunek nie skacze między klatkami. */
+export function boxFor(spec: FigureSpec, view: View, errors: ErrorId[] = []): Box {
+  const id = spec.key + '|' + view + '|' + errors.join(','); const hit = boxCache.get(id); if (hit) return hit;
+  const lists: Shape[][] = []; for (const e of [undefined, ...errors.filter(x => ERRORS[x].kind === 'pose')]) for (let i = 0; i <= 20; i++) lists.push(shapesAt(spec, spec.static ? 1 : i / 20, view, false, e));
   const b = boundsOf(lists); boxCache.set(id, b); return b;
+}
+
+/** Nazwy faz licznika tempa dla ćwiczenia (klucze t()). */
+export function phaseNames(spec: FigureSpec): PhaseNames {
+  const v = spec.variant;
+  if (v.family === 'bench_press') return { first: 'Opuszczanie', second: 'Wypychanie' };
+  if (v.family === 'hinge') return v.p.style === 'floor' ? { first: 'Podnoszenie', second: 'Opuszczanie' } : { first: 'Opuszczanie', second: 'Prostowanie' };
+  return { first: 'Opuszczanie', second: 'Wstawanie' };
+}
+/** Fazy pętli ćwiczenia z czasami (tempo ilustracyjne; błąd tempa podaje własne czasy). */
+export const phasesFor = (spec: FigureSpec, tempo?: { downMs: number; upMs: number }): Phase[] => phasesOf(phaseNames(spec), spec.lowerFirst, tempo);
+
+const trailCache = new Map<string, Shape[]>();
+/** Tor ruchu środka ciężaru/dłoni w widoku (próbkowanie co 1/24; cache). */
+export function trailFor(spec: FigureSpec, view: View): Shape[] {
+  const id = spec.key + '|' + view; const hit = trailCache.get(id); if (hit) return hit;
+  const fr: Frame[] = []; for (let i = 0; i <= 24; i++) fr.push(frameAt(spec, spec.static ? 1 : i / 24));
+  const out = spec.static ? [] : trailShapes(fr, view); trailCache.set(id, out); return out;
+}
+/** Linie odniesienia dla pozycji u (tylko z wskazanych id i widoków, w których linia ma sens). */
+export function guideShapes(spec: FigureSpec, u: number, view: View, ids: GuideId[], error?: ErrorId): Shape[] {
+  const f = frameAt(spec, u, error); return ids.flatMap(id => GUIDES[id].views.includes(view) ? GUIDES[id].build(f, view) : []);
 }

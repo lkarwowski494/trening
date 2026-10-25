@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} z {limit} bezplatných tréninkových dní tento měsíc.",
  "Został|Zostały|Zostało": "Zbývá|Zbývají|Zbývá",
  "Zakończ trening na telefonie": "Dokončete trénink v telefonu",
- "Ogólne wskazówki dla tego ruchu": "Obecné tipy pro tento pohyb"
+ "Ogólne wskazówki dla tego ruchu": "Obecné tipy pro tento pohyb",
+ "Mięśnie główne: {lista}": "Hlavní svaly: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Pomocné svaly: {lista}",
+ "Dobór mięśni: uproszczenie": "Výběr svalů: zjednodušení",
+ "Opuszczanie": "Spouštění",
+ "Wypychanie": "Tlak",
+ "Wstawanie": "Vstávání",
+ "Podnoszenie": "Zvedání",
+ "Prostowanie": "Natahování",
+ "{faza} {n} s": "{faza} {n} s",
+ "Pokaż częsty błąd": "Ukázat častou chybu",
+ "Ukryj częsty błąd": "Skrýt častou chybu",
+ "Częsty błąd: {opis}": "Častá chyba: {opis}"
 }

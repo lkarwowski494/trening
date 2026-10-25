@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} od {limit} brezplačnih dni treninga ta mesec.",
  "Został|Zostały|Zostało": "Ostaja|Ostajata|Ostajajo|Ostaja",
  "Zakończ trening na telefonie": "Končaj trening v telefonu",
- "Ogólne wskazówki dla tego ruchu": "Splošni nasveti za to gibanje"
+ "Ogólne wskazówki dla tego ruchu": "Splošni nasveti za to gibanje",
+ "Mięśnie główne: {lista}": "Glavne mišice: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Pomožne mišice: {lista}",
+ "Dobór mięśni: uproszczenie": "Izbor mišic: poenostavitev",
+ "Opuszczanie": "Spuščanje",
+ "Wypychanie": "Potisk",
+ "Wstawanie": "Vstajanje",
+ "Podnoszenie": "Dvigovanje",
+ "Prostowanie": "Iztegovanje",
+ "{faza} {n} s": "{faza} {n} s",
+ "Pokaż częsty błąd": "Pokaži pogosto napako",
+ "Ukryj częsty błąd": "Skrij pogosto napako",
+ "Częsty błąd: {opis}": "Pogosta napaka: {opis}"
 }

@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} van {limit} gratis trainingsdagen deze maand {left}.",
  "Został|Zostały|Zostało": "over|over",
  "Zakończ trening na telefonie": "Rond de training af op de telefoon",
- "Ogólne wskazówki dla tego ruchu": "Algemene tips voor deze beweging"
+ "Ogólne wskazówki dla tego ruchu": "Algemene tips voor deze beweging",
+ "Mięśnie główne: {lista}": "Hoofdspieren: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Hulpspieren: {lista}",
+ "Dobór mięśni: uproszczenie": "Spierkeuze: vereenvoudiging",
+ "Opuszczanie": "Neerlaten",
+ "Wypychanie": "Duwen",
+ "Wstawanie": "Opstaan",
+ "Podnoszenie": "Optillen",
+ "Prostowanie": "Strekken",
+ "{faza} {n} s": "{faza} {n} s",
+ "Pokaż częsty błąd": "Veelgemaakte fout tonen",
+ "Ukryj częsty błąd": "Veelgemaakte fout verbergen",
+ "Częsty błąd: {opis}": "Veelgemaakte fout: {opis}"
 }

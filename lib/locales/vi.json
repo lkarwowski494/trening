@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n}/{limit} ngày tập miễn phí trong tháng này.",
  "Został|Zostały|Zostało": "Còn",
  "Zakończ trening na telefonie": "Kết thúc buổi tập trên điện thoại",
- "Ogólne wskazówki dla tego ruchu": "Mẹo chung cho động tác này"
+ "Ogólne wskazówki dla tego ruchu": "Mẹo chung cho động tác này",
+ "Mięśnie główne: {lista}": "Cơ chính: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Cơ hỗ trợ: {lista}",
+ "Dobór mięśni: uproszczenie": "Chọn cơ: đơn giản hóa",
+ "Opuszczanie": "Hạ xuống",
+ "Wypychanie": "Đẩy",
+ "Wstawanie": "Đứng lên",
+ "Podnoszenie": "Nâng",
+ "Prostowanie": "Duỗi thẳng",
+ "{faza} {n} s": "{faza} {n} giây",
+ "Pokaż częsty błąd": "Hiện lỗi thường gặp",
+ "Ukryj częsty błąd": "Ẩn lỗi thường gặp",
+ "Częsty błąd: {opis}": "Lỗi thường gặp: {opis}"
 }

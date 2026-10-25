@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} із {limit} безкоштовних тренувальних днів цього місяця.",
  "Został|Zostały|Zostało": "Залишився|Залишилося|Залишилося",
  "Zakończ trening na telefonie": "Завершіть тренування на телефоні",
- "Ogólne wskazówki dla tego ruchu": "Загальні поради для цього руху"
+ "Ogólne wskazówki dla tego ruchu": "Загальні поради для цього руху",
+ "Mięśnie główne: {lista}": "Основні м’язи: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Допоміжні м’язи: {lista}",
+ "Dobór mięśni: uproszczenie": "Добір м’язів: спрощення",
+ "Opuszczanie": "Опускання",
+ "Wypychanie": "Жим",
+ "Wstawanie": "Вставання",
+ "Podnoszenie": "Підйом",
+ "Prostowanie": "Випрямлення",
+ "{faza} {n} s": "{faza} {n} с",
+ "Pokaż częsty błąd": "Показати часту помилку",
+ "Ukryj częsty błąd": "Сховати часту помилку",
+ "Częsty błąd: {opis}": "Часта помилка: {opis}"
 }

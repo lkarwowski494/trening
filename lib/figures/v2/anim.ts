@@ -20,3 +20,22 @@ export function uAt(ms: number, lowerFirst: boolean, tempo: { downMs: number; up
   return 1 - ease((x - 2 * h - a) / b);
 }
 export const loopLength = (_lowerFirst: boolean, tempo: { downMs: number; upMs: number } = TEMPO): number => 2 * TEMPO.holdMs + tempo.downMs + tempo.upMs;
+
+/** Fazy pętli do licznika: etykiety (klucze t()) i czas w ms. `first` = faza 0→1 (u rośnie), `second` = powrót. */
+export type PhaseName = 'Opuszczanie' | 'Wypychanie' | 'Wstawanie' | 'Podnoszenie' | 'Prostowanie' | 'Pauza';
+export type Phase = { name: PhaseName; ms: number };
+export type PhaseNames = { first: PhaseName; second: PhaseName };
+
+/** Cztery fazy jednej pętli w kolejności: pierwsza, pauza, druga, pauza (pauza ilustracyjna 0,5 s). */
+export function phasesOf(names: PhaseNames, lowerFirst: boolean, tempo: { downMs: number; upMs: number } = TEMPO): Phase[] {
+  const a = lowerFirst ? tempo.downMs : tempo.upMs, b = lowerFirst ? tempo.upMs : tempo.downMs;
+  return [{ name: names.first, ms: a }, { name: 'Pauza', ms: TEMPO.holdMs }, { name: names.second, ms: b }, { name: 'Pauza', ms: TEMPO.holdMs }];
+}
+/** Indeks fazy (w `phasesOf`) w chwili ms pętli: wiodąca pauza na starcie jest ostatnią fazą poprzedniej pętli. */
+export function phaseIndexAt(ms: number, phases: Phase[]): number {
+  const total = phases.reduce((s, p) => s + p.ms, 0); let x = ((ms % total) + total) % total;
+  /* uAt zaczyna pętlę od pauzy na starcie, potem faza pierwsza — przesuwamy liczenie o tę pauzę */
+  x = (x - TEMPO.holdMs + total) % total;
+  for (let i = 0; i < phases.length; i++) { if (x < phases[i].ms) return i; x -= phases[i].ms; }
+  return phases.length - 1;
+}

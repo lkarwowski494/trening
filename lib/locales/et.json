@@ -1741,5 +1741,17 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Sel kuul on tasuta treeningpäevi {left}: {n} / {limit}.",
  "Został|Zostały|Zostało": "jäänud|jäänud",
  "Zakończ trening na telefonie": "Lõpeta treening telefonis",
- "Ogólne wskazówki dla tego ruchu": "Üldised näpunäited selle liigutuse jaoks"
+ "Ogólne wskazówki dla tego ruchu": "Üldised näpunäited selle liigutuse jaoks",
+ "Mięśnie główne: {lista}": "Põhilihased: {lista}",
+ "Mięśnie pomocnicze: {lista}": "Abilihased: {lista}",
+ "Dobór mięśni: uproszczenie": "Lihaste valik: lihtsustus",
+ "Opuszczanie": "Langetamine",
+ "Wypychanie": "Surumine",
+ "Wstawanie": "Tõusmine",
+ "Podnoszenie": "Tõstmine",
+ "Prostowanie": "Sirutamine",
+ "{faza} {n} s": "{faza} {n} s",
+ "Pokaż częsty błąd": "Näita sagedast viga",
+ "Ukryj częsty błąd": "Peida sage viga",
+ "Częsty błąd: {opis}": "Sage viga: {opis}"
 }
