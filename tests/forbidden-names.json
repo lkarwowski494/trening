@@ -230,6 +230,36 @@
    "path": "tests/fixtures/released",
    "name": "Ski Erg",
    "reason": "zapis bazy z wydanego builda (tests/fixtures/released/, M1-audytor-generalny-007) — klucz katalogu w zapisanych danych użytkownika (Exercise.libKey; nazwa kanoniczna z tamtej wersji biblioteki), wygenerowany z kodu tagu, nie edytowany ręcznie"
+  },
+  {
+   "path": "lib/figures/v2/cue-sets.json",
+   "name": "Assault Bike",
+   "reason": "klucz katalogu jako klucz danych (figury v2: zestawy wskazówek i udział mięśni po kluczu katalogu, jak lib/catalog.generated.ts) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts; plik z danych (cue-sets.json: badacz 25.10.2026; muscles.generated.ts: generowany z docs/research/equipment/catalog.json)"
+  },
+  {
+   "path": "lib/figures/v2/cue-sets.json",
+   "name": "Bosu",
+   "reason": "klucz katalogu jako klucz danych (figury v2: zestawy wskazówek i udział mięśni po kluczu katalogu, jak lib/catalog.generated.ts) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts; plik z danych (cue-sets.json: badacz 25.10.2026; muscles.generated.ts: generowany z docs/research/equipment/catalog.json)"
+  },
+  {
+   "path": "lib/figures/v2/cue-sets.json",
+   "name": "Ski Erg",
+   "reason": "klucz katalogu jako klucz danych (figury v2: zestawy wskazówek i udział mięśni po kluczu katalogu, jak lib/catalog.generated.ts) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts; plik z danych (cue-sets.json: badacz 25.10.2026; muscles.generated.ts: generowany z docs/research/equipment/catalog.json)"
+  },
+  {
+   "path": "lib/figures/v2/muscles.generated.ts",
+   "name": "Assault Bike",
+   "reason": "klucz katalogu jako klucz danych (figury v2: zestawy wskazówek i udział mięśni po kluczu katalogu, jak lib/catalog.generated.ts) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts; plik z danych (cue-sets.json: badacz 25.10.2026; muscles.generated.ts: generowany z docs/research/equipment/catalog.json)"
+  },
+  {
+   "path": "lib/figures/v2/muscles.generated.ts",
+   "name": "Bosu",
+   "reason": "klucz katalogu jako klucz danych (figury v2: zestawy wskazówek i udział mięśni po kluczu katalogu, jak lib/catalog.generated.ts) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts; plik z danych (cue-sets.json: badacz 25.10.2026; muscles.generated.ts: generowany z docs/research/equipment/catalog.json)"
+  },
+  {
+   "path": "lib/figures/v2/muscles.generated.ts",
+   "name": "Ski Erg",
+   "reason": "klucz katalogu jako klucz danych (figury v2: zestawy wskazówek i udział mięśni po kluczu katalogu, jak lib/catalog.generated.ts) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts; plik z danych (cue-sets.json: badacz 25.10.2026; muscles.generated.ts: generowany z docs/research/equipment/catalog.json)"
   }
  ]
 }
