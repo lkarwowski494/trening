@@ -1,6 +1,6 @@
 # 27 — Wskazówki techniki: źródła (generowane)
 
-AUTOMATYCZNIE WYGENEROWANE przez `scripts/cues/gen.mjs` z `lib/cues/data.json` i `lib/cues/text/pl.json` — nie edytować ręcznie.
+AUTOMATYCZNIE WYGENEROWANE przez `scripts/cues/gen.mjs` z `data/zrodla/cues.json` i `lib/cues/text/pl.json` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/cues/gen.mjs --check` (część `npm run verify`).
 
 Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; etap 1 = własne wskazówki tekstowe dla ćwiczeń bazowych (research: docs/research/26).

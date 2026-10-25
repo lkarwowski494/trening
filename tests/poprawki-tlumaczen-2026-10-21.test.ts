@@ -18,8 +18,8 @@ const OLD_NOTE = 'Ćwiczenie ze sztangą nad ciałem lub na barkach: ustaw w sto
 const NOTE = 'Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.';
 const NOTE_EN = 'Barbell exercise with the bar on the trunk or over the head and face: safety equipment is recommended — a rack with safety arms, plus a spotter.';
 const R1_START = 'Każda główna partia co najmniej {n} dni w tygodniu';
-const R1_PHRASE = 'nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe'; /* 23.10.2026: brzmienie bez nazw źródeł (docs/18); sens: za mało dowodów na zależność dawka–odpowiedź */
-const R1_PHRASE_EN = 'there is not enough evidence that more days give proportionally more; with the same number of sets the differences are small';
+const R1_PHRASE = 'więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe'; /* 23.10.2026: brzmienie bez nazw źródeł (docs/18); sens: dowody nie pokazują zależności dawka–odpowiedź; 25.10.2026 bez słowa „dowody” w tekście */
+const R1_PHRASE_EN = 'more days do not have to give proportionally more; with the same number of sets the differences are small';
 const TARGETS = LANGS.filter((l): l is Lang => l !== 'pl' && l !== 'en');
 const dict = (l: Lang) => LOCALES[l] as Record<string, string>;
 const r1Key = Object.keys(EN).find((k) => k.startsWith(R1_START))!;

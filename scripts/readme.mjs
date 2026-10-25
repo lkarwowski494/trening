@@ -120,6 +120,7 @@ const TOP = {
   'tests/': 'testy Jest: logika, ekrany, scenariusze, macierz, niezmienniki, regresje; bramki repozytorium',
   '.maestro/': 'scenariusze E2E (Maestro, symulator iPhone) i podprzepływy',
   'scripts/': 'generatory i bramki: macierz testów, katalog przepływów, tłumaczenia, licencje, README',
+  'data/': 'pełne dane źródeł wskazówek i figur (z nich generuje się pliki runtime bez nazw: scripts/zrodla-runtime.mjs)',
   'docs/': 'dokumentacja i rejestr decyzji (po polsku), w tym dokumenty generowane z kodu',
   'site/': 'strona aplikacji: polityka prywatności i wsparcie (GitHub Pages)',
   'store/': 'konfiguracja sklepu: produkty zakupu (plik StoreKit), nazwy i lokalizacje do App Store Connect',

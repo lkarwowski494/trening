@@ -1,6 +1,6 @@
 # 28 — Figury ruchu (generowane)
 
-AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/gen.mjs` z `lib/figures/data.json`, `lib/cues/data.json` i `lib/cues/text/pl.json` — nie edytować ręcznie.
+AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/gen.mjs` z `data/zrodla/figures.json`, `data/zrodla/cues.json` i `lib/cues/text/pl.json` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/gen.mjs --check` (część `npm run verify`); geometria póz i zakres stawów: `tests/figures.test.tsx`.
 
 Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; etap 2–3 = własne figury SVG (szkielet z kątami stawów, 2–3 pozycje, krótka pętla; przy „Ogranicz ruch” pozycje statycznie). Research: docs/research/26 pkt 7; wskazówki etapu 1: docs/research/27.

@@ -5,12 +5,9 @@
  * te same zdania), granica medyczna (bez obietnic zdrowotnych w treści, stopka z odesłaniem), ekran (zwinięta sekcja, rozwijanie,
  * VoiceOver: przycisk z expanded, nagłówki sekcji, punkty bez „•” w etykiecie), ekran ćwiczenia, generator dokumentu (--check).
  */
-import * as fs from 'fs';
-import * as path from 'path';
-import { execFileSync } from 'child_process';
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
-import { CUE_DATA, CUE_SECTIONS, cuesFor, cueText, cueDict, cueOrgs } from '@/lib/cues';
+import { CUE_DATA, CUE_SECTIONS, cuesFor, cueText, cueDict } from '@/lib/cues';
 import { ExerciseCues } from '@/components/ExerciseCues';
 import { LIB_BASE_NAMES, LIB_KEYS } from '@/lib/seed';
 import { LANGS, applyLang, t } from '@/lib/i18n';
@@ -19,29 +16,19 @@ import * as store from '@/lib/store';
 import { fresh } from './helpers';
 import { renderApp, screen as appScreen, tap, flushAll } from './app';
 
-const root = path.join(__dirname, '..');
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 afterEach(() => { applyLang('pl'); });
 
 describe('dane wskazówek', () => {
   test('każde ćwiczenie bazowe ma wskazówki albo jest na liście otwartych z powodem; poza bazą — nic', () => {
-    const covered = new Set([...Object.keys(CUE_DATA.exercises), ...Object.keys(CUE_DATA.open)]);
+    const covered = new Set([...Object.keys(CUE_DATA.exercises), ...CUE_DATA.open]);
     expect([...LIB_BASE_NAMES].filter(n => !covered.has(n))).toEqual([]);
     expect([...covered].filter(n => !LIB_BASE_NAMES.has(n))).toEqual([]);
-    for (const k of Object.keys(CUE_DATA.open)) { expect(CUE_DATA.exercises[k]).toBeUndefined(); expect(CUE_DATA.open[k].length).toBeGreaterThan(20); }
+    for (const k of CUE_DATA.open) expect(CUE_DATA.exercises[k]).toBeUndefined(); /* powody otwartych — tests/zrodla-pelne-cues.test.ts */
     expect(Object.keys(CUE_DATA.exercises).length).toBeGreaterThanOrEqual(70);
   });
-  test('każda wskazówka: ≥ 2 przeczytane źródła z różnych organizacji, z miejscem w źródle; źródło ma adres https', () => {
-    for (const [ex, x] of Object.entries(CUE_DATA.exercises)) for (const sec of CUE_SECTIONS) for (const r of x[sec] ?? []) {
-      const orgs = new Set<string | undefined>(r.s.map(([sid]) => CUE_DATA.sources[sid]?.org));
-      expect([ex, r.c, orgs.has(undefined)]).toEqual([ex, r.c, false]);
-      expect([ex, r.c, orgs.size >= 2]).toEqual([ex, r.c, true]);
-      for (const [, at] of r.s) expect(at.trim().length).toBeGreaterThan(2);
-    }
-    for (const s of Object.values(CUE_DATA.sources)) { expect(s.url).toMatch(/^https:\/\//); expect(CUE_DATA.orgs[s.org]).toBeDefined(); if (s.archive) expect(s.archive).toMatch(/^https:\/\/web\.archive\.org\/web\/\d+\//); }
-  });
   test('sekcje: ustawienie i ruch ≥ 1, wskazówki 2–4, błędy 0–4; bez powtórzeń w sekcji (ćwiczenia z listy „partial” z 0.14.0: łącznie ≥ 2 — patrz tests/cues-014)', () => {
-    const partial = new Set(CUE_DATA.partial ?? []);
+    const partial = new Set(CUE_DATA.partial);
     for (const [ex, x] of Object.entries(CUE_DATA.exercises)) {
       if (partial.has(ex)) { expect([ex, x.setup.length + x.move.length + x.tips.length >= 2, x.tips.length <= 4, x.mistakes.length <= 4]).toEqual([ex, true, true, true]); }
       else expect([ex, x.setup.length >= 1, x.move.length >= 1, x.tips.length >= 2 && x.tips.length <= 4, x.mistakes.length <= 4]).toEqual([ex, true, true, true, true]);
@@ -97,17 +84,13 @@ describe('logika', () => {
     expect(cuesFor({ lib: true, libKey: 'Nie ma takiego' })).toBeNull();
     expect(cuesFor({ lib: true })).toBeNull();
     expect(cuesFor(null)).toBeNull();
-    const open = Object.keys(CUE_DATA.open)[0]; if (open) expect(cuesFor(lib(open))).toBeNull();
+    const open = CUE_DATA.open[0]; if (open) expect(cuesFor(lib(open))).toBeNull();
     expect(LIB_KEYS.has('Back Squat')).toBe(true);
   });
   test('sekcja bez pozycji (np. brak błędów z dwoma źródłami) znika z listy', () => {
     const noMis = Object.keys(CUE_DATA.exercises).find(k => CUE_DATA.exercises[k].mistakes.length === 0)!;
     expect(noMis).toBeDefined();
     expect(cuesFor(lib(noMis), 'pl')!.sections.map(s => s.id)).not.toContain('mistakes');
-  });
-  test('cueOrgs: organizacje w kolejności pierwszego użycia, bez powtórzeń; nieznane ćwiczenie → []', () => {
-    const o = cueOrgs('Deadlift (sztanga)'); expect(o[0]).toBe('ACE'); expect(new Set(o).size).toBe(o.length); expect(o.length).toBeGreaterThanOrEqual(2);
-    expect(cueOrgs('xyz')).toEqual([]);
   });
 });
 
@@ -133,7 +116,7 @@ describe('komponent ExerciseCues', () => {
   test('ćwiczenie własne i ćwiczenie bez wskazówek — nic się nie renderuje', () => {
     render(<ExerciseCues exercise={{ lib: false }} />);
     expect(screen.toJSON()).toBeNull();
-    const open = Object.keys(CUE_DATA.open)[0];
+    const open = CUE_DATA.open[0];
     if (open) { render(<ExerciseCues exercise={lib(open)} />); expect(screen.toJSON()).toBeNull(); }
   });
   test('kolory z motywu (jasny): tekst wskazówek t.text, nagłówki t.muted, linie t.line', () => {
@@ -165,19 +148,5 @@ describe('ekran ćwiczenia', () => {
     await flushAll();
     await tap(appScreen.getByRole('button', { name: 'Technika' }));
     expect(appScreen.getByText(`• ${cueText(CUE_DATA.exercises['Back Squat'].setup[0].c, 'pl')}`)).toBeTruthy();
-  });
-});
-
-describe('dokument źródeł (generowany)', () => {
-  test('docs/research/27-wskazowki-zrodla.md aktualny i dane poprawne (scripts/cues/gen.mjs --check)', () => {
-    expect(() => execFileSync('node', [path.join(root, 'scripts/cues/gen.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
-    const doc = fs.readFileSync(path.join(root, 'docs/research/27-wskazowki-zrodla.md'), 'utf8');
-    for (const k of Object.keys(CUE_DATA.exercises)) expect(doc).toContain(`### ${k}`);
-    for (const k of Object.keys(CUE_DATA.open)) expect(doc).toContain(`| ${k} |`);
-  });
-  test('verify uruchamia sprawdzenie dokumentu wskazówek', () => {
-    const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
-    expect(pkg.scripts['check:cues']).toBe('node scripts/cues/gen.mjs --check');
-    expect(pkg.scripts.verify).toContain('npm run check:cues');
   });
 });
