@@ -89,7 +89,7 @@ describe('komponent ExerciseFigureV2', () => {
     const ids = pathsOf().length; expect(ids).toBeGreaterThan(60);
     const simple = Object.keys(MUSCLE_DATA).find(k => figureSpec(k) && /uproszczenie/.test(MUSCLE_DATA[k].confidence));
     expect(simple).toBeTruthy(); screen.unmount(); render(<ExerciseFigureV2 exercise={lib(simple!)} />); await flush();
-    expect(screen.getByTestId('exercise-figure-v2-simplified')).toBeTruthy(); expect(screen.getByText('Dobór mięśni: uproszczenie')).toBeTruthy();
+    expect(screen.getByTestId('exercise-figure-v2-simplified')).toBeTruthy(); expect(screen.getByText('Dobór mięśni: przybliżony')).toBeTruthy();
   });
   test('przełącznik „Pokaż częsty błąd”: pokazuje opis błędu ze wskazówki i zmienia rysunek; „Ukryj” przywraca; ćwiczenie bez błędu nie ma przełącznika', async () => {
     setReduce(true); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();

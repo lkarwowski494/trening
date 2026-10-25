@@ -99,7 +99,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
         ? <View testID="exercise-figure-v2-legend" style={{ marginTop: 4, gap: 2 }}>
             {legend.main.length ? <LegendRow color={figurePalette(th).muscleMain} text={t('Mięśnie główne: {lista}', { lista: legend.main.map(r => t(legend.label(r))).join(', ') })} txt={txt} /> : null}
             {legend.aux.length ? <LegendRow color={figurePalette(th).muscleAux} text={t('Mięśnie pomocnicze: {lista}', { lista: legend.aux.map(r => t(legend.label(r))).join(', ') })} txt={txt} /> : null}
-            {legend.simplified ? <Text testID="exercise-figure-v2-simplified" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={txt}>{t('Dobór mięśni: uproszczenie')}</Text> : null}
+            {legend.simplified ? <Text testID="exercise-figure-v2-simplified" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={txt}>{t('Dobór mięśni: przybliżony')}</Text> : null}
           </View>
         : null}
       {toeAngleApplies(spec) ? <Text testID="exercise-figure-v2-toes" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, ...FW.semibold, marginTop: 2 }}>{t('Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.')}</Text> : null}

@@ -779,7 +779,7 @@ export const EN: Record<string, string> = {
   'Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.': 'Toes pointed slightly out — usually about 15–20°.',
   'Mięśnie główne: {lista}': 'Main muscles: {lista}',
   'Mięśnie pomocnicze: {lista}': 'Supporting muscles: {lista}',
-  'Dobór mięśni: uproszczenie': 'Muscle selection: simplification',
+  'Dobór mięśni: przybliżony': 'Muscle selection: approximate',
   'Opuszczanie': 'Lowering',
   'Wypychanie': 'Pressing',
   'Wstawanie': 'Standing up',
