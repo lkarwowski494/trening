@@ -7,3 +7,24 @@ pochodnych. Biblioteki zewnętrzne podlegają własnym licencjom (lista w aplika
 EN: The source code in this repository is made available for viewing only. Without the owner's written
 permission it may not be copied, modified, distributed or used to create or publish derivative applications.
 Third-party libraries are subject to their own licenses (listed in the app: More → Licenses).
+
+PL: Baza danych. Osobny punkt, obok zasad dla kodu wyżej. Katalog ćwiczeń (docs/research/equipment/catalog.json
+i lib/catalog.generated.ts), wskazówki techniki (lib/cues), dane figur (lib/figures) oraz słowniki tłumaczeń
+(lib/i18n.en.ts i lib/locales) tworzą bazę danych, którą zebraliśmy, sprawdziliśmy i opracowaliśmy własnym nakładem.
+Chroni je prawo producenta bazy danych (dyrektywa 96/9/WE Parlamentu Europejskiego i Rady z 11 marca 1996 r.
+w sprawie ochrony prawnej baz danych; w Polsce ustawa z 27 lipca 2001 r. o ochronie baz danych, Dz.U. 2001 nr 128
+poz. 1402, z późniejszymi zmianami) oraz prawo autorskie do tekstów i grafik. Bez pisemnej zgody właściciela nie wolno
+pobierać (kopiować na inny nośnik) ani wtórnie wykorzystywać (udostępniać publicznie) całości ani istotnej części tej bazy,
+także w przekształconej formie, w tym do tworzenia innych aplikacji, baz danych lub zbiorów do uczenia modeli. Dotyczy to
+także powtarzalnego pobierania niewielkich części, jeśli w sumie dają istotną część. Wgląd w repozytorium nie jest zgodą.
+
+EN: Database. A separate section, in addition to the source code terms above. The exercise catalog
+(docs/research/equipment/catalog.json and lib/catalog.generated.ts), the technique cues (lib/cues), the figure data
+(lib/figures) and the translation dictionaries (lib/i18n.en.ts and lib/locales) form a database that we collected,
+verified and prepared with our own investment. It is protected by the database right of the maker of a database
+(Directive 96/9/EC of the European Parliament and of the Council of 11 March 1996 on the legal protection of
+databases; in Poland the Act of 27 July 2001 on the protection of databases, Journal of Laws 2001 No. 128, item 1402,
+as amended) and by copyright in the texts and graphics. Without the owner's written permission you may not extract
+(copy to another medium) or re-utilize (make publicly available) the whole or a substantial part of this database,
+also in a modified form, including to build other apps, databases or datasets for training models. This also covers
+repeated extraction of small parts that together make up a substantial part. Viewing the repository is not permission.
