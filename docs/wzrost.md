@@ -1,6 +1,6 @@
 # Wzrost: kanały startu i decyzja o Androidzie
 
-Stan: 20.10.2026 (audyt M1: zadania 071 i 072; DEC-25, DEC-26). Dokument zebrany z kodu i docs repozytorium, **bez ocen wartości**. Czego nie ma w repozytorium, oznaczono **[DO USTALENIA]** (decyzja albo dane właściciela) albo **[DO PRZECZYTANIA]** (regulamin lub strona, której nie przeczytano; nie zgadujemy). Niczego nie publikujemy: szkice przygotowuje agent marketingu, publikuje właściciel (docs/18, 13.10.2026).
+Stan: 20.10.2026 (audyt M1: zadania 071 i 072; DEC-25, DEC-26); 23.10.2026 — fora i grupy poza planem startu (M1-051, DEC-02 a). Dokument zebrany z kodu i docs repozytorium, **bez ocen wartości**. Czego nie ma w repozytorium, oznaczono **[DO USTALENIA]** (decyzja albo dane właściciela) albo **[DO PRZECZYTANIA]** (regulamin lub strona, której nie przeczytano; nie zgadujemy). Niczego nie publikujemy: szkice przygotowuje agent marketingu, publikuje właściciel (docs/18, 13.10.2026).
 
 Źródła w repo: `docs/15-app-store.md` (sekcja „Wzrost i promocja”, 06.10.2026), `docs/18-przekazanie.md` (wpisy z 13.10.2026: plan marketingu, wpisy z nowego konta twórcy), `docs/41-droga-do-app-store.md` (E6 nominacja, D-5), `docs/monetyzacja.md` (model stały).
 
@@ -8,21 +8,21 @@ Stan: 20.10.2026 (audyt M1: zadania 071 i 072; DEC-25, DEC-26). Dokument zebrany
 
 - Cel (właściciel 06.10.2026): powolne zdobywanie użytkowników, którzy zostają na stałe, bez ostrej szybkiej promocji; „100 pobrań miesięcznie byłoby super.” Liczby punktu wyjścia w docs/15 to ocena agenta, nie dane — do sprawdzenia po premierze w App Store Connect (Analityka).
 - Cel wzrostu wyprowadzony z progu opłacalności (decyzja właściciela 21.10.2026): **ok. 310 pobrań miesięcznie** (≈ 75 płacących rocznie przy konwersji 2%); wcześniejsze „100 pobrań miesięcznie” daje ok. 160 USD/rok, poniżej progu 500 USD (docs/monetyzacja.md, „Bramka W0”).
-- Przekaz (docs/18, 13.10.2026): prywatność, cena, języki, offline, prostota. Wpisy o premierze z **nowego konta twórcy** (nie z konta osobistego).
-- Zasada kanałów: wpis tam, gdzie są osoby trenujące, **spokojnie, bez linku, dopóki zasady kanału nie są przeczytane** (docs/15: „Spokojne wpisy tam, gdzie są osoby trenujące”).
+- Przekaz startowy (DEC-07 K6, właściciel 23.10.2026; **zastępuje hasło z 13.10.2026**, docs/18): **„szybki zapis serii, także z zegarka; dane tylko na telefonie; bez konta”** (Apple Watch jest na stronie produktu, `site/index.html`). Wcześniejsze hasło („Twój trening zostaje w Twoim telefonie” / „Prosty dziennik siłowni. Bez konta. Bez internetu.”) nie obowiązuje. Wpisy o premierze z **nowego konta twórcy** (nie z konta osobistego). Wpisy o premierze z **nowego konta twórcy** (nie z konta osobistego).
+- Zasada kanałów (decyzja właściciela 23.10.2026, DEC-02 a; zastępuje „spokojne wpisy bez linku” z docs/15): **wpis na forum albo w grupie tylko po pisemnej zgodzie administracji, zgodnie z jej regulaminem**; do tego czasu fora i grupy są poza planem startu i nie piszemy w nich o aplikacji. *Dlaczego:* regulamin forum SFD zakazuje materiałów promujących produkty bez pisemnej zgody (wiersz 2 tabeli), a wpis wbrew regulaminowi grozi usunięciem konta i utratą zaufania społeczności, do której chcemy dotrzeć.
 
 ## 2. Tabela kanałów startu
 
 Kolumny: adres; 2–3 wątki z datą (miejsca, w których rozmowa o domowej siłowni, dzienniku treningowym lub prywatności już się toczy); zasada o autopromocji — **cytat z datą odczytu**; tryb.
-Kanał dostaje tryb „link dozwolony” dopiero, gdy ma adres, 2–3 wątki z datą i cytat zasady z datą odczytu, a zasada autopromocję dopuszcza. Do tego czasu — **tylko pomocna obecność bez linku**.
+Kanał dostaje tryb „link dozwolony” dopiero, gdy ma adres, 2–3 wątki z datą i cytat zasady z datą odczytu, a zasada autopromocję dopuszcza. Forum, grupa i kanał z zakazem albo z nieprzeczytaną zasadą mają tryb **poza planem startu — wpis tylko po pisemnej zgodzie administracji** (zgoda zapisana w dzienniku, pkt 3); tryb „tylko pomocna obecność bez linku” zostaje tylko dla kanału z przeczytaną zasadą, która nie zakazuje wzmianki.
 
 | # | kanał | adres | wątki (2–3, data) | zasada o autopromocji (cytat, data odczytu) | tryb |
 |---|---|---|---|---|---|
-| 1 | Reddit — r/homegym (docs/15) | https://www.reddit.com/r/homegym/ | [DO USTALENIA — badacz: 2–3 wątki z datą] | [DO PRZECZYTANIA] — strona reguł zwróciła kod 403 z maszyny agenta (20.10.2026) | tylko pomocna obecność bez linku |
-| 2 | Forum SFD | https://www.sfd.pl/ | [DO USTALENIA — badacz: 2–3 wątki z datą] | [DO PRZECZYTANIA] — zakaz autopromocji podany w ustaleniach audytu M1 (11-wzrost-002), cytatu z regulaminu nie odczytano; adres regulaminu nieustalony (adresy próbne dały kod 404, 20.10.2026) | tylko pomocna obecność bez linku |
-| 3 | Sekcje AZS (docs/18, 13.10.2026) | [DO USTALENIA — które uczelnie i sekcje] | [DO USTALENIA] | [DO PRZECZYTANIA] — zasady konkretnych kanałów AZS nieznane | tylko pomocna obecność bez linku |
-| 4 | Kluby trójboju (docs/18, 13.10.2026) | [DO USTALENIA — które kluby] | [DO USTALENIA] | [DO PRZECZYTANIA] | tylko pomocna obecność bez linku |
-| 5 | Lokalne fora i grupy treningowe (docs/15) | [DO USTALENIA — które] | [DO USTALENIA] | [DO PRZECZYTANIA] | tylko pomocna obecność bez linku |
+| 1 | Reddit — r/homegym (docs/15) | https://www.reddit.com/r/homegym/ | [DO USTALENIA — badacz: 2–3 wątki z datą] | [DO PRZECZYTANIA] — strona reguł zwróciła kod 403 z maszyny agenta (20.10.2026) | poza planem startu — wpis tylko po pisemnej zgodzie administracji |
+| 2 | Forum SFD | https://www.sfd.pl/ | [DO USTALENIA — badacz: 2–3 wątki z datą] | zakaz bez pisemnej zgody: regulamin https://www.sfd.pl/regulamin wśród zakazanych treści wymienia „Materiałów reklamowych i innych promujących określone produkty, serwisy, firmy, wydarzenia, strony internetowe, osoby, itp. […] bez pisemnej zgody Usługodawcy” (odczyt 23.10.2026, HTTP 200) | poza planem startu — wpis tylko po pisemnej zgodzie administracji |
+| 3 | Sekcje AZS (docs/18, 13.10.2026) | [DO USTALENIA — które uczelnie i sekcje] | [DO USTALENIA] | [DO PRZECZYTANIA] — zasady konkretnych kanałów AZS nieznane | poza planem startu — wpis tylko po pisemnej zgodzie administracji |
+| 4 | Kluby trójboju (docs/18, 13.10.2026) | [DO USTALENIA — które kluby] | [DO USTALENIA] | [DO PRZECZYTANIA] | poza planem startu — wpis tylko po pisemnej zgodzie administracji |
+| 5 | Lokalne fora i grupy treningowe (docs/15) | [DO USTALENIA — które] | [DO USTALENIA] | [DO PRZECZYTANIA] | poza planem startu — wpis tylko po pisemnej zgodzie administracji |
 
 Kanały nie będące forami (bez autopromocji w sensie regulaminu forum): sklep (ASO: słowa kluczowe i opisy w lokalizacjach, docs/15 pkt 1 oraz `docs/16-jezyki-i-marka.md`), prośba o ocenę w aplikacji (`docs/26-prosba-o-ocene.md`), nominacja Apple „App Launch” ok. 4 tygodnie przed premierą (docs/41 E6; bez pre-orderu, docs/18 13.10.2026).
 
@@ -38,7 +38,7 @@ Każda publikacja wymaga zgody właściciela zapisanej tutaj **przed** wpisem (d
 
 1. **ASO w lokalizacjach sklepu** — słowa kluczowe i opisy (docs/15); zrzuty po M3 (docs/18, 20.10.2026). Wykonawca: agent (tłumacz), wpis przez właściciela.
 2. **Prośba o ocenę w aplikacji** po kilku treningach (systemowe okno Apple) — wg `docs/26-prosba-o-ocene.md`.
-3. **Spokojne wpisy bez linku** w kanałach z tabeli (punkt 2) z nowego konta twórcy; szkice agent marketingu, publikacja właściciel, wpis do dziennika zgód.
+3. **Fora i grupy — poza planem startu** (DEC-02 a, 23.10.2026): wpis tylko po pisemnej zgodzie administracji, zgodnie z jej regulaminem. Prośbę o zgodę szkicuje agent marketingu, wysyła właściciel; zgoda i ewentualny wpis (z nowego konta twórcy) trafiają do dziennika zgód (pkt 3).
 4. **Nominacja „App Launch”** ok. 4 tygodnie przed premierą (docs/41 E6), właściciel.
 5. **Kod ofertowy dla sekcji lub klubu** (docs/18, 13.10.2026: „osobny kod promocyjny na sekcję/klub”, gdy zakupy włączone; mechanizm kodów: `docs/monetyzacja.md`).
 
@@ -61,3 +61,12 @@ Opcje metryki (wybiera właściciel; rekomendacja pod listą):
 - **C. Zgłoszenia użytkowników o wersji na Androida** (wsparcie, opinie), liczone ręcznie. Plus: bezpośrednio o Androidzie, bez kosztów. Minus: zgłasza niewielka część użytkowników; brak metody liczenia w repo.
 
 **Decyzja właściciela (20.10.2026, K-P4-1): A + C** (zgodnie z rekomendacją); próg, minimalna próba i data premiery pozostają otwarte (tabela wyżej). **Rekomendacja:** A jako metryka główna z progiem wpisanym przed premierą, C jako uzupełnienie opisowe; B tylko jeśli liczba pobrań pozwoli na sensowną próbę. To rekomendacja do decyzji właściciela, nie decyzja. **Kolejny krok:** właściciel wybiera metrykę, próg i datę premiery; agent wpisuje je w tabeli powyżej (struktura pól jest pilnowana przez `tests/audit-m1-072-android-decision.test.ts`).
+
+## 6. Reguły uczciwej promocji (DEC-07 K5, właściciel 23.10.2026, wariant a; M1-055)
+
+Obowiązują każdy szkic i każde działanie z planu startu (sekcje 2–4); agent marketingu (`.claude/agents/marketing.md`) przygotowuje szkice zgodnie z nimi, publikuje właściciel.
+
+1. **Ujawnienie autorstwa:** w każdym wpisie, odpowiedzi i wiadomości o aplikacji piszemy wprost, że to nasza aplikacja („jestem autorem aplikacji”); żadnych wpisów udających niezależnego użytkownika.
+2. **Bez próśb o oceny do znajomych i rodziny:** nie prosimy znajomych, rodziny ani znajomych znajomych o oceny i recenzje w App Store; ocenę zbieramy tylko systemowym oknem w aplikacji (`docs/26-prosba-o-ocene.md`) od osób, które realnie z niej korzystają.
+3. **E-maile do klubów i sekcji:** wiadomość do klubu, sekcji lub trenera tylko po uzyskaniu zgody odbiorcy na kontakt (pierwszy krok to pytanie o zgodę, nie oferta); bez list zakupionych i bez zbierania adresów; adres i nazwisko lidera tylko na Dysku, nie w repo.
+4. **Fora i grupy (DEC-02 a):** zakaz promocji; wpis tylko po pisemnej zgodzie administracji, zgodnie z jej regulaminem, zapisanej w dzienniku zgód (sekcja 3) przed wpisem. Brak zgody = brak wpisu.

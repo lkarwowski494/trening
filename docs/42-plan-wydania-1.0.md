@@ -8,11 +8,11 @@ Droga do zgłoszenia (kroki, zależności, czas): `docs/41-droga-do-app-store.md
 Wydania w App Store nie zgłaszamy, dopóki wszystkie poniższe punkty nie są spełnione (rejestr ryzyk w `docs/40-lekcje.md`: otwarte ryzyko blokuje wydanie).
 
 1. **Rejestr ryzyk:** otwarte na 20.10.2026 — R-004 (uprawnienie powiadomień pilnych na telefonie; blokuje 1.0), R-005, R-006, R-007 (zamknięte 22.10.2026, docs/40), R-008, R-009, R-010 (drugi przegląd treści krytycznej — blokuje App Store; przegląd robi wyłącznie Claude, decyzja właściciela K-P4-2, 20.10.2026), R-011, R-012; od 21.10.2026 (redesign M3) R-013 (ikona zegarka — ponownie otwarte 22.10.2026 po odrzuceniu wysyłki build 1026; zamyka zielona wysyłka) i R-014 („Pogrubiony tekst” z krojem systemowym — telefon). Każde zamknięte z dowodem albo świadomie odłożone decyzją właściciela z datą.
-2. **Testy:** pełne `npm run verify` na commicie wydania, `tests.yml` zielony; pełny katalog E2E w **trybie ścisłym** (bez ponowień) po 3 kolejnych nocnych pełnych przebiegach zielonych bez ponowień (CLAUDE.md, `docs/38-przeplywy-i-luki-e2e.md` pkt 11).
+2. **Testy:** pełne `npm run verify` na commicie wydania, `tests.yml` zielony; jeden pełny katalog E2E na standardowym iPhonie zielony (jedno ponowienie scenariusza dozwolone; CLAUDE.md, decyzja właściciela 21.10.2026, `docs/38-przeplywy-i-luki-e2e.md` pkt 11). Nocny pełny katalog to sygnał, nie bramka.
 3. **Audyt:** pełny głęboki audyt całości przed upublicznieniem w App Store, naprawy KRYTYCZNYCH i WYSOKICH znalezisk bez drugiego audytu (CLAUDE.md „Audyty i wydania”, punkt 4; docs/41 A3–A4).
 4. **Wygląd:** redesign M3 przed 1.0; zrzuty do sklepu i opis dopiero po M3 (decyzja właściciela 20.10.2026, `docs/18-przekazanie.md`).
 5. **Droga do App Store:** punkty A–F z docs/41 spełnione (zakupy B1–B6, metadane D1–D11, prawo i kontakt E1–E6); opis sklepu zgodny z kodem (`docs/15-app-store.md`, test `tests/audit-m1-045-store-description.test.ts`).
-6. **Model płatności:** zgodny z `docs/monetyzacja.md`; wynik bramki W0: brak (decyzja właściciela K-P4-3, 20.10.2026), zostaje **[DO USTALENIA]** — nie blokuje wydania.
+6. **Model płatności:** zgodny z `docs/monetyzacja.md`; wynik bramki opłacalności: sekcja „Bramka W0” w `docs/monetyzacja.md` (przeprowadzona 21.10.2026, zastępuje zapis „brak” z K-P4-3; dla M5 S1 wynik normalny poniżej progu, model wybrany świadomie 22.10.2026) — nie blokuje wydania.
 7. **Telefon:** lista kontrolna wydania (`docs/39-lista-kontrolna-wydania.md`) odhaczona przez właściciela na buildzie 1.0 z TestFlight.
 
 ## 2. Wydanie 1.0 — ręcznie, po kontroli na telefonie
@@ -58,7 +58,7 @@ Zły build = znalezisko KRYTYCZNE albo WYSOKIE po wydaniu (utrata lub zepsucie d
 Odhaczana przez właściciela i agenta przed „Release”; wynik zapisany w docs/18 z datą.
 
 - [ ] **W1-01** Bramki z punktu 1 spełnione (ryzyka R-004…R-012 zamknięte albo odłożone decyzją z datą).
-- [ ] **W1-02** Pełne `npm run verify` zielone na commicie wydania; pełny katalog E2E w trybie ścisłym zielony po 3 nocnych przebiegach.
+- [ ] **W1-02** Pełne `npm run verify` zielone na commicie wydania; jeden pełny katalog E2E na standardowym iPhonie zielony (jedno ponowienie scenariusza dozwolone).
 - [ ] **W1-03** Build 1.0 na TestFlight; lista `docs/39-lista-kontrolna-wydania.md` odhaczona na telefonie.
 - [ ] **W1-04** Zakup w piaskownicy (docs/39, US-13) i „Przywróć zakupy” sprawdzone.
 - [ ] **W1-05** Metadane, zrzuty, zakupy i notatki dla recenzenta w App Store Connect kompletne (docs/41, A–F).
@@ -66,3 +66,9 @@ Odhaczana przez właściciela i agenta przed „Release”; wynik zapisany w doc
 - [ ] **W1-07** Dziennik wydań (`docs/09-plan-testow.md`) ma wiersz tagu wydania z SHA i numerem przebiegu.
 - [ ] **W1-08** Plan „zły build” (punkt 4) przeczytany przez właściciela; uzgodnione, kto i jak szybko reaguje w pierwszym tygodniu.
 - [ ] **W1-09** Przy pierwszej aktualizacji: włączone wydanie stopniowe (punkt 3).
+- [ ] **W1-10** Beta iOS/watchOS (lipiec–sierpień każdego roku, DEC-07 K10, 23.10.2026): gdy Apple udostępni betę nowego systemu, uruchamiamy zestaw E2E na symulatorze w CI z betą Xcode (niewiążąco, jak nocny pełny katalog), a właściciel przechodzi 5 min na telefonie z betą (start treningu, zapis serii, zegarek, kopia/przywrócenie); wynik w docs/18 z datą. Błąd z bety ocenia się wg progu i realności z CLAUDE.md (punkty 1 i 6), poprawka przed wrześniowym wydaniem systemu.
+
+## 6. Po premierze: budżet czasu właściciela
+
+Decyzja właściciela 23.10.2026 (DEC-07 K7, M1-057): po premierze 1.0 właściciel poświęca na aplikację **2 h tygodniowo** przez **8 tygodni** (okno punktu kontrolnego z `docs/monetyzacja.md` i decyzji o Androidzie z `docs/wzrost.md`); odpowiedzi na recenzje w App Store udzielamy w ciągu **48 h**.
+Agent przygotowuje szkice odpowiedzi i zestawienie tygodniowe (pobrania, oceny, zgłoszenia), publikuje właściciel. Praca ponad budżet — tylko za zgodą właściciela (zła wersja: punkt 4, bez limitu czasu).

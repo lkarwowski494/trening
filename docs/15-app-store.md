@@ -47,6 +47,8 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 
 ## Wzrost i promocja — ustalenia (właściciel 06.10.2026)
 
+- **Przekaz i reguły (23.10.2026, DEC-07 K5/K6):** przekaz startowy „szybki zapis serii, także z zegarka; dane tylko na telefonie; bez konta” (zastępuje hasło z 13.10.2026); reguły uczciwej promocji (ujawnienie autorstwa, bez próśb o oceny do znajomych, zgoda na e-maile do klubów, zakaz promocji na forach) — `docs/wzrost.md` pkt 6.
+
 - **Cel:** powolne zdobywanie użytkowników, którzy zostają na stałe — bez ostrej, szybkiej promocji. „100 pobrań miesięcznie byłoby super.”
 - **Realistyczny punkt wyjścia (ocena agenta, nie dane):** bez promocji — rzędu kilkudziesięciu pobrań w pierwszym miesiącu, potem od kilku do kilkudziesięciu
   miesięcznie; kategoria „dziennik treningów” zatłoczona (wiele popularnych aplikacji). Liczby do zweryfikowania po premierze (App Store Connect → Analityka).
@@ -55,6 +57,7 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
      Największa szansa w mniejszych sklepach (cs, sk, lt, lv, et, hr, sl, ro, hu, bg) — mniejsza konkurencja, nazwa lokalna.
   2. Prośba o ocenę w aplikacji po kilku treningach (systemowe okno Apple) — do zaprojektowania (kiedy, ile razy), decyzja właściciela.
   3. Spokojne wpisy tam, gdzie są osoby trenujące (lokalne fora/grupy, Reddit np. r/homegym): bez konta, dane w telefonie, offline, domowa siłownia.
+     **Zmiana 23.10.2026 (DEC-02 a, M1-051):** fora i grupy są poza planem startu — wpis tylko po pisemnej zgodzie administracji, zgodnie z jej regulaminem (`docs/wzrost.md`).
 <!-- historia:start B -->
 *Historia decyzji (06–20.10.2026): kwoty, okresy próbne i modele z tego bloku są zastąpione — obowiązuje wyłącznie `docs/monetyzacja.md`. Treść zostaje jako zapis, dlaczego model wygląda tak, a nie inaczej.*
 
