@@ -1690,6 +1690,7 @@
  "bez asekuracji w stojakach": "raamis pole turvapiirikuid",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Harjutus kangiga kehatüvel või pea ja näo kohal: soovitatav on julgestus — raam turvapiirikutega ning julgestaja.",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.": "Harjutus kangiga kehatüvel või pea ja näo kohal: soovitatav on julgestaja.",
+ "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.": "Harjutus hantlitega pea või näo kohal: soovitatav on julgestaja.",
  "Zmień w ustawieniach iOS": "Muuda iOS-i seadetes",
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Ikooni all olev nimi ja Tervise loa tekst vahetavad keelt alles siis, kui määrad rakenduse keele iOS-i seadetes.",
  "SS {g}": "SS {g}",
@@ -1712,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Samm (nt +2,5 kg) on kokkulepe, mitte uuringutulemus.",
  "Usuń szablon": "Kustuta mall",
  "Usuń z biblioteki": "Kustuta teegist",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Sul pole harjutustega malle. Loo mall või vali „Loo mallid ja plaan“.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Sul pole harjutustega malle. Loo mall või vali „Uued mallid ja plaan“.",
  "Dźwięk na koniec przerwy": "Heli pausi lõpus",
  "Wibracje": "Vibratsioon",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Rohkem → Seaded: „Heli pausi lõpus“ ja „Vibratsioon“ lülitatakse sisse eraldi.",
@@ -1740,5 +1741,7 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Tasuta treeningpäevad sel kuul: kasutatud {n} / {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Sel kuul on tasuta treeningpäevi {left}: {n} / {limit}.",
  "Został|Zostały|Zostało": "jäänud|jäänud",
+ "Sklep chwilowo niedostępny": "Pood on ajutiselt kättesaamatu",
+ "Nowe szablony i plan": "Uued mallid ja plaan",
  "Zakończ trening na telefonie": "Lõpeta treening telefonis"
 }

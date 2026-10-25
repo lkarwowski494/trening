@@ -66,8 +66,13 @@ describe('ekran zakupu: ceny, nazwy i opisy planów (bez okresu próbnego)', () 
     fake.offline = false; await tap(screen.getByText('Try again')); await settle(); expect(screen.getByTestId('plan-monthly')).toBeTruthy(); expect(screen.queryByTestId('paywall-offline')).toBeNull();
     expect(screen.getByText('Restore purchases')).toBeTruthy(); expect(screen.getByText('Redeem code')).toBeTruthy();
   });
-  test('sklep nie zna naszych produktów (pusta lista) — komunikat jak offline', async () => {
+  test('sklep nie zna naszych produktów (pusta lista) — osobny komunikat „Sklep chwilowo niedostępny” (M1-013, DEC-05), nie komunikat o braku internetu; „Spróbuj ponownie” działa', async () => {
     await boot({ locale: 'en', fn: f => { f.getProducts = async () => []; } }); expect(screen.getByTestId('paywall-empty')).toBeTruthy(); expect(screen.queryByText('Subscribe')).toBeNull();
+    expect(screen.getByText('Store temporarily unavailable')).toBeTruthy(); expect(screen.queryByText('Prices are unavailable without an internet connection.')).toBeNull();
+    expect(screen.getByText('Try again')).toBeTruthy();
+  });
+  test('brak sieci (stan „unavailable”) zostaje przy komunikacie o internecie, bez „Sklep chwilowo niedostępny” (M1-013)', async () => {
+    await boot({ locale: 'en', fn: f => { f.offline = true; } }); expect(screen.getByTestId('paywall-offline')).toBeTruthy(); expect(screen.queryByText('Store temporarily unavailable')).toBeNull();
   });
 });
 

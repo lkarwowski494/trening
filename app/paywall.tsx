@@ -76,7 +76,7 @@ export default function PaywallScreen() {
       {!lifetime ? <>
         {products === 'loading' ? <View testID="paywall-loading" accessible accessibilityLabel={t('Ładowanie cen…')} accessibilityLanguage={lang()} style={{ paddingVertical: 20, alignItems: 'center', gap: 8 }}><ActivityIndicator color={th.accent} /><Muted>{t('Ładowanie cen…')}</Muted></View> : null}
         {products === 'unavailable' ? <View testID="paywall-offline" style={{ gap: 8, paddingVertical: 8 }}><Muted>{t('Ceny są niedostępne bez połączenia z internetem.')}</Muted><Btn small title={t('Spróbuj ponownie')} style={{ alignSelf: 'flex-start' }} onPress={load} /></View> : null}
-        {Array.isArray(products) && !products.length ? <View testID="paywall-empty" style={{ gap: 8, paddingVertical: 8 }}><Muted>{t('Ceny są niedostępne bez połączenia z internetem.')}</Muted><Btn small title={t('Spróbuj ponownie')} style={{ alignSelf: 'flex-start' }} onPress={load} /></View> : null}
+        {Array.isArray(products) && !products.length ? <View testID="paywall-empty" style={{ gap: 8, paddingVertical: 8 }}><Muted>{t('Sklep chwilowo niedostępny')}</Muted><Btn small title={t('Spróbuj ponownie')} style={{ alignSelf: 'flex-start' }} onPress={load} /></View> : null}
         {Array.isArray(products) ? PLAN_ORDER.map(plan => products.find(p => p.plan === plan)).filter((p): p is StoreProduct => !!p).map(p => {
           const on = p.plan === sel; const line = priceLine(p);
           return <Pressable key={p.plan} testID={`plan-${p.plan}`} accessibilityRole="radio" accessibilityState={{ selected: on }} accessibilityLanguage={lang()} accessibilityLabel={`${planName(p.plan)}, ${line}. ${planBlurb(p.plan)}`} onPress={() => setSel(p.plan)}

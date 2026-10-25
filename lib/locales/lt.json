@@ -1690,6 +1690,7 @@
  "bez asekuracji w stojakach": "stove nėra apsauginių ramsčių",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Pratimas su štanga ant liemens arba virš galvos ir veido: rekomenduojamas saugojimas — stovas su apsauginiais ramsčiais ir pagalbininkas.",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.": "Pratimas su štanga ant liemens arba virš galvos ir veido: rekomenduojamas pagalbininkas.",
+ "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.": "Pratimas su hanteliais virš galvos arba veido: rekomenduojamas pagalbininkas.",
  "Zmień w ustawieniach iOS": "Keisti iOS nustatymuose",
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Pavadinimas po piktograma ir Sveikatos leidimo tekstas pakeičia kalbą tik tada, kai nustatote programėlės kalbą iOS nustatymuose.",
  "SS {g}": "SS {g}",
@@ -1712,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Žingsnis (pvz., +2,5 kg) yra susitarimas, o ne tyrimų rezultatas.",
  "Usuń szablon": "Ištrinti šabloną",
  "Usuń z biblioteki": "Ištrinti iš bibliotekos",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Neturite šablonų su pratimais. Sukurkite šabloną arba pasirinkite „Sukurti šablonus ir planą“.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Neturite šablonų su pratimais. Sukurkite šabloną arba pasirinkite „Nauji šablonai ir planas“.",
  "Dźwięk na koniec przerwy": "Garsas poilsio pabaigoje",
  "Wibracje": "Vibracija",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Daugiau → Nustatymai: „Garsas poilsio pabaigoje“ ir „Vibracija“ įjungiami atskirai.",
@@ -1740,5 +1741,7 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Nemokamos treniruočių dienos šį mėnesį: panaudota {n} iš {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} iš {limit} nemokamų treniruočių dienų šį mėnesį.",
  "Został|Zostały|Zostało": "Lieka|Lieka|Lieka",
+ "Sklep chwilowo niedostępny": "Parduotuvė laikinai nepasiekiama",
+ "Nowe szablony i plan": "Nauji šablonai ir planas",
  "Zakończ trening na telefonie": "Baikite treniruotę telefone"
 }

@@ -1690,6 +1690,7 @@
  "bez asekuracji w stojakach": "ei turvatankoja telineessä",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Liike tangolla vartalon päällä tai pään ja kasvojen yläpuolella: varmistus on suositeltavaa — turvatangoilla varustettu teline sekä varmistaja.",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.": "Liike tangolla vartalon päällä tai pään ja kasvojen yläpuolella: varmistaja on suositeltava.",
+ "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.": "Liike käsipainoilla pään tai kasvojen yläpuolella: varmistaja on suositeltava.",
  "Zmień w ustawieniach iOS": "Vaihda iOS:n Asetuksissa",
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Kuvakkeen alla oleva nimi ja Terveys-luvan teksti vaihtavat kieltä vasta, kun asetat sovelluksen kielen iOS:n Asetuksissa.",
  "SS {g}": "SS {g}",
@@ -1712,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Askel (esim. +2,5 kg) on konventio, ei tutkimustulos.",
  "Usuń szablon": "Poista pohja",
  "Usuń z biblioteki": "Poista kirjastosta",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Sinulla ei ole pohjia, joissa on liikkeitä. Luo pohja tai valitse ”Luo pohjat ja suunnitelma”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Sinulla ei ole pohjia, joissa on liikkeitä. Luo pohja tai valitse ”Uudet pohjat ja suunnitelma”.",
  "Dźwięk na koniec przerwy": "Ääni palautuksen lopussa",
  "Wibracje": "Värinä",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Lisää → Asetukset: ”Ääni palautuksen lopussa” ja ”Värinä” kytketään päälle erikseen.",
@@ -1740,5 +1741,7 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ilmaiset treenipäivät tässä kuussa: {n} / {limit} käytetty",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Ilmaisia treenipäiviä {left} tässä kuussa: {n} / {limit}.",
  "Został|Zostały|Zostało": "jäljellä|jäljellä",
+ "Sklep chwilowo niedostępny": "Kauppa ei ole tilapäisesti käytettävissä",
+ "Nowe szablony i plan": "Uudet pohjat ja suunnitelma",
  "Zakończ trening na telefonie": "Lopeta treeni puhelimella"
 }

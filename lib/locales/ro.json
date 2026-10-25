@@ -1690,6 +1690,7 @@
  "bez asekuracji w stojakach": "fără brațe de siguranță în rack",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Exercițiu cu bara pe trunchi sau deasupra capului și a feței: se recomandă asigurarea — un rack cu brațe de siguranță și un partener care asigură.",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.": "Exercițiu cu bara pe trunchi sau deasupra capului și a feței: se recomandă un partener care asigură.",
+ "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.": "Exercițiu cu gantere deasupra capului sau a feței: se recomandă un partener care asigură.",
  "Zmień w ustawieniach iOS": "Schimbă în Configurări iOS",
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Numele de sub pictogramă și textul permisiunii Sănătate își schimbă limba abia după ce setați limba aplicației în Configurări iOS.",
  "SS {g}": "SS {g}",
@@ -1712,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Pasul (de ex. +2,5 kg) este o convenție, nu un rezultat al studiilor.",
  "Usuń szablon": "Șterge șablonul",
  "Usuń z biblioteki": "Șterge din bibliotecă",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nu aveți șabloane cu exerciții. Creați un șablon sau alegeți „Generează șabloane și plan”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nu aveți șabloane cu exerciții. Creați un șablon sau alegeți „Șabloane noi și plan”.",
  "Dźwięk na koniec przerwy": "Sunet la finalul pauzei",
  "Wibracje": "Vibrații",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Mai mult → Configurări: „Sunet la finalul pauzei” și „Vibrații” se activează separat.",
@@ -1740,5 +1741,7 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Zile de antrenament gratuite luna aceasta: {n} din {limit} folosite",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} din {limit} zile de antrenament gratuite luna aceasta.",
  "Został|Zostały|Zostało": "Rămâne|Rămân|Rămân",
+ "Sklep chwilowo niedostępny": "Magazinul este temporar indisponibil",
+ "Nowe szablony i plan": "Șabloane noi și plan",
  "Zakończ trening na telefonie": "Termină antrenamentul pe telefon"
 }

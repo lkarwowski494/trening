@@ -1690,6 +1690,7 @@
  "bez asekuracji w stojakach": "bez sigurnosnih nosača na stalku",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Vježba sa šipkom na trupu ili iznad glave i lica: preporučuje se osiguranje — stalak sa sigurnosnim nosačima i osoba koja asistira.",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.": "Vježba sa šipkom na trupu ili iznad glave i lica: preporučuje se osoba koja asistira.",
+ "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.": "Vježba s bučicama iznad glave ili lica: preporučuje se osoba koja asistira.",
  "Zmień w ustawieniach iOS": "Promijenite u iOS Postavkama",
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Naziv ispod ikone i tekst dopuštenja za Zdravlje mijenjaju jezik tek nakon što postavite jezik aplikacije u iOS Postavkama.",
  "SS {g}": "SS {g}",
@@ -1712,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Korak (npr. +2,5 kg) je konvencija, a ne rezultat istraživanja.",
  "Usuń szablon": "Obriši predložak",
  "Usuń z biblioteki": "Obriši iz knjižnice",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nemate predložaka s vježbama. Izradite predložak ili odaberite „Generiraj predloške i plan”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nemate predložaka s vježbama. Izradite predložak ili odaberite „Novi predlošci i plan”.",
  "Dźwięk na koniec przerwy": "Zvuk na kraju odmora",
  "Wibracje": "Vibracija",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Više → Postavke: „Zvuk na kraju odmora” i „Vibracija” uključuju se zasebno.",
@@ -1740,5 +1741,7 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Besplatni dani treninga ovog mjeseca: iskorišteno {n} od {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} od {limit} besplatnih dana treninga ovog mjeseca.",
  "Został|Zostały|Zostało": "Preostaje|Preostaju|Preostaje",
+ "Sklep chwilowo niedostępny": "Trgovina je privremeno nedostupna",
+ "Nowe szablony i plan": "Novi predlošci i plan",
  "Zakończ trening na telefonie": "Završi trening na telefonu"
 }

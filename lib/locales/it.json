@@ -1690,6 +1690,7 @@
  "bez asekuracji w stojakach": "senza bracci di sicurezza nel rack",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Esercizio con bilanciere sul tronco o sopra la testa e il viso: si raccomanda la protezione — un rack con bracci di sicurezza e una persona che assista.",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.": "Esercizio con bilanciere sul tronco o sopra la testa e il viso: si raccomanda una persona che assista.",
+ "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.": "Esercizio con manubri sopra la testa o il viso: si raccomanda una persona che assista.",
  "Zmień w ustawieniach iOS": "Cambia in Impostazioni di iOS",
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Il nome sotto l’icona e il testo del permesso Salute cambiano lingua solo dopo aver impostato la lingua dell’app in Impostazioni di iOS.",
  "SS {g}": "SS {g}",
@@ -1712,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "L’incremento (es. +2,5 kg) è una convenzione, non un risultato di studi.",
  "Usuń szablon": "Elimina scheda",
  "Usuń z biblioteki": "Elimina dalla libreria",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Non hai schede con esercizi. Crea una scheda o scegli «Genera schede e piano».",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Non hai schede con esercizi. Crea una scheda o scegli «Nuove schede e piano».",
  "Dźwięk na koniec przerwy": "Suono a fine recupero",
  "Wibracje": "Vibrazione",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Altro → Impostazioni: «Suono a fine recupero» e «Vibrazione» si attivano separatamente.",
@@ -1740,5 +1741,7 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Giorni di allenamento gratuiti questo mese: usati {n} su {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} su {limit} giorni di allenamento gratuiti questo mese.",
  "Został|Zostały|Zostało": "Rimane|Rimangono",
+ "Sklep chwilowo niedostępny": "Store temporaneamente non disponibile",
+ "Nowe szablony i plan": "Nuove schede e piano",
  "Zakończ trening na telefonie": "Termina l'allenamento sul telefono"
 }

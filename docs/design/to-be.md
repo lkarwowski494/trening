@@ -7,7 +7,7 @@ Koszt TO BE to szacunek z opisu kroków (analiza AS IS roli 04, 21.10.2026); pom
 |---|---|---|
 | ZM-01 | Karta „teraz”: wynik serii na karcie | pola na serię 2 → 0–2; kroki „porażka” 1 → 0 |
 | ZM-02 | Ekran treningu: mniej rzeczy nad kartą | elementy nad kartą 8 (+ notatka) → 3–4 |
-| ZM-03 | Generator: jeden krok po „Zapisz”, bez przełącznika trybu | stuknięcia 6 → 4; zmiany ekranu 5 → 3; kroki „porażka” 2 → 0 |
+| ZM-03 | Generator: jeden krok po „Zapisz”, ~~bez przełącznika trybu~~ (przełącznik przywrócony: DEC-03 c, 23.10.2026) | stuknięcia 6 → 4; zmiany ekranu 5 → 3; kroki „porażka” 2 → 0 |
 | ZM-04 | Usuwanie poza treningiem: widoczna droga obok gestu | droga bez gestu: brak → jest; kroki „porażka” 1 → 0 |
 | ZM-05 | Seria na czas: jedna nazwa akcji | nazwy tej samej akcji 2 → 1 |
 | ZM-06 | Postępy: pusty stan i wybór ćwiczenia (z M1-026) | elementy w pustym stanie: 40 chipów → pusty stan z akcją |
@@ -31,7 +31,7 @@ Reguła kroku ± i to, czy seria bez wyniku jest serią — sprawdza badacz (spr
 2. Gdy nie ma aktywnego planu: plan staje się aktywny bez pytania; przejście do Planowania z jednym zdaniem potwierdzenia na ekranie (bez okna „Zapisano”).
 3. Gdy aktywny plan jest: pytanie o zastąpienie zostaje (decyzja z konsekwencją).
 4. Zgoda na przypomnienie dopiero przy pierwszym zaplanowanym dniu albo jako wiersz w Planowaniu.
-5. Przełącznik trybu znika z generatora; „Plan z moich szablonów” zostaje jako osobne wejście w Planowaniu i w Pierwszych krokach. Zmiana zakresu — do potwierdzenia przez rolę 03 przed E3.
+5. ~~Przełącznik trybu znika z generatora~~ — **odwrócone decyzją DEC-03 (c), właściciel 23.10.2026**: przełącznik trybu („Nowe szablony i plan” / „Plan z moich szablonów”) wraca na górę ekranu generatora przed 1.0 (wyjątek od zamrożenia zakresu); odrzucone: przyjęcie ZM-03 bez zmian, przegląd na telefonie. „Plan z moich szablonów” zostaje też jako wejście w Planowaniu i w Pierwszych krokach (otwiera ten sam ekran w drugim trybie). Pkt 1–4 bez zmian.
 
 ## ZM-04 — Usuwanie poza treningiem (P08)
 1. Ekrany szczegółów (sesja, szablon, ćwiczenie własne, miejsce) mają na dole „Usuń {obiekt}” → to samo okno [Anuluj, Usuń] co gest.
