@@ -13,6 +13,7 @@ import { boundsOf, type Box } from './render';
 import { muscleShapes } from './muscles';
 import { MUSCLE_DATA, type MuscleEntry } from './muscles.generated';
 import type { Frame, Shape, View } from './scene';
+import { SIDES, jointAngles } from './skeleton';
 import type { V3 } from './math';
 import { GUIDES, trailShapes, type GuideId } from './guides';
 import { phasesOf, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
@@ -56,6 +57,15 @@ export function faultApplicable(spec: FigureSpec, error: ErrorId): boolean {
   }
 }
 function faultFor(spec: FigureSpec, error: ErrorId, u: number): Fault { return { m: ERRORS[error].mods, w: faultWeight(spec, u) }; }
+
+/** Staw mierzony na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie): przysiad — kolano, wyciskanie — łokieć, zawias — biodro. */
+export type MeasuredJoint = 'knee' | 'elbow' | 'hip';
+export const measuredJoint = (spec: FigureSpec): MeasuredJoint => spec.family === 'bench_press' ? 'elbow' : spec.family === 'hinge' ? 'hip' : 'knee';
+/** Kąt zgięcia stawu (stopnie; 0 = wyprost, konwencja jak w testach zakresów: docs/research/28) POLICZONY Z GEOMETRII klatki w pozycji u (średnia obu stron). */
+export function measuredAngle(spec: FigureSpec, u: number, error?: ErrorId): { joint: MeasuredJoint; deg: number } {
+  const f = frameAt(spec, u, error); const j = measuredJoint(spec); const a = SIDES.map(s => jointAngles(f.sk, s)[j]);
+  return { joint: j, deg: (a[0] + a[1]) / 2 };
+}
 
 /** Pozycje u rysowane statycznie (Ogranicz ruch, pauza): start i koniec (jedna dla izometrii). */
 export const staticPositions = (spec: FigureSpec): number[] => spec.static ? [1] : [0, 1];

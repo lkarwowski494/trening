@@ -1758,5 +1758,9 @@
  "Ukryj częsty błąd": "Peida sage viga",
  "Częsty błąd: {opis}": "Sage viga: {opis}",
  "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Varbad kergelt väljapoole — tavaliselt umbes 15–20°.",
- "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Küünarnukid umbes 45° kehast — ei laialt külgedele ega kehale liibutud."
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Küünarnukid umbes 45° kehast — ei laialt külgedele ega kehale liibutud.",
+ "Kąt na rysunku: {staw} {n}°": "Nurk joonisel: {staw} {n}°",
+ "zgięcie kolana": "põlve painutus",
+ "zgięcie łokcia": "küünarnuki painutus",
+ "zgięcie biodra": "puusa painutus"
 }

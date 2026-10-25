@@ -1758,5 +1758,9 @@
  "Ukryj częsty błąd": "Häufigen Fehler ausblenden",
  "Częsty błąd: {opis}": "Häufiger Fehler: {opis}",
  "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Zehen leicht nach außen — meist etwa 15–20°.",
- "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Ellbogen etwa 45° vom Oberkörper — weder weit abgespreizt noch eng angelegt."
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Ellbogen etwa 45° vom Oberkörper — weder weit abgespreizt noch eng angelegt.",
+ "Kąt na rysunku: {staw} {n}°": "Winkel in der Zeichnung: {staw} {n}°",
+ "zgięcie kolana": "Kniebeugung",
+ "zgięcie łokcia": "Ellbogenbeugung",
+ "zgięcie biodra": "Hüftbeugung"
 }

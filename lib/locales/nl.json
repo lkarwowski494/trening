@@ -1758,5 +1758,9 @@
  "Ukryj częsty błąd": "Veelgemaakte fout verbergen",
  "Częsty błąd: {opis}": "Veelgemaakte fout: {opis}",
  "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Tenen licht naar buiten — meestal ongeveer 15–20°.",
- "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Ellebogen ongeveer 45° van het lichaam — niet wijd naar buiten, niet strak langs het lijf."
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Ellebogen ongeveer 45° van het lichaam — niet wijd naar buiten, niet strak langs het lijf.",
+ "Kąt na rysunku: {staw} {n}°": "Hoek in de tekening: {staw} {n}°",
+ "zgięcie kolana": "kniebuiging",
+ "zgięcie łokcia": "elleboogbuiging",
+ "zgięcie biodra": "heupbuiging"
 }

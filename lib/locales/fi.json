@@ -1758,5 +1758,9 @@
  "Ukryj częsty błąd": "Piilota yleinen virhe",
  "Częsty błąd: {opis}": "Yleinen virhe: {opis}",
  "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Varpaat hieman ulospäin — yleensä noin 15–20°.",
- "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Kyynärpäät noin 45° vartalosta — ei leveästi sivuille eikä kiinni kylkiin."
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Kyynärpäät noin 45° vartalosta — ei leveästi sivuille eikä kiinni kylkiin.",
+ "Kąt na rysunku: {staw} {n}°": "Kulma piirroksessa: {staw} {n}°",
+ "zgięcie kolana": "polven koukistus",
+ "zgięcie łokcia": "kyynärpään koukistus",
+ "zgięcie biodra": "lonkan koukistus"
 }

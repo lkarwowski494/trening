@@ -1758,5 +1758,9 @@
  "Ukryj częsty błąd": "Ẩn lỗi thường gặp",
  "Częsty błąd: {opis}": "Lỗi thường gặp: {opis}",
  "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Mũi chân hơi hướng ra ngoài — thường khoảng 15–20°.",
- "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Khuỷu tay cách thân người khoảng 45° — không dang quá rộng, cũng không ép sát."
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Khuỷu tay cách thân người khoảng 45° — không dang quá rộng, cũng không ép sát.",
+ "Kąt na rysunku: {staw} {n}°": "Góc trên hình: {staw} {n}°",
+ "zgięcie kolana": "gập đầu gối",
+ "zgięcie łokcia": "gập khuỷu tay",
+ "zgięcie biodra": "gập khớp háng"
 }

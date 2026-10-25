@@ -7,7 +7,7 @@ import { cueText } from '@/lib/cues';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { useReduceMotion } from '@/components/ExerciseFigure';
 import {
-  figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, phasesFor, phaseIndexAt, trailFor, guideShapes, type FigureSpec,
+  figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, phasesFor, phaseIndexAt, trailFor, guideShapes, measuredAngle, type FigureSpec,
   type View as FView, type ErrorId, type GuideId,
 } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';
@@ -19,6 +19,8 @@ import { errorsOf, guidesOf, legendOf, toeAngleApplies, elbowAngleApplies } from
  * (2 s / pauza / 1 s — ACSM 2009, docs/50), linie odniesienia tylko przy wskazówkach ze źródłem, przełącznik „Pokaż częsty błąd” (poza błędu jako modyfikacja pozy poprawnej, znacznik ✕).
  * Bez liczb i kątów na rysunku. WCAG 2.2.2: „Zatrzymaj animację”; „Ogranicz ruch” / pauza → pozycje statycznie z podpisami. VoiceOver: jeden obraz z opisem, kontrolki osobno.
  */
+
+const JOINT_LABEL = { knee: 'zgięcie kolana', elbow: 'zgięcie łokcia', hip: 'zgięcie biodra' } as const;
 
 function ViewSvg({ spec, u, view, box, th, height, error, guides, testID }: { spec: FigureSpec; u: number; view: FView; box: { x: number; y: number; w: number; h: number }; th: Theme; height: number; error?: ErrorId; guides: GuideId[]; testID?: string }) {
   const pal = useMemo(() => figurePalette(th), [th]);
@@ -64,7 +66,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   const boxes = views.map(v => boxFor(spec, v, errors.map(e => e.error)));
   const aspects = boxes.map(b => b.w / b.h); const sumA = aspects.reduce((a, b) => a + b, 0);
   const height = Math.max(110, Math.min(200, (width - 8 * (views.length - 1)) / sumA));
-  const phases = phasesFor(spec, tempo); const cur = animate ? phaseIndexAt(ms, phases) : -1;
+  const measured = measuredAngle(spec, animate ? u : 1, errId); /* statycznie: pozycja końcowa */ const phases = phasesFor(spec, tempo); const cur = animate ? phaseIndexAt(ms, phases) : -1;
   const sec = (x: number): string => String(Math.round(x / 100) / 10).replace('.', ',');
   const shown = phases.filter((p, i) => !(p.name === 'Pauza' && (i === 3 || p.ms === 0)));
   const txt = { color: th.muted, ...font('footnote'), ...FW.regular } as const;
@@ -92,6 +94,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
               {p.name === 'Pauza' ? t('Pauza') : t('{faza} {n} s', { faza: t(p.name), n: sec(p.ms) })}{i < shown.length - 1 ? ' ·' : ''}</Text>)}
           </View>
         : null}
+      <Text testID="exercise-figure-v2-angle" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, fontStyle: 'italic', marginTop: 2 }}>{t('Kąt na rysunku: {staw} {n}°', { staw: t(JOINT_LABEL[measured.joint]), n: Math.round(measured.deg) })}</Text>
       {legend
         ? <View testID="exercise-figure-v2-legend" style={{ marginTop: 4, gap: 2 }}>
             {legend.main.length ? <LegendRow color={figurePalette(th).muscleMain} text={t('Mięśnie główne: {lista}', { lista: legend.main.map(r => t(legend.label(r))).join(', ') })} txt={txt} /> : null}
@@ -99,8 +102,8 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
             {legend.simplified ? <Text testID="exercise-figure-v2-simplified" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={txt}>{t('Dobór mięśni: uproszczenie')}</Text> : null}
           </View>
         : null}
-      {toeAngleApplies(spec) ? <Text testID="exercise-figure-v2-toes" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, marginTop: 2 }}>{t('Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.')}</Text> : null}
-      {elbowAngleApplies(spec) ? <Text testID="exercise-figure-v2-elbows" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, marginTop: 2 }}>{t('Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.')}</Text> : null}
+      {toeAngleApplies(spec) ? <Text testID="exercise-figure-v2-toes" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, ...FW.semibold, marginTop: 2 }}>{t('Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.')}</Text> : null}
+      {elbowAngleApplies(spec) ? <Text testID="exercise-figure-v2-elbows" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, ...FW.semibold, marginTop: 2 }}>{t('Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.')}</Text> : null}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 16 }}>
         {canPause
           ? <Pressable accessibilityLanguage={lang()} testID="exercise-figure-v2-pause" onPress={() => setPaused(p => !p)} accessibilityRole="button" accessibilityLabel={paused ? t('Wznów animację') : t('Zatrzymaj animację')} hitSlop={8}

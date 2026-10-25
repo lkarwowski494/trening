@@ -61,7 +61,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 ## Podsumowanie
 
-- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 465; unikalnych zdań: 306; źródeł: 230.
+- Ćwiczenia ze wskazówkami: 102; zdań (z powtórzeniami między ćwiczeniami): 465; unikalnych zdań: 306; źródeł: 231.
 - Ćwiczenia bazowe bez wskazówek (otwarte): 22.
 - Ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część; braków nie dopisujemy z jednego źródła): 17 — Back Extension, Bieg, Burpees, Diamond Push Up, Farmer's Walk, Incline Walk (bieżnia), Leg Curl, Leg Extension, Medicine Ball Slam, Preacher Curl, Reverse Crunch, Rower, Seated Calf Raise, Straight Arm Pulldown, Suitcase Carry, Wall Sit, Wyciskanie na linkach (stojąc).
 
@@ -1259,7 +1259,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Częste błędy**
 
-- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (excessive lower back arching)); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (Foot position (butt won’t come off the bench)) `bp.mis.arch`
+- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (excessive lower back arching)); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (Foot position (butt won’t come off the bench)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
 ### Incline Bench Press (sztanga)
 
@@ -1279,7 +1279,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Częste błędy**
 
-- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Incline Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press) (Common Mistakes); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3; Step 4 (avoid any arching in the low back)) `bp.mis.arch`
+- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Incline Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/incline-barbell-bench-press) (Common Mistakes); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3; Step 4 (avoid any arching in the low back)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
 ### Incline Bench Press (hantle)
 
@@ -1298,7 +1298,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Częste błędy**
 
-- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Two Arm Incline Dumbbell Chest Press](https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press) (Common Mistakes); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3; Step 4) `bp.mis.arch`
+- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — NASM: [Two Arm Incline Dumbbell Chest Press](https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press) (Common Mistakes); ACE: [Incline Chest Press (#25)](https://www.acefitness.org/resources/everyone/exercise-library/25/incline-chest-press/) (Step 3; Step 4); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
 ### Machine Chest Press
 
@@ -1428,7 +1428,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Częste błędy**
 
-- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 3; Step 4 (avoid any arching in the low back)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (sztanga — ta sama zasada)) `bp.mis.arch`
+- Nadmierne wyginanie lędźwi albo odrywanie pośladków od ławki, żeby wycisnąć więcej. — ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 3; Step 4 (avoid any arching in the low back)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Common Mistakes (sztanga — ta sama zasada)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)) `bp.mis.arch`
 
 ### Chest Fly (hantle)
 
@@ -1965,6 +1965,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 | nasm-two-arm-dumbbell-chest-press-with-band | NASM | Two Arm Dumbbell Chest Press With Band | https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band | — |
 | nasm-two-arm-incline-dumbbell-chest-press | NASM | Two Arm Incline Dumbbell Chest Press | https://www.nasm.org/resource-center/exercise-library/two-arm-incline-dumbbell-chest-press | — |
 | nordictrack-incline | NordicTrack | Incline treadmill benefits… (15.07.2025) | https://www.nordictrack.com/learn/incline-treadmill-benefits-why-it-works-better-than-flat-walking | — |
+| nsca-basics-2012 | NSCA | Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012 | https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf | — |
 | nsca-coach-7-3 | NSCA | Taylor, Reed: Increase Hip and Trunk Stability with Loaded Carries…, NSCA Coach 7.3 | https://www.nsca.com/contentassets/927868f8d4bb45f2ac4429631d558d83/coach-7.3.6-increase-hip-and-trunk-stability-with-loaded-carries-for-injury-prevention-rehabilitation-and-performance.pdf | — |
 | pm-14636100 | Fry, Smith, Schilling (University of Memphis) | Fry i in. 2003, Effect of knee position on hip and knee torques during the barbell squat, J Strength Cond Res 17(4) — abstrakt | https://pubmed.ncbi.nlm.nih.gov/14636100/ | — |
 | pm-21659894 | Swinton i in. (Robert Gordon University) | Swinton i in. 2011, A biomechanical analysis of straight and hexagonal barbell deadlifts…, J Strength Cond Res 25(7) — abstrakt | https://pubmed.ncbi.nlm.nih.gov/21659894/ | — |

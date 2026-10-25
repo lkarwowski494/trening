@@ -2039,6 +2039,10 @@
   "en": "Every exercise here has 1 set — the number of sets stays the same (exercises with 1 set are not cut). Same weights."
  },
  {
+  "pl": "Kąt na rysunku: {staw} {n}°",
+  "en": "Angle in the drawing: {staw} {n}°"
+ },
+ {
   "pl": "kettlebell",
   "en": "kettlebell"
  },
@@ -6883,6 +6887,18 @@
  {
   "pl": "zębaty przedni",
   "en": "serratus anterior"
+ },
+ {
+  "pl": "zgięcie biodra",
+  "en": "hip flexion"
+ },
+ {
+  "pl": "zgięcie kolana",
+  "en": "knee flexion"
+ },
+ {
+  "pl": "zgięcie łokcia",
+  "en": "elbow flexion"
  },
  {
   "pl": "zginacze biodra",

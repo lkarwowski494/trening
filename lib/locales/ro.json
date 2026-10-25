@@ -1758,5 +1758,9 @@
  "Ukryj częsty błąd": "Ascunde greșeala frecventă",
  "Częsty błąd: {opis}": "Greșeală frecventă: {opis}",
  "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Degetele picioarelor ușor spre exterior — de obicei cam 15–20°.",
- "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Coatele la aproximativ 45° de trunchi — nici larg în lateral, nici lipite."
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Coatele la aproximativ 45° de trunchi — nici larg în lateral, nici lipite.",
+ "Kąt na rysunku: {staw} {n}°": "Unghi în desen: {staw} {n}°",
+ "zgięcie kolana": "flexia genunchiului",
+ "zgięcie łokcia": "flexia cotului",
+ "zgięcie biodra": "flexia șoldului"
 }

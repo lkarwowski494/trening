@@ -7,7 +7,7 @@ import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
-import { figurePalette, TEMPO, loopLength, figureSpec, MUSCLE_DATA } from '@/lib/figures/v2';
+import { measuredAngle, measuredJoint, jointAngles, frameAt, SIDES, figurePalette, TEMPO, loopLength, figureSpec, MUSCLE_DATA } from '@/lib/figures/v2';
 import { errorsOf, hasTechnique, toeAngleApplies, elbowAngleApplies, guidesOf } from '@/lib/figures/v2/ui';
 import { applyLang } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
@@ -69,7 +69,8 @@ describe('komponent ExerciseFigureV2', () => {
     setReduce(true); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
     const texts = screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === RN.Text).flatMap((n: { props: { children?: unknown } }) => React.Children.toArray(n.props.children as React.ReactNode)).map(String);
     const OPIS = ['Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.', 'Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.']; /* jedyne opisy z kątem (decyzje właściciela 25.10.2026, dwa zgodne źródła) */
-    for (const x of texts) { expect([x, /°/.test(x) && !OPIS.includes(x)]).toEqual([x, false]); if (OPIS.includes(x)) continue; if (/[0-9]/.test(x)) expect([x, /^(Opuszczanie|Wstawanie|Wypychanie|Podnoszenie|Prostowanie) [0-9,]+ s/.test(x)]).toEqual([x, true]); }
+    const POMIAR = /^Kąt na rysunku: zgięcie \w+ \d+°$/; /* kąt ZMIERZONY na rysunku (decyzja właściciela 25.10.2026), nie zalecenie */
+    for (const x of texts) { expect([x, /°/.test(x) && !OPIS.includes(x) && !POMIAR.test(x)]).toEqual([x, false]); if (OPIS.includes(x) || POMIAR.test(x)) continue; if (/[0-9]/.test(x)) expect([x, /^(Opuszczanie|Wstawanie|Wypychanie|Podnoszenie|Prostowanie) [0-9,]+ s/.test(x)]).toEqual([x, true]); }
   });
   test('licznik faz z tempem ilustracyjnym: Opuszczanie 2 s · Wstawanie 1 s (przysiad bez pauzy na dole); martwy ciąg z podłogi: Podnoszenie 1 s, Opuszczanie 2 s; podświetlona bieżąca faza przy animacji', async () => {
     jest.useFakeTimers(); setReduce(false);
@@ -138,5 +139,19 @@ describe('komponent ExerciseFigureV2', () => {
     for (const k of ['Bench Press (sztanga)', 'Bench Press (hantle)', 'Incline Bench Press (sztanga)', 'Incline Bench Press (hantle)']) { expect(elbowAngleApplies(figureSpec(k)!)).toBe(true); expect(guidesOf(k)).toContain('elbows45'); }
     for (const k of ['Back Squat', 'Close Grip Bench Press', 'Floor Press (sztanga)', 'JM Press', 'Decline Bench Press']) { expect([k, elbowAngleApplies(figureSpec(k)!), guidesOf(k).includes('elbows45')]).toEqual([k, false, false]); }
     applyLang('en'); screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Bench Press (hantle)')} />); expect(screen.getByTestId('exercise-figure-v2-elbows').props.children).toBe('Elbows about 45° from your torso — not flared wide, not tucked tight.'); applyLang('pl');
+  });
+  test('kąt na rysunku (decyzja właściciela 25.10.2026): pomiar zgadza się z geometrią klatki ±1° (niezależny rachunek z punktów szkieletu) dla każdej pozycji i błędu; tekst w komponencie = pomiar; etykieta PL i EN; pomiar odróżniony od zaleceń (kursywa vs półpogrubienie)', async () => {
+    const ang = (a: number[], b: number[], c: number[]): number => { const u = a.map((x, i) => x - b[i]), v = c.map((x, i) => x - b[i]); const cr = [u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0]]; return Math.atan2(Math.hypot(...cr), u[0] * v[0] + u[1] * v[1] + u[2] * v[2]) * 180 / Math.PI; };
+    const indep = (k: string, u: number, e?: 'kneesIn' | 'arch' | 'kneesBent'): number => { const sp = figureSpec(k)!; const f = frameAt(sp, u, e); const j = measuredJoint(sp);
+      return SIDES.map(s => { const L = f.sk.legs[s], A = f.sk.arms[s]; return 180 - (j === 'knee' ? ang(L.hip, L.knee, L.ankle) : j === 'elbow' ? ang(A.shoulder, A.elbow, A.grip) : ang(f.sk.shoulderC, L.hip, L.knee)); }).reduce((a, b) => a + b, 0) / 2; };
+    const cases: [string, 'kneesIn' | 'arch' | 'kneesBent' | undefined][] = [['Back Squat', undefined], ['Back Squat', 'kneesIn'], ['Bench Press (sztanga)', undefined], ['Bench Press (sztanga)', 'arch'], ['Deadlift (sztanga)', undefined], ['RDL (sztanga)', 'kneesBent']];
+    for (const [k, e] of cases) for (let i = 0; i <= 24; i++) { const u = i / 24; const m = measuredAngle(figureSpec(k)!, u, e); expect([k, e, u, Math.abs(m.deg - indep(k, u, e)) <= 1]).toEqual([k, e, u, true]); expect(Math.abs(m.deg - (jointAngles(frameAt(figureSpec(k)!, u, e).sk, 'R')[m.joint] + jointAngles(frameAt(figureSpec(k)!, u, e).sk, 'L')[m.joint]) / 2)).toBeLessThan(1e-9); }
+    expect(['Back Squat', 'Bench Press (sztanga)', 'Deadlift (sztanga)'].map(k => measuredJoint(figureSpec(k)!))).toEqual(['knee', 'elbow', 'hip']);
+    setReduce(true); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+    const el = screen.getByTestId('exercise-figure-v2-angle'); const shown = String(React.Children.toArray(el.props.children).join(''));
+    expect(shown).toBe(`Kąt na rysunku: zgięcie kolana ${Math.round(measuredAngle(figureSpec('Back Squat')!, 1).deg)}°`); expect(el.props.style.fontStyle).toBe('italic');
+    expect(screen.getByTestId('exercise-figure-v2-toes').props.style.fontWeight).not.toBe(el.props.style.fontWeight);
+    applyLang('en'); screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Bench Press (sztanga)')} />); await flush();
+    expect(String(React.Children.toArray(screen.getByTestId('exercise-figure-v2-angle').props.children).join(''))).toMatch(/^Angle in the drawing: elbow flexion \d+°$/); applyLang('pl');
   });
 });

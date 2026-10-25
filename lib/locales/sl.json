@@ -1758,5 +1758,9 @@
  "Ukryj częsty błąd": "Skrij pogosto napako",
  "Częsty błąd: {opis}": "Pogosta napaka: {opis}",
  "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Prsti stopal rahlo navzven — običajno približno 15–20°.",
- "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Komolci približno 45° od trupa — niti široko vstran niti prilepljeni."
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Komolci približno 45° od trupa — niti široko vstran niti prilepljeni.",
+ "Kąt na rysunku: {staw} {n}°": "Kot na risbi: {staw} {n}°",
+ "zgięcie kolana": "pregib kolena",
+ "zgięcie łokcia": "pregib komolca",
+ "zgięcie biodra": "pregib kolka"
 }

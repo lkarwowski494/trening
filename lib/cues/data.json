@@ -1644,6 +1644,12 @@
    "title": "The Preventive Effect of the Nordic Hamstring Exercise… RCT, Am J Sports Med 2015",
    "url": "https://instituteofmotion.com/wp-content/uploads/2018/03/Nordic-hamstring-2015.pdf",
    "level": 3
+  },
+  "nsca-basics-2012": {
+   "org": "NSCA",
+   "title": "Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012",
+   "url": "https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf",
+   "level": 4
   }
  },
  "exercises": {
@@ -6771,6 +6777,10 @@
       [
        "sbs-how-to-bench",
        "Foot position (butt won’t come off the bench)"
+      ],
+      [
+       "nsca-basics-2012",
+       "s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)"
       ]
      ]
     }
@@ -6859,6 +6869,10 @@
       [
        "ace-25",
        "Step 3; Step 4 (avoid any arching in the low back)"
+      ],
+      [
+       "nsca-basics-2012",
+       "s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)"
       ]
      ]
     }
@@ -6942,6 +6956,10 @@
       [
        "ace-25",
        "Step 3; Step 4"
+      ],
+      [
+       "nsca-basics-2012",
+       "s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)"
       ]
      ]
     }
@@ -7516,6 +7534,10 @@
       [
        "nasm-barbell-bench-press",
        "Common Mistakes (sztanga — ta sama zasada)"
+      ],
+      [
+       "nsca-basics-2012",
+       "s. 54 (nie wyginać pleców i nie unosić klatki do sztangi)"
       ]
      ]
     }

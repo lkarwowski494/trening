@@ -1758,5 +1758,9 @@
  "Ukryj częsty błąd": "Сховати часту помилку",
  "Częsty błąd: {opis}": "Часта помилка: {opis}",
  "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Носки злегка назовні — зазвичай приблизно 15–20°.",
- "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Лікті приблизно під 45° до корпуса — ні широко в сторони, ні притиснуті."
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Лікті приблизно під 45° до корпуса — ні широко в сторони, ні притиснуті.",
+ "Kąt na rysunku: {staw} {n}°": "Кут на малюнку: {staw} {n}°",
+ "zgięcie kolana": "згинання коліна",
+ "zgięcie łokcia": "згинання ліктя",
+ "zgięcie biodra": "згинання стегна"
 }

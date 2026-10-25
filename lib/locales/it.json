@@ -1758,5 +1758,9 @@
  "Ukryj częsty błąd": "Nascondi l’errore comune",
  "Częsty błąd: {opis}": "Errore comune: {opis}",
  "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Punte dei piedi leggermente verso l’esterno — di solito circa 15–20°.",
- "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Gomiti a circa 45° dal busto — né larghi ai lati né attaccati."
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Gomiti a circa 45° dal busto — né larghi ai lati né attaccati.",
+ "Kąt na rysunku: {staw} {n}°": "Angolo nel disegno: {staw} {n}°",
+ "zgięcie kolana": "flessione del ginocchio",
+ "zgięcie łokcia": "flessione del gomito",
+ "zgięcie biodra": "flessione dell’anca"
 }

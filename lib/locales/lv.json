@@ -1758,5 +1758,9 @@
  "Ukryj częsty błąd": "Slēpt biežu kļūdu",
  "Częsty błąd: {opis}": "Biežākā kļūda: {opis}",
  "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Pēdu pirksti nedaudz uz āru — parasti aptuveni 15–20°.",
- "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Elkoņi aptuveni 45° no ķermeņa — ne plaši uz sāniem, ne piespiesti."
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Elkoņi aptuveni 45° no ķermeņa — ne plaši uz sāniem, ne piespiesti.",
+ "Kąt na rysunku: {staw} {n}°": "Leņķis zīmējumā: {staw} {n}°",
+ "zgięcie kolana": "ceļa locījums",
+ "zgięcie łokcia": "elkoņa locījums",
+ "zgięcie biodra": "gūžas locījums"
 }

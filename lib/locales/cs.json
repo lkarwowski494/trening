@@ -1758,5 +1758,9 @@
  "Ukryj częsty błąd": "Skrýt častou chybu",
  "Częsty błąd: {opis}": "Častá chyba: {opis}",
  "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Špičky chodidel mírně ven — obvykle zhruba 15–20°.",
- "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Lokty zhruba 45° od trupu — ani široce do stran, ani přilepené."
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Lokty zhruba 45° od trupu — ani široce do stran, ani přilepené.",
+ "Kąt na rysunku: {staw} {n}°": "Úhel na obrázku: {staw} {n}°",
+ "zgięcie kolana": "ohnutí kolene",
+ "zgięcie łokcia": "ohnutí lokte",
+ "zgięcie biodra": "ohnutí v kyčli"
 }
