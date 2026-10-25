@@ -503,4 +503,4 @@ Zachowanie systemu bez zmian (tryb cichy: tylko wibracja); pod przełącznikiem 
 
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
-| Wskazówka o trybie cichym | `tests/tryb-cichy-wskazowka.test.tsx` (PL: linia jedna, pod dźwiękiem, podpowiedź VoiceOver, „Wibracje” bez niej; EN: to samo; słownik EN ≤ 100 znaków; 33 słowniki mają niepusty klucz) | ekran, języki, niezmiennik, macierz (UI w `docs/19`) | zielone | 33 słowniki: tymczasowo kopia EN do przekładu przez API. **Maestro pominięty:** tekst statyczny, bez nowego ekranu ani przepływu; widoczność sprawdza test ekranowy. |
+| Wskazówka o trybie cichym | `tests/tryb-cichy-wskazowka.test.tsx` (PL: linia jedna, pod dźwiękiem, podpowiedź VoiceOver, „Wibracje” bez niej; EN: to samo; słownik EN ≤ 100 znaków; 33 słowniki mają niepusty klucz) | ekran, języki, niezmiennik, macierz (UI w `docs/19`) | zielone | 33 słowniki: własny krótki przekład (kopie EN odrzucają testy jakości i18n-variants/wave2-4); do recenzji native speakera. **Maestro pominięty:** tekst statyczny, bez nowego ekranu ani przepływu; widoczność sprawdza test ekranowy. |
