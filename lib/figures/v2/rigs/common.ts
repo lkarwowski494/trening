@@ -28,7 +28,7 @@ export type Grips = Record<Side, { grip: V3; pole?: V3 }>;
 
 /** Klatka z wejścia pozy: rozwiązuje szkielet i dokleja rekwizyty, punkty znaczące i dozwolone kontakty. */
 export function mkFrame(pose: PoseIn, props: Prop[], info: Record<string, V3>, contacts: Contact[] = []): Frame {
-  return { sk: solveSkeleton(pose), props, info, contacts };
+  return { sk: solveSkeleton(pose), props, info, contacts, pose };
 }
 
 /** Reguła pochylenia podudzia: σ = min(max, stand + perKnee·K) — stopa płasko, zgięcie grzbietowe stopy = σ (limit ≤ 37° z docs/research/28). */

@@ -3,7 +3,7 @@
  * Role kolorów są nazwami, nie kolorami: kolory z motywu dobiera palette.ts (tokeny lib/tokens przez lib/theme).
  */
 import type { V2, V3 } from './math';
-import type { Skeleton } from './skeleton';
+import type { PoseIn, Skeleton } from './skeleton';
 
 /** side = z boku (kamera po prawej stronie osoby), front = z przodu, top = z góry (głowa u góry rysunku; dla ćwiczeń w leżeniu). */
 export type View = 'side' | 'front' | 'top';
@@ -51,4 +51,6 @@ export type Frame = {
   /** Punkty znaczące do testów i do znacznika toru ruchu (np. środek gryfu). */
   info: Record<string, V3>;
   contacts: Contact[];
+  /** Wejście pozy, z którego liczony jest szkielet (kontrakt danych rodziny: przykłady z gotowych rodzin). */
+  pose?: PoseIn;
 };

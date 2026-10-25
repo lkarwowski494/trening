@@ -17,3 +17,5 @@ export * from './muscles';
 export * from './muscles.generated';
 export * from './errors';
 export * from './guides';
+export * from './contract';
+export * from './contractExample';

@@ -7,7 +7,7 @@ import { cueText } from '@/lib/cues';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { useReduceMotion } from '@/components/ExerciseFigure';
 import {
-  figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, phasesFor, phaseIndexAt, trailFor, guideShapes, ERRORS, type FigureSpec,
+  figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, phasesFor, phaseIndexAt, trailFor, guideShapes, type FigureSpec,
   type View as FView, type ErrorId, type GuideId,
 } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';

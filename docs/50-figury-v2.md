@@ -84,8 +84,46 @@ ruchy cykliczne bez rekwizytów) wymaga rozszerzenia silnika o drugą podporę/o
 5. **Format tempa**: 3 liczby w aplikacji (np. 3-1-1) vs 4 w makiecie — jeśli animacja ma odtwarzać tempo użytkownika, ujednolicić (decyzja produktowa).
 6. Reguła „wydech przy wysiłku”, Valsalva — poza grafiką (badacz: brak drugiego źródła; rekomendacja: nie pokazywać).
 
-## 9. Podłączenie do aplikacji (nie zrobione w etapie 1)
+## 9. Podłączenie do aplikacji (etap 2, 25.10.2026)
 
-`ExerciseFigureV2` jest gotowy i przetestowany, ale **nie zastępuje jeszcze `ExerciseFigure`** w `components/ExerciseCues.tsx` (zmiana widoczna w E2E, nowe teksty w sekcji Technika, scenariusze Maestro). Proponowany układ:
-v2 dla ćwiczeń z gotową rodziną, v1 jako rezerwa dla 71 dotychczasowych figur do czasu gotowości wszystkich rodzin; dopisek `generalCueNote` i lista wskazówek z `cueSelection` w tej samej sekcji.
-Przy podłączeniu: krok E2E (nowy ekran/przepływ → `tests/przeplywy.json`), zrzuty w obu motywach, sprawdzenie listy „tylko telefon” (płynność animacji).
+`ExerciseCues` pokazuje `ExerciseFigureV2` tam, gdzie istnieje gotowa rodzina (87 ćwiczeń); `ExerciseFigure` (v1) zostaje dla pozostałych do czasu gotowości wszystkich rodzin. Sekcja „Technika” pojawia się też przy ćwiczeniu z figurą v2 bez własnych wskazówek
+(zestaw ogólny z dopiskiem „Ogólne wskazówki dla tego ruchu”, `hasTechnique` w `lib/figures/v2/ui.ts`; ćwiczenia spoza gotowych rodzin dostaną zestaw ogólny razem z figurą w kolejnych etapach). E2E: scenariusz `.maestro/55-grafika-cwiczenia.yaml`
+(przepływ **SZ-14** w `tests/przeplywy.json`, ten sam scenariusz biegnie w interpreterze Jest). Zrzuty obu motywów i płynność animacji na telefonie — lista „tylko telefon”.
+
+## 10. Kontrakt danych rodziny (dla zewnętrznego generatora póz)
+
+Cel (decyzja właściciela 25.10.2026): pozę ćwiczenia może wypełnić ZEWNĘTRZNY generator (pilotaż: API Gemini, rodzina `pull_up`, `scripts/figures/gemini-pozy.mjs`, docs/52), a nasze testy sprawdzają wynik tak samo jak rigi gotowych rodzin.
+Źródło prawdy: `lib/figures/v2/contract.ts` (typy, `CONTRACT` z liczbami, `poseSchema`, interpreter, walidator); schemat JSON w repozytorium: `docs/schemas/figury-v2-poza.schema.json` (generowany `node scripts/figures/v2-validate.mjs --schema --write`, sprawdzany w `check:figures-v2`);
+walidator: `node scripts/figures/v2-validate.mjs <plik.json> [--podglad katalog]` (kod 0 = poprawne, 1 = błędy z komunikatami, 2 = użycie). Przykład z gotowej rodziny (`exampleFor('Back Squat', …)`) przechodzi ten sam walidator.
+
+**Format (jeden obiekt na ćwiczenie).** Układ jak w silniku: cm, x = przód, y = góra (podłoga y = 0), z = prawa strona osoby; kąty w stopniach; strony `R`/`L` (prawa/lewa).
+- `kontrakt` = `figury-v2/poza@1`, `rodzina`, `cwiczenie` (klucz katalogu, np. „Pull Up”).
+- `sprzet[]`: `sztanga` (x, y, talerze, podazaZaChwytem, dlugosc; drążek to sztanga bez talerzy), `slupek` (x, h), `podloga` (x0, x1), `skrzynia` (x0, x1, top). Zasady rodziny w `TEMPLATES` (pull_up: dokładnie jeden nieruchomy drążek bez talerzy, x ∈ [−30, 30], y ∈ [200, 260], słupek i podłoga; domyślny sprzęt w `TEMPLATES.pull_up.defaultGear`).
+- `klatki[]` (2–12, rosnące `u`, pierwsza u = 0, ostatnia u = 1; między nimi interpolacja liniowa — ruch zakrzywiony wymaga klatek pośrednich): `miednica` [x, y, z], `pochylenieTulowia`, opcjonalnie `zgiecieKregoslupa`, `pochylenieGlowy`, `nogi.{R,L}` (`kostka` + opcjonalnie `podbicie`, `rotacjaStopy`, `odchylenieKolana`),
+  `rece.{R,L}` (`chwyt` + opcjonalnie `biegunLokcia`, `dolnaCzesc`). Kolana i łokcie liczy nasz IK (dwukostny, długości kości stałe: `BODY`), więc generator podaje tylko cele; tułów ma stałą długość (barki wynikają z miednicy i pochylenia).
+- `bledy[]` (≤ 3): błąd = MODYFIKACJA pozy poprawnej, nie osobna poza: `cue` (id wskazówki „częsty błąd” z `cue-sets.json` albo `lib/cues` — tekst błędu bierzemy z naszego słownika, generator nie pisze tekstów ani liczb do wyświetlenia), `znacznik` (gdzie ✕: knees, heels, back, pelvis, bar),
+  `dotyczy[]` (deklarowane wielkości: knee, ankle, hip, spine, kneeLat, heel, pelvis, bar, shoulder, elbow), `klatki[]` z deltami (te same pola co poza, wszystkie opcjonalne, dodawane do pozy poprawnej; pierwsza u = 0 z deltą zerową, ostatnia u = 1).
+  Błędy tempa (np. „szarpanie”) nie są pozą — zostają w `ERRORS` (`kind: 'tempo'`).
+
+**Co sprawdza walidator (`validatePose`; kody w komunikatach):** `schemat` (typy, zakresy, pola — ze ścieżką, np. `$.klatki[1].u: 2 > maksimum 1`), `kontrakt`/`rodzina`, `klatki-u`, `sprzet` (zasady rodziny), `geometria` (kości, zasięg IK, podłoga, przenikanie ciało–sprzęt, głowa × ręce; ten sam `checkFrame` co dla rodzin),
+`chwyt` (dłoń na osi sztangi, tolerancja 0,6 cm: „dłoń prawa wobec drążka/sztangi: dłoń 6.00 cm od chwytu … w fazie u=0.50”), `zakres` (zakresy stawów z docs/research/28; wyjątki rodziny z powodem: `TEMPLATES.<rodzina>.allow`), `ciaglosc` (skok stawu ≤ 6 cm na 1/48 ruchu),
+`ruch` (≥ 8 cm), a dla błędów: `blad-cue` (spoza listy ćwiczenia), `blad-u`, `blad-start` (delta na starcie ≠ 0), `blad-niedeklarowane` (kąt biodra/kolana/kostki/łokcia/barku zmienia się o > 4° bez deklaracji w `dotyczy`), `blad-niewidoczny` (< 3 cm i < 8°) oraz `geometria`/`chwyt` dla pozy błędu (nie przenika sprzętu).
+Komunikaty są konkretne (wartość, strona, faza u, wskazówka naprawy), żeby model mógł poprawić dokładnie to miejsce.
+
+**Interfejs biblioteki dla pilotażu** (`scripts/figures/v2-validate.mjs`): `schematPozy(rodzina)`, `opisKontraktu(rodzina)`, `waliduj(poza, { rodzina, cwiczenie })` → `{ ok, bledy: [{ kod, szczegol }] }`, `przyklad(rodzina)` → `[{ cwiczenie, poza }]` (gotowe rodziny: przysiad, wyciskanie leżąc, zawias; rodzina planowana → `[]`),
+`zastosuj(root, wynik)` → po przeglądzie zapisuje poprawne pozy do `lib/figures/v2/poses/<rodzina>.json` (odrzucone zwraca z błędami). Rodzina `pull_up` jest „pusta do wypełnienia”: szablon sprzętu (drążek ze słupkiem), opis ruchu i wyjątek zakresu barku (zwis, ramiona nad głową — uproszczenie ilustracyjne) w `TEMPLATES.pull_up`, lista 13 ćwiczeń w docs/51.
+Test: `tests/figures-v2-contract.test.ts` (poza podciągania zwis → góra przechodzi; przykłady z gotowych rodzin przechodzą; każdy kod błędu ma przypadek negatywny).
+
+**Czego kontrakt (jeszcze) nie robi:** nie obejmuje sprzętu ruchomego innego niż sztanga między dłońmi, linek, kółek, liny ani ruchu cyklicznego z obrotem wokół kotwicy; nie ma kształtów mięśni ani toru (liczone z pozy jak dla rodzin); poza z danych nie jest jeszcze podłączona do `figureSpec` — po przeglądzie wyniku pilotażu
+(`zastosuj`) rodzina dostaje status gotowej i ładowanie z `poses/`. Ocena pilotażu (odsetek poprawnych za pierwszym razem, koszt) — docs/52.
+
+## 11. Etap 2 (25.10.2026): styl, mięśnie, tor, fazy, linie odniesienia, błędy ✕
+
+- **Styl**: odcienie bliższej i dalszej strony ciała (role `skin/skinFar`, `cloth/clothFar` + światło `skinHi/clothHi`), talerz po dalszej stronie jako jasne koło za ciałem, po bliższej tylko cienki obrys (przezroczysty); kadr wg proporcji widoku (figura większa przy wyciskaniu z boku).
+- **Mięśnie zawsze widoczne** z legendą „Mięśnie główne / pomocnicze”; przy pewności „uproszczenie” (105 ćwiczeń) dopisek „Dobór mięśni: uproszczenie”. Dane z katalogu (`muscleLoad`), nie z makiety.
+- **Tor ruchu** (linia drogi sztangi lub dłoni), **licznik faz z tempem** (Opuszczanie 2 s · Pauza · Wypychanie 1 s; `t()`), **linie odniesienia bez liczb** tylko tam, gdzie wskazówka ma źródło (uda równolegle ← `sq.depth`, sztanga nad środkiem stopy ← `dl.feet`, kolana nad palcami ← `sq.kneesToes`, linia pleców ← `hinge.back`; `guides.ts`).
+- **Przysiad bez pauzy na dole** (NSCA Basics 2012 s. 49–50: nie zatrzymywać ruchu na dole; pauza 0,5 s była konwencją bez źródła): `tempoFor` → `holdLowMs: 0`; pozostałe rodziny bez zmian.
+- **Błędy ✕** (`errors.ts`): 7 błędów (kolana do środka, pięty, zaokrąglone plecy, nadmierne wygięcie lędźwi, sztanga od ciała, kolana ugięte w RDL, szarpanie) jako delty parametrów rigu z wagą rosnącą z ruchem; przełącznik „Pokaż częsty błąd”; testy: poza błędu bez przenikania (126 par), niedeklarowane kąty ≤ 4°, widoczna różnica, brak różnicy na starcie.
+- **Widok z góry** dla ćwiczeń w leżeniu (przyjęty). **Wskazówki** po korekcie badacza (NSCA Basics, 25.10.2026): `lunge.torso` → „Plecy proste przez cały ruch.”, `pp.dip` → „Ugięcie krótkie, tułów napięty.”, `row.bbPull`/`row.dbPull` → „… do brzucha” — zmienione w PL i EN (`lib/cues/text`); pozostałe 33 języki wymagają przeglądu tłumacza (stare brzmienie do czasu przekładu).
+  Nie zrobione: nowy błąd `lpd.mis.lean` (rodzina ściągania drążka jeszcze nie ma figury — dopisać razem z rodziną `pulldown`); przedział kąta palców w przysiadzie (15–20°, szczebel 4 dwa zgodne źródła) jako linia odniesienia i oddech „wydech w trudnej fazie” (tylko izolowane i maszyny) — czekają na decyzję produktową o ich pokazaniu;
+  łokcie ok. 45° przy wyciskaniu — wstrzymane do decyzji właściciela.
