@@ -7,12 +7,17 @@ import { WHATS_NEW, whatsNewUnseen, markWhatsNewSeen, type WhatsNewEntry } from 
 import { finishedWorkouts } from '@/lib/store';
 import { t, locale, lang } from '@/lib/i18n';
 import { fmtDayMonthYear } from '@/lib/calendar';
+import Constants from 'expo-constants';
+import { versionLabel, BUILD_NUMBER } from '@/lib/version';
 
 /* „Co nowego” (decyzja właściciela 08.10.2026): przycisk „i” w lewym górnym rogu ekranu Trening, kropka po aktualizacji, sekcja rozwijana. */
 const entryTitle = (e: WhatsNewEntry) => {
   const d = fmtDayMonthYear(new Date(+e.date.slice(0, 4), +e.date.slice(5, 7) - 1, +e.date.slice(8, 10))); /* H3 (audyt 0.10): miesiąc słownie jak w pozostałych datach */
   return e.build ? t('Wersja testowa {n} · {date}', { n: e.build, date: d }) : t('W tej wersji');
 };
+/** Najnowszy wpis opisuje całą wersję (np. 0.20.0), a jej kolejne buildy nie mają własnych wpisów — tytuł pokazuje uruchomiony build („0.20.0 (1030)”, jak w „O aplikacji”),
+ * a nie literał z lib/whatsnew.ts sprzed kilku buildów (test na telefonie 23.10.2026). Bez numeru z CI albo gdy jest starszy niż wpis — tytuł wpisu. */
+const currentTitle = (e: WhatsNewEntry) => { const b = Number(BUILD_NUMBER); return /^\d+$/.test((BUILD_NUMBER ?? '').trim()) && e.build && b >= e.build ? versionLabel(Constants.expoConfig?.version, BUILD_NUMBER) : entryTitle(e); };
 
 export function WhatsNewButton({ open, onPress }: { open: boolean; onPress: () => void }) {
   const th = useTheme(); const dot = whatsNewUnseen();
@@ -37,7 +42,7 @@ export function WhatsNewPanel({ onClose }: { onClose: () => void }) {
     <View testID="whats-new" style={{ marginBottom: 10, padding: 12, borderRadius: RADIUS.group, backgroundColor: th.surface2, gap: 8 }}>
       <H2 style={{ marginBottom: 0 }}>{t('Co nowego')}</H2>
       {!finishedWorkouts().length ? <Muted style={font('footnote')}>{t('Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.')}</Muted> : null /* UX-12 A (audyt 0.10): nowa osoba */}
-      <Muted style={font('footnote')}>{entryTitle(cur)}</Muted>
+      <Muted style={font('footnote')}>{currentTitle(cur)}</Muted>
       <Entry e={cur} />
       {rest.map(e => { const on = older === e.id; return (
         <View key={e.id} style={{ gap: 4 }}>

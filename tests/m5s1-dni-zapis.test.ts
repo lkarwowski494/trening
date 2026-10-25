@@ -1,5 +1,5 @@
 /*
- * M5 S1, uzupełnienia właściciela z 22.10.2026 (docs/18): dzień limitu zużywa tylko trening NA ŻYWO dłuższy niż 20 minut (bez pauz); dni są ZAPISANE osobno w stanie
+ * M5 S1, uzupełnienia właściciela z 22.10.2026 (docs/18): dzień limitu zużywa tylko trening NA ŻYWO dłuższy niż 7 minut (23.10.2026: było 20) (bez pauz); dni są ZAPISANE osobno w stanie
  * (`State.liveDays`), a nie liczone z historii — usunięcie treningu dnia nie zwraca (R-M5-1 zamknięte); migracja uzupełnia pole z historii; kopia zapasowa niesie dni;
  * cofnięty zegar, drugie urządzenie i ponowna instalacja mają opisany wynik; „limit tylko się luzuje”; błąd sklepu = unknown; expo-iap przypięty dokładnie.
  * Rodzaje (docs/20): logika, scenariusz, dane (migracja, kopia), niezmienniki.
@@ -18,9 +18,9 @@ const at = (y: number, m: number, d: number, h = 12, mi = 0) => Date.UTC(y, m - 
 const day = (d: number, h = 12): LiveStart => ({ startedAt: at(2026, 11, d, h), tzOffsetMin: 0 });
 const MIN = 60e3;
 
-describe('próg 20 minut: tylko trening na żywo dłuższy niż MIN_LIVE_MINUTES_FOR_DAY zużywa dzień', () => {
-  test('stała jedna: 20; dokładnie 20 min nie zużywa, 20 min i 1 s tak; NaN i ujemne nie', () => {
-    expect(MIN_LIVE_MINUTES_FOR_DAY).toBe(20); expect(qualifiesForDay(1200)).toBe(false); expect(qualifiesForDay(1201)).toBe(true); expect(qualifiesForDay(0)).toBe(false); expect(qualifiesForDay(NaN)).toBe(false); expect(qualifiesForDay(-5)).toBe(false);
+describe('próg 7 minut: tylko trening na żywo dłuższy niż MIN_LIVE_MINUTES_FOR_DAY zużywa dzień', () => {
+  test('stała jedna: 7; dokładnie 7 min nie zużywa, 7 min i 1 s tak; NaN i ujemne nie', () => {
+    expect(MIN_LIVE_MINUTES_FOR_DAY).toBe(7); expect(qualifiesForDay(420)).toBe(false); expect(qualifiesForDay(421)).toBe(true); expect(qualifiesForDay(0)).toBe(false); expect(qualifiesForDay(NaN)).toBe(false); expect(qualifiesForDay(-5)).toBe(false);
   });
   test('recordLiveDay: jeden wpis na dzień z najpóźniejszym startem, kolejność rosnąca, bez mutacji; stare wpisy (> 400 dni) odpadają; śmieci pomijane', () => {
     const a = day(3, 8); const b = day(3, 19); const c = day(5); const before = JSON.stringify([a, b]);
@@ -73,13 +73,13 @@ describe('licznik z magazynu: ukończenie, wstecz, anulowany, trwający, zapis p
     jest.setSystemTime(lt(16, 9)); const opened: string[] = [];
     expect(ent.guardLiveStart('empty', Date.now(), h => opened.push(h))).toBe(false); expect(opened).toEqual(['/paywall?reason=limit']);
   });
-  test('próg 20 min na żywo: 19 min i dokładnie 20 min nie zużywają dnia, 21 min tak; pauzy odejmowane (25 min z pauzą 10 min = 15 min → nie); krótkie zostają w historii', async () => {
-    await boot(); for (const m of [19, 20]) { startWithWork(m); store.finishWorkout(); expect(used()).toBe(0); }
-    const a = startWithWork(25); a.pauses = [[Date.now() - 20 * MIN, Date.now() - 10 * MIN]]; store.finishWorkout(); expect(used()).toBe(0);
-    startWithWork(21); store.finishWorkout(); expect(used()).toBe(1);
+  test('próg 7 min na żywo: 6 min i dokładnie 7 min nie zużywają dnia, 8 min tak; pauzy odejmowane (15 min z pauzą 10 min = 5 min → nie); krótkie zostają w historii', async () => {
+    await boot(); for (const m of [6, 7]) { startWithWork(m); store.finishWorkout(); expect(used()).toBe(0); }
+    const a = startWithWork(15); a.pauses = [[Date.now() - 14 * MIN, Date.now() - 4 * MIN]]; store.finishWorkout(); expect(used()).toBe(0);
+    startWithWork(8); store.finishWorkout(); expect(used()).toBe(1);
     expect(store.getState().workouts.filter(w => w.live)).toHaveLength(4);
   });
-  test('zapis po 6 h bez aktywności (autoFinishStale) liczy się jak ukończony, jeśli trwał > 20 min', async () => {
+  test('zapis po 6 h bez aktywności (autoFinishStale) liczy się jak ukończony, jeśli trwał > 7 min', async () => {
     await boot(); for (const d of [1, 4, 8, 12]) live(lt(d));
     const a = startWithWork(); a.startedAt = NOW - 40 * MIN; a.exercises[0].sets[0].completedAt = NOW - 10 * MIN; jest.setSystemTime(NOW + 7 * 3600e3);
     expect(store.autoFinishStale(Date.now())).not.toBeNull(); expect(used()).toBe(5);
@@ -97,10 +97,10 @@ describe('licznik z magazynu: ukończenie, wstecz, anulowany, trwający, zapis p
   describe('migracja: dni z historii (dane poprzedniej wersji, bez pola liveDays)', () => {
     /** Stan „sprzed M5 S1”: historia z treningami na żywo (różne długości, poprzedni miesiąc, wstecz), bez State.liveDays. */
     async function legacy() {
-      await boot(); live(lt(2)); live(lt(2, 19)); live(lt(9)); const sh = live(lt(11)); sh.finishedAt = sh.startedAt + 15 * MIN; back(lt(12)); live(new Date(2026, 9, 28, 12).getTime());
+      await boot(); live(lt(2)); live(lt(2, 19)); live(lt(9)); const sh = live(lt(11)); sh.finishedAt = sh.startedAt + 5 * MIN; back(lt(12)); live(new Date(2026, 9, 28, 12).getTime());
       const raw = JSON.parse(JSON.stringify(store.getState())); delete raw.liveDays; return raw;
     }
-    test('brak pola → dni BIEŻĄCEGO miesiąca z treningów na żywo > 20 min (2 i 9; nie krótki 11, nie wstecz 12, nie październik)', async () => {
+    test('brak pola → dni BIEŻĄCEGO miesiąca z treningów na żywo > 7 min (2 i 9; nie krótki 11, nie wstecz 12, nie październik)', async () => {
       const m = store.migrate(await legacy()); expect(m.liveDays!.map(d => new Date(d.startedAt).getDate())).toEqual([2, 9]);
     });
     test('idempotentna; poprawne pole zostaje (usunięty trening nie wraca do licznika po kolejnej migracji / restarcie)', async () => {

@@ -32,14 +32,14 @@ const loadFonts = () => { let to: ReturnType<typeof setTimeout> | undefined; ret
 export const unstable_settings = { initialRouteName: '(tabs)' };
 
 export default function RootLayout() {
-  const th = useTheme(); const [ready, setReady] = useState(false); const [err, setErr] = useState<string | null>(null);
+  const th = useTheme(); const [ready, setReady] = useState(false); const [err, setErr] = useState<string | null>(null); const [diag, setDiag] = useState<string | undefined>(undefined); const errRef = useRef(false); errRef.current = err != null;
   /* Animacja przy starcie (decyzja 09.10.2026, components/Intro.tsx): tylko zimny start; dane ładują się równolegle (start() niżej). */
   const [intro, setIntro] = useState(() => takeColdStart(AppState.currentState));
   // Runda 69: trening porzucony ponad 6 h temu zapisuje się sam (koniec = ostatnia odhaczona seria) — przy starcie i powrocie z tła.
   const autoSaved = (w: Workout | null) => { if (!w) return; markDoneEarly(w); timer.stop().catch(() => {}); timer.stopSet().catch(() => {}); timer.cancelStaleReminder().catch(() => {}); onWorkoutSaved(w).catch(() => {});
     setAutoSavedNotice(t('Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.' /* H2 (audyt 0.10): zakładka nazywa się Kalendarz */, { d: fmtDate(wallTs(w)), s: fmtTime(wallTs(w)), e: fmtTime(wallTs(w, w.finishedAt ?? w.startedAt)) })); };
   /* `retry` — „Spróbuj ponownie” na ekranie błędu: strażnik pętli awarii liczy ten start od zera (M1-audytor-generalny-003) */
-  const start = (retry = false) => { setErr(null); Promise.all([init({ guard: true, retry }), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ restored = restoreObjDrafts(); /* UX2-03 = DAT2-06: szkice edycji sprzed zamknięcia aplikacji */ cancelLegacyReminders().catch(() => {}); /* decyzja 09.10.2026: bez przypomnienia o podpisie — stare odwołane */ initEntitlements().catch(() => {}); /* 0.17.0: sklep tylko przy PAYWALL.ENABLED */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => setErr(e instanceof Error ? e.message : String(e))); };
+  const start = (retry = false) => { setErr(null); setDiag(undefined); Promise.all([init({ guard: true, retry }), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ restored = restoreObjDrafts(); /* UX2-03 = DAT2-06: szkice edycji sprzed zamknięcia aplikacji */ cancelLegacyReminders().catch(() => {}); /* decyzja 09.10.2026: bez przypomnienia o podpisie — stare odwołane */ initEntitlements().catch(() => {}); /* 0.17.0: sklep tylko przy PAYWALL.ENABLED */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => { setDiag(typeof e?.bootDiag === 'string' ? e.bootDiag : undefined); setErr(e instanceof Error ? e.message : String(e)); }); };
   useEffect(() => { start(); }, []);
   useEffect(() => initA11yPrefs(), []); /* M1-024: „Pogrubiony tekst” z ustawień iOS (odczyt i nasłuch) */
   /* M1-audytor-generalny-003: „kamień” strażnika pętli awarii — pierwszy ekran działa BOOT_STABLE_MS po starcie (albo aplikacja idzie do tła). Wyjątek przy rysowaniu
@@ -52,7 +52,7 @@ export default function RootLayout() {
    * (poniżej) nie ma nawigatora, więc zostałby pod logo i aplikacja wyglądałaby na zawieszoną. Przy błędzie chowamy go sami. */
   useEffect(() => { if (err) SplashScreen.hideAsync().catch(() => {}); }, [err]);
   // Zapis wymuszony przy wyjściu do tła — debounce 300 ms nie może zgubić ostatniej zmiany, gdy system ubije apkę.
-  useEffect(() => { const sub = AppState.addEventListener('change', st => { if (st !== 'active') { flush(); if (readyRef.current) markBootStable().catch(() => {}); } else { const w = autoFinishStale(); /* runda 74 (audyt): stoper zdjęty z zapisu przez cichy zapis (Q-011, seria z celem odhaczona) nie liczy dalej w pamięci */ if (!w && timer.S.on && !getState().timer?.setStartAt) timer.stopSet().catch(() => {}); autoSaved(w); timer.onForeground(); refreshViews(); retryHealth().catch(() => {}); /* J2 */ refreshEntitlements().catch(() => {}); /* 0.17.0: powrót z tła */ } }); return () => sub.remove(); }, []);
+  useEffect(() => { const sub = AppState.addEventListener('change', st => { if (st !== 'active') { flush(); if (!errRef.current) markBootStable().catch(() => {}); /* ZK-07: także przed końcem ładowania — wyjście do tła nie jest awarią; ekran błędu licznika nie zeruje */ } else { const w = autoFinishStale(); /* runda 74 (audyt): stoper zdjęty z zapisu przez cichy zapis (Q-011, seria z celem odhaczona) nie liczy dalej w pamięci */ if (!w && timer.S.on && !getState().timer?.setStartAt) timer.stopSet().catch(() => {}); autoSaved(w); timer.onForeground(); refreshViews(); retryHealth().catch(() => {}); /* J2 */ refreshEntitlements().catch(() => {}); /* 0.17.0: powrót z tła */ } }); return () => sub.remove(); }, []);
   /* Audyt 0.10 J1 (DAT-05): dane z nowszej wersji aplikacji — niczego nie nadpisujemy; „zaktualizuj” i wysłanie surowych danych. */
   const newer = err ? getNewerSchema() : null;
   const body = newer != null ? <View testID="newer-data" style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}>
@@ -62,7 +62,7 @@ export default function RootLayout() {
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={() => start(true)} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, ...font('button') }}>{t('Spróbuj ponownie')}</Text></Pressable>
   </View>
   // Błąd startu (np. baza niedostępna, wyjątek po wczytaniu danych, pętla awarii) — komunikat, wysłanie danych, ponowienie i kontakt (M1-audytor-generalny-003, 004).
-  : err ? <StartError title={t('Nie udało się otworzyć danych.')} message={t('Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.')} detail={err} onRetry={() => start(true)} />
+  : err ? <StartError title={t('Nie udało się otworzyć danych.')} message={t('Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik.')} detail={err} diag={diag} onRetry={() => start(true)} />
   : !ready ? <View style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color={th.accent} /></View>
   : <Root />;
   /* Na czas animacji treść pod nakładką jest ukryta dla VoiceOver (i dla Maestro — scenariusze czekają na tekst, aż animacja się skończy). */

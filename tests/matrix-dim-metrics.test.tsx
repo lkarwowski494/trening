@@ -90,8 +90,8 @@ describe('METRICS × SET_KINDS × UNITS — pełna ścieżka serii: trening → 
     } else expect(store.progressionFor(ex, minWorkReps, prev.sets)).toBeNull();
 
     /* CSV (układ popularnych dzienników): rozgrzewka „W”, robocze numerowane; ciężar w jednostce z ustawień; typ serii w Notes */
-    const rows = parseCsv(buildCsv()); expect(rows[0]).toEqual(['Date', 'Workout Name', 'Duration', 'Exercise Name', 'Set Order', 'Weight', 'Reps', 'Distance', 'Seconds', 'Notes', 'Workout Notes', 'RPE']);
-    const body = rows.slice(1); expect(body).toHaveLength(4);
+    const rows = parseCsv(buildCsv()); expect(rows[0]).toEqual(['Date', 'Workout Name', 'Duration', 'Exercise Name', 'Set Order', 'Weight', 'Reps', 'Distance', 'Seconds', 'Notes', 'Workout Notes', 'RPE', ...(u === 'lb' ? ['Weight Unit', 'Distance Unit'] : [])]); /* 23.10.2026: przy lb dwie kolumny jednostek na końcu */
+    const body = rows.slice(1); expect(body).toHaveLength(4); if (u === 'lb') for (const row of body) expect(row.slice(12)).toEqual(['lb', 'm']);
     body.forEach((row, i) => { const k = KINDS_ORDER[i]; const l = loadDisp(r, u, k);
       expect([k, row[3], row[4], row[5], row[6], row[7], row[8], row[9]]).toEqual([k, ex.name, k === 'warmup' ? 'W' : k === 'drop' ? 'D' : k === 'failure' ? 'F' : String(i), String(W ? Number(l) || 0 : 0), String(R ? REPS_V[k] : 0), String(D ? DIST_V[k][0] : 0), String(!T ? 0 : D ? DIST_V[k][1] : TIME_V[k]), '']); }); /* LOG-14 (audyt 0.10): Set Order jak w popularnych dziennikach — W/D/F, numer tylko zwykłych serii; typ nie trafia do Notes */
 

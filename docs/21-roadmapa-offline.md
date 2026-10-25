@@ -90,6 +90,8 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
   **[OTWARTE]** oficjalna strona pomocy producenta nie została przeczytana (sam tytuł artykułu Hevy o imporcie CSV ze Strong:
   https://help.hevyapp.com/hc/en-us/articles/38001424401943 — serwer odrzuca pobranie, 403). Brak jednostki ciężaru w pliku → wybór na podglądzie.
   Jednostka dystansu w tym formacie nieznana (w pliku wzorcowym zawsze 0) — przyjęto metry jak w eksporcie aplikacji, podgląd to pokazuje.
+  **Eksport własny przy lb (23.10.2026, test na telefonie 1030):** 12 kolumn bez zmian (zgodność), plus na końcu `Weight Unit` (lb) i `Distance Unit` (m) w każdym wierszu; w kg plik jak dotąd.
+  Import własnego pliku z tymi kolumnami (jedna jednostka w całym pliku) przelicza ciężary i nie pyta o jednostkę; mieszane/nieznane → wybór na podglądzie.
 - **formatB** — źródło: dokumentacja producenta FitNotes iOS, strona „Import Data to FitNotes iOS”, przeczytana 11.10.2026:
   https://www.getfitnotes.com/docs/migrate-from-other-apps.html — nagłówek „musi być dokładnie”: `Date`, `Exercise`, `Category`, `Weight (kg)`,
   `Weight (lbs)`, `Reps`, `Distance`, `Distance Unit`, `Time`, `Notes`, `Kind`; „Date must be in `YYYY-mm-dd` format”; waga w osobnych kolumnach kg / lbs

@@ -28,7 +28,7 @@ export const isImportError = (e: unknown): e is ImportError => e instanceof Impo
 export interface ParsedSet { kind: SetKind; /** w jednostce pliku (formatA: nieznana — wybór użytkownika), w formatB już w kg */ weight: number | null; reps: number; durationSec: number; distanceM: number; rpe: number | null; note: string }
 export interface ParsedExercise { name: string; sets: ParsedSet[] }
 export interface ParsedSession { startedAt: number; tzOffsetMin: number; /** plik nie podaje godziny (tylko dzień) */ dateOnly: boolean; name: string; durationSec: number | null; note: string; exercises: ParsedExercise[] }
-export interface ParsedFile { format: CsvFormat; /** 'kg' | 'lb' gdy plik podaje jednostkę ciężaru (formatB: kg po przeliczeniu), null = nie podaje (formatA) */ weightUnit: 'kg' | null; sessions: ParsedSession[]; /** wiersze pominięte (zła data, liczba, pusta nazwa ćwiczenia) */ badRows: number; hasDistance: boolean }
+export interface ParsedFile { format: CsvFormat; /** 'kg' gdy plik podaje jednostkę ciężaru i wartości są już w kg (formatB; formatA z kolumnami jednostek — własny eksport przy lb), null = nie podaje (formatA bez kolumn albo jednostki mieszane) */ weightUnit: 'kg' | null; sessions: ParsedSession[]; /** wiersze pominięte (zła data, liczba, pusta nazwa ćwiczenia) */ badRows: number; hasDistance: boolean }
 
 /* ---------- CSV (RFC 4180: cudzysłowy, "" w polu, nowe linie w polu) ---------- */
 export function parseCsv(text: string): string[][] {
@@ -47,6 +47,8 @@ export function parseCsv(text: string): string[][] {
 
 const HEADER_A = ['Date', 'Workout Name', 'Duration', 'Exercise Name', 'Set Order', 'Weight', 'Reps', 'Distance', 'Seconds', 'Notes', 'Workout Notes', 'RPE'];
 const HEADER_B = ['Date', 'Exercise', 'Category', 'Weight (kg)', 'Weight (lbs)', 'Reps', 'Distance', 'Distance Unit', 'Time', 'Notes', 'Kind'];
+/** Własny eksport przy lb (lib/backup.ts buildCsv) dopisuje na końcu dwie kolumny jednostek; nagłówek formatA z 12 kolumn jest ich prefiksem. */
+const UNIT_COLS = ['Weight Unit', 'Distance Unit'];
 const sameHeader = (h: string[], exp: string[]) => h.length >= exp.length && exp.every((c, i) => h[i].trim() === c);
 export function detectFormat(header: string[]): CsvFormat | null { return sameHeader(header, HEADER_A) ? 'formatA' : sameHeader(header, HEADER_B) ? 'formatB' : null; }
 
@@ -97,6 +99,7 @@ export function parseImport(text: string, now: number = Date.now()): ParsedFile 
   if (rows.length > IMPORT_MAX_ROWS + 1) throw new ImportError('toolarge');
   const format = detectFormat(rows[0]); if (!format) throw new ImportError('format');
   const parts = new Map<string, ParsedSession>(); const order: string[] = []; let bad = 0; let dist = false;
+  const unitCol = format === 'formatA' && UNIT_COLS.every((c, i) => (rows[0][12 + i] ?? '').trim() === c); const units = new Set<string>(); let unitsMissing = false;
   for (let i = 1; i < rows.length; i++) {
     const r = rows[i]; const date = parseDate(r[0] ?? '', now);
     if (format === 'formatA') {
@@ -108,6 +111,7 @@ export function parseImport(text: string, now: number = Date.now()): ParsedFile 
       let s = parts.get(key);
       if (!s) { s = { startedAt: 0, tzOffsetMin: 0, dateOnly: date.dateOnly, name: clampName(wn, NAME_MAX), durationSec: parseDurationA(r[2] ?? ''), note: note(clean(r[10])), exercises: [] }; setStart(s, date.wall); parts.set(key, s); order.push(key); }
       if ((dm ?? 0) > 0) dist = true;
+      if (unitCol && w != null) { const u = (r[12] ?? '').trim().toLowerCase(); if (u === 'kg' || u === 'lb') units.add(u); else unitsMissing = true; }
       addSet(s, exName_, { kind, weight: w, reps: Math.round(reps ?? 0), durationSec: Math.round(sec ?? 0), distanceM: dm ?? 0, rpe: rpe && rpe > 0 ? rpe : null, note: note(clean(r[9])) });
     } else {
       const exName_ = clean(r[1]); const kg = num(r[3]), lb = num(r[4]), reps = num(r[5]), dm0 = num(r[6]); const time = parseTimeB(r[8] ?? '');
@@ -120,7 +124,13 @@ export function parseImport(text: string, now: number = Date.now()): ParsedFile 
       addSet(s, exName_, { kind: 'normal', weight, reps: Math.round(reps ?? 0), durationSec: time, distanceM: dmM, rpe: null, note: note(clean(r[9])) });
     }
   }
-  return build(parts, order, format, bad, dist);
+  const file = build(parts, order, format, bad, dist);
+  /* Własny eksport z kolumnami jednostek: jedna jednostka w całym pliku → ciężary przeliczone tu na kg (lb przez snapLb), picker niepotrzebny; mieszane albo nieznane → bez zgadywania (wybór użytkownika). */
+  if (unitCol && !unitsMissing && units.size === 1) {
+    if (units.has('lb')) for (const se of file.sessions) for (const ex of se.exercises) for (const p of ex.sets) if (p.weight != null) p.weight = snapLb(p.weight);
+    return { ...file, weightUnit: 'kg' };
+  }
+  return file;
 }
 function setStart(s: ParsedSession, wall: number) { s.tzOffsetMin = tzOffsetAt(wall); s.startedAt = fromWallTs(wall, s.tzOffsetMin); }
 

@@ -53,7 +53,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const st = S();
     expect(st.templates).toEqual([]); expect(st.workouts).toEqual([]); expect(st.active).toBeNull();
     expect(st.settings.locations).toEqual([]); expect(st.settings.mainLocationId).toBeNull();
-    expect(st.settings.unit).toBe('kg'); expect(st.settings.theme).toBe('light'); expect(st.settings.language).toBe('auto');
+    expect(st.settings.unit).toBe('kg'); expect(st.settings.theme).toBe('dark'); expect(st.settings.language).toBe('auto');
     expect(st.bands.map(b => [b.color, b.level])).toEqual([['czerwona', 2], ['czarna', 4], ['fioletowa', 6]]);
     expect(st.exercises.length).toBeGreaterThan(500);
     expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); /* UX-12 A (audyt 0.10): „Pierwsze kroki” */
@@ -104,7 +104,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     await tap(screen.getByText('Polski')); await flushAll(10);
     expect(S().settings.language).toBe('pl'); expect(screen.getByLabelText('Język, Polski')).toBeTruthy(); expect(screen.getByText('Wygląd')).toBeTruthy();
     /* wygląd */
-    expect(screen.getByLabelText('Jasny').props.accessibilityState.selected).toBe(true);
+    expect(screen.getByLabelText('Ciemny').props.accessibilityState.selected).toBe(true);
     await tap(screen.getByLabelText('Ciemny')); expect(S().settings.theme).toBe('dark'); expect(setScheme).toHaveBeenLastCalledWith('dark');
     await tap(screen.getByLabelText('Jak w telefonie')); expect(S().settings.theme).toBe('auto'); expect(setScheme).toHaveBeenLastCalledWith('unspecified');
     await tap(screen.getByLabelText('Jasny')); expect(S().settings.theme).toBe('light'); expect(setScheme).toHaveBeenLastCalledWith('light');
@@ -911,7 +911,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     const sp = write.mock.calls.find(([p]) => /\/Backup\/training-before-reset-\d{4}-\d{2}-\d{2}-\d{6}\.json$/.test(p)); expect(sp).toBeTruthy();
     const safety = sp![1]; expect(JSON.parse(safety).state.workouts).toHaveLength(2);
     expect(S().workouts).toEqual([]); expect(S().templates).toEqual([]); expect(S().settings.locations).toEqual([]); expect(S().settings.mainLocationId).toBeNull();
-    expect(S().settings).toMatchObject({ language: 'auto', unit: 'kg', defaultRest: 90, showRpe: false, theme: 'light' });
+    expect(S().settings).toMatchObject({ language: 'auto', unit: 'kg', defaultRest: 90, showRpe: false, theme: 'dark' });
     expect(S().bands.map(b => b.level)).toEqual([2, 4, 6]); expect(S().exercises.some(e => e.name === 'Wiosło z ręcznikiem')).toBe(false);
     await go('/'); await flushAll(10); expect(screen.getByLabelText('1. Utwórz pierwszy szablon albo wygeneruj szablony i plan. do zrobienia')).toBeTruthy(); expect(screen.getAllByText('Planowanie')).toHaveLength(2);
     /* restart po wyczyszczeniu — nadal pusto */
