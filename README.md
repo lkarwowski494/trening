@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5339-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5413-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-45-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -59,11 +59,11 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Ćwiczenia w bibliotece | 709 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 349 (z testem: 349) | docs/19-macierz-testow.md |
-| Komunikaty i teksty | 1108 (z testem: 1108) | docs/19-macierz-testow.md |
-| Funkcje biblioteki `lib/` | 921 (z testem: 921) | docs/19-macierz-testow.md |
-| Wymiary (listy wartości i typy-unie) | 118 (z testem: 118) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 453 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 5339 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Komunikaty i teksty | 1109 (z testem: 1109) | docs/19-macierz-testow.md |
+| Funkcje biblioteki `lib/` | 986 (z testem: 986) | docs/19-macierz-testow.md |
+| Wymiary (listy wartości i typy-unie) | 136 (z testem: 136) | docs/19-macierz-testow.md |
+| Pliki testów Jest | 458 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 5413 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 153 (Maestro: 126, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 13) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 45 (w głównym przebiegu: 42, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -168,13 +168,14 @@ Kroki `npm run verify` (generowane z `package.json`):
 5. `npm run check:cues`
 6. `npm run check:claims`
 7. `npm run check:figures`
-8. `npm run check:readme`
-9. `jest`
-10. `npm run check:matrix`
-11. `npm run check:licenses`
-12. `npx expo export --platform ios --output-dir .expo/verify-export`
-13. sprzątanie katalogu tymczasowego eksportu
-14. `npm run verify:native`
+8. `npm run check:figures-v2`
+9. `npm run check:readme`
+10. `jest`
+11. `npm run check:matrix`
+12. `npm run check:licenses`
+13. `npx expo export --platform ios --output-dir .expo/verify-export`
+14. sprzątanie katalogu tymczasowego eksportu
+15. `npm run verify:native`
 <!-- /gen:verify-steps -->
 
 Natywnego builda nie da się sprawdzić na Linuksie: kompilacja — `ios-unsigned.yml`, scenariusze na symulatorze — `e2e-ios.yml`, telefon — TestFlight.
@@ -256,7 +257,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (49)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (50)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -301,6 +302,7 @@ trening/
 - [`docs/45-widocznosc-w-sklepie.md`](docs/45-widocznosc-w-sklepie.md) — 45. Widoczność w sklepie (M5) — metadane App Store
 - [`docs/46-przeniesienie-1.0.md`](docs/46-przeniesienie-1.0.md) — 46. Przeniesienie czystej wersji 1.0 do Apps4Brew — lista kontrolna i narzędzie (21.10.2026)
 - [`docs/47-instrukcja-testu-dzwieku.md`](docs/47-instrukcja-testu-dzwieku.md) — 47. Instrukcja testu: dźwięk, wibracja, tryb skupienia, zegarek (build 1030 i kolejne)
+- [`docs/50-figury-v2.md`](docs/50-figury-v2.md) — 50 — Figury v2: grafiki ćwiczeń dla całej biblioteki (projekt, etap 1)
 - [`docs/51-figury-v2-pokrycie.md`](docs/51-figury-v2-pokrycie.md) — 51 — Figury v2: rodziny ruchu i pokrycie ćwiczeń (generowane)
 - [`docs/m3-stan.md`](docs/m3-stan.md) — M3 Redesigner — stan przebiegu (plik stanu na wypadek utraty kontenera)
 - [`docs/monetyzacja-badanie-2026-10.md`](docs/monetyzacja-badanie-2026-10.md) — Badanie zmiany modelu monetyzacji (rola 02, build) — STOP E2

@@ -35,7 +35,8 @@ export type LegIn = {
   /** Kierunek zgięcia kolana (domyślnie wynika z kneeOut). */
   kneePole?: V3;
 };
-export type ArmIn = { grip: V3; elbowPole?: V3 };
+/** `lower`: odległość łokieć–środek chwytu (domyślnie przedramię + dłoń); krótsza przy chwycie z zagiętymi palcami i nadgarstkiem (rack przedni). */
+export type ArmIn = { grip: V3; elbowPole?: V3; lower?: number };
 export type PoseIn = {
   pelvis: V3;
   /** Pochylenie tułowia od pionu w płaszczyźnie strzałkowej (stopnie, do przodu dodatnie; 90 = poziomo głową do przodu, 180 = do góry nogami). */
@@ -49,7 +50,7 @@ export type PoseIn = {
 };
 
 export type Leg = { hip: V3; knee: V3; ankle: V3; heel: V3; toe: V3; err: number };
-export type Arm = { shoulder: V3; elbow: V3; wrist: V3; grip: V3; err: number };
+export type Arm = { shoulder: V3; elbow: V3; wrist: V3; grip: V3; err: number; lower: number };
 export type Skeleton = {
   pelvis: V3; spineMid: V3; shoulderC: V3; neck: V3; head: V3;
   /** Jednostkowy kierunek tułowia (miednica → barki) i normalna „przód” (klatka piersiowa). */
@@ -97,9 +98,10 @@ export function solveSkeleton(p: PoseIn): Skeleton {
 
     const shoulder: V3 = [shoulderC[0], shoulderC[1], sg * BODY.shHalf];
     const ai = p.arms[s]; const aPole = ai.elbowPole ?? [-0.3, -1, sg * 0.4];
-    const ra = ik2(shoulder, ai.grip, BODY.uarm, BODY.farm + BODY.hand, aPole);
+    const lower = ai.lower ?? BODY.farm + BODY.hand;
+    const ra = ik2(shoulder, ai.grip, BODY.uarm, lower, aPole);
     const dirF = norm(sub(ra.end, ra.mid));
-    arms[s] = { shoulder, elbow: ra.mid, wrist: add(ra.mid, mul(dirF, BODY.farm)), grip: ra.end, err: ra.err };
+    arms[s] = { shoulder, elbow: ra.mid, wrist: add(ra.mid, mul(dirF, Math.min(BODY.farm, lower - 1))), grip: ra.end, err: ra.err, lower };
   }
   return { pelvis: p.pelvis, spineMid, shoulderC, neck, head, up, front, headUp, legs, arms };
 }
@@ -108,7 +110,7 @@ export function solveSkeleton(p: PoseIn): Skeleton {
 export const soleY = (l: Leg): number => Math.min(l.heel[1], l.toe[1]);
 
 /** Kąty stawów do sprawdzeń zakresu (konwencja jak w lib/figures/geom: zgięcie dodatnie, wyprost ujemny; stopa: zgięcie grzbietowe dodatnie). */
-export function jointAngles(k: Skeleton, s: Side): { hip: number; knee: number; ankle: number; shSag: number; shElev: number; elbow: number } {
+export function jointAngles(k: Skeleton, s: Side): { hip: number; knee: number; ankle: number; shSag: number; shElev: number; shAbd: number; elbow: number } {
   const L = k.legs[s], A = k.arms[s];
   const ang = (a: V3, b: V3, c: V3): number => { const u = sub(a, b), v = sub(c, b); return deg(Math.acos(clamp(dot(u, v) / ((len(u) * len(v)) || 1), -1, 1))); };
   const hipFlex = 180 - ang(k.shoulderC, L.hip, L.knee);
@@ -118,7 +120,9 @@ export function jointAngles(k: Skeleton, s: Side): { hip: number; knee: number; 
   const down = mul(k.up, -1); const ua = norm(sub(A.elbow, A.shoulder));
   const shElev = deg(Math.acos(clamp(dot(down, ua), -1, 1)));
   const sagUa = [dot(ua, k.front), dot(ua, k.up)]; /* rzut na płaszczyznę strzałkową tułowia: przód, góra */
-  const shSag = deg(Math.atan2(sagUa[0], -sagUa[1])); /* 0 = wzdłuż tułowia w dół, dodatnie = do przodu */
+  let shSag = deg(Math.atan2(sagUa[0], -sagUa[1])); /* 0 = wzdłuż tułowia w dół, dodatnie = zgięcie (do przodu i w górę) */
+  if (shSag < -90) shSag += 360; /* ramię za pionem nad głową = zgięcie powyżej 180°, nie wyprost */
   const elbowFlex = 180 - ang(A.shoulder, A.elbow, A.grip);
-  return { hip: hipFlex, knee: kneeFlex, ankle: ankleDors, shSag, shElev, elbow: elbowFlex };
+  const shAbd = deg(Math.asin(clamp(Math.abs(ua[2]), 0, 1))); /* odchylenie ramienia od płaszczyzny strzałkowej (0 = w płaszczyźnie, 90 = bokiem) */
+  return { hip: hipFlex, knee: kneeFlex, ankle: ankleDors, shSag, shElev, shAbd, elbow: elbowFlex };
 }

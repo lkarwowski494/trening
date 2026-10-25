@@ -1740,5 +1740,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ngày tập miễn phí tháng này: đã dùng {n}/{limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n}/{limit} ngày tập miễn phí trong tháng này.",
  "Został|Zostały|Zostało": "Còn",
- "Zakończ trening na telefonie": "Kết thúc buổi tập trên điện thoại"
+ "Zakończ trening na telefonie": "Kết thúc buổi tập trên điện thoại",
+ "Ogólne wskazówki dla tego ruchu": "General tips for this movement"
 }

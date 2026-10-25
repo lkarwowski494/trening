@@ -25,7 +25,6 @@ export function solveRoot(f: (x: number) => number, lo: number, hi: number, it =
 export const ease = (u: number): number => { const x = clamp(u, 0, 1); return x * x * (3 - 2 * x); };
 
 export type Grips = Record<Side, { grip: V3; pole?: V3 }>;
-export const sym = (p: V3, half: number): Record<Side, V3> => ({ R: [p[0], p[1], half], L: [p[0], p[1], -half] });
 
 /** Klatka z wejścia pozy: rozwiązuje szkielet i dokleja rekwizyty, punkty znaczące i dozwolone kontakty. */
 export function mkFrame(pose: PoseIn, props: Prop[], info: Record<string, V3>, contacts: Contact[] = []): Frame {
@@ -46,4 +45,3 @@ export function legFK(K: number, rule: ShinRule, ankle: V3, dz = 0): { knee: V3;
   return { knee, hip, sigma };
 }
 
-export const nearTo = (a: V3, b: V3): number => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);

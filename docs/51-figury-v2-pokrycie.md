@@ -1,7 +1,7 @@
 # 51 — Figury v2: rodziny ruchu i pokrycie ćwiczeń (generowane)
 
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
-Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures`). Projekt i zasady: `docs/50-figury-v2.md`.
+Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
 Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 3, do zrobienia: 40); ćwiczeń z gotową figurą: **87** (12,3%).
 

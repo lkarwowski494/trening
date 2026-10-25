@@ -1740,5 +1740,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Hari latihan percuma bulan ini: {n} daripada {limit} telah digunakan",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} daripada {limit} hari latihan percuma bulan ini.",
  "Został|Zostały|Zostało": "Berbaki",
- "Zakończ trening na telefonie": "Tamatkan latihan pada telefon"
+ "Zakończ trening na telefonie": "Tamatkan latihan pada telefon",
+ "Ogólne wskazówki dla tego ruchu": "General tips for this movement"
 }

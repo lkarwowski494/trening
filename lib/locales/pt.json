@@ -1740,5 +1740,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Dias de treino gratuitos este mês: {n} de {limit} usados",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} de {limit} dias de treino gratuitos este mês.",
  "Został|Zostały|Zostało": "Resta|Restam",
- "Zakończ trening na telefonie": "Termine o treino no telemóvel"
+ "Zakończ trening na telefonie": "Termine o treino no telemóvel",
+ "Ogólne wskazówki dla tego ruchu": "General tips for this movement"
 }

@@ -33,7 +33,7 @@ const total = Object.keys(assign).length; const nReady = ready.reduce((s, f) => 
 const md = [];
 md.push('# 51 — Figury v2: rodziny ruchu i pokrycie ćwiczeń (generowane)', '');
 md.push('AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.');
-md.push('Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures`). Projekt i zasady: `docs/50-figury-v2.md`.', '');
+md.push('Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.', '');
 md.push(`Ćwiczeń w katalogu: **${total}**; rodzin ruchu: **${v2.FAMILIES.length}** (gotowe: ${ready.length}, do zrobienia: ${planned.length}); ćwiczeń z gotową figurą: **${nReady}** (${(100 * nReady / total).toFixed(1).replace('.', ',')}%).`, '');
 md.push('## Rodziny', '', '| Rodzina | Stan | Ćwiczeń | Widoki | Szacunek pracy agenta (h) | Opis |', '|---|---|---|---|---|---|');
 for (const f of v2.FAMILIES) md.push(`| \`${f.id}\` | ${f.status === 'ready' ? 'gotowa' : 'do zrobienia'} | ${by[f.id]?.length ?? 0} | ${f.views.join(', ')} | ${f.status === 'ready' ? '—' : f.effort} | ${f.label}${f.note ? ' — ' + f.note : ''} |`);

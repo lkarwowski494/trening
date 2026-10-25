@@ -1740,5 +1740,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Δωρεάν ημέρες προπόνησης αυτόν τον μήνα: χρησιμοποιήθηκαν {n} από {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} από {limit} δωρεάν ημέρες προπόνησης αυτόν τον μήνα.",
  "Został|Zostały|Zostało": "Απομένει|Απομένουν",
- "Zakończ trening na telefonie": "Ολοκληρώστε την προπόνηση στο τηλέφωνο"
+ "Zakończ trening na telefonie": "Ολοκληρώστε την προπόνηση στο τηλέφωνο",
+ "Ogólne wskazówki dla tego ruchu": "General tips for this movement"
 }

@@ -1740,5 +1740,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Gratis träningsdagar den här månaden: {n} av {limit} använda",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} av {limit} gratis träningsdagar {left} den här månaden.",
  "Został|Zostały|Zostało": "kvar|kvar",
- "Zakończ trening na telefonie": "Avsluta passet på telefonen"
+ "Zakończ trening na telefonie": "Avsluta passet på telefonen",
+ "Ogólne wskazówki dla tego ruchu": "General tips for this movement"
 }

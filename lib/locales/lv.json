@@ -1740,5 +1740,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Bezmaksas treniņu dienas šomēnes: izmantotas {n} no {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} bezmaksas treniņu dienu skaits šomēnes: {n} no {limit}.",
  "Został|Zostały|Zostało": "Neizmantotu|Neizmantotu|Neizmantotu",
- "Zakończ trening na telefonie": "Pabeidziet treniņu tālrunī"
+ "Zakończ trening na telefonie": "Pabeidziet treniņu tālrunī",
+ "Ogólne wskazówki dla tego ruchu": "General tips for this movement"
 }

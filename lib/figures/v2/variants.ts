@@ -7,6 +7,7 @@
 import type { SquatParams } from './rigs/squat';
 import type { BenchParams } from './rigs/benchPress';
 import { HINGE, type HingeParams } from './rigs/hinge';
+import { EQUIP } from './draw';
 
 export type Variant =
   | { family: 'squat'; p: SquatParams; static?: boolean }
@@ -18,8 +19,8 @@ const BP = (impl: BenchParams['impl'], o: Partial<BenchParams> = {}): Variant =>
 const HG = (style: HingeParams['style'], impl: HingeParams['impl'], o: Partial<HingeParams> = {}): Variant => {
   const rdl = style === 'rdl' || style === 'singleLeg' || style === 'pullThrough';
   const base: HingeParams = rdl
-    ? { style, impl, yStart: 80, yEnd: 55, stance: style === 'singleLeg' ? 8.5 : 14, toeOut: 8, grip: impl === 'db' ? 18 : 23, shin: HINGE.shin.rdl, sx: [-2, -2] }
-    : { style, impl, yStart: 22.5, yEnd: 80, stance: 14, toeOut: 8, grip: impl === 'trapbar' ? 27 : impl === 'db' ? 26 : 23, shin: HINGE.shin.floor, sx: [3, -9] };
+    ? { style, impl, yEnd: 55, stance: style === 'singleLeg' ? 8.5 : 14, toeOut: 8, grip: impl === 'db' ? 18 : 23, shin: HINGE.shin.rdl, sx: [-2, -2] }
+    : { style, impl, stance: 14, toeOut: 8, grip: impl === 'trapbar' ? EQUIP.trapW : impl === 'db' ? 26 : 23, shin: HINGE.shin.floor, sx: [3, -9] };
   const p = { ...base, ...o };
   return { family: 'hinge', p, lowerFirst: rdl || style === 'goodMorning' };
 };
@@ -66,7 +67,7 @@ export const VARIANTS: Record<string, Variant> = {
   'Squeeze Press (hantle)': BP('db', { grip: 7, squeeze: true }),
   'Smith Machine Bench Press': BP('smith'),
   'Smith Machine Incline Press': BP('smith', { angle: 30, touch: 38 }),
-  'JM Press': BP('barbell', { grip: 12, touch: 47, touchB: 9, flare: 0.8 }),
+  'JM Press': BP('barbell', { grip: 12, touch: 60, touchB: 10, flare: 0.8 }),
   'One-Arm Kettlebell Floor Press': BP('kb', { floor: true, oneArm: true, grip: 20 }),
   'One Arm Dumbbell Bench Press': BP('db', { oneArm: true, grip: 22 }),
   'Barbell Guillotine Bench Press': BP('barbell', { grip: 42, touch: 50, touchB: 9 }),
@@ -96,7 +97,7 @@ export const VARIANTS: Record<string, Variant> = {
   'Single Leg RDL (hantel)': HG('singleLeg', 'db', { grip: 13 }),
   'Single Leg RDL (linki)': HG('singleLeg', 'cable', { grip: 13 }),
   'Cable Pull Through': HG('pullThrough', 'cable', { grip: 6, pull: true, yEnd: 62 }),
-  'Single Arm RDL (hantel/linka)': HG('singleLeg', 'db', { grip: 13 }),
+  'Single Arm RDL (hantel/linka)': HG('rdl', 'db', { oneArm: true, grip: 24 }),
   'Sumo Deadlift (kettlebell)': HG('floor', 'kb', { ...SUMO, yStart: 26, grip: 6 }),
   'Axle Deadlift': HG('floor', 'barbell'),
   'Deadlift with Bands': HG('floor', 'barbell', { band: true }),
@@ -104,7 +105,7 @@ export const VARIANTS: Record<string, Variant> = {
   'Deficit Deadlift': HG('floor', 'barbell', { platform: 8 }),
   'Rack Pull with Bands': HG('floor', 'barbell', { yStart: 45, band: true }),
   'Reverse Band Deadlift': HG('floor', 'barbell', { band: true }),
-  'Cable Deadlift': HG('floor', 'cable', { grip: 6, yStart: 20 }),
+  'Cable Deadlift': HG('floor', 'cable', { yStart: 20 }),
   'Leverage Deadlift': HG('floor', 'trapbar', { yStart: 24, sx: [2, -6] }),
   'One-Arm Side Deadlift': HG('floor', 'barbell', { oneArm: true }),
   'Rickshaw Deadlift': HG('floor', 'trapbar', { yStart: 26, sx: [2, -6] }),

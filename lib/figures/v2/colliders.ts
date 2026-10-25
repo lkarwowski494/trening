@@ -44,13 +44,15 @@ export function equipColliders(props: Prop[]): Collider[] {
   for (const p of props) {
     switch (p.k) {
       case 'barbell': c.push({ k: 'capsule', id: 'bar', a: [p.c[0], p.c[1], -(p.len ?? EQUIP.barLen) / 2], b: [p.c[0], p.c[1], (p.len ?? EQUIP.barLen) / 2], r: EQUIP.barR }); break;
-      case 'trapbar': for (const sg of [-1, 1]) c.push({ k: 'capsule', id: 'bar', a: [p.c[0] - 7, p.c[1], sg * 27], b: [p.c[0] + 7, p.c[1], sg * 27], r: 1.8 }); break;
+      case 'trapbar': for (const sg of [-1, 1]) c.push({ k: 'capsule', id: 'bar', a: [p.c[0] - 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], b: [p.c[0] + 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], r: 1.8 }); break;
       case 'dumbbell': c.push({ k: 'capsule', id: 'db' + p.side, a: p.c, b: p.c, r: p.r ?? EQUIP.dbHeadR }); break;
       case 'kettlebell': c.push({ k: 'capsule', id: 'kb', a: [p.c[0], p.c[1] - 12, p.c[2]], b: [p.c[0], p.c[1] - 12, p.c[2]], r: p.r ?? EQUIP.kbBallR }); break;
       case 'bench': { const bp = benchPolys(p); const w = (p.w ?? EQUIP.benchW) / 2; c.push(prism('benchSeat', bp.seat, -w, w), prism('benchBack', bp.back, -w, w)); break; }
       case 'box': { const w = (p.w ?? EQUIP.boxW) / 2; c.push(prism('box', rectPoly(p.x0, 0, p.x1, p.top), -w, w)); break; }
       case 'wall': c.push(prism('wall', rectPoly(p.x - EQUIP.wallW, 0, p.x, p.h), -100, 100)); break;
       case 'mat': c.push(prism('mat', rectPoly(p.x0, 0, p.x1, p.h), -60, 60)); break;
+      case 'post': for (const sg of [-1, 1]) c.push(prism('post', rectPoly(p.x - EQUIP.postW / 2, 0, p.x + EQUIP.postW / 2, p.h), sg * 64 - 2, sg * 64 + 2)); break;
+      case 'rail': for (const sg of [-1, 1]) c.push(prism('rail', rectPoly(p.x - EQUIP.railW / 2, 0, p.x + EQUIP.railW / 2, p.h), sg * 56 - 1, sg * 56 + 1)); break;
       default: break;
     }
   }
@@ -97,7 +99,7 @@ export function checkFrame(f: Frame): Issue[] {
   if (allPts.some(p => p.some(v => !Number.isFinite(v)))) { out.push({ code: 'finite', detail: 'niefinitywne współrzędne' }); return out; }
   for (const s of SIDES) {
     const L = sk.legs[s], A = sk.arms[s];
-    const bones: [string, number, number][] = [['thigh', dist(L.hip, L.knee), BODY.thigh], ['shank', dist(L.knee, L.ankle), BODY.shank], ['uarm', dist(A.shoulder, A.elbow), BODY.uarm], ['farm', dist(A.elbow, A.grip), BODY.farm + BODY.hand]];
+    const bones: [string, number, number][] = [['thigh', dist(L.hip, L.knee), BODY.thigh], ['shank', dist(L.knee, L.ankle), BODY.shank], ['uarm', dist(A.shoulder, A.elbow), BODY.uarm], ['farm', dist(A.elbow, A.grip), A.lower]];
     for (const [n, got, want] of bones) if (Math.abs(got - want) > 1e-4) out.push({ code: 'bone', detail: `${n}${s}: ${got.toFixed(4)} ≠ ${want}` });
     if (L.err > TOL.reach) out.push({ code: 'reach', detail: `noga ${s}: cel poza zasięgiem o ${L.err.toFixed(2)} cm` });
     if (A.err > TOL.reach) out.push({ code: 'reach', detail: `ręka ${s}: cel poza zasięgiem o ${A.err.toFixed(2)} cm` });
@@ -108,7 +110,7 @@ export function checkFrame(f: Frame): Issue[] {
   for (const b of body) for (const e of eq) {
     const g = gap(b, e); const allowed = f.contacts.find(c => matches(b.id, c.body) && matches(e.id, c.equip));
     const heldHand = /^farm/.test(b.id) && /^(bar|db|kb)/.test(e.id);
-    const tol = heldHand ? 12 : allowed ? allowed.tol : TOL.pen;
+    const tol = heldHand ? (/^kb/.test(e.id) ? 14 : 12) : allowed ? allowed.tol : TOL.pen;
     if (g < -tol) out.push({ code: 'pen', detail: `${b.id} × ${e.id}: przenikanie ${(-g).toFixed(2)} cm (dopuszczalne ${tol})` });
   }
   const head = body.find(b => b.id === 'head'); const bodyOther = body.filter(b => /^(uarm|farm)/.test(b.id));
@@ -123,7 +125,7 @@ export function holdChecks(f: Frame): { name: string; err: number; tol: number }
   const seg = (p: V3, a: V3, b: V3): number => distSegSeg(p, p, a, b);
   for (const p of f.props) {
     if (p.k === 'barbell' && p.held !== false) for (const s of p.held === 'R' ? ['R' as const] : SIDES) out.push({ name: `gryf/${s}`, err: seg(sk.arms[s].grip, [p.c[0], p.c[1], -60], [p.c[0], p.c[1], 60]), tol: 0.6 });
-    if (p.k === 'trapbar') for (const s of SIDES) { const z = s === 'R' ? 27 : -27; out.push({ name: `uchwyt/${s}`, err: seg(sk.arms[s].grip, [p.c[0] - 7, p.c[1], z], [p.c[0] + 7, p.c[1], z]), tol: 0.6 }); }
+    if (p.k === 'trapbar') for (const s of SIDES) { const z = (s === 'R' ? 1 : -1) * (p.w ?? EQUIP.trapW); out.push({ name: `uchwyt/${s}`, err: seg(sk.arms[s].grip, [p.c[0] - 7, p.c[1], z], [p.c[0] + 7, p.c[1], z]), tol: 0.6 }); }
     if (p.k === 'dumbbell' && p.held !== false) for (const s of p.vertical ? SIDES : [p.side]) out.push({ name: `hantel/${s}`, err: dist(sk.arms[s].grip, p.c), tol: p.vertical ? 6.5 : 0.6 });
     if (p.k === 'kettlebell' && p.held !== false) for (const s of p.side === 'R' || p.side === 'L' ? [p.side] : SIDES) out.push({ name: `kettlebell/${s}`, err: dist(sk.arms[s].grip, p.c), tol: 7 });
   }

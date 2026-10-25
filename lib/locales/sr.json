@@ -1740,5 +1740,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Бесплатни дани тренинга овог месеца: искоришћено {n} од {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} од {limit} бесплатних дана тренинга овог месеца.",
  "Został|Zostały|Zostało": "Преостаје|Преостају|Преостаје",
- "Zakończ trening na telefonie": "Заврши тренинг на телефону"
+ "Zakończ trening na telefonie": "Заврши тренинг на телефону",
+ "Ogólne wskazówki dla tego ruchu": "General tips for this movement"
 }

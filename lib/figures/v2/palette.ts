@@ -26,10 +26,10 @@ export type FigurePalette = Record<Role, string>;
  * (granat w jasnym, krem w ciemnym), ciężary = barwa pasma (teal). Dalsza strona ciała bliżej tła.
  */
 export function figurePalette(th: FigureTheme): FigurePalette {
-  const skin = mixHex(th.ctrlLine, th.bg, 0.28);
+  const skin = mixHex(th.ctrlLine, th.bg, 0.08);
   return {
     floor: th.ctrlLine, frame: th.ctrlLine, pad: th.surface2, steel: th.muted, plate: th.band, load: th.band,
-    skin, skinFar: mixHex(skin, th.bg, 0.42), cloth: th.accent, clothFar: mixHex(th.accent, th.bg, 0.4),
+    skin, skinFar: mixHex(skin, th.bg, 0.35), cloth: th.accent, clothFar: mixHex(th.accent, th.bg, 0.4),
     shoe: th.text, hair: th.text, guide: th.doneLine, cable: th.ctrlLine, muscleMain: th.less, muscleAux: mixHex(th.less, th.bg, 0.5),
   };
 }

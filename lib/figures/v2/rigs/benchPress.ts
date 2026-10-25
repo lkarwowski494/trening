@@ -34,7 +34,7 @@ export const BENCH = {
   seatTop: 43, declineSeat: 60, padBack: 10.2, backLen: 75, seatLen: 55,
   /** Stopy: odległość kostki od miednicy w stronę stóp (cm) i rozstaw. */
   footBack: 40, footHalf: 24,
-  arm: BODY.uarm + BODY.farm + BODY.hand - 0.8,
+  arm: BODY.uarm + BODY.farm + BODY.hand - 0.05,
 } as const;
 
 export function benchFrame(p: BenchParams, u: number): Frame {
@@ -60,7 +60,7 @@ export function benchFrame(p: BenchParams, u: number): Frame {
   /* dół: dotyk w układzie tułowia (u podłogi: wysokość, przy której łokcie dotykają podłogi) */
   const touchB = p.touchB ?? 11.9 + EQUIP.barR;
   let bottom = trunkPoint(hip, trunkPitch, p.touch, touchB, 0);
-  const fl = p.flare ?? (p.grip < 20 ? 1.1 : 0.45); const elbowPole: V3 = [0, -1, fl];
+  const fl = p.flare ?? (p.grip < 20 ? 1.1 : 0.8); const elbowPole: V3 = [0, -1, fl];
   if (floorPress) {
     const f = (y: number): number => { const sh: V3 = [shoulderC[0], shoulderC[1], BODY.shHalf]; const r = ik2(sh, [bottom[0], y, g], BODY.uarm, BODY.farm + BODY.hand, elbowPole); return r.mid[1] - (2 + 4.6); };
     bottom = [bottom[0], solveRoot(f, bottom[1] - 4, bottom[1] + 30), 0];

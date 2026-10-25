@@ -1740,5 +1740,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Jours d’entraînement gratuits utilisés ce mois-ci : {n} sur {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} sur {limit} jours d’entraînement gratuits ce mois-ci.",
  "Został|Zostały|Zostało": "Il reste|Il reste",
- "Zakończ trening na telefonie": "Terminez la séance sur le téléphone"
+ "Zakończ trening na telefonie": "Terminez la séance sur le téléphone",
+ "Ogólne wskazówki dla tego ruchu": "General tips for this movement"
 }

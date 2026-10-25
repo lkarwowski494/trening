@@ -1,5 +1,5 @@
 /*
- * Rodzina „przysiad” (obustronny przysiad stojący): sztanga na plecach (wysoko/nisko), z przodu, Zercher, nad głową, goblet (hantel/kettlebell),
+ * Rodzina „przysiad” (obustronny przysiad stojący): sztanga na plecach (wysoko), z przodu, Zercher, nad głową, goblet (hantel/kettlebell),
  * hantle przy bokach, ciężar własny, linka, landmine, suwnica Smitha, skrzynia, ściana (siad przy ścianie), taśmy i łańcuchy.
  *
  * Model: stopy płasko na podłodze (kostka 7 cm nad podłogą), kąt zgięcia kolana K narasta z u (0 = wyprost, K_end = dół), podudzie pochyla się do przodu
@@ -13,7 +13,7 @@ import type { Frame, Prop, Contact } from '../scene';
 import { ease, legFK, mkFrame, solveRoot, trunkPoint, type ShinRule } from './common';
 import type { PoseIn } from '../skeleton';
 
-export type SquatLoad = 'highBar' | 'lowBar' | 'frontBar' | 'zercher' | 'overhead' | 'goblet' | 'dbSides' | 'dbSumo' | 'bodyweight' | 'belt' | 'landmine' | 'behind' | 'kbRack' | 'kbOverhead1';
+export type SquatLoad = 'highBar' | 'frontBar' | 'zercher' | 'overhead' | 'goblet' | 'dbSides' | 'dbSumo' | 'bodyweight' | 'belt' | 'landmine' | 'behind' | 'kbRack' | 'kbOverhead1';
 export type SquatImpl = 'barbell' | 'db' | 'kb' | 'none' | 'cable';
 export type SquatParams = {
   load: SquatLoad; impl: SquatImpl;
@@ -33,9 +33,11 @@ export const SQUAT = {
   midfoot: (BODY.toeFwd - BODY.heelBack) / 2,
   /** Pochylenie tułowia w pozycji stojącej dla ciężaru własnego i dół (harmonogram), stopnie. */
   tauBody: [3, 32] as [number, number],
-  gripHalf: { highBar: 28, lowBar: 30, frontBar: 21, overhead: 36, goblet: 5, zercher: 8 },
+  gripHalf: { highBar: 32, frontBar: 21, overhead: 36, goblet: 5, zercher: 8 },
   /** Środek gryfu w układzie tułowia: odsunięcie od osi (cm) wysoko/nisko na plecach i z przodu (powierzchnia tułowia + promień gryfu). */
-  barBack: { high: 12.8, low: 12.6 }, barFront: 9.0,
+  barBack: { high: 12.8 }, barFront: 9.0,
+  /** Odległość łokieć–chwyt w racku przedniej (palce zagięte pod gryfem), cm. */
+  rackLower: 27,
   landminePivot: 150, cablePulley: [95, 12] as [number, number],
   sit: 9, /* wysokość stawu biodrowego nad siedziskiem (pośladek) */
 } as const;
@@ -70,23 +72,22 @@ export function squatFrame(p: SquatParams, u: number): Frame {
   const props: Prop[] = []; const info: Record<string, V3> = {}; const contacts: Contact[] = [];
   props.push({ k: 'floor', x0: -95, x1: 120 });
   let tau = 0; let load: V3 | null = null;
-  const gh = SQUAT.gripHalf; const armsHeld = (g: V3, half: number, pole: V3) => ({ R: { grip: [g[0], g[1], half] as V3, elbowPole: [pole[0], pole[1], pole[2]] as V3 }, L: { grip: [g[0], g[1], -half] as V3, elbowPole: [pole[0], pole[1], -pole[2]] as V3 } });
+  const gh = SQUAT.gripHalf; const armsHeld = (g: V3, half: number, pole: V3, lower?: number) => ({ R: { grip: [g[0], g[1], half] as V3, elbowPole: [pole[0], pole[1], pole[2]] as V3, lower }, L: { grip: [g[0], g[1], -half] as V3, elbowPole: [pole[0], pole[1], -pole[2]] as V3, lower } });
   let arms: PoseIn['arms'];
   const target = (off: number) => ankX + mid + off;
-  const barAt = (kind: 'high' | 'low' | 'front', t: number): V3 => kind === 'high' ? trunkPoint(hipC(), t, BODY.trunk - 3, -SQUAT.barBack.high, 0) : kind === 'low' ? trunkPoint(hipC(), t, BODY.trunk - 9, -SQUAT.barBack.low, 0) : trunkPoint(hipC(), t, BODY.trunk + 1, SQUAT.barFront, 0);
+  const barAt = (kind: 'high' | 'front', t: number): V3 => kind === 'high' ? trunkPoint(hipC(), t, BODY.trunk - 3, -SQUAT.barBack.high, 0) : trunkPoint(hipC(), t, BODY.trunk + 1, SQUAT.barFront, 0);
   const balanceTau = (anchor: (t: number) => V3, off: number): number => wallSit ? 0 : solveRoot(t => anchor(t)[0] - target(off), -5, 80);
   const barOff = p.smith ? -14 : 0;
   const poleBack: V3 = [-0.7, -1, 0.5];
 
   switch (p.load) {
-    case 'highBar': case 'lowBar': {
-      const kind = p.load === 'highBar' ? 'high' : 'low';
-      tau = balanceTau(t => barAt(kind, t), barOff); load = barAt(kind, tau);
-      arms = armsHeld(load, gh[p.load], poleBack); break;
+    case 'highBar': {
+      tau = balanceTau(t => barAt('high', t), barOff); load = barAt('high', tau);
+      arms = armsHeld(load, gh.highBar, poleBack); break;
     }
     case 'frontBar': {
       tau = balanceTau(t => barAt('front', t), barOff); load = barAt('front', tau);
-      arms = armsHeld(load, gh.frontBar, [1, 0.5, 0.25]); break;
+      arms = armsHeld(load, gh.frontBar, [1, 0.5, 0.25], SQUAT.rackLower); break;
     }
     case 'zercher': {
       const anc = (t: number) => trunkPoint(hipC(), t, 24, 14.5, 0);
@@ -94,8 +95,8 @@ export function squatFrame(p: SquatParams, u: number): Frame {
       const hand = trunkPoint(hipC(), tau, 36, 12.5, 0); arms = armsHeld(hand, gh.zercher, [0.6, -1, 0.3]); break;
     }
     case 'overhead': {
-      tau = SQUAT.tauBody[0] + 10 + (28 - 10) * ease(u); const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0);
-      const L = BODY.uarm + BODY.farm + BODY.hand - 3; const dx = target(0) - sh[0]; const dy = Math.sqrt(Math.max(0, L * L - dx * dx - (gh.overhead - 19) ** 2));
+      tau = 8 + 14 * ease(u); const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0);
+      const L = BODY.uarm + BODY.farm + BODY.hand - 0.05; const dx = target(0) - sh[0]; const dy = Math.sqrt(Math.max(0, L * L - dx * dx - (gh.overhead - 19) ** 2));
       load = [sh[0] + dx, sh[1] + dy, 0]; arms = armsHeld(load, gh.overhead, [0, 0, 0.1]); break;
     }
     case 'goblet': {
@@ -105,11 +106,11 @@ export function squatFrame(p: SquatParams, u: number): Frame {
     }
     case 'kbRack': {
       tau = balanceTau(t => barAt('front', t), 0); load = barAt('front', tau);
-      arms = armsHeld(trunkPoint(hipC(), tau, BODY.trunk - 2, 15, 0), 14, [0.8, -0.6, 0.3]); break;
+      arms = armsHeld(trunkPoint(hipC(), tau, BODY.trunk - 2, 15, 0), 14, [0.8, -0.6, 0.3], SQUAT.rackLower); break;
     }
     case 'kbOverhead1': {
       tau = tauSched() * 0.7; const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, BODY.shHalf);
-      const L = BODY.uarm + BODY.farm + BODY.hand - 3; const dx = (ankX + mid) - sh[0];
+      const L = BODY.uarm + BODY.farm + BODY.hand - 0.05; const dx = (ankX + mid) - sh[0];
       load = [sh[0] + dx, sh[1] + Math.sqrt(Math.max(0, L * L - dx * dx)), BODY.shHalf];
       arms = { R: { grip: load, elbowPole: [0, 0, 0.1] }, L: { grip: add(trunkPoint(hipC(), tau, BODY.trunk - 6, 24, 0), [0, 0, -14]), elbowPole: [0.2, -1, -0.5] } }; break;
     }
@@ -153,7 +154,7 @@ export function squatFrame(p: SquatParams, u: number): Frame {
     if (p.band) props.push({ k: 'band', from: c, to: [c[0], 0, 0] });
     if (p.chain) props.push({ k: 'chain', from: c, to: [c[0], 0, 0] });
     if (p.smith) props.push({ k: 'rail', x: c[0], h: 200 });
-    if (p.load === 'highBar' || p.load === 'lowBar') contacts.push({ body: 'torso', equip: 'bar', tol: 1.6 });
+    if (p.load === 'highBar') contacts.push({ body: 'torso', equip: 'bar', tol: 1.6 });
     if (p.load === 'frontBar') contacts.push({ body: 'torso', equip: 'bar', tol: 2.6 });
     if (p.load === 'zercher') contacts.push({ body: 'torso', equip: 'bar', tol: 6 }, { body: 'uarm', equip: 'bar', tol: 6 }, { body: 'farm', equip: 'bar', tol: 6 });
     if (p.load === 'behind') contacts.push({ body: 'thigh', equip: 'bar', tol: 1.5 });
@@ -163,6 +164,7 @@ export function squatFrame(p: SquatParams, u: number): Frame {
   if (p.impl === 'db' && p.load === 'dbSides') for (const s of ['R', 'L'] as const) props.push({ k: 'dumbbell', c: [c[0], c[1], s === 'R' ? BODY.shHalf + 13 : -(BODY.shHalf + 13)], side: s });
   if (p.impl === 'db' && p.load === 'dbSumo') props.push({ k: 'dumbbell', c, side: 'R', vertical: true });
   if (p.impl === 'kb' && p.load === 'kbRack') for (const s of ['R', 'L'] as const) props.push({ k: 'kettlebell', c: trunkPoint(hipC(), tau, BODY.trunk - 2, 15, s === 'R' ? 14 : -14), side: s });
+  if (p.load === 'kbRack') contacts.push({ body: 'uarm', equip: 'kb', tol: 2.5 }, { body: 'torso', equip: 'kb', tol: 2.5 }, { body: 'farm', equip: 'kb', tol: 14 });
   if (p.impl === 'kb' && p.load === 'kbOverhead1') props.push({ k: 'kettlebell', c: add(c, [0, 6, 0]), side: 'R' });
   if (p.impl === 'kb' && p.load === 'dbSumo') props.push({ k: 'kettlebell', c: add(c, [0, 0, 0]), side: 'C' });
   if (p.load === 'belt') props.push({ k: 'cable', from: [info.midfoot[0], 0, 0], to: hipC() });

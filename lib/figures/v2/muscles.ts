@@ -5,7 +5,7 @@
  * Kształt: pasmo na odpowiednim odcinku ciała (przód/tył/oba boki), kolory muscleMain / muscleAux z palette.ts.
  */
 import { add, mul, norm, sub, type V2, type V3 } from './math';
-import { BODY, GIRTH, type Skeleton } from './skeleton';
+import { GIRTH, type Skeleton } from './skeleton';
 import { depthOf, proj, spineAt, TORSO_SIDE, TORSO_FRONT } from './draw';
 import { LAYER, type Shape, type View } from './scene';
 
@@ -41,22 +41,20 @@ function frontOf(sk: Skeleton, limb: Limb, s: 'R' | 'L'): V3 {
   const L = sk.legs[s]; return norm(sub(L.toe, L.heel));
 }
 
-/** Pasmo na kończynie: t0–t1 wzdłuż odcinka, strona względem „przodu” kończyny (w rzucie). */
+/** Pasmo na kończynie: t0–t1 wzdłuż odcinka. Z boku: strona przód/tył względem „przodu” kończyny; z przodu i z góry: pasmo na całej szerokości kończyny albo jej wewnętrzna/zewnętrzna połowa. */
 function limbBand(sk: Skeleton, view: View, r: Reg, s: 'R' | 'L'): Shape | null {
-  const [A, B] = limbPts(sk, r.limb, s); const z = (depthOf(A, view) + depthOf(B, view)) / 2; const a = proj(A, view), b = proj(B, view);
-  const d: V2 = [b[0] - a[0], b[1] - a[1]]; const L = Math.hypot(d[0], d[1]); if (L < 1e-6) return null;
-  const u: V2 = [d[0] / L, d[1] / L]; let n: V2 = [-u[1], u[0]];
-  const f3 = frontOf(sk, r.limb, s); const f = proj(add(A, f3), view); const f0 = proj(A, view); const fv: V2 = [f[0] - f0[0], f[1] - f0[1]];
-  let lateral = false;
-  if (view !== 'side') { /* z przodu: strona = przód/tył nie jest widoczna, mięsień rysowany na całej szerokości; bok = wewnętrzny/zewnętrzny */ lateral = true; }
-  if (!lateral) { if (n[0] * fv[0] + n[1] * fv[1] < 0) n = [-n[0], -n[1]]; }
-  else { const out = s === 'R' ? 1 : -1; const lat: V2 = [-out, 0]; if (n[0] * lat[0] < 0) n = [-n[0], -n[1]]; }
-  const [r0, r1] = RADII[r.limb]; const rad = (t: number) => r0 + (r1 - r0) * t;
-  const sign = r.side === 'back' || r.side === 'inner' ? -1 : 1;
-  const pts: V2[] = []; const N = 8;
-  const lo = lateral ? (r.side === 'inner' ? -1 : r.side === 'outer' ? 1 : 0) : sign;
-  for (let i = 0; i <= N; i++) { const t = r.t0 + (r.t1 - r.t0) * i / N; const c: V2 = [a[0] + d[0] * t, a[1] + d[1] * t]; const w = rad(t); const o = lateral ? (lo === 0 ? -w * 0.85 : lo * w * 0.98) : lo * w * 0.98; const o2 = lateral ? (lo === 0 ? w * 0.85 : lo * w * 0.2) : lo * w * 0.2; pts.push([c[0] + n[0] * o, c[1] + n[1] * o]); void o2; }
-  for (let i = N; i >= 0; i--) { const t = r.t0 + (r.t1 - r.t0) * i / N; const c: V2 = [a[0] + d[0] * t, a[1] + d[1] * t]; const w = rad(t); const o2 = lateral ? (lo === 0 ? w * 0.85 : lo * w * 0.2) : lo * w * 0.2; pts.push([c[0] + n[0] * o2, c[1] + n[1] * o2]); }
+  const [A, B] = limbPts(sk, r.limb, s); const z = (depthOf(A, view) + depthOf(B, view)) / 2;
+  const a = proj(A, view), b = proj(B, view); const d: V2 = [b[0] - a[0], b[1] - a[1]]; const L = Math.hypot(d[0], d[1]); if (L < 1e-6) return null;
+  let n: V2 = [-d[1] / L, d[0] / L];
+  const lateral = view !== 'side';
+  if (!lateral) { const f0 = proj(A, view), f1 = proj(add(A, frontOf(sk, r.limb, s)), view); if (n[0] * (f1[0] - f0[0]) + n[1] * (f1[1] - f0[1]) < 0) n = [-n[0], -n[1]]; }
+  else if (n[0] * (s === 'R' ? -1 : 1) < 0) n = [-n[0], -n[1]]; /* n wskazuje na zewnątrz kończyny (prawa strona osoby jest po lewej na rysunku z przodu) */
+  const [r0, r1] = RADII[r.limb]; const rad = (t: number): number => r0 + (r1 - r0) * t;
+  /* przedział poprzeczny [lo, hi] jako ułamek promienia: bok przedni/zewnętrzny = (0,2; 0,98), tylny/wewnętrzny = (−0,98; −0,2), cała szerokość = (−0,85; 0,85) */
+  const [lo, hi]: [number, number] = lateral ? (r.side === 'outer' ? [0.2, 0.98] : r.side === 'inner' ? [-0.98, -0.2] : [-0.85, 0.85]) : (r.side === 'back' ? [-0.98, -0.2] : [0.2, 0.98]);
+  const N = 8; const pts: V2[] = [];
+  const edge = (k: number): V2[] => Array.from({ length: N + 1 }, (_, i) => { const t = r.t0 + (r.t1 - r.t0) * i / N; const w = rad(t) * k; return [a[0] + d[0] * t + n[0] * w, a[1] + d[1] * t + n[1] * w] as V2; });
+  pts.push(...edge(hi), ...edge(lo).reverse());
   return { k: 'poly', pts, fill: 'muscleMain', close: true, smooth: true, z: LAYER.body * 1000 + z + 0.2 };
 }
 
@@ -65,20 +63,18 @@ const interp = (tab: [number, number, number][], a: number): [number, number] =>
   return [tab[tab.length - 1][1], tab[tab.length - 1][2]];
 };
 
+/** Pasmo na tułowiu: a0–a1 cm od miednicy wzdłuż kręgosłupa; z boku przód albo tył (od osi do powierzchni), z przodu i z góry — cała szerokość. */
 function torsoBand(sk: Skeleton, view: View, r: TorsoReg): Shape | null {
-  const N = 6; const pts: V2[] = []; const inner: V2[] = [];
+  const N = 6; const outer: V2[] = [], inner: V2[] = [];
   for (let i = 0; i <= N; i++) {
     const a = r.a0 + (r.a1 - r.a0) * i / N; const { p, up } = spineAt(sk, a);
     if (view === 'side') {
       const n: V3 = [up[1], -up[0], 0]; const [bk, fr] = interp(TORSO_SIDE, a);
-      const o0 = r.side === 'front' ? 0 : bk * 0.98, o1 = r.side === 'back' ? 0 : fr * 0.98;
-      const c0 = r.side === 'front' ? fr * 0.98 : bk * 0.98, c1 = r.side === 'front' ? 1.5 : r.side === 'back' ? bk * -0.0 - 1.5 : fr * 0.98;
-      pts.push(proj(add(p, mul(n, c0)), view)); inner.push(proj(add(p, mul(n, r.side === 'both' ? c1 : r.side === 'front' ? 1.5 : -1.5)), view)); void o0; void o1;
-    } else {
-      const c = proj(p, view); const w = interpF(a); pts.push([c[0] - w * 0.85, c[1]]); inner.push([c[0] + w * 0.85, c[1]]);
-    }
+      const edge = r.side === 'front' ? fr * 0.98 : bk * 0.98, axis = r.side === 'front' ? 1.5 : r.side === 'back' ? -1.5 : fr * 0.98;
+      outer.push(proj(add(p, mul(n, edge)), view)); inner.push(proj(add(p, mul(n, axis)), view));
+    } else { const c = proj(p, view); const w = interpF(a); outer.push([c[0] - w * 0.85, c[1]]); inner.push([c[0] + w * 0.85, c[1]]); }
   }
-  const poly = [...pts, ...inner.reverse()]; return { k: 'poly', pts: poly, fill: 'muscleMain', close: true, smooth: true, z: LAYER.body * 1000 + (view === 'side' ? 0 : (sk.pelvis[0] + sk.shoulderC[0]) / 2) + 0.15 };
+  return { k: 'poly', pts: [...outer, ...inner.reverse()], fill: 'muscleMain', close: true, smooth: true, z: LAYER.body * 1000 + (view === 'side' ? 0 : (sk.pelvis[0] + sk.shoulderC[0]) / 2) + 0.15 };
 }
 const interpF = (a: number): number => { const t = TORSO_FRONT; for (let i = 1; i < t.length; i++) if (a <= t[i][0]) return t[i - 1][1] + (t[i][1] - t[i - 1][1]) * (a - t[i - 1][0]) / (t[i][0] - t[i - 1][0] || 1); return t[t.length - 1][1]; };
 
@@ -95,6 +91,5 @@ export function muscleShapes(sk: Skeleton, view: View, loads: Partial<Record<Mus
     const t = TORSO_REGIONS[m]; if (t && !(view !== 'side' && (t.side === 'back'))) push(torsoBand(sk, view, t));
     if (m === 'glutes' && view === 'side') { const c = proj(add(sk.pelvis, mul(sk.front, -4.5)), view); out.push({ k: 'circle', c, r: 7, fill: main ? 'muscleMain' : 'muscleAux', a: main ? 0.78 : 0.55, z: LAYER.body * 1000 + 0.3, id: 'muscle-glutes' }); }
   }
-  void BODY;
   return out;
 }

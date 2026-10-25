@@ -8,7 +8,7 @@
  *  3. zgięcie kolana K dobrane tak, by odległość biodro–bark = długość tułowia (rozwiązanie bisekcją).
  * Dzięki temu gryf jest zawsze nad śródstopiem w granicach kontaktu z nogami i nie przechodzi przez ciało. Kąty i rozstawy bez źródła = UPROSZCZENIE ILUSTRACYJNE.
  */
-import { BODY, legJoints } from '../skeleton';
+import { BODY, GIRTH, legJoints } from '../skeleton';
 import { distSegSeg, mul, sag, type V3 } from '../math';
 import type { Contact, Frame, Prop } from '../scene';
 import { EQUIP } from '../draw';
@@ -20,8 +20,10 @@ export type HingeStyle = 'floor' | 'rdl' | 'goodMorning' | 'pullThrough' | 'sing
 export type HingeImpl = 'barbell' | 'trapbar' | 'db' | 'kb' | 'cable' | 'smith';
 export type HingeParams = {
   style: HingeStyle; impl: HingeImpl;
-  /** Wysokość środka ciężaru na starcie (podłoga) albo na górze (RDL) i na końcu, cm. */
-  yStart: number; yEnd: number;
+  /** Wysokość środka ciężaru na starcie (podłoga) albo na górze (RDL, brak = wyprost) i na końcu, cm. */
+  yStart?: number;
+  /** Wysokość na końcu; brak = wyprost („lockout”): wyliczona z długości nóg i tułowia, żeby ramiona zostały proste do końca ruchu. */
+  yEnd?: number;
   /** Połowa rozstawu kostek, rotacja stóp, połowa rozstawu dłoni (cm). */
   stance: number; toeOut: number; grip: number;
   shin: ShinRule;
@@ -31,7 +33,8 @@ export type HingeParams = {
 };
 
 export const HINGE = {
-  arm: BODY.uarm + BODY.farm + BODY.hand - 1.0,
+  /** Ręce proste: długość ręki minus 0,05 cm (łokieć ≈ 3° zgięcia; dokładny wyprost = osobliwość IK). */
+  arm: BODY.uarm + BODY.farm + BODY.hand - 0.05,
   /** Najdalej do tyłu (x kostki = 0): ciężar nie schodzi za śródstopie (ręce przy bokach nie mają kontaktu z nogami). */
   xMin: 4.5, clear: 0.0, pulley: [75, 14] as [number, number],
   shin: {
@@ -54,20 +57,29 @@ function items(p: HingeParams, x: number, y: number): Item[] {
 /** Odstęp ciężaru od nóg (min po kapsułach uda i podudzia obu stron), cm; ujemny = przenikanie. */
 function clearance(p: HingeParams, x: number, y: number, legs: { hip: V3; knee: V3; ankle: V3 }[]): number {
   let m = Infinity;
+  /* sztanga przechodzi przed nogami (powierzchnia uda/podudzia z zapasem); ciężar po bokach (hantle, uchwyty) — promienie jak w kolizjach */
+  const centre = p.impl === 'barbell' || p.impl === 'smith' || p.impl === 'cable' || p.impl === 'kb';
+  const rt = centre ? 8.9 : (GIRTH.thigh[0] + GIRTH.thigh[2]) / 2, rs = centre ? 6.2 : (GIRTH.shank[0] + GIRTH.shank[2]) / 2;
   for (const it of items(p, x, y)) for (const L of legs) {
-    m = Math.min(m, distSegSeg(it.a, it.b, L.hip, L.knee) - it.r - 8.9, distSegSeg(it.a, it.b, L.knee, L.ankle) - it.r - 6.2);
+    m = Math.min(m, distSegSeg(it.a, it.b, L.hip, L.knee) - it.r - rt, distSegSeg(it.a, it.b, L.knee, L.ankle) - it.r - rs);
   }
   return m;
 }
 
 export function hingeFrame(p: HingeParams, u: number): Frame {
   if (p.style === 'goodMorning') return goodMorning(p, u);
-  const k = ease(u); const barY = p.yStart + (p.yEnd - p.yStart) * k; const sx = p.sx[0] + (p.sx[1] - p.sx[0]) * k;
+  const k = ease(u); const sx = p.sx[0] + (p.sx[1] - p.sx[0]) * k;
   const ankY = BODY.ankleH + (p.platform ?? 0); const ankles: Record<'R' | 'L', V3> = { R: [0, ankY, p.stance], L: [0, ankY, -p.stance] };
   const single = p.style === 'singleLeg'; if (single) { ankles.R = [0, ankY, BODY.hipHalf]; }
-  const gz = p.oneArm ? 2 : p.grip; const dz = Math.abs(gz - BODY.shHalf);
+  const rz = p.impl === 'db' ? p.grip : 2; const gz = p.oneArm ? rz : p.grip; const dz = Math.abs(gz - BODY.shHalf);
+  const dzLeg = Math.abs(p.stance - BODY.hipHalf);
+  const yEnd = p.yEnd ?? (legFK(0, p.shin, ankles.R, single ? 0 : dzLeg).hip[1] + BODY.trunk * 0.995 - Math.sqrt(Math.max(1, HINGE.arm ** 2 - p.sx[1] ** 2 - dz * dz)));
+  const rdlLike = p.style === 'rdl' || p.style === 'singleLeg' || p.style === 'pullThrough';
+  const yTop = legFK(0, p.shin, ankles.R, single ? 0 : dzLeg).hip[1] + BODY.trunk * 0.995 - Math.sqrt(Math.max(1, HINGE.arm ** 2 - p.sx[0] ** 2 - dz * dz));
+  const y0 = p.yStart ?? (rdlLike ? yTop : 22.5), y1 = rdlLike ? (p.yEnd ?? 55) : yEnd;
+  const barY = y0 + (y1 - y0) * k;
   const Larm = Math.sqrt(Math.max(1, HINGE.arm ** 2 - sx * sx - dz * dz));
-  const dzL = Math.abs(p.stance - BODY.hipHalf); const chain = (K: number) => legFK(K, p.shin, ankles.R, single ? 0 : dzL);
+  const chain = (K: number) => legFK(K, p.shin, ankles.R, single ? 0 : dzLeg);
   const legsAt = (K: number): { hip: V3; knee: V3; ankle: V3 }[] => {
     const c = chain(K); const pel: V3 = [c.hip[0], c.hip[1], 0];
     return (single ? ['R'] as const : ['R', 'L'] as const).map(s => { const j = legJoints(pel, s, { ankle: ankles[s], toeOut: p.toeOut }); return { hip: j.hip, knee: j.knee, ankle: ankles[s] }; });
@@ -87,11 +99,14 @@ export function hingeFrame(p: HingeParams, u: number): Frame {
   const g = (z: number): V3 => [barX, barY, z];
   let arms: PoseIn['arms'] = { R: { grip: g(gripHalf), elbowPole: [0, -1, 0.2] }, L: { grip: g(-gripHalf), elbowPole: [0, -1, -0.2] } };
   let legs: PoseIn['legs'] = { R: { ankle: ankles.R, toeOut: p.toeOut }, L: { ankle: ankles.L, toeOut: p.toeOut } };
-  if (p.oneArm && !single) arms = { R: { grip: g(2), elbowPole: [0, -1, 0.2] }, L: { grip: [barX - 4, barY + 20, -BODY.shHalf - 6], elbowPole: [0, -1, -0.5] } };
+  if (p.oneArm && !single) arms = { R: { grip: g(rz), elbowPole: [0, -1, 0.2] }, L: { grip: [barX - 4, barY + 20, -BODY.shHalf - 6], elbowPole: [0, -1, -0.5] } };
   if (single) {
     const back = mul(sag(tau + 180), 1); void back;
-    const dir = sag(tau + 180 + 6); const pitch = -25 * k; const minY = BODY.ankleH * Math.cos(pitch * Math.PI / 180) + BODY.toeFwd * Math.sin(-pitch * Math.PI / 180) + 0.5;
-    const free: V3 = [hip[0] + dir[0] * 80, Math.max(minY, hip[1] + dir[1] * 80), -BODY.hipHalf];
+    const dir = sag(tau + 180 + 6);
+    const free: V3 = [hip[0] + dir[0] * 80, hip[1] + dir[1] * 80, -BODY.hipHalf];
+    /* stopa wolnej nogi: podeszwowe zgięcie ok. 30° względem podudzia (palce „wskazują” wzdłuż nogi), nie niżej niż podłoga */
+    const legAng = Math.atan2(dir[1], dir[0]) * 180 / Math.PI; const pitch = Math.max(-90, Math.min(40, legAng + 90 - 30 * k));
+    const minY = BODY.ankleH * Math.cos(pitch * Math.PI / 180) + BODY.toeFwd * Math.max(0, Math.sin(-pitch * Math.PI / 180)) + 0.5; free[1] = Math.max(minY, free[1]);
     legs = { R: { ankle: ankles.R, toeOut: 5 }, L: { ankle: free, footPitch: pitch, toeOut: 5 } };
     arms = { R: { grip: g(BODY.hipHalf + 4), elbowPole: [0, -1, 0.2] }, L: { grip: [barX - 8, barY + 14, -BODY.shHalf + 4], elbowPole: [-0.5, -0.3, -1] } };
   }
@@ -100,8 +115,8 @@ export function hingeFrame(p: HingeParams, u: number): Frame {
   if (p.platform) props.push({ k: 'box', x0: -26, x1: 34, top: p.platform, w: 60 });
   if (p.impl === 'barbell' || p.impl === 'smith') { props.push({ k: 'barbell', c, held: p.oneArm ? 'R' : true }); info.bar = c; }
   if (p.impl === 'smith') props.push({ k: 'rail', x: barX, h: 190 });
-  if (p.impl === 'trapbar') { props.push({ k: 'trapbar', c }); info.bar = c; }
-  if (p.impl === 'db') for (const s of single ? ['R'] as const : ['R', 'L'] as const) props.push({ k: 'dumbbell', c: [barX, barY, s === 'R' ? gripHalf : -gripHalf], side: s });
+  if (p.impl === 'trapbar') { props.push({ k: 'trapbar', c, w: p.grip }); info.bar = c; }
+  if (p.impl === 'db') for (const s of single || p.oneArm ? ['R'] as const : ['R', 'L'] as const) props.push({ k: 'dumbbell', c: [barX, barY, s === 'R' ? gripHalf : -gripHalf], side: s });
   if (p.impl === 'kb') props.push({ k: 'kettlebell', c, side: 'C' });
   if (p.impl === 'cable') props.push({ k: 'cable', from: p.pull ? [-HINGE.pulley[0], HINGE.pulley[1], 0] : [barX, 0, 0], to: c });
   if (p.band) props.push({ k: 'band', from: c, to: [c[0], 0, 0] });

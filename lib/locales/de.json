@@ -1740,5 +1740,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Kostenlose Trainingstage in diesem Monat: {n} von {limit} genutzt",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} von {limit} kostenlosen Trainingstagen in diesem Monat {left}.",
  "Został|Zostały|Zostało": "übrig|übrig",
- "Zakończ trening na telefonie": "Training am Telefon beenden"
+ "Zakończ trening na telefonie": "Training am Telefon beenden",
+ "Ogólne wskazówki dla tego ruchu": "General tips for this movement"
 }

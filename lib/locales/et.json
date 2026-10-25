@@ -1740,5 +1740,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Tasuta treeningpäevad sel kuul: kasutatud {n} / {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Sel kuul on tasuta treeningpäevi {left}: {n} / {limit}.",
  "Został|Zostały|Zostało": "jäänud|jäänud",
- "Zakończ trening na telefonie": "Lõpeta treening telefonis"
+ "Zakończ trening na telefonie": "Lõpeta treening telefonis",
+ "Ogólne wskazówki dla tego ruchu": "General tips for this movement"
 }

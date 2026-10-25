@@ -8,19 +8,14 @@ export type V2 = [number, number];
 export const rad = (d: number): number => d * Math.PI / 180;
 export const deg = (r: number): number => r * 180 / Math.PI;
 export const clamp = (v: number, lo: number, hi: number): number => Math.max(lo, Math.min(hi, v));
-export const lerp = (a: number, b: number, k: number): number => a + (b - a) * k;
-export const smooth = (k: number): number => { const x = clamp(k, 0, 1); return x * x * (3 - 2 * x); };
 
 export const add = (a: V3, b: V3): V3 => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
 export const sub = (a: V3, b: V3): V3 => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
 export const mul = (a: V3, k: number): V3 => [a[0] * k, a[1] * k, a[2] * k];
 export const dot = (a: V3, b: V3): number => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
-export const cross = (a: V3, b: V3): V3 => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
 export const len = (a: V3): number => Math.hypot(a[0], a[1], a[2]);
 export const dist = (a: V3, b: V3): number => len(sub(a, b));
 export const norm = (a: V3): V3 => { const l = len(a) || 1; return [a[0] / l, a[1] / l, a[2] / l]; };
-export const mix = (a: V3, b: V3, k: number): V3 => [lerp(a[0], b[0], k), lerp(a[1], b[1], k), lerp(a[2], b[2], k)];
-export const lerpPt = (a: V2, b: V2, k: number): V2 => [lerp(a[0], b[0], k), lerp(a[1], b[1], k)];
 
 /** Kierunek w płaszczyźnie strzałkowej: kąt od pionu (w górę), dodatni = do przodu (+x). */
 export const sag = (angDeg: number): V3 => [Math.sin(rad(angDeg)), Math.cos(rad(angDeg)), 0];
@@ -44,18 +39,6 @@ export function ik2(a: V3, b: V3, l1: number, l2: number, pole: V3): { mid: V3; 
   return { mid, end, err: dist(end, b) };
 }
 
-/** Wartość z listy kluczy (k od 0 do 1) — interpolacja liniowa po punktach [k, wartość]. */
-export function curve(pts: [number, number][], k: number): number {
-  if (k <= pts[0][0]) return pts[0][1];
-  for (let i = 1; i < pts.length; i++) if (k <= pts[i][0]) { const [k0, v0] = pts[i - 1], [k1, v1] = pts[i]; return lerp(v0, v1, (k - k0) / (k1 - k0 || 1)); }
-  return pts[pts.length - 1][1];
-}
-
-/** Odległość punktu od odcinka a–b w 3D. */
-export function distPointSeg(p: V3, a: V3, b: V3): number {
-  const ab = sub(b, a); const l2 = dot(ab, ab) || 1e-12; const t = clamp(dot(sub(p, a), ab) / l2, 0, 1);
-  return dist(p, add(a, mul(ab, t)));
-}
 /** Odległość między odcinkami a1–a2 i b1–b2 w 3D (do testów kolizji kapsuł). */
 export function distSegSeg(a1: V3, a2: V3, b1: V3, b2: V3): number {
   const d1 = sub(a2, a1), d2 = sub(b2, b1), r = sub(a1, b1);

@@ -1740,5 +1740,6 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ilmaiset treenipäivät tässä kuussa: {n} / {limit} käytetty",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Ilmaisia treenipäiviä {left} tässä kuussa: {n} / {limit}.",
  "Został|Zostały|Zostało": "jäljellä|jäljellä",
- "Zakończ trening na telefonie": "Lopeta treeni puhelimella"
+ "Zakończ trening na telefonie": "Lopeta treeni puhelimella",
+ "Ogólne wskazówki dla tego ruchu": "General tips for this movement"
 }
