@@ -224,3 +224,24 @@ describe('workflow przeklad-tlumaczen.yml (strażnik)', () => {
     expect(s).toMatch(/LIMIT_KOSZTU_USD = 6;/);
   });
 });
+
+describe('słownik terminów w przekładzie przez API (25.10.2026, bez sieci)', () => {
+  const Z2 = JSON.stringify(path.join(ROOT, 'docs/lokalizacja/slownik-terminow.json'));
+  const pozycje = `[{ id: 1, rodzaj: 'nowy', pl: 'Przerwa robocza (s)', en: 'Working rest (s)' }, { id: 2, rodzaj: 'nowy', pl: 'Seria zrobiona', en: 'Set done' }]`;
+  test('żądanie dla języka zawiera słownik tylko tego języka (termin zalecany i zakazany z powodem) oraz zasadę naturalności', () => {
+    const y = run(`const sl = m.slownikTerminow(${JSON.stringify(ROOT)}); const p = ${pozycje}; console.log(JSON.stringify({ ja: m.budujZadanie('ja', p, {}, sl).messages[0].content, pt: m.budujZadanie('pt-BR', p, {}, sl).messages[0].content, system: m.SYSTEM }))`);
+    expect(y.ja).toContain('Słownik terminów treningowych'); expect(y.ja).toContain('インターバル'); expect(y.ja).toContain('NIE używaj: „休憩”');
+    expect(y.ja).not.toContain('faixa'); expect(y.pt).toContain('faixa de repetições'); expect(y.pt).not.toContain('インターバル');
+    expect(y.system).toMatch(/trener albo kolega na siłowni/); expect(y.system).toMatch(/NIE używaj/);
+  });
+  test('bez słownika (fixture) żądanie jest jak dotąd; odpowiedź z terminem zakazanym trafia do odrzuconych z powodem', () => {
+    const y = run(`const sl = m.slownikTerminow(${JSON.stringify(ROOT)}); const p = ${pozycje}; const bez = m.budujZadanie('pt', p, {}).messages[0].content; const r = m.parsujOdpowiedz(JSON.stringify({ 1: 'Descanso de trabalho (s)', 2: 'Série feita' }), p, 'pt', sl); console.log(JSON.stringify({ bez, r, nul: m.slownikTerminow('/nie/ma/takiego') }))`);
+    expect(y.bez).not.toContain('Słownik terminów'); expect(y.nul).toBeNull();
+    expect(Object.keys(y.r.propozycje)).toEqual(['Seria zrobiona']);
+    expect(y.r.odrzucone).toHaveLength(1); expect(y.r.odrzucone[0].powod).toMatch(/słownik terminów: przerwa_robocza/);
+  });
+  test('słownik z repozytorium ładuje się w przekładzie (ten sam plik co w strażniku)', () => {
+    expect(run(`console.log(JSON.stringify(m.slownikTerminow(${JSON.stringify(ROOT)}).pojecia.length))`)).toBeGreaterThanOrEqual(40);
+    expect(fs.existsSync(JSON.parse(Z2))).toBe(true);
+  });
+});
