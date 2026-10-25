@@ -13,7 +13,7 @@
   "idle": "Zacznij trening na telefonie",
   "finished": "Trening zakończony",
   "update": "Zaktualizuj aplikację na zegarku",
-  "nothingLeft": "nic więcej do zrobienia",
+  "finishOnPhone": "Zakończ trening na telefonie",
   "finish": "Zakończ serię",
   "workoutOn": "Trening wciąż trwa"
  },
@@ -31,7 +31,7 @@
   "idle": "Start a workout on your phone",
   "finished": "Workout finished",
   "update": "Update the watch app",
-  "nothingLeft": "nothing more to do",
+  "finishOnPhone": "Finish the workout on your phone",
   "finish": "Finish set",
   "workoutOn": "Workout still in progress"
  },
@@ -49,7 +49,7 @@
   "idle": "Začněte trénink v telefonu",
   "finished": "Trénink dokončen",
   "update": "Aktualizujte aplikaci v hodinkách",
-  "nothingLeft": "už nic nezbývá",
+  "finishOnPhone": "Dokončete trénink v telefonu",
   "finish": "Dokončit sérii",
   "workoutOn": "Trénink stále probíhá"
  },
@@ -67,7 +67,7 @@
   "idle": "Začnite tréning v telefóne",
   "finished": "Tréning dokončený",
   "update": "Aktualizujte aplikáciu v hodinkách",
-  "nothingLeft": "už nič nezostáva",
+  "finishOnPhone": "Dokončite tréning v telefóne",
   "finish": "Dokončiť sériu",
   "workoutOn": "Tréning stále prebieha"
  },
@@ -85,7 +85,7 @@
   "idle": "Indítson edzést a telefonon",
   "finished": "Az edzés véget ért",
   "update": "Frissítse az óra alkalmazását",
-  "nothingLeft": "nincs több teendő",
+  "finishOnPhone": "Fejezze be az edzést a telefonon",
   "finish": "Sorozat befejezése",
   "workoutOn": "Az edzés még folyamatban van"
  },
@@ -103,7 +103,7 @@
   "idle": "Începe un antrenament pe telefon",
   "finished": "Antrenament încheiat",
   "update": "Actualizează aplicația de pe ceas",
-  "nothingLeft": "nimic altceva de făcut",
+  "finishOnPhone": "Termină antrenamentul pe telefon",
   "finish": "Termină seria",
   "workoutOn": "Antrenamentul este încă în curs"
  },
@@ -121,7 +121,7 @@
   "idle": "Започнете тренировка на телефона",
   "finished": "Тренировката приключи",
   "update": "Обновете приложението на часовника",
-  "nothingLeft": "нищо повече за правене",
+  "finishOnPhone": "Завършете тренировката на телефона",
   "finish": "Край на серията",
   "workoutOn": "Тренировката все още продължава"
  },
@@ -139,7 +139,7 @@
   "idle": "Započni trening na telefonu",
   "finished": "Trening završen",
   "update": "Ažuriraj aplikaciju na satu",
-  "nothingLeft": "ništa više za odraditi",
+  "finishOnPhone": "Završi trening na telefonu",
   "finish": "Završi seriju",
   "workoutOn": "Trening je još u tijeku"
  },
@@ -157,7 +157,7 @@
   "idle": "Začni trening v telefonu",
   "finished": "Trening je končan",
   "update": "Posodobi aplikacijo na uri",
-  "nothingLeft": "ni več ničesar za narediti",
+  "finishOnPhone": "Končaj trening v telefonu",
   "finish": "Končaj serijo",
   "workoutOn": "Trening še poteka"
  },
@@ -175,7 +175,7 @@
   "idle": "Започни тренинг на телефону",
   "finished": "Тренинг је завршен",
   "update": "Ажурирај апликацију на сату",
-  "nothingLeft": "ништа више није преостало",
+  "finishOnPhone": "Заврши тренинг на телефону",
   "finish": "Заврши серију",
   "workoutOn": "Тренинг је још у току"
  },
@@ -193,7 +193,7 @@
   "idle": "Pradėkite treniruotę telefone",
   "finished": "Treniruotė baigta",
   "update": "Atnaujinkite programą laikrodyje",
-  "nothingLeft": "daugiau nieko neliko",
+  "finishOnPhone": "Baikite treniruotę telefone",
   "finish": "Baigti seriją",
   "workoutOn": "Treniruotė dar vyksta"
  },
@@ -211,7 +211,7 @@
   "idle": "Sāciet treniņu tālrunī",
   "finished": "Treniņš pabeigts",
   "update": "Atjauniniet lietotni pulkstenī",
-  "nothingLeft": "vairs nekas nav jādara",
+  "finishOnPhone": "Pabeidziet treniņu tālrunī",
   "finish": "Pabeigt sēriju",
   "workoutOn": "Treniņš joprojām notiek"
  },
@@ -229,7 +229,7 @@
   "idle": "Alusta treeningut telefonis",
   "finished": "Treening lõppenud",
   "update": "Värskenda kellarakendust",
-  "nothingLeft": "rohkem pole midagi teha",
+  "finishOnPhone": "Lõpeta treening telefonis",
   "finish": "Lõpeta seeria",
   "workoutOn": "Treening veel käib"
  },
@@ -247,7 +247,7 @@
   "idle": "Почніть тренування на телефоні",
   "finished": "Тренування завершено",
   "update": "Оновіть застосунок на годиннику",
-  "nothingLeft": "більше нічого не лишилося",
+  "finishOnPhone": "Завершіть тренування на телефоні",
   "finish": "Завершити підхід",
   "workoutOn": "Тренування ще триває"
  },
@@ -265,7 +265,7 @@
   "idle": "Empieza un entrenamiento en el teléfono",
   "finished": "Entrenamiento terminado",
   "update": "Actualiza la app del reloj",
-  "nothingLeft": "nada más por hacer",
+  "finishOnPhone": "Termina el entrenamiento en el teléfono",
   "finish": "Terminar serie",
   "workoutOn": "Entrenamiento aún en curso"
  },
@@ -283,7 +283,7 @@
   "idle": "Empieza un entrenamiento en el teléfono",
   "finished": "Entrenamiento terminado",
   "update": "Actualiza la app del reloj",
-  "nothingLeft": "nada más por hacer",
+  "finishOnPhone": "Termina el entrenamiento en el teléfono",
   "finish": "Terminar serie",
   "workoutOn": "Entrenamiento aún en curso"
  },
@@ -301,7 +301,7 @@
   "idle": "Inicie um treino no telemóvel",
   "finished": "Treino terminado",
   "update": "Atualize a app do relógio",
-  "nothingLeft": "nada mais para fazer",
+  "finishOnPhone": "Termine o treino no telemóvel",
   "finish": "Terminar série",
   "workoutOn": "O treino ainda está em curso"
  },
@@ -319,7 +319,7 @@
   "idle": "Inicie um treino no celular",
   "finished": "Treino finalizado",
   "update": "Atualize o app do relógio",
-  "nothingLeft": "nada mais para fazer",
+  "finishOnPhone": "Termine o treino no celular",
   "finish": "Terminar série",
   "workoutOn": "O treino ainda está em andamento"
  },
@@ -337,7 +337,7 @@
   "idle": "Training am Telefon starten",
   "finished": "Training beendet",
   "update": "Uhr-App aktualisieren",
-  "nothingLeft": "nichts mehr zu tun",
+  "finishOnPhone": "Training am Telefon beenden",
   "finish": "Satz beenden",
   "workoutOn": "Training läuft noch"
  },
@@ -355,7 +355,7 @@
   "idle": "Démarrez une séance sur le téléphone",
   "finished": "Séance terminée",
   "update": "Mettez à jour l’app de la montre",
-  "nothingLeft": "plus rien à faire",
+  "finishOnPhone": "Terminez la séance sur le téléphone",
   "finish": "Terminer la série",
   "workoutOn": "Séance toujours en cours"
  },
@@ -373,7 +373,7 @@
   "idle": "Avvia un allenamento sul telefono",
   "finished": "Allenamento terminato",
   "update": "Aggiorna l’app dell’orologio",
-  "nothingLeft": "nient’altro da fare",
+  "finishOnPhone": "Termina l'allenamento sul telefono",
   "finish": "Termina serie",
   "workoutOn": "Allenamento ancora in corso"
  },
@@ -391,7 +391,7 @@
   "idle": "Start een training op de telefoon",
   "finished": "Training beëindigd",
   "update": "Werk de app op het horloge bij",
-  "nothingLeft": "niets meer te doen",
+  "finishOnPhone": "Rond de training af op de telefoon",
   "finish": "Rond set af",
   "workoutOn": "Training loopt nog"
  },
@@ -409,7 +409,7 @@
   "idle": "Starta ett pass på telefonen",
   "finished": "Passet avslutat",
   "update": "Uppdatera appen på klockan",
-  "nothingLeft": "inget mer att göra",
+  "finishOnPhone": "Avsluta passet på telefonen",
   "finish": "Avsluta set",
   "workoutOn": "Passet pågår fortfarande"
  },
@@ -427,7 +427,7 @@
   "idle": "Start en træning på telefonen",
   "finished": "Træning afsluttet",
   "update": "Opdater appen på uret",
-  "nothingLeft": "intet mere at lave",
+  "finishOnPhone": "Afslut træningen på telefonen",
   "finish": "Afslut sæt",
   "workoutOn": "Træningen er stadig i gang"
  },
@@ -445,7 +445,7 @@
   "idle": "Start en økt på telefonen",
   "finished": "Økten er avsluttet",
   "update": "Oppdater appen på klokken",
-  "nothingLeft": "ingenting mer å gjøre",
+  "finishOnPhone": "Fullfør økten på telefonen",
   "finish": "Fullfør sett",
   "workoutOn": "Økten pågår fortsatt"
  },
@@ -463,7 +463,7 @@
   "idle": "Aloita treeni puhelimella",
   "finished": "Treeni päättyi",
   "update": "Päivitä kellosovellus",
-  "nothingLeft": "ei enää mitään tehtävää",
+  "finishOnPhone": "Lopeta treeni puhelimella",
   "finish": "Lopeta sarja",
   "workoutOn": "Treeni on yhä käynnissä"
  },
@@ -481,7 +481,7 @@
   "idle": "Telefonda antrenman başlat",
   "finished": "Antrenman bitti",
   "update": "Saat uygulamasını güncelle",
-  "nothingLeft": "yapılacak başka bir şey yok",
+  "finishOnPhone": "Antrenmanı telefonda bitir",
   "finish": "Seti bitir",
   "workoutOn": "Antrenman hâlâ devam ediyor"
  },
@@ -499,7 +499,7 @@
   "idle": "Ξεκινήστε προπόνηση στο τηλέφωνο",
   "finished": "Η προπόνηση ολοκληρώθηκε",
   "update": "Ενημερώστε την εφαρμογή του ρολογιού",
-  "nothingLeft": "δεν απομένει τίποτα",
+  "finishOnPhone": "Ολοκληρώστε την προπόνηση στο τηλέφωνο",
   "finish": "Τέλος σετ",
   "workoutOn": "Η προπόνηση συνεχίζεται"
  },
@@ -517,7 +517,7 @@
   "idle": "Mulai latihan di ponsel",
   "finished": "Latihan selesai",
   "update": "Perbarui aplikasi di jam tangan",
-  "nothingLeft": "tidak ada lagi yang perlu dikerjakan",
+  "finishOnPhone": "Selesaikan latihan di ponsel",
   "finish": "Selesaikan set",
   "workoutOn": "Latihan masih berjalan"
  },
@@ -535,7 +535,7 @@
   "idle": "Mulakan latihan pada telefon",
   "finished": "Latihan tamat",
   "update": "Kemas kini aplikasi pada jam",
-  "nothingLeft": "tiada lagi yang perlu dibuat",
+  "finishOnPhone": "Tamatkan latihan pada telefon",
   "finish": "Tamatkan set",
   "workoutOn": "Latihan masih berjalan"
  },
@@ -553,7 +553,7 @@
   "idle": "Bắt đầu buổi tập trên điện thoại",
   "finished": "Buổi tập đã kết thúc",
   "update": "Cập nhật ứng dụng trên đồng hồ",
-  "nothingLeft": "không còn gì phải làm",
+  "finishOnPhone": "Kết thúc buổi tập trên điện thoại",
   "finish": "Kết thúc hiệp",
   "workoutOn": "Buổi tập vẫn đang diễn ra"
  },
@@ -571,7 +571,7 @@
   "idle": "Начните тренировку на телефоне",
   "finished": "Тренировка завершена",
   "update": "Обновите приложение на часах",
-  "nothingLeft": "больше ничего не осталось",
+  "finishOnPhone": "Завершите тренировку на телефоне",
   "finish": "Завершить подход",
   "workoutOn": "Тренировка ещё идёт"
  },
@@ -589,7 +589,7 @@
   "idle": "iPhone でトレーニングを開始",
   "finished": "トレーニングが終了しました",
   "update": "ウォッチのアプリを更新",
-  "nothingLeft": "もうやることはありません",
+  "finishOnPhone": "iPhone でトレーニングを終了",
   "finish": "セットを終了",
   "workoutOn": "トレーニングはまだ続いています"
  },
@@ -607,7 +607,7 @@
   "idle": "휴대폰에서 운동 시작",
   "finished": "운동이 종료되었습니다",
   "update": "워치 앱 업데이트",
-  "nothingLeft": "더 할 것이 없음",
+  "finishOnPhone": "휴대폰에서 운동 종료",
   "finish": "세트 종료",
   "workoutOn": "운동이 아직 진행 중입니다"
  },
@@ -625,7 +625,7 @@
   "idle": "在手機上開始訓練",
   "finished": "訓練已結束",
   "update": "更新手錶 App",
-  "nothingLeft": "沒有其他要做的了",
+  "finishOnPhone": "在手機上結束訓練",
   "finish": "結束這組",
   "workoutOn": "訓練仍在進行中"
  }

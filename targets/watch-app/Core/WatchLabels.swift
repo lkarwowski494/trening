@@ -5,7 +5,7 @@ import Foundation
 
 /// Wartości = klucze w lib/watchLabels.ts (WATCH_LABEL_KEYS: identyfikatory z protokołu + `workoutOn` tylko Apple); test porównuje obie listy.
 enum WatchLabelKey: String, CaseIterable {
-  case done, differ, skip, skipAsk, cancel, undo, rest, set, pause, connect, idle, finished, update, nothingLeft, finish, workoutOn
+  case done, differ, skip, skipAsk, cancel, undo, rest, set, pause, connect, idle, finished, update, finishOnPhone, finish, workoutOn
 }
 
 enum WatchLabels {
@@ -18,9 +18,7 @@ enum WatchLabels {
   static var languages: [String] { table.keys.sorted() }
 
   static func text(_ key: WatchLabelKey, lang: String) -> String {
-    let raw = table[lang]?[key.rawValue] ?? table["en"]?[key.rawValue] ?? key.rawValue
-    /* „nic więcej do zrobienia” w słowniku telefonu jest małą literą (podpis w przerwie); na zegarku stoi samo jako komunikat — wielka litera na początku */
-    return key == .nothingLeft ? raw.prefix(1).uppercased(with: Locale(identifier: lang)) + raw.dropFirst() : raw
+    return table[lang]?[key.rawValue] ?? table["en"]?[key.rawValue] ?? key.rawValue
   }
 
   /// Regiony, w których hiszpański dziedziczy po es-419 (jak ES_419_REGIONS w lib/i18n.ts).

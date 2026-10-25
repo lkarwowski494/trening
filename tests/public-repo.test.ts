@@ -260,8 +260,8 @@ describe('strona www aplikacji (GitHub Pages)', () => {
     expect(h).toContain('Obowiązuje od 21 października 2026 r.'); expect(h).toContain('Effective 21 October 2026'); expect(h).not.toContain('14 października 2026');
     for (const w of ['<h2>Raporty awarii</h2>', 'udostępniać analizy deweloperom', 'Kopia zapasowa iPhone’a', 'Aplikacja nie jest skierowana do dzieci']) expect(body).toContain(w);
     /* weryfikator M8 (21.10.2026): stopka e-maila dodawana przez aplikację, powiadomienia z kodu, kopia automatyczna domyślnie włączona, odesłanie ze skrótu */
-    for (const w of ['dopisuje je w stopce', 'przypomnienie o końcu okresu próbnego', 'Live Activity', 'Kopię automatyczną po każdym treningu aplikacja zapisuje domyślnie', 'Wyjątek: e-mail, który sam do nas wyślesz', 'ani do eksportu']) expect(body).toContain(w);
-    for (const w of ['adds them in the footer', 'reminder before the free trial ends', 'Live Activity', 'By default the app saves an automatic copy after every workout', 'Exception: an email you send us yourself', 'nor in exports']) expect(body).toContain(w);
+    for (const w of ['dopisuje je w stopce', 'przypomnienie o niezakończonym treningu' /* M1-046: bez próby i ważenia */, 'Live Activity', 'Kopię automatyczną po każdym treningu aplikacja zapisuje domyślnie', 'Wyjątek: e-mail, który sam do nas wyślesz', 'ani do eksportu']) expect(body).toContain(w);
+    for (const w of ['adds them in the footer', 'reminder about an unfinished workout', 'Live Activity', 'By default the app saves an automatic copy after every workout', 'Exception: an email you send us yourself', 'nor in exports']) expect(body).toContain(w);
     for (const w of ['<h2>Crash reports</h2>', 'share analytics with app developers', 'An iPhone backup', 'The app is not directed at children']) expect(body).toContain(w);
   });
 

@@ -82,7 +82,7 @@
   "idle",
   "finished",
   "update",
-  "nothingLeft",
+  "finishOnPhone",
   "finish"
  ],
  "clientScreens": [
