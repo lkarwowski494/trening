@@ -69,8 +69,8 @@
   {
    "id": "T-005",
    "kotwica": "Każda główna partia co najmniej {n} dni w tygodn",
-   "skrot": "b674741085",
-   "skrotEn": "b69059cf03",
+   "skrot": "edde415f95",
+   "skrotEn": "df475b20b6",
    "rodzaje": [
     "konwencja",
     "uproszczenie",
@@ -84,7 +84,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21.md",
    "fraza": "za mało dowodów",
-   "przeglad": "21.10.2026: badacz-merytoryczny — WHO 2020 tab. 4, ACSM 2026 Discussion ('za mało dowodów'), Pelland 2026 (0,5), Ramos-Campo 2024 (podział); docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
+   "przeglad": "21.10.2026: badacz-merytoryczny — WHO 2020 tab. 4, ACSM 2026 Discussion ('za mało dowodów'), Pelland 2026 (0,5), Ramos-Campo 2024 (podział); docs/research/przeglad-badacza-2026-10-21.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash) || 25.10.2026: tylko brzmienie (usunięte ogólne odwołania do dowodów i praktyki trenerów; treść merytoryczna bez zmian)"
   },
   {
    "id": "T-006",
@@ -304,15 +304,15 @@
   {
    "id": "T-021",
    "kotwica": "Tygodnie treningu z rzędu bez deloadu: {n}. Delo",
-   "skrot": "8b29292c53",
-   "skrotEn": "797100c569",
+   "skrot": "a9ac393fe5",
+   "skrotEn": "c607627cab",
    "rodzaje": [
     "jedno źródło"
    ],
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-021",
-   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy || 25.10.2026: tylko brzmienie (usunięte ogólne odwołania do dowodów i praktyki trenerów; treść merytoryczna bez zmian)"
   },
   {
    "id": "T-022",

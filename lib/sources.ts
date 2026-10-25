@@ -21,4 +21,7 @@ export const GENERIC_REFERENCE_PATTERNS: readonly string[] = [
   'opier(?:a|ają) się na (?:badaniach|zaleceniach|przeglądach|stanowiskach)', 'oparte na (?:badaniach|zaleceniach)',
   'based on (?:research|studies|guidelines|recommendations)', 'according to (?:research|studies|guidelines)', 'in (?:studies|trials)\\b', 'studies (?:show|have shown|found)', 'research (?:shows|suggests)',
   'health and training (?:guidelines|recommendations)', 'follows (?:health|training)', 'systematic review', 'scientific (?:studies|organi[sz]ations)', 'guidelines',
+  /* 25.10.2026 (druga decyzja właściciela): słowa ogólne, które w tekście przywołują autorytet („dowody”, „badania”, „eksperci”, „trenerzy i zawodnicy”) — PL i EN */
+  'dowod(?:u|y|ów|em|ach|ami|om)?(?![\\p{L}])', 'dowód(?![\\p{L}])', 'badani(?:a|ach|ami|om)(?![\\p{L}])', 'badań(?![\\p{L}])', 'naukow(?:cy|ców|com|cami|y|a|e|ych|ymi)(?![\\p{L}])', 'ekspert(?:y|ów|om|ami|ach)?(?![\\p{L}])', 'trenerzy i zawodnicy', 'trenerów i zawodników',
+  'evidence(?![\\p{L}])', 'studies(?![\\p{L}])', 'research(?:ers?)?(?![\\p{L}])', 'experts?(?![\\p{L}])', 'scientists?(?![\\p{L}])', 'coaches and athletes',
 ];

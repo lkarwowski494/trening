@@ -54,7 +54,7 @@ describe('C4 / MER-06, MER-07, MER-08, MER-12, MER-17: „Zasady planu” i podg
   test('każdy parametr podglądu ma punkt ze źródłem albo oznaczeniem; liczby ze stałych', async () => {
     await boot('/generator'); expect(screen.queryByText(/^• Każda główna partia/)).toBeNull(); await openInfo('gen-basis'); /* ⓘ 14.10.2026: „Zasady planu” — punkty pod ⓘ */
     for (const x of [
-      'Każda główna partia co najmniej 2 dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako 0,5. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.',
+      'Każda główna partia co najmniej 2 dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako 0,5. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.',
       'Serie: 3 na ćwiczenie — warto zrobić co najmniej 2; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.',
       'Liczba serii z czasu sesji: (minuty − 10 min rozgrzewki) × 60 / (40 s serii + średnia przerwa 105 s) = 20; ćwiczeń = serie / 3 (co najmniej 3). To szacunek.',
       'Zakresy powtórzeń (masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.',
