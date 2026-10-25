@@ -2372,6 +2372,10 @@
   "en": "Total distance"
  },
  {
+  "pl": "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.",
+  "en": "Elbows about 45° from your torso — not flared wide, not tucked tight."
+ },
+ {
   "pl": "łydki",
   "en": "calves"
  },
@@ -3621,6 +3625,10 @@
  {
   "pl": "pakiety: {n} · treść wg {p}",
   "en": "packages: {n} · text from {p}"
+ },
+ {
+  "pl": "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.",
+  "en": "Toes pointed slightly out — usually about 15–20°."
  },
  {
   "pl": "para: {a} ({r}); jeden hantel: {b} ({r1})",
