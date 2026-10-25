@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 351 | 351 | 0 |
 | TEKST | 1114 | 1114 | 0 |
-| LOGIKA | 927 | 927 | 0 |
+| LOGIKA | 938 | 938 | 0 |
 | WYMIAR | 118 | 118 | 0 |
 
 ## EKRAN
@@ -1601,17 +1601,28 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | confirm.okButton | lib/confirm.ts | tests/interaction-patterns.test.tsx |
 | confirm.confirm | lib/confirm.ts | tests/interaction-patterns.test.tsx |
 | confirm.confirmSkipTimedSet | lib/confirm.ts | tests/interaction-patterns.test.tsx |
+| csvcore.isImportError | lib/csvcore.ts | tests/csv-import-logic.test.ts, tests/monetyzacja-csv.test.ts |
+| csvcore.detectDelimiter | lib/csvcore.ts | tests/monetyzacja-csv.test.ts |
+| csvcore.parseCsv | lib/csvcore.ts | tests/csv-import-logic.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-langs1.test.tsx +6 |
+| csvcore.num | lib/csvcore.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-m1-lok07-01-imperial-dist.test.tsx, tests/catalog-library25.test.tsx +6 |
+| csvcore.clean | lib/csvcore.ts | tests/monetyzacja-csv.test.ts |
+| csvcore.note | lib/csvcore.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts +48 |
+| csvcore.mkDate | lib/csvcore.ts | tests/monetyzacja-csv.test.ts |
+| csvcore.parseDate | lib/csvcore.ts | tests/monetyzacja-csv.test.ts |
+| csvcore.parseDateLoose | lib/csvcore.ts | tests/monetyzacja-csv.test.ts |
+| csvcore.parseDurationA | lib/csvcore.ts | tests/csv-import-logic.test.ts |
+| csvcore.parseTimeB | lib/csvcore.ts | tests/csv-import-logic.test.ts |
+| csvcore.build | lib/csvcore.ts | tests/adapt-ui.test.tsx, tests/audit-m1-050-release-log.test.ts, tests/audit-m1-workflows.test.ts +17 |
+| csvcore.addSet | lib/csvcore.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx +45 |
+| csvcore.valid | lib/csvcore.ts | tests/iap-localizations.test.ts, tests/watch-fixtures.test.ts |
+| csvcore.setStart | lib/csvcore.ts | tests/monetyzacja-csv.test.ts |
+| csvgeneric.detectGeneric | lib/csvgeneric.ts | tests/monetyzacja-csv.test.ts |
+| csvgeneric.parseDurationLoose | lib/csvgeneric.ts | tests/monetyzacja-csv.test.ts |
+| csvgeneric.parseGeneric | lib/csvgeneric.ts | tests/monetyzacja-csv.test.ts |
 | csvimport.pickCsv | lib/csvimport.ts | tests/csv-import-logic.test.ts |
 | csvimport.commitCsvImport | lib/csvimport.ts | tests/audit-m1-006-import.test.ts, tests/csv-import-logic.test.ts, tests/monetyzacja-csv.test.ts +1 |
-| csvparse.isImportError | lib/csvparse.ts | tests/csv-import-logic.test.ts, tests/monetyzacja-csv.test.ts |
-| csvparse.detectDelimiter | lib/csvparse.ts | tests/monetyzacja-csv.test.ts |
-| csvparse.parseCsv | lib/csvparse.ts | tests/csv-import-logic.test.ts, tests/matrix-dim-catalog.test.tsx, tests/matrix-dim-langs1.test.tsx +6 |
 | csvparse.detectFormat | lib/csvparse.ts | tests/csv-import-logic.test.ts |
-| csvparse.parseDurationA | lib/csvparse.ts | tests/csv-import-logic.test.ts |
-| csvparse.parseTimeB | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.parseImport | lib/csvparse.ts | tests/audit-m1-006-import.test.ts, tests/csv-import-logic.test.ts, tests/live-marker.test.ts +2 |
-| csvparse.detectGeneric | lib/csvparse.ts | tests/monetyzacja-csv.test.ts |
-| csvparse.parseDurationLoose | lib/csvparse.ts | tests/monetyzacja-csv.test.ts |
 | csvparse.normName | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.indexExercises | lib/csvparse.ts | tests/csv-import-logic.test.ts |
 | csvparse.matchExercise | lib/csvparse.ts | tests/csv-import-logic.test.ts |
@@ -2480,8 +2491,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | CATALOG_ADDED_REVS (4) | lib/catalog.generated.ts | tests/audit-k1-catalog-step.test.ts, tests/catalog-v2.test.ts |
 | CATALOG_LIB_EXTRA (585) | lib/catalog.generated.ts | tests/catalog-v2.test.ts |
 | UNMAPPED_MUSCLES (4) | lib/catalog.generated.ts | tests/audit-0.10-ui.test.tsx |
-| CsvFormat: formatA \| formatB \| generic | lib/csvparse.ts | tests/csv-import-logic.test.ts, tests/monetyzacja-csv.test.ts |
-| ImportErrorCode: empty \| format \| rows \| toolarge | lib/csvparse.ts | tests/access.test.ts, tests/csv-import-logic.test.ts |
+| CsvFormat: formatA \| formatB \| generic | lib/csvcore.ts | tests/csv-import-logic.test.ts, tests/monetyzacja-csv.test.ts |
+| ImportErrorCode: empty \| format \| rows \| toolarge | lib/csvcore.ts | tests/access.test.ts, tests/csv-import-logic.test.ts |
 | CUE_SECTIONS (4) | lib/cues/index.ts | tests/cues-014.test.tsx, tests/cues.test.tsx, tests/figures.test.tsx |
 | CUE_BASIS_KINDS (4) | lib/cues/index.ts | tests/audit-k1-bl-mer.test.tsx |
 | DraftKind: exercise \| template | lib/draft.ts | tests/access.test.ts, tests/app.tsx |

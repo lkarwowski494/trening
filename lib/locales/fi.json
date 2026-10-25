@@ -1741,12 +1741,12 @@
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Ilmaisia treenipäiviä {left} tässä kuussa: {n} / {limit}.",
  "Został|Zostały|Zostało": "jäljellä|jäljellä",
  "Zakończ trening na telefonie": "Lopeta treeni puhelimella",
- "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.": "Want more? Pro removes the limit: subscribe, or pay once for good.",
- "Historia jest już w telefonie": "Your history is now on your phone",
- "Pierwszy trening za Tobą!": "First workout done!",
- "Super, trenuję dalej!": "Awesome, keep training!",
- "Trenuj {n} dni w miesiącu za darmo, bez końca.": "Train {n} days a month for free, no time limit.",
- "Wszystkie funkcje działają od pierwszego dnia, bez konta i bez reklam. Dane zostają w telefonie.": "Every feature works from day one, with no account and no ads. Your data stays on your phone.",
- "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.": "Imported workouts, records and charts are always available, even offline. Train {n} days a month for free — Pro removes the limit, with a one-time option too.",
- "Zobacz plany Pro ›": "See Pro plans ›"
+ "Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.": "Haluatko enemmän? Pro poistaa rajan: tilaus tai kertaosto ikuisesti.",
+ "Historia jest już w telefonie": "Historiasi on nyt puhelimessa",
+ "Pierwszy trening za Tobą!": "Ensimmäinen treeni on tehty!",
+ "Super, trenuję dalej!": "Hienoa, treenaan eteenpäin!",
+ "Trenuj {n} dni w miesiącu za darmo, bez końca.": "Treenaa ilmaiseksi {n} päivää kuukaudessa, ilman aikarajaa.",
+ "Wszystkie funkcje działają od pierwszego dnia, bez konta i bez reklam. Dane zostają w telefonie.": "Kaikki toiminnot ovat käytössä ensimmäisestä päivästä — ilman tiliä ja ilman mainoksia. Tietosi pysyvät puhelimessa.",
+ "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.": "Tuodut treenit, ennätykset ja kaaviot ovat aina käytettävissä, myös ilman nettiä. Treenaa ilmaiseksi {n} päivää kuukaudessa — Pro poistaa rajan, myös kertaostona.",
+ "Zobacz plany Pro ›": "Katso Pro-vaihtoehdot ›"
 }

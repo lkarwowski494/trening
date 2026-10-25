@@ -6,6 +6,8 @@
 import * as store from '@/lib/store';
 import * as FS from 'expo-file-system/legacy';
 import { parseImport, parseCsv, detectDelimiter, detectGeneric, parseDurationLoose, analyze, CSV_ALIASES, isImportError, ImportError } from '@/lib/csvparse';
+import { clean, mkDate, parseDate, parseDateLoose, setStart, type ParsedSession } from '@/lib/csvcore';
+import { parseGeneric } from '@/lib/csvgeneric';
 import { commitCsvImport } from '@/lib/csvimport';
 import { PAYWALL, canStartLive } from '@/lib/access';
 import { accessNow, liveStarts, resetEntitlementsForTests } from '@/lib/entitlement';
@@ -178,5 +180,25 @@ describe('rozpoznawanie układu: aliasy, błędy, zabezpieczenia', () => {
   });
   test('analiza (podgląd) działa dla układu generic: liczby treningów i ćwiczeń', async () => {
     await fresh(); const a = analyze(parseImport(SPLIT, NOW), store.getState()); expect(a).toMatchObject({ total: 1, duplicates: 0, created: 3 });
+  });
+});
+
+describe('csvcore / csvgeneric: składniki bezpośrednio', () => {
+  test('clean: odwraca ochronę przed formułą (apostrof) i przycina; parseDate/mkDate: ISO, nieistniejące dni, rok przed 1990 i przyszłość = null', () => {
+    expect(clean("'=SUMA(A1)")).toBe('=SUMA(A1)'); expect(clean('  tekst  ')).toBe('tekst'); expect(clean(undefined)).toBe('');
+    expect(parseDate('2026-04-01 10:15', NOW)).toEqual({ wall: new Date(2026, 3, 1, 10, 15).getTime(), dateOnly: false }); expect(parseDate('2026-04-01', NOW)?.dateOnly).toBe(true);
+    expect(parseDate('2026-02-30', NOW)).toBeNull(); expect(parseDate('1980-01-01', NOW)).toBeNull(); expect(parseDate('2027-01-01', NOW)).toBeNull();
+    expect(mkDate(2026, 4, 1, 25, 0, 0, false, NOW)).toBeNull(); expect(mkDate(2026, 4, 1, 12, 0, 0, true, NOW)).toEqual({ wall: new Date(2026, 3, 1, 12).getTime(), dateOnly: true });
+  });
+  test('parseDateLoose: format ISO przechodzi przez parseDate, obce formaty i śmieci = null', () => {
+    expect(parseDateLoose('2026-04-01', NOW)).toEqual(parseDate('2026-04-01', NOW)); expect(parseDateLoose('1 Foo 2026', NOW)).toBeNull(); expect(parseDateLoose('', NOW)).toBeNull();
+  });
+  test('setStart: ustawia przesunięcie strefy i znacznik startu z czasu ściennego', () => {
+    const s = { startedAt: 0, tzOffsetMin: 0 } as ParsedSession; const wall = new Date(2026, 3, 1, 10).getTime(); setStart(s, wall);
+    expect(s.startedAt).toBe(wall); expect(s.tzOffsetMin).toBe(-new Date(wall).getTimezoneOffset() || 0);
+  });
+  test('parseGeneric: wywołanie wprost z wierszami i kolumnami; ta sama odpowiedź co parseImport', () => {
+    const rows = [['Date', 'Exercise', 'Reps'], ['2026-04-01', 'Alfa', '5']]; const f = parseGeneric(rows, detectGeneric(rows[0])!, NOW);
+    expect(f).toEqual(parseImport(rows.map(r => r.join(',')).join('\n'), NOW)); expect(f.sessions[0].exercises[0].sets[0].reps).toBe(5);
   });
 });

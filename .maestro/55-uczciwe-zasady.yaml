@@ -29,7 +29,7 @@ name: Uczciwe zasady — okno po pierwszym treningu
 - tapOn: "Settings"
 - extendedWaitUntil: { visible: "Subscription", timeout: 30000 }
 - tapOn: "Full version.*"
-- scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000 }
+- scrollUntilVisible: { element: "Test store: expire access", direction: DOWN, timeout: 60000, centerElement: true }
 - tapOn: "Test store: expire access"
 - scrollUntilVisible: { element: "Train 5 days a month for free.*", direction: UP, timeout: 60000 }
 - assertVisible: "Train 5 days a month for free.*"
