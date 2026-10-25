@@ -11,7 +11,7 @@ import { equipEntry } from '@/lib/equipment';
 import { LOAD_LIMITS } from '@/lib/loads';
 import { addLocation } from '@/lib/locations';
 import { t as tr, exName } from '@/lib/i18n';
-import { setBodyMass, fresh, ex, addWorkout, pressAlert, withDemoTemplates } from './helpers';
+import { setBodyMass, fresh, ex, addWorkout, pressAlert, withDemoTemplates, pinDate } from './helpers';
 import { renderApp, flushAll, screen, go, tap, type, act, fireEvent, expandEquip, openCard, swipeDelete, deleteActions, startEdit, exDraft, startTpl, openInfo } from './app';
 import { loc } from './locations-fixtures';
 
@@ -347,14 +347,18 @@ describe('/ (ekran główny)', () => {
 
 /* ======================================================================= app/_layout */
 describe('app/_layout', () => {
-  test('trening bez aktywności od 6 h zapisuje się sam przy starcie — wiersz „Trening zapisał się sam” na ekranie Trening, bez okna przy starcie', async () => {
-    const now = Date.now(); let start = 0, last = 0;
-    const saved = await prepared(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = store.getState().active!; start = a.startedAt = now - 8 * H; last = now - 7 * H;
-      Object.assign(a.exercises[0].sets[0], { weight: 100, reps: 5, done: true, completedAt: last }); });
-    await renderApp({ saved }); await flushAll(600);
-    expect(store.getState().active).toBeNull();
-    expect(alertOf('Zapisałem trening')).toBeUndefined(); expect(screen.getByText('Trening zapisał się sam')).toBeTruthy(); expect(require('@/lib/notices').autoSavedNotice()).toBe(`Trening z ${store.fmtDate(start)} ${store.fmtTime(start)} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: ${store.fmtTime(last)} (ostatnia seria). Znajdziesz go w zakładce Plan.`);
-  });
+  /* Stałe chwile „teraz” (nocne 24–25.10.2026: test zależał od dnia uruchomienia — w noc zmiany czasu start sprzed 8 h wypada w innym przesunięciu strefy niż „teraz”).
+   * Start i ostatnia seria pokazują się na zegarze strefy STARTU (J3), więc godziny są takie, jakie widział użytkownik w chwili treningu. */
+  const autoSavedAt = async (nowIso: string) => { const unpin = pinDate(nowIso); try {
+  const now = Date.now(); let start = 0, last = 0;
+  const saved = await prepared(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = store.getState().active!; start = a.startedAt = now - 8 * H; last = now - 7 * H; a.tzOffsetMin = store.tzOffsetAt(start); /* trening naprawdę zaczął się wtedy — strefa z chwili startu (J3), nie z „teraz” */
+    Object.assign(a.exercises[0].sets[0], { weight: 100, reps: 5, done: true, completedAt: last }); });
+  await renderApp({ saved }); await flushAll(600);
+  expect(store.getState().active).toBeNull();
+  expect(alertOf('Zapisałem trening')).toBeUndefined(); expect(screen.getByText('Trening zapisał się sam')).toBeTruthy(); expect(require('@/lib/notices').autoSavedNotice()).toBe(`Trening z ${store.fmtDate(start)} ${store.fmtTime(start)} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: ${store.fmtTime(store.wallTs({ startedAt: start, tzOffsetMin: store.tzOffsetAt(start) }, last))} (ostatnia seria). Znajdziesz go w zakładce Plan.`);
+  } finally { unpin(); } };
+  test('trening bez aktywności od 6 h zapisuje się sam przy starcie — wiersz „Trening zapisał się sam” na ekranie Trening, bez okna przy starcie', async () => { await autoSavedAt('2026-07-15T10:00:00Z'); });
+  test.each([['po jesiennej zmianie czasu (25.10.2026, start przed zmianą)', '2026-10-25T02:30:00Z'], ['po wiosennej zmianie czasu (29.03.2026, start przed zmianą)', '2026-03-29T03:00:00Z']])('zapis automatyczny — godziny w strefie startu, %s', async (_n, iso) => { await autoSavedAt(iso); });
 
   test('tytuł okna wyboru ćwiczenia: „Wybierz ćwiczenie”', async () => {
     await renderApp(); await act(async () => { store.startEmpty(); }); await go('/picker?target=active'); await flushAll(10);
@@ -469,7 +473,7 @@ describe('ActiveWorkout (/ z treningiem w toku)', () => {
 describe('porzucony trening (ActiveWorkout + lib/timer)', () => {
   const stale = async (kind: 'work' | 'warmup' | 'none', agoH: number) => {
     const now = Date.now(); let at = 0;
-    const saved = await prepared(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = store.getState().active!; a.startedAt = now - (agoH + 0.5) * H; at = a.startedAt;
+    const saved = await prepared(() => { store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); const a = store.getState().active!; a.startedAt = now - (agoH + 0.5) * H; at = a.startedAt; a.tzOffsetMin = store.tzOffsetAt(a.startedAt); /* strefa z chwili startu (J3), nie z „teraz” — inaczej w noc zmiany czasu godzina przesuwa się o 1 h (nocne 25.10.2026) */
       if (kind !== 'none') { at = now - agoH * H; Object.assign(a.exercises[0].sets[0], { weight: 60, reps: 5, done: true, completedAt: at }, kind === 'warmup' ? { kind: 'warmup', warmup: true } : {}); } });
     await renderApp({ saved }); await flushAll(50); return at;
   };
@@ -482,6 +486,12 @@ describe('porzucony trening (ActiveWorkout + lib/timer)', () => {
     await act(async () => { pressAlert('Trening wciąż trwa', 'Odrzuć'); });
     expect(lastAlert()).toMatchObject({ title: 'Odrzucić trening?', msg: 'Serie z tej sesji przepadną.' });
     await act(async () => { pressAlert('Odrzucić trening?', 'Odrzuć trening'); }); await flushAll(10); expect(store.getState().active).toBeNull();
+  });
+  test.each([['po jesiennej zmianie czasu (25.10.2026)', '2026-10-25T02:30:00Z'], ['po wiosennej zmianie czasu (29.03.2026)', '2026-03-29T03:00:00Z']])('porzucony trening bez serii — godzina startu w strefie startu, %s', async (_n, iso) => {
+    const unpin = pinDate(iso); try {
+      const at = await stale('none', 2.5);
+      expect(ask()!.msg).toBe(`Trening rozpoczęty o ${store.fmtTime(at)}, bez odhaczonych serii. Kontynuować czy odrzucić?`);
+    } finally { unpin(); }
   });
   test('rozgrzewka / brak serii 2,5 h temu: pytania „Kontynuować czy odrzucić?”', async () => {
     let at = await stale('warmup', 2.5);

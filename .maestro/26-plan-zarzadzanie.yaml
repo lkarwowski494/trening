@@ -134,7 +134,12 @@ name: Plan — nazwa, drugi plan, wyłączenie, panel dnia
 # --- start dzisiejszego treningu z panelu dnia ---
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Planning", timeout: 30000 }
-- tapOn: "Next month"
+# Po powrocie z sesji kalendarz może pokazywać bieżący miesiąc albo ten, w którym dopisano trening (nocne 23–25.10.2026: na iOS był bieżący, a „Next month”
+# przenosiło do listopada bez dzisiejszego dnia) — do bieżącego miesiąca przechodzimy tylko wtedy, gdy dzisiejszego dnia nie widać.
+- runFlow:
+    when: { notVisible: ".*, today.*" }
+    commands:
+      - tapOn: "Next month"
 - tapOn: { text: ".*, today.*" }
 - extendedWaitUntil: { visible: "Start planned workout: Upper A", timeout: 15000 }
 - tapOn: "Start planned workout: Upper A"
