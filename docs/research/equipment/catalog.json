@@ -49,6 +49,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "implements": 2,
   "pattern": "h_push",
@@ -118,6 +119,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "implements": 2,
   "pattern": "h_push",
@@ -187,6 +189,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "implements": 2,
   "pattern": "isolation",
@@ -1308,6 +1311,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "implements": 2,
   "pattern": "v_push",
@@ -1347,6 +1351,7 @@
   "recommended": [
    "bench.incline"
   ],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "implements": 2,
   "pattern": "v_push",
@@ -1380,6 +1385,7 @@
   "recommended": [
    "bench.incline"
   ],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "implements": 2,
   "pattern": "v_push",
@@ -1944,6 +1950,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "implements": 2,
   "pattern": "isolation",
@@ -2053,6 +2060,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "implements": 1,
   "pattern": "isolation",
@@ -3804,6 +3812,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "isolation",
   "implements": 2,
@@ -3847,6 +3856,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "h_push",
   "implements": 2,
@@ -3889,6 +3899,7 @@
   "recommended": [
    "floor_mat"
   ],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "h_push",
   "implements": 2,
@@ -3977,6 +3988,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "h_push",
   "implements": 2,
@@ -4380,6 +4392,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "isolation",
   "implements": 1,
@@ -4917,6 +4930,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "v_push",
   "implements": 1,
@@ -5989,6 +6003,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "isolation",
   "implements": 2,
@@ -9298,6 +9313,7 @@
    "barki"
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "confidence": "medium",
   "note": "Light dumbbell pair, lying on a flat bench, arms sweep in an arc from hips to overhead.",
   "equipment": "hantle",
@@ -9340,6 +9356,7 @@
   "loadMode": "per_dumbbell",
   "secondaryMuscles": [],
   "recommended": [],
+  "spot": "spotter_db",
   "confidence": "high",
   "note": "Dumbbell pair on a decline bench.",
   "equipment": "hantle",
@@ -9385,6 +9402,7 @@
   "loadMode": "unilateral",
   "secondaryMuscles": [],
   "recommended": [],
+  "spot": "spotter_db",
   "confidence": "high",
   "note": "One dumbbell, one side at a time, flat bench.",
   "equipment": "hantle",
@@ -9480,6 +9498,7 @@
    "barki"
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "confidence": "high",
   "note": "One dumbbell on a flat bench, one side at a time.",
   "equipment": "hantle",
@@ -12756,6 +12775,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "v_push",
   "muscleLoad": {
@@ -13823,6 +13843,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "isolation",
   "muscleLoad": {
@@ -14194,6 +14215,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "isolation",
   "muscleLoad": {
@@ -14326,6 +14348,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "isolation",
   "muscleLoad": {
@@ -17280,6 +17303,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "h_push",
   "implements": 1,
@@ -17519,6 +17543,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "isolation",
   "implements": 2,
@@ -17684,6 +17709,7 @@
    ]
   ],
   "recommended": [],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "isolation",
   "implements": 1,
@@ -17723,6 +17749,7 @@
   "recommended": [
    "bench.incline"
   ],
+  "spot": "spotter_db",
   "loadSource": "dumbbell",
   "pattern": "isolation",
   "implements": 1,

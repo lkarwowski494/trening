@@ -615,6 +615,23 @@
    "przeglad": "23.10.2026: badacz-merytoryczny (06-tresci fix, M1-031) — NSCA 2017 Standard 3.2 (s. 11, pdftotext, odczyt 23.10.2026): osoba asekurująca wymagana przy sztandze na tułowiu lub nad głową/twarzą; pominięcie sprzętu = uproszczenie; docs/research/przeglad-badacza-2026-10-23.md"
   },
   {
+   "id": "T-045",
+   "kotwica": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba",
+   "skrot": "f9539ce01e",
+   "skrotEn": "9c5cc33363",
+   "rodzaje": [
+    "uproszczenie",
+    "konwencja"
+   ],
+   "zrodla": [
+    "NSCA 2017 (Standard 3.2)"
+   ],
+   "dokument": "docs/research/przeglad-badacza-2026-10-23.md",
+   "fraza": "Hantle: zakres DEC-08",
+   "uwaga": "M1-031 cz. 2 (DEC-08 a, właściciel 23.10.2026): hantle nad głową lub twarzą. Reguła: Standard 3.2 dotyczy „free weights” (hantle są wolnym ciężarem) — ustalona, szczebel 2. Uproszczenie: zdanie pomija sprzęt asekuracyjny i podaje tylko osobę (jak T-044); przeniesienie standardu dla programów prowadzonych przez trenerów na trening samodzielny. Konwencja projektu: które ćwiczenia z hantlami zalicza się do „nad głową lub twarzą” (27 ze 105; lista w teście). [OTWARTE]: ćwiczenia dynamiczne, hantel przy tułowiu (goblet), hip thrust, przenoszenie nad głową, kettlebell — przypis 7 standardu nieprzeczytany.",
+   "przeglad": "23.10.2026: Claude (programista) wg tekstu Standardu 3.2 przeczytanego tego dnia (NSCA 2017, s. 11, pdftotext): osoba asekurująca wymagana przy wolnych ciężarach przemieszczanych nad głową/twarzą; pominięcie sprzętu = uproszczenie; docs/research/przeglad-badacza-2026-10-23.md, sekcja „Hantle: zakres DEC-08”; do potwierdzenia przez badacza-merytorycznego"
+  },
+  {
    "id": "T-041",
    "kotwica": "RIR wpisuje się w zakresie 0–{max}; więcej niż {",
    "skrot": "61e0dca28c",

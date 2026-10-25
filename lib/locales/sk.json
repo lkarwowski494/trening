@@ -1690,6 +1690,7 @@
  "bez asekuracji w stojakach": "bez bezpečnostných ramien v stojane",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Cvik s činkou na trupe alebo nad hlavou a tvárou: odporúča sa istenie — stojan s bezpečnostnými ramenami a osoba, ktorá istí.",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.": "Cvik s činkou na trupe alebo nad hlavou a tvárou: odporúča sa osoba, ktorá istí.",
+ "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.": "Cvik s jednoručkami nad hlavou alebo tvárou: odporúča sa osoba, ktorá istí.",
  "Zmień w ustawieniach iOS": "Zmeniť v Nastaveniach iOS",
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Názov pod ikonou a text povolenia pre Zdravie zmenia jazyk až po nastavení jazyka aplikácie v Nastaveniach iOS.",
  "SS {g}": "SS {g}",
@@ -1712,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Krok (napr. +2,5 kg) je konvencia, nie výsledok štúdií.",
  "Usuń szablon": "Vymazať šablónu",
  "Usuń z biblioteki": "Vymazať z knižnice",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Nemáte šablóny s cvikmi. Vytvorte šablónu alebo zvoľte „Vygenerovať šablóny a plán“.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Nemáte šablóny s cvikmi. Vytvorte šablónu alebo zvoľte „Nové šablóny a plán“.",
  "Dźwięk na koniec przerwy": "Zvuk na konci pauzy",
  "Wibracje": "Vibrácie",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Viac → Nastavenia: „Zvuk na konci pauzy“ a „Vibrácie“ sa zapínajú zvlášť.",
@@ -1740,5 +1741,7 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Bezplatné tréningové dni tento mesiac: využité {n} z {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} z {limit} bezplatných tréningových dní tento mesiac.",
  "Został|Zostały|Zostało": "Zostáva|Zostávajú|Zostáva",
+ "Sklep chwilowo niedostępny": "Obchod je dočasne nedostupný",
+ "Nowe szablony i plan": "Nové šablóny a plán",
  "Zakończ trening na telefonie": "Dokončite tréning v telefóne"
 }

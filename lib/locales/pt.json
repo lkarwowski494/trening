@@ -1690,6 +1690,7 @@
  "bez asekuracji w stojakach": "sem braços de segurança no rack",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Exercício com barra sobre o tronco ou acima da cabeça e do rosto: recomenda-se segurança — um rack com braços de segurança e um parceiro que faça a segurança.",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.": "Exercício com barra sobre o tronco ou acima da cabeça e do rosto: recomenda-se um parceiro que faça a segurança.",
+ "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.": "Exercício com halteres acima da cabeça ou do rosto: recomenda-se um parceiro que faça a segurança.",
  "Zmień w ustawieniach iOS": "Alterar nas Definições do iOS",
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "O nome sob o ícone e o texto da permissão de Saúde só mudam de idioma depois de definir o idioma da aplicação nas Definições do iOS.",
  "SS {g}": "SS {g}",
@@ -1712,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "O incremento (p. ex., +2,5 kg) é uma convenção, não um resultado de estudos.",
  "Usuń szablon": "Apagar modelo",
  "Usuń z biblioteki": "Apagar da biblioteca",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Não tem modelos com exercícios. Crie um modelo ou escolha «Gerar modelos e plano».",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Não tem modelos com exercícios. Crie um modelo ou escolha «Novos modelos e plano».",
  "Dźwięk na koniec przerwy": "Som no fim do descanso",
  "Wibracje": "Vibração",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Mais → Definições: «Som no fim do descanso» e «Vibração» ativam-se em separado.",
@@ -1740,5 +1741,7 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Dias de treino gratuitos este mês: {n} de {limit} usados",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} de {limit} dias de treino gratuitos este mês.",
  "Został|Zostały|Zostało": "Resta|Restam",
+ "Sklep chwilowo niedostępny": "Loja temporariamente indisponível",
+ "Nowe szablony i plan": "Novos modelos e plano",
  "Zakończ trening na telefonie": "Termine o treino no telemóvel"
 }

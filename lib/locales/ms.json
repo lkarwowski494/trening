@@ -1690,6 +1690,7 @@
  "bez asekuracji w stojakach": "tiada palang keselamatan pada rak",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.": "Latihan dengan bar di atas batang badan atau di atas kepala dan muka: pengawasan keselamatan disyorkan — rak dengan palang keselamatan dan spotter.",
  "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana osoba asekurująca.": "Latihan dengan bar di atas batang badan atau di atas kepala dan muka: spotter disyorkan.",
+ "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.": "Latihan dengan dumbel di atas kepala atau muka: spotter disyorkan.",
  "Zmień w ustawieniach iOS": "Tukar dalam Seting iOS",
  "Nazwa pod ikoną i opis zgody Zdrowia zmienią język dopiero po ustawieniu języka aplikacji w Ustawieniach iOS.": "Nama di bawah ikon dan teks kebenaran Kesihatan hanya bertukar bahasa selepas anda menetapkan bahasa aplikasi dalam Seting iOS.",
  "SS {g}": "SS {g}",
@@ -1712,7 +1713,7 @@
  "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.": "Langkah perubahan (cth. +2.5 kg) ialah konvensyen, bukan hasil kajian.",
  "Usuń szablon": "Padam templat",
  "Usuń z biblioteki": "Padam daripada pustaka",
- "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.": "Anda tiada templat dengan senaman. Cipta templat atau pilih “Jana templat dan pelan”.",
+ "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.": "Anda tiada templat dengan senaman. Cipta templat atau pilih “Templat dan pelan baharu”.",
  "Dźwięk na koniec przerwy": "Bunyi pada akhir rehat",
  "Wibracje": "Getaran",
  "Więcej → Ustawienia: „Dźwięk na koniec przerwy” i „Wibracje” włączasz osobno.": "Lagi → Seting: “Bunyi pada akhir rehat” dan “Getaran” dihidupkan secara berasingan.",
@@ -1740,5 +1741,7 @@
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Hari latihan percuma bulan ini: {n} daripada {limit} telah digunakan",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} daripada {limit} hari latihan percuma bulan ini.",
  "Został|Zostały|Zostało": "Berbaki",
+ "Sklep chwilowo niedostępny": "Kedai tidak tersedia buat sementara waktu",
+ "Nowe szablony i plan": "Templat dan pelan baharu",
  "Zakończ trening na telefonie": "Tamatkan latihan pada telefon"
 }
