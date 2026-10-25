@@ -649,7 +649,9 @@ describe('/history/add, /history/edit/[id] (lib/edit)', () => {
     await flushAll(800); /* „Pusty trening” blokuje drugie tapnięcie przez 700 ms (useOnce) */ await tap(screen.getByText('Pusty trening')); await flushAll(10);
   };
   test('trening wstecz: opis; błędy daty, godziny, czasu trwania, przyszłości i nachodzenia na trening w toku', async () => {
-    const saved = await prepared(() => { store.startEmpty(); store.getState().active!.startedAt = Date.now() - 2 * H; });
+    /* „teraz” przypięte do południa tego dnia: godzina wpisana w teście nie może wypaść w powtórzonej godzinie 02:00–02:59 nocy zmiany czasu (zapis „02:40” = pierwsze wystąpienie, 1 h wcześniej) */
+    const unpin = pinDate(new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 12).toISOString()); try {
+    const saved = await prepared(() => { store.startEmpty(); const a0 = store.getState().active!; a0.startedAt = Date.now() - 2 * H; a0.tzOffsetMin = store.tzOffsetAt(a0.startedAt); /* strefa z chwili startu (J3) — jak przy prawdziwym starcie */ });
     await renderApp({ saved }); await go('/history/add'); await flushAll(10);
     expect(screen.getByText('Ustaw termin i szablon — serie uzupełnisz w następnym kroku.')).toBeTruthy(); await openInfo('add-intro');
     expect(screen.getByText('Trening, którego nie zapisałeś na bieżąco. Ustaw termin i wybierz szablon — serie uzupełnisz w następnym kroku (wartości z ostatniego treningu przed tą datą).')).toBeTruthy();
@@ -664,6 +666,7 @@ describe('/history/add, /history/edit/[id] (lib/edit)', () => {
     await when(edit.dateText(s), edit.timeText(s), '5');
     expect(err().msg).toBe(`Ten termin nachodzi na trening w toku (start ${edit.dateText(a.startedAt)} ${edit.timeText(a.startedAt)}). Wybierz wcześniejszy.`);
     expect(store.getState().workouts).toHaveLength(0);
+    } finally { unpin(); }
   });
 
   test('nowy trening wstecz: notatka (pole „np. samopoczucie, ból, sprzęt”), „Anuluj” → „Ten trening nie zostanie zapisany.”', async () => {

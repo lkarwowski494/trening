@@ -13,6 +13,8 @@ function applyPinNow(v, g = globalThis) {
   class Shifted extends Real {
     constructor(...a) { if (a.length === 0) super(Real.now() + delta); else super(...a); }
     static now() { return Real.now() + delta; }
+    /* obiekty z prawdziwego Date (np. z jest.useFakeTimers) też są „Date” — inaczej `x instanceof Date` w kodzie i atrapach zawodzi */
+    static [Symbol.hasInstance](o) { return o instanceof Real; }
   }
   g.Date = Shifted; return true;
 }
