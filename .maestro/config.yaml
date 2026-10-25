@@ -17,7 +17,7 @@
 # 53 (14.10.2026, 0.20): objaśnienia pod ⓘ — rozwijanie i zwijanie w Ustawieniach (Field, SectionTitle, SwitchRow), jasny i ciemny wygląd.
 # 51 (14.10.2026, 0.20; 19.10.2026): zapowiedzi głosowe — wybór „Wyłączone / W słuchawkach / Także przez głośnik” i „Posłuchaj przykładu” w Ustawieniach.
 # 54 (19.10.2026): przycisk „Głos” na ekranie treningu — arkusz z trzema opcjami, zmiana trwała (Ustawienia pokazują ten sam wybór).
-# 55 (25.10.2026): figura ruchu v2 w „Technice” — fazy z tempem, mięśnie z legendą, przełącznik częstego błędu.
+# 57 (25.10.2026): figura ruchu v2 w „Technice” — fazy z tempem, mięśnie z legendą, przełącznik częstego błędu.
 # 52 (14.10.2026, strażnik progresji): sylwetka w kolorach progresu i zdanie o brakach celu na ekranie Trening → Postępy, sekcja „Strażnik progresji”, rozwinięcie partii.
 # 40–42 (EKSPERYMENTY): odmowa zgody na powiadomienia (40), tło i powrót (41), przywrócenie z pliku kopii (42) — tag `eksperyment`, NIE na liście flows (główny przebieg ich pomija,
 # bo nikt nie sprawdził jeszcze na symulatorze okien systemowych / Home / wyboru pliku); uruchamiane osobno (docs/38 pkt 5).
@@ -65,4 +65,4 @@ flows:
   - 52-straznik-progresji.yaml
   - 53-objasnienia-info.yaml
   - 54-glos-w-treningu.yaml
-  - 55-grafika-cwiczenia.yaml
+  - 57-grafika-cwiczenia.yaml

@@ -87,7 +87,7 @@ ruchy cykliczne bez rekwizytów) wymaga rozszerzenia silnika o drugą podporę/o
 ## 9. Podłączenie do aplikacji (etap 2, 25.10.2026)
 
 `ExerciseCues` pokazuje `ExerciseFigureV2` tam, gdzie istnieje gotowa rodzina (87 ćwiczeń); `ExerciseFigure` (v1) zostaje dla pozostałych do czasu gotowości wszystkich rodzin. Sekcja „Technika” pojawia się też przy ćwiczeniu z figurą v2 bez własnych wskazówek
-(zestaw ogólny z dopiskiem „Ogólne wskazówki dla tego ruchu”, `hasTechnique` w `lib/figures/v2/ui.ts`; ćwiczenia spoza gotowych rodzin dostaną zestaw ogólny razem z figurą w kolejnych etapach). E2E: scenariusz `.maestro/55-grafika-cwiczenia.yaml`
+(zestaw ogólny z dopiskiem „Ogólne wskazówki dla tego ruchu”, `hasTechnique` w `lib/figures/v2/ui.ts`; ćwiczenia spoza gotowych rodzin dostaną zestaw ogólny razem z figurą w kolejnych etapach). E2E: scenariusz `.maestro/57-grafika-cwiczenia.yaml`
 (przepływ **SZ-14** w `tests/przeplywy.json`, ten sam scenariusz biegnie w interpreterze Jest). Zrzuty obu motywów i płynność animacji na telefonie — lista „tylko telefon”.
 
 ## 10. Kontrakt danych rodziny (dla zewnętrznego generatora póz)
