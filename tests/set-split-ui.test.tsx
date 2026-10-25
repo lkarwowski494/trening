@@ -108,7 +108,7 @@ describe('Progresja: paski serii per partia (tydzień — z celem, miesiąc — 
 describe('Generator i plan z moich szablonów: cel z Ustawień per partia, ten sam podpis co paski', () => {
   test('generator (masa): lista serii z podziałem i celem; ostrzeżenie „Poniżej celu” z listą „partia (x/cel)” dla różnych celów; „Ogólny” bez celu', async () => {
     await boot(() => { S().settings.weeklySetGoals = { klatka: 25, plecy: 2 }; store.save(); }, '/generator');
-    expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii — uproszczenie\): .*klatka [\d,]+( \+ [\d,]+ pośrednio \(\d+ serii?e?\))? \/ 25; .*plecy .* \/ 2;/)).toBeTruthy();
+    expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii\): .*klatka [\d,]+( \+ [\d,]+ pośrednio \(\d+ serii?e?\))? \/ 25; .*plecy .* \/ 2;/)).toBeTruthy();
     const w = screen.getByText(/^Poniżej celu serii tygodniowo: /); expect(w.props.children).toMatch(/klatka \([\d,]+\/25\)/); expect(w.props.children).not.toMatch(/plecy \(/);
     await openInfo('gen-goal'); expect(screen.getByText('Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie 10), 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy();
     await tap(screen.getByText('Ogólny')); await flushAll(5);
@@ -116,7 +116,7 @@ describe('Generator i plan z moich szablonów: cel z Ustawień per partia, ten s
   });
   test('plan z moich szablonów: lista z celem każdej partii i ostrzeżenie z listą', async () => {
     await boot(() => { withDemoTemplates(); S().settings.weeklySetGoals = { klatka: 3, plecy: 30 }; store.save(); }, '/generator?mode=own');
-    expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii — uproszczenie\): .*klatka .* \/ 3; .*plecy .* \/ 30;/)).toBeTruthy();
+    expect(screen.getByText(/^Serie na partię w tygodniu \(pomocnicza = 0,5 serii\): .*klatka .* \/ 3; .*plecy .* \/ 30;/)).toBeTruthy();
     expect(screen.getByText(/^Poniżej celu serii tygodniowo: .*plecy \([\d,]+\/30\)/)).toBeTruthy();
   });
 });

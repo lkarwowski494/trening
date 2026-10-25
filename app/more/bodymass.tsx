@@ -32,7 +32,7 @@ export default function BodyMassScreen() {
   };
   return (
     <Screen><Stack.Screen options={header} /><ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
-      <InfoTip id="bodymass-intro" label={t('Opcjonalnie, tylko w telefonie. Potrzebna do e1RM w podciąganiu i pompkach.')} info={t('Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.', { p: Math.round(BW_SHARE['Push Up'] * 100) })} style={{ marginBottom: 12 }}>
+      <InfoTip id="bodymass-intro" label={t('Opcjonalnie, tylko w telefonie. Potrzebna do e1RM w podciąganiu i pompkach.')} info={t('Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała) i w pompkach (ok. {p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.', { p: Math.round(BW_SHARE['Push Up'] * 100) })} style={{ marginBottom: 12 }}>
         <Muted style={font('footnote')}>{t('Opcjonalnie, tylko w telefonie. Potrzebna do e1RM w podciąganiu i pompkach.')}</Muted>
       </InfoTip>
       <View /* UX2-11: pola jedno pod drugim — na 320 pt i przy dużym tekście etykiety nie konkurują o szerokość */>

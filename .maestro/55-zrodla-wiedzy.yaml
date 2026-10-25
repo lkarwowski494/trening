@@ -1,0 +1,31 @@
+# Źródła wiedzy (decyzja właściciela 23.10.2026, docs/18; katalog przepływów docs/37: US-20): jedyne miejsce w aplikacji, w którym podajemy, na czym opierają się liczby
+# i zalecenia — Więcej → Settings → „Sources of knowledge” (lista offline, bez przejścia do przeglądarki). Pozostałe ekrany mówią zwykłym językiem, bez nazw źródeł.
+#
+# Literały (EN z lib/i18n.en.ts i lib/sources.ts):
+#   "Sources of knowledge.*"                         ← 'Źródła wiedzy' (wiersz Ustawień; podpis „What the numbers and recommendations are based on”) i tytuł ekranu
+#   "What the numbers and recommendations in the app are based on." ← krótka linia na wierzchu ekranu (objaśnienie pod ⓘ info-sources-intro)
+#   "ACSM 2026.*" / "WHO 2020.*" / "Epley.*"         ← tytuły wierszy źródeł (cytat zostaje w oryginale; wiersz = tytuł + zdanie „do czego służy” + autorzy i czasopismo)
+#   "Exercise technique" / "exercise libraries of fitness education organisations" ← sekcja o technice ćwiczeń (rodzaje źródeł wskazówek)
+#   "Our simplifications and choices"                ← sekcja o uproszczeniach i wyborach
+appId: pl.lukasz.trening
+name: Źródła wiedzy w Ustawieniach
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- tapOn: "More, tab.*"
+- extendedWaitUntil: { visible: "Settings", timeout: 30000 }
+- tapOn: "Settings"
+- scrollUntilVisible: { element: "Sources of knowledge.*", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Sources of knowledge.*"
+- extendedWaitUntil: { visible: "What the numbers and recommendations in the app are based on.", timeout: 30000 }
+- assertVisible: "ACSM 2026.*"
+- scrollUntilVisible: { element: "WHO 2020.*", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Epley.*", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "exercise libraries of fitness education organisations", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: "Our simplifications and choices", direction: DOWN, timeout: 30000 }
+- takeScreenshot: 72-zrodla-wiedzy
+# powrót strzałką systemową (docs/32 wzorzec 2) — Ustawienia nadal pokazują wiersz
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Sources of knowledge.*", timeout: 30000 }

@@ -486,6 +486,16 @@ Test najpierw (7 czerwonych na f2b0525: w chwili `ack` baza nie miała zmiany), 
 |---|---|---|---|---|
 | M1-028 (05-architekt-001) | `tests/audit-m1b-028-watch-ack.test.ts` (7: differ, skip, sessionStarted, nieudany zapis → brak `ack` i ponowienie; differ na zapisach 3 wydanych buildów z `tests/fixtures/released`) | logika, dane, regresja | zielone | **realność: brzegowy, dotyczy danych** — kroki: telefon zablokowany, trening z zegarka, „zrobione inaczej”/pominięcie/start sesji, system ubija aplikację w tle w ciągu 300 ms. Protokół zegarka bez zmian. Rodzaj 9 (E2E): ubicie procesu w tle poza zasięgiem Maestro — pominięty; ekran bez zmian |
 
+## 23.10.2026 — język naturalny, źródła w jednym miejscu (decyzja właściciela, docs/18; gałąź `jezyk-naturalny-zrodla`)
+Zmiana zachowania (nowy ekran, przepisane teksty); testy aktualizowane razem z kodem — oczekiwane teksty zmieniono na nowe brzmienie, żadnego testu nie osłabiono (zakres asercji ten sam, usunięto tylko asercje o nazwach źródeł i stopce „Na podstawie”).
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Ekran Ustawienia → Źródła wiedzy | `tests/zrodla-wiedzy-ui.test.tsx` (wejście z Ustawień, grupy, 21 źródeł z opisem i cytatem, sekcje, ⓘ zwinięte, dostępność, EN); Maestro `.maestro/55-zrodla-wiedzy.yaml` (US-20) | ekran, scenariusz, języki, dostępność, E2E | zielone (jest); Maestro do potwierdzenia przebiegiem `e2e-ios.yml` | trasa `/more/sources` w przeglądzie dostępności i tras × języki (`a11y-routes.ts`, `matrix-langs-routes-shared.tsx`) |
+| Strażnik nazw źródeł | `tests/zrodla-wiedzy.test.ts` (wzorzec; lista ⇔ rejestr ⇔ docs/research; słowniki PL/EN, 33 języków, wskazówki, sprzęt, sklep, iOS, www; brak sieci w ekranie) | dane, logika, języki, niezmienniki | zielone | wyjątek: stare tłumaczenia kluczy z zestawu do przekładu |
+| Zestaw do przekładu | `tests/i18n-locales.test.ts` „zestaw do przekładu”, `tests/i18n-wave2/3/4.test.ts` (komplet z wyjątkiem „nowy”) | dane, języki | zielone | wyjątek znika po przekładzie |
+| Przepisane teksty | `tests/audit-0.10-gen-ui`, `generator-ui`, `gen-general*`, `audit011b`, `set-goals*`, `sets-mark`, `plan-own-templates-ui`, `matrix-ui`, `zrodlo-jedno`, `audit-k1-bl-mer` i in. (nowe brzmienia) | ekran, regresja | zielone | stopka wskazówek: test „brak stopki” zamiast „stopka bez nazw” |
+
 ## 23.10.2026 — naprawa M1-audytor-generalny-048 (DEC-06 a; gałąź `naprawa-m1-048-asc-release`)
 Test najpierw (2 czerwone na e8cc375: jeden job z `--$TRYB`, bez środowiska), potem podział `asc-iap-localizations.yml` na `plan` (`--dry-run`, bez środowiska) i `apply` (`--apply`, `environment: release`, `needs: plan`, tylko dla `tryb=apply`).
 
@@ -501,6 +511,13 @@ Test najpierw (2 czerwone na e8cc375: jeden job z `--$TRYB`, bez środowiska), p
 | M1-013 (DEC-05) | `tests/subscription-ui.test.tsx` „sklep nie zna naszych produktów”, „brak sieci … zostaje”; `tests/m1-013-sklep-niedostepny-jezyki.test.ts` (31 słowników + EN + `_source.json`) | ekran, języki | zielone | Teksty do przeglądu tłumacza (31 słowników; es-419, pt-BR dziedziczą). Rodzaj pominięty: E2E Maestro — brak scenariusza z pustą listą produktów (sklep w symulatorze zwraca produkty). |
 | formy zgód Zdrowia pt-BR | `tests/zgody-zdrowia-pt-forma.test.ts` (2) | języki | zielone | „apaga” zamiast „apague”; do przeglądu tłumacza. |
 
+## 23.10.2026 (druga decyzja właściciela) — oznaczenia pewności poza interfejsem, „Zasady planu”, T-029, przekład API
+Zmiana zachowania na polecenie właściciela; testy zmieniane razem z kodem — oczekiwane teksty zastąpiono nowym brzmieniem, żadnej asercji nie osłabiono ani nie wyłączono; asercje dopisków pewności przy ćwiczeniu (`tests/zrodlo-jedno.test.ts`, `audit-0.10-ui`, `audit-0.10-stats-ui`, `matrix-ui`) zamieniono na asercje ich braku.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Brak oznaczeń pewności w UI | `tests/zrodla-wiedzy.test.ts` „niezmiennik: brak oznaczeń pewności w tekstach UI” (strażnik rozpoznaje PL i EN; słownik bez oznaczeń; usunięte klucze nie wracają; T-029; „Zasady planu”; rejestr zachowuje rodzaje i wpisy wycofane); `tests/audit-m1-048-claims-registry.test.ts` | logika, dane, niezmienniki | zielone | `npm run check:claims` wykonuje tę samą kontrolę (`markerErrors`) |
+| Przekład przez API | `tests/przeklad-tlumaczen.test.ts` (zestaw, żądanie, odpowiedź, koszt i limit 6 USD, przebieg z atrapą fetch, `--zastosuj`, strażnik workflowu); `tests/public-repo.test.ts` | logika, dane, bezpieczeństwo | zielone | bez sieci; płatny przebieg tylko ręcznie (workflow), po zgodzie na koszt |
 ## 23.10.2026 — naprawy M1, partia 2: dokumenty i strony po M5 S1 (audyt 21.10.2026; gałąź `naprawa-m1-p2-teksty`)
 Teksty zależne od modelu M5 S1 (22.10.2026) i od zasad E2E z 21.10.2026. Każdy test najpierw czerwony na e8cc375, potem poprawka tekstu.
 

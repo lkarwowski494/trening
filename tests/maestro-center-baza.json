@@ -35,7 +35,7 @@
  "12-usuwanie-gestem.yaml: { element: \"Empty workout\", direction: DOWN",
  "14-generator.yaml: { element: \"General fitness\", direction: UP",
  "14-generator.yaml: { element: \"Mon.* Full Body A · Wed.* Full Body B · Sat.* Full Body A\", direction: DOWN",
- "14-generator.yaml: { element: \"What this is based on\", direction: DOWN",
+ "14-generator.yaml: { element: \"Plan rules\", direction: DOWN",
  "14-generator.yaml: { element: { id: \"day-0\" }, direction: UP",
  "14-generator.yaml: { element: { id: \"day-4\" }, direction: UP",
  "14-generator.yaml: { element: { id: \"sw-Cardio days in the plan\" }, direction: DOWN",

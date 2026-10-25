@@ -119,6 +119,7 @@ function Root() {
         <Stack.Screen name="paywall" options={{ presentation: 'modal', title: t('Pełna wersja') }} />{/* 0.17.0 (docs/27): ekran zakupu */}
         <Stack.Screen name="more/bands" options={{ title: t('Gumy') }} />
         <Stack.Screen name="more/settings" options={{ title: t('Ustawienia') }} />
+        <Stack.Screen name="more/sources" options={{ title: t('Źródła wiedzy') }} />{/* 23.10.2026: jedno miejsce ze źródłami (docs/18) */}
         <Stack.Screen name="more/bodymass" options={{ title: t('Masa ciała') }} />
         <Stack.Screen name="more/about" options={{ title: t('O aplikacji') }} />{/* SEC-08 */}
         <Stack.Screen name="more/licenses" options={{ title: t('Licencje open source') }} />{/* fala 2 audytu 0.10: masa ciała z datą */}

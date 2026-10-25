@@ -1,0 +1,92 @@
+# Język naturalny, źródła w jednym miejscu — inwentarz tekstów (23.10.2026)
+
+Polecenie właściciela (23.10.2026): „jedyzk musi byc naturalny … źródła wiedzy opisać … w jednym miejscu w aplikacji bez przypisów do konkretnych funkcji … TO ma byc aplikacja dla zwyjklych ludzi a nie naukowcow.” Miejsce źródeł: jeden ekran „Źródła wiedzy” w Ustawieniach. Decyzja: docs/18 (23.10.2026).
+
+Zakres inwentarza: wszystkie teksty widoczne dla użytkownika — słownik aplikacji (klucz = tekst polski, `lib/i18n.en.ts` = angielski; 33 pozostałe języki w `lib/locales`), wskazówki techniki (`lib/cues/text`, 35 języków), etykiety sprzętu, metadane sklepu (`store/*.json`, 33 lokalizacje), opisy uprawnień iOS (`locales/*.json`), strony `site/`. `store/review-notes.md` nie istnieje w repozytorium, a notatki dla recenzji Apple (docs/45) nie są tekstem dla użytkownika — poza zakresem.
+
+## Wynik w liczbach
+
+| Miejsce | Tekstów | Z nazwą źródła / atrybucją | Przepisano |
+|---|---|---|---|
+| Słownik aplikacji PL (klucze) | 1559 | 37 (29 z nazwą źródła, autora lub „badaniami z …”; 8 z samym oznaczeniem wagi „konwencja” / „jedno źródło” / „przegląd badań”) | 37 |
+| Słownik aplikacji EN | 1559 | 37 (jak PL) | 37 |
+| Stopka wskazówek techniki „Na podstawie: …” (klucz + 4 rodzaje źródeł) | 5 | 5 | stopka usunięta z ekranu ćwiczenia; 4 rodzaje źródeł przeniesione na ekran „Źródła wiedzy” |
+| Literały poza `t()` („e1RM (Epley)”) | 2 | 2 | 2 (→ „e1RM”) |
+| Wskazówki techniki (306 zdań × 35 języków) | 10 710 | 0 | — (od 09.10.2026 bez nazw organizacji; strażnik rozszerzony) |
+| Etykiety sprzętu | 0 z nazwą | 0 | — |
+| Metadane sklepu (opis, 33 lokalizacje) | 33 opisy | 30 („Epley” w opisie e1RM) | 30 |
+| Uprawnienia iOS (`locales/*.json`), `site/*.html` | — | 0 | — |
+| 33 słowniki innych języków (stare tłumaczenia) | 33 × 37 kluczy | 33 × 37 | 0 — czekają na przekład (zestaw-przekladu-2026-10-23.json) |
+
+Razem w aplikacji zmieniono 37 kluczy słownika (PL i EN: 74 teksty), 2 literały, usunięto 1 stopkę (5 kluczy → 4 przeniesione) i przepisano 30 opisów w sklepie; dodano 37 nowych kluczy ekranu „Źródła wiedzy” (PL i EN).
+
+## A. Przepisane teksty (37 kluczy)
+
+Kolumna „Wzmianka”: N = nazwa źródła / autora / organizacji / normy, B = „badania z …”, W = oznaczenie wagi (uproszczenie, konwencja, jedno źródło, przegląd badań). Rejestr: ID wpisu w `docs/research/rejestr-twierdzen.json`.
+
+| # | ID | Wzmianka | Tekst przed (PL) | Tekst po (PL) |
+|---|---|---|---|---|
+| 1 | T-001 | N | RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali. | RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali. |
+| 2 | T-002 | N+W | Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań. | Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Opiera się na zaleceniach zdrowotnych i treningowych; gdzie coś jest naszym uproszczeniem albo wyborem, a nie wynikiem badań, piszemy o tym wprost. |
+| 3 | T-003 | N+W | Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja. | Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów; kiedy i o ile — to nasz wybór. |
+| 4 | T-004 | N+B+W | Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM). | Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku. |
+| 5 | T-005 | N+B+W | Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty. | Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie. Podział na sesje (całe ciało, góra/dół) to nasz wybór — przy tej samej liczbie serii daje podobne efekty. |
+| 6 | T-006 | N+W | Serie: {s} na ćwiczenie — ACSM 2026 zaleca co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba {s} to uproszczenie. | Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba {s} to uproszczenie. |
+| 7 | T-008 | N+B+W | Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań). | Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku. |
+| 8 | T-009 | N | Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (ACSM 2026: blisko upadku albo {c}–{d}; dokładnej liczby nie ustalono); do upadku nie trzeba. | Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba. |
+| 9 | T-010 | N+W | Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły). | Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły). |
+| 10 | T-011 | W | Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji — konwencja. | Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji — to nasz wybór. |
+| 11 | T-013 | N | Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki. | Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki. |
+| 12 | T-015 | B+W | e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową). | e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}%). |
+| 13 | T-017 | B+W | Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach. | Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach. |
+| 14 | T-018 | N+W | e1RM: wzór Epleya na {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie). | e1RM liczone z {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie). |
+| 15 | T-019 | W | Przypisanie partii mięśniowych — jedno źródło, nie ustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu. | Przypisanie partii mięśniowych — wstępne, jeszcze nieustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu. |
+| 16 | T-020 | W | Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja. | Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — to nasz wybór. |
+| 17 | T-021 | W | Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — tak opisują praktykę trenerzy i zawodnicy w badaniach jednego zespołu (jedno źródło), nie wynik badań skuteczności. | Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — tak najczęściej robią trenerzy i zawodnicy; to praktyka, a nie dowód, że działa najlepiej. |
+| 18 | T-023 | W | Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja. | Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — to nasz wybór. |
+| 19 | T-024 | N | Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki. | Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki. |
+| 20 | T-025 | N | Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. WHO 2020 zaleca ćwiczenia wzmacniające wszystkie główne partie co najmniej {n} dni w tygodniu. | Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu. |
+| 21 | T-026 | N+W | Powtórzenia: {a}–{b} (wytyczne USA 2018, ACSM 2011); w domu i bez obciążenia {c}–{d} — uproszczenie: lżejszy ciężar, więcej powtórzeń. | Powtórzenia: {a}–{b}; w domu i bez obciążenia {c}–{d} — uproszczenie: lżejszy ciężar, więcej powtórzeń. |
+| 22 | T-027 | N | Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie (WHO 2020: co najmniej umiarkowany; wytyczne USA 2018; ACSM 2011). Do upadku nie trzeba. | Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba. |
+| 23 | T-028 | N+W | Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły). | Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły). |
+| 24 | T-029 | N+W | Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). WHO 2020 nie znalazło dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy zalecenia radzą rozłożyć na kilka dni (wytyczne USA 2018, ACSM 2011). Długość sesji cardio = czas sesji — konwencja. | Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Nie ma dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji — to nasz wybór. |
+| 25 | T-030 | N+W | Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. ACSM 2026 zaleca co najmniej {m}. Wytyczne USA 2018: jedna seria działa, {s}–{b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. {s} to dolna granica — uproszczenie. | Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica — uproszczenie. |
+| 26 | T-031 | N | {k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden. | {k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden. |
+| 27 | T-032 | N | Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu. | Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosły w badaniach bardziej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu. |
+| 28 | T-033 | N+B+W | Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026). | Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5). |
+| 29 | T-034 | N | Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}. | Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}. |
+| 30 | T-035 | W | Przypisanie partii: jedno źródło. | Przypisanie partii: wstępne. |
+| 31 | T-036 | B | Przypisanie partii: przegląd badań. | Przypisanie partii: potwierdzone. |
+| 32 | T-037 | — | Przypisanie partii mięśniowych — ustalone na podstawie przeglądu badań dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu. | Przypisanie partii mięśniowych — potwierdzone dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu. |
+| 33 | T-039 | W | Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań. | Krok zmiany (np. +2,5 kg) to nasz wybór, a nie wynik badań. |
+| 34 | T-041 | N | RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016). | RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie. |
+| 35 | — | N | e1RM (Epley, per hantel) | e1RM (na hantel) |
+| 36 | — | N | e1RM (Epley, na stronę) | e1RM (na stronę) |
+| 37 | — | B | Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu. | Bez e1RM: nie wiadomo, jaką część masy ciała podnosisz w tym ćwiczeniu. |
+
+Angielskie brzmienia: `lib/i18n.en.ts` (każdy klucz przepisany równolegle; zestaw do przekładu: `docs/lokalizacja/zestaw-przekladu-2026-10-23.json`).
+
+## B. Teksty z oznaczeniem wagi lub nazwą, które zostają (z powodem)
+
+| ID | Tekst | Powód |
+|---|---|---|
+| T-007 | Liczba serii z czasu sesji: … — uproszczenie, nie wynik badań. | bez źródła i bez atrybucji; „uproszczenie” to uczciwa informacja zwykłym słowem |
+| T-012 | Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list} | j.w. |
+| T-014 | Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. … | j.w. |
+| T-016 | Uproszczenie: drop set liczy się razem z serią, po której jest. | j.w. |
+| T-022 | Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami. | j.w. |
+| T-038 | Przypisanie partii: uproszczenie. | j.w. |
+| T-040, T-044 | Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja … / zalecana osoba asekurująca. | ostrzeżenie bezpieczeństwa bez nazwy źródła — zostaje bez zmian (nie osłabiać) |
+| T-042, T-043 | {app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. … | twierdzenie o produkcie (etykieta prywatności), nie o wiedzy dziedzinowej |
+| — | pakiety: {n} · treść wg {p} | ekran licencji open source — obowiązek prawny (nazwa pakietu, z którego pochodzi treść licencji), nie źródło wiedzy |
+| — | biblioteki ćwiczeń organizacji szkoleniowych / specjalistyczne serwisy treningowe / materiały producenta sprzętu / badania naukowe | opisy ogólne (bez nazw) przeniesione ze stopki ćwiczenia na ekran „Źródła wiedzy” |
+| — | Na czym to oparte (nagłówek ⓘ w generatorze i Planie z moich szablonów) | nagłówek zostaje: pod nim są teraz reguły zwykłym językiem, bez nazw źródeł; do oceny koordynatora, czy zmienić na „Zasady planu” |
+| — | Zalecenia (kategoria w Przewodniku) | nazwa działu, nie atrybucja |
+
+## C. Pozostałe miejsca
+
+- **Stopka wskazówek techniki** („Na podstawie: … Własne sformułowania.”): usunięta z ekranu ćwiczenia; zostaje zdanie o poradach medycznych. Dane źródeł (`lib/cues/data.json`) bez zmian.
+- **Etykiety rekordów** „e1RM (Epley)”, „e1RM (Epley, per hantel)”, „e1RM (Epley, na stronę)”: → „e1RM”, „e1RM (na hantel)”, „e1RM (na stronę)”.
+- **Opis sklepu** (33 lokalizacje): „(e1RM, wzór Epleya)” → „(e1RM)” w 30 opisach (mechaniczne usunięcie nawiasu, bez tłumaczenia); `docs/15-app-store.md` — notatka projektowa z wzmianką o wzorze (nie widoczna dla użytkownika) zostaje.
+- **Wskazówki techniki, sprzęt, uprawnienia iOS, strony www**: bez nazw źródeł — pilnuje nowy strażnik `tests/zrodla-wiedzy.test.ts`.
+

@@ -41,6 +41,7 @@ export const routesFor = (r: Awaited<ReturnType<typeof richState>>) => [
   '/pick-template', '/progression', /* 11.10.2026: wybór szablonu do startu (P2 B), Progresja (P8 B) */
   '/adapt', /* 0.18 (docs/33): okno „Dostosuj do miejsca” */
   '/place-once', /* 0.19 (docs/33 A4): okno „Inne miejsce” */
+  '/more/sources', /* 23.10.2026: Ustawienia → Źródła wiedzy (docs/18) */
 ];
 type Node = { type?: unknown; props?: Record<string, unknown>; children?: unknown[] } | string;
 const texts = () => { const out: string[] = []; const walk = (n: unknown) => { if (!n) return; if (typeof n === 'string') { out.push(n); return; } if (Array.isArray(n)) { n.forEach(walk); return; } walk((n as { children?: unknown }).children); }; walk(screen.toJSON()); return out; };

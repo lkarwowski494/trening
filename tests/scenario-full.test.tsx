@@ -827,7 +827,7 @@ describe('Scenariusz pełny: świeża instalacja → ustawienia → miejsca → 
     expect(screen.getByText('REKORDY')).toBeTruthy();
     expect(screen.getByText('Max ciężar (per hantel)')).toBeTruthy(); expect(screen.getByText(fmtW(rec.maxLoad))).toBeTruthy(); expect(rec.maxLoad).toBe(25); /* poprawka z historii (25 kg) */
     expect(screen.getByText('Max powtórzeń w serii')).toBeTruthy(); expect(rec.maxReps).toBe(12);
-    expect(screen.getByText('e1RM (Epley, per hantel)')).toBeTruthy(); expect(screen.getByText(fmtW(rec.bestE1rm))).toBeTruthy();
+    expect(screen.getByText('e1RM (na hantel)')).toBeTruthy(); expect(screen.getByText(fmtW(rec.bestE1rm))).toBeTruthy();
     expect(screen.getByText('Najlepsza seria (objętość)')).toBeTruthy(); expect(screen.getByText(fmtVol(rec.bestSetVolume))).toBeTruthy();
     expect(screen.getByText('Sesje')).toBeTruthy(); expect(stats.sessionsFor(bench)).toHaveLength(2);
     for (const k of keys) { await tap(screen.getByLabelText(k.label)); expect(screen.getByLabelText(k.label).props.accessibilityState.selected).toBe(true); }

@@ -88,8 +88,8 @@
   "en": "{goal}, {n}× per week · {place}"
  },
  {
-  "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
-  "en": "{k} strength day a week is less than the WHO 2020 recommendation (at least {n} days). It is a good first step: according to the US guidelines 2018, strength training can be done just {k} day a week at first and built up to {n} over time — some activity is better than none."
+  "pl": "{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.",
+  "en": "{k} strength day a week is less than the recommended minimum (at least {n} days). It is a good first step: you can strength-train just {k} day a week at first and build up to {n} over time — some activity is better than none."
  },
  {
   "pl": "{k}: {v}",
@@ -536,8 +536,8 @@
   "en": "no weight"
  },
  {
-  "pl": "Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu.",
-  "en": "No e1RM: there are no sources on what share of body weight you lift in this exercise."
+  "pl": "Bez e1RM: nie wiadomo, jaką część masy ciała podnosisz w tym ćwiczeniu.",
+  "en": "No e1RM: it is not known what share of body weight you lift in this exercise."
  },
  {
   "pl": "bez folderu",
@@ -800,28 +800,28 @@
   "en": "Cardio outside the plan: with this number of days all sessions are strength."
  },
  {
-  "pl": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
-  "en": "Cardio outside the plan: a cardio session is in the plan from {k} days per week; with fewer, all days are strength days. WHO recommends at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts."
+  "pl": "Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+  "en": "Cardio outside the plan: a cardio session is in the plan from {k} days per week; with fewer, all days are strength days. For health it is worth getting at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts."
  },
  {
   "pl": "Cardio w planie: {n} min tygodniowo.",
   "en": "Cardio in the plan: {n} min per week."
  },
  {
-  "pl": "Cardio w planie: {n} min tygodniowo. Zalecenie WHO: co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
-  "en": "Cardio in the plan: {n} min per week. WHO recommends at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts."
+  "pl": "Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.",
+  "en": "Cardio in the plan: {n} min per week. For health it is worth getting at least {a}–{b} min of moderate activity per week (or {c}–{d} min of vigorous); moderate movement during the day counts too, e.g. brisk walking, even in short bouts."
  },
  {
-  "pl": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji — konwencja.",
-  "en": "Cardio: one session of moderate effort on a separate day; its length = the session length — a convention."
+  "pl": "Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.",
+  "en": "Cardio: one session of moderate effort on a separate day; its length = the session length."
  },
  {
-  "pl": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni) — konwencja.",
-  "en": "Cardio: from {k} days per week, one session on a separate day; with fewer days all are strength days, so cardio does not take days from strength training (each major muscle group on at least {n} days) — a convention."
+  "pl": "Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).",
+  "en": "Cardio: from {k} days per week, one session on a separate day; with fewer days all are strength days, so cardio does not take days from strength training (each major muscle group on at least {n} days)."
  },
  {
-  "pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). WHO 2020 nie znalazło dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy zalecenia radzą rozłożyć na kilka dni (wytyczne USA 2018, ACSM 2011). Długość sesji cardio = czas sesji — konwencja.",
-  "en": "Cardio: with {k}–{m} days you can turn the days above {j} into moderate cardio sessions (“Cardio days in the plan”, off by default). WHO 2020 found no evidence that more muscle-strengthening activity brings more health benefits, and the guidelines advise spreading aerobic activity over several days (US guidelines 2018, ACSM 2011). Cardio session length = session time — a convention."
+  "pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). W badaniach nie wykazano, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+  "en": "Cardio: with {k}–{m} days you can turn the days above {j} into moderate cardio sessions (“Cardio days in the plan”, off by default). Studies have not shown that more muscle-strengthening activity brings more health benefits, and aerobic activity is best spread over several days. Cardio session length = session time."
  },
  {
   "pl": "Cel",
@@ -1004,6 +1004,10 @@
   "en": "Common mistakes"
  },
  {
+  "pl": "Część reguł w aplikacji to nasze uproszczenia albo wybory, a nie wynik badań.",
+  "en": "Some rules in the app are our simplifications or choices, not research findings."
+ },
+ {
   "pl": "część zaplanowanych serii nie ma ciężaru",
   "en": "some planned sets have no weight"
  },
@@ -1014,6 +1018,10 @@
  {
   "pl": "czworogłowe",
   "en": "quads"
+ },
+ {
+  "pl": "Czy podział treningu na sesje (całe ciało, góra/dół) zmienia efekty.",
+  "en": "Whether splitting training into sessions (full body, upper/lower) changes the results."
  },
  {
   "pl": "ćw.",
@@ -1379,6 +1387,10 @@
   "en": "Drop set (D)"
  },
  {
+  "pl": "Drop set liczy się razem z serią, po której jest.",
+  "en": "A drop set counts together with the set before it."
+ },
+ {
   "pl": "Duplikuj",
   "en": "Duplicate"
  },
@@ -1451,12 +1463,12 @@
   "en": "e1RM"
  },
  {
-  "pl": "e1RM (Epley, na stronę)",
-  "en": "e1RM (Epley, per side)"
+  "pl": "e1RM (na hantel)",
+  "en": "e1RM (per dumbbell)"
  },
  {
-  "pl": "e1RM (Epley, per hantel)",
-  "en": "e1RM (Epley, per dumbbell)"
+  "pl": "e1RM (na stronę)",
+  "en": "e1RM (per side)"
  },
  {
   "pl": "e1RM {v} ({p}% masy ciała {d}; seria {s})",
@@ -1471,16 +1483,16 @@
   "en": "e1RM {v} (set {s})"
  },
  {
+  "pl": "e1RM liczone z {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie.",
+  "en": "e1RM calculated from {p}% of the body weight from the workout day (the latest measurement from that day or earlier) plus added weight."
+ },
+ {
   "pl": "e1RM pojawi się po wpisaniu masy ciała w Postępach.",
   "en": "e1RM will appear once you enter your body weight in Progress."
  },
  {
-  "pl": "e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).",
-  "en": "e1RM in bodyweight exercises is calculated only with the body weight entered in Progress, and only where it is known what share of it you lift: pull-ups (all of it — a simplification), push-ups (about {p}% — force-plate studies)."
- },
- {
-  "pl": "e1RM: wzór Epleya na {p}% masy ciała z dnia treningu (ostatni pomiar z tego dnia lub wcześniejszy) plus dociążenie (uproszczenie).",
-  "en": "e1RM: Epley formula on {p}% of the body weight from the workout day (the latest measurement from that day or earlier) plus added weight (a simplification)."
+  "pl": "e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała), pompki (ok. {p}%).",
+  "en": "e1RM in bodyweight exercises is calculated only with the body weight entered in Progress, and only where it is known what share of it you lift: pull-ups (all of it), push-ups (about {p}%)."
  },
  {
   "pl": "Edycja ćwiczenia",
@@ -1801,6 +1813,14 @@
   "en": "and {n} more"
  },
  {
+  "pl": "Ile ruchu w tygodniu: cardio i ćwiczenia wzmacniające.",
+  "en": "How much activity per week: cardio and muscle-strengthening."
+ },
+ {
+  "pl": "Ile serii i powtórzeń oraz jak blisko upadku trenować, żeby budować siłę i mięśnie.",
+  "en": "How many sets and reps, and how close to failure to train, to build strength and muscle."
+ },
+ {
   "pl": "imperialny (lb, mi, yd)",
   "en": "imperial (lb, mi, yd)"
  },
@@ -1910,8 +1930,32 @@
   "en": "Smart cable machine — full (1.5–65 kg/side)"
  },
  {
+  "pl": "Jak blisko upadku kończyć serie.",
+  "en": "How close to failure to end sets."
+ },
+ {
+  "pl": "Jak często lżejszy tydzień planują zawodnicy.",
+  "en": "How often athletes plan a lighter week."
+ },
+ {
+  "pl": "Jak często trenerzy planują lżejszy tydzień.",
+  "en": "How often coaches plan a lighter week."
+ },
+ {
+  "pl": "Jak długie powinny być przerwy między seriami.",
+  "en": "How long rest between sets should be."
+ },
+ {
   "pl": "Jak liczyć ciężar w objętości",
   "en": "How weight counts toward volume"
+ },
+ {
+  "pl": "Jak liczyć serie w tygodniu, gdy partia pracuje tylko pomocniczo.",
+  "en": "How to count weekly sets when a muscle group only assists."
+ },
+ {
+  "pl": "Jak mierzy się maksymalny ciężar w podciąganiu.",
+  "en": "How the maximum in pull-ups is measured."
  },
  {
   "pl": "Jak ostatnio",
@@ -1922,8 +1966,28 @@
   "en": "same as working"
  },
  {
+  "pl": "Jak stopniowo zwiększać obciążenie.",
+  "en": "How to increase the load gradually."
+ },
+ {
+  "pl": "Jak stosować skalę RPE i RIR w treningu oraz jak opisać niski wysiłek słowami.",
+  "en": "How to use the RPE and RIR scale in training and how to describe low effort in words."
+ },
+ {
   "pl": "Jak w telefonie",
   "en": "Phone setting"
+ },
+ {
+  "pl": "Jak zacząć od jednego dnia siłowego w tygodniu i ile serii wystarczy.",
+  "en": "How to start with one strength day a week and how many sets are enough."
+ },
+ {
+  "pl": "Jaką część masy ciała podnosisz w pompkach.",
+  "en": "What share of your body weight you lift in push-ups."
+ },
+ {
+  "pl": "Jaki ciężar i ile powtórzeń w serii daje przyrost mięśni.",
+  "en": "What load and how many reps per set build muscle."
  },
  {
   "pl": "jard|jardy|jardów",
@@ -2015,8 +2079,8 @@
   "en": "Current set card during a workout; the “List” view as before, selectable in Settings."
  },
  {
-  "pl": "Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.",
-  "en": "Each major muscle group on at least {n} days a week (WHO 2020 — a health recommendation; ACSM 2026: frequency affects strength, but there is not enough evidence to establish a dose-response relationship, and with equal volume the difference shrinks). A day when the group only assists counts as {h} — a simplification (method from the Pelland et al. 2026 meta-analysis). The split (full body, upper/lower) is a convention — with the same number of sets it gives similar results."
+  "pl": "Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.",
+  "en": "Each major muscle group on at least {n} days a week — that is what is recommended for health. Frequency affects strength, but there is not enough evidence that more days give proportionally more; with the same number of sets the differences are small. A day when the group only assists counts as {h}. You can pick the split (full body, upper/lower) freely — with the same number of sets it gives similar results."
  },
  {
   "pl": "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.",
@@ -2037,6 +2101,10 @@
  {
   "pl": "kettlebell: {v}",
   "en": "kettlebell: {v}"
+ },
+ {
+  "pl": "Kiedy przy sztandze nad ciałem potrzebna jest asekuracja.",
+  "en": "When a barbell over the body needs a spotter or safety equipment."
  },
  {
   "pl": "Kierunek dla partii liczymy tylko na ćwiczeniach, które były w obu tygodniach. Ćwiczenia bez punktu odniesienia — nowe w tym tygodniu albo nierobione teraz — pomijamy w obu tygodniach.",
@@ -2172,16 +2240,12 @@
   "en": "Line = weekly goal of sets per muscle group: {n} automatically, or your own number from Settings."
  },
  {
-  "pl": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii (stanowisko ACSM 2026). Ręcznie: własna liczba od {min} do {max}.",
-  "en": "The line in “This week” and in Progress. Automatic: {n} sets (ACSM 2026 position stand). Manual: your own number from {min} to {max}."
+  "pl": "Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.",
+  "en": "The line in “This week” and in Progress. Automatic: {n} sets. Manual: your own number from {min} to {max}."
  },
  {
   "pl": "krok",
   "en": "step"
- },
- {
-  "pl": "Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.",
-  "en": "The step (e.g. +2.5 kg) is a convention, not a research result."
  },
  {
   "pl": "kroki {n}",
@@ -2224,8 +2288,12 @@
   "en": "Open-source licences"
  },
  {
-  "pl": "Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}) — uproszczenie, nie wynik badań.",
-  "en": "Number of sets from session length: (minutes − {w} min warm-up) × 60 / ({s} s per set + average rest {r} s) = {n}; exercises = sets / {k} (at least {e}) — a simplification, not a research finding."
+  "pl": "Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}). To szacunek.",
+  "en": "Number of sets from session length: (minutes − {w} min warm-up) × 60 / ({s} s per set + average rest {r} s) = {n}; exercises = sets / {k} (at least {e}). This is an estimate."
+ },
+ {
+  "pl": "Liczby i zalecenia w aplikacji opierają się na stanowiskach organizacji naukowych, przeglądach badań i badaniach z recenzowanych czasopism. Tu są wszystkie źródła w jednym miejscu — w pozostałych miejscach aplikacji piszemy zwykłym językiem.",
+  "en": "The numbers and recommendations in the app are based on position statements of scientific organisations, research reviews and studies from peer-reviewed journals. All the sources are here in one place — everywhere else in the app we use plain language."
  },
  {
   "pl": "lina",
@@ -2278,6 +2346,10 @@
  {
   "pl": "Lista: ćwiczenia i serie jak w poprzednich wersjach, bez karty.",
   "en": "List: exercises and sets as in earlier versions, without the card."
+ },
+ {
+  "pl": "Lżejszy tydzień (deload)",
+  "en": "Lighter week (deload)"
  },
  {
   "pl": "Ładowanie cen…",
@@ -2362,6 +2434,10 @@
  {
   "pl": "łydki",
   "en": "calves"
+ },
+ {
+  "pl": "Maksymalny ciężar w podciąganiu to masa ciała plus dociążenie.",
+  "en": "The maximum in pull-ups is body weight plus added weight."
  },
  {
   "pl": "Mapa mięśni",
@@ -2795,8 +2871,12 @@
   "en": "My plan ({date})"
  },
  {
-  "pl": "Na czym to oparte",
-  "en": "What this is based on"
+  "pl": "Na czym opierają się liczby i zalecenia",
+  "en": "What the numbers and recommendations are based on"
+ },
+ {
+  "pl": "Na czym opierają się liczby i zalecenia w aplikacji.",
+  "en": "What the numbers and recommendations in the app are based on."
  },
  {
   "pl": "Na ekranie Trening „Planowanie” (bez planu: „Ustaw plan”) otwiera plan tygodnia, który przypisuje szablony do dni — plan powtarza się co tydzień.",
@@ -2825,10 +2905,6 @@
  {
   "pl": "Na początku przerwy telefon zapowiada następne ćwiczenie, ciężar i powtórzenia. W słuchawkach — tylko przy podłączonych słuchawkach; Także przez głośnik — również bez słuchawek, przez głośnik telefonu (także w trybie cichym); Wyłączone — bez zapowiedzi.",
   "en": "At the start of the rest the phone announces the next exercise, weight and reps. In headphones — only with headphones connected; Also through the speaker — also without headphones, through the phone speaker (even in silent mode); Off — no announcements."
- },
- {
-  "pl": "Na podstawie: {list}. Własne sformułowania.",
-  "en": "Based on: {list}. Our own wording."
  },
  {
   "pl": "na urządzeniu: {v}",
@@ -2937,6 +3013,10 @@
  {
   "pl": "następny po: {name} · {n} ćw.",
   "en": "next after: {name} · {n} ex."
+ },
+ {
+  "pl": "Nasze uproszczenia i wybory",
+  "en": "Our simplifications and choices"
  },
  {
   "pl": "Nazwa",
@@ -3105,6 +3185,10 @@
  {
   "pl": "Nie udało się zapisać w Apple Health",
   "en": "Couldn't save to Apple Health"
+ },
+ {
+  "pl": "Nie wszystko da się wyczytać z badań. Przykłady: długość przerw w planie, krok zmiany ciężaru.",
+  "en": "Not everything can be read from research. Examples: rest length in the plan, the weight step."
  },
  {
   "pl": "Nie zamieniaj: {name}",
@@ -3439,8 +3523,8 @@
   "en": "General fitness"
  },
  {
-  "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. WHO 2020 zaleca ćwiczenia wzmacniające wszystkie główne partie co najmniej {n} dni w tygodniu.",
-  "en": "General fitness (for health): {s} sets per exercise, {a}–{b} reps (at home {c}–{d}), until another repetition would be hard. WHO 2020 recommends muscle-strengthening activities for all major muscle groups on at least {n} days a week."
+  "pl": "Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.",
+  "en": "General fitness (for health): {s} sets per exercise, {a}–{b} reps (at home {c}–{d}), until another repetition would be hard. For health it is worth training all major muscle groups on at least {n} days a week."
  },
  {
   "pl": "OK",
@@ -3467,8 +3551,12 @@
   "en": "Optional, stored only on your phone. Needed for e1RM in pull-ups and push-ups."
  },
  {
-  "pl": "Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała — uproszczenie) i w pompkach (ok. {p}% masy ciała — badania z platformą siłową). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.",
-  "en": "Optional, stays on this phone. With it the app calculates e1RM for pull-ups (the whole body weight — a simplification) and push-ups (about {p}% of body weight — force-plate studies). Each workout uses the latest measurement from that day or earlier; workouts before the first measurement — no e1RM in these exercises."
+  "pl": "Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM w podciąganiu (cała masa ciała) i w pompkach (ok. {p}% masy ciała). Każdy trening liczy się z ostatnim pomiarem z tego dnia lub wcześniejszym; treningi sprzed pierwszego pomiaru — bez e1RM w tych ćwiczeniach.",
+  "en": "Optional, stays on this phone. With it the app calculates e1RM for pull-ups (the whole body weight) and push-ups (about {p}% of body weight). Each workout uses the latest measurement from that day or earlier; workouts before the first measurement — no e1RM in these exercises."
+ },
+ {
+  "pl": "Opisy techniki są napisane własnymi słowami, na podstawie:",
+  "en": "The technique descriptions are written in our own words, based on:"
  },
  {
   "pl": "opona",
@@ -3607,12 +3695,24 @@
   "en": "A primary muscle counts 1 set, a secondary one 0.5 (e.g. bench press: chest 1, triceps and shoulders 0.5 each). Set muscles in the exercise editor."
  },
  {
+  "pl": "Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).",
+  "en": "A secondary muscle group of an exercise counts as half a set (main 1, secondary 0.5)."
+ },
+ {
   "pl": "Partie główne (1 seria)",
   "en": "Primary muscles (1 set)"
  },
  {
+  "pl": "Partie mięśniowe w ćwiczeniach",
+  "en": "Muscle groups in exercises"
+ },
+ {
   "pl": "Partie pomocnicze (0,5 serii)",
   "en": "Secondary muscles (0.5 set)"
+ },
+ {
+  "pl": "Partie pracujące w ćwiczeniach ustalamy z przeglądów badań i badań aktywności mięśni.",
+  "en": "The muscle groups worked in exercises come from research reviews and studies of muscle activity."
  },
  {
   "pl": "Partie z większą objętością",
@@ -3761,6 +3861,10 @@
  {
   "pl": "Plan: {name}",
   "en": "Plan: {name}"
+ },
+ {
+  "pl": "Plan: serie, powtórzenia, przerwy",
+  "en": "Plan: sets, reps, rest"
  },
  {
   "pl": "Planowanie",
@@ -4191,8 +4295,8 @@
   "en": "reps from"
  },
  {
-  "pl": "Powtórzenia: {a}–{b} (wytyczne USA 2018, ACSM 2011); w domu i bez obciążenia {c}–{d} — uproszczenie: lżejszy ciężar, więcej powtórzeń.",
-  "en": "Reps: {a}–{b} (US guidelines 2018, ACSM 2011); at home and without external load {c}–{d} — a simplification: lighter weight, more reps."
+  "pl": "Powtórzenia: {a}–{b}; w domu i bez obciążenia {c}–{d} — lżejszy ciężar, więcej powtórzeń.",
+  "en": "Reps: {a}–{b}; at home and without external load {c}–{d} — lighter weight, more reps."
  },
  {
   "pl": "powtórzenie|powtórzenia|powtórzeń",
@@ -4253,8 +4357,8 @@
   "en": "Progression"
  },
  {
-  "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia zalecają stanowiska ACSM; moment i wielkość kroku to konwencja.",
-  "en": "Progression: when you reach the top of the rep range, add weight. ACSM position stands recommend gradually increasing the load; the timing and the size of the step are a convention."
+  "pl": "Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.",
+  "en": "Progression: when you reach the top of the rep range, add weight. Adding load gradually is what keeps you progressing."
  },
  {
   "pl": "Propozycja {n}: {name}",
@@ -4265,8 +4369,8 @@
   "en": "A proposal to review before saving."
  },
  {
-  "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań.",
-  "en": "A proposal based on your assumptions — you review it before saving. The rules come from research reviews and recommendations of organisations (WHO, ACSM); parts marked as a convention or a simplification are not direct research findings."
+  "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Opiera się na zaleceniach zdrowotnych i treningowych.",
+  "en": "A proposal based on your assumptions — you review it before saving. It follows health and training guidelines."
  },
  {
   "pl": "Propozycje",
@@ -4301,8 +4405,12 @@
   "en": "forearms"
  },
  {
-  "pl": "Przejrzyj podgląd i „Na czym to oparte” — wynik zapisuje się dopiero po zatwierdzeniu.",
-  "en": "Review the preview and “What this is based on” — nothing is saved until you confirm."
+  "pl": "Przegląd tego, jak używa się skali powtórzeń w zapasie.",
+  "en": "A review of how the reps-in-reserve scale is used."
+ },
+ {
+  "pl": "Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.",
+  "en": "Review the preview and “Plan rules” — nothing is saved until you confirm."
  },
  {
   "pl": "Przenieś na {day}",
@@ -4377,12 +4485,12 @@
   "en": "Rest. Time left: {t}. Total rest: {all}."
  },
  {
-  "pl": "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).",
-  "en": "Rest: {a} min after heavy sets of the main lift, {b} min after other compound exercises, {c} min after isolation and core exercises — a simplification; reviews are mixed (ACSM 2026: rest length did not change strength gains)."
+  "pl": "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły).",
+  "en": "Rest: {a} min after heavy sets of the main lift, {b} min after other compound exercises, {c} min after isolation and core exercises; the exact rest length is not established (in studies it did not change strength gains)."
  },
  {
-  "pl": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły).",
-  "en": "Rest: {b} min after multi-joint exercises, {c} min after single-joint and core — a simplification; the sources are inconsistent (ACSM 2026: rest length did not change strength gains)."
+  "pl": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły).",
+  "en": "Rest: {b} min after multi-joint exercises, {c} min after single-joint and core; the exact rest length is not established (in studies it did not change strength gains)."
  },
  {
   "pl": "Przesunięcie serii albo nazwy ćwiczenia w lewo usuwa je (z potwierdzeniem).",
@@ -4421,36 +4529,20 @@
   "en": "Front"
  },
  {
+  "pl": "Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosły w badaniach bardziej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+  "en": "With at least {n} sets per muscle group per week, muscles grew more in studies than with fewer sets; resistance training in its various forms builds muscle compared with none."
+ },
+ {
+  "pl": "Przy części ćwiczeń przypisanie partii opiera się na jednym źródle albo na uproszczeniu.",
+  "en": "For some exercises the muscle group assignment rests on a single source or on a simplification."
+ },
+ {
   "pl": "Przycisk „Napisz do nas” w Więcej → O aplikacji.",
   "en": "A “Write to us” button in More → About."
  },
  {
   "pl": "Przyda się: {list}.",
   "en": "Would help: {list}."
- },
- {
-  "pl": "Przypisanie partii mięśniowych — jedno źródło, nie ustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.",
-  "en": "Muscle group assignment is based on a single source, not established. It drives sets per muscle, the muscle map, the generator and the calendar suggestions."
- },
- {
-  "pl": "Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.",
-  "en": "Muscle group assignment is a simplification, not a research finding. It drives sets per muscle, the muscle map, the generator and the calendar suggestions."
- },
- {
-  "pl": "Przypisanie partii mięśniowych — ustalone na podstawie przeglądu badań dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.",
-  "en": "Muscle group assignment is established from a research review for this exercise. It drives sets per muscle, the muscle map, the generator and the calendar suggestions."
- },
- {
-  "pl": "Przypisanie partii: jedno źródło.",
-  "en": "Muscle group assignment: one source."
- },
- {
-  "pl": "Przypisanie partii: przegląd badań.",
-  "en": "Muscle group assignment: research review."
- },
- {
-  "pl": "Przypisanie partii: uproszczenie.",
-  "en": "Muscle group assignment: a simplification."
  },
  {
   "pl": "Przypomnienie o treningu z planu",
@@ -4565,12 +4657,12 @@
   "en": "Rickshaw"
  },
  {
-  "pl": "RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.",
-  "en": "RIR — reps in reserve: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos et al., JSCR 2016). Saved values convert when you switch scales."
+  "pl": "RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.",
+  "en": "RIR is the number of reps you still had left: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Saved values convert when you switch scales."
  },
  {
-  "pl": "RIR wpisuje się w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisuje się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).",
-  "en": "Enter RIR from 0 to {max}; more than {max} reps in reserve is saved as “light” (RPE {light}), because below RPE {min} the scale describes effort in words, not reps in reserve (Helms et al. 2016)."
+  "pl": "RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.",
+  "en": "Enter RIR from 0 to {max}; more than {max} reps in reserve is saved as “light” (RPE {light}), because below RPE {min} the scale describes effort in words, not reps in reserve."
  },
  {
   "pl": "robione {n}×",
@@ -4635,6 +4727,10 @@
  {
   "pl": "Ruch",
   "en": "Movement"
+ },
+ {
+  "pl": "Ruch dla zdrowia",
+  "en": "Activity for health"
  },
  {
   "pl": "Rysunek ruchu: {opis}",
@@ -4771,8 +4867,8 @@
   "en": "Sets to fill in"
  },
  {
-  "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list}",
-  "en": "Sets per muscle group per week (assisting = {h} set — a simplification): {list}"
+  "pl": "Serie na partię w tygodniu (pomocnicza = {h} serii): {list}",
+  "en": "Sets per muscle group per week (assisting = {h} set): {list}"
  },
  {
   "pl": "Serie per partia",
@@ -4803,12 +4899,12 @@
   "en": "Sets: {n}"
  },
  {
-  "pl": "Serie: {s} na ćwiczenie — ACSM 2026 zaleca co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem. Liczba {s} to uproszczenie.",
-  "en": "Sets: {s} per exercise — ACSM 2026 advises at least {m}; more sets usually give a little more, with diminishing returns. {s} is a simplification."
+  "pl": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.",
+  "en": "Sets: {s} per exercise — for health usually {s}–{b}. It is worth doing at least {m}. One set already works, {s}–{b} may work better; for beginners and older adults one set can be enough. {s} is the lower end."
  },
  {
-  "pl": "Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. ACSM 2026 zaleca co najmniej {m}. Wytyczne USA 2018: jedna seria działa, {s}–{b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. {s} to dolna granica — uproszczenie.",
-  "en": "Sets: {s} per exercise — for health usually {s}–{b}. ACSM 2026 recommends at least {m}. US guidelines 2018: one set works, {s}–{b} may work better; ACSM 2011: one set can be enough, especially for beginners and older adults. {s} is the lower end — a simplification."
+  "pl": "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.",
+  "en": "Sets: {s} per exercise — it is worth doing at least {m}; more sets usually give a little more, with diminishing returns."
  },
  {
   "pl": "serii",
@@ -4858,6 +4954,10 @@
  {
   "pl": "Skala do dwukrotności celu, » — więcej.",
   "en": "Scale up to twice the goal; » — more."
+ },
+ {
+  "pl": "Skala RPE oparta na powtórzeniach w zapasie (RIR).",
+  "en": "The RPE scale based on reps in reserve (RIR)."
  },
  {
   "pl": "Skala wysiłku",
@@ -4946,10 +5046,6 @@
  {
   "pl": "Stacja: drążek + poręcze (power tower)",
   "en": "Power tower (pull-up + dip)"
- },
- {
-  "pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
-  "en": "ACSM 2026 position stand: with at least {n} sets per muscle group per week, muscle growth was greater than with lower volume; resistance training in its various forms builds muscle compared with none."
  },
  {
   "pl": "start",
@@ -5153,6 +5249,10 @@
   "en": "Templates: {list} — in the “{folder}” folder on the Templates list."
  },
  {
+  "pl": "Szacowany maksymalny ciężar (e1RM)",
+  "en": "Estimated one-rep max (e1RM)"
+ },
+ {
   "pl": "Szczegóły w Postępach",
   "en": "Details in Progress"
  },
@@ -5295,6 +5395,10 @@
  {
   "pl": "Technika",
   "en": "Technique"
+ },
+ {
+  "pl": "Technika ćwiczeń",
+  "en": "Exercise technique"
  },
  {
   "pl": "Technika: {name}",
@@ -5601,8 +5705,8 @@
   "en": "Training weeks without a deload: {n}."
  },
  {
-  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — tak opisują praktykę trenerzy i zawodnicy w badaniach jednego zespołu (jedno źródło), nie wynik badań skuteczności.",
-  "en": "Training weeks in a row without a deload: {n}. A deload usually comes every {a}–{b} weeks — this is practice described by coaches and athletes in studies by one research team (single source), not a finding on effectiveness."
+  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — tak najczęściej robią trenerzy i zawodnicy; to praktyka, a nie dowód, że działa najlepiej.",
+  "en": "Training weeks in a row without a deload: {n}. A deload usually comes every {a}–{b} weeks — that is what coaches and athletes most often do; it is practice, not proof that it works best."
  },
  {
   "pl": "Tygodnie z wykonanym planem: {done} z {n}",
@@ -5667,22 +5771,6 @@
  {
   "pl": "ukryte: {n}",
   "en": "hidden: {n}"
- },
- {
-  "pl": "Uproszczenie: drop set liczy się razem z serią, po której jest.",
-  "en": "Simplification: a drop set counts together with the set before it."
- },
- {
-  "pl": "Uproszczenie: partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5; metaanaliza Pelland i in. 2026).",
-  "en": "Simplification: a secondary muscle group of an exercise counts as half a set (main 1, secondary 0.5; Pelland et al. 2026 meta-analysis)."
- },
- {
-  "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).",
-  "en": "Simplification: usually a rest day between sessions with the same main muscle groups; two days in a row are also fine with the same weekly number of sets (research reviews, ACSM)."
- },
- {
-  "pl": "Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.",
-  "en": "Simplification: usually a rest day between sessions with the same main muscle groups."
  },
  {
   "pl": "uprząż na szyję",
@@ -6081,8 +6169,8 @@
   "en": "More → Settings: “Sound at the end of rest” and “Haptics” are switched on separately."
  },
  {
-  "pl": "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.",
-  "en": "More days than templates: templates in order (A, B, A…), as in the generator — a convention."
+  "pl": "Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze.",
+  "en": "More days than templates: templates in order (A, B, A…), as in the generator."
  },
  {
   "pl": "Więcej informacji: {name}",
@@ -6397,16 +6485,20 @@
   "en": "Fill with range"
  },
  {
-  "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie (WHO 2020: co najmniej umiarkowany; wytyczne USA 2018; ACSM 2011). Do upadku nie trzeba.",
-  "en": "Effort: until another repetition would be hard — tired, but not exhausted (WHO 2020: at least moderate; US guidelines 2018; ACSM 2011). You do not need to go to failure."
+  "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
+  "en": "Effort: until another repetition would be hard — tired, but not exhausted. You do not need to go to failure."
  },
  {
   "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne; do upadku nie trzeba.",
   "en": "Effort: until another repetition would be hard; you do not need to go to failure."
  },
  {
-  "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (ACSM 2026: blisko upadku albo {c}–{d}; dokładnej liczby nie ustalono); do upadku nie trzeba.",
-  "en": "Effort: usually {a}–{b} reps in reserve (ACSM 2026: close to failure or {c}–{d}; the exact number has not been established); training to failure is not needed."
+  "pl": "Wysiłek: RPE i RIR",
+  "en": "Effort: RPE and RIR"
+ },
+ {
+  "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.",
+  "en": "Effort: usually {a}–{b} reps in reserve — close to failure or {c}–{d}; the exact number is not established. Training to failure is not needed."
  },
  {
   "pl": "Wysiłek: zwykle {a}–{b} powtórzenia w zapasie (RIR); do upadku nie trzeba.",
@@ -6439,6 +6531,10 @@
  {
   "pl": "Wznów trening",
   "en": "Resume workout"
+ },
+ {
+  "pl": "Wzór, który z ciężaru i liczby powtórzeń szacuje maksymalny ciężar na jedno powtórzenie.",
+  "en": "The formula that estimates the one-rep maximum from the weight and the number of reps."
  },
  {
   "pl": "z {s}",
@@ -6577,8 +6673,12 @@
   "en": "Rep range: {r} — when all working sets last time had at least {n} reps, the exercise shows the hint “↑ try …”: more weight or one more rep (outside a deload week)."
  },
  {
-  "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}) to uproszczenie: mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku (ACSM, przeglądy badań).",
-  "en": "Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength other exercises {e}–{f}) are a simplification: muscles grow across a wide range of loads when sets are close to failure (ACSM, research reviews)."
+  "pl": "Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.",
+  "en": "Rep ranges (muscle {a}–{b}, at home and without external load {c}–{d}; for strength other exercises {e}–{f}): muscles grow across a wide range of loads when sets are close to failure."
+ },
+ {
+  "pl": "Zakresy powtórzeń, liczba serii i przerwa między sesjami.",
+  "en": "Rep ranges, number of sets and rest between sessions."
  },
  {
   "pl": "Zaktualizuj aplikację na zegarku",
@@ -6755,6 +6855,10 @@
  {
   "pl": "Zarządzaj subskrypcją",
   "en": "Manage subscription"
+ },
+ {
+  "pl": "Zasady planu",
+  "en": "Plan rules"
  },
  {
   "pl": "Zastąp",
@@ -6990,8 +7094,20 @@
   "en": "Collapse other exercises"
  },
  {
+  "pl": "Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku.",
+  "en": "Usually a rest day between sessions with the same main muscle groups; two days in a row are also fine with the same weekly number of sets."
+ },
+ {
+  "pl": "Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami.",
+  "en": "Usually a rest day between sessions with the same main muscle groups."
+ },
+ {
   "pl": "Zwykle w: {l} — {name}. Zamienić?",
   "en": "Usually at {l} — {name}. Swap?"
+ },
+ {
+  "pl": "Źródła wiedzy",
+  "en": "Sources of knowledge"
  },
  {
   "pl": "Żadna partia nie ma większej objętości niż poprzednio.",

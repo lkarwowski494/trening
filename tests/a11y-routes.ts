@@ -29,4 +29,5 @@ export const routesFor = (w: { id: string }, tpl: { id: string }, exId: string, 
   '/pick-template', '/progression', /* 11.10.2026: wybór szablonu do startu (P2 B) i Progresja (P8 B) */
   '/adapt', /* 0.18 (docs/33): okno „Dostosuj do miejsca” */
   '/place-once', /* 0.19 (docs/33 A4): okno „Inne miejsce” (miejsce tylko na ten trening — z treningiem w toku) */
+  '/more/sources', /* 23.10.2026: Ustawienia → Źródła wiedzy (docs/18) */
 ];

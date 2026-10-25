@@ -108,7 +108,7 @@ describe('Kalendarz', () => {
     expect(screen.getByText(new RegExp(`^${suggestionTexts('2026-10-08', list[0]).title.replace(/[.()]/g, '\\$&')} · polecane$`))).toBeTruthy();
     /* audyt kontrolny 1 (UX2-09, celowa zmiana): przy widocznym ostrzeżeniu „dzień po dniu” stopka bez zdania „dwa dni pod rząd … też są w porządku” */
     expect(list.some(x => x.newBackToBack.length)).toBe(true);
-    await openInfo('move-list'); expect(screen.getByText(/^Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami\. Każda z tych możliwości wraca do rutyny w ciągu 10 dni\.$/)).toBeTruthy();
+    await openInfo('move-list'); expect(screen.getByText(/^Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami\. Każda z tych możliwości wraca do rutyny w ciągu 10 dni\.$/)).toBeTruthy();
     await tap(screen.getByText(`Więcej możliwości (${all.length - 4})`)); await flushAll(5); expect(screen.queryByText(/dwa dni pod rząd/)).toBeNull();
     const first = suggestionTexts('2026-10-08', list[0]).title; const want = list[0].ov;
     await tap(screen.getByLabelText(`Zastosuj: ${first}`)); await flushAll(5);

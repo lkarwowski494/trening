@@ -188,7 +188,7 @@ describe('UX2-09: opuszczony dzień — „Przesuń plan od dziś” i „Wolne�
     const warn = screen.queryAllByText(/^Uwaga: .* dzień po dniu/).length;
     expect(warn).toBeGreaterThan(0); /* stan z raportu: jest ostrzeżenie */
     expect(screen.queryByText(FOOT)).toBeNull();
-    await openInfo('move-list'); expect(screen.getByText(/^Uproszczenie: zwykle dzień przerwy/)).toBeTruthy(); /* objaśnienie zostaje (ⓘ 14.10.2026: pod ⓘ) */
+    await openInfo('move-list'); expect(screen.getByText(/^Zwykle dzień przerwy/)).toBeTruthy(); /* objaśnienie zostaje (ⓘ 14.10.2026: pod ⓘ) */
   });
   test('bez ostrzeżeń — pełna stopka jak dotąd', async () => {
     await bootPlan(ids => { plan.setWeekDay(0, ids[0]); });

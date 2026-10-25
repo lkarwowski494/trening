@@ -8,6 +8,7 @@ import { allLabels } from '@/lib/equipment';
 import { APP_NAME, LANGS } from '@/lib/i18n';
 import { LOCALES } from '@/lib/locales';
 import { PLURAL_FORMS } from '@/lib/plural';
+import { PENDING, PENDING_NEW } from './pending-translation';
 
 const params = (s: string) => (s.match(/\{\w+\}/g) ?? []).sort().join(',');
 
@@ -31,7 +32,7 @@ describe.each(LANGS.filter(l => l !== 'pl' && l !== 'en'))('słownik %s', l => {
   const d = LOCALES[l] ?? {}; const src = source();
   test('komplet kluczy, niepuste, te same {parametry}, bez kluczy spoza źródła', () => {
     const keys = new Set(src.map(s => s.pl));
-    expect(src.filter(s => !(typeof d[s.pl] === 'string' && d[s.pl].trim())).map(s => s.pl)).toEqual([]);
+    expect(src.filter(s => !PENDING_NEW.has(s.pl) /* czeka na przekład: docs/lokalizacja/zestaw-przekladu-2026-10-23.json */ && !(typeof d[s.pl] === 'string' && d[s.pl].trim())).map(s => s.pl)).toEqual([]);
     expect(src.filter(s => d[s.pl] !== undefined && params(d[s.pl]) !== params(s.pl)).map(s => s.pl)).toEqual([]);
     expect(Object.keys(d).filter(k => !keys.has(k))).toEqual([]);
   });
@@ -43,6 +44,16 @@ describe.each(LANGS.filter(l => l !== 'pl' && l !== 'en'))('słownik %s', l => {
     const PL_ONLY = l === 'lt' ? /[łńśźżŁŃŚŹŻ]/ : /[ąęłńśźżĄĘŁŃŚŹŻ]/; /* litewski ma ą, ę */
     expect(src.filter(s => d[s.pl] !== undefined && PL_ONLY.test(d[s.pl])).map(s => `${s.pl} → ${d[s.pl]}`)).toEqual([]);
   });
+});
+
+test('zestaw do przekładu (23.10.2026): każdy klucz jest w źródle; „nowy” — brak w słownikach (po przekładzie wpis usunąć); „zmieniony” — jest (stare tłumaczenie)', () => {
+  const src = new Set(source().map(x => x.pl));
+  for (const p of PENDING) {
+    expect([p.pl.slice(0, 50), src.has(p.pl), p.en.length > 0]).toEqual([p.pl.slice(0, 50), true, true]);
+    const have = LANGS.filter(l => l !== 'pl' && l !== 'en').filter(l => (LOCALES[l] ?? {})[p.pl] !== undefined);
+    if (p.rodzaj === 'nowy') expect([p.pl.slice(0, 50), have.length < LANGS.length - 2]).toEqual([p.pl.slice(0, 50), true]); /* przełożony we wszystkich językach → wpis zbędny */
+    else expect([p.pl.slice(0, 50), have.length]).toEqual([p.pl.slice(0, 50), LANGS.length - 2]);
+  }
 });
 
 test('iOS zna wszystkie języki aplikacji: CFBundleLocalizations i opisy uprawnień (locales/<kod>.json)', () => {

@@ -66,7 +66,7 @@ describe('Masa ciała z datą: ekran pomiarów, Ustawienia, Postępy', () => {
     await boot(() => { addWorkout(at(7, 20), [['Pull Up', [{ addKg: 10, reps: 5 }]]]); addWorkout(at(9, 5), [['Pull Up', [{ addKg: 10, reps: 5 }]]]); store.addBodyMass(80, '2026-10-01'); }, '/progress');
     expect(screen.getByText(/^80 kg · pomiar z /)).toBeTruthy(); expect(screen.getByRole('header', { name: 'Masa ciała' })).toBeTruthy();
     await go(`/progress?ex=${ex('Pull Up').id}`); await flushAll(10);
-    expect(screen.getByText(/^e1RM: wzór Epleya na 100% masy ciała z dnia treningu \(ostatni pomiar z tego dnia lub wcześniejszy\) plus dociążenie \(uproszczenie\)\. Treningi sprzed pierwszego pomiaru \(.+\) — bez e1RM\.$/)).toBeTruthy();
+    expect(screen.getByText(/^e1RM liczone z 100% masy ciała z dnia treningu \(ostatni pomiar z tego dnia lub wcześniejszy\) plus dociążenie\. Treningi sprzed pierwszego pomiaru \(.+\) — bez e1RM\.$/)).toBeTruthy();
     expect(screen.getByText('105 kg (masa ciała + 25)')).toBeTruthy(); expect(screen.getByText(/Treningi sprzed pierwszego pomiaru \(.+\) — bez e1RM\.$/)).toBeTruthy(); expect(screen.getByText(new RegExp('Treningi sprzed pierwszego pomiaru')).props.children).toContain(`Treningi sprzed pierwszego pomiaru (${store.fmtDate(store.localDateTs('2026-10-01'))}) — bez e1RM.`); /* sesja z 5.10: 80 kg z pomiaru 1.10 + 10 kg × 5 */
     await tap(screen.getByText('Masa ciała — pomiary')); await flushAll(10); expect(screen.getByText('Zapisz pomiar')).toBeTruthy();
   });

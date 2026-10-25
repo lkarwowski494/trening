@@ -1846,7 +1846,7 @@ describe('runda 73 — rekord = suma na treningu + e1RM (decyzja 01.10)', () => 
     await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]);
     await go('/progress?ex=' + ex('Back Squat').id); await flushAll(10);
     const txt = screen.UNSAFE_root.findAll((n: any) => n.type === 'Text' && typeof n.props.children === 'string').map((n: any) => n.props.children as string);
-    const i = txt.indexOf('Najlepszy trening (objętość)'), j = txt.findIndex((x: string) => /^e1RM \(/.test(x)); expect(i).toBeGreaterThan(-1); expect(j).toBeGreaterThan(i);
+    const i = txt.indexOf('Najlepszy trening (objętość)'), j = txt.findIndex((x: string, k: number) => k > i && x === 'e1RM'); expect(i).toBeGreaterThan(-1); expect(j).toBeGreaterThan(i);
   });
 });
 
