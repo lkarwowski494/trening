@@ -8,6 +8,25 @@ ten plik je porządkuje na dzień zgłoszenia i uzupełnia o pozycje, których t
 Wszystkie adresy Apple w tym dokumencie zostały **przeczytane 25.10.2026** (zasada L-028: krok dla właściciela ma źródło sprawdzone u źródła, nie z pamięci).
 Gdzie dokumentacja Apple czegoś nie mówi, jest to napisane wprost i oznaczone **[OTWARTE]**.
 
+## Decyzje właściciela (25.10.2026, po przeczytaniu szkicu)
+
+| # | Decyzja | Skutek |
+|---|---|---|
+| D1 | Pełny audyt przed App Store obowiązuje (CLAUDE.md) | Z-03 zostaje; audyt obejmuje całość, nie tylko zmiany po audycie M1 |
+| D2 | Zrzuty wgrywa skrypt z workflow; wyjątek od L-001 jak przy przekładzie (workflow tylko ręczny: scalenie, potem przebieg dowodowy, przy porażce cofnięcie) | gotowe: `.github/workflows/asc-zrzuty.yml`, `scripts/asc/zrzuty.mjs`, `tests/asc-zrzuty.test.ts` — **apply nieuruchomiony**; pierwszy przebieg po scaleniu to dry-run (Z-16) |
+| D3 | 10 ekranów, karta ćwiczenia z grafiką jako drugi | pkt 5, ekran `cwiczenie` (po wejściu grafik) |
+| D4 | Opis z trzema wyróżnikami (grafiki, sprawdzone wskazówki, import); PL i EN do akceptacji właściciela; wchodzi, gdy funkcje są w kodzie | pkt 6; brzmienie zdań o pokryciu dopiero po sprawdzeniu w kodzie |
+| D5 | „Data Not Collected” | pkt 3, wariant B tylko jako zapas |
+| D6 | Deklaracja wyrobu medycznego: „No” | Z-22 |
+| D7 | Zrzuty dla wszystkich lokalizacji | Z-16: wszystkie 33 lokalizacje z `store/app-store-names.json` (bez `sl`, L-003; języki bg, et, lt, lv, sr nie mają lokalizacji w sklepie) |
+
+**Uwaga o interfejsie Apple (odczyt 25.10.2026):** dokumentacja App Store Connect API oznacza `appScreenshotSets` i `appScreenshots` jako **przestarzałe**; zrzuty zarządza się przez App Asset Library
+(<https://developer.apple.com/documentation/appstoreconnectapi/app-asset-library>, <https://developer.apple.com/documentation/appstoreconnectapi/uploading-and-managing-image-assets>,
+<https://developer.apple.com/documentation/appstoreconnectapi/placing-assets-on-your-app-store-surfaces>). Skrypt używa nowego interfejsu: obraz wgrywany raz do biblioteki, potem „placement” na lokalizacji wersji i jedno żądanie kolejności.
+Grupę urządzeń wybiera z danych referencyjnych API na podstawie dokładnych wymiarów pliku. **[OTWARTE]**: nazwy pól danych referencyjnych (`featureId`, `groupLimits`) skrypt czyta zgodnie z dokumentacją, ale
+bez sieci nie sprawdziłem ich na prawdziwej odpowiedzi — rozstrzygnie pierwszy przebieg **dry-run** (tylko odczyt, bezpieczny) i ewentualna poprawka przed `apply`.
+Skrypt nie usuwa: grupa, która ma już zrzuty, jest pomijana (zmiana zrzutów w gotowej lokalizacji — ręcznie w App Store Connect).
+
 ## 0. Stan wyjściowy i zależności
 
 - `main` (928d0ff, 25.10.2026): `tests.yml` zielony. Wersja aplikacji w `app.json`: 0.20.0 (wersja 1.0.0 dopiero w kroku Z-05).
@@ -16,7 +35,7 @@ Gdzie dokumentacja Apple czegoś nie mówi, jest to napisane wprost i oznaczone 
   **Zamrożenie zakresu 1.0 jest przesunięte** (decyzja 25.10.2026), nowy termin zgłoszenia — do ustalenia po tych pracach.
 - Są już gotowe narzędzia: `asc-metadane.yml` (nazwy, podtytuły, słowa kluczowe, opisy, teksty promocyjne, adresy — 33 lokalizacje), `asc-iap-localizations.yml` (lokalizacje zakupów), `asc-kontrola.yml` (tylko odczyt: ceny, oferty,
   rodzina, kategoria, adresy), `store-screenshots.yml` (zrzuty iPhone z symulatora, ramki i podpisy), `watch-sim.yml` (zrzuty zegarka), `testflight.yml` (build i wysyłka).
-  **Brakuje** skryptu wgrywającego zrzuty do App Store Connect (jest tylko generowanie) — patrz pkt 5 i decyzja D2.
+  Skrypt wgrywający zrzuty (`asc-zrzuty.yml`) powstał 25.10.2026 po decyzji D2 — patrz „Decyzje właściciela” i pkt 5.
 - Rozbieżność w starych dokumentach: `docs/41` (A7, E1) mówi o buildzie 1.0 z nowego repo Apps4Brew, a decyzja D7 z 21.10.2026 (`docs/46`) mówi, że przeniesienie następuje **po wydaniu 1.0 w App Store**.
   Ten dokument zakłada D7: zgłoszenie idzie ze starego repo (`lkarwowski494/trening`). `docs/41` trafia na Dysk przy przenosinach (D1), więc nie poprawiam go teraz.
 
@@ -61,7 +80,7 @@ Wszystkie kroki w <https://appstoreconnect.apple.com> → Apps → Trening. Rola
 | Z-13 | Wersja 1.0 w stanie „Prepare for Submission” istnieje (pasek boczny → wersja iOS); numer wersji = 1.0 | właściciel | <https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/> („Version Number”); dla późniejszych wersji: <https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version/> | 2 min |
 | Z-14 | **Metadane przez workflow**: GitHub → Actions → „ASC metadane sklepu” → tryb `podglad`, potem `zapis` → „Review deployments → release → Approve” | automat + właściciel (zatwierdzenie) | procedura: `docs/15`, „Wgranie opisów i nazw do App Store Connect”; limity pól: <https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/> (opis 4000 znaków, tekst promocyjny 170, słowa kluczowe 100 bajtów) | 5 min |
 | Z-15 | Ręcznie w polach, których workflow nie wypełnia: **Copyright** („2026 …”, imię i nazwisko sprzedawcy; nie wpisujemy do repo), Marketing URL (opcjonalny) | właściciel | to samo (wiersz „Copyright”: „This property is required”) | 2 min |
-| Z-16 | **Zrzuty ekranu** — wgranie do każdej lokalizacji (iPhone + Apple Watch), po akceptacji zestawu (pkt 5) | właściciel (ręcznie) albo agent + automat, jeśli powstanie skrypt (D2) | <https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/> | ręcznie: długo (dziesiątki plików na język) — stąd D2; ze skryptem: 5 min (zatwierdzenie) |
+| Z-16 | **Zrzuty ekranu** — wgranie do każdej lokalizacji (iPhone + Apple Watch), po akceptacji zestawu (pkt 5) | automat: `asc-zrzuty.yml` (dry-run, potem apply za `release`); właściciel zatwierdza | <https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/> | 5 min (zatwierdzenie `release`); ręcznie tylko zamiana zrzutów w lokalizacji, która już je ma |
 | Z-17 | **Prywatność aplikacji**: „No, we do not collect data from this app” → Publish (uzasadnienie i ryzyko: pkt 3) | właściciel (wpisane 14.10.2026; zweryfikować, że opublikowane) | <https://developer.apple.com/help/app-store-connect/manage-app-information/manage-app-privacy/> | 3 min |
 | Z-18 | **Adres polityki prywatności** i adres wsparcia (z `store/app-store-urls.json`); strony muszą być opublikowane w wersji zgodnej z 1.0 | właściciel + agent | ta sama strona co Z-17 („Entering privacy policy information”) oraz Support URL w platform-version-information | 3 min; agent sprawdza treść `site/privacy.html` (test `audit-m1-013`) |
 | Z-19 | **Ocena wieku**: kwestionariusz (pkt 4), wynik oczekiwany 9+, „Age Categories and Override” = Not Applicable | właściciel | <https://developer.apple.com/help/app-store-connect/manage-app-information/set-an-app-age-rating/> | 5 min |
@@ -241,8 +260,8 @@ komplet „medium” zostaje opcją, jeśli przegląd pokaże przeskalowanie gor
 2. Zegarek: `watch-sim.yml`, wejście `jezyki_zrzutow: all` (416 × 496).
 3. Zrzut ekranu zakupu do przeglądu (osobny obraz dla każdego produktu): `store-screenshots.yml` z wejściem `zrzut_zakupu_z_przebiegu` (aplikacja E2E ze sztucznym sklepem) albo zrzut z telefonu po zakupie w piaskownicy.
 4. Przegląd **każdego** obrazu przez agenta (lekcja L-004 w `docs/40`: zrzuty do sklepu sprawdzamy na obrazach, nie na logach), potem akceptacja zestawu przez właściciela (15 min).
-5. **Wgranie:** dziś ręczne. Propozycja (D2): skrypt `scripts/asc/zrzuty.mjs` + workflow `asc-zrzuty.yml` wzorowany na `asc-metadane.yml` (tryb `podglad` / `zapis` za środowiskiem `release`, te same sekrety, nic nie usuwa); ponieważ jest to workflow uruchamiany tylko ręcznie, stosuje się do niego
-   wyjątek od L-001 z 25.10.2026 (scalenie przed przebiegiem dowodowym) — **o zastosowaniu wyjątku do nowego workflowu zdecyduje właściciel** (D2).
+5. **Wgranie (D2, zrobione):** workflow `asc-zrzuty.yml` (Run workflow): wejścia `zrzuty_z_przebiegu` (numer przebiegu `store-screenshots.yml`, artefakt `sklep-zrzuty-ramki`), `rozmiar` (6.9 domyślnie), `zegarek_z_przebiegu` (opcjonalnie, `watch-sim.yml`, artefakt `zegarek-zrzuty`), `tryb` (`dry-run` domyślnie, `apply` za środowiskiem `release`).
+   Te same sekrety ASC co `asc-metadane.yml`, żadnych nowych. Wyjątek od L-001 (25.10.2026): po scaleniu pierwszy przebieg to `dry-run`, przy porażce cofnięcie. Angielski zestaw trafia do czterech lokalizacji angielskich (jeden obraz w bibliotece, cztery placementy).
    **[OTWARTE]**: czy lokalizacja bez własnych zrzutów dziedziczy zrzuty z języka podstawowego — przeczytane strony Apple tego nie mówią; do sprawdzenia w interfejsie przy pierwszej lokalizacji. Dopóki nie wiemy, planujemy zrzuty dla wszystkich 33 lokalizacji z `store/app-store-names.json`.
 
 Znane ograniczenia zrzutów (docs/41): porównanie miesiąca liczy dni 1–N bieżącego miesiąca (zrzut z początku miesiąca bywa słaby — robić po 10. dniu miesiąca); nazwy szablonów w innych językach niż PL są po angielsku (dane użytkownika).
@@ -307,7 +326,7 @@ Każda z co najmniej dwiema opcjami; agent nie rozstrzygał żadnej z nich.
 | # | Decyzja | Opcje i kompromisy | Rekomendacja |
 |---|---|---|---|
 | D1 | Audyt przed zgłoszeniem (zakres po audycie M1 urósł: grafiki, monetyzacja, przekład) | A: audyt zmian od audytu M1 + stała lista (dane, migracje, prywatność), tylko KRYTYCZNE i WYSOKIE blokują, bez pętli — 2–4 h agenta; B: bez nowego audytu, polegamy na testach i E2E — szybciej, ale grafiki (treści z twierdzeniami o mięśniach, torze ruchu, błędach) i import CSV (dane użytkownika) nie miałyby niezależnego przeglądu | A |
-| D2 | Wgrywanie zrzutów do App Store Connect | A: ręcznie — bez nowego kodu, ale kilkaset plików (33 lokalizacje × zestaw iPhone + zegarek) i ryzyko pomyłek; B: skrypt + workflow `asc-zrzuty.yml` (podgląd / zapis za `release`) — 2–3 h agenta, nowy workflow zmieniający ASC, potrzebne zastosowanie wyjątku od L-001 z 25.10.2026 albo przebieg dowodowy przed scaleniem; C: ręcznie tylko PL i EN, reszta po premierze — najmniej pracy, ale lokalizacje bez zrzutów mogą nie przejść walidacji **[OTWARTE]** | B |
+| D2 (rozstrzygnięte, patrz wyżej) | Wgrywanie zrzutów do App Store Connect | A: ręcznie — bez nowego kodu, ale kilkaset plików (33 lokalizacje × zestaw iPhone + zegarek) i ryzyko pomyłek; B: skrypt + workflow `asc-zrzuty.yml` (podgląd / zapis za `release`) — 2–3 h agenta, nowy workflow zmieniający ASC, potrzebne zastosowanie wyjątku od L-001 z 25.10.2026 albo przebieg dowodowy przed scaleniem; C: ręcznie tylko PL i EN, reszta po premierze — najmniej pracy, ale lokalizacje bez zrzutów mogą nie przejść walidacji **[OTWARTE]** | B |
 | D3 | Zestaw zrzutów po wejściu grafik | A: 10 ekranów — dodać `cwiczenie` jako drugi (maksimum Apple); B: zamienić najsłabszy z dziewięciu na `cwiczenie`; C: bez zmian (grafiki nie są widoczne w sklepie, tracimy wyróżnik z decyzji 25.10.2026) | A |
 | D4 | Zakres zmian opisu i tekstu promocyjnego (pkt 6) | A: propozycja z tabeli (rysunki, źródła, import) po potwierdzeniu pokrycia w kodzie; B: tylko tekst promocyjny (zmienialny bez nowej wersji), opis bez zmian do 1.0.1; C: bez zmian — opis mówi „krótkie wskazówki”, nie sprzedaje najmocniejszego wyróżnika | A |
 | D5 | Etykieta prywatności | A: „Data Not Collected” (decyzja 21.10.2026), wariant B zapasowy; B: od razu zadeklarować e-mail i wsparcie — bezpieczniej wobec definicji „collect”, ale etykieta mniej atrakcyjna i niezgodna z hasłem „bez zbierania danych” | A (odwracalne bez nowej wersji) |
