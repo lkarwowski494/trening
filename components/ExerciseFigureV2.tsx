@@ -7,7 +7,7 @@ import { cueText } from '@/lib/cues';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { useReduceMotion } from '@/components/ExerciseFigure';
 import {
-  figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, phasesFor, phaseIndexAt, trailFor, guideShapes, ERRORS, type FigureSpec,
+  figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, phasesFor, phaseIndexAt, trailFor, guideShapes, ERRORS, type FigureSpec,
   type View as FView, type ErrorId, type GuideId,
 } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';
@@ -56,7 +56,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   }, [animate]);
   if (!spec) return null;
   const error = errIdx >= 0 ? errors[errIdx] : undefined; const errId = error?.error;
-  const tempo = errId ? ERRORS[errId].mods.tempo : undefined;
+  const tempo = tempoFor(spec, errId);
   const label = t('Rysunek ruchu: {opis}', { opis: name ?? exName({ name: exercise.name ?? spec.key, lib: true }) });
   const canPause = !spec.static && reduce === false;
   const u = animate ? uAt(ms, spec.lowerFirst, tempo) : 0;
@@ -66,7 +66,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
   const height = Math.max(110, Math.min(200, (width - 8 * (views.length - 1)) / sumA));
   const phases = phasesFor(spec, tempo); const cur = animate ? phaseIndexAt(ms, phases) : -1;
   const sec = (x: number): string => String(Math.round(x / 100) / 10).replace('.', ',');
-  const shown = phases.filter((p, i) => !(p.name === 'Pauza' && i === 3));
+  const shown = phases.filter((p, i) => !(p.name === 'Pauza' && (i === 3 || p.ms === 0)));
   const txt = { color: th.muted, ...font('footnote'), ...FW.regular } as const;
   return (
     <View testID="exercise-figure-v2" style={{ marginTop: 6, marginBottom: 4 }} onLayout={e => setWidth(e.nativeEvent.layout.width)}>

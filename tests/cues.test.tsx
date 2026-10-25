@@ -12,6 +12,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
 import { CUE_DATA, CUE_SECTIONS, cuesFor, cueText, cueDict, cueOrgs } from '@/lib/cues';
 import { ExerciseCues } from '@/components/ExerciseCues';
+import { figureSpec } from '@/lib/figures/v2';
 import { LIB_BASE_NAMES, LIB_KEYS } from '@/lib/seed';
 import { LANGS, applyLang, t } from '@/lib/i18n';
 import { light } from '@/lib/theme';
@@ -133,7 +134,7 @@ describe('komponent ExerciseCues', () => {
   test('ćwiczenie własne i ćwiczenie bez wskazówek — nic się nie renderuje', () => {
     render(<ExerciseCues exercise={{ lib: false }} />);
     expect(screen.toJSON()).toBeNull();
-    const open = Object.keys(CUE_DATA.open)[0];
+    const open = Object.keys(CUE_DATA.open).find(k => !figureSpec(k)); /* z gotową rodziną v2 sekcja „Technika” jest (figura + wskazówki ogólne) */
     if (open) { render(<ExerciseCues exercise={lib(open)} />); expect(screen.toJSON()).toBeNull(); }
   });
   test('kolory z motywu (jasny): tekst wskazówek t.text, nagłówki t.muted, linie t.line', () => {

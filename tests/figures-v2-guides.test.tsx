@@ -3,7 +3,7 @@
  * Rodzaje (docs/20): dane (linie związane z id wskazówek ćwiczenia), logika (fazy, indeks fazy w czasie), niezmienniki (linie bez tekstu, tor = droga środka ciężaru).
  */
 import {
-  GUIDES, guidesFor, trailShapes, phasesOf, phaseIndexAt, phaseNames, phasesFor, trailFor, guideShapes, figureSpec, frameAt, shapesAt, TEMPO, type GuideId, type FigureSpec,
+  GUIDES, guidesFor, trailShapes, phasesOf, phaseIndexAt, phaseNames, phasesFor, tempoFor, uAt, loopLength, trailFor, guideShapes, figureSpec, frameAt, shapesAt, TEMPO, type GuideId, type FigureSpec,
 } from '@/lib/figures/v2';
 import { cueIdsOf, guidesOf, errorsOf, legendOf } from '@/lib/figures/v2/ui';
 
@@ -58,6 +58,14 @@ describe('fazy i tempo', () => {
     expect(phasesFor(spec('Back Squat')).map(p => p.ms)).toEqual([TEMPO.downMs, TEMPO.holdMs, TEMPO.upMs, TEMPO.holdMs]);
     expect(phasesFor(spec('Deadlift (sztanga)')).map(p => [p.name, p.ms])).toEqual([['Podnoszenie', TEMPO.upMs], ['Pauza', TEMPO.holdMs], ['Opuszczanie', TEMPO.downMs], ['Pauza', TEMPO.holdMs]]);
     expect(phasesFor(spec('Back Squat'), { downMs: 450, upMs: 350 })[0].ms).toBe(450); expect(phasesOf({ first: 'Opuszczanie', second: 'Wstawanie' }, true)[2].name).toBe('Wstawanie');
+  });
+  test('przysiad bez pauzy na dole (NSCA Basics s. 49–50): tempoFor daje holdLowMs 0, pętla krótsza o pauzę, u = 1 tylko w jednej chwili; inne rodziny i błąd tempa bez zmian', () => {
+    const t = tempoFor(spec('Back Squat')); expect(t.holdLowMs).toBe(0); expect(tempoFor(spec('Deadlift (sztanga)')).holdLowMs).toBeUndefined(); expect(tempoFor(spec('Bench Press (sztanga)')).holdLowMs).toBeUndefined();
+    expect(loopLength(true, t)).toBe(loopLength(true) - TEMPO.holdMs);
+    const ph = phasesFor(spec('Back Squat'), t); expect(ph.map(p => p.ms)).toEqual([TEMPO.downMs, 0, TEMPO.upMs, TEMPO.holdMs]);
+    const h = TEMPO.holdMs; expect(uAt(h + TEMPO.downMs, true, t)).toBeCloseTo(1, 6); expect(uAt(h + TEMPO.downMs + 100, true, t)).toBeLessThan(0.999); expect(uAt(h + TEMPO.downMs - 100, true, t)).toBeLessThan(0.999);
+    expect(tempoFor(spec('Back Squat'), 'jerk').downMs).toBe(450); expect(tempoFor(spec('Back Squat'), 'jerk').holdLowMs).toBe(0);
+    expect(uAt(123456, true, t)).toBeCloseTo(uAt(123456 + loopLength(true, t), true, t), 9);
   });
   test('phaseIndexAt: wskazuje fazę zgodną z uAt (opuszczanie gdy u rośnie, wstawanie gdy maleje, pauzy na końcach)', () => {
     const ph = phasesFor(spec('Back Squat')); const h = TEMPO.holdMs;

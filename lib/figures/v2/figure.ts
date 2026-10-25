@@ -15,7 +15,7 @@ import { MUSCLE_DATA, type MuscleEntry } from './muscles.generated';
 import type { Frame, Shape, View } from './scene';
 import type { V3 } from './math';
 import { GUIDES, trailShapes, type GuideId } from './guides';
-import { phasesOf, type Phase, type PhaseNames } from './anim';
+import { phasesOf, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
 import { ERRORS, type ErrorId, type Fault } from './errors';
 import { ease } from './rigs/common';
 
@@ -107,7 +107,9 @@ export function phaseNames(spec: FigureSpec): PhaseNames {
   return { first: 'Opuszczanie', second: 'Wstawanie' };
 }
 /** Fazy pętli ćwiczenia z czasami (tempo ilustracyjne; błąd tempa podaje własne czasy). */
-export const phasesFor = (spec: FigureSpec, tempo?: { downMs: number; upMs: number }): Phase[] => phasesOf(phaseNames(spec), spec.lowerFirst, tempo);
+/** Tempo figury: z błędu tempa albo domyślne; przysiad bez pauzy na dole (NSCA Basics 2012 s. 49–50; pauza 0,5 s to konwencja bez źródła). */
+export const tempoFor = (spec: FigureSpec, error?: ErrorId): Tempo => ({ ...(error ? ERRORS[error].mods.tempo : undefined) ?? TEMPO, ...(spec.family === 'squat' && !spec.static ? { holdLowMs: 0 } : {}) });
+export const phasesFor = (spec: FigureSpec, tempo?: Tempo): Phase[] => phasesOf(phaseNames(spec), spec.lowerFirst, tempo);
 
 const trailCache = new Map<string, Shape[]>();
 /** Tor ruchu środka ciężaru/dłoni w widoku (próbkowanie co 1/24; cache). */

@@ -2,11 +2,12 @@
  * Figury v2 — dane dla warstwy ekranu (poza czystym silnikiem, bo używa lib/cues i aliasów): wskazówki przypisane ćwiczeniu → linie odniesienia i błędy do animacji,
  * mięśnie z legendą i oznaczeniem „uproszczenie”. Wszystko wynika z danych ze źródłami (lib/cues, cue-sets.json, muscleLoad katalogu) — nic nie jest dopisywane ręcznie.
  */
-import { CUE_DATA, CUE_SECTIONS } from '@/lib/cues';
+import { CUE_DATA, CUE_SECTIONS, hasCues } from '@/lib/cues';
+import { catalogKey, type Exercise } from '@/lib/seed';
 import { REGION_LABEL } from '@/lib/seed';
 import { CUE_SETS } from './cueSets';
 import { CUE_TO_ERROR, type ErrorId } from './errors';
-import { faultApplicable, musclesFor, type FigureSpec } from './figure';
+import { faultApplicable, figureSpec, musclesFor, type FigureSpec } from './figure';
 import { guidesFor, type GuideId } from './guides';
 import { MUSCLE_MIN_LOAD, type MuscleId } from './muscles';
 
@@ -36,4 +37,10 @@ export function legendOf(key: string): MuscleLegend | null {
   const pick = (f: (v: number) => boolean): MuscleId[] => (Object.entries(m.load) as [MuscleId, number][]).filter(([, v]) => v >= MUSCLE_MIN_LOAD && f(v)).map(([k]) => k as MuscleId);
   const main = pick(v => v >= 1), aux = pick(v => v < 1);
   return { main, aux, simplified: /uproszczenie/.test(m.confidence), label: r => REGION_LABEL[r] };
+}
+
+/** Czy przy ćwiczeniu jest sekcja „Technika”: własne wskazówki (lib/cues) albo figura v2 (a z nią zestaw ogólny wzorca; kolejne rodziny — kolejne etapy). */
+export function hasTechnique(e: Pick<Exercise, 'lib' | 'libKey'> | null | undefined): boolean {
+  if (hasCues(e)) return true; const key = catalogKey(e); if (!key) return false;
+  return !!figureSpec(key);
 }

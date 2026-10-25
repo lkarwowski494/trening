@@ -3224,6 +3224,30 @@
     "Delete place",
     "Delete place?"
    ]
+  },
+  {
+   "id": "SZ-14",
+   "tytul": "Podgląd ćwiczenia: figura ruchu v2 — fazy z tempem, mięśnie z legendą, przełącznik częstego błędu",
+   "stan": "nowy",
+   "wersja": "0.20",
+   "realnosc": "realny",
+   "kroki": [
+    "Więcej → Ćwiczenia → Back Squat → „Technika”",
+    "Rysunek ruchu z licznikiem faz („Opuszczanie 2 s”, „Wstawanie 1 s”; przysiad bez pauzy na dole) i legendą mięśni głównych i pomocniczych",
+    "„Pokaż częsty błąd” → rysunek błędu z opisem „Częsty błąd: …”; „Ukryj częsty błąd” wraca do poprawnej pozy"
+   ],
+   "wynik": "Przy ćwiczeniach z gotową rodziną figur v2 sekcja Technika pokazuje figurę v2 (zastępuje v1), mięśnie są zawsze widoczne z legendą, a częsty błąd można pokazać i ukryć.",
+   "ekrany": [
+    "/exercise/[id]"
+   ],
+   "scenariusz": "55-grafika-cwiczenia.yaml",
+   "znaczniki": [
+    "Lowering 2 s.*",
+    "Main muscles: .*",
+    "Show common mistake",
+    "Common mistake: .*",
+    "Hide common mistake"
+   ]
   }
  ],
  "pominiete": [

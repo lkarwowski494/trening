@@ -5,21 +5,24 @@
  * (decyzja z badań 25.10.2026: konwencja bez źródła szczebla 1–2, sprzeczna z częścią źródeł przy ciężkich bojach).
  */
 export const TEMPO = { downMs: 2000, upMs: 1000, holdMs: 500, tickMs: 33 } as const;
+/** Tempo animacji; holdLowMs = pauza po fazie opuszczania (u = 1) zamiast HOLD_MS (0 = bez pauzy na dole: przysiad, NSCA Basics 2012 s. 49–50). */
+export type Tempo = { downMs: number; upMs: number; holdLowMs?: number };
 
 /**
  * Pozycja u (0–1) w chwili `ms` pętli. lowerFirst = faza 0→1 to opuszczanie (przysiad, wyciskanie, RDL: 2 s), inaczej to podnoszenie (martwy ciąg z podłogi: 1 s),
  * a powrót trwa odpowiednio dłużej. Na obu końcach pauza HOLD_MS.
  */
-export function uAt(ms: number, lowerFirst: boolean, tempo: { downMs: number; upMs: number } = TEMPO): number {
-  const a = lowerFirst ? tempo.downMs : tempo.upMs, b = lowerFirst ? tempo.upMs : tempo.downMs, h = TEMPO.holdMs;
-  const total = h + a + h + b; const x = ((ms % total) + total) % total;
+export function uAt(ms: number, lowerFirst: boolean, tempo: Tempo = TEMPO): number {
+  const a = lowerFirst ? tempo.downMs : tempo.upMs, b = lowerFirst ? tempo.upMs : tempo.downMs, h = TEMPO.holdMs, hl = lowLeg(tempo);
+  const total = h + a + hl + b; const x = ((ms % total) + total) % total;
   const ease = (k: number): number => (1 - Math.cos(Math.PI * k)) / 2;
   if (x < h) return 0;
   if (x < h + a) return ease((x - h) / a);
-  if (x < h + a + h) return 1;
-  return 1 - ease((x - 2 * h - a) / b);
+  if (x < h + a + hl) return 1;
+  return 1 - ease((x - h - a - hl) / b);
 }
-export const loopLength = (_lowerFirst: boolean, tempo: { downMs: number; upMs: number } = TEMPO): number => 2 * TEMPO.holdMs + tempo.downMs + tempo.upMs;
+const lowLeg = (tempo: Tempo): number => tempo.holdLowMs ?? TEMPO.holdMs;
+export const loopLength = (_lowerFirst: boolean, tempo: Tempo = TEMPO): number => TEMPO.holdMs + lowLeg(tempo) + tempo.downMs + tempo.upMs;
 
 /** Fazy pętli do licznika: etykiety (klucze t()) i czas w ms. `first` = faza 0→1 (u rośnie), `second` = powrót. */
 export type PhaseName = 'Opuszczanie' | 'Wypychanie' | 'Wstawanie' | 'Podnoszenie' | 'Prostowanie' | 'Pauza';
@@ -27,9 +30,9 @@ export type Phase = { name: PhaseName; ms: number };
 export type PhaseNames = { first: PhaseName; second: PhaseName };
 
 /** Cztery fazy jednej pętli w kolejności: pierwsza, pauza, druga, pauza (pauza ilustracyjna 0,5 s). */
-export function phasesOf(names: PhaseNames, lowerFirst: boolean, tempo: { downMs: number; upMs: number } = TEMPO): Phase[] {
+export function phasesOf(names: PhaseNames, lowerFirst: boolean, tempo: Tempo = TEMPO): Phase[] {
   const a = lowerFirst ? tempo.downMs : tempo.upMs, b = lowerFirst ? tempo.upMs : tempo.downMs;
-  return [{ name: names.first, ms: a }, { name: 'Pauza', ms: TEMPO.holdMs }, { name: names.second, ms: b }, { name: 'Pauza', ms: TEMPO.holdMs }];
+  return [{ name: names.first, ms: a }, { name: 'Pauza', ms: lowLeg(tempo) }, { name: names.second, ms: b }, { name: 'Pauza', ms: TEMPO.holdMs }];
 }
 /** Indeks fazy (w `phasesOf`) w chwili ms pętli: wiodąca pauza na starcie jest ostatnią fazą poprzedniej pętli. */
 export function phaseIndexAt(ms: number, phases: Phase[]): number {

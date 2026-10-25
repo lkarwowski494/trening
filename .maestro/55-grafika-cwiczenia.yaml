@@ -1,0 +1,39 @@
+# Grafiki 1.0 (25.10.2026, etap 2): figura v2 w sekcji „Technika” (zastępuje v1 tam, gdzie rodzina jest gotowa): licznik faz z tempem, mięśnie z legendą,
+# przełącznik częstego błędu. Logika i ekran: tests/figures-v2-ui.test.tsx, tests/figures-v2-errors.test.tsx, tests/figures-v2-guides.test.tsx.
+#
+# Literały (EN z lib/i18n.en.ts):
+#   "Lowering 2 s.*" / "Standing up 1 s"            ← '{faza} {n} s' z fazami 'Opuszczanie' / 'Wstawanie' (licznik faz; przysiad bez pauzy na dole)
+#   "Main muscles: .*"                              ← 'Mięśnie główne: {lista}' (legenda mięśni, zawsze widoczna)
+#   "Show common mistake" / "Hide common mistake"   ← 'Pokaż częsty błąd' / 'Ukryj częsty błąd'
+#   "Common mistake: .*"                            ← 'Częsty błąd: {opis}'
+appId: pl.lukasz.trening
+name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
+---
+- launchApp:
+    clearState: true
+    permissions: { all: allow }
+- extendedWaitUntil: { visible: "Other workout", timeout: 60000 }
+- tapOn: "More, tab.*"
+- tapOn: "Exercises"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- inputText: "Back Squat"
+- pressKey: Enter   # reguła: po wpisie w wyszukiwarce wyboru ćwiczenia zawsze Enter
+- tapOn: { text: "Continue", optional: true }
+- pressKey: Enter   # chowa klawiaturę (L-013)
+- tapOn: "Back Squat, barbell.*"
+- extendedWaitUntil: { visible: "Technique", timeout: 30000 }
+- tapOn: "Technique"
+- scrollUntilVisible: { element: "Movement drawing: .*", direction: DOWN, timeout: 30000, centerElement: true }
+- assertVisible: "Lowering 2 s.*"
+- assertVisible: "Standing up 1 s"
+- scrollUntilVisible: { element: "Main muscles: .*", direction: DOWN, timeout: 30000, centerElement: true }
+- takeScreenshot: 85-figura-v2-miesnie
+- scrollUntilVisible: { element: "Show common mistake", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Show common mistake"
+- extendedWaitUntil: { visible: "Common mistake: .*", timeout: 15000 }
+- assertVisible: "Hide common mistake"
+- takeScreenshot: 86-figura-v2-blad
+- tapOn: "Hide common mistake"
+- extendedWaitUntil: { visible: "Show common mistake", timeout: 15000 }
+- assertNotVisible: "Common mistake: .*"

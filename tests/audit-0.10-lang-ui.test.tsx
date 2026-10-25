@@ -102,7 +102,7 @@ describe('K2 (A11-09): VoiceOver czyta głosem języka aplikacji', () => {
     const bad: string[] = []; let n = 0;
     for (const url of routes) {
       await go(url); await flushAll(10);
-      if (url === `/exercise/${cue.id}`) { await tap(screen.getByRole('button', { name: t('Technika') })); await flushAll(5); expect(screen.getByTestId('exercise-figure')).toBeTruthy(); }
+      if (url === `/exercise/${cue.id}`) { await tap(screen.getByRole('button', { name: t('Technika') })); await flushAll(5); expect(screen.queryByTestId('exercise-figure-v2') ?? screen.queryByTestId('exercise-figure')).toBeTruthy(); }
       if (url === '/more/language') continue; /* wiersze listy języków celowo w języku nazwy — osobny test wyżej */
       const g = langGaps('de'); n += g.n; bad.push(...g.bad.map(b => `${url}: ${b}`));
     }

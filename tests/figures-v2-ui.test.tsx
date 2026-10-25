@@ -8,7 +8,7 @@ import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import { figurePalette, TEMPO, loopLength, figureSpec, MUSCLE_DATA } from '@/lib/figures/v2';
-import { errorsOf } from '@/lib/figures/v2/ui';
+import { errorsOf, hasTechnique } from '@/lib/figures/v2/ui';
 import { applyLang } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
 
@@ -70,15 +70,15 @@ describe('komponent ExerciseFigureV2', () => {
     const texts = screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === RN.Text).flatMap((n: { props: { children?: unknown } }) => React.Children.toArray(n.props.children as React.ReactNode)).map(String);
     for (const x of texts) { expect([x, /°/.test(x)]).toEqual([x, false]); if (/[0-9]/.test(x)) expect([x, /^(Opuszczanie|Wstawanie|Wypychanie|Podnoszenie|Prostowanie) [0-9,]+ s/.test(x)]).toEqual([x, true]); }
   });
-  test('licznik faz z tempem ilustracyjnym: Opuszczanie 2 s · Pauza · Wstawanie 1 s (przysiad); martwy ciąg z podłogi: Podnoszenie 1 s, Opuszczanie 2 s; podświetlona bieżąca faza przy animacji', async () => {
+  test('licznik faz z tempem ilustracyjnym: Opuszczanie 2 s · Wstawanie 1 s (przysiad bez pauzy na dole); martwy ciąg z podłogi: Podnoszenie 1 s, Opuszczanie 2 s; podświetlona bieżąca faza przy animacji', async () => {
     jest.useFakeTimers(); setReduce(false);
     render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
     const ph = () => screen.getByTestId('exercise-figure-v2-phases');
-    expect(screen.getByText('Opuszczanie 2 s ·')).toBeTruthy(); expect(screen.getByText('Pauza ·')).toBeTruthy(); expect(screen.getByText('Wstawanie 1 s')).toBeTruthy(); expect(ph()).toBeTruthy();
+    expect(screen.getByText('Opuszczanie 2 s ·')).toBeTruthy(); expect(screen.queryByText('Pauza ·')).toBeNull(); /* przysiad bez pauzy na dole (NSCA Basics s. 49–50) */ expect(screen.getByText('Wstawanie 1 s')).toBeTruthy(); expect(ph()).toBeTruthy();
     await act(async () => { jest.advanceTimersByTime(TEMPO.holdMs + 500); });
     expect(screen.getByText('Opuszczanie 2 s ·').props.style.color).toBe(light.accent);
     screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Deadlift (sztanga)')} />); await flush();
-    expect(screen.getByText('Podnoszenie 1 s ·')).toBeTruthy(); expect(screen.getByText('Opuszczanie 2 s')).toBeTruthy();
+    expect(screen.getByText('Podnoszenie 1 s ·')).toBeTruthy(); expect(screen.getByText('Opuszczanie 2 s')).toBeTruthy(); /* martwy ciąg zachowuje pauzy */ expect(screen.getAllByText(/Pauza/).length).toBeGreaterThan(0);
   });
   test('izometria: bez licznika faz', async () => { setReduce(true); render(<ExerciseFigureV2 exercise={lib('Wall Sit')} />); await flush(); expect(screen.queryByTestId('exercise-figure-v2-phases')).toBeNull(); });
   test('mięśnie zawsze widoczne z legendą: główne (czworogłowe) i pomocnicze; przy pewności „uproszczenie” dopisek', async () => {
@@ -118,5 +118,9 @@ describe('komponent ExerciseFigureV2', () => {
   test.each(['Back Squat', 'Bench Press (sztanga)', 'Deadlift (sztanga)', 'Wall Sit'])('rysunek statyczny jest deterministyczny i niepusty: %s', async k => {
     setReduce(true); const a = render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); const d1 = pathsOf().join('|'); a.unmount();
     render(<ExerciseFigureV2 exercise={lib(k)} />); await flush(); expect(pathsOf().join('|')).toBe(d1); expect(pathsOf().length).toBeGreaterThan(30);
+  });
+  test('hasTechnique: ćwiczenie z gotową rodziną v2 ma sekcję „Technika” (także bez własnych wskazówek), ćwiczenie spoza rodzin — tylko gdy ma wskazówki', () => {
+    expect(hasTechnique(lib('Back Squat'))).toBe(true); expect(hasTechnique(lib('Box Squat'))).toBe(true); expect(hasTechnique({ lib: false })).toBe(false);
+    expect(hasTechnique(lib('Pec Deck'))).toBe(false);
   });
 });
