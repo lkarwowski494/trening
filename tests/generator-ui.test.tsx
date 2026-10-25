@@ -33,7 +33,7 @@ test('wejście z Szablonów i z Planu tygodnia', async () => {
 });
 test('domyślnie: masa, 3 sesje, 60 min, bez ograniczeń sprzętu; podgląd zgodny z logiką; opisy celów i „Zasady planu”', async () => {
   await boot('/generator'); await openInfo('gen-intro'); await openInfo('gen-goal'); await openInfo('gen-basis'); /* ⓘ 14.10.2026: wstęp, opis celu i „Zasady planu” pod ⓘ */
-  expect(screen.getByText('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Opiera się na zaleceniach zdrowotnych i treningowych.')).toBeTruthy();
+  expect(screen.getByText('Propozycja według Twoich założeń — przejrzysz ją przed zapisem.')).toBeTruthy();
   expect(screen.getByText('Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie 10), 8–12 powtórzeń (w domu 12–20), zwykle 0–3 powtórzenia w zapasie.')).toBeTruthy(); /* audyt 0.10 MER-06: 0–3 — blisko upadku albo 2–3) */
   const r = generate({ goal: 'hypertrophy', locationId: null, sessions: 3, minutes: 60 });
   expect(screen.getByText(/^pon\.? FBW A · śr\.? FBW B · pt\.? FBW A$/)).toBeTruthy();

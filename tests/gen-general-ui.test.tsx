@@ -131,7 +131,7 @@ describe('„Ogólny” — każdy język na 320 pt', () => {
       tIn(l, 'Dni cardio w planie'), p(tIn(l, 'Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych.'), { k: 3 }),
       p(tIn(l, 'Dni treningowe w tygodniu (w tym {n} cardio)'), { n: 1 }),
       `• ${p(tIn(l, 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.'), { s: 2, b: 3, m: 2 })}`,
-      `• ${p(tIn(l, 'Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). W badaniach nie wykazano, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.'), { k: 4, m: 6, j: 3 })}`,
+      `• ${p(tIn(l, 'Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.'), { k: 4, m: 6, j: 3 })}`,
       `• ${tIn(l, 'Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.')}`,
     ];
     for (const x of [texts[0], ...texts.slice(4)]) expect([l, 'zwinięte', x, screen.queryAllByText(x).length]).toEqual([l, 'zwinięte', x, 0]); /* ⓘ (14.10.2026): opis celu i „Zasady planu” pod ⓘ */

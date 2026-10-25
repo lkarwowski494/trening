@@ -19,8 +19,8 @@
   {
    "id": "T-002",
    "kotwica": "Propozycja według Twoich założeń — przejrzysz ją",
-   "skrot": "88e258d6a2",
-   "skrotEn": "454ba81a11",
+   "skrot": "3f6f70fcbd",
+   "skrotEn": "82d798aec2",
    "rodzaje": [
     "konwencja",
     "uproszczenie",
@@ -29,7 +29,7 @@
    "zrodla": [],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-002",
-   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
+   "przeglad": "25.10.2026: programista — z tekstu usunięte odwołania do badań, zaleceń i organizacji (decyzja właściciela „całkiem anonimowo”, docs/18); treść merytoryczna bez zmian, źródła zostają w rejestrze"
   },
   {
    "id": "T-003",
@@ -150,8 +150,8 @@
   {
    "id": "T-010",
    "kotwica": "Przerwy: {a} min po ciężkich seriach boju główne",
-   "skrot": "de697d44b3",
-   "skrotEn": "c5883eb2e7",
+   "skrot": "df1394331e",
+   "skrotEn": "02771257b2",
    "rodzaje": [
     "uproszczenie",
     "źródło cytowane w tekście"
@@ -161,7 +161,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-010",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: ACSM 2026 (przerwa bez wpływu na siłę), Singer 2024, ACSM 2011 s. 1343 — rozbieżne, uproszczenie; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
+   "przeglad": "25.10.2026: programista — z tekstu usunięte odwołania do badań, zaleceń i organizacji (decyzja właściciela „całkiem anonimowo”, docs/18); treść merytoryczna bez zmian, źródła zostają w rejestrze"
   },
   {
    "id": "T-011",
@@ -407,8 +407,8 @@
   {
    "id": "T-028",
    "kotwica": "Przerwy: {b} min po wielostawowych, {c} min po j",
-   "skrot": "fa1f809249",
-   "skrotEn": "e3e928d9a4",
+   "skrot": "d915756ec7",
+   "skrotEn": "80a75c6854",
    "rodzaje": [
     "uproszczenie",
     "źródło cytowane w tekście"
@@ -418,13 +418,13 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-028",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone jak T-010; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (druga decyzja właściciela, docs/18): oznaczenia pewności usunięte z tekstu interfejsu; sens i liczby bez zmian, rodzaje i źródła zostają w tym wpisie i na ekranie Ustawienia → Źródła wiedzy; skróty zaktualizowane (--rehash)"
+   "przeglad": "25.10.2026: programista — z tekstu usunięte odwołania do badań, zaleceń i organizacji (decyzja właściciela „całkiem anonimowo”, docs/18); treść merytoryczna bez zmian, źródła zostają w rejestrze"
   },
   {
    "id": "T-029",
    "kotwica": "Cardio: przy {k}–{m} dniach możesz zamienić dni ",
-   "skrot": "d742f50527",
-   "skrotEn": "a80f51582c",
+   "skrot": "85aeb796f2",
+   "skrotEn": "22b3e30b9b",
    "rodzaje": [
     "konwencja",
     "źródło cytowane w tekście"
@@ -436,7 +436,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-029",
-   "przeglad": "21.10.2026: badacz-merytoryczny — potwierdzone: WHO 2020 (brak dawka–odpowiedź dla ćwiczeń wzmacniających), wytyczne USA 2018 (rozłożyć w tygodniu), ACSM 2011 tab. 2; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy | 23.10.2026 (decyzja właściciela, docs/18): zdanie brzmi „W badaniach nie wykazano, że …” (treść wg wpisu: WHO 2020 — brak zależności dawka–odpowiedź dla ćwiczeń wzmacniających, bez nazwy w tekście); oznaczenie „konwencja” usunięte z tekstu; skróty zaktualizowane (--rehash)"
+   "przeglad": "25.10.2026: programista — z tekstu usunięte odwołania do badań, zaleceń i organizacji (decyzja właściciela „całkiem anonimowo”, docs/18); treść merytoryczna bez zmian, źródła zostają w rejestrze"
   },
   {
    "id": "T-030",
@@ -474,8 +474,8 @@
   {
    "id": "T-032",
    "kotwica": "Przy co najmniej {n} seriach na partię tygodniow",
-   "skrot": "bc1d0ebd55",
-   "skrotEn": "ea6ead21f6",
+   "skrot": "117595caaf",
+   "skrotEn": "f7532d7646",
    "rodzaje": [
     "źródło cytowane w tekście"
    ],
@@ -484,7 +484,7 @@
    ],
    "dokument": "docs/research/przeglad-badacza-2026-10-21b.md",
    "fraza": "T-032",
-   "przeglad": "22.10.2026: badacz-merytoryczny — brzmienia z przeglądu 21.10.2026 (T-002 uproszczenie wg CLAUDE.md i WHO/ACSM; T-003 ACSM 2009 streszczenie 2–10%, ACSM 2011 tab. 2 i s. 1343, ACSM 2026; T-032 ACSM 2026 różne formy; T-021 trenerzy i zawodnicy, jedno źródło) wdrożone w 35 językach; docs/research/przeglad-badacza-2026-10-21b.md | 23.10.2026: zmiana brzmienia na zwykły język bez nazw źródeł (decyzja właściciela, docs/18); sens i liczby bez zmian, brzmienie wyłączone z przeglądu źródeł — podstawą pozostają źródła z pola zrodla/dokument, widoczne tylko na ekranie Ustawienia → Źródła wiedzy"
+   "przeglad": "25.10.2026: programista — z tekstu usunięte odwołania do badań, zaleceń i organizacji (decyzja właściciela „całkiem anonimowo”, docs/18); treść merytoryczna bez zmian, źródła zostają w rejestrze"
   },
   {
    "id": "T-033",
@@ -699,7 +699,8 @@
    "zrodla": [],
    "dokument": "docs/research/24-przypisanie-partii.md",
    "fraza": "## 1. Metoda",
-   "przeglad": "23.10.2026: programista — tekst ekranu Ustawienia → Źródła wiedzy; ogólny opis podstawy przypisania partii (przeglądy badań i badania aktywności mięśni; gdzie jedno źródło albo uproszczenie — oznaczenie przy ćwiczeniu, T-014/T-019/T-035–T-038); metoda i źródła per ćwiczenie: docs/research/24-przypisanie-partii.md, 25-biblioteka. Do przeglądu badacza przy najbliższym przeglądzie rejestru."
+   "przeglad": "23.10.2026: programista — tekst ekranu Ustawienia → Źródła wiedzy; ogólny opis podstawy przypisania partii (przeglądy badań i badania aktywności mięśni; gdzie jedno źródło albo uproszczenie — oznaczenie przy ćwiczeniu, T-014/T-019/T-035–T-038); metoda i źródła per ćwiczenie: docs/research/24-przypisanie-partii.md, 25-biblioteka. Do przeglądu badacza przy najbliższym przeglądzie rejestru.",
+   "wycofane": "25.10.2026 (decyzja właściciela „całkiem anonimowo”, docs/18): ekran „Źródła wiedzy” usunięty z aplikacji, tekst nie występuje w interfejsie; wpis zostaje jako ślad podstawy (docs/research/24-przypisanie-partii.md)."
   }
  ]
 }

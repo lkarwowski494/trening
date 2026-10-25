@@ -106,17 +106,17 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
       : t('Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.', { a: REPS.gym[0], b: REPS.gym[1], c: REPS.home[0], d: REPS.home[1], e: REPS.strength[0], f: REPS.strength[1] }),
     general ? t('Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.')
       : t('Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.', { a: RIR[0], b: RIR[1], c: RIR_ACSM[0], d: RIR_ACSM[1] }),
-    general ? t('Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły).', { b: min(REST.multi), c: min(REST.iso) })
-      : t('Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły).', { a: min(REST.heavy), b: min(REST.multi), c: min(REST.iso) }),
+    general ? t('Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.', { b: min(REST.multi), c: min(REST.iso) })
+      : t('Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.', { a: min(REST.heavy), b: min(REST.multi), c: min(REST.iso) }),
     ...(inp.goal === 'cut' ? [cardioN ? t('Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.')
       : t('Cardio: od {k} dni w tygodniu jedna sesja w osobny dzień; przy mniejszej liczbie dni wszystkie są siłowe, żeby cardio nie zabierało dni treningowi siłowemu (każda główna partia co najmniej {n} dni).', { k: CUT_CARDIO_FROM, n: MIN_DAYS })] : []),
-    ...(general ? [t('Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). W badaniach nie wykazano, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.', { k: GENERAL_CARDIO_FROM, m: GEN_SESSIONS.general[GEN_SESSIONS.general.length - 1], j: GENERAL_LIFT_MAX })] : []),
+    ...(general ? [t('Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.', { k: GENERAL_CARDIO_FROM, m: GEN_SESSIONS.general[GEN_SESSIONS.general.length - 1], j: GENERAL_LIFT_MAX })] : []),
     t('Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.'),
   ];
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
       {header}
-      <InfoTip id="gen-intro" label={t('Propozycja do przejrzenia przed zapisem.')} info={t('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Opiera się na zaleceniach zdrowotnych i treningowych.')} style={{ marginBottom: 8 }}>
+      <InfoTip id="gen-intro" label={t('Propozycja do przejrzenia przed zapisem.')} info={t('Propozycja według Twoich założeń — przejrzysz ją przed zapisem.')} style={{ marginBottom: 8 }}>
         <Muted style={{ ...font('footnote') }}>{t('Propozycja do przejrzenia przed zapisem.')}</Muted>
       </InfoTip>
       {/* kolejność (decyzja właściciela 09.10.2026 B): najpierw dni, potem cel — każdy cel przy każdej liczbie dni, przy 1 dniu uwaga pod celem */}

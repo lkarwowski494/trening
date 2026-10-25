@@ -110,12 +110,12 @@ describe('store/app-store-metadata.json: opis i tekst promocyjny PL/EN zgodne z 
       expect(desc).toContain(pl ? '„Skupiony”' : '"Focused"'); expect(desc).toContain(pl ? '„Lista”' : '"List"');
       expect(desc).toContain(pl ? '„Dostosuj do miejsca”' : '"Adjust to location"'); expect(desc).not.toMatch(/Taśmy i gumy|"Focus" view|classic list/);
     });
-    test(`${lang}: blok cenowy bez list kwot, plan miesięczny porównany z espresso + przypis MIMIT (decyzja właściciela 21.10.2026, docs/research/espresso-mimit-2026-10.md)`, () => {
+    test(`${lang}: blok cenowy bez list kwot, plan miesięczny porównany z espresso + przypis z przedziałem cen bez źródła (21.10.2026; źródło usunięte z tekstów publicznych 25.10.2026, zostaje w docs/research/espresso-mimit-2026-10.md)`, () => {
       expect(desc).not.toMatch(/\[(BLOK CENOWY|PRICING BLOCK)/);
       expect(desc).toMatch(pl ? /plan miesięczny w cenie porównywalnej z jednym espresso w barze\*/ : /monthly plan for about the price of one espresso at a bar\*/);
       const foot = desc.split('\n').find((l) => l.startsWith('* ')) ?? '';
       expect(foot).toMatch(pl ? /od 1,06 € do 1,51 €/ : /EUR 1\.06–1\.51/);
-      expect(foot).toMatch(/MIMIT/); expect(foot).toMatch(/2026/);
+      expect(foot).not.toMatch(/MIMIT|Assoutenti|C\.r\.c\.|Teleborsa|dane|data from|Ministe/i); expect(foot).toMatch(/2026/); /* 25.10.2026: „całkiem anonimowo” — przypis bez źródła */
       const rest = desc.split('\n').filter((l) => !l.startsWith('* ')).join('\n');
       expect(rest).not.toMatch(/\d+[.,]\d\d\s*(zł|PLN|USD|EUR|GBP|€|\$|£)|(USD|EUR|GBP|€|\$|£)\s*\d/);
       expect(rest).toMatch(pl ? /Aktualne ceny widać w App Store przed zakupem/ : /Current prices are shown in the App Store before purchase/);

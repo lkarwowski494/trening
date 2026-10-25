@@ -1,5 +1,5 @@
 {
- "_opis": "Zestaw do przekładu na 33 języki (poza PL i EN) po zmianie 'język naturalny, źródła w jednym miejscu' (decyzja właściciela 23.10.2026, docs/18). Rodzaj 'zmieniony': klucz (pl) ma nowe brzmienie bez nazw źródeł; słowniki lib/locales/<kod>.json trzymają do czasu przekładu STARE tłumaczenie pod nowym kluczem (zawiera nazwy źródeł — wyjątek strażnika tests/zrodla-wiedzy.test.ts). Rodzaj 'nowy': klucza nie ma w słownikach innych języków (aplikacja pokazuje angielski; wyjątek testu kompletności tests/i18n-locales.test.ts). Po przekładzie: wpisać tłumaczenia do lib/locales/<kod>.json, usunąć wpisy z tego pliku (plik pusty = brak wyjątków) i uruchomić UPDATE_I18N=1 npx jest tests/i18n-locales.test.ts. Dodatkowo usunięty klucz: 'Na podstawie: {list}. Własne sformułowania.' (stopka wskazówek techniki). Kosztorys: docs/lokalizacja/kosztorys-przekladu-2026-10-23.md. Aktualizacja 23.10.2026 (druga decyzja właściciela): oznaczenia pewności (wstępne/potwierdzone, jedno źródło, uproszczenie, nasz wybór, konwencja) usunięte z tekstów UI, nagłówek ⓘ „Zasady planu”, T-029 „W badaniach nie wykazano, że …” — brzmienia kluczy zmienione ponownie, usunięte klucze oznaczeń przypisania partii i kroku zmiany ciężaru; słowniki trzymają stare tłumaczenie pod nowym kluczem do czasu przekładu (scripts/i18n/przeklad-api.mjs). Klucze, których zestaw parametrów {…} zmienił się przy przepisaniu, nie trzymają starego tłumaczenia (rodzaj „nowy”). Klucze, których zestaw parametrów {…} zmienił się przy przepisaniu, nie trzymają starego tłumaczenia (rodzaj „nowy”).",
+ "_opis": "Zestaw do przekładu na 33 języki (poza PL i EN) po zmianie 'język naturalny, źródła w jednym miejscu' (decyzja właściciela 23.10.2026, docs/18). Rodzaj 'zmieniony': klucz (pl) ma nowe brzmienie bez nazw źródeł; słowniki lib/locales/<kod>.json trzymają do czasu przekładu STARE tłumaczenie pod nowym kluczem (zawiera nazwy źródeł — wyjątek strażnika tests/zrodla-wiedzy.test.ts). Rodzaj 'nowy': klucza nie ma w słownikach innych języków (aplikacja pokazuje angielski; wyjątek testu kompletności tests/i18n-locales.test.ts). Po przekładzie: wpisać tłumaczenia do lib/locales/<kod>.json, usunąć wpisy z tego pliku (plik pusty = brak wyjątków) i uruchomić UPDATE_I18N=1 npx jest tests/i18n-locales.test.ts. Dodatkowo usunięty klucz: 'Na podstawie: {list}. Własne sformułowania.' (stopka wskazówek techniki). Kosztorys: docs/lokalizacja/kosztorys-przekladu-2026-10-23.md. Aktualizacja 23.10.2026 (druga decyzja właściciela): oznaczenia pewności (wstępne/potwierdzone, jedno źródło, uproszczenie, nasz wybór, konwencja) usunięte z tekstów UI, nagłówek ⓘ „Zasady planu”, T-029 „W badaniach nie wykazano, że …” — brzmienia kluczy zmienione ponownie, usunięte klucze oznaczeń przypisania partii i kroku zmiany ciężaru; słowniki trzymają stare tłumaczenie pod nowym kluczem do czasu przekładu (scripts/i18n/przeklad-api.mjs). Klucze, których zestaw parametrów {…} zmienił się przy przepisaniu, nie trzymają starego tłumaczenia (rodzaj „nowy”). Klucze, których zestaw parametrów {…} zmienił się przy przepisaniu, nie trzymają starego tłumaczenia (rodzaj „nowy”). Aktualizacja 25.10.2026 (decyzja właściciela „całkiem anonimowo”, docs/18): z tekstów interfejsu usunięte odwołania do badań, zaleceń i organizacji (5 kluczy: propozycja generatora, dwa teksty o przerwach, Cardio, objętość tygodniowa) — słowniki trzymają stare tłumaczenie pod nowym kluczem do czasu przekładu; usunięte klucze ekranu źródeł i ich opisów.",
  "data": "2026-10-23",
  "klucze": [
   {
@@ -10,8 +10,8 @@
   },
   {
    "rodzaj": "zmieniony",
-   "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Opiera się na zaleceniach zdrowotnych i treningowych.",
-   "en": "A proposal based on your assumptions — you review it before saving. It follows health and training guidelines.",
+   "pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem.",
+   "en": "A proposal based on your assumptions — you review it before saving.",
    "poprzedni_pl": "Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań."
   },
   {
@@ -51,8 +51,8 @@
   },
   {
    "rodzaj": "zmieniony",
-   "pl": "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły).",
-   "en": "Rest: {a} min after heavy sets of the main lift, {b} min after other compound exercises, {c} min after isolation and core exercises; the exact rest length is not established (in studies it did not change strength gains).",
+   "pl": "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.",
+   "en": "Rest: {a} min after heavy sets of the main lift, {b} min after other compound exercises, {c} min after isolation and core exercises; the exact rest length is not fixed.",
    "poprzedni_pl": "Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core — uproszczenie; przeglądy są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły)."
   },
   {
@@ -129,14 +129,14 @@
   },
   {
    "rodzaj": "zmieniony",
-   "pl": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły).",
-   "en": "Rest: {b} min after multi-joint exercises, {c} min after single-joint and core; the exact rest length is not established (in studies it did not change strength gains).",
+   "pl": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.",
+   "en": "Rest: {b} min after multi-joint exercises, {c} min after single-joint and core; the exact rest length is not fixed.",
    "poprzedni_pl": "Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core — uproszczenie; źródła są niejednoznaczne (ACSM 2026: długość przerwy nie zmieniała przyrostu siły)."
   },
   {
    "rodzaj": "zmieniony",
-   "pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). W badaniach nie wykazano, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
-   "en": "Cardio: with {k}–{m} days you can turn the days above {j} into moderate cardio sessions (“Cardio days in the plan”, off by default). Studies have not shown that more muscle-strengthening activity brings more health benefits, and aerobic activity is best spread over several days. Cardio session length = session time.",
+   "pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.",
+   "en": "Cardio: with {k}–{m} days you can turn the days above {j} into moderate cardio sessions (“Cardio days in the plan”, off by default). More muscle-strengthening activity does not necessarily bring more health benefits, and aerobic activity is best spread over several days. Cardio session length = session time.",
    "poprzedni_pl": "Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). WHO 2020 nie znalazło dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy zalecenia radzą rozłożyć na kilka dni (wytyczne USA 2018, ACSM 2011). Długość sesji cardio = czas sesji — konwencja."
   },
   {
@@ -153,8 +153,8 @@
   },
   {
    "rodzaj": "zmieniony",
-   "pl": "Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosły w badaniach bardziej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
-   "en": "With at least {n} sets per muscle group per week, muscles grew more in studies than with fewer sets; resistance training in its various forms builds muscle compared with none.",
+   "pl": "Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosną wyraźniej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
+   "en": "With at least {n} sets per muscle group per week, muscles grow more than with fewer sets; resistance training in its various forms builds muscle compared with none.",
    "poprzedni_pl": "Stanowisko ACSM 2026: przy co najmniej {n} seriach na partię tygodniowo przyrost mięśni był większy niż przy mniejszej objętości; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu."
   },
   {
@@ -192,191 +192,6 @@
    "pl": "Bez e1RM: nie wiadomo, jaką część masy ciała podnosisz w tym ćwiczeniu.",
    "en": "No e1RM: it is not known what share of body weight you lift in this exercise.",
    "poprzedni_pl": "Bez e1RM: brak źródeł, jaką część masy ciała podnosisz w tym ćwiczeniu."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Źródła wiedzy",
-   "en": "Sources of knowledge"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Na czym opierają się liczby i zalecenia",
-   "en": "What the numbers and recommendations are based on"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Liczby i zalecenia w aplikacji opierają się na stanowiskach organizacji naukowych, przeglądach badań i badaniach z recenzowanych czasopism. Tu są wszystkie źródła w jednym miejscu — w pozostałych miejscach aplikacji piszemy zwykłym językiem.",
-   "en": "The numbers and recommendations in the app are based on position statements of scientific organisations, research reviews and studies from peer-reviewed journals. All the sources are here in one place — everywhere else in the app we use plain language."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Technika ćwiczeń",
-   "en": "Exercise technique"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Opisy techniki są napisane własnymi słowami, na podstawie:",
-   "en": "The technique descriptions are written in our own words, based on:"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Partie mięśniowe w ćwiczeniach",
-   "en": "Muscle groups in exercises"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Nasze uproszczenia i wybory",
-   "en": "Our simplifications and choices"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Plan: serie, powtórzenia, przerwy",
-   "en": "Plan: sets, reps, rest"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Ile serii i powtórzeń oraz jak blisko upadku trenować, żeby budować siłę i mięśnie.",
-   "en": "How many sets and reps, and how close to failure to train, to build strength and muscle."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Zakresy powtórzeń, liczba serii i przerwa między sesjami.",
-   "en": "Rep ranges, number of sets and rest between sessions."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Jak stopniowo zwiększać obciążenie.",
-   "en": "How to increase the load gradually."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Jak liczyć serie w tygodniu, gdy partia pracuje tylko pomocniczo.",
-   "en": "How to count weekly sets when a muscle group only assists."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Czy podział treningu na sesje (całe ciało, góra/dół) zmienia efekty.",
-   "en": "Whether splitting training into sessions (full body, upper/lower) changes the results."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Jak blisko upadku kończyć serie.",
-   "en": "How close to failure to end sets."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Jaki ciężar i ile powtórzeń w serii daje przyrost mięśni.",
-   "en": "What load and how many reps per set build muscle."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Jak długie powinny być przerwy między seriami.",
-   "en": "How long rest between sets should be."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Ruch dla zdrowia",
-   "en": "Activity for health"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Ile ruchu w tygodniu: cardio i ćwiczenia wzmacniające.",
-   "en": "How much activity per week: cardio and muscle-strengthening."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Jak zacząć od jednego dnia siłowego w tygodniu i ile serii wystarczy.",
-   "en": "How to start with one strength day a week and how many sets are enough."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Wysiłek: RPE i RIR",
-   "en": "Effort: RPE and RIR"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Skala RPE oparta na powtórzeniach w zapasie (RIR).",
-   "en": "The RPE scale based on reps in reserve (RIR)."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Jak stosować skalę RPE i RIR w treningu oraz jak opisać niski wysiłek słowami.",
-   "en": "How to use the RPE and RIR scale in training and how to describe low effort in words."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Przegląd tego, jak używa się skali powtórzeń w zapasie.",
-   "en": "A review of how the reps-in-reserve scale is used."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Szacowany maksymalny ciężar (e1RM)",
-   "en": "Estimated one-rep max (e1RM)"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Wzór, który z ciężaru i liczby powtórzeń szacuje maksymalny ciężar na jedno powtórzenie.",
-   "en": "The formula that estimates the one-rep maximum from the weight and the number of reps."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Maksymalny ciężar w podciąganiu to masa ciała plus dociążenie.",
-   "en": "The maximum in pull-ups is body weight plus added weight."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Jak mierzy się maksymalny ciężar w podciąganiu.",
-   "en": "How the maximum in pull-ups is measured."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Jaką część masy ciała podnosisz w pompkach.",
-   "en": "What share of your body weight you lift in push-ups."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Lżejszy tydzień (deload)",
-   "en": "Lighter week (deload)"
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Jak często trenerzy planują lżejszy tydzień.",
-   "en": "How often coaches plan a lighter week."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Jak często lżejszy tydzień planują zawodnicy.",
-   "en": "How often athletes plan a lighter week."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Kiedy przy sztandze nad ciałem potrzebna jest asekuracja.",
-   "en": "When a barbell over the body needs a spotter or safety equipment."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Na czym opierają się liczby i zalecenia w aplikacji.",
-   "en": "What the numbers and recommendations in the app are based on."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Partie pracujące w ćwiczeniach ustalamy z przeglądów badań i badań aktywności mięśni.",
-   "en": "The muscle groups worked in exercises come from research reviews and studies of muscle activity."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Przy części ćwiczeń przypisanie partii opiera się na jednym źródle albo na uproszczeniu.",
-   "en": "For some exercises the muscle group assignment rests on a single source or on a simplification."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Część reguł w aplikacji to nasze uproszczenia albo wybory, a nie wynik badań.",
-   "en": "Some rules in the app are our simplifications or choices, not research findings."
-  },
-  {
-   "rodzaj": "nowy",
-   "pl": "Nie wszystko da się wyczytać z badań. Przykłady: długość przerw w planie, krok zmiany ciężaru.",
-   "en": "Not everything can be read from research. Examples: rest length in the plan, the weight step."
   },
   {
    "rodzaj": "zmieniony",

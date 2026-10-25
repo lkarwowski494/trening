@@ -94,11 +94,12 @@ describe('link „Skąd ta cena?” w oknie → strona indeksu espresso', () => 
     const file = ESPRESSO_URL.split('/').pop()!; expect(fs.existsSync(`site/${file}`)).toBe(true);
     expect(fs.readFileSync('components/FairRulesSheet.tsx', 'utf8')).not.toMatch(/https?:\/\//);
   });
-  test('strona: PL i EN, źródło cen espresso, ograniczenia porównania, bez kwot planów aplikacji i bez nazw innych aplikacji; karta po imporcie linku nie ma', () => {
+  test('strona: PL i EN, średnia cena espresso bez wskazania źródła (25.10.2026), ograniczenia porównania, bez kwot planów aplikacji i bez nazw innych aplikacji; karta po imporcie linku nie ma', () => {
     const html = fs.readFileSync('site/espresso.html', 'utf8'); const body = html.replace(/<!--[\s\S]*?-->/g, '');
     const pl = body.slice(body.indexOf('<section lang="pl"'), body.indexOf('<section lang="en"')); const en = body.slice(body.indexOf('<section lang="en"'));
-    for (const w of ['MIMIT', 'C.r.c.', 'Assoutenti', 'Teleborsa', '18 sierpnia 2026', '1,29 €', '1,06 €', '1,51 €', 'jedno źródło', 'Aktualną cenę zawsze widzisz w sklepie']) expect(pl).toContain(w);
-    for (const w of ['MIMIT', 'C.r.c.', 'Assoutenti', 'Teleborsa', '18 August 2026', '€1.29', '€1.06', '€1.51', 'one source', 'You always see the current price in the store']) expect(en).toContain(w);
+    for (const w of ['1,29 €', '1,06 €', '1,51 €', 'Aktualną cenę zawsze widzisz w sklepie']) expect(pl).toContain(w);
+    for (const w of ['€1.29', '€1.06', '€1.51', 'You always see the current price in the store']) expect(en).toContain(w);
+    for (const w of ['MIMIT', 'C.r.c.', 'Assoutenti', 'Teleborsa', 'teleborsa.it', 'źródło', 'source']) { expect([w, pl.includes(w)]).toEqual([w, false]); expect([w, en.includes(w)]).toEqual([w, false]); }
     for (const price of ['0,99', '6,99', '14,99', '4,99', '19,99', '59,99', '0.99', '6.99', '14.99', '7,99', '17,99']) expect(body).not.toContain(price);
     expect(fs.readFileSync('components/ImportProCard.tsx', 'utf8')).not.toContain('espresso');
   });

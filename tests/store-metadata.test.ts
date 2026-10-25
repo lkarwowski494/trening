@@ -52,7 +52,7 @@ describe('store/app-store-metadata.json', () => {
       const rest = d.split('\n').filter((x) => !x.startsWith('* ')).join('\n').replace(TERMS_URL, '').replace(PRIVACY_URL, '');
       expect({ l, d: [...d].length > 800 && [...d].length <= 4000, p: p.length > 40 && [...p].length <= 170, terms: d.includes(TERMS_URL), privacy: d.includes(PRIVACY_URL),
         jezyki: new RegExp(`(^|\\D)${LANGS.length}(\\D|$)`).test(d), bezProby: !/(^|\D)14(\D|$)|free trial|No subscriptions?/i.test(d + p), limit: new RegExp(`(^|\\D)${FREE_DAYS}(\\D|$)`).test(d) && new RegExp(`(^|\\D)${FREE_DAYS}(\\D|$)`).test(p),
-        przypis: foot.length === 1 && /1[.,]06/.test(foot[0]) && /1[.,]51/.test(foot[0]) && /MIMIT/.test(foot[0]) && /2026/.test(foot[0]),
+        przypis: foot.length === 1 && /1[.,]06/.test(foot[0]) && /1[.,]51/.test(foot[0]) && !/MIMIT|Assoutenti|C\.r\.c\./.test(foot[0]) && /2026/.test(foot[0]),
         kwoty: /\d+[.,]\d\d\s*(zł|PLN|USD|EUR|GBP|€|\$|£)|(USD|EUR|GBP|€|\$|£)\s*\d/.test(rest + p), marki: namesIn(`${d} ${p}`) })
         .toEqual({ l, d: true, p: true, terms: true, privacy: true, jezyki: true, bezProby: true, limit: true, przypis: true, kwoty: false, marki: [] });
     }

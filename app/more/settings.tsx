@@ -62,7 +62,6 @@ export default function SettingsScreen() {
       {goalsOpen ? <View testID="set-goals">{SET_PARTS.map(p => <SetGoalRow key={p} part={p} />)}</View> : null}
 
       <MedicalNote style={{ marginTop: 18, marginBottom: 10 }} /* L1 (audyt 0.10, MER-11 A); UI2-09: w sekcji „Trening”, nie nad „Wyczyść wszystkie dane” */ />
-      <Item title={t('Źródła wiedzy')} sub={t('Na czym opierają się liczby i zalecenia')} onPress={() => router.push('/more/sources')} />{/* 23.10.2026: jedyne miejsce ze źródłami (docs/18) */}
       <SectionTitle>{t('Dane i kopie')}</SectionTitle>
       <SwitchRow label={t('Zapisuj zakończone treningi do Apple Health')} value={s.healthSync} onChange={async v => { if (!v) { s.healthSync = false; save(); return; } const ok = await health.ensureAuthorization(); if (ok) { s.healthSync = true; save(); } else Alert.alert(t('Apple Health niedostępne'), t('Brak zgody na zapis treningów. Włącz ją w aplikacji Zdrowie: profil → Aplikacje → {app}.', { app: appName() })); }} />
       {s.healthSync && health.healthPending().length ? <View testID="health-pending-count" style={{ gap: 6, marginTop: -2, marginBottom: 8 }}>{/* audyt 0.10 J2 (DAT-04 B): licznik i ponowienie */}

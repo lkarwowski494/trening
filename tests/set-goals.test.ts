@@ -117,7 +117,7 @@ describe('dane: migrate, kopia, import', () => {
 /* Języki (docs/20 rodzaj 7): nowe teksty tego wdrożenia mają tłumaczenie w każdym języku (kompletność i parametry: tests/i18n-locales.test.ts). */
 const NEW_TEXTS = ['Kreska = cel serii na partię w tygodniu: {n} automatycznie albo Twoja liczba z Ustawień.', 'Partia pomocnicza ćwiczenia liczy się za pół serii (główna 1, pomocnicza 0,5).',
   'Cel serii na partię w tygodniu', 'Pokaż cele partii', 'Ukryj cele partii', 'Cel serii: {part}', 'Automatycznie ({n})', 'Ręcznie',
-  'Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosły w badaniach bardziej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.',
+  'Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosną wyraźniej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.',
   'Kreska w „Ten tydzień” i w Postępach. Automatycznie: {n} serii. Ręcznie: własna liczba od {min} do {max}.'];
 describe.each(LANGS.filter(l => l !== 'pl' && l !== 'en'))('języki: nowe teksty celu serii (%s)', l => {
   test('każdy tekst przetłumaczony (inny niż polski), z tymi samymi parametrami', () => {

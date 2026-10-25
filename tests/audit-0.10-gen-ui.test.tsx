@@ -59,7 +59,7 @@ describe('C4 / MER-06, MER-07, MER-08, MER-12, MER-17: „Zasady planu” i podg
       'Liczba serii z czasu sesji: (minuty − 10 min rozgrzewki) × 60 / (40 s serii + średnia przerwa 105 s) = 20; ćwiczeń = serie / 3 (co najmniej 3). To szacunek.',
       'Zakresy powtórzeń (masa 8–12, w domu i bez obciążenia 12–20; przy sile dodatkowe 6–10): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.',
       'Wysiłek: zwykle 0–3 powtórzenia w zapasie — blisko upadku albo 2–3; dokładna liczba nie jest ustalona. Do upadku nie trzeba.',
-      'Przerwy: 3 min po ciężkich seriach boju głównego, 2 min po innych wielostawowych, 1,5 min po jednostawowych i core; dokładna długość przerwy nie jest ustalona (w badaniach nie zmieniała przyrostu siły).',
+      'Przerwy: 3 min po ciężkich seriach boju głównego, 2 min po innych wielostawowych, 1,5 min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.',
       'Progresja: gdy zrobisz górę zakresu powtórzeń, dołóż ciężar. Stopniowe zwiększanie obciążenia to podstawa dalszych postępów.',
     ]) expect(screen.getByText(`• ${x}`)).toBeTruthy();
     const head = 'Serie na partię w tygodniu (pomocnicza = 0,5 serii): klatka '; /* MER-17 */
