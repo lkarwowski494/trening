@@ -397,7 +397,7 @@ describe('długie tłumaczenia w miejscach, gdzie tekst może być ucięty', () 
    * 13 pt półgruby, padding 12, ramka 1); na 320 pt każdy wyraz mieści się w chipie na pełnej szerokości (bez łamania w środku wyrazu), także przy 200%. */
   test.each([...LANGS])('%s: chipy trybu generatora na ekranie 320 pt — żaden wyraz szerszy niż chip', l => {
     const avail = 320 - 2 * 14 - 2 * 12 - 2 * 1; const bad: string[] = [];
-    for (const k of ['Plan z moich szablonów'] /* M3 p4 ZM-03: przełącznik trybu generatora zniknął; zostaje przycisk „Plan z moich szablonów” w Planowaniu (Btn small) */) for (const x of words(trIn(l, k))) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
+    for (const k of ['Nowe szablony i plan', 'Plan z moich szablonów'] /* DEC-03 (c): przełącznik trybu generatora przywrócony */) for (const x of words(trIn(l, k))) for (const sc of [1, 2]) if (SANS.semibold.width(x, 13 * sc) > avail) bad.push(`${x} (${sc})`);
     expect([l, bad]).toEqual([l, []]);
   });
   /* Korekta właściciela 09.10.2026 ok. 17:00: postęp tygodnia „60% planu tygodnia (3 z 5)” obok stosów talerzy (components/WeekStacks: 15 pt półgruby,

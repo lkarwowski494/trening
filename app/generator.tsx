@@ -5,7 +5,7 @@ import { ScrollView } from '@/components/Scroll';
 import { useRouter, useLocalSearchParams, Stack } from 'expo-router';
 import { OwnPlan, usePlanReturn, useActivatedReturn } from '@/components/OwnPlan';
 import { DayPicker, daysOk } from '@/components/DayPicker';
-import { Screen, Field, Chip, Muted, Txt, H2, Btn, SectionTitle, SwitchRow } from '@/components/ui';
+import { Screen, Field, Chip, Muted, Txt, H2, Btn, SectionTitle, SwitchRow, Segmented } from '@/components/ui';
 import { InfoTip } from '@/components/InfoTip';
 import { getState, useTick, exById, fmtSec, visibleLocations } from '@/lib/store';
 import {
@@ -32,15 +32,19 @@ import { font } from '@/lib/theme';
 const wd = (i: number) => weekdayLabels()[i];
 const min = (sec: number) => fmtNum(sec / 60, 1);
 
-/** Ekran generatora (M3 ZM-03, 21.10.2026): bez przełącznika trybu (04-studio-projektowe-001). „Plan z moich szablonów” to osobne wejście (przycisk w Planowaniu,
- * `?mode=own`) z własnym tytułem — ten sam zapis planu co generator (components/OwnPlan). */
+/** Ekran generatora: dwa tryby (decyzja właściciela 09.10.2026, B) — „Nowe szablony i plan” (generator) i „Plan z moich szablonów” (components/OwnPlan);
+ * `?mode=own` — od razu drugi tryb (wejścia z edytora planu i „Pierwszych kroków”). M3 ZM-03 (21.10.2026) usunął przełącznik; DEC-03 (c, 23.10.2026) przywraca go
+ * przed 1.0 (docs/design/to-be.md ZM-03 pkt 5). Reszta ZM-03 zostaje: zapis bez okien, gdy nie ma aktywnego planu. */
 export default function GeneratorScreen() {
-  const p = useLocalSearchParams<{ mode?: string }>();
-  if (p.mode === 'own') return <Screen><Stack.Screen options={{ title: t('Plan z moich szablonów') }} /><OwnPlan /></Screen>;
-  return <><Stack.Screen options={{ title: t('Generator szablonów i planu') }} /><NewTemplatesPlan /></>;
+  const p = useLocalSearchParams<{ mode?: string }>(); const [mode, setMode] = useState<'gen' | 'own'>(p.mode === 'own' ? 'own' : 'gen');
+  const header = <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
+    <Segmented label={t('Generator szablonów i planu')} value={mode} onChange={setMode} options={[['gen', t('Nowe szablony i plan')], ['own', t('Plan z moich szablonów')]]} />
+  </View>;
+  if (mode === 'own') return <Screen><Stack.Screen options={{ title: t('Plan z moich szablonów') }} /><OwnPlan header={header} /></Screen>;
+  return <><Stack.Screen options={{ title: t('Generator szablonów i planu') }} /><NewTemplatesPlan header={header} /></>;
 }
 
-function NewTemplatesPlan() {
+function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
   const rev = useTick(); const router = useRouter(); const toPlan = usePlanReturn(); const afterActivated = useActivatedReturn(); const s = getState().settings;
   /* wybór dni (09.10.2026 B): na starcie zaznaczona propozycja generatora dla domyślnej liczby sesji (genProposal) */
   const [inp, setInp] = useState<GenInput>(() => { const i: GenInput = { goal: 'hypertrophy', locationId: s.mainLocationId && visibleLocations().some(l => l.id === s.mainLocationId) ? s.mainLocationId : null, sessions: 3, minutes: 60 }; return { ...i, days: genProposal(i) }; });
@@ -111,6 +115,7 @@ function NewTemplatesPlan() {
   ];
   return (
     <Screen><ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
+      {header}
       <InfoTip id="gen-intro" label={t('Propozycja do przejrzenia przed zapisem.')} info={t('Propozycja według Twoich założeń — przejrzysz ją przed zapisem. Reguły pochodzą z przeglądów badań i zaleceń organizacji (WHO, ACSM); części oznaczone jako konwencja albo uproszczenie nie są bezpośrednim wynikiem badań.')} style={{ marginBottom: 8 }}>
         <Muted style={{ ...font('footnote') }}>{t('Propozycja do przejrzenia przed zapisem.')}</Muted>
       </InfoTip>

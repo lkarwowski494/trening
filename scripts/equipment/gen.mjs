@@ -32,7 +32,7 @@ const USER_FIELDS = ['group', 'metric', 'loadMode', 'bandAssistable', 'muscles',
 
 export function render(catalog, step = { rev: ADDED[ADDED.length - 1], renamed: {}, merged: {}, removed: [], fieldFixes: [] }) {
   if (!Array.isArray(catalog)) throw new Error('catalog: oczekiwana tablica');
-  const names = new Set(); const caps = new Set(); const loads = []; const cables = []; const extra = []; const niche = []; const research = []; const unmapped = []; const spotter = [];
+  const names = new Set(); const caps = new Set(); const loads = []; const cables = []; const extra = []; const niche = []; const research = []; const unmapped = []; const spotter = []; const spotterDb = [];
   const folded = new Set(); const fold = n => n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g, 'l').replace(/\s+/g, ' ').trim(); /* audyt 04.10 (LOW): duplikat po złożeniu nazwy */
   const rows = catalog.map((e, i) => {
     const where = `catalog[${i}] ${e && e.name}`;
@@ -57,7 +57,10 @@ export function render(catalog, step = { rev: ADDED[ADDED.length - 1], renamed: 
       extra.push(`  ${JSON.stringify([e.name, e.group, e.equipment, e.bandAssistable, e.metric, e.loadMode, e.muscles, e.secondaryMuscles, e.added ?? ADDED[0]])},`); }
     else if (e.added !== undefined) throw new Error(where + ': added tylko przy nowym ćwiczeniu');
     /* M1-031 (NSCA 2017 Standard 3.2): asekuracja osobą, gdy katalog nie przewiduje ramion asekuracyjnych (sztanga nad twarzą leżąc, wykroki w marszu) */
-    if (e.spot !== undefined) { if (e.spot !== 'spotter' || !['barbell', 'ez_bar'].includes(e.loadSource) || e.recommended.includes('rack.safeties')) throw new Error(where + ': spot'); spotter.push(e.name); }
+    if (e.spot !== undefined) {
+      const okSrc = e.spot === 'spotter' ? ['barbell', 'ez_bar'] : e.spot === 'spotter_db' ? ['dumbbell'] : []; /* M1-031 cz. 2 (DEC-08): „spotter_db” = hantle nad głową lub twarzą */
+      if (!okSrc.includes(e.loadSource) || e.recommended.includes('rack.safeties')) throw new Error(where + ': spot');
+      (e.spot === 'spotter' ? spotter : spotterDb).push(e.name); }
     if (e.scope !== undefined) { if (e.scope !== 'niche') throw new Error(where + ': scope ' + e.scope); niche.push(e.name); } /* research 25 (wariant B): NISZOWE — poza listą domyślną */
     if (e.research !== undefined) { const r = e.research; if (!r || typeof r.part !== 'string' || typeof r.confidence !== 'string' || !Array.isArray(r.sources) || !r.sources.every(x => typeof x === 'string')) throw new Error(where + ': research'); research.push(`  ${JSON.stringify(e.name)}: ${JSON.stringify([r.part, r.confidence, r.sources])},`); }
     const o = { requires: e.requires, recommended: e.recommended, loadSource: e.loadSource, pattern: e.pattern };
@@ -106,6 +109,8 @@ export function render(catalog, step = { rev: ADDED[ADDED.length - 1], renamed: 
     `export const CATALOG_NICHE: ReadonlySet<string> = new Set(${JSON.stringify(niche)});`,
     '/** Asekuracja osobą bez ramion asekuracyjnych (M1-031, NSCA 2017 Standard 3.2; wariant „stojaki” = recommended rack.safeties) — docs/10, „Asekuracja”. */',
     `export const CATALOG_SPOTTER: ReadonlySet<string> = new Set(${JSON.stringify(spotter)});`,
+    '/** Asekuracja osobą przy hantlach nad głową lub twarzą (M1-031 cz. 2, DEC-08; NSCA 2017 Standard 3.2, „free weights”) — docs/10, „Asekuracja”. */',
+    `export const CATALOG_SPOTTER_DB: ReadonlySet<string> = new Set(${JSON.stringify(spotterDb)});`,
     '/** Źródła przypisania partii z researchu: [część researchu, pewność, id źródeł] (docs/research/25-biblioteka/L*-zrodla.md, docs/research/24). */',
     'export const CATALOG_RESEARCH: Readonly<Record<string, readonly [string, string, readonly string[]]>> = {',
     ...research,

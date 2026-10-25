@@ -70,9 +70,9 @@ describe('S5: potwierdzenia — rezygnacja zawsze „Anuluj” (jedna stała w l
 });
 
 describe('S6: wybór i przełączniki (miejsca naprawione)', () => {
-  test('„Asysta gumą” to SwitchRow; Tydzień/Miesiąc to Segmented (tryb generatora zniknął — ZM-03, 21.10.2026); partie mięśni to Chip toggle', () => {
+  test('„Asysta gumą” to SwitchRow; Tydzień/Miesiąc to Segmented (tryb generatora też — przywrócony: DEC-03 c, 23.10.2026); partie mięśni to Chip toggle', () => {
     expect(src.get('app/exercise/[id].tsx')).toMatch(/<SwitchRow label=\{t\('Asysta gumą'\)\}/); expect(src.get('app/exercise/[id].tsx')).not.toMatch(/<Field label=\{t\('Asysta gumą'\)\}>/);
-    expect(src.get('app/generator.tsx')).not.toContain('<Segmented'); /* ZM-03: generator bez przełącznika trybu */ expect(src.get('components/PeriodSummary.tsx')).toContain('<Segmented');
+    expect(src.get('app/generator.tsx')).toContain('<Segmented'); /* DEC-03 (c): przełącznik trybu generatora przywrócony */ expect(src.get('components/PeriodSummary.tsx')).toContain('<Segmented');
     expect((src.get('app/exercise/[id].tsx')!.match(/<Chip toggle key=\{mu\}/g) ?? [])).toHaveLength(2);
   });
 });

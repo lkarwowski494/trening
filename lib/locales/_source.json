@@ -1078,6 +1078,10 @@
   "plural": true
  },
  {
+  "pl": "Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.",
+  "en": "Dumbbell exercise with the weights over the head or face: a spotter is recommended."
+ },
+ {
   "pl": "Ćwiczenie ze sztangą na tułowiu lub nad głową i twarzą: zalecana asekuracja — stojaki z ramionami asekuracyjnymi oraz osoba asekurująca.",
   "en": "Barbell exercise with the bar on the trunk or over the head and face: safety equipment is recommended — a rack with safety arms, plus a spotter."
  },
@@ -3047,8 +3051,8 @@
   "en": "You have no templates yet."
  },
  {
-  "pl": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.",
-  "en": "You have no templates with exercises. Create a template or choose “Generate templates and plan”."
+  "pl": "Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.",
+  "en": "You have no templates with exercises. Create a template or choose “New templates and plan”."
  },
  {
   "pl": "Nie można wyłączyć planu",
@@ -3245,6 +3249,10 @@
  {
   "pl": "Nowe rekordy: {n}",
   "en": "New records: {n}"
+ },
+ {
+  "pl": "Nowe szablony i plan",
+  "en": "New templates and plan"
  },
  {
   "pl": "nowe w tym tygodniu",
@@ -4898,6 +4906,10 @@
  {
   "pl": "Skala wysiłku RPE albo RIR w Ustawieniach.",
   "en": "Effort scale RPE or RIR in Settings."
+ },
+ {
+  "pl": "Sklep chwilowo niedostępny",
+  "en": "Store temporarily unavailable"
  },
  {
   "pl": "skośne brzucha",

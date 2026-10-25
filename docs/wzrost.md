@@ -8,7 +8,7 @@ Stan: 20.10.2026 (audyt M1: zadania 071 i 072; DEC-25, DEC-26); 23.10.2026 — f
 
 - Cel (właściciel 06.10.2026): powolne zdobywanie użytkowników, którzy zostają na stałe, bez ostrej szybkiej promocji; „100 pobrań miesięcznie byłoby super.” Liczby punktu wyjścia w docs/15 to ocena agenta, nie dane — do sprawdzenia po premierze w App Store Connect (Analityka).
 - Cel wzrostu wyprowadzony z progu opłacalności (decyzja właściciela 21.10.2026): **ok. 310 pobrań miesięcznie** (≈ 75 płacących rocznie przy konwersji 2%); wcześniejsze „100 pobrań miesięcznie” daje ok. 160 USD/rok, poniżej progu 500 USD (docs/monetyzacja.md, „Bramka W0”).
-- Przekaz (docs/18, 13.10.2026): prywatność, cena, języki, offline, prostota. Wpisy o premierze z **nowego konta twórcy** (nie z konta osobistego).
+- Przekaz startowy (DEC-07 K6, właściciel 23.10.2026; **zastępuje hasło z 13.10.2026**, docs/18): **„szybki zapis serii, także z zegarka; dane tylko na telefonie; bez konta”** (Apple Watch jest na stronie produktu, `site/index.html`). Wcześniejsze hasło („Twój trening zostaje w Twoim telefonie” / „Prosty dziennik siłowni. Bez konta. Bez internetu.”) nie obowiązuje. Wpisy o premierze z **nowego konta twórcy** (nie z konta osobistego). Wpisy o premierze z **nowego konta twórcy** (nie z konta osobistego).
 - Zasada kanałów (decyzja właściciela 23.10.2026, DEC-02 a; zastępuje „spokojne wpisy bez linku” z docs/15): **wpis na forum albo w grupie tylko po pisemnej zgodzie administracji, zgodnie z jej regulaminem**; do tego czasu fora i grupy są poza planem startu i nie piszemy w nich o aplikacji. *Dlaczego:* regulamin forum SFD zakazuje materiałów promujących produkty bez pisemnej zgody (wiersz 2 tabeli), a wpis wbrew regulaminowi grozi usunięciem konta i utratą zaufania społeczności, do której chcemy dotrzeć.
 
 ## 2. Tabela kanałów startu
@@ -61,3 +61,12 @@ Opcje metryki (wybiera właściciel; rekomendacja pod listą):
 - **C. Zgłoszenia użytkowników o wersji na Androida** (wsparcie, opinie), liczone ręcznie. Plus: bezpośrednio o Androidzie, bez kosztów. Minus: zgłasza niewielka część użytkowników; brak metody liczenia w repo.
 
 **Decyzja właściciela (20.10.2026, K-P4-1): A + C** (zgodnie z rekomendacją); próg, minimalna próba i data premiery pozostają otwarte (tabela wyżej). **Rekomendacja:** A jako metryka główna z progiem wpisanym przed premierą, C jako uzupełnienie opisowe; B tylko jeśli liczba pobrań pozwoli na sensowną próbę. To rekomendacja do decyzji właściciela, nie decyzja. **Kolejny krok:** właściciel wybiera metrykę, próg i datę premiery; agent wpisuje je w tabeli powyżej (struktura pól jest pilnowana przez `tests/audit-m1-072-android-decision.test.ts`).
+
+## 6. Reguły uczciwej promocji (DEC-07 K5, właściciel 23.10.2026, wariant a; M1-055)
+
+Obowiązują każdy szkic i każde działanie z planu startu (sekcje 2–4); agent marketingu (`.claude/agents/marketing.md`) przygotowuje szkice zgodnie z nimi, publikuje właściciel.
+
+1. **Ujawnienie autorstwa:** w każdym wpisie, odpowiedzi i wiadomości o aplikacji piszemy wprost, że to nasza aplikacja („jestem autorem aplikacji”); żadnych wpisów udających niezależnego użytkownika.
+2. **Bez próśb o oceny do znajomych i rodziny:** nie prosimy znajomych, rodziny ani znajomych znajomych o oceny i recenzje w App Store; ocenę zbieramy tylko systemowym oknem w aplikacji (`docs/26-prosba-o-ocene.md`) od osób, które realnie z niej korzystają.
+3. **E-maile do klubów i sekcji:** wiadomość do klubu, sekcji lub trenera tylko po uzyskaniu zgody odbiorcy na kontakt (pierwszy krok to pytanie o zgodę, nie oferta); bez list zakupionych i bez zbierania adresów; adres i nazwisko lidera tylko na Dysku, nie w repo.
+4. **Fora i grupy (DEC-02 a):** zakaz promocji; wpis tylko po pisemnej zgodzie administracji, zgodnie z jej regulaminem, zapisanej w dzienniku zgód (sekcja 3) przed wpisem. Brak zgody = brak wpisu.
