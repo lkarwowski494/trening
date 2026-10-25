@@ -28,6 +28,11 @@ describe('definicje błędów', () => {
     expect(CUE_TO_ERROR['sq.mis.kneesIn']).toBe('kneesIn'); expect(CUE_TO_ERROR['sq.mis.heels']).toBe('heels'); expect(CUE_TO_ERROR['mis.roundBack']).toBe('roundBack');
     expect(CUE_TO_ERROR['bp.mis.arch']).toBe('arch'); expect(CUE_TO_ERROR['mis.barAway']).toBe('barAway'); expect(CUE_TO_ERROR['rdl.knees']).toBe('kneesBent'); expect(CUE_TO_ERROR['mis.jerk']).toBe('jerk');
   });
+  test('słownik deklaracji stawów: każdy błąd deklaruje tylko znane wielkości', () => {
+    const KNOWN: Affects[] = ['knee', 'ankle', 'hip', 'spine', 'kneeLat', 'heel', 'pelvis', 'bar', 'shoulder', 'elbow'];
+    for (const e of Object.values(ERRORS)) for (const a of e.affects) expect([e.id, KNOWN.includes(a)]).toEqual([e.id, true]);
+    expect(new Set(Object.values(ERRORS).flatMap(e => e.affects))).toEqual(new Set(KNOWN.filter(a => a !== 'elbow' || true).filter(a => Object.values(ERRORS).some(e => e.affects.includes(a)))));
+  });
   test('tempo błędu: uAt z szybszym tempem kończy opuszczanie szybciej; długość pętli krótsza', () => {
     const t = ERRORS.jerk.mods.tempo!; expect(uAt(TEMPO.holdMs + t.downMs, true, t)).toBeCloseTo(1, 6); expect(uAt(TEMPO.holdMs + t.downMs, true)).toBeLessThan(0.9);
     expect(loopLength(true, t)).toBeLessThan(loopLength(true));
