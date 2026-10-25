@@ -1,8 +1,8 @@
 /*
- * Figury v2 — reguły techniki wyciskania leżąc z opisu NSCA (decyzja właściciela 25.10.2026; reguły własnymi słowami, źródło: NSCA Basics of Strength and Conditioning, 2012,
- * rozdz. o wyciskaniu leżąc; w UI bez nazw). Rodzaje (docs/20): niezmienniki geometrii dla czterech rdzeniowych wariantów (sztanga i hantle, płasko i skos):
+ * Figury v2 — reguły techniki wyciskania leżąc z opisu NSCA (decyzja właściciela 25.10.2026; reguły własnymi słowami; źródło w pełnych danych: data/zrodla,
+ * test źródła: tests/zrodla-pelne-grafiki.test.ts; w paczce aplikacji bez nazw). Rodzaje (docs/20): niezmienniki geometrii dla czterech rdzeniowych wariantów (sztanga i hantle, płasko i skos):
  * (b) dół: gryf dotyka klatki w okolicy linii sutków; (c) tor w górę lekko do tyłu, w stronę barków; (d) pięć punktów podparcia przez cały ruch (głowa, plecy, pośladki, obie stopy);
- * (e) start: chwyt trochę szerzej niż barki, łokcie wyprostowane nad klatką; (f) błąd „wygięcie pleców / unoszenie klatki do sztangi” zgodny ze źródłem (dane lib/cues).
+ * (e) start: chwyt trochę szerzej niż barki, łokcie wyprostowane nad klatką; (f) błąd „wygięcie pleców / unoszenie klatki do sztangi” zgodny ze źródłem (dane lib/cues; pełne dane źródeł: zrodla-pelne-grafiki).
  * Reguła (a) „przedramiona prostopadle do podłogi i równolegle” NIE jest tu sprawdzana: w modelu koliduje z łokciami ok. 45° (decyzja z 25.10.2026) — patrz docs/50 rozdz. 11.
  */
 import { figureSpec, frameAt, bodyColliders, equipColliders, gap, soleY, SIDES, BODY, ERRORS, CUE_TO_ERROR, jointAngles, type Frame, type V3 } from '@/lib/figures/v2';
@@ -32,11 +32,9 @@ describe('wyciskanie leżąc: reguły techniki (NSCA) na geometrii klatki', () =
     for (const k of CORE) { const f = fr(k, 0); for (const s of SIDES) { const gz = Math.abs(f.sk.arms[s].grip[2]); if (k.includes('sztanga')) expect([k, s, gz > BODY.shHalf && gz <= BODY.shHalf + 20]).toEqual([k, s, true]); expect([k, s, jointAngles(f.sk, s).elbow <= 5]).toEqual([k, s, true]); }
       expect([k, Math.abs(f.info.load[0] - f.sk.shoulderC[0]) < 12 || k.includes('Incline')]).toEqual([k, true]); }
   });
-  test('(f) błąd „wygięcie pleców / unoszenie klatki do sztangi” (arch): jest w danych ćwiczeń, ma źródło NSCA Basics s. 54 i pozę w rigu', () => {
+  test('(f) błąd „wygięcie pleców / unoszenie klatki do sztangi” (arch): jest w danych ćwiczeń i ma pozę w rigu (źródło: tests/zrodla-pelne-grafiki.test.ts)', () => {
     expect(CUE_TO_ERROR['bp.mis.arch']).toBe('arch'); expect(ERRORS.arch.affects).toContain('spine');
     const own = Object.values(CUE_DATA.exercises).flatMap(e => (e.mistakes ?? []).filter(m => m.c === 'bp.mis.arch')); expect(own.length).toBeGreaterThan(0);
-    for (const m of own) expect(m.s.some(x => x[0] === 'nsca-basics-2012' && /s\. 54/.test(x[1]))).toBe(true);
-    expect(CUE_DATA.sources['nsca-basics-2012'].level).toBe(4);
     const k = 'Bench Press (sztanga)'; const a = frameAt(figureSpec(k)!, 1), b = frameAt(figureSpec(k)!, 1, 'arch'); expect(b.sk.pelvis[1] - a.sk.pelvis[1]).toBeGreaterThan(6);
   });
 });

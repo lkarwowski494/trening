@@ -7,11 +7,11 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **155** (realny: 133, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **156** (realny: 134, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
-| `nowy` | 20 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
+| `nowy` | 21 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
 | `istniejacy` | 115 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
 | `aktualizacja` | 6 | Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34). |
 | `kopia` | 5 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
@@ -19,7 +19,7 @@ Przepływów w katalogu: **155** (realny: 133, brzegowy: 22); pominięte jako te
 
 | Pokrycie | Przepływów |
 |---|---|
-| Maestro | 127 |
+| Maestro | 128 |
 | Maestro (eksperyment) | 4 |
 | Jest | 10 |
 | Telefon | 14 |
@@ -141,6 +141,7 @@ Przepływów w katalogu: **155** (realny: 133, brzegowy: 22); pominięte jako te
 | SZ-11 | **Edycja ćwiczenia (Anuluj / Zapisz / Odrzuć) i trwałość po restarcie** — Ćwiczenie → „Edytuj” → zmień → „Zapisz” → restart | Zmiana trwała po restarcie. | `istniejacy` | realny | Maestro: `.maestro/16-edycja-na-zadanie.yaml` |
 | SZ-12 | **Usunięcie lub archiwizacja ćwiczenia i przywrócenie z wyszukiwania** — Ćwiczenia → przesuń własne ćwiczenie w lewo → potwierdź → Wyszukaj nazwę → „Przywróć „…”” | Ćwiczenie znika z wyboru, historia zachowuje nazwę; przywrócenie działa. | `istniejacy` | brzegowy | Maestro: `.maestro/27-biblioteka-cwiczen.yaml` |
 | SZ-13 | **Gumy oporowe: poziomy, kolory, dodanie i usunięcie** — Miejsce → „Gumy” → poziomy / kolor / usuń → Ekran Gumy → „Edytuj” w nagłówku → przycisk usunięcia przy gumie → okno [Anuluj, Usuń] (to samo co gest); „+” znika, „Gotowe” kończy tryb | Poziomy i kolor zapisane; usunięcie pyta o skutki w historii. Tryb „Edytuj” daje widoczną drogę usunięcia obok gestu. | `istniejacy` | brzegowy | Maestro: `.maestro/10-gumy.yaml` |
+| SZ-14 | **Podgląd ćwiczenia: figura ruchu v2 — fazy z tempem, mięśnie z legendą, przełącznik częstego błędu** — Więcej → Ćwiczenia → Back Squat → „Technika” → Rysunek ruchu z licznikiem faz („Opuszczanie 2 s”, „Wstawanie 1 s”; przysiad bez pauzy na dole) i legendą mięśni głównych i pomocniczych → „Pokaż częsty błąd” → rysunek błędu z opisem „Częsty błąd: …”; „Ukryj częsty błąd” wraca do poprawnej pozy | Przy ćwiczeniach z gotową rodziną figur v2 sekcja Technika pokazuje figurę v2 (zastępuje v1), mięśnie są zawsze widoczne z legendą, a częsty błąd można pokazać i ukryć. | `nowy` | realny | Maestro: `.maestro/57-grafika-cwiczenia.yaml` |
 
 ## HI — Historia i postępy
 
