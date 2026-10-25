@@ -57,6 +57,9 @@ function torsoPoly(sk: Skeleton, view: View): V2[] {
   out.push(...left, ...right.reverse()); return out;
 }
 
+/** Kierunek światła w rzucie (z przodu-góry). */
+const LIGHT: V2 = [0.6, 0.8];
+
 /** Zarys buta w układzie stopy (wzdłuż stopy, w górę względem kostki), cm. */
 const SHOE: V2[] = [[-6.8, -4], [-6.6, -7], [-3, -7.2], [10, -7.2], [19, -7.2], [21.2, -6], [21.4, -3.8], [18, -1.4], [11, 0.6], [5, 3.6], [1.5, 5.2], [-3.2, 5.6], [-5.8, 3.2]];
 
@@ -66,7 +69,11 @@ export function bodyShapes(sk: Skeleton, view: View): Shape[] {
   const side = view === 'side';
   const push = (s: Shape) => { S.push(s); };
   const cap = (id: string, a: V3, ra: number, b: V3, rb: number, fill: Role, depth?: number): void => {
-    push({ k: 'poly', pts: capsule2(proj(a, view), ra, proj(b, view), rb), fill, z: zKey(LAYER.body, depth ?? (depthOf(a, view) + depthOf(b, view)) / 2), id, close: true });
+    const z = zKey(LAYER.body, depth ?? (depthOf(a, view) + depthOf(b, view)) / 2); const pa = proj(a, view), pb = proj(b, view);
+    push({ k: 'poly', pts: capsule2(pa, ra, pb, rb), fill, z, id, close: true });
+    /* światło z przodu i z góry: węższa kapsuła przesunięta ku światłu daje objętość (tylko bliższa strona ciała i ubranie, nie rzut z góry) */
+    const hiRole: Role | null = fill === 'skin' ? 'skinHi' : fill === 'cloth' ? 'clothHi' : null;
+    if (hiRole && view !== 'top') { const o: V2 = [LIGHT[0] * ra * 0.34, LIGHT[1] * ra * 0.34]; push({ k: 'poly', pts: capsule2([pa[0] + o[0], pa[1] + o[1]], ra * 0.42, [pb[0] + o[0], pb[1] + o[1]], rb * 0.42, 6), fill: hiRole, a: 0.55, z: z + 0.003, id: id + 'Hi', close: true }); }
   };
   const mid = (a: V3, b: V3, t: number): V3 => add(a, mul(sub(b, a), t));
 
@@ -99,6 +106,7 @@ export function bodyShapes(sk: Skeleton, view: View): Shape[] {
   /* tułów, miednica, szyja, głowa (środek: głębokość 0) */
   const tz = zKey(LAYER.body, side ? 0 : (sk.pelvis[0] + sk.shoulderC[0]) / 2);
   push({ k: 'poly', pts: torsoPoly(sk, view), fill: 'cloth', z: tz, id: 'torso', close: true, smooth: true });
+  if (side) { const { p: cp } = spineAt(sk, 34); const c = proj(add(cp, mul(sk.front, 5)), view); const ang = Math.atan2(sk.up[1], sk.up[0]) * 180 / Math.PI; push({ k: 'ellipse', c, rx: 2.6, ry: 11, rot: ang - 90, fill: 'clothHi', a: 0.7, z: tz + 0.05, id: 'torsoHi' }); }
   const pc = proj(sk.pelvis, view);
   if (side) push({ k: 'ellipse', c: pc, rx: GIRTH.pelvis + 0.4, ry: 8.6, rot: 0, fill: 'cloth', z: tz + 0.1, id: 'pelvis' });
   else push({ k: 'ellipse', c: pc, rx: 15.5, ry: 8.0, rot: 0, fill: 'cloth', z: tz + 0.1, id: 'pelvis' });
@@ -169,8 +177,9 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         const c = pr.c; const o = proj(c, view);
         if (side) {
           if (pr.plates !== false) {
-            S.push({ k: 'circle', c: o, r: E.plateR, fill: 'plate', a: 0.38, stroke: 'plate', w: 0.9, z: zKey(LAYER.backEquip, 0), id: 'plateFar' });
-            S.push({ k: 'circle', c: o, r: E.plateR, fill: 'plate', a: 0.16, stroke: 'plate', w: 1.1, z: zKey(LAYER.frontEquip, 0), id: 'plateNear' });
+            /* talerz za konturą ciała (pełny, ale blady), z przodu tylko cienki obrys — ciało nie jest zasłonięte */
+            S.push({ k: 'circle', c: o, r: E.plateR, fill: 'plate', a: 0.42, z: zKey(LAYER.backEquip, 0), id: 'plateFar' });
+            S.push({ k: 'circle', c: o, r: E.plateR, stroke: 'plate', w: 0.8, a: 0.2, z: zKey(LAYER.frontEquip, 0), id: 'plateNear' });
             S.push({ k: 'circle', c: o, r: E.sleeveR + 0.8, stroke: 'plate', w: 0.7, z: zKey(LAYER.frontEquip, 0.5), id: 'plateHub' });
           }
           S.push({ k: 'circle', c: o, r: E.barR, fill: 'steel', z: zKey(LAYER.overlay, 0), id: 'bar' });

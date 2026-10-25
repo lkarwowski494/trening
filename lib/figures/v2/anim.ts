@@ -10,8 +10,8 @@ export const TEMPO = { downMs: 2000, upMs: 1000, holdMs: 500, tickMs: 33 } as co
  * Pozycja u (0–1) w chwili `ms` pętli. lowerFirst = faza 0→1 to opuszczanie (przysiad, wyciskanie, RDL: 2 s), inaczej to podnoszenie (martwy ciąg z podłogi: 1 s),
  * a powrót trwa odpowiednio dłużej. Na obu końcach pauza HOLD_MS.
  */
-export function uAt(ms: number, lowerFirst: boolean): number {
-  const a = lowerFirst ? TEMPO.downMs : TEMPO.upMs, b = lowerFirst ? TEMPO.upMs : TEMPO.downMs, h = TEMPO.holdMs;
+export function uAt(ms: number, lowerFirst: boolean, tempo: { downMs: number; upMs: number } = TEMPO): number {
+  const a = lowerFirst ? tempo.downMs : tempo.upMs, b = lowerFirst ? tempo.upMs : tempo.downMs, h = TEMPO.holdMs;
   const total = h + a + h + b; const x = ((ms % total) + total) % total;
   const ease = (k: number): number => (1 - Math.cos(Math.PI * k)) / 2;
   if (x < h) return 0;
@@ -19,4 +19,4 @@ export function uAt(ms: number, lowerFirst: boolean): number {
   if (x < h + a + h) return 1;
   return 1 - ease((x - 2 * h - a) / b);
 }
-export const loopLength = (lowerFirst: boolean): number => 2 * TEMPO.holdMs + TEMPO.downMs + TEMPO.upMs;
+export const loopLength = (_lowerFirst: boolean, tempo: { downMs: number; upMs: number } = TEMPO): number => 2 * TEMPO.holdMs + tempo.downMs + tempo.upMs;

@@ -8,11 +8,14 @@ import { VARIANTS, type Variant } from './variants';
 import { squatFrame } from './rigs/squat';
 import { benchFrame } from './rigs/benchPress';
 import { hingeFrame } from './rigs/hinge';
-import { bodyShapes, propShapes } from './draw';
+import { bodyShapes, propShapes, proj } from './draw';
 import { boundsOf, type Box } from './render';
 import { muscleShapes } from './muscles';
 import { MUSCLE_DATA, type MuscleEntry } from './muscles.generated';
 import type { Frame, Shape, View } from './scene';
+import type { V3 } from './math';
+import { ERRORS, type ErrorId, type Fault } from './errors';
+import { ease } from './rigs/common';
 
 export type FigureSpec = { key: string; family: FamilyId; variant: Variant; views: View[]; static: boolean; lowerFirst: boolean };
 
@@ -28,10 +31,29 @@ export function figureSpec(key: string): FigureSpec | null {
 }
 
 /** Klatka figury w pozycji u (0 = wyjściowa, 1 = skrajna). */
-export function frameAt(spec: FigureSpec, u: number): Frame {
-  const v = spec.variant;
-  return v.family === 'squat' ? squatFrame(v.p, u) : v.family === 'bench_press' ? benchFrame(v.p, u) : hingeFrame(v.p, u);
+export function frameAt(spec: FigureSpec, u: number, error?: ErrorId): Frame {
+  const v = spec.variant; const fault = error ? faultFor(spec, error, u) : undefined;
+  return v.family === 'squat' ? squatFrame(v.p, u, fault) : v.family === 'bench_press' ? benchFrame(v.p, u, fault) : hingeFrame(v.p, u, fault);
 }
+
+/** Waga błędu w pozycji u: rośnie z postępem ruchu (z podłogi: największa tuż po oderwaniu ciężaru, maleje ku wyprostowi). */
+export function faultWeight(spec: FigureSpec, u: number): number {
+  const v = spec.variant; return v.family === 'hinge' && v.p.style === 'floor' ? 1 - 0.6 * ease(u) : ease(u);
+}
+/** Czy błąd da się pokazać pozą w tym wariancie (np. „pięty” nie dotyczą siadu przy ścianie, „kolana jak w przysiadzie” tylko RDL ze sztywnymi kolanami). */
+export function faultApplicable(spec: FigureSpec, error: ErrorId): boolean {
+  const v = spec.variant;
+  switch (error) {
+    case 'kneesIn': return v.family === 'squat' && !v.p.wall && v.p.stance < 30 && v.p.load !== 'dbSumo';
+    case 'heels': return v.family === 'squat' && !v.p.wall;
+    case 'roundBack': return v.family === 'hinge' || (v.family === 'squat' && v.p.load === 'behind');
+    case 'arch': return v.family === 'bench_press' && !v.p.floor && v.p.touch < 55;
+    case 'barAway': return v.family === 'hinge' && v.p.style === 'floor' && (v.p.impl === 'barbell' || v.p.impl === 'cable');
+    case 'kneesBent': return v.family === 'hinge' && v.p.style === 'rdl';
+    case 'jerk': return true;
+  }
+}
+function faultFor(spec: FigureSpec, error: ErrorId, u: number): Fault { return { m: ERRORS[error].mods, w: faultWeight(spec, u) }; }
 
 /** Pozycje u rysowane statycznie (Ogranicz ruch, pauza): start i koniec (jedna dla izometrii). */
 export const staticPositions = (spec: FigureSpec): number[] => spec.static ? [1] : [0, 1];
@@ -40,9 +62,30 @@ export const staticPositions = (spec: FigureSpec): number[] => spec.static ? [1]
 export function musclesFor(key: string): MuscleEntry | null { return Object.prototype.hasOwnProperty.call(MUSCLE_DATA, key) ? MUSCLE_DATA[key] : null; }
 
 /** Kształty klatki w widoku (ciało + sprzęt + opcjonalnie podświetlenie mięśni; nieposortowane — sortuje renderer). */
-export function shapesAt(spec: FigureSpec, u: number, view: View, muscles = false): Shape[] {
-  const f = frameAt(spec, u); const out = [...bodyShapes(f.sk, view), ...propShapes(f.props, view)];
+export function shapesAt(spec: FigureSpec, u: number, view: View, muscles = false, error?: ErrorId): Shape[] {
+  const f = frameAt(spec, u, error); const out = [...bodyShapes(f.sk, view), ...propShapes(f.props, view)];
   if (muscles) { const m = musclesFor(spec.key); if (m) out.push(...muscleShapes(f.sk, view, m.load)); }
+  if (error) out.push(...errorMarks(f, view, error));
+  return out;
+}
+
+/** Znacznik ✕ w miejscu błędu (kolana, pięty, plecy, miednica, gryf) — rola „error” (token danger), nad wszystkim. */
+export function errorMarks(f: Frame, view: View, error: ErrorId): Shape[] {
+  const pts: V3[] = []; const sk = f.sk;
+  switch (ERRORS[error].mark) {
+    case 'knees': pts.push(sk.legs.R.knee, ...(view === 'side' ? [] : [sk.legs.L.knee])); break;
+    case 'heels': pts.push(sk.legs.R.heel, ...(view === 'side' ? [] : [sk.legs.L.heel])); break;
+    case 'back': pts.push(sk.spineMid); break;
+    case 'pelvis': pts.push(sk.pelvis); break;
+    case 'bar': pts.push(f.info.load ?? sk.pelvis); break;
+  }
+  const out: Shape[] = [];
+  for (const p of pts) {
+    const c = proj(p, view); const r = 6;
+    out.push({ k: 'circle', c, r: r + 1.6, fill: 'skinHi', a: 0.92, stroke: 'error', w: 1.2, z: 5000, id: 'errorRing' });
+    out.push({ k: 'line', a: [c[0] - r * 0.6, c[1] - r * 0.6], b: [c[0] + r * 0.6, c[1] + r * 0.6], w: 2, role: 'error', z: 5001, id: 'errorMark' });
+    out.push({ k: 'line', a: [c[0] - r * 0.6, c[1] + r * 0.6], b: [c[0] + r * 0.6, c[1] - r * 0.6], w: 2, role: 'error', z: 5001, id: 'errorMark' });
+  }
   return out;
 }
 

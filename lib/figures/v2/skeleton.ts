@@ -58,6 +58,9 @@ export type Skeleton = {
   legs: Record<Side, Leg>; arms: Record<Side, Arm>;
 };
 
+/** Współczynnik skrócenia cięciwy tułowia przy zgięciu kręgosłupa (jak w solveSkeleton). */
+export const trunkChord = (bendDeg: number): number => Math.cos(rad(bendDeg * 0.55));
+
 const outSign = (s: Side): number => s === 'R' ? 1 : -1;
 
 /** Biodro (staw) i kolano nogi dla miednicy `pelvis` i celu kostki — ten sam IK, którego używa solveSkeleton (do rigów, które liczą odstępy od nóg). */
@@ -73,7 +76,7 @@ export function legJoints(pelvis: V3, s: Side, li: LegIn): { hip: V3; knee: V3; 
 export function solveSkeleton(p: PoseIn): Skeleton {
   const up = sag(p.trunkPitch), front = sagFront(p.trunkPitch);
   const bend = p.spineBend ?? 0;
-  const chord = Math.cos(rad(bend * 0.55));
+  const chord = trunkChord(bend);
   const shoulderC = add(p.pelvis, mul(up, BODY.trunk * chord));
   const spineMid = add(add(p.pelvis, mul(up, BODY.trunk * 0.5 * chord)), mul(front, -Math.sin(rad(bend)) * BODY.trunk * 0.24));
   const neck = add(shoulderC, mul(up, BODY.neckUp));

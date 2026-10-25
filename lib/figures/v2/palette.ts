@@ -5,7 +5,7 @@
 import type { Role } from './scene';
 
 /** Podzbiór palety aplikacji, którego potrzebuje figura (zgodny z Theme z lib/theme). */
-export type FigureTheme = { bg: string; surface: string; surface2: string; line: string; ctrlLine: string; text: string; muted: string; accent: string; band: string; doneLine: string; less: string };
+export type FigureTheme = { danger: string; bg: string; surface: string; surface2: string; line: string; ctrlLine: string; text: string; muted: string; accent: string; band: string; doneLine: string; less: string };
 
 const hex = (c: string): [number, number, number] => { const m = /^#([0-9a-f]{6})$/i.exec(c); if (!m) throw new Error('kolor: ' + c); const n = parseInt(m[1], 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
 /** Mieszanie dwóch kolorów #RRGGBB: k = 0 → a, k = 1 → b. */
@@ -27,7 +27,10 @@ export type FigurePalette = Record<Role, string>;
  */
 export function figurePalette(th: FigureTheme): FigurePalette {
   const skin = mixHex(th.ctrlLine, th.bg, 0.08);
+  const dark = luminance(th.bg) < 0.3;
+  const hi = (c: string): string => dark ? mixHex(c, th.text, 0.2) : mixHex(c, th.surface, 0.4);
   return {
+    skinHi: hi(skin), clothHi: dark ? mixHex(th.accent, th.bg, 0.22) : mixHex(th.accent, th.surface, 0.22), error: th.danger,
     floor: th.ctrlLine, frame: th.ctrlLine, pad: th.surface2, steel: th.muted, plate: th.band, load: th.band,
     skin, skinFar: mixHex(skin, th.bg, 0.35), cloth: th.accent, clothFar: mixHex(th.accent, th.bg, 0.4),
     shoe: th.text, hair: th.text, guide: th.doneLine, cable: th.ctrlLine, muscleMain: th.less, muscleAux: mixHex(th.less, th.bg, 0.5),

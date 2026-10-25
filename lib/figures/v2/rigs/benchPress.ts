@@ -12,7 +12,8 @@ import type { Contact, Frame, Prop } from '../scene';
 import { EQUIP } from '../draw';
 import { ease, mkFrame, solveRoot, trunkPoint } from './common';
 import { ik2 } from '../math';
-import type { PoseIn } from '../skeleton';
+import { trunkChord, type PoseIn } from '../skeleton';
+import type { Fault } from '../errors';
 
 export type BenchImpl = 'barbell' | 'smith' | 'db' | 'kb' | 'band' | 'chain';
 export type BenchParams = {
@@ -37,7 +38,7 @@ export const BENCH = {
   arm: BODY.uarm + BODY.farm + BODY.hand - 0.05,
 } as const;
 
-export function benchFrame(p: BenchParams, u: number): Frame {
+export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
   const th = rad(p.angle); const d: V2 = [-Math.cos(th), Math.sin(th)], nrm: V2 = [Math.sin(th), Math.cos(th)];
   const floorPress = !!p.floor; const decline = p.angle < 0;
   const seatY = floorPress ? 2 : decline ? BENCH.declineSeat : BENCH.seatTop;
@@ -49,7 +50,11 @@ export function benchFrame(p: BenchParams, u: number): Frame {
   if (floorPress) props.push({ k: 'floor', x0: -120, x1: 95 }, { k: 'mat', x0: -90, x1: 80, h: 2 });
   else props.push({ k: 'floor', x0: -120, x1: 95 }, { k: 'bench', seatFrom: [BENCH.seatLen, seatY], hinge: H, backTo: [H[0] + d[0] * BENCH.backLen, H[1] + d[1] * BENCH.backLen], legH: seatY });
 
-  const shoulderC = trunkPoint(hip, trunkPitch, BODY.trunk, 0, 0);
+  /* błąd „wygięcie lędźwi”: barki zostają na oparciu, miednica unosi się nad ławkę, kręgosłup wygięty (tułów pochyla się o wynikający kąt) */
+  const bend = (fault?.m.spineBend ?? 0) * (fault?.w ?? 0); const lift = (fault?.m.archLift ?? 0) * (fault?.w ?? 0); const Tl = BODY.trunk * trunkChord(bend);
+  const shoulderC = trunkPoint(hip, trunkPitch, Tl, 0, 0);
+  const sgn = Math.sign(hip[0] - shoulderC[0]) || 1; const dyP = lift; const hipT: V3 = [shoulderC[0] + sgn * Math.sqrt(Math.max(0, Tl * Tl - (hip[1] + dyP - shoulderC[1]) ** 2)), hip[1] + dyP, 0];
+  const pitchT = lift ? Math.atan2(shoulderC[0] - hipT[0], shoulderC[1] - hipT[1]) * 180 / Math.PI : trunkPitch;
   const grip0 = p.gripTop ?? p.grip;
   const gripAt = (k: number): number => grip0 + (p.grip - grip0) * ease(k);
   const g = gripAt(u);
@@ -59,7 +64,7 @@ export function benchFrame(p: BenchParams, u: number): Frame {
   const top: V3 = [x0, shoulderC[1] + Math.sqrt(Math.max(1, L * L - 4 - dz0 * dz0)), 0];
   /* dół: dotyk w układzie tułowia (u podłogi: wysokość, przy której łokcie dotykają podłogi) */
   const touchB = p.touchB ?? 11.9 + EQUIP.barR;
-  let bottom = trunkPoint(hip, trunkPitch, p.touch, touchB, 0);
+  let bottom = trunkPoint(hipT, pitchT, p.touch, touchB, 0);
   const fl = p.flare ?? (p.grip < 20 ? 1.1 : 0.8); const elbowPole: V3 = [0, -1, fl];
   if (floorPress) {
     const f = (y: number): number => { const sh: V3 = [shoulderC[0], shoulderC[1], BODY.shHalf]; const r = ik2(sh, [bottom[0], y, g], BODY.uarm, BODY.farm + BODY.hand, elbowPole); return r.mid[1] - (2 + 4.6); };
@@ -69,12 +74,12 @@ export function benchFrame(p: BenchParams, u: number): Frame {
   const c: V3 = [top[0] + (bottom[0] - top[0]) * k, top[1] + (bottom[1] - top[1]) * k, 0];
 
   const arms = { R: { grip: [c[0], c[1], g] as V3, elbowPole }, L: { grip: [c[0], c[1], -g] as V3, elbowPole: [elbowPole[0], elbowPole[1], -elbowPole[2]] as V3 } };
-  if (p.oneArm) arms.L = { grip: trunkPoint(hip, trunkPitch, 26, 12.5, -7), elbowPole: [0, -0.2, -1] as V3 };
+  if (p.oneArm) arms.L = { grip: trunkPoint(hipT, pitchT, 26, 12.5, -7), elbowPole: [0, -0.2, -1] as V3 };
   /* nogi: stopy na podłodze (ujemna: na wałkach przy końcu siedziska) */
   const ankleX = decline ? hip[0] + 44 : hip[0] + BENCH.footBack; const ankleY = decline ? seatY + 6 : floorPress ? 2 + BODY.ankleH : BODY.ankleH;
   const kneePole: V3 = [0.25, 1, 0.35];
   const pose: PoseIn = {
-    pelvis: hip, trunkPitch, headPitch: trunkPitch + 8,
+    pelvis: hipT, trunkPitch: pitchT, spineBend: bend, headPitch: trunkPitch + 8,
     legs: { R: { ankle: [ankleX, ankleY, BENCH.footHalf], toeOut: 8, kneePole }, L: { ankle: [ankleX, ankleY, -BENCH.footHalf], toeOut: 8, kneePole: [kneePole[0], kneePole[1], -kneePole[2]] } },
     arms,
   };

@@ -234,12 +234,12 @@ describe('wspólne elementy rigów i słowniki wartości', () => {
     for (const [, back, front] of TORSO_SIDE) { expect(back).toBeLessThan(0); expect(front).toBeGreaterThan(0); }
     for (const [, w] of TORSO_FRONT) expect(w).toBeGreaterThan(8);
   });
-  test('słowniki wartości: rodziny (43), mięśnie (19), role kolorów (16), style zawiasu (5), rodzaje obciążenia przysiadu (13) — każda wartość ma wpis', () => {
+  test('słowniki wartości: rodziny (43), mięśnie (19), role kolorów (19), style zawiasu (5), rodzaje obciążenia przysiadu (13) — każda wartość ma wpis', () => {
     const FAMILY_IDS = ['squat', 'bench_press', 'hinge', 'pushup_plank', 'dip', 'overhead_press', 'row', 'cable_row', 'pull_up', 'pulldown', 'lunge', 'leg_machine', 'leg_isolation', 'calf_raise', 'hip_bridge', 'kb_ballistic', 'olympic', 'back_extension', 'curl', 'triceps', 'delt_raise', 'chest_fly', 'shrug', 'rotator_cuff', 'core_floor', 'core_hang', 'core_standing', 'carry', 'cardio', 'plyo', 'sled_throw', 'strongman', 'glute_floor', 'hip_abd_add', 'mobility_stand', 'mobility_floor', 'foam_roll', 'neck', 'forearm', 'thruster', 'chest_press_machine', 'cable_press', 'kneeling_hinge'];
     expect(FAMILIES.map(f => f.id)).toEqual(FAMILY_IDS);
     const MUSCLE_IDS = ['chest', 'triceps', 'front_delt', 'biceps', 'abs', 'lower_back', 'hamstrings', 'glutes', 'quads', 'upper_back', 'forearms', 'lats', 'adductors', 'rear_delt', 'obliques', 'side_delt', 'calves', 'abductors', 'neck'];
     expect([...MUSCLES]).toEqual(MUSCLE_IDS);
-    const ROLES = ['floor', 'frame', 'pad', 'steel', 'plate', 'load', 'skin', 'skinFar', 'cloth', 'clothFar', 'shoe', 'hair', 'guide', 'cable', 'muscleMain', 'muscleAux'];
+    const ROLES = ['floor', 'frame', 'pad', 'steel', 'plate', 'load', 'skin', 'skinFar', 'skinHi', 'cloth', 'clothFar', 'clothHi', 'error', 'shoe', 'hair', 'guide', 'cable', 'muscleMain', 'muscleAux'];
     expect(Object.keys(figurePalette(light))).toEqual(expect.arrayContaining(ROLES)); expect(Object.keys(figurePalette(dark)).length).toBe(ROLES.length);
     const STYLES = ['floor', 'rdl', 'goodMorning', 'pullThrough', 'singleLeg']; const LOADS = ['highBar', 'frontBar', 'zercher', 'overhead', 'goblet', 'dbSides', 'dbSumo', 'bodyweight', 'belt', 'landmine', 'behind', 'kbRack', 'kbOverhead1'];
     const used = new Set<string>(Object.values(VARIANTS_FOR_TEST()).map(v => v.family === 'hinge' ? v.p.style : v.family === 'squat' ? v.p.load : ''));

@@ -15,3 +15,4 @@ export * from './anim';
 export * from './figure';
 export * from './muscles';
 export * from './muscles.generated';
+export * from './errors';

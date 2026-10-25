@@ -7,7 +7,7 @@ import type { Skeleton } from './skeleton';
 
 /** side = z boku (kamera po prawej stronie osoby), front = z przodu, top = z góry (głowa u góry rysunku; dla ćwiczeń w leżeniu). */
 export type View = 'side' | 'front' | 'top';
-export type Role = 'floor' | 'frame' | 'pad' | 'steel' | 'plate' | 'load' | 'skin' | 'skinFar' | 'cloth' | 'clothFar' | 'shoe' | 'hair' | 'guide' | 'cable' | 'muscleMain' | 'muscleAux';
+export type Role = 'floor' | 'frame' | 'pad' | 'steel' | 'plate' | 'load' | 'skin' | 'skinFar' | 'skinHi' | 'cloth' | 'clothFar' | 'clothHi' | 'error' | 'shoe' | 'hair' | 'guide' | 'cable' | 'muscleMain' | 'muscleAux';
 
 /** Kształt 2D po rzucie (współrzędne rysunku: x w prawo, y w górę, cm). `z` = kolejność rysowania (mniejsze pierwsze). */
 export type Shape =

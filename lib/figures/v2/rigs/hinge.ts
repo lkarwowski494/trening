@@ -8,7 +8,8 @@
  *  3. zgięcie kolana K dobrane tak, by odległość biodro–bark = długość tułowia (rozwiązanie bisekcją).
  * Dzięki temu gryf jest zawsze nad śródstopiem w granicach kontaktu z nogami i nie przechodzi przez ciało. Kąty i rozstawy bez źródła = UPROSZCZENIE ILUSTRACYJNE.
  */
-import { BODY, GIRTH, legJoints } from '../skeleton';
+import { BODY, GIRTH, legJoints, trunkChord } from '../skeleton';
+import type { Fault } from '../errors';
 import { distSegSeg, mul, sag, type V3 } from '../math';
 import type { Contact, Frame, Prop } from '../scene';
 import { EQUIP } from '../draw';
@@ -66,8 +67,11 @@ function clearance(p: HingeParams, x: number, y: number, legs: { hip: V3; knee: 
   return m;
 }
 
-export function hingeFrame(p: HingeParams, u: number): Frame {
-  if (p.style === 'goodMorning') return goodMorning(p, u);
+export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
+  if (p0.style === 'goodMorning') return goodMorning(p0, u, fault);
+  const fw = fault?.w ?? 0; const fs = fault?.m.shin;
+  const p: HingeParams = fs ? { ...p0, shin: { stand: fs.stand ?? p0.shin.stand, perKnee: p0.shin.perKnee + ((fs.perKnee ?? p0.shin.perKnee) - p0.shin.perKnee) * fw, max: p0.shin.max + ((fs.max ?? p0.shin.max) - p0.shin.max) * fw } } : p0;
+  const bend = (fault?.m.spineBend ?? 0) * fw; const Tl = BODY.trunk * trunkChord(bend);
   const k = ease(u); const sx = p.sx[0] + (p.sx[1] - p.sx[0]) * k;
   const ankY = BODY.ankleH + (p.platform ?? 0); const ankles: Record<'R' | 'L', V3> = { R: [0, ankY, p.stance], L: [0, ankY, -p.stance] };
   const single = p.style === 'singleLeg'; if (single) { ankles.R = [0, ankY, BODY.hipHalf]; }
@@ -88,9 +92,9 @@ export function hingeFrame(p: HingeParams, u: number): Frame {
   for (let it = 0; it < 8; it++) {
     const legs = legsAt(K); barX = 60;
     while (barX > HINGE.xMin && clearance(p, barX, barY, legs) >= HINGE.clear) barX -= 0.25; /* od przodu: pierwszy kontakt z nogami, nie dalej niż xMin */
-    barX += 0.25;
+    barX += 0.25 + (fault?.m.barAway ?? 0) * fw;
     const S: V3 = [barX + sx, barY + Larm, 0];
-    K = solveRoot(kk => { const h = chain(kk).hip; return Math.hypot(S[0] - h[0], S[1] - h[1]) - BODY.trunk; }, 0, 141);
+    K = solveRoot(kk => { const h = chain(kk).hip; return Math.hypot(S[0] - h[0], S[1] - h[1]) - Tl; }, 0, 141);
   }
   const ch = chain(K); const hip: V3 = [ch.hip[0], ch.hip[1], 0];
   const S: V3 = [barX + sx, barY + Larm, 0]; const tau = Math.atan2(S[0] - hip[0], S[1] - hip[1]) * 180 / Math.PI;
@@ -110,7 +114,7 @@ export function hingeFrame(p: HingeParams, u: number): Frame {
     legs = { R: { ankle: ankles.R, toeOut: 5 }, L: { ankle: free, footPitch: pitch, toeOut: 5 } };
     arms = { R: { grip: g(BODY.hipHalf + 4), elbowPole: [0, -1, 0.2] }, L: { grip: [barX - 8, barY + 14, -BODY.shHalf + 4], elbowPole: [-0.5, -0.3, -1] } };
   }
-  const pose: PoseIn = { pelvis: hip, trunkPitch: tau, legs, arms };
+  const pose: PoseIn = { pelvis: hip, trunkPitch: tau, spineBend: bend, legs, arms };
   info.load = c; info.hip = hip; info.shoulder = S; info.midfoot = [6.5, 0, 0];
   if (p.platform) props.push({ k: 'box', x0: -26, x1: 34, top: p.platform, w: 60 });
   if (p.impl === 'barbell' || p.impl === 'smith') { props.push({ k: 'barbell', c, held: p.oneArm ? 'R' : true }); info.bar = c; }
@@ -127,8 +131,8 @@ export function hingeFrame(p: HingeParams, u: number): Frame {
 }
 
 /** Dzień dobry: sztanga na plecach (jak przysiad wysokim gryfem), kolana prawie proste, tułów pochyla się do przodu, gryf nad śródstopiem. */
-function goodMorning(p: HingeParams, u: number): Frame {
+function goodMorning(p: HingeParams, u: number, fault?: Fault): Frame {
   const sq: SquatParams = { load: 'highBar', impl: 'barbell', depth: 28, stance: p.stance, toeOut: p.toeOut, shin: { stand: 1, perKnee: 0, max: 1 }, band: p.band, chain: p.chain };
-  return squatFrame(sq, u);
+  return squatFrame(sq, u, fault);
 }
 

@@ -8,10 +8,11 @@
  * Kąty bez podanego źródła (K_end, τ, rozstaw) to UPROSZCZENIE ILUSTRACYJNE.
  */
 import { BODY } from '../skeleton';
-import { add, type V3 } from '../math';
+import { add, rad, type V3 } from '../math';
 import type { Frame, Prop, Contact } from '../scene';
 import { ease, legFK, mkFrame, solveRoot, trunkPoint, type ShinRule } from './common';
 import type { PoseIn } from '../skeleton';
+import type { Fault } from '../errors';
 
 export type SquatLoad = 'highBar' | 'frontBar' | 'zercher' | 'overhead' | 'goblet' | 'dbSides' | 'dbSumo' | 'bodyweight' | 'belt' | 'landmine' | 'behind' | 'kbRack' | 'kbOverhead1';
 export type SquatImpl = 'barbell' | 'db' | 'kb' | 'none' | 'cable';
@@ -44,19 +45,23 @@ export const SQUAT = {
 
 const SHIN: ShinRule = { stand: SQUAT.shinStand, perKnee: SQUAT.shinPerKnee, max: SQUAT.shinMax };
 /** Wysokość stawu biodrowego i pozycje kolana dla kąta zgięcia kolana K (stopa płasko, kostka w x = 0). */
-export function legChain(K: number, rule: ShinRule = SHIN, dz = 0): { knee: V3; hip: V3; sigma: number } { return legFK(K, rule, [0, BODY.ankleH, 0], dz); }
+export function legChain(K: number, rule: ShinRule = SHIN, dz = 0, ankleY: number = BODY.ankleH): { knee: V3; hip: V3; sigma: number } { return legFK(K, rule, [0, ankleY, 0], dz); }
 
 /** Kąt zgięcia kolana, przy którym staw biodrowy jest na wysokości `h` (do skrzyni). */
 export const kneeForHipHeight = (h: number, dz = 0): number => solveRoot(K => legChain(K, SHIN, dz).hip[1] - h, 0, 141);
 
-export function squatFrame(p: SquatParams, u: number): Frame {
+export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
   const wallSit = !!p.wall;
   const boxH = p.box;
   const Kend = boxH !== undefined ? kneeForHipHeight(boxH + SQUAT.sit, Math.abs(p.stance - BODY.hipHalf)) : p.depth;
   const K = Kend * ease(u);
-  const rule = p.shin ?? SHIN; const dzL = Math.abs(p.stance - BODY.hipHalf); const ch = legChain(K, rule, dzL);
+  const rule = p.shin ?? SHIN; const dzL = Math.abs(p.stance - BODY.hipHalf);
+  /* błąd „pięty”: stopa pochylona palcami w dół, kostka wyżej (palce zostają na podłodze) */
+  const lift = Math.min(15, (fault?.m.heelLift ?? 0) * (fault?.w ?? 0)); const pitch = lift > 0 ? -Math.asin(lift / (BODY.heelBack + BODY.toeFwd)) * 180 / Math.PI : 0;
+  const ankleY = lift > 0 ? BODY.ankleH * Math.cos(rad(pitch)) - BODY.toeFwd * Math.sin(rad(pitch)) : BODY.ankleH;
+  const ch = legChain(K, rule, dzL, ankleY);
   const ankX = 0; const mid = SQUAT.midfoot;
-  const ankles: Record<'R' | 'L', V3> = { R: [ankX, BODY.ankleH, p.stance], L: [ankX, BODY.ankleH, -p.stance] };
+  const ankles: Record<'R' | 'L', V3> = { R: [ankX, ankleY, p.stance], L: [ankX, ankleY, -p.stance] };
 
   let hip = ch.hip;
   let ankleX = ankX;
@@ -117,7 +122,7 @@ export function squatFrame(p: SquatParams, u: number): Frame {
     case 'dbSides': case 'dbSumo': {
       tau = tauSched(); const sh = trunkPoint(hipC(), tau, BODY.trunk, 0, 0);
       if (p.load === 'dbSides') { const g: V3 = [sh[0] + 3, sh[1] - (BODY.uarm + BODY.farm + BODY.hand - 8), 0]; load = g; arms = armsHeld(g, BODY.shHalf + 13, [-0.2, -0.2, 1]); }
-      else { const g = trunkPoint(hipC(), tau, 2, 19, 0); load = g; arms = armsHeld(g, 4, [0.1, -0.2, 1]); }
+      else { const g = trunkPoint(hipC(), tau, 2, 21, 0); load = g; arms = armsHeld(g, 4, [0.1, -0.2, 1]); }
       break;
     }
     case 'landmine': {
@@ -137,7 +142,8 @@ export function squatFrame(p: SquatParams, u: number): Frame {
       load = g; arms = armsHeld(g, 7, [0, -1, 0.5]);
     }
   }
-  const pose: PoseIn = { pelvis: hipC(), trunkPitch: tau, legs: { R: { ankle: ankles.R, toeOut: p.toeOut }, L: { ankle: ankles.L, toeOut: p.toeOut } }, arms: arms! };
+  const kneeOut0 = p.toeOut * 2; const kneeOut = fault?.m.kneeOutTo !== undefined ? kneeOut0 + (fault.m.kneeOutTo - kneeOut0) * fault.w : kneeOut0;
+  const pose: PoseIn = { pelvis: hipC(), trunkPitch: tau, spineBend: (fault?.m.spineBend ?? 0) * (fault?.w ?? 0), legs: { R: { ankle: ankles.R, toeOut: p.toeOut, footPitch: pitch, kneeOut: kneeOut }, L: { ankle: ankles.L, toeOut: p.toeOut, footPitch: pitch, kneeOut: kneeOut } }, arms: arms! };
   info.load = load!; info.hip = hipC(); info.midfoot = [ankleX + mid, 0, 0];
 
   /* sprzęt */
@@ -168,7 +174,7 @@ export function squatFrame(p: SquatParams, u: number): Frame {
   if (p.impl === 'kb' && p.load === 'kbOverhead1') props.push({ k: 'kettlebell', c: add(c, [0, 6, 0]), side: 'R' });
   if (p.impl === 'kb' && p.load === 'dbSumo') props.push({ k: 'kettlebell', c: add(c, [0, 0, 0]), side: 'C' });
   if (p.load === 'belt') props.push({ k: 'cable', from: [info.midfoot[0], 0, 0], to: hipC() });
-  if (boxH !== undefined) { const hx = legChain(Kend, rule, dzL).hip[0]; const bx1 = Math.min(hx + 12, -BODY.heelBack - 4); props.push({ k: 'box', x0: bx1 - 40, x1: bx1, top: boxH }); contacts.push({ body: 'pelvis', equip: 'box', tol: 1.5 }, { body: 'thigh', equip: 'box', tol: 1.5 }, { body: 'torso', equip: 'box', tol: 1.5 }); }
+  if (boxH !== undefined) { const hx = legChain(Kend, rule, dzL).hip[0]; const bx1 = Math.min(hx + 12, -BODY.heelBack - 6); props.push({ k: 'box', x0: bx1 - 40, x1: bx1, top: boxH }); contacts.push({ body: 'pelvis', equip: 'box', tol: 1.5 }, { body: 'thigh', equip: 'box', tol: 2.5 }, { body: 'torso', equip: 'box', tol: 1.5 }); }
   if (wallSit) { props.push({ k: 'wall', x: hipC()[0] - 10.5, h: 190 }); contacts.push({ body: 'torso', equip: 'wall', tol: 1.5 }, { body: 'pelvis', equip: 'wall', tol: 1.5 }); }
   return mkFrame(pose, props, info, contacts);
 }
