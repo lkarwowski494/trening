@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Ilma ostuta: kuni {n} treeningpäeva kuus; ajalugu, varukoopia ja eksport on alati saadaval.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Tasuta treeningpäevad sel kuul: kasutatud {n} / {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Sel kuul on tasuta treeningpäevi {left}: {n} / {limit}.",
- "Został|Zostały|Zostało": "jäänud|jäänud"
+ "Został|Zostały|Zostało": "jäänud|jäänud",
+ "Zakończ trening na telefonie": "Lõpeta treening telefonis"
 }

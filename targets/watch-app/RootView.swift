@@ -31,7 +31,7 @@ struct RootView: View {
       case .idle: MessageView(symbol: "iphone", text: store.label(.idle), id: "watch.idle")
       case .set: SetView(store: store, v: v)
       case .rest: RestView(store: store, v: v, nowMs: nowMs)
-      case .done: MessageView(symbol: "checkmark.circle", text: store.label(.nothingLeft), id: "watch.nothing")
+      case .done: MessageView(symbol: "iphone", text: store.label(.finishOnPhone), id: "watch.nothing") /* identyfikator zostaje (testy interfejsu) */
       case .connect: MessageView(symbol: "iphone.slash", text: store.label(.connect), id: "watch.connect")
       case .finished: MessageView(symbol: "flag.checkered", text: store.label(.finished), id: "watch.finished")
       case .update: MessageView(symbol: "arrow.down.circle", text: store.label(.update), id: "watch.update")
@@ -157,7 +157,7 @@ struct RestView: View {
         } else if v.busy {
           Text(store.label(.connect)).font(.footnote.weight(.semibold)).accessibilityIdentifier("watch.connect")
         } else {
-          Text(store.label(.nothingLeft)).font(.footnote.weight(.semibold)).accessibilityIdentifier("watch.nothing")
+          Text(store.label(.finishOnPhone)).font(.footnote.weight(.semibold)).multilineTextAlignment(.center).accessibilityIdentifier("watch.nothing")
         }
       }
     }
