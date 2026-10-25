@@ -1,7 +1,7 @@
 /*
  * Nazwy źródeł wiedzy dla strażnika tests/zrodla-wiedzy.test.ts (decyzja właściciela 25.10.2026, „całkiem anonimowo”): publicznie — w aplikacji, na stronach www
  * i w sklepie — nigdzie nie piszemy o źródłach, nawet ogólnie; wiedza „wynika z tego, co przyswoiliśmy”. Ekran Ustawienia → „Źródła wiedzy” (23.10.2026) usunięty.
- * Wewnętrzny rejestr zostaje w repozytorium: lib/cues/data.json, docs/research/rejestr-twierdzen.json, docs/research, docs/brd/zrodla.md.
+ * Wewnętrzny rejestr zostaje w repozytorium: data/zrodla (pełne dane wskazówek i figur; do paczki aplikacji trafia tylko plik runtime bez nazw), docs/research/rejestr-twierdzen.json, docs/research, docs/brd/zrodla.md.
  * Ten plik nie jest używany w aplikacji — tylko w testach (jedno miejsce wzorców: nazwy organizacji i autorów, cytat „Nazwisko i in. 2016”, odwołania ogólne).
  */
 

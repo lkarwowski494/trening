@@ -11,7 +11,7 @@ import { LOCATION_PRESETS, implAt, availability } from '@/lib/equipment';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
 import {
   generate, saveGenerated, replaceable, previewWarnings, genPlanName, bestDays, splitFor, hasExternalLoad, GEN_SESSIONS, GEN_MINUTES, MAJOR, MIN_DAYS,
-  RIR_ACSM, REPS, WHO_MODERATE, WHO_VIGOROUS, SECONDARY_SHARE, type GenInput, type Goal,
+  RIR_NEAR_FAILURE, REPS, CARDIO_WEEK_MODERATE, CARDIO_WEEK_VIGOROUS, SECONDARY_SHARE, type GenInput, type Goal,
 } from '@/lib/generator';
 import { fresh, addWorkout } from './helpers';
 
@@ -23,7 +23,7 @@ beforeEach(async () => { jest.useFakeTimers({ now: new Date(2026, 9, 8, 9).getTi
 afterEach(() => jest.useRealTimers());
 
 test('stałe ze źródeł pokazywane w opisie generatora: RIR wg ACSM 2–3, WHO 150–300 min umiarkowanego / 75–150 intensywnego', () => {
-  expect([RIR_ACSM, WHO_MODERATE, WHO_VIGOROUS]).toEqual([[2, 3], [150, 300], [75, 150]]);
+  expect([RIR_NEAR_FAILURE, CARDIO_WEEK_MODERATE, CARDIO_WEEK_VIGOROUS]).toEqual([[2, 3], [150, 300], [75, 150]]);
 });
 
 describe('dni treningowe', () => {

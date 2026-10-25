@@ -3,6 +3,7 @@
  "scope": [
   "app",
   "components",
+  "data",
   "lib",
   "modules",
   "plugins",
@@ -154,30 +155,35 @@
   {
    "path": "lib/cues/data.json",
    "name": "Assault Bike",
+   "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki po kluczu) — plik runtime wskazówek (generowany z data/zrodla/cues.json) trzyma listę kluczy ćwiczeń bez wskazówek, bez powodów i źródeł"
+  },
+  {
+   "path": "data/zrodla/cues.json",
+   "name": "Assault Bike",
    "reason": "klucz katalogu (nazwa kanoniczna = Exercise.libKey w danych użytkownika; wskazówki, figury i Zdrowie po kluczu) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts (SEC2-01); tu: notatka o brakujących źródłach"
   },
   {
-   "path": "lib/cues/data.json",
+   "path": "data/zrodla/cues.json",
    "name": "BOSU",
    "reason": "notatka badawcza o źródłach wskazówki (wersja ćwiczenia opisana w źródle), niewyświetlana w aplikacji"
   },
   {
-   "path": "lib/cues/data.json",
+   "path": "data/zrodla/cues.json",
    "name": "Eleiko",
    "reason": "źródło wskazówek techniki (producent sprzętu — organizacja i tytuły stron w danych źródeł, 0.14.0, docs/research/31 i 33); podpis w aplikacji neutralny (rodzaj źródła) — jak Concept2, decyzja MER2-07 = SEC2-02 wariant A"
   },
   {
-   "path": "lib/cues/data.json",
+   "path": "data/zrodla/cues.json",
    "name": "Life Fitness",
    "reason": "źródło wskazówek techniki (producent sprzętu — organizacja i tytuł artykułu w danych źródeł, 0.14.0, docs/research/31 i 33); podpis w aplikacji neutralny (rodzaj źródła) — jak Concept2, decyzja MER2-07 = SEC2-02 wariant A"
   },
   {
-   "path": "lib/cues/data.json",
+   "path": "data/zrodla/cues.json",
    "name": "BikeErg",
    "reason": "źródło wskazówek techniki (tytuł strony producenta ergometru rowerowego w danych źródeł, 0.14.0, docs/research/31 i 33); podpis w aplikacji neutralny (rodzaj źródła) — jak Concept2, decyzja MER2-07 = SEC2-02 wariant A"
   },
   {
-   "path": "lib/cues/data.json",
+   "path": "data/zrodla/cues.json",
    "name": "Concept2",
    "reason": "źródło wskazówek techniki (organizacja w danych źródeł); podpis w aplikacji neutralny — decyzja MER2-07 = SEC2-02 wariant A, wdrożenie 0.10.1"
   },

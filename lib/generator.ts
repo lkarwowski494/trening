@@ -51,9 +51,9 @@ export const WARMUP_MIN = 10;
 export const SET_WORK_SEC = 40;
 /** Średnia przerwa do budżetu serii (s): siła — bój główny 180 i dodatkowe 120; masa — wielostawowe 120 i izolacja 90. */
 export const AVG_REST: Record<Goal, number> = { strength: 150, hypertrophy: 105, cut: 105, general: 105 };
-/** Serie na ćwiczenie — ACSM 2026: „healthy adults are advised to complete at least two sets per exercise” (ACSM_MIN_SETS; siła: 2–3); 3 = uproszczenie. */
+/** Serie na ćwiczenie — ACSM 2026: „healthy adults are advised to complete at least two sets per exercise” (MIN_SETS_PER_EX; siła: 2–3); 3 = uproszczenie. */
 export const SETS_PER_EX = 3;
-export const ACSM_MIN_SETS = 2;
+export const MIN_SETS_PER_EX = 2;
 /** Cel „Ogólny”: serie na ćwiczenie — część wspólna źródeł 2–3 (PAG 2018: „2 or 3 sets may be more effective”; ACSM 2011: 2–4; ACSM 2026: co najmniej 2);
  * w planie dolna granica (decyzja właściciela 09.10.2026) — uproszczenie, docs/research/30 G6. */
 export const GENERAL_SETS_RANGE: readonly [number, number] = [2, 3];
@@ -70,16 +70,16 @@ export const CARDIO_SESSIONS = 1;
 export const MIN_EXERCISES = 3;
 /** Przerwy (s): bój główny przy sile, wielostawowe (i dodatkowe przy sile), jednostawowe i core (R6 — uproszczenie). */
 export const REST = { heavy: 180, multi: 120, iso: 90 } as const;
-/** Wysiłek: zwykle RIR[0]–RIR[1] powtórzeń w zapasie; ACSM 2026: „near-failure” albo RIR_ACSM (2–3); „insufficient evidence to quantify exact RIR”. */
+/** Wysiłek: zwykle RIR[0]–RIR[1] powtórzeń w zapasie; ACSM 2026: „near-failure” albo RIR_NEAR_FAILURE (2–3); „insufficient evidence to quantify exact RIR”. */
 export const RIR: readonly [number, number] = [0, 3];
-export const RIR_ACSM: readonly [number, number] = [2, 3];
+export const RIR_NEAR_FAILURE: readonly [number, number] = [2, 3];
 /** Główna partia co najmniej MIN_DAYS dni w tygodniu: WHO 2020 („all major muscle groups on 2 or more days a week”); ACSM 2026 — siła ≥ 2 sesje/tydz. */
 export const MIN_DAYS = 2;
 /** Partia pomocnicza liczona jako SECONDARY_SHARE serii i dnia — Pelland 2026, metoda „fractional” (metaanaliza, szczebel 2; jak paski serii w Postępach). Definicja: lib/setSplit. */
 export { SECONDARY_SHARE };
 /** WHO 2020: „at least 150–300 min of moderate-intensity … or at least 75–150 min of vigorous-intensity aerobic physical activity”. */
-export const WHO_MODERATE: readonly [number, number] = [150, 300];
-export const WHO_VIGOROUS: readonly [number, number] = [75, 150];
+export const CARDIO_WEEK_MODERATE: readonly [number, number] = [150, 300];
+export const CARDIO_WEEK_VIGOROUS: readonly [number, number] = [75, 150];
 /** Redukcja: sesja cardio w planie od tylu dni — wcześniej wszystkie dni siłowe, żeby cardio nie zabierało dni treningowi siłowemu (R1: MIN_DAYS dni
  * na partię); przy mniejszej liczbie dni cardio poza planem z zaleceniem WHO (opcja A, docs/research/29 sekcja 3 — konwencja z istniejących reguł). */
 export const CUT_CARDIO_FROM = MIN_DAYS + CARDIO_SESSIONS;

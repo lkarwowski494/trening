@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5514-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5531-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-46-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -60,10 +60,10 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 354 (z testem: 354) | docs/19-macierz-testow.md |
 | Komunikaty i teksty | 1104 (z testem: 1104) | docs/19-macierz-testow.md |
-| Funkcje biblioteki `lib/` | 939 (z testem: 939) | docs/19-macierz-testow.md |
+| Funkcje biblioteki `lib/` | 938 (z testem: 938) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 120 (z testem: 120) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 473 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 5514 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 476 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 5531 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 155 (Maestro: 127, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 14) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 46 (w głównym przebiegu: 43, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -168,13 +168,15 @@ Kroki `npm run verify` (generowane z `package.json`):
 5. `npm run check:cues`
 6. `npm run check:claims`
 7. `npm run check:figures`
-8. `npm run check:readme`
-9. `jest`
-10. `npm run check:matrix`
-11. `npm run check:licenses`
-12. `npx expo export --platform ios --output-dir .expo/verify-export`
-13. sprzątanie katalogu tymczasowego eksportu
-14. `npm run verify:native`
+8. `npm run check:zrodla-runtime`
+9. `npm run check:readme`
+10. `jest`
+11. `npm run check:matrix`
+12. `npm run check:licenses`
+13. `npx expo export --platform ios --output-dir .expo/verify-export`
+14. `npm run check:bundle`
+15. sprzątanie katalogu tymczasowego eksportu
+16. `npm run verify:native`
 <!-- /gen:verify-steps -->
 
 Natywnego builda nie da się sprawdzić na Linuksie: kompilacja — `ios-unsigned.yml`, scenariusze na symulatorze — `e2e-ios.yml`, telefon — TestFlight.
@@ -201,6 +203,7 @@ trening/
 │   └── template/             edytor szablonu
 ├── assets/                   ikony, ekran startowy, grafiki
 ├── components/               trening w toku (ActiveWorkout), elementy interfejsu, kalendarz, wykresy, mapa mięśni
+├── data/                     pełne dane źródeł wskazówek i figur (z nich generuje się pliki runtime bez nazw: scripts/zrodla-runtime.mjs)
 ├── docs/                     dokumentacja i rejestr decyzji (po polsku), w tym dokumenty generowane z kodu
 │   ├── audyt-0.10/           raporty audytu
 │   ├── prompty/              prompty pomocnicze

@@ -1,5 +1,5 @@
-// Figury ruchu (etap 2–3, decyzja właściciela 08.10.2026 ok. 23:50): generuje docs/research/28-figury.md z lib/figures/data.json,
-// lib/cues/data.json i lib/cues/text/pl.json oraz sprawdza dane (pokrycie ćwiczeń ze wskazówkami, odwołania do zdań, 1–3 pozy…).
+// Figury ruchu (etap 2–3, decyzja właściciela 08.10.2026 ok. 23:50): generuje docs/research/28-figury.md z data/zrodla/figures.json,
+// data/zrodla/cues.json i lib/cues/text/pl.json oraz sprawdza dane (pokrycie ćwiczeń ze wskazówkami, odwołania do zdań, 1–3 pozy…).
 // Geometrię (zakres stawów, sprawdzenia póz) liczy tests/figures.test.tsx przez lib/figures/geom.ts — tu tylko struktura i dokument.
 // Dokument generowany z danych — nie przepisywać ręcznie (CLAUDE.md; wzór scripts/cues/gen.mjs).
 // Użycie: node scripts/figures/gen.mjs  (zapis) | node scripts/figures/gen.mjs --check  (verify: błędne dane albo nieaktualny dokument → kod 1)
@@ -8,8 +8,8 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
-const FIG = join(root, 'lib/figures/data.json');
-const CUES = join(root, 'lib/cues/data.json');
+const FIG = join(root, 'data/zrodla/figures.json');
+const CUES = join(root, 'data/zrodla/cues.json');
 const PL = join(root, 'lib/cues/text/pl.json');
 const OUT = join(root, 'docs/research/28-figury.md');
 
@@ -80,7 +80,7 @@ export function render(fig, cues, pl) {
   const keys = Object.keys(fig.exercises);
   const L = [];
   L.push('# 28 — Figury ruchu (generowane)', '');
-  L.push('AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/gen.mjs` z `lib/figures/data.json`, `lib/cues/data.json` i `lib/cues/text/pl.json` — nie edytować ręcznie.');
+  L.push('AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/gen.mjs` z `data/zrodla/figures.json`, `data/zrodla/cues.json` i `lib/cues/text/pl.json` — nie edytować ręcznie.');
   L.push('Sprawdzanie: `node scripts/figures/gen.mjs --check` (część `npm run verify`); geometria póz i zakres stawów: `tests/figures.test.tsx`.', '');
   L.push('Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; etap 2–3 = własne figury SVG (szkielet z kątami stawów, 2–3 pozycje, krótka pętla; przy „Ogranicz ruch” pozycje statycznie). Research: docs/research/26 pkt 7; wskazówki etapu 1: docs/research/27.', '');
   L.push('## Zasady', '');
