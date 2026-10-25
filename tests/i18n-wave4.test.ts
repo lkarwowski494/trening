@@ -125,7 +125,7 @@ describe('dane: komplet słownika UI i wskazówek techniki, pliki iOS i App Stor
   test('widżet: etykiety w RestLabels.swift i wybór zh-Hant z języka systemu (zh-Hant-TW, zh-HK…), uproszczony → angielski', () => {
     const dir = path.join(__dirname, '..', 'targets', 'rest-widget');
     const labels = fs.readFileSync(path.join(dir, 'RestLabels.swift'), 'utf8');
-    expect(labels).toContain('"ja": (rest: "休憩", set: "セット")'); expect(labels).toContain('"ko": (rest: "휴식", set: "세트")'); expect(labels).toContain('"zh-Hant": (rest: "休息", set: "組")');
+    expect(labels).toContain('"ja": (rest: "インターバル", set: "セット")'); expect(labels).toContain('"ko": (rest: "휴식", set: "세트")'); expect(labels).toContain('"zh-Hant": (rest: "休息", set: "組")');
     const swift = fs.readFileSync(path.join(dir, 'RestLiveActivity.swift'), 'utf8');
     expect(swift).toMatch(/if code == "zh" \{ code = \(pref\.contains\("Hant"\) \|\| pref\.hasSuffix\("-TW"\) \|\| pref\.hasSuffix\("-HK"\) \|\| pref\.hasSuffix\("-MO"\)\) \? "zh-Hant" : "en" \}/);
     for (const l of W4) expect(fs.existsSync(path.join(dir, `${l}.lproj`, 'InfoPlist.strings'))).toBe(true);
@@ -187,11 +187,11 @@ const POLITE_JA = /(ます|です|ません|ました|でした|ましょう|く
   });
   test('terminologia siłowni jednolita: trening / ćwiczenie / seria / powtórzenia / przerwa / pauza / szablon / guma / do upadku / deload', () => {
     const k = ['Trening', 'Ćwiczenie', 'Seria', 'Powtórzenia', 'Przerwa', 'Pauza', 'Szablon', 'Guma', 'do upadku', 'Deload'];
-    expect(k.map(x => dict('ja')[x])).toEqual(['トレーニング', '種目', 'セット', '回数', '休憩', '一時停止', 'テンプレート', 'バンド', '限界まで', 'ディロード']);
+    expect(k.map(x => dict('ja')[x])).toEqual(['トレーニング', '種目', 'セット', '回数', 'インターバル', '一時停止', 'テンプレート', 'バンド', '限界まで', 'ディロード']);
     expect(k.map(x => dict('ko')[x])).toEqual(['운동', '종목', '세트', '반복 횟수', '휴식', '일시정지', '루틴', '밴드', '실패 지점까지', '디로드']);
-    expect(k.map(x => dict('zh-Hant')[x])).toEqual(['訓練', '動作', '組', '次數', '休息', '暫停', '範本', '彈力帶', '力竭', '減量']);
+    expect(k.map(x => dict('zh-Hant')[x])).toEqual(['訓練', '動作', '組', '次數', '休息', '暫停', '範本', '彈力帶', '力竭', '減載']);
   });
-  test('cel generatora „Redukcja” ≠ „Deload” (zh-Hant: 減脂 vs 減量; ja: 減量 vs ディロード; ko: 감량 vs 디로드)', () => {
+  test('cel generatora „Redukcja” ≠ „Deload” (zh-Hant: 減脂 vs 減載; ja: 減量 vs ディロード; ko: 감량 vs 디로드)', () => {
     for (const l of W4) expect([l, dict(l)['Redukcja'] !== dict(l)['Deload'], dict(l)['Redukcja'] !== dict(l)['Masa']]).toEqual([l, true, true]);
     expect(dict('zh-Hant')['Redukcja']).toBe('減脂');
   });

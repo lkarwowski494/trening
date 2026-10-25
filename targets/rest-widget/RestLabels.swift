@@ -33,7 +33,7 @@ let restLabels: [String: (rest: String, set: String)] = [
   "ms": (rest: "Rehat", set: "Set"),
   "vi": (rest: "Nghỉ", set: "Hiệp"),
   "ru": (rest: "Отдых", set: "Подход"),
-  "ja": (rest: "休憩", set: "セット"),
+  "ja": (rest: "インターバル", set: "セット"),
   "ko": (rest: "휴식", set: "세트"),
   "zh-Hant": (rest: "休息", set: "組"),
 ]
