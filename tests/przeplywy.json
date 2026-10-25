@@ -2683,7 +2683,8 @@
     "zastepnik": [
      "tests/csv-import-ui.test.tsx",
      "tests/csv-import-logic.test.ts",
-     "tests/backlog-0.10.1-dane-ui.test.tsx"
+     "tests/backlog-0.10.1-dane-ui.test.tsx",
+     "tests/monetyzacja-csv.test.ts"
     ],
     "kontrola": "Wyeksportuj CSV z innej aplikacji na iPhone’a, wybierz w „Importuj historię z pliku CSV”: podgląd liczb, import, powtórny import nie dubluje."
    }
@@ -3224,6 +3225,57 @@
     "Delete place",
     "Delete place?"
    ]
+  },
+  {
+   "id": "US-20",
+   "tytul": "Okno „Uczciwe zasady” po pierwszym treningu na żywo w stanie darmowym: raz, przyciski główny i drugorzędny",
+   "stan": "istniejacy",
+   "wersja": "1.0",
+   "realnosc": "realny",
+   "kroki": [
+    "Trening z szablonu; w trakcie dostęp wygasa (sztuczny sklep)",
+    "„Zakończ” → potwierdzenie",
+    "Na podsumowaniu okno z tytułem, „Super, trenuję dalej!” i „Zobacz plany Pro ›”",
+    "„Zobacz plany Pro ›” → ekran zakupu; po zamknięciu okna już nie ma"
+   ],
+   "wynik": "Okno pokazuje się raz, tylko w stanie darmowym; drugorzędny przycisk otwiera ekran zakupu.",
+   "ekrany": [
+    "/",
+    "/history/[id]",
+    "/paywall"
+   ],
+   "scenariusz": "55-uczciwe-zasady.yaml",
+   "znaczniki": [
+    "First workout done!",
+    "Awesome, keep training!",
+    "See Pro plans"
+   ]
+  },
+  {
+   "id": "DA-08",
+   "tytul": "Karta „Historia jest już w telefonie” po udanym imporcie CSV w stanie darmowym, przycisk do ekranu zakupu",
+   "stan": "kopia",
+   "wersja": "1.0",
+   "realnosc": "realny",
+   "kroki": [
+    "Kopia zapasowa → „Importuj historię z pliku CSV” → wybierz plik → „Importuj”",
+    "Pod komunikatem sukcesu karta z przyciskiem „Zobacz plany Pro ›”",
+    "Przycisk otwiera ekran zakupu"
+   ],
+   "wynik": "Karta tylko w stanie darmowym; pełna wersja i wyłączony przełącznik jej nie widzą.",
+   "ekrany": [
+    "/more/import",
+    "/paywall"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Plik CSV trzeba wskazać w systemowym oknie wyboru plików, a na symulatorze CI nie ma pliku CSV do wskazania (jak DA-06).",
+    "zastepnik": [
+     "tests/monetyzacja-ui.test.tsx",
+     "tests/monetyzacja-csv.test.ts"
+    ],
+    "kontrola": "Na iPhonie w stanie darmowym zaimportuj plik CSV: pod komunikatem sukcesu jest karta; „Zobacz plany Pro ›” otwiera ekran zakupu."
+   }
   }
  ],
  "pominiete": [

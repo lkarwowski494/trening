@@ -7,22 +7,22 @@ każdy ekran z `app/` występuje w co najmniej jednym przepływie (nowy ekran be
 
 ## Podsumowanie
 
-Przepływów w katalogu: **153** (realny: 131, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
+Przepływów w katalogu: **155** (realny: 133, brzegowy: 22); pominięte jako teoretyczne: 5 (na końcu).
 
 | Stan startowy | Przepływów | Opis |
 |---|---|---|
 | `nowy` | 20 | Nowy użytkownik: pierwsze uruchomienie, pusta baza (launchApp clearState). |
-| `istniejacy` | 114 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
+| `istniejacy` | 115 | Istniejący użytkownik: dane zbudowane przez UI w trakcie scenariusza (szablony, plan, miejsca, historia). |
 | `aktualizacja` | 6 | Po aktualizacji z poprzedniej wersji: dane z poprzedniego buildu, nowa wersja zainstalowana na tej samej instalacji (33 → 34). |
-| `kopia` | 4 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
+| `kopia` | 5 | Po przywróceniu kopii lub imporcie: dane wczytane z pliku kopii po wyczyszczeniu. |
 | `jezyk-motyw` | 9 | Po zmianie języka, wyglądu lub jednostki: zmienione w Ustawieniach, sprawdzane też po restarcie. |
 
 | Pokrycie | Przepływów |
 |---|---|
-| Maestro | 126 |
+| Maestro | 127 |
 | Maestro (eksperyment) | 4 |
 | Jest | 10 |
-| Telefon | 13 |
+| Telefon | 14 |
 | Projekt 0.20 | 0 |
 
 „Maestro (eksperyment)” — scenariusz z krokami, których nikt jeszcze nie uruchomił na symulatorze (okna systemowe, tło, wybór pliku); znacznik `eksperyment`, poza listą `flows` w `.maestro/config.yaml`, uruchamiany osobno (docs/38 pkt 5).
@@ -185,6 +185,7 @@ Przepływów w katalogu: **153** (realny: 131, brzegowy: 22); pominięte jako te
 | US-17 | **„Poproś o nową funkcję” obok „Napisz do nas” (Więcej → O aplikacji)** — Więcej → O aplikacji → Pod wersją są dwa wiersze: „Napisz do nas” i „Poproś o nową funkcję” → Stuknięcie „Poproś o nową funkcję” → wiadomość e-mail do wsparcia z tematem „Pomysł: ” i szablonem (tylko ręcznie na telefonie z Pocztą) | Oba wiersze są widoczne; „Poproś o nową funkcję” otwiera pocztę tą samą drogą co „Napisz do nas”; bez poczty — okno z adresem wsparcia. | `istniejacy` | brzegowy | Maestro: `.maestro/15-masa-licencje.yaml` |
 | US-18 | **Objaśnienie pod ⓘ: rozwiń w miejscu, zwiń, źródło zostaje w tekście** — Ustawienia → przy „Widok treningu” stuknij ⓘ → Przeczytaj opis pod polem; stuknij ⓘ ponownie → To samo przy nagłówku „Cel serii na partię w tygodniu” (źródło ACSM) i przy polu „Zapowiedzi głosowe” | Tekst objaśniający pojawia się pod nagłówkiem i znika po drugim stuknięciu; ⓘ nie zmienia wyboru; na wierzchu zostaje tylko krótki opis; stan nie jest zapamiętywany. | `istniejacy` | realny | Maestro: `.maestro/53-objasnienia-info.yaml` |
 | US-19 | **Usunięcie miejsca przyciskiem na dole ekranu miejsca (okno jak przy geście, Anuluj zostawia)** — Więcej → Miejsca i sprzęt → miejsce → przewiń na dół → „Usuń miejsce” → Okno „Usunąć miejsce?” [Anuluj, Usuń] — to samo co przy geście na liście; „Anuluj” zostawia miejsce | Miejsce da się usunąć bez gestu (miejsca głównego, gdy są inne, nie usuwa się — brak przycisku). | `istniejacy` | realny | Maestro: `.maestro/06-miejsca.yaml` |
+| US-20 | **Okno „Uczciwe zasady” po pierwszym treningu na żywo w stanie darmowym: raz, przyciski główny i drugorzędny** — Trening z szablonu; w trakcie dostęp wygasa (sztuczny sklep) → „Zakończ” → potwierdzenie → Na podsumowaniu okno z tytułem, „Super, trenuję dalej!” i „Zobacz plany Pro ›” → „Zobacz plany Pro ›” → ekran zakupu; po zamknięciu okna już nie ma | Okno pokazuje się raz, tylko w stanie darmowym; drugorzędny przycisk otwiera ekran zakupu. | `istniejacy` | realny | Maestro: `.maestro/55-uczciwe-zasady.yaml` |
 
 ## DA — Kopia, eksport, import, czyszczenie danych
 
@@ -197,6 +198,7 @@ Przepływów w katalogu: **153** (realny: 131, brzegowy: 22); pominięte jako te
 | DA-05 | **Po przywróceniu kopii: nowy trening na przywróconych danych działa** — Po DA-04 zacznij trening z przywróconego szablonu → Zakończ — sesja doliczona do przywróconej historii | Identyfikatory i plan spójne; brak zdublowanych sesji. | `kopia` | realny | Maestro (eksperyment): `.maestro/42-kopia-przywrocenie.yaml` |
 | DA-06 | **Import historii z pliku CSV popularnego dziennika: podgląd, dopisanie bez usuwania danych** — Kopia zapasowa → „Importuj historię z pliku CSV” → wybierz plik → podgląd → importuj | Treningi dopisane, obecne dane nietknięte, duplikaty pominięte. | `kopia` | realny | Telefon (lista kontrolna wydania) — Plik CSV trzeba wskazać w systemowym oknie wyboru plików, a na symulatorze CI nie ma pliku CSV innego dziennika. |
 | DA-07 | **Import uszkodzonego albo obcego pliku: komunikat i dane bez zmian** — Kopia zapasowa → „Importuj backup” → wskaż plik, który nie jest kopią | Komunikat o błędzie, dane nietknięte, kopia bezpieczeństwa istnieje. | `kopia` | brzegowy | Jest: `tests/audit-io-flows.test.tsx`, `tests/audit-io-more.test.tsx`, `tests/roundtrip.test.ts` — Wymaga wskazania pliku w oknie systemowym; sprawdzone na atrapie wyboru plików, w tym pliki złego formatu, nowszego schematu i z wersji webowej. |
+| DA-08 | **Karta „Historia jest już w telefonie” po udanym imporcie CSV w stanie darmowym, przycisk do ekranu zakupu** — Kopia zapasowa → „Importuj historię z pliku CSV” → wybierz plik → „Importuj” → Pod komunikatem sukcesu karta z przyciskiem „Zobacz plany Pro ›” → Przycisk otwiera ekran zakupu | Karta tylko w stanie darmowym; pełna wersja i wyłączony przełącznik jej nie widzą. | `kopia` | realny | Telefon (lista kontrolna wydania) — Plik CSV trzeba wskazać w systemowym oknie wyboru plików, a na symulatorze CI nie ma pliku CSV do wskazania (jak DA-06). |
 
 ## AK — Po aktualizacji z poprzedniej wersji
 

@@ -1221,4 +1221,13 @@ export const EN: Record<string, string> = {
   'Miejsce usuniesz przyciskiem „Usuń miejsce” na dole jego ekranu albo przesunięciem w lewo na liście; miejsca głównego nie usuniesz, dopóki są inne.': 'Delete a place with the “Delete place” button at the bottom of its screen or by swiping left on the list; you can’t delete the main place while others exist.',
   'Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.': 'Delete bands with “Edit” in the header of the bands screen or by swiping left.',
   '+ {n} {w}': '+ {n} more {w}', // M3 p2: tablica „Dziś” na starcie — „+ 4 ćwiczenia” ({w} z tp(): ćwiczenie|ćwiczenia|ćwiczeń)
+  /* 1.0 (docs/monetyzacja.md): okno „Uczciwe zasady” po pierwszym treningu na żywo i karta po imporcie CSV */
+  'Pierwszy trening za Tobą!': 'First workout done!',
+  'Wszystkie funkcje działają od pierwszego dnia, bez konta i bez reklam. Dane zostają w telefonie.': 'Every feature works from day one, with no account and no ads. Your data stays on your phone.',
+  'Trenuj {n} dni w miesiącu za darmo, bez końca.': 'Train {n} days a month for free, no time limit.',
+  'Chcesz częściej? Pro zdejmuje limit: subskrypcja albo jednorazowy zakup na zawsze.': 'Want more? Pro removes the limit: subscribe, or pay once for good.',
+  'Super, trenuję dalej!': 'Awesome, keep training!',
+  'Zobacz plany Pro ›': 'See Pro plans ›',
+  'Historia jest już w telefonie': 'Your history is now on your phone',
+  'Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.': 'Imported workouts, records and charts are always available, even offline. Train {n} days a month for free — Pro removes the limit, with a one-time option too.',
 };
