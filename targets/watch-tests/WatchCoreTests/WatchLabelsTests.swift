@@ -42,10 +42,11 @@ final class WatchLabelsTests: XCTestCase {
     XCTAssertEqual(WatchLabels.text(.undo, lang: "de"), "Rückgängig")
   }
 
-  func testNothingLeftStartsWithACapitalLetter() {
-    XCTAssertEqual(WatchLabels.text(.nothingLeft, lang: "pl"), "Nic więcej do zrobienia")
-    XCTAssertEqual(WatchLabels.text(.nothingLeft, lang: "de"), "Nichts mehr zu tun")
-    XCTAssertFalse(WatchLabels.text(.nothingLeft, lang: "ja").isEmpty)                 // pismo bez wielkich liter — bez zmian
+  func testFinishOnPhoneLabel() {
+    // decyzja właściciela 23.10.2026: po ostatnim ćwiczeniu zegarek mówi, że trening kończy się na telefonie (jedna etykieta, bez dublowania z zapowiedzią)
+    XCTAssertEqual(WatchLabels.text(.finishOnPhone, lang: "pl"), "Zakończ trening na telefonie")
+    XCTAssertEqual(WatchLabels.text(.finishOnPhone, lang: "en"), "Finish the workout on your phone")
+    for l in WatchLabels.languages { XCTAssertFalse(WatchLabels.text(.finishOnPhone, lang: l).isEmpty, l) }
   }
 
   func testResolveMatchesTheAppForEveryRecordedTag() throws {

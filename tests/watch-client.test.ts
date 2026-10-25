@@ -71,8 +71,8 @@ describe('scenariusze', () => {
   test('finished-and-update: „Trening zakończony” po pustej migawce; update przy welcome(upgrade=watch); connect przy upgrade=phone', () => {
     const p = play('finished-and-update'); expect(p[2].view.screen).toBe('finished'); expect(p[3].view.screen).toBe('set'); expect(p[4].view.screen).toBe('update'); expect(p[5].view.screen).toBe('connect');
   });
-  test('last-set-and-done: przerwa po ostatniej serii z „nic więcej do zrobienia” (bez akcji), potem done; przycisk nic nie robi', () => {
-    const p = play('last-set-and-done'); expect(p[1].view).toMatchObject({ screen: 'rest', cue: 'nic więcej do zrobienia', actions: [] }); expect(p[2].view.screen).toBe('done'); expect(p[3].out).toEqual([]);
+  test('last-set-and-done: przerwa po ostatniej serii bez zapowiedzi i bez akcji (komunikat „zakończ na telefonie” to stała etykieta — tests/watch-last-rest.test.ts), potem done; przycisk nic nie robi', () => {
+    const p = play('last-set-and-done'); expect(p[1].view).toMatchObject({ screen: 'rest', cue: null, actions: [] }); expect(p[2].view.screen).toBe('done'); expect(p[3].out).toEqual([]);
   });
   test('paused: znacznik pauzy w widoku', () => { expect(play('paused')[1].view.paused).toBe(true); });
 });

@@ -1739,5 +1739,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Ilman ostoa: enintään {n} treenipäivää kuukaudessa; historia, varmuuskopio ja vienti ovat aina käytettävissä.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ilmaiset treenipäivät tässä kuussa: {n} / {limit} käytetty",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "Ilmaisia treenipäiviä {left} tässä kuussa: {n} / {limit}.",
- "Został|Zostały|Zostało": "jäljellä|jäljellä"
+ "Został|Zostały|Zostało": "jäljellä|jäljellä",
+ "Zakończ trening na telefonie": "Lopeta treeni puhelimella"
 }

@@ -12,6 +12,6 @@
  "idle": "iPhone でトレーニングを開始",
  "finished": "トレーニングが終了しました",
  "update": "ウォッチのアプリを更新",
- "nothingLeft": "もうやることはありません",
+ "finishOnPhone": "iPhone でトレーニングを終了",
  "finish": "セットを終了"
 }

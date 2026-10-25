@@ -14,8 +14,8 @@ Lista braków i raport M8 są prywatne (poza repo publicznym); tu tylko to, co t
 | Szyfrowanie (export compliance) | brak pytania: `ITSAppUsesNonExemptEncryption = false` | wartość NO, gdy aplikacja „doesn’t use encryption, or … only uses forms of encryption that are exempt” (developer.apple.com/documentation/security/complying-with-encryption-export-regulations, 21.10.2026) | w `app.json` |
 | App Review Information → Sign-in required | wyłączone (aplikacja bez konta; konto demo niepotrzebne) | aplikacja nie ma konta (inwentarz) | do wpisania przy wersji 1.0 |
 | App Review Information → Notes | wersja EN z `store/review-notes.md` (limit 4000 bajtów) | 2.1: wyjaśnienie zakupów i funkcji nieoczywistych | szkic odświeżony 21.10.2026; ścieżki sprawdzić na buildzie 1.0 (po M3) |
-| Subskrypcje → Review Notes | blok trzeci z `store/review-notes.md` (oferta 14 dni) | „Required if the subscription offers introductory pricing” | do wpisania przy obu subskrypcjach |
-| Oferta wprowadzająca | 2 tygodnie, obie subskrypcje (`TRIAL_DAYS = 14`) | decyzja właściciela 19.10.2026 | krok K-011 (docs/43) |
+| Subskrypcje → Review Notes | blok trzeci z `store/review-notes.md` (subskrypcja bez ofert wprowadzających, M5 S1) | „Required if the subscription offers introductory pricing” | do wpisania przy obu subskrypcjach |
+| Oferta wprowadzająca | brak (M5 S1, `docs/monetyzacja.md`) | decyzja właściciela 22.10.2026 (zastąpiona: oferta z 19.10.2026) | kontrola ASC 39822823188 (22.10.2026): brak ofert na miesięcznej i rocznej; K-011 (docs/43) uchylone |
 | Family Sharing | tak, trzy produkty | decyzja 11.10.2026 | wpisane 14.10.2026 |
 | License Agreement | standardowa licencja Apple (bez własnej) | decyzja P9 A 12.10.2026; `TERMS_URL` w `lib/products.ts` | nic do wpisania |
 | DSA | przedsiębiorca | weryfikacja Apple 20.10.2026 (docs/18) | zrobione |
