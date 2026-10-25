@@ -46,3 +46,34 @@ jobs:
       - run: npm ci
       - name: jest w strefie ${{ matrix.tz }}
         run: TZ=${{ matrix.tz }} npx jest --maxWorkers=2
+
+  # 25.10.2026 (decyzja właściciela, docs/18; L-NNN w docs/40): zmiana czasu wypadła w nocy, a testy zależne od „teraz” padły dopiero wtedy.
+  # Ten sam zestaw biegnie z zegarem przypiętym do chwili tuż po zmianie czasu (PIN_NOW — tests/pin-now.js; zegar idzie dalej): Europa jesienią i wiosną
+  # (Europe/Warsaw), USA jesienią (America/Los_Angeles; zmiana 1.11.2026 o 09:00 UTC). Bez sekretów, tylko odczyt.
+  zmiana-czasu:
+    name: jest (${{ matrix.ref }}, ${{ matrix.strefa_chwila }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        # „strefa|chwila UTC” — jedna pozycja = jedno zadanie
+        strefa_chwila:
+          - Europe/Warsaw|2026-10-25T02:30:00Z
+          - Europe/Warsaw|2026-03-29T03:00:00Z
+          - America/Los_Angeles|2026-11-01T10:30:00Z
+        ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main"]') || format('["{0}"]', github.ref_name)) }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ matrix.ref }}
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: jest z zegarem przypiętym do chwili zmiany czasu
+        env:
+          STREFA_CHWILA: ${{ matrix.strefa_chwila }}
+        run: TZ="${STREFA_CHWILA%%|*}" PIN_NOW="${STREFA_CHWILA##*|}" npx jest --maxWorkers=2

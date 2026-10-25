@@ -6,6 +6,8 @@ global.__alerts = [];             // wywołania Alert.alert / Alert.prompt
 global.__notifications = [];      // zaplanowane powiadomienia
 global.__cancelled = [];          // odwołane powiadomienia (identyfikatory)
 global.__la = [];                 // wywołania Live Activity
+/* PIN_NOW (tests/pin-now.js): przebieg w nocy zmiany czasu — tests-tz.yml */
+require('./pin-now').applyPinNow(process.env.PIN_NOW);
 /* TST2-07: ziarno fast-check z PROP_SEED (ustalone w global-setup.js; domyślnie stałe — tests/prop-seed.js) */
 require('fast-check').configureGlobal({ seed: require('./prop-seed').resolvePropSeed(process.env.PROP_SEED).seed });
 

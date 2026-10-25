@@ -479,3 +479,14 @@ EN Progress Guard · bg Пазач на прогреса · cs Strážce progres
   - **Instrukcja testu dla właściciela:** `docs/47-instrukcja-testu-dzwieku.md` (lista `docs/39` jest generowana z `tests/przeplywy.json` — nie edytowana ręcznie).
 - 23.10.2026 (właściciel): dźwięk w trybie cichym — **wariant A**: zostaje zachowanie systemu (w trybie cichym iPhone tylko wibruje), w aplikacji krótka wskazówka „W trybie cichym telefon tylko wibruje” przy ustawieniu dźwięku. Odrzucone na teraz: B własny sygnał przy aplikacji na wierzchu (do ponownej oceny po teście D z docs/47), C audio w tle.
 - 23.10.2026 (właściciel, STOP „język naturalny”): (1) **zgoda na przekład 33 języków przez API do 6 USD** (Opus, Batch; kosztorys ok. 3 USD); (2) T-029: brzmienie „W badaniach nie wykazano, że …” (odrzucone „Nie ma dowodów…”); (3) oznaczenia pewności (dawniej „jedno źródło, nie ustalone” / „przegląd badań”, w wersji roboczej „wstępne” / „potwierdzone”) — **w aplikacji w ogóle ich nie podajemy**: „My zrobiliśmy research, mamy źródła, ale nie musimy ich podawać w aplikacji na każdym ekranie”; waga twierdzenia zostaje w rejestrze twierdzeń i na ekranie „Źródła wiedzy”; (4) nagłówek ⓘ „Na czym to oparte” → „Zasady planu”.
+
+## 25.10.2026 — decyzja właściciela: nocne CI (zmiana czasu, mutacje po modułach); gałąź `naprawa-nocne-2026-10-25`
+
+- **Decyzja:** właściciel zatwierdził obie propozycje z lekcji w docs/40 (nocne 23–25.10).
+  (A) `tests-tz.yml`, nowe zadanie `zmiana-czasu`: pełny zestaw Jest z zegarem przypiętym do chwili tuż po zmianie czasu (`PIN_NOW`, `tests/pin-now.js`, zegar idzie dalej):
+  Europe/Warsaw 2026-10-25 02:30 UTC i 2026-03-29 03:00 UTC, America/Los_Angeles 2026-11-01 10:30 UTC. Dawne zadanie ze strefami bez zmian.
+  (B) `nightly.yml`, zadanie `mutacje`: macierz po 12 modułach z `stryker.config.json` (każde zadanie: kopia konfiguracji z jednym modułem, bez progu `break`), zadanie `mutacje-podsumowanie`
+  (`scripts/ci/mutacje-podsumowanie.mjs`) składa raporty w jedno podsumowanie i pilnuje progu `break` dla całości. Powód: jedno zadanie liczyło ok. 27 h przy limicie 5 h.
+  Przy okazji w komentarzach `nightly.yml` usunięto dawną regułę „3 czyste noce” jako bramkę App Store (uchylona 21.10.2026, M1-047); kod licznika w `scripts/ci/nocny-raport.mjs` bez zmian.
+- **Bez nowych sekretów i uprawnień.** Testy: `tests/nocne-workflowy.test.ts`, `tests/pin-now.test.ts`.
+- **Przebieg dowodowy (L-001):** przed scaleniem `tests-tz` i `Nocne testy` (z pominięciem losowych i E2E) uruchomione z gałęzi — numery przebiegów w opisie PR.

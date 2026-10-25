@@ -52,7 +52,7 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
 - **Akcje:**
   1. `tests/helpers.ts` `pinDate`; matrix-ui: fixture ze strefą z chwili startu + warianty po jesiennej i wiosennej zmianie czasu (4 nowe przypadki); edit-history: „teraz” przypięte do południa — **zrobione** (gałąź naprawa-nocne-2026-10-25).
   2. `tests/matrix-invariants.test.ts`: wyrocznia `gen` zna aktywację przy zastąpieniu + przykład z kontrprzykładu — **zrobione**.
-  3. `jest.mutation.config.js`: `testTimeout: 30000` + strażnik w `tests/mutation-config.test.ts` — **zrobione**. Pojemność mutacji (C/D) i przebieg `tests-tz` z przypiętą chwilą (A) — **otwarte** (decyzja właściciela, zmiana workflowu).
+  3. `jest.mutation.config.js`: `testTimeout: 30000` + strażnik w `tests/mutation-config.test.ts` — **zrobione**. Właściciel zatwierdził A i C (25.10.2026, docs/18): `tests-tz.yml` z `PIN_NOW` i `nightly.yml` mutacje po modułach — **wdrożone na gałęzi, czekają na przebieg dowodowy (L-001)**.
   4. `.maestro/26-plan-zarzadzanie.yaml`: krok „Next month” przed „today” warunkowy (na iOS kalendarz po powrocie z sesji pokazywał bieżący miesiąc; pada deterministycznie od 23.10) — **zrobione, do potwierdzenia w E2E**.
 
 ## L-028 (23.10.2026, koordynator) — błędna instrukcja dla właściciela: konto Sandbox do testu zakupów w TestFlight
