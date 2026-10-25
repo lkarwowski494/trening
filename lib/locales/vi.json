@@ -1730,5 +1730,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Không mua: tối đa {n} ngày tập mỗi tháng; lịch sử, bản sao lưu và xuất dữ liệu luôn có sẵn.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Ngày tập miễn phí tháng này: đã dùng {n}/{limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n}/{limit} ngày tập miễn phí trong tháng này.",
- "Został|Zostały|Zostało": "Còn"
+ "Został|Zostały|Zostało": "Còn",
+ "Zakończ trening na telefonie": "Kết thúc buổi tập trên điện thoại"
 }

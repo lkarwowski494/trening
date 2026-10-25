@@ -1730,5 +1730,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Χωρίς αγορά: έως {n} ημέρες προπόνησης τον μήνα· το ιστορικό, το αντίγραφο ασφαλείας και η εξαγωγή είναι πάντα διαθέσιμα.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Δωρεάν ημέρες προπόνησης αυτόν τον μήνα: χρησιμοποιήθηκαν {n} από {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} από {limit} δωρεάν ημέρες προπόνησης αυτόν τον μήνα.",
- "Został|Zostały|Zostało": "Απομένει|Απομένουν"
+ "Został|Zostały|Zostało": "Απομένει|Απομένουν",
+ "Zakończ trening na telefonie": "Ολοκληρώστε την προπόνηση στο τηλέφωνο"
 }

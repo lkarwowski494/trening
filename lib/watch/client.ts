@@ -114,7 +114,7 @@ export function clientView(s: ClientState, nowMs: number): ClientView {
   const n = L.now; const undoUntil = s.undo && s.undo.until > nowMs ? s.undo.until : null;
   const actions: ClientAction[] = n && !L.blind ? ['done', 'differ', 'skip'] : [];
   if (undoUntil != null) actions.push('undo');
-  return { ...base, screen: phase, title: n ? n.title : base.title, counter: n ? n.counter : '', load: n ? n.load : '', group: n?.group ?? null, cue: rest ? rest.cue : null,
+  return { ...base, screen: phase, title: n ? n.title : base.title, counter: n ? n.counter : '', load: n ? n.load : '', group: n?.group ?? null, cue: rest && !rest.last ? rest.cue : null, /* ostatnia przerwa: zapowiedź „nic więcej do zrobienia” zastępuje jedna etykieta „zakończ na telefonie” (23.10.2026, bez dublowania) */
     restEndsAt: rest ? rest.endsAt : null, restTotalSec: rest ? rest.totalSec : null, timed: n?.timed ?? false, targetSec: n?.targetSec ?? null, measuring: n?.measuring === true, undoUntil,
     confirmSkip: s.confirmSkip && !!n, actions, busy: s.queue.some(q => q.ev.type !== 'restEnded') || L.blind };
 }

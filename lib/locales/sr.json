@@ -1730,5 +1730,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Без куповине: до {n} дана тренинга месечно; историја, резервна копија и извоз су увек доступни.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Бесплатни дани тренинга овог месеца: искоришћено {n} од {limit}",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{left} {n} од {limit} бесплатних дана тренинга овог месеца.",
- "Został|Zostały|Zostało": "Преостаје|Преостају|Преостаје"
+ "Został|Zostały|Zostało": "Преостаје|Преостају|Преостаје",
+ "Zakończ trening na telefonie": "Заврши тренинг на телефону"
 }

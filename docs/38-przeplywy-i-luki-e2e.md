@@ -178,14 +178,14 @@ i dane po zabiciu aplikacji; 05 zakończenie, historia, edycja sesji; 09 język,
 z poprzedniej wersji (migracje); 35 ustawienia; 36 przerwanie i szkic po restarcie; 52 strażnik progresji; 53 objaśnienia ⓘ. Kryteria: ścieżka głównego użycia, ryzyko utraty danych, ryzyko odrzucenia przez Apple
 (zakup), nowe w wydaniu (ⓘ, strażnik). Zmiana listy = zmiana zakresu bramki (test `tests/e2e-pakiet.test.ts`). Kopia i przywrócenie (42) wejdzie, gdy przestanie być eksperymentem.
 
-**Bramki.** TestFlight blokuje zielony **pakiet podstawowy**. App Store blokuje zielony **pełny katalog w trybie ścisłym** (`tryb_scisly: true` — wymusza pełny katalog i wyłącza ponowienia).
+**Bramki.** TestFlight blokuje zielony **pakiet podstawowy**. App Store blokuje **jeden pełny katalog E2E na standardowym iPhonie** (jedno ponowienie scenariusza dozwolone; CLAUDE.md, decyzja właściciela 21.10.2026 — zastąpiona reguła z 19.10.2026: pełny katalog w trybie ścisłym). Wejście `tryb_scisly` zostaje w workflowie jako opcja, nie bramka.
 
 **Ponowienie.** W trybie zwykłym nieudany scenariusz jest uruchamiany RAZ, osobno (tylko ten plik); drugi czerwony = porażka. Test aktualizacji (33–34) powtarza się jako para od czystej instalacji poprzedniej wersji.
 Niestabilność jest widoczna: podsumowanie każdej części i zadanie „wyniki przebiegu” wypisują scenariusze zielone dopiero w ponowieniu, a artefakt `e2e-wyniki` (JSON, 1 dzień jak wszystkie — ADR-031; trwały ślad to podsumowanie przebiegu) ma per scenariusz wynik
 (przeszedł / przeszedł w ponowieniu / padł dwa razy / padł bez ponowienia) i czasy (`scripts/ci/e2e-wyniki.mjs`).
 
-**Noc.** `nightly.yml` uruchamia pełny katalog (`pakiet: pelny`, mały ekran, ciemny wygląd) niewiążąco, razem z eksperymentami. **Warunek gotowości bramki App Store: 3 kolejne nocne pełne przebiegi zielone BEZ ponowień**;
+**Noc.** `nightly.yml` uruchamia pełny katalog (`pakiet: pelny`, mały ekran, ciemny wygląd) niewiążąco, razem z eksperymentami. **Noc to sygnał, nie bramka** (21.10.2026; zastąpiony warunek z 19.10.2026 o kolejnych czystych nocach): porażka — błąd aplikacji → naprawa, błąd skryptu → backlog;
 pomiar z `e2e-wyniki` posłuży do naprawy niestabilności w fazie audytu (stałe identyfikatory zamiast tekstów — osobne zadanie).
 
 **Zmiana w CLAUDE.md (do zatwierdzenia przez właściciela — agent nie zmienia tego pliku na polecenie innego agenta).** Proponowany tekst punktu o E2E: „`e2e-ios.yml`: domyślnie pakiet podstawowy (blokuje TestFlight);
-pełny katalog nocą niewiążąco; przed App Store pełny w trybie ścisłym (`tryb_scisly`, bez ponowień); nieudany scenariusz ponawiany raz, zielone w ponowieniu są wypisywane”.
+pełny katalog nocą niewiążąco; przed App Store pełny w trybie ścisłym (`tryb_scisly`, bez ponowień); nieudany scenariusz ponawiany raz, zielone w ponowieniu są wypisywane” (propozycja z 19.10.2026, zastąpiona 21.10.2026 brzmieniem w CLAUDE.md).

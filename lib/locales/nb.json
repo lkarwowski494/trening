@@ -1730,5 +1730,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Uten kjøp: opptil {n} treningsdager i måneden; historikk, sikkerhetskopi og eksport er alltid tilgjengelig.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Gratis treningsdager denne måneden: {n} av {limit} brukt",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} av {limit} gratis treningsdager denne måneden {left}.",
- "Został|Zostały|Zostało": "igjen|igjen"
+ "Został|Zostały|Zostało": "igjen|igjen",
+ "Zakończ trening na telefonie": "Fullfør økten på telefonen"
 }

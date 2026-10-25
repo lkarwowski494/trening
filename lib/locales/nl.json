@@ -1730,5 +1730,6 @@
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Zonder aankoop: tot {n} trainingsdagen per maand; geschiedenis, back-up en export blijven altijd beschikbaar.",
  "Darmowe dni treningowe w tym miesiącu: wykorzystano {n} z {limit}": "Gratis trainingsdagen deze maand: {n} van {limit} gebruikt",
  "{left} {n} z {limit} darmowych dni treningowych w tym miesiącu.": "{n} van {limit} gratis trainingsdagen deze maand {left}.",
- "Został|Zostały|Zostało": "over|over"
+ "Został|Zostały|Zostało": "over|over",
+ "Zakończ trening na telefonie": "Rond de training af op de telefoon"
 }

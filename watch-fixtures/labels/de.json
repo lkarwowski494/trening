@@ -12,6 +12,6 @@
  "idle": "Training am Telefon starten",
  "finished": "Training beendet",
  "update": "Uhr-App aktualisieren",
- "nothingLeft": "nichts mehr zu tun",
+ "finishOnPhone": "Training am Telefon beenden",
  "finish": "Satz beenden"
 }
