@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5339-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5357-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-45-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -62,8 +62,8 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Komunikaty i teksty | 1108 (z testem: 1108) | docs/19-macierz-testow.md |
 | Funkcje biblioteki `lib/` | 921 (z testem: 921) | docs/19-macierz-testow.md |
 | Wymiary (listy wartości i typy-unie) | 118 (z testem: 118) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 453 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 5339 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Pliki testów Jest | 454 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 5357 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 153 (Maestro: 126, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 13) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 45 (w głównym przebiegu: 42, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -256,7 +256,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (48)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (49)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -301,6 +301,7 @@ trening/
 - [`docs/45-widocznosc-w-sklepie.md`](docs/45-widocznosc-w-sklepie.md) — 45. Widoczność w sklepie (M5) — metadane App Store
 - [`docs/46-przeniesienie-1.0.md`](docs/46-przeniesienie-1.0.md) — 46. Przeniesienie czystej wersji 1.0 do Apps4Brew — lista kontrolna i narzędzie (21.10.2026)
 - [`docs/47-instrukcja-testu-dzwieku.md`](docs/47-instrukcja-testu-dzwieku.md) — 47. Instrukcja testu: dźwięk, wibracja, tryb skupienia, zegarek (build 1030 i kolejne)
+- [`docs/52-gemini-pozy-pilotaz.md`](docs/52-gemini-pozy-pilotaz.md) — 52 — Pilotaż: pozy figur v2 generowane przez API Gemini
 - [`docs/m3-stan.md`](docs/m3-stan.md) — M3 Redesigner — stan przebiegu (plik stanu na wypadek utraty kontenera)
 - [`docs/monetyzacja-badanie-2026-10.md`](docs/monetyzacja-badanie-2026-10.md) — Badanie zmiany modelu monetyzacji (rola 02, build) — STOP E2
 - [`docs/monetyzacja.md`](docs/monetyzacja.md) — Monetyzacja — model stały (jedno miejsce)
@@ -335,6 +336,7 @@ Workflowy (stan każdego z nich pokazują odznaki u góry dla trzech podstawowyc
 | `asc-kontrola.yml` | ASC kontrola ustawień | ręcznie | kontrola ustawień App Store Connect (tylko odczyt; ręcznie; narzędzie z repozytorium narzędzi studia) |
 | `asc-metadane.yml` | ASC metadane sklepu | ręcznie | wgranie metadanych sklepu (opisy, nazwy, słowa kluczowe; 33 lokalizacje) do App Store Connect (ręcznie; podgląd domyślnie, zapis za zatwierdzeniem release) |
 | `e2e-ios.yml` | E2E iOS (symulator) | wypchnięcie, ręcznie, wywołanie z innego workflow | scenariusze Maestro na symulatorze iPhone |
+| `gemini-figury.yml` | Pozy figur przez Gemini (API, ręcznie) | ręcznie | pozy figur v2 przez API Gemini (ręcznie, płatny, limit 3 USD; pilotaż, wynik jako artefakt) |
 | `ios-unsigned.yml` | iOS — kompilacja | ręcznie | kompilacja natywna bez podpisu (sprawdzenie kodu, bez pliku do instalacji) |
 | `nightly.yml` | Nocne testy | harmonogram, ręcznie | noc: losowe sekwencje, testy mutacyjne, E2E na małym ekranie |
 | `pages.yml` | Pages | wypchnięcie, ręcznie | publikacja strony (prywatność, wsparcie) |
