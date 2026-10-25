@@ -1756,5 +1756,7 @@
  "{faza} {n} s": "{faza} {n} sn",
  "Pokaż częsty błąd": "Sık yapılan hatayı göster",
  "Ukryj częsty błąd": "Sık yapılan hatayı gizle",
- "Częsty błąd: {opis}": "Sık yapılan hata: {opis}"
+ "Częsty błąd: {opis}": "Sık yapılan hata: {opis}",
+ "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Ayak parmakları hafifçe dışarı — genellikle yaklaşık 15–20°.",
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Dirsekler gövdeden yaklaşık 45° — ne çok yana açık ne de yapışık."
 }

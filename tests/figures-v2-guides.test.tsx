@@ -3,7 +3,7 @@
  * Rodzaje (docs/20): dane (linie związane z id wskazówek ćwiczenia), logika (fazy, indeks fazy w czasie), niezmienniki (linie bez tekstu, tor = droga środka ciężaru).
  */
 import {
-  GUIDES, guidesFor, trailShapes, phasesOf, phaseIndexAt, phaseNames, phasesFor, tempoFor, uAt, loopLength, trailFor, guideShapes, figureSpec, frameAt, shapesAt, TEMPO, type GuideId, type FigureSpec,
+  GUIDES, guidesFor, trailShapes, phasesOf, phaseIndexAt, phaseNames, phasesFor, tempoFor, ELBOW45_KEYS, uAt, loopLength, trailFor, guideShapes, figureSpec, frameAt, shapesAt, TEMPO, type GuideId, type FigureSpec,
 } from '@/lib/figures/v2';
 import { cueIdsOf, guidesOf, errorsOf, legendOf } from '@/lib/figures/v2/ui';
 
@@ -86,5 +86,11 @@ describe('dane dla ekranu: wskazówki, błędy, legenda mięśni', () => {
   test('legendOf: główne i pomocnicze z katalogu, uproszczenie wg pewności; brak danych → null', () => {
     const l = legendOf('Back Squat')!; expect(l.main).toEqual(['quads']); expect(l.aux).toEqual(expect.arrayContaining(['glutes', 'hamstrings'])); expect(l.simplified).toBe(false); expect(l.label('quads')).toBe('czworogłowe');
     expect(legendOf('Nie ma takiego')).toBeNull();
+  });
+  test('łokcie ok. 45° (decyzja właściciela 25.10.2026): kąt łokcia od osi tułowia w widoku z góry na dole ruchu = 45° ± 2° dla sztangi i hantli, płasko i skos; linia tylko w widoku z góry; nie dla pozostałych wariantów', () => {
+    expect([...ELBOW45_KEYS].sort()).toEqual(['Bench Press (hantle)', 'Bench Press (sztanga)', 'Incline Bench Press (hantle)', 'Incline Bench Press (sztanga)']);
+    for (const k of ELBOW45_KEYS) { const sp = spec(k); const f = frameAt(sp, 1); for (const s of ['R', 'L'] as const) { const a = f.sk.arms[s]; const ang = Math.atan2(Math.abs(a.elbow[2] - a.shoulder[2]), Math.abs(a.elbow[0] - a.shoulder[0])) * 180 / Math.PI; expect([k, s, Math.abs(ang - 45) < 2]).toEqual([k, s, true]); }
+      expect(guideShapes(sp, 1, 'top', ['elbows45']).filter(x => x.id === 'guideElbows45').length).toBe(2); expect(guideShapes(sp, 1, 'side', ['elbows45'])).toEqual([]); }
+    expect(GUIDES.elbows45.cue).toEqual(['bp.elbowsAngle']);
   });
 });

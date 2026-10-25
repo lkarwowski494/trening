@@ -774,6 +774,8 @@ export const EN: Record<string, string> = {
   'zginacze biodra': 'hip flexors',
   'Rysunek ruchu: {opis}': 'Movement drawing: {opis}',
   'Ogólne wskazówki dla tego ruchu': 'General tips for this movement',
+  'Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.': 'Elbows about 45° from your torso — not flared wide, not tucked tight.',
+  'Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.': 'Toes pointed slightly out — usually about 15–20°.',
   'Mięśnie główne: {lista}': 'Main muscles: {lista}',
   'Mięśnie pomocnicze: {lista}': 'Supporting muscles: {lista}',
   'Dobór mięśni: uproszczenie': 'Muscle selection: simplification',

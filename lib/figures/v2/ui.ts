@@ -8,7 +8,7 @@ import { REGION_LABEL } from '@/lib/seed';
 import { CUE_SETS } from './cueSets';
 import { CUE_TO_ERROR, type ErrorId } from './errors';
 import { faultApplicable, figureSpec, musclesFor, type FigureSpec } from './figure';
-import { guidesFor, type GuideId } from './guides';
+import { guidesFor, ELBOW45_KEYS, type GuideId } from './guides';
 import { MUSCLE_MIN_LOAD, type MuscleId } from './muscles';
 
 /** Id wskazówek ćwiczenia: własne (lib/cues) albo zestaw ogólny (ok i err). */
@@ -21,7 +21,10 @@ export function cueIdsOf(key: string): { ids: string[]; errs: string[] } {
 }
 
 /** Linie odniesienia dozwolone przy ćwiczeniu (tylko z wskazówek ze źródłem). */
-export const guidesOf = (key: string): GuideId[] => guidesFor(cueIdsOf(key).ids);
+export const guidesOf = (key: string): GuideId[] => [...guidesFor(cueIdsOf(key).ids), ...(ELBOW45_KEYS.has(key) ? ['elbows45' as const] : [])];
+
+/** Opis „łokcie ok. 45° od tułowia” przy wyciskaniu leżąc (sztanga i hantle, płasko i skos; decyzja właściciela 25.10.2026). */
+export const elbowAngleApplies = (spec: FigureSpec): boolean => spec.family === 'bench_press' && ELBOW45_KEYS.has(spec.key);
 
 /** Błędy do animacji: wskazówki „częsty błąd” ćwiczenia, które da się pokazać pozą w tym wariancie rysunku (bez powtórzeń). */
 export function errorsOf(spec: FigureSpec): { error: ErrorId; cue: string }[] {
@@ -38,6 +41,9 @@ export function legendOf(key: string): MuscleLegend | null {
   const main = pick(v => v >= 1), aux = pick(v => v < 1);
   return { main, aux, simplified: /uproszczenie/.test(m.confidence), label: r => REGION_LABEL[r] };
 }
+
+/** Opis ustawienia stóp w przysiadzie („palce lekko na zewnątrz, zwykle 15–20°”): zwykły rozstaw obu stóp na podłodze (nie szeroki/sumo, nie ściana); źródła: Stronger by Science „How to Squat” (Foot Angle) i NSCA Basics 2012 s. 49 — część wspólna przedziałów (docs/research, 25.10.2026, szczebel 4, dwa zgodne źródła). */
+export const toeAngleApplies = (spec: FigureSpec): boolean => spec.family === 'squat' && faultApplicable(spec, 'kneesIn');
 
 /** Czy przy ćwiczeniu jest sekcja „Technika”: własne wskazówki (lib/cues) albo figura v2 (a z nią zestaw ogólny wzorca; kolejne rodziny — kolejne etapy). */
 export function hasTechnique(e: Pick<Exercise, 'lib' | 'libKey'> | null | undefined): boolean {

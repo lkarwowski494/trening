@@ -1756,5 +1756,7 @@
  "{faza} {n} s": "{faza} {n} s",
  "Pokaż częsty błąd": "Näytä yleinen virhe",
  "Ukryj częsty błąd": "Piilota yleinen virhe",
- "Częsty błąd: {opis}": "Yleinen virhe: {opis}"
+ "Częsty błąd: {opis}": "Yleinen virhe: {opis}",
+ "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.": "Varpaat hieman ulospäin — yleensä noin 15–20°.",
+ "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.": "Kyynärpäät noin 45° vartalosta — ei leveästi sivuille eikä kiinni kylkiin."
 }

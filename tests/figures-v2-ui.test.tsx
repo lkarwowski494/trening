@@ -8,7 +8,7 @@ import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import { figurePalette, TEMPO, loopLength, figureSpec, MUSCLE_DATA } from '@/lib/figures/v2';
-import { errorsOf, hasTechnique } from '@/lib/figures/v2/ui';
+import { errorsOf, hasTechnique, toeAngleApplies, elbowAngleApplies, guidesOf } from '@/lib/figures/v2/ui';
 import { applyLang } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
 
@@ -68,7 +68,8 @@ describe('komponent ExerciseFigureV2', () => {
   test('bez kątów na rysunku: żadnego znaku stopnia; cyfry tylko w liczniku faz (tempo w sekundach)', async () => {
     setReduce(true); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
     const texts = screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === RN.Text).flatMap((n: { props: { children?: unknown } }) => React.Children.toArray(n.props.children as React.ReactNode)).map(String);
-    for (const x of texts) { expect([x, /°/.test(x)]).toEqual([x, false]); if (/[0-9]/.test(x)) expect([x, /^(Opuszczanie|Wstawanie|Wypychanie|Podnoszenie|Prostowanie) [0-9,]+ s/.test(x)]).toEqual([x, true]); }
+    const OPIS = ['Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.', 'Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.']; /* jedyne opisy z kątem (decyzje właściciela 25.10.2026, dwa zgodne źródła) */
+    for (const x of texts) { expect([x, /°/.test(x) && !OPIS.includes(x)]).toEqual([x, false]); if (OPIS.includes(x)) continue; if (/[0-9]/.test(x)) expect([x, /^(Opuszczanie|Wstawanie|Wypychanie|Podnoszenie|Prostowanie) [0-9,]+ s/.test(x)]).toEqual([x, true]); }
   });
   test('licznik faz z tempem ilustracyjnym: Opuszczanie 2 s · Wstawanie 1 s (przysiad bez pauzy na dole); martwy ciąg z podłogi: Podnoszenie 1 s, Opuszczanie 2 s; podświetlona bieżąca faza przy animacji', async () => {
     jest.useFakeTimers(); setReduce(false);
@@ -122,5 +123,20 @@ describe('komponent ExerciseFigureV2', () => {
   test('hasTechnique: ćwiczenie z gotową rodziną v2 ma sekcję „Technika” (także bez własnych wskazówek), ćwiczenie spoza rodzin — tylko gdy ma wskazówki', () => {
     expect(hasTechnique(lib('Back Squat'))).toBe(true); expect(hasTechnique(lib('Box Squat'))).toBe(true); expect(hasTechnique({ lib: false })).toBe(false);
     expect(hasTechnique(lib('Pec Deck'))).toBe(false);
+  });
+  test('opis ustawienia stóp (palce lekko na zewnątrz, 15–20°): przysiad ze zwykłym rozstawem; bez sumo, ściany, wyciskania i zawiasu; po angielsku', async () => {
+    setReduce(true); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+    expect(screen.getByTestId('exercise-figure-v2-toes').props.children).toBe('Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.');
+    for (const k of ['Back Squat', 'Front Squat']) expect(toeAngleApplies(figureSpec(k)!)).toBe(true);
+    for (const k of ['Wall Sit', 'Bench Press (sztanga)', 'Deadlift (sztanga)']) expect([k, toeAngleApplies(figureSpec(k)!)]).toEqual([k, false]);
+    screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Bench Press (sztanga)')} />); expect(screen.queryByTestId('exercise-figure-v2-toes')).toBeNull();
+    applyLang('en'); screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); expect(screen.getByTestId('exercise-figure-v2-toes').props.children).toBe('Toes pointed slightly out — usually about 15–20°.'); applyLang('pl');
+  });
+  test('opis łokci ok. 45° przy wyciskaniu sztangi i hantli (płasko, skos): tekst PL i EN, linia odniesienia w guidesOf; nie przy przysiadzie, wąskim chwycie, podłodze ani JM Press', async () => {
+    setReduce(true); render(<ExerciseFigureV2 exercise={lib('Bench Press (sztanga)')} />); await flush();
+    expect(screen.getByTestId('exercise-figure-v2-elbows').props.children).toBe('Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.');
+    for (const k of ['Bench Press (sztanga)', 'Bench Press (hantle)', 'Incline Bench Press (sztanga)', 'Incline Bench Press (hantle)']) { expect(elbowAngleApplies(figureSpec(k)!)).toBe(true); expect(guidesOf(k)).toContain('elbows45'); }
+    for (const k of ['Back Squat', 'Close Grip Bench Press', 'Floor Press (sztanga)', 'JM Press', 'Decline Bench Press']) { expect([k, elbowAngleApplies(figureSpec(k)!), guidesOf(k).includes('elbows45')]).toEqual([k, false, false]); }
+    applyLang('en'); screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Bench Press (hantle)')} />); expect(screen.getByTestId('exercise-figure-v2-elbows').props.children).toBe('Elbows about 45° from your torso — not flared wide, not tucked tight.'); applyLang('pl');
   });
 });
