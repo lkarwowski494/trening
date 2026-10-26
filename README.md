@@ -58,10 +58,10 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Języki interfejsu | 35 | `lib/i18n.ts` (`LANGS`), `app.json`, docs/16-jezyki-i-marka.md |
 | Ćwiczenia w bibliotece | 709 | `lib/seed.ts`, `lib/catalog.generated.ts`, docs/10-miejsca-i-sprzet.md |
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
-| Elementy UI (przyciski, pola, przełączniki) | 354 (z testem: 354) | docs/19-macierz-testow.md |
-| Komunikaty i teksty | 1118 (z testem: 1118) | docs/19-macierz-testow.md |
-| Funkcje biblioteki `lib/` | 1083 (z testem: 1083) | docs/19-macierz-testow.md |
-| Wymiary (listy wartości i typy-unie) | 161 (z testem: 161) | docs/19-macierz-testow.md |
+| Elementy UI (przyciski, pola, przełączniki) | 356 (z testem: 356) | docs/19-macierz-testow.md |
+| Komunikaty i teksty | 1119 (z testem: 1119) | docs/19-macierz-testow.md |
+| Funkcje biblioteki `lib/` | 1092 (z testem: 1092) | docs/19-macierz-testow.md |
+| Wymiary (listy wartości i typy-unie) | 162 (z testem: 162) | docs/19-macierz-testow.md |
 | Pliki testów Jest | 510 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
 | Przypadki testowe (statycznie) | 6088 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 156 (Maestro: 128, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 14) | docs/37-katalog-przeplywow.md |
