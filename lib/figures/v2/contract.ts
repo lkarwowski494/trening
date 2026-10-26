@@ -104,7 +104,7 @@ const side = (props: Record<string, Sch>, required: string[], d: boolean): Sch =
 export function poseSchema(family: string): Sch {
   const t = templateFor(family);
   const gear = obj({
-    rodzaj: { type: 'string', enum: [...GEAR], description: 'sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze), sciana, gryf_szesciokatny (trap bar). Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem.' },
+    rodzaj: { type: 'string', enum: [...GEAR], description: 'sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze), sciana, gryf_szesciokatny (trap bar), lancuchy. Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem.' },
     x: num(-CONTRACT.coord, CONTRACT.coord, 'Położenie w przód (cm): środek sztangi, słupek, prowadnica Smitha albo oś obrotu landmine.'), y: num(0, CONTRACT.coord, 'Wysokość środka sztangi nad podłogą (cm); landmine: wysokość osi obrotu (domyślnie 5).'),
     h: num(0, CONTRACT.coord, 'Wysokość słupka (cm).'), x0: num(-CONTRACT.coord, CONTRACT.coord, 'Początek podłogi albo skrzyni (cm).'), x1: num(-CONTRACT.coord, CONTRACT.coord, 'Koniec podłogi albo skrzyni (cm).'),
     top: num(0, CONTRACT.coord, 'Wysokość górnej powierzchni skrzyni (cm).'), talerze: { type: 'boolean', description: 'Czy sztanga ma talerze (domyślnie true; drążek: false).' },

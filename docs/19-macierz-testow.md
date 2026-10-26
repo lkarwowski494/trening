@@ -2634,7 +2634,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | FamilyStatus: ready \| planned | lib/figures/v2/families.ts | tests/audit-0.10-plan.test.ts, tests/figures-v2-mapping.test.ts |
 | FAMILIES (43) | lib/figures/v2/families.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-mapping.test.ts |
 | MeasuredJoint: knee \| elbow \| hip | lib/figures/v2/figure.ts | tests/figures-v2-contract.test.ts |
-| GEAR (12) | lib/figures/v2/gear.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts |
+| GEAR (13) | lib/figures/v2/gear.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts |
 | GEAR_EXTRA_FIELDS (7) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | BELL_MODES (3) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | GuideId: thighParallel \| plumbMidfoot \| kneeToe \| backLine \| elbows45 | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |

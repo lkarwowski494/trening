@@ -37,9 +37,10 @@
        "smith",
        "landmine",
        "sciana",
-       "gryf_szesciokatny"
+       "gryf_szesciokatny",
+       "lancuchy"
       ],
-      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze), sciana, gryf_szesciokatny (trap bar). Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem."
+      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze), sciana, gryf_szesciokatny (trap bar), lancuchy. Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem."
      },
      "x": {
       "type": "number",
@@ -154,7 +155,7 @@
    },
    "minItems": 1,
    "maxItems": 8,
-   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy albo stojak (x, h, hak); podloga — podłoga (x0, x1); skrzynia — skrzynia, stopień albo ławka płaska (x0, x1, top); hantel — hantel trzymany w dłoni; uchwyty farmerskie rysujemy jak hantle z dużym promieniem (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie); smith — prowadnica suwnicy Smitha (x, h); sztanga o podazaZaChwytem: true porusza się po niej tylko w pionie; landmine — gryf landmine: oś obrotu przy podłodze (x, y, z), długość gryfu (dlugosc), dłonie na końcu gryfu (trzyma); sciana — ściana (x, h, przed); gryf_szesciokatny — gryf sześciokątny (trap bar): uchwyty w z = ±29, środek między dłońmi."
+   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy albo stojak (x, h, hak); podloga — podłoga (x0, x1); skrzynia — skrzynia, stopień albo ławka płaska (x0, x1, top); hantel — hantel trzymany w dłoni; uchwyty farmerskie rysujemy jak hantle z dużym promieniem (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie); smith — prowadnica suwnicy Smitha (x, h); sztanga o podazaZaChwytem: true porusza się po niej tylko w pionie; landmine — gryf landmine: oś obrotu przy podłodze (x, y, z), długość gryfu (dlugosc), dłonie na końcu gryfu (trzyma); sciana — ściana (x, h, przed); gryf_szesciokatny — gryf sześciokątny (trap bar): uchwyty w z = ±29, środek między dłońmi; lancuchy — łańcuchy zawieszone na sztandze (albo trzymane w dłoniach, gdy nie ma sztangi) i opadające na podłogę."
   },
   "klatki": {
    "type": "array",

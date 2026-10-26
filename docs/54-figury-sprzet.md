@@ -12,7 +12,7 @@ Liczby poniżej: ćwiczenia z 622, które wymagają danego rodzaju (w nawiasie: 
 | # | Rodzaj sprzętu (prymityw) | Ćwiczeń | Główne rodziny | Koszt | Stan |
 |---|---|---|---|---|---|
 | 1 | hantel / kettlebell / talerz / piłka lekarska w dłoni | 142 (123) | delt_raise 19, kb_ballistic 17, curl 16, sled_throw 12 | niski | **gotowe (26.10.2026)** |
-| 2 | stojak, Smith, landmine, poręcze, gryf łamany/trap/T, ściana, mata, łańcuchy | 58 (50) | lunge 8, triceps 5, overhead_press 5, row 4 | niski (rekwizyty są w silniku) | w toku: stojak, gryf łamany/gruby, Smith, landmine, ściana, trap bar i uchwyty farmerskie gotowe (26.10.2026) |
+| 2 | stojak, Smith, landmine, poręcze, gryf łamany/trap/T, ściana, mata, łańcuchy | 58 (50) | lunge 8, triceps 5, overhead_press 5, row 4 | niski (rekwizyty są w silniku) | w toku: stojak, gryf łamany/gruby, Smith, landmine, ściana, trap bar, uchwyty farmerskie i łańcuchy gotowe (26.10.2026) |
 | 3 | wyciąg (słup, bloczek, uchwyt / lina / opaska na kostkę) | 76 (70) | curl 10, triceps 9, cable_row 7, pulldown 7 | średni | do zrobienia |
 | 4 | ławka regulowana (skos +/−, wałki na nogi, modlitewnik) | 35 (9) | curl 12, delt_raise 6, core_floor 5 | niski–średni | do zrobienia |
 | 5 | guma / taśma oporowa | 17 (16) | hip_abd_add 4, rotator_cuff 3 | niski | do zrobienia |
@@ -50,6 +50,7 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 | `sciana` | `x`, `h` (250), `przed` (ściana przed osobą) | wall | lita za osobą (domyślnie) albo przed osobą; kontakt ciała do 1,5 cm; w widoku z przodu ściana przed osobą nie jest rysowana (przekrój) |
 | `gryf_szesciokatny` | bez pól (środek = środek między dłońmi) | trap_bar | uchwyty w z = ±29, dłonie na uchwytach ± 0,6 cm |
 | `hantel` (uchwyty farmerskie) | `promien` 10–12 | farmers_handles (oraz db) | uchwyty farmerskie rysowane jako hantle z dużym promieniem — uproszczenie; tolerancja kontaktu przedramienia rośnie z promieniem |
+| `lancuchy` | bez pól; wiszą na końcach gryfu (z = ±45) albo z dłoni | chains | pionowe linie przerywane do podłogi, bez kolidera; rysunek nie pokazuje zmiany obciążenia |
 | `sztanga` (gryf łamany, gruby) | jak dotąd; gryf łamany: `dlugosc` 120 | ez_bar, axle_bar (oraz pullup.bar, rings, barbell) | gryf łamany i gruby rysowane jak sztanga — uproszczenie |
 
 ## 3. Wymiary sprzętu — konwencja rysunku

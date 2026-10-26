@@ -11,7 +11,7 @@ export const EQUIP = {
   barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [44, 49] as [number, number], plateW: 2.8,
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6, medBallR: 11,
   benchW: 28, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
-  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
+  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];

@@ -10,7 +10,7 @@ import { EQUIP } from './draw';
 import { TOL } from './colliders';
 import type { Contact, Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy'] as const;
 export type GearName = typeof GEAR[number];
 export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
@@ -24,7 +24,7 @@ export type GearKind = {
   /** Krótki opis do generatora poleceń (jak wypełnić pola). */
   opis: string;
   /** Rekwizyty sceny dla wpisu sprzętu (chwyty rąk potrzebne sprzętowi trzymanemu w dłoni). */
-  props: (g: Gear, grips: GearGrips) => Prop[];
+  props: (g: Gear, grips: GearGrips, all: Gear[]) => Prop[];
   /** Dozwolone kontakty ciało–sprzęt dla wpisu (tolerancja przenikania, cm). */
   contacts?: (g: Gear) => Contact[];
   /** Pola z GEAR_EXTRA_FIELDS, które ten rodzaj przyjmuje. */
@@ -88,6 +88,17 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     props: (g, grips) => [{ k: 'trapbar', c: avg(SIDES.map(s => grips[s])) }],
     ref: () => [
       `gryf_szesciokatny: gryf sześciokątny (trap bar) bez własnych współrzędnych — środek gryfu = środek między dłońmi, uchwyty leżą wzdłuż z w z = ±${f1(EQUIP.trapW)} cm (rozstaw ${f1(2 * EQUIP.trapW)} cm), każdy długości 14 cm wzdłuż x. W KAŻDEJ klatce dłonie: z = ±${f1(EQUIP.trapW)} (± 0,6 cm), x i y obu dłoni takie same (± 0,6 cm), x dłoni w obrębie ±7 cm od środka. Z boku widać gryf i tarczę talerza o promieniu ${f1(EQUIP.plateR)} cm (tło, bez kolizji).`,
+    ],
+  },
+  lancuchy: {
+    caps: ['chains'], opis: 'łańcuchy zawieszone na sztandze (albo trzymane w dłoniach, gdy nie ma sztangi) i opadające na podłogę',
+    props: (g, grips, all) => {
+      const bar = all.find(x => x.rodzaj === 'sztanga');
+      if (bar) { const [b] = GEAR_KINDS.sztanga.props(bar, grips, all); if (b.k !== 'barbell') return []; return [-1, 1].map((sg): Prop => ({ k: 'chain', from: [b.c[0], b.c[1], sg * EQUIP.chainZ], to: [b.c[0], 0, sg * EQUIP.chainZ] })); }
+      return SIDES.map((s): Prop => ({ k: 'chain', from: grips[s], to: [grips[s][0], 0, grips[s][2]] }));
+    },
+    ref: () => [
+      `lancuchy: dwa łańcuchy opadające prosto w dół na podłogę, zawieszone na końcach gryfu (z = ±${f1(EQUIP.chainZ)} cm od osi, x i y jak sztanga) — gdy w sprzet[] jest sztanga; bez sztangi (ćwiczenia z łańcuchami w dłoniach) wiszą z dłoni. Rysunek: linia przerywana od sztangi (dłoni) do podłogi. Łańcuchy nie mają kolidera i nie mają własnych pól: pokazują tylko, że ćwiczenie jest z łańcuchami (obciążenie rośnie z wysokością sztangi — tego rysunek nie pokazuje).`,
     ],
   },
   skrzynia: { caps: ['box', 'bench.flat'], opis: 'skrzynia, stopień albo ławka płaska (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
@@ -177,4 +188,4 @@ export function contactsFrom(gear: Gear[]): Contact[] { return gear.flatMap(g =>
 export const GEAR_CAPS: readonly string[] = Object.values(GEAR_KINDS).flatMap(k => k.caps);
 
 /** Sprzęt jako rekwizyty sceny; sprzęt „podążający za chwytem” leży między dłońmi albo w dłoni. */
-export function propsFrom(gear: Gear[], grips: GearGrips): Prop[] { return gear.flatMap(g => GEAR_KINDS[g.rodzaj].props(g, grips)); }
+export function propsFrom(gear: Gear[], grips: GearGrips): Prop[] { return gear.flatMap(g => GEAR_KINDS[g.rodzaj].props(g, grips, gear)); }

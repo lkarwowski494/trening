@@ -32,6 +32,7 @@ const LANDMINE = (sp: Gear, px = 178, gxs = [22, 34, 46]): PoseData => pose('ove
 const WALLPOSE = (sp: Gear, g0: V3 = [0, 76, 27], g1: V3 = [30, 125, 22]): PoseData => pose('mobility_stand', 'Wall Slide', [sp], [two(0, g0, [g0[0], g0[1], -g0[2]]), two(1, g1, [g1[0], g1[1], -g1[2]])]);
 const TRAP = (sp: Gear = { rodzaj: 'gryf_szesciokatny' }): PoseData => pose('hinge', 'Trap Bar Deadlift', [sp], [two(0, [0, 78, 29], [0, 78, -29]), { ...two(1, [10, 74, 29], [10, 74, -29]), miednica: [0, 86, 0] }]);
 const MATRIX: [string, PoseData][] = [
+  ['łańcuchy na sztandze (martwy ciąg z łańcuchami)', RACKPULL([{ rodzaj: 'lancuchy' }])], ['łańcuchy w dłoniach (bez sztangi)', pose('triceps', 'Chain Handle Extension', [{ rodzaj: 'lancuchy' }], [two(0, ...sym(0, 76, 27)), two(1, ...sym(20, 125, 21))])],
   ['ściana za osobą (bez kontaktu)', WALLPOSE({ rodzaj: 'sciana', x: -20 })], ['ściana przed osobą, dłonie na ścianie', pose('mobility_stand', 'Wall Lat Stretch', [{ rodzaj: 'sciana', x: 40, przed: true }], [two(0, ...sym(36.7, 100, 22)), two(1, ...sym(36.7, 140, 22))])],
   ['gryf sześciokątny: dłonie na uchwytach z = ±29', TRAP()], ['uchwyty farmerskie jako hantle z dużym promieniem', pose('carry', 'Farmer', [{ rodzaj: 'hantel', promien: 12 }], [two(0, ...sym(0, 77, 30)), two(1, ...sym(20, 125, 22))])],
   ['landmine: dłonie na sferze o promieniu gryfu wokół osi obrotu', LANDMINE({ rodzaj: 'landmine', x: 178 })],
@@ -46,9 +47,9 @@ const MATRIX: [string, PoseData][] = [
 
 describe('rejestr rodzajów sprzętu (gear.ts)', () => {
   test('GEAR: osiem rodzajów; każdy ma wpis w rejestrze z opisem i rekwizytem; możliwości katalogu pokryte przez rejestr', () => {
-    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny']);
+    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy']);
     for (const k of GEAR) { expect(GEAR_KINDS[k].opis.length).toBeGreaterThan(10); expect(typeof GEAR_KINDS[k].props).toBe('function'); }
-    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles']));
+    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains']));
     expect(new Set(GEAR_CAPS).size).toBe(GEAR_CAPS.length); /* każda możliwość ma jeden rodzaj */
     expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
   });
@@ -99,6 +100,14 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
     expect(propsFrom([{ rodzaj: 'sciana', x: -12 }], G)).toEqual([{ k: 'wall', x: -12, h: 250 }]); expect(propsFrom([{ rodzaj: 'sciana', x: 40, h: 200, przed: true }], G)).toEqual([{ k: 'wall', x: 40, h: 200, front: true }]);
     expect(contactsFrom([{ rodzaj: 'sciana' }, { rodzaj: 'sztanga' }])).toEqual([{ body: '', equip: 'wall', tol: WALL_CONTACT }]); expect(WALL_CONTACT).toBe(1.5);
     expect(propsFrom([{ rodzaj: 'gryf_szesciokatny' }], G)).toEqual([{ k: 'trapbar', c: [12, 85, 0] }]);
+  });
+  test('łańcuchy: na końcach sztangi (z = ±chainZ) od osi sztangi do podłogi; bez sztangi wiszą z dłoni; sztanga niezależnie od kolejności wpisów', () => {
+    const bar = { rodzaj: 'sztanga' as const, x: 3, y: 90, trzyma: 'obie' as const };
+    expect(propsFrom([bar, { rodzaj: 'lancuchy' }], G).filter(p => p.k === 'chain')).toEqual([{ k: 'chain', from: [3, 90, -EQUIP.chainZ], to: [3, 0, -EQUIP.chainZ] }, { k: 'chain', from: [3, 90, EQUIP.chainZ], to: [3, 0, EQUIP.chainZ] }]);
+    expect(propsFrom([{ rodzaj: 'lancuchy' }, bar], G).filter(p => p.k === 'chain').length).toBe(2);
+    expect(propsFrom([{ rodzaj: 'lancuchy' }], G)).toEqual([{ k: 'chain', from: G.R, to: [10, 0, 20] }, { k: 'chain', from: G.L, to: [14, 0, -20] }]);
+    expect(equipColliders(propsFrom([{ rodzaj: 'lancuchy' }], G))).toEqual([]); /* łańcuchy bez kolidera */
+    const sh = propShapes(propsFrom([bar, { rodzaj: 'lancuchy' }], G), 'side').filter(s => s.id === 'chain'); expect(sh.length).toBe(2); for (const x of sh) expect(x.k === 'line' && x.dash).toBeTruthy();
   });
   test('stary sprzęt bez zmian: sztanga podąża za chwytem, słupek, podłoga, skrzynia', () => {
     expect(propsFrom([{ rodzaj: 'sztanga', podazaZaChwytem: true }, { rodzaj: 'slupek', x: 5, h: 100 }, { rodzaj: 'skrzynia', x0: 1, x1: 2, top: 30 }, { rodzaj: 'podloga' }], G).map(p => p.k)).toEqual(['barbell', 'post', 'box', 'floor']);
