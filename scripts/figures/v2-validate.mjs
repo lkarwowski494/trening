@@ -9,7 +9,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { loadV2 } from './v2-build.mjs';
-import { sprawdzSens } from './v2-sens.mjs';
+import { sprawdzSens, izometryczne } from './v2-sens.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SCHEMA_FILE = 'docs/schemas/figury-v2-poza.schema.json';
@@ -40,7 +40,7 @@ export function schematPozy(rodzina) { return silnik().v2.poseSchema(rodzina); }
 export function opisKontraktu(rodzina) { return silnik().v2.describeContract(rodzina); }
 /** Walidacja: schemat + geometria + zakresy + ciągłość + błędy jako delty. Wynik { ok, bledy: [{ kod, szczegol }] }. */
 export function waliduj(poza, { rodzina, cwiczenie, root = ROOT }) {
-  const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root) });
+  const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root), isometric: izometryczne(rodzina, cwiczenie, root) });
   /* sens ruchu (docs/53, bramka 3): po przejściu schematu, kontraktu i sprzętu; ewentualny wyjątek obliczeń nie psuje geometrii */
   const rigowa = silnik().v2.FAMILIES.find((f) => f.id === rodzina)?.status === 'ready'; /* rodziny gotowe (rigi z kodu) sprawdza sens-gotowe.mjs na klatkach rigu — dane pozy tych rodzin nie powstają */
   if (!rigowa && !bledy.some((b) => ['schemat', 'kontrakt', 'rodzina', 'klatki-u', 'sprzet'].includes(b.kod))) {

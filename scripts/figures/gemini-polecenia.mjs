@@ -88,9 +88,9 @@ export function wymagania(rodzina) {
   const { v2 } = silnik(); const C = v2.CONTRACT; const rom = czytaj(join(ROOT, 'lib/figures/data.json')).rom; const al = v2.templateFor(rodzina).allow;
   const S = rom.side; const lim = (k, max) => `${S[k].min}°…${max ?? S[k].max}°`;
   return [
-    `RUCH: poza u = 1 musi różnić się od u = 0 o co najmniej ${C.minMotionCm} cm (największe przemieszczenie dowolnego punktu: dłoń, kolano, miednica…). Zbyt mały ruch to najczęstsza przyczyna odrzucenia.`,
+    `RUCH: poza u = 1 musi różnić się od u = 0 o co najmniej ${C.minMotionCm} cm (największe przemieszczenie dowolnego punktu: dłoń, kolano, miednica…). Zbyt mały ruch to najczęstsza przyczyna odrzucenia. WYJĄTEK: ćwiczenia izometryczne (oznaczone w poleceniu) — poza statyczna (u = 0 i u = 1 mogą być identyczne); wtedy jedynym ruchem jest błąd z listy.`,
     `KLATKI: ${C.frames.min}–${C.frames.max} klatek, rosnące u, pierwsza u = 0, ostatnia u = 1. Interpolacja między klatkami jest LINIOWA, a żaden punkt ciała nie może skoczyć o więcej niż ${C.maxJump} cm na 1/${C.step} ruchu — dla ruchu zakrzywionego dodaj klatki pośrednie (zwykle 4–7). REGUŁA KLATEK: dopuszczalne przemieszczenie punktu (miednica, kostka, chwyt) między sąsiednimi klatkami to co najwyżej ${Math.floor((C.maxJump * C.step) / 2)} cm na 1,0 u (połowa limitu na zapas dla kolan i łokci), czyli ≤ ${Math.floor((C.maxJump * C.step) / 20)} cm przy odstępie klatek 0,1 i ≤ ${Math.floor((C.maxJump * C.step) / 40)} cm przy 0,05; gdy punkt przesuwa się o więcej niż ${Math.floor((C.maxJump * C.step) / 20)} cm, dodaj klatki co 0,1 (w szybkich fazach i przy mijaniu sprzętu co 0,05).`,
-    `ZAKRESY STAWÓW (sprawdzane w każdej fazie ruchu, obie strony): biodro ${lim('hip')}, kolano ${lim('knee')}, kostka ${lim('ankle')}, łokieć ${lim('el', al?.elbow)}, bark w płaszczyźnie strzałkowej ${lim('sh', al?.shSag)} (sprawdzany, gdy ramię nie jest odwiedzione), uniesienie ramienia 0°…${al?.shElev ?? rom.front.abd.max}°.${al ? ` Wyjątek tej rodziny: ${al.why}.` : ''} KOSTKA (częsty błąd): kąt kostki = podbicie + nachylenie goleni (kolano przed kostką = dodatnie, w zwisie zwykle +10…+20°), limit ${S.ankle.max}°, więc w zwisie ustaw podbicie ${v2.CONTRACT ? '−20…−5' : ''} (palce lekko w dół, nigdy dodatnie); sprawdzone na modelu: podbicie −10 przy kostkach 10 cm przed miednicą daje kąt kostki ≈ 0°, podbicie +20 daje ≈ 30–38° i przekracza limit.`,
+    `ZAKRESY STAWÓW (sprawdzane w każdej fazie ruchu, obie strony): biodro ${lim('hip')}, kolano ${lim('knee')}, kostka ${al?.ankleMin !== undefined ? `${al.ankleMin}°…${S.ankle.max}°` : lim('ankle')}, łokieć ${lim('el', al?.elbow)}, bark w płaszczyźnie strzałkowej ${lim('sh', al?.shSag)} (sprawdzany, gdy ramię nie jest odwiedzione), uniesienie ramienia 0°…${al?.shElev ?? rom.front.abd.max}°.${al ? ` Wyjątek tej rodziny: ${al.why}.` : ''} KOSTKA (częsty błąd): kąt kostki = podbicie + nachylenie goleni (kolano przed kostką = dodatnie, w zwisie zwykle +10…+20°), limit ${S.ankle.max}°, więc w zwisie ustaw podbicie ${v2.CONTRACT ? '−20…−5' : ''} (palce lekko w dół, nigdy dodatnie); sprawdzone na modelu: podbicie −10 przy kostkach 10 cm przed miednicą daje kąt kostki ≈ 0°, podbicie +20 daje ≈ 30–38° i przekracza limit.`,
     `PRZENIKANIE: ciało nie może wnikać w sprzęt (drążek, słupek, ławkę, skrzynię) więcej niż ${v2.TOL.pen} cm — dotyczy też pozy z zastosowanym błędem (głowa i tułów względem drążka są najczęstszym naruszeniem; zostaw wokół drążka zapas kilku cm). Najniższy punkt stopy nie niżej niż y = 0 (tolerancja ${v2.TOL.floor} cm).`,
     `CHWYT: środek chwytu każdej dłoni leży na osi sztangi/drążka (tolerancja 0,6 cm) w KAŻDEJ klatce i w każdej klatce błędu; chwyt w zasięgu ramienia od barku (≤ ${v2.BODY.uarm + v2.BODY.farm + v2.BODY.hand} cm), kostka w zasięgu nogi od biodra (≤ ${v2.BODY.thigh + v2.BODY.shank + v2.BODY.ankleH} cm).`,
     `BŁĘDY (bledy[]): najwyżej ${C.errorsMax}, tylko z listy identyfikatorów podanej przy ćwiczeniu (inne = odrzucenie; brak listy = bledy: []). Każdy błąd: ${C.errorFrames.min}–${C.errorFrames.max} klatek z deltami, pierwsza u = 0 i delta ZEROWA, ostatnia u = 1. Błąd ma być widoczny (≥ ${C.visibleCm} cm albo ≥ ${C.visibleDeg}° w którymś stawie).`,
@@ -169,6 +169,29 @@ export function wzorzecCrunch(cwiczenie = 'Crunch') {
     k.rece = { R: { chwyt: [g[0], g[1], 24] }, L: { chwyt: [g[0], g[1], -24] } }; for (const q of ['R', 'L']) for (const i of [0, 1, 2]) k.rece[q].chwyt[i] = Math.round(k.rece[q].chwyt[i] * 10) / 10; return k; });
   return { kontrakt: v2.CONTRACT.id, rodzina: 'core_floor', cwiczenie, sprzet, klatki, bledy: [] };
 }
+
+/* ---------- pushup_plank: układ podporu przodem (wzorzec Push Up z modelu) ---------- */
+const PU = { dl: 82, phiGora: 20, phiDol: 10, phiBlad: 18, podbicie: -60 };
+/** Poza pompki wyliczona z modelu: ciało w jednej linii od kostek (na palcach) do barków, kąt linii φ nad podłogą (góra 20°, dół 10°), dłonie NA STAŁE pod barkami z u = 0, kostki 20 cm nad podłogą (palce stoją na podłodze); błąd push.mis.partial = płytki dół (φ 18°). */
+export function wzorzecPompki(cwiczenie = 'Push Up') {
+  const { v2 } = silnik(); const r = Math.PI / 180; const pod = PU.podbicie;
+  const ay = -(Math.sin(pod * r) * 19 - Math.cos(pod * r) * 7) + 0.3; const ax = 0;
+  const pozaPhi = (phi) => { const c = Math.cos(phi * r), sn = Math.sin(phi * r); const pel = [ax + PU.dl * c, ay + PU.dl * sn]; return { pel, pitch: 90 - phi, sh: [pel[0] + 50 * c, pel[1] + 50 * sn] }; };
+  const gora = pozaPhi(PU.phiGora); const gx = Math.round(gora.sh[0] * 10) / 10; /* dłonie stałe */
+  const kl = (u, phi) => { const q = pozaPhi(phi); const f = (x) => Math.round(x * 10) / 10; return { u, miednica: [f(q.pel[0]), f(q.pel[1]), 0], pochylenieTulowia: f(q.pitch), zgiecieKregoslupa: 0, pochylenieGlowy: f(q.pitch * 0.6), nogi: { R: { kostka: [ax, f(ay), 10], podbicie: pod }, L: { kostka: [ax, f(ay), -10], podbicie: pod } }, rece: { R: { chwyt: [gx, 2, 19] }, L: { chwyt: [gx, 2, -19] } } }; };
+  const phiU = (u) => PU.phiGora + (PU.phiDol - PU.phiGora) * u; const klatki = [0, 0.25, 0.5, 0.75, 1].map((u) => kl(u, phiU(u)));
+  const bl = pozaPhi(PU.phiBlad), dn = pozaPhi(PU.phiDol); const f = (x) => Math.round(x * 10) / 10;
+  const delta = (u, w) => ({ u, miednica: [f((bl.pel[0] - dn.pel[0]) * w), f((bl.pel[1] - dn.pel[1]) * w), 0], pochylenieTulowia: f((bl.pitch - dn.pitch) * w), pochylenieGlowy: f((bl.pitch - dn.pitch) * 0.6 * w) });
+  const bledy = [{ cue: 'push.mis.partial', znacznik: 'pelvis', dotyczy: ['elbow', 'shoulder', 'hip', 'knee', 'ankle'], klatki: [{ u: 0 }, delta(0.5, 0.5), delta(1, 1)] }];
+  return { kontrakt: v2.CONTRACT.id, rodzina: 'pushup_plank', cwiczenie, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 150 }], klatki, bledy };
+}
+const FAZY_PUSHUP_PLANK = () => [
+  `Układ podporu przodem: kostki NA PALCACH za osobą: kostka = [0, ${f0(-(Math.sin(PU.podbicie * Math.PI / 180) * 19 - Math.cos(PU.podbicie * Math.PI / 180) * 7) + 0.3)}, ±10] z podbicie = ${PU.podbicie} (palce stoją na podłodze, pięta w górze; kąt kostki ≈ −55…−65° — dopuszczalny wyjątek rodziny: dolna granica −75°), dłonie na podłodze: chwyt = [x barków w u = 0, 2, ±19] i NIE zmieniają położenia w ruchu (dłonie stałe).`,
+  `Ciało w jednej linii: miednica leży na odcinku bark–kostka (odchyłka ≤ 6 cm). Oś ciała nad podłogą pod kątem φ: miednica = kostka + ${PU.dl}·[cos φ, sin φ], bark = miednica + 50·[cos φ, sin φ], pochylenieTulowia = 90 − φ (90 = poziomo głową do przodu), pochylenieGlowy ≈ 0,6 · pochylenieTulowia.`,
+  `Pompka: u = 0 góra φ = ${PU.phiGora}° (ramiona proste: łokieć ≤ 20°), u = 1 dół φ = ${PU.phiDol}° (łokieć ≥ 70°); klatki pośrednie co 0,25 (φ liniowo). Deska (Plank): jedna poza (φ = ${PU.phiGora}°, łokcie zgięte 90° albo proste), ćwiczenie izometryczne.`,
+  'Nogi proste (kolana ≤ 20°): odległość miednica–kostka ≈ 82 cm; kostka dalej niż 90 cm od biodra = poza zasięgiem nogi.',
+];
+
 export function punktyOdniesienia(rodzina) {
   const { v2 } = silnik(); const B = v2.BODY; const t = v2.templateFor(rodzina); const reach = B.uarm + B.farm + B.hand;
   const L = [
@@ -180,7 +203,7 @@ export function punktyOdniesienia(rodzina) {
     '- Konwencja kątów w walidatorze: 0° = staw wyprostowany, kąt rośnie ze zgięciem (łokieć prosty = 0°, zgięty maks. 149°; kolano prosty 0°, maks. 141°). „Łokcie wyprostowane ≥ 165°” w zapisie anatomicznym to tutaj ≤ 15°.',
     '- MARGINES: celuj 1–2 cm i 2–3° DO ŚRODKA każdego limitu (zasięg, zakresy stawów, przenikanie, chwyt) — model ma tolerancję 0,3–0,6 cm, a odrzucenia z poprzednich prób dotyczyły przekroczeń o 0,6–1,5 cm i 1°.',
   ];
-  const f = FAZY[rodzina] ?? (rodzina === 'core_floor' ? FAZY_CORE_FLOOR : null);
+  const f = FAZY[rodzina] ?? (rodzina === 'core_floor' ? FAZY_CORE_FLOOR : rodzina === 'pushup_plank' ? FAZY_PUSHUP_PLANK : null);
   if (f) L.push('- Relacje faz ruchu (pozy wyjściowa i skrajna):', ...f().map((x) => `  - ${x}`));
   else L.push('- Relacje faz: dla KAŻDEGO ćwiczenia najpierw ustal punkty kluczowe obu faz (gdzie ma być chwyt względem sprzętu, miednica, kostki — jako liczby w cm w układzie powyżej), potem zapisz klatki tak, by te relacje zachodziły; stopy opierają się o podłogę lub sprzęt, dłonie leżą na chwycie.');
   return L;
@@ -336,6 +359,7 @@ const PODOBNE = { pulldown: 'pull_up', core_hang: 'pull_up', dip: 'pull_up', cab
 /** Wzorce: (1) z tej samej rodziny — zaliczone pozy z poses/ (najpierw z błędami, najwięcej klatek) albo wyliczony z modelu (pull_up), (2) z rodziny podobnej, (3) w ostateczności przysiad. Razem ≤ 2. */
 export function wzorce(rodzina, kontrakt, root = ROOT) {
   const o = []; const wlasne = Object.entries(pozyGotowe(rodzina, root).cwiczenia ?? {}).sort((a, b) => (b[1].bledy.length > 0) - (a[1].bledy.length > 0) || b[1].klatki.length - a[1].klatki.length);
+  if (rodzina === 'pushup_plank') o.push({ opis: '„Push Up” wyliczony z modelu (ciało w jednej linii na palcach, dłonie stałe; przechodzi geometrię i reguły sensu; liczby dopasuj do swojego ćwiczenia, ta sama struktura)', poza: wzorzecPompki() });
   if (rodzina === 'core_floor') o.push({ opis: '„Crunch” leżąc na plecach wyliczony z modelu (przechodzi geometrię i reguły sensu; liczby dopasuj do swojego ćwiczenia, ta sama struktura)', poza: wzorzecCrunch() });
   if (rodzina === 'pull_up') { const w = wzorzecPodciagania(); if (w) o.push({ opis: `„Pull Up” wyliczony z modelu (drążek y = 230, chwyt z = ±22; przechodzi walidację geometrii i sensu; liczby dopasuj do swojego ćwiczenia, ta sama struktura i sposób liczenia)`, poza: w.poza }); }
   for (const [cw, poza] of wlasne.slice(0, 1)) o.push({ opis: `zaliczona poza „${cw}” z tej samej rodziny`, poza });

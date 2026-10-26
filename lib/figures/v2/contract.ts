@@ -56,7 +56,7 @@ export type FamilyTemplate = {
   /** Domyślny sprzęt (wzór do skopiowania). */
   defaultGear: Gear[];
   /** Wyjątki od zakresu stawów (uproszczenie ilustracyjne; powód obowiązkowy). */
-  allow?: { elbow?: number; shSag?: number; shElev?: number; why: string };
+  allow?: { elbow?: number; shSag?: number; shElev?: number; ankleMin?: number; why: string };
   /** Opis ruchu do promptu (co ma pokazywać u = 0 i u = 1). */
   movement: string;
   check?: (g: Gear[]) => string[];
@@ -78,6 +78,9 @@ export const TEMPLATES: Record<string, FamilyTemplate> = {
       return o; },
   },
 };
+/* pushup_plank: pozy w podporze (dłonie i stopy na podłodze); stanie na palcach daje kąt kostki ok. −55…−65° — blisko dolnej granicy zakresu (−60°), więc wyjątek rodziny (decyzja koordynatora 26.10.2026; uproszczenie ilustracyjne, nie pokazujemy kąta użytkownikowi). */
+TEMPLATES.pushup_plank = { gear: 'Podłoga (rodzaj podloga) i ewentualnie skrzynia/ławka płaska jako podwyższenie (dłonie albo stopy); dłonie i stopy w kontakcie z podłożem w pozycji podporu.', defaultGear: [{ rodzaj: 'podloga', x0: -150, x1: 150 }],
+  allow: { ankleMin: -75, why: 'stanie na palcach w podporze: zgięcie podeszwowe kostki ok. −55…−65°, blisko dolnej granicy zakresu (uproszczenie ilustracyjne)' }, movement: 'u = 0: pozycja wyjściowa podporu (ręce proste), u = 1: pozycja skrajna (np. dół pompki: łokcie zgięte, ciało w jednej linii); ćwiczenia izometryczne: poza statyczna.' };
 const GENERIC: FamilyTemplate = { gear: 'Sprzęt wg rodzaju ćwiczenia: sztanga (x, y, talerze, podazaZaChwytem), słupek (x, h), podłoga, skrzynia (x0, x1, top).', defaultGear: [{ rodzaj: 'podloga', x0: -120, x1: 120 }], movement: 'u = 0: pozycja wyjściowa, u = 1: pozycja skrajna.' };
 export const templateFor = (family: string): FamilyTemplate => TEMPLATES[family] ?? GENERIC;
 export const knownFamily = (family: string): boolean => Object.prototype.hasOwnProperty.call(FAMILY, family);
@@ -230,7 +233,7 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
 
 /* ---------- walidator semantyczny ---------- */
 export type RomData = { side: Record<'hip' | 'knee' | 'ankle' | 'el' | 'sh', { min: number; max: number }>; front: { abd: { min: number; max: number } } };
-export type ValidateCtx = { family: string; exercise: string; /** id wskazówek „częsty błąd” tego ćwiczenia (cue-sets.json albo lib/cues). */ errorCues: string[]; rom: RomData };
+export type ValidateCtx = { family: string; exercise: string; /** id wskazówek „częsty błąd” tego ćwiczenia (cue-sets.json albo lib/cues). */ errorCues: string[]; rom: RomData; /** Ćwiczenie izometryczne (decyzja koordynatora 26.10.2026): poza statyczna, wymóg ruchu ≥ minMotionCm nie obowiązuje; błąd jest jedynym ruchem. */ isometric?: boolean };
 
 const f1 = (x: number): string => x.toFixed(1);
 const f2 = (x: number): string => x.toFixed(2);
@@ -278,7 +281,7 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
   for (const u of gridU(d)) { const f = keyframeFrame(d, u); for (const s of SIDES) {
     const a = jointAngles(f.sk, s);
     const chk = (n: string, v: number, lo: number, hi: number): void => { if (v < lo - 0.5 || v > hi + 0.5) rg.add(`${n}${s}`, u, uu => `staw ${n} ${s} = ${f1(v)}° poza zakresem ruchu [${lo}°, ${hi}°] w fazie u=${uu} — zmień położenie kostki, miednicy lub chwytu`); };
-    chk('hip', a.hip, r.side.hip.min, r.side.hip.max); chk('knee', a.knee, r.side.knee.min, r.side.knee.max); chk('ankle', a.ankle, r.side.ankle.min, r.side.ankle.max);
+    chk('hip', a.hip, r.side.hip.min, r.side.hip.max); chk('knee', a.knee, r.side.knee.min, r.side.knee.max); chk('ankle', a.ankle, al.ankleMin ?? r.side.ankle.min, r.side.ankle.max);
     chk('elbow', a.elbow, r.side.el.min, al.elbow ?? r.side.el.max); chk('shElev', a.shElev, 0, al.shElev ?? r.front.abd.max);
     if (a.shAbd < 30) chk('shSag', a.shSag, r.side.sh.min, al.shSag ?? r.side.sh.max);
   } }
@@ -289,7 +292,7 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
   cont.flush('ciaglosc', out);
   /* ruch istnieje */
   const a = pts(keyframeFrame(d, 0)), b = pts(keyframeFrame(d, 1)); const moved = Math.max(...a.map((p, i) => dist(p, b[i])));
-  if (moved < CONTRACT.minMotionCm) out.push({ kod: 'ruch', szczegol: `poza u = 1 prawie nie różni się od u = 0 (największe przemieszczenie punktu ${f1(moved)} cm, wymagane ≥ ${CONTRACT.minMotionCm} cm)` });
+  if (!ctx.isometric && moved < CONTRACT.minMotionCm) out.push({ kod: 'ruch', szczegol: `poza u = 1 prawie nie różni się od u = 0 (największe przemieszczenie punktu ${f1(moved)} cm, wymagane ≥ ${CONTRACT.minMotionCm} cm)` });
 
   /* błędy jako delty */
   const seen = new Set<string>();

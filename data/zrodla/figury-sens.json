@@ -155,6 +155,9 @@
    },
    "pomin": {
     "Rope Climb": "sprzęt „lina” nie jest rodzajem sprzętu kontraktu (silnik go nie rysuje) — zrobi nasz agent"
+   },
+   "izometryczne": {
+    "Dead Hang": "zwis (wskazówka npu.hang) — poza statyczna"
    }
   },
   "core_floor": {
@@ -458,7 +461,11 @@
     "Stability Ball Knee Tuck": "jedyna wskazówka plank.brace nie opisuje kierunku ruchu; nie badane w tej rundzie",
     "Kneeling Cable Crunch With Alternating Oblique Twists": "jedyna wskazówka cc.slow (tempo); cc.ribs celowo pominięta przez skręt — brak źródła ruchu"
    },
-   "pomin": {}
+   "pomin": {},
+   "izometryczne": {
+    "Hollow Hold": "utrzymanie pozycji (wskazówka db.back, plank.brace) — poza statyczna",
+    "Stomach Vacuum": "wciągnięcie brzucha — poza statyczna"
+   }
   },
   "curl": {
    "reguly": {
@@ -920,7 +927,11 @@
     ]
    },
    "otwarte": {},
-   "pomin": {}
+   "pomin": {},
+   "izometryczne": {
+    "Plank": "deska (wskazówki plank.*) — poza statyczna",
+    "Side Plank": "deska boczna — poza statyczna"
+   }
   },
   "squat": {
    "reguly": {
@@ -3160,5 +3171,6 @@
   "lokcie_wysoko": "w ruchu dla obu stron arms[s].elbow[1] ≥ shoulderC[1] − max_cm",
   "chwyt_blisko_tulowia": "w ruchu odległość G od odcinka pelvis–shoulderC ≤ max_cm",
   "kolana_do_klatki": "istnieje próbka w locie (jak „lot”, min_cm z parametru), w której średnie zgięcie biodra ≥ min_biodro_deg i kolana ≥ min_kolano_deg"
- }
+ },
+ "_izometryczne": "Klucz `izometryczne` (ćwiczenie → powód) wpisują badacz/analityk wg wskazówek (plank.*, hold, hang); lista startowa 26.10.2026 niepełna — do uzupełnienia przez badacza. Wyjątek: kontrakt nie wymaga ruchu ≥ 8 cm (CONTRACT.minMotionCm), poza statyczna; błąd jest jedynym ruchem."
 }

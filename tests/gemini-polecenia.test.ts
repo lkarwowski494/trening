@@ -98,6 +98,20 @@ describe('reguły sensu ruchu (data/zrodla/figury-sens.json + v2-sens.mjs; docs/
     const sz = waliduj(nz, 'Mixed Grip Chin').bledy.filter((b) => b.kod === 'blad-sens').map((b) => b.szczegol).join('|');
     expect(sz).toMatch(/nie łamie żadnej reguły grupy „bujanie”/); expect(sz).toMatch(/łamie także regułę innej grupy „pelna_amplituda” \(broda_nad_drazkiem\)/);
   });
+  test('izometria (decyzja 26.10.2026): ćwiczenie z listy „izometryczne” przechodzi bez ruchu ≥ 8 cm (poza statyczna), to samo w ćwiczeniu dynamicznym ma błąd „ruch”; pushup_plank ma wyjątek kostki w TEMPLATES', () => {
+    const st = klon(WZ['Pull Up']); st.cwiczenie = 'Dead Hang'; st.bledy = []; for (const k of st.klatki) { const k0 = st.klatki[0]; k.miednica = k0.miednica; k.pochylenieTulowia = k0.pochylenieTulowia; k.nogi = klon(k0.nogi); k.rece = klon(k0.rece); }
+    expect(waliduj(st, 'Dead Hang')).toEqual({ ok: true, bledy: [] });
+    const dyn = klon(st); dyn.cwiczenie = 'Chin Up'; expect(waliduj(dyn, 'Chin Up').bledy.map((b) => b.kod)).toContain('ruch');
+    expect(run(SENS, `console.log(JSON.stringify([m.izometryczne('pushup_plank', 'Plank'), m.izometryczne('pushup_plank', 'Push Up'), m.izometryczne('core_floor', 'Hollow Hold')]))`)).toEqual([true, false, true]);
+    const t = fs.readFileSync(path.join(ROOT, 'lib/figures/v2/contract.ts'), 'utf8'); expect(t).toContain('ankleMin: -75'); expect(t).toContain('!ctx.isometric && moved <');
+  });
+  test('pushup_plank: wzorzec Push Up wyliczony z modelu (ciało w linii na palcach, dłonie stałe, błąd push.mis.partial) przechodzi geometrię, reguły sensu i wyjątek kostki; polecenie ma układ podporu i wzorzec', () => {
+    const PU = run(POL, 'console.log(JSON.stringify(m.wzorzecPompki()))') as any;
+    expect(run(VAL, `console.log(JSON.stringify(m.waliduj(${JSON.stringify(PU)}, { rodzina: 'pushup_plank', cwiczenie: 'Push Up' })))`)).toEqual({ ok: true, bledy: [] });
+    const chw = PU.klatki.map((k: any) => k.rece.R.chwyt[0]); expect(new Set(chw).size).toBe(1); /* dłonie stałe */
+    const out = path.join(tmpRoot(), 'out'); run(POL, `await m.main(['--rodzina','pushup_plank','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(PELNY)}, log: () => {} }); console.log('0')`);
+    const t = fs.readFileSync(path.join(out, 'pushup_plank-1.md'), 'utf8'); expect(t).toContain('Układ podporu przodem'); expect(t).toContain('## Wzorzec 1: „Push Up” wyliczony z modelu'); expect(t).toContain('-75°…37°'); expect(t).toContain('WYJĄTEK: ćwiczenia izometryczne');
+  });
   test('rodzina bez reguł (np. dip): sens pominięty, walidator zachowuje się jak dotąd', () => {
     expect(run(SENS, `console.log(JSON.stringify(m.sprawdzSens({ v2: null, poza: {}, rodzina: 'dip', cwiczenie: 'Chest Dip' })))`)).toEqual([]);
   });

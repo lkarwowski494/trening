@@ -25,6 +25,8 @@ export function regulyDla(rodzina, cwiczenie, root = ROOT) {
   return ids.map((id) => ({ id, ...r.reguly[id] }));
 }
 /** Ćwiczenie OTWARTE (brak źródła ruchu — bez grafiki v2 do czasu źródła): powód albo null. Generator pomija je jak `pomin`, test pokrycia liczy jako jawny wyjątek. */
+/** Ćwiczenie izometryczne (decyzja koordynatora 26.10.2026): lista `izometryczne` rodziny w danych (ćwiczenie → powód); wyjątek od wymogu ruchu ≥ 8 cm. */
+export const izometryczne = (rodzina, cwiczenie, root = ROOT) => !!wczytajSens(root).rodziny?.[rodzina]?.izometryczne?.[cwiczenie];
 export const otwarteDla = (rodzina, cwiczenie, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.otwarte?.[cwiczenie] ?? null;
 /** Identyfikatory wskazówek ćwiczenia: własne (lib/cues/data.json: setup/move/tips/mistakes) albo zestaw ogólny (cue-sets.json: ok). */
 export function wskazowkiCwiczenia(cwiczenie, root = ROOT) {
