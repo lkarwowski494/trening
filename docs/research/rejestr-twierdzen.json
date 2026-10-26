@@ -701,6 +701,35 @@
    "fraza": "## 1. Metoda",
    "przeglad": "23.10.2026: programista — tekst ekranu Ustawienia → Źródła wiedzy; ogólny opis podstawy przypisania partii (przeglądy badań i badania aktywności mięśni; gdzie jedno źródło albo uproszczenie — oznaczenie przy ćwiczeniu, T-014/T-019/T-035–T-038); metoda i źródła per ćwiczenie: docs/research/24-przypisanie-partii.md, 25-biblioteka. Do przeglądu badacza przy najbliższym przeglądzie rejestru.",
    "wycofane": "25.10.2026 (decyzja właściciela „całkiem anonimowo”, docs/18): ekran „Źródła wiedzy” usunięty z aplikacji, tekst nie występuje w interfejsie; wpis zostaje jako ślad podstawy (docs/research/24-przypisanie-partii.md)."
+  },
+  {
+   "id": "T-047",
+   "kotwica": "o około 1/3–1/2 mniej serii (np. {k} z {n}; ćwic",
+   "skrot": "e345e987bd",
+   "skrotEn": "0b9d96d7e0",
+   "rodzaje": [
+    "uproszczenie",
+    "przegląd badań"
+   ],
+   "zrodla": [],
+   "dokument": "docs/research/22-serie-deload-generator.md",
+   "fraza": "Krótkie zmniejszenie objętości przy utrzymanym ciężarze nie odbiera efektów",
+   "uwaga": "Liczba „1/3–1/2” = skutek reguły ceil(n/2) w lib/deload-sets.ts (cięcie 33–50%) — uproszczenie we wspólnym przedziale źródeł o taperze (30–70%) i praktyki trenerów (25–>50%); deload jako propozycja do zatwierdzenia. Wpis dodany, bo od 1.0.1 check:claims pilnuje liczb (C-2).",
+   "przeglad": "26.10.2026: programista — audyt 1.0 C-2; wpis zrobiony z istniejącego opisu w docs/research/22 sekcja 2 (źródła tam), bez nowej oceny źródeł; do przeglądu badacza przy najbliższym przeglądzie rejestru."
+  },
+  {
+   "id": "T-048",
+   "kotwica": "Palce stóp lekko na zewnątrz — zwykle mniej więc",
+   "skrot": "bf0f7804c9",
+   "skrotEn": "2d7fbe33ad",
+   "rodzaje": [
+    "uproszczenie"
+   ],
+   "zrodla": [],
+   "dokument": "data/zrodla/katy-oddech.json",
+   "fraza": "\"sq.toesAngle\"",
+   "uwaga": "Decyzja właściciela 25.10.2026 (docs/18): przedział 15–20° = część wspólna dwóch niezależnych źródeł szczebla 4 (zwykły rozstaw: 15–20°; podręcznik: od 0° do 30°); bez liczby dla przysiadu szerokiego/sumo. Pełne źródła i cytaty: data/zrodla/katy-oddech.json (przeniesione do repo w 1.0.1, audyt C-2). Opis nie pojawia się przy Dumbbell Squat (rysunek 8°, C-3).",
+   "przeglad": "26.10.2026: programista — audyt 1.0 C-2; wpis wg katy-oddech.json (przeczytane 25.10.2026 przez badacza); do przeglądu badacza przy najbliższym przeglądzie rejestru."
   }
  ]
 }

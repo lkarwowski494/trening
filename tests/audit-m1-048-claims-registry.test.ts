@@ -53,6 +53,21 @@ describe('kontrola rejestru twierdzeń (dane sztuczne)', () => {
     const cyt = 'RIR wpisuje się w zakresie od zera do pięciu powtórzeń w zapasie (Helms i in. 2016).';
     expect(check({ [cyt]: 'RIR from 0 to 5 (Helms et al. 2016).' }, { twierdzenia: [] }, docs).join('\n')).toMatch(/bez ID w rejestrze/);
   });
+  test('liczba twierdzenia bez nazwy źródła (stopnie, ułamki, procenty) też wymaga wpisu (audyt 1.0, C-2: po anonimizacji kontrola była pusta)', () => {
+    for (const t of ['Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.', 'o około 1/3–1/2 mniej serii (np. {k} z {n}; ćwiczenia z 1 serią bez zmian)', 'Zmniejsz objętość o około 30% na ten tydzień treningowy.'])
+      expect([t, check({ [t]: 'x' }, { twierdzenia: [] }, docs).join('\n')]).toEqual([t, expect.stringMatching(/bez ID w rejestrze/)]);
+  });
+  test('parametry sprzętu i formaty (kg, lb, tempo, poziomy gum) nie są twierdzeniami', () => {
+    for (const t of ['Hantle stałe 2,5–24 kg (15 par)', 'Przenośna stacja elektryczna, jedna linka (5–200 lb)', 'Tempo (opcjonalnie, np. 3-1-1) przy każdej serii', 'Guma jako opór: przy serii wybierasz gumę (poziom 1–7).'])
+      expect(check({ [t]: 'x' }, { twierdzenia: [] }, docs)).toEqual([]);
+  });
+  test('prawdziwy słownik: kąt palców w przysiadzie (15–20°) i cięcie serii w deloadzie mają wpisy z dokumentem w repo (T-047, T-048)', () => {
+    const reg = JSON.parse(read('docs/research/rejestr-twierdzen.json')).twierdzenia as { id: string; kotwica: string; dokument: string | null }[];
+    for (const [id, kot] of [['T-047', 'o około 1/3–1/2 mniej serii'], ['T-048', 'Palce stóp lekko na zewnątrz']]) {
+      const e = reg.find(x => x.id === id)!; expect(e.kotwica.startsWith(kot)).toBe(true); expect(e.dokument && fs.existsSync(path.join(ROOT, e.dokument))).toBeTruthy();
+    }
+    expect(fs.existsSync(path.join(ROOT, 'data/zrodla/katy-oddech.json'))).toBe(true);
+  });
   test('powtórzone ID i nieznany rodzaj → błąd', () => {
     const e = check({ [TEXT]: EN_T }, { twierdzenia: [entry(), entry({ kotwica: 'inna kotwica dłuższa niż dwadzieścia' }), entry({ id: 'T-002', rodzaje: ['zmyślony'] })] }, docs).join('\n');
     expect(e).toMatch(/id powtórzone/); expect(e).toMatch(/rodzaje spośród/);
