@@ -40,12 +40,18 @@ export function allowedStrings(re) {
 /** Widoki tekstowe bajtów pliku (utf8, utf16le od 0 i od 1). */
 export const views = buf => [buf.toString('utf8'), buf.toString('utf16le'), buf.subarray(1).toString('utf16le')];
 
-/** Skrót 3-literowy (np. WHO, CDC) trafia w bajtkodzie przypadkiem (sąsiednie bajty to nie tekst); prawdziwy łańcuch leży w ciągłej tablicy łańcuchów, czyli w długim biegu
- * znaków tekstu. Krótszy bieg niż SHORT_RUN_MIN to przypadek (L-033: fałszywe trafienie „CDC” w kompilacji z 26.10.2026 blokowało verify). */
-export const SHORT_RUN_MIN = 8;
-const TEXTCH = /[\p{L}\p{N} .,:;()/_'-]/u;
-export function textRun(text, i, len) {
-  let a = i, b = i + len; while (a > 0 && TEXTCH.test(text[a - 1])) a--; while (b < text.length && TEXTCH.test(text[b])) b++; return b - a;
+/** Krótki skrót (do 4 liter: WHO, CDC, ACSM, NSCA, ISSN) trafia w bajtkodzie przypadkiem: bajty łańcuchów leżą ciągle, a w widoku UTF-16 zwykłe pary bajtów dają przypadkowe ciągi liter
+ * (L-033: „CDC” w kontekście „DECDC”; nawrót: „CWCTC7CDC·CKCGCPC;CE”, tests.yml 40379990056). Heurystyka długości biegu (L-033) łapała jeden przykład, nie klasę: przypadkowy ciąg liter bywa długi.
+ * Wybór (nawrót L-033, lekcja L-039 w docs/40): skrót liczy się tylko „na tle tekstu” — przynajmniej jeden sąsiad to spacja lub interpunkcja (albo początek/koniec widoku). Tak wygląda każde realne
+ * użycie w tekście dla użytkownika („według CDC”, „(ACSM)”, „WHO.”); ciąg liter/cyfr/bajtów po obu stronach to przypadek. Skrót wklejony bez spacji w sąsiednie łańcuchy tablicy Hermes
+ * (np. „…zaleceniaWHOkolejny…”) jest pomijany świadomie: tekst aplikacji nie ma takich zapisów, a nazwy dłuższe niż 4 litery nadal łapiemy w ciągłym zapisie.
+ * Odrzucone: (a) czytanie tablicy łańcuchów Hermes — wymaga parsowania formatu zależnego od wersji (nagłówek, tablice małych i dużych łańcuchów, offsety), kruche przy każdej aktualizacji SDK
+ * i dużo kodu na jeden strażnik; (c) lista wyjątków przypadkowych ciągów — leczy objaw, wraca przy każdej zmianie układu bajtów; (d) dłuższy minimalny bieg liter — ten sam błąd klasy co L-033. */
+const SHORT_MAX = 4;
+const BOUNDARY = /^[\s\p{P}]$/u;
+export function onTextBoundary(text, i, len) {
+  const before = i === 0 ? ' ' : text[i - 1], after = i + len >= text.length ? ' ' : text[i + len];
+  return BOUNDARY.test(before) || BOUNDARY.test(after);
 }
 
 /** Trafienia nazw w buforze po usunięciu dozwolonych łańcuchów: [{ nazwa, kontekst }]. */
@@ -54,7 +60,7 @@ export function findNames(buf, re, allowed = []) {
   for (let text of views(buf)) {
     for (const a of allowed) if (text.includes(a)) text = text.split(a).join('\u0000');
     re.lastIndex = 0;
-    for (const m of text.matchAll(re)) { if (m[0].length <= 3 && textRun(text, m.index, m[0].length) < SHORT_RUN_MIN) continue; hits.push({ nazwa: m[0], kontekst: text.slice(Math.max(0, m.index - 30), m.index + m[0].length + 30).replace(/[^\p{L}\p{N} .,:;()/_-]/gu, '·') }); }
+    for (const m of text.matchAll(re)) { if (m[0].length <= SHORT_MAX && !onTextBoundary(text, m.index, m[0].length)) continue; hits.push({ nazwa: m[0], kontekst: text.slice(Math.max(0, m.index - 30), m.index + m[0].length + 30).replace(/[^\p{L}\p{N} .,:;()/_-]/gu, '·') }); }
   }
   return hits;
 }
