@@ -18,7 +18,7 @@ import { isNiche } from '@/lib/seed';
 import { FAMILIES } from '@/lib/figures/v2/families';
 import { figurePalette, svgInner, shapesAt as appShapesAt } from '@/lib/figures/v2';
 import { light } from '@/lib/tokens';
-import { similarity, SWAP_WEIGHTS } from '@/lib/swapScore';
+import { similarity, SWAP_WEIGHTS, orderSwaps } from '@/lib/swapScore';
 import { swapCandidates, SWAP_TOP } from '@/lib/swap';
 import { getState } from '@/lib/store';
 import { fresh } from './helpers';
@@ -163,6 +163,19 @@ describe('eksport dla strony: zamienniki = ranking aplikacji (swapCandidates, pr
       expect([l, key, data[l].exercises.find(e => e.id === key)!.alternatives]).toEqual([l, key, app]);
     }
   }, 120000);
+});
+
+describe('orderSwaps: kolejność propozycji zamiany (czysta funkcja współdzielona z aplikacją)', () => {
+  const E = (name: string) => libExercise(LIB.find(r => r[0] === name)!);
+  const get = (id: string) => E(id);
+  const cmp = (x: string, y: string) => x.localeCompare(y);
+  test('punkty wyżej; remis: ten sam sprzęt co oryginał, potem niszowe na końcu, na końcu nazwa — wynik niezależny od kolejności wejścia', () => {
+    const a = E('Back Squat');
+    const rows = [{ exId: 'Leg Press', score: 5, sessions: 0 }, { exId: 'Front Squat', score: 7, sessions: 0 }, { exId: 'Goblet Squat', score: 7, sessions: 0 }, { exId: 'Hack Squat', score: 7, sessions: 0 }];
+    const out = orderSwaps([...rows], a, get, id => id, cmp).map(r => r.exId); expect(out[0]).toBe('Front Squat'); expect(out[3]).toBe('Leg Press'); expect(out.slice(0, 3).sort()).toEqual(['Front Squat', 'Goblet Squat', 'Hack Squat']);
+    expect(orderSwaps([...rows].reverse(), a, get, id => id, cmp).map(r => r.exId)).toEqual(out);
+    expect(orderSwaps([{ exId: 'Goblet Squat', score: 7, sessions: 2 }, { exId: 'Front Squat', score: 7, sessions: 0 }], E('Goblet Squat'), get, id => id, cmp)[0].exId).toBe('Goblet Squat');
+  });
 });
 
 describe('eksport dla strony: niezmienniki anonimowości (jak tests/zrodla-wiedzy.test.ts)', () => {

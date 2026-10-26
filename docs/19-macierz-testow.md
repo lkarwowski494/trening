@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 354 | 354 | 0 |
 | TEKST | 1115 | 1115 | 0 |
-| LOGIKA | 1043 | 1042 | 0 |
+| LOGIKA | 1043 | 1043 | 0 |
 | WYMIAR | 146 | 146 | 0 |
 
 ## EKRAN
@@ -2485,7 +2485,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | swap.reasonText | lib/swap.ts | tests/swap-top3.test.ts |
 | swap.parseSwapTarget | lib/swap.ts | tests/matrix-logic.test.tsx |
 | swapScore.similarity | lib/swapScore.ts | tests/strona-eksport.test.ts |
-| swapScore.orderSwaps | lib/swapScore.ts | WYJĄTEK: BRAK |
+| swapScore.orderSwaps | lib/swapScore.ts | tests/strona-eksport.test.ts |
 | theme.applyTheme | lib/theme.ts | tests/matrix-logic.test.tsx |
 | theme.useTheme | lib/theme.ts | tests/audit-m1-024-bold.test.tsx, tests/audit-m1-031-contrast.test.tsx, tests/matrix-logic.test.tsx |
 | theme.font | lib/theme.ts | tests/i18n-wave2.test.ts, tests/m3-system.test.tsx, tests/m3-theme.test.ts |
