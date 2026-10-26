@@ -14,7 +14,7 @@ export function naruszeniaGotowych(root = ROOT, tylkoRodzina = null) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'gotowe-')); process.on('exit', () => { try { fs.rmSync(dir, { recursive: true, force: true }); } catch { /* best effort */ } });
   const { v2, catalog } = loadV2(dir); const wynik = [];
   for (const cw of Object.keys(catalog.CATALOG)) {
-    const spec = v2.figureSpec(cw); if (!spec || (tylkoRodzina && spec.family !== tylkoRodzina)) continue;
+    const spec = v2.figureSpec(cw); if (!spec || (tylkoRodzina && spec.family !== tylkoRodzina) || fs.existsSync(path.join(root, 'lib/figures/v2/poses', `${spec.family}.json`))) continue; /* rodziny gotowe z DANYCH (poses/<rodzina>.json) przechodzą waliduj() w v2-validate.mjs, nie ten przegląd rigów */
     const reguly = regulyDla(spec.family, cw, root); const p = Array.from({ length: 21 }, (_, i) => i / 20).map((u) => ({ u, f: v2.frameAt(spec, u), kf: null }));
     const naruszenia = []; for (const r of reguly) { const opisy = EWALUATORY[r.typ]({ v2, d: { sprzet: spec.variant?.p?.oneArm ? [{ rodzaj: 'sztanga', trzyma: 'R' }] : [] }, p, parametry: r.parametry }); if (opisy.length) naruszenia.push({ regula: r.id, typ: r.typ, opisy }); }
     wynik.push({ cwiczenie: cw, rodzina: spec.family, reguly: reguly.map((r) => r.id), naruszenia });

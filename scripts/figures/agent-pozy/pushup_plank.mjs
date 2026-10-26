@@ -174,7 +174,7 @@ function rolloutStojac(cw, { fi1 = 10, start = 'stojac', uchwytY0 = 100 } = {}) 
   const mk = (u) => { const f = fr(u); return { ...klatka({ u, miednica: f.hip, pitch: f.pitch, glowa: f.pitch * 0.75, nogi: { R: { k: [f.A[0], f.A[1], ZNOG], pod: f.pod }, L: { k: [f.A[0], f.A[1], -ZNOG], pod: f.pod } },
     rece: { R: { g: [...f.H, 20], pole: [-0.3, -1, 0.3] }, L: { g: [...f.H, -20], pole: [-0.3, -1, -0.3] } } }), _S: f.S, _fi: f.fi }; };
   const us = [0, 0.25, 0.5, 0.75, 1];
-  const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 260 }, { rodzaj: 'sztanga', x: 40, y: start === 'stojac' ? BAR_Y : uchwytY0, talerze: start === 'stojac', podazaZaChwytem: true, dlugosc: start === 'stojac' ? 130 : 50 }];
+  const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 260 }, start === 'stojac' ? { rodzaj: 'sztanga', x: 40, y: BAR_Y, talerze: true, podazaZaChwytem: true, dlugosc: 130 } : { rodzaj: 'zawieszenie', x: r1(fr(0).H[0]), punkt: 'dlonie' }]; /* zawieszenie: taśmy od punktu zaczepu nad dłońmi w u = 0 do dłoni (rodzaj zawieszenie); uchwyty podążają za dłońmi */
   const sagF = (u) => { const k = mk(u); const w = 1; const A = k.nogi.R.kostka; let dg = 11 * w; for (; dg > 3; dg -= 0.25) { const fi = k._fi + dg; const P = [k._S[0] - 50 * Math.cos(fi * R), k._S[1] - 50 * Math.sin(fi * R)]; if (Math.hypot(P[0] - A[0], P[1] - A[1]) <= 82.8) break; }
     const fi = k._fi + dg; const P = [k._S[0] - 50 * Math.cos(fi * R), k._S[1] - 50 * Math.sin(fi * R)]; const z = czysc(k); return { ...z, miednica: [r1(P[0]), r1(P[1]), 0], pochylenieTulowia: r1(90 - fi) }; };
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet, klatki: us.map((u) => czysc(mk(u))), bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us, ok: (u) => czysc(mk(u)), zle: sagF })] });
@@ -193,8 +193,8 @@ export const WYJATKI = {
 export const PRZYBLIZENIA = {
   'Clock Push-Up': 'przybliżenie: pompka z dłońmi przestawionymi przód/tył (zegar); skok i przesunięcie dłoni na kolejne godziny nie są w pojedynczym powtórzeniu pozy',
   'Plyo Push-Up': 'faza lotu: dłonie 12 cm nad podłogą, kostki stoją (ciało nie odrywa palców)',
-  'Suspended Push-Up': 'uchwyty zawieszenia narysowane jako nieruchomy drążek poziomy (zastępuje drążek wg katalogu); w rzeczywistości uchwyty się wahają',
-  'Suspended Fallout': 'uchwyty zawieszenia narysowane jako drążek podążający za dłońmi',
+  'Suspended Push-Up': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi do uchwytów; uchwyty nieruchome w ruchu, w rzeczywistości taśmy się wahają',
+  'Suspended Fallout': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi w u = 0; uchwyty podążają za dłońmi, taśmy ustawiają się ukośnie',
   'Inverted Row': 'drążek w stojaku na wysokości 100 cm, chwyt nachwytem szeroki (z = ±24)',
 };
 
@@ -213,6 +213,8 @@ export function generuj() {
     'Mountain Climbers': () => mountain('Mountain Climbers'),
     'Plank Shoulder Taps': () => shoulderTaps('Plank Shoulder Taps'),
     'Plyo Push-Up': () => plyo('Plyo Push-Up'),
+    'Suspended Push-Up': () => pompka('Suspended Push-Up', { hz: 22, hy: 45, off: -18, sprzetRece: (H) => ({ rodzaj: 'zawieszenie', x: r1(H[0] - 16.6), y: 170, punkt: 'dlonie' }), blady: ['partial', 'sag'] }), /* punkt zaczepu 16,6 cm za dłońmi, 170 cm wysoko: najlepsze z przebadanych ułożeń (x −40…60, y 120…260, thetaTop 4…20, pole łokcia); nadal przenikanie przedramię × taśma 0,33 cm (limit 0,3) w u = 0 */
+    'Suspended Fallout': () => rolloutStojac('Suspended Fallout', { start: 'zaw', fi1: 6 }),
     'Inverted Row': () => inverted('Inverted Row'),
     'Rollout (sztanga)': () => rolloutKolana('Rollout (sztanga)', { fi1: 22, ky: 9.8, dgSag: 11, fM: 8, sYf: 0.8, bk: 0.3 }),
     'Barbell Rollout from Bench': () => rolloutKolana('Barbell Rollout from Bench', { ławka: 42, fi1: 10, ky: 13, dgSag: 7, fM: 4 }),
