@@ -100,6 +100,7 @@ describe('reguły sensu ruchu (data/zrodla/figury-sens.json + v2-sens.mjs; docs/
   });
   test('izometria (decyzja 26.10.2026): ćwiczenie z listy „izometryczne” przechodzi bez ruchu ≥ 8 cm (poza statyczna), to samo w ćwiczeniu dynamicznym ma błąd „ruch”; pushup_plank ma wyjątek kostki w TEMPLATES', () => {
     const st = klon(WZ['Pull Up']); st.cwiczenie = 'Dead Hang'; st.bledy = []; for (const k of st.klatki) { const k0 = st.klatki[0]; k.miednica = k0.miednica; k.pochylenieTulowia = k0.pochylenieTulowia; k.nogi = klon(k0.nogi); k.rece = klon(k0.rece); }
+    st.klatki = [st.klatki[0], st.klatki[st.klatki.length - 1]]; /* statyczna: 2 klatki (v2-jakosc: klatki_rozne) */
     expect(waliduj(st, 'Dead Hang')).toEqual({ ok: true, bledy: [] });
     const dyn = klon(st); dyn.cwiczenie = 'Chin Up'; expect(waliduj(dyn, 'Chin Up').bledy.map((b) => b.kod)).toContain('ruch');
     expect(run(SENS, `console.log(JSON.stringify([m.izometryczne('pushup_plank', 'Plank'), m.izometryczne('pushup_plank', 'Push Up'), m.izometryczne('core_floor', 'Hollow Hold')]))`)).toEqual([true, false, true]);

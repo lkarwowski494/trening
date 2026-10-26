@@ -163,7 +163,7 @@ Object.assign(EWALUATORY, {
   miednica_na_linii: ({ p, parametry: q }) => {
     const koniec = (sk) => q.koniec === 'kolano' ? (sk.legs.R.knee[1] <= sk.legs.L.knee[1] ? sk.legs.R.knee : sk.legs.L.knee) : (dl(sk.legs.R.ankle, sk.pelvis) >= dl(sk.legs.L.ankle, sk.pelvis) ? sk.legs.R.ankle : sk.legs.L.ankle);
     const odl = (sk) => { const P = koniec(sk), A = sk.shoulderC, v = sub3(P, A), w = sub3(sk.pelvis, A); const t = Math.max(0, Math.min(1, dot3(w, v) / (dot3(v, v) || 1))); return dl(sk.pelvis, [A[0] + v[0] * t, A[1] + v[1] * t, A[2] + v[2] * t]); };
-    const kandydaci = q.tylko_skrajna ? [p.reduce((best, s) => (dl(s.f.sk.shoulderC, koniec(s.f.sk)) > dl(best.f.sk.shoulderC, koniec(best.f.sk)) ? s : best), p[0])] : p; const m = Math.max(...kandydaci.map((s) => odl(s.f.sk)));
+    const dlSk = (s) => dl(s.f.sk.shoulderC, koniec(s.f.sk)); const maxDl = Math.max(...p.map(dlSk)); const kandydaci = q.tylko_skrajna ? p.filter((s) => dlSk(s) >= maxDl - 0.5) : p; /* skrajna = najdalsza para bark–koniec; remis (sztywne ciało: odległość stała) → oceniamy WSZYSTKIE klatki w granicy 0,5 cm, nie tylko pierwszą (u = 0) */ const m = Math.max(...kandydaci.map((s) => odl(s.f.sk)));
     return m > q.max_cm ? [`miednica odchyla się od linii barki–${q.koniec === 'kolano' ? 'kolano' : 'kostka'} o ${f1(m)} cm, a ma ≤ ${q.max_cm} cm (ciało w jednej linii; bez zapadania i wypinania miednicy)`] : []; },
 });
 function ostatnia_s(p) { return p[p.length - 1].f; }

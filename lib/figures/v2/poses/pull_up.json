@@ -2705,53 +2705,6 @@
      }
     },
     {
-     "u": 0.5,
-     "miednica": [
-      -18,
-      119.5,
-      0
-     ],
-     "pochylenieTulowia": 0,
-     "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 0,
-     "nogi": {
-      "R": {
-       "kostka": [
-        -20,
-        41.3,
-        15
-       ],
-       "podbicie": -10,
-       "rotacjaStopy": 10
-      },
-      "L": {
-       "kostka": [
-        -20,
-        41.3,
-        -15
-       ],
-       "podbicie": -10,
-       "rotacjaStopy": 10
-      }
-     },
-     "rece": {
-      "R": {
-       "chwyt": [
-        0,
-        230,
-        22
-       ]
-      },
-      "L": {
-       "chwyt": [
-        0,
-        230,
-        -22
-       ]
-      }
-     }
-    },
-    {
      "u": 1,
      "miednica": [
       -18,
@@ -3116,74 +3069,7 @@
      }
     }
    ],
-   "bledy": [
-    {
-     "cue": "hang.noSwing",
-     "znacznik": "pelvis",
-     "dotyczy": [
-      "pelvis",
-      "hip",
-      "knee",
-      "ankle",
-      "heel",
-      "elbow",
-      "shoulder"
-     ],
-     "klatki": [
-      {
-       "u": 0
-      },
-      {
-       "u": 0.5,
-       "miednica": [
-        -5,
-        0,
-        0
-       ],
-       "nogi": {
-        "R": {
-         "kostka": [
-          10,
-          0,
-          0
-         ]
-        },
-        "L": {
-         "kostka": [
-          10,
-          0,
-          0
-         ]
-        }
-       }
-      },
-      {
-       "u": 1,
-       "miednica": [
-        -6,
-        0,
-        0
-       ],
-       "nogi": {
-        "R": {
-         "kostka": [
-          12,
-          0,
-          0
-         ]
-        },
-        "L": {
-         "kostka": [
-          12,
-          0,
-          0
-         ]
-        }
-       }
-      }
-     ]
-    }
-   ]
+   "bledy": []
   },
   "Scapular Pull-Up": {
    "kontrakt": "figury-v2/poza@1",

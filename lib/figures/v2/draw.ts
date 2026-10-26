@@ -93,8 +93,8 @@ export function bodyShapes(sk: Skeleton, view: View): Shape[] {
     } else if (view === 'top') {
       push({ k: 'poly', pts: capsule2(proj(L.heel, view), 3.6, proj(L.toe, view), 4.4), fill: 'shoe', z: zKey(LAYER.body, L.ankle[1] - 3), id: 'foot' + sx, close: true });
     } else {
-      const c = proj(add(L.ankle, [0, 0, 0]), view); const w = 5.4;
-      push({ k: 'poly', pts: [[c[0] - w, c[1] - BODY.ankleH], [c[0] + w, c[1] - BODY.ankleH], [c[0] + w - 0.5, c[1] - 1], [c[0] + 3, c[1] + 4.5], [c[0] - 3, c[1] + 4.5], [c[0] - w + 0.5, c[1] - 1]], fill: 'shoe', z: zKey(LAYER.body, L.toe[0]), id: 'foot' + sx, close: true, smooth: true });
+      const c = proj(add(L.ankle, [0, 0, 0]), view); const w = 5.4; const dno = Math.min(c[1] - BODY.ankleH, L.toe[1], L.heel[1]); /* dno buta sięga podeszwy także przy stopie na palcach (v2-jakosc: styk z podłogą z przodu) */
+      push({ k: 'poly', pts: [[c[0] - w, dno], [c[0] + w, dno], [c[0] + w - 0.5, c[1] - 1], [c[0] + 3, c[1] + 4.5], [c[0] - 3, c[1] + 4.5], [c[0] - w + 0.5, c[1] - 1]], fill: 'shoe', z: zKey(LAYER.body, L.toe[0]), id: 'foot' + sx, close: true, smooth: true });
     }
     /* ramię */
     const sh = A.shoulder, elbMid = mid(sh, A.elbow, 0.5), frMid = mid(A.elbow, A.wrist, 0.4);
@@ -168,7 +168,7 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         if (pr.hook !== undefined && side) S.push({ k: 'line', a: [pr.x, pr.hook], b: [pr.x + 5, pr.hook], w: 2.4, role: 'frame', z: zKey(LAYER.back, -69), id: 'hook' });
         break;
       }
-      case 'box': { const bw = (pr.w ?? E.boxW) / 2; const cz = pr.z ?? 0; S.push({ k: 'poly', pts: side ? rect(pr.x0, 0, pr.x1, pr.top) : view === 'front' ? rect(-cz - bw, 0, -cz + bw, pr.top) : rect(-cz - bw, -pr.x1, -cz + bw, -pr.x0), fill: 'pad', stroke: 'frame', w: 1, close: true, z: zKey(LAYER.backEquip, -40 + (side ? 0 : 0)), id: 'box' }); break; }
+      case 'box': { const bw = (pr.w ?? E.boxW) / 2; const cz = pr.z ?? 0; S.push({ k: 'poly', pts: side ? rect(pr.x0, 0, pr.x1, pr.top) : view === 'front' ? rect(-cz - bw, 0, -cz + bw, pr.top) : rect(-cz - bw, -pr.x1, -cz + bw, -pr.x0), fill: 'pad', stroke: 'frame', w: 1, close: true, z: view === 'front' ? zKey(LAYER.body, pr.x1 + 0.5) : zKey(LAYER.backEquip, -40), id: 'box' }); break; } /* z przodu skrzynia leży w warstwie ciała wg głębokości (x): bliższa widza zasłania dalsze części ciała */
       case 'bench': {
         const w = pr.w ?? E.benchW; const bp = benchPolys(pr); const ro = rollerAt(pr); const zb = (d: number): number => zKey(LAYER.backEquip, d);
         if (side) {
