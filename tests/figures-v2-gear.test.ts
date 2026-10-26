@@ -582,11 +582,11 @@ describe('walidator pozy z nowym sprzętem — macierz rodzaj × wariant', () =>
   test('opis kontraktu wspomina sprzęt trzymany w dłoniach i tolerancję 3 cm', () => {
     const t = describeContract('curl'); expect(t).toContain('podąża za chwytem'); expect(t).toContain('tolerancja 3 cm'); expect(t).toContain('hantel — hantel trzymany w dłoni');
   });
-  test('zakres polecenia (gearText, hasOwnTemplate, EXT_FIELDS): rodzina z własnym szablonem zachowuje jego tekst, generyczna dostaje tylko rodzaje z zakresu; EXT_FIELDS = 9 pól poza@2 usuwanych ze schematu spoza zakresu', () => {
+  test('zakres polecenia (gearText, hasOwnTemplate, EXT_FIELDS): rodzina z własnym szablonem zachowuje jego tekst, generyczna dostaje tylko rodzaje z zakresu; EXT_FIELDS = 10 pól poza@2 usuwanych ze schematu spoza zakresu', () => {
     expect(hasOwnTemplate('pull_up')).toBe(true); expect(hasOwnTemplate('shrug')).toBe(false);
     expect(gearText('pull_up', { gear: ['podloga'] })).toBe(templateFor('pull_up').gear);
     const t = gearText('shrug', { gear: ['podloga', 'hantel'] }); expect(t).toContain('podloga —'); expect(t).toContain('hantel —'); expect(t).not.toContain('kettlebell —'); expect(gearText('shrug')).toBe(templateFor('shrug').gear);
-    expect(EXT_FIELDS).toHaveLength(9); expect(EXT_FIELDS).toContain('obrotTulowia'); expect(EXT_FIELDS).toContain('obrotPrzedramienia');
+    expect(EXT_FIELDS).toHaveLength(10); expect(EXT_FIELDS).toContain('obrotTulowia'); expect(EXT_FIELDS).toContain('obrotPrzedramienia');
     const w = poseSchema('shrug', { gear: ['podloga'], ext: ['uniesienieBarkow'] }) as any; const k = Object.keys(w.properties.klatki.items.properties); const r = Object.keys(w.properties.klatki.items.properties.rece.properties.R.properties); expect(r).toContain('uniesienieBarkow'); expect(r).not.toContain('obrotPrzedramienia'); expect(k).not.toContain('obrotTulowia'); expect(Object.keys(w.properties.sprzet.items.properties)).not.toContain('promien');
     expect(describeContract('shrug', { gear: ['podloga'], ext: [] })).not.toContain('Opcjonalne stopnie swobody');
   });

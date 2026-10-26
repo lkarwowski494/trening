@@ -47,6 +47,13 @@ W.klek = { ok: [waliduj(KL, { rodzina: 'cable_row', cwiczenie: 'Kneeling High Pu
 /* 5 jednorącz landmine */
 const LJ = poza('overhead_press', 'Single-Arm Linear Jammer'); const g = LJ.sprzet.map((x) => [x.rodzaj, x.trzyma]);
 W.landmine = { sprzet: g, ok: waliduj(LJ, { rodzina: 'overhead_press', cwiczenie: 'Single-Arm Linear Jammer' }).ok };
+/* 6 strażnik deklaracji: niepusty powód w każdym wpisie zakres_wyjatki / dynamiczne / bez_bramki_ruchu; deklaracje trafiają do polecenia */
+const sens = JSON.parse(fs.readFileSync(path.join(${JSON.stringify(ROOT)}, 'data/zrodla/figury-sens.json'), 'utf8')); const brak = []; let n = 0;
+for (const [r, d] of Object.entries(sens.rodziny)) { for (const k of ['zakres_wyjatki', 'dynamiczne']) for (const [cw, w] of Object.entries(d[k] ?? {})) { n++; const powod = typeof w === 'string' ? w : w?.powod; if (typeof powod !== 'string' || powod.trim().length < 20) brak.push(r + '/' + k + '/' + cw); } }
+for (const [cw, w] of Object.entries(sens.bez_bramki_ruchu ?? {})) if (cw !== '_opis') { n++; if (typeof w !== 'string' || w.trim().length < 20) brak.push('bez_bramki_ruchu/' + cw); }
+const GP = await import(${JSON.stringify(path.join(ROOT, 'scripts/figures/gemini-polecenia.mjs'))}); const VV = await import(${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-validate.mjs'))});
+const opis = (r, c) => GP.opisCwiczenia(c, { root: ${JSON.stringify(ROOT)}, bledyCwiczenia: VV.bledyCwiczenia, catalog: GP.silnikCatalog(), rodzina: r }).deklaracje;
+W.straznik = { wpisow: n, brak, wPoleceniu: { suspended: opis('lunge', 'Suspended Split Squat'), spider: opis('curl', 'Spider Curl'), pronacja: opis('forearm', 'Dumbbell Lying Pronation'), zwykle: opis('lunge', 'Split Squat') } };
 console.log(JSON.stringify(W));
 `;
 
@@ -79,5 +86,12 @@ describe('rozszerzenia modelu pod pozy części górnej (26.10.2026)', () => {
   });
   test('klęk na palcach (podbicie −75°, kolana przy podłodze) przechodzi walidator bez wyjątku kostki; Kneeling Cable Triceps Extension ma ławkę płaską', () => {
     expect(W.klek.ok).toEqual([true, true]); expect(W.klek.podbicie).toEqual([-75, -75]); expect(W.klek.lawkaPlaska).toBe(true);
+  });
+  test('strażnik: każda deklaracja wyjątku (zakres_wyjatki, dynamiczne, bez_bramki_ruchu) ma niepusty powód', () => {
+    expect(W.straznik.wpisow).toBeGreaterThanOrEqual(11); expect(W.straznik.brak).toEqual([]);
+  });
+  test('polecenie dla Gemini: deklaracje ćwiczenia (zakres z liczbami i powodem, bez bramki ruchu) są w opisie ćwiczenia; zwykłe ćwiczenie ich nie ma', () => {
+    const w = W.straznik.wPoleceniu; expect(w.suspended.join(' ')).toMatch(/DEKLARACJA zakresu stawów: biodro ≥ -50°, kostka ≤ 66°.*—.*tylna stopa/); expect(w.spider.join(' ')).toMatch(/biodro ≥ -45°/);
+    expect(w.pronacja.join(' ')).toMatch(/ruch ≥ 8 cm/); expect(w.zwykle).toEqual([]);
   });
 });

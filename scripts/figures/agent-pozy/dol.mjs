@@ -47,9 +47,9 @@ export function reka(Sx, o = {}) {
   return (sg) => ({ g: [Sx[0] + dx, Sx[1] - ly, sg * z], pole: pole ?? [0, 0, sg] });
 }
 /** Zbiera klatkę z opisu: { u, m:[x,y,z?], p, bend, head, R:{a,pod,rot,pole,odch}, L:{...}, hr:{g,pole}, hl:{g,pole} }. */
-export function K({ u, m, p, bend = 0, head, R: nr, L: nl, hr, hl, roll, twist, lean, tilt }) {
+export function K({ u, m, p, bend = 0, head, R: nr, L: nl, hr, hl, roll, twist, lean, tilt, boczne }) {
   const noga = (n) => ({ k: n.a, pod: n.pod === null ? undefined : (n.pod ?? 0), rot: n.rot, pole: n.pole, odchylenie: n.odch });
-  const k = klatka({ u, miednica: [m[0], m[1], m[2] ?? 0], pitch: p, bend, glowa: head ?? p * 0.5, nogi: { R: noga(nr), L: noga(nl) }, rece: { R: hr, L: hl } });
+  const k = klatka({ u, miednica: [m[0], m[1], boczne !== undefined ? 0 : (m[2] ?? 0)], pitch: p, bend, glowa: head ?? p * 0.5, nogi: { R: noga(nr), L: noga(nl) }, rece: { R: hr, L: hl }, boczne });
   if (roll !== undefined) k.obrotTulowia = r1(roll); if (twist !== undefined) k.skretTulowia = r1(twist); if (lean !== undefined) k.przechylTulowia = r1(lean); if (tilt !== undefined) k.przechylMiednicy = r1(tilt);
   return k;
 }

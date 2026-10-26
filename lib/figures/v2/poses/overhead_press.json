@@ -13916,22 +13916,22 @@
       {
        "u": 0.5,
        "miednica": [
-        -5.1,
-        1.2,
+        -4.1,
+        1,
         0
        ],
-       "pochylenieTulowia": -7.1,
-       "pochylenieGlowy": -6.7
+       "pochylenieTulowia": -6.7,
+       "pochylenieGlowy": -6.3
       },
       {
        "u": 1,
        "miednica": [
-        -16.4,
-        6.8,
+        -14.1,
+        6.1,
         0
        ],
-       "pochylenieTulowia": -22.9,
-       "pochylenieGlowy": -21.7
+       "pochylenieTulowia": -21.4,
+       "pochylenieGlowy": -20.3
       }
      ]
     }

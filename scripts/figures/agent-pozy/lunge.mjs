@@ -22,9 +22,9 @@ function obciazenie(tryb, m, p, bend = 0) {
   }
 }
 /** Klatka kontraktu z opisu nóg i obciążenia. */
-function ramka({ u, m, p, bend = 0, aR, aL, podR = 0, podL = 0, tryb, glowa, poleR, poleL, rotR, rotL, odchR = ODCH, odchL = ODCH, rece }) {
+function ramka({ u, m, p, bend = 0, aR, aL, podR = 0, podL = 0, tryb, glowa, poleR, poleL, rotR, rotL, odchR = ODCH, odchL = ODCH, rece, boczne }) {
   const o = rece ? { hr: rece.hr, hl: rece.hl, sprzet: rece.sprzet ?? [] } : obciazenie(tryb, m, p, bend);
-  return { f: K({ u, m, p, bend, head: glowa ?? p * 0.4, R: { a: aR, pod: podR, pole: poleR, rot: rotR, odch: odchR }, L: { a: aL, pod: podL, pole: poleL, rot: rotL, odch: odchL }, hr: o.hr, hl: o.hl }), o };
+  return { f: K({ u, m, p, bend, head: glowa ?? p * 0.4, R: { a: aR, pod: podR, pole: poleR, rot: rotR, odch: odchR }, L: { a: aL, pod: podL, pole: poleL, rot: rotL, odch: odchL }, hr: o.hr, hl: o.hl, boczne }), o };
 }
 const kl = (r) => r.f;
 
@@ -152,23 +152,42 @@ function przekladanie(m, u) {
   return { hr: { g: [gx, gy, gz], pole: [0.2, -1, 0.3] }, hl: { g: [gx - 2, gy + 3, lerp(-24, -7, k)], pole: [0.2, -1, -0.3] }, sprzet: [{ rodzaj: 'kettlebell', dzwon: 'dol', trzyma: 'R' }] };
 }
 
+
+/* ---------- ruchy boczne: wykrok boczny, przysiad kozacki, boczny przysiad ze sztangą (przesuniecieBoczne: miednica przenosi się nad zgiętą nogę) ---------- */
+export function boczny(cw, o = {}) {
+  const { tryb = 'cc', pitchDol = 26, kDol = 100, zR = 30, hxB = -18, sprzetFn = null, bledy = true, kLProst = 10, pitchGora = 4, podLDol = 0 } = o;
+  const aRz = zR; const ZO = zR - HIP(); /* na dole biodro R nad stopą R */
+  const aRb = [0, kostkaPlasko(0), aRz];
+  const yb = hipY(aRb, hxB, ZO + HIP(), kDol);
+  const dL = dNogi(kLProst); const azL = (ZO - HIP()) - Math.sqrt(Math.max(1, dL * dL - hxB * hxB - (yb - kostkaPlasko(0)) ** 2));
+  const aLb = [0, kostkaPlasko(0), r1(azL)]; const us = [0, 0.25, 0.5, 0.75, 1];
+  const reach = (hx, zo) => Math.min(hipY(aRb, hx, zo + HIP(), 8), hipY(aLb, hx, zo - HIP(), 8));
+  const us9 = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1];
+  const klatki = us9.map((u) => { const e1 = ease(u / 0.45); const e = ease((u - 0.3) / 0.7); const zo = r1(ZO * e1); const hx = r1(hxB * ease((u - 0.1) / 0.5)); const y = r1(Math.min(reach(hx, zo), lerp(reach(0, 0), yb, e)));
+    const m = [hx, y]; const p = lerp(pitchGora, pitchDol, e);
+    const r = ramka({ u, m: [hx, y, zo], p, aR: aRb, aL: aLb, podR: 0, podL: podLDol, tryb, poleL: [1, 0, -0.1], rotR: o.rotR ?? -20, odchR: 6, boczne: r1(zo) }); return r; });
+  const spr = [PODLOGA(-120, 120), ...klatki[0].o.sprzet, ...(sprzetFn ? sprzetFn(klatki[0].f) : [])];
+  return zloz(cw, spr, klatki.map(kl), bledy ? [bladKolana([0, 0.25, 0.5, 0.75, 1], cw, ['R'], 40)] : []);
+}
+
 export const WYJATKI = {
-  'Bulgarian Split Squat (hantle)': 'tylna stopa leży grzbietem na ławce (palce skierowane do tyłu), a model stopy wskazuje tylko do przodu: przy stopie na palcach na ławce ≥ 25 cm zgięcie w kostce przekracza zakres (ok. 55° > 37°), a wyprost biodra tylnej nogi w pozycji dolnej (ok. 30°) przekracza zakres stawu (17°) — potrzebna decyzja o wyjątku zakresu dla rodziny (jak allow w pushup_plank)',
-  'Bulgarian Split Squat (sztanga)': 'jak Bulgarian Split Squat (hantle): zakres kostki i wyprost biodra tylnej nogi z podniesioną stopą',
-  'Smith Machine Bulgarian Split Squat': 'jak Bulgarian Split Squat (hantle): zakres kostki i wyprost biodra tylnej nogi z podniesioną stopą',
-  'Suspended Split Squat': 'stopa tylna w pętli taśmy wisi 35–45 cm nad podłogą: zgięcie w kostce (ok. 55–65°) i wyprost biodra tylnej nogi (ok. 30°) przekraczają zakresy stawów kontraktu; poza zakresem także pętla stopą skierowaną do tyłu',
-  'Lateral Lunge': 'kontrakt poza@2 nie przesuwa miednicy w płaszczyźnie czołowej: stawy biodrowe leżą zawsze w z = ±8,5 cm bez względu na miednica[2] (hipPoint/solveSkeleton), więc przeniesienie ciężaru na zgiętą nogę bez ślizgania stóp po podłodze nie da się narysować',
-  'Cossack Squat': 'jak Lateral Lunge: przysiad boczny wymaga przesunięcia miednicy w z nad zgiętą nogę (biodra stałe w z = ±8,5 cm); asymetryczny rozstaw przy nieruchomych stopach nie daje stałej wysokości miednicy',
-  'Barbell Side Split Squat': 'jak Lateral Lunge: przysiad boczny ze sztangą wymaga przesunięcia miednicy w z nad zgiętą nogę (biodra stałe w z = ±8,5 cm)',
 };
 export const PRZYBLIZENIA = {
+  'Bulgarian Split Squat (hantle)': 'przybliżenie: tylna stopa na ławce wysokości 30 cm (reguła głębokości: tylne kolano ≤ 20 cm), stopa leży na ławce z zakresem kostki i biodra z deklaracji zakres_wyjatki',
+  'Bulgarian Split Squat (sztanga)': 'przybliżenie: jak Bulgarian Split Squat (hantle)',
+  'Smith Machine Bulgarian Split Squat': 'przybliżenie: jak Bulgarian Split Squat (hantle); prowadnica w osi sztangi',
+  'Suspended Split Squat': 'przybliżenie: tylna stopa w pętli taśmy 40 cm nad podłogą, zakres kostki i biodra z deklaracji zakres_wyjatki',
+  'Lateral Lunge': 'ruch boczny z przesuniecieBoczne: miednica przenosi się nad stopę zgiętej nogi, druga noga prawie prosta; stopy nieruchome',
+  'Cossack Squat': 'jak Lateral Lunge, głębiej; prosta noga bez uniesienia palców (uproszczenie)',
   'Crossover Reverse Lunge': 'przybliżenie: skrzyżowanie nóg bez obrotu miednicy (tylna stopa za przednią i na jej stronę)',
   'Curtsy Lunge': 'przybliżenie: skrzyżowanie nóg bez obrotu miednicy',
   'Lunge Pass Through': 'przybliżenie: kettlebell zwisa pod barkami w dole wykroku (przekładanie między rękami niemodelowane)',
 };
 
+const BT = 30, BY = 44; /* wysokość ławki pod tylną stopą, głębokość */
 export function generuj() {
   const linki = (g, f0) => [{ rodzaj: 'wyciag', dwa: true, x: 105, y: 22, z: 45, chwyt: 'uchwyt', h: 120 }];
+  const lawkaTyl = (g) => [{ rodzaj: 'lawka', x: r1(g.aT[0] - 22), top: BT, kat: 0, dlugosc: 40, siedzisko: 20 }];
   const pudlo = (g) => [{ rodzaj: 'skrzynia', x0: -16, x1: 30, top: 12, z: 26 }];
   return {
     'Split Squat': () => splitSquat('Split Squat'),
@@ -180,6 +199,13 @@ export function generuj() {
     'Barbell Walking Lunge': () => krok('Barbell Walking Lunge', { kierunek: 'przod', tryb: 'sztanga' }),
     'Elevated Back Lunge': () => krok('Elevated Back Lunge', { kierunek: 'tyl', tryb: 'sztanga', topPrzod: 12, sprzetFn: pudlo }),
     'Slider Reverse Lunge': () => krok('Slider Reverse Lunge', { kierunek: 'tyl', slizg: true, sprzetFn: () => [{ rodzaj: 'slizgacze', punkt: 'kostki', trzyma: 'L' }] }),
+    'Bulgarian Split Squat (hantle)': () => splitSquat('Bulgarian Split Squat (hantle)', { tryb: 'hantle', topTyl: BT, yDol: BY, sprzetFn: lawkaTyl }),
+    'Bulgarian Split Squat (sztanga)': () => splitSquat('Bulgarian Split Squat (sztanga)', { tryb: 'sztanga', topTyl: BT, yDol: BY, sprzetFn: (g, f) => [...lawkaTyl(g, f), { rodzaj: 'slupek', x: g.x - 40, h: 150, hak: 135 }] }),
+    'Smith Machine Bulgarian Split Squat': () => splitSquat('Smith Machine Bulgarian Split Squat', { tryb: 'smith', topTyl: BT, yDol: BY, sprzetFn: (g, f) => [...lawkaTyl(g, f), { rodzaj: 'smith', x: r1(f.rece.R.chwyt[0]), h: 200 }] }),
+    'Suspended Split Squat': () => splitSquat('Suspended Split Squat', { tylWisi: 40, sprzetFn: (g) => [{ rodzaj: 'zawieszenie', punkt: 'kostki', trzyma: 'L', x: r1(g.aT[0]), y: 220, z: g.aT[2] }] }),
+    'Lateral Lunge': () => boczny('Lateral Lunge'),
+    'Cossack Squat': () => boczny('Cossack Squat', { kDol: 112, zR: 36, pitchDol: 32, hxB: -24, rotR: -28 }),
+    'Barbell Side Split Squat': () => boczny('Barbell Side Split Squat', { tryb: 'sztanga', sprzetFn: (f) => [{ rodzaj: 'slupek', x: -40, h: 150, hak: 135 }] }),
     'Step Up': () => stepUp('Step Up', { tryb: 'hantle' }),
     'Barbell Step Up': () => stepUp('Barbell Step Up', { tryb: 'sztanga' }),
     'Pistol Squat': () => pistolet('Pistol Squat'),

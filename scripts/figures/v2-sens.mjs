@@ -41,6 +41,15 @@ export const bezBramkiRuchu = (cwiczenie, root = ROOT) => cwiczenie !== '_opis' 
 export const zakresWyjatek = (rodzina, cwiczenie, root = ROOT) => { const d = wczytajSens(root).rodziny?.[rodzina]?.zakres_wyjatki; const w = d && (d[cwiczenie] || d['*']); if (!w) return undefined; const { powod, ...g } = w; return g; };
 /** Ćwiczenie DYNAMICZNE (wersja 1.1: lot, przechwyt, wymach): `rodziny.<rodzina>.dynamiczne` { ćwiczenie | „*” (cała rodzina): powód } w danych; limit skoku punktu w ciągłości = CONTRACT.maxJumpDynamic zamiast maxJump. Bez wpisu: zachowanie bez zmian. */
 export const dynamiczne = (rodzina, cwiczenie, root = ROOT) => { const d = wczytajSens(root).rodziny?.[rodzina]?.dynamiczne; return !!(d && (d[cwiczenie] || d['*'])); };
+/** Deklaracje wyjątków walidatora dla ćwiczenia, jako zdania z powodem (zakres stawów, ruch dynamiczny, bez bramki ruchu) — trafiają do polecenia dla Gemini, żeby generator wiedział, co jest dozwolone i dlaczego. */
+export function deklaracjeCwiczenia(rodzina, cwiczenie, root = ROOT) {
+  const d = wczytajSens(root); const r = d.rodziny?.[rodzina] ?? {}; const o = [];
+  const z = r.zakres_wyjatki && (r.zakres_wyjatki[cwiczenie] || r.zakres_wyjatki['*']);
+  if (z) { const { powod, ...g } = z; const nazwy = { hipMin: (v) => `biodro ≥ ${v}°`, ankleMin: (v) => `kostka ≥ ${v}°`, ankleMax: (v) => `kostka ≤ ${v}°`, elbow: (v) => `łokieć ≤ ${v}°`, shSag: (v) => `bark (płaszczyzna strzałkowa) ≤ ${v}°`, shElev: (v) => `bark (elewacja) ≤ ${v}°` }; o.push(`DEKLARACJA zakresu stawów: ${Object.entries(g).map(([k, v]) => nazwy[k]?.(v) ?? `${k} ${v}`).join(', ')} (poza zakresem kontraktu) — ${powod}`); }
+  const dy = r.dynamiczne && (r.dynamiczne[cwiczenie] || r.dynamiczne['*']); if (dy) o.push(`DEKLARACJA ruchu dynamicznego (większy limit skoku punktu między klatkami) — ${dy}`);
+  const bb = d.bez_bramki_ruchu?.[cwiczenie]; if (bb && cwiczenie !== '_opis') o.push(`DEKLARACJA: bramka „ruch ≥ 8 cm” nie obowiązuje (ruch to obrót przedramienia) — ${bb}`);
+  return o;
+}
 export const otwarteDla = (rodzina, cwiczenie, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.otwarte?.[cwiczenie] ?? null;
 /** Identyfikatory wskazówek ćwiczenia: własne (lib/cues/data.json: setup/move/tips/mistakes) albo zestaw ogólny (cue-sets.json: ok). */
 export function wskazowkiCwiczenia(cwiczenie, root = ROOT) {
