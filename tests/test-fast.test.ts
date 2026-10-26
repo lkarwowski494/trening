@@ -26,4 +26,10 @@ describe('test:fast (M1-059)', () => {
   test('zmiana pliku testu i kodu: pliki bez duplikatów', () => {
     expect(plan(['lib/units.ts', 'lib/units.ts', 'tests/units.test.ts']).files).toEqual(['lib/units.ts', 'tests/units.test.ts']);
   });
+  test('1.0.1 (lekcja L-NNN): zmiana słownika (lib/locales, locales, lib/i18n.en.ts) uruchamia testy plików generowanych z niego — jest ich nie wiąże import', () => {
+    for (const f of ['lib/locales/pt-BR.json', 'locales/el.json', 'lib/i18n.en.ts']) {
+      expect(plan([f]).files).toEqual(expect.arrayContaining([f, 'tests/watch-apple-i18n.test.ts', 'tests/widget-i18n.test.ts', 'tests/health-permissions.test.ts', 'tests/i18n-locales.test.ts']));
+    }
+    expect(plan(['lib/units.ts']).files).toEqual(['lib/units.ts']);
+  });
 });
