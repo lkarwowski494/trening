@@ -50,3 +50,17 @@ export function legacyBandKg(b: Band, kg: unknown) { (b as Band & { nominalKg?: 
 /** Fala 2 audytu 0.10 (masa ciała z datą): pomiar masy ciała dla testów — domyślnie z dniem przed całą historią testu (= dawne Settings.bodyMass,
  * obowiązujące dla wszystkich treningów); bez argumentu — brak pomiarów. */
 export function setBodyMass(kg?: number, date = '2000-01-01') { const st = store.getState(); if (kg == null) delete st.bodyMassLog; else st.bodyMassLog = [{ date, kg }]; store.save(); }
+
+/** Zegar ścienny testu przesunięty tak, by TERAZ wypadało w podanej chwili (zegar idzie dalej, liczniki czasu zostają prawdziwe — bez jest.useFakeTimers,
+ * który zawiesza pętle oczekiwania aplikacji). Testy, które cofają start treningu o godziny od „teraz”, nie mogą zależeć od dnia uruchomienia:
+ * w noc zmiany czasu (Europa 25.10.2026, 29.03.2026) ta sama godzina wypada w innym przesunięciu strefy (nocne 24–25.10.2026).
+ * Zwrócona funkcja przywraca prawdziwy `Date`. */
+export function pinDate(iso: string): () => void {
+  const Real = Date; const delta = new Real(iso).getTime() - Real.now();
+  class Shifted extends Real {
+    constructor(...a: unknown[]) { if (a.length === 0) super(Real.now() + delta); else super(...(a as [number])); }
+    static now() { return Real.now() + delta; }
+  }
+  (globalThis as { Date: DateConstructor }).Date = Shifted as unknown as DateConstructor;
+  return () => { (globalThis as { Date: DateConstructor }).Date = Real; };
+}

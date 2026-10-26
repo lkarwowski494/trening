@@ -116,6 +116,9 @@ name: Plan — nazwa, drugi plan, wyłączenie, panel dnia
 - extendedWaitUntil: { visible: "Rest · plan changed", timeout: 15000 }
 - takeScreenshot: 90-wolne-w-dniu
 # --- miniony dzień: dopisanie treningu wstecz z panelu dnia ---
+# Po „Wolne w tym dniu” strona jest przewinięta w dół, a strzałki miesiąca leżą pod nagłówkiem ekranu (E2E 40261879791: „Previous month” y=38 pod paskiem stanu, stuknięcia
+# trafiły w przycisk „Log a past workout” i otwarły „Past workout” zamiast panelu dnia) — przewijamy do strzałki ze środkowaniem, potem dwa stuknięcia i komórka.
+- scrollUntilVisible: { element: "Previous month", direction: UP, timeout: 30000, centerElement: true }
 - tapOn: "Previous month"
 - tapOn: "Previous month"
 - tapOn: { id: "cal-.*", index: 0 }
@@ -134,7 +137,12 @@ name: Plan — nazwa, drugi plan, wyłączenie, panel dnia
 # --- start dzisiejszego treningu z panelu dnia ---
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Planning", timeout: 30000 }
-- tapOn: "Next month"
+# Po powrocie z sesji kalendarz może pokazywać bieżący miesiąc albo ten, w którym dopisano trening (nocne 23–25.10.2026: na iOS był bieżący, a „Next month”
+# przenosiło do listopada bez dzisiejszego dnia) — do bieżącego miesiąca przechodzimy tylko wtedy, gdy dzisiejszego dnia nie widać.
+- runFlow:
+    when: { notVisible: ".*, today.*" }
+    commands:
+      - tapOn: "Next month"
 - tapOn: { text: ".*, today.*" }
 - extendedWaitUntil: { visible: "Start planned workout: Upper A", timeout: 15000 }
 - tapOn: "Start planned workout: Upper A"

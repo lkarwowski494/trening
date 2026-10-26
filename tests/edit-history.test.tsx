@@ -9,7 +9,7 @@ import { buildBackup, buildCsv, parseBackup } from '@/lib/backup';
 import * as health from '@/lib/health';
 import { wIn } from '@/lib/units';
 import type { Workout } from '@/lib/seed';
-import { fresh, ex, addWorkout, pressAlert, saved, withDemoTemplates } from './helpers';
+import { fresh, ex, addWorkout, pressAlert, saved, withDemoTemplates, pinDate } from './helpers';
 import { router } from 'expo-router';
 import { renderApp, flushAll, screen, go, tap, type, act, swipeDelete, deleteActions } from './app';
 
@@ -405,7 +405,9 @@ describe('audyt: ekrany', () => {
     expect(write.mock.calls.some(c => /\/Backup\//.test(c[0]))).toBe(true);
   });
 
-  test('trening wstecz nachodzący na trening w toku — odrzucony już na pierwszym ekranie; nachodzący na sesję z historii — potwierdzenie', async () => {
+  /* „teraz” przypięte do południa dnia odniesienia (DAY0): godzina wpisana (teraz − 1,5 h) nie może wypaść w powtórzonej godzinie 02:00–02:59 nocy zmiany czasu (25.10.2026) — zapis „02:50”
+   * oznacza wtedy pierwsze wystąpienie (czas letni), czyli 1 h wcześniej, i nachodzenie znika (nocne 25.10.2026) */
+  test('trening wstecz nachodzący na trening w toku — odrzucony już na pierwszym ekranie; nachodzący na sesję z historii — potwierdzenie', async () => { const unpin = pinDate(new Date(DAY0.getFullYear(), DAY0.getMonth(), DAY0.getDate(), 12).toISOString()); try {
     await fresh(); addWorkout(day(2, 17), [[BP, [{ weight: 80, reps: 5 }]]]); store.startEmpty(); const a = store.getState().active!; a.startedAt = Date.now() - 3600e3; store.save(a);
     await renderApp({ saved: snapshot() }); await go('/history/add'); await flushAll(20);
     const st = Date.now() - 5400e3; await type(screen.getByLabelText('Data (RRRR-MM-DD)'), edit.dateText(st)); await type(screen.getByLabelText('Godzina startu'), edit.timeText(st));
@@ -417,7 +419,7 @@ describe('audyt: ekrany', () => {
     await type(screen.getAllByLabelText('kg')[0], '100'); await type(screen.getAllByLabelText('Powtórzenia')[0], '5');
     await tap(screen.getByText('Zapisz')); expect(lastAlert()).toMatchObject({ title: 'Zapisać zmiany?', msg: expect.stringMatching(/nachodzi na sesję „T”/) });
     await alertNow('Zapisać zmiany?', 'Zapisz'); expect(store.getState().workouts).toHaveLength(2); expect(store.getState().active!.exercises).toHaveLength(0);
-  });
+  } finally { unpin(); } });
 
   test('id z nietypowymi znakami (import): edytor, wybór ćwiczenia i zapis działają (encodeURIComponent); zamknięcie ekranu wyrzuca szkic; „Edytuj” dwa razy szybko = jeden szkic', async () => {
     await fresh(); const w = addWorkout(day(3), [[BP, [{ weight: 80, reps: 5 }]]]); w.id = 'x/y z?#1'; store.save(w);
