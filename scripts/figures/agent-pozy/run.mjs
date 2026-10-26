@@ -5,9 +5,10 @@
 import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { waliduj, podglad, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
+import { waliduj, podglad, htmlPodgladu, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
+import { zgodnoscManifestu, wczytajTeksty } from '../v2-jakosc.mjs';
 import { opisCwiczenia, silnikCatalog } from '../gemini-polecenia.mjs';
-import { regulyDla } from '../v2-sens.mjs';
+import { regulyDla, bledyBezAnimacji } from '../v2-sens.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i >= 0 ? process.argv[i + 1] : d; };
@@ -20,6 +21,7 @@ async function main() {
   const gen = mod.generuj(); const wyniki = {}; const poze = {}; const t0 = Date.now();
   for (const [cw, f] of Object.entries(gen)) {
     if (tylko && !tylko.includes(cw)) continue;
+    if (mod.WYJATKI?.[cw]) { console.log(`  WYJĄTEK ${cw}: ${mod.WYJATKI[cw].slice(0, 160)}`); continue; } /* jawny wyjątek z powodem (manifest.wyjatki), nie liczy się jako porażka */
     let poza = null; try { poza = f(); } catch (e) { wyniki[cw] = { ok: false, bledy: [{ kod: 'generator', szczegol: e.message }] }; continue; }
     const v = waliduj(poza, { rodzina, cwiczenie: cw }); wyniki[cw] = v; if (v.ok) poze[cw] = poza;
   }
@@ -36,9 +38,13 @@ async function main() {
     for (const [cw, poza] of Object.entries(poze)) {
       let png = null; try { png = await podglad(poza, dir, 'light'); } catch (e) { console.log(`podgląd ${cw}: ${e.message}`); }
       const op = opisCwiczenia(cw, { root: ROOT, bledyCwiczenia, catalog, rodzina });
-      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: poza.klatki.map((k) => k.u), bledy_w_pozie: poza.bledy.map((b) => b.cue), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
+      const bez = bledyBezAnimacji(rodzina, ROOT);
+      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: poza.klatki.map((k) => k.u), klatki_na_obrazie: htmlPodgladu(poza, 'light').klatki, bledy_w_pozie: poza.bledy.map((b) => b.cue), bledy_wskazowki_id: bledyCwiczenia(cw, ROOT).filter((id) => !(id in bez)), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
     }
+    if (tylko) { const tylkoPodzbior = (o) => Object.fromEntries(Object.entries(o ?? {}).filter(([k]) => tylko.includes(k))); manifest.wyjatki = tylkoPodzbior(manifest.wyjatki); manifest.przyblizenia = tylkoPodzbior(manifest.przyblizenia); } /* przebieg częściowy: manifest dotyczy tylko wybranych ćwiczeń */
+    manifest.wyjatki_opisu = mod.WYJATKI_OPISU ?? {}; const uwagi = zgodnoscManifestu(manifest, wczytajTeksty(ROOT), manifest.wyjatki_opisu); manifest.zgodnosc_manifestu = uwagi;
     writeFileSync(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n'); console.log(`podglądy + manifest: ${dir}`);
+    if (uwagi.length) { console.log('NIEZGODNOŚĆ MANIFESTU Z OBRAZEM:'); for (const u of uwagi) console.log(`  [${u.regula}] ${u.szczegol}`); process.exitCode = 1; }
   }
   if (flag('zastosuj') && ok.length) { const r = zastosuj(ROOT, { rodzina, poze }); console.log(`nałożono: ${r.zapisano.length} → ${r.plik}${r.odrzucone.length ? `; odrzucone: ${r.odrzucone.map((x) => x.cwiczenie).join(', ')}` : ''}`); }
 }
