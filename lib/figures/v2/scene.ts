@@ -43,7 +43,7 @@ export type Prop =
   | { k: 'wall'; x: number; h: number; front?: boolean }                                      /* ściana: lita po stronie −x od powierzchni x (za osobą); front: lita po stronie +x (przed osobą; w widoku z przodu przekrój) */
   | { k: 'rail'; x: number; h: number }                                                        /* prowadnica suwnicy Smitha (pionowa) */
   | { k: 'post'; x: number; h: number; hook?: number }                                         /* słupek stojaka */
-  | { k: 'cable'; from: V3; to: V3; attach?: 'handle' | 'rope' | 'bar' | 'strap'; ends?: V3[]; solid?: boolean } /* linka od bloczku (from) do osprzętu (to); ends = miejsca chwytu (dłonie albo kostka); solid = kolider tylko dla danych kontraktu */
+  | { k: 'cable'; from: V3; to: V3; attach?: 'handle' | 'rope' | 'bar' | 'strap'; ends?: V3[]; solid?: boolean; free?: number } /* linka od bloczku (from) do osprzętu (to); ends = miejsca chwytu (dłonie albo kostka); solid = kolider tylko dla danych kontraktu; free = długość odcinka przy osprzęcie bez kolidera (domyślnie EQUIP.cableEnd; taśmy zawieszenia: wzdłuż przedramienia) */
   | { k: 'tower'; x: number; z: number; h: number; solid?: boolean }                                    /* kolumna stacji wyciągów (bloczek na linii x, z) */
   | { k: 'slide'; from: V3; to: V3; dir: V3; len: number }                                                /* prowadnica liniowa maszyny: odcinek skoku od from w kierunku dir (długość len), to = punkt mocowania (platforma, wałek, uchwyt) na prowadnicy */
   | { k: 'band'; from: V3; to: V3 }

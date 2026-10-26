@@ -366,13 +366,23 @@ export const FORMAT_ODPOWIEDZI = (rodzina, klucze) => [
   '- Jeśli nie jesteś w stanie dopasować pozy do wymagań, i tak ją zwróć (błędy sprawdzimy my) — nie pomijaj ćwiczeń.',
 ];
 
+/** Zakres kontraktu w poleceniu dla jednej części (decyzja koordynatora 26.10.2026, limit 36 000 znaków zostaje): rodzaje sprzętu = podłoga i skrzynia, sprzęt domyślny rodziny, sprzęt z możliwości katalogu ćwiczeń części i rodzaje wymienione w szablonie rodziny; pola poza@2 = tylko pola, które nazywają reguły sensu ćwiczeń części (parametry.pole itd.). */
+export function zakresPolecenia(rodzina, cwiczenia, root = ROOT) {
+  const { v2, catalog } = silnik(); const t = v2.templateFor(rodzina);
+  const gear = new Set(['podloga', 'skrzynia', ...(t.defaultGear ?? []).map((g) => g.rodzaj), ...rodzajeSprzetu(cwiczenia, catalog)]);
+  if (v2.hasOwnTemplate?.(rodzina)) for (const k of v2.GEAR) if (new RegExp(`\\b${k}\\b`).test(t.gear)) gear.add(k);
+  const ext = new Set(); const pola = JSON.stringify(cwiczenia.flatMap((c) => regulyDla(rodzina, c, root).map((r) => r.parametry ?? {})));
+  for (const k of v2.EXT_FIELDS) if (pola.includes(`"${k}"`)) ext.add(k);
+  return { gear: v2.GEAR.filter((k) => gear.has(k)), ext: [...ext] };
+}
 export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia, przyklady, kontrakt, opisy, pomijane = [], sprzet = [], root = ROOT }) {
   const L = [];
   L.push(`# Pozy figur ćwiczeń — rodzina „${rodzina}”${czesc.ile > 1 || czesc.sufiks ? ` (część ${czesc.numer}${czesc.sufiks ?? ''}/${czesc.ile})` : ''} [${ETYKIETA_WERSJI}]`, '');
   L.push('Jesteś animatorem postaci do aplikacji treningowej. Tworzysz dane póz (klatki kluczowe szkieletu) dla ćwiczeń jednej rodziny ruchu. Dane wczyta program, który sprawdzi geometrię ORAZ sens ruchu — poza niezgodna z wymaganiami zostanie odrzucona, więc trzymaj się liczb poniżej. Liczby i relacje są wyliczone z naszego modelu; nie zgaduj ich, tylko podstaw.');
   L.push(`Rodzina: ${opisRodziny}. Widoki w aplikacji: ${widoki} (pozę podajesz w 3D, widoki liczy program).`, '');
-  L.push('## Kontrakt danych', '', kontrakt.opisKontraktu(rodzina), '');
-  L.push('## Pola obiektu pozy', '', ...opisPol(kontrakt.schematPozy(rodzina)), '');
+  const zakres = zakresPolecenia(rodzina, cwiczenia, root);
+  L.push('## Kontrakt danych', '', kontrakt.opisKontraktu(rodzina, zakres), '');
+  L.push('## Pola obiektu pozy', '', ...opisPol(kontrakt.schematPozy(rodzina, zakres)), '');
   L.push('## Punkty odniesienia (stałe wymiary i relacje)', '', ...punktyOdniesienia(rodzina), '');
   if (sprzet.length) L.push('## Sprzęt w ćwiczeniach tej części', '', ...sprzet, '');
   L.push('## Wymagania liczbowe walidatora', '', ...wymagania(rodzina).map((x) => `- ${x}`), '');
@@ -456,21 +466,21 @@ export function parsujArgumenty(argv) {
   return o;
 }
 
-export async function main(argv, { root = ROOT, log = console.log } = {}) {
+export async function main(argv, { root = ROOT, log = console.log, maxZnakow = MAX_ZNAKOW } = {}) {
   const o = parsujArgumenty(argv); const docs = join(root, 'docs/51-figury-v2-pokrycie.md');
   const maRegul = (id) => !!wczytajSens(root).rodziny?.[id];
   const ids = (o.wszystkie ? rodzinyZDokumentu(docs).filter((r) => r.stan !== 'gotowa' || existsSync(join(root, 'lib/figures/v2/poses', `${r.id}.json`))).map((r) => r.id) : [o.rodzina]).filter((id) => { if (maRegul(id) || o.bezRegul) return true; log(`${id}: POMINIĘTA — brak reguł sensu w data/zrodla/figury-sens.json (docs/53, bramka 3; --bez-regul wymusza)`); return false; });
   mkdirSync(resolve(o.wyjscie), { recursive: true }); let plikow = 0, najdluzsze = 0, rodzin = 0, przekroczone = 0;
   for (const id of ids) {
-    const p = await poleceniaRodziny(id, { root, bezRegul: o.bezRegul, wyklucz: o.wyklucz, nazwa: o.nazwa }); if (!p.length) { log(`${id}: brak ćwiczeń do wysłania (pozy gotowe, albo wszystkie pominięte/wstrzymane — sprzęt poza kontraktem, OTWARTE, brak reguł)`); continue; }
+    const p = await poleceniaRodziny(id, { maxZnakow, root, bezRegul: o.bezRegul, wyklucz: o.wyklucz, nazwa: o.nazwa }); if (!p.length) { log(`${id}: brak ćwiczeń do wysłania (pozy gotowe, albo wszystkie pominięte/wstrzymane — sprzęt poza kontraktem, OTWARTE, brak reguł)`); continue; }
     rodzin++;
     for (const x of p) {
-      if (x.tresc.length > MAX_ZNAKOW) { if (x.cwiczenia.length > 1) throw new Error(`${x.plik}: polecenie ma ${x.tresc.length} znaków (limit ${MAX_ZNAKOW})`); log(`${x.plik}: POMINIĘTE — polecenie jednego ćwiczenia (${x.cwiczenia[0]}) ma ${x.tresc.length} znaków, limit ${MAX_ZNAKOW} (sekcja sprzętu + kontrakt); zrobi nasz agent albo po skróceniu kontraktu`); przekroczone++; continue; }
+      if (x.tresc.length > maxZnakow) { if (x.cwiczenia.length > 1) throw new Error(`${x.plik}: polecenie ma ${x.tresc.length} znaków (limit ${maxZnakow})`); log(`${x.plik}: POMINIĘTE — polecenie jednego ćwiczenia (${x.cwiczenia[0]}) ma ${x.tresc.length} znaków, limit ${maxZnakow} (sekcja sprzętu + kontrakt); zrobi nasz agent albo po skróceniu kontraktu`); przekroczone++; continue; }
       writeFileSync(join(resolve(o.wyjscie), x.plik), x.tresc); plikow++; najdluzsze = Math.max(najdluzsze, x.tresc.length);
       log(`${x.plik}: ${x.cwiczenia.length} ćwiczeń, ${x.tresc.length} znaków`);
     }
   }
-  if (przekroczone) log(`UWAGA: ${przekroczone} polecenie(a) jednego ćwiczenia przekracza limit ${MAX_ZNAKOW} znaków i nie zostało zapisane`);
+  if (przekroczone) log(`UWAGA: ${przekroczone} polecenie(a) jednego ćwiczenia przekracza limit ${maxZnakow} znaków i nie zostało zapisane`);
   log(`rodzin: ${rodzin}, plików: ${plikow}, najdłuższe: ${najdluzsze} znaków`);
   return 0;
 }

@@ -887,6 +887,14 @@
   "pushup_plank/Standing Barbell Rollout": {
    "svg": "318ef8a74c8251ed1af2",
    "raw": "c1cd613ed35828177901"
+  },
+  "pushup_plank/Suspended Push-Up": {
+   "svg": "e7c0fd751893a3074e97",
+   "raw": "651b55a8080909f14a65"
+  },
+  "pushup_plank/Suspended Fallout": {
+   "svg": "069650e4ac2f6faa3394",
+   "raw": "93c376054da2d2178e5e"
   }
  }
 }

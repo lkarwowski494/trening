@@ -12,8 +12,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 354 | 354 | 0 |
 | TEKST | 1118 | 1118 | 0 |
-| LOGIKA | 1081 | 1081 | 0 |
-| WYMIAR | 160 | 160 | 0 |
+| LOGIKA | 1083 | 1081 | 0 |
+| WYMIAR | 161 | 160 | 0 |
 
 ## EKRAN
 
@@ -1786,8 +1786,10 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/contacts.glowShapes | lib/figures/v2/contacts.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/contacts.contactGlows | lib/figures/v2/contacts.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/contacts.lostContacts | lib/figures/v2/contacts.ts | tests/figures-v2-styk.test.tsx |
+| figures/v2/contract.hasOwnTemplate | lib/figures/v2/contract.ts | WYJĄTEK: BRAK |
 | figures/v2/contract.templateFor | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts |
 | figures/v2/contract.knownFamily | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
+| figures/v2/contract.gearText | lib/figures/v2/contract.ts | WYJĄTEK: BRAK |
 | figures/v2/contract.poseSchema | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts |
 | figures/v2/contract.checkSchema | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.poseAt | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts |
@@ -2665,6 +2667,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | ContactKind: foot \| hand \| body | lib/figures/v2/contacts.ts | tests/figures-v2-gear.test.ts, tests/figures-v2-styk.test.tsx |
 | MARKS (5) | lib/figures/v2/contract.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts |
 | AFFECTS (10) | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
+| EXT_FIELDS (2) | lib/figures/v2/contract.ts | WYJĄTEK: BRAK |
 | TRUNK_EXT (5) | lib/figures/v2/contract.ts | tests/figures-v2-poza2.test.ts |
 | ARM_EXT (4) | lib/figures/v2/contract.ts | tests/figures-v2-poza2.test.ts |
 | CuePolicy: A \| B | lib/figures/v2/cueSets.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-live-logic.test.ts |
