@@ -116,6 +116,8 @@ name: Plan — nazwa, drugi plan, wyłączenie, panel dnia
 - extendedWaitUntil: { visible: "Rest · plan changed", timeout: 15000 }
 - takeScreenshot: 90-wolne-w-dniu
 # --- miniony dzień: dopisanie treningu wstecz z panelu dnia ---
+# mały ekran (nocny przebieg 40263099163, zrzut 90): panel dnia przewija stronę, nagłówek kalendarza jest nad ekranem i stuknięcie „Previous month” nie trafia — najpierw przewiń w górę
+- scrollUntilVisible: { element: "Previous month", direction: UP, timeout: 30000 }
 - tapOn: "Previous month"
 - tapOn: "Previous month"
 - tapOn: { id: "cal-.*", index: 0 }
@@ -134,7 +136,12 @@ name: Plan — nazwa, drugi plan, wyłączenie, panel dnia
 # --- start dzisiejszego treningu z panelu dnia ---
 - tapOn: "Back"
 - extendedWaitUntil: { visible: "Planning", timeout: 30000 }
-- tapOn: "Next month"
+# kalendarz wraca na bieżący miesiąc albo zostaje na wybranym — „Next month” tylko, gdy dziś nie widać (bez liczenia miesięcy)
+- runFlow:
+    when: { notVisible: ".*, today.*" }
+    commands:
+      - tapOn: "Next month"
+- scrollUntilVisible: { element: ".*, today.*", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: { text: ".*, today.*" }
 - extendedWaitUntil: { visible: "Start planned workout: Upper A", timeout: 15000 }
 - tapOn: "Start planned workout: Upper A"
