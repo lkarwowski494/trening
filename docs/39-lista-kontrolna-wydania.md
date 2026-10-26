@@ -53,7 +53,7 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
 ## Po aktualizacji z poprzedniej wersji
 
 - [ ] **AK-05** Aktualizacja z TestFlight na prawdziwym telefonie (dane z poprzedniego buildu)
-  - Co zrobić i czego oczekiwać: Na własnym telefonie: stary build → TestFlight Zaktualizuj → otwórz: historia i szablony na miejscu, plan, trening w toku (jeśli był), ikona i nazwa poprawne, „Co nowego” pokazuje wersję.
+  - Co zrobić i czego oczekiwać: Na własnym telefonie: stary build → TestFlight Zaktualizuj → otwórz: historia i szablony na miejscu, plan, trening w toku (jeśli był), ikona i nazwa poprawne, w nagłówku ekranu Trening nie ma „Co nowego” (1.0, historia pusta).
   - Dlaczego nie automat: Instalacja z TestFlight na prawdziwym urządzeniu (podpis, ikona, rozszerzenie Live Activity, dane w prawdziwej bazie) nie istnieje na symulatorze CI.
   - Pokrycie zastępcze w Jest: `tests/maestro-zycie.test.tsx`, `tests/migrate-idem.test.ts`, `tests/places-migrate.test.ts`
 

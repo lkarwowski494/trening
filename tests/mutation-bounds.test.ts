@@ -10,6 +10,7 @@ import { syncPlanReminders, planReminderKey, reminderPermission, askReminderPerm
 import { periodRange, periodSummary, periodTitle } from '@/lib/period';
 import { weekStrip, weekTiles, lastWorkout, firstSteps } from '@/lib/dashboard';
 import { WHATS_NEW, whatsNewUnseen, markWhatsNewSeen } from '@/lib/whatsnew';
+import { PROBKI, zProbkami } from './whatsnew-probki';
 import { trainingStreakWeeks, deloadHint, nextMonday, deloadKeep, deloadSets } from '@/lib/deload';
 import { applyLang } from '@/lib/i18n';
 import { fresh, withDemoTemplates, addWorkout, set } from './helpers';
@@ -133,9 +134,10 @@ describe('dashboard', () => {
 });
 
 describe('whatsnew', () => {
+  zProbkami(); /* 1.0.0: historia w kodzie pusta (tests/whats-new.test.tsx) — granice logiki na próbkach */
   test('wpisy od najnowszego, każdy z tekstami; kropka tylko u kogoś z treningiem; otwarcie — przeczytane, bez zbędnego zapisu', () => {
-    expect(WHATS_NEW.map(w => w.id)).toEqual(['2026-10-17', '2026-10-16', '2026-10-15', '2026-10-14', '2026-10-13', '2026-10-12', '2026-10-11', '2026-10-10', '2026-10-09', '2026-10-08', '2026-10-07', '2026-10-06']); expect(WHATS_NEW.map(w => w.build)).toEqual([1018, 1015, 1014, 1013, 1012, 1010, 1009, 1008, 1005, 1004, 1002, 1001]);
-    expect(WHATS_NEW.map(w => w.items().length)).toEqual([8, 2, 2, 3, 2, 4, 4, 2, 10, 9, 3, 2]); expect(WHATS_NEW.every(w => w.items().every(x => typeof x === 'string' && x.length > 10))).toBe(true);
+    expect(WHATS_NEW.map(w => w.id)).toEqual(PROBKI.map(w => w.id)); expect(WHATS_NEW.map(w => w.build)).toEqual([1018, 1005, 1002]);
+    expect(WHATS_NEW.every(w => w.items().every(x => typeof x === 'string' && x.length > 10))).toBe(true);
     expect(whatsNewUnseen()).toBe(false); /* nowa osoba */
     addWorkout(at('2026-10-06'), [['Back Squat', [{ weight: 100, reps: 5 }]]]); expect(whatsNewUnseen()).toBe(true);
     markWhatsNewSeen(); expect(S().whatsNewSeen).toBe(WHATS_NEW[0].id); expect(whatsNewUnseen()).toBe(false);

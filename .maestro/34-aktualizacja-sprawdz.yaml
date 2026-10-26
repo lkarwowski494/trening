@@ -25,13 +25,9 @@ name: Aktualizacja — dane po instalacji nowej wersji
 - extendedWaitUntil: { visible: "Session", timeout: 30000 }
 - assertVisible: "Upper A"
 - tapOn: "Back"
-# --- „Co nowego” po aktualizacji ---
+# --- „Co nowego” po aktualizacji z 0.20: 1.0.0: historia „Co nowego” pusta (decyzja właściciela 14.10.2026, docs/18) — przycisku ✦ nie ma (bez kropki i panelu) ---
 - extendedWaitUntil: { visible: "Other workout", timeout: 30000 }
-- tapOn: { id: "whats-new-i" }
-- extendedWaitUntil: { visible: "In this version|Test build [0-9]+ · .*", timeout: 15000 }
-- takeScreenshot: 102-co-nowego-po-aktualizacji
-- scrollUntilVisible: { element: "Close", direction: DOWN, timeout: 30000, centerElement: true }
-- tapOn: "Close"
+- assertNotVisible: { id: "whats-new-i" }
 # --- historia: dwa treningi dzisiaj; szablon i masa ciała na miejscu ---
 - tapOn: "Plan, tab.*"
 - extendedWaitUntil: { visible: "3 sessions", timeout: 30000 }  # nie „dziś”: instalacja trwa minuty i przebieg bywa przez północ UTC (docs/18)

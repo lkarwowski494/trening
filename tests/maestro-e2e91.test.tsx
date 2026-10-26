@@ -109,13 +109,5 @@ describe('run 37900617167 (f2bdca8): interpreter odtwarza porażki w tym samym k
       'tapOn {"text":"Discard workout","below":"Cancel","above":"Discard workout"}', /Nie znaleziono/);
   });
 
-  test('13 — „Close” rozwiniętej sekcji „What\'s new” pod paskiem zakładek bez przewinięcia', async () => {
-    const up = { scrollUntilVisible: { element: 'Start planned workout: Upper A', direction: 'UP', timeout: 30000, centerElement: true } };
-    /* 0.12 (2 punkty) i wpis o nowym układzie (3 punkty, 11.10.2026) — „Close” mieści się bez przewinięcia; porażkę odtwarza długi wpis (0.11, 10 punktów) na górze */
-    const { WHATS_NEW } = require('@/lib/whatsnew'); const top = WHATS_NEW.splice(0, WHATS_NEW.findIndex((e: any) => e.id === '2026-10-09')); /* wpisy nad 0.11 (id 2026-10-09) — po id, nie po liczbie */
-    try {
-    await failsAt('13-kalendarz-plan.yaml', c => replace({ scrollUntilVisible: { element: 'Close', direction: 'DOWN', timeout: 30000, centerElement: true } }, [])(c).filter(x => !same(x, up)),
-      'tapOn "Close"', /pod widokiem listy|Nie znaleziono/); /* A11B-8: od wpisu 0.11 (10 punktów) „Close” bez przewinięcia jest całkiem poza ekranem — porażka w tym samym kroku */
-    } finally { WHATS_NEW.unshift(...top); }
-  });
+  /* 13 — „Close” rozwiniętej sekcji „What's new”: przy 1.0.0 historia pusta, scenariusz 13 nie otwiera panelu (docs/18, 14.10.2026). */
 });

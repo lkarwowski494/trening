@@ -151,7 +151,7 @@ describe('H1–H4 — nawigacja, nazwy, formaty, pierwsze kroki', () => {
   test('H4: jednostka świeżej instalacji z regionu (en-US → lb, en-GB/pl → kg); „Co nowego” dla nowej osoby z dopiskiem', async () => {
     expect(deviceUnit('en-US')).toBe('lb'); expect(deviceUnit('en_US')).toBe('lb'); expect(deviceUnit('en-GB')).toBe('kg'); expect(deviceUnit('pl-PL')).toBe('kg'); expect(deviceUnit('en')).toBe('kg'); expect(LB_REGIONS).toContain('US');
     global.__kv.clear(); global.__locales = [{ languageCode: 'en', languageTag: 'en-US' }]; store.__resetForTests(); await store.init(); expect(S().settings.unit).toBe('lb');
-    await boot(); await tap(screen.getByTestId('whats-new-i')); await flushAll(5); expect(screen.getByText('Zaczynasz od tej wersji — poniżej zmiany dla osób, które korzystały z poprzednich. Na start przyda się przewodnik.')).toBeTruthy();
+    await boot(); expect(screen.queryByTestId('whats-new-i')).toBeNull(); /* 1.0.0: historia „Co nowego” pusta (docs/18, 14.10.2026); dopisek dla nowej osoby przy wpisach — tests/whats-new.test.tsx */
   });
   test('UX-16 A (zmienione 11.10.2026): bez „Ukryj” i tekstu zachęty (nagłówek „Bez planu tygodnia · Ustaw plan” jest stały); dane planHintHidden zostają (zapis, migrate); kafelki prowadzą do Postępów; „Powtórz ostatni” niżej przy innym treningu z planu', async () => {
     jest.useFakeTimers({ now: new Date(2026, 9, 8, 9) });
