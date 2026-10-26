@@ -29,6 +29,8 @@ export type BenchParams = {
   floor?: boolean; oneArm?: boolean; squeeze?: boolean; band?: boolean; chain?: boolean;
   /** Siła odchylenia łokci na boki (biegun IK): 0,45 domyślnie; wąski chwyt / JM — łokcie bliżej, ale poza obrysem ławki. */
   flare?: number;
+  /** Przedramiona pionowo w płaszczyźnie czołowej (łokieć dokładnie pod dłonią) w całym ruchu: biegun łokcia liczony z geometrii (NSCA Basics 2012 s. 53–55: nadgarstki nad łokciami, przedramiona prostopadle do podłogi). Kąt odwiedzenia łokci wynika wtedy z szerokości chwytu i punktu dotyku. */
+  vert?: boolean;
 };
 
 export const BENCH = {
@@ -73,7 +75,13 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
   const k = ease(u);
   const c: V3 = [top[0] + (bottom[0] - top[0]) * k, top[1] + (bottom[1] - top[1]) * k, 0];
 
-  const arms = { R: { grip: [c[0], c[1], g] as V3, elbowPole }, L: { grip: [c[0], c[1], -g] as V3, elbowPole: [elbowPole[0], elbowPole[1], -elbowPole[2]] as V3 } };
+  const underGrip = (grip: V3): V3 => { /* biegun, przy którym łokieć leży pod dłonią (z łokcia = z chwytu) */
+    const sh: V3 = [shoulderC[0], shoulderC[1], BODY.shHalf]; let lo = -6, hi = 6;
+    for (let i = 0; i < 40; i++) { const mid = (lo + hi) / 2; if (ik2(sh, grip, BODY.uarm, BODY.farm + BODY.hand, [0, -1, mid]).mid[2] < grip[2]) lo = mid; else hi = mid; }
+    return [0, -1, (lo + hi) / 2];
+  };
+  const poleR: V3 = p.vert ? underGrip([c[0], c[1], g]) : elbowPole;
+  const arms = { R: { grip: [c[0], c[1], g] as V3, elbowPole: poleR }, L: { grip: [c[0], c[1], -g] as V3, elbowPole: [poleR[0], poleR[1], -poleR[2]] as V3 } };
   if (p.oneArm) arms.L = { grip: trunkPoint(hipT, pitchT, 26, 12.5, -7), elbowPole: [0, -0.2, -1] as V3 };
   /* nogi: stopy na podłodze (ujemna: na wałkach przy końcu siedziska) */
   const ankleX = decline ? hip[0] + 44 : hip[0] + BENCH.footBack; const ankleY = decline ? seatY + 6 : floorPress ? 2 + BODY.ankleH : BODY.ankleH;

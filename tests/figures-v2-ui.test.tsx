@@ -8,7 +8,7 @@ import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
 import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import { measuredAngle, measuredJoint, jointAngles, frameAt, SIDES, figurePalette, TEMPO, loopLength, figureSpec, MUSCLE_DATA } from '@/lib/figures/v2';
-import { errorsOf, hasTechnique, toeAngleApplies, elbowAngleApplies, guidesOf } from '@/lib/figures/v2/ui';
+import { errorsOf, hasTechnique, toeAngleApplies, guidesOf } from '@/lib/figures/v2/ui';
 import { applyLang } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
 
@@ -68,7 +68,7 @@ describe('komponent ExerciseFigureV2', () => {
   test('bez kątów na rysunku: żadnego znaku stopnia; cyfry tylko w liczniku faz (tempo w sekundach)', async () => {
     setReduce(true); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
     const texts = screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === RN.Text).flatMap((n: { props: { children?: unknown } }) => React.Children.toArray(n.props.children as React.ReactNode)).map(String);
-    const OPIS = ['Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.', 'Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.']; /* jedyne opisy z kątem (decyzje właściciela 25.10.2026, dwa zgodne źródła) */
+    const OPIS = ['Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.']; /* jedyne opisy z kątem (decyzje właściciela 25.10.2026, dwa zgodne źródła) */
     const POMIAR = /^Kąt na rysunku: zgięcie \w+ \d+°$/; /* kąt ZMIERZONY na rysunku (decyzja właściciela 25.10.2026), nie zalecenie */
     for (const x of texts) { expect([x, /°/.test(x) && !OPIS.includes(x) && !POMIAR.test(x)]).toEqual([x, false]); if (OPIS.includes(x) || POMIAR.test(x)) continue; if (/[0-9]/.test(x)) expect([x, /^(Opuszczanie|Wstawanie|Wypychanie|Podnoszenie|Prostowanie) [0-9,]+ s/.test(x)]).toEqual([x, true]); }
   });
@@ -133,12 +133,11 @@ describe('komponent ExerciseFigureV2', () => {
     screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Bench Press (sztanga)')} />); expect(screen.queryByTestId('exercise-figure-v2-toes')).toBeNull();
     applyLang('en'); screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); expect(screen.getByTestId('exercise-figure-v2-toes').props.children).toBe('Toes pointed slightly out — usually about 15–20°.'); applyLang('pl');
   });
-  test('opis łokci ok. 45° przy wyciskaniu sztangi i hantli (płasko, skos): tekst PL i EN, linia odniesienia w guidesOf; nie przy przysiadzie, wąskim chwycie, podłodze ani JM Press', async () => {
+  test('opis „łokcie ok. 45°” usunięty (26.10.2026, brak źródła): przy wyciskaniu nie ma ani opisu, ani linii łokci; zostaje „Kąt na rysunku”', async () => {
     setReduce(true); render(<ExerciseFigureV2 exercise={lib('Bench Press (sztanga)')} />); await flush();
-    expect(screen.getByTestId('exercise-figure-v2-elbows').props.children).toBe('Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.');
-    for (const k of ['Bench Press (sztanga)', 'Bench Press (hantle)', 'Incline Bench Press (sztanga)', 'Incline Bench Press (hantle)']) { expect(elbowAngleApplies(figureSpec(k)!)).toBe(true); expect(guidesOf(k)).toContain('elbows45'); }
-    for (const k of ['Back Squat', 'Close Grip Bench Press', 'Floor Press (sztanga)', 'JM Press', 'Decline Bench Press']) { expect([k, elbowAngleApplies(figureSpec(k)!), guidesOf(k).includes('elbows45')]).toEqual([k, false, false]); }
-    applyLang('en'); screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Bench Press (hantle)')} />); expect(screen.getByTestId('exercise-figure-v2-elbows').props.children).toBe('Elbows about 45° from your torso — not flared wide, not tucked tight.'); applyLang('pl');
+    expect(screen.queryByTestId('exercise-figure-v2-elbows')).toBeNull(); expect(screen.getByTestId('exercise-figure-v2-angle')).toBeTruthy();
+    for (const k of ['Bench Press (sztanga)', 'Bench Press (hantle)', 'Incline Bench Press (sztanga)', 'Incline Bench Press (hantle)']) expect(guidesOf(k)).not.toContain('elbows45');
+    expect(JSON.stringify(screen.toJSON())).not.toMatch(/45°|Łokcie mniej/);
   });
   test('kąt na rysunku (decyzja właściciela 25.10.2026): pomiar zgadza się z geometrią klatki ±1° (niezależny rachunek z punktów szkieletu) dla każdej pozycji i błędu; tekst w komponencie = pomiar; etykieta PL i EN; pomiar odróżniony od zaleceń (kursywa vs półpogrubienie)', async () => {
     const ang = (a: number[], b: number[], c: number[]): number => { const u = a.map((x, i) => x - b[i]), v = c.map((x, i) => x - b[i]); const cr = [u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0]]; return Math.atan2(Math.hypot(...cr), u[0] * v[0] + u[1] * v[1] + u[2] * v[2]) * 180 / Math.PI; };

@@ -11,8 +11,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|---|
 | EKRAN | 32 | 32 | 0 |
 | UI | 354 | 354 | 0 |
-| TEKST | 1116 | 1116 | 0 |
-| LOGIKA | 1041 | 1041 | 0 |
+| TEKST | 1115 | 1115 | 0 |
+| LOGIKA | 1040 | 1040 | 0 |
 | WYMIAR | 146 | 146 | 0 |
 
 ## EKRAN
@@ -715,7 +715,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | guma: {v} | components/EquipVisual.tsx | tests/audit-0.10-tst-ui.test.tsx, tests/matrix-data-shared.ts, tests/matrix-i18n.test.tsx |
 | Gumy | app/_layout.tsx | tests/guide.test.tsx, tests/m3-p5-delete.test.tsx, tests/matrix-i18n.test.tsx +6 |
 | Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo. | lib/guide.ts | tests/guide.test.tsx |
-| hantle | lib/swap.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +94 |
+| hantle | lib/swap.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +93 |
 | hantle {a}–{b} {u}, ławka regulowana, mata, ściana, bieżnia, rower | lib/equipment.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/scenario-full.test.tsx |
 | hantle: {v} | components/EquipVisual.tsx | tests/karta-sprzet.test.tsx, tests/matrix-karta.test.tsx |
 | Historia jest już w telefonie | components/ImportProCard.tsx | tests/monetyzacja-ui.test.tsx |
@@ -789,7 +789,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Łączny czas | lib/stats.ts | tests/audit-records-logic.test.ts |
 | łączny dystans | lib/stats.ts | tests/audit-records-logic.test.ts, tests/catalog-library25.test.tsx, tests/matrix-invariants.test.ts +2 |
 | Łączny dystans | lib/stats.ts | tests/audit-records-logic.test.ts |
-| Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone. | components/ExerciseFigureV2.tsx | tests/figures-v2-ui.test.tsx |
 | Mapa mięśni | components/MuscleMap.tsx | tests/backlog-0.10.1-dane.test.ts, tests/guide.test.tsx, tests/muscle-map.test.tsx |
 | Mapa mięśni i serie na partię z kreską {n} serii tygodniowo. | lib/guide.ts | tests/backlog-0.10.1-dane.test.ts, tests/guide.test.tsx |
 | Mapa mięśni: {list} | components/MuscleMap.tsx | tests/muscle-map.test.tsx |
@@ -1151,7 +1150,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali. | app/more/settings.tsx | tests/effort-scale.test.tsx |
 | RIR wpisujesz w zakresie 0–{max}; więcej niż {max} powtórzeń w zapasie zapisze się jako „lekko” (RPE {light}), bo poniżej RPE {min} skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie. | app/more/settings.tsx | tests/audit-k1-bl-mer.test.tsx |
 | robione {n}× | lib/swap.ts | tests/audit-0.10-plan-ui.test.tsx, tests/dashboard.test.tsx, tests/first-steps-empty.test.tsx +15 |
-| rok | app/paywall.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-io-more.test.tsx +42 |
+| rok | app/paywall.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-io-more.test.tsx +41 |
 | rozgrzewka | lib/live.ts | tests/audit-close2-a.test.tsx, tests/audit-stale-ui.test.tsx, tests/matrix-invariants.test.ts +9 |
 | Rozgrzewki: {d} z {n} zrobione | components/BoardFace.tsx | tests/m3-p2-board-ui.test.tsx, tests/m3-p2-matrix.test.tsx |
 | Ruch | components/ExerciseCues.tsx | tests/cues-014.test.tsx, tests/cues.test.tsx, tests/figures.test.tsx |
@@ -1861,7 +1860,6 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/skeleton.jointAngles | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-errors.test.tsx +3 |
 | figures/v2/ui.cueIdsOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures.test.tsx |
 | figures/v2/ui.guidesOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-ui.test.tsx |
-| figures/v2/ui.elbowAngleApplies | lib/figures/v2/ui.ts | tests/figures-v2-ui.test.tsx |
 | figures/v2/ui.errorsOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-ui.test.tsx |
 | figures/v2/ui.legendOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx |
 | figures/v2/ui.toeAngleApplies | lib/figures/v2/ui.ts | tests/figures-v2-ui.test.tsx |
@@ -2629,7 +2627,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | FamilyStatus: ready \| planned | lib/figures/v2/families.ts | tests/audit-0.10-plan.test.ts, tests/figures-v2-mapping.test.ts |
 | FAMILIES (43) | lib/figures/v2/families.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-mapping.test.ts |
 | MeasuredJoint: knee \| elbow \| hip | lib/figures/v2/figure.ts | tests/figures-v2-contract.test.ts |
-| GuideId: thighParallel \| plumbMidfoot \| kneeToe \| backLine \| elbows45 | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |
+| GuideId: thighParallel \| plumbMidfoot \| kneeToe \| backLine | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |
 | MuscleId: chest \| triceps \| front_delt \| biceps \| abs \| lower_back \| hamstrings \| glutes \| quads \| upper_back \| forearms \| lats \| adductors \| rear_delt \| obliques \| side_delt \| calves \| abductors \| neck | lib/figures/v2/muscles.ts | tests/audit-0.10-gen.test.ts, tests/audit-k1-muscleload.test.tsx, tests/catalog-v2.test.ts +1 |
 | MUSCLES (19) | lib/figures/v2/muscles.ts | tests/figures-v2-engine.test.ts, tests/guard.test.ts, tests/logic.test.ts +8 |
 | BenchImpl: barbell \| smith \| db \| kb \| band \| chain | lib/figures/v2/rigs/benchPress.ts | tests/adapt-logic.test.ts, tests/audit-0.10-tst-ui.test.tsx, tests/catalog-library25.test.tsx +2 |
@@ -2639,7 +2637,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | SquatImpl: barbell \| db \| kb \| none \| cable | lib/figures/v2/rigs/squat.ts | tests/adapt-logic.test.ts, tests/audit-r82.test.tsx, tests/catalog-library25.test.tsx |
 | View: side \| front \| top | lib/figures/v2/scene.ts | tests/figures-v2-contract.test.ts |
 | Role: floor \| frame \| pad \| steel \| plate \| load \| skin \| skinFar \| skinHi \| cloth \| clothFar \| clothHi \| error \| shoe \| hair \| guide \| cable \| muscleMain \| muscleAux | lib/figures/v2/scene.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-backlog-r75.test.tsx, tests/audit-r82.test.tsx +3 |
-| Side: R \| L | lib/figures/v2/skeleton.ts | tests/audit-0.10-tst.test.ts, tests/figures-v2-engine.test.ts |
+| Side: R \| L | lib/figures/v2/skeleton.ts | tests/audit-0.10-tst.test.ts, tests/figures-v2-bench-rules.test.ts |
 | SIDES (2) | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +2 |
 | Goal: strength \| hypertrophy \| cut \| general | lib/generator.ts | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-gen.test.ts, tests/audit011b.test.tsx |
 | GOALS (4) | lib/generator.ts | tests/gen-general.test.ts, tests/matrix-invariants.test.ts |
