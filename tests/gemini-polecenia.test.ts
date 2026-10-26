@@ -134,7 +134,7 @@ describe('gemini-polecenia: treść polecenia v2 (liczby z silnika, reguły z da
   });
   test('wzorzec 1 to poza wyliczona z modelu i przechodzi walidator (JSON w poleceniu = ta sama poza); lina pominięta („pomiń — zrobi nasz agent”), jednorącz opisany z katalogu i nazwy', () => {
     const blok = /## Wzorzec 1[^\n]*\n\n```json\n(\{.*\})\n```/.exec(tresc)!; const poza = JSON.parse(blok[1]); expect(waliduj(poza, poza.cwiczenie)).toEqual({ ok: true, bledy: [] });
-    expect(tresc).not.toContain('- "Rope Climb"'); expect(tresc).toMatch(/Pominięte w tym poleceniu .*"Rope Climb" — pomiń — zrobi nasz agent/);
+    expect(tresc).not.toContain('- "Rope Climb"'); expect(tresc).toMatch(/Poza tym poleceniem .*"Rope Climb" — pomiń — zrobi nasz agent/);
     expect(tresc).toMatch(/- "One Arm Chin-Up" — sens: .*JEDNORĄCZ: drążek trzyma jedna dłoń \(sprzet: trzyma "R"\/"L"\)/); expect(tresc).toContain('- "Chin Up" — sens: sprzęt: drążek poziomy albo kółka');
   });
   test('rejestr błędów modelu w poleceniu: 10 najczęstszych kategorii z liczbami wystąpień i regułami zapobiegawczymi z liczbami silnika (bez nierozwiniętych {miejsc})', () => {
@@ -193,6 +193,11 @@ describe('core_floor: reguły sensu wyprowadzone ze wskazówek ćwiczeń (docs/5
     expect(wal({ ...CR, cwiczenie: 'Reverse Crunch' }, 'Reverse Crunch').bledy.map((x) => x.szczegol).join('|')).toMatch(/miednica_unosi_sie.*miednica w u = 1 jest tylko 0\.0 cm wyżej/);
     expect(wal({ ...CR, cwiczenie: 'Bird Dog' }, 'Bird Dog').bledy.map((x) => x.szczegol).join('|')).toMatch(/bird_dog_linia.*żadna para/);
   });
+  test('wzorzec Crunch ma proste ramiona wzdłuż ciała (łokieć ≤ 15° w każdej klatce); bramka per ćwiczenie: bez reguł sensu → wstrzymane, --bez-regul wpuszcza', () => {
+    const el = run(path.join(ROOT, 'scripts/figures/v2-build.mjs'), `const os = await import('node:os'); const fs = await import('node:fs'); const { v2 } = m.loadV2(fs.mkdtempSync(os.tmpdir() + '/el-')); const d = ${JSON.stringify(CR)}; console.log(JSON.stringify([0, 0.5, 1].map((u) => ['R', 'L'].map((s) => v2.jointAngles(v2.keyframeFrame(d, u).sk, s).elbow))));`) as number[][];
+    for (const par of el) for (const a of par) expect(a).toBeLessThanOrEqual(15);
+    const k = run(POL, `console.log(JSON.stringify([m.klasyfikujCwiczenia('core_floor'), m.klasyfikujCwiczenia('core_floor', { bezRegul: true })].map(x => [x.robic.length, x.pomijane.length, x.wstrzymane.length])))`); expect(k).toEqual([[17, 18, 9], [26, 18, 0]]);
+  });
   test('błędy tempa/oddechu (mis.jerk, plank.mis.breath) nie są animowane: poza z takim błędem odrzucona; lista błędów w poleceniu ich nie zawiera, jest adnotacja', () => {
     const z = klon(CR); z.bledy = [{ cue: 'mis.jerk', znacznik: 'back', dotyczy: ['hip'], klatki: [{ u: 0 }, { u: 1, miednica: [0, 0, 0] }] }];
     expect(wal(z, 'Crunch').bledy.some((b) => b.kod === 'blad-sens' && /szarpanie to cecha tempa/.test(b.szczegol))).toBe(true);
@@ -200,8 +205,12 @@ describe('core_floor: reguły sensu wyprowadzone ze wskazówek ćwiczeń (docs/5
     const wsz = fs.readdirSync(out).map((f) => fs.readFileSync(path.join(out, f), 'utf8')).join('\n'); const p1 = fs.readFileSync(path.join(out, 'core_floor-1.md'), 'utf8');
     expect(p1).toContain('## Reguły sensu ruchu'); expect(p1).toContain('[reguła: miednica_na_podlodze]'); expect(p1).toContain('Układ leżący na plecach'); expect(p1).toMatch(/## Wzorzec 1: „Crunch” leżąc na plecach wyliczony z modelu/);
     expect(wsz).toMatch(/- "Alternate Heel Touchers" — .*błędy: brak \(bledy: \[\]\) \(nie animujemy: mis\.jerk — to cecha tempa\/oddechu, nie pozy\)/);
-    expect(wsz).not.toContain('- "Cable Crunch"'); expect(wsz).toMatch(/Pominięte w tym poleceniu .*"Cable Crunch" — pomiń — zrobi nasz agent \(sprzęt spoza kontraktu: cable\.high/); expect(wsz).toMatch(/"Stability Ball Crunch" — pomiń/); expect(wsz).toMatch(/"Decline Crunch" — pomiń/);
-    const klucze = [...wsz.matchAll(/^- "([^"]+)" — sens:/gm)].map((m) => m[1]); expect(klucze).toContain('Crunch'); expect(klucze).toContain('Bird Dog'); expect(klucze).not.toContain('Machine Crunch'); expect(klucze.length).toBeLessThan(30);
+    expect(wsz).not.toContain('- "Cable Crunch"'); expect(wsz).toMatch(/Poza tym poleceniem .*"Cable Crunch" — pomiń — zrobi nasz agent \(sprzęt spoza kontraktu: cable\.high/); expect(wsz).toMatch(/"Stability Ball Crunch" — pomiń/); expect(wsz).toMatch(/"Decline Crunch" — pomiń/);
+    /* bramka per ćwiczenie: ćwiczenia bez reguły sensu są WSTRZYMANE (nie trafiają do polecenia), części liczone po odfiltrowaniu */
+    const wstrz = ['Butt-Ups', 'Cocoons', 'Dragon Flag', 'Leg Pull-In', 'Seated Flat Bench Leg Pull-In', 'Side Jackknife', 'Stomach Vacuum', 'Superman', 'V-Up'];
+    for (const c of wstrz) { expect([c, wsz.includes(`- "${c}" — sens:`)]).toEqual([c, false]); expect([c, wsz.includes(`"${c}" — wstrzymane — brak reguły sensu`)]).toEqual([c, true]); }
+    expect(fs.readdirSync(out).sort()).toEqual(['core_floor-1.md', 'core_floor-2.md']);
+    const klucze = [...wsz.matchAll(/^- "([^"]+)" — sens:/gm)].map((m) => m[1]); expect(klucze).toContain('Crunch'); expect(klucze).toContain('Bird Dog'); expect(klucze).not.toContain('Machine Crunch'); expect(klucze).toHaveLength(17);
     const wzor = /## Wzorzec 1[^\n]*\n\n```json\n(\{.*\})\n```/.exec(p1)!; expect(wal(JSON.parse(wzor[1]), 'Crunch')).toEqual({ ok: true, bledy: [] });
   });
 });

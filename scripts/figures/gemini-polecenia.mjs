@@ -153,7 +153,7 @@ const FAZY = {
 };
 const FAZY_CORE_FLOOR = () => [
   'Układ leżący na plecach (jak w crunch): głowa w stronę −x, nogi w stronę +x: pochylenieTulowia = −90 (poziomo), pochylenieGlowy ≈ pochylenieTulowia (głowa leży na podłodze), miednica = [0, 8, 0] (y = 8 cm — najniżej, przy którym uda nie przenikają podłogi; reguła: ≤ 12 cm), barki = miednica + 50 cm w stronę −x przy pochyleniu −90.',
-  'Nogi zgięte, stopy na podłodze: kostki = [35, 7, ±15] (wysokość kostki 7 cm); kolana liczy IK. Dłonie: wzdłuż ciała, ramiona prawie proste: chwyt = bark + 56 cm w stronę miednicy, z = ±24 (skrzyżowane na klatce zginają łokieć powyżej limitu 149° — unikaj); dłonie przy skroniach tylko bez ciągnięcia głowy.',
+  'Nogi zgięte, stopy na podłodze: kostki = [35, 7, ±15] (wysokość kostki 7 cm); kolana liczy IK. Dłonie: wzdłuż ciała, ramiona prawie proste: chwyt = bark + 63,3 cm w stronę miednicy (ramię proste: łokieć ≤ 15°; krótszy dystans zgina łokieć), z = ±24 (skrzyżowane na klatce zginają łokieć powyżej limitu 149° — unikaj); dłonie przy skroniach tylko bez ciągnięcia głowy.',
   'Unoszenie tułowia (crunch): u = 0 pochylenieTulowia −90 → u = 1 około −62 (barki unoszą się o ≈ 20 cm), pochylenieGlowy podąża za tułowiem (różnica ≤ 30°), miednica nie rusza się (y ≤ 12, zmiana ≤ 3 cm).',
   'Ruch prowadzony miednicą (reverse crunch): barki i głowa nieruchome na podłodze, miednica unosi się o ≥ 8 cm (u = 1: y ≈ 20), kostki podążają za miednicą (kolana do klatki).',
   'Pozycja na czworaka (bird dog): tułów poziomo (pochylenieTulowia 90 w stronę +x), ręce i kolana na podłodze/pod barkami; w u = 1 jedna dłoń wyprostowana do przodu na wysokości barku i przeciwna kostka wyprostowana do tyłu na wysokości miednicy.',
@@ -163,7 +163,7 @@ export function wzorzecCrunch(cwiczenie = 'Crunch') {
   const { v2 } = silnik(); const base = (u, pitch) => ({ u, miednica: [0, 8, 0], pochylenieTulowia: pitch, zgiecieKregoslupa: 0, pochylenieGlowy: pitch, nogi: { R: { kostka: [35, 7, 15] }, L: { kostka: [35, 7, -15] } }, rece: { R: { chwyt: [0, 0, 0] }, L: { chwyt: [0, 0, 0] } } });
   const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 150 }];
   const klatki = [0, 0.5, 1].map((u) => { const k = base(u, -90 + 28 * u); const d = { kontrakt: v2.CONTRACT.id, rodzina: 'core_floor', cwiczenie, sprzet, klatki: [k, { ...k, u: 1 }], bledy: [] }; const sh = v2.keyframeFrame(d, 0).sk.shoulderC;
-    const w = [8 - sh[0], 8 - sh[1]]; const n = Math.hypot(...w); const g = [sh[0] + (w[0] / n) * 56, sh[1] + (w[1] / n) * 56 - 1]; /* ręce wzdłuż ciała, proste, w stronę miednicy */
+    const w = [8 - sh[0], 8 - sh[1]]; const n = Math.hypot(...w); const g = [sh[0] + (w[0] / n) * 63.3, sh[1] + (w[1] / n) * 63.3 - 1]; /* ręce wzdłuż ciała, proste (63,3 cm od barku: łokieć ≤ 15°), w stronę miednicy */
     k.rece = { R: { chwyt: [g[0], g[1], 24] }, L: { chwyt: [g[0], g[1], -24] } }; for (const q of ['R', 'L']) for (const i of [0, 1, 2]) k.rece[q].chwyt[i] = Math.round(k.rece[q].chwyt[i] * 10) / 10; return k; });
   return { kontrakt: v2.CONTRACT.id, rodzina: 'core_floor', cwiczenie, sprzet, klatki, bledy: [] };
 }
@@ -266,7 +266,7 @@ export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia,
   przyklady.forEach((p, i) => L.push(`## Wzorzec ${i + 1}: ${p.opis}`, '', '```json', JSON.stringify(p.poza), '```', ''));
   L.push('## Ćwiczenia do wykonania', '', 'Dla każdego: klucz (nazwa ćwiczenia), sens ruchu z katalogu (sprzęt, chwyt), opis ruchu i dozwolone identyfikatory błędów (pole cue).', '');
   for (const o of opisy) L.push(`- "${o.klucz}"${o.sens.length ? ` — sens: ${o.sens.join('; ')}` : ''}${o.ruch.length ? ` — ruch: ${o.ruch.join(' ')}` : ''} — błędy: ${o.bledy.length ? o.bledy.join('; ') : 'brak (bledy: [])'}${o.bezAnim?.length ? ` (nie animujemy: ${o.bezAnim.join(', ')} — to cecha tempa/oddechu, nie pozy)` : ''}`);
-  if (pomijane.length) L.push('', `Pominięte w tym poleceniu (nie generuj ich): ${pomijane.map((x) => `"${x.klucz}" — ${x.powod}`).join('; ')}.`);
+  if (pomijane.length) L.push('', `Poza tym poleceniem (nie generuj ich): ${pomijane.map((x) => `"${x.klucz}" — ${x.powod}`).join('; ')}.`);
   L.push('', '## Zasady dla każdego ćwiczenia', '', '- u = 0 to pozycja wyjściowa, u = 1 pozycja skrajna ruchu; dobierz sprzęt (sprzet[]) i chwyt do tego konkretnego ćwiczenia (sens z listy powyżej).', '- Poza ma być anatomicznie wiarygodna dla nazwanego ćwiczenia, ale zgodność z liczbami i regułami powyżej jest ważniejsza niż szczegół.', '- Przed odpowiedzią sprawdź każdą pozę punkt po punkcie: zasięg ramienia, zakresy stawów z marginesem, przenikanie, chwyt na osi, reguły sensu, deklaracje „dotyczy”.', '');
   L.push(...FORMAT_ODPOWIEDZI(rodzina, cwiczenia));
   return L.join('\n') + '\n';
@@ -284,18 +284,27 @@ export function wzorce(rodzina, kontrakt, root = ROOT) {
   return o.slice(0, 2);
 }
 /** Polecenia rodziny: [{ plik, tresc, cwiczenia, pomijane }]. */
-export async function poleceniaRodziny(rodzina, { root = ROOT, lista } = {}) {
+/** Klasyfikacja ćwiczeń rodziny do zrobienia: do polecenia (mają reguły sensu), pomijane (sprzęt spoza kontraktu / wyjątek — zrobi nasz agent) i WSTRZYMANE (brak reguły sensu — bramka per ćwiczenie, docs/53; `bezRegul` wpuszcza je). */
+export function klasyfikujCwiczenia(rodzina, { root = ROOT, lista, bezRegul = false } = {}) {
+  const { catalog } = silnik(); const wszystkie = doZrobienia(rodzina, { root, lista }); const robic = [], pomijane = [], wstrzymane = [];
+  for (const c of wszystkie) { const p = pominiecie(rodzina, c, root) ?? sprzetNieobslugiwany(c, catalog);
+    if (p) pomijane.push({ klucz: c, powod: `pomiń — zrobi nasz agent (${p})` });
+    else if (!bezRegul && !regulyDla(rodzina, c, root).length) wstrzymane.push({ klucz: c, powod: 'wstrzymane — brak reguły sensu dla tego ćwiczenia (docs/53, bramka 3)' });
+    else robic.push(c); }
+  return { robic, pomijane, wstrzymane };
+}
+/** Polecenia rodziny: [{ plik, tresc, cwiczenia, pomijane, wstrzymane }] — części liczone po odfiltrowaniu (tylko ćwiczenia z regułami), pominięte i wstrzymane wymienione w pierwszej części. */
+export async function poleceniaRodziny(rodzina, { root = ROOT, lista, bezRegul = false } = {}) {
   const kontrakt = await wczytajKontrakt(root);
   if (!kontrakt) throw new Error('brak scripts/figures/v2-validate.mjs');
   const docs = lista ?? join(root, 'docs/51-figury-v2-pokrycie.md'); const r = rodzinyZDokumentu(docs).find((x) => x.id === rodzina);
-  const przyklady = wzorce(rodzina, kontrakt, root);
-  const { catalog } = silnik();
-  return czesciRodziny(rodzina, { root, lista: docs }).map((czesc) => {
-    const pomijane = []; const robic = [];
-    for (const c of czesc.cwiczenia) { const p = pominiecie(rodzina, c, root) ?? sprzetNieobslugiwany(c, catalog); if (p) pomijane.push({ klucz: c, powod: `pomiń — zrobi nasz agent (${p})` }); else robic.push(c); }
-    return { plik: `${czesc.id}.md`, cwiczenia: robic, pomijane,
-      tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc, cwiczenia: robic, przyklady, kontrakt, pomijane, root, opisy: robic.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog, rodzina })) }) };
-  }).filter((x) => x.cwiczenia.length);
+  const przyklady = wzorce(rodzina, kontrakt, root); const { catalog } = silnik();
+  const { robic, pomijane, wstrzymane } = klasyfikujCwiczenia(rodzina, { root, lista: docs, bezRegul });
+  const cz = podzielNaCzesci(robic);
+  return cz.map((cwiczenia, i) => { const czesc = { id: cz.length === 1 ? rodzina : `${rodzina}-${i + 1}`, numer: i + 1, ile: cz.length };
+    const info = i === 0 ? [...pomijane, ...wstrzymane] : [];
+    return { plik: `${czesc.id}.md`, cwiczenia, pomijane: i === 0 ? pomijane : [], wstrzymane: i === 0 ? wstrzymane : [],
+      tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc, cwiczenia, przyklady, kontrakt, pomijane: info, root, opisy: cwiczenia.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog, rodzina })) }) }; });
 }
 
 export function parsujArgumenty(argv) {
@@ -319,7 +328,7 @@ export async function main(argv, { root = ROOT, log = console.log } = {}) {
   const ids = (o.wszystkie ? rodzinyZDokumentu(docs).filter((r) => r.stan !== 'gotowa').map((r) => r.id) : [o.rodzina]).filter((id) => { if (maRegul(id) || o.bezRegul) return true; log(`${id}: POMINIĘTA — brak reguł sensu w data/zrodla/figury-sens.json (docs/53, bramka 3; --bez-regul wymusza)`); return false; });
   mkdirSync(resolve(o.wyjscie), { recursive: true }); let plikow = 0, najdluzsze = 0, rodzin = 0;
   for (const id of ids) {
-    const p = await poleceniaRodziny(id, { root }); if (!p.length) { log(`${id}: nic do zrobienia (pozy gotowe)`); continue; }
+    const p = await poleceniaRodziny(id, { root, bezRegul: o.bezRegul }); if (!p.length) { log(`${id}: nic do zrobienia (pozy gotowe)`); continue; }
     rodzin++;
     for (const x of p) {
       if (x.tresc.length > MAX_ZNAKOW) throw new Error(`${x.plik}: polecenie ma ${x.tresc.length} znaków (limit ${MAX_ZNAKOW})`);
