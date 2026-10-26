@@ -868,6 +868,30 @@
    "svg": "288c74a1c8feea0996c0",
    "raw": "050b618929fdfeb9a3a9"
   },
+  "hip_abd_add/Hip Abduction": {
+   "svg": "e4a13c8eb6264303f87b",
+   "raw": "d2c30da7d9d69101dbac"
+  },
+  "hip_abd_add/Hip Adduction": {
+   "svg": "e60167bb7fb76422526f",
+   "raw": "895d276036059ea4268f"
+  },
+  "hip_abd_add/Cable Hip Abduction": {
+   "svg": "8a8bc2fbcdf7ea2ac422",
+   "raw": "9093cb700aadfe3afd2b"
+  },
+  "hip_abd_add/Cable Hip Adduction": {
+   "svg": "0a0daeb242c642e1b3f3",
+   "raw": "12bd2a95e47831886118"
+  },
+  "hip_abd_add/Lateral Band Walk": {
+   "svg": "e3fed2e10fd07e79753d",
+   "raw": "8f91a0f8a3b06eb6d5ea"
+  },
+  "hip_abd_add/Monster Walk": {
+   "svg": "a35600619f583086b4bb",
+   "raw": "0b428b71d3feac1b5ab6"
+  },
   "hip_bridge/Glute Bridge": {
    "svg": "143a25a7dc74bf1a14db",
    "raw": "fd78a34d3a72190be3c5"
@@ -907,6 +931,10 @@
   "hip_bridge/Stability Ball Hip Bridge": {
    "svg": "c4a547b1485a263f3ce4",
    "raw": "d5c3c876cc7039a35f8c"
+  },
+  "kneeling_hinge/Seated Good Mornings": {
+   "svg": "69a8485432ee22757eae",
+   "raw": "eb66a53753f38cbcb0a8"
   },
   "leg_isolation/Leg Extension": {
    "svg": "44cec13c3e9d43172b20",

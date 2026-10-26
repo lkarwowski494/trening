@@ -1,0 +1,402 @@
+{
+ "kontrakt": "figury-v2/poza@2",
+ "rodzina": "kneeling_hinge",
+ "cwiczenia": {
+  "Seated Good Mornings": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "kneeling_hinge",
+   "cwiczenie": "Seated Good Mornings",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 140
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -30,
+     "x1": 8,
+     "top": 46
+    },
+    {
+     "rodzaj": "slupek",
+     "x": -60,
+     "h": 150
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      57.8,
+      0
+     ],
+     "pochylenieTulowia": 2,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 1.4,
+     "nogi": {
+      "R": {
+       "kostka": [
+        40,
+        7,
+        10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        40,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -11.2,
+        105.2,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -11.2,
+        105.2,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      57.8,
+      0
+     ],
+     "pochylenieTulowia": 8.6,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 6,
+     "nogi": {
+      "R": {
+       "kostka": [
+        40,
+        7,
+        10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        40,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -5.7,
+        106.2,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -5.7,
+        106.2,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      57.8,
+      0
+     ],
+     "pochylenieTulowia": 23,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 16.1,
+     "nogi": {
+      "R": {
+       "kostka": [
+        40,
+        7,
+        10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        40,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        6.6,
+        106.1,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        6.6,
+        106.1,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      57.8,
+      0
+     ],
+     "pochylenieTulowia": 37.4,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 26.2,
+     "nogi": {
+      "R": {
+       "kostka": [
+        40,
+        7,
+        10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        40,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        18.4,
+        102.9,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        18.4,
+        102.9,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      57.8,
+      0
+     ],
+     "pochylenieTulowia": 44,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 30.8,
+     "nogi": {
+      "R": {
+       "kostka": [
+        40,
+        7,
+        10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        40,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        23.4,
+        100.5,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        23.4,
+        100.5,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": [
+    {
+     "cue": "mis.roundBack",
+     "znacznik": "back",
+     "dotyczy": [
+      "spine"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.25,
+       "zgiecieKregoslupa": 4.1
+      },
+      {
+       "u": 0.5,
+       "zgiecieKregoslupa": 13
+      },
+      {
+       "u": 0.75,
+       "zgiecieKregoslupa": 21.9
+      },
+      {
+       "u": 1,
+       "zgiecieKregoslupa": 26
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
