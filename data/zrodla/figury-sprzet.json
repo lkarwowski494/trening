@@ -61,6 +61,7 @@
   "sliderH": { "cm": 2, "status": "konwencja rysunku", "zgodnosc": "grubość ślizgacza ok. 1–2 cm", "uzycie": "ślizgacze" },
   "wheelR": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "kółko do brzucha o średnicy ok. 14–18 cm", "uzycie": "kółko do brzucha" },
   "wheelW": { "cm": 4, "status": "konwencja rysunku", "zgodnosc": "szerokość kółka do brzucha na rysunku z przodu", "uzycie": "kółko do brzucha" },
+  "boxSide": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "domyślne położenie skrzyń po bokach osoby (z = ±45 cm; skrzynie ustawione obok siebie przy rozstawie dłoni)", "uzycie": "skrzynia poza osią (dwa: true)" },
   "benchW": { "cm": 28, "status": "konwencja rysunku", "zgodnosc": "szerokość ławki ok. 28–32 cm", "uzycie": "ławka" },
   "benchPad": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "grubość wyściełania ławki", "uzycie": "ławka" },
   "benchLegW": { "cm": 3.2, "status": "konwencja rysunku", "zgodnosc": "grubość nóg ławki", "uzycie": "ławka" },

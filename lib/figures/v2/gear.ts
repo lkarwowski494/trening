@@ -352,7 +352,11 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     check: g => bounds('promien kółka', g.promien, 4, 15),
     ref: () => [`kolko: kółko do brzucha — koło o promieniu ${f1(EQUIP.wheelR)} cm (promien) toczące się po podłodze; oś kółka = środek między dłońmi (obie dłonie na uchwycie), a oś MUSI być na wysokości promienia nad podłogą (± ${f1(TOL.rail)} cm) w każdej klatce: kółko toczy się po podłodze, dłonie jadą nisko (y ≈ ${f1(EQUIP.wheelR)}). Podpór na kolanach albo stopach opisz ciałem (kolana na podłodze: kostka y ≈ ${f1(BODY.ankleH)}).`],
   },
-  skrzynia: { nazwa: 'skrzynia albo stopień', caps: ['box'], opis: 'skrzynia albo stopień (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
+  skrzynia: {
+    nazwa: 'skrzynia albo stopień', caps: ['box'], fields: ['z', 'dwa'], opis: 'skrzynia albo stopień (x0, x1, top; z = położenie na boki, dwa = dwie skrzynie symetrycznie po bokach)',
+    props: g => { const mk = (z: number): Prop => ({ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40, ...(z !== 0 ? { z } : {}) }); return g.dwa ? [mk(Math.abs(g.z ?? EQUIP.boxSide)), mk(-Math.abs(g.z ?? EQUIP.boxSide))] : [mk(g.z ?? 0)]; },
+    ref: () => [`skrzynia poza osią: z = środek skrzyni na boki (z dodatnie = prawa strona osoby; domyślnie 0, pod osobą), dwa: true = dwie skrzynie symetrycznie w z = ±|z| (domyślnie ±${EQUIP.boxSide} cm: dłonie albo stopy na skrzyniach po bokach, np. pompki ze skrzyń, zeskok). Szerokość skrzyni ${EQUIP.boxW} cm; ciało nie przenika skrzyń.`],
+  },
   hantel: {
     nazwa: 'hantle',
     caps: ['db', 'farmers_handles'], fields: ['promien', 'pionowo'], opis: 'hantel trzymany w dłoni; uchwyty farmerskie rysujemy jak hantle z dużym promieniem (trzyma, promien, pionowo)',

@@ -342,6 +342,13 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
     expect(texts(ROTATE([{ rodzaj: 'kolko' }]))).toMatch(/\[geometria\] kółko: oś na wysokości/); expect(gearFieldIssues({ rodzaj: 'kolko', promien: 30 })).toEqual(['sprzęt: promien kółka = 30 cm poza przedziałem 4–15 cm']);
     expect(requiredGearIssues([['sliders']], [])).toEqual(['sprzęt: ćwiczenie wymaga: ślizgacze (rodzaj „slizgacze”), a sprzet[] tego nie zawiera']); expect(requiredGearIssues([['ab_wheel']], [{ rodzaj: 'kolko' }])).toEqual([]);
   });
+  test('skrzynia poza osią z: z przesuwa skrzynię, dwa = dwie symetrycznie (domyślnie ±EQUIP.boxSide); rysunek z przodu i z góry w miejscu z, kolider w z ± szerokość/2', () => {
+    expect(propsFrom([{ rodzaj: 'skrzynia', x0: 0, x1: 40, top: 30 }], G)).toEqual([{ k: 'box', x0: 0, x1: 40, top: 30 }]); expect(propsFrom([{ rodzaj: 'skrzynia', z: 30 }], G)).toEqual([{ k: 'box', x0: 0, x1: 40, top: 40, z: 30 }]);
+    expect(propsFrom([{ rodzaj: 'skrzynia', dwa: true }], G)).toEqual([{ k: 'box', x0: 0, x1: 40, top: 40, z: EQUIP.boxSide }, { k: 'box', x0: 0, x1: 40, top: 40, z: -EQUIP.boxSide }]); expect(propsFrom([{ rodzaj: 'skrzynia', dwa: true, z: -50 }], G).map(p => p.k === 'box' ? p.z : 0)).toEqual([50, -50]);
+    const b = propsFrom([{ rodzaj: 'skrzynia', z: 30 }], G)[0]; const front = propShapes([b], 'front')[0]; if (front.k === 'poly') { const xs = front.pts.map(p => p[0]); expect([Math.min(...xs), Math.max(...xs)]).toEqual([-30 - EQUIP.boxW / 2, -30 + EQUIP.boxW / 2]); }
+    const c = equipColliders([b])[0]; expect(c.k === 'prism' && [c.z0, c.z1]).toEqual([30 - EQUIP.boxW / 2, 30 + EQUIP.boxW / 2]); expect(equipColliders([{ k: 'box', x0: 0, x1: 10, top: 10 }])[0]).toMatchObject({ z0: -EQUIP.boxW / 2, z1: EQUIP.boxW / 2 });
+    expect(propShapes([b], 'top')[0].k).toBe('poly');
+  });
   test('stary sprzęt bez zmian: sztanga podąża za chwytem, słupek, podłoga, skrzynia', () => {
     expect(propsFrom([{ rodzaj: 'sztanga', podazaZaChwytem: true }, { rodzaj: 'slupek', x: 5, h: 100 }, { rodzaj: 'skrzynia', x0: 1, x1: 2, top: 30 }, { rodzaj: 'podloga' }], G).map(p => p.k)).toEqual(['barbell', 'post', 'box', 'floor']);
   });
@@ -518,7 +525,7 @@ describe('walidator pozy z nowym sprzętem — macierz rodzaj × wariant', () =>
     expect(gearFieldIssues({ rodzaj: 'hantel', promien: 2 })).toEqual(['sprzęt: promien hantla = 2 cm poza przedziałem 3–12 cm']);
     expect(gearFieldIssues({ rodzaj: 'pilka_lekarska', promien: 25 })).toEqual(['sprzęt: promien piłki = 25 cm poza przedziałem 6–20 cm']);
     expect(gearFieldIssues({ rodzaj: 'sztanga', przesuniecie: [0, 0, 0] })).toEqual(['sprzęt: pole „przesuniecie” nie dotyczy rodzaju „sztanga”']);
-    expect(gearFieldIssues({ rodzaj: 'slupek', h: 100, hak: 150 })).toEqual(['sprzęt: hak = 150 cm wyżej niż słupek (h = 100 cm)']); expect(gearFieldIssues({ rodzaj: 'skrzynia', hak: 5 })).toEqual(['sprzęt: pole „hak” nie dotyczy rodzaju „skrzynia”']);
+    expect(gearFieldIssues({ rodzaj: 'slupek', h: 100, hak: 150 })).toEqual(['sprzęt: hak = 150 cm wyżej niż słupek (h = 100 cm)']); expect(gearFieldIssues({ rodzaj: 'skrzynia', hak: 5 })).toEqual(['sprzęt: pole „hak” nie dotyczy rodzaju „skrzynia” (dla tego rodzaju: z, dwa)']);
     expect(texts(RACKPULL([{ rodzaj: 'slupek', x: -45, h: 100, hak: 150 }]))).toContain('hak = 150 cm wyżej niż słupek');
     expect(gearFieldIssues({ rodzaj: 'landmine', dlugosc: 50 })).toEqual(['sprzęt: dlugosc gryfu landmine = 50 cm poza przedziałem 100–300 cm']); expect(gearFieldIssues({ rodzaj: 'landmine', y: 50 })).toEqual(['sprzęt: wysokość osi obrotu y = 50 cm poza przedziałem 0–30 cm']);
     expect(gearFieldIssues({ rodzaj: 'smith', z: 3 })).toEqual(['sprzęt: pole „z” nie dotyczy rodzaju „smith”']);

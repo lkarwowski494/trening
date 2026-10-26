@@ -11,7 +11,7 @@ export const EQUIP = {
   barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [44, 49] as [number, number], plateW: 2.8,
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6, medBallR: 11,
   benchW: 28, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
-  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, gymBallR: 32.5, foamR: 7.5, foamLen: 90, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, sliderR: 8, sliderH: 2, wheelR: 8, wheelW: 4, suspensionY: 220, sledHalf: 25, sledBase: 12, sledLen: 60, sledPostH: 100, ropeR: 1.9, ropeTop: 400, ropeBottom: 20, dipHalf: 22, dipLen: 60, dipH: 115, dipR: 1.75, preacherTop: 95, preacherKat: 60, preacherLen: 45, preacherSeatDx: 28, preacherSeatY: 48, preacherW: 50, preacherT: 8, preacherSeatW: 30, preacherSeatL: 34, machinePad: 36, leverEnd: 25, leverArm: 60, leverStroke: 60, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
+  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, gymBallR: 32.5, foamR: 7.5, foamLen: 90, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, boxSide: 45, sliderR: 8, sliderH: 2, wheelR: 8, wheelW: 4, suspensionY: 220, sledHalf: 25, sledBase: 12, sledLen: 60, sledPostH: 100, ropeR: 1.9, ropeTop: 400, ropeBottom: 20, dipHalf: 22, dipLen: 60, dipH: 115, dipR: 1.75, preacherTop: 95, preacherKat: 60, preacherLen: 45, preacherSeatDx: 28, preacherSeatY: 48, preacherW: 50, preacherT: 8, preacherSeatW: 30, preacherSeatL: 34, machinePad: 36, leverEnd: 25, leverArm: 60, leverStroke: 60, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];
@@ -168,7 +168,7 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         if (pr.hook !== undefined && side) S.push({ k: 'line', a: [pr.x, pr.hook], b: [pr.x + 5, pr.hook], w: 2.4, role: 'frame', z: zKey(LAYER.back, -69), id: 'hook' });
         break;
       }
-      case 'box': S.push({ k: 'poly', pts: side ? rect(pr.x0, 0, pr.x1, pr.top) : rect(-(pr.w ?? E.boxW) / 2, 0, (pr.w ?? E.boxW) / 2, pr.top), fill: 'pad', stroke: 'frame', w: 1, close: true, z: zKey(LAYER.backEquip, -40), id: 'box' }); break;
+      case 'box': { const bw = (pr.w ?? E.boxW) / 2; const cz = pr.z ?? 0; S.push({ k: 'poly', pts: side ? rect(pr.x0, 0, pr.x1, pr.top) : view === 'front' ? rect(-cz - bw, 0, -cz + bw, pr.top) : rect(-cz - bw, -pr.x1, -cz + bw, -pr.x0), fill: 'pad', stroke: 'frame', w: 1, close: true, z: zKey(LAYER.backEquip, -40 + (side ? 0 : 0)), id: 'box' }); break; }
       case 'bench': {
         const w = pr.w ?? E.benchW; const bp = benchPolys(pr); const ro = rollerAt(pr); const zb = (d: number): number => zKey(LAYER.backEquip, d);
         if (side) {

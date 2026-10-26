@@ -92,6 +92,7 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 | `lina_pionowa` | `x`, `z`, `h` (góra, 400), `y` (dół, 20), `trzyma` | climbing_rope | dłonie na osi liny ± 3 cm; stopy i łydki mogą dociskać linę do 3 cm; szablon pull_up nie wymaga drążka przy linie; reguł sensu dla wspinania nadal brak (Rope Climb pomijany z tego powodu) |
 | `sanie` | `x`, `h` (słupki, 100), `dlugosc` (60), `trzymanie` (slupki / lina) | sled | słupki: dłonie ± 1,5 cm; lina: linka od przodu sań do dłoni; bez pasa/uprzęży (dip_belt — nadal poza kontraktem) |
 | `poreczy` | `x0`, `x1`, `h` (115), `z` (połowa rozstawu, 22) | dip.bars | dłonie na poręczach ± 1 cm |
+| `skrzynia` (poza osią) | `z` (środek na boki), `dwa` (dwie symetrycznie, ±45) | box | decyzja koordynatora 26.10.2026: sprzęt poza osią z (Drop Push, Incline Push-Up Depth Jump) |
 | `slizgacze` | `punkt` (kostki / dlonie), `trzyma` | sliders | krążki 16 cm × 2 cm na podłodze pod kostką/dłonią; bez kolidera |
 | `kolko` | `promien` (8), `trzyma` | ab_wheel | oś między dłońmi na wysokości promienia (± 1,5 cm), kolider kulą |
 | `pilka_lekarska` (kamień atlas, beczka, worek) | `promien` 6–20 | atlas_stones, keg, sandbag | rysowane jak kula — uproszczenie |

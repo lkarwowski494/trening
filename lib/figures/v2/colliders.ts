@@ -76,7 +76,7 @@ export function equipColliders(props: Prop[]): Collider[] {
       case 'rope': c.push({ k: 'capsule', id: 'rope', a: [p.x, p.bottom, p.z], b: [p.x, p.top, p.z], r: EQUIP.ropeR }); break;
       case 'dipbars': for (const sg of [-1, 1]) c.push({ k: 'capsule', id: 'barDip', a: [p.x0, p.h, sg * p.z], b: [p.x1, p.h, sg * p.z], r: EQUIP.dipR }); break;
       case 'preacher': { const pp = preacherPolys(p); c.push(prism('preacherPad', pp.pad, -EQUIP.preacherW / 2, EQUIP.preacherW / 2), prism('preacherSeat', pp.seat, -EQUIP.preacherSeatW / 2, EQUIP.preacherSeatW / 2)); break; }
-      case 'box': { const w = (p.w ?? EQUIP.boxW) / 2; c.push(prism('box', rectPoly(p.x0, 0, p.x1, p.top), -w, w)); break; }
+      case 'box': { const w = (p.w ?? EQUIP.boxW) / 2; const cz = p.z ?? 0; c.push(prism('box', rectPoly(p.x0, 0, p.x1, p.top), cz - w, cz + w)); break; }
       case 'wall': c.push(prism('wall', p.front ? rectPoly(p.x, 0, p.x + EQUIP.wallW, p.h) : rectPoly(p.x - EQUIP.wallW, 0, p.x, p.h), -100, 100)); break;
       case 'mat': c.push(prism('mat', rectPoly(p.x0, 0, p.x1, p.h), -60, 60)); break;
       case 'post': for (const sg of [-1, 1]) c.push(prism('post', rectPoly(p.x - EQUIP.postW / 2, 0, p.x + EQUIP.postW / 2, p.h), sg * EQUIP.postSpan - 2, sg * EQUIP.postSpan + 2)); break;

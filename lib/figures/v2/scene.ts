@@ -35,7 +35,7 @@ export type Prop =
   | { k: 'dipbars'; x0: number; x1: number; h: number; z: number; held?: boolean }                   /* poręcze do dipów: dwie poziome rury na wysokości h w z = ±z, od x0 do x1 */
   | { k: 'slider'; c: V3; r: number }                                                                      /* ślizgacz: płaski krążek pod stopą albo dłonią na podłodze (środek, promień) */
   | { k: 'wheel'; c: V3; r: number }                                                                       /* kółko do brzucha: koło toczące się po podłodze (oś w c, promień r) */
-  | { k: 'box'; x0: number; x1: number; top: number; w?: number }
+  | { k: 'box'; x0: number; x1: number; top: number; w?: number; z?: number }                  /* skrzynia; z = środek skrzyni na osi z (domyślnie 0) */
   | { k: 'wall'; x: number; h: number; front?: boolean }                                      /* ściana: lita po stronie −x od powierzchni x (za osobą); front: lita po stronie +x (przed osobą; w widoku z przodu przekrój) */
   | { k: 'rail'; x: number; h: number }                                                        /* prowadnica suwnicy Smitha (pionowa) */
   | { k: 'post'; x: number; h: number; hook?: number }                                         /* słupek stojaka */
