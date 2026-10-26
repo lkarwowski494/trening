@@ -18,6 +18,7 @@
 // Użycie:
 //   node scripts/figures/gemini-pozy.mjs --rodzina pull_up --szacuj
 //   node scripts/figures/gemini-pozy.mjs --rodzina pull_up --model gemini-4-argon --limit-usd 3 --proby 4 --wyjscie raport-pozy
+//   node scripts/figures/gemini-pozy.mjs --diagnoza --rodzina pull_up --model gemini-3.1-pro-preview --limit-usd 0.3   (bisekcja odrzucenia żądania 400: które formaty JSON i fragmenty schematu API przyjmuje)
 //   node scripts/figures/gemini-pozy.mjs --lista-modeli --lokalizacja global   (bez kosztu: lista modeli widocznych dla klucza i odczyt każdego z naszych; modele.json)
 //   node scripts/figures/gemini-pozy.mjs --zastosuj raport-pozy
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
@@ -134,7 +135,21 @@ export const KOMUNIKATY_KRYTYCZNE = {
 };
 /** Formaty wymuszenia JSON w żądaniu vertex (dokumentacja GenerationConfig: pola responseMimeType/responseSchema/responseJsonSchema oznaczone jako przestarzałe na rzecz responseFormat[]).
  *  Próba połączenia wybiera pierwszy, który API przyjmie: schemat JSON → schemat OpenAPI (oczyszczony) → responseFormat → sam tryb JSON ze schematem w treści polecenia. */
-export const FORMATY_VERTEX = ['jsonSchema', 'openApi', 'responseFormat', 'tekst'];
+export const FORMATY_VERTEX = ['jsonSchema', 'jsonSchemaProsty', 'openApi', 'responseFormat', 'tekst'];
+const SLOWA_DLUGOSCI = ['maxLength', 'minLength', 'pattern', 'uniqueItems', 'multipleOf'];
+/** Schemat JSON bez słów kluczowych, które Vertex może odrzucać (`$schema`/`$id`/`$comment`, ograniczenia długości i wzorce); reszta bez zmian. */
+export function schematProsty(sch) { return bezKluczy(sch, ['$schema', '$id', '$comment', ...SLOWA_DLUGOSCI]); }
+/** Głęboka kopia schematu bez wskazanych kluczy (poza nazwami właściwości w `properties`). */
+export function bezKluczy(sch, klucze) {
+  if (Array.isArray(sch)) return sch.map((x) => bezKluczy(x, klucze));
+  if (!sch || typeof sch !== 'object') return sch;
+  const w = {};
+  for (const [k, v] of Object.entries(sch)) {
+    if (klucze.includes(k)) continue;
+    w[k] = k === 'properties' && v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([n, x]) => [n, bezKluczy(x, klucze)])) : bezKluczy(v, klucze);
+  }
+  return w;
+}
 const KLUCZE_OPENAPI = ['type', 'format', 'title', 'description', 'nullable', 'enum', 'items', 'properties', 'required', 'minItems', 'maxItems', 'minimum', 'maximum', 'anyOf', 'propertyOrdering'];
 /** Schemat JSON → podzbiór OpenAPI obsługiwany przez Vertex (usuwa $schema, additionalProperties, const, wielotypowe `type` itd.). */
 export function schematOpenApi(sch) {
@@ -153,6 +168,7 @@ export function trescVertex({ input, system, schemat, maxTokens, format }) {
   const tekst = format === 'tekst' ? `${input}\n\nOdpowiedz wyłącznie obiektem JSON zgodnym z tym schematem:\n${JSON.stringify(schemat)}` : input;
   const gc = { maxOutputTokens: maxTokens };
   if (format === 'jsonSchema') Object.assign(gc, { responseMimeType: 'application/json', responseJsonSchema: schemat });
+  else if (format === 'jsonSchemaProsty') Object.assign(gc, { responseMimeType: 'application/json', responseJsonSchema: schematProsty(schemat) });
   else if (format === 'openApi') Object.assign(gc, { responseMimeType: 'application/json', responseSchema: schematOpenApi(schemat) });
   else if (format === 'responseFormat') gc.responseFormat = [{ text: { mimeType: 'APPLICATION_JSON', schema: schemat } }];
   else Object.assign(gc, { responseMimeType: 'application/json' });
@@ -164,8 +180,28 @@ export class BladApi extends Error {
 export function klient(fetchFn, klucz, { tryb = 'gemini', lokalizacja = DOMYSLNA_LOKALIZACJA, endpoint, spij = (ms) => new Promise((r) => setTimeout(r, ms)), ponowien = 2 } = {}) {
   const krytyczne = STATUSY_KRYTYCZNE[tryb] ?? STATUSY_KRYTYCZNE.gemini;
   return {
-    format: FORMATY_VERTEX[0], /* ustawiany przez próbę połączenia */
-    async generuj({ model, system, input, schemat, maxTokens = MAX_TOKENS_ODPOWIEDZI, format = this.format }) {
+    format: FORMATY_VERTEX[0], /* ustawiany przez próbę połączenia i negocjację */
+    naZmianieFormatu: null,
+    /** Pojedyncze żądanie bez ponowień i bez zgłaszania wyjątku — do diagnozy: { status, ok, json, szczegol } (szczegół zamaskowany). */
+    async probuj({ model, body }) {
+      const url = endpoint ?? (tryb === 'vertex' ? endpointVertex(model, lokalizacja) : ENDPOINT);
+      const r = await fetchFn(url, { method: 'POST', headers: { 'content-type': 'application/json', 'x-goog-api-key': klucz }, body: JSON.stringify(body) });
+      if (r.ok) return { status: r.status, ok: true, json: await r.json(), szczegol: '' };
+      let msg = ''; let det = ''; try { const e = (await r.json())?.error; msg = e?.message ?? ''; det = e?.details ? JSON.stringify(e.details) : ''; } catch { /* brak treści */ }
+      return { status: r.status, ok: false, json: null, szczegol: maskuj(`${String(msg).slice(0, 300)}${det ? ` | details: ${det.slice(0, 1000)}` : ''}`, klucz) };
+    },
+    /** Jak generujJedno, ale w trybie vertex przy 400 (bez jawnego `format`) próbuje kolejnych, prostszych formatów JSON (400 nie jest rozliczany); działający zostaje na resztę przebiegu. */
+    async generuj(arg) {
+      try { return await this.generujJedno(arg); } catch (e) {
+        if (tryb !== 'vertex' || e.status !== 400 || arg.format) throw e;
+        const odrz = [{ format: this.format, blad: e.message }];
+        for (const f of FORMATY_VERTEX.slice(FORMATY_VERTEX.indexOf(this.format) + 1)) {
+          try { const w = await this.generujJedno({ ...arg, format: f }); this.format = f; this.naZmianieFormatu?.(f, odrz); return w; } catch (e2) { if (e2.status !== 400) throw e2; odrz.push({ format: f, blad: e2.message }); }
+        }
+        e.odrzucone_formaty = odrz; throw e;
+      }
+    },
+    async generujJedno({ model, system, input, schemat, maxTokens = MAX_TOKENS_ODPOWIEDZI, format = this.format }) {
       const url = endpoint ?? (tryb === 'vertex' ? endpointVertex(model, lokalizacja) : ENDPOINT);
       /* vertex: generateContent, format JSON wg `format` (FORMATY_VERTEX); maxOutputTokens ≤ 32 768 (limit żądania nie-strumieniowego dla Argon) */
       const body = tryb === 'vertex'
@@ -230,6 +266,39 @@ export async function listaModeli({ fetchFn, klucz, lokalizacja = DOMYSLNA_LOKAL
   return wynik;
 }
 
+/* ---------- diagnoza odrzucenia żądania (tryb vertex, --diagnoza) ---------- */
+export const MAX_TOKENS_DIAGNOZY = 256;
+/** Bisekcja przyczyny 400: to samo żądanie z pełnym schematem kontraktu w każdym formacie, potem (gdy pełny schemat w formacie jsonSchema jest odrzucany) każda właściwość najwyższego poziomu osobno
+ *  i schemat bez kolejnych klas słów kluczowych, a także trywialny schemat z dużym `maxOutputTokens`. Odrzucone (400) nie są rozliczane; udane są ucinane do MAX_TOKENS_DIAGNOZY. Zwraca listę wyników. */
+export async function diagnozaSchematu({ api, model, schemat, rodzina, cwiczenie, stan, limit, dzis, tryb = 'vertex', log = () => {}, maxWywolan = 40 }) {
+  const wyniki = []; let wywolan = 0;
+  const c = cena(model, dzis, tryb);
+  const przebieg = async (nazwa, body) => {
+    if (wywolan >= maxWywolan) return null;
+    const najgorszy = (12000 * c.we + MAX_TOKENS_DIAGNOZY * c.wy) / 1e6;
+    if (stan.wydano + najgorszy > limit) { wyniki.push({ nazwa, status: null, ok: false, pominiete: 'limit' }); log(`  POMINIĘTE (limit kosztu): ${nazwa}`); return null; }
+    wywolan++; let r;
+    try { r = await api.probuj({ model, body }); } catch (e) { r = { status: 0, ok: false, szczegol: maskuj(e.message) }; }
+    if (r.ok) { const o = odczytajOdpowiedz(r.json); stan.wydano += kosztUsd(o.uzycie, model, dzis, tryb); stan.netto = (stan.netto ?? 0) + kosztNettoUsd(o.uzycie, model, dzis, tryb); }
+    wyniki.push({ nazwa, status: r.status, ok: r.ok, szczegol: r.szczegol || undefined }); log(`  ${r.ok ? 'PRZYJĘTE ' : `ODRZUCONE (HTTP ${r.status})`}: ${nazwa}${r.szczegol ? ` — ${r.szczegol}` : ''}`);
+    return r.ok;
+  };
+  const input = budujPrompt({ rodzina, cwiczenie, opis: '(diagnoza)', przyklady: [], wsk: { ok: [], bledy: [] } });
+  const sys = 'Odpowiadaj wyłącznie obiektem JSON.';
+  const tresc = (sch, format, maxTokens = MAX_TOKENS_DIAGNOZY) => trescVertex({ input, system: sys, schemat: sch, maxTokens, format });
+  log(`diagnoza (${model}, rodzina ${rodzina}): schemat ${JSON.stringify(schemat).length} znaków, ${Object.keys(schemat.properties ?? {}).length} właściwości najwyższego poziomu`);
+  const pelny = {};
+  for (const f of FORMATY_VERTEX) pelny[f] = await przebieg(`pełny schemat, format ${f}`, tresc(schemat, f));
+  await przebieg('schemat trywialny, format jsonSchema, maxOutputTokens 16000', tresc(SCHEMAT_PROBY, 'jsonSchema', MAX_TOKENS_ODPOWIEDZI));
+  await przebieg('pełny prompt bez schematu (tryb JSON), maxOutputTokens 16000', tresc(schemat, 'tekst', MAX_TOKENS_ODPOWIEDZI));
+  if (pelny.jsonSchema === false) {
+    for (const k of Object.keys(schemat.properties ?? {})) await przebieg(`tylko właściwość „${k}”, format jsonSchema`, tresc({ type: 'object', properties: { [k]: schemat.properties[k] } }, 'jsonSchema'));
+    for (const [nazwa, klucze] of [['$schema', ['$schema']], ['maxLength/minLength/pattern', ['maxLength', 'minLength', 'pattern']], ['additionalProperties', ['additionalProperties']], ['minItems/maxItems', ['minItems', 'maxItems']],
+      ['minimum/maximum', ['minimum', 'maximum']], ['enum', ['enum']], ['description/title', ['description', 'title']]]) await przebieg(`pełny schemat bez ${nazwa}, format jsonSchema`, tresc(bezKluczy(schemat, klucze), 'jsonSchema'));
+  }
+  return wyniki;
+}
+
 /* ---------- próba połączenia (tryb vertex) ---------- */
 export const SCHEMAT_PROBY = { type: 'object', properties: { ok: { type: 'boolean' } }, required: ['ok'] };
 /** Najtańsze możliwe wywołanie tym samym kształtem żądania (klucz, endpoint, model, tryb JSON ze schematem): krótki prompt, mały limit wyjścia. Błąd krytyczny (401/402/403/429) propaguje się wyżej. */
@@ -258,7 +327,7 @@ export async function opracujCwiczenie({ api, kontrakt, rodzina, cwiczenie, mode
     if (stan.wydano + najgorszy > limit) { wpis.przerwane = 'limit'; break; }
     const input = budujPrompt({ rodzina, cwiczenie, opis, przyklady, wsk, poprzednia });
     let odp;
-    try { odp = odczytajOdpowiedz(await api.generuj({ model, system: SYSTEM, input, schemat })); } catch (e) { wpis.bledy_historia.push([{ kod: 'api', szczegol: e.message }]); wpis.przerwane = 'api'; if (e.krytyczny) wpis.krytyczny = e.message; break; }
+    try { odp = odczytajOdpowiedz(await api.generuj({ model, system: SYSTEM, input, schemat })); } catch (e) { wpis.bledy_historia.push([{ kod: 'api', szczegol: e.message }]); wpis.przerwane = 'api'; if (e.krytyczny) wpis.krytyczny = e.message; if (e.odrzucone_formaty) wpis.odrzucone_formaty = e.odrzucone_formaty; break; }
     const k = kosztUsd(odp.uzycie, model, dzis, tryb); const kn = kosztNettoUsd(odp.uzycie, model, dzis, tryb); stan.wydano += k; stan.netto = (stan.netto ?? 0) + kn; wpis.koszt_usd += k; wpis.proby = n;
     const p = odp.status && odp.status !== 'completed' ? { poza: null, blad: `status ${odp.status}` } : parsujPoze(odp.tekst);
     const bledy = p.blad ? [{ kod: 'json', szczegol: p.blad }] : (kontrakt.waliduj(p.poza, { rodzina, cwiczenie }).bledy ?? []);
@@ -296,7 +365,7 @@ export function szacunek({ model, liczbaCwiczen, tokenyWejsciaNaProbe, dzis, zal
 
 /* ---------- uruchomienie ---------- */
 export function parsujArgumenty(argv) {
-  const o = { rodzina: null, api: DOMYSLNY_API, lokalizacja: DOMYSLNA_LOKALIZACJA, listaModeli: false, model: DOMYSLNY_MODEL, limitUsd: LIMIT_USD, proby: PROBY, szacuj: false, wyjscie: 'raport-pozy', zastosuj: null, cwiczenia: null, lista: null };
+  const o = { rodzina: null, diagnoza: false, api: DOMYSLNY_API, lokalizacja: DOMYSLNA_LOKALIZACJA, listaModeli: false, model: DOMYSLNY_MODEL, limitUsd: LIMIT_USD, proby: PROBY, szacuj: false, wyjscie: 'raport-pozy', zastosuj: null, cwiczenia: null, lista: null };
   const wart = (i, n) => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${n}`); return argv[i + 1]; };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -305,6 +374,7 @@ export function parsujArgumenty(argv) {
     else if (a === '--api') { o.api = wart(i++, a); if (!API_TRYBY.includes(o.api)) throw new Error(`nieznany tryb --api: ${o.api} (dozwolone: ${API_TRYBY.join(', ')})`); }
     else if (a === '--lokalizacja') { o.lokalizacja = wart(i++, a); if (!LOKALIZACJE.includes(o.lokalizacja)) throw new Error(`nieznana --lokalizacja: ${o.lokalizacja} (dozwolone: ${LOKALIZACJE.join(', ')})`); }
     else if (a === '--lista-modeli') o.listaModeli = true;
+    else if (a === '--diagnoza') o.diagnoza = true; /* bisekcja odrzucenia żądania 400 (tylko vertex) */
     else if (a === '--model') { o.model = wart(i++, a); if (!MODELE.includes(o.model)) throw new Error(`nieznany model: ${o.model} (dozwolone: ${MODELE.join(', ')})`); }
     else if (a === '--limit-usd') { o.limitUsd = Number(wart(i++, a)); if (!(o.limitUsd > 0 && o.limitUsd <= 50)) throw new Error('--limit-usd: liczba z przedziału (0, 50]'); }
     else if (a === '--proby') { o.proby = Number(wart(i++, a)); if (!Number.isInteger(o.proby) || o.proby < 1 || o.proby > 8) throw new Error('--proby: liczba całkowita 1–8'); }
@@ -347,8 +417,16 @@ export async function main(argv, env, { fetchFn = fetch, log: logSurowy = consol
   if (o.szacuj) return 0;
   if (!kontrakt) { log('brak scripts/figures/v2-validate.mjs (gałąź grafiki-cwiczen) — przebieg płatny niemożliwy'); return 4; }
   if (!klucz) { log('brak GEMINI_API_KEY — przebieg płatny niemożliwy (użyj --szacuj)'); return 2; }
+  if (o.diagnoza) { /* nie zastępuje przebiegu: tylko ustala, które formaty i fragmenty schematu API przyjmuje */
+    if (o.api !== 'vertex') { log('--diagnoza dotyczy trybu vertex'); return 4; }
+    const apiD = klient(fetchFn, klucz, { tryb: o.api, lokalizacja: o.lokalizacja, ...(spij ? { spij } : {}) }); const stanD = { wydano: 0, netto: 0 };
+    const wynikiD = await diagnozaSchematu({ api: apiD, model: o.model, schemat: kontrakt.schematPozy(o.rodzina), rodzina: o.rodzina, cwiczenie: lista[0] ?? o.rodzina, stan: stanD, limit: o.limitUsd, dzis, tryb: o.api, log });
+    zapisz('diagnoza.json', JSON.stringify({ api: o.api, lokalizacja: o.lokalizacja, model: o.model, rodzina: o.rodzina, koszt_usd: Number(stanD.wydano.toFixed(5)), wyniki: wynikiD }, null, 1) + '\n');
+    log(`diagnoza zakończona: ${wynikiD.filter((x) => x.ok).length} przyjętych, ${wynikiD.filter((x) => x.ok === false && !x.pominiete).length} odrzuconych; koszt ${stanD.wydano.toFixed(5)} USD`);
+    return wynikiD.some((x) => [401, 402, 403, 404, 429].includes(x.status)) ? 5 : 0;
+  }
   if (sz.koszt_usd > o.limitUsd) log(`UWAGA: szacunek ${sz.koszt_usd.toFixed(2)} USD przekracza limit ${o.limitUsd} USD — przebieg zatrzyma się na limicie (część ćwiczeń zostanie pominięta)`);
-  const api = klient(fetchFn, klucz, { tryb: o.api, lokalizacja: o.lokalizacja, ...(spij ? { spij } : {}) }); const stan = { wydano: 0, netto: 0 }; let wyniki = []; let polaczenie = null; let krytyczny = null;
+  const api = klient(fetchFn, klucz, { tryb: o.api, lokalizacja: o.lokalizacja, ...(spij ? { spij } : {}) }); const stan = { wydano: 0, netto: 0 }; api.naZmianieFormatu = (f, odrz) => log(`format JSON zmieniony na ${f} po odrzuceniu: ${odrz.map((x) => x.format).join(', ')}`); let wyniki = []; let polaczenie = null; let krytyczny = null;
   const pominiete = (cw, powod) => ({ cwiczenie: cw, proby: 0, ok: false, pierwsza_proba_ok: false, poprawki: 0, koszt_usd: 0, czas_ms: 0, bledy_historia: [], poza: null, przerwane: powod });
   if (o.api === 'vertex') {
     try {
@@ -367,7 +445,7 @@ export async function main(argv, env, { fetchFn = fetch, log: logSurowy = consol
     if (w.przerwane === 'limit') { for (const reszta of lista.slice(wyniki.length)) wyniki.push(pominiete(reszta, 'limit')); break; }
     if (w.krytyczny) { krytyczny = w.krytyczny; log(`STOP bez dalszych prób: ${w.krytyczny}`); for (const reszta of lista.slice(wyniki.length)) wyniki.push(pominiete(reszta, 'api')); break; }
   }
-  const rap = { rodzina: o.rodzina, api: o.api, lokalizacja: o.lokalizacja, model: o.model, limit_usd: o.limitUsd, polaczenie, wyniki };
+  const rap = { rodzina: o.rodzina, api: o.api, lokalizacja: o.lokalizacja, format: o.api === 'vertex' ? api.format : null, model: o.model, limit_usd: o.limitUsd, polaczenie, wyniki };
   const s = podsumowanie(rap); s.koszt_usd = Number(stan.wydano.toFixed(4)); /* łącznie z próbą połączenia */
   zapisz('poze.json', JSON.stringify({ rodzina: o.rodzina, api: o.api, model: o.model, poze: Object.fromEntries(wyniki.filter((x) => x.ok).map((x) => [x.cwiczenie, x.poza])) }, null, 1) + '\n');
   zapisz('raport.json', JSON.stringify(rap, null, 1) + '\n');

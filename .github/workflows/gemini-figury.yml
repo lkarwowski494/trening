@@ -27,6 +27,10 @@ on:
         description: 'Tylko diagnostyka bez kosztu: lista modeli widocznych dla klucza i odczyt naszych modeli (artefakt modele.json), bez generowania póz'
         type: boolean
         default: false
+      diagnoza:
+        description: 'Diagnoza odrzucenia żądania (400): to samo żądanie z pełnym schematem w każdym formacie JSON, potem bisekcja schematu; kilka krótkich wywołań (limit_usd), artefakt diagnoza.json; bez generowania póz'
+        type: boolean
+        default: false
       model:
         description: 'Model Gemini (domyślnie flagowy gemini-4-argon; porównanie: gemini-3.1-pro-preview)'
         type: choice
@@ -84,10 +88,15 @@ jobs:
           WEJ_LIMIT: ${{ inputs.limit_usd }}
           WEJ_PROBY: ${{ inputs.proby }}
           WEJ_LISTA: ${{ inputs.lista_modeli }}
+          WEJ_DIAGNOZA: ${{ inputs.diagnoza }}
         run: |
           set -eu
           if [ "$WEJ_LISTA" = "true" ]; then
             node scripts/figures/gemini-pozy.mjs --lista-modeli --api "$WEJ_API" --lokalizacja "$WEJ_LOKALIZACJA" --wyjscie raport-pozy
+            exit 0
+          fi
+          if [ "$WEJ_DIAGNOZA" = "true" ]; then
+            node scripts/figures/gemini-pozy.mjs --diagnoza --api "$WEJ_API" --lokalizacja "$WEJ_LOKALIZACJA" --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --wyjscie raport-pozy
             exit 0
           fi
           node scripts/figures/gemini-pozy.mjs --api "$WEJ_API" --lokalizacja "$WEJ_LOKALIZACJA" --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --proby "$WEJ_PROBY" --wyjscie raport-pozy
