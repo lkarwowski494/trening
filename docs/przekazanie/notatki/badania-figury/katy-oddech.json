@@ -1,0 +1,72 @@
+{
+ "meta": {
+  "date": "2026-10-25",
+  "rule": "Decyzja właściciela 25.10.2026: kąt techniki (jako przedział) albo prosta wskazówka oddechu trafia do aplikacji, gdy 2 niezależne źródła szczebla 4 mówią zgodnie i żadne przeczytane źródło nie przeczy. Przy sporze — bez liczby. Wstrzymywania oddechu (Valsalva) nie podajemy wcale.",
+  "textNote": "Teksty naturalne, bez przypisów; źródła tylko tutaj i w rejestrze. Cytaty w danych ≤ 1 zdanie."
+ },
+ "angles": {
+  "sq.toesAngle": {
+   "status": "do aplikacji",
+   "text": "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.",
+   "families": ["squat", "squatMachine (bez hack — stopy na platformie)"],
+   "claim": "Przy zwykłym rozstawie w przysiadzie palce skierowane na zewnątrz ok. 15–20°.",
+   "src": [
+    ["https://www.strongerbyscience.com/how-to-squat/", "Squatting: The Setup → Foot Angle: „toes pointed out 15-20 degrees” (przy szerokim rozstawie 30–45°)"],
+    ["nsca-basics-2012", "rozdz. 4, 1a Back Squat, Foot Position, s. 49: „Point toes out slightly from neutral to 30°”"]
+   ],
+   "commonPart": "SBS: 15–20° (zwykły rozstaw); NSCA: 0–30° → część wspólna 15–20°.",
+   "conflictCheck": "Brak sprzeczności. Sprawdzone: SBS How to Squat (Foot Angle), NSCA Basics s. 49–50, ACE #135 Barbell Squat Step 1 („toes turned slightly outwards”, bez liczby). Uwaga: NSCA s. 50 przy zdejmowaniu sztangi pisze „toes pointed straight ahead”, ale ten sam rozdział s. 49 dopuszcza 0–30° i dodaje, że kąt nie ma znaczenia, jeśli pozycja jest wygodna — nie traktuję tego jako sprzeczności z przedziałem 15–20°.",
+   "note": "Dla przysiadu szerokiego / sumo bez liczby (30–45° ma tylko SBS)."
+  },
+  "bp.elbowsAngle": {
+   "status": "do aplikacji — z zastrzeżeniem (decyzja przy przeglądzie)",
+   "text": "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.",
+   "families": ["bench (wyciskanie sztangi i hantli na płasko i skosie)"],
+   "claim": "Ramię ok. 45° względem tułowia przy opuszczaniu ciężaru do klatki.",
+   "src": [
+    ["https://www.strongerbyscience.com/how-to-bench/", "FAQ „How much should I tuck my elbows?”: „…around 45-60 degrees.” (przeczytane 25.10.2026 przy bp.elbowsMid)"],
+    ["https://catalystathletics.com/exercise/806/Bench-Press/", "opis: „keeping the upper arms within about 45 degrees away from the sides” (przeczytane 25.10.2026)"],
+    ["nsca-basics-2012", "rozdz. 4, 4d Dumbbell Incline Bench Press, s. 55: ramiona 45° do tułowia (hantle na skosie — analogia dla sztangi)"]
+   ],
+   "commonPart": "SBS 45–60°, Catalyst do ok. 45°, NSCA 45° → część wspólna ok. 45°.",
+   "conflictCheck": "Brak sprzeczności wprost. Sprawdzone: SBS How to Bench, Catalyst Athletics Bench Press, NSCA Basics s. 53–55, NASM Barbell Bench Press (Common Mistakes: łokcie „too wide or too close”, bez liczby — zgodne), ACE #5 Chest Press („allowing the elbows to bend out to the side”, bez liczby). ACE jest niejednoznaczne: „na boki” można czytać jako szerzej niż 45° — nie podaje liczby, więc nie przeczy wprost, ale to jedyne miejsce do świadomej decyzji.",
+   "note": "Catalyst Athletics = serwis trenerski podnoszenia ciężarów (szczebel 4). Nie dotyczy pompek (spór — bez liczby, decyzja właściciela) ani Guillotine Bench Press (łokcie celowo szeroko)."
+  },
+  "lpd.leanAngle": {"status": "bez liczby", "why": "„najwyżej 30°” odchylenia ma tylko ACE #158 Step 1; NSCA s. 45–46 mówi tylko o nierozpoczynaniu ruchu od odchylenia. Do aplikacji idzie sam błąd lpd.mis.lean (wskazowki-nsca.json)."},
+  "rot.elbow90": {"status": "bez liczby", "why": "Kąt prosty w łokciu podaje ISSA; ACE #352 (przeczytane 25.10.2026) mówi tylko „elbow tucked in”, bez liczby → jedno źródło."},
+  "sq.torso35_45": {"status": "bez liczby", "why": "Pochylenie tułowia 35–45° od pionu w przysiadzie ze sztangą — tylko NSCA s. 49; zależy od ułożenia sztangi."},
+  "lunge.torso35_45": {"status": "bez liczby", "why": "Tylko NSCA s. 52–53; ACE/NASM/ExRx mówią „plecy proste / tułów wyprostowany” — spór."},
+  "pushup.elbows": {"status": "bez liczby", "why": "Spór źródeł (decyzja właściciela 25.10.2026)."},
+  "alreadyInApp": "Kąty już obecne w tekstach z dwoma źródłami w data.json: kąt prosty w łokciach przy dipach (bdip.move), w kolanach na starcie suwnicy (lp.setup), zgięcie ok. 90° przy prostowaniu nóg (lext.range), biodra i kolana 90° w dead bugu (db.setup). NSCA Basics ich nie obejmuje — nie sprawdzałem ich ponownie pod kątem sprzeczności."
+ },
+ "breathing": {
+  "br.steady": {
+   "status": "do aplikacji",
+   "text": "Oddychaj spokojnie przez cały czas — nie wstrzymuj oddechu.",
+   "families": ["plank", "rollout", "vup", "legRaiseFloor", "hipExt", "Side Plank", "Wall Sit", "Dead Bug", "stretch", "mobility", "smr"],
+   "claim": "W ćwiczeniach w podporze i izometrii oddycha się normalnie, bez wstrzymywania oddechu.",
+   "src": [
+    ["nsca-basics-2012", "rozdz. 4, 6a–6b Hand/Elbow Planks, s. 47–48: „Concentrate on breathing normally without releasing the abdominal contraction…”"],
+    ["data:Plank", "plank.mis.breath — NASM Plank (Common Mistakes) i ACE Front Plank #32 (Step 2)"],
+    ["https://www.nasm.org/resource-center/exercise-library/static-butterfly-stretch", "Common Mistakes: „Holding the breath during stretching” (rozciąganie)"]
+   ],
+   "conflictCheck": "Brak sprzeczności. Sprawdzone: NSCA Basics s. 29 i 47–48, NASM Plank, ACE #32, NASM Static Butterfly Stretch, ACE #212, SBS How to Bench i How to Squat (piszą o wstrzymaniu oddechu tylko przy ciężkich bojach — nie o deskach i rozciąganiu), Hackett i Chow 2013 (streszczenie).",
+   "note": "Istniejące zdania wall.breath, st.breathe i plank.mis.breath mówią to samo — można użyć jednego wspólnego tekstu."
+  },
+  "br.exhaleEffort": {
+   "status": "do aplikacji — tylko w ograniczonym zakresie",
+   "text": "Wydychaj powietrze, gdy unosisz lub ciągniesz ciężar, a wdychaj, gdy go opuszczasz. Oddychaj rytmicznie.",
+   "families": ["curl", "triPush", "triOver", "triLying", "raiseSide", "raiseFront", "raiseRear", "uprightRow", "fly", "legCurl", "Leg Extension", "calf", "shrug", "row (wyciąg i maszyny)", "vpull (tylko ściąganie drążka)", "faceRow", "pullover", "machinePress", "cablePress", "hipAbd", "rotCuff", "wrist", "crunch", "cableCrunch"],
+   "notFor": "Przysiady, martwe ciągi, wyciskanie sztangi leżąc i nad głową, podrzuty i rwania, hip thrust ze sztangą — tu źródła się różnią (część zaleca przy dużym ciężarze krótkie wstrzymanie oddechu) i temat dotyka zdrowia; bez wskazówki oddechu.",
+   "claim": "Wydech w trudniejszej fazie ruchu (przy pokonywaniu oporu), wdech w łatwiejszej.",
+   "src": [
+    ["nsca-basics-2012", "rozdz. 3, Breathing Considerations, s. 29: „Instruct athletes to exhale through the sticking point and to inhale during the less stressful phase of the repetition.”"],
+    ["https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/", "Step 2: „Slowly exhale and initiate the downward pull…” (przeczytane 25.10.2026)"],
+    ["https://www.acefitness.org/resources/everyone/exercise-library/135/barbell-squat/", "uwaga po Step 6: wdech w dół, wydech przy wysiłku (przeczytane 25.10.2026; przysiad wyłączony z zakresu — patrz notFor)"]
+   ],
+   "conflictCheck": "W wybranym zakresie brak sprzeczności. Sprawdzone: NSCA Basics s. 29, 49, 53–55; ACE #158, #135; SBS How to Bench („Hold your breath throughout the duration of the rep.” — tylko ciężkie wyciskanie) i How to Squat (Bracing — ciężki przysiad); Hackett i Chow 2013 (streszczenie). Spór dotyczy wyłącznie ciężkich bojów wielostawowych, dlatego są wyłączone. NASM Barbell Bench Press i NASM Tuck Jump nie piszą o oddechu.",
+   "status2": "Uproszczenie: zasada ogólna (NSCA s. 29) zastosowana do ćwiczeń izolowanych i na maszynach; ACE potwierdza ją na konkretnych ćwiczeniach. Zamyka [OTWARTE] nr 1 z oddech-tempo.md w tym zakresie."
+  },
+  "br.valsalva": {"status": "nie do aplikacji", "why": "Decyzja właściciela: wstrzymywania oddechu nie podajemy. NSCA s. 29 opisuje je tylko dla zaawansowanych, na 1–2 s, i wymienia skutki uboczne (zawroty głowy, bardzo wysokie ciśnienie, omdlenia) — to sprawa zdrowia. Opcja dla właściciela: jedno zdanie odsyłające „Masz nadciśnienie albo chorobę serca? Zapytaj lekarza, jak oddychać przy dużych ciężarach.”"}
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "meta": {
+  "date": "2026-10-25",
+  "decision": "Mięśnie na figurze NIE są nowym twierdzeniem — bierzemy je z istniejących, zbadanych danych katalogu: docs/research/equipment/catalog.json → muscleLoad (709/709 ćwiczeń, z research.confidence i research.sources; research: docs/research/24 dla 125 bazowych, docs/research/25-biblioteka L1–L6 dla reszty). Wartości muscleLoad: 1 = główna, 0,5 = pomocnicza, 0,25 = mały udział (na figurze nie podświetlać albo podświetlać najsłabiej).",
+  "evidenceNote": "EMG mierzy aktywację, nie wzrost mięśnia — przy sprzeczności wygrywa pomiar wzrostu (docs/research/24, S2: „sEMG amplitudes could not reliably predict hypertrophic outcomes”). Figura pokazuje 'co pracuje', więc EMG wystarcza do podświetlenia, ale nie do zmiany liczenia serii.",
+  "format": "Domyślne mięśnie archetypu (patternDefaults) służą TYLKO jako awaryjne, gdy ćwiczenie nie ma muscleLoad — obecnie nie dotyczy żadnego z 709. Wyjątki na ćwiczenie = muscleLoad z catalog.json."
+ },
+ "regionMap": {
+  "comment": "Regiony figury makiety → regiony muscleLoad katalogu. Regiony makiety bez odpowiednika nie są podświetlane bez nowych źródeł.",
+  "quads": "quads", "glutes": "glutes", "hamstrings": "hamstrings", "adductors": "adductors", "abductors": "abductors", "calves": "calves",
+  "chest": "chest", "triceps": "triceps", "biceps": "biceps", "forearms": "forearms", "lats": "lats",
+  "delts_front": "front_delt", "delts_side": "side_delt", "delts_rear": "rear_delt",
+  "erectors": "lower_back", "core": "abs", "obliques": "obliques",
+  "traps_upper": "upper_back (katalog nie dzieli czworobocznego) — podział [OTWARTE]",
+  "traps_mid": "upper_back",
+  "serratus": "brak regionu w katalogu — [OTWARTE]; jedyne przeczytane źródło: przegląd EMG pompek (Front Physiol 2023, PMC10728295) — aktywacja zębatego przedniego w pompkach, najwyższa w 'push-up plus'",
+  "neck": "neck (katalog ma; makieta nie ma regionu)"
+ },
+ "patternDefaults": [
+  {"archetype": "squat_bilateral", "primary": ["quads"], "secondary": ["glutes"], "optional": ["adductors", "lower_back", "abs"], "confidence": "mocne (Back Squat: wzrost w MRI, 2+ zespoły — docs/24 S1, S2, S38; przegląd S4) / analogia dla wariantów", "notes": "Przywodziciele — wzrost zmierzony (S1, S2), decyzja produktowa Q1 w docs/24. Prostowniki: EMG Hamlyn 2007 (JSCR, PMID 18076231): lędźwiowo-krzyżowe w przysiadzie 80% 1RM wyżej niż w martwym ciągu o 34,5% — aktywacja, szczebel 3, jedno źródło. Mięśnie tułowia ogólnie: Clark 2012 (JSCR, PMID 22373894, przegląd) — 'trunk muscle activation'. Makieta: quads+glutes jako główne — niezgodne z docs/24 (pośladki pomocnicze)."},
+  {"archetype": "hinge_floor", "primary": ["hamstrings", "glutes"], "secondary": ["lower_back", "quads"], "confidence": "umiarkowane (docs/24 2.3: EMG z przeglądu S16 + wzrost w RDL/SLDL)", "notes": "W catalog.json Deadlift (sztanga) ma lower_back 1 — rozbieżność z propozycją docs/24 (plecy pomocnicze); do sprawdzenia, czy propozycja docs/24 została wdrożona. Trap bar: quads + glutes główne (docs/24)."},
+  {"archetype": "hinge_rdl", "primary": ["hamstrings"], "secondary": ["glutes", "lower_back"], "confidence": "mocne (RDL: S19, S20 — wzrost, 2 zespoły)"},
+  {"archetype": "hip_thrust_bridge", "primary": ["glutes"], "secondary": [], "confidence": "mocne dla pośladków (S2, S5, przegląd S4); usunięcie dwugłowych — jedno źródło (S2)", "notes": "Makieta: hamstrings jako pomocnicze — sprzeczne z jedynym badaniem wzrostu (S2), zgodne z EMG (S25). Część wspólna: dwugłowe najwyżej 'mały udział'."},
+  {"archetype": "lunge_split", "primary": ["quads", "glutes"], "secondary": [], "confidence": "umiarkowane (EMG + klasyfikacja: S6, S18, S26)", "notes": "Makieta: abductors i hamstrings pomocnicze — dwugłowe: S26 '20–30% MVIC… less effective'; pośladek średni wysoki w EMG (S26) — region abductors możliwy jako mały udział, jedno źródło."},
+  {"archetype": "h_push_bench", "primary": ["chest"], "secondary": ["triceps", "front_delt"], "confidence": "mocne (triceps: S7, S8, S9 — wzrost; przedni akton: umiarkowane)", "notes": "Makieta: triceps jako główny — niezgodne (S7: klatka rosła bardziej niż triceps). Zębaty przedni — brak regionu, [OTWARTE]."},
+  {"archetype": "h_push_pushup", "primary": ["chest"], "secondary": ["triceps", "front_delt"], "optional": ["abs"], "confidence": "umiarkowane (S9 wzrost; S36 EMG)", "notes": "Diamond Push Up: triceps główny (S36, jedno źródło)."},
+  {"archetype": "v_push_overhead", "primary": ["front_delt"], "secondary": ["triceps", "side_delt"], "confidence": "umiarkowane (S6 klasyfikacja, S15 EMG; brak badań wzrostu tricepsa po OHP)", "notes": "Makieta: triceps główny — niezgodne."},
+  {"archetype": "v_pull", "primary": ["lats"], "secondary": ["biceps", "upper_back"], "confidence": "mocne dla bicepsa jako pomocniczego (S11, S12 — wzrost przy ściąganiu); najszerszy: EMG S37 + anatomia S35", "notes": "Makieta: biceps główny — niezgodne (przyrost bicepsa ok. połowy względem uginania, S13)."},
+  {"archetype": "h_pull_row", "primary": ["lats", "upper_back"], "secondary": ["biceps", "rear_delt"], "optional": ["lower_back (w opadzie)"], "confidence": "mocne dla One Arm Row (S13); umiarkowane dla reszty"},
+  {"archetype": "iso_curl", "primary": ["biceps"], "secondary": [], "optional": ["forearms (nachwyt, młotkowe — patrz L1)"], "confidence": "mocne (S12, S13, S6)", "notes": "Makieta: forearms główne przy zwykłym uginaniu — niezgodne z docs/24 i L1 (przedramiona główne tylko przy nachwycie)."},
+  {"archetype": "iso_triceps", "primary": ["triceps"], "secondary": [], "confidence": "mocne (S29 wzrost; S6)"},
+  {"archetype": "iso_raise", "primary": ["side_delt (bokiem) | front_delt (przodem) | rear_delt (tyłem)"], "secondary": [], "confidence": "umiarkowane (S31 wzrost dla bocznego; S35 anatomia; rear — jedno źródło)"},
+  {"archetype": "iso_fly", "primary": ["chest"], "secondary": [], "optional": ["front_delt"], "confidence": "umiarkowane (S6, S35; L1: przedni akton 0,5 — Solstad 2020)"},
+  {"archetype": "iso_leg_machine", "primary": ["hamstrings (uginanie) | quads (prostowanie)"], "secondary": [], "confidence": "mocne (S27, S28; S3)"},
+  {"archetype": "iso_calf", "primary": ["calves"], "secondary": [], "confidence": "umiarkowane–mocne (S30)", "notes": "Makieta: quads pomocnicze przy łydkach — bez źródła."},
+  {"archetype": "core_flexion", "primary": ["abs"], "secondary": ["obliques"], "confidence": "umiarkowane (S32, S33 — przeglądy EMG)"},
+  {"archetype": "core_anti_ext", "primary": ["abs"], "secondary": ["obliques"], "confidence": "umiarkowane (S32: deska ~78% MVIC prosty brzucha)"},
+  {"archetype": "carry", "primary": ["forearms", "upper_back"], "secondary": ["abs", "obliques"], "confidence": "brak źródła — uproszczenie (Farmer's Walk), jedno źródło (Suitcase Carry, S34)"},
+  {"archetype": "shrug", "primary": ["upper_back"], "secondary": [], "confidence": "jedno źródło (S35 anatomia: czworoboczny — 'Elevates shoulders (shrugging)')"}
+ ],
+ "makietaConflicts": [
+  "Makieta przypisuje mięśnie z reguł po nazwie (compileCatalogEntry) — dubluje i miejscami przeczy zbadanym danym katalogu. Zalecenie: usunąć mięśnie z kompilatora figur i czytać muscleLoad.",
+  "Główny vs pomocniczy niezgodny z docs/24 w: wyciskaniu (triceps), OHP (triceps), podciąganiu (biceps), przysiadzie (pośladki), uginaniu ramion (przedramiona).",
+  "Regiony bez źródeł w makiecie: serratus (pompki, wyciskanie, rollout), quads przy łydkach, delts_front przy uginaniu ramion, traps_upper przy OHP, glutes przy uginaniu nóg, core przy prostowaniu nóg.",
+  "DEFAULT_TENSION_CURVES (l. 1060–1066: 'stretch-peak', 'lockout-peak'…) i evaluateMuscleTension — krzywe napięcia mięśni bez żadnego źródła; to twierdzenie fizjologiczne pokazane kolorem. [OTWARTE] — zalecenie: stałe podświetlenie główne/pomocnicze, bez animowanego 'napięcia'."
+ ],
+ "open": [
+  "Podział czworobocznego (góra/środek) i zębaty przedni — region i źródła.",
+  "Deadlift (sztanga): czy catalog.json ma wdrożoną propozycję docs/24 (plecy jako pomocnicze)? W catalog.json lower_back = 1.",
+  "Przywodziciele w przysiadach — decyzja Q1 z docs/24.",
+  "ACSM's Resources for the Personal Trainer 6e: rozdział o anatomii czynnościowej/kinezjologii (mięśnie główne i synergiści w ruchach podstawowych) — możliwe trzecie źródło (szczebel 3) dla przypisań 'jedno źródło' (szrugsy, unoszenie tyłem, Face Pull)."
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "meta": {"date": "2026-10-25", "note": "Uzupełnienie wskazowki-slownik.json (nowe wskazówki i rodziny dodane w trakcie partii 03–07)."},
+ "existing": {"bike.seat": "data:Rower", "bike.foot": "data:Rower", "preacher.setup": "data:Preacher Curl", "fp.move": "data:Face Pull", "bd.setup": "data:Bird Dog", "splank.move": "data:Side Plank", "erg.finish": "data:Rowing Machine", "kb.setup": "data:Kettlebell Swing", "carry.one": "data:Suitcase Carry", "lunge.fwd": "data:Lunges (hantle)", "bj.move": "data:Box Jump", "mc.move": "data:Mountain Climbers", "burpee.up": "data:Burpees"},
+ "new": {
+  "ur.elbows": {"text": "Łokcie prowadzą ruch i są wyżej niż dłonie.", "claim": "W wiosłowaniu pionowym łokieć nad przedramieniem.", "src": [["https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more", "„Make sure each elbow stays above the forearm.”"], ["data:Lateral Raise (hantle)", "lat.elbows (ACE #26: elbows rise ahead of forearms; ExRx: elbows above wrists) — analogia"]]},
+  "ur.close": {"text": "Ciężar blisko przodu ciała.", "claim": "Tor ciężaru przy tułowiu.", "src": [["https://www.issaonline.com/blogs/strength/upright-row-muscles-worked-benefits-proper-form-more", "„…close to the front of the body.”"], ["data:Deadlift (sztanga)", "dl.close — analogia toru przy ciele (słabe; do potwierdzenia w ACSM 6e)"]], "note": "Druga podpora tylko analogią — w aplikacji użyto jedynie ur.elbows i lat.height."},
+  "po.arms": {"text": "Ręce proste przez cały ruch.", "claim": "Pullover na prostych rękach.", "src": [["https://www.acefitness.org/resources/everyone/exercise-library/37/lying-pullovers/", "„…keeping the elbows straight”"], ["https://www.issaonline.com/blogs/training-tips/stability-ball-exercises-build-muscle-balance-endurance", "„With both arms fully extended…”"]]},
+  "po.slow": {"text": "Opuszczaj ciężar za głowę powoli i tak samo wracaj nad klatkę.", "claim": "Kontrolowany ruch w obu fazach.", "src": [["https://www.acefitness.org/resources/everyone/exercise-library/37/lying-pullovers/", "„slowly stretch the arms up overhead”, „slowly pull the weights back up”"], ["https://www.issaonline.com/blogs/training-tips/stability-ball-exercises-build-muscle-balance-endurance", "„slowly lower the dumbbell behind the head”"]]},
+  "sled.lean": {"text": "Pochyl się lekko w przód, tułów sztywny.", "claim": "Pchanie sanek z pochyleniem i sztywnym tułowiem.", "src": [["https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power", "„…maintain a slight forward lean.”"], ["https://www.acefitness.org/continuing-education/prosource/february-2014/3676/strongman-training-for-your-clients/", "„forward-leaning body position”; „stiff, stable spine”"]]},
+  "sled.legs": {"text": "Pchaj nogami — odpychaj się od podłoża krok po kroku.", "claim": "Napęd z nóg, nie z rąk.", "src": [["https://www.issaonline.com/blog/post/hockey-workouts-for-lower-body-power", "„Drive through the legs, not the upper body.”"], ["https://www.acefitness.org/continuing-education/prosource/february-2014/3676/strongman-training-for-your-clients/", "„push into the ground one leg at a time”"]]}
+ },
+ "families": {
+  "uprightRow": {"ok": ["ur.elbows", "lat.height"], "err": ["mis.jerk"]},
+  "pullover": {"ok": ["po.arms", "po.slow"], "err": ["mis.jerk"]},
+  "sled": {"ok": ["sled.lean", "sled.legs"], "err": []},
+  "bike": {"ok": ["bike.seat", "bike.foot"], "err": []},
+  "machinePress": {"ok": ["mcp.move", "mcp.blades", "press.noLock"], "err": ["mis.jerk"]},
+  "cablePress": {"ok": ["cpress.base", "press.noLock"], "err": ["mis.jerk"]},
+  "press": {"ok": ["press.noLock", "plank.brace"], "err": ["mis.jerk"]},
+  "vup": {"ok": ["vup.back", "plank.brace"], "err": ["mis.jerk"]},
+  "pushPress": {"ok": ["pp.dip", "pp.legs"], "err": ["ohp.mis.lock"]},
+  "faceRow": {"ok": ["fp.elbowsBack", "fp.chest"], "err": ["mis.jerk"]}
+ }
+}

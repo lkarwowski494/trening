@@ -1,0 +1,91 @@
+{
+ "_opis_r3": "RUNDA 3 (badacz, 26.10.2026) — JSON Merge Patch (RFC 7386) do reguly-sensu-r2.json: obiekty łączone rekurencyjnie, tablice i wartości zastępowane w całości, null = usuń klucz. r2 + ten plik = r3. Powód: naruszenia 42/87 gotowych figur (scratchpad/naruszenia-gotowych.json). Zmiany: (1) RDL — próg kolana i miara zawiasu ze źródeł (pomiar Lee i in. 2018); (2) dzień dobry — głębokość jako osiągnięte pochylenie 45°–95° (NASM + ExRx); (3) klucz izometryczne; (4) pompka — głębokość i łokcie; (5) BŁĄD BADACZA w definicji kolano_w_linii_stopy (kąt daje fałszywe naruszenia przy stopach szerzej niż biodra) — nowa definicja przez odległość kolana od osi stopy.",
+ "_typy_nowe_r2": {
+  "kolano_w_linii_stopy": "R3 (zastępuje definicję kątową z r2): nogi wg strony („obie” | „bardziej_zgieta”); tylko próbki ze zgięciem kolana ≥ min_zgiecie_deg; d = pozioma (x, z) odległość środka kolana od prostej przez legs[s].heel i legs[s].toe, ze znakiem: dodatnia na zewnątrz (R: +z, L: −z); wymagane d ≥ −max_do_srodka_cm. Kąt (knee − ankle) względem stopy był błędny: przy stopach szerzej niż biodra kolano leży przyśrodkowo od kostki także w poprawnej pozie.",
+  "stanie_wyprost": "jak w r2; nowy parametr opcjonalny noga: „podporowa” → warunek kolana i biodra tylko dla nogi podporowej (stopa najniżej, na podporze); wolna noga jednonóż nie podlega",
+  "kolana_max": "jak w r2; nowy parametr opcjonalny noga: „podporowa”",
+  "pochylenie_tulowia_ruch": "jak w r2; nowy warunek opcjonalny min_osiagniete_deg: max pochylenia w ruchu ≥ min_osiagniete_deg (pozycja dolna osiąga co najmniej ten kąt)",
+  "zawias_biodrowy": "NOWY. Kąty jointAngles (noga wg parametru noga: „srednia” | „podporowa”): H = max − min zgięcia biodra w ruchu, K = max − min zgięcia kolana w ruchu; wymagane max zgięcia biodra ≥ min_biodro_deg ORAZ H ≥ min_stosunek × K (ruch prowadzą biodra, nie kolana)",
+  "klatka_przy_dloniach": "NOWY. W próbce o największym zgięciu łokcia: shoulderC[1] − G[1] ≤ max_cm (klatka nisko, przy wysokości podparcia dłoni — działa też dla pompek na podwyższeniu)",
+  "_strony_pracujace": "UWAGA DLA PROGRAMISTY: w odmianach jednorącz z hantlem/kettlebellem (One Arm Dumbbell Bench Press, One-Arm Kettlebell Floor Press, Single Arm RDL, One-Arm Side Deadlift, Single Leg RDL) wolna ręka trafia dziś do G i do reguł łokcia — sprzet[] musi oznaczać rękę pracującą (trzyma R/L) także dla hantli, albo stronyRak() ma ją brać z wariantu. Naruszenia „łokieć L nie prostuje się poniżej 125°” i „ciężar 29–31 cm od nóg” w tych ćwiczeniach to artefakt, nie błąd figury."
+ },
+ "izometryczne": {
+  "_opis": "Ćwiczenia, w których poprawna poza jest nieruchoma (utrzymanie pozycji): bramka ruchu (CONTRACT.minMotionCm) ich nie dotyczy, reguły „w ruchu” liczy się na pozie stałej. Kryterium: opis ćwiczenia/wskazówki mówią o utrzymaniu pozycji, nie o ruchu. Źródło przy każdym.",
+  "Plank": "plank.move („trzymaj ciało w jednej linii”): ACE #32, NASM Plank (cues.json); NSCA Basics s. 46–47 (deska — utrzymanie pozycji)",
+  "Side Plank": "splank.*: NASM Side Plank, ACE #303 (cues.json); NSCA Basics s. 48",
+  "Copenhagen Plank": "zestaw plank (plank.brace, splank.noSag) — deska boczna z nogą na podporze; analogia do Side Plank",
+  "Hollow Hold": "nazwa i zestaw (db.back, plank.brace, błąd plank.mis.breath) — utrzymanie pozycji; analogia do deski",
+  "L-Sit": "nazwa (siad podparty z nogami w poziomie) — utrzymanie pozycji; zestaw „open”, reguł sensu brak",
+  "Dead Hang": "npu.hang (zwis na prostych rękach) — utrzymanie zwisu; reguły r1 (rece_proste_caly_ruch)",
+  "Wall Sit": "wall.setup / wall.depth (zsuń się do wybranej wysokości i utrzymaj); pmc-10786991, pmc-13449400 (cues.json); variants.ts static: true",
+  "Stomach Vacuum": "Hwang i Park 2017 (PMC5498091), Madokoro i in. 2014 (PMC4085215) — utrzymanie pozycji po wciągnięciu; nadal OTWARTE produktowo (r1)",
+  "Isometric Neck Exercise - Front And Back": "nazwa (izometria); zestaw „open”, reguł sensu brak",
+  "Isometric Neck Exercise - Sides": "nazwa (izometria); zestaw „open”, reguł sensu brak",
+  "Plate Pinch": "nazwa (utrzymanie talerzy chwytem szczypcowym); zestaw „open”, reguł sensu brak",
+  "Crucifix": "zestaw (lat.height, front.elbows; błąd plank.mis.breath — wstrzymywanie oddechu przy trzymaniu) — utrzymanie ramion w bok; jedno wskazanie pośrednie, do potwierdzenia źródłem opisu"
+ },
+ "izometryczne_kandydaci": {
+  "_opis": "PROPOZYCJA: rozciągania statyczne (zestaw ogólny „stretch”: st.tension, st.noBounce „trzymaj spokojnie, bez sprężynowania” — ACE #212, NASM static stretch, słownik badacza) to też poza nieruchoma. Jeśli mechanizm izometryczne ma je objąć, dopisać; rodziny mobility są dziś bez reguł sensu (OTWARTE r1). Nie dopisane: Isometric Wipers (mimo nazwy w opisie jest ruch — bez źródła), Pallof Press (wypchnięcie i powrót), Downward Facing Balance (zestaw „open”, nie badane).",
+  "lista": ["Butterfly Stretch", "Chest And Front Of Shoulder Stretch", "Chest Stretch on Stability Ball", "Child's Pose", "Chin To Chest Stretch", "Cross-Body Shoulder Stretch", "Intermediate Groin Stretch", "IT Band and Glute Stretch", "Kneeling Forearm Stretch", "Kneeling Hip Flexor Stretch", "Middle Back Stretch", "One Knee To Chest", "Overhead Stretch", "Overhead Triceps Stretch", "Peroneals Stretch", "Posterior Tibialis Stretch", "Runner's Stretch", "Seated Calf Stretch", "Seated Floor Hamstring Stretch", "Seated Rotation Stretch", "Side Lying Groin Stretch", "Side Neck Stretch", "Side-Lying Quad Stretch", "Standing Biceps Stretch", "Standing Chest Stretch", "Standing Elevated Quad Stretch", "Standing Gastrocnemius Calf Stretch", "Standing Lateral Stretch", "Standing Soleus And Achilles Stretch", "Standing Toe Touches", "Supine Figure-Four Stretch", "Supine Hamstring Stretch", "Supine Spinal Twist", "The Straddle", "Upper Back Stretch", "Wall Calf Stretch", "Wall Lat Stretch"]
+ },
+ "rodziny": {
+  "squat": {
+   "reguly": {
+    "kolana_nad_stopami": {"parametry": {"strony": "obie", "min_zgiecie_deg": 30, "max_do_srodka_deg": null, "max_do_srodka_cm": 4}, "liczba": "uproszczenie (środek kolana najwyżej 4 cm przyśrodkowo od osi pięta–palce stopy; liczone przy zgięciu ≥ 30°). R3: zmiana miary z kąta na odległość — błąd definicji w r2"}
+   }
+  },
+  "hinge": {
+   "reguly": {
+    "kolana_sumo": {"parametry": {"strony": "obie", "min_zgiecie_deg": 30, "max_do_srodka_deg": null, "max_do_srodka_cm": 4}, "liczba": "uproszczenie (jak w przysiadzie, miara odległości — r3)"},
+    "kolana_lekko_ugiete": {"parametry": {"max_deg": 45}, "zrodlo": "Lee i in. 2018, J Exerc Sci Fit (PMC6323186) — Methods → Trial conditions (polecenie: ok. 15° zgięcia kolan) i Discussion, Table 3 (zmierzone w RDL zgięcie kolana 33,86 ± 12,59°, biodra 79,97 ± 15,85°; martwy ciąg klasyczny: kolano 85,17°, biodro 90,63°) — przeczytane 26.10.2026; kierunek („lekko ugięte”, bez zmiany ustawienia): NSCA Basics s. 52, ACE #317, Catalyst Athletics „The Romanian Deadlift” (G. Rinaldi: ok. 15°, stałe) — przeczytane 26.10.2026; NASM (cues.json)", "liczba": "uproszczenie: ≤ 45° ≈ średnia + 1 SD z pomiaru Lee i in. (33,9 + 12,6). 15° ze źródeł szczebla 4 to wskazówka wykonania, nie zmierzony kąt — badanie pokazało, że przy poleceniu 15° ludzie zginają średnio 34°. Część wspólna: kolano zgięte wyraźnie mniej niż w martwym ciągu (85°)", "pewnosc": "jedno źródło pomiarowe (szczebel 3) + kierunek ustalony (szczebel 4)"},
+    "zawias_w_biodrach": {"typ": "zawias_biodrowy", "parametry": {"min_zmiana_deg": null, "noga": "srednia", "min_biodro_deg": 60, "min_stosunek": 1.5}, "zrodlo": "Lee i in. 2018 (PMC6323186), Table 3: RDL biodro 79,97 ± 15,85° przy kolanie 33,86° (stosunek ≈ 2,4), martwy ciąg klasyczny 90,63° / 85,17° (≈ 1,1) — przeczytane 26.10.2026; kierunek: NSCA Basics s. 52 (biodra w tył, sztanga po udach do górnej krawędzi kolan), ACE #317 (biodra w tył), Catalyst „The Romanian Deadlift” (tułów prawie równolegle na dole) — przeczytane", "liczba": "uproszczenie: biodro ≥ 60° (≈ średnia − 1 SD z Lee: 80 − 16 = 64, zaokr. w dół); zakres biodra ≥ 1,5 × zakres kolana — granica między zmierzonymi stosunkami RDL (2,4) i martwego ciągu (1,1), rachunek na danych Lee — konwencja. Pochylenie tułowia nie jest miarą: przy tej samej głębokości zależy od zgięcia kolan (dlatego progi r2 kolano ≤ 35° i tułów ≥ 40° się wykluczały)", "pewnosc": "jedno źródło pomiarowe (szczebel 3) + kierunek ustalony"},
+    "dzien_dobry_glebokosc": {"parametry": {"min_osiagniete_deg": 45, "max_deg": 95}, "zrodlo": "NASM Good Mornings, FAQ (pochylenie w przód zwykle 45–90°) i krok 3 (do wyraźnego rozciągnięcia tyłu ud) — przeczytane 26.10.2026; gm.depth: ExRx BBGoodMorning (do poziomu) — cues.json. Część wspólna: 45°–90° (ExRx: górna granica 90°)", "liczba": "45° — z NASM; 95° = 90° + tolerancja rysunku (uproszczenie)", "pewnosc": "ustalone (część wspólna)"},
+    "wyprost_na_gorze_jednonoz": {"typ": "stanie_wyprost", "grupa": "zakres", "cue": "rdl.move", "parametry": {"noga": "podporowa", "max_kolano_deg": 15, "max_biodro_deg": 15, "max_tulow_deg": 15}, "zrodlo": "jak wyprost_na_gorze; w odmianie jednonóż wolna noga nie podlega warunkowi (konwencja)", "liczba": "uproszczenie", "pewnosc": "analogia"}
+   },
+   "warianty": {
+    "_dzien_dobry": ["plecy_neutralne", "wyprost_na_gorze", "kolana_lekko_ugiete", "zawias_w_biodrach", "dzien_dobry_glebokosc"],
+    "_rdl_jednonoz": ["plecy_neutralne", "ciezar_przy_nogach", "wyprost_na_gorze_jednonoz", "kolana_lekko_ugiete", "zawias_w_biodrach"],
+    "Single Leg RDL (hantel)": "_rdl_jednonoz",
+    "Single Leg RDL (linki)": "_rdl_jednonoz"
+   },
+   "otwarte_czesciowo": {
+    "Stiff-Legged Barbell Deadlift, Smith Machine Stiff-Legged Deadlift": "odmiana „na prostych nogach” ma mieć kolana mniej zgięte niż RDL; liczby dla tej odmiany nie mam (Lee mierzył RDL) — zostaje próg RDL ≤ 45°, rig (48,5°) i tak go przekracza",
+    "Cable Pull Through": "źródła ruchu nie czytałem; zawias_biodrowy to analogia do RDL",
+    "Good Morning — wyprost_na_gorze": "rig stoi z tułowiem ok. 23° (gryf dokładnie nad śródstopiem przy miednicy nad kostką). Rachunek: gryf 12,8 cm za osią tułowia leży nad stopą (pięta −6 cm … palce +19 cm od kostki) już przy pochyleniu ≥ ok. 8°, więc wyprost ≤ 15° jest fizycznie możliwy — próg zostaje, poprawia się rig (patrz raport)"
+   }
+  },
+  "lunge": {
+   "reguly": {
+    "kolano_nad_stopa": {"parametry": {"strony": "bardziej_zgieta", "min_zgiecie_deg": 30, "max_do_srodka_deg": null, "max_do_srodka_cm": 4}, "liczba": "uproszczenie (miara odległości — r3)"}
+   }
+  },
+  "olympic": {
+   "reguly": {
+    "kolana_nad_stopami": {"parametry": {"strony": "obie", "min_zgiecie_deg": 30, "max_do_srodka_deg": null, "max_do_srodka_cm": 4}, "liczba": "uproszczenie (miara odległości — r3)"}
+   }
+  },
+  "bench_press": {
+   "warianty": {
+    "Squeeze Press (hantle)": ["pelny_zakres", "lawka_kontakt", "dol_przy_klatce", "lokcie_nie_szeroko"]
+   },
+   "otwarte_czesciowo": {
+    "Squeeze Press (hantle)": "hantle dociskane do siebie — źródła reguły przedramienia (NSCA s. 53–55, SBS) opisują zwykłe wyciskanie; reguła przedramie_pod_sztanga zdjęta (r3)"
+   }
+  },
+  "pushup_plank": {
+   "reguly": {
+    "pompka_zakres": {"parametry": {"min_max_deg": 85, "max_min_deg": 20}, "zrodlo": "NASM Push-Up (kroki: w dół, aż klatka prawie dotknie podłogi; FAQ: albo łokcie ok. 90°); ACE #41 krok 3 (w dół, aż klatka lub broda dotknie podłogi; w górę do wyprostu) — przeczytane 26.10.2026; ExRx BWPushup (cues.json)", "liczba": "uproszczenie: 85° = „ok. 90°” (NASM) z tolerancją; ACE wymaga głębiej (dotyk), więc część wspólna to co najmniej ok. 90°", "pewnosc": "ustalone"},
+    "klatka_przy_dloniach": {"typ": "klatka_przy_dloniach", "grupa": "zakres", "cue": "push.move", "cue_dodatkowe": ["ipush.move", "push.mis.partial"], "parametry": {"max_cm": 20}, "zrodlo": "ACE #41 krok 3 (klatka lub broda dotyka podłogi); NASM Push-Up (klatka prawie dotyka podłogi) — przeczytane 26.10.2026", "liczba": "uproszczenie (oś barków ≤ 20 cm nad wysokością dłoni: przód klatki ≈ 10,5 cm od osi + kilka cm odstępu)", "pewnosc": "ustalone"},
+    "lokcie_nie_w_bok": {"typ": "odwiedzenie_ramienia_max", "grupa": "lokcie", "cue": null, "parametry": {"max_deg": 75}, "zrodlo": "NASM Push-Up (łokcie ok. 45° od tułowia; Common Mistakes: zbyt szeroko rozłożone łokcie); ACE #41 krok 3 (w wersji podstawowej łokcie rozchodzą się na boki), krok 5 (łokcie przy bokach — odmiana na triceps) — przeczytane 26.10.2026. SPRZECZNOŚĆ na tym samym szczeblu: NASM 45° i „rozkładanie to błąd” vs ACE „łokcie na boki”", "liczba": "konwencja: tylko górna granica 75° (żadne źródło nie każe ustawiać ramion w literę T); 45° NASM NIE jest progiem, bo ACE mu przeczy", "pewnosc": "konwencja (część wspólna sprzecznych źródeł)"}
+   },
+   "wskazowki_na_reguly": {
+    "push.move": ["pompka_zakres", "klatka_przy_dloniach", "lokcie_nie_w_bok"],
+    "ipush.move": ["pompka_zakres", "klatka_przy_dloniach", "lokcie_nie_w_bok"],
+    "push.mis.partial": ["pompka_zakres", "klatka_przy_dloniach"]
+   },
+   "otwarte_czesciowo": {
+    "lokcie w pompce (wskazówka tekstowa)": "[OTWARTE] tekstu wskazówki o łokciach do aplikacji nie proponuję: NASM (ok. 45°, rozkładanie = błąd) i ACE (w wersji podstawowej łokcie na boki) się różnią; część wspólna to tylko „nie w literę T”, a tego żadne z nich wprost nie pisze"
+   }
+  }
+ }
+}

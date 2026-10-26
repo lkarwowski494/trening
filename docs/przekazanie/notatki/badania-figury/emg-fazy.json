@@ -1,0 +1,92 @@
+{
+  "opis": "Relacja pobudzenia EMG w fazie opuszczania (ekscentrycznej) do fazy podnoszenia (koncentrycznej) dla tego samego mięśnia. Role mięśni (główny/pomocniczy) BIERZ Z muscleLoad (docs/research/24, 25) — jedno źródło prawdy; tu nie ma drugiego systemu ról. EMG = pobudzenie, nie siła ani wzrost (E4). Nie porównywać poziomów między mięśniami (E4). Źródła: emg-bark-oddech.md, sekcja 2.",
+  "data": "2026-10-25",
+  "slownik": {
+    "ecc_vs_con": {
+      "con>ecc": "w opuszczaniu ten sam mięsień pracuje, ale słabiej pobudzony niż przy podnoszeniu",
+      "mieszane": "zależy od wariantu/obciążenia albo źródła się różnią — nie zmieniać jasności między fazami",
+      "brak_danych": "nie przeczytano badania z rozdziałem faz — nie zmieniać jasności"
+    },
+    "pewnosc": ["ustalone", "zgodne_2_zespoly", "jedno_zrodlo", "uproszczenie", "otwarte"]
+  },
+  "zasada_ogolna": {
+    "ecc_vs_con": "con>ecc",
+    "pewnosc": "zgodne_2_zespoly",
+    "zrodla": ["E3", "E1", "E5", "E6", "E10", "E11", "E12"],
+    "uwaga": "Przegląd fizjologiczny (E3) + badania z kilku zespołów. Współczynnik przyciemnienia w animacji to konwencja graficzna, nie liczba z badań."
+  },
+  "cwiczenia": {
+    "bench_press": {
+      "miesnie": {
+        "chest":      { "ecc_vs_con": "con>ecc", "pewnosc": "zgodne_2_zespoly", "zrodla": ["E5", "E3"] },
+        "triceps":    { "ecc_vs_con": "con>ecc", "pewnosc": "zgodne_2_zespoly", "zrodla": ["E5", "E3"] },
+        "front_delt": { "ecc_vs_con": "con>ecc", "pewnosc": "uproszczenie", "zrodla": ["E3"], "uwaga": "naramiennego nie mierzono w fazach (E5); zasada ogólna" }
+      },
+      "emg_info": "E2 (szczebel 2): klatka i triceps podobnie, wyżej niż przedni akton — zgodne z rolami w muscleLoad."
+    },
+    "back_squat": {
+      "miesnie": {
+        "quads":      { "ecc_vs_con": "con>ecc", "pewnosc": "zgodne_2_zespoly", "zrodla": ["E7", "E8", "E6"], "uwaga": "E6: obszerne wyżej przy wstawaniu tylko w części wariantów" },
+        "glutes":     { "ecc_vs_con": "con>ecc", "pewnosc": "zgodne_2_zespoly", "zrodla": ["E6", "E8"] },
+        "hamstrings": { "ecc_vs_con": "con>ecc", "pewnosc": "jedno_zrodlo", "zrodla": ["E7", "E8"], "uwaga": "E7 i E8 prawdopodobnie ten sam zespół; E6 nie mierzył" },
+        "lower_back": { "ecc_vs_con": "mieszane", "pewnosc": "otwarte", "zrodla": ["E7", "E8", "E6"], "uwaga": "E7: wyżej w opuszczaniu; E8: wyżej przy wstawaniu; E6: zależnie od wariantu" }
+      }
+    },
+    "deadlift": {
+      "miesnie": {
+        "lower_back": { "ecc_vs_con": "con>ecc", "pewnosc": "ustalone", "zrodla": ["E1"] },
+        "glutes":     { "ecc_vs_con": "con>ecc", "pewnosc": "ustalone", "zrodla": ["E1"] },
+        "hamstrings": { "ecc_vs_con": "con>ecc", "pewnosc": "ustalone", "zrodla": ["E1"] },
+        "quads":      { "ecc_vs_con": "con>ecc", "pewnosc": "ustalone", "zrodla": ["E1"] }
+      },
+      "emg_info": "E1: prostowniki i czworogłowe bardziej pobudzone niż pośladkowy wielki i dwugłowy uda. UWAGA: muscleLoad ma quads 0,25 (role z badań wzrostu, docs/24) — EMG nie zmienia ról; rozbieżność do wiadomości, nie do poprawiania danych."
+    },
+    "barbell_row": {
+      "miesnie": {
+        "lats":       { "ecc_vs_con": "con>ecc", "pewnosc": "uproszczenie", "zrodla": ["E11"], "uwaga": "analogia: wiosłowanie siedząc na wyciągu, jeden zespół; wiosłowanie sztangą w opadzie — brak badania faz" },
+        "upper_back": { "ecc_vs_con": "con>ecc", "pewnosc": "uproszczenie", "zrodla": ["E11"] },
+        "rear_delt":  { "ecc_vs_con": "con>ecc", "pewnosc": "uproszczenie", "zrodla": ["E11"] },
+        "biceps":     { "ecc_vs_con": "brak_danych", "pewnosc": "otwarte", "zrodla": [] },
+        "lower_back": { "ecc_vs_con": "brak_danych", "pewnosc": "otwarte", "zrodla": [], "uwaga": "w opadzie prostowniki pracują izometrycznie — nie animować zmiany" }
+      }
+    },
+    "seated_cable_row": {
+      "miesnie": {
+        "lats":       { "ecc_vs_con": "con>ecc", "pewnosc": "jedno_zrodlo", "zrodla": ["E11"] },
+        "upper_back": { "ecc_vs_con": "con>ecc", "pewnosc": "jedno_zrodlo", "zrodla": ["E11"] },
+        "rear_delt":  { "ecc_vs_con": "con>ecc", "pewnosc": "jedno_zrodlo", "zrodla": ["E11"] }
+      }
+    },
+    "lat_pulldown": {
+      "miesnie": {
+        "lats":    { "ecc_vs_con": "con>ecc", "pewnosc": "jedno_zrodlo", "zrodla": ["E10"] },
+        "biceps":  { "ecc_vs_con": "con>ecc", "pewnosc": "jedno_zrodlo", "zrodla": ["E10"] },
+        "upper_back": { "ecc_vs_con": "con>ecc", "pewnosc": "jedno_zrodlo", "zrodla": ["E10"] },
+        "rear_delt":  { "ecc_vs_con": "con>ecc", "pewnosc": "jedno_zrodlo", "zrodla": ["E10"] }
+      }
+    },
+    "pull_up": {
+      "miesnie": {
+        "biceps":   { "ecc_vs_con": "con>ecc", "pewnosc": "jedno_zrodlo", "zrodla": ["E12"], "uwaga": "tylko abstrakt" },
+        "forearms": { "ecc_vs_con": "con>ecc", "pewnosc": "jedno_zrodlo", "zrodla": ["E12"], "uwaga": "ramienno-promieniowy; tylko abstrakt" },
+        "lats":     { "ecc_vs_con": "con>ecc", "pewnosc": "uproszczenie", "zrodla": ["E10", "E3"], "uwaga": "analogia do ściągania drążka; E12 nie podaje najszerszego" },
+        "upper_back": { "ecc_vs_con": "brak_danych", "pewnosc": "otwarte", "zrodla": [] }
+      },
+      "emg_info": "E13 (całe powtórzenie, %MVC): najszerszy ~80, aktony tylne ~106, czworoboczny środkowy ~61, dwugłowy ~44 — nie porównywać między mięśniami (E4)."
+    }
+  },
+  "zrodla": {
+    "E1": "Martín-Fuentes 2020, PLoS One, PMC7046193 (przegląd systematyczny, szczebel 2)",
+    "E2": "Stastny 2017, PLoS One, PMC5295722 (przegląd systematyczny, szczebel 2)",
+    "E3": "Duchateau i Enoka 2016, J Exp Biol 219:197 (przegląd, szczebel 3)",
+    "E4": "Vigotsky 2017, Front Physiol, PMC5758546 (przegląd metodologiczny, szczebel 3)",
+    "E5": "Tsoukos 2023, J Hum Kinet, PMC10407316 (szczebel 3)",
+    "E6": "Coratella 2021, IJERPH, PMC7831128 (szczebel 3, zespół mediolański)",
+    "E7": "Park 2022, IJERPH, PMC9602963 (szczebel 3)",
+    "E8": "Park 2026, Medicina, PMC13413768 (szczebel 3; prawdopodobnie zespół E7)",
+    "E10": "Front vs back lat pull-down HD-EMG 2024, J Hum Kinet, PMC11057623 (szczebel 3, zespół mediolański)",
+    "E11": "Padovan 2025, J Funct Morphol Kinesiol, PMC12821611 (szczebel 3, zespół mediolański)",
+    "E12": "Dickie 2017, J Electromyogr Kinesiol, PMID 28011412 (szczebel 3, tylko abstrakt)",
+    "E13": "Snarr 2017, J Hum Kinet, PMC5548150 (szczebel 3)"
+  }
+}

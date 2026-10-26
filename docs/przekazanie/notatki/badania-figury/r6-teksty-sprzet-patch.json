@@ -1,0 +1,43 @@
+{
+ "_opis": "R6 (badacz, 26.10.2026). Dwie łatki JSON Merge Patch: (1) teksty_wskazowek → lib/cues/text/pl.json i en.json (klucze płaskie, jak w plikach); źródła w słowniku badacza / cues.json, nie w tekstach; (2) figury_sprzet → data/zrodla/figury-sprzet.json (gałąź grafiki-sprzet). Raport: r6-teksty-sprzet.md.",
+ "teksty_wskazowek": {
+  "pl.json": {
+   "cobra.hips": "Biodra zostają na podłodze.",
+   "cobra.control": "Opuszczaj się powoli.",
+   "cobra.mis": "Wyginanie pleców za mocno, aż biodra odrywają się od podłogi.",
+   "hang.noSwing": "Bujanie się i wymachy nogami.",
+   "hang.slow": "Opuszczaj nogi powoli.",
+   "hang.ribs": "Żebra w dół, tułów spokojny — podwijaj miednicę."
+  },
+  "en.json": {
+   "cobra.hips": "Keep your hips on the floor.",
+   "cobra.control": "Lower yourself slowly.",
+   "cobra.mis": "Arching your back too far, until your hips lift off the floor.",
+   "hang.noSwing": "Swinging and kicking your legs up.",
+   "hang.slow": "Lower your legs slowly.",
+   "hang.ribs": "Ribs down, torso still — tuck your pelvis."
+  }
+ },
+ "figury_sprzet": {
+  "_opis_r6": "R6 (badacz): część wymiarów potwierdzona normą federacji trójboju (przepisy techniczne, wyd. 01.2024, s. 8–9 — przeczytane 26.10.2026; pełny opis na Dysku, 05 Research). Status „zgodne ze źródłem” = wartość mieści się w zakresie źródła; „niezgodne ze źródłem” = wartość poza zakresem — do decyzji (poprawka albo jawna konwencja rysunku z powodem). Pozostałe zostają „konwencja rysunku” z zakresem.",
+  "statusy": ["konwencja rysunku", "zgodne ze źródłem", "niezgodne ze źródłem"],
+  "lawka_regulowana": {
+   "status": "zgodne ze źródłem",
+   "zrodlo": "przepisy techniczne federacji trójboju (wyd. 01.2024), s. 9, Bench: wysokość 42–45 cm (od podłogi do górnej powierzchni wyściółki), szerokość 29–32 cm, długość ≥ 1,22 m — przeczytane 26.10.2026",
+   "zgodnosc": "seatTop 43 cm mieści się w 42–45 cm; długość siedzisko + oparcie 130 cm ≥ 122 cm. Kąty ławki skośnej/ujemnej i wymiary ławki ujemnej (declineSeat) — konwencja rysunku (norma dotyczy ławki płaskiej)"
+  },
+  "wymiary": {
+   "barR": {"status": "niezgodne ze źródłem", "zrodlo": "przepisy federacji trójboju (01.2024), s. 8: średnica gryfu 28–29 mm", "zgodnosc": "1,6 cm = średnica 32 mm, powyżej zakresu; zgodne byłoby 1,4–1,45 cm. Jeśli grubszy gryf jest celowy (czytelność rysunku) — zostawić jako konwencję rysunku z tym powodem"},
+   "barLen": {"status": "zgodne ze źródłem", "zrodlo": "przepisy federacji trójboju (01.2024), s. 8: długość całkowita nie większa niż 2,2 m", "zgodnosc": "220 cm = górna granica"},
+   "sleeveR": {"status": "zgodne ze źródłem", "zrodlo": "przepisy federacji trójboju (01.2024), s. 8: średnica tulei 50–52 mm; s. 8 (b) 2): otwór talerza 52–53 mm", "zgodnosc": "2,6 cm = średnica 52 mm"},
+   "plateR": {"status": "zgodne ze źródłem", "zrodlo": "przepisy federacji trójboju (01.2024), s. 9, pkt 9: średnica największych talerzy nie większa niż 45 cm", "zgodnosc": "22,5 cm = średnica 45 cm"},
+   "plateW": {"status": "zgodne ze źródłem", "zrodlo": "przepisy federacji trójboju (01.2024), s. 9, pkt 5: talerze ≥ 20 kg — grubość ≤ 6 cm, ≤ 15 kg — ≤ 3 cm", "zgodnosc": "2,8 cm mieści się w obu limitach"},
+   "plateZ": {"status": "niezgodne ze źródłem", "zrodlo": "przepisy federacji trójboju (01.2024), s. 8: odległość między wewnętrznymi kołnierzami 1,31–1,32 m", "zgodnosc": "talerze zaczynają się przy |z| ≈ 65,5–66 cm od środka gryfu; dziś 44–49 cm (talerze na części chwytnej). Propozycja: [66, 71] — sprawdzić kolizje z dłońmi przy szerokim chwycie i widok z przodu"},
+   "chainZ": {"status": "niezgodne ze źródłem", "zrodlo": "jak plateZ (łańcuchy wiszą na tulejach)", "zgodnosc": "propozycja ok. 70 cm (na tulei, za talerzami) — przy plateZ [66, 71] łańcuch ok. 73"},
+   "kbBallR": {"status": "konwencja rysunku", "zrodlo": "dokumentacja producenta kettlebelli sportowych (Dysk): średnica korpusu 210 mm, uchwyt 35 mm, okno 60 mm dla 8–48 kg — przeczytane 26.10.2026; kettlebelle żeliwne mają rozmiar zależny od masy (źródła nie mam)", "zgodnosc": "19 cm — w zakresie konwencji 19–21 cm (sportowy: 21 cm)"},
+   "gymBallR": {"status": "zgodne ze źródłem", "zrodlo": "katalog sprzętu medycznego organizacji humanitarnej (piłki Ø 55 cm i Ø 75 cm; 55 cm dla wzrostu 155–170 cm, w siadzie kolana pod kątem 90°) — przeczytane 26.10.2026", "zgodnosc": "65 cm — pośredni rozmiar typoszeregu 55/65/75 dla osoby wyższej niż 170 cm (sylwetka figur ok. 175–180 cm); rozmiar 65 sam w przeczytanym źródle nie występuje — uproszczenie"},
+   "benchW": {"status": "niezgodne ze źródłem", "zrodlo": "przepisy federacji trójboju (01.2024), s. 9, Bench: szerokość 29–32 cm", "zgodnosc": "28 cm — o 1 cm poniżej; propozycja 30"},
+   "postSpan": {"status": "zgodne ze źródłem", "zrodlo": "przepisy federacji trójboju (01.2024), s. 9, Bench pkt 4: rozstaw wewnętrzny podpór gryfu ≥ 1,10 m", "zgodnosc": "2 × 64 = 128 cm ≥ 110 cm"}
+  }
+ }
+}

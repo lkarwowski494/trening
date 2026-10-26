@@ -1,0 +1,47 @@
+{
+ "meta": {
+  "batch": "08 — korekty: ćwiczenia z plików 01–07 oznaczone wcześniej jako „otwarte”, które po dodatkowym researchu (25.10.2026) mają zestaw. Ten plik ma pierwszeństwo przed wpisami w 01–07 (oraz korektami w meta pliku 04).",
+  "newCues": {
+   "wm.arm": {"text": "Ręka z ciężarem prosta, nad barkiem.", "claim": "W wiatraku ramię z kettlebellem wyprostowane w pionie.", "src": [["https://www.acefitness.org/resources/everyone/exercise-library/386/high-windmill/", "„Keeping the left arm straight during the movement.”"], ["https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training", "Windmill: „keeping it straight in the air”"]]},
+   "wm.eyes": {"text": "Patrz na górną dłoń.", "claim": "Wzrok na ręce z ciężarem.", "src": [["https://www.acefitness.org/resources/everyone/exercise-library/386/high-windmill/", "„Turn to look up at the left hand…”"], ["https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training", "Windmill: „look at the top hand”"]]},
+   "tgu.arm": {"text": "Kettlebell przez cały czas nad barkiem, ręka prosta.", "claim": "Ciężar utrzymany pionowo nad stawem barkowym.", "src": [["https://www.acefitness.org/resources/everyone/exercise-library/388/turkish-get-up/", "„…hold it straight overhead”"], ["https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training", "TGU: „Keep the kettlebell over the shoulder joint throughout the entire motion.”"]]},
+   "tgu.eyes": {"text": "Wzrok na kettlebellu przez cały ruch.", "claim": "Kontrola wzrokowa ciężaru.", "src": [["https://www.acefitness.org/resources/everyone/exercise-library/388/turkish-get-up/", "„Keeping the eyes on the kettlebell throughout the movement”"], ["https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training", "„keeping your eyes on the kettlebell”"]]},
+   "halo.close": {"text": "Prowadź kettlebell tuż wokół głowy.", "claim": "Ciężar krąży blisko głowy.", "src": [["https://www.issaonline.com/blogs/training-tips/how-to-improve-your-golf-game-with-kettlebell-training", "Halo: „keeping the kettlebell as close to your head as possible”"], ["https://www.acefitness.org/resources/everyone/exercise-library/394/halo/", "„moving the kettlebell around and behind the head”"]]},
+   "cc.ribs": {"text": "Zwijaj tułów, ściągając żebra w dół — biodra zostają w miejscu.", "claim": "Zgięcie tułowia przeciw oporowi linki bez ruchu w biodrach.", "src": [["https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/", "„rolling the rib cage down against the pull of the cable”; „the hips straight…”"], ["data:Crunch", "crunch.move (ACE #52, ExRx BWCrunch: zbliżanie żeber do miednicy) — analogia"]]},
+   "cc.slow": {"text": "Wracaj do góry powoli.", "claim": "Kontrolowany powrót.", "src": [["https://www.acefitness.org/resources/everyone/exercise-library/331/standing-crunch/", "„slowly returning to the top”"], ["data:Crunch", "crunch.move („wracaj powoli”; ACE #52, ExRx) — analogia"]]},
+   "mb.legs": {"text": "Rzucaj całym ciałem — prostuj biodra, kolana i kostki razem z wyrzutem.", "claim": "Moc rzutu z wyprostu trzech stawów.", "src": [["https://www.issaonline.com/blogs/strength/10-highly-effective-medicine-ball-exercises", "Wall Underhand Throw: „In one movement, extend the hips, knees, and ankles while underhand throwing the ball…”"], ["https://www.acefitness.org/resources/everyone/exercise-library/178/overhead-medicine-ball-throws/", "„…create triple extension”"]]},
+   "bw.squat": {"text": "Zejdź do lekkiego przysiadu i utrzymuj go przez cały marsz.", "claim": "Chód z gumą w półprzysiadzie.", "src": [["https://www.issaonline.com/blog/post/master-the-lateral-band-walk-for-a-stronger-gluteus-medius", "„partial squat position”; „There is no upper body movement”"], ["https://www.acefitness.org/resources/pros/expert-articles/6936/6-glute-medius-exercises-for-strength-amp-stability/", "„assume a quarter-squat position… Maintain the squat position while stepping laterally”"]]},
+   "cobra.hips": {"text": "Biodra zostają na podłodze.", "claim": "Wyprost tułowia w leżeniu przodem bez unoszenia bioder.", "src": [["https://www.nasm.org/resource-center/exercise-library/floor-prone-cobra", "Step 2: „Keep your hips and legs relaxed on the floor…”"], ["https://www.acefitness.org/resources/everyone/exercise-library/16/cobra-exercise/", "„press your hips into the mat… keeping your hips stable”"]]},
+   "cobra.control": {"text": "Opuszczaj się powoli.", "claim": "Kontrolowany powrót.", "src": [["https://www.nasm.org/resource-center/exercise-library/floor-prone-cobra", "Step 4: „Lower yourself back to the floor with control.”"], ["https://www.acefitness.org/resources/everyone/exercise-library/16/cobra-exercise/", "„Gently relax and lower your upper body…”"]]},
+   "cobra.mis": {"text": "Wyginanie pleców na siłę, za wysoko.", "claim": "Częsty błąd: nadmierny wyprost.", "src": [["https://www.nasm.org/resource-center/exercise-library/floor-prone-cobra", "Common Mistakes: „Excessive spinal extension…”"], ["https://www.acefitness.org/resources/everyone/exercise-library/16/cobra-exercise/", "ogranicz wyprost rąk, jeśli biodra odrywają się od maty"]]}
+  },
+  "existingAdded": {"npu.hang": "data:Neutral Grip Pull Up"}
+ },
+ "items": [
+  {"n": "Kettlebell Windmill", "b": "ogólne", "f": "windmill", "ok": ["wm.arm", "wm.eyes"], "err": ["mis.jerk"], "chk": "ACE #386 i ISSA — bezpośrednie"},
+  {"n": "Double Kettlebell Windmill", "b": "ogólne", "f": "windmill", "ok": ["wm.arm", "wm.eyes"], "err": ["mis.jerk"]},
+  {"n": "Bent Press", "b": "ogólne", "f": "windmill", "ok": ["wm.arm", "wm.eyes"], "err": ["mis.jerk"], "chk": "ruch pod ciężar trzymany nad barkiem — jak wiatrak (analogia)"},
+  {"n": "Turkish Get Up", "b": "ogólne", "f": "tgu", "ok": ["tgu.arm", "tgu.eyes"], "err": ["mis.jerk"], "chk": "ACE #388 i ISSA — bezpośrednie"},
+  {"n": "Kettlebell Halo", "b": "ogólne", "f": "halo", "ok": ["halo.close", "dyn.control"], "err": ["mis.jerk"], "chk": "ACE #394 i ISSA — bezpośrednie"},
+  {"n": "Kettlebell Halo with Overhead Extension", "b": "ogólne", "f": "halo", "ok": ["halo.close", "dyn.control"], "err": ["mis.jerk"]},
+  {"n": "Kettlebell Figure 8", "b": "otwarte", "chk": "bez zmian — tylko ACE"},
+  {"n": "Cable Crunch", "b": "ogólne", "f": "cableCrunch", "ok": ["cc.ribs", "cc.slow"], "err": ["mis.jerk"]},
+  {"n": "Machine Crunch", "b": "ogólne", "f": "cableCrunch", "ok": ["cc.ribs", "cc.slow"], "err": ["mis.jerk"]},
+  {"n": "Cable Seated Crunch", "b": "ogólne", "f": "cableCrunch", "ok": ["cc.ribs", "cc.slow"], "err": ["mis.jerk"]},
+  {"n": "Standing Rope Crunch", "b": "ogólne", "f": "cableCrunch", "ok": ["cc.ribs", "cc.slow"], "err": ["mis.jerk"], "chk": "ACE #331 Standing Crunch — bezpośrednie"},
+  {"n": "Kneeling Cable Crunch With Alternating Oblique Twists", "b": "ogólne", "f": "cableCrunch", "ok": ["cc.slow"], "err": ["mis.jerk"], "chk": "bez cc.ribs (dochodzi skręt); 1 ✓"},
+  {"n": "Backward Medicine Ball Throw", "b": "ogólne", "f": "mbThrow", "ok": ["mb.legs"], "err": [], "chk": "1 ✓, brak ✕"},
+  {"n": "Medicine Ball Scoop Throw", "b": "ogólne", "f": "mbThrow", "ok": ["mb.legs"], "err": [], "chk": "ISSA Wall Underhand Throw — bezpośrednie; 1 ✓"},
+  {"n": "Standing Two-Arm Overhead Throw", "b": "ogólne", "f": "mbThrow", "ok": ["mb.legs"], "err": [], "chk": "ACE #178 — bezpośrednie; 1 ✓"},
+  {"n": "One-Arm Medicine Ball Slam", "b": "ogólne", "f": "mbThrow", "ok": ["mb.legs"], "err": [], "chk": "ISSA slam: pełny wyprost przed rzutem; 1 ✓"},
+  {"n": "Lateral Band Walk", "b": "ogólne", "f": "bandWalk", "ok": ["bw.squat", "hab.hips"], "err": ["mis.jerk"], "chk": "ISSA i ACE — bezpośrednie"},
+  {"n": "Monster Walk", "b": "ogólne", "f": "bandWalk", "ok": ["bw.squat", "hab.hips"], "err": ["mis.jerk"], "chk": "ACE opisuje Monster Walk wprost"},
+  {"n": "Superman", "b": "ogólne", "f": "cobra", "ok": ["cobra.hips", "cobra.control"], "err": ["cobra.mis"], "chk": "leżenie przodem, unoszenie tułowia — bez zdań „bez wyginania”, tylko „nie na siłę”"},
+  {"n": "Lower Back Curl", "b": "ogólne", "f": "cobra", "ok": ["cobra.hips", "cobra.control"], "err": ["cobra.mis"]},
+  {"n": "Dead Hang", "b": "ogólne", "f": "vpull", "ok": ["npu.hang"], "err": ["pu.noSwing"], "chk": "zwis = pozycja wyjściowa podciągania (analogia); 1 ✓"},
+  {"n": "Crucifix", "b": "ogólne", "f": "raiseSide", "ok": ["lat.height", "front.elbows"], "err": ["plank.mis.breath"], "chk": "przytrzymanie ciężarów w bok na wysokości barków (izometria)"},
+  {"n": "Car Drivers", "b": "ogólne", "f": "raiseFront", "ok": ["front.elbows", "lat.height"], "err": ["mis.jerk"]},
+  {"n": "Straight Raises on Incline Bench", "b": "ogólne", "f": "raiseFront", "ok": ["front.elbows", "lat.height"], "err": ["mis.jerk"]}
+ ],
+ "summary": {"przeniesione_do_ogólnych": 23, "nadal_otwarte_w_tym_pliku": 1}
+}

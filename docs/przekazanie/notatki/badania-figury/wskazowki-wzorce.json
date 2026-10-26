@@ -1,0 +1,254 @@
+{
+ "meta": {
+  "date": "2026-10-25",
+  "purpose": "Zestawy wskazówek na archetyp ruchu dla ćwiczeń biblioteki (709) bez własnych wskazówek. Propozycja do przeglądu — nic nie jest wdrożone.",
+  "rules": [
+   "Priorytet: 1) własne zdania ćwiczenia z lib/cues/data.json (102 ćwiczenia), 2) zestaw archetypu poniżej, 3) brak wskazówek.",
+   "Zdania archetypów to istniejące, sprawdzone zdania z lib/cues/text/pl.json (≥ 2 niezależne źródła szczebla 3–4 dla ćwiczenia źródłowego, adresy i miejsca w docs/research/27-wskazowki-zrodla.md) albo nowe zdania ze źródłami przeczytanymi 25.10.2026 (pole sources).",
+   "Pewność dla ćwiczenia, które źródła opisują wprost: 'potwierdzone (2+ źródła)'. Dla innych ćwiczeń archetypu: 'uproszczenie (analogia)' — CLAUDE.md: analogia do innego ćwiczenia = uproszczenie, oznaczane zawsze.",
+   "userText: naturalny, krótki, bez żargonu (dopisek właściciela 25.10.2026). Rygor w polach claim/sources/certainty.",
+   "Bez twierdzeń zdrowotnych; przy ćwiczeniu stopka: ból lub uraz — lekarz albo fizjoterapeuta."
+  ],
+  "sourceRef": "'docs27:<id>' = źródła zdania <id> w docs/research/27-wskazowki-zrodla.md (przeczytane w researchu 08–18.10.2026)."
+ },
+ "archetypes": [
+  {
+   "id": "squat_bilateral",
+   "match": "pattern=squat (bez wall sit, sissy, pistol — mają własne zdania lub są otwarte)",
+   "catalogCount": 36,
+   "sourceExercises": ["Back Squat", "Front Squat", "Goblet Squat", "Przysiad z pasem (linki)", "Hack Squat"],
+   "cues": [
+    {"id": "sq.down", "section": "move", "userText": "Schodź, cofając biodra i uginając kolana jednocześnie; wstań, wypychając podłogę całymi stopami.", "claim": "Przysiad: zejście przez jednoczesne zgięcie bioder i kolan, wstawanie z naciskiem całej stopy.", "sources": ["docs27:sq.down"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "sq.back", "section": "tips", "userText": "Plecy proste, klatka uniesiona.", "claim": "Neutralne plecy i uniesiona klatka w przysiadzie.", "sources": ["docs27:sq.back"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "sq.kneesToes", "section": "tips", "userText": "Kolana idą w tę samą stronę co palce stóp.", "claim": "Kolana w linii palców stóp.", "sources": ["docs27:sq.kneesToes", "SBS How to Squat, Foot Angle: „You want your knees to track over roughly your first or second toe.” https://www.strongerbyscience.com/how-to-squat/ (25.10.2026)"], "certainty": "potwierdzone (2+ źródła) / analogia", "note": "Tekst skrócony względem pl.json — wymaga aktualizacji tłumaczeń, jeśli przyjęty."},
+    {"id": "sq.depth", "section": "tips", "userText": "Schodź tylko tak nisko, jak utrzymasz proste plecy i całe stopy na podłodze.", "claim": "Głębokość ograniczona utrzymaniem neutralnych pleców i pełnego kontaktu stóp.", "sources": ["docs27:sq.depth"], "certainty": "potwierdzone (2+ źródła) / analogia", "note": "Zastępuje „butt wink” z makiety. Istniejące zdanie ma dopisek „zwykle co najmniej do równoległego ud” — zostawić w wersji ćwiczeń źródłowych."},
+    {"id": "sq.mis.kneesIn", "section": "mistakes", "userText": "Kolana uciekają do środka.", "claim": "Częsty błąd: kolana zapadają się do środka.", "sources": ["docs27:sq.mis.kneesIn", "SBS How to Squat, FAQ: „However, excessive knee caving should be avoided.” (25.10.2026)"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "sq.mis.heels", "section": "mistakes", "userText": "Pięty odrywają się od podłogi.", "claim": "Częsty błąd: odrywanie pięt.", "sources": ["docs27:sq.mis.heels"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "hinge_floor",
+   "match": "pattern=hinge, ciężar z podłogi (deadlift, trap bar, sumo i warianty; bez RDL/good morning/hip thrust/swing/olimpijskich)",
+   "sourceExercises": ["Deadlift (sztanga)", "Trap Bar Deadlift", "Sumo Deadlift", "Deadlift (hantle)"],
+   "cues": [
+    {"id": "dl.lift", "section": "move", "userText": "Podnoś, prostując biodra i kolana jednocześnie; na górze stań prosto.", "claim": "Martwy ciąg: jednoczesny wyprost bioder i kolan do pełnej pozycji stojącej.", "sources": ["docs27:dl.lift", "docs27:tb.lift"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "hinge.back", "section": "tips", "userText": "Plecy proste przez cały ruch.", "claim": "Neutralne plecy w całym zakresie.", "sources": ["docs27:hinge.back"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "dl.close", "section": "tips", "userText": "Ciężar blisko nóg przez cały ruch.", "claim": "Sztanga prowadzona blisko ciała.", "sources": ["docs27:dl.close"], "certainty": "potwierdzone (2+ źródła) / analogia", "note": "Nie dla trap bara (ciężar po bokach)."},
+    {"id": "mis.roundBack", "section": "mistakes", "userText": "Plecy się zaokrąglają, żeby dociągnąć ciężar.", "claim": "Częsty błąd: zaokrąglanie pleców.", "sources": ["docs27:mis.roundBack"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "hinge_rdl",
+   "match": "pattern=hinge, start z góry: RDL, stiff-leg, good morning, single-leg RDL (dla single-leg — tylko hinge.back i rdl.depth)",
+   "sourceExercises": ["RDL (sztanga)", "RDL (hantle/linki)", "Good Morning"],
+   "cues": [
+    {"id": "rdl.move", "section": "move", "userText": "Cofaj biodra i prowadź ciężar w dół blisko nóg; wróć, wypychając biodra w przód.", "claim": "RDL: ruch inicjowany cofnięciem bioder, ciężar blisko nóg.", "sources": ["docs27:rdl.move"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "rdl.knees", "section": "tips", "userText": "Kolana tylko lekko ugięte — to nie przysiad.", "claim": "Niewielkie, stałe ugięcie kolan.", "sources": ["docs27:rdl.knees"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "rdl.depth", "section": "tips", "userText": "Schodź, dopóki czujesz rozciąganie tyłu ud i masz proste plecy.", "claim": "Głębokość wyznacza rozciągnięcie tyłu ud przy neutralnych plecach.", "sources": ["docs27:rdl.depth"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "mis.roundBack", "section": "mistakes", "userText": "Plecy się zaokrąglają, żeby zejść niżej.", "claim": "Częsty błąd: zaokrąglanie pleców.", "sources": ["docs27:mis.roundBack"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "hip_thrust_bridge",
+   "match": "pattern=hinge, nazwa: hip thrust, bridge, frog pump",
+   "sourceExercises": ["Hip Thrust (sztanga)", "Hip Thrust (hantel)", "Glute Bridge"],
+   "cues": [
+    {"id": "gb.move", "section": "move", "userText": "Unieś biodra, napinając pośladki, aż barki, biodra i kolana będą w linii; opuść powoli.", "claim": "Wyprost bioder do linii barki–biodra–kolana.", "sources": ["docs27:gb.move"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "ht.rigid", "section": "tips", "userText": "Ruch tylko w biodrach — na górze nie wyginaj pleców w łuk.", "claim": "Tułów sztywny, bez wyginania lędźwi na górze.", "sources": ["docs27:ht.rigid"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "ht.mis.arch", "section": "mistakes", "userText": "Na górze wyginasz plecy zamiast prostować biodra.", "claim": "Częsty błąd: wyginanie lędźwi zamiast wyprostu bioder.", "sources": ["docs27:ht.mis.arch"], "certainty": "potwierdzone (2+ źródła) / analogia", "note": "Zmiana języka: obecne zdanie w pl.json ma „przeprost w lędźwiach” — do przeformułowania wg dopisku właściciela."}
+   ]
+  },
+  {
+   "id": "lunge_split",
+   "match": "pattern=lunge_single_leg (wykroki, split squat, step-up)",
+   "catalogCount": 24,
+   "sourceExercises": ["Lunges (hantle)", "Walking Lunges", "Reverse Lunge", "Bulgarian Split Squat (hantle)", "Step Up"],
+   "cues": [
+    {"id": "lunge.knee", "section": "tips", "userText": "Przednie kolano idzie w stronę palców stopy.", "claim": "Kolano nogi wykrocznej w linii stopy.", "sources": ["docs27:lunge.knee"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "lunge.torso", "section": "tips", "userText": "Tułów wyprostowany przez cały ruch.", "claim": "Wyprostowany tułów w wykroku.", "sources": ["docs27:lunge.torso"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "lunge.mis.kneeIn", "section": "mistakes", "userText": "Przednie kolano ucieka do środka.", "claim": "Częsty błąd: kolano zapada się do środka.", "sources": ["docs27:lunge.mis.kneeIn"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "h_push_bench",
+   "match": "pattern=h_push, ławka lub maszyna (bez pompek)",
+   "sourceExercises": ["Bench Press (sztanga)", "Bench Press (hantle)", "Incline Bench Press (sztanga/hantle)", "Close Grip Bench Press", "Machine Chest Press"],
+   "cues": [
+    {"id": "bp.contact", "section": "setup", "userText": "Głowa, barki i pośladki na ławce, stopy płasko na podłodze.", "claim": "Pięć punktów podparcia na ławce.", "sources": ["docs27:bp.contact"], "certainty": "potwierdzone (2+ źródła) / analogia", "notFor": ["maszyny z oparciem pionowym — tam mcp.seat"]},
+    {"id": "bp.blades", "section": "tips", "userText": "Ściągnij łopatki i trzymaj je tak przez cały ruch.", "claim": "Łopatki ściągnięte i opuszczone przez cały ruch.", "sources": ["docs27:bp.blades", "NASM Barbell Bench Press, Step 2: „…retract your shoulder blades…” https://www.nasm.org/resource-center/exercise-library/barbell-bench-press (25.10.2026)"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "bp.control", "section": "tips", "userText": "Opuszczaj ciężar powoli, bez odbijania.", "claim": "Kontrolowane opuszczanie, bez odbicia.", "sources": ["docs27:bp.control"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "NEW.bp.elbowsMid", "section": "tips", "userText": "Łokcie trochę bliżej tułowia — nie rozkładaj ich szeroko na boki.", "claim": "Łokcie ani maksymalnie odwiedzone, ani przyklejone do tułowia (bez liczby).", "sources": ["NASM Barbell Bench Press, Common Mistakes: „Positioning elbows too wide or too close…” (25.10.2026)", "SBS How to Bench, FAQ: „…the angle between your upper arm and torso should be around 45-60 degrees.” https://www.strongerbyscience.com/how-to-bench/ (25.10.2026)"], "certainty": "potwierdzone (2 źródła, szczebel 4) tylko dla wyciskania sztangą/hantlami leżąc i na skosie; liczba kąta [OTWARTE]", "notFor": ["Close Grip Bench Press — ma cgbp.elbows (łokcie blisko)", "pompki"]},
+    {"id": "press.noLock", "section": "tips", "userText": "Prostuj ręce do końca, ale nie blokuj łokci na siłę.", "claim": "Pełny wyprost bez gwałtownego blokowania.", "sources": ["docs27:press.noLock"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "bp.mis.arch", "section": "mistakes", "userText": "Mocno wyginasz plecy albo odrywasz pośladki od ławki, żeby wycisnąć więcej.", "claim": "Częsty błąd: nadmierny łuk lędźwi / oderwanie pośladków.", "sources": ["docs27:bp.mis.arch", "NASM Barbell Bench Press, Common Mistakes: „Excessive lower back arching to lift heavier weight…” (25.10.2026)"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "h_push_pushup",
+   "match": "pattern=h_push, pompki (push up/push-up), także na podwyższeniu i z obciążeniem",
+   "sourceExercises": ["Push Up", "Incline Push Up", "Diamond Push Up"],
+   "cues": [
+    {"id": "push.setup", "section": "setup", "userText": "Dłonie na szerokość barków lub trochę szerzej, ciało proste od głowy do pięt.", "claim": "Ustawienie pompki.", "sources": ["docs27:push.setup"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "plank.brace", "section": "tips", "userText": "Napnij brzuch — ciało w jednej linii.", "claim": "Usztywnienie tułowia napięciem brzucha.", "sources": ["ACE Push Up #41, Step 2: „Stiffen your torso by contracting your core/abdominal muscles (\"bracing\").” (25.10.2026)", "NASM Push Up, Step 2: „Create a straight line from your head to heels…” (25.10.2026)"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "push.rigid", "section": "mistakes", "userText": "Biodra opadają albo idą w górę.", "claim": "Częsty błąd: opadanie lub unoszenie bioder.", "sources": ["ACE Push Up #41, Step 3: „Do not allow your low back to sag or your hips to hike upwards…” (25.10.2026)", "NASM Push Up, Common Mistakes: „Allowing the hips to sag…” (25.10.2026)"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "push.mis.partial", "section": "mistakes", "userText": "Za płytko w dół albo bez wyprostu rąk na górze.", "claim": "Częsty błąd: niepełny zakres.", "sources": ["docs27:push.mis.partial"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ],
+   "open": ["Kąt łokci przy pompce: NASM 45° vs ACE „na zewnątrz” — sprzeczne źródła szczebla 4, bez wskazówki."]
+  },
+  {
+   "id": "v_push_overhead",
+   "match": "pattern=v_push, wyciskanie nad głowę stojąc/siedząc (bez dipów, pompek w staniu na rękach, pike)",
+   "sourceExercises": ["Overhead Press (sztanga)", "Overhead Press (hantle)", "Seated Shoulder Press (hantle)", "Wyciskanie nad głowę (linki)"],
+   "cues": [
+    {"id": "ohp.move", "section": "move", "userText": "Wypchnij ciężar nad głowę do wyprostu rąk; opuść go do barków.", "claim": "Ruch wyciskania nad głowę.", "sources": ["docs27:ohp.move"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "ohp.tall", "section": "tips", "userText": "Tułów wysoko i stabilnie, ciężar idzie prosto w górę.", "claim": "Stabilny, wyprostowany tułów; pionowy tor.", "sources": ["docs27:ohp.tall"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "ohp.elbowsUnder", "section": "tips", "userText": "Łokcie pod nadgarstkami.", "claim": "Przedramiona pionowo pod ciężarem.", "sources": ["docs27:ohp.elbowsUnder"], "certainty": "potwierdzone (2+ źródła) dla hantli i linek / analogia"},
+    {"id": "ohp.fullExt", "section": "tips", "userText": "Na górze wyprostuj ręce, ale nie blokuj łokci na siłę.", "claim": "Pełny wyprost bez gwałtownego blokowania.", "sources": ["docs27:ohp.fullExt"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ],
+   "open": ["Dipy (Chest Dip) — otwarte w repo; pompka w staniu na rękach, pike — brak źródeł."]
+  },
+  {
+   "id": "v_pull",
+   "match": "pattern=v_pull (podciąganie, ściąganie drążka)",
+   "catalogCount": 17,
+   "sourceExercises": ["Pull Up", "Chin Up", "Neutral Grip Pull Up", "Lat Pulldown"],
+   "cues": [
+    {"id": "pu.shoulders", "section": "tips", "userText": "Najpierw ściągnij łopatki w dół — barki z dala od uszu.", "claim": "Ruch zaczyna się od opuszczenia łopatek.", "sources": ["docs27:pu.shoulders", "NASM Pull Up, Step 2: „Depress your shoulder blades…” (25.10.2026)", "ACE Seated Lat Pulldown #158, Step 2: „…by first depressing (lower) your scapulae” (25.10.2026)"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "pu.elbowsDown", "section": "tips", "userText": "Prowadź łokcie w dół, do boków.", "claim": "Łokcie prowadzą ruch w dół.", "sources": ["docs27:pu.elbowsDown"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "lpd.fullStretch", "section": "tips", "userText": "Na górze wyprostuj ręce do końca.", "claim": "Pełny wyprost na górze.", "sources": ["docs27:lpd.fullStretch", "docs27:pu.partial"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "pu.noSwing", "section": "mistakes", "userText": "Bujanie i wymachy nogami.", "claim": "Częsty błąd: rozpęd/bujanie.", "sources": ["docs27:pu.noSwing", "NASM Pull Up, Common Mistakes: „Using excessive momentum or kipping (swinging)…” (25.10.2026)"], "certainty": "potwierdzone (2+ źródła) dla podciągania / analogia dla ściągania"}
+   ]
+  },
+  {
+   "id": "h_pull_row",
+   "match": "pattern=h_pull (wiosłowania); bent-over: + row.hinge, hinge.back; z podparciem/siedząc: + csr.chest / scr.sit",
+   "catalogCount": 41,
+   "sourceExercises": ["Bent Over Row", "One Arm Row", "Chest Supported Row", "Seated Cable Row", "T-Bar Row", "Inverted Row"],
+   "cues": [
+    {"id": "scr.chest", "section": "tips", "userText": "Na końcu ściągnij łopatki do siebie, klatka do przodu.", "claim": "Łopatki ściągnięte w końcowej fazie.", "sources": ["docs27:scr.chest"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "row.fullStretch", "section": "tips", "userText": "Na dole wyprostuj ręce do końca.", "claim": "Pełny wyprost rąk w fazie powrotu.", "sources": ["docs27:row.fullStretch"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "scr.control", "section": "tips", "userText": "Wracaj powoli, bez odbijania.", "claim": "Kontrolowany powrót.", "sources": ["docs27:scr.control"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "mis.roundBack", "section": "mistakes", "userText": "Plecy się zaokrąglają (w opadzie tułowia).", "claim": "Częsty błąd przy wiosłowaniu w opadzie.", "sources": ["docs27:mis.roundBack"], "certainty": "potwierdzone (2+ źródła) — tylko warianty w opadzie / analogia"},
+    {"id": "mis.jerk", "section": "mistakes", "userText": "Szarpiesz ciężar zamiast ciągnąć płynnie.", "claim": "Częsty błąd: szarpanie, rozpęd.", "sources": ["docs27:mis.jerk"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "iso_curl",
+   "match": "isolation: uginanie ramion (curl), bez nadgarstków (wrist curl) — te: brak zestawu",
+   "sourceExercises": ["Biceps Curl (hantle)", "Barbell Curl", "EZ Bar Curl", "Hammer Curl", "Cable Curl", "Preacher Curl"],
+   "cues": [
+    {"id": "curl.elbows", "section": "tips", "userText": "Łokcie zostają przy bokach.", "claim": "Ramię nieruchome, ruch w łokciu.", "sources": ["docs27:curl.elbows"], "certainty": "potwierdzone (2+ źródła) / analogia", "notFor": ["modlitewnik, spider curl, uginanie na skosie — inna pozycja ramienia"]},
+    {"id": "curl.noSwing", "section": "tips", "userText": "Tułów nieruchomo — bez bujania.", "claim": "Bez rozpędu tułowiem.", "sources": ["docs27:curl.noSwing"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "curl.control", "section": "tips", "userText": "Opuszczaj ciężar powoli.", "claim": "Kontrolowana faza opuszczania.", "sources": ["docs27:curl.control"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "curl.mis.elbows", "section": "mistakes", "userText": "Łokcie wędrują do przodu albo na boki.", "claim": "Częsty błąd: ruch łokci.", "sources": ["docs27:curl.mis.elbows"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "iso_triceps",
+   "match": "isolation: prostowanie łokci (pushdown, overhead extension, skullcrusher, kickback)",
+   "sourceExercises": ["Triceps Pushdown", "Overhead Triceps Extension (hantel)", "Cable Overhead Extension", "Skullcrusher (EZ)"],
+   "cues": [
+    {"id": "tpd.elbows", "section": "tips", "userText": "Łokcie przy bokach — pracuje tylko przedramię.", "claim": "Ramię nieruchome przy prostowaniu na wyciągu.", "sources": ["docs27:tpd.elbows"], "certainty": "potwierdzone (2+ źródła) dla pushdown / analogia", "variantFor": "pushdown, kickback"},
+    {"id": "ote.upperArm", "section": "tips", "userText": "Ramiona nieruchomo, łokcie nad głową.", "claim": "Ramię nieruchome przy prostowaniu nad głową.", "sources": ["docs27:ote.upperArm"], "certainty": "potwierdzone (2+ źródła) / analogia", "variantFor": "nad głową"},
+    {"id": "skull.upperArm", "section": "tips", "userText": "Ramiona prawie pionowo i nieruchomo — pracują łokcie.", "claim": "Ramię nieruchome w leżeniu.", "sources": ["docs27:skull.upperArm"], "certainty": "potwierdzone (2+ źródła) / analogia", "variantFor": "leżąc"},
+    {"id": "press.noLock", "section": "tips", "userText": "Prostuj do końca, ale nie blokuj łokci na siłę.", "claim": "Pełny wyprost bez gwałtownego blokowania.", "sources": ["docs27:press.noLock"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "iso_raise",
+   "match": "isolation: unoszenie bokiem/przodem (lateral, front, Y raise, scaption) i tyłem (rear delt, reverse fly)",
+   "sourceExercises": ["Lateral Raise (hantle)", "Cable Lateral Raise", "Front Raise", "Rear Delt Raise (hantle)", "Reverse Fly (hantle)"],
+   "cues": [
+    {"id": "lat.elbows", "section": "tips", "userText": "Łokcie lekko ugięte i prowadzą ruch.", "claim": "Stałe lekkie ugięcie, łokieć na wysokości dłoni lub wyżej.", "sources": ["docs27:lat.elbows"], "certainty": "potwierdzone (2+ źródła) / analogia", "variantFor": "bokiem"},
+    {"id": "lat.height", "section": "tips", "userText": "Unoś mniej więcej do wysokości barków.", "claim": "Zakres do wysokości barków.", "sources": ["docs27:lat.height"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "rear.elbows", "section": "tips", "userText": "Kąt w łokciach stały przez cały ruch.", "claim": "Stały kąt łokci.", "sources": ["docs27:rear.elbows"], "certainty": "potwierdzone (2+ źródła) / analogia", "variantFor": "tyłem"}
+   ],
+   "open": ["„Nie unoś barków do uszu” przy unoszeniu bokiem — brak źródła."]
+  },
+  {
+   "id": "iso_fly",
+   "match": "isolation: rozpiętki (fly, pec deck, crossover)",
+   "sourceExercises": ["Chest Fly (hantle)", "Cable Fly"],
+   "cues": [
+    {"id": "fly.elbows", "section": "tips", "userText": "Łokcie lekko ugięte, w tym samym kącie przez cały ruch.", "claim": "Stały kąt łokcia.", "sources": ["docs27:fly.elbows"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "fly.control", "section": "tips", "userText": "Wracaj powoli — nie daj się pociągnąć ciężarowi.", "claim": "Kontrolowany powrót.", "sources": ["docs27:fly.control"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "iso_leg_machine",
+   "match": "isolation: uginanie/prostowanie nóg na maszynie",
+   "sourceExercises": ["Leg Curl", "Lying Leg Curl", "Leg Extension"],
+   "cues": [
+    {"id": "lcurl.still", "section": "tips", "userText": "Uda i biodra nieruchomo — ruch tylko w kolanach.", "claim": "Izolowany ruch w stawie kolanowym.", "sources": ["docs27:lcurl.still"], "certainty": "potwierdzone (2+ źródła) / analogia", "variantFor": "uginanie"},
+    {"id": "lext.range", "section": "tips", "userText": "Prostuj nogi do końca; opuszczaj mniej więcej do kąta prostego.", "claim": "Zakres prostowania.", "sources": ["docs27:lext.range"], "certainty": "potwierdzone (2+ źródła) / analogia", "variantFor": "prostowanie"},
+    {"id": "llc.control", "section": "tips", "userText": "Płynnie w obie strony, bez szarpania.", "claim": "Kontrolowane tempo.", "sources": ["docs27:llc.control"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "iso_calf",
+   "match": "isolation: łydki (calf raise, calf press)",
+   "sourceExercises": ["Standing Calf Raise", "Seated Calf Raise", "Łydki na stopniu", "Calf Press (leg press)"],
+   "cues": [
+    {"id": "calf.move", "section": "move", "userText": "Wspinaj się na palce jak najwyżej, potem opuść pięty do rozciągnięcia łydek.", "claim": "Pełny zakres wspięcia.", "sources": ["docs27:calf.move"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "calf.pause", "section": "tips", "userText": "Na górze chwila zatrzymania, opuszczaj powoli.", "claim": "Pauza na górze, wolne opuszczanie.", "sources": ["docs27:calf.pause"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "calf.mis.partial", "section": "mistakes", "userText": "Skrócony ruch — za nisko na palcach albo bez opuszczenia pięt.", "claim": "Częsty błąd: niepełny zakres.", "sources": ["docs27:calf.mis.partial"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "core_flexion",
+   "match": "pattern=core_flexion leżąc (crunch i warianty); NIE: zwis, V-up, maszyna",
+   "sourceExercises": ["Crunch", "Reverse Crunch"],
+   "cues": [
+    {"id": "crunch.move", "section": "move", "userText": "Zbliżaj żebra do miednicy, unosząc łopatki; wracaj powoli.", "claim": "Zgięcie tułowia w brzuszku.", "sources": ["docs27:crunch.move"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "crunch.neck", "section": "tips", "userText": "Szyja luźno — nie ciągnij głowy rękami.", "claim": "Neutralna szyja, bez ciągnięcia rękami.", "sources": ["docs27:crunch.neck"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "crunch.lowBack", "section": "tips", "userText": "Dolna część pleców zostaje na podłodze.", "claim": "Lędźwie w kontakcie z podłożem.", "sources": ["docs27:crunch.lowBack"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "core_anti_ext",
+   "match": "pattern=core_anti_ext (deski, podpory); NIE: ab wheel (otwarte)",
+   "sourceExercises": ["Plank", "Side Plank", "Dead Bug"],
+   "cues": [
+    {"id": "plank.brace", "section": "tips", "userText": "Napnij brzuch — tułów sztywny.", "claim": "Usztywnienie tułowia.", "sources": ["docs27:plank.brace"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "plank.noSag", "section": "tips", "userText": "Biodra ani nie opadają, ani nie idą w górę.", "claim": "Linia ciała utrzymana.", "sources": ["docs27:plank.noSag"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "plank.mis.breath", "section": "mistakes", "userText": "Wstrzymujesz oddech.", "claim": "Częsty błąd w izometrii: wstrzymywanie oddechu.", "sources": ["docs27:plank.mis.breath"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  },
+  {
+   "id": "core_anti_rot",
+   "match": "pattern=core_anti_rot typu Pallof (wypychanie przy oporze bocznym)",
+   "sourceExercises": ["Pallof Press"],
+   "cues": [
+    {"id": "pallof.noTwist", "section": "tips", "userText": "Nie daj się obrócić — tułów i biodra nieruchomo.", "claim": "Opór przeciw rotacji.", "sources": ["docs27:pallof.noTwist"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "plank.brace", "section": "tips", "userText": "Napnij brzuch.", "claim": "Usztywnienie tułowia.", "sources": ["docs27:plank.brace (Pallof: Mullane i in.; Eleiko)"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ],
+   "open": ["Drwal (woodchop), skręty z obciążeniem, skłony boczne — inny ruch, brak zestawu."]
+  },
+  {
+   "id": "carry",
+   "match": "pattern=carry",
+   "sourceExercises": ["Farmer's Walk", "Suitcase Carry"],
+   "cues": [
+    {"id": "carry.noLean", "section": "tips", "userText": "Idź prosto — nie przechylaj się na boki.", "claim": "Wyprostowana postawa przy noszeniu.", "sources": ["docs27:carry.noLean"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "carry.walk", "section": "move", "userText": "Spokojny, równy krok.", "claim": "Kontrolowany chód.", "sources": ["docs27:carry.walk"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ],
+   "open": ["Noszenie nad głową, jarzmo, worek — brak źródeł."]
+  },
+  {
+   "id": "shrug",
+   "match": "isolation: szrugsy",
+   "sourceExercises": ["Shrugs (hantle)", "Shrugs (sztanga)"],
+   "cues": [
+    {"id": "shrug.move", "section": "move", "userText": "Unieś barki w górę, potem opuść je powoli.", "claim": "Uniesienie i opuszczenie barków.", "sources": ["docs27:shrug.move"], "certainty": "potwierdzone (2+ źródła) / analogia"},
+    {"id": "shrug.tall", "section": "tips", "userText": "Tułów prosto i nieruchomo — pracują tylko barki.", "claim": "Bez ruchu tułowia.", "sources": ["docs27:shrug.tall"], "certainty": "potwierdzone (2+ źródła) / analogia"}
+   ]
+  }
+ ],
+ "noArchetype": [
+  {"group": "cardio (pattern=cardio, ok. 40+)", "reason": "Ruch zależny od urządzenia; są własne zdania dla 6 ćwiczeń (bieg, rower, wioślarz, bieżnia…). Reszta [OTWARTE]."},
+  {"group": "mobility (rozciąganie, rolowanie)", "reason": "Brak przeczytanych źródeł; ryzyko treści zdrowotnych. [OTWARTE]."},
+  {"group": "other (skoki, rzuty, strongman, olimpijskie)", "reason": "Technika specyficzna; skoki — tylko Box Jump ma zdania. [OTWARTE]."},
+  {"group": "szyja (neck)", "reason": "Brak źródeł. [OTWARTE]."},
+  {"group": "nadgarstki, chwyt", "reason": "Brak zestawu. [OTWARTE]."},
+  {"group": "zwis / unoszenie nóg w zwisie, ab wheel, dipy, sissy, pullover", "reason": "Otwarte w docs/research/27 (tabela „Otwarte — bez wskazówek”)."}
+ ]
+}

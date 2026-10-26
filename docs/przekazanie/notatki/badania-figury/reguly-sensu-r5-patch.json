@@ -1,0 +1,826 @@
+{
+ "_opis_r5": "RUNDA 5 (badacz, 26.10.2026) — JSON Merge Patch (RFC 7386) do figury-sens.json PO nałożeniu r4 (reguly-sensu-r4-patch.json). Obiekty łączone rekurencyjnie, tablice zastępowane w całości, null = usuń klucz. Zawartość: (A) decyzja właściciela — model figury rozszerzony (poza@2): reguły w nowych stopniach swobody dla ćwiczeń zablokowanych w r4 przez silnik (skręt i skłon boczny tułowia, przechył miednicy, uniesienie i wysunięcie barków, nadgarstek, obrót przedramienia, skłon boczny głowy); każda taka reguła ma pole wymaga = „poza@2”; (B) partia 2: mobility_stand (36), mobility_floor (22), foam_roll (10 + Wrist Roller otwarte). Trzy NOWE typy: stopien_swobody, punkt_zakres (oraz pole wymaga). Raport: scratchpad/badania-figury/reguly-sensu-r5.md.",
+ "_typy": {
+  "stopien_swobody": "R5 NOWY. Wartość v(próbka) = pole klatki (kf) o nazwie „pole”; pola poza@1: pochylenieTulowia, zgiecieKregoslupa, pochylenieGlowy; pole pochodne zgiecieSzyi = pochylenieGlowy − pochylenieTulowia; pola poza@2 — lista w _poza2. Dla pól na stronę (R/L) parametr strona: „obie” (warunek dla obu stron) | „dowolna” (dla co najmniej jednej) | „R” | „L”. Warunki (każdy opcjonalny): min ≤ v i v ≤ max w każdej próbce; max v − min v ≥ min_zakres; max v − min v ≤ max_zakres; istnieje próbka v ≥ osiaga_co_najmniej; istnieje próbka v ≤ osiaga_co_najwyzej; istnieje próbka |v| ≥ min_abs.",
+  "punkt_zakres": "R5 NOWY. P(próbka) = punkt: „miednica” → pelvis; „kolana” | „kostki” | „palce” → średnia legs.R/L.knee | ankle | toe (z parametrem strona: „dowolna” → osobno dla R i L, wystarczy jedna); „dlonie” → arms.R/L.grip (jak wyżej); „barki” → shoulderC. Dla każdej osi z listy osie (x, y, z) zakres P[oś] w ruchu; tryb „wszystkie” (domyślny): każda oś ≥ min_cm (ruch po okręgu); tryb „dowolna”: co najmniej jedna oś ≥ min_cm (ruch wzdłuż dowolnego kierunku, np. rolowanie).",
+  "wymaga": "R5: pole reguły wymaga = „poza@2” — reguła czyta pole, którego nie ma w kontrakcie poza@1. Zasada stosowania (propozycja dla programisty): ćwiczenie z co najmniej jedną regułą „poza@2” nie dostaje polecenia ani grafiki, dopóki kontrakt nie ma poza@2 (licznik pokrycia: „czeka na poza@2”, nie „otwarte”). Reguły bez tego pola działają od razu.",
+  "_poza2": {
+   "_opis": "PROPOZYCJA badacza (nazwy i znaczenie; zakresy stawów do walidatora geometrii ustala programista ze źródłem — tu nie podaję). Kąty w stopniach, 0 = neutralnie (pozycja anatomiczna). Układ względem ciała (nie świata), żeby działało w każdym ułożeniu (stojąc, leżąc, na boku).",
+   "skretTulowia": "obrót barków względem miednicy wokół osi tułowia; + = barki w prawo",
+   "przechylTulowia": "skłon boczny: odchylenie osi tułowia w płaszczyźnie czołowej ciała względem miednicy; + = w prawo",
+   "przechylMiednicy": "przechył miednicy w płaszczyźnie czołowej względem pozycji neutralnej (linia bioder prostopadła do osi tułowia i nóg w staniu); + = prawe biodro wyżej",
+   "przechylGlowy": "skłon boczny głowy względem tułowia; + = ucho do prawego barku",
+   "uniesienieBarkow": "na stronę R/L, cm: przesunięcie stawu barkowego wzdłuż osi tułowia (shrug); + = w górę",
+   "wysuniecieBarkow": "na stronę R/L, cm: przesunięcie stawu barkowego wzdłuż sk.front (protrakcja +, retrakcja −)",
+   "zgiecieNadgarstka": "na stronę R/L: + = zgięcie dłoniowe, − = wyprost (dłoń jako osobny odcinek; dziś przedramię i dłoń to jeden odcinek łokieć–chwyt)",
+   "obrotPrzedramienia": "na stronę R/L: + = supinacja, − = pronacja, 0 = ułożenie neutralne (kciuk w górę)"
+  }
+ },
+ "izometryczne": {
+  "Chest And Front Of Shoulder Stretch": "rozciąganie statyczne (st.noBounce: ACE #212, NASM — słownik badacza)",
+  "Chest Stretch on Stability Ball": "rozciąganie statyczne (st.noBounce)",
+  "Chin To Chest Stretch": "ACE #204 („Hold for 15-30 seconds”)",
+  "Cross-Body Shoulder Stretch": "rozciąganie statyczne (st.noBounce)",
+  "One Knee To Chest": "rozciąganie statyczne (st.noBounce)",
+  "Overhead Stretch": "rozciąganie statyczne (st.noBounce)",
+  "Overhead Triceps Stretch": "ACE #174 (utrzymanie 15–30 s)",
+  "Side Neck Stretch": "ACE #202 (utrzymanie 5–10 s), NHS Neck stretch (5 s)",
+  "Standing Biceps Stretch": "rozciąganie statyczne; ACE #208 (utrzymanie 15–30 s) — analogia",
+  "Standing Chest Stretch": "ACE #209 (utrzymanie 15–30 s)",
+  "Standing Elevated Quad Stretch": "rozciąganie statyczne (st.noBounce)",
+  "Standing Gastrocnemius Calf Stretch": "ACE #152 (utrzymanie 15–30 s)",
+  "Standing Lateral Stretch": "rozciąganie statyczne (st.noBounce)",
+  "Standing Soleus And Achilles Stretch": "ACE #152 krok 4 (wariant na płaszczkowaty)",
+  "Standing Toe Touches": "rozciąganie statyczne (st.noBounce)",
+  "Wall Calf Stretch": "ACE #152, NHS Calf stretch",
+  "Wall Lat Stretch": "ACE #198 (utrzymanie 15–30 s) — analogia",
+  "Butterfly Stretch": "ACE #216 (utrzymanie 15–30 s)",
+  "Child's Pose": "ACE #227 (5–10 oddechów)",
+  "Intermediate Groin Stretch": "rozciąganie statyczne (st.noBounce)",
+  "IT Band and Glute Stretch": "ACE #232 (utrzymanie 15–30 s)",
+  "Kneeling Forearm Stretch": "rozciąganie statyczne (st.noBounce)",
+  "Kneeling Hip Flexor Stretch": "ACE #142 (utrzymanie 30–45 s)",
+  "Middle Back Stretch": "rozciąganie statyczne (st.noBounce)",
+  "Peroneals Stretch": "rozciąganie statyczne (st.noBounce)",
+  "Posterior Tibialis Stretch": "rozciąganie statyczne (st.noBounce)",
+  "Runner's Stretch": "rozciąganie statyczne (st.noBounce)",
+  "Seated Calf Stretch": "ACE #214 (utrzymanie 15–30 s)",
+  "Seated Floor Hamstring Stretch": "ACE #273 (utrzymanie 15–30 s)",
+  "Seated Rotation Stretch": "rozciąganie statyczne (st.noBounce)",
+  "Side Lying Groin Stretch": "rozciąganie statyczne (st.noBounce)",
+  "Side-Lying Quad Stretch": "ACE #149 (utrzymanie 30–45 s)",
+  "Supine Figure-Four Stretch": "ACE #148 (utrzymanie 30–45 s) — analogia",
+  "Supine Hamstring Stretch": "ACE #235 (utrzymanie 15–30 s)",
+  "Supine Spinal Twist": "rozciąganie statyczne (st.noBounce)",
+  "The Straddle": "ACE #210 (utrzymanie 15–30 s)",
+  "Upper Back Stretch": "rozciąganie statyczne (st.noBounce)"
+ },
+ "izometryczne_kandydaci": null,
+ "rodziny": {
+  "core_standing": {
+   "reguly": {
+    "skret_w_obie_strony": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": "rt.move", "cue_dodatkowe": ["rt.control"],
+     "parametry": {"pole": "skretTulowia", "min_zakres": 40},
+     "zrodlo": "rt.move: NASM Russian Twist kroki 3–4, ACE #305 („rotate the shoulders from side to side…” — przeczytane 26.10.2026), ACE #65 (cues.json)",
+     "liczba": "konwencja (skręt barków względem miednicy zmienia się ≥ 40°)",
+     "pewnosc": "ustalone (kierunek)"
+    },
+    "skret_jednostronny": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": "chop.close", "cue_dodatkowe": ["rt.control"],
+     "parametry": {"pole": "skretTulowia", "min_abs": 25},
+     "zrodlo": "ruch definiujący (drwal, obroty z linką/sztangą): ACE #108 Standing Wood Chop (słownik badacza: chop.close), rt.control (NASM, ACE #65) — analogia",
+     "liczba": "konwencja (skręt ≥ 25° w co najmniej jednej próbce)",
+     "pewnosc": "analogia"
+    },
+    "bez_skłonu_bocznego": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "plaszczyzna", "cue": "rt.control",
+     "parametry": {"pole": "przechylTulowia", "min": -10, "max": 10},
+     "zrodlo": "skręt to obrót, nie skłon — rt.move (ACE #305: obrót barków); ACE #232 („little rotation occurring through your trunk” w innym ćwiczeniu) — uproszczenie",
+     "liczba": "uproszczenie (skłon boczny ≤ 10° w każdą stronę)",
+     "pewnosc": "uproszczenie"
+    },
+    "odchylenie_45": {
+     "typ": "pochylenie_tulowia", "grupa": "pozycja", "cue": "rt.setup",
+     "parametry": {"min_deg": -60, "max_deg": -30},
+     "zrodlo": "rt.setup: ACE #305 („Lean back at about a 45 degree angle”) — przeczytane 26.10.2026; NASM Russian Twist kroki 1–2 (cues.json)",
+     "liczba": "uproszczenie (45° ± 15°)",
+     "pewnosc": "ustalone wg cues.json"
+    },
+    "plecy_proste": {
+     "typ": "kregoslup_neutralny", "grupa": "plecy", "cue": "rt.back",
+     "parametry": {"min_deg": -20, "max_deg": 10},
+     "zrodlo": "rt.back: NASM Russian Twist (Common Mistakes: zaokrąglanie kręgosłupa), ACE #305 („While maintaining a straight back”) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie (jak hinge)",
+     "pewnosc": "ustalone"
+    },
+    "sklon_boczny": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": "sb.plane",
+     "parametry": {"pole": "przechylTulowia", "min_zakres": 20},
+     "zrodlo": "sb.plane: ACE #212 Seated Side Straddle Stretch (krok 2: skłon w bok bez skrętu i bez pochylenia w przód), NHS Flexibility exercises (Sideways bend: „Slide one arm down the side of your body as far as is comfortable”) — przeczytane 26.10.2026",
+     "liczba": "konwencja (skłon boczny zmienia się ≥ 20°)",
+     "pewnosc": "ustalone (kierunek)"
+    },
+    "sklon_bez_skretu": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "plaszczyzna", "cue": "sb.plane",
+     "parametry": {"pole": "skretTulowia", "min": -10, "max": 10},
+     "zrodlo": "sb.plane: ACE #212 („…without rotating your trunk or bending forward”) — słownik badacza",
+     "liczba": "konwencja",
+     "pewnosc": "ustalone"
+    },
+    "sklon_bez_pochylenia": {
+     "typ": "pochylenie_tulowia_ruch", "grupa": "plaszczyzna", "cue": "sb.plane",
+     "parametry": {"max_zmiana_deg": 10},
+     "zrodlo": "jak sklon_bez_skretu (bez pochylania w przód)",
+     "liczba": "konwencja",
+     "pewnosc": "ustalone"
+    },
+    "wiatrak_reka_prosta": {
+     "typ": "stawy_proste", "grupa": "rece", "cue": "wm.arm",
+     "parametry": {"stawy": ["elbow"], "max_deg": 15},
+     "zrodlo": "wm.arm: ACE #386 High Windmill („Keeping the left arm straight during the movement.”) — przeczytane 26.10.2026; ISSA (golf, Windmill: „keeping it straight in the air”) — słownik",
+     "liczba": "uproszczenie; wymaga sprzet.trzyma (wolna ręka zsuwa się po nodze)",
+     "pewnosc": "ustalone"
+    },
+    "wiatrak_ciezar_nad_barkiem": {
+     "typ": "chwyt_nie_ponizej_barkow", "grupa": "rece", "cue": "wm.arm",
+     "parametry": {"min_cm": 30},
+     "zrodlo": "ACE #386 (kettlebell wyciśnięty „straight overhead” i ręka prosta przez cały ruch) — przeczytane 26.10.2026",
+     "liczba": "konwencja (chwyt ≥ 30 cm nad barkiem w każdej klatce); wymaga sprzet.trzyma",
+     "pewnosc": "jedno źródło"
+    },
+    "wiatrak_plecy": {
+     "typ": "kregoslup_neutralny", "grupa": "plecy", "cue": "wm.arm",
+     "parametry": {"min_deg": -20, "max_deg": 10},
+     "zrodlo": "ACE #386 („keep the back straight while sinking back into the left hip”) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie",
+     "pewnosc": "jedno źródło"
+    },
+    "wiatrak_bok": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": "wm.arm",
+     "parametry": {"pole": "przechylTulowia", "min_abs": 15},
+     "zrodlo": "ACE #386 (ręka wolna zsuwa się po wewnętrznej stronie nogi) — przeczytane; skłonu bocznego ani skrętu ACE nie opisuje liczbowo",
+     "liczba": "konwencja (skłon boczny ≥ 15° w co najmniej jednej próbce)",
+     "pewnosc": "konwencja"
+    }
+   },
+   "wskazowki_na_reguly": {"rt.move": ["skret_w_obie_strony"], "rt.back": ["plecy_proste"], "rt.setup": ["odchylenie_45"], "sb.plane": ["sklon_boczny", "sklon_bez_skretu", "sklon_bez_pochylenia"], "chop.close": ["skret_jednostronny"], "wm.arm": ["wiatrak_reka_prosta", "wiatrak_ciezar_nad_barkiem", "wiatrak_plecy"]},
+   "warianty": {
+    "_twist": ["skret_w_obie_strony", "bez_skłonu_bocznego", "plecy_proste"],
+    "_obrot": ["skret_jednostronny", "bez_skłonu_bocznego"],
+    "_sklon": ["sklon_boczny", "sklon_bez_skretu", "sklon_bez_pochylenia"],
+    "_wiatrak": ["wiatrak_reka_prosta", "wiatrak_ciezar_nad_barkiem", "wiatrak_plecy", "wiatrak_bok"],
+    "Russian Twist": ["skret_w_obie_strony", "bez_skłonu_bocznego", "plecy_proste", "odchylenie_45"],
+    "Cable Russian Twists": "_twist",
+    "Seated Barbell Twist": "_twist",
+    "Medicine Ball Full Twist": "_twist",
+    "Cable Woodchop": "_obrot",
+    "Landmine Rotation": "_obrot",
+    "Cable Judo Flip": "_obrot",
+    "Pallof Press With Rotation": ["skret_jednostronny", "bez_skłonu_bocznego", "pallof_wysokosc"],
+    "Barbell Side Bend": "_sklon",
+    "Side Bend (hantel)": "_sklon",
+    "One-Arm High-Pulley Cable Side Bends": "_sklon",
+    "Weighted Ball Side Bend": "_sklon",
+    "Bosu Ball Cable Crunch With Side Bends": ["sklon_boczny", "sklon_bez_skretu"],
+    "Kettlebell Windmill": "_wiatrak",
+    "Double Kettlebell Windmill": "_wiatrak",
+    "Bent Press": "_wiatrak"
+   },
+   "otwarte": {
+    "Pallof Press With Rotation": null, "Russian Twist": null, "Cable Russian Twists": null, "Seated Barbell Twist": null, "Medicine Ball Full Twist": null,
+    "Cable Woodchop": null, "Landmine Rotation": null, "Cable Judo Flip": null, "Barbell Side Bend": null, "Side Bend (hantel)": null,
+    "One-Arm High-Pulley Cable Side Bends": null, "Weighted Ball Side Bend": null, "Bosu Ball Cable Crunch With Side Bends": null,
+    "Kettlebell Windmill": null, "Double Kettlebell Windmill": null, "Bent Press": null
+   },
+   "otwarte_czesciowo": {
+    "Side Bend (hantel), Bosu Ball Cable Crunch With Side Bends": "zestaw „open” — reguły z sb.plane (analogia do pozostałych skłonów bocznych)",
+    "Bent Press, Double Kettlebell Windmill": "analogia do Kettlebell Windmill (ACE #386)",
+    "Kettlebell Figure 8, Spell Caster": "nadal otwarte — zestaw „open”, brak źródła ruchu"
+   }
+  },
+  "shrug": {
+   "reguly": {
+    "barki_w_gore": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": "shrug.move", "cue_dodatkowe": ["shrug.high"],
+     "parametry": {"pole": "uniesienieBarkow", "strona": "obie", "osiaga_co_najmniej": 4, "min": -1},
+     "zrodlo": "shrug.move / shrug.high: ACE #72 Shrug („raise the shoulders directly upwards to the ears as high as possible…”) — przeczytane 26.10.2026; ExRx BBShrug Execution (cues.json)",
+     "liczba": "konwencja (uniesienie ≥ 4 cm; zakres anatomiczny uniesienia barku — OTWARTE, ustala kontrakt)",
+     "pewnosc": "ustalone (kierunek)"
+    },
+    "bez_rolowania": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "tor", "cue": "shrug.move",
+     "parametry": {"pole": "wysuniecieBarkow", "strona": "obie", "max_zakres": 2},
+     "zrodlo": "ACE #72 (wskazówka: „focus on only raising/lowering the shoulders”, „DO NOT roll the shoulders.”) — przeczytane 26.10.2026",
+     "liczba": "konwencja (wysunięcie/cofnięcie barków ≤ 2 cm)",
+     "pewnosc": "jedno źródło"
+    },
+    "tulow_prosto": {
+     "typ": "pochylenie_tulowia_ruch", "grupa": "tulow", "cue": "shrug.tall",
+     "parametry": {"max_zmiana_deg": 5},
+     "zrodlo": "shrug.tall: ACE #72 („the hips straight, and the back tall”), ExRx DBShrug Comments (cues.json)",
+     "liczba": "konwencja",
+     "pewnosc": "ustalone"
+    },
+    "lopatki_sciagaja_sie": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": null,
+     "parametry": {"pole": "wysuniecieBarkow", "strona": "obie", "min_zakres": 3},
+     "zrodlo": "definicja z nazwy (Middle Back Shrug = ściąganie łopatek); zestaw row (csr.chest — klatka na podporze)",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    }
+   },
+   "wskazowki_na_reguly": {"shrug.move": ["barki_w_gore", "bez_rolowania"], "shrug.high": ["barki_w_gore"], "shrug.tall": ["tulow_prosto"]},
+   "warianty": {
+    "_szrugs": ["barki_w_gore", "bez_rolowania", "tulow_prosto"],
+    "Shrugs (sztanga)": "_szrugs", "Shrugs (hantle)": "_szrugs", "Shrugs (linki)": "_szrugs", "Leverage Shrug": "_szrugs", "Calf-Machine Shoulder Shrug": "_szrugs",
+    "Barbell Shrug Behind The Back": "_szrugs", "Smith Machine Behind the Back Shrug": "_szrugs",
+    "Middle Back Shrug": ["lopatki_sciagaja_sie"]
+   },
+   "otwarte": {
+    "Shrugs (sztanga)": null, "Shrugs (hantle)": null, "Shrugs (linki)": null, "Leverage Shrug": null, "Calf-Machine Shoulder Shrug": null,
+    "Barbell Shrug Behind The Back": null, "Smith Machine Behind the Back Shrug": null, "Middle Back Shrug": null
+   },
+   "otwarte_czesciowo": {"Middle Back Shrug": "ruch z nazwy (konwencja); opisu wykonania nie czytałem"}
+  },
+  "forearm": {
+   "reguly": {
+    "nadgarstek_zakres": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": "wr.range",
+     "parametry": {"pole": "zgiecieNadgarstka", "strona": "dowolna", "min_zakres": 50},
+     "zrodlo": "wr.range: ACE #30 Wrist Curl – Flexion (krok 2: „slowly allow the wrists to move into extension”, krok 3: zgięcie z powrotem) — przeczytane 26.10.2026; ISSA forearm workouts (słownik)",
+     "liczba": "konwencja (zakres ruchu nadgarstka ≥ 50°; ACE nie podaje kątów)",
+     "pewnosc": "ustalone (kierunek)"
+    },
+    "przedramie_podparte_lokiec": {
+     "typ": "lokiec_staly_kat", "grupa": "przedramie", "cue": "wr.forearms", "cue_dodatkowe": ["wr.mis.lift"],
+     "parametry": {"max_zmiana_deg": 10, "max_deg": 120},
+     "zrodlo": "wr.forearms: ACE #30 (łokcie na ławce, zgięte ok. 90°; „without releasing your grip, extending your arms or leaning…”), ISSA („Do not lift your wrists or forearms off your legs.”) — słownik; ACE #30 przeczytane 26.10.2026",
+     "liczba": "konwencja (kąt łokcia stały ± 10°)",
+     "pewnosc": "ustalone"
+    },
+    "przedramie_podparte_ramie": {
+     "typ": "lokiec_nieruchomy_wzgledem_barku", "grupa": "przedramie", "cue": "wr.forearms", "cue_dodatkowe": ["wr.mis.lift"],
+     "parametry": {"max_cm": 4},
+     "zrodlo": "jak przedramie_podparte_lokiec",
+     "liczba": "konwencja",
+     "pewnosc": "ustalone"
+    },
+    "obrot_przedramienia": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": null,
+     "parametry": {"pole": "obrotPrzedramienia", "strona": "dowolna", "osiaga_co_najmniej": 45, "osiaga_co_najwyzej": -45},
+     "zrodlo": "ACE #31 Wrist Supination and Pronation (z ułożenia neutralnego obrót w stronę podłogi — pronacja — i w stronę sufitu — supinacja; łokcie na ławce zgięte ok. 90°) — przeczytane 26.10.2026",
+     "liczba": "konwencja (≥ 45° w obie strony od neutralnego; ACE nie podaje kątów)",
+     "pewnosc": "jedno źródło"
+    }
+   },
+   "wskazowki_na_reguly": {"wr.range": ["nadgarstek_zakres"], "wr.forearms": ["przedramie_podparte_lokiec", "przedramie_podparte_ramie"]},
+   "grupy_bledow": {"wr.mis.lift": "przedramie"},
+   "bledy_bez_animacji": {"wr.mis.lift": null},
+   "warianty": {
+    "_nadgarstek": ["nadgarstek_zakres", "przedramie_podparte_lokiec", "przedramie_podparte_ramie"],
+    "Barbell Wrist Curl": "_nadgarstek", "Barbell Reverse Wrist Curl": "_nadgarstek", "Cable Wrist Curl": "_nadgarstek",
+    "One-Arm Dumbbell Wrist Curl": "_nadgarstek", "One-Arm Dumbbell Reverse Wrist Curl": "_nadgarstek", "Wrist Curl (hantle)": "_nadgarstek", "Reverse Wrist Curl (hantle)": "_nadgarstek",
+    "Behind-the-Back Barbell Wrist Curl": ["nadgarstek_zakres"],
+    "Dumbbell Lying Pronation": ["obrot_przedramienia", "przedramie_podparte_lokiec"],
+    "Dumbbell Lying Supination": ["obrot_przedramienia", "przedramie_podparte_lokiec"]
+   },
+   "otwarte": {
+    "Barbell Wrist Curl": null, "Barbell Reverse Wrist Curl": null, "Behind-the-Back Barbell Wrist Curl": null, "Cable Wrist Curl": null,
+    "One-Arm Dumbbell Wrist Curl": null, "One-Arm Dumbbell Reverse Wrist Curl": null, "Wrist Curl (hantle)": null, "Reverse Wrist Curl (hantle)": null,
+    "Dumbbell Lying Pronation": null, "Dumbbell Lying Supination": null
+   },
+   "otwarte_czesciowo": {
+    "Dumbbell Lying Pronation / Supination": "zestaw „open”; ACE #31 opisuje obrót przedramienia z łokciem na ławce — „lying” w nazwie (leżąc) to analogia",
+    "Plate Pinch": "nadal otwarte (izometryczne; istota — chwyt szczypcowy — nie jest stopniem swobody poza@2)"
+   }
+  },
+  "carry": {
+   "reguly": {
+    "tulow_bez_przechylu": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "tulow", "cue": "carry.noLean",
+     "parametry": {"pole": "przechylTulowia", "min": -5, "max": 5},
+     "zrodlo": "carry.noLean: NASM Best Abs („Clients should walk tall and avoid leaning toward or away from the weight.”), NSCA Coach 7-3 s. 52 (bez bocznego zginania kręgosłupa), ACE #358 — cues.json",
+     "liczba": "konwencja (skłon boczny ≤ 5°)",
+     "pewnosc": "ustalone"
+    }
+   },
+   "wskazowki_na_reguly": {"carry.noLean": ["tulow_pion", "tulow_bez_przechylu"]},
+   "warianty": {
+    "_po_bokach": ["tulow_pion", "tulow_bez_przechylu", "rece_proste", "ciezar_przy_biodrach"],
+    "Overhead Carry (hantle)": ["tulow_pion", "tulow_bez_przechylu", "rece_proste", "nad_glowa_caly"],
+    "Double Kettlebell Front Rack Carry": ["tulow_pion", "tulow_bez_przechylu", "rack_caly"]
+   },
+   "otwarte_czesciowo": {"carry.noLean (bez przechylania w bok, Suitcase Carry)": null}
+  },
+  "strongman": {
+   "reguly": {
+    "tulow_bez_przechylu": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "tulow", "cue": "carry.noLean",
+     "parametry": {"pole": "przechylTulowia", "min": -5, "max": 5},
+     "zrodlo": "jak carry.tulow_bez_przechylu (NASM Best Abs, NSCA Coach 7-3 s. 52, ACE #358 — cues.json)",
+     "liczba": "konwencja",
+     "pewnosc": "analogia"
+    }
+   },
+   "warianty": {"Yoke Walk": ["tulow_pion_marsz", "tulow_bez_przechylu"]}
+  },
+  "glute_floor": {
+   "reguly": {
+    "miednica_bez_przechylu": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "miednica", "cue": "hab.hips", "cue_dodatkowe": ["hab.mis.high"],
+     "parametry": {"pole": "przechylMiednicy", "min": -5, "max": 5},
+     "zrodlo": "hab.hips: ACE #38 Side-Lying Hip Abduction („The hips should remain vertical to the floor”; błąd: „raising the leg too high… the thigh can only abduct (move out sideways) to 45 degrees”) — przeczytane 26.10.2026; NHS Strength exercises (Sideways leg lift: „keeping your back and hips straight”) — słownik",
+     "liczba": "konwencja (przechył miednicy ≤ 5°)",
+     "pewnosc": "ustalone"
+    },
+    "miednica_bez_skretu": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "miednica", "cue": "hab.hips", "cue_dodatkowe": ["hab.mis.high"],
+     "parametry": {"pole": "skretTulowia", "min": -10, "max": 10},
+     "zrodlo": "jak miednica_bez_przechylu — w leżeniu bokiem „biodra pionowo” oznacza brak odchylenia miednicy w tył względem barków (ACE #38 krok 1: biodra i bark ułożone pionowo)",
+     "liczba": "konwencja",
+     "pewnosc": "ustalone (kierunek)"
+    }
+   },
+   "grupy_bledow": {"hab.mis.high": "miednica"},
+   "bledy_bez_animacji": {"hab.mis.high": null},
+   "warianty": {
+    "Clamshell": ["rozstaw_kolan", "miednica_bez_przechylu", "miednica_bez_skretu"],
+    "Fire Hydrant": ["rozstaw_kolan", "miednica_bez_przechylu"]
+   },
+   "otwarte_czesciowo": {"hab.hips (Clamshell, Fire Hydrant)": null}
+  },
+  "hip_abd_add": {
+   "reguly": {
+    "miednica_bez_przechylu": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "miednica", "cue": "hab.hips", "cue_dodatkowe": ["hab.mis.high"],
+     "parametry": {"pole": "przechylMiednicy", "min": -5, "max": 5},
+     "zrodlo": "jak glute_floor.miednica_bez_przechylu (ACE #38 — przeczytane 26.10.2026; NHS — słownik)",
+     "liczba": "konwencja",
+     "pewnosc": "ustalone"
+    }
+   },
+   "grupy_bledow": {"hab.mis.high": "miednica"},
+   "bledy_bez_animacji": {"hab.mis.high": null},
+   "warianty": {
+    "Cable Hip Abduction": ["rozstaw_kostek", "tulow_stoi", "miednica_bez_przechylu"],
+    "Cable Hip Adduction": ["rozstaw_kostek", "tulow_stoi", "miednica_bez_przechylu"],
+    "Band Hip Adduction": ["rozstaw_kostek", "tulow_stoi", "miednica_bez_przechylu"],
+    "Lateral Band Walk": ["polprzysiad", "tulow_stoi", "krok_w_bok", "miednica_bez_przechylu"],
+    "Monster Walk": ["polprzysiad", "tulow_stoi", "krok_w_bok", "miednica_bez_przechylu"]
+   },
+   "otwarte_czesciowo": {"hab.hips": null}
+  },
+  "mobility_stand": {
+   "reguly": {
+    "poza_nieruchoma": {
+     "typ": "szkielet_nieruchomy", "grupa": "bezruch", "cue": "st.noBounce",
+     "parametry": {"max_cm": 2},
+     "zrodlo": "st.noBounce: ACE #212 Seated Side Straddle Stretch (krok 3–4: „do not bounce”), NASM Static Standing Adductor Stretch („Avoid bouncing or forcing the stretch…”) — słownik badacza; ACE #152, #174, #209 (utrzymanie pozycji 15–30 s) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie (każdy punkt szkieletu ≤ 2 cm — poza statyczna)",
+     "pewnosc": "ustalone (rozciąganie statyczne = utrzymanie pozycji)"
+    },
+    "tylna_noga_prosta": {
+     "typ": "kolano_zakres_ruch", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"nogi": "co_najmniej_jedna", "max_min_deg": 15},
+     "zrodlo": "ACE #152 Standing Dorsi-Flexion Calf Stretch (krok 2: „…while keeping the opposite leg straightened”), NHS Flexibility exercises (Calf stretch: „keeping it straight”) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie (kolano tylnej nogi ≤ 15°)",
+     "pewnosc": "ustalone"
+    },
+    "przednia_noga_ugieta": {
+     "typ": "kolano_zakres_ruch", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"nogi": "co_najmniej_jedna", "min_max_deg": 15},
+     "zrodlo": "ACE #152 (krok 2: „Increase the flexion (bend) in your LEFT (front) knee”), NHS (Calf stretch: „Bend the right leg…”) — przeczytane 26.10.2026",
+     "liczba": "konwencja (kolano przedniej nogi ≥ 15°)",
+     "pewnosc": "ustalone"
+    },
+    "obie_kolana_lekko": {
+     "typ": "kolano_zakres_ruch", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"nogi": "obie", "min_max_deg": 10},
+     "zrodlo": "ACE #152 krok 4 („To increase the stretch in the soleus, slightly flex (bend) the back knee…”); ACE #214 (wariant na płaszczkowaty: lekko ugięte kolano) — przeczytane 26.10.2026 (jedna organizacja)",
+     "liczba": "konwencja (oba kolana ≥ 10°)",
+     "pewnosc": "jedno źródło"
+    },
+    "glowa_do_klatki": {
+     "typ": "stopien_swobody", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"pole": "zgiecieSzyi", "osiaga_co_najmniej": 25},
+     "zrodlo": "ACE #204 Neck Flexion and Extension (krok 2: „Slowly drop your chin toward your chest (neck flexion)”) — przeczytane 26.10.2026",
+     "liczba": "konwencja (głowa pochylona względem tułowia ≥ 25°)",
+     "pewnosc": "jedno źródło"
+    },
+    "tulow_pion": {
+     "typ": "pochylenie_tulowia", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_deg": -10, "max_deg": 10},
+     "zrodlo": "ACE #204 i #202 (krok 1: stabilny kręgosłup, bez wyginania lędźwi; postawa stojąca), ACE #209 (bez przesuwania bioder w przód) — przeczytane 26.10.2026",
+     "liczba": "konwencja",
+     "pewnosc": "ustalone"
+    },
+    "glowa_w_bok": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"pole": "przechylGlowy", "min_abs": 20},
+     "zrodlo": "ACE #202 Lateral Neck Flexion („Slowly draw your right ear toward your right shoulder stopping when you feel the stretch.”), NHS Flexibility exercises (Neck stretch: „Slowly tilt your head to the right while holding your shoulder down.”) — przeczytane 26.10.2026",
+     "liczba": "konwencja (skłon boczny głowy ≥ 20°)",
+     "pewnosc": "ustalone"
+    },
+    "lokiec_nad_barkiem": {
+     "typ": "lokiec_wysokosc_u1", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_cm": 15, "max_cm": 45},
+     "zrodlo": "ACE #174 Overhead Triceps Stretch (ręka w górę, zgięcie łokcia, dłoń opada na środek pleców) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie (łokieć 15–45 cm nad barkiem; ramię pionowo ≈ 31 cm)",
+     "pewnosc": "jedno źródło"
+    },
+    "rece_proste_za_plecami": {
+     "typ": "lokiec_za_tulowiem", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_cm": 5},
+     "zrodlo": "ACE #209 Standing Chest Stretch, wariant (ręce wyprostowane za plecami, dłonie splecione) — przeczytane 26.10.2026; Standing Biceps Stretch — analogia: ACE #208 (ręce wyprostowane za sobą)",
+     "liczba": "konwencja (łokcie ≥ 5 cm za linią barków)",
+     "pewnosc": "jedno źródło (klatka); analogia (biceps)"
+    },
+    "rece_proste": {
+     "typ": "stawy_proste", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"stawy": ["elbow"], "max_deg": 25},
+     "zrodlo": "ACE #209 (wariant: „extend your arms behind your back…”), ACE #208 („arms outstretched behind you”), ACE #198 („keeping the arms straight with the elbows extended”) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie",
+     "pewnosc": "ustalone"
+    },
+    "piety_do_posladka": {
+     "typ": "kolano_zakres_ruch", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"nogi": "co_najmniej_jedna", "min_max_deg": 100},
+     "zrodlo": "ACE #149 Side-Lying Quadriceps Stretch („pull your left heel up towards your left glute”) — przeczytane 26.10.2026 — analogia (stojąc, stopa na podwyższeniu)",
+     "liczba": "konwencja (kolano ≥ 100°)",
+     "pewnosc": "analogia"
+    },
+    "lat_plecy_plasko": {
+     "typ": "kregoslup_neutralny", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_deg": -15, "max_deg": 10},
+     "zrodlo": "ACE #198 90 Lat Stretch („…maintaining the abdominal bracing and flat back”), ACE #141 Kneeling Lat Stretch (kręgosłup prosty) — przeczytane 26.10.2026 — analogia (ściana zamiast stołu/ławki)",
+     "liczba": "uproszczenie",
+     "pewnosc": "analogia"
+    },
+    "lat_pochylenie": {
+     "typ": "pochylenie_tulowia", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_deg": 40, "max_deg": 100},
+     "zrodlo": "ACE #198 („drawing your torso closer to the ground while keeping a flat back”) — przeczytane 26.10.2026 — analogia",
+     "liczba": "konwencja (tułów pochylony 40°–100°)",
+     "pewnosc": "analogia"
+    },
+    "sklon_boczny_statyczny": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "pozycja", "cue": "sb.plane",
+     "parametry": {"pole": "przechylTulowia", "min_abs": 15},
+     "zrodlo": "NHS Flexibility exercises (Sideways bend), ACE #212 (sb.plane: skłon w bok bez skrętu i bez pochylenia) — przeczytane 26.10.2026 / słownik",
+     "liczba": "konwencja (≥ 15°)",
+     "pewnosc": "ustalone"
+    },
+    "bez_skretu": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "pozycja", "cue": "sb.plane",
+     "parametry": {"pole": "skretTulowia", "min": -10, "max": 10},
+     "zrodlo": "ACE #212 („…without rotating your trunk or bending forward”) — słownik",
+     "liczba": "konwencja",
+     "pewnosc": "jedno źródło"
+    },
+    "inchworm_kolana": {
+     "typ": "stawy_proste", "grupa": "pozycja", "cue": "dyn.control",
+     "parametry": {"stawy": ["knee"], "max_deg": 25},
+     "zrodlo": "ACE #254 Inchworms (kolana „extended (but not locked)”; „a soft bend in your knees during this movement is acceptable”) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie (≤ 25°)",
+     "pewnosc": "jedno źródło"
+    },
+    "inchworm_podpor": {
+     "typ": "miednica_na_linii", "grupa": "pozycja", "cue": "dyn.control",
+     "parametry": {"max_cm": 8, "koniec": "kostka_dalsza", "tylko_skrajna": true},
+     "zrodlo": "ACE #254 (krok 3: dojście do „a full-push-up position where your spine, hips and head are level with the floor”; krok 4: „Do not allow your low back to sag.”) — przeczytane 26.10.2026",
+     "liczba": "konwencja (jak pushup_plank.cialo_w_linii)",
+     "pewnosc": "jedno źródło"
+    },
+    "nogi_wymach": {
+     "typ": "rozstaw_zakres", "grupa": "zakres", "cue": null,
+     "parametry": {"punkt": "kostki", "min_cm": 30},
+     "zrodlo": "definicja z nazwy (wymach nogi)",
+     "liczba": "konwencja (odległość kostek zmienia się ≥ 30 cm)",
+     "pewnosc": "konwencja"
+    },
+    "krazenie_kostki": {
+     "typ": "punkt_zakres", "grupa": "zakres", "cue": null,
+     "parametry": {"punkt": "palce", "strona": "dowolna", "osie": ["y", "z"], "min_cm": 3},
+     "zrodlo": "definicja z nazwy (krążenie stopą)",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    },
+    "krazenie_kolan": {
+     "typ": "punkt_zakres", "grupa": "zakres", "cue": null,
+     "parametry": {"punkt": "kolana", "osie": ["x", "z"], "min_cm": 5},
+     "zrodlo": "definicja z nazwy",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    },
+    "krazenie_bioder": {
+     "typ": "punkt_zakres", "grupa": "zakres", "cue": null,
+     "parametry": {"punkt": "miednica", "osie": ["x", "z"], "min_cm": 5},
+     "zrodlo": "definicja z nazwy",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    },
+    "krazenie_ramion": {
+     "typ": "punkt_zakres", "grupa": "zakres", "cue": null,
+     "parametry": {"punkt": "dlonie", "strona": "dowolna", "osie": ["x", "y"], "min_cm": 10},
+     "zrodlo": "definicja z nazwy",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    },
+    "ramie_duzy_luk": {
+     "typ": "kat_ramie_tulow_zakres", "grupa": "zakres", "cue": null,
+     "parametry": {"min_deg": 90},
+     "zrodlo": "definicja z nazwy (ramiona po dużym łuku dookoła)",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    },
+    "dlonie_otwieraja_sie": {
+     "typ": "dlonie_zblizaja_sie", "grupa": "zakres", "cue": null,
+     "parametry": {"min_cm": 40},
+     "zrodlo": "definicja z nazwy (dynamiczne rozciąganie klatki: ramiona otwierają się i zamykają)",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    },
+    "barki_krazenie": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": null,
+     "parametry": {"pole": "uniesienieBarkow", "strona": "obie", "min_zakres": 3},
+     "zrodlo": "definicja z nazwy (krążenie barkami: uniesienie i opuszczenie)",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    },
+    "barki_krazenie_przod_tyl": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": null,
+     "parametry": {"pole": "wysuniecieBarkow", "strona": "obie", "min_zakres": 2},
+     "zrodlo": "definicja z nazwy",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    },
+    "skret_dynamiczny": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": "dyn.control",
+     "parametry": {"pole": "skretTulowia", "min_zakres": 40},
+     "zrodlo": "definicja z nazwy (obroty tułowia); dyn.control (ACE #212, NHS: ruch w wygodnym zakresie) — słownik",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    },
+    "skret_noga_przez_cialo": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": null,
+     "parametry": {"pole": "skretTulowia", "min_abs": 20},
+     "zrodlo": "definicja z nazwy (Iron Cross: noga przenoszona na drugą stronę ciała przy barkach na podłodze)",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    },
+    "nadgarstek_krazenie": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "zakres", "cue": null,
+     "parametry": {"pole": "zgiecieNadgarstka", "strona": "dowolna", "min_zakres": 30},
+     "zrodlo": "definicja z nazwy (krążenie nadgarstkami)",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    }
+   },
+   "wskazowki_na_reguly": {"st.noBounce": ["poza_nieruchoma"]},
+   "grupy_bledow": {},
+   "bledy_bez_animacji": {
+    "st.mis.force": "rozciąganie na siłę (za mocno) nie zmienia pozy w sposób rozpoznawalny (bledy: [])",
+    "dyn.mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])"
+   },
+   "warianty": {
+    "Chest And Front Of Shoulder Stretch": ["poza_nieruchoma"],
+    "Chest Stretch on Stability Ball": ["poza_nieruchoma"],
+    "Cross-Body Shoulder Stretch": ["poza_nieruchoma"],
+    "One Knee To Chest": ["poza_nieruchoma"],
+    "Overhead Stretch": ["poza_nieruchoma"],
+    "Standing Toe Touches": ["poza_nieruchoma"],
+    "Chin To Chest Stretch": ["poza_nieruchoma", "glowa_do_klatki", "tulow_pion"],
+    "Side Neck Stretch": ["poza_nieruchoma", "glowa_w_bok", "tulow_pion"],
+    "Overhead Triceps Stretch": ["poza_nieruchoma", "lokiec_nad_barkiem"],
+    "Standing Chest Stretch": ["poza_nieruchoma", "rece_proste", "rece_proste_za_plecami", "tulow_pion"],
+    "Standing Biceps Stretch": ["poza_nieruchoma", "rece_proste", "rece_proste_za_plecami"],
+    "Standing Gastrocnemius Calf Stretch": ["poza_nieruchoma", "tylna_noga_prosta", "przednia_noga_ugieta"],
+    "Wall Calf Stretch": ["poza_nieruchoma", "tylna_noga_prosta", "przednia_noga_ugieta"],
+    "Standing Soleus And Achilles Stretch": ["poza_nieruchoma", "obie_kolana_lekko"],
+    "Standing Elevated Quad Stretch": ["poza_nieruchoma", "piety_do_posladka"],
+    "Standing Lateral Stretch": ["poza_nieruchoma", "sklon_boczny_statyczny", "bez_skretu"],
+    "Wall Lat Stretch": ["poza_nieruchoma", "rece_proste", "lat_plecy_plasko", "lat_pochylenie"],
+    "Inchworm": ["inchworm_kolana", "inchworm_podpor"],
+    "Leg Swings (Front-to-Back)": ["nogi_wymach"],
+    "Leg Swings (Side-to-Side)": ["nogi_wymach"],
+    "Lying Leg Crossover Swings": ["nogi_wymach"],
+    "Ankle Circles": ["krazenie_kostki"],
+    "Knee Circles": ["krazenie_kolan"],
+    "Standing Hip Circles": ["krazenie_bioder"],
+    "Arm Circles": ["krazenie_ramion"],
+    "Round The World Shoulder Stretch": ["ramie_duzy_luk"],
+    "Dynamic Chest Stretch": ["dlonie_otwieraja_sie"],
+    "Shoulder Circles": ["barki_krazenie", "barki_krazenie_przod_tyl"],
+    "Torso Rotation": ["skret_dynamiczny"],
+    "Iron Crosses (Stretch)": ["nogi_wymach", "skret_noga_przez_cialo"],
+    "Wrist Circles": ["nadgarstek_krazenie"],
+    "Dynamic Back Stretch": [],
+    "Groiners": [],
+    "Hip Circles (Prone)": [],
+    "Standing Pelvic Tilt": [],
+    "World's Greatest Stretch": []
+   },
+   "otwarte": {
+    "Dynamic Back Stretch": "ćwiczenie dynamiczne bez opisu ruchu w przeczytanych źródłach; reguła „poza nieruchoma” byłaby sprzeczna z ruchem",
+    "Groiners": "jak wyżej (ACE #140 Lunge with Elbow Instep — możliwe źródło, nie czytane)",
+    "Hip Circles (Prone)": "jak wyżej — nazwa nie określa jednoznacznie ułożenia",
+    "Standing Pelvic Tilt": "pochylenie miednicy w płaszczyźnie strzałkowej — w szkielecie tylko pośrednio (zgięcie kręgosłupa); brak źródła",
+    "World's Greatest Stretch": "złożona sekwencja (wykrok, łokieć do stopy, skręt) — brak źródła opisu"
+   },
+   "otwarte_czesciowo": {
+    "rozciągania bez źródła pozycji (6)": "Chest And Front Of Shoulder, Chest Stretch on Stability Ball, Cross-Body Shoulder, One Knee To Chest, Overhead Stretch, Standing Toe Touches — tylko „poza nieruchoma” (UPROSZCZENIE: sprawdza bezruch, nie pozycję; pozycję ocenia recenzent ruchu, bramka 4)",
+    "ćwiczenia dynamiczne z regułą „z nazwy”": "krążenia, wymachy, Round The World, Dynamic Chest, Torso Rotation, Iron Crosses, Wrist Circles — reguły definicyjne (konwencja); źródeł opisu nie czytałem",
+    "Standing Biceps Stretch, Standing Elevated Quad Stretch, Wall Lat Stretch": "pozycja wzięta z pokrewnego ćwiczenia ACE (analogia)"
+   },
+   "pomin": {}
+  },
+  "mobility_floor": {
+   "reguly": {
+    "poza_nieruchoma": {
+     "typ": "szkielet_nieruchomy", "grupa": "bezruch", "cue": "st.noBounce",
+     "parametry": {"max_cm": 2},
+     "zrodlo": "jak mobility_stand.poza_nieruchoma (ACE #212, NASM — słownik; ACE #210, #214, #216, #273 — utrzymanie 15–30 s, przeczytane 26.10.2026)",
+     "liczba": "uproszczenie",
+     "pewnosc": "ustalone"
+    },
+    "kolana_proste": {
+     "typ": "stawy_proste", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"stawy": ["knee"], "max_deg": 15},
+     "zrodlo": "ACE #210 Seated Straddle Stretch („extend your knees…”), ACE #214 Seated Calf Stretch („without bending your knees”), ACE #232 Supine IT Band Stretch („keeping both knees extended”), ACE #235 Supine Hamstrings Stretch (wyprost nogi) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie (≤ 15°)",
+     "pewnosc": "ustalone"
+    },
+    "jedna_noga_prosta": {
+     "typ": "kolano_zakres_ruch", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"nogi": "co_najmniej_jedna", "max_min_deg": 15},
+     "zrodlo": "ACE #273 Modified Hurdler's Stretch (jedna noga wyprostowana, druga zgięta stopą do uda), ACE #149 (dolna noga wyprostowana) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie",
+     "pewnosc": "jedno źródło"
+    },
+    "plecy_plasko": {
+     "typ": "kregoslup_neutralny", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_deg": -15, "max_deg": 15},
+     "zrodlo": "ACE #210 i #273 („Attempt to maintain a flat back position and avoid rounding your back towards the ceiling”), ACE #216 (plecy płasko, ruch z bioder) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie",
+     "pewnosc": "ustalone"
+    },
+    "sklon_z_bioder": {
+     "typ": "pochylenie_tulowia", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_deg": 15, "max_deg": 90},
+     "zrodlo": "ACE #210 i #273 („slowly bend forward from your hips”) — przeczytane 26.10.2026",
+     "liczba": "konwencja (tułów pochylony w przód 15°–90°)",
+     "pewnosc": "ustalone (kierunek)"
+    },
+    "siad_prosto": {
+     "typ": "pochylenie_tulowia", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_deg": -10, "max_deg": 20},
+     "zrodlo": "ACE #214 („Sit upright (i.e., trunk vertical)”) — przeczytane 26.10.2026",
+     "liczba": "konwencja",
+     "pewnosc": "jedno źródło"
+    },
+    "nogi_zgiete_siad": {
+     "typ": "ugiecie_kolan_zakres", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_deg": 90},
+     "zrodlo": "ACE #216 Seated Butterfly Stretch („legs folded in front of you”) — przeczytane 26.10.2026",
+     "liczba": "konwencja",
+     "pewnosc": "jedno źródło"
+    },
+    "posladki_na_pietach": {
+     "typ": "ugiecie_kolan_zakres", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_deg": 120},
+     "zrodlo": "ACE #227 Child's Pose („…hinge at the hips, bringing your glutes to your heels”) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie (kolana ≥ 120°)",
+     "pewnosc": "jedno źródło"
+    },
+    "kolano_tylne_na_podlodze": {
+     "typ": "kolano_tylne_nisko", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"max_cm": 10},
+     "zrodlo": "ACE #142 Kneeling Hip Flexor Stretch („place the left knee on the floor… directly under the left hip”) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie",
+     "pewnosc": "jedno źródło"
+    },
+    "przednie_kolano_ugiete": {
+     "typ": "kolano_zakres_ruch", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"nogi": "co_najmniej_jedna", "min_max_deg": 70},
+     "zrodlo": "ACE #142 (przednie kolano nad kostką, biodro ok. 90°) — przeczytane 26.10.2026",
+     "liczba": "konwencja",
+     "pewnosc": "jedno źródło"
+    },
+    "tulow_wysoko": {
+     "typ": "pochylenie_tulowia", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_deg": -10, "max_deg": 15},
+     "zrodlo": "ACE #142 (kręgosłup wyprostowany, bez wyginania lędźwi) — przeczytane 26.10.2026",
+     "liczba": "konwencja",
+     "pewnosc": "jedno źródło"
+    },
+    "ledzwie_bez_luku": {
+     "typ": "kregoslup_neutralny", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"min_deg": -15, "max_deg": 10},
+     "zrodlo": "ACE #142 („do not allow your pelvis to rotate to the anterior”; unikaj wyginania lędźwi) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie",
+     "pewnosc": "jedno źródło"
+    },
+    "pieta_do_posladka": {
+     "typ": "kolano_zakres_ruch", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"nogi": "co_najmniej_jedna", "min_max_deg": 110},
+     "zrodlo": "ACE #149 Side-Lying Quadriceps Stretch („Bend your left knee and pull your left heel up towards your left glute…”) — przeczytane 26.10.2026",
+     "liczba": "konwencja (kolano ≥ 110°)",
+     "pewnosc": "jedno źródło"
+    },
+    "lezenie_miednica": {
+     "typ": "miednica_na_podlodze", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"max_y_cm": 15},
+     "zrodlo": "ACE #148 (leżenie na plecach, lędźwie spłaszczone do podłogi), ACE #235 i #232 (leżenie na plecach) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie (środek miednicy ≤ 15 cm nad podłogą)",
+     "pewnosc": "ustalone"
+    },
+    "czworka_kolana": {
+     "typ": "kolano_zakres_ruch", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"nogi": "obie", "min_max_deg": 70},
+     "zrodlo": "ACE #148 Supine 90-90 Hip Rotator Stretch (stopa na kolanie drugiej nogi, „maintain the ninety degree bend in the left knee”; drugie udo przyciągnięte do klatki) — przeczytane 26.10.2026 — analogia",
+     "liczba": "konwencja (oba kolana ≥ 70°)",
+     "pewnosc": "analogia"
+    },
+    "skret_miednica_vs_barki": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"pole": "skretTulowia", "min_abs": 30},
+     "zrodlo": "ACE #232 Supine IT Band Stretch („…rotate the hips until they align vertically, or near vertically with the floor with little rotation occurring through your trunk”) — przeczytane 26.10.2026; skręt leżąc (Supine Spinal Twist): ACE #229 — analogia",
+     "liczba": "konwencja (skręt miednicy względem barków ≥ 30°)",
+     "pewnosc": "jedno źródło (IT Band); analogia (Spinal Twist)"
+    },
+    "skret_siad": {
+     "typ": "stopien_swobody", "wymaga": "poza@2", "grupa": "pozycja", "cue": "st.tension",
+     "parametry": {"pole": "skretTulowia", "min_abs": 30},
+     "zrodlo": "definicja z nazwy (rozciąganie w skręcie, siad)",
+     "liczba": "konwencja",
+     "pewnosc": "konwencja"
+    },
+    "kregoslup_koci_grzbiet": {
+     "typ": "stopien_swobody", "grupa": "zakres", "cue": "dyn.control",
+     "parametry": {"pole": "zgiecieKregoslupa", "osiaga_co_najmniej": 10, "osiaga_co_najwyzej": -10},
+     "zrodlo": "ACE #15 Cat-Cow (krok 4: „pushing your spine upwards towards the ceiling”; krok 5: „Let your stomach fall towards the floor (increasing the arch in your low back)”) — przeczytane 26.10.2026",
+     "liczba": "konwencja (zgięcie ≥ 10° i wyprost ≥ 10° względem neutralnego)",
+     "pewnosc": "jedno źródło"
+    },
+    "podpor_rece_proste": {
+     "typ": "stawy_proste", "grupa": "pozycja", "cue": "dyn.control",
+     "parametry": {"stawy": ["elbow"], "max_deg": 15},
+     "zrodlo": "ACE #15 (dłonie pod barkami w klęku podpartym) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie",
+     "pewnosc": "jedno źródło"
+    }
+   },
+   "wskazowki_na_reguly": {"st.noBounce": ["poza_nieruchoma"]},
+   "grupy_bledow": {},
+   "bledy_bez_animacji": {
+    "st.mis.force": "rozciąganie na siłę nie zmienia pozy w sposób rozpoznawalny (bledy: [])",
+    "dyn.mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])"
+   },
+   "warianty": {
+    "Butterfly Stretch": ["poza_nieruchoma", "nogi_zgiete_siad", "plecy_plasko"],
+    "Child's Pose": ["poza_nieruchoma", "posladki_na_pietach"],
+    "IT Band and Glute Stretch": ["poza_nieruchoma", "kolana_proste", "lezenie_miednica", "skret_miednica_vs_barki"],
+    "Kneeling Hip Flexor Stretch": ["poza_nieruchoma", "kolano_tylne_na_podlodze", "przednie_kolano_ugiete", "tulow_wysoko", "ledzwie_bez_luku"],
+    "Seated Calf Stretch": ["poza_nieruchoma", "kolana_proste", "siad_prosto"],
+    "Seated Floor Hamstring Stretch": ["poza_nieruchoma", "jedna_noga_prosta", "plecy_plasko", "sklon_z_bioder"],
+    "The Straddle": ["poza_nieruchoma", "kolana_proste", "plecy_plasko", "sklon_z_bioder"],
+    "Side-Lying Quad Stretch": ["poza_nieruchoma", "pieta_do_posladka", "jedna_noga_prosta"],
+    "Supine Figure-Four Stretch": ["poza_nieruchoma", "czworka_kolana", "lezenie_miednica"],
+    "Supine Hamstring Stretch": ["poza_nieruchoma", "kolana_proste", "lezenie_miednica"],
+    "Supine Spinal Twist": ["poza_nieruchoma", "lezenie_miednica", "skret_miednica_vs_barki"],
+    "Seated Rotation Stretch": ["poza_nieruchoma", "skret_siad"],
+    "Intermediate Groin Stretch": ["poza_nieruchoma"],
+    "Kneeling Forearm Stretch": ["poza_nieruchoma"],
+    "Middle Back Stretch": ["poza_nieruchoma"],
+    "Peroneals Stretch": ["poza_nieruchoma"],
+    "Posterior Tibialis Stretch": ["poza_nieruchoma"],
+    "Runner's Stretch": ["poza_nieruchoma"],
+    "Side Lying Groin Stretch": ["poza_nieruchoma"],
+    "Upper Back Stretch": ["poza_nieruchoma"],
+    "Cat-Cow": ["kregoslup_koci_grzbiet", "podpor_rece_proste"],
+    "Downward Facing Balance": []
+   },
+   "otwarte": {"Downward Facing Balance": "zestaw „open”; ćwiczenie równoważne — nie badane"},
+   "otwarte_czesciowo": {
+    "rozciągania bez źródła pozycji (8)": "Intermediate Groin, Kneeling Forearm, Middle Back, Peroneals, Posterior Tibialis, Runner's, Side Lying Groin, Upper Back — tylko „poza nieruchoma” (UPROSZCZENIE); Peroneals / Posterior Tibialis: istota (odwrócenie/nawrócenie stopy) nie jest stopniem swobody nawet w poza@2; Kneeling Forearm: wyprost nadgarstka możliwy w poza@2, ale źródła pozycji nie mam",
+    "Supine Hamstring Stretch": "ACE #235 opisuje nogę opartą o ścianę; uniesienia nogi nie sprawdzam (brak typu „zgięcie biodra jednej nogi ≥”) — tylko proste kolana i leżenie",
+    "Supine Figure-Four Stretch, Supine Spinal Twist": "pozycja z pokrewnego ćwiczenia ACE (analogia)",
+    "Seated Rotation Stretch": "skręt z nazwy (konwencja)"
+   },
+   "pomin": {}
+  },
+  "foam_roll": {
+   "reguly": {
+    "rolowanie": {
+     "typ": "punkt_zakres", "grupa": "zakres", "cue": "smr.slow",
+     "parametry": {"punkt": "miednica", "osie": ["x", "z"], "tryb": "dowolna", "min_cm": 8},
+     "zrodlo": "smr.slow: NASM Foam Roll Calves (krok 3: „Perform slow, controlled rolling motions.”), ACE Foam Rolling 101 („Slowly roll the tender areas…”) — słownik badacza; rolowanie = ciało przesuwa się po wałku (definicja)",
+     "liczba": "konwencja (miednica przesuwa się ≥ 8 cm w jednym kierunku poziomym)",
+     "pewnosc": "ustalone (kierunek)"
+    },
+    "rolowanie_stopy": {
+     "typ": "punkt_zakres", "grupa": "zakres", "cue": "smr.slow",
+     "parametry": {"punkt": "kostki", "strona": "dowolna", "osie": ["x"], "min_cm": 5},
+     "zrodlo": "jak rolowanie — stopa toczy piłkę/wałek pod podeszwą",
+     "liczba": "konwencja",
+     "pewnosc": "ustalone (kierunek)"
+    }
+   },
+   "wskazowki_na_reguly": {"smr.slow": ["rolowanie"]},
+   "warianty": {
+    "Adductor-SMR": ["rolowanie"], "Calves-SMR": ["rolowanie"], "Foam Roll: Hamstrings": ["rolowanie"], "Foam Roll: Quadriceps": ["rolowanie"],
+    "Iliotibial Tract-SMR": ["rolowanie"], "Latissimus Dorsi-SMR": ["rolowanie"], "Peroneals-SMR": ["rolowanie"], "Piriformis-SMR": ["rolowanie"], "Rhomboids-SMR": ["rolowanie"],
+    "Foot-SMR": ["rolowanie_stopy"]
+   },
+   "otwarte": {
+    "Adductor-SMR": null, "Calves-SMR": null, "Foam Roll: Hamstrings": null, "Foam Roll: Quadriceps": null, "Foot-SMR": null, "Iliotibial Tract-SMR": null,
+    "Latissimus Dorsi-SMR": null, "Peroneals-SMR": null, "Piriformis-SMR": null, "Rhomboids-SMR": null
+   },
+   "otwarte_czesciowo": {
+    "położenie wałka": "która część ciała leży na wałku — bez reguły (brak typu „kontakt części ciała ze sprzętem”); ocenia recenzent ruchu (bramka 4)",
+    "Wrist Roller": "nadal otwarte — zestaw „open” (ruch nadgarstków możliwy w poza@2, brak źródła)"
+   }
+  }
+ }
+}
