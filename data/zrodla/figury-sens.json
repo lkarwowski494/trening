@@ -4015,7 +4015,7 @@
           "parametry": {
             "max_cm": 20
           },
-          "zrodlo": "msp.seat: ACE #186 (uchwyty na wysokości barków lub tuż nad), Eleiko 659463af (ciężary przed barkami) — cues.json",
+          "zrodlo": "msp.seat: ACE #186 (uchwyty na wysokości barków lub tuż nad), producent sprzętu 659463af (ciężary przed barkami) — cues.json",
           "liczba": "uproszczenie (jak overhead_press: chwyt ≤ 20 cm nad barkami w najniższym punkcie)",
           "pewnosc": "ustalone"
         },
@@ -4031,7 +4031,7 @@
             "tylko_u1": true,
             "lokiec_max_deg": 25
           },
-          "zrodlo": "ohp.move / ohp.fullExt: ACE #186 (wyciśnięcie nad głowę; łokcie prawie proste), Eleiko 659463af (pełny wyprost rąk) — cues.json",
+          "zrodlo": "ohp.move / ohp.fullExt: ACE #186 (wyciśnięcie nad głowę; łokcie prawie proste), producent sprzętu 659463af (pełny wyprost rąk) — cues.json",
           "liczba": "uproszczenie (u = 1: chwyt ≥ 10 cm nad głową, łokcie ≤ 25°)",
           "pewnosc": "ustalone"
         }
@@ -4101,7 +4101,7 @@
             "min_max_deg": 70,
             "max_min_deg": 25
           },
-          "zrodlo": "mcp.move dla wyciskania na linkach: Eleiko 65944cf0 (Movement: wypchnięcie do wyprostu i powrót), ACE #165 kroki 2–3 (wyprost bez blokowania) — cues.json",
+          "zrodlo": "mcp.move dla wyciskania na linkach: producent sprzętu 65944cf0 (Movement: wypchnięcie do wyprostu i powrót), ACE #165 kroki 2–3 (wyprost bez blokowania) — cues.json",
           "liczba": "uproszczenie",
           "pewnosc": "ustalone"
         },
@@ -4113,7 +4113,7 @@
             "max_pochylenie_deg": 8,
             "max_miednica_cm": 4
           },
-          "zrodlo": "cpress.base: Eleiko 65944cf0 (Coaching points: tułów stabilny, bez nadmiernego skrętu), ACE #338 krok 5 (stopy w podłogę, napięty brzuch) — cues.json",
+          "zrodlo": "cpress.base: producent sprzętu 65944cf0 (Coaching points: tułów stabilny, bez nadmiernego skrętu), ACE #338 krok 5 (stopy w podłogę, napięty brzuch) — cues.json",
           "liczba": "konwencja",
           "pewnosc": "ustalone (kierunek)"
         },
@@ -4584,7 +4584,7 @@
             "max_pochylenie_deg": 5,
             "max_miednica_cm": 3
           },
-          "zrodlo": "pallof.noTwist: NASM Best Abs (Pallof Press: „The goal is to prevent movement, not create it.”), Eleiko 659d665d (Coaching Points), Mullane 2021 s. 4 — cues.json",
+          "zrodlo": "pallof.noTwist: NASM Best Abs (Pallof Press: „The goal is to prevent movement, not create it.”), producent sprzętu 659d665d (Coaching Points), Mullane 2021 s. 4 — cues.json",
           "liczba": "konwencja",
           "pewnosc": "ustalone"
         },
@@ -4609,7 +4609,7 @@
             "max_cm": 0,
             "caly_ruch": true
           },
-          "zrodlo": "pallof.setup: ACE #332 („The cable pulley should be at approximately chest height.”), Mullane 2021 s. 4 (ok. środek tułowia), Eleiko 659d665d (przy środku tułowia) — cues.json",
+          "zrodlo": "pallof.setup: ACE #332 („The cable pulley should be at approximately chest height.”), Mullane 2021 s. 4 (ok. środek tułowia), producent sprzętu 659d665d (przy środku tułowia) — cues.json",
           "liczba": "konwencja (chwyt w całym ruchu 0–35 cm pod barkami: klatka–środek tułowia)",
           "pewnosc": "ustalone (część wspólna)"
         },
@@ -5853,7 +5853,7 @@
           "parametry": {
             "u0_max_deg": 20
           },
-          "zrodlo": "Concept2 Indoor Rowing Technique, The Catch („Arms are straight; head is neutral…”) — przeczytane 26.10.2026; aceblog-5881 The Catch (cues.json)",
+          "zrodlo": "producent ergometru Indoor Rowing Technique, The Catch („Arms are straight; head is neutral…”) — przeczytane 26.10.2026; aceblog-5881 The Catch (cues.json)",
           "liczba": "uproszczenie (u = 0 = łapanie; łokieć ≤ 20°)",
           "pewnosc": "ustalone"
         },
@@ -5864,7 +5864,7 @@
           "parametry": {
             "min_deg": 90
           },
-          "zrodlo": "Concept2, The Catch („Shins are vertical, or as close to vertical as is comfortable for you.”) — przeczytane 26.10.2026; aceblog-5881 (cues.json)",
+          "zrodlo": "producent ergometru, The Catch („Shins are vertical, or as close to vertical as is comfortable for you.”) — przeczytane 26.10.2026; aceblog-5881 (cues.json)",
           "liczba": "uproszczenie (goleń pionowo w siadzie ⇒ kolano zgięte ≥ ok. 90°)",
           "pewnosc": "ustalone"
         },
@@ -5877,7 +5877,7 @@
             "max_kolano_deg": 15,
             "max_biodro_deg": 180
           },
-          "zrodlo": "Concept2, The Finish („Legs are extended.”) — przeczytane 26.10.2026; aceblog-5881 The Finish (cues.json)",
+          "zrodlo": "producent ergometru, The Finish („Legs are extended.”) — przeczytane 26.10.2026; aceblog-5881 The Finish (cues.json)",
           "liczba": "uproszczenie (kolana ≤ 15° w co najmniej jednej próbce)",
           "pewnosc": "ustalone"
         },
@@ -5895,8 +5895,8 @@
             "min_osiagniete_deg": 5,
             "min_zmiana_deg": 15
           },
-          "zrodlo": "Concept2: The Catch (tułów pochylony w przód, barki przed biodrami), The Drive („swing the back through the vertical position”), The Finish („Upper body is leaning back slightly”) — przeczytane 26.10.2026",
-          "liczba": "konwencja (pochylenie −40°…45°, w przód ≥ 5°, zmiana ≥ 15°); Concept2 nie podaje kątów",
+          "zrodlo": "producent ergometru: The Catch (tułów pochylony w przód, barki przed biodrami), The Drive („swing the back through the vertical position”), The Finish („Upper body is leaning back slightly”) — przeczytane 26.10.2026",
+          "liczba": "konwencja (pochylenie −40°…45°, w przód ≥ 5°, zmiana ≥ 15°); producent ergometru nie podaje kątów",
           "pewnosc": "ustalone (kierunek)"
         },
         "erg_lokcie_finisz": {
@@ -5909,7 +5909,7 @@
           "parametry": {
             "min_cm": 3
           },
-          "zrodlo": "Concept2, The Finish („handle is held lightly below your ribs”) — przeczytane 26.10.2026; rączka przy żebrach ⇒ łokcie za linią barków",
+          "zrodlo": "producent ergometru, The Finish („handle is held lightly below your ribs”) — przeczytane 26.10.2026; rączka przy żebrach ⇒ łokcie za linią barków",
           "liczba": "uproszczenie (wywiedzione z położenia rączki)",
           "pewnosc": "ustalone (kierunek)"
         },
@@ -5922,7 +5922,7 @@
             "min_min_deg": 10,
             "max_min_deg": 45
           },
-          "zrodlo": "bike.seat: Concept2 BikeErg setup („…your leg should maintain a slight bend at maximum extension.”), HSS („It shouldn't be locked out, just bending noticeably.”) — cues.json",
+          "zrodlo": "bike.seat: producent ergometru setup („…your leg should maintain a slight bend at maximum extension.”), HSS („It shouldn't be locked out, just bending noticeably.”) — cues.json",
           "liczba": "konwencja (przy największym wyproście kolano 10°–45°)",
           "pewnosc": "ustalone (kierunek)"
         },
@@ -5937,7 +5937,7 @@
             "min_deg": -10,
             "max_deg": 15
           },
-          "zrodlo": "walk.upright: Life Fitness („stand up straight”), NordicTrack („…spine neutral”); walk.rails: Life Fitness („…keep an upright posture and don’t lean back!”) — cues.json",
+          "zrodlo": "walk.upright: producent bieżni („stand up straight”), producent bieżni („…spine neutral”); walk.rails: producent bieżni („…keep an upright posture and don’t lean back!”) — cues.json",
           "liczba": "konwencja (−10°…15° od pionu)",
           "pewnosc": "ustalone (szczebel 4, producenci)"
         },

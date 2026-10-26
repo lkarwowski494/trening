@@ -266,6 +266,21 @@
    "path": "lib/figures/v2/muscles.generated.ts",
    "name": "Ski Erg",
    "reason": "klucz katalogu jako klucz danych (figury v2: zestawy wskazówek i udział mięśni po kluczu katalogu, jak lib/catalog.generated.ts) — nazwa wyświetlana ogólna z LIB_DISPLAY_NAME w lib/seed.ts; plik z danych (cue-sets.json: badacz 25.10.2026; muscles.generated.ts: generowany z docs/research/equipment/catalog.json)"
+  },
+  {
+   "path": "data/zrodla/figury-sens.json",
+   "name": "Assault Bike",
+   "reason": "klucz katalogu w danych reguł sensu (nazwa kanoniczna ćwiczenia = Exercise.libKey; wpisy warianty/otwarte w data/zrodla/figury-sens.json — plik tylko do narzędzi, nie trafia do paczki aplikacji)"
+  },
+  {
+   "path": "data/zrodla/figury-sens.json",
+   "name": "Bosu",
+   "reason": "klucz katalogu w danych reguł sensu (nazwa kanoniczna ćwiczenia = Exercise.libKey; wpisy warianty/otwarte w data/zrodla/figury-sens.json — plik tylko do narzędzi, nie trafia do paczki aplikacji)"
+  },
+  {
+   "path": "data/zrodla/figury-sens.json",
+   "name": "Ski Erg",
+   "reason": "klucz katalogu w danych reguł sensu (nazwa kanoniczna ćwiczenia = Exercise.libKey; wpisy warianty/otwarte w data/zrodla/figury-sens.json — plik tylko do narzędzi, nie trafia do paczki aplikacji)"
   }
  ]
 }
