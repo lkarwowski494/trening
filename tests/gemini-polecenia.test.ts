@@ -46,7 +46,7 @@ describe('pozy w danych (lib/figures/v2/poses): każda przechodzi walidator geom
     expect(pliki).toContain('pull_up.json');
     for (const f of pliki) {
       const d = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')); expect(['figury-v2/poza@1', 'figury-v2/poza@2']).toContain(d.kontrakt); expect(f).toBe(`${d.rodzina}.json`);
-      const w = run(VAL, `const r = Object.entries(${JSON.stringify(d.cwiczenia)}).map(([c, p]) => [c, m.waliduj(p, { rodzina: ${JSON.stringify(d.rodzina)}, cwiczenie: c }).ok]); console.log(JSON.stringify(r));`) as [string, boolean][];
+      const w = run(VAL, `const r = Object.entries(JSON.parse((await import('node:fs')).readFileSync(${JSON.stringify(path.join(dir, f))}, 'utf8')).cwiczenia).map(([c, p]) => [c, m.waliduj(p, { rodzina: ${JSON.stringify(d.rodzina)}, cwiczenie: c }).ok]); console.log(JSON.stringify(r));`) as [string, boolean][];
       for (const [c, ok] of w) expect([f, c, ok]).toEqual([f, c, true]);
     }
     expect(Object.keys(JSON.parse(fs.readFileSync(path.join(dir, 'pull_up.json'), 'utf8')).cwiczenia)).toContain('Gironda Sternum Chins');
