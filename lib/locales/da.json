@@ -258,7 +258,7 @@
  "Dane i kopie": "Data og backup",
  "Dane nie zostały wyczyszczone": "Data blev ikke slettet",
  "Dane w telefonie": "Data på denne telefon",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Dataene på telefonen er gemt af en nyere version (skema {a}); denne version understøtter op til {b}. Intet ændres — installer den nyeste version (TestFlight). Du kan også sende dataene som en fil.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Dataene på telefonen er gemt af en nyere version (skema {a}); denne version understøtter op til {b}. Intet ændres — installer den nyeste version fra App Store. Du kan også sende dataene som en fil.",
  "Dane z nowszej wersji aplikacji": "Data fra en nyere version af appen",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "Data fra en nyere version af appen — opdater appen",
  "Data (RRRR-MM-DD)": "Dato (ÅÅÅÅ-MM-DD)",
@@ -491,7 +491,7 @@
  "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.": "Træningen ville slutte i fremtiden ({t}). Skift dato, tidspunkt eller varighed.",
  "Kontynuuj": "Fortsæt",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "Automatisk backup efter træning er slået fra (Indstillinger).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Automatisk backup: efter hver træning gemmes en JSON-fil i Filer (På min iPhone → {app} → Backup, seneste {n}). Import accepterer også disse filer. Kopierne slettes sammen med appen — før du fjerner den eller installerer fra et andet Apple-id, skal du eksportere en backup et andet sted hen.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Automatisk sikkerhedskopi: efter hver træning gemmes en JSON-fil af sig selv i Filer (På min iPhone → {app} → Backup, seneste {n}). Import accepterer også disse filer. Kopierne slettes sammen med appen — før du fjerner den eller installerer fra en anden Apple-konto, skal du eksportere en sikkerhedskopi et andet sted hen.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "En kopi er gemt på telefonen. Tryk for at sende den, og importer derefter en backup.",
  "Kopia nieczytelnych danych": "Kopi af ulæselige data",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "En kopi af den nuværende plan under “Andre planer” — du ændrer den, før du gør den aktiv.",
@@ -627,7 +627,7 @@
  "Miejsce domyślne": "Standardsted",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Et sted for {a} – {b}. Vælg det udstyr, du har dér – du behøver ikke angive vægte.",
  "Miejsce tego treningu": "Sted for denne træning",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Stedet føjes til listen over steder (Indstillinger → Steder og udstyr).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Stedet føjes til listen over steder (Mere → Steder og udstyr).",
  "Miejsce treningu: {l}": "Træningssted: {l}",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Et sted kun til denne træning. Vælg det udstyr, du har dér – du behøver ikke angive vægte.",
  "miesiąc": "måned",
@@ -1758,5 +1758,6 @@
  "zgięcie kolana": "knæbøjning",
  "zgięcie łokcia": "albuebøjning",
  "zgięcie biodra": "hoftebøjning",
- "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Sæt: {s} pr. øvelse. Det er værd at lave mindst {m}; flere sæt giver som regel lidt mere, men gevinsten aftager."
+ "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Sæt: {s} pr. øvelse. Det er værd at lave mindst {m}; flere sæt giver som regel lidt mere, men gevinsten aftager.",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Træningen fra {d} {s} havde ingen aktivitet i {h} timer, så den blev gemt automatisk. Slut: {e} (sidste sæt). Du finder den under fanen Plan."
 }

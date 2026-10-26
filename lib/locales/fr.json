@@ -258,7 +258,7 @@
  "Dane i kopie": "Données et sauvegardes",
  "Dane nie zostały wyczyszczone": "Les données n’ont pas été effacées",
  "Dane w telefonie": "Données sur ce téléphone",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Les données du téléphone ont été enregistrées par une version plus récente (schéma {a}) ; cette version prend en charge jusqu’à {b}. Rien n’est modifié — installez la dernière version (TestFlight). Vous pouvez aussi envoyer les données sous forme de fichier.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Les données du téléphone ont été enregistrées par une version plus récente (schéma {a}) ; cette version prend en charge jusqu’à {b}. Rien n’est modifié — installez la dernière version depuis l’App Store. Vous pouvez aussi envoyer les données sous forme de fichier.",
  "Dane z nowszej wersji aplikacji": "Données d’une version plus récente de l’app",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "Données d’une version plus récente de l’app — mettez l’app à jour",
  "Data (RRRR-MM-DD)": "Date (AAAA-MM-JJ)",
@@ -491,7 +491,7 @@
  "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.": "La séance se terminerait dans le futur ({t}). Modifiez la date, l’heure ou la durée.",
  "Kontynuuj": "Continuer",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "La sauvegarde automatique après la séance est désactivée (Réglages).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Sauvegarde automatique : après chaque séance, un fichier JSON est enregistré dans Fichiers (Sur mon iPhone → {app} → Backup, les {n} derniers). L’import accepte aussi ces fichiers. Ces copies sont supprimées avec l’app — avant de la supprimer ou de l’installer depuis un autre identifiant Apple, exportez une sauvegarde ailleurs.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Sauvegarde automatique : après chaque séance, un fichier JSON est enregistré dans Fichiers (Sur mon iPhone → {app} → Backup, les {n} derniers). L’import accepte aussi ces fichiers. Ces copies sont supprimées avec l’app — avant de la supprimer ou de l’installer depuis un autre identifiant Apple, exportez une sauvegarde ailleurs.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "Une copie est conservée sur le téléphone. Touchez pour l’envoyer, puis importez une sauvegarde.",
  "Kopia nieczytelnych danych": "Copie des données illisibles",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "Une copie du programme actuel dans « Autres programmes » — vous la modifiez avant de la rendre active.",
@@ -627,7 +627,7 @@
  "Miejsce domyślne": "Lieu par défaut",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lieu pour {a} – {b}. Choisissez le matériel que vous y avez — inutile de saisir les charges.",
  "Miejsce tego treningu": "Lieu de cette séance",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Le lieu sera ajouté à la liste des lieux (Réglages → Lieux et matériel).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Le lieu sera ajouté à la liste des lieux (Plus → Lieux et matériel).",
  "Miejsce treningu: {l}": "Lieu de la séance : {l}",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lieu pour cette séance seulement. Choisissez le matériel que vous y avez — inutile de saisir les charges.",
  "miesiąc": "mois",
@@ -1758,5 +1758,6 @@
  "zgięcie kolana": "flexion du genou",
  "zgięcie łokcia": "flexion du coude",
  "zgięcie biodra": "flexion de la hanche",
- "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Séries : {s} par exercice — faites-en au moins {m} ; plus de séries apportent en général un peu plus, avec un gain qui diminue."
+ "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Séries : {s} par exercice — faites-en au moins {m} ; plus de séries apportent en général un peu plus, avec un gain qui diminue.",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "La séance du {d} {s} n’a eu aucune activité pendant {h} heures, elle a donc été enregistrée automatiquement. Fin : {e} (dernière série). Vous la trouverez dans l’onglet Plan."
 }

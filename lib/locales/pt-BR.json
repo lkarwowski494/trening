@@ -29,7 +29,7 @@
  "D — tydzień oznaczony jako deload.": "D — semana marcada como deload.",
  "Dane i kopie": "Dados e backups",
  "Dane w telefonie": "Dados no celular",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Os dados no celular foram salvos por uma versão mais recente (esquema {a}); esta versão suporta até {b}. Nada é alterado — instale a versão mais recente (TestFlight). Você também pode enviar os dados como arquivo.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Os dados no celular foram salvos por uma versão mais recente (esquema {a}); esta versão suporta até {b}. Não alterei nada — instale a versão mais recente pela App Store. Você também pode enviar os dados como arquivo.",
  "Dane z nowszej wersji aplikacji": "Dados de uma versão mais recente do app",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "Dados de uma versão mais recente do app — atualize o app",
  "Data pomiaru nie może być w przyszłości.": "A data da medição não pode estar no futuro.",
@@ -72,7 +72,7 @@
  "Kolor względem partii z największą liczbą serii w tym okresie (partia główna 1 seria, pomocnicza 0,5). Szare — bez serii.": "Cor relativa ao grupo com mais séries no período (grupo principal 1 série, secundário 0,5). Cinza — sem séries.",
  "Koniec przerwy i przypomnienie o treningu z planu przyjdą także przy zablokowanym ekranie.": "O fim do descanso e o lembrete de treinos planejados chegam mesmo com a tela bloqueada.",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "O backup automático após o treino está desativado (Ajustes).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Backup automático: após cada treino, um arquivo JSON é salvo automaticamente em Arquivos (No meu iPhone → {app} → Backup, últimos {n}). A importação também aceita esses arquivos. Esses backups são apagados junto com o app — antes de remover o app ou de instalar com outra Conta Apple, exporte um backup para outro lugar.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Backup automático: após cada treino, um arquivo JSON é salvo sozinho em Arquivos (No meu iPhone → {app} → Backup, últimos {n}). A importação também aceita esses arquivos. Esses backups são apagados junto com o app — antes de removê-lo ou de instalar com outra conta Apple, exporte um backup para outro lugar.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "Há uma cópia salva no celular. Toque para enviar e depois importe um backup.",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "Uma cópia do plano atual em «Outros planos» — você altera antes de torná-la ativa.",
  "Kopia w Apple Health zostanie — usuniesz ją w aplikacji Zdrowie.": "A cópia no Apple Health continua lá — apague no app Saúde.",
@@ -510,7 +510,7 @@
  "Dostosuj do miejsca: po zmianie miejsca na takie bez potrzebnego sprzętu aplikacja proponuje zamienniki ćwiczeń do przejrzenia — zmiany tylko w tym treningu.": "Adaptar ao local: ao mudar para um local sem o equipamento necessário, o app sugere exercícios substitutos para você revisar — as alterações valem só para este treino.",
  "W oknie zmienisz zamiennik albo wybierzesz „Bez zmian” lub „Pomiń dziś”; zastosowaną zamianę cofniesz przy ćwiczeniu.": "Na janela você pode trocar o substituto ou escolher “Sem alterações” ou “Pular hoje”; uma troca aplicada pode ser desfeita no exercício.",
  "Zapisz jako miejsce": "Salvar como local",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "O local será adicionado à lista de locais (Ajustes → Locais e equipamento).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "O local será adicionado à lista de locais (Mais → Locais e equipamentos).",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Um local para {a} – {b}. Escolha o equipamento que tem lá — não precisa digitar pesos.",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Um local só para este treino. Escolha o equipamento que tem lá — não precisa digitar pesos.",
  "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Ao iniciar um treino nesses dias, o app usa este local antes do local do modelo, e a janela «Adaptar» sugere trocas. Nada muda sozinho.",
@@ -541,7 +541,7 @@
  "Cały rok treningów, rozliczany rocznie.": "Um ano inteiro de treinos, cobrado anualmente.",
  "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Você paga todo mês e para quando quiser.",
  "Płacisz raz i masz na zawsze.": "Você paga uma vez e é seu para sempre.",
- "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Treine de graça {n} dias por mês. O Pro tira o limite. Você pode cancelar quando quiser nos ajustes da sua conta Apple.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Treine {n} dias por mês de graça. O Pro tira o limite. Você cancela quando quiser nos ajustes da sua conta Apple.",
  "Jesteśmy z Ciebie dumni!": "Temos orgulho de você!",
  "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Neste mês você está treinando pesado e usando todos os dias de treino gratuitos ({n}). Mandou bem!",
  "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "O {app} é feito por um desenvolvedor independente: sem anúncios e sem coleta de dados. Se ele ajuda você, escolha um plano e treine sem limites. Os dias gratuitos voltam em {date}.",
@@ -609,5 +609,6 @@
  "Wstawanie": "Ficar em pé",
  "Wypychanie": "Empurrar",
  "zgięcie biodra": "flexão do quadril",
- "Zobacz plany Pro ›": "Ver planos Pro ›"
+ "Zobacz plany Pro ›": "Ver planos Pro ›",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "O treino de {d} {s} ficou {h} horas sem atividade, então foi salvo automaticamente. Fim: {e} (última série). Você o encontra na aba Plano."
 }

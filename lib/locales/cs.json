@@ -258,7 +258,7 @@
  "Dane i kopie": "Data a zálohy",
  "Dane nie zostały wyczyszczone": "Data nebyla smazána",
  "Dane w telefonie": "Data v tomto telefonu",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Data v telefonu uložila novější verze (schéma {a}); tato verze podporuje nejvýše {b}. Nic neměním — nainstalujte nejnovější verzi (TestFlight). Data můžete také odeslat jako soubor.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Data v telefonu uložila novější verze (schéma {a}); tato verze podporuje nejvýše {b}. Nic neměním – nainstalujte nejnovější verzi z App Storu. Data můžete také odeslat jako soubor.",
  "Dane z nowszej wersji aplikacji": "Data z novější verze aplikace",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "Data z novější verze aplikace — aktualizujte aplikaci",
  "Data (RRRR-MM-DD)": "Datum (RRRR-MM-DD)",
@@ -491,7 +491,7 @@
  "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.": "Trénink by skončil v budoucnosti ({t}). Změňte datum, čas nebo dobu trvání.",
  "Kontynuuj": "Pokračovat",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "Automatická záloha po tréninku je vypnutá (Nastavení).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Automatická záloha: po každém tréninku se soubor JSON uloží do Souborů (Na mém iPhonu → {app} → Backup, posledních {n}). Import přijímá i tyto soubory. Tyto kopie se smažou spolu s aplikací – před jejím odstraněním nebo instalací z jiného Apple ID exportujte zálohu jinam.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Automatická záloha: po každém tréninku se soubor JSON uloží do Souborů (Na mém iPhonu → {app} → Backup, posledních {n}). Import přijímá i tyto soubory. Tyto kopie se smažou spolu s aplikací – před jejím odstraněním nebo instalací z jiného účtu Apple exportujte zálohu jinam.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "Kopie je uložena v telefonu. Klepnutím ji odešlete a pak zálohu importujte.",
  "Kopia nieczytelnych danych": "Kopie nečitelných dat",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "Kopie současného plánu v „Další plány“ — upravíte ji, než ji nastavíte jako aktivní.",
@@ -627,7 +627,7 @@
  "Miejsce domyślne": "Výchozí místo",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Místo pro {a} – {b}. Vyberte vybavení, které tam máš — váhy zadávat nemusíte.",
  "Miejsce tego treningu": "Místo tohoto tréninku",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Místo se přidá do seznamu míst (Nastavení → Místa a vybavení).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Místo se přidá do seznamu míst (Více → Místa a vybavení).",
  "Miejsce treningu: {l}": "Místo tréninku: {l}",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Místo jen pro tento trénink. Vyberte vybavení, které tam máš — váhy zadávat nemusíte.",
  "miesiąc": "měsíc",
@@ -1680,7 +1680,7 @@
  "Cały rok treningów, rozliczany rocznie.": "Celý rok tréninků, účtovaný ročně.",
  "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Platíte každý měsíc a skončíte, kdy chcete.",
  "Płacisz raz i masz na zawsze.": "Zaplatíte jednou a máte to navždy.",
- "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Trénujte zdarma až {n} dní v měsíci. Pro odstraní limit. Zrušit můžete kdykoli v nastavení účtu Apple.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Trénujte zdarma {n} dní v měsíci. Pro odstraní limit. Zrušit můžete kdykoli v nastavení účtu Apple.",
  "Jesteśmy z Ciebie dumni!": "Jsme na vás hrdí!",
  "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Tento měsíc trénujete naplno a využíváte všechny bezplatné tréninkové dny ({n}). Dobrá práce!",
  "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} vytváří nezávislý vývojář: bez reklam a bez sběru dat. Pokud vám pomáhá, vyberte si plán a trénujte bez limitu. Bezplatné dny se vrátí {date}.",
@@ -1758,5 +1758,6 @@
  "zgięcie kolana": "ohnutí kolene",
  "zgięcie łokcia": "ohnutí lokte",
  "zgięcie biodra": "ohnutí v kyčli",
- "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Série: {s} na cvik. Vyplatí se udělat alespoň {m}; víc sérií obvykle přinese o trochu víc, ale přínos se postupně zmenšuje."
+ "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Série: {s} na cvik. Vyplatí se udělat alespoň {m}; víc sérií obvykle přinese o trochu víc, ale přínos se postupně zmenšuje.",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Trénink z {d} {s} neměl {h} hodin žádnou aktivitu, a proto se uložil sám. Konec: {e} (poslední série). Najdete ho na záložce Plán."
 }

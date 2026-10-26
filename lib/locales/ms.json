@@ -198,7 +198,7 @@
  "Dane i kopie": "Data dan sandaran",
  "Dane nie zostały wyczyszczone": "Data tidak dipadam",
  "Dane w telefonie": "Data dalam telefon ini",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Data dalam telefon ini disimpan oleh versi yang lebih baharu (skema {a}); versi ini menyokong sehingga {b}. Tiada apa-apa diubah — pasang versi terkini (TestFlight). Anda juga boleh menghantar data sebagai fail.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Data dalam telefon ini disimpan oleh versi yang lebih baharu (skema {a}); versi ini menyokong sehingga {b}. Tiada apa-apa diubah — pasang versi terkini daripada App Store. Anda juga boleh menghantar data sebagai fail.",
  "Dane z nowszej wersji aplikacji": "Data daripada versi aplikasi yang lebih baharu",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "Data daripada versi aplikasi yang lebih baharu — kemas kini aplikasi",
  "Data (RRRR-MM-DD)": "Tarikh (YYYY-MM-DD)",
@@ -387,7 +387,7 @@
  "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.": "Latihan akan tamat pada masa hadapan ({t}). Tukar tarikh, masa atau tempoh.",
  "Kontynuuj": "Teruskan",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "Sandaran automatik selepas latihan dimatikan (Seting).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Sandaran automatik: selepas setiap latihan, fail JSON disimpan dalam Fail (Pada iPhone Saya → {app} → Backup, {n} terakhir). Import juga menerima fail ini. Salinan ini dipadam bersama aplikasi — sebelum memadamnya atau memasang daripada Apple ID lain, eksport sandaran ke tempat lain.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Sandaran automatik: selepas setiap latihan, fail JSON disimpan sendiri dalam Fail (Pada iPhone Saya → {app} → Backup, {n} terakhir). Import juga menerima fail ini. Salinan ini dipadam bersama aplikasi — sebelum memadamnya atau memasang daripada akaun Apple lain, eksport sandaran ke tempat lain.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "Salinan disimpan dalam telefon. Ketik untuk menghantarnya, kemudian import sandaran.",
  "Kopia nieczytelnych danych": "Salinan data yang tidak boleh dibaca",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "Salinan pelan semasa dalam “Pelan lain” — anda mengubahnya sebelum menjadikannya aktif.",
@@ -1591,7 +1591,7 @@
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Tempat untuk latihan ini sahaja. Pilih peralatan yang ada di sana — tidak perlu masukkan berat.",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Tempat untuk {a} – {b}. Pilih peralatan yang ada di sana — tidak perlu masukkan berat.",
  "Zapisz jako miejsce": "Simpan sebagai tempat",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Tempat akan ditambah ke senarai tempat (Seting → Tempat dan peralatan).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Tempat ini akan ditambah ke senarai tempat anda (Lagi → Tempat dan peralatan).",
  "Gotowe zestawy": "Set pratetap",
  "Miejsce na te dni": "Tempat untuk hari-hari ini",
  "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "Apabila latihan dimulakan pada hari-hari ini, tempat ini digunakan sebelum tempat templat, dan tetingkap “Laraskan” mencadangkan pertukaran. Tiada apa-apa berubah dengan sendirinya.",
@@ -1680,7 +1680,7 @@
  "Cały rok treningów, rozliczany rocznie.": "Setahun penuh latihan, dibilkan setiap tahun.",
  "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Bayar setiap bulan dan berhenti bila-bila masa.",
  "Płacisz raz i masz na zawsze.": "Bayar sekali dan miliki selama-lamanya.",
- "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Berlatih percuma {n} hari sebulan. Pro membuang had itu. Anda boleh membatalkan pada bila-bila masa dalam seting akaun Apple anda.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Berlatih percuma {n} hari sebulan. Pro menghapuskan had itu. Anda boleh membatalkan pada bila-bila masa dalam tetapan akaun Apple anda.",
  "Jesteśmy z Ciebie dumni!": "Kami bangga dengan anda!",
  "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Bulan ini anda berlatih bersungguh-sungguh dan menggunakan semua hari latihan percuma ({n}). Syabas!",
  "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} dibuat oleh pembangun bebas: tanpa iklan, tanpa pengumpulan data. Jika ia membantu anda, pilih pelan dan berlatih tanpa had. Hari percuma kembali pada {date}.",
@@ -1758,5 +1758,6 @@
  "zgięcie kolana": "lenturan lutut",
  "zgięcie łokcia": "lenturan siku",
  "zgięcie biodra": "lenturan pinggul",
- "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Set: {s} setiap senaman. Sebaiknya buat sekurang-kurangnya {m}; lebih banyak set biasanya memberi sedikit lebih, tetapi manfaatnya semakin berkurang."
+ "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Set: {s} setiap senaman. Sebaiknya buat sekurang-kurangnya {m}; lebih banyak set biasanya memberi sedikit lebih, tetapi manfaatnya semakin berkurang.",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Latihan pada {d} {s} tiada aktiviti selama {h} jam, jadi ia disimpan secara automatik. Tamat: {e} (set terakhir). Anda boleh menemuinya dalam tab Pelan."
 }

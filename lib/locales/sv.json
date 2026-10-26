@@ -258,7 +258,7 @@
  "Dane i kopie": "Data och kopior",
  "Dane nie zostały wyczyszczone": "Data raderades inte",
  "Dane w telefonie": "Data på telefonen",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Data på telefonen sparades av en nyare version (schema {a}); den här versionen stöder upp till {b}. Inget ändras — installera den senaste versionen (TestFlight). Du kan också skicka data som en fil.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Datan på telefonen sparades av en nyare version (schema {a}); den här versionen stöder upp till {b}. Inget ändras — installera den senaste versionen från App Store. Du kan också skicka datan som en fil.",
  "Dane z nowszej wersji aplikacji": "Data från en nyare version av appen",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "Data från en nyare version av appen — uppdatera appen",
  "Data (RRRR-MM-DD)": "Datum (ÅÅÅÅ-MM-DD)",
@@ -491,7 +491,7 @@
  "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.": "Passet skulle sluta i framtiden ({t}). Ändra datum, tid eller längd.",
  "Kontynuuj": "Fortsätt",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "Automatisk säkerhetskopia efter pass är av (Inställningar).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Automatisk säkerhetskopia: efter varje pass sparas en JSON-fil i Filer (På min iPhone → {app} → Backup, senaste {n}). Import tar även dessa filer. Kopiorna raderas med appen — exportera en säkerhetskopia någon annanstans innan du tar bort den eller installerar från ett annat Apple-ID.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Automatisk säkerhetskopia: efter varje pass sparas en JSON-fil i Filer (På min iPhone → {app} → Backup, senaste {n}). Import tar även dessa filer. Kopiorna raderas tillsammans med appen — exportera en säkerhetskopia någon annanstans innan du tar bort appen eller installerar från ett annat Apple-konto.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "Kopian finns i telefonen. Tryck för att skicka den och importera sedan en kopia.",
  "Kopia nieczytelnych danych": "Kopia av oläsbar data",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "En kopia av den nuvarande planen under ”Andra planer” — du ändrar den innan du gör den aktiv.",
@@ -627,7 +627,7 @@
  "Miejsce domyślne": "Standardplats",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "En plats för {a} – {b}. Välj utrustningen du har där – du behöver inte skriva in vikter.",
  "Miejsce tego treningu": "Passets plats",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Platsen läggs till i listan över platser (Inställningar → Platser och utrustning).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Platsen läggs till i listan över platser (Mer → Platser och utrustning).",
  "Miejsce treningu: {l}": "Passets plats: {l}",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "En plats bara för det här passet. Välj utrustningen du har där – du behöver inte skriva in vikter.",
  "miesiąc": "månad",
@@ -1758,5 +1758,6 @@
  "zgięcie kolana": "knäflexion",
  "zgięcie łokcia": "armbågsflexion",
  "zgięcie biodra": "höftflexion",
- "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Set: {s} per övning – gör gärna minst {m}; fler set ger oftast lite mer, men med avtagande effekt."
+ "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Set: {s} per övning – gör gärna minst {m}; fler set ger oftast lite mer, men med avtagande effekt.",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Passet från {d} {s} hade ingen aktivitet på {h} timmar, så det sparades automatiskt. Slut: {e} (sista setet). Du hittar det under fliken Plan."
 }

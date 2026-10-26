@@ -258,7 +258,7 @@
  "Dane i kopie": "Veriler ve yedekler",
  "Dane nie zostały wyczyszczone": "Veriler silinmedi",
  "Dane w telefonie": "Telefondaki veriler",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Telefondaki veriler daha yeni bir sürüm tarafından kaydedildi (şema {a}); bu sürüm en fazla {b} destekliyor. Hiçbir şey değiştirilmez — en yeni sürümü yükleyin (TestFlight). Verileri dosya olarak da gönderebilirsiniz.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Telefondaki verileri daha yeni bir sürüm kaydetmiş (şema {a}); bu sürüm en fazla {b} şemasını destekliyor. Hiçbir şeyi değiştirmiyorum — App Store'dan en yeni sürümü yükleyin. Verileri dosya olarak da gönderebilirsiniz.",
  "Dane z nowszej wersji aplikacji": "Uygulamanın daha yeni bir sürümünden veriler",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "Uygulamanın daha yeni bir sürümünden veriler — uygulamayı güncelleyin",
  "Data (RRRR-MM-DD)": "Tarih (YYYY-AA-GG)",
@@ -491,7 +491,7 @@
  "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.": "Antrenmanın bitişi ({t}) gelecekte. Tarihi, saati veya süreyi değiştirin.",
  "Kontynuuj": "Devam",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "Antrenman sonrası otomatik yedek kapalı (Ayarlar).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Otomatik yedek: her antrenmandan sonra Dosyalar’a bir JSON dosyası kaydedilir (iPhone’umda → {app} → Backup, son {n}). İçe aktarma bu dosyaları da kabul eder. Bu kopyalar uygulamayla birlikte silinir — kaldırmadan veya başka bir Apple Kimliği ile yüklemeden önce yedeği başka yere aktarın.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Otomatik yedekleme: her antrenmandan sonra bir JSON dosyası kendiliğinden Dosyalar'a kaydedilir (iPhone'umda → {app} → Backup, son {n}). İçe aktarma bu dosyaları da kabul eder. Bu kopyalar uygulamayla birlikte silinir — uygulamayı kaldırmadan veya başka bir Apple hesabıyla yüklemeden önce yedeği başka bir yere aktarın.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "Telefonda bir kopya tutuluyor. Göndermek için dokunun, sonra bir yedeği içe aktarın.",
  "Kopia nieczytelnych danych": "Okunamayan verilerin kopyası",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "Mevcut planın “Diğer planlar” altındaki kopyası — etkin yapmadan önce onu değiştirirsiniz.",
@@ -627,7 +627,7 @@
  "Miejsce domyślne": "Varsayılan yer",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "{a} – {b} için bir yer. Orada bulunan ekipmanı seç — ağırlık girmen gerekmez.",
  "Miejsce tego treningu": "Bu antrenmanın yeri",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Yer, yerler listesine eklenecek (Ayarlar → Yerler ve ekipman).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Yer, yerler listesine eklenecek (Diğer → Yerler ve ekipman).",
  "Miejsce treningu: {l}": "Antrenman yeri: {l}",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Yalnızca bu antrenman için bir yer. Orada bulunan ekipmanı seç — ağırlık girmen gerekmez.",
  "miesiąc": "ay",
@@ -1680,7 +1680,7 @@
  "Cały rok treningów, rozliczany rocznie.": "Bir yıl boyunca antrenman, yıllık faturalandırılır.",
  "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Her ay ödersiniz, istediğiniz zaman bırakırsınız.",
  "Płacisz raz i masz na zawsze.": "Bir kez ödersiniz, sonsuza kadar sizin olur.",
- "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Ayda {n} gün ücretsiz antrenman yapın. Pro sınırı kaldırır. İstediğiniz zaman Apple hesabınızın ayarlarından iptal edebilirsiniz.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Ayda {n} gün ücretsiz antrenman yapın. Pro sınırı kaldırır. İstediğiniz zaman Apple hesap ayarlarınızdan iptal edebilirsiniz.",
  "Jesteśmy z Ciebie dumni!": "Sizinle gurur duyuyoruz!",
  "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Bu ay sıkı antrenman yapıyor ve tüm ücretsiz antrenman günlerini ({n}) kullanıyorsunuz. Harika iş!",
  "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "Uygulama ({app}) bağımsız bir geliştirici tarafından yapılır: reklamsız, veri toplamadan. Size yardımcı oluyorsa bir plan seçin ve sınırsız antrenman yapın. Ücretsiz günler şu tarihte geri gelir: {date}.",
@@ -1758,5 +1758,6 @@
  "zgięcie kolana": "diz bükülmesi",
  "zgięcie łokcia": "dirsek bükülmesi",
  "zgięcie biodra": "kalça bükülmesi",
- "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Setler: egzersiz başına {s}. En az {m} set yapmaya değer. Daha çok set genellikle biraz daha fazla sonuç verir, ama kazanç giderek azalır."
+ "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Setler: egzersiz başına {s}. En az {m} set yapmaya değer. Daha çok set genellikle biraz daha fazla sonuç verir, ama kazanç giderek azalır.",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "{d} {s} tarihli antrenmanda {h} saattir hareket yoktu, bu yüzden otomatik olarak kaydedildi. Bitiş: {e} (son set). Plan sekmesinde bulabilirsiniz."
 }

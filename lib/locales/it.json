@@ -258,7 +258,7 @@
  "Dane i kopie": "Dati e backup",
  "Dane nie zostały wyczyszczone": "I dati non sono stati cancellati",
  "Dane w telefonie": "Dati sul telefono",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "I dati nel telefono sono stati salvati da una versione più recente (schema {a}); questa versione supporta fino a {b}. Non cambio nulla — installa la versione più recente (TestFlight). Puoi anche inviare i dati come file.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "I dati nel telefono sono stati salvati da una versione più recente (schema {a}); questa versione supporta fino a {b}. Non cambio nulla — installa la versione più recente dall’App Store. Puoi anche inviare i dati come file.",
  "Dane z nowszej wersji aplikacji": "Dati da una versione più recente dell’app",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "Dati da una versione più recente dell’app — aggiorna l’app",
  "Data (RRRR-MM-DD)": "Data (AAAA-MM-GG)",
@@ -491,7 +491,7 @@
  "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.": "L’allenamento finirebbe nel futuro ({t}). Cambia data, ora o durata.",
  "Kontynuuj": "Continua",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "Il backup automatico dopo l’allenamento è disattivato (Impostazioni).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Backup automatico: dopo ogni allenamento viene salvato un file JSON in File (Sul mio iPhone → {app} → Backup, ultimi {n}). L’importazione accetta anche questi file. Queste copie vengono eliminate insieme all’app — prima di rimuoverla o di installarla da un altro ID Apple, esporta un backup altrove.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Backup automatico: dopo ogni allenamento un file JSON viene salvato da solo in File (Sul mio iPhone → {app} → Backup, ultimi {n}). L’importazione accetta anche questi file. Queste copie vengono eliminate insieme all’app — prima di rimuoverla o di installarla da un altro ID Apple, esporta un backup altrove.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "Una copia è conservata sul telefono. Tocca per inviarla, poi importa un backup.",
  "Kopia nieczytelnych danych": "Copia dei dati illeggibili",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "Una copia del piano attuale in «Altri piani» — la modifichi prima di renderla attiva.",
@@ -627,7 +627,7 @@
  "Miejsce domyślne": "Luogo predefinito",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un luogo per {a} – {b}. Scegli l’attrezzatura che hai lì — non serve inserire i pesi.",
  "Miejsce tego treningu": "Luogo di questo allenamento",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Il luogo sarà aggiunto all’elenco dei luoghi (Impostazioni → Luoghi e attrezzatura).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Il luogo sarà aggiunto all’elenco dei luoghi (Altro → Luoghi e attrezzatura).",
  "Miejsce treningu: {l}": "Luogo dell’allenamento: {l}",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un luogo solo per questo allenamento. Scegli l’attrezzatura che hai lì — non serve inserire i pesi.",
  "miesiąc": "mese",
@@ -1758,5 +1758,6 @@
  "zgięcie kolana": "flessione del ginocchio",
  "zgięcie łokcia": "flessione del gomito",
  "zgięcie biodra": "flessione dell’anca",
- "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Serie: {s} per esercizio. Conviene farne almeno {m}; più serie di solito danno un po’ di più, ma con benefici decrescenti."
+ "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Serie: {s} per esercizio. Conviene farne almeno {m}; più serie di solito danno un po’ di più, ma con benefici decrescenti.",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "L’allenamento del {d} {s} è rimasto fermo per {h} ore, quindi è stato salvato in automatico. Fine: {e} (ultima serie). Lo trovi nella scheda Piano."
 }

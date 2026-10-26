@@ -198,7 +198,7 @@
  "Dane i kopie": "데이터 및 백업",
  "Dane nie zostały wyczyszczone": "데이터가 지워지지 않았습니다",
  "Dane w telefonie": "이 휴대폰의 데이터",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "이 휴대폰의 데이터는 최신 버전(스키마 {a})에서 저장되었습니다. 이 버전은 {b}까지 지원합니다. 아무것도 변경하지 않습니다 — 최신 버전(TestFlight)을 설치하세요. 데이터를 파일로 보낼 수도 있습니다.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "이 휴대폰의 데이터는 더 최신 버전(스키마 {a})에서 저장되었습니다. 이 버전은 {b}까지 지원합니다. 아무것도 변경하지 않습니다 — App Store에서 최신 버전을 설치하세요. 데이터를 파일로 보낼 수도 있습니다.",
  "Dane z nowszej wersji aplikacji": "최신 버전 앱의 데이터",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "최신 버전 앱의 데이터입니다 — 앱을 업데이트하세요",
  "Data (RRRR-MM-DD)": "날짜(YYYY-MM-DD)",
@@ -387,7 +387,7 @@
  "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.": "운동 종료 시각({t})이 미래입니다. 날짜, 시각 또는 운동 시간을 변경하세요.",
  "Kontynuuj": "계속",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "운동 후 자동 백업이 꺼져 있습니다(설정).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "자동 백업: 운동할 때마다 JSON 파일이 파일 앱에 자동 저장됩니다(나의 iPhone → {app} → Backup, 최근 {n}개). 가져오기도 이 파일들을 지원합니다. 이 사본은 앱과 함께 삭제됩니다 — 앱을 삭제하거나 다른 Apple ID로 설치하기 전에 백업을 외부로 내보내세요.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "자동 백업: 운동이 끝날 때마다 JSON 파일이 파일 앱에 자동으로 저장됩니다(나의 iPhone → {app} → Backup, 최근 {n}개). 가져오기에서도 이 파일들을 사용할 수 있습니다. 이 백업은 앱과 함께 삭제됩니다 — 앱을 삭제하거나 다른 Apple 계정으로 설치하기 전에 백업을 외부로 내보내세요.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "사본은 휴대폰에 보관되어 있습니다. 탭하여 보낸 다음 백업을 가져오세요.",
  "Kopia nieczytelnych danych": "읽을 수 없는 데이터의 사본",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "‘다른 플랜’에 있는 현재 플랜의 사본 — 활성으로 설정하기 전에 수정합니다.",
@@ -1591,7 +1591,7 @@
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "이번 운동에만 쓰는 장소입니다. 그곳에 있는 장비를 고르세요 — 무게는 입력하지 않아도 됩니다.",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "{a} – {b}의 장소입니다. 그곳에 있는 장비를 고르세요 — 무게는 입력하지 않아도 됩니다.",
  "Zapisz jako miejsce": "장소로 저장",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "이 장소가 장소 목록에 추가됩니다(설정 → 장소 및 장비).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "이 장소가 장소 목록에 추가됩니다(더보기 → 장소 및 장비).",
  "Gotowe zestawy": "기본 구성",
  "Miejsce na te dni": "이 기간의 장소",
  "Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo.": "이 기간에 운동을 시작하면 루틴의 장소보다 이 장소가 먼저 쓰이고, ‘조정’ 창이 교체를 제안합니다. 저절로 바뀌는 것은 없습니다.",
@@ -1758,5 +1758,6 @@
  "zgięcie kolana": "무릎 굽힘",
  "zgięcie łokcia": "팔꿈치 굽힘",
  "zgięcie biodra": "고관절 굽힘",
- "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "세트: 종목당 {s}세트. 최소 {m}세트는 하는 것이 좋습니다. 세트를 늘리면 보통 효과가 조금 더 커지지만, 늘어나는 폭은 점점 줄어듭니다."
+ "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "세트: 종목당 {s}세트. 최소 {m}세트는 하는 것이 좋습니다. 세트를 늘리면 보통 효과가 조금 더 커지지만, 늘어나는 폭은 점점 줄어듭니다.",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "{d} {s} 운동은 {h}시간 동안 활동이 없어 자동으로 저장되었습니다. 종료: {e}(마지막 세트). 플랜 탭에서 확인할 수 있습니다."
 }

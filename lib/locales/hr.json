@@ -258,7 +258,7 @@
  "Dane i kopie": "Podaci i sigurnosne kopije",
  "Dane nie zostały wyczyszczone": "Podaci nisu izbrisani",
  "Dane w telefonie": "Podaci na ovom telefonu",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Podatke u telefonu spremila je novija verzija (shema {a}); ova verzija podržava do {b}. Ništa se ne mijenja — instalirajte najnoviju verziju (TestFlight). Podatke možete i poslati kao datoteku.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Podatke na telefonu spremila je novija verzija (shema {a}); ova verzija podržava do {b}. Ništa se ne mijenja — instalirajte najnoviju verziju iz App Storea. Podatke možete poslati i kao datoteku.",
  "Dane z nowszej wersji aplikacji": "Podaci iz novije verzije aplikacije",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "Podaci iz novije verzije aplikacije — ažurirajte aplikaciju",
  "Data (RRRR-MM-DD)": "Datum (GGGG-MM-DD)",
@@ -491,7 +491,7 @@
  "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.": "Trening bi završio u budućnosti ({t}). Promijenite datum, vrijeme ili trajanje.",
  "Kontynuuj": "Nastavi",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "Automatska sig. kopija nakon treninga je isključena (Postavke).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Automatska sigurnosna kopija: nakon svakog treninga JSON datoteka sprema se u Datoteke (Na mom iPhoneu → {app} → Backup, zadnjih {n}). Uvoz prihvaća i te datoteke. Te se kopije brišu zajedno s aplikacijom — prije uklanjanja ili instalacije s drugog Apple ID-a izvezite kopiju na drugo mjesto.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Automatska kopija: nakon svakog treninga JSON datoteka sprema se sama u Datoteke (Na mom iPhoneu → {app} → Backup, zadnjih {n}). Uvoz prihvaća i te datoteke. Te se kopije brišu zajedno s aplikacijom — prije njezina uklanjanja ili instalacije s drugog Apple računa izvezite sigurnosnu kopiju na drugo mjesto.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "Kopija je spremljena na telefonu. Dodirnite da je pošaljete, zatim uvezite sigurnosnu kopiju.",
  "Kopia nieczytelnych danych": "Kopija nečitljivih podataka",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "Kopija trenutačnog plana u „Ostali planovi” — mijenjate je prije nego je postavite kao aktivnu.",
@@ -627,7 +627,7 @@
  "Miejsce domyślne": "Zadano mjesto",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Mjesto za {a} – {b}. Odaberite opremu koju tamo imate — težine ne morate upisivati.",
  "Miejsce tego treningu": "Mjesto ovog treninga",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Mjesto će biti dodano na popis mjesta (Postavke → Mjesta i oprema).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "Mjesto će biti dodano na popis mjesta (Više → Mjesta i oprema).",
  "Miejsce treningu: {l}": "Mjesto treninga: {l}",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Mjesto samo za ovaj trening. Odaberite opremu koju tamo imate — težine ne morate upisivati.",
  "miesiąc": "mjesec",
@@ -1680,7 +1680,7 @@
  "Cały rok treningów, rozliczany rocznie.": "Cijela godina treninga, naplata godišnje.",
  "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Plaćate svaki mjesec i prestajete kad želite.",
  "Płacisz raz i masz na zawsze.": "Platite jednom i imate zauvijek.",
- "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Trenirajte besplatno {n} dana mjesečno. Pro uklanja ograničenje. Otkazati možete bilo kada u postavkama svog Apple računa.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Trenirajte {n} dana mjesečno besplatno. Pro uklanja ograničenje. Pretplatu možete otkazati bilo kada u postavkama svog Apple računa.",
  "Jesteśmy z Ciebie dumni!": "Ponosni smo na vas!",
  "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Ovaj mjesec naporno trenirate i iskorištavate sve besplatne dane treninga ({n}). Bravo!",
  "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "{app} izrađuje neovisni programer: bez oglasa i bez prikupljanja podataka. Ako vam pomaže, odaberite plan i trenirajte bez ograničenja. Besplatni dani vraćaju se {date}.",
@@ -1758,5 +1758,6 @@
  "zgięcie kolana": "pregib koljena",
  "zgięcie łokcia": "pregib lakta",
  "zgięcie biodra": "pregib kuka",
- "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Serije: {s} po vježbi — vrijedi napraviti najmanje {m}; više serija obično donosi malo više, uz sve manji dobitak."
+ "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Serije: {s} po vježbi — vrijedi napraviti najmanje {m}; više serija obično donosi malo više, uz sve manji dobitak.",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "Trening od {d} {s} nije imao aktivnosti {h} sati pa je spremljen automatski. Kraj: {e} (zadnja serija). Pronaći ćete ga na kartici Plan."
 }

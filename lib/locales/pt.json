@@ -258,7 +258,7 @@
  "Dane i kopie": "Dados e cópias",
  "Dane nie zostały wyczyszczone": "Os dados não foram apagados",
  "Dane w telefonie": "Dados no telemóvel",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Os dados no telefone foram guardados por uma versão mais recente (esquema {a}); esta versão suporta até {b}. Nada é alterado — instale a versão mais recente (TestFlight). Também pode enviar os dados como ficheiro.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Os dados no telemóvel foram guardados por uma versão mais recente (esquema {a}); esta versão suporta até {b}. Nada é alterado — instale a versão mais recente a partir da App Store. Também pode enviar os dados como ficheiro.",
  "Dane z nowszej wersji aplikacji": "Dados de uma versão mais recente da app",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "Dados de uma versão mais recente da app — atualize a app",
  "Data (RRRR-MM-DD)": "Data (AAAA-MM-DD)",
@@ -491,7 +491,7 @@
  "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.": "O treino terminaria no futuro ({t}). Altere a data, a hora ou a duração.",
  "Kontynuuj": "Continuar",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "A cópia automática após o treino está desativada (Definições).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Cópia automática: após cada treino, um ficheiro JSON é guardado automaticamente em Ficheiros (No meu iPhone → {app} → Backup, últimas {n}). A importação também aceita estes ficheiros. Estas cópias são apagadas juntamente com a app — antes de a remover ou de a instalar com outro ID Apple, exporte uma cópia para outro lado.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Cópia automática: após cada treino, um ficheiro JSON é guardado automaticamente em Ficheiros (No meu iPhone → {app} → Backup, últimas {n}). A importação também aceita estes ficheiros. Estas cópias são apagadas juntamente com a app — antes de a remover ou de a instalar com outro ID Apple, exporte uma cópia de segurança para fora da app.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "Há uma cópia guardada no telemóvel. Toque para a enviar e depois importe uma cópia de segurança.",
  "Kopia nieczytelnych danych": "Cópia dos dados ilegíveis",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "Uma cópia do plano atual em «Outros planos» — alteras antes de a tornar ativa.",
@@ -627,7 +627,7 @@
  "Miejsce domyślne": "Local predefinido",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Um local para {a} – {b}. Escolha o equipamento que existe lá — não é preciso escrever pesos.",
  "Miejsce tego treningu": "Local deste treino",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "O local será adicionado à lista de locais (Definições → Locais e equipamento).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "O local será adicionado à lista de locais (Mais → Locais e equipamento).",
  "Miejsce treningu: {l}": "Local do treino: {l}",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Um local só para este treino. Escolha o equipamento que existe lá — não é preciso escrever pesos.",
  "miesiąc": "mês",
@@ -1680,7 +1680,7 @@
  "Cały rok treningów, rozliczany rocznie.": "Um ano inteiro de treinos, faturado anualmente.",
  "Płacisz co miesiąc i kończysz, kiedy chcesz.": "Paga todos os meses e termina quando quiser.",
  "Płacisz raz i masz na zawsze.": "Paga uma só vez e tem acesso para sempre.",
- "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Treine gratuitamente {n} dias por mês. O Pro elimina o limite. Pode cancelar a qualquer momento nas definições da sua conta Apple.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Treine {n} dias por mês gratuitamente. O Pro elimina o limite. Pode cancelar a qualquer momento nas definições da sua conta Apple.",
  "Jesteśmy z Ciebie dumni!": "Estamos orgulhosos de si!",
  "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Este mês treina a sério e usa todos os dias de treino gratuitos ({n}). Bom trabalho!",
  "{app} tworzy niezależny deweloper: bez reklam, bez zbierania danych. Jeśli Ci pomaga, wybierz plan i trenuj bez limitu. Darmowe dni wracają {date}.": "O {app} é feito por um programador independente: sem anúncios e sem recolha de dados. Se lhe for útil, escolha um plano e treine sem limites. Os dias gratuitos voltam em {date}.",
@@ -1758,5 +1758,6 @@
  "zgięcie kolana": "flexão do joelho",
  "zgięcie łokcia": "flexão do cotovelo",
  "zgięcie biodra": "flexão da anca",
- "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Séries: {s} por exercício — vale a pena fazer pelo menos {m}; mais séries costumam dar um pouco mais, com ganhos cada vez menores."
+ "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Séries: {s} por exercício — vale a pena fazer pelo menos {m}; mais séries costumam dar um pouco mais, com ganhos cada vez menores.",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "O treino de {d} {s} esteve {h} horas sem atividade, por isso foi guardado automaticamente. Fim: {e} (última série). Encontra-o no separador Plano."
 }

@@ -258,7 +258,7 @@
  "Dane i kopie": "Gegevens en back-ups",
  "Dane nie zostały wyczyszczone": "Gegevens zijn niet gewist",
  "Dane w telefonie": "Gegevens op deze telefoon",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "De gegevens op de telefoon zijn opgeslagen door een nieuwere versie (schema {a}); deze versie ondersteunt tot {b}. Er wordt niets gewijzigd — installeer de nieuwste versie (TestFlight). Je kunt de gegevens ook als bestand versturen.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "De gegevens op deze telefoon zijn opgeslagen door een nieuwere versie (schema {a}); deze versie ondersteunt tot {b}. Er wordt niets gewijzigd — installeer de nieuwste versie uit de App Store. Je kunt de gegevens ook als bestand versturen.",
  "Dane z nowszej wersji aplikacji": "Gegevens van een nieuwere appversie",
  "Dane z nowszej wersji aplikacji — zaktualizuj aplikację": "Gegevens van een nieuwere appversie — werk de app bij",
  "Data (RRRR-MM-DD)": "Datum (JJJJ-MM-DD)",
@@ -491,7 +491,7 @@
  "Koniec treningu ({t}) jest w przyszłości. Zmień datę, godzinę albo czas trwania.": "De training zou in de toekomst eindigen ({t}). Wijzig datum, tijd of duur.",
  "Kontynuuj": "Ga door",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "Automatische back-up na een training staat uit (Instellingen).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Automatische back-up: na elke training wordt een JSON-bestand bewaard in Bestanden (Op mijn iPhone → {app} → Backup, laatste {n}). Import accepteert ook deze bestanden. Deze kopieën worden samen met de app verwijderd — exporteer elders een back-up voordat je de app verwijdert of installeert met een andere Apple ID.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Automatische back-up: na elke training wordt een JSON-bestand automatisch bewaard in Bestanden (Op mijn iPhone → {app} → Backup, laatste {n}). Import accepteert ook deze bestanden. Deze kopieën verdwijnen samen met de app — exporteer een back-up naar een andere plek voordat je de app verwijdert of installeert vanaf een ander Apple Account.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "Er is een kopie op de telefoon bewaard. Tik om hem te versturen en importeer dan een back-up.",
  "Kopia nieczytelnych danych": "Kopie van onleesbare gegevens",
  "Kopia obecnego planu w „Inne plany” — zmienisz ją przed ustawieniem jako aktywny.": "Een kopie van het huidige plan onder ‘Andere plannen’ — je past die aan voordat je hem actief maakt.",
@@ -627,7 +627,7 @@
  "Miejsce domyślne": "Standaardlocatie",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Een locatie voor {a} – {b}. Kies het materiaal dat je daar hebt — gewichten hoef je niet in te voeren.",
  "Miejsce tego treningu": "Locatie van deze training",
- "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "De locatie wordt toegevoegd aan de lijst met locaties (Instellingen → Locaties en materiaal).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "De locatie wordt toegevoegd aan je lijst met locaties (Meer → Locaties en materiaal).",
  "Miejsce treningu: {l}": "Trainingslocatie: {l}",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Een locatie alleen voor deze training. Kies het materiaal dat je daar hebt — gewichten hoef je niet in te voeren.",
  "miesiąc": "maand",
@@ -1758,5 +1758,6 @@
  "zgięcie kolana": "kniebuiging",
  "zgięcie łokcia": "elleboogbuiging",
  "zgięcie biodra": "heupbuiging",
- "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Sets: {s} per oefening — het loont om er minstens {m} te doen; meer sets geven meestal iets meer, met afnemend effect."
+ "Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.": "Sets: {s} per oefening — het loont om er minstens {m} te doen; meer sets geven meestal iets meer, met afnemend effect.",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "De training van {d} {s} had {h} uur geen activiteit, dus is automatisch opgeslagen. Einde: {e} (laatste set). Je vindt hem in het tabblad Plan."
 }
