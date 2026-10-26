@@ -2,7 +2,7 @@
 
 Aktualizowane na bieżąco przez koordynatora (polecenie właściciela 26.10.2026, ok. 21:50 Warszawa: przy wyczerpaniu limitu nic nie może zostać stracone). Gałąź `przekazanie-konta` — nie do scalania z main bez polecenia właściciela.
 
-**Ostatnia aktualizacja:** 2026-10-26 19:58 UTC.
+**Ostatnia aktualizacja:** 2026-10-26 21:06 UTC (nowa sesja koordynatora).
 
 ## Jak zacząć (nowa sesja)
 1. Przeczytaj CLAUDE.md i `docs/48-zgloszenie-1-0.md` z `origin/integracja-2026-10-26b` (zasada „aktualne zasady przed planem”).
@@ -64,8 +64,9 @@ Gałęzie `oplacalnosc`, `odkrywanie`, `monetyzacja` (02679e8). Stan i plan wzno
 ## Koszty (API, poza abonamentem)
 Przekład 26.10: 3 przebiegi sonnet ok. 2,1–2,8 USD; batch Opus `msgbatch_012Nrp2w9SwnzpvbM1ArKayB` mógł się rozliczyć (~1,4 USD), wynik nieużyty. Gemini wcześniej ~1,61 USD. Limity: przekład ≤6 USD/przebieg, Gemini ≤3 USD/przebieg.
 
-## Zaplanowane przypomnienia (send_later, stara sesja)
-Nocny przegląd agentów co ~2 h (następny 21:37 UTC); wznowienie kalisteniki 2.11 07:00 UTC. Przypomnienia trafiają do starej sesji — nowa sesja powinna ustawić własne.
+## Zaplanowane przypomnienia (nowa sesja koordynatora, ustawione 26.10 21:05 UTC)
+Przegląd agentów: 23:05, 01:05, 03:05, 05:05 UTC; status poranny dla właściciela 06:15 UTC (27.10); wznowienie kalisteniki pon. 2.11 07:00 UTC.
+Agenci nowej sesji (start 21:05 UTC): ścieżka 1.0 (sonnet), integracja 1.1 (programista), bramki grafik runda 5 + podglądy n6 + naprawa CI pozy-1-1 (programista). Recenzję n6 zleca koordynator niezależnemu agentowi po podglądach.
 
 ## Grafiki 1.1 — wniosek z recenzji n5 (26.10, ok. 21:15 UTC)
 Recenzja n5: 16 OK / 8 uwaga / 5 błąd; reguły złapały 0/5 (n4 też 0/5). Wzorzec: poprawki trafiają w zmierzoną liczbę, obok wyrasta błąd innej klasy, wartości tuż pod progiem (prawo Goodharta). Zmiana podejścia (koordynator, technicznie): ograniczenia strukturalne w silniku (stała długość taśmy, deklarowane punkty podparcia, strona kończyny, kształty nad podłogą) zamiast kolejnych progów; generatory celują w środek przedziału (P2). Agent jakosc-r2 robi rundę 5 → podglądy n6 → recenzja n6.
