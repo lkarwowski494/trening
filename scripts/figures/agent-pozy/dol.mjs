@@ -3,6 +3,9 @@
 import { v2, BODY, R, r1, up, front, klatka, bladZTrajektorii, zbuduj, barki, przeciecie, kostkaNaPalcach, delta } from './model.mjs';
 export { v2, BODY, R, r1, up, front, klatka, bladZTrajektorii, zbuduj, barki, przeciecie, kostkaNaPalcach, delta };
 
+import { wczytajTeksty } from '../v2-jakosc.mjs';
+/** Błędy z katalogu wskazówek, które mają opis w lib/cues/text/pl.json (reguła jakości etykieta_bledu); pozostałe nie są rysowane, powód trafia do `rejestr` (ćwiczenie → powód). */
+export function bledyZOpisem(cw, bledy, rejestr = {}) { const t = wczytajTeksty(); return bledy.filter((b) => { if (t[b.cue]) return true; rejestr[cw] = `błąd „${b.cue}” bez opisu w lib/cues/text/pl.json — nie rysowany (reguła jakości etykieta_bledu); generator narysuje go po wdrożeniu tekstu`; return false; }); }
 export const lerp = (a, b, t) => a + (b - a) * t;
 export const lerp3 = (a, b, t) => a.map((x, i) => lerp(x, b[i], t));
 /** Łagodny start i koniec ruchu (0–1). */
