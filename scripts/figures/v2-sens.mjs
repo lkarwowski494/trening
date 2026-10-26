@@ -35,6 +35,8 @@ export function normalizuj(poza, rodzina, cwiczenie, root = ROOT) {
   return q;
 }
 export const izometryczne = (rodzina, cwiczenie, root = ROOT) => { const d = wczytajSens(root); return !!(d.izometryczne?.[cwiczenie] || d.rodziny?.[rodzina]?.izometryczne?.[cwiczenie] || d.izometryczne_kandydaci?.lista?.includes(cwiczenie)); }; /* lista badacza + rozciągania statyczne (decyzja 26.10.2026: też statyczne, jeśli opis to utrzymanie pozycji) */
+/** Ćwiczenie DYNAMICZNE (wersja 1.1: lot, przechwyt, wymach): `rodziny.<rodzina>.dynamiczne` { ćwiczenie | „*” (cała rodzina): powód } w danych; limit skoku punktu w ciągłości = CONTRACT.maxJumpDynamic zamiast maxJump. Bez wpisu: zachowanie bez zmian. */
+export const dynamiczne = (rodzina, cwiczenie, root = ROOT) => { const d = wczytajSens(root).rodziny?.[rodzina]?.dynamiczne; return !!(d && (d[cwiczenie] || d['*'])); };
 export const otwarteDla = (rodzina, cwiczenie, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.otwarte?.[cwiczenie] ?? null;
 /** Identyfikatory wskazówek ćwiczenia: własne (lib/cues/data.json: setup/move/tips/mistakes) albo zestaw ogólny (cue-sets.json: ok). */
 export function wskazowkiCwiczenia(cwiczenie, root = ROOT) {

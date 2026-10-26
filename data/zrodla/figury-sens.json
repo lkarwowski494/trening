@@ -2773,6 +2773,9 @@
       "pomin": {}
     },
     "plyo": {
+      "dynamiczne": {
+        "*": "skok: wybicie, lot i lądowanie w jednym przebiegu z zamachem rąk; droga najszybszego punktu (dłoń przy zamachu rąk) wynosi 420–590 cm na cały ruch wobec 288 cm limitu ruchu zwykłego (pomiar generatora 26.10.2026), bo tego wymaga sam skok — limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "faza_lotu": {
           "typ": "lot",

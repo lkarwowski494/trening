@@ -26,6 +26,8 @@ export const CONTRACT = {
   errorFrames: { min: 2, max: 8 }, errorsMax: 3,
   /** Siatka sprawdzeń geometrii (liczba przedziałów ruchu) i ciągłości (krok 1/48, maks. skok stawu w cm). */
   grid: 24, step: 48, maxJump: 6,
+  /** Limit skoku dla ćwiczeń z deklaracją „dynamiczne” (data/zrodla/figury-sens.json: lot, przechwyt, wymach; wersja 1.1): skok, zarzut z przechwytem i wymach mają ≈ 450–600 cm drogi najszybszego punktu na cały ruch (pomiar generatorów 26.10.2026), czyli ≥ 9,5–12,5 cm na 1/48 przy idealnie równym tempie; 16 cm zostawia zapas na nieliniowość IK, a odwrócony staw („teleport”: 20–60 cm) nadal jest łapany. */
+  maxJumpDynamic: 16,
   /** Błąd musi być widoczny (≥ cm w którymkolwiek stawie albo ≥ stopni w którymkolwiek kącie) i niedeklarowane kąty mogą się różnić o ≤ stopni. */
   visibleCm: 3, visibleDeg: 8, undeclaredDeg: 4, undeclaredCm: 1.5,
   /** Ruch musi istnieć: przemieszczenie dłoni, kolan lub miednicy między u = 0 a u = 1 (cm). */
@@ -294,7 +296,8 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
 
 /* ---------- walidator semantyczny ---------- */
 export type RomData = { side: Record<'hip' | 'knee' | 'ankle' | 'el' | 'sh', { min: number; max: number }>; front: { abd: { min: number; max: number } } };
-export type ValidateCtx = { family: string; exercise: string; /** id wskazówek „częsty błąd” tego ćwiczenia (cue-sets.json albo lib/cues). */ errorCues: string[]; rom: RomData; /** Ćwiczenie izometryczne (decyzja koordynatora 26.10.2026): poza statyczna, wymóg ruchu ≥ minMotionCm nie obowiązuje; błąd jest jedynym ruchem. */ isometric?: boolean };
+export type ValidateCtx = { family: string; exercise: string; /** id wskazówek „częsty błąd” tego ćwiczenia (cue-sets.json albo lib/cues). */ errorCues: string[]; rom: RomData; /** Ćwiczenie izometryczne (decyzja koordynatora 26.10.2026): poza statyczna, wymóg ruchu ≥ minMotionCm nie obowiązuje; błąd jest jedynym ruchem. */ isometric?: boolean;
+  /** Ćwiczenie dynamiczne (wersja 1.1: lot, przechwyt, wymach — deklaracja z powodem w danych sensu): ciągłość z limitem CONTRACT.maxJumpDynamic zamiast CONTRACT.maxJump. Domyślnie fałsz (zachowanie bez zmian). */ dynamic?: boolean };
 
 const f1 = (x: number): string => x.toFixed(1);
 const f2 = (x: number): string => x.toFixed(2);
@@ -365,8 +368,8 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
   } }
   rg.flush('zakres', out);
   /* ciągłość */
-  const cont = new Agg(); let prev = pts(keyframeFrame(d, 0));
-  for (let i = 1; i <= CONTRACT.step; i++) { const cur = pts(keyframeFrame(d, i / CONTRACT.step)); cur.forEach((p, j) => { const dd = dist(p, prev[j]); if (dd > CONTRACT.maxJump) cont.add(`pt${j}`, i / CONTRACT.step, uu => `skok o ${f1(dd)} cm (limit ${CONTRACT.maxJump} cm na 1/${CONTRACT.step} ruchu) w fazie u=${uu} — dodaj klatki pośrednie albo zmniejsz zmianę między sąsiednimi klatkami`); }); prev = cur; }
+  const cont = new Agg(); let prev = pts(keyframeFrame(d, 0)); const maxJump = ctx.dynamic ? CONTRACT.maxJumpDynamic : CONTRACT.maxJump;
+  for (let i = 1; i <= CONTRACT.step; i++) { const cur = pts(keyframeFrame(d, i / CONTRACT.step)); cur.forEach((p, j) => { const dd = dist(p, prev[j]); if (dd > maxJump) cont.add(`pt${j}`, i / CONTRACT.step, uu => `skok o ${f1(dd)} cm (limit ${maxJump} cm na 1/${CONTRACT.step} ruchu) w fazie u=${uu} — dodaj klatki pośrednie albo zmniejsz zmianę między sąsiednimi klatkami`); }); prev = cur; }
   cont.flush('ciaglosc', out);
   /* ruch istnieje */
   const a = pts(keyframeFrame(d, 0)), b = pts(keyframeFrame(d, 1)); const moved = Math.max(...a.map((p, i) => dist(p, b[i])));

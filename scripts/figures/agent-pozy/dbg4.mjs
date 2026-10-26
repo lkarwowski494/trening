@@ -1,0 +1,8 @@
+// Kąty stawów i położenie ciężaru w klatkach kluczowych (diagnostyka reguł sensu).
+import { join, dirname } from 'node:path'; import { fileURLToPath, pathToFileURL } from 'node:url'; import { v2 } from './model.mjs';
+const [rodzina, cw] = process.argv.slice(2); const mod = await import(pathToFileURL(join(dirname(fileURLToPath(import.meta.url)), `${rodzina}.mjs`)).href);
+const poza = mod.generuj()[cw](); const E = v2(); const r = (x) => Math.round(x * 10) / 10;
+const seg = (p, a, b) => { const dx = b[0] - a[0], dy = b[1] - a[1]; const t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / (dx * dx + dy * dy || 1))); return Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dy); };
+const blisko = (f) => { const ld = f.info?.load; if (!ld || ld[1] > f.sk.shoulderC[1]) return '-'; const L = f.sk.legs.R; const P = [[L.ankle[0], L.ankle[1]], [L.knee[0], L.knee[1]], [f.sk.pelvis[0], f.sk.pelvis[1]], [f.sk.shoulderC[0], f.sk.shoulderC[1]]]; return r(Math.min(seg(ld, P[0], P[1]), seg(ld, P[1], P[2]), seg(ld, P[2], P[3]))); };
+for (const u of [...new Set([...poza.klatki.map((k) => k.u), ...Array.from({ length: 11 }, (_, i) => i / 10)])].sort((a, b) => a - b)) { const f = E.keyframeFrame(poza, u); const a = E.jointAngles(f.sk, 'R'); const l = E.jointAngles(f.sk, 'L'); const ld = f.info?.load;
+  console.log(`u=${u.toFixed(3)} hip ${r(a.hip)}/${r(l.hip)} knee ${r(a.knee)} ankle ${r(a.ankle)} elbow ${r(a.elbow)} shSag ${r(a.shSag)} load ${ld ? ld.slice(0, 2).map(r) : '-'} shC ${f.sk.shoulderC.slice(0, 2).map(r)} pelv ${f.sk.pelvis.slice(0, 2).map(r)} head ${f.sk.head.slice(0, 2).map(r)} blisko ${blisko(f)}`); }
