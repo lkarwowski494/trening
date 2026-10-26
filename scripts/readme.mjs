@@ -167,6 +167,7 @@ const WORKFLOW_ROLE = {
   'store-screenshots.yml': 'zrzuty ekranu do App Store z symulatora (ręcznie)',
   'przeglad-tlumaczen.yml': 'przegląd tłumaczeń treści krytycznej przez API Anthropic (ręcznie, płatny, limit kosztu)',
   'przeklad-tlumaczen.yml': 'przekład kluczy słownika na 33 języki przez API Anthropic (ręcznie, płatny, limit 6 USD; propozycje jako artefakt)',
+  'check-urls.yml': 'sprawdzenie adresów wydania: kod 200 i zgodność stron apps4brew.com z site/ (ręcznie, tylko odczyt; krok bramki wydania)',
   'gemini-figury.yml': 'pozy figur v2 przez API Gemini (ręcznie, płatny, limit 3 USD; pilotaż, wynik jako artefakt)',
   'sprzatanie-galezi.yml': 'usuwanie gałęzi scalonych lub zatwierdzonych przez właściciela (ręcznie, podgląd domyślnie)',
 };
