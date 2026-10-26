@@ -16,6 +16,8 @@ export const TOL = {
   bone: 1e-6,
   /** Zasięg IK: odległość osiągniętego chwytu od celu (cm). */
   reach: 0.5,
+  /** Suwnica Smitha: odchylenie osi sztangi od prowadnicy w x (cm); sztanga porusza się tylko w pionie (uproszczenie: prowadnica bez pochylenia). */
+  rail: 1.5,
 } as const;
 
 /** Kapsuły ciała jednej klatki (id: nazwa części + strona). */
@@ -63,7 +65,7 @@ export function equipColliders(props: Prop[]): Collider[] {
       case 'wall': c.push(prism('wall', rectPoly(p.x - EQUIP.wallW, 0, p.x, p.h), -100, 100)); break;
       case 'mat': c.push(prism('mat', rectPoly(p.x0, 0, p.x1, p.h), -60, 60)); break;
       case 'post': for (const sg of [-1, 1]) c.push(prism('post', rectPoly(p.x - EQUIP.postW / 2, 0, p.x + EQUIP.postW / 2, p.h), sg * EQUIP.postSpan - 2, sg * EQUIP.postSpan + 2)); break;
-      case 'rail': for (const sg of [-1, 1]) c.push(prism('rail', rectPoly(p.x - EQUIP.railW / 2, 0, p.x + EQUIP.railW / 2, p.h), sg * 56 - 1, sg * 56 + 1)); break;
+      case 'rail': for (const sg of [-1, 1]) c.push(prism('rail', rectPoly(p.x - EQUIP.railW / 2, 0, p.x + EQUIP.railW / 2, p.h), sg * EQUIP.railSpan - 1, sg * EQUIP.railSpan + 1)); break;
       default: break;
     }
   }
@@ -129,6 +131,7 @@ export function checkFrame(f: Frame): Issue[] {
   }
   const head = body.find(b => b.id === 'head'); const bodyOther = body.filter(b => /^(uarm|farm)/.test(b.id));
   if (head) for (const o of bodyOther) { const g = gap(head, o); if (g < -0.5) out.push({ code: 'self', detail: `głowa × ${o.id}: ${(-g).toFixed(2)} cm` }); }
+  for (const r of f.props) if (r.k === 'rail') for (const b of f.props) if (b.k === 'barbell' && Math.abs(b.c[0] - r.x) > TOL.rail) out.push({ code: 'rail', detail: `sztanga × prowadnica: x sztangi ${b.c[0].toFixed(1)} cm, x prowadnicy ${r.x.toFixed(1)} cm (różnica ${Math.abs(b.c[0] - r.x).toFixed(1)} cm, dopuszczalne ${TOL.rail})` });
   for (const h of holdChecks(f)) if (h.err > h.tol) out.push({ code: 'grip', detail: `${h.name}: dłoń ${h.err.toFixed(2)} cm od chwytu (dopuszczalne ${h.tol})`, ...(h.hint ? { hint: h.hint } : {}) });
   return out;
 }

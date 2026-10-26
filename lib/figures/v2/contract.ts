@@ -9,7 +9,7 @@
 import { add, dist, type V3 } from './math';
 import { BODY, SIDES, jointAngles, type LegIn, type ArmIn, type PoseIn, type Side } from './skeleton';
 import type { Frame } from './scene';
-import { GEAR, GEAR_KINDS, BELL_MODES, gearFieldIssues, propsFrom, resolveBells, type Gear } from './gear';
+import { GEAR, GEAR_KINDS, BELL_MODES, gearFieldIssues, gearSetIssues, propsFrom, resolveBells, type Gear } from './gear';
 import { checkFrame } from './colliders';
 import { mkFrame } from './rigs/common';
 import { FAMILY } from './families';
@@ -104,7 +104,7 @@ const side = (props: Record<string, Sch>, required: string[], d: boolean): Sch =
 export function poseSchema(family: string): Sch {
   const t = templateFor(family);
   const gear = obj({
-    rodzaj: { type: 'string', enum: [...GEAR], description: 'sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska. Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem.' },
+    rodzaj: { type: 'string', enum: [...GEAR], description: 'sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha). Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem.' },
     x: num(-CONTRACT.coord, CONTRACT.coord, 'Położenie w przód (cm): środek sztangi albo słupka.'), y: num(0, CONTRACT.coord, 'Wysokość środka sztangi nad podłogą (cm).'),
     h: num(0, CONTRACT.coord, 'Wysokość słupka (cm).'), x0: num(-CONTRACT.coord, CONTRACT.coord, 'Początek podłogi albo skrzyni (cm).'), x1: num(-CONTRACT.coord, CONTRACT.coord, 'Koniec podłogi albo skrzyni (cm).'),
     top: num(0, CONTRACT.coord, 'Wysokość górnej powierzchni skrzyni (cm).'), talerze: { type: 'boolean', description: 'Czy sztanga ma talerze (domyślnie true; drążek: false).' },
@@ -260,7 +260,7 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
   if (us[0] !== 0) out.push({ kod: 'klatki-u', szczegol: `pierwsza klatka ma u = ${us[0]}, powinna mieć u = 0` });
   if (us[us.length - 1] !== 1) out.push({ kod: 'klatki-u', szczegol: `ostatnia klatka ma u = ${us[us.length - 1]}, powinna mieć u = 1` });
   for (let i = 1; i < us.length; i++) if (us[i] <= us[i - 1]) out.push({ kod: 'klatki-u', szczegol: `klatki muszą mieć rosnące u: klatki[${i}].u = ${us[i]} ≤ klatki[${i - 1}].u = ${us[i - 1]}` });
-  out.push(...d.sprzet.flatMap(gearFieldIssues).map(szczegol => ({ kod: 'sprzet', szczegol })));
+  out.push(...[...d.sprzet.flatMap(gearFieldIssues), ...gearSetIssues(d.sprzet)].map(szczegol => ({ kod: 'sprzet', szczegol })));
   out.push(...(templateFor(ctx.family).check?.(d.sprzet) ?? []).map(szczegol => ({ kod: 'sprzet', szczegol })));
   if (out.length) return out.slice(0, CONTRACT.maxIssues);
 

@@ -7,9 +7,10 @@
 import { add, clamp, mul, norm, sub, type V3 } from './math';
 import { BODY, GIRTH, SIDES, type Side } from './skeleton';
 import { EQUIP } from './draw';
+import { TOL } from './colliders';
 import type { Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith'] as const;
 export type GearName = typeof GEAR[number];
 export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
@@ -51,6 +52,13 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
       `slupek jako STOJAK (klatka, stojaki ławki, asekuracja): x = położenie słupków w osi x, h = wysokość (typowo 200–230 cm), hak = wysokość haka na sztangę (cm; rysowany haczyk ${f1(5)} cm do przodu). Z boku widać jeden słupek, z przodu dwa (z = ±${f1(EQUIP.postSpan)} cm, grubość ${f1(EQUIP.postW)} cm). Słupki stoją poza zasięgiem ciała, więc kolizje z ciałem nie występują, a położenie względem sztangi NIE jest sprawdzane programem (ocenia je recenzent ruchu): sztangę zdjętą ze stojaka trzymaj przed słupkami albo za nimi (nie w osi słupków), a w haku tylko w pozycji, w której ćwiczenie ją odkłada.`,
     ] },
   podloga: { caps: [], opis: 'podłoga (x0, x1)', props: g => [{ k: 'floor', x0: g.x0 ?? -120, x1: g.x1 ?? 120 }] },
+  smith: {
+    caps: ['smith'], opis: 'prowadnica suwnicy Smitha (x, h); sztanga o podazaZaChwytem: true porusza się po niej tylko w pionie',
+    props: g => [{ k: 'rail', x: g.x ?? 0, h: g.h ?? 200 }],
+    ref: () => [
+      `smith: suwnica Smitha = pionowa prowadnica w x (rysunek: z boku linia, z przodu dwie w z = ±${f1(EQUIP.railSpan)} cm) o wysokości h (typowo 190–210 cm). Sztanga jest nadal wpisem sztanga (talerze: true, podazaZaChwytem: true), ale w KAŻDEJ klatce jej oś leży w x prowadnicy (± ${f1(TOL.rail)} cm): chwyt dłoni x = x prowadnicy, sztanga porusza się tylko w pionie (y); ruch do przodu/tyłu wykonuje ciało względem sztangi, nie sztanga. Prowadnica nie ma pochylenia (uproszczenie).`,
+    ],
+  },
   skrzynia: { caps: ['box', 'bench.flat'], opis: 'skrzynia, stopień albo ławka płaska (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
   hantel: {
     caps: ['db'], fields: ['promien', 'pionowo'], opis: 'hantel trzymany w dłoni (trzyma, promien, pionowo)',
@@ -112,6 +120,14 @@ export function resolveBells(f: Frame): Frame {
     return { ...p, dir: norm(add(mul(fv, 1 - t), mul(norm([-0.8, -0.6, 0]), t))) };
   });
   return { ...f, props };
+}
+
+/** Sprawdzenia całego zestawu sprzętu (zależności między wpisami). */
+export function gearSetIssues(gear: Gear[]): string[] {
+  const out: string[] = [];
+  if (gear.some(g => g.rodzaj === 'smith') && !gear.some(g => g.rodzaj === 'sztanga')) out.push('sprzęt: smith wymaga wpisu sztanga (talerze: true, podazaZaChwytem: true) — sztanga porusza się po prowadnicy');
+  if (gear.filter(g => g.rodzaj === 'smith').length > 1) out.push('sprzęt: dokładnie jedna prowadnica smith');
+  return out;
 }
 
 /** Pola sprzętu użyte w niewłaściwym rodzaju (komunikaty dla generatora). */

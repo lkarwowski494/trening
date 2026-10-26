@@ -22,6 +22,7 @@
   "postW": { "cm": 3.5, "status": "konwencja rysunku", "zgodnosc": "grubość słupka stojaka", "uzycie": "słupek" },
   "postSpan": { "cm": 64, "status": "konwencja rysunku", "zgodnosc": "połowa rozstawu słupków stojaka (rozstaw wewnętrzny ok. 1,1–1,3 m)", "uzycie": "stojak (widok z przodu i kolizje)" },
   "railW": { "cm": 1.2, "status": "konwencja rysunku", "zgodnosc": "grubość prowadnicy suwnicy Smitha", "uzycie": "prowadnica" },
+  "railSpan": { "cm": 56, "status": "konwencja rysunku", "zgodnosc": "połowa rozstawu prowadnic suwnicy Smitha (rozstaw ok. 1,1 m)", "uzycie": "suwnica Smitha (widok z przodu i kolizje)" },
   "wallW": { "cm": 3, "status": "konwencja rysunku", "zgodnosc": "grubość ściany na rysunku", "uzycie": "ściana" }
  }
 }

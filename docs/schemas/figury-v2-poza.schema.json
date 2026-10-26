@@ -33,9 +33,10 @@
        "hantel",
        "kettlebell",
        "talerz",
-       "pilka_lekarska"
+       "pilka_lekarska",
+       "smith"
       ],
-      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska. Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem."
+      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha). Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem."
      },
      "x": {
       "type": "number",
@@ -140,7 +141,7 @@
    },
    "minItems": 1,
    "maxItems": 8,
-   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy albo stojak (x, h, hak); podloga — podłoga (x0, x1); skrzynia — skrzynia, stopień albo ławka płaska (x0, x1, top); hantel — hantel trzymany w dłoni (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie)."
+   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy albo stojak (x, h, hak); podloga — podłoga (x0, x1); skrzynia — skrzynia, stopień albo ławka płaska (x0, x1, top); hantel — hantel trzymany w dłoni (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie); smith — prowadnica suwnicy Smitha (x, h); sztanga o podazaZaChwytem: true porusza się po niej tylko w pionie."
   },
   "klatki": {
    "type": "array",
