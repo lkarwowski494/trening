@@ -237,7 +237,9 @@ async function step(x: Act, m: Model, where: string) {
       const lost = genLostRefs(snap, { ...genSnap(S()), weekDays: S().weekPlan?.days ?? [] }, replace, res.templateIds, folders);
       ok(!lost.length, where, 'zastąpienie usunęło szablon w użyciu', lost);
       ok(res.templateIds.every(id => (S().templates.find(t => t.id === id)?.items.length ?? 0) > 0), where, 'pusty szablon z generatora');
-      const days = x.c % 2 === 0 ? S().weekPlan?.days ?? [] : S().savedPlans?.find(p => p.id === res.planId)?.days ?? [];
+      const saved = S().savedPlans?.find(p => p.id === res.planId); /* zastąpienie aktywnego wygenerowanego planu aktywuje nowy zawsze (saveGenerated) — wtedy plan jest w weekPlan, nie wśród zapisanych */
+      ok(saved || x.c % 2 === 0 || replace, where, 'plan z generatora bez aktywacji i bez zastąpienia musi być wśród zapisanych');
+      const days = saved ? saved.days : S().weekPlan?.days ?? [];
       ok(days.length === 7 && days.every(d => !d || res.templateIds.includes(d)), where, 'plan z generatora wskazuje nie swoje szablony', days);
       hit('gen'); break; }
     case 'tplRename': if (tpl) { const prev = tpl.name; tpl.name = NAMES[x.b % NAMES.length].slice(0, 80); store.save(tpl); const n = tpl.name.replace(/\s+/g, ' ').trim(); tpl.name = n || prev; store.save(tpl); othersSame(tpl.id); } break; /* app/template/[id].tsx: onChangeText + commitName */
@@ -827,4 +829,14 @@ describe('macierz niezmienników — kontrprzykłady z nocy 20.10.2026 (adaptAct
     ['blok nietknięty przez swapImpl/adaptActive po zmianie miejsca', [[{"t":"startTpl","a":0,"b":0,"c":0,"v":""},{"t":"setLoc","a":7,"b":0,"c":0,"v":""},{"t":"addEx","a":0,"b":0,"c":0,"v":""},{"t":"tick","a":19,"b":0,"c":0,"v":0},{"t":"adaptActive","a":0,"b":0,"c":0,"v":""},{"t":"setLoc","a":0,"b":0,"c":0,"v":0},{"t":"adaptActive","a":0,"b":0,"c":21,"v":""},{"t":"tick","a":59,"b":0,"c":0,"v":0},{"t":"adaptActive","a":0,"b":0,"c":0,"v":0},{"t":"finish","a":0,"b":0,"c":0,"v":""}],[{"t":"startTpl","a":0,"b":0,"c":0,"v":""},{"t":"reload","a":0,"b":0,"c":0,"v":""},{"t":"tick","a":0,"b":0,"c":0,"v":0},{"t":"adaptActive","a":0,"b":0,"c":0,"v":0},{"t":"swapImpl","a":0,"b":0,"c":0,"v":0},{"t":"finish","a":0,"b":0,"c":0,"v":""}]], 2],
   ];
   test.each(CE)('%s', async (_n, seq, loc) => { try { await runSeq(seq.flat(), loc); } finally { units.applyUnit('kg'); edit.__resetDrafts(); } });
+});
+
+/* Nocne testy 23.10 i 24.10.2026 (MATRIX_SEED=1810034010): luka wyroczni, nie błąd aplikacji — zastąpienie aktywnego wygenerowanego planu (replace)
+ * aktywuje nowy plan ZAWSZE (lib/generator.saveGenerated: `if (old.activePlan) activate = true`), także gdy wywołanie nie prosiło o aktywację; wyrocznia
+ * szukała wtedy planu tylko wśród zapisanych i widziała pusty tydzień. Sekwencja zapisana jako test przykładowy — nie zależy od losowania. */
+describe('macierz niezmienników — kontrprzykład z nocy 24.10.2026 (gen: zastąpienie aktywnego planu bez „aktywuj”)', () => {
+  test('gen (aktywuje) → gen z zastąpieniem bez aktywacji: nowy plan jest aktywny, wyrocznia go znajduje', async () => {
+    const g = (c: number): Act => ({ t: 'gen', a: 0, b: 0, c, v: 0 });
+    try { await runSeq([g(0), g(39)], 0); } finally { units.applyUnit('kg'); edit.__resetDrafts(); }
+  });
 });

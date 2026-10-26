@@ -12,6 +12,10 @@ const SLOW_OR_UNRELATED = ['audit-r72-c', 'migrate-idem', 'invariants', 'matrix-
 const fs = require('fs'); const path = require('path');
 const SPAWNING = fs.readdirSync(path.join(__dirname, 'tests')).filter(f => f.endsWith('.test.ts')
   && /child_process|execFileSync|execSync|spawnSync|--check/.test(fs.readFileSync(path.join(__dirname, 'tests', f), 'utf8').replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, ''))).map(f => f.replace(/\.test\.ts$/, ''));
+/* Nocne 25.10.2026: kopia projektu Strykera pomija katalogi „ios” (stryker.config.json), więc testy czytające źródła natywne (Swift, modules/…/ios) padają w suchym przejściu —
+ * sprawdzają kontrakt natywny, nie logikę lib/ (strażnik: tests/mutation-config.test.ts). */
+const NATIVE = fs.readdirSync(path.join(__dirname, 'tests')).filter(f => f.endsWith('.test.ts')
+  && /\.swift['"`]|modules\/[\w-]+\/ios/.test(fs.readFileSync(path.join(__dirname, 'tests', f), 'utf8').replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, ''))).map(f => f.replace(/\.test\.ts$/, ''));
 /* MUT_TESTS=plan-calendar,generator — przebieg lokalny tylko na wskazanych plikach (szybciej, gdy mutujemy jeden moduł) */
 const only = process.env.MUT_TESTS ? process.env.MUT_TESTS.split(',').map(n => `<rootDir>/tests/${n.trim()}.test.ts`) : null;
-module.exports = { ...base, workerIdleMemoryLimit: undefined /* inaczej Jest uruchamia testy w procesach potomnych także przy runInBand — pokrycie per test nie wraca do Strykera */, rootDir: __dirname, testMatch: only ?? ['<rootDir>/tests/*.test.ts'], testPathIgnorePatterns: ['/node_modules/', ...[...SLOW_OR_UNRELATED, ...SPAWNING].map(n => `/tests/${n}\\.test\\.ts$`)] };
+module.exports = { ...base, testTimeout: 30000 /* nocne 25.10.2026: zimny render ekranu w kopii Strykera przekraczał domyślne 5 s (tests/catalog-v2) */, workerIdleMemoryLimit: undefined /* inaczej Jest uruchamia testy w procesach potomnych także przy runInBand — pokrycie per test nie wraca do Strykera */, rootDir: __dirname, testMatch: only ?? ['<rootDir>/tests/*.test.ts'], testPathIgnorePatterns: ['/node_modules/', ...[...SLOW_OR_UNRELATED, ...SPAWNING, ...NATIVE].map(n => `/tests/${n}\\.test\\.ts$`)] };

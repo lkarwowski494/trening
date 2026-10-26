@@ -4,11 +4,12 @@
 # gałąź domyślna, więc kod idący do wydania nie był sprawdzany); ręcznie (Run workflow) na wybranej gałęzi. E2E nocą tylko na gałęzi domyślnej:
 #   1. losowe sekwencje działań z nowym ziarnem i 10× więcej przebiegów niż przy każdym commicie (ziarno w logu — do odtworzenia);
 #      pełny zestaw z losowym ziarnem testów własności fast-check (PROP_SEED=random; przy każdym wypchnięciu — stałe, TST2-07),
-#   2. testy mutacyjne (Stryker): ile celowo wprowadzonych błędów w logice testy wykrywają — raport jako artefakt,
+#   2. testy mutacyjne (Stryker): ile celowo wprowadzonych błędów w logice testy wykrywają — jedno zadanie na moduł z stryker.config.json (25.10.2026: całość w jednym zadaniu
+#      liczyła ok. 27 h przy limicie 5 h), osobne zadanie zbiera wyniki w jedno podsumowanie; raporty jako artefakty,
 #   3. E2E na innym symulatorze (mały ekran) przy ciemnym wyglądzie systemu — pełny katalog (pakiet pelny), wywołanie e2e-ios.yml z podsumowaniem niestabilności.
 #   4. zgłoszenie (21.10.2026, decyzja właściciela, L-013 akcja 5): po pozostałych zadaniach (`if: always()`) jedno zgłoszenie GitHub z etykietą `nocne-testy` —
 #      czerwona noc otwiera je albo aktualizuje (lista porażek, link do przebiegu, scenariusze E2E „padł dwa razy”), zielona zamyka z komentarzem; w treści
-#      licznik kolejnych czystych nocy (bramka „3 czyste noce”). Logika: scripts/ci/nocny-raport.mjs (testy: tests/nocny-raport.test.ts). Zgłoszenia są PUBLICZNE —
+#      licznik kolejnych czystych nocy (kolejna czysta noc to wskaźnik stabilności E2E; bramką App Store jest od 21.10.2026 jeden pełny katalog na standardowym iPhonie — CLAUDE.md, M1-047). Logika: scripts/ci/nocny-raport.mjs (testy: tests/nocny-raport.test.ts). Zgłoszenia są PUBLICZNE —
 #      tylko wyniki zadań i nazwy scenariuszy, bez treści logów. Uprawnienie do zapisu zgłoszeń (issues, poziom zadania) WYŁĄCZNIE w tym zadaniu; tylko token przebiegu, bez nowych sekretów.
 #      Ręcznie (Run workflow) zgłoszenie powstaje tylko z wejściem `zgloszenie`; wejścia `pomin_*` skracają przebieg dowodowy i działają wyłącznie przy ręcznym
 #      uruchomieniu (harmonogram zawsze uruchamia wszystko). Przebieg z pominiętymi zadaniami jest „niepełny” — nie liczy się do bramki.
@@ -65,13 +66,18 @@ jobs:
       - name: Pełny zestaw testów — losowe ziarno testów własności (PROP_SEED w logu, TST2-07)
         run: PROP_SEED=random npx jest --maxWorkers=2
   mutacje:
+    # 25.10.2026 (decyzja właściciela, docs/18): jedno zadanie na moduł z `mutate` w stryker.config.json — całość w jednym zadaniu liczyła ok. 27 h przy limicie 5 h (24.10: 2182 z 4484 mutantów).
+    # Zadanie ma kopię konfiguracji z jednym modułem i BEZ progu `break` (próg dla całości sprawdza zadanie „mutacje-podsumowanie”). Lista modułów: tests/nocne-workflowy.test.ts pilnuje zgodności ze stryker.config.json.
     if: ${{ github.event_name != 'workflow_dispatch' || !inputs.pomin_mutacje }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
+        # plan.ts w jednym zadaniu przekraczał 5 h (przebieg dowodowy 25.10.2026) — cztery zakresy wierszy (`plan:od-do`), razem cały plik; pilnuje tests/nocne-workflowy.test.ts
+        modul: [units, stats, 'plan:1-130', 'plan:131-260', 'plan:261-390', 'plan:391-9999', generator, deload, deload-sets, planReminder, period, dashboard, timer, whatsnew, backup]
         ref: ${{ fromJSON(github.event_name == 'schedule' && (vars.NIGHTLY_REFS || '["main"]') || format('["{0}"]', github.ref_name)) }}
     timeout-minutes: 300
+    name: mutacje (${{ matrix.ref }}, ${{ matrix.modul }})
     steps:
       - uses: actions/checkout@v5
         with:
@@ -82,22 +88,41 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Testy mutacyjne (Stryker, stryker.config.json)
-        run: npx stryker run --cleanTempDir false
-      - name: Wynik mutacji w podsumowaniu przebiegu
-        if: always()
+      - name: Konfiguracja Strykera tylko dla modułu (bez progu break)
         run: |
-          node -e "const r=require('./.stryker-tmp/report.json'); const c={}; for (const f of Object.values(r.files)) for (const m of f.mutants) c[m.status]=(c[m.status]||0)+1; const det=(c.Killed||0)+(c.Timeout||0), all=det+(c.Survived||0)+(c.NoCoverage||0); console.log('## Testy mutacyjne\n\nWykryte: '+det+' z '+all+' ('+(100*det/Math.max(1,all)).toFixed(1)+'%). Statusy: '+JSON.stringify(c))" >> "$GITHUB_STEP_SUMMARY"
+          node -e "const c=require('./stryker.config.json'); const [m, r]='${{ matrix.modul }}'.split(':'); c.mutate=['lib/'+m+'.ts'+(r?':'+r:'')]; c.thresholds={...c.thresholds, break: null}; require('fs').writeFileSync('stryker.modul.json', JSON.stringify(c, null, 2))"
+      - name: Testy mutacyjne (Stryker, jeden moduł)
+        run: npx stryker run stryker.modul.json --cleanTempDir false
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: mutacje-${{ strategy.job-index }}
           retention-days: 1
           path: .stryker-tmp/report.json
+  mutacje-podsumowanie:
+    # Zbiera raporty modułów w jedno podsumowanie przebiegu i pilnuje progu `break` ze stryker.config.json dla CAŁOŚCI (jak dawne jedno zadanie).
+    needs: [mutacje]
+    if: ${{ always() && needs.mutacje.result != 'skipped' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            stryker.config.json
+            scripts/ci
+      - uses: actions/download-artifact@v4
+        continue-on-error: true  # brak raportów (zadania padły przed zapisem) — podsumowanie mówi wtedy „brak raportów”
+        with:
+          pattern: mutacje-*
+          path: raporty
+      - name: Wynik mutacji (wszystkie moduły) w podsumowaniu przebiegu
+        run: node scripts/ci/mutacje-podsumowanie.mjs raporty >> "$GITHUB_STEP_SUMMARY"
   e2e-maly-ekran-ciemny:
     # 19.10.2026 (decyzja właściciela): pełny katalog scenariuszy nocą, niewiążąco — z ponowieniem pojedynczych nieudanych, żeby MIERZYĆ niestabilność
     # (podsumowanie przebiegu + artefakt e2e-wyniki: przeszedł / przeszedł w ponowieniu / padł dwa razy, czasy). Warunek gotowości bramki App Store:
-    # 3 kolejne nocne pełne przebiegi zielone BEZ ponowień (docs/38, „Pakiet podstawowy E2E”). Pakiet podstawowy biegnie przy każdym wydaniu TestFlight.
+    # (stara reguła „3 czyste noce w trybie ścisłym” uchylona 21.10.2026 — M1-047; wydanie do App Store blokuje jeden pełny katalog na standardowym iPhonie, CLAUDE.md). Pakiet podstawowy biegnie przy każdym wydaniu TestFlight.
     if: ${{ github.event_name != 'workflow_dispatch' || !inputs.pomin_e2e }}
     uses: ./.github/workflows/e2e-ios.yml
     with:

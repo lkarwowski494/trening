@@ -5,7 +5,7 @@ import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 
 const root = join(__dirname, '..');
-const cfg = require('../jest.mutation.config.js') as { testPathIgnorePatterns: string[]; testMatch: string[] };
+const cfg = require('../jest.mutation.config.js') as { testPathIgnorePatterns: string[]; testMatch: string[]; testTimeout?: number };
 const ignored = (rel: string) => cfg.testPathIgnorePatterns.some(p => new RegExp(p).test('/' + rel));
 const testy = readdirSync(join(root, 'tests')).filter(f => f.endsWith('.test.ts'));
 const spawnuje = (f: string) => /child_process|execFileSync|execSync|spawnSync|--check/.test(readFileSync(join(root, 'tests', f), 'utf8').replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, ''));
@@ -15,6 +15,13 @@ describe('konfiguracja testów mutacyjnych (M1-055)', () => {
     const wewnatrz = testy.filter(f => spawnuje(f) && !ignored('tests/' + f));
     expect(wewnatrz).toEqual([]);
   });
+  /* Nocne 25.10.2026 (przebieg dowodowy mutacji po modułach): tests/dzwiek-telefon-1030.test.ts czyta modules/voice-cue/ios/VoiceCueModule.swift, a kopia projektu Strykera pomija katalogi „ios”
+     (stryker.config.json → ignorePatterns) — suche przejście padało „ENOENT”. Testy czytające źródła natywne (Swift, modules/…/ios) sprawdzają kontrakt natywny, nie logikę lib/ — poza konfiguracją mutacji. */
+  test('testy czytające źródła natywne (.swift, modules/…/ios) są poza konfiguracją mutacji — kopia Strykera pomija katalogi ios', () => {
+    const natywne = testy.filter(f => /\.swift['"`]|modules\/[\w-]+\/ios/.test(readFileSync(join(root, 'tests', f), 'utf8').replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '')));
+    expect(natywne).toContain('dzwiek-telefon-1030.test.ts');
+    expect(natywne.filter(f => !ignored('tests/' + f))).toEqual([]);
+  });
   test('testy z dwoma znanymi przypadkami z audytu są wykluczone: backlog-0.10.1-dane i locations-catalog', () => {
     expect(ignored('tests/backlog-0.10.1-dane.test.ts')).toBe(true);
     expect(ignored('tests/locations-catalog.test.ts')).toBe(true);
@@ -22,6 +29,11 @@ describe('konfiguracja testów mutacyjnych (M1-055)', () => {
   test('testy logiki modułów mutowanych zostają w konfiguracji', () => {
     for (const f of ['stats', 'plan-calendar', 'units', 'generator'].flatMap(n => testy.filter(t => t.startsWith(n)))) expect(ignored('tests/' + f)).toBe(false);
     expect(testy.filter(f => !ignored('tests/' + f)).length).toBeGreaterThan(50);
+  });
+  /* Nocne 25.10.2026: suche przejście Strykera padło na teście, który renderuje ekran (tests/catalog-v2.test.ts, „Exceeded timeout of 5000 ms”) — zimna kopia
+     projektu i dwa równoległe procesy wydłużają pierwszy render ponad domyślne 5 s Jesta. Limit testu w konfiguracji mutacji jak w testach ekranów (jest.setTimeout(30000)). */
+  test('limit czasu pojedynczego testu w konfiguracji mutacji nie jest domyślnymi 5 s (zimny start sandboxu Strykera)', () => {
+    expect(cfg.testTimeout).toBeGreaterThanOrEqual(30000);
   });
   test('moduły mutowane w stryker.config.json istnieją', () => {
     const s = JSON.parse(readFileSync(join(root, 'stryker.config.json'), 'utf8'));
