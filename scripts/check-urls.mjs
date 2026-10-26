@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Bramka adresów wydania (audyt 1.0, B-01/B-02; L-037 rejestr ryzyk): każdy adres wpisany w aplikację (lib/products.ts: *_URL) i w store/app-store-urls.json
+// Bramka adresów wydania (audyt 1.0, B-01/B-02; L-038 rejestr ryzyk): każdy adres wpisany w aplikację (lib/products.ts: *_URL) i w store/app-store-urls.json
 // (prywatność, wsparcie, marketing) musi zwracać 200, a strony Trening (prywatność, wsparcie, espresso) muszą mieć na żywo tę samą treść co site/ (w tym znacznik
 // wersji „wersja aplikacji X”). Strona marki apps4brew.com to osobne repo (apps4brew-www) z kopią site/ — rozjazd = brak strony albo stara treść u recenzenta.
 // NIE jest częścią `npm run verify` (verify działa offline). Krok bramki wydania: docs/48 Faza A (Z-11), ręcznie workflow „Sprawdzenie adresów” (check-urls.yml).
