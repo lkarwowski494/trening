@@ -150,7 +150,7 @@ export function inverted(cw, { thetaEnd = 142, pole = [0, 1, 0.2], axOverride, b
 /* ---------- Rollouty (sztanga z talerzami toczy się po podłodze; hantle/koła nie) ---------- */
 const BAR_Y = 22.5;
 /** Rollout z podparciem na kolanach (podłoga albo ławka): kolano K nieruchome, udo i tułów obracają się, ręce proste do sztangi na podłodze. */
-export function rolloutKolana(cw, { ławka = 0, fi1 = 14, sag = true, ky = 9.8, dgSag = 8.5, theta = 12, fM = 10, sYf = 0.9, bk = 0.4 } = {}) {
+export function rolloutKolana(cw, { ławka = 0, fi1 = 14, sag = true, ky = 9.8, dgSag = 8.5, theta = 12, fM = 10, sYf = 0.9, bk = 0.4, lumb = 20 } = {}) {
   const B = BODY(); const PODK = -90; const K = [0, ky + ławka]; const ayk = kostkaNaPalcach(ławka, PODK); const al = Math.asin((ayk - K[1]) / B.shank); const A = [K[0] - B.shank * Math.cos(al), ayk];
   const th = theta; const d = dChwytu(th); const dp = Math.sqrt(d * d - (B.shHalf - 20) ** 2);
   const thS = ławka ? 120 : 90; const sY = BAR_Y + dp * sYf; const phS = Math.asin(Math.max(-1, Math.min(1, (sY - K[1] - B.thigh * Math.sin(thS * R)) / B.trunk))) / R; /* start: bark nad sztangą (ręce proste), tułów z zapasu */
@@ -168,7 +168,7 @@ export function rolloutKolana(cw, { ławka = 0, fi1 = 14, sag = true, ky = 9.8, 
   const bledy = [];
   if (sag) bledy.push(bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us: [0, 0.2, 0.4, 0.55, 0.7, 0.85, 1], ok: (u) => czysc(mk(u)), zle: (u) => { const k = mk(u); const w = Math.max(0, Math.min(1, (u - 0.55) / 0.45)); const z = czysc(k);
     const S = k._S; const fi = k._fi + dgSag * w; const P = [S[0] - 50 * Math.cos(fi * R), S[1] - 50 * Math.sin(fi * R)]; /* biodra opadają (obrót tułowia wokół barków) dopiero przy wyprostowanym ciele; wcześniej błąd to wygięcie lędźwi (−20°) */
-    return { ...z, miednica: [r1(P[0]), r1(P[1]), 0], pochylenieTulowia: r1(90 - fi), zgiecieKregoslupa: -20 }; } }));
+    return { ...z, miednica: [r1(P[0]), r1(P[1]), 0], pochylenieTulowia: r1(90 - fi), zgiecieKregoslupa: -lumb }; } }));
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet, klatki: us.map((u) => czysc(mk(u))), bledy });
 }
 /** Rollout stojąc / z zawieszeniem: stopy na palcach nieruchome (u = 1), bark–kostka w linii; start: pochylenie z prostymi nogami. */
@@ -222,7 +222,7 @@ export function generuj() {
     'Push-Up Wide': () => pompka('Push-Up Wide', { hz: 33, pole: [-0.5, -0.3, 1], sagDeg: 9 }),
     'Close-Grip Push-Up': () => pompka('Close-Grip Push-Up', { hz: 10, pole: [-1, 0.3, 0.25], blady: ['partial'] }),
     'Diamond Push Up': () => pompka('Diamond Push Up', { hz: 4.5, off: 6, thetaDol: 138, pole: [-0.6, 0.6, 1], blady: [] }),
-    'Decline Push Up': () => pompka('Decline Push Up', { hz: 22, boxStopy: 14, thetaDol: 144, blady: ['partial'] }),
+    'Decline Push Up': () => pompka('Decline Push Up', { hz: 22, boxStopy: 10, thetaDol: 146, blady: ['partial'] }),
     'Incline Push Up': () => pompka('Incline Push Up', { hz: 22, off: -18, boxRece: 45, thetaDol: 148, blady: [] }),
     'Incline Push-Up Close-Grip': () => pompka('Incline Push-Up Close-Grip', { hz: 10, off: -18, pole: [-1, 0.3, 0.25], boxRece: 45, blady: ['partial'] }),
     'Single-Arm Push-Up': () => jednaReka('Single-Arm Push-Up'),
@@ -234,9 +234,9 @@ export function generuj() {
     'Suspended Push-Up': () => pompka('Suspended Push-Up', { hz: 33, hy: 45, off: -18, sprzetRece: (H) => ({ rodzaj: 'zawieszenie', x: r1(H[0] + (0)), y: 300, punkt: 'dlonie' }), blady: ['partial', 'sag'] }), /* taśmy od punktu zaczepu (y = 300) nad dłońmi; ostatnie 15 cm taśmy przy uchwycie bez kolizji (EQUIP.suspensionFree); uchwyty szeroko (z = ±33), bo przy węższych taśma przenika ramię */
     'Suspended Fallout': () => rolloutStojac('Suspended Fallout', { start: 'zaw', fi1: 18, fi0: 43, tasma: { ax: 160, L: 155, wybor: 'dol' } }),
     'Inverted Row': () => inverted('Inverted Row'),
-    'Rollout (sztanga)': () => rolloutKolana('Rollout (sztanga)', { fi1: 22, ky: 9.8, dgSag: 11, fM: 8, sYf: 0.8, bk: 0.3 }),
+    'Rollout (sztanga)': () => rolloutKolana('Rollout (sztanga)', { fi1: 22, ky: 9.8, dgSag: 11, fM: 8, sYf: 0.8, bk: 0.3, theta: 8 }),
     'Barbell Rollout from Bench': () => rolloutKolana('Barbell Rollout from Bench', { theta: 10, ławka: 42, fi1: 10, dgSag: 7, fM: 4 }),
-    'Standing Barbell Rollout': () => rolloutStojac('Standing Barbell Rollout', { start: 'stojac', th: 6 }),
+    'Standing Barbell Rollout': () => rolloutStojac('Standing Barbell Rollout', { start: 'stojac', th: 4 }),
   };
   return E;
 }

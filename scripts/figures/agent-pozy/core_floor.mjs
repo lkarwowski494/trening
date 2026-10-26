@@ -96,7 +96,7 @@ function ruchMiednica(cw, { t0, k0, t1, k1, dy = 12, stopa = 'dol' }) {
     return ramka({ u, miednica: P, p, glowa: -90, nogi: { R: { ...nk(tt, kk), z: ZNOG }, L: { ...nk(tt, kk), z: -ZNOG } }, rece: RECE_BOK(S0) }); };
   return zbuduj1(cw, us.map(fr));
 }
-function reverseCrunch(cw) { return ruchMiednica(cw, { t0: 90, k0: 90, t1: 130, k1: 125, dy: 13 }); }
+export function reverseCrunch(cw, o = {}) { return ruchMiednica(cw, { t0: 90, k0: 90, t1: 135, k1: 130, dy: 11, ...o }); }
 function legPullIn(cw) { const ks = kolanoProste(); return ruchMiednica(cw, { t0: 10, k0: ks, t1: 105, k1: 105, stopa: 'gora' }); }
 
 function scissorKick(cw) {
