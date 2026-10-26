@@ -295,7 +295,7 @@
       "type": "number",
       "minimum": -90,
       "maximum": 90,
-      "description": "OPCJONALNIE (poza@2): skręt klatki piersiowej względem miednicy wokół osi tułowia, stopnie (-45…45): dodatni = klatka ku prawej stronie osoby. Miednica zostaje (rotacje tułowia, drwal, Russian twist)."
+      "description": "OPCJONALNIE (poza@2): skręt klatki piersiowej względem miednicy wokół osi tułowia, stopnie (-40…40): dodatni = klatka ku prawej stronie osoby. Miednica zostaje (rotacje tułowia, drwal, Russian twist)."
      },
      "przechylTulowia": {
       "type": "number",
@@ -474,7 +474,7 @@
           "type": "number",
           "minimum": -90,
           "maximum": 90,
-          "description": "OPCJONALNIE (poza@2): zgięcie dłoniowe (+) albo wyprost (−) nadgarstka, stopnie (-70…80): dłoń odchyla się od osi przedramienia ku stronie dłoni (+) albo grzbietu (−). chwyt nadal oznacza środek chwytu dłoni; silnik cofa zgiecieNadgarstka o długość dłoni wzdłuż odchylonej dłoni."
+          "description": "OPCJONALNIE (poza@2): zgięcie dłoniowe (+) albo wyprost (−) nadgarstka, stopnie (-65…75): dłoń odchyla się od osi przedramienia ku stronie dłoni (+) albo grzbietu (−). chwyt nadal oznacza środek chwytu dłoni; silnik cofa zgiecieNadgarstka o długość dłoni wzdłuż odchylonej dłoni."
          },
          "obrotPrzedramienia": {
           "type": "number",
@@ -535,7 +535,7 @@
           "type": "number",
           "minimum": -90,
           "maximum": 90,
-          "description": "OPCJONALNIE (poza@2): zgięcie dłoniowe (+) albo wyprost (−) nadgarstka, stopnie (-70…80): dłoń odchyla się od osi przedramienia ku stronie dłoni (+) albo grzbietu (−). chwyt nadal oznacza środek chwytu dłoni; silnik cofa zgiecieNadgarstka o długość dłoni wzdłuż odchylonej dłoni."
+          "description": "OPCJONALNIE (poza@2): zgięcie dłoniowe (+) albo wyprost (−) nadgarstka, stopnie (-65…75): dłoń odchyla się od osi przedramienia ku stronie dłoni (+) albo grzbietu (−). chwyt nadal oznacza środek chwytu dłoni; silnik cofa zgiecieNadgarstka o długość dłoni wzdłuż odchylonej dłoni."
          },
          "obrotPrzedramienia": {
           "type": "number",

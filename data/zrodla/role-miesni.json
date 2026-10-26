@@ -1,0 +1,1540 @@
+{
+ "meta": {
+  "temat": "Rola mięśnia w ruchu — jedno zdanie na parę (mięsień, funkcja), współdzielone przez ćwiczenia",
+  "data": "2026-10-26",
+  "autor": "badacz-merytoryczny",
+  "status": "dane źródłowe roli mięśni; runtime bez źródeł generuje scripts/zrodla-runtime.mjs",
+  "daneWejsciowe": "docs/research/equipment/catalog.json (pola pattern, muscleLoad, metric) — drzewo robocze gałęzi naprawa-e2e-26b; zgodności z origin/integracja-2026-10-26b nie dało się sprawdzić bez git — liczby par przelicza generator (patrz counts.uwaga)",
+  "zasadaRol": "main = muscleLoad 1; aux = muscleLoad 0,5; 0,25 = mały udział, nie podświetlany (MUSCLE_MIN_LOAD) → bez opisu",
+  "decyzjaWlasciciela": "26.10.2026: pokazujemy tylko funkcje o statusie ustalone/dwa_zrodla; uproszczenie i jedno_zrodlo zostają w danych bez wyświetlania; nameRules jako jawna lista"
+ },
+ "assembly": {
+  "opis": "Zdanie = (role == main ? text.main : text.aux) + (rule.phase && phases[pattern] ? ', ' + phases[pattern] : '') + '.'",
+  "przyklad": {
+   "pl": "Prostuje biodro, gdy wstajesz.",
+   "en": "Straightens your hip as you stand up."
+  },
+  "kolejnosc": "Dla pary (ćwiczenie, mięsień) bierz PIERWSZĄ pasującą regułę z listy rules (warunki: pattern, muscle, role, opcjonalnie requireMain). Ćwiczenie z listy exceptions.noRole → bez opisu dla wskazanych mięśni. Brak reguły → bez opisu (null), nigdy zgadywanie."
+ },
+ "phases": {
+  "squat": {
+   "pl": "gdy wstajesz",
+   "en": "as you stand up"
+  },
+  "lunge_single_leg": {
+   "pl": "gdy wstajesz",
+   "en": "as you stand up"
+  },
+  "hinge": {
+   "pl": "gdy się prostujesz",
+   "en": "as you straighten up"
+  },
+  "h_push": {
+   "pl": "gdy pchasz",
+   "en": "as you push"
+  },
+  "v_push": {
+   "pl": "gdy pchasz",
+   "en": "as you push"
+  },
+  "h_pull": {
+   "pl": "gdy przyciągasz",
+   "en": "as you pull"
+  },
+  "v_pull": {
+   "pl": "gdy przyciągasz",
+   "en": "as you pull"
+  }
+ },
+ "functions": {
+  "glutes.hip_ext": {
+   "region": "glutes",
+   "staw": "biodro",
+   "ruch": "wyprost",
+   "pl": {
+    "main": "Prostuje biodro",
+    "aux": "Pomaga prostować biodro"
+   },
+   "en": {
+    "main": "Straightens your hip",
+    "aux": "Helps straighten your hip"
+   },
+   "pewnosc": "ustalone",
+   "zrodla": [
+    "S2",
+    "S11",
+    "S19"
+   ],
+   "status": "ustalone"
+  },
+  "hamstrings.hip_ext": {
+   "region": "hamstrings",
+   "staw": "biodro",
+   "ruch": "wyprost",
+   "pl": {
+    "main": "Prostuje biodro",
+    "aux": "Pomaga prostować biodro"
+   },
+   "en": {
+    "main": "Straightens your hip",
+    "aux": "Helps straighten your hip"
+   },
+   "pewnosc": "dwa źródła",
+   "zrodla": [
+    "S2",
+    "S13",
+    "S25"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "hamstrings.knee_flex": {
+   "region": "hamstrings",
+   "staw": "kolano",
+   "ruch": "zgięcie",
+   "pl": {
+    "main": "Zgina kolano",
+    "aux": "Pomaga zginać kolano"
+   },
+   "en": {
+    "main": "Bends your knee",
+    "aux": "Helps bend your knee"
+   },
+   "pewnosc": "dwa źródła",
+   "zrodla": [
+    "S2",
+    "S13"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "quads.knee_ext": {
+   "region": "quads",
+   "staw": "kolano",
+   "ruch": "wyprost",
+   "pl": {
+    "main": "Prostuje kolano",
+    "aux": "Pomaga prostować kolano"
+   },
+   "en": {
+    "main": "Straightens your knee",
+    "aux": "Helps straighten your knee"
+   },
+   "pewnosc": "ustalone (3 niezależne)",
+   "zrodla": [
+    "S2",
+    "S12",
+    "S20"
+   ],
+   "status": "ustalone"
+  },
+  "adductors.hip_add": {
+   "region": "adductors",
+   "staw": "biodro",
+   "ruch": "przywiedzenie",
+   "pl": {
+    "main": "Przyciąga nogę do środka",
+    "aux": "Pomaga przyciągać nogę do środka"
+   },
+   "en": {
+    "main": "Draws your leg inward",
+    "aux": "Helps draw your leg inward"
+   },
+   "pewnosc": "dwa źródła",
+   "zrodla": [
+    "S2",
+    "S14"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "adductors.hip_ext": {
+   "region": "adductors",
+   "staw": "biodro",
+   "ruch": "wyprost (przywodziciel wielki)",
+   "pl": {
+    "main": "Prostuje biodro",
+    "aux": "Pomaga prostować biodro"
+   },
+   "en": {
+    "main": "Straightens your hip",
+    "aux": "Helps straighten your hip"
+   },
+   "pewnosc": "uproszczenie",
+   "uproszczenie": "Wyprost biodra źródła przypisują przywodzicielowi wielkiemu, nie całej grupie; region 'adductors' to cała grupa. Aktywność przywodzicieli w fazie wstawania przysiadu — S20.",
+   "zrodla": [
+    "S2",
+    "S14",
+    "S20"
+   ],
+   "status": "uproszczenie"
+  },
+  "abductors.hip_abd": {
+   "region": "abductors",
+   "staw": "biodro",
+   "ruch": "odwiedzenie",
+   "pl": {
+    "main": "Odsuwa nogę w bok",
+    "aux": "Pomaga odsuwać nogę w bok"
+   },
+   "en": {
+    "main": "Moves your leg out to the side",
+    "aux": "Helps move your leg out to the side"
+   },
+   "pewnosc": "dwa źródła",
+   "zrodla": [
+    "S2",
+    "S11"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "abductors.pelvis_level": {
+   "region": "abductors",
+   "staw": "biodro/miednica",
+   "ruch": "stabilizacja miednicy w podporze jednonóż",
+   "pl": {
+    "main": "Trzyma miednicę poziomo, gdy stoisz na jednej nodze",
+    "aux": "Pomaga trzymać miednicę poziomo, gdy stoisz na jednej nodze"
+   },
+   "en": {
+    "main": "Keeps your pelvis level when you stand on one leg",
+    "aux": "Helps keep your pelvis level when you stand on one leg"
+   },
+   "pewnosc": "dwa źródła",
+   "zrodla": [
+    "S11",
+    "S27"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "calves.plantar_flex": {
+   "region": "calves",
+   "staw": "skokowy",
+   "ruch": "zgięcie podeszwowe",
+   "pl": {
+    "main": "Unosi piętę",
+    "aux": "Pomaga unosić piętę"
+   },
+   "en": {
+    "main": "Lifts your heel",
+    "aux": "Helps lift your heel"
+   },
+   "pewnosc": "dwa źródła",
+   "zrodla": [
+    "S2",
+    "S15"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "lower_back.spine_ext": {
+   "region": "lower_back",
+   "staw": "kręgosłup",
+   "ruch": "wyprost i kontrola zgięcia",
+   "pl": {
+    "main": "Prostuje plecy i trzyma je prosto",
+    "aux": "Pomaga prostować plecy i trzymać je prosto"
+   },
+   "en": {
+    "main": "Straightens your back and holds it straight",
+    "aux": "Helps straighten your back and hold it straight"
+   },
+   "pewnosc": "dwa źródła (+ S20 dla przysiadu)",
+   "zrodla": [
+    "S4",
+    "S10",
+    "S20"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "abs.trunk_flex": {
+   "region": "abs",
+   "staw": "kręgosłup",
+   "ruch": "zgięcie",
+   "pl": {
+    "main": "Zgina tułów, przybliżając żebra do miednicy",
+    "aux": "Pomaga zginać tułów"
+   },
+   "en": {
+    "main": "Curls your trunk, bringing your ribs toward your pelvis",
+    "aux": "Helps curl your trunk"
+   },
+   "pewnosc": "dwa źródła",
+   "zrodla": [
+    "S3",
+    "S17",
+    "S18"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "abs.antilordosis": {
+   "region": "abs",
+   "staw": "kręgosłup lędźwiowy/miednica",
+   "ruch": "kontrola przodopochylenia (antylordoza)",
+   "pl": {
+    "main": "Nie pozwala wygiąć się lędźwiom",
+    "aux": "Pomaga utrzymać lędźwie bez wygięcia"
+   },
+   "en": {
+    "main": "Keeps your lower back from arching",
+    "aux": "Helps keep your lower back from arching"
+   },
+   "pewnosc": "jedno źródło",
+   "uwaga": "Funkcję wprost podaje tylko S17 (szczebel 4); S26 (szczebel 2) pokazuje wysoką aktywność mięśnia prostego brzucha w desce, ale nie nazywa funkcji.",
+   "zrodla": [
+    "S17",
+    "S26"
+   ],
+   "status": "jedno_zrodlo"
+  },
+  "obliques.rotate_bend": {
+   "region": "obliques",
+   "staw": "kręgosłup",
+   "ruch": "rotacja i zgięcie boczne",
+   "pl": {
+    "main": "Skręca tułów i pochyla go na bok",
+    "aux": "Pomaga skręcać i pochylać tułów"
+   },
+   "en": {
+    "main": "Twists your trunk and bends it to the side",
+    "aux": "Helps twist and side-bend your trunk"
+   },
+   "pewnosc": "dwa źródła",
+   "zrodla": [
+    "S3",
+    "S16",
+    "S18"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "chest.shoulder_flex_add": {
+   "region": "chest",
+   "staw": "ramienny",
+   "ruch": "zgięcie i przywiedzenie (także poziome)",
+   "pl": {
+    "main": "Przyciąga ramię do przodu i do środka",
+    "aux": "Pomaga przyciągać ramię do przodu i do środka"
+   },
+   "en": {
+    "main": "Brings your upper arm forward and inward",
+    "aux": "Helps bring your upper arm forward and inward"
+   },
+   "pewnosc": "ustalone (3 niezależne)",
+   "zrodla": [
+    "S1",
+    "S7",
+    "S22"
+   ],
+   "status": "ustalone"
+  },
+  "front_delt.shoulder_flex": {
+   "region": "front_delt",
+   "staw": "ramienny",
+   "ruch": "zgięcie",
+   "pl": {
+    "main": "Unosi ramię do przodu",
+    "aux": "Pomaga unosić ramię do przodu"
+   },
+   "en": {
+    "main": "Raises your arm forward",
+    "aux": "Helps raise your arm forward"
+   },
+   "pewnosc": "ustalone (4 niezależne)",
+   "zrodla": [
+    "S1",
+    "S6",
+    "S22",
+    "S23"
+   ],
+   "status": "ustalone"
+  },
+  "side_delt.shoulder_abd": {
+   "region": "side_delt",
+   "staw": "ramienny",
+   "ruch": "odwiedzenie",
+   "pl": {
+    "main": "Unosi ramię w bok",
+    "aux": "Pomaga unosić ramię w bok"
+   },
+   "en": {
+    "main": "Raises your arm out to the side",
+    "aux": "Helps raise your arm out to the side"
+   },
+   "pewnosc": "ustalone (3 niezależne)",
+   "zrodla": [
+    "S1",
+    "S6",
+    "S23"
+   ],
+   "status": "ustalone"
+  },
+  "rear_delt.shoulder_ext": {
+   "region": "rear_delt",
+   "staw": "ramienny",
+   "ruch": "wyprost (także poziomy) i rotacja zewnętrzna",
+   "pl": {
+    "main": "Odciąga ramię do tyłu",
+    "aux": "Pomaga odciągać ramię do tyłu"
+   },
+   "en": {
+    "main": "Draws your arm back",
+    "aux": "Helps draw your arm back"
+   },
+   "pewnosc": "dwa źródła (+ S24 dla wiosłowań)",
+   "zrodla": [
+    "S1",
+    "S6",
+    "S24"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "triceps.elbow_ext": {
+   "region": "triceps",
+   "staw": "łokciowy",
+   "ruch": "wyprost",
+   "pl": {
+    "main": "Prostuje łokieć",
+    "aux": "Pomaga prostować łokieć"
+   },
+   "en": {
+    "main": "Straightens your elbow",
+    "aux": "Helps straighten your elbow"
+   },
+   "pewnosc": "ustalone (4 niezależne)",
+   "zrodla": [
+    "S1",
+    "S8",
+    "S22",
+    "S23"
+   ],
+   "status": "ustalone"
+  },
+  "biceps.elbow_flex": {
+   "region": "biceps",
+   "staw": "łokciowy",
+   "ruch": "zgięcie",
+   "pl": {
+    "main": "Zgina łokieć",
+    "aux": "Pomaga zginać łokieć"
+   },
+   "en": {
+    "main": "Bends your elbow",
+    "aux": "Helps bend your elbow"
+   },
+   "pewnosc": "dwa źródła",
+   "zrodla": [
+    "S1",
+    "S8"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "forearms.grip": {
+   "region": "forearms",
+   "staw": "palce/nadgarstek",
+   "ruch": "zgięcie palców (chwyt)",
+   "pl": {
+    "main": "Zaciska dłoń na uchwycie",
+    "aux": "Pomaga zaciskać dłoń na uchwycie"
+   },
+   "en": {
+    "main": "Keeps your hand closed around the grip",
+    "aux": "Helps keep your hand closed around the grip"
+   },
+   "pewnosc": "dwa źródła",
+   "zrodla": [
+    "S1",
+    "S9"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "lats.shoulder_ext_add": {
+   "region": "lats",
+   "staw": "ramienny",
+   "ruch": "wyprost i przywiedzenie",
+   "pl": {
+    "main": "Ściąga ramię w dół i do tyłu, do tułowia",
+    "aux": "Pomaga ściągać ramię w dół i do tyłu"
+   },
+   "en": {
+    "main": "Pulls your upper arm down and back toward your body",
+    "aux": "Helps pull your upper arm down and back"
+   },
+   "pewnosc": "ustalone (3 niezależne)",
+   "zrodla": [
+    "S1",
+    "S5",
+    "S24"
+   ],
+   "status": "ustalone"
+  },
+  "upper_back.scap_retract": {
+   "region": "upper_back",
+   "staw": "łopatka",
+   "ruch": "przywiedzenie (retrakcja)",
+   "pl": {
+    "main": "Ściąga łopatki do siebie",
+    "aux": "Pomaga ściągać łopatki do siebie"
+   },
+   "en": {
+    "main": "Squeezes your shoulder blades together",
+    "aux": "Helps squeeze your shoulder blades together"
+   },
+   "pewnosc": "dwa źródła (+ S24 dla wiosłowań)",
+   "zrodla": [
+    "S1",
+    "S5",
+    "S24"
+   ],
+   "status": "dwa_zrodla"
+  },
+  "upper_back.scap_down_retract": {
+   "region": "upper_back",
+   "staw": "łopatka",
+   "ruch": "obniżenie i przywiedzenie",
+   "pl": {
+    "main": "Ściąga łopatki w dół i do siebie",
+    "aux": "Pomaga ściągać łopatki w dół i do siebie"
+   },
+   "en": {
+    "main": "Draws your shoulder blades down and together",
+    "aux": "Helps draw your shoulder blades down and together"
+   },
+   "pewnosc": "uproszczenie",
+   "uproszczenie": "Funkcje części dolnej i środkowej czworobocznego oraz równoległobocznych potwierdzone (S1, S5); że to właśnie one pracują w ten sposób w podciąganiu i ściąganiu drążka — nie znalazłem przeczytanego źródła.",
+   "zrodla": [
+    "S1",
+    "S5"
+   ],
+   "status": "uproszczenie"
+  },
+  "upper_back.scap_elevate": {
+   "region": "upper_back",
+   "staw": "łopatka",
+   "ruch": "uniesienie (szrugsy)",
+   "pl": {
+    "main": "Unosi barki",
+    "aux": "Pomaga unosić barki"
+   },
+   "en": {
+    "main": "Raises your shoulders",
+    "aux": "Helps raise your shoulders"
+   },
+   "pewnosc": "dwa źródła",
+   "status": "dwa_zrodla",
+   "zrodla": [
+    "S1",
+    "S5"
+   ],
+   "uwaga": "Tylko ćwiczenia z jawnej listy nameRules (szrugsy); szczebel 3 i 4."
+  },
+  "forearms.wrist_flex": {
+   "region": "forearms",
+   "staw": "nadgarstek",
+   "ruch": "zgięcie",
+   "pl": {
+    "main": "Zgina nadgarstek",
+    "aux": "Pomaga zginać nadgarstek"
+   },
+   "en": {
+    "main": "Bends your wrist",
+    "aux": "Helps bend your wrist"
+   },
+   "pewnosc": "dwa źródła",
+   "status": "dwa_zrodla",
+   "zrodla": [
+    "S1",
+    "S9"
+   ],
+   "uwaga": "Tylko jawna lista nameRules (zginanie nadgarstka)."
+  },
+  "forearms.wrist_ext": {
+   "region": "forearms",
+   "staw": "nadgarstek",
+   "ruch": "wyprost",
+   "pl": {
+    "main": "Prostuje nadgarstek",
+    "aux": "Pomaga prostować nadgarstek"
+   },
+   "en": {
+    "main": "Straightens your wrist",
+    "aux": "Helps straighten your wrist"
+   },
+   "pewnosc": "dwa źródła",
+   "status": "dwa_zrodla",
+   "zrodla": [
+    "S1",
+    "S28"
+   ],
+   "uwaga": "Tylko jawna lista nameRules (prostowanie nadgarstka)."
+  }
+ },
+ "rules": [
+  {
+   "pattern": "h_push",
+   "muscle": "chest",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "chest.shoulder_flex_add",
+   "phase": true,
+   "pairs": 56
+  },
+  {
+   "pattern": "h_push",
+   "muscle": "triceps",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "triceps.elbow_ext",
+   "phase": true,
+   "pairs": 56
+  },
+  {
+   "pattern": "h_push",
+   "muscle": "front_delt",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "front_delt.shoulder_flex",
+   "phase": true,
+   "pairs": 49
+  },
+  {
+   "pattern": "v_push",
+   "muscle": "chest",
+   "roles": [
+    "main"
+   ],
+   "function": "chest.shoulder_flex_add",
+   "phase": true,
+   "pairs": 1,
+   "uwaga": "tylko główny (pompki na poręczach); pomocniczy w wyciskaniu nad głowę → bez opisu (S22: wymagania przywiedzenia poziomego minimalne w wyciskaniu pionowym)"
+  },
+  {
+   "pattern": "v_push",
+   "muscle": "front_delt",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "front_delt.shoulder_flex",
+   "phase": true,
+   "pairs": 41
+  },
+  {
+   "pattern": "v_push",
+   "muscle": "side_delt",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "side_delt.shoulder_abd",
+   "phase": true,
+   "pairs": 25
+  },
+  {
+   "pattern": "v_push",
+   "muscle": "triceps",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "triceps.elbow_ext",
+   "phase": true,
+   "pairs": 41
+  },
+  {
+   "pattern": "h_pull",
+   "muscle": "lats",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "lats.shoulder_ext_add",
+   "phase": false,
+   "pairs": 22
+  },
+  {
+   "pattern": "h_pull",
+   "muscle": "upper_back",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "upper_back.scap_retract",
+   "phase": true,
+   "pairs": 25
+  },
+  {
+   "pattern": "h_pull",
+   "muscle": "rear_delt",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "rear_delt.shoulder_ext",
+   "phase": true,
+   "pairs": 23
+  },
+  {
+   "pattern": "h_pull",
+   "muscle": "biceps",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "biceps.elbow_flex",
+   "phase": true,
+   "pairs": 22
+  },
+  {
+   "pattern": "h_pull",
+   "muscle": "forearms",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "forearms.grip",
+   "phase": false,
+   "pairs": 0
+  },
+  {
+   "pattern": "h_pull",
+   "muscle": "lower_back",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "lower_back.spine_ext",
+   "phase": false,
+   "pairs": 7
+  },
+  {
+   "pattern": "v_pull",
+   "muscle": "lats",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "lats.shoulder_ext_add",
+   "phase": false,
+   "pairs": 17
+  },
+  {
+   "pattern": "v_pull",
+   "muscle": "biceps",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "biceps.elbow_flex",
+   "phase": true,
+   "pairs": 17
+  },
+  {
+   "pattern": "v_pull",
+   "muscle": "upper_back",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "upper_back.scap_down_retract",
+   "phase": true,
+   "pairs": 17
+  },
+  {
+   "pattern": "v_pull",
+   "muscle": "forearms",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "forearms.grip",
+   "phase": false,
+   "pairs": 10
+  },
+  {
+   "pattern": "squat",
+   "muscle": "quads",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "quads.knee_ext",
+   "phase": true,
+   "pairs": 35,
+   "uwaga": "36 w katalogu minus Wall Sit (wyjątek)"
+  },
+  {
+   "pattern": "squat",
+   "muscle": "glutes",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "glutes.hip_ext",
+   "phase": true,
+   "pairs": 34
+  },
+  {
+   "pattern": "squat",
+   "muscle": "adductors",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "adductors.hip_ext",
+   "phase": true,
+   "pairs": 17
+  },
+  {
+   "pattern": "squat",
+   "muscle": "lower_back",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "lower_back.spine_ext",
+   "phase": false,
+   "pairs": 8
+  },
+  {
+   "pattern": "lunge_single_leg",
+   "muscle": "quads",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "quads.knee_ext",
+   "phase": true,
+   "pairs": 24
+  },
+  {
+   "pattern": "lunge_single_leg",
+   "muscle": "glutes",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "glutes.hip_ext",
+   "phase": true,
+   "pairs": 24
+  },
+  {
+   "pattern": "lunge_single_leg",
+   "muscle": "abductors",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "abductors.pelvis_level",
+   "phase": false,
+   "pairs": 0,
+   "uwaga": "obecnie żadne ćwiczenie jednonóż nie ma odwodzicieli ≥ 0,5; reguła na przyszłość"
+  },
+  {
+   "pattern": "hinge",
+   "muscle": "glutes",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "glutes.hip_ext",
+   "phase": true,
+   "pairs": 79
+  },
+  {
+   "pattern": "hinge",
+   "muscle": "hamstrings",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "hamstrings.hip_ext",
+   "phase": true,
+   "pairs": 73
+  },
+  {
+   "pattern": "hinge",
+   "muscle": "lower_back",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "lower_back.spine_ext",
+   "phase": false,
+   "pairs": 52
+  },
+  {
+   "pattern": "hinge",
+   "muscle": "quads",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "quads.knee_ext",
+   "phase": true,
+   "pairs": 43,
+   "uwaga": "sprawdzone po nazwach: martwe ciągi z podłogi, sumo, trap bar, podrzuty i rwania — wszystkie z wyprostem kolana; unoszenie bioder (hip thrust) nie ma czworogłowych ≥ 0,5"
+  },
+  {
+   "pattern": "hinge",
+   "muscle": "forearms",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "forearms.grip",
+   "phase": false,
+   "pairs": 24
+  },
+  {
+   "pattern": "hinge",
+   "muscle": "adductors",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "adductors.hip_ext",
+   "phase": true,
+   "pairs": 5
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "chest",
+   "roles": [
+    "main"
+   ],
+   "function": "chest.shoulder_flex_add",
+   "phase": false,
+   "pairs": 17
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "lats",
+   "roles": [
+    "main"
+   ],
+   "function": "lats.shoulder_ext_add",
+   "phase": false,
+   "pairs": 5
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "side_delt",
+   "roles": [
+    "main"
+   ],
+   "function": "side_delt.shoulder_abd",
+   "phase": false,
+   "pairs": 18
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "front_delt",
+   "roles": [
+    "main"
+   ],
+   "function": "front_delt.shoulder_flex",
+   "phase": false,
+   "pairs": 13
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "rear_delt",
+   "roles": [
+    "main"
+   ],
+   "function": "rear_delt.shoulder_ext",
+   "phase": false,
+   "pairs": 9
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "biceps",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "biceps.elbow_flex",
+   "phase": false,
+   "pairs": 38,
+   "uwaga": "37 główny + 1 pomocniczy (wiosłowanie w pionie — łokieć się zgina)"
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "triceps",
+   "roles": [
+    "main"
+   ],
+   "function": "triceps.elbow_ext",
+   "phase": false,
+   "pairs": 33
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "quads",
+   "roles": [
+    "main"
+   ],
+   "function": "quads.knee_ext",
+   "phase": false,
+   "pairs": 4
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "hamstrings",
+   "roles": [
+    "main"
+   ],
+   "function": "hamstrings.knee_flex",
+   "phase": false,
+   "pairs": 10
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "hamstrings",
+   "roles": [
+    "aux"
+   ],
+   "requireMain": "glutes",
+   "function": "hamstrings.hip_ext",
+   "phase": false,
+   "pairs": 4,
+   "uwaga": "pomocnicze dwugłowe przy pośladkach głównych = wyprost biodra (kickbacki, wznosy nóg w leżeniu przodem)"
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "calves",
+   "roles": [
+    "main"
+   ],
+   "function": "calves.plantar_flex",
+   "phase": false,
+   "pairs": 13
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "adductors",
+   "roles": [
+    "main"
+   ],
+   "function": "adductors.hip_add",
+   "phase": false,
+   "pairs": 3
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "abductors",
+   "roles": [
+    "main"
+   ],
+   "function": "abductors.hip_abd",
+   "phase": false,
+   "pairs": 6
+  },
+  {
+   "pattern": "isolation",
+   "muscle": "glutes",
+   "roles": [
+    "main"
+   ],
+   "function": "glutes.hip_ext",
+   "phase": false,
+   "pairs": 5,
+   "uwaga": "sprawdzone po nazwach: wszystkie 5 to wyprost biodra; pośladki pomocnicze przy odwodzicielach głównych → bez opisu"
+  },
+  {
+   "pattern": "core_flexion",
+   "muscle": "abs",
+   "roles": [
+    "main"
+   ],
+   "function": "abs.trunk_flex",
+   "phase": false,
+   "pairs": 39,
+   "uwaga": "41 minus L-Sit i Scissor Kick (wyjątki)"
+  },
+  {
+   "pattern": "core_flexion",
+   "muscle": "obliques",
+   "roles": [
+    "main"
+   ],
+   "function": "obliques.rotate_bend",
+   "phase": false,
+   "pairs": 5
+  },
+  {
+   "pattern": "core_anti_ext",
+   "muscle": "abs",
+   "roles": [
+    "main"
+   ],
+   "function": "abs.antilordosis",
+   "phase": false,
+   "pairs": 9,
+   "pewnosc": "jedno źródło"
+  },
+  {
+   "pattern": "carry",
+   "muscle": "forearms",
+   "roles": [
+    "main",
+    "aux"
+   ],
+   "function": "forearms.grip",
+   "phase": false,
+   "pairs": 5
+  }
+ ],
+ "exceptions": {
+  "noRole": [
+   {
+    "exercise": "Wall Sit",
+    "muscles": [
+     "quads"
+    ],
+    "powod": "ćwiczenie izometryczne (metric: time) — faza „gdy wstajesz” i czasownik „prostuje” nie opisują ruchu"
+   },
+   {
+    "exercise": "L-Sit",
+    "muscles": [
+     "abs"
+    ],
+    "powod": "utrzymanie pozycji, nie zgięcie tułowia"
+   },
+   {
+    "exercise": "Scissor Kick",
+    "muscles": [
+     "abs"
+    ],
+    "powod": "ruch nóg w biodrze, tułów nieruchomy — zgięcie tułowia nie opisuje ruchu"
+   }
+  ],
+  "zasada": "Ćwiczenie z metric 'time' w rodzinach z fazą → bez opisu (strażnik w teście, nie tylko lista)."
+ },
+ "withoutRole": {
+  "wzorce": [
+   "other",
+   "cardio",
+   "mobility",
+   "core_other"
+  ],
+  "powod": "rodzina mieszana (skoki, strongman, rzuty, rozciąganie, deska boczna, skręty) — z samej rodziny nie wynika ruch w stawie",
+  "miesnie": [
+   "neck — każda rodzina (zgięcie/wyprost/skłon tylko z nazwy)"
+  ],
+  "kombinacje": [
+   "hamstrings w squat i lunge_single_leg — dowody sprzeczne (S20: „conflicting”; S21: niska aktywność)",
+   "calves, abs, obliques, upper_back, lats poza regułami (np. w hinge, carry, squat) — brak przeczytanego źródła roli w tym typie ruchu",
+   "forearms w isolation — zginanie vs prostowanie nadgarstka vs nawracanie vs chwyt",
+   "upper_back w isolation — unoszenie barków (szrugsy) vs ściąganie łopatek",
+   "triceps, front_delt, side_delt, chest jako pomocnicze w isolation; chest pomocniczy w v_push; upper_back w v_push (pompki na poręczach obniżają łopatki, wyciskanie nad głowę je obraca)",
+   "obliques w core_anti_rot — [OTWARTE], brak źródła"
+  ]
+ },
+ "regionToPartia": {
+  "zrodlo": "lib/seed.ts REGION_MUSCLE",
+  "zasada": "Opis jest na poziomie regionu. Partia z jednym regionem (klatka, biceps, triceps, przedramiona, czworogłowe, dwugłowe, przywodziciele, łydki) dziedziczy opis 1:1. Partie wieloregionowe (barki = 3 aktony, plecy = najszersze + górna część + prostowniki, core = prosty + skośne, pośladki = pośladki + odwodziciele) — opis tylko przy regionie, nie przy partii (różne funkcje)."
+ },
+ "counts": {
+  "parWszystkich": 2593,
+  "parPodswietlanych_ge_0_5": 1668,
+  "w_tym_glowne": 758,
+  "w_tym_pomocnicze": 910,
+  "parMalyUdzial_0_25": 925,
+  "zOpisem": 1083,
+  "zOpisemPewnosc": {
+   "ustalone_lub_dwa_zrodla": 1035,
+   "uproszczenie": 39,
+   "jedno_zrodlo": 9,
+   "uwaga": "uproszczenie = adductors.hip_ext (22) + upper_back.scap_down_retract (17)"
+  },
+  "bezOpisu_ge_0_5": 585,
+  "bezOpisu_lacznie": 1510,
+  "uwaga": "Liczby badacza na starszym drzewie; aktualne liczy test tests/muscle-roles.test.ts (plik data/zrodla/role-miesni-liczby.json)."
+ },
+ "sources": [
+  {
+   "id": "S1",
+   "tier": 3,
+   "cite": "Betts JG i in. Anatomy and Physiology 2e. OpenStax, rozdz. 11.5 Muscles of the Pectoral Girdle and Upper Limbs",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-5-muscles-of-the-pectoral-girdle-and-upper-limbs",
+   "miejsce": "podrozdz. Muscles That Move the Humerus (tabela przy ryc. 11.24); tab. 11.8; Muscles That Move the Forearm; Muscles That Move the Wrist, Hand, and Fingers",
+   "cytaty": [
+    "deltoid: „is the major abductor of the arm, but it also facilitates flexing and medial rotation”",
+    "pectoralis major: „brings the elbows together and moves the elbows up”",
+    "latissimus dorsi: „moves the elbow back”",
+    "trapezius (tab. 11.8): „Elevates shoulders (shrugging); pulls shoulder blades together”",
+    "„The two-headed biceps brachii crosses the shoulder and elbow joints to flex the forearm”",
+    "triceps: „extend the forearm, as during a punch”",
+    "flexor digitorum superficialis: „bends the fingers to make a fist”",
+    "flexor carpi radialis: „bends the wrist toward the body”",
+    "extensor carpi radialis longus: „straightens the wrist away from the body”"
+   ]
+  },
+  {
+   "id": "S2",
+   "tier": 3,
+   "cite": "OpenStax Anatomy and Physiology 2e, rozdz. 11.6 Appendicular Muscles of the Pelvic Girdle and Lower Limbs",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-6-appendicular-muscles-of-the-pelvic-girdle-and-lower-limbs",
+   "miejsce": "Gluteal Region Muscles That Move the Femur; Thigh Muscles That Move the Femur, Tibia, and Fibula; ryc. 11.32 (podpis)",
+   "cytaty": [
+    "gluteus maximus (tabela): „moves the thigh back”",
+    "„The adductor longus flexes the thigh, whereas the adductor magnus extends it.”",
+    "„The muscles in the medial compartment of the thigh are responsible for adducting the femur at the hip.”",
+    "„The posterior compartment of the thigh includes muscles that flex the leg and extend the thigh.”",
+    "„The muscles of the anterior compartment of the thigh flex the thigh and extend the leg.”",
+    "tensor fasciae latae: „acts as a synergist of the gluteus medius and iliopsoas in flexing and abducting the thigh”",
+    "„The muscles of the posterior compartment of the leg are generally responsible for plantar flexion.”"
+   ]
+  },
+  {
+   "id": "S3",
+   "tier": 3,
+   "cite": "OpenStax Anatomy and Physiology 2e, rozdz. 11.4, tab. 11.6 Muscles of the Abdomen",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-4-axial-muscles-of-the-abdominal-wall-and-thorax",
+   "miejsce": "tab. 11.6",
+   "cytaty": [
+    "rectus abdominis: ruch „Sitting up”, „Flexion”",
+    "obliques: „Twisting at waist; also bending to the side”"
+   ]
+  },
+  {
+   "id": "S4",
+   "tier": 3,
+   "cite": "OpenStax Anatomy and Physiology 2e, rozdz. 11.3",
+   "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-3-axial-muscles-of-the-head-neck-and-back",
+   "miejsce": "Muscles of the Posterior Neck and the Back (erector spinae)",
+   "cytaty": [
+    "„it is the primary extensor of the vertebral column”",
+    "„It controls flexion, lateral flexion, and rotation of the vertebral column, and maintains the lumbar curve.”"
+   ]
+  },
+  {
+   "id": "S5",
+   "tier": 4,
+   "cite": "Jones O. The Superficial Back Muscles. TeachMeAnatomy (akt. 02.11.2024)",
+   "url": "https://teachmeanatomy.info/back/muscles/superficial/",
+   "miejsce": "Trapezius, Latissimus Dorsi, Rhomboids — Actions",
+   "cytaty": [
+    "„The middle fibres retract the scapula” / „the lower fibres pull the scapula inferiorly”",
+    "latissimus dorsi: „Extends, adducts and medially rotates the upper limb.”",
+    "rhomboids: „Retracts and rotates the scapula.”",
+    "trapezius: „The upper fibres of the trapezius elevates the scapula and rotates it during abduction of the arm.”"
+   ]
+  },
+  {
+   "id": "S6",
+   "tier": 4,
+   "cite": "Jones O. The Intrinsic Muscles of the Shoulder. TeachMeAnatomy (akt. 28.10.2025)",
+   "url": "https://teachmeanatomy.info/upper-limb/muscles/shoulder/intrinsic/",
+   "miejsce": "Deltoid — Actions",
+   "cytaty": [
+    "anterior fibres: „flexion and medial rotation”",
+    "middle fibres: „the major abductor of the arm”",
+    "posterior fibres: „extension and lateral rotation”"
+   ]
+  },
+  {
+   "id": "S7",
+   "tier": 4,
+   "cite": "Jones O. Muscles of the Pectoral Region. TeachMeAnatomy (akt. 06.11.2025)",
+   "url": "https://teachmeanatomy.info/upper-limb/muscles/pectoral-region/",
+   "miejsce": "Pectoralis Major — Function",
+   "cytaty": [
+    "„Adducts and medially rotates the upper limb and draws the scapula anteroinferiorly.” „The clavicular head also acts individually to flex the upper limb.”"
+   ]
+  },
+  {
+   "id": "S8",
+   "tier": 4,
+   "cite": "Jones O. The Upper Arm Muscles. TeachMeAnatomy (akt. 10.04.2026)",
+   "url": "https://teachmeanatomy.info/upper-limb/muscles/muscles-of-the-arm/",
+   "miejsce": "Biceps Brachii, Brachialis, Triceps Brachii — Function",
+   "cytaty": [
+    "biceps: „It also flexes the arm at the elbow and at the shoulder.”",
+    "brachialis: „Flexion at the elbow.”",
+    "triceps: „Extension of the arm at the elbow.”"
+   ]
+  },
+  {
+   "id": "S9",
+   "tier": 4,
+   "cite": "Jones O. Anterior Forearm Flexor Muscles. TeachMeAnatomy (akt. 15.12.2025)",
+   "url": "https://teachmeanatomy.info/upper-limb/muscles/anterior-forearm/",
+   "miejsce": "Flexor Digitorum Superficialis — Actions",
+   "cytaty": [
+    "„Flexes the metacarpophalangeal joints and proximal interphalangeal joints at the 4 fingers, and flexes at the wrist.”",
+    "Flexor Carpi Radialis: „Flexion and abduction at the wrist.”; Palmaris Longus: „Flexion at the wrist.”"
+   ]
+  },
+  {
+   "id": "S10",
+   "tier": 4,
+   "cite": "Jones O. The Intrinsic Back Muscles. TeachMeAnatomy (akt. 06.11.2025)",
+   "url": "https://teachmeanatomy.info/back/muscles/intrinsic/",
+   "miejsce": "Erector Spinae — Actions",
+   "cytaty": [
+    "„Acts bilaterally to extend the vertebral column and head.”"
+   ]
+  },
+  {
+   "id": "S11",
+   "tier": 4,
+   "cite": "Jones O. Muscles of the Gluteal Region. TeachMeAnatomy (akt. 09.04.2026)",
+   "url": "https://teachmeanatomy.info/lower-limb/muscles/gluteal-region/",
+   "miejsce": "Gluteus Maximus, Gluteus Medius — Actions",
+   "cytaty": [
+    "gluteus maximus: „It is the main extensor of the thigh, and assists with lateral rotation.”",
+    "gluteus medius: „Abduction and medial rotation of the lower limb.” „It stabilises the pelvis during locomotion, preventing 'dropping' of the pelvis on the contralateral side.”"
+   ]
+  },
+  {
+   "id": "S12",
+   "tier": 4,
+   "cite": "Jones O. Muscles of the Anterior Thigh. TeachMeAnatomy (akt. 11.10.2026)",
+   "url": "https://teachmeanatomy.info/lower-limb/muscles/thigh/anterior-compartment/",
+   "miejsce": "Rectus Femoris, Vasti — Actions",
+   "cytaty": [
+    "rectus femoris: „Extension of the knee joint and flexion of the hip joint”"
+   ]
+  },
+  {
+   "id": "S13",
+   "tier": 4,
+   "cite": "Jones O. Muscles of the Posterior Thigh. TeachMeAnatomy (akt. 09.04.2026)",
+   "url": "https://teachmeanatomy.info/lower-limb/muscles/thigh/hamstrings/",
+   "miejsce": "Semitendinosus — Actions",
+   "cytaty": [
+    "„Flexion of the leg at the knee joint. Extension of thigh at the hip.”"
+   ]
+  },
+  {
+   "id": "S14",
+   "tier": 4,
+   "cite": "Jones O. Muscles of the Medial Thigh. TeachMeAnatomy (akt. 06.11.2025)",
+   "url": "https://teachmeanatomy.info/lower-limb/muscles/thigh/medial-compartment/",
+   "miejsce": "Adductor Longus, Adductor Magnus — Actions",
+   "cytaty": [
+    "adductor longus: „Adduction of the thigh.”",
+    "adductor magnus, hamstring part: „Adduction and extension of the thigh.”"
+   ]
+  },
+  {
+   "id": "S15",
+   "tier": 4,
+   "cite": "Jones O. Muscles of the Posterior Leg. TeachMeAnatomy (akt. 06.11.2025)",
+   "url": "https://teachmeanatomy.info/lower-limb/muscles/leg/posterior-compartment/",
+   "miejsce": "Gastrocnemius, Soleus — Actions",
+   "cytaty": [
+    "gastrocnemius: „Plantarflexion at the ankle joint and flexion at the knee joint.”"
+   ]
+  },
+  {
+   "id": "S16",
+   "tier": 4,
+   "cite": "Jones O. The Anterolateral Abdominal Wall. TeachMeAnatomy (akt. 01.02.2026)",
+   "url": "https://teachmeanatomy.info/abdomen/muscles/the-abdominal-wall/",
+   "miejsce": "External Oblique — Actions",
+   "cytaty": [
+    "„Contralateral rotation of the torso.”"
+   ]
+  },
+  {
+   "id": "S17",
+   "tier": 4,
+   "cite": "Shahid S. Rectus abdominis. Kenhub (rec. 26.07.2023)",
+   "url": "https://www.kenhub.com/en/library/anatomy/rectus-abdominis-muscle",
+   "miejsce": "Function",
+   "cytaty": [
+    "„Rectus abdominis flexes the trunk anteriorly.”",
+    "„The rectus abdominis also stabilizes and controls tilt of the pelvis (antilordosis).”"
+   ]
+  },
+  {
+   "id": "S18",
+   "tier": 4,
+   "cite": "Vasković J. External abdominal oblique. Kenhub (rec. 03.11.2023)",
+   "url": "https://www.kenhub.com/en/library/anatomy/external-abdominal-oblique-muscle",
+   "miejsce": "wstęp i Function",
+   "cytaty": [
+    "„Bilateral contraction flexes the trunk anteriorly”; z mięśniami tej samej strony „contributes to lateral flexion of the trunk on the same side”"
+   ]
+  },
+  {
+   "id": "S19",
+   "tier": 2,
+   "cite": "Neto WK i in. Gluteus Maximus Activation during Common Strength and Hypertrophy Exercises: A Systematic Review. J Sports Sci Med 2020;19(1):195–203",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7039033/",
+   "miejsce": "Abstract; Introduction; Discussion (step-up)",
+   "cytaty": [
+    "„The gluteus maximus (GMax) is one of the primary hip extensors”",
+    "Introduction: „heavier lower body exercises (e.g., squats, lunges, and deadlifts)” jako ćwiczenia z rosnącą rolą prostowników biodra"
+   ]
+  },
+  {
+   "id": "S20",
+   "tier": 3,
+   "cite": "Straub RK, Powers CM. A Biomechanical Review of the Squat Exercise: Implications for Clinical Practice. Int J Sports Phys Ther 2024;19(4):490–501 (komentarz kliniczny)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10987311/",
+   "miejsce": "wstęp; części o tułowiu, szerokości ustawienia stóp, dwugłowych",
+   "cytaty": [
+    "„to strengthen the primary lower extremity muscle groups (i.e., hip extensors and knee extensors)”",
+    "„the greater the forward trunk inclination, the greater the muscular demand on the back extensors to stabilize the trunk”",
+    "„evidence related to hamstring activity also is conflicting”",
+    "„a wider stance increases hip adductor activity during the accent phase”"
+   ]
+  },
+  {
+   "id": "S21",
+   "tier": 3,
+   "cite": "Escamilla RF i in. Effects of Step Length and Stride Variation During Forward Lunges on Lower-Extremity Muscle Activity. J Funct Morphol Kinesiol 2025;10(1):42",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11843896/",
+   "miejsce": "Conclusions; Discussion",
+   "cytaty": [
+    "„high to very high muscle activity occurs in the quadriceps, gluteus maximus, and gluteus medius”",
+    "„less effective for hypertrophy and strengthening of the hamstrings (approximately 20–30% MVIC)”"
+   ]
+  },
+  {
+   "id": "S22",
+   "tier": 3,
+   "cite": "Rodríguez-Ridao D i in. Effect of Five Bench Inclinations on the Electromyographic Activity of the Pectoralis Major, Anterior Deltoid, and Triceps Brachii during the Bench Press Exercise. IJERPH 2020;17(19)",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7579505/",
+   "miejsce": "1. Introduction; 4. Discussion",
+   "cytaty": [
+    "„Altogether, this muscle acts as a powerful medial rotator and adductor of the arm.”",
+    "„The anterior deltoid muscle assists the pectoralis major to flex the shoulder”",
+    "„the triceps brachii is the primary elbow extensor”",
+    "„the horizontal flexion and adduction requirements are minimal with the incline or vertical press”"
+   ]
+  },
+  {
+   "id": "S23",
+   "tier": 3,
+   "cite": "Padovan R i in. High-Density Surface Electromyography Excitation in Front vs. Back Overhead Press Prime Movers. J Hum Kinet 2025;103:81–96",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13551356/",
+   "miejsce": "Discussion",
+   "cytaty": [
+    "boczny akton: „as responsible for a similar shoulder abduction”",
+    "„the movement probably requires similar elbow extension to press the weight overhead”",
+    "„the possible greater humerus flexion in the front- than the back-OHP”"
+   ]
+  },
+  {
+   "id": "S24",
+   "tier": 3,
+   "cite": "Di Fonza D i in. Electromyographic Analysis of Latissimus Dorsi Activation During Common Resistance Training Exercises: A Narrative Review. J Funct Morphol Kinesiol 2026;11(3):315",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13510307/",
+   "miejsce": "1. Introduction; 3.3; 3.5",
+   "cytaty": [
+    "„including extension, adduction and internal rotation of the humerus”",
+    "wiosłowanie w opadzie: „primarily targeting the latissimus dorsi, posterior deltoid, and trapezius”"
+   ]
+  },
+  {
+   "id": "S25",
+   "tier": 2,
+   "cite": "Martín-Fuentes I, Oliva-Lozano JM, Muyor JM. Electromyographic activity in deadlift exercise and its variants. A systematic review. PLoS One 2020;15(2):e0229507",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7046193/",
+   "miejsce": "Introduction; Other Deadlift variations",
+   "cytaty": [
+    "mięśnie martwego ciągu: „specifically gluteus, hamstrings, erector spinae and quadriceps”",
+    "„increase muscle activation from forearm musculature during the Deadlift exercise”"
+   ]
+  },
+  {
+   "id": "S26",
+   "tier": 2,
+   "cite": "Oliva-Lozano JM, Muyor JM. Core Muscle Activity during Physical Fitness Exercises: A Systematic Review. IJERPH 2020;17(12):4306",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7345922/",
+   "miejsce": "4.1 Discussion",
+   "cytaty": [
+    "o mięśniu prostym brzucha: „would require greater activation to maintain postural control”"
+   ]
+  },
+  {
+   "id": "S27",
+   "tier": 3,
+   "cite": "Graber KA i in. Hip and Trunk Muscle Activity and Mechanics During Walking With and Without Unilateral Weight. J Appl Biomech 2021;37(4):351–358",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8628027",
+   "miejsce": "Abstract; Introduction",
+   "cytaty": [
+    "„Pelvic drop is caused by decreased hip abductor muscle activity and is associated with lower extremity injury.”"
+   ],
+   "uwaga": "Wstęp zastrzega, że część badań nie znalazła związku siły odwodzicieli z kinematyką miednicy."
+  },
+  {
+   "id": "S28",
+   "tier": 4,
+   "cite": "Jones O. The Posterior Forearm Muscles. TeachMeAnatomy",
+   "url": "https://teachmeanatomy.info/upper-limb/muscles/posterior-forearm/",
+   "miejsce": "Extensor Carpi Radialis Longus and Brevis, Extensor Carpi Ulnaris — Actions",
+   "cytaty": [
+    "„Extends and abducts the wrist.”",
+    "„Extension and adduction of wrist.”"
+   ]
+  }
+ ],
+ "open": [
+  "[OTWARTE] Skośne brzucha w ćwiczeniach przeciw rotacji (core_anti_rot, 3 pary) — brak przeczytanego źródła, że opierają się skrętowi.",
+  "[OTWARTE] Dwugłowe uda w przysiadzie i wykroku — S20 opisuje dowody jako sprzeczne; do czasu przeglądu bez opisu.",
+  "[OTWARTE] Rola mięśni utrzymujących w martwym ciągu i noszeniu (najszersze, górna część pleców, brzuch, skośne) — bez przeczytanego źródła.",
+  "[OTWARTE] Reguły po nazwie dla isolation (szrugsy → unoszenie barków, S1 „Elevates shoulders (shrugging)”; zginanie i prostowanie nadgarstka; szyja: zgięcie/wyprost) — decyzja produktowa, czy dopuścić słowa kluczowe nazwy obok rodziny.",
+  "[OTWARTE] Odpowiednik gałęzi: liczby z drzewa naprawa-e2e-26b; potwierdzić na origin/integracja-2026-10-26b generatorem.",
+  "[OTWARTE] Teksty EN — przegląd tłumacza (naturalność, „Straightens your hip” vs „Extends your hip”)."
+ ],
+ "nameRules": {
+  "_opis": "Jawne listy ćwiczeń (klucz katalogu), sprawdzane PRZED regułami rodziny (decyzja właściciela 26.10.2026: przypisanie po nazwie tylko jako jawna lista z testem). Każda nazwa musi istnieć w katalogu. Szyja: bez opisu.",
+  "reguly": [
+   {
+    "muscle": "upper_back",
+    "roles": [
+     "main"
+    ],
+    "function": "upper_back.scap_elevate",
+    "exercises": [
+     "Shrugs (hantle)",
+     "Shrugs (sztanga)",
+     "Shrugs (linki)",
+     "Barbell Shrug Behind The Back",
+     "Calf-Machine Shoulder Shrug",
+     "Leverage Shrug",
+     "Smith Machine Behind the Back Shrug",
+     "Clean Shrug",
+     "Snatch Shrug"
+    ],
+    "pominiete": {
+     "Middle Back Shrug": "nazwa nie wskazuje uniesienia barków (ściąganie łopatek) — bez opisu"
+    }
+   },
+   {
+    "muscle": "forearms",
+    "roles": [
+     "main"
+    ],
+    "function": "forearms.wrist_flex",
+    "exercises": [
+     "Wrist Curl (hantle)",
+     "Cable Wrist Curl",
+     "One-Arm Dumbbell Wrist Curl",
+     "Barbell Wrist Curl",
+     "Behind-the-Back Barbell Wrist Curl"
+    ]
+   },
+   {
+    "muscle": "forearms",
+    "roles": [
+     "main"
+    ],
+    "function": "forearms.wrist_ext",
+    "exercises": [
+     "Reverse Wrist Curl (hantle)",
+     "One-Arm Dumbbell Reverse Wrist Curl",
+     "Barbell Reverse Wrist Curl"
+    ]
+   }
+  ]
+ }
+}

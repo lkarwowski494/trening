@@ -66,6 +66,13 @@ export function rankedMuscles(sets: Partial<Record<string, number>>): [Muscle, n
   return MUSCLES.map(m => [m, sets[m] ?? 0] as [Muscle, number]).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
 }
 
+/** Mapa jednego ćwiczenia (26.10.2026): wartość partii = największy udział jej regionów (1 główna → stopień 4, 0,5 pomocnicza → stopień 2); szyja (bez partii) poza mapą. */
+export function exerciseMapSets(rows: readonly { muscle: Muscle | null; load: number }[]): Partial<Record<Muscle, number>> {
+  const out: Partial<Record<Muscle, number>> = {};
+  for (const r of rows) if (r.muscle && r.load > (out[r.muscle] ?? 0)) out[r.muscle] = r.load;
+  return out;
+}
+
 /** Znacznik SVG (podgląd poza aplikacją i testy kształtów) — ten sam rysunek co components/MuscleMap.tsx. */
 export function svgMarkup(sets: Partial<Record<string, number>>, colors = { body: '#E9ECF2', part: '#C9CFDA', accent: '#1F5FD1' }): string {
   const max = Math.max(0, ...MUSCLES.map(m => sets[m] ?? 0));

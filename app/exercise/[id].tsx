@@ -14,6 +14,7 @@ import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLE
 import { BW_SHARE } from '@/lib/stats';
 import { t, exName, exNameLang, lang } from '@/lib/i18n';
 import { ExerciseCues } from '@/components/ExerciseCues';
+import { MuscleRoles } from '@/components/MuscleRoles';
 import { font } from '@/lib/theme';
 
 const EQ: Equipment[] = ['hantle', 'sztanga', 'masa ciała', 'maszyna', 'linki', 'inne'];
@@ -80,6 +81,7 @@ function Preview({ e, cuesOpen, onEdit, onOpen, onProgress, onClose }: { e: Exer
       <Row label={t('Partie pomocnicze (0,5 serii)')} value={mus(e.secondaryMuscles)} />
       <MuscleNote e={e} />
       {muscleLoadOf(e).length ? <Field label={t('Obciążenie partii (z katalogu)')}><Muted style={{ ...font('footnote') }} accessibilityLabel={muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])}: ${w === 1 ? t('główna') : w === 0.5 ? t('pomocnicza') : t('stabilizacja')}`).join(', ')}>{muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])} ${w === 1 ? '●●●' : w === 0.5 ? '●●' : '●'}`).join(' · ')}</Muted><Muted style={{ ...font('footnote'), marginTop: 2 }}>{t('●●● główna · ●● pomocnicza · ● stabilizacja')}</Muted></Field> : null}
+      <MuscleRoles e={e} />
       <Row label={t('Asysta gumą')} value={e.bandAssistable ? t('tak — przy serii wybierasz gumę') : t('nie')} />
       {!e.bandAssistable && usesBand(e) ? <Muted style={{ ...font('footnote'), marginTop: -6, marginBottom: 10 }}>{t('Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.')}</Muted> : null}
       {e.tempo ? <Row label={t('Tempo')} value={e.tempo} /> : null}

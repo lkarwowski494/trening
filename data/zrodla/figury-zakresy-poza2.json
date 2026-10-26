@@ -1,0 +1,22 @@
+{
+  "_opis": "Zakresy stawów w kontrakcie figur poza@2 (EXT_ROM w lib/figures/v2/skeleton.ts) ze źródłami — pełne dane poza paczką aplikacji. Badacz, 26.10.2026 (zakresy-poza2.md). Zakres w figurze to granica pozy na rysunku, nie norma pokazywana użytkownikowi: nie przekracza średniej z badań zdrowych dorosłych. Test tests/zrodla-pelne-zakresy.test.ts pilnuje zgodności min/max z EXT_ROM. Znaki: patrz komentarz EXT_ROM (nadgarstek: zgięcie dodatnie, wyprost ujemny).",
+  "zakresy": {
+    "twist": { "min": -40, "max": 40, "jednostka": "°", "status": "dwa_zrodla", "zrodla": ["Z1", "Z2"], "uwaga": "Poprzednio ±45° (uproszczenie bez źródła). Rotacja lędźwiowa 38,4 ± 8,7° i 38,6 ± 9,4° (Z1), piersiowa 36,6 ± 9,8° i 38,8 ± 10,5° u golfistów (Z2); ±40° to zaokrąglenie części wspólnej. Normy dla tułowia łącznie nie przeczytano." },
+    "lean": { "min": -35, "max": 35, "jednostka": "°", "status": "jedno_zrodlo", "zrodla": ["Z1"], "uwaga": "Zgięcie boczne lędźwiowe 36,3 ± 6,4° i 36,2 ± 6,6° (Z1); granica nie przekracza średniej." },
+    "tilt": { "min": -15, "max": 15, "jednostka": "°", "status": "uproszczenie", "zrodla": [], "uwaga": "Brak przeczytanej normy; uproszczenie ilustracyjne (otwarte: normy odwiedzenia i przywiedzenia biodra w staniu)." },
+    "headTilt": { "min": -35, "max": 35, "jednostka": "°", "status": "jedno_zrodlo", "zrodla": ["Z1"], "uwaga": "Zgięcie boczne szyi 42,1 ± 7,9° i 41,4 ± 7,7° (Z1); ±35° leży poniżej średniej (ostrożnie)." },
+    "shrug": { "min": -3, "max": 6, "jednostka": "cm", "status": "uproszczenie", "zrodla": [], "uwaga": "Brak norm w cm (źródła podają ruch obojczyka w stopniach); uproszczenie z zakresem." },
+    "protract": { "min": -4, "max": 6, "jednostka": "cm", "status": "uproszczenie", "zrodla": [], "uwaga": "Brak norm w cm; uproszczenie z zakresem." },
+    "wrist": { "min": -65, "max": 75, "jednostka": "°", "status": "dwa_zrodla", "zrodla": ["Z3", "Z4"], "uwaga": "Poprzednio −70…80°. Zgięcie 74,03 ± 13,0° (Z3) i 73,9 ± 6,4° (Z4), wyprost 66,71 ± 14,1° (Z3) i 65,9 ± 5,2° (Z4). Znak: ujemny = wyprost, dodatni = zgięcie (zgodnie z EXT_ROM)." },
+    "forearm": { "min": -80, "max": 80, "jednostka": "°", "status": "jedno_zrodlo", "zrodla": ["Z5"], "uwaga": "Nawracanie 76,9–82,0°, odwracanie 82,4–90,6° (dorośli 20–69 lat, Z5); 80° to granica nawracania." },
+    "roll": { "min": -180, "max": 180, "jednostka": "°", "status": "nie_dotyczy", "zrodla": [], "uwaga": "Orientacja całego ciała (deska bokiem), nie staw." }
+  },
+  "zrodla": {
+    "Z1": { "cite": "Apti A, Çolak TK, Akçay B. Normative Values for Cervical and Lumbar Range of Motion in Healthy Young Adults. J Turk Spinal Surg 2023;34(3):113–117.", "url": "https://openaccess.iku.edu.tr/entities/publication/1d43fa73-7df0-4c7f-b388-43469591b92b/full", "miejsce": "wyniki (średnie ± SD)", "tier": 3 },
+    "Z2": { "cite": "Bloemhof BE, Volkwyn CA, Ferreira S. Establishing normative flexibility values for the thoracic spine of competitive male South African golfers. S Afr J Sports Med 2025;37(1).", "url": "https://pure.uj.ac.za/en/publications/establishing-normative-flexibility-values-for-the-thoracic-spine-/", "miejsce": "streszczenie: rotacja lewa 36,6 ± 9,8°, prawa 38,8 ± 10,5°", "tier": 3, "uwaga": "populacja szczególna (golfiści) — tylko potwierdzenie rzędu wielkości" },
+    "Z3": { "cite": "Lendner N i in. Utility of the iPhone 4 Gyroscope Application in the Measurement of Wrist Motion. Hand (N Y) 2019;14(3):352–356.", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6535937/", "miejsce": "tab. 2 (goniometr, zdrowe nadgarstki)", "tier": 3 },
+    "Z4": { "cite": "Chung WK, Park DC, Chi KS. Range of Active Motion and Axial Angles of the Wrist Joint in Normal Adult Korean. J Korean Orthop Assoc 1986;21(6):993–1002.", "url": "https://synapse.koreamed.org/articles/1122791", "miejsce": "streszczenie", "tier": 3 },
+    "Z5": { "cite": "Soucie JM i in. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011.", "url": "https://archive.cdc.gov/www_cdc_gov/ncbddd/jointrom/index.html", "miejsce": "tabela „Elbow pronation / supination”, grupy 20–44 i 45–69 lat", "tier": 3 }
+  },
+  "odrzucone": ["Fiszki i tabele szkoleniowe z wartościami „AAOS 80/70, 45/35” — nie źródło pierwotne, publikacji nie przeczytano.", "Artykuł saudyjski (zgięcie boczne 26 ± 7°) i przegląd Thoomes-de Graaf 2020 (szyja) — tylko streszczenia z wyszukiwarki."]
+}
