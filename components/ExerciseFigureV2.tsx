@@ -11,7 +11,7 @@ import {
   type View as FView, type ErrorId, type GuideId,
 } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';
-import { errorsOf, guidesOf, legendOf, toeAngleApplies, elbowAngleApplies } from '@/lib/figures/v2/ui';
+import { errorsOf, guidesOf, legendOf, toeAngleApplies } from '@/lib/figures/v2/ui';
 
 /*
  * Figura ruchu v2 (grafiki ćwiczeń 1.0 — decyzja właściciela 25.10.2026; silnik: lib/figures/v2, projekt: docs/50). Widoki z boku i z przodu/z góry obok siebie, kolory z motywu,
@@ -103,7 +103,6 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
           </View>
         : null}
       {toeAngleApplies(spec) ? <Text testID="exercise-figure-v2-toes" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, ...FW.semibold, marginTop: 2 }}>{t('Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.')}</Text> : null}
-      {elbowAngleApplies(spec) ? <Text testID="exercise-figure-v2-elbows" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, ...FW.semibold, marginTop: 2 }}>{t('Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.')}</Text> : null}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 16 }}>
         {canPause
           ? <Pressable accessibilityLanguage={lang()} testID="exercise-figure-v2-pause" onPress={() => setPaused(p => !p)} accessibilityRole="button" accessibilityLabel={paused ? t('Wznów animację') : t('Zatrzymaj animację')} hitSlop={8}
