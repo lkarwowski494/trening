@@ -65,7 +65,7 @@
   `pakiet: podstawowy`, jedno ponowienie pojedynczego scenariusza); **pełny katalog** biegnie w nocy (`nightly.yml`), niewiążąco, z pomiarem
   niestabilności — przegląd zbiorczo raz dziennie, nie po każdej porażce. Wydanie do App Store blokuje **jeden pełny katalog E2E
   na standardowym iPhonie** (jedno ponowienie scenariusza dozwolone) + pełny audyt + telefon; noc to sygnał (zgłoszenie `nocne-testy`), nie bramka —
-  porażka: błąd aplikacji → naprawa, błąd skryptu → backlog (właściciel 21.10.2026; zastępuje „3 czyste noce w trybie ścisłym”). Przed oddaniem
+  porażka: błąd aplikacji → naprawa, błąd skryptu → backlog (właściciel 21.10.2026; zastępuje „3 czyste noce w trybie ścisłym”); to samo w bramce App Store: scenariusz czerwony z winy skryptu (tester-e2e potwierdza logiem/zrzutem, że aplikacja jest w poprawnym stanie) nie blokuje wydania — scenariusz do naprawy (właściciel 26.10.2026). Przed oddaniem
   pracy: szybki przebieg tylko zmienionych scenariuszy (`tylko_scenariusze`). Pełne verify na tej maszynie przez kolejkę (jeden naraz).
 - Workflowy (`.github/workflows`): zmiany wypycha koordynator na gałąź funkcji i **scala sam** po prawdziwym przebiegu dowodowym (wynik na gotowym produkcie),
   bez nowych sekretów i uprawnień, z opisem zmiany w PR; właściciel dostaje informację, nie pytanie (właściciel 21.10.2026; zastępuje zatwierdzanie
