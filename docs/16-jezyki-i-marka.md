@@ -464,3 +464,15 @@ Przegląd rolą `recenzent-lokalizacji` (26.10.2026, gałąź `recenzja-lok-2026
 12. **uk** „Тривалість кардіотренування = заданий час тренування” — „заданий” (ustawiony) nie występuje w PL/EN; zostawić czy usunąć? (ru: „длительность тренировки”, bez dopisku.) **ru** „при цели «сила»” w zakresach powtórzeń — doprecyzowanie spoza PL, do potwierdzenia.
 13. **hu** „perc”/„mp” zamiast „min”/„s” w tekstach przerw i formuły; **tr** przyciski w trybie rozkazującym „gör/bitir” przy zdaniach w formie „siz” — zgodne z istniejącą konwencją, ale bez recenzji native speakera.
 14. **es-419** w starej notatce wydania (poza zestawem 71 kluczy) nazwa ekranu „Entreno” — słowo zakazane w wariancie, ale to nazwa taba w starej notatce; do decyzji, czy zmienić na „Training” jak w es.
+
+## Pytania do native speakerów — role mięśni i fazy animacji (26.10.2026, recenzja lokalizacji)
+*Otwarte (nie zgadujemy; 8 pytań z recenzji 1815 tekstów, poprawki recenzenta nałożone, wariant A: forma grzecznościowa wg tej listy):*
+- sv: Nazwa fazy podciągania w animacji („Uppdragning 2 s · Sänkning 3 s”): „Uppdragning” czy „Drag uppåt”?
+- fr: Faza podciągania obok „Descente”: „Traction” czy „Montée” (przy „Remontée” dla wstawania)?
+- es-419: „cuando jalas” (Meksyk) czy neutralne „cuando tiras” dla całej Ameryki Łacińskiej?
+- ro: Zgięcie łokcia/kolana w opisie mięśnia: „Flectează cotul” czy „Îndoaie cotul”?
+- cs: Wyprost biodra na siłowni: „natahuje kyčel” czy „propíná kyčel”?
+- el: „gdy się prostujesz” (martwy ciąg): „όταν ισιώνετε τον κορμό” czy „όταν ανασηκώνεστε”?
+- lt: Mięśnie przedramienia: „Išlaiko suspaustą delną ant rankenos” czy krócej „Išlaiko rankeną suėmus”?
+- hu: Faza podciągania obok „Leengedés”: „Felhúzás” czy „Felhúzódzkodás”?
+- Terminy w `docs/lokalizacja/slownik-terminow.json`: „chwyt” (grip) i „ramię” (górna część ręki) mają w językach bez ustalonego terminu pewność „niska” — do potwierdzenia przez native speakerów.

@@ -58,6 +58,9 @@ Pewność: **wysoka** — standardowy termin siłowni, powszechnie znany; nadal 
 | `kopia_zapasowa` | kopia zapasowa | plik z danymi treningu do przywrócenia |
 | `zacznij_trening` | zacznij trening | przycisk rozpoczęcia treningu |
 | `zakoncz_trening` | zakończ trening | przycisk zakończenia treningu |
+| `chwyt` | chwyt (sposób trzymania uchwytu, ang. grip) | sposób, w jaki dłoń trzyma uchwyt, drążek albo sztangę; NIE „zaciskanie dłoni”, NIE przytrzymanie czegoś ręką w sensie kontroli |
+| `faza_ruchu` | nazwy faz ruchu w animacji (Podciąganie, Opuszczanie, Wypychanie…) | nazwa FAZY ruchu pokazywana w animacji („{faza} {n} s”), rzeczownik odczasownikowy jak siostrzane fazy („Opuszczanie”, „Wypychanie”); NIE nazwa ćwiczenia (podciąganie na drążku) |
+| `ramie` | ramię (górna część ręki, nie bark) | górna część ręki między barkiem a łokciem; NIE bark (partia „barki”) i NIE cała ręka |
 
 ## Terminy zalecane (rdzeń)
 
@@ -201,33 +204,71 @@ Przerwa między seriami, seria, powtórzenie, zakres powtórzeń, deload — poz
 | `zh-Hant` | `przerwa_robocza` | 工作休息\|上班 | kalka „robocza” = „w pracy”: znaczy przerwę w pracy; chodzi o przerwę po seriach roboczych |
 | `zh-Hant` | `deload` | 減量 | „減量” w tajwańskim żargonie siłowni znaczy odchudzanie (redukcję); deload to „減載” |
 
-## Do potwierdzenia przez native speakera (24)
+## Do potwierdzenia przez native speakera (62)
 
 Pytanie do każdego: czy tak powiedziałby trener albo kolega na siłowni w tym języku? Jeśli nie — jak mówi się naprawdę? (Lista z docs/16.)
 
 | język | pojęcie | obecny termin | wątpliwość |
 |---|---|---|---|
+| `cs` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `sk` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `hu` | `seria` | Sorozat | w siłowniach używa się też „széria”/„szett”; do potwierdzenia przez native speakera |
 | `hu` | `asekuracja` | Biztosítás | „biztosítás” bywa ubezpieczeniem — do potwierdzenia |
+| `hu` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `ro` | `do_upadku` | Până la epuizare | w siłowniach też „până la cedare”; do potwierdzenia |
 | `ro` | `asekuracja` | Siguranță și asigurare | do potwierdzenia przez native speakera |
+| `ro` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `ro` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `bg` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `bg` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `hr` | `asekuracja` | Sigurnost i asistencija | do potwierdzenia przez native speakera |
+| `hr` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `hr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `sl` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `sl` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `sr` | `asekuracja` | Асистенција и безбедност | do potwierdzenia przez native speakera |
+| `sr` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `sr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `lt` | `zakres_powtorzen` | pakartojimų intervalas | „intervalas” bywa przerwą; w siłowniach też „diapazonas” — do potwierdzenia |
 | `lt` | `do_upadku` | Iki nesėkmės | do potwierdzenia przez native speakera |
 | `lt` | `asekuracja` | Pagalba ir saugumas | do potwierdzenia przez native speakera |
+| `lt` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `lt` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `lv` | `seria` | Sērija | „sērija” = seria/odcinek; w siłowniach też „pieeja” — do potwierdzenia |
+| `lv` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `lv` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `et` | `do_upadku` | Kuni väsimuseni | „väsimuseni” = do zmęczenia; do potwierdzenia |
+| `et` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `uk` | `asekuracja` | Страхування | „страхування” bywa ubezpieczeniem; w siłowniach też „страховка”/„спотінг” — do potwierdzenia |
 | `pt` | `zakres_powtorzen` | gama de repetições | w Portugalii „intervalo” = przerwa między seriami, więc „gama”; do potwierdzenia przez native speakera |
 | `pt` | `szablon` | Modelo | „modelo” jest ogólne; w siłowniach „ficha/plano de treino” — do potwierdzenia |
+| `pt` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `pt-BR` | `szablon` | Modelo | „modelo” jest ogólne; w siłowniach „ficha” — do potwierdzenia |
 | `it` | `zakres_powtorzen` | range di ripetizioni | „range” to potoczne w siłowni; „intervallo” bywa przerwą — do potwierdzenia |
+| `it` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `da` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `nb` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
 | `fi` | `do_upadku` | Uupumukseen | do potwierdzenia przez native speakera |
 | `tr` | `do_upadku` | Tükenişe kadar | do potwierdzenia przez native speakera |
+| `tr` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `tr` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `el` | `do_upadku` | Έως αποτυχία | do potwierdzenia przez native speakera |
+| `el` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `el` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `id` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `id` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `ms` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `ms` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `vi` | `seria` | Hiệp | „hiệp” (też runda w boksie) obok „set” — do potwierdzenia |
 | `vi` | `asekuracja` | Hỗ trợ và an toàn | do potwierdzenia przez native speakera |
+| `vi` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `vi` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `ja` | `zakres_powtorzen` | レップ範囲 | „レップ” to żargon siłowni; do potwierdzenia |
 | `ja` | `szablon` | テンプレート | „テンプレート” vs „メニュー” w siłowniach — do potwierdzenia |
+| `ja` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `ja` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
+| `ko` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `ko` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
 | `zh-Hant` | `szablon` | 範本 | „範本” brzmi jak szablon dokumentu; w siłowniach tajwańskich „課表” — do potwierdzenia |
+| `zh-Hant` | `chwyt` | grip | Termin nieustalony: tymczasowo angielskie „grip”; native speaker ma wskazać potoczny termin siłowni (chwyt dłoni na uchwycie, nie „trzymanie dłoni zaciśniętej”), lista w docs/16. |
+| `zh-Hant` | `ramie` | upper arm | Termin nieustalony: tymczasowo angielskie „upper arm”; native speaker ma wskazać termin na górną część ręki (ramię, nie bark), lista w docs/16. |
