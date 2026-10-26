@@ -14,7 +14,7 @@ Liczby poniżej: ćwiczenia z 622, które wymagają danego rodzaju (w nawiasie: 
 | 1 | hantel / kettlebell / talerz / piłka lekarska w dłoni | 142 (123) | delt_raise 19, kb_ballistic 17, curl 16, sled_throw 12 | niski | **gotowe (26.10.2026)** |
 | 2 | stojak, Smith, landmine, poręcze, gryf łamany/trap/T, ściana, mata, łańcuchy | 58 (50) | lunge 8, triceps 5, overhead_press 5, row 4 | niski (rekwizyty są w silniku) | w toku: stojak, gryf łamany/gruby, Smith, landmine, ściana, trap bar, uchwyty farmerskie i łańcuchy gotowe (26.10.2026) |
 | 3 | wyciąg (słup, bloczek, uchwyt / lina / opaska na kostkę) | 76 (70) | curl 10, triceps 9, cable_row 7, pulldown 7 | średni | **gotowe (26.10.2026)** |
-| 4 | ławka regulowana (skos +/−, wałki na nogi, modlitewnik) | 35 (9) | curl 12, delt_raise 6, core_floor 5 | niski–średni | do zrobienia |
+| 4 | ławka regulowana (skos +/−, wałki na nogi, modlitewnik) | 35 (9) | curl 12, delt_raise 6, core_floor 5 | niski–średni | ławka gotowa (26.10.2026); modlitewnik z ławkami specjalnymi |
 | 5 | guma / taśma oporowa | 17 (16) | hip_abd_add 4, rotator_cuff 3 | niski | do zrobienia |
 | 6 | piłka gimnastyczna, BOSU, ślizgacze, roller, kółko do brzucha | 25 (21) | foam_roll 10, core_floor 3, core_standing 3 | niski–średni | do zrobienia |
 | 7 | taśmy zawieszane, lina pionowa; ławki specjalne (rzymska, GHD, GHR, reverse hyper) | 5 + 4 | cardio, back_extension, core_floor | średni | do zrobienia |
@@ -58,6 +58,14 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 | Rodzaj | Pola | Możliwości katalogu | Uwagi |
 |---|---|---|---|
 | `wyciag` | `x`, `y` (wysokość bloczka), `z`, `h` (kolumna, 230), `dwa`, `chwyt` (uchwyt / lina / drazek / kostka), `trzyma` | cable.high/mid/low/dual/row_seat, lat_pulldown, ankle_strap, cable.handles, cable.rope | kolumna + bloczek + prosta linka do dłoni albo kostki (kierunek oporu = linka); kolumna i linka (poza ostatnimi 12 cm) nie przenikają ciała; wysokość bloczka zgodna z możliwością katalogu (niski 5–60, środkowy 70–160, wysoki 150–240 cm — konwencja) |
+
+### 2.4 Ławka regulowana
+
+| Rodzaj | Pola | Możliwości katalogu | Uwagi |
+|---|---|---|---|
+| `lawka` | `x` (zawias), `top` (siedzisko: 43, ujemna 60), `kat` (−45…90°), `dlugosc` oparcia (75), `walki` (wałki na nogi) | bench.flat, bench.incline, bench.decline | geometria i kontakty jak w rigu wyciskania leżąc (BENCH): plecy/miednica/uda/głowa 1,5 cm, ramię 6, przedramię 2,5, sztanga na klatce 2,6/2,2; kąt musi odpowiadać możliwości katalogu (płaska ±5°, skośna ≥ 10°, ujemna ≤ −5°); skrzynia nie jest już ławką płaską |
+
+Przykłady few-shot z rigów gotowych rodzin (`exampleFor`) zawierają teraz wpis `lawka` (wcześniej ławka nie była zapisywana w danych).
 
 Wymagany sprzęt ćwiczenia (`requiredGearIssues`, używane w `waliduj`): poza musi zawierać wpis rodzaju pokrywającego możliwość z `requires` katalogu (np. wyciąg z bloczkiem wysokim dla `cable.high`); alternatywy w grupie to ALBO; stojak (słupek) nie jest wymagany; grupy bez rodzaju w rejestrze pomijane. Kod błędu: `sprzet`.
 

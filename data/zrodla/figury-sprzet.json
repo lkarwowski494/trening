@@ -2,6 +2,7 @@
  "_opis": "Wymiary sprzętu rysowanych w figurach v2 (lib/figures/v2/draw.ts → EQUIP; docs/53 bramka 6 „spójność”, docs/54). WSZYSTKIE wymiary to „konwencja rysunku” (uproszczenie ilustracyjne: figura nie twierdzi nic o rozmiarach sprzętu i aplikacja ich nie podaje użytkownikowi). Pole zgodnosc opisuje orientacyjną zgodność z powszechnymi rozmiarami (wiedza ogólna, NIE przeczytane źródło); potwierdzenie źródłem szczebla 4 (dokumentacja producentów, regulaminy federacji) jest otwarte (docs/54, otwarte pytania) i należy do badacza. Do paczki aplikacji NIC stąd nie trafia; test tests/zrodla-pelne-sprzet.test.ts pilnuje zgodności z EQUIP i kompletności (każdy klucz EQUIP ma wpis).",
  "statusy": ["konwencja rysunku"],
  "wysokosci_bloczkow": { "status": "konwencja rysunku", "zgodnosc": "typowe wysokości bloczków stacji wyciągów (cm): niski ok. 5–60, środkowy ok. 70–160, wysoki ok. 150–240 — wiedza ogólna, NIE przeczytane źródło", "low": [5, 60], "mid": [70, 160], "high": [150, 240] },
+ "lawka_regulowana": { "status": "konwencja rysunku", "zgodnosc": "wymiary ławki z rigu wyciskania leżąc (docs/50): siedzisko 43 cm (ujemna 60), siedzisko 55 cm, oparcie 75 cm, wygięcie pod miednicą 10,2 cm, stopy 40 cm od miednicy i rozstaw ±24 cm; zakresy kąta: płaska ±5°, skośna 10–90°, ujemna −45…−5° — wiedza ogólna, NIE przeczytane źródło", "seatTop": 43, "declineSeat": 60, "padBack": 10.2, "backLen": 75, "seatLen": 55, "footBack": 40, "footHalf": 24, "kat": { "min": -45, "max": 90, "flat": [-5, 5], "incline": [10, 90], "decline": [-45, -5] } },
  "wymiary": {
   "barR": { "cm": 1.6, "status": "konwencja rysunku", "zgodnosc": "promień gryfu ok. 1,4–1,6 cm (gryf ok. 28–32 mm)", "uzycie": "gryf sztangi i drążka" },
   "barLen": { "cm": 220, "status": "konwencja rysunku", "zgodnosc": "długość gryfu olimpijskiego męskiego ok. 2,2 m", "uzycie": "długość gryfu w widoku z przodu i w kolizjach" },
@@ -24,6 +25,10 @@
   "cableSpan": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "połowa rozstawu kolumn dwóch wyciągów (domyślna; stacje krzyżowe mają ok. 1–2 m)", "uzycie": "wyciąg: dwa wyciągi (dwa: true), domyślne z" },
   "handleR": { "cm": 1.8, "status": "konwencja rysunku", "zgodnosc": "promień uchwytu na rysunku", "uzycie": "wyciąg: uchwyt, koniec liny" },
   "strapR": { "cm": 3.4, "status": "konwencja rysunku", "zgodnosc": "promień opaski na kostkę na rysunku", "uzycie": "wyciąg: opaska na kostkę" },
+  "rollerR": { "cm": 4.5, "status": "konwencja rysunku", "zgodnosc": "promień wałka na nogi ławki ujemnej ok. 4–5 cm", "uzycie": "ławka: wałki na nogi" },
+  "rollerDx": { "cm": -8, "status": "konwencja rysunku", "zgodnosc": "położenie środka wałka względem końca siedziska (x), nad kostkami", "uzycie": "ławka: wałki na nogi" },
+  "rollerDy": { "cm": 19, "status": "konwencja rysunku", "zgodnosc": "wysokość środka wałka nad siedziskiem", "uzycie": "ławka: wałki na nogi" },
+  "rollerHalf": { "cm": 28, "status": "konwencja rysunku", "zgodnosc": "połowa długości wałka (z)", "uzycie": "ławka: wałki na nogi" },
   "benchW": { "cm": 28, "status": "konwencja rysunku", "zgodnosc": "szerokość ławki ok. 28–32 cm", "uzycie": "ławka" },
   "benchPad": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "grubość wyściełania ławki", "uzycie": "ławka" },
   "benchLegW": { "cm": 3.2, "status": "konwencja rysunku", "zgodnosc": "grubość nóg ławki", "uzycie": "ławka" },

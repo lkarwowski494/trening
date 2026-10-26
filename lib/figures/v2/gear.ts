@@ -4,20 +4,23 @@
  * sprawdzenia pól i punkty odniesienia dla generatora poleceń (`ref`, liczby z EQUIP). Wymiary w EQUIP (draw.ts) są „konwencją rysunku”
  * (status i powód: data/zrodla/figury-sprzet.json). Czysty moduł (bez React).
  */
-import { add, clamp, mul, norm, sub, type V3 } from './math';
+import { add, clamp, mul, norm, rad, sub, type V3 } from './math';
 import { BODY, GIRTH, SIDES, type Side } from './skeleton';
 import { EQUIP } from './draw';
 import { TOL } from './colliders';
+import { BENCH } from './rigs/benchPress';
 import type { Contact, Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka'] as const;
 export type GearName = typeof GEAR[number];
-export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number] };
+export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
-export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt'] as const;
+export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki'] as const;
 export const BELL_MODES = ['dol', 'wzdluz', 'tyl'] as const;
 /** Osprzęt linki wyciągu: uchwyt (jeden na dłoń), lina (dwa końce), drążek (prosty, między dłońmi), kostka (opaska na kostkę). */
 export const CABLE_ATTACH = ['uchwyt', 'lina', 'drazek', 'kostka'] as const;
+/** Kąt oparcia ławki (stopnie, 0 = płasko, dodatni = skos głową wyżej, ujemny = głową niżej) wg możliwości katalogu — konwencja rysunku. */
+export const BENCH_KAT = { min: -45, max: 90, flat: [-5, 5], incline: [10, 90], decline: [-45, -5] } as const;
 /** Wysokość bloczka stacji wyciągów (cm) wg możliwości katalogu — konwencja rysunku (data/zrodla/figury-sprzet.json → wyciag): niski, środkowy, wysoki. */
 export const CABLE_Y = { low: [5, 60], mid: [70, 160], high: [150, 240] } as const;
 
@@ -52,6 +55,12 @@ export type GearKind = {
 const BAR_LEN = 220;
 const sidesOf = (g: Gear): Side[] => g.trzyma === 'R' ? ['R'] : g.trzyma === 'L' ? ['L'] : [...SIDES];
 const avg = (vs: V3[]): V3 => mul(vs.reduce((a, v) => add(a, v), [0, 0, 0] as V3), 1 / vs.length);
+/** Dozwolone kontakty ciała z ławką (jak w rigu wyciskania leżąc, docs/50): plecy/miednica/uda/głowa 1,5 cm, ramię 6 cm, przedramię 2,5 cm; sztanga na klatce: tułów 2,6 cm, ramię 2,2 cm. */
+const BENCH_CONTACTS: Contact[] = [
+  { body: 'torso', equip: 'benchBack', tol: 1.5 }, { body: 'pelvis', equip: 'benchSeat', tol: 1.5 }, { body: 'pelvis', equip: 'benchBack', tol: 1.5 }, { body: 'thigh', equip: 'benchSeat', tol: 1.5 }, { body: 'torso', equip: 'benchSeat', tol: 1.5 },
+  { body: 'uarm', equip: 'benchBack', tol: 6 }, { body: 'uarm', equip: 'benchSeat', tol: 6 }, { body: 'farm', equip: 'benchBack', tol: 2.5 }, { body: 'farm', equip: 'benchSeat', tol: 2.5 }, { body: 'head', equip: 'benchBack', tol: 1.5 },
+  { body: 'torso', equip: 'bar', tol: 2.6 }, { body: 'uarm', equip: 'bar', tol: 2.2 },
+];
 /** Kontakt ciała ze ścianą: dopuszczalne przenikanie (cm). */
 export const WALL_CONTACT = 1.5;
 const BELL_BACK: V3 = norm([-1, -0.15, 0]);
@@ -163,7 +172,37 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
       ];
     },
   },
-  skrzynia: { nazwa: 'skrzynia albo ławka płaska', caps: ['box', 'bench.flat'], opis: 'skrzynia, stopień albo ławka płaska (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
+  lawka: {
+    nazwa: 'ławka regulowana', caps: ['bench.flat', 'bench.incline', 'bench.decline'], fields: ['kat', 'walki'], optionalCaps: [],
+    opis: 'ławka z regulowanym kątem oparcia: płaska, skośna, ujemna (x = zawias, top = wysokość siedziska, kat, dlugosc oparcia, walki na nogi)',
+    capLabel: { 'bench.flat': 'ławka płaska', 'bench.incline': 'ławka skośna (głową wyżej)', 'bench.decline': 'ławka ujemna (głową niżej)' },
+    capNeed: { 'bench.flat': `kat ${BENCH_KAT.flat[0]}…${BENCH_KAT.flat[1]}°`, 'bench.incline': `kat ${BENCH_KAT.incline[0]}…${BENCH_KAT.incline[1]}°`, 'bench.decline': `kat ${BENCH_KAT.decline[0]}…${BENCH_KAT.decline[1]}°` },
+    capOk: (cap, g) => { const k = g.kat ?? 0; const r = cap === 'bench.flat' ? BENCH_KAT.flat : cap === 'bench.incline' ? BENCH_KAT.incline : cap === 'bench.decline' ? BENCH_KAT.decline : null; return !r || (k >= r[0] && k <= r[1]); },
+    props: g => {
+      const th = rad(g.kat ?? 0); const seatY = g.top ?? ((g.kat ?? 0) < 0 ? BENCH.declineSeat : BENCH.seatTop); const H: [number, number] = [g.x ?? 0, seatY]; const L = g.dlugosc ?? BENCH.backLen;
+      return [{ k: 'bench', seatFrom: [H[0] + BENCH.seatLen, seatY], hinge: H, backTo: [H[0] - Math.cos(th) * L, H[1] + Math.sin(th) * L], legH: seatY, ...(g.walki ? { rollers: true } : {}) }];
+    },
+    contacts: () => BENCH_CONTACTS,
+    check: g => [
+      ...(g.kat !== undefined && (g.kat < BENCH_KAT.min || g.kat > BENCH_KAT.max) ? [`sprzęt: kąt ławki kat = ${g.kat}° poza przedziałem ${BENCH_KAT.min}…${BENCH_KAT.max}°`] : []),
+      ...(g.top !== undefined && (g.top < 20 || g.top > 80) ? [`sprzęt: wysokość siedziska top = ${g.top} cm poza przedziałem 20–80 cm`] : []),
+      ...(g.dlugosc !== undefined && (g.dlugosc < 30 || g.dlugosc > 120) ? [`sprzęt: długość oparcia dlugosc = ${g.dlugosc} cm poza przedziałem 30–120 cm`] : []),
+    ],
+    ref: () => {
+      const hip = (deg: number, top?: number): { hip: V3; pitch: number; sh: V3; head: V3 } => {
+        const th = rad(deg); const seatY = top ?? (deg < 0 ? BENCH.declineSeat : BENCH.seatTop); const h: V3 = [BENCH.padBack * Math.sin(th), seatY + BENCH.padBack * Math.cos(th), 0];
+        const d: V3 = [-Math.cos(th), Math.sin(th), 0]; return { hip: h, pitch: deg - 90, sh: add(h, mul(d, BODY.trunk)), head: add(h, mul(d, BODY.trunk + BODY.neckUp + BODY.headFromC7)) };
+      };
+      const row = (deg: number): string => { const q = hip(deg); const feet = deg < 0 ? `kostki [${f1(q.hip[0] + 44)}, ${f1(BENCH.declineSeat + 6)}, ±${BENCH.footHalf}] (stopy pod wałkami)` : `kostki [${f1(q.hip[0] + BENCH.footBack)}, ${f1(BODY.ankleH)}, ±${BENCH.footHalf}] (stopy na podłodze)`; return `kat ${deg}°: miednica [${f1(q.hip[0])}, ${f1(q.hip[1])}, 0], pochylenieTulowia ${q.pitch}, bark [${f1(q.sh[0])}, ${f1(q.sh[1])}], środek głowy [${f1(q.head[0])}, ${f1(q.head[1])}] (pochylenieGlowy = pochylenieTulowia), ${feet}`; };
+      return [
+        `lawka: ławka z regulowanym oparciem. Zawias (styk siedziska i oparcia) w x (domyślnie 0) na wysokości top (siedzisko ${BENCH.seatTop} cm; ławka ujemna ${BENCH.declineSeat} cm); siedzisko biegnie od zawiasu o ${BENCH.seatLen} cm w stronę +x (stopy), oparcie o dlugosc (domyślnie ${BENCH.backLen}) cm w stronę −x pod kątem kat od poziomu: 0 = płaska, dodatni = skos (głowa wyżej), ujemny = ławka ujemna (głowa niżej). Pole kat: ławka płaska ${BENCH_KAT.flat[0]}…${BENCH_KAT.flat[1]}°, skośna ${BENCH_KAT.incline[0]}…${BENCH_KAT.incline[1]}°, ujemna ${BENCH_KAT.decline[0]}…${BENCH_KAT.decline[1]}° — kąt musi odpowiadać możliwości katalogu ćwiczenia (płaska/skośna/ujemna). Szerokość ${EQUIP.benchW} cm (z = ±${EQUIP.benchW / 2}).`,
+        `lawka walki: true = wałki na nogi (ławka ujemna): wałek o promieniu ${f1(EQUIP.rollerR)} cm nad kostkami przy końcu siedziska (stopy pod wałkami: kostki ${BENCH.declineSeat + 6} cm nad podłogą, nogi nie przenikają wałka).`,
+        `OSOBA LEŻĄCA NA ŁAWCE (głowa w stronę −x, stopy +x): miednica = zawias + ${BENCH.padBack} cm w kierunku normalnej do oparcia = [x + ${BENCH.padBack}·sin(kat), top + ${BENCH.padBack}·cos(kat), 0]; pochylenieTulowia = kat − 90; bark = miednica + ${BODY.trunk}·[−cos(kat), sin(kat)]; pochylenieGlowy = pochylenieTulowia (głowa na oparciu). Wartości wyliczone z modelu: ${row(0)}; ${row(30)}; ${row(-15)}.`,
+        `lawka, kontakty: plecy, miednica, uda i głowa mogą dotykać ławki (przenikanie do 1,5 cm), ramię do 6 cm, przedramię do 2,5 cm; sztanga na klatce: tułów do 2,6 cm, ramię do 2,2 cm — głębiej odrzucane. Ławka nie ma kolidera poza siedziskiem i oparciem (dwa graniastosłupy).`,
+      ];
+    },
+  },
+  skrzynia: { nazwa: 'skrzynia albo stopień', caps: ['box'], opis: 'skrzynia albo stopień (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
   hantel: {
     nazwa: 'hantle',
     caps: ['db', 'farmers_handles'], fields: ['promien', 'pionowo'], opis: 'hantel trzymany w dłoni; uchwyty farmerskie rysujemy jak hantle z dużym promieniem (trzyma, promien, pionowo)',

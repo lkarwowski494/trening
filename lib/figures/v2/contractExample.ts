@@ -39,6 +39,7 @@ const gearOf = (f: Frame): Gear[] => f.props.flatMap((p): Gear[] => {
   if (p.k === 'barbell') return [{ rodzaj: 'sztanga', talerze: p.plates !== false, podazaZaChwytem: true, dlugosc: p.len ?? 220 }];
   if (p.k === 'floor') return [{ rodzaj: 'podloga', x0: p.x0, x1: p.x1 }];
   if (p.k === 'box') return [{ rodzaj: 'skrzynia', x0: p.x0, x1: p.x1, top: p.top }];
+  if (p.k === 'bench') return [{ rodzaj: 'lawka', x: r2(p.hinge[0]), top: r2(p.seatFrom[1]), kat: r2(Math.atan2(p.backTo[1] - p.hinge[1], p.hinge[0] - p.backTo[0]) * 180 / Math.PI), dlugosc: r2(Math.hypot(p.backTo[0] - p.hinge[0], p.backTo[1] - p.hinge[1])) }];
   return [];
 });
 const MARK = (e: ErrorId): DataError['znacznik'] => ERRORS[e].mark;

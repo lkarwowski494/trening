@@ -4,7 +4,7 @@
  */
 import { distSegSeg, dist, sub, type V2, type V3 } from './math';
 import { BODY, GIRTH, SIDES, soleY, type Skeleton } from './skeleton';
-import { benchPolys, EQUIP } from './draw';
+import { benchPolys, rollerAt, EQUIP } from './draw';
 import type { Collider, Frame, Prop } from './scene';
 
 export const TOL = {
@@ -69,7 +69,7 @@ export function equipColliders(props: Prop[]): Collider[] {
       case 'tower': if (p.solid) c.push(prism('tower', rectPoly(p.x - EQUIP.towerW / 2, 0, p.x + EQUIP.towerW / 2, p.h), p.z - EQUIP.towerW / 2, p.z + EQUIP.towerW / 2)); break;
       case 'ball': c.push({ k: 'capsule', id: 'ball', a: p.c, b: p.c, r: p.r ?? EQUIP.medBallR }); break;
       case 'plate': c.push(...plateColliders(p)); break;
-      case 'bench': { const bp = benchPolys(p); const w = (p.w ?? EQUIP.benchW) / 2; c.push(prism('benchSeat', bp.seat, -w, w), prism('benchBack', bp.back, -w, w)); break; }
+      case 'bench': { const bp = benchPolys(p); const w = (p.w ?? EQUIP.benchW) / 2; c.push(prism('benchSeat', bp.seat, -w, w), prism('benchBack', bp.back, -w, w)); if (p.rollers) { const r = rollerAt(p); c.push({ k: 'capsule', id: 'benchRoller', a: [r[0], r[1], -EQUIP.rollerHalf], b: [r[0], r[1], EQUIP.rollerHalf], r: EQUIP.rollerR }); } break; }
       case 'box': { const w = (p.w ?? EQUIP.boxW) / 2; c.push(prism('box', rectPoly(p.x0, 0, p.x1, p.top), -w, w)); break; }
       case 'wall': c.push(prism('wall', p.front ? rectPoly(p.x, 0, p.x + EQUIP.wallW, p.h) : rectPoly(p.x - EQUIP.wallW, 0, p.x, p.h), -100, 100)); break;
       case 'mat': c.push(prism('mat', rectPoly(p.x0, 0, p.x1, p.h), -60, 60)); break;

@@ -4,8 +4,8 @@
  * sprzętem (macierz: rodzaj × wariant), komunikaty dla generatora. Rodzaje (docs/20): logika, ekran-rysunek, scenariusze, macierz, niezmienniki, dane, motywy.
  */
 import {
-  GEAR, GEAR_KINDS, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, CABLE_ATTACH, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
-  CONTRACT, EQUIP, poseSchema, describeContract, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
+  GEAR, GEAR_KINDS, BENCH_KAT, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, CABLE_ATTACH, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
+  CONTRACT, EQUIP, BENCH, exampleFor, figureSpec, frameAt, rollerAt, poseSchema, describeContract, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
   type Gear, type KeyFrame, type PoseData, type Prop, type V3, type RomData, type Frame, type View,
 } from '@/lib/figures/v2';
 import { FIG_DATA } from '@/lib/figures';
@@ -35,7 +35,9 @@ const PUSHDOWN = (sp: Gear): PoseData => pose('triceps', 'Triceps Pushdown', [sp
 const CABLECURL = (sp: Gear): PoseData => pose('curl', 'Cable Curl', [sp], [two(0, ...sym(18, 80, 20)), two(1, ...sym(25, 125, 20))]);
 const FLY = (sp: Gear): PoseData => pose('chest_fly', 'Cable Fly', [sp], [two(0, ...sym(5, 130, 55)), two(1, ...sym(35, 120, 8))]);
 const STRAP = (sp: Gear): PoseData => pose('glute_floor', 'Cable Reverse Crunch', [sp], [two(0, ...sym(0, 76, 27)), { ...two(1, ...sym(0, 76, 27)), nogi: { R: { kostka: [25, 40, 9] }, L: { kostka: [0, 7, -9] } } }]);
+const EXAMPLE = (key: string, walki = false): PoseData => { const d = exampleFor(key)!; if (walki) d.sprzet = d.sprzet.map(g => g.rodzaj === 'lawka' ? { ...g, walki: true } : g); return d; };
 const MATRIX: [string, PoseData][] = [
+  ['ławka płaska: wyciskanie leżąc (przykład z rigu)', EXAMPLE('Bench Press (sztanga)')], ['ławka skośna: wyciskanie na skosie (przykład z rigu)', EXAMPLE('Incline Bench Press (sztanga)')], ['ławka ujemna: wyciskanie na ławce ujemnej', EXAMPLE('Decline Bench Press')], ['ławka ujemna z wałkami na nogi', EXAMPLE('Decline Bench Press', true)],
   ['wyciąg wysoki z liną (pushdown)', PUSHDOWN({ rodzaj: 'wyciag', x: 45, y: 220, chwyt: 'lina' })], ['wyciąg wysoki z uchwytem', PUSHDOWN({ rodzaj: 'wyciag', x: 45, y: 220 })], ['wyciąg niski z drążkiem (curl)', CABLECURL({ rodzaj: 'wyciag', x: 60, y: 20, chwyt: 'drazek' })],
   ['dwa wyciągi (rozpiętki)', FLY({ rodzaj: 'wyciag', x: -10, y: 130, dwa: true, z: 80 })], ['opaska na kostkę (jedna noga)', STRAP({ rodzaj: 'wyciag', x: 60, y: 20, chwyt: 'kostka', trzyma: 'R' })],
   ['łańcuchy na sztandze (martwy ciąg z łańcuchami)', RACKPULL([{ rodzaj: 'lancuchy' }])], ['łańcuchy w dłoniach (bez sztangi)', pose('triceps', 'Chain Handle Extension', [{ rodzaj: 'lancuchy' }], [two(0, ...sym(0, 76, 27)), two(1, ...sym(20, 125, 21))])],
@@ -53,11 +55,11 @@ const MATRIX: [string, PoseData][] = [
 
 describe('rejestr rodzajów sprzętu (gear.ts)', () => {
   test('GEAR: osiem rodzajów; każdy ma wpis w rejestrze z opisem i rekwizytem; możliwości katalogu pokryte przez rejestr', () => {
-    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag']);
+    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka']);
     for (const k of GEAR) { expect(GEAR_KINDS[k].opis.length).toBeGreaterThan(10); expect(typeof GEAR_KINDS[k].props).toBe('function'); }
-    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains', 'cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.row_seat', 'lat_pulldown', 'ankle_strap', 'cable.handles', 'cable.rope']));
+    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains', 'cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.row_seat', 'lat_pulldown', 'ankle_strap', 'cable.handles', 'cable.rope', 'bench.flat', 'bench.incline', 'bench.decline']));
     expect(new Set(GEAR_CAPS).size).toBe(GEAR_CAPS.length); /* każda możliwość ma jeden rodzaj */
-    expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
+    expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
   });
   test('punkty odniesienia (ref) mają liczby z EQUIP i nazwy pól; rodzaje bez ref (stare) nie mają go', () => {
     for (const k of ['hantel', 'kettlebell', 'talerz', 'pilka_lekarska'] as const) { const r = GEAR_KINDS[k].ref?.().join(' ') ?? ''; expect(r).toContain(k === 'pilka_lekarska' ? 'pilka_lekarska' : k); expect(r).toMatch(/\d/); }
@@ -140,6 +142,36 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
     expect(w([['sled']], [])).toEqual([]); expect(w([['sled', 'db']], [])).toEqual(['sprzęt: ćwiczenie wymaga: hantle (rodzaj „hantel”), a sprzet[] tego nie zawiera']); /* grupa z możliwością w rejestrze liczy się, reszta bez rodzaju nie pomaga */
     expect(w([['landmine'], ['barbell']], [{ rodzaj: 'landmine' }])).toEqual(['sprzęt: ćwiczenie wymaga: sztanga albo drążek (rodzaj „sztanga”), a sprzet[] tego nie zawiera']); expect(w([['pullup.bar', 'rings']], [])).toEqual(['sprzęt: ćwiczenie wymaga: sztanga albo drążek (rodzaj „sztanga”), a sprzet[] tego nie zawiera']); /* ta sama nazwa raz */
     expect(w([['rack'], ['rack.safeties']], [])).toEqual([]);
+  });
+  test('ławka: rekwizyt z kąta — płaska (kat 0), skośna (głowa wyżej), ujemna (siedzisko 60 cm, głowa niżej); x, top, dlugosc, walki; domyślne wymiary z BENCH', () => {
+    const b = (g: Partial<Gear>) => propsFrom([{ rodzaj: 'lawka', ...g }], G)[0] as Extract<Prop, { k: 'bench' }>;
+    expect(b({})).toEqual({ k: 'bench', seatFrom: [BENCH.seatLen, BENCH.seatTop], hinge: [0, BENCH.seatTop], backTo: [-BENCH.backLen, BENCH.seatTop], legH: BENCH.seatTop });
+    const inc = b({ kat: 30, x: 10 }); expect(inc.hinge).toEqual([10, 43]); expect(inc.backTo[0]).toBeCloseTo(10 - Math.cos(Math.PI / 6) * 75, 9); expect(inc.backTo[1]).toBeCloseTo(43 + 37.5, 9);
+    const dec = b({ kat: -15 }); expect(dec.hinge[1]).toBe(BENCH.declineSeat); expect(dec.backTo[1]).toBeLessThan(BENCH.declineSeat); expect(b({ kat: -15, top: 50 }).hinge[1]).toBe(50);
+    expect(b({ dlugosc: 60 }).backTo[0]).toBeCloseTo(-60, 9); expect(b({ walki: true }).rollers).toBe(true); expect(b({}).rollers).toBeUndefined(); expect(contactsFrom([{ rodzaj: 'lawka' }]).length).toBe(12);
+  });
+  test('ławka = ława z rigu: dane przykładu (gearOf) odtwarzają rekwizyt ławki rigu (płaska, skośna, ujemna; ≤ 0,01 cm)', () => {
+    for (const key of ['Bench Press (sztanga)', 'Incline Bench Press (sztanga)', 'Decline Bench Press']) {
+      const rig = frameAt(figureSpec(key)!, 0).props.find(p => p.k === 'bench') as Extract<Prop, { k: 'bench' }>; const d = exampleFor(key)!; const g = d.sprzet.find(x => x.rodzaj === 'lawka'); expect(g).toBeDefined();
+      const dat = keyframeFrame(d, 0).props.find(p => p.k === 'bench') as Extract<Prop, { k: 'bench' }>;
+      for (const [a, c] of [[dat.hinge, rig.hinge], [dat.seatFrom, rig.seatFrom], [dat.backTo, rig.backTo]] as const) { expect(Math.abs(a[0] - c[0])).toBeLessThan(0.01); expect(Math.abs(a[1] - c[1])).toBeLessThan(0.01); }
+    }
+  });
+  test('ławka: capOk wg zakresów kąta (płaska ±5°, skośna ≥ 10°, ujemna ≤ −5°); requiredGearIssues odróżnia rodzaje ławek', () => {
+    const ok = (cap: string, kat?: number) => GEAR_KINDS.lawka.capOk!(cap, { rodzaj: 'lawka', kat });
+    expect(BENCH_KAT).toEqual({ min: -45, max: 90, flat: [-5, 5], incline: [10, 90], decline: [-45, -5] });
+    expect([ok('bench.flat', 0), ok('bench.flat', 4), ok('bench.flat', 30), ok('bench.incline', 30), ok('bench.incline', 5), ok('bench.decline', -15), ok('bench.decline', 0), ok('bench.flat', undefined)]).toEqual([true, true, false, true, false, true, false, true]);
+    expect(requiredGearIssues([['bench.incline']], [{ rodzaj: 'lawka', kat: 0 }])).toEqual(['sprzęt: ćwiczenie wymaga: ławka skośna (głową wyżej) (rodzaj „lawka”, kat 10…90°), a sprzet[] tego nie zawiera']);
+    expect(requiredGearIssues([['bench.incline', 'bench.flat']], [{ rodzaj: 'lawka', kat: 0 }])).toEqual([]); expect(requiredGearIssues([['bench.flat']], [{ rodzaj: 'skrzynia' }]).length).toBe(1); /* skrzynia nie jest już ławką */
+  });
+  test('ławka: pola — kąt, wysokość siedziska, długość oparcia; wałki: rysunek w trzech widokach i kolider (kapsuła wzdłuż z); ciało pod wałkiem przenika', () => {
+    expect(gearFieldIssues({ rodzaj: 'lawka', kat: 100 })).toEqual(['sprzęt: kąt ławki kat = 100° poza przedziałem -45…90°']); expect(gearFieldIssues({ rodzaj: 'lawka', top: 10 })).toEqual(['sprzęt: wysokość siedziska top = 10 cm poza przedziałem 20–80 cm']);
+    expect(gearFieldIssues({ rodzaj: 'lawka', dlugosc: 10 })).toEqual(['sprzęt: długość oparcia dlugosc = 10 cm poza przedziałem 30–120 cm']); expect(gearFieldIssues({ rodzaj: 'sztanga', kat: 10 })).toEqual(['sprzęt: pole „kat” nie dotyczy rodzaju „sztanga”']);
+    const bp = propsFrom([{ rodzaj: 'lawka', kat: -15, walki: true }], G)[0] as Extract<Prop, { k: 'bench' }>; for (const v of ['side', 'front', 'top'] as View[]) expect(propShapes([bp], v).map(x => x.id)).toContain('benchRoller');
+    expect(propShapes([{ ...bp, rollers: undefined }], 'side').map(x => x.id)).not.toContain('benchRoller'); const r = rollerAt(bp); expect(r).toEqual([BENCH.seatLen + EQUIP.rollerDx, BENCH.declineSeat + EQUIP.rollerDy]);
+    const cap = equipColliders([bp]).find(c => c.id === 'benchRoller') as Extract<ReturnType<typeof equipColliders>[number], { k: 'capsule' }>; expect(cap).toMatchObject({ a: [r[0], r[1], -EQUIP.rollerHalf], b: [r[0], r[1], EQUIP.rollerHalf], r: EQUIP.rollerR });
+    const hi = EXAMPLE('Decline Bench Press', true); for (const k of hi.klatki) for (const sd of ['R', 'L'] as const) k.nogi[sd].kostka = [k.nogi[sd].kostka[0] + 3, k.nogi[sd].kostka[1] + 9, k.nogi[sd].kostka[2]]; expect(texts(hi)).toMatch(/\[geometria\] (shank|foot)[RL] × benchRoller: przenikanie/); /* stopy wyżej niż wałki: nogi w wałku */
+    expect(texts(EXAMPLE('Decline Bench Press', true))).toBe('');
   });
   test('stary sprzęt bez zmian: sztanga podąża za chwytem, słupek, podłoga, skrzynia', () => {
     expect(propsFrom([{ rodzaj: 'sztanga', podazaZaChwytem: true }, { rodzaj: 'slupek', x: 5, h: 100 }, { rodzaj: 'skrzynia', x0: 1, x1: 2, top: 30 }, { rodzaj: 'podloga' }], G).map(p => p.k)).toEqual(['barbell', 'post', 'box', 'floor']);

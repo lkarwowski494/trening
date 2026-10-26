@@ -27,7 +27,7 @@ export type Prop =
   | { k: 'kettlebell'; c: V3; side?: 'R' | 'L' | 'C'; r?: number; held?: boolean; bell?: 'down' | 'along' | 'back'; dir?: V3 } /* kettlebell: środek rączki; dir = wersor od rączki do środka dzwonu (domyślnie w dół; bell: tryb wyznaczany ze szkieletu) */
   | { k: 'plate'; c: V3; r?: number; held?: boolean | 'R' | 'L' }                                           /* talerz trzymany: tarcza w płaszczyźnie y–z (powierzchnią do przodu), środek */
   | { k: 'ball'; c: V3; r?: number; held?: boolean | 'R' | 'L' }                                            /* piłka lekarska: kula, środek */
-  | { k: 'bench'; seatFrom: V2; hinge: V2; backTo: V2; legH: number; w?: number }              /* ławka: siedzisko od-do, zawias, koniec oparcia */
+  | { k: 'bench'; seatFrom: V2; hinge: V2; backTo: V2; legH: number; w?: number; rollers?: boolean }              /* ławka: siedzisko od-do, zawias, koniec oparcia */
   | { k: 'box'; x0: number; x1: number; top: number; w?: number }
   | { k: 'wall'; x: number; h: number; front?: boolean }                                      /* ściana: lita po stronie −x od powierzchni x (za osobą); front: lita po stronie +x (przed osobą; w widoku z przodu przekrój) */
   | { k: 'rail'; x: number; h: number }                                                        /* prowadnica suwnicy Smitha (pionowa) */
