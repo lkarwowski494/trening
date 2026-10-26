@@ -283,7 +283,7 @@
   "idle": "Empieza un entrenamiento en el teléfono",
   "finished": "Entrenamiento terminado",
   "update": "Actualiza la app del reloj",
-  "finishOnPhone": "Termina el entrenamiento en el teléfono",
+  "finishOnPhone": "Termina el entrenamiento en tu celular",
   "finish": "Terminar serie",
   "workoutOn": "Entrenamiento aún en curso"
  },
@@ -373,7 +373,7 @@
   "idle": "Avvia un allenamento sul telefono",
   "finished": "Allenamento terminato",
   "update": "Aggiorna l’app dell’orologio",
-  "finishOnPhone": "Termina l'allenamento sul telefono",
+  "finishOnPhone": "Termina l’allenamento sul telefono",
   "finish": "Termina serie",
   "workoutOn": "Allenamento ancora in corso"
  },
@@ -391,7 +391,7 @@
   "idle": "Start een training op de telefoon",
   "finished": "Training beëindigd",
   "update": "Werk de app op het horloge bij",
-  "finishOnPhone": "Rond de training af op de telefoon",
+  "finishOnPhone": "Rond de training af op je telefoon",
   "finish": "Rond set af",
   "workoutOn": "Training loopt nog"
  },

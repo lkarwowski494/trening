@@ -128,7 +128,7 @@ describe('niezmiennik: brak oznaczeń pewności w tekstach UI', () => {
     expect(del).toContain('Deload zwykle co {a}–{b} tygodni — to częsta praktyka, nie sztywna reguła.'); expect(EN[del]).toContain('that is common practice, not a fixed rule.');
     for (const x of [freq, del, EN[freq], EN[del]]) expect([x.slice(0, 40), BAD(x)]).toEqual([x.slice(0, 40), false]);
     for (const k of [freq, del]) {
-      expect([k.slice(0, 30), PENDING.some(p => p.rodzaj === 'zmieniony' && p.pl === k && !!p.poprzedni_pl)]).toEqual([k.slice(0, 30), true]);
+      const czeka = PENDING.find(p => p.pl === k); expect([k.slice(0, 30), !czeka || (czeka.rodzaj === 'zmieniony' && !!czeka.poprzedni_pl)]).toEqual([k.slice(0, 30), true]); /* po przekładzie (26.10.2026) wpisu w zestawie już nie ma */
       for (const l of LANGS) if (l !== 'pl' && l !== 'en' && l !== 'es-419' && l !== 'pt-BR') expect([l, typeof (LOCALES[l] ?? {})[k]]).toEqual([l, 'string']); /* stare tłumaczenie pod nowym kluczem do czasu przekładu */
     }
   });
