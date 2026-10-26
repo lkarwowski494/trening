@@ -6,12 +6,13 @@ import { kostkaNaPalcach } from './model.mjs';
 import { P, Q, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, kostkaZBiodra, biodroZKostki, wyjatkiOpisu } from './dyn.mjs';
 
 export const RODZINA = 'plyo';
-const BOCZNY = 'przesunięcie boczne ciała jest niewyrażalne w modelu figury: miednica.z nie przesuwa stawów biodrowych i barków (skeleton: biodra ±8,5 cm, barki ±19 cm od płaszczyzny symetrii), a zasięg nóg (83 cm) nie pozwala wynieść stopy na bok poza biodro; w widoku bocznym ruch byłby skokiem pionowym (zmieniony sens). Wymaga rozszerzenia modelu (przesunięcie boczne korzenia) — zgłoszone koordynatorowi';
 export const WYJATKI = {
-  'Lateral Cone Hops': BOCZNY, 'Side Hop-Sprint': BOCZNY, 'Side Standing Long Jump': BOCZNY, 'Lateral Bound': BOCZNY, 'Single-Leg Lateral Hop': BOCZNY, 'Lateral Box Jump': BOCZNY, 'Side to Side Box Shuffle': BOCZNY,
   'Kneeling Jump Squat': 'ćwiczenie otwarte: brak wskazówek i źródła ruchu (data/zrodla/figury-sens.json → plyo.otwarte); poza wróci po opisie ruchu przez badacza',
 };
 export const PRZYBLIZENIA = {
+  'Side to Side Box Shuffle': 'jedno przejście z podłogi na niski stopień z boku (seria naprzemienna = powtórzenia)',
+  'Lateral Bound': 'jeden skok boczny jednonóż; lądowanie na tej samej nodze, wolna noga uniesiona',
+  'Side Hop-Sprint': 'sam skok boczny; sprint po lądowaniu poza zakresem rysunku',
   'Alternate Leg Diagonal Bound': 'skok z zamianą nóg w płaszczyźnie strzałkowej (odbicie jedną nogą, lądowanie na drugiej); ukośny tor ciała niewidoczny — model nie przesuwa miednicy w bok',
   'Alternate Leg Push-Off': 'przy lądowaniu na drugiej nodze pierwsza zostaje z tyłu (jeden skok zamiast serii naprzemiennej)',
   'Box Skip': 'wolna noga uniesiona przez cały ruch (skip jako jeden skok jednonóż na skrzynię)',
@@ -26,7 +27,7 @@ const Z = (a) => ({ z: 19, ...a });
 const ARM0 = { stoj: { psi: -95, th: 22 }, tyl: { psi: -105, th: 22 }, gora: { psi: 60, th: 20 }, gora2: { psi: 62, th: 20 }, przod: { psi: -10, th: 20 }, przod2: { psi: -25, th: 25 } };
 const ARM = Object.fromEntries(Object.entries(ARM0).map(([k, v]) => [k, Z(v)]));
 const SPR = (...extra) => [PODLOGA(-130, 290), ...extra];
-const BOX = (x0, x1, top) => ({ rodzaj: 'skrzynia', x0, x1, top });
+const BOX = (x0, x1, top, z) => ({ rodzaj: 'skrzynia', x0, x1, top, ...(z !== undefined ? { z } : {}) });
 
 /**
  * Punkty zwrotne skoku obunóż. o: { x0, dx (przesunięcie w x), top (wysokość lądowania), top0 (start), dip { k, al, pitch }, H (wzniesienie kostki ponad wybicie), lot: 'prosty' | 'kolana' | 'pieta' | 'rozkrok',
@@ -43,12 +44,12 @@ function punktyZwrotne(o) {
     { A: [x0, top0 + 7], al: 3, k: 12, pod: 0, pitch: 0, ra: a.stoj, ...L([x0, top0 + 7]), zo: 0 },
     { A: [x0, top0 + 7], al: dip.al, k: dip.k, pod: 0, pitch: dip.pitch, ra: a.tyl, ...L([x0, top0 + 7]), zo: 0 },
     { A: [x0 + 2, lyP], al: 10, k: 10, pod: -45, pitch: lean, ra: a.gora, ...L([x0, lyP]), zo: 0 },
-    { A: [(x0 + x1) / 2, apexY], al: lot.al, k: lot.k, pod: lot.pod, pitch: lot.pitch, ra: a.gora2, ...L([(x0 + x1) / 2, apexY]), zo: zo1 / 2 },
-    { A: [x1, top + yP(-12) + 0.5], al: 8, k: kLad, pod: -12, pitch: 10, ra: a.przod, ...L([x1, top + 8]), zo: zo1 },
+    { A: [(x0 + x1) / 2, apexY], al: lot.al, k: lot.k, pod: lot.pod, pitch: lot.pitch, ra: a.gora2, ...L([(x0 + x1) / 2, apexY]), zo: zo1 * (o.zoApex ?? 0.5) },
+    { A: [x1, top + yP(-12) + (o.lad ?? 0.5)], al: 8, k: kLad, pod: -12, pitch: 10, ra: a.przod, ...L([x1, top + 8]), zo: zo1 },
     { A: [x1, top + 7], al: alAm, k: kAm, pod: 0, pitch: pAm, ra: a.przod2, ...L([x1, top + 7]), zo: zo1 },
   ];
   if (kopnij) { const w = W[3]; const hip = biodroZKostki(w.A, -90 - w.al + w.k, w.k); const k = kostkaZBiodra(hip, 100, 100); w.AL = [k[0] - 8, k[1] + 0]; w.podL = -90; }
-  W.forEach((w) => { w.zR = 12; w.zL = 12; });
+  W.forEach((w) => { w.zR = 12; w.zL = 12; if (o.bocz) w.bocz = true; });
   if (o.lot === 'rozkrok') { W[3].zR = 30; W[3].zL = 30; W[3].k = 40; W[3].ra = { psi: 55, th: 45, z: 36 }; }
   return W;
 }
@@ -158,6 +159,15 @@ export function generuj() {
   G['Box Skip'] = () => skok({ cw: 'Box Skip', single: true, x0: 0, dx: 70, top: 40, sprzet: box(40, 40, 110), H: 22, dip: { k: 70, al: 22, pitch: 22 }, kAmort: 70, pitchAmort: 22 });
   G['Single-Leg Stride Jump'] = () => skok({ cw: 'Single-Leg Stride Jump', single: true, x0: 0, dx: 80, top: 40, sprzet: box(40, 45, 115), H: 28 });
   G['Weighted Jump Squat'] = () => skok({ cw: 'Weighted Jump Squat', sprzet: SPRZET_SZTANGA(), ramiona: { stoj: SZTANGA_PLECY, tyl: SZTANGA_PLECY, gora: SZTANGA_PLECY, gora2: SZTANGA_PLECY, przod: SZTANGA_PLECY, przod2: SZTANGA_PLECY }, blad: jm, H: 20 });
+  /* Ruchy boczne (poza@2, przesuniecieBoczne): zo = przesunięcie korzenia w bok (cm; + = ku prawej stronie osoby), kostki i chwyty w świecie. */
+  const bok = (cw, o) => () => skok({ cw, bocz: true, blad: jm, ...o });
+  G['Lateral Cone Hops'] = bok('Lateral Cone Hops', { zo: 55, H: 14, dip: { k: 60, al: 20, pitch: 20 }, ramiona: { gora: { psi: 10, th: 45 }, gora2: { psi: 15, th: 45 }, tyl: { psi: -95, th: 40 }, stoj: { psi: -90, th: 35 }, przod: { psi: -40, th: 40 }, przod2: { psi: -45, th: 40 } } });
+  G['Side Hop-Sprint'] = bok('Side Hop-Sprint', { zo: 60, H: 16, dip: { k: 70, al: 22, pitch: 26 } });
+  G['Side Standing Long Jump'] = bok('Side Standing Long Jump', { zo: 110, H: 22, dip: { k: 80, al: 25, pitch: 40 }, ramiona: { stoj: { psi: -95, th: 30 }, tyl: { psi: -100, th: 30 }, gora: { psi: 30, th: 25 }, gora2: { psi: 35, th: 25 } } });
+  G['Lateral Bound'] = bok('Lateral Bound', { single: true, zo: 90, H: 22, dip: { k: 70, al: 22, pitch: 24 }, kAmort: 70, pitchAmort: 24 });
+  G['Single-Leg Lateral Hop'] = bok('Single-Leg Lateral Hop', { single: true, zo: 45, H: 16, dip: { k: 60, al: 20, pitch: 20 }, kAmort: 60, pitchAmort: 20 });
+  G['Lateral Box Jump'] = bok('Lateral Box Jump', { zo: 55, top: 40, sprzet: SPR(BOX(-25, 25, 40, 55)), H: 36, zoApex: 0.4 });
+  G['Side to Side Box Shuffle'] = bok('Side to Side Box Shuffle', { zo: 55, top: 12, H: 20, sprzet: SPR(BOX(-25, 25, 12, 55)), dip: { k: 60, al: 20, pitch: 20 } });
   G['Alternate Leg Push-Off'] = () => pushOff('Alternate Leg Push-Off', { alt: true });
   G['Single Leg Push-Off'] = () => pushOff('Single Leg Push-Off', { alt: false });
   G['Split Jump'] = () => rozkrok('Split Jump', { diag: false });

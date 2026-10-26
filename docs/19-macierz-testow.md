@@ -193,7 +193,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | np. samopoczucie, ból, sprzęt | app/history/edit/[id].tsx | tests/matrix-ui.test.tsx |
 | O aplikacji | app/(tabs)/more.tsx | tests/audit-0.10-data-ui.test.tsx, tests/public-repo.test.ts, tests/release-0.17.test.tsx +2 |
 | Obciążenie partii (z katalogu) | app/exercise/[id].tsx | tests/catalog-v2.test.ts |
-| od | components/LoadEditor.tsx | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +327 |
+| od | components/LoadEditor.tsx | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +328 |
 | Odhacz bez pomiaru | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx, tests/matrix-tuleja.test.tsx |
 | Odhacz bez pomiaru: {ex}, seria {n} | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/m3-p2-board-ui.test.tsx |
 | Odrzuć | components/ActiveWorkout.tsx | tests/audit-0.10-live.test.tsx, tests/audit-0.10-ui.test.tsx, tests/audit-close2-a.test.tsx +11 |
@@ -881,7 +881,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | nic więcej do zrobienia | lib/live.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx, tests/voice.test.ts +4 |
 | Nic więcej do zrobienia — możesz zakończyć trening. | lib/timer.ts | tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
 | Nic więcej do zrobienia (część pominięta) | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx, tests/skip-today.test.tsx |
-| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +318 |
+| nie | app/exercise/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +319 |
 | Nie ma nowych treningów do dodania — wszystkie są już w historii. | app/more/import.tsx | tests/csv-import-ui.test.tsx |
 | Nie ma takiego ćwiczenia. | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | Nie ma takiego miejsca. | app/more/location/[id].tsx | tests/matrix-ui.test.tsx |
@@ -1459,7 +1459,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | zakładka, {i} z {n} | app/(tabs)/_layout.tsx | tests/matrix-a11y.test.tsx, tests/motyw.test.tsx, tests/regress.test.tsx +3 |
 | Zakończ trening na telefonie | lib/watch/labels.ts | tests/watch-last-rest.test.ts, tests/watch-protocol.test.ts |
 | Zakończyć trening? | components/ActiveWorkout.tsx | tests/adapt-scenario.test.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst-ui.test.tsx +28 |
-| zakres | app/template/[id].tsx | tests/architecture-limits.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-tst-ui.test.tsx +27 |
+| zakres | app/template/[id].tsx | tests/architecture-limits.test.ts, tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-tst-ui.test.tsx +28 |
 | Zakres dat: {a} – {b} | app/more/import.tsx | tests/csv-import-ui.test.tsx, tests/slownik-terminow.test.ts |
 | Zakres jest niepoprawny: „do” musi być ≥ „od”, krok > 0, wartości od {a} do {b}. | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
 | Zakres jest niepoprawny: „max” musi być ≥ „min”, krok > 0. Ciężary nie są liczone. | components/LoadEditor.tsx | tests/matrix-ui.test.tsx |
@@ -1744,7 +1744,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/geom.norm | lib/figures/geom.ts | tests/figures-v2-engine.test.ts, tests/figures.test.tsx, tests/intro.test.tsx +1 |
 | figures/geom.rawPoints | lib/figures/geom.ts | tests/figures.test.tsx |
 | figures/geom.posePoints | lib/figures/geom.ts | tests/figures.test.tsx |
-| figures/geom.jointAngles | lib/figures/geom.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +5 |
+| figures/geom.jointAngles | lib/figures/geom.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +6 |
 | figures/geom.toHorizontal | lib/figures/geom.ts | tests/figures.test.tsx |
 | figures/geom.angleAt | lib/figures/geom.ts | tests/figures.test.tsx |
 | figures/geom.lerpPose | lib/figures/geom.ts | tests/figures.test.tsx |
@@ -1790,16 +1790,16 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/contract.templateFor | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts |
 | figures/v2/contract.knownFamily | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.gearText | lib/figures/v2/contract.ts | tests/figures-v2-gear.test.ts |
-| figures/v2/contract.poseSchema | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts |
+| figures/v2/contract.poseSchema | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +1 |
 | figures/v2/contract.checkSchema | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
-| figures/v2/contract.poseAt | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts |
-| figures/v2/contract.deltaAt | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts |
-| figures/v2/contract.applyDelta | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts |
+| figures/v2/contract.poseAt | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts, tests/figures-v2-przesuniecie-boczne.test.ts |
+| figures/v2/contract.deltaAt | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts, tests/figures-v2-przesuniecie-boczne.test.ts |
+| figures/v2/contract.applyDelta | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts, tests/figures-v2-przesuniecie-boczne.test.ts |
 | figures/v2/contract.neutralFootPitch | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
-| figures/v2/contract.toPoseIn | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts |
-| figures/v2/contract.keyframeFrame | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts |
-| figures/v2/contract.validatePose | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts |
-| figures/v2/contract.describeContract | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts |
+| figures/v2/contract.toPoseIn | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts, tests/figures-v2-przesuniecie-boczne.test.ts |
+| figures/v2/contract.keyframeFrame | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +1 |
+| figures/v2/contract.validatePose | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +1 |
+| figures/v2/contract.describeContract | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +1 |
 | figures/v2/contractExample.keyFrameOf | lib/figures/v2/contractExample.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contractExample.deltaOf | lib/figures/v2/contractExample.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contractExample.exampleFor | lib/figures/v2/contractExample.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-zgodnosc-wsteczna.test.ts |
@@ -1861,7 +1861,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/math.mul | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/math.dot | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-poza2.test.ts |
 | figures/v2/math.len | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts +4 |
-| figures/v2/math.dist | lib/figures/v2/math.ts | tests/audit-m1-025-muscle-caption.test.tsx, tests/figures-v2-engine.test.ts, tests/figures-v2-poza2.test.ts +2 |
+| figures/v2/math.dist | lib/figures/v2/math.ts | tests/audit-m1-025-muscle-caption.test.tsx, tests/figures-v2-engine.test.ts, tests/figures-v2-poza2.test.ts +3 |
 | figures/v2/math.norm | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts, tests/figures.test.tsx, tests/intro.test.tsx +1 |
 | figures/v2/math.sag | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/math.sagFront | lib/figures/v2/math.ts | tests/figures-v2-engine.test.ts |
@@ -1897,10 +1897,10 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/skeleton.trunkChord | lib/figures/v2/skeleton.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/skeleton.legJoints | lib/figures/v2/skeleton.ts | tests/figures-v2-engine.test.ts |
 | figures/v2/skeleton.trunkAxes | lib/figures/v2/skeleton.ts | tests/figures-v2-poza2.test.ts |
-| figures/v2/skeleton.hipPoint | lib/figures/v2/skeleton.ts | tests/figures-v2-poza2.test.ts |
-| figures/v2/skeleton.solveSkeleton | lib/figures/v2/skeleton.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-gear.test.ts +1 |
+| figures/v2/skeleton.hipPoint | lib/figures/v2/skeleton.ts | tests/figures-v2-poza2.test.ts, tests/figures-v2-przesuniecie-boczne.test.ts |
+| figures/v2/skeleton.solveSkeleton | lib/figures/v2/skeleton.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-gear.test.ts +2 |
 | figures/v2/skeleton.soleY | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +1 |
-| figures/v2/skeleton.jointAngles | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +5 |
+| figures/v2/skeleton.jointAngles | lib/figures/v2/skeleton.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts +6 |
 | figures/v2/ui.cueIdsOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures.test.tsx |
 | figures/v2/ui.guidesOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-ui.test.tsx |
 | figures/v2/ui.elbowAngleApplies | lib/figures/v2/ui.ts | tests/figures-v2-ui.test.tsx |
@@ -2198,7 +2198,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | seed.loadModeFor | lib/seed.ts | tests/catalog-library25.test.tsx, tests/catalog-v2.test.ts |
 | seed.loadMult | lib/seed.ts | tests/audit-k1-data.test.ts, tests/matrix-logic.test.tsx |
 | seed.uid | lib/seed.ts | tests/audit-0.10-stats.test.ts, tests/audit-k1-catalog-step.test.ts, tests/audit-k1-data.test.ts +18 |
-| seed.base | lib/seed.ts | tests/adapt-logic.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +45 |
+| seed.base | lib/seed.ts | tests/adapt-logic.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +46 |
 | seed.defaultModules | lib/seed.ts | tests/matrix-logic.test.tsx |
 | seed.muscleLoadOf | lib/seed.ts | tests/audit-0.10-stats.test.ts, tests/audit-k1-muscleload.test.tsx, tests/catalog-v2.test.ts +1 |
 | seed.libExtraRevOf | lib/seed.ts | tests/audit-0.10-stats.test.ts, tests/swap-logic.test.ts |
@@ -2667,8 +2667,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | ContactKind: foot \| hand \| body | lib/figures/v2/contacts.ts | tests/figures-v2-gear.test.ts, tests/figures-v2-styk.test.tsx |
 | MARKS (5) | lib/figures/v2/contract.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts |
 | AFFECTS (10) | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
-| EXT_FIELDS (9) | lib/figures/v2/contract.ts | tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts |
-| TRUNK_EXT (5) | lib/figures/v2/contract.ts | tests/figures-v2-poza2.test.ts |
+| EXT_FIELDS (10) | lib/figures/v2/contract.ts | tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts |
+| TRUNK_EXT (6) | lib/figures/v2/contract.ts | tests/figures-v2-poza2.test.ts |
 | ARM_EXT (4) | lib/figures/v2/contract.ts | tests/figures-v2-poza2.test.ts |
 | CuePolicy: A \| B | lib/figures/v2/cueSets.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-live-logic.test.ts |
 | CueMode: own \| general \| none | lib/figures/v2/cueSets.ts | tests/adapt-logic.test.ts, tests/audit011b.test.tsx, tests/figures-v2-cues.test.tsx |

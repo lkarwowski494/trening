@@ -59,7 +59,7 @@ function probki(v2, d, blad) {
 }
 const drazek = (d) => d.sprzet.find((g) => g.rodzaj === 'sztanga');
 /** Pola kontraktu poza@2 (nazwy jak w KeyFrame/ArmData; zakresy i znaki: skeleton.ts → EXT_ROM) i rodzaj: 'tulow' (jedna wartość na klatkę) albo 'reka' (osobno dla R i L). */
-export const POLA_POZA2 = { skretTulowia: 'tulow', przechylTulowia: 'tulow', przechylMiednicy: 'tulow', przechylGlowy: 'tulow', obrotTulowia: 'tulow', uniesienieBarkow: 'reka', wysuniecieBarkow: 'reka', zgiecieNadgarstka: 'reka', obrotPrzedramienia: 'reka' };
+export const POLA_POZA2 = { skretTulowia: 'tulow', przechylTulowia: 'tulow', przechylMiednicy: 'tulow', przechylGlowy: 'tulow', przesuniecieBoczne: 'tulow', obrotTulowia: 'tulow', uniesienieBarkow: 'reka', wysuniecieBarkow: 'reka', zgiecieNadgarstka: 'reka', obrotPrzedramienia: 'reka' };
 const POLA_POZA1 = ['pochylenieTulowia', 'zgiecieKregoslupa', 'pochylenieGlowy', 'zgiecieSzyi'];
 /** Wersja kontraktu jako liczba z napisu „poza@N”. */
 const nrKontraktu = (t) => Number(/@(\d+)$/.exec(t ?? '')?.[1] ?? 1);

@@ -48,11 +48,12 @@ export const kostkaNaPalcach = (y0, podbicie = -60) => { const f = podbicie * R;
 export const kostkaPlasko = (y0 = 0) => r1(y0 + BODY().ankleH);
 
 /** Klatka kluczowa z płaskich parametrów. nogi/rece: { R:{k:[x,y,z],pod,rot,pole,odchylenie}, L:{...} }, rece: { R:{g:[x,y,z],pole}, L }. */
-export function klatka({ u, miednica, pitch, bend = 0, glowa, nogi, rece, przechyl }) {
+export function klatka({ u, miednica, pitch, bend = 0, glowa, nogi, rece, przechyl, boczne }) {
   const noga = (s) => { const n = nogi[s]; const o = { kostka: rv(n.k) }; if (n.pod !== undefined) o.podbicie = r1(n.pod); o.rotacjaStopy = n.rot ?? 10; if (n.pole) o.biegunKolana = n.pole; if (n.odchylenie !== undefined) o.odchylenieKolana = n.odchylenie; return o; };
   const reka = (s) => { const a = rece[s]; const o = { chwyt: rv(a.g) }; if (a.pole) o.biegunLokcia = a.pole; if (a.obrot !== undefined) o.obrotPrzedramienia = r1(a.obrot); return o; };
   const k = { u: r1(u * 1000) / 1000, miednica: rv([miednica[0], miednica[1], miednica[2] ?? 0]), pochylenieTulowia: r1(pitch), zgiecieKregoslupa: r1(bend), pochylenieGlowy: r1(glowa ?? pitch * 0.6), nogi: { R: noga('R'), L: noga('L') }, rece: { R: reka('R'), L: reka('L') } };
   if (przechyl !== undefined) k.przechylTulowia = r1(przechyl); /* poza@2: skłon boczny tułowia */
+  if (boczne !== undefined) k.przesuniecieBoczne = r1(boczne); /* poza@2: boczne przesunięcie korzenia (cm); miednica.z zostaje bez przesunięcia */
   return k;
 }
 const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b);
@@ -61,6 +62,7 @@ export function delta(bad, ok) {
   const d = { u: bad.u }; const sub3 = (a, b) => a.map((x, i) => r1(x - b[i]));
   if (!eq(bad.miednica, ok.miednica)) d.miednica = sub3(bad.miednica, ok.miednica);
   for (const [pl, kk] of [['pochylenieTulowia', 'pochylenieTulowia'], ['zgiecieKregoslupa', 'zgiecieKregoslupa'], ['pochylenieGlowy', 'pochylenieGlowy']]) { const x = r1((bad[kk] ?? 0) - (ok[kk] ?? 0)); if (x !== 0) d[pl] = x; }
+  if (bad.przesuniecieBoczne !== undefined || ok.przesuniecieBoczne !== undefined) { const x = r1((bad.przesuniecieBoczne ?? 0) - (ok.przesuniecieBoczne ?? 0)); if (x !== 0) d.przesuniecieBoczne = x; }
   const nogi = {}; for (const s of ['R', 'L']) { const b = bad.nogi[s], o = ok.nogi[s]; const x = {}; if (!eq(b.kostka, o.kostka)) x.kostka = sub3(b.kostka, o.kostka); const pb = r1((b.podbicie ?? 0) - (o.podbicie ?? 0)); if (pb !== 0) x.podbicie = pb; if (Object.keys(x).length) nogi[s] = x; }
   if (Object.keys(nogi).length) d.nogi = nogi;
   const rece = {}; for (const s of ['R', 'L']) { if (!eq(bad.rece[s].chwyt, ok.rece[s].chwyt)) rece[s] = { chwyt: sub3(bad.rece[s].chwyt, ok.rece[s].chwyt) }; }

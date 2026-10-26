@@ -55,7 +55,7 @@ export function ramieDoCelu(S, G, strona = 'dol') {
  *  nogi: { R: { t, k, dors (zgięcie grzbietowe względem prostopadłej do goleni) | pod (bezwzględne), z (rozstaw kostki), rot, odch }, L: {...} } (L domyślnie = R),
  *  rece: { R: { psi, th, z } | { g: [x, y, z], pole }, L } (L domyślnie = R).
  */
-export function F({ u, pel, pitch, bend = 0, head, nogi, rece, z0 = 0, zo = 0 }) {
+export function F({ u, pel, pitch, bend = 0, head, nogi, rece, z0 = 0, zo = 0, bocz = false }) {
   const hip = [pel[0], pel[1]]; const S = barki(hip, pitch, bend); const nog = {}; const rec = {};
   for (const s of ['R', 'L']) {
     const g = nogi[s] ?? nogi.R; const sg = sgn(s); const f = nogaFK(hip, g.t, g.k); const pole = g.nopole ? null : (g.pole ?? f.pole);
@@ -69,7 +69,8 @@ export function F({ u, pel, pitch, bend = 0, head, nogi, rece, z0 = 0, zo = 0 })
     if (a.g) { rec[s] = { g: [a.g[0], a.g[1], a.g[2] + zo], pole: a.pole }; continue; }
     const r = ramieFK(S, a.psi, a.th); const z = sg * (a.z ?? SHZ()) + zo; rec[s] = { g: [r.grip[0], r.grip[1], z], pole: r.pole ? [r.pole[0], r.pole[1], sg * (a.pz ?? 0.25)] : undefined };
   }
-  return klatka({ u, miednica: [hip[0], hip[1], z0 + zo], pitch, bend, glowa: head ?? pitch * 0.5, nogi: nog, rece: rec });
+  /* bocz: zo to boczne przesunięcie korzenia (poza@2, przesuniecieBoczne): miednica.z bez przesunięcia, kostki i chwyty w świecie (już z zo) */
+  return klatka({ u, miednica: [hip[0], hip[1], bocz ? z0 : z0 + zo], pitch, bend, glowa: head ?? pitch * 0.5, nogi: nog, rece: rec, boczne: bocz ? zo : undefined });
 }
 
 /** Kostka dla biodra hip, kąta goleni al i zgięcia kolana k (FK) — do opisu pozy przez wysokość miednicy. */
@@ -93,7 +94,7 @@ export function katyNogi(hip, ankle, pole = [1, 0]) {
 export function P(p) {
   const l = { t: -90 - p.al + p.k, k: p.k }; const hip = biodroZKostki(p.A, l.t, l.k); const nogi = { R: { ...l, pod: p.pod ?? (p.dors === undefined ? 0 : undefined), dors: p.dors, z: p.zR ?? 12, rot: p.rotR, odch: p.odchR, kz: p.kz, nopole: p.nopole } };
   if (p.AL) { const kt = katyNogi(hip, p.AL); nogi.L = { ...kt, pod: p.podL ?? p.pod ?? (p.dors === undefined ? 0 : undefined), dors: p.dors, z: p.zL ?? p.zR ?? 12, rot: p.rotL, odch: p.odchL, kz: p.kz, nopole: p.nopole }; } else nogi.L = { ...nogi.R, z: p.zL ?? p.zR ?? 12 };
-  return F({ u: 0, pel: hip, pitch: p.pitch === undefined || (p.ra?.w !== undefined && p.ra.w >= 0.999 && p.ra.g) ? pitchDoChwytu(hip, p.ra, p.bend ?? 0) : p.pitch, bend: p.bend ?? 0, head: p.head, nogi, rece: { R: p.ra, L: p.rl ?? p.ra }, zo: p.zo ?? 0 });
+  return F({ u: 0, pel: hip, pitch: p.pitch === undefined || (p.ra?.w !== undefined && p.ra.w >= 0.999 && p.ra.g) ? pitchDoChwytu(hip, p.ra, p.bend ?? 0) : p.pitch, bend: p.bend ?? 0, head: p.head, nogi, rece: { R: p.ra, L: p.rl ?? p.ra }, zo: p.zo ?? 0, bocz: !!p.bocz });
 }
 /** Pochylenie tułowia, przy którym chwyt zakotwiczony w świecie (ra.g, z) leży w prawie wyprostowanym zasięgu ramienia (ra.reach, domyślnie 62 cm) od barku; skan 0…100° (wybór najmniejszego błędu). */
 export function pitchDoChwytu(hip, ra, bend = 0) {
@@ -104,7 +105,7 @@ export function pitchDoChwytu(hip, ra, bend = 0) {
 /** Klatka z położeń: miednica pel [x, y], kostki AR i AL [x, y] (IK nóg w płaszczyźnie, kolana ku przodowi), podbicia podR/podL, pitch, bend, head, ra/rl (ramiona), zo (przesunięcie boczne), zR/zL (rozstaw kostek). */
 export function Q(p) {
   const hip = [p.pel[0], p.pel[1]]; const kR = katyNogi(hip, p.AR, p.pole ?? [1, 0]), kL = katyNogi(hip, p.AL, p.poleL ?? p.pole ?? [1, 0]); /* poleL: kolano lewej (tylnej) nogi, np. [−1, 0] — do tyłu */
-  return F({ u: 0, pel: hip, pitch: p.pitch === undefined || (p.ra?.w !== undefined && p.ra.w >= 0.999 && p.ra.g) ? pitchDoChwytu(hip, p.ra, p.bend ?? 0) : p.pitch, bend: p.bend ?? 0, head: p.head, nogi: { R: { ...kR, pod: p.podR ?? 0, z: p.zR ?? 12, nopole: p.nopoleR, rot: p.rot, kz: p.kz }, L: { ...kL, pod: p.podL ?? p.podR ?? 0, z: p.zL ?? 12, rot: p.rot, kz: p.kz } }, rece: { R: p.ra, L: p.rl ?? p.ra }, zo: p.zo ?? 0 });
+  return F({ u: 0, pel: hip, pitch: p.pitch === undefined || (p.ra?.w !== undefined && p.ra.w >= 0.999 && p.ra.g) ? pitchDoChwytu(hip, p.ra, p.bend ?? 0) : p.pitch, bend: p.bend ?? 0, head: p.head, nogi: { R: { ...kR, pod: p.podR ?? 0, z: p.zR ?? 12, nopole: p.nopoleR, rot: p.rot, kz: p.kz }, L: { ...kL, pod: p.podL ?? p.podR ?? 0, z: p.zL ?? 12, rot: p.rot, kz: p.kz } }, rece: { R: p.ra, L: p.rl ?? p.ra }, zo: p.zo ?? 0, bocz: !!p.bocz });
 }
 /** Punkty do pomiaru ciągłości (jak pts() w contract.ts). */
 const pts = (f) => [f.sk.pelvis, f.sk.head, f.sk.shoulderC, f.sk.spineMid, ...['R', 'L'].flatMap((s) => [f.sk.legs[s].knee, f.sk.legs[s].ankle, f.sk.legs[s].heel, f.sk.legs[s].toe, f.sk.arms[s].elbow, f.sk.arms[s].grip]), ...(f.info?.load ? [f.info.load] : [])];
