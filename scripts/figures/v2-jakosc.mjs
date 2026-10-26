@@ -41,6 +41,7 @@ export const PROGI = {
   kolanaUgieteMinDeg: 80, /* R7: ćwiczenia z podkulonymi kolanami */
   receProsteMaxDeg: 30, /* R8: ręce „wzdłuż ciała”/„sięgające”: zgięcie łokcia ≤ */
   bladGorszyCm: 2.5, /* R10: rząd błędu opadania: odchylenie miednicy od linii kostka–bark większe niż w pozie poprawnej o ≥ tyle (w stronę opadania) */
+  rzadBleduKolanoDeg: 10, /* tolerancja dla kolana: noga prawie prosta (uda + golenie = 83 cm) zmienia kąt kolana o ok. 14° na każdy 1 cm odległości biodro–kostka, więc 8° było zbyt ostre (fałszywy alarm Pike Push Up: 8,5°); konwencja */
   rzadBleduTolDeg: 8, /* staw spoza obszaru błędu (WSZYSTKIE: biodro, kolano, kostka, łokieć, bark) może się różnić od pozy poprawnej najwyżej o tyle; wyjątki: TOL_BLEDU */
   stykPodparciaCm: 4.5, /* punkt ciała uznany za podparcie, gdy jego (oś) wysokość ≤ tyle: dłoń, stopa, kolano (promień kończyny) */
 };
@@ -152,7 +153,7 @@ export function receWzdluzCiala(v2, poza) {
 /** 6. Kolejne klatki kluczowe różnią się (≥ rozneKlatkiCm w którymś punkcie); ćwiczenie izometryczne ma najwyżej statyczneMaxKlatek klatek. */
 export function klatkiRozne(v2, poza, izometryczne) {
   const o = []; if (izometryczne) { if (poza.klatki.length > PROGI.statyczneMaxKlatek) o.push(`ćwiczenie izometryczne ma ${poza.klatki.length} klatek, a ma najwyżej ${PROGI.statyczneMaxKlatek} (poza statyczna: jedna klatka zamiast kopii)`); return o; }
-  for (let i = 1; i < poza.klatki.length; i++) { const d = maxPrzem(pts(v2.keyframeFrame(poza, poza.klatki[i - 1].u)), pts(v2.keyframeFrame(poza, poza.klatki[i].u))); if (d < PROGI.rozneKlatkiCm) o.push(`klatki ${i - 1} i ${i} (u = ${poza.klatki[i - 1].u} i ${poza.klatki[i].u}) różnią się tylko o ${f1(d)} cm (≥ ${PROGI.rozneKlatkiCm}) — zbędna kopia klatki albo brak ruchu`); }
+  for (let i = 1; i < poza.klatki.length; i++) { const d = maxPrzem(pts(v2.keyframeFrame(poza, poza.klatki[i - 1].u)), pts(v2.keyframeFrame(poza, poza.klatki[i].u))); const dObr = Math.max(...['R', 'L'].map((sd) => Math.abs((poza.klatki[i].rece?.[sd]?.obrotPrzedramienia ?? 0) - (poza.klatki[i - 1].rece?.[sd]?.obrotPrzedramienia ?? 0)))); /* czysty obrót przedramienia (pronacja/supinacja) nie przemieszcza punktów szkieletu, ale jest widocznym ruchem */ if (d < PROGI.rozneKlatkiCm && dObr < 5) o.push(`klatki ${i - 1} i ${i} (u = ${poza.klatki[i - 1].u} i ${poza.klatki[i].u}) różnią się tylko o ${f1(d)} cm (≥ ${PROGI.rozneKlatkiCm}) — zbędna kopia klatki albo brak ruchu`); }
   return o;
 }
 /** 7. Sprzęt rozpoznawczy obecny w pozie: ćwiczenia „Suspended …” muszą mieć w sprzecie zawieszenie (taśmy), inaczej wyjątek. */
@@ -218,7 +219,7 @@ export function rzadBleduDotyczy(v2, poza) {
   const o = [];
   poza.bledy.forEach((b, j) => { const baza = DOTYCZY_BLEDU[b.cue]; if (!baza) return; const dop = new Set([...baza, ...(DOTYCZY_BLEDU_CWICZENIE[poza.cwiczenie]?.[b.cue] ?? [])]); const naj = {};
     for (const u of siatka(poza)) { const a = v2.keyframeFrame(poza, u).sk, c = v2.keyframeFrame(poza, u, j).sk; for (const k of ['R', 'L']) { const x = v2.jointAngles(a, k), y = v2.jointAngles(c, k); for (const [kat, et] of Object.entries(KAT_STAWU)) { if (dop.has(et)) continue; const d = Math.abs(x[kat] - y[kat]); if (d > (naj[et]?.d ?? 0)) naj[et] = { d, u }; } } }
-    const zle = Object.entries(naj).filter(([et, v]) => v.d > (TOL_BLEDU[b.cue]?.[et] ?? PROGI.rzadBleduTolDeg));
+    const zle = Object.entries(naj).filter(([et, v]) => v.d > (TOL_BLEDU[b.cue]?.[et] ?? (et === 'knee' ? PROGI.rzadBleduKolanoDeg : PROGI.rzadBleduTolDeg)));
     if (zle.length) o.push(`błąd „${b.cue}” zmienia też: ${zle.map(([et, v]) => `${et} o ${f1(v.d)}° (u = ${v.u})`).join(', ')} (dozwolone: ${[...dop].join(', ')}; tolerancja ${PROGI.rzadBleduTolDeg}° (wyjątki: ${JSON.stringify(TOL_BLEDU[b.cue] ?? {})}) — rząd błędu ma pokazywać wyłącznie ten jeden błąd`); });
   return o;
 }
