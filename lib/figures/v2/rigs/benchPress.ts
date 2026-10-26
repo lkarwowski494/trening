@@ -78,7 +78,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
   const underGrip = (grip: V3): V3 => { /* biegun, przy którym łokieć leży pod dłonią (z łokcia = z chwytu) */
     const sh: V3 = [shoulderC[0], shoulderC[1], BODY.shHalf]; let lo = -6, hi = 6;
     for (let i = 0; i < 40; i++) { const mid = (lo + hi) / 2; if (ik2(sh, grip, BODY.uarm, BODY.farm + BODY.hand, [0, -1, mid]).mid[2] < grip[2]) lo = mid; else hi = mid; }
-    return [0, -1, (lo + hi) / 2];
+    return [0, -1, Math.max(-1, Math.min(1, (lo + hi) / 2))]; /* przy prawie prostych rękach biegun nie ma znaczenia — bez skrajnych wartości (interpolacja klatek kluczowych) */
   };
   const poleR: V3 = p.vert ? underGrip([c[0], c[1], g]) : elbowPole;
   const arms = { R: { grip: [c[0], c[1], g] as V3, elbowPole: poleR }, L: { grip: [c[0], c[1], -g] as V3, elbowPole: [poleR[0], poleR[1], -poleR[2]] as V3 } };
