@@ -268,7 +268,7 @@ describe('J1 — dane z nowszej wersji', () => {
     jest.useFakeTimers({ now: NOW }); await fresh(); const st = JSON.parse(JSON.stringify(S())); st.schemaVersion = SCHEMA_VERSION + 1; const txt = JSON.stringify(st);
     await renderApp({ saved: txt }); await flushAll(10);
     expect(screen.getByTestId('newer-data')).toBeTruthy(); expect(screen.getByText('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')).toBeTruthy();
-    expect(screen.getByText(`Dane w telefonie zapisała nowsza wersja (schemat ${SCHEMA_VERSION + 1}); ta wersja obsługuje do ${SCHEMA_VERSION}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.`)).toBeTruthy();
+    expect(screen.getByText(`Dane w telefonie zapisała nowsza wersja (schemat ${SCHEMA_VERSION + 1}); ta wersja obsługuje do ${SCHEMA_VERSION}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.`)).toBeTruthy();
     const share = require('expo-sharing').shareAsync as jest.Mock; share.mockClear();
     await tap(screen.getByText('Wyślij dane')); await flushAll(10); expect(share).toHaveBeenCalled();
     expect(global.__kv.get('state')).toBe(txt);

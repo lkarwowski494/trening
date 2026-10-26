@@ -29,7 +29,7 @@ export default function Backup() {
         <Muted style={font('footnote')}>{t('Dopisuje treningi z CSV — bez usuwania danych, z podglądem.')}</Muted>
       </InfoTip>
       {getState().settings.autoBackup
-        ? <InfoTip id="backup-auto" label={t('Kopie automatyczne znikają razem z aplikacją — przed jej usunięciem wyeksportuj backup.')} info={t('Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.', { app: appName(), n: AUTO_KEEP })}>
+        ? <InfoTip id="backup-auto" label={t('Kopie automatyczne znikają razem z aplikacją — przed jej usunięciem wyeksportuj backup.')} info={t('Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.', { app: appName(), n: AUTO_KEEP })}>
           <Muted style={font('footnote')}>{t('Kopie automatyczne znikają razem z aplikacją — przed jej usunięciem wyeksportuj backup.')}</Muted>
         </InfoTip>
         : <Muted style={font('footnote')}>{t('Kopia automatyczna po treningu jest wyłączona (Ustawienia).')}</Muted>}

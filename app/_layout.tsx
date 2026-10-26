@@ -3,7 +3,7 @@ import { Stack, router, type ErrorBoundaryProps } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
 import { ActivityIndicator, View, Text, Pressable } from 'react-native';
-import { wallTs, init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema, markBootStable, BOOT_STABLE_MS } from '@/lib/store';
+import { wallTs, init, usePrefsTick, flush, refreshViews, autoFinishStale, resolveColdStopwatch, fmtTime, fmtDate, getState, getNewerSchema, markBootStable, BOOT_STABLE_MS, STALE_AUTO_MS } from '@/lib/store';
 import { Alert } from 'react-native';
 import { onWorkoutSaved, exportRawData, cleanShareLeftovers } from '@/lib/backup';
 import { markDoneEarly } from '@/lib/plan';
@@ -35,9 +35,9 @@ export default function RootLayout() {
   const th = useTheme(); const [ready, setReady] = useState(false); const [err, setErr] = useState<string | null>(null); const [diag, setDiag] = useState<string | undefined>(undefined); const errRef = useRef(false); errRef.current = err != null;
   /* Animacja przy starcie (decyzja 09.10.2026, components/Intro.tsx): tylko zimny start; dane ładują się równolegle (start() niżej). */
   const [intro, setIntro] = useState(() => takeColdStart(AppState.currentState));
-  // Runda 69: trening porzucony ponad 6 h temu zapisuje się sam (koniec = ostatnia odhaczona seria) — przy starcie i powrocie z tła.
+  // Runda 69: trening porzucony ponad STALE_AUTO_MS (6 h) temu zapisuje się sam (koniec = ostatnia odhaczona seria) — przy starcie i powrocie z tła.
   const autoSaved = (w: Workout | null) => { if (!w) return; markDoneEarly(w); timer.stop().catch(() => {}); timer.stopSet().catch(() => {}); timer.cancelStaleReminder().catch(() => {}); onWorkoutSaved(w).catch(() => {});
-    setAutoSavedNotice(t('Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.' /* H2 (audyt 0.10): zakładka nazywa się Kalendarz */, { d: fmtDate(wallTs(w)), s: fmtTime(wallTs(w)), e: fmtTime(wallTs(w, w.finishedAt ?? w.startedAt)) })); };
+    setAutoSavedNotice(t('Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.' /* H2 (audyt 0.10): zakładka nazywa się Kalendarz */, { d: fmtDate(wallTs(w)), s: fmtTime(wallTs(w)), h: STALE_AUTO_MS / 3600e3 /* próg z jednego miejsca (lib/state/finish.ts) */, e: fmtTime(wallTs(w, w.finishedAt ?? w.startedAt)) })); };
   /* `retry` — „Spróbuj ponownie” na ekranie błędu: strażnik pętli awarii liczy ten start od zera (M1-audytor-generalny-003) */
   const start = (retry = false) => { setErr(null); setDiag(undefined); Promise.all([init({ guard: true, retry }), loadFonts()]).then(() => { resolveColdStopwatch(); /* Q-002 */ autoSaved(autoFinishStale()); retryHealth().catch(() => {}); /* J2: zapisy do Zdrowia, które się nie udały */ cleanShareLeftovers().catch(() => {}); /* SEC-09 */ restored = restoreObjDrafts(); /* UX2-03 = DAT2-06: szkice edycji sprzed zamknięcia aplikacji */ cancelLegacyReminders().catch(() => {}); /* decyzja 09.10.2026: bez przypomnienia o podpisie — stare odwołane */ initEntitlements().catch(() => {}); /* 0.17.0: sklep tylko przy PAYWALL.ENABLED */ return timer.restore().catch(() => {}); }).then(() => setReady(true)).catch(e => { setDiag(typeof e?.bootDiag === 'string' ? e.bootDiag : undefined); setErr(e instanceof Error ? e.message : String(e)); }); };
   useEffect(() => { start(); }, []);
@@ -57,7 +57,7 @@ export default function RootLayout() {
   const newer = err ? getNewerSchema() : null;
   const body = newer != null ? <View testID="newer-data" style={{ flex: 1, backgroundColor: th.bg, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12 }}>
     <Text accessibilityLanguage={lang()} accessibilityRole="header" style={{ color: th.text, textAlign: 'center', ...font('sectionTitle') }}>{t('Dane z nowszej wersji aplikacji — zaktualizuj aplikację')}</Text>
-    <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center' }}>{t('Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.', { a: newer, b: SCHEMA_VERSION })}</Text>
+    <Text accessibilityLanguage={lang()} style={{ color: th.muted, textAlign: 'center' }}>{t('Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.', { a: newer, b: SCHEMA_VERSION })}</Text>
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={() => { exportRawData().then(ok => { if (!ok) Alert.alert(t('Nie udało się wysłać danych'), t('Spróbuj ponownie.')); }).catch(() => {}); }} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, ...font('button') }}>{t('Wyślij dane')}</Text></Pressable>
     <Pressable accessibilityLanguage={lang()} accessibilityRole="button" onPress={() => start(true)} style={{ padding: 12 }}><Text accessibilityLanguage={lang()} style={{ color: th.accent, ...font('button') }}>{t('Spróbuj ponownie')}</Text></Pressable>
   </View>
