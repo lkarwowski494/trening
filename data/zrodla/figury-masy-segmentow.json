@@ -1,0 +1,16 @@
+{
+ "_opis": "Udziały mas segmentów ciała i położenie ich środków mas do bramki jakości póz (scripts/figures/v2-jakosc.mjs, reguła srodek_ciezkosci_podparcie). Jeden komplet, bez mieszania z innymi tabelami (rozstrzygnięcie koordynatora 26.10.2026 po przeglądzie badacza: scratchpad/badania-figury/lokiec-masy.md). Do paczki aplikacji nic stąd nie trafia.",
+ "zrodlo": "de Leva P., 1996, Adjustments to Zatsiorsky-Seluyanov's segment inertia parameters, J Biomech 29(9):1223-1230; wartości odczytane z przedruku: Adolphe M. i in., 2017, Mechanics and Mechanical Engineering 21(3), tabela 1, s. 488 (https://kdm.p.lodz.pl/sites/k13/files/manual/articles/2017/3/21_3_4.pdf). Oryginał de Leva nie został przeczytany (dostęp 403/503); dwa niezależne zbiory (Dempster/Winter i de Leva) zgadzają się dla kończyny górnej, podudzia i stopy w granicach 0,1-0,3 pkt proc.",
+ "pewnosc": "uproszczenie ilustracyjne (zbiór męski; położenia środków mas odniesione do końców segmentów naszego szkieletu, nie do punktów kostnych de Levy; głowa: środek głowy)",
+ "plec": "mezczyzni",
+ "segmenty": {
+  "glowa": { "masa": 0.0694, "srodek": 0.5976, "konce": "wierzchołek głowy - C7 (w szkielecie: środek głowy)" },
+  "tulow": { "masa": 0.4346, "srodek": 0.4486, "konce": "C7 - środek stawów biodrowych (w szkielecie: środek barków -> miednica)" },
+  "ramie": { "masa": 0.0271, "srodek": 0.5772, "konce": "bark - łokieć" },
+  "przedramie": { "masa": 0.0162, "srodek": 0.4574, "konce": "łokieć - nadgarstek" },
+  "dlon": { "masa": 0.0061, "srodek": 0.79, "konce": "nadgarstek - chwyt (w szkielecie: nadgarstek -> środek chwytu)" },
+  "udo": { "masa": 0.1416, "srodek": 0.4095, "konce": "biodro - kolano" },
+  "golen": { "masa": 0.0433, "srodek": 0.4459, "konce": "kolano - kostka" },
+  "stopa": { "masa": 0.0137, "srodek": 0.4415, "konce": "pięta - palce" }
+ }
+}

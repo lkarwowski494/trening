@@ -78,7 +78,7 @@ describe('stopien_swobody (r5) na prawdziwej pozie: skręt tułowia, nadgarstek,
     expect(w.szyjaFlex).toEqual([]); expect(w.szyjaProsta.join('|')).toMatch(/dochodzi tylko do 0\.0/); expect(w.szyjaLezacaWOsi).toEqual([]); expect(w.szyjaLezacaDomyslna.join('|')).toMatch(/zgiecieSzyi dochodzi do (-)?\d+\.\d, a ma być ≤ 5/);
   });
   test('pola poza@1 (zgiecieKregoslupa, pochylenieTulowia) działają tym samym typem', () => { expect(w.kregoslup).toEqual([]); expect(w.tulowPoza1.join('|')).toContain('pochylenieTulowia dochodzi do 50.0, a ma być ≤ 20'); });
-  test('lista pól poza@2 w regułach = pola kontraktu (nazwy zgodne z silnikiem)', () => { expect(Object.keys(w.odSkeletuSkret).sort()).toEqual(['obrotPrzedramienia', 'obrotTulowia', 'przechylGlowy', 'przechylMiednicy', 'przechylTulowia', 'skretTulowia', 'uniesienieBarkow', 'wysuniecieBarkow', 'zgiecieNadgarstka']); });
+  test('lista pól poza@2 w regułach = pola kontraktu (nazwy zgodne z silnikiem)', () => { expect(Object.keys(w.odSkeletuSkret).sort()).toEqual(['obrotPrzedramienia', 'obrotTulowia', 'przechylGlowy', 'przechylMiednicy', 'przechylTulowia', 'przesuniecieBoczne', 'skretTulowia', 'uniesienieBarkow', 'wysuniecieBarkow', 'zgiecieNadgarstka']); });
 });
 
 describe('punkt_zakres (r5) na prawdziwej pozie: krążenie dłoni i rolowanie', () => {

@@ -84,6 +84,8 @@ export type PoseIn = {
   pelvisTilt?: number;
   /** Skłon boczny głowy względem tułowia (stopnie; + = ucho ku prawemu barkowi). Domyślnie 0. */
   headTilt?: number;
+  /** Boczne przesunięcie korzenia (cm; + = ku prawej stronie osoby, oś z): przesuwa stawy biodrowe i barki (kroki boczne, skoki boczne). `pelvis` podaje się już z tym przesunięciem; kostki i chwyty nadal w układzie świata. Domyślnie 0 (jak dotąd). */
+  lateral?: number;
   legs: Record<Side, LegIn>;
   arms: Record<Side, ArmIn>;
 };
@@ -138,10 +140,10 @@ export function trunkAxes(p: Pick<PoseIn, 'trunkPitch' | 'trunkRoll' | 'trunkTwi
 }
 
 /** Staw biodrowy strony `s` (z przechyłem i obrotem miednicy). Bez nowych pól: [x, y, ±hipHalf] jak dotąd (z miednicy nie wchodzi do bioder). */
-export function hipPoint(p: Pick<PoseIn, 'pelvis' | 'trunkPitch' | 'trunkRoll' | 'trunkTwist' | 'trunkLean' | 'pelvisTilt'>, s: Side): V3 {
-  const sg = outSign(s); const ax = trunkAxes(p);
-  if (!ax.ext) return [p.pelvis[0], p.pelvis[1], sg * BODY.hipHalf];
-  const r = ax.pelvisRight; return [p.pelvis[0] + sg * BODY.hipHalf * r[0], p.pelvis[1] + sg * BODY.hipHalf * r[1], sg * BODY.hipHalf * r[2]];
+export function hipPoint(p: Pick<PoseIn, 'pelvis' | 'trunkPitch' | 'trunkRoll' | 'trunkTwist' | 'trunkLean' | 'pelvisTilt' | 'lateral'>, s: Side): V3 {
+  const sg = outSign(s); const ax = trunkAxes(p); const lat = p.lateral ?? 0;
+  if (!ax.ext) return [p.pelvis[0], p.pelvis[1], lat + sg * BODY.hipHalf];
+  const r = ax.pelvisRight; return [p.pelvis[0] + sg * BODY.hipHalf * r[0], p.pelvis[1] + sg * BODY.hipHalf * r[1], lat + sg * BODY.hipHalf * r[2]];
 }
 
 /** Kierunek dłoni i jej normalna dla przedramienia o kierunku `f` (łokieć → nadgarstek), biegunie łokcia `pole`, zgięciu `w` i obrocie `roll` strony `sg`. */
@@ -191,7 +193,7 @@ export function solveSkeleton(p: PoseIn): Skeleton {
     const ai = p.arms[s];
     const lift = ai.shrug ?? 0;
     const prot = ai.protract ?? 0;
-    let shoulder: V3 = ax.ext ? [shoulderC[0] + sg * BODY.shHalf * ax.right[0], shoulderC[1] + sg * BODY.shHalf * ax.right[1], (shoulderC[2] - p.pelvis[2]) + sg * BODY.shHalf * ax.right[2]] : [shoulderC[0], shoulderC[1], sg * BODY.shHalf];
+    let shoulder: V3 = ax.ext ? [shoulderC[0] + sg * BODY.shHalf * ax.right[0], shoulderC[1] + sg * BODY.shHalf * ax.right[1], (shoulderC[2] - p.pelvis[2]) + (p.lateral ?? 0) + sg * BODY.shHalf * ax.right[2]] : [shoulderC[0], shoulderC[1], (p.lateral ?? 0) + sg * BODY.shHalf];
     if (lift !== 0) shoulder = add(shoulder, mul(up, lift));
     if (prot !== 0) shoulder = add(shoulder, mul(front, prot));
     const aPole = ai.elbowPole ?? [-0.3, -1, sg * 0.4];

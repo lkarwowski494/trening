@@ -106,6 +106,15 @@ describe('walidator: poza poprawna i komunikaty o błędach (konkretne, do popra
     const d = pullUp(); d.klatki[0].rece.R.biegunLokcia = [0, -1, 1]; d.klatki[1].rece.R.biegunLokcia = [0, 1, -1]; d.klatki[2].rece.R.biegunLokcia = [0, 1, -1];
     expect(codes(validatePose(d, ctx()))).toEqual(expect.arrayContaining(['ciaglosc'])); expect(texts(validatePose(d, ctx()))).toContain('dodaj klatki pośrednie');
   });
+  test('ciągłość w ruchu dynamicznym (wersja 1.1): ctx.dynamic podnosi limit skoku do CONTRACT.maxJumpDynamic; bez flagi limit i komunikat bez zmian; zbyt duży skok (teleport) łapie też tryb dynamiczny', () => {
+    expect(CONTRACT.maxJumpDynamic).toBeGreaterThan(CONTRACT.maxJump); expect(CONTRACT.maxJumpDynamic).toBeLessThanOrEqual(3 * CONTRACT.maxJump); /* lot, przechwyt i wymach: szybciej niż ruch zwykły, ale nie bez granicy */
+    const d = pullUp(); d.klatki[1].miednica = [80, 135, 0]; /* szybszy niż limit zwykły (7,6 cm na 1/48), wolniejszy niż dynamiczny */
+    expect(codes(validatePose(d, ctx()))).toContain('ciaglosc'); expect(texts(validatePose(d, ctx()))).toMatch(/limit 6 cm na 1\/48 ruchu/);
+    expect(codes(validatePose(d, ctx({ dynamic: false })))).toContain('ciaglosc'); /* jawne false = domyślne */
+    expect(codes(validatePose(d, ctx({ dynamic: true })))).not.toContain('ciaglosc');
+    const e = pullUp(); e.klatki[1].u = 0.25; e.klatki[1].miednica = [250, 135, 0]; /* ≈ 21 cm na 1/48: teleport łapie też tryb dynamiczny */
+    expect(texts(validatePose(e, ctx({ dynamic: true })))).toMatch(new RegExp(`limit ${CONTRACT.maxJumpDynamic} cm na 1/48 ruchu`));
+  });
   test('ruch: identyczne klatki → „ruch”; u poza kolejnością i brak klatki 0 lub 1 → „klatki-u” z liczbami', () => {
     const d = pullUp(); d.klatki[2] = { ...clone(d.klatki[0]), u: 1 }; expect(codes(validatePose(d, ctx()))).toContain('ruch');
     const e = pullUp(); e.klatki[1].u = 0; expect(texts(validatePose(e, ctx()))).toContain('rosnące u'); const g = pullUp(); g.klatki[0].u = 0.1; g.klatki[2].u = 0.9; expect(texts(validatePose(g, ctx()))).toMatch(/pierwsza klatka ma u = 0.1.*ostatnia klatka ma u = 0.9/);

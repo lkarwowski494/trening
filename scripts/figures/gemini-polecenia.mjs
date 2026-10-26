@@ -11,7 +11,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { cwiczeniaRodziny, wczytajKontrakt } from './gemini-pozy.mjs';
 import { loadV2 } from './v2-build.mjs';
-import { regulyDla, stopaAutomatyczna, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji, czekaNaKontrakt } from './v2-sens.mjs';
+import { regulyDla, stopaAutomatyczna, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji, czekaNaKontrakt, deklaracjeCwiczenia } from './v2-sens.mjs';
 import { wczytajRejestr, liniePolecenia, statystykaWersji } from './gemini-rejestr.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -171,7 +171,7 @@ const FAZY_CORE_FLOOR = () => [
 ];
 /** Wzorzec: crunch leżąc na plecach wyliczony z modelu (barki unoszą się o ≈ 20 cm, głowa podąża za tułowiem, miednica nieruchoma); przechodzi geometrię i reguły sensu core_floor. */
 export function wzorzecCrunch(cwiczenie = 'Crunch') {
-  const { v2 } = silnik(); const base = (u, pitch) => ({ u, miednica: [0, 8, 0], pochylenieTulowia: pitch, zgiecieKregoslupa: 0, pochylenieGlowy: pitch, nogi: { R: { kostka: [35, 7, 15] }, L: { kostka: [35, 7, -15] } }, rece: { R: { chwyt: [0, 0, 0] }, L: { chwyt: [0, 0, 0] } } });
+  const { v2 } = silnik(); const base = (u, pitch) => ({ u, miednica: [0, 8, 0], pochylenieTulowia: pitch, zgiecieKregoslupa: Math.round(40 * u), /* zwinięcie: lędźwie przy podłodze (v2-jakosc: ledzwie_przy_podlodze) */ pochylenieGlowy: pitch, nogi: { R: { kostka: [35, 7, 15] }, L: { kostka: [35, 7, -15] } }, rece: { R: { chwyt: [0, 0, 0] }, L: { chwyt: [0, 0, 0] } } });
   const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 150 }];
   const klatki = [0, 0.5, 1].map((u) => { const k = base(u, -90 + 28 * u); const d = { kontrakt: v2.CONTRACT.id, rodzina: 'core_floor', cwiczenie, sprzet, klatki: [k, { ...k, u: 1 }], bledy: [] }; const sh = v2.keyframeFrame(d, 0).sk.shoulderC;
     const w = [8 - sh[0], 8 - sh[1]]; const n = Math.hypot(...w); const g = [sh[0] + (w[0] / n) * 63.3, sh[1] + (w[1] / n) * 63.3 - 1]; /* ręce wzdłuż ciała, proste (63,3 cm od barku: łokieć ≤ 15°), w stronę miednicy */
@@ -180,7 +180,7 @@ export function wzorzecCrunch(cwiczenie = 'Crunch') {
 }
 
 /* ---------- pushup_plank: układ podporu przodem (wzorzec Push Up z modelu) ---------- */
-export const PU = { dl: 82, phiGora: 20, phiDol: 0, phiBlad: 10, podbicie: -60, biegunLokcia: [-1, -0.3, 0.9] };
+export const PU = { dl: 82, phiGora: 20, phiDol: 0, phiBlad: 10, podbicie: -60, biegunLokcia: [-1, -0.3, 0.35] };
 /** Poza pompki wyliczona z modelu: ciało w jednej linii od kostek (na palcach) do barków, kąt linii φ nad podłogą (góra 20°, dół 10°), dłonie NA STAŁE pod barkami z u = 0, kostki 20 cm nad podłogą (palce stoją na podłodze); błąd push.mis.partial = płytki dół (φ 18°). */
 export function wzorzecPompki(cwiczenie = 'Push Up') {
   const { v2 } = silnik(); const r = Math.PI / 180; const pod = PU.podbicie;
@@ -190,7 +190,7 @@ export function wzorzecPompki(cwiczenie = 'Push Up') {
   const kl = (u, phi) => { const q = pozaPhi(phi); const f = (x) => Math.round(x * 10) / 10; return { u, miednica: [f(q.pel[0]), f(q.pel[1]), 0], pochylenieTulowia: f(q.pitch), zgiecieKregoslupa: 0, pochylenieGlowy: f(q.pitch * 0.6), nogi: { R: { kostka: [ax, f(ay), 10], podbicie: pod }, L: { kostka: [ax, f(ay), -10], podbicie: pod } }, rece: { R: { chwyt: [gx, 2, 19], biegunLokcia: PU.biegunLokcia }, L: { chwyt: [gx, 2, -19], biegunLokcia: [PU.biegunLokcia[0], PU.biegunLokcia[1], -PU.biegunLokcia[2]] } } }; };
   const phiU = (u) => PU.phiGora + (PU.phiDol - PU.phiGora) * u; const klatki = [0, 0.25, 0.5, 0.75, 1].map((u) => kl(u, phiU(u)));
   const bl = pozaPhi(PU.phiBlad), dn = pozaPhi(PU.phiDol); const f = (x) => Math.round(x * 10) / 10;
-  const delta = (u, w) => ({ u, miednica: [f((bl.pel[0] - dn.pel[0]) * w), f((bl.pel[1] - dn.pel[1]) * w), 0], pochylenieTulowia: f((bl.pitch - dn.pitch) * w), pochylenieGlowy: f((bl.pitch - dn.pitch) * 0.6 * w) });
+  const delta = (u, w) => { const q0 = pozaPhi(phiU(u)), q1 = pozaPhi(phiU(u) + (PU.phiBlad - PU.phiDol) * w); /* płytki dół = ciało obrócone o dodatkowe φ wokół kostek (sztywno: noga bez zmiany kąta kolana; v2-jakosc: rzad_bledu_dotyczy) */ return { u, miednica: [f(q1.pel[0] - q0.pel[0]), f(q1.pel[1] - q0.pel[1]), 0], pochylenieTulowia: f(q1.pitch - q0.pitch), pochylenieGlowy: f((q1.pitch - q0.pitch) * 0.6) }; };
   const bledy = [{ cue: 'push.mis.partial', znacznik: 'pelvis', dotyczy: ['elbow', 'shoulder', 'hip', 'knee', 'ankle'], klatki: [{ u: 0 }, delta(0.5, 0.5), delta(1, 1)] }];
   return { kontrakt: v2.CONTRACT.id, rodzina: 'pushup_plank', cwiczenie, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 150 }], klatki, bledy };
 }
@@ -198,7 +198,7 @@ const FAZY_PUSHUP_PLANK = () => [
   `Układ podporu przodem: kostki NA PALCACH za osobą: kostka = [0, ${f0(-(Math.sin(PU.podbicie * Math.PI / 180) * 19 - Math.cos(PU.podbicie * Math.PI / 180) * 7) + 0.3)}, ±10] z podbicie = ${PU.podbicie} (palce stoją na podłodze, pięta w górze; kąt kostki ≈ −55…−65° — dopuszczalny wyjątek rodziny: dolna granica −75°), dłonie na podłodze: chwyt = [x barków w u = 0, 2, ±19] i NIE zmieniają położenia w ruchu (dłonie stałe).`,
   `Ciało w jednej linii: miednica leży na odcinku bark–kostka (odchyłka ≤ 6 cm). Oś ciała nad podłogą pod kątem φ: miednica = kostka + ${PU.dl}·[cos φ, sin φ], bark = miednica + 50·[cos φ, sin φ], pochylenieTulowia = 90 − φ (90 = poziomo głową do przodu), pochylenieGlowy ≈ 0,6 · pochylenieTulowia.`,
   `Pompka: u = 0 góra φ = ${PU.phiGora}° (ramiona proste: łokieć ≤ 20°), u = 1 dół φ = ${PU.phiDol}° (klatka ≤ 20 cm nad dłońmi: bark − dłoń ≤ 20 cm, łokieć ≥ 85°; wzorzec ma ≈ 18 cm i łokieć ≈ 144° zgięcia); klatki pośrednie co 0,25 (φ liniowo). ŁOKCIE (technika: łokcie do tyłu, nie na boki — błąd klasyczny): w KAŻDEJ klatce rece.R.biegunLokcia = [${PU.biegunLokcia.join(', ')}], rece.L.biegunLokcia = [${PU.biegunLokcia[0]}, ${PU.biegunLokcia[1]}, ${-PU.biegunLokcia[2]}] (łokieć za tułowiem, ramię ≈ 45° od tułowia z góry — konwencja/uproszczenie, zakres techniki 30–60°); limit reguły: odwiedzenie barku ≤ 75°. Deska (Plank): jedna poza (φ = ${PU.phiGora}°, łokcie zgięte 90° albo proste), ćwiczenie izometryczne.`,
-  'Nogi proste (kolana ≤ 20°): odległość miednica–kostka ≈ 82 cm; kostka dalej niż 90 cm od biodra = poza zasięgiem nogi.',
+  `Nogi proste (kolana ≤ 20°): odległość miednica–kostka ≈ ${PU.dl} cm; kostka dalej niż 90 cm od biodra = poza zasięgiem nogi.`,
 ];
 
 export function punktyOdniesienia(rodzina) {
@@ -353,7 +353,7 @@ export function opisCwiczenia(cw, { root = ROOT, bledyCwiczenia, catalog = null,
   const own = existsSync(cd) ? czytaj(cd).exercises?.[cw] : null;
   for (const c of (own?.move ?? []).slice(0, 2)) if (tekst[c.c]) ruch.push(tekst[c.c]);
   if (!ruch.length) { const cs = czytaj(join(root, 'lib/figures/v2/cue-sets.json')).items?.[cw]; for (const id of (cs?.ok ?? []).slice(0, 2)) if (tekst[id]) ruch.push(tekst[id]); }
-  return { klucz: cw, bledy, bezAnim, ruch, sens: sensZKatalogu(cw, catalog) };
+  return { klucz: cw, bledy, bezAnim, ruch, sens: sensZKatalogu(cw, catalog), deklaracje: rodzina ? deklaracjeCwiczenia(rodzina, cw, root) : [] };
 }
 
 /* ---------- polecenie ---------- */
@@ -390,7 +390,7 @@ export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia,
   const aktywne = new Set(cwiczenia.flatMap((c) => regulyDla(rodzina, c, root).map((x) => x.id))); const rej = liniePolecenia(wczytajRejestr(root), liczbyZSilnika(rodzina), undefined, { rodzina, reguly: aktywne }); if (rej.length) L.push('## Najczęstsze błędy z poprzednich odpowiedzi i jak ich uniknąć', '', 'Rejestr błędów popełnionych w poprzednich odpowiedziach (liczba wystąpień) — sprawdź każdy punkt przed odpowiedzią:', ...rej, '');
   przyklady.forEach((p, i) => L.push(`## Wzorzec ${i + 1}: ${p.opis}`, '', '```json', JSON.stringify(p.poza), '```', ''));
   L.push('## Ćwiczenia do wykonania', '', 'Dla każdego: klucz (nazwa ćwiczenia), sens ruchu z katalogu (sprzęt, chwyt), opis ruchu i dozwolone identyfikatory błędów (pole cue).', '');
-  for (const o of opisy) L.push(`- "${o.klucz}"${o.sens.length ? ` — sens: ${o.sens.join('; ')}` : ''}${o.ruch.length ? ` — ruch: ${o.ruch.join(' ')}` : ''} — błędy: ${o.bledy.length ? o.bledy.join('; ') : 'brak (bledy: [])'}${o.bezAnim?.length ? ` (nie animujemy: ${o.bezAnim.join(', ')} — to cecha tempa/oddechu, nie pozy)` : ''}`);
+  for (const o of opisy) L.push(`- "${o.klucz}"${o.sens.length ? ` — sens: ${o.sens.join('; ')}` : ''}${o.ruch.length ? ` — ruch: ${o.ruch.join(' ')}` : ''} — błędy: ${o.bledy.length ? o.bledy.join('; ') : 'brak (bledy: [])'}${o.deklaracje?.length ? ` — ${o.deklaracje.join(' — ')}` : ''}${o.bezAnim?.length ? ` (nie animujemy: ${o.bezAnim.join(', ')} — to cecha tempa/oddechu, nie pozy)` : ''}`);
   if (pomijane.length) L.push('', `Poza tym poleceniem (nie generuj ich): ${pomijane.map((x) => `"${x.klucz}" — ${x.powod}`).join('; ')}.`);
   L.push('', '## Zasady dla każdego ćwiczenia', '', '- u = 0 to pozycja wyjściowa, u = 1 pozycja skrajna ruchu; dobierz sprzęt (sprzet[]) i chwyt do tego konkretnego ćwiczenia (sens z listy powyżej).', '- Poza ma być anatomicznie wiarygodna dla nazwanego ćwiczenia, ale zgodność z liczbami i regułami powyżej jest ważniejsza niż szczegół.', '- Przed odpowiedzią sprawdź każdą pozę punkt po punkcie: zasięg ramienia, zakresy stawów z marginesem, przenikanie, chwyt na osi, reguły sensu, deklaracje „dotyczy”.', '');
   L.push(...FORMAT_ODPOWIEDZI(rodzina, cwiczenia));

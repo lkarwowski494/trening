@@ -46,7 +46,7 @@ describe('pozy w danych (lib/figures/v2/poses): każda przechodzi walidator geom
     expect(pliki).toContain('pull_up.json');
     for (const f of pliki) {
       const d = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')); expect(['figury-v2/poza@1', 'figury-v2/poza@2']).toContain(d.kontrakt); expect(f).toBe(`${d.rodzina}.json`);
-      const w = run(VAL, `const r = Object.entries(${JSON.stringify(d.cwiczenia)}).map(([c, p]) => [c, m.waliduj(p, { rodzina: ${JSON.stringify(d.rodzina)}, cwiczenie: c }).ok]); console.log(JSON.stringify(r));`) as [string, boolean][];
+      const w = run(VAL, `const r = Object.entries(JSON.parse((await import('node:fs')).readFileSync(${JSON.stringify(path.join(dir, f))}, 'utf8')).cwiczenia).map(([c, p]) => [c, m.waliduj(p, { rodzina: ${JSON.stringify(d.rodzina)}, cwiczenie: c }).ok]); console.log(JSON.stringify(r));`) as [string, boolean][];
       for (const [c, ok] of w) expect([f, c, ok]).toEqual([f, c, true]);
     }
     expect(Object.keys(JSON.parse(fs.readFileSync(path.join(dir, 'pull_up.json'), 'utf8')).cwiczenia)).toContain('Gironda Sternum Chins');
@@ -242,7 +242,7 @@ describe('core_floor: reguły sensu wyprowadzone ze wskazówek ćwiczeń (docs/5
     const out = path.join(tmpRoot(), 'out'); run(POL, `await m.main(['--rodzina','core_floor','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(PELNY)}, log: () => {} }); console.log('0')`);
     const wsz = fs.readdirSync(out).map((f) => fs.readFileSync(path.join(out, f), 'utf8')).join('\n'); const p1 = fs.readdirSync(out).map((f) => fs.readFileSync(path.join(out, f), 'utf8')).find((t) => /## Wzorzec 1: „Crunch” leżąc/.test(t))!; /* część z Crunch (części mogą być dzielone a/b przy sekcji sprzętu) */
     expect(p1).toContain('## Reguły sensu ruchu'); expect(p1).toContain('[reguła: miednica_na_podlodze]'); expect(p1).toContain('Układ leżący na plecach'); expect(p1).toMatch(/## Wzorzec 1: „Crunch” leżąc na plecach wyliczony z modelu/);
-    expect(wsz).toMatch(/- "Alternate Heel Touchers" — .*błędy: brak \(bledy: \[\]\) \(nie animujemy: mis\.jerk — to cecha tempa\/oddechu, nie pozy\)/);
+    expect(wsz).toMatch(/- "Decline Crunch" — .*błędy: brak \(bledy: \[\]\) \(nie animujemy: mis\.jerk — to cecha tempa\/oddechu, nie pozy\)/);
     expect(wsz).toContain('- "Cable Crunch" — sens: sprzęt: wyciąg z bloczkiem wysokim (sprzet: rodzaj "wyciag", bloczek wysoki: y 150–240 cm)'); expect(wsz).not.toMatch(/"Cable Crunch" — pomiń/); /* wyciąg w kontrakcie (docs/54) */ expect(wsz).toContain('- "Stability Ball Crunch" — sens: sprzęt: piłka gimnastyczna (sprzet: rodzaj "pilka_gimnastyczna")'); expect(wsz).not.toMatch(/"Stability Ball Crunch" — pomiń/); expect(wsz).toContain('- "Machine Crunch" — sens: sprzęt: maszyna do brzucha (obrót, punkt: dłonie) (sprzet: rodzaj "dzwignia")'); expect(wsz).not.toMatch(/"Machine Crunch" — pomiń/); /* piłka gimnastyczna i maszyny (dźwignia) w kontrakcie */ expect(wsz).toContain('- "Decline Crunch" — sens: sprzęt: ławka ujemna (głową niżej) (sprzet: rodzaj "lawka", kat -45…-5°)'); expect(wsz).not.toMatch(/"Decline Crunch" — pomiń/); /* ławka ujemna w kontrakcie (docs/54) */ expect(wsz).toMatch(/"GHD Sit Up" — OTWARTE — brak źródła ruchu/); expect(wsz).not.toContain('"Stomach Vacuum"'); /* wyjątek bez animacji: ani w poleceniu, ani na liście pominiętych */
     /* bramka per ćwiczenie: ćwiczenia bez reguły sensu są WSTRZYMANE (nie trafiają do polecenia), części liczone po odfiltrowaniu */
     const wstrz = ['Butt-Ups', 'Dragon Flag', 'Seated Flat Bench Leg Pull-In', 'Side Jackknife'];
@@ -440,7 +440,7 @@ describe('gemini-polecenia: dzielenie za długich części (sekcja sprzętu roś
 describe('wyjątki bez animacji (data/zrodla/figury-wyjatki.json, decyzja właściciela 26.10.2026)', () => {
   const W = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-wyjatki.json'), 'utf8')) as { rodziny: Record<string, string>; cwiczenia: Record<string, string> };
   test('każdy wyjątek ma powód i istnieje (rodzina w docs/51, ćwiczenie w katalogu); cardio i Stomach Vacuum są wyjątkami', () => {
-    expect(Object.keys(W.rodziny)).toEqual(['cardio']); expect(Object.keys(W.cwiczenia)).toEqual(['Stomach Vacuum']);
+    expect(Object.keys(W.rodziny)).toEqual(['cardio']); expect(Object.keys(W.cwiczenia)).toEqual(['Stomach Vacuum', 'Inverted Row', 'Clock Push-Up']); /* 26.10.2026: Inverted Row (geometria nie pozwala spełnić reguł jakości) i Clock Push-Up (brak cechy rozpoznawczej) — z powodem */
     for (const p of [...Object.values(W.rodziny), ...Object.values(W.cwiczenia)]) expect(p.length).toBeGreaterThan(40);
     const docs = fs.readFileSync(path.join(ROOT, 'docs/51-figury-v2-pokrycie.md'), 'utf8'); for (const r of Object.keys(W.rodziny)) expect(docs).toContain('| `' + r + '` |'); for (const c of Object.keys(W.cwiczenia)) expect(docs).toContain(c);
   });

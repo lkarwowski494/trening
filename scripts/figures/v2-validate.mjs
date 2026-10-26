@@ -9,8 +9,8 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { loadV2 } from './v2-build.mjs';
-import { sprawdzSens, izometryczne, grupaBledu, wczytajSens } from './v2-sens.mjs';
-import { sprawdzJakosc, wczytajTeksty, GRUPY_POSTAWY } from './v2-jakosc.mjs';
+import { sprawdzSens, izometryczne, bezBramkiRuchu, zakresWyjatek, dynamiczne, grupaBledu, wczytajSens } from './v2-sens.mjs';
+import { sprawdzJakosc, wczytajTeksty, GRUPY_POSTAWY, wierszeWJednejLinii } from './v2-jakosc.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SCHEMA_FILE = 'docs/schemas/figury-v2-poza.schema.json';
@@ -43,7 +43,7 @@ export function opisKontraktu(rodzina, zakres) { return silnik().v2.describeCont
 export function waliduj(poza, { rodzina, cwiczenie, root = ROOT }) {
   /* błędy postawy (grupa inna niż „zakres”): pierwsza klatka błędu NIE musi mieć delty zerowej — błąd jest widoczny w każdej klatce (v2-jakosc: blad_widoczny_stale) */
   const postural = new Set(((poza && poza.bledy) || []).map((b) => b.cue).filter((c) => { const g = grupaBledu(rodzina, c, root); return g && GRUPY_POSTAWY.includes(g); }));
-  const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root), isometric: izometryczne(rodzina, cwiczenie, root) }).filter((b) => !(b.kod === 'blad-start' && [...postural].some((c) => b.szczegol.includes(`„${c}”`))));
+  const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root), isometric: izometryczne(rodzina, cwiczenie, root) || bezBramkiRuchu(cwiczenie, root), allow: zakresWyjatek(rodzina, cwiczenie, root), dynamic: dynamiczne(rodzina, cwiczenie, root) }).filter((b) => !(b.kod === 'blad-start' && [...postural].some((c) => b.szczegol.includes(`„${c}”`))));
   const rigowa = silnik().v2.FAMILIES.find((f) => f.id === rodzina)?.status === 'ready' && !fs.existsSync(path.join(ROOT, POSES_DIR, `${rodzina}.json`)); /* rodziny gotowe z rigu (kod) sprawdza sens-gotowe.mjs na klatkach rigu; rodzina gotowa z DANYCH (poses/<rodzina>.json) ma sens i wymagany sprzęt sprawdzane tu */
   /* wymagany sprzęt ćwiczenia z katalogu (docs/54): poza musi go zawierać (np. wyciąg z bloczkiem wysokim) */
   /* rodziny gotowe z rigu w kodzie (przykłady few-shot z rigów, np. ławka bez wpisu w gearOf) pomijane — wymóg obejmuje pozy generowane */
@@ -85,23 +85,39 @@ export function zastosuj(root, wynik) {
 export const schematRepo = () => JSON.stringify(schematPozy('generic'), null, 1) + '\n';
 
 /* ---------- podgląd (HTML z SVG) ---------- */
-export function podglad(poza, katalog, motyw) {
-  const { v2, tokens } = silnik(); const pal = v2.figurePalette(tokens[motyw]); fs.mkdirSync(katalog, { recursive: true });
-  const us = [0, 0.5, 1]; const widoki = ['side', 'front']; const warianty = [undefined, ...poza.bledy.map((_, i) => i)];
-  const wiersze = warianty.map((w) => {
-    const komorki = widoki.flatMap((view) => {
-      const listy = []; for (const x of warianty) for (let i = 0; i <= 20; i++) listy.push(v2.dataShapes(poza, i / 20, view, x));
-      const box = v2.boundsOf(listy);
-      return us.map((u) => v2.svgDocument(v2.dataShapes(poza, u, view, w), box, pal, 1.5));
-    });
-    return `<div style="font:12px sans-serif;color:${tokens[motyw].text};margin:6px 0 2px">${w === undefined ? 'poza poprawna' : 'błąd: ' + poza.bledy[w].cue}</div><div style="display:flex;gap:8px;flex-wrap:wrap">${komorki.join('')}</div>`;
+/** Szerokość docelowa wiersza podglądu (px): przy wielu klatkach skala rysunku maleje, żeby wiersz mieścił się w obrazie. */
+export const PODGLAD_SZEROKOSC = 3000;
+/** HTML podglądu pozy: wiersz = poprawna poza / jeden błąd; w wierszu najpierw widok z boku, potem z przodu, po jednej komórce na KAŻDĄ klatkę kluczową (klatki_u pozy) — wszystkie w jednym wierszu (bez zawijania).
+ * Zwraca { html, klatki: [u…] (klatki narysowane), wiersze: [etykieta…], px }. */
+export function htmlPodgladu(poza, motyw) {
+  const { v2, tokens } = silnik(); const pal = v2.figurePalette(tokens[motyw]); const widoki = ['side', 'front']; const warianty = [undefined, ...poza.bledy.map((_, i) => i)];
+  const klatki = poza.klatki.map((k) => k.u);
+  const boxy = widoki.map((view) => { const listy = []; for (const x of warianty) for (let i = 0; i <= 20; i++) listy.push(v2.dataShapes(poza, i / 20, view, x)); return v2.boundsOf(listy); });
+  const suma = boxy.reduce((t, b) => t + b.w, 0) * klatki.length; const px = Math.min(1.5, Math.max(0.5, (PODGLAD_SZEROKOSC - 8 * (klatki.length * widoki.length)) / Math.max(1, suma)));
+  const etykiety = warianty.map((w) => (w === undefined ? 'poza poprawna' : 'błąd: ' + poza.bledy[w].cue));
+  const wiersze = warianty.map((w, n) => {
+    const komorki = widoki.flatMap((view, vi) => klatki.map((u) => `<span class="k" data-u="${u}" data-widok="${view}">${v2.svgDocument(v2.dataShapes(poza, u, view, w), boxy[vi], pal, px)}</span>`));
+    return `<div style="font:12px sans-serif;color:${tokens[motyw].text};margin:6px 0 2px">${etykiety[n]}</div><div class="w" data-etykieta="${etykiety[n]}" style="display:flex;flex-wrap:nowrap;gap:8px;align-items:flex-end;width:max-content">${komorki.join('')}</div>`;
   });
-  const html = `<html><body style="margin:0;padding:8px;background:${tokens[motyw].surface}">${wiersze.join('')}</body></html>`;
+  return { html: `<html><body style="margin:0;padding:8px;background:${tokens[motyw].surface}">${wiersze.join('')}</body></html>`, klatki, wiersze: etykiety, px };
+}
+export function podglad(poza, katalog, motyw) {
+  fs.mkdirSync(katalog, { recursive: true }); const { html } = htmlPodgladu(poza, motyw);
   const nazwa = path.join(katalog, `${poza.cwiczenie.replace(/\W+/g, '-')}-${motyw}`);
   fs.writeFileSync(nazwa + '.html', html);
   try {
     const { chromium } = createRequire(import.meta.url)('playwright'); // NODE_PATH=/opt/node-tools/node_modules
-    return (async () => { const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1400, height: 700 } }); await p.setContent(html); await p.screenshot({ path: nazwa + '.png', fullPage: true }); await b.close(); return nazwa + '.png'; })();
+    return (async () => {
+      const b = await chromium.launch();
+      try {
+        const p = await b.newPage({ viewport: { width: 1400, height: 700 } }); await p.setContent(html);
+        const szer = await p.evaluate(() => document.documentElement.scrollWidth); await p.setViewportSize({ width: Math.max(1400, szer), height: 700 });
+        const pomiar = await p.evaluate(() => [...document.querySelectorAll('.w')].map((w) => ({ etykieta: w.dataset.etykieta, dolne: [...w.querySelectorAll('.k')].map((k) => k.getBoundingClientRect().bottom) })));
+        const uklad = wierszeWJednejLinii(pomiar); if (uklad.length) throw new Error(`podgląd ${poza.cwiczenie}: ${uklad.join('; ')}`);
+        await p.screenshot({ path: nazwa + '.png', fullPage: true });
+      } finally { await b.close(); }
+      return nazwa + '.png';
+    })();
   } catch { return Promise.resolve(nazwa + '.html'); }
 }
 
