@@ -187,6 +187,8 @@ describe('kolidery i kontrola chwytu', () => {
     expect(texts(LANDMINE({ rodzaj: 'landmine', x: 178, dlugosc: 150 }))).toMatch(/gryf ma 150 cm/);
     const f = keyframeFrame(LANDMINE({ rodzaj: 'landmine', x: 178 }), 0.5); expect(checkFrame(f).filter(i => i.code === 'pivot')).toEqual([]); expect(TOL.pivot).toBe(3);
     const eq = equipColliders(f.props); expect(eq).toEqual([{ k: 'capsule', id: 'barPivot', a: [178, 5, 0], b: expect.any(Array), r: EQUIP.landmineR }]);
+    const pv = f.props.find(p => p.k === 'pivot') as Extract<Prop, { k: 'pivot' }>; const cap = eq[0] as Extract<typeof eq[number], { k: 'capsule' }>; expect(Math.hypot(...cap.b.map((x, i) => x - pv.to[i]))).toBeCloseTo(EQUIP.landmineHand, 6); /* dłonie na końcu: bez kolidera */
+    expect(equipColliders([{ k: 'pivot', from: [0, 5, 0], to: [100, 100, 0] }])).toEqual([]); /* pivot z rigu gotowej rodziny (bez len): jak dotychczas bez kolidera */
     expect(checkFrame(f).filter(i => i.code === 'pen')).toEqual([]); /* gryf w dłoniach: kontakt dozwolony */
   });
   test('landmine: łuk dłoni — klatki co ≤ ok. 30 cm drogi (interpolacja liniowa skraca łuk o < 3 cm); za rzadkie klatki odrzucone', () => {

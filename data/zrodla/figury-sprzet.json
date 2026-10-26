@@ -15,6 +15,7 @@
   "medBallR": { "cm": 11, "status": "konwencja rysunku", "zgodnosc": "piłka lekarska ok. 4 kg ma ok. 22–24 cm średnicy (rozmiary różnych piłek: ok. 20–36 cm)", "uzycie": "piłka lekarska trzymana (domyślny promień)" },
   "landmineLen": { "cm": 200, "status": "konwencja rysunku", "zgodnosc": "długość gryfu przy osi landmine ok. 2,0–2,2 m", "uzycie": "landmine: sztywny gryf od osi obrotu do dłoni" },
   "landmineR": { "cm": 1.8, "status": "konwencja rysunku", "zgodnosc": "promień gryfu w kolizjach (z tuleją)", "uzycie": "landmine: kapsuła gryfu" },
+  "landmineHand": { "cm": 10, "status": "konwencja rysunku", "zgodnosc": "długość końca gryfu w dłoniach (bez kolidera)", "uzycie": "landmine: kolider gryfu kończy się tyle cm przed dłońmi" },
   "benchW": { "cm": 28, "status": "konwencja rysunku", "zgodnosc": "szerokość ławki ok. 28–32 cm", "uzycie": "ławka" },
   "benchPad": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "grubość wyściełania ławki", "uzycie": "ławka" },
   "benchLegW": { "cm": 3.2, "status": "konwencja rysunku", "zgodnosc": "grubość nóg ławki", "uzycie": "ławka" },

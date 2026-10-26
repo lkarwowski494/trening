@@ -2,7 +2,7 @@
  * Figury v2 — kolidery i sprawdzenia geometrii klatki (do testów i do skryptów kontrolnych). Ciało = kapsuły na kościach, sprzęt = kapsuły i graniastosłupy.
  * Odstęp (gap) = odległość powierzchni; ujemny = przenikanie. Kontakty dozwolone deklaruje klatka (Frame.contacts); reszta par nie może się przenikać.
  */
-import { distSegSeg, dist, type V2, type V3 } from './math';
+import { distSegSeg, dist, sub, type V2, type V3 } from './math';
 import { BODY, GIRTH, SIDES, soleY, type Skeleton } from './skeleton';
 import { benchPolys, EQUIP } from './draw';
 import type { Collider, Frame, Prop } from './scene';
@@ -60,7 +60,9 @@ export function equipColliders(props: Prop[]): Collider[] {
       case 'trapbar': for (const sg of [-1, 1]) c.push({ k: 'capsule', id: 'bar', a: [p.c[0] - 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], b: [p.c[0] + 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], r: 1.8 }); break;
       case 'dumbbell': c.push({ k: 'capsule', id: 'db' + p.side, a: p.c, b: p.c, r: p.r ?? EQUIP.dbHeadR }); break;
       case 'kettlebell': { const d = p.dir ?? [0, -1, 0]; const o = p.r === undefined ? 12 : p.r + 2.5; const q: V3 = [p.c[0] + d[0] * o, p.c[1] + d[1] * o, p.c[2] + d[2] * o]; c.push({ k: 'capsule', id: 'kb', a: q, b: q, r: p.r ?? EQUIP.kbBallR }); break; }
-      case 'pivot': c.push({ k: 'capsule', id: 'barPivot', a: p.from, b: p.to, r: EQUIP.landmineR }); break;
+      case 'pivot': { /* tylko gryf z danych kontraktu (len): rigi gotowych rodzin nie mają tego kolidera; ostatnie EQUIP.landmineHand cm (dłonie na końcu gryfu) bez kolidera */
+        if (p.len === undefined) break; const d = sub(p.to, p.from); const l = Math.hypot(...d) || 1; const k = Math.max(0, l - EQUIP.landmineHand) / l;
+        c.push({ k: 'capsule', id: 'barPivot', a: p.from, b: [p.from[0] + d[0] * k, p.from[1] + d[1] * k, p.from[2] + d[2] * k], r: EQUIP.landmineR }); break; }
       case 'ball': c.push({ k: 'capsule', id: 'ball', a: p.c, b: p.c, r: p.r ?? EQUIP.medBallR }); break;
       case 'plate': c.push(...plateColliders(p)); break;
       case 'bench': { const bp = benchPolys(p); const w = (p.w ?? EQUIP.benchW) / 2; c.push(prism('benchSeat', bp.seat, -w, w), prism('benchBack', bp.back, -w, w)); break; }
