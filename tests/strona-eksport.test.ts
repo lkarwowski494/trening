@@ -13,16 +13,21 @@ import { CATALOG_REV, CATALOG } from '@/lib/catalog.generated';
 import { CUE_DATA, cueDict } from '@/lib/cues';
 import { cueSelection } from '@/lib/figures/v2/cueSets';
 import { figureSpec, phasesFor, tempoFor, frameAt } from '@/lib/figures/v2/figure';
-import { errorsOf } from '@/lib/figures/v2/ui';
+import { errorsOf, legendOf } from '@/lib/figures/v2/ui';
+import { isNiche } from '@/lib/seed';
+import { FAMILIES } from '@/lib/figures/v2/families';
 import { figurePalette, svgInner, shapesAt as appShapesAt } from '@/lib/figures/v2';
 import { light } from '@/lib/tokens';
 import { similarity, SWAP_WEIGHTS } from '@/lib/swapScore';
+import { swapCandidates, SWAP_TOP } from '@/lib/swap';
+import { getState } from '@/lib/store';
+import { fresh } from './helpers';
 import { SOURCE_NAME_PATTERNS, GENERIC_REFERENCE_PATTERNS } from '@/lib/sources';
 
 const root = path.join(__dirname, '..');
 const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
 const run = (out: string, ...extra: string[]) => execFileSync('node', [SCRIPT, '--out', out, '--commit', 'abc1234def', ...extra], { encoding: 'utf8' });
-type Ex = { id: string; slug: string; name: string; group: string; equipment: string; metric: string; pattern: string; muscles: { main: string[]; aux: string[] }; regions: { id: string; load: number }[]; family: string;
+type Ex = { niche: boolean; musclesApproximate: boolean; id: string; slug: string; name: string; group: string; equipment: string; metric: string; pattern: string; muscles: { main: string[]; aux: string[] }; regions: { id: string; load: number }[]; family: string;
   figure: null | { phases: { name: string; ms: number }[]; errors: { id: string; text: string }[] }; cues: { scope: string; ok?: string[]; mistakes?: string[]; setup?: string[] }; alternatives: string[]; requires: string[][] };
 type Out = { schema: string; app: { version: string; commit: string; catalogRev: string }; lang: string; meta: { exercises: number; cuesWithoutText: number }; labels: Record<string, Record<string, string>>; exercises: Ex[] };
 
@@ -82,6 +87,11 @@ describe('eksport dla strony: komplet i spójność z runtime aplikacji (macierz
       for (const g of e.regions) expect([0.25, 0.5, 1]).toContain(g.load);
     }
   });
+  test('flagi z aplikacji: niszowe (isNiche) i „dobór mięśni: przybliżony” (legendOf) per ćwiczenie; etykiety rodzin figur w pl (jedyne, które aplikacja ma)', () => {
+    for (const r of LIB) { const e = data.en.exercises.find(x => x.id === r[0])!; expect([r[0], e.niche, e.musclesApproximate]).toEqual([r[0], isNiche({ lib: true, libKey: r[0] }), !!legendOf(r[0])?.simplified]); }
+    expect(data.pl.labels.families).toEqual(Object.fromEntries(FAMILIES.map(f => [f.id, f.label]))); expect(data.en.labels.families).toBeUndefined();
+    for (const l of LANGS) expect([l, data[l].labels.ui.musclesApprox.length > 0]).toEqual([l, true]);
+  });
   test('etykiety: grupy, partie, regiony, sprzęt, możliwości i fazy ruchu są w każdym języku (niepuste)', () => {
     for (const l of LANGS) for (const [sec, m] of Object.entries(data[l].labels)) { expect([l, sec, Object.keys(m).length > 0]).toEqual([l, sec, true]); for (const [k, v] of Object.entries(m)) expect([l, sec, k, v.length > 0]).toEqual([l, sec, k, true]); }
     expect(data.pl.labels.regions.chest).toBe('klatka');
@@ -130,10 +140,10 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
     const sq = fig.figures['back-squat']; const rig = frameAt(figureSpec('Back Squat')!, 0.5);
     sq.frames[12].pose.pelvis.forEach((v, i) => expect(Math.abs(v - (rig.pose!.pelvis as number[])[i])).toBeLessThan(0.006));
   });
-  test('zamienniki: do 5, istniejące slugi, nie to samo ćwiczenie, ta sama metryka; ranking = lib/swapScore (te same wagi co aplikacja)', () => {
+  test('zamienniki: do SWAP_TOP (3), istniejące slugi, nie to samo ćwiczenie, ta sama metryka; ranking = lib/swapScore (te same wagi co aplikacja)', () => {
     const bySlug = new Map(data.en.exercises.map(e => [e.slug, e]));
     for (const e of data.en.exercises) {
-      expect(e.alternatives.length).toBeLessThanOrEqual(5);
+      expect(e.alternatives.length).toBeLessThanOrEqual(SWAP_TOP);
       for (const s of e.alternatives) { const b = bySlug.get(s)!; expect([e.id, s, !!b && b.id !== e.id && b.metric === e.metric]).toEqual([e.id, s, true]); }
     }
     const a = libExercise(LIB.find(r => r[0] === 'Back Squat')!);
@@ -141,6 +151,18 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
     expect([...scores].sort((x, y) => y - x)).toEqual(scores);
     expect(SWAP_WEIGHTS.pattern).toBe(3);
   });
+});
+
+describe('eksport dla strony: zamienniki = ranking aplikacji (swapCandidates, profil nowego użytkownika)', () => {
+  test.each(['pl', 'en', 'ja', 'de'])('język %s: pierwsze SWAP_TOP propozycji dla co 7. ćwiczenia biblioteki i dla ćwiczeń z figurą jest taka sama jak w arkuszu zamiany aplikacji', async l => {
+    await fresh(undefined, l as never); const st = getState(); const slugOf = new Map(data.en.exercises.map(e => [e.id, e.slug])); const idOf = new Map(st.exercises.filter(e => e.libKey).map(e => [e.libKey!, e.id]));
+    const slugById = new Map(st.exercises.filter(e => e.libKey).map(e => [e.id, slugOf.get(e.libKey!)!]));
+    const keys = data.en.exercises.filter((e, i) => i % 7 === 0 || figureSpec(e.id)).map(e => e.id);
+    for (const key of keys) {
+      const app = swapCandidates(idOf.get(key)!, { showAll: true, inWorkout: new Set() }).slice(0, SWAP_TOP).map(c => slugById.get(c.exId));
+      expect([l, key, data[l].exercises.find(e => e.id === key)!.alternatives]).toEqual([l, key, app]);
+    }
+  }, 120000);
 });
 
 describe('eksport dla strony: niezmienniki anonimowości (jak tests/zrodla-wiedzy.test.ts)', () => {

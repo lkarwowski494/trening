@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 354 | 354 | 0 |
 | TEKST | 1115 | 1115 | 0 |
-| LOGIKA | 1042 | 1042 | 0 |
+| LOGIKA | 1043 | 1042 | 0 |
 | WYMIAR | 146 | 146 | 0 |
 
 ## EKRAN
@@ -1862,7 +1862,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/ui.cueIdsOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures.test.tsx |
 | figures/v2/ui.guidesOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-ui.test.tsx |
 | figures/v2/ui.errorsOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-ui.test.tsx, tests/strona-eksport.test.ts |
-| figures/v2/ui.legendOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx |
+| figures/v2/ui.legendOf | lib/figures/v2/ui.ts | tests/figures-v2-guides.test.tsx, tests/strona-eksport.test.ts |
 | figures/v2/ui.toeAngleApplies | lib/figures/v2/ui.ts | tests/figures-v2-ui.test.tsx |
 | figures/v2/ui.hasTechnique | lib/figures/v2/ui.ts | tests/figures-v2-ui.test.tsx |
 | generator.setsFor | lib/generator.ts | tests/gen-general.test.ts |
@@ -2162,7 +2162,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | seed.metricFor | lib/seed.ts | tests/catalog-library25.test.tsx, tests/catalog-v2.test.ts, tests/ux.test.tsx |
 | seed.muscleConfidence | lib/seed.ts | tests/audit-0.10-ui.test.tsx, tests/catalog-library25.test.tsx, tests/zrodlo-jedno.test.ts |
 | seed.unmappedMuscleOf | lib/seed.ts | tests/audit-0.10-ui.test.tsx, tests/catalog-library25.test.tsx |
-| seed.isNiche | lib/seed.ts | tests/catalog-library25.test.tsx, tests/swap-logic.test.ts |
+| seed.isNiche | lib/seed.ts | tests/catalog-library25.test.tsx, tests/strona-eksport.test.ts, tests/swap-logic.test.ts |
 | seed.formerNamesOf | lib/seed.ts | tests/audit-k1-fala2b.test.tsx |
 | seed.formerMatch | lib/seed.ts | tests/audit-k1-fala2b.test.tsx |
 | seed.formerExact | lib/seed.ts | tests/audit-k1-fala2b.test.tsx |
@@ -2234,7 +2234,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.isDraftObj | lib/state/core.ts | tests/edit-on-demand.test.tsx, tests/matrix-invariants.test.ts |
 | store.save | lib/state/core.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +200 |
 | store.saveCfg | lib/state/core.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-m1-027-voice-default.test.ts +11 |
-| store.getState | lib/state/core.ts | tests/a11y-routes.ts, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +263 |
+| store.getState | lib/state/core.ts | tests/a11y-routes.ts, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +264 |
 | store.useStore | lib/state/core.ts | tests/matrix-logic.test.tsx |
 | store.useTick | lib/state/core.ts | tests/audit-0.10-tst.test.ts |
 | store.usePrefsTick | lib/state/core.ts | tests/matrix-logic.test.tsx |
@@ -2478,13 +2478,14 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | support.buildSupportMailto | lib/support.ts | tests/idea-request.test.tsx, tests/support-mail.test.tsx |
 | support.openSupportMail | lib/support.ts | tests/idea-request.test.tsx |
 | support.openWebPage | lib/support.ts | tests/legal-links.test.tsx |
-| swap.swapCandidates | lib/swap.ts | tests/adapt-logic.test.ts, tests/audit-0.10-stats.test.ts, tests/audit-0.10-tst.test.ts +3 |
+| swap.swapCandidates | lib/swap.ts | tests/adapt-logic.test.ts, tests/audit-0.10-stats.test.ts, tests/audit-0.10-tst.test.ts +4 |
 | swap.sortOthers | lib/swap.ts | tests/catalog-full.test.tsx |
 | swap.implLabel | lib/swap.ts | tests/swap-top3.test.ts |
 | swap.otherImpls | lib/swap.ts | tests/swap-logic.test.ts, tests/swap-top3.test.ts |
 | swap.reasonText | lib/swap.ts | tests/swap-top3.test.ts |
 | swap.parseSwapTarget | lib/swap.ts | tests/matrix-logic.test.tsx |
 | swapScore.similarity | lib/swapScore.ts | tests/strona-eksport.test.ts |
+| swapScore.orderSwaps | lib/swapScore.ts | WYJĄTEK: BRAK |
 | theme.applyTheme | lib/theme.ts | tests/matrix-logic.test.tsx |
 | theme.useTheme | lib/theme.ts | tests/audit-m1-024-bold.test.tsx, tests/audit-m1-031-contrast.test.tsx, tests/matrix-logic.test.tsx |
 | theme.font | lib/theme.ts | tests/i18n-wave2.test.ts, tests/m3-system.test.tsx, tests/m3-theme.test.ts |
@@ -2627,7 +2628,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Affects: knee \| ankle \| hip \| spine \| kneeLat \| heel \| pelvis \| bar \| shoulder \| elbow | lib/figures/v2/errors.ts | tests/catalog-full.test.tsx, tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts +1 |
 | FamilyId: squat \| bench_press \| hinge \| pushup_plank \| dip \| overhead_press \| row \| cable_row \| pull_up \| pulldown \| lunge \| leg_machine \| leg_isolation \| calf_raise \| hip_bridge \| kb_ballistic \| olympic \| back_extension \| curl \| triceps \| delt_raise \| chest_fly \| shrug \| rotator_cuff \| core_floor \| core_hang \| core_standing \| carry \| cardio \| plyo \| sled_throw \| strongman \| glute_floor \| hip_abd_add \| mobility_stand \| mobility_floor \| foam_roll \| neck \| forearm \| thruster \| chest_press_machine \| cable_press \| kneeling_hinge | lib/figures/v2/families.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts +5 |
 | FamilyStatus: ready \| planned | lib/figures/v2/families.ts | tests/audit-0.10-plan.test.ts, tests/figures-v2-mapping.test.ts |
-| FAMILIES (43) | lib/figures/v2/families.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-mapping.test.ts |
+| FAMILIES (43) | lib/figures/v2/families.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-mapping.test.ts +1 |
 | MeasuredJoint: knee \| elbow \| hip | lib/figures/v2/figure.ts | tests/figures-v2-contract.test.ts |
 | GuideId: thighParallel \| plumbMidfoot \| kneeToe \| backLine | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |
 | MuscleId: chest \| triceps \| front_delt \| biceps \| abs \| lower_back \| hamstrings \| glutes \| quads \| upper_back \| forearms \| lats \| adductors \| rear_delt \| obliques \| side_delt \| calves \| abductors \| neck | lib/figures/v2/muscles.ts | tests/audit-0.10-gen.test.ts, tests/audit-k1-muscleload.test.tsx, tests/catalog-v2.test.ts +1 |
