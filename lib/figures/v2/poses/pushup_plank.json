@@ -1433,7 +1433,7 @@
    "bledy": []
   },
   "Decline Push Up": {
-   "kontrakt": "figury-v2/poza@1",
+   "kontrakt": "figury-v2/poza@2",
    "rodzina": "pushup_plank",
    "cwiczenie": "Decline Push Up",
    "sprzet": [
@@ -1741,6 +1741,7 @@
      "cue": "push.mis.partial",
      "znacznik": "pelvis",
      "dotyczy": [
+      "hip",
       "ankle",
       "elbow",
       "shoulder",
