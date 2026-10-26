@@ -73,6 +73,19 @@ export function exerciseMapSets(rows: readonly { muscle: Muscle | null; load: nu
   return out;
 }
 
+/** Zmienne CSS sylwetki dla strony (eksport): kolory ustawia strona (jasny/ciemny wygląd, kontrast), kształty pochodzą stąd. */
+export const SILHOUETTE_VARS = { body: '--mm-body', part: '--mm-part', muscle: (m: Muscle) => `--mm-${MUSCLES.indexOf(m)}` } as const;
+/** Arkusz sylwetek dla strony: dwa widoki (`#front`, `#back`) w układzie 0–120 × 0–260, kształty jak w PARTS. Wypełnienia przez zmienne CSS (SILHOUETTE_VARS),
+ * żeby jeden plik służył wszystkim ćwiczeniom i obu wyglądom; strona ustawia zmienną partii na stopień ćwiczenia (exerciseMapSets + shadeLevel). */
+export function silhouetteSprite(): string {
+  const V = SILHOUETTE_VARS;
+  const one = (view: View) => PARTS.filter(p => p.view === view).map(p => {
+    const style = p.muscle == null ? `fill:var(${V.body})` : `fill:var(${V.muscle(p.muscle)},var(${V.part}))`;
+    return p.shapes.map(s => 'e' in s ? `<ellipse cx="${s.e[0]}" cy="${s.e[1]}" rx="${s.e[2]}" ry="${s.e[3]}" style="${style}"/>` : `<path d="${s.d}" style="${style}"/>`).join('');
+  }).join('');
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 260"><g id="front">${one('front')}</g><g id="back">${one('back')}</g></svg>\n`;
+}
+
 /** Znacznik SVG (podgląd poza aplikacją i testy kształtów) — ten sam rysunek co components/MuscleMap.tsx. */
 export function svgMarkup(sets: Partial<Record<string, number>>, colors = { body: '#E9ECF2', part: '#C9CFDA', accent: '#1F5FD1' }): string {
   const max = Math.max(0, ...MUSCLES.map(m => sets[m] ?? 0));
