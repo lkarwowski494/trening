@@ -40,6 +40,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
   const R = appRequire();
   const seed = R('lib/seed.ts'), i18n = R('lib/i18n.ts'), cat = R('lib/catalog.generated.ts'), cues = R('lib/cues/index.ts'), eq = R('lib/equipment.ts');
   const mm = R('lib/musclemap.ts'), MIN_LOAD = R('lib/figures/v2/muscles.ts').MUSCLE_MIN_LOAD;
+  const roles = R('lib/muscleRoles.ts');
   const v2 = R('lib/figures/v2/index.ts'), cueSets = R('lib/figures/v2/cueSets.ts'), ui = R('lib/figures/v2/ui.ts'), swapScore = R('lib/swapScore.ts'), sources = R('lib/sources.ts');
   const app = JSON.parse(readFileSync(join(repoRoot, 'app.json'), 'utf8')).expo;
   const keys = seed.LIB.map(r => r[0]);
@@ -67,7 +68,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
     const spec = v2.figureSpec(key), pose = poseFor(key, spec);
     if (spec) {
       const errors = ui.errorsOf(spec).map(({ error, cue }) => {
-        const def = v2.ERRORS[error];
+        const def = v2.errorDefOf(spec, error);
         return { id: error, cue, kind: def.kind, mark: def.mark, ...(def.kind === 'pose' ? { frames: sample(u => v2.frameAt(spec, u, error)) } : { tempo: def.mods.tempo }) };
       });
       return { family: spec.family, views: spec.views, static: spec.static, lowerFirst: spec.lowerFirst, tempo: v2.tempoFor(spec), pose, frames: sample(u => v2.frameAt(spec, u)), errors };
@@ -139,6 +140,8 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
         group: e.group, equipment: e.equipment, metric: e.metric, pattern: entry.pattern, loadSource: entry.loadSource,
         muscles: { main: e.muscles, aux: e.secondaryMuscles },
         regions: load.map(([id, w]) => ({ id, load: w })),
+        /* „Co robią mięśnie”: zdania ról tylko dla regionów z wyświetlaną rolą (jak sekcja w aplikacji, muscleRoleRows), w języku pliku */
+        roles: roles.muscleRoleRows(e).filter(r => r.role).map(r => ({ region: r.region, text: r.role })),
         requires: entry.requires, recommended: entry.recommended,
         family: v2.familyOf(key), niche: seed.isNiche(e), musclesApproximate: !!ui.legendOf(key)?.simplified,
         figure: own(figures, slugs[key]) ? { phases: figurePhases(key), errors: figureErrors(key) } : null,

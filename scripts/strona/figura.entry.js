@@ -8,7 +8,7 @@ import { uAt, TEMPO } from './anim.js';
 
 export { uAt, TEMPO, boundsOf };
 /** Role kolorów rysunku (= klucze figurePalette; sprawdza je test w repo aplikacji). */
-export const ROLES = ['skinHi', 'clothHi', 'error', 'floor', 'frame', 'pad', 'steel', 'plate', 'load', 'skin', 'skinFar', 'cloth', 'clothFar', 'shoe', 'hair', 'guide', 'cable', 'muscleMain', 'muscleAux'];
+export const ROLES = ['skinHi', 'clothHi', 'error', 'floor', 'frame', 'pad', 'steel', 'plate', 'load', 'skin', 'skinFar', 'cloth', 'clothFar', 'shoe', 'hair', 'guide', 'cable', 'muscleMain', 'muscleAux', 'contactOk', 'contactBad'];
 /** Paleta „rola → var(--f-rola)”. */
 export const VAR_PALETTE = Object.fromEntries(ROLES.map(r => [r, `var(--f-${r})`]));
 

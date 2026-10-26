@@ -22,6 +22,7 @@ import { light } from '@/lib/tokens';
 import { similarity, SWAP_WEIGHTS, orderSwaps } from '@/lib/swapScore';
 import { swapCandidates, SWAP_TOP } from '@/lib/swap';
 import { getState } from '@/lib/store';
+import { muscleRoleRows } from '@/lib/muscleRoles';
 import { fresh } from './helpers';
 import { SOURCE_NAME_PATTERNS, GENERIC_REFERENCE_PATTERNS } from '@/lib/sources';
 
@@ -30,8 +31,11 @@ const SCRIPT = path.join(root, 'scripts/strona/eksport.mjs');
 const run = (out: string, ...extra: string[]) => execFileSync('node', [SCRIPT, '--out', out, '--commit', 'abc1234def', ...extra], { encoding: 'utf8' });
 type Ex = { niche: boolean; musclesApproximate: boolean; id: string; slug: string; name: string; group: string; equipment: string; metric: string; pattern: string; muscles: { main: string[]; aux: string[] }; regions: { id: string; load: number }[]; family: string;
   figure: null | { phases: { name: string; ms: number }[]; errors: { id: string; text: string }[] }; cues: { scope: string; ok?: string[]; mistakes?: string[]; setup?: string[] }; alternatives: string[]; requires: string[][] };
+type ExRoles = { roles: { region: string; text: string }[] };
 type Out = { schema: string; app: { version: string; commit: string; catalogRev: string }; lang: string; meta: { exercises: number; cuesWithoutText: number }; labels: Record<string, Record<string, string>>; exercises: Ex[] };
 
+/** Ćwiczenia z pozą w lib/figures/v2/poses/*.json (rodziny z danych): eksport dołącza ich figury z próbek pozy. */
+const DANE_POZ = new Set<string>(fs.readdirSync(path.join(root, 'lib/figures/v2/poses')).filter(f => f.endsWith('.json')).flatMap(f => Object.keys(JSON.parse(fs.readFileSync(path.join(root, 'lib/figures/v2/poses', f), 'utf8')).cwiczenia)));
 let dir = '', dir2 = '';
 const data: Record<string, Out> = {};
 beforeAll(() => {
@@ -89,6 +93,20 @@ describe('eksport dla strony: komplet i spójność z runtime aplikacji (macierz
       for (const g of e.regions) expect([0.25, 0.5, 1]).toContain(g.load);
     }
   });
+  test('role mięśni (roles): [{region, text}] jak sekcja „Co robią mięśnie” (muscleRoleRows), tylko role wyświetlane, w języku pliku; regiony ⊂ regions; niektóre ćwiczenia mają role, ćwiczenie bez roli ma []', () => {
+    for (const l of ['pl', 'en', 'de'] as const) {
+      applyLang(l); let z = 0, bez = 0;
+      for (const r of LIB) {
+        const e = (data[l].exercises.find(x => x.id === r[0]) as unknown as Ex & ExRoles);
+        const oczekiwane = muscleRoleRows(libExercise(r)).filter(x => x.role).map(x => ({ region: x.region, text: x.role }));
+        expect([l, r[0], e.roles]).toEqual([l, r[0], oczekiwane]);
+        const regiony = new Set(e.regions.map(g => g.id)); for (const x of e.roles) { expect(regiony.has(x.region)).toBe(true); expect(x.text.length).toBeGreaterThan(5); }
+        if (e.roles.length) z++; else bez++;
+      }
+      expect(z).toBeGreaterThan(50); expect(bez).toBeGreaterThan(0);
+    }
+    applyLang('pl');
+  });
   test('flagi z aplikacji: niszowe (isNiche) i „dobór mięśni: przybliżony” (legendOf) per ćwiczenie; etykiety rodzin figur w pl (jedyne, które aplikacja ma)', () => {
     for (const r of LIB) { const e = data.en.exercises.find(x => x.id === r[0])!; expect([r[0], e.niche, e.musclesApproximate]).toEqual([r[0], isNiche({ lib: true, libKey: r[0] }), !!legendOf(r[0])?.simplified]); }
     expect(data.pl.labels.families).toEqual(Object.fromEntries(FAMILIES.map(f => [f.id, f.label]))); expect(data.en.labels.families).toBeUndefined();
@@ -124,12 +142,12 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
       let n = 0;
       for (const e of data[l].exercises) {
         const spec = figureSpec(e.id);
-        if (!spec) { expect([e.id, e.figure]).toEqual([e.id, null]); continue; }
+        if (!spec) { expect([e.id, e.figure]).toEqual([e.id, DANE_POZ.has(e.id) ? { phases: [], errors: [] } : null]); continue; } /* ćwiczenie z pozą z danych (poses/*.json) bez specyfikacji figury: figura z próbek pozy, bez faz i błędów */
         n++; expect(e.figure!.phases.map(p => p.ms)).toEqual(phasesFor(spec, tempoFor(spec)).map(p => p.ms));
         for (const p of e.figure!.phases) expect(p.name.length).toBeGreaterThan(0);
         for (const x of e.figure!.errors) expect(x.text.length).toBeGreaterThan(0);
       }
-      expect(n).toBe(87);
+      expect(n).toBe(98); /* 87 rigów (squat, bench_press, hinge) + 11 ćwiczeń pull_up z danych */
     }
     expect(data.pl.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).toBe('Opuszczanie');
     expect(data.en.exercises.find(e => e.id === 'Back Squat')!.figure!.phases[0].name).not.toBe('Opuszczanie');
@@ -137,10 +155,11 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
   test('figury.json: wpis na slug ćwiczenia z figurą — 25 próbek klatek, kontrakt pozy, tempo i błędy jak w aplikacji; próbki = klatki rigu (zaokrąglone do 0,01 cm)', () => {
     const fig = JSON.parse(fs.readFileSync(path.join(dir, 'figury.json'), 'utf8')) as { figures: Record<string, { frames: { pose: { pelvis: number[] }; props: unknown[] }[]; pose: { kontrakt: string }; tempo: unknown; errors: { id: string; cue: string; kind: string; frames?: unknown[]; tempo?: unknown }[]; views: string[]; family: string }> };
     const withFig = data.en.exercises.filter(e => figureSpec(e.id));
-    expect(Object.keys(fig.figures).sort()).toEqual(withFig.map(e => e.slug).sort());
+    const zDanych = data.en.exercises.filter(e => !figureSpec(e.id) && DANE_POZ.has(e.id));
+    expect(Object.keys(fig.figures).sort()).toEqual([...withFig, ...zDanych].map(e => e.slug).sort()); expect(zDanych.length).toBeGreaterThan(0);
     for (const e of withFig) {
       const spec = figureSpec(e.id)!; const f = fig.figures[e.slug];
-      expect([e.id, f.frames.length, f.pose.kontrakt, f.family, f.views]).toEqual([e.id, 25, 'figury-v2/poza@1', spec.family, spec.views]);
+      expect([e.id, f.frames.length, f.pose.kontrakt, f.family, f.views]).toEqual([e.id, 25, expect.stringMatching(/^figury-v2\/poza@[12]$/), spec.family, spec.views]);
       expect(f.tempo).toEqual(tempoFor(spec));
       expect(f.errors.map(x => [x.id, x.cue])).toEqual(errorsOf(spec).map(x => [x.error, x.cue]));
       for (const x of f.errors) expect(x.kind === 'pose' ? x.frames!.length : x.tempo).toBeTruthy();
@@ -243,9 +262,9 @@ describe('silnik figur dla przeglądarki (scripts/strona/silnik-build.mjs)', () 
     reqs.forEach((r, i) => {
       const b = svgInner(appShapesAt(figureSpec(r.key)!, r.u, r.view as never), pal).split('\n'); const nums = (x: string) => (x.match(/-?\d+(?:\.\d+)?/g) ?? []).map(Number);
       const lines = got[i].split('\n'); expect([r.key, r.view, r.u, lines.length]).toEqual([r.key, r.view, r.u, b.length]);
-      /* kształty o prawie równej głębokości (z) mogą zamienić się kolejnością przez zaokrąglenie próbek — porównanie bez względu na pozycję w liście */
+      /* kształty o prawie równej głębokości (z) mogą zamienić się kolejnością przez zaokrąglenie próbek — porównanie bez względu na pozycję w liście; tolerancja 0,3 cm: interpolacja liniowa między 25 próbkami przy nieliniowym ruchu rigu ławki (łokieć z łańcucha 3D) */
       const left = b.map(nums); const tag = (x: string) => x.replace(/[-\d.]+/g, '#');
-      for (const l of lines) { const na = nums(l); const j = left.findIndex((nb, k) => nb.length === na.length && tag(b[k]) === tag(l) && Math.max(0, ...na.map((v, q) => Math.abs(v - nb[q]))) < 0.12); expect([r.key, r.view, r.u, l.slice(0, 40), j >= 0]).toEqual([r.key, r.view, r.u, l.slice(0, 40), true]); left.splice(j, 1); b.splice(j, 1); }
+      for (const l of lines) { const na = nums(l); const j = left.findIndex((nb, k) => nb.length === na.length && tag(b[k]) === tag(l) && Math.max(0, ...na.map((v, q) => Math.abs(v - nb[q]))) < 0.3); expect([r.key, r.view, r.u, l.slice(0, 40), j >= 0]).toEqual([r.key, r.view, r.u, l.slice(0, 40), true]); left.splice(j, 1); b.splice(j, 1); }
     });
   });
 });
