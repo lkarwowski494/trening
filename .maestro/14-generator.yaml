@@ -54,7 +54,8 @@ name: Generator szablonów i planu
 - tapOn: { id: "day-2" }
 - tapOn: { id: "day-5" }
 - scrollUntilVisible: { element: "Mon.* Full Body", direction: DOWN, timeout: 30000 }
-- scrollUntilVisible: { element: "One workout a week still brings progress.*", direction: DOWN, timeout: 30000 }
+# uwaga „oneday” stoi pod celem, NAD podglądem — na małym ekranie po przewinięciu do „Mon.* Full Body” jest nad ekranem (nocny przebieg 40263099163), więc szukamy w górę
+- scrollUntilVisible: { element: "One workout a week still brings progress.*", direction: UP, timeout: 30000 }
 - takeScreenshot: 70a-generator-1-dzien
 - scrollUntilVisible: { element: { id: "day-0" }, direction: UP, timeout: 30000 }
 - tapOn: { id: "day-0" }
