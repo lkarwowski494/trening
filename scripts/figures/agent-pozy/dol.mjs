@@ -115,3 +115,13 @@ export function podAuto(hip, ax, top = 0, pole = [0.15, -1], { zapas = 3, min = 
   }
   return { pod: r1(pod), y: r1(kostkaStopyY(top, pod)) };
 }
+
+/** Układ klatki piersiowej (bark, osie) dla miednicy m = [x, y], pochylenia p i opcjonalnych: obrót ciała (roll), skręt klatki (twist), skłon boczny (lean), zgięcie kręgosłupa (bend) — jak solveSkeleton.
+ * Zwraca { up, front, right, sc (środek barków), sh(sg) (bark strony), pt(a, b, c) (punkt w układzie klatki: a w górę, b do przodu, c w prawo od środka barków) }. */
+export function klatkaPiersiowa(m, p, { roll = 0, twist = 0, lean = 0, bend = 0 } = {}) {
+  const ax = v2().trunkAxes({ trunkPitch: p, trunkRoll: roll, trunkTwist: twist, trunkLean: lean, pelvisTilt: 0 }); const b = BODY(); const ch = Math.cos(0.55 * bend * R);
+  const sc = [m[0] + ax.up[0] * b.trunk * ch, m[1] + ax.up[1] * b.trunk * ch, ax.up[2] * b.trunk * ch];
+  const sh = (sg) => [sc[0] + sg * b.shHalf * ax.right[0], sc[1] + sg * b.shHalf * ax.right[1], sc[2] + sg * b.shHalf * ax.right[2]];
+  const pt = (a, bb, c) => [0, 1, 2].map((i) => sc[i] + ax.up[i] * a + ax.front[i] * bb + ax.right[i] * c);
+  return { up: ax.up, front: ax.front, right: ax.right, sc, sh, pt };
+}

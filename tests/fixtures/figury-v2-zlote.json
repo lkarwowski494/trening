@@ -880,6 +880,70 @@
    "svg": "392ba2049d1946c3db98",
    "raw": "ef10692e8616399bde20"
   },
+  "core_standing/Barbell Side Bend": {
+   "svg": "c6a98e207b042dabd50d",
+   "raw": "c8cc2ff8e42daebebc1c"
+  },
+  "core_standing/Side Bend (hantel)": {
+   "svg": "5c47722e977a50e0edf2",
+   "raw": "3e298c6f00d0e340a8ce"
+  },
+  "core_standing/One-Arm High-Pulley Cable Side Bends": {
+   "svg": "7300c3b98afcaf3999d4",
+   "raw": "3e5ae9839b78adb55c56"
+  },
+  "core_standing/Weighted Ball Side Bend": {
+   "svg": "2675582ed946d27b9a21",
+   "raw": "7c18ddca97645a2c32ea"
+  },
+  "core_standing/Bosu Ball Cable Crunch With Side Bends": {
+   "svg": "0ff1742694181bce9b0c",
+   "raw": "89bdae65e26faa989e6d"
+  },
+  "core_standing/Russian Twist": {
+   "svg": "660978d6e213e774e8ed",
+   "raw": "284c4f089e0207fe3cf5"
+  },
+  "core_standing/Medicine Ball Full Twist": {
+   "svg": "2eaa0d3515997da28696",
+   "raw": "55876920409ec6e1c20c"
+  },
+  "core_standing/Cable Russian Twists": {
+   "svg": "cfd271d4d99d6ebc0052",
+   "raw": "797cc7894b3e12c88613"
+  },
+  "core_standing/Pallof Press": {
+   "svg": "76e949464566aa1228fe",
+   "raw": "48c1118c861c94af1d89"
+  },
+  "core_standing/Pallof Press With Rotation": {
+   "svg": "b1f10a9c1ac42d264cea",
+   "raw": "988d4326d5611628af67"
+  },
+  "core_standing/Cable Woodchop": {
+   "svg": "bafa43013700c6696d77",
+   "raw": "9fd3e3f091381335af3d"
+  },
+  "core_standing/Cable Judo Flip": {
+   "svg": "b76484d434eea5e08bc6",
+   "raw": "1eb98e6f383e28245796"
+  },
+  "core_standing/Landmine Rotation": {
+   "svg": "62d66909b900245ca476",
+   "raw": "a15863dc17df95743a45"
+  },
+  "core_standing/Kettlebell Windmill": {
+   "svg": "69af9c545c72c3ee0625",
+   "raw": "eb17c0e17b2b07ff0103"
+  },
+  "core_standing/Double Kettlebell Windmill": {
+   "svg": "16b2d2c09f9cb1fe5007",
+   "raw": "9a7652bd94e75b47115a"
+  },
+  "core_standing/Bent Press": {
+   "svg": "5b536e9cef71033d303f",
+   "raw": "a41879ecc797ad27ed96"
+  },
   "glute_floor/Donkey Kick": {
    "svg": "0f5a3aeb6c3e99d83e92",
    "raw": "33452bdf1b270708f681"
