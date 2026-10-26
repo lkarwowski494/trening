@@ -102,3 +102,17 @@ Oszczędność limitu: agenci raportują tylko na końcu zadania albo przy bloka
 - E2E 57: przebiegi 297, 298, 301, 304 — job build (macos-26) anulowany po ok. 15–18 min bez maszyny; piąty zakolejkowany ok. 21:05 UTC (numer 305+ w e2e-ios.yml, branch integracja-1-1). Ponawiać do skutku; czerwony wynik oceniać jak tester-e2e.
 - pozy-1-1 (2711796): SCALONA (c16ad36), konflikty tylko README/docs/19 — zregenerowane; 433 pozy 0 naruszeń; gemini-polecenia 48/48, zgodność wsteczna i sens-pokrycie zielone lokalnie (odciski nie wymagały odświeżenia). Sprawdzić CI pozy-1-1 run 999 (nie widziałem wyniku).
 - Co dalej: tests.yml na 4e84adf, E2E 57, native speakerzy; po scaleniu 1.0 do main — scalić main do integracja-1-1 (nie robiłem). Limit poleceń Gemini: 36 000, zakres per część, przy pełnym katalogu nic nie jest pomijane.
+## Grafiki 1.1 — runda 5 (agent programisty, gałąź `jakosc-r2`, stan na SHA 61b1e0a)
+
+Zrobione:
+- Uogólnienie reguł R1–R10 po cechach ruchu (dane sens + teksty + `data/zrodla/figury-cechy.json`, nie po nazwie rodziny), a17968a. Dwa fałszywe alarmy z poprzedniego sprawdzianu zamknięte (obrót przedramienia ≥ 5° to różnica; tolerancja kolana 10° jako konwencja).
+- Ograniczenia strukturalne w silniku (`lib/figures/v2/contract.ts`, `validatePose`): stała długość taśmy zawieszenia (kod `tasma-dlugosc`, ±3 cm) i kolano po swojej stronie osi ciała (`kolano-strona`, wyjątek: błąd z `kneeLat`), 57a8a57. Na 428 pozach z gałęzi gora/dol/dynamiczne wyłapały dokładnie błędy n5 nr 1 i 2, bez fałszywych alarmów. Poprawka rysunku: rzut z przodu leżącego tułowia z przechyłem schodził pod podłogę (`draw.ts`, `TORSO_PROJ_MIN`), 1ff58bd.
+- Reguły R13 (klęk z deklaracji w `figury-cechy.json`), R15 (kształty nad podłogą), R16 (kręgosłup się zwija), R14 i R14b (wyjątek nie przeczy wskazówce i ma mechanizm; Tuck Crunch wyszedł z wyjątków), 1ff58bd. Z testami scenariuszowymi w `tests/figury-jakosc.test.ts`.
+- P2 (zapas od progu): `krawedz` w wyniku `waliduj`, `na_krawedzi` w manifeście, 61b1e0a. Na 29 pozach pilotażu 7 jest na krawędzi (Decline, Single-Arm, Mountain Climbers, 3 rollouty, Reverse Crunch) — nieprzesunięte w środek przedziału.
+- Poprawione pozy: Mountain Climbers (kolano z IK, biodra unoszone o 4,8 cm), Suspended Fallout (dłoń z okręgu wokół zaczepu), Barbell Rollout from Bench (kolano na blacie), Tuck Crunch (kręgosłup zgięty 40°), Cocoons (miednica +8 cm, zgięcie 40°), Alternate Heel Touchers (gęstsze klatki, ręce 22°).
+
+Nie zrobione:
+- Sprawdzian na 433 pozach z `origin/pozy-1-1` (tabela trafień prawdziwe/fałszywe): niewykonany. Polecenie: `node scripts/figures/jakosc-raport.mjs --root <worktree pozy-1-1> --json` i ocena każdego trafienia; walidator z niezmiennikami: `node ../jr2/inv.mjs`-podobny przebieg `waliduj` po wszystkich `lib/figures/v2/poses/*.json`.
+- Podglądy n6 (`docs/przekazanie/n6`, scratchpad `pilotaz-agent/n6`) nie wygenerowane z końcowym kodem (`run.mjs --rodzina X --wyjscie ... --podglad`).
+- Pełne `npm run verify` i zielony `tests.yml` dla 61b1e0a niesprawdzone (lokalnie: figury-jakosc 59/59, figures-v2 zielone po regeneracji odcisków).
+- Otwarte: Mountain Climbers — sens (`miednica_stala_wysokosc` ≤ 5 cm) i R5 (kolano ≥ 11 cm) mają okno 4,5–5 cm unoszenia biodra (udo przechodzi przez pion); do decyzji badacza, czy poluzować rozpiętość miednicy do ok. 7 cm. Wall Sit z rigu daje `klatki_rozne` (9 identycznych klatek przy ćwiczeniu izometrycznym) — kod rigu, nie poza z danych.
