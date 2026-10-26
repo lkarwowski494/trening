@@ -1,5 +1,5 @@
 /**
- * L-038: skróty (hash) źródła i przekładu dla treści o STAŁYM kluczu — wskazówki techniki (lib/cues/text) i opisy uprawnień (locales/*.json).
+ * L-037: skróty (hash) źródła i przekładu dla treści o STAŁYM kluczu — wskazówki techniki (lib/cues/text) i opisy uprawnień (locales/*.json).
  * Dlaczego: zestaw przekładu i strażniki słowników śledzą klucze UI (`_source.json`). Wskazówka ma stałe id (`lunge.torso`), więc zmiana
  * polskiego/angielskiego brzmienia nie tworzy nowego klucza i przestarzałe przekłady w 33 językach nikogo nie czerwieniły (25.10.2026).
  * Mechanizm: docs/lokalizacja/skroty-przekladu.json trzyma dla każdego zdania skrót PL+EN („s”) i skrót przekładu w każdym języku („t”) z chwili
@@ -47,7 +47,7 @@ function zastoje(zapis: Record<string, Wpis>, teraz: Record<string, Wpis>, wyjat
   return out;
 }
 
-describe('L-038: skróty źródła i przekładu (wskazówki techniki, opisy uprawnień)', () => {
+describe('L-037: skróty źródła i przekładu (wskazówki techniki, opisy uprawnień)', () => {
   const plik: Plik = fs.existsSync(FILE) ? JSON.parse(fs.readFileSync(FILE, 'utf8')) : { wyjatki: {}, wskazowki: {}, uprawnienia: {} };
   const teraz = aktualne();
 
