@@ -1,0 +1,5692 @@
+{
+ "kontrakt": "figury-v2/poza@2",
+ "rodzina": "calf_raise",
+ "cwiczenia": {
+  "Łydki na stopniu": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Łydki na stopniu",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 7.7,
+     "x1": 48,
+     "top": 8
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      93.6,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.9,
+        11.6,
+        10
+       ],
+       "podbicie": 10,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11.9,
+        11.6,
+        -10
+       ],
+       "podbicie": 10,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        82.8,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        82.8,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      96.6,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.2,
+        14.5,
+        10
+       ],
+       "podbicie": 1.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11.2,
+        14.5,
+        -10
+       ],
+       "podbicie": 1.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        85.9,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        85.9,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      102.9,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -8,
+        20.4,
+        10
+       ],
+       "podbicie": -17.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -8,
+        20.4,
+        -10
+       ],
+       "podbicie": -17.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        92.1,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        92.1,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      107.7,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -3.1,
+        24.9,
+        10
+       ],
+       "podbicie": -36.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -3.1,
+        24.9,
+        -10
+       ],
+       "podbicie": -36.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        96.9,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        96.9,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      109.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -0.5,
+        26.4,
+        10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -0.5,
+        26.4,
+        -10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        98.5,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        98.5,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": []
+  },
+  "Standing Calf Raise": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Standing Calf Raise",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 7.7,
+     "x1": 48,
+     "top": 6
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "prosta",
+     "kat": 90,
+     "punkt": "miednica",
+     "trzyma": "R",
+     "x": 0,
+     "y": 90.6,
+     "z": 0,
+     "dlugosc": 21.7
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      91.6,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.9,
+        9.6,
+        10
+       ],
+       "podbicie": 10,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11.9,
+        9.6,
+        -10
+       ],
+       "podbicie": 10,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        14,
+        121.6,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        14,
+        121.6,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      94.6,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.2,
+        12.5,
+        10
+       ],
+       "podbicie": 1.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11.2,
+        12.5,
+        -10
+       ],
+       "podbicie": 1.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        14,
+        124.6,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        14,
+        124.6,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      100.9,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -8,
+        18.4,
+        10
+       ],
+       "podbicie": -17.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -8,
+        18.4,
+        -10
+       ],
+       "podbicie": -17.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        14,
+        130.9,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        14,
+        130.9,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      105.7,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -3.1,
+        22.9,
+        10
+       ],
+       "podbicie": -36.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -3.1,
+        22.9,
+        -10
+       ],
+       "podbicie": -36.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        14,
+        135.7,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        14,
+        135.7,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      107.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -0.5,
+        24.4,
+        10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -0.5,
+        24.4,
+        -10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        14,
+        137.3,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        14,
+        137.3,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": [
+    {
+     "cue": "calf.mis.partial",
+     "znacznik": "heels",
+     "dotyczy": [
+      "hip",
+      "ankle",
+      "pelvis",
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.25,
+       "miednica": [
+        0,
+        -1.9,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -0.5,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.5
+        },
+        "L": {
+         "kostka": [
+          -0.5,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.5
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -1.9,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -1.9,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.5,
+       "miednica": [
+        0,
+        -5.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -3,
+          -5.4,
+          0
+         ],
+         "podbicie": 17.5
+        },
+        "L": {
+         "kostka": [
+          -3,
+          -5.4,
+          0
+         ],
+         "podbicie": 17.5
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -5.8,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -5.8,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.75,
+       "miednica": [
+        0,
+        -8.2,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -6.9,
+          -7.7,
+          0
+         ],
+         "podbicie": 29.5
+        },
+        "L": {
+         "kostka": [
+          -6.9,
+          -7.7,
+          0
+         ],
+         "podbicie": 29.5
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -8.2,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -8.2,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "miednica": [
+        0,
+        -8.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        },
+        "L": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -8.8,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -8.8,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "Smith Machine Calf Raise": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Smith Machine Calf Raise",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 7.7,
+     "x1": 48,
+     "top": 6
+    },
+    {
+     "rodzaj": "smith",
+     "x": -12.8,
+     "h": 200
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      91.6,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.9,
+        9.6,
+        10
+       ],
+       "podbicie": 10,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11.9,
+        9.6,
+        -10
+       ],
+       "podbicie": 10,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -12.8,
+        138.6,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -12.8,
+        138.6,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      94.6,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.2,
+        12.5,
+        10
+       ],
+       "podbicie": 1.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11.2,
+        12.5,
+        -10
+       ],
+       "podbicie": 1.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -12.8,
+        141.6,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -12.8,
+        141.6,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      100.9,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -8,
+        18.4,
+        10
+       ],
+       "podbicie": -17.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -8,
+        18.4,
+        -10
+       ],
+       "podbicie": -17.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -12.8,
+        147.9,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -12.8,
+        147.9,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      105.7,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -3.1,
+        22.9,
+        10
+       ],
+       "podbicie": -36.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -3.1,
+        22.9,
+        -10
+       ],
+       "podbicie": -36.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -12.8,
+        152.7,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -12.8,
+        152.7,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      107.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -0.5,
+        24.4,
+        10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -0.5,
+        24.4,
+        -10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -12.8,
+        154.3,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -12.8,
+        154.3,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": [
+    {
+     "cue": "calf.mis.partial",
+     "znacznik": "heels",
+     "dotyczy": [
+      "hip",
+      "ankle",
+      "pelvis",
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.25,
+       "miednica": [
+        0,
+        -1.9,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -0.5,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.5
+        },
+        "L": {
+         "kostka": [
+          -0.5,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.5
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -1.9,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -1.9,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.5,
+       "miednica": [
+        0,
+        -5.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -3,
+          -5.4,
+          0
+         ],
+         "podbicie": 17.5
+        },
+        "L": {
+         "kostka": [
+          -3,
+          -5.4,
+          0
+         ],
+         "podbicie": 17.5
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -5.8,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -5.8,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.75,
+       "miednica": [
+        0,
+        -8.2,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -6.9,
+          -7.7,
+          0
+         ],
+         "podbicie": 29.5
+        },
+        "L": {
+         "kostka": [
+          -6.9,
+          -7.7,
+          0
+         ],
+         "podbicie": 29.5
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -8.2,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -8.2,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "miednica": [
+        0,
+        -8.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        },
+        "L": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -8.8,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -8.8,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "Calf Raise (sztanga)": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Calf Raise (sztanga)",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 7.7,
+     "x1": 48,
+     "top": 6
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      91.6,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.9,
+        9.6,
+        10
+       ],
+       "podbicie": 10,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11.9,
+        9.6,
+        -10
+       ],
+       "podbicie": 10,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -12.8,
+        138.6,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -12.8,
+        138.6,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      94.6,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.2,
+        12.5,
+        10
+       ],
+       "podbicie": 1.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11.2,
+        12.5,
+        -10
+       ],
+       "podbicie": 1.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -12.8,
+        141.6,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -12.8,
+        141.6,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      100.9,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -8,
+        18.4,
+        10
+       ],
+       "podbicie": -17.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -8,
+        18.4,
+        -10
+       ],
+       "podbicie": -17.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -12.8,
+        147.9,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -12.8,
+        147.9,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      105.7,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -3.1,
+        22.9,
+        10
+       ],
+       "podbicie": -36.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -3.1,
+        22.9,
+        -10
+       ],
+       "podbicie": -36.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -12.8,
+        152.7,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -12.8,
+        152.7,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      107.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -0.5,
+        24.4,
+        10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -0.5,
+        24.4,
+        -10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -12.8,
+        154.3,
+        32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        0.5
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -12.8,
+        154.3,
+        -32
+       ],
+       "biegunLokcia": [
+        -0.7,
+        -1,
+        -0.5
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": [
+    {
+     "cue": "calf.mis.partial",
+     "znacznik": "heels",
+     "dotyczy": [
+      "hip",
+      "ankle",
+      "pelvis",
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.25,
+       "miednica": [
+        0,
+        -1.9,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -0.5,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.5
+        },
+        "L": {
+         "kostka": [
+          -0.5,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.5
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -1.9,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -1.9,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.5,
+       "miednica": [
+        0,
+        -5.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -3,
+          -5.4,
+          0
+         ],
+         "podbicie": 17.5
+        },
+        "L": {
+         "kostka": [
+          -3,
+          -5.4,
+          0
+         ],
+         "podbicie": 17.5
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -5.8,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -5.8,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.75,
+       "miednica": [
+        0,
+        -8.2,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -6.9,
+          -7.7,
+          0
+         ],
+         "podbicie": 29.5
+        },
+        "L": {
+         "kostka": [
+          -6.9,
+          -7.7,
+          0
+         ],
+         "podbicie": 29.5
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -8.2,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -8.2,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "miednica": [
+        0,
+        -8.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        },
+        "L": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -8.8,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -8.8,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "Calf Raise (linki)": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Calf Raise (linki)",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "wyciag",
+     "dwa": true,
+     "x": 105,
+     "y": 22,
+     "z": 45,
+     "chwyt": "uchwyt",
+     "h": 120
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      89.1,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11,
+        7,
+        10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        78.3,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        78.3,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      91.5,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -10,
+        9.3,
+        10
+       ],
+       "podbicie": -7,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -10,
+        9.3,
+        -10
+       ],
+       "podbicie": -7,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        80.7,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        80.7,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      96.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -6.9,
+        13.7,
+        10
+       ],
+       "podbicie": -22.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -6.9,
+        13.7,
+        -10
+       ],
+       "podbicie": -22.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        85.5,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        85.5,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      100,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -2.7,
+        17.2,
+        10
+       ],
+       "podbicie": -38,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -2.7,
+        17.2,
+        -10
+       ],
+       "podbicie": -38,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        89.2,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        89.2,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      101.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -0.5,
+        18.4,
+        10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -0.5,
+        18.4,
+        -10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        90.5,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        90.5,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": [
+    {
+     "cue": "calf.mis.partial",
+     "znacznik": "heels",
+     "dotyczy": [
+      "hip",
+      "ankle",
+      "pelvis",
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.25,
+       "miednica": [
+        0,
+        -1.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -0.8,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.4
+        },
+        "L": {
+         "kostka": [
+          -0.8,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.4
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -1.8,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -1.8,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.5,
+       "miednica": [
+        0,
+        -5.4,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -3.4,
+          -5.1,
+          0
+         ],
+         "podbicie": 17.5
+        },
+        "L": {
+         "kostka": [
+          -3.4,
+          -5.1,
+          0
+         ],
+         "podbicie": 17.5
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -5.4,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -5.4,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.75,
+       "miednica": [
+        0,
+        -8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -7.1,
+          -7.5,
+          0
+         ],
+         "podbicie": 29.6
+        },
+        "L": {
+         "kostka": [
+          -7.1,
+          -7.5,
+          0
+         ],
+         "podbicie": 29.6
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -8,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -8,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "miednica": [
+        0,
+        -8.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        },
+        "L": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -8.8,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -8.8,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "Donkey Calf Raise": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Donkey Calf Raise",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 7.7,
+     "x1": 48,
+     "top": 6
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 57.7,
+     "x1": 89.7,
+     "top": 62
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "prosta",
+     "kat": 90,
+     "punkt": "miednica",
+     "trzyma": "R",
+     "x": 0,
+     "y": 90.6,
+     "z": 0,
+     "dlugosc": 21.7
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      91.6,
+      0
+     ],
+     "pochylenieTulowia": 84,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 25.2,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.9,
+        9.6,
+        10
+       ],
+       "podbicie": 10,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11.9,
+        9.6,
+        -10
+       ],
+       "podbicie": 10,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        67.7,
+        65,
+        16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        67.7,
+        65,
+        -16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      94.6,
+      0
+     ],
+     "pochylenieTulowia": 84,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 25.2,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.2,
+        12.5,
+        10
+       ],
+       "podbicie": 1.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11.2,
+        12.5,
+        -10
+       ],
+       "podbicie": 1.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        67.7,
+        65,
+        16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        67.7,
+        65,
+        -16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      100.9,
+      0
+     ],
+     "pochylenieTulowia": 84,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 25.2,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -8,
+        18.4,
+        10
+       ],
+       "podbicie": -17.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -8,
+        18.4,
+        -10
+       ],
+       "podbicie": -17.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        67.7,
+        65,
+        16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        67.7,
+        65,
+        -16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      105.7,
+      0
+     ],
+     "pochylenieTulowia": 84,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 25.2,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -3.1,
+        22.9,
+        10
+       ],
+       "podbicie": -36.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -3.1,
+        22.9,
+        -10
+       ],
+       "podbicie": -36.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        67.7,
+        65,
+        16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        67.7,
+        65,
+        -16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      107.3,
+      0
+     ],
+     "pochylenieTulowia": 84,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 25.2,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -0.5,
+        24.4,
+        10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -0.5,
+        24.4,
+        -10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        67.7,
+        65,
+        16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        67.7,
+        65,
+        -16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": [
+    {
+     "cue": "calf.mis.partial",
+     "znacznik": "heels",
+     "dotyczy": [
+      "hip",
+      "ankle",
+      "elbow",
+      "shoulder",
+      "pelvis"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.25,
+       "miednica": [
+        0,
+        -1.9,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -0.5,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.5
+        },
+        "L": {
+         "kostka": [
+          -0.5,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.5
+        }
+       }
+      },
+      {
+       "u": 0.5,
+       "miednica": [
+        0,
+        -5.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -3,
+          -5.4,
+          0
+         ],
+         "podbicie": 17.5
+        },
+        "L": {
+         "kostka": [
+          -3,
+          -5.4,
+          0
+         ],
+         "podbicie": 17.5
+        }
+       }
+      },
+      {
+       "u": 0.75,
+       "miednica": [
+        0,
+        -8.2,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -6.9,
+          -7.7,
+          0
+         ],
+         "podbicie": 29.5
+        },
+        "L": {
+         "kostka": [
+          -6.9,
+          -7.7,
+          0
+         ],
+         "podbicie": 29.5
+        }
+       }
+      },
+      {
+       "u": 1,
+       "miednica": [
+        0,
+        -8.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        },
+        "L": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "Band Calf Raise": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Band Calf Raise",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "guma",
+     "mocowanie": "stopy",
+     "trzyma": "obie"
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      89.1,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11,
+        7,
+        10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -11,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        81.4,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        81.4,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      91.5,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -10,
+        9.3,
+        10
+       ],
+       "podbicie": -7,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -10,
+        9.3,
+        -10
+       ],
+       "podbicie": -7,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        83.8,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        83.8,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      96.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -6.9,
+        13.7,
+        10
+       ],
+       "podbicie": -22.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -6.9,
+        13.7,
+        -10
+       ],
+       "podbicie": -22.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        88.5,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        88.5,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      100,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -2.7,
+        17.2,
+        10
+       ],
+       "podbicie": -38,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -2.7,
+        17.2,
+        -10
+       ],
+       "podbicie": -38,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        92.3,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        92.3,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      101.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -0.5,
+        18.4,
+        10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -0.5,
+        18.4,
+        -10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        0,
+        93.5,
+        24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        1
+       ]
+      },
+      "L": {
+       "chwyt": [
+        0,
+        93.5,
+        -24
+       ],
+       "biegunLokcia": [
+        0,
+        0,
+        -1
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": [
+    {
+     "cue": "calf.mis.partial",
+     "znacznik": "heels",
+     "dotyczy": [
+      "hip",
+      "ankle",
+      "pelvis",
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.25,
+       "miednica": [
+        0,
+        -1.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -0.8,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.4
+        },
+        "L": {
+         "kostka": [
+          -0.8,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.4
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -1.9,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -1.9,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.5,
+       "miednica": [
+        0,
+        -5.4,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -3.4,
+          -5.1,
+          0
+         ],
+         "podbicie": 17.5
+        },
+        "L": {
+         "kostka": [
+          -3.4,
+          -5.1,
+          0
+         ],
+         "podbicie": 17.5
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -5.4,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -5.4,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.75,
+       "miednica": [
+        0,
+        -8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -7.1,
+          -7.5,
+          0
+         ],
+         "podbicie": 29.6
+        },
+        "L": {
+         "kostka": [
+          -7.1,
+          -7.5,
+          0
+         ],
+         "podbicie": 29.6
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -8.1,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -8.1,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "miednica": [
+        0,
+        -8.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        },
+        "L": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -8.8,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -8.8,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "Single Leg Calf Raise": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Single Leg Calf Raise",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -120,
+     "x1": 160
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 7.7,
+     "x1": 48,
+     "top": 6
+    },
+    {
+     "rodzaj": "sciana",
+     "x": 40,
+     "h": 220,
+     "przed": true
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      91.6,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.9,
+        9.6,
+        10
+       ],
+       "podbicie": 10,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -28,
+        37.6,
+        -10
+       ],
+       "podbicie": -64.9,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        -0.2,
+        0
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        37,
+        133.6,
+        16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        37,
+        133.6,
+        -16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      94.6,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -11.2,
+        12.5,
+        10
+       ],
+       "podbicie": 1.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -28,
+        40.6,
+        -10
+       ],
+       "podbicie": -64.9,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        -0.2,
+        0
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        37,
+        133.6,
+        16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        37,
+        133.6,
+        -16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      100.9,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -8,
+        18.4,
+        10
+       ],
+       "podbicie": -17.5,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -28,
+        46.9,
+        -10
+       ],
+       "podbicie": -64.9,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        -0.2,
+        0
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        37,
+        133.6,
+        16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        37,
+        133.6,
+        -16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      105.7,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -3.1,
+        22.9,
+        10
+       ],
+       "podbicie": -36.4,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -28,
+        51.7,
+        -10
+       ],
+       "podbicie": -64.9,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        -0.2,
+        0
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        37,
+        133.6,
+        16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        37,
+        133.6,
+        -16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      107.3,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -0.5,
+        24.4,
+        10
+       ],
+       "podbicie": -45,
+       "rotacjaStopy": 10,
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        -28,
+        53.3,
+        -10
+       ],
+       "podbicie": -64.9,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        -0.2,
+        0
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        37,
+        133.6,
+        16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        37,
+        133.6,
+        -16
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": [
+    {
+     "cue": "calf.mis.partial",
+     "znacznik": "heels",
+     "dotyczy": [
+      "hip",
+      "ankle",
+      "elbow",
+      "shoulder",
+      "pelvis"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.25,
+       "miednica": [
+        0,
+        -1.9,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -0.5,
+          -1.8,
+          0
+         ],
+         "podbicie": 5.5
+        },
+        "L": {
+         "kostka": [
+          0,
+          -1.9,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.5,
+       "miednica": [
+        0,
+        -5.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -3,
+          -5.4,
+          0
+         ],
+         "podbicie": 17.5
+        },
+        "L": {
+         "kostka": [
+          0,
+          -5.8,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.75,
+       "miednica": [
+        0,
+        -8.2,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -6.9,
+          -7.7,
+          0
+         ],
+         "podbicie": 29.5
+        },
+        "L": {
+         "kostka": [
+          0,
+          -8.2,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "miednica": [
+        0,
+        -8.8,
+        0
+       ],
+       "nogi": {
+        "R": {
+         "kostka": [
+          -9,
+          -8.2,
+          0
+         ],
+         "podbicie": 35
+        },
+        "L": {
+         "kostka": [
+          0,
+          -8.8,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "Seated Calf Raise": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Seated Calf Raise",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -80,
+     "x1": 130
+    },
+    {
+     "rodzaj": "lawka",
+     "x": -10.2,
+     "top": 37.8,
+     "kat": 90,
+     "siedzisko": 40,
+     "dlugosc": 75
+    },
+    {
+     "rodzaj": "dzwignia",
+     "tryb": "prosta",
+     "kat": 52.8,
+     "punkt": "kostki",
+     "trzyma": "R",
+     "x": 42,
+     "y": 7,
+     "z": 10,
+     "dlugosc": 15.8
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        42,
+        7,
+        10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        42,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        30,
+        56,
+        15
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        30,
+        56,
+        -15
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        42.7,
+        8.7,
+        10
+       ],
+       "podbicie": -5.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        42.7,
+        8.7,
+        -10
+       ],
+       "podbicie": -5.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        30,
+        56,
+        15
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        30,
+        56,
+        -15
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        44.9,
+        12.2,
+        10
+       ],
+       "podbicie": -17,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        44.9,
+        12.2,
+        -10
+       ],
+       "podbicie": -17,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        30,
+        56,
+        15
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        30,
+        56,
+        -15
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        47.7,
+        15.3,
+        10
+       ],
+       "podbicie": -28.7,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        47.7,
+        15.3,
+        -10
+       ],
+       "podbicie": -28.7,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        30,
+        56,
+        15
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        30,
+        56,
+        -15
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        49.2,
+        16.4,
+        10
+       ],
+       "podbicie": -34,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        49.2,
+        16.4,
+        -10
+       ],
+       "podbicie": -34,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        30,
+        56,
+        15
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        30,
+        56,
+        -15
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": []
+  },
+  "Seated Calf Raise (hantle)": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Seated Calf Raise (hantle)",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -80,
+     "x1": 130
+    },
+    {
+     "rodzaj": "hantel"
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -16,
+     "x1": 22,
+     "top": 38.6
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        42,
+        7,
+        10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        42,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        37,
+        61.9,
+        12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        37,
+        61.9,
+        -12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        42.7,
+        8.7,
+        10
+       ],
+       "podbicie": -5.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        42.7,
+        8.7,
+        -10
+       ],
+       "podbicie": -5.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        37,
+        63.6,
+        12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        37,
+        63.6,
+        -12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        44.9,
+        12.2,
+        10
+       ],
+       "podbicie": -17,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        44.9,
+        12.2,
+        -10
+       ],
+       "podbicie": -17,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        36.7,
+        67,
+        12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        36.7,
+        67,
+        -12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        47.7,
+        15.3,
+        10
+       ],
+       "podbicie": -28.7,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        47.7,
+        15.3,
+        -10
+       ],
+       "podbicie": -28.7,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        36.3,
+        69.7,
+        12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        36.3,
+        69.7,
+        -12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        49.2,
+        16.4,
+        10
+       ],
+       "podbicie": -34,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        49.2,
+        16.4,
+        -10
+       ],
+       "podbicie": -34,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        36.1,
+        70.5,
+        12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        36.1,
+        70.5,
+        -12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": [
+    {
+     "cue": "calf.mis.partial",
+     "znacznik": "heels",
+     "dotyczy": [
+      "hip",
+      "ankle",
+      "elbow",
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.25,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -0.5,
+          -1.2,
+          0
+         ],
+         "podbicie": 3.7
+        },
+        "L": {
+         "kostka": [
+          -0.5,
+          -1.2,
+          0
+         ],
+         "podbicie": 3.7
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -1.2,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -1.2,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.5,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -2.2,
+          -3.6,
+          0
+         ],
+         "podbicie": 12
+        },
+        "L": {
+         "kostka": [
+          -2.2,
+          -3.6,
+          0
+         ],
+         "podbicie": 12
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0.3,
+          -3.5,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0.3,
+          -3.5,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.75,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -4.5,
+          -5.6,
+          0
+         ],
+         "podbicie": 20.3
+        },
+        "L": {
+         "kostka": [
+          -4.5,
+          -5.6,
+          0
+         ],
+         "podbicie": 20.3
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0.6,
+          -5.1,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0.6,
+          -5.1,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -5.7,
+          -6.2,
+          0
+         ],
+         "podbicie": 24
+        },
+        "L": {
+         "kostka": [
+          -5.7,
+          -6.2,
+          0
+         ],
+         "podbicie": 24
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0.8,
+          -5.4,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0.8,
+          -5.4,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "Barbell Seated Calf Raise": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Barbell Seated Calf Raise",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -80,
+     "x1": 130
+    },
+    {
+     "rodzaj": "sztanga",
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 120
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -16,
+     "x1": 22,
+     "top": 38.6
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        42,
+        7,
+        10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        42,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        39,
+        58,
+        30
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        39,
+        58,
+        -30
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        42.7,
+        8.7,
+        10
+       ],
+       "podbicie": -5.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        42.7,
+        8.7,
+        -10
+       ],
+       "podbicie": -5.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        39,
+        59.7,
+        30
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        39,
+        59.7,
+        -30
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        44.9,
+        12.2,
+        10
+       ],
+       "podbicie": -17,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        44.9,
+        12.2,
+        -10
+       ],
+       "podbicie": -17,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        38.7,
+        63.1,
+        30
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        38.7,
+        63.1,
+        -30
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        47.7,
+        15.3,
+        10
+       ],
+       "podbicie": -28.7,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        47.7,
+        15.3,
+        -10
+       ],
+       "podbicie": -28.7,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        38.3,
+        65.8,
+        30
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        38.3,
+        65.8,
+        -30
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        49.2,
+        16.4,
+        10
+       ],
+       "podbicie": -34,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        49.2,
+        16.4,
+        -10
+       ],
+       "podbicie": -34,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        38.1,
+        66.6,
+        30
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        38.1,
+        66.6,
+        -30
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": [
+    {
+     "cue": "calf.mis.partial",
+     "znacznik": "heels",
+     "dotyczy": [
+      "hip",
+      "ankle",
+      "elbow",
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.25,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -0.5,
+          -1.2,
+          0
+         ],
+         "podbicie": 3.7
+        },
+        "L": {
+         "kostka": [
+          -0.5,
+          -1.2,
+          0
+         ],
+         "podbicie": 3.7
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -1.2,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0,
+          -1.2,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.5,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -2.2,
+          -3.6,
+          0
+         ],
+         "podbicie": 12
+        },
+        "L": {
+         "kostka": [
+          -2.2,
+          -3.6,
+          0
+         ],
+         "podbicie": 12
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0.3,
+          -3.5,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0.3,
+          -3.5,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.75,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -4.5,
+          -5.6,
+          0
+         ],
+         "podbicie": 20.3
+        },
+        "L": {
+         "kostka": [
+          -4.5,
+          -5.6,
+          0
+         ],
+         "podbicie": 20.3
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0.6,
+          -5.1,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0.6,
+          -5.1,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -5.7,
+          -6.2,
+          0
+         ],
+         "podbicie": 24
+        },
+        "L": {
+         "kostka": [
+          -5.7,
+          -6.2,
+          0
+         ],
+         "podbicie": 24
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0.8,
+          -5.4,
+          0
+         ]
+        },
+        "L": {
+         "chwyt": [
+          0.8,
+          -5.4,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "Dumbbell Seated One-Leg Calf Raise": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "calf_raise",
+   "cwiczenie": "Dumbbell Seated One-Leg Calf Raise",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -80,
+     "x1": 130
+    },
+    {
+     "rodzaj": "hantel",
+     "trzyma": "R"
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -16,
+     "x1": 22,
+     "top": 38.6
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        42,
+        7,
+        10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        42,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        37,
+        61.9,
+        12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        22,
+        58,
+        -14
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        42.7,
+        8.7,
+        10
+       ],
+       "podbicie": -5.3,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        42,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        37,
+        63.6,
+        12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        22,
+        58,
+        -14
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        44.9,
+        12.2,
+        10
+       ],
+       "podbicie": -17,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        42,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        36.7,
+        67,
+        12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        22,
+        58,
+        -14
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        47.7,
+        15.3,
+        10
+       ],
+       "podbicie": -28.7,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        42,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        36.3,
+        69.7,
+        12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        22,
+        58,
+        -14
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      48,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        49.2,
+        16.4,
+        10
+       ],
+       "podbicie": -34,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        0.05
+       ],
+       "odchylenieKolana": 6
+      },
+      "L": {
+       "kostka": [
+        42,
+        7,
+        -10
+       ],
+       "podbicie": 0,
+       "rotacjaStopy": 10,
+       "biegunKolana": [
+        1,
+        0.4,
+        -0.05
+       ],
+       "odchylenieKolana": 6
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        36.1,
+        70.5,
+        12
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        0.6
+       ]
+      },
+      "L": {
+       "chwyt": [
+        22,
+        58,
+        -14
+       ],
+       "biegunLokcia": [
+        -0.3,
+        -1,
+        -0.6
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": [
+    {
+     "cue": "calf.mis.partial",
+     "znacznik": "heels",
+     "dotyczy": [
+      "hip",
+      "ankle",
+      "elbow",
+      "shoulder"
+     ],
+     "klatki": [
+      {
+       "u": 0
+      },
+      {
+       "u": 0.25,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -0.5,
+          -1.2,
+          0
+         ],
+         "podbicie": 3.7
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0,
+          -1.2,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.5,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -2.2,
+          -3.6,
+          0
+         ],
+         "podbicie": 12
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0.3,
+          -3.5,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 0.75,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -4.5,
+          -5.6,
+          0
+         ],
+         "podbicie": 20.3
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0.6,
+          -5.1,
+          0
+         ]
+        }
+       }
+      },
+      {
+       "u": 1,
+       "nogi": {
+        "R": {
+         "kostka": [
+          -5.7,
+          -6.2,
+          0
+         ],
+         "podbicie": 24
+        }
+       },
+       "rece": {
+        "R": {
+         "chwyt": [
+          0.8,
+          -5.4,
+          0
+         ]
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
