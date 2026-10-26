@@ -45,6 +45,7 @@
   "preacherT": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "grubość podpórki modlitewnika (z wyściełaniem)", "uzycie": "modlitewnik" },
   "preacherSeatW": { "cm": 30, "status": "konwencja rysunku", "zgodnosc": "szerokość siedziska modlitewnika", "uzycie": "modlitewnik" },
   "preacherSeatL": { "cm": 34, "status": "konwencja rysunku", "zgodnosc": "głębokość siedziska modlitewnika", "uzycie": "modlitewnik" },
+  "suspensionFree": { "cm": 15, "status": "konwencja rysunku", "zgodnosc": "odcinek taśmy zawieszenia przy uchwycie bez kolidera: dłoń trzyma uchwyt, a taśma biegnie wzdłuż przedramienia", "uzycie": "zawieszenie: kolider taśmy kończy się tyle cm przed uchwytem (pole free rekwizytu cable)" },
   "suspensionY": { "cm": 220, "status": "konwencja rysunku", "zgodnosc": "wysokość punktu zaczepu taśm do podwieszania (belka, drzwi) ok. 200–250 cm", "uzycie": "taśmy do podwieszania" },
   "sledHalf": { "cm": 25, "status": "konwencja rysunku", "zgodnosc": "połowa rozstawu słupków sań obciążeniowych", "uzycie": "sanie" },
   "sledBase": { "cm": 12, "status": "konwencja rysunku", "zgodnosc": "wysokość podstawy sań", "uzycie": "sanie" },
