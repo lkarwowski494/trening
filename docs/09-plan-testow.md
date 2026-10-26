@@ -546,3 +546,11 @@ Zachowanie systemu bez zmian (tryb cichy: tylko wibracja); pod przełącznikiem 
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | Wskazówka o trybie cichym | `tests/tryb-cichy-wskazowka.test.tsx` (PL: linia jedna, pod dźwiękiem, podpowiedź VoiceOver, „Wibracje” bez niej; EN: to samo; słownik EN ≤ 100 znaków; 33 słowniki mają niepusty klucz) | ekran, języki, niezmiennik, macierz (UI w `docs/19`) | zielone | 33 słowniki: własny krótki przekład (kopie EN odrzucają testy jakości i18n-variants/wave2-4); do recenzji native speakera. **Maestro pominięty:** tekst statyczny, bez nowego ekranu ani przepływu; widoczność sprawdza test ekranowy. |
+
+## Język Live Activity przerwy (26.10.2026, decyzja właściciela: naprawa w 1.0)
+
+Błąd: ekran blokady w przerwie brał język z systemu (`Locale.preferredLanguages` w widżecie), a aplikacja ma własny wybór języka — telefon po polsku + aplikacja po angielsku dawały „Przerwa”. Realny, rzadki. Naprawa: pole opcjonalne `lang` w `RestTimerAttributes.ContentState` (kod `lang()`, to samo odwzorowanie co `resolveLang`), widżet używa go przed etykietą z atrybutu i przed językiem systemu; stan bez pola dekoduje się jak dawniej (bez podbicia wersji stanu). Zmianę języka przy trwającej przerwie odświeża `timer.relocalize()` (start z nowym językiem i tym samym końcem) oraz korekta ±15 s (`update` niesie język). Inne miejsca z językiem systemu: zegarek (`WatchStore.swift`) używa go tylko jako zapasu, gdy aplikacja nie przekazała języka (`persistence.lang`); powiadomienia i głos biorą język z `t()`/`lang()`.
+
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Język Live Activity | `tests/live-activity-lang.test.ts` (każda z 35 wartości języka → `lang` w starcie; „auto” z tagami systemu: es-MX, es-ES, pt-BR, pt-PT, zh-Hant-TW, zh-HK, zh-Hans-CN, hi-IN; telefon pl + aplikacja en; `update` niesie język; relocalize po zmianie języka; statycznie Swift: pole opcjonalne bez własnego dekodera, moduł, kolejność wyboru etykiety w widżecie, komplet kodów w `RestLabels.swift`); `tests/regress.test.tsx` „Ekran blokady w przerwie: język aplikacji, nie systemu” | logika, języki, regresja, statyczne Swift, macierz | zielone | **rodzaj pominięty: wygląd na ekranie blokady** (symulator CI nie pokazuje Live Activity) — lista „tylko telefon”, PR-17 (docs/39) |

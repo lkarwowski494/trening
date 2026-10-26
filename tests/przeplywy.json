@@ -1312,6 +1312,33 @@
    }
   },
   {
+   "id": "PR-17",
+   "tytul": "Ekran blokady w przerwie: Live Activity w języku aplikacji, nie systemu",
+   "stan": "jezyk-motyw",
+   "wersja": "1.0",
+   "realnosc": "realny",
+   "kroki": [
+    "Telefon po polsku (lub innym), w aplikacji Więcej → Język → English",
+    "Odhacz serię → zablokuj telefon",
+    "Na ekranie blokady / w Wyspie etykieta rodzaju po angielsku („Rest”); zmień język w aplikacji w trakcie przerwy — etykieta się zmienia"
+   ],
+   "wynik": "Live Activity przerwy mówi językiem wybranym w aplikacji, także po zmianie języka w trakcie przerwy.",
+   "ekrany": [
+    "/",
+    "/more/language"
+   ],
+   "wyjatek": {
+    "typ": "telefon",
+    "powod": "Live Activity (ekran blokady, Dynamic Island) działa tylko na prawdziwym iPhonie; symulator CI jej nie pokazuje, a Maestro nie czyta widżetu poza aplikacją.",
+    "zastepnik": [
+     "tests/live-activity-lang.test.ts",
+     "tests/regress.test.tsx",
+     "tests/widget-i18n.test.ts"
+    ],
+    "kontrola": "Telefon w innym języku niż aplikacja (np. systemowy polski, w aplikacji English): odhacz serię, zablokuj ekran — etykieta „Rest”, nie „Przerwa”. Odblokuj, w aplikacji Więcej → Język → Deutsch, zablokuj ponownie — etykieta „Pause”. Ok. 1 min."
+   }
+  },
+  {
    "id": "PL-01",
    "tytul": "Zmiana szablonu dnia w planie tygodnia i „Wolne”",
    "stan": "istniejacy",

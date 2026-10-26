@@ -48,7 +48,7 @@ describe('zdarzenia end-to-end', () => {
   });
   test('zapowiedź na zegarku = podpis timera telefonu = Live Activity (jedno źródło)', async () => {
     const { fw, link: l } = await pair(); fw.input({ t: 'press', button: 'main' }); await settle(l);
-    expect(fw.view().cue).toBe(timer.T.sub); expect(global.__la).toContainEqual(['start', 'Push', timer.T.sub, timer.T.endAt, 90, 'rest|Przerwa']);
+    expect(fw.view().cue).toBe(timer.T.sub); expect(global.__la).toContainEqual(['start', 'Push', timer.T.sub, timer.T.endAt, 90, 'rest|Przerwa', 'pl']);
   });
   test('„Cofnij” w oknie: telefon cofa odhaczenie i zatrzymuje przerwę; zegarek wraca do serii', async () => {
     const { fw, link: l } = await pair(); fw.input({ t: 'press', button: 'main' }); await settle(l); jest.setSystemTime(NOW + 2000);
