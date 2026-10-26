@@ -17,7 +17,7 @@ Aktualizowane na bieżąco przez koordynatora (polecenie właściciela 26.10.202
 | Naprawy z audytu 1.0 | zrobione, CI zielone | `naprawy-audyt-1-0` bc28bc3 |
 | Scalenie do integracji | zrobione | `integracja-2026-10-26b` 227cb8c, potem c56ef5d (+ `straznik-paczki`, lekcja L-039) |
 | tests.yml na c56ef5d | w toku (run 40389032814) | |
-| E2E pakiet podstawowy | czeka na maszynę macOS (run 40389043078; poprzedni „not acquired by Runner”) — ponawiać | |
+| E2E pakiet podstawowy | czeka na maszynę macOS: 40385948580 i 40389043078 anulowane „not acquired by Runner”; ponowione jako run 40391367923 (c56ef5d, 26.10 ok. 20:20 UTC) — ponawiać | |
 | PR integracja → main + scalenie | do zrobienia (repo bez szablonu PR) | |
 | Wersja 1.0.0 | commit gotowy, wypchnięty jako zapis | `wydanie-1-0-0` 7a45540 (od 227cb8c; po scaleniu main przenieść na nowy main, pełne verify — hak pre-push zatrzymał push, prawdopodobnie pliki generowane) |
 | Pełny katalog E2E | do zrobienia, na SHA wersji na main | `pakiet: pelny`, iPhone standardowy; czerwony z winy skryptu nie blokuje (CLAUDE.md) |
