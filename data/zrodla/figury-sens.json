@@ -170,7 +170,8 @@
       "max_y_cm": 12
      },
      "zrodlo": "wskazówki crunch.lowBack („dolna część pleców zostaje na podłodze”) i db.back („lędźwie przy podłodze — nie wyginaj pleców w łuk”); źródła w cues.json",
-     "liczba": "uproszczenie (środek miednicy leżącej osoby ma y ≈ 8 cm — najniżej, przy którym uda nie przenikają podłogi; dopuszczamy do 12 cm)"
+     "liczba": "uproszczenie (środek miednicy leżącej osoby ma y ≈ 8 cm — najniżej, przy którym uda nie przenikają podłogi; dopuszczamy do 12 cm)",
+     "pewnosc": "ustalone"
     },
     "szyja_neutralna": {
      "typ": "szyja_neutralna",
@@ -180,7 +181,8 @@
       "max_deg": 30
      },
      "zrodlo": "wskazówka crunch.neck („szyja rozluźniona — nie ciągnij głowy rękami”): głowa podąża za tułowiem, bez zgięcia szyi względem osi tułowia; źródła w cues.json",
-     "liczba": "uproszczenie (kąt między osią głowy a osią tułowia ≤ 30° w każdej klatce)"
+     "liczba": "uproszczenie (kąt między osią głowy a osią tułowia ≤ 30° w każdej klatce)",
+     "pewnosc": "ustalone"
     },
     "lopatki_od_podlogi": {
      "typ": "lopatki_od_podlogi",
@@ -191,18 +193,23 @@
       "max_miednica_cm": 3
      },
      "zrodlo": "wskazówka crunch.move („zbliżaj żebra do miednicy, unosząc łopatki od podłogi”); źródła w cues.json",
-     "liczba": "uproszczenie (barki unoszą się o ≥ 8 cm, a miednica zmienia wysokość o ≤ 3 cm)"
+     "liczba": "uproszczenie (barki unoszą się o ≥ 8 cm, a miednica zmienia wysokość o ≤ 3 cm)",
+     "pewnosc": "ustalone"
     },
     "miednica_unosi_sie": {
      "typ": "miednica_unosi_sie",
      "grupa": "zakres",
      "cue": "rcrunch.move",
+     "cue_dodatkowe": [
+      "rcrunch.hips"
+     ],
      "parametry": {
       "min_cm": 8,
       "max_barki_cm": 4
      },
-     "zrodlo": "wskazówka rcrunch.move („zwijaj biodra od podłoża w stronę żeber”) i rcrunch.hips („ruch prowadzi miednica — nie wymachuj nogami”); źródła w cues.json",
-     "liczba": "uproszczenie (miednica unosi się o ≥ 8 cm, a barki zmieniają wysokość o ≤ 4 cm)"
+     "zrodlo": "wskazówka rcrunch.move („zwijaj biodra od podłoża w stronę żeber”) i rcrunch.hips („ruch prowadzi miednica — nie wymachuj nogami”); źródła w cues.json: ACE #76 (kroki 2–3, wskazówka końcowa), NASM Best Abs (Reverse Crunch)",
+     "liczba": "uproszczenie (miednica unosi się o ≥ 8 cm, a barki zmieniają wysokość o ≤ 4 cm)",
+     "pewnosc": "ustalone"
     },
     "bird_dog_linia": {
      "typ": "bird_dog_linia",
@@ -212,7 +219,163 @@
       "tol_cm": 10
      },
      "zrodlo": "wskazówka bd.move („unieś jednocześnie przeciwną rękę i nogę do linii tułowia”) i bd.level; źródła w cues.json",
-     "liczba": "uproszczenie (dłoń na wysokości barku i kostka przeciwnej nogi na wysokości miednicy ± 10 cm w pozycji skrajnej)"
+     "liczba": "uproszczenie (dłoń na wysokości barku i kostka przeciwnej nogi na wysokości miednicy ± 10 cm w pozycji skrajnej)",
+     "pewnosc": "ustalone"
+    },
+    "kolana_ku_barkom": {
+     "typ": "kolana_ku_barkom",
+     "grupa": "zakres",
+     "cue": "rcrunch.move",
+     "cue_dodatkowe": [
+      "rcrunch.hips"
+     ],
+     "parametry": {
+      "min_zblizenie_cm": 15
+     },
+     "zrodlo": "ACE #76 Reverse Crunch, faza w górę: kolana przy stałym ugięciu przesuwają się w stronę głowy, gdy biodra się unoszą (przeczytane 26.10.2026); NASM Best Abs, Reverse Crunch: unoszenie bioder, nie wymach nóg (cues.json). Odróżnia zwijanie od mostka (w mostku kolana nie zbliżają się do barków)",
+     "liczba": "uproszczenie (odległość kolana–barki maleje o ≥ 15 cm)",
+     "pewnosc": "ustalone"
+    },
+    "miednica_nieruchoma": {
+     "typ": "miednica_nieruchoma",
+     "grupa": "plecy",
+     "cue": "crunch.lowBack",
+     "parametry": {
+      "max_cm": 3
+     },
+     "zrodlo": "wskazówka crunch.lowBack (lędźwie zostają na podporze) przeniesiona na ławkę skośną — miednica leży na ławce wyżej niż 12 cm, więc warunek bezwzględny miednica_na_podlodze dawałby fałszywe naruszenie",
+     "liczba": "uproszczenie (zakres wysokości miednicy ≤ 3 cm)",
+     "pewnosc": "analogia"
+    },
+    "lopatki_od_podlogi_obustronnie": {
+     "typ": "lopatki_od_podlogi",
+     "grupa": "zakres",
+     "cue": "crunch.move",
+     "parametry": {
+      "min_cm": 8,
+      "max_miednica_cm": 40
+     },
+     "zrodlo": "zwinięcie z obu stron jednocześnie: barki w górę jak w crunch.move (ACE #52, ExRx BWCrunch — cues.json), a miednica może się unosić; ruch bezpośrednio opisuje Catalyst Athletics, Jack Knife (#318): jednoczesny skłon tułowia i uniesienie ugiętych kolan do łokci (przeczytane 26.10.2026)",
+     "liczba": "uproszczenie (barki ≥ 8 cm w górę; limit miednicy praktycznie zdjęty)",
+     "pewnosc": "analogia + jedno źródło bezpośrednie"
+    },
+    "tulow_zwija_sie_biodra_stoja": {
+     "typ": "zgiecie_tulowia_biodra_nieruchome",
+     "grupa": "zakres",
+     "cue": "cc.ribs",
+     "parametry": {
+      "min_skrocenie_cm": 6,
+      "max_miednica_cm": 4
+     },
+     "zrodlo": "wskazówka cc.ribs: ACE #331 Standing Crunch — żebra zwijają się w dół przeciw lince, biodra w stałym ustawieniu (przeczytane 26.10.2026) + crunch.move (ACE #52, ExRx) — analogia",
+     "liczba": "uproszczenie (odległość barki–miednica maleje o ≥ 6 cm, miednica przesuwa się o ≤ 4 cm)",
+     "pewnosc": "jedno źródło bezpośrednie + analogia"
+    },
+    "superman_konczyny_uniesione": {
+     "typ": "konczyny_uniesione",
+     "grupa": "zakres",
+     "cue": null,
+     "parametry": {
+      "min_cm": 5
+     },
+     "zrodlo": "ACE #9 Supermans, krok 2: obie nogi i obie ręce unoszą się jednocześnie nad podłogę; PMC6165989 (Materials and Methods → Graded superman exercises, GSE 3: ręce i nogi unoszone razem); PMC8136566 (Methods → Protocol, superman-UL: kończyny górne i dolne unoszone jednocześnie) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie (ACE: „a few inches” ≈ 5 cm; PMC6165989: „jak najwyżej” — część wspólna: kończyny nad podłogą, ≥ 5 cm)",
+     "pewnosc": "ustalone (kierunek)"
+    },
+    "superman_konczyny_proste": {
+     "typ": "stawy_proste",
+     "grupa": "proste",
+     "cue": null,
+     "parametry": {
+      "stawy": [
+       "elbow",
+       "knee"
+      ],
+      "max_deg": 20
+     },
+     "zrodlo": "ACE #9 krok 2 (ręce i nogi wyprostowane, bez rotacji); PMC8136566 Methods → Protocol (łokcie wyprostowane, nogi wyprostowane w kolanach) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie (≤ 20°)",
+     "pewnosc": "ustalone"
+    },
+    "superman_miednica_podpora": {
+     "typ": "miednica_nieruchoma",
+     "grupa": "plecy",
+     "cue": "cobra.hips",
+     "parametry": {
+      "max_cm": 3
+     },
+     "zrodlo": "ACE #9 krok 3: opuszczanie bez ruchu w lędźwiach i biodrach; wskazówka cobra.hips (NASM Floor Prone Cobra, krok 2: biodra i nogi na podłodze; ACE #16 Cobra) — analogia dla leżenia przodem",
+     "liczba": "uproszczenie (zakres wysokości miednicy ≤ 3 cm)",
+     "pewnosc": "jedno źródło bezpośrednie + analogia"
+    },
+    "superman_bez_przeprostu": {
+     "typ": "barki_unoszenie_max",
+     "grupa": "przeprost",
+     "cue": "cobra.mis",
+     "parametry": {
+      "max_cm": 10
+     },
+     "zrodlo": "ACE #9 krok 2: utrzymaj położenie głowy i tułowia, bez wyginania pleców i unoszenia głowy; cobra.mis (NASM Floor Prone Cobra, Common Mistakes: nadmierny wyprost) — analogia",
+     "liczba": "konwencja (barki unoszą się o ≤ 10 cm)",
+     "pewnosc": "jedno źródło bezpośrednie + analogia"
+    },
+    "vup_start_lezenie": {
+     "typ": "start_lezenie",
+     "grupa": "zakres",
+     "cue": null,
+     "parametry": {
+      "max_cm": 12
+     },
+     "zrodlo": "Catalyst Athletics, V-Up (#313): start leżąc na plecach, nogi proste, ręce nad głową (przeczytane 26.10.2026); opis ćwiczenia w katalogu (identyfikacja ruchu)",
+     "liczba": "uproszczenie (barki i kostki ≤ 12 cm nad miednicą w u = 0)",
+     "pewnosc": "jedno źródło"
+    },
+    "vup_tulow_uniesiony": {
+     "typ": "kat_tulowia_nad_poziomem_u1",
+     "grupa": "zakres",
+     "cue": null,
+     "parametry": {
+      "min_deg": 30
+     },
+     "zrodlo": "pozycja końcowa „V”: ACE #242 V-ups (progresje 1, 3–5: tułów ok. 45°, obie stopy uniesione) i Catalyst Athletics V-Up (#313: jednoczesny skłon i uniesienie prostych nóg, pauza, gdy dłonie i stopy się spotkają) — przeczytane 26.10.2026",
+     "liczba": "uproszczenie (ACE podaje 45°; próg 30° z zapasem)",
+     "pewnosc": "ustalone (pozycja końcowa)"
+    },
+    "vup_nogi_uniesione": {
+     "typ": "kat_nog_nad_poziomem_u1",
+     "grupa": "zakres",
+     "cue": null,
+     "parametry": {
+      "min_deg": 30
+     },
+     "zrodlo": "ACE #242 (progresje 2 i 5: obie stopy uniesione, kolana wyprostowane); Catalyst V-Up (#313: uniesienie prostych nóg do kształtu V)",
+     "liczba": "konwencja (≥ 30° nad poziomem)",
+     "pewnosc": "ustalone (kierunek)"
+    },
+    "vup_kolana_proste": {
+     "typ": "stawy_proste",
+     "grupa": "proste",
+     "cue": null,
+     "parametry": {
+      "stawy": [
+       "knee"
+      ],
+      "max_deg": 20
+     },
+     "zrodlo": "Catalyst V-Up (#313: „straight legs”; ugięte kolana to inna odmiana) i ACE #242 (wyprost kolan przy uniesieniu stóp)",
+     "liczba": "uproszczenie (≤ 20°)",
+     "pewnosc": "ustalone"
+    },
+    "szkielet_nieruchomy": {
+     "typ": "szkielet_nieruchomy",
+     "grupa": "zakres",
+     "cue": null,
+     "parametry": {
+      "max_cm": 2
+     },
+     "zrodlo": "wciąganie brzucha bez ruchu kręgosłupa, żeber i miednicy: Hwang i Park 2017, J Exerc Rehabil 13(3):335–339 (PMC5498091, Materials and Methods → Tasks and procedures); utrzymanie pozycji po wciągnięciu pępka: Madokoro i in. 2014, J Phys Ther Sci 26(6):889–893 (PMC4085215, Subjects and Methods) — przeczytane 26.10.2026; oba dotyczą manewru wciągnięcia (ADIM), nie maksymalnej „próżni”",
+     "liczba": "uproszczenie (każdy punkt szkieletu ≤ 2 cm)",
+     "pewnosc": "analogia"
     }
    },
    "wskazowki_na_reguly": {
@@ -229,18 +392,565 @@
      "lopatki_od_podlogi"
     ],
     "rcrunch.move": [
-     "miednica_unosi_sie"
+     "miednica_unosi_sie",
+     "kolana_ku_barkom"
+    ],
+    "rcrunch.hips": [
+     "miednica_unosi_sie",
+     "kolana_ku_barkom"
     ],
     "bd.move": [
      "bird_dog_linia"
+    ],
+    "cc.ribs": [
+     "tulow_zwija_sie_biodra_stoja"
     ]
    },
-   "grupy_bledow": {},
+   "grupy_bledow": {
+    "cobra.mis": "przeprost"
+   },
    "bledy_bez_animacji": {
     "mis.jerk": "szarpanie to cecha tempa (prędkości), nie pozy — nie pokazujemy go animacją pozy (bledy: [])",
     "plank.mis.breath": "wstrzymywanie oddechu nie zmienia pozy — nie pokazujemy go animacją (bledy: [])"
    },
+   "warianty": {
+    "Superman": [
+     "superman_konczyny_uniesione",
+     "superman_konczyny_proste",
+     "superman_miednica_podpora",
+     "superman_bez_przeprostu"
+    ],
+    "V-Up": [
+     "vup_start_lezenie",
+     "vup_tulow_uniesiony",
+     "vup_nogi_uniesione",
+     "vup_kolana_proste",
+     "miednica_na_podlodze"
+    ],
+    "Cocoons": [
+     "lopatki_od_podlogi_obustronnie",
+     "kolana_ku_barkom",
+     "szyja_neutralna"
+    ],
+    "Decline Crunch": [
+     "miednica_nieruchoma",
+     "lopatki_od_podlogi",
+     "szyja_neutralna"
+    ],
+    "Decline Oblique Crunch": [
+     "miednica_nieruchoma",
+     "szyja_neutralna"
+    ],
+    "Seated Flat Bench Leg Pull-In": [],
+    "Stomach Vacuum": [
+     "szkielet_nieruchomy"
+    ]
+   },
+   "otwarte": {
+    "Butt-Ups": "opis techniki tylko w serwisach komercyjnych i aplikacjach (szczebel 5); brak ACE/NASM/badań",
+    "Dragon Flag": "brak źródła szczebla ≤ 4 i brak badania z opisem wykonania",
+    "Side Jackknife": "opis tylko w serwisach komercyjnych (szczebel 5); docs/research/25-biblioteka L6-S16 — tylko identyfikacja ruchu",
+    "Seated Flat Bench Leg Pull-In": "jedno źródło (strona autora M. Yessisa, wpis bez podpisu — szczebel 4/5); wskazówka rcrunch.hips z zestawu ogólnego przeczy ruchowi w siadzie (miednica zostaje na ławce) — potrzebne drugie źródło i korekta zestawu wskazówek",
+    "Stomach Vacuum": "reguła szkielet_nieruchomy jest gotowa, ale istota ćwiczenia (wciągnięcie brzucha) nie jest widoczna w szkielecie — decyzja produktowa: statyczna figura z opisem albo brak grafiki v2",
+    "GHD Sit Up": "brak wskazówek (zestaw „open”); nie badane w tej rundzie",
+    "Press Sit-Up": "brak wskazówek (zestaw „open”); nie badane w tej rundzie",
+    "Smith Machine Hip Raise": "brak wskazówek (zestaw „open”); nie badane w tej rundzie",
+    "Stability Ball Knee Tuck": "jedyna wskazówka plank.brace nie opisuje kierunku ruchu; nie badane w tej rundzie",
+    "Kneeling Cable Crunch With Alternating Oblique Twists": "jedyna wskazówka cc.slow (tempo); cc.ribs celowo pominięta przez skręt — brak źródła ruchu"
+   },
+   "pomin": {}
+  },
+  "curl": {
+   "reguly": {
+    "lokiec_przy_tulowiu": {
+     "typ": "lokiec_nieruchomy_wzgledem_barku",
+     "grupa": "lokcie",
+     "cue": "curl.elbows",
+     "parametry": {
+      "max_cm": 8
+     },
+     "zrodlo": "wskazówka curl.elbows: ACE #44 krok 2 (bez wysuwania łokci do przodu; przeczytane 26.10.2026), ExRx DBCurl/BBCurl Execution (łokcie przy bokach), ACE #70, NASM Barbell Bicep Curl (cues.json)",
+     "liczba": "konwencja (łokieć przesuwa się względem barków o ≤ 8 cm)",
+     "pewnosc": "ustalone"
+    },
+    "tulow_nieruchomy": {
+     "typ": "tulow_nieruchomy",
+     "grupa": "bujanie",
+     "cue": "curl.noSwing",
+     "parametry": {
+      "max_pochylenie_deg": 5,
+      "max_miednica_cm": 3
+     },
+     "zrodlo": "wskazówka curl.noSwing: ACE #44 krok 2 (bez wyginania pleców), ACE #70 (klatka nieruchomo), NASM Barbell Bicep Curl Common Mistakes (bujanie) — cues.json",
+     "liczba": "konwencja (pochylenie tułowia zmienia się o ≤ 5°, miednica w poziomie ≤ 3 cm)",
+     "pewnosc": "ustalone"
+    },
+    "lokiec_zgina_sie": {
+     "typ": "lokiec_zakres",
+     "grupa": "zakres",
+     "cue": "curl.dbMove",
+     "cue_dodatkowe": [
+      "curl.bbMove",
+      "curl.hammerMove",
+      "curl.cableMove",
+      "preacher.range"
+     ],
+     "parametry": {
+      "u0_max_deg": 30,
+      "u1_min_deg": 100
+     },
+     "zrodlo": "ruch definiujący rodzinę — zgięcie łokcia od wyprostu: ACE #44 krok 2 (zginanie łokci, hantle w stronę klatki; przeczytane 26.10.2026), ExRx DBCurl/BBCurl Execution, ACE #70, preacher.range (cues.json)",
+     "liczba": "uproszczenie (u = 0 łokieć ≤ 30°, u = 1 ≥ 100°)",
+     "pewnosc": "ustalone"
+    }
+   },
+   "wskazowki_na_reguly": {
+    "curl.elbows": [
+     "lokiec_przy_tulowiu"
+    ],
+    "curl.noSwing": [
+     "tulow_nieruchomy"
+    ],
+    "curl.dbMove": [
+     "lokiec_zgina_sie"
+    ],
+    "curl.bbMove": [
+     "lokiec_zgina_sie"
+    ],
+    "curl.hammerMove": [
+     "lokiec_zgina_sie"
+    ],
+    "curl.cableMove": [
+     "lokiec_zgina_sie"
+    ],
+    "preacher.range": [
+     "lokiec_zgina_sie"
+    ]
+   },
+   "zawsze": [
+    "lokiec_zgina_sie"
+   ],
+   "grupy_bledow": {
+    "curl.mis.elbows": "lokcie"
+   },
+   "bledy_bez_animacji": {
+    "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])"
+   },
+   "warianty": {},
+   "otwarte": {},
+   "pomin": {}
+  },
+  "triceps": {
+   "reguly": {
+    "ramie_nieruchome": {
+     "typ": "lokiec_nieruchomy_wzgledem_barku",
+     "grupa": "ramie",
+     "cue": "tpd.elbows",
+     "cue_dodatkowe": [
+      "ote.upperArm",
+      "skull.upperArm"
+     ],
+     "parametry": {
+      "max_cm": 8
+     },
+     "zrodlo": "tpd.elbows: ACE #185 (pilnuj wysuwania łokci do przodu; przeczytane 26.10.2026), ExRx CBPushdown (łokcie przy bokach, tylko niewielki ruch na górze); ote.upperArm: ACE #74, ExRx DBTriExt; skull.upperArm: ACE #36, ExRx BBLyingTriExt (łokcie cofają się tylko nieznacznie) — cues.json",
+     "liczba": "konwencja (≤ 8 cm = „niewielki ruch”)",
+     "pewnosc": "ustalone"
+    },
+    "lokiec_prostuje_sie": {
+     "typ": "lokiec_zakres",
+     "grupa": "zakres",
+     "cue": "tpd.move",
+     "cue_dodatkowe": [
+      "ote.move",
+      "skull.move",
+      "cote.move",
+      "press.noLock"
+     ],
+     "parametry": {
+      "u0_min_deg": 70,
+      "u1_max_deg": 25
+     },
+     "zrodlo": "ruch definiujący rodzinę — wyprost łokcia: ACE #185 (prostuj łokcie do pełnego wyprostu, bez blokowania; przeczytane 26.10.2026), ExRx CBPushdown, ACE #74 i ExRx DBTriExt (ote.move), ACE #36 i ExRx BBLyingTriExt (skull.move) — cues.json",
+     "liczba": "uproszczenie (u = 0 łokieć ≥ 70°, u = 1 ≤ 25° — wyprost bez gwałtownego blokowania)",
+     "pewnosc": "ustalone"
+    }
+   },
+   "wskazowki_na_reguly": {
+    "tpd.elbows": [
+     "ramie_nieruchome"
+    ],
+    "ote.upperArm": [
+     "ramie_nieruchome"
+    ],
+    "skull.upperArm": [
+     "ramie_nieruchome"
+    ],
+    "tpd.move": [
+     "lokiec_prostuje_sie"
+    ],
+    "ote.move": [
+     "lokiec_prostuje_sie"
+    ],
+    "skull.move": [
+     "lokiec_prostuje_sie"
+    ],
+    "cote.move": [
+     "lokiec_prostuje_sie"
+    ]
+   },
+   "zawsze": [
+    "lokiec_prostuje_sie"
+   ],
+   "grupy_bledow": {},
+   "bledy_bez_animacji": {
+    "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])"
+   },
+   "warianty": {
+    "Body-Up": [],
+    "Bodyweight Triceps Extension": [],
+    "Sled Overhead Triceps Extension": []
+   },
+   "otwarte": {
+    "Body-Up": "brak wskazówek (zestaw „open”); nie badane w tej rundzie",
+    "Bodyweight Triceps Extension": "brak wskazówek (zestaw „open”); nie badane w tej rundzie",
+    "Sled Overhead Triceps Extension": "brak wskazówek (zestaw „open”); nie badane w tej rundzie"
+   },
+   "pomin": {}
+  },
+  "delt_raise": {
+   "reguly": {
+    "lokiec_staly": {
+     "typ": "lokiec_staly_kat",
+     "grupa": "lokcie",
+     "cue": "lat.elbows",
+     "cue_dodatkowe": [
+      "front.elbows",
+      "rear.elbows"
+     ],
+     "parametry": {
+      "max_zmiana_deg": 12,
+      "max_deg": 40
+     },
+     "zrodlo": "lat.elbows: ACE #26 kroki 1 i 3 (łokcie proste lub lekko ugięte; przeczytane 26.10.2026), ExRx CBOneArmLateralRaise (stały, lekko ugięty łokieć); front.elbows: ACE #54, ExRx DBFrontRaise; rear.elbows: ExRx DBRearLateralRaise, ACE #34 — cues.json",
+     "liczba": "konwencja (kąt łokcia ≤ 40°, zmiana ≤ 12°)",
+     "pewnosc": "ustalone"
+    },
+    "lokcie_na_wysokosci_barkow_u1": {
+     "typ": "lokiec_wysokosc_u1",
+     "grupa": "zakres",
+     "cue": "lat.height",
+     "parametry": {
+      "min_cm": -12,
+      "max_cm": 12
+     },
+     "zrodlo": "ACE #26 krok 3: unoś, aż ramiona będą na wysokości barków, mniej więcej równolegle do podłogi (przeczytane 26.10.2026); ExRx DBLateralRaise / CBLateralRaise Execution: do wysokości barków łokciami (cues.json)",
+     "liczba": "uproszczenie (łokieć ± 12 cm od wysokości barków w u = 1)",
+     "pewnosc": "ustalone"
+    },
+    "ramie_unosi_sie": {
+     "typ": "kat_ramie_tulow_wzrost",
+     "grupa": "zakres",
+     "cue": "lat.move",
+     "cue_dodatkowe": [
+      "front.move",
+      "lat.height",
+      "lat.elbows",
+      "front.elbows"
+     ],
+     "parametry": {
+      "min_deg": 45
+     },
+     "zrodlo": "ruch definiujący unoszenie bokiem/przodem: ACE #26 kroki 3–4, ExRx DBLateralRaise (lat.move); ACE #54, ExRx DBFrontRaise (front.move) — cues.json",
+     "liczba": "uproszczenie (kąt ramię–tułów rośnie o ≥ 45°)",
+     "pewnosc": "ustalone"
+    },
+    "rear_dlonie_w_linii_barkow": {
+     "typ": "dlon_w_plaszczyznie_barkow_u1",
+     "grupa": "tor",
+     "cue": "rear.arms",
+     "parametry": {
+      "max_cm": 12
+     },
+     "zrodlo": "rear.arms: ExRx DBRearLateralRaise (ramiona prostopadle do tułowia), ACE #34 (hantle w linii uszu, nie za głową) — cues.json",
+     "liczba": "konwencja (dłoń ≤ 12 cm od płaszczyzny barków)",
+     "pewnosc": "ustalone"
+    },
+    "rear_dlonie_w_bok": {
+     "typ": "dlon_odchodzi_w_bok",
+     "grupa": "zakres",
+     "cue": "rear.move",
+     "cue_dodatkowe": [
+      "rear.arms",
+      "rpd.move"
+     ],
+     "parametry": {
+      "min_cm": 25
+     },
+     "zrodlo": "rear.move: ExRx DBRearLateralRaise Execution, ACE #34 kroki 2–3 (unoszenie ramion bokiem, prostopadle do tułowia) — cues.json",
+     "liczba": "uproszczenie (dłoń oddala się w bok o ≥ 25 cm)",
+     "pewnosc": "ustalone"
+    },
+    "lokcie_nad_dlonmi_u1": {
+     "typ": "lokiec_nad_dlonia_u1",
+     "grupa": "tor",
+     "cue": "ur.elbows",
+     "parametry": {
+      "min_cm": 0
+     },
+     "zrodlo": "ur.elbows (słownik badacza 25.10.2026): ISSA, Upright Row — łokieć nad przedramieniem; lat.elbows (ACE #26, ExRx) — analogia; NSCA High Pull — analogia",
+     "liczba": "uproszczenie (łokieć nie niżej niż dłoń w u = 1)",
+     "pewnosc": "jedno źródło bezpośrednie + analogia"
+    },
+    "ciezar_blisko_glowy": {
+     "typ": "ciezar_blisko_glowy",
+     "grupa": "tor",
+     "cue": "halo.close",
+     "parametry": {
+      "max_cm": 30
+     },
+     "zrodlo": "halo.close (słownik badacza, korekty 08): ACE #394 Halo (kettlebell wokół i za głową), ISSA (jak najbliżej głowy)",
+     "liczba": "konwencja (≤ 30 cm od środka głowy)",
+     "pewnosc": "ustalone"
+    },
+    "tulow_nieruchomy": {
+     "typ": "tulow_nieruchomy",
+     "grupa": "bujanie",
+     "cue": "curl.noSwing",
+     "parametry": {
+      "max_pochylenie_deg": 5,
+      "max_miednica_cm": 3
+     },
+     "zrodlo": "jak w rodzinie curl (curl.noSwing; cues.json) — zestaw ogólny dla unoszeń",
+     "liczba": "konwencja",
+     "pewnosc": "analogia"
+    }
+   },
+   "wskazowki_na_reguly": {
+    "lat.elbows": [
+     "lokiec_staly",
+     "ramie_unosi_sie"
+    ],
+    "front.elbows": [
+     "lokiec_staly",
+     "ramie_unosi_sie"
+    ],
+    "rear.elbows": [
+     "lokiec_staly"
+    ],
+    "lat.height": [
+     "lokcie_na_wysokosci_barkow_u1",
+     "ramie_unosi_sie"
+    ],
+    "lat.move": [
+     "ramie_unosi_sie"
+    ],
+    "front.move": [
+     "ramie_unosi_sie"
+    ],
+    "rear.arms": [
+     "rear_dlonie_w_linii_barkow",
+     "rear_dlonie_w_bok"
+    ],
+    "rear.move": [
+     "rear_dlonie_w_bok"
+    ],
+    "rpd.move": [
+     "rear_dlonie_w_bok"
+    ],
+    "ur.elbows": [
+     "lokcie_nad_dlonmi_u1"
+    ],
+    "halo.close": [
+     "ciezar_blisko_glowy"
+    ],
+    "curl.noSwing": [
+     "tulow_nieruchomy"
+    ]
+   },
+   "grupy_bledow": {},
+   "bledy_bez_animacji": {
+    "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])",
+    "plank.mis.breath": "wstrzymywanie oddechu nie zmienia pozy (bledy: [])"
+   },
+   "warianty": {
+    "Car Drivers": [
+     "lokiec_staly",
+     "lokcie_na_wysokosci_barkow_u1"
+    ],
+    "Crucifix": [
+     "lokiec_staly",
+     "lokcie_na_wysokosci_barkow_u1"
+    ],
+    "One-Arm Incline Lateral Raise": [
+     "lokiec_staly",
+     "ramie_unosi_sie"
+    ],
+    "Straight Raises on Incline Bench": [
+     "lokiec_staly",
+     "ramie_unosi_sie"
+    ],
+    "Kettlebell Halo with Overhead Extension": [],
+    "Barbell Incline Shoulder Raise": [],
+    "Dumbbell Incline Shoulder Raise": [],
+    "Smith Incline Shoulder Raise": [],
+    "Sled Reverse Flye": []
+   },
+   "otwarte": {
+    "Barbell Incline Shoulder Raise": "brak wskazówek (zestaw „open”)",
+    "Dumbbell Incline Shoulder Raise": "brak wskazówek (zestaw „open”)",
+    "Smith Incline Shoulder Raise": "brak wskazówek (zestaw „open”)",
+    "Sled Reverse Flye": "brak wskazówek (zestaw „open”)",
+    "Kettlebell Halo with Overhead Extension": "halo.close przeczy części z wyprostem nad głową (ciężar odchodzi od głowy) — potrzebne źródło na odmianę"
+   },
+   "pomin": {}
+  },
+  "pushup_plank": {
+   "reguly": {
+    "cialo_w_linii": {
+     "typ": "miednica_na_linii",
+     "grupa": "linia",
+     "cue": "push.rigid",
+     "cue_dodatkowe": [
+      "plank.noSag",
+      "splank.noSag",
+      "inv.rigid"
+     ],
+     "parametry": {
+      "max_cm": 6,
+      "koniec": "kostka_dalsza"
+     },
+     "zrodlo": "push.rigid: ACE #41 kroki 3–4 (lędźwie nie opadają, biodra się nie unoszą; przeczytane 26.10.2026), NASM Push-Up Common Mistakes, ExRx BWPushup; plank.noSag: ACE #32, NASM Plank; splank.noSag: NASM Side Plank, ACE #303; inv.rigid: ExRx BWSupineRow, ACE #84 — cues.json",
+     "liczba": "konwencja (miednica ≤ 6 cm od linii barki–kostka)",
+     "pewnosc": "ustalone"
+    },
+    "pompka_zakres": {
+     "typ": "lokiec_zakres_ruch",
+     "grupa": "zakres",
+     "cue": "push.move",
+     "cue_dodatkowe": [
+      "ipush.move",
+      "push.mis.partial"
+     ],
+     "parametry": {
+      "min_max_deg": 70,
+      "max_min_deg": 20
+     },
+     "zrodlo": "ACE #41: w dół, aż klatka lub broda dotknie podłogi; w górę do pełnego wyprostu łokci (przeczytane 26.10.2026); NASM Push-Up (Common Mistakes: pełny zakres), ExRx BWPushup — cues.json",
+     "liczba": "uproszczenie (łokieć w ruchu osiąga ≥ 70° i ≤ 20°)",
+     "pewnosc": "ustalone"
+    },
+    "miednica_stala_wysokosc": {
+     "typ": "miednica_pion_span",
+     "grupa": "linia",
+     "cue": "mc.stable",
+     "parametry": {
+      "max_cm": 5
+     },
+     "zrodlo": "mc.stable: ExRx STMountainClimber Comments (biodra na podobnej wysokości), ACE #258 — cues.json",
+     "liczba": "konwencja (zakres wysokości miednicy ≤ 5 cm)",
+     "pewnosc": "ustalone"
+    },
+    "rollout_linia_kolana": {
+     "typ": "miednica_na_linii",
+     "grupa": "linia",
+     "cue": "ro.back",
+     "parametry": {
+      "max_cm": 6,
+      "koniec": "kolano",
+      "tylko_skrajna": true
+     },
+     "zrodlo": "ro.back (słownik badacza): ACE #309 Roll-out (biodra wypchnięte w przód, plecy proste), NASM Best Abs — Ab Wheel Rollout (tułów nie przechodzi w przeprost lędźwi)",
+     "liczba": "konwencja (≤ 6 cm w pozycji najdalszego wysunięcia)",
+     "pewnosc": "ustalone"
+    },
+    "rollout_linia_kostki": {
+     "typ": "miednica_na_linii",
+     "grupa": "linia",
+     "cue": "ro.back",
+     "parametry": {
+      "max_cm": 6,
+      "koniec": "kostka_dalsza",
+      "tylko_skrajna": true
+     },
+     "zrodlo": "jak rollout_linia_kolana — odmiany ze stóp",
+     "liczba": "konwencja",
+     "pewnosc": "analogia"
+    }
+   },
+   "wskazowki_na_reguly": {
+    "push.rigid": [
+     "cialo_w_linii"
+    ],
+    "plank.noSag": [
+     "cialo_w_linii"
+    ],
+    "splank.noSag": [
+     "cialo_w_linii"
+    ],
+    "inv.rigid": [
+     "cialo_w_linii"
+    ],
+    "push.move": [
+     "pompka_zakres"
+    ],
+    "ipush.move": [
+     "pompka_zakres"
+    ],
+    "push.mis.partial": [
+     "pompka_zakres"
+    ],
+    "mc.stable": [
+     "miednica_stala_wysokosc"
+    ],
+    "ro.back": [
+     "rollout_linia_kolana"
+    ]
+   },
+   "grupy_bledow": {
+    "plank.mis.sag": "linia",
+    "push.mis.partial": "zakres"
+   },
+   "bledy_bez_animacji": {
+    "plank.mis.breath": "wstrzymywanie oddechu nie zmienia pozy (bledy: [])",
+    "mis.jerk": "szarpanie to cecha tempa, nie pozy (bledy: [])"
+   },
+   "warianty": {
+    "Standing Barbell Rollout": [
+     "rollout_linia_kostki"
+    ],
+    "Suspended Fallout": [
+     "rollout_linia_kostki"
+    ]
+   },
+   "otwarte": {},
    "pomin": {}
   }
+ },
+ "_typy": {
+  "_uklad": "x przód, y góra, z prawo; cm, stopnie; łokieć/kolano 0° = staw prosty (jak jointAngles); u = 0 początek, u = 1 koniec fazy koncentrycznej; „w ruchu” = wszystkie próbki (klatki kluczowe + siatka 0,05)",
+  "kolana_ku_barkom": "d(u) = odległość środka kolan (średnia legs.R.knee, legs.L.knee) od shoulderC; d(0) − d(1) ≥ min_zblizenie_cm",
+  "miednica_nieruchoma": "zakres pelvis[1] w ruchu ≤ max_cm (miednica zostaje na podporze — ławka, mata — bez względu na jej wysokość)",
+  "zgiecie_tulowia_biodra_nieruchome": "L(u) = |shoulderC − pelvis|; L(0) − L(1) ≥ min_skrocenie_cm ORAZ największe przemieszczenie 3D miednicy względem u = 0 ≤ max_miednica_cm",
+  "konczyny_uniesione": "w u = 1 każda z: arms.R.grip, arms.L.grip, legs.R.ankle, legs.L.ankle ma y ≥ y z u = 0 + min_cm",
+  "stawy_proste": "w ruchu jointAngles(…).<staw> ≤ max_deg dla obu stron, dla każdego stawu z listy stawy",
+  "barki_unoszenie_max": "shoulderC[1](u) − shoulderC[1](0) ≤ max_cm w ruchu",
+  "start_lezenie": "w u = 0: shoulderC[1] − pelvis[1] ≤ max_cm i (średnia kostek)[1] − pelvis[1] ≤ max_cm",
+  "kat_tulowia_nad_poziomem_u1": "w u = 1 kąt wektora pelvis→shoulderC nad płaszczyzną poziomą (atan2(dy, |dx,dz|)) ≥ min_deg",
+  "kat_nog_nad_poziomem_u1": "w u = 1 kąt wektora pelvis→(średnia kostek) nad płaszczyzną poziomą ≥ min_deg",
+  "szkielet_nieruchomy": "każdy punkt szkieletu (jak pts() w contract.ts) zmienia położenie w ruchu o ≤ max_cm",
+  "lokiec_nieruchomy_wzgledem_barku": "dla stron z regułami rąk: e(u) = arms[s].elbow − shoulderC; max |e(u) − e(0)| w ruchu ≤ max_cm",
+  "tulow_nieruchomy": "zakres kf.pochylenieTulowia w ruchu ≤ max_pochylenie_deg ORAZ zakres pelvis[0] i pelvis[2] ≤ max_miednica_cm",
+  "lokiec_zakres": "kąt łokcia (strony z regułami rąk): opcjonalnie u0_min_deg ≤ łokieć(0), łokieć(0) ≤ u0_max_deg, u1_min_deg ≤ łokieć(1), łokieć(1) ≤ u1_max_deg",
+  "lokiec_zakres_ruch": "kąt łokcia w ruchu: max ≥ min_max_deg i min ≤ max_min_deg (niezależnie od kierunku u)",
+  "lokiec_staly_kat": "kąt łokcia w ruchu: zakres ≤ max_zmiana_deg i max ≤ max_deg (strony z regułami rąk)",
+  "lokiec_wysokosc_u1": "w u = 1 dla co najmniej jednej strony pracującej: min_cm ≤ arms[s].elbow[1] − shoulderC[1] ≤ max_cm",
+  "kat_ramie_tulow_wzrost": "a(u) = kąt między wektorem bark→łokieć a wektorem shoulderC→pelvis (0° = ramię wzdłuż tułowia); dla co najmniej jednej strony a(1) − a(0) ≥ min_deg (jeśli jointAngles().shElev liczy ten kąt — użyć go)",
+  "dlon_w_plaszczyznie_barkow_u1": "w u = 1 dla strony pracującej |(grip − shoulderC) · t| ≤ max_cm, t = jednostkowy wektor shoulderC→pelvis (dłoń w płaszczyźnie prostopadłej do tułowia przez barki)",
+  "dlon_odchodzi_w_bok": "b = jednostkowy wektor osi barków (z w układzie tułowia); dla co najmniej jednej ręki |(grip − shoulderC) · b| rośnie od u = 0 do u = 1 o ≥ min_cm",
+  "lokiec_nad_dlonia_u1": "w u = 1 dla każdej strony pracującej arms[s].elbow[1] − arms[s].grip[1] ≥ min_cm",
+  "ciezar_blisko_glowy": "w ruchu odległość info.load (albo środka chwytu) od head ≤ max_cm",
+  "miednica_na_linii": "P = koniec linii: „kostka_dalsza” (kostka dalsza od miednicy) albo „kolano” (kolano niżej położone); odległość pelvis od odcinka shoulderC–P ≤ max_cm w ruchu (tylko_skrajna: true → tylko w próbce o największej |shoulderC − P|)",
+  "miednica_pion_span": "zakres pelvis[1] w ruchu ≤ max_cm"
  }
 }

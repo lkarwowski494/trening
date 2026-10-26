@@ -18,19 +18,20 @@ export function wczytajSens(root = ROOT) {
 /** Reguły ćwiczenia: [{ id, typ, grupa, cue, parametry, zrodlo, liczba }]; null = ćwiczenie do pominięcia (powód w `pomin`), [] = brak reguł. */
 export function regulyDla(rodzina, cwiczenie, root = ROOT) {
   const r = wczytajSens(root).rodziny?.[rodzina]; if (!r) return [];
-  const w = r.warianty?.[cwiczenie];
-  let ids;
-  if (w) ids = typeof w === 'string' ? r.warianty[w] : w;
-  else if (r.wskazowki_na_reguly) ids = [...new Set(wskazowkiCwiczenia(cwiczenie, root).flatMap((c) => r.wskazowki_na_reguly[c] ?? []))]; /* reguły wyprowadzone ze wskazówek ćwiczenia (setup/move/tips lub zestaw ogólny) */
+  const w = r.warianty?.[cwiczenie]; let ids;
+  if (w) ids = typeof w === 'string' ? r.warianty[w] : w; /* wpis w „warianty” zastępuje wszystko; [] = brak reguł */
+  else if (r.wskazowki_na_reguly || r.zawsze) ids = [...new Set([...(r.zawsze ?? []), ...wskazowkiCwiczenia(cwiczenie, root).flatMap((c) => r.wskazowki_na_reguly?.[c] ?? [])])]; /* reguły rodziny + wyprowadzone ze wskazówek ćwiczenia (setup/move/tips/mistakes albo ok + err zestawu ogólnego) */
   else return [];
   return ids.map((id) => ({ id, ...r.reguly[id] }));
 }
+/** Ćwiczenie OTWARTE (brak źródła ruchu — bez grafiki v2 do czasu źródła): powód albo null. Generator pomija je jak `pomin`, test pokrycia liczy jako jawny wyjątek. */
+export const otwarteDla = (rodzina, cwiczenie, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.otwarte?.[cwiczenie] ?? null;
 /** Identyfikatory wskazówek ćwiczenia: własne (lib/cues/data.json: setup/move/tips/mistakes) albo zestaw ogólny (cue-sets.json: ok). */
 export function wskazowkiCwiczenia(cwiczenie, root = ROOT) {
   const pc = path.join(root, 'lib/cues/data.json'); const own = fs.existsSync(pc) ? JSON.parse(fs.readFileSync(pc, 'utf8')).exercises?.[cwiczenie] : null;
   if (own) return Object.values(own).flat().map((x) => x.c);
   const ps = path.join(root, 'lib/figures/v2/cue-sets.json'); const set = fs.existsSync(ps) ? JSON.parse(fs.readFileSync(ps, 'utf8')).items?.[cwiczenie] : null;
-  return set?.ok ?? [];
+  return [...(set?.ok ?? []), ...(set?.err ?? [])];
 }
 export const bledyBezAnimacji = (rodzina, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.bledy_bez_animacji ?? {};
 export const pominiecie = (rodzina, cwiczenie, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.pomin?.[cwiczenie] ?? null;
@@ -101,6 +102,55 @@ Object.assign(EWALUATORY, {
   bird_dog_linia: ({ p, parametry: q }) => { const s = p[p.length - 1].f.sk; const wynik = ['R', 'L'].map((side) => { const opp = side === 'R' ? 'L' : 'R'; return Math.max(Math.abs(s.arms[side].grip[1] - s.shoulderC[1]), Math.abs(s.legs[opp].ankle[1] - s.pelvis[1])); });
     return Math.min(...wynik) > q.tol_cm ? [`w u = 1 żadna para (ręka + przeciwna noga) nie leży w linii tułowia: najlepsza odchyłka ${f1(Math.min(...wynik))} cm, a ma być ≤ ${q.tol_cm} cm (dłoń na wysokości barku, kostka na wysokości miednicy)`] : []; },
 });
+
+/* ---------- 22 typy reguł od badacza (26.10.2026; definicje: data/zrodla/figury-sens.json → _typy). Układ: x przód, y góra, z prawo; kąty jak jointAngles (0° = prosty). ---------- */
+const sub3 = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+const dl = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+const sr = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2];
+const jedn = (a) => { const n = Math.hypot(...a) || 1; return [a[0] / n, a[1] / n, a[2] / n]; };
+const dot3 = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+const pierwsza = (p) => p[0].f.sk, ostatnia = (p) => p[p.length - 1].f.sk;
+const kneesMid = (sk) => sr(sk.legs.R.knee, sk.legs.L.knee), anklesMid = (sk) => sr(sk.legs.R.ankle, sk.legs.L.ankle);
+const katNad = (v) => (Math.atan2(v[1], Math.hypot(v[0], v[2])) * 180) / Math.PI;
+const punktySzkieletu = (sk) => [sk.pelvis, sk.head, sk.shoulderC, sk.spineMid, ...['R', 'L'].flatMap((s) => [sk.legs[s].knee, sk.legs[s].ankle, sk.legs[s].heel, sk.legs[s].toe, sk.arms[s].elbow, sk.arms[s].grip])];
+Object.assign(EWALUATORY, {
+  kolana_ku_barkom: ({ p, parametry: q }) => { const d0 = dl(kneesMid(pierwsza(p)), pierwsza(p).shoulderC), d1 = dl(kneesMid(ostatnia(p)), ostatnia(p).shoulderC); return d0 - d1 < q.min_zblizenie_cm ? [`odległość kolan od barków maleje tylko o ${f1(d0 - d1)} cm (z ${f1(d0)} do ${f1(d1)}), a ma zmaleć o ≥ ${q.min_zblizenie_cm} cm (kolana zbliżają się do klatki)`] : []; },
+  miednica_nieruchoma: ({ p, parametry: q }) => { const r = zakres(p.map((s) => s.f.sk.pelvis[1])); return r.span > q.max_cm ? [`wysokość miednicy zmienia się o ${f1(r.span)} cm, a ma ≤ ${q.max_cm} cm (miednica zostaje na podporze)`] : []; },
+  miednica_pion_span: ({ p, parametry: q }) => { const r = zakres(p.map((s) => s.f.sk.pelvis[1])); return r.span > q.max_cm ? [`wysokość miednicy zmienia się o ${f1(r.span)} cm, a ma ≤ ${q.max_cm} cm (miednica na stałej wysokości)`] : []; },
+  zgiecie_tulowia_biodra_nieruchome: ({ p, parametry: q }) => { const o = []; const L = (s) => dl(s.f.sk.shoulderC, s.f.sk.pelvis); const sk = L(p[0]) - L(p[p.length - 1]); const dm = Math.max(...p.map((s) => dl(s.f.sk.pelvis, p[0].f.sk.pelvis)));
+    if (sk < q.min_skrocenie_cm) o.push(`odległość barki–miednica maleje tylko o ${f1(sk)} cm, a ma ≥ ${q.min_skrocenie_cm} cm (tułów zwija się: zgięcie kręgosłupa)`); if (dm > q.max_miednica_cm) o.push(`miednica przesuwa się o ${f1(dm)} cm, a ma ≤ ${q.max_miednica_cm} cm (biodra stoją)`); return o; },
+  konczyny_uniesione: ({ p, parametry: q }) => { const a = pierwsza(p), b = ostatnia(p); const o = []; for (const [n, y0, y1] of [['dłoń R', a.arms.R.grip[1], b.arms.R.grip[1]], ['dłoń L', a.arms.L.grip[1], b.arms.L.grip[1]], ['kostka R', a.legs.R.ankle[1], b.legs.R.ankle[1]], ['kostka L', a.legs.L.ankle[1], b.legs.L.ankle[1]]]) if (y1 - y0 < q.min_cm) o.push(`${n} w u = 1 jest tylko ${f1(y1 - y0)} cm wyżej niż w u = 0, a ma być ≥ ${q.min_cm} cm (kończyny uniesione)`); return o; },
+  stawy_proste: ({ v2, d, p, parametry: q }) => { const o = []; const strony = q.stawy.includes('elbow') ? stronyRak(d) : ['R', 'L']; for (const st of q.stawy) for (const side of (st === 'elbow' ? strony : ['R', 'L'])) { const m = Math.max(...p.map((s) => v2.jointAngles(s.f.sk, side)[st])); if (m > q.max_deg) o.push(`staw ${st} ${side} dochodzi do ${f1(m)}°, a ma być ≤ ${q.max_deg}° w całym ruchu (proste)`); } return o; },
+  barki_unoszenie_max: ({ p, parametry: q }) => { const y0 = pierwsza(p).shoulderC[1]; const m = Math.max(...p.map((s) => s.f.sk.shoulderC[1] - y0)); return m > q.max_cm ? [`barki unoszą się o ${f1(m)} cm, a mają ≤ ${q.max_cm} cm (bez przeprostu)`] : []; },
+  start_lezenie: ({ p, parametry: q }) => { const a = pierwsza(p); const o = []; const ds = a.shoulderC[1] - a.pelvis[1], dk = anklesMid(a)[1] - a.pelvis[1]; if (ds > q.max_cm) o.push(`w u = 0 barki są ${f1(ds)} cm nad miednicą, a ma być ≤ ${q.max_cm} cm (start leżąc)`); if (dk > q.max_cm) o.push(`w u = 0 kostki są ${f1(dk)} cm nad miednicą, a ma być ≤ ${q.max_cm} cm (start leżąc)`); return o; },
+  kat_tulowia_nad_poziomem_u1: ({ p, parametry: q }) => { const b = ostatnia(p); const k = katNad(sub3(b.shoulderC, b.pelvis)); return k < q.min_deg ? [`w u = 1 tułów jest ${f1(k)}° nad poziomem, a ma ≥ ${q.min_deg}°`] : []; },
+  kat_nog_nad_poziomem_u1: ({ p, parametry: q }) => { const b = ostatnia(p); const k = katNad(sub3(anklesMid(b), b.pelvis)); return k < q.min_deg ? [`w u = 1 nogi są ${f1(k)}° nad poziomem, a mają ≥ ${q.min_deg}°`] : []; },
+  szkielet_nieruchomy: ({ p, parametry: q }) => { const p0 = punktySzkieletu(pierwsza(p)); const m = Math.max(...p.flatMap((s) => punktySzkieletu(s.f.sk).map((pt, i) => dl(pt, p0[i])))); return m > q.max_cm ? [`któryś punkt szkieletu przesuwa się o ${f1(m)} cm, a ma ≤ ${q.max_cm} cm (poza nieruchoma)`] : []; },
+  lokiec_nieruchomy_wzgledem_barku: ({ d, p, parametry: q }) => { const o = []; for (const side of stronyRak(d)) { const e = (s) => sub3(s.f.sk.arms[side].elbow, s.f.sk.shoulderC); const e0 = e(p[0]); const m = Math.max(...p.map((s) => dl(e(s), e0))); if (m > q.max_cm) o.push(`łokieć ${side} przesuwa się względem barku o ${f1(m)} cm, a ma ≤ ${q.max_cm} cm (łokieć nieruchomo przy tułowiu)`); } return o; },
+  tulow_nieruchomy: ({ p, parametry: q }) => { const o = []; const rk = zakres(p.map((s) => s.kf.pochylenieTulowia)); const dm = Math.max(zakres(p.map((s) => s.f.sk.pelvis[0])).span, zakres(p.map((s) => s.f.sk.pelvis[2])).span);
+    if (rk.span > q.max_pochylenie_deg) o.push(`pochylenieTulowia zmienia się o ${f1(rk.span)}°, a ma ≤ ${q.max_pochylenie_deg}° (tułów nieruchomo)`); if (dm > q.max_miednica_cm) o.push(`miednica przesuwa się poziomo o ${f1(dm)} cm, a ma ≤ ${q.max_miednica_cm} cm`); return o; },
+  lokiec_zakres: ({ v2, d, p, parametry: q }) => { const o = []; for (const side of stronyRak(d)) { const a0 = v2.jointAngles(p[0].f.sk, side).elbow, a1 = v2.jointAngles(ostatnia_s(p).sk, side).elbow;
+    if (q.u0_min_deg !== undefined && a0 < q.u0_min_deg) o.push(`łokieć ${side} w u = 0 ma ${f1(a0)}°, a ma być ≥ ${q.u0_min_deg}°`); if (q.u0_max_deg !== undefined && a0 > q.u0_max_deg) o.push(`łokieć ${side} w u = 0 ma ${f1(a0)}°, a ma być ≤ ${q.u0_max_deg}°`);
+    if (q.u1_min_deg !== undefined && a1 < q.u1_min_deg) o.push(`łokieć ${side} w u = 1 ma ${f1(a1)}°, a ma być ≥ ${q.u1_min_deg}°`); if (q.u1_max_deg !== undefined && a1 > q.u1_max_deg) o.push(`łokieć ${side} w u = 1 ma ${f1(a1)}°, a ma być ≤ ${q.u1_max_deg}°`); } return o; },
+  lokiec_zakres_ruch: ({ v2, d, p, parametry: q }) => { const o = []; for (const side of stronyRak(d)) { const a = p.map((s) => v2.jointAngles(s.f.sk, side).elbow); const r = zakres(a);
+    if (r.max < q.min_max_deg) o.push(`łokieć ${side} w ruchu dochodzi tylko do ${f1(r.max)}°, a ma sięgać ≥ ${q.min_max_deg}° (pełny zakres ruchu)`); if (r.min > q.max_min_deg) o.push(`łokieć ${side} w ruchu nie prostuje się poniżej ${f1(r.min)}°, a ma schodzić do ≤ ${q.max_min_deg}°`); } return o; },
+  lokiec_staly_kat: ({ v2, d, p, parametry: q }) => { const o = []; for (const side of stronyRak(d)) { const r = zakres(p.map((s) => v2.jointAngles(s.f.sk, side).elbow)); if (r.span > q.max_zmiana_deg) o.push(`łokieć ${side} zmienia kąt o ${f1(r.span)}°, a ma ≤ ${q.max_zmiana_deg}° (stały kąt)`); if (r.max > q.max_deg) o.push(`łokieć ${side} dochodzi do ${f1(r.max)}°, a ma ≤ ${q.max_deg}°`); } return o; },
+  lokiec_wysokosc_u1: ({ d, p, parametry: q }) => { const b = ostatnia(p); const ok = stronyRak(d).some((side) => { const h = b.arms[side].elbow[1] - b.shoulderC[1]; return h >= q.min_cm && h <= q.max_cm; });
+    return ok ? [] : [`w u = 1 żaden łokieć nie leży na wysokości ${q.min_cm}…${q.max_cm} cm względem barku (łokcie na wysokości barków)`]; },
+  kat_ramie_tulow_wzrost: ({ d, p, parametry: q }) => { const kat_ = (s, side) => { const sk = s.f.sk; const a = jedn(sub3(sk.arms[side].elbow, sk.shoulderC)), t = jedn(sub3(sk.pelvis, sk.shoulderC)); return (Math.acos(Math.max(-1, Math.min(1, dot3(a, t)))) * 180) / Math.PI; };
+    const best = Math.max(...stronyRak(d).map((side) => kat_(p[p.length - 1], side) - kat_(p[0], side))); return best < q.min_deg ? [`kąt ramię–tułów rośnie najwyżej o ${f1(best)}°, a ma wzrosnąć o ≥ ${q.min_deg}° (ramię unosi się od tułowia)`] : []; },
+  dlon_w_plaszczyznie_barkow_u1: ({ d, p, parametry: q }) => { const b = ostatnia(p); const t = jedn(sub3(b.shoulderC, b.pelvis)); const o = []; for (const side of stronyRak(d)) { const x = Math.abs(dot3(sub3(b.arms[side].grip, b.shoulderC), t)); if (x > q.max_cm) o.push(`dłoń ${side} w u = 1 jest ${f1(x)} cm od płaszczyzny barków (prostopadłej do tułowia), a ma ≤ ${q.max_cm} cm`); } return o; },
+  dlon_odchodzi_w_bok: ({ d, p, parametry: q }) => { const a = pierwsza(p), b = ostatnia(p); const ax = jedn(sub3(a.arms.R.shoulder, a.arms.L.shoulder)); const bx = jedn(sub3(b.arms.R.shoulder, b.arms.L.shoulder));
+    const w = (sk, ax_, side) => Math.abs(dot3(sub3(sk.arms[side].grip, sk.shoulderC), ax_)); const best = Math.max(...stronyRak(d).map((side) => w(b, bx, side) - w(a, ax, side))); return best < q.min_cm ? [`dłoń odchodzi w bok (wzdłuż osi barków) najwyżej o ${f1(best)} cm, a ma o ≥ ${q.min_cm} cm`] : []; },
+  lokiec_nad_dlonia_u1: ({ d, p, parametry: q }) => { const b = ostatnia(p); const o = []; for (const side of stronyRak(d)) { const x = b.arms[side].elbow[1] - b.arms[side].grip[1]; if (x < q.min_cm) o.push(`łokieć ${side} w u = 1 jest ${f1(x)} cm nad dłonią, a ma być ≥ ${q.min_cm} cm`); } return o; },
+  ciezar_blisko_glowy: ({ p, parametry: q }) => { const m = Math.max(...p.map((s) => { const sk = s.f.sk; const c = s.f.info?.load ?? sr(sk.arms.R.grip, sk.arms.L.grip); return dl(c, sk.head); })); return m > q.max_cm ? [`ciężar oddala się od głowy do ${f1(m)} cm, a ma ≤ ${q.max_cm} cm`] : []; },
+  miednica_na_linii: ({ p, parametry: q }) => {
+    const koniec = (sk) => q.koniec === 'kolano' ? (sk.legs.R.knee[1] <= sk.legs.L.knee[1] ? sk.legs.R.knee : sk.legs.L.knee) : (dl(sk.legs.R.ankle, sk.pelvis) >= dl(sk.legs.L.ankle, sk.pelvis) ? sk.legs.R.ankle : sk.legs.L.ankle);
+    const odl = (sk) => { const P = koniec(sk), A = sk.shoulderC, v = sub3(P, A), w = sub3(sk.pelvis, A); const t = Math.max(0, Math.min(1, dot3(w, v) / (dot3(v, v) || 1))); return dl(sk.pelvis, [A[0] + v[0] * t, A[1] + v[1] * t, A[2] + v[2] * t]); };
+    const kandydaci = q.tylko_skrajna ? [p.reduce((best, s) => (dl(s.f.sk.shoulderC, koniec(s.f.sk)) > dl(best.f.sk.shoulderC, koniec(best.f.sk)) ? s : best), p[0])] : p; const m = Math.max(...kandydaci.map((s) => odl(s.f.sk)));
+    return m > q.max_cm ? [`miednica odchyla się od linii barki–${q.koniec === 'kolano' ? 'kolano' : 'kostka'} o ${f1(m)} cm, a ma ≤ ${q.max_cm} cm (ciało w jednej linii; bez zapadania i wypinania miednicy)`] : []; },
+});
+function ostatnia_s(p) { return p[p.length - 1].f; }
 
 /** Naruszenia reguł dla jednej pozy (poprawnej: blad undefined). Zwraca [{ regula, grupa, opisy }] tylko dla złamanych. */
 export function naruszenia(v2, d, reguly, blad) {

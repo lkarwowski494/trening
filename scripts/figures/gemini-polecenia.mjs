@@ -11,7 +11,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { cwiczeniaRodziny, wczytajKontrakt } from './gemini-pozy.mjs';
 import { loadV2 } from './v2-build.mjs';
-import { regulyDla, pominiecie, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji } from './v2-sens.mjs';
+import { regulyDla, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji } from './v2-sens.mjs';
 import { wczytajRejestr, liniePolecenia, statystykaWersji } from './gemini-rejestr.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -199,6 +199,29 @@ const OPIS_TYPU = {
   lopatki_od_podlogi: (q) => `barki w u = 1 co najmniej ${q.min_cm} cm wyżej niż w u = 0, a miednica zmienia wysokość o ≤ ${q.max_miednica_cm} cm`,
   miednica_unosi_sie: (q) => `miednica w u = 1 co najmniej ${q.min_cm} cm wyżej niż w u = 0, a barki zmieniają wysokość o ≤ ${q.max_barki_cm} cm`,
   bird_dog_linia: (q) => `w u = 1 dłoń jednej ręki na wysokości barku (± ${q.tol_cm} cm) i kostka PRZECIWNEJ nogi na wysokości miednicy (± ${q.tol_cm} cm)`,
+  kolana_ku_barkom: (q) => `odległość środka kolan od barków w u = 1 jest o ≥ ${q.min_zblizenie_cm} cm mniejsza niż w u = 0 (kolana zbliżają się do klatki)`,
+  miednica_nieruchoma: (q) => `wysokość miednicy zmienia się o ≤ ${q.max_cm} cm w całym ruchu (miednica zostaje na podporze)`,
+  miednica_pion_span: (q) => `wysokość miednicy zmienia się o ≤ ${q.max_cm} cm w całym ruchu (stała wysokość)`,
+  zgiecie_tulowia_biodra_nieruchome: (q) => `odległość barki–miednica maleje o ≥ ${q.min_skrocenie_cm} cm (zgięcie kręgosłupa), a miednica przesuwa się o ≤ ${q.max_miednica_cm} cm`,
+  konczyny_uniesione: (q) => `w u = 1 obie dłonie i obie kostki leżą co najmniej ${q.min_cm} cm wyżej niż w u = 0`,
+  stawy_proste: (q) => `stawy ${q.stawy.join(', ')} (elbow = łokieć, knee = kolano) mają kąt ≤ ${q.max_deg}° w KAŻDEJ klatce (proste)`,
+  barki_unoszenie_max: (q) => `barki unoszą się najwyżej o ${q.max_cm} cm względem u = 0`,
+  start_lezenie: (q) => `w u = 0 barki i kostki leżą najwyżej ${q.max_cm} cm nad miednicą (start leżąc)`,
+  kat_tulowia_nad_poziomem_u1: (q) => `w u = 1 oś miednica→barki jest ≥ ${q.min_deg}° nad poziomem`,
+  kat_nog_nad_poziomem_u1: (q) => `w u = 1 oś miednica→kostki jest ≥ ${q.min_deg}° nad poziomem`,
+  szkielet_nieruchomy: (q) => `żaden punkt szkieletu nie przesuwa się o więcej niż ${q.max_cm} cm w ruchu`,
+  lokiec_nieruchomy_wzgledem_barku: (q) => `łokieć przesuwa się względem barku o ≤ ${q.max_cm} cm w ruchu (nieruchomo przy tułowiu)`,
+  tulow_nieruchomy: (q) => `pochylenieTulowia zmienia się o ≤ ${q.max_pochylenie_deg}°, a miednica przesuwa się poziomo o ≤ ${q.max_miednica_cm} cm`,
+  lokiec_zakres: (q) => `kąt łokcia: ${[q.u0_min_deg !== undefined && `w u = 0 ≥ ${q.u0_min_deg}°`, q.u0_max_deg !== undefined && `w u = 0 ≤ ${q.u0_max_deg}°`, q.u1_min_deg !== undefined && `w u = 1 ≥ ${q.u1_min_deg}°`, q.u1_max_deg !== undefined && `w u = 1 ≤ ${q.u1_max_deg}°`].filter(Boolean).join(', ')}`,
+  lokiec_zakres_ruch: (q) => `kąt łokcia w ruchu dochodzi do ≥ ${q.min_max_deg}° i schodzi do ≤ ${q.max_min_deg}° (pełny zakres)`,
+  lokiec_staly_kat: (q) => `kąt łokcia zmienia się o ≤ ${q.max_zmiana_deg}° i nie przekracza ${q.max_deg}° (stały, lekko zgięty)`,
+  lokiec_wysokosc_u1: (q) => `w u = 1 łokieć jest ${q.min_cm}…${q.max_cm} cm względem wysokości barku (łokcie na wysokości barków)`,
+  kat_ramie_tulow_wzrost: (q) => `kąt ramię–tułów (0° = ramię wzdłuż tułowia) rośnie z u = 0 do u = 1 o ≥ ${q.min_deg}°`,
+  dlon_w_plaszczyznie_barkow_u1: (q) => `w u = 1 dłoń leży w płaszczyźnie barków (prostopadłej do tułowia), z odchyłką ≤ ${q.max_cm} cm`,
+  dlon_odchodzi_w_bok: (q) => `dłoń oddala się od tułowia wzdłuż osi barków o ≥ ${q.min_cm} cm od u = 0 do u = 1`,
+  lokiec_nad_dlonia_u1: (q) => `w u = 1 łokieć jest co najmniej ${q.min_cm} cm nad dłonią`,
+  ciezar_blisko_glowy: (q) => `ciężar (środek chwytu) jest w całym ruchu ≤ ${q.max_cm} cm od głowy`,
+  miednica_na_linii: (q) => `miednica leży ≤ ${q.max_cm} cm od linii barki–${q.koniec === 'kolano' ? 'kolano' : 'kostka (dalsza)'}${q.tylko_skrajna ? ' w pozycji skrajnej' : ' w całym ruchu'} (ciało w jednej linii)`,
   jedna_reka: (q) => `sztanga ma trzyma: "R" albo "L", a wolna dłoń jest ≥ ${q.min_wolna_od_osi_cm} cm od osi drążka`,
 };
 /** Sekcja „Reguły sensu” dla ćwiczeń części: reguły raz (z liczbami), potem które ćwiczenia ich dotyczą; + wymóg dla błędów. */
@@ -291,6 +314,7 @@ export function klasyfikujCwiczenia(rodzina, { root = ROOT, lista, bezRegul = fa
   const { catalog } = silnik(); const wszystkie = doZrobienia(rodzina, { root, lista }); const robic = [], pomijane = [], wstrzymane = [];
   for (const c of wszystkie) { const p = pominiecie(rodzina, c, root) ?? sprzetNieobslugiwany(c, catalog);
     if (p) pomijane.push({ klucz: c, powod: `pomiń — zrobi nasz agent (${p})` });
+    else if (otwarteDla(rodzina, c, root)) wstrzymane.push({ klucz: c, powod: `OTWARTE — brak źródła ruchu (${otwarteDla(rodzina, c, root)})` });
     else if (!bezRegul && !regulyDla(rodzina, c, root).length) wstrzymane.push({ klucz: c, powod: 'wstrzymane — brak reguły sensu dla tego ćwiczenia (docs/53, bramka 3)' });
     else robic.push(c); }
   return { robic, pomijane, wstrzymane };

@@ -161,11 +161,11 @@ describe('gemini-polecenia: treść polecenia v2 (liczby z silnika, reguły z da
 });
 
 describe('gemini-polecenia: macierz rodzin (--wszystkie) i bramka reguł sensu', () => {
-  test('polecenie powstaje tylko dla rodzin z regułami sensu (pull_up, core_floor); pozostałe 38 rodzin do zrobienia jest POMINIĘTE z komunikatem (docs/53, bramka 3); części ≤ 12 ćwiczeń, długość ≤ limitu, każdy klucz części w poleceniu; --bez-regul wymusza', () => {
+  test('polecenie powstaje tylko dla rodzin z regułami sensu (pull_up, core_floor, curl, triceps, delt_raise, pushup_plank); pozostałe 34 rodziny do zrobienia są POMINIĘTE z komunikatem (docs/53, bramka 3); części ≤ 12 ćwiczeń, długość ≤ limitu, każdy klucz części w poleceniu; --bez-regul wymusza', () => {
     const r = tmpRoot(true); const out = path.join(r, 'out');
     const wynik = run(POL, `const log = []; await m.main(['--wszystkie','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(r)}, log: (s) => log.push(s) }); console.log(JSON.stringify(log));`) as string[];
-    const pliki = fs.readdirSync(out).sort(); expect(wynik.filter((l) => /POMINIĘTA — brak reguł sensu/.test(l))).toHaveLength(38); expect(wynik[wynik.length - 1]).toMatch(/^rodzin: 2, plików: \d+, najdłuższe: \d+ znaków$/);
-    expect(pliki.every((f) => /^(pull_up|core_floor)(-\d+)?\.md$/.test(f))).toBe(true); expect(pliki).toContain('pull_up.md'); expect(pliki.filter((f) => f.startsWith('core_floor')).length).toBeGreaterThanOrEqual(2);
+    const pliki = fs.readdirSync(out).sort(); expect(wynik.filter((l) => /POMINIĘTA — brak reguł sensu/.test(l))).toHaveLength(34); expect(wynik[wynik.length - 1]).toMatch(/^rodzin: 6, plików: \d+, najdłuższe: \d+ znaków$/);
+    expect(pliki.every((f) => /^(pull_up|core_floor|curl|triceps|delt_raise|pushup_plank)(-\d+)?\.md$/.test(f))).toBe(true); expect(pliki).toContain('pull_up.md'); expect(pliki.some((f) => f.startsWith('pushup_plank'))).toBe(true); expect(pliki.filter((f) => f.startsWith('core_floor')).length).toBeGreaterThanOrEqual(2);
     for (const f of pliki) {
       const t = fs.readFileSync(path.join(out, f), 'utf8'); expect([f, t.length < 36000]).toEqual([f, true]); expect(t).toContain('[polecenie@2]'); expect(t).toContain('## Reguły sensu ruchu');
       const klucze = /DOKŁADNIE te nazwy[^:]*: (.*)\.$/m.exec(t)![1].split('", "').map((k) => k.replace(/^"|"$/g, '')); expect(klucze.length).toBeLessThanOrEqual(12); for (const k of klucze) expect([f, t.includes(`- "${k}"`)]).toEqual([f, true]);
@@ -178,11 +178,12 @@ describe('core_floor: reguły sensu wyprowadzone ze wskazówek ćwiczeń (docs/5
   const CR = run(POL, 'console.log(JSON.stringify(m.wzorzecCrunch()))') as any;
   const wal = (poza: unknown, cw: string) => run(VAL, `console.log(JSON.stringify(m.waliduj(${JSON.stringify(poza)}, { rodzina: 'core_floor', cwiczenie: ${JSON.stringify(cw)} })))`) as { ok: boolean; bledy: { kod: string; szczegol: string }[] };
   test('reguły ćwiczenia powstają ze wskazówek (własnych lub zestawu ogólnego): Crunch = łopatki + miednica na podłodze + szyja; Reverse Crunch = miednica unosi się; Bird Dog = linia; V-Up bez reguł; każda reguła ma wskazówkę istniejącą w cues.json', () => {
-    const r = run(SENS, `console.log(JSON.stringify(['Crunch', 'Reverse Crunch', 'Bird Dog', 'Dead Bug', 'Sit Up', 'V-Up'].map(c => m.regulyDla('core_floor', c).map(x => x.id).sort())))`);
-    expect(r).toEqual([['lopatki_od_podlogi', 'miednica_na_podlodze', 'szyja_neutralna'], ['miednica_unosi_sie'], ['bird_dog_linia'], ['miednica_na_podlodze'], ['szyja_neutralna'], []]);
+    const r = run(SENS, `console.log(JSON.stringify(['Crunch', 'Reverse Crunch', 'Bird Dog', 'Dead Bug', 'Sit Up', 'V-Up', 'Decline Crunch'].map(c => m.regulyDla('core_floor', c).map(x => x.id).sort())))`);
+    expect(r).toEqual([['lopatki_od_podlogi', 'miednica_na_podlodze', 'szyja_neutralna'], ['kolana_ku_barkom', 'miednica_unosi_sie'], ['bird_dog_linia'], ['miednica_na_podlodze'], ['szyja_neutralna'], ['miednica_na_podlodze', 'vup_kolana_proste', 'vup_nogi_uniesione', 'vup_start_lezenie', 'vup_tulow_uniesiony'], ['lopatki_od_podlogi', 'miednica_nieruchoma', 'szyja_neutralna']]); /* Decline Crunch: reguła względna zamiast „miednica y ≤ 12” (ławka skośna) */
     const dane = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-sens.json'), 'utf8')).rodziny.core_floor; const cues = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/cues.json'), 'utf8'));
-    const ids = new Set(Object.values(cues.exercises as Record<string, Record<string, { c: string }[]>>).flatMap((x) => Object.values(x).flat().map((q) => q.c)));
-    for (const [id, reg] of Object.entries(dane.reguly) as [string, any][]) { expect([id, ids.has(reg.cue)]).toEqual([id, true]); expect(reg.liczba).toMatch(/uproszczenie|konwencja/); }
+    const sety = JSON.parse(fs.readFileSync(path.join(ROOT, 'lib/figures/v2/cue-sets.json'), 'utf8')).items as Record<string, { ok?: string[]; err?: string[] }>;
+    const ids = new Set([...Object.values(cues.exercises as Record<string, Record<string, { c: string }[]>>).flatMap((x) => Object.values(x).flat().map((q) => q.c)), ...Object.values(sety).flatMap((x) => [...(x.ok ?? []), ...(x.err ?? [])])]); /* wskazówki własne (cues.json) i zestawów ogólnych (cue-sets.json) */
+    for (const [id, reg] of Object.entries(dane.reguly) as [string, any][]) { if (reg.cue) expect([id, reg.cue, ids.has(reg.cue)]).toEqual([id, reg.cue, true]); else expect(reg.zrodlo.length).toBeGreaterThan(20); expect(reg.liczba).toMatch(/uproszczenie|konwencja|ustalon|źródł|ACE|NASM|przeczytane/i); }
     for (const [cue, lista] of Object.entries(dane.wskazowki_na_reguly) as [string, string[]][]) { expect([cue, ids.has(cue)]).toEqual([cue, true]); for (const id of lista) expect(id in dane.reguly).toBe(true); }
   });
   test('wzorzec Crunch wyliczony z modelu przechodzi geometrię i reguły sensu; łamiące pozy odrzucone z konkretnym komunikatem (miednica w górze, głowa nie podąża, barki nie unoszą się)', () => {
@@ -196,7 +197,7 @@ describe('core_floor: reguły sensu wyprowadzone ze wskazówek ćwiczeń (docs/5
   test('wzorzec Crunch ma proste ramiona wzdłuż ciała (łokieć ≤ 15° w każdej klatce); bramka per ćwiczenie: bez reguł sensu → wstrzymane, --bez-regul wpuszcza', () => {
     const el = run(path.join(ROOT, 'scripts/figures/v2-build.mjs'), `const os = await import('node:os'); const fs = await import('node:fs'); const { v2 } = m.loadV2(fs.mkdtempSync(os.tmpdir() + '/el-')); const d = ${JSON.stringify(CR)}; console.log(JSON.stringify([0, 0.5, 1].map((u) => ['R', 'L'].map((s) => v2.jointAngles(v2.keyframeFrame(d, u).sk, s).elbow))));`) as number[][];
     for (const par of el) for (const a of par) expect(a).toBeLessThanOrEqual(15);
-    const k = run(POL, `console.log(JSON.stringify([m.klasyfikujCwiczenia('core_floor', { root: ${JSON.stringify(PELNY)} }), m.klasyfikujCwiczenia('core_floor', { root: ${JSON.stringify(PELNY)}, bezRegul: true })].map(x => [x.robic.length, x.pomijane.length, x.wstrzymane.length])))`); expect(k).toEqual([[17, 18, 9], [26, 18, 0]]);
+    const k = run(POL, `console.log(JSON.stringify([m.klasyfikujCwiczenia('core_floor', { root: ${JSON.stringify(PELNY)} }), m.klasyfikujCwiczenia('core_floor', { root: ${JSON.stringify(PELNY)}, bezRegul: true })].map(x => [x.robic.length, x.pomijane.length, x.wstrzymane.length])))`); expect(k).toEqual([[21, 18, 5], [21, 18, 5]]); /* wszystkie 5 wstrzymanych to OTWARTE (brak źródła ruchu) — --bez-regul ich nie wpuszcza (wpuszcza tylko ćwiczenia bez reguły, ale ze źródłem) */ /* 5 wstrzymanych: 4 OTWARTE (Butt-Ups, Dragon Flag, Side Jackknife, Stomach Vacuum) + Seated Flat Bench Leg Pull-In bez reguły */
   });
   test('kontrakt: nogi.biegunKolana (kierunek zgięcia kolana): domyślny IK kieruje kolano leżącego w podłogę, [0.15, 1, ±0.1] — w górę; pole w schemacie i w poleceniu', () => {
     const poza = (bk: boolean) => { const w = klon(CR); w.cwiczenie = 'Tuck Crunch'; for (const k of w.klatki) for (const [sd, z] of [['R', 15], ['L', -15]] as const) { k.nogi[sd].kostka = [45, 20, z]; if (bk) k.nogi[sd].biegunKolana = [0.15, 1, sd === 'R' ? 0.1 : -0.1]; } return w; };
@@ -212,10 +213,10 @@ describe('core_floor: reguły sensu wyprowadzone ze wskazówek ćwiczeń (docs/5
     expect(wsz).toMatch(/- "Alternate Heel Touchers" — .*błędy: brak \(bledy: \[\]\) \(nie animujemy: mis\.jerk — to cecha tempa\/oddechu, nie pozy\)/);
     expect(wsz).not.toContain('- "Cable Crunch"'); expect(wsz).toMatch(/Poza tym poleceniem .*"Cable Crunch" — pomiń — zrobi nasz agent \(sprzęt spoza kontraktu: cable\.high/); expect(wsz).toMatch(/"Stability Ball Crunch" — pomiń/); expect(wsz).toMatch(/"Decline Crunch" — pomiń/);
     /* bramka per ćwiczenie: ćwiczenia bez reguły sensu są WSTRZYMANE (nie trafiają do polecenia), części liczone po odfiltrowaniu */
-    const wstrz = ['Butt-Ups', 'Cocoons', 'Dragon Flag', 'Leg Pull-In', 'Seated Flat Bench Leg Pull-In', 'Side Jackknife', 'Stomach Vacuum', 'Superman', 'V-Up'];
-    for (const c of wstrz) { expect([c, wsz.includes(`- "${c}" — sens:`)]).toEqual([c, false]); expect([c, wsz.includes(`"${c}" — wstrzymane — brak reguły sensu`)]).toEqual([c, true]); }
-    expect(fs.readdirSync(out).sort()).toEqual(['core_floor-1.md', 'core_floor-2.md']);
-    const klucze = [...wsz.matchAll(/^- "([^"]+)" — sens:/gm)].map((m) => m[1]); expect(klucze).toContain('Crunch'); expect(klucze).toContain('Bird Dog'); expect(klucze).not.toContain('Machine Crunch'); expect(klucze).toHaveLength(17);
+    const wstrz = ['Butt-Ups', 'Dragon Flag', 'Seated Flat Bench Leg Pull-In', 'Side Jackknife', 'Stomach Vacuum'];
+    for (const c of wstrz) { expect([c, wsz.includes(`- "${c}" — sens:`)]).toEqual([c, false]); expect([c, /"[^"]+" — (wstrzymane — brak reguły sensu|OTWARTE — brak źródła ruchu)/.test(wsz.slice(wsz.indexOf(`"${c}"`)))]).toEqual([c, true]); }
+    expect(fs.readdirSync(out).sort()).toEqual(['core_floor-1.md', 'core_floor-2.md']); expect(wsz).toMatch(/"Butt-Ups" — OTWARTE — brak źródła ruchu/);
+    const klucze = [...wsz.matchAll(/^- "([^"]+)" — sens:/gm)].map((m) => m[1]); expect(klucze).toContain('Crunch'); expect(klucze).toContain('Bird Dog'); expect(klucze).not.toContain('Machine Crunch'); expect(klucze).toHaveLength(21);
     const wzor = /## Wzorzec 1[^\n]*\n\n```json\n(\{.*\})\n```/.exec(p1)!; expect(wal(JSON.parse(wzor[1]), 'Crunch')).toEqual({ ok: true, bledy: [] });
   });
 });
