@@ -72,6 +72,7 @@ export function equipColliders(props: Prop[]): Collider[] {
       case 'plate': c.push(...plateColliders(p)); break;
       case 'bench': { const bp = benchPolys(p); const w = (p.w ?? EQUIP.benchW) / 2; c.push(prism('benchSeat', bp.seat, -w, w), prism('benchBack', bp.back, -w, w)); if (p.rollers) { const r = rollerAt(p); c.push({ k: 'capsule', id: 'benchRoller', a: [r[0], r[1], -EQUIP.rollerHalf], b: [r[0], r[1], EQUIP.rollerHalf], r: EQUIP.rollerR }); } break; }
       case 'sled': { c.push(prism('sled', rectPoly(p.x, 0, p.x + p.len, EQUIP.sledBase), -EQUIP.sledHalf - 5, EQUIP.sledHalf + 5)); for (const sg of [-1, 1]) c.push({ k: 'capsule', id: 'barSled', a: [p.x, EQUIP.sledBase, sg * EQUIP.sledHalf], b: [p.x, p.h, sg * EQUIP.sledHalf], r: 1.8 }); break; }
+      case 'wheel': c.push({ k: 'capsule', id: 'wheel', a: p.c, b: p.c, r: p.r }); break;
       case 'rope': c.push({ k: 'capsule', id: 'rope', a: [p.x, p.bottom, p.z], b: [p.x, p.top, p.z], r: EQUIP.ropeR }); break;
       case 'dipbars': for (const sg of [-1, 1]) c.push({ k: 'capsule', id: 'barDip', a: [p.x0, p.h, sg * p.z], b: [p.x1, p.h, sg * p.z], r: EQUIP.dipR }); break;
       case 'preacher': { const pp = preacherPolys(p); c.push(prism('preacherPad', pp.pad, -EQUIP.preacherW / 2, EQUIP.preacherW / 2), prism('preacherSeat', pp.seat, -EQUIP.preacherSeatW / 2, EQUIP.preacherSeatW / 2)); break; }
@@ -139,7 +140,7 @@ export function checkFrame(f: Frame): Issue[] {
   for (const [id, low] of lowest) if (low < -TOL.floor) out.push({ code: 'floor', detail: `${id} poniżej podłogi o ${(-low).toFixed(2)} cm` });
   for (const b of body) for (const e of eq) {
     const g = gap(b, e); const allowed = f.contacts.find(c => matches(b.id, c.body) && matches(e.id, c.equip));
-    const heldHand = /^farm/.test(b.id) && /^(bar|db|kb|plate|ball|rope)/.test(e.id);
+    const heldHand = /^farm/.test(b.id) && /^(bar|db|kb|plate|ball|rope|wheel)/.test(e.id);
     const tol = heldHand ? (/^kb/.test(e.id) ? 14 : /^db/.test(e.id) && e.k === 'capsule' ? Math.max(12, e.r + 6) : 12) : allowed ? allowed.tol : TOL.pen; /* hantel: chwyt w jego środku, więc tolerancja rośnie z promieniem główki */
     if (g < -tol) out.push({ code: 'pen', detail: `${b.id} × ${e.id}: przenikanie ${(-g).toFixed(2)} cm (dopuszczalne ${tol})` });
   }
@@ -147,6 +148,7 @@ export function checkFrame(f: Frame): Issue[] {
   if (head) for (const o of bodyOther) { const g = gap(head, o); if (g < -0.5) out.push({ code: 'self', detail: `głowa × ${o.id}: ${(-g).toFixed(2)} cm` }); }
   for (const r of f.props) if (r.k === 'rail') for (const b of f.props) if (b.k === 'barbell' && Math.abs(b.c[0] - r.x) > TOL.rail) out.push({ code: 'rail', detail: `sztanga × prowadnica: x sztangi ${b.c[0].toFixed(1)} cm, x prowadnicy ${r.x.toFixed(1)} cm (różnica ${Math.abs(b.c[0] - r.x).toFixed(1)} cm, dopuszczalne ${TOL.rail})` });
   for (const p of f.props) if (p.k === 'pivot' && p.len !== undefined) { const d = dist(p.from, p.to); if (Math.abs(d - p.len) > TOL.pivot) out.push({ code: 'pivot', detail: `${p.label ?? 'landmine'}: ${p.label ? 'punkt mocowania' : 'dłonie'} ${d.toFixed(1)} cm od osi obrotu, a ${p.label ? 'ramię' : 'gryf'} ma ${p.len} cm (dopuszczalne ± ${TOL.pivot})` }); }
+  for (const p of f.props) if (p.k === 'wheel' && Math.abs(p.c[1] - p.r) > TOL.rail) out.push({ code: 'wheel', detail: `kółko: oś na wysokości ${p.c[1].toFixed(1)} cm, a kółko toczy się po podłodze (promień ${p.r} cm; dopuszczalne ± ${TOL.rail})` });
   for (const p of f.props) if (p.k === 'slide') { const w = sub(p.to, p.from); const t = w[0] * p.dir[0] + w[1] * p.dir[1] + w[2] * p.dir[2]; const tc = Math.max(0, Math.min(p.len, t)); const e = Math.hypot(w[0] - p.dir[0] * tc, w[1] - p.dir[1] * tc, w[2] - p.dir[2] * tc); if (e > TOL.pivot) out.push({ code: 'slide', detail: `dźwignia (prowadnica): punkt mocowania ${e.toFixed(1)} cm od prowadnicy (skok ${t.toFixed(1)} cm z ${p.len} cm; dopuszczalne ± ${TOL.pivot})` }); }
   for (const h of holdChecks(f)) if (h.err > h.tol) out.push({ code: 'grip', detail: `${h.name}: dłoń ${h.err.toFixed(2)} cm od chwytu (dopuszczalne ${h.tol})`, ...(h.hint ? { hint: h.hint } : {}) });
   return out;

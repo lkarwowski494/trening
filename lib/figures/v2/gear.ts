@@ -11,7 +11,7 @@ import { TOL } from './colliders';
 import { BENCH } from './rigs/benchPress';
 import type { Contact, Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka', 'dzwignia', 'modlitewnik', 'zawieszenie', 'lina_pionowa', 'sanie', 'poreczy'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka', 'dzwignia', 'modlitewnik', 'zawieszenie', 'lina_pionowa', 'sanie', 'poreczy', 'slizgacze', 'kolko'] as const;
 export type GearName = typeof GEAR[number];
 export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean; mocowanie?: typeof BAND_MOUNT[number]; tryb?: typeof LEVER_MODE[number]; punkt?: typeof LEVER_POINT[number]; siedzisko?: number; trzymanie?: typeof SLED_HOLD[number] };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
@@ -339,6 +339,18 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     ref: () => [
       `poreczy: dwie równoległe poziome poręcze na wysokości h (domyślnie ${EQUIP.dipH} cm) w z = ±z, gdzie z (pole z) to POŁOWA rozstawu poręczy (domyślnie ${f1(EQUIP.dipHalf)} cm, dozwolone 15–40 cm, czyli rozstaw 30–80 cm), od x0 do x1 (domyślnie ±${f1(EQUIP.dipLen / 2)} cm), średnica ${f1(2 * EQUIP.dipR)} cm. W KAŻDEJ klatce dłonie na poręczach: y = h, z = ±z (R dodatnie), x między x0 a x1 (± 1 cm). Tułów przechodzi między poręczami (nie przenika ich).`,
     ],
+  },
+  slizgacze: {
+    nazwa: 'ślizgacze', caps: ['sliders'], fields: ['punkt'], opis: 'ślizgacze (płaskie krążki): pod stopami albo dłońmi na podłodze (punkt, trzyma)',
+    props: (g, grips, _all, ankles) => sidesOf(g).map((s): Prop => { const p = g.punkt === 'dlonie' ? grips[s] : ankles[s]; return { k: 'slider', c: [p[0], EQUIP.sliderH / 2, p[2]], r: EQUIP.sliderR }; }),
+    check: g => g.punkt === 'miednica' ? ['sprzęt: ślizgacze mocujemy pod stopami albo dłońmi (punkt: "kostki" lub "dlonie")'] : [],
+    ref: () => [`slizgacze: płaskie krążki (promień ${f1(EQUIP.sliderR)} cm, grubość ${f1(EQUIP.sliderH)} cm) leżące na podłodze POD kostkami (punkt "kostki", domyślnie; podeszwa na krążku: kostka na wysokości ${f1(BODY.ankleH + EQUIP.sliderH)} cm, żeby stopa nie była pod podłogą) albo pod dłońmi (punkt "dlonie": chwyt na wysokości ${f1(EQUIP.sliderH)} cm). Krążek podąża za kostką/dłonią tej strony (trzyma "obie" domyślnie) i ślizga się po podłodze; bez kolidera.`],
+  },
+  kolko: {
+    nazwa: 'kółko do brzucha', caps: ['ab_wheel'], fields: ['promien'], opis: 'kółko do brzucha: koło o promieniu promien toczące się po podłodze, oś w dłoniach (trzyma)',
+    props: (g, grips) => [{ k: 'wheel', c: avg(sidesOf(g).map(s => grips[s])), r: g.promien ?? EQUIP.wheelR }],
+    check: g => bounds('promien kółka', g.promien, 4, 15),
+    ref: () => [`kolko: kółko do brzucha — koło o promieniu ${f1(EQUIP.wheelR)} cm (promien) toczące się po podłodze; oś kółka = środek między dłońmi (obie dłonie na uchwycie), a oś MUSI być na wysokości promienia nad podłogą (± ${f1(TOL.rail)} cm) w każdej klatce: kółko toczy się po podłodze, dłonie jadą nisko (y ≈ ${f1(EQUIP.wheelR)}). Podpór na kolanach albo stopach opisz ciałem (kolana na podłodze: kostka y ≈ ${f1(BODY.ankleH)}).`],
   },
   skrzynia: { nazwa: 'skrzynia albo stopień', caps: ['box'], opis: 'skrzynia albo stopień (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
   hantel: {

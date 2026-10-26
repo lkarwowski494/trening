@@ -92,6 +92,8 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 | `lina_pionowa` | `x`, `z`, `h` (góra, 400), `y` (dół, 20), `trzyma` | climbing_rope | dłonie na osi liny ± 3 cm; stopy i łydki mogą dociskać linę do 3 cm; szablon pull_up nie wymaga drążka przy linie; reguł sensu dla wspinania nadal brak (Rope Climb pomijany z tego powodu) |
 | `sanie` | `x`, `h` (słupki, 100), `dlugosc` (60), `trzymanie` (slupki / lina) | sled | słupki: dłonie ± 1,5 cm; lina: linka od przodu sań do dłoni; bez pasa/uprzęży (dip_belt — nadal poza kontraktem) |
 | `poreczy` | `x0`, `x1`, `h` (115), `z` (połowa rozstawu, 22) | dip.bars | dłonie na poręczach ± 1 cm |
+| `slizgacze` | `punkt` (kostki / dlonie), `trzyma` | sliders | krążki 16 cm × 2 cm na podłodze pod kostką/dłonią; bez kolidera |
+| `kolko` | `promien` (8), `trzyma` | ab_wheel | oś między dłońmi na wysokości promienia (± 1,5 cm), kolider kulą |
 | `pilka_lekarska` (kamień atlas, beczka, worek) | `promien` 6–20 | atlas_stones, keg, sandbag | rysowane jak kula — uproszczenie |
 
 ### 2.9 Maszyny (schematycznie)
@@ -106,7 +108,7 @@ Wymagany sprzęt ćwiczenia (`requiredGearIssues`, używane w `waliduj`): poza m
 
 ## 2.10 Poza kontraktem (stan 26.10.2026)
 
-Pozostałe ćwiczenia z niewspieranym sprzętem (z 622 do zrobienia): cardio (ergometry, bieżnie, skakanka, liny bojowe: 10), ławki specjalne (rzymska, GHD, glute-ham, reverse hyper: 4), sprzęt strongman (opona, jarzmo, kłoda, riksza, circus bell: 5), kółko do brzucha, ślizgacze, BOSU, wałek na nadgarstki, młot, uprząż na szyję, pas obciążeniowy z sańmi (dip_belt) — po 1–2 ćwiczenia. Powód: osobne konstrukcje albo inna klasa rigu (cardio = lokomocja, nie sprzęt). Do decyzji: wyjątek z powodem czy kolejne prymitywy.
+Pozostałe ćwiczenia z niewspieranym sprzętem (z 622 do zrobienia): cardio (ergometry, bieżnie, skakanka, liny bojowe: 10), ławki specjalne (rzymska, GHD, glute-ham, reverse hyper: 4), sprzęt strongman (opona, jarzmo, kłoda, riksza, circus bell: 5), BOSU, wałek na nadgarstki, młot, uprząż na szyję, pas obciążeniowy z sańmi (dip_belt) — po 1–2 ćwiczenia. Powód: osobne konstrukcje albo inna klasa rigu (cardio = lokomocja, nie sprzęt). Do decyzji: wyjątek z powodem czy kolejne prymitywy.
 
 ## 3. Wymiary sprzętu — konwencja rysunku
 
