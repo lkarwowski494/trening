@@ -11,12 +11,17 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { cwiczeniaRodziny, wczytajKontrakt } from './gemini-pozy.mjs';
 import { loadV2 } from './v2-build.mjs';
+import { regulyDla, pominiecie, EWALUATORY, grupaBledu, wczytajSens } from './v2-sens.mjs';
+import { wczytajRejestr, liniePolecenia, statystykaWersji } from './gemini-rejestr.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const czytaj = (p) => JSON.parse(readFileSync(p, 'utf8'));
 /** Najwięcej ćwiczeń w jednej części i górna granica długości polecenia (znaki) — mieści się w oknie czatu z zapasem. */
 export const MAX_CWICZEN_W_CZESCI = 12; /* docs/52 pkt 7: jedno polecenie na rodzinę, gdy odpowiedź mieści się w jednej wiadomości (ok. 4 tys. znaków na pozę); większe rodziny dzielone */
-export const MAX_ZNAKOW = 30000;
+export const MAX_ZNAKOW = 36000;
+/** Wersja rdzenia polecenia (docs/53): zmiana tylko przez generator; wchodzi do odpowiedzi (pole "polecenie"), by mierzyć zaliczone za 1. razem per wersja. */
+export const WERSJA_POLECENIA = 2;
+export const ETYKIETA_WERSJI = `polecenie@${WERSJA_POLECENIA}`;
 
 /* ---------- rodziny i dane ---------- */
 /** Tabela rodzin z docs/51 (generowana z kodu): { id, stan, widoki, opis }. */
@@ -54,6 +59,7 @@ export function czesciRodziny(rodzina, opcje) {
 /* ---------- silnik (liczby) ---------- */
 let silnikCache = null;
 const silnik = () => (silnikCache ??= loadV2(mkdtempSync(join(tmpdir(), 'polecenia-'))));
+export const silnikCatalog = () => silnik().catalog;
 
 /* ---------- opis pól (zwięzła tabela ze schematu) ---------- */
 const rowne = (a, b) => JSON.stringify(a) === JSON.stringify(b);
@@ -83,8 +89,8 @@ export function wymagania(rodzina) {
   const S = rom.side; const lim = (k, max) => `${S[k].min}°…${max ?? S[k].max}°`;
   return [
     `RUCH: poza u = 1 musi różnić się od u = 0 o co najmniej ${C.minMotionCm} cm (największe przemieszczenie dowolnego punktu: dłoń, kolano, miednica…). Zbyt mały ruch to najczęstsza przyczyna odrzucenia.`,
-    `KLATKI: ${C.frames.min}–${C.frames.max} klatek, rosnące u, pierwsza u = 0, ostatnia u = 1. Interpolacja między klatkami jest LINIOWA, a żaden punkt ciała nie może skoczyć o więcej niż ${C.maxJump} cm na 1/${C.step} ruchu — dla ruchu zakrzywionego dodaj klatki pośrednie (zwykle 4–7).`,
-    `ZAKRESY STAWÓW (sprawdzane w każdej fazie ruchu, obie strony): biodro ${lim('hip')}, kolano ${lim('knee')}, kostka ${lim('ankle')}, łokieć ${lim('el', al?.elbow)}, bark w płaszczyźnie strzałkowej ${lim('sh', al?.shSag)} (sprawdzany, gdy ramię nie jest odwiedzione), uniesienie ramienia 0°…${al?.shElev ?? rom.front.abd.max}°.${al ? ` Wyjątek tej rodziny: ${al.why}.` : ''} Kostka bywa przekraczana przy stopach luźno zwisających — ustaw podbicie tak, by kąt kostki mieścił się w zakresie.`,
+    `KLATKI: ${C.frames.min}–${C.frames.max} klatek, rosnące u, pierwsza u = 0, ostatnia u = 1. Interpolacja między klatkami jest LINIOWA, a żaden punkt ciała nie może skoczyć o więcej niż ${C.maxJump} cm na 1/${C.step} ruchu — dla ruchu zakrzywionego dodaj klatki pośrednie (zwykle 4–7). REGUŁA KLATEK: dopuszczalne przemieszczenie punktu (miednica, kostka, chwyt) między sąsiednimi klatkami to co najwyżej ${Math.floor((C.maxJump * C.step) / 2)} cm na 1,0 u (połowa limitu na zapas dla kolan i łokci), czyli ≤ ${Math.floor((C.maxJump * C.step) / 20)} cm przy odstępie klatek 0,1 i ≤ ${Math.floor((C.maxJump * C.step) / 40)} cm przy 0,05; gdy punkt przesuwa się o więcej niż ${Math.floor((C.maxJump * C.step) / 20)} cm, dodaj klatki co 0,1 (w szybkich fazach i przy mijaniu sprzętu co 0,05).`,
+    `ZAKRESY STAWÓW (sprawdzane w każdej fazie ruchu, obie strony): biodro ${lim('hip')}, kolano ${lim('knee')}, kostka ${lim('ankle')}, łokieć ${lim('el', al?.elbow)}, bark w płaszczyźnie strzałkowej ${lim('sh', al?.shSag)} (sprawdzany, gdy ramię nie jest odwiedzione), uniesienie ramienia 0°…${al?.shElev ?? rom.front.abd.max}°.${al ? ` Wyjątek tej rodziny: ${al.why}.` : ''} KOSTKA (częsty błąd): kąt kostki = podbicie + nachylenie goleni (kolano przed kostką = dodatnie, w zwisie zwykle +10…+20°), limit ${S.ankle.max}°, więc w zwisie ustaw podbicie ${v2.CONTRACT ? '−20…−5' : ''} (palce lekko w dół, nigdy dodatnie); sprawdzone na modelu: podbicie −10 przy kostkach 10 cm przed miednicą daje kąt kostki ≈ 0°, podbicie +20 daje ≈ 30–38° i przekracza limit.`,
     `PRZENIKANIE: ciało nie może wnikać w sprzęt (drążek, słupek, ławkę, skrzynię) więcej niż ${v2.TOL.pen} cm — dotyczy też pozy z zastosowanym błędem (głowa i tułów względem drążka są najczęstszym naruszeniem; zostaw wokół drążka zapas kilku cm). Najniższy punkt stopy nie niżej niż y = 0 (tolerancja ${v2.TOL.floor} cm).`,
     `CHWYT: środek chwytu każdej dłoni leży na osi sztangi/drążka (tolerancja 0,6 cm) w KAŻDEJ klatce i w każdej klatce błędu; chwyt w zasięgu ramienia od barku (≤ ${v2.BODY.uarm + v2.BODY.farm + v2.BODY.hand} cm), kostka w zasięgu nogi od biodra (≤ ${v2.BODY.thigh + v2.BODY.shank + v2.BODY.ankleH} cm).`,
     `BŁĘDY (bledy[]): najwyżej ${C.errorsMax}, tylko z listy identyfikatorów podanej przy ćwiczeniu (inne = odrzucenie; brak listy = bledy: []). Każdy błąd: ${C.errorFrames.min}–${C.errorFrames.max} klatek z deltami, pierwsza u = 0 i delta ZEROWA, ostatnia u = 1. Błąd ma być widoczny (≥ ${C.visibleCm} cm albo ≥ ${C.visibleDeg}° w którymś stawie).`,
@@ -94,86 +100,178 @@ export function wymagania(rodzina) {
 }
 
 
-/* ---------- punkty odniesienia (liczby i relacje w układzie kontraktu) ---------- */
+/* ---------- punkty odniesienia (liczby wyliczone z modelu) ---------- */
 const f0 = (x) => Math.round(x * 10) / 10;
-/** Relacje faz specyficzne dla rodziny (liczone z wymiarów sylwetki i domyślnego sprzętu); brak wpisu → tylko reguły ogólne. */
+/** Liczby silnika dla szablonów zapobiegania w rejestrze błędów (miejsca {nazwa}). */
+export function liczbyZSilnika(rodzina = 'pull_up') {
+  const { v2 } = silnik(); const C = v2.CONTRACT; const B = v2.BODY; const rom = czytaj(join(ROOT, 'lib/figures/data.json')).rom; const al = v2.templateFor(rodzina).allow ?? {};
+  const reach = B.uarm + B.farm + B.hand; const s = wczytajSens().rodziny?.pull_up?.reguly ?? {};
+  const par = (id, k, d) => s[id]?.parametry?.[k] ?? d;
+  return { gripTol: 0.6, reach, reachAim: reach - 0.5, trunk: B.trunk, shHalf: B.shHalf, ankleMax: rom.side.ankle.max, ankleSafe: '−20…−5°', elbowMax: rom.side.el.max, elbowAim: 140, shSagMax: rom.side.sh.max, shSagAllow: al.shSag ?? rom.side.sh.max,
+    hipMin: rom.side.hip.min, hipMax: rom.side.hip.max, kneeMax: rom.side.knee.max, pen: v2.TOL.pen, maxJump: C.maxJump, step: C.step, perFrame: C.maxJump * C.step, gap10: Math.floor((C.maxJump * C.step) / 20), minMotion: C.minMotionCm,
+    undeclared: C.undeclaredDeg, visibleCm: C.visibleCm, visibleDeg: C.visibleDeg, chinMargin: par('broda_nad_drazkiem', 'margines_cm', 2), armsStraight: par('dol_rece_proste', 'max_lokiec_deg', 25), swingPelvis: par('miednica_nie_buja', 'max_cm', 3),
+    ankleRel: `${par('nogi_nieruchome', 'min_cm', -10)}…${par('nogi_nieruchome', 'max_cm', 5)}`, trunkRange: `${par('tulow_pion', 'min_deg', -12)}…${par('tulow_pion', 'max_deg', 3)}`, freeHand: par('jedna_reka', 'min_wolna_od_osi_cm', 15) };
+}
+const KOSTKI_Z = 15;
+/** Układ wzorca podciągania: miednica za drążkiem o |PX| cm (głowa mija drążek z przodu; łokieć w górze < limitu), broda w u = 1 co najmniej BRODA_CEL cm nad drążkiem (reguła 2 cm + zapas). */
+export const PX = -18, BRODA_CEL = 3;
+/** Poza zwisu/podciągnięcia WYLICZONA Z MODELU dla drążka na y = B i chwytu z = ±c: miednica za drążkiem (głowa mija drążek z przodu), ramię z zapasem 0,5 cm, broda ≥ B + 3 w u = 1. Zwraca { poza, u0, u1 } albo null. */
+export function wzorzecPodciagania(B = 230, c = 22, { cwiczenie = 'Pull Up', bledy = true } = {}) {
+  const { v2 } = silnik(); const bd = v2.BODY; const reach = bd.uarm + bd.farm + bd.hand; const aim = reach - 0.5; const px = PX; const trunk = bd.trunk;
+  const py0 = B - trunk - Math.sqrt(Math.max(0, aim ** 2 - (c - bd.shHalf) ** 2 - px ** 2)); /* u = 0: ramię prawie proste */
+  const legs = (x, y, dx = 0) => ({ R: { kostka: [x - 4 + dx, y - 80, KOSTKI_Z], podbicie: -10, rotacjaStopy: 10 }, L: { kostka: [x - 4 + dx, y - 80, -KOSTKI_Z], podbicie: -10, rotacjaStopy: 10 } });
+  const kl = (u, y) => ({ u, miednica: [px, y, 0], pochylenieTulowia: 0, zgiecieKregoslupa: 0, pochylenieGlowy: 0, nogi: legs(px, y), rece: { R: { chwyt: [0, B, c] }, L: { chwyt: [0, B, -c] } } });
+  const sprzet = [{ rodzaj: 'sztanga', x: 0, y: B, dlugosc: 128, talerze: false, podazaZaChwytem: false }, { rodzaj: 'slupek', x: 0, h: B + 5 }, { rodzaj: 'podloga', x0: -120, x1: 120 }];
+  const chinY = (d) => { const f = v2.keyframeFrame(d, 1); return f.sk.head[1] - f.sk.headUp[1] * bd.headR; };
+  for (let y1 = B - 66; y1 <= B - 30; y1 += 0.5) {
+    const d = { kontrakt: v2.CONTRACT.id, rodzina: 'pull_up', cwiczenie, sprzet, klatki: [kl(0, py0), kl(1, y1)], bledy: [] };
+    if (v2.checkFrame(v2.keyframeFrame(d, 1)).length || chinY(d) < B + BRODA_CEL) continue;
+    const us = [0, 0.25, 0.5, 0.75, 1]; d.klatki = us.map((u) => kl(u, py0 + (y1 - py0) * (u * (2 - u)))); /* szybciej na początku, łagodnie przy drążku (ease-out) */
+    if (bledy) d.bledy = [{ cue: 'pu.partial', znacznik: 'bar', dotyczy: ['elbow', 'shoulder', 'hip', 'knee', 'ankle'], klatki: [{ u: 0 }, { u: 0.5, miednica: [0, -8, 0], nogi: { R: { kostka: [0, -8, 0] }, L: { kostka: [0, -8, 0] } } }, { u: 1, miednica: [0, -16, 0], nogi: { R: { kostka: [0, -16, 0] }, L: { kostka: [0, -16, 0] } } }] }];
+    return { poza: d, u0: { y: f0(py0) }, u1: { y: f0(y1), brodaY: f0(chinY(d)) } };
+  }
+  return null;
+}
+/** Tabela referencyjna (B, c) → miednica.y dla u = 0 i u = 1 (wyliczona z modelu: zapas ramienia 0,5 cm w u = 0, broda ≥ B + 3 w u = 1). */
+export function tabelaPodciagania() {
+  const { v2 } = silnik(); const bd = v2.BODY; const reach = bd.uarm + bd.farm + bd.hand; const px = PX;
+  return [[215, 15], [230, 22], [245, 35]].map(([B, c]) => {
+    const u0 = B - bd.trunk - Math.sqrt((reach - 0.5) ** 2 - (c - bd.shHalf) ** 2 - px ** 2); const w = wzorzecPodciagania(B, c, { bledy: false });
+    return `  - drążek y = ${B}, chwyt z = ±${c}: u = 0 → miednica.y = ${f0(u0)} (łokieć ≈ 14°, ramię z zapasem); u = 1 → miednica.y ≈ ${w ? w.u1.y : '?'} (broda y = ${w ? w.u1.brodaY : '?'} ≥ ${B + BRODA_CEL})`;
+  });
+}
 const FAZY = {
-  pull_up: (g) => {
-    const bar = g.defaultGear.find((x) => x.rodzaj === 'sztanga'); const r = g.reach; const h = g.BODY; const w = h.trunk + h.neckUp + h.headFromC7;
-    return [
-      `Zwis (u = 0): ramiona proste (kąt łokcia 0–15°), więc przy pionowym tułowiu miednica.y ≈ drążek.y − ${f0(r)} − ${h.trunk} = ${f0(bar.y - r - h.trunk)} cm (dla drążka y = ${bar.y}); stopy nad podłogą: kostka.y ≥ ${h.ankleH} i najlepiej ≥ 20 cm.`,
-      `Chwyt: x = x drążka (${bar.x}), y = y drążka (${bar.y}), z = ±(połowa rozstawu dłoni): wąski ±10…15, standard ±20…25, szeroki ±30…40 cm. Rozstaw większy od szerokości barków (±${h.shHalf}) ustawia łokcie na zewnątrz.`,
-      `Góra (u = 1): broda nad drążkiem — środek głowy leży ok. ${f0(w)} cm nad miednicą przy pionowym tułowiu (miednica.y + ${f0(w)}), broda ≈ 9,5 cm niżej, więc cel: miednica.y + ${f0(w - h.headR)} ≥ drążek.y, czyli miednica.y ≥ ${f0(bar.y - w + h.headR)} cm. Łokcie zgięte do 90–140°, nigdy powyżej 149°.`,
-      `Głowa nie przenika drążka: w górze przesuń głowę w x o ok. 10–20 cm do przodu lub do tyłu względem drążka (pochylenieGlowy i pochylenieTulowia), albo odchyl tułów do tyłu (pochylenieTulowia −10…−25°) — nie prowadź głowy przez oś drążka.`,
-      'Między u = 0 a u = 1: miednica unosi się o ok. 45–60 cm; dodaj klatki pośrednie (u = 0.25, 0.5, 0.75), łokcie zginają się stopniowo.',
-    ];
-  },
+  pull_up: () => [
+    `Układ osoby względem drążka (x): miednica ZA drążkiem — miednica.x = drążek.x − 18 (stała w całym ruchu, ±3 cm), chwyt x = x drążka; wtedy głowa mija drążek z przodu (odstęp środka głowy od osi drążka ≥ 15 cm; promień głowy 9,5 cm), nie przenika go, a łokieć w górze nie przekracza limitu (bliżej drążka łokieć zginałby się powyżej 149°). Tułów pionowo (pochylenieTulowia 0, w całym ruchu −12…3°), pochylenieGlowy 0.`,
+    'Zwis (u = 0): ramiona prawie proste (łokieć ≤ 25°, cel 14°: odległość bark–chwyt 63,5 cm przy zasięgu 64 cm), stopy tuż za miednicą (x kostki = miednica.x − 4), kostki ok. 80 cm pod miednicą, podbicie −10.',
+    `Góra (u = 1): broda (środek głowy minus 9,5 cm) co najmniej ${BRODA_CEL} cm nad drążkiem (reguła: ≥ 2 cm, zapas 1 cm); łokcie zgięte 130–145° (limit 149°) — nie unoś miednicy wyżej niż w tabeli.`,
+    'Tabela referencyjna (wyliczona z modelu, tułów pionowo, miednica.x = drążek.x − 18, kostki 80 cm pod miednicą):',
+    ...tabelaPodciagania(),
+    'Dla innych wysokości drążka i rozstawu: u = 0 → miednica.y = B − 50 − sqrt(63,5² − (c − 19)² − 18²); u = 1 → miednica.y ≈ wartość z tabeli dla najbliższego B, przesunięta o różnicę B (szybka kontrola: broda = miednica.y + 62,5 ≥ B + 3).',
+    'Chwyt: x = x drążka, y = y drążka, z = ±(połowa rozstawu dłoni): wąski ±10…15, standard ±20…25, szeroki ±30…40 cm.',
+  ],
 };
 export function punktyOdniesienia(rodzina) {
   const { v2 } = silnik(); const B = v2.BODY; const t = v2.templateFor(rodzina); const reach = B.uarm + B.farm + B.hand;
   const L = [
-    '- Układ: x = przód, y = góra, z = prawa strona osoby. Podłoga: y = 0 (podeszwa stopy nie niżej). Płaszczyzna symetrii: z = 0.',
+    '- Układ: x = przód (twarz), y = góra, z = prawa strona osoby. Podłoga: y = 0 (podeszwa stopy nie niżej). Płaszczyzna symetrii: z = 0.',
     `- Sprzęt domyślny rodziny (wzór do skopiowania i dopasowania): ${JSON.stringify(t.defaultGear)}`,
     `- Segmenty ciała (cm, stałe): udo ${B.thigh}, podudzie ${B.shank}, wysokość kostki ${B.ankleH}, tułów miednica→bark ${B.trunk}, szyja ${B.neckUp}, środek głowy ${B.headFromC7} nad barkiem, promień głowy ${B.headR}, ramię ${B.uarm}, przedramię ${B.farm}, dłoń ${B.hand}; biodra ±${B.hipHalf}, barki ±${B.shHalf} od z = 0.`,
-    `- Przy pionowym tułowiu (pochylenieTulowia 0, zgiecieKregoslupa 0): bark = miednica + [0, ${B.trunk}, ±${B.shHalf}], środek głowy = miednica + [0, ${B.trunk + B.neckUp + B.headFromC7}, 0]. Przy pochyleniu α tułów odchyla się od pionu o α° (do przodu dodatnie).`,
-    `- Zasięg: chwyt do ${reach} cm od barku (ramię proste = ${reach} cm), kostka do ${B.thigh + B.shank + B.ankleH} cm od biodra. Leżąca poza (ławka, podłoga): tułów poziomo = pochylenieTulowia 90.`,
-    '- Konwencja kątów w walidatorze: 0° = staw wyprostowany, kąt rośnie ze zgięciem (łokieć prosty = 0°, zgięty maks. 149°; kolano prosty 0°, maks. 141°). „Łokcie wyprostowane ≥ 165°” w zapisie anatomicznym to tutaj 0–15°.',
+    `- Przy pionowym tułowiu (pochylenieTulowia 0, zgiecieKregoslupa 0): bark = miednica + [0, ${B.trunk}, ±${B.shHalf}], środek głowy = miednica + [0, ${B.trunk + B.neckUp + B.headFromC7}, 0], broda ≈ środek głowy − ${B.headR} w y. Przy pochyleniu α tułów odchyla się od pionu o α° (do przodu dodatnie).`,
+    `- Zasięg: chwyt do ${reach} cm od barku (ramię proste = ${reach} cm; CELUJ w ${reach - 0.5} cm, bo nadmiar > 0,5 cm = odrzucenie), kostka do ${B.thigh + B.shank + B.ankleH} cm od biodra. Poza leżąca (ławka, podłoga): tułów poziomo = pochylenieTulowia 90.`,
+    '- Konwencja kątów w walidatorze: 0° = staw wyprostowany, kąt rośnie ze zgięciem (łokieć prosty = 0°, zgięty maks. 149°; kolano prosty 0°, maks. 141°). „Łokcie wyprostowane ≥ 165°” w zapisie anatomicznym to tutaj ≤ 15°.',
+    '- MARGINES: celuj 1–2 cm i 2–3° DO ŚRODKA każdego limitu (zasięg, zakresy stawów, przenikanie, chwyt) — model ma tolerancję 0,3–0,6 cm, a odrzucenia z poprzednich prób dotyczyły przekroczeń o 0,6–1,5 cm i 1°.',
   ];
-  const f = FAZY[rodzina]; const bar = t.defaultGear.find((x) => x.rodzaj === 'sztanga');
-  if (f && bar) L.push('- Relacje faz ruchu (pozy wyjściowa i skrajna):', ...f({ defaultGear: t.defaultGear, reach, BODY: B }).map((x) => `  - ${x}`));
+  const f = FAZY[rodzina];
+  if (f) L.push('- Relacje faz ruchu (pozy wyjściowa i skrajna):', ...f().map((x) => `  - ${x}`));
   else L.push('- Relacje faz: dla KAŻDEGO ćwiczenia najpierw ustal punkty kluczowe obu faz (gdzie ma być chwyt względem sprzętu, miednica, kostki — jako liczby w cm w układzie powyżej), potem zapisz klatki tak, by te relacje zachodziły; stopy opierają się o podłogę lub sprzęt, dłonie leżą na chwycie.');
   return L;
 }
 
+/* ---------- reguły sensu (data/zrodla/figury-sens.json; każda reguła ma odpowiednik w walidatorze v2-sens.mjs) ---------- */
+const OPIS_TYPU = {
+  broda_nad_drazkiem: (q) => `w u = 1 broda (środek głowy − 9,5 cm wzdłuż osi głowy) ≥ y drążka + ${q.margines_cm} cm`,
+  lokiec_u0: (q) => `w u = 0 kąt łokcia obu rąk ≤ ${q.max_lokiec_deg}° (ramiona prawie proste)`,
+  lokiec_caly_ruch: (q) => `w KAŻDEJ klatce kąt łokcia ≤ ${q.max_lokiec_deg}° (ramiona proste przez cały ruch)`,
+  miednica_poziomo: (q) => `miednica przesuwa się poziomo (${q.osie.join(', ')}) o ≤ ${q.max_cm} cm w całym ruchu`,
+  kostka_wzgledem_miednicy: (q) => `(x kostki − x miednicy) w ${q.min_cm}…${q.max_cm} cm w każdej klatce, a jej zmiana w ruchu ≤ ${q.zmiana_max_cm} cm`,
+  pochylenie_tulowia: (q) => `pochylenieTulowia w każdej klatce ${q.min_deg}°…${q.max_deg}°`,
+  jedna_reka: (q) => `sztanga ma trzyma: "R" albo "L", a wolna dłoń jest ≥ ${q.min_wolna_od_osi_cm} cm od osi drążka`,
+};
+/** Sekcja „Reguły sensu” dla ćwiczeń części: reguły raz (z liczbami), potem które ćwiczenia ich dotyczą; + wymóg dla błędów. */
+export function sekcjaRegul(rodzina, cwiczenia, root = ROOT) {
+  const per = Object.fromEntries(cwiczenia.map((c) => [c, regulyDla(rodzina, c, root)])); const ids = [...new Set(Object.values(per).flatMap((l) => l.map((r) => r.id)))];
+  if (!ids.length) return [];
+  const dane = wczytajSens(root).rodziny[rodzina]; const L = ['Poza POPRAWNA ma spełniać wszystkie reguły swojego ćwiczenia (bez bujania, z pełnym zakresem). Reguły sprawdza program — każda ma identyfikator:', ''];
+  for (const id of ids) { const r = dane.reguly[id]; const dla = cwiczenia.filter((c) => per[c].some((x) => x.id === id));
+    L.push(`- [reguła: ${id}] ${OPIS_TYPU[r.typ](r.parametry)} (wskazówka ${r.cue ?? 'z nazwy ćwiczenia'})${r.wskazowka_liczbowa ? `: ${r.wskazowka_liczbowa}` : ''}. Dotyczy: ${dla.length === cwiczenia.length ? 'wszystkich ćwiczeń tej listy' : dla.map((c) => `"${c}"`).join(', ')}.`); }
+  const gr = Object.entries(dane.grupy_bledow ?? {}); const grupy = [...new Set(ids.map((id) => dane.reguly[id].grupa))];
+  L.push('', 'BŁĘDY (bledy[]) muszą łamać DOKŁADNIE reguły swojej grupy i żadnych innych: ' + gr.filter(([, g]) => grupy.includes(g)).map(([cue, g]) => `${cue} → grupa „${g}” (${ids.filter((id) => dane.reguly[id].grupa === g).join(', ')})`).join('; ') + '. Czyli błąd pu.noSwing wyraźnie przekracza limity bujania (np. miednica o kilka cm w x, kostki z przodu), ale nie zmienia zakresu ruchu; błąd pu.partial skraca zakres (broda nie dochodzi do drążka), ale nie buja.');
+  return L;
+}
+
 /* ---------- opis ćwiczeń ---------- */
-export function opisCwiczenia(cw, { root = ROOT, bledyCwiczenia }) {
+/** Sprzęt, którego kontrakt nie obsługuje (silnik go nie rysuje): ćwiczenie wymagające go bez alternatywy jest pomijane (do zrobienia przez naszego agenta). */
+export const SPRZET_NIEOBSLUGIWANY = { climbing_rope: 'lina pionowa — rodzaj sprzętu „lina” nie jest w kontrakcie' };
+export function sprzetNieobslugiwany(cw, catalog) {
+  const e = catalog?.CATALOG?.[cw]; if (!e) return null;
+  for (const grupa of e.requires) if (grupa.length && grupa.every((c) => c in SPRZET_NIEOBSLUGIWANY)) return SPRZET_NIEOBSLUGIWANY[grupa[0]];
+  return null;
+}
+const OPIS_SPRZETU = { 'pullup.bar': 'drążek poziomy', rings: 'kółka (zastępuje drążek — rysuj jako drążek)', db: 'hantle', bench: 'ławka' };
+/** Sens ruchu z danych katalogu i nazwy: sprzęt, liczba rąk, obciążenie (bez zgadywania). */
+export function sensZKatalogu(cw, catalog) {
+  const o = []; const e = catalog?.CATALOG?.[cw];
+  if (e) { const sp = e.requires.map((g) => g.map((c) => OPIS_SPRZETU[c] ?? c).join(' albo ')).join(' + '); if (sp) o.push(`sprzęt: ${sp}`); if (e.loadSource === 'bodyweight') o.push('ciężar ciała'); if (e.implements === 1) o.push('jeden przyrząd (jedna ręka)'); if (e.implements === 2) o.push('dwa przyrządy'); }
+  if (/one[- ]arm|single[- ]arm|jednor/i.test(cw)) o.push('JEDNORĄCZ: drążek trzyma jedna dłoń (sprzet: trzyma "R"/"L"), druga ręka wolna poza drążkiem');
+  if (/(mixed)/i.test(cw)) o.push('chwyt mieszany: jedna dłoń nachwytem, druga podchwytem (w danych: oba chwyty na osi drążka, rozstaw ±20)');
+  if (/neutral/i.test(cw)) o.push('chwyt neutralny (dłonie skierowane do siebie)'); if (/wide/i.test(cw)) o.push('chwyt szeroki (z ±30…40)'); if (/(rear)/i.test(cw)) o.push('ruch za głowę nie jest wymagany — rysuj chwyt szeroki, broda nad drążkiem');
+  if (/side[- ]to[- ]side/i.test(cw)) o.push('na górze przesunięcie boczne (miednica.z zmienia się w ruchu)');
+  return o;
+}
+export function opisCwiczenia(cw, { root = ROOT, bledyCwiczenia, catalog = null }) {
   const tekst = existsSync(join(root, 'lib/cues/text/pl.json')) ? czytaj(join(root, 'lib/cues/text/pl.json')) : {};
   const bledy = bledyCwiczenia(cw, root).map((id) => (tekst[id] ? `${id} (${tekst[id]})` : id));
   const cd = join(root, 'lib/cues/data.json'); const ruch = [];
   const own = existsSync(cd) ? czytaj(cd).exercises?.[cw] : null;
   for (const c of (own?.move ?? []).slice(0, 2)) if (tekst[c.c]) ruch.push(tekst[c.c]);
   if (!ruch.length) { const cs = czytaj(join(root, 'lib/figures/v2/cue-sets.json')).items?.[cw]; for (const id of (cs?.ok ?? []).slice(0, 2)) if (tekst[id]) ruch.push(tekst[id]); }
-  return { klucz: cw, bledy, ruch };
+  return { klucz: cw, bledy, ruch, sens: sensZKatalogu(cw, catalog) };
 }
 
 /* ---------- polecenie ---------- */
 export const FORMAT_ODPOWIEDZI = (rodzina, klucze) => [
   'FORMAT ODPOWIEDZI (obowiązkowy):',
-  `- Odpowiedz JEDNYM blokiem kodu \`\`\`json zawierającym obiekt { "rodzina": "${rodzina}", "poze": { "<klucz ćwiczenia>": <poza wg kontraktu>, ... } }.`,
+  `- Odpowiedz JEDNYM blokiem kodu \`\`\`json zawierającym obiekt { "polecenie": "${ETYKIETA_WERSJI}", "rodzina": "${rodzina}", "poze": { "<klucz ćwiczenia>": <poza wg kontraktu>, ... } }.`,
   `- Kluczami w "poze" są DOKŁADNIE te nazwy (bez zmian, wielkość liter jak niżej): ${klucze.map((k) => `"${k}"`).join(', ')}.`,
   '- Każda poza zawiera pola: kontrakt, rodzina, cwiczenie (= klucz), sprzet, klatki, bledy.',
   '- Bez komentarzy, bez tekstu przed i po bloku, bez dopisków w JSON, bez przecinków końcowych. Zapisz JSON zwięźle: jedna klatka w jednej linii, bez zbędnych wcięć (odpowiedź musi się zmieścić w jednej wiadomości).',
   '- Jeśli nie jesteś w stanie dopasować pozy do wymagań, i tak ją zwróć (błędy sprawdzimy my) — nie pomijaj ćwiczeń.',
 ];
 
-export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia, przyklad, kontrakt, opisy }) {
+export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia, przyklady, kontrakt, opisy, pomijane = [], root = ROOT }) {
   const L = [];
-  L.push(`# Pozy figur ćwiczeń — rodzina „${rodzina}”${czesc.ile > 1 ? ` (część ${czesc.numer}/${czesc.ile})` : ''}`, '');
-  L.push('Jesteś animatorem postaci do aplikacji treningowej. Tworzysz dane póz (klatki kluczowe szkieletu) dla ćwiczeń jednej rodziny ruchu. Dane wczyta program, który sprawdzi geometrię — poza niezgodna z wymaganiami zostanie odrzucona, więc trzymaj się liczb poniżej.');
+  L.push(`# Pozy figur ćwiczeń — rodzina „${rodzina}”${czesc.ile > 1 ? ` (część ${czesc.numer}/${czesc.ile})` : ''} [${ETYKIETA_WERSJI}]`, '');
+  L.push('Jesteś animatorem postaci do aplikacji treningowej. Tworzysz dane póz (klatki kluczowe szkieletu) dla ćwiczeń jednej rodziny ruchu. Dane wczyta program, który sprawdzi geometrię ORAZ sens ruchu — poza niezgodna z wymaganiami zostanie odrzucona, więc trzymaj się liczb poniżej. Liczby i relacje są wyliczone z naszego modelu; nie zgaduj ich, tylko podstaw.');
   L.push(`Rodzina: ${opisRodziny}. Widoki w aplikacji: ${widoki} (pozę podajesz w 3D, widoki liczy program).`, '');
   L.push('## Kontrakt danych', '', kontrakt.opisKontraktu(rodzina), '');
   L.push('## Pola obiektu pozy', '', ...opisPol(kontrakt.schematPozy(rodzina)), '');
   L.push('## Punkty odniesienia (stałe wymiary i relacje)', '', ...punktyOdniesienia(rodzina), '');
-  L.push('## Wymagania, które najczęściej łamano w próbach', '', ...wymagania(rodzina).map((x) => `- ${x}`), '');
-  L.push(`## Przykład poprawnej pozy (ćwiczenie „${przyklad.cwiczenie}”, ta sama struktura; liczby dopasuj do swojego ćwiczenia)`, '', '```json', JSON.stringify(przyklad.poza), '```', '');
-  L.push('## Ćwiczenia do wykonania', '', 'Dla każdego: klucz (nazwa ćwiczenia), opis ruchu (jeśli jest) i dozwolone identyfikatory błędów (pole cue).', '');
-  for (const o of opisy) L.push(`- "${o.klucz}"${o.ruch.length ? ` — ruch: ${o.ruch.join(' ')}` : ''} — błędy: ${o.bledy.length ? o.bledy.join('; ') : 'brak (bledy: [])'}`);
-  L.push('', '## Zasady dla każdego ćwiczenia', '', '- u = 0 to pozycja wyjściowa, u = 1 pozycja skrajna ruchu; dobierz sprzęt (sprzet[]) i chwyt do tego konkretnego ćwiczenia.', '- Poza ma być anatomicznie wiarygodna dla nazwanego ćwiczenia (chwyt, rozstaw, kierunek ruchu), ale zgodność z liczbami powyżej jest ważniejsza niż szczegół.', '');
+  L.push('## Wymagania liczbowe walidatora', '', ...wymagania(rodzina).map((x) => `- ${x}`), '');
+  const reg = sekcjaRegul(rodzina, cwiczenia, root); if (reg.length) L.push('## Reguły sensu ruchu', '', ...reg, '');
+  const aktywne = new Set(cwiczenia.flatMap((c) => regulyDla(rodzina, c, root).map((x) => x.id))); const rej = liniePolecenia(wczytajRejestr(root), liczbyZSilnika(rodzina), undefined, { rodzina, reguly: aktywne }); if (rej.length) L.push('## Najczęstsze błędy z poprzednich odpowiedzi i jak ich uniknąć', '', 'Rejestr błędów popełnionych w poprzednich odpowiedziach (liczba wystąpień) — sprawdź każdy punkt przed odpowiedzią:', ...rej, '');
+  przyklady.forEach((p, i) => L.push(`## Wzorzec ${i + 1}: ${p.opis}`, '', '```json', JSON.stringify(p.poza), '```', ''));
+  L.push('## Ćwiczenia do wykonania', '', 'Dla każdego: klucz (nazwa ćwiczenia), sens ruchu z katalogu (sprzęt, chwyt), opis ruchu i dozwolone identyfikatory błędów (pole cue).', '');
+  for (const o of opisy) L.push(`- "${o.klucz}"${o.sens.length ? ` — sens: ${o.sens.join('; ')}` : ''}${o.ruch.length ? ` — ruch: ${o.ruch.join(' ')}` : ''} — błędy: ${o.bledy.length ? o.bledy.join('; ') : 'brak (bledy: [])'}`);
+  if (pomijane.length) L.push('', `Pominięte w tym poleceniu (nie generuj ich): ${pomijane.map((x) => `"${x.klucz}" — ${x.powod}`).join('; ')}.`);
+  L.push('', '## Zasady dla każdego ćwiczenia', '', '- u = 0 to pozycja wyjściowa, u = 1 pozycja skrajna ruchu; dobierz sprzęt (sprzet[]) i chwyt do tego konkretnego ćwiczenia (sens z listy powyżej).', '- Poza ma być anatomicznie wiarygodna dla nazwanego ćwiczenia, ale zgodność z liczbami i regułami powyżej jest ważniejsza niż szczegół.', '- Przed odpowiedzią sprawdź każdą pozę punkt po punkcie: zasięg ramienia, zakresy stawów z marginesem, przenikanie, chwyt na osi, reguły sensu, deklaracje „dotyczy”.', '');
   L.push(...FORMAT_ODPOWIEDZI(rodzina, cwiczenia));
   return L.join('\n') + '\n';
 }
 
-/** Polecenia rodziny: [{ plik, tresc, cwiczenia }]. */
+const PODOBNE = { pulldown: 'pull_up', core_hang: 'pull_up', dip: 'pull_up', cable_row: 'pull_up' };
+/** Wzorce: (1) z tej samej rodziny — zaliczone pozy z poses/ (najpierw z błędami, najwięcej klatek) albo wyliczony z modelu (pull_up), (2) z rodziny podobnej, (3) w ostateczności przysiad. Razem ≤ 2. */
+export function wzorce(rodzina, kontrakt, root = ROOT) {
+  const o = []; const wlasne = Object.entries(pozyGotowe(rodzina, root).cwiczenia ?? {}).sort((a, b) => (b[1].bledy.length > 0) - (a[1].bledy.length > 0) || b[1].klatki.length - a[1].klatki.length);
+  if (rodzina === 'pull_up') { const w = wzorzecPodciagania(); if (w) o.push({ opis: `„Pull Up” wyliczony z modelu (drążek y = 230, chwyt z = ±22; przechodzi walidację geometrii i sensu; liczby dopasuj do swojego ćwiczenia, ta sama struktura i sposób liczenia)`, poza: w.poza }); }
+  for (const [cw, poza] of wlasne.slice(0, 1)) o.push({ opis: `zaliczona poza „${cw}” z tej samej rodziny`, poza });
+  const pod = PODOBNE[rodzina]; if (pod && pod !== rodzina && o.length < 2) { const [cw, poza] = Object.entries(pozyGotowe(pod, root).cwiczenia ?? {})[0] ?? []; if (poza) o.push({ opis: `zaliczona poza „${cw}” z rodziny podobnej (${pod})`, poza }); }
+  if (!o.length) { const p = kontrakt.przyklad(rodzina)[0] ?? kontrakt.przyklad('squat')[0]; o.push({ opis: `przykład poprawnej pozy (ćwiczenie „${p.cwiczenie}” z gotowej rodziny; ta sama struktura, liczby dopasuj do swojego ćwiczenia)`, poza: p.poza }); }
+  return o.slice(0, 2);
+}
+/** Polecenia rodziny: [{ plik, tresc, cwiczenia, pomijane }]. */
 export async function poleceniaRodziny(rodzina, { root = ROOT, lista } = {}) {
   const kontrakt = await wczytajKontrakt(root);
   if (!kontrakt) throw new Error('brak scripts/figures/v2-validate.mjs');
   const docs = lista ?? join(root, 'docs/51-figury-v2-pokrycie.md'); const r = rodzinyZDokumentu(docs).find((x) => x.id === rodzina);
-  const wlasne = Object.entries(pozyGotowe(rodzina, root).cwiczenia ?? {})[0];
-  const przykl = wlasne ? { cwiczenie: wlasne[0], poza: wlasne[1] } : (kontrakt.przyklad(rodzina)[0] ?? kontrakt.przyklad('squat')[0]);
-  return czesciRodziny(rodzina, { root, lista: docs }).map((czesc) => ({
-    plik: `${czesc.id}.md`, cwiczenia: czesc.cwiczenia,
-    tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc, cwiczenia: czesc.cwiczenia, przyklad: przykl, kontrakt, opisy: czesc.cwiczenia.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia })) }),
-  }));
+  const przyklady = wzorce(rodzina, kontrakt, root);
+  const { catalog } = silnik();
+  return czesciRodziny(rodzina, { root, lista: docs }).map((czesc) => {
+    const pomijane = []; const robic = [];
+    for (const c of czesc.cwiczenia) { const p = pominiecie(rodzina, c, root) ?? sprzetNieobslugiwany(c, catalog); if (p) pomijane.push({ klucz: c, powod: `pomiń — zrobi nasz agent (${p})` }); else robic.push(c); }
+    return { plik: `${czesc.id}.md`, cwiczenia: robic, pomijane,
+      tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc, cwiczenia: robic, przyklady, kontrakt, pomijane, root, opisy: robic.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog })) }) };
+  }).filter((x) => x.cwiczenia.length);
 }
 
 export function parsujArgumenty(argv) {

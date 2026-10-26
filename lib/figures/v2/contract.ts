@@ -41,7 +41,7 @@ export type KeyFrame = {
   u: number; miednica: V3; pochylenieTulowia: number; zgiecieKregoslupa?: number; pochylenieGlowy?: number;
   nogi: Record<Side, LegData>; rece: Record<Side, ArmData>;
 };
-export type Gear = { rodzaj: typeof GEAR[number]; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; dlugosc?: number };
+export type Gear = { rodzaj: typeof GEAR[number]; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number };
 export type DeltaFrame = {
   u: number; miednica?: V3; pochylenieTulowia?: number; zgiecieKregoslupa?: number; pochylenieGlowy?: number;
   nogi?: Partial<Record<Side, Partial<LegData>>>; rece?: Partial<Record<Side, { chwyt?: V3 }>>;
@@ -63,7 +63,7 @@ export type FamilyTemplate = {
 };
 export const TEMPLATES: Record<string, FamilyTemplate> = {
   pull_up: {
-    gear: 'Drążek poziomy ze słupkami: dokładnie jedna sztanga bez talerzy i nieprzesuwająca się (talerze: false, podazaZaChwytem: false) na x = 0, y od 200 do 260 cm; słupek (slupek, x = 0, h = wysokość drążka + 5) i podłoga. Dłonie MUSZĄ leżeć na osi drążka: chwyt = [x drążka, y drążka, ±połowa rozstawu dłoni].',
+    gear: 'Drążek poziomy ze słupkami: dokładnie jedna sztanga bez talerzy i nieprzesuwająca się (talerze: false, podazaZaChwytem: false) na x = 0, y od 200 do 260 cm; słupek (slupek, x = 0, h = wysokość drążka + 5) i podłoga. Dłonie MUSZĄ leżeć na osi drążka: chwyt = [x drążka, y drążka, ±połowa rozstawu dłoni]. Jednorącz: ustaw na sztandze trzyma: "R" (albo "L") — wolna dłoń dostaje chwyt poza drążkiem (np. wzdłuż tułowia, ±15 cm od osi z = 0, nie przez drążek).',
     defaultGear: [{ rodzaj: 'podloga', x0: -120, x1: 120 }, { rodzaj: 'slupek', x: 0, h: 235 }, { rodzaj: 'sztanga', x: 0, y: 230, talerze: false, podazaZaChwytem: false, dlugosc: 128 }],
     allow: { shElev: 180, shSag: 200, why: 'zwis i podciąganie: ramiona nad głową względem tułowia, zgięcie barku powyżej średniego zakresu w płaszczyźnie strzałkowej (uproszczenie ilustracyjne)' },
     movement: 'u = 0: zwis na prostych rękach (łokcie wyprostowane), stopy nad podłogą. u = 1: górna pozycja — broda nad drążkiem, łokcie zgięte.',
@@ -109,6 +109,7 @@ export function poseSchema(family: string): Sch {
     x: num(-CONTRACT.coord, CONTRACT.coord, 'Położenie w przód (cm): środek sztangi albo słupka.'), y: num(0, CONTRACT.coord, 'Wysokość środka sztangi nad podłogą (cm).'),
     h: num(0, CONTRACT.coord, 'Wysokość słupka (cm).'), x0: num(-CONTRACT.coord, CONTRACT.coord, 'Początek podłogi albo skrzyni (cm).'), x1: num(-CONTRACT.coord, CONTRACT.coord, 'Koniec podłogi albo skrzyni (cm).'),
     top: num(0, CONTRACT.coord, 'Wysokość górnej powierzchni skrzyni (cm).'), talerze: { type: 'boolean', description: 'Czy sztanga ma talerze (domyślnie true; drążek: false).' },
+    trzyma: { type: 'string', enum: ['obie', 'R', 'L'], description: 'Która dłoń trzyma sztangę/drążek: obie (domyślnie), R albo L (ćwiczenie jednorącz; druga dłoń jest wolna i nie musi leżeć na osi — jej chwyt to dowolny punkt w zasięgu ramienia, bez przenikania sprzętu).' },
     podazaZaChwytem: { type: 'boolean', description: 'true: środek sztangi leży między dłońmi w każdej klatce (sztanga w ruchu); false: nieruchoma (x, y). Domyślnie false.' }, dlugosc: num(10, 300, 'Długość gryfu w cm (domyślnie 220).'),
   }, ['rodzaj']);
   const key = obj({
@@ -210,7 +211,7 @@ const BAR_LEN = 220;
 export function propsFrom(gear: Gear[], grips: Record<Side, V3>): Prop[] {
   const out: Prop[] = [];
   for (const g of gear) {
-    if (g.rodzaj === 'sztanga') { const c: V3 = g.podazaZaChwytem ? [(grips.R[0] + grips.L[0]) / 2, (grips.R[1] + grips.L[1]) / 2, 0] : [g.x ?? 0, g.y ?? 0, 0]; out.push({ k: 'barbell', c, plates: g.talerze !== false, held: true, len: g.dlugosc ?? BAR_LEN }); }
+    if (g.rodzaj === 'sztanga') { const c: V3 = g.podazaZaChwytem ? [(grips.R[0] + grips.L[0]) / 2, (grips.R[1] + grips.L[1]) / 2, 0] : [g.x ?? 0, g.y ?? 0, 0]; out.push({ k: 'barbell', c, plates: g.talerze !== false, held: g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : true, len: g.dlugosc ?? BAR_LEN }); }
     else if (g.rodzaj === 'slupek') out.push({ k: 'post', x: g.x ?? 0, h: g.h ?? 200 });
     else if (g.rodzaj === 'podloga') out.push({ k: 'floor', x0: g.x0 ?? -120, x1: g.x1 ?? 120 });
     else out.push({ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 });

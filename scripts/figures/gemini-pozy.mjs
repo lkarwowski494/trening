@@ -26,6 +26,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve, basename } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { maskuj } from '../maskuj.mjs';
+import { zapiszOdpowiedz } from './gemini-rejestr.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const czytaj = (p) => JSON.parse(readFileSync(p, 'utf8'));
@@ -413,17 +414,44 @@ export function wyciagnijOdpowiedz(tekst) {
   wynik.blad ??= 'w pliku nie znaleziono obiektu JSON z odpowiedzią'; return wynik;
 }
 /** Polecenie poprawkowe do wklejenia w TĘ SAMĄ rozmowę: lista błędów walidatora na ćwiczenie + brakujące ćwiczenia (ucięta odpowiedź). */
-export function poleceniePoprawkowe({ rodzina, bledy, brakujace = [], nieznane = [], przyklad = null }) {
+export function poleceniePoprawkowe({ rodzina, bledy, brakujace = [], nieznane = [], nieMa = [] }) {
   const L = [`# Poprawka póz — rodzina „${rodzina}”`, '', 'Poprzednia odpowiedź w tej rozmowie: część póz nie przeszła naszej walidacji geometrii. Dla każdego ćwiczenia poniżej popraw DOKŁADNIE wskazane miejsca (trzymaj się liczb z polecenia: zakresy stawów, ruch ≥ minimum, brak przenikania, chwyt na osi sprzętu, „dotyczy” w błędach) i nie zmieniaj tego, co nie jest wymienione.', ''];
   for (const [cw, lista] of Object.entries(bledy)) { L.push(`## ${cw}`, ...lista.map((b) => `- [${b.kod}] ${b.szczegol}`), ''); }
+  if (nieMa.length) L.push('## Pozy bez oceny recenzenta', 'Brak oceny ruchu dla: ' + nieMa.join(', ') + ' — nałożenie wstrzymane (nie wymaga poprawki od modelu).', '');
   if (brakujace.length) L.push('## Brakujące pozy (odpowiedź została ucięta)', 'Wyślij pełne pozy dla ćwiczeń: ' + brakujace.map((k) => `"${k}"`).join(', ') + '. Zapisz JSON zwięźle (jedna klatka w jednej linii), aby odpowiedź się zmieściła.', '');
   if (nieznane.length) L.push('## Nieznane klucze', 'Te klucze nie należą do tej rodziny — użyj dokładnie nazw ćwiczeń z polecenia: ' + nieznane.map((k) => `"${k}"`).join(', ') + '.', '');
   const klucze = [...Object.keys(bledy), ...brakujace];
   L.push('FORMAT ODPOWIEDZI (obowiązkowy):', `- JEDEN blok kodu \`\`\`json z obiektem { "rodzina": "${rodzina}", "poze": { ${klucze.map((k) => `"${k}": <poprawiona poza>`).join(', ')} } } — tylko te ćwiczenia, pełne pozy (kontrakt, rodzina, cwiczenie, sprzet, klatki, bledy), bez komentarzy i bez tekstu poza blokiem.`);
   return L.join('\n') + '\n';
 }
+
+/** Pytania stałej listy dla recenzenta ruchu (bramka 4, docs/53); recenzent odpowiada JSON-em na każde ćwiczenie. */
+export const PYTANIA_PRZEGLADU = [
+  'Czy poza poprawna wygląda jak to ćwiczenie (nazwa, sprzęt, chwyt, kierunek ruchu z manifestu)?',
+  'Czy poza poprawna NIE pokazuje błędu (bujanie, skracanie ruchu, odchylenie tułowia, nogi z przodu)?',
+  'Czy ruch między pozycją wyjściową a skrajną ma sens (kolejność faz, nic nie przechodzi przez sprzęt, ręce na chwycie)?',
+  'Czy każdy błąd jest WIDOCZNY i zgodny z opisem swojej wskazówki (tekst w manifeście) oraz pokazuje tylko ten błąd?',
+  'Czy ćwiczenie jednorącz ma jedną rękę na sprzęcie, a ćwiczenie oburącz obie?',
+  'Czy proporcje, pozycja stóp i głowy wyglądają naturalnie (nic nie „łamie się” wizualnie)?',
+];
+/** Paczka dla niezależnego recenzenta ruchu: katalog <rodzina>/ z PNG (widok z boku i z przodu, klatki 0, 0.5, 1, warianty błędów), manifest.json i PRZEGLAD.md. Nic nie nakłada. */
+export async function przygotujPrzeglad({ katalog, rodzina, poze, root, kontrakt, log = () => {} }) {
+  const dir = join(resolve(katalog), rodzina); mkdirSync(dir, { recursive: true });
+  const { opisCwiczenia, silnikCatalog, sensZKatalogu } = await import('./gemini-polecenia.mjs'); const catalog = silnikCatalog(); const { regulyDla } = await import('./v2-sens.mjs');
+  const manifest = { rodzina, pytania: PYTANIA_PRZEGLADU, format_odpowiedzi: { rodzina, wyniki: { '<ćwiczenie>': { ocena: 'ok | do_poprawy', powod: 'jedno–dwa zdania, jeśli do_poprawy (co wygląda źle i w której fazie)' } } }, cwiczenia: [] };
+  for (const [cw, poza] of Object.entries(poze)) {
+    const slug = cw.replace(/\W+/g, '-'); let png = null;
+    try { png = await kontrakt.podglad(poza, dir, 'light'); } catch (e) { log(`podgląd ${cw}: ${e.message}`); }
+    const op = opisCwiczenia(cw, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog }); const chw = poza.klatki[0].rece;
+    manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? basename(png) : null, sprzet: poza.sprzet, trzyma: poza.sprzet.find((g) => g.rodzaj === 'sztanga')?.trzyma ?? 'obie', chwyt_z_cm: [chw.R.chwyt[2], chw.L.chwyt[2]], klatki_u: poza.klatki.map((k) => k.u),
+      opis: { sens: sensZKatalogu(cw, catalog), ruch: op.ruch, bledy_wskazowki: op.bledy }, bledy_w_pozie: poza.bledy.map((b) => b.cue), reguly_sensu: regulyDla(rodzina, cw, root).map((r) => r.id), pliki: [`${slug}-light.png`] });
+  }
+  writeFileSync(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n');
+  writeFileSync(join(dir, 'PRZEGLAD.md'), [`# Przegląd ruchu — rodzina \`${rodzina}\``, '', 'Jesteś niezależnym recenzentem ruchu. Nie znasz uzasadnień generatora. Dla KAŻDEGO ćwiczenia z manifest.json obejrzyj obraz (górny wiersz: poza poprawna — widok z boku: 3 klatki, z przodu: 3 klatki; kolejne wiersze: warianty błędów) i odpowiedz na pytania:', '', ...PYTANIA_PRZEGLADU.map((q, i) => `${i + 1}. ${q}`), '', 'Odpowiedź: JEDEN plik JSON w formacie z manifest.json → format_odpowiedzi. „do_poprawy” z konkretnym powodem blokuje nałożenie pozy i trafia do polecenia poprawkowego. W razie wątpliwości wybierz „do_poprawy”.', ''].join('\n'));
+  return dir;
+}
 /** Wczytuje odpowiedź z pliku (.json lub .md/tekst), waliduje każdą pozę, nakłada przechodzące (chyba że tylkoRaport), zapisuje raport i ewentualną poprawkę. Zwraca { kod, raport }. */
-export async function importujZPliku({ plik, rodzina: rodzinaArg = null, wyjscie, root = ROOT, kontrakt, tylkoRaport = false, lista = null, log = () => {} }) {
+export async function importujZPliku({ plik, rodzina: rodzinaArg = null, wyjscie, root = ROOT, kontrakt, tylkoRaport = false, lista = null, runda = 1, wersja = null, bezRejestru = false, przegladWejscie = null, przeglad = null, log = () => {} }) {
   const tekst = readFileSync(resolve(plik), 'utf8'); const w = wyciagnijOdpowiedz(tekst);
   const rodzina = rodzinaArg ?? w.rodzina;
   mkdirSync(wyjscie, { recursive: true });
@@ -449,9 +477,21 @@ export async function importujZPliku({ plik, rodzina: rodzinaArg = null, wyjscie
     } catch { /* brak modułu poleceń: bez wykrywania braków */ }
   }
   if (w.ucieta && w.ostatniKlucz && !brakujace.includes(w.ostatniKlucz) && znane.includes(w.ostatniKlucz)) brakujace.unshift(w.ostatniKlucz);
+  if (!bezRejestru && wyniki.length) { /* uczenie: rejestr błędów modelu (docs/53); idempotentne dla tej samej odpowiedzi */
+    const rr = zapiszOdpowiedz(root, { rodzina, wersja: wersja ?? w.obiekt?.polecenie ?? 'polecenie@?', runda, tekst, wyniki }); if (!rr.powtorka) log(`rejestr błędów modelu zaktualizowany (${Object.keys(rr.rejestr.kategorie).length} kategorii)`);
+  }
+  const bezPrzegladu = [];
+  if (przeglad) { /* wynik recenzji ruchu (bramka 4): nakładamy tylko „ok”; „do_poprawy” → błąd z powodem; brak oceny = brak nałożenia */
+    const rv = JSON.parse(readFileSync(resolve(przeglad), 'utf8')).wyniki ?? {};
+    for (const cw of Object.keys(doNalozenia)) { const o = rv[cw];
+      if (!o) { bezPrzegladu.push(cw); delete doNalozenia[cw]; }
+      else if (o.ocena !== 'ok') { const b = [{ kod: 'przeglad', szczegol: `recenzent ruchu: ${o.powod ?? 'do poprawy (bez powodu)'}` }]; bledy[cw] = b; const wy = wyniki.find((x) => x.cwiczenie === cw); wy.ok = false; wy.bledy = b; delete doNalozenia[cw]; } }
+  }
+  let paczka = null;
+  if (przegladWejscie && Object.keys(doNalozenia).length) paczka = await przygotujPrzeglad({ katalog: przegladWejscie, rodzina, poze: doNalozenia, root, kontrakt, log });
   let nalozono = null;
-  if (!tylkoRaport && Object.keys(doNalozenia).length) nalozono = await kontrakt.zastosuj(root, { rodzina, poze: doNalozenia });
-  const raport = { rodzina, plik: basename(plik), ucieta: w.ucieta, blad_odczytu: w.blad, przeszly: Object.keys(doNalozenia), nie_przeszly: Object.keys(bledy), nieznane, brakujace, nalozono, tylko_raport: tylkoRaport, wyniki };
+  if (!tylkoRaport && !przegladWejscie && Object.keys(doNalozenia).length) nalozono = await kontrakt.zastosuj(root, { rodzina, poze: doNalozenia });
+  const raport = { rodzina, plik: basename(plik), ucieta: w.ucieta, blad_odczytu: w.blad, przeszly: Object.keys(doNalozenia), bez_przegladu: bezPrzegladu, paczka_przegladu: paczka, nie_przeszly: Object.keys(bledy), nieznane, brakujace, nalozono, tylko_raport: tylkoRaport || !!przegladWejscie, wyniki };
   zapisz('raport-import.json', JSON.stringify(raport, null, 1) + '\n');
   const md = [`# Import póz — rodzina \`${rodzina}\``, '', `Plik: \`${basename(plik)}\`. Przeszło walidację: **${raport.przeszly.length}**, nie przeszło: **${raport.nie_przeszly.length}**, brakuje: **${brakujace.length}**.${w.ucieta ? ' Odpowiedź była UCIĘTA.' : ''}${tylkoRaport ? ' (tryb tylko raport — nic nie nałożono)' : ''}`, ''];
   if (w.blad) md.push(`Uwaga: ${w.blad}`, '');
@@ -460,14 +500,14 @@ export async function importujZPliku({ plik, rodzina: rodzinaArg = null, wyjscie
   zapisz('raport-import.md', md.join('\n') + '\n');
   const potrzebnaPoprawka = Object.keys(bledy).length || brakujace.length || nieznane.length;
   if (potrzebnaPoprawka) zapisz(`${rodzina}-poprawka.md`, poleceniePoprawkowe({ rodzina, bledy, brakujace, nieznane }));
-  log(`import ${rodzina}: przeszło ${raport.przeszly.length}, nie przeszło ${raport.nie_przeszly.length}, brakuje ${brakujace.length}${nalozono ? `; nałożono do ${nalozono.plik}` : ''}${potrzebnaPoprawka ? `; polecenie poprawkowe: ${rodzina}-poprawka.md` : ''}`);
+  log(`import ${rodzina}: przeszło ${raport.przeszly.length}, nie przeszło ${raport.nie_przeszly.length}, brakuje ${brakujace.length}${bezPrzegladu.length ? `, bez oceny recenzenta ${bezPrzegladu.length}` : ''}${paczka ? `; paczka przeglądu: ${paczka}` : ''}${nalozono ? `; nałożono do ${nalozono.plik}` : ''}${potrzebnaPoprawka ? `; polecenie poprawkowe: ${rodzina}-poprawka.md` : ''}`);
   for (const r of wyniki.filter((x) => !x.ok)) { log(`  NIE ${r.cwiczenie}`); for (const b of r.bledy) log(`    [${b.kod}] ${b.szczegol}`); }
-  return { kod: potrzebnaPoprawka || w.blad ? 1 : 0, raport };
+  return { kod: potrzebnaPoprawka || w.blad || bezPrzegladu.length ? 1 : 0, raport };
 }
 
 /* ---------- uruchomienie ---------- */
 export function parsujArgumenty(argv) {
-  const o = { rodzina: null, diagnoza: false, api: DOMYSLNY_API, lokalizacja: DOMYSLNA_LOKALIZACJA, listaModeli: false, model: DOMYSLNY_MODEL, limitUsd: LIMIT_USD, proby: PROBY, szacuj: false, wyjscie: 'raport-pozy', zastosuj: null, zPliku: null, tylkoRaport: false, cwiczenia: null, lista: null };
+  const o = { rodzina: null, diagnoza: false, api: DOMYSLNY_API, lokalizacja: DOMYSLNA_LOKALIZACJA, listaModeli: false, model: DOMYSLNY_MODEL, limitUsd: LIMIT_USD, proby: PROBY, szacuj: false, wyjscie: 'raport-pozy', zastosuj: null, zPliku: null, przegladWejscie: null, przeglad: null, runda: 1, wersja: null, tylkoRaport: false, cwiczenia: null, lista: null };
   const wart = (i, n) => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${n}`); return argv[i + 1]; };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -486,6 +526,10 @@ export function parsujArgumenty(argv) {
     else if (a === '--zastosuj') o.zastosuj = wart(i++, a);
     else if (a === '--z-pliku') o.zPliku = wart(i++, a); /* odpowiedź wklejona z aplikacji Gemini (docs/52 pkt 7) */
     else if (a === '--tylko-raport') o.tylkoRaport = true;
+    else if (a === '--przeglad-wejscie') o.przegladWejscie = wart(i++, a); /* paczka dla recenzenta ruchu (PNG + manifest); nic nie nakłada */
+    else if (a === '--przeglad') o.przeglad = wart(i++, a); /* wynik recenzji (JSON): nakładamy tylko ocenę „ok” */
+    else if (a === '--runda') { o.runda = Number(wart(i++, a)); if (!Number.isInteger(o.runda) || o.runda < 1 || o.runda > 9) throw new Error('--runda: liczba całkowita 1–9 (1 = odpowiedź na polecenie, 2+ = na polecenie poprawkowe)'); }
+    else if (a === '--wersja') o.wersja = wart(i++, a); /* np. polecenie@2; domyślnie z pola "polecenie" odpowiedzi */
     else throw new Error(`nieznany argument: ${a}`);
   }
   return o;
@@ -506,7 +550,7 @@ export async function main(argv, env, { fetchFn = fetch, log: logSurowy = consol
   const kontrakt = await wczytajKontrakt(root);
   if (o.zPliku) {
     if (!kontrakt) { log('brak v2-validate.mjs — walidacja niemożliwa'); return 4; }
-    return (await importujZPliku({ plik: o.zPliku, rodzina: o.rodzina, wyjscie: resolve(o.wyjscie), root, kontrakt, tylkoRaport: o.tylkoRaport, lista: o.lista ? resolve(o.lista) : null, log })).kod;
+    return (await importujZPliku({ plik: o.zPliku, rodzina: o.rodzina, wyjscie: resolve(o.wyjscie), root, kontrakt, tylkoRaport: o.tylkoRaport, runda: o.runda, wersja: o.wersja, przegladWejscie: o.przegladWejscie ? resolve(o.przegladWejscie) : null, przeglad: o.przeglad, lista: o.lista ? resolve(o.lista) : null, log })).kod;
   }
   if (o.zastosuj) {
     if (!kontrakt || typeof kontrakt.zastosuj !== 'function') { log('brak v2-validate.mjs → zastosuj(): nałożenie niemożliwe'); return 4; }

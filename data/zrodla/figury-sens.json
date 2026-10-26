@@ -1,0 +1,160 @@
+{
+ "_opis": "Reguły SENSU ruchu per rodzina i ćwiczenie (26.10.2026, decyzja właściciela: sens ruchu zabezpiecza mechanizm, nie przegląd właściciela; docs/53 bramka 3). Pełne dane z odnośnikami do wskazówek techniki i ich źródeł w data/zrodla/cues.json; do paczki aplikacji NIC stąd nie trafia. Czyta je scripts/figures/v2-sens.mjs (walidator: waliduj() → kody „sens” i „blad-sens”; generator poleceń: sekcja „Reguły sensu”). Każda reguła wywodzi się z wskazówki techniki (pole cue — wskazówka ma źródła w cues.json); LICZBA w regule jest uproszczeniem ilustracyjnym (konwencja), chyba że pole liczba mówi inaczej. Poza POPRAWNA nie łamie żadnej reguły ćwiczenia; każdy błąd bledy[] łamie DOKŁADNIE grupę reguł swojej wskazówki (grupy_bledow) i żadnej innej.",
+ "rodziny": {
+  "pull_up": {
+   "reguly": {
+    "broda_nad_drazkiem": {
+     "typ": "broda_nad_drazkiem",
+     "grupa": "pelna_amplituda",
+     "cue": "pu.pull",
+     "parametry": {
+      "margines_cm": 2
+     },
+     "zrodlo": "wskazówka pu.pull („podciągnij się, aż broda znajdzie się nad drążkiem”); źródła w cues.json: ACE, NASM, ExRx",
+     "liczba": "uproszczenie (margines 2 cm: broda = środek głowy minus promień głowy wzdłuż osi głowy)"
+    },
+    "dol_rece_proste": {
+     "typ": "lokiec_u0",
+     "grupa": "pelna_amplituda",
+     "cue": "pu.partial",
+     "parametry": {
+      "max_lokiec_deg": 25
+     },
+     "zrodlo": "wskazówka pu.partial („bez wyprostu rąk na dole”; opuść się do pełnego wyprostu rąk); źródła w cues.json: ACE, NASM, ExRx",
+     "liczba": "uproszczenie (łokieć ≤ 25° = ramię prawie proste; 0° = prosty)"
+    },
+    "rece_proste_caly_ruch": {
+     "typ": "lokiec_caly_ruch",
+     "grupa": "pelna_amplituda",
+     "cue": "npu.hang",
+     "parametry": {
+      "max_lokiec_deg": 25
+     },
+     "zrodlo": "wskazówka npu.hang (zwis na prostych rękach) i pu.shoulders (ruch łopatek przy prostych ramionach)",
+     "liczba": "uproszczenie (łokieć ≤ 25° w każdej klatce)"
+    },
+    "miednica_nie_buja": {
+     "typ": "miednica_poziomo",
+     "grupa": "bujanie",
+     "cue": "pu.noSwing",
+     "parametry": {
+      "osie": [
+       "x",
+       "z"
+      ],
+      "max_cm": 3
+     },
+     "zrodlo": "wskazówka pu.noSwing („bez bujania i wymachów nogami”); źródła w cues.json: ACE, NASM",
+     "liczba": "uproszczenie (3 cm przemieszczenia poziomego miednicy w całym ruchu)"
+    },
+    "miednica_nie_buja_x": {
+     "typ": "miednica_poziomo",
+     "grupa": "bujanie",
+     "cue": "pu.noSwing",
+     "parametry": {
+      "osie": [
+       "x"
+      ],
+      "max_cm": 3
+     },
+     "zrodlo": "jak miednica_nie_buja; ruch boczny jest z definicji ćwiczenia, więc oś z bez limitu",
+     "liczba": "uproszczenie (3 cm)"
+    },
+    "nogi_nieruchome": {
+     "typ": "kostka_wzgledem_miednicy",
+     "grupa": "bujanie",
+     "cue": "pu.noSwing",
+     "parametry": {
+      "min_cm": -10,
+      "max_cm": 5,
+      "zmiana_max_cm": 4
+     },
+     "zrodlo": "wskazówka pu.noSwing („bez wymachów nogami”): stopy pod lub za biodrami, nie z przodu",
+     "liczba": "uproszczenie (x kostki − x miednicy w −10…5 cm, zmiana ≤ 4 cm)"
+    },
+    "tulow_pion": {
+     "typ": "pochylenie_tulowia",
+     "grupa": "bujanie",
+     "cue": "pu.noSwing",
+     "parametry": {
+      "min_deg": -12,
+      "max_deg": 3
+     },
+     "zrodlo": "wskazówka pu.noSwing (odchylanie tułowia to bujanie / kipping, NASM „Common Mistakes”)",
+     "liczba": "uproszczenie (−12°…3° w każdej klatce)"
+    },
+    "jedna_reka": {
+     "typ": "jedna_reka",
+     "grupa": "jednorecz",
+     "cue": null,
+     "parametry": {
+      "min_wolna_od_osi_cm": 15
+     },
+     "zrodlo": "nazwa ćwiczenia (jednorącz) — konwencja; drążek trzyma jedna dłoń (sprzet: trzyma R albo L), wolna dłoń leży poza osią drążka",
+     "liczba": "konwencja (≥ 15 cm od osi drążka)",
+     "wskazowka_liczbowa": "wolna ręka wzdłuż ciała, prosto: chwyt wolnej dłoni = [miednica.x + 2, miednica.y − 13, ∓21] w KAŻDEJ klatce (z przeciwnego znaku niż strona trzymająca)"
+    }
+   },
+   "grupy_bledow": {
+    "pu.noSwing": "bujanie",
+    "hang.noSwing": "bujanie",
+    "pu.partial": "pelna_amplituda"
+   },
+   "warianty": {
+    "_scisle": [
+     "broda_nad_drazkiem",
+     "dol_rece_proste",
+     "miednica_nie_buja",
+     "nogi_nieruchome",
+     "tulow_pion"
+    ],
+    "Chin Up": "_scisle",
+    "Pull Up": "_scisle",
+    "Neutral Grip Pull Up": "_scisle",
+    "Mixed Grip Chin": "_scisle",
+    "Wide-Grip Rear Pull-Up": "_scisle",
+    "One Arm Chin-Up": [
+     "broda_nad_drazkiem",
+     "dol_rece_proste",
+     "miednica_nie_buja",
+     "nogi_nieruchome",
+     "tulow_pion",
+     "jedna_reka"
+    ],
+    "Side To Side Chins": [
+     "broda_nad_drazkiem",
+     "dol_rece_proste",
+     "miednica_nie_buja_x",
+     "nogi_nieruchome",
+     "tulow_pion"
+    ],
+    "Gorilla Chin/Crunch": [
+     "broda_nad_drazkiem",
+     "dol_rece_proste",
+     "miednica_nie_buja",
+     "tulow_pion"
+    ],
+    "Scapular Pull-Up": [
+     "rece_proste_caly_ruch",
+     "miednica_nie_buja",
+     "nogi_nieruchome",
+     "tulow_pion"
+    ],
+    "Dead Hang": [
+     "rece_proste_caly_ruch",
+     "miednica_nie_buja",
+     "tulow_pion"
+    ],
+    "Gironda Sternum Chins": [
+     "dol_rece_proste"
+    ],
+    "Muscle Up": [
+     "dol_rece_proste"
+    ]
+   },
+   "pomin": {
+    "Rope Climb": "sprzęt „lina” nie jest rodzajem sprzętu kontraktu (silnik go nie rysuje) — zrobi nasz agent"
+   }
+  }
+ }
+}

@@ -73,6 +73,15 @@
       "type": "boolean",
       "description": "Czy sztanga ma talerze (domyślnie true; drążek: false)."
      },
+     "trzyma": {
+      "type": "string",
+      "enum": [
+       "obie",
+       "R",
+       "L"
+      ],
+      "description": "Która dłoń trzyma sztangę/drążek: obie (domyślnie), R albo L (ćwiczenie jednorącz; druga dłoń jest wolna i nie musi leżeć na osi — jej chwyt to dowolny punkt w zasięgu ramienia, bez przenikania sprzętu)."
+     },
      "podazaZaChwytem": {
       "type": "boolean",
       "description": "true: środek sztangi leży między dłońmi w każdej klatce (sztanga w ruchu); false: nieruchoma (x, y). Domyślnie false."

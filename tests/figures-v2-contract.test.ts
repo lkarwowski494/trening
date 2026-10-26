@@ -159,9 +159,10 @@ describe('biblioteka scripts/figures/v2-validate.mjs (interfejs pilotażu) i CLI
   /** Biblioteka .mjs w osobnym procesie Node (Jest nie ładuje dynamicznie modułów ESM): `body` dostaje `m` (moduł), `a` (argument JSON) i zwraca wynik JSON. */
   const lib = (body: string, arg: unknown = null): any => { const r = spawnSync('node', ['--input-type=module', '-e', `import * as m from './scripts/figures/v2-validate.mjs'; const a = JSON.parse(process.argv[1]); const out = await (async () => { ${body} })(); console.log(JSON.stringify(out));`, JSON.stringify(arg)], { cwd: root, encoding: 'utf8' }); if (r.status !== 0) throw new Error(r.stderr); return JSON.parse(r.stdout); };
   test('eksporty: schematPozy, opisKontraktu, waliduj, przyklad, zastosuj; waliduj zwraca { ok, bledy: [{ kod, szczegol }] } z komunikatami po polsku', () => {
+    /* poza próbna jest ćwiczeniem BEZ reguł sensu („Rope Climb” nie ma wpisu wariantu): ten test dotyczy interfejsu i geometrii; reguły sensu pull_up: tests/gemini-polecenia.test.ts */
     const bad = pullUp(); bad.klatki[1].rece.R.chwyt = [0, 236, 25];
     const r = lib(`return { fn: ['schematPozy', 'opisKontraktu', 'waliduj', 'przyklad', 'zastosuj', 'bledyCwiczenia', 'schematRepo'].map(f => typeof m[f]), klatki: !!m.schematPozy('pull_up').properties.klatki, opis: m.opisKontraktu('pull_up').includes('drążka'),
-      ok: m.waliduj(a.ok, { rodzina: 'pull_up', cwiczenie: 'Pull Up' }), zle: m.waliduj(a.bad, { rodzina: 'pull_up', cwiczenie: 'Pull Up' }), own: m.bledyCwiczenia('Pull Up'), gen: m.bledyCwiczenia('Dead Hang'), open: m.bledyCwiczenia('Muscle Up') };`, { ok: pullUp(), bad });
+      ok: m.waliduj(a.ok, { rodzina: 'pull_up', cwiczenie: 'Rope Climb' }), zle: m.waliduj(a.bad, { rodzina: 'pull_up', cwiczenie: 'Rope Climb' }), own: m.bledyCwiczenia('Pull Up'), gen: m.bledyCwiczenia('Dead Hang'), open: m.bledyCwiczenia('Muscle Up') };`, { ok: pullUp({ cwiczenie: 'Rope Climb' }), bad: { ...bad, cwiczenie: 'Rope Climb' } });
     expect(r.fn).toEqual(Array(7).fill('function')); expect(r.klatki).toBe(true); expect(r.opis).toBe(true); expect(r.ok).toEqual({ ok: true, bledy: [] });
     expect(r.zle.ok).toBe(false); expect(r.zle.bledy[0]).toEqual({ kod: 'chwyt', szczegol: expect.stringContaining('dłoń prawa') }); expect(r.own).toContain('pu.partial'); expect(r.gen).toEqual(['pu.noSwing']); expect(r.open).toEqual([]);
   });
@@ -180,10 +181,10 @@ describe('biblioteka scripts/figures/v2-validate.mjs (interfejs pilotażu) i CLI
     expect(Object.keys(JSON.parse(fs.readFileSync(path.join(tmp, r.plik), 'utf8')).cwiczenia).sort()).toEqual(['Chin Up', 'Pull Up']); fs.rmSync(tmp, { recursive: true, force: true });
   });
   test('CLI: node scripts/figures/v2-validate.mjs <plik> — kod 0 dla poprawnej pozy, 1 z listą błędów dla niepoprawnej, 2 bez argumentu', () => {
-    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'v2cli-')); const okF = path.join(tmp, 'ok.json'), badF = path.join(tmp, 'bad.json'); fs.writeFileSync(okF, JSON.stringify(pullUp()));
-    const b = pullUp(); b.klatki[1].rece.R.chwyt = [0, 236, 25]; fs.writeFileSync(badF, JSON.stringify(b));
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'v2cli-')); const okF = path.join(tmp, 'ok.json'), badF = path.join(tmp, 'bad.json'); fs.writeFileSync(okF, JSON.stringify(pullUp({ cwiczenie: 'Rope Climb' })));
+    const b = pullUp({ cwiczenie: 'Rope Climb' }); b.klatki[1].rece.R.chwyt = [0, 236, 25]; fs.writeFileSync(badF, JSON.stringify(b));
     const run = (a: string[]) => spawnSync('node', ['scripts/figures/v2-validate.mjs', ...a], { cwd: root, encoding: 'utf8' });
-    const o = run([okF]); expect([o.status, o.stdout]).toEqual([0, expect.stringContaining('OK  pull_up / Pull Up')]);
+    const o = run([okF]); expect([o.status, o.stdout]).toEqual([0, expect.stringContaining('OK  pull_up / Rope Climb')]);
     const n = run([badF]); expect(n.status).toBe(1); expect(n.stdout).toContain('[chwyt]'); expect(run([]).status).toBe(2);
     expect(execFileSync('node', ['scripts/figures/v2-validate.mjs', '--schema'], { cwd: root, encoding: 'utf8' })).toContain('"title"'); fs.rmSync(tmp, { recursive: true, force: true });
   });

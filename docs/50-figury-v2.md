@@ -129,3 +129,8 @@ Test: `tests/figures-v2-contract.test.ts` (poza podciągania zwis → góra prze
 - **Kąty z decyzji właściciela 25.10.2026** (`katy-oddech.json`): palce w przysiadzie ok. 15–20° (opis, `toeAngleApplies`); łokcie ok. 45° przy wyciskaniu sztangi i hantli płasko i na skosie (opis + linia 45° w widoku z góry `GUIDES.elbows45`; `ELBOW45_KEYS`; rig z `flare` dla 45° na dole, test; nie pompki). Oddech „wydech w trudnej fazie, wdech w łatwej” tylko izolacje i maszyny, spokojny oddech w deskach, bez Valsalvy — do wdrożenia z rodzinami izolacji, maszyn i deski (żadna gotowa rodzina nie jest izolacją).
 - **Kąt na rysunku** (25.10.2026): linia „Kąt na rysunku: zgięcie łokcia/kolana/biodra {n}°” pod licznikiem faz, liczona z geometrii klatki (`measuredAngle`), kursywą; zalecenia ze źródłami półpogrubieniem. **Reguły wyciskania z opisu NSCA:** `tests/figures-v2-bench-rules.test.ts` ((b)–(f)); reguła (a) otwarta — docs/18, 25.10.2026. Walidator `v2-validate.mjs` obejmuje dziś rodziny bez ławki (kontrakt nie ma sprzętu „ławka”), więc reguły ławki pilnuje test rigu; dopisać po rozszerzeniu kontraktu o ławkę.
 
+
+
+## 12. Model pracy i bramki jakości grafik (26.10.2026)
+
+Pozy z danych trafiają do aplikacji dopiero po bramkach (geometria, sens ruchu, niezależny przegląd, testy): `docs/53-grafiki-model-pracy.md`. Kontrakt danych ma od 26.10.2026 pole sprzętu `trzyma` (ćwiczenia jednorącz); reguły sensu: `data/zrodla/figury-sens.json` + `scripts/figures/v2-sens.mjs`. Procedura generowania póz w aplikacji Gemini: `docs/52` pkt 7 i 7a.

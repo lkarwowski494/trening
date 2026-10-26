@@ -1,0 +1,214 @@
+{
+ "_opis": "Rejestr błędów modelu (docs/53): zasilany automatycznie przez gemini-pozy.mjs --z-pliku; czytany przez gemini-polecenia.mjs. Nie edytować ręcznie liczników.",
+ "kategorie": {
+  "sens:nogi_nieruchome": {
+   "wystapien": 20,
+   "cwiczen": 10,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Side To Side Chins: reguła „nogi_nieruchome” (wskazówka pu.noSwing): kostka L względem miednicy w x: 10.0…10.0 cm, dozwolone -10…5 cm (stopy pod lub za biodrami, nie z przodu)",
+   "zapobieganie": "kostki względem miednicy: x kostki − x miednicy w {ankleRel} cm (stopy pod lub za biodrami), prawie stałe w ruchu; nie wyrzucaj nóg do przodu."
+  },
+  "chwyt": {
+   "wystapien": 18,
+   "cwiczen": 6,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Dead Hang: bledy[0] „pu.noSwing”: dłoń lewa wobec drążka/sztangi: dłoń 0.65 cm od chwytu (dopuszczalne 0.6) w fazie u=0.96 — chwyt musi leżeć na osi sztangi (x, y sztangi, z = ±połowa rozstawu dłoni)",
+   "zapobieganie": "dłoń musi leżeć na osi drążka z dokładnością {gripTol} cm: chwyt = [x drążka, y drążka, ±z], bez zaokrągleń; a miednicę ustaw tak, by ręka sięgała celu (zasięg ramienia {reach} cm od barku, cel w odległości ≤ {reachAim} cm)."
+  },
+  "geometria:cel poza zasięgiem": {
+   "wystapien": 16,
+   "cwiczen": 5,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Dead Hang: bledy[0] „pu.noSwing”: ręka L: cel poza zasięgiem o 0.57 cm w fazie u=0.92",
+   "zapobieganie": "zasięg ramienia od barku do chwytu to {reach} cm; w zwisie celuj w {reachAim} cm (zapas), czyli miednica.y = drążek.y − {trunk} − sqrt({reachAim}² − (z chwytu − {shHalf})²) (tabela w punktach odniesienia)."
+  },
+  "sens:broda_nad_drazkiem": {
+   "wystapien": 11,
+   "cwiczen": 11,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Side To Side Chins: reguła „broda_nad_drazkiem” (wskazówka pu.pull): broda w u = 1 jest na y = 225.1 cm, a ma być ≥ 232.0 cm (drążek y = 230 + 2; broda = środek głowy minus 9.5 cm wzdłuż osi głowy) — unieś miednicę w ostatniej klatce o co n",
+   "zapobieganie": "w u = 1 broda ≥ drążek + {chinMargin} cm: miednica.y ≥ wartość z tabeli „u = 1” (punkty odniesienia); nie kończ ruchu, gdy głowa dochodzi tylko do drążka."
+  },
+  "sens:dol_rece_proste": {
+   "wystapien": 11,
+   "cwiczen": 6,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "One Arm Chin-Up: reguła „dol_rece_proste” (wskazówka pu.partial): łokieć L w u = 0 ma 103.5°, a ma być ≤ 25° (pełny wyprost rąk na dole) — obniż miednicę w pierwszej klatce",
+   "zapobieganie": "w u = 0 łokcie ≤ {armsStraight}° (ramię prawie proste): miednica.y z tabeli „u = 0”, nie niżej."
+  },
+  "sens:miednica_nie_buja": {
+   "wystapien": 11,
+   "cwiczen": 11,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Side To Side Chins: reguła „miednica_nie_buja_x” (wskazówka pu.noSwing): miednica przesuwa się w x o 8.0 cm w ruchu (limit 3 cm) — utrzymaj miednica[0] prawie stałe we wszystkich klatkach",
+   "zapobieganie": "poprawna poza NIE buja: miednica.x i miednica.z prawie stałe (≤ {swingPelvis} cm w całym ruchu); bujanie to osobny błąd (pu.noSwing)."
+  },
+  "sens:tulow_pion": {
+   "wystapien": 11,
+   "cwiczen": 11,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Side To Side Chins: reguła „tulow_pion” (wskazówka pu.noSwing): pochylenieTulowia w ruchu: -20.0°…0.0°, dozwolone -12°…3° (odchylenie tułowia to bujanie)",
+   "zapobieganie": "pochylenieTulowia w poprawnej pozie w {trunkRange}° w każdej klatce; odchylenie tułowia to bujanie."
+  },
+  "ciaglosc": {
+   "wystapien": 8,
+   "cwiczen": 4,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Muscle Up: skok o 9.2 cm (limit 6 cm na 1/48 ruchu) w fazie u=0.56 — dodaj klatki pośrednie albo zmniejsz zmianę między sąsiednimi klatkami",
+   "zapobieganie": "żaden punkt nie może skoczyć o więcej niż {maxJump} cm na 1/{step} ruchu (czyli {perFrame} cm na całą fazę, gdy jest to 1/{step}·…): gdy punkt przesuwa się o więcej niż {gap10} cm w ruchu, dodaj klatki co 0,1, w szybkich fazach co 0,05."
+  },
+  "sens:rece_proste_caly_ruch": {
+   "wystapien": 6,
+   "cwiczen": 3,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Scapular Pull-Up: reguła „rece_proste_caly_ruch” (wskazówka npu.hang): łokieć L dochodzi do 31.8° w ruchu, a ma być ≤ 25° w każdej klatce (ramiona proste)",
+   "zapobieganie": "ramiona proste w całym ruchu (łokieć ≤ {armsStraight}°); porusza się tylko obręcz barkowa (miednica o kilka cm w y)."
+  },
+  "zakres:ankle": {
+   "wystapien": 6,
+   "cwiczen": 3,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Rope Climb: staw ankle L = 43.4° poza zakresem ruchu [-60°, 37°] w fazie u=0.00 — zmień położenie kostki, miednicy lub chwytu",
+   "zapobieganie": "kąt kostki = podbicie + nachylenie goleni (kolano przed kostką = dodatnie, zwykle +10…+20° w zwisie); limit {ankleMax}°. W zwisie ustaw podbicie {ankleSafe}."
+  },
+  "zakres:elbow": {
+   "wystapien": 6,
+   "cwiczen": 3,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Muscle Up: staw elbow L = 151.1° poza zakresem ruchu [0°, 149°] w fazie u=0.46 — zmień położenie kostki, miednicy lub chwytu",
+   "zapobieganie": "łokieć ma zakres 0…{elbowMax}° (0° = prosty); w górnej pozycji celuj w ≤ {elbowAim}°, bo miednica zbyt wysoko przy chwycie nad nią zgina łokieć powyżej limitu."
+  },
+  "zakres:shSag": {
+   "wystapien": 4,
+   "cwiczen": 2,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Muscle Up: staw shSag L = -59.1° poza zakresem ruchu [-53°, 200°] w fazie u=0.63 — zmień położenie kostki, miednicy lub chwytu",
+   "zapobieganie": "bark w płaszczyźnie strzałkowej ma limit {shSagMax}° (w podciąganiu {shSagAllow}°); nie wyprowadzaj chwytu daleko za głowę — chwyt tuż nad barkiem (|x chwytu − x barku| ≤ 10 cm)."
+  },
+  "geometria:head × bar": {
+   "wystapien": 3,
+   "cwiczen": 3,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Muscle Up: head × bar: przenikanie 1.19 cm (dopuszczalne 0.3) w fazie u=0.45",
+   "zapobieganie": "głowa nie może przenikać drążka (max {pen} cm): w górnej pozycji przesuń głowę w x o ≥ 15 cm od osi drążka (do przodu lub do tyłu) i dobierz pochylenieGlowy; sprawdź klatki pośrednie, w których głowa mija wysokość drążka (u ≈ 0,4–0,6)."
+  },
+  "geometria:torso × bar": {
+   "wystapien": 3,
+   "cwiczen": 3,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Muscle Up: torso × bar: przenikanie 3.78 cm (dopuszczalne 0.3) w fazie u=0.54",
+   "zapobieganie": "tułów nie może przenikać drążka: odsuń miednicę w x o ≥ 10 cm od osi drążka w klatkach, w których drążek jest na wysokości klatki piersiowej."
+  },
+  "sens:jedna_reka": {
+   "wystapien": 2,
+   "cwiczen": 2,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "One Arm Chin-Up: reguła „jedna_reka” (wskazówka konwencja): ćwiczenie jednorącz, a sprzet[] ma drążek trzymany obiema rękami — ustaw na sztandze trzyma: \"R\" albo \"L\"",
+   "zapobieganie": "ćwiczenie jednorącz: na drążku trzyma: \"R\" albo \"L\"; wolna dłoń ≥ {freeHand} cm od osi drążka, nie na drążku."
+  },
+  "blad-sens": {
+   "wystapien": 1,
+   "cwiczen": 1,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Gorilla Chin/Crunch: bledy[0] „hang.noSwing”: łamie także regułę innej grupy „pelna_amplituda” (broda_nad_drazkiem) — błąd ma pokazywać tylko „bujanie”",
+   "zapobieganie": "błąd ma łamać TYLKO regułę swojej wskazówki (np. pu.noSwing: przekroczyć limit bujania) i żadnej innej; poza poprawna nie łamie żadnej."
+  },
+  "geometria:uarmL × bar": {
+   "wystapien": 1,
+   "cwiczen": 1,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Muscle Up: uarmL × bar: przenikanie 1.52 cm (dopuszczalne 0.3) w fazie u=0.58",
+   "zapobieganie": null
+  },
+  "geometria:uarmR × bar": {
+   "wystapien": 1,
+   "cwiczen": 1,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Muscle Up: uarmR × bar: przenikanie 1.52 cm (dopuszczalne 0.3) w fazie u=0.58",
+   "zapobieganie": null
+  },
+  "sprzet": {
+   "wystapien": 1,
+   "cwiczen": 1,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Rope Climb: sprzęt: oczekiwano dokładnie jednej sztangi (drążka), jest 0",
+   "zapobieganie": null
+  }
+ },
+ "odpowiedzi": [
+  {
+   "hash": "5ec91e5e73cd",
+   "data": "2026-10-26",
+   "rodzina": "pull_up",
+   "wersja": "polecenie@1",
+   "runda": 1,
+   "cwiczen": 11,
+   "zaliczone": 1
+  },
+  {
+   "hash": "a790a2a8830b",
+   "data": "2026-10-26",
+   "rodzina": "pull_up",
+   "wersja": "polecenie@1",
+   "runda": 2,
+   "cwiczen": 6,
+   "zaliczone": 0
+  },
+  {
+   "hash": "266b552463d5",
+   "data": "2026-10-26",
+   "rodzina": "pull_up",
+   "wersja": "polecenie@1",
+   "runda": 3,
+   "cwiczen": 1,
+   "zaliczone": 0
+  },
+  {
+   "hash": "9cb2876682c4",
+   "data": "2026-10-26",
+   "rodzina": "pull_up",
+   "wersja": "polecenie@2",
+   "runda": 1,
+   "cwiczen": 11,
+   "zaliczone": 6
+  }
+ ]
+}

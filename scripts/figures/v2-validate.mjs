@@ -9,6 +9,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { loadV2 } from './v2-build.mjs';
+import { sprawdzSens } from './v2-sens.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SCHEMA_FILE = 'docs/schemas/figury-v2-poza.schema.json';
@@ -40,6 +41,10 @@ export function opisKontraktu(rodzina) { return silnik().v2.describeContract(rod
 /** Walidacja: schemat + geometria + zakresy + ciągłość + błędy jako delty. Wynik { ok, bledy: [{ kod, szczegol }] }. */
 export function waliduj(poza, { rodzina, cwiczenie, root = ROOT }) {
   const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root) });
+  /* sens ruchu (docs/53, bramka 3): po przejściu schematu, kontraktu i sprzętu; ewentualny wyjątek obliczeń nie psuje geometrii */
+  if (!bledy.some((b) => ['schemat', 'kontrakt', 'rodzina', 'klatki-u', 'sprzet'].includes(b.kod))) {
+    try { bledy.push(...sprawdzSens({ v2: silnik().v2, poza, rodzina, cwiczenie, root })); } catch (e) { bledy.push({ kod: 'sens', szczegol: `nie da się ocenić sensu ruchu (${e.message})` }); }
+  }
   return { ok: bledy.length === 0, bledy };
 }
 /** Few-shot: gotowa rodzina jako [{ cwiczenie, poza }]; rodzina w planach → [] (wtedy pilotaż używa przykładu przysiadu). */
@@ -71,7 +76,7 @@ export function zastosuj(root, wynik) {
 export const schematRepo = () => JSON.stringify(schematPozy('generic'), null, 1) + '\n';
 
 /* ---------- podgląd (HTML z SVG) ---------- */
-function podglad(poza, katalog, motyw) {
+export function podglad(poza, katalog, motyw) {
   const { v2, tokens } = silnik(); const pal = v2.figurePalette(tokens[motyw]); fs.mkdirSync(katalog, { recursive: true });
   const us = [0, 0.5, 1]; const widoki = ['side', 'front']; const warianty = [undefined, ...poza.bledy.map((_, i) => i)];
   const wiersze = warianty.map((w) => {
