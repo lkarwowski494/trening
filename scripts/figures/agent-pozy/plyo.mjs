@@ -3,7 +3,7 @@
 // Poza kończy się amortyzacją po lądowaniu (u = 1), więc reguły sensu „lot” i „miękkie lądowanie” da się sprawdzić (wariant A: lot i lądowanie). Ruch jest szybki z natury: ćwiczenia z deklaracją „dynamiczne” w danych sensu.
 // Widok boczny pokazuje ruch w płaszczyźnie strzałkowej; ćwiczenia z przemieszczeniem bocznym mają je w osi z (widać z przodu), a w widoku bocznym tylko wysokość i postawę — przybliżenie w PRZYBLIZENIA.
 import { kostkaNaPalcach } from './model.mjs';
-import { P, Q, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, kostkaZBiodra, biodroZKostki } from './dyn.mjs';
+import { P, Q, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, kostkaZBiodra, biodroZKostki, wyjatkiOpisu } from './dyn.mjs';
 
 export const RODZINA = 'plyo';
 const BOCZNY = 'przesunięcie boczne ciała jest niewyrażalne w modelu figury: miednica.z nie przesuwa stawów biodrowych i barków (skeleton: biodra ±8,5 cm, barki ±19 cm od płaszczyzny symetrii), a zasięg nóg (83 cm) nie pozwala wynieść stopy na bok poza biodro; w widoku bocznym ruch byłby skokiem pionowym (zmieniony sens). Wymaga rozszerzenia modelu (przesunięcie boczne korzenia) — zgłoszone koordynatorowi';
@@ -20,6 +20,7 @@ export const PRZYBLIZENIA = {
   'Front Cone Hops': 'jeden niski skok obunóż w przód (seria nad pachołkami = powtórzenia)',
 };
 export const POMINIETE_BLEDY = {};
+export const WYJATKI_OPISU = wyjatkiOpisu(RODZINA);
 const yP = (pod) => kostkaNaPalcach(0, pod); /* wysokość kostki, gdy stopa stoi na palcach (podbicie pod) */
 const Z = (a) => ({ z: 19, ...a });
 const ARM0 = { stoj: { psi: -95, th: 22 }, tyl: { psi: -105, th: 22 }, gora: { psi: 60, th: 20 }, gora2: { psi: 62, th: 20 }, przod: { psi: -10, th: 20 }, przod2: { psi: -25, th: 25 } };

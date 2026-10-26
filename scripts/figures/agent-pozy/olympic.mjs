@@ -5,7 +5,7 @@
 import { kostkaNaPalcach } from './model.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
-import { P, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, pitchDoChwytu } from './dyn.mjs';
+import { P, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, pitchDoChwytu, wyjatkiOpisu } from './dyn.mjs';
 
 export const RODZINA = 'olympic';
 const OTW = 'ćwiczenie otwarte: brak wskazówek i źródła ruchu (data/zrodla/figury-sens.json → olympic.otwarte); poza wróci po opisie ruchu przez badacza';
@@ -21,6 +21,7 @@ export const PRZYBLIZENIA = {
   'Block Power Snatch': 'sztanga startuje na wysokości kolan (bloki nie są rysowane)',
 };
 export const POMINIETE_BLEDY = {};
+export const WYJATKI_OPISU = wyjatkiOpisu(RODZINA);
 const yP = (pod) => kostkaNaPalcach(0, pod);
 const SPRZ = (...extra) => [PODLOGA(-130, 200), { rodzaj: 'sztanga', talerze: true, podazaZaChwytem: true, dlugosc: 220 }, ...extra];
 const RACK = () => ({ rodzaj: 'slupek', x: -75, h: 215, hak: 140 });

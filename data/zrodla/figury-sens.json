@@ -6107,6 +6107,9 @@
       "pomin": {}
     },
     "sled_throw": {
+      "dynamiczne": {
+        "Backward Medicine Ball Throw": "rzut do tyłu znad kolan: z głębokiego przysiadu do wyprostu i ręce za głowę w jednym przebiegu; tempo najszybszego punktu 9–10 cm na 1/48 wobec limitu 6 cm ruchu zwykłego (pomiar generatora 26.10.2026) — limit CONTRACT.maxJumpDynamic (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "sanki_pochylenie": {
           "typ": "pochylenie_tulowia",

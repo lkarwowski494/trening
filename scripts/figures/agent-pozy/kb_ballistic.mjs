@@ -4,7 +4,7 @@
 import { kostkaNaPalcach } from './model.mjs';
 import { bledyCwiczenia } from '../v2-validate.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
-import { P, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki } from './dyn.mjs';
+import { P, ruch, bladZRuchu, zbuduj, PODLOGA, bledyZOpisem, biodroZKostki, wyjatkiOpisu } from './dyn.mjs';
 
 export const RODZINA = 'kb_ballistic';
 export const WYJATKI = {
@@ -12,6 +12,7 @@ export const WYJATKI = {
 };
 export const PRZYBLIZENIA = {};
 export const POMINIETE_BLEDY = {};
+export const WYJATKI_OPISU = wyjatkiOpisu(RODZINA);
 const yP = (pod) => kostkaNaPalcach(0, pod);
 const SPRZ = (...extra) => [PODLOGA(-130, 200), ...extra];
 const KB = (o = {}) => ({ rodzaj: 'kettlebell', dzwon: 'wzdluz', ...o });

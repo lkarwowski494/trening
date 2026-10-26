@@ -2,8 +2,9 @@
 // Pozy liczone z modelu przez kinematykę PROSTĄ w płaszczyźnie strzałkowej (kąty uda i kolana → kostka; kąty ramienia i łokcia → chwyt), biegun kolana i łokcia z FK, długości kości z BODY.
 // Ruch dynamiczny (lot, przechwyt, wymach) = kilka punktów kluczowych, których u wyznacza DROGA najszybszego punktu (kontrakt: skok ≤ CONTRACT.maxJump cm na 1/CONTRACT.step ruchu).
 // Wejście: wyłącznie liczby z modelu i wskazówki z katalogu (docs/53, bramka 11); żadnych cudzych obrazów.
-import { v2, BODY, R, r1, up, front, klatka, bladZTrajektorii, zbuduj, barki, przeciecie, delta } from './model.mjs';
+import { v2, silnik, BODY, R, r1, up, front, klatka, bladZTrajektorii, zbuduj, barki, przeciecie, delta } from './model.mjs';
 import { wczytajTeksty } from '../v2-jakosc.mjs';
+import { bledyCwiczenia } from '../v2-validate.mjs';
 export { v2, BODY, R, r1, up, front, klatka, bladZTrajektorii, zbuduj, barki, przeciecie, delta };
 
 export const lerp = (a, b, t) => a + (b - a) * t;
@@ -21,6 +22,12 @@ export function bledyZOpisem(cw, bledy, rejestr = {}) {
   return bledy.filter((b) => { if (t[b.cue] || process.env.POZY_TEKSTY_BLEDOW === 'wszystkie') return true; rejestr[cw] = `błąd „${b.cue}” bez opisu w lib/cues/text/pl.json — nie rysowany (reguła jakości etykieta_bledu); generator narysuje go po wdrożeniu tekstu`; return false; });
 }
 
+/** Wyjątki opisu (manifest): id błędu z katalogu wskazówek ćwiczeń rodziny, który nie ma tekstu w lib/cues/text/pl.json → powód (tekst wdroży tłumacz; błąd nierysowany). */
+export function wyjatkiOpisu(rodzina) {
+  const { v2: E, catalog } = silnik(); const t = wczytajTeksty(); const o = {};
+  for (const [k, e] of Object.entries(catalog.CATALOG)) if (E.familyOf(k, e) === rodzina) for (const c of bledyCwiczenia(k)) if (!t[c]) o[c] = 'brak tekstu w lib/cues/text/pl.json (id w newIds cue-sets.json: tekst wdroży tłumacz); błąd nierysowany do czasu wdrożenia tekstu (reguła etykieta_bledu)';
+  return o;
+}
 /** Noga z FK: biodro (x, y), kąt uda t (od +x, przeciwnie do wskazówek zegara; −90 = udo w dół), zgięcie kolana k. Zwraca kolano, kostkę, kierunek goleni sd i biegun kolana. */
 export function nogaFK(hip, t, k) {
   const b = BODY(); const Kn = [hip[0] + b.thigh * Math.cos(t * R), hip[1] + b.thigh * Math.sin(t * R)]; const sd = t - k;
@@ -51,7 +58,7 @@ export function ramieDoCelu(S, G, strona = 'dol') {
 export function F({ u, pel, pitch, bend = 0, head, nogi, rece, z0 = 0, zo = 0 }) {
   const hip = [pel[0], pel[1]]; const S = barki(hip, pitch, bend); const nog = {}; const rec = {};
   for (const s of ['R', 'L']) {
-    const g = nogi[s] ?? nogi.R; const sg = sgn(s); const f = nogaFK(hip, g.t, g.k); const pole = g.pole ?? f.pole;
+    const g = nogi[s] ?? nogi.R; const sg = sgn(s); const f = nogaFK(hip, g.t, g.k); const pole = g.nopole ? null : (g.pole ?? f.pole);
     const pod = g.pod !== undefined ? g.pod : f.sd + 90 + (g.dors ?? 0);
     nog[s] = { k: [f.ankle[0], f.ankle[1], sg * (g.z ?? 12) + zo], pod, rot: g.rot ?? 10, pole: pole ? [pole[0], pole[1], sg * (g.kz ?? 0.12)] : undefined, odchylenie: g.odch };
     const a = rece[s] ?? rece.R;
@@ -84,8 +91,8 @@ export function katyNogi(hip, ankle, pole = [1, 0]) {
  *  pitch, bend, head, ra/rl: ramiona { psi, th, z } albo { g: [x, y, z], pole } (rl domyślnie = ra).
  */
 export function P(p) {
-  const l = { t: -90 - p.al + p.k, k: p.k }; const hip = biodroZKostki(p.A, l.t, l.k); const nogi = { R: { ...l, pod: p.pod ?? (p.dors === undefined ? 0 : undefined), dors: p.dors, z: p.zR ?? 12, rot: p.rotR, odch: p.odchR, kz: p.kz } };
-  if (p.AL) { const kt = katyNogi(hip, p.AL); nogi.L = { ...kt, pod: p.podL ?? p.pod ?? (p.dors === undefined ? 0 : undefined), dors: p.dors, z: p.zL ?? p.zR ?? 12, rot: p.rotL, odch: p.odchL, kz: p.kz }; } else nogi.L = { ...nogi.R, z: p.zL ?? p.zR ?? 12 };
+  const l = { t: -90 - p.al + p.k, k: p.k }; const hip = biodroZKostki(p.A, l.t, l.k); const nogi = { R: { ...l, pod: p.pod ?? (p.dors === undefined ? 0 : undefined), dors: p.dors, z: p.zR ?? 12, rot: p.rotR, odch: p.odchR, kz: p.kz, nopole: p.nopole } };
+  if (p.AL) { const kt = katyNogi(hip, p.AL); nogi.L = { ...kt, pod: p.podL ?? p.pod ?? (p.dors === undefined ? 0 : undefined), dors: p.dors, z: p.zL ?? p.zR ?? 12, rot: p.rotL, odch: p.odchL, kz: p.kz, nopole: p.nopole }; } else nogi.L = { ...nogi.R, z: p.zL ?? p.zR ?? 12 };
   return F({ u: 0, pel: hip, pitch: p.pitch === undefined || (p.ra?.w !== undefined && p.ra.w >= 0.999 && p.ra.g) ? pitchDoChwytu(hip, p.ra, p.bend ?? 0) : p.pitch, bend: p.bend ?? 0, head: p.head, nogi, rece: { R: p.ra, L: p.rl ?? p.ra }, zo: p.zo ?? 0 });
 }
 /** Pochylenie tułowia, przy którym chwyt zakotwiczony w świecie (ra.g, z) leży w prawie wyprostowanym zasięgu ramienia (ra.reach, domyślnie 62 cm) od barku; skan 0…100° (wybór najmniejszego błędu). */
@@ -96,8 +103,8 @@ export function pitchDoChwytu(hip, ra, bend = 0) {
 }
 /** Klatka z położeń: miednica pel [x, y], kostki AR i AL [x, y] (IK nóg w płaszczyźnie, kolana ku przodowi), podbicia podR/podL, pitch, bend, head, ra/rl (ramiona), zo (przesunięcie boczne), zR/zL (rozstaw kostek). */
 export function Q(p) {
-  const hip = [p.pel[0], p.pel[1]]; const kR = katyNogi(hip, p.AR, p.pole ?? [1, 0]), kL = katyNogi(hip, p.AL, p.pole ?? [1, 0]);
-  return F({ u: 0, pel: hip, pitch: p.pitch ?? 0, bend: p.bend ?? 0, head: p.head, nogi: { R: { ...kR, pod: p.podR ?? 0, z: p.zR ?? 12 }, L: { ...kL, pod: p.podL ?? p.podR ?? 0, z: p.zL ?? 12 } }, rece: { R: p.ra, L: p.rl ?? p.ra }, zo: p.zo ?? 0 });
+  const hip = [p.pel[0], p.pel[1]]; const kR = katyNogi(hip, p.AR, p.pole ?? [1, 0]), kL = katyNogi(hip, p.AL, p.poleL ?? p.pole ?? [1, 0]); /* poleL: kolano lewej (tylnej) nogi, np. [−1, 0] — do tyłu */
+  return F({ u: 0, pel: hip, pitch: p.pitch === undefined || (p.ra?.w !== undefined && p.ra.w >= 0.999 && p.ra.g) ? pitchDoChwytu(hip, p.ra, p.bend ?? 0) : p.pitch, bend: p.bend ?? 0, head: p.head, nogi: { R: { ...kR, pod: p.podR ?? 0, z: p.zR ?? 12, nopole: p.nopoleR, rot: p.rot, kz: p.kz }, L: { ...kL, pod: p.podL ?? p.podR ?? 0, z: p.zL ?? 12, rot: p.rot, kz: p.kz } }, rece: { R: p.ra, L: p.rl ?? p.ra }, zo: p.zo ?? 0 });
 }
 /** Punkty do pomiaru ciągłości (jak pts() w contract.ts). */
 const pts = (f) => [f.sk.pelvis, f.sk.head, f.sk.shoulderC, f.sk.spineMid, ...['R', 'L'].flatMap((s) => [f.sk.legs[s].knee, f.sk.legs[s].ankle, f.sk.legs[s].heel, f.sk.legs[s].toe, f.sk.arms[s].elbow, f.sk.arms[s].grip]), ...(f.info?.load ? [f.info.load] : [])];
@@ -157,6 +164,13 @@ export function ruch(W, buduj, { rodzina, cw, sprzet, n = 12, gesto = 480, wagiO
   /** Te same klatki kluczowe (te same s i u) dla innego zestawu punktów zwrotnych W2 (np. wariant błędu) — do delt błędu. */
   wynik.jak = (W2, buduj2 = buduj) => ss.map((s, i) => { const j = Math.max(0, Math.min(m - 1, Math.floor(s - 1e-9))); return { ...buduj2(mix(W2[j], W2[j + 1], clamp(s - j, 0, 1))), u: r.us[i] }; });
   return wynik;
+}
+/** Błąd „kolana do środka”: odchylenie kolana (delta w stopniach, ujemne = do środka) rośnie z zgięciem kolana (od kmin do kmin + 70°); pierwsza klatka błędu zerowa. Poza bazowa MUSI być bez `biegunKolana` (opcja nopole w P). */
+export function bladKolana(r, { cue, od = -45, kmin = 25, znacznik = 'knees', kf = (w) => w.k }) {
+  const m = r.W.length - 1; const kAt = (s) => { const j = Math.max(0, Math.min(m - 1, Math.floor(s - 1e-9))); return mix(kf(r.W[j]), kf(r.W[j + 1]), clamp(s - j, 0, 1)); };
+  const klatki = r.klatki.map((k, i) => { if (i === 0) return { u: 0 }; const w = clamp((kAt(r.ss[i]) - kmin) / 70, 0, 1); return { u: k.u, nogi: { R: { odchylenieKolana: r1(od * w) }, L: { odchylenieKolana: r1(od * w) } } }; });
+  const idx = klatki.map((_, i) => i); while (idx.length > 8) { let b = 1, bv = Infinity; for (let i = 1; i < idx.length - 1; i++) { const v = klatki[idx[i + 1]].u - klatki[idx[i - 1]].u; if (v < bv) { bv = v; b = i; } } idx.splice(b, 1); }
+  return { cue, znacznik, dotyczy: ['kneeLat'], klatki: idx.map((i) => klatki[i]) };
 }
 /** Błąd z ruchu: delty (klatka błędna − poprawna) w kluczach od punktu zwrotnego `od` (klucz tuż przed nim ma deltę zerową); najwyżej 8 kluczy. */
 export function bladZRuchu({ cue, znacznik, ruch: r, W2, buduj2, od = 0, postawa = false }) {

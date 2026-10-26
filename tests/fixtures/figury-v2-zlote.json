@@ -1123,6 +1123,42 @@
   "pushup_plank/Standing Barbell Rollout": {
    "svg": "318ef8a74c8251ed1af2",
    "raw": "c1cd613ed35828177901"
+  },
+  "sled_throw/Medicine Ball Slam": {
+   "svg": "4a9658a5f1e4642ee46e",
+   "raw": "908d036ff70ef6674942"
+  },
+  "sled_throw/One-Arm Medicine Ball Slam": {
+   "svg": "1b3aa84c275cf48693d0",
+   "raw": "972fee82dc12685f0b1a"
+  },
+  "sled_throw/Standing Two-Arm Overhead Throw": {
+   "svg": "530332ea89268befc38e",
+   "raw": "18710a5a60276101b425"
+  },
+  "sled_throw/Backward Medicine Ball Throw": {
+   "svg": "d9ffa523868e729533a1",
+   "raw": "8935f3198ba1003dc604"
+  },
+  "sled_throw/Medicine Ball Scoop Throw": {
+   "svg": "1534914f897d9df0119e",
+   "raw": "b2d17b56966f3129d00e"
+  },
+  "sled_throw/Wall Ball": {
+   "svg": "ac95e4fc59f71c6251d1",
+   "raw": "c72cc6a06799691d32b4"
+  },
+  "sled_throw/Sled Push": {
+   "svg": "675c40841b611939901f",
+   "raw": "ebe1f96f27cf3208dd09"
+  },
+  "sled_throw/Sled Drag (Harness)": {
+   "svg": "13cbce258e533fa634de",
+   "raw": "3a190a3dcfcf105dd2d1"
+  },
+  "strongman/Yoke Walk": {
+   "svg": "0b353a8041caa76833f3",
+   "raw": "a874de4f40142ea325a6"
   }
  }
 }
