@@ -11,7 +11,7 @@ export const EQUIP = {
   barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [44, 49] as [number, number], plateW: 2.8,
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6, medBallR: 11,
   benchW: 28, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
-  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, gymBallR: 32.5, foamR: 7.5, foamLen: 90, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
+  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, gymBallR: 32.5, foamR: 7.5, foamLen: 90, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, machinePad: 36, leverEnd: 25, leverArm: 60, leverStroke: 60, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];
@@ -196,6 +196,13 @@ export function propShapes(props: Prop[], view: View): Shape[] {
       }
       case 'band': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.frontEquip, 0), id: 'band' }); break; }
       case 'chain': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 1.2, role: 'steel', dash: [0.8, 1.4], z: zKey(LAYER.frontEquip, 0), id: 'chain' }); break; }
+      case 'slide': {
+        const a = proj(pr.from, view); const e = proj(add(pr.from, mul(pr.dir, pr.len)), view); const b = proj(pr.to, view); const zk = zKey(LAYER.backEquip, -25);
+        S.push({ k: 'line', a, b: e, w: 2, role: 'frame', z: zk, id: 'slideRail' });
+        if (side) { const dx = e[0] - a[0], dy = e[1] - a[1]; const l = Math.hypot(dx, dy) || 1; const n: V2 = [-dy / l, dx / l]; S.push({ k: 'line', a: [b[0] - n[0] * E.machinePad / 2, b[1] - n[1] * E.machinePad / 2], b: [b[0] + n[0] * E.machinePad / 2, b[1] + n[1] * E.machinePad / 2], w: 3, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'slidePad' }); }
+        else S.push({ k: 'circle', c: b, r: 3, fill: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'slidePad' });
+        break;
+      }
       case 'pivot': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 2.8, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'landmine' }); S.push({ k: 'circle', c: a, r: 3, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pivot' }); break; }
       case 'barbell': {
         const c = pr.c; const o = proj(c, view);

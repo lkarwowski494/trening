@@ -60,8 +60,8 @@ export function equipColliders(props: Prop[]): Collider[] {
       case 'trapbar': for (const sg of [-1, 1]) c.push({ k: 'capsule', id: 'bar', a: [p.c[0] - 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], b: [p.c[0] + 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], r: 1.8 }); break;
       case 'dumbbell': c.push({ k: 'capsule', id: 'db' + p.side, a: p.c, b: p.c, r: p.r ?? EQUIP.dbHeadR }); break;
       case 'kettlebell': { const d = p.dir ?? [0, -1, 0]; const o = p.r === undefined ? 12 : p.r + 2.5; const q: V3 = [p.c[0] + d[0] * o, p.c[1] + d[1] * o, p.c[2] + d[2] * o]; c.push({ k: 'capsule', id: 'kb', a: q, b: q, r: p.r ?? EQUIP.kbBallR }); break; }
-      case 'pivot': { /* tylko gryf z danych kontraktu (len): rigi gotowych rodzin nie mają tego kolidera; ostatnie EQUIP.landmineHand cm (dłonie na końcu gryfu) bez kolidera */
-        if (p.len === undefined) break; const d = sub(p.to, p.from); const l = Math.hypot(...d) || 1; const k = Math.max(0, l - EQUIP.landmineHand) / l;
+      case 'pivot': { /* tylko gryf/dźwignia z danych kontraktu (len): rigi gotowych rodzin nie mają tego kolidera; ostatnie EQUIP.landmineHand cm (dłonie na końcu) bez kolidera */
+        if (p.len === undefined) break; const d = sub(p.to, p.from); const l = Math.hypot(...d) || 1; const k = Math.max(0, l - (p.cut ?? EQUIP.landmineHand)) / l;
         c.push({ k: 'capsule', id: 'barPivot', a: p.from, b: [p.from[0] + d[0] * k, p.from[1] + d[1] * k, p.from[2] + d[2] * k], r: EQUIP.landmineR }); break; }
       case 'cable': { /* tylko linka z danych kontraktu (solid); ostatnie EQUIP.cableEnd cm przy osprzęcie (dłonie, kostka) bez kolidera */
         if (!p.solid) break; const d = sub(p.to, p.from); const l = Math.hypot(...d) || 1; const k = Math.max(0, l - EQUIP.cableEnd) / l;
@@ -142,7 +142,8 @@ export function checkFrame(f: Frame): Issue[] {
   const head = body.find(b => b.id === 'head'); const bodyOther = body.filter(b => /^(uarm|farm)/.test(b.id));
   if (head) for (const o of bodyOther) { const g = gap(head, o); if (g < -0.5) out.push({ code: 'self', detail: `głowa × ${o.id}: ${(-g).toFixed(2)} cm` }); }
   for (const r of f.props) if (r.k === 'rail') for (const b of f.props) if (b.k === 'barbell' && Math.abs(b.c[0] - r.x) > TOL.rail) out.push({ code: 'rail', detail: `sztanga × prowadnica: x sztangi ${b.c[0].toFixed(1)} cm, x prowadnicy ${r.x.toFixed(1)} cm (różnica ${Math.abs(b.c[0] - r.x).toFixed(1)} cm, dopuszczalne ${TOL.rail})` });
-  for (const p of f.props) if (p.k === 'pivot' && p.len !== undefined) { const d = dist(p.from, p.to); if (Math.abs(d - p.len) > TOL.pivot) out.push({ code: 'pivot', detail: `landmine: dłonie ${d.toFixed(1)} cm od osi obrotu, a gryf ma ${p.len} cm (dopuszczalne ± ${TOL.pivot})` }); }
+  for (const p of f.props) if (p.k === 'pivot' && p.len !== undefined) { const d = dist(p.from, p.to); if (Math.abs(d - p.len) > TOL.pivot) out.push({ code: 'pivot', detail: `${p.label ?? 'landmine'}: ${p.label ? 'punkt mocowania' : 'dłonie'} ${d.toFixed(1)} cm od osi obrotu, a ${p.label ? 'ramię' : 'gryf'} ma ${p.len} cm (dopuszczalne ± ${TOL.pivot})` }); }
+  for (const p of f.props) if (p.k === 'slide') { const w = sub(p.to, p.from); const t = w[0] * p.dir[0] + w[1] * p.dir[1] + w[2] * p.dir[2]; const tc = Math.max(0, Math.min(p.len, t)); const e = Math.hypot(w[0] - p.dir[0] * tc, w[1] - p.dir[1] * tc, w[2] - p.dir[2] * tc); if (e > TOL.pivot) out.push({ code: 'slide', detail: `dźwignia (prowadnica): punkt mocowania ${e.toFixed(1)} cm od prowadnicy (skok ${t.toFixed(1)} cm z ${p.len} cm; dopuszczalne ± ${TOL.pivot})` }); }
   for (const h of holdChecks(f)) if (h.err > h.tol) out.push({ code: 'grip', detail: `${h.name}: dłoń ${h.err.toFixed(2)} cm od chwytu (dopuszczalne ${h.tol})`, ...(h.hint ? { hint: h.hint } : {}) });
   return out;
 }

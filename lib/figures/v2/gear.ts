@@ -11,16 +11,19 @@ import { TOL } from './colliders';
 import { BENCH } from './rigs/benchPress';
 import type { Contact, Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka', 'dzwignia'] as const;
 export type GearName = typeof GEAR[number];
-export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean; mocowanie?: typeof BAND_MOUNT[number] };
+export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean; mocowanie?: typeof BAND_MOUNT[number]; tryb?: typeof LEVER_MODE[number]; punkt?: typeof LEVER_POINT[number]; siedzisko?: number };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
-export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki', 'mocowanie'] as const;
+export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki', 'mocowanie', 'tryb', 'punkt', 'siedzisko'] as const;
 export const BELL_MODES = ['dol', 'wzdluz', 'tyl'] as const;
 /** Osprzęt linki wyciągu: uchwyt (jeden na dłoń), lina (dwa końce), drążek (prosty, między dłońmi), kostka (opaska na kostkę). */
 export const CABLE_ATTACH = ['uchwyt', 'lina', 'drazek', 'kostka'] as const;
 /** Mocowanie gumy oporowej: zaczep (stały punkt x, y, z), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad). */
 export const BAND_MOUNT = ['zaczep', 'stopy', 'kostki', 'dlonie', 'sztanga'] as const;
+/** Dźwignia maszyny: obrót wokół osi (sztywne ramię) albo prowadnica liniowa (skok po prostej); punkt mocowania: dłonie, kostki, miednica. */
+export const LEVER_MODE = ['obrot', 'prosta'] as const;
+export const LEVER_POINT = ['dlonie', 'kostki', 'miednica'] as const;
 /** Kąt oparcia ławki (stopnie, 0 = płasko, dodatni = skos głową wyżej, ujemny = głową niżej) wg możliwości katalogu — konwencja rysunku. */
 export const BENCH_KAT = { min: -45, max: 90, flat: [-5, 5], incline: [10, 90], decline: [-45, -5] } as const;
 /** Wysokość bloczka stacji wyciągów (cm) wg możliwości katalogu — konwencja rysunku (data/zrodla/figury-sprzet.json → wyciag): niski, środkowy, wysoki. */
@@ -35,7 +38,7 @@ export type GearKind = {
   /** Krótki opis do generatora poleceń (jak wypełnić pola). */
   opis: string;
   /** Rekwizyty sceny dla wpisu sprzętu (chwyty rąk potrzebne sprzętowi trzymanemu w dłoni). */
-  props: (g: Gear, grips: GearGrips, all: Gear[], ankles: GearGrips) => Prop[];
+  props: (g: Gear, grips: GearGrips, all: Gear[], ankles: GearGrips, pelvis: V3) => Prop[];
   /** Czy wpis spełnia możliwość katalogu (np. bloczek wysoki ↔ cable.high); domyślnie tak. */
   capOk?: (cap: string, g: Gear) => boolean;
   /** Opis możliwości dla generatora poleceń (jak ją narysować); brak = opis ogólny. */
@@ -57,6 +60,17 @@ export type GearKind = {
 const BAR_LEN = 220;
 const sidesOf = (g: Gear): Side[] => g.trzyma === 'R' ? ['R'] : g.trzyma === 'L' ? ['L'] : [...SIDES];
 const avg = (vs: V3[]): V3 => mul(vs.reduce((a, v) => add(a, v), [0, 0, 0] as V3), 1 / vs.length);
+/**
+ * Środek miednicy osoby na ławce o zawiasie w x = 0 i siedzisku na wysokości seatY: leżąc/półleżąc (kat ≤ 45°) tak jak w rigu wyciskania leżąc (miednica BENCH.padBack nad oparciem,
+ * wzdłuż normalnej do oparcia); siedząc (kat > 45°) miednica styka się z siedziskiem i oparciem (leży na dwusiecznej kąta między nimi).
+ */
+export function benchHip(kat: number, seatY: number): V3 {
+  const th = rad(kat);
+  if (kat <= 45) return [BENCH.padBack * Math.sin(th), seatY + BENCH.padBack * Math.cos(th), 0];
+  const sx = 1 - Math.cos(th), sy = Math.sin(th); const l = Math.hypot(sx, sy); const dd = BENCH.padBack / Math.cos(th / 2);
+  return [dd * sx / l, seatY + dd * sy / l, 0];
+}
+
 /** Dozwolone kontakty ciała z ławką (jak w rigu wyciskania leżąc, docs/50): plecy/miednica/uda/głowa 1,5 cm, ramię 6 cm, przedramię 2,5 cm; sztanga na klatce: tułów 2,6 cm, ramię 2,2 cm. */
 const BENCH_CONTACTS: Contact[] = [
   { body: 'torso', equip: 'benchBack', tol: 1.5 }, { body: 'pelvis', equip: 'benchSeat', tol: 1.5 }, { body: 'pelvis', equip: 'benchBack', tol: 1.5 }, { body: 'thigh', equip: 'benchSeat', tol: 1.5 }, { body: 'torso', equip: 'benchSeat', tol: 1.5 },
@@ -126,9 +140,9 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
   lancuchy: {
     nazwa: 'łańcuchy',
     caps: ['chains'], opis: 'łańcuchy zawieszone na sztandze (albo trzymane w dłoniach, gdy nie ma sztangi) i opadające na podłogę',
-    props: (g, grips, all, ankles) => {
+    props: (g, grips, all, ankles, pelvis) => {
       const bar = all.find(x => x.rodzaj === 'sztanga');
-      if (bar) { const [b] = GEAR_KINDS.sztanga.props(bar, grips, all, ankles); if (b.k !== 'barbell') return []; return [-1, 1].map((sg): Prop => ({ k: 'chain', from: [b.c[0], b.c[1], sg * EQUIP.chainZ], to: [b.c[0], 0, sg * EQUIP.chainZ] })); }
+      if (bar) { const [b] = GEAR_KINDS.sztanga.props(bar, grips, all, ankles, pelvis); if (b.k !== 'barbell') return []; return [-1, 1].map((sg): Prop => ({ k: 'chain', from: [b.c[0], b.c[1], sg * EQUIP.chainZ], to: [b.c[0], 0, sg * EQUIP.chainZ] })); }
       return SIDES.map((s): Prop => ({ k: 'chain', from: grips[s], to: [grips[s][0], 0, grips[s][2]] }));
     },
     ref: () => [
@@ -177,31 +191,32 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     },
   },
   lawka: {
-    nazwa: 'ławka regulowana', caps: ['bench.flat', 'bench.incline', 'bench.decline'], fields: ['kat', 'walki'], optionalCaps: [],
+    nazwa: 'ławka regulowana', caps: ['bench.flat', 'bench.incline', 'bench.decline'], fields: ['kat', 'walki', 'siedzisko'], optionalCaps: [],
     opis: 'ławka z regulowanym kątem oparcia: płaska, skośna, ujemna (x = zawias, top = wysokość siedziska, kat, dlugosc oparcia, walki na nogi)',
     capLabel: { 'bench.flat': 'ławka płaska', 'bench.incline': 'ławka skośna (głową wyżej)', 'bench.decline': 'ławka ujemna (głową niżej)' },
     capNeed: { 'bench.flat': `kat ${BENCH_KAT.flat[0]}…${BENCH_KAT.flat[1]}°`, 'bench.incline': `kat ${BENCH_KAT.incline[0]}…${BENCH_KAT.incline[1]}°`, 'bench.decline': `kat ${BENCH_KAT.decline[0]}…${BENCH_KAT.decline[1]}°` },
     capOk: (cap, g) => { const k = g.kat ?? 0; const r = cap === 'bench.flat' ? BENCH_KAT.flat : cap === 'bench.incline' ? BENCH_KAT.incline : cap === 'bench.decline' ? BENCH_KAT.decline : null; return !r || (k >= r[0] && k <= r[1]); },
     props: g => {
       const th = rad(g.kat ?? 0); const seatY = g.top ?? ((g.kat ?? 0) < 0 ? BENCH.declineSeat : BENCH.seatTop); const H: [number, number] = [g.x ?? 0, seatY]; const L = g.dlugosc ?? BENCH.backLen;
-      return [{ k: 'bench', seatFrom: [H[0] + BENCH.seatLen, seatY], hinge: H, backTo: [H[0] - Math.cos(th) * L, H[1] + Math.sin(th) * L], legH: seatY, ...(g.walki ? { rollers: true } : {}) }];
+      return [{ k: 'bench', seatFrom: [H[0] + (g.siedzisko ?? BENCH.seatLen), seatY], hinge: H, backTo: [H[0] - Math.cos(th) * L, H[1] + Math.sin(th) * L], legH: seatY, ...(g.walki ? { rollers: true } : {}) }];
     },
     contacts: () => BENCH_CONTACTS,
     check: g => [
       ...(g.kat !== undefined && (g.kat < BENCH_KAT.min || g.kat > BENCH_KAT.max) ? [`sprzęt: kąt ławki kat = ${g.kat}° poza przedziałem ${BENCH_KAT.min}…${BENCH_KAT.max}°`] : []),
       ...(g.top !== undefined && (g.top < 20 || g.top > 80) ? [`sprzęt: wysokość siedziska top = ${g.top} cm poza przedziałem 20–80 cm`] : []),
       ...(g.dlugosc !== undefined && (g.dlugosc < 30 || g.dlugosc > 120) ? [`sprzęt: długość oparcia dlugosc = ${g.dlugosc} cm poza przedziałem 30–120 cm`] : []),
+      ...bounds('siedzisko (długość siedziska)', g.siedzisko, 20, 70),
     ],
     ref: () => {
       const hip = (deg: number, top?: number): { hip: V3; pitch: number; sh: V3; head: V3 } => {
-        const th = rad(deg); const seatY = top ?? (deg < 0 ? BENCH.declineSeat : BENCH.seatTop); const h: V3 = [BENCH.padBack * Math.sin(th), seatY + BENCH.padBack * Math.cos(th), 0];
+        const th = rad(deg); const seatY = top ?? (deg < 0 ? BENCH.declineSeat : BENCH.seatTop); const h = benchHip(deg, seatY);
         const d: V3 = [-Math.cos(th), Math.sin(th), 0]; return { hip: h, pitch: deg - 90, sh: add(h, mul(d, BODY.trunk)), head: add(h, mul(d, BODY.trunk + BODY.neckUp + BODY.headFromC7)) };
       };
-      const row = (deg: number): string => { const q = hip(deg); const feet = deg < 0 ? `kostki [${f1(q.hip[0] + 44)}, ${f1(BENCH.declineSeat + 6)}, ±${BENCH.footHalf}] (stopy pod wałkami)` : `kostki [${f1(q.hip[0] + BENCH.footBack)}, ${f1(BODY.ankleH)}, ±${BENCH.footHalf}] (stopy na podłodze)`; return `kat ${deg}°: miednica [${f1(q.hip[0])}, ${f1(q.hip[1])}, 0], pochylenieTulowia ${q.pitch}, bark [${f1(q.sh[0])}, ${f1(q.sh[1])}], środek głowy [${f1(q.head[0])}, ${f1(q.head[1])}] (pochylenieGlowy = pochylenieTulowia), ${feet}`; };
+      const row = (deg: number, top?: number): string => { const q = hip(deg, top); const feet = deg < 0 ? `kostki [${f1(q.hip[0] + 44)}, ${f1(BENCH.declineSeat + 6)}, ±${BENCH.footHalf}] (stopy pod wałkami)` : `kostki [${f1(q.hip[0] + BENCH.footBack)}, ${f1(BODY.ankleH)}, ±${BENCH.footHalf}] (stopy na podłodze)`; return `kat ${deg}°: miednica [${f1(q.hip[0])}, ${f1(q.hip[1])}, 0], pochylenieTulowia ${q.pitch}, bark [${f1(q.sh[0])}, ${f1(q.sh[1])}], środek głowy [${f1(q.head[0])}, ${f1(q.head[1])}] (pochylenieGlowy = pochylenieTulowia), ${feet}`; };
       return [
-        `lawka: ławka z regulowanym oparciem. Zawias (styk siedziska i oparcia) w x (domyślnie 0) na wysokości top (siedzisko ${BENCH.seatTop} cm; ławka ujemna ${BENCH.declineSeat} cm); siedzisko biegnie od zawiasu o ${BENCH.seatLen} cm w stronę +x (stopy), oparcie o dlugosc (domyślnie ${BENCH.backLen}) cm w stronę −x pod kątem kat od poziomu: 0 = płaska, dodatni = skos (głowa wyżej), ujemny = ławka ujemna (głowa niżej). Pole kat: ławka płaska ${BENCH_KAT.flat[0]}…${BENCH_KAT.flat[1]}°, skośna ${BENCH_KAT.incline[0]}…${BENCH_KAT.incline[1]}°, ujemna ${BENCH_KAT.decline[0]}…${BENCH_KAT.decline[1]}° — kąt musi odpowiadać możliwości katalogu ćwiczenia (płaska/skośna/ujemna). Szerokość ${EQUIP.benchW} cm (z = ±${EQUIP.benchW / 2}).`,
+        `lawka: ławka z regulowanym oparciem. Zawias (styk siedziska i oparcia) w x (domyślnie 0) na wysokości top (siedzisko ${BENCH.seatTop} cm; ławka ujemna ${BENCH.declineSeat} cm); siedzisko biegnie od zawiasu o siedzisko cm (domyślnie ${BENCH.seatLen}; maszyny i ławki do siedzenia ok. 40–45) w stronę +x (stopy), oparcie o dlugosc (domyślnie ${BENCH.backLen}) cm w stronę −x pod kątem kat od poziomu: 0 = płaska, dodatni = skos (głowa wyżej), ujemny = ławka ujemna (głowa niżej). Pole kat: ławka płaska ${BENCH_KAT.flat[0]}…${BENCH_KAT.flat[1]}°, skośna ${BENCH_KAT.incline[0]}…${BENCH_KAT.incline[1]}°, ujemna ${BENCH_KAT.decline[0]}…${BENCH_KAT.decline[1]}° — kąt musi odpowiadać możliwości katalogu ćwiczenia (płaska/skośna/ujemna). Szerokość ${EQUIP.benchW} cm (z = ±${EQUIP.benchW / 2}).`,
         `lawka walki: true = wałki na nogi (ławka ujemna): wałek o promieniu ${f1(EQUIP.rollerR)} cm nad kostkami przy końcu siedziska (stopy pod wałkami: kostki ${BENCH.declineSeat + 6} cm nad podłogą, nogi nie przenikają wałka).`,
-        `OSOBA LEŻĄCA NA ŁAWCE (głowa w stronę −x, stopy +x): miednica = zawias + ${BENCH.padBack} cm w kierunku normalnej do oparcia = [x + ${BENCH.padBack}·sin(kat), top + ${BENCH.padBack}·cos(kat), 0]; pochylenieTulowia = kat − 90; bark = miednica + ${BODY.trunk}·[−cos(kat), sin(kat)]; pochylenieGlowy = pochylenieTulowia (głowa na oparciu). Wartości wyliczone z modelu: ${row(0)}; ${row(30)}; ${row(-15)}.`,
+        `OSOBA NA ŁAWCE (głowa w stronę −x, stopy +x): miednica leży ${BENCH.padBack} cm nad powierzchnią — kat ≤ 45°: [x + ${BENCH.padBack}·sin(kat), top + ${BENCH.padBack}·cos(kat), 0] (leżąc); kat > 45° (siedząc): miednica styka się z siedziskiem i oparciem, na dwusiecznej kąta między nimi w odległości ${BENCH.padBack}/cos(kat/2) od zawiasu; pochylenieTulowia = kat − 90; bark = miednica + ${BODY.trunk}·[−cos(kat), sin(kat)]; pochylenieGlowy = pochylenieTulowia (głowa na oparciu). Wartości wyliczone z modelu: ${row(0)}; ${row(30)}; ${row(-15)}; ${row(75, 45)}.`,
         `lawka, kontakty: plecy, miednica, uda i głowa mogą dotykać ławki (przenikanie do 1,5 cm), ramię do 6 cm, przedramię do 2,5 cm; sztanga na klatce: tułów do 2,6 cm, ramię do 2,2 cm — głębiej odrzucane. Ławka nie ma kolidera poza siedziskiem i oparciem (dwa graniastosłupy).`,
       ];
     },
@@ -209,12 +224,12 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
   guma: {
     nazwa: 'guma oporowa', caps: ['bands'], fields: ['mocowanie', 'z'], opis: 'guma oporowa: linia sprężysta od punktu zamocowania do dłoni, kostek lub sztangi (mocowanie, x, y, z, trzyma)',
     capLabel: { bands: 'guma oporowa' },
-    props: (g, grips, all, ankles) => {
+    props: (g, grips, all, ankles, pelvis) => {
       const m = g.mocowanie ?? 'zaczep'; const ss = sidesOf(g); const band = (from: V3, to: V3): Prop => ({ k: 'band', from, to });
       if (m === 'stopy') return ss.map(s => band([ankles[s][0], 0, ankles[s][2]], grips[s]));
       if (m === 'kostki') return [band(ankles.R, ankles.L)];
       if (m === 'dlonie') return [band(grips.R, grips.L)];
-      if (m === 'sztanga') { const bar = all.find(x => x.rodzaj === 'sztanga'); if (!bar) return []; const [b] = GEAR_KINDS.sztanga.props(bar, grips, all, ankles); if (b.k !== 'barbell') return []; return [-1, 1].map(sg => band([g.x ?? b.c[0], g.y ?? 0, sg * EQUIP.chainZ], [b.c[0], b.c[1], sg * EQUIP.chainZ])); }
+      if (m === 'sztanga') { const bar = all.find(x => x.rodzaj === 'sztanga'); if (!bar) return []; const [b] = GEAR_KINDS.sztanga.props(bar, grips, all, ankles, pelvis); if (b.k !== 'barbell') return []; return [-1, 1].map(sg => band([g.x ?? b.c[0], g.y ?? 0, sg * EQUIP.chainZ], [b.c[0], b.c[1], sg * EQUIP.chainZ])); }
       const a: V3 = [g.x ?? 0, g.y ?? 100, g.z ?? 0]; return ss.map(s => band(a, grips[s]));
     },
     check: g => [
@@ -241,6 +256,27 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     check: g => [...bounds('promien wałka', g.promien, 4, 12), ...bounds('dlugosc wałka', g.dlugosc, 30, 120)],
     ref: () => [
       `rolka: wałek piankowy leżący na podłodze wzdłuż osi z: promień ${f1(EQUIP.foamR)} cm (promien; wałek o średnicy 15 cm), długość ${EQUIP.foamLen} cm (dlugosc), środek [x, promien, z]. Ciało (łydka, udo, plecy, pośladek) toczy się po wałku: odległość kapsuły ciała od osi wałka = promień ciała + promień wałka; dopuszczalne wgniecenie ${f1(SOFT_CONTACT.roll)} cm. Wałek się nie rusza (ciało przesuwa się po nim): zmianę położenia opisz ruchem ciała.`,
+    ],
+  },
+  dzwignia: {
+    nazwa: 'maszyna (dźwignia)', caps: ['leg_ext', 'leg_curl', 'leg_press', 'hack_squat', 'pendulum_squat', 'belt_squat_machine', 'chest_press_machine', 'shoulder_press_machine', 'pec_deck', 'row_machine', 'pullover_machine', 'ab_crunch_machine', 'biceps_curl_machine', 'triceps_ext_machine', 'lateral_raise_machine', 'glute_kickback_machine', 'hip_thrust_machine', 'hip_abductor_adductor', 'calf_machine', 'lever_machine', 'dip_machine', 't_bar'], fields: ['kat', 'z', 'tryb', 'punkt'], optionalCaps: [],
+    opis: 'maszyna rysowana schematycznie: dźwignia obrotowa albo prowadnica liniowa z punktem mocowania na dłoniach, kostkach lub miednicy; siedzisko i oparcie jako lawka (x, y, z, kat, dlugosc, tryb, punkt, trzyma)',
+    capLabel: { leg_ext: 'maszyna do prostowania nóg (obrót, punkt: kostki)', leg_curl: 'maszyna do uginania nóg (obrót, punkt: kostki)', leg_press: 'suwnica na nogi (prowadnica, punkt: kostki — platforma pod stopami)', hack_squat: 'hack squat (prowadnica, punkt: miednica — wózek z oparciem)', pendulum_squat: 'pendulum squat (obrót, punkt: miednica)', belt_squat_machine: 'belt squat (prowadnica albo obrót, punkt: miednica — pas)', chest_press_machine: 'maszyna do wyciskania (klatka; obrót, punkt: dłonie)', shoulder_press_machine: 'maszyna do wyciskania nad głowę (obrót, punkt: dłonie)', pec_deck: 'butterfly (obrót, punkt: dłonie)', row_machine: 'maszyna do wiosłowania (obrót, punkt: dłonie)', pullover_machine: 'maszyna pullover (obrót, punkt: dłonie)', ab_crunch_machine: 'maszyna do brzucha (obrót, punkt: dłonie)', biceps_curl_machine: 'maszyna do bicepsa (obrót, punkt: dłonie)', triceps_ext_machine: 'maszyna do tricepsa (obrót, punkt: dłonie)', lateral_raise_machine: 'maszyna do wznosów bokiem (obrót, punkt: dłonie)', glute_kickback_machine: 'maszyna do wykopów (pośladki; obrót, punkt: kostki)', hip_thrust_machine: 'maszyna do hip thrustu (obrót, punkt: miednica)', hip_abductor_adductor: 'maszyna do odwodzenia/przywodzenia (obrót, punkt: kostki)', calf_machine: 'maszyna do łydek (prowadnica, punkt: dłonie albo miednica; wspięcia: kostki)', lever_machine: 'maszyna dźwigniowa (obrót, punkt: dłonie)', dip_machine: 'maszyna do dipów (obrót, punkt: dłonie)', t_bar: 'T-bar (obrót wokół osi przy podłodze, punkt: dłonie)' },
+    props: (g, grips, _all, ankles, pelvis) => {
+      const ss: Side[] = g.trzyma === 'L' ? ['L'] : g.trzyma === 'obie' ? [...SIDES] : ['R'];
+      const pt: V3 = g.punkt === 'kostki' ? avg(ss.map(s => ankles[s])) : g.punkt === 'miednica' ? pelvis : avg(ss.map(s => grips[s]));
+      const from: V3 = [g.x ?? 0, g.y ?? 50, g.z ?? 0];
+      if (g.tryb === 'prosta') { const th = rad(g.kat ?? 0); return [{ k: 'slide', from, to: pt, dir: [Math.cos(th), Math.sin(th), 0], len: g.dlugosc ?? EQUIP.leverStroke }]; }
+      return [{ k: 'pivot', from, to: pt, len: g.dlugosc ?? EQUIP.leverArm, label: 'dzwignia', cut: EQUIP.leverEnd }];
+    },
+    check: g => [
+      ...(g.tryb === 'prosta' ? bounds('dlugosc skoku prowadnicy', g.dlugosc, 10, 150) : bounds('dlugosc ramienia dźwigni', g.dlugosc, 20, 150)),
+      ...(g.tryb !== 'prosta' && g.kat !== undefined ? ['sprzęt: pole „kat” (kąt prowadnicy) dotyczy tylko dźwigni w trybie „prosta”'] : []),
+    ],
+    ref: () => [
+      `dzwignia: maszyna rysowana SCHEMATYCZNIE (nie odwzorowujemy konstrukcji): siedzisko i oparcie dodaj jako wpis lawka (kat oparcia, top siedziska), a ruchomą część jako wpis dzwignia. Punkt mocowania (pole punkt) podąża za ciałem: "dlonie" (środek chwytu), "kostki" (środek kostek; stopy na platformie albo wałek na goleniach), "miednica" (środek miednicy: pas, wózek z oparciem). trzyma: "R" (domyślnie) albo "L" = punkt jednej strony ciała (kostka albo dłoń tej strony), "obie" = środek między obiema stronami. Dla maszyn z dźwigniami po bokach (prostowanie/uginanie nóg, wyciskanie) rysujemy JEDNĄ dźwignię po jednej stronie (trzyma "R"), z poza ciałem (z pivotu ±28…35 cm), żeby nie przenikała ud i łydek.`,
+      `dzwignia tryb "obrot" (domyślnie): sztywne ramię o długości dlugosc (domyślnie ${f1(EQUIP.leverArm)} cm) obraca się wokół osi P = [x, y, z] (y domyślnie 50): w KAŻDEJ klatce punkt mocowania leży na sferze o promieniu dlugosc wokół P (± ${TOL.pivot} cm), czyli na łuku; klatki co ≤ ${Math.floor(Math.sqrt(8 * 60 * TOL.pivot * 0.5))} cm drogi punktu (ramię 60 cm). Kolider ramienia (kapsuła) poza ostatnimi ${f1(EQUIP.leverEnd)} cm przy punkcie mocowania: ciało nie przenika ramienia.`,
+      `dzwignia tryb "prosta" (suwnica na nogi, hack squat, wózki): prowadnica liniowa od punktu P = [x, y, z] w kierunku kąta kat (stopnie od poziomu w płaszczyźnie x–y: 0 = do przodu +x, 90 = w górę, −45 = w dół do przodu), długość skoku dlugosc (domyślnie ${f1(EQUIP.leverStroke)} cm): w KAŻDEJ klatce punkt mocowania leży na odcinku prowadnicy (± ${TOL.pivot} cm), w skoku 0…dlugosc od P. Z boku rysunek: linia prowadnicy i platforma (odcinek ${f1(EQUIP.machinePad)} cm prostopadły do prowadnicy w punkcie mocowania).`,
     ],
   },
   skrzynia: { nazwa: 'skrzynia albo stopień', caps: ['box'], opis: 'skrzynia albo stopień (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
@@ -354,4 +390,4 @@ export function contactsFrom(gear: Gear[]): Contact[] { return gear.flatMap(g =>
 export const GEAR_CAPS: readonly string[] = Object.values(GEAR_KINDS).flatMap(k => k.caps);
 
 /** Sprzęt jako rekwizyty sceny; sprzęt „podążający za chwytem” leży między dłońmi albo w dłoni. */
-export function propsFrom(gear: Gear[], grips: GearGrips, ankles: GearGrips = { R: [0, 0, 0], L: [0, 0, 0] }): Prop[] { return gear.flatMap(g => GEAR_KINDS[g.rodzaj].props(g, grips, gear, ankles)); }
+export function propsFrom(gear: Gear[], grips: GearGrips, ankles: GearGrips = { R: [0, 0, 0], L: [0, 0, 0] }, pelvis: V3 = [0, 0, 0]): Prop[] { return gear.flatMap(g => GEAR_KINDS[g.rodzaj].props(g, grips, gear, ankles, pelvis)); }

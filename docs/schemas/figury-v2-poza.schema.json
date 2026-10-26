@@ -43,9 +43,10 @@
        "lawka",
        "guma",
        "pilka_gimnastyczna",
-       "rolka"
+       "rolka",
+       "dzwignia"
       ],
-      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze), sciana, gryf_szesciokatny (trap bar), lancuchy, wyciag (kolumna z bloczkiem i linką), lawka (płaska, skośna, ujemna), guma (guma oporowa), pilka_gimnastyczna (leży na podłodze), rolka (wałek piankowy). Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem."
+      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze), sciana, gryf_szesciokatny (trap bar), lancuchy, wyciag (kolumna z bloczkiem i linką), lawka (płaska, skośna, ujemna), guma (guma oporowa), dzwignia (maszyna: dźwignia obrotowa albo prowadnica), pilka_gimnastyczna (leży na podłodze), rolka (wałek piankowy). Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem."
      },
      "x": {
       "type": "number",
@@ -129,7 +130,24 @@
       "type": "number",
       "minimum": -300,
       "maximum": 300,
-      "description": "Tylko landmine: położenie osi obrotu w z (cm; domyślnie 0)."
+      "description": "Położenie w z (cm; domyślnie 0): oś obrotu landmine, oś obrotu albo początek prowadnicy dźwigni maszyny, środek piłki/wałka, kolumna wyciągu."
+     },
+     "tryb": {
+      "type": "string",
+      "enum": [
+       "obrot",
+       "prosta"
+      ],
+      "description": "Tylko dzwignia (maszyna): obrot (sztywne ramię wokół osi, domyślnie) albo prosta (prowadnica liniowa pod kątem kat)."
+     },
+     "punkt": {
+      "type": "string",
+      "enum": [
+       "dlonie",
+       "kostki",
+       "miednica"
+      ],
+      "description": "Tylko dzwignia: punkt ciała, do którego mocuje się dźwignia: dlonie (domyślnie), kostki, miednica; trzyma wskazuje stronę (domyślnie R)."
      },
      "mocowanie": {
       "type": "string",
@@ -146,7 +164,13 @@
       "type": "number",
       "minimum": -45,
       "maximum": 90,
-      "description": "Tylko lawka: kąt oparcia od poziomu w stopniach: 0 = ławka płaska, dodatni = skos (głowa wyżej), ujemny = ławka ujemna (głowa niżej)."
+      "description": "Kąt w stopniach od poziomu. Lawka: kąt oparcia (0 = płaska, dodatni = skos głową wyżej, ujemny = ławka ujemna). Dzwignia w trybie prosta: kąt prowadnicy (0 = do przodu +x, 90 = w górę)."
+     },
+     "siedzisko": {
+      "type": "number",
+      "minimum": 20,
+      "maximum": 70,
+      "description": "Tylko lawka: długość siedziska od zawiasu w stronę +x w cm (domyślnie 55; maszyny i ławki do siedzenia ok. 40–45)."
      },
      "walki": {
       "type": "boolean",
@@ -195,7 +219,7 @@
    },
    "minItems": 1,
    "maxItems": 8,
-   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy albo stojak (x, h, hak); podloga — podłoga (x0, x1); skrzynia — skrzynia albo stopień (x0, x1, top); hantel — hantel trzymany w dłoni; uchwyty farmerskie rysujemy jak hantle z dużym promieniem (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie); smith — prowadnica suwnicy Smitha (x, h); sztanga o podazaZaChwytem: true porusza się po niej tylko w pionie; landmine — gryf landmine: oś obrotu przy podłodze (x, y, z), długość gryfu (dlugosc), dłonie na końcu gryfu (trzyma); sciana — ściana (x, h, przed); gryf_szesciokatny — gryf sześciokątny (trap bar): uchwyty w z = ±29, środek między dłońmi; lancuchy — łańcuchy zawieszone na sztandze (albo trzymane w dłoniach, gdy nie ma sztangi) i opadające na podłogę; wyciag — wyciąg: kolumna z bloczkiem na wysokości y i linka do osprzętu w dłoniach albo na kostce (x, y, z, h, dwa, chwyt, trzyma); lawka — ławka z regulowanym kątem oparcia: płaska, skośna, ujemna (x = zawias, top = wysokość siedziska, kat, dlugosc oparcia, walki na nogi); guma — guma oporowa: linia sprężysta od punktu zamocowania do dłoni, kostek lub sztangi (mocowanie, x, y, z, trzyma); pilka_gimnastyczna — piłka gimnastyczna leżąca na podłodze (x, z, promien); rolka — wałek piankowy leżący na podłodze wzdłuż z (x, promien, dlugosc)."
+   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy albo stojak (x, h, hak); podloga — podłoga (x0, x1); skrzynia — skrzynia albo stopień (x0, x1, top); hantel — hantel trzymany w dłoni; uchwyty farmerskie rysujemy jak hantle z dużym promieniem (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie); smith — prowadnica suwnicy Smitha (x, h); sztanga o podazaZaChwytem: true porusza się po niej tylko w pionie; landmine — gryf landmine: oś obrotu przy podłodze (x, y, z), długość gryfu (dlugosc), dłonie na końcu gryfu (trzyma); sciana — ściana (x, h, przed); gryf_szesciokatny — gryf sześciokątny (trap bar): uchwyty w z = ±29, środek między dłońmi; lancuchy — łańcuchy zawieszone na sztandze (albo trzymane w dłoniach, gdy nie ma sztangi) i opadające na podłogę; wyciag — wyciąg: kolumna z bloczkiem na wysokości y i linka do osprzętu w dłoniach albo na kostce (x, y, z, h, dwa, chwyt, trzyma); lawka — ławka z regulowanym kątem oparcia: płaska, skośna, ujemna (x = zawias, top = wysokość siedziska, kat, dlugosc oparcia, walki na nogi); guma — guma oporowa: linia sprężysta od punktu zamocowania do dłoni, kostek lub sztangi (mocowanie, x, y, z, trzyma); pilka_gimnastyczna — piłka gimnastyczna leżąca na podłodze (x, z, promien); rolka — wałek piankowy leżący na podłodze wzdłuż z (x, promien, dlugosc); dzwignia — maszyna rysowana schematycznie: dźwignia obrotowa albo prowadnica liniowa z punktem mocowania na dłoniach, kostkach lub miednicy; siedzisko i oparcie jako lawka (x, y, z, kat, dlugosc, tryb, punkt, trzyma)."
   },
   "klatki": {
    "type": "array",

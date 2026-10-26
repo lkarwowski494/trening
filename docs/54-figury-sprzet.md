@@ -18,7 +18,7 @@ Liczby poniżej: ćwiczenia z 622, które wymagają danego rodzaju (w nawiasie: 
 | 5 | guma / taśma oporowa | 17 (16) | hip_abd_add 4, rotator_cuff 3 | niski | **gotowe (26.10.2026)** |
 | 6 | piłka gimnastyczna, BOSU, ślizgacze, roller, kółko do brzucha | 25 (21) | foam_roll 10, core_floor 3, core_standing 3 | niski–średni | piłka gimnastyczna i wałek piankowy gotowe (26.10.2026); BOSU, ślizgacze, kółko do brzucha, wałek na nadgarstki — nie (po 1–2 ćwiczenia) |
 | 7 | taśmy zawieszane, lina pionowa; ławki specjalne (rzymska, GHD, GHR, reverse hyper) | 5 + 4 | cardio, back_extension, core_floor | średni | do zrobienia |
-| 8 | maszyny (siedzisko, oparcie, dźwignia; ok. 21 typów) | 45 (43) | leg_machine 7, sled_throw 6, leg_isolation 5 | wysoki | na koniec, o ile da się sensownie |
+| 8 | maszyny (siedzisko, oparcie, dźwignia; ok. 21 typów) | 45 (43) | leg_machine 7, sled_throw 6, leg_isolation 5 | wysoki | **gotowe jako schemat (26.10.2026)**: dźwignia obrotowa albo prowadnica + ławka jako siedzisko; sanie (sled) nie |
 | 9 | cardio (ergometry) | 9 (9) | cardio 9 | inna klasa (rig, nie sprzęt) | wyjątek z powodem |
 
 Kolejność: największa liczba ćwiczeń na koszt. Sprzęt nie jest jedynym brakiem rodzin: pushup_plank (rig w podporze), plyo, olympic, mobility_* mają mało braków sprzętowych, ale potrzebują osobnych rigów — poza zakresem tego dokumentu.
@@ -77,6 +77,12 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 |---|---|---|---|
 | `pilka_gimnastyczna` | `x`, `z`, `promien` (32,5; 20–40) | stability_ball | kula na podłodze (nie w dłoniach); dopuszczalne wgniecenie 3 cm (miękka piłka); osie tułowia dotykają piłki w odległości promień + 9,5 cm |
 | `rolka` | `x`, `z`, `promien` (7,5), `dlugosc` (90) | foam_roller | walec wzdłuż z na podłodze; wgniecenie do 2 cm; wałek się nie rusza (ciało się po nim przesuwa) |
+
+### 2.7 Maszyny (schematycznie)
+
+| Rodzaj | Pola | Możliwości katalogu | Uwagi |
+|---|---|---|---|
+| `dzwignia` (+ `lawka` jako siedzisko i oparcie) | `tryb` obrot / prosta, `x`, `y`, `z` (oś obrotu albo początek prowadnicy), `dlugosc` (ramię 60 / skok 60), `kat` (kąt prowadnicy), `punkt` (dlonie / kostki / miednica), `trzyma` (domyślnie R) | 22 typy maszyn: leg_ext, leg_curl, leg_press, hack_squat, pendulum_squat, belt_squat_machine, chest_press_machine, shoulder_press_machine, pec_deck, row_machine, pullover_machine, ab_crunch_machine, biceps_curl_machine, triceps_ext_machine, lateral_raise_machine, glute_kickback_machine, hip_thrust_machine, hip_abductor_adductor, calf_machine, lever_machine, dip_machine, t_bar | **uproszczenie**: nie odwzorowujemy konstrukcji maszyn, tylko ruchomą część (sztywne ramię wokół osi albo prowadnicę liniową) i siedzisko z oparciem; jedna dźwignia po jednej stronie ciała; ramię przez ciało odrzucane (kolider poza ostatnimi 25 cm); punkt mocowania podąża za ciałem; długość ramienia i prowadnica sprawdzane ± 3 cm |
 
 Przykłady few-shot z rigów gotowych rodzin (`exampleFor`) zawierają teraz wpis `lawka` (wcześniej ławka nie była zapisywana w danych).
 

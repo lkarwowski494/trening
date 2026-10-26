@@ -269,7 +269,7 @@ export const FORMAT_ODPOWIEDZI = (rodzina, klucze) => [
 
 export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia, przyklady, kontrakt, opisy, pomijane = [], sprzet = [], root = ROOT }) {
   const L = [];
-  L.push(`# Pozy figur ćwiczeń — rodzina „${rodzina}”${czesc.ile > 1 ? ` (część ${czesc.numer}/${czesc.ile})` : ''} [${ETYKIETA_WERSJI}]`, '');
+  L.push(`# Pozy figur ćwiczeń — rodzina „${rodzina}”${czesc.ile > 1 || czesc.sufiks ? ` (część ${czesc.numer}${czesc.sufiks ?? ''}/${czesc.ile})` : ''} [${ETYKIETA_WERSJI}]`, '');
   L.push('Jesteś animatorem postaci do aplikacji treningowej. Tworzysz dane póz (klatki kluczowe szkieletu) dla ćwiczeń jednej rodziny ruchu. Dane wczyta program, który sprawdzi geometrię ORAZ sens ruchu — poza niezgodna z wymaganiami zostanie odrzucona, więc trzymaj się liczb poniżej. Liczby i relacje są wyliczone z naszego modelu; nie zgaduj ich, tylko podstaw.');
   L.push(`Rodzina: ${opisRodziny}. Widoki w aplikacji: ${widoki} (pozę podajesz w 3D, widoki liczy program).`, '');
   L.push('## Kontrakt danych', '', kontrakt.opisKontraktu(rodzina), '');
@@ -300,18 +300,26 @@ export function wzorce(rodzina, kontrakt, root = ROOT) {
   return o.slice(0, 2);
 }
 /** Polecenia rodziny: [{ plik, tresc, cwiczenia, pomijane }]. */
-export async function poleceniaRodziny(rodzina, { root = ROOT, lista } = {}) {
+export async function poleceniaRodziny(rodzina, { root = ROOT, lista, maxZnakow = MAX_ZNAKOW } = {}) {
   const kontrakt = await wczytajKontrakt(root);
   if (!kontrakt) throw new Error('brak scripts/figures/v2-validate.mjs');
   const docs = lista ?? join(root, 'docs/51-figury-v2-pokrycie.md'); const r = rodzinyZDokumentu(docs).find((x) => x.id === rodzina);
   const przyklady = wzorce(rodzina, kontrakt, root);
   const { catalog } = silnik();
-  return czesciRodziny(rodzina, { root, lista: docs }).map((czesc) => {
+  /* jedna część rodziny → polecenia; gdy tekst przekracza limit okna czatu (sekcja sprzętu rośnie z liczbą rodzajów), część dzielona na pół (sufiks a/b, rekurencyjnie) */
+  const zbuduj = (czesc, lista, sufiks) => {
     const pomijane = []; const robic = [];
-    for (const c of czesc.cwiczenia) { const p = pominiecie(rodzina, c, root) ?? sprzetNieobslugiwany(c, catalog); if (p) pomijane.push({ klucz: c, powod: `pomiń — zrobi nasz agent (${p})` }); else robic.push(c); }
-    return { plik: `${czesc.id}.md`, cwiczenia: robic, pomijane,
-      tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc, cwiczenia: robic, przyklady, kontrakt, pomijane, sprzet: sekcjaSprzetu(robic, catalog), root, opisy: robic.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog, rodzina })) }) };
-  }).filter((x) => x.cwiczenia.length);
+    for (const c of lista) { const p = pominiecie(rodzina, c, root) ?? sprzetNieobslugiwany(c, catalog); if (p) pomijane.push({ klucz: c, powod: `pomiń — zrobi nasz agent (${p})` }); else robic.push(c); }
+    const cz = { ...czesc, sufiks };
+    return { plik: `${czesc.id}${sufiks}.md`, cwiczenia: robic, pomijane,
+      tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc: cz, cwiczenia: robic, przyklady, kontrakt, pomijane, sprzet: sekcjaSprzetu(robic, catalog), root, opisy: robic.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog, rodzina })) }) };
+  };
+  const dziel = (czesc, lista, sufiks = '') => {
+    const w = zbuduj(czesc, lista, sufiks); if (w.tresc.length <= maxZnakow || w.cwiczenia.length <= 1) return [w];
+    const h = Math.ceil(lista.length / 2);
+    return [...dziel(czesc, lista.slice(0, h), sufiks + 'a'), ...dziel(czesc, lista.slice(h), sufiks + 'b')];
+  };
+  return czesciRodziny(rodzina, { root, lista: docs }).flatMap((czesc) => dziel(czesc, czesc.cwiczenia)).filter((x) => x.cwiczenia.length);
 }
 
 export function parsujArgumenty(argv) {

@@ -35,11 +35,12 @@ export type Prop =
   | { k: 'post'; x: number; h: number; hook?: number }                                         /* słupek stojaka */
   | { k: 'cable'; from: V3; to: V3; attach?: 'handle' | 'rope' | 'bar' | 'strap'; ends?: V3[]; solid?: boolean } /* linka od bloczku (from) do osprzętu (to); ends = miejsca chwytu (dłonie albo kostka); solid = kolider tylko dla danych kontraktu */
   | { k: 'tower'; x: number; z: number; h: number; solid?: boolean }                                    /* kolumna stacji wyciągów (bloczek na linii x, z) */
+  | { k: 'slide'; from: V3; to: V3; dir: V3; len: number }                                                /* prowadnica liniowa maszyny: odcinek skoku od from w kierunku dir (długość len), to = punkt mocowania (platforma, wałek, uchwyt) na prowadnicy */
   | { k: 'band'; from: V3; to: V3 }
   | { k: 'chain'; from: V3; to: V3 }
   | { k: 'floor'; x0: number; x1: number }
   | { k: 'mat'; x0: number; x1: number; h: number }
-  | { k: 'pivot'; from: V3; to: V3; len?: number };                                                /* gryf landmine: z osi obrotu (przy podłodze) do dłoni; len = długość gryfu (sztywny) */
+  | { k: 'pivot'; from: V3; to: V3; len?: number; label?: string; cut?: number }                                                /* gryf landmine albo dźwignia maszyny: z osi obrotu do dłoni/kostek; len = długość ramienia (sztywne); label = nazwa w komunikatach */
 
 /** Kolider do testów: kapsuła (ciało, gryf) albo graniastosłup (ławka, skrzynia, ściana: wielokąt w xy wyciągnięty po z). */
 export type Collider =
