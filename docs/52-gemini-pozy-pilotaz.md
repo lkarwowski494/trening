@@ -15,7 +15,7 @@ Wyjątek właściciela 25.10.2026: wydawana animacja częstego błędu ✕ jest 
 - **Structured output:** podzbiór JSON Schema (`properties`, `required`, `additionalProperties`, `enum`, `minimum`/`maximum`, `items`, `prefixItems`, `minItems`/`maxItems`); `minLength`/`maxLength`/`uniqueItems` są **pomijane bez błędu** — ich pilnuje nasza walidacja. Zbyt duże lub głęboko zagnieżdżone schematy bywają odrzucane (400 INVALID_ARGUMENT).
   Dokumentacja pokazuje structured output wyłącznie w **Interactions API** (`POST /v1beta/interactions`, `response_format: {type:'text', mime_type:'application/json', schema}`, `generation_config.max_output_tokens`, `system_instruction`; odpowiedź: kroki `steps[].type=model_output` z `content[].text`, zużycie w `usage.total_input_tokens/total_output_tokens/total_thought_tokens`) — skrypt używa tej ścieżki. Klucz: nagłówek `x-goog-api-key`.
 - **Limity:** poziomy płatne Tier 1–3 (kwalifikacja wg wydatków; Tier 1 po podpięciu rozliczeń, limit wydatków 250 USD na rozliczenie); wartości RPM/TPM/RPD dla Argon **nie są podane na stronie** — widoczne w AI Studio (aistudio.google.com/rate-limit). „Specified rate limits are not guaranteed.” Pilotaż jest sekwencyjny (jedno wywołanie naraz), więc limitów raczej nie dotknie; 429 jest ponawiane z odczekaniem (2 razy).
-- **Otwarte (nieprzeczytane w dokumentacji):** (a) czy Argon jest dostępny też w Vertex AI pod tym samym identyfikatorem — strona modelu tego nie mówi; skrypt używa Gemini API z kluczem z AI Studio (kredyty Google Cloud rozlicza się na projekcie powiązanym z kluczem — do potwierdzenia przez właściciela przy tworzeniu klucza); (b) dokładny kształt `usage` poza polami wymienionymi wyżej; (c) czy `generateContent` z `responseJsonSchema` działa dla Argon (strona referencyjna go nie dokumentuje) — dlatego nie jest używany.
+- **Otwarte (nieprzeczytane w dokumentacji):** (a) ~~czy Argon jest dostępny w Vertex AI~~ — rozstrzygnięte 26.10.2026: tak, ten sam identyfikator `gemini-4-argon` (pkt 6; AI Studio odrzucone, bo kredyty wymagają planu Prepay); (b) dokładny kształt `usage` poza polami wymienionymi wyżej; (c) czy `generateContent` z `responseJsonSchema` działa dla Argon (strona referencyjna go nie dokumentuje) — dlatego nie jest używany.
 
 ## 2. Skrypt `scripts/figures/gemini-pozy.mjs`
 
@@ -29,7 +29,7 @@ Wymagania: schemat w podzbiorze obsługiwanym przez Gemini (pkt 1), komunikaty b
 
 ## 3. Workflow `.github/workflows/gemini-figury.yml`
 
-Tylko `workflow_dispatch`, `permissions: contents: read`, sekret `GEMINI_API_KEY` w jednym kroku jako `env`, wejścia: `rodzina`, `model` (lista: gemini-4-argon, gemini-3.1-pro-preview, gemini-3.8-flash), `limit_usd`, `proby`, `tylko_szacuj` (domyślnie true). Wzór: `przeklad-tlumaczen.yml`; strażnik: `tests/gemini-pozy.test.ts` i `tests/public-repo.test.ts`.
+Tylko `workflow_dispatch`, `permissions: contents: read`, sekret `GEMINI_API_KEY` w jednym kroku jako `env`, wejścia: `rodzina`, `api` (`vertex` domyślnie / `gemini`), `model` (lista: gemini-4-argon, gemini-3.1-pro-preview, gemini-3.8-flash), `limit_usd`, `proby`, `tylko_szacuj` (domyślnie true). Wzór: `przeklad-tlumaczen.yml`; strażnik: `tests/gemini-pozy.test.ts` i `tests/public-repo.test.ts`.
 Uruchamiać z gałęzi `grafiki-cwiczen` („Use workflow from”) — tam są docs/51 i walidator; plik workflowu musi być na gałęzi domyślnej.
 
 ## 4. Szacunki kosztu (założenia, NIE pomiar — do skorygowania po pilotażu)
@@ -40,3 +40,31 @@ Całość (40 rodzin, ok. 620 ćwiczeń do zrobienia): **Argon ≈ 90 USD** (po 
 ## 5. Wyjątek L-001 (decyzja właściciela 25.10.2026)
 
 Jak przy przekładzie tłumaczeń: workflow jest tylko ręczny, więc scalenie przed dowodem; dowód = przebieg `tylko_szacuj=true` zaraz po scaleniu (sprawdza checkout, instalację, szacunek, artefakt), a przebieg płatny dopiero po nim. Przy porażce dowodu — cofnięcie scalenia. Rejestr ryzyk: nieznane zachowanie Argon w Interactions API (kształt `usage`) rozstrzyga pierwszy przebieg płatny z limitem 3 USD.
+
+## 6. Vertex AI („Agent Platform”) z kluczem API — tryb `--api vertex` (domyślny od 26.10.2026)
+
+Powód: Gemini API (AI Studio) odrzuciło wywołanie z kodem 429 „Free Tier, limit 0” — dla projektu z kredytami wymagało planu Prepay (prawdziwe pieniądze), co właściciel odrzucił (26.10.2026). Decyzja właściciela: **Vertex AI z kluczem API w projekcie Google Cloud z kredytami próbnymi; ten sam sekret `GEMINI_API_KEY`** (właściciel podmienia jego wartość, bez nowych sekretów). Stary tryb zostaje jako `--api gemini`.
+
+Źródła (przeczytane 26.10.2026, strony dokumentacji Google; produkt jest już nazywany „Gemini Enterprise Agent Platform”, adresy dawnej dokumentacji Vertex AI przekierowują):
+- Express mode — format adresu i nagłówek klucza: docs.cloud.google.com/gemini-enterprise-agent-platform/models/start/express-mode/overview. Cytat: „Use the global endpoint without a project ID or location, and pass your API key in the x-goog-api-key HTTP header (or the key query parameter).”
+- Szybki start z kluczem API (przykład REST, `generateContent`, bez projektu w adresie): docs.cloud.google.com/gemini-enterprise-agent-platform/models/start?usertype=apikey; zwykły (nie express) klucz Google Cloud: …/models/start/api-keys?usertype=standard (projekt z włączonymi rozliczeniami i włączonym „Agent Platform API”).
+- Karta modelu `gemini-4-argon`: …/models/gemini/4-argon (identyfikator `gemini-4-argon`, GA od 13.10.2026, structured output i myślenie obsługiwane, region `global`) i przewodnik …/models/guides/gemini-4-argon (limit jednego żądania nie-strumieniowego: 32 768 tokenów wyjścia razem z myśleniem; domyślne myślenie MEDIUM).
+- Odpowiedź i `usageMetadata`: …/reference/rest/v1/GenerateContentResponse (`promptTokenCount`, `candidatesTokenCount`, `thoughtsTokenCount`, `toolUsePromptTokenCount`; suma całkowita = ich suma); format JSON ze schematem: …/reference/rest/v1/GenerationConfig.
+- Cennik: cloud.google.com/vertex-ai/generative-ai/pricing (przekierowanie na …/gemini-enterprise-agent-platform/generative-ai/pricing).
+
+**Adres i uwierzytelnienie.** `POST https://aiplatform.googleapis.com/v1/publishers/google/models/<model>:generateContent`, nagłówek `x-goog-api-key` (klucz nigdy w adresie, więc nie trafia do logów proxy). **Identyfikator projektu nie jest potrzebny** (ani w repozytorium, ani w zmiennej repozytorium). Treść: `contents`, `systemInstruction`, `generationConfig` z `responseMimeType: application/json`, `responseJsonSchema` (schemat z kontraktu) i `maxOutputTokens` (16 000, poniżej limitu 32 768). Odpowiedź: tekst z `candidates[0].content.parts[]` (części `thought` pomijane), status z `finishReason`.
+
+**Modele na Vertex (te same identyfikatory co w Gemini API):** `gemini-4-argon` (karta modelu), `gemini-3.1-pro-preview` (cennik i lista modeli express), `gemini-3.8-flash` (cennik i przykład w szybkim starcie express). Kod listy modeli w skrypcie i workflowie bez zmian.
+
+**Ceny Vertex (USD za 1 mln tokenów, standard, region global; wyjście = odpowiedź + myślenie):**
+- Argon: **cena listowa 4 / 20**; do 30.11.2026 strona podaje 2 / 10 jako promocję „przez zwrot 50% w kredytach od wydatku netto” (nie jest jasne, czy zwrot obejmuje kredyty próbne). Twardy limit liczymy **od ceny listowej** (bezpiecznie), a `koszt.json` ma dodatkowo `koszt_po_promocji_usd`.
+- 3.1 Pro Preview: 2 / 12 (≤ 200 tys. kontekstu). 3.8 Flash: 0,75 / 3,75 do 31.12.2026, od 1.01.2027 1,5 / 7,5.
+- Szacunek (założenia z pkt 4, NIE pomiar): pilotaż `pull_up` (13 ćwiczeń) na Argon ≈ **3,7 USD wg ceny listowej** (≈ 1,9 po promocji) — **domyślny limit 3 USD zatrzymałby go przed końcem; dla Argon ustaw `limit_usd` = 5**; 3.1 Pro ≈ 2,2; 3.8 Flash ≈ 0,7. Całość (≈ 620 ćwiczeń): Argon ≈ 178 (≈ 89 po promocji), 3.1 Pro ≈ 104, Flash ≈ 33.
+
+**Przebieg w trybie vertex.** (1) „Próba połączenia”: pierwsze, najtańsze wywołanie (kilkadziesiąt tokenów wejścia, `maxOutputTokens` 1024, trywialny schemat) tym samym kształtem żądania; jej koszt wlicza się w limit. (2) Pętla jak dotąd. **401 / 402 / 403 / 429: czytelny komunikat (co sprawdzić) i stop całego przebiegu bez ponowień, kod wyjścia 5**; 5xx ponawiane 2 razy; 400 kończy tylko dane ćwiczenie. Klucz: wyłącznie z env, nagłówek; każdy log, błąd i plik wyniku przechodzi przez `maskuj()` (klucz dosłowny i wzorzec `AIza…`).
+
+**Czego nie da się potwierdzić bez prawdziwego klucza (rejestr ryzyk pilotażu; rozstrzyga próba połączenia i pierwszy przebieg):**
+1. Czy klucz właściciela jest kluczem „express mode” czy zwykłym kluczem Google Cloud. Lista modeli express (przeczytana 26.10.2026) zawiera `gemini-3.1-pro-preview`, **nie zawiera `gemini-4-argon`** ani `gemini-3.8-flash`; dla zwykłego klucza projektu z rozliczeniami takiego ograniczenia dokumentacja nie podaje. Jeśli próba z Argon da 403/404, wypróbować `gemini-3.1-pro-preview`.
+2. Zwykły klucz wymaga włączonego „Agent Platform API” w projekcie (a dokumentacja wspomina o roli `roles/aiplatform.user` dla projektu) — czy i jak rola dotyczy samego klucza, nie jest opisane.
+3. Czy `responseJsonSchema` przyjmuje nasze schematy (dokumentacja oznacza je jako przestarzałe na rzecz `responseFormat[]`, ale przewodnik Argon nadal używa starego pola); przy 400 komunikat API trafi do logu.
+4. Czy zwrot promocji 50% obejmuje kredyty próbne; czy limit dzienny/przydział dla Argon (strona modelu go nie podaje) nie zatrzyma pilotażu kodem 429.
