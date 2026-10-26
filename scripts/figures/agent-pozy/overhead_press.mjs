@@ -67,8 +67,8 @@ function pushPress(cw, o) {
 /** Pike push-up: stopy płasko na podłodze (kostka A), nogi proste (80 cm miednica–kostka), dłonie na podłodze w x = hx; łokieć θ(u) wyznacza odległość bark–dłoń, kierunek φ barku względem dłoni; miednica = przecięcie okręgów (A, 80) i (bark, tułów 50), wyżej. */
 function pike(cw, o = {}) {
   const A = [0, BODY().ankleH]; const hx = o.hx ?? 66; const hy = 2; const T = BODY().trunk; const Lg = 82.2;
-  const thTop = o.thTop ?? 15, thDol = o.thDol ?? 115, thPlytko = o.thPlytko ?? 45; const phiTop = o.phiTop ?? 100, phiDol = o.phiDol ?? 90;
-  const fr = (u, zle) => { const th = lerp(thTop, zle ? thPlytko : thDol, u); const phi = lerp(phiTop, zle ? lerp(phiTop, phiDol, 0.4) : phiDol, u);
+  const thTop = o.thTop ?? 15, thDol = o.thDol ?? 115, thPlytko = o.thPlytko ?? 62; const phiTop = o.phiTop ?? 100, phiDol = o.phiDol ?? 90;
+  const fr = (u, zle) => { const th = lerp(thTop, zle ? thPlytko : thDol, u); const phi = lerp(phiTop, zle ? lerp(phiTop, phiDol, 0.8) : phiDol, u);
     const d = Math.sqrt(Math.max(1, dChwytu(th) ** 2)); const S = [hx + d * Math.cos(phi * R), hy + d * Math.sin(phi * R)];
     const dx = S[0] - A[0], dy = S[1] - A[1]; const D = Math.hypot(dx, dy); const a = (Lg * Lg - T * T + D * D) / (2 * D); const h = Math.sqrt(Math.max(0, Lg * Lg - a * a));
     const c = [A[0] + a * dx / D, A[1] + a * dy / D]; const c1 = [c[0] - h * dy / D, c[1] + h * dx / D], c2 = [c[0] + h * dy / D, c[1] - h * dx / D]; const P = c1[1] > c2[1] ? c1 : c2;
@@ -79,7 +79,6 @@ function pike(cw, o = {}) {
 }
 
 export const WYJATKI = {
-  'Single-Arm Linear Jammer': 'jedna sztanga (gryf landmine) trzymana jedną ręką: środek sztangi na podążającym chwycie liczony jest ze średniej obu dłoni (wolna dłoń musiałaby podążać za gryfem), a wymagane są jednocześnie „landmine” i „sztanga” — poza zakresem kontraktu (jak Meadows Row)',
   'Bradford Press': 'OTWARTE — brak źródła ruchu (brak wskazówek, zestaw „open”; figury-sens.json → overhead_press.otwarte); wstrzymane do czasu źródła',
   'Handstand Push Up': 'OTWARTE — brak źródła ruchu (brak wskazówek, zestaw „open”, nie badane; figury-sens.json → overhead_press.otwarte); wstrzymane do czasu źródła',
 };
@@ -109,6 +108,7 @@ export function generuj() {
   G['Push Press - Behind the Neck'] = () => pushPress('Push Press - Behind the Neck', { dod: [RACK], sprzet: [B], zr: 46, x0: -13, dy0: 8, xTop: 8, ys: 40 });
   G['Landmine Press'] = () => landmine('Landmine Press', {});
   G['Landmine Linear Jammer'] = () => landmine('Landmine Linear Jammer', { dip: 14, lean: 12 });
+  G['Single-Arm Linear Jammer'] = () => landmine('Single-Arm Linear Jammer', { jedna: 'R', dip: 14, lean: 12, h0x: 22, h0y: -4 });
   G['Pike Push Up'] = () => pike('Pike Push Up');
   return G;
 }

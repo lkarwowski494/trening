@@ -10171,6 +10171,372 @@
     }
    ],
    "bledy": []
+  },
+  "Kneeling Cable Triceps Extension": {
+   "kontrakt": "figury-v2/poza@2",
+   "rodzina": "triceps",
+   "cwiczenie": "Kneeling Cable Triceps Extension",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -130,
+     "x1": 130
+    },
+    {
+     "rodzaj": "wyciag",
+     "x": -75,
+     "y": 155,
+     "z": 0,
+     "h": 230,
+     "chwyt": "lina"
+    },
+    {
+     "rodzaj": "lawka",
+     "x": 130,
+     "top": 43,
+     "kat": 0,
+     "dlugosc": 75,
+     "siedzisko": 40
+    }
+   ],
+   "klatki": [
+    {
+     "u": 0,
+     "miednica": [
+      0,
+      50,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -43,
+        20,
+        10
+       ],
+       "podbicie": -75,
+       "rotacjaStopy": 0,
+       "biegunKolana": [
+        1,
+        0,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -43,
+        20,
+        -10
+       ],
+       "podbicie": -75,
+       "rotacjaStopy": 0,
+       "biegunKolana": [
+        1,
+        0,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -22.2,
+        118.2,
+        8
+       ],
+       "biegunLokcia": [
+        0.62448163214409,
+        0.756100616567847,
+        0.19579210591945495
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -22.2,
+        118.2,
+        -8
+       ],
+       "biegunLokcia": [
+        0.62448163214409,
+        0.756100616567847,
+        -0.19579210591945495
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.25,
+     "miednica": [
+      0,
+      50,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -43,
+        20,
+        10
+       ],
+       "podbicie": -75,
+       "rotacjaStopy": 0,
+       "biegunKolana": [
+        1,
+        0,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -43,
+        20,
+        -10
+       ],
+       "podbicie": -75,
+       "rotacjaStopy": 0,
+       "biegunKolana": [
+        1,
+        0,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -24.5,
+        133.7,
+        8
+       ],
+       "biegunLokcia": [
+        0.7890752917937439,
+        0.5687010319960148,
+        0.23224840168940997
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -24.5,
+        133.7,
+        -8
+       ],
+       "biegunLokcia": [
+        0.7890752917937439,
+        0.5687010319960148,
+        -0.23224840168940997
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.5,
+     "miednica": [
+      0,
+      50,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -43,
+        20,
+        10
+       ],
+       "podbicie": -75,
+       "rotacjaStopy": 0,
+       "biegunKolana": [
+        1,
+        0,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -43,
+        20,
+        -10
+       ],
+       "podbicie": -75,
+       "rotacjaStopy": 0,
+       "biegunKolana": [
+        1,
+        0,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -18.9,
+        148.4,
+        8
+       ],
+       "biegunLokcia": [
+        0.8878431865530184,
+        0.34243774184285586,
+        0.3073611378378006
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -18.9,
+        148.4,
+        -8
+       ],
+       "biegunLokcia": [
+        0.8878431865530184,
+        0.34243774184285586,
+        -0.3073611378378006
+       ]
+      }
+     }
+    },
+    {
+     "u": 0.75,
+     "miednica": [
+      0,
+      50,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -43,
+        20,
+        10
+       ],
+       "podbicie": -75,
+       "rotacjaStopy": 0,
+       "biegunKolana": [
+        1,
+        0,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -43,
+        20,
+        -10
+       ],
+       "podbicie": -75,
+       "rotacjaStopy": 0,
+       "biegunKolana": [
+        1,
+        0,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        -6.8,
+        158.5,
+        8
+       ],
+       "biegunLokcia": [
+        0.8692366507258399,
+        0.09621864481768384,
+        0.4849429012001023
+       ]
+      },
+      "L": {
+       "chwyt": [
+        -6.8,
+        158.5,
+        -8
+       ],
+       "biegunLokcia": [
+        0.8692366507258399,
+        0.09621864481768384,
+        -0.4849429012001023
+       ]
+      }
+     }
+    },
+    {
+     "u": 1,
+     "miednica": [
+      0,
+      50,
+      0
+     ],
+     "pochylenieTulowia": 0,
+     "zgiecieKregoslupa": 0,
+     "pochylenieGlowy": 0,
+     "nogi": {
+      "R": {
+       "kostka": [
+        -43,
+        20,
+        10
+       ],
+       "podbicie": -75,
+       "rotacjaStopy": 0,
+       "biegunKolana": [
+        1,
+        0,
+        0.05
+       ]
+      },
+      "L": {
+       "kostka": [
+        -43,
+        20,
+        -10
+       ],
+       "podbicie": -75,
+       "rotacjaStopy": 0,
+       "biegunKolana": [
+        1,
+        0,
+        -0.05
+       ]
+      }
+     },
+     "rece": {
+      "R": {
+       "chwyt": [
+        8.6,
+        161.4,
+        8
+       ],
+       "biegunLokcia": [
+        0.36157637725744374,
+        -0.06041853188686021,
+        0.9303827838121356
+       ]
+      },
+      "L": {
+       "chwyt": [
+        8.6,
+        161.4,
+        -8
+       ],
+       "biegunLokcia": [
+        0.36157637725744374,
+        -0.06041853188686021,
+        -0.9303827838121356
+       ]
+      }
+     }
+    }
+   ],
+   "bledy": []
   }
  }
 }

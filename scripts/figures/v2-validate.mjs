@@ -9,7 +9,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { loadV2 } from './v2-build.mjs';
-import { sprawdzSens, izometryczne, grupaBledu, wczytajSens } from './v2-sens.mjs';
+import { sprawdzSens, izometryczne, bezBramkiRuchu, grupaBledu, wczytajSens } from './v2-sens.mjs';
 import { sprawdzJakosc, wczytajTeksty, GRUPY_POSTAWY, wierszeWJednejLinii } from './v2-jakosc.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -43,7 +43,7 @@ export function opisKontraktu(rodzina) { return silnik().v2.describeContract(rod
 export function waliduj(poza, { rodzina, cwiczenie, root = ROOT }) {
   /* błędy postawy (grupa inna niż „zakres”): pierwsza klatka błędu NIE musi mieć delty zerowej — błąd jest widoczny w każdej klatce (v2-jakosc: blad_widoczny_stale) */
   const postural = new Set(((poza && poza.bledy) || []).map((b) => b.cue).filter((c) => { const g = grupaBledu(rodzina, c, root); return g && GRUPY_POSTAWY.includes(g); }));
-  const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root), isometric: izometryczne(rodzina, cwiczenie, root) }).filter((b) => !(b.kod === 'blad-start' && [...postural].some((c) => b.szczegol.includes(`„${c}”`))));
+  const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root), isometric: izometryczne(rodzina, cwiczenie, root) || bezBramkiRuchu(cwiczenie, root) }).filter((b) => !(b.kod === 'blad-start' && [...postural].some((c) => b.szczegol.includes(`„${c}”`))));
   const rigowa = silnik().v2.FAMILIES.find((f) => f.id === rodzina)?.status === 'ready' && !fs.existsSync(path.join(ROOT, POSES_DIR, `${rodzina}.json`)); /* rodziny gotowe z rigu (kod) sprawdza sens-gotowe.mjs na klatkach rigu; rodzina gotowa z DANYCH (poses/<rodzina>.json) ma sens i wymagany sprzęt sprawdzane tu */
   /* wymagany sprzęt ćwiczenia z katalogu (docs/54): poza musi go zawierać (np. wyciąg z bloczkiem wysokim) */
   /* rodziny gotowe z rigu w kodzie (przykłady few-shot z rigów, np. ławka bez wpisu w gearOf) pomijane — wymóg obejmuje pozy generowane */

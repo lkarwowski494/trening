@@ -7597,6 +7597,11 @@
     }
   },
   "_opis_r3": "RUNDA 3 (badacz, 26.10.2026) — JSON Merge Patch (RFC 7386) do reguly-sensu-r2.json: obiekty łączone rekurencyjnie, tablice i wartości zastępowane w całości, null = usuń klucz. r2 + ten plik = r3. Powód: naruszenia 42/87 gotowych figur (scratchpad/naruszenia-gotowych.json). Zmiany: (1) RDL — próg kolana i miara zawiasu ze źródeł (pomiar Lee i in. 2018); (2) dzień dobry — głębokość jako osiągnięte pochylenie 45°–95° (NASM + ExRx); (3) klucz izometryczne; (4) pompka — głębokość i łokcie; (5) BŁĄD BADACZA w definicji kolano_w_linii_stopy (kąt daje fałszywe naruszenia przy stopach szerzej niż biodra) — nowa definicja przez odległość kolana od osi stopy.",
+  "bez_bramki_ruchu": {
+    "_opis": "Ćwiczenia, w których ruch to czysty obrót przedramienia (obrotPrzedramienia w poza@2) i nie przemieszcza żadnego punktu szkieletu o ≥ 8 cm: bramka ruchu (CONTRACT.minMotionCm) ich nie dotyczy, ale poza NIE jest statyczna (klatki różnią się obrotem; klatki_rozne i reguły sensu działają normalnie). Decyzja właściciela 26.10.2026.",
+    "Dumbbell Lying Pronation": "pronacja: obrót przedramienia przy łokciu na udzie, hantel = punkt w dłoni na osi obrotu",
+    "Dumbbell Lying Supination": "supinacja: obrót przedramienia przy łokciu na udzie, hantel = punkt w dłoni na osi obrotu"
+  },
   "izometryczne": {
     "_opis": "Ćwiczenia, w których poprawna poza jest nieruchoma (utrzymanie pozycji): bramka ruchu (CONTRACT.minMotionCm) ich nie dotyczy, reguły „w ruchu” liczy się na pozie stałej. Kryterium: opis ćwiczenia/wskazówki mówią o utrzymaniu pozycji, nie o ruchu. Źródło przy każdym.",
     "Plank": "plank.move („trzymaj ciało w jednej linii”): ACE #32, NASM Plank (cues.json); NSCA Basics s. 46–47 (deska — utrzymanie pozycji)",

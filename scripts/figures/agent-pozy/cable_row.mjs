@@ -40,7 +40,6 @@ function maszyna(cw, o) {
 
 export const WYJATKI = {
   'Sled Row': 'OTWARTE — brak źródła ruchu (brak wskazówek, zestaw „open”; sanie; figury-sens.json → cable_row.otwarte); wstrzymane do czasu źródła',
-  'Kneeling High Pulley Row': 'klęk: goleń leży poziomo, a stopa ma palce skierowane do tyłu — model stopy w kontrakcie nie ma palców skierowanych do tyłu (kąt kostki poza zakresem −60…37°); klęk bez wsparcia stopy na podłodze nie da się narysować',
 };
 export const PRZYBLIZENIA = {
   'Machine Row': 'przybliżenie: dźwignia obrotowa jako schemat (oś przed osobą, dłonie na łuku), bez poduszki piersiowej; siedzisko jako ławka',
@@ -57,6 +56,8 @@ export function generuj() {
   G['Standing Cable Row'] = () => cw_('Standing Cable Row', { sprzet: [wyc({ chwyt: 'drazek', x: 120, y: 100 })], ruch: { zr: 11, dy0: -3, obrot: 0 } });
   G['Single Arm Cable Row'] = () => cw_('Single Arm Cable Row', { sprzet: [wyc({ chwyt: 'uchwyt', x: 120, y: 100, trzyma: 'R' })], ruch: { zr: 20, dy0: -3, jedna: 'R', obrot: 0 } });
   G['Face Pull'] = () => cw_('Face Pull', { sprzet: [wyc({ chwyt: 'lina', x: 110, y: 150 })], ruch: { zr: 31, dy0: 8, dy1: 8, x1: 12, pole: [-1.3, 0, 1], obrot: 0 } });
+  const klek = { m: [0, 50], p: 0, nogi: { R: noga3([-43, 20, 10], [1, 0, 0.05], { pod: -75, rot: 0 }), L: noga3([-43, 20, -10], [1, 0, -0.05], { pod: -75, rot: 0 }) } };
+  G['Kneeling High Pulley Row'] = () => cw_('Kneeling High Pulley Row', { tulow: klek, sprzet: [wyc({ chwyt: 'drazek', x: 120, y: 190 })], ruch: { zr: 11, dy0: 4, dy1: -26, x1: 14, obrot: 0 } });
   G['Machine Row'] = () => maszyna('Machine Row', { h0: [63.2, -2.5], h1: [12, -28], r: 70, zr: 19 });
   G['Leverage High Row'] = () => maszyna('Leverage High Row', { h0: [62, 13], h1: [16, -22], r: 70, zr: 19 });
   return G;

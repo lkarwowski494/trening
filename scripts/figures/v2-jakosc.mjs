@@ -108,7 +108,7 @@ export function receWzdluzCiala(v2, poza) {
 /** 6. Kolejne klatki kluczowe różnią się (≥ rozneKlatkiCm w którymś punkcie); ćwiczenie izometryczne ma najwyżej statyczneMaxKlatek klatek. */
 export function klatkiRozne(v2, poza, izometryczne) {
   const o = []; if (izometryczne) { if (poza.klatki.length > PROGI.statyczneMaxKlatek) o.push(`ćwiczenie izometryczne ma ${poza.klatki.length} klatek, a ma najwyżej ${PROGI.statyczneMaxKlatek} (poza statyczna: jedna klatka zamiast kopii)`); return o; }
-  for (let i = 1; i < poza.klatki.length; i++) { const d = maxPrzem(pts(v2.keyframeFrame(poza, poza.klatki[i - 1].u)), pts(v2.keyframeFrame(poza, poza.klatki[i].u))); if (d < PROGI.rozneKlatkiCm) o.push(`klatki ${i - 1} i ${i} (u = ${poza.klatki[i - 1].u} i ${poza.klatki[i].u}) różnią się tylko o ${f1(d)} cm (≥ ${PROGI.rozneKlatkiCm}) — zbędna kopia klatki albo brak ruchu`); }
+  for (let i = 1; i < poza.klatki.length; i++) { const d = maxPrzem(pts(v2.keyframeFrame(poza, poza.klatki[i - 1].u)), pts(v2.keyframeFrame(poza, poza.klatki[i].u))); const dObr = Math.max(...['R', 'L'].map((sd) => Math.abs((poza.klatki[i].rece?.[sd]?.obrotPrzedramienia ?? 0) - (poza.klatki[i - 1].rece?.[sd]?.obrotPrzedramienia ?? 0)))); /* czysty obrót przedramienia (pronacja/supinacja) nie przemieszcza punktów szkieletu, ale jest widocznym ruchem */ if (d < PROGI.rozneKlatkiCm && dObr < 5) o.push(`klatki ${i - 1} i ${i} (u = ${poza.klatki[i - 1].u} i ${poza.klatki[i].u}) różnią się tylko o ${f1(d)} cm (≥ ${PROGI.rozneKlatkiCm}) — zbędna kopia klatki albo brak ruchu`); }
   return o;
 }
 /** 7. Sprzęt rozpoznawczy obecny w pozie: ćwiczenia „Suspended …” muszą mieć w sprzecie zawieszenie (taśmy), inaczej wyjątek. */

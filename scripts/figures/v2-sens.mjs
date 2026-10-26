@@ -35,6 +35,8 @@ export function normalizuj(poza, rodzina, cwiczenie, root = ROOT) {
   return q;
 }
 export const izometryczne = (rodzina, cwiczenie, root = ROOT) => { const d = wczytajSens(root); return !!(d.izometryczne?.[cwiczenie] || d.rodziny?.[rodzina]?.izometryczne?.[cwiczenie] || d.izometryczne_kandydaci?.lista?.includes(cwiczenie)); }; /* lista badacza + rozciągania statyczne (decyzja 26.10.2026: też statyczne, jeśli opis to utrzymanie pozycji) */
+/** Ćwiczenia, w których ruch to czysty obrót przedramienia: bramka „ruch ≥ 8 cm” je pomija (poza nie jest statyczna). */
+export const bezBramkiRuchu = (cwiczenie, root = ROOT) => cwiczenie !== '_opis' && !!wczytajSens(root).bez_bramki_ruchu?.[cwiczenie];
 export const otwarteDla = (rodzina, cwiczenie, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.otwarte?.[cwiczenie] ?? null;
 /** Identyfikatory wskazówek ćwiczenia: własne (lib/cues/data.json: setup/move/tips/mistakes) albo zestaw ogólny (cue-sets.json: ok). */
 export function wskazowkiCwiczenia(cwiczenie, root = ROOT) {

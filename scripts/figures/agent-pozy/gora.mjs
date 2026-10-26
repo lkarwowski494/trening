@@ -88,6 +88,17 @@ export function naLawce(kat, top = 43, { zr = 24 } = {}) {
   const hip = v2().benchHip(kat, top); const m = [hip[0], hip[1]]; const p = kat - 90;
   return { m, p, glowa: p, nogi: nogiLezac(m, { dx: v2().BENCH.footBack, zr }) };
 }
+
+/** Leżenie przodem na ławce skośnej (kat oparcia): ta sama linia ciała co leżenie tyłem, obrotTulowia 180 (klatka ku oparciu; strona R leży po −z), nogi za siedziskiem
+ * (biodro nad siedziskiem, uda na siedzisku, kolana poza jego końcem, golenie w dół, stopy na podłodze), oparcie skrócone do dl (barki poza jego górnym końcem — ręce zwisają przed ławką).
+ * Zwraca { m, p, ext, nogi, lawka, S(strona) — bark w świecie }. */
+export function lezyPrzodem(kat = 45, { top = 43, dl = 38, zr = 10, kolDx, pole = [1, 1, 0], uniesienie, sedzisko = 20 } = {}) {
+  const B = naLawce(kat, top, { zr: 24 }); const nk = [Math.sin(kat * R), Math.cos(kat * R)]; const m = [B.m[0] + nk[0] * (uniesienie ?? 2.6), B.m[1] + nk[1] * (uniesienie ?? 2.6)]; const p = B.p; const kolX = m[0] + (kolDx ?? 52);
+  const nog = (s) => ({ k: [kolX, BODY().ankleH, -POL(s) * zr], pod: 0, rot: 0, pole });
+  const S = (sd) => bark(m, p, -POL(sd));
+  return { m, p, glowa: p, ext: { obrotTulowia: 180 }, nogi: { R: nog('R'), L: nog('L') }, lawka: { rodzaj: 'lawka', x: 0, top, kat, dlugosc: dl, siedzisko: sedzisko }, S };
+}
+
 /** Siedzenie na płaskim siedzisku (ławka płaska / skrzynia) o wysokości siedziska top, miednica w x = mx; nogi w kolanach pod kątem prostym, stopy na podłodze. */
 export function naSiedzisku(top = 43, mx = 12, { zr = 20 } = {}) {
   const y = top + 9.5 + 0.8; const m = [mx, y]; return { m, p: 0, glowa: 0, nogi: nogiSiedz(m, { zr, kolanoDx: 42 }) };

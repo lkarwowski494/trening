@@ -1,6 +1,7 @@
 // Generator póz rodziny rotator_cuff po stronie agenta (26.10.2026): rotacje zewnętrzne i wewnętrzne barku (łokieć przy boku zgięty 90°, przedramię obraca się wokół pionowego ramienia), przeciąganie gumy.
 // Rotacja: ramię pionowo przy tułowiu (łokieć nieruchomy względem barku), przedramię poziomo, kierunek przedramienia (kąt alfa od przodu: + na zewnątrz) przechodzi od ukośnie do środka do ukośnie na zewnątrz.
 // Błąd rot.mis.elbowAway: łokieć odchodzi od tułowia (ramię odwodzone do 35°) wraz z przedramieniem.
+import { lezyPrzodem } from './gora.mjs';
 import { v2, BODY, R, r1, lerp, Y_STOJ, SPRZET, poza, nogiStoj, buduj, rekaProsta, wolna, wyc, U9, U12 } from './gora.mjs';
 
 export const RODZINA = 'rotator_cuff';
@@ -23,9 +24,18 @@ function rotacja(cw, o) {
   return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-80, 130), ...sprz], fr, us: U5, blad: o.blad ? { cue: 'rot.mis.elbowAway', postawa: false, znacznik: 'bar' } : undefined });
 }
 
+
+/** Odwodzenie ramion (reverse fly) leżąc przodem na ławce skośnej: ramiona od zwisu do poziomu w bok, łokieć stały lekko zgięty, rotacja zewnętrzna przedramienia rośnie w górę ruchu. */
+function reverseFlyER(cw, o) {
+  const L = lezyPrzodem(45, { dl: 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0] }); const reach = 61;
+  const fr = (u) => { const al = (10 + 80 * u) * R; const rece = {}; for (const sd of ['R', 'L']) { const sw = -POL(sd); const S = L.S(sd);
+      rece[sd] = { g: [S[0], S[1] - reach * Math.cos(al), sw * (19 + reach * Math.sin(al))], pole: [0.3, -1, 0], obrot: -60 * u }; }
+    return poza({ u, tulow: { m: L.m, p: L.p, glowa: L.p, ext: L.ext }, nogi: L.nogi, rece }); };
+  return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-110, 130), L.lawka, ...o.sprzet], fr, us: U9 });
+}
+
 export const WYJATKI = {
   'Cuban Press': 'OTWARTE — brak źródła ruchu (zestaw „open”; figury-sens.json → rotator_cuff.otwarte); wstrzymane do czasu źródła',
-  'Reverse Flyes With External Rotation': 'ćwiczenie wykonywane leżąc przodem na pochyłej ławce (odwodzenie ramion z rotacją zewnętrzną) — wymaga obrotu tułowia o 180° i nóg poza siedziskiem; poza zakresem kontraktu (jak Spider Curl)',
 };
 export const PRZYBLIZENIA = {
   'Cable Internal Rotation': 'przybliżenie: wyciąg po stronie roboczej (zewnętrznej), dłoń rusza do środka; druga ręka zwisa przy boku',
@@ -43,5 +53,7 @@ export function generuj() {
   /* przeciąganie gumy: ręce wyprostowane przed sobą na wysokości barków, rozchodzą się na boki */
   G['Band Pull Apart'] = () => { const fr = (u) => { const sp = rekaProsta(90, lerp(8, 100, u), { flex: 14, ku: [0, -1, 0] }); return poza({ u, tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece: { R: sp, L: sp } }); };
     return buduj({ rodzina: RODZINA, cw: 'Band Pull Apart', sprzet: [SPRZET.podloga(-80, 130), { rodzaj: 'guma', mocowanie: 'dlonie' }], fr, us: U12 }); };
+  G['Reverse Flyes With External Rotation'] = () => reverseFlyER('Reverse Flyes With External Rotation', { sprzet: [SPRZET.hantle()] });
   return G;
 }
+export const WYJATKI_OPISU = { 'rot.mis.elbowAway': 'wskazówka „łokieć odchodzi od tułowia” ma wpis w cue-sets.json bez tekstu w lib/cues/text/*.json; błąd nie jest rysowany do czasu tekstu (badacz pisze, tłumacz przekłada)' };

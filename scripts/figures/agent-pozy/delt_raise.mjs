@@ -1,5 +1,6 @@
 // Generator póz rodziny delt_raise po stronie agenta (26.10.2026): unoszenie ramion bokiem, przodem, w skaptacji, tyłem (pochylony), w „Y”, wiosłowanie pionowe, halo.
 // Ramiona prawie proste (lokiec_staly: stałe lekkie zgięcie łokcia), kierunek ramienia = elewacja (od pionu) i płaszczyzna (0 = przód, 90 = bok); błędów rysowanych brak (jedyny błąd katalogu to szarpanie = tempo).
+import { lezyPrzodem } from './gora.mjs';
 import { v2, BODY, R, r1, lerp, Y_STOJ, SPRZET, poza, nogiStoj, naLawce, buduj, bark, ramieFK, kier, rekaProsta, noga3, wyc, U9, U12, wolna } from './gora.mjs';
 
 export const RODZINA = 'delt_raise';
@@ -24,6 +25,16 @@ const ruchJ = (th, phi, o = {}) => (u) => ({ R: RACZ(lerp(th[0], th[1], u), lerp
 /** Wiosłowanie pionowe: chwyt (g) i biegun łokcia (łokcie na zewnątrz i w górę) z funkcji wysokości; zwraca { R, L } dla uchwytów o rozstawie zr i głębokości x. */
 const rzad = (zr, x, y0, y1, o = {}) => (u) => { const y = lerp(y0, y1, u); const sp = (s) => ({ g: [x, y, POL(s) * zr], pole: [-0.15, 0.45, POL(s)], obrot: o.obrot }); return o.jedna ? { R: sp('R'), L: WOLNA() } : { R: sp('R'), L: sp('L') }; };
 
+
+/** Unoszenie ramion przodem leżąc przodem na ławce skośnej: ramiona od zwisu pionowo w dół do poziomu przed sobą (w stronę głowy), łokieć stały lekko zgięty. */
+function przodemLezac(cw, o) {
+  const L = lezyPrzodem(o.kat ?? 45, { dl: 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0] }); const zr = o.zr ?? 22; const re = Math.sqrt(62 ** 2 - (19 - zr) ** 2);
+  const fr = (u) => { const th = lerp(0, 90, u) * R; const rece = {}; for (const sd of ['R', 'L']) { const sw = -POL(sd); const S = L.S(sd);
+      rece[sd] = { g: [S[0] - re * Math.sin(th), S[1] - re * Math.cos(th), sw * zr], pole: [0.3, -1, 0], obrot: 0 }; }
+    return poza({ u, tulow: { m: L.m, p: L.p, glowa: L.p, ext: L.ext }, nogi: L.nogi, rece }); };
+  return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-110, 130), L.lawka, ...o.sprzet], fr, us: o.us ?? U9 });
+}
+
 export const WYJATKI = {
   'One-Arm Incline Lateral Raise': 'leżenie bokiem na pochyłej ławce (ramię unoszone ku górze względem leżącego) wymaga obrotu tułowia wokół osi długiej (roll 90°) i ułożenia nóg poza siedziskiem; ruch ramienia w płaszczyźnie względem ławki, nie względem podłogi — poza zakresem kontraktu bez luzowania zakresów stawów',
   'Kettlebell Halo': 'tor kettlebella wokół głowy przy regule „ciężar ≤ 30 cm od głowy” (ciezar_blisko_glowy) wymusza przenikanie głowy lub dzwonu przez ramię drugiej ręki (przeniesienie ręki przed twarzą): model ramienia ze stałymi kośćmi, bez ruchu łopatki i obrotu barku wokół osi ramienia, nie daje pozycji bez przenikania (kilka prób: promień 28–31 cm, wysokość od brody do czoła, biegun łokcia od głowy)',
@@ -32,9 +43,7 @@ export const WYJATKI = {
   'Smith Incline Shoulder Raise': 'OTWARTE — brak źródła ruchu (zestaw „open”; figury-sens.json → delt_raise.otwarte); wstrzymane do czasu źródła',
   'Sled Reverse Flye': 'OTWARTE — brak źródła ruchu (zestaw „open”; figury-sens.json → delt_raise.otwarte) i sanie jako sprzęt; wstrzymane do czasu źródła',
   'Kettlebell Halo with Overhead Extension': 'OTWARTE — wskazówka halo.close przeczy części z wyprostem nad głową (ciężar odchodzi od głowy), potrzebne źródło na odmianę (figury-sens.json → delt_raise.otwarte)',
-  'Front Incline Dumbbell Raise': 'leżenie przodem na pochyłej ławce (klatka na oparciu, ręce przed ławką) wymaga obrotu tułowia o 180° i nóg poza siedziskiem — poza zakresem kontraktu (jak Spider Curl: biodro poza −17°, uda w linii tułowia przechodzą przez siedzisko)',
   'Dumbbell Lying One-Arm Rear Lateral Raise': 'leżenie na boku (lub przodem) na ławce z ramieniem unoszonym ku górze względem leżącego wymaga obrotu tułowia wokół osi długiej i ułożenia nóg poza siedziskiem — nie do narysowania bez rozszerzenia kontraktu',
-  'Smith Machine One-Arm Upright Row': 'jednorącz na suwnicy Smitha: środek sztangi na prowadnicy liczony jest ze średniej chwytów obu rąk (props sztangi), więc wolna dłoń musiałaby podążać za sztangą — model nie rozróżnia ręki trzymającej przy podazaZaChwytem',
 };
 export const PRZYBLIZENIA = {
   'Cable Seated Lateral Raise': 'przybliżenie: ławka płaska jako siedzisko, dwa niskie wyciągi po bokach; ręce unoszone symetrycznie',
@@ -69,6 +78,7 @@ export function generuj() {
   G['Dumbbell One-Arm Upright Row'] = () => stoj('Dumbbell One-Arm Upright Row', { sprzet: sprzJ([H], 'R'), rece: rzad(14, 18, ROW0, ROW1, { obrot: -70, jedna: true }) });
   G['Upright Row (linki)'] = () => stoj('Upright Row (linki)', { sprzet: [wyc({ chwyt: 'drazek', x: 62, y: 15 })], rece: rzad(11, 17, ROW0, ROW1, { obrot: -70 }) });
   G['Band Upright Row'] = () => stoj('Band Upright Row', { sprzet: [{ rodzaj: 'guma', mocowanie: 'stopy' }], rece: rzad(11, 17, ROW0, ROW1, { obrot: -70 }) });
+  G['Smith Machine One-Arm Upright Row'] = () => stoj('Smith Machine One-Arm Upright Row', { sprzet: [{ rodzaj: 'smith', x: 17, h: 200 }, { ...SPRZET.sztanga(), trzyma: 'R' }], rece: rzad(14, 18, ROW0, ROW1, { obrot: -70, jedna: true }) });
   G['Smith Machine Upright Row'] = () => stoj('Smith Machine Upright Row', { sprzet: [{ rodzaj: 'smith', x: 17, h: 200 }, SPRZET.sztanga()], rece: rzad(11, 17, ROW0, ROW1, { obrot: -70 }) });
   /* --- halo --- */
   /* --- Car Drivers --- */
@@ -93,5 +103,6 @@ export function generuj() {
   /* --- leżąc na ławce skośnej: sztanga z nad ud nad głowę --- */
   G['Straight Raises on Incline Bench'] = () => { const B = naLawce(55, 43, { zr: 24 }); return wlasna('Straight Raises on Incline Bench', { sprzet: [{ rodzaj: 'lawka', x: 0, top: 43, kat: 55, dlugosc: 75 }, SPRZET.sztanga()], tulow: { m: B.m, p: B.p, glowa: B.glowa }, nogi: B.nogi,
     rece: (u) => { const l = rekaProsta(lerp(80, 185, u), 0, { flex: 14, pl: 1 }); return obie(l); }, us: U12 }); };
+  G['Front Incline Dumbbell Raise'] = () => przodemLezac('Front Incline Dumbbell Raise', { sprzet: [H] });
   return G;
 }

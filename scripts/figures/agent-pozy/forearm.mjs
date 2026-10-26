@@ -51,8 +51,6 @@ function obrot(cw, o) {
 }
 
 export const WYJATKI = {
-  'Dumbbell Lying Pronation': 'czysty obrót przedramienia (pronacja) przy łokciu na udzie nie przemieszcza żadnego punktu szkieletu o ≥ 8 cm (hantel = punkt w dłoni, bez dźwigni), a kontrakt wymaga ruchu ≥ 8 cm; ćwiczenie izometryczne w sensie kontraktu wymaga wpisu w data/zrodla/figury-sens.json (decyzja koordynatora/badacza); „lying” w nazwie dodatkowo niezgodne z siedzeniem',
-  'Dumbbell Lying Supination': 'jak Dumbbell Lying Pronation: czysty obrót przedramienia (supinacja) bez przemieszczenia punktu ≥ 8 cm — kontrakt wymaga ruchu albo wpisu izometrycznego (decyzja koordynatora/badacza)',
   'Plate Pinch': 'OTWARTE — brak źródła ruchu (zestaw „open”; ćwiczenie izometryczne, istota — chwyt szczypcowy — nie jest stopniem swobody poza@2; figury-sens.json → forearm.otwarte); wstrzymane do czasu źródła',
 };
 export const PRZYBLIZENIA = {
@@ -79,5 +77,8 @@ export function generuj() {
   G['Reverse Plate Curls'] = () => { const o = { f1: [2, 5], f2: [24, 128], a1: 6, zr: 21, obrot: [-70, -70], zle: [10, 36] };
     const fr = (u, zle) => { const a = ramieU(o, u, zle); return poza({ u, tulow: { m: [0, Y_STOJ], p: 0 }, nogi: nogiStoj(0, 14), rece: { R: a, L: a } }); };
     return buduj({ rodzina: RODZINA, cw: 'Reverse Plate Curls', sprzet: [SPRZET.podloga(-80, 120), { rodzaj: 'talerz' }], fr, us: U5, blad: { cue: 'curl.mis.elbows' } }); };
+  G['Dumbbell Lying Pronation'] = () => obrot('Dumbbell Lying Pronation', { obrot: [70, -70], jedna: 'R', sprzet: [SPRZET.hantle()] });
+  G['Dumbbell Lying Supination'] = () => obrot('Dumbbell Lying Supination', { obrot: [-70, 70], jedna: 'R', sprzet: [SPRZET.hantle()] });
   return G;
 }
+export const WYJATKI_OPISU = { 'wr.mis.lift': 'wskazówka „przedramię odrywa się od uda” ma wpis w cue-sets.json bez tekstu w lib/cues/text/*.json; błąd nie jest rysowany do czasu tekstu (badacz pisze, tłumacz przekłada)' };

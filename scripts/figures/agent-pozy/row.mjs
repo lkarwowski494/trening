@@ -1,6 +1,7 @@
 // Generator póz rodziny row po stronie agenta (26.10.2026): wiosłowanie w pochyleniu (sztanga, hantle, linki, Smith, T-bar), jednorącz (hantel), przodem na ławce (seal row).
 // Tułów pochylony w biodrach (40–105°, stały ±10°), plecy neutralne (zgięcie kręgosłupa ≤ 10°), kolana ugięte ≤ 40°; łokcie: z prawie prostych (≤ 20°) do ≥ 70° i za linią tułowia (≥ 5 cm).
 // Błąd mis.roundBack: zaokrąglone plecy (zgięcie kręgosłupa narasta do 30°, barki zjeżdżają w dół, ręce poruszają się razem z barkami).
+import { lezyPrzodem, U9 } from './gora.mjs';
 import { v2, BODY, R, r1, lerp, Y_STOJ, SPRZET, poza, noga3, bark, ramieFK, buduj, wyc, naLawce, kier } from './gora.mjs';
 
 export const RODZINA = 'row';
@@ -28,10 +29,28 @@ function pochylony(cw, o) {
   return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-110, 130), ...(o.dodatki ?? []), ...sprz], fr, us: o.us ?? U5, blad: o.blad ? { cue: 'mis.roundBack', postawa: false, znacznik: 'back' } : undefined });
 }
 
+
+/** Wiosłowanie przodem na ławce skośnej: ręce zwisają przed ławką, łokcie unoszą się za linię pleców (do góry i do przodu względem leżącego). */
+function przodem(cw, o) {
+  const L = lezyPrzodem(o.kat ?? 45, { dl: o.dl ?? 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0] }); const zr = o.zr ?? 24; const pole = o.pole ?? [0.7, 0.7, 0];
+  const fr = (u) => { const rece = {}; for (const s of SIDES) { const sw = -POL(s); const S = L.S(s); const gz = sw * zr;
+      const H0 = [S[0] + (o.h0?.[0] ?? 0), S[1] + (o.h0?.[1] ?? -63.2)]; const H1 = [S[0] + (o.h1?.[0] ?? 14), S[1] + (o.h1?.[1] ?? -20)];
+      rece[s] = { g: [lerp(H0[0], H1[0], u), lerp(H0[1], H1[1], u), gz], pole: [pole[0], pole[1], sw * (pole[2] ?? 0)], obrot: o.obrot ?? 0 }; }
+    return poza({ u, tulow: { m: L.m, p: L.p, glowa: L.p, ext: L.ext }, nogi: L.nogi, rece }); };
+  const sprzet = [SPRZET.podloga(-110, 130), L.lawka, ...o.sprzet]; let us = o.us ?? U5;
+  if (o.dzwignia) { /* dźwignia obrotowa (T-bar): oś P wyznaczona z dwóch skrajnych położeń dłoni (środek R i L) i długości ramienia */
+    const S0 = L.S('R'); const H0 = [S0[0] + (o.h0?.[0] ?? 0), S0[1] + (o.h0?.[1] ?? -63.2)]; const H1 = [S0[0] + (o.h1?.[0] ?? 14), S0[1] + (o.h1?.[1] ?? -28)]; const r = o.dzwignia.r;
+    const mid = [(H0[0] + H1[0]) / 2, (H0[1] + H1[1]) / 2]; const dx = H1[0] - H0[0], dy = H1[1] - H0[1]; const l = Math.hypot(dx, dy); const hh = Math.sqrt(Math.max(0, r * r - (l / 2) ** 2)); const n = [-dy / l, dx / l];
+    const kand = [[mid[0] + n[0] * hh, mid[1] + n[1] * hh], [mid[0] - n[0] * hh, mid[1] - n[1] * hh]]; const P = kand.sort((a, b) => (o.dzwignia.wybor === 'dol' ? a[1] - b[1] : b[1] - a[1]))[0];
+    const a0 = Math.atan2(H0[1] - P[1], H0[0] - P[0]); let a1 = Math.atan2(H1[1] - P[1], H1[0] - P[0]); if (Math.abs(a1 - a0) > Math.PI) a1 += a1 < a0 ? 2 * Math.PI : -2 * Math.PI;
+    us = o.us ?? U9; const fr2 = (u) => { const a = lerp(a0, a1, u); const c = [P[0] + r * Math.cos(a), P[1] + r * Math.sin(a)]; const rece = {}; for (const s of SIDES) { const sw = -POL(s); rece[s] = { g: [c[0], c[1], sw * zr], pole, obrot: 0 }; } return poza({ u, tulow: { m: L.m, p: L.p, glowa: L.p, ext: L.ext }, nogi: L.nogi, rece }); };
+    return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-110, 130), L.lawka, { rodzaj: 'dzwignia', tryb: 'obrot', x: r1(P[0]), y: r1(P[1]), z: 0, dlugosc: r1(r), punkt: 'dlonie', trzyma: 'obie' }], fr: fr2, us });
+  }
+  return buduj({ rodzina: RODZINA, cw, sprzet, fr, us });
+}
+
 export const WYJATKI = {
-  'Meadows Row': 'wymaga jednocześnie rodzaju „landmine” i „sztanga” (dwie grupy requires katalogu) przy trzymaniu jedną ręką: środek sztangi na podążającym chwycie liczony jest ze średniej obu dłoni, więc wolna dłoń musiałaby podążać za sztangą, a gryf landmine to ten sam pręt — poza zakresem kontraktu',
-  'Chest Supported Row': 'leżenie przodem na ławce skośnej (klatka na oparciu rosnącym ku głowie, głowa nad krawędzią) — oparcie ławki w kontrakcie rośnie za osobą (−x), więc potrzebny obrót tułowia o 180° i nóg poza siedziskiem (jak Spider Curl); poza zakresem kontraktu',
-  'Lying T-Bar Row': 'klatka na podporze T-bara (leżenie przodem na pochylonej podpórce) — jak Chest Supported Row wymaga obrotu tułowia o 180° albo podpórki rosnącej ku głowie; poza zakresem kontraktu',
+  'Meadows Row': 'landmine + sztanga jedną ręką jest już obsługiwane (środek gryfu na chwycie trzymającej dłoni), ale tor wiosłowania nie leży na sferze gryfu: oś obrotu landmine może być co najwyżej 30 cm nad podłogą, a dłoń porusza się po łuku o promieniu 200 cm wokół osi (przemieszczenie ≈ 30 cm do tyłu i 45 cm w górę wymagałoby osi ≈ 80 cm nad podłogą i ≈ 120 cm przed osobą); nie da się narysować bez fałszowania toru',
 };
 export const PRZYBLIZENIA = {
   'Seal Row (sztanga)': 'przybliżenie: ławka płaska na wysokości 80 cm (granica kontraktu), osoba leży przodem głową do przodu (+x), stopy obrócone na zewnątrz (model stopy nie ma palców do tyłu), sztanga zwisa pod ławką',
@@ -68,5 +87,7 @@ export function generuj() {
     const fr = (u) => { const rece = {}; for (const s of SIDES) { const sg = POL(s); const S = bark(m, p, sg); const H0 = [S[0] + 2, S[1] - 63.4]; const H1 = [S[0] - 22, S[1] - 24]; rece[s] = { g: [lerp(H0[0], H1[0], u), lerp(H0[1], H1[1], u), sg * 24], pole: [-0.6, 0.9, 0.4 * sg], obrot: -75 }; }
       return poza({ u, tulow: { m, p, glowa: 80 }, nogi: { R: noga('R'), L: noga('L') }, rece }); };
     return buduj({ rodzina: RODZINA, cw: 'Seal Row (sztanga)', sprzet: [SPRZET.podloga(-130, 130), { rodzaj: 'lawka', x: 0, top: 80, kat: 0, dlugosc: 110, siedzisko: 70 }, B], fr, us: U5 }); };
+  G['Lying T-Bar Row'] = () => przodem('Lying T-Bar Row', { sprzet: [], dzwignia: { r: 70, wybor: 'gora' } });
+  G['Chest Supported Row'] = () => przodem('Chest Supported Row', { h1: [14,-28], sprzet: [H] });
   return G;
 }

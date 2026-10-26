@@ -22,7 +22,7 @@ const sprzJedna = (sprzet, s) => sprzet.map((g) => (s && (g.rodzaj === 'hantel' 
 function nadGlowa(cw, o) {
   const f1 = o.f1 ?? 168; const sp = ramie({ f1: [f1, f1], a1: o.a1 ?? 0, f2: [f1 + (o.zgiecie ?? 125), f1 + (o.wyprost ?? 8)], zr: o.zr ?? 10, obrot: o.obrot }, 0, false);
   void sp;
-  return wlasna(cw, { sprzet: sprzJedna(o.sprzet, o.jedna), tulow: { m: [0, Y_STOJ], p: o.p ?? 0 }, nogi: o.nogi ?? nogiStoj(0, 14),
+  return wlasna(cw, { sprzet: sprzJedna(o.sprzet, o.jedna), tulow: o.tulow ?? { m: [0, Y_STOJ], p: o.p ?? 0 }, nogi: o.nogi ?? nogiStoj(0, 14),
     rece: (u) => { const a = ramie({ f1: [f1, f1], a1: o.a1 ?? 0, f2: [f1 + (o.zgiecie ?? 125), f1 + (o.wyprost ?? 8)], zr: o.zr ?? 10, obrot: o.obrot, polDom: [-1, 0.2, 0] }, u, false); return o.jedna ? jedna(o, o.jedna)(a) : obie(a); } });
 }
 
@@ -51,7 +51,6 @@ function kickback(cw, o) {
 }
 
 export const WYJATKI = {
-  'Kneeling Cable Triceps Extension': 'klęk na ławce: goleń leży poziomo, a stopa ma palce skierowane do tyłu — model stopy w kontrakcie nie ma palców skierowanych do tyłu (kąt kostki 80° przy zakresie −60…37°); klęk na podłodze nie spełnia wymagania „ławka płaska”',
   'Body-Up': 'OTWARTE — brak źródła ruchu (brak wskazówek, zestaw „open”; data/zrodla/figury-sens.json → triceps.otwarte); ćwiczenie wstrzymane do czasu źródła',
   'Bodyweight Triceps Extension': 'OTWARTE — brak źródła ruchu (zestaw „open”; figury-sens.json → triceps.otwarte); ćwiczenie wstrzymane do czasu źródła',
   'Sled Overhead Triceps Extension': 'OTWARTE — brak źródła ruchu (zestaw „open”; figury-sens.json → triceps.otwarte) i sanie (sprzęt) — wstrzymane do czasu źródła',
@@ -67,6 +66,7 @@ export function generuj() {
   G['Kettlebell Overhead Triceps Extension'] = () => nadGlowa('Kettlebell Overhead Triceps Extension', { sprzet: [{ rodzaj: 'kettlebell', dzwon: 'tyl' }], zr: 4, a1: -6 });
   G['Dumbbell One-Arm Triceps Extension'] = () => nadGlowa('Dumbbell One-Arm Triceps Extension', { sprzet: [SPRZET.hantle()], zr: 12, jedna: 'R', obrot: 0 });
   G['Band Overhead Triceps Extension'] = () => nadGlowa('Band Overhead Triceps Extension', { sprzet: [{ rodzaj: 'guma', mocowanie: 'stopy' }], zr: 12 });
+  G['Kneeling Cable Triceps Extension'] = () => nadGlowa('Kneeling Cable Triceps Extension', { sprzet: [wyc({ chwyt: 'lina', x: -75, y: 155 }), { rodzaj: 'lawka', x: 130, top: 43, kat: 0, dlugosc: 75, siedzisko: 40 }], zr: 8, tulow: { m: [0, 50], p: 0 }, nogi: { R: noga3([-43, 20, 10], [1, 0, 0.05], { pod: -75, rot: 0 }), L: noga3([-43, 20, -10], [1, 0, -0.05], { pod: -75, rot: 0 }) } });
   G['Cable Overhead Extension'] = () => nadGlowa('Cable Overhead Extension', { sprzet: [wyc({ chwyt: 'lina', x: -75, y: 155 })], zr: 8 });
   G['Standing Low-Pulley One-Arm Triceps Extension'] = () => nadGlowa('Standing Low-Pulley One-Arm Triceps Extension', { sprzet: [wyc({ chwyt: 'uchwyt', x: -75, y: 20, trzyma: 'R' })], zr: 12, jedna: 'R' });
   /* --- leżąc na ławce płaskiej --- */

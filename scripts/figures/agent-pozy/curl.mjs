@@ -1,5 +1,6 @@
 // Generator póz rodziny curl po stronie agenta (26.10.2026): uginanie ramion — sztanga, gryf łamany, hantle, linka, modlitewnik, ławka skośna, maszyna.
 // Każde ćwiczenie to parametry (chwyt = obrót przedramienia i rozstaw dłoni, tor łokcia = kąty ramienia, sprzęt, postawa), nie osobny kod; błąd curl.mis.elbows = łokcie wysuwane do przodu.
+import { lezyPrzodem, U9 } from './gora.mjs';
 import { v2, BODY, R, r1, lerp, gladko, Y_STOJ, SPRZET, poza, nogiStoj, nogiSiedz, nogiLezac, naLawce, naSiedzisku, modlitewnik, kier3, buduj, bark, ramieFK, ramieU as ramie, wolna, noga3, wyc } from './gora.mjs';
 
 export const RODZINA = 'curl';
@@ -58,9 +59,17 @@ function wlasna(cw, o) {
 }
 
 
+
+/** Spider curl: leżenie przodem na ławce skośnej, ramiona zwisają pionowo przed ławką (łokieć stały pod barkiem), przedramię od wyprostu do ≥ 110° w stronę głowy. */
+function spider(cw, o) {
+  const L = lezyPrzodem(o.kat ?? 45, { dl: 38, zr: 16, kolDx: 52, pole: [1, 0.2, 0] }); const zr = o.zr ?? 22;
+  const fr = (u) => { const rece = {}; const phi = lerp(8, 125, u) * R; for (const sd of SIDES) { const sw = -POL(sd); const S = L.S(sd);
+      const E = [S[0], S[1] - 31]; const g = [E[0] - 33 * Math.sin(phi), E[1] - 33 * Math.cos(phi), sw * zr]; rece[sd] = { g, pole: [0, -1, 0], obrot: o.obrot }; }
+    return poza({ u, tulow: { m: L.m, p: L.p, glowa: L.p, ext: L.ext }, nogi: L.nogi, rece }); };
+  return buduj({ rodzina: RODZINA, cw, sprzet: [SPRZET.podloga(-110, 130), L.lawka, ...o.sprzet], fr, us: o.us ?? U9 });
+}
+
 export const WYJATKI = {
-  'Spider Curl': 'leżenie przodem na pochyłej ławce (klatka na oparciu, ręce zwisają) wymaga obrotu tułowia o 180° i nóg poza siedziskiem: uda w linii tułowia przechodzą przez siedzisko, a ułożenie nóg poza nim wychodzi poza zakres biodra kontraktu (−17°) — nie da się narysować bez zmiany kontraktu',
-  'Spider Curl (sztanga)': 'jak Spider Curl: leżenie przodem na pochyłej ławce / modlitewniku, nogi poza siedziskiem; kontrakt nie obsługuje takiej pozy',
 };
 export const PRZYBLIZENIA = {};
 
@@ -122,5 +131,7 @@ export function generuj() {
   G['Cable Preacher Curl'] = () => modl('Cable Preacher Curl', { ...MD, sprzet: [wyc({ chwyt: 'drazek', x: 90, y: 15 })], zr: 19, obrot: [70, 70] });
   G['Machine Biceps Curl'] = () => modl('Machine Biceps Curl', { ...MD, dzwignia: true, sprzet: [], zr: 19, obrot: [70, 70], jedna: undefined });
   G['One Arm Dumbbell Preacher Curl'] = () => modl('One Arm Dumbbell Preacher Curl', { ...MD, sprzet: [SPRZET.hantle()], jedna: 'R', zr: 25, obrot: [0, 70] });
+  G['Spider Curl'] = () => spider('Spider Curl', { sprzet: [SPRZET.hantle()], obrot: 78 });
+  G['Spider Curl (sztanga)'] = () => spider('Spider Curl (sztanga)', { sprzet: [SPRZET.gryfLamany()], obrot: 78 });
   return G;
 }

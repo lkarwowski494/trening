@@ -98,7 +98,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
   sztanga: {
     nazwa: 'sztanga albo drążek',
     caps: ['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'yoke'], capLabel: { yoke: 'jarzmo (rysowane jak sztanga na barkach — uproszczenie)' }, opis: 'sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma)',
-    props: (g, grips) => { const c: V3 = g.podazaZaChwytem ? [(grips.R[0] + grips.L[0]) / 2, (grips.R[1] + grips.L[1]) / 2, 0] : [g.x ?? 0, g.y ?? 0, 0]; return [{ k: 'barbell', c, plates: g.talerze !== false, held: g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : true, len: g.dlugosc ?? BAR_LEN }]; },
+    props: (g, grips) => { const one = g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : null; /* jedna dłoń trzymająca: środek sztangi na jej chwycie (x, y), nie średnia obu dłoni */ const c: V3 = g.podazaZaChwytem ? (one ? [grips[one][0], grips[one][1], 0] : [(grips.R[0] + grips.L[0]) / 2, (grips.R[1] + grips.L[1]) / 2, 0]) : [g.x ?? 0, g.y ?? 0, 0]; return [{ k: 'barbell', c, plates: g.talerze !== false, held: g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : true, len: g.dlugosc ?? BAR_LEN }]; },
   },
   slupek: {
     nazwa: 'stojak (słupek)',
