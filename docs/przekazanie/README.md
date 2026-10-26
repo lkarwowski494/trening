@@ -76,3 +76,9 @@ Recenzja n5: 16 OK / 8 uwaga / 5 błąd; reguły złapały 0/5 (n4 też 0/5). Wz
 - Przekład ról mięśni: run 40389563916 (sonnet, ok. 0,96 USD), 55 pozycji × 33 języki, niezastosowany; raport: scratchpad/rp-dl/raport-przekladu/. Czeka na recenzję (scratchpad/rp-dl/recenzja-rol.json), potem `--zastosuj` + poprawki.
 - E2E 57 (tylko_scenariusze): przebiegi 297, 298, 301 anulowane bez maszyny macOS; 304 w kolejce (ponawiać przy „not acquired”).
 - Kolejne kroki: scalenie origin/pozy-1-1 dopiero przy zielonym CI i po jakosc-r2; odciski, README, macierz tylko regeneracją.
+
+## Decyzje właściciela 26.10 wieczór (po 21:00 UTC)
+- „Co nowego” 1.0.0: bez przycisku ✦ (zapisane w docs/18 na wydanie-1-0-0).
+- Kalistenika na stronie: techniqueatlas, sekcja „Progresje” (kalistenika DK-15).
+- Domena jedzeniowa: decyzja później (po 1.1).
+- Kreator planów na stronie: wariant B po 1.1 (CSV/PDF/Excel + „Otwórz w aplikacji”), zaczątek modułu trenerskiego z backlogu — techniqueatlas docs/54.
