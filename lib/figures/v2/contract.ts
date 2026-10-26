@@ -113,6 +113,7 @@ export function poseSchema(family: string): Sch {
     promien: num(3, 30, 'Promień w cm: główka hantla (domyślnie 6), dzwon kettlebell (9,5), talerz (22,5), piłka lekarska (11).'),
     pionowo: { type: 'boolean', description: 'Tylko hantel: true = jeden hantel trzymany pionowo obiema dłońmi (goblet); domyślnie false.' },
     dzwon: { type: 'string', enum: [...BELL_MODES], description: 'Tylko kettlebell: kierunek dzwonu względem rączki: dol (domyślnie), wzdluz (w przedłużeniu przedramienia), tyl (za rączką, pozycja rack i nad głową).' },
+    hak: num(0, CONTRACT.coord, 'Tylko slupek (stojak): wysokość haka na sztangę w cm (nie wyżej niż h).'),
     przesuniecie: vec('Tylko talerz i pilka_lekarska: położenie środka sprzętu względem środka między dłońmi [dx, dy, dz] w cm (domyślnie [0,0,0]; jedna dłoń: talerz [0, −(promień−1), 0], piłka [0, promień−1, 0]).', 40),
   }, ['rodzaj']);
   const key = obj({

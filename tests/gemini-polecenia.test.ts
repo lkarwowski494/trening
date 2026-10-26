@@ -306,7 +306,7 @@ describe('przegląd ruchu przez niezależnego recenzenta (bramka 4, docs/53): pa
 describe('sprzęt w kontrakcie → polecenia (docs/54): możliwości z rejestru, sekcja punktów odniesienia, brak „pomiń” dla obsługiwanego sprzętu', () => {
   const KAT = 'm.silnikCatalog()';
   test('sprzetObslugiwany = możliwości rejestru (stare + db, kb, plate, med_ball); sprzetNieobslugiwany: ćwiczenia z hantlem, talerzem i piłką nie są pomijane, wyciąg nadal tak', () => {
-    const caps = run(POL, 'console.log(JSON.stringify(m.sprzetObslugiwany()))') as string[]; for (const c of ['pullup.bar', 'rings', 'barbell', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball']) expect(caps).toContain(c);
+    const caps = run(POL, 'console.log(JSON.stringify(m.sprzetObslugiwany()))') as string[]; for (const c of ['pullup.bar', 'rings', 'barbell', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'ez_bar', 'axle_bar']) expect(caps).toContain(c);
     const r = run(POL, `console.log(JSON.stringify(['Front Plate Raise', 'Medicine Ball Chest Pass', 'Svend Press', 'Cable Crunch', 'Nie ma takiego'].map(c => m.sprzetNieobslugiwany(c, ${KAT}))))`) as (string | null)[];
     expect(r[0]).toBeNull(); expect(r[1]).toBeNull(); expect(r[2]).toBeNull(); expect(r[3]).toMatch(/sprzęt spoza kontraktu: cable\.high/); expect(r[4]).toBeNull();
   });
@@ -314,6 +314,7 @@ describe('sprzęt w kontrakcie → polecenia (docs/54): możliwości z rejestru,
     expect(run(POL, `console.log(JSON.stringify(m.rodzajeSprzetu(['Medicine Ball Chest Pass', 'Front Plate Raise'], ${KAT})))`)).toEqual(['talerz', 'pilka_lekarska']);
     expect(run(POL, `console.log(JSON.stringify(m.rodzajeSprzetu(['Svend Press'], ${KAT})))`)).toEqual(['hantel', 'talerz']); /* możliwości z alternatywą: oba rodzaje */
     expect(run(POL, `console.log(JSON.stringify(m.sekcjaSprzetu(['Crunch', 'Bird Dog'], ${KAT})))`)).toEqual([]);
+    expect(run(POL, `console.log(JSON.stringify([m.sprzetNieobslugiwany('Rack Pull', ${KAT}), m.sprzetNieobslugiwany('EZ Bar Curl', ${KAT}), m.rodzajeSprzetu(['Rack Pull', 'Good Morning'], ${KAT}), m.sensZKatalogu('Rack Pull', ${KAT})]))`)).toEqual([null, null, ['slupek'], ['sprzęt: sztanga + asekuracja stojaka (sprzet: rodzaj "slupek")']]);
     const sek = run(POL, `console.log(JSON.stringify(m.sekcjaSprzetu(['Medicine Ball Chest Pass'], ${KAT})))`) as string[]; expect(sek.join('\n')).toMatch(/pilka_lekarska: kula o promieniu 11 cm/); expect(sek[0]).toContain('podąża za chwytem');
   });
   test('opis sensu z katalogu nazywa rodzaj sprzętu w sprzet[] (hantle, kettlebell, talerz, piłka); polecenie core_floor ma Otis-Up (talerz albo hantle) i sekcję sprzętu, bez nazw marek', () => {

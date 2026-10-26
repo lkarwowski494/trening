@@ -115,6 +115,12 @@
       ],
       "description": "Tylko kettlebell: kierunek dzwonu względem rączki: dol (domyślnie), wzdluz (w przedłużeniu przedramienia), tyl (za rączką, pozycja rack i nad głową)."
      },
+     "hak": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 300,
+      "description": "Tylko slupek (stojak): wysokość haka na sztangę w cm (nie wyżej niż h)."
+     },
      "przesuniecie": {
       "type": "array",
       "items": {
@@ -134,7 +140,7 @@
    },
    "minItems": 1,
    "maxItems": 8,
-   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy (x, h); podloga — podłoga (x0, x1); skrzynia — skrzynia, stopień albo ławka płaska (x0, x1, top); hantel — hantel trzymany w dłoni (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie)."
+   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy albo stojak (x, h, hak); podloga — podłoga (x0, x1); skrzynia — skrzynia, stopień albo ławka płaska (x0, x1, top); hantel — hantel trzymany w dłoni (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie)."
   },
   "klatki": {
    "type": "array",

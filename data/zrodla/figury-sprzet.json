@@ -20,6 +20,7 @@
   "trapW": { "cm": 29, "status": "konwencja rysunku", "zgodnosc": "rozstaw uchwytów gryfu sześciokątnego ok. 58 cm", "uzycie": "trap bar" },
   "boxW": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "szerokość skrzyni ok. 45–50 cm", "uzycie": "skrzynia" },
   "postW": { "cm": 3.5, "status": "konwencja rysunku", "zgodnosc": "grubość słupka stojaka", "uzycie": "słupek" },
+  "postSpan": { "cm": 64, "status": "konwencja rysunku", "zgodnosc": "połowa rozstawu słupków stojaka (rozstaw wewnętrzny ok. 1,1–1,3 m)", "uzycie": "stojak (widok z przodu i kolizje)" },
   "railW": { "cm": 1.2, "status": "konwencja rysunku", "zgodnosc": "grubość prowadnicy suwnicy Smitha", "uzycie": "prowadnica" },
   "wallW": { "cm": 3, "status": "konwencja rysunku", "zgodnosc": "grubość ściany na rysunku", "uzycie": "ściana" }
  }

@@ -220,7 +220,7 @@ export function sprzetNieobslugiwany(cw, catalog) {
   for (const grupa of e.requires) if (grupa.length && !grupa.some((c) => sprzetObslugiwany().includes(c))) return `sprzęt spoza kontraktu: ${grupa.join(' / ')} — silnik go nie rysuje`;
   return null;
 }
-const OPIS_SPRZETU = { 'pullup.bar': 'drążek poziomy', rings: 'kółka (zastępuje drążek — rysuj jako drążek)', db: 'hantle (sprzet: rodzaj \"hantel\")', kb: 'kettlebell (sprzet: rodzaj \"kettlebell\")', plate: 'talerz trzymany (sprzet: rodzaj \"talerz\")', med_ball: 'piłka lekarska (sprzet: rodzaj \"pilka_lekarska\")', bench: 'ławka' };
+const OPIS_SPRZETU = { 'pullup.bar': 'drążek poziomy', rings: 'kółka (zastępuje drążek — rysuj jako drążek)', db: 'hantle (sprzet: rodzaj \"hantel\")', kb: 'kettlebell (sprzet: rodzaj \"kettlebell\")', plate: 'talerz trzymany (sprzet: rodzaj \"talerz\")', med_ball: 'piłka lekarska (sprzet: rodzaj \"pilka_lekarska\")', bench: 'ławka', barbell: 'sztanga', ez_bar: 'gryf łamany (sprzet: rodzaj \"sztanga\", dlugosc 120)', axle_bar: 'gryf gruby (sprzet: rodzaj \"sztanga\")', rack: 'stojak (sprzet: rodzaj \"slupek\" z polem hak)', 'bench.uprights': 'stojaki ławki (sprzet: rodzaj \"slupek\" z polem hak)', 'rack.safeties': 'asekuracja stojaka (sprzet: rodzaj \"slupek\")' };
 /** Rodzaje sprzętu z rejestru kontraktu, których potrzebują ćwiczenia (możliwości katalogu → rodzaj); kolejność jak w rejestrze. */
 export function rodzajeSprzetu(cwiczenia, catalog) {
   const { v2 } = silnik(); const caps = new Set(cwiczenia.flatMap((c) => (catalog?.CATALOG?.[c]?.requires ?? []).flat()));

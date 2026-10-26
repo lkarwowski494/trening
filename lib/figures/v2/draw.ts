@@ -11,7 +11,7 @@ export const EQUIP = {
   barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [44, 49] as [number, number], plateW: 2.8,
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6, medBallR: 11,
   benchW: 28, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
-  trapW: 29, boxW: 45, postW: 3.5, railW: 1.2, wallW: 3,
+  trapW: 29, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, wallW: 3,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];
@@ -154,7 +154,7 @@ export function propShapes(props: Prop[], view: View): Shape[] {
       case 'rail': if (view === 'top') break; else if (side) S.push({ k: 'line', a: [pr.x, 0], b: [pr.x, pr.h], w: E.railW, role: 'frame', z: zKey(LAYER.back, -80), id: 'rail' }); else for (const sg of [-1, 1]) S.push({ k: 'line', a: [sg * 56, 0], b: [sg * 56, pr.h], w: E.railW, role: 'frame', z: zKey(LAYER.back, -80), id: 'rail' }); break;
       case 'post': {
         if (side) S.push({ k: 'line', a: [pr.x, 0], b: [pr.x, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'post' });
-        else for (const sg of [-1, 1]) S.push({ k: 'line', a: [sg * 64, 0], b: [sg * 64, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'post' });
+        else for (const sg of [-1, 1]) S.push({ k: 'line', a: [sg * E.postSpan, 0], b: [sg * E.postSpan, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'post' });
         if (pr.hook !== undefined && side) S.push({ k: 'line', a: [pr.x, pr.hook], b: [pr.x + 5, pr.hook], w: 2.4, role: 'frame', z: zKey(LAYER.back, -69), id: 'hook' });
         break;
       }

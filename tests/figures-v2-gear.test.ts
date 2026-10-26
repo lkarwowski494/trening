@@ -25,7 +25,9 @@ const GOBLET = (sp: Gear): PoseData => pose('squat', 'Goblet', [sp], [two(0, ...
 const SWING = (sp: Gear): PoseData => pose('squat', 'KB swing', [sp], [two(0, ...sym(18, 82, 3)), two(1, ...sym(50, 128, 3))]);
 const PLATE = (sp: Gear): PoseData => pose('delt_raise', 'Front Plate Raise', [sp], [two(0, ...sym(20, 100, 20.5)), two(1, ...sym(30, 135, 20.5))]);
 const BALL = (sp: Gear): PoseData => pose('sled_throw', 'Chest Pass', [sp], [two(0, ...sym(25, 120, 11)), two(1, ...sym(45, 125, 11))]);
+const RACKPULL = (sp: Gear[]): PoseData => pose('hinge', 'Rack Pull', [{ rodzaj: 'sztanga', podazaZaChwytem: true, trzyma: 'obie' }, ...sp], [two(0, ...sym(15, 90, 25)), two(1, ...sym(15, 78, 25))]);
 const MATRIX: [string, PoseData][] = [
+  ['stojak: słupek z hakiem za osobą przy sztandze', RACKPULL([{ rodzaj: 'slupek', x: -45, h: 200, hak: 70 }])], ['stojak bez haka (asekuracja)', RACKPULL([{ rodzaj: 'slupek', x: -45, h: 100 }])],
   ['hantel obie (dwa hantle)', CURL({ rodzaj: 'hantel' })], ['hantel jedna ręka R', CURL({ rodzaj: 'hantel', trzyma: 'R' })], ['hantel jedna ręka L', CURL({ rodzaj: 'hantel', trzyma: 'L' })],
   ['hantel pionowo (goblet)', GOBLET({ rodzaj: 'hantel', pionowo: true })], ['hantel z promieniem', CURL({ rodzaj: 'hantel', promien: 5 })],
   ['kettlebell dzwon w dół (domyślny)', SWING({ rodzaj: 'kettlebell' })], ['kettlebell wzdłuż przedramienia', SWING({ rodzaj: 'kettlebell', dzwon: 'wzdluz' })], ['kettlebell dzwon za rączką (rack)', pose('squat', 'KB rack', [{ rodzaj: 'kettlebell', dzwon: 'tyl' }], [two(0, ...sym(32, 115, 3)), two(1, ...sym(32, 135, 3))])],
@@ -37,9 +39,9 @@ describe('rejestr rodzajów sprzętu (gear.ts)', () => {
   test('GEAR: osiem rodzajów; każdy ma wpis w rejestrze z opisem i rekwizytem; możliwości katalogu pokryte przez rejestr', () => {
     expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska']);
     for (const k of GEAR) { expect(GEAR_KINDS[k].opis.length).toBeGreaterThan(10); expect(typeof GEAR_KINDS[k].props).toBe('function'); }
-    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball']));
+    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties']));
     expect(new Set(GEAR_CAPS).size).toBe(GEAR_CAPS.length); /* każda możliwość ma jeden rodzaj */
-    expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
+    expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
   });
   test('punkty odniesienia (ref) mają liczby z EQUIP i nazwy pól; rodzaje bez ref (stare) nie mają go', () => {
     for (const k of ['hantel', 'kettlebell', 'talerz', 'pilka_lekarska'] as const) { const r = GEAR_KINDS[k].ref?.().join(' ') ?? ''; expect(r).toContain(k === 'pilka_lekarska' ? 'pilka_lekarska' : k); expect(r).toMatch(/\d/); }
@@ -71,6 +73,10 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
     expect(propsFrom([{ rodzaj: 'pilka_lekarska' }], G)).toEqual([{ k: 'ball', c: [12, 85, 0], r: undefined, held: true }]);
     expect(propsFrom([{ rodzaj: 'pilka_lekarska', trzyma: 'L' }], G)[0]).toMatchObject({ c: [14, 90 + EQUIP.medBallR - 1, -20], held: 'L' });
     expect(propsFrom([{ rodzaj: 'pilka_lekarska', przesuniecie: [0, 11, 0], promien: 12 }], G)[0]).toMatchObject({ c: [12, 96, 0], r: 12 });
+  });
+  test('słupek (stojak): hak przekazany do rekwizytu; bez haka rekwizyt bez pola hook; gryf łamany i gruby to sztanga (możliwości katalogu)', () => {
+    expect(propsFrom([{ rodzaj: 'slupek', x: -40, h: 200, hak: 70 }], G)).toEqual([{ k: 'post', x: -40, h: 200, hook: 70 }]); expect(propsFrom([{ rodzaj: 'slupek', x: 5, h: 100 }], G)).toEqual([{ k: 'post', x: 5, h: 100 }]);
+    expect(GEAR_KINDS.sztanga.caps).toEqual(expect.arrayContaining(['ez_bar', 'axle_bar'])); expect(GEAR_KINDS.slupek.caps).toEqual(['rack', 'bench.uprights', 'rack.safeties']);
   });
   test('stary sprzęt bez zmian: sztanga podąża za chwytem, słupek, podłoga, skrzynia', () => {
     expect(propsFrom([{ rodzaj: 'sztanga', podazaZaChwytem: true }, { rodzaj: 'slupek', x: 5, h: 100 }, { rodzaj: 'skrzynia', x0: 1, x1: 2, top: 30 }, { rodzaj: 'podloga' }], G).map(p => p.k)).toEqual(['barbell', 'post', 'box', 'floor']);
@@ -144,6 +150,10 @@ describe('kolidery i kontrola chwytu', () => {
   test('przedramię trzymające talerz i piłkę ma tolerancję kontaktu (jak sztanga i hantel)', () => {
     for (const [, d] of MATRIX.filter(([n]) => /talerz|piłka/.test(n))) expect(checkFrame(keyframeFrame(d, 0.5)).filter(i => i.code === 'pen')).toEqual([]);
   });
+  test('stojak: słupki w z = ±64 poza zasięgiem ciała — poza przechodzi niezależnie od x słupka; kolider słupka to dwa graniastosłupy (z = ±64)', () => {
+    for (const x of [-45, 0, 15]) expect(texts(RACKPULL([{ rodzaj: 'slupek', x, h: 200 }]))).toBe('');
+    const posts = equipColliders(propsFrom([{ rodzaj: 'slupek', x: 0, h: 200 }], { R: [0, 0, 0], L: [0, 0, 0] })); expect(posts.map(c => c.id)).toEqual(['post', 'post']); expect(posts.map(c => c.k === 'prism' ? (c.z0 + c.z1) / 2 : 0)).toEqual([-EQUIP.postSpan, EQUIP.postSpan]);
+  });
   test('ciało i sprzęt z kolizjami: bodyColliders × talerz — udo w płaszczyźnie talerza wykrywa przenikanie', () => {
     const sk = solveSkeleton(keyframeFrame(PLATE({ rodzaj: 'talerz' }), 0).pose!); const eq = equipColliders([{ k: 'plate', c: [sk.legs.R.knee[0], sk.legs.R.knee[1], sk.legs.R.knee[2]], r: 22.5 }]);
     expect(Math.min(...bodyColliders(sk).flatMap(b => eq.map(e => gap(b, e))))).toBeLessThan(0);
@@ -174,6 +184,8 @@ describe('walidator pozy z nowym sprzętem — macierz rodzaj × wariant', () =>
     expect(gearFieldIssues({ rodzaj: 'hantel', promien: 2 })).toEqual(['sprzęt: promien hantla = 2 cm poza przedziałem 3–12 cm']);
     expect(gearFieldIssues({ rodzaj: 'pilka_lekarska', promien: 25 })).toEqual(['sprzęt: promien piłki = 25 cm poza przedziałem 6–20 cm']);
     expect(gearFieldIssues({ rodzaj: 'sztanga', przesuniecie: [0, 0, 0] })).toEqual(['sprzęt: pole „przesuniecie” nie dotyczy rodzaju „sztanga”']);
+    expect(gearFieldIssues({ rodzaj: 'slupek', h: 100, hak: 150 })).toEqual(['sprzęt: hak = 150 cm wyżej niż słupek (h = 100 cm)']); expect(gearFieldIssues({ rodzaj: 'skrzynia', hak: 5 })).toEqual(['sprzęt: pole „hak” nie dotyczy rodzaju „skrzynia”']);
+    expect(texts(RACKPULL([{ rodzaj: 'slupek', x: -45, h: 100, hak: 150 }]))).toContain('hak = 150 cm wyżej niż słupek');
     expect(texts({ ...CURL({ rodzaj: 'hantel' }), sprzet: [{ rodzaj: 'wyciag' as never }] })).toMatch(/\[schemat\].*spoza listy/);
   });
   test('schemat: rodzaje i pola nowego sprzętu w JSON Schema (enum rodzajów, dzwon, przesuniecie jako wektor)', () => {

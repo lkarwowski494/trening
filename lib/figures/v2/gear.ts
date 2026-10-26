@@ -11,9 +11,9 @@ import type { Frame, Prop } from './scene';
 
 export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska'] as const;
 export type GearName = typeof GEAR[number];
-export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3 };
+export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
-export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie'] as const;
+export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak'] as const;
 export const BELL_MODES = ['dol', 'wzdluz', 'tyl'] as const;
 
 export type GearGrips = Record<Side, V3>;
@@ -40,10 +40,16 @@ const f1 = (x: number): string => String(Math.round(x * 10) / 10).replace('.', '
 const bounds = (name: string, v: number | undefined, lo: number, hi: number): string[] => v !== undefined && (v < lo || v > hi) ? [`sprzęt: ${name} = ${v} cm poza przedziałem ${lo}–${hi} cm`] : [];
 export const GEAR_KINDS: Record<GearName, GearKind> = {
   sztanga: {
-    caps: ['pullup.bar', 'rings', 'barbell'], opis: 'sztanga albo drążek poziomy (x, y, dlugosc, talerze, podazaZaChwytem, trzyma)',
+    caps: ['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar'], opis: 'sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma)',
     props: (g, grips) => { const c: V3 = g.podazaZaChwytem ? [(grips.R[0] + grips.L[0]) / 2, (grips.R[1] + grips.L[1]) / 2, 0] : [g.x ?? 0, g.y ?? 0, 0]; return [{ k: 'barbell', c, plates: g.talerze !== false, held: g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : true, len: g.dlugosc ?? BAR_LEN }]; },
   },
-  slupek: { caps: [], opis: 'słupek pionowy (x, h)', props: g => [{ k: 'post', x: g.x ?? 0, h: g.h ?? 200 }] },
+  slupek: {
+    caps: ['rack', 'bench.uprights', 'rack.safeties'], fields: ['hak'], opis: 'słupek pionowy albo stojak (x, h, hak)',
+    props: g => [{ k: 'post', x: g.x ?? 0, h: g.h ?? 200, ...(g.hak !== undefined ? { hook: g.hak } : {}) }],
+    check: g => g.hak !== undefined && g.h !== undefined && g.hak > g.h ? [`sprzęt: hak = ${g.hak} cm wyżej niż słupek (h = ${g.h} cm)`] : [],
+    ref: () => [
+      `slupek jako STOJAK (klatka, stojaki ławki, asekuracja): x = położenie słupków w osi x, h = wysokość (typowo 200–230 cm), hak = wysokość haka na sztangę (cm; rysowany haczyk ${f1(5)} cm do przodu). Z boku widać jeden słupek, z przodu dwa (z = ±${f1(EQUIP.postSpan)} cm, grubość ${f1(EQUIP.postW)} cm). Słupki stoją poza zasięgiem ciała, więc kolizje z ciałem nie występują, a położenie względem sztangi NIE jest sprawdzane programem (ocenia je recenzent ruchu): sztangę zdjętą ze stojaka trzymaj przed słupkami albo za nimi (nie w osi słupków), a w haku tylko w pozycji, w której ćwiczenie ją odkłada.`,
+    ] },
   podloga: { caps: [], opis: 'podłoga (x0, x1)', props: g => [{ k: 'floor', x0: g.x0 ?? -120, x1: g.x1 ?? 120 }] },
   skrzynia: { caps: ['box', 'bench.flat'], opis: 'skrzynia, stopień albo ławka płaska (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
   hantel: {

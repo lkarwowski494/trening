@@ -12,7 +12,7 @@ Liczby poniżej: ćwiczenia z 622, które wymagają danego rodzaju (w nawiasie: 
 | # | Rodzaj sprzętu (prymityw) | Ćwiczeń | Główne rodziny | Koszt | Stan |
 |---|---|---|---|---|---|
 | 1 | hantel / kettlebell / talerz / piłka lekarska w dłoni | 142 (123) | delt_raise 19, kb_ballistic 17, curl 16, sled_throw 12 | niski | **gotowe (26.10.2026)** |
-| 2 | stojak, Smith, landmine, poręcze, gryf łamany/trap/T, ściana, mata, łańcuchy | 58 (50) | lunge 8, triceps 5, overhead_press 5, row 4 | niski (rekwizyty są w silniku) | do zrobienia |
+| 2 | stojak, Smith, landmine, poręcze, gryf łamany/trap/T, ściana, mata, łańcuchy | 58 (50) | lunge 8, triceps 5, overhead_press 5, row 4 | niski (rekwizyty są w silniku) | w toku: stojak i gryf łamany/gruby gotowe (26.10.2026) |
 | 3 | wyciąg (słup, bloczek, uchwyt / lina / opaska na kostkę) | 76 (70) | curl 10, triceps 9, cable_row 7, pulldown 7 | średni | do zrobienia |
 | 4 | ławka regulowana (skos +/−, wałki na nogi, modlitewnik) | 35 (9) | curl 12, delt_raise 6, core_floor 5 | niski–średni | do zrobienia |
 | 5 | guma / taśma oporowa | 17 (16) | hip_abd_add 4, rotator_cuff 3 | niski | do zrobienia |
@@ -39,6 +39,13 @@ Wspólne zasady: sprzęt trzymany w dłoniach **nie ma własnych współrzędnyc
 `dzwon`: `dol` = pod rączką; `wzdluz` = w przedłużeniu przedramienia (swing, clean, snatch; przy przedramieniu uniesionym powyżej poziomu dzwon płynnie przechodzi za przedramię — liczone ze szkieletu); `tyl` = za rączką w kierunku −x (rack, nad głową).
 Uproszczenia: piłka i talerz są w dłoniach w każdej klatce (moment wyrzutu piłki nie jest pokazywany); talerz tylko chwytem po bokach (jedna dłoń nad drugą nieobsługiwane); kolider talerza to obręcz i szprychy, nie pełna tarcza.
 Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie są już pomijane; polecenie ma sekcję „Sprzęt w ćwiczeniach tej części” z punktami odniesienia (liczby z silnika).
+
+### 2.2 Konstrukcje stałe (stojak, Smith, landmine, ściana, łańcuchy, gryfy)
+
+| Rodzaj | Pola | Możliwości katalogu | Uwagi |
+|---|---|---|---|
+| `slupek` (stojak) | `x`, `h`, `hak` (wysokość haka) | rack, bench.uprights, rack.safeties | słupki w z = ±64 poza zasięgiem ciała; położenie względem sztangi ocenia recenzent ruchu |
+| `sztanga` (gryf łamany, gruby) | jak dotąd; gryf łamany: `dlugosc` 120 | ez_bar, axle_bar (oraz pullup.bar, rings, barbell) | gryf łamany i gruby rysowane jak sztanga — uproszczenie |
 
 ## 3. Wymiary sprzętu — konwencja rysunku
 

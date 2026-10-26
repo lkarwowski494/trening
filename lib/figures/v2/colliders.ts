@@ -62,7 +62,7 @@ export function equipColliders(props: Prop[]): Collider[] {
       case 'box': { const w = (p.w ?? EQUIP.boxW) / 2; c.push(prism('box', rectPoly(p.x0, 0, p.x1, p.top), -w, w)); break; }
       case 'wall': c.push(prism('wall', rectPoly(p.x - EQUIP.wallW, 0, p.x, p.h), -100, 100)); break;
       case 'mat': c.push(prism('mat', rectPoly(p.x0, 0, p.x1, p.h), -60, 60)); break;
-      case 'post': for (const sg of [-1, 1]) c.push(prism('post', rectPoly(p.x - EQUIP.postW / 2, 0, p.x + EQUIP.postW / 2, p.h), sg * 64 - 2, sg * 64 + 2)); break;
+      case 'post': for (const sg of [-1, 1]) c.push(prism('post', rectPoly(p.x - EQUIP.postW / 2, 0, p.x + EQUIP.postW / 2, p.h), sg * EQUIP.postSpan - 2, sg * EQUIP.postSpan + 2)); break;
       case 'rail': for (const sg of [-1, 1]) c.push(prism('rail', rectPoly(p.x - EQUIP.railW / 2, 0, p.x + EQUIP.railW / 2, p.h), sg * 56 - 1, sg * 56 + 1)); break;
       default: break;
     }
