@@ -3,7 +3,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { EN } from '@/lib/i18n.en';
-import { PAYWALL } from '@/lib/access';
+import { PAYWALL, MIN_LIVE_MINUTES_FOR_DAY } from '@/lib/access';
 import { VOICE_NEW_INSTALL } from '@/lib/voice';
 import { defaultSettings } from '@/lib/seed';
 
@@ -35,15 +35,14 @@ describe('store/review-notes.md', () => {
   });
   /* M1-audytor-generalny-045 (audyt 21.10.2026; 10-wydanie-001): wytyczna 3.1.2(a) — subskrypcja odnawiana musi dawać stałą wartość; aplikacja bez serwera
    * uzasadnia ją regularnymi aktualizacjami (przykład z wytycznej: „consistent, substantive updates”) i alternatywą jednorazową. Wersje z dziennika wydań (docs/09). */
-  test('M1-045: akapit o stałej wartości subskrypcji w EN, PL i notatce subskrypcji; wersje zgodne z dziennikiem wydań; opis sklepu PL/EN to samo', () => {
+  test('M1-045: akapit o stałej wartości subskrypcji w EN, PL i notatce subskrypcji; opis sklepu PL/EN to samo', () => {
     const par = (t: string, head: string) => t.split('\n\n').find(p => p.startsWith(head)) ?? ''; const buy = par(en, 'IN-APP PURCHASES'); const kup = par(pl, 'ZAKUPY');
     expect(buy).toMatch(/Ongoing value \(Guideline 3\.1\.2\(a\)\)/); expect(buy).toMatch(/updated regularly/); expect(buy).toMatch(/lifetime/);
     expect(kup).toMatch(/Stała wartość subskrypcji \(wytyczna 3\.1\.2\(a\)\)/); expect(kup).toMatch(/regularnie aktualizowana/); expect(kup).toMatch(/dożywotni/);
     expect(subEn).toMatch(/Ongoing value/); expect(subEn).toMatch(/regular updates/); expect(subEn).toMatch(/lifetime/);
-    const log = fs.readFileSync(path.join(__dirname, '../docs/09-plan-testow.md'), 'utf8');
-    for (const v of [...buy.matchAll(/version (\d+\.\d+) to (\d+\.\d+)/g)].flatMap(m => [m[1], m[2]])) expect([v, log.includes(`\`v${v}.0-b`)]).toEqual([v, true]);
-    expect(buy).toMatch(/version 0\.11 to 0\.20/); expect(kup).toMatch(/od wersji 0\.11 do 0\.20/);
-    expect(buy).toMatch(/Apple Watch app and voice announcements/); /* obie funkcje są w aplikacji (lib/watch, lib/voice) i w notatkach niżej */
+    expect(buy).not.toMatch(/version 0\.\d+ to/); /* 1.0: bez historii wersji testowych (docs/48 pkt 2) */
+    expect(en).toContain(`longer than ${MIN_LIVE_MINUTES_FOR_DAY} minutes`); expect(pl).toContain(`dłuższym niż ${MIN_LIVE_MINUTES_FOR_DAY} minut`);
+    expect(en).not.toMatch(/Apple Watch app and voice announcements|0\.11|0\.20|20 minutes/);
     expect(Buffer.byteLength(en, 'utf8')).toBeLessThanOrEqual(4000);
     const L = JSON.parse(fs.readFileSync(path.join(__dirname, '../store/app-store-metadata.json'), 'utf8')).lokalizacje as Record<string, { description: string }>;
     expect(L.pl.description).toContain('Subskrypcja finansuje dalszy rozwój: aplikacja jest regularnie aktualizowana, a nowe funkcje nie wymagają dodatkowych opłat.');
