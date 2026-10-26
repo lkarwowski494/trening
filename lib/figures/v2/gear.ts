@@ -301,14 +301,14 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     ],
   },
   zawieszenie: {
-    nazwa: 'taśmy do podwieszania', caps: ['suspension'], fields: ['z', 'punkt'], opis: 'taśmy do podwieszania (TRX): punkt zaczepu wysoko (x, y, z), dwie taśmy do dłoni albo kostek (punkt, trzyma)',
+    nazwa: 'taśmy do podwieszania', caps: ['suspension'], fields: ['z', 'punkt'], opis: 'taśmy do podwieszania: punkt zaczepu wysoko (x, y, z), dwie taśmy do dłoni albo kostek (punkt, trzyma)',
     props: (g, grips, _all, ankles) => {
       const anchor: V3 = [g.x ?? 0, g.y ?? EQUIP.suspensionY, g.z ?? 0]; const kost = g.punkt === 'kostki';
       return sidesOf(g).map((s): Prop => ({ k: 'cable', from: anchor, to: kost ? ankles[s] : grips[s], attach: kost ? 'strap' : 'handle', ends: [kost ? ankles[s] : grips[s]], solid: true }));
     },
     check: g => [...bounds('wysokość zaczepu taśm y', g.y, 100, 350), ...(g.punkt === 'miednica' ? ['sprzęt: taśmy do podwieszania mocujemy do dłoni albo kostek (punkt: "dlonie" lub "kostki")'] : [])],
     ref: () => [
-      `zawieszenie: taśmy do podwieszania (TRX) przypięte do jednego punktu zaczepu P = [x, y, z] (domyślnie x = 0, y = ${EQUIP.suspensionY} cm, z = 0: belka nad głową), dwie taśmy prosto do uchwytów w dłoniach (punkt "dlonie", domyślnie) albo do pętli na kostkach (punkt "kostki": stopy w pętlach; trzyma "obie" = obie nogi, "R"/"L" = jedna noga, druga na podłodze). Taśma napięta w całym ruchu: linia od P do dłoni/kostki. Taśmy nie przenikają ciała (poza ostatnimi ${f1(EQUIP.cableEnd)} cm przy dłoni/kostce): ustaw P tak, by linie nie przechodziły przez tułów i głowę.`,
+      `zawieszenie: taśmy do podwieszania przypięte do jednego punktu zaczepu P = [x, y, z] (domyślnie x = 0, y = ${EQUIP.suspensionY} cm, z = 0: belka nad głową), dwie taśmy prosto do uchwytów w dłoniach (punkt "dlonie", domyślnie) albo do pętli na kostkach (punkt "kostki": stopy w pętlach; trzyma "obie" = obie nogi, "R"/"L" = jedna noga, druga na podłodze). Taśma napięta w całym ruchu: linia od P do dłoni/kostki. Taśmy nie przenikają ciała (poza ostatnimi ${f1(EQUIP.cableEnd)} cm przy dłoni/kostce): ustaw P tak, by linie nie przechodziły przez tułów i głowę.`,
     ],
   },
   lina_pionowa: {
