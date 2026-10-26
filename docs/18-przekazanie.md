@@ -566,3 +566,7 @@ EN Progress Guard · bg Пазач на прогреса · cs Strážce progres
 - 26.10.2026 (agent, kolejne przebiegi): lista modeli nie działa z kluczem API (401); klucz express nie dosięga `gemini-4-argon` (region rejestracji, brak na liście express) — docs/52 pkt 6b. 400 „invalid argument” na `gemini-3.1-pro-preview`: 400 = twardy stop, szczegóły `error.details` w raporcie (zamaskowane), cztery warianty formatu JSON wybierane próbą połączenia. Maskowanie identyfikatorów także w `scripts/i18n/przeklad-api.mjs` i `przeglad-api.mjs` (wspólny `scripts/maskuj.mjs`, L-035).
 - 26.10.2026 (agent): przebieg 40282417033 — próba połączenia OK (rozliczenie działa), właściwe żądanie 400 bez szczegółów. Dodane: negocjacja formatu JSON przy 400 (5 wariantów, od pełnego `responseJsonSchema` do samego trybu JSON) i tryb `--diagnoza` (wejście workflowu `diagnoza`); docs/52 pkt 6c.
 
+## 26.10.2026 — nazwy aplikacji w sklepie: znaki towarowe (decyzja właściciela, wariant A)
+- Wstępne sprawdzenie: ryzyko niskie (nazwy to słowa opisowe). Rejestry UE, PL, WIPO i UK nie były przeszukane automatycznie; badanie na Dysku (Trening App/05 Research konkurencji).
+- Decyzja: zostajemy przy obecnych nazwach; przed wydaniem w App Store właściciel sprawdza ręcznie TMview, UPRP, WIPO, USPTO (klasy 9/41/42/44) — ryzyko R-016 w docs/40 (blokuje App Store, nie TestFlight).
+- Odrzucone: własny wyróżnik w nazwie (traci opisowość i wyszukiwalność), rzecznik patentowy (koszt nieproporcjonalny do ryzyka niskiego).
