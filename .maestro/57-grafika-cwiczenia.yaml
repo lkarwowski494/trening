@@ -8,7 +8,7 @@
 #   "Common mistake: .*"                            ← 'Częsty błąd: {opis}'
 #   "Pulling up 1 s.*" / "Lowering 2 s"               ← fazy rodziny z danych (Pull Up: poses/pull_up.json; 26.10.2026)
 #   "What the muscles do"                           ← 'Co robią mięśnie' (sekcja ekranu ćwiczenia: mapa mięśni + zdanie o roli każdego mięśnia; 26.10.2026, tests/muscle-roles-ui.test.tsx)
-#   "Pulls your upper arm down and back toward your body." / "Helps bend your elbow as you pull."   ← zdania ról najszerszych i bicepsu (Pull Up, rodzina v_pull)
+#   ".*Pulls your upper arm down and back toward your body.*" / ".*Helps bend your elbow as you pull.*"   ← wiersz roli to jeden element: „lats, primary: <zdanie>”;  zdania ról najszerszych i bicepsu (Pull Up, rodzina v_pull)
 #   (brak) "Draws your shoulder blades down and together."   ← uproszczenie (łopatki w podciąganiu) nie jest wyświetlane
 appId: pl.lukasz.trening
 name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
@@ -64,7 +64,7 @@ name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
 - extendedWaitUntil: { visible: "Show common mistake", timeout: 15000 }
 # Role mięśni (26.10.2026): ten sam ekran Pull Up niżej — mapa mięśni i zdania; zdanie uproszczone (łopatki w podciąganiu) nie pojawia się.
 - scrollUntilVisible: { element: "What the muscles do", direction: DOWN, timeout: 30000, centerElement: true }
-- assertVisible: "Pulls your upper arm down and back toward your body."
-- assertVisible: "Helps bend your elbow as you pull."
-- assertNotVisible: "Draws your shoulder blades down and together.*"
+- assertVisible: ".*Pulls your upper arm down and back toward your body\\..*"
+- assertVisible: ".*Helps bend your elbow as you pull\\..*"
+- assertNotVisible: ".*Draws your shoulder blades down and together.*"
 - takeScreenshot: 88-miesnie-role
