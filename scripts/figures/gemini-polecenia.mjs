@@ -11,7 +11,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { cwiczeniaRodziny, wczytajKontrakt } from './gemini-pozy.mjs';
 import { loadV2 } from './v2-build.mjs';
-import { regulyDla, stopaAutomatyczna, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji } from './v2-sens.mjs';
+import { regulyDla, stopaAutomatyczna, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji, czekaNaKontrakt } from './v2-sens.mjs';
 import { wczytajRejestr, liniePolecenia, statystykaWersji } from './gemini-rejestr.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -292,6 +292,10 @@ const OPIS_TYPU = {
   chwyt_blisko_tulowia: (q) => `środek chwytu ≤ ${q.max_cm} cm od odcinka miednica–barki w całym ruchu`,
   kolana_do_klatki: (q) => `w locie (stopy ≥ ${q.min_cm} cm nad podparciem) biodro ≥ ${q.min_biodro_deg}° i kolano ≥ ${q.min_kolano_deg}° (kolana do klatki)`,
   styk_dlonie: () => 'w KAŻDEJ klatce dłonie (obie albo tylko ręka trzymająca) mają styk z drążkiem: chwyt leży na osi drążka',
+  kolano_zakres_ruch: (q) => `kąt kolana KAŻDEJ nogi osobno (${q.nogi === 'co_najmniej_jedna' ? 'wystarczy, że spełnia go co najmniej jedna noga — noga pracująca' : 'obie nogi'}) w ruchu: ${[q.min_max_deg !== undefined && `dochodzi do ≥ ${q.min_max_deg}°`, q.max_min_deg !== undefined && `prostuje się do ≤ ${q.max_min_deg}°`, q.min_min_deg !== undefined && `nie schodzi poniżej ${q.min_min_deg}° (lekko ugięte)`].filter(Boolean).join(', ')}`,
+  rozstaw_zakres: (q) => `odległość między ${q.punkt === 'kolana' ? 'kolanami' : 'kostkami'} (lewa–prawa, w 3D) zmienia się w ruchu o ≥ ${q.min_cm} cm (rozstaw rośnie albo maleje)`,
+  stopien_swobody: (q) => `pole klatki „${q.pole}”${q.strona ? ` (ręce: ${q.strona})` : ''}: ${[q.min !== undefined && `≥ ${q.min} w każdej klatce`, q.max !== undefined && `≤ ${q.max} w każdej klatce`, q.min_zakres !== undefined && `zmienia się w ruchu o ≥ ${q.min_zakres} (max − min)`, q.max_zakres !== undefined && `zmienia się w ruchu o ≤ ${q.max_zakres}`, q.osiaga_co_najmniej !== undefined && `w którejś klatce ≥ ${q.osiaga_co_najmniej}`, q.osiaga_co_najwyzej !== undefined && `w którejś klatce ≤ ${q.osiaga_co_najwyzej}`, q.min_abs !== undefined && `w którejś klatce |wartość| ≥ ${q.min_abs}`].filter(Boolean).join(', ')} (jednostki: stopnie albo cm wg opisu pola; pola poza@2 opcjonalne, domyślnie 0; zgiecieSzyi = pochylenieGlowy − pochylenieTulowia)`,
+  punkt_zakres: (q) => `punkt „${q.punkt}”${q.strona ? ` (${q.strona})` : ''} przesuwa się w ruchu (max − min) o ≥ ${q.min_cm} cm w ${q.tryb === 'dowolna' ? 'co najmniej jednej z osi' : 'każdej z osi'} ${q.osie.join(', ')}`,
   jedna_reka: (q) => `sztanga ma trzyma: "R" albo "L", a wolna dłoń jest ≥ ${q.min_wolna_od_osi_cm} cm od osi drążka`,
 };
 /** Sekcja „Reguły sensu” dla ćwiczeń części: reguły raz (z liczbami), potem które ćwiczenia ich dotyczą; + wymóg dla błędów. */
@@ -400,7 +404,9 @@ export function wzorce(rodzina, kontrakt, root = ROOT) {
 export function klasyfikujCwiczenia(rodzina, { root = ROOT, lista, bezRegul = false } = {}) {
   const { catalog } = silnik(); const wszystkie = doZrobienia(rodzina, { root, lista }); const robic = [], pomijane = [], wstrzymane = [];
   for (const c of wszystkie) { const p = pominiecie(rodzina, c, root) ?? sprzetNieobslugiwany(c, catalog);
+    const czeka = regulyDla(rodzina, c, root).map((r) => czekaNaKontrakt(r, silnik().v2.CONTRACT.id)).find(Boolean);
     if (p) pomijane.push({ klucz: c, powod: `pomiń — zrobi nasz agent (${p})` });
+    else if (czeka) wstrzymane.push({ klucz: c, powod: `czeka na kontrakt — ${czeka}` });
     else if (otwarteDla(rodzina, c, root)) wstrzymane.push({ klucz: c, powod: `OTWARTE — brak źródła ruchu (${otwarteDla(rodzina, c, root)})` });
     else if (!bezRegul && !regulyDla(rodzina, c, root).length) wstrzymane.push({ klucz: c, powod: 'wstrzymane — brak reguły sensu dla tego ćwiczenia (docs/53, bramka 3)' });
     else robic.push(c); }

@@ -7,7 +7,7 @@
   "kontrakt": {
    "type": "string",
    "enum": [
-    "figury-v2/poza@1"
+    "figury-v2/poza@2"
    ]
   },
   "rodzina": {
@@ -285,6 +285,36 @@
       "maximum": 200,
       "description": "Pochylenie głowy od pionu (bezwzględne), stopnie, do przodu dodatnie. Domyślnie 40% pochylenia tułowia."
      },
+     "obrotTulowia": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "OPCJONALNIE (poza@2): obrót całego tułowia z miednicą wokół osi długiej, stopnie: 0 = klatka do przodu (domyślnie), +90 = klatka zwrócona ku prawej stronie osoby (+z), −90 = ku lewej. Tylko dla ćwiczeń na boku (deska bokiem, Copenhagen), nie dla ćwiczeń z obrotem klatki względem miednicy — te opisuje skretTulowia. Wraz z obrotem nogi i ręce nadal podajesz jako punkty w układzie świata."
+     },
+     "skretTulowia": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "OPCJONALNIE (poza@2): skręt klatki piersiowej względem miednicy wokół osi tułowia, stopnie (-45…45): dodatni = klatka ku prawej stronie osoby. Miednica zostaje (rotacje tułowia, drwal, Russian twist)."
+     },
+     "przechylTulowia": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "OPCJONALNIE (poza@2): skłon boczny tułowia, stopnie (-35…35): dodatni = głowa ku prawej stronie osoby. Przechyla całą oś tułowia w stawach biodrowych (uproszczenie: sztywno, nie łukiem)."
+     },
+     "przechylGlowy": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "OPCJONALNIE (poza@2): skłon boczny głowy względem tułowia, stopnie (-35…35): dodatni = ucho ku prawemu barkowi."
+     },
+     "przechylMiednicy": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "OPCJONALNIE (poza@2): przechył miednicy w płaszczyźnie czołowej, stopnie (-15…15): dodatni = prawe biodro wyżej niż lewe. Przesuwa tylko stawy biodrowe (tułów zostaje)."
+     },
      "nogi": {
       "type": "object",
       "properties": {
@@ -427,6 +457,30 @@
           "minimum": 10,
           "maximum": 40,
           "description": "Odległość łokieć–środek chwytu w cm (domyślnie 33)."
+         },
+         "uniesienieBarkow": {
+          "type": "number",
+          "minimum": -30,
+          "maximum": 30,
+          "description": "OPCJONALNIE (poza@2): uniesienie (+) albo obniżenie (−) barku wzdłuż osi tułowia, cm (-3…6); szrugsy. Barki obu stron podajesz osobno (zwykle ta sama wartość)."
+         },
+         "wysuniecieBarkow": {
+          "type": "number",
+          "minimum": -30,
+          "maximum": 30,
+          "description": "OPCJONALNIE (poza@2): wysunięcie (+, protrakcja) albo cofnięcie (−, retrakcja) barku wzdłuż „przodu” klatki, cm (-4…6)."
+         },
+         "zgiecieNadgarstka": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "OPCJONALNIE (poza@2): zgięcie dłoniowe (+) albo wyprost (−) nadgarstka, stopnie (-70…80): dłoń odchyla się od osi przedramienia ku stronie dłoni (+) albo grzbietu (−). chwyt nadal oznacza środek chwytu dłoni; silnik cofa zgiecieNadgarstka o długość dłoni wzdłuż odchylonej dłoni."
+         },
+         "obrotPrzedramienia": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "OPCJONALNIE (poza@2): obrót przedramienia, stopnie (-80…80): 0 = kciuk w górę, dodatni = supinacja (dłoń w górę), ujemny = pronacja (dłoń w dół). Wyznacza płaszczyznę zgięcia nadgarstka."
          }
         },
         "required": [
@@ -464,6 +518,30 @@
           "minimum": 10,
           "maximum": 40,
           "description": "Odległość łokieć–środek chwytu w cm (domyślnie 33)."
+         },
+         "uniesienieBarkow": {
+          "type": "number",
+          "minimum": -30,
+          "maximum": 30,
+          "description": "OPCJONALNIE (poza@2): uniesienie (+) albo obniżenie (−) barku wzdłuż osi tułowia, cm (-3…6); szrugsy. Barki obu stron podajesz osobno (zwykle ta sama wartość)."
+         },
+         "wysuniecieBarkow": {
+          "type": "number",
+          "minimum": -30,
+          "maximum": 30,
+          "description": "OPCJONALNIE (poza@2): wysunięcie (+, protrakcja) albo cofnięcie (−, retrakcja) barku wzdłuż „przodu” klatki, cm (-4…6)."
+         },
+         "zgiecieNadgarstka": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "OPCJONALNIE (poza@2): zgięcie dłoniowe (+) albo wyprost (−) nadgarstka, stopnie (-70…80): dłoń odchyla się od osi przedramienia ku stronie dłoni (+) albo grzbietu (−). chwyt nadal oznacza środek chwytu dłoni; silnik cofa zgiecieNadgarstka o długość dłoni wzdłuż odchylonej dłoni."
+         },
+         "obrotPrzedramienia": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "OPCJONALNIE (poza@2): obrót przedramienia, stopnie (-80…80): 0 = kciuk w górę, dodatni = supinacja (dłoń w górę), ujemny = pronacja (dłoń w dół). Wyznacza płaszczyznę zgięcia nadgarstka."
          }
         },
         "required": [
@@ -575,6 +653,36 @@
          "maximum": 200,
          "description": "Zmiana pochylenia głowy w stopniach."
         },
+        "obrotTulowia": {
+         "type": "number",
+         "minimum": -90,
+         "maximum": 90,
+         "description": "Zmiana obrotu tułowia w stopniach."
+        },
+        "skretTulowia": {
+         "type": "number",
+         "minimum": -45,
+         "maximum": 45,
+         "description": "Zmiana skrętu klatki w stopniach."
+        },
+        "przechylTulowia": {
+         "type": "number",
+         "minimum": -35,
+         "maximum": 35,
+         "description": "Zmiana skłonu bocznego w stopniach."
+        },
+        "przechylGlowy": {
+         "type": "number",
+         "minimum": -35,
+         "maximum": 35,
+         "description": "Zmiana skłonu bocznego głowy w stopniach."
+        },
+        "przechylMiednicy": {
+         "type": "number",
+         "minimum": -15,
+         "maximum": 15,
+         "description": "Zmiana przechyłu miednicy w stopniach."
+        },
         "nogi": {
          "type": "object",
          "properties": {
@@ -671,6 +779,30 @@
              "minItems": 3,
              "maxItems": 3,
              "description": "Zmiana położenia chwytu [dx, dy, dz] w cm."
+            },
+            "uniesienieBarkow": {
+             "type": "number",
+             "minimum": -9,
+             "maximum": 9,
+             "description": "Zmiana uniesienia barku w cm."
+            },
+            "wysuniecieBarkow": {
+             "type": "number",
+             "minimum": -10,
+             "maximum": 10,
+             "description": "Zmiana wysunięcia barku w cm."
+            },
+            "zgiecieNadgarstka": {
+             "type": "number",
+             "minimum": -90,
+             "maximum": 90,
+             "description": "Zmiana zgięcia nadgarstka w stopniach."
+            },
+            "obrotPrzedramienia": {
+             "type": "number",
+             "minimum": -90,
+             "maximum": 90,
+             "description": "Zmiana obrotu przedramienia w stopniach."
             }
            },
            "required": [],
@@ -689,6 +821,30 @@
              "minItems": 3,
              "maxItems": 3,
              "description": "Zmiana położenia chwytu [dx, dy, dz] w cm."
+            },
+            "uniesienieBarkow": {
+             "type": "number",
+             "minimum": -9,
+             "maximum": 9,
+             "description": "Zmiana uniesienia barku w cm."
+            },
+            "wysuniecieBarkow": {
+             "type": "number",
+             "minimum": -10,
+             "maximum": 10,
+             "description": "Zmiana wysunięcia barku w cm."
+            },
+            "zgiecieNadgarstka": {
+             "type": "number",
+             "minimum": -90,
+             "maximum": 90,
+             "description": "Zmiana zgięcia nadgarstka w stopniach."
+            },
+            "obrotPrzedramienia": {
+             "type": "number",
+             "minimum": -90,
+             "maximum": 90,
+             "description": "Zmiana obrotu przedramienia w stopniach."
             }
            },
            "required": [],

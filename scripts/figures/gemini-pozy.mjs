@@ -465,7 +465,7 @@ export async function importujZPliku({ plik, rodzina: rodzinaArg = null, wyjscie
   const wyniki = []; const doNalozenia = {}; const bledy = {}; const nieznane = [];
   for (const [cw, poza0] of Object.entries(w.poze)) {
     if (!znane.includes(cw)) { nieznane.push(cw); wyniki.push({ cwiczenie: cw, ok: false, bledy: [{ kod: 'klucz', szczegol: `„${cw}” nie jest ćwiczeniem rodziny ${rodzina}` }] }); continue; }
-    const poza1 = poza0 && typeof poza0 === 'object' && !Array.isArray(poza0) ? { kontrakt: 'figury-v2/poza@1', rodzina, cwiczenie: cw, ...poza0 } : poza0; /* brakujące pola nagłówka uzupełniane, błędne zostają dla walidatora */
+    const poza1 = poza0 && typeof poza0 === 'object' && !Array.isArray(poza0) ? { kontrakt: 'figury-v2/poza@2', rodzina, cwiczenie: cw, ...poza0 } : poza0; /* brakujące pola nagłówka uzupełniane, błędne zostają dla walidatora */
     const poza = normalizuj(poza1, rodzina, cw, root); /* stopa automatyczna: podbicie z odpowiedzi odrzucane */
     const v = kontrakt.waliduj(poza, { rodzina, cwiczenie: cw });
     wyniki.push({ cwiczenie: cw, ok: v.ok, bledy: v.bledy });

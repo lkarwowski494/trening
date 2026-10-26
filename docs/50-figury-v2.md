@@ -97,7 +97,7 @@ Cel (decyzja właściciela 25.10.2026): pozę ćwiczenia może wypełnić ZEWNĘ
 walidator: `node scripts/figures/v2-validate.mjs <plik.json> [--podglad katalog]` (kod 0 = poprawne, 1 = błędy z komunikatami, 2 = użycie). Przykład z gotowej rodziny (`exampleFor('Back Squat', …)`) przechodzi ten sam walidator.
 
 **Format (jeden obiekt na ćwiczenie).** Układ jak w silniku: cm, x = przód, y = góra (podłoga y = 0), z = prawa strona osoby; kąty w stopniach; strony `R`/`L` (prawa/lewa).
-- `kontrakt` = `figury-v2/poza@1`, `rodzina`, `cwiczenie` (klucz katalogu, np. „Pull Up”).
+- `kontrakt` = `figury-v2/poza@2` (walidator przyjmuje też `poza@1` — dane zapisane przed rozszerzeniem; `poza@1` z polem poza@2 jest odrzucane), `rodzina`, `cwiczenie` (klucz katalogu, np. „Pull Up”).
 - `sprzet[]`: `sztanga` (x, y, talerze, podazaZaChwytem, dlugosc; drążek to sztanga bez talerzy), `slupek` (x, h), `podloga` (x0, x1), `skrzynia` (x0, x1, top). Zasady rodziny w `TEMPLATES` (pull_up: dokładnie jeden nieruchomy drążek bez talerzy, x ∈ [−30, 30], y ∈ [200, 260], słupek i podłoga; domyślny sprzęt w `TEMPLATES.pull_up.defaultGear`).
 - `klatki[]` (2–12, rosnące `u`, pierwsza u = 0, ostatnia u = 1; między nimi interpolacja liniowa — ruch zakrzywiony wymaga klatek pośrednich): `miednica` [x, y, z], `pochylenieTulowia`, opcjonalnie `zgiecieKregoslupa`, `pochylenieGlowy`, `nogi.{R,L}` (`kostka` + opcjonalnie `podbicie`, `rotacjaStopy`, `odchylenieKolana`),
   `rece.{R,L}` (`chwyt` + opcjonalnie `biegunLokcia`, `dolnaCzesc`). Kolana i łokcie liczy nasz IK (dwukostny, długości kości stałe: `BODY`), więc generator podaje tylko cele; tułów ma stałą długość (barki wynikają z miednicy i pochylenia).
@@ -156,3 +156,23 @@ Tor ruchu przy nieruchomym drążku = droga miednicy (`info.trail`). Tempo: faza
   Znaczek jest przyciskiem (pole dotyku 44 pt, etykieta VoiceOver „Wskazówka: …” / „Częsty błąd: …”); stuknięcie zatrzymuje animację (znaczek się porusza) i pokazuje tekst wskazówki pod rysunkiem.
 - **Strzałki toru**: grot na obu końcach toru (koniec u = 1 w stronę pierwszej fazy, początek w stronę powrotu), `TRAIL_ARROW`.
 - **Wydajność**: `frameAt` ma pamięć ostatnich 48 klatek (ta sama klatka w kształtach, liniach, stykach i znaczkach to jeden obiekt), styki liczone raz na klatkę (`WeakMap`). Zrzuty przed/po: scratchpad `zrzuty-grafiki/styk/`.
+## 13. Rozszerzenie modelu figury: poza@2 (26.10.2026)
+
+Decyzja właściciela (26.10.2026): rozszerzamy model figury tak, żeby prawie cała biblioteka miała animację; ćwiczenia, których nie da się narysować, nie stają się wyjątkami. `figury-v2/poza@2` jest **zgodna wstecz**: dochodzą wyłącznie pola OPCJONALNE (brak pola = 0 = zachowanie jak w poza@1). Rysunek wszystkich gotowych figur, przykładów z rigów i póz z `poses/` jest bajtowo ten sam co przed zmianą (`tests/figures-v2-zgodnosc-wsteczna.test.ts`, wzorzec `tests/fixtures/figury-v2-zlote.json`).
+
+| Pole (klatka / delta) | Znaczenie i znak | Zakres walidatora |
+|---|---|---|
+| `obrotTulowia` | obrót całego tułowia z miednicą wokół osi długiej; +90° = klatka ku prawej stronie osoby (deska bokiem, Copenhagen) | ±180° (orientacja ciała, nie staw) |
+| `skretTulowia` | skręt klatki względem miednicy; + = ku prawej stronie; liczony względem ciała, więc działa w staniu i w leżeniu | ±45° |
+| `przechylTulowia` | skłon boczny (sztywny przechył osi tułowia w biodrach); + = głowa ku prawej | ±35° |
+| `przechylMiednicy` | przechył miednicy w płaszczyźnie czołowej; + = prawe biodro wyżej; przesuwa tylko biodra | ±15° |
+| `przechylGlowy` | skłon boczny głowy względem tułowia; + = ucho ku prawemu barkowi | ±35° |
+| `rece.R/L.uniesienieBarkow` | uniesienie (+) / obniżenie (−) barku wzdłuż osi tułowia, cm (szrugsy) | −3…+6 cm |
+| `rece.R/L.wysuniecieBarkow` | protrakcja (+) / retrakcja (−) barku wzdłuż przodu klatki, cm | −4…+6 cm |
+| `rece.R/L.zgiecieNadgarstka` | zgięcie dłoniowe (+) / wyprost (−); dłoń jest osobnym odcinkiem, chwyt zostaje środkiem dłoni | −70…+80° |
+| `rece.R/L.obrotPrzedramienia` | 0 = kciuk w górę, + supinacja, − pronacja; wyznacza płaszczyznę zgięcia nadgarstka (`Arm.palm`) | ±80° |
+
+**Źródła zakresów: brak przeczytanego źródła w repozytorium — wszystkie zakresy w tabeli to UPROSZCZENIE ILUSTRACYJNE** kierunkowo zbliżone do podręcznikowych zakresów goniometrycznych (`EXT_ROM` w `lib/figures/v2/skeleton.ts`, jedno miejsce). Aplikacja nie podaje ich użytkownikowi jako faktu. **[OTWARTE — badacz]** źródła (np. normy ROM: AAOS, przegląd systematyczny) dla skrętu i skłonu tułowia, nadgarstka, przedramienia, barków; zmiana liczb tylko w `EXT_ROM` (schemat i opis kontraktu generują się z niego).
+Walidator (`validatePose`) sprawdza nowe zakresy w każdej fazie (kod `zakres`, nazwa pola w komunikacie); błędy jako delty deklarują zmiany nowych pól istniejącymi etykietami `dotyczy`: tułów (obrót, skręt, skłon, przechył głowy) = `spine`, przechył miednicy = `pelvis`, uniesienie barku = `shoulder`, nadgarstek i przedramię = `elbow`.
+Silnik: osie tułowia w `trunkAxes` (kolejność: obrót ciała → skłon → skręt; przechył miednicy osobno), stawy biodrowe i barki z tych osi, nadgarstek iteracyjnie (chwyt = cel), kolider dłoni osobno od przedramienia przy zgiętym nadgarstku. `jointAngles` zwraca dodatkowo `trunkRoll`, `trunkTwist`, `trunkLean`, `pelvisTilt`, `headTilt`, `shrug`, `protract`, `wristFlex`, `forearmRoll`, a **biodro ma znak** (przeprost = wartość ujemna, próg 2 cm za osią tułowia; wcześniej wyprost czytał się jak zgięcie). Skutek: leżenie na ławce ma biodro ≈ −22° (wyjątek rodziny `bench_press` w teście zakresów: −25°, uproszczenie).
+Granice: sprzęt poza osią z (skrzynie po bokach, taśmy podwieszane) — gałąź `grafiki-sprzet` (pole `z` w sprzęcie); poza@2 niczego tam nie zmienia. Reguły sensu czytające nowe pola mają `wymaga: "poza@2"` i typy `stopien_swobody` / `punkt_zakres` (`data/zrodla/figury-sens.json` → `_typy`); ćwiczenie z regułą wymagającą pola, którego kontrakt nie ma, czeka i nie dostaje polecenia.

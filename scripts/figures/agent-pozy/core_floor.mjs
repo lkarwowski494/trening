@@ -130,7 +130,7 @@ function vUp(cw) {
 function superman(cw, { bledy = !!wczytajTeksty()['cobra.mis'] } = {}) { /* błąd tylko, gdy ma opis w tekstach wskazówek (v2-jakosc: etykieta_bledu) */
   const us = [0, 0.25, 0.5, 0.75, 1];
   const fr = (u, wznios) => { const phi = Math.asin(Math.min(1, wznios / BODY().trunk)) / R; const p = 90 - phi; const S = barki([0, Y0], p); const aR = phi * 0.6 - 2 - 3 * (1 - u); const hz = 15; /* ręce prosto przed sobą, lekko w górę */
-    const ank = () => { const y = 16 + 19 * u; const a = Math.asin((y - Y0) / D_PROSTA_NOGA); return [-D_PROSTA_NOGA * Math.cos(a), y]; };
+    const ank = () => { const y = 16 + 10 * u; /* r4: biodro ze znakiem, zakres −17°…133°: wyprost nogi w Supermanie ≤ ok. 17° */ const a = Math.asin((y - Y0) / D_PROSTA_NOGA); return [-D_PROSTA_NOGA * Math.cos(a), y]; };
     const nog = (sg) => ({ ankle: ank(), strona: 'dol', pod: 0, rot: 90, z: ZNOG, pole: [0.15, -1, 0.1 * sg] });
     return ramka({ u, miednica: [0, Y0], p, glowa: p * 0.92, nogi: { R: nog(1), L: nog(-1) }, rece: { R: { g: chwyt(S, aR, hz), pole: [0, -1, 0.2] }, L: { g: chwyt(S, aR, -hz), pole: [0, -1, -0.2] } } }); };
   const ok = (u) => fr(u, 8 * u); const zle = (u) => fr(u, 5 + 17 * u); /* błąd: klatka uniesiona o 5 cm już w u = 0, o 22 cm na końcu (przeprost lędźwi) */

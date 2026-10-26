@@ -39,6 +39,14 @@ export function ik2(a: V3, b: V3, l1: number, l2: number, pole: V3): { mid: V3; 
   return { mid, end, err: dist(end, b) };
 }
 
+/** Obrót wektora v wokół osi k (jednostkowej) o kąt a (stopnie, reguła prawej dłoni); a = 0 zwraca v bez zmian (bajtowo). */
+export function rotAxis(v: V3, k: V3, angDeg: number): V3 {
+  if (angDeg === 0) return v;
+  const c = Math.cos(rad(angDeg)), s = Math.sin(rad(angDeg)), d = dot(k, v) * (1 - c);
+  const x: V3 = [k[1] * v[2] - k[2] * v[1], k[2] * v[0] - k[0] * v[2], k[0] * v[1] - k[1] * v[0]];
+  return [v[0] * c + x[0] * s + k[0] * d, v[1] * c + x[1] * s + k[1] * d, v[2] * c + x[2] * s + k[2] * d];
+}
+
 /** Odległość między odcinkami a1–a2 i b1–b2 w 3D (do testów kolizji kapsuł). */
 export function distSegSeg(a1: V3, a2: V3, b1: V3, b2: V3): number {
   const d1 = sub(a2, a1), d2 = sub(b2, b1), r = sub(a1, b1);

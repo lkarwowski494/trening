@@ -131,6 +131,8 @@ const RULES: Rule[] = [
 export const OVERRIDES: Record<string, FamilyId> = {
   'Drag Curl': 'curl', 'Dragon Flag': 'core_floor', 'Cable Overhead Extension': 'triceps', 'Bottoms-Up Clean From The Hang Position': 'kb_ballistic',
   'Medicine Ball Chest Pass': 'sled_throw', 'Jefferson Squat': 'strongman', 'Crossover Reverse Lunge': 'lunge',
+  /* słowo „neck” w nazwie to chwyt zza karku, nie ćwiczenie szyi (badacz r4, NSCA Basics s. 42) */
+  'Push Press - Behind the Neck': 'overhead_press', 'Standing Barbell Press Behind Neck': 'overhead_press', 'Wide-Grip Pulldown Behind The Neck': 'pulldown',
 };
 
 export function familyOf(key: string, entry: CatalogEntry = CATALOG[key]): FamilyId {

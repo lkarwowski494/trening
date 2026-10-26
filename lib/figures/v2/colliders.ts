@@ -31,7 +31,8 @@ export function bodyColliders(sk: Skeleton): Collider[] {
     c.push({ k: 'capsule', id: 'shank' + s, a: L.knee, b: L.ankle, r: (GIRTH.shank[0] + GIRTH.shank[2]) / 2 });
     c.push({ k: 'capsule', id: 'foot' + s, a: [L.heel[0], L.heel[1] + 3.5, L.heel[2]], b: [L.toe[0], L.toe[1] + 3.5, L.toe[2]], r: 3.4 });
     c.push({ k: 'capsule', id: 'uarm' + s, a: A.shoulder, b: A.elbow, r: (GIRTH.uarm[0] + GIRTH.uarm[1]) / 2 });
-    c.push({ k: 'capsule', id: 'farm' + s, a: A.elbow, b: A.grip, r: 3.3 });
+    if (A.bent) { c.push({ k: 'capsule', id: 'farm' + s, a: A.elbow, b: A.wrist, r: 3.3 }); c.push({ k: 'capsule', id: 'hand' + s, a: A.wrist, b: A.grip, r: 3.3 }); } /* zgięty nadgarstek: przedramię i dłoń osobno */
+    else c.push({ k: 'capsule', id: 'farm' + s, a: A.elbow, b: A.grip, r: 3.3 });
   }
   c.push({ k: 'capsule', id: 'torso', a: sk.pelvis, b: sk.shoulderC, r: GIRTH.trunkCollide });
   c.push({ k: 'capsule', id: 'pelvis', a: sk.pelvis, b: sk.pelvis, r: GIRTH.pelvis });
@@ -130,24 +131,24 @@ export function checkFrame(f: Frame): Issue[] {
   if (allPts.some(p => p.some(v => !Number.isFinite(v)))) { out.push({ code: 'finite', detail: 'niefinitywne współrzędne' }); return out; }
   for (const s of SIDES) {
     const L = sk.legs[s], A = sk.arms[s];
-    const bones: [string, number, number][] = [['thigh', dist(L.hip, L.knee), BODY.thigh], ['shank', dist(L.knee, L.ankle), BODY.shank], ['uarm', dist(A.shoulder, A.elbow), BODY.uarm], ['farm', dist(A.elbow, A.grip), A.lower]];
+    const bones: [string, number, number][] = [['thigh', dist(L.hip, L.knee), BODY.thigh], ['shank', dist(L.knee, L.ankle), BODY.shank], ['uarm', dist(A.shoulder, A.elbow), BODY.uarm], A.bent ? ['farm', dist(A.elbow, A.wrist), A.forearm] : ['farm', dist(A.elbow, A.grip), A.lower]];
     for (const [n, got, want] of bones) if (Math.abs(got - want) > 1e-4) out.push({ code: 'bone', detail: `${n}${s}: ${got.toFixed(4)} ≠ ${want}` });
     if (L.err > TOL.reach) out.push({ code: 'reach', detail: `noga ${s}: cel poza zasięgiem o ${L.err.toFixed(2)} cm` });
     if (A.err > TOL.reach) out.push({ code: 'reach', detail: `ręka ${s}: cel poza zasięgiem o ${A.err.toFixed(2)} cm` });
   }
   const body = bodyColliders(sk), eq = equipColliders(f.props);
-  for (const b of body) if (b.k === 'capsule') { const low = Math.min(b.a[1], b.b[1]) - b.r; if (low < -TOL.floor && !/^(torso|pelvis|head|uarm|farm)/.test(b.id)) out.push({ code: 'floor', detail: `${b.id} poniżej podłogi o ${(-low).toFixed(2)} cm` }); }
+  for (const b of body) if (b.k === 'capsule') { const low = Math.min(b.a[1], b.b[1]) - b.r; if (low < -TOL.floor && !/^(torso|pelvis|head|uarm|farm|hand)/.test(b.id)) out.push({ code: 'floor', detail: `${b.id} poniżej podłogi o ${(-low).toFixed(2)} cm` }); }
   for (const s of SIDES) if (soleY(sk.legs[s]) < -TOL.floor) out.push({ code: 'floor', detail: `stopa ${s} poniżej podłogi` });
   const lowest = new Map<string, number>(); /* sprzęt trzymany (talerz = wiele kapsuł): jeden komunikat na rekwizyt, z najniższym punktem */
   for (const e of equipColliders(f.props)) if (e.k === 'capsule' && /^(ball|plate)/.test(e.id)) lowest.set(e.id, Math.min(lowest.get(e.id) ?? Infinity, Math.min(e.a[1], e.b[1]) - e.r));
   for (const [id, low] of lowest) if (low < -TOL.floor) out.push({ code: 'floor', detail: `${id} poniżej podłogi o ${(-low).toFixed(2)} cm` });
   for (const b of body) for (const e of eq) {
     const g = gap(b, e); const allowed = f.contacts.find(c => matches(b.id, c.body) && matches(e.id, c.equip));
-    const heldHand = /^farm/.test(b.id) && /^(bar|db|kb|plate|ball|rope|wheel)/.test(e.id);
+    const heldHand = /^(farm|hand)/.test(b.id) && /^(bar|db|kb|plate|ball|rope|wheel)/.test(e.id);
     const tol = heldHand ? (/^kb/.test(e.id) ? 14 : /^(db|barLog)/.test(e.id) && e.k === 'capsule' ? Math.max(12, e.r + 6) : 12) : allowed ? allowed.tol : TOL.pen; /* hantel: chwyt w jego środku, więc tolerancja rośnie z promieniem główki */
     if (g < -tol) out.push({ code: 'pen', detail: `${b.id} × ${e.id}: przenikanie ${(-g).toFixed(2)} cm (dopuszczalne ${tol})` });
   }
-  const head = body.find(b => b.id === 'head'); const bodyOther = body.filter(b => /^(uarm|farm)/.test(b.id));
+  const head = body.find(b => b.id === 'head'); const bodyOther = body.filter(b => /^(uarm|farm|hand)/.test(b.id));
   if (head) for (const o of bodyOther) { const g = gap(head, o); if (g < -0.5) out.push({ code: 'self', detail: `głowa × ${o.id}: ${(-g).toFixed(2)} cm` }); }
   for (const r of f.props) if (r.k === 'rail') for (const b of f.props) if (b.k === 'barbell' && Math.abs(b.c[0] - r.x) > TOL.rail) out.push({ code: 'rail', detail: `sztanga × prowadnica: x sztangi ${b.c[0].toFixed(1)} cm, x prowadnicy ${r.x.toFixed(1)} cm (różnica ${Math.abs(b.c[0] - r.x).toFixed(1)} cm, dopuszczalne ${TOL.rail})` });
   for (const p of f.props) if (p.k === 'pivot' && p.len !== undefined) { const d = dist(p.from, p.to); if (Math.abs(d - p.len) > TOL.pivot) out.push({ code: 'pivot', detail: `${p.label ?? 'landmine'}: ${p.label ? 'punkt mocowania' : 'dłonie'} ${d.toFixed(1)} cm od osi obrotu, a ${p.label ? 'ramię' : 'gryf'} ma ${p.len} cm (dopuszczalne ± ${TOL.pivot})` }); }

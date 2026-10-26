@@ -45,15 +45,39 @@ export function spineAt(sk: Skeleton, a: number): { p: V3; up: V3 } {
   return { p: add(A, mul(sub(B, A), k)), up };
 }
 
+/** Czy szkielet ma obrót, skręt, skłon boczny albo przechył (poza@2): wtedy rysunek tułowia i miednicy uwzględnia obrót przekroju; bez nich rysunek jest taki sam jak w poza@1 (bajtowo). */
+export const hasTrunkExt = (sk: Skeleton): boolean => sk.roll !== 0 || sk.twist !== 0 || sk.lean !== 0 || sk.tilt !== 0;
+/** Wartość profilu [a, v] w odległości a od miednicy (interpolacja liniowa). */
+function profAt(prof: [number, number][], a: number): number {
+  if (a <= prof[0][0]) return prof[0][1]; if (a >= prof[prof.length - 1][0]) return prof[prof.length - 1][1];
+  let i = 0; while (i < prof.length - 2 && a >= prof[i + 1][0]) i++;
+  const [a0, v0] = prof[i], [a1, v1] = prof[i + 1]; return v0 + (v1 - v0) * (a - a0) / (a1 - a0);
+}
+/** Obrót przekroju tułowia na wysokości a (stopnie): obrót ciała + skręt klatki narastający od miednicy (0) do barków (pełny). */
+const sectionYaw = (sk: Skeleton, a: number): number => sk.roll + sk.twist * Math.max(0, Math.min(1, a / BODY.trunk));
+
 function torsoPoly(sk: Skeleton, view: View): V2[] {
   const out: V2[] = [];
+  const ext = hasTrunkExt(sk);
   if (view === 'side') {
     const back: V2[] = [], front: V2[] = [];
-    for (const [a, bk, fr] of TORSO_SIDE) { const { p, up } = spineAt(sk, a); const n: V3 = [up[1], -up[0], 0]; back.push(proj(add(p, mul(n, bk)), view)); front.push(proj(add(p, mul(n, fr)), view)); }
+    for (const [a, bk, fr] of TORSO_SIDE) {
+      const { p, up } = spineAt(sk, a);
+      if (!ext) { const n: V3 = [up[1], -up[0], 0]; back.push(proj(add(p, mul(n, bk)), view)); front.push(proj(add(p, mul(n, fr)), view)); continue; }
+      /* przekrój obrócony wokół osi tułowia: widoczna głębokość = głębokość·|cos| + połowa szerokości·|sin| (przekrój eliptyczny, uproszczenie ilustracyjne) */
+      const y = rad(sectionYaw(sk, a)), c = Math.abs(Math.cos(y)), sn = Math.abs(Math.sin(y)), W = profAt(TORSO_FRONT, a); const nl = Math.hypot(up[0], up[1]) || 1; const n: V3 = [up[1] / nl, -up[0] / nl, 0];
+      back.push(proj(add(p, mul(n, bk * c - W * sn)), view)); front.push(proj(add(p, mul(n, fr * c + W * sn)), view));
+    }
     return [...back, ...front.reverse()];
   }
   const left: V2[] = [], right: V2[] = [];
-  for (const [a, w] of TORSO_FRONT) { const { p } = spineAt(sk, a); const c = proj(p, view); left.push([c[0] - w, c[1]]); right.push([c[0] + w, c[1]]); }
+  for (const [a, w] of TORSO_FRONT) {
+    const { p, up } = spineAt(sk, a); const c = proj(p, view);
+    if (!ext) { left.push([c[0] - w, c[1]]); right.push([c[0] + w, c[1]]); continue; }
+    const y = rad(sectionYaw(sk, a)); const D = (Math.abs(profAt(TORSO_SIDE.map(([x, b, f]) => [x, (f - b) / 2] as [number, number]), a)));
+    const wv = w * Math.abs(Math.cos(y)) + D * Math.abs(Math.sin(y)); const t = proj(up, view); const tl = Math.hypot(t[0], t[1]) || 1; const n: V2 = [t[1] / tl, -t[0] / tl];
+    left.push([c[0] - wv * n[0], c[1] - wv * n[1]]); right.push([c[0] + wv * n[0], c[1] + wv * n[1]]);
+  }
   out.push(...left, ...right.reverse()); return out;
 }
 
@@ -108,15 +132,21 @@ export function bodyShapes(sk: Skeleton, view: View): Shape[] {
   push({ k: 'poly', pts: torsoPoly(sk, view), fill: 'cloth', z: tz, id: 'torso', close: true, smooth: true });
   if (side) { const { p: cp } = spineAt(sk, 34); const c = proj(add(cp, mul(sk.front, 5)), view); const ang = Math.atan2(sk.up[1], sk.up[0]) * 180 / Math.PI; push({ k: 'ellipse', c, rx: 2.6, ry: 11, rot: ang - 90, fill: 'clothHi', a: 0.7, z: tz + 0.05, id: 'torsoHi' }); }
   const pc = proj(sk.pelvis, view);
-  if (side) push({ k: 'ellipse', c: pc, rx: GIRTH.pelvis + 0.4, ry: 8.6, rot: 0, fill: 'cloth', z: tz + 0.1, id: 'pelvis' });
-  else push({ k: 'ellipse', c: pc, rx: 15.5, ry: 8.0, rot: 0, fill: 'cloth', z: tz + 0.1, id: 'pelvis' });
+  if (!hasTrunkExt(sk)) {
+    if (side) push({ k: 'ellipse', c: pc, rx: GIRTH.pelvis + 0.4, ry: 8.6, rot: 0, fill: 'cloth', z: tz + 0.1, id: 'pelvis' });
+    else push({ k: 'ellipse', c: pc, rx: 15.5, ry: 8.0, rot: 0, fill: 'cloth', z: tz + 0.1, id: 'pelvis' });
+  } else { /* miednica obrócona (deska bokiem) i/lub przechylona: szerokość i głębokość mieszane wg obrotu, oś wzdłuż linii bioder w widoku z przodu */
+    const y = rad(sk.roll), cy = Math.abs(Math.cos(y)), sy = Math.abs(Math.sin(y)); const wide = 15.5, deep = GIRTH.pelvis + 0.4;
+    const hr = proj(sk.legs.R.hip, view), hl = proj(sk.legs.L.hip, view); const rot = side ? 0 : Math.atan2(hl[1] - hr[1], hl[0] - hr[0]) * 180 / Math.PI;
+    push({ k: 'ellipse', c: pc, rx: side ? deep * cy + wide * sy : wide * cy + deep * sy, ry: 8.4, rot, fill: 'cloth', z: tz + 0.1, id: 'pelvis' });
+  }
   cap('neck', sk.shoulderC, GIRTH.neck, add(sk.head, mul(sk.headUp, -BODY.headR * 0.5)), GIRTH.neck - 0.3, 'skin', side ? 0.2 : sk.neck[0]);
   const hc = proj(sk.head, view); const ha = Math.atan2(sk.headUp[1], side ? sk.headUp[0] : 0) * 180 / Math.PI;
   const hz = zKey(LAYER.body, side ? 0.3 : sk.head[0] + 0.3);
   if (side) {
     push({ k: 'ellipse', c: hc, rx: 8.6, ry: 10.6, rot: ha - 90, fill: 'skin', z: hz, id: 'head' });
     const hu = proj(sk.headUp, view);
-    const norm2 = Math.hypot(hu[0], hu[1]) || 1; const u2: V2 = [hu[0] / norm2, hu[1] / norm2], f2: V2 = [u2[1], -u2[0]];
+    const norm2 = Math.hypot(hu[0], hu[1]) || 1; const u2: V2 = [hu[0] / norm2, hu[1] / norm2], f2: V2 = hasTrunkExt(sk) ? [sk.headFront[0], sk.headFront[1]] : [u2[1], -u2[0]]; /* z obrotem twarz zwrócona częściowo do/od kamery */
     const hairPts: V2[] = [];
     for (let i = 0; i <= 10; i++) { const t = rad(-20 + i * 18); const lu = Math.cos(t) * 10.8, lf = -Math.sin(t) * 8.8; hairPts.push([hc[0] + u2[0] * lu + f2[0] * lf, hc[1] + u2[1] * lu + f2[1] * lf]); }
     hairPts.push([hc[0] + u2[0] * 2 + f2[0] * -0.5, hc[1] + u2[1] * 2 + f2[1] * -0.5]);
