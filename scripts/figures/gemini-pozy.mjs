@@ -23,6 +23,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { maskuj } from '../maskuj.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const czytaj = (p) => JSON.parse(readFileSync(p, 'utf8'));
@@ -110,18 +111,8 @@ export function budujPrompt({ rodzina, cwiczenie, opis, przyklady, wsk, poprzedn
   return L.join('\n');
 }
 
-/* ---------- maskowanie klucza ---------- */
-/** Zastępuje klucz, wszystko w kształcie klucza Google oraz identyfikatory projektu Google Cloud (numer lub nazwa w `projects/<id>`, „project <id>”, długie ciągi cyfr) w tekście;
- *  stosowane do każdego logu, błędu i pliku wyniku — odpowiedzi błędów API powtarzają ścieżkę zasobu z numerem projektu (lekcja L-035: trafił do publicznego logu). */
-export const maskuj = (tekst, klucz = '') => {
-  let s = String(tekst ?? '');
-  if (klucz && klucz.length >= 4) s = s.split(klucz).join('***');
-  return s
-    .replace(/AIza[0-9A-Za-z_-]{20,}/g, '***')
-    .replace(/projects\/[^/\s"'`,;)\]]+/gi, 'projects/***')
-    .replace(/\bprojects?([\s:=]+)['"]?\d{4,}/gi, (m, b) => `project${b}***`)
-    .replace(/\d{9,}/g, '***');
-};
+/* ---------- maskowanie klucza i identyfikatorów (scripts/maskuj.mjs, lekcja L-035) ---------- */
+export { maskuj };
 
 /* ---------- klient API ---------- */
 export const ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/interactions'; /* tryb gemini (Interactions, ai.google.dev/api/interactions-api) */
@@ -132,31 +123,59 @@ export const hostVertex = (lok = DOMYSLNA_LOKALIZACJA) => (lok === 'global' ? 'a
 export const ENDPOINT_VERTEX = `https://${hostVertex()}/v1/publishers/google/models`; /* tryb vertex: globalny, bez projektu; + /<model>:generateContent */
 export const endpointVertex = (model, lok = DOMYSLNA_LOKALIZACJA) => `https://${hostVertex(lok)}/v1/publishers/google/models/${model}:generateContent`;
 /** Statusy, po których NIE ponawiamy i kończymy cały przebieg (klucz, uprawnienia, rozliczenia, przydział). */
-export const STATUSY_KRYTYCZNE = { gemini: [401, 402, 403, 404], vertex: [401, 402, 403, 404, 429] };
+export const STATUSY_KRYTYCZNE = { gemini: [401, 402, 403, 404], vertex: [400, 401, 402, 403, 404, 429] };
 export const KOMUNIKATY_KRYTYCZNE = {
+  400: 'żądanie odrzucone jako niepoprawne (400) — stop po pierwszym błędzie; w raporcie są szczegóły pól (error.details) z odpowiedzi API',
   401: 'klucz odrzucony (401) — sprawdź wartość sekretu GEMINI_API_KEY (dla trybu vertex: klucz API Google Cloud z włączonym Agent Platform API, nie klucz z AI Studio)',
   402: 'wymagane rozliczenia lub brak kredytów (402) — sprawdź konto rozliczeniowe i kredyty projektu',
   403: 'brak uprawnień (403) — Agent Platform API niewłączone w projekcie, ograniczenia klucza (API restrictions), rola projektu albo model niedostępny dla tego typu klucza',
   404: 'model lub zasób nie znaleziony albo brak do niego dostępu (404) — stop po pierwszym błędzie; sprawdź --lokalizacja (global/us/eu), identyfikator modelu i dostęp klucza (uruchom wejście lista_modeli)',
   429: 'przekroczony przydział lub limit zapytań (429) — stop bez ponowień; sprawdź przydziały projektu w konsoli Google Cloud',
 };
+/** Formaty wymuszenia JSON w żądaniu vertex (dokumentacja GenerationConfig: pola responseMimeType/responseSchema/responseJsonSchema oznaczone jako przestarzałe na rzecz responseFormat[]).
+ *  Próba połączenia wybiera pierwszy, który API przyjmie: schemat JSON → schemat OpenAPI (oczyszczony) → responseFormat → sam tryb JSON ze schematem w treści polecenia. */
+export const FORMATY_VERTEX = ['jsonSchema', 'openApi', 'responseFormat', 'tekst'];
+const KLUCZE_OPENAPI = ['type', 'format', 'title', 'description', 'nullable', 'enum', 'items', 'properties', 'required', 'minItems', 'maxItems', 'minimum', 'maximum', 'anyOf', 'propertyOrdering'];
+/** Schemat JSON → podzbiór OpenAPI obsługiwany przez Vertex (usuwa $schema, additionalProperties, const, wielotypowe `type` itd.). */
+export function schematOpenApi(sch) {
+  if (Array.isArray(sch)) return sch.map(schematOpenApi);
+  if (!sch || typeof sch !== 'object') return sch;
+  const w = {};
+  for (const [k, v] of Object.entries(sch)) {
+    if (k === 'type' && Array.isArray(v)) { const t = v.filter((x) => x !== 'null'); w.type = t[0]; if (t.length !== v.length) w.nullable = true; }
+    else if (k === 'const') w.enum = [v];
+    else if (k === 'properties') w.properties = Object.fromEntries(Object.entries(v).map(([n, x]) => [n, schematOpenApi(x)]));
+    else if (KLUCZE_OPENAPI.includes(k)) w[k] = k === 'items' || k === 'anyOf' ? schematOpenApi(v) : v;
+  }
+  return w;
+}
+export function trescVertex({ input, system, schemat, maxTokens, format }) {
+  const tekst = format === 'tekst' ? `${input}\n\nOdpowiedz wyłącznie obiektem JSON zgodnym z tym schematem:\n${JSON.stringify(schemat)}` : input;
+  const gc = { maxOutputTokens: maxTokens };
+  if (format === 'jsonSchema') Object.assign(gc, { responseMimeType: 'application/json', responseJsonSchema: schemat });
+  else if (format === 'openApi') Object.assign(gc, { responseMimeType: 'application/json', responseSchema: schematOpenApi(schemat) });
+  else if (format === 'responseFormat') gc.responseFormat = [{ text: { mimeType: 'APPLICATION_JSON', schema: schemat } }];
+  else Object.assign(gc, { responseMimeType: 'application/json' });
+  return { contents: [{ role: 'user', parts: [{ text: tekst }] }], systemInstruction: { parts: [{ text: system }] }, generationConfig: gc };
+}
 export class BladApi extends Error {
   constructor(status, wiadomosc, krytyczny) { super(wiadomosc); this.name = 'BladApi'; this.status = status; this.krytyczny = krytyczny; }
 }
 export function klient(fetchFn, klucz, { tryb = 'gemini', lokalizacja = DOMYSLNA_LOKALIZACJA, endpoint, spij = (ms) => new Promise((r) => setTimeout(r, ms)), ponowien = 2 } = {}) {
   const krytyczne = STATUSY_KRYTYCZNE[tryb] ?? STATUSY_KRYTYCZNE.gemini;
   return {
-    async generuj({ model, system, input, schemat, maxTokens = MAX_TOKENS_ODPOWIEDZI }) {
+    format: FORMATY_VERTEX[0], /* ustawiany przez próbę połączenia */
+    async generuj({ model, system, input, schemat, maxTokens = MAX_TOKENS_ODPOWIEDZI, format = this.format }) {
       const url = endpoint ?? (tryb === 'vertex' ? endpointVertex(model, lokalizacja) : ENDPOINT);
-      /* vertex: generateContent; JSON wg schematu przez responseMimeType + responseJsonSchema (docs/52 pkt 6); maxOutputTokens ≤ 32 768 (limit żądania nie-strumieniowego dla Argon) */
+      /* vertex: generateContent, format JSON wg `format` (FORMATY_VERTEX); maxOutputTokens ≤ 32 768 (limit żądania nie-strumieniowego dla Argon) */
       const body = tryb === 'vertex'
-        ? { contents: [{ role: 'user', parts: [{ text: input }] }], systemInstruction: { parts: [{ text: system }] }, generationConfig: { responseMimeType: 'application/json', responseJsonSchema: schemat, maxOutputTokens: maxTokens } }
+        ? trescVertex({ input, system, schemat, maxTokens, format })
         : { model, input, system_instruction: system, response_format: { type: 'text', mime_type: 'application/json', schema: schemat }, generation_config: { max_output_tokens: maxTokens } };
       for (let n = 0; ; n++) {
         const r = await fetchFn(url, { method: 'POST', headers: { 'content-type': 'application/json', 'x-goog-api-key': klucz }, body: JSON.stringify(body) });
         if (r.ok) return r.json();
-        let msg = ''; try { msg = (await r.json())?.error?.message ?? ''; } catch { /* brak treści */ }
-        const szczegol = maskuj(String(msg).slice(0, 300), klucz);
+        let msg = ''; let det = ''; try { const e = (await r.json())?.error; msg = e?.message ?? ''; det = e?.details ? JSON.stringify(e.details) : ''; } catch { /* brak treści */ }
+        const szczegol = maskuj(`${String(msg).slice(0, 300)}${det ? ` | details: ${det.slice(0, 1000)}` : ''}`, klucz); /* error.details (np. fieldViolations) wskazuje złe pole */
         if (krytyczne.includes(r.status)) throw new BladApi(r.status, `API ${r.status}: ${KOMUNIKATY_KRYTYCZNE[r.status]}${szczegol ? ` [${szczegol}]` : ''}`, true);
         if ((r.status === 429 || r.status >= 500) && n < ponowien) { await spij(2000 * 2 ** n); continue; }
         throw new BladApi(r.status, `API ${r.status}${szczegol ? `: ${szczegol}` : ''}`, false); /* treść błędu bez nagłówków i klucza */
@@ -217,10 +236,16 @@ export const SCHEMAT_PROBY = { type: 'object', properties: { ok: { type: 'boolea
 export async function probaPolaczenia({ api, model, stan, limit, dzis, tryb = 'vertex' }) {
   const c = cena(model, dzis, tryb); const najgorszy = (300 * c.we + 1024 * c.wy) / 1e6;
   if (stan.wydano + najgorszy > limit) return { ok: false, koszt_usd: 0, blad: 'limit kosztu mniejszy niż koszt próby połączenia' };
-  const odp = odczytajOdpowiedz(await api.generuj({ model, system: 'Odpowiadaj wyłącznie obiektem JSON.', input: 'Zwróć obiekt JSON {"ok": true}.', schemat: SCHEMAT_PROBY, maxTokens: 1024 }));
-  const k = kosztUsd(odp.uzycie, model, dzis, tryb); stan.wydano += k; stan.netto = (stan.netto ?? 0) + kosztNettoUsd(odp.uzycie, model, dzis, tryb);
-  const p = parsujPoze(odp.tekst);
-  return { ok: !p.blad && p.poza?.ok === true && odp.status === 'completed', koszt_usd: k, status: odp.status, blad: p.blad ?? null };
+  const formaty = tryb === 'vertex' ? FORMATY_VERTEX : [undefined]; const odrzucone = [];
+  for (const format of formaty) {
+    let odp;
+    try { odp = odczytajOdpowiedz(await api.generuj({ model, system: 'Odpowiadaj wyłącznie obiektem JSON.', input: 'Zwróć obiekt JSON {"ok": true}.', schemat: SCHEMAT_PROBY, maxTokens: 1024, ...(format ? { format } : {}) })); }
+    catch (e) { if (e.status === 400 && format !== formaty[formaty.length - 1]) { odrzucone.push({ format, blad: e.message }); continue; } e.odrzucone_formaty = odrzucone; throw e; } /* 400 = ten format odrzucony, próbuj następny (400 nie jest rozliczany) */
+    if (format) api.format = format;
+    const k = kosztUsd(odp.uzycie, model, dzis, tryb); stan.wydano += k; stan.netto = (stan.netto ?? 0) + kosztNettoUsd(odp.uzycie, model, dzis, tryb);
+    const p = parsujPoze(odp.tekst);
+    return { ok: !p.blad && p.poza?.ok === true && odp.status === 'completed', koszt_usd: k, status: odp.status, blad: p.blad ?? null, format: format ?? null, odrzucone_formaty: odrzucone };
+  }
 }
 
 /* ---------- pętla ---------- */
@@ -328,10 +353,10 @@ export async function main(argv, env, { fetchFn = fetch, log: logSurowy = consol
   if (o.api === 'vertex') {
     try {
       polaczenie = await probaPolaczenia({ api, model: o.model, stan, limit: o.limitUsd, dzis, tryb: o.api });
-      log(`próba połączenia (vertex, ${o.model}): ${polaczenie.ok ? 'OK' : `odpowiedź nietypowa (status ${polaczenie.status ?? '?'}${polaczenie.blad ? `, ${polaczenie.blad}` : ''}) — kontynuuję`}; ${polaczenie.koszt_usd.toFixed(5)} USD`);
+      log(`próba połączenia (vertex, ${o.model}, format ${polaczenie.format ?? '?'}${polaczenie.odrzucone_formaty?.length ? `; odrzucone: ${polaczenie.odrzucone_formaty.map((x) => x.format).join(', ')}` : ''}): ${polaczenie.ok ? 'OK' : `odpowiedź nietypowa (status ${polaczenie.status ?? '?'}${polaczenie.blad ? `, ${polaczenie.blad}` : ''}) — kontynuuję`}; ${polaczenie.koszt_usd.toFixed(5)} USD`);
     } catch (e) {
-      if (!e.krytyczny) polaczenie = { ok: false, koszt_usd: 0, blad: e.message }; /* np. 400/5xx: pokazujemy błąd, pętla ćwiczeń sama go zgłosi per ćwiczenie */
-      else { polaczenie = { ok: false, koszt_usd: 0, blad: e.message }; krytyczny = e.message; log(`PRÓBA POŁĄCZENIA NIEUDANA — STOP bez dalszych prób: ${e.message}`); }
+      if (!e.krytyczny) polaczenie = { ok: false, koszt_usd: 0, blad: e.message, odrzucone_formaty: e.odrzucone_formaty ?? [] }; /* np. 5xx: pokazujemy błąd, pętla ćwiczeń sama go zgłosi per ćwiczenie */
+      else { polaczenie = { ok: false, koszt_usd: 0, blad: e.message, odrzucone_formaty: e.odrzucone_formaty ?? [] }; krytyczny = e.message; log(`PRÓBA POŁĄCZENIA NIEUDANA — STOP bez dalszych prób: ${e.message}`); for (const x of e.odrzucone_formaty ?? []) log(`  format ${x.format} odrzucony wcześniej: ${x.blad}`); }
       if (!e.krytyczny) log(`próba połączenia nieudana: ${e.message}`);
     }
   }

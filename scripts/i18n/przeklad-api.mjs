@@ -18,6 +18,7 @@ import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { CENY, MODELE, RABAT_BATCH, DOMYSLNY_MODEL, DOMYSLNY_EFFORT, EFFORTY, MAX_TOKENS, REJESTR, INTERWAL_S, CZEKAJ_MIN_DOMYSLNIE, jezyki, zmienne, nazwaJezyka, przyblizTokeny, tekstZadania, kosztUsd, klient, czekajNaBatch } from './przeglad-api.mjs';
+import { maskuj } from '../maskuj.mjs';
 
 /** Powyżej tego szacunku (USD) przebieg zatrzymuje się, chyba że podano --zgoda-koszt (zgoda właściciela 23.10.2026: do 6 USD). */
 export const LIMIT_KOSZTU_USD = 6;
@@ -107,7 +108,7 @@ export function parsujOdpowiedz(tekst, pozycje, kod = null, slownik = null) {
 /** Jedna linia wyniku batcha → { kod, blad, tekst, uzycie }. */
 export function odczytajLinie(linia) {
   const r = JSON.parse(linia); const kod = String(r.custom_id).replace(/^pr-/, ''); const res = r.result ?? {};
-  if (res.type !== 'succeeded') return { kod, blad: `${res.type}${res.error?.error?.message ? `: ${res.error.error.message}` : res.error?.message ? `: ${res.error.message}` : ''}`, tekst: null, uzycie: null };
+  if (res.type !== 'succeeded') return { kod, blad: maskuj(`${res.type}${res.error?.error?.message ? `: ${res.error.error.message}` : res.error?.message ? `: ${res.error.message}` : ''}`), tekst: null, uzycie: null };
   const m = res.message ?? {};
   const tekst = (m.content ?? []).filter((c) => c.type === 'text').map((c) => c.text).join('\n');
   if (m.stop_reason === 'max_tokens') return { kod, blad: 'odpowiedź ucięta (max_tokens)', tekst: null, uzycie: m.usage ?? null };
@@ -225,7 +226,7 @@ export async function main(argv, env, { fetchFn = fetch, log = console.log, root
   if (!id) { const b = await api.utworz(zadania); id = b.id; log(`wysłano batch ${id}`); }
   let batch;
   try { batch = await czekajNaBatch(api, id, { czekajMin: o.czekajMin, interwalS: INTERWAL_S, log }); }
-  catch (e) { log(e.message); return e.kodWyjscia ?? 1; }
+  catch (e) { log(maskuj(e.message)); return e.kodWyjscia ?? 1; }
   const linie = (await api.wyniki(batch.results_url)).split('\n').filter((l) => l.trim());
   const odczyty = Object.fromEntries(linie.map((l) => { const r = odczytajLinie(l); return [r.kod, r]; }));
   const meta = { model: o.model, effort: o.effort, batch_id: id };
@@ -237,5 +238,5 @@ export async function main(argv, env, { fetchFn = fetch, log = console.log, root
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  main(process.argv.slice(2), process.env).then((c) => process.exit(c), (e) => { console.error(`błąd: ${e.message}`); process.exit(1); });
+  main(process.argv.slice(2), process.env).then((c) => process.exit(c), (e) => { console.error(`błąd: ${maskuj(e.message)}`); process.exit(1); });
 }

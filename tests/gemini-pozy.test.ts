@@ -218,7 +218,7 @@ describe('gemini-pozy: tryb vertex (Agent Platform z kluczem API, docs/52 pkt 6;
     expect(koszt.koszt_usd).toBeCloseTo(6 * kosztWywolania, 6); expect(koszt.wywolan).toBe(6); expect(koszt.api).toBe('vertex');
     expect(koszt.koszt_po_promocji_usd).toBeCloseTo(3 * kosztWywolania, 6); /* data atrapy 2026-11-01: promocja 50% */
     for (const f of r.files) expect(fs.readFileSync(path.join(fx, 'wyjscie', f), 'utf8')).not.toContain('sekretny-klucz-testowy');
-    expect(r.log.join('\n')).not.toContain('sekretny-klucz-testowy'); expect(r.log.join('\n')).toMatch(/próba połączenia \(vertex, gemini-4-argon\): OK/); expect(snapshot(fx)).toBe(snap);
+    expect(r.log.join('\n')).not.toContain('sekretny-klucz-testowy'); expect(r.log.join('\n')).toMatch(/próba połączenia \(vertex, gemini-4-argon, format jsonSchema\): OK/); expect(snapshot(fx)).toBe(snap);
   });
   test.each([[401, 'http401', 'GEMINI_API_KEY'], [402, 'http402', 'kredyt'], [403, 'http403', 'uprawnie'], [429, 'http429', 'przydzia']])('próba połączenia kończy się %i: czytelny komunikat, STOP bez dalszych prób (jedno wywołanie, brak ponowień), reszta „api”, kod 5, klucz zamaskowany', (_k, kod, fraza) => {
     const fx = fixture(); const r = runMain(fx, ['--api', 'vertex', '--rodzina', 'pull_up'], { GEMINI_API_KEY: 'tajny-klucz-z-echa' }, [kod, 50, 50, 50, 50]);
@@ -237,13 +237,13 @@ describe('gemini-pozy: tryb vertex (Agent Platform z kluczem API, docs/52 pkt 6;
     expect(rap.wyniki.map((x: any) => [x.ok, x.przerwane])).toEqual([[true, null], [false, 'api'], [false, 'api']]);
     expect(JSON.parse(fs.readFileSync(path.join(fx, 'wyjscie/poze.json'), 'utf8')).poze).toEqual({ 'Pull Up': { kat: 50 } }); expect(r.log.join('\n')).toMatch(/STOP bez dalszych prób: API 429/);
   });
-  test('401/403 w trybie gemini też kończą przebieg bez ponowień; 5xx w vertex jest ponawiane (2 razy) i kończy sukcesem; 400 w próbie nie zatrzymuje (błąd per ćwiczenie)', () => {
+  test('401/403 w trybie gemini też kończą przebieg bez ponowień; 5xx w vertex jest ponawiane (2 razy) i kończy sukcesem; 400 we wszystkich formatach próby = stop (kod 5)', () => {
     const fx = fixture(); const r = runMain(fx, ['--api', 'gemini', '--rodzina', 'pull_up'], { GEMINI_API_KEY: 'k' }, ['http403', 50, 50]);
     expect(r.code).toBe(5); expect(r.calls).toHaveLength(1);
     const fy = fixture(); const r2 = runMain(fy, ['--api', 'vertex', '--rodzina', 'pulldown'], { GEMINI_API_KEY: 'k' }, ['probe', 'http503', 'http503', 40]);
     expect(r2.code).toBe(0); expect(r2.calls).toHaveLength(4);
-    const fz = fixture(); const r3 = runMain(fz, ['--api', 'vertex', '--rodzina', 'pulldown'], { GEMINI_API_KEY: 'k' }, ['blad400', 'blad400']);
-    expect(r3.code).toBe(1); expect(r3.log.join('\n')).toMatch(/próba połączenia nieudana: API 400: zły schemat/);
+    const fz = fixture(); const r3 = runMain(fz, ['--api', 'vertex', '--rodzina', 'pulldown'], { GEMINI_API_KEY: 'k' }, ['blad400', 'blad400', 'blad400', 'blad400']);
+    expect(r3.code).toBe(5); expect(r3.calls).toHaveLength(4); expect(r3.log.join('\n')).toMatch(/PRÓBA POŁĄCZENIA NIEUDANA[\s\S]*API 400[\s\S]*zły schemat/);
   });
   test('twardy limit kosztu w vertex: limit mniejszy niż koszt próby połączenia = ani jednego połączenia płatnego w pętli; suma (próba + pętla) nie przekracza limitu', () => {
     const fx = fixture(); const r = runMain(fx, ['--api', 'vertex', '--rodzina', 'pull_up', '--limit-usd', '0.001'], { GEMINI_API_KEY: 'k' }, ['probe', 50, 50, 50]);
@@ -296,6 +296,55 @@ describe('gemini-pozy: prywatność odpowiedzi błędów, 404 jako twardy stop, 
     const w2 = wywolaj("{ GEMINI_API_KEY: 'tajny-klucz-listy' }"); expect(w2.c).toBe(0);
     const modele = fs.readFileSync(path.join(out, 'modele.json'), 'utf8'); expect(modele).toContain('gemini-4-argon'); expect(modele).not.toContain('tajny-klucz-listy'); expect(JSON.stringify(w2.log)).not.toContain('tajny-klucz-listy');
     expect(fs.readdirSync(out)).toEqual(['modele.json']); /* żadnych kosztów, żadnych póz */
+  });
+});
+
+describe('gemini-pozy: format żądania vertex (400 „invalid argument”), szczegóły błędu, maskowanie w skryptach tłumaczeń (26.10.2026)', () => {
+  const SCH = `{ $schema: 'x', type: 'object', additionalProperties: false, properties: { kat: { type: ['number', 'null'], minimum: 0, maximum: 100, multipleOf: 1 }, t: { const: 'a' }, l: { type: 'array', items: { type: 'number' }, minItems: 2, uniqueItems: true } }, required: ['kat'] }`;
+  test('treść generateContent: cztery formaty (schemat JSON, schemat OpenAPI, responseFormat, tylko tryb JSON ze schematem w poleceniu); wspólne: contents/role/parts, systemInstruction, maxOutputTokens, bez pól Interactions', () => {
+    const t = (f: string) => run(`console.log(JSON.stringify(m.trescVertex({ input: 'pytanie', system: 'sys', schemat: ${SCH}, maxTokens: 777, format: '${f}' })))`);
+    expect(run('console.log(JSON.stringify(m.FORMATY_VERTEX))')).toEqual(['jsonSchema', 'openApi', 'responseFormat', 'tekst']);
+    for (const f of ['jsonSchema', 'openApi', 'responseFormat', 'tekst']) {
+      const b = t(f); expect(b.contents).toEqual([{ role: 'user', parts: [{ text: expect.stringContaining('pytanie') }] }]); expect(b.systemInstruction).toEqual({ parts: [{ text: 'sys' }] });
+      expect(b.generationConfig.maxOutputTokens).toBe(777); expect(Object.keys(b).sort()).toEqual(['contents', 'generationConfig', 'systemInstruction']);
+    }
+    expect(t('jsonSchema').generationConfig).toMatchObject({ responseMimeType: 'application/json', responseJsonSchema: { type: 'object', additionalProperties: false } });
+    expect(t('openApi').generationConfig.responseSchema).toEqual({ type: 'object', properties: { kat: { type: 'number', nullable: true, minimum: 0, maximum: 100 }, t: { enum: ['a'] }, l: { type: 'array', items: { type: 'number' }, minItems: 2 } }, required: ['kat'] });
+    expect(t('responseFormat').generationConfig.responseFormat).toEqual([{ text: { mimeType: 'APPLICATION_JSON', schema: expect.objectContaining({ type: 'object' }) } }]);
+    expect(t('tekst').generationConfig).toEqual({ maxOutputTokens: 777, responseMimeType: 'application/json' }); expect(t('tekst').contents[0].parts[0].text).toContain('"additionalProperties":false');
+  });
+  test('próba połączenia: 400 na pierwszym formacie → następny; wybrany format używany w całej pętli; odrzucone formaty w raporcie i logu', () => {
+    const fx = fixture(); const r = runMain(fx, ['--api', 'vertex', '--rodzina', 'pulldown'], { GEMINI_API_KEY: 'k' }, ['blad400', 'probe', 40]);
+    expect(r.code).toBe(0); expect(r.calls).toHaveLength(3);
+    expect(Object.keys(r.calls[0].body.generationConfig).sort()).toEqual(['maxOutputTokens', 'responseJsonSchema', 'responseMimeType']); expect(r.calls[1].body.generationConfig.responseSchema).toBeTruthy();
+    expect(r.calls[2].body.generationConfig.responseSchema).toEqual({ type: 'object', properties: { kat: { type: 'number' } }, required: ['kat'] }); /* pętla używa wybranego formatu */
+    const rap = JSON.parse(fs.readFileSync(path.join(fx, 'wyjscie/raport.json'), 'utf8')); expect(rap.polaczenie).toMatchObject({ ok: true, format: 'openApi' }); expect(rap.polaczenie.odrzucone_formaty.map((x: any) => x.format)).toEqual(['jsonSchema']);
+    expect(r.log.join('\n')).toMatch(/format openApi; odrzucone: jsonSchema/);
+  });
+  test('400 w pętli (po udanej próbie) = twardy stop po pierwszym ćwiczeniu; szczegóły error.details (fieldViolations) w raporcie, zamaskowane (klucz, numer projektu)', () => {
+    const fx = fixture(); const out = path.join(fx, 'wyjscie');
+    const code = `const calls = []; const q = ['probe', 'det400', 50, 50]; const log = [];
+      const usageV = { promptTokenCount: 10, candidatesTokenCount: 5, thoughtsTokenCount: 5 };
+      const fetchFn = async (url, init) => { calls.push(url); const x = q.shift();
+        if (x === 'det400') return { ok: false, status: 400, json: async () => ({ error: { code: 400, message: 'Request contains an invalid argument.', status: 'INVALID_ARGUMENT', details: [{ '@type': 'type.googleapis.com/google.rpc.BadRequest', fieldViolations: [{ field: 'generation_config.response_json_schema', description: 'bad field in projects/123456789012/x with sekret-klucz-1' }] }] } }) };
+        return { ok: true, status: 200, json: async () => ({ candidates: [{ content: { parts: [{ text: x === 'probe' ? '{"ok":true}' : '{"kat":1}' }] }, finishReason: 'STOP' }], usageMetadata: usageV }) }; };
+      const c = await m.main(['--api', 'vertex', '--rodzina', 'pull_up', '--wyjscie', ${JSON.stringify(out)}], { GEMINI_API_KEY: 'sekret-klucz-1' }, { fetchFn, log: (s) => log.push(s), root: ${JSON.stringify(fx)}, dzis: new Date('2026-11-01T00:00:00Z') });
+      console.log(JSON.stringify({ c, n: calls.length, log }));`;
+    const r = run(code); expect(r.c).toBe(5); expect(r.n).toBe(2);
+    const raport = fs.readFileSync(path.join(out, 'raport.json'), 'utf8'); expect(raport).toContain('fieldViolations'); expect(raport).toContain('response_json_schema');
+    for (const t of [raport, JSON.stringify(r.log), ...fs.readdirSync(out).map(f => fs.readFileSync(path.join(out, f), 'utf8'))]) expect(t).not.toMatch(/123456789012|sekret-klucz-1/);
+    expect(JSON.parse(raport).wyniki.map((x: any) => x.przerwane)).toEqual(['api', 'api', 'api']);
+  });
+  test('skrypty tłumaczeń (przeklad-api, przeglad-api): błąd API i wynik batcha nie zdradzają numeru projektu ani klucza (wspólny scripts/maskuj.mjs)', () => {
+    for (const f of ['przeklad-api', 'przeglad-api']) {
+      const mod = JSON.stringify(path.join(ROOT, `scripts/i18n/${f}.mjs`));
+      const wynik = JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${mod};
+        const linia = JSON.stringify({ custom_id: 'pr-de', result: { type: 'errored', error: { error: { message: 'bad projects/123456789012/x key sk-ant-api03-ABCDEFGHIJKLMNOP' } } } });
+        const o = m.odczytajLinie(linia);
+        let blad = null; if (m.klient) { try { await m.klient(async () => ({ ok: false, status: 404, json: async () => ({ error: { message: 'no projects/123456789012/y' } }) }), 'k').utworz([]); } catch (e) { blad = e.message; } }
+        console.log(JSON.stringify({ o: o.blad, blad }));`], { env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8' }));
+      expect(wynik.o).not.toMatch(/123456789012|sk-ant-api03/); expect(wynik.o).toContain('projects/***'); if (f === 'przeglad-api') expect(wynik.blad).not.toMatch(/123456789012/);
+    }
   });
 });
 
