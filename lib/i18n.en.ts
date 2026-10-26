@@ -784,6 +784,8 @@ export const EN: Record<string, string> = {
   'Wypychanie': 'Pressing',
   'Wstawanie': 'Standing up',
   'Podnoszenie': 'Lifting',
+  'Podciąganie': 'Pulling up',
+  'Bujanie się i wymachy nogami.': 'Swinging and kicking the legs.',
   'Prostowanie': 'Straightening',
   '{faza} {n} s': '{faza} {n} s',
   'Pokaż częsty błąd': 'Show common mistake',

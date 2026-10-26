@@ -224,7 +224,10 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
   const pose = toPoseIn(k); const grips = { R: pose.arms.R.grip, L: pose.arms.L.grip };
   const props = propsFrom(d.sprzet, grips); const bar = props.find(p => p.k === 'barbell');
   const info: Record<string, V3> = {}; if (bar && bar.k === 'barbell') info.load = bar.c;
-  return mkFrame(pose, props, info);
+  const fr = mkFrame(pose, props, info);
+  /* drążek nieruchomy (ciało porusza się względem sprzętu): tor ruchu to droga środka ciała (miednicy), nie punktu na drążku */
+  if (!d.sprzet.some(g => g.rodzaj === 'sztanga' && g.podazaZaChwytem)) fr.info.trail = fr.sk.pelvis;
+  return fr;
 }
 
 /* ---------- walidator semantyczny ---------- */

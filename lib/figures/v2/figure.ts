@@ -17,25 +17,31 @@ import { SIDES, jointAngles } from './skeleton';
 import type { V3 } from './math';
 import { GUIDES, trailShapes, type GuideId } from './guides';
 import { phasesOf, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
-import { ERRORS, type ErrorId, type Fault } from './errors';
+import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
+import { keyframeFrame } from './contract';
+import { DATA_UI, ISOMETRIC, poseDataFor, type MeasuredJoint } from './poseData';
 import { ease } from './rigs/common';
 
 export type FigureSpec = { key: string; family: FamilyId; variant: Variant; views: View[]; static: boolean; lowerFirst: boolean };
 
-/** Specyfikacja figury ćwiczenia; null, gdy rodzina ćwiczenia nie jest jeszcze gotowa (status „planned”) albo klucza nie ma w katalogu. */
+/** Specyfikacja figury ćwiczenia; null, gdy rodzina ćwiczenia nie jest jeszcze gotowa (status „planned”), klucza nie ma w katalogu albo ćwiczenie rodziny z danymi nie ma wpisu w pliku póz. */
 export function figureSpec(key: string): FigureSpec | null {
   if (!Object.prototype.hasOwnProperty.call(CATALOG, key)) return null;
   const family = familyOf(key); const fam = FAMILY[family];
   if (fam.status !== 'ready') return null;
+  const data = poseDataFor(key, family); const ui = DATA_UI[family];
+  if (data && ui) return { key, family, variant: { family, data } as Variant, views: fam.views, static: ISOMETRIC.has(key), lowerFirst: ui.lowerFirst };
   const variant = Object.prototype.hasOwnProperty.call(VARIANTS, key) ? VARIANTS[key] : null;
-  if (!variant || variant.family !== family) return null;
+  if (!variant || variant.family !== family || 'data' in variant) return null;
   const lowerFirst = variant.family === 'hinge' ? variant.lowerFirst : true;
   return { key, family, variant, views: fam.views, static: variant.family === 'squat' && !!variant.static, lowerFirst };
 }
 
 /** Klatka figury w pozycji u (0 = wyjściowa, 1 = skrajna). */
-export function frameAt(spec: FigureSpec, u: number, error?: ErrorId): Frame {
-  const v = spec.variant; const fault = error ? faultFor(spec, error, u) : undefined;
+export function frameAt(spec: FigureSpec, u: number, error?: FigError): Frame {
+  const v = spec.variant;
+  if ('data' in v) return keyframeFrame(v.data, u, error && isDataError(error) ? dataErrorIndex(error) : undefined);
+  const fault = error && !isDataError(error) ? faultFor(spec, error, u) : undefined;
   return v.family === 'squat' ? squatFrame(v.p, u, fault) : v.family === 'bench_press' ? benchFrame(v.p, u, fault) : hingeFrame(v.p, u, fault);
 }
 
@@ -44,8 +50,11 @@ export function faultWeight(spec: FigureSpec, u: number): number {
   const v = spec.variant; return v.family === 'hinge' && v.p.style === 'floor' ? 1 - 0.6 * ease(u) : ease(u);
 }
 /** Czy błąd da się pokazać pozą w tym wariancie (np. „pięty” nie dotyczą siadu przy ścianie, „kolana jak w przysiadzie” tylko RDL ze sztywnymi kolanami). */
-export function faultApplicable(spec: FigureSpec, error: ErrorId): boolean {
+export function faultApplicable(spec: FigureSpec, error: FigError): boolean {
   const v = spec.variant;
+  /* rodzina z danych: błędy to wpisy bledy[] ćwiczenia (poza = poprawna + delty); z rigowych tylko błąd tempa („szarpanie”) */
+  if ('data' in v) return isDataError(error) ? dataErrorIndex(error) < v.data.bledy.length : error === 'jerk';
+  if (isDataError(error)) return false;
   switch (error) {
     case 'kneesIn': return v.family === 'squat' && !v.p.wall && v.p.stance < 30 && v.p.load !== 'dbSumo';
     case 'heels': return v.family === 'squat' && !v.p.wall;
@@ -58,11 +67,10 @@ export function faultApplicable(spec: FigureSpec, error: ErrorId): boolean {
 }
 function faultFor(spec: FigureSpec, error: ErrorId, u: number): Fault { return { m: ERRORS[error].mods, w: faultWeight(spec, u) }; }
 
-/** Staw mierzony na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie): przysiad — kolano, wyciskanie — łokieć, zawias — biodro. */
-export type MeasuredJoint = 'knee' | 'elbow' | 'hip';
-export const measuredJoint = (spec: FigureSpec): MeasuredJoint => spec.family === 'bench_press' ? 'elbow' : spec.family === 'hinge' ? 'hip' : 'knee';
+/** Staw mierzony na rysunku (decyzja właściciela 25.10.2026: kąt jako opis figury, nie zalecenie): przysiad — kolano, wyciskanie — łokieć, zawias — biodro; rodziny z danych — DATA_UI (podciąganie: łokieć). */
+export const measuredJoint = (spec: FigureSpec): MeasuredJoint => 'data' in spec.variant ? DATA_UI[spec.family].joint : spec.family === 'bench_press' ? 'elbow' : spec.family === 'hinge' ? 'hip' : 'knee';
 /** Kąt zgięcia stawu (stopnie; 0 = wyprost, konwencja jak w testach zakresów: docs/research/28) POLICZONY Z GEOMETRII klatki w pozycji u (średnia obu stron). */
-export function measuredAngle(spec: FigureSpec, u: number, error?: ErrorId): { joint: MeasuredJoint; deg: number } {
+export function measuredAngle(spec: FigureSpec, u: number, error?: FigError): { joint: MeasuredJoint; deg: number } {
   const f = frameAt(spec, u, error); const j = measuredJoint(spec); const a = SIDES.map(s => jointAngles(f.sk, s)[j]);
   return { joint: j, deg: (a[0] + a[1]) / 2 };
 }
@@ -74,17 +82,24 @@ export const staticPositions = (spec: FigureSpec): number[] => spec.static ? [1]
 export function musclesFor(key: string): MuscleEntry | null { return Object.prototype.hasOwnProperty.call(MUSCLE_DATA, key) ? MUSCLE_DATA[key] : null; }
 
 /** Kształty klatki w widoku (ciało + sprzęt + opcjonalnie podświetlenie mięśni; nieposortowane — sortuje renderer). */
-export function shapesAt(spec: FigureSpec, u: number, view: View, muscles = false, error?: ErrorId): Shape[] {
+export function shapesAt(spec: FigureSpec, u: number, view: View, muscles = false, error?: FigError): Shape[] {
   const f = frameAt(spec, u, error); const out = [...bodyShapes(f.sk, view), ...propShapes(f.props, view)];
   if (muscles) { const m = musclesFor(spec.key); if (m) out.push(...muscleShapes(f.sk, view, m.load)); }
-  if (error) out.push(...errorMarks(f, view, error));
+  if (error) out.push(...errorMarks(f, view, error, spec));
   return out;
 }
 
+/** Opis błędu rysunku: rigowy z ERRORS, z danych — z wpisu bledy[] ćwiczenia (poza = poprawna + delty, znacznik i deklarowane wielkości z danych). */
+export function errorDefOf(spec: FigureSpec | undefined, error: FigError): AnyErrorDef | null {
+  if (!isDataError(error)) return ERRORS[error];
+  const v = spec?.variant; const b = v && 'data' in v ? v.data.bledy[dataErrorIndex(error)] : undefined; if (!b) return null;
+  return { id: error, cue: [b.cue], kind: 'pose', mods: {}, affects: b.dotyczy, mark: b.znacznik, why: b.cue };
+}
+
 /** Znacznik ✕ w miejscu błędu (kolana, pięty, plecy, miednica, gryf) — rola „error” (token danger), nad wszystkim. */
-export function errorMarks(f: Frame, view: View, error: ErrorId): Shape[] {
-  const pts: V3[] = []; const sk = f.sk;
-  switch (ERRORS[error].mark) {
+export function errorMarks(f: Frame, view: View, error: FigError, spec?: FigureSpec): Shape[] {
+  const pts: V3[] = []; const sk = f.sk; const def = errorDefOf(spec, error); if (!def) return [];
+  switch (def.mark) {
     case 'knees': pts.push(sk.legs.R.knee, ...(view === 'side' ? [] : [sk.legs.L.knee])); break;
     case 'heels': pts.push(sk.legs.R.heel, ...(view === 'side' ? [] : [sk.legs.L.heel])); break;
     case 'back': pts.push(sk.spineMid); break;
@@ -103,22 +118,23 @@ export function errorMarks(f: Frame, view: View, error: ErrorId): Shape[] {
 
 const boxCache = new Map<string, Box>();
 /** Wspólny kadr całej pętli (próbkowanie co 1/20; z pozami błędów, żeby przełączenie błędu nie zmieniało kadru): rysunek nie skacze między klatkami. */
-export function boxFor(spec: FigureSpec, view: View, errors: ErrorId[] = []): Box {
+export function boxFor(spec: FigureSpec, view: View, errors: FigError[] = []): Box {
   const id = spec.key + '|' + view + '|' + errors.join(','); const hit = boxCache.get(id); if (hit) return hit;
-  const lists: Shape[][] = []; for (const e of [undefined, ...errors.filter(x => ERRORS[x].kind === 'pose')]) for (let i = 0; i <= 20; i++) lists.push(shapesAt(spec, spec.static ? 1 : i / 20, view, false, e));
+  const lists: Shape[][] = []; for (const e of [undefined, ...errors.filter(x => errorDefOf(spec, x)?.kind === 'pose')]) for (let i = 0; i <= 20; i++) lists.push(shapesAt(spec, spec.static ? 1 : i / 20, view, false, e));
   const b = boundsOf(lists); boxCache.set(id, b); return b;
 }
 
 /** Nazwy faz licznika tempa dla ćwiczenia (klucze t()). */
 export function phaseNames(spec: FigureSpec): PhaseNames {
   const v = spec.variant;
+  if ('data' in v) return DATA_UI[spec.family].names;
   if (v.family === 'bench_press') return { first: 'Opuszczanie', second: 'Wypychanie' };
   if (v.family === 'hinge') return v.p.style === 'floor' ? { first: 'Podnoszenie', second: 'Opuszczanie' } : { first: 'Opuszczanie', second: 'Prostowanie' };
   return { first: 'Opuszczanie', second: 'Wstawanie' };
 }
 /** Fazy pętli ćwiczenia z czasami (tempo ilustracyjne; błąd tempa podaje własne czasy). */
 /** Tempo figury: z błędu tempa albo domyślne; przysiad bez pauzy na dole (NSCA Basics 2012 s. 49–50; pauza 0,5 s to konwencja bez źródła). */
-export const tempoFor = (spec: FigureSpec, error?: ErrorId): Tempo => ({ ...(error ? ERRORS[error].mods.tempo : undefined) ?? TEMPO, ...(spec.family === 'squat' && !spec.static ? { holdLowMs: 0 } : {}) });
+export const tempoFor = (spec: FigureSpec, error?: FigError): Tempo => ({ ...(error && !isDataError(error) ? ERRORS[error].mods.tempo : undefined) ?? TEMPO, ...(spec.family === 'squat' && !spec.static ? { holdLowMs: 0 } : {}) });
 export const phasesFor = (spec: FigureSpec, tempo?: Tempo): Phase[] => phasesOf(phaseNames(spec), spec.lowerFirst, tempo);
 
 const trailCache = new Map<string, Shape[]>();
@@ -129,6 +145,6 @@ export function trailFor(spec: FigureSpec, view: View): Shape[] {
   const out = spec.static ? [] : trailShapes(fr, view); trailCache.set(id, out); return out;
 }
 /** Linie odniesienia dla pozycji u (tylko z wskazanych id i widoków, w których linia ma sens). */
-export function guideShapes(spec: FigureSpec, u: number, view: View, ids: GuideId[], error?: ErrorId): Shape[] {
+export function guideShapes(spec: FigureSpec, u: number, view: View, ids: GuideId[], error?: FigError): Shape[] {
   const f = frameAt(spec, u, error); return ids.flatMap(id => GUIDES[id].views.includes(view) ? GUIDES[id].build(f, view) : []);
 }

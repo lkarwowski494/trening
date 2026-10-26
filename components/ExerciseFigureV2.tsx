@@ -3,15 +3,14 @@ import { Pressable, Text, View, type TextStyle } from 'react-native';
 import Svg, { Circle, G, Path } from 'react-native-svg';
 import { useTheme, TEXT_SCALE_MAX, FW, font, type Theme } from '@/lib/theme';
 import { t, lang, exName } from '@/lib/i18n';
-import { cueText } from '@/lib/cues';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { useReduceMotion } from '@/components/ExerciseFigure';
 import {
   figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, phasesFor, phaseIndexAt, trailFor, guideShapes, measuredAngle, type FigureSpec,
-  type View as FView, type ErrorId, type GuideId,
+  type View as FView, type FigError, type GuideId,
 } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';
-import { errorsOf, guidesOf, legendOf, toeAngleApplies, elbowAngleApplies } from '@/lib/figures/v2/ui';
+import { errorsOf, errorText, guidesOf, legendOf, toeAngleApplies, elbowAngleApplies } from '@/lib/figures/v2/ui';
 
 /*
  * Figura ruchu v2 (grafiki ćwiczeń 1.0 — decyzja właściciela 25.10.2026; silnik: lib/figures/v2, projekt: docs/50). Widoki z boku i z przodu/z góry obok siebie, kolory z motywu,
@@ -22,7 +21,7 @@ import { errorsOf, guidesOf, legendOf, toeAngleApplies, elbowAngleApplies } from
 
 const JOINT_LABEL = { knee: 'zgięcie kolana', elbow: 'zgięcie łokcia', hip: 'zgięcie biodra' } as const;
 
-function ViewSvg({ spec, u, view, box, th, height, error, guides, testID }: { spec: FigureSpec; u: number; view: FView; box: { x: number; y: number; w: number; h: number }; th: Theme; height: number; error?: ErrorId; guides: GuideId[]; testID?: string }) {
+function ViewSvg({ spec, u, view, box, th, height, error, guides, testID }: { spec: FigureSpec; u: number; view: FView; box: { x: number; y: number; w: number; h: number }; th: Theme; height: number; error?: FigError; guides: GuideId[]; testID?: string }) {
   const pal = useMemo(() => figurePalette(th), [th]);
   const trail = useMemo(() => trailFor(spec, view), [spec, view]);
   const list = useMemo(() => sortShapes([...shapesAt(spec, u, view, true, error), ...trail, ...guideShapes(spec, u, view, guides, error)]), [spec, u, view, error, trail, guides]);
@@ -120,11 +119,11 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
       </View>
       {error
         ? <View testID="exercise-figure-v2-error" style={{ gap: 2, marginBottom: 4 }}>
-            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.danger, ...font('footnote'), ...FW.semibold }}>{t('Częsty błąd: {opis}', { opis: cueText(error.cue, lang()) })}</Text>
+            <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.danger, ...font('footnote'), ...FW.semibold }}>{t('Częsty błąd: {opis}', { opis: errorText(error.cue) })}</Text>
             {errors.length > 1
               ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-                  {errors.map((e, i) => <Pressable accessibilityLanguage={lang()} key={e.error} testID={`exercise-figure-v2-error-${e.error}`} onPress={() => setErrIdx(i)} accessibilityRole="button" accessibilityState={{ selected: i === errIdx }} accessibilityLabel={cueText(e.cue, lang())} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}>
-                    <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: i === errIdx ? th.danger : th.muted, ...font('footnote'), ...(i === errIdx ? FW.semibold : FW.regular) }}>✕ {cueText(e.cue, lang())}</Text>
+                  {errors.map((e, i) => <Pressable accessibilityLanguage={lang()} key={e.error} testID={`exercise-figure-v2-error-${e.error.replace(':', '')}`} onPress={() => setErrIdx(i)} accessibilityRole="button" accessibilityState={{ selected: i === errIdx }} accessibilityLabel={errorText(e.cue)} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}>
+                    <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: i === errIdx ? th.danger : th.muted, ...font('footnote'), ...(i === errIdx ? FW.semibold : FW.regular) }}>✕ {errorText(e.cue)}</Text>
                   </Pressable>)}
                 </View>
               : null}

@@ -134,3 +134,11 @@ Test: `tests/figures-v2-contract.test.ts` (poza podciągania zwis → góra prze
 ## 12. Model pracy i bramki jakości grafik (26.10.2026)
 
 Pozy z danych trafiają do aplikacji dopiero po bramkach (geometria, sens ruchu, niezależny przegląd, testy): `docs/53-grafiki-model-pracy.md`. Kontrakt danych ma od 26.10.2026 pole sprzętu `trzyma` (ćwiczenia jednorącz); reguły sensu: `data/zrodla/figury-sens.json` + `scripts/figures/v2-sens.mjs`. Procedura generowania póz w aplikacji Gemini: `docs/52` pkt 7 i 7a.
+
+## 13. Pozy z danych w aplikacji (26.10.2026)
+
+Rodzina z plikiem `lib/figures/v2/poses/<rodzina>.json` (import: `gemini-pozy.mjs --z-pliku`, po bramkach docs/53) jest „gotowa” i działa w sekcji Technika jak rodziny z rigiem — generycznie, bez kodu per rodzina:
+rejestr `lib/figures/v2/poseData.ts` (ładowanie leniwe), `figureSpec` buduje wariant z danych, `frameAt` = `keyframeFrame` (ta sama `Frame` co rigi: kształty, mięśnie, tor, kadr, kolidery), błędy z `bledy[]` to błędy `data:<i>` (poza poprawna + delty,
+znacznik ✕ z danych), tekst błędu przez `errorText` (słownik wskazówek, a dla id bez zdania — `t()`; dziś `hang.noSwing`). **Nowa rodzina z danymi wymaga trzech wpisów**: `LOAD` i `DATA_UI` (nazwy faz, kierunek pętli, mierzony staw) w `poseData.ts` oraz statusu `ready` w `families.ts`;
+test `figures-v2-mapping` i `figures-v2-data` obejmują ją automatycznie. Ćwiczenia rodziny bez wpisu w danych (pull_up: Muscle Up, Rope Climb) nie mają figury v2 (v1 albo brak). Izometrie (`ISOMETRIC`, zgodne z pomiarem czasu w katalogu) rysowane statycznie.
+Tor ruchu przy nieruchomym drążku = droga miednicy (`info.trail`). Tempo: faza wysiłku 1 s, powrót 2 s (anim.ts, ACSM 2009 — jak martwy ciąg z podłogi). Pokrycie: docs/51 (kolumna „Z figurą”).

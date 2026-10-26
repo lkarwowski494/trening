@@ -42,7 +42,7 @@ export function guidesFor(cueIds: Iterable<string>): GuideId[] {
 
 /** Tor ruchu: łamana przez położenia środka ciężaru/dłoni w kolejnych pozycjach (z `frames`), znacznik startu. */
 export function trailShapes(frames: Frame[], view: View): Shape[] {
-  const pts = frames.map(f => f.info.load).filter((p): p is NonNullable<typeof p> => !!p).map(p => proj(p, view));
+  const pts = frames.map(f => f.info.trail ?? f.info.load).filter((p): p is NonNullable<typeof p> => !!p).map(p => proj(p, view));
   if (pts.length < 2) return [];
   const out: Shape[] = [];
   for (let i = 1; i < pts.length; i++) out.push({ k: 'line', a: pts[i - 1], b: pts[i], w: 0.8, role: 'guide', dash: [1.6, 1.6], alpha: 0.9, z: 3900, id: 'trail' });

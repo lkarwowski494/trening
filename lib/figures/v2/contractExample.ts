@@ -42,9 +42,9 @@ const gearOf = (f: Frame): Gear[] => f.props.flatMap((p): Gear[] => {
 });
 const MARK = (e: ErrorId): DataError['znacznik'] => ERRORS[e].mark;
 const AFF = (e: ErrorId): DataError['dotyczy'] => ERRORS[e].affects;
-/** Dane rodziny dla ćwiczenia gotowej rodziny: 9 klatek kluczowych, błędy pozowe z `errors` (id → identyfikator wskazówki), sprzęt z rigu. null, gdy rodzina nie jest gotowa. */
+/** Dane rodziny dla ćwiczenia gotowej rodziny: 9 klatek kluczowych, błędy pozowe z `errors` (id → identyfikator wskazówki), sprzęt z rigu. null, gdy rodzina nie jest gotowa albo jest z danych (poses/*.json — to nie rig, a wzorce z danych wybiera generator poleceń). */
 export function exampleFor(key: string, errors: Partial<Record<ErrorId, string>> = {}): PoseData | null {
-  const spec = figureSpec(key); if (!spec) return null;
+  const spec = figureSpec(key); if (!spec || 'data' in spec.variant) return null;
   const us = Array.from({ length: 9 }, (_, i) => i / 8); const frames = us.map(u => frameAt(spec, u));
   const bledy: DataError[] = [];
   for (const [id, cue] of Object.entries(errors) as [ErrorId, string][]) {

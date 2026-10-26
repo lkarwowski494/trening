@@ -32,7 +32,7 @@ export const FAMILIES: Family[] = [
   { id: 'overhead_press', status: 'planned', label: 'Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk)', views: ['side', 'front'], effort: 4 },
   { id: 'row', status: 'planned', label: 'Wiosłowanie w pochyleniu / z podparciem / jednorącz', views: ['side', 'top'], effort: 4 },
   { id: 'cable_row', status: 'planned', label: 'Wiosłowanie na linkach i maszynie, face pull', views: ['side', 'front'], effort: 3 },
-  { id: 'pull_up', status: 'planned', label: 'Podciąganie i zwis (drążek, kółka, lina)', views: ['side', 'front'], effort: 3 },
+  { id: 'pull_up', status: 'ready', label: 'Podciąganie i zwis (drążek, kółka, lina)', views: ['side', 'front'], effort: 0, note: 'pozy z danych (poses/pull_up.json); ćwiczenia bez wpisu w danych bez figury v2' },
   { id: 'pulldown', status: 'planned', label: 'Ściąganie drążka (wyciąg górny)', views: ['side', 'front'], effort: 2 },
   { id: 'lunge', status: 'planned', label: 'Wykroki, przysiad bułgarski, wejścia na stopień, pistolet', views: ['side', 'front'], effort: 5 },
   { id: 'leg_machine', status: 'planned', label: 'Suwnice i maszyny nóg (leg press, hack, wahadło)', views: ['side'], effort: 3 },

@@ -3286,7 +3286,8 @@
    "kroki": [
     "Więcej → Ćwiczenia → Back Squat → „Technika”",
     "Rysunek ruchu z licznikiem faz („Opuszczanie 2 s”, „Wstawanie 1 s”; przysiad bez pauzy na dole) i legendą mięśni głównych i pomocniczych",
-    "„Pokaż częsty błąd” → rysunek błędu z opisem „Częsty błąd: …”; „Ukryj częsty błąd” wraca do poprawnej pozy"
+    "„Pokaż częsty błąd” → rysunek błędu z opisem „Częsty błąd: …”; „Ukryj częsty błąd” wraca do poprawnej pozy",
+    "To samo dla Pull Up (rodzina z danych poses/pull_up.json): fazy „Podciąganie 1 s”, „Opuszczanie 2 s”, błąd z danych"
    ],
    "wynik": "Przy ćwiczeniach z gotową rodziną figur v2 sekcja Technika pokazuje figurę v2 (zastępuje v1), mięśnie są zawsze widoczne z legendą, a częsty błąd można pokazać i ukryć.",
    "ekrany": [
@@ -3295,6 +3296,7 @@
    "scenariusz": "57-grafika-cwiczenia.yaml",
    "znaczniki": [
     "Lowering 2 s.*",
+    "Pulling up 1 s.*",
     "Main muscles: .*",
     "Show common mistake",
     "Common mistake: .*",

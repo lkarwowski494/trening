@@ -41,5 +41,15 @@ export const ERRORS: Record<ErrorId, ErrorDef> = {
   jerk: { id: 'jerk', cue: ['mis.jerk'], kind: 'tempo', mods: { tempo: { downMs: 450, upMs: 350 } }, affects: [], mark: 'bar', why: 'szarpanie zamiast kontrolowanego ruchu' },
 };
 
+/** Błąd z danych rodziny (kontrakt: bledy[]): indeks w `bledy` ćwiczenia, np. „data:0”. Poza błędu = poza poprawna + delty z danych (contract.keyframeFrame). */
+export type DataErrorId = `data:${number}`;
+/** Błąd rysunku: rigowy (ERRORS) albo z danych. */
+export type FigError = ErrorId | DataErrorId;
+export const isDataError = (e: FigError): e is DataErrorId => e.startsWith('data:');
+export const dataErrorIndex = (e: DataErrorId): number => Number(e.slice(5));
+export const dataErrorId = (index: number): DataErrorId => `data:${index}`;
+/** Opis błędu niezależny od źródła (rig albo dane): to, czego potrzebują kadr, znaczniki i licznik. */
+export type AnyErrorDef = Omit<ErrorDef, 'id'> & { id: FigError };
+
 /** Id wskazówki „częsty błąd” → błąd na rysunku. Wskazówki bez wpisu nie mają animacji błędu (nie da się ich pokazać pozą). */
 export const CUE_TO_ERROR: Record<string, ErrorId> = Object.fromEntries(Object.values(ERRORS).flatMap(e => e.cue.map(c => [c, e.id])));

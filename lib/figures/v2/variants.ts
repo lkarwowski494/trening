@@ -8,11 +8,17 @@ import type { SquatParams } from './rigs/squat';
 import type { BenchParams } from './rigs/benchPress';
 import { HINGE, type HingeParams } from './rigs/hinge';
 import { EQUIP } from './draw';
+import type { PoseData } from './contract';
+import type { FamilyId } from './families';
+
+/** Rodziny bez rigu: pozy z danych (poses/<rodzina>.json, poseData.ts). */
+export type DataFamilyId = Exclude<FamilyId, 'squat' | 'bench_press' | 'hinge'>;
 
 export type Variant =
   | { family: 'squat'; p: SquatParams; static?: boolean }
   | { family: 'bench_press'; p: BenchParams }
-  | { family: 'hinge'; p: HingeParams; lowerFirst: boolean };
+  | { family: 'hinge'; p: HingeParams; lowerFirst: boolean }
+  | { family: DataFamilyId; data: PoseData };
 
 const SQ = (load: SquatParams['load'], impl: SquatParams['impl'], o: Partial<SquatParams> = {}): Variant => ({ family: 'squat', p: { load, impl, depth: 120, stance: 20, toeOut: 15, ...o }, static: o.wall ? true : undefined });
 const BP = (impl: BenchParams['impl'], o: Partial<BenchParams> = {}): Variant => ({ family: 'bench_press', p: { impl, angle: 0, grip: 33, touch: 33, ...o } });
