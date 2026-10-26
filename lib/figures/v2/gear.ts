@@ -11,7 +11,7 @@ import { TOL } from './colliders';
 import { BENCH } from './rigs/benchPress';
 import type { Contact, Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka', 'dzwignia'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka', 'dzwignia', 'modlitewnik'] as const;
 export type GearName = typeof GEAR[number];
 export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean; mocowanie?: typeof BAND_MOUNT[number]; tryb?: typeof LEVER_MODE[number]; punkt?: typeof LEVER_POINT[number]; siedzisko?: number };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
@@ -79,6 +79,10 @@ const BENCH_CONTACTS: Contact[] = [
 ];
 /** Dopuszczalne wgniecenie miękkiego sprzętu (piłka gimnastyczna, wałek piankowy) przy kontakcie z ciałem (cm). */
 export const SOFT_CONTACT = { gymBall: 3, roll: 2 } as const;
+/** Dozwolone kontakty ciała z modlitewnikiem: ramiona i przedramiona na podpórce, klatka przy jej górnym końcu, miednica i uda na siedzisku. */
+const PREACHER_CONTACTS: Contact[] = [
+  { body: 'uarm', equip: 'preacherPad', tol: 3 }, { body: 'farm', equip: 'preacherPad', tol: 3 }, { body: 'torso', equip: 'preacherPad', tol: 2 }, { body: 'pelvis', equip: 'preacherSeat', tol: 1.5 }, { body: 'thigh', equip: 'preacherSeat', tol: 1.5 },
+];
 /** Kontakt ciała ze ścianą: dopuszczalne przenikanie (cm). */
 export const WALL_CONTACT = 1.5;
 const BELL_BACK: V3 = norm([-1, -0.15, 0]);
@@ -277,6 +281,21 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
       `dzwignia: maszyna rysowana SCHEMATYCZNIE (nie odwzorowujemy konstrukcji): siedzisko i oparcie dodaj jako wpis lawka (kat oparcia, top siedziska), a ruchomą część jako wpis dzwignia. Punkt mocowania (pole punkt) podąża za ciałem: "dlonie" (środek chwytu), "kostki" (środek kostek; stopy na platformie albo wałek na goleniach), "miednica" (środek miednicy: pas, wózek z oparciem). trzyma: "R" (domyślnie) albo "L" = punkt jednej strony ciała (kostka albo dłoń tej strony), "obie" = środek między obiema stronami. Dla maszyn z dźwigniami po bokach (prostowanie/uginanie nóg, wyciskanie) rysujemy JEDNĄ dźwignię po jednej stronie (trzyma "R"), z poza ciałem (z pivotu ±28…35 cm), żeby nie przenikała ud i łydek.`,
       `dzwignia tryb "obrot" (domyślnie): sztywne ramię o długości dlugosc (domyślnie ${f1(EQUIP.leverArm)} cm) obraca się wokół osi P = [x, y, z] (y domyślnie 50): w KAŻDEJ klatce punkt mocowania leży na sferze o promieniu dlugosc wokół P (± ${TOL.pivot} cm), czyli na łuku; klatki co ≤ ${Math.floor(Math.sqrt(8 * 60 * TOL.pivot * 0.5))} cm drogi punktu (ramię 60 cm). Kolider ramienia (kapsuła) poza ostatnimi ${f1(EQUIP.leverEnd)} cm przy punkcie mocowania: ciało nie przenika ramienia.`,
       `dzwignia tryb "prosta" (suwnica na nogi, hack squat, wózki): prowadnica liniowa od punktu P = [x, y, z] w kierunku kąta kat (stopnie od poziomu w płaszczyźnie x–y: 0 = do przodu +x, 90 = w górę, −45 = w dół do przodu), długość skoku dlugosc (domyślnie ${f1(EQUIP.leverStroke)} cm): w KAŻDEJ klatce punkt mocowania leży na odcinku prowadnicy (± ${TOL.pivot} cm), w skoku 0…dlugosc od P. Z boku rysunek: linia prowadnicy i platforma (odcinek ${f1(EQUIP.machinePad)} cm prostopadły do prowadnicy w punkcie mocowania).`,
+    ],
+  },
+  modlitewnik: {
+    nazwa: 'modlitewnik', caps: ['preacher_bench'], fields: ['kat'], opis: 'modlitewnik: pochyła podpórka na ramiona przed osobą i siedzisko (x = górny koniec podpórki, top = jego wysokość, kat, dlugosc, y = siedzisko)',
+    props: g => {
+      const x = g.x ?? 0, top = g.top ?? EQUIP.preacherTop, th = rad(g.kat ?? EQUIP.preacherKat), L = g.dlugosc ?? EQUIP.preacherLen;
+      return [{ k: 'preacher', top: [x, top], bottom: [x + Math.cos(th) * L, top - Math.sin(th) * L], seat: [x - EQUIP.preacherSeatDx, g.y ?? EQUIP.preacherSeatY] }];
+    },
+    contacts: () => PREACHER_CONTACTS,
+    check: g => [
+      ...(g.kat !== undefined && (g.kat < 30 || g.kat > 80) ? [`sprzęt: kąt podpórki modlitewnika kat = ${g.kat}° poza przedziałem 30–80°`] : []),
+      ...bounds('dlugosc podpórki modlitewnika', g.dlugosc, 25, 70), ...bounds('wysokość siedziska modlitewnika y', g.y, 30, 70), ...bounds('wysokość podpórki modlitewnika top', g.top, 60, 130),
+    ],
+    ref: () => [
+      `modlitewnik: pochyła podpórka na ramiona (preacher curl). Górny koniec podpórki w [x, top] (domyślnie x = 0, top = ${f1(EQUIP.preacherTop)} cm: na wysokości klatki osoby siedzącej), podpórka opada od osoby w stronę +x pod kątem kat od poziomu (domyślnie ${EQUIP.preacherKat}°, 30–80°) na długość dlugosc (domyślnie ${EQUIP.preacherLen} cm), grubość ${f1(EQUIP.preacherT)} cm, szerokość ${f1(EQUIP.preacherW)} cm (z = ±${f1(EQUIP.preacherW / 2)}). Siedzisko ${f1(EQUIP.preacherSeatL)} × ${f1(EQUIP.preacherSeatW)} cm w [x − ${f1(EQUIP.preacherSeatDx)}, y] (y = wysokość siedziska, domyślnie ${f1(EQUIP.preacherSeatY)} cm). Osoba siedzi PRZODEM do podpórki (twarz +x): miednica na siedzisku, klatka tuż za górnym końcem podpórki, ramiona (łokcie) leżą na powierzchni podpórki, dłonie trzymają sztangę/hantle/uchwyt przed nią. Kontakty: ramię i przedramię z podpórką do 3 cm, tułów do 2 cm, miednica i uda z siedziskiem do 1,5 cm; głębiej odrzucane.`,
     ],
   },
   skrzynia: { nazwa: 'skrzynia albo stopień', caps: ['box'], opis: 'skrzynia albo stopień (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },

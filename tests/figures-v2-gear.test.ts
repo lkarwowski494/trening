@@ -5,7 +5,7 @@
  */
 import {
   GEAR, GEAR_KINDS, BENCH_KAT, BAND_MOUNT, LEVER_MODE, LEVER_POINT, benchHip, SOFT_CONTACT, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, CABLE_ATTACH, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
-  CONTRACT, EQUIP, BENCH, exampleFor, figureSpec, frameAt, rollerAt, poseSchema, describeContract, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
+  CONTRACT, EQUIP, BENCH, preacherPolys, exampleFor, figureSpec, frameAt, rollerAt, poseSchema, describeContract, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
   type Gear, type KeyFrame, type PoseData, type Prop, type V3, type RomData, type Frame, type View,
 } from '@/lib/figures/v2';
 import { FIG_DATA } from '@/lib/figures';
@@ -50,6 +50,7 @@ const LEGEXT = (over: Partial<Gear> = {}): PoseData => {
 /** Wyciskanie na prowadnicy stojąc: dłonie jadą w górę po prowadnicy x = 20 (y = 100…140); punkt mocowania = środek między dłońmi. */
 const SLIDE = (over: Partial<Gear> = {}, dx = 0): PoseData => pose('overhead_press', 'Machine Shoulder Press', [{ rodzaj: 'dzwignia', x: 20, y: 100, z: 0, tryb: 'prosta', kat: 90, dlugosc: 40, punkt: 'dlonie', trzyma: 'obie', ...over }], [two(0, ...sym(20 + dx, 100, 22)), two(1, ...sym(20 + dx, 140, 22))]);
 const MATRIX: [string, PoseData][] = [
+  ['modlitewnik przed osobą (bez kontaktu)', ROTATE([{ rodzaj: 'modlitewnik', x: 95, top: 100, kat: 60, dlugosc: 45, y: 48 }])], ['modlitewnik: wartości domyślne', ROTATE([{ rodzaj: 'modlitewnik', x: 95 }])],
   ['maszyna: siedzisko + dźwignia obrotowa na kostkach (prostowanie nóg)', LEGEXT()], ['maszyna: prowadnica liniowa na dłoniach (wyciskanie)', SLIDE()],
   ['piłka gimnastyczna obok osoby (domyślny promień)', ROTATE([{ rodzaj: 'pilka_gimnastyczna', x: 70 }])], ['piłka gimnastyczna 55 cm', ROTATE([{ rodzaj: 'pilka_gimnastyczna', x: 60, promien: 27.5 }])], ['wałek piankowy obok osoby', ROTATE([{ rodzaj: 'rolka', x: 40 }])], ['wałek: promień i długość', ROTATE([{ rodzaj: 'rolka', x: 40, z: 0, promien: 6, dlugosc: 60 }])],
   ['guma pod stopami (wznosy bokiem)', BANDLAT([{ rodzaj: 'guma', mocowanie: 'stopy' }])], ['guma w stałym zaczepie (kolumna za osobą)', BANDLAT([{ rodzaj: 'guma', mocowanie: 'zaczep', x: -60, y: 110 }])], ['guma w pętli między kostkami', BANDLAT([{ rodzaj: 'guma', mocowanie: 'kostki' }])],
@@ -72,9 +73,9 @@ const MATRIX: [string, PoseData][] = [
 
 describe('rejestr rodzajów sprzętu (gear.ts)', () => {
   test('GEAR: osiem rodzajów; każdy ma wpis w rejestrze z opisem i rekwizytem; możliwości katalogu pokryte przez rejestr', () => {
-    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka', 'dzwignia']);
+    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka', 'dzwignia', 'modlitewnik']);
     for (const k of GEAR) { expect(GEAR_KINDS[k].opis.length).toBeGreaterThan(10); expect(typeof GEAR_KINDS[k].props).toBe('function'); }
-    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains', 'cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.row_seat', 'lat_pulldown', 'ankle_strap', 'cable.handles', 'cable.rope', 'bench.flat', 'bench.incline', 'bench.decline', 'bands', 'stability_ball', 'foam_roller', ...MACHINE_CAPS]));
+    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains', 'cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.row_seat', 'lat_pulldown', 'ankle_strap', 'cable.handles', 'cable.rope', 'bench.flat', 'bench.incline', 'bench.decline', 'bands', 'stability_ball', 'foam_roller', 'preacher_bench', ...MACHINE_CAPS]));
     expect(new Set(GEAR_CAPS).size).toBe(GEAR_CAPS.length); /* każda możliwość ma jeden rodzaj */
     expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki', 'mocowanie', 'tryb', 'punkt', 'siedzisko']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
   });
@@ -265,6 +266,23 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
     expect(gearFieldIssues({ rodzaj: 'lawka', siedzisko: 10 })).toEqual(['sprzęt: siedzisko (długość siedziska) = 10 cm poza przedziałem 20–70 cm']);
     expect(gearFieldIssues({ rodzaj: 'dzwignia', dlugosc: 10 })).toEqual(['sprzęt: dlugosc ramienia dźwigni = 10 cm poza przedziałem 20–150 cm']); expect(gearFieldIssues({ rodzaj: 'dzwignia', tryb: 'prosta', dlugosc: 5 })).toEqual(['sprzęt: dlugosc skoku prowadnicy = 5 cm poza przedziałem 10–150 cm']);
     expect(gearFieldIssues({ rodzaj: 'dzwignia', kat: 30 })).toEqual(['sprzęt: pole „kat” (kąt prowadnicy) dotyczy tylko dźwigni w trybie „prosta”']); expect(gearFieldIssues({ rodzaj: 'dzwignia', tryb: 'prosta', kat: 30 })).toEqual([]); expect(gearFieldIssues({ rodzaj: 'hantel', tryb: 'obrot' })[0]).toContain('pole „tryb” nie dotyczy rodzaju „hantel”');
+  });
+  test('modlitewnik: rekwizyt z domyślnych wymiarów (EQUIP) i z pól; podpórka opada od osoby (+x) pod kątem kat; siedzisko za górnym końcem; wielokąty i kolidery', () => {
+    const m = (g: Partial<Gear>) => propsFrom([{ rodzaj: 'modlitewnik', ...g }], G)[0] as Extract<Prop, { k: 'preacher' }>; const d = m({});
+    expect(d.top).toEqual([0, EQUIP.preacherTop]); expect(d.seat).toEqual([-EQUIP.preacherSeatDx, EQUIP.preacherSeatY]); const th = EQUIP.preacherKat * Math.PI / 180; expect(d.bottom[0]).toBeCloseTo(Math.cos(th) * EQUIP.preacherLen, 9); expect(d.bottom[1]).toBeCloseTo(EQUIP.preacherTop - Math.sin(th) * EQUIP.preacherLen, 9);
+    const e = m({ x: 10, top: 90, kat: 45, dlugosc: 30, y: 50 }); expect(e.top).toEqual([10, 90]); expect(e.bottom[0]).toBeCloseTo(10 + 30 * Math.SQRT1_2, 9); expect(e.bottom[1]).toBeCloseTo(90 - 30 * Math.SQRT1_2, 9); expect(e.seat).toEqual([10 - EQUIP.preacherSeatDx, 50]);
+    const pp = preacherPolys(d); expect(pp.pad.length).toBe(4); expect(pp.seat.length).toBe(4); expect(pp.pad[0]).toEqual(d.top); expect(pp.pad[1]).toEqual(d.bottom); expect(pp.pad[2][1]).toBeLessThan(d.bottom[1]); /* grubość w głąb (poniżej powierzchni) */
+    const eq = equipColliders([d]); expect(eq.map(c => c.id)).toEqual(['preacherPad', 'preacherSeat']); expect(eq[0].k === 'prism' && [eq[0].z0, eq[0].z1]).toEqual([-EQUIP.preacherW / 2, EQUIP.preacherW / 2]); expect(contactsFrom([{ rodzaj: 'modlitewnik' }]).length).toBe(5);
+    for (const v of ['side', 'front', 'top'] as View[]) expect(propShapes([d], v).map(x => x.id)).toEqual(expect.arrayContaining(['preacherPad', 'preacherSeat']));
+    expect(propShapes([d], 'side').map(x => x.id).filter(x => x === 'preacherLeg').length).toBe(2);
+  });
+  test('modlitewnik: miękki kontakt ramion z podpórką (3 cm) — dłonie w podpórce wykrywane; pola: kąt, długość, wysokości', () => {
+    const pen = (x: number, ctx = true) => { const f = keyframeFrame(ROTATE([{ rodzaj: 'modlitewnik', x, top: 100, kat: 60, y: 48 }]), 0.5); return checkFrame(ctx ? f : { ...f, contacts: [] }).filter(i => i.code === 'pen' && /preacherPad/.test(i.detail)).map(i => i.detail); };
+    const xs = Array.from({ length: 120 }, (_, i) => 10 + i); const free = xs.slice().reverse().find(x => pen(x).length > 0); expect(free).toBeDefined(); expect(pen(free! + 5)).toEqual([]); expect(pen(free!)[0]).toMatch(/(torso|(uarm|farm)[RL]) × preacherPad: przenikanie [\d.]+ cm \(dopuszczalne [23]\)/);
+    const strict = xs.slice().reverse().find(x => pen(x, false).length > 0)!; expect(strict).toBeGreaterThanOrEqual(free!); /* bez deklaracji kontaktu granica jest dalej od ramion */
+    expect(gearFieldIssues({ rodzaj: 'modlitewnik', kat: 90 })).toEqual(['sprzęt: kąt podpórki modlitewnika kat = 90° poza przedziałem 30–80°']); expect(gearFieldIssues({ rodzaj: 'modlitewnik', dlugosc: 10 })).toEqual(['sprzęt: dlugosc podpórki modlitewnika = 10 cm poza przedziałem 25–70 cm']);
+    expect(gearFieldIssues({ rodzaj: 'modlitewnik', y: 10 })).toEqual(['sprzęt: wysokość siedziska modlitewnika y = 10 cm poza przedziałem 30–70 cm']); expect(gearFieldIssues({ rodzaj: 'modlitewnik', top: 20 })).toEqual(['sprzęt: wysokość podpórki modlitewnika top = 20 cm poza przedziałem 60–130 cm']);
+    expect(requiredGearIssues([['preacher_bench']], [])).toEqual(['sprzęt: ćwiczenie wymaga: modlitewnik (rodzaj „modlitewnik”), a sprzet[] tego nie zawiera']);
   });
   test('stary sprzęt bez zmian: sztanga podąża za chwytem, słupek, podłoga, skrzynia', () => {
     expect(propsFrom([{ rodzaj: 'sztanga', podazaZaChwytem: true }, { rodzaj: 'slupek', x: 5, h: 100 }, { rodzaj: 'skrzynia', x0: 1, x1: 2, top: 30 }, { rodzaj: 'podloga' }], G).map(p => p.k)).toEqual(['barbell', 'post', 'box', 'floor']);

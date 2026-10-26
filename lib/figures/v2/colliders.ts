@@ -4,7 +4,7 @@
  */
 import { distSegSeg, dist, sub, type V2, type V3 } from './math';
 import { BODY, GIRTH, SIDES, soleY, type Skeleton } from './skeleton';
-import { benchPolys, rollerAt, EQUIP } from './draw';
+import { benchPolys, preacherPolys, rollerAt, EQUIP } from './draw';
 import type { Collider, Frame, Prop } from './scene';
 
 export const TOL = {
@@ -71,6 +71,7 @@ export function equipColliders(props: Prop[]): Collider[] {
       case 'roll': c.push({ k: 'capsule', id: 'roll', a: [p.c[0], p.c[1], -p.len / 2], b: [p.c[0], p.c[1], p.len / 2], r: p.r }); break;
       case 'plate': c.push(...plateColliders(p)); break;
       case 'bench': { const bp = benchPolys(p); const w = (p.w ?? EQUIP.benchW) / 2; c.push(prism('benchSeat', bp.seat, -w, w), prism('benchBack', bp.back, -w, w)); if (p.rollers) { const r = rollerAt(p); c.push({ k: 'capsule', id: 'benchRoller', a: [r[0], r[1], -EQUIP.rollerHalf], b: [r[0], r[1], EQUIP.rollerHalf], r: EQUIP.rollerR }); } break; }
+      case 'preacher': { const pp = preacherPolys(p); c.push(prism('preacherPad', pp.pad, -EQUIP.preacherW / 2, EQUIP.preacherW / 2), prism('preacherSeat', pp.seat, -EQUIP.preacherSeatW / 2, EQUIP.preacherSeatW / 2)); break; }
       case 'box': { const w = (p.w ?? EQUIP.boxW) / 2; c.push(prism('box', rectPoly(p.x0, 0, p.x1, p.top), -w, w)); break; }
       case 'wall': c.push(prism('wall', p.front ? rectPoly(p.x, 0, p.x + EQUIP.wallW, p.h) : rectPoly(p.x - EQUIP.wallW, 0, p.x, p.h), -100, 100)); break;
       case 'mat': c.push(prism('mat', rectPoly(p.x0, 0, p.x1, p.h), -60, 60)); break;

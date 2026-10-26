@@ -11,7 +11,7 @@ export const EQUIP = {
   barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [44, 49] as [number, number], plateW: 2.8,
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6, medBallR: 11,
   benchW: 28, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
-  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, gymBallR: 32.5, foamR: 7.5, foamLen: 90, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, machinePad: 36, leverEnd: 25, leverArm: 60, leverStroke: 60, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
+  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, gymBallR: 32.5, foamR: 7.5, foamLen: 90, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, preacherTop: 95, preacherKat: 60, preacherLen: 45, preacherSeatDx: 28, preacherSeatY: 48, preacherW: 50, preacherT: 8, preacherSeatW: 30, preacherSeatL: 34, machinePad: 36, leverEnd: 25, leverArm: 60, leverStroke: 60, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];
@@ -142,6 +142,13 @@ export function benchPolys(pr: Extract<Prop, { k: 'bench' }>): { seat: V2[]; bac
   };
 }
 
+/** Wielokąty modlitewnika w widoku z boku: pochyła podpórka (powierzchnia od górnego do dolnego końca, grubość preacherT w głąb) i siedzisko. Wspólne dla rysunku i kolizji. */
+export function preacherPolys(pr: Extract<Prop, { k: 'preacher' }>): { pad: V2[]; seat: V2[] } {
+  const [tx, ty] = pr.top, [bx, by] = pr.bottom; const dx = bx - tx, dy = by - ty; const l = Math.hypot(dx, dy) || 1; let n: V2 = [dy / l, -dx / l]; if (n[1] < 0) n = [-n[0], -n[1]]; /* normalna do powierzchni, ku górze (ku osobie) */
+  const T = EQUIP.preacherT; const [sx, sy] = pr.seat; const h = EQUIP.preacherSeatL / 2;
+  return { pad: [[tx, ty], [bx, by], [bx - n[0] * T, by - n[1] * T], [tx - n[0] * T, ty - n[1] * T]], seat: [[sx - h, sy - EQUIP.benchPad], [sx + h, sy - EQUIP.benchPad], [sx + h, sy], [sx - h, sy]] };
+}
+
 /** Środek wałków na nogi ławki ujemnej (x, y w widoku z boku): nad kostkami przy końcu siedziska. */
 export const rollerAt = (pr: Extract<Prop, { k: 'bench' }>): V2 => [pr.seatFrom[0] + EQUIP.rollerDx, pr.seatFrom[1] + EQUIP.rollerDy];
 
@@ -175,6 +182,22 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         } else {
           S.push({ k: 'poly', pts: rect(-w / 2, pr.seatFrom[1] - E.benchPad, w / 2, pr.seatFrom[1]), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-30), id: 'benchSeat' });
           if (pr.rollers) for (const sg of [-1, 1]) S.push({ k: 'circle', c: [sg * E.rollerHalf / 2, ro[1]], r: E.rollerR, fill: 'pad', stroke: 'frame', w: 0.8, z: zb(-27), id: 'benchRoller' });
+        }
+        break;
+      }
+      case 'preacher': {
+        const pp = preacherPolys(pr); const zb = (d: number): number => zKey(LAYER.backEquip, d); const wp = E.preacherW / 2, ws = E.preacherSeatW / 2;
+        if (side) {
+          S.push({ k: 'poly', pts: pp.pad, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'preacherPad' });
+          S.push({ k: 'poly', pts: pp.seat, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'preacherSeat' });
+          S.push({ k: 'line', a: [pr.bottom[0] - 3, 0], b: [pr.bottom[0] - 3, pr.bottom[1] - E.preacherT], w: E.benchLegW, role: 'frame', z: zb(-27), id: 'preacherLeg' });
+          S.push({ k: 'line', a: [pr.seat[0], 0], b: [pr.seat[0], pr.seat[1] - E.benchPad], w: E.benchLegW, role: 'frame', z: zb(-27), id: 'preacherLeg' });
+        } else if (view === 'top') {
+          S.push({ k: 'poly', pts: rect(-wp, -Math.max(pr.top[0], pr.bottom[0]), wp, -Math.min(pr.top[0], pr.bottom[0])), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'preacherPad' });
+          S.push({ k: 'poly', pts: rect(-ws, -(pr.seat[0] + E.preacherSeatL / 2), ws, -(pr.seat[0] - E.preacherSeatL / 2)), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'preacherSeat' });
+        } else {
+          S.push({ k: 'poly', pts: rect(-wp, Math.min(pr.top[1], pr.bottom[1]) - E.preacherT, wp, Math.max(pr.top[1], pr.bottom[1])), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'preacherPad' });
+          S.push({ k: 'poly', pts: rect(-ws, pr.seat[1] - E.benchPad, ws, pr.seat[1]), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-25), id: 'preacherSeat' });
         }
         break;
       }

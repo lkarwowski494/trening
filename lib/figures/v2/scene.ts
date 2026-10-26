@@ -29,6 +29,7 @@ export type Prop =
   | { k: 'ball'; c: V3; r?: number; held?: boolean | 'R' | 'L' }                                            /* kula, środek; domyślnie trzymana (piłka lekarska); held: false = leży na podłodze (piłka gimnastyczna) */
   | { k: 'roll'; c: V3; r: number; len: number }                                                         /* wałek (roller piankowy): walec wzdłuż z, środek */
   | { k: 'bench'; seatFrom: V2; hinge: V2; backTo: V2; legH: number; w?: number; rollers?: boolean }              /* ławka: siedzisko od-do, zawias, koniec oparcia */
+  | { k: 'preacher'; top: V2; bottom: V2; seat: V2 }                                                      /* modlitewnik: pochyła podpórka na ramiona (górny koniec przy osobie, dolny dalej) i małe siedzisko (środek) */
   | { k: 'box'; x0: number; x1: number; top: number; w?: number }
   | { k: 'wall'; x: number; h: number; front?: boolean }                                      /* ściana: lita po stronie −x od powierzchni x (za osobą); front: lita po stronie +x (przed osobą; w widoku z przodu przekrój) */
   | { k: 'rail'; x: number; h: number }                                                        /* prowadnica suwnicy Smitha (pionowa) */

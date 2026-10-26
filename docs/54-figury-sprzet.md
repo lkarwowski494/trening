@@ -14,7 +14,7 @@ Liczby poniżej: ćwiczenia z 622, które wymagają danego rodzaju (w nawiasie: 
 | 1 | hantel / kettlebell / talerz / piłka lekarska w dłoni | 142 (123) | delt_raise 19, kb_ballistic 17, curl 16, sled_throw 12 | niski | **gotowe (26.10.2026)** |
 | 2 | stojak, Smith, landmine, poręcze, gryf łamany/trap/T, ściana, mata, łańcuchy | 58 (50) | lunge 8, triceps 5, overhead_press 5, row 4 | niski (rekwizyty są w silniku) | w toku: stojak, gryf łamany/gruby, Smith, landmine, ściana, trap bar, uchwyty farmerskie i łańcuchy gotowe (26.10.2026) |
 | 3 | wyciąg (słup, bloczek, uchwyt / lina / opaska na kostkę) | 76 (70) | curl 10, triceps 9, cable_row 7, pulldown 7 | średni | **gotowe (26.10.2026)** |
-| 4 | ławka regulowana (skos +/−, wałki na nogi, modlitewnik) | 35 (9) | curl 12, delt_raise 6, core_floor 5 | niski–średni | ławka gotowa (26.10.2026); modlitewnik z ławkami specjalnymi |
+| 4 | ławka regulowana (skos +/−, wałki na nogi, modlitewnik) | 35 (9) | curl 12, delt_raise 6, core_floor 5 | niski–średni | ławka i modlitewnik gotowe (26.10.2026) |
 | 5 | guma / taśma oporowa | 17 (16) | hip_abd_add 4, rotator_cuff 3 | niski | **gotowe (26.10.2026)** |
 | 6 | piłka gimnastyczna, BOSU, ślizgacze, roller, kółko do brzucha | 25 (21) | foam_roll 10, core_floor 3, core_standing 3 | niski–średni | piłka gimnastyczna i wałek piankowy gotowe (26.10.2026); BOSU, ślizgacze, kółko do brzucha, wałek na nadgarstki — nie (po 1–2 ćwiczenia) |
 | 7 | taśmy zawieszane, lina pionowa; ławki specjalne (rzymska, GHD, GHR, reverse hyper) | 5 + 4 | cardio, back_extension, core_floor | średni | do zrobienia |
@@ -78,7 +78,13 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 | `pilka_gimnastyczna` | `x`, `z`, `promien` (32,5; 20–40) | stability_ball | kula na podłodze (nie w dłoniach); dopuszczalne wgniecenie 3 cm (miękka piłka); osie tułowia dotykają piłki w odległości promień + 9,5 cm |
 | `rolka` | `x`, `z`, `promien` (7,5), `dlugosc` (90) | foam_roller | walec wzdłuż z na podłodze; wgniecenie do 2 cm; wałek się nie rusza (ciało się po nim przesuwa) |
 
-### 2.7 Maszyny (schematycznie)
+### 2.7 Modlitewnik
+
+| Rodzaj | Pola | Możliwości katalogu | Uwagi |
+|---|---|---|---|
+| `modlitewnik` | `x`, `top` (górny koniec podpórki, 95), `kat` (30–80°, 60), `dlugosc` (45), `y` (siedzisko, 48) | preacher_bench | podpórka opada od osoby (+x), siedzisko za górnym końcem; kontakty: ramię/przedramię 3 cm, tułów 2 cm, miednica/uda 1,5 cm |
+
+### 2.8 Maszyny (schematycznie)
 
 | Rodzaj | Pola | Możliwości katalogu | Uwagi |
 |---|---|---|---|
