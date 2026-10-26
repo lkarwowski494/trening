@@ -11,7 +11,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { cwiczeniaRodziny, wczytajKontrakt } from './gemini-pozy.mjs';
 import { loadV2 } from './v2-build.mjs';
-import { regulyDla, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji } from './v2-sens.mjs';
+import { regulyDla, stopaAutomatyczna, pominiecie, otwarteDla, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji } from './v2-sens.mjs';
 import { wczytajRejestr, liniePolecenia, statystykaWersji } from './gemini-rejestr.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -58,7 +58,7 @@ export function czesciRodziny(rodzina, opcje) {
 
 /* ---------- silnik (liczby) ---------- */
 let silnikCache = null;
-const silnik = () => { if (!silnikCache) { const dir = mkdtempSync(join(tmpdir(), 'polecenia-')); silnikCache = loadV2(dir); process.on('exit', () => { try { rmSync(dir, { recursive: true, force: true }); } catch { /* sprzątanie best effort */ } }); } return silnikCache; };
+export const silnik = () => { if (!silnikCache) { const dir = mkdtempSync(join(tmpdir(), 'polecenia-')); silnikCache = loadV2(dir); process.on('exit', () => { try { rmSync(dir, { recursive: true, force: true }); } catch { /* sprzątanie best effort */ } }); } return silnikCache; };
 export const silnikCatalog = () => silnik().catalog;
 
 /* ---------- opis pól (zwięzła tabela ze schematu) ---------- */
@@ -90,7 +90,7 @@ export function wymagania(rodzina) {
   return [
     `RUCH: poza u = 1 musi różnić się od u = 0 o co najmniej ${C.minMotionCm} cm (największe przemieszczenie dowolnego punktu: dłoń, kolano, miednica…). Zbyt mały ruch to najczęstsza przyczyna odrzucenia. WYJĄTEK: ćwiczenia izometryczne (oznaczone w poleceniu) — poza statyczna (u = 0 i u = 1 mogą być identyczne); wtedy jedynym ruchem jest błąd z listy.`,
     `KLATKI: ${C.frames.min}–${C.frames.max} klatek, rosnące u, pierwsza u = 0, ostatnia u = 1. Interpolacja między klatkami jest LINIOWA, a żaden punkt ciała nie może skoczyć o więcej niż ${C.maxJump} cm na 1/${C.step} ruchu — dla ruchu zakrzywionego dodaj klatki pośrednie (zwykle 4–7). REGUŁA KLATEK: dopuszczalne przemieszczenie punktu (miednica, kostka, chwyt) między sąsiednimi klatkami to co najwyżej ${Math.floor((C.maxJump * C.step) / 2)} cm na 1,0 u (połowa limitu na zapas dla kolan i łokci), czyli ≤ ${Math.floor((C.maxJump * C.step) / 20)} cm przy odstępie klatek 0,1 i ≤ ${Math.floor((C.maxJump * C.step) / 40)} cm przy 0,05; gdy punkt przesuwa się o więcej niż ${Math.floor((C.maxJump * C.step) / 20)} cm, dodaj klatki co 0,1 (w szybkich fazach i przy mijaniu sprzętu co 0,05).`,
-    `ZAKRESY STAWÓW (sprawdzane w każdej fazie ruchu, obie strony): biodro ${lim('hip')}, kolano ${lim('knee')}, kostka ${al?.ankleMin !== undefined ? `${al.ankleMin}°…${S.ankle.max}°` : lim('ankle')}, łokieć ${lim('el', al?.elbow)}, bark w płaszczyźnie strzałkowej ${lim('sh', al?.shSag)} (sprawdzany, gdy ramię nie jest odwiedzione), uniesienie ramienia 0°…${al?.shElev ?? rom.front.abd.max}°.${al ? ` Wyjątek tej rodziny: ${al.why}.` : ''} KOSTKA (częsty błąd): kąt kostki = podbicie + nachylenie goleni (kolano przed kostką = dodatnie, w zwisie zwykle +10…+20°), limit ${S.ankle.max}°, więc w zwisie ustaw podbicie ${v2.CONTRACT ? '−20…−5' : ''} (palce lekko w dół, nigdy dodatnie); sprawdzone na modelu: podbicie −10 przy kostkach 10 cm przed miednicą daje kąt kostki ≈ 0°, podbicie +20 daje ≈ 30–38° i przekracza limit.`,
+    `ZAKRESY STAWÓW (sprawdzane w każdej fazie ruchu, obie strony): biodro ${lim('hip')}, kolano ${lim('knee')}, kostka ${al?.ankleMin !== undefined ? `${al.ankleMin}°…${S.ankle.max}°` : lim('ankle')}, łokieć ${lim('el', al?.elbow)}, bark w płaszczyźnie strzałkowej ${lim('sh', al?.shSag)} (sprawdzany, gdy ramię nie jest odwiedzione), uniesienie ramienia 0°…${al?.shElev ?? rom.front.abd.max}°.${al ? ` Wyjątek tej rodziny: ${al.why}.` : ''} ${stopaAutomatyczna(rodzina, '') ? 'STOPA: NIE podawaj pola podbicie — silnik ustawia stopę neutralnie względem goleni (kąt kostki ≈ 5°, nie głębiej niż podłoga); podaj tylko kostka (położenie).' : `KOSTKA (częsty błąd): kąt kostki = podbicie + nachylenie goleni (kolano przed kostką = dodatnie, w zwisie zwykle +10…+20°), limit ${S.ankle.max}°, więc w zwisie ustaw podbicie ${v2.CONTRACT ? '−20…−5' : ''} (palce lekko w dół, nigdy dodatnie); sprawdzone na modelu: podbicie −10 przy kostkach 10 cm przed miednicą daje kąt kostki ≈ 0°, podbicie +20 daje ≈ 30–38° i przekracza limit.`}`,
     `PRZENIKANIE: ciało nie może wnikać w sprzęt (drążek, słupek, ławkę, skrzynię) więcej niż ${v2.TOL.pen} cm — dotyczy też pozy z zastosowanym błędem (głowa i tułów względem drążka są najczęstszym naruszeniem; zostaw wokół drążka zapas kilku cm). Najniższy punkt stopy nie niżej niż y = 0 (tolerancja ${v2.TOL.floor} cm).`,
     `CHWYT: środek chwytu każdej dłoni leży na osi sztangi/drążka (tolerancja 0,6 cm) w KAŻDEJ klatce i w każdej klatce błędu; chwyt w zasięgu ramienia od barku (≤ ${v2.BODY.uarm + v2.BODY.farm + v2.BODY.hand} cm), kostka w zasięgu nogi od biodra (≤ ${v2.BODY.thigh + v2.BODY.shank + v2.BODY.ankleH} cm).`,
     `BŁĘDY (bledy[]): najwyżej ${C.errorsMax}, tylko z listy identyfikatorów podanej przy ćwiczeniu (inne = odrzucenie; brak listy = bledy: []). Każdy błąd: ${C.errorFrames.min}–${C.errorFrames.max} klatek z deltami, pierwsza u = 0 i delta ZEROWA, ostatnia u = 1. Błąd ma być widoczny (≥ ${C.visibleCm} cm albo ≥ ${C.visibleDeg}° w którymś stawie).`,
@@ -151,10 +151,15 @@ const FAZY = {
     'Chwyt: x = x drążka, y = y drążka, z = ±(połowa rozstawu dłoni): wąski ±10…15, standard ±20…25, szeroki ±30…40 cm.',
   ],
 };
+/** Tabela chwytu nad głową dla kilku pochyleń tułowia (wzór: bark + 62 · (0,87 · a + 0,5 · n)); liczona, nie przepisywana. */
+export function tabelaRakNadGlowa() {
+  const f = (x) => (Math.round(x * 10) / 10).toString().replace('.', ',');
+  return [-90, -80, -70, -60, -50].map((p) => { const r = p * Math.PI / 180, a = [Math.sin(r), Math.cos(r)], n = [Math.cos(r), -Math.sin(r)]; return `pochylenie ${p}°: dx = ${f(62 * (0.87 * a[0] + 0.5 * n[0]))}, dy = ${f(62 * (0.87 * a[1] + 0.5 * n[1]))}`; }).join('; ');
+}
 const FAZY_CORE_FLOOR = () => [
   'Układ leżący na plecach (jak w crunch): głowa w stronę −x, nogi w stronę +x: pochylenieTulowia = −90 (poziomo), pochylenieGlowy ≈ pochylenieTulowia (głowa leży na podłodze), miednica = [0, 8, 0] (y = 8 cm — najniżej, przy którym uda nie przenikają podłogi; reguła: ≤ 12 cm), barki = miednica + 50 cm w stronę −x przy pochyleniu −90.',
-  'KOLANA (najczęstszy błąd — uda i golenie pod podłogą do 25 cm): przy leżeniu na plecach ZAWSZE podawaj w każdej klatce nogi.R/L.biegunKolana = [0.15, 1, ±0.1] (kolano w górę; bez tego IK kieruje kolano w podłogę); na czworaka i na brzuchu [0.15, −1, ±0.1] (kolano opiera się o podłogę). Kostki nie niżej niż y = 7. Kąt kostki = podbicie + nachylenie goleni: przy uniesionych nogach podbicie 0…20°, nigdy −60…−90°.',
-  'Ręce za głową (leżąc na plecach): chwyt = bark + 62 cm · (0,87 · oś tułowia ku głowie + 0,5 · przód klatki), gdzie oś tułowia ku głowie a = (sin p, cos p) w płaszczyźnie (x, y), przód klatki n = (cos p, −sin p), p = pochylenieTulowia w danej klatce (przy p = −90: a = (−1, 0), n = (0, 1)); kąt barku ≈ 150° (limit 171°). Ręka wzdłuż podłogi za głową (180°) łamie limit barku.',
+  'KOLANA (najczęstszy błąd — uda i golenie pod podłogą do 25 cm): przy leżeniu na plecach ZAWSZE podawaj w każdej klatce nogi.R/L.biegunKolana = [0.15, 1, ±0.1] (kolano w górę; bez tego IK kieruje kolano w podłogę); na czworaka i na brzuchu [0.15, −1, ±0.1] (kolano opiera się o podłogę). Kostki nie niżej niż y = 7. STOPY: w tej rodzinie NIE PODAWAJ pola podbicie (kąt kostki był najczęstszym błędem) — silnik ustawia stopę sam, neutralnie względem goleni, nie głębiej niż podłoga.',
+  'Ręce za głową (leżąc na plecach): chwyt = bark + 62 cm · (0,87 · oś tułowia ku głowie + 0,5 · przód klatki), gdzie oś tułowia ku głowie a = (sin p, cos p) w płaszczyźnie (x, y), przód klatki n = (cos p, −sin p), p = pochylenieTulowia w danej klatce (przy p = −90: a = (−1, 0), n = (0, 1)); kąt barku ≈ 150° (limit 171°). Ręka wzdłuż podłogi za głową (180°) łamie limit barku. Tabela (przesunięcie chwytu względem barku {dx, dy} w płaszczyźnie x/y, z=±szerokość barków; zapas ≥ 5° do limitu): ' + tabelaRakNadGlowa() + '.',
   'Nogi zgięte, stopy na podłodze: kostki = [35, 7, ±15] (wysokość kostki 7 cm); kolana liczy IK. Dłonie: wzdłuż ciała, ramiona prawie proste: chwyt = bark + 63,3 cm w stronę miednicy (ramię proste: łokieć ≤ 15°; krótszy dystans zgina łokieć), z = ±24 (skrzyżowane na klatce zginają łokieć powyżej limitu 149° — unikaj); dłonie przy skroniach tylko bez ciągnięcia głowy.',
   'Unoszenie tułowia (crunch): u = 0 pochylenieTulowia −90 → u = 1 około −62 (barki unoszą się o ≈ 20 cm), pochylenieGlowy podąża za tułowiem (różnica ≤ 30°), miednica nie rusza się (y ≤ 12, zmiana ≤ 3 cm).',
   'Ruch prowadzony miednicą (reverse crunch): barki i głowa nieruchome na podłodze, miednica unosi się o ≥ 8 cm (u = 1: y ≈ 20), kostki podążają za miednicą (kolana do klatki).',
@@ -171,14 +176,14 @@ export function wzorzecCrunch(cwiczenie = 'Crunch') {
 }
 
 /* ---------- pushup_plank: układ podporu przodem (wzorzec Push Up z modelu) ---------- */
-const PU = { dl: 82, phiGora: 20, phiDol: 10, phiBlad: 18, podbicie: -60 };
+export const PU = { dl: 82, phiGora: 20, phiDol: 0, phiBlad: 10, podbicie: -60, biegunLokcia: [-1, -0.3, 0.9] };
 /** Poza pompki wyliczona z modelu: ciało w jednej linii od kostek (na palcach) do barków, kąt linii φ nad podłogą (góra 20°, dół 10°), dłonie NA STAŁE pod barkami z u = 0, kostki 20 cm nad podłogą (palce stoją na podłodze); błąd push.mis.partial = płytki dół (φ 18°). */
 export function wzorzecPompki(cwiczenie = 'Push Up') {
   const { v2 } = silnik(); const r = Math.PI / 180; const pod = PU.podbicie;
   const ay = -(Math.sin(pod * r) * 19 - Math.cos(pod * r) * 7) + 0.3; const ax = 0;
   const pozaPhi = (phi) => { const c = Math.cos(phi * r), sn = Math.sin(phi * r); const pel = [ax + PU.dl * c, ay + PU.dl * sn]; return { pel, pitch: 90 - phi, sh: [pel[0] + 50 * c, pel[1] + 50 * sn] }; };
   const gora = pozaPhi(PU.phiGora); const gx = Math.round(gora.sh[0] * 10) / 10; /* dłonie stałe */
-  const kl = (u, phi) => { const q = pozaPhi(phi); const f = (x) => Math.round(x * 10) / 10; return { u, miednica: [f(q.pel[0]), f(q.pel[1]), 0], pochylenieTulowia: f(q.pitch), zgiecieKregoslupa: 0, pochylenieGlowy: f(q.pitch * 0.6), nogi: { R: { kostka: [ax, f(ay), 10], podbicie: pod }, L: { kostka: [ax, f(ay), -10], podbicie: pod } }, rece: { R: { chwyt: [gx, 2, 19] }, L: { chwyt: [gx, 2, -19] } } }; };
+  const kl = (u, phi) => { const q = pozaPhi(phi); const f = (x) => Math.round(x * 10) / 10; return { u, miednica: [f(q.pel[0]), f(q.pel[1]), 0], pochylenieTulowia: f(q.pitch), zgiecieKregoslupa: 0, pochylenieGlowy: f(q.pitch * 0.6), nogi: { R: { kostka: [ax, f(ay), 10], podbicie: pod }, L: { kostka: [ax, f(ay), -10], podbicie: pod } }, rece: { R: { chwyt: [gx, 2, 19], biegunLokcia: PU.biegunLokcia }, L: { chwyt: [gx, 2, -19], biegunLokcia: [PU.biegunLokcia[0], PU.biegunLokcia[1], -PU.biegunLokcia[2]] } } }; };
   const phiU = (u) => PU.phiGora + (PU.phiDol - PU.phiGora) * u; const klatki = [0, 0.25, 0.5, 0.75, 1].map((u) => kl(u, phiU(u)));
   const bl = pozaPhi(PU.phiBlad), dn = pozaPhi(PU.phiDol); const f = (x) => Math.round(x * 10) / 10;
   const delta = (u, w) => ({ u, miednica: [f((bl.pel[0] - dn.pel[0]) * w), f((bl.pel[1] - dn.pel[1]) * w), 0], pochylenieTulowia: f((bl.pitch - dn.pitch) * w), pochylenieGlowy: f((bl.pitch - dn.pitch) * 0.6 * w) });
@@ -188,7 +193,7 @@ export function wzorzecPompki(cwiczenie = 'Push Up') {
 const FAZY_PUSHUP_PLANK = () => [
   `Układ podporu przodem: kostki NA PALCACH za osobą: kostka = [0, ${f0(-(Math.sin(PU.podbicie * Math.PI / 180) * 19 - Math.cos(PU.podbicie * Math.PI / 180) * 7) + 0.3)}, ±10] z podbicie = ${PU.podbicie} (palce stoją na podłodze, pięta w górze; kąt kostki ≈ −55…−65° — dopuszczalny wyjątek rodziny: dolna granica −75°), dłonie na podłodze: chwyt = [x barków w u = 0, 2, ±19] i NIE zmieniają położenia w ruchu (dłonie stałe).`,
   `Ciało w jednej linii: miednica leży na odcinku bark–kostka (odchyłka ≤ 6 cm). Oś ciała nad podłogą pod kątem φ: miednica = kostka + ${PU.dl}·[cos φ, sin φ], bark = miednica + 50·[cos φ, sin φ], pochylenieTulowia = 90 − φ (90 = poziomo głową do przodu), pochylenieGlowy ≈ 0,6 · pochylenieTulowia.`,
-  `Pompka: u = 0 góra φ = ${PU.phiGora}° (ramiona proste: łokieć ≤ 20°), u = 1 dół φ = ${PU.phiDol}° (łokieć ≥ 70°); klatki pośrednie co 0,25 (φ liniowo). Deska (Plank): jedna poza (φ = ${PU.phiGora}°, łokcie zgięte 90° albo proste), ćwiczenie izometryczne.`,
+  `Pompka: u = 0 góra φ = ${PU.phiGora}° (ramiona proste: łokieć ≤ 20°), u = 1 dół φ = ${PU.phiDol}° (klatka ≤ 20 cm nad dłońmi: bark − dłoń ≤ 20 cm, łokieć ≥ 85°; wzorzec ma ≈ 18 cm i łokieć ≈ 144° zgięcia); klatki pośrednie co 0,25 (φ liniowo). ŁOKCIE (technika: łokcie do tyłu, nie na boki — błąd klasyczny): w KAŻDEJ klatce rece.R.biegunLokcia = [${PU.biegunLokcia.join(', ')}], rece.L.biegunLokcia = [${PU.biegunLokcia[0]}, ${PU.biegunLokcia[1]}, ${-PU.biegunLokcia[2]}] (łokieć za tułowiem, ramię ≈ 45° od tułowia z góry — konwencja/uproszczenie, zakres techniki 30–60°); limit reguły: odwiedzenie barku ≤ 75°. Deska (Plank): jedna poza (φ = ${PU.phiGora}°, łokcie zgięte 90° albo proste), ćwiczenie izometryczne.`,
   'Nogi proste (kolana ≤ 20°): odległość miednica–kostka ≈ 82 cm; kostka dalej niż 90 cm od biodra = poza zasięgiem nogi.',
 ];
 
@@ -246,7 +251,9 @@ const OPIS_TYPU = {
   ciezar_blisko_glowy: (q) => `ciężar (środek chwytu) jest w całym ruchu ≤ ${q.max_cm} cm od głowy`,
   miednica_na_linii: (q) => `miednica leży ≤ ${q.max_cm} cm od linii barki–${q.koniec === 'kolano' ? 'kolano' : 'kostka (dalsza)'}${q.tylko_skrajna ? ' w pozycji skrajnej' : ' w całym ruchu'} (ciało w jednej linii)`,
   kregoslup_neutralny: (q) => `zgięcie kręgosłupa (zgiecieKregoslupa; dodatnie = zaokrąglony grzbiet) w ${q.min_deg}°…${q.max_deg}° w każdej klatce (plecy neutralne)`,
-  kolano_w_linii_stopy: (q) => `przy zgięciu kolana ≥ ${q.min_zgiecie_deg}° kolano (nogi: ${q.nogi}) nie odchodzi do środka od osi stopy o więcej niż ${q.max_do_srodka_deg}° (kolana w linii palców)`,
+  kolano_w_linii_stopy: (q) => `przy zgięciu kolana ≥ ${q.min_zgiecie_deg}° środek kolana (nogi: ${q.strony ?? q.nogi}) leży najwyżej ${q.max_do_srodka_cm} cm przyśrodkowo od prostej pięta–palce stopy (kolana w linii palców)`,
+  zawias_biodrowy: (q) => `ruch prowadzą biodra: biodro (${q.noga ?? 'srednia'}) w ruchu dochodzi do ≥ ${q.min_biodro_deg}°, a jego zakres ≥ ${q.min_stosunek} × zakres kolana`,
+  klatka_przy_dloniach: (q) => `w najniższym punkcie klatka (bark) jest ≤ ${q.max_cm} cm nad dłońmi (klatka nisko, przy podłodze)`,
   piety_na_podlodze: (q) => `pięta każdej nogi zmienia wysokość o ≤ ${q.max_cm} cm (pięty na podłodze)`,
   kolano_biodro_zakres: (q) => `w ruchu średnie kolano sięga ≥ ${q.kolano_min_max_deg}° i prostuje się do ≤ ${q.kolano_max_min_deg}°, a biodro sięga ≥ ${q.biodro_min_max_deg}°`,
   udo_rownolegle_na_dole: (q) => `w najniższym punkcie (najniższa miednica) udo każdej nogi jest ≤ ${q.max_deg}° nad poziomem (równolegle albo niżej)`,

@@ -86,8 +86,8 @@ describe('regresja błędów makiety (przysiad, podciąganie, wyciskanie) — gr
   test('gryf nad śródstopiem: przysiady ze sztangą — odległość poziomą gryfu od środka stopy ≤ 1,5 cm w każdej pozycji (z przodu ≤ 4 cm: pochylenie tułowia nie schodzi poniżej −5°, więc na stojąco gryf bywa nieco przed śródstopiem)', () => {
     byKey(['Back Squat', 'Front Squat', 'Box Squat', 'Overhead Squat', 'Squat with Bands', 'Reverse Band Power Squat'], (k, s) => { for (const u of U) { const f = frameAt(s, u); expect([k, u, Math.abs(f.info.bar[0] - f.info.midfoot[0]) <= (k === 'Front Squat' ? 4 : 1.5)]).toEqual([k, u, true]); } });
   });
-  test('martwy ciąg, RDL, dzień dobry: gryf nad śródstopiem w granicach kontaktu z nogami (x od 4,5 do 30 cm od kostki), ramiona wyprostowane', () => {
-    byKey(['Deadlift (sztanga)', 'Sumo Deadlift', 'RDL (sztanga)', 'Rack Pull', 'Deficit Deadlift', 'Stiff-Legged Barbell Deadlift', 'Good Morning'], (k, s) => { for (const u of U) { const f = frameAt(s, u); const x = f.info.bar[0]; expect([k, u, x >= 4.5 && x <= 30]).toEqual([k, u, true]); } });
+  test('martwy ciąg, RDL, dzień dobry: gryf nad śródstopiem w granicach kontaktu z nogami (x od 4,5 do 30 cm od kostki; dzień dobry od −6 cm — nad stopą), ramiona wyprostowane', () => {
+    byKey(['Deadlift (sztanga)', 'Sumo Deadlift', 'RDL (sztanga)', 'Rack Pull', 'Deficit Deadlift', 'Stiff-Legged Barbell Deadlift', 'Good Morning'], (k, s) => { for (const u of U) { const f = frameAt(s, u); const x = f.info.bar[0]; const lo = k === 'Good Morning' ? -6 : 4.5; /* dzień dobry (decyzja 26.10.2026, wariant A reguł sensu): rig w staniu dopuszcza gryf w dowolnym miejscu nad stopą (pięta −6 cm … palce), by tułów u góry ≤ 15° */ expect([k, u, x >= lo && x <= 30]).toEqual([k, u, true]); } });
     for (const k of ['Deadlift (sztanga)', 'Sumo Deadlift', 'Rack Pull']) for (const u of U) { const f = frameAt(spec(k), u); expect(jointAngles(f.sk, 'R').elbow).toBeLessThan(6); }
   });
   test('martwy ciąg z podłogi: na starcie gryf dotyka podudzi (odstęp ≤ 2 cm od kapsuły), nie przenika (≥ −0,3 cm) w całym ruchu', () => {

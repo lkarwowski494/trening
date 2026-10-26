@@ -50,7 +50,9 @@ const przyp = [
 
   /* --- runda 2 (35 typów) --- */
   ['kregoslup_neutralny', { min_deg: -20, max_deg: 10 }, [S(), S()], [S(), S()], 'zgięcie kręgosłupa w ruchu', null, [0, 30]],
-  ['kolano_w_linii_stopy', { nogi: 'obie', min_zgiecie_deg: 30, max_do_srodka_deg: 5 }, [S({ legs: { R: { kd: 90, knee: [20, 25, 8] }, L: { kd: 90, knee: [20, 25, -8] } } })], [S({ legs: { R: { kd: 90, knee: [20, 25, 2] }, L: { kd: 90, knee: [20, 25, -2] } } })], 'odchodzi do środka od osi stopy'],
+  ['kolano_w_linii_stopy', { strony: 'obie', min_zgiecie_deg: 30, max_do_srodka_cm: 4 }, [S({ legs: { R: { kd: 90, knee: [20, 25, 6] }, L: { kd: 90, knee: [20, 25, -6] } } })], [S({ legs: { R: { kd: 90, knee: [20, 25, 2] }, L: { kd: 90, knee: [20, 25, -2] } } })], 'przyśrodkowo od osi stopy'],
+  ['zawias_biodrowy', { noga: 'srednia', min_biodro_deg: 60, min_stosunek: 1.5 }, [S(), S({ legs: { R: { hd: 80, kd: 20 }, L: { hd: 80, kd: 20 } } })], [S(), S({ legs: { R: { hd: 80, kd: 70 }, L: { hd: 80, kd: 70 } } })], 'mniejszy niż 1.5 × zakres kolana'],
+  ['klatka_przy_dloniach', { max_cm: 20 }, [S({ arms: sym('deg', 10) }), S({ arms: { R: { deg: 140, grip: [0, 90, 19] }, L: { deg: 140, grip: [0, 90, -19] } } })], [S({ arms: sym('deg', 10) }), S({ arms: sym('deg', 140) })], 'klatka jest 60'],
   ['piety_na_podlodze', { max_cm: 2 }, [S(), S({ legs: { R: { heel: [-6, 1, 8] }, L: { heel: [-6, 1, -8] } } })], [S(), S({ legs: { R: { heel: [-6, 6, 8] }, L: { heel: [-6, 0, -8] } } })], 'pięta R zmienia wysokość o 6'],
   ['kolano_biodro_zakres', { kolano_min_max_deg: 80, biodro_min_max_deg: 60, kolano_max_min_deg: 15 }, [S(), S({ legs: { R: { kd: 100, hd: 70 }, L: { kd: 100, hd: 70 } } })], [S(), S({ legs: { R: { kd: 30, hd: 70 }, L: { kd: 30, hd: 70 } } })], 'kolano w ruchu dochodzi tylko do 30'],
   ['udo_rownolegle_na_dole', { max_deg: 15 }, [S(), S({ pelvis: [0, 30, 0], legs: { R: { hip: [0, 30, 8], knee: [30, 28, 8] }, L: { hip: [0, 30, -8], knee: [30, 28, -8] } } })], [S(), S({ pelvis: [0, 30, 0], legs: { R: { hip: [0, 50, 8], knee: [30, 25, 8] }, L: { hip: [0, 30, -8], knee: [30, 28, -8] } } })], 'udo R w najniższym punkcie'],

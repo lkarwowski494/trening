@@ -23,7 +23,7 @@ describe('pokrycie regułami sensu (bramka 3/5)', () => {
     expect(p.gotowe_figury).toBe(87); expect(p.gotowe_bez_regul).toEqual([]);
     const n = JSON.parse(execFileSync(process.execPath, [path.join(ROOT, 'scripts/figures/sens-gotowe.mjs'), '--json'], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 })) as { cwiczenie: string; naruszenia: { regula: string }[] }[];
     expect(n).toHaveLength(87); const z = n.filter((x) => x.naruszenia.length);
-    expect(z.length).toBeLessThanOrEqual(42); /* spadek (naprawy) wymaga zmniejszenia tej liczby */
-    const reguly = new Set(z.flatMap((x) => x.naruszenia.map((y) => y.regula))); for (const r of reguly) expect(['kolana_nad_stopami', 'zawias_w_biodrach', 'kolana_lekko_ugiete', 'wyprost_na_gorze', 'przedramie_pod_sztanga', 'ciezar_przy_nogach', 'zakres_podloga', 'pelny_zakres']).toContain(r);
+    expect(z.length).toBeLessThanOrEqual(6); /* spadek (naprawy) wymaga zmniejszenia tej liczby */
+    const reguly = new Set(z.flatMap((x) => x.naruszenia.map((y) => y.regula))); for (const r of reguly) expect(['zawias_w_biodrach', 'kolana_lekko_ugiete', 'przedramie_pod_sztanga', 'ciezar_przy_nogach']).toContain(r);
   });
 });

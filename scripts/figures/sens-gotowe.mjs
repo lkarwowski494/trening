@@ -16,7 +16,7 @@ export function naruszeniaGotowych(root = ROOT, tylkoRodzina = null) {
   for (const cw of Object.keys(catalog.CATALOG)) {
     const spec = v2.figureSpec(cw); if (!spec || (tylkoRodzina && spec.family !== tylkoRodzina)) continue;
     const reguly = regulyDla(spec.family, cw, root); const p = Array.from({ length: 21 }, (_, i) => i / 20).map((u) => ({ u, f: v2.frameAt(spec, u), kf: null }));
-    const naruszenia = []; for (const r of reguly) { const opisy = EWALUATORY[r.typ]({ v2, d: { sprzet: [] }, p, parametry: r.parametry }); if (opisy.length) naruszenia.push({ regula: r.id, typ: r.typ, opisy }); }
+    const naruszenia = []; for (const r of reguly) { const opisy = EWALUATORY[r.typ]({ v2, d: { sprzet: spec.variant?.p?.oneArm ? [{ rodzaj: 'sztanga', trzyma: 'R' }] : [] }, p, parametry: r.parametry }); if (opisy.length) naruszenia.push({ regula: r.id, typ: r.typ, opisy }); }
     wynik.push({ cwiczenie: cw, rodzina: spec.family, reguly: reguly.map((r) => r.id), naruszenia });
   }
   return wynik;

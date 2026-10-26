@@ -10,7 +10,7 @@ import { execFileSync, spawnSync } from 'child_process';
 import { FIG_DATA } from '@/lib/figures';
 import {
   CONTRACT, MARKS, AFFECTS, GEAR, TEMPLATES, templateFor, knownFamily, poseSchema, checkSchema, poseAt, deltaAt, applyDelta, toPoseIn, propsFrom, keyframeFrame, validatePose, describeContract,
-  keyFrameOf, deltaOf, exampleFor, dataShapes, figureSpec, frameAt, checkFrame, SIDES, FAMILIES,
+  NEUTRAL_ANKLE_DEG, neutralFootPitch, solveSkeleton, jointAngles, soleY, keyFrameOf, deltaOf, exampleFor, dataShapes, figureSpec, frameAt, checkFrame, SIDES, FAMILIES,
   type PoseData, type KeyFrame, type DeltaFrame, type DataError, type Gear, type ContractIssue, type ValidateCtx, type FamilyTemplate, type LegData, type ArmData, type RomData, type Affects,
 } from '@/lib/figures/v2';
 
@@ -187,5 +187,30 @@ describe('biblioteka scripts/figures/v2-validate.mjs (interfejs pilotażu) i CLI
     const o = run([okF]); expect([o.status, o.stdout]).toEqual([0, expect.stringContaining('OK  pull_up / Rope Climb')]);
     const n = run([badF]); expect(n.status).toBe(1); expect(n.stdout).toContain('[chwyt]'); expect(run([]).status).toBe(2);
     expect(execFileSync('node', ['scripts/figures/v2-validate.mjs', '--schema'], { cwd: root, encoding: 'utf8' })).toContain('"title"'); fs.rmSync(tmp, { recursive: true, force: true });
+  });
+});
+
+describe('stopa automatyczna (decyzja koordynatora 26.10.2026): brak podbicia → stopa neutralna względem goleni, nie głębiej niż podłoga', () => {
+  const k = (ay: number, ax: number, podbicie?: number): KeyFrame => ({
+    u: 0, miednica: [0, 8, 0], pochylenieTulowia: -90, pochylenieGlowy: -90,
+    nogi: { R: { kostka: [ax, ay, 15], ...(podbicie === undefined ? {} : { podbicie }) }, L: { kostka: [ax, ay, -15], ...(podbicie === undefined ? {} : { podbicie }) } },
+    rece: { R: { chwyt: [0, 0, 20] }, L: { chwyt: [0, 0, -20] } },
+  });
+  it('wisząca noga (ponad podłogą): kąt kostki = NEUTRAL_ANKLE_DEG względem goleni', () => {
+    const p = toPoseIn(k(40, 50)); const j = jointAngles(solveSkeleton(p), 'R');
+    expect(Math.abs(j.ankle - NEUTRAL_ANKLE_DEG)).toBeLessThan(4); /* ≈: kąt liczony w płaszczyźnie strzałkowej, goleń ma też składową boczną (rozstaw bioder, kolano na zewnątrz) */
+  });
+  it('stopa przy podłodze (kostka y = 7): pochylenie zmniejszone do płaskiego, podeszwa nie pod podłogą', () => {
+    const sk = solveSkeleton(toPoseIn(k(7, 35))); expect(soleY(sk.legs.R)).toBeGreaterThan(-1e-3);
+  });
+  it('neutralFootPitch: goleń pionowa → stopa ≈ +5°; przy podłodze (kostka y = 7) nie schodzi poniżej podłogi', () => {
+    expect(neutralFootPitch([0, 100, 0], 'R', { ankle: [0, 17.5, 9] })).toBeGreaterThan(NEUTRAL_ANKLE_DEG - 12); /* goleń prawie pionowa, ale z boczną składową (rozstaw bioder): pochylenie stopy blisko 5° */ expect(neutralFootPitch([0, 100, 0], 'R', { ankle: [0, 17.5, 9] })).toBeLessThan(NEUTRAL_ANKLE_DEG + 12);
+    expect(neutralFootPitch([0, 8, 0], 'R', { ankle: [35, 7, 15] })).toBeGreaterThanOrEqual(0); expect(neutralFootPitch([0, 8, 0], 'R', { ankle: [35, 7, 15] })).toBeLessThanOrEqual(NEUTRAL_ANKLE_DEG + 40);
+  });
+  it('jawne podbicie ma pierwszeństwo (rodziny, w których stopa jest ruchem)', () => {
+    expect(toPoseIn(k(40, 50, -60)).legs.R.footPitch).toBe(-60);
+  });
+  it('gotowe rodziny (rigi) nie korzystają z toPoseIn: ich figury bez zmian — pochylenie stopy domyślnie 0', () => {
+    expect(solveSkeleton({ pelvis: [0, 90, 0], trunkPitch: 0, headPitch: 0, legs: { R: { ankle: [0, 7, 9] }, L: { ankle: [0, 7, -9] } }, arms: { R: { grip: [0, 60, 20] }, L: { grip: [0, 60, -20] } } } as any).legs.R.heel[1]).toBeCloseTo(0, 5);
   });
 });

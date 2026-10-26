@@ -332,3 +332,18 @@ describe('przegląd ruchu przez niezależnego recenzenta (bramka 4, docs/53): pa
     expect(w3.c).toBe(1); expect(zapisane(r2)).toEqual(['Chin Up']); expect(JSON.parse(wyj(r2, 'raport-import.json')).bez_przegladu).toEqual(['Pull Up']);
   });
 });
+
+describe('stopa automatyczna i chwyt nad głową w poleceniu core_floor', () => {
+  it('normalizuj: usuwa podbicie z odpowiedzi w rodzinach z listy stopa_automatyczna, innych nie rusza', () => {
+    const poza = { klatki: [{ nogi: { R: { kostka: [1, 2, 3], podbicie: 20 }, L: { kostka: [1, 2, -3], podbicie: 20 } } }] };
+    const a = run(SENS, `console.log(JSON.stringify(m.normalizuj(${JSON.stringify(poza)}, 'core_floor', 'Crunch')))`);
+    expect(a.klatki[0].nogi.R.podbicie).toBeUndefined(); expect(a.klatki[0].nogi.L.podbicie).toBeUndefined();
+    const b = run(SENS, `console.log(JSON.stringify(m.normalizuj(${JSON.stringify(poza)}, 'pull_up', 'Pull Up')))`);
+    expect(b.klatki[0].nogi.R.podbicie).toBe(20);
+  });
+  it('polecenie core_floor: nie każe podawać podbicia i zawiera tabelę chwytu nad głową z liczb modelu', () => {
+    const t = run(POL, `console.log(JSON.stringify({ tab: m.tabelaRakNadGlowa(), w: m.wymagania('core_floor').join(' '), wp: m.wymagania('pull_up').join(' ') }))`);
+    expect(t.tab).toMatch(/pochylenie -90°: dx = -53,9, dy = 31/);
+    expect(t.w).toMatch(/NIE podawaj pola podbicie/); expect(t.wp).not.toMatch(/NIE podawaj pola podbicie/);
+  });
+});

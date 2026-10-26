@@ -163,7 +163,7 @@
           "type": "number",
           "minimum": -90,
           "maximum": 90,
-          "description": "Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (0 = płasko, dodatnie = palce wyżej niż pięta). Domyślnie 0."
+          "description": "Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (dodatnie = palce wyżej niż pięta). NIE PODAWAJ, gdy stopa nie jest istotą ruchu (np. leżenie, zwis): wtedy stopa ustawia się sama neutralnie względem goleni (kąt kostki ≈ 5°). Podaj tylko tam, gdzie stopa jest ruchem lub podporą: wspięcia, stanie na palcach (np. −60)."
          },
          "rotacjaStopy": {
           "type": "number",
@@ -212,7 +212,7 @@
           "type": "number",
           "minimum": -90,
           "maximum": 90,
-          "description": "Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (0 = płasko, dodatnie = palce wyżej niż pięta). Domyślnie 0."
+          "description": "Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (dodatnie = palce wyżej niż pięta). NIE PODAWAJ, gdy stopa nie jest istotą ruchu (np. leżenie, zwis): wtedy stopa ustawia się sama neutralnie względem goleni (kąt kostki ≈ 5°). Podaj tylko tam, gdzie stopa jest ruchem lub podporą: wspięcia, stanie na palcach (np. −60)."
          },
          "rotacjaStopy": {
           "type": "number",

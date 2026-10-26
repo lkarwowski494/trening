@@ -7,7 +7,7 @@
  * Liczby (zakresy, tolerancje) w jednym miejscu: CONTRACT. Kąty i rozstawy bez źródła to uproszczenie ilustracyjne (nie pokazujemy ich użytkownikowi).
  */
 import { add, dist, type V3 } from './math';
-import { BODY, SIDES, jointAngles, type LegIn, type ArmIn, type PoseIn, type Side } from './skeleton';
+import { BODY, SIDES, jointAngles, legJoints, type LegIn, type ArmIn, type PoseIn, type Side } from './skeleton';
 import type { Frame, Prop } from './scene';
 import { checkFrame } from './colliders';
 import { mkFrame } from './rigs/common';
@@ -92,7 +92,7 @@ const vec = (description: string, lim: number = CONTRACT.coord): Sch => ({ type:
 const obj = (properties: Record<string, Sch>, required: string[], description?: string): Sch => ({ type: 'object', properties, required, additionalProperties: false, ...(description ? { description } : {}) });
 const legProps = (d: boolean): Record<string, Sch> => ({
   kostka: vec(d ? 'Zmiana położenia kostki [dx, dy, dz] w cm.' : 'Środek stawu skokowego [x, y, z] w cm (x = przód, y = góra, z = prawa strona osoby).', d ? CONTRACT.deltaCoord : CONTRACT.coord),
-  podbicie: num(-90, 90, d ? 'Zmiana pochylenia stopy w stopniach.' : 'Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (0 = płasko, dodatnie = palce wyżej niż pięta). Domyślnie 0.'),
+  podbicie: num(-90, 90, d ? 'Zmiana pochylenia stopy w stopniach.' : 'Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (dodatnie = palce wyżej niż pięta). NIE PODAWAJ, gdy stopa nie jest istotą ruchu (np. leżenie, zwis): wtedy stopa ustawia się sama neutralnie względem goleni (kąt kostki ≈ 5°). Podaj tylko tam, gdzie stopa jest ruchem lub podporą: wspięcia, stanie na palcach (np. −60).'),
   rotacjaStopy: num(-90, 90, d ? 'Zmiana rotacji zewnętrznej stopy w stopniach.' : 'Rotacja zewnętrzna stopy, stopnie. Domyślnie 10.'),
   odchylenieKolana: num(-90, 90, d ? 'Zmiana odchylenia kolana na zewnątrz (stopnie; ujemne = do środka).' : 'Odchylenie kolana na zewnątrz w poziomie, stopnie. Domyślnie 2 × rotacja stopy.'),
   ...(d ? {} : { biegunKolana: vec('Kierunek zgięcia kolana [x, y, z] (wektor kierunku, nie cm). Domyślnie do przodu i na zewnątrz (stojąc). Przy leżeniu na plecach i unoszonych nogach WSKAŻ [0.15, 1, 0] (kolano w górę, nie w podłogę); na czworaka i na brzuchu [0.15, -1, 0] (kolano opiera się o podłogę). Gdy podane, odchylenieKolana jest ignorowane.', 10) }),
@@ -205,8 +205,26 @@ export function applyDelta(k: KeyFrame, d: DeltaFrame): KeyFrame {
   const arm = (s: Side): ArmData => ({ ...k.rece[s], chwyt: plus(k.rece[s].chwyt, d.rece?.[s]?.chwyt) });
   return { ...k, miednica: plus(k.miednica, d.miednica), pochylenieTulowia: k.pochylenieTulowia + (d.pochylenieTulowia ?? 0), zgiecieKregoslupa: plusN(k.zgiecieKregoslupa, d.zgiecieKregoslupa), pochylenieGlowy: d.pochylenieGlowy === undefined ? k.pochylenieGlowy : (k.pochylenieGlowy ?? Math.max(-20, Math.min(60, k.pochylenieTulowia * 0.4))) + d.pochylenieGlowy, nogi: { R: leg('R'), L: leg('L') }, rece: { R: arm('R'), L: arm('L') } };
 }
+/** Neutralne ustawienie stopy względem goleni (kąt kostki ≈ +NEUTRAL_ANKLE_DEG): stopa prostopadła do goleni w płaszczyźnie strzałkowej, palce lekko ku goleni. Używane, gdy `podbicie` nie jest podane (decyzja koordynatora 26.10.2026: model nie liczy kąta kostki; stopa istotą ruchu → podbicie jawnie). */
+export const NEUTRAL_ANKLE_DEG = 5;
+export function neutralFootPitch(pelvis: V3, side: Side, li: LegIn): number {
+  const j = legJoints(pelvis, side, li); const sx = j.knee[0] - li.ankle[0], sy = j.knee[1] - li.ankle[1];
+  const want = Math.atan2(-sx, sy) * 180 / Math.PI + NEUTRAL_ANKLE_DEG;
+  /* stopa nie wchodzi w podłogę (y = 0): gdy neutralne ustawienie zanurzałoby piętę lub palce, zmniejszamy pochylenie ku stopie płaskiej */
+  const soleY = (deg: number): number => {
+    const fp = deg * Math.PI / 180, ay = li.ankle[1];
+    const y = (along: number): number => ay + Math.sin(fp) * along - Math.cos(fp) * BODY.ankleH;
+    return Math.min(y(-BODY.heelBack), y(BODY.toeFwd));
+  };
+  if (soleY(want) >= -1e-6 || soleY(0) < -1e-6) return want;
+  let lo = 0, hi = want; /* lo: dopuszczalne, hi: zanurza */
+  for (let i = 0; i < 30; i++) { const mid = (lo + hi) / 2; if (soleY(mid) >= -1e-6) lo = mid; else hi = mid; }
+  return lo;
+}
 export function toPoseIn(k: KeyFrame): PoseIn {
-  const leg = (s: Side): LegIn => { const l = k.nogi[s]; return { ankle: l.kostka, footPitch: l.podbicie, toeOut: l.rotacjaStopy, kneeOut: l.odchylenieKolana, kneePole: l.biegunKolana }; };
+  const leg = (s: Side): LegIn => { const l = k.nogi[s]; const li: LegIn = { ankle: l.kostka, footPitch: l.podbicie, toeOut: l.rotacjaStopy, kneeOut: l.odchylenieKolana, kneePole: l.biegunKolana };
+    if (li.footPitch === undefined) li.footPitch = neutralFootPitch(k.miednica, s, li); /* podbicie niepodane: stopa neutralnie względem goleni */
+    return li; };
   const arm = (s: Side): ArmIn => { const a = k.rece[s]; return { grip: a.chwyt, elbowPole: a.biegunLokcia, lower: a.dolnaCzesc }; };
   return { pelvis: k.miednica, trunkPitch: k.pochylenieTulowia, spineBend: k.zgiecieKregoslupa, headPitch: k.pochylenieGlowy, legs: { R: leg('R'), L: leg('L') }, arms: { R: arm('R'), L: arm('L') } };
 }
