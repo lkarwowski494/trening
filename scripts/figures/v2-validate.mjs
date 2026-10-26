@@ -9,7 +9,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { loadV2 } from './v2-build.mjs';
-import { sprawdzSens, izometryczne, grupaBledu, wczytajSens } from './v2-sens.mjs';
+import { sprawdzSens, izometryczne, grupaBledu, wczytajSens, regulyDla } from './v2-sens.mjs';
 import { sprawdzJakosc, wczytajTeksty, GRUPY_POSTAWY, wierszeWJednejLinii } from './v2-jakosc.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -53,7 +53,7 @@ export function waliduj(poza, { rodzina, cwiczenie, root = ROOT }) {
     try { bledy.push(...sprawdzSens({ v2: silnik().v2, poza, rodzina, cwiczenie, root })); } catch (e) { bledy.push({ kod: 'sens', szczegol: `nie da się ocenić sensu ruchu (${e.message})` }); }
   }
   /* jakość (luki z recenzji ruchu, v2-jakosc.mjs): po przejściu schematu, geometrii i sensu */
-  if (!rigowa && !bledy.length) { try { bledy.push(...sprawdzJakosc(poza, { v2: silnik().v2, rodzina, cwiczenie, postural, izometryczne: izometryczne(rodzina, cwiczenie, root), teksty: wczytajTeksty(root) })); } catch (e) { bledy.push({ kod: 'jakosc', szczegol: `nie da się ocenić jakości pozy (${e.message})` }); } }
+  if (!rigowa && !bledy.length) { try { bledy.push(...sprawdzJakosc(poza, { v2: silnik().v2, rodzina, cwiczenie, postural, izometryczne: izometryczne(rodzina, cwiczenie, root), teksty: wczytajTeksty(root), reguly: regulyDla(rodzina, cwiczenie, root), root })); } catch (e) { bledy.push({ kod: 'jakosc', szczegol: `nie da się ocenić jakości pozy (${e.message})` }); } }
   return { ok: bledy.length === 0, bledy };
 }
 /** Few-shot: gotowa rodzina jako [{ cwiczenie, poza }]; rodzina w planach → [] (wtedy pilotaż używa przykładu przysiadu). */
