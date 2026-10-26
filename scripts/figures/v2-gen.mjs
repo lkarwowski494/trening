@@ -35,12 +35,14 @@ md.push('# 51 — Figury v2: rodziny ruchu i pokrycie ćwiczeń (generowane)', '
 md.push('AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.');
 md.push('Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.', '');
 md.push(`Ćwiczeń w katalogu: **${total}**; rodzin ruchu: **${v2.FAMILIES.length}** (gotowe: ${ready.length}, do zrobienia: ${planned.length}); ćwiczeń z gotową figurą: **${nReady}** (${(100 * nReady / total).toFixed(1).replace('.', ',')}%).`, '');
-md.push('## Rodziny', '', '| Rodzina | Stan | Ćwiczeń | Z figurą | Widoki | Szacunek pracy agenta (h) | Opis |', '|---|---|---|---|---|---|---|');
-for (const f of v2.FAMILIES) md.push(`| \`${f.id}\` | ${f.status === 'ready' ? 'gotowa' : 'do zrobienia'} | ${by[f.id]?.length ?? 0} | ${nFig(f.id)} | ${f.views.join(', ')} | ${f.status === 'ready' ? '—' : f.effort} | ${f.label}${f.note ? ' — ' + f.note : ''} |`);
+md.push('## Rodziny', '', '| Rodzina | Stan | Ćwiczeń | Widoki | Szacunek pracy agenta (h) | Opis |', '|---|---|---|---|---|---|');
+for (const f of v2.FAMILIES) md.push(`| \`${f.id}\` | ${f.status === 'ready' ? 'gotowa' : 'do zrobienia'} | ${by[f.id]?.length ?? 0} | ${f.views.join(', ')} | ${f.status === 'ready' ? '—' : f.effort} | ${f.label}${f.note ? ' — ' + f.note : ''} |`);
 const sumEffort = planned.reduce((s, f) => s + f.effort, 0); const sumEx = planned.reduce((s, f) => s + (by[f.id]?.length ?? 0), 0);
 md.push('', `Razem do zrobienia: ${planned.length} rodzin, ${sumEx} ćwiczeń, ok. **${sumEffort} h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).`, '');
+const partial = ready.filter(f => (by[f.id] ?? []).some(k => !withFig(k)));
+if (partial.length) { md.push('## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)', ''); for (const f of partial) md.push(`- \`${f.id}\` (z figurą ${nFig(f.id)} z ${by[f.id].length}): ${by[f.id].filter(k => !withFig(k)).sort((a, b) => a.localeCompare(b, 'en')).join('; ')}`); md.push(''); }
 md.push('## Ćwiczenia według rodzin', '');
-for (const f of v2.FAMILIES) { const noFig = (by[f.id] ?? []).filter(k => !withFig(k)); md.push(`### ${f.id} (${by[f.id]?.length ?? 0}) — ${f.status === 'ready' ? 'gotowa' : 'do zrobienia'}`, '', (by[f.id] ?? []).sort((a, b) => a.localeCompare(b, 'en')).join('; '), ''); if (f.status === 'ready' && noFig.length) md.push(`Bez figury v2 (brak pozy w danych rodziny — v1 albo brak): ${noFig.sort((a, b) => a.localeCompare(b, 'en')).join('; ')}`, ''); }
+for (const f of v2.FAMILIES) { md.push(`### ${f.id} (${by[f.id]?.length ?? 0}) — ${f.status === 'ready' ? 'gotowa' : 'do zrobienia'}`, '', (by[f.id] ?? []).sort((a, b) => a.localeCompare(b, 'en')).join('; '), ''); }
 const mdText = md.join('\n');
 fs.rmSync(tmp, { recursive: true, force: true });
 

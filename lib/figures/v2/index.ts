@@ -13,6 +13,8 @@ export * from './families';
 export * from './variants';
 export * from './anim';
 export * from './figure';
+export * from './contacts';
+export * from './badges';
 export * from './poseData';
 export * from './muscles';
 export * from './muscles.generated';

@@ -8,7 +8,10 @@ import { catalogKey, type Exercise } from '@/lib/seed';
 import { REGION_LABEL } from '@/lib/seed';
 import { CUE_SETS } from './cueSets';
 import { CUE_TO_ERROR, ERRORS, dataErrorId, type FigError } from './errors';
-import { faultApplicable, figureSpec, musclesFor, type FigureSpec } from './figure';
+import { faultApplicable, figureSpec, frameAt, errorDefOf, markPoints, musclesFor, type FigureSpec } from './figure';
+import { BADGE_MAX, okBadges, type Badge } from './badges';
+import { proj } from './draw';
+import type { View } from './scene';
 import { guidesFor, ELBOW45_KEYS, type GuideId } from './guides';
 import { MUSCLE_MIN_LOAD, type MuscleId } from './muscles';
 
@@ -72,4 +75,14 @@ export const GAP_CUES: readonly string[] = Object.keys(GAP_TEXT);
 export function errorText(cue: string): string {
   const x = cueText(cue, lang()); if (x !== cue) return x;
   return Object.prototype.hasOwnProperty.call(GAP_TEXT, cue) ? GAP_TEXT[cue]() : x;
+}
+
+/** Znaczki ✓/✕ pozycji u: poza poprawna — ✓ przy częściach ciała, których dotyczą wskazówki ćwiczenia; widok błędu — ✕ w miejscu błędu z jego wskazówką; maks. BADGE_MAX. */
+export function badgesFor(spec: FigureSpec, u: number, view: View, error?: FigError): Badge[] {
+  const f = frameAt(spec, u, error);
+  if (error) {
+    const def = errorDefOf(spec, error); if (!def) return [];
+    return markPoints(f, view, def.mark).slice(0, BADGE_MAX).map((p, i) => ({ id: `err:${def.cue[0]}:${i}`, kind: 'err' as const, cue: def.cue[0], at: proj(p, view) }));
+  }
+  return okBadges(f, view, cueIdsOf(spec.key).ids);
 }

@@ -33,6 +33,6 @@ export function figurePalette(th: FigureTheme): FigurePalette {
     skinHi: hi(skin), clothHi: dark ? mixHex(th.accent, th.bg, 0.22) : mixHex(th.accent, th.surface, 0.22), error: th.danger,
     floor: th.ctrlLine, frame: th.ctrlLine, pad: th.surface2, steel: th.muted, plate: th.band, load: th.band,
     skin, skinFar: mixHex(skin, th.bg, 0.35), cloth: th.accent, clothFar: mixHex(th.accent, th.bg, 0.4),
-    shoe: th.text, hair: th.text, guide: th.doneLine, cable: th.ctrlLine, muscleMain: th.less, muscleAux: mixHex(th.less, th.bg, 0.5),
+    shoe: th.text, hair: th.text, guide: th.doneLine, cable: th.ctrlLine, muscleMain: th.less, muscleAux: mixHex(th.less, th.bg, 0.5), contactOk: th.doneLine, contactBad: th.danger,
   };
 }

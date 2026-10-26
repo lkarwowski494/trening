@@ -1245,7 +1245,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 
 **Ustawienie**
 
-- Głowa, barki i pośladki na ławce, stopy pewnie na podłodze. — ACE: [Chest Press (#5)](https://www.acefitness.org/resources/everyone/exercise-library/5/chest-press/) (opis (press the feet into the ground and the hips into the bench)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Step 1: Setup); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (Foot position (butt won’t come off the bench)) `bp.contact`
+- Głowa, barki i pośladki na ławce, stopy pewnie na podłodze. — ACE: [Chest Press (#5)](https://www.acefitness.org/resources/everyone/exercise-library/5/chest-press/) (opis (press the feet into the ground and the hips into the bench)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Step 1: Setup); Stronger by Science: [How to Bench Press: The Definitive Guide (Greg Nuckols)](https://www.strongerbyscience.com/how-to-bench/) (Foot position (butt won’t come off the bench)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (Bench press, setup: five-point body contact position (head, shoulders and upper back, buttocks, both feet)) `bp.contact`
 - Chwyć sztangę nieco szerzej niż barki. — ACE: [Chest Press (#5)](https://www.acefitness.org/resources/everyone/exercise-library/5/chest-press/) (opis (slightly wider than shoulder-width)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Step 2; FAQ (grip width)); ExRx.net: [BBBenchPress](https://web.archive.org/web/20230320115018/https://exrx.net/WeightExercises/PectoralSternal/BBBenchPress) (Preparation) `bp.grip`
 
 **Ruch**
@@ -1408,14 +1408,14 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 **Wskazówki**
 
 - Łokcie blisko tułowia przez cały ruch. — ACE: [Close Grip Bench Press (#311)](https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/) (opis (elbows close to the ribs)); ExRx.net: [BBCloseGripBenchPress](https://web.archive.org/web/20240105211522/https://exrx.net/WeightExercises/Triceps/BBCloseGripBenchPress) (Execution (elbows close to body)) `cgbp.elbows`
-- Głowa, barki i pośladki na ławce, stopy pewnie na podłodze. — ACE: [Close Grip Bench Press (#311)](https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/) (opis (push the feet into the floor, press the hips into the bench)); NASM: [Close Grip Bench Press](https://www.nasm.org/resource-center/exercise-library/close-grip-bench-press) (Step 1 (back firmly against the bench, feet flat)) `bp.contact`
+- Głowa, barki i pośladki na ławce, stopy pewnie na podłodze. — ACE: [Close Grip Bench Press (#311)](https://www.acefitness.org/resources/everyone/exercise-library/311/close-grip-bench-press/) (opis (push the feet into the floor, press the hips into the bench)); NASM: [Close Grip Bench Press](https://www.nasm.org/resource-center/exercise-library/close-grip-bench-press) (Step 1 (back firmly against the bench, feet flat)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (Bench press, setup: five-point body contact position (head, shoulders and upper back, buttocks, both feet)) `bp.contact`
 
 ### Bench Press (hantle)
 
 **Ustawienie**
 
 - Usiądź z hantlami na udach, połóż się na ławce i ustaw hantle przy bokach klatki. — ExRx.net: [DBBenchPress](https://web.archive.org/web/20221218023649/https://exrx.net/WeightExercises/PectoralSternal/DBBenchPress) (Preparation); ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 1; Step 2) `dbp.setup`
-- Głowa, barki i pośladki na ławce, stopy pewnie na podłodze. — ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 2 (head, shoulders, butt and feet in contact)); NASM: [Two Arm Dumbbell Chest Press With Band](https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band) (Step 1; Step 2 (feet firmly planted, flat on the floor)) `bp.contact`
+- Głowa, barki i pośladki na ławce, stopy pewnie na podłodze. — ACE: [Chest Press (#19)](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/) (Step 2 (head, shoulders, butt and feet in contact)); NASM: [Two Arm Dumbbell Chest Press With Band](https://www.nasm.org/resource-center/exercise-library/two-arm-dumbbell-chest-press-with-band) (Step 1; Step 2 (feet firmly planted, flat on the floor)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (Bench press, setup: five-point body contact position (head, shoulders and upper back, buttocks, both feet)) `bp.contact`
 
 **Ruch**
 
@@ -1443,7 +1443,7 @@ W aplikacji podpis „Na podstawie: …” podaje tylko rodzaje źródeł (kolum
 **Wskazówki**
 
 - Łokcie lekko ugięte, w stałym kącie przez cały ruch. — ACE: [Lying Chest Fly (#21)](https://www.acefitness.org/resources/everyone/exercise-library/21/lying-chest-fly/) (Step 2–4 (slightly flexed elbows)); ExRx.net: [DBFly](https://web.archive.org/web/20220818045122/https://exrx.net/WeightExercises/PectoralSternal/DBFly) (Comments (keep elbows at fixed angle, only slightly bent)) `fly.elbows`
-- Głowa, barki i pośladki na ławce, stopy pewnie na podłodze. — ACE: [Lying Chest Fly (#21)](https://www.acefitness.org/resources/everyone/exercise-library/21/lying-chest-fly/) (Step 2; Step 3 (head, shoulder, butt and feet contact)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Step 1 (wyciskanie — ta sama pozycja na ławce)) `bp.contact`
+- Głowa, barki i pośladki na ławce, stopy pewnie na podłodze. — ACE: [Lying Chest Fly (#21)](https://www.acefitness.org/resources/everyone/exercise-library/21/lying-chest-fly/) (Step 2; Step 3 (head, shoulder, butt and feet contact)); NASM: [Barbell Bench Press](https://www.nasm.org/resource-center/exercise-library/barbell-bench-press) (Step 1 (wyciskanie — ta sama pozycja na ławce)); NSCA: [Sands, Wurth, Hewit: NSCA — Basics of Strength and Conditioning Manual, NSCA 2012](https://www.nsca.com/uploadedFiles/NSCA/Resources/PDF/Publications/basics_of_strength_and_conditioning_manual.pdf) (Bench press, setup: five-point body contact position (head, shoulders and upper back, buttocks, both feet)) `bp.contact`
 
 ### Front Squat
 

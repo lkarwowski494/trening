@@ -70,6 +70,12 @@ export const EWALUATORY = {
     const r = zakres(p.map((s) => s.kf.pochylenieTulowia));
     return r.min < q.min_deg || r.max > q.max_deg ? [`pochylenieTulowia w ruchu: ${f1(r.min)}°…${f1(r.max)}°, dozwolone ${q.min_deg}°…${q.max_deg}° (odchylenie tułowia to bujanie)`] : [];
   },
+  /* styk dłoni z drążkiem (punkty styku liczone z geometrii: lib/figures/v2/contacts.ts) w każdej próbce ruchu */
+  styk_dlonie: ({ v2, d, p }) => {
+    const o = [];
+    for (const s of p) { const maja = new Set(v2.contactsOf(s.f).map((c) => c.id)); for (const side of stronyRak(d)) if (!maja.has('hand' + side) && o.length < 3) o.push(`dłoń ${side} nie ma styku z drążkiem w u = ${s.u.toFixed(2)} (chwyt musi leżeć na osi drążka w każdej klatce)`); }
+    return o;
+  },
   jedna_reka: ({ d, p, parametry: q }) => {
     const b = drazek(d); if (!b) return []; if (b.trzyma !== 'R' && b.trzyma !== 'L') return ['ćwiczenie jednorącz, a sprzet[] ma drążek trzymany obiema rękami — ustaw na sztandze trzyma: "R" albo "L"'];
     const wolna = b.trzyma === 'R' ? 'L' : 'R'; const o = [];

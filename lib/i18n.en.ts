@@ -791,6 +791,7 @@ export const EN: Record<string, string> = {
   'Pokaż częsty błąd': 'Show common mistake',
   'Ukryj częsty błąd': 'Hide common mistake',
   'Częsty błąd: {opis}': 'Common mistake: {opis}',
+  'Wskazówka: {opis}': 'Tip: {opis}',
   'Zatrzymaj animację': 'Pause animation',
   'Wznów animację': 'Resume animation',
   'Pozycja wyjściowa': 'Starting position',

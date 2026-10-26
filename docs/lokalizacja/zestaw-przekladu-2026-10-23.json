@@ -11,6 +11,11 @@
    "rodzaj": "nowy",
    "pl": "Bujanie się i wymachy nogami.",
    "en": "Swinging and kicking the legs."
+  },
+  {
+   "rodzaj": "nowy",
+   "pl": "Wskazówka: {opis}",
+   "en": "Tip: {opis}"
   }
  ]
 }

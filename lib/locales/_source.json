@@ -6233,6 +6233,10 @@
   "en": "Back to workout"
  },
  {
+  "pl": "Wskazówka: {opis}",
+  "en": "Tip: {opis}"
+ },
+ {
   "pl": "Wskazówki",
   "en": "Tips"
  },

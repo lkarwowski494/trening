@@ -7,53 +7,57 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 
 ## Rodziny
 
-| Rodzina | Stan | Ćwiczeń | Z figurą | Widoki | Szacunek pracy agenta (h) | Opis |
-|---|---|---|---|---|---|---|
-| `squat` | gotowa | 25 | 25 | side, front | — | Przysiad obustronny |
-| `bench_press` | gotowa | 30 | 30 | side, top | — | Wyciskanie leżąc (ławka płaska, skośna, ujemna, podłoga) |
-| `hinge` | gotowa | 32 | 32 | side, front | — | Zawias biodrowy (martwy ciąg, RDL, dzień dobry) |
-| `pushup_plank` | do zrobienia | 30 | 0 | side, front | 4 | Pompki, deski, rollouty, ruchy w podporze — rig w podporze: dwie podpory (dłonie, stopy), obrót wokół kotwicy |
-| `dip` | do zrobienia | 5 | 0 | side, front | 2 | Dipy (poręcze, ławka, maszyna, kółka) |
-| `overhead_press` | do zrobienia | 21 | 0 | side, front | 4 | Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk) |
-| `row` | do zrobienia | 13 | 0 | side, top | 4 | Wiosłowanie w pochyleniu / z podparciem / jednorącz |
-| `cable_row` | do zrobienia | 10 | 0 | side, front | 3 | Wiosłowanie na linkach i maszynie, face pull |
-| `pull_up` | gotowa | 13 | 11 | side, front | — | Podciąganie i zwis (drążek, kółka, lina) — pozy z danych (poses/pull_up.json); ćwiczenia bez wpisu w danych bez figury v2 |
-| `pulldown` | do zrobienia | 7 | 0 | side, front | 2 | Ściąganie drążka (wyciąg górny) |
-| `lunge` | do zrobienia | 24 | 0 | side, front | 5 | Wykroki, przysiad bułgarski, wejścia na stopień, pistolet |
-| `leg_machine` | do zrobienia | 8 | 0 | side | 3 | Suwnice i maszyny nóg (leg press, hack, wahadło) |
-| `leg_isolation` | do zrobienia | 14 | 0 | side | 3 | Prostowanie i uginanie nóg, nordic, sissy |
-| `calf_raise` | do zrobienia | 13 | 0 | side | 2 | Wspięcia na palce |
-| `hip_bridge` | do zrobienia | 11 | 0 | side | 3 | Hip thrust i mostki |
-| `kb_ballistic` | do zrobienia | 17 | 0 | side | 3 | Kettlebell: swing, clean, snatch, wyciskania balistyczne |
-| `olympic` | do zrobienia | 25 | 0 | side | 6 | Podrzut, rwanie i ich odmiany |
-| `back_extension` | do zrobienia | 4 | 0 | side | 2 | Prostowanie tułowia na ławce, reverse hyper |
-| `curl` | do zrobienia | 36 | 0 | side, front | 4 | Uginanie ramion (sztanga, hantle, linka, modlitewnik) |
-| `triceps` | do zrobienia | 32 | 0 | side | 4 | Prostowanie ramion (francuskie, nad głową, wyciąg, odwodzenie w tył) |
-| `delt_raise` | do zrobienia | 38 | 0 | front, side | 4 | Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe) |
-| `chest_fly` | do zrobienia | 20 | 0 | top, side | 3 | Rozpiętki, pec deck, przenoszenie za głowę |
-| `shrug` | do zrobienia | 8 | 0 | front, side | 1 | Szrugsy |
-| `rotator_cuff` | do zrobienia | 8 | 0 | front, side | 2 | Rotacje zewnętrzne/wewnętrzne, taśmy do ramion |
-| `core_floor` | do zrobienia | 44 | 0 | side | 4 | Brzuch na leżąco i siedząco (spięcia, unoszenie nóg, V-up) |
-| `core_hang` | do zrobienia | 4 | 0 | side | 2 | Brzuch w zwisie (unoszenie nóg/kolan, toes to bar) |
-| `core_standing` | do zrobienia | 19 | 0 | front, side | 4 | Core stojąc i rotacje (Pallof, drwal, skłony, windmill) |
-| `carry` | do zrobienia | 7 | 0 | side | 2 | Noszenie |
-| `cardio` | do zrobienia | 16 | 0 | side | 6 | Cardio i lokomocja (bieg, rower, wioślarz, skakanka, burpees) |
-| `plyo` | do zrobienia | 28 | 0 | side | 4 | Skoki i plyometria |
-| `sled_throw` | do zrobienia | 19 | 0 | side | 3 | Sanie, rzuty piłką, uderzenia |
-| `strongman` | do zrobienia | 10 | 0 | side | 3 | Strongman i podnoszenia nietypowych ciężarów |
-| `glute_floor` | do zrobienia | 7 | 0 | side, front | 4 | Pośladki i biodra na podłodze/linkach (clamshell, kickback, odwodzenie) |
-| `hip_abd_add` | do zrobienia | 8 | 0 | front | 2 | Przywodzenie i odwodzenie (maszyny, linki, taśmy) |
-| `mobility_stand` | do zrobienia | 36 | 0 | side, front | 6 | Mobilność i rozciąganie stojąc / w ruchu |
-| `mobility_floor` | do zrobienia | 22 | 0 | side | 6 | Mobilność i rozciąganie na podłodze |
-| `foam_roll` | do zrobienia | 11 | 0 | side | 2 | Rolowanie i automasaż |
-| `neck` | do zrobienia | 8 | 0 | side | 1 | Szyja |
-| `forearm` | do zrobienia | 12 | 0 | side | 2 | Przedramiona i chwyt |
-| `thruster` | do zrobienia | 3 | 0 | side | 2 | Thruster i ruchy złożone przysiad + wyciskanie |
-| `chest_press_machine` | do zrobienia | 5 | 0 | side | 3 | Maszyny wyciskające siedząc (klatka, barki) |
-| `cable_press` | do zrobienia | 4 | 0 | side, top | 2 | Wyciskania na linkach |
-| `kneeling_hinge` | do zrobienia | 2 | 0 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
+| Rodzina | Stan | Ćwiczeń | Widoki | Szacunek pracy agenta (h) | Opis |
+|---|---|---|---|---|---|
+| `squat` | gotowa | 25 | side, front | — | Przysiad obustronny |
+| `bench_press` | gotowa | 30 | side, top | — | Wyciskanie leżąc (ławka płaska, skośna, ujemna, podłoga) |
+| `hinge` | gotowa | 32 | side, front | — | Zawias biodrowy (martwy ciąg, RDL, dzień dobry) |
+| `pushup_plank` | do zrobienia | 30 | side, front | 4 | Pompki, deski, rollouty, ruchy w podporze — rig w podporze: dwie podpory (dłonie, stopy), obrót wokół kotwicy |
+| `dip` | do zrobienia | 5 | side, front | 2 | Dipy (poręcze, ławka, maszyna, kółka) |
+| `overhead_press` | do zrobienia | 21 | side, front | 4 | Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk) |
+| `row` | do zrobienia | 13 | side, top | 4 | Wiosłowanie w pochyleniu / z podparciem / jednorącz |
+| `cable_row` | do zrobienia | 10 | side, front | 3 | Wiosłowanie na linkach i maszynie, face pull |
+| `pull_up` | gotowa | 13 | side, front | — | Podciąganie i zwis (drążek, kółka, lina) — pozy z danych (poses/pull_up.json); ćwiczenia bez wpisu w danych bez figury v2 |
+| `pulldown` | do zrobienia | 7 | side, front | 2 | Ściąganie drążka (wyciąg górny) |
+| `lunge` | do zrobienia | 24 | side, front | 5 | Wykroki, przysiad bułgarski, wejścia na stopień, pistolet |
+| `leg_machine` | do zrobienia | 8 | side | 3 | Suwnice i maszyny nóg (leg press, hack, wahadło) |
+| `leg_isolation` | do zrobienia | 14 | side | 3 | Prostowanie i uginanie nóg, nordic, sissy |
+| `calf_raise` | do zrobienia | 13 | side | 2 | Wspięcia na palce |
+| `hip_bridge` | do zrobienia | 11 | side | 3 | Hip thrust i mostki |
+| `kb_ballistic` | do zrobienia | 17 | side | 3 | Kettlebell: swing, clean, snatch, wyciskania balistyczne |
+| `olympic` | do zrobienia | 25 | side | 6 | Podrzut, rwanie i ich odmiany |
+| `back_extension` | do zrobienia | 4 | side | 2 | Prostowanie tułowia na ławce, reverse hyper |
+| `curl` | do zrobienia | 36 | side, front | 4 | Uginanie ramion (sztanga, hantle, linka, modlitewnik) |
+| `triceps` | do zrobienia | 32 | side | 4 | Prostowanie ramion (francuskie, nad głową, wyciąg, odwodzenie w tył) |
+| `delt_raise` | do zrobienia | 38 | front, side | 4 | Unoszenie ramion (bokiem, przodem, tyłem, wiosłowanie pionowe) |
+| `chest_fly` | do zrobienia | 20 | top, side | 3 | Rozpiętki, pec deck, przenoszenie za głowę |
+| `shrug` | do zrobienia | 8 | front, side | 1 | Szrugsy |
+| `rotator_cuff` | do zrobienia | 8 | front, side | 2 | Rotacje zewnętrzne/wewnętrzne, taśmy do ramion |
+| `core_floor` | do zrobienia | 44 | side | 4 | Brzuch na leżąco i siedząco (spięcia, unoszenie nóg, V-up) |
+| `core_hang` | do zrobienia | 4 | side | 2 | Brzuch w zwisie (unoszenie nóg/kolan, toes to bar) |
+| `core_standing` | do zrobienia | 19 | front, side | 4 | Core stojąc i rotacje (Pallof, drwal, skłony, windmill) |
+| `carry` | do zrobienia | 7 | side | 2 | Noszenie |
+| `cardio` | do zrobienia | 16 | side | 6 | Cardio i lokomocja (bieg, rower, wioślarz, skakanka, burpees) |
+| `plyo` | do zrobienia | 28 | side | 4 | Skoki i plyometria |
+| `sled_throw` | do zrobienia | 19 | side | 3 | Sanie, rzuty piłką, uderzenia |
+| `strongman` | do zrobienia | 10 | side | 3 | Strongman i podnoszenia nietypowych ciężarów |
+| `glute_floor` | do zrobienia | 7 | side, front | 4 | Pośladki i biodra na podłodze/linkach (clamshell, kickback, odwodzenie) |
+| `hip_abd_add` | do zrobienia | 8 | front | 2 | Przywodzenie i odwodzenie (maszyny, linki, taśmy) |
+| `mobility_stand` | do zrobienia | 36 | side, front | 6 | Mobilność i rozciąganie stojąc / w ruchu |
+| `mobility_floor` | do zrobienia | 22 | side | 6 | Mobilność i rozciąganie na podłodze |
+| `foam_roll` | do zrobienia | 11 | side | 2 | Rolowanie i automasaż |
+| `neck` | do zrobienia | 8 | side | 1 | Szyja |
+| `forearm` | do zrobienia | 12 | side | 2 | Przedramiona i chwyt |
+| `thruster` | do zrobienia | 3 | side | 2 | Thruster i ruchy złożone przysiad + wyciskanie |
+| `chest_press_machine` | do zrobienia | 5 | side | 3 | Maszyny wyciskające siedząc (klatka, barki) |
+| `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
+| `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
 Razem do zrobienia: 39 rodzin, 609 ćwiczeń, ok. **123 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+
+## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
+
+- `pull_up` (z figurą 11 z 13): Muscle Up; Rope Climb
 
 ## Ćwiczenia według rodzin
 
@@ -92,8 +96,6 @@ Cable Rope Rear-Delt Rows; Face Pull; Kneeling High Pulley Row; Leverage High Ro
 ### pull_up (13) — gotowa
 
 Chin Up; Dead Hang; Gironda Sternum Chins; Gorilla Chin/Crunch; Mixed Grip Chin; Muscle Up; Neutral Grip Pull Up; One Arm Chin-Up; Pull Up; Rope Climb; Scapular Pull-Up; Side To Side Chins; Wide-Grip Rear Pull-Up
-
-Bez figury v2 (brak pozy w danych rodziny — v1 albo brak): Muscle Up; Rope Climb
 
 ### pulldown (7) — do zrobienia
 

@@ -19,6 +19,7 @@ import { GUIDES, trailShapes, type GuideId } from './guides';
 import { phasesOf, TEMPO, type Tempo, type Phase, type PhaseNames } from './anim';
 import { ERRORS, isDataError, dataErrorIndex, type ErrorId, type FigError, type AnyErrorDef, type Fault } from './errors';
 import { keyframeFrame } from './contract';
+import { contactGlows, type ContactId } from './contacts';
 import { DATA_UI, ISOMETRIC, poseDataFor, type MeasuredJoint } from './poseData';
 import { ease } from './rigs/common';
 
@@ -37,8 +38,14 @@ export function figureSpec(key: string): FigureSpec | null {
   return { key, family, variant, views: fam.views, static: variant.family === 'squat' && !!variant.static, lowerFirst };
 }
 
+/* Podręczna pamięć klatek: w jednym kroku animacji ta sama klatka jest potrzebna kilka razy (kształty, linie odniesienia, styki, znaczki, oba widoki) — liczymy ją raz. Klatki są niezmienne. */
+const FRAME_CACHE = new Map<string, Frame>(); const FRAME_CACHE_MAX = 48;
 /** Klatka figury w pozycji u (0 = wyjściowa, 1 = skrajna). */
 export function frameAt(spec: FigureSpec, u: number, error?: FigError): Frame {
+  const id = spec.key + '|' + u + '|' + (error ?? ''); const hit = FRAME_CACHE.get(id); if (hit) return hit;
+  const f = computeFrame(spec, u, error); if (FRAME_CACHE.size >= FRAME_CACHE_MAX) FRAME_CACHE.clear(); FRAME_CACHE.set(id, f); return f;
+}
+function computeFrame(spec: FigureSpec, u: number, error?: FigError): Frame {
   const v = spec.variant;
   if ('data' in v) return keyframeFrame(v.data, u, error && isDataError(error) ? dataErrorIndex(error) : undefined);
   const fault = error && !isDataError(error) ? faultFor(spec, error, u) : undefined;
@@ -97,15 +104,19 @@ export function errorDefOf(spec: FigureSpec | undefined, error: FigError): AnyEr
 }
 
 /** Znacznik ✕ w miejscu błędu (kolana, pięty, plecy, miednica, gryf) — rola „error” (token danger), nad wszystkim. */
-export function errorMarks(f: Frame, view: View, error: FigError, spec?: FigureSpec): Shape[] {
-  const pts: V3[] = []; const sk = f.sk; const def = errorDefOf(spec, error); if (!def) return [];
-  switch (def.mark) {
+export function markPoints(f: Frame, view: View, mark: AnyErrorDef['mark']): V3[] {
+  const pts: V3[] = []; const sk = f.sk;
+  switch (mark) {
     case 'knees': pts.push(sk.legs.R.knee, ...(view === 'side' ? [] : [sk.legs.L.knee])); break;
     case 'heels': pts.push(sk.legs.R.heel, ...(view === 'side' ? [] : [sk.legs.L.heel])); break;
     case 'back': pts.push(sk.spineMid); break;
     case 'pelvis': pts.push(sk.pelvis); break;
     case 'bar': pts.push(f.info.load ?? sk.pelvis); break;
   }
+  return pts;
+}
+export function errorMarks(f: Frame, view: View, error: FigError, spec?: FigureSpec): Shape[] {
+  const def = errorDefOf(spec, error); if (!def) return []; const pts = markPoints(f, view, def.mark);
   const out: Shape[] = [];
   for (const p of pts) {
     const c = proj(p, view); const r = 6;
@@ -147,4 +158,24 @@ export function trailFor(spec: FigureSpec, view: View): Shape[] {
 /** Linie odniesienia dla pozycji u (tylko z wskazanych id i widoków, w których linia ma sens). */
 export function guideShapes(spec: FigureSpec, u: number, view: View, ids: GuideId[], error?: FigError): Shape[] {
   const f = frameAt(spec, u, error); return ids.flatMap(id => GUIDES[id].views.includes(view) ? GUIDES[id].build(f, view) : []);
+}
+
+/** Poświaty stref styku klatki (poza poprawna: styki „dobrze”; poza błędu: styk utracony względem pozy poprawnej w tej samej pozycji — „błąd”). Poza kadrem `shapesAt`. */
+export function contactShapes(spec: FigureSpec, u: number, view: View, error?: FigError): Shape[] {
+  const f = frameAt(spec, u, error); const pose = error && errorDefOf(spec, error)?.kind === 'pose';
+  return contactGlows(f, view, pose ? frameAt(spec, u) : undefined);
+}
+
+/**
+ * Styki wymagane w POZIE POPRAWNEJ rodziny (reguła sensu, docs/53): przysiad — obie stopy (pięta i palce) na podłodze; wyciskanie leżąc — głowa, plecy, pośladki na ławce i obie stopy na podłodze
+ * (pięć punktów styku, NSCA Basics 2012; ławka ujemna: stopy pod wałkami, nie na podłodze); zawias — stopa prawa (podporowa) i, poza ćwiczeniami jednonóż, lewa; podciąganie — dłonie na drążku
+ * (ćwiczenie jednorącz: tylko ręka trzymająca). Inne rodziny: brak wymagań (punkty tylko z geometrii).
+ */
+export function requiredContacts(spec: FigureSpec): ContactId[] {
+  const v = spec.variant; const feet = (s: 'R' | 'L'): ContactId[] => [`heel${s}`, `toe${s}`];
+  if ('data' in v) { if (spec.family !== 'pull_up') return []; const bar = v.data.sprzet.find(g => g.rodzaj === 'sztanga'); return bar?.trzyma === 'R' ? ['handR'] : bar?.trzyma === 'L' ? ['handL'] : ['handR', 'handL']; }
+  if (v.family === 'squat') return [...feet('R'), ...feet('L')];
+  if (v.family === 'bench_press') return ['head', 'back', 'seat', ...(v.p.angle < 0 ? [] : [...feet('R'), ...feet('L')])];
+  if (v.family === 'hinge') return [...feet('R'), ...(v.p.style === 'singleLeg' ? [] : feet('L'))];
+  return [];
 }

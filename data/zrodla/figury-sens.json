@@ -93,6 +93,14 @@
      "zrodlo": "nazwa ćwiczenia (jednorącz) — konwencja; drążek trzyma jedna dłoń (sprzet: trzyma R albo L), wolna dłoń leży poza osią drążka",
      "liczba": "konwencja (≥ 15 cm od osi drążka)",
      "wskazowka_liczbowa": "wolna ręka wzdłuż ciała, prosto: chwyt wolnej dłoni = [miednica.x + 2, miednica.y − 13, ∓21] w KAŻDEJ klatce (z przeciwnego znaku niż strona trzymająca)"
+    },
+    "dlonie_na_drazku": {
+     "typ": "styk_dlonie",
+     "grupa": "styk",
+     "cue": "pu.grip",
+     "parametry": {},
+     "zrodlo": "wskazówka pu.grip („chwyć drążek … i zawiśnij”); źródła w cues.json: ACE, NASM, ExRx; styk liczony z geometrii (lib/figures/v2/contacts.ts)",
+     "liczba": "uproszczenie (styk = dłoń na osi drążka w granicach tolerancji chwytu walidatora)"
     }
    },
    "grupy_bledow": {
@@ -106,7 +114,9 @@
      "dol_rece_proste",
      "miednica_nie_buja",
      "nogi_nieruchome",
-     "tulow_pion"
+     "tulow_pion",
+     "dlonie_na_drazku",
+     "dlonie_na_drazku"
     ],
     "Chin Up": "_scisle",
     "Pull Up": "_scisle",
@@ -119,38 +129,45 @@
      "miednica_nie_buja",
      "nogi_nieruchome",
      "tulow_pion",
-     "jedna_reka"
+     "jedna_reka",
+     "dlonie_na_drazku"
     ],
     "Side To Side Chins": [
      "broda_nad_drazkiem",
      "dol_rece_proste",
      "miednica_nie_buja_x",
      "nogi_nieruchome",
-     "tulow_pion"
+     "tulow_pion",
+     "dlonie_na_drazku"
     ],
     "Gorilla Chin/Crunch": [
      "broda_nad_drazkiem",
      "dol_rece_proste",
      "miednica_nie_buja",
-     "tulow_pion"
+     "tulow_pion",
+     "dlonie_na_drazku"
     ],
     "Scapular Pull-Up": [
      "rece_proste_caly_ruch",
      "miednica_nie_buja",
      "nogi_nieruchome",
-     "tulow_pion"
+     "tulow_pion",
+     "dlonie_na_drazku"
     ],
     "Dead Hang": [
      "rece_proste_caly_ruch",
      "miednica_nie_buja",
      "nogi_nieruchome",
-     "tulow_pion"
+     "tulow_pion",
+     "dlonie_na_drazku"
     ],
     "Gironda Sternum Chins": [
-     "dol_rece_proste"
+     "dol_rece_proste",
+     "dlonie_na_drazku"
     ],
     "Muscle Up": [
-     "dol_rece_proste"
+     "dol_rece_proste",
+     "dlonie_na_drazku"
     ]
    },
    "pomin": {
