@@ -2165,3 +2165,16 @@ describe('TestFlight 0.18/1015 (14.10.2026, WYSOKI): „Nie udało się włączy
     expect(y).toContain('ios/Trening/Trening.entitlements'); expect(y).toContain('ios/.targets/TreningWatch/generated.entitlements');
   });
 });
+
+describe('Ekran blokady w przerwie: język aplikacji, nie systemu (26.10.2026, realny, rzadki)', () => {
+  /* Kroki: telefon po polsku → Więcej → Język → English → odhacz serię → zablokuj telefon. Objaw: Live Activity z etykietą „Przerwa”, bo widżet czytał
+   * Locale.preferredLanguages. Przyczyna: język aplikacji nie był częścią stanu aktywności. Pełny zestaw: tests/live-activity-lang.test.ts. */
+  test('telefon po polsku + aplikacja po angielsku: start Live Activity niesie „en”, a zmiana języka przy trwającej przerwie odświeża ją', async () => {
+    await fresh(); global.__locales = [{ languageCode: 'pl', languageTag: 'pl-PL' }]; store.getState().settings.language = 'en'; store.applyPrefs();
+    store.startEmpty(); store.addExerciseToActive(ex('Back Squat')); await timer.start(90, store.getState().active!.exercises[0].sets[0].id);
+    const starts = () => (global.__la as any[][]).filter(x => x[0] === 'start');
+    expect(starts().map(x => [x[5], x[6]])).toEqual([['rest|Rest', 'en']]);
+    store.getState().settings.language = 'de'; store.applyPrefs(); global.__la.length = 0; await timer.relocalize();
+    expect(starts().map(x => [x[5], x[6]])).toEqual([['rest|Pause', 'de']]); await timer.stop();
+  });
+});

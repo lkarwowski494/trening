@@ -67,7 +67,7 @@ describe('F4 (LIVE-03): „Pomiń dziś” nie zatrzymuje przerwy po odhaczonej 
     expect(timer.T.on).toBe(true); expect(timer.T.sub).toBe('Bench Press (sztanga) · seria 2, 80 kg, 8 powtórzeń'); const n0 = global.__cancelled.length; const la0 = global.__la.length; /* 0.20: zapowiedź przerwy = restCue (ciężar i powtórzenia) */
     await tap(screen.getByLabelText('Pomiń dziś: Bench Press (sztanga)')); await flushAll(10);
     expect(S().active!.exercises[0].skipped).toBe(true); expect(timer.T.on).toBe(true); expect(global.__cancelled.slice(n0)).not.toContain('rest-end');
-    expect(timer.T.sub).toBe('dalej: Plank'); expect(global.__la.slice(la0)).toContainEqual(['update', 'dalej: Plank', timer.T.endAt, timer.T.total]);
+    expect(timer.T.sub).toBe('dalej: Plank'); expect(global.__la.slice(la0)).toContainEqual(['update', 'dalej: Plank', timer.T.endAt, timer.T.total, 'pl']);
   });
   test('F4 (LIVE-03): stoper serii w bloku — pytanie; „Wróć” zostawia pomiar, „Pomiń dziś” zatrzymuje go i pomija ćwiczenie', async () => {
     await fresh(); S().settings.workoutView = 'list'; store.startEmpty(); store.addExerciseToActive(ex('Plank')); store.addExerciseToActive(ex('Bench Press (sztanga)')); await boot();
@@ -91,7 +91,7 @@ describe('F5 (LIVE-04 / LIVE-15): podpis przerwy i powiadomienie', () => {
     await act(async () => { await store.flush(); }); const st = JSON.parse(JSON.stringify(saved())); jest.setSystemTime(T0 + 40 * SEC);
     await renderApp({ saved: st }); jest.setSystemTime(T0 + 40 * SEC); await flushAll(10);
     expect(timer.T.on).toBe(true); expect(timer.T.sub).toBe('Bench Press (sztanga) · seria 2, 60 kg, 8 powtórzeń');
-    expect(global.__la.filter((x: any) => x[0] === 'start').at(-1)).toEqual(['start', 'Trening', 'Bench Press (sztanga) · seria 2, 60 kg, 8 powtórzeń', timer.T.endAt, 90, 'rest|Przerwa']);
+    expect(global.__la.filter((x: any) => x[0] === 'start').at(-1)).toEqual(['start', 'Trening', 'Bench Press (sztanga) · seria 2, 60 kg, 8 powtórzeń', timer.T.endAt, 90, 'rest|Przerwa', 'pl']);
     expect(lastNotif('rest-end')?.content.body).toBe('Następna seria.');
   });
   test('F5 (LIVE-04, decyzja B): po ostatniej serii treningu przerwa zostaje, a powiadomienie nie mówi „Następna seria.”', async () => {

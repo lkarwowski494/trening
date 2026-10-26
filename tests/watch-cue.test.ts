@@ -165,7 +165,7 @@ describe('restCue: kontrakt jednego tekstu', () => {
     const a = await world(); const id = sid(0, 0);
     await completeSet(0, 0); const want = restCue(a, id).text;
     expect([timer.T.sub, timer.labels.subtitle]).toEqual([want, want]);
-    expect(global.__la).toContainEqual(['start', 'Push', want, timer.T.endAt, 90, 'rest|Przerwa']);
+    expect(global.__la).toContainEqual(['start', 'Push', want, timer.T.endAt, 90, 'rest|Przerwa', 'pl']);
   });
   test.each(LANGS.map(l => [l]))('35 języków (%s): zapowiedź bez nawiasów klamrowych i bez polskich liter poza pl; liczba powtórzeń w tekście', async l => {
     await world(); applyLang(l); const c = restCue(A(), sid(0, 0)).text;

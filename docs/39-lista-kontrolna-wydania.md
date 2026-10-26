@@ -11,6 +11,10 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
   - Co zrobić i czego oczekiwać: Przerwa 2:00 → zablokuj ekran → w 2:00 baner, dźwięk i wibracja; Live Activity pokazuje odliczanie i znika po końcu; odblokuj: licznik zgodny; zmień przerwę w trakcie — Live Activity się zmienia.
   - Dlaczego nie automat: Maestro nie blokuje ekranu, baner powiadomień, ekran blokady i Dynamic Island są poza aplikacją; wibracja i dźwięk niewidoczne dla testu.
   - Pokrycie zastępcze w Jest: `tests/e2e-102-reminder.test.tsx`, `tests/timer-logic.test.ts`, `tests/audit-final-timer.test.tsx`
+- [ ] **PR-17** Ekran blokady w przerwie: Live Activity w języku aplikacji, nie systemu
+  - Co zrobić i czego oczekiwać: Telefon w innym języku niż aplikacja (np. systemowy polski, w aplikacji English): odhacz serię, zablokuj ekran — etykieta „Rest”, nie „Przerwa”. Odblokuj, w aplikacji Więcej → Język → Deutsch, zablokuj ponownie — etykieta „Pause”. Ok. 1 min.
+  - Dlaczego nie automat: Live Activity (ekran blokady, Dynamic Island) działa tylko na prawdziwym iPhonie; symulator CI jej nie pokazuje, a Maestro nie czyta widżetu poza aplikacją.
+  - Pokrycie zastępcze w Jest: `tests/live-activity-lang.test.ts`, `tests/regress.test.tsx`, `tests/widget-i18n.test.ts`
 
 ## Ustawienia, uprawnienia, zakupy
 
@@ -77,4 +81,4 @@ Zasada: odhacz każdy punkt dla wersji, którą wypuszczasz; wada → wiadomoś�
   - Co zrobić i czego oczekiwać: Wg docs/35 (lista ręczna wydania 0.20): parowanie, pierwsza seria z zegarka, przerwa z wibracją, zasięg w kieszeni, „Cofnij”, „Pomiń”.
   - Dlaczego nie automat: Zegarek, WatchConnectivity i Connect IQ nie istnieją na symulatorze iPhone’a w CI; Apple Watch bywa tylko wirtualny, zegarek Connect IQ tylko fizyczny.
 
-Razem punktów: **14**.
+Razem punktów: **15**.

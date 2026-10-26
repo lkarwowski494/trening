@@ -15,7 +15,7 @@ struct RestLiveActivity: Widget {
         .activitySystemActionForegroundColor(.white)
     } dynamicIsland: { context in
       DynamicIsland {
-        DynamicIslandExpandedRegion(.leading) { Text(kindLabel(context.attributes.kind)).font(.caption).foregroundColor(.secondary) }
+        DynamicIslandExpandedRegion(.leading) { Text(kindLabel(context.attributes.kind, lang: context.state.lang)).font(.caption).foregroundColor(.secondary) }
         DynamicIslandExpandedRegion(.trailing) { Text(context.state.subtitle).font(.caption).foregroundColor(.secondary).lineLimit(1) }
         DynamicIslandExpandedRegion(.center) {
           Text(timerInterval: timerRange(context.state.endAt), countsDown: true).font(.system(size: 34, weight: .bold, design: .rounded)).monospacedDigit().foregroundColor(Color(red: 0.961, green: 0.945, blue: 0.902))
@@ -38,7 +38,7 @@ struct LockScreenView: View {
   var body: some View {
     HStack(alignment: .center, spacing: 14) {
       VStack(alignment: .leading, spacing: 2) {
-        Text(kindLabel(context.attributes.kind)).font(.caption).foregroundColor(.secondary)
+        Text(kindLabel(context.attributes.kind, lang: context.state.lang)).font(.caption).foregroundColor(.secondary)
         Text(context.attributes.title).font(.headline).foregroundColor(.white).lineLimit(1)
         Text(context.state.subtitle).font(.caption2).foregroundColor(.secondary).lineLimit(1)
       }
@@ -57,9 +57,12 @@ func kindBase(_ kind: String) -> String {
   if let i = kind.firstIndex(of: "|") { return String(kind[..<i]) }
   return kind
 }
-/// Etykieta rodzaju odliczania. Runda 37: aplikacja przekazuje ją w języku z ustawień aplikacji („rest|Przerwa”);
-/// bez niej — w języku systemu z 16 języków aplikacji (06.10.2026, RestLabels.swift generowany z tłumaczeń), inny język → angielski.
-func kindLabel(_ kind: String) -> String {
+/// Etykieta rodzaju odliczania. Kolejność: (1) język aplikacji z stanu aktywności (`lang`, ustawienie „Język” — naprawa 26.10.2026: telefon po polsku +
+/// aplikacja po angielsku); (2) etykieta w atrybucie „rest|Przerwa” (runda 37, starsze aktywności bez pola `lang`); (3) język systemu z języków
+/// aplikacji (RestLabels.swift generowany z tłumaczeń), inny język → angielski. Nieznany `lang` → jak brak.
+func kindLabel(_ kind: String, lang: String? = nil) -> String {
+  let base = kindBase(kind)
+  if let lang = lang, let l = restLabels[lang] { return base == "set" ? l.set : l.rest }
   if let i = kind.firstIndex(of: "|") { return String(kind[kind.index(after: i)...]) }
   let pref = Locale.preferredLanguages.first ?? "en"
   var code = String(pref.prefix(2))
