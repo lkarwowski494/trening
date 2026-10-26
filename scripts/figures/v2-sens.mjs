@@ -56,8 +56,20 @@ function probki(v2, d, blad) {
   });
 }
 const drazek = (d) => d.sprzet.find((g) => g.rodzaj === 'sztanga');
+/** Pola kontraktu poza@2 (nazwy jak w KeyFrame/ArmData; zakresy i znaki: skeleton.ts → EXT_ROM) i rodzaj: 'tulow' (jedna wartość na klatkę) albo 'reka' (osobno dla R i L). */
+export const POLA_POZA2 = { skretTulowia: 'tulow', przechylTulowia: 'tulow', przechylMiednicy: 'tulow', przechylGlowy: 'tulow', obrotTulowia: 'tulow', uniesienieBarkow: 'reka', wysuniecieBarkow: 'reka', zgiecieNadgarstka: 'reka', obrotPrzedramienia: 'reka' };
+const POLA_POZA1 = ['pochylenieTulowia', 'zgiecieKregoslupa', 'pochylenieGlowy', 'zgiecieSzyi'];
+/** Wersja kontraktu jako liczba z napisu „poza@N”. */
+const nrKontraktu = (t) => Number(/@(\d+)$/.exec(t ?? '')?.[1] ?? 1);
+/** Czy reguła wymaga czegoś, czego kontrakt (id bieżący, np. „figury-v2/poza@2”) nie ma: wersji nowszej niż bieżąca albo pola spoza listy. Zwraca powód albo null (ćwiczenie z taką regułą czeka na kontrakt i nie dostaje polecenia). */
+export function czekaNaKontrakt(regula, idKontraktu) {
+  if (!regula.wymaga) return null;
+  if (nrKontraktu(regula.wymaga) > nrKontraktu(idKontraktu)) return `reguła „${regula.id}” wymaga ${regula.wymaga}, a kontrakt to ${idKontraktu}`;
+  const pole = regula.parametry?.pole; if (pole && !(pole in POLA_POZA2) && !POLA_POZA1.includes(pole)) return `reguła „${regula.id}” czyta pole „${pole}”, którego kontrakt nie ma`;
+  return null;
+}
 /** Strony, których dotyczą reguły rąk: obie albo tylko ręka trzymająca drążek (ćwiczenie jednorącz: sprzet.trzyma R/L — ręka wolna nie podlega regułom rąk). */
-const stronyRak = (d) => { const t = drazek(d)?.trzyma; return t === 'R' || t === 'L' ? [t] : ['R', 'L']; };
+const stronyRak = (d) => { const t = (d.sprzet ?? []).map((g) => g.trzyma).find((x) => x === 'R' || x === 'L'); return t ? [t] : ['R', 'L']; }; /* r4: ręka pracująca wynika z KAŻDEGO sprzętu z trzyma R/L (sztanga, hantel, kettlebell, linka), nie tylko ze sztangi */
 
 /** Ewaluatory typów reguł: (ctx{v2,d,p,parametry}) → lista opisów naruszeń (pusta = reguła spełniona). */
 export const EWALUATORY = {
@@ -189,7 +201,7 @@ Object.assign(EWALUATORY, {
     if (Math.min(...kn) > q.kolano_max_min_deg) o.push(`kolano w ruchu nie prostuje się poniżej ${f1(Math.min(...kn))}°, a ma schodzić do ≤ ${q.kolano_max_min_deg}°`); return o; },
   udo_rownolegle_na_dole: ({ p, parametry: q }) => { const s = najnizszaMiednica(p); const o = []; for (const side of ['R', 'L']) { const l = s.f.sk.legs[side]; const a = (Math.atan2(l.hip[1] - l.knee[1], Math.hypot(l.hip[0] - l.knee[0], l.hip[2] - l.knee[2])) * 180) / Math.PI; if (a > q.max_deg) o.push(`udo ${side} w najniższym punkcie jest ${f1(a)}° nad poziomem, a ma ≤ ${q.max_deg}° (udo równolegle do podłogi albo niżej)`); } return o; },
   stanie_wyprost: ({ v2, p, parametry: q }) => p.some((s) => (q.noga === 'podporowa' ? [podporowa(s.f.sk)] : ['R', 'L']).every((side) => { const a = v2.jointAngles(s.f.sk, side); return a.knee <= q.max_kolano_deg && a.hip <= q.max_biodro_deg; }) && Math.abs(kfOf(s).pochylenieTulowia) <= q.max_tulow_deg) ? [] : [`w żadnej klatce nie ma pełnego wyprostu (${q.noga === 'podporowa' ? 'noga podporowa: ' : ''}kolana ≤ ${q.max_kolano_deg}°, biodra ≤ ${q.max_biodro_deg}°, tułów ≤ ${q.max_tulow_deg}° od pionu)`],
-  ciezar_blisko_nog: ({ d, p, parametry: q }) => { const st = stronyRak(d); let m = 0; for (const s of p) { const sk = s.f.sk; const G = Gx(s, st); if (q.tylko_ponizej_barkow && G[1] > sk.shoulderC[1]) continue; const L = [sred([sk.legs.R.ankle, sk.legs.L.ankle].map((a) => a[0])), sred([sk.legs.R.ankle, sk.legs.L.ankle].map((a) => a[1]))], K = [sred([sk.legs.R.knee[0], sk.legs.L.knee[0]]), sred([sk.legs.R.knee[1], sk.legs.L.knee[1]])];
+  ciezar_blisko_nog: ({ d, p, parametry: q }) => { const st = stronyRak(d); let m = 0; for (const s of p) { const sk = s.f.sk; const G = Gx(s, st); if (q.tylko_ponizej_barkow && G[1] > sk.shoulderC[1]) continue; const nogi = q.noga === 'podporowa' ? [sk.legs[podporowa(sk)]] : [sk.legs.R, sk.legs.L]; /* r4: jednonóż — oś z nogi podporowej */ const L = [sred(nogi.map((l) => l.ankle[0])), sred(nogi.map((l) => l.ankle[1]))], K = [sred(nogi.map((l) => l.knee[0])), sred(nogi.map((l) => l.knee[1]))];
       m = Math.max(m, odlOdLamanej([G[0], G[1]], [L, K, [sk.pelvis[0], sk.pelvis[1]], [sk.shoulderC[0], sk.shoulderC[1]]])); }
     return m > q.max_cm ? [`ciężar oddala się od linii nóg i tułowia do ${f1(m)} cm, a ma ≤ ${q.max_cm} cm (prowadź blisko ciała)`] : []; },
   ciezar_ponizej_kolan: ({ d, p, parametry: q }) => { const st = stronyRak(d); return p.some((s) => Gx(s, st)[1] - sred([s.f.sk.legs.R.knee[1], s.f.sk.legs.L.knee[1]]) <= -q.min_cm) ? [] : [`ciężar nigdzie nie schodzi ≥ ${q.min_cm} cm poniżej kolan (start z podłogi / głęboki zawias)`]; },
@@ -216,8 +228,8 @@ Object.assign(EWALUATORY, {
   lot: ({ v2, d, p, parametry: q }) => (p.some((s) => wLocie(v2, d, s, q.min_cm)) ? [] : [`w żadnej klatce nie ma lotu (obie stopy ≥ ${q.min_cm} cm nad podparciem)`]),
   amortyzacja_ladowania: ({ v2, d, p, parametry: q }) => { let ost = -1; p.forEach((s, i) => { if (wLocie(v2, d, s, q.min_cm)) ost = i; }); if (ost < 0) return []; const po = p.slice(ost + 1); if (!po.length) return ['ruch kończy się w locie — brak lądowania (poza musi kończyć się lądowaniem)'];
     const ok = ['R', 'L'].some((side) => Math.max(...po.map((s) => v2.jointAngles(s.f.sk, side).knee)) >= q.min_kolano_deg && Math.max(...po.map((s) => v2.jointAngles(s.f.sk, side).hip)) >= q.min_biodro_deg); return ok ? [] : [`po lądowaniu żadna noga nie amortyzuje (kolano ≥ ${q.min_kolano_deg}° i biodro ≥ ${q.min_biodro_deg}°)`]; },
-  potrojny_wyprost: ({ v2, p, parametry: q }) => { const ok = (s) => { const a = ['R', 'L'].map((side) => v2.jointAngles(s.f.sk, side)); const jedna = (x) => x.knee <= q.max_kolano_deg && x.hip <= q.max_biodro_deg && (q.max_kostka_deg === undefined || x.ankle <= q.max_kostka_deg); return q.nogi === 'obie' ? a.every(jedna) : a.some(jedna); };
-    return p.some(ok) ? [] : [`w żadnej klatce nie ma potrójnego wyprostu (kolano ≤ ${q.max_kolano_deg}°, biodro ≤ ${q.max_biodro_deg}°${q.max_kostka_deg !== undefined ? `, kostka ≤ ${q.max_kostka_deg}°` : ''}; nogi: ${q.nogi})`]; },
+  potrojny_wyprost: ({ v2, p, parametry: q }) => { const ok = (s) => { const a = ['R', 'L'].map((side) => v2.jointAngles(s.f.sk, side)); const jedna = (x) => x.knee <= q.max_kolano_deg && x.hip <= q.max_biodro_deg && (q.max_kostka_deg === undefined || x.ankle <= q.max_kostka_deg); return (q.nogi ?? q.strony) === 'obie' ? a.every(jedna) : a.some(jedna); };
+    return p.some(ok) ? [] : [`w żadnej klatce nie ma potrójnego wyprostu (kolano ≤ ${q.max_kolano_deg}°, biodro ≤ ${q.max_biodro_deg}°${q.max_kostka_deg !== undefined ? `, kostka ≤ ${q.max_kostka_deg}°` : ''}; nogi: ${q.nogi ?? q.strony})`]; },
   dlonie_na_wysokosci_barkow: ({ p, parametry: q }) => (p.some((s) => ['R', 'L'].filter((side) => s.f.sk.arms[side].grip[1] >= s.f.sk.shoulderC[1] + q.min_cm).length >= q.min_rak) ? [] : [`w żadnej klatce ${q.min_rak} ręk(a/i) nie ma dłoni ≥ ${q.min_cm} cm nad barkiem`]),
   rece_przed_wyprostem_bioder: ({ v2, d, p, parametry: q }) => { const bi = p.map((s) => srK(v2, s.f.sk, 'hip')); const iLow = bi.indexOf(Math.max(...bi)); let iExt = -1; for (let i = iLow; i < p.length; i++) if (['R', 'L'].every((side) => v2.jointAngles(p[i].f.sk, side).hip <= q.max_biodro_deg)) { iExt = i; break; }
     if (iExt < 0) return [`biodra nigdy nie prostują się (≤ ${q.max_biodro_deg}°) po najgłębszym zgięciu`]; const m = Math.max(...p.slice(iLow, iExt + 1).flatMap((s) => stronyRak(d).map((side) => v2.jointAngles(s.f.sk, side).elbow))); return m > q.max_lokiec_deg ? [`łokcie zginają się do ${f1(m)}° przed wyprostem bioder, a mają ≤ ${q.max_lokiec_deg}° (ręce proste do wyprostu bioder)`] : []; },
@@ -236,6 +248,65 @@ Object.assign(EWALUATORY, { /* runda 3 */
   zawias_biodrowy: ({ v2, p, parametry: q }) => { const wybierz = (s, st) => (q.noga === 'podporowa' ? [podporowa(s.f.sk)] : ['R', 'L']).map((side) => v2.jointAngles(s.f.sk, side)[st]); const hip = p.map((s) => sred(wybierz(s, 'hip'))), kn = p.map((s) => sred(wybierz(s, 'knee'))); const H = zakres(hip), K = zakres(kn); const o = [];
     if (H.max < q.min_biodro_deg) o.push(`biodro w ruchu dochodzi tylko do ${f1(H.max)}°, a ma ≥ ${q.min_biodro_deg}° (zawias w biodrach)`); if (H.span < q.min_stosunek * K.span) o.push(`zakres biodra ${f1(H.span)}° jest mniejszy niż ${q.min_stosunek} × zakres kolana (${f1(K.span)}°) — ruch ma prowadzić biodro, nie kolano`); return o; },
   klatka_przy_dloniach: ({ v2, d, p, parametry: q }) => { const st = stronyRak(d); const s = maxLokiecSamp(v2, p, st); const x = s.f.sk.shoulderC[1] - Gx(s, st)[1]; return x > q.max_cm ? [`w najniższym punkcie klatka jest ${f1(x)} cm nad dłońmi, a ma ≤ ${q.max_cm} cm (klatka nisko, przy podłodze)`] : []; },
+});
+
+
+/* ---------- runda 4 i 5 (badacz, 26.10.2026): kolano_zakres_ruch, rozstaw_zakres, stopien_swobody, punkt_zakres ---------- */
+const kfPole = (s, pole, side) => {
+  const kf = s.kf; const pose = s.f?.pose;
+  const tulow = kf?.pochylenieTulowia ?? pose?.trunkPitch ?? 0;
+  if (pole === 'pochylenieTulowia') return tulow;
+  if (pole === 'zgiecieKregoslupa') return kf?.zgiecieKregoslupa ?? pose?.spineBend ?? 0;
+  const glowa = kf?.pochylenieGlowy ?? pose?.headPitch ?? Math.max(-20, Math.min(60, tulow * 0.4)); /* domyślna głowa: 40% pochylenia tułowia (jak w silniku) */
+  if (pole === 'pochylenieGlowy') return glowa;
+  if (pole === 'zgiecieSzyi') { /* głowa względem tułowia w płaszczyźnie strzałkowej CIAŁA (dodatnie = głowa ku przodowi klatki): z geometrii szkieletu, więc działa w każdym ułożeniu (leżąc, pochylony), nie tylko stojąc; bez szkieletu różnica kątów */
+    const sk = s.f?.sk; if (sk) return (Math.atan2(dot3(sk.headUp, sk.front), dot3(sk.headUp, sk.up)) * 180) / Math.PI;
+    return glowa - tulow; }
+  if (POLA_POZA2[pole] === 'tulow') return kf?.[pole] ?? 0;
+  if (POLA_POZA2[pole] === 'reka') return kf?.rece?.[side]?.[pole] ?? 0;
+  throw new Error(`nieznane pole klatki: ${pole}`);
+};
+Object.assign(EWALUATORY, {
+  kolano_zakres_ruch: ({ v2, p, parametry: q }) => {
+    const ocena = (side) => { const r = zakres(p.map((s) => v2.jointAngles(s.f.sk, side).knee)); const o = [];
+      if (q.min_max_deg !== undefined && r.max < q.min_max_deg) o.push(`kolano ${side} w ruchu dochodzi tylko do ${f1(r.max)}°, a ma sięgać ≥ ${q.min_max_deg}°`);
+      if (q.max_min_deg !== undefined && r.min > q.max_min_deg) o.push(`kolano ${side} w ruchu nie prostuje się poniżej ${f1(r.min)}°, a ma schodzić do ≤ ${q.max_min_deg}°`);
+      if (q.min_min_deg !== undefined && r.min < q.min_min_deg) o.push(`kolano ${side} schodzi do ${f1(r.min)}°, a ma być zawsze ≥ ${q.min_min_deg}° (lekko ugięte)`);
+      return o; };
+    const R = ocena('R'), L = ocena('L');
+    if (q.nogi === 'co_najmniej_jedna') return R.length && L.length ? [...R, ...L].map((x) => `${x} (żadna noga nie spełnia: co najmniej jedna ma pracować)`) : [];
+    return [...R, ...L];
+  },
+  rozstaw_zakres: ({ p, parametry: q }) => {
+    const klucz = q.punkt === 'kolana' ? 'knee' : 'ankle'; const r = zakres(p.map((s) => dl(s.f.sk.legs.R[klucz], s.f.sk.legs.L[klucz])));
+    return r.span < q.min_cm ? [`odległość ${q.punkt === 'kolana' ? 'kolan' : 'kostek'} zmienia się tylko o ${f1(r.span)} cm (${f1(r.min)}…${f1(r.max)}), a ma ≥ ${q.min_cm} cm (rozstaw rośnie albo maleje)`] : [];
+  },
+  stopien_swobody: ({ d, p, parametry: q }) => {
+    const reka = POLA_POZA2[q.pole] === 'reka'; const strony = !reka ? [null] : q.strona === 'R' || q.strona === 'L' ? [q.strona] : q.strona === 'dowolna' ? ['R', 'L'] : stronyRak(d);
+    const ocena = (side) => { const v = p.map((s) => kfPole(s, q.pole, side)); const r = zakres(v); const nm = `${q.pole}${side ? ` ${side}` : ''}`; const o = [];
+      if (q.min !== undefined && r.min < q.min) o.push(`${nm} schodzi do ${f1(r.min)}, a ma być ≥ ${q.min} w całym ruchu`);
+      if (q.max !== undefined && r.max > q.max) o.push(`${nm} dochodzi do ${f1(r.max)}, a ma być ≤ ${q.max} w całym ruchu`);
+      if (q.min_zakres !== undefined && r.span < q.min_zakres) o.push(`${nm} zmienia się tylko o ${f1(r.span)} (${f1(r.min)}…${f1(r.max)}), a zakres ma być ≥ ${q.min_zakres}`);
+      if (q.max_zakres !== undefined && r.span > q.max_zakres) o.push(`${nm} zmienia się o ${f1(r.span)}, a zakres ma być ≤ ${q.max_zakres}`);
+      if (q.osiaga_co_najmniej !== undefined && r.max < q.osiaga_co_najmniej) o.push(`${nm} dochodzi tylko do ${f1(r.max)}, a ma osiągnąć ≥ ${q.osiaga_co_najmniej} w którejś klatce`);
+      if (q.osiaga_co_najwyzej !== undefined && r.min > q.osiaga_co_najwyzej) o.push(`${nm} schodzi tylko do ${f1(r.min)}, a ma osiągnąć ≤ ${q.osiaga_co_najwyzej} w którejś klatce`);
+      if (q.min_abs !== undefined && Math.max(Math.abs(r.min), Math.abs(r.max)) < q.min_abs) o.push(`${nm} nie osiąga |wartości| ≥ ${q.min_abs} w żadnej klatce (największa ${f1(Math.max(Math.abs(r.min), Math.abs(r.max)))})`);
+      return o; };
+    const wyniki = strony.map(ocena);
+    if (q.strona === 'dowolna') return wyniki.some((o) => !o.length) ? [] : wyniki.flat().map((x) => `${x} (żadna strona nie spełnia)`);
+    return wyniki.flat();
+  },
+  punkt_zakres: ({ p, parametry: q }) => {
+    const wybierz = (sk, strona) => { switch (q.punkt) {
+      case 'miednica': return sk.pelvis; case 'barki': return sk.shoulderC;
+      case 'kolana': case 'kostki': case 'palce': { const k = { kolana: 'knee', kostki: 'ankle', palce: 'toe' }[q.punkt]; return strona ? sk.legs[strona][k] : sr(sk.legs.R[k], sk.legs.L[k]); }
+      case 'dlonie': return strona ? sk.arms[strona].grip : sr(sk.arms.R.grip, sk.arms.L.grip);
+      default: throw new Error(`nieznany punkt: ${q.punkt}`); } };
+    const osie = { x: 0, y: 1, z: 2 }; const kandydaci = q.strona === 'dowolna' ? ['R', 'L'] : [null];
+    const ocena = (side) => { const r = Object.fromEntries(q.osie.map((a) => [a, zakres(p.map((s) => wybierz(s.f.sk, side)[osie[a]])).span])); const ok = q.tryb === 'dowolna' ? q.osie.some((a) => r[a] >= q.min_cm) : q.osie.every((a) => r[a] >= q.min_cm);
+      return ok ? [] : [`ruch punktu „${q.punkt}${side ? ` ${side}` : ''}” w osiach ${q.osie.map((a) => `${a}: ${f1(r[a])} cm`).join(', ')}, a ${q.tryb === 'dowolna' ? 'co najmniej jedna oś' : 'każda oś'} ma ≥ ${q.min_cm} cm`]; };
+    const w = kandydaci.map(ocena); return w.some((o) => !o.length) ? [] : w.flat();
+  },
 });
 
 /** Naruszenia reguł dla jednej pozy (poprawnej: blad undefined). Zwraca [{ regula, grupa, opisy }] tylko dla złamanych. */

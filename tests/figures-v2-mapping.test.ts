@@ -12,9 +12,9 @@ const count = (id: FamilyId): number => KEYS.filter(k => ALL[k] === id).length;
 
 /** Liczności rodzin (stan 25.10.2026, 709 ćwiczeń). */
 const EXPECTED: Record<FamilyId, number> = {
-  squat: 25, bench_press: 30, hinge: 32, pushup_plank: 30, dip: 5, overhead_press: 21, row: 13, cable_row: 10, pull_up: 13, pulldown: 7, lunge: 24, leg_machine: 8, leg_isolation: 14, calf_raise: 13,
+  squat: 25, bench_press: 30, hinge: 32, pushup_plank: 30, dip: 5, overhead_press: 23, row: 13, cable_row: 10, pull_up: 13, pulldown: 8, lunge: 24, leg_machine: 8, leg_isolation: 14, calf_raise: 13,
   hip_bridge: 11, kb_ballistic: 17, olympic: 25, back_extension: 4, curl: 36, triceps: 32, delt_raise: 38, chest_fly: 20, shrug: 8, rotator_cuff: 8, core_floor: 44, core_hang: 4, core_standing: 19,
-  carry: 7, cardio: 16, plyo: 28, sled_throw: 19, strongman: 10, glute_floor: 7, hip_abd_add: 8, mobility_stand: 36, mobility_floor: 22, foam_roll: 11, neck: 8, forearm: 12, thruster: 3, chest_press_machine: 5, cable_press: 4, kneeling_hinge: 2,
+  carry: 7, cardio: 16, plyo: 28, sled_throw: 19, strongman: 10, glute_floor: 7, hip_abd_add: 8, mobility_stand: 36, mobility_floor: 22, foam_roll: 11, neck: 5, forearm: 12, thruster: 3, chest_press_machine: 5, cable_press: 4, kneeling_hinge: 2,
 };
 
 describe('rodziny ruchu i przypisanie ćwiczeń', () => {
@@ -34,7 +34,7 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
       'Drag Curl': 'curl', 'Dragon Flag': 'core_floor', 'Leg Press': 'leg_machine', 'Hack Squat': 'leg_machine', 'Barbell Hack Squat': 'squat', 'Thruster (hantle)': 'thruster', 'Jerk Dip Squat': 'olympic',
       'Snatch Balance': 'olympic', 'Clean Deadlift': 'hinge', 'Snatch Deadlift': 'hinge', 'Hip Thrust (sztanga)': 'hip_bridge', 'Kettlebell Swing': 'kb_ballistic', 'Back Extension': 'back_extension',
       'Cable Overhead Extension': 'triceps', 'Chest Dip': 'dip', 'Machine Chest Press': 'chest_press_machine', 'Lat Pulldown': 'pulldown', 'Sled Push': 'sled_throw', 'Box Jump': 'plyo', 'Farmer\'s Walk': 'carry',
-      'Standing Calf Raise': 'calf_raise', 'Leg Curl': 'leg_isolation', 'Cable Fly': 'chest_fly', 'Lateral Raise (hantle)': 'delt_raise', 'Plank': 'pushup_plank', 'Crunch': 'core_floor', 'Hanging Leg Raise': 'core_hang',
+      'Push Press - Behind the Neck': 'overhead_press', 'Standing Barbell Press Behind Neck': 'overhead_press', 'Wide-Grip Pulldown Behind The Neck': 'pulldown', 'Standing Calf Raise': 'calf_raise', 'Leg Curl': 'leg_isolation', 'Cable Fly': 'chest_fly', 'Lateral Raise (hantle)': 'delt_raise', 'Plank': 'pushup_plank', 'Crunch': 'core_floor', 'Hanging Leg Raise': 'core_hang',
     };
     for (const [k, f] of Object.entries(want)) expect([k, ALL[k]]).toEqual([k, f]);
   });

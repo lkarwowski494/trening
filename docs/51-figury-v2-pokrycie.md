@@ -14,11 +14,11 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `hinge` | gotowa | 32 | side, front | — | Zawias biodrowy (martwy ciąg, RDL, dzień dobry) |
 | `pushup_plank` | do zrobienia | 30 | side, front | 4 | Pompki, deski, rollouty, ruchy w podporze — rig w podporze: dwie podpory (dłonie, stopy), obrót wokół kotwicy |
 | `dip` | do zrobienia | 5 | side, front | 2 | Dipy (poręcze, ławka, maszyna, kółka) |
-| `overhead_press` | do zrobienia | 21 | side, front | 4 | Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk) |
+| `overhead_press` | do zrobienia | 23 | side, front | 4 | Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk) |
 | `row` | do zrobienia | 13 | side, top | 4 | Wiosłowanie w pochyleniu / z podparciem / jednorącz |
 | `cable_row` | do zrobienia | 10 | side, front | 3 | Wiosłowanie na linkach i maszynie, face pull |
 | `pull_up` | do zrobienia | 13 | side, front | 3 | Podciąganie i zwis (drążek, kółka, lina) |
-| `pulldown` | do zrobienia | 7 | side, front | 2 | Ściąganie drążka (wyciąg górny) |
+| `pulldown` | do zrobienia | 8 | side, front | 2 | Ściąganie drążka (wyciąg górny) |
 | `lunge` | do zrobienia | 24 | side, front | 5 | Wykroki, przysiad bułgarski, wejścia na stopień, pistolet |
 | `leg_machine` | do zrobienia | 8 | side | 3 | Suwnice i maszyny nóg (leg press, hack, wahadło) |
 | `leg_isolation` | do zrobienia | 14 | side | 3 | Prostowanie i uginanie nóg, nordic, sissy |
@@ -46,7 +46,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `mobility_stand` | do zrobienia | 36 | side, front | 6 | Mobilność i rozciąganie stojąc / w ruchu |
 | `mobility_floor` | do zrobienia | 22 | side | 6 | Mobilność i rozciąganie na podłodze |
 | `foam_roll` | do zrobienia | 11 | side | 2 | Rolowanie i automasaż |
-| `neck` | do zrobienia | 8 | side | 1 | Szyja |
+| `neck` | do zrobienia | 5 | side | 1 | Szyja |
 | `forearm` | do zrobienia | 12 | side | 2 | Przedramiona i chwyt |
 | `thruster` | do zrobienia | 3 | side | 2 | Thruster i ruchy złożone przysiad + wyciskanie |
 | `chest_press_machine` | do zrobienia | 5 | side | 3 | Maszyny wyciskające siedząc (klatka, barki) |
@@ -77,9 +77,9 @@ Ab Wheel; Barbell Rollout from Bench; Clock Push-Up; Close-Grip Push-Up; Copenha
 
 Chest Dip; Dip Machine; Ring Dips; Triceps Dip; Triceps Dips (ławka)
 
-### overhead_press (21) — do zrobienia
+### overhead_press (23) — do zrobienia
 
-Arnold Press; Band Shoulder Press; Bradford Press; Double Kettlebell Press; Handstand Push Up; Kettlebell Arnold Press; Kettlebell Press; Kettlebell Seated Press; Landmine Linear Jammer; Landmine Press; Overhead Press (hantle); Overhead Press (sztanga); Pike Push Up; Push Press; Seated Barbell Military Press; Seated Cable Shoulder Press; Seated Shoulder Press (hantle); See-Saw Press (Alternating Side Press); Single Arm Overhead Press (hantel); Single-Arm Linear Jammer; Wyciskanie nad głowę (linki)
+Arnold Press; Band Shoulder Press; Bradford Press; Double Kettlebell Press; Handstand Push Up; Kettlebell Arnold Press; Kettlebell Press; Kettlebell Seated Press; Landmine Linear Jammer; Landmine Press; Overhead Press (hantle); Overhead Press (sztanga); Pike Push Up; Push Press; Push Press - Behind the Neck; Seated Barbell Military Press; Seated Cable Shoulder Press; Seated Shoulder Press (hantle); See-Saw Press (Alternating Side Press); Single Arm Overhead Press (hantel); Single-Arm Linear Jammer; Standing Barbell Press Behind Neck; Wyciskanie nad głowę (linki)
 
 ### row (13) — do zrobienia
 
@@ -93,9 +93,9 @@ Cable Rope Rear-Delt Rows; Face Pull; Kneeling High Pulley Row; Leverage High Ro
 
 Chin Up; Dead Hang; Gironda Sternum Chins; Gorilla Chin/Crunch; Mixed Grip Chin; Muscle Up; Neutral Grip Pull Up; One Arm Chin-Up; Pull Up; Rope Climb; Scapular Pull-Up; Side To Side Chins; Wide-Grip Rear Pull-Up
 
-### pulldown (7) — do zrobienia
+### pulldown (8) — do zrobienia
 
-Close-Grip Front Lat Pulldown; Full Range-Of-Motion Lat Pulldown; Lat Pulldown; Single Arm Lat Pulldown; Straight Arm Pulldown; Underhand Lat Pulldown; V-Bar Pulldown
+Close-Grip Front Lat Pulldown; Full Range-Of-Motion Lat Pulldown; Lat Pulldown; Single Arm Lat Pulldown; Straight Arm Pulldown; Underhand Lat Pulldown; V-Bar Pulldown; Wide-Grip Pulldown Behind The Neck
 
 ### lunge (24) — do zrobienia
 
@@ -205,9 +205,9 @@ Butterfly Stretch; Cat-Cow; Child's Pose; Downward Facing Balance; Intermediate 
 
 Adductor-SMR; Calves-SMR; Foam Roll: Hamstrings; Foam Roll: Quadriceps; Foot-SMR; Iliotibial Tract-SMR; Latissimus Dorsi-SMR; Peroneals-SMR; Piriformis-SMR; Rhomboids-SMR; Wrist Roller
 
-### neck (8) — do zrobienia
+### neck (5) — do zrobienia
 
-Isometric Neck Exercise - Front And Back; Isometric Neck Exercise - Sides; Lying Neck Extension (talerz); Lying Neck Flexion (talerz); Neck Harness Extension; Push Press - Behind the Neck; Standing Barbell Press Behind Neck; Wide-Grip Pulldown Behind The Neck
+Isometric Neck Exercise - Front And Back; Isometric Neck Exercise - Sides; Lying Neck Extension (talerz); Lying Neck Flexion (talerz); Neck Harness Extension
 
 ### forearm (12) — do zrobienia
 
