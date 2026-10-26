@@ -1,6 +1,6 @@
 # Z-02 — przegląd treści krytycznej po przekładzie (R-010), 26.10.2026
 
-Stan: `origin/integracja-2026-10-26b` @ 6ea116a (worktree `/tmp/claude-0/-home-user-trening/ff1266f8-cce8-5fe6-b038-09db1e9b7165/scratchpad/wt-lok`). Recenzent lokalizacji, nic nie edytowane. Poprawki wprowadza `tlumacz`, zmiany tekstu źródłowego (PL/EN) — `programista`.
+Stan: `origin/integracja-2026-10-26b` @ 6ea116a. Recenzent lokalizacji, nic nie edytowane. Poprawki wprowadza `tlumacz`, zmiany tekstu źródłowego (PL/EN) — `programista`.
 
 ## 1. Zakres i metoda
 
