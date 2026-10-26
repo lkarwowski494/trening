@@ -72,11 +72,11 @@ Agenci nowej sesji (start 21:05 UTC): ścieżka 1.0 (sonnet), integracja 1.1 (pr
 Recenzja n5: 16 OK / 8 uwaga / 5 błąd; reguły złapały 0/5 (n4 też 0/5). Wzorzec: poprawki trafiają w zmierzoną liczbę, obok wyrasta błąd innej klasy, wartości tuż pod progiem (prawo Goodharta). Zmiana podejścia (koordynator, technicznie): ograniczenia strukturalne w silniku (stała długość taśmy, deklarowane punkty podparcia, strona kończyny, kształty nad podłogą) zamiast kolejnych progów; generatory celują w środek przedziału (P2). Agent jakosc-r2 robi rundę 5 → podglądy n6 → recenzja n6.
 **Pytanie do właściciela rano (model pracy, systemowe):** A) dalej: bramki automatyczne + recenzja ruchu każdej rodziny obowiązkowa przed wydaniem (rek.: reguły jako ochrona przed regresją, recenzja jako bramka); B) skalować na całą bibliotekę dopiero po osiągnięciu ≥90% szczelności (ryzyko: termin 1.1 przesunie się o nieznany czas); C) wydać w 1.1 tylko rodziny z recenzją OK, resztę bez animacji.
 
-## Integracja 1.1 (agent programisty, 26.10.2026 wieczór)
-- `integracja-1-1` @ bd7e62f: tests.yml zielone (run 985). Zrobione: scalenia grafiki-dane-ui, grafiki-sprzet (+1ea6fe1), pilotaz-agent-pozy, figury-kontrakt-r4, role-miesni; z strona-eksport i straznik-paczki tylko cherry-picki własnych commitów (gałęzie niosą cudze zmiany z main/wyciskania). Skrócone polecenia Gemini do limitu 36 000 (zakres kontraktu per część), taśmy zawieszenia (15 cm bez kolizji), Suspended Push-Up/Fallout nałożone, eksport `roles`.
-- Przekład ról mięśni: run 40389563916 (sonnet, ok. 0,96 USD), 55 pozycji × 33 języki, niezastosowany; raport: scratchpad/rp-dl/raport-przekladu/. Czeka na recenzję (scratchpad/rp-dl/recenzja-rol.json), potem `--zastosuj` + poprawki.
-- E2E 57 (tylko_scenariusze): przebiegi 297, 298, 301 anulowane bez maszyny macOS; 304 w kolejce (ponawiać przy „not acquired”).
-- Kolejne kroki: scalenie origin/pozy-1-1 dopiero przy zielonym CI i po jakosc-r2; odciski, README, macierz tylko regeneracją.
+## Integracja 1.1 (agent programisty, 26.10.2026 wieczór; aktualizacja 21:57 UTC)
+- `integracja-1-1` @ 9878bb5: tests.yml zielone (run 40412755945), lokalne `npm run verify` zielone (11459 testów). Gałąź zawiera już scalenie `pozy-1-1` (c16ad360 z 2711796, zrobione przez innego agenta) + test limitu polecenia (4e84adf).
+- Przekład ról mięśni: zastosowany w 96c8f48 (z poprawkami recenzji). Czerwone CI na 4e84adf (run 40401443739; 4 testy) naprawione w 9878bb5: ms „Petua”, fr 14 opisów „Permet de …” (3. os. -er = rozkaźnik „tu” dla strażnika A11N-02), nakładki es-419/pt-BR bez wpisów równych bazie. Recenzja ręczna (bez narzędzia Agent): zastrzeżenia niskiej wagi, niewprowadzone: hr „glavni dio tijela” i sr „главни мишић” zamiast „glavna mišićna skupina” (do native speakera).
+- E2E 57 (tylko_scenariusze): run 306 (40399201983, 0f45234) **zielony**; powtórka na 9878bb5: run 308 (40415155748), w kolejce.
+- Nie scalono nic więcej: `pozy-1-1` już wchodzi (jego własne CI czerwone na 2711796, ale integracja zielona); `jakosc-r2` nie ruszana.
 
 ## Decyzje właściciela 26.10 wieczór (po 21:00 UTC)
 - „Co nowego” 1.0.0: bez przycisku ✦ (zapisane w docs/18 na wydanie-1-0-0).
