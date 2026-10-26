@@ -96,8 +96,6 @@ export const TEMPLATES: Record<string, FamilyTemplate> = {
 TEMPLATES.pushup_plank = { gear: 'Podłoga (rodzaj podloga) i ewentualnie skrzynia/ławka płaska jako podwyższenie (dłonie albo stopy); dłonie i stopy w kontakcie z podłożem w pozycji podporu.', defaultGear: [{ rodzaj: 'podloga', x0: -150, x1: 150 }],
   allow: { ankleMin: -75, why: 'stanie na palcach w podporze: zgięcie podeszwowe kostki ok. −55…−65°, blisko dolnej granicy zakresu (uproszczenie ilustracyjne)' }, movement: 'u = 0: pozycja wyjściowa podporu (ręce proste), u = 1: pozycja skrajna (np. dół pompki: łokcie zgięte, ciało w jednej linii); ćwiczenia izometryczne: poza statyczna.' };
 const GENERIC: FamilyTemplate = { gear: 'Sprzęt wg rodzaju ćwiczenia: ' + GEAR.map(k => `${k} — ${GEAR_KINDS[k].opis}`).join('; ') + '.', defaultGear: [{ rodzaj: 'podloga', x0: -120, x1: 120 }], movement: 'u = 0: pozycja wyjściowa, u = 1: pozycja skrajna.' };
-/* leżenie przodem na ławce skośnej (Spider Curl, Chest Supported Row, Front Incline Raise, Middle Back Shrug…): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (decyzja właściciela 26.10.2026: rozszerzamy model zamiast wyjątków; uproszczenie ilustracyjne). Wyjątek dotyczy zakresu biodra całej rodziny. */
-for (const f of ['row', 'curl', 'delt_raise', 'shrug', 'rotator_cuff']) TEMPLATES[f] = { ...GENERIC, allow: { hipMin: -45, why: 'leżenie przodem na ławce skośnej: biodro wyprostowane do ok. −45° (uda na siedzisku, tułów na oparciu; uproszczenie ilustracyjne)' } };
 export const templateFor = (family: string): FamilyTemplate => TEMPLATES[family] ?? GENERIC;
 export const knownFamily = (family: string): boolean => Object.prototype.hasOwnProperty.call(FAMILY, family);
 
@@ -296,7 +294,8 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
 
 /* ---------- walidator semantyczny ---------- */
 export type RomData = { side: Record<'hip' | 'knee' | 'ankle' | 'el' | 'sh', { min: number; max: number }>; front: { abd: { min: number; max: number } } };
-export type ValidateCtx = { family: string; exercise: string; /** id wskazówek „częsty błąd” tego ćwiczenia (cue-sets.json albo lib/cues). */ errorCues: string[]; rom: RomData; /** Ćwiczenie izometryczne (decyzja koordynatora 26.10.2026): poza statyczna, wymóg ruchu ≥ minMotionCm nie obowiązuje; błąd jest jedynym ruchem. */ isometric?: boolean };
+export type ValidateCtx = { family: string; exercise: string; /** id wskazówek „częsty błąd” tego ćwiczenia (cue-sets.json albo lib/cues). */ errorCues: string[]; rom: RomData; /** Ćwiczenie izometryczne (decyzja koordynatora 26.10.2026): poza statyczna, wymóg ruchu ≥ minMotionCm nie obowiązuje; błąd jest jedynym ruchem. */ isometric?: boolean;
+  /** Wyjątki zakresu stawów dla TEGO ćwiczenia (deklaracja z powodem w danych sensu: rodziny.<rodzina>.zakres_wyjatki; nadpisuje wyjątek szablonu rodziny). Domyślnie brak (zachowanie bez zmian). */ allow?: { elbow?: number; shSag?: number; shElev?: number; ankleMin?: number; hipMin?: number } };
 
 const f1 = (x: number): string => x.toFixed(1);
 const f2 = (x: number): string => x.toFixed(2);
@@ -353,7 +352,7 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
 
   geometry(d, undefined, '', out);
   /* zakres stawów */
-  const r = ctx.rom; const al = templateFor(ctx.family).allow ?? { why: '' }; const rg = new Agg();
+  const r = ctx.rom; const al = { ...(templateFor(ctx.family).allow ?? { why: '' }), ...(ctx.allow ?? {}) }; const rg = new Agg();
   for (const u of gridU(d)) { const f = keyframeFrame(d, u); for (const s of SIDES) {
     const a = jointAngles(f.sk, s);
     const chk = (n: string, v: number, lo: number, hi: number): void => { if (v < lo - 0.5 || v > hi + 0.5) rg.add(`${n}${s}`, u, uu => `staw ${n} ${s} = ${f1(v)}° poza zakresem ruchu [${lo}°, ${hi}°] w fazie u=${uu} — zmień położenie kostki, miednicy lub chwytu`); };

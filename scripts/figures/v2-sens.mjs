@@ -37,6 +37,8 @@ export function normalizuj(poza, rodzina, cwiczenie, root = ROOT) {
 export const izometryczne = (rodzina, cwiczenie, root = ROOT) => { const d = wczytajSens(root); return !!(d.izometryczne?.[cwiczenie] || d.rodziny?.[rodzina]?.izometryczne?.[cwiczenie] || d.izometryczne_kandydaci?.lista?.includes(cwiczenie)); }; /* lista badacza + rozciągania statyczne (decyzja 26.10.2026: też statyczne, jeśli opis to utrzymanie pozycji) */
 /** Ćwiczenia, w których ruch to czysty obrót przedramienia: bramka „ruch ≥ 8 cm” je pomija (poza nie jest statyczna). */
 export const bezBramkiRuchu = (cwiczenie, root = ROOT) => cwiczenie !== '_opis' && !!wczytajSens(root).bez_bramki_ruchu?.[cwiczenie];
+/** Wyjątki ZAKRESU stawów dla ćwiczenia (jeden mechanizm dla ćwiczeń i rodzin): `rodziny.<rodzina>.zakres_wyjatki` { ćwiczenie | „*” (cała rodzina): { powod, hipMin?, ankleMin?, elbow?, shSag?, shElev? } }; wpis ćwiczenia ma pierwszeństwo przed „*”. Bez wpisu: zakresy kontraktu. Zwraca same granice (bez powodu) albo undefined. */
+export const zakresWyjatek = (rodzina, cwiczenie, root = ROOT) => { const d = wczytajSens(root).rodziny?.[rodzina]?.zakres_wyjatki; const w = d && (d[cwiczenie] || d['*']); if (!w) return undefined; const { powod, ...g } = w; return g; };
 export const otwarteDla = (rodzina, cwiczenie, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.otwarte?.[cwiczenie] ?? null;
 /** Identyfikatory wskazówek ćwiczenia: własne (lib/cues/data.json: setup/move/tips/mistakes) albo zestaw ogólny (cue-sets.json: ok). */
 export function wskazowkiCwiczenia(cwiczenie, root = ROOT) {

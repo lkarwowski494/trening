@@ -478,6 +478,10 @@
       "pomin": {}
     },
     "curl": {
+      "zakres_wyjatki": {
+        "Spider Curl": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" },
+        "Spider Curl (sztanga)": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+      },
       "reguly": {
         "lokiec_przy_tulowiu": {
           "typ": "lokiec_nieruchomy_wzgledem_barku",
@@ -636,6 +640,9 @@
       "pomin": {}
     },
     "delt_raise": {
+      "zakres_wyjatki": {
+        "Front Incline Dumbbell Raise": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+      },
       "reguly": {
         "lokiec_staly": {
           "typ": "lokiec_staly_kat",
@@ -2343,6 +2350,10 @@
       "pomin": {}
     },
     "row": {
+      "zakres_wyjatki": {
+        "Chest Supported Row": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" },
+        "Lying T-Bar Row": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+      },
       "reguly": {
         "tulow_pochylony": {
           "typ": "pochylenie_tulowia_ruch",
@@ -5031,6 +5042,9 @@
       "pomin": {}
     },
     "rotator_cuff": {
+      "zakres_wyjatki": {
+        "Reverse Flyes With External Rotation": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+      },
       "reguly": {
         "lokiec_przy_boku": {
           "typ": "lokiec_nieruchomy_wzgledem_barku",
@@ -6436,6 +6450,9 @@
       "pomin": {}
     },
     "shrug": {
+      "zakres_wyjatki": {
+        "Middle Back Shrug": { "hipMin": -45, "powod": "leżenie przodem na ławce skośnej (obrotTulowia 180): uda leżą poziomo na siedzisku, a tułów rośnie na oparciu pod kątem ławki, więc biodro jest wyprostowane do ok. −45° (limit kontraktu −17°); uproszczenie ilustracyjne, decyzja właściciela 26.10.2026 (rozszerzamy model zamiast wyjątków)" }
+      },
       "reguly": {
         "barki_w_gore": {
           "typ": "stopien_swobody",
