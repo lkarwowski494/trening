@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 354 | 354 | 0 |
 | TEKST | 1118 | 1118 | 0 |
-| LOGIKA | 1063 | 1063 | 0 |
+| LOGIKA | 1065 | 1065 | 0 |
 | WYMIAR | 151 | 151 | 0 |
 
 ## EKRAN
@@ -450,7 +450,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {n} kilokalorii aktywnych | lib/healthRead.ts | tests/health-read-ui.test.tsx, tests/health-read.test.ts |
 | {n} km | lib/state/time.ts | tests/audit-0.10-lang.test.ts, tests/audit-m1-lok07-01-imperial-dist.test.tsx, tests/csv-import-logic.test.ts +12 |
 | {n} m | lib/state/time.ts | (tylko parametry) |
-| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +320 |
+| {n} mi | lib/state/time.ts | tests/a11y-routes.ts, tests/access.test.ts, tests/adapt-logic.test.ts +321 |
 | {n} rozgrz. | app/history/edit/[id].tsx | tests/audit-0.10-stats-ui.test.tsx, tests/scenario-full.test.tsx |
 | {n} s | lib/state/time.ts | (tylko parametry) |
 | {n} yd | lib/state/time.ts | tests/architecture-limits.test.ts, tests/audit-0.10-data.test.ts, tests/audit-0.10-gen-ui.test.tsx +73 |
@@ -1771,6 +1771,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/anim.phaseIndexAt | lib/figures/v2/anim.ts | tests/figures-v2-guides.test.tsx |
 | figures/v2/badges.anchorPoint | lib/figures/v2/badges.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/badges.okBadges | lib/figures/v2/badges.ts | tests/figures-v2-styk.test.tsx |
+| figures/v2/badges.spaceBadges | lib/figures/v2/badges.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/badges.badgeShapes | lib/figures/v2/badges.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/colliders.bodyColliders | lib/figures/v2/colliders.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-geometry.test.ts |
 | figures/v2/colliders.equipColliders | lib/figures/v2/colliders.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-engine.test.ts, tests/figures-v2-geometry.test.ts |
@@ -1826,13 +1827,14 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/figure.errorDefOf | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx |
 | figures/v2/figure.markPoints | lib/figures/v2/figure.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/figure.errorMarks | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-errors.test.tsx |
-| figures/v2/figure.boxFor | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-mapping.test.ts |
+| figures/v2/figure.boxFor | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-mapping.test.ts, tests/figures-v2-styk.test.tsx |
 | figures/v2/figure.phaseNames | lib/figures/v2/figure.ts | tests/figures-v2-guides.test.tsx |
 | figures/v2/figure.tempoFor | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-guides.test.tsx |
 | figures/v2/figure.phasesFor | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-guides.test.tsx |
 | figures/v2/figure.trailFor | lib/figures/v2/figure.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-guides.test.tsx, tests/figures-v2-styk.test.tsx |
 | figures/v2/figure.guideShapes | lib/figures/v2/figure.ts | tests/figures-v2-guides.test.tsx |
 | figures/v2/figure.contactShapes | lib/figures/v2/figure.ts | tests/figures-v2-styk.test.tsx |
+| figures/v2/figure.contactConditions | lib/figures/v2/figure.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/figure.requiredContacts | lib/figures/v2/figure.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/guides.guidesFor | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |
 | figures/v2/guides.trailShapes | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx, tests/figures-v2-styk.test.tsx |
@@ -1888,7 +1890,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/ui.legendOf | lib/figures/v2/ui.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-guides.test.tsx |
 | figures/v2/ui.toeAngleApplies | lib/figures/v2/ui.ts | tests/figures-v2-ui.test.tsx |
 | figures/v2/ui.hasTechnique | lib/figures/v2/ui.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-ui.test.tsx |
-| figures/v2/ui.errorText | lib/figures/v2/ui.ts | tests/figures-v2-data.test.tsx |
+| figures/v2/ui.errorText | lib/figures/v2/ui.ts | tests/figures-v2-data.test.tsx, tests/figures-v2-styk.test.tsx |
 | figures/v2/ui.badgesFor | lib/figures/v2/ui.ts | tests/figures-v2-styk.test.tsx |
 | generator.setsFor | lib/generator.ts | tests/gen-general.test.ts |
 | generator.cardioCount | lib/generator.ts | tests/gen-days.test.ts, tests/gen-general.test.ts, tests/generator.test.ts |
@@ -1990,7 +1992,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | i18n.decimalComma | lib/i18n.ts | tests/i18n-variants.test.ts, tests/i18n-wave2.test.ts, tests/i18n-wave3.test.ts +7 |
 | i18n.setPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
 | i18n.isPseudo | lib/i18n.ts | tests/audit-m1-066-pseudo.test.tsx |
-| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/asc-kontrola.test.ts +185 |
+| i18n.t | lib/i18n.ts | tests/adapt-logic.test.ts, tests/app.tsx, tests/asc-kontrola.test.ts +186 |
 | i18n.lbl | lib/i18n.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-close2-b.test.tsx, tests/audit-journey-c.test.tsx +9 |
 | i18n.tp | lib/i18n.ts | tests/audit-0.10-gen.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-k1-bl-mer.test.tsx +28 |
 | i18n.exName | lib/i18n.ts | tests/audit-0.10-lang-ui.test.tsx, tests/audit-close2-a.test.tsx, tests/audit-close2-b.test.tsx +29 |

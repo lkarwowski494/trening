@@ -10,9 +10,9 @@ import { ExerciseFigureV2 } from '@/components/ExerciseFigureV2';
 import { CATALOG } from '@/lib/catalog.generated';
 import {
   figureSpec, frameAt, contactsOf, contactGlows, glowShapes, lostContacts, contactShapes, requiredContacts, CONTACT, CONTACT_IDS, kindOf, okBadges, badgeShapes, anchorPoint, CUE_ANCHOR, ANCHORS, BADGE_MAX,
-  trailShapes, trailFor, TRAIL_ARROW, figurePalette, contrast, shapesAt, markPoints, type ContactId,
+  trailShapes, trailFor, TRAIL_ARROW, spaceBadges, BADGE_GAP_PT, boxFor, REQUIRED_DATA, contactConditions, figurePalette, contrast, shapesAt, markPoints, type ContactId,
 } from '@/lib/figures/v2';
-import { badgesFor, errorsOf } from '@/lib/figures/v2/ui';
+import { badgesFor, errorsOf, errorText } from '@/lib/figures/v2/ui';
 import { applyLang } from '@/lib/i18n';
 import { light, dark, lightHC, darkHC } from '@/lib/theme';
 import * as fs from 'fs';
@@ -121,7 +121,7 @@ describe('komponent: poświaty, znaczki, stuknięcie, dostępność', () => {
     fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' }));
     for (const n of screen.UNSAFE_root.findAll((x: { props: Record<string, unknown> }) => typeof x.props.onLayout === 'function')) await act(async () => { (n.props.onLayout as (e: unknown) => void)({ nativeEvent: { layout: { width: 160, height: 120 } } }); });
     const e = screen.getAllByRole('button').filter(x => /^Częsty błąd: /.test(String(x.props.accessibilityLabel))); expect(e.length).toBeGreaterThan(0); expect(screen.queryByTestId('exercise-figure-v2-badge-text')).toBeNull();
-    fireEvent.press(e[0]); expect(screen.getByTestId('exercise-figure-v2-badge-text').props.children.join('')).toMatch(/^✕ /);
+    fireEvent.press(e[0]); expect(screen.queryByTestId('exercise-figure-v2-badge-text')).toBeNull(); /* tekst błędu jest w wierszu „Częsty błąd” — bez powtórzenia */ expect(screen.getByTestId('exercise-figure-v2-error')).toBeTruthy();
   });
   test('EN: etykiety znaczków po angielsku („Tip: …”)', async () => {
     jest.useFakeTimers(); applyLang('en'); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(true));
@@ -146,6 +146,53 @@ describe('reguła sensu: styki w danych walidatora', () => {
     const full = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data/zrodla/cues.json'), 'utf8'));
     const refs = full.exercises['Bench Press (sztanga)'].setup.find((r: { c: string }) => r.c === 'bp.contact').s.map((x: string[]) => x[0]); expect(refs).toContain('nsca-basics-2012');
     expect(fs.readFileSync(path.join(__dirname, '..', 'lib/cues/data.json'), 'utf8')).not.toMatch(/nsca/i);
+  });
+});
+
+describe('odstęp znaczków i brak powtórzeń tekstu błędu', () => {
+  /* skala rysunku jak w komponencie: szerokość ekranu 390 pt − 32 pt marginesów, wysokość z proporcji kadrów; statycznie 80% wysokości (gorszy przypadek) */
+  const scaleOf = (k: string, v: 'side' | 'front' | 'top', factor: number): number => {
+    const s = figureSpec(k)!; const es = errorsOf(s).map(e => e.error); const boxes = s.views.map(x => boxFor(s, x, es)); const asp = boxes.map(b => b.w / b.h); const sum = asp.reduce((a, b) => a + b, 0);
+    const W = 358 - 8 * (s.views.length - 1); const h = Math.max(110, Math.min(200, W / sum)) * factor; const i = s.views.indexOf(v); return Math.min(W * asp[i] / sum / boxes[i].w, h / boxes[i].h);
+  };
+  test('wszystkie ćwiczenia z figurą: znaczki po rozrzedzeniu leżą ≥ 24 pt od siebie (✓ w pozie poprawnej i ✕ w widoku każdego błędu), zawsze zostaje co najmniej pierwszy; gdy się nie mieszczą — mniej znaczków', () => {
+    expect(BADGE_GAP_PT).toBe(24); let dropped = 0, total = 0;
+    for (const k of KEYS) { const s = figureSpec(k)!;
+      for (const v of s.views) for (const f of [1, 0.8]) { const min = BADGE_GAP_PT / scaleOf(k, v, f);
+        for (const u of [0, 0.5, 1]) for (const e of [undefined, ...errorsOf(s).map(x => x.error)]) {
+          const all = badgesFor(s, u, v, e); const sp = spaceBadges(all, min); total += all.length; dropped += all.length - sp.length;
+          if (all.length) expect(sp[0]).toBe(all[0]); expect(sp.length).toBeLessThanOrEqual(BADGE_MAX);
+          for (let i = 0; i < sp.length; i++) for (let j = i + 1; j < sp.length; j++) expect([k, v, u, e, Math.hypot(sp[i].at[0] - sp[j].at[0], sp[i].at[1] - sp[j].at[1]) >= min - 1e-9]).toEqual([k, v, u, e, true]); } } }
+    expect(dropped).toBeGreaterThan(0); expect(total - dropped).toBeGreaterThan(0);
+  });
+  test('Pull Up i wyciskanie: po rozrzedzeniu w widoku bocznym zostają ≤ 2 znaczki ✓ (nie trzy w promieniu kilku pt)', () => {
+    for (const k of ['Pull Up', 'Bench Press (sztanga)']) { const s = figureSpec(k)!; expect(spaceBadges(badgesFor(s, 0.5, 'side'), BADGE_GAP_PT / scaleOf(k, 'side', 1)).length).toBeLessThanOrEqual(2); }
+  });
+  test('żaden tekst błędu ani wskazówki nie występuje na ekranie dwa razy (przysiad: wybór błędu, stuknięcie znaczka ✕ i ✓), w PL i EN', async () => {
+    for (const lng of ['pl', 'en'] as const) {
+      jest.useFakeTimers(); applyLang(lng); AI.isReduceMotionEnabled.mockImplementation(() => Promise.resolve(true));
+      render(<ExerciseFigureV2 exercise={lib('Back Squat')} />); await flush();
+      const layout = async () => { for (const n of screen.UNSAFE_root.findAll((x: { props: Record<string, unknown> }) => typeof x.props.onLayout === 'function')) await act(async () => { (n.props.onLayout as (e: unknown) => void)({ nativeEvent: { layout: { width: 160, height: 120 } } }); }); };
+      const texts = (): string[] => screen.UNSAFE_root.findAll((n: { type: unknown }) => n.type === RN.Text).map((n: { props: { children?: unknown } }) => [n.props.children].flat(3).join('').replace(/^[✕✓] /, '').replace(/^(Częsty błąd|Common mistake): /, '')).filter(t => t.length > 12);
+      const dup = () => { const t = texts(); return t.filter((x, i) => t.indexOf(x) !== i); };
+      fireEvent.press(screen.getByTestId('exercise-figure-v2-error-toggle')); await layout(); expect(dup()).toEqual([]);
+      const es = errorsOf(figureSpec('Back Squat')!); expect(es.length).toBeGreaterThan(1);
+      for (const e of es) { const chip = screen.queryByTestId(`exercise-figure-v2-error-${e.error}`); if (chip) fireEvent.press(chip); /* wybrany błąd nie ma chipa (tekst jest w wierszu „Częsty błąd”) */ await layout(); expect(dup()).toEqual([]); expect(texts().filter(x => x === errorText(e.cue)).length).toBe(1);
+        for (const b of screen.getAllByRole('button').filter(x => /^(Częsty błąd|Common mistake): /.test(String(x.props.accessibilityLabel)))) { fireEvent.press(b); expect(dup()).toEqual([]); } }
+      fireEvent.press(screen.getByTestId('exercise-figure-v2-error-toggle')); await layout();
+      for (const b of screen.getAllByRole('button').filter(x => /^(Wskazówka|Tip): /.test(String(x.props.accessibilityLabel))).slice(0, 2)) { fireEvent.press(b); expect(dup()).toEqual([]); }
+      screen.unmount(); jest.useRealTimers();
+    }
+  });
+});
+
+describe('styki wymagane z danych (figury-sens.json — jedno źródło prawdy)', () => {
+  test('requiredContacts = sekcja „styki” danych po odjęciu pominięć warunków wariantu; runtime styki.json zgodny z danymi; bez nazw źródeł', () => {
+    const full = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data/zrodla/figury-sens.json'), 'utf8')).styki;
+    for (const f of ['squat', 'bench_press', 'hinge', 'pull_up']) { expect(REQUIRED_DATA[f].wymagane).toEqual(full[f].wymagane); expect(REQUIRED_DATA[f].pomijane_gdy).toEqual(full[f].pomijane_gdy); expect(full[f].zrodlo.length).toBeGreaterThan(20); }
+    for (const k of KEYS) { const s = figureSpec(k)!; const skip = new Set(contactConditions(s).flatMap(c => full[s.family]?.pomijane_gdy?.[c] ?? [])); expect([k, requiredContacts(s)]).toEqual([k, (full[s.family]?.wymagane ?? []).filter((c: string) => !skip.has(c))]); }
+    expect(contactConditions(figureSpec('Decline Bench Press')!)).toEqual(['lawka_ujemna']); expect(contactConditions(figureSpec('Single Leg RDL (hantel)')!)).toEqual(['jednonoz']); expect(contactConditions(figureSpec('One Arm Chin-Up')!)).toEqual(['jednorecz_R']); expect(contactConditions(figureSpec('Back Squat')!)).toEqual([]);
+    expect(fs.readFileSync(path.join(__dirname, '..', 'lib/figures/v2/styki.json'), 'utf8')).not.toMatch(/NSCA|zrodlo/i);
   });
 });
 

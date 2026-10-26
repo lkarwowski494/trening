@@ -11,6 +11,7 @@ import { join } from 'node:path';
 const root = fileURLToPath(new URL('..', import.meta.url));
 const FULL_CUES = join(root, 'data/zrodla/cues.json'), FULL_FIG = join(root, 'data/zrodla/figures.json');
 export const OUT_CUES = join(root, 'lib/cues/data.json'), OUT_FIG = join(root, 'lib/figures/data.json');
+const FULL_SENS = join(root, 'data/zrodla/figury-sens.json'); export const OUT_STYKI = join(root, 'lib/figures/v2/styki.json');
 /** Kolejność rodzajów w podpisie = CUE_BASIS_KINDS w lib/cues/index.ts. */
 export const BASIS_ORDER = ['org', 'site', 'maker', 'study'];
 const SECTIONS = ['setup', 'move', 'tips', 'mistakes'];
@@ -30,12 +31,17 @@ export function buildFigures(full) {
   for (const v of Object.keys(full.rom)) if (v !== 'note') rom[v] = Object.fromEntries(Object.entries(full.rom[v]).map(([j, r]) => [j, { min: r.min, max: r.max }]));
   return { rom, exercises: full.exercises, open: Object.keys(full.open) };
 }
+/** Styki wymagane w pozie poprawnej (reguły sensu, bez źródeł): { rodzina: { wymagane, pomijane_gdy? } }. */
+export function buildStyki(full) {
+  return Object.fromEntries(Object.entries(full.styki).filter(([k]) => !k.startsWith('_')).map(([k, v]) => [k, { wymagane: v.wymagane, ...(v.pomijane_gdy ? { pomijane_gdy: v.pomijane_gdy } : {}) }]));
+}
 export const serialize = obj => JSON.stringify(obj) + '\n';
 
 export function outputs() {
   return [
     [OUT_CUES, serialize(buildCues(JSON.parse(readFileSync(FULL_CUES, 'utf8'))))],
     [OUT_FIG, serialize(buildFigures(JSON.parse(readFileSync(FULL_FIG, 'utf8'))))],
+    [OUT_STYKI, serialize(buildStyki(JSON.parse(readFileSync(FULL_SENS, 'utf8'))))],
   ];
 }
 

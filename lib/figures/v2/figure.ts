@@ -166,16 +166,20 @@ export function contactShapes(spec: FigureSpec, u: number, view: View, error?: F
   return contactGlows(f, view, pose ? frameAt(spec, u) : undefined);
 }
 
-/**
- * Styki wymagane w POZIE POPRAWNEJ rodziny (reguła sensu, docs/53): przysiad — obie stopy (pięta i palce) na podłodze; wyciskanie leżąc — głowa, plecy, pośladki na ławce i obie stopy na podłodze
- * (pięć punktów styku, NSCA Basics 2012; ławka ujemna: stopy pod wałkami, nie na podłodze); zawias — stopa prawa (podporowa) i, poza ćwiczeniami jednonóż, lewa; podciąganie — dłonie na drążku
- * (ćwiczenie jednorącz: tylko ręka trzymająca). Inne rodziny: brak wymagań (punkty tylko z geometrii).
- */
-export function requiredContacts(spec: FigureSpec): ContactId[] {
-  const v = spec.variant; const feet = (s: 'R' | 'L'): ContactId[] => [`heel${s}`, `toe${s}`];
-  if ('data' in v) { if (spec.family !== 'pull_up') return []; const bar = v.data.sprzet.find(g => g.rodzaj === 'sztanga'); return bar?.trzyma === 'R' ? ['handR'] : bar?.trzyma === 'L' ? ['handL'] : ['handR', 'handL']; }
-  if (v.family === 'squat') return [...feet('R'), ...feet('L')];
-  if (v.family === 'bench_press') return ['head', 'back', 'seat', ...(v.p.angle < 0 ? [] : [...feet('R'), ...feet('L')])];
-  if (v.family === 'hinge') return [...feet('R'), ...(v.p.style === 'singleLeg' ? [] : feet('L'))];
+/** Styki wymagane w pozie poprawnej: dane z data/zrodla/figury-sens.json (sekcja „styki”; runtime styki.json, generuje scripts/zrodla-runtime.mjs). */
+/* eslint-disable-next-line @typescript-eslint/no-var-requires */
+export const REQUIRED_DATA: Record<string, { wymagane: ContactId[]; pomijane_gdy?: Record<string, ContactId[]> }> = require('./styki.json');
+/** Nazwane warunki wariantu, przy których odpadają wymagane styki: ławka ujemna (stopy pod wałkami), zawias jednonóż (stopa wolna), podciąganie jednorącz (ręka wolna). */
+export function contactConditions(spec: FigureSpec): string[] {
+  const v = spec.variant;
+  if ('data' in v) { const bar = v.data.sprzet.find(g => g.rodzaj === 'sztanga'); return bar?.trzyma === 'R' ? ['jednorecz_R'] : bar?.trzyma === 'L' ? ['jednorecz_L'] : []; }
+  if (v.family === 'bench_press') return v.p.angle < 0 ? ['lawka_ujemna'] : [];
+  if (v.family === 'hinge') return v.p.style === 'singleLeg' ? ['jednonoz'] : [];
   return [];
+}
+/** Styki wymagane w POZIE POPRAWNEJ rodziny (reguła sensu, docs/53) — z danych REQUIRED_DATA po odjęciu pominięć warunków wariantu; rodzina bez wpisu: brak wymagań. */
+export function requiredContacts(spec: FigureSpec): ContactId[] {
+  const r = Object.prototype.hasOwnProperty.call(REQUIRED_DATA, spec.family) ? REQUIRED_DATA[spec.family] : null; if (!r) return [];
+  const skip = new Set(contactConditions(spec).flatMap(c => r.pomijane_gdy?.[c] ?? []));
+  return r.wymagane.filter(c => !skip.has(c));
 }

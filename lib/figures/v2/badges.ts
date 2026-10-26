@@ -47,6 +47,17 @@ export function okBadges(f: Frame, view: View, cues: string[]): Badge[] {
   return out;
 }
 
+/** Minimalny odstęp między środkami znaczków na ekranie (pt) — czytelność i pole dotyku. */
+export const BADGE_GAP_PT = 24;
+/**
+ * Rozrzedzenie znaczków: od pierwszego (najważniejszego) odrzuca te, które leżą bliżej niż `minCm` (= BADGE_GAP_PT / skala rysunku) od już przyjętego. Gdy się nie mieszczą — pokazujemy mniej.
+ */
+export function spaceBadges(badges: Badge[], minCm: number): Badge[] {
+  const out: Badge[] = [];
+  for (const b of badges) if (out.every(o => Math.hypot(o.at[0] - b.at[0], o.at[1] - b.at[1]) >= minCm)) out.push(b);
+  return out;
+}
+
 /** Kształty znaczków ✓ (znaczki ✕ to znaczniki błędu z figure.errorMarks). */
 export function badgeShapes(badges: Badge[]): Shape[] {
   const out: Shape[] = [];

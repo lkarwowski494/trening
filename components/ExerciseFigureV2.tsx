@@ -6,7 +6,7 @@ import { t, lang, exName } from '@/lib/i18n';
 import { catalogKey, type Exercise } from '@/lib/seed';
 import { useReduceMotion } from '@/components/ExerciseFigure';
 import {
-  figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, phasesFor, phaseIndexAt, trailFor, guideShapes, measuredAngle, contactShapes, badgeShapes, type Badge, type FigureSpec,
+  figurePalette, figureSpec, shapePath, shapeAttrs, shapesAt, staticPositions, boxFor, uAt, TEMPO, tempoFor, spaceBadges, BADGE_GAP_PT, phasesFor, phaseIndexAt, trailFor, guideShapes, measuredAngle, contactShapes, badgeShapes, type Badge, type FigureSpec,
   type View as FView, type FigError, type GuideId,
 } from '@/lib/figures/v2';
 import { sortShapes } from '@/lib/figures/v2/draw';
@@ -24,11 +24,14 @@ const JOINT_LABEL = { knee: 'zgięcie kolana', elbow: 'zgięcie łokcia', hip: '
 function ViewSvg({ spec, u, view, box, th, height, error, guides, testID, onBadge }: { spec: FigureSpec; u: number; view: FView; box: { x: number; y: number; w: number; h: number }; th: Theme; height: number; error?: FigError; guides: GuideId[]; testID?: string; onBadge?: (b: Badge) => void }) {
   const pal = useMemo(() => figurePalette(th), [th]);
   const trail = useMemo(() => trailFor(spec, view), [spec, view]);
-  const badges = useMemo(() => badgesFor(spec, u, view, error), [spec, u, view, error]);
-  const list = useMemo(() => sortShapes([...shapesAt(spec, u, view, true, error), ...trail, ...guideShapes(spec, u, view, guides, error), ...contactShapes(spec, u, view, error), ...badgeShapes(badges)]), [spec, u, view, error, trail, guides, badges]);
+  const all = useMemo(() => badgesFor(spec, u, view, error), [spec, u, view, error]);
   const [w, setW] = useState(0);
+  const sc = w > 0 ? Math.min(w / box.w, height / box.h) : 0;
+  /* odstęp ≥ BADGE_GAP_PT na ekranie: znaczki bliższe sobie są pomijane (przed pomiarem układu pokazujemy wszystkie) */
+  const badges = useMemo(() => sc > 0 ? spaceBadges(all, BADGE_GAP_PT / sc) : all, [all, sc]);
+  const list = useMemo(() => sortShapes([...shapesAt(spec, u, view, true, error), ...trail, ...guideShapes(spec, u, view, guides, error), ...contactShapes(spec, u, view, error), ...badgeShapes(badges)]), [spec, u, view, error, trail, guides, badges]);
   /* piksele znaczka: viewBox z preserveAspectRatio „meet” (wyśrodkowany) — przeliczenie współrzędnych rysunku (y w górę) na układ widoku */
-  const sc = w > 0 ? Math.min(w / box.w, height / box.h) : 0; const ox = (w - box.w * sc) / 2, oy = (height - box.h * sc) / 2;
+  const ox = (w - box.w * sc) / 2, oy = (height - box.h * sc) / 2;
   return (
     <View onLayout={e => setW(e.nativeEvent.layout.width)} style={{ position: 'relative' }}>
     <Svg testID={testID} width="100%" height={height} viewBox={`0 0 ${Math.round(box.w * 10) / 10} ${Math.round(box.h * 10) / 10}`} preserveAspectRatio="xMidYMid meet">
@@ -114,7 +117,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
             {legend.simplified ? <Text testID="exercise-figure-v2-simplified" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={txt}>{t('Dobór mięśni: przybliżony')}</Text> : null}
           </View>
         : null}
-      {sel ? <Text testID="exercise-figure-v2-badge-text" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...font('footnote'), ...FW.semibold, marginTop: 4, color: sel.kind === 'err' ? th.danger : th.doneLine }}>{sel.kind === 'err' ? '✕ ' : '✓ '}{errorText(sel.cue)}</Text> : null}
+      {sel && !(sel.kind === 'err' && error && sel.cue === error.cue) /* tekst błędu jest już w wierszu „Częsty błąd” — nie powtarzamy */ ? <Text testID="exercise-figure-v2-badge-text" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...font('footnote'), ...FW.semibold, marginTop: 4, color: sel.kind === 'err' ? th.danger : th.doneLine }}>{sel.kind === 'err' ? '✕ ' : '✓ '}{errorText(sel.cue)}</Text> : null}
       {toeAngleApplies(spec) ? <Text testID="exercise-figure-v2-toes" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, ...FW.semibold, marginTop: 2 }}>{t('Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.')}</Text> : null}
       {elbowAngleApplies(spec) ? <Text testID="exercise-figure-v2-elbows" accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ ...txt, ...FW.semibold, marginTop: 2 }}>{t('Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.')}</Text> : null}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 16 }}>
@@ -136,7 +139,7 @@ export function ExerciseFigureV2({ exercise, name }: { exercise: Pick<Exercise, 
             <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: th.danger, ...font('footnote'), ...FW.semibold }}>{t('Częsty błąd: {opis}', { opis: errorText(error.cue) })}</Text>
             {errors.length > 1
               ? <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-                  {errors.map((e, i) => <Pressable accessibilityLanguage={lang()} key={e.error} testID={`exercise-figure-v2-error-${e.error.replace(':', '')}`} onPress={() => { setSel(null); setErrIdx(i); }} accessibilityRole="button" accessibilityState={{ selected: i === errIdx }} accessibilityLabel={errorText(e.cue)} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}>
+                  {errors.map((e, i) => i === errIdx ? null : <Pressable accessibilityLanguage={lang()} key={e.error} testID={`exercise-figure-v2-error-${e.error.replace(':', '')}`} onPress={() => { setSel(null); setErrIdx(i); }} accessibilityRole="button" accessibilityState={{ selected: i === errIdx }} accessibilityLabel={errorText(e.cue)} hitSlop={8} style={{ minHeight: 44, justifyContent: 'center' }}>
                     <Text accessibilityLanguage={lang()} maxFontSizeMultiplier={TEXT_SCALE_MAX} style={{ color: i === errIdx ? th.danger : th.muted, ...font('footnote'), ...(i === errIdx ? FW.semibold : FW.regular) }}>✕ {errorText(e.cue)}</Text>
                   </Pressable>)}
                 </View>
