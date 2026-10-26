@@ -6,6 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
+const R = Math.PI / 180;
 const f1 = (x) => x.toFixed(1);
 const dist3 = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
 
@@ -45,6 +46,10 @@ export const PROGI = {
   bladGorszyCm: 2.5, /* R10: rząd błędu opadania: odchylenie miednicy od linii kostka–bark większe niż w pozie poprawnej o ≥ tyle (w stronę opadania) */
   rzadBleduKolanoDeg: 10, /* tolerancja dla kolana: noga prawie prosta (uda + golenie = 83 cm) zmienia kąt kolana o ok. 14° na każdy 1 cm odległości biodro–kostka, więc 8° było zbyt ostre (fałszywy alarm Pike Push Up: 8,5°); konwencja */
   rzadBleduTolDeg: 8, /* staw spoza obszaru błędu (WSZYSTKIE: biodro, kolano, kostka, łokieć, bark) może się różnić od pozy poprawnej najwyżej o tyle; wyjątki: TOL_BLEDU */
+  kolanoStykCm: 11, /* R13: klęk (z deklaracji ćwiczenia): oś kolana najwyżej tyle nad powierzchnią podparcia (podłoga albo blat ławki) w każdej klatce; kolano klęczące leży ok. 9,8 cm nad powierzchnią */
+  ksztaltPodPodlogaCm: -3.5, /* R15: dolna krawędź narysowanych kształtów ciała (tułów, kończyny) w rzucie z boku i z przodu nie niżej niż (cm; pozy leżące mają −2,0, Superman −2,9 z grubości kształtu) */
+  tulowUnosiMinDeg: 15, kregoslupZwijaMinDeg: 20, /* R16: gdy tułów unosi się o więcej niż tyle ponad podłogę, kręgosłup zgina się o co najmniej tyle (zwija się, nie sztywna deska) */
+  zwijanieMiednicaCm: 3, zwijanieKregoslupDeg: 20, vUpMinDeg: 30, /* R14b: mechanizm wyjątku „zwijanie obu końców” (miednica unosi się ≥ cm, kręgosłup zgięty ≥ stopni) i „V” (tułów i nogi razem ≥ stopni nad podłogą) */
   stykPodparciaCm: 4.5, /* punkt ciała uznany za podparcie, gdy jego (oś) wysokość ≤ tyle: dłoń, stopa, kolano (promień kończyny) */
 };
 /** Odwiedzenie ramienia widoczne Z PRZODU (stopnie): arcsin(wysunięcie łokcia w bok poza oś barku / PRAWDZIWA długość ramienia 3D, nie długość w rzucie), sprawdzane w KAŻDEJ klatce. To druga linia obrony; pierwsza to geometria (lokiec_nad_nadgarstkiem, rozstaw_dloni).
@@ -63,7 +68,9 @@ export const NIE_LEZY = ['Bird Dog'];
 /** Ćwiczenia z deklarowanym lotem (ciało oderwane od podłogi z założenia): ćwiczenie → powód. Puste: żadne ćwiczenie na podłodze rodziny core_floor nie ma fazy lotu. */
 export const LOT = {};
 /** Leżenie na plecach: ćwiczenia, w których tułów unosi się ŚWIADOMIE od miednicy (styk na kości krzyżowej), mimo że wskazówka rodziny mówi o lędźwiach przy podłodze: ćwiczenie → powód. */
-export const LEDZWIE_WYJATKI = { 'V-Up': 'zamierzone: „V” na kości krzyżowej, tułów i nogi unoszą się jednocześnie', 'Cocoons': 'zamierzone: zwijanie obu końców, styk na kości krzyżowej', 'Tuck Crunch': 'zamierzone: zwijanie obu końców (kolana do klatki), styk na kości krzyżowej' };
+export const LEDZWIE_WYJATKI = { 'V-Up': 'zamierzone: „V” na kości krzyżowej, tułów i nogi unoszą się jednocześnie', 'Cocoons': 'zamierzone: zwijanie obu końców, styk na kości krzyżowej' };
+/** Mechanizm, który musi występować w pozie, żeby wyjątek od reguły „lędźwie przy podłodze” był prawdziwy (R14b): 'zwijanie' = miednica unosi się i kręgosłup się zgina; 'v' = tułów i nogi unoszą się jednocześnie. */
+export const LEDZWIE_MECHANIZM = { 'V-Up': 'v', 'Cocoons': 'zwijanie' };
 /** Wskazówka ćwiczenia, która czyni z lędźwi przy podłodze sprawdzalny warunek obrazu (tekst w lib/cues/text/pl.json). */
 export const WSKAZOWKA_LEDZWIE = /Lędźwi\w* przy podłodze|Dolna część pleców zostaje na podłodze/i;
 /** Czy wskazówki ćwiczenia (zestaw ogólny cue-sets.json albo własne lib/cues/data.json; teksty `teksty`) zawierają warunek „lędźwie przy podłodze”. */
@@ -106,7 +113,7 @@ export const PODPOR_NA_DLONIACH_KOLANO = ['Mountain Climbers'];
 export const DOL_POMPKI = ['Push Up', 'Push-Up Wide', 'Close-Grip Push-Up', 'Diamond Push Up', 'Decline Push Up', 'Incline Push Up', 'Incline Push-Up Close-Grip'];
 /** R7: najmniejsze zgięcie kolana (w KAŻDEJ klatce) w ćwiczeniach z podkulonymi kolanami. */
 export const KOLANA_UGIETE = { 'Tuck Crunch': 80, 'Reverse Crunch': 80 };
-export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie'];
+export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie', 'podparcie_kolan', 'ksztalty_nad_podloga', 'kregoslup_zwija_sie', 'wyjatek_nie_przeczy_wskazowce', 'wyjatek_wymaga_mechanizmu'];
 /** Reguły poziomu manifestu podglądu (nie pozy): zgodność manifestu z obrazem i układ podglądu. */
 export const REGULY_MANIFESTU = ['manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
@@ -386,6 +393,44 @@ export function wierszeWJednejLinii(wiersze, tolPx = 2) {
   return wiersze.flatMap((w) => { const t = w.dolne; const rozrzut = t.length ? Math.max(...t) - Math.min(...t) : 0; return rozrzut > tolPx ? [`wiersz „${w.etykieta}”: komórki mają różne położenie pionowe (rozrzut ${f1(rozrzut)} px) — klatki jednego rzędu muszą leżeć w jednym wierszu`] : []; });
 }
 
+/** R13. Podparcie kolan z deklaracji ćwiczenia (figury-cechy.json: klęk na ławce / na podłodze): oś kolana najwyżej kolanoStykCm nad powierzchnią (blat ławki albo podłoga) w każdej klatce, a przy ławce w jej obrębie (x ± dlugosc). */
+export function podparcieKolan(v2, poza, powierzchnia) {
+  const lawka = poza.sprzet.find((g) => g.rodzaj === 'lawka'); if (powierzchnia === 'lawka' && !lawka) return ['ćwiczenie deklaruje klęk na ławce, a poza nie ma ławki w sprzęcie'];
+  const y0 = powierzchnia === 'lawka' ? (lawka.top ?? 0) : 0; const nazwa = powierzchnia === 'lawka' ? 'blatem ławki' : 'podłogą';
+  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; for (const k of ['R', 'L']) { const kn = s.legs[k].knee; const h = kn[1] - y0;
+    if (h > PROGI.kolanoStykCm) return [`kolano ${k} (oś) jest ${f1(h)} cm nad ${nazwa} (u = ${u}; ≤ ${PROGI.kolanoStykCm} cm) — ćwiczenie z klękiem: kolana i golenie opierają się o powierzchnię`];
+    if (lawka && powierzchnia === 'lawka' && Math.abs(kn[0] - lawka.x) > (lawka.dlugosc ?? 0)) return [`kolano ${k} (x = ${f1(kn[0])}) leży poza blatem ławki (x ${f1(lawka.x)} ± ${lawka.dlugosc} cm, u = ${u})`]; } }
+  return [];
+}
+const CIALO_KSZTALT = /^(thigh|shorts|shank|foot|uarm|farm|hand|torso|neck)/;
+/** R15. Narysowane kształty ciała (nie tylko punkty osi) nad podłogą: dolna krawędź kształtów tułowia i kończyn w rzucie z boku i z przodu, w pozie poprawnej i w każdym rzędzie błędu, nie niżej niż ksztaltPodPodlogaCm. */
+export function ksztaltyNadPodloga(v2, poza) {
+  for (const err of [undefined, ...poza.bledy.map((_, i) => i)]) for (const u of siatka(poza, 12)) for (const view of ['side', 'front']) {
+    for (const sh of v2.dataShapes(poza, u, view, err)) { if (sh.k !== 'poly' || !CIALO_KSZTALT.test(sh.id ?? '')) continue; const y = Math.min(...sh.pts.map((q) => q[1]));
+      if (y < PROGI.ksztaltPodPodlogaCm) return [`kształt „${sh.id}” sięga ${f1(y)} cm (rzut z ${view === 'side' ? 'boku' : 'przodu'}, u = ${u}${err === undefined ? '' : `, błąd ${err}`}), a ma ≥ ${PROGI.ksztaltPodPodlogaCm} cm — kształt schodzi pod podłogę`]; } }
+  return [];
+}
+const uniesienieTulowia = (s) => { const dy = s.shoulderC[1] - s.pelvis[1]; const d = Math.hypot(s.shoulderC[0] - s.pelvis[0], dy); return Math.asin(Math.max(-1, Math.min(1, dy / d))) / R; };
+/** R16. Kręgosłup zwija się: gdy tułów unosi się nad podłogę o więcej niż tulowUnosiMinDeg (wskazówka „lędźwie zostają na podłodze”), zgięcie kręgosłupa ≥ kregoslupZwijaMinDeg (zwija się odcinek piersiowy, nie sztywna deska). */
+export function kregoslupZwijaSie(v2, poza) {
+  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; const el = uniesienieTulowia(s); const zg = Math.abs(v2.poseAt(poza.klatki, u).zgiecieKregoslupa ?? 0);
+    if (el > PROGI.tulowUnosiMinDeg && zg < PROGI.kregoslupZwijaMinDeg) return [`tułów unosi się o ${f1(el)}° (u = ${u}), a kręgosłup jest zgięty tylko o ${f1(zg)}° (≥ ${PROGI.kregoslupZwijaMinDeg}°) — tułów unosi się jak sztywna deska`]; }
+  return [];
+}
+/** R14. Wyjątek od reguły ze wskazówki nie może przeczyć wskazówce wyświetlanej przy ćwiczeniu: ćwiczenie z wyjątku „lędźwie” nie może mieć wskazówki o lędźwiach. */
+export function wyjatekNieStoiWSprzecznosci(cwiczenie, teksty, root = ROOT, wyjatki = LEDZWIE_WYJATKI) {
+  return cwiczenie in wyjatki && maWskazowke(cwiczenie, teksty, WSKAZOWKA_LEDZWIE, root) ? [`ćwiczenie jest wyjątkiem od reguły „lędźwie przy podłodze” (${wyjatki[cwiczenie]}), a aplikacja wyświetla przy nim wskazówkę o lędźwiach — wyjątek przeczy wskazówce (usuń wyjątek i popraw pozę albo zmień zestaw wskazówek)`] : [];
+}
+/** R14b. Wyjątek wymaga mechanizmu w pozie: „zwijanie” = miednica unosi się o ≥ zwijanieMiednicaCm i kręgosłup zgięty ≥ zwijanieKregoslupDeg; „v” = tułów i nogi razem ≥ vUpMinDeg nad podłogą w jednej klatce. */
+export function wyjatekWymagaMechanizmu(v2, poza, wyjatki = LEDZWIE_WYJATKI, mechanizmy = LEDZWIE_MECHANIZM) {
+  const cw = poza.cwiczenie; if (!(cw in wyjatki)) return []; const m = mechanizmy[cw]; if (!m) return [`wyjątek „${cw}” nie ma zadeklarowanego mechanizmu (LEDZWIE_MECHANIZM)`];
+  const us = siatka(poza); const fr = us.map((u) => ({ u, s: v2.keyframeFrame(poza, u).sk, zg: Math.abs(v2.poseAt(poza.klatki, u).zgiecieKregoslupa ?? 0) }));
+  if (m === 'zwijanie') { const rise = Math.max(...fr.map((x) => x.s.pelvis[1])) - Math.min(...fr.map((x) => x.s.pelvis[1])); const zg = Math.max(...fr.map((x) => x.zg));
+    return rise >= PROGI.zwijanieMiednicaCm && zg >= PROGI.zwijanieKregoslupDeg ? [] : [`wyjątek „zwijanie obu końców” bez mechanizmu: miednica unosi się o ${f1(rise)} cm (≥ ${PROGI.zwijanieMiednicaCm}), kręgosłup zgięty maks. ${f1(zg)}° (≥ ${PROGI.zwijanieKregoslupDeg}°)`]; }
+  if (m === 'v') { const ok = fr.some((x) => uniesienieTulowia(x.s) >= PROGI.vUpMinDeg && Math.min(...['R', 'L'].map((k) => Math.atan2(x.s.legs[k].ankle[1] - x.s.pelvis[1], Math.abs(x.s.legs[k].ankle[0] - x.s.pelvis[0])) / R)) >= PROGI.vUpMinDeg);
+    return ok ? [] : [`wyjątek „V” bez mechanizmu: nie ma klatki, w której tułów i nogi jednocześnie unoszą się ≥ ${PROGI.vUpMinDeg}° nad podłogę`]; }
+  return [`nieznany mechanizm wyjątku „${m}”`];
+}
 /** Cechy deklarowane w danych (data/zrodla/figury-cechy.json): cechy, których nie da się wyprowadzić z reguł sensu ani z tekstów wskazówek. */
 export const wczytajCechy = (root = ROOT) => { const p = path.join(root, 'data/zrodla/figury-cechy.json'); return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')).cechy ?? {} : {}; };
 const maDeklarowana = (cecha, cwiczenie, root) => { const c = wczytajCechy(root)[cecha]; return !!c && (c.cwiczenia.includes(cwiczenie) || (c.wzorce_nazw ?? []).some((w) => new RegExp(w).test(cwiczenie))); };
@@ -412,6 +457,7 @@ export function cechyRuchu(v2, poza, ctx) {
   if (maDeklarowana('rece_proste_wzdluz', cw, root) || maWskazowke(cw, teksty, WSKAZOWKA_RECE_PROSTE, root)) c.add('rece_proste');
   if (ma('miednica_na_podlodze') && !NIE_LEZY.includes(cw) && !(cw in LOT)) c.add('lezenie');
   if (!(cw in LEDZWIE_WYJATKI) && !NIE_LEZY.includes(cw) && maWskazowke(cw, teksty, WSKAZOWKA_LEDZWIE, root)) c.add('ledzwie_przy_podlodze');
+  if (maDeklarowana('podparcie_kolan_lawka', cw, root)) c.add('klek_lawka'); else if (maDeklarowana('podparcie_kolan_podloga', cw, root)) c.add('klek_podloga');
   if (poza.bledy.length) c.add('rzad_bledu');
   return c;
 }
@@ -444,6 +490,10 @@ export function sprawdzJakosc(poza, ctx) {
   if (PRZYCIAGANIE.includes(cwiczenie)) { dodaj('tor_lokcia_przyciaganie', torLokciaPrzyciagania(v2, poza)); dodaj('zwis_startowy', zwisStartowy(v2, poza)); dodaj('tor_lokcia_srodek', torLokciaSrodek(v2, poza)); }
   if (cechy.has('rollout')) dodaj('proste_rece_rollout', prosteReceRollout(v2, poza));
   dodaj('widocznosc_bledu_kat', widocznoscBleduKat(v2, poza));
+  if (cechy.has('klek_lawka')) dodaj('podparcie_kolan', podparcieKolan(v2, poza, 'lawka')); else if (cechy.has('klek_podloga')) dodaj('podparcie_kolan', podparcieKolan(v2, poza, 'podloga'));
+  dodaj('ksztalty_nad_podloga', ksztaltyNadPodloga(v2, poza));
+  if (cechy.has('ledzwie_przy_podlodze')) dodaj('kregoslup_zwija_sie', kregoslupZwijaSie(v2, poza));
+  if (cwiczenie in LEDZWIE_WYJATKI) { dodaj('wyjatek_nie_przeczy_wskazowce', wyjatekNieStoiWSprzecznosci(cwiczenie, teksty ?? {}, ctx.root ?? ROOT)); dodaj('wyjatek_wymaga_mechanizmu', wyjatekWymagaMechanizmu(v2, poza)); }
   if (PODPARCIE_ZMIENNE.includes(cwiczenie)) dodaj('srodek_ciezkosci_podparcie', srodekCiezkosciNadPodparciem(v2, poza));
   return out;
 }

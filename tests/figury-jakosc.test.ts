@@ -78,7 +78,7 @@ W.odwiedzenie_przod_integracja = { dobre: J.sprawdzJakosc(ciasna, { reguly: SENS
 /* 14 nic nie wisi: leżące ćwiczenie z miednicą i barkami o 12 cm nad podłogą; czworaki (Bird Dog) poza regułą */
 const wisi = klon(RC); for (const k of wisi.klatki) k.miednica[1] += 12;
 const ctxCF = (cw) => ({ reguly: SENS.regulyDla('core_floor', cw, ${JSON.stringify(ROOT)}), root: ${JSON.stringify(ROOT)}, v2, rodzina: 'core_floor', cwiczenie: cw, postural: new Set(), izometryczne: false, teksty: new Proxy({}, { get: () => 'x' }) });
-W.nic_nie_wisi = { dobre: [...J.nicNieWisi(v2, RC), ...J.nicNieWisi(v2, CO)], zle: J.nicNieWisi(v2, wisi) };
+W.nic_nie_wisi = { dobre: [...J.nicNieWisi(v2, RC), ...J.nicNieWisi(v2, CH)], zle: J.nicNieWisi(v2, wisi) };
 W.nic_nie_wisi_zakres = { dobre: [J.nicNieWisi(v2, BD).length > 0 ? 0 : 1, J.sprawdzJakosc(BD, ctxCF('Bird Dog')).filter((x) => x.regula === 'nic_nie_wisi').length, J.sprawdzJakosc(RC, ctxCF('Reverse Crunch')).filter((x) => x.regula === 'nic_nie_wisi').length], zle: [J.sprawdzJakosc(wisi, ctxCF('Crunch')).filter((x) => x.regula === 'nic_nie_wisi').length] };
 /* 15 rząd błędu nie zmienia stawów spoza błędu: „sag” z uniesionymi kostkami zgina kolana */
 const kolana = klon(PL); for (const k of kolana.bledy[0].klatki) k.nogi = { R: { kostka: [0, 12, 0] }, L: { kostka: [0, 12, 0] } };
@@ -108,7 +108,7 @@ W.podglad_html = { dobre: [JSON.stringify(hPL.klatki) === JSON.stringify(PL.klat
 const siad = klon(CH); for (const k of siad.klatki) k.zgiecieKregoslupa = 0;
 W.ledzwie_przy_podlodze = { dobre: J.ledzwiePrzyPodlodze(v2, CH), zle: J.ledzwiePrzyPodlodze(v2, siad) };
 const tkst = J.wczytajTeksty();
-W.ledzwie_zakres = { dobre: [J.maWskazowkeLedzwie('Crunch - Hands Overhead', tkst) ? 0 : 1, J.maWskazowkeLedzwie('Hollow Hold', tkst) ? 0 : 1, J.maWskazowkeLedzwie('Alternate Heel Touchers', tkst) ? 0 : 1, J.maWskazowkeLedzwie('Bird Dog', tkst) ? 1 : 0, ['V-Up', 'Cocoons', 'Tuck Crunch'].every((c) => c in J.LEDZWIE_WYJATKI) ? 0 : 1, J.sprawdzJakosc(siad, { v2, rodzina: 'core_floor', cwiczenie: 'V-Up', postural: new Set(), izometryczne: false, teksty: new Proxy({}, { get: () => 'x' }) }).filter((x) => x.regula === 'ledzwie_przy_podlodze').length], zle: [J.sprawdzJakosc(siad, { v2, rodzina: 'core_floor', cwiczenie: 'Crunch - Hands Overhead', postural: new Set(), izometryczne: false, teksty: tkst }).filter((x) => x.regula === 'ledzwie_przy_podlodze').length] };
+W.ledzwie_zakres = { dobre: [J.maWskazowkeLedzwie('Crunch - Hands Overhead', tkst) ? 0 : 1, J.maWskazowkeLedzwie('Hollow Hold', tkst) ? 0 : 1, J.maWskazowkeLedzwie('Alternate Heel Touchers', tkst) ? 0 : 1, J.maWskazowkeLedzwie('Bird Dog', tkst) ? 1 : 0, (['V-Up', 'Cocoons'].every((c) => c in J.LEDZWIE_WYJATKI) && !('Tuck Crunch' in J.LEDZWIE_WYJATKI)) ? 0 : 1, J.sprawdzJakosc(siad, { v2, rodzina: 'core_floor', cwiczenie: 'V-Up', postural: new Set(), izometryczne: false, teksty: new Proxy({}, { get: () => 'x' }) }).filter((x) => x.regula === 'ledzwie_przy_podlodze').length], zle: [J.sprawdzJakosc(siad, { v2, rodzina: 'core_floor', cwiczenie: 'Crunch - Hands Overhead', postural: new Set(), izometryczne: false, teksty: tkst }).filter((x) => x.regula === 'ledzwie_przy_podlodze').length] };
 /* 16c/d zwis startowy i tor łokcia w środku przyciągania (generator inverted: zwis od podłogi vs drążek 100 cm, start skośny) */
 const zwisOk = G.inverted('Inverted Row'), zwisZle = G.inverted('Inverted Row', { by: 100, axOverride: 94, pole: [0, -1, 0.15] });
 W.zwis_startowy = { dobre: J.zwisStartowy(v2, zwisOk), zle: J.zwisStartowy(v2, zwisZle) };
@@ -164,6 +164,17 @@ const SPU = poza('pushup_plank', 'Suspended Push-Up'); const taśmaZla = klon(SP
 const kolanoZle = klon(poza('core_floor', 'Crunch')); kolanoZle.bledy = []; for (const k of kolanoZle.klatki) k.nogi.R.biegunKolana = [0, 0, -1];
 const kolanoDobre = klon(poza('core_floor', 'Crunch')); kolanoDobre.bledy = [];
 W.niezmienniki_silnika = { dobre: [inv(SPU, 'pushup_plank', 'Suspended Push-Up', 'tasma-dlugosc'), inv(kolanoDobre, 'core_floor', 'Crunch', 'kolano-strona')], zle: [inv(taśmaZla, 'pushup_plank', 'Suspended Push-Up', 'tasma-dlugosc'), inv(kolanoZle, 'core_floor', 'Crunch', 'kolano-strona')] };
+/* R13–R16 (recenzja n5): podparcie kolan z deklaracji, kształty nad podłogą, kręgosłup się zwija, wyjątek bez sprzeczności i z mechanizmem */
+const BR = poza('pushup_plank', 'Barbell Rollout from Bench'), COC = poza('core_floor', 'Cocoons'), VUP = poza('core_floor', 'V-Up');
+const BRzly = G.rolloutKolana('Barbell Rollout from Bench', { theta: 10, ławka: 42, fi1: 10, ky: 13, dgSag: 7, fM: 4 });
+W.podparcie_kolan = { dobre: [...J.podparcieKolan(v2, BR, 'lawka'), ...J.podparcieKolan(v2, RO, 'podloga')], zle: [...J.podparcieKolan(v2, BRzly, 'lawka'), ...J.podparcieKolan(v2, BR, 'podloga')] };
+const podZiemia = klon(CH); for (const k of podZiemia.klatki) k.miednica[1] = -6;
+W.ksztalty_nad_podloga = { dobre: [...J.ksztaltyNadPodloga(v2, CH), ...J.ksztaltyNadPodloga(v2, HT), ...J.ksztaltyNadPodloga(v2, PL)], zle: J.ksztaltyNadPodloga(v2, podZiemia) };
+const deska = klon(CH); for (const k of deska.klatki) k.zgiecieKregoslupa = 0;
+W.kregoslup_zwija_sie = { dobre: [...J.kregoslupZwijaSie(v2, CH), ...J.kregoslupZwijaSie(v2, TU)], zle: J.kregoslupZwijaSie(v2, deska) };
+W.wyjatek_nie_przeczy_wskazowce = { dobre: [...J.wyjatekNieStoiWSprzecznosci('Cocoons', tkst, ${JSON.stringify(ROOT)}), ...J.wyjatekNieStoiWSprzecznosci('V-Up', tkst, ${JSON.stringify(ROOT)})], zle: J.wyjatekNieStoiWSprzecznosci('Crunch', tkst, ${JSON.stringify(ROOT)}, { Crunch: 'wyjątek testowy' }) };
+const plaskie = klon(COC); for (const k of plaskie.klatki) { k.miednica[1] = 9.5; k.zgiecieKregoslupa = 0; }
+W.wyjatek_wymaga_mechanizmu = { dobre: [...J.wyjatekWymagaMechanizmu(v2, COC), ...J.wyjatekWymagaMechanizmu(v2, VUP)], zle: [...J.wyjatekWymagaMechanizmu(v2, plaskie), ...J.wyjatekWymagaMechanizmu(v2, klon(CH), { 'Crunch - Hands Overhead': 'x' }, {})] };
 /* cechy ruchu: reguły przypisane po cechach (dane sens + teksty), nie po nazwie rodziny */
 const teksty = J.wczytajTeksty();
 const cechy = (f, cw) => [...J.cechyRuchu(v2, poza(f, cw), { rodzina: f, cwiczenie: cw, teksty, reguly: SENS.regulyDla(f, cw, ${JSON.stringify(ROOT)}) })];
@@ -179,7 +190,7 @@ W.klatki_rozne_obrot = { dobre: J.klatkiRozne(v2, rot(10), false).filter((m) => 
 console.log(JSON.stringify(W));
 `;
 const W = run(KOD) as Record<string, { dobre: unknown[]; zle: unknown[] }>;
-const REGULY = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'rzad_bledu_wszystkie', 'cialo_w_linii_pelne', 'kolana_proste_podpor', 'fallout_start_rece_przod', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'widocznosc_w_obszarze', 'podglad_wazny', 'widocznosc_bledu_kat', 'ledzwie_przy_podlodze', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie', 'manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
+const REGULY = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'rzad_bledu_wszystkie', 'cialo_w_linii_pelne', 'kolana_proste_podpor', 'fallout_start_rece_przod', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'widocznosc_w_obszarze', 'podglad_wazny', 'widocznosc_bledu_kat', 'ledzwie_przy_podlodze', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'podparcie_kolan', 'ksztalty_nad_podloga', 'kregoslup_zwija_sie', 'wyjatek_nie_przeczy_wskazowce', 'wyjatek_wymaga_mechanizmu', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie', 'manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
 describe('reguły jakości po cechach ruchu', () => {
   test('niezmienniki silnika: taśma zawieszenia ma stałą długość, kolano zostaje po swojej stronie osi ciała (poprawne pozy bez komunikatu, łamiące z komunikatem)', () => { expect(W.niezmienniki_silnika.dobre).toEqual([0, 0]); expect((W.niezmienniki_silnika.zle as number[]).every((n) => n > 0)).toBe(true); });
@@ -189,12 +200,12 @@ describe('reguły jakości po cechach ruchu', () => {
 
 describe('reguły jakości póz (luki z recenzji ruchu): poza spełniająca bez komunikatu, łamiąca z komunikatem', () => {
   test.each(REGULY)('%s', (r) => {
-    expect(W[r].dobre).toEqual([]); expect(W[r].zle.length).toBeGreaterThan(0); if (!['sprzet_rozpoznawczy', 'etykieta_bledu', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_wazny'].includes(r)) expect(String(W[r].zle[0])).toMatch(/\d/); /* komunikat z liczbą (poza regułami nazwowymi) */
+    expect(W[r].dobre).toEqual([]); expect(W[r].zle.length).toBeGreaterThan(0); if (!['sprzet_rozpoznawczy', 'etykieta_bledu', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_wazny', 'wyjatek_nie_przeczy_wskazowce'].includes(r)) expect(String(W[r].zle[0])).toMatch(/\d/); /* komunikat z liczbą (poza regułami nazwowymi) */
   });
   test('odwiedzenie z przodu: progi per wariant (ten sam łokieć: szeroka tak, wąska/diamentowa/domyślna nie); reguła podpięta do rodziny w sprawdzJakosc', () => { expect(W.odwiedzenie_przod_wariant.dobre).toEqual([]); expect(W.odwiedzenie_przod_wariant.zle).toHaveLength(3); expect(W.odwiedzenie_przod_integracja.dobre).toEqual([]); expect(W.odwiedzenie_przod_integracja.zle.length).toBeGreaterThan(0); });
   test('litera T (≈ 90°) odrzucana w pompce standardowej, szerokiej, wąskiej, diamentowej i wiosłowaniu; łokcie ciaśniejsze niż dolna granica to nie pompka szeroka', () => { expect((W.litera_T.zle as number[]).every((n) => n > 0)).toBe(true); expect(W.wide_dolna_granica.dobre).toEqual([]); expect(W.wide_dolna_granica.zle).toHaveLength(1); });
   test('rozstaw dłoni: 100% standardowa, 50% wąska; diamentowa bez sprawdzenia', () => { expect(W.rozstaw_dloni.dobre).toEqual([]); expect(W.rozstaw_dloni.zle).toHaveLength(3); });
-  test('lędźwie przy podłodze: reguła włączana wskazówką z tekstów; V-Up, Cocoons i Tuck wyłączone jawnie', () => { expect(W.ledzwie_zakres.dobre).toEqual([0, 0, 0, 0, 0, 0]); expect(W.ledzwie_zakres.zle).toEqual([1]); });
+  test('lędźwie przy podłodze: reguła włączana wskazówką z tekstów; V-Up i Cocoons wyłączone jawnie (z mechanizmem), Tuck Crunch objęty regułą', () => { expect(W.ledzwie_zakres.dobre).toEqual([0, 0, 0, 0, 0, 0]); expect(W.ledzwie_zakres.zle).toEqual([1]); });
   test('tabela kątów stawów: min ≤ max dla każdego stawu, wiersz Markdown', () => { expect(W.tabela_katow.dobre).toEqual([0, 0]); });
   test('nic nie wisi: czworaki (Bird Dog) i ćwiczenia leżące bez lotu: zakres reguły w sprawdzJakosc', () => { expect(W.nic_nie_wisi_zakres.dobre).toEqual([0, 0, 0]); expect(W.nic_nie_wisi_zakres.zle).toEqual([1]); });
   test('środek ciężkości: otoczka punktów i udziały mas sumują się do 1', () => { expect(W.otoczka_i_masy.dobre).toEqual([0, 0, 0]); });

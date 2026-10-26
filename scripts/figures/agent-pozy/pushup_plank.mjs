@@ -235,7 +235,7 @@ export function generuj() {
     'Suspended Fallout': () => rolloutStojac('Suspended Fallout', { start: 'zaw', fi1: 18, fi0: 43, tasma: { ax: 160, L: 155, wybor: 'dol' } }),
     'Inverted Row': () => inverted('Inverted Row'),
     'Rollout (sztanga)': () => rolloutKolana('Rollout (sztanga)', { fi1: 22, ky: 9.8, dgSag: 11, fM: 8, sYf: 0.8, bk: 0.3 }),
-    'Barbell Rollout from Bench': () => rolloutKolana('Barbell Rollout from Bench', { theta: 10, ławka: 42, fi1: 10, ky: 13, dgSag: 7, fM: 4 }),
+    'Barbell Rollout from Bench': () => rolloutKolana('Barbell Rollout from Bench', { theta: 10, ławka: 42, fi1: 10, dgSag: 7, fM: 4 }),
     'Standing Barbell Rollout': () => rolloutStojac('Standing Barbell Rollout', { start: 'stojac', th: 6 }),
   };
   return E;
