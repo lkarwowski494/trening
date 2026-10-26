@@ -25,6 +25,9 @@ protocol WorkoutDriver: AnyObject {
   /// Prosi o zgodę na Zdrowie (zapis treningu, tętno, energia) — wołane przy otwarciu aplikacji na zegarku, nie dopiero przy pierwszym treningu
   /// (decyzja właściciela 14.10.2026). System pyta tylko raz (status „nieustalony”); powtórne wywołanie nic nie pokazuje. Bez zgody ekrany działają.
   func requestAuthorization()
+  /// Pauza treningu na telefonie → pauza sesji zegarka (B-04, 1.0.1): czas aktywny w Zdrowiu liczy się tak samo, jak w aplikacji i w zapisie z telefonu (start przesunięty o pauzy).
+  /// `paused = true` wstrzymuje, `false` wznawia; powtórzenie tego samego stanu jest bez skutku; bez aktywnej sesji nic nie robi (stan pamiętany do startu sesji w WorkoutController).
+  func setPaused(_ paused: Bool)
   /// Kończy sesję; `save` = zapisz trening w Zdrowiu z identyfikatorem synchronizacji `workoutId` (ten sam co zapis telefonu — bez duplikatu).
   func end(save: Bool, workoutId: String)
 }
@@ -50,6 +53,9 @@ final class WatchStore: ObservableObject {
   private var lastAcceptedPressAt: Double = -1e18
   private var sessionWorkoutId: String?
   private var sessionStartedReported = false
+  /// Ostatni znany stan pauzy z migawki telefonu i stan już przekazany sesji (B-04): sesja zegarka ma być wstrzymana dokładnie wtedy, gdy telefon ma pauzę.
+  private var phonePaused = false
+  private var pausedSent = false
 
   init(transport: WatchTransport, workout: WorkoutDriver, haptics: WatchHaptics, persistence: WatchPersistence, config: ClientConfig,
        systemLanguages: [String] = Locale.preferredLanguages,
@@ -120,6 +126,8 @@ final class WatchStore: ObservableObject {
     switch msg {
     case .snapshot(let m):
       if !m.lang.isEmpty, WatchLabels.table[m.lang] != nil, m.lang != lang { lang = m.lang; persistence.lang = m.lang }
+      phonePaused = m.paused && m.workoutId != nil
+      syncPause()
     case .welcome(let w):
       if w.ok { resendQueue() }
     case .session(let c):
@@ -147,15 +155,22 @@ final class WatchStore: ObservableObject {
     }
   }
 
+  /// Stan pauzy z telefonu → sesja zegarka (tylko przy zmianie, żeby powtórzona migawka nie wołała sesji drugi raz).
+  private func syncPause() {
+    guard workout.isActive, pausedSent != phonePaused else { return }
+    pausedSent = phonePaused; workout.setPaused(phonePaused)
+  }
+
   private func sessionStarted() {
     sessionActive = true
+    syncPause()   // sesja wystartowała w trakcie pauzy telefonu (albo po jej rozpoczęciu) — od razu wstrzymana
     guard let id = sessionWorkoutId, !sessionStartedReported else { return }
     sessionStartedReported = true
     note(.sessionStarted, workoutId: id)
   }
 
   private func sessionEnded(saved: Bool) {
-    sessionActive = false
+    sessionActive = false; pausedSent = false
     reportEnded(saved: saved)
   }
 

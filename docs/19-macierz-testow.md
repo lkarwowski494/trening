@@ -1908,7 +1908,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | health.workoutActivityType | lib/health.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-gen.test.ts, tests/health-query.test.ts +3 |
 | health.ensureAuthorization | lib/health.ts | tests/health-query.test.ts, tests/healthkit-contract.test.ts, tests/regress.test.tsx |
 | health.ensureReadAuthorization | lib/health.ts | tests/health-query.test.ts, tests/regress.test.tsx |
-| health.healthStart | lib/health.ts | tests/healthkit-contract.test.ts, tests/pause.test.tsx |
+| health.healthStart | lib/health.ts | tests/healthkit-contract.test.ts, tests/pause.test.tsx, tests/watch-link.test.ts |
 | health.saveWorkout | lib/health.ts | tests/audit-0.10-stats.test.ts, tests/edit-history.test.tsx, tests/health-query.test.ts +5 |
 | health.healthPending | lib/health.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-m1-009-watch-edit.test.ts +6 |
 | health.deleteOwnCopy | lib/health.ts | tests/health-query.test.ts |
@@ -2323,7 +2323,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.whenText | lib/state/pause.ts | tests/f014-logic.test.ts, tests/regress.test.tsx |
 | store.cleanPauses | lib/state/pause.ts | tests/pause.test.tsx, tests/regress.test.tsx |
 | store.pauseWorkout | lib/state/pause.ts | tests/matrix-invariants.test.ts, tests/pause.test.tsx, tests/regress.test.tsx +4 |
-| store.resumeWorkout | lib/state/pause.ts | tests/matrix-invariants.test.ts, tests/pause.test.tsx, tests/watch-invariants.test.ts +2 |
+| store.resumeWorkout | lib/state/pause.ts | tests/matrix-invariants.test.ts, tests/pause.test.tsx, tests/watch-invariants.test.ts +3 |
 | store.locationById | lib/state/places.ts | tests/adapt-logic.test.ts, tests/audit-r82c.test.tsx, tests/decisions-0310.test.tsx +4 |
 | store.visibleLocations | lib/state/places.ts | tests/matrix-invariants.test.ts, tests/places-oneoff-logic.test.ts, tests/places-ui.test.tsx |
 | store.placeOnDay | lib/state/places.ts | tests/plan-places.test.ts |

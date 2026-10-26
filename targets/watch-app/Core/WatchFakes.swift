@@ -98,6 +98,9 @@ final class FakeWorkout: WorkoutDriver {
   private(set) var ends: [(save: Bool, workoutId: String)] = []
   /// Wynik zapisu zgłaszany przy końcu sesji (true = zegarek zapisał trening w Zdrowiu).
   var saveSucceeds = true
+  /// Kolejne wywołania `setPaused` (true = wstrzymaj, false = wznów) — do asercji pauzy sesji (B-04).
+  private(set) var pauseCalls: [Bool] = []
+  func setPaused(_ paused: Bool) { pauseCalls.append(paused) }
   func requestAuthorization() { authorizationRequests += 1 }
   func start() { isActive = true; starts += 1; onStarted?() }
   func end(save: Bool, workoutId: String) { isActive = false; ends.append((save, workoutId)); onEnded?(save && saveSucceeds) }

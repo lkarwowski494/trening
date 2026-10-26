@@ -2,7 +2,10 @@
  * lib/watch/link.ts + lib/watch/fake.ts — telefon i atrapa zegarka (model referencyjny) razem: scenariusze od początku do końca, kolejka offline, restart telefonu,
  * negocjacja sesji treningu (Zdrowie). Zegarek tylko wyświetla i odsyła zdarzenia; po każdym kroku jego widok ma zgadzać się z tym, co telefon wie.
  */
+import * as fs from 'fs';
+import * as path from 'path';
 import * as store from '@/lib/store';
+import { healthStart } from '@/lib/health';
 import * as timer from '@/lib/timer';
 import { WatchLink, startWatchLink, stopWatchLink, activeWatchLink } from '@/lib/watch/link';
 import { FakeWatch } from '@/lib/watch/fake';
@@ -150,6 +153,39 @@ describe('sesja treningu zegarka (Zdrowie)', () => {
   test('raport o nieznanym treningu → rejected', async () => {
     const { fw, link: l } = await pair(); await l.receive({ v: 1, kind: 'event', eventId: 'x1', workoutId: 'nie-ma', baseRev: 1, at: Date.now(), client: 'apple', type: 'sessionEnded', saved: true });
     expect(fw.sent.filter(m => m.kind === 'ack').at(-1)).toMatchObject({ status: 'rejected', reason: 'other-workout' });
+  });
+});
+
+describe('pauza treningu na telefonie a sesja zegarka (B-04, 1.0.1)', () => {
+  const sessionEvt = (id: string) => ({ v: 1, kind: 'event', eventId: 'apple-p1', workoutId: id, baseRev: 1, at: Date.now(), client: 'apple', type: 'sessionStarted' });
+  test('pauza i wznowienie na telefonie dochodzą do zegarka jako migawki z `paused` i `workoutId` (po tym zegarek wstrzymuje i wznawia sesję Zdrowia)', async () => {
+    const { fw, link: l } = await pair(); const id = A().id;
+    expect(snaps(fw).at(-1)).toMatchObject({ paused: false, workoutId: id });
+    store.pauseWorkout(); jest.advanceTimersByTime(60); await settle(l); expect(snaps(fw).at(-1)).toMatchObject({ paused: true, workoutId: id });
+    store.resumeWorkout(); jest.advanceTimersByTime(60); await settle(l); expect(snaps(fw).at(-1)).toMatchObject({ paused: false, workoutId: id });
+    expect([...new Map(snaps(fw).map(x => [x.rev, x.paused])).values()]).toEqual([false, true, false]); /* po jednej migawce na zmianę treści (powtórka tej samej wersji po `welcome` nie liczy się) */
+  });
+  test('koniec treningu w pauzie: ostatnia migawka to idle bez pauzy, a `session end` idzie po zakończeniu (zegarek kończy sesję i zapisuje czas bez pauzy)', async () => {
+    const { fw, link: l } = await pair(); store.getState().settings.healthSync = true; const id = A().id;
+    await l.receive(sessionEvt(id)); await completeSet(0, 0); store.pauseWorkout(); jest.advanceTimersByTime(60); await settle(l); expect(snaps(fw).at(-1)!.paused).toBe(true);
+    store.finishWorkout(); jest.advanceTimersByTime(60); await settle(l);
+    expect(snaps(fw).at(-1)).toMatchObject({ phase: 'idle', paused: false, workoutId: null });
+    expect(fw.sent.filter(m => m.kind === 'session').at(-1)).toEqual({ v: 1, kind: 'session', action: 'end', workoutId: id, save: true });
+  });
+  test('czas w Zdrowiu jest ten sam z zegarka i z telefonu: aktywny czas = koniec − start − suma pauz (zapis z telefonu przesuwa start o pauzy, sesja zegarka wstrzymana na czas pauz)', async () => {
+    await world(); const w = A(); const start = w.startedAt;
+    jest.setSystemTime(start + 10 * 60e3); store.pauseWorkout(); jest.setSystemTime(start + 25 * 60e3); store.resumeWorkout(); jest.setSystemTime(start + 40 * 60e3); store.finishWorkout();
+    const fin = store.getState().workouts.find(x => x.id === w.id)!; const paused = store.pausedTotal(fin, fin.finishedAt!);
+    expect(paused).toBe(15 * 60e3); const activeFromPhone = fin.finishedAt! - healthStart(fin);
+    expect(activeFromPhone).toBe(25 * 60e3); expect(activeFromPhone).toBe(fin.finishedAt! - fin.startedAt - paused);
+  });
+  test('źródło Swift (nie do skompilowania na Linuksie — kompilację sprawdza ios-unsigned/watch-sim): sesja zegarka ma pauzę i wznowienie, a store przekazuje stan z migawki', () => {
+    const rd = (f: string) => fs.readFileSync(path.join(__dirname, '..', 'targets', f), 'utf8');
+    const ctl = rd('watch-app/WorkoutController.swift'), st = rd('watch-app/Core/WatchStore.swift'), fk = rd('watch-app/Core/WatchFakes.swift');
+    expect(st).toMatch(/func setPaused\(_ paused: Bool\)/); expect(st).toMatch(/workout\.setPaused\(phonePaused\)/); expect(st).toMatch(/phonePaused = m\.paused && m\.workoutId != nil/);
+    expect(ctl).toMatch(/func setPaused\(_ paused: Bool\)/); expect(ctl).toMatch(/s\.pause\(\)/); expect(ctl).toMatch(/s\.resume\(\)/); expect(ctl).toMatch(/s\.state == \.running/); expect(ctl).toMatch(/s\.state == \.paused/);
+    expect(fk).toMatch(/func setPaused\(_ paused: Bool\)/);
+    expect(rd('watch-tests/WatchCoreTests/WatchStoreTests.swift')).toMatch(/testPhonePauseAndResumePauseAndResumeTheWatchSession/);
   });
 });
 
