@@ -67,9 +67,9 @@ const stopyPlasko = (x, z) => ({ R: { ankle: [x, 7], strona: 'gora', pod: 0, z }
 function alternateHeelTouchers(cw) {
   const us = [0, 0.5, 1]; const pU1 = -62;
   const fr = (u) => { const p = lerp(-90, pU1, u); const S = barki([0, 8], p); const zS = 22;
-    const bok = (s) => { const sg = s === 'R' ? 1 : -1; return { g: [S[0] + Math.sqrt(58 ** 2 - 25), 4, sg * 24], pole: [0, 1, sg * 0.3] }; }; /* lewa ręka zostaje przy boku */
+    const bok = (s) => { const sg = s === 'R' ? 1 : -1; return { g: [S[0] + Math.sqrt(58 ** 2 - 25), 4, sg * 24], pole: [0, 0.6, sg] }; }; /* lewa ręka zostaje przy boku */
     const heel = [30 - 6, 7]; const toHeel = Math.atan2(heel[1] - S[1], heel[0] - S[0]) / R; const reach = chwyt(S, toHeel, 24, 62);
-    return ramka({ u, miednica: [0, 8], p, glowa: p, nogi: { R: { ankle: [30, 7], strona: 'gora', z: zS }, L: { ankle: [30, 7], strona: 'gora', z: -zS } }, rece: { R: u === 0 ? bok('R') : { g: reach }, L: bok('L') } }); };
+    return ramka({ u, miednica: [0, 8], p, glowa: p, nogi: { R: { ankle: [30, 7], strona: 'gora', z: zS }, L: { ankle: [30, 7], strona: 'gora', z: -zS } }, rece: { R: u === 0 ? bok('R') : { g: reach, pole: [0, 0.6, 1] }, L: bok('L') } }); };
   return zbuduj1(cw, us.map(fr));
 }
 function crunchHandsOverhead(cw) {
@@ -167,7 +167,6 @@ export function generuj() {
     'Hollow Hold': () => hollowHold('Hollow Hold'),
     'Lying Leg Raise': () => lyingLegRaise('Lying Leg Raise'),
     'Reverse Crunch': () => reverseCrunch('Reverse Crunch'),
-    'Scissor Kick': () => scissorKick('Scissor Kick'),
     'Tuck Crunch': () => tuckCrunch('Tuck Crunch'),
     'Cocoons': () => cocoons('Cocoons'),
     'Leg Pull-In': () => legPullIn('Leg Pull-In'),

@@ -49,13 +49,13 @@ const FSAG = (u) => (u === 0 ? 0 : u < 0.5 ? 0.6 : 1);
 const bladSag = (okFn, sagFn = sagZ(okFn)) => bladZTrajektorii({ cue: 'plank.mis.sag', znacznik: 'pelvis', us: US, ok: (u) => czysc(okFn(u)), zle: (u) => sagFn(u, FSAG(u)) });
 
 /* ---------- typ: pompka (dwie ręce, ciało w linii, dół = zgięcie łokci) ---------- */
-function pompka(cw, { hz = 19, hzL, off = 0, pole = [-1, 0, 0.5], boxRece, boxStopy, thetaTop = 12, thetaDol = 95, thetaPlytko = 48, blady = ['partial', 'sag'], zNog = ZNOG, rece, hy: hyOpt, sprzetRece } = {}) {
+function pompka(cw, { hz = 19, hzL, off = 0, pole = [-1, -0.3, 0.9], boxRece, boxStopy, thetaTop = 12, thetaDol = 142, thetaPlytko = 90, blady = ['partial', 'sag'], zNog = ZNOG, rece, hy: hyOpt, sprzetRece } = {}) {
   const y0r = boxRece ?? 0; const hy = hyOpt ?? (boxRece ? boxRece + 3.2 : 2); const A = [0, kostkaNaPalcach(boxStopy ?? 0)]; const hzl = hzL ?? hz;
   const hx = dlonX({ A, hy, theta0: thetaTop, hzR: hz, hzL: hzl, off }); const H = [hx, hy];
   const mk = (th) => trajPompki({ A, H, hzR: hz, hzL: hzl, theta: th, poleLokcia: pole, zNog, rece });
   const ok = mk((u) => thetaTop + (thetaDol - thetaTop) * u); const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 220 }];
   if (boxStopy) sprzet.push({ rodzaj: 'skrzynia', x0: -70, x1: 14, top: boxStopy });
-  if (boxRece) sprzet.push({ rodzaj: 'skrzynia', x0: r1(hx - 16), x1: r1(hx + 16), top: boxRece });
+  if (boxRece) sprzet.push({ rodzaj: 'skrzynia', x0: r1(hx - 2), x1: r1(hx + 16), top: boxRece });
   if (sprzetRece) sprzet.push(sprzetRece(H, hz));
   const bledy = [];
   if (blady.includes('partial')) { const zle = mk((u) => thetaTop + (thetaPlytko - thetaTop) * u); bledy.push(bladZTrajektorii({ cue: 'push.mis.partial', znacznik: 'pelvis', us: US, ok: (u) => czysc(ok(u)), zle: (u) => czysc(zle(u)) })); }
@@ -113,7 +113,7 @@ function jednaReka(cw) {
 /* ---------- Plyo Push-Up (dół → góra → dłonie w powietrzu) ---------- */
 function plyo(cw) {
   const A = [0, kostkaNaPalcach(0)]; const hz = 19; const hy0 = 2; const hx = dlonX({ A, hy: hy0, theta0: 12, hzR: hz }); const unosz = 12;
-  const fr = [[0, 12, 0], [0.4, 95, 0], [1, 12, unosz]]; /* góra, dół, wypchnięcie z oderwaniem dłoni (12 cm nad podłogą) */
+  const fr = [[0, 12, 0], [0.4, 142, 0], [1, 12, unosz]]; /* góra, dół, wypchnięcie z oderwaniem dłoni (12 cm nad podłogą) */
   const ok = (u) => { const f = fr.find((x) => x[0] === u); const H = [hx, hy0 + f[2]]; return trajPompki({ A, H, hzR: hz, theta: f[1] })(u); };
   const us = fr.map((f) => f[0]); return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: us.map((u) => czysc(ok(u))),
     bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', znacznik: 'pelvis', us, ok: (u) => czysc(ok(u)), zle: (u) => sagZ(ok)(u, u === 0 ? 0 : 1) })] });
@@ -198,14 +198,14 @@ export const PRZYBLIZENIA = {
 export function generuj() {
   const E = {
     'Push Up': () => pompka('Push Up'),
-    'Push-Up Wide': () => pompka('Push-Up Wide', { hz: 33, pole: [-0.3, 0, 1] }),
-    'Close-Grip Push-Up': () => pompka('Close-Grip Push-Up', { hz: 10, pole: [-1, 0, 0.2], blady: ['partial'] }),
-    'Diamond Push Up': () => pompka('Diamond Push Up', { hz: 4.5, off: -8, pole: [-1, 0, 1], blady: [] }),
+    'Push-Up Wide': () => pompka('Push-Up Wide', { hz: 33, pole: [-0.5, -0.3, 1] }),
+    'Close-Grip Push-Up': () => pompka('Close-Grip Push-Up', { hz: 10, pole: [-1, -0.3, 0.5], blady: ['partial'] }),
+    'Diamond Push Up': () => pompka('Diamond Push Up', { hz: 4.5, off: -8, pole: [-0.6, -0.3, 1], blady: [] }),
     'Clock Push-Up': () => pompka('Clock Push-Up', { hz: 22, thetaTop: 22, rece: (u, k, h) => ({ R: { g: [h[0] + 12, h[1], 22], pole: [-1, 0, 0.5] }, L: { g: [h[0] - 12, h[1], -22], pole: [-1, 0, -0.5] } }), blady: ['partial'] }),
-    'Decline Push Up': () => pompka('Decline Push Up', { hz: 22, boxStopy: 42, blady: ['partial'] }),
-    'Incline Push Up': () => pompka('Incline Push Up', { hz: 22, boxRece: 45, blady: [] }),
-    'Incline Push-Up Close-Grip': () => pompka('Incline Push-Up Close-Grip', { hz: 10, pole: [-1, 0, 0.2], boxRece: 45, blady: ['partial'] }),
-    'Suspended Push-Up': () => pompka('Suspended Push-Up', { hz: 22, hy: 45, sprzetRece: (H) => ({ rodzaj: 'sztanga', x: r1(H[0]), y: 45, talerze: false, podazaZaChwytem: false, dlugosc: 70 }), blady: ['partial', 'sag'] }),
+    'Decline Push Up': () => pompka('Decline Push Up', { hz: 22, boxStopy: 30, thetaDol: 146, blady: ['partial'] }),
+    'Incline Push Up': () => pompka('Incline Push Up', { hz: 22, off: -18, boxRece: 45, blady: [] }),
+    'Incline Push-Up Close-Grip': () => pompka('Incline Push-Up Close-Grip', { hz: 10, off: -18, pole: [-1, -0.3, 0.5], boxRece: 45, blady: ['partial'] }),
+    'Suspended Push-Up': () => pompka('Suspended Push-Up', { hz: 22, off: -18, hy: 45, sprzetRece: (H) => ({ rodzaj: 'sztanga', x: r1(H[0]), y: 45, talerze: false, podazaZaChwytem: false, dlugosc: 70 }), blady: ['partial', 'sag'] }),
     'Single-Arm Push-Up': () => jednaReka('Single-Arm Push-Up'),
     'Plank': () => plank('Plank'),
     'Mountain Climbers': () => mountain('Mountain Climbers'),
