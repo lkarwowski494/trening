@@ -5,15 +5,16 @@ import { renderApp, flushAll, screen, go, tap } from './app';
 import * as store from '@/lib/store';
 import { defaultSettings } from '@/lib/seed';
 
+import { seedState } from '@/lib/seed';
 jest.setTimeout(60000);
 const set = jest.spyOn(Appearance, 'setColorScheme');
 beforeEach(() => set.mockClear());
 
-test('domyślnie jasna Kreda — także dla danych sprzed tego ustawienia (wymusza jasny wygląd mimo trybu ciemnego telefonu)', async () => {
-  expect(defaultSettings().theme).toBe('light');
+test('domyślnie ciemny (zmiana 23.10.2026, test na telefonie 1030; wcześniej jasna Kreda) — także dla danych bez tego ustawienia; wymusza wygląd mimo trybu telefonu', async () => {
+  expect(defaultSettings().theme).toBe('dark');
   await renderApp({ saved: { settings: { language: 'pl' } } }); await flushAll(10);
-  expect(store.getState().settings.theme).toBe('light');
-  expect(set).toHaveBeenLastCalledWith('light');
+  expect(store.getState().settings.theme).toBe('dark');
+  expect(set).toHaveBeenLastCalledWith('dark');
 });
 
 test('Ustawienia → Wygląd: Ciemny i Jak w telefonie; wybór zapisany i stosowany', async () => {
@@ -25,6 +26,6 @@ test('Ustawienia → Wygląd: Ciemny i Jak w telefonie; wybór zapisany i stosow
 });
 
 test('nieznana wartość w danych → jasny', async () => {
-  await renderApp({ saved: { settings: { theme: 'neon' } } }); await flushAll(10);
+  const base = seedState('pl'); await renderApp({ saved: { ...base, settings: { ...base.settings, theme: 'neon' } } }); /* pełny zapis (częściowy odrzuca wczytanie → nowa instalacja → ciemny) */ await flushAll(10);
   expect(store.getState().settings.theme).toBe('light');
 });

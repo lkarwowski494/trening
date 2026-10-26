@@ -120,6 +120,7 @@ const TOP = {
   'tests/': 'testy Jest: logika, ekrany, scenariusze, macierz, niezmienniki, regresje; bramki repozytorium',
   '.maestro/': 'scenariusze E2E (Maestro, symulator iPhone) i podprzepływy',
   'scripts/': 'generatory i bramki: macierz testów, katalog przepływów, tłumaczenia, licencje, README',
+  'data/': 'pełne dane źródeł wskazówek i figur (z nich generuje się pliki runtime bez nazw: scripts/zrodla-runtime.mjs)',
   'docs/': 'dokumentacja i rejestr decyzji (po polsku), w tym dokumenty generowane z kodu',
   'site/': 'strona aplikacji: polityka prywatności i wsparcie (GitHub Pages)',
   'store/': 'konfiguracja sklepu: produkty zakupu (plik StoreKit), nazwy i lokalizacje do App Store Connect',
@@ -161,9 +162,12 @@ const WORKFLOW_ROLE = {
   'pages.yml': 'publikacja strony (prywatność, wsparcie)',
   'asc-iap-localizations.yml': 'lokalizacje produktów zakupu w App Store Connect',
   'asc-metadane.yml': 'wgranie metadanych sklepu (opisy, nazwy, słowa kluczowe; 33 lokalizacje) do App Store Connect (ręcznie; podgląd domyślnie, zapis za zatwierdzeniem release)',
+  'asc-zrzuty.yml': 'wgranie zrzutów ekranu sklepu (iPhone, Apple Watch; wszystkie lokalizacje) do App Store Connect (ręcznie; dry-run domyślnie, apply za zatwierdzeniem release)',
   'asc-kontrola.yml': 'kontrola ustawień App Store Connect (tylko odczyt; ręcznie; narzędzie z repozytorium narzędzi studia)',
   'store-screenshots.yml': 'zrzuty ekranu do App Store z symulatora (ręcznie)',
   'przeglad-tlumaczen.yml': 'przegląd tłumaczeń treści krytycznej przez API Anthropic (ręcznie, płatny, limit kosztu)',
+  'przeklad-tlumaczen.yml': 'przekład kluczy słownika na 33 języki przez API Anthropic (ręcznie, płatny, limit 6 USD; propozycje jako artefakt)',
+  'gemini-figury.yml': 'pozy figur v2 przez API Gemini (ręcznie, płatny, limit 3 USD; pilotaż, wynik jako artefakt)',
   'sprzatanie-galezi.yml': 'usuwanie gałęzi scalonych lub zatwierdzonych przez właściciela (ręcznie, podgląd domyślnie)',
 };
 const TRIGGERS = [['push', 'wypchnięcie'], ['pull_request', 'zgłoszenie zmian'], ['schedule', 'harmonogram'], ['workflow_dispatch', 'ręcznie'], ['workflow_call', 'wywołanie z innego workflow'], ['workflow_run', 'po innym workflow']];

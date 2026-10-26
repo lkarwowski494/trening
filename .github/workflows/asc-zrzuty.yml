@@ -1,0 +1,136 @@
+# Wgranie zrzutów ekranu sklepu (iPhone, opcjonalnie Apple Watch; wszystkie lokalizacje) z artefaktów workflowów `store-screenshots.yml` i `watch-sim.yml`
+# do edytowalnej wersji aplikacji w App Store Connect przez API (decyzja właściciela 25.10.2026, D2 w docs/48; skrypt scripts/asc/zrzuty.mjs, interfejs App Asset Library).
+# Tylko ręcznie. Tryb dry-run (domyślny): tylko odczyt — lista, co zostałoby wgrane; job bez środowiska (sekrety repozytorium, jak asc-metadane.yml).
+# Tryb apply: osobny job w środowisku `release` (zatwierdzenie właściciela, jak testflight.yml, asc-metadane.yml i asc-iap-localizations.yml; M1-048, DEC-06 a);
+# wgrywa i układa zrzuty, NIGDY nie usuwa, pomija grupy, które mają już zrzuty. Wyjątek od L-001 dla workflowów uruchamianych tylko ręcznie (decyzja 25.10.2026):
+# scalenie przed przebiegiem dowodowym, pierwszy przebieg to dry-run, przy porażce cofnięcie.
+# Sekrety jak w testflight.yml: ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8 (bez nowych). Repozytorium jest publiczne: logi bez identyfikatorów klucza
+# (maskowanie), klucz tylko w RUNNER_TEMP i usuwany zawsze; adresy wgrywania Apple nie trafiają do logu.
+name: ASC zrzuty ekranu
+on:
+  workflow_dispatch:
+    inputs:
+      tryb:
+        description: 'dry-run = tylko lista, co zostałoby wgrane; apply = wgraj i ułóż (nigdy nie usuwa; wymaga zatwierdzenia release)'
+        type: choice
+        options: [dry-run, apply]
+        default: dry-run
+      zrzuty_z_przebiegu:
+        description: 'Numer przebiegu store-screenshots.yml z artefaktem sklep-zrzuty-ramki (żyje 3 dni)'
+        required: true
+        type: string
+      rozmiar:
+        description: 'Który rozmiar iPhone wgrać: 6.9 (1320 × 2868, wystarcza — Apple skaluje w dół) albo 6.3 (1206 × 2622)'
+        type: choice
+        options: ['6.9', '6.3']
+        default: '6.9'
+      zegarek_z_przebiegu:
+        description: 'Numer przebiegu watch-sim.yml z artefaktem zegarek-zrzuty (opcjonalnie; pusty = bez zegarka)'
+        required: false
+        type: string
+        default: ''
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: asc-zrzuty
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          name: sklep-zrzuty-ramki
+          path: sklep-ramki
+          run-id: ${{ inputs.zrzuty_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.zegarek_z_przebiegu != '' }}
+        with:
+          name: zegarek-zrzuty
+          path: zegarek-zrzuty
+          run-id: ${{ inputs.zegarek_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Klucz API do pliku tymczasowego (maskowany)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/15 — kroki właściciela)"; exit 1; }; done
+          echo "::add-mask::$ASC_KEY_ID"; echo "::add-mask::$ASC_ISSUER_ID"
+          printf '%s\n' "$ASC_KEY_P8" | while IFS= read -r line; do case "$line" in -----*) ;; *) [ ${#line} -ge 20 ] && echo "::add-mask::$line" ;; esac; done; true
+          umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
+      - name: Plan (tylko odczyt)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ROZMIAR: ${{ inputs.rozmiar }}
+        run: |
+          set -o pipefail
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          ARGS=(--iphone "sklep-ramki/$ROZMIAR" --dry-run)
+          [ -d zegarek-zrzuty ] && ARGS+=(--zegarek zegarek-zrzuty)
+          node scripts/asc/zrzuty.mjs "${ARGS[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Usunięcie klucza z maszyny
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey.p8"
+
+  zapis:
+    needs: plan
+    if: ${{ inputs.tryb == 'apply' }}
+    environment: release
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          name: sklep-zrzuty-ramki
+          path: sklep-ramki
+          run-id: ${{ inputs.zrzuty_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/download-artifact@v4
+        if: ${{ inputs.zegarek_z_przebiegu != '' }}
+        with:
+          name: zegarek-zrzuty
+          path: zegarek-zrzuty
+          run-id: ${{ inputs.zegarek_z_przebiegu }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Klucz API do pliku tymczasowego (maskowany)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          for v in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do [ -n "${!v}" ] || { echo "::error::Brak sekretu $v (docs/15 — kroki właściciela)"; exit 1; }; done
+          echo "::add-mask::$ASC_KEY_ID"; echo "::add-mask::$ASC_ISSUER_ID"
+          printf '%s\n' "$ASC_KEY_P8" | while IFS= read -r line; do case "$line" in -----*) ;; *) [ ${#line} -ge 20 ] && echo "::add-mask::$line" ;; esac; done; true
+          umask 077; printf '%s\n' "$ASC_KEY_P8" > "$RUNNER_TEMP/AuthKey.p8"
+      - name: Wgranie zrzutów (nigdy nie usuwa)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ROZMIAR: ${{ inputs.rozmiar }}
+        run: |
+          set -o pipefail
+          export ASC_KEY_PATH="$RUNNER_TEMP/AuthKey.p8"
+          ARGS=(--iphone "sklep-ramki/$ROZMIAR" --apply)
+          [ -d zegarek-zrzuty ] && ARGS+=(--zegarek zegarek-zrzuty)
+          node scripts/asc/zrzuty.mjs "${ARGS[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Usunięcie klucza z maszyny
+        if: always()
+        run: rm -f "$RUNNER_TEMP/AuthKey.p8"

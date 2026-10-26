@@ -179,7 +179,7 @@ describe('Postępy: „Strażnik progresji”', () => {
   });
   test('objaśnienie metody jest pod ⓘ przy nagłówku „Strażnik progresji” (zwinięte na starcie): tonaż na sesję, pominięte ćwiczenia, ≥, uproszczenie 0,5', async () => {
     await boot(mixed, '/progress'); expect(screen.queryByTestId('info-text-guard-method')).toBeNull(); await openInfo('guard-method'); const i = within(screen.getByTestId('info-text-guard-method'));
-    expect(i.getByText(/średnio na sesję ćwiczenia/)).toBeTruthy(); expect(i.getByText(/nowe w tym tygodniu albo nierobione teraz/)).toBeTruthy(); expect(i.getByText(/Plan bez ciężarów \(≥\)/)).toBeTruthy(); expect(i.getByText(/metaanaliza Pelland i in\. 2026/)).toBeTruthy();
+    expect(i.getByText(/średnio na sesję ćwiczenia/)).toBeTruthy(); expect(i.getByText(/nowe w tym tygodniu albo nierobione teraz/)).toBeTruthy(); expect(i.getByText(/Plan bez ciężarów \(≥\)/)).toBeTruthy(); expect(i.getByText(/pomocnicza 0,5\)/)).toBeTruthy();
   });
   test('EN: tytuł sekcji, grupy, wiersze i rozwinięcie po angielsku', async () => {
     await boot(mixed, '/progress', 'en'); expect(screen.getAllByText('Progress Guard').length).toBeGreaterThan(0); expect(within(screen.getByTestId('grow-dwugłowe')).getByText('no comparison — new this week')).toBeTruthy();

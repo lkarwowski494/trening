@@ -45,7 +45,7 @@ describe('ekran', () => {
     expect(screen.queryByText('Skala wysiłku')).toBeNull();
     await act(async () => { S().settings.showRpe = true; store.save(); }); await flushAll(5);
     expect(screen.getAllByText('Skala wysiłku').length).toBeGreaterThan(0);
-    await openInfo('effort-scale'); expect(screen.getByText('RIR — powtórzenia w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR; Zourdos i in., JSCR 2016). Zapisane wartości przeliczają się przy zmianie skali.')).toBeTruthy();
+    await openInfo('effort-scale'); expect(screen.getByText('RIR to powtórzenia, które zostały Ci w zapasie: RIR = 10 − RPE (RPE 10 = 0 RIR, RPE 9 = 1 RIR). Zapisane wartości przeliczają się przy zmianie skali.')).toBeTruthy();
     await tap(screen.getByLabelText('RIR')); await flushAll(5); expect(S().settings.effortScale).toBe('rir');
   });
   test('trening: kolumna „RIR”, wpis 2 zapisuje RPE 8; historia i edytor pokazują RIR', async () => {
@@ -63,6 +63,6 @@ describe('ekran', () => {
   test('English: same labels (RPE/RIR are international), explanation translated', async () => {
     await fresh(undefined, 'en'); S().settings.showRpe = true; store.save(); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), locale: 'en', url: '/more/settings' }); await flushAll(10);
-    expect(screen.getAllByText('Effort scale').length).toBeGreaterThan(0); await openInfo('effort-scale'); expect(screen.getByText(/^RIR — reps in reserve: RIR = 10 − RPE/)).toBeTruthy();
+    expect(screen.getAllByText('Effort scale').length).toBeGreaterThan(0); await openInfo('effort-scale'); expect(screen.getByText(/^RIR is the number of reps you still had left: RIR = 10 − RPE/)).toBeTruthy();
   });
 });

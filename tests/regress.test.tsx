@@ -336,7 +336,7 @@ describe('runda 4', () => {
     await go('/progress'); await flushAll(10); expect(screen.getByText(/Bench Press \(hantle\) \(usunięte\)/)).toBeTruthy();
   });
   test('R4-07 serie per partia z przecinkiem', async () => {
-    await renderApp(); addWorkout(Date.now() - 3600e3, [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); await go('/progress'); await flushAll(10);
+    await renderApp(); addWorkout(Math.max(Date.now() - 3600e3, stats.thisMonday()), [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); /* L-031: „godzinę temu” nie może wypaść w poprzednim tygodniu (poniedziałek 00:00–01:00) */ await go('/progress'); await flushAll(10);
     expect(screen.getAllByText(/^0 \+ 0,5 pośrednio \(1 seria\) \/ 10/).length).toBeGreaterThan(0); /* 13.10.2026: przecinek dziesiętny w podpisie z podziałem */
   });
   test('R4-08 „Zakończ” → „Wróć” nie przerywa trwającej serii na czas', async () => {
@@ -1846,7 +1846,7 @@ describe('runda 73 — rekord = suma na treningu + e1RM (decyzja 01.10)', () => 
     await renderApp(); addWorkout(Date.now() - 86400e3, [['Back Squat', [{ weight: 100, reps: 5 }]]]);
     await go('/progress?ex=' + ex('Back Squat').id); await flushAll(10);
     const txt = screen.UNSAFE_root.findAll((n: any) => n.type === 'Text' && typeof n.props.children === 'string').map((n: any) => n.props.children as string);
-    const i = txt.indexOf('Najlepszy trening (objętość)'), j = txt.findIndex((x: string) => /^e1RM \(/.test(x)); expect(i).toBeGreaterThan(-1); expect(j).toBeGreaterThan(i);
+    const i = txt.indexOf('Najlepszy trening (objętość)'), j = txt.findIndex((x: string, k: number) => k > i && x === 'e1RM'); expect(i).toBeGreaterThan(-1); expect(j).toBeGreaterThan(i);
   });
 });
 

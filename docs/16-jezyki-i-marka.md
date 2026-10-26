@@ -269,11 +269,11 @@ język telefonu (np. zh-Hant na telefonie ja) — React Native nie przekazuje j�
 Treść krytyczna = zdanie medyczne („Aplikacja nie udziela porad medycznych …”), zdanie i etykiety o asekuracji (M1-015) oraz zdania wskazówek techniki (`lib/cues/text`). Języków docelowych jest 34 (`LANGS` bez polskiego).
 Tabela poniżej jest generowana z danych (`UPDATE_CRITICAL=1 npx jest tests/audit-m1-049-critical-content.test.ts`); drift pada w `tests/audit-m1-049-critical-content.test.ts`.
 
-**Co kontrola potwierdza (automatycznie):** zdanie medyczne i cztery klucze asekuracji (czwarty — wariant „osoba asekurująca”, M1-031, 23.10.2026; drugi przegląd 31 języków wykonany 23.10.2026 przez Claude — rola tłumacz, bez zmian: `docs/lokalizacja/przeglad-m1-031-045-2026-10-23.md`) są w każdym z 34 języków i różnią się od tekstu źródłowego (nie jest to przeciek polskiego ani zapasowego angielskiego); komplet zdań wskazówek jest w każdym języku
+**Co kontrola potwierdza (automatycznie):** zdanie medyczne i pięć kluczy asekuracji (czwarty — wariant „osoba asekurująca”, M1-031, 23.10.2026; drugi przegląd 31 języków wykonany 23.10.2026 przez Claude — rola tłumacz, bez zmian: `docs/lokalizacja/przeglad-m1-031-045-2026-10-23.md`; piąty — hantle nad głową lub twarzą, M1-031 cz. 2, DEC-08: własne tłumaczenie agenta w 31 słownikach, **do przeglądu tłumacza**) są w każdym z 34 języków i różnią się od tekstu źródłowego (nie jest to przeciek polskiego ani zapasowego angielskiego); komplet zdań wskazówek jest w każdym języku
 (warianty es-419 i pt-BR to nakładki na es i pt — liczone po złożeniu). Kontrola **nie ocenia poprawności** tłumaczenia.
 
 <!-- gen:krytyczne -->
-| kod | zdanie medyczne | asekuracja (4 klucze) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd wskazówek (native speaker) |
+| kod | zdanie medyczne | asekuracja (5 kluczy) | wskazówki techniki (zdania) | recenzja drugim agentem po tłumaczeniu | drugi przegląd wskazówek (native speaker) |
 |---|---|---|---|---|---|
 | en | tak | tak | 306/306 | brak zapisu | niewykonany |
 | cs | tak | tak | 306/306 | tak (05.10.2026) | niewykonany |
@@ -323,7 +323,7 @@ Ryzyko i warunek zamknięcia: R-010 w `docs/40-lekcje.md` (blokuje wydanie w App
 Drugi przegląd treści krytycznej (R-010) robi Claude przez Message Batches, z kredytów API właściciela. Przegląd **niczego nie zmienia** w słownikach — daje raport do przejrzenia;
 poprawki nanosi człowiek albo agent (rola tłumacz), a treść merytoryczną (zdanie asekuracji) sprawdza badacz.
 
-*Co jest przeglądane (jedno żądanie na język, 34 języki w tym `en`; `es-419` i `pt-BR` po złożeniu z nakładką):* (a) zdanie medyczne i cztery klucze asekuracji; (b) wszystkie zdania wskazówek techniki
+*Co jest przeglądane (jedno żądanie na język, 34 języki w tym `en`; `es-419` i `pt-BR` po złożeniu z nakładką):* (a) zdanie medyczne i pięć kluczy asekuracji; (b) wszystkie zdania wskazówek techniki
 (`lib/cues/text`, 306 na język); (c) klucze dodane lub zmienione w `lib/locales/_source.json` od commitu `8273448` (`--od`, tryb różnicy: dziś 32 klucze). Razem 342 zdania na język. Do modelu idą polskie źródło, angielski
 i tłumaczenie oraz rejestr języka z docs/16 (np. fr „vous”, tr „siz”); model ma ocenić znaczenie, złagodzenie lub wzmocnienie twierdzeń medycznych i bezpieczeństwa, formę grzecznościową, naturalność, zmienne `{…}` i liczbę mnogą.
 Osobno, bez API, skrypt sprawdza zgodność zmiennych `{…}` i brak tłumaczenia (kontrola lokalna).
@@ -355,6 +355,12 @@ Batch `msgbatch_01HsrjDsBkKt9AEzypNeYU3Y` (Opus 5.5, 34 języki, 342 zdania na j
 - **Otwarte — decyzja właściciela (rejestr wskazówek techniki):** w 13 językach (bg, cs, el, hr, hu, lt, lv, pt, ro, sk, sl, sr, uk) wskazówki techniki mają formę „ty”, a rejestr w tej sekcji to „formalny jak w iOS”. Zmiany nie wprowadzono (decyzja produktowa: ujednolicić całość do „vy/Vi” albo uznać „ty” we wskazówkach za świadomy styl). Liczba zdań wskazówek w formie „ty” według przeglądu: bg 236, cs 236, el 240, hr 239, hu 241, lt 236, lv 224, pt 223, ro 230, sk 235, sl 233, sr 231, uk 232 (razem ok. 3 000); dodatkowo ok. 30 zdań interfejsu (np. „Dane w telefonie nie zostały zmienione — możesz je wysłać jako plik”, opis języka w Ustawieniach iOS, „Zacznij {days} dni za darmo”). Zdanie medyczne ma już formę formalną we wszystkich 13.
 - Do sprawdzenia przez native speakera (nie rozstrzygane tu): el „Γνωστοποιήσεις” vs „Ειδοποιήσεις” (spójnie z resztą aplikacji, Apple może używać drugiego), ms „Di iPhone Saya” vs „Pada iPhone Saya”, fi „Omalla iPhonella”, tr „yastıklı silindirler” i „emperyal”, hr/lv/lt etykiety spotting, hu „Biztonság és segítő”, uk/sr opisy sprzętu.
 - R-010: przegląd modelem wykonany i poprawki naniesione; wpis „drugi przegląd” w tabeli i w docs/40 nie zmienia się (nadal przegląd przez native speakerów jest otwarty).
+
+### Słownik terminów treningowych (decyzja właściciela 25.10.2026)
+
+Jedno źródło słownictwa dziedzinowego: `docs/lokalizacja/slownik-terminow.json` (opis: `docs/lokalizacja/slownik-terminow.md`) — termin zalecany (potoczny termin siłowni), terminy zakazane z powodem, pewność. Zasada nadrzędna: teksty mają być naturalne, jak mówi trener albo kolega na siłowni w danym języku. Pilnuje `tests/slownik-terminow.test.ts`; używają go przekład przez API oraz role `tlumacz` i `recenzent-lokalizacji`.
+
+*Otwarte (do native speakerów; nie zgadujemy):* lista wpisów z pewnością „niska” w `docs/lokalizacja/slownik-terminow.md` (sekcja „Do potwierdzenia przez native speakera”); przegląd native speakerów nadal niewykonany dla żadnego języka (R-010).
 
 ## Nazwa aplikacji (decyzja właściciela 05.10.2026)
 

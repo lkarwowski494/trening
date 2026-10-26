@@ -10,6 +10,7 @@ import { STORE_TIMING } from '@/lib/products';
 import { getState, saveCfg, finishedWorkouts, getPersistError } from '@/lib/store';
 import { workoutPRs, prCountOf } from '@/lib/stats';
 import { nextStartBlocked } from '@/lib/entitlement';
+import { fairRulesDue } from '@/lib/fairrules';
 import type { Workout } from '@/lib/seed';
 
 interface ReviewModule { isAvailableAsync(): Promise<boolean>; requestReview(): Promise<void> }
@@ -53,12 +54,12 @@ export function ideaLinkDue(w: Workout, now: number = Date.now()): boolean {
 }
 
 /**
- * Wejście z ekranu podsumowania: prośba o ocenę po krótkim opóźnieniu (karta rekordów zdąża się pokazać). Od M5 S1 (22.10.2026) ekran zakupu nie otwiera się
+ * Wejście z ekranu podsumowania (od 1.0 także okno „Uczciwe zasady” — lib/fairrules.ts, raz, tylko `free`): prośba o ocenę po krótkim opóźnieniu (karta rekordów zdąża się pokazać). Od M5 S1 (22.10.2026) ekran zakupu nie otwiera się
  * samoczynnie po pierwszym treningu (pokazuje się tylko przy starcie ponad limit i z Ustawień). Zwraca anulowanie opóźnionej prośby (wyjście z ekranu).
  */
-export function onSummaryShown(w: Workout, onIdeaLink?: () => void): () => void {
+export function onSummaryShown(w: Workout, onIdeaLink?: () => void, onFairRules?: () => void): () => void {
   if (!takeJustFinished(w.id)) return () => {};
   let off = false; let timer: ReturnType<typeof setTimeout> | null = null;
-  void Promise.resolve().then(() => { if (off) return; if (onIdeaLink && ideaLinkDue(w)) onIdeaLink(); timer = setTimeout(() => { void maybeRequestReview(w); }, STORE_TIMING.REVIEW_DELAY_MS); });
+  void Promise.resolve().then(() => { if (off) return; if (onFairRules && fairRulesDue(w)) onFairRules(); if (onIdeaLink && ideaLinkDue(w)) onIdeaLink(); timer = setTimeout(() => { void maybeRequestReview(w); }, STORE_TIMING.REVIEW_DELAY_MS); });
   return () => { off = true; if (timer) clearTimeout(timer); };
 }

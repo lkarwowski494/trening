@@ -1,4 +1,4 @@
-// Wskazówki techniki (etap 1, decyzja właściciela 08.10.2026 ok. 23:50): generuje docs/research/27-wskazowki-zrodla.md z lib/cues/data.json
+// Wskazówki techniki (etap 1, decyzja właściciela 08.10.2026 ok. 23:50): generuje docs/research/27-wskazowki-zrodla.md z data/zrodla/cues.json
 // i lib/cues/text/pl.json oraz sprawdza dane (każda wskazówka ≥ 2 źródła z różnych organizacji, istniejące id, 2–4 wskazówki…).
 // Dokument jest generowany z danych — nie przepisywać ręcznie (CLAUDE.md; wzór scripts/equipment/gen.mjs).
 // Użycie: node scripts/cues/gen.mjs  (zapis) | node scripts/cues/gen.mjs --check  (verify: błędne dane albo nieaktualny dokument → kod 1)
@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
-const DATA = join(root, 'lib/cues/data.json');
+const DATA = join(root, 'data/zrodla/cues.json');
 const PL = join(root, 'lib/cues/text/pl.json');
 const OUT = join(root, 'docs/research/27-wskazowki-zrodla.md');
 
@@ -79,7 +79,7 @@ export function render(data, pl) {
   const L = [];
   L.push('# 27 — Wskazówki techniki: źródła (generowane)');
   L.push('');
-  L.push('AUTOMATYCZNIE WYGENEROWANE przez `scripts/cues/gen.mjs` z `lib/cues/data.json` i `lib/cues/text/pl.json` — nie edytować ręcznie.');
+  L.push('AUTOMATYCZNIE WYGENEROWANE przez `scripts/cues/gen.mjs` z `data/zrodla/cues.json` i `lib/cues/text/pl.json` — nie edytować ręcznie.');
   L.push('Sprawdzanie: `node scripts/cues/gen.mjs --check` (część `npm run verify`).');
   L.push('');
   L.push('Decyzja właściciela: docs/18, 08.10.2026 (ok. 23:50) — wariant A etapami; etap 1 = własne wskazówki tekstowe dla ćwiczeń bazowych (research: docs/research/26).');

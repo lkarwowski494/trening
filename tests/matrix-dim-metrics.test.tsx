@@ -90,8 +90,8 @@ describe('METRICS × SET_KINDS × UNITS — pełna ścieżka serii: trening → 
     } else expect(store.progressionFor(ex, minWorkReps, prev.sets)).toBeNull();
 
     /* CSV (układ popularnych dzienników): rozgrzewka „W”, robocze numerowane; ciężar w jednostce z ustawień; typ serii w Notes */
-    const rows = parseCsv(buildCsv()); expect(rows[0]).toEqual(['Date', 'Workout Name', 'Duration', 'Exercise Name', 'Set Order', 'Weight', 'Reps', 'Distance', 'Seconds', 'Notes', 'Workout Notes', 'RPE']);
-    const body = rows.slice(1); expect(body).toHaveLength(4);
+    const rows = parseCsv(buildCsv()); expect(rows[0]).toEqual(['Date', 'Workout Name', 'Duration', 'Exercise Name', 'Set Order', 'Weight', 'Reps', 'Distance', 'Seconds', 'Notes', 'Workout Notes', 'RPE', ...(u === 'lb' ? ['Weight Unit', 'Distance Unit'] : [])]); /* 23.10.2026: przy lb dwie kolumny jednostek na końcu */
+    const body = rows.slice(1); expect(body).toHaveLength(4); if (u === 'lb') for (const row of body) expect(row.slice(12)).toEqual(['lb', 'm']);
     body.forEach((row, i) => { const k = KINDS_ORDER[i]; const l = loadDisp(r, u, k);
       expect([k, row[3], row[4], row[5], row[6], row[7], row[8], row[9]]).toEqual([k, ex.name, k === 'warmup' ? 'W' : k === 'drop' ? 'D' : k === 'failure' ? 'F' : String(i), String(W ? Number(l) || 0 : 0), String(R ? REPS_V[k] : 0), String(D ? DIST_V[k][0] : 0), String(!T ? 0 : D ? DIST_V[k][1] : TIME_V[k]), '']); }); /* LOG-14 (audyt 0.10): Set Order jak w popularnych dziennikach — W/D/F, numer tylko zwykłych serii; typ nie trafia do Notes */
 
@@ -218,7 +218,7 @@ describe('UNITS × METRICS na ekranie sesji w historii', () => {
     const volDisp = REPS.reduce((acc, r, i) => acc + (hasWeight(r.metric) && hasReps(r.metric) ? (['normal', 'failure', 'drop'] as SetKind[]).reduce((x, k) => x + multOf(exs[i]) * Math.max(0, Number(loadDisp(r, u, k)) || 0) * REPS_V[k], 0) : 0), 0);
     await renderApp({ saved: JSON.parse(JSON.stringify(S())), url: `/history/${w.id}` }); await flushAll(10);
     expect(screen.getAllByText(new RegExp(`objętość ${Math.round(volDisp)} ${u}$`)).length).toBe(1);
-    const cells = (() => { const out: string[] = []; const walk = (x: any) => { if (!x) return; if (typeof x === 'string') { out.push(x); return; } if (Array.isArray(x)) { x.forEach(walk); return; } if (x.props?.testID === 'week-tiles' || x.props?.testID === 'week-strip') return; /* kafelki dashboardu i pasek tygodnia na zakładce Trening (08.10.2026) — inny ekran; pasek ma numery dni, a w tygodniu z 1. dniem miesiąca „1” liczyłoby się jako oznaczenie serii (nocne 25–26.10.2026: padałoby od poniedziałku 26.10) */ walk(x.children); }; walk(screen.toJSON()); return out; })();
+    const cells = (() => { const out: string[] = []; const walk = (x: any) => { if (!x) return; if (typeof x === 'string') { out.push(x); return; } if (Array.isArray(x)) { x.forEach(walk); return; } if (x.props?.testID === 'week-tiles' || x.props?.testID === 'week-strip') return; /* kafelki dashboardu i pasek dni tygodnia na zakładce Trening (08.10.2026) — inny ekran; pasek ma „1” w tygodniu z 1. dniem miesiąca (L-031) */ walk(x.children); }; walk(screen.toJSON()); return out; })();
     for (const mark of ['W', '1', '2F', '2D']) expect([mark, cells.filter(c => c === mark).length]).toEqual([mark, REPS.length]);
     for (const [i, r] of REPS.entries()) { if (!hasWeight(r.metric)) continue;
       for (const k of KINDS_ORDER) { const v = loadDisp(r, u, k); const txt = fmtPl(Number(v) || 0); expect([exs[i].name, k, cells.includes(txt)]).toEqual([exs[i].name, k, true]); } }

@@ -285,7 +285,7 @@ describe('CSV — losowe stany (fast-check)', () => {
       raw.workouts = ws.map((w, wi) => ({ id: 'W' + wi, startedAt: T0 + wi * DAY, finishedAt: T0 + wi * DAY + 30 * 60e3, templateName: w.name, note: w.note, exercises: w.blocks.map((b, bi) => ({ id: `B${wi}_${bi}`, exerciseId: 'E' + b.ex, sets: b.sets.map((s, si) => ({ id: `S${wi}_${bi}_${si}`, ...(b.ex === 3 ? { addKg: s.weight, weight: '' } : { weight: s.weight }), reps: s.reps, done: s.done, kind: s.kind, warmup: s.kind === 'warmup', note: s.note, rpe: s.rpe })) })) }));
       store.replaceState(raw); const st = store.getState();
       const csvTxt = buildCsv(); const rows = parseCsvRfc(csvTxt);
-      expect(rows[0]).toEqual(['Date', 'Workout Name', 'Duration', 'Exercise Name', 'Set Order', 'Weight', 'Reps', 'Distance', 'Seconds', 'Notes', 'Workout Notes', 'RPE']);
+      expect(rows[0]).toEqual(['Date', 'Workout Name', 'Duration', 'Exercise Name', 'Set Order', 'Weight', 'Reps', 'Distance', 'Seconds', 'Notes', 'Workout Notes', 'RPE', ...(unit === 'lb' ? ['Weight Unit', 'Distance Unit'] : [])]); /* 23.10.2026: przy lb kolumny jednostek na końcu */
       const want: string[][] = []; const guard = (v: string) => /^[=+\-@\t\r]/.test(v) ? "'" + v : v;
       for (const w of [...st.workouts].sort((a, b) => a.startedAt - b.startedAt)) for (const e of w.exercises) { let n = 0; const ex = st.exercises.find(x => x.id === e.exerciseId)!; for (const s of e.sets) {
         const W = s.kind === 'warmup'; const mark = W ? 'W' : s.kind === 'drop' ? 'D' : s.kind === 'failure' ? 'F' : ''; if (!mark) n++; /* LOG-14 (audyt 0.10): D/F jak w popularnych dziennikach, numer tylko zwykłych serii */ const kg = ex.equipment === 'masa ciała' ? Number(s.addKg || 0) : Number(s.weight || 0);
@@ -293,8 +293,8 @@ describe('CSV — losowe stany (fast-check)', () => {
         const notes = [s.note].filter(Boolean).join('; '); /* LOG-14: typ serii w Set Order, nie w Notes */
         want.push([guard(w.templateName || t('Trening')), '30m', guard(ex.name), mark || String(n), String(shown + 0), String(s.reps || 0), '0', '0', guard(notes), guard(w.note), s.rpe === '' ? '' : String(s.rpe)]); } }
       expect(rows.length - 1).toBe(st.workouts.reduce((a, w) => a + w.exercises.reduce((b, e) => b + e.sets.filter(x => x.done).length, 0), 0));
-      expect(rows.slice(1).every(r => r.length === 12 && /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(r[0]))).toBe(true);
-      expect(rows.slice(1).map(r => r.slice(1))).toEqual(want);
+      expect(rows.slice(1).every(r => r.length === (unit === 'lb' ? 14 : 12) && /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(r[0]))).toBe(true);
+      expect(rows.slice(1).map(r => r.slice(1, 12))).toEqual(want); if (unit === 'lb') for (const r of rows.slice(1)) expect(r.slice(12)).toEqual(['lb', 'm']);
       (FileSystem.writeAsStringAsync as jest.Mock).mockClear(); await exportCsv();
       const written = (FileSystem.writeAsStringAsync as jest.Mock).mock.calls[0][1] as string; expect(written.startsWith(CSV_BOM)).toBe(true); expect(written.slice(1)).toBe(csvTxt);
     }), { numRuns: Number(process.env.CSV_RUNS || 150), seed: SEED });

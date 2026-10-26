@@ -202,7 +202,7 @@ describe('drabina migracji 1..19 → 19', () => {
     for (const e of store.getState().exercises.filter(x => ['ex-squat', 'ex-goblet', 'ex-pull', 'ex-plank', 'ex-custom', 'ex-old'].includes(x.id))) { stats.sessionsFor(e); stats.recordsFor(e); }
     expect(stats.recordsFor(store.exById('ex-squat')!).maxLoad).toBe(102.5);
     const csv = parseCsvRfc(buildCsv()); expect(csv.length).toBe(1 + 8); /* 8 odhaczonych serii w historii (bez nieodhaczonej i bez treningu w toku); notatka z \n w cudzysłowie */
-    expect(csv.every(r => r.length === 12)).toBe(true); expect(csv.filter(r => r[3] === 'Wyciskanie, "moje" 💪').map(r => r[9])).toEqual([NOTE]);
+    expect(csv.every(r => r.length === (store.getState().settings.unit === 'lb' ? 14 : 12))).toBe(true); expect(csv.filter(r => r[3] === 'Wyciskanie, "moje" 💪').map(r => r[9])).toEqual([NOTE]);
   });
 });
 

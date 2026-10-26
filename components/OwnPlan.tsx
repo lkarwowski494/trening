@@ -40,7 +40,7 @@ export const takePlanNotice = (): string | null => { const n = planNotice; planN
 /** Po zapisie planu, który stał się aktywny bez pytania: do Planowania ze zdaniem potwierdzenia (UI2-06: bez drugiego ekranu planu na stosie). */
 export function useActivatedReturn() { const toPlan = usePlanReturn(); return (name: string) => { planNotice = name; toPlan(); }; }
 
-export function OwnPlan() {
+export function OwnPlan({ header }: { header?: React.ReactNode }) {
   const rev = useTick(); const router = useRouter(); const toPlan = usePlanReturn(); const afterActivated = useActivatedReturn(); const all = ownTemplates();
   const [sel, setSel] = useState<string[]>(() => (all.length <= OWN_MAX ? all.map(x => x.id) : []));
   /* wybór dni (09.10.2026 B): na starcie propozycja rozkładu dla 3 dni (albo najbliższej dozwolonej liczby — ownProposal) */
@@ -73,11 +73,12 @@ export function OwnPlan() {
   const warn = r ? ownWarnings(r) : [];
   return (
     <ScrollView contentContainerStyle={{ paddingVertical: 10, paddingBottom: 60 }}>
+      {header}
       <InfoTip id="own-intro" label={t('Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.')} info={t('Plan tygodnia z Twoich szablonów według tych samych reguł co generator — przejrzysz go przed zapisem. Szablony zostają bez zmian.')} style={{ marginBottom: 8 }}>
         <Muted style={{ ...font('footnote') }}>{t('Plan z Twoich szablonów — do przejrzenia. Szablony bez zmian.')}</Muted>
       </InfoTip>
       {!all.length ? <View style={{ gap: 8 }}>
-        <Txt style={{ ...font('callout') }}>{t('Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.')}</Txt>
+        <Txt style={{ ...font('callout') }}>{t('Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.')}</Txt>
         <Btn nav small title={t('+ Nowy szablon')} onPress={() => { const x = newTemplate(); router.push(`/template/${x.id}?edit=1&new=1`); }} style={{ alignSelf: 'flex-start' }} />
       </View> : <>
         <Field label={t('Szablony')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
@@ -92,12 +93,12 @@ export function OwnPlan() {
           <Txt accessibilityRole="header" style={{ ...font('callout'), marginBottom: 6 }}>{r.days.map((id, i) => (id ? `${wd(i)} ${nameOf(id)}` : null)).filter(Boolean).join(' · ')}</Txt>
           {r.seq.length > chosen.length ? <Muted style={{ ...font('footnote'), marginBottom: 6 }}>{t('Dni: {n}, szablony: {k} — szablony powtarzają się po kolei: {seq}. Co tydzień od początku.', { n: r.sessions, k: chosen.length, seq: r.seq.map(nameOf).join(' → ') })}</Muted> : null}
           {ownCounts(r).map(c => <Muted key={c.id} style={{ ...font('footnote') }}>{t('{name}: {n}× w tygodniu', { name: nameOf(c.id), n: c.n })}</Muted>)}
-          <Muted style={{ ...font('footnote'), marginTop: 6 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii — uproszczenie): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, true) })}</Muted>
+          <Muted style={{ ...font('footnote'), marginTop: 6 }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, true) })}</Muted>
           {warn.map(w => <Txt key={w.kind} style={{ ...font('footnote'), marginTop: 6 }}>{w.text}</Txt>)}
-          <SectionTitle infoId="own-basis" info={[t('Uproszczenie: zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku (przeglądy badań, ACSM).') /* ten sam tekst co lista przesunięć w Kalendarzu (docs/research/23) */,
-            t('Każda główna partia co najmniej {n} dni w tygodniu (WHO 2020 — zalecenie dla zdrowia; ACSM 2026: częstotliwość wpływa na siłę, ale za mało dowodów, by stwierdzić zależność dawka–odpowiedź, a przy równej objętości różnica słabnie). Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h} — uproszczenie (metoda z metaanalizy Pelland i in. 2026). Podział na sesje (FBW, góra/dół) to konwencja — przy tej samej liczbie serii daje podobne efekty.', { n: MIN_DAYS, h: fmtNum(SECONDARY_SHARE, 1) }) /* ten sam tekst co generator (R1) */,
-            t('Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze — konwencja.'),
-          ].map(x => `• ${x}`)}>{t('Na czym to oparte')}</SectionTitle>
+          <SectionTitle infoId="own-basis" info={[t('Zwykle dzień przerwy między sesjami z tymi samymi głównymi partiami; dwa dni pod rząd przy tej samej liczbie serii w tygodniu też są w porządku.') /* ten sam tekst co lista przesunięć w Kalendarzu (docs/research/23) */,
+            t('Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.', { n: MIN_DAYS, h: fmtNum(SECONDARY_SHARE, 1) }) /* ten sam tekst co generator (R1) */,
+            t('Więcej dni niż szablonów: szablony po kolei (A, B, A…), jak w generatorze.'),
+          ].map(x => `• ${x}`)}>{t('Zasady planu')}</SectionTitle>
           <Btn title={t('Zapisz plan')} kind="primary" block onPress={save} style={{ marginTop: 14 }} />
         </>}
       </>}

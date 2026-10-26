@@ -3,14 +3,14 @@ import { View } from 'react-native';
 import { ScrollView } from '@/components/Scroll';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Screen, Field, Input, NumInput, Btn, Muted, Chip, SwitchRow, H1, Txt, useOnce, Missing } from '@/components/ui';
-import { InfoTip, InfoButton, InfoBox, useInfoOpen } from '@/components/InfoTip';
+import { InfoButton, InfoBox, useInfoOpen } from '@/components/InfoTip';
 import { DraftHeader, confirmDiscard } from '@/components/DraftHeader';
 import { Stack } from 'expo-router';
 import { DeleteButton } from '@/components/DeleteButton';
 import { getState, useTick, exById, deleteExercise, previousFor, save, setSummary, fmtDate, fmtSec, setEquipment, exerciseInHistory, usesBand, finishedWorkouts, wallTs, REST_MAX } from '@/lib/store';
 import { beginObjDraft, objDraft, objDirty, discardObjDraft, commitObjDraft, dropUnsavedNew } from '@/lib/draft';
 import type { Exercise } from '@/lib/seed';
-import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, REGION_LABEL, muscleLoadOf, musclesSourced, formerNamesOf, muscleConfidence, unmappedMuscleOf, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
+import { GROUPS, GROUP_TO_MUSCLE, METRICS, METRIC_LABEL, LOAD_MODE_LABEL, MUSCLES, REGION_LABEL, muscleLoadOf, formerNamesOf, unmappedMuscleOf, hasWeight, type Equipment, type LoadMode } from '@/lib/seed';
 import { BW_SHARE } from '@/lib/stats';
 import { t, exName, exNameLang, lang } from '@/lib/i18n';
 import { ExerciseCues } from '@/components/ExerciseCues';
@@ -44,21 +44,14 @@ export default function ExerciseScreen() {
 /** Treść pytania przy usuwaniu ćwiczenia z biblioteki — ta sama dla gestu na liście i przycisku w podglądzie; liczona dopiero przy pytaniu (PERF-01). */
 export const exerciseDeleteMessage = (e: Exercise) => [exerciseInHistory(e.id) ? t('Zniknie z list i szablonów; historia, wykresy i eksport zostaną.') : t('Zniknie z list i szablonów.'), getState().active?.exercises.some(x => x.exerciseId === e.id) ? t('W trwającym treningu zostanie oznaczone jako usunięte.') : ''].filter(Boolean).join(' ');
 /** Opis zasad liczenia (masa ciała, e1RM, stoper, przerwa z szablonu) — ten sam w podglądzie i edycji. */
-const bwNote = () => [t('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.'), t('e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała — uproszczenie), pompki (ok. {p}% — badania z platformą siłową).', { p: Math.round(BW_SHARE['Push Up'] * 100) }), t('Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')].join(' ');
+const bwNote = () => [t('Masa ciała: „±” to dociążenie (plus) albo asysta, np. maszyny (minus); guma to osobne pole z poziomem. Rekord to suma powtórzeń bez asysty, a objętość liczy się tylko z dociążenia.'), t('e1RM w ćwiczeniach z masą ciała liczy się tylko z masą ciała wpisaną w Postępach i tylko tam, gdzie wiadomo, jaką jej część podnosisz: podciąganie (cała), pompki (ok. {p}%).', { p: Math.round(BW_SHARE['Push Up'] * 100) }), t('Ćwiczenia na czas mają w treningu stoper — po upływie celu seria odhacza się sama. Przerwa ustawiona w pozycji szablonu ma pierwszeństwo; puste pole przerwy w szablonie oznacza przerwę z tego ćwiczenia.')].join(' ');
 /** Mięsień docelowy spoza mapy partii (lib/catalog.generated UNMAPPED_MUSCLES) — nazwa w UI. */
 const UNMAPPED_LABEL: Record<string, () => string> = { rotator_cuff: () => t('stożek rotatorów'), serratus_anterior: () => t('zębaty przedni'), tibialis_anterior: () => t('piszczelowy przedni'), hip_flexors: () => t('zginacze biodra') };
-/** E4 (audyt 0.10, MER-10) + research biblioteki (fix-catalog, 09.10.2026): dopisek o pewności przypisania partii — brak dopisku przy źródłach
- * „mocne”/„umiarkowane” (musclesSourced), „jedno źródło” albo „uproszczenie” wg seed.muscleConfidence; linijka o mięśniu docelowym spoza mapy. */
-function MuscleNote({ e, style }: { e: Exercise; style?: object }) {
-  const conf = muscleConfidence(e) ?? ''; const um = unmappedMuscleOf(e);
-  const note = musclesSourced(e) ? '' : conf.startsWith('ustalone')
-    ? t('Przypisanie partii mięśniowych — ustalone na podstawie przeglądu badań dla tego ćwiczenia. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')
-    : conf.startsWith('jedno źródło')
-    ? t('Przypisanie partii mięśniowych — jedno źródło, nie ustalone. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.')
-    : t('Przypisanie partii mięśniowych — uproszczenie, nie wynik badań. Od niego zależą serie na partię, mapa mięśni, generator i propozycje w kalendarzu.');
-  const short = conf.startsWith('ustalone') ? t('Przypisanie partii: przegląd badań.') : conf.startsWith('jedno źródło') ? t('Przypisanie partii: jedno źródło.') : t('Przypisanie partii: uproszczenie.');
-  return <>{note ? <InfoTip id="muscle-note" label={short} info={note} style={[{ marginBottom: 10 }, style]}><Muted style={{ ...font('footnote') }}>{short}</Muted></InfoTip> : null}
-    {um ? <Muted style={{ ...font('footnote'), marginBottom: 10 }}>{t('Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.', { m: UNMAPPED_LABEL[um]?.() ?? um })}</Muted> : null}</>;
+/** Linijka o mięśniu docelowym spoza mapy partii (lib/catalog.generated UNMAPPED_MUSCLES). Oznaczeń pewności przypisania partii („wstępne”, „potwierdzone”, „jedno źródło”,
+ * „uproszczenie”) w interfejsie nie ma (decyzja właściciela 23.10.2026); pewność zostaje w katalogu (muscleConfidence), rejestrze twierdzeń i na ekranie „Źródła wiedzy”. */
+function MuscleNote({ e }: { e: Exercise }) {
+  const um = unmappedMuscleOf(e);
+  return <>{um ? <Muted style={{ ...font('footnote'), marginBottom: 10 }}>{t('Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.', { m: UNMAPPED_LABEL[um]?.() ?? um })}</Muted> : null}</>;
 }
 /** Wiersz podglądu: etykieta i wartość, czytane razem przez VoiceOver. */
 function Row({ label, value, info, infoId }: { label: string; value: string; /** ⓘ przy etykiecie (docs/32 wzorzec 27) */ info?: string; infoId?: string }) {
@@ -85,7 +78,7 @@ function Preview({ e, cuesOpen, onEdit, onOpen, onProgress, onClose }: { e: Exer
       <Row label={t('Przerwa po rozgrzewce')} value={e.restWarmupSec != null ? fmtSec(e.restWarmupSec) : t('jak robocza')} />
       <Row label={t('Partie główne (1 seria)')} value={mus(e.muscles)} />
       <Row label={t('Partie pomocnicze (0,5 serii)')} value={mus(e.secondaryMuscles)} />
-      <MuscleNote e={e} style={{ marginTop: -4 }} />
+      <MuscleNote e={e} />
       {muscleLoadOf(e).length ? <Field label={t('Obciążenie partii (z katalogu)')}><Muted style={{ ...font('footnote') }} accessibilityLabel={muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])}: ${w === 1 ? t('główna') : w === 0.5 ? t('pomocnicza') : t('stabilizacja')}`).join(', ')}>{muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])} ${w === 1 ? '●●●' : w === 0.5 ? '●●' : '●'}`).join(' · ')}</Muted><Muted style={{ ...font('footnote'), marginTop: 2 }}>{t('●●● główna · ●● pomocnicza · ● stabilizacja')}</Muted></Field> : null}
       <Row label={t('Asysta gumą')} value={e.bandAssistable ? t('tak — przy serii wybierasz gumę') : t('nie')} />
       {!e.bandAssistable && usesBand(e) ? <Muted style={{ ...font('footnote'), marginTop: -6, marginBottom: 10 }}>{t('Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.')}</Muted> : null}
@@ -120,7 +113,7 @@ function EditForm({ e }: { e: Exercise }) {
       </View>
       <Field label={t('Partie główne (1 seria)')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{MUSCLES.map(mu => <Chip toggle key={mu} label={t(mu)} on={(e.muscles ?? []).includes(mu)} onPress={() => { const has = (e.muscles ?? []).includes(mu); e.muscles = has ? e.muscles.filter(x => x !== mu) : [...(e.muscles ?? []), mu]; if (!has) e.secondaryMuscles = (e.secondaryMuscles ?? []).filter(x => x !== mu); save(e); }} />)}</View></Field>
       <Field label={t('Partie pomocnicze (0,5 serii)')}><View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>{MUSCLES.map(mu => <Chip toggle key={mu} label={t(mu)} on={(e.secondaryMuscles ?? []).includes(mu)} onPress={() => { const has = (e.secondaryMuscles ?? []).includes(mu); e.secondaryMuscles = has ? e.secondaryMuscles.filter(x => x !== mu) : [...(e.secondaryMuscles ?? []), mu]; if (!has) e.muscles = (e.muscles ?? []).filter(x => x !== mu); save(e); }} />)}</View></Field>
-      <MuscleNote e={e} style={{ marginTop: -6 }} />
+      <MuscleNote e={e} />
       {muscleLoadOf(e).length ? <Field label={t('Obciążenie partii (z katalogu)')}><Muted style={{ ...font('footnote') }} accessibilityLabel={muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])}: ${w === 1 ? t('główna') : w === 0.5 ? t('pomocnicza') : t('stabilizacja')}`).join(', ')}>{muscleLoadOf(e).map(([r, w]) => `${t(REGION_LABEL[r])} ${w === 1 ? '●●●' : w === 0.5 ? '●●' : '●'}`).join(' · ')}</Muted><Muted style={{ ...font('footnote'), marginTop: 2 }}>{t('●●● główna · ●● pomocnicza · ● stabilizacja')}</Muted></Field> : null}
       <SwitchRow label={t('Asysta gumą')} detail={e.bandAssistable ? t('tak — przy serii wybierasz gumę') : t('nie')} value={!!e.bandAssistable} onChange={v => { e.bandAssistable = v; save(e); }} />
       {!e.bandAssistable && usesBand(e) ? <Muted style={{ ...font('footnote'), marginTop: 4 }}>{t('Guma jako opór: przy serii wybierasz gumę (poziom 1–7), rekordy liczą serie z gumą.')}</Muted> : null /* przegląd 06.10: 34 ćwiczenia z oporem gumy */}

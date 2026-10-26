@@ -28,22 +28,23 @@ const SOURCE_NAMES = /\b(ACE|NASM|ExRx|Stronger by Science|Concept ?2|acefitness
 describe('MER2-07: podpis wskazówek bez nazw organizacji i marek', () => {
   beforeEach(async () => { await fresh(); });
   test('dane: każda organizacja źródeł ma rodzaj (organizacja szkoleniowa, serwis, producent, badanie); cueBasis — rodzaje w stałej kolejności, bez powtórzeń', () => {
-    for (const [id, o] of Object.entries(CUE_DATA.orgs)) expect([id, (CUE_BASIS_KINDS as readonly string[]).includes(o.kind)]).toEqual([id, true]);
+    for (const [id, b] of Object.entries(CUE_DATA.basis)) expect([id, b.every(k => (CUE_BASIS_KINDS as readonly string[]).includes(k))]).toEqual([id, true]);
     expect(cueBasis('Rowing Machine')).toEqual(['org', 'maker']);
     expect(cueBasis('Back Squat')).toEqual(['org', 'site', 'study']);
     expect(cueBasis('Sumo Deadlift')).toEqual(['site']);
     expect(cueBasis('xyz')).toEqual([]);
     for (const k of Object.keys(CUE_DATA.exercises)) { const b = cueBasis(k); expect(b.length).toBeGreaterThan(0); expect([...b].sort((x, y) => CUE_BASIS_KINDS.indexOf(x) - CUE_BASIS_KINDS.indexOf(y))).toEqual(b); }
   });
-  test('ekran: stopka opisuje rodzaje źródeł ogólnie (PL i EN), bez nazw; nadal „Własne sformułowania”', () => {
-    render(<ExerciseCues exercise={lib('Rowing Machine')} />);
-    fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
-    expect(screen.getByText('Na podstawie: biblioteki ćwiczeń organizacji szkoleniowych, materiały producenta sprzętu. Własne sformułowania.')).toBeTruthy();
-    render(<ExerciseCues exercise={lib('Back Squat')} />); fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
-    expect(screen.getByText('Na podstawie: biblioteki ćwiczeń organizacji szkoleniowych, specjalistyczne serwisy treningowe, badania naukowe. Własne sformułowania.')).toBeTruthy();
+  test('ekran: przy wskazówkach nie ma stopki ze źródłami (decyzja właściciela 23.10.2026 — źródła tylko w Ustawienia → Źródła wiedzy); zostaje zdanie o poradach medycznych', () => {
+    for (const k of ['Rowing Machine', 'Back Squat']) {
+      const { unmount } = render(<ExerciseCues exercise={lib(k)} />);
+      fireEvent.press(screen.getByRole('button', { name: 'Technika' }));
+      expect(screen.queryByText(/^Na podstawie/)).toBeNull(); expect(screen.queryByText(/Własne sformułowania/)).toBeNull();
+      expect(screen.getByText(/^Aplikacja nie udziela porad medycznych/)).toBeTruthy(); unmount();
+    }
     applyLang('en'); render(<ExerciseCues exercise={lib('Back Squat')} />);
     fireEvent.press(screen.getByRole('button', { name: 'Technique' }));
-    expect(screen.getByText('Based on: exercise libraries of fitness education organisations, specialist training websites, scientific studies. Our own wording.')).toBeTruthy();
+    expect(screen.queryByText(/^Based on/)).toBeNull(); expect(screen.queryByText(/Our own wording/)).toBeNull();
   });
   test('regresja: żaden tekst aplikacji (słownik EN, 24 słowniki, wskazówki 26 języków, podpis każdego ćwiczenia w każdym języku) nie zawiera nazw źródeł', () => {
     const bad: string[] = [];
@@ -88,9 +89,9 @@ describe('MER2-08: RIR > 5 = „lekko”', () => {
   test('Ustawienia: opis skali RIR mówi o zakresie 0–5 i „lekko” (z parametrów RIR_MAX, RPE_LIGHT) — PL i EN', async () => {
     scale('rpe'); await act(async () => { await store.flush(); });
     await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/more/settings' }); await flushAll(10);
-    await openInfo('effort-scale'); expect(appScreen.getByText('RIR wpisuje się w zakresie 0–5; więcej niż 5 powtórzeń w zapasie zapisuje się jako „lekko” (RPE 4), bo poniżej RPE 5 skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie (Helms i in. 2016).')).toBeTruthy();
+    await openInfo('effort-scale'); expect(appScreen.getByText('RIR wpisujesz w zakresie 0–5; więcej niż 5 powtórzeń w zapasie zapisze się jako „lekko” (RPE 4), bo poniżej RPE 5 skala opisuje wysiłek słowami, a nie powtórzeniami w zapasie.')).toBeTruthy();
     applyLang('en'); await renderApp({ saved: JSON.parse(JSON.stringify(saved())), url: '/more/settings', locale: 'en' }); await flushAll(10);
-    await openInfo('effort-scale'); expect(appScreen.getByText('Enter RIR from 0 to 5; more than 5 reps in reserve is saved as “light” (RPE 4), because below RPE 5 the scale describes effort in words, not reps in reserve (Helms et al. 2016).')).toBeTruthy();
+    await openInfo('effort-scale'); expect(appScreen.getByText('Enter RIR from 0 to 5; more than 5 reps in reserve is saved as “light” (RPE 4), because below RPE 5 the scale describes effort in words, not reps in reserve.')).toBeTruthy();
   });
 });
 
@@ -142,47 +143,6 @@ describe('MER2-02: najcięższy ciężar w miejscu przy celu „Siła”', () =>
 });
 
 /*
- * MER2-04: wskazania źródeł we wskazówkach (przeczytane strony, 09.10.2026): reguła docs/research/27 „gdzie źródła się różnią — przedział”.
- *  - OHP (sztanga): ACE #71 „about shoulder-width”, ExRx „slightly wider” → „na szerokość barków lub trochę szerzej”; stopy: ACE #71 nic,
- *    ACE #43 (siedząc) „press the feet into the floor”, ExRx „shoulder width or one foot in front” → bez szerokości.
- *  - Kettlebell Swing: ACE #391 „shoulder-width”, ExRx „slightly wider” → przedział. RDL: chwyt NASM „slightly wider”, ExRx „shoulder width to wide”.
- *  - Leg Press: szerokość stóp tylko NASM → zamiast niej kąt w kolanach (~90°: ACE #154 i NASM).
- *  - Face Pull: ACE #336 to High Row (inne ćwiczenie) — odwołanie oznaczone „analogia” i NIE liczy się do ≥ 2 źródeł (gen.mjs); „łokcie za linią
- *    pleców” (tylko ExRx) i „klatka uniesiona” (tylko High Row) zastąpione częścią wspólną NASM i ExRx.
- */
-describe('MER2-04: wskazania źródeł wskazówek', () => {
-  const { execFileSync } = require('child_process') as typeof import('child_process');
-  const { cueText } = require('@/lib/cues') as typeof import('@/lib/cues');
-  const refs = (ex: string) => Object.values(CUE_DATA.exercises[ex]).flat() as unknown as { c: string; s: string[][] }[];
-  const validate = (data: unknown): string[] => JSON.parse(execFileSync('node', ['--input-type=module', '-e',
-    `import { validate } from ${JSON.stringify(path.join(root, 'scripts/cues/gen.mjs'))}; import { readFileSync } from 'node:fs';
-     const pl = JSON.parse(readFileSync(${JSON.stringify(path.join(root, 'lib/cues/text/pl.json'))}, 'utf8')); let d = ''; process.stdin.on('data', c => d += c);
-     process.stdin.on('end', () => process.stdout.write(JSON.stringify(validate(JSON.parse(d), pl))));`], { input: JSON.stringify(data) }).toString());
-  test('rozstaw jako przedział: OHP (sztanga), Kettlebell Swing, RDL — „na szerokość barków lub trochę szerzej”; stopy w OHP i Leg Press bez szerokości', () => {
-    expect(cueText('ohp.bbSetup', 'pl')).toContain('chwyt na szerokość barków lub trochę szerzej');
-    expect(cueText('kb.setup', 'pl')).toContain('stopy na szerokość barków lub trochę szerzej');
-    expect(cueText('rdl.setup', 'pl')).toContain('chwyt na szerokość barków lub trochę szerzej');
-    expect(cueText('ohp.feet', 'pl')).not.toMatch(/szeroko/);
-    expect(cueText('lp.setup', 'pl')).not.toMatch(/szeroko/);
-    expect(cueText('ohp.bbSetup', 'en')).toContain('shoulder-width or a little wider');
-  });
-  test('Face Pull: High Row (ACE #336) oznaczone „analogia”; zdania bez twierdzeń jednego źródła; każde zdanie ma ≥ 2 organizacje bez analogii', () => {
-    const fp = refs('Face Pull');
-    for (const r of fp) for (const ref of r.s) if (ref[0] === 'ace-336') expect([r.c, ref[2]]).toEqual([r.c, 'analogia']);
-    for (const r of fp) expect([r.c, new Set(r.s.filter(x => x[2] !== 'analogia').map(x => CUE_DATA.sources[x[0]].org)).size >= 2]).toEqual([r.c, true]);
-    expect(cueText('fp.elbowsBack', 'pl')).not.toMatch(/za linią pleców/); expect(cueText('fp.chest', 'pl')).not.toMatch(/Klatka uniesiona/);
-  });
-  test('gen.mjs: odwołanie „analogia” nie liczy się do ≥ 2 źródeł; nieznany znacznik — błąd; dokument pokazuje „analogia”', () => {
-    expect(validate(CUE_DATA)).toEqual([]);
-    const d = JSON.parse(JSON.stringify(CUE_DATA)); const r = d.exercises['Face Pull'].tips.find((x: { c: string }) => x.c === 'fp.chest');
-    r.s = [r.s.find((x: string[]) => x[0].startsWith('exrx')), ['ace-336', 'opis', 'analogia']];
-    expect(validate(d).join('\n')).toMatch(/Face Pull\.fp\.chest: 1 organizacja/);
-    r.s[1][2] = 'cokolwiek'; expect(validate(d).join('\n')).toMatch(/znacznik/);
-    expect(fs.readFileSync(path.join(root, 'docs/research/27-wskazowki-zrodla.md'), 'utf8')).toMatch(/High Row \(#336\)\]\([^)]*\) \(analogia — inne ćwiczenie; /);
-  });
-});
-
-/*
  * A11N-02 (wariant A — rekomendacja; docs/16: fr „vous”, tr „siz”): wskazówki techniki fr były w całości na „tu” (130/265 zdań), tr w 2. os. lp.
  * („çek”, „tut”, „indir”), a ok. 30 tekstów UI fr z fali 1–2 na „tu”. Teraz jeden rejestr w języku: UI i wskazówki.
  */
@@ -220,7 +180,7 @@ describe('A11N-02: rejestr grzecznościowy fr („vous”) i tr („siz”)', ()
   test('UI tr: zdania w formie „siz” — bez 2. os. lp. („eklersin”, „şablonun yok”, „… seç.”); etykiety przycisków bez zmian', () => {
     const tr = LOCALES.tr!;
     expect(Object.entries(tr).filter(([, v]) => trSen(v)).map(([k, v]) => `${k.slice(0, 40)}: ${v}`)).toEqual([]);
-    expect(tr['Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Wygeneruj szablony i plan”.']).toBe('Egzersiz içeren şablonunuz yok. Bir şablon oluşturun veya “Şablon ve plan oluştur” seçeneğini seçin.'); /* M3 p4 ZM-03: odesłanie do generatora (bez przełącznika trybu); M3 rola 09: brzmienie poprawione (sufiks „-ı” po cudzysłowie → „seçeneğini”) */
+    expect(tr['Nie masz szablonów z ćwiczeniami. Utwórz szablon albo wybierz „Nowe szablony i plan”.']).toBe('Egzersiz içeren şablonunuz yok. Bir şablon oluşturun veya “Yeni şablonlar ve plan” seçeneğini seçin.'); /* DEC-03 (c): przełącznik trybu przywrócony */
     for (const label of ['Egzersiz ekle', 'Planı kaydet', 'Sonuncuyu tekrarla', 'Haftayı deload olarak işaretle', 'Plandan başka, sonuncuyu tekrarla, şablondan veya boş.']) expect([label, trSen(label)]).toEqual([label, false]);
     for (const old of ['En az bir şablon seç.', 'setleri şablonlarda eklersin', 'Henüz şablonun yok.', 'Şablon boş — egzersiz ekle', 'Evde mi çalışıyorsun?']) expect([old, trSen(old)]).toEqual([old, true]);
   });
@@ -241,9 +201,8 @@ describe('A11N-03: fr — spacja nierozdzielająca przed ; : ! ? » i po «', ()
     expect(Object.entries(LOCALES.fr!).filter(([, v]) => BAD.test(v)).map(([k]) => k.slice(0, 50))).toEqual([]);
     expect(Object.entries(cueDict('fr')).filter(([, v]) => BAD.test(v)).map(([k]) => k)).toEqual([]);
   });
-  test('ekran: stopka „Technika” i wskazówka po francusku mają NBSP („D’après\\u00a0:”, „…\\u00a0;”)', () => {
+  test('ekran: wskazówka po francusku ma NBSP („…\\u00a0;”)', () => {
     applyLang('fr'); render(<ExerciseCues exercise={lib('Bird Dog')} />); fireEvent.press(screen.getByRole('button', { name: t('Technika') }));
-    expect(screen.getByText(/^D’après\u00a0: /, { normalizer: (x: string) => x } /* domyślny normalizator zamienia NBSP na spację */)).toBeTruthy();
     expect(screen.getByText(`• ${cueDict('fr')['bd.setup']}`, { normalizer: (x: string) => x }).props.children).toMatch(/pattes\u00a0: mains/);
   });
   test('bramka działa', () => { expect(BAD.test('À quatre pattes : mains')).toBe(true); expect(BAD.test('À quatre pattes\u00a0: mains')).toBe(false); expect(BAD.test('« Afficher\u00a0»')).toBe(true); });

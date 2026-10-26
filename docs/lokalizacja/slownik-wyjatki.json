@@ -1,0 +1,33 @@
+{
+ "_opis": "Wyjątki od strażnika słownika terminów (tests/slownik-terminow.test.ts): dokładny tekst polski + pojęcie + języki, z powodem. Martwy wyjątek (tekst usunięty ze źródła) zatrzymuje test.",
+ "wyjatki": [
+  {
+   "pl": "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.",
+   "pojecie": "przerwa",
+   "jezyki": [
+    "hu",
+    "hr",
+    "sr",
+    "pt",
+    "pt-BR",
+    "fr",
+    "nl",
+    "id",
+    "ms"
+   ],
+   "powod": "Jedno zdanie opisuje naraz pauzę treningu (wstrzymany zegar) i przerwę między seriami; „pauza” w tym zdaniu jest poprawnym słowem na pauzę treningu, a przerwa jest oddana osobnym słowem."
+  },
+  {
+   "pl": "Zegar treningu stoi i pauza nie wlicza się do czasu trwania. Przerwa między seriami liczy dalej; odhaczenie serii wznawia trening.",
+   "pojecie": "pauza_treningu",
+   "jezyki": [
+    "cs",
+    "sk",
+    "ro",
+    "de",
+    "et"
+   ],
+   "powod": "To samo zdanie: „pauza” to wstrzymanie zegara, a przerwa między seriami ma osobne słowo; wzorzec zakazu pauzy dotyczy tylko zdań o samej przerwie."
+  }
+ ]
+}

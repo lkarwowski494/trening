@@ -16,16 +16,17 @@ jest.setTimeout(60000);
 afterEach(() => applyLang('pl'));
 const root = path.join(__dirname, '..');
 const read = (p: string) => fs.readFileSync(path.join(root, p), 'utf8');
-const CONV = 'Krok zmiany (np. +2,5 kg) to konwencja, a nie wynik badań.';
+const CONV = 'Krok zmiany (np. +2,5 kg) to nasz wybór, a nie wynik badań.';
 
-describe('046: krok podpowiedzi to konwencja', () => {
-  test('Ustawienia: przy „Podpowiedź progresji” zdanie o konwencji (PL i EN)', async () => {
+describe('046: krok podpowiedzi to konwencja (od 23.10.2026 bez oznaczenia w interfejsie — decyzja właściciela, docs/18; konwencja zostaje w docs/10 i rejestrze twierdzeń)', () => {
+  test('Ustawienia: przy „Podpowiedź progresji” tylko opis działania, bez zdania o konwencji / „naszym wyborze” (PL i EN)', async () => {
     await renderApp(); await go('/more/settings'); await flushAll(10);
-    expect(screen.getByText(new RegExp(CONV.replace(/[()+]/g, '\\$&')))).toBeTruthy();
-    expect(EN[CONV]).toMatch(/convention/i);
+    expect(screen.getByText('↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń')).toBeTruthy();
+    expect(screen.queryByText(/Krok zmiany|nasz wybór/)).toBeNull();
+    expect(EN[CONV]).toBeUndefined();
   });
-  test('zdanie jest w słownikach wszystkich języków (do przeglądu tłumacza)', () => {
-    for (const [l, d] of Object.entries(LOCALES)) if (l !== 'es-419' && l !== 'pt-BR') expect([l, typeof (d as Record<string, string>)[CONV]]).toEqual([l, 'string']);
+  test('zdanie usunięte ze słowników wszystkich języków', () => {
+    for (const [l, d] of Object.entries(LOCALES)) expect([l, (d as Record<string, string>)[CONV]]).toEqual([l, undefined]);
   });
   test('docs/10 pkt 4.4: ACSM 2026 z adresem i datą odczytu; nie ma progu 2–10% przypisanego ACSM 2009', () => {
     const d = read('docs/10-miejsca-i-sprzet.md'); const i = d.indexOf('4. **Podpowiedź progresji'); const sec = d.slice(i, d.indexOf('\n\n', i) > i ? d.indexOf('\n## ', i) : undefined);
@@ -35,7 +36,7 @@ describe('046: krok podpowiedzi to konwencja', () => {
 
 describe('047: brzmienie zgodne ze źródłem', () => {
   test('zdanie R1 (generator i własny plan): bez „siła rośnie przy”; mówi o braku dowodu dawka–odpowiedź', () => {
-    for (const f of ['app/generator.tsx', 'components/OwnPlan.tsx']) { const s = read(f); expect(s).not.toMatch(/siła rośnie przy/); expect(s).toMatch(/za mało dowodów, by stwierdzić zależność dawka–odpowiedź/); }
+    for (const f of ['app/generator.tsx', 'components/OwnPlan.tsx']) { const s = read(f); expect(s).not.toMatch(/siła rośnie przy/); expect(s).toMatch(/więcej dni nie musi dawać proporcjonalnie więcej/); }
     expect(Object.keys(EN).some(k => /siła rośnie przy/.test(k))).toBe(false);
   });
   test('opis celu „Siła” i ostrzeżenie loadcap podają granicę z HEAVY_PCT (jedna stała, bez liczby wpisanej obok)', () => {

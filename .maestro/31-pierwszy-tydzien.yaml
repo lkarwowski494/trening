@@ -218,7 +218,7 @@ name: Pierwszy tydzień nowego użytkownika
 - takeScreenshot: 91-rekordy-cwiczenia
 - assertVisible: "Max weight"
 - assertVisible: "Best session \\(volume\\)"
-- assertVisible: "e1RM \\(Epley\\)"
+- assertVisible: "e1RM"
 # --- Plan po pierwszym tygodniu: plan z generatora wciąż obowiązuje (Plan → Planowanie) ---
 - tapOn: "Plan, tab.*"
 - extendedWaitUntil: { visible: "Planning", timeout: 30000 }

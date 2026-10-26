@@ -47,6 +47,8 @@ Rozmowa 05.10.2026, rano: „Chciałbym móc opublikować to w Apple Store” i 
 
 ## Wzrost i promocja — ustalenia (właściciel 06.10.2026)
 
+- **Przekaz i reguły (23.10.2026, DEC-07 K5/K6):** przekaz startowy „szybki zapis serii, także z zegarka; dane tylko na telefonie; bez konta” (zastępuje hasło z 13.10.2026); reguły uczciwej promocji (ujawnienie autorstwa, bez próśb o oceny do znajomych, zgoda na e-maile do klubów, zakaz promocji na forach) — `docs/wzrost.md` pkt 6.
+
 - **Cel:** powolne zdobywanie użytkowników, którzy zostają na stałe — bez ostrej, szybkiej promocji. „100 pobrań miesięcznie byłoby super.”
 - **Realistyczny punkt wyjścia (ocena agenta, nie dane):** bez promocji — rzędu kilkudziesięciu pobrań w pierwszym miesiącu, potem od kilku do kilkudziesięciu
   miesięcznie; kategoria „dziennik treningów” zatłoczona (wiele popularnych aplikacji). Liczby do zweryfikowania po premierze (App Store Connect → Analityka).
@@ -430,7 +432,7 @@ Projekt do przejrzenia; nic nie wysłano do App Store Connect. Liczby znaków po
 
 ### Do potwierdzenia przez właściciela
 
-1. **Rozstrzygnięte 21.10.2026 (właściciel, przekazane przez koordynatora; docs/18):** opis bez list kwot, plan miesięczny porównany z ceną espresso w barze, przypis: dane MIMIT (opracowanie C.r.c. i Assoutenti, sierpień 2026), źródło: docs/research/espresso-mimit-2026-10.md. Było: **Cena w opisie i tekście promocyjnym** (blok cenowy, „pierwszy miesiąc za darmo”): wstawiać dopiero z działającym zakupem; czy podawać kwoty w opisie (zmieniają się w App Store Connect bez nowej wersji, w innych krajach inne), czy tylko „subskrypcja lub dostęp dożywotni” — Apple (3.1.2) wymaga jasnych warunków odnawiania.
+1. **Rozstrzygnięte 21.10.2026 (właściciel, przekazane przez koordynatora; docs/18):** opis bez list kwot, plan miesięczny porównany z ceną espresso w barze, przypis z przedziałem cen. **Zmiana 25.10.2026 (właściciel, „całkiem anonimowo”, docs/18): przypis w opisie sklepu i na stronie `site/espresso.html` podaje tylko średnią cenę (przedział 1,06–1,51 €) bez wskazania źródła (usunięto MIMIT, C.r.c., Assoutenti, Teleborsa z tekstów publicznych we wszystkich lokalizacjach); źródło zostaje wyłącznie w docs/research/espresso-mimit-2026-10.md.** Było: **Cena w opisie i tekście promocyjnym** (blok cenowy, „pierwszy miesiąc za darmo”): wstawiać dopiero z działającym zakupem; czy podawać kwoty w opisie (zmieniają się w App Store Connect bez nowej wersji, w innych krajach inne), czy tylko „subskrypcja lub dostęp dożywotni” — Apple (3.1.2) wymaga jasnych warunków odnawiania.
 2. **Rozstrzygnięte 21.10.2026 — bez kwot (pkt 1).** Było: **Waluty w opisie:** EN podaje 0,99/6,99/14,99 w USD/EUR/GBP (opis jest jeden dla wszystkich krajów angielskiego) — czy tak, czy bez kwot.
 3. **Family Sharing:** decyzja TAK (11.10.2026), opis ją wspomina; otwarte w docs/15: czy włączenie jest nieodwracalne — sprawdzić w App Store Connect przed wysyłką.
 4. **Zastąpione 21.10.2026 (pkt 1): porównanie planu miesięczny ↔ espresso w barze z przypisem źródła (docs/research/espresso-mimit-2026-10.md).** Było: **Hasło „w cenie espresso lub taniej”** — pominięte; wymaga potwierdzenia cen espresso źródłami w każdym kraju (decyzja 09.10 pkt 3). **Zmiana (właściciel 11.10.2026, ok. 23:10): wyjątek od warunku źródeł — hasło wolno użyć bez potwierdzania cen espresso w każdym kraju** (hasło marketingowe, nie twierdzenie merytoryczne o treningu; ryzyko: w krajach z bardzo tanią kawą porównanie może być nieścisłe — Apple 2.3.1). Wstawić razem z blokiem cenowym, gdy zakup trafi do wydania.

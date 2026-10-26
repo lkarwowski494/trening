@@ -57,13 +57,13 @@ describe('workflowy na publicznym repozytorium', () => {
   test('decyzja właściciela 08.10.2026 (audyt M4): workflowy EAS usunięte — żaden workflow nie używa Expo ani sekretów spoza klucza App Store Connect', () => {
     const fs = require('fs') as typeof import('fs'); const dir = join(__dirname, '../.github/workflows');
     const files = fs.readdirSync(dir).filter(f => f.endsWith('.yml')).sort();
-    expect(files).toEqual(['asc-iap-localizations.yml', 'asc-kontrola.yml', 'asc-metadane.yml', 'e2e-ios.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'przeglad-tlumaczen.yml', 'sprzatanie-galezi.yml', 'store-screenshots.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml', 'watch-sim.yml']);
+    expect(files).toEqual(['asc-iap-localizations.yml', 'asc-kontrola.yml', 'asc-metadane.yml', 'asc-zrzuty.yml', 'e2e-ios.yml', 'gemini-figury.yml', 'ios-unsigned.yml', 'nightly.yml', 'pages.yml', 'przeglad-tlumaczen.yml', 'przeklad-tlumaczen.yml', 'sprzatanie-galezi.yml', 'store-screenshots.yml', 'testflight.yml', 'tests-tz.yml', 'tests.yml', 'watch-sim.yml']);
     expect(fs.existsSync(join(__dirname, '../scripts/eas'))).toBe(false);
     const allowed = ['secrets.GITHUB_TOKEN', 'secrets.ASC_KEY_ID', 'secrets.ASC_ISSUER_ID', 'secrets.ASC_KEY_P8'];
     for (const f of files) {
       const y = wf(f);
       expect([f, /EXPO_TOKEN|eas-cli|eas build|eas upload|ASC_API_KEY_P8|APPLE_TEAM_ID/.test(y)]).toEqual([f, false]);
-      for (const m of y.match(/secrets\.[A-Z_0-9]+/g) || []) expect([f, m, allowed.includes(m) || (f === 'przeglad-tlumaczen.yml' && m === 'secrets.ANTHROPIC_API_KEY')]).toEqual([f, m, true]); /* 20.10.2026: klucz API Anthropic tylko w przeglądzie tłumaczeń (tests/przeglad-tlumaczen.test.ts) */
+      for (const m of y.match(/secrets\.[A-Z_0-9]+/g) || []) expect([f, m, allowed.includes(m) || (['przeglad-tlumaczen.yml', 'przeklad-tlumaczen.yml'].includes(f) && m === 'secrets.ANTHROPIC_API_KEY') || (f === 'gemini-figury.yml' && m === 'secrets.GEMINI_API_KEY')]).toEqual([f, m, true]); /* 20.10.2026: klucz API Anthropic tylko w przeglądzie i przekładzie tłumaczeń (tests/przeglad-tlumaczen.test.ts, tests/przeklad-tlumaczen.test.ts; 23.10.2026); 25.10.2026: klucz GEMINI_API_KEY tylko w gemini-figury.yml (tests/gemini-pozy.test.ts) */
     }
   });
   test('TestFlight (06.10.2026): tylko narzędzia Apple, klucz API z sekretów — nigdy wypisywany, usuwany zawsze; logi 1 dzień; numer buildu rośnie', () => {
@@ -191,8 +191,8 @@ describe('polityka prywatności zgodna z kodem', () => {
 /* F2 (audyt przed App Store, 12.10.2026, wariant A): strona publikowana z osobnego katalogu site/ przez Pages z GitHub Actions — nie z docs/ */
 describe('publikacja strony: site/ + pages.yml', () => {
   const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
-  const SITE = ['index.html', 'privacy.html', 'support.html'];
-  test('site/ zawiera dokładnie trzy strony (bez .md, JSON, CSV, obrazów); docs/ nie ma stron HTML ani .nojekyll', () => {
+  const SITE = ['index.html', 'privacy.html', 'support.html', 'espresso.html'];
+  test('site/ zawiera dokładnie cztery strony (bez .md, JSON, CSV, obrazów); docs/ nie ma stron HTML ani .nojekyll', () => {
     expect(fs.readdirSync(join(root, 'site')).sort()).toEqual([...SITE].sort());
     expect(fs.readdirSync(join(root, 'docs')).filter(f => /\.html$|^\.nojekyll$/.test(f))).toEqual([]);
   });
@@ -226,7 +226,7 @@ describe('publikacja strony: site/ + pages.yml', () => {
 describe('strona www aplikacji (GitHub Pages)', () => {
   const fs = require('fs') as typeof import('fs'); const root = join(__dirname, '..');
   const { LANGS } = require('../lib/i18n') as typeof import('../lib/i18n');
-  test.each(['index.html', 'support.html'])('%s: istnieje, PL i EN, link do polityki prywatności, bez e-maili i zewnętrznych skryptów/fontów/trackerów', (name) => {
+  test.each(['index.html', 'support.html', 'espresso.html'])('%s: istnieje, PL i EN, link do polityki prywatności, bez e-maili i zewnętrznych skryptów/fontów/trackerów', (name) => {
     expect(fs.existsSync(join(root, 'site', name))).toBe(true); expect(fs.existsSync(join(root, 'docs', name))).toBe(false);
     const html = readFileSync(join(root, 'site', name), 'utf8');
     expect(html).toMatch(/<section lang="pl"/); expect(html).toMatch(/<section lang="en"/); expect(html).toContain('href="privacy.html"');

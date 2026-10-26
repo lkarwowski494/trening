@@ -70,9 +70,9 @@ describe('S5: potwierdzenia — rezygnacja zawsze „Anuluj” (jedna stała w l
 });
 
 describe('S6: wybór i przełączniki (miejsca naprawione)', () => {
-  test('„Asysta gumą” to SwitchRow; Tydzień/Miesiąc to Segmented (tryb generatora zniknął — ZM-03, 21.10.2026); partie mięśni to Chip toggle', () => {
+  test('„Asysta gumą” to SwitchRow; Tydzień/Miesiąc to Segmented (tryb generatora też — przywrócony: DEC-03 c, 23.10.2026); partie mięśni to Chip toggle', () => {
     expect(src.get('app/exercise/[id].tsx')).toMatch(/<SwitchRow label=\{t\('Asysta gumą'\)\}/); expect(src.get('app/exercise/[id].tsx')).not.toMatch(/<Field label=\{t\('Asysta gumą'\)\}>/);
-    expect(src.get('app/generator.tsx')).not.toContain('<Segmented'); /* ZM-03: generator bez przełącznika trybu */ expect(src.get('components/PeriodSummary.tsx')).toContain('<Segmented');
+    expect(src.get('app/generator.tsx')).toContain('<Segmented'); /* DEC-03 (c): przełącznik trybu generatora przywrócony */ expect(src.get('components/PeriodSummary.tsx')).toContain('<Segmented');
     expect((src.get('app/exercise/[id].tsx')!.match(/<Chip toggle key=\{mu\}/g) ?? [])).toHaveLength(2);
   });
 });
@@ -209,14 +209,14 @@ describe('S17: ⓘ — jeden komponent, objaśnienia nie wracają na wierzch', (
   test('teksty przeniesione pod ⓘ występują w kodzie tylko jako `info=` (albo w zmiennej używanej wyłącznie jako `info=`)', () => {
     const MOVED: [string, string][] = [
       ['components/ActiveWorkout.tsx', 'Zegar treningu stoi i pauza nie wlicza się do czasu trwania.'], ['components/DeloadHint.tsx', 'Tygodnie treningu z rzędu bez deloadu: {n}.'],
-      ['components/DayPanel.tsx', 'Kolejność: najpierw zmiany'], ['components/DayPanel.tsx', 'Uproszczenie: zwykle dzień przerwy'], ['components/DayPanel.tsx', 'Start treningu w tych dniach weźmie to miejsce'],
+      ['components/DayPanel.tsx', 'Kolejność: najpierw zmiany'], ['components/DayPanel.tsx', 'Zwykle dzień przerwy'], ['components/DayPanel.tsx', 'Start treningu w tych dniach weźmie to miejsce'],
       ['app/more/settings.tsx', 'Lista: ćwiczenia i serie jak w poprzednich wersjach'], ['app/more/settings.tsx', 'Skupiony: bieżąca seria dużymi cyframi'], ['app/more/settings.tsx', 'Na początku przerwy telefon zapowiada następne ćwiczenie'], ['app/more/settings.tsx', 'Zapowiedzi działają, gdy włączony jest'], /* 19.10.2026: wybór „Zapowiedzi głosowe” zamiast przełącznika */
-      ['app/more/settings.tsx', 'RIR — powtórzenia w zapasie'], ['app/more/settings.tsx', 'RIR wpisuje się w zakresie'], ['app/more/settings.tsx', 'Kreska w „Ten tydzień” i w Postępach.'], ['app/more/settings.tsx', 'Timer odlicza w aplikacji'],
-      ['app/generator.tsx', 'Propozycja według Twoich założeń'], ['app/generator.tsx', 'Nie masz jeszcze miejsc treningu'], ['app/generator.tsx', 'Cardio poza planem: sesja cardio'], ['app/generator.tsx', 'Cardio w planie: {n} min tygodniowo. Zalecenie WHO'],
+      ['app/more/settings.tsx', 'RIR to powtórzenia, które zostały'], ['app/more/settings.tsx', 'RIR wpisujesz w zakresie'], ['app/more/settings.tsx', 'Kreska w „Ten tydzień” i w Postępach.'], ['app/more/settings.tsx', 'Timer odlicza w aplikacji'],
+      ['app/generator.tsx', 'Propozycja według Twoich założeń'], ['app/generator.tsx', 'Nie masz jeszcze miejsc treningu'], ['app/generator.tsx', 'Cardio poza planem: sesja cardio'], ['app/generator.tsx', 'Cardio w planie: {n} min tygodniowo. Dla zdrowia warto'],
       ['app/generator.tsx', 'Siła: bój główny na początku'], ['app/generator.tsx', 'Masa: serie na partię w tygodniu'], ['app/generator.tsx', 'Każda główna partia co najmniej'],
-      ['components/OwnPlan.tsx', 'Plan tygodnia z Twoich szablonów według tych samych reguł'], ['components/GuardSection.tsx', 'Kierunek dla partii liczymy tylko'], ['components/GuardSection.tsx', 'Miara: tonaż'], ['components/PeriodSummary.tsx', 'Obok w nawiasie'], ['components/PeriodSummary.tsx', 'Kolor względem partii z największą'], ['app/(tabs)/progress.tsx', 'Partia główna liczy 1 serię, pomocnicza 0,5'], ['app/(tabs)/progress.tsx', 'Objętość serii roboczych'], ['app/progression.tsx', 'Zaplanowane = szablony z planu'], ['components/OwnPlan.tsx', 'Każda główna partia co najmniej'], ['components/OwnPlan.tsx', 'Uproszczenie: zwykle dzień przerwy'], ['app/plan.tsx', 'Plan powtarza się co tydzień.'], ['app/plan.tsx', 'Obowiązuje jeden plan naraz.'],
+      ['components/OwnPlan.tsx', 'Plan tygodnia z Twoich szablonów według tych samych reguł'], ['components/GuardSection.tsx', 'Kierunek dla partii liczymy tylko'], ['components/GuardSection.tsx', 'Miara: tonaż'], ['components/PeriodSummary.tsx', 'Obok w nawiasie'], ['components/PeriodSummary.tsx', 'Kolor względem partii z największą'], ['app/(tabs)/progress.tsx', 'Partia główna liczy 1 serię, pomocnicza 0,5'], ['app/(tabs)/progress.tsx', 'Objętość serii roboczych'], ['app/progression.tsx', 'Zaplanowane = szablony z planu'], ['components/OwnPlan.tsx', 'Każda główna partia co najmniej'], ['components/OwnPlan.tsx', 'Zwykle dzień przerwy'], ['app/plan.tsx', 'Plan powtarza się co tydzień.'], ['app/plan.tsx', 'Obowiązuje jeden plan naraz.'],
       ['app/template/[id].tsx', 'Zakres powtórzeń: {r} — gdy ostatnio'], ['app/reorder.tsx', 'Przeciągnij za ≡, żeby zmienić kolejność.'],
-      ['app/exercise/[id].tsx', 'Masa ciała: „±” to dociążenie'], ['app/exercise/[id].tsx', 'Przypisanie partii mięśniowych — jedno źródło, nie ustalone.'], ['app/exercise/[id].tsx', 'Przypisanie partii mięśniowych — uproszczenie, nie wynik badań.'],
+      ['app/exercise/[id].tsx', 'Masa ciała: „±” to dociążenie'],
       ['app/history/add.tsx', 'Trening, którego nie zapisałeś na bieżąco.'], ['app/more/locations.tsx', 'Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia'], ['app/more/location/[id].tsx', '★ Miejsce główne — domyślne'],
       ['app/more/bands.tsx', 'Kolor i poziom trudności: 1 = cienka'], ['app/more/bodymass.tsx', 'Opcjonalnie, tylko w telefonie. Z nią aplikacja liczy e1RM'], ['app/more/backup.tsx', 'Eksport tworzy plik JSON'],
       ['app/more/backup.tsx', 'Dopisuje treningi z plików CSV'], ['app/more/backup.tsx', 'Kopia automatyczna: po każdym treningu'], ['app/more/import.tsx', 'Dopisuje treningi z plików CSV'], ['app/more/licenses.tsx', 'Aplikacja korzysta z bibliotek open source.'],

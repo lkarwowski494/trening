@@ -1,0 +1,84 @@
+# Pilotaż póz figur v2 przez API Gemini (decyzja właściciela 25.10.2026; docs/52). Tylko ręcznie, odczyt repozytorium.
+# Płatny z kredytów Google Cloud właściciela (limit budżetu po stronie Google + twardy limit na przebieg w skrypcie). Klucz: sekret GEMINI_API_KEY, użyty w JEDNYM kroku,
+# jako zmienna środowiskowa; skrypt nigdy go nie wypisuje. Repozytorium NIE jest zmieniane — wynik to artefakt `raport-pozy` (poze.json, raport.json, koszt.json, podsumowanie.md; 7 dni);
+# nałożenie lokalnie po przeglądzie: node scripts/figures/gemini-pozy.mjs --zastosuj <katalog>.
+# Uruchom z gałęzi grafiki-cwiczen („Use workflow from”): tam są docs/51, silnik v2 i walidator geometrii póz; sam plik workflowu musi być na gałęzi domyślnej.
+# Porównanie modeli: ta sama rodzina puszczona dwa razy z różnym `model`.
+name: Pozy figur przez Gemini (API, ręcznie)
+on:
+  workflow_dispatch:
+    inputs:
+      rodzina:
+        description: 'Rodzina ruchu z docs/51 (np. pull_up)'
+        type: string
+        default: pull_up
+      model:
+        description: 'Model Gemini (domyślnie flagowy gemini-4-argon; porównanie: gemini-3.1-pro-preview)'
+        type: choice
+        default: gemini-4-argon
+        options: [gemini-4-argon, gemini-3.1-pro-preview, gemini-3.8-flash]
+      limit_usd:
+        description: 'Twardy limit kosztu przebiegu w USD (powyżej — stop)'
+        type: string
+        default: '3'
+      proby:
+        description: 'Najwyżej tyle prób na ćwiczenie (generuj → waliduj → popraw)'
+        type: string
+        default: '4'
+      tylko_szacuj:
+        description: 'Tylko szacunek kosztu, bez wywołań płatnych'
+        type: boolean
+        default: true
+permissions:
+  contents: read
+concurrency:
+  group: gemini-figury
+  cancel-in-progress: false
+jobs:
+  pozy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Instalacja zależności (kompilator TypeScript dla walidatora geometrii)
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Szacunek kosztu bez klucza
+        env:
+          WEJ_RODZINA: ${{ inputs.rodzina }}
+          WEJ_MODEL: ${{ inputs.model }}
+          WEJ_LIMIT: ${{ inputs.limit_usd }}
+          WEJ_PROBY: ${{ inputs.proby }}
+        run: |
+          set -eu
+          node scripts/figures/gemini-pozy.mjs --szacuj --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --proby "$WEJ_PROBY" --wyjscie raport-pozy
+      - name: Generowanie póz (pętla generuj → waliduj → popraw)
+        if: ${{ !inputs.tylko_szacuj }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          WEJ_RODZINA: ${{ inputs.rodzina }}
+          WEJ_MODEL: ${{ inputs.model }}
+          WEJ_LIMIT: ${{ inputs.limit_usd }}
+          WEJ_PROBY: ${{ inputs.proby }}
+        run: |
+          set -eu
+          node scripts/figures/gemini-pozy.mjs --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --proby "$WEJ_PROBY" --wyjscie raport-pozy
+      - name: Podsumowanie w logu przebiegu
+        if: always()
+        run: |
+          if [ -f raport-pozy/podsumowanie.md ]; then cat raport-pozy/podsumowanie.md >> "$GITHUB_STEP_SUMMARY"; fi
+          if [ -f raport-pozy/szacunek.json ]; then node -e "const s=require('./raport-pozy/szacunek.json');console.log('Szacunek: '+s.koszt_usd+' USD (założenia, nie pomiar)')" >> "$GITHUB_STEP_SUMMARY"; fi
+      - name: Artefakt (tylko raporty, 7 dni)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: raport-pozy
+          path: |
+            raport-pozy/*.json
+            raport-pozy/podsumowanie.md
+          if-no-files-found: ignore
+          retention-days: 7

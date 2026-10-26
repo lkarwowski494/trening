@@ -5,9 +5,6 @@
  * logika (geometria, pętla, interpolacja, dziedziczenie „like”), ekran (oba motywy, Ogranicz ruch → statycznie, zmiana ustawienia,
  * pauza WCAG 2.2.2, etykieta VoiceOver), języki (etykiety w 26 językach), zrzut SVG kilku ćwiczeń, dokument (--check, verify).
  */
-import * as fs from 'fs';
-import * as path from 'path';
-import { execFileSync } from 'child_process';
 import React from 'react';
 import * as RN from 'react-native';
 import { render, screen, fireEvent, act } from '@testing-library/react-native';
@@ -22,7 +19,6 @@ import { ExerciseCues } from '@/components/ExerciseCues';
 import { LANGS, applyLang, t } from '@/lib/i18n';
 import { light, dark } from '@/lib/theme';
 
-const root = path.join(__dirname, '..');
 const lib = (key: string) => ({ lib: true as const, libKey: key });
 const KEYS = Object.keys(FIG_DATA.exercises);
 const fig = (k: string) => figureByKey(k) as Figure;
@@ -42,9 +38,8 @@ function posesOf(f: Figure): { p: Pose; P: Points; tag: string }[] {
 
 describe('dane figur', () => {
   test('każde ćwiczenie ze wskazówkami etapu 1 ma figurę albo powód na liście otwartej; figury tylko dla ćwiczeń ze wskazówkami', () => {
-    for (const k of Object.keys(CUE_DATA.exercises)) expect([k, !!FIG_DATA.exercises[k] !== !!FIG_DATA.open[k]]).toEqual([k, true]);
-    for (const k of [...KEYS, ...Object.keys(FIG_DATA.open)]) expect([k, !!CUE_DATA.exercises[k]]).toEqual([k, true]);
-    for (const [k, why] of Object.entries(FIG_DATA.open)) expect([k, why.length > 40]).toEqual([k, true]);
+    for (const k of Object.keys(CUE_DATA.exercises)) expect([k, !!FIG_DATA.exercises[k] !== FIG_DATA.open.includes(k)]).toEqual([k, true]);
+    for (const k of [...KEYS, ...FIG_DATA.open]) expect([k, !!CUE_DATA.exercises[k]]).toEqual([k, true]); /* powody braku figury — tests/zrodla-pelne-figury.test.ts */
     expect(KEYS.length).toBeGreaterThanOrEqual(60);
   });
   test('najczęstsze wzorce mają figurę (przysiad, martwy ciąg, wyciskania, wiosłowanie, podciąganie, wykrok, hip thrust, uginania, prostowania)', () => {
@@ -63,7 +58,7 @@ describe('dane figur', () => {
     for (const k of KEYS) { const f = fig(k); f.frames.forEach((fr, i) => { const P = framePoints(f, i); for (const w of fr.why) { const r = evalCheck(w, fr.p, f.view, P); if (!r.ok) bad.push(`${k}.${fr.n}.${w.q}.${w.c}=${r.v}`); } }); }
     expect(bad).toEqual([]);
   });
-  test('zakres stawów: każda poza i każda poza pośrednia animacji w granicach anatomicznych (rom w data.json, ze źródłami)', () => {
+  test('zakres stawów: każda poza i każda poza pośrednia animacji w granicach anatomicznych (rom w data.json; źródła granic — tests/zrodla-pelne-figury.test.ts)', () => {
     const bad: string[] = [];
     for (const k of KEYS) {
       const f = fig(k), R = FIG_DATA.rom[f.view];
@@ -74,7 +69,7 @@ describe('dane figur', () => {
       }
     }
     expect(bad).toEqual([]);
-    for (const v of ['side', 'front'] as const) for (const r of Object.values(FIG_DATA.rom[v])) { expect(r.min).toBeLessThan(r.max); expect(r.src.length).toBeGreaterThan(20); }
+    for (const v of ['side', 'front'] as const) for (const r of Object.values(FIG_DATA.rom[v])) { expect(r.min).toBeLessThan(r.max); }
   });
   test('figura nie wchodzi pod podłogę (w żadnej klatce ani pozie pośredniej) i ma skończone współrzędne', () => {
     const bad: string[] = [];
@@ -204,7 +199,7 @@ describe('lib/figures', () => {
     expect(figureFor({ lib: false, libKey: 'Back Squat' })).toBeNull();
     expect(figureFor(lib('Crunch'))).toBeNull();
     expect(figureFor(lib('Nie ma'))).toBeNull(); expect(figureFor(null)).toBeNull();
-    const noCue = Object.keys(CUE_DATA.open)[0]; if (noCue) expect(figureFor(lib(noCue))).toBeNull();
+    const noCue = CUE_DATA.open[0]; if (noCue) expect(figureFor(lib(noCue))).toBeNull();
     expect(figureByKey('Pendlay Row')!.frames).toEqual(figureByKey('Bent Over Row (sztanga)')!.frames);
   });
   test('figureLabel: szablon + zdania „Ruch” wskazówek; frameLabel: podpisy klatek', () => {
@@ -343,30 +338,17 @@ describe('sekcja „Technika” z figurą', () => {
   test('po rozwinięciu figura jest nad tekstem wskazówek; ćwiczenie z listy otwartej figur — same wskazówki', async () => {
     setReduce(true);
     render(<ExerciseCues exercise={lib('Back Squat')} />);
-    expect(screen.queryByTestId('exercise-figure')).toBeNull();
+    expect(screen.queryByTestId('exercise-figure-v2')).toBeNull();
     fireEvent.press(screen.getByRole('button', { name: 'Technika' })); await flush();
-    expect(screen.getByTestId('exercise-figure')).toBeTruthy();
+    /* figura v2 zastępuje v1 tam, gdzie rodzina v2 jest gotowa (Back Squat) */
+    expect(screen.getByTestId('exercise-figure-v2')).toBeTruthy();
+    expect(screen.queryByTestId('exercise-figure')).toBeNull();
     const json = JSON.stringify(screen.toJSON());
-    expect(json.indexOf('exercise-figure')).toBeLessThan(json.indexOf('["Ustawienie"]'));
+    expect(json.indexOf('exercise-figure-v2')).toBeLessThan(json.indexOf('["Ustawienie"]'));
     expect(json.indexOf('["Ustawienie"]')).toBeGreaterThan(0);
     render(<ExerciseCues exercise={lib('Crunch')} />);
     fireEvent.press(screen.getByRole('button', { name: 'Technika' })); await flush();
     expect(screen.queryByTestId('exercise-figure')).toBeNull();
     expect(screen.getByRole('header', { name: 'Ruch' })).toBeTruthy();
-  });
-});
-
-describe('dokument figur (generowany)', () => {
-  test('docs/research/28-figury.md aktualny i dane poprawne (scripts/figures/gen.mjs --check)', () => {
-    expect(() => execFileSync('node', [path.join(root, 'scripts/figures/gen.mjs'), '--check'], { stdio: 'pipe' })).not.toThrow();
-    const doc = fs.readFileSync(path.join(root, 'docs/research/28-figury.md'), 'utf8');
-    for (const k of KEYS) expect(doc).toContain(`### ${k}`);
-    for (const k of Object.keys(FIG_DATA.open)) expect(doc).toContain(`| ${k} |`);
-    expect(doc).toContain('Uproszczenie ilustracyjne');
-  });
-  test('verify uruchamia sprawdzenie dokumentu figur', () => {
-    const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
-    expect(pkg.scripts['check:figures']).toBe('node scripts/figures/gen.mjs --check');
-    expect(pkg.scripts.verify).toContain('npm run check:figures');
   });
 });

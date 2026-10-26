@@ -90,6 +90,8 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
   **[OTWARTE]** oficjalna strona pomocy producenta nie została przeczytana (sam tytuł artykułu Hevy o imporcie CSV ze Strong:
   https://help.hevyapp.com/hc/en-us/articles/38001424401943 — serwer odrzuca pobranie, 403). Brak jednostki ciężaru w pliku → wybór na podglądzie.
   Jednostka dystansu w tym formacie nieznana (w pliku wzorcowym zawsze 0) — przyjęto metry jak w eksporcie aplikacji, podgląd to pokazuje.
+  **Eksport własny przy lb (23.10.2026, test na telefonie 1030):** 12 kolumn bez zmian (zgodność), plus na końcu `Weight Unit` (lb) i `Distance Unit` (m) w każdym wierszu; w kg plik jak dotąd.
+  Import własnego pliku z tymi kolumnami (jedna jednostka w całym pliku) przelicza ciężary i nie pyta o jednostkę; mieszane/nieznane → wybór na podglądzie.
 - **formatB** — źródło: dokumentacja producenta FitNotes iOS, strona „Import Data to FitNotes iOS”, przeczytana 11.10.2026:
   https://www.getfitnotes.com/docs/migrate-from-other-apps.html — nagłówek „musi być dokładnie”: `Date`, `Exercise`, `Category`, `Weight (kg)`,
   `Weight (lbs)`, `Reps`, `Distance`, `Distance Unit`, `Time`, `Notes`, `Kind`; „Date must be in `YYYY-mm-dd` format”; waga w osobnych kolumnach kg / lbs
@@ -102,6 +104,10 @@ Mapowanie oznaczeń z kodu na nazwy (nazwy tylko tu — wytyczne Apple 2.3.7): *
   exercise_title, superset_id, exercise_notes, set_index, set_type, weight_lbs|weight_kg, reps, distance_miles|distance_km, duration_seconds, rpe`; data
   w stylu „5 Jan 2026, 17:00”) pochodzi tylko z opisów osób trzecich — nie jest źródłem wg CLAUDE.md. Do dodania po przeczytaniu dokumentacji
   producenta albo pliku testowego od właściciela.
+- **Rozszerzenie 1.0 (25.10.2026, decyzja właściciela; kod: układ `generic` w `lib/csvgeneric.ts`, rdzeń `lib/csvcore.ts`):** każdy plik, który nie jest formatA ani formatB, a ma kolumnę daty i kolumnę ćwiczenia pod jednym z aliasów (`CSV_ALIASES`),
+  jest czytany po aliasach nagłówków (separator `,` `;` tab, BOM, cudzysłowy, kg/lb po nagłówku, typy serii, czas z końca − startu, trening = dzień przy braku nazwy, superserie). Układ opisany w sekcji „Hevy — [OTWARTE]” wyżej mieści się w tych aliasach
+  (`title, start_time, end_time, exercise_title, superset_id, set_index, set_type, weight_kg|weight_lbs, reps, distance_km|distance_miles, duration_seconds, rpe`; daty „5 Jan 2026, 17:00” obsługuje), ale **[OTWARTE]**: aliasy pochodzą ze specyfikacji właściciela, nie z przeczytanej dokumentacji producenta
+  (strona pomocy zwraca 403) — obsługa nie jest „potwierdzona”, dopóki nie sprawdzi jej plik testowy od właściciela. Testy na danych syntetycznych: `tests/monetyzacja-csv.test.ts`.
 - **Zasady importu (domyślne propozycje do akceptacji właściciela, każda widoczna/zmienialna na podglądzie):** (1) jednostka formatA — przełącznik kg/lb,
   domyślnie jednostka z Ustawień; formatB podaje jednostkę w kolumnach; (2) nazwy ćwiczeń: dokładne dopasowanie, potem znormalizowane (bez wielkości liter,
   spacji, nawiasów i znaków specjalnych; „(Barbell)” = „(sztanga)”, „(Dumbbell)” = „(hantle)”), reszta → nowe ćwiczenie użytkownika

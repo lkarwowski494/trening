@@ -34,12 +34,12 @@ const inp = (o: Partial<GenInput> = {}): GenInput => ({ goal: 'general', locatio
 /** Kolejność elementów na ekranie: pozycja testID w drzewie (przechodzenie w głąb, od góry). */
 const order = (...ids: string[]) => { const out: string[] = []; const walk = (n: unknown) => { if (!n || typeof n !== 'object') return; const x = n as { props?: { testID?: string }; children?: unknown[] }; if (x.props?.testID && ids.includes(x.props.testID)) out.push(x.props.testID); (x.children ?? []).forEach(walk); }; walk(screen.toJSON()); return out; };
 const GOALS_PL = ['Siła', 'Masa', 'Redukcja', 'Ogólny'];
-const ONEDAY_GEN = '1 dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej 2 dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko 1 dzień w tygodniu, a z czasem dojść do 2 — trochę ruchu jest lepsze niż żaden.';
+const ONEDAY_GEN = '1 dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej 2 dni). Na początek to dobry krok: można ćwiczyć siłowo tylko 1 dzień w tygodniu, a z czasem dojść do 2 — trochę ruchu jest lepsze niż żaden.';
 const ONEDAY = 'Jeden trening w tygodniu też daje postępy, ale zwykle trochę mniejsze niż częstszy trening — głównie dlatego, że w jednej sesji mieści się mniej serii. Przy tej samej liczbie serii w tygodniu różnica w przyroście mięśni znika, a w sile maleje.';
-const GOAL_NOTE = 'Ogólny (dla zdrowia i sprawności): 2 serie na ćwiczenie, 8–12 powtórzeń (w domu 12–20), do chwili, gdy kolejne powtórzenie byłoby trudne. WHO 2020 zaleca ćwiczenia wzmacniające wszystkie główne partie co najmniej 2 dni w tygodniu.';
+const GOAL_NOTE = 'Ogólny (dla zdrowia i sprawności): 2 serie na ćwiczenie, 8–12 powtórzeń (w domu 12–20), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej 2 dni w tygodniu.';
 /** ⓘ (14.10.2026): na wierzchu krótki podpis, pełny tekst z zaleceniem WHO — pod ⓘ („gen-cardio-in”). */
 const SHORT = (n: number) => `Cardio w planie: ${n} min tygodniowo.`;
-const WHO = (n: number) => `Cardio w planie: ${n} min tygodniowo. Zalecenie WHO: co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.`;
+const WHO = (n: number) => `Cardio w planie: ${n} min tygodniowo. Dla zdrowia warto mieć co najmniej 150–300 min umiarkowanego wysiłku tygodniowo (albo 75–150 min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.`;
 
 describe('kolejność i cele', () => {
   test('najpierw wybór dni, potem cel; 4 chipy celu (rola przycisku, stan wybrania, podpowiedź „Cel”), wszystkie aktywne przy 1–6 dniach', async () => {
@@ -52,10 +52,10 @@ describe('kolejność i cele', () => {
       await goal('Masa'); expect(screen.getByLabelText('Ogólny').props.accessibilityState.selected).toBe(false);
     }
   });
-  test('zmiana celu nie zmienia wybranych dni; „Ogólny” — opis celu z liczbami ze stałych i punkty „Na czym to oparte” dla zdrowia (bez RIR i boju)', async () => {
+  test('zmiana celu nie zmienia wybranych dni; „Ogólny” — opis celu z liczbami ze stałych i punkty „Zasady planu” dla zdrowia (bez RIR i boju)', async () => {
     await boot(); await pickDays([1, 3]); await goal('Ogólny'); expect(checkedDays()).toEqual([1, 3]);
     expect(screen.queryByText(GOAL_NOTE)).toBeNull(); await openInfo('gen-goal'); await openInfo('gen-basis'); expect(screen.getByText(GOAL_NOTE)).toBeTruthy(); /* ⓘ 14.10.2026 */
-    for (const x of [/^• Serie: 2 na ćwiczenie — dla zdrowia zwykle 2–3\. ACSM 2026 zaleca co najmniej 2\. /, /^• Powtórzenia: 8–12 \(wytyczne USA 2018, ACSM 2011\); w domu i bez obciążenia 12–20/, /^• Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne/, /^• Przerwy: 2 min po wielostawowych, 1,5 min po jednostawowych i core/, /^• Cardio: przy 4–6 dniach możesz zamienić dni powyżej 3/, /= 20; ćwiczeń = serie \/ 2 \(co najmniej 3\)/])
+    for (const x of [/^• Serie: 2 na ćwiczenie — dla zdrowia zwykle 2–3\. Warto zrobić co najmniej 2\. /, /^• Powtórzenia: 8–12; w domu i bez obciążenia 12–20/, /^• Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne/, /^• Przerwy: 2 min po wielostawowych, 1,5 min po jednostawowych i core/, /^• Cardio: przy 4–6 dniach możesz zamienić dni powyżej 3/, /= 20; ćwiczeń = serie \/ 2 \(co najmniej 3\)/])
       expect([String(x), screen.queryAllByText(x).length]).toEqual([String(x), 1]);
     expect(screen.queryByText(/powtórzenia w zapasie/)).toBeNull(); expect(screen.queryByText(/boju głównego/)).toBeNull();
     expect(screen.getByText(SHORT(0))).toBeTruthy(); /* minuty cardio w planie obok zalecenia WHO, także bez cardio */
@@ -111,7 +111,7 @@ describe('przełącznik „Dni cardio w planie”', () => {
     await boot('/generator', 'en'); await goal('General fitness');
     await openInfo('gen-goal'); expect(screen.getByText(/^General fitness \(for health\): 2 sets per exercise, 8–12 reps/)).toBeTruthy();
     await pickDays([0, 1, 2, 3]); expect(screen.getByTestId('sw-Cardio days in the plan').props.accessibilityHint).toBe('Days above 3 are moderate cardio sessions instead of strength.');
-    await pickDays([3]); expect(screen.getByText(/^1 strength day a week is less than the WHO 2020 recommendation/)).toBeTruthy();
+    await pickDays([3]); expect(screen.getByText(/^1 strength day a week is less than the recommended minimum/)).toBeTruthy();
   });
 });
 
@@ -127,19 +127,19 @@ describe('„Ogólny” — każdy język na 320 pt', () => {
     await act(async () => { fireEvent(screen.getByTestId(`sw-${tIn(l, 'Dni cardio w planie')}`), 'valueChange', true); }); await flushAll(5);
     const p = (s: string, v: Record<string, string | number>) => Object.entries(v).reduce((a, [k, x]) => a.split(`{${k}}`).join(String(x)), s);
     const texts = [
-      p(tIn(l, 'Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. WHO 2020 zaleca ćwiczenia wzmacniające wszystkie główne partie co najmniej {n} dni w tygodniu.'), { s: 2, a: 8, b: 12, c: 12, d: 20, n: 2 }),
+      p(tIn(l, 'Ogólny (dla zdrowia i sprawności): {s} serie na ćwiczenie, {a}–{b} powtórzeń (w domu {c}–{d}), do chwili, gdy kolejne powtórzenie byłoby trudne. Dla zdrowia warto ćwiczyć wszystkie główne partie co najmniej {n} dni w tygodniu.'), { s: 2, a: 8, b: 12, c: 12, d: 20, n: 2 }),
       tIn(l, 'Dni cardio w planie'), p(tIn(l, 'Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych.'), { k: 3 }),
       p(tIn(l, 'Dni treningowe w tygodniu (w tym {n} cardio)'), { n: 1 }),
-      `• ${p(tIn(l, 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. ACSM 2026 zaleca co najmniej {m}. Wytyczne USA 2018: jedna seria działa, {s}–{b} mogą działać lepiej; ACSM 2011: jedna seria może wystarczyć, zwłaszcza u początkujących i starszych. {s} to dolna granica — uproszczenie.'), { s: 2, b: 3, m: 2 })}`,
-      `• ${p(tIn(l, 'Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). WHO 2020 nie znalazło dowodów, że więcej ćwiczeń wzmacniających daje więcej korzyści dla zdrowia, a ruch aerobowy zalecenia radzą rozłożyć na kilka dni (wytyczne USA 2018, ACSM 2011). Długość sesji cardio = czas sesji — konwencja.'), { k: 4, m: 6, j: 3 })}`,
-      `• ${tIn(l, 'Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie (WHO 2020: co najmniej umiarkowany; wytyczne USA 2018; ACSM 2011). Do upadku nie trzeba.')}`,
+      `• ${p(tIn(l, 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.'), { s: 2, b: 3, m: 2 })}`,
+      `• ${p(tIn(l, 'Cardio: przy {k}–{m} dniach możesz zamienić dni powyżej {j} na sesje umiarkowanego cardio („Dni cardio w planie”, domyślnie wyłączone). Więcej ćwiczeń wzmacniających nie musi dawać więcej korzyści dla zdrowia, a ruch aerobowy warto rozłożyć na kilka dni. Długość sesji cardio = czas sesji.'), { k: 4, m: 6, j: 3 })}`,
+      `• ${tIn(l, 'Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.')}`,
     ];
-    for (const x of [texts[0], ...texts.slice(4)]) expect([l, 'zwinięte', x, screen.queryAllByText(x).length]).toEqual([l, 'zwinięte', x, 0]); /* ⓘ (14.10.2026): opis celu i „Na czym to oparte” pod ⓘ */
+    for (const x of [texts[0], ...texts.slice(4)]) expect([l, 'zwinięte', x, screen.queryAllByText(x).length]).toEqual([l, 'zwinięte', x, 0]); /* ⓘ (14.10.2026): opis celu i „Zasady planu” pod ⓘ */
     expect([l, 'podpis', screen.queryAllByText(p(tIn(l, 'Cardio w planie: {n} min tygodniowo.'), { n: 60 })).length]).toEqual([l, 'podpis', 1]);
     for (const id of ['gen-goal', 'gen-basis']) await tap(screen.getByTestId(`info-${id}`));
     for (const x of texts) expect([l, x, screen.queryAllByText(x).length]).toEqual([l, x, 1]);
     expect(screen.getByTestId('gen-cardio')).toBeTruthy();
-    await pickDays([2]); const one = p(tIn(l, '{k} dzień siłowy w tygodniu to mniej niż zalecenie WHO 2020 (co najmniej {n} dni). Na początek to dobry krok: według wytycznych USA 2018 na początku można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.'), { k: 1, n: 2 });
+    await pickDays([2]); const one = p(tIn(l, '{k} dzień siłowy w tygodniu to mniej niż zalecane minimum (co najmniej {n} dni). Na początek to dobry krok: można ćwiczyć siłowo tylko {k} dzień w tygodniu, a z czasem dojść do {n} — trochę ruchu jest lepsze niż żaden.'), { k: 1, n: 2 });
     expect([l, screen.queryAllByText(one).length]).toEqual([l, 1]);
     const all = JSON.stringify(screen.toJSON());
     if (l !== 'pl') expect([l, ['Ogólny', 'Dni cardio w planie', 'dzień siłowy', 'wytyczne USA'].filter(k => all.includes(k))]).toEqual([l, []]);

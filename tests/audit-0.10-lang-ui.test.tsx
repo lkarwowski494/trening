@@ -102,11 +102,11 @@ describe('K2 (A11-09): VoiceOver czyta głosem języka aplikacji', () => {
     const bad: string[] = []; let n = 0;
     for (const url of routes) {
       await go(url); await flushAll(10);
-      if (url === `/exercise/${cue.id}`) { await tap(screen.getByRole('button', { name: t('Technika') })); await flushAll(5); expect(screen.getByTestId('exercise-figure')).toBeTruthy(); }
+      if (url === `/exercise/${cue.id}`) { await tap(screen.getByRole('button', { name: t('Technika') })); await flushAll(5); expect(screen.queryByTestId('exercise-figure-v2') ?? screen.queryByTestId('exercise-figure')).toBeTruthy(); }
       if (url === '/more/language') continue; /* wiersze listy języków celowo w języku nazwy — osobny test wyżej */
       const g = langGaps('de'); n += g.n; bad.push(...g.bad.map(b => `${url}: ${b}`));
     }
-    expect(routes).toHaveLength(34); /* 0.19: + /place-once; 0.18: + /adapt; 0.17.0: + /paywall; 29 tras (+ wybór szablonu i Progresja, 11.10.2026; + /more/import, import CSV, 12.10.2026) + podgląd ćwiczenia z „Techniką” + /generator?mode=own (plan z moich szablonów, 09.10) */ expect(n).toBeGreaterThan(500); expect([...new Set(bad)]).toEqual([]);
+    expect(routes).toHaveLength(34); /* 25.10.2026: − /more/sources (23.10: +); 0.19: + /place-once; 0.18: + /adapt; 0.17.0: + /paywall; 29 tras (+ wybór szablonu i Progresja, 11.10.2026; + /more/import, import CSV, 12.10.2026) + podgląd ćwiczenia z „Techniką” + /generator?mode=own (plan z moich szablonów, 09.10) */ expect(n).toBeGreaterThan(500); expect([...new Set(bad)]).toEqual([]);
   });
 });
 
@@ -168,7 +168,7 @@ describe('K2/K3: kontrast, pola dotyku, przełącznik-chip, wyszarzone wiersze',
     await go('/generator'); await flushAll(10); check(n => n.props.accessibilityHint === t('Cel'), 'Segmented (Cel)');
     await bootIn('pl', '/history', () => { const id = store.getState().templates[0].id; for (let i = 0; i < 7; i++) plan.setWeekDay(i, id); });
     const days = screen.UNSAFE_root.findAll((n: Node) => typeof n.type !== 'string' && /^cal-/.test(n.props.testID ?? '') && typeof n.props.onPress === 'function');
-    expect(days.length).toBeGreaterThan(27); for (const d of days.slice(0, 3)) { const face = flat(d.props.children?.props?.style); const hs = d.props.hitSlop; if (Math.min(face.height ?? 0, face.width ?? 0) + 2 * (typeof hs === 'number' ? hs : 0) < 44) small.push(`dzień kalendarza: ${face.height}+2×${hs}`); }
+    expect(days.length).toBeGreaterThan(27); for (const d of days.slice(0, 3)) { const face = flat(d.props.children?.props?.style); const hs = d.props.hitSlop; if (Math.min(Math.max(face.height ?? 0, face.minHeight ?? 0), face.width ?? 0) + 2 * (typeof hs === 'number' ? hs : 0) < 44) small.push(`dzień kalendarza: ${face.height ?? face.minHeight}+2×${hs}`); }
     await go('/'); await flushAll(10);
     for (const s of screen.UNSAFE_root.findAll((n: Node) => typeof n.type !== 'string' && /^strip-/.test(n.props.testID ?? '') && typeof n.props.onPress === 'function')) if (eff(s) < 44) small.push(`pasek tygodnia: ${eff(s)}`);
     expect(small).toEqual([]);

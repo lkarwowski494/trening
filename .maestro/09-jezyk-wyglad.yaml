@@ -57,7 +57,9 @@ name: Język, wygląd i jednostka
 - assertVisible: "Appearance"
 - assertNotVisible: "Wygląd"
 
-# --- Wygląd: Ciemny → nawigacja ---
+# --- Wygląd: nowa instalacja startuje w ciemnym (23.10.2026), potem Ciemny → nawigacja ---
+- assertVisible: { text: "Dark", selected: true }
+- assertVisible: { text: "Light", selected: false }
 - tapOn: "Dark"
 - takeScreenshot: 52-wyglad-ciemny
 - tapOn: "Back"
@@ -81,7 +83,7 @@ name: Język, wygląd i jednostka
 - tapOn: "Settings"
 - extendedWaitUntil: { visible: "Appearance", timeout: 30000 }
 
-# --- Wygląd: Jasny (domyślny) ---
+# --- Wygląd: Jasny (zmiana z domyślnego ciemnego) ---
 - tapOn: "Light"
 - takeScreenshot: 54-wyglad-jasny
 

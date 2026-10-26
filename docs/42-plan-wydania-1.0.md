@@ -7,7 +7,7 @@ Droga do zgłoszenia (kroki, zależności, czas): `docs/41-droga-do-app-store.md
 
 Wydania w App Store nie zgłaszamy, dopóki wszystkie poniższe punkty nie są spełnione (rejestr ryzyk w `docs/40-lekcje.md`: otwarte ryzyko blokuje wydanie).
 
-1. **Rejestr ryzyk:** otwarte na 20.10.2026 — R-004 (uprawnienie powiadomień pilnych na telefonie; blokuje 1.0), R-005, R-006, R-007 (zamknięte 22.10.2026, docs/40), R-008, R-009, R-010 (drugi przegląd treści krytycznej — blokuje App Store; przegląd robi wyłącznie Claude, decyzja właściciela K-P4-2, 20.10.2026), R-011, R-012; od 21.10.2026 (redesign M3) R-013 (ikona zegarka — ponownie otwarte 22.10.2026 po odrzuceniu wysyłki build 1026; zamyka zielona wysyłka) i R-014 („Pogrubiony tekst” z krojem systemowym — telefon). Każde zamknięte z dowodem albo świadomie odłożone decyzją właściciela z datą.
+1. **Rejestr ryzyk:** otwarte na 20.10.2026 — R-004 (uprawnienie powiadomień pilnych na telefonie; blokuje 1.0), R-005, R-006, R-007 (zamknięte 22.10.2026, docs/40), R-008, R-009, R-010 (drugi przegląd treści krytycznej — blokuje App Store; przegląd robi wyłącznie Claude, decyzja właściciela K-P4-2, 20.10.2026), R-011, R-012; od 21.10.2026 (redesign M3) R-013 (ikona zegarka — ponownie otwarte 22.10.2026 po odrzuceniu wysyłki build 1026; zamyka zielona wysyłka) i R-014 („Pogrubiony tekst” z krojem systemowym — telefon); od 25.10.2026 R-015 (wyjątek anonimizacji: stare tłumaczenia z nazwami źródeł w 33 językach — blokuje każde wydanie do czasu przekładu; kontrola `npm run check:release`, kod 0 = zamknięte). Każde zamknięte z dowodem albo świadomie odłożone decyzją właściciela z datą.
 2. **Testy:** pełne `npm run verify` na commicie wydania, `tests.yml` zielony; jeden pełny katalog E2E na standardowym iPhonie zielony (jedno ponowienie scenariusza dozwolone; CLAUDE.md, decyzja właściciela 21.10.2026, `docs/38-przeplywy-i-luki-e2e.md` pkt 11). Nocny pełny katalog to sygnał, nie bramka.
 3. **Audyt:** pełny głęboki audyt całości przed upublicznieniem w App Store, naprawy KRYTYCZNYCH i WYSOKICH znalezisk bez drugiego audytu (CLAUDE.md „Audyty i wydania”, punkt 4; docs/41 A3–A4).
 4. **Wygląd:** redesign M3 przed 1.0; zrzuty do sklepu i opis dopiero po M3 (decyzja właściciela 20.10.2026, `docs/18-przekazanie.md`).
@@ -66,3 +66,9 @@ Odhaczana przez właściciela i agenta przed „Release”; wynik zapisany w doc
 - [ ] **W1-07** Dziennik wydań (`docs/09-plan-testow.md`) ma wiersz tagu wydania z SHA i numerem przebiegu.
 - [ ] **W1-08** Plan „zły build” (punkt 4) przeczytany przez właściciela; uzgodnione, kto i jak szybko reaguje w pierwszym tygodniu.
 - [ ] **W1-09** Przy pierwszej aktualizacji: włączone wydanie stopniowe (punkt 3).
+- [ ] **W1-10** Beta iOS/watchOS (lipiec–sierpień każdego roku, DEC-07 K10, 23.10.2026): gdy Apple udostępni betę nowego systemu, uruchamiamy zestaw E2E na symulatorze w CI z betą Xcode (niewiążąco, jak nocny pełny katalog), a właściciel przechodzi 5 min na telefonie z betą (start treningu, zapis serii, zegarek, kopia/przywrócenie); wynik w docs/18 z datą. Błąd z bety ocenia się wg progu i realności z CLAUDE.md (punkty 1 i 6), poprawka przed wrześniowym wydaniem systemu.
+
+## 6. Po premierze: budżet czasu właściciela
+
+Decyzja właściciela 23.10.2026 (DEC-07 K7, M1-057): po premierze 1.0 właściciel poświęca na aplikację **2 h tygodniowo** przez **8 tygodni** (okno punktu kontrolnego z `docs/monetyzacja.md` i decyzji o Androidzie z `docs/wzrost.md`); odpowiedzi na recenzje w App Store udzielamy w ciągu **48 h**.
+Agent przygotowuje szkice odpowiedzi i zestawienie tygodniowe (pobrania, oceny, zgłoszenia), publikuje właściciel. Praca ponad budżet — tylko za zgodą właściciela (zła wersja: punkt 4, bez limitu czasu).

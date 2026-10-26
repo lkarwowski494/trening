@@ -28,11 +28,15 @@ const ADDED = ['katalog-2026-10-04', 'katalog-2026-10-04b', 'katalog-2026-10-05'
 const STEP_SRC = join(root, 'docs/research/equipment/catalog-step-2026-10-09.json');
 /** Mięśnie docelowe spoza mapy regionów (L2 Q1/Q2/Q5 i zginacze biodra, decyzja 09.10.2026: do czasu dodania regionu — bez partii głównej, z oznaczeniem). */
 const UNMAPPED = ['rotator_cuff', 'serratus_anterior', 'tibialis_anterior', 'hip_flexors'];
+const ALIASES_SRC = join(root, 'docs/research/equipment/catalog-aliases.json');
+const RID_RE = /^[0-9a-f]{8}$/;
 const USER_FIELDS = ['group', 'metric', 'loadMode', 'bandAssistable', 'muscles', 'secondaryMuscles'];
 
-export function render(catalog, step = { rev: ADDED[ADDED.length - 1], renamed: {}, merged: {}, removed: [], fieldFixes: [] }) {
+export function render(catalog, step = { rev: ADDED[ADDED.length - 1], renamed: {}, merged: {}, removed: [], fieldFixes: [] }, aliases = []) {
   if (!Array.isArray(catalog)) throw new Error('catalog: oczekiwana tablica');
-  const names = new Set(); const caps = new Set(); const loads = []; const cables = []; const extra = []; const niche = []; const research = []; const unmapped = []; const spotter = [];
+  const ridRows = []; const ridSeen = new Set(); const ridAfter = new Map();
+  for (const a of aliases) { if (!a || typeof a.name !== 'string' || typeof a.after !== 'string' || !RID_RE.test(a.rid)) throw new Error('aliasy: zły wpis'); ridAfter.set(a.after, [...(ridAfter.get(a.after) ?? []), a]); }
+  const names = new Set(); const caps = new Set(); const loads = []; const cables = []; const extra = []; const niche = []; const research = []; const unmapped = []; const spotter = []; const spotterDb = [];
   const folded = new Set(); const fold = n => n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/g, 'l').replace(/\s+/g, ' ').trim(); /* audyt 04.10 (LOW): duplikat po złożeniu nazwy */
   const rows = catalog.map((e, i) => {
     const where = `catalog[${i}] ${e && e.name}`;
@@ -57,9 +61,15 @@ export function render(catalog, step = { rev: ADDED[ADDED.length - 1], renamed: 
       extra.push(`  ${JSON.stringify([e.name, e.group, e.equipment, e.bandAssistable, e.metric, e.loadMode, e.muscles, e.secondaryMuscles, e.added ?? ADDED[0]])},`); }
     else if (e.added !== undefined) throw new Error(where + ': added tylko przy nowym ćwiczeniu');
     /* M1-031 (NSCA 2017 Standard 3.2): asekuracja osobą, gdy katalog nie przewiduje ramion asekuracyjnych (sztanga nad twarzą leżąc, wykroki w marszu) */
-    if (e.spot !== undefined) { if (e.spot !== 'spotter' || !['barbell', 'ez_bar'].includes(e.loadSource) || e.recommended.includes('rack.safeties')) throw new Error(where + ': spot'); spotter.push(e.name); }
+    if (e.spot !== undefined) {
+      const okSrc = e.spot === 'spotter' ? ['barbell', 'ez_bar'] : e.spot === 'spotter_db' ? ['dumbbell'] : []; /* M1-031 cz. 2 (DEC-08): „spotter_db” = hantle nad głową lub twarzą */
+      if (!okSrc.includes(e.loadSource) || e.recommended.includes('rack.safeties')) throw new Error(where + ': spot');
+      (e.spot === 'spotter' ? spotter : spotterDb).push(e.name); }
     if (e.scope !== undefined) { if (e.scope !== 'niche') throw new Error(where + ': scope ' + e.scope); niche.push(e.name); } /* research 25 (wariant B): NISZOWE — poza listą domyślną */
     if (e.research !== undefined) { const r = e.research; if (!r || typeof r.part !== 'string' || typeof r.confidence !== 'string' || !Array.isArray(r.sources) || !r.sources.every(x => typeof x === 'string')) throw new Error(where + ': research'); research.push(`  ${JSON.stringify(e.name)}: ${JSON.stringify([r.part, r.confidence, r.sources])},`); }
+    if (typeof e.rid !== 'string' || !RID_RE.test(e.rid) || ridSeen.has(e.rid)) throw new Error(where + ': rid (8 znaków szesnastkowych, unikalny)'); ridSeen.add(e.rid);
+    ridRows.push(`  ${JSON.stringify(e.name)}: ${JSON.stringify(e.rid)},`);
+    for (const a of ridAfter.get(e.name) ?? []) { if (names.has(a.name) || ridSeen.has(a.rid)) throw new Error('aliasy: ' + a.name); ridSeen.add(a.rid); ridRows.push(`  ${JSON.stringify(a.name)}: ${JSON.stringify(a.rid)},`); }
     const o = { requires: e.requires, recommended: e.recommended, loadSource: e.loadSource, pattern: e.pattern };
     if (e.implements !== undefined) o.implements = e.implements;
     return `  ${JSON.stringify(e.name)}: ${JSON.stringify(o)},`;
@@ -106,6 +116,8 @@ export function render(catalog, step = { rev: ADDED[ADDED.length - 1], renamed: 
     `export const CATALOG_NICHE: ReadonlySet<string> = new Set(${JSON.stringify(niche)});`,
     '/** Asekuracja osobą bez ramion asekuracyjnych (M1-031, NSCA 2017 Standard 3.2; wariant „stojaki” = recommended rack.safeties) — docs/10, „Asekuracja”. */',
     `export const CATALOG_SPOTTER: ReadonlySet<string> = new Set(${JSON.stringify(spotter)});`,
+    '/** Asekuracja osobą przy hantlach nad głową lub twarzą (M1-031 cz. 2, DEC-08; NSCA 2017 Standard 3.2, „free weights”) — docs/10, „Asekuracja”. */',
+    `export const CATALOG_SPOTTER_DB: ReadonlySet<string> = new Set(${JSON.stringify(spotterDb)});`,
     '/** Źródła przypisania partii z researchu: [część researchu, pewność, id źródeł] (docs/research/25-biblioteka/L*-zrodla.md, docs/research/24). */',
     'export const CATALOG_RESEARCH: Readonly<Record<string, readonly [string, string, readonly string[]]>> = {',
     ...research,
@@ -117,13 +129,17 @@ export function render(catalog, step = { rev: ADDED[ADDED.length - 1], renamed: 
     '};',
     '/** Krok danych użytkownika 09.10.2026 (research biblioteki): dawna nazwa → nowa, scalone → docelowe, usunięte, poprawki pól kopiowanych do ćwiczenia (tylko gdy równe „from”). */',
     `export const CATALOG_STEP = ${JSON.stringify(step)} as const as { readonly rev: string; readonly renamed: Readonly<Record<string, string>>; readonly merged: Readonly<Record<string, string>>; readonly removed: readonly string[]; readonly fieldFixes: readonly { readonly name: string; readonly field: string; readonly from: unknown; readonly to: unknown }[] };`,
+    '/** Identyfikatory wierszy katalogu (techniczne; aplikacja ich nie wyświetla ani nie czyta). */',
+    'export const CATALOG_RID: Readonly<Record<string, string>> = {',
+    ...ridRows,
+    '};',
     '',
   ].join('\n');
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
 if (isMain) {
-  const out = render(JSON.parse(readFileSync(SRC, 'utf8')), JSON.parse(readFileSync(STEP_SRC, 'utf8')));
+  const out = render(JSON.parse(readFileSync(SRC, 'utf8')), JSON.parse(readFileSync(STEP_SRC, 'utf8')), JSON.parse(readFileSync(ALIASES_SRC, 'utf8')));
   if (process.argv.includes('--check')) {
     const cur = existsSync(OUT) ? readFileSync(OUT, 'utf8') : '';
     if (cur !== out) { console.error('lib/catalog.generated.ts jest nieaktualny — uruchom: node scripts/equipment/gen.mjs'); process.exit(1); }
