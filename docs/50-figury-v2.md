@@ -1,6 +1,6 @@
 # 50 — Figury v2: grafiki ćwiczeń dla całej biblioteki (projekt, etap 1)
 
-Decyzja właściciela 25.10.2026 (docs/18): grafiki ćwiczeń w 1.0 dla całej biblioteki (709) — główny wyróżnik aplikacji. Wzór wizualny: makieta właściciela
+Decyzja właściciela 25.10.2026 (docs/18): grafiki ćwiczeń w 1.0 dla całej biblioteki (709) — główny wyróżnik aplikacji. **Zmiana 26.10.2026 (docs/18): 1.0 bez nowych grafik, biblioteka v2 w 1.1.** Wzór wizualny: makieta właściciela
 (`docs/design/figury/makieta-v7-1.html`, **wzór wizualny, nie źródło merytoryczne**). Ten dokument opisuje architekturę i zasady; liczby pokrycia i lista ćwiczeń na rodzinę
 generuje `scripts/figures/v2-gen.mjs` do `docs/51-figury-v2-pokrycie.md`. Silnik: `lib/figures/v2/`, komponent: `components/ExerciseFigureV2.tsx`. Poprzedni system
 (`lib/figures`, 71 figur z kątami stawów i zdaniami wskazówek, docs/research/28) zostaje nietknięty i działa dalej — figury v2 obowiązują dopiero po podłączeniu (pkt 9).

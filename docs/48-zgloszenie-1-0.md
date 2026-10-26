@@ -30,7 +30,7 @@ Skrypt nie usuwa: grupa, która ma już zrzuty, jest pomijana (zmiana zrzutów w
 ## 0. Stan wyjściowy i zależności
 
 - `main` (928d0ff, 25.10.2026): `tests.yml` zielony. Wersja aplikacji w `app.json`: 0.20.0 (wersja 1.0.0 dopiero w kroku Z-05).
-- W toku na innych gałęziach (stan z `docs/18`, wpisy 25.10.2026): grafiki ćwiczeń dla całej biblioteki, monetyzacja w 1.0 (gałąź `monetyzacja-1-0`: okno „Uczciwe zasady”, karta po imporcie, rozszerzony import CSV),
+- W toku na innych gałęziach (stan z `docs/18`, wpisy 25.10.2026; grafiki ćwiczeń dla całej biblioteki przeniesione do 1.1 — 26.10.2026): monetyzacja w 1.0 (gałąź `monetyzacja-1-0`: okno „Uczciwe zasady”, karta po imporcie, rozszerzony import CSV),
   słownik terminów i przekład 33 języków przez API, przywrócony przełącznik trybu w generatorze (DEC-03), ostrzeżenie o asekuracji przy hantlach nad głową (DEC-08), partia 2 audytu (m.in. polityka prywatności bez okresu próbnego).
   **Zamrożenie zakresu 1.0 jest przesunięte** (decyzja 25.10.2026), nowy termin zgłoszenia — do ustalenia po tych pracach.
 - Są już gotowe narzędzia: `asc-metadane.yml` (nazwy, podtytuły, słowa kluczowe, opisy, teksty promocyjne, adresy — 33 lokalizacje), `asc-iap-localizations.yml` (lokalizacje zakupów), `asc-kontrola.yml` (tylko odczyt: ceny, oferty,
@@ -56,7 +56,7 @@ Właściciela prowadzimy po jednym kroku, nie zbiorczą listą (CLAUDE.md); poni
 
 | # | Krok | Kto | Zależy od | Czas | Uwagi |
 |---|---|---|---|---|---|
-| Z-01 | Zakres 1.0 zamknięty i scalony do `main` (grafiki ćwiczeń, monetyzacja, przekład, DEC-03, DEC-08, partia 2 audytu) | agent + właściciel (scalenie PR) | prace w toku | zależy od prac | po scaleniu zakres znów zamrożony (CLAUDE.md, audyty pkt 3) |
+| Z-01 | Zakres 1.0 zamknięty i scalony do `main` (monetyzacja, przekład, DEC-03, DEC-08, partia 2 audytu; nowe grafiki ćwiczeń przeniesione do 1.1 — docs/18, 26.10.2026) | agent + właściciel (scalenie PR) | prace w toku | zależy od prac | po scaleniu zakres znów zamrożony (CLAUDE.md, audyty pkt 3) |
 | Z-02 | Ostatni przegląd treści krytycznej po przekładzie (zamyka R-010, pkt 7) | agent (rola tłumacz / badacz) | przekład 33 języków | 1–2 h agenta | musi być **po** ostatniej zmianie tekstów |
 | Z-03 | Audyt zmian od audytu M1 (decyzja D1 niżej) | agent (audytor) | Z-01 | 2–4 h agenta | próg: tylko KRYTYCZNE i WYSOKIE blokują |
 | Z-04 | `npm run verify` zielony na commicie wydania (`tests.yml`) | automat | Z-01 | CI ok. 25 min | dziś `main` zielony |
