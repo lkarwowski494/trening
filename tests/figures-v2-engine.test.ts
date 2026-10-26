@@ -10,7 +10,7 @@ import {
   rad, deg, clamp, add, sub, mul, dot, len, dist, norm, sag, sagFront, ik2, distSegSeg,
   BODY, GIRTH, SIDES, solveSkeleton, jointAngles, soleY, legJoints,
   proj, depthOf, capsule2, spineAt, bodyShapes, propShapes, sortShapes, benchPolys, EQUIP,
-  pathD, shapePath, boundsOf, svgDocument, ellipsePts, mixHex, luminance, contrast, figurePalette,
+  pathD, shapePath, boundsOf, svgDocument, svgInner, ellipsePts, mixHex, luminance, contrast, figurePalette,
   TEMPO, uAt, loopLength,
   sdPoly, gap, bodyColliders, equipColliders, checkFrame, holdChecks, TOL,
   muscleShapes, MUSCLES, MUSCLE_MIN_LOAD, MUSCLE_DATA, musclesFor, figureSpec, frameAt, shapeAttrs, TORSO_SIDE, TORSO_FRONT,
@@ -120,6 +120,10 @@ describe('rzut i kształty', () => {
     const pal = figurePalette(light); const sk = solveSkeleton(STAND); const sh = [...bodyShapes(sk, 'side'), ...propShapes([{ k: 'floor', x0: -50, x1: 50 }], 'side')];
     const svg = svgDocument(sh, boundsOf([sh]), pal);
     expect(svg).toMatch(/^<svg [^>]*viewBox="0 0 [\d.]+ [\d.]+"/); expect(svg).toContain('matrix(1 0 0 -1'); expect(svg).toContain(pal.skin); expect(svg).not.toContain('NaN');
+  });
+  test('svgInner: wnętrze grupy z kształtami w kolejności rysowania; svgDocument = nagłówek + svgInner + zamknięcie (strona z biblioteką ćwiczeń używa tej samej funkcji)', () => {
+    const pal = figurePalette(light); const sh = [...bodyShapes(solveSkeleton(STAND), 'side'), ...propShapes([{ k: 'floor', x0: -50, x1: 50 }], 'side')]; const inner = svgInner(sh, pal);
+    expect(inner.split('\n')).toHaveLength(sh.length); expect(inner).not.toContain('<svg'); expect(svgDocument(sh, boundsOf([sh]), pal)).toContain(inner); expect(svgInner([], pal)).toBe('');
   });
 });
 

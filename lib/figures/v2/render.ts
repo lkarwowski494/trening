@@ -51,14 +51,17 @@ export function shapeAttrs(s: Shape, pal: FigurePalette): Record<string, string 
 }
 
 const kebab = (k: string): string => k.replace(/[A-Z]/g, m => '-' + m.toLowerCase());
-/** Pełny dokument SVG (do zrzutów i testów migawkowych). `shapes` w kolejności rysowania wyznacza sortShapes. */
-export function svgDocument(shapes: Shape[], box: Box, pal: FigurePalette, px = 1): string {
-  const out: string[] = [`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${f1(box.w)} ${f1(box.h)}" width="${f1(box.w * px)}" height="${f1(box.h * px)}">`, `<g transform="matrix(1 0 0 -1 ${f1(-box.x)} ${f1(box.y + box.h)})">`];
+/** Elementy SVG kształtów w kolejności rysowania (sortShapes) — wnętrze grupy z odbiciem osi y; używa go svgDocument i strona z biblioteką ćwiczeń (aktualizacja animacji w przeglądarce). */
+export function svgInner(shapes: Shape[], pal: FigurePalette): string {
+  const out: string[] = [];
   for (const s of sortShapes(shapes)) {
     const at = shapeAttrs(s, pal); const attrs = Object.entries(at).filter(([, v]) => v !== undefined).map(([k, v]) => `${kebab(k)}="${v}"`).join(' ');
     if (s.k === 'circle') out.push(`<circle cx="${f1(s.c[0])}" cy="${f1(s.c[1])}" r="${f1(s.r)}" ${attrs}/>`);
     else out.push(`<path d="${shapePath(s)}" ${attrs}/>`);
   }
-  out.push('</g></svg>');
   return out.join('\n');
+}
+/** Pełny dokument SVG (do zrzutów i testów migawkowych). `shapes` w kolejności rysowania wyznacza sortShapes. */
+export function svgDocument(shapes: Shape[], box: Box, pal: FigurePalette, px = 1): string {
+  return [`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${f1(box.w)} ${f1(box.h)}" width="${f1(box.w * px)}" height="${f1(box.h * px)}">`, `<g transform="matrix(1 0 0 -1 ${f1(-box.x)} ${f1(box.y + box.h)})">`, svgInner(shapes, pal), '</g></svg>'].join('\n');
 }
