@@ -91,11 +91,11 @@ Przypomnienia starej sesji usunięte. Nowa sesja ustawia własne:
 2. Pon. 2.11.2026 07:00 UTC — wznowienie kalisteniki (repo lkarwowski494/kalistenika, gałąź monetyzacja, docs/sztafeta.md „Wstrzymanie 26.10.2026”; pytania DK-13, DK-14, zakup książek).
 Oszczędność limitu: agenci raportują tylko na końcu zadania albo przy blokadzie; czekanie na CI/E2E w tle (sleep), bez oddawania wyników pośrednich; mniejsze modele do czekania na przebiegi.
 
-## Stan ścieżki 1.0 przy przekazaniu (2026-10-26 22:35 UTC)
-- Krok 1 zrobiony: E2E pakiet podstawowy, run 40397482864 (SHA c56ef5d, `integracja-2026-10-26b`) zielony (22:28 UTC).
-- Krok 2a zrobiony: PR https://github.com/lkarwowski494/trening/pull/70 (integracja → main) scalony merge commitem, main = d1c8be6.
-- Krok 2b w toku: `wydanie-1-0-0` = c0b8d6d (merge main d1c8be6 do 6a722cf); lokalnie `npm ci` + pełne `npm run verify`, potem push i PR do main.
-- Dalej: krok 3 (`e2e-ios.yml`, `pakiet: pelny` na main po scaleniu wydania), krok 4 (`testflight.yml` z main, zatrzyma się na `release` — zatwierdza właściciel), krok 5 (`check-urls.yml`, wpis R-017).
+## Stan ścieżki 1.0 przy przekazaniu (2026-10-26 23:58 UTC)
+- Krok 1 zrobiony: E2E pakiet podstawowy, run 40397482864 (c56ef5d) zielony.
+- Krok 2 zrobiony: PR #70 (integracja → main, https://github.com/lkarwowski494/trening/pull/70) scalony, main d1c8be6; PR #71 (wydanie-1-0-0 → main, https://github.com/lkarwowski494/trening/pull/71) scalony po zielonym verify (run 40417361424), main = 001ecf2 (wersja 1.0.0). `tests.yml` na 001ecf2: run 40423119977 (w toku o 23:58).
+- Krok 3 w toku: pełny katalog E2E, `pakiet: pelny`, main 001ecf2, run 40423153424 (nr 310) w kolejce. Automatyczne przebiegi „podstawowy” na main (40412721362 na d1c8be6, 40423119709 na 001ecf2) anulowałem ręcznie, bo pełny je zawiera.
+- Dalej: krok 4 (`testflight.yml` z main, zatrzyma się na `release` — zatwierdza właściciel), krok 5 (`check-urls.yml`, wpis R-017).
 
 ## Integracja 1.1 — stan przy przekazaniu sesji (agent programisty, 26.10.2026 ok. 22:00 UTC)
 - `integracja-1-1` @ 4e84adf (wypchnięte). CI pełne: ostatnie zielone na bd7e62f (run 985); dla 0f45234 i 4e84adf (przekład, scalenie pozy-1-1) tests.yml jeszcze nie sprawdzony — sprawdzić pierwszy.
