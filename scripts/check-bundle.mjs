@@ -41,7 +41,7 @@ export function allowedStrings(re) {
 export const views = buf => [buf.toString('utf8'), buf.toString('utf16le'), buf.subarray(1).toString('utf16le')];
 
 /** Skrót 3-literowy (np. WHO, CDC) trafia w bajtkodzie przypadkiem (sąsiednie bajty to nie tekst); prawdziwy łańcuch leży w ciągłej tablicy łańcuchów, czyli w długim biegu
- * znaków tekstu. Krótszy bieg niż SHORT_RUN_MIN to przypadek (L-032: fałszywe trafienie „CDC” w kompilacji z 26.10.2026 blokowało verify). */
+ * znaków tekstu. Krótszy bieg niż SHORT_RUN_MIN to przypadek (L-033: fałszywe trafienie „CDC” w kompilacji z 26.10.2026 blokowało verify). */
 export const SHORT_RUN_MIN = 8;
 const TEXTCH = /[\p{L}\p{N} .,:;()/_'-]/u;
 export function textRun(text, i, len) {

@@ -25,6 +25,9 @@ describe('docs/18 i docs/40 po przeniesieniu kolejki', () => {
     const naglowki = [...d40.matchAll(/^## L-(\d{3}|NNN) /gm)].map((m) => m[1]);
     const ostatniaRobocza = naglowki.lastIndexOf('NNN');
     expect(naglowki.slice(0, ostatniaRobocza + 1).every((n) => n === 'NNN')).toBe(true);
-    if (process.env.GITHUB_REF_NAME === 'main') expect(ostatniaRobocza).toBe(-1);
+    /* L-031: wypchnięcie do main jest pierwszym przebiegiem po scaleniu PR — nienumerowana lekcja wchodziła tam niezauważona.
+       Gałąź integracyjna (integracja-*) idzie do main, więc numery musi mieć już na niej. */
+    const ref = process.env.GITHUB_REF_NAME ?? '';
+    if (ref === 'main' || ref.startsWith('integracja-')) expect(ostatniaRobocza).toBe(-1);
   });
 });
