@@ -1,9 +1,11 @@
 // Generator póz rodziny core_floor po stronie agenta (pilotaż 26.10.2026): ćwiczenia na podłodze (leżenie na plecach, na brzuchu, klęk podparty) wyliczone z modelu przez kinematykę prostą
 // (kąty uda i kolana → kostka; kąt ramienia → chwyt), biegun kolana z FK (kolano zawsze po właściwej stronie), parametry per ćwiczenie z katalogu i wskazówek.
 // Układ: leżenie na plecach — głowa w stronę −x, nogi w stronę +x, miednica [0, 8, 0], pochylenieTulowia −90 (poziomo); na brzuchu — głowa +x, pochylenie +90.
+import { wczytajTeksty } from '../v2-jakosc.mjs';
 import { v2, BODY, R, r1, up, dir, klatka, bladZTrajektorii, zbuduj, barki } from './model.mjs';
 
 export const RODZINA = 'core_floor';
+const Y0 = 9.5; /* wysokość miednicy i barków leżącej osoby (głowa leży na podłodze: środek ≈ 9,5 = promień) */
 const ZNOG = 12; /* rozstaw kostek (z), cm */
 const SPRZET = [{ rodzaj: 'podloga', x0: -190, x1: 190 }];
 const D_PROSTE_RAMIE = 63.8; /* odległość bark–chwyt przy prawie prostym ramieniu (łokieć ≈ 16°; limit zasięgu 64) */
@@ -53,11 +55,11 @@ function miednicaPrzyBarkach(S, yMiednicy, strona = 1) {
   const sy = S[1]; const dy = yMiednicy - sy; const tr = BODY().trunk; const dx = Math.sqrt(Math.max(0, tr * tr - dy * dy)); const P = [S[0] + strona * dx, yMiednicy]; const ux = (S[0] - P[0]) / tr, uy = (S[1] - P[1]) / tr;
   return { P, p: Math.atan2(ux, uy) / R };
 }
-const RECE_BOK = (S, y = 4, d = 58) => ({ R: { g: [S[0] + Math.sqrt(d * d - 25), y, 24], pole: [0, 1, 0.3] }, L: { g: [S[0] + Math.sqrt(d * d - 25), y, -24], pole: [0, 1, -0.3] } }); /* ramiona wzdłuż ciała na podłodze */
+const RECE_BOK = (S, y = 5, d = 62) => ({ R: { g: [S[0] + Math.sqrt(d * d - 25), y, 24], pole: [0, 0, 1] }, L: { g: [S[0] + Math.sqrt(d * d - 25), y, -24], pole: [0, 0, -1] } }); /* ramiona wzdłuż ciała na podłodze */
 const RECE_NAD_GLOWA = (kat = 25) => (S, p) => ({ R: { a: KAT_OS(p) - kat, z: 8 }, L: { a: KAT_OS(p) - kat, z: -8 } }); /* ramiona w osi tułowia nad głową, 25° poniżej osi (bark < 170°) */
 
 /* ---------- unoszenie tułowia leżąc na plecach (crunch i pochodne) ---------- */
-function crunch(cw, { pU1 = -62, nogi, rece, pHeadDelta = 0, pelvisY = 8 }) {
+function crunch(cw, { pU1 = -62, nogi, rece, pHeadDelta = 0, pelvisY = Y0 }) {
   const us = [0, 0.5, 1]; const fr = (u) => { const p = lerp(-90, pU1, u); const S = barki([0, pelvisY], p); return ramka({ u, miednica: [0, pelvisY], p, glowa: p + pHeadDelta, nogi: nogi(u, p), rece: rece(S, p, u) }); };
   return zbuduj1(cw, us.map(fr));
 }
@@ -66,25 +68,25 @@ const stopyPlasko = (x, z) => ({ R: { ankle: [x, 7], strona: 'gora', pod: 0, z }
 /* ---------- ćwiczenia leżące ---------- */
 function alternateHeelTouchers(cw) {
   const us = [0, 0.5, 1]; const pU1 = -62;
-  const fr = (u) => { const p = lerp(-90, pU1, u); const S = barki([0, 8], p); const zS = 22;
-    const bok = (s) => { const sg = s === 'R' ? 1 : -1; return { g: [S[0] + Math.sqrt(58 ** 2 - 25), 4, sg * 24], pole: [0, 0.6, sg] }; }; /* lewa ręka zostaje przy boku */
+  const fr = (u) => { const p = lerp(-90, pU1, u); const S = barki([0, Y0], p); const zS = 22;
+    const bok = (s) => { const sg = s === 'R' ? 1 : -1; return { g: [S[0] + Math.sqrt(62 ** 2 - 25), 5, sg * 24], pole: [0, 0, sg] }; }; /* lewa ręka zostaje przy boku */
     const heel = [30 - 6, 7]; const toHeel = Math.atan2(heel[1] - S[1], heel[0] - S[0]) / R; const reach = chwyt(S, toHeel, 24, 62);
-    return ramka({ u, miednica: [0, 8], p, glowa: p, nogi: { R: { ankle: [30, 7], strona: 'gora', z: zS }, L: { ankle: [30, 7], strona: 'gora', z: -zS } }, rece: { R: u === 0 ? bok('R') : { g: reach, pole: [0, 0.6, 1] }, L: bok('L') } }); };
+    return ramka({ u, miednica: [0, Y0], p, glowa: p, nogi: { R: { ankle: [30, 7], strona: 'gora', z: zS }, L: { ankle: [30, 7], strona: 'gora', z: -zS } }, rece: { R: u === 0 ? bok('R') : { g: reach, pole: [0, 0, 1] }, L: bok('L') } }); };
   return zbuduj1(cw, us.map(fr));
 }
 function crunchHandsOverhead(cw) {
   return crunch(cw, { pU1: -62, nogi: () => stopyPlasko(35, ZNOG), rece: (S, p) => ({ R: { a: KAT_OS(p) - 25, z: 5 }, L: { a: KAT_OS(p) - 25, z: -5 } }) });
 }
 function tuckCrunch(cw) {
-  const us = [0, 0.5, 1]; const fr = (u) => { const p = lerp(-90, -62, u); const S = barki([0, 9], p); const t = lerp(90, 102, u); const k = lerp(30, 70, u); const fk = (z) => ({ t, k, z, rot: 10, stopa: 'dol' });
+  const us = [0, 0.5, 1]; const fr = (u) => { const p = lerp(-90, -62, u); const S = barki([0, Y0], p); const t = lerp(90, 102, u); const k = lerp(30, 70, u); const fk = (z) => ({ t, k, z, rot: 10, stopa: 'dol' });
     const chest = (sg) => { const upv = up(p), fv = [Math.cos(p * R), -Math.sin(p * R)]; const P = [0 + upv[0] * 32 + fv[0] * 9.5, 9 + upv[1] * 32 + fv[1] * 9.5]; return [P[0], P[1], sg * 6]; }; /* ręce skrzyżowane na klatce */
-    return ramka({ u, miednica: [0, 9], p, glowa: p, nogi: { R: fk(3), L: fk(-3) }, rece: { R: { g: chest(-1), pole: [0, 1, 0.3] }, L: { g: chest(1), pole: [0, 1, -0.3] } } }); };
+    return ramka({ u, miednica: [0, Y0], p, glowa: p, nogi: { R: fk(3), L: fk(-3) }, rece: { R: { g: chest(-1), pole: [0, 0.1, 1] }, L: { g: chest(1), pole: [0, 0.1, -1] } } }); };
   return zbuduj1(cw, us.map(fr));
 }
 /** Ruch prowadzony miednicą (reverse crunch, leg pull-in): barki i głowa nieruchome, miednica unosi się o dy, uda i golenie zgodnie z FK. */
 function ruchMiednica(cw, { t0, k0, t1, k1, dy = 12, stopa = 'dol' }) {
-  const S0 = barki([0, 8], -90); const us = [0, 0.25, 0.5, 0.75, 1];
-  const fr = (u) => { const e = u; const y = 8 + dy * e; const { P, p } = miednicaPrzyBarkach(S0, y); const nk = (t, k) => ({ t, k, stopa }); const tt = lerp(t0, t1, e), kk = lerp(k0, k1, e);
+  const S0 = barki([0, Y0], -90); const us = [0, 0.25, 0.5, 0.75, 1];
+  const fr = (u) => { const e = u; const y = Y0 + dy * e; const { P, p } = miednicaPrzyBarkach(S0, y); const nk = (t, k) => ({ t, k, stopa }); const tt = lerp(t0, t1, e), kk = lerp(k0, k1, e);
     return ramka({ u, miednica: P, p, glowa: -90, nogi: { R: { ...nk(tt, kk), z: ZNOG }, L: { ...nk(tt, kk), z: -ZNOG } }, rece: RECE_BOK(S0) }); };
   return zbuduj1(cw, us.map(fr));
 }
@@ -92,48 +94,47 @@ function reverseCrunch(cw) { return ruchMiednica(cw, { t0: 90, k0: 90, t1: 130, 
 function legPullIn(cw) { const ks = kolanoProste(); return ruchMiednica(cw, { t0: 10, k0: ks, t1: 105, k1: 105, stopa: 'gora' }); }
 
 function scissorKick(cw) {
-  const ks = kolanoProste(); const us = [0, 0.5, 1]; const S = barki([0, 8], -90);
-  const fr = (u) => ramka({ u, miednica: [0, 8], p: -90, glowa: -90, nogi: { R: { t: lerp(45, 10, u), k: ks, z: ZNOG, stopa: 'gora' }, L: { t: lerp(10, 45, u), k: ks, z: -ZNOG, stopa: 'gora' } }, rece: RECE_BOK(S) });
+  const ks = kolanoProste(); const us = [0, 0.5, 1]; const S = barki([0, Y0], -90);
+  const fr = (u) => ramka({ u, miednica: [0, Y0], p: -90, glowa: -90, nogi: { R: { t: lerp(45, 10, u), k: ks, z: ZNOG, stopa: 'gora' }, L: { t: lerp(10, 45, u), k: ks, z: -ZNOG, stopa: 'gora' } }, rece: RECE_BOK(S) });
   return zbuduj1(cw, us.map(fr));
 }
 function lyingLegRaise(cw) {
-  const ks = kolanoProste(); const S = barki([0, 8], -90); const us = [0, 0.25, 0.5, 0.75, 1];
-  return zbuduj1(cw, us.map((u) => { const t = lerp(16, 88, u); return ramka({ u, miednica: [0, 8], p: -90, glowa: -90, nogi: { R: { t, k: ks, z: ZNOG, stopa: 'dol' }, L: { t, k: ks, z: -ZNOG, stopa: 'dol' } }, rece: RECE_BOK(S) }); }));
+  const ks = kolanoProste(); const S = barki([0, Y0], -90); const us = [0, 0.25, 0.5, 0.75, 1];
+  return zbuduj1(cw, us.map((u) => { const t = lerp(16, 88, u); return ramka({ u, miednica: [0, Y0], p: -90, glowa: -90, nogi: { R: { t, k: ks, z: ZNOG, stopa: 'dol' }, L: { t, k: ks, z: -ZNOG, stopa: 'dol' } }, rece: RECE_BOK(S) }); }));
 }
 function hollowHold(cw) {
-  const ks = kolanoProste(); const p = -72; const fr = (u) => ramka({ u, miednica: [0, 8], p, glowa: p, nogi: { R: { t: 28, k: ks, z: ZNOG }, L: { t: 28, k: ks, z: -ZNOG } }, rece: RECE_NAD_GLOWA(20)(null, p) });
+  const ks = kolanoProste(); const p = -72; const fr = (u) => ramka({ u, miednica: [0, Y0], p, glowa: p, nogi: { R: { t: 28, k: ks, z: ZNOG }, L: { t: 28, k: ks, z: -ZNOG } }, rece: RECE_NAD_GLOWA(20)(null, p) });
   return zbuduj1(cw, [fr(0), fr(1)]);
 }
 function deadBug(cw) {
-  const S = barki([0, 8], -90); const ks = kolanoProste(); const us = [0, 0.25, 0.5, 0.75, 1];
+  const S = barki([0, Y0], -90); const ks = kolanoProste(); const us = [0, 0.25, 0.5, 0.75, 1];
   const fr = (u) => { const kR = { t: 90, k: 90, z: ZNOG }; const kL = { t: lerp(90, 14, u), k: lerp(90, ks, u), z: -ZNOG }; const aR = lerp(90, 160, u);
-    return ramka({ u, miednica: [0, 8], p: -90, glowa: -90, nogi: { R: kR, L: kL }, rece: { R: { a: aR, z: 19 }, L: { a: 90, z: -19 } } }); };
+    return ramka({ u, miednica: [0, Y0], p: -90, glowa: -90, nogi: { R: kR, L: kL }, rece: { R: { a: aR, z: 19 }, L: { a: 90, z: -19 } } }); };
   return zbuduj1(cw, us.map(fr));
 }
 function cocoons(cw) {
   const ks = kolanoProste(); const us = Array.from({ length: 9 }, (_, i) => i / 8);
-  const fr = (u) => { const p = lerp(-90, -62, u); const y = 8 + 8 * u; const t = lerp(10, 100, u), k = lerp(ks, 100, u); const S = barki([0, y], p);
+  const fr = (u) => { const p = lerp(-90, -62, u); const y = Y0 + 8 * u; const t = lerp(10, 100, u), k = lerp(ks, 100, u); const S = barki([0, y], p);
     const fk = nogaFK([0, y], t, k); const dokolan = Math.atan2(fk.knee[1] - S[1], fk.knee[0] - S[0]) / R; const aOver = KAT_OS(p) - 20; const a = lerp(aOver, dokolan, wygladzenie(Math.min(1, u * 1.2)));
     return ramka({ u, miednica: [0, y], p, glowa: p, nogi: { R: { t, k, z: ZNOG, stopa: 'gora' }, L: { t, k, z: -ZNOG, stopa: 'gora' } }, rece: { R: { a, z: 8 }, L: { a, z: -8 } } }); };
   return zbuduj1(cw, us.map(fr));
 }
 function vUp(cw) {
   const ks = kolanoProste(); const us = Array.from({ length: 9 }, (_, i) => i / 8);
-  const fr = (u) => { const el = lerp(0, 60, u); const p = -90 + el; const t = lerp(10, 60, u); const S = barki([0, 8], p); const fk = nogaFK([0, 8], t, ks); const dok = Math.atan2(fk.ankle[1] - S[1], fk.ankle[0] - S[0]) / R; const aOver = KAT_OS(p) - 20; const a = lerp(aOver, dok, u);
-    return ramka({ u, miednica: [0, 8], p, glowa: p, nogi: { R: { t, k: ks, z: ZNOG, stopa: 'gora' }, L: { t, k: ks, z: -ZNOG, stopa: 'gora' } }, rece: { R: { a, z: 14 }, L: { a, z: -14 } } }); };
+  const fr = (u) => { const el = lerp(0, 60, u); const p = -90 + el; const t = lerp(10, 60, u); const S = barki([0, Y0], p); const fk = nogaFK([0, Y0], t, ks); const dok = Math.atan2(fk.ankle[1] - S[1], fk.ankle[0] - S[0]) / R; const aOver = KAT_OS(p) - 20; const a = lerp(aOver, dok, u);
+    return ramka({ u, miednica: [0, Y0], p, glowa: p, nogi: { R: { t, k: ks, z: ZNOG, stopa: 'gora' }, L: { t, k: ks, z: -ZNOG, stopa: 'gora' } }, rece: { R: { a, z: 14 }, L: { a, z: -14 } } }); };
   return zbuduj1(cw, us.map(fr));
 }
 
 /* ---------- Superman (na brzuchu, pozycja +x) ---------- */
-function superman(cw, { bledy = true } = {}) {
-  const ks = kolanoProste(); const us = [0, 0.25, 0.5, 0.75, 1]; void ks;
-  const fr = (u, wznios = 8, noga = 19) => { const phi = Math.asin(Math.min(1, (wznios * u) / BODY().trunk)) / R; const p = 90 - phi; const S = barki([0, 8], p); const aR = phi * 0.6 - 2 - 3 * (1 - u); const hz = 15; /* ręce prosto przed sobą, lekko w górę */
-    const ank = (sg) => { const y = 16 + noga * u; const a = Math.asin((y - 8) / D_PROSTA_NOGA); return [-D_PROSTA_NOGA * Math.cos(a), y]; };
-    const nog = (sg) => ({ ankle: ank(sg), strona: 'dol', pod: 0, rot: 90, z: ZNOG, pole: [0.15, -1, 0.1 * sg] });
-    return ramka({ u, miednica: [0, 8], p, glowa: p * 0.92, nogi: { R: nog(1), L: nog(-1) }, rece: { R: { g: chwyt(S, aR, hz), pole: [0, -1, 0.2] }, L: { g: chwyt(S, aR, -hz), pole: [0, -1, -0.2] } } }); };
-  const ok = (u) => fr(u, 8, 19);
-  const zle = (u) => fr(u, 22, 19);
-  return zbuduj1(cw, us.map(ok), bledy ? [bladZTrajektorii({ cue: 'cobra.mis', znacznik: 'back', us, ok: (u) => ok(u), zle: (u) => zle(u) })] : []);
+function superman(cw, { bledy = !!wczytajTeksty()['cobra.mis'] } = {}) { /* błąd tylko, gdy ma opis w tekstach wskazówek (v2-jakosc: etykieta_bledu) */
+  const us = [0, 0.25, 0.5, 0.75, 1];
+  const fr = (u, wznios) => { const phi = Math.asin(Math.min(1, wznios / BODY().trunk)) / R; const p = 90 - phi; const S = barki([0, Y0], p); const aR = phi * 0.6 - 2 - 3 * (1 - u); const hz = 15; /* ręce prosto przed sobą, lekko w górę */
+    const ank = () => { const y = 16 + 19 * u; const a = Math.asin((y - Y0) / D_PROSTA_NOGA); return [-D_PROSTA_NOGA * Math.cos(a), y]; };
+    const nog = (sg) => ({ ankle: ank(), strona: 'dol', pod: 0, rot: 90, z: ZNOG, pole: [0.15, -1, 0.1 * sg] });
+    return ramka({ u, miednica: [0, Y0], p, glowa: p * 0.92, nogi: { R: nog(1), L: nog(-1) }, rece: { R: { g: chwyt(S, aR, hz), pole: [0, -1, 0.2] }, L: { g: chwyt(S, aR, -hz), pole: [0, -1, -0.2] } } }); };
+  const ok = (u) => fr(u, 8 * u); const zle = (u) => fr(u, 5 + 17 * u); /* błąd: klatka uniesiona o 5 cm już w u = 0, o 22 cm na końcu (przeprost lędźwi) */
+  return zbuduj1(cw, us.map(ok), bledy ? [bladZTrajektorii({ cue: 'cobra.mis', postawa: true, znacznik: 'back', us, ok, zle })] : []);
 }
 
 /* ---------- Bird Dog (klęk podparty; u = 1: prawa ręka i lewa noga wyprostowane) ---------- */
@@ -160,7 +161,6 @@ export const PRZYBLIZENIA = {
 
 export function generuj() {
   return {
-    'Alternate Heel Touchers': () => alternateHeelTouchers('Alternate Heel Touchers'),
     'Bird Dog': () => birdDog('Bird Dog'),
     'Crunch - Hands Overhead': () => crunchHandsOverhead('Crunch - Hands Overhead'),
     'Dead Bug': () => deadBug('Dead Bug'),

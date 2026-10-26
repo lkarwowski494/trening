@@ -9,7 +9,8 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { loadV2 } from './v2-build.mjs';
-import { sprawdzSens, izometryczne } from './v2-sens.mjs';
+import { sprawdzSens, izometryczne, grupaBledu, wczytajSens } from './v2-sens.mjs';
+import { sprawdzJakosc, wczytajTeksty, GRUPY_POSTAWY } from './v2-jakosc.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SCHEMA_FILE = 'docs/schemas/figury-v2-poza.schema.json';
@@ -40,12 +41,16 @@ export function schematPozy(rodzina) { return silnik().v2.poseSchema(rodzina); }
 export function opisKontraktu(rodzina) { return silnik().v2.describeContract(rodzina); }
 /** Walidacja: schemat + geometria + zakresy + ciągłość + błędy jako delty. Wynik { ok, bledy: [{ kod, szczegol }] }. */
 export function waliduj(poza, { rodzina, cwiczenie, root = ROOT }) {
-  const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root), isometric: izometryczne(rodzina, cwiczenie, root) });
+  /* błędy postawy (grupa inna niż „zakres”): pierwsza klatka błędu NIE musi mieć delty zerowej — błąd jest widoczny w każdej klatce (v2-jakosc: blad_widoczny_stale) */
+  const postural = new Set(((poza && poza.bledy) || []).map((b) => b.cue).filter((c) => { const g = grupaBledu(rodzina, c, root); return g && GRUPY_POSTAWY.includes(g); }));
+  const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root), isometric: izometryczne(rodzina, cwiczenie, root) }).filter((b) => !(b.kod === 'blad-start' && [...postural].some((c) => b.szczegol.includes(`„${c}”`))));
   /* sens ruchu (docs/53, bramka 3): po przejściu schematu, kontraktu i sprzętu; ewentualny wyjątek obliczeń nie psuje geometrii */
   const rigowa = silnik().v2.FAMILIES.find((f) => f.id === rodzina)?.status === 'ready'; /* rodziny gotowe (rigi z kodu) sprawdza sens-gotowe.mjs na klatkach rigu — dane pozy tych rodzin nie powstają */
   if (!rigowa && !bledy.some((b) => ['schemat', 'kontrakt', 'rodzina', 'klatki-u', 'sprzet'].includes(b.kod))) {
     try { bledy.push(...sprawdzSens({ v2: silnik().v2, poza, rodzina, cwiczenie, root })); } catch (e) { bledy.push({ kod: 'sens', szczegol: `nie da się ocenić sensu ruchu (${e.message})` }); }
   }
+  /* jakość (luki z recenzji ruchu, v2-jakosc.mjs): po przejściu schematu, geometrii i sensu */
+  if (!rigowa && !bledy.length) { try { bledy.push(...sprawdzJakosc(poza, { v2: silnik().v2, rodzina, cwiczenie, postural, izometryczne: izometryczne(rodzina, cwiczenie, root), teksty: wczytajTeksty(root) })); } catch (e) { bledy.push({ kod: 'jakosc', szczegol: `nie da się ocenić jakości pozy (${e.message})` }); } }
   return { ok: bledy.length === 0, bledy };
 }
 /** Few-shot: gotowa rodzina jako [{ cwiczenie, poza }]; rodzina w planach → [] (wtedy pilotaż używa przykładu przysiadu). */

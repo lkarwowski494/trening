@@ -68,8 +68,9 @@ export function delta(bad, ok) {
 }
 const ZERO = (u) => ({ u });
 /** Błąd z trajektorii: `traj(u, wariant)` zwraca klatkę (wariant 'ok' | 'zle'); delty liczone dla u z listy. Pole `dotyczy` wylicza `zbuduj` z silnika. */
-export function bladZTrajektorii({ cue, znacznik = 'pelvis', us = [0, 0.5, 1], ok, zle }) {
-  return { cue, znacznik, dotyczy: [], klatki: us.map((u) => (u === 0 ? ZERO(0) : delta(zle(u), ok(u)))) };
+export function bladZTrajektorii({ cue, znacznik = 'pelvis', us = [0, 0.5, 1], ok, zle, postawa = false }) {
+  /* postawa: błąd postawy (nie zakresu) widoczny w każdej klatce, także w u = 0 (v2-jakosc: blad_widoczny_stale); inaczej pierwsza klatka błędu ma deltę zerową (kontrakt) */
+  return { cue, znacznik, dotyczy: [], klatki: us.map((u) => (u === 0 && !postawa ? ZERO(0) : delta(zle(u), ok(u)))) };
 }
 
 /** Składa pozę, wylicza `dotyczy` błędów z silnika (kąty zmienione o > 3,5° + co zmieniono w deltach) i zwraca obiekt zgodny z kontraktem. */

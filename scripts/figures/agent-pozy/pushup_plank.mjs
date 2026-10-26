@@ -29,7 +29,7 @@ function trajPompki(o) {
   return (u) => {
     const t = typeof theta === 'function' ? theta(u) : theta; const h = typeof H === 'function' ? H(u) : H; const a = typeof A === 'function' ? A(u) : A;
     const k = uklad({ A: a, H: h, theta: t, hzR, hzL }); const po = o.poleLokcia ?? [-1, 0, 0.5];
-    return { ...klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], miednicaZ], pitch: k.pitch, glowa: k.pitch * 0.6,
+    return { ...klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], miednicaZ], pitch: k.pitch, glowa: k.pitch * 0.75,
       nogi: { R: { k: [a[0], a[1], zNog], pod: POD }, L: { k: [a[0], a[1], -zNog], pod: POD } },
       rece: rece ? rece(u, k, h) : { R: { g: [h[0], h[1], hzR], pole: [po[0], po[1], po[2]] }, L: { g: [h[0], h[1], -hzL], pole: [po[0], po[1], -po[2]] } } }), _S: k.S, _fi: k.fi };
   };
@@ -45,11 +45,11 @@ function sagZ(okFn, deltaMax = 11) {
     const z = czysc(ok); return { ...z, miednica: [r1(P[0]), r1(P[1]), z.miednica[2]], pochylenieTulowia: r1(90 - fi) };
   };
 }
-const FSAG = (u) => (u === 0 ? 0 : u < 0.5 ? 0.6 : 1);
-const bladSag = (okFn, sagFn = sagZ(okFn)) => bladZTrajektorii({ cue: 'plank.mis.sag', znacznik: 'pelvis', us: US, ok: (u) => czysc(okFn(u)), zle: (u) => sagFn(u, FSAG(u)) });
+const FSAG = () => 1; /* błąd postawy widoczny w każdej klatce (v2-jakosc: blad_widoczny_stale) */
+const bladSag = (okFn, sagFn = sagZ(okFn)) => bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us: US, ok: (u) => czysc(okFn(u)), zle: (u) => sagFn(u, FSAG(u)) });
 
 /* ---------- typ: pompka (dwie ręce, ciało w linii, dół = zgięcie łokci) ---------- */
-function pompka(cw, { hz = 19, hzL, off = 0, pole = [-1, -0.3, 0.9], boxRece, boxStopy, thetaTop = 12, thetaDol = 142, thetaPlytko = 90, blady = ['partial', 'sag'], zNog = ZNOG, rece, hy: hyOpt, sprzetRece } = {}) {
+export function pompka(cw, { hz = 19, hzL, off = 0, pole = [-1, -0.3, 0.9], boxRece, boxStopy, thetaTop = 12, thetaDol = 144, thetaPlytko = 90, blady = ['partial', 'sag'], sagDeg = 11, zNog = ZNOG, rece, hy: hyOpt, sprzetRece } = {}) {
   const y0r = boxRece ?? 0; const hy = hyOpt ?? (boxRece ? boxRece + 3.2 : 2); const A = [0, kostkaNaPalcach(boxStopy ?? 0)]; const hzl = hzL ?? hz;
   const hx = dlonX({ A, hy, theta0: thetaTop, hzR: hz, hzL: hzl, off }); const H = [hx, hy];
   const mk = (th) => trajPompki({ A, H, hzR: hz, hzL: hzl, theta: th, poleLokcia: pole, zNog, rece });
@@ -59,7 +59,7 @@ function pompka(cw, { hz = 19, hzL, off = 0, pole = [-1, -0.3, 0.9], boxRece, bo
   if (sprzetRece) sprzet.push(sprzetRece(H, hz));
   const bledy = [];
   if (blady.includes('partial')) { const zle = mk((u) => thetaTop + (thetaPlytko - thetaTop) * u); bledy.push(bladZTrajektorii({ cue: 'push.mis.partial', znacznik: 'pelvis', us: US, ok: (u) => czysc(ok(u)), zle: (u) => czysc(zle(u)) })); }
-  if (blady.includes('sag')) bledy.push(bladSag(ok));
+  if (blady.includes('sag')) bledy.push(bladSag(ok, sagZ(ok, sagDeg)));
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet, klatki: US.map((u) => czysc(ok(u))), bledy });
 }
 
@@ -68,10 +68,10 @@ function plank(cw) {
   const A = [0, kostkaNaPalcach(0)]; const B = BODY(); const L = DL + B.trunk; const sy = B.uarm + 3; const fi = Math.asin((sy - A[1]) / L) / R;
   const S = [A[0] + L * Math.cos(fi * R), A[1] + L * Math.sin(fi * R)]; const pelvis = [A[0] + DL * Math.cos(fi * R), A[1] + DL * Math.sin(fi * R)];
   const G = [S[0] + B.farm + B.hand, sy - B.uarm]; const pitch = 90 - fi;
-  const ok = (u) => klatka({ u, miednica: [pelvis[0], pelvis[1], 0], pitch, glowa: pitch * 0.6, nogi: { R: { k: [A[0], A[1], ZNOG], pod: POD }, L: { k: [A[0], A[1], -ZNOG], pod: POD } },
+  const ok = (u) => klatka({ u, miednica: [pelvis[0], pelvis[1], 0], pitch, glowa: pitch * 0.75, nogi: { R: { k: [A[0], A[1], ZNOG], pod: POD }, L: { k: [A[0], A[1], -ZNOG], pod: POD } },
     rece: { R: { g: [G[0], G[1], 14], pole: [-0.3, -1, 0.4] }, L: { g: [G[0], G[1], -14], pole: [-0.3, -1, -0.4] } } });
   const okU = (u) => ({ ...ok(u), _S: S, _fi: fi });
-  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: [0, 1].map((u) => ok(u)), bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', znacznik: 'pelvis', us: [0, 0.5, 1], ok: (u) => ok(u), zle: (u) => sagZ(okU)(u, u === 0 ? 0 : 1) })] });
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: [0, 1].map((u) => ok(u)), bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us: [0, 0.5, 1], ok: (u) => ok(u), zle: (u) => sagZ(okU)(u, 1) })] });
 }
 
 /* ---------- Mountain Climbers (podpór na rękach, nogi na przemian) ---------- */
@@ -79,13 +79,13 @@ export function mountain(cw, o = {}) {
   const { lift = 4, poleY = 0.3, podR = POD } = o;
   const A = [0, kostkaNaPalcach(0, podR)]; const hy = 2; const hz = 19; const hx = dlonX({ A, hy, theta0: 12, hzR: hz }); const H = [hx, hy]; const k = uklad({ A, H, theta: 12, hzR: hz });
   const PODB = -90; const bent = [k.pelvis[0] - 5, kostkaNaPalcach(0, PODB)]; const POLE = [1, poleY, 0.1]; /* noga ugięta: kolano pod klatkę (biodro ≈ 128°, kolano ≈ 138°), palce na podłodze */
-  const frame = (u, rBent) => klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], 0], pitch: k.pitch, glowa: k.pitch * 0.6,
+  const frame = (u, rBent) => klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], 0], pitch: k.pitch, glowa: k.pitch * 0.75,
     nogi: { R: { k: [...(rBent ? bent : A), ZNOG], pod: rBent ? PODB : podR, pole: [POLE[0], POLE[1], 0.1] }, L: { k: [...(rBent ? A : bent), -ZNOG], pod: rBent ? podR : PODB, pole: [POLE[0], POLE[1], -0.1] } },
     rece: { R: { g: [hx, hy, hz], pole: [-1, 0, 0.5] }, L: { g: [hx, hy, -hz], pole: [-1, 0, -0.5] } } });
   const us = [0, 0.25, 0.5, 0.75, 1];
   /* przejście: kostki po prostej w x, podbicie liniowo, wysokość kostki spójna z podbiciem + uniesienie stopy 4 cm w środku zmiany */
   const noga = (sd, u) => { const t = sd === 'R' ? u : 1 - u; /* t = 0: ugięta, 1: wyprostowana (dla R); L odwrotnie */ const x = bent[0] + (A[0] - bent[0]) * t; const pod = PODB + (podR - PODB) * t; const y = kostkaNaPalcach(0, pod) + lift * Math.sin(Math.PI * t); return { k: [x, y, sd === 'R' ? ZNOG : -ZNOG], pod, pole: [POLE[0], POLE[1], sd === 'R' ? 0.1 : -0.1] }; };
-  const kl = (u) => klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], 0], pitch: k.pitch, glowa: k.pitch * 0.6, nogi: { R: noga('R', u), L: noga('L', u) }, rece: frame(0, true).rece && { R: { g: [hx, hy, hz], pole: [-1, 0, 0.5] }, L: { g: [hx, hy, -hz], pole: [-1, 0, -0.5] } } });
+  const kl = (u) => klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], 0], pitch: k.pitch, glowa: k.pitch * 0.75, nogi: { R: noga('R', u), L: noga('L', u) }, rece: frame(0, true).rece && { R: { g: [hx, hy, hz], pole: [-1, 0, 0.5] }, L: { g: [hx, hy, -hz], pole: [-1, 0, -0.5] } } });
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: us.map((u) => kl(u)), bledy: [] });
 }
 
@@ -93,10 +93,11 @@ export function mountain(cw, o = {}) {
 function shoulderTaps(cw) {
   const A = [0, kostkaNaPalcach(0)]; const hy = 2; const hz = 19; const hx = dlonX({ A, hy, theta0: 12, hzR: hz }); const H = [hx, hy];
   const tr = trajPompki({ A, H, hzR: hz, theta: 12 });
-  const okF = (u) => { const k = tr(u); const S = k._S; const tap = [S[0] + 8, S[1] - 8, -17];
-    const z = czysc(k); z.rece = { R: { chwyt: rv3(u === 0 ? [hx, hy, hz] : tap), biegunLokcia: u === 0 ? [-1, 0, 0.5] : [0.2, -1, 0.6] }, L: { chwyt: [hx, hy, -hz], biegunLokcia: [-1, 0, -0.5] } }; return { ...z, _S: S, _fi: k._fi }; };
+  const okF = (u) => { const k = tr(u); const S = k._S; const z = czysc(k); const dol = (sg) => ({ chwyt: [hx, hy, sg * hz], biegunLokcia: [-1, 0, sg * 0.5] });
+    const tap = (sg) => ({ chwyt: rv3([S[0] + 8, S[1] - 8, -sg * 17]), biegunLokcia: [0.2, -1, sg * 0.6] }); /* ręka sg dotyka przeciwnego barku */
+    z.rece = u === 0 ? { R: dol(1), L: dol(-1) } : u === 0.5 ? { R: tap(1), L: dol(-1) } : { R: dol(1), L: tap(-1) }; return { ...z, _S: S, _fi: k._fi }; };
   const us = [0, 0.5, 1]; return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: us.map((u) => czysc(okF(u))),
-    bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', znacznik: 'pelvis', us, ok: (u) => czysc(okF(u)), zle: (u) => sagZ(okF)(u, u === 0 ? 0 : 1) })] });
+    bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us, ok: (u) => czysc(okF(u)), zle: (u) => sagZ(okF)(u, 1) })] });
 }
 const rv3 = (a) => a.map(r1);
 
@@ -104,8 +105,8 @@ const rv3 = (a) => a.map(r1);
 function jednaReka(cw) {
   const A = [0, kostkaNaPalcach(0)]; const hy = 2; const pz = 6; const hzR = 22; const hx = dlonX({ A, hy, theta0: 12, hzR: hzR - pz }); const H = [hx, hy];
   const mk = (th) => (u) => { const t = th(u); const k = uklad({ A, H, theta: t, hzR: hzR - pz }); const front = [Math.cos(k.pitch * R), -Math.sin(k.pitch * R)]; const upv = up(k.pitch);
-    const back = [k.pelvis[0] + upv[0] * 8 - front[0] * 12, k.pelvis[1] + upv[1] * 8 - front[1] * 12];
-    return { ...klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], pz], pitch: k.pitch, glowa: k.pitch * 0.6, nogi: { R: { k: [A[0], A[1], pz + 13], pod: POD }, L: { k: [A[0], A[1], pz - 13], pod: POD } },
+    const back = [k.pelvis[0] + upv[0] * 6 - front[0] * 12.5, k.pelvis[1] + upv[1] * 6 - front[1] * 12.5]; /* dłoń leży na lędźwiach */
+    return { ...klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], pz], pitch: k.pitch, glowa: k.pitch * 0.75, nogi: { R: { k: [A[0], A[1], pz + 15], pod: POD }, L: { k: [A[0], A[1], pz - 15], pod: POD } },
       rece: { R: { g: [H[0], H[1], hzR], pole: [-1, 0, 0.4] }, L: { g: [back[0], back[1], pz - 4], pole: [0, 0.4, -1] } } }), _S: k.S, _fi: k.fi }; };
   const ok = mk((u) => 12 + 83 * u); return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: US.map((u) => czysc(ok(u))), bledy: [bladSag(ok, sagZ(ok))] });
 }
@@ -116,7 +117,7 @@ function plyo(cw) {
   const fr = [[0, 12, 0], [0.4, 142, 0], [1, 12, unosz]]; /* góra, dół, wypchnięcie z oderwaniem dłoni (12 cm nad podłogą) */
   const ok = (u) => { const f = fr.find((x) => x[0] === u); const H = [hx, hy0 + f[2]]; return trajPompki({ A, H, hzR: hz, theta: f[1] })(u); };
   const us = fr.map((f) => f[0]); return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 220 }], klatki: us.map((u) => czysc(ok(u))),
-    bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', znacznik: 'pelvis', us, ok: (u) => czysc(ok(u)), zle: (u) => sagZ(ok)(u, u === 0 ? 0 : 1) })] });
+    bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us, ok: (u) => czysc(ok(u)), zle: (u) => sagZ(ok)(u, 1) })] });
 }
 
 /* ---------- Inverted Row (leżąc pod drążkiem, pięty na podłodze) ---------- */
@@ -128,30 +129,33 @@ function inverted(cw) {
   const ax = solve(12).Ax; const A = [ax, ay]; const H = [0, by];
   const frame = (u, theta) => { const dp = hanga(theta); const S = przeciecie(A, L, H, dp, 'dol'); if (!S) throw new Error('inverted: brak ułożenia'); const fi = Math.atan2(A[1] - S[1], A[0] - S[0]) / R; /* kierunek od barków ku kostkom */
     const ud = [(S[0] - A[0]) / L, (S[1] - A[1]) / L]; const pelvis = [A[0] + DL * ud[0], A[1] + DL * ud[1]]; const phi = Math.atan2(ud[1], ud[0]) / R; const pitch = 90 - phi; void fi;
-    return klatka({ u, miednica: [pelvis[0], pelvis[1], 0], pitch, glowa: pitch * 0.9, nogi: { R: { k: [A[0], A[1], ZNOG], pod: podb }, L: { k: [A[0], A[1], -ZNOG], pod: podb } }, rece: { R: { g: [H[0], H[1], hz], pole: [0.3, -1, 0.6] }, L: { g: [H[0], H[1], -hz], pole: [0.3, -1, -0.6] } } }); };
-  const th = (u) => 12 + (125 - 12) * u; const us = [0, 0.25, 0.5, 0.75, 1];
+    return klatka({ u, miednica: [pelvis[0], pelvis[1], 0], pitch, glowa: pitch, nogi: { R: { k: [A[0], A[1], ZNOG], pod: podb }, L: { k: [A[0], A[1], -ZNOG], pod: podb } }, rece: { R: { g: [H[0], H[1], hz], pole: [0.8, -0.5, 0.15] }, L: { g: [H[0], H[1], -hz], pole: [0.8, -0.5, -0.15] } } }); };
+  const th = (u) => 12 + (122 - 12) * u; const us = [0, 0.25, 0.5, 0.75, 1];
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet: [{ rodzaj: 'podloga', x0: -60, x1: 220 }, { rodzaj: 'slupek', x: 0, h: by + 5 }, { rodzaj: 'sztanga', x: 0, y: by, talerze: false, podazaZaChwytem: false, dlugosc: 128 }], klatki: us.map((u) => frame(u, th(u))), bledy: [] });
 }
 
 /* ---------- Rollouty (sztanga z talerzami toczy się po podłodze; hantle/koła nie) ---------- */
 const BAR_Y = 22.5;
 /** Rollout z podparciem na kolanach (podłoga albo ławka): kolano K nieruchome, udo i tułów obracają się, ręce proste do sztangi na podłodze. */
-export function rolloutKolana(cw, { ławka = 0, fi1 = 14, sag = true, ky = 9.8, dgSag = 8.5 } = {}) {
+export function rolloutKolana(cw, { ławka = 0, fi1 = 14, sag = true, ky = 9.8, dgSag = 8.5, theta = 22, fM = 10, sYf = 0.9, bk = 0.4 } = {}) {
   const B = BODY(); const PODK = -90; const K = [0, ky + ławka]; const ayk = kostkaNaPalcach(ławka, PODK); const al = Math.asin((ayk - K[1]) / B.shank); const A = [K[0] - B.shank * Math.cos(al), ayk];
-  const th = 22; const d = dChwytu(th); const dp = Math.sqrt(d * d - (B.shHalf - 20) ** 2);
-  const thS = ławka ? 120 : 90; const sY = BAR_Y + dp; const phS = Math.asin(Math.max(-1, Math.min(1, (sY - K[1] - B.thigh * Math.sin(thS * R)) / B.trunk))) / R; /* start: bark nad sztangą (ręce proste), tułów z zapasu */
-  const sY1 = K[1] + (B.thigh + B.trunk) * Math.sin(fi1 * R); /* S.y w u = 1 (ciało w linii) */
-  const frame = (u) => { const th0 = thS + (fi1 - thS) * u; const syT = sY + (sY1 - sY) * u; const ph = Math.asin(Math.max(-1, Math.min(1, (syT - K[1] - B.thigh * Math.sin(th0 * R)) / B.trunk))) / R; /* kierunek uda i osi tułowia (od +x); wysokość barku z zapasem zasięgu ręki */
+  const th = theta; const d = dChwytu(th); const dp = Math.sqrt(d * d - (B.shHalf - 20) ** 2);
+  const thS = ławka ? 120 : 90; const sY = BAR_Y + dp * sYf; const phS = Math.asin(Math.max(-1, Math.min(1, (sY - K[1] - B.thigh * Math.sin(thS * R)) / B.trunk))) / R; /* start: bark nad sztangą (ręce proste), tułów z zapasu */
+  const fiM = fi1 + fM; const sYM = K[1] + (B.thigh + B.trunk) * Math.sin(fiM * R); /* do u = 0,6: udo i tułów schodzą do wspólnego kąta fiM (ciało prawie w linii), potem razem do fi1 (reguła „skrajna” ocenia całą końcówkę) */
+  const frame = (u) => { const t = Math.min(1, u / bk); let th0, ph;
+    if (u < bk) { th0 = thS + (fiM - thS) * t; const syT = sY + (sYM - sY) * t; ph = Math.asin(Math.max(-1, Math.min(1, (syT - K[1] - B.thigh * Math.sin(th0 * R)) / B.trunk))) / R; }
+    else { th0 = ph = fiM + (fi1 - fiM) * ((u - bk) / (1 - bk)); }
     const hip = [K[0] + B.thigh * Math.cos(th0 * R), K[1] + B.thigh * Math.sin(th0 * R)]; const S = [hip[0] + B.trunk * Math.cos(ph * R), hip[1] + B.trunk * Math.sin(ph * R)];
-    const yb = BAR_Y + ławka * 0; const hxx = S[0] + Math.sqrt(Math.max(1, dp * dp - (S[1] - yb) ** 2));
+    const yb = BAR_Y; const hxx = S[0] + Math.sqrt(Math.max(1, dp * dp - (S[1] - yb) ** 2));
     return { u, hip, S, pitch: 90 - ph, ph, H: [hxx, yb] }; };
-  const mk = (u) => { const f = frame(u); return { ...klatka({ u, miednica: f.hip, pitch: f.pitch, glowa: f.pitch * 0.6, nogi: { R: { k: [A[0], A[1], ZNOG], pod: PODK, pole: [1, -0.5, 0.05] }, L: { k: [A[0], A[1], -ZNOG], pod: PODK, pole: [1, -0.5, -0.05] } },
+  const mk = (u) => { const f = frame(u); return { ...klatka({ u, miednica: f.hip, pitch: f.pitch, glowa: f.pitch * 0.75, nogi: { R: { k: [A[0], A[1], 8.5], pod: PODK, pole: [1, -0.5, 0.05] }, L: { k: [A[0], A[1], -8.5], pod: PODK, pole: [1, -0.5, -0.05] } },
     rece: { R: { g: [...f.H, 20], pole: [-0.3, -1, 0.3] }, L: { g: [...f.H, -20], pole: [-0.3, -1, -0.3] } } }), _S: f.S, _fi: f.ph, _K: K }; };
-  const us = [0, 0.2, 0.4, 0.6, 0.8, 1];
+  const us = [0, 0.1, 0.2, 0.3, 0.4, 0.55, 0.7, 0.85, 1]; /* 9 klatek */
   const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 260 }, { rodzaj: 'sztanga', x: 40, y: BAR_Y, talerze: true, podazaZaChwytem: true, dlugosc: 130 }]; if (ławka) sprzet.splice(1, 0, { rodzaj: 'skrzynia', x0: -75, x1: 5, top: ławka });
   const bledy = [];
-  if (sag) bledy.push(bladZTrajektorii({ cue: 'plank.mis.sag', znacznik: 'pelvis', us: [0, 0.6, 0.8, 1], ok: (u) => czysc(mk(u)), zle: (u) => { const k = mk(u); const w = u < 0.6 ? 0 : u === 0.6 ? 0.5 : 1; if (!w) return czysc(k); const S = k._S; const dg = dgSag * w; const fi = k._fi + dg; /* biodra opadają: tułów obrócony wokół barków */
-    let P = [S[0] - 50 * Math.cos(fi * R), S[1] - 50 * Math.sin(fi * R)]; const z = czysc(k); return { ...z, miednica: [r1(P[0]), r1(P[1]), 0], pochylenieTulowia: r1(90 - fi) }; } }));
+  if (sag) bledy.push(bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us: [0, 0.2, 0.4, 0.55, 0.7, 0.85, 1], ok: (u) => czysc(mk(u)), zle: (u) => { const k = mk(u); const w = Math.max(0, Math.min(1, (u - 0.55) / 0.45)); const z = czysc(k);
+    const S = k._S; const fi = k._fi + dgSag * w; const P = [S[0] - 50 * Math.cos(fi * R), S[1] - 50 * Math.sin(fi * R)]; /* biodra opadają (obrót tułowia wokół barków) dopiero przy wyprostowanym ciele; wcześniej błąd to wygięcie lędźwi (−28°) */
+    return { ...z, miednica: [r1(P[0]), r1(P[1]), 0], pochylenieTulowia: r1(90 - fi), zgiecieKregoslupa: -28 }; } }));
   return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet, klatki: us.map((u) => czysc(mk(u))), bledy });
 }
 /** Rollout stojąc / z zawieszeniem: stopy na palcach nieruchome (u = 1), bark–kostka w linii; start: pochylenie z prostymi nogami. */
@@ -167,13 +171,13 @@ function rolloutStojac(cw, { fi1 = 10, start = 'stojac', uchwytY0 = 100 } = {}) 
       A = A1; pod = POD; const fi = 55 + (fi1 - 55) * u; /* start: pochylenie w uchwytach (uchwyty nad dłońmi ≈ 70 cm), koniec: prawie poziomo */ const dlu = 74 + (DL - 74) * u; /* start z lekko ugiętymi biodrami i kolanami: najdalszy punkt barki–kostka dopiero w u = 1 (reguła „skrajna”) */ S = [A[0] + (dlu + 50) * Math.cos(fi * R), A[1] + (dlu + 50) * Math.sin(fi * R)]; hip = [A[0] + dlu * Math.cos(fi * R), A[1] + dlu * Math.sin(fi * R)]; pitch = 90 - fi;
       const psi = -90 + ((fi1 - 14) - -90) * u; H = [S[0] + dp * Math.cos(psi * R), S[1] + dp * Math.sin(psi * R)]; }
     return { u, A, pod, hip, pitch, S, H, fi: 90 - pitch }; };
-  const mk = (u) => { const f = fr(u); return { ...klatka({ u, miednica: f.hip, pitch: f.pitch, glowa: f.pitch * 0.6, nogi: { R: { k: [f.A[0], f.A[1], ZNOG], pod: f.pod }, L: { k: [f.A[0], f.A[1], -ZNOG], pod: f.pod } },
+  const mk = (u) => { const f = fr(u); return { ...klatka({ u, miednica: f.hip, pitch: f.pitch, glowa: f.pitch * 0.75, nogi: { R: { k: [f.A[0], f.A[1], ZNOG], pod: f.pod }, L: { k: [f.A[0], f.A[1], -ZNOG], pod: f.pod } },
     rece: { R: { g: [...f.H, 20], pole: [-0.3, -1, 0.3] }, L: { g: [...f.H, -20], pole: [-0.3, -1, -0.3] } } }), _S: f.S, _fi: f.fi }; };
   const us = [0, 0.25, 0.5, 0.75, 1];
   const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 260 }, { rodzaj: 'sztanga', x: 40, y: start === 'stojac' ? BAR_Y : uchwytY0, talerze: start === 'stojac', podazaZaChwytem: true, dlugosc: start === 'stojac' ? 130 : 50 }];
-  const sagF = (u) => { const k = mk(u); const w = u < 0.5 ? 0 : u === 0.5 ? 0.6 : 1; if (!w) return czysc(k); const A = k.nogi.R.kostka; let dg = 11 * w; for (; dg > 3; dg -= 0.25) { const fi = k._fi + dg; const P = [k._S[0] - 50 * Math.cos(fi * R), k._S[1] - 50 * Math.sin(fi * R)]; if (Math.hypot(P[0] - A[0], P[1] - A[1]) <= 82.8) break; }
+  const sagF = (u) => { const k = mk(u); const w = 1; const A = k.nogi.R.kostka; let dg = 11 * w; for (; dg > 3; dg -= 0.25) { const fi = k._fi + dg; const P = [k._S[0] - 50 * Math.cos(fi * R), k._S[1] - 50 * Math.sin(fi * R)]; if (Math.hypot(P[0] - A[0], P[1] - A[1]) <= 82.8) break; }
     const fi = k._fi + dg; const P = [k._S[0] - 50 * Math.cos(fi * R), k._S[1] - 50 * Math.sin(fi * R)]; const z = czysc(k); return { ...z, miednica: [r1(P[0]), r1(P[1]), 0], pochylenieTulowia: r1(90 - fi) }; };
-  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet, klatki: us.map((u) => czysc(mk(u))), bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', znacznik: 'pelvis', us: [0, 0.5, 0.75, 1], ok: (u) => czysc(mk(u)), zle: sagF })] });
+  return zbuduj({ rodzina: RODZINA, cwiczenie: cw, sprzet, klatki: us.map((u) => czysc(mk(u))), bledy: [bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us, ok: (u) => czysc(mk(u)), zle: sagF })] });
 }
 
 /** Ćwiczenia, których kontrakt v2 nie potrafi narysować (powód obowiązkowy; do decyzji koordynatora). */
@@ -198,24 +202,21 @@ export const PRZYBLIZENIA = {
 export function generuj() {
   const E = {
     'Push Up': () => pompka('Push Up'),
-    'Push-Up Wide': () => pompka('Push-Up Wide', { hz: 33, pole: [-0.5, -0.3, 1] }),
+    'Push-Up Wide': () => pompka('Push-Up Wide', { hz: 33, pole: [-0.5, -0.3, 1], sagDeg: 9 }),
     'Close-Grip Push-Up': () => pompka('Close-Grip Push-Up', { hz: 10, pole: [-1, -0.3, 0.5], blady: ['partial'] }),
-    'Diamond Push Up': () => pompka('Diamond Push Up', { hz: 4.5, off: -8, pole: [-0.6, -0.3, 1], blady: [] }),
-    'Clock Push-Up': () => pompka('Clock Push-Up', { hz: 22, thetaTop: 22, rece: (u, k, h) => ({ R: { g: [h[0] + 12, h[1], 22], pole: [-1, 0, 0.5] }, L: { g: [h[0] - 12, h[1], -22], pole: [-1, 0, -0.5] } }), blady: ['partial'] }),
+    'Diamond Push Up': () => pompka('Diamond Push Up', { hz: 4.5, off: 6, thetaDol: 138, pole: [-0.6, 0.6, 1], blady: [] }),
     'Decline Push Up': () => pompka('Decline Push Up', { hz: 22, boxStopy: 30, thetaDol: 146, blady: ['partial'] }),
-    'Incline Push Up': () => pompka('Incline Push Up', { hz: 22, off: -18, boxRece: 45, blady: [] }),
+    'Incline Push Up': () => pompka('Incline Push Up', { hz: 22, off: -18, boxRece: 45, thetaDol: 148, blady: [] }),
     'Incline Push-Up Close-Grip': () => pompka('Incline Push-Up Close-Grip', { hz: 10, off: -18, pole: [-1, -0.3, 0.5], boxRece: 45, blady: ['partial'] }),
-    'Suspended Push-Up': () => pompka('Suspended Push-Up', { hz: 22, off: -18, hy: 45, sprzetRece: (H) => ({ rodzaj: 'sztanga', x: r1(H[0]), y: 45, talerze: false, podazaZaChwytem: false, dlugosc: 70 }), blady: ['partial', 'sag'] }),
     'Single-Arm Push-Up': () => jednaReka('Single-Arm Push-Up'),
     'Plank': () => plank('Plank'),
     'Mountain Climbers': () => mountain('Mountain Climbers'),
     'Plank Shoulder Taps': () => shoulderTaps('Plank Shoulder Taps'),
     'Plyo Push-Up': () => plyo('Plyo Push-Up'),
     'Inverted Row': () => inverted('Inverted Row'),
-    'Rollout (sztanga)': () => rolloutKolana('Rollout (sztanga)', { fi1: 22, ky: 9.8, dgSag: 11 }),
-    'Barbell Rollout from Bench': () => rolloutKolana('Barbell Rollout from Bench', { ławka: 42, fi1: 16, ky: 13, dgSag: 8 }),
+    'Rollout (sztanga)': () => rolloutKolana('Rollout (sztanga)', { fi1: 22, ky: 9.8, dgSag: 11, fM: 8, sYf: 0.8, bk: 0.3 }),
+    'Barbell Rollout from Bench': () => rolloutKolana('Barbell Rollout from Bench', { ławka: 42, fi1: 10, ky: 13, dgSag: 7, fM: 4 }),
     'Standing Barbell Rollout': () => rolloutStojac('Standing Barbell Rollout', { start: 'stojac' }),
-    'Suspended Fallout': () => rolloutStojac('Suspended Fallout', { start: 'zaw', uchwytY0: 100, fi1: 6 }),
   };
   return E;
 }
