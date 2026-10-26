@@ -336,7 +336,7 @@ describe('runda 4', () => {
     await go('/progress'); await flushAll(10); expect(screen.getByText(/Bench Press \(hantle\) \(usunięte\)/)).toBeTruthy();
   });
   test('R4-07 serie per partia z przecinkiem', async () => {
-    await renderApp(); addWorkout(Date.now() - 3600e3, [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); await go('/progress'); await flushAll(10);
+    await renderApp(); addWorkout(Math.max(Date.now() - 3600e3, stats.thisMonday()), [['Bench Press (hantle)', [{ weight: 24, reps: 8 }]]]); /* L-031: „godzinę temu” nie może wypaść w poprzednim tygodniu (poniedziałek 00:00–01:00) */ await go('/progress'); await flushAll(10);
     expect(screen.getAllByText(/^0 \+ 0,5 pośrednio \(1 seria\) \/ 10/).length).toBeGreaterThan(0); /* 13.10.2026: przecinek dziesiętny w podpisie z podziałem */
   });
   test('R4-08 „Zakończ” → „Wróć” nie przerywa trwającej serii na czas', async () => {
