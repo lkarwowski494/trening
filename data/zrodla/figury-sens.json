@@ -93,6 +93,14 @@
           "zrodlo": "nazwa ćwiczenia (jednorącz) — konwencja; drążek trzyma jedna dłoń (sprzet: trzyma R albo L), wolna dłoń leży poza osią drążka",
           "liczba": "konwencja (≥ 15 cm od osi drążka)",
           "wskazowka_liczbowa": "wolna ręka wzdłuż ciała, prosto: chwyt wolnej dłoni = [miednica.x + 2, miednica.y − 13, ∓21] w KAŻDEJ klatce (z przeciwnego znaku niż strona trzymająca)"
+        },
+        "dlonie_na_drazku": {
+          "typ": "styk_dlonie",
+          "grupa": "styk",
+          "cue": "pu.grip",
+          "parametry": {},
+          "zrodlo": "wskazówka pu.grip („chwyć drążek … i zawiśnij”); źródła w cues.json: ACE, NASM, ExRx; styk liczony z geometrii (lib/figures/v2/contacts.ts)",
+          "liczba": "uproszczenie (styk = dłoń na osi drążka w granicach tolerancji chwytu walidatora)"
         }
       },
       "grupy_bledow": {
@@ -106,7 +114,9 @@
           "dol_rece_proste",
           "miednica_nie_buja",
           "nogi_nieruchome",
-          "tulow_pion"
+          "tulow_pion",
+          "dlonie_na_drazku",
+          "dlonie_na_drazku"
         ],
         "Chin Up": "_scisle",
         "Pull Up": "_scisle",
@@ -119,38 +129,45 @@
           "miednica_nie_buja",
           "nogi_nieruchome",
           "tulow_pion",
-          "jedna_reka"
+          "jedna_reka",
+          "dlonie_na_drazku"
         ],
         "Side To Side Chins": [
           "broda_nad_drazkiem",
           "dol_rece_proste",
           "miednica_nie_buja_x",
           "nogi_nieruchome",
-          "tulow_pion"
+          "tulow_pion",
+          "dlonie_na_drazku"
         ],
         "Gorilla Chin/Crunch": [
           "broda_nad_drazkiem",
           "dol_rece_proste",
           "miednica_nie_buja",
-          "tulow_pion"
+          "tulow_pion",
+          "dlonie_na_drazku"
         ],
         "Scapular Pull-Up": [
           "rece_proste_caly_ruch",
           "miednica_nie_buja",
           "nogi_nieruchome",
-          "tulow_pion"
+          "tulow_pion",
+          "dlonie_na_drazku"
         ],
         "Dead Hang": [
           "rece_proste_caly_ruch",
           "miednica_nie_buja",
           "nogi_nieruchome",
-          "tulow_pion"
+          "tulow_pion",
+          "dlonie_na_drazku"
         ],
         "Gironda Sternum Chins": [
-          "dol_rece_proste"
+          "dol_rece_proste",
+          "dlonie_na_drazku"
         ],
         "Muscle Up": [
-          "dol_rece_proste"
+          "dol_rece_proste",
+          "dlonie_na_drazku"
         ]
       },
       "pomin": {
@@ -3296,5 +3313,71 @@
       "core_floor"
     ],
     "wlasna": []
+  },
+  "styki": {
+    "_opis": "Styki WYMAGANE w pozie poprawnej rodziny (punkty styku liczone z geometrii: lib/figures/v2/contacts.ts). Jedno źródło prawdy: stąd generuje się lib/figures/v2/styki.json (scripts/zrodla-runtime.mjs); TS (requiredContacts) i testy czytają ten plik. 'pomijane_gdy': nazwane warunki wariantu (requiredContacts), przy których wymóg odpada.",
+    "squat": {
+      "wymagane": [
+        "heelR",
+        "toeR",
+        "heelL",
+        "toeL"
+      ],
+      "zrodlo": "geometria: obie stopy (pięta i palce) na podłodze; wskazówki sq.down („całymi stopami”), sq.depth („całych stopach na podłodze”); odrywanie pięt to błąd sq.mis.heels",
+      "liczba": "tolerancja styku: CONTACT.floor (contacts.ts)"
+    },
+    "bench_press": {
+      "wymagane": [
+        "head",
+        "back",
+        "seat",
+        "heelR",
+        "toeR",
+        "heelL",
+        "toeL"
+      ],
+      "pomijane_gdy": {
+        "lawka_ujemna": [
+          "heelR",
+          "toeR",
+          "heelL",
+          "toeL"
+        ]
+      },
+      "zrodlo": "pięć punktów styku (głowa, barki i górne plecy, pośladki, obie stopy): NSCA Basics 2012 (setup wyciskania leżąc), jedno źródło szczebla 4 — wskazówka bp.contact ma też ACE, NASM, Stronger by Science; ławka ujemna: stopy pod wałkami",
+      "liczba": "tolerancja: CONTACT.surface, głowa CONTACT.head (uproszczenie modelu)"
+    },
+    "hinge": {
+      "wymagane": [
+        "heelR",
+        "toeR",
+        "heelL",
+        "toeL"
+      ],
+      "pomijane_gdy": {
+        "jednonoz": [
+          "heelL",
+          "toeL"
+        ]
+      },
+      "zrodlo": "geometria: stopy na podłodze lub podwyższeniu; ćwiczenia jednonóż: stopa wolna w powietrzu",
+      "liczba": "tolerancja styku: CONTACT.floor"
+    },
+    "pull_up": {
+      "wymagane": [
+        "handR",
+        "handL"
+      ],
+      "pomijane_gdy": {
+        "jednorecz_R": [
+          "handL"
+        ],
+        "jednorecz_L": [
+          "handR"
+        ]
+      },
+      "zrodlo": "wskazówka pu.grip („chwyć drążek … zawiśnij”); reguła dlonie_na_drazku (walidator)",
+      "liczba": "styk dłoni = tolerancja chwytu walidatora"
+    }
   }
 }

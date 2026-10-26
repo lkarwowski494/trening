@@ -764,6 +764,10 @@
   "en": "abs"
  },
  {
+  "pl": "Bujanie się i wymachy nogami.",
+  "en": "Swinging and kicking the legs."
+ },
+ {
   "pl": "butterfly (pec deck)",
   "en": "pec deck"
  },
@@ -3867,6 +3871,10 @@
   "en": "After saving, the template goes on this day."
  },
  {
+  "pl": "Podciąganie",
+  "en": "Pulling up"
+ },
+ {
   "pl": "Podgląd",
   "en": "Preview"
  },
@@ -6223,6 +6231,10 @@
  {
   "pl": "Wróć do treningu",
   "en": "Back to workout"
+ },
+ {
+  "pl": "Wskazówka: {opis}",
+  "en": "Tip: {opis}"
  },
  {
   "pl": "Wskazówki",

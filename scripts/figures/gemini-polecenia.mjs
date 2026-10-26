@@ -38,11 +38,11 @@ export function pozyGotowe(rodzina, root = ROOT) {
   const p = join(root, 'lib/figures/v2/poses', `${rodzina}.json`);
   return existsSync(p) ? czytaj(p) : { cwiczenia: {} };
 }
-/** Ćwiczenia rodziny, którym brakuje pozy (rodzina gotowa w kodzie → pusta lista). */
+/** Ćwiczenia rodziny, którym brakuje pozy (rodzina gotowa z rigiem → pusta lista; rodzina gotowa z danych → ćwiczenia bez wpisu w poses/). */
 export function doZrobienia(rodzina, { root = ROOT, lista } = {}) {
   const r = rodzinyZDokumentu(lista ?? join(root, 'docs/51-figury-v2-pokrycie.md')).find((x) => x.id === rodzina);
   if (!r) throw new Error(`rodzina „${rodzina}” nie występuje w docs/51`);
-  if (r.stan === 'gotowa') return [];
+  if (r.stan === 'gotowa' && !existsSync(join(root, 'lib/figures/v2/poses', `${rodzina}.json`))) return []; /* gotowa z rigiem: nic do zrobienia; gotowa z danych: brakujące pozy */
   const mam = pozyGotowe(rodzina, root).cwiczenia ?? {};
   return cwiczeniaRodziny(rodzina, lista ?? join(root, 'docs/51-figury-v2-pokrycie.md')).filter((c) => !(c in mam));
 }
@@ -287,6 +287,7 @@ const OPIS_TYPU = {
   lokcie_wysoko: (q) => `łokcie nie schodzą więcej niż ${q.max_cm} cm pod barki w żadnej klatce`,
   chwyt_blisko_tulowia: (q) => `środek chwytu ≤ ${q.max_cm} cm od odcinka miednica–barki w całym ruchu`,
   kolana_do_klatki: (q) => `w locie (stopy ≥ ${q.min_cm} cm nad podparciem) biodro ≥ ${q.min_biodro_deg}° i kolano ≥ ${q.min_kolano_deg}° (kolana do klatki)`,
+  styk_dlonie: () => 'w KAŻDEJ klatce dłonie (obie albo tylko ręka trzymająca) mają styk z drążkiem: chwyt leży na osi drążka',
   jedna_reka: (q) => `sztanga ma trzyma: "R" albo "L", a wolna dłoń jest ≥ ${q.min_wolna_od_osi_cm} cm od osi drążka`,
 };
 /** Sekcja „Reguły sensu” dla ćwiczeń części: reguły raz (z liczbami), potem które ćwiczenia ich dotyczą; + wymóg dla błędów. */
@@ -424,7 +425,7 @@ export function parsujArgumenty(argv) {
 export async function main(argv, { root = ROOT, log = console.log } = {}) {
   const o = parsujArgumenty(argv); const docs = join(root, 'docs/51-figury-v2-pokrycie.md');
   const maRegul = (id) => !!wczytajSens(root).rodziny?.[id];
-  const ids = (o.wszystkie ? rodzinyZDokumentu(docs).filter((r) => r.stan !== 'gotowa').map((r) => r.id) : [o.rodzina]).filter((id) => { if (maRegul(id) || o.bezRegul) return true; log(`${id}: POMINIĘTA — brak reguł sensu w data/zrodla/figury-sens.json (docs/53, bramka 3; --bez-regul wymusza)`); return false; });
+  const ids = (o.wszystkie ? rodzinyZDokumentu(docs).filter((r) => r.stan !== 'gotowa' || existsSync(join(root, 'lib/figures/v2/poses', `${r.id}.json`))).map((r) => r.id) : [o.rodzina]).filter((id) => { if (maRegul(id) || o.bezRegul) return true; log(`${id}: POMINIĘTA — brak reguł sensu w data/zrodla/figury-sens.json (docs/53, bramka 3; --bez-regul wymusza)`); return false; });
   mkdirSync(resolve(o.wyjscie), { recursive: true }); let plikow = 0, najdluzsze = 0, rodzin = 0;
   for (const id of ids) {
     const p = await poleceniaRodziny(id, { root, bezRegul: o.bezRegul, wyklucz: o.wyklucz, nazwa: o.nazwa }); if (!p.length) { log(`${id}: brak ćwiczeń do wysłania (pozy gotowe, albo wszystkie pominięte/wstrzymane — sprzęt poza kontraktem, OTWARTE, brak reguł)`); continue; }

@@ -96,7 +96,7 @@ describe('komponent ExerciseFigureV2', () => {
     const d0 = pathsOf().join('|'); expect(screen.queryByTestId('exercise-figure-v2-error')).toBeNull();
     fireEvent.press(screen.getByRole('button', { name: 'Pokaż częsty błąd' }));
     expect(screen.getByTestId('exercise-figure-v2-error')).toBeTruthy(); expect(screen.getByText(/^Częsty błąd: /)).toBeTruthy(); expect(pathsOf().join('|')).not.toBe(d0);
-    expect(screen.getByTestId('exercise-figure-v2-error-kneesIn')).toBeTruthy(); fireEvent.press(screen.getByTestId('exercise-figure-v2-error-heels')); expect(screen.getAllByText(/pięt/i).length).toBeGreaterThan(0);
+    /* wybrany błąd (kolana) ma tekst w wierszu „Częsty błąd” i nie ma chipa — tekst błędu na ekranie raz; chip tylko dla pozostałych */ expect(screen.queryByTestId('exercise-figure-v2-error-kneesIn')).toBeNull(); fireEvent.press(screen.getByTestId('exercise-figure-v2-error-heels')); expect(screen.getAllByText(/pięt/i).length).toBeGreaterThan(0); expect(screen.getByTestId('exercise-figure-v2-error-kneesIn')).toBeTruthy(); expect(screen.queryByTestId('exercise-figure-v2-error-heels')).toBeNull();
     fireEvent.press(screen.getByRole('button', { name: 'Ukryj częsty błąd' })); expect(screen.queryByTestId('exercise-figure-v2-error')).toBeNull(); expect(pathsOf().join('|')).toBe(d0);
     screen.unmount(); render(<ExerciseFigureV2 exercise={lib('Wall Sit')} />); await flush(); expect(screen.queryByRole('button', { name: 'Pokaż częsty błąd' })).toBeNull();
   });

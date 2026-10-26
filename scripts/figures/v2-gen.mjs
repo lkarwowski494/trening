@@ -29,7 +29,7 @@ const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'v2gen-'));
 const { v2 } = loadV2(tmp);
 const assign = v2.assignAll(); const by = {}; for (const [k, f] of Object.entries(assign)) (by[f] ??= []).push(k);
 const ready = v2.FAMILIES.filter(f => f.status === 'ready'); const planned = v2.FAMILIES.filter(f => f.status !== 'ready');
-const total = Object.keys(assign).length; const nReady = ready.reduce((s, f) => s + (by[f.id]?.length ?? 0), 0);
+const total = Object.keys(assign).length; const withFig = k => !!v2.figureSpec(k); const nFig = fam => (by[fam] ?? []).filter(withFig).length; const nReady = ready.reduce((s, f) => s + nFig(f.id), 0);
 const md = [];
 md.push('# 51 — Figury v2: rodziny ruchu i pokrycie ćwiczeń (generowane)', '');
 md.push('AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.');
@@ -39,6 +39,8 @@ md.push('## Rodziny', '', '| Rodzina | Stan | Ćwiczeń | Widoki | Szacunek prac
 for (const f of v2.FAMILIES) md.push(`| \`${f.id}\` | ${f.status === 'ready' ? 'gotowa' : 'do zrobienia'} | ${by[f.id]?.length ?? 0} | ${f.views.join(', ')} | ${f.status === 'ready' ? '—' : f.effort} | ${f.label}${f.note ? ' — ' + f.note : ''} |`);
 const sumEffort = planned.reduce((s, f) => s + f.effort, 0); const sumEx = planned.reduce((s, f) => s + (by[f.id]?.length ?? 0), 0);
 md.push('', `Razem do zrobienia: ${planned.length} rodzin, ${sumEx} ćwiczeń, ok. **${sumEffort} h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).`, '');
+const partial = ready.filter(f => (by[f.id] ?? []).some(k => !withFig(k)));
+if (partial.length) { md.push('## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)', ''); for (const f of partial) md.push(`- \`${f.id}\` (z figurą ${nFig(f.id)} z ${by[f.id].length}): ${by[f.id].filter(k => !withFig(k)).sort((a, b) => a.localeCompare(b, 'en')).join('; ')}`); md.push(''); }
 md.push('## Ćwiczenia według rodzin', '');
 for (const f of v2.FAMILIES) { md.push(`### ${f.id} (${by[f.id]?.length ?? 0}) — ${f.status === 'ready' ? 'gotowa' : 'do zrobienia'}`, '', (by[f.id] ?? []).sort((a, b) => a.localeCompare(b, 'en')).join('; '), ''); }
 const mdText = md.join('\n');

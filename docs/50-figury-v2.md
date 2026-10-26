@@ -134,3 +134,25 @@ Test: `tests/figures-v2-contract.test.ts` (poza podciągania zwis → góra prze
 ## 12. Model pracy i bramki jakości grafik (26.10.2026)
 
 Pozy z danych trafiają do aplikacji dopiero po bramkach (geometria, sens ruchu, niezależny przegląd, testy): `docs/53-grafiki-model-pracy.md`. Kontrakt danych ma od 26.10.2026 pole sprzętu `trzyma` (ćwiczenia jednorącz); reguły sensu: `data/zrodla/figury-sens.json` + `scripts/figures/v2-sens.mjs`. Procedura generowania póz w aplikacji Gemini: `docs/52` pkt 7 i 7a.
+
+## 13. Pozy z danych w aplikacji (26.10.2026)
+
+Rodzina z plikiem `lib/figures/v2/poses/<rodzina>.json` (import: `gemini-pozy.mjs --z-pliku`, po bramkach docs/53) jest „gotowa” i działa w sekcji Technika jak rodziny z rigiem — generycznie, bez kodu per rodzina:
+rejestr `lib/figures/v2/poseData.ts` (ładowanie leniwe), `figureSpec` buduje wariant z danych, `frameAt` = `keyframeFrame` (ta sama `Frame` co rigi: kształty, mięśnie, tor, kadr, kolidery), błędy z `bledy[]` to błędy `data:<i>` (poza poprawna + delty,
+znacznik ✕ z danych), tekst błędu przez `errorText` (słownik wskazówek, a dla id bez zdania — `t()`; dziś `hang.noSwing`). **Nowa rodzina z danymi wymaga trzech wpisów**: `LOAD` i `DATA_UI` (nazwy faz, kierunek pętli, mierzony staw) w `poseData.ts` oraz statusu `ready` w `families.ts`;
+test `figures-v2-mapping` i `figures-v2-data` obejmują ją automatycznie. Ćwiczenia rodziny bez wpisu w danych (pull_up: Muscle Up, Rope Climb) nie mają figury v2 (v1 albo brak). Izometrie (`ISOMETRIC`, zgodne z pomiarem czasu w katalogu) rysowane statycznie.
+Tor ruchu przy nieruchomym drążku = droga miednicy (`info.trail`). Tempo: faza wysiłku 1 s, powrót 2 s (anim.ts, ACSM 2009 — jak martwy ciąg z podłogi). Pokrycie: docs/51 (kolumna „Z figurą”).
+
+## 14. Punkty styku, znaczki ✓/✕, strzałki toru (26.10.2026, polecenie właściciela; wzór wizualny: jego makieta — poświata strefy styku, znaczki przy wskazówkach, grot toru)
+
+- **Punkty styku liczone z geometrii** (`contacts.ts`, jedna funkcja `contactsOf(klatka)` dla KAŻDEJ rodziny, bez wpisów per ćwiczenie): pięta i palce stopy na podłodze albo wierzchu skrzyni/maty (tolerancja `CONTACT.floor` = 1 cm), głowa, plecy i miednica na ławce/macie/ścianie/skrzyni
+  (kolidery tułowia, głowy i miednicy ≤ `CONTACT.surface` = 1,5 cm; głowa 3,5 cm — środek głowy modelu leży na osi tułowia, uproszczenie), dłoń na trzymanym sprzęcie (tolerancja chwytu walidatora). Rysunek: dwie półprzezroczyste elipsy (halo i rdzeń),
+  w kolorze „dobrze” (`contactOk` = token `doneLine`) w pozie poprawnej; w widoku błędu styk, który poza poprawna w tej samej pozycji ma, a poza błędu go traci (oderwana pięta, oderwane pośladki), jest rysowany na miejscu styku pozy poprawnej w kolorze „błąd” (`contactBad` = `danger`). Kontrast ≥ 3:1 do tła i karty w czterech paletach — test.
+- **Pięć punktów styku w wyciskaniu leżąc** (głowa, barki i górne plecy, pośladki, obie stopy): NSCA Basics 2012, opis ustawienia w wyciskaniu leżąc — dodane jako źródło wskazówki `bp.contact` w `data/zrodla/cues.json` (obok ACE, NASM, Stronger by Science; runtime bez nazw).
+  Dla pozostałych rodzin punkty wynikają wyłącznie z geometrii (bez dodatkowych twierdzeń). Ławka ujemna: stopy pod wałkami, nie na podłodze (wyjątek nazwany w `requiredContacts`).
+- **Reguła sensu** (docs/53): `requiredContacts(spec)` — styki wymagane w pozie poprawnej (przysiad: obie stopy; wyciskanie: głowa, plecy, pośladki + stopy; zawias: stopa podporowa, drugą poza ćwiczeniami jednonóż; podciąganie: dłonie, przy jednorącz tylko ręka trzymająca);
+  test macierzowy sprawdza je w 13 pozycjach dla każdego ćwiczenia z figurą. W danych walidatora: reguła `dlonie_na_drazku` (typ `styk_dlonie`, grupa „styk”, wskazówka `pu.grip`) w `data/zrodla/figury-sens.json` + ewaluator w `v2-sens.mjs` + opis w poleceniu (`gemini-polecenia.mjs`).
+- **Znaczki ✓/✕** (`badges.ts`, `ui.badgesFor`): ✓ przy części ciała, której dotyczy wskazówka ćwiczenia (tablica `CUE_ANCHOR`: id wskazówki → część ciała; wskazówka bez wpisu nie ma znaczka), ✕ przy znaczniku błędu w widoku błędu; maks. 3 naraz.
+  Znaczek jest przyciskiem (pole dotyku 44 pt, etykieta VoiceOver „Wskazówka: …” / „Częsty błąd: …”); stuknięcie zatrzymuje animację (znaczek się porusza) i pokazuje tekst wskazówki pod rysunkiem.
+- **Strzałki toru**: grot na obu końcach toru (koniec u = 1 w stronę pierwszej fazy, początek w stronę powrotu), `TRAIL_ARROW`.
+- **Wydajność**: `frameAt` ma pamięć ostatnich 48 klatek (ta sama klatka w kształtach, liniach, stykach i znaczkach to jeden obiekt), styki liczone raz na klatkę (`WeakMap`). Zrzuty przed/po: scratchpad `zrzuty-grafiki/styk/`.

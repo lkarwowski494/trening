@@ -6,6 +6,7 @@
 #   "Main muscles: .*"                              ← 'Mięśnie główne: {lista}' (legenda mięśni, zawsze widoczna)
 #   "Show common mistake" / "Hide common mistake"   ← 'Pokaż częsty błąd' / 'Ukryj częsty błąd'
 #   "Common mistake: .*"                            ← 'Częsty błąd: {opis}'
+#   "Pulling up 1 s.*" / "Lowering 2 s"               ← fazy rodziny z danych (Pull Up: poses/pull_up.json; 26.10.2026)
 appId: pl.lukasz.trening
 name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
 ---
@@ -37,3 +38,24 @@ name: Figura ruchu v2 - fazy, mięśnie, częsty błąd
 - tapOn: "Hide common mistake"
 - extendedWaitUntil: { visible: "Show common mistake", timeout: 15000 }
 - assertNotVisible: "Common mistake: .*"
+# Rodzina z danych (poses/pull_up.json): to samo okno dla Pull Up — fazy „Podciąganie 1 s” / „Opuszczanie 2 s”, błąd z danych („Częsty błąd”).
+- tapOn: "Back"
+- extendedWaitUntil: { visible: "Search exercises…", timeout: 30000 }
+- tapOn: "Search exercises…"
+- eraseText: 30
+- inputText: "Pull Up"
+- pressKey: Enter
+- tapOn: { text: "Continue", optional: true }
+- pressKey: Enter
+- tapOn: "Pull Up, .*"
+- extendedWaitUntil: { visible: "Technique", timeout: 30000 }
+- tapOn: "Technique"
+- scrollUntilVisible: { element: "Movement drawing: .*", direction: DOWN, timeout: 30000, centerElement: true }
+- assertVisible: "Pulling up 1 s.*"
+- assertVisible: "Lowering 2 s"
+- scrollUntilVisible: { element: "Show common mistake", direction: DOWN, timeout: 30000, centerElement: true }
+- tapOn: "Show common mistake"
+- extendedWaitUntil: { visible: "Common mistake: .*", timeout: 15000 }
+- takeScreenshot: 87-figura-v2-podciaganie-blad
+- tapOn: "Hide common mistake"
+- extendedWaitUntil: { visible: "Show common mistake", timeout: 15000 }

@@ -113,7 +113,7 @@ describe('walidator: poza poprawna i komunikaty o błędach (konkretne, do popra
   test('kontrakt: zła rodzina, zły kontrakt, inne ćwiczenie, nieznana rodzina walidatora', () => {
     expect(texts(validatePose({ ...pullUp(), rodzina: 'squat' }, ctx()))).toContain('rodzina „squat” zamiast „pull_up”'); expect(texts(validatePose({ ...pullUp(), cwiczenie: 'Chin Up' }, ctx()))).toContain('cwiczenie „Chin Up” zamiast „Pull Up”');
     expect(texts(validatePose({ ...pullUp(), kontrakt: 'inny' }, ctx()))).toContain('spoza listy'); expect(validatePose(pullUp(), ctx({ family: 'nie_ma' }))[0].kod).toBe('rodzina'); expect(knownFamily('pull_up')).toBe(true); expect(knownFamily('nie_ma')).toBe(false);
-    expect(FAMILIES.find(f => f.id === 'pull_up')?.status).toBe('planned');
+    expect(FAMILIES.find(f => f.id === 'pull_up')?.status).toBe('ready'); /* od 26.10.2026 rodzina z danymi (poses/pull_up.json) jest gotowa; rig ma tylko przysiad, wyciskanie, zawias */
   });
   test('sprzęt rodziny: drążek poza przedziałem, dwa drążki, drążek z talerzami lub ruchomy → „sprzet” z liczbami', () => {
     const hi = pullUp({ sprzet: [{ ...bar, y: 300 }] }); expect(texts(validatePose(hi, ctx()))).toContain('y = 300 cm poza przedziałem 200–260 cm');

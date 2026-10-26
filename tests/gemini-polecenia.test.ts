@@ -24,7 +24,7 @@ const SPRZATANIE: string[] = []; afterAll(() => { for (const d of SPRZATANIE) fs
 function tmpRoot(pelny = false): string {
   const r = fs.mkdtempSync(path.join(os.tmpdir(), 'polecenia-')); SPRZATANIE.push(r);
   for (const f of ['docs/51-figury-v2-pokrycie.md', 'lib/figures/data.json', 'lib/figures/v2/cue-sets.json', 'lib/cues/data.json', 'lib/cues/text/pl.json', 'data/zrodla/figury-sens.json', ...(pelny ? ['data/figury-bledy-modelu.json'] : [])]) { fs.mkdirSync(path.dirname(path.join(r, f)), { recursive: true }); fs.copyFileSync(path.join(ROOT, f), path.join(r, f)); }
-  const dp = path.join(r, 'docs/51-figury-v2-pokrycie.md'); fs.writeFileSync(dp, fs.readFileSync(dp, 'utf8').replace(/(### pull_up \(\d+\) — do zrobienia\n\n)([^\n]*)/, (_m, h, l) => h + (pelny ? l.replace('Gironda Sternum Chins; ', '') : 'Chin Up; Pull Up')));
+  const dp = path.join(r, 'docs/51-figury-v2-pokrycie.md'); /* stały stan wejściowy: pull_up „do zrobienia” (w repozytorium jest gotowa z danych — poses/pull_up.json, którego fixture nie kopiuje) */ fs.writeFileSync(dp, fs.readFileSync(dp, 'utf8').replace('| `pull_up` | gotowa |', '| `pull_up` | do zrobienia |').replace(/(### pull_up \(\d+\) — (?:do zrobienia|gotowa)\n\n)([^\n]*)/, (_m, h, l) => h + (pelny ? l.replace('Gironda Sternum Chins; ', '') : 'Chin Up; Pull Up')));
   fs.mkdirSync(path.join(r, 'scripts'), { recursive: true }); fs.symlinkSync(path.join(ROOT, 'scripts/figures'), path.join(r, 'scripts/figures'));
   return r;
 }
@@ -81,7 +81,7 @@ describe('reguły sensu ruchu (data/zrodla/figury-sens.json + v2-sens.mjs; docs/
   });
   test('wyjątki wariantów: Gironda i Muscle Up bez reguł bujania; Rope Climb do pominięcia; Side To Side bez limitu z; jednorącz wymaga trzyma R/L i wolnej dłoni poza drążkiem', () => {
     const r = run(SENS, `console.log(JSON.stringify([m.regulyDla('pull_up', 'Gironda Sternum Chins').map(x => x.id), m.regulyDla('pull_up', 'Muscle Up').map(x => x.id), m.pominiecie('pull_up', 'Rope Climb'), m.regulyDla('pull_up', 'Side To Side Chins').map(x => x.id), m.regulyDla('pull_up', 'Squat Xyz'), m.regulyDla('dip', 'Chest Dip'), m.regulyDla('pull_up', 'Dead Hang').map(x => x.id)]))`) as any[];
-    expect(r[0]).toEqual(['dol_rece_proste']); expect(r[1]).toEqual(['dol_rece_proste']); expect(r[2]).toMatch(/lina/); expect(r[3]).toContain('miednica_nie_buja_x'); expect(r[3]).not.toContain('miednica_nie_buja'); expect(r[4]).toEqual([]); expect(r[5]).toEqual([]); expect(r[6]).toContain('nogi_nieruchome') /* bujanie nogami jest bujaniem (wskazówka pu.noSwing: „bez wymachów nogami”) */;
+    expect(r[0]).toEqual(['dol_rece_proste', 'dlonie_na_drazku']); expect(r[1]).toEqual(['dol_rece_proste', 'dlonie_na_drazku']); expect(r[2]).toMatch(/lina/); expect(r[3]).toContain('miednica_nie_buja_x'); expect(r[3]).not.toContain('miednica_nie_buja'); expect(r[4]).toEqual([]); expect(r[5]).toEqual([]); expect(r[6]).toContain('nogi_nieruchome') /* bujanie nogami jest bujaniem (wskazówka pu.noSwing: „bez wymachów nogami”) */;
     const oa = klon(WZ['Pull Up']); oa.cwiczenie = 'One Arm Chin-Up'; oa.bledy = [];
     expect(waliduj(oa, 'One Arm Chin-Up').bledy.map((b) => b.szczegol).join('|')).toMatch(/jednorącz, a sprzet\[\] ma drążek trzymany obiema rękami/);
     oa.sprzet[0].trzyma = 'R'; for (const k of oa.klatki) k.rece.L.chwyt = [k.miednica[0] + 2, k.miednica[1] - 13, -21];

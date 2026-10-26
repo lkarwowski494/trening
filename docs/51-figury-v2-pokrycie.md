@@ -3,7 +3,7 @@
 AUTOMATYCZNIE WYGENEROWANE przez `scripts/figures/v2-gen.mjs` z `lib/figures/v2/families.ts` i katalogu `lib/catalog.generated.ts` — nie edytować ręcznie.
 Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:figures-v2`). Projekt i zasady: `docs/50-figury-v2.md`.
 
-Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 3, do zrobienia: 40); ćwiczeń z gotową figurą: **87** (12,3%).
+Ćwiczeń w katalogu: **709**; rodzin ruchu: **43** (gotowe: 4, do zrobienia: 39); ćwiczeń z gotową figurą: **98** (13,8%).
 
 ## Rodziny
 
@@ -17,7 +17,7 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `overhead_press` | do zrobienia | 21 | side, front | 4 | Wyciskanie nad głowę i pionowe (stojąc, siedząc, landmine, jerk) |
 | `row` | do zrobienia | 13 | side, top | 4 | Wiosłowanie w pochyleniu / z podparciem / jednorącz |
 | `cable_row` | do zrobienia | 10 | side, front | 3 | Wiosłowanie na linkach i maszynie, face pull |
-| `pull_up` | do zrobienia | 13 | side, front | 3 | Podciąganie i zwis (drążek, kółka, lina) |
+| `pull_up` | gotowa | 13 | side, front | — | Podciąganie i zwis (drążek, kółka, lina) — pozy z danych (poses/pull_up.json); ćwiczenia bez wpisu w danych bez figury v2 |
 | `pulldown` | do zrobienia | 7 | side, front | 2 | Ściąganie drążka (wyciąg górny) |
 | `lunge` | do zrobienia | 24 | side, front | 5 | Wykroki, przysiad bułgarski, wejścia na stopień, pistolet |
 | `leg_machine` | do zrobienia | 8 | side | 3 | Suwnice i maszyny nóg (leg press, hack, wahadło) |
@@ -53,7 +53,11 @@ Sprawdzanie: `node scripts/figures/v2-gen.mjs --check` (część `npm run check:
 | `cable_press` | do zrobienia | 4 | side, top | 2 | Wyciskania na linkach |
 | `kneeling_hinge` | do zrobienia | 2 | side | 1 | Zawias w klęku i siedząc (dzień dobry siedząc, klęczący przysiad) |
 
-Razem do zrobienia: 40 rodzin, 622 ćwiczeń, ok. **126 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+Razem do zrobienia: 39 rodzin, 609 ćwiczeń, ok. **123 h pracy agenta** (rig + testy geometrii + przegląd zrzutów; bez czekania na CI i bez czasu właściciela).
+
+## Gotowe rodziny: ćwiczenia bez figury v2 (brak pozy w danych — v1 albo brak)
+
+- `pull_up` (z figurą 11 z 13): Muscle Up; Rope Climb
 
 ## Ćwiczenia według rodzin
 
@@ -89,7 +93,7 @@ Barbell Rear Delt Row; Bent Over Row (hantle); Bent Over Row (linki); Bent Over 
 
 Cable Rope Rear-Delt Rows; Face Pull; Kneeling High Pulley Row; Leverage High Row; Machine Row; Seated Cable Row; Single Arm Cable Row; Sled Row; Standing Cable Row; Wiosłowanie na linkach (siedząc)
 
-### pull_up (13) — do zrobienia
+### pull_up (13) — gotowa
 
 Chin Up; Dead Hang; Gironda Sternum Chins; Gorilla Chin/Crunch; Mixed Grip Chin; Muscle Up; Neutral Grip Pull Up; One Arm Chin-Up; Pull Up; Rope Climb; Scapular Pull-Up; Side To Side Chins; Wide-Grip Rear Pull-Up
 

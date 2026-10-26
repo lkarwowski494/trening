@@ -4,7 +4,7 @@
  * Zadanie dla agentów rodzin: zmieniając reguły, aktualizuj liczności tutaj i dokument docs/51 (node scripts/figures/v2-gen.mjs --write).
  */
 import { CATALOG } from '@/lib/catalog.generated';
-import { FAMILIES, FAMILY, OVERRIDES, familyOf, assignAll, VARIANTS, figureSpec, staticPositions, boxFor, shapesAt, type FamilyId } from '@/lib/figures/v2';
+import { FAMILIES, FAMILY, OVERRIDES, familyOf, assignAll, VARIANTS, POSE_FAMILIES, DATA_UI, poseKeys, figureSpec, staticPositions, boxFor, shapesAt, type FamilyId } from '@/lib/figures/v2';
 
 const ALL = assignAll();
 const KEYS = Object.keys(CATALOG);
@@ -38,11 +38,23 @@ describe('rodziny ruchu i przypisanie ćwiczeń', () => {
     };
     for (const [k, f] of Object.entries(want)) expect([k, ALL[k]]).toEqual([k, f]);
   });
-  test('gotowe rodziny (przysiad, wyciskanie leżąc, zawias): 87 ćwiczeń (12,3% biblioteki), każde ma wariant tej samej rodziny; brak wariantów osieroconych', () => {
-    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge']);
-    const keys = KEYS.filter(k => ready.includes(ALL[k])); expect(keys.length).toBe(87);
+  test('gotowe rodziny z rigiem (przysiad, wyciskanie leżąc, zawias): 87 ćwiczeń (12,3% biblioteki), każde ma wariant tej samej rodziny; brak wariantów osieroconych', () => {
+    const ready = FAMILIES.filter(f => f.status === 'ready').map(f => f.id); expect(ready).toEqual(['squat', 'bench_press', 'hinge', 'pull_up']);
+    const rig = ready.filter(f => !POSE_FAMILIES.includes(f)); expect(rig).toEqual(['squat', 'bench_press', 'hinge']);
+    const keys = KEYS.filter(k => rig.includes(ALL[k])); expect(keys.length).toBe(87);
     for (const k of keys) { expect([k, VARIANTS[k]?.family]).toEqual([k, ALL[k]]); expect([k, figureSpec(k)?.family]).toEqual([k, ALL[k]]); }
     expect(Object.keys(VARIANTS).sort()).toEqual([...keys].sort());
+  });
+  test('gotowe rodziny z danych (poses/<rodzina>.json): figura tylko dla ćwiczeń z wpisem w danych (11 z 13 w pull_up), reszta bez figury v2 (v1 albo brak); status „gotowa” = plik póz', () => {
+    expect(POSE_FAMILIES).toEqual(['pull_up']);
+    for (const f of POSE_FAMILIES) {
+      expect([f, FAMILY[f as FamilyId].status]).toEqual([f, 'ready']); expect([f, !!DATA_UI[f]]).toEqual([f, true]);
+      const keys = KEYS.filter(k => ALL[k] === f); const have = poseKeys(f);
+      for (const k of have) expect([k, ALL[k]]).toEqual([k, f]); /* wpis w danych tylko dla ćwiczenia tej rodziny */
+      for (const k of keys) { const sp = figureSpec(k); expect([k, sp === null]).toEqual([k, !have.includes(k)]); if (sp) { expect(sp.family).toBe(f); expect('data' in sp.variant).toBe(true); expect(VARIANTS[k]).toBeUndefined(); } }
+    }
+    expect(KEYS.filter(k => ALL[k] === 'pull_up' && !figureSpec(k)).sort()).toEqual(['Muscle Up', 'Rope Climb']);
+    expect(KEYS.filter(k => figureSpec(k)).length).toBe(87 + 11);
   });
   test('planowane rodziny: brak figury (figureSpec = null), szacunek pracy i widoki opisane; klucz spoza katalogu → null', () => {
     for (const f of FAMILIES.filter(x => x.status === 'planned')) { expect([f.id, f.effort > 0, f.views.length > 0, f.label.length >= 5]).toEqual([f.id, true, true, true]); }

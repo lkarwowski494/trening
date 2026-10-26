@@ -8,6 +8,8 @@ import { proj } from './draw';
 import { BODY } from './skeleton';
 import type { Frame, Shape, View } from './scene';
 
+/** Wielkość grota na końcach toru (cm rysunku). */
+export const TRAIL_ARROW = 4.2;
 export type GuideId = 'thighParallel' | 'plumbMidfoot' | 'kneeToe' | 'backLine' | 'elbows45';
 export type GuideDef = { id: GuideId; cue: string[]; views: View[]; build: (f: Frame, view: View) => Shape[] };
 
@@ -42,10 +44,18 @@ export function guidesFor(cueIds: Iterable<string>): GuideId[] {
 
 /** Tor ruchu: łamana przez położenia środka ciężaru/dłoni w kolejnych pozycjach (z `frames`), znacznik startu. */
 export function trailShapes(frames: Frame[], view: View): Shape[] {
-  const pts = frames.map(f => f.info.load).filter((p): p is NonNullable<typeof p> => !!p).map(p => proj(p, view));
+  const pts = frames.map(f => f.info.trail ?? f.info.load).filter((p): p is NonNullable<typeof p> => !!p).map(p => proj(p, view));
   if (pts.length < 2) return [];
   const out: Shape[] = [];
   for (let i = 1; i < pts.length; i++) out.push({ k: 'line', a: pts[i - 1], b: pts[i], w: 0.8, role: 'guide', dash: [1.6, 1.6], alpha: 0.9, z: 3900, id: 'trail' });
   out.push({ k: 'circle', c: pts[0], r: 2.2, fill: 'guide', a: 0.9, z: 3901, id: 'trailStart' });
+  /* grot na obu końcach (jak w makiecie właściciela): na końcu u = 1 w stronę pierwszej fazy, na początku w stronę powrotu */
+  const k = Math.min(3, pts.length - 1);
+  const arrow = (tip: V2, from: V2): Shape[] => {
+    const dx = tip[0] - from[0], dy = tip[1] - from[1], L = Math.hypot(dx, dy); if (L < 1e-6) return [];
+    const ux = dx / L, uy = dy / L, h = TRAIL_ARROW, w = h * 0.55;
+    return [{ k: 'poly', pts: [tip, [tip[0] - ux * h - uy * w, tip[1] - uy * h + ux * w], [tip[0] - ux * h + uy * w, tip[1] - uy * h - ux * w]], fill: 'guide', a: 0.95, close: true, z: 3902, id: 'trailArrow' }];
+  };
+  out.push(...arrow(pts[pts.length - 1], pts[pts.length - 1 - k]), ...arrow(pts[0], pts[k]));
   return out;
 }
