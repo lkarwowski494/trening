@@ -82,3 +82,10 @@ Recenzja n5: 16 OK / 8 uwaga / 5 błąd; reguły złapały 0/5 (n4 też 0/5). Wz
 - Kalistenika na stronie: techniqueatlas, sekcja „Progresje” (kalistenika DK-15).
 - Domena jedzeniowa: decyzja później (po 1.1).
 - Kreator planów na stronie: wariant B po 1.1 (CSV/PDF/Excel + „Otwórz w aplikacji”), zaczątek modułu trenerskiego z backlogu — techniqueatlas docs/54.
+
+## Przejście do nowej sesji koordynatora (26.10, ok. 21:15 UTC)
+Powód: długi kontekst starej sesji — każde wybudzenie czytało setki tysięcy tokenów (limit tygodniowy). Wszyscy agenci starej sesji dostali STOP z poleceniem zapisu stanu tutaj; ich wpisy są poniżej (jeśli któregoś brak — stan sprawdź na jego gałęzi).
+Przypomnienia starej sesji usunięte. Nowa sesja ustawia własne:
+1. Przegląd agentów co ~2 h do rana (aktualizacja tego pliku jako pierwszy krok, priorytet 1.0 > integracja 1.1 > bramki > pozy).
+2. Pon. 2.11.2026 07:00 UTC — wznowienie kalisteniki (repo lkarwowski494/kalistenika, gałąź monetyzacja, docs/sztafeta.md „Wstrzymanie 26.10.2026”; pytania DK-13, DK-14, zakup książek).
+Oszczędność limitu: agenci raportują tylko na końcu zadania albo przy blokadzie; czekanie na CI/E2E w tle (sleep), bez oddawania wyników pośrednich; mniejsze modele do czekania na przebiegi.
