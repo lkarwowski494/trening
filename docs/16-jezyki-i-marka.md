@@ -444,3 +444,23 @@ Jedno ustawienie „System miar”: metryczny (kg, km, m) albo imperialny (lb, m
 | etykiety presetów (np. „2×10 kg”, „5–200 lb”) | nazwa produktu | brak | wyjątek „nazwa produktu”: przeliczona nazwa opisywałaby nieistniejący produkt |
 
 Teksty nowego ustawienia i jednostek (mi, yd, mile, jardy) we wszystkich słownikach: do przeglądu tłumacza (M2-LOK07-01).
+
+## Przegląd lokalizacji 71 kluczy z przekładu 26.10.2026 — poprawki i pytania do native speakerów
+
+Przegląd rolą `recenzent-lokalizacji` (26.10.2026, gałąź `recenzja-lok-2026-10-26`) na zestawie `docs/lokalizacja/zestaw-przekladu-2026-10-23.json`: wszystkie klucze zmienione w przekładzie przez API (zdrowie, cardio, przerwy, wysiłek, deload, generator → monetyzacja → grafiki) we wszystkich językach; kontrola automatyczna: zmienne `{x}`, cudzysłowy i typografia fr, długość względem EN, brak nazw źródeł i odwołań ogólnych, zgodność ze słownikiem terminów, zgodność cytowanych nazw ustawień/ekranów („Dni cardio w planie”, „Zasady planu”, „Nowe szablony i plan”). Poprawiono 15 pewnych tekstów w 9 językach (uzasadnienia w commicie). Nikt z natywnych nie czytał tych tekstów — poniżej to, czego nie rozstrzygamy sami.
+
+*Do sprawdzenia przez native speakera:*
+1. **„Propozycja według Twoich założeń”** — dosłowne „założenia” brzmi sztywno w fr („hypothèses”), es („supuestos”), pt („pressupostos”), pt-BR („premissas”), cs/sk/hr/sl/sr/uk/lt/lv/bg („předpoklady” itd.), id/vi/tr; czy naturalniejsze jest „według Twoich wyborów/ustawień” (de „Vorgaben”, it, fi, sv, ru już tak mają)?
+2. **et** „Wysiłek: … Do upadku nie trzeba” — słownik daje „Kuni väsimuseni” dla „do upadku”, ale w tym samym zdaniu „väsimus” oznacza też zmęczenie („väsimus, aga mitte kurnatus”); czy „kuni rikkeni / täieliku väsimuseni” jest zrozumiałe na siłowni?
+3. **fr** „Règles du plan” / „plan” a pozostałe teksty z „programme” („Programme actif”, „Mon programme”, etykieta „Jours de cardio dans le programme”) — słownik zaleca „plan”, interfejs mówi głównie „programme”: ujednolicić do „programme” czy „plan”? (cytat w tekście cardio poprawiony tak, by pasował do etykiety.)
+4. **de** „Kniebeugung” (zgięcie kolana) — czy nie myli się z „Kniebeuge” (przysiad)? Opcja: „Knieflexion”. Analogicznie nb „knebøyning” (vs „knebøy”).
+5. **el** „συνιστάται άτομο για spotting” — łacińskie „spotting” w tekście greckim; opcja: „άτομο που σας ασφαλίζει”.
+6. **pt** „Levantar” (etykieta fazy „Wstawanie” w przysiadzie) — może być odczytane jako „podnieść ciężar”; opcja „Subida” / „Levantar-se”.
+7. **zh-Hant** „推起” (faza „Wypychanie” w wyciskaniu) — czy „推” lub „推舉” jest naturalniejsze jako etykieta fazy?
+8. **ms** „mulai {k} hari”, „sebaiknya” — formy zbliżone do indonezyjskiego; opcje: „bermula dari {k} hari”, „elok”/„digalakkan”.
+9. **lv** „palīgmuskulis = {h} sērijas” — liczba pojedyncza „mięsień” zamiast „grupa mięśniowa” (palīgmuskuļu grupa).
+10. **cs/sk** „Trocha pohybu je lepší (cs) / lepšia (sk) než nic” — zgodność rodzajowa („trocha” rodz. żeński); sk poprawione na „ako nič”, cs zostawione („žádný”): czy cs także „než nic”?
+11. **ja** zapis „iPhone の” (ze spacją) w tekstach prywatności i „iPhoneに” w „Historia jest już w telefonie” — jednolity zapis ze spacją czy bez.
+12. **uk** „Тривалість кардіотренування = заданий час тренування” — „заданий” (ustawiony) nie występuje w PL/EN; zostawić czy usunąć? (ru: „длительность тренировки”, bez dopisku.) **ru** „при цели «сила»” w zakresach powtórzeń — doprecyzowanie spoza PL, do potwierdzenia.
+13. **hu** „perc”/„mp” zamiast „min”/„s” w tekstach przerw i formuły; **tr** przyciski w trybie rozkazującym „gör/bitir” przy zdaniach w formie „siz” — zgodne z istniejącą konwencją, ale bez recenzji native speakera.
+14. **es-419** w starej notatce wydania (poza zestawem 71 kluczy) nazwa ekranu „Entreno” — słowo zakazane w wariancie, ale to nazwa taba w starej notatce; do decyzji, czy zmienić na „Training” jak w es.
