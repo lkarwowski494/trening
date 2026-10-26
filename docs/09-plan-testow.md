@@ -554,3 +554,11 @@ Błąd: ekran blokady w przerwie brał język z systemu (`Locale.preferredLangua
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | Język Live Activity | `tests/live-activity-lang.test.ts` (każda z 35 wartości języka → `lang` w starcie; „auto” z tagami systemu: es-MX, es-ES, pt-BR, pt-PT, zh-Hant-TW, zh-HK, zh-Hans-CN, hi-IN; telefon pl + aplikacja en; `update` niesie język; relocalize po zmianie języka; statycznie Swift: pole opcjonalne bez własnego dekodera, moduł, kolejność wyboru etykiety w widżecie, komplet kodów w `RestLabels.swift`); `tests/regress.test.tsx` „Ekran blokady w przerwie: język aplikacji, nie systemu” | logika, języki, regresja, statyczne Swift, macierz | zielone | **rodzaj pominięty: wygląd na ekranie blokady** (symulator CI nie pokazuje Live Activity) — lista „tylko telefon”, PR-17 (docs/39) |
+
+### 1.0.1 (audyt 1.0)
+| Pozycja | Testy | Rodzaje | Stan |
+|---|---|---|---|
+| C-2 liczby w check:claims | `tests/audit-m1-048-claims-registry.test.ts` (3 nowe) | logika, dane, regresja | zielone |
+| C-3 Dumbbell Squat | `tests/figures-v2-toe-angle.test.ts` | niezmienniki, regresja | zielone |
+| B-04 pauza zegarek | `tests/watch-link.test.ts` (4 nowe), `WatchStoreTests.swift` (3) | scenariusz, logika; Swift: kompilacja w watch-sim.yml po 1.0 | Jest zielone; Swift do uruchomienia |
+| Z-02 lokalizacja | `tests/lokalizacja-1-0-1.test.ts` | języki, regresja | zielone; E2E Maestro: brak (zmiany tylko tekstów) |

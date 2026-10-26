@@ -31,8 +31,8 @@
  "Dodaj ciężar": "Agregar lastre",
  "Dodaj notatkę": "Agregar nota",
  "Dodane: {list}.": "Agregados: {list}.",
- "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Agrega entrenamientos desde CSV, sin borrar datos y con vista previa.",
- "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Agrega entrenamientos desde CSV. No cambia los datos actuales. Vista previa antes de guardar.",
+ "Dopisuje treningi z CSV — bez usuwania danych, z podglądem.": "Agrega entrenos desde CSV, sin borrar datos y con vista previa.",
+ "Dopisuje treningi z CSV. Obecnych danych nie zmienia. Przed zapisem — podgląd.": "Agrega entrenos desde CSV. No cambia los datos actuales. Vista previa antes de guardar.",
  "Dzień po dniu te same główne partie: {list}. Zwykle lepiej z dniem przerwy; przy tej samej liczbie serii w tygodniu to też jest w porządku.": "Mismos grupos musculares principales en días seguidos: {list}. Suele ser mejor con un día de descanso de por medio; con el mismo número de series semanales también está bien.",
  "Gdzie trenujesz i jaki sprzęt tam masz. Wybór ćwiczenia pokazuje wtedy to, co da się zrobić w miejscu treningu, a podpowiedź „↑” proponuje ciężary, które naprawdę masz. Miejsce wybierasz na starcie treningu.": "Dónde entrenas y qué equipo tienes allí. El selector de ejercicios muestra lo que puedes hacer en el lugar del entrenamiento, y la pista «↑» sugiere pesos que realmente tienes. Eliges el lugar al empezar un entrenamiento.",
  "Generator szablonów i planu tygodnia na Twoje polecenie (cel, miejsce, liczba i długość sesji) oraz kilka planów z wyborem aktywnego.": "Generador de plantillas y plan semanal a pedido (objetivo, lugar, número y duración de las sesiones) y varios planes con elección del activo.",
@@ -266,5 +266,9 @@
  "Wstawanie": "Ponerse de pie",
  "Wszystkie funkcje działają od pierwszego dnia, bez konta i bez reklam. Dane zostają w telefonie.": "Todas las funciones están disponibles desde el primer día, sin cuenta y sin anuncios. Tus datos se quedan en tu celular.",
  "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.": "Los entrenamientos, récords y gráficas importados siempre están disponibles, incluso sin internet. Entrena {n} días al mes gratis; Pro quita el límite, también con un pago único para siempre.",
- "Zakończ trening na telefonie": "Termina el entrenamiento en tu celular"
+ "Zakończ trening na telefonie": "Termina el entrenamiento en tu celular",
+ "Pierwszy trening za Tobą!": "¡Primer entrenamiento completado!",
+ "Zakupy są przypisane do konta Apple. Treningi przywrócisz z kopii zapasowej.": "Las compras están vinculadas a tu cuenta de Apple. Los entrenamientos se restauran desde un respaldo.",
+ "Dopisuje treningi z plików CSV popularnych dzienników treningowych — bez usuwania obecnych danych, z podglądem przed zapisem.": "Agrega entrenamientos desde archivos CSV de diarios de entrenamiento populares, sin quitar tus datos actuales y con vista previa antes de guardar.",
+ "Dopisuje treningi z plików CSV popularnych dzienników treningowych. Obecnych danych nie zmienia ani nie usuwa. Przed zapisem zobaczysz podgląd.": "Agrega entrenamientos desde archivos CSV de diarios de entrenamiento populares. No cambia ni elimina tus datos actuales. Verás una vista previa antes de guardar nada."
 }
