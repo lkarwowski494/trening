@@ -1,0 +1,1444 @@
+{
+ "rodzina": "pushup_plank",
+ "wygenerowano": "2026-10-26T22:31:37.694Z",
+ "wyjatki": {
+  "Inverted Row": "model nie pozwala jednocześnie na zwis startowy z rękami w pionie, łokieć za linią pleców (w środku i na końcu ruchu) i odwiedzenie ≤ 45° przy ramieniu 28 cm, przedramieniu 30 cm i piętach na podłodze (przeszukanie: by 72–100, θ 125–150, bieguny łokcia; zawsze pada tor łokcia albo odwiedzenie); generator inverted() zostaje do ponownej próby po zmianie proporcji lub kontraktu",
+  "Clock Push-Up": "brak cechy rozpoznawczej: pompka z dłońmi przesuniętymi przód/tył nie pokazuje, że dłonie wędrują po okręgu (zegar), a ciało obraca się wokół stóp; wymagany widok z góry albo sekwencja kilku powtórzeń z obrotem tułowia (recenzja n3, 26.10.2026)",
+  "Side Plank": "potrzebny obrót tułowia wokół osi długiej (roll): kontrakt ma tylko pochylenie w płaszczyźnie strzałkowej i barki zawsze w poziomie (z = ±19)",
+  "Copenhagen Plank": "deska boczna z nogą na ławce — jak Side Plank wymaga obrotu tułowia wokół osi długiej (roll)",
+  "Push Up to Side Plank": "przejście do deski bocznej wymaga obrotu tułowia wokół osi długiej (roll)",
+  "Isometric Wipers": "przechył ciała na bok (jedno ramię zgięte, drugie proste, barki na różnej wysokości) wymaga obrotu tułowia wokół osi długiej (roll)",
+  "Drop Push": "dwa podwyższenia po bokach (dłonie z podwyższeń na podłogę): sprzęt kontraktu (skrzynia) jest wyśrodkowany w z = 0, nie da się go postawić pod dłońmi poza osią",
+  "Incline Push-Up Depth Jump": "dwa stopnie po bokach barków (dłonie przeskakują na stopnie): sprzęt kontraktu (skrzynia) jest wyśrodkowany w z = 0, nie da się go postawić poza osią"
+ },
+ "przyblizenia": {
+  "Clock Push-Up": "przybliżenie: pompka z dłońmi przestawionymi przód/tył (zegar); skok i przesunięcie dłoni na kolejne godziny nie są w pojedynczym powtórzeniu pozy",
+  "Plyo Push-Up": "faza lotu: dłonie 12 cm nad podłogą, kostki stoją (ciało nie odrywa palców)",
+  "Suspended Push-Up": "taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi do uchwytów; uchwyty nieruchome w ruchu (w rzeczywistości taśmy się wahają), rozstaw uchwytów szeroki (z = ±33)",
+  "Suspended Fallout": "taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi w u = 0; uchwyty podążają za dłońmi, taśmy ustawiają się ukośnie",
+  "Inverted Row": "drążek w stojaku na wysokości 80 cm (zwis od podłogi: ręce w pionie), chwyt nachwytem szeroki (z = ±24); łokieć kończy za linią pleców, ale tor łokcia w środku ruchu jest uproszczony (biegun łokcia stały)"
+ },
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Push Up",
+   "obraz": "Push-Up-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 0.1,
+     "max": 6.2
+    },
+    "knee": {
+     "min": 17.4,
+     "max": 19.1
+    },
+    "ankle": {
+     "min": 15.9,
+     "max": 30
+    },
+    "elbow": {
+     "min": 11.4,
+     "max": 144.1
+    },
+    "shSag": {
+     "min": -10.2,
+     "max": 64.4
+    },
+    "shElev": {
+     "min": 20.5,
+     "max": 64.4
+    },
+    "shAbd": {
+     "min": 1.9,
+     "max": 23.2
+    }
+   },
+   "bledy_w_pozie": [
+    "push.mis.partial"
+   ],
+   "bledy_wskazowki_id": [
+    "push.mis.partial"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Opuść klatkę prawie do podłogi, zginając łokcie; wypchnij się do wyprostu rąk."
+    ],
+    "bledy_wskazowki": [
+     "push.mis.partial (Skracanie ruchu — za płytko w dół albo bez wyprostu na górze.)"
+    ]
+   },
+   "reguly_sensu": [
+    "pompka_zakres",
+    "klatka_przy_dloniach",
+    "lokcie_nie_w_bok",
+    "cialo_w_linii"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Push-Up Wide",
+   "obraz": "Push-Up-Wide-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 0.9,
+     "max": 6
+    },
+    "knee": {
+     "min": 17.3,
+     "max": 19.8
+    },
+    "ankle": {
+     "min": 16.4,
+     "max": 31.6
+    },
+    "elbow": {
+     "min": 11.7,
+     "max": 144
+    },
+    "shSag": {
+     "min": -61.5,
+     "max": 67.5
+    },
+    "shElev": {
+     "min": 61.9,
+     "max": 70
+    },
+    "shAbd": {
+     "min": 18,
+     "max": 63.4
+    }
+   },
+   "bledy_w_pozie": [
+    "push.mis.partial",
+    "plank.mis.sag"
+   ],
+   "bledy_wskazowki_id": [
+    "push.mis.partial",
+    "plank.mis.sag"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny.",
+     "Tułów sztywny — biodra nie opadają i nie unoszą się."
+    ],
+    "bledy_wskazowki": [
+     "push.mis.partial (Skracanie ruchu — za płytko w dół albo bez wyprostu na górze.)",
+     "plank.mis.sag (Opadające biodra i wygięte w łuk lędźwie.)"
+    ]
+   },
+   "reguly_sensu": [
+    "cialo_w_linii",
+    "pompka_zakres",
+    "klatka_przy_dloniach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Close-Grip Push-Up",
+   "obraz": "Close-Grip-Push-Up-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 0.5,
+     "max": 6.1
+    },
+    "knee": {
+     "min": 17.2,
+     "max": 19.2
+    },
+    "ankle": {
+     "min": 16,
+     "max": 30.6
+    },
+    "elbow": {
+     "min": 11.5,
+     "max": 144
+    },
+    "shSag": {
+     "min": -6.4,
+     "max": 64.3
+    },
+    "shElev": {
+     "min": 5.7,
+     "max": 64.5
+    },
+    "shAbd": {
+     "min": 0,
+     "max": 8.3
+    }
+   },
+   "bledy_w_pozie": [
+    "push.mis.partial"
+   ],
+   "bledy_wskazowki_id": [
+    "push.mis.partial"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny.",
+     "Tułów sztywny — biodra nie opadają i nie unoszą się."
+    ],
+    "bledy_wskazowki": [
+     "push.mis.partial (Skracanie ruchu — za płytko w dół albo bez wyprostu na górze.)"
+    ]
+   },
+   "reguly_sensu": [
+    "cialo_w_linii",
+    "pompka_zakres",
+    "klatka_przy_dloniach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Diamond Push Up",
+   "obraz": "Diamond-Push-Up-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 0.9,
+     "max": 6.1
+    },
+    "knee": {
+     "min": 17.3,
+     "max": 19.8
+    },
+    "ankle": {
+     "min": 16.7,
+     "max": 31.6
+    },
+    "elbow": {
+     "min": 11.1,
+     "max": 138.1
+    },
+    "shSag": {
+     "min": -2.6,
+     "max": 61.8
+    },
+    "shElev": {
+     "min": 19.7,
+     "max": 62.1
+    },
+    "shAbd": {
+     "min": 0.5,
+     "max": 20.2
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "cialo_w_linii"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Decline Push Up",
+   "obraz": "Decline-Push-Up-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": -70,
+     "x1": 14,
+     "top": 10
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 0.7,
+     "max": 5.2
+    },
+    "knee": {
+     "min": 17.2,
+     "max": 18.9
+    },
+    "ankle": {
+     "min": 19.7,
+     "max": 32.7
+    },
+    "elbow": {
+     "min": 12.3,
+     "max": 146.1
+    },
+    "shSag": {
+     "min": -0.6,
+     "max": 68.5
+    },
+    "shElev": {
+     "min": 17.5,
+     "max": 68.6
+    },
+    "shAbd": {
+     "min": 4.7,
+     "max": 18.7
+    }
+   },
+   "bledy_w_pozie": [
+    "push.mis.partial"
+   ],
+   "bledy_wskazowki_id": [
+    "push.mis.partial"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: ławka płaska (sprzet: rodzaj \"lawka\", kat -5…5°) albo skrzynia albo stopień (sprzet: rodzaj \"skrzynia\")",
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Dłonie na podłodze na szerokość barków lub trochę szerzej, ciało proste od głowy do pięt.",
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": [
+     "push.mis.partial (Skracanie ruchu — za płytko w dół albo bez wyprostu na górze.)"
+    ]
+   },
+   "reguly_sensu": [
+    "cialo_w_linii",
+    "pompka_zakres",
+    "klatka_przy_dloniach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Incline Push Up",
+   "obraz": "Incline-Push-Up-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 113.6,
+     "x1": 131.6,
+     "top": 45
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.9,
+     "max": 8.8
+    },
+    "knee": {
+     "min": 17.3,
+     "max": 19.9
+    },
+    "ankle": {
+     "min": -4.5,
+     "max": 16.9
+    },
+    "elbow": {
+     "min": 12.4,
+     "max": 148
+    },
+    "shSag": {
+     "min": -43.9,
+     "max": 58.1
+    },
+    "shElev": {
+     "min": 18,
+     "max": 58.2
+    },
+    "shAbd": {
+     "min": 4.7,
+     "max": 18.7
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: ławka płaska (sprzet: rodzaj \"lawka\", kat -5…5°) albo skrzynia albo stopień (sprzet: rodzaj \"skrzynia\")",
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Opuść klatkę do krawędzi podwyższenia, potem wypchnij się do wyprostu rąk."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "pompka_zakres",
+    "klatka_przy_dloniach",
+    "lokcie_nie_w_bok",
+    "cialo_w_linii"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Incline Push-Up Close-Grip",
+   "obraz": "Incline-Push-Up-Close-Grip-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    },
+    {
+     "rodzaj": "skrzynia",
+     "x0": 114.1,
+     "x1": 132.1,
+     "top": 45
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 6.1,
+     "max": 8.7
+    },
+    "knee": {
+     "min": 17.6,
+     "max": 20.1
+    },
+    "ankle": {
+     "min": -4.2,
+     "max": 16.7
+    },
+    "elbow": {
+     "min": 12.7,
+     "max": 144
+    },
+    "shSag": {
+     "min": -28.6,
+     "max": 58.1
+    },
+    "shElev": {
+     "min": 1.1,
+     "max": 58.3
+    },
+    "shAbd": {
+     "min": 0.2,
+     "max": 9.4
+    }
+   },
+   "bledy_w_pozie": [
+    "push.mis.partial"
+   ],
+   "bledy_wskazowki_id": [
+    "push.mis.partial"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: ławka płaska (sprzet: rodzaj \"lawka\", kat -5…5°) albo skrzynia albo stopień (sprzet: rodzaj \"skrzynia\")",
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny.",
+     "Tułów sztywny — biodra nie opadają i nie unoszą się."
+    ],
+    "bledy_wskazowki": [
+     "push.mis.partial (Skracanie ruchu — za płytko w dół albo bez wyprostu na górze.)"
+    ]
+   },
+   "reguly_sensu": [
+    "cialo_w_linii",
+    "pompka_zakres",
+    "klatka_przy_dloniach"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Single-Arm Push-Up",
+   "obraz": "Single-Arm-Push-Up-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.6,
+     "max": 7.9
+    },
+    "knee": {
+     "min": 9.7,
+     "max": 17.9
+    },
+    "ankle": {
+     "min": 12.9,
+     "max": 23.8
+    },
+    "elbow": {
+     "min": 10.8,
+     "max": 95.1
+    },
+    "shSag": {
+     "min": -12.6,
+     "max": 65.4
+    },
+    "shElev": {
+     "min": 19,
+     "max": 65.9
+    },
+    "shAbd": {
+     "min": 0.3,
+     "max": 16.4
+    }
+   },
+   "bledy_w_pozie": [
+    "plank.mis.sag"
+   ],
+   "bledy_wskazowki_id": [
+    "plank.mis.sag"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała",
+     "JEDNORĄCZ: drążek trzyma jedna dłoń (sprzet: trzyma \"R\"/\"L\"), druga ręka wolna poza drążkiem"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny.",
+     "Tułów sztywny — biodra nie opadają i nie unoszą się."
+    ],
+    "bledy_wskazowki": [
+     "plank.mis.sag (Opadające biodra i wygięte w łuk lędźwie.)"
+    ]
+   },
+   "reguly_sensu": [
+    "cialo_w_linii"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Plank",
+   "obraz": "Plank-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 2.2,
+     "max": 2.2
+    },
+    "knee": {
+     "min": 17.3,
+     "max": 17.3
+    },
+    "ankle": {
+     "min": 26.4,
+     "max": 26.4
+    },
+    "elbow": {
+     "min": 89.3,
+     "max": 89.3
+    },
+    "shSag": {
+     "min": 88.5,
+     "max": 88.5
+    },
+    "shElev": {
+     "min": 88.6,
+     "max": 88.6
+    },
+    "shAbd": {
+     "min": 13.7,
+     "max": 13.7
+    }
+   },
+   "bledy_w_pozie": [
+    "plank.mis.sag"
+   ],
+   "bledy_wskazowki_id": [
+    "plank.mis.sag"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Unieś tułów i trzymaj ciało w jednej linii od głowy do pięt; oddychaj normalnie."
+    ],
+    "bledy_wskazowki": [
+     "plank.mis.sag (Opadające biodra i wygięte w łuk lędźwie.)"
+    ]
+   },
+   "reguly_sensu": [
+    "cialo_w_linii"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Mountain Climbers",
+   "obraz": "Mountain-Climbers-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 11.6,
+     "max": 129.3
+    },
+    "knee": {
+     "min": 17.7,
+     "max": 138.5
+    },
+    "ankle": {
+     "min": -13.3,
+     "max": 31.8
+    },
+    "elbow": {
+     "min": 11.4,
+     "max": 12
+    },
+    "shSag": {
+     "min": 64.7,
+     "max": 70.2
+    },
+    "shElev": {
+     "min": 64.7,
+     "max": 70.2
+    },
+    "shAbd": {
+     "min": 2.6,
+     "max": 2.8
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Zmieniaj nogi jednocześnie: ugiętą prostuj w tył, a prostą przyciągaj pod klatkę."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "miednica_stala_wysokosc"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Plank Shoulder Taps",
+   "obraz": "Plank-Shoulder-Taps-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.5,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.5,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 6.2,
+     "max": 6.2
+    },
+    "knee": {
+     "min": 17.7,
+     "max": 17.7
+    },
+    "ankle": {
+     "min": 15.9,
+     "max": 15.9
+    },
+    "elbow": {
+     "min": 11.4,
+     "max": 113.3
+    },
+    "shSag": {
+     "min": 41,
+     "max": 89.1
+    },
+    "shElev": {
+     "min": 43.4,
+     "max": 89.2
+    },
+    "shAbd": {
+     "min": 2.6,
+     "max": 19.4
+    }
+   },
+   "bledy_w_pozie": [
+    "plank.mis.sag"
+   ],
+   "bledy_wskazowki_id": [
+    "plank.mis.sag"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny.",
+     "Biodra nie opadają ani nie unoszą się."
+    ],
+    "bledy_wskazowki": [
+     "plank.mis.sag (Opadające biodra i wygięte w łuk lędźwie.)"
+    ]
+   },
+   "reguly_sensu": [
+    "cialo_w_linii"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Plyo Push-Up",
+   "obraz": "Plyo-Push-Up-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.4,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.4,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 0.2,
+     "max": 9.5
+    },
+    "knee": {
+     "min": 17.7,
+     "max": 30.8
+    },
+    "ankle": {
+     "min": 11.1,
+     "max": 29.7
+    },
+    "elbow": {
+     "min": 11.4,
+     "max": 142.1
+    },
+    "shSag": {
+     "min": -7.4,
+     "max": 64.7
+    },
+    "shElev": {
+     "min": 25.8,
+     "max": 64.7
+    },
+    "shAbd": {
+     "min": 2.6,
+     "max": 27.6
+    }
+   },
+   "bledy_w_pozie": [
+    "plank.mis.sag"
+   ],
+   "bledy_wskazowki_id": [
+    "plank.mis.sag"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny.",
+     "Tułów sztywny — biodra nie opadają i nie unoszą się."
+    ],
+    "bledy_wskazowki": [
+     "plank.mis.sag (Opadające biodra i wygięte w łuk lędźwie.)"
+    ]
+   },
+   "reguly_sensu": [
+    "cialo_w_linii"
+   ],
+   "przyblizenie": "faza lotu: dłonie 12 cm nad podłogą, kostki stoją (ciało nie odrywa palców)"
+  },
+  {
+   "cwiczenie": "Suspended Push-Up",
+   "obraz": "Suspended-Push-Up-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 220
+    },
+    {
+     "rodzaj": "zawieszenie",
+     "x": 119.7,
+     "y": 300,
+     "punkt": "dlonie"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.4,
+     "max": 8.5
+    },
+    "knee": {
+     "min": 17.4,
+     "max": 20.4
+    },
+    "ankle": {
+     "min": -2.1,
+     "max": 19.2
+    },
+    "elbow": {
+     "min": 11.4,
+     "max": 144.1
+    },
+    "shSag": {
+     "min": -21.8,
+     "max": 61.5
+    },
+    "shElev": {
+     "min": 19.2,
+     "max": 62.4
+    },
+    "shAbd": {
+     "min": 4.3,
+     "max": 23.4
+    }
+   },
+   "bledy_w_pozie": [
+    "push.mis.partial",
+    "plank.mis.sag"
+   ],
+   "bledy_wskazowki_id": [
+    "push.mis.partial",
+    "plank.mis.sag"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: taśmy do podwieszania (sprzet: rodzaj \"zawieszenie\") albo kółka (zastępuje drążek — rysuj jako drążek)",
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny.",
+     "Tułów sztywny — biodra nie opadają i nie unoszą się."
+    ],
+    "bledy_wskazowki": [
+     "push.mis.partial (Skracanie ruchu — za płytko w dół albo bez wyprostu na górze.)",
+     "plank.mis.sag (Opadające biodra i wygięte w łuk lędźwie.)"
+    ]
+   },
+   "reguly_sensu": [
+    "cialo_w_linii",
+    "pompka_zakres",
+    "klatka_przy_dloniach"
+   ],
+   "przyblizenie": "taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi do uchwytów; uchwyty nieruchome w ruchu (w rzeczywistości taśmy się wahają), rozstaw uchwytów szeroki (z = ±33)"
+  },
+  {
+   "cwiczenie": "Suspended Fallout",
+   "obraz": "Suspended-Fallout-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 260
+    },
+    {
+     "rodzaj": "zawieszenie",
+     "x": 160,
+     "punkt": "dlonie"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.14,
+    0.28,
+    0.42,
+    0.57,
+    0.71,
+    0.85,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.14,
+    0.28,
+    0.42,
+    0.57,
+    0.71,
+    0.85,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 5.7,
+     "max": 8.7
+    },
+    "knee": {
+     "min": 17.2,
+     "max": 18
+    },
+    "ankle": {
+     "min": -5.2,
+     "max": 17.7
+    },
+    "elbow": {
+     "min": 21.6,
+     "max": 24
+    },
+    "shSag": {
+     "min": 82.7,
+     "max": 158.3
+    },
+    "shElev": {
+     "min": 82.7,
+     "max": 157.9
+    },
+    "shAbd": {
+     "min": 4,
+     "max": 4.5
+    }
+   },
+   "bledy_w_pozie": [
+    "plank.mis.sag"
+   ],
+   "bledy_wskazowki_id": [
+    "plank.mis.sag"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: taśmy do podwieszania (sprzet: rodzaj \"zawieszenie\") albo kółka (zastępuje drążek — rysuj jako drążek)",
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": [
+     "plank.mis.sag (Opadające biodra i wygięte w łuk lędźwie.)"
+    ]
+   },
+   "reguly_sensu": [
+    "rollout_linia_kostki"
+   ],
+   "przyblizenie": "taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi w u = 0; uchwyty podążają za dłońmi, taśmy ustawiają się ukośnie"
+  },
+  {
+   "cwiczenie": "Rollout (sztanga)",
+   "obraz": "Rollout-sztanga--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 260
+    },
+    {
+     "rodzaj": "sztanga",
+     "x": 40,
+     "y": 22.5,
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 130
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.55,
+    0.7,
+    0.85,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.55,
+    0.7,
+    0.85,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 8,
+     "max": 64.2
+    },
+    "knee": {
+     "min": 35.5,
+     "max": 103.4
+    },
+    "ankle": {
+     "min": 13.2,
+     "max": 14.4
+    },
+    "elbow": {
+     "min": 6.7,
+     "max": 11.4
+    },
+    "shSag": {
+     "min": 97,
+     "max": 134.3
+    },
+    "shElev": {
+     "min": 96.9,
+     "max": 134.3
+    },
+    "shAbd": {
+     "min": 1.9,
+     "max": 2.7
+    }
+   },
+   "bledy_w_pozie": [
+    "plank.mis.sag"
+   ],
+   "bledy_wskazowki_id": [
+    "plank.mis.sag"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga",
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": [
+     "plank.mis.sag (Opadające biodra i wygięte w łuk lędźwie.)"
+    ]
+   },
+   "reguly_sensu": [
+    "rollout_linia_kolana"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Barbell Rollout from Bench",
+   "obraz": "Barbell-Rollout-from-Bench-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 260
+    },
+    {
+     "rodzaj": "lawka",
+     "x": -35,
+     "kat": 0,
+     "top": 42,
+     "siedzisko": 40,
+     "dlugosc": 40
+    },
+    {
+     "rodzaj": "sztanga",
+     "x": 40,
+     "y": 22.5,
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 130
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.55,
+    0.7,
+    0.85,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.55,
+    0.7,
+    0.85,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 8.4,
+     "max": 128.4
+    },
+    "knee": {
+     "min": 23,
+     "max": 133.4
+    },
+    "ankle": {
+     "min": 13.1,
+     "max": 15.6
+    },
+    "elbow": {
+     "min": 9.4,
+     "max": 14.9
+    },
+    "shSag": {
+     "min": 107.4,
+     "max": 132.4
+    },
+    "shElev": {
+     "min": 107.4,
+     "max": 132.4
+    },
+    "shAbd": {
+     "min": 2.5,
+     "max": 3.5
+    }
+   },
+   "bledy_w_pozie": [
+    "plank.mis.sag"
+   ],
+   "bledy_wskazowki_id": [
+    "plank.mis.sag"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga + ławka płaska (sprzet: rodzaj \"lawka\", kat -5…5°)",
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": [
+     "plank.mis.sag (Opadające biodra i wygięte w łuk lędźwie.)"
+    ]
+   },
+   "reguly_sensu": [
+    "rollout_linia_kolana"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Standing Barbell Rollout",
+   "obraz": "Standing-Barbell-Rollout-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 260
+    },
+    {
+     "rodzaj": "sztanga",
+     "x": 40,
+     "y": 22.5,
+     "talerze": true,
+     "podazaZaChwytem": true,
+     "dlugosc": 130
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.14,
+    0.28,
+    0.42,
+    0.57,
+    0.71,
+    0.85,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.14,
+    0.28,
+    0.42,
+    0.57,
+    0.71,
+    0.85,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 3.6,
+     "max": 107.2
+    },
+    "knee": {
+     "min": 17.3,
+     "max": 21.2
+    },
+    "ankle": {
+     "min": 8.6,
+     "max": 24.8
+    },
+    "elbow": {
+     "min": 3.7,
+     "max": 13.8
+    },
+    "shSag": {
+     "min": 106.3,
+     "max": 148.1
+    },
+    "shElev": {
+     "min": 106.3,
+     "max": 148
+    },
+    "shAbd": {
+     "min": 1.5,
+     "max": 3.2
+    }
+   },
+   "bledy_w_pozie": [
+    "plank.mis.sag"
+   ],
+   "bledy_wskazowki_id": [
+    "plank.mis.sag"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: sztanga",
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": [
+     "plank.mis.sag (Opadające biodra i wygięte w łuk lędźwie.)"
+    ]
+   },
+   "reguly_sensu": [
+    "rollout_linia_kostki"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {
+  "ro.back": "zestaw ogólny (cue-sets.json) odwołuje się do wskazówki bez tekstu w lib/cues/text/*.json; tekst do napisania przez badacza, przekład przez tłumacza"
+ },
+ "zgodnosc_manifestu": [],
+ "na_krawedzi": {
+  "Single-Arm Push-Up": [
+   "cialo_w_linii"
+  ],
+  "Mountain Climbers": [
+   "podpor_bez_kleku",
+   "miednica_stala_wysokosc"
+  ],
+  "Rollout (sztanga)": [
+   "blad_widoczny_stale",
+   "rollout_linia_kolana"
+  ],
+  "Barbell Rollout from Bench": [
+   "blad_widoczny_stale",
+   "proste_rece_rollout",
+   "rollout_linia_kolana"
+  ],
+  "Standing Barbell Rollout": [
+   "blad_widoczny_stale",
+   "kolana_proste_podpor"
+  ]
+ }
+}

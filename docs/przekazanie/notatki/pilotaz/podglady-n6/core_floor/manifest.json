@@ -1,0 +1,889 @@
+{
+ "rodzina": "core_floor",
+ "wygenerowano": "2026-10-26T22:30:49.828Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Alternate Heel Touchers": "skłon boczny tułowia (przechylTulowia, poza@2) jest sztywny w biodrach, nie łukiem; dłoń kończy ruch przy pięcie, bez dotyku",
+  "Superman": "przybliżenie: stopy skierowane na zewnątrz (rotacja 90°), bo model stopy nie ma palców skierowanych do tyłu",
+  "Tuck Crunch": "przybliżenie: skrzyżowanie kostek zastąpione zbliżeniem kostek (z = ±3)",
+  "Cocoons": "ruch ramion: z nad głową w stronę kolan (opis katalogu niejednoznaczny)"
+ },
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Bird Dog",
+   "obraz": "Bird-Dog-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -14.8,
+     "max": 72.4
+    },
+    "knee": {
+     "min": 12,
+     "max": 105
+    },
+    "ankle": {
+     "min": 14.7,
+     "max": 19.5
+    },
+    "elbow": {
+     "min": 15.4,
+     "max": 27.4
+    },
+    "shSag": {
+     "min": 65.8,
+     "max": 155
+    },
+    "shElev": {
+     "min": 65.9,
+     "max": 154.9
+    },
+    "shAbd": {
+     "min": 2.1,
+     "max": 5.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Unieś jednocześnie przeciwną rękę i nogę do linii tułowia; wróć i zmień strony."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "bird_dog_linia"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Crunch - Hands Overhead",
+   "obraz": "Crunch-Hands-Overhead-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.5,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.5,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 59.1,
+     "max": 86.5
+    },
+    "knee": {
+     "min": 129.7,
+     "max": 129.7
+    },
+    "ankle": {
+     "min": -19.2,
+     "max": -19.2
+    },
+    "elbow": {
+     "min": 8.5,
+     "max": 22.6
+    },
+    "shSag": {
+     "min": 152.9,
+     "max": 154.5
+    },
+    "shElev": {
+     "min": 152.9,
+     "max": 153.5
+    },
+    "shAbd": {
+     "min": 1.4,
+     "max": 8.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Zbliżaj żebra do miednicy, unosząc łopatki od podłogi; wracaj powoli.",
+     "Dolna część pleców zostaje na podłodze."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "lopatki_od_podlogi",
+    "miednica_na_podlodze"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Dead Bug",
+   "obraz": "Dead-Bug-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 15,
+     "max": 88.9
+    },
+    "knee": {
+     "min": 10.3,
+     "max": 89.8
+    },
+    "ankle": {
+     "min": -46.2,
+     "max": -43.5
+    },
+    "elbow": {
+     "min": 8.2,
+     "max": 19.7
+    },
+    "shSag": {
+     "min": 90,
+     "max": 159.3
+    },
+    "shElev": {
+     "min": 90,
+     "max": 158.9
+    },
+    "shAbd": {
+     "min": 4.1,
+     "max": 10.1
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Powoli opuść przeciwną rękę i nogę w stronę podłogi, nie kładąc ich; wróć i zmień strony."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "miednica_na_podlodze"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Hollow Hold",
+   "obraz": "Hollow-Hold-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 42.1,
+     "max": 42.1
+    },
+    "knee": {
+     "min": 11,
+     "max": 11
+    },
+    "ankle": {
+     "min": -44.1,
+     "max": -44.1
+    },
+    "elbow": {
+     "min": 8.6,
+     "max": 8.6
+    },
+    "shSag": {
+     "min": 159.2,
+     "max": 159.2
+    },
+    "shElev": {
+     "min": 158.5,
+     "max": 158.5
+    },
+    "shAbd": {
+     "min": 5.5,
+     "max": 5.5
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Lędźwie przy podłodze — nie wyginaj pleców w łuk.",
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "miednica_na_podlodze"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Lying Leg Raise",
+   "obraz": "Lying-Leg-Raise-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 17,
+     "max": 86.9
+    },
+    "knee": {
+     "min": 9.8,
+     "max": 20.6
+    },
+    "ankle": {
+     "min": -49.3,
+     "max": -43.7
+    },
+    "elbow": {
+     "min": 27.5,
+     "max": 27.5
+    },
+    "shSag": {
+     "min": -4.2,
+     "max": -4.2
+    },
+    "shElev": {
+     "min": 19.3,
+     "max": 19.3
+    },
+    "shAbd": {
+     "min": 18.8,
+     "max": 18.8
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Lędźwie przy podłodze — nie wyginaj pleców w łuk.",
+     "Ruszaj się powoli i oddychaj normalnie."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "miednica_na_podlodze"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Reverse Crunch",
+   "obraz": "Reverse-Crunch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 88.9,
+     "max": 120.4
+    },
+    "knee": {
+     "min": 89.8,
+     "max": 129.7
+    },
+    "ankle": {
+     "min": -43.8,
+     "max": -42.8
+    },
+    "elbow": {
+     "min": 27.3,
+     "max": 27.7
+    },
+    "shSag": {
+     "min": -16.9,
+     "max": -4.2
+    },
+    "shElev": {
+     "min": 19.3,
+     "max": 25.1
+    },
+    "shAbd": {
+     "min": 18.7,
+     "max": 18.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Zwijaj biodra od podłoża w stronę żeber, potem powoli opuść je z powrotem."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "miednica_unosi_sie",
+    "kolana_ku_barkom"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Tuck Crunch",
+   "obraz": "Tuck-Crunch-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.5,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.5,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 89.4,
+     "max": 128.4
+    },
+    "knee": {
+     "min": 94.6,
+     "max": 114.4
+    },
+    "ankle": {
+     "min": -42.9,
+     "max": -42.5
+    },
+    "elbow": {
+     "min": 125.2,
+     "max": 125.6
+    },
+    "shSag": {
+     "min": 44.7,
+     "max": 47.9
+    },
+    "shElev": {
+     "min": 45.3,
+     "max": 48.3
+    },
+    "shAbd": {
+     "min": 7.3,
+     "max": 7.8
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Szyja rozluźniona — nie ciągnij głowy rękami.",
+     "Dolna część pleców zostaje na podłodze."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "szyja_neutralna",
+    "miednica_na_podlodze"
+   ],
+   "przyblizenie": "przybliżenie: skrzyżowanie kostek zastąpione zbliżeniem kostek (z = ±3)"
+  },
+  {
+   "cwiczenie": "Alternate Heel Touchers",
+   "obraz": "Alternate-Heel-Touchers-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 62.3,
+     "max": 83.2
+    },
+    "knee": {
+     "min": 133.2,
+     "max": 133.2
+    },
+    "ankle": {
+     "min": -17.5,
+     "max": -17.5
+    },
+    "elbow": {
+     "min": 0,
+     "max": 22
+    },
+    "shSag": {
+     "min": -4.4,
+     "max": 6.5
+    },
+    "shElev": {
+     "min": 7.4,
+     "max": 18.7
+    },
+    "shAbd": {
+     "min": 1.6,
+     "max": 29.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Szyja rozluźniona — nie ciągnij głowy rękami.",
+     "Dolna część pleców zostaje na podłodze."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "szyja_neutralna",
+    "miednica_na_podlodze"
+   ],
+   "przyblizenie": "skłon boczny tułowia (przechylTulowia, poza@2) jest sztywny w biodrach, nie łukiem; dłoń kończy ruch przy pięcie, bez dotyku"
+  },
+  {
+   "cwiczenie": "Cocoons",
+   "obraz": "Cocoons-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 11.3,
+     "max": 125.5
+    },
+    "knee": {
+     "min": 9.4,
+     "max": 99.7
+    },
+    "ankle": {
+     "min": -45.4,
+     "max": -43.8
+    },
+    "elbow": {
+     "min": 7.2,
+     "max": 30.9
+    },
+    "shSag": {
+     "min": 48.9,
+     "max": 159.2
+    },
+    "shElev": {
+     "min": 49.1,
+     "max": 158.5
+    },
+    "shAbd": {
+     "min": 0.5,
+     "max": 6.2
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "lopatki_od_podlogi_obustronnie",
+    "kolana_ku_barkom",
+    "szyja_neutralna"
+   ],
+   "przyblizenie": "ruch ramion: z nad głową w stronę kolan (opis katalogu niejednoznaczny)"
+  },
+  {
+   "cwiczenie": "Leg Pull-In",
+   "obraz": "Leg-Pull-In-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 11.3,
+     "max": 114.4
+    },
+    "knee": {
+     "min": 9.4,
+     "max": 129.7
+    },
+    "ankle": {
+     "min": -45.4,
+     "max": -40.5
+    },
+    "elbow": {
+     "min": 27.1,
+     "max": 27.7
+    },
+    "shSag": {
+     "min": -18.1,
+     "max": -4.2
+    },
+    "shElev": {
+     "min": 19.3,
+     "max": 25.7
+    },
+    "shAbd": {
+     "min": 18.6,
+     "max": 18.9
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Ruch prowadzi miednica — nie wymachuj nogami.",
+     "Ruszaj się powoli i oddychaj normalnie."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "miednica_unosi_sie",
+    "kolana_ku_barkom"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Superman",
+   "obraz": "Superman-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -16.7,
+     "max": 7.1
+    },
+    "knee": {
+     "min": 10.1,
+     "max": 10.8
+    },
+    "ankle": {
+     "min": -1.8,
+     "max": -1.8
+    },
+    "elbow": {
+     "min": 7.9,
+     "max": 9.9
+    },
+    "shSag": {
+     "min": 169.5,
+     "max": 170.8
+    },
+    "shElev": {
+     "min": 169.2,
+     "max": 170.4
+    },
+    "shAbd": {
+     "min": 2.6,
+     "max": 2.8
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "cobra.mis"
+   ],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "cobra.mis"
+    ]
+   },
+   "reguly_sensu": [
+    "superman_konczyny_uniesione",
+    "superman_konczyny_proste",
+    "superman_miednica_podpora",
+    "superman_bez_przeprostu"
+   ],
+   "przyblizenie": "przybliżenie: stopy skierowane na zewnątrz (rotacja 90°), bo model stopy nie ma palców skierowanych do tyłu"
+  },
+  {
+   "cwiczenie": "V-Up",
+   "obraz": "V-Up-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -190,
+     "x1": 190
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 11.3,
+     "max": 118.5
+    },
+    "knee": {
+     "min": 9.4,
+     "max": 12.3
+    },
+    "ankle": {
+     "min": -49.2,
+     "max": -44.2
+    },
+    "elbow": {
+     "min": 7.8,
+     "max": 27.5
+    },
+    "shSag": {
+     "min": 78.9,
+     "max": 159.2
+    },
+    "shElev": {
+     "min": 78.9,
+     "max": 159.2
+    },
+    "shAbd": {
+     "min": 0.1,
+     "max": 9.4
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "ciężar ciała"
+    ],
+    "ruch": [
+     "Napnij brzuch, żeby tułów był sztywny."
+    ],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "vup_start_lezenie",
+    "vup_tulow_uniesiony",
+    "vup_nogi_uniesione",
+    "vup_kolana_proste",
+    "miednica_na_podlodze"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {
+  "cobra.mis": "zestaw ogólny „cobra” (cue-sets.json: Superman, Lower Back Curl) odwołuje się do wskazówki bez tekstu w lib/cues/text/*.json; tekst do napisania przez badacza, przekład przez tłumacza"
+ },
+ "zgodnosc_manifestu": [],
+ "na_krawedzi": {}
+}

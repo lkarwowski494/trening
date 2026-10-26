@@ -39,7 +39,7 @@ Agent ścieżki 1.0 (stara sesja) prowadził te kroki; nowa sesja kontynuuje od 
 | Integracja 1.1 | w toku: naprawa 7 testów `gemini-polecenia` (limit długości polecenia), potem scalenia `role-miesni`, `strona-eksport`, `straznik-paczki`, eksport `roles` dla strony, przekład 52 kluczy ról (workflow `przeklad-tlumaczen.yml`, ≤6 USD), E2E scenariusz 57 | `integracja-1-1` |
 | Role mięśni + zakresy poza@2 | gotowe | `role-miesni` 77a6e28 |
 | Eksport dla strony (sylwetka) | gotowe | `strona-eksport` a4ba332 |
-| Bramki jakości póz | runda 4 w toku (reguły R1–R10 z recenzji n4, 5 póz, przyczyna miękkich kolan w rigu, tabela kątów dla recenzenta, P1 manifest; sprawdzian na pozach gora/dol/dyn; podglądy n5) | `jakosc-r2` (c171efb przed rundą 4) |
+| Bramki jakości póz | runda 5 gotowa 26.10 ok. 23:15 UTC: niezmienniki silnika (taśma stała, kolano po swojej stronie) + R13–R16, P2 (`krawedzPozy`, 5/29 póz na krawędzi), szczelność wstecz na 5 błędach n5: 5/5 (4 pozy odrzucone z danych n5 przez niezmienniki/R13/R16, 5. = R15 na kształtach sprzed poprawki rysowania; test `tests/figury-szczelnosc-n5.test.ts`; próba, na której reguły wymyślono). Poprawione też: Single-Arm (błąd położenia dłoni względem barku), Bird Dog, Leg Pull-In, Decline, Reverse Crunch. verify lokalnie zielony. Podglądy n6 (do recenzji niezależnej): `notatki/pilotaz/podglady-n6/`. CI tests.yml dla f1e9e31: patrz niżej | `jakosc-r2` f1e9e314 |
 | Recenzja ruchu n4 | 24/29 OK, bramki złapały 0/5 błędów → runda 4 | `notatki/pilotaz/recenzja-n4.md` |
 | Pozy góra ciała | 192 pozy, 13 rodzin; `zakres_wyjatki` per ćwiczenie (7 leżących przodem) | `pozy-gora` b9d6808 |
 | Pozy dół ciała | 112 póz, 14 rodzin, 9 wyjątków | `pozy-dol` |
