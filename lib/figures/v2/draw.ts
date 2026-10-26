@@ -11,7 +11,7 @@ export const EQUIP = {
   barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [44, 49] as [number, number], plateW: 2.8,
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6, medBallR: 11,
   benchW: 28, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
-  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
+  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, gymBallR: 32.5, foamR: 7.5, foamLen: 90, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];
@@ -237,6 +237,13 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         S.push({ k: 'circle', c: proj(add(pr.c, mul(d, 1)), view), r: E.kbHandleR, stroke: 'steel', w: 1.8, z: zz + 0.1, id: 'kbHandle' });
         break;
       }
+      case 'roll': {
+        const o = proj(pr.c, view); const zk = zKey(LAYER.backEquip, -34);
+        if (side) S.push({ k: 'circle', c: o, r: pr.r, fill: 'pad', stroke: 'frame', w: 0.9, z: zk, id: 'roll' });
+        else if (view === 'front') S.push({ k: 'poly', pts: rect(-pr.len / 2, pr.c[1] - pr.r, pr.len / 2, pr.c[1] + pr.r), fill: 'pad', stroke: 'frame', w: 0.9, close: true, z: zk, id: 'roll' });
+        else S.push({ k: 'poly', pts: rect(-pr.len / 2, o[1] - pr.r, pr.len / 2, o[1] + pr.r), fill: 'pad', stroke: 'frame', w: 0.9, close: true, z: zk, id: 'roll' });
+        break;
+      }
       case 'plate': {
         const o = proj(pr.c, view); const r = pr.r ?? E.plateR; const T = E.plateW; const zz = zKey(LAYER.frontEquip, side ? pr.c[2] : view === 'front' ? pr.c[0] : pr.c[1]);
         if (side) S.push({ k: 'poly', pts: rect(o[0] - T / 2, o[1] - r, o[0] + T / 2, o[1] + r), fill: 'plate', a: 0.8, stroke: 'plate', w: 0.8, close: true, z: zz, id: 'plateHeld' });
@@ -245,10 +252,11 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         break;
       }
       case 'ball': {
-        const o = proj(pr.c, view); const r = pr.r ?? E.medBallR; const zz = zKey(LAYER.frontEquip, side ? pr.c[2] : view === 'front' ? pr.c[0] : pr.c[1]);
-        S.push({ k: 'circle', c: o, r, fill: 'load', a: 0.8, stroke: 'steel', w: 0.9, z: zz, id: 'ball' });
-        S.push({ k: 'ellipse', c: o, rx: r, ry: r * 0.34, rot: 0, stroke: 'steel', w: 0.6, a: 0.5, z: zz + 0.1, id: 'ballSeam' });
-        S.push({ k: 'ellipse', c: o, rx: r * 0.34, ry: r, rot: 0, stroke: 'steel', w: 0.6, a: 0.5, z: zz + 0.1, id: 'ballSeam' });
+        const o = proj(pr.c, view); const r = pr.r ?? (pr.held === false ? E.gymBallR : E.medBallR); const zz = zKey(LAYER.frontEquip, side ? pr.c[2] : view === 'front' ? pr.c[0] : pr.c[1]);
+        const gym = pr.held === false; /* leżąca na podłodze (piłka gimnastyczna): barwa sprzętu stałego i warstwa za ciałem */
+        S.push({ k: 'circle', c: o, r, fill: gym ? 'pad' : 'load', a: gym ? 1 : 0.8, stroke: gym ? 'frame' : 'steel', w: 0.9, z: gym ? zKey(LAYER.backEquip, -35) : zz, id: gym ? 'gymBall' : 'ball' });
+        S.push({ k: 'ellipse', c: o, rx: r, ry: r * 0.34, rot: 0, stroke: gym ? 'frame' : 'steel', w: 0.6, a: 0.5, z: (gym ? zKey(LAYER.backEquip, -35) : zz) + 0.1, id: 'ballSeam' });
+        S.push({ k: 'ellipse', c: o, rx: r * 0.34, ry: r, rot: 0, stroke: gym ? 'frame' : 'steel', w: 0.6, a: 0.5, z: (gym ? zKey(LAYER.backEquip, -35) : zz) + 0.1, id: 'ballSeam' });
         break;
       }
     }

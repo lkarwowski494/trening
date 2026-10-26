@@ -11,7 +11,7 @@ import { TOL } from './colliders';
 import { BENCH } from './rigs/benchPress';
 import type { Contact, Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka'] as const;
 export type GearName = typeof GEAR[number];
 export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean; mocowanie?: typeof BAND_MOUNT[number] };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
@@ -63,6 +63,8 @@ const BENCH_CONTACTS: Contact[] = [
   { body: 'uarm', equip: 'benchBack', tol: 6 }, { body: 'uarm', equip: 'benchSeat', tol: 6 }, { body: 'farm', equip: 'benchBack', tol: 2.5 }, { body: 'farm', equip: 'benchSeat', tol: 2.5 }, { body: 'head', equip: 'benchBack', tol: 1.5 },
   { body: 'torso', equip: 'bar', tol: 2.6 }, { body: 'uarm', equip: 'bar', tol: 2.2 },
 ];
+/** Dopuszczalne wgniecenie miękkiego sprzętu (piłka gimnastyczna, wałek piankowy) przy kontakcie z ciałem (cm). */
+export const SOFT_CONTACT = { gymBall: 3, roll: 2 } as const;
 /** Kontakt ciała ze ścianą: dopuszczalne przenikanie (cm). */
 export const WALL_CONTACT = 1.5;
 const BELL_BACK: V3 = norm([-1, -0.15, 0]);
@@ -221,6 +223,24 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     ref: () => [
       `guma: guma oporowa (pole mocowanie): "zaczep" (domyślnie) = stały punkt P = [x, y, z] (domyślnie [0, 100, 0]: drzwi, słupek, kolumna), guma biegnie od P do dłoni (jedna linia na dłoń; trzyma "obie" / "R" / "L"); "stopy" = guma pod stopami: od podłogi pod kostką (x, z kostki, y = 0) do dłoni tej samej strony (przysiad z gumą, uginanie, wznosy); "kostki" = pętla między kostkami (kroki w bok, odwodzenie: linia od kostki R do kostki L); "dlonie" = guma między dłońmi (rozciąganie gumy w poziomie: linia od dłoni R do dłoni L); "sztanga" = guma od końców gryfu (z = ±${f1(EQUIP.chainZ)} cm) do punktu [x (domyślnie x sztangi), y (domyślnie 0 = podłoga; wysoko = guma odwrócona), z] — wymaga wpisu sztanga.`,
       'guma rysowana jest jako linia przerywana; nie ma kolidera ani limitu długości (guma się rozciąga): położenie zaczepu wyznacza KIERUNEK OPORU (ruch ćwiczenia ma rozciągać gumę); w całym ruchu linia ma prowadzić od zaczepu do dłoni/kostek/sztangi.',
+    ],
+  },
+  pilka_gimnastyczna: {
+    nazwa: 'piłka gimnastyczna', caps: ['stability_ball'], fields: ['promien', 'z'], opis: 'piłka gimnastyczna leżąca na podłodze (x, z, promien)',
+    props: g => { const r = g.promien ?? EQUIP.gymBallR; return [{ k: 'ball', c: [g.x ?? 0, r, g.z ?? 0], r: g.promien, held: false }]; },
+    contacts: () => [{ body: '', equip: 'gymBall', tol: SOFT_CONTACT.gymBall }],
+    check: g => bounds('promien piłki gimnastycznej', g.promien, 20, 40),
+    ref: () => [
+      `pilka_gimnastyczna: kula leżąca na podłodze o promieniu ${f1(EQUIP.gymBallR)} cm (promien; piłka o średnicy 65 cm; 55 cm = ${f1(27.5)}, 75 cm = ${f1(37.5)}), środek [x, promien, z] (x domyślnie 0, z domyślnie 0). Piłka NIE jest w dłoniach — stoi na podłodze i niesie ciężar ciała (plecy, miednica, łydki, stopy albo dłonie). Ciało dotyka piłki, gdy odległość osi tułowia (odcinek miednica–bark) od środka piłki wynosi promień + ${f1(GIRTH.trunkCollide)} cm (promień kapsuły tułowia); dopuszczalne wgniecenie ${f1(SOFT_CONTACT.gymBall)} cm (miękka piłka), głębiej odrzucane. Podeszwy na podłodze (y = 0) albo na piłce (stopy na piłce: kostka nad powierzchnią o ${f1(BODY.ankleH)} cm).`,
+    ],
+  },
+  rolka: {
+    nazwa: 'wałek (roller piankowy)', caps: ['foam_roller'], fields: ['promien', 'z'], opis: 'wałek piankowy leżący na podłodze wzdłuż z (x, promien, dlugosc)',
+    props: g => { const r = g.promien ?? EQUIP.foamR; return [{ k: 'roll', c: [g.x ?? 0, r, g.z ?? 0], r, len: g.dlugosc ?? EQUIP.foamLen }]; },
+    contacts: () => [{ body: '', equip: 'roll', tol: SOFT_CONTACT.roll }],
+    check: g => [...bounds('promien wałka', g.promien, 4, 12), ...bounds('dlugosc wałka', g.dlugosc, 30, 120)],
+    ref: () => [
+      `rolka: wałek piankowy leżący na podłodze wzdłuż osi z: promień ${f1(EQUIP.foamR)} cm (promien; wałek o średnicy 15 cm), długość ${EQUIP.foamLen} cm (dlugosc), środek [x, promien, z]. Ciało (łydka, udo, plecy, pośladek) toczy się po wałku: odległość kapsuły ciała od osi wałka = promień ciała + promień wałka; dopuszczalne wgniecenie ${f1(SOFT_CONTACT.roll)} cm. Wałek się nie rusza (ciało przesuwa się po nim): zmianę położenia opisz ruchem ciała.`,
     ],
   },
   skrzynia: { nazwa: 'skrzynia albo stopień', caps: ['box'], opis: 'skrzynia albo stopień (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },

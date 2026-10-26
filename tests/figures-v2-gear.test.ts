@@ -4,7 +4,7 @@
  * sprzętem (macierz: rodzaj × wariant), komunikaty dla generatora. Rodzaje (docs/20): logika, ekran-rysunek, scenariusze, macierz, niezmienniki, dane, motywy.
  */
 import {
-  GEAR, GEAR_KINDS, BENCH_KAT, BAND_MOUNT, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, CABLE_ATTACH, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
+  GEAR, GEAR_KINDS, BENCH_KAT, BAND_MOUNT, SOFT_CONTACT, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, CABLE_ATTACH, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
   CONTRACT, EQUIP, BENCH, exampleFor, figureSpec, frameAt, rollerAt, poseSchema, describeContract, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
   type Gear, type KeyFrame, type PoseData, type Prop, type V3, type RomData, type Frame, type View,
 } from '@/lib/figures/v2';
@@ -37,7 +37,9 @@ const FLY = (sp: Gear): PoseData => pose('chest_fly', 'Cable Fly', [sp], [two(0,
 const STRAP = (sp: Gear): PoseData => pose('glute_floor', 'Cable Reverse Crunch', [sp], [two(0, ...sym(0, 76, 27)), { ...two(1, ...sym(0, 76, 27)), nogi: { R: { kostka: [25, 40, 9] }, L: { kostka: [0, 7, -9] } } }]);
 const EXAMPLE = (key: string, walki = false): PoseData => { const d = exampleFor(key)!; if (walki) d.sprzet = d.sprzet.map(g => g.rodzaj === 'lawka' ? { ...g, walki: true } : g); return d; };
 const BANDLAT = (sp: Gear[]): PoseData => pose('delt_raise', 'Band Lateral Raise', sp, [two(0, ...sym(0, 76, 27)), two(1, ...sym(5, 125, 52))]);
+const ROTATE = (sp: Gear[]): PoseData => pose('mobility_stand', 'Torso Rotation', sp, [two(0, ...sym(0, 76, 27)), two(1, ...sym(30, 125, 22))]);
 const MATRIX: [string, PoseData][] = [
+  ['piłka gimnastyczna obok osoby (domyślny promień)', ROTATE([{ rodzaj: 'pilka_gimnastyczna', x: 70 }])], ['piłka gimnastyczna 55 cm', ROTATE([{ rodzaj: 'pilka_gimnastyczna', x: 60, promien: 27.5 }])], ['wałek piankowy obok osoby', ROTATE([{ rodzaj: 'rolka', x: 40 }])], ['wałek: promień i długość', ROTATE([{ rodzaj: 'rolka', x: 40, z: 0, promien: 6, dlugosc: 60 }])],
   ['guma pod stopami (wznosy bokiem)', BANDLAT([{ rodzaj: 'guma', mocowanie: 'stopy' }])], ['guma w stałym zaczepie (kolumna za osobą)', BANDLAT([{ rodzaj: 'guma', mocowanie: 'zaczep', x: -60, y: 110 }])], ['guma w pętli między kostkami', BANDLAT([{ rodzaj: 'guma', mocowanie: 'kostki' }])],
   ['guma między dłońmi (rozciąganie)', BANDLAT([{ rodzaj: 'guma', mocowanie: 'dlonie' }])], ['guma od sztangi do podłogi', RACKPULL([{ rodzaj: 'guma', mocowanie: 'sztanga' }])], ['guma odwrócona: od sztangi do wysokiego punktu', RACKPULL([{ rodzaj: 'guma', mocowanie: 'sztanga', y: 200 }])],
   ['ławka płaska: wyciskanie leżąc (przykład z rigu)', EXAMPLE('Bench Press (sztanga)')], ['ławka skośna: wyciskanie na skosie (przykład z rigu)', EXAMPLE('Incline Bench Press (sztanga)')], ['ławka ujemna: wyciskanie na ławce ujemnej', EXAMPLE('Decline Bench Press')], ['ławka ujemna z wałkami na nogi', EXAMPLE('Decline Bench Press', true)],
@@ -58,9 +60,9 @@ const MATRIX: [string, PoseData][] = [
 
 describe('rejestr rodzajów sprzętu (gear.ts)', () => {
   test('GEAR: osiem rodzajów; każdy ma wpis w rejestrze z opisem i rekwizytem; możliwości katalogu pokryte przez rejestr', () => {
-    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma']);
+    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka']);
     for (const k of GEAR) { expect(GEAR_KINDS[k].opis.length).toBeGreaterThan(10); expect(typeof GEAR_KINDS[k].props).toBe('function'); }
-    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains', 'cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.row_seat', 'lat_pulldown', 'ankle_strap', 'cable.handles', 'cable.rope', 'bench.flat', 'bench.incline', 'bench.decline', 'bands']));
+    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains', 'cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.row_seat', 'lat_pulldown', 'ankle_strap', 'cable.handles', 'cable.rope', 'bench.flat', 'bench.incline', 'bench.decline', 'bands', 'stability_ball', 'foam_roller']));
     expect(new Set(GEAR_CAPS).size).toBe(GEAR_CAPS.length); /* każda możliwość ma jeden rodzaj */
     expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki', 'mocowanie']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
   });
@@ -190,6 +192,32 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
     expect(gearFieldIssues({ rodzaj: 'guma', y: 400 })).toEqual(['sprzęt: wysokość zaczepu gumy y = 400 cm poza przedziałem 0–300 cm']); expect(gearFieldIssues({ rodzaj: 'hantel', mocowanie: 'stopy' })[0]).toContain('pole „mocowanie” nie dotyczy rodzaju „hantel”');
     expect(requiredGearIssues([['bands']], [])).toEqual(['sprzęt: ćwiczenie wymaga: guma oporowa (rodzaj „guma”), a sprzet[] tego nie zawiera']); expect(requiredGearIssues([['bands']], [{ rodzaj: 'guma' }])).toEqual([]);
   });
+  test('piłka gimnastyczna: leży na podłodze (środek [x, r, z], held: false), domyślny promień EQUIP.gymBallR; wałek: walec wzdłuż z na podłodze', () => {
+    expect(propsFrom([{ rodzaj: 'pilka_gimnastyczna', x: 40 }], G)).toEqual([{ k: 'ball', c: [40, EQUIP.gymBallR, 0], r: undefined, held: false }]);
+    expect(propsFrom([{ rodzaj: 'pilka_gimnastyczna', x: 40, z: 3, promien: 27.5 }], G)).toEqual([{ k: 'ball', c: [40, 27.5, 3], r: 27.5, held: false }]);
+    expect(propsFrom([{ rodzaj: 'rolka', x: 10 }], G)).toEqual([{ k: 'roll', c: [10, EQUIP.foamR, 0], r: EQUIP.foamR, len: EQUIP.foamLen }]); expect(propsFrom([{ rodzaj: 'rolka', promien: 6, dlugosc: 60, z: 2 }], G)).toEqual([{ k: 'roll', c: [0, 6, 2], r: 6, len: 60 }]);
+    expect(contactsFrom([{ rodzaj: 'pilka_gimnastyczna' }, { rodzaj: 'rolka' }])).toEqual([{ body: '', equip: 'gymBall', tol: SOFT_CONTACT.gymBall }, { body: '', equip: 'roll', tol: SOFT_CONTACT.roll }]); expect(SOFT_CONTACT).toEqual({ gymBall: 3, roll: 2 });
+  });
+  test('piłka gimnastyczna i wałek: rysunek (leżąca piłka w barwie sprzętu stałego za ciałem, id gymBall; trzymana: ball), kolidery (id gymBall, roll; kapsuła wzdłuż z)', () => {
+    const gym: Prop = { k: 'ball', c: [40, 32.5, 0], held: false }; const med: Prop = { k: 'ball', c: [40, 100, 0] }; const roll: Prop = { k: 'roll', c: [10, 7.5, 0], r: 7.5, len: 90 };
+    for (const v of ['side', 'front', 'top'] as View[]) { expect(propShapes([gym], v).map(x => x.id)).toContain('gymBall'); expect(propShapes([med], v).map(x => x.id)).toContain('ball'); expect(propShapes([roll], v).map(x => x.id)).toEqual(['roll']); }
+    expect(propShapes([gym], 'side').find(x => x.id === 'gymBall')).toMatchObject({ k: 'circle', r: EQUIP.gymBallR, fill: 'pad' }); expect(propShapes([med], 'side').find(x => x.id === 'ball')).toMatchObject({ fill: 'load' });
+    expect(equipColliders([gym])).toEqual([{ k: 'capsule', id: 'gymBall', a: [40, 32.5, 0], b: [40, 32.5, 0], r: EQUIP.gymBallR }]); expect(equipColliders([med])[0]).toMatchObject({ id: 'ball', r: EQUIP.medBallR });
+    expect(equipColliders([roll])).toEqual([{ k: 'capsule', id: 'roll', a: [10, 7.5, -45], b: [10, 7.5, 45], r: 7.5 }]);
+  });
+  test('piłka gimnastyczna: miękki kontakt — łydka w piłce do 3 cm dozwolona, głębiej odrzucona; bez deklaracji kontaktu obowiązuje 0,3 cm; wałek: 2 cm', () => {
+    const pen = (g: Gear, withContacts = true) => { const base = ROTATE([g]); const f = keyframeFrame(base, 0); return checkFrame(withContacts ? f : { ...f, contacts: [] }).filter(i => i.code === 'pen').map(i => i.detail); };
+    const first = (xs: number[], g: (x: number) => Gear, c = true) => xs.find(x => pen(g(x), c).length === 0);
+    const xs = Array.from({ length: 70 }, (_, i) => 20 + i); const a = first(xs, x => ({ rodzaj: 'pilka_gimnastyczna', x }))!; const b = first(xs, x => ({ rodzaj: 'pilka_gimnastyczna', x }), false)!;
+    expect(a).toBeLessThan(b); expect(pen({ rodzaj: 'pilka_gimnastyczna', x: a - 3 }).length).toBeGreaterThan(0); expect(pen({ rodzaj: 'pilka_gimnastyczna', x: 100 })).toEqual([]); expect(b - a).toBeGreaterThanOrEqual(1); expect(b - a).toBeLessThanOrEqual(4);
+    expect(pen({ rodzaj: 'pilka_gimnastyczna', x: a - 3 })[0]).toMatch(/× gymBall: przenikanie [\d.]+ cm \(dopuszczalne 3\)/);
+    const ra = first(xs, x => ({ rodzaj: 'rolka', x })); expect(ra).toBeDefined(); expect(pen({ rodzaj: 'rolka', x: ra! - 3 })[0]).toMatch(/× roll: przenikanie [\d.]+ cm \(dopuszczalne 2\)/);
+  });
+  test('piłka gimnastyczna i wałek: pola — promień i długość w granicach; wałek: z', () => {
+    expect(gearFieldIssues({ rodzaj: 'pilka_gimnastyczna', promien: 50 })).toEqual(['sprzęt: promien piłki gimnastycznej = 50 cm poza przedziałem 20–40 cm']); expect(gearFieldIssues({ rodzaj: 'rolka', promien: 2 })).toEqual(['sprzęt: promien wałka = 2 cm poza przedziałem 4–12 cm']);
+    expect(gearFieldIssues({ rodzaj: 'rolka', dlugosc: 5 })).toEqual(['sprzęt: dlugosc wałka = 5 cm poza przedziałem 30–120 cm']); expect(gearFieldIssues({ rodzaj: 'rolka', z: 4, promien: 7 })).toEqual([]); expect(gearFieldIssues({ rodzaj: 'pilka_gimnastyczna', pionowo: true })[0]).toContain('pole „pionowo” nie dotyczy');
+    expect(requiredGearIssues([['stability_ball']], [])).toEqual(['sprzęt: ćwiczenie wymaga: piłka gimnastyczna (rodzaj „pilka_gimnastyczna”), a sprzet[] tego nie zawiera']); expect(requiredGearIssues([['stability_ball', 'med_ball']], [{ rodzaj: 'pilka_lekarska' }])).toEqual([]);
+  });
   test('stary sprzęt bez zmian: sztanga podąża za chwytem, słupek, podłoga, skrzynia', () => {
     expect(propsFrom([{ rodzaj: 'sztanga', podazaZaChwytem: true }, { rodzaj: 'slupek', x: 5, h: 100 }, { rodzaj: 'skrzynia', x0: 1, x1: 2, top: 30 }, { rodzaj: 'podloga' }], G).map(p => p.k)).toEqual(['barbell', 'post', 'box', 'floor']);
   });
@@ -257,7 +285,8 @@ describe('kolidery i kontrola chwytu', () => {
   test('checkFrame: ręce za blisko środka piłki → „grip” z hintem; piłka i talerz pod podłogą → „floor”; piłka w tułowiu → „pen”', () => {
     const near = BALL({ rodzaj: 'pilka_lekarska' }); near.klatki[0].rece.R.chwyt = [25, 120, 4]; const g = checkFrame(keyframeFrame(near, 0)).find(i => i.code === 'grip'); expect(g?.hint).toContain('powierzchni piłki'); expect(g?.detail).toMatch(/pilka\/R: dłoń \d+\.\d+ cm od chwytu \(dopuszczalne 3\)/);
     const low = checkFrame({ ...keyframeFrame(BALL({ rodzaj: 'pilka_lekarska' }), 0), props: [{ k: 'ball', c: [25, 5, 0], r: 11 }, { k: 'plate', c: [25, 20, 0], r: 22.5 }] }); expect(low.filter(i => i.code === 'floor').map(i => i.detail.split(' ')[0])).toEqual(['ball', 'plate']);
-    const f = keyframeFrame(BALL({ rodzaj: 'pilka_lekarska' }), 0); const inside = checkFrame({ ...f, props: [{ k: 'ball', c: [3, 120, 0], r: 11, held: false }] }); expect(inside.some(i => i.code === 'pen' && /torso × ball/.test(i.detail))).toBe(true);
+    const f = keyframeFrame(BALL({ rodzaj: 'pilka_lekarska' }), 0); const inside = checkFrame({ ...f, props: [{ k: 'ball', c: [3, 120, 0], r: 11, held: false }] }); expect(inside.some(i => i.code === 'pen' && /torso × gymBall/.test(i.detail))).toBe(true); /* held: false = piłka leżąca (id gymBall) */
+    const held = checkFrame({ ...f, props: [{ k: 'ball', c: [3, 120, 0], r: 11 }] }); expect(held.some(i => i.code === 'pen' && /torso × ball/.test(i.detail))).toBe(true);
   });
   test('przedramię trzymające talerz i piłkę ma tolerancję kontaktu (jak sztanga i hantel)', () => {
     for (const [, d] of MATRIX.filter(([n]) => /talerz|piłka/.test(n))) expect(checkFrame(keyframeFrame(d, 0.5)).filter(i => i.code === 'pen')).toEqual([]);

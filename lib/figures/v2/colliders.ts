@@ -67,7 +67,8 @@ export function equipColliders(props: Prop[]): Collider[] {
         if (!p.solid) break; const d = sub(p.to, p.from); const l = Math.hypot(...d) || 1; const k = Math.max(0, l - EQUIP.cableEnd) / l;
         c.push({ k: 'capsule', id: 'cable', a: p.from, b: [p.from[0] + d[0] * k, p.from[1] + d[1] * k, p.from[2] + d[2] * k], r: EQUIP.cableR }); break; }
       case 'tower': if (p.solid) c.push(prism('tower', rectPoly(p.x - EQUIP.towerW / 2, 0, p.x + EQUIP.towerW / 2, p.h), p.z - EQUIP.towerW / 2, p.z + EQUIP.towerW / 2)); break;
-      case 'ball': c.push({ k: 'capsule', id: 'ball', a: p.c, b: p.c, r: p.r ?? EQUIP.medBallR }); break;
+      case 'ball': c.push({ k: 'capsule', id: p.held === false ? 'gymBall' : 'ball', a: p.c, b: p.c, r: p.r ?? (p.held === false ? EQUIP.gymBallR : EQUIP.medBallR) }); break;
+      case 'roll': c.push({ k: 'capsule', id: 'roll', a: [p.c[0], p.c[1], -p.len / 2], b: [p.c[0], p.c[1], p.len / 2], r: p.r }); break;
       case 'plate': c.push(...plateColliders(p)); break;
       case 'bench': { const bp = benchPolys(p); const w = (p.w ?? EQUIP.benchW) / 2; c.push(prism('benchSeat', bp.seat, -w, w), prism('benchBack', bp.back, -w, w)); if (p.rollers) { const r = rollerAt(p); c.push({ k: 'capsule', id: 'benchRoller', a: [r[0], r[1], -EQUIP.rollerHalf], b: [r[0], r[1], EQUIP.rollerHalf], r: EQUIP.rollerR }); } break; }
       case 'box': { const w = (p.w ?? EQUIP.boxW) / 2; c.push(prism('box', rectPoly(p.x0, 0, p.x1, p.top), -w, w)); break; }

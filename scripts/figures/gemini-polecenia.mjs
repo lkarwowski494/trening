@@ -224,7 +224,7 @@ const OPIS_SPRZETU = { 'pullup.bar': 'drążek poziomy', rings: 'kółka (zastę
 /** Opis możliwości katalogu z rejestru kontraktu (capLabel + rodzaj + wymaganie, np. wysokość bloczka); możliwość spoza rejestru → identyfikator. */
 export function opisMozliwosci(cap) {
   const { v2 } = silnik(); const k = v2.GEAR.find((x) => v2.GEAR_KINDS[x].caps.includes(cap)); if (!k) return cap;
-  const d = v2.GEAR_KINDS[k]; const label = d.capLabel?.[cap]; return label ? `${label} (sprzet: rodzaj \"${k}\"${d.capNeed?.[cap] ? `, ${d.capNeed[cap]}` : ''})` : cap;
+  const d = v2.GEAR_KINDS[k]; const label = d.capLabel?.[cap] ?? d.nazwa; return `${label} (sprzet: rodzaj \"${k}\"${d.capNeed?.[cap] ? `, ${d.capNeed[cap]}` : ''})`;
 }
 /** Rodzaje sprzętu z rejestru kontraktu, których potrzebują ćwiczenia (możliwości katalogu → rodzaj); kolejność jak w rejestrze. */
 export function rodzajeSprzetu(cwiczenia, catalog) {
