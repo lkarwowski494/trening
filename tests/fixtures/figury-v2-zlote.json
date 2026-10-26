@@ -780,6 +780,70 @@
    "svg": "984cfbaa6b3c53a0b0c3",
    "raw": "4d51e49e97ec31f61d6b"
   },
+  "kb_ballistic/Kettlebell Swing": {
+   "svg": "652ed9d72942e3373224",
+   "raw": "7b843c5d41808583fb9c"
+  },
+  "kb_ballistic/One-Arm Kettlebell Swings": {
+   "svg": "1cbc2bd4564fa86a78b0",
+   "raw": "4850b21083d7fd8ba996"
+  },
+  "kb_ballistic/Kettlebell Clean": {
+   "svg": "0cbf1e74f02f997a5602",
+   "raw": "8223a188d0056f8b8b57"
+  },
+  "kb_ballistic/Double Kettlebell Clean": {
+   "svg": "a1a4c89d3e45900afdd4",
+   "raw": "0f6efcb8eade6182621d"
+  },
+  "kb_ballistic/Dumbbell Clean": {
+   "svg": "3a8cde16158ae800d3b4",
+   "raw": "a6ddcac55193b49d944a"
+  },
+  "kb_ballistic/Bottoms-Up Clean From The Hang Position": {
+   "svg": "0cbf1e74f02f997a5602",
+   "raw": "8223a188d0056f8b8b57"
+  },
+  "kb_ballistic/Kettlebell Snatch": {
+   "svg": "49b7ba4446ee678c64cd",
+   "raw": "82f1d07f33a76644668f"
+  },
+  "kb_ballistic/Double Kettlebell Snatch": {
+   "svg": "1db102a7b467a3c54acd",
+   "raw": "252a2d29b006ab0d326e"
+  },
+  "kb_ballistic/Snatch (hantel)": {
+   "svg": "0873b445c713cdd88d27",
+   "raw": "decacb613f00e09d08a9"
+  },
+  "kb_ballistic/Double Kettlebell Push Press": {
+   "svg": "873b0208ad5d114a83e4",
+   "raw": "7f5b26b781c78411eb2b"
+  },
+  "kb_ballistic/Double Kettlebell Jerk": {
+   "svg": "873b0208ad5d114a83e4",
+   "raw": "7f5b26b781c78411eb2b"
+  },
+  "kb_ballistic/One-Arm Kettlebell Push Press": {
+   "svg": "f98ef384a411a26137b1",
+   "raw": "bd0049c889068b9756cf"
+  },
+  "kb_ballistic/One-Arm Kettlebell Jerk": {
+   "svg": "f98ef384a411a26137b1",
+   "raw": "bd0049c889068b9756cf"
+  },
+  "kb_ballistic/One-Arm Kettlebell Split Jerk": {
+   "svg": "8887d35fceebb84f499d",
+   "raw": "5189a525eec78157aabd"
+  },
+  "kb_ballistic/Kettlebell Sumo High Pull": {
+   "svg": "449670239c9d416ee4af",
+   "raw": "fcd0959e5a69844a0d2c"
+  },
+  "kb_ballistic/One-Arm Kettlebell Clean and Jerk": {
+   "svg": "92b395a11f038931187e",
+   "raw": "9abd31882263ab6f738f"
+  },
   "olympic/Power Clean": {
    "svg": "b5348400e3faf369aa88",
    "raw": "094e8211d3f4fab69ba1"

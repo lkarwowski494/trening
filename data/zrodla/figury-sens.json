@@ -4350,6 +4350,9 @@
       "pomin": {}
     },
     "kb_ballistic": {
+      "dynamiczne": {
+        "One-Arm Kettlebell Clean and Jerk": "zarzut i podrzut jednym ciężarem w jednym przebiegu (zawis, rack, ugięcie, wyrzut, wykrok): sześć faz z przechwytem, tempo najszybszego punktu 7–8 cm na 1/48 wobec limitu 6 cm ruchu zwykłego (pomiar generatora 26.10.2026) — limit CONTRACT.maxJumpDynamic (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "plecy": {
           "typ": "kregoslup_neutralny",
