@@ -48,10 +48,11 @@ export const kostkaNaPalcach = (y0, podbicie = -60) => { const f = podbicie * R;
 export const kostkaPlasko = (y0 = 0) => r1(y0 + BODY().ankleH);
 
 /** Klatka kluczowa z płaskich parametrów. nogi/rece: { R:{k:[x,y,z],pod,rot,pole,odchylenie}, L:{...} }, rece: { R:{g:[x,y,z],pole}, L }. */
-export function klatka({ u, miednica, pitch, bend = 0, glowa, nogi, rece }) {
+export function klatka({ u, miednica, pitch, bend = 0, glowa, nogi, rece, przechyl }) {
   const noga = (s) => { const n = nogi[s]; const o = { kostka: rv(n.k) }; if (n.pod !== undefined) o.podbicie = r1(n.pod); o.rotacjaStopy = n.rot ?? 10; if (n.pole) o.biegunKolana = n.pole; if (n.odchylenie !== undefined) o.odchylenieKolana = n.odchylenie; return o; };
-  const reka = (s) => { const a = rece[s]; const o = { chwyt: rv(a.g) }; if (a.pole) o.biegunLokcia = a.pole; return o; };
+  const reka = (s) => { const a = rece[s]; const o = { chwyt: rv(a.g) }; if (a.pole) o.biegunLokcia = a.pole; if (a.obrot !== undefined) o.obrotPrzedramienia = r1(a.obrot); return o; };
   const k = { u: r1(u * 1000) / 1000, miednica: rv([miednica[0], miednica[1], miednica[2] ?? 0]), pochylenieTulowia: r1(pitch), zgiecieKregoslupa: r1(bend), pochylenieGlowy: r1(glowa ?? pitch * 0.6), nogi: { R: noga('R'), L: noga('L') }, rece: { R: reka('R'), L: reka('L') } };
+  if (przechyl !== undefined) k.przechylTulowia = r1(przechyl); /* poza@2: skłon boczny tułowia */
   return k;
 }
 const eq = (a, b) => JSON.stringify(a) === JSON.stringify(b);
