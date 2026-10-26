@@ -260,7 +260,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (52)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (53)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -306,6 +306,7 @@ trening/
 - [`docs/46-przeniesienie-1.0.md`](docs/46-przeniesienie-1.0.md) — 46. Przeniesienie czystej wersji 1.0 do Apps4Brew — lista kontrolna i narzędzie (21.10.2026)
 - [`docs/47-instrukcja-testu-dzwieku.md`](docs/47-instrukcja-testu-dzwieku.md) — 47. Instrukcja testu: dźwięk, wibracja, tryb skupienia, zegarek (build 1030 i kolejne)
 - [`docs/48-zgloszenie-1-0.md`](docs/48-zgloszenie-1-0.md) — 48. Zgłoszenie wersji 1.0 do App Store — szkic kompletu (stan 25.10.2026)
+- [`docs/49-testflight-1-0.md`](docs/49-testflight-1-0.md) — 49. TestFlight 1.0 — „What to Test” i lista „tylko telefon” (przygotowane 26.10.2026)
 - [`docs/50-figury-v2.md`](docs/50-figury-v2.md) — 50 — Figury v2: grafiki ćwiczeń dla całej biblioteki (projekt, etap 1)
 - [`docs/51-figury-v2-pokrycie.md`](docs/51-figury-v2-pokrycie.md) — 51 — Figury v2: rodziny ruchu i pokrycie ćwiczeń (generowane)
 - [`docs/52-gemini-pozy-pilotaz.md`](docs/52-gemini-pozy-pilotaz.md) — 52 — Pilotaż: pozy figur v2 generowane przez API Gemini
