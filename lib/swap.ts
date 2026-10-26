@@ -1,20 +1,18 @@
 import { getState, visibleExercises, workoutsWith, finishedWorkouts, memoHist, locationById } from './store';
 import { availability, capsOf, implsAt } from './equipment';
 import { t, exName, locale, fold, collator } from './i18n';
-import { SWAP_WEIGHTS, similarity, type SwapReason } from './swapScore';
-import { libExtraRevOf, LIB_EXTRA_REVS, catalogKey, isNiche, type Exercise, type Impl, type Location, type Workout } from './seed';
+import { SWAP_WEIGHTS, similarity, orderSwaps, FULL_BASE_REV, type SwapReason } from './swapScore';
+import { type Exercise, type Impl, type Location, type Workout } from './seed';
 
 /*
  * E2 „Zamiana ćwiczenia w trakcie treningu” (docs/14) — ranking propozycji zamiennika. Czysta funkcja nad stanem (bez zapisu):
  * arkusz zamiany w treningu w toku i w edytorze historii oraz tabela D7 (tests/swap-top3.test.ts → docs/14a-e2-top3.md) liczą z tego samego miejsca.
  */
 
-export { SWAP_WEIGHTS };
+export { SWAP_WEIGHTS, FULL_BASE_REV };
 export type { SwapReason };
 /** Liczba propozycji w arkuszu (decyzja P7 a: 3). */
 export const SWAP_TOP = 3;
-/** Krok katalogu z pełną bazą (free-exercise-db, 05.10.2026) — przy remisie w rankingu po bibliotece przejrzanej przez właściciela. */
-export const FULL_BASE_REV = 'katalog-2026-10-05';
 /** Lista „Inne” w arkuszu zamiany: wiersze renderowane porcjami (pełna baza ~870 ćwiczeń, lista w ScrollView arkusza — bez wirtualizacji). */
 export const SWAP_PAGE = 50;
 export interface SwapCandidate { exId: string; score: number; reasons: SwapReason[]; /** dostępne w miejscu (bez miejsca — zawsze) */ available: boolean; /** już jest w treningu (dopisek, nie blokuje) */ inWorkout: boolean; /** liczba sesji z tym ćwiczeniem (remis, „robione 12×”) */ sessions: number }
@@ -46,17 +44,8 @@ export function swapCandidates(exId: string, ctx: SwapCtx): SwapCandidate[] {
     const sessions = sessionsOf(b.id); if (sessions > 0) { score += SWAP_WEIGHTS.history; reasons.push('history'); }
     out.push({ exId: b.id, score, reasons, available, inWorkout: ctx.inWorkout.has(b.id), sessions });
   }
-  const name = new Map(out.map(c => [c.exId, exName(getState().exercises.find(e => e.id === c.exId))]));
-  /* decyzja właściciela 04.10.2026 (przegląd D7): remis rozstrzyga najpierw ten sam sprzęt co oryginał (sztanga → sztanga), potem sesje i nazwa */
-  const sameEq = new Map(out.map(c => [c.exId, getState().exercises.find(e => e.id === c.exId)?.equipment === a.equipment ? 1 : 0]));
-  /* pełna baza (05.10.2026, ~870): przy remisie punktów najpierw biblioteka przejrzana przez właściciela (kroki katalogu 04.10 i własne
-   * ćwiczenia), dopiero potem pełna baza (krok 05.10) — inaczej remisy „ten sam sprzęt” i nazwa wypychały znane ćwiczenia rzadkimi wariantami
-   * (Bench Press with Chains przed Bench Press (hantle)). W obrębie każdej z tych dwóch części — decyzja D7: ten sam sprzęt, sesje, nazwa. */
-  const step = new Map(out.map(c => { const b = getState().exercises.find(e => e.id === c.exId); const k = catalogKey(b); const r = k ? libExtraRevOf(k) : undefined; /* E2 (audyt 0.10): krok katalogu po kluczu */ return [c.exId, r ? LIB_EXTRA_REVS.indexOf(r) : -1]; }));
-  const full = LIB_EXTRA_REVS.indexOf(FULL_BASE_REV); const niche = new Set(out.filter(c => { const b = getState().exercises.find(e => e.id === c.exId); return !!b && isNiche(b); }).map(c => c.exId));
-  /* research biblioteki (decyzja 09.10.2026, wariant B): ćwiczenia niszowe na końcu remisu — po bibliotece przejrzanej i reszcie podstawowych */
-  const tier = (id: string) => niche.has(id) ? 2 : full >= 0 && step.get(id)! >= full ? 1 : 0;
-  return out.sort((x, y) => y.score - x.score || tier(x.exId) - tier(y.exId) || sameEq.get(y.exId)! - sameEq.get(x.exId)! || y.sessions - x.sessions || step.get(x.exId)! - step.get(y.exId)! || collator().compare(name.get(x.exId)!, name.get(y.exId)!));
+  const byId = new Map(getState().exercises.map(e => [e.id, e] as const));
+  return orderSwaps(out, a, id => byId.get(id), id => exName(byId.get(id)), (x, y) => collator().compare(x, y));
 }
 
 /** Lista „Inne” w arkuszu zamiany: dokładne trafienie nazwy (w języku interfejsu albo kanonicznej) na początku, reszta alfabetycznie
