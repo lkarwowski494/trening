@@ -88,8 +88,9 @@ name: Generator szablonów i planu
 - takeScreenshot: 70-generator
 - scrollUntilVisible: { element: "Plan rules", direction: DOWN, timeout: 30000 }
 - tapOn: { id: "info-gen-basis" }  # 14.10.2026: „Zasady planu” — źródła pod ⓘ (treść bez zmian)
-- assertVisible: ".*Each major muscle group on at least.*"
-- assertVisible: ".*more days do not have to give proportionally more.*"  # 25.10.2026: brzmienie bez odwołań do dowodów (druga decyzja właściciela „całkiem anonimowo”)
+# E2E 40309855134 (iPhone 16e, ciemny): rozwinięte punkty leżą przy dolnej krawędzi i są ucięte — assertVisible ich nie widzi; przewijamy do każdego
+- scrollUntilVisible: { element: ".*Each major muscle group on at least.*", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: ".*more days do not have to give proportionally more.*", direction: DOWN, timeout: 30000 }  # 25.10.2026: brzmienie bez odwołań do dowodów (druga decyzja właściciela „całkiem anonimowo”)
 - takeScreenshot: 71-generator-zrodla
 - scrollUntilVisible: { element: "Save templates and plan", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Save templates and plan"
