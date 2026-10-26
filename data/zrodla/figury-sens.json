@@ -1886,7 +1886,7 @@
           "parametry": {
             "max_min_deg": 20
           },
-          "zrodlo": "NSCA Basics s. 42 (łokcie całkowicie wyprostowane na górze) — przeczytane 26.10.2026; ohp.fullExt: ACE #186 krok 3, ExRx/Eleiko (cues.json, słownik)",
+          "zrodlo": "NSCA Basics s. 42 (łokcie całkowicie wyprostowane na górze) — przeczytane 26.10.2026; ohp.fullExt: ACE #186 krok 3, ExRx, producent sprzętu (cues.json, słownik)",
           "liczba": "uproszczenie (łokieć ≤ 20° na górze)",
           "pewnosc": "ustalone"
         },
@@ -2641,7 +2641,7 @@
             ],
             "max_deg": 25
           },
-          "zrodlo": "sapd.arms: ACE #334, Eleiko (dwa filmy z opisem) — cues.json; Eleiko liczone jako jedna organizacja",
+          "zrodlo": "sapd.arms: ACE #334, producent sprzętu (dwa filmy z opisem) — cues.json; producent sprzętu liczone jako jedna organizacja",
           "liczba": "uproszczenie (łokieć ≤ 25°)",
           "pewnosc": "ustalone (wg cues.json)"
         },
@@ -2652,7 +2652,7 @@
           "parametry": {
             "min_deg": 45
           },
-          "zrodlo": "sapd.move: ACE #334, Eleiko — cues.json (drążek prostymi rękami w stronę ud)",
+          "zrodlo": "sapd.move: ACE #334, producent sprzętu — cues.json (drążek prostymi rękami w stronę ud)",
           "liczba": "konwencja (kąt ramię–tułów zmienia się o ≥ 45°)",
           "pewnosc": "ustalone (wg cues.json)"
         }
