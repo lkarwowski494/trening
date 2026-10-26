@@ -39,12 +39,16 @@ export function pozyGotowe(rodzina, root = ROOT) {
   return existsSync(p) ? czytaj(p) : { cwiczenia: {} };
 }
 /** Ćwiczenia rodziny, którym brakuje pozy (rodzina gotowa z rigiem → pusta lista; rodzina gotowa z danych → ćwiczenia bez wpisu w poses/). */
+/** Jawne wyjątki bez animacji (data/zrodla/figury-wyjatki.json): powód dla ćwiczenia (z rodziny albo imiennie) albo null. */
+export function wyjatekBezAnimacji(rodzina, cwiczenie, root = ROOT) {
+  const p = join(root, 'data/zrodla/figury-wyjatki.json'); if (!existsSync(p)) return null; const w = czytaj(p); return w.cwiczenia?.[cwiczenie] ?? w.rodziny?.[rodzina] ?? null;
+}
 export function doZrobienia(rodzina, { root = ROOT, lista } = {}) {
   const r = rodzinyZDokumentu(lista ?? join(root, 'docs/51-figury-v2-pokrycie.md')).find((x) => x.id === rodzina);
   if (!r) throw new Error(`rodzina „${rodzina}” nie występuje w docs/51`);
   if (r.stan === 'gotowa' && !existsSync(join(root, 'lib/figures/v2/poses', `${rodzina}.json`))) return []; /* gotowa z rigiem: nic do zrobienia; gotowa z danych: brakujące pozy */
   const mam = pozyGotowe(rodzina, root).cwiczenia ?? {};
-  return cwiczeniaRodziny(rodzina, lista ?? join(root, 'docs/51-figury-v2-pokrycie.md')).filter((c) => !(c in mam));
+  return cwiczeniaRodziny(rodzina, lista ?? join(root, 'docs/51-figury-v2-pokrycie.md')).filter((c) => !(c in mam) && !wyjatekBezAnimacji(rodzina, c, root));
 }
 export function podzielNaCzesci(lista, max = MAX_CWICZEN_W_CZESCI) {
   const n = Math.max(1, Math.ceil(lista.length / max)); const roz = Math.ceil(lista.length / n); /* równe części */

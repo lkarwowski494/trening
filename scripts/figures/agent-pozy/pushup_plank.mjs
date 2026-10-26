@@ -151,7 +151,7 @@ export function rolloutKolana(cw, { ławka = 0, fi1 = 14, sag = true, ky = 9.8, 
   const mk = (u) => { const f = frame(u); return { ...klatka({ u, miednica: f.hip, pitch: f.pitch, glowa: f.pitch * 0.75, nogi: { R: { k: [A[0], A[1], 8.5], pod: PODK, pole: [1, -0.5, 0.05] }, L: { k: [A[0], A[1], -8.5], pod: PODK, pole: [1, -0.5, -0.05] } },
     rece: { R: { g: [...f.H, 20], pole: [-0.3, -1, 0.3] }, L: { g: [...f.H, -20], pole: [-0.3, -1, -0.3] } } }), _S: f.S, _fi: f.ph, _K: K }; };
   const us = [0, 0.1, 0.2, 0.3, 0.4, 0.55, 0.7, 0.85, 1]; /* 9 klatek */
-  const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 260 }, { rodzaj: 'sztanga', x: 40, y: BAR_Y, talerze: true, podazaZaChwytem: true, dlugosc: 130 }]; if (ławka) sprzet.splice(1, 0, { rodzaj: 'skrzynia', x0: -75, x1: 5, top: ławka });
+  const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 260 }, { rodzaj: 'sztanga', x: 40, y: BAR_Y, talerze: true, podazaZaChwytem: true, dlugosc: 130 }]; if (ławka) sprzet.splice(1, 0, { rodzaj: 'lawka', x: -35, kat: 0, top: ławka, siedzisko: 40, dlugosc: 40 });
   const bledy = [];
   if (sag) bledy.push(bladZTrajektorii({ cue: 'plank.mis.sag', postawa: true, znacznik: 'pelvis', us: [0, 0.2, 0.4, 0.55, 0.7, 0.85, 1], ok: (u) => czysc(mk(u)), zle: (u) => { const k = mk(u); const w = Math.max(0, Math.min(1, (u - 0.55) / 0.45)); const z = czysc(k);
     const S = k._S; const fi = k._fi + dgSag * w; const P = [S[0] - 50 * Math.cos(fi * R), S[1] - 50 * Math.sin(fi * R)]; /* biodra opadają (obrót tułowia wokół barków) dopiero przy wyprostowanym ciele; wcześniej błąd to wygięcie lędźwi (−28°) */

@@ -107,9 +107,25 @@ Przykłady few-shot z rigów gotowych rodzin (`exampleFor`) zawierają teraz wpi
 
 Wymagany sprzęt ćwiczenia (`requiredGearIssues`, używane w `waliduj`): poza musi zawierać wpis rodzaju pokrywającego możliwość z `requires` katalogu (np. wyciąg z bloczkiem wysokim dla `cable.high`); alternatywy w grupie to ALBO; stojak (słupek) nie jest wymagany; grupy bez rodzaju w rejestrze pomijane. Kod błędu: `sprzet`.
 
+### 2.9a Rozszerzenie modelu (decyzja właściciela 26.10.2026, przez koordynatora)
+
+| Rodzaj | Pola | Możliwości katalogu | Uwagi |
+|---|---|---|---|
+| `rzymska` | `x`, `top` (75), `kat` (0–70°, 45), `dlugosc` (wałki od podpórki, 55), `y`, `walki` (false = bez wałków) | hyperext_bench, ghd, glute_ham_raise, reverse_hyper | schemat jednej ławki dla czterech możliwości; kontakty biodra/uda/tułów/łydki 3 cm |
+| `kloda` | `promien` (15), `dlugosc` (60), `przesuniecie` | log_bar | walec trzymany w dłoniach (≤ promień + 3 cm od osi); kontakt tułowia 4 cm |
+| `opona` | `x`, `z`, `promien` (60), `dlugosc` (25) | tire | nieruchoma w animacji (uproszczenie) |
+| `gryf_szesciokatny` (riksza), `sztanga` (jarzmo) | j.w. | rickshaw, yoke | rysowane jak trap bar / sztanga na barkach — uproszczenie |
+| `bosu` | `x`, `z`, `promien` (30) | bosu | półkula na podłodze, miękki kontakt 3 cm |
+| `walek_nadgarstkow` | `dlugosc` (liny), `promien` (talerza) | wrist_roller | drążek 30 cm w dłoniach + lina + talerz |
+| `mlot` | `dlugosc` (90) | sledgehammer | trzonek przez chwyty R → L, głowica na końcu |
+| `uprzaz_szyja` | `dlugosc` (35), `promien` (12) | neck_harness | łańcuch i talerz pod głową (ze szkieletu) |
+| `pas` | `dlugosc`, `promien`; z sańmi: lina do miednicy | dip_belt (+ plate wiszący) | `sanie` z `trzymanie: pas` — sanie ciągnięte za pas |
+
+Wyjątki bez animacji (decyzja właściciela 26.10.2026): rodzina `cardio` i ćwiczenie Stomach Vacuum — `data/zrodla/figury-wyjatki.json` (powód przy każdym; generator pomija je z adnotacją „wyjątek bez animacji”).
+
 ## 2.10 Poza kontraktem (stan 26.10.2026)
 
-Pozostałe ćwiczenia z niewspieranym sprzętem (z 622 do zrobienia): cardio (ergometry, bieżnie, skakanka, liny bojowe: 10), ławki specjalne (rzymska, GHD, glute-ham, reverse hyper: 4), sprzęt strongman (opona, jarzmo, kłoda, riksza, circus bell: 5), BOSU, wałek na nadgarstki, młot, uprząż na szyję, pas obciążeniowy z sańmi (dip_belt) — po 1–2 ćwiczenia. Powód: osobne konstrukcje albo inna klasa rigu (cardio = lokomocja, nie sprzęt). Do decyzji: wyjątek z powodem czy kolejne prymitywy.
+Po rozszerzeniu modelu poza kontraktem zostają tylko wyjątki bez animacji (cardio, Stomach Vacuum) oraz pojedyncze ćwiczenia z możliwościami, które nie występują w katalogu jako osobne rodzaje (np. circus bell).
 
 ## 3. Wymiary sprzętu — konwencja rysunku
 

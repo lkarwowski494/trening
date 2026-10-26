@@ -4810,10 +4810,12 @@
      "x1": 260
     },
     {
-     "rodzaj": "skrzynia",
-     "x0": -75,
-     "x1": 5,
-     "top": 42
+     "rodzaj": "lawka",
+     "x": -35,
+     "kat": 0,
+     "top": 42,
+     "siedzisko": 40,
+     "dlugosc": 40
     },
     {
      "rodzaj": "sztanga",
