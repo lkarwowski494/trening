@@ -115,7 +115,8 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
       ui: { technique: t('Technika'), setup: t('Ustawienie'), move: t('Ruch'), tips: t('Wskazówki'), mistakes: t('Częste błędy'), generalNote: t('Ogólne wskazówki dla tego ruchu'),
         disclaimer: t('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.'), schematic: t('Rysunek schematyczny — pozycje orientacyjne.'),
         pause: t('Zatrzymaj animację'), resume: t('Wznów animację'), showError: t('Pokaż częsty błąd'), hideError: t('Ukryj częsty błąd'), errorLine: t('Częsty błąd: {opis}'),
-        musclesMain: t('Mięśnie główne: {lista}'), musclesAux: t('Mięśnie pomocnicze: {lista}'), musclesApprox: t('Dobór mięśni: przybliżony'), figureLabel: t('Rysunek ruchu: {opis}') },
+        musclesMain: t('Mięśnie główne: {lista}'), musclesAux: t('Mięśnie pomocnicze: {lista}'), musclesApprox: t('Dobór mięśni: przybliżony'), figureLabel: t('Rysunek ruchu: {opis}'),
+        front: t('Przód'), back: t('Tył'), startPose: t('Pozycja wyjściowa'), endPose: t('Pozycja końcowa') },
       ...(l === 'pl' ? { families: Object.fromEntries(v2.FAMILIES.map(f => [f.id, f.label])) } : {}),
       phases: Object.fromEntries(['Opuszczanie', 'Wypychanie', 'Wstawanie', 'Podnoszenie', 'Prostowanie', 'Pauza'].map(p => [p, t(p)])),
     };
