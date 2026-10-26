@@ -29,3 +29,20 @@ test('26: powrót do dzisiejszego dnia bez liczenia miesięcy — „Next month�
   expect(c[t - 1].scrollUntilVisible).toMatchObject({ element: '.*, today.*' });
   expect(c[t - 2].runFlow?.when).toBeTruthy();
 });
+
+/*
+ * Regresja przebiegów 40309850938 (25: „Element not found: ex-1” po zsunięciu listy — blok pod ekranem) i 40309855134 (14, iPhone 16e ciemny:
+ * punkty „Zasady planu” po rozwinięciu ⓘ ucięte przy dolnej krawędzi, assertVisible ich nie widzi).
+ */
+test('14: punkty „Zasady planu” po ⓘ — przewinięcie do każdego zamiast assertVisible', () => {
+  const c = cmds('14-generator.yaml');
+  const t = idx(c, x => x.tapOn?.id === 'info-gen-basis');
+  expect(c[t + 1].scrollUntilVisible).toMatchObject({ element: '.*Each major muscle group on at least.*', direction: 'DOWN' });
+  expect(c[t + 2].scrollUntilVisible).toMatchObject({ element: '.*more days do not have to give proportionally more.*', direction: 'DOWN' });
+});
+
+test('25: przed przesunięciem ex-1 przewinięcie do bloku i wyśrodkowanie', () => {
+  const c = cmds('25-trening-narzedzia.yaml');
+  const s = idx(c, x => x.swipe?.from?.id === 'ex-1');
+  expect(c[s - 1].scrollUntilVisible).toMatchObject({ element: { id: 'ex-1' }, direction: 'DOWN', centerElement: true });
+});
