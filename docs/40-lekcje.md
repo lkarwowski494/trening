@@ -43,6 +43,13 @@ Stan akcji: **zrobione** (z commitem/plikiem) · **w toku** · **otwarte**.
   3. Rozszerzenie na klucze UI (`_source.json`): tam zmianę brzmienia przy tym samym kluczu pilnuje `UPDATE_I18N` (źródło trzeba świadomie przepisać) — bez zmian.
 - **Ocena zakresu: systemowa** — ta sama luka (zmiana źródła przy stałym kluczu, przekład „do zrobienia później”) może wrócić dla każdej treści o stałym id: wskazówek, nazw ćwiczeń, tekstów sklepu (`store/`), opisów zgód. Opcje: A — skróty źródła/przekładu także dla `store/app-store-metadata.json` i nazw katalogu (tani, ten sam wzorzec, kolejny plik skrótów); B — reguła w modelu pracy: zmiana tekstu źródłowego bez przekładu w tym samym PR jest niedozwolona, a przekład idzie przez `przeklad-api` w tym samym przebiegu (wymaga budżetu API przy każdej poprawce literówki). Rekomendacja: A teraz (tani, mechaniczny), B jako zasada dla zmian merytorycznych (nie literówek). Decyzja po stronie właściciela.
 
+## L-037 (26.10.2026, koordynator; numer nadany przy integracji) — dwa czerwone przebiegi CI integracji 1.0 przez numerację lekcji w docs/40
+
+- **Co się stało:** koordynator wypchnął na `integracja-2026-10-26b` lekcję z numerem L-037, choć L-036 była tylko na innej gałęzi (luka w numeracji → `tests/audit-m1-p4b-queue.test.ts` czerwony), a potem z nagłówkiem `L-NNN`, którego strażnik nie dopuszcza na gałęziach `integracja-*` (drugi czerwony przebieg).
+- **Przyczyna źródłowa:** hak pre-push uruchamia tylko lint, check:readme i check:matrix; zmiany „tylko w dokumentach” koordynator wypychał bez `test:fast`, a reguła numeracji (L-016, L-031) zależy od rodzaju gałęzi i nie ma jej w haku. Dlaczego nie złapane wcześniej: dotąd lekcje numerował skrypt przy scalaniu do main, a nie przy wpisie na gałęzi integracji.
+- **Akcje:** (1) numeracja naprawiona (L-036, ten wpis L-037) — zrobione; (2) mechanizm — **do decyzji właściciela**.
+- **Ocena zakresu: systemowa** (każda zmiana dokumentów objętych testami może zaczerwienić CI). Opcje: A — hak pre-push uruchamia `node scripts/numeruj-lekcje.mjs --sprawdz` (z regułą gałęzi) i testy dokumentów (`tests/audit-m1-p4b-queue.test.ts`, `tests/verify-docs.test.ts`), gdy zmienia się `docs/` — kilkanaście sekund więcej przy pushu; B — `test:fast` obowiązkowy w haku przy każdym pushu — pewniejsze, ale ok. 1 min przy każdym pushu. Rekomendacja: A.
+
 ## L-036 (26.10.2026, koordynator; numer nadany przy integracji) — błędna informacja dla właściciela: „trzy zielone noce E2E” w planie do 1.0
 
 - **Co się stało:** w planie wydania 1.0 koordynator podał krok „trzy kolejne zielone noce pełnego katalogu (27–29.10)”. Ta reguła została zastąpiona przez właściciela 21.10.2026 (jeden pełny katalog, noc to sygnał). Właściciel to wychwycił.
