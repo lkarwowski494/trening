@@ -52,6 +52,8 @@ describe('strażnik paczki (scripts/check-bundle.mjs): wyszukiwanie nazw w bajta
     expect(hits(noise)).toBe(0);
     expect(hits(Buffer.from('\x01tekst CDC i dalszy tekst\x02', 'utf8'))).toBeGreaterThan(0);
     expect(hits(Buffer.from('pole.CDC.pole', 'utf8'))).toBeGreaterThan(0);
+    /* drugi przypadek z CI (26.10.2026): 9-znakowy bieg samych wielkich liter i cyfr „CWCTC7CDC” w bajtkodzie to przypadek, nie tekst */
+    expect(hits(Buffer.from([0x6a, 0x5a, 0x00, ...Buffer.from('CWCTC7CDC', 'latin1'), 0x4b, 0x43, 0x47]))).toBe(0);
     expect(hits(Buffer.from('\x01\x02ACSM\x03', 'latin1'))).toBeGreaterThan(0); /* 4+ liter: bez wyjątku */
   });
   test('dozwolone łańcuchy (stare tłumaczenia z zestawu do przekładu) są pomijane, reszta nie', () => {
