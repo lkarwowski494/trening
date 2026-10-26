@@ -5,7 +5,7 @@
 import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { waliduj, podglad, htmlPodgladu, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
+import { waliduj, krawedzPozy, podglad, htmlPodgladu, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
 import { zgodnoscManifestu, wczytajTeksty, tabelaKatow, tabelaKatowMd, podgladWazny } from '../v2-jakosc.mjs';
 import { v2 as silnikV2 } from './model.mjs';
 import { opisCwiczenia, silnikCatalog } from '../gemini-polecenia.mjs';
@@ -24,7 +24,7 @@ async function main() {
     if (tylko && !tylko.includes(cw)) continue;
     if (mod.WYJATKI?.[cw]) { console.log(`  WYJĄTEK ${cw}: ${mod.WYJATKI[cw].slice(0, 160)}`); continue; } /* jawny wyjątek z powodem (manifest.wyjatki), nie liczy się jako porażka */
     let poza = null; try { poza = f(); } catch (e) { wyniki[cw] = { ok: false, bledy: [{ kod: 'generator', szczegol: e.message }] }; continue; }
-    const v = waliduj(poza, { rodzina, cwiczenie: cw }); wyniki[cw] = v; if (v.ok) poze[cw] = poza;
+    const v = waliduj(poza, { rodzina, cwiczenie: cw }); if (v.ok) v.krawedz = krawedzPozy(poza, { rodzina, cwiczenie: cw }); wyniki[cw] = v; if (v.ok) poze[cw] = poza;
     if (v.ok && v.krawedz?.length) console.log(`  NA KRAWĘDZI ${cw}: ${[...new Set(v.krawedz.map((k) => k.regula))].join(', ')}`);
   }
   const n = Object.keys(wyniki).length; const ok = Object.keys(poze);

@@ -54,11 +54,17 @@ export function waliduj(poza, { rodzina, cwiczenie, root = ROOT }) {
   }
   /* jakość (luki z recenzji ruchu, v2-jakosc.mjs): po przejściu schematu, geometrii i sensu */
   if (!rigowa && !bledy.length) { try { bledy.push(...sprawdzJakosc(poza, { v2: silnik().v2, rodzina, cwiczenie, postural, izometryczne: izometryczne(rodzina, cwiczenie, root), teksty: wczytajTeksty(root), reguly: regulyDla(rodzina, cwiczenie, root), root })); } catch (e) { bledy.push({ kod: 'jakosc', szczegol: `nie da się ocenić jakości pozy (${e.message})` }); } }
-  /* P2: poza poprawna z zapasem mniejszym niż margines progu (5%, dla cm/° od 4 wzwyż co najmniej 1) trafia do recenzenta jako „na krawędzi”; generator ma celować w środek przedziału, nie w próg */
+  return { ok: bledy.length === 0, bledy };
+}
+/** P2 (recenzja n5): reguły, które poza POPRAWNA (waliduj → ok) spełnia z zapasem mniejszym niż margines progu (5%, dla cm/° od 4 wzwyż co najmniej 1): [{ zrodlo, regula, szczegol }].
+ * Osobna funkcja, nie pole wyniku waliduj: kształt { ok, bledy } jest kontraktem dla pilotażu i testów. Generator ma celować w środek przedziału, nie w próg; poza „na krawędzi” trafia do recenzenta z listą reguł. */
+export function krawedzPozy(poza, { rodzina, cwiczenie, root = ROOT }) {
+  const postural = new Set(((poza && poza.bledy) || []).map((b) => b.cue).filter((c) => { const g = grupaBledu(rodzina, c, root); return g && GRUPY_POSTAWY.includes(g); }));
+  const rigowa = silnik().v2.FAMILIES.find((f) => f.id === rodzina)?.status === 'ready' && !fs.existsSync(path.join(ROOT, POSES_DIR, `${rodzina}.json`));
   const krawedz = [];
-  if (!rigowa && !bledy.length) { try { krawedz.push(...krawedzJakosci(poza, { v2: silnik().v2, rodzina, cwiczenie, postural, izometryczne: izometryczne(rodzina, cwiczenie, root), teksty: wczytajTeksty(root), reguly: regulyDla(rodzina, cwiczenie, root), root }).map((k) => ({ zrodlo: 'jakosc', ...k }))); } catch (e) { void e; }
+  if (!rigowa) { try { krawedz.push(...krawedzJakosci(poza, { v2: silnik().v2, rodzina, cwiczenie, postural, izometryczne: izometryczne(rodzina, cwiczenie, root), teksty: wczytajTeksty(root), reguly: regulyDla(rodzina, cwiczenie, root), root }).map((k) => ({ zrodlo: 'jakosc', ...k }))); } catch (e) { void e; }
     try { krawedz.push(...sprawdzSens({ v2: silnik().v2, poza, rodzina, cwiczenie, root, zapas: true }).filter((b) => b.kod === 'sens').map((b) => ({ zrodlo: 'sens', regula: (b.szczegol.match(/„([^”]+)”/) ?? [])[1] ?? 'sens', szczegol: b.szczegol }))); } catch (e) { void e; } }
-  return { ok: bledy.length === 0, bledy, krawedz };
+  return krawedz;
 }
 /** Few-shot: gotowa rodzina jako [{ cwiczenie, poza }]; rodzina w planach → [] (wtedy pilotaż używa przykładu przysiadu). */
 export function przyklad(rodzina) {

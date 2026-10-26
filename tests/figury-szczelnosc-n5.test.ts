@@ -13,7 +13,7 @@ const run = (code: string) => JSON.parse(execFileSync(process.execPath, ['--inpu
 
 const KOD = `
 import fs from 'node:fs';
-import { waliduj } from ${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-validate.mjs'))};
+import { waliduj, krawedzPozy } from ${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-validate.mjs'))};
 import * as J from ${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-jakosc.mjs'))};
 const fx = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(ROOT, 'tests/fixtures/figury-n5-bledne.json'))}, 'utf8'));
 const n5 = {};
@@ -25,9 +25,11 @@ const heel = { dobre: J.ksztaltyNadPodloga(sztuczny(-2.0), poza).length, zle: J.
 /* pozy spoza próby: wszystkie pozy z danych przechodzą (brak fałszywych alarmów) */
 const dane = {};
 for (const r of ['pushup_plank', 'core_floor']) { const d = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(ROOT, 'lib/figures/v2/poses')) } + '/' + r + '.json', 'utf8')); dane[r] = Object.entries(d.cwiczenia).filter(([, p]) => !waliduj(p, { rodzina: r, cwiczenie: p.cwiczenie }).ok).map(([c]) => c); }
-console.log(JSON.stringify({ n5, heel, dane }));
+const pu = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(ROOT, 'lib/figures/v2/poses'))} + '/pushup_plank.json', 'utf8')).cwiczenia;
+const kr = { ksztalt: Object.keys(waliduj(pu['Push Up'], { rodzina: 'pushup_plank', cwiczenie: 'Push Up' })), srodek: krawedzPozy(pu['Push Up'], { rodzina: 'pushup_plank', cwiczenie: 'Push Up' }).length, brzeg: krawedzPozy(pu['Mountain Climbers'], { rodzina: 'pushup_plank', cwiczenie: 'Mountain Climbers' }).map((k) => k.regula) };
+console.log(JSON.stringify({ n5, heel, dane, kr }));
 `;
-const W = run(KOD) as { n5: Record<string, { ok: boolean; kody: string[] }>; heel: { dobre: number; zle: number }; dane: Record<string, string[]> };
+const W = run(KOD) as { n5: Record<string, { ok: boolean; kody: string[] }>; heel: { dobre: number; zle: number }; dane: Record<string, string[]>; kr: { ksztalt: string[]; srodek: number; brzeg: string[] } };
 
 describe('szczelność bramek mierzona wstecz na 5 błędach z recenzji n5', () => {
   test('Suspended Fallout: taśma zawieszenia zmienia długość 131,7 → 207,2 cm (niezmiennik silnika tasma-dlugosc)', () => { expect(W.n5['Suspended Fallout'].ok).toBe(false); expect(W.n5['Suspended Fallout'].kody).toContain('tasma-dlugosc:'); });
@@ -40,4 +42,10 @@ describe('szczelność bramek mierzona wstecz na 5 błędach z recenzji n5', () 
 
 describe('brak fałszywych alarmów', () => {
   test.each(['pushup_plank', 'core_floor'])('wszystkie pozy rodziny %s w danych przechodzą walidator', (r) => { expect(W.dane[r]).toEqual([]); });
+});
+
+describe('P2: poza na krawędzi progu', () => {
+  test('waliduj zachowuje kształt { ok, bledy }; krawedzPozy osobno: poza w środku przedziału (Push Up) bez uwag, Mountain Climbers (okno modelu puste) oznaczone z nazwą reguły', () => {
+    expect(W.kr.ksztalt).toEqual(['ok', 'bledy']); expect(W.kr.srodek).toBe(0); expect(W.kr.brzeg).toEqual(expect.arrayContaining(['podpor_bez_kleku', 'miednica_stala_wysokosc']));
+  });
 });
