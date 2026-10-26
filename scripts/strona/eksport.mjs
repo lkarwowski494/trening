@@ -115,11 +115,13 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
     const exercises = keys.map(key => {
       const e = exOf[key], entry = cat.CATALOG[key];
       const sel = cueSets.cueSelection(key);
-      const txt = id => { const s = cueTextIn(l, id); if (s === undefined) { withoutText++; return null; } return s; };
+      let missing = 0; /* wskazówki tego ćwiczenia bez tekstu w tym języku (pomijane) — strona nie pokazuje sekcji i nie indeksuje ćwiczenia */
+      const txt = id => { const s = cueTextIn(l, id); if (s === undefined) { withoutText++; missing++; return null; } return s; };
       let cueBlock;
       if (sel.mode === 'own') { const o = cues.CUE_DATA.exercises[key]; cueBlock = { scope: 'own', ...Object.fromEntries(SECTIONS.filter(s => (o[s] ?? []).length).map(s => [s, o[s].map(r => txt(r.c)).filter(x => x !== null)])) }; }
       else if (sel.mode === 'general') cueBlock = { scope: 'general', ok: sel.ok.map(txt).filter(x => x !== null), mistakes: sel.err.map(txt).filter(x => x !== null) };
       else cueBlock = { scope: 'none' };
+      if (missing) cueBlock.missing = missing;
       const load = seed.muscleLoadOf(e);
       return {
         id: key, slug: slugs[key], name: i18n.exName({ name: dispName(key), lib: true }),
@@ -148,7 +150,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
     walk(obj, l);
     if (bad.length) throw new Error(`eksport zawiera nazwy źródeł lub odwołania ogólne (${bad.length}), np. ${bad.slice(0, 3).join(' | ')}`);
   }
-  return { buildLang, guard, figures, patterns: { name: sources.SOURCE_NAME_PATTERNS, generic: sources.GENERIC_REFERENCE_PATTERNS }, languages: i18n.LANGS, app: { version: app.version, commit, catalogRev: cat.CATALOG_REV } };
+  return { buildLang, guard, figures, langNames: i18n.LANG_NAME, patterns: { name: sources.SOURCE_NAME_PATTERNS, generic: sources.GENERIC_REFERENCE_PATTERNS }, languages: i18n.LANGS, app: { version: app.version, commit, catalogRev: cat.CATALOG_REV } };
 }
 
 export const serialize = obj => JSON.stringify(obj) + '\n';
@@ -164,7 +166,7 @@ if (process.argv[1] && import.meta.url === new URL(process.argv[1], 'file://').h
   writeFileSync(join(out, 'wzorce-zrodel.json'), serialize({ schema: SCHEMA, ...ex.patterns }));
   for (const l of langs) {
     const file = `atlas-${l}.json`; const text = serialize(ex.buildLang(l));
-    writeFileSync(join(out, file), text); manifest.languages.push({ lang: l, file, bytes: Buffer.byteLength(text) });
+    writeFileSync(join(out, file), text); manifest.languages.push({ lang: l, name: ex.langNames[l], file, bytes: Buffer.byteLength(text) });
   }
   writeFileSync(join(out, 'manifest.json'), serialize(manifest));
   console.log(`eksport: ${langs.length} języków → ${out} (wersja ${ex.app.version}, commit ${ex.app.commit.slice(0, 7)})`);

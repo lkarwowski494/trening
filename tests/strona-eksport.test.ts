@@ -7,7 +7,7 @@ import { execFileSync } from 'child_process';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { LANGS, applyLang, exName } from '@/lib/i18n';
+import { LANGS, LANG_NAME, applyLang, exName } from '@/lib/i18n';
 import { LIB, LIB_DISPLAY_NAME, libExercise } from '@/lib/seed';
 import { CATALOG_REV, CATALOG } from '@/lib/catalog.generated';
 import { CUE_DATA, cueDict } from '@/lib/cues';
@@ -45,6 +45,7 @@ describe('eksport dla strony: manifest i przypięcie do wersji', () => {
     const m = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8'));
     expect(m.schema).toBe('techniqueatlas-eksport@1');
     expect(m.languages.map((x: { lang: string }) => x.lang)).toEqual([...LANGS]);
+    expect(Object.fromEntries(m.languages.map((x: { lang: string; name: string }) => [x.lang, x.name]))).toEqual(LANG_NAME);
     expect(LANGS).toHaveLength(35);
     for (const x of m.languages) expect(fs.existsSync(path.join(dir, x.file))).toBe(true);
   });
@@ -109,6 +110,7 @@ describe('eksport dla strony: wskazówki, figury i zamienniki', () => {
     expect(data.pl.exercises.find(e => e.id === 'Back Squat')!.cues.setup![0]).toBe(cueDict('pl')[first]);
   });
   test('wskazówki bez tekstu (id czekające na przekład) są pomijane, nigdy nie trafiają jako surowe id; licznik w meta', () => {
+    for (const l of ['pl', 'en']) { const miss = data[l].exercises.reduce((n, e) => n + ((e.cues as { missing?: number }).missing ?? 0), 0); expect(miss).toBe(data[l].meta.cuesWithoutText); }
     for (const l of ['pl', 'en']) { const all = data[l].exercises.flatMap(e => [...(e.cues.ok ?? []), ...(e.cues.mistakes ?? []), ...(e.cues.setup ?? [])]); for (const s of all) expect(s).not.toMatch(/^[a-z]+\.[A-Za-z.]+$/); expect(data[l].meta.cuesWithoutText).toBeGreaterThanOrEqual(0); }
   });
   test('figura w pliku języka: tylko ćwiczenia gotowych rodzin; fazy ruchu z czasami z aplikacji i przetłumaczonymi nazwami; błędy z tekstem wskazówki', () => {
