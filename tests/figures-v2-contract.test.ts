@@ -39,7 +39,7 @@ describe('schemat JSON (docs/schemas/figury-v2-poza.schema.json)', () => {
   test('poseSchema: obiekt z polami kontrakt, rodzina, cwiczenie, sprzet, klatki, bledy; bez $ref i oneOf (structured output); stałe w CONTRACT', () => {
     const s = poseSchema('pull_up') as { properties: Record<string, unknown>; required: string[] }; expect(Object.keys(s.properties)).toEqual(['kontrakt', 'rodzina', 'cwiczenie', 'sprzet', 'klatki', 'bledy']); expect(s.required.length).toBe(6);
     const json = JSON.stringify(s); expect(json).not.toMatch(/\$ref|oneOf|anyOf/); expect(json).toContain(CONTRACT.id);
-    expect(CONTRACT.frames.min).toBe(2); expect(CONTRACT.errorsMax).toBe(3); expect(MARKS).toEqual(['knees', 'heels', 'back', 'pelvis', 'bar']); expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia']); expect(AFFECTS.length).toBe(10);
+    expect(CONTRACT.frames.min).toBe(2); expect(CONTRACT.errorsMax).toBe(3); expect(MARKS).toEqual(['knees', 'heels', 'back', 'pelvis', 'bar']); expect(GEAR.slice(0, 4)).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia']); /* pełna lista rodzajów: tests/figures-v2-gear.test.ts */ expect(AFFECTS.length).toBe(10);
   });
   test('plik schematu w repozytorium jest aktualny (node scripts/figures/v2-validate.mjs --schema --check; część check:figures-v2)', () => {
     const r = spawnSync('node', ['scripts/figures/v2-validate.mjs', '--schema', '--check'], { cwd: root, encoding: 'utf8' }); expect([r.status, r.stdout]).toEqual([0, expect.stringContaining('aktualny')]);
@@ -159,10 +159,10 @@ describe('biblioteka scripts/figures/v2-validate.mjs (interfejs pilotażu) i CLI
   /** Biblioteka .mjs w osobnym procesie Node (Jest nie ładuje dynamicznie modułów ESM): `body` dostaje `m` (moduł), `a` (argument JSON) i zwraca wynik JSON. */
   const lib = (body: string, arg: unknown = null): any => { const r = spawnSync('node', ['--input-type=module', '-e', `import * as m from './scripts/figures/v2-validate.mjs'; const a = JSON.parse(process.argv[1]); const out = await (async () => { ${body} })(); console.log(JSON.stringify(out));`, JSON.stringify(arg)], { cwd: root, encoding: 'utf8' }); if (r.status !== 0) throw new Error(r.stderr); return JSON.parse(r.stdout); };
   test('eksporty: schematPozy, opisKontraktu, waliduj, przyklad, zastosuj; waliduj zwraca { ok, bledy: [{ kod, szczegol }] } z komunikatami po polsku', () => {
-    /* poza próbna jest ćwiczeniem BEZ reguł sensu („Rope Climb” nie ma wpisu wariantu): ten test dotyczy interfejsu i geometrii; reguły sensu pull_up: tests/gemini-polecenia.test.ts */
+    /* poza próbna jest ćwiczeniem BEZ reguł sensu („Hang Test” nie ma wpisu wariantu): ten test dotyczy interfejsu i geometrii; reguły sensu pull_up: tests/gemini-polecenia.test.ts */
     const bad = pullUp(); bad.klatki[1].rece.R.chwyt = [0, 236, 25];
     const r = lib(`return { fn: ['schematPozy', 'opisKontraktu', 'waliduj', 'przyklad', 'zastosuj', 'bledyCwiczenia', 'schematRepo'].map(f => typeof m[f]), klatki: !!m.schematPozy('pull_up').properties.klatki, opis: m.opisKontraktu('pull_up').includes('drążka'),
-      ok: m.waliduj(a.ok, { rodzina: 'pull_up', cwiczenie: 'Rope Climb' }), zle: m.waliduj(a.bad, { rodzina: 'pull_up', cwiczenie: 'Rope Climb' }), own: m.bledyCwiczenia('Pull Up'), gen: m.bledyCwiczenia('Dead Hang'), open: m.bledyCwiczenia('Muscle Up') };`, { ok: pullUp({ cwiczenie: 'Rope Climb' }), bad: { ...bad, cwiczenie: 'Rope Climb' } });
+      ok: m.waliduj(a.ok, { rodzina: 'pull_up', cwiczenie: 'Hang Test' }), zle: m.waliduj(a.bad, { rodzina: 'pull_up', cwiczenie: 'Hang Test' }), own: m.bledyCwiczenia('Pull Up'), gen: m.bledyCwiczenia('Dead Hang'), open: m.bledyCwiczenia('Muscle Up') };`, { ok: pullUp({ cwiczenie: 'Hang Test' }), bad: { ...bad, cwiczenie: 'Hang Test' } });
     expect(r.fn).toEqual(Array(7).fill('function')); expect(r.klatki).toBe(true); expect(r.opis).toBe(true); expect(r.ok).toEqual({ ok: true, bledy: [] });
     expect(r.zle.ok).toBe(false); expect(r.zle.bledy[0]).toEqual({ kod: 'chwyt', szczegol: expect.stringContaining('dłoń prawa') }); expect(r.own).toContain('pu.partial'); expect(r.gen).toEqual(['pu.noSwing']); expect(r.open).toEqual([]);
   });
@@ -181,10 +181,10 @@ describe('biblioteka scripts/figures/v2-validate.mjs (interfejs pilotażu) i CLI
     expect(Object.keys(JSON.parse(fs.readFileSync(path.join(tmp, r.plik), 'utf8')).cwiczenia).sort()).toEqual(['Chin Up', 'Pull Up']); fs.rmSync(tmp, { recursive: true, force: true });
   });
   test('CLI: node scripts/figures/v2-validate.mjs <plik> — kod 0 dla poprawnej pozy, 1 z listą błędów dla niepoprawnej, 2 bez argumentu', () => {
-    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'v2cli-')); const okF = path.join(tmp, 'ok.json'), badF = path.join(tmp, 'bad.json'); fs.writeFileSync(okF, JSON.stringify(pullUp({ cwiczenie: 'Rope Climb' })));
-    const b = pullUp({ cwiczenie: 'Rope Climb' }); b.klatki[1].rece.R.chwyt = [0, 236, 25]; fs.writeFileSync(badF, JSON.stringify(b));
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'v2cli-')); const okF = path.join(tmp, 'ok.json'), badF = path.join(tmp, 'bad.json'); fs.writeFileSync(okF, JSON.stringify(pullUp({ cwiczenie: 'Hang Test' })));
+    const b = pullUp({ cwiczenie: 'Hang Test' }); b.klatki[1].rece.R.chwyt = [0, 236, 25]; fs.writeFileSync(badF, JSON.stringify(b));
     const run = (a: string[]) => spawnSync('node', ['scripts/figures/v2-validate.mjs', ...a], { cwd: root, encoding: 'utf8' });
-    const o = run([okF]); expect([o.status, o.stdout]).toEqual([0, expect.stringContaining('OK  pull_up / Rope Climb')]);
+    const o = run([okF]); expect([o.status, o.stdout]).toEqual([0, expect.stringContaining('OK  pull_up / Hang Test')]);
     const n = run([badF]); expect(n.status).toBe(1); expect(n.stdout).toContain('[chwyt]'); expect(run([]).status).toBe(2);
     expect(execFileSync('node', ['scripts/figures/v2-validate.mjs', '--schema'], { cwd: root, encoding: 'utf8' })).toContain('"title"'); fs.rmSync(tmp, { recursive: true, force: true });
   });

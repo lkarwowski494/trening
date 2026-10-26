@@ -24,18 +24,29 @@ export type Prop =
   | { k: 'barbell'; c: V3; plates?: boolean; len?: number; held?: boolean | 'R' | 'L'; id?: string }                        /* sztanga: środek gryfu */
   | { k: 'trapbar'; c: V3; w?: number }                                                                    /* gryf sześciokątny: środek (uchwyty wzdłuż z) */
   | { k: 'dumbbell'; c: V3; side: 'R' | 'L'; vertical?: boolean; r?: number; held?: boolean }                  /* hantel: środek chwytu */
-  | { k: 'kettlebell'; c: V3; side?: 'R' | 'L' | 'C'; r?: number; held?: boolean }                             /* kettlebell: środek rączki */
-  | { k: 'bench'; seatFrom: V2; hinge: V2; backTo: V2; legH: number; w?: number }              /* ławka: siedzisko od-do, zawias, koniec oparcia */
-  | { k: 'box'; x0: number; x1: number; top: number; w?: number }
-  | { k: 'wall'; x: number; h: number }
+  | { k: 'kettlebell'; c: V3; side?: 'R' | 'L' | 'C'; r?: number; held?: boolean; bell?: 'down' | 'along' | 'back'; dir?: V3 } /* kettlebell: środek rączki; dir = wersor od rączki do środka dzwonu (domyślnie w dół; bell: tryb wyznaczany ze szkieletu) */
+  | { k: 'plate'; c: V3; r?: number; held?: boolean | 'R' | 'L' }                                           /* talerz trzymany: tarcza w płaszczyźnie y–z (powierzchnią do przodu), środek */
+  | { k: 'ball'; c: V3; r?: number; held?: boolean | 'R' | 'L' }                                            /* kula, środek; domyślnie trzymana (piłka lekarska); held: false = leży na podłodze (piłka gimnastyczna) */
+  | { k: 'roll'; c: V3; r: number; len: number }                                                         /* wałek (roller piankowy): walec wzdłuż z, środek */
+  | { k: 'bench'; seatFrom: V2; hinge: V2; backTo: V2; legH: number; w?: number; rollers?: boolean }              /* ławka: siedzisko od-do, zawias, koniec oparcia */
+  | { k: 'preacher'; top: V2; bottom: V2; seat: V2 }                                                      /* modlitewnik: pochyła podpórka na ramiona (górny koniec przy osobie, dolny dalej) i małe siedzisko (środek) */
+  | { k: 'sled'; x: number; h: number; len: number; posts: boolean }                                    /* sanie obciążeniowe: słupki uchwytów w x (wysokość h, z = ±EQUIP.sledHalf), podstawa od x o len w stronę +x; posts = dłonie na słupkach */
+  | { k: 'rope'; x: number; z: number; top: number; bottom: number; held?: boolean | 'R' | 'L' }      /* lina pionowa (do wspinania): od bottom do top w (x, z) */
+  | { k: 'dipbars'; x0: number; x1: number; h: number; z: number; held?: boolean }                   /* poręcze do dipów: dwie poziome rury na wysokości h w z = ±z, od x0 do x1 */
+  | { k: 'slider'; c: V3; r: number }                                                                      /* ślizgacz: płaski krążek pod stopą albo dłonią na podłodze (środek, promień) */
+  | { k: 'wheel'; c: V3; r: number }                                                                       /* kółko do brzucha: koło toczące się po podłodze (oś w c, promień r) */
+  | { k: 'box'; x0: number; x1: number; top: number; w?: number; z?: number }                  /* skrzynia; z = środek skrzyni na osi z (domyślnie 0) */
+  | { k: 'wall'; x: number; h: number; front?: boolean }                                      /* ściana: lita po stronie −x od powierzchni x (za osobą); front: lita po stronie +x (przed osobą; w widoku z przodu przekrój) */
   | { k: 'rail'; x: number; h: number }                                                        /* prowadnica suwnicy Smitha (pionowa) */
   | { k: 'post'; x: number; h: number; hook?: number }                                         /* słupek stojaka */
-  | { k: 'cable'; from: V3; to: V3 }
+  | { k: 'cable'; from: V3; to: V3; attach?: 'handle' | 'rope' | 'bar' | 'strap'; ends?: V3[]; solid?: boolean } /* linka od bloczku (from) do osprzętu (to); ends = miejsca chwytu (dłonie albo kostka); solid = kolider tylko dla danych kontraktu */
+  | { k: 'tower'; x: number; z: number; h: number; solid?: boolean }                                    /* kolumna stacji wyciągów (bloczek na linii x, z) */
+  | { k: 'slide'; from: V3; to: V3; dir: V3; len: number }                                                /* prowadnica liniowa maszyny: odcinek skoku od from w kierunku dir (długość len), to = punkt mocowania (platforma, wałek, uchwyt) na prowadnicy */
   | { k: 'band'; from: V3; to: V3 }
   | { k: 'chain'; from: V3; to: V3 }
   | { k: 'floor'; x0: number; x1: number }
   | { k: 'mat'; x0: number; x1: number; h: number }
-  | { k: 'pivot'; from: V3; to: V3 };                                                          /* gryf landmine: z podłogi do dłoni */
+  | { k: 'pivot'; from: V3; to: V3; len?: number; label?: string; cut?: number }                                                /* gryf landmine albo dźwignia maszyny: z osi obrotu do dłoni/kostek; len = długość ramienia (sztywne); label = nazwa w komunikatach */
 
 /** Kolider do testów: kapsuła (ciało, gryf) albo graniastosłup (ławka, skrzynia, ściana: wielokąt w xy wyciągnięty po z). */
 export type Collider =

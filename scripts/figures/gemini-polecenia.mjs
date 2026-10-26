@@ -305,17 +305,32 @@ export function sekcjaRegul(rodzina, cwiczenia, root = ROOT) {
 
 /* ---------- opis ćwiczeń ---------- */
 /** Sprzęt, który kontrakt umie narysować (rodzaje sprzętu: sztanga/drążek, słupek, podłoga, skrzynia/ławka płaska): możliwości katalogu spoza listy (wyciągi, taśmy, piłki, maszyny, ławki skośne, hantle, linę…) → ćwiczenie do zrobienia przez naszego agenta. */
-export const SPRZET_OBSLUGIWANY = ['pullup.bar', 'rings', 'barbell', 'box', 'bench.flat'];
+export const sprzetObslugiwany = () => silnik().v2.GEAR_CAPS; /* rejestr lib/figures/v2/gear.ts: możliwości katalogu, które kontrakt umie narysować */
 export function sprzetNieobslugiwany(cw, catalog) {
   const e = catalog?.CATALOG?.[cw]; if (!e) return null;
-  for (const grupa of e.requires) if (grupa.length && !grupa.some((c) => SPRZET_OBSLUGIWANY.includes(c))) return `sprzęt spoza kontraktu: ${grupa.join(' / ')} — silnik go nie rysuje`;
+  for (const grupa of e.requires) if (grupa.length && !grupa.some((c) => sprzetObslugiwany().includes(c))) return `sprzęt spoza kontraktu: ${grupa.join(' / ')} — silnik go nie rysuje`;
   return null;
 }
-const OPIS_SPRZETU = { 'pullup.bar': 'drążek poziomy', rings: 'kółka (zastępuje drążek — rysuj jako drążek)', db: 'hantle', bench: 'ławka' };
+const OPIS_SPRZETU = { 'pullup.bar': 'drążek poziomy', rings: 'kółka (zastępuje drążek — rysuj jako drążek)', db: 'hantle (sprzet: rodzaj \"hantel\")', kb: 'kettlebell (sprzet: rodzaj \"kettlebell\")', plate: 'talerz trzymany (sprzet: rodzaj \"talerz\")', med_ball: 'piłka lekarska (sprzet: rodzaj \"pilka_lekarska\")', bench: 'ławka', barbell: 'sztanga', chains: 'łańcuchy (sprzet: rodzaj \"lancuchy\")', wall: 'ściana (sprzet: rodzaj \"sciana\", pole przed)', trap_bar: 'gryf sześciokątny (sprzet: rodzaj \"gryf_szesciokatny\")', farmers_handles: 'uchwyty farmerskie (sprzet: rodzaj \"hantel\", promien 10–12)', landmine: 'landmine (sprzet: rodzaj \"landmine\"; gryf to ten pręt, bez osobnej sztangi)', smith: 'suwnica Smitha (sprzet: rodzaj \"smith\" + sztanga podążająca za chwytem)', ez_bar: 'gryf łamany (sprzet: rodzaj \"sztanga\", dlugosc 120)', axle_bar: 'gryf gruby (sprzet: rodzaj \"sztanga\")', rack: 'stojak (sprzet: rodzaj \"slupek\" z polem hak)', 'bench.uprights': 'stojaki ławki (sprzet: rodzaj \"slupek\" z polem hak)', 'rack.safeties': 'asekuracja stojaka (sprzet: rodzaj \"slupek\")' };
+/** Opis możliwości katalogu z rejestru kontraktu (capLabel + rodzaj + wymaganie, np. wysokość bloczka); możliwość spoza rejestru → identyfikator. */
+export function opisMozliwosci(cap) {
+  const { v2 } = silnik(); const k = v2.GEAR.find((x) => v2.GEAR_KINDS[x].caps.includes(cap)); if (!k) return cap;
+  const d = v2.GEAR_KINDS[k]; const label = d.capLabel?.[cap] ?? d.nazwa; return `${label} (sprzet: rodzaj \"${k}\"${d.capNeed?.[cap] ? `, ${d.capNeed[cap]}` : ''})`;
+}
+/** Rodzaje sprzętu z rejestru kontraktu, których potrzebują ćwiczenia (możliwości katalogu → rodzaj); kolejność jak w rejestrze. */
+export function rodzajeSprzetu(cwiczenia, catalog) {
+  const { v2 } = silnik(); const caps = new Set(cwiczenia.flatMap((c) => (catalog?.CATALOG?.[c]?.requires ?? []).flat()));
+  return v2.GEAR.filter((k) => v2.GEAR_KINDS[k].caps.some((c) => caps.has(c)) && v2.GEAR_KINDS[k].ref);
+}
+/** Sekcja polecenia „Sprzęt w ćwiczeniach tej części”: punkty odniesienia rodzajów sprzętu (liczby z silnika) albo [] (tylko sprzęt dotychczasowy). */
+export function sekcjaSprzetu(cwiczenia, catalog) {
+  const { v2 } = silnik(); const rodzaje = rodzajeSprzetu(cwiczenia, catalog); if (!rodzaje.length) return [];
+  return ['Rodzaje sprzętu w sprzet[] (pole rodzaj) potrzebne w tej części; sprzęt trzymany w dłoniach NIE ma własnych współrzędnych — podąża za chwytem, a jego pola opisano niżej. Sprzęt dodajesz obok podłogi (podloga).', '', ...rodzaje.flatMap((k) => v2.GEAR_KINDS[k].ref().map((x) => `- ${x}`))];
+}
 /** Sens ruchu z danych katalogu i nazwy: sprzęt, liczba rąk, obciążenie (bez zgadywania). */
 export function sensZKatalogu(cw, catalog) {
   const o = []; const e = catalog?.CATALOG?.[cw];
-  if (e) { const sp = e.requires.map((g) => g.map((c) => OPIS_SPRZETU[c] ?? c).join(' albo ')).join(' + '); if (sp) o.push(`sprzęt: ${sp}`); if (e.loadSource === 'bodyweight') o.push('ciężar ciała'); if (e.implements === 1) o.push('jeden przyrząd (jedna ręka)'); if (e.implements === 2) o.push('dwa przyrządy'); }
+  if (e) { const sp = e.requires.map((g) => g.map((c) => OPIS_SPRZETU[c] ?? opisMozliwosci(c)).join(' albo ')).join(' + '); if (sp) o.push(`sprzęt: ${sp}`); if (e.loadSource === 'bodyweight') o.push('ciężar ciała'); if (e.implements === 1) o.push('jeden przyrząd (jedna ręka)'); if (e.implements === 2) o.push('dwa przyrządy'); }
   if (/one[- ]arm|single[- ]arm|jednor/i.test(cw)) o.push('JEDNORĄCZ: drążek trzyma jedna dłoń (sprzet: trzyma "R"/"L"), druga ręka wolna poza drążkiem');
   if (/(mixed)/i.test(cw)) o.push('chwyt mieszany: jedna dłoń nachwytem, druga podchwytem (w danych: oba chwyty na osi drążka, rozstaw ±20)');
   if (/neutral/i.test(cw)) o.push('chwyt neutralny (dłonie skierowane do siebie)'); if (/wide/i.test(cw)) o.push('chwyt szeroki (z ±30…40)'); if (/(rear)/i.test(cw)) o.push('ruch za głowę nie jest wymagany — rysuj chwyt szeroki, broda nad drążkiem');
@@ -343,14 +358,15 @@ export const FORMAT_ODPOWIEDZI = (rodzina, klucze) => [
   '- Jeśli nie jesteś w stanie dopasować pozy do wymagań, i tak ją zwróć (błędy sprawdzimy my) — nie pomijaj ćwiczeń.',
 ];
 
-export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia, przyklady, kontrakt, opisy, pomijane = [], root = ROOT }) {
+export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia, przyklady, kontrakt, opisy, pomijane = [], sprzet = [], root = ROOT }) {
   const L = [];
-  L.push(`# Pozy figur ćwiczeń — rodzina „${rodzina}”${czesc.ile > 1 ? ` (część ${czesc.numer}/${czesc.ile})` : ''} [${ETYKIETA_WERSJI}]`, '');
+  L.push(`# Pozy figur ćwiczeń — rodzina „${rodzina}”${czesc.ile > 1 || czesc.sufiks ? ` (część ${czesc.numer}${czesc.sufiks ?? ''}/${czesc.ile})` : ''} [${ETYKIETA_WERSJI}]`, '');
   L.push('Jesteś animatorem postaci do aplikacji treningowej. Tworzysz dane póz (klatki kluczowe szkieletu) dla ćwiczeń jednej rodziny ruchu. Dane wczyta program, który sprawdzi geometrię ORAZ sens ruchu — poza niezgodna z wymaganiami zostanie odrzucona, więc trzymaj się liczb poniżej. Liczby i relacje są wyliczone z naszego modelu; nie zgaduj ich, tylko podstaw.');
   L.push(`Rodzina: ${opisRodziny}. Widoki w aplikacji: ${widoki} (pozę podajesz w 3D, widoki liczy program).`, '');
   L.push('## Kontrakt danych', '', kontrakt.opisKontraktu(rodzina), '');
   L.push('## Pola obiektu pozy', '', ...opisPol(kontrakt.schematPozy(rodzina)), '');
   L.push('## Punkty odniesienia (stałe wymiary i relacje)', '', ...punktyOdniesienia(rodzina), '');
+  if (sprzet.length) L.push('## Sprzęt w ćwiczeniach tej części', '', ...sprzet, '');
   L.push('## Wymagania liczbowe walidatora', '', ...wymagania(rodzina).map((x) => `- ${x}`), '');
   const reg = sekcjaRegul(rodzina, cwiczenia, root); if (reg.length) L.push('## Reguły sensu ruchu', '', ...reg, '');
   const aktywne = new Set(cwiczenia.flatMap((c) => regulyDla(rodzina, c, root).map((x) => x.id))); const rej = liniePolecenia(wczytajRejestr(root), liczbyZSilnika(rodzina), undefined, { rodzina, reguly: aktywne }); if (rej.length) L.push('## Najczęstsze błędy z poprzednich odpowiedzi i jak ich uniknąć', '', 'Rejestr błędów popełnionych w poprzednich odpowiedziach (liczba wystąpień) — sprawdź każdy punkt przed odpowiedzią:', ...rej, '');
@@ -392,17 +408,25 @@ export function czesciPolecen(rodzina, opcje = {}) {
   return cz.map((cwiczenia, i) => ({ id: cz.length === 1 ? rodzina : `${rodzina}-${i + 1}`, cwiczenia }));
 }
 /** Polecenia rodziny: [{ plik, tresc, cwiczenia, pomijane, wstrzymane }] — części liczone po odfiltrowaniu (tylko ćwiczenia z regułami), pominięte i wstrzymane wymienione w pierwszej części. */
-export async function poleceniaRodziny(rodzina, { root = ROOT, lista, bezRegul = false, wyklucz = [], nazwa = null } = {}) {
+export async function poleceniaRodziny(rodzina, { root = ROOT, lista, bezRegul = false, wyklucz = [], nazwa = null, maxZnakow = MAX_ZNAKOW } = {}) {
   const kontrakt = await wczytajKontrakt(root);
   if (!kontrakt) throw new Error('brak scripts/figures/v2-validate.mjs');
   const docs = lista ?? join(root, 'docs/51-figury-v2-pokrycie.md'); const r = rodzinyZDokumentu(docs).find((x) => x.id === rodzina);
   const przyklady = wzorce(rodzina, kontrakt, root); const { catalog } = silnik();
   const kl = klasyfikujCwiczenia(rodzina, { root, lista: docs, bezRegul }); const { pomijane, wstrzymane } = kl; const robic = kl.robic.filter((c) => !wyklucz.includes(c)); /* --wyklucz: ćwiczenia już wysłane wcześniejszymi plikami */
   const cz = podzielNaCzesci(robic);
-  return cz.map((cwiczenia, i) => { const czesc = { id: nazwa && cz.length === 1 ? nazwa : nazwa ? `${nazwa}-${i + 1}` : cz.length === 1 ? rodzina : `${rodzina}-${i + 1}`, numer: i + 1, ile: cz.length };
-    const info = i === 0 ? [...pomijane, ...wstrzymane] : [];
-    return { plik: `${czesc.id}.md`, cwiczenia, pomijane: i === 0 ? pomijane : [], wstrzymane: i === 0 ? wstrzymane : [],
-      tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc, cwiczenia, przyklady, kontrakt, pomijane: info, root, opisy: cwiczenia.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog, rodzina })) }) }; });
+  /* jedna część rodziny → polecenie; gdy tekst przekracza limit okna czatu (sekcja sprzętu rośnie z liczbą rodzajów), część dzielona na pół (sufiks a/b, rekurencyjnie); pominięte i wstrzymane wymienia tylko pierwsze polecenie */
+  const zbuduj = (czesc, cwiczenia, sufiks, pierwsze) => {
+    const info = pierwsze ? [...pomijane, ...wstrzymane] : [];
+    return { plik: `${czesc.id}${sufiks}.md`, cwiczenia, pomijane: pierwsze ? pomijane : [], wstrzymane: pierwsze ? wstrzymane : [],
+      tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc: { ...czesc, sufiks }, cwiczenia, przyklady, kontrakt, pomijane: info, sprzet: sekcjaSprzetu(cwiczenia, catalog), root, opisy: cwiczenia.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog, rodzina })) }) };
+  };
+  const dziel = (czesc, cwiczenia, sufiks = '', pierwsze = false) => {
+    const w = zbuduj(czesc, cwiczenia, sufiks, pierwsze); if (w.tresc.length <= maxZnakow || cwiczenia.length <= 1) return [w];
+    const hh = Math.ceil(cwiczenia.length / 2);
+    return [...dziel(czesc, cwiczenia.slice(0, hh), sufiks + 'a', pierwsze), ...dziel(czesc, cwiczenia.slice(hh), sufiks + 'b', false)];
+  };
+  return cz.flatMap((cwiczenia, i) => dziel({ id: nazwa && cz.length === 1 ? nazwa : nazwa ? `${nazwa}-${i + 1}` : cz.length === 1 ? rodzina : `${rodzina}-${i + 1}`, numer: i + 1, ile: cz.length }, cwiczenia, '', i === 0));
 }
 
 export function parsujArgumenty(argv) {
@@ -426,16 +450,17 @@ export async function main(argv, { root = ROOT, log = console.log } = {}) {
   const o = parsujArgumenty(argv); const docs = join(root, 'docs/51-figury-v2-pokrycie.md');
   const maRegul = (id) => !!wczytajSens(root).rodziny?.[id];
   const ids = (o.wszystkie ? rodzinyZDokumentu(docs).filter((r) => r.stan !== 'gotowa' || existsSync(join(root, 'lib/figures/v2/poses', `${r.id}.json`))).map((r) => r.id) : [o.rodzina]).filter((id) => { if (maRegul(id) || o.bezRegul) return true; log(`${id}: POMINIĘTA — brak reguł sensu w data/zrodla/figury-sens.json (docs/53, bramka 3; --bez-regul wymusza)`); return false; });
-  mkdirSync(resolve(o.wyjscie), { recursive: true }); let plikow = 0, najdluzsze = 0, rodzin = 0;
+  mkdirSync(resolve(o.wyjscie), { recursive: true }); let plikow = 0, najdluzsze = 0, rodzin = 0, przekroczone = 0;
   for (const id of ids) {
     const p = await poleceniaRodziny(id, { root, bezRegul: o.bezRegul, wyklucz: o.wyklucz, nazwa: o.nazwa }); if (!p.length) { log(`${id}: brak ćwiczeń do wysłania (pozy gotowe, albo wszystkie pominięte/wstrzymane — sprzęt poza kontraktem, OTWARTE, brak reguł)`); continue; }
     rodzin++;
     for (const x of p) {
-      if (x.tresc.length > MAX_ZNAKOW) throw new Error(`${x.plik}: polecenie ma ${x.tresc.length} znaków (limit ${MAX_ZNAKOW})`);
+      if (x.tresc.length > MAX_ZNAKOW) { if (x.cwiczenia.length > 1) throw new Error(`${x.plik}: polecenie ma ${x.tresc.length} znaków (limit ${MAX_ZNAKOW})`); log(`${x.plik}: POMINIĘTE — polecenie jednego ćwiczenia (${x.cwiczenia[0]}) ma ${x.tresc.length} znaków, limit ${MAX_ZNAKOW} (sekcja sprzętu + kontrakt); zrobi nasz agent albo po skróceniu kontraktu`); przekroczone++; continue; }
       writeFileSync(join(resolve(o.wyjscie), x.plik), x.tresc); plikow++; najdluzsze = Math.max(najdluzsze, x.tresc.length);
       log(`${x.plik}: ${x.cwiczenia.length} ćwiczeń, ${x.tresc.length} znaków`);
     }
   }
+  if (przekroczone) log(`UWAGA: ${przekroczone} polecenie(a) jednego ćwiczenia przekracza limit ${MAX_ZNAKOW} znaków i nie zostało zapisane`);
   log(`rodzin: ${rodzin}, plików: ${plikow}, najdłuższe: ${najdluzsze} znaków`);
   return 0;
 }

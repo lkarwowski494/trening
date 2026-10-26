@@ -9,9 +9,9 @@ import { LAYER, type Prop, type Role, type Shape, type View } from './scene';
 /** Wymiary sprzętu (cm) — uproszczenie ilustracyjne. */
 export const EQUIP = {
   barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [44, 49] as [number, number], plateW: 2.8,
-  dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6,
+  dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6, medBallR: 11,
   benchW: 28, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
-  trapW: 29, boxW: 45, postW: 3.5, railW: 1.2, wallW: 3,
+  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, gymBallR: 32.5, foamR: 7.5, foamLen: 90, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, boxSide: 45, sliderR: 8, sliderH: 2, wheelR: 8, wheelW: 4, suspensionY: 220, sledHalf: 25, sledBase: 12, sledLen: 60, sledPostH: 100, ropeR: 1.9, ropeTop: 400, ropeBottom: 20, dipHalf: 22, dipLen: 60, dipH: 115, dipR: 1.75, preacherTop: 95, preacherKat: 60, preacherLen: 45, preacherSeatDx: 28, preacherSeatY: 48, preacherW: 50, preacherT: 8, preacherSeatW: 30, preacherSeatL: 34, machinePad: 36, leverEnd: 25, leverArm: 60, leverStroke: 60, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];
@@ -142,6 +142,16 @@ export function benchPolys(pr: Extract<Prop, { k: 'bench' }>): { seat: V2[]; bac
   };
 }
 
+/** Wielokąty modlitewnika w widoku z boku: pochyła podpórka (powierzchnia od górnego do dolnego końca, grubość preacherT w głąb) i siedzisko. Wspólne dla rysunku i kolizji. */
+export function preacherPolys(pr: Extract<Prop, { k: 'preacher' }>): { pad: V2[]; seat: V2[] } {
+  const [tx, ty] = pr.top, [bx, by] = pr.bottom; const dx = bx - tx, dy = by - ty; const l = Math.hypot(dx, dy) || 1; let n: V2 = [dy / l, -dx / l]; if (n[1] < 0) n = [-n[0], -n[1]]; /* normalna do powierzchni, ku górze (ku osobie) */
+  const T = EQUIP.preacherT; const [sx, sy] = pr.seat; const h = EQUIP.preacherSeatL / 2;
+  return { pad: [[tx, ty], [bx, by], [bx - n[0] * T, by - n[1] * T], [tx - n[0] * T, ty - n[1] * T]], seat: [[sx - h, sy - EQUIP.benchPad], [sx + h, sy - EQUIP.benchPad], [sx + h, sy], [sx - h, sy]] };
+}
+
+/** Środek wałków na nogi ławki ujemnej (x, y w widoku z boku): nad kostkami przy końcu siedziska. */
+export const rollerAt = (pr: Extract<Prop, { k: 'bench' }>): V2 => [pr.seatFrom[0] + EQUIP.rollerDx, pr.seatFrom[1] + EQUIP.rollerDy];
+
 /** Kształty rekwizytów. */
 export function propShapes(props: Prop[], view: View): Shape[] {
   const S: Shape[] = []; const side = view === 'side';
@@ -150,28 +160,114 @@ export function propShapes(props: Prop[], view: View): Shape[] {
     switch (pr.k) {
       case 'floor': if (view === 'top') break; else S.push({ k: 'line', a: [pr.x0, 0], b: [pr.x1, 0], w: E.floorLine, role: 'floor', z: zKey(LAYER.back, -100), id: 'floor' }); break;
       case 'mat': if (view === 'top') break; else S.push({ k: 'poly', pts: side ? rect(pr.x0, 0, pr.x1, pr.h) : rect(-30, 0, 30, pr.h), fill: 'pad', stroke: 'floor', w: 0.6, close: true, z: zKey(LAYER.backEquip, -50), id: 'mat' }); break;
-      case 'wall': S.push({ k: 'poly', pts: side ? rect(pr.x - E.wallW, 0, pr.x, pr.h) : rect(-110, 0, 110, pr.h), fill: 'frame', a: side ? 0.35 : 0.12, close: true, z: zKey(LAYER.back, -90), id: 'wall' }); break;
-      case 'rail': if (view === 'top') break; else if (side) S.push({ k: 'line', a: [pr.x, 0], b: [pr.x, pr.h], w: E.railW, role: 'frame', z: zKey(LAYER.back, -80), id: 'rail' }); else for (const sg of [-1, 1]) S.push({ k: 'line', a: [sg * 56, 0], b: [sg * 56, pr.h], w: E.railW, role: 'frame', z: zKey(LAYER.back, -80), id: 'rail' }); break;
+      case 'wall': if (pr.front && view === 'front') break; else S.push({ k: 'poly', pts: side ? (pr.front ? rect(pr.x, 0, pr.x + E.wallW, pr.h) : rect(pr.x - E.wallW, 0, pr.x, pr.h)) : rect(-110, 0, 110, pr.h), fill: 'frame', a: side ? 0.35 : 0.12, close: true, z: zKey(LAYER.back, -90), id: 'wall' }); break;
+      case 'rail': if (view === 'top') break; else if (side) S.push({ k: 'line', a: [pr.x, 0], b: [pr.x, pr.h], w: E.railW, role: 'frame', z: zKey(LAYER.back, -80), id: 'rail' }); else for (const sg of [-1, 1]) S.push({ k: 'line', a: [sg * E.railSpan, 0], b: [sg * E.railSpan, pr.h], w: E.railW, role: 'frame', z: zKey(LAYER.back, -80), id: 'rail' }); break;
       case 'post': {
         if (side) S.push({ k: 'line', a: [pr.x, 0], b: [pr.x, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'post' });
-        else for (const sg of [-1, 1]) S.push({ k: 'line', a: [sg * 64, 0], b: [sg * 64, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'post' });
+        else for (const sg of [-1, 1]) S.push({ k: 'line', a: [sg * E.postSpan, 0], b: [sg * E.postSpan, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'post' });
         if (pr.hook !== undefined && side) S.push({ k: 'line', a: [pr.x, pr.hook], b: [pr.x + 5, pr.hook], w: 2.4, role: 'frame', z: zKey(LAYER.back, -69), id: 'hook' });
         break;
       }
-      case 'box': S.push({ k: 'poly', pts: side ? rect(pr.x0, 0, pr.x1, pr.top) : rect(-(pr.w ?? E.boxW) / 2, 0, (pr.w ?? E.boxW) / 2, pr.top), fill: 'pad', stroke: 'frame', w: 1, close: true, z: zKey(LAYER.backEquip, -40), id: 'box' }); break;
+      case 'box': { const bw = (pr.w ?? E.boxW) / 2; const cz = pr.z ?? 0; S.push({ k: 'poly', pts: side ? rect(pr.x0, 0, pr.x1, pr.top) : view === 'front' ? rect(-cz - bw, 0, -cz + bw, pr.top) : rect(-cz - bw, -pr.x1, -cz + bw, -pr.x0), fill: 'pad', stroke: 'frame', w: 1, close: true, z: zKey(LAYER.backEquip, -40 + (side ? 0 : 0)), id: 'box' }); break; }
       case 'bench': {
-        const w = pr.w ?? E.benchW; const bp = benchPolys(pr);
+        const w = pr.w ?? E.benchW; const bp = benchPolys(pr); const ro = rollerAt(pr); const zb = (d: number): number => zKey(LAYER.backEquip, d);
         if (side) {
-          S.push({ k: 'poly', pts: bp.seat, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zKey(LAYER.backEquip, -30), id: 'benchSeat' });
-          S.push({ k: 'poly', pts: bp.back, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zKey(LAYER.backEquip, -29), id: 'benchBack' });
-          for (const x of bp.legs) S.push({ k: 'line', a: [x, 0], b: [x, Math.max(pr.seatFrom[1] - E.benchPad, 0)], w: E.benchLegW, role: 'frame', z: zKey(LAYER.backEquip, -31), id: 'benchLeg' });
-        } else if (view === 'top') S.push({ k: 'poly', pts: rect(-w / 2, pr.seatFrom[0], w / 2, pr.backTo[0]), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zKey(LAYER.backEquip, -30), id: 'benchSeat' });
-        else S.push({ k: 'poly', pts: rect(-w / 2, pr.seatFrom[1] - E.benchPad, w / 2, pr.seatFrom[1]), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zKey(LAYER.backEquip, -30), id: 'benchSeat' });
+          S.push({ k: 'poly', pts: bp.seat, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-30), id: 'benchSeat' });
+          S.push({ k: 'poly', pts: bp.back, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-29), id: 'benchBack' });
+          for (const x of bp.legs) S.push({ k: 'line', a: [x, 0], b: [x, Math.max(pr.seatFrom[1] - E.benchPad, 0)], w: E.benchLegW, role: 'frame', z: zb(-31), id: 'benchLeg' });
+          if (pr.rollers) S.push({ k: 'circle', c: ro, r: E.rollerR, fill: 'pad', stroke: 'frame', w: 0.8, z: zb(-28), id: 'benchRoller' });
+        } else if (view === 'top') {
+          S.push({ k: 'poly', pts: rect(-w / 2, pr.seatFrom[0], w / 2, pr.backTo[0]), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-30), id: 'benchSeat' });
+          if (pr.rollers) S.push({ k: 'poly', pts: rect(-E.rollerHalf, ro[0] - E.rollerR, E.rollerHalf, ro[0] + E.rollerR), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-27), id: 'benchRoller' });
+        } else {
+          S.push({ k: 'poly', pts: rect(-w / 2, pr.seatFrom[1] - E.benchPad, w / 2, pr.seatFrom[1]), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-30), id: 'benchSeat' });
+          if (pr.rollers) for (const sg of [-1, 1]) S.push({ k: 'circle', c: [sg * E.rollerHalf / 2, ro[1]], r: E.rollerR, fill: 'pad', stroke: 'frame', w: 0.8, z: zb(-27), id: 'benchRoller' });
+        }
         break;
       }
-      case 'cable': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.7, role: 'cable', z: zKey(LAYER.frontEquip, 0), id: 'cable' }); S.push({ k: 'circle', c: a, r: 2.6, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pulley' }); break; }
+      case 'preacher': {
+        const pp = preacherPolys(pr); const zb = (d: number): number => zKey(LAYER.backEquip, d); const wp = E.preacherW / 2, ws = E.preacherSeatW / 2;
+        if (side) {
+          S.push({ k: 'poly', pts: pp.pad, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'preacherPad' });
+          S.push({ k: 'poly', pts: pp.seat, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'preacherSeat' });
+          S.push({ k: 'line', a: [pr.bottom[0] - 3, 0], b: [pr.bottom[0] - 3, pr.bottom[1] - E.preacherT], w: E.benchLegW, role: 'frame', z: zb(-27), id: 'preacherLeg' });
+          S.push({ k: 'line', a: [pr.seat[0], 0], b: [pr.seat[0], pr.seat[1] - E.benchPad], w: E.benchLegW, role: 'frame', z: zb(-27), id: 'preacherLeg' });
+        } else if (view === 'top') {
+          S.push({ k: 'poly', pts: rect(-wp, -Math.max(pr.top[0], pr.bottom[0]), wp, -Math.min(pr.top[0], pr.bottom[0])), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'preacherPad' });
+          S.push({ k: 'poly', pts: rect(-ws, -(pr.seat[0] + E.preacherSeatL / 2), ws, -(pr.seat[0] - E.preacherSeatL / 2)), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'preacherSeat' });
+        } else {
+          S.push({ k: 'poly', pts: rect(-wp, Math.min(pr.top[1], pr.bottom[1]) - E.preacherT, wp, Math.max(pr.top[1], pr.bottom[1])), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'preacherPad' });
+          S.push({ k: 'poly', pts: rect(-ws, pr.seat[1] - E.benchPad, ws, pr.seat[1]), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-25), id: 'preacherSeat' });
+        }
+        break;
+      }
+      case 'sled': {
+        const zb = (d: number): number => zKey(LAYER.backEquip, d); const x1 = pr.x + pr.len; const B = E.sledBase; const hz = E.sledHalf;
+        if (side) {
+          S.push({ k: 'poly', pts: rect(pr.x, 0, x1, B), fill: 'frame', a: 0.45, stroke: 'frame', w: 0.8, close: true, z: zb(-24), id: 'sledBase' });
+          S.push({ k: 'circle', c: [pr.x + pr.len * 0.55, B + 14], r: 14, fill: 'plate', a: 0.55, stroke: 'plate', w: 0.8, z: zb(-23), id: 'sledPlate' });
+          S.push({ k: 'line', a: [pr.x, B], b: [pr.x, pr.h], w: 3, role: 'frame', z: zb(-22), id: 'sledPost' });
+        } else if (view === 'front') {
+          S.push({ k: 'poly', pts: rect(-hz - 5, 0, hz + 5, B), fill: 'frame', a: 0.45, stroke: 'frame', w: 0.8, close: true, z: zb(-24), id: 'sledBase' });
+          for (const sg of [-1, 1]) S.push({ k: 'line', a: [sg * hz, B], b: [sg * hz, pr.h], w: 3, role: 'frame', z: zb(-22), id: 'sledPost' });
+        } else {
+          S.push({ k: 'poly', pts: rect(-hz - 5, -x1, hz + 5, -pr.x), fill: 'frame', a: 0.45, stroke: 'frame', w: 0.8, close: true, z: zb(-24), id: 'sledBase' });
+          for (const sg of [-1, 1]) S.push({ k: 'circle', c: [sg * hz, -pr.x], r: 1.8, fill: 'frame', z: zb(-22), id: 'sledPost' });
+        }
+        break;
+      }
+      case 'rope': {
+        const zb = zKey(LAYER.backEquip, -21); const R = E.ropeR;
+        if (side) S.push({ k: 'line', a: [pr.x, pr.bottom], b: [pr.x, pr.top], w: R * 2, role: 'steel', z: zb, id: 'rope' });
+        else if (view === 'front') S.push({ k: 'line', a: [-pr.z, pr.bottom], b: [-pr.z, pr.top], w: R * 2, role: 'steel', z: zb, id: 'rope' });
+        else S.push({ k: 'circle', c: [-pr.z, -pr.x], r: R, fill: 'steel', z: zb, id: 'rope' });
+        break;
+      }
+      case 'dipbars': {
+        const zb = zKey(LAYER.backEquip, -20); const R = E.dipR;
+        if (side) S.push({ k: 'line', a: [pr.x0, pr.h], b: [pr.x1, pr.h], w: R * 2, role: 'steel', z: zb, id: 'dipBar' });
+        else if (view === 'front') for (const sg of [-1, 1]) S.push({ k: 'circle', c: [sg * pr.z, pr.h], r: R, fill: 'steel', z: zb, id: 'dipBar' });
+        else for (const sg of [-1, 1]) S.push({ k: 'line', a: [sg * pr.z, -pr.x0], b: [sg * pr.z, -pr.x1], w: R * 2, role: 'steel', z: zb, id: 'dipBar' });
+        break;
+      }
+      case 'slider': {
+        const o = proj(pr.c, view); const zb = zKey(LAYER.backEquip, -19); const r = pr.r;
+        if (view === 'top') S.push({ k: 'circle', c: o, r, fill: 'pad', stroke: 'frame', w: 0.8, z: zb, id: 'slider' });
+        else S.push({ k: 'poly', pts: rect(o[0] - r, 0, o[0] + r, E.sliderH), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb, id: 'slider' });
+        break;
+      }
+      case 'wheel': {
+        const o = proj(pr.c, view); const zz = zKey(LAYER.frontEquip, 0.3);
+        if (side) { S.push({ k: 'circle', c: o, r: pr.r, fill: 'pad', stroke: 'frame', w: 1.2, z: zz, id: 'wheel' }); S.push({ k: 'circle', c: o, r: 1.5, fill: 'steel', z: zz + 0.1, id: 'wheelHub' }); }
+        else if (view === 'front') S.push({ k: 'poly', pts: rect(o[0] - E.wheelW / 2, o[1] - pr.r, o[0] + E.wheelW / 2, o[1] + pr.r), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zz, id: 'wheel' });
+        else S.push({ k: 'poly', pts: rect(o[0] - E.wheelW / 2, o[1] - pr.r, o[0] + E.wheelW / 2, o[1] + pr.r), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zz, id: 'wheel' });
+        break;
+      }
+      case 'cable': {
+        const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.7, role: 'cable', z: zKey(LAYER.frontEquip, 0), id: 'cable' }); S.push({ k: 'circle', c: a, r: 2.6, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pulley' });
+        const ends = (pr.ends ?? []).map(e => proj(e, view)); const zz = zKey(LAYER.frontEquip, 0.2);
+        if (pr.attach === 'handle') for (const e of ends) S.push({ k: 'circle', c: e, r: E.handleR, fill: 'steel', z: zz, id: 'cableHandle' });
+        else if (pr.attach === 'rope') for (const e of ends) { S.push({ k: 'line', a: b, b: e, w: 1.4, role: 'cable', z: zz, id: 'cableRope' }); S.push({ k: 'circle', c: e, r: E.handleR, fill: 'steel', z: zz, id: 'cableHandle' }); }
+        else if (pr.attach === 'bar' && ends.length) S.push({ k: 'line', a: ends[0], b: ends[ends.length - 1], w: 2.2, role: 'steel', z: zz, id: 'cableBar' });
+        else if (pr.attach === 'strap') for (const e of ends) S.push({ k: 'circle', c: e, r: E.strapR, stroke: 'steel', w: 1.6, z: zz, id: 'cableStrap' });
+        break;
+      }
+      case 'tower': {
+        const W = E.towerW; const zk = zKey(LAYER.backEquip, -20);
+        if (side) S.push({ k: 'poly', pts: rect(pr.x - W / 2, 0, pr.x + W / 2, pr.h), fill: 'frame', a: 0.28, stroke: 'frame', w: 0.6, close: true, z: zk, id: 'tower' });
+        else if (view === 'front') S.push({ k: 'poly', pts: rect(-pr.z - W / 2, 0, -pr.z + W / 2, pr.h), fill: 'frame', a: 0.28, stroke: 'frame', w: 0.6, close: true, z: zk, id: 'tower' });
+        else S.push({ k: 'poly', pts: rect(-pr.z - W / 2, -pr.x - W / 2, -pr.z + W / 2, -pr.x + W / 2), fill: 'frame', a: 0.28, stroke: 'frame', w: 0.6, close: true, z: zk, id: 'tower' });
+        break;
+      }
       case 'band': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.frontEquip, 0), id: 'band' }); break; }
       case 'chain': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 1.2, role: 'steel', dash: [0.8, 1.4], z: zKey(LAYER.frontEquip, 0), id: 'chain' }); break; }
+      case 'slide': {
+        const a = proj(pr.from, view); const e = proj(add(pr.from, mul(pr.dir, pr.len)), view); const b = proj(pr.to, view); const zk = zKey(LAYER.backEquip, -25);
+        S.push({ k: 'line', a, b: e, w: 2, role: 'frame', z: zk, id: 'slideRail' });
+        if (side) { const dx = e[0] - a[0], dy = e[1] - a[1]; const l = Math.hypot(dx, dy) || 1; const n: V2 = [-dy / l, dx / l]; S.push({ k: 'line', a: [b[0] - n[0] * E.machinePad / 2, b[1] - n[1] * E.machinePad / 2], b: [b[0] + n[0] * E.machinePad / 2, b[1] + n[1] * E.machinePad / 2], w: 3, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'slidePad' }); }
+        else S.push({ k: 'circle', c: b, r: 3, fill: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'slidePad' });
+        break;
+      }
       case 'pivot': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 2.8, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'landmine' }); S.push({ k: 'circle', c: a, r: 3, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pivot' }); break; }
       case 'barbell': {
         const c = pr.c; const o = proj(c, view);
@@ -208,9 +304,31 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         break;
       }
       case 'kettlebell': {
-        const o = proj(pr.c, view); const r = pr.r ?? E.kbBallR; const zz = zKey(LAYER.frontEquip, side ? pr.c[2] : pr.c[0]);
-        S.push({ k: 'circle', c: [o[0], o[1] - r - 2], r, fill: 'load', a: 0.9, z: zz, id: 'kb' });
-        S.push({ k: 'circle', c: [o[0], o[1] - 1], r: E.kbHandleR, stroke: 'steel', w: 1.8, z: zz + 0.1, id: 'kbHandle' });
+        const r = pr.r ?? E.kbBallR; const d = pr.dir ?? [0, -1, 0]; const zz = zKey(LAYER.frontEquip, side ? pr.c[2] : pr.c[0]);
+        S.push({ k: 'circle', c: proj(add(pr.c, mul(d, r + 2)), view), r, fill: 'load', a: 0.9, z: zz, id: 'kb' });
+        S.push({ k: 'circle', c: proj(add(pr.c, mul(d, 1)), view), r: E.kbHandleR, stroke: 'steel', w: 1.8, z: zz + 0.1, id: 'kbHandle' });
+        break;
+      }
+      case 'roll': {
+        const o = proj(pr.c, view); const zk = zKey(LAYER.backEquip, -34);
+        if (side) S.push({ k: 'circle', c: o, r: pr.r, fill: 'pad', stroke: 'frame', w: 0.9, z: zk, id: 'roll' });
+        else if (view === 'front') S.push({ k: 'poly', pts: rect(-pr.len / 2, pr.c[1] - pr.r, pr.len / 2, pr.c[1] + pr.r), fill: 'pad', stroke: 'frame', w: 0.9, close: true, z: zk, id: 'roll' });
+        else S.push({ k: 'poly', pts: rect(-pr.len / 2, o[1] - pr.r, pr.len / 2, o[1] + pr.r), fill: 'pad', stroke: 'frame', w: 0.9, close: true, z: zk, id: 'roll' });
+        break;
+      }
+      case 'plate': {
+        const o = proj(pr.c, view); const r = pr.r ?? E.plateR; const T = E.plateW; const zz = zKey(LAYER.frontEquip, side ? pr.c[2] : view === 'front' ? pr.c[0] : pr.c[1]);
+        if (side) S.push({ k: 'poly', pts: rect(o[0] - T / 2, o[1] - r, o[0] + T / 2, o[1] + r), fill: 'plate', a: 0.8, stroke: 'plate', w: 0.8, close: true, z: zz, id: 'plateHeld' });
+        else if (view === 'top') S.push({ k: 'poly', pts: rect(o[0] - r, o[1] - T / 2, o[0] + r, o[1] + T / 2), fill: 'plate', a: 0.8, stroke: 'plate', w: 0.8, close: true, z: zz, id: 'plateHeld' });
+        else { S.push({ k: 'circle', c: o, r, fill: 'plate', a: 0.45, stroke: 'plate', w: 0.9, z: zz, id: 'plateHeld' }); S.push({ k: 'circle', c: o, r: E.sleeveR + 0.8, stroke: 'plate', w: 0.7, z: zz + 0.1, id: 'plateHub' }); }
+        break;
+      }
+      case 'ball': {
+        const o = proj(pr.c, view); const r = pr.r ?? (pr.held === false ? E.gymBallR : E.medBallR); const zz = zKey(LAYER.frontEquip, side ? pr.c[2] : view === 'front' ? pr.c[0] : pr.c[1]);
+        const gym = pr.held === false; /* leżąca na podłodze (piłka gimnastyczna): barwa sprzętu stałego i warstwa za ciałem */
+        S.push({ k: 'circle', c: o, r, fill: gym ? 'pad' : 'load', a: gym ? 1 : 0.8, stroke: gym ? 'frame' : 'steel', w: 0.9, z: gym ? zKey(LAYER.backEquip, -35) : zz, id: gym ? 'gymBall' : 'ball' });
+        S.push({ k: 'ellipse', c: o, rx: r, ry: r * 0.34, rot: 0, stroke: gym ? 'frame' : 'steel', w: 0.6, a: 0.5, z: (gym ? zKey(LAYER.backEquip, -35) : zz) + 0.1, id: 'ballSeam' });
+        S.push({ k: 'ellipse', c: o, rx: r * 0.34, ry: r, rot: 0, stroke: gym ? 'frame' : 'steel', w: 0.6, a: 0.5, z: (gym ? zKey(LAYER.backEquip, -35) : zz) + 0.1, id: 'ballSeam' });
         break;
       }
     }
