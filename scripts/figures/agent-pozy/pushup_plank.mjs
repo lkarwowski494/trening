@@ -184,8 +184,6 @@ function rolloutStojac(cw, { fi1 = 10, start = 'stojac', uchwytY0 = 100 } = {}) 
 
 /** Ćwiczenia, których kontrakt v2 nie potrafi narysować (powód obowiązkowy; do decyzji koordynatora). */
 export const WYJATKI = {
-  'Suspended Push-Up': 'taśma zawieszenia przenika przedramię o 0,33–0,35 cm (limit 0,3) mimo przebadania ułożeń zaczepu (x −40…60, y 120…260, thetaTop 4…20, biegun łokcia); do decyzji koordynatora: poluzować limit dla rodzaju „zawieszenie” albo zmienić geometrię taśmy',
-  'Suspended Fallout': 'taśma zawieszenia przenika przedramię o 0,63–0,65 cm (limit 0,3) w u = 0; jak Suspended Push-Up — do decyzji koordynatora (limit przenikania dla taśm albo geometria zawieszenia)',
   'Side Plank': 'potrzebny obrót tułowia wokół osi długiej (roll): kontrakt ma tylko pochylenie w płaszczyźnie strzałkowej i barki zawsze w poziomie (z = ±19)',
   'Copenhagen Plank': 'deska boczna z nogą na ławce — jak Side Plank wymaga obrotu tułowia wokół osi długiej (roll)',
   'Push Up to Side Plank': 'przejście do deski bocznej wymaga obrotu tułowia wokół osi długiej (roll)',
@@ -199,7 +197,7 @@ export const WYJATKI_OPISU = { 'ro.back': 'zestaw ogólny (cue-sets.json) odwoł
 export const PRZYBLIZENIA = {
   'Clock Push-Up': 'przybliżenie: pompka z dłońmi przestawionymi przód/tył (zegar); skok i przesunięcie dłoni na kolejne godziny nie są w pojedynczym powtórzeniu pozy',
   'Plyo Push-Up': 'faza lotu: dłonie 12 cm nad podłogą, kostki stoją (ciało nie odrywa palców)',
-  'Suspended Push-Up': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi do uchwytów; uchwyty nieruchome w ruchu, w rzeczywistości taśmy się wahają',
+  'Suspended Push-Up': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi do uchwytów; uchwyty nieruchome w ruchu (w rzeczywistości taśmy się wahają), rozstaw uchwytów szeroki (z = ±33)',
   'Suspended Fallout': 'taśmy zawieszenia (rodzaj zawieszenie) od punktu zaczepu nad dłońmi w u = 0; uchwyty podążają za dłońmi, taśmy ustawiają się ukośnie',
   'Inverted Row': 'drążek w stojaku na wysokości 100 cm, chwyt nachwytem szeroki (z = ±24)',
 };
@@ -220,7 +218,7 @@ export function generuj() {
     'Plank Shoulder Taps': () => shoulderTaps('Plank Shoulder Taps'),
     'Plyo Push-Up': () => plyo('Plyo Push-Up'),
     'Clock Push-Up': () => pompka('Clock Push-Up', { hz: 22, thetaTop: 24, blady: ['partial'], rece: (u, k, h) => ({ R: { g: [h[0] + 9, h[1], 24], pole: [-1, -0.3, 0.35], obrot: -20 }, L: { g: [h[0] - 9, h[1], -20], pole: [-1, -0.3, -0.35], obrot: -20 } }) }), /* zegar: jedna dłoń o 9 cm przed osią barków, druga 9 cm za nią (godziny 12 i 6); pronacja przedramion */
-    'Suspended Push-Up': () => pompka('Suspended Push-Up', { hz: 22, hy: 45, off: -18, sprzetRece: (H) => ({ rodzaj: 'zawieszenie', x: r1(H[0] - 16.6), y: 170, punkt: 'dlonie' }), blady: ['partial', 'sag'] }), /* punkt zaczepu 16,6 cm za dłońmi, 170 cm wysoko: najlepsze z przebadanych ułożeń (x −40…60, y 120…260, thetaTop 4…20, pole łokcia); nadal przenikanie przedramię × taśma 0,33 cm (limit 0,3) w u = 0 */
+    'Suspended Push-Up': () => pompka('Suspended Push-Up', { hz: 33, hy: 45, off: -18, sprzetRece: (H) => ({ rodzaj: 'zawieszenie', x: r1(H[0] + (0)), y: 300, punkt: 'dlonie' }), blady: ['partial', 'sag'] }), /* taśmy od punktu zaczepu (y = 300) nad dłońmi; ostatnie 15 cm taśmy przy uchwycie bez kolizji (EQUIP.suspensionFree); uchwyty szeroko (z = ±33), bo przy węższych taśma przenika ramię */
     'Suspended Fallout': () => rolloutStojac('Suspended Fallout', { start: 'zaw', fi1: 6 }),
     'Inverted Row': () => inverted('Inverted Row'),
     'Rollout (sztanga)': () => rolloutKolana('Rollout (sztanga)', { fi1: 22, ky: 9.8, dgSag: 11, fM: 8, sYf: 0.8, bk: 0.3 }),

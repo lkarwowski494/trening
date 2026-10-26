@@ -96,6 +96,7 @@ export const TEMPLATES: Record<string, FamilyTemplate> = {
 TEMPLATES.pushup_plank = { gear: 'Podłoga (rodzaj podloga) i ewentualnie skrzynia/ławka płaska jako podwyższenie (dłonie albo stopy); dłonie i stopy w kontakcie z podłożem w pozycji podporu.', defaultGear: [{ rodzaj: 'podloga', x0: -150, x1: 150 }],
   allow: { ankleMin: -75, why: 'stanie na palcach w podporze: zgięcie podeszwowe kostki ok. −55…−65°, blisko dolnej granicy zakresu (uproszczenie ilustracyjne)' }, movement: 'u = 0: pozycja wyjściowa podporu (ręce proste), u = 1: pozycja skrajna (np. dół pompki: łokcie zgięte, ciało w jednej linii); ćwiczenia izometryczne: poza statyczna.' };
 const GENERIC: FamilyTemplate = { gear: 'Sprzęt wg rodzaju ćwiczenia: ' + GEAR.map(k => `${k} — ${GEAR_KINDS[k].opis}`).join('; ') + '.', defaultGear: [{ rodzaj: 'podloga', x0: -120, x1: 120 }], movement: 'u = 0: pozycja wyjściowa, u = 1: pozycja skrajna.' };
+export const hasOwnTemplate = (family: string): boolean => Object.prototype.hasOwnProperty.call(TEMPLATES, family);
 export const templateFor = (family: string): FamilyTemplate => TEMPLATES[family] ?? GENERIC;
 export const knownFamily = (family: string): boolean => Object.prototype.hasOwnProperty.call(FAMILY, family);
 
@@ -131,8 +132,38 @@ const armExtProps = (d: boolean): Record<string, Sch> => ({
 });
 const side = (props: Record<string, Sch>, required: string[], d: boolean): Sch => obj({ R: obj(props, required), L: obj(props, required) }, d ? [] : ['R', 'L'], 'R = prawa strona osoby, L = lewa.');
 
+/** Zakres polecenia dla jednej części ćwiczeń (docs/54, decyzja 26.10.2026): pola sprzętu tylko dla rodzajów występujących w części, pola poza@2 tylko te, których wymagają reguły części. Brak zakresu = pełny kontrakt (schemat generyczny w docs/schemas). */
+export type PromptScope = { gear?: readonly string[]; ext?: readonly string[] };
+export const EXT_FIELDS: readonly string[] = ['obrotTulowia', 'skretTulowia', 'przechylTulowia', 'przechylMiednicy', 'przechylGlowy', 'uniesienieBarkow', 'wysuniecieBarkow', 'zgiecieNadgarstka', 'obrotPrzedramienia'];
+/** Pola sprzętu spoza podstawowych (te, które rejestr przypisuje rodzajom): tylko one są przycinane. */
+const gearFieldsOf = (kinds: readonly string[]): Set<string> => new Set(kinds.flatMap(k => (GEAR_KINDS as Record<string, { fields?: readonly string[] }>)[k]?.fields ?? []));
+/** Opis „rodzaj” przycięty do wybranych rodzajów (lista „nazwa (komentarz), …” + zdanie o sprzęcie trzymanym). */
+function kindsDescription(full: string, kinds: readonly string[]): string {
+  const [list, ...rest] = full.split('. '); const items = list.split(/, (?![^(]*\))/);
+  const keep = items.filter(i => kinds.includes(i.split(' ')[0]));
+  const held = kinds.some(k => ['hantel', 'kettlebell', 'talerz', 'pilka_lekarska'].includes(k)); return keep.join(', ') + '.' + (held ? ' ' + rest.join('. ') : '');
+}
+/** Tekst sprzętu rodziny: szablon własny albo (rodzina generyczna) lista rodzajów z zakresu. */
+export function gearText(family: string, scope?: PromptScope): string {
+  if (TEMPLATES[family] || !scope?.gear) return templateFor(family).gear;
+  return 'Sprzęt wg rodzaju ćwiczenia: ' + GEAR.filter(k => scope.gear!.includes(k)).map(k => `${k} — ${GEAR_KINDS[k].opis}`).join('; ') + '.';
+}
+function pruneSchema(sch: Sch, scope: PromptScope): void {
+  const o = sch as { properties?: Record<string, Sch>; items?: Sch };
+  if (o.properties) {
+    if (scope.ext) for (const k of EXT_FIELDS) if (k in o.properties && !scope.ext.includes(k)) delete o.properties[k];
+    if (scope.gear && 'rodzaj' in o.properties && 'promien' in o.properties) { /* obiekt sprzętu */
+      const allowed = gearFieldsOf(scope.gear); const all = gearFieldsOf(GEAR);
+      for (const k of all) if (!allowed.has(k) && k in o.properties) delete o.properties[k];
+      const r = o.properties.rodzaj as { enum: string[]; description: string }; r.enum = r.enum.filter(k => scope.gear!.includes(k)); r.description = kindsDescription(r.description, scope.gear);
+    }
+    for (const v of Object.values(o.properties)) pruneSchema(v, scope);
+  }
+  if (o.items) pruneSchema(o.items, scope);
+}
+
 /** JSON Schema odpowiedzi dla rodziny (opis pól po polsku; jednostki: cm, stopnie). */
-export function poseSchema(family: string): Sch {
+export function poseSchema(family: string, scope?: PromptScope): Sch {
   const t = templateFor(family);
   const gear = obj({
     rodzaj: { type: 'string', enum: [...GEAR], description: 'sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze), sciana, gryf_szesciokatny (trap bar), lancuchy, wyciag (kolumna z bloczkiem i linką), lawka (płaska, skośna, ujemna), guma (guma oporowa), dzwignia (maszyna: dźwignia obrotowa albo prowadnica), modlitewnik, zawieszenie (taśmy do podwieszania), lina_pionowa, sanie, poreczy, slizgacze (krążki pod stopami/dłońmi), kolko (kółko do brzucha), bosu, pas (pas obciążeniowy), walek_nadgarstkow, rzymska (ławka do prostowania tułowia), kloda, opona, mlot, uprzaz_szyja, pilka_gimnastyczna (leży na podłodze), rolka (wałek piankowy). Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem.' },
@@ -171,15 +202,17 @@ export function poseSchema(family: string): Sch {
     dotyczy: { type: 'array', items: { type: 'string', enum: AFFECTS }, minItems: 1, maxItems: AFFECTS.length, description: 'Wielkości, które błąd zmienia (reszta kątów ma zostać jak w pozie poprawnej, ±' + CONTRACT.undeclaredDeg + '°): knee, ankle, hip (kąty), spine, kneeLat, heel, pelvis, bar, shoulder, elbow.' },
     klatki: { type: 'array', items: dframe, minItems: CONTRACT.errorFrames.min, maxItems: CONTRACT.errorFrames.max, description: 'Delty dodawane do pozy poprawnej.' },
   }, ['cue', 'znacznik', 'dotyczy', 'klatki'], 'Błąd = modyfikacja pozy poprawnej (delty), nie osobna poza.');
-  return {
+  const wynik: Sch = {
     $schema: 'https://json-schema.org/draft/2020-12/schema', title: `Poza ćwiczenia — rodzina ${family}`, description: t.movement,
     ...obj({
       kontrakt: { type: 'string', enum: [CONTRACT.id] }, /* dane poza@1 przechodzą walidator (CONTRACT.legacy), ale generator dostaje wersję bieżącą */ rodzina: { type: 'string', maxLength: 40 }, cwiczenie: { type: 'string', maxLength: 120 },
-      sprzet: { type: 'array', items: gear, minItems: 1, maxItems: 8, description: t.gear },
+      sprzet: { type: 'array', items: gear, minItems: 1, maxItems: 8, description: gearText(family, scope) },
       klatki: { type: 'array', items: key, minItems: CONTRACT.frames.min, maxItems: CONTRACT.frames.max, description: 'Klatki kluczowe poprawnej pozy; między nimi interpolacja liniowa, więc dodaj klatki pośrednie, gdy ruch jest zakrzywiony.' },
       bledy: { type: 'array', items: err, maxItems: CONTRACT.errorsMax },
     }, ['kontrakt', 'rodzina', 'cwiczenie', 'sprzet', 'klatki', 'bledy']),
   };
+  if (scope) pruneSchema(wynik, scope);
+  return wynik;
 }
 
 /* ---------- walidator schematu (podzbiór: type, enum, required, properties, additionalProperties, items, min/max, pattern, długość) ---------- */
@@ -401,16 +434,16 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
 }
 
 /** Tekst kontraktu do promptu generatora (co oznaczają pola, jednostki, układ współrzędnych, ograniczenia geometrii). */
-export function describeContract(family: string): string {
-  const t = templateFor(family);
+export function describeContract(family: string, scope?: PromptScope): string {
+  const t = templateFor(family); const gearTxt = gearText(family, scope); const extTxt = !scope?.ext || scope.ext.length > 0;
   return [
     `Kontrakt ${CONTRACT.id}. Zwracasz JEDEN obiekt JSON zgodny ze schematem: kontrakt, rodzina, cwiczenie, sprzet[], klatki[] (poza poprawna), bledy[] (zmiany pozy poprawnej).`,
     'Układ współrzędnych (cm): x = do przodu (w stronę twarzy), y = w górę (podłoga y = 0), z = prawa strona osoby (z = 0 to płaszczyzna symetrii). Kąty w stopniach.',
     `Szkielet (stałe długości kości, cm): udo ${BODY.thigh}, podudzie ${BODY.shank}, wysokość kostki ${BODY.ankleH}, tułów (miednica do barków) ${BODY.trunk}, ramię ${BODY.uarm}, przedramię ${BODY.farm}, dłoń ${BODY.hand} (łokieć do środka chwytu ${BODY.farm + BODY.hand}); biodra ±${BODY.hipHalf} cm od płaszczyzny symetrii (z), barki ±${BODY.shHalf} cm. Ramię wyprostowane sięga 64 cm od barku do chwytu.`,
     'Podajesz tylko: miednicę (środek stawów biodrowych), pochylenie tułowia, zgięcie kręgosłupa i głowy, kostki obu nóg i środki chwytu obu dłoni. Kolana i łokcie liczy nasz IK (kierunek zgięcia: odchylenieKolana albo biegunKolana, biegunLokcia). Barki leżą na tułowiu: tułów od miednicy do barków ma stałą długość, więc chwyt musi być w zasięgu ramienia od barku (≤ 64 cm), a kostka w zasięgu nogi od biodra (≤ 83 cm).',
-    `Opcjonalne stopnie swobody (poza@2; domyślnie 0, pomijaj, gdy ćwiczenie ich nie wymaga): obrotTulowia (deska bokiem, Copenhagen; ${EXT_ROM.roll.min}…${EXT_ROM.roll.max}°, +90 = klatka ku prawej stronie, obraca cały tułów z miednicą wokół osi długiej), skretTulowia (klatka względem miednicy, ${EXT_ROM.twist.min}…${EXT_ROM.twist.max}°, + ku prawej), przechylTulowia (${EXT_ROM.lean.min}…${EXT_ROM.lean.max}°, + głowa ku prawej; sztywny przechył osi tułowia w biodrach), przechylMiednicy (${EXT_ROM.tilt.min}…${EXT_ROM.tilt.max}°, + prawe biodro wyżej; przesuwa tylko biodra), przechylGlowy (${EXT_ROM.headTilt.min}…${EXT_ROM.headTilt.max}°, + ucho ku prawemu barkowi), a w rece.R / rece.L: uniesienieBarkow (cm wzdłuż osi tułowia, ${EXT_ROM.shrug.min}…${EXT_ROM.shrug.max}, + w górę; szrugsy), wysuniecieBarkow (cm wzdłuż przodu klatki, ${EXT_ROM.protract.min}…${EXT_ROM.protract.max}, + protrakcja), zgiecieNadgarstka (zgięcie dłoniowe + / wyprost −, ${EXT_ROM.wrist.min}…${EXT_ROM.wrist.max}°; chwyt zostaje środkiem dłoni, a nadgarstek cofa się o długość dłoni ${BODY.hand} cm wzdłuż odchylonej dłoni) i obrotPrzedramienia (${EXT_ROM.forearm.min}…${EXT_ROM.forearm.max}°; 0 = kciuk w górę, + supinacja; wyznacza stronę zgięcia nadgarstka). Zakresy to uproszczenie ilustracyjne i są sprawdzane w każdej fazie. Gdy tułów jest obrócony, barki i biodra nie leżą na osi z (barki: ±${BODY.shHalf} cm wzdłuż obróconej osi barków), więc kostki i chwyty podawaj w układzie świata zgodnie z tym obrotem. Błąd, który zmienia te pola, deklaruje: tułów (obrót, skręt, skłon) = spine, przechył miednicy = pelvis, uniesienie barku = shoulder, zgiecieNadgarstka i przedramię = elbow.`,
+    ...(extTxt ? [`Opcjonalne stopnie swobody (poza@2; domyślnie 0, pomijaj, gdy ćwiczenie ich nie wymaga): obrotTulowia (deska bokiem, Copenhagen; ${EXT_ROM.roll.min}…${EXT_ROM.roll.max}°, +90 = klatka ku prawej stronie, obraca cały tułów z miednicą wokół osi długiej), skretTulowia (klatka względem miednicy, ${EXT_ROM.twist.min}…${EXT_ROM.twist.max}°, + ku prawej), przechylTulowia (${EXT_ROM.lean.min}…${EXT_ROM.lean.max}°, + głowa ku prawej; sztywny przechył osi tułowia w biodrach), przechylMiednicy (${EXT_ROM.tilt.min}…${EXT_ROM.tilt.max}°, + prawe biodro wyżej; przesuwa tylko biodra), przechylGlowy (${EXT_ROM.headTilt.min}…${EXT_ROM.headTilt.max}°, + ucho ku prawemu barkowi), a w rece.R / rece.L: uniesienieBarkow (cm wzdłuż osi tułowia, ${EXT_ROM.shrug.min}…${EXT_ROM.shrug.max}, + w górę; szrugsy), wysuniecieBarkow (cm wzdłuż przodu klatki, ${EXT_ROM.protract.min}…${EXT_ROM.protract.max}, + protrakcja), zgiecieNadgarstka (zgięcie dłoniowe + / wyprost −, ${EXT_ROM.wrist.min}…${EXT_ROM.wrist.max}°; chwyt zostaje środkiem dłoni, a nadgarstek cofa się o długość dłoni ${BODY.hand} cm wzdłuż odchylonej dłoni) i obrotPrzedramienia (${EXT_ROM.forearm.min}…${EXT_ROM.forearm.max}°; 0 = kciuk w górę, + supinacja; wyznacza stronę zgięcia nadgarstka). Zakresy to uproszczenie ilustracyjne i są sprawdzane w każdej fazie. Gdy tułów jest obrócony, barki i biodra nie leżą na osi z (barki: ±${BODY.shHalf} cm wzdłuż obróconej osi barków), więc kostki i chwyty podawaj w układzie świata zgodnie z tym obrotem. Błąd, który zmienia te pola, deklaruje: tułów (obrót, skręt, skłon) = spine, przechył miednicy = pelvis, uniesienie barku = shoulder, zgiecieNadgarstka i przedramię = elbow.`] : []),
     `Ruch: ${t.movement} Między klatkami kluczowymi interpolacja jest liniowa: dla ruchów zakrzywionych dodaj klatki pośrednie (maks. ${CONTRACT.frames.max}); żaden staw nie może przeskakiwać o więcej niż ${CONTRACT.maxJump} cm na 1/${CONTRACT.step} ruchu.`,
-    `Sprzęt: ${t.gear} Stopy opierają się o podłogę (podeszwa nie niżej niż y = 0), ciało nie przenika sprzętu, dłonie leżą na chwycie sztangi (tolerancja 0,6 cm). Sprzęt trzymany w dłoniach (hantel, kettlebell, talerz, pilka_lekarska) podąża za chwytem: nie podajesz jego położenia, tylko rodzaj i pola; talerz i piłka wymagają dłoni na obręczy/powierzchni (tolerancja 3 cm).`,
+    `Sprzęt: ${gearTxt} Stopy opierają się o podłogę (podeszwa nie niżej niż y = 0), ciało nie przenika sprzętu, dłonie leżą na chwycie sztangi (tolerancja 0,6 cm). Sprzęt trzymany w dłoniach (hantel, kettlebell, talerz, pilka_lekarska) podąża za chwytem: nie podajesz jego położenia, tylko rodzaj i pola; talerz i piłka wymagają dłoni na obręczy/powierzchni (tolerancja 3 cm).`,
     `Błędy (bledy[]): każdy to MODYFIKACJA pozy poprawnej: klatki[] z deltami (dodawanymi do pozy poprawnej, interpolacja liniowa), pierwsza u = 0 z deltą zerową, ostatnia u = 1. cue = identyfikator wskazówki błędu z listy podanej dla ćwiczenia (tekstu nie piszesz). dotyczy = wielkości, które błąd zmienia; pozostałe kąty (biodro, kolano, kostka, łokieć, bark) mogą się różnić od pozy poprawnej najwyżej o ${CONTRACT.undeclaredDeg}°. Błąd musi być widoczny (≥ ${CONTRACT.visibleCm} cm lub ≥ ${CONTRACT.visibleDeg}°). Poza błędu też nie przenika sprzętu ani podłogi. Najwyżej ${CONTRACT.errorsMax} błędy; gdy ćwiczenie nie ma błędów na liście, bledy = [].`,
     'Nie dodajesz tekstów do wyświetlenia ani liczb kątów jako opisów: kąty i rozstawy bez źródła to uproszczenie ilustracyjne.',
   ].join('\n');

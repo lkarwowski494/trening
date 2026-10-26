@@ -36,9 +36,9 @@ export function bledyCwiczenia(cwiczenie, root = ROOT) {
 
 /* ---------- interfejs pilotażu ---------- */
 /** JSON Schema odpowiedzi dla rodziny. */
-export function schematPozy(rodzina) { return silnik().v2.poseSchema(rodzina); }
+export function schematPozy(rodzina, zakres) { return silnik().v2.poseSchema(rodzina, zakres); }
 /** Tekst kontraktu do promptu. */
-export function opisKontraktu(rodzina) { return silnik().v2.describeContract(rodzina); }
+export function opisKontraktu(rodzina, zakres) { return silnik().v2.describeContract(rodzina, zakres); }
 /** Walidacja: schemat + geometria + zakresy + ciągłość + błędy jako delty. Wynik { ok, bledy: [{ kod, szczegol }] }. */
 export function waliduj(poza, { rodzina, cwiczenie, root = ROOT }) {
   /* błędy postawy (grupa inna niż „zakres”): pierwsza klatka błędu NIE musi mieć delty zerowej — błąd jest widoczny w każdej klatce (v2-jakosc: blad_widoczny_stale) */
