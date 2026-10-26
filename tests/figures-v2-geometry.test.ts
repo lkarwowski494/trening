@@ -26,6 +26,8 @@ const ALLOW: Record<string, { elbow?: number; shSag?: number; shElev?: number; w
   'Decline Close-Grip Bench To Skull Crusher': { elbow: 160, why: 'gryf przy czole: łokcie mocno zgięte, powyżej średniego zakresu (uproszczenie ilustracyjne)' },
   'One-Arm Overhead Kettlebell Squat': { shSag: 205, shElev: 180, why: 'ramię nad głową przy pochylonym tułowiu: zgięcie barku względem tułowia powyżej średniego zakresu (uproszczenie ilustracyjne)' },
 };
+/** Biodro ma znak (poza@2, 26.10.2026): w leżeniu na ławce uda opuszczone ku stopom na podłodze są względem tułowia w wyproście ok. −22° (wcześniej kąt liczony bez znaku dawał +22°, więc wyprost nie był sprawdzany). Wyjątek rodziny bench_press z powodem; granica −25° (uproszczenie ilustracyjne). */
+const BENCH_HIP_MIN = -25;
 const FAMILY_KEYS = (fam: string) => KEYS.filter(k => assignAll()[k] === fam);
 
 describe('niezmienniki geometrii (wszystkie warianty gotowych rodzin, 25 pozycji ruchu)', () => {
@@ -40,7 +42,7 @@ describe('niezmienniki geometrii (wszystkie warianty gotowych rodzin, 25 pozycji
     byKey(KEYS, (k, s) => { for (const u of U) { const f = frameAt(s, u); for (const side of SIDES) {
       const a = jointAngles(f.sk, side); const al = ALLOW[k] ?? {};
       const chk = (n: string, v: number, lo: number, hi: number) => { if (v < lo - 0.5 || v > hi + 0.5) bad.push(`${k} u=${u} ${side} ${n}=${v.toFixed(1)} poza [${lo}, ${hi}]`); };
-      chk('hip', a.hip, r.side.hip.min, r.side.hip.max); chk('knee', a.knee, r.side.knee.min, r.side.knee.max); chk('ankle', a.ankle, r.side.ankle.min, r.side.ankle.max);
+      chk('hip', a.hip, k && assignAll()[k] === 'bench_press' ? BENCH_HIP_MIN : r.side.hip.min, r.side.hip.max); chk('knee', a.knee, r.side.knee.min, r.side.knee.max); chk('ankle', a.ankle, r.side.ankle.min, r.side.ankle.max);
       chk('elbow', a.elbow, r.side.el.min, al.elbow ?? r.side.el.max); chk('shElev', a.shElev, 0, al.shElev ?? r.front.abd.max);
       if (a.shAbd < 30) chk('shSag', a.shSag, r.side.sh.min, al.shSag ?? r.side.sh.max); /* zgięcie/wyprost barku w płaszczyźnie strzałkowej ma sens, gdy ramię jest blisko tej płaszczyzny (jak armProj w v1) */
     } } });
