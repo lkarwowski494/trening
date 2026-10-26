@@ -39,6 +39,8 @@ export const izometryczne = (rodzina, cwiczenie, root = ROOT) => { const d = wcz
 export const bezBramkiRuchu = (cwiczenie, root = ROOT) => cwiczenie !== '_opis' && !!wczytajSens(root).bez_bramki_ruchu?.[cwiczenie];
 /** Wyjątki ZAKRESU stawów dla ćwiczenia (jeden mechanizm dla ćwiczeń i rodzin): `rodziny.<rodzina>.zakres_wyjatki` { ćwiczenie | „*” (cała rodzina): { powod, hipMin?, ankleMin?, elbow?, shSag?, shElev? } }; wpis ćwiczenia ma pierwszeństwo przed „*”. Bez wpisu: zakresy kontraktu. Zwraca same granice (bez powodu) albo undefined. */
 export const zakresWyjatek = (rodzina, cwiczenie, root = ROOT) => { const d = wczytajSens(root).rodziny?.[rodzina]?.zakres_wyjatki; const w = d && (d[cwiczenie] || d['*']); if (!w) return undefined; const { powod, ...g } = w; return g; };
+/** Ćwiczenie DYNAMICZNE (wersja 1.1: lot, przechwyt, wymach): `rodziny.<rodzina>.dynamiczne` { ćwiczenie | „*” (cała rodzina): powód } w danych; limit skoku punktu w ciągłości = CONTRACT.maxJumpDynamic zamiast maxJump. Bez wpisu: zachowanie bez zmian. */
+export const dynamiczne = (rodzina, cwiczenie, root = ROOT) => { const d = wczytajSens(root).rodziny?.[rodzina]?.dynamiczne; return !!(d && (d[cwiczenie] || d['*'])); };
 export const otwarteDla = (rodzina, cwiczenie, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.otwarte?.[cwiczenie] ?? null;
 /** Identyfikatory wskazówek ćwiczenia: własne (lib/cues/data.json: setup/move/tips/mistakes) albo zestaw ogólny (cue-sets.json: ok). */
 export function wskazowkiCwiczenia(cwiczenie, root = ROOT) {
@@ -61,7 +63,7 @@ function probki(v2, d, blad) {
 }
 const drazek = (d) => d.sprzet.find((g) => g.rodzaj === 'sztanga');
 /** Pola kontraktu poza@2 (nazwy jak w KeyFrame/ArmData; zakresy i znaki: skeleton.ts → EXT_ROM) i rodzaj: 'tulow' (jedna wartość na klatkę) albo 'reka' (osobno dla R i L). */
-export const POLA_POZA2 = { skretTulowia: 'tulow', przechylTulowia: 'tulow', przechylMiednicy: 'tulow', przechylGlowy: 'tulow', obrotTulowia: 'tulow', uniesienieBarkow: 'reka', wysuniecieBarkow: 'reka', zgiecieNadgarstka: 'reka', obrotPrzedramienia: 'reka' };
+export const POLA_POZA2 = { skretTulowia: 'tulow', przechylTulowia: 'tulow', przechylMiednicy: 'tulow', przechylGlowy: 'tulow', przesuniecieBoczne: 'tulow', obrotTulowia: 'tulow', uniesienieBarkow: 'reka', wysuniecieBarkow: 'reka', zgiecieNadgarstka: 'reka', obrotPrzedramienia: 'reka' };
 const POLA_POZA1 = ['pochylenieTulowia', 'zgiecieKregoslupa', 'pochylenieGlowy', 'zgiecieSzyi'];
 /** Wersja kontraktu jako liczba z napisu „poza@N”. */
 const nrKontraktu = (t) => Number(/@(\d+)$/.exec(t ?? '')?.[1] ?? 1);
@@ -241,7 +243,7 @@ Object.assign(EWALUATORY, {
   potrojny_wyprost: ({ v2, p, parametry: q }) => { const ok = (s) => { const a = ['R', 'L'].map((side) => v2.jointAngles(s.f.sk, side)); const jedna = (x) => x.knee <= q.max_kolano_deg && x.hip <= q.max_biodro_deg && (q.max_kostka_deg === undefined || x.ankle <= q.max_kostka_deg); return (q.nogi ?? q.strony) === 'obie' ? a.every(jedna) : a.some(jedna); };
     return p.some(ok) ? [] : [`w żadnej klatce nie ma potrójnego wyprostu (kolano ≤ ${q.max_kolano_deg}°, biodro ≤ ${q.max_biodro_deg}°${q.max_kostka_deg !== undefined ? `, kostka ≤ ${q.max_kostka_deg}°` : ''}; nogi: ${q.nogi ?? q.strony})`]; },
   dlonie_na_wysokosci_barkow: ({ p, parametry: q }) => (p.some((s) => ['R', 'L'].filter((side) => s.f.sk.arms[side].grip[1] >= s.f.sk.shoulderC[1] + q.min_cm).length >= q.min_rak) ? [] : [`w żadnej klatce ${q.min_rak} ręk(a/i) nie ma dłoni ≥ ${q.min_cm} cm nad barkiem`]),
-  rece_przed_wyprostem_bioder: ({ v2, d, p, parametry: q }) => { const bi = p.map((s) => srK(v2, s.f.sk, 'hip')); const iLow = bi.indexOf(Math.max(...bi)); let iExt = -1; for (let i = iLow; i < p.length; i++) if (['R', 'L'].every((side) => v2.jointAngles(p[i].f.sk, side).hip <= q.max_biodro_deg)) { iExt = i; break; }
+  rece_przed_wyprostem_bioder: ({ v2, d, p, parametry: q }) => { const bi = p.map((s) => srK(v2, s.f.sk, 'hip')); const iMin = bi.indexOf(Math.min(...bi)); const iLow = bi.indexOf(Math.max(...bi.slice(0, iMin + 1))); /* najgłębsze zgięcie PRZED wyprostem (nie przechwyt po nim: zarzut z zawisu i rwanie kończą się głębiej niż zaczynają) */ let iExt = -1; for (let i = iLow; i < p.length; i++) if (['R', 'L'].every((side) => v2.jointAngles(p[i].f.sk, side).hip <= q.max_biodro_deg)) { iExt = i; break; }
     if (iExt < 0) return [`biodra nigdy nie prostują się (≤ ${q.max_biodro_deg}°) po najgłębszym zgięciu`]; const m = Math.max(...p.slice(iLow, iExt + 1).flatMap((s) => stronyRak(d).map((side) => v2.jointAngles(s.f.sk, side).elbow))); return m > q.max_lokiec_deg ? [`łokcie zginają się do ${f1(m)}° przed wyprostem bioder, a mają ≤ ${q.max_lokiec_deg}° (ręce proste do wyprostu bioder)`] : []; },
   odbior_na_barkach_u1: ({ d, p, parametry: q }) => { const st = stronyRak(d); const s = p[p.length - 1]; const o = []; const h = Gx(s, st)[1] - s.f.sk.shoulderC[1]; if (h < q.min_cm || h > q.max_cm) o.push(`w u = 1 chwyt jest ${f1(h)} cm względem barków, a ma ${q.min_cm}…${q.max_cm} cm (odbiór na barkach)`);
     for (const side of ['R', 'L']) { const e = s.f.sk.arms[side].elbow[1] - s.f.sk.shoulderC[1]; if (e < -q.max_lokiec_pod_barkiem_cm) o.push(`łokieć ${side} w u = 1 jest ${f1(-e)} cm pod barkiem, a ma ≤ ${q.max_lokiec_pod_barkiem_cm} cm (łokcie wysoko)`); } return o; },

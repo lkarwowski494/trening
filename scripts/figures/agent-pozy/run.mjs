@@ -69,6 +69,6 @@ async function main() {
     writeFileSync(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n'); console.log(`podglądy + manifest: ${dir}`);
     if (uwagi.length) { console.log('NIEZGODNOŚĆ MANIFESTU Z OBRAZEM:'); for (const u of uwagi) console.log(`  [${u.regula}] ${u.szczegol}`); process.exitCode = 1; }
   }
-  if (flag('zastosuj') && ok.length) { const r = zastosuj(ROOT, { rodzina, poze }); console.log(`nałożono: ${r.zapisano.length} → ${r.plik}${r.odrzucone.length ? `; odrzucone: ${r.odrzucone.map((x) => x.cwiczenie).join(', ')}` : ''}`); }
+  if (flag('zastosuj') && ok.length) { const r = zastosuj(ROOT, { rodzina, poze }); const plik = join(ROOT, r.plik); const dane = JSON.parse(readFileSync(plik, 'utf8')); const usuniete = Object.keys(mod.WYJATKI ?? {}).filter((k) => k in dane.cwiczenia); for (const k of usuniete) delete dane.cwiczenia[k]; if (usuniete.length) { writeFileSync(plik, JSON.stringify(dane, null, 1) + '\n'); console.log(`usunięto z danych ćwiczenia z wyjątkiem: ${usuniete.join(', ')}`); } console.log(`nałożono: ${r.zapisano.length} → ${r.plik}${r.odrzucone.length ? `; odrzucone: ${r.odrzucone.map((x) => x.cwiczenie).join(', ')}` : ''}`); }
 }
 main().catch((e) => { console.error(e.stack); process.exit(1); });

@@ -308,7 +308,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     nazwa: 'taśmy do podwieszania', caps: ['suspension'], fields: ['z', 'punkt'], opis: 'taśmy do podwieszania: punkt zaczepu wysoko (x, y, z), dwie taśmy do dłoni albo kostek (punkt, trzyma)',
     props: (g, grips, _all, ankles) => {
       const anchor: V3 = [g.x ?? 0, g.y ?? EQUIP.suspensionY, g.z ?? 0]; const kost = g.punkt === 'kostki';
-      return sidesOf(g).map((s): Prop => ({ k: 'cable', from: anchor, to: kost ? ankles[s] : grips[s], attach: kost ? 'strap' : 'handle', ends: [kost ? ankles[s] : grips[s]], solid: true }));
+      return sidesOf(g).map((s): Prop => ({ k: 'cable', from: anchor, to: kost ? ankles[s] : grips[s], attach: kost ? 'strap' : 'handle', ends: [kost ? ankles[s] : grips[s]], solid: true, free: EQUIP.suspensionFree }));
     },
     check: g => [...bounds('wysokość zaczepu taśm y', g.y, 100, 350), ...(g.punkt === 'miednica' ? ['sprzęt: taśmy do podwieszania mocujemy do dłoni albo kostek (punkt: "dlonie" lub "kostki")'] : [])],
     ref: () => [

@@ -2784,6 +2784,9 @@
       "pomin": {}
     },
     "plyo": {
+      "dynamiczne": {
+        "*": "skok: wybicie, lot i lądowanie w jednym przebiegu z zamachem rąk; droga najszybszego punktu (dłoń przy zamachu rąk) wynosi 420–590 cm na cały ruch wobec 288 cm limitu ruchu zwykłego (pomiar generatora 26.10.2026), bo tego wymaga sam skok — limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "faza_lotu": {
           "typ": "lot",
@@ -2947,6 +2950,9 @@
       "pomin": {}
     },
     "olympic": {
+      "dynamiczne": {
+        "*": "zarzut, rwanie i podrzut z przechwytem: sztanga pokonuje 130–200 cm, a ciało schodzi pod nią w jednym przebiegu; droga najszybszego punktu na cały ruch (sztanga, łokcie, głowa przy przechwycie) przekracza 288 cm limitu ruchu zwykłego (pomiar generatora 26.10.2026) — limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "plecy_neutralne": {
           "typ": "kregoslup_neutralny",
@@ -4355,6 +4361,9 @@
       "pomin": {}
     },
     "kb_ballistic": {
+      "dynamiczne": {
+        "One-Arm Kettlebell Clean and Jerk": "zarzut i podrzut jednym ciężarem w jednym przebiegu (zawis, rack, ugięcie, wyrzut, wykrok): sześć faz z przechwytem, tempo najszybszego punktu 7–8 cm na 1/48 wobec limitu 6 cm ruchu zwykłego (pomiar generatora 26.10.2026) — limit CONTRACT.maxJumpDynamic (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "plecy": {
           "typ": "kregoslup_neutralny",
@@ -6112,6 +6121,9 @@
       "pomin": {}
     },
     "sled_throw": {
+      "dynamiczne": {
+        "Backward Medicine Ball Throw": "rzut do tyłu znad kolan: z głębokiego przysiadu do wyprostu i ręce za głowę w jednym przebiegu; tempo najszybszego punktu 9–10 cm na 1/48 wobec limitu 6 cm ruchu zwykłego (pomiar generatora 26.10.2026) — limit CONTRACT.maxJumpDynamic (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "sanki_pochylenie": {
           "typ": "pochylenie_tulowia",

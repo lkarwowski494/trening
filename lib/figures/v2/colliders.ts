@@ -65,7 +65,7 @@ export function equipColliders(props: Prop[]): Collider[] {
         if (p.len === undefined) break; const d = sub(p.to, p.from); const l = Math.hypot(...d) || 1; const k = Math.max(0, l - (p.cut ?? EQUIP.landmineHand)) / l;
         c.push({ k: 'capsule', id: 'barPivot', a: p.from, b: [p.from[0] + d[0] * k, p.from[1] + d[1] * k, p.from[2] + d[2] * k], r: EQUIP.landmineR }); break; }
       case 'cable': { /* tylko linka z danych kontraktu (solid); ostatnie EQUIP.cableEnd cm przy osprzęcie (dłonie, kostka) bez kolidera */
-        if (!p.solid) break; const d = sub(p.to, p.from); const l = Math.hypot(...d) || 1; const k = Math.max(0, l - EQUIP.cableEnd) / l;
+        if (!p.solid) break; const d = sub(p.to, p.from); const l = Math.hypot(...d) || 1; const k = Math.max(0, l - (p.free ?? EQUIP.cableEnd)) / l;
         c.push({ k: 'capsule', id: 'cable', a: p.from, b: [p.from[0] + d[0] * k, p.from[1] + d[1] * k, p.from[2] + d[2] * k], r: EQUIP.cableR }); break; }
       case 'tower': if (p.solid) c.push(prism('tower', rectPoly(p.x - EQUIP.towerW / 2, 0, p.x + EQUIP.towerW / 2, p.h), p.z - EQUIP.towerW / 2, p.z + EQUIP.towerW / 2)); break;
       case 'ball': c.push({ k: 'capsule', id: p.held === false ? 'gymBall' : 'ball', a: p.c, b: p.c, r: p.r ?? (p.held === false ? EQUIP.gymBallR : EQUIP.medBallR) }); break;

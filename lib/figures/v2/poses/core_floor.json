@@ -2015,7 +2015,7 @@
       0
      ],
      "pochylenieTulowia": -76,
-     "zgiecieKregoslupa": 0,
+     "zgiecieKregoslupa": 20,
      "pochylenieGlowy": -76,
      "nogi": {
       "R": {
@@ -2050,8 +2050,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -96.9,
-        60.8,
+        -96,
+        60.5,
         5
        ],
        "biegunLokcia": [
@@ -2062,8 +2062,8 @@
       },
       "L": {
        "chwyt": [
-        -96.9,
-        60.8,
+        -96,
+        60.5,
         -5
        ],
        "biegunLokcia": [
@@ -2082,7 +2082,7 @@
       0
      ],
      "pochylenieTulowia": -62,
-     "zgiecieKregoslupa": 0,
+     "zgiecieKregoslupa": 40,
      "pochylenieGlowy": -62,
      "nogi": {
       "R": {
@@ -2117,8 +2117,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -81.6,
-        82.7,
+        -78.4,
+        81,
         5
        ],
        "biegunLokcia": [
@@ -2129,8 +2129,8 @@
       },
       "L": {
        "chwyt": [
-        -81.6,
-        82.7,
+        -78.4,
+        81,
         -5
        ],
        "biegunLokcia": [
@@ -2513,9 +2513,9 @@
       9.5,
       0
      ],
-     "pochylenieTulowia": -72,
-     "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": -72,
+     "pochylenieTulowia": -76,
+     "zgiecieKregoslupa": 35,
+     "pochylenieGlowy": -76,
      "nogi": {
       "R": {
        "kostka": [
@@ -2549,8 +2549,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -97.1,
-        63.6,
+        -97.9,
+        56.1,
         8
        ],
        "biegunLokcia": [
@@ -2561,8 +2561,8 @@
       },
       "L": {
        "chwyt": [
-        -97.1,
-        63.6,
+        -97.9,
+        56.1,
         -8
        ],
        "biegunLokcia": [
@@ -2580,9 +2580,9 @@
       9.5,
       0
      ],
-     "pochylenieTulowia": -72,
-     "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": -72,
+     "pochylenieTulowia": -76,
+     "zgiecieKregoslupa": 35,
+     "pochylenieGlowy": -76,
      "nogi": {
       "R": {
        "kostka": [
@@ -2616,8 +2616,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        -97.1,
-        63.6,
+        -97.9,
+        56.1,
         8
        ],
        "biegunLokcia": [
@@ -2628,8 +2628,8 @@
       },
       "L": {
        "chwyt": [
-        -97.1,
-        63.6,
+        -97.9,
+        56.1,
         -8
        ],
        "biegunLokcia": [
@@ -5582,9 +5582,9 @@
       9.5,
       0
      ],
-     "pochylenieTulowia": -66,
-     "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": -66,
+     "pochylenieTulowia": -72,
+     "zgiecieKregoslupa": 40,
+     "pochylenieGlowy": -72,
      "nogi": {
       "R": {
        "kostka": [
@@ -5630,7 +5630,7 @@
       },
       "L": {
        "chwyt": [
-        0.1,
+        1.6,
         5,
         -24
        ],
@@ -5650,9 +5650,9 @@
       9.5,
       0
      ],
-     "pochylenieTulowia": -66,
-     "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": -66,
+     "pochylenieTulowia": -72,
+     "zgiecieKregoslupa": 40,
+     "pochylenieGlowy": -72,
      "nogi": {
       "R": {
        "kostka": [
@@ -5686,7 +5686,7 @@
      "rece": {
       "R": {
        "chwyt": [
-        0.1,
+        1.6,
         5,
         24
        ],
