@@ -323,9 +323,15 @@ export function naruszenia(v2, d, reguly, blad) {
 }
 
 /** Walidacja sensu: poza poprawna bez naruszeń; każdy błąd łamie dokładnie grupę swojej wskazówki. Zwraca [{ kod, szczegol }]. */
-export function sprawdzSens({ v2, poza, rodzina, cwiczenie, root = ROOT }) {
+/** P2 (recenzja n5): zapas od progu. Zaostrza progi liczbowe reguł o margines (5% progu, a dla cm/° od 4 wzwyż co najmniej 1): max_* maleje, min_* rośnie (pola o niejednoznacznym kierunku, np. min_max_deg, pomijamy). Poza, która przechodzi regułę oryginalną, a nie zaostrzoną, ma zapas mniejszy niż margines. */
+const POMIN_KIERUNEK = /^(max_min|min_max|min_min|min_abs|min_rak|max_zakres|min_zakres|min_stosunek)/;
+export const marginesProgu = (nazwa, v) => Math.max(0.05 * Math.abs(v), /_(cm|deg)$/.test(nazwa) && Math.abs(v) >= 4 ? 1 : 0);
+export function zaostrzReguly(reguly) {
+  return reguly.map((r) => { const par = { ...(r.parametry ?? {}) }; for (const [k, v] of Object.entries(par)) { if (typeof v !== 'number' || POMIN_KIERUNEK.test(k)) continue; const m = marginesProgu(k, v); if (k.startsWith('max_')) par[k] = v - m; else if (k.startsWith('min_')) par[k] = v + m; } return { ...r, parametry: par }; });
+}
+export function sprawdzSens({ v2, poza, rodzina, cwiczenie, root = ROOT, zapas = false }) {
   const bez = bledyBezAnimacji(rodzina, root); const nieAnim = (poza.bledy ?? []).map((b, j) => ({ b, j })).filter(({ b }) => b.cue in bez).map(({ b, j }) => ({ kod: 'blad-sens', szczegol: `bledy[${j}] „${b.cue}”: ${bez[b.cue]}` }));
-  const reguly = regulyDla(rodzina, cwiczenie, root); if (!reguly.length) return nieAnim;
+  let reguly = regulyDla(rodzina, cwiczenie, root); if (!reguly.length) return nieAnim; if (zapas) reguly = zaostrzReguly(reguly);
   const out = [...nieAnim]; const dane = wczytajSens(root).rodziny[rodzina];
   for (const n of naruszenia(v2, poza, reguly)) for (const o of n.opisy) out.push({ kod: 'sens', szczegol: `reguła „${n.regula}” (wskazówka ${reguly.find((r) => r.id === n.regula).cue ?? 'konwencja'}): ${o}` });
   if (out.length) return out; /* błędy oceniamy dopiero, gdy poza poprawna jest czysta */

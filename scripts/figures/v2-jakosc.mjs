@@ -52,6 +52,18 @@ export const PROGI = {
   zwijanieMiednicaCm: 3, zwijanieKregoslupDeg: 20, vUpMinDeg: 30, /* R14b: mechanizm wyjątku „zwijanie obu końców” (miednica unosi się ≥ cm, kręgosłup zgięty ≥ stopni) i „V” (tułów i nogi razem ≥ stopni nad podłogą) */
   stykPodparciaCm: 4.5, /* punkt ciała uznany za podparcie, gdy jego (oś) wysokość ≤ tyle: dłoń, stopa, kolano (promień kończyny) */
 };
+/** P2 (recenzja n5): kierunek progów (max: wielkość ≤ próg; min: wielkość ≥ próg). Progi bramkujące (rolloutRekaMaxCm, rolloutBarkiMinCm, stykPodparciaCm, widocznoscBiodroMaxDeg, tulowUnosiMinDeg, statyczneMaxKlatek) i obiekty nie są zaostrzane. */
+export const PROGI_MAX = ['liniaPelnaCm', 'koloProsteMaxDeg', 'kolanoPodTulowiemCm', 'przedramieBokDeg', 'receProsteMaxDeg', 'rzadBleduKolanoDeg', 'rzadBleduTolDeg', 'wisiCm', 'lokiecPrzedPlecamiMaxCm', 'lokiecNadNadgarstkiemCm', 'ledzwieCm', 'prosteReceDeg', 'zwisKatDeg', 'zwisMostekCm', 'falloutLokiecMaxDeg', 'szyjaMaxDeg', 'rozstawTolerancja', 'stykFrontCm', 'kolanoStykCm', 'lokiecPodBarkiemCm'];
+export const PROGI_MIN = ['bladMinCm', 'rozneKlatkiCm', 'podstawaMinCm', 'kolanoNadPodlogaCm', 'kolanaUgieteMinDeg', 'bladGorszyCm', 'bladWidocznyDeg', 'falloutBarkMinDeg', 'podparcieMarginesCm', 'podlogaKonczyna', 'podlogaTulow', 'ksztaltPodPodlogaCm', 'kregoslupZwijaMinDeg', 'zwijanieMiednicaCm', 'zwijanieKregoslupDeg', 'vUpMinDeg'];
+export const marginesJakosci = (v) => Math.max(0.05 * Math.abs(v), Math.abs(v) >= 4 ? 1 : 0);
+/** Wykonuje `fn` z progami zaostrzonymi o margines (P2) i przywraca progi. */
+export function zZaostrzonymiProgami(fn) {
+  const kopia = { ...PROGI }; try { for (const k of PROGI_MAX) PROGI[k] = kopia[k] - marginesJakosci(kopia[k]); for (const k of PROGI_MIN) PROGI[k] = kopia[k] + marginesJakosci(kopia[k]); return fn(); } finally { Object.assign(PROGI, kopia); }
+}
+/** Reguły jakości, które poza spełnia z zapasem mniejszym niż margines progu (przechodzi próg, nie przechodzi progu zaostrzonego): [{ regula, szczegol }]. */
+export function krawedzJakosci(poza, ctx) {
+  const baza = new Set(sprawdzJakosc(poza, ctx).map((x) => x.regula)); return zZaostrzonymiProgami(() => sprawdzJakosc(poza, ctx)).filter((x) => !baza.has(x.regula)).map((x) => ({ regula: x.regula, szczegol: x.szczegol }));
+}
 /** Odwiedzenie ramienia widoczne Z PRZODU (stopnie): arcsin(wysunięcie łokcia w bok poza oś barku / PRAWDZIWA długość ramienia 3D, nie długość w rzucie), sprawdzane w KAŻDEJ klatce. To druga linia obrony; pierwsza to geometria (lokiec_nad_nadgarstkiem, rozstaw_dloni).
  * Konwencja rysunku (nie twierdzenie merytoryczne; badacz 26.10.2026, scratchpad/badania-figury/lokiec-masy.md; rozstrzygnięcie koordynatora): pompka standardowa, wąska i diamentowa ≤ 45° (część wspólna źródeł: NASM ok. 45°, ACE „na boki” — brak liczb dla wąskiej/diamentowej,
  * a źródła różnią się kierunkowo), szeroka ≤ 70° i wyraźnie szersza niż standardowa (≥ ODWIEDZENIE_DOLNE), wiosłowanie odwrócone ≤ 45° (spójnie ze wskazówką inv.pull „łokcie blisko tułowia”). Litera T (≈ 90°) jest odrzucana w każdym wariancie. */
