@@ -12,7 +12,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 354 | 354 | 0 |
 | TEKST | 1116 | 1116 | 0 |
-| LOGIKA | 1042 | 1041 | 0 |
+| LOGIKA | 1042 | 1042 | 0 |
 | WYMIAR | 146 | 146 | 0 |
 
 ## EKRAN
@@ -1780,7 +1780,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/contract.poseAt | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.deltaAt | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.applyDelta | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
-| figures/v2/contract.neutralFootPitch | lib/figures/v2/contract.ts | WYJĄTEK: BRAK |
+| figures/v2/contract.neutralFootPitch | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.toPoseIn | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.propsFrom | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.keyframeFrame | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |

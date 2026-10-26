@@ -10,7 +10,7 @@ import { execFileSync, spawnSync } from 'child_process';
 import { FIG_DATA } from '@/lib/figures';
 import {
   CONTRACT, MARKS, AFFECTS, GEAR, TEMPLATES, templateFor, knownFamily, poseSchema, checkSchema, poseAt, deltaAt, applyDelta, toPoseIn, propsFrom, keyframeFrame, validatePose, describeContract,
-  NEUTRAL_ANKLE_DEG, solveSkeleton, jointAngles, soleY, keyFrameOf, deltaOf, exampleFor, dataShapes, figureSpec, frameAt, checkFrame, SIDES, FAMILIES,
+  NEUTRAL_ANKLE_DEG, neutralFootPitch, solveSkeleton, jointAngles, soleY, keyFrameOf, deltaOf, exampleFor, dataShapes, figureSpec, frameAt, checkFrame, SIDES, FAMILIES,
   type PoseData, type KeyFrame, type DeltaFrame, type DataError, type Gear, type ContractIssue, type ValidateCtx, type FamilyTemplate, type LegData, type ArmData, type RomData, type Affects,
 } from '@/lib/figures/v2';
 
@@ -202,6 +202,10 @@ describe('stopa automatyczna (decyzja koordynatora 26.10.2026): brak podbicia �
   });
   it('stopa przy podłodze (kostka y = 7): pochylenie zmniejszone do płaskiego, podeszwa nie pod podłogą', () => {
     const sk = solveSkeleton(toPoseIn(k(7, 35))); expect(soleY(sk.legs.R)).toBeGreaterThan(-1e-3);
+  });
+  it('neutralFootPitch: goleń pionowa → stopa ≈ +5°; przy podłodze (kostka y = 7) nie schodzi poniżej podłogi', () => {
+    expect(neutralFootPitch([0, 100, 0], 'R', { ankle: [0, 20, 9] })).toBeCloseTo(NEUTRAL_ANKLE_DEG, -1);
+    expect(neutralFootPitch([0, 8, 0], 'R', { ankle: [35, 7, 15] })).toBeGreaterThanOrEqual(0); expect(neutralFootPitch([0, 8, 0], 'R', { ankle: [35, 7, 15] })).toBeLessThanOrEqual(NEUTRAL_ANKLE_DEG + 40);
   });
   it('jawne podbicie ma pierwszeństwo (rodziny, w których stopa jest ruchem)', () => {
     expect(toPoseIn(k(40, 50, -60)).legs.R.footPitch).toBe(-60);
