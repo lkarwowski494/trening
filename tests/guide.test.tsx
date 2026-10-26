@@ -10,6 +10,7 @@ import * as store from '@/lib/store';
 import { GUIDE, guideSeen, guideProgress, markGuideSeen } from '@/lib/guide';
 import { EN } from '@/lib/i18n.en';
 import { WHATS_NEW } from '@/lib/whatsnew';
+import { PROBKI } from './whatsnew-probki';
 import { applyLang } from '@/lib/i18n';
 import { fresh, saved, addWorkout } from './helpers';
 import { renderApp, flushAll, screen, tap, act } from './app';
@@ -56,7 +57,6 @@ test('macierz: każdy tekst przewodnika (i punkt „Co nowego”) jest w treści
     'Na ekranie Trening stuknij duży przycisk „Start” (następny trening) albo „Inny trening” — tam wybierzesz szablon, powtórzysz ostatni trening albo zaczniesz pusty.', /* docs/22 P2/P3 (11.10.2026) */
     'Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.',
     'Na ekranie Trening „Progresja” porównuje tydzień (wykonane + zaplanowane) z poprzednim oraz miesiąc z miesiącem.',
-    'Nowy ekran Trening: dzisiejszy trening, tydzień w liczbach i ostatni trening; przewodnik po funkcjach w Więcej.',
     'Po kilku tygodniach treningu z rzędu zakładka Plan podpowie „Zaplanuj deload od …”.',
     'Postępy i rekordy',
     'Przejrzyj podgląd i „Zasady planu” — wynik zapisuje się dopiero po zatwierdzeniu.',
@@ -134,9 +134,12 @@ describe('ekrany', () => {
     expect(screen.getByText('Przewodnik')).toBeTruthy(); expect(screen.getByText('Przeczytane: 1 z 10')).toBeTruthy();
     await tap(screen.getByText('Przewodnik')); await flushAll(10); expect(screen.getByText('Przeczytane: 1 z 10')).toBeTruthy();
     await boot('/'); await tap(screen.getByLabelText('Przewodnik po funkcjach')); await flushAll(10); expect(screen.getByText(/^Najważniejsze funkcje/)).toBeTruthy();
-    await boot('/', () => { addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });
-    await tap(screen.getByTestId('whats-new-i')); await flushAll(5); await tap(screen.getByText('Przewodnik po funkcjach')); await flushAll(10);
-    expect(screen.getByText(/^Najważniejsze funkcje/)).toBeTruthy(); expect(screen.queryByTestId('whats-new')).toBeNull();
+    WHATS_NEW.splice(0, WHATS_NEW.length, ...PROBKI); /* 1.0.0: historia pusta — wejście z „Co nowego” przy wpisach (pierwszy wpis 1.1) */
+    try {
+      await boot('/', () => { addWorkout(new Date(2026, 9, 7, 18).getTime(), [['Back Squat', [{ weight: 100, reps: 5 }]]]); });
+      await tap(screen.getByTestId('whats-new-i')); await flushAll(5); await tap(screen.getByText('Przewodnik po funkcjach')); await flushAll(10);
+      expect(screen.getByText(/^Najważniejsze funkcje/)).toBeTruthy(); expect(screen.queryByTestId('whats-new')).toBeNull();
+    } finally { WHATS_NEW.splice(0, WHATS_NEW.length); }
   });
   test('English', async () => {
     await boot('/guide', () => {}, 'en');

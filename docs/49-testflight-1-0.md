@@ -13,7 +13,7 @@ Wersja 1.0. Sprawdź na telefonie: (1) przerwa z zablokowanym ekranem — baner,
 
 Sprawdzenia:
 
-- [ ] **T-01 Instalacja (ZD-02, AK-05).** Zaktualizuj z poprzedniego buildu (albo zainstaluj): ikona i nazwa poprawne, animacja startowa krótka, „Co nowego” pokazuje 1.0, historia i szablony na miejscu, brak komunikatu o błędzie danych.
+- [ ] **T-01 Instalacja (ZD-02, AK-05).** Zaktualizuj z poprzedniego buildu (albo zainstaluj): ikona i nazwa poprawne, animacja startowa krótka, w nagłówku ekranu Trening nie ma przycisku „Co nowego” ✦ (1.0: historia wyczyszczona, decyzja 14.10.2026), historia i szablony na miejscu, brak komunikatu o błędzie danych.
 - [ ] **T-02 Ekran blokady w języku aplikacji (PR-12, PR-17).** Zacznij trening, odhacz serię (przerwa 2:00), zablokuj ekran: odliczanie w Live Activity, w 2:00 baner, dźwięk i wibracja. Telefon po polsku, aplikacja Więcej → Język → English: etykieta „Rest”, nie „Przerwa”. Zmień język na Deutsch, zablokuj ponownie: „Pause”. Zmień przerwę w trakcie: Live Activity się zmienia.
 - [ ] **T-03 Powiadomienia pilne (R-004).** Ustawienia iOS → Trening → Powiadomienia: jest „Powiadomienia pilne”. Włącz tryb skupienia, który wycisza Trening, zacznij przerwę 1 min, zablokuj ekran: koniec przerwy daje baner (wibracja bez banera = wada; opis diagnozy: docs/47, Test C). Wynik wpisz przy R-004.
 - [ ] **T-04 „Pogrubiony tekst” (R-014).** Ustawienia iOS → Dostępność → Rozmiar wyświetlania i tekstu → Pogrubiony tekst. Wróć do aplikacji (zrestartuj ją): treść, przyciski i nagłówki mają być wyraźnie grubsze niż bez opcji. Gdy bez różnicy — wada (przesunięcie wagi w `font()`). Przy okazji największy rozmiar tekstu: trening, plan i ustawienia bez ucięć (ZD-03).

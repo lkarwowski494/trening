@@ -20,36 +20,14 @@ jest.setTimeout(240000);
 type Cmd = any;
 const same = (a: Cmd, b: Cmd) => JSON.stringify(a) === JSON.stringify(b);
 const at = (c: Cmd[], step: Cmd) => { const i = c.findIndex(x => same(x, step)); if (i < 0) throw new Error('brak kroku ' + JSON.stringify(step)); return i; };
-/** Przewinięcie ekranu Trening z przebiegu 38014484054: „i” na y = 27 zamiast 81. */
-const RUN_SCROLL = 81 - 27;
-const SHOT = { takeScreenshot: '63-dzis' };
-const TAP_I = { tapOn: { id: 'whats-new-i' } };
-
-async function run13(cmds: Cmd[]) {
-  const f = '13-kalendarz-plan.yaml'; const r = new Runner(f); const i = at(cmds, SHOT);
-  await r.run(cmds.slice(0, i + 1), f);
-  const c = r.find({ id: 'whats-new-i' }, true)[0]; const b = c?.node ? r.screenBox(c.node as any) : null;
-  expect(b?.sc).toBeTruthy();
-  /* M3 p2: nad nagłówkiem ekranu Start doszedł wiersz „Planowanie” — stałe przewinięcie 54 pt nie wynosi już „i” pod pasek stanu; odtwarzamy sytuację z przebiegu (i na y = 27) */
-  const top = r.vpTop(b!.sc!); r.scrollY.set(r.scrollKey(b!.sc!), r.curScroll(b!.sc!, top) + b!.y - (81 - RUN_SCROLL));
-  await r.run(cmds.slice(i + 1), f);
-}
 /** Przebieg 38014484054: pierwsza próba gubi drugi znak masy ciała („80” → „8”; przy wpisywaniu po znaku — „0”). */
 const dropSecond = () => { let n = 0; return (t: string, field: any) => { if (field.props.testID !== 'bodymass-kg') return t; n++; return n === 1 ? t.slice(0, 1) : n === 2 && t.length === 1 ? '' : t; }; };
 
 describe('E2E 105: scenariusze 13 i 15 na symulatorze', () => {
   afterAll(() => { delete (global as any).__notifPerm; });
 
-  test('13 — z przewinięciem z przebiegu „i” pod paskiem stanu: scenariusz najpierw przewija ekran do góry i otwiera „Co nowego”', async () => {
-    await run13(load(join(DIR, '13-kalendarz-plan.yaml')));
-  });
-
-  test('13 — wersja z przebiegu (stuknięcie „i” bez przewinięcia) zatrzymuje się na „i”', async () => {
-    const cmds = load(join(DIR, '13-kalendarz-plan.yaml')); const i = at(cmds, SHOT), j = at(cmds, TAP_I);
-    const old = [...cmds.slice(0, i + 1), ...cmds.slice(j)];
-    await expect(run13(old)).rejects.toThrow(/krok: 13-kalendarz-plan\.yaml: tapOn \{"id":"whats-new-i"\}/);
-  });
-
+  /* 13 — stuknięcie „i” pod paskiem stanu: przy 1.0.0 historia „Co nowego” jest pusta i scenariusz 13 nie stuka „i” (docs/18, 14.10.2026);
+   * regresja wraca razem z pierwszym wpisem 1.1 (historia git tego pliku). */
   test('15 — zgubiony znak masy ciała: scenariusz powtarza wpis i zapisuje 80 kg', async () => {
     const f = '15-masa-licencje.yaml'; const r = new Runner(f); r.inputFilter = dropSecond();
     await r.run(load(join(DIR, f)), f);

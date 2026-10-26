@@ -822,7 +822,7 @@
  "Zamieniono {n} {w}": "app/adapt.tsx:37",
  "Zamienniki": "app/template/[id].tsx:88",
  "Zamień ćwiczenie": "app/_layout.tsx:101",
- "Zamknij": "components/IdeaLink.tsx:21, components/WhatsNew.tsx:56",
+ "Zamknij": "components/IdeaLink.tsx:21, components/WhatsNew.tsx:57",
  "Zapamiętaj": "components/WorkoutBlocks.tsx:205",
  "Zapisać zmiany?": "app/history/edit/[id].tsx:63",
  "Zapisano": "app/generator.tsx:74, components/OwnPlan.tsx:58",
