@@ -11,7 +11,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { cwiczeniaRodziny, wczytajKontrakt } from './gemini-pozy.mjs';
 import { loadV2 } from './v2-build.mjs';
-import { regulyDla, pominiecie, EWALUATORY, grupaBledu, wczytajSens } from './v2-sens.mjs';
+import { regulyDla, pominiecie, EWALUATORY, grupaBledu, wczytajSens, bledyBezAnimacji } from './v2-sens.mjs';
 import { wczytajRejestr, liniePolecenia, statystykaWersji } from './gemini-rejestr.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
@@ -151,6 +151,22 @@ const FAZY = {
     'Chwyt: x = x drążka, y = y drążka, z = ±(połowa rozstawu dłoni): wąski ±10…15, standard ±20…25, szeroki ±30…40 cm.',
   ],
 };
+const FAZY_CORE_FLOOR = () => [
+  'Układ leżący na plecach (jak w crunch): głowa w stronę −x, nogi w stronę +x: pochylenieTulowia = −90 (poziomo), pochylenieGlowy ≈ pochylenieTulowia (głowa leży na podłodze), miednica = [0, 8, 0] (y = 8 cm — najniżej, przy którym uda nie przenikają podłogi; reguła: ≤ 12 cm), barki = miednica + 50 cm w stronę −x przy pochyleniu −90.',
+  'Nogi zgięte, stopy na podłodze: kostki = [35, 7, ±15] (wysokość kostki 7 cm); kolana liczy IK. Dłonie: wzdłuż ciała, ramiona prawie proste: chwyt = bark + 56 cm w stronę miednicy, z = ±24 (skrzyżowane na klatce zginają łokieć powyżej limitu 149° — unikaj); dłonie przy skroniach tylko bez ciągnięcia głowy.',
+  'Unoszenie tułowia (crunch): u = 0 pochylenieTulowia −90 → u = 1 około −62 (barki unoszą się o ≈ 20 cm), pochylenieGlowy podąża za tułowiem (różnica ≤ 30°), miednica nie rusza się (y ≤ 12, zmiana ≤ 3 cm).',
+  'Ruch prowadzony miednicą (reverse crunch): barki i głowa nieruchome na podłodze, miednica unosi się o ≥ 8 cm (u = 1: y ≈ 20), kostki podążają za miednicą (kolana do klatki).',
+  'Pozycja na czworaka (bird dog): tułów poziomo (pochylenieTulowia 90 w stronę +x), ręce i kolana na podłodze/pod barkami; w u = 1 jedna dłoń wyprostowana do przodu na wysokości barku i przeciwna kostka wyprostowana do tyłu na wysokości miednicy.',
+];
+/** Wzorzec: crunch leżąc na plecach wyliczony z modelu (barki unoszą się o ≈ 20 cm, głowa podąża za tułowiem, miednica nieruchoma); przechodzi geometrię i reguły sensu core_floor. */
+export function wzorzecCrunch(cwiczenie = 'Crunch') {
+  const { v2 } = silnik(); const base = (u, pitch) => ({ u, miednica: [0, 8, 0], pochylenieTulowia: pitch, zgiecieKregoslupa: 0, pochylenieGlowy: pitch, nogi: { R: { kostka: [35, 7, 15] }, L: { kostka: [35, 7, -15] } }, rece: { R: { chwyt: [0, 0, 0] }, L: { chwyt: [0, 0, 0] } } });
+  const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 150 }];
+  const klatki = [0, 0.5, 1].map((u) => { const k = base(u, -90 + 28 * u); const d = { kontrakt: v2.CONTRACT.id, rodzina: 'core_floor', cwiczenie, sprzet, klatki: [k, { ...k, u: 1 }], bledy: [] }; const sh = v2.keyframeFrame(d, 0).sk.shoulderC;
+    const w = [8 - sh[0], 8 - sh[1]]; const n = Math.hypot(...w); const g = [sh[0] + (w[0] / n) * 56, sh[1] + (w[1] / n) * 56 - 1]; /* ręce wzdłuż ciała, proste, w stronę miednicy */
+    k.rece = { R: { chwyt: [g[0], g[1], 24] }, L: { chwyt: [g[0], g[1], -24] } }; for (const q of ['R', 'L']) for (const i of [0, 1, 2]) k.rece[q].chwyt[i] = Math.round(k.rece[q].chwyt[i] * 10) / 10; return k; });
+  return { kontrakt: v2.CONTRACT.id, rodzina: 'core_floor', cwiczenie, sprzet, klatki, bledy: [] };
+}
 export function punktyOdniesienia(rodzina) {
   const { v2 } = silnik(); const B = v2.BODY; const t = v2.templateFor(rodzina); const reach = B.uarm + B.farm + B.hand;
   const L = [
@@ -162,7 +178,7 @@ export function punktyOdniesienia(rodzina) {
     '- Konwencja kątów w walidatorze: 0° = staw wyprostowany, kąt rośnie ze zgięciem (łokieć prosty = 0°, zgięty maks. 149°; kolano prosty 0°, maks. 141°). „Łokcie wyprostowane ≥ 165°” w zapisie anatomicznym to tutaj ≤ 15°.',
     '- MARGINES: celuj 1–2 cm i 2–3° DO ŚRODKA każdego limitu (zasięg, zakresy stawów, przenikanie, chwyt) — model ma tolerancję 0,3–0,6 cm, a odrzucenia z poprzednich prób dotyczyły przekroczeń o 0,6–1,5 cm i 1°.',
   ];
-  const f = FAZY[rodzina];
+  const f = FAZY[rodzina] ?? (rodzina === 'core_floor' ? FAZY_CORE_FLOOR : null);
   if (f) L.push('- Relacje faz ruchu (pozy wyjściowa i skrajna):', ...f().map((x) => `  - ${x}`));
   else L.push('- Relacje faz: dla KAŻDEGO ćwiczenia najpierw ustal punkty kluczowe obu faz (gdzie ma być chwyt względem sprzętu, miednica, kostki — jako liczby w cm w układzie powyżej), potem zapisz klatki tak, by te relacje zachodziły; stopy opierają się o podłogę lub sprzęt, dłonie leżą na chwycie.');
   return L;
@@ -176,6 +192,11 @@ const OPIS_TYPU = {
   miednica_poziomo: (q) => `miednica przesuwa się poziomo (${q.osie.join(', ')}) o ≤ ${q.max_cm} cm w całym ruchu`,
   kostka_wzgledem_miednicy: (q) => `(x kostki − x miednicy) w ${q.min_cm}…${q.max_cm} cm w każdej klatce, a jej zmiana w ruchu ≤ ${q.zmiana_max_cm} cm`,
   pochylenie_tulowia: (q) => `pochylenieTulowia w każdej klatce ${q.min_deg}°…${q.max_deg}°`,
+  miednica_na_podlodze: (q) => `środek miednicy ma y ≤ ${q.max_y_cm} cm w KAŻDEJ klatce (dolna część pleców zostaje na podłodze; leżąca osoba: y ≈ 8)`,
+  szyja_neutralna: (q) => `kąt między osią głowy a osią tułowia ≤ ${q.max_deg}° w każdej klatce (pochylenieGlowy podąża za pochylenieTulowia ± ${q.max_deg}°; bez ciągnięcia głowy)`,
+  lopatki_od_podlogi: (q) => `barki w u = 1 co najmniej ${q.min_cm} cm wyżej niż w u = 0, a miednica zmienia wysokość o ≤ ${q.max_miednica_cm} cm`,
+  miednica_unosi_sie: (q) => `miednica w u = 1 co najmniej ${q.min_cm} cm wyżej niż w u = 0, a barki zmieniają wysokość o ≤ ${q.max_barki_cm} cm`,
+  bird_dog_linia: (q) => `w u = 1 dłoń jednej ręki na wysokości barku (± ${q.tol_cm} cm) i kostka PRZECIWNEJ nogi na wysokości miednicy (± ${q.tol_cm} cm)`,
   jedna_reka: (q) => `sztanga ma trzyma: "R" albo "L", a wolna dłoń jest ≥ ${q.min_wolna_od_osi_cm} cm od osi drążka`,
 };
 /** Sekcja „Reguły sensu” dla ćwiczeń części: reguły raz (z liczbami), potem które ćwiczenia ich dotyczą; + wymóg dla błędów. */
@@ -185,17 +206,18 @@ export function sekcjaRegul(rodzina, cwiczenia, root = ROOT) {
   const dane = wczytajSens(root).rodziny[rodzina]; const L = ['Poza POPRAWNA ma spełniać wszystkie reguły swojego ćwiczenia (bez bujania, z pełnym zakresem). Reguły sprawdza program — każda ma identyfikator:', ''];
   for (const id of ids) { const r = dane.reguly[id]; const dla = cwiczenia.filter((c) => per[c].some((x) => x.id === id));
     L.push(`- [reguła: ${id}] ${OPIS_TYPU[r.typ](r.parametry)} (wskazówka ${r.cue ?? 'z nazwy ćwiczenia'})${r.wskazowka_liczbowa ? `: ${r.wskazowka_liczbowa}` : ''}. Dotyczy: ${dla.length === cwiczenia.length ? 'wszystkich ćwiczeń tej listy' : dla.map((c) => `"${c}"`).join(', ')}.`); }
-  const gr = Object.entries(dane.grupy_bledow ?? {}); const grupy = [...new Set(ids.map((id) => dane.reguly[id].grupa))];
-  L.push('', 'BŁĘDY (bledy[]) muszą łamać DOKŁADNIE reguły swojej grupy i żadnych innych: ' + gr.filter(([, g]) => grupy.includes(g)).map(([cue, g]) => `${cue} → grupa „${g}” (${ids.filter((id) => dane.reguly[id].grupa === g).join(', ')})`).join('; ') + '. Czyli błąd pu.noSwing wyraźnie przekracza limity bujania (np. miednica o kilka cm w x, kostki z przodu), ale nie zmienia zakresu ruchu; błąd pu.partial skraca zakres (broda nie dochodzi do drążka), ale nie buja.');
+  const gr = Object.entries(dane.grupy_bledow ?? {}); const grupy = [...new Set(ids.map((id) => dane.reguly[id].grupa))]; const bez = Object.entries(dane.bledy_bez_animacji ?? {});
+  if (bez.length) L.push('', 'Błędy tempa i oddechu NIE są animowane pozą (bledy: [] dla tych błędów): ' + bez.map(([cue, t]) => `${cue} — ${t}`).join('; ') + '.');
+  if (gr.some(([, g]) => grupy.includes(g))) L.push('', 'BŁĘDY (bledy[]) muszą łamać DOKŁADNIE reguły swojej grupy i żadnych innych: ' + gr.filter(([, g]) => grupy.includes(g)).map(([cue, g]) => `${cue} → grupa „${g}” (${ids.filter((id) => dane.reguly[id].grupa === g).join(', ')})`).join('; ') + '. Czyli błąd pu.noSwing wyraźnie przekracza limity bujania (np. miednica o kilka cm w x, kostki z przodu), ale nie zmienia zakresu ruchu; błąd pu.partial skraca zakres (broda nie dochodzi do drążka), ale nie buja.');
   return L;
 }
 
 /* ---------- opis ćwiczeń ---------- */
-/** Sprzęt, którego kontrakt nie obsługuje (silnik go nie rysuje): ćwiczenie wymagające go bez alternatywy jest pomijane (do zrobienia przez naszego agenta). */
-export const SPRZET_NIEOBSLUGIWANY = { climbing_rope: 'lina pionowa — rodzaj sprzętu „lina” nie jest w kontrakcie' };
+/** Sprzęt, który kontrakt umie narysować (rodzaje sprzętu: sztanga/drążek, słupek, podłoga, skrzynia/ławka płaska): możliwości katalogu spoza listy (wyciągi, taśmy, piłki, maszyny, ławki skośne, hantle, linę…) → ćwiczenie do zrobienia przez naszego agenta. */
+export const SPRZET_OBSLUGIWANY = ['pullup.bar', 'rings', 'barbell', 'box', 'bench.flat'];
 export function sprzetNieobslugiwany(cw, catalog) {
   const e = catalog?.CATALOG?.[cw]; if (!e) return null;
-  for (const grupa of e.requires) if (grupa.length && grupa.every((c) => c in SPRZET_NIEOBSLUGIWANY)) return SPRZET_NIEOBSLUGIWANY[grupa[0]];
+  for (const grupa of e.requires) if (grupa.length && !grupa.some((c) => SPRZET_OBSLUGIWANY.includes(c))) return `sprzęt spoza kontraktu: ${grupa.join(' / ')} — silnik go nie rysuje`;
   return null;
 }
 const OPIS_SPRZETU = { 'pullup.bar': 'drążek poziomy', rings: 'kółka (zastępuje drążek — rysuj jako drążek)', db: 'hantle', bench: 'ławka' };
@@ -209,14 +231,15 @@ export function sensZKatalogu(cw, catalog) {
   if (/side[- ]to[- ]side/i.test(cw)) o.push('na górze przesunięcie boczne (miednica.z zmienia się w ruchu)');
   return o;
 }
-export function opisCwiczenia(cw, { root = ROOT, bledyCwiczenia, catalog = null }) {
+export function opisCwiczenia(cw, { root = ROOT, bledyCwiczenia, catalog = null, rodzina = null }) {
   const tekst = existsSync(join(root, 'lib/cues/text/pl.json')) ? czytaj(join(root, 'lib/cues/text/pl.json')) : {};
-  const bledy = bledyCwiczenia(cw, root).map((id) => (tekst[id] ? `${id} (${tekst[id]})` : id));
+  const bez = bledyBezAnimacji(rodzina, root); const wszystkie = bledyCwiczenia(cw, root); const bledy = wszystkie.filter((id) => !(id in bez)).map((id) => (tekst[id] ? `${id} (${tekst[id]})` : id));
+  const bezAnim = wszystkie.filter((id) => id in bez);
   const cd = join(root, 'lib/cues/data.json'); const ruch = [];
   const own = existsSync(cd) ? czytaj(cd).exercises?.[cw] : null;
   for (const c of (own?.move ?? []).slice(0, 2)) if (tekst[c.c]) ruch.push(tekst[c.c]);
   if (!ruch.length) { const cs = czytaj(join(root, 'lib/figures/v2/cue-sets.json')).items?.[cw]; for (const id of (cs?.ok ?? []).slice(0, 2)) if (tekst[id]) ruch.push(tekst[id]); }
-  return { klucz: cw, bledy, ruch, sens: sensZKatalogu(cw, catalog) };
+  return { klucz: cw, bledy, bezAnim, ruch, sens: sensZKatalogu(cw, catalog) };
 }
 
 /* ---------- polecenie ---------- */
@@ -242,7 +265,7 @@ export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia,
   const aktywne = new Set(cwiczenia.flatMap((c) => regulyDla(rodzina, c, root).map((x) => x.id))); const rej = liniePolecenia(wczytajRejestr(root), liczbyZSilnika(rodzina), undefined, { rodzina, reguly: aktywne }); if (rej.length) L.push('## Najczęstsze błędy z poprzednich odpowiedzi i jak ich uniknąć', '', 'Rejestr błędów popełnionych w poprzednich odpowiedziach (liczba wystąpień) — sprawdź każdy punkt przed odpowiedzią:', ...rej, '');
   przyklady.forEach((p, i) => L.push(`## Wzorzec ${i + 1}: ${p.opis}`, '', '```json', JSON.stringify(p.poza), '```', ''));
   L.push('## Ćwiczenia do wykonania', '', 'Dla każdego: klucz (nazwa ćwiczenia), sens ruchu z katalogu (sprzęt, chwyt), opis ruchu i dozwolone identyfikatory błędów (pole cue).', '');
-  for (const o of opisy) L.push(`- "${o.klucz}"${o.sens.length ? ` — sens: ${o.sens.join('; ')}` : ''}${o.ruch.length ? ` — ruch: ${o.ruch.join(' ')}` : ''} — błędy: ${o.bledy.length ? o.bledy.join('; ') : 'brak (bledy: [])'}`);
+  for (const o of opisy) L.push(`- "${o.klucz}"${o.sens.length ? ` — sens: ${o.sens.join('; ')}` : ''}${o.ruch.length ? ` — ruch: ${o.ruch.join(' ')}` : ''} — błędy: ${o.bledy.length ? o.bledy.join('; ') : 'brak (bledy: [])'}${o.bezAnim?.length ? ` (nie animujemy: ${o.bezAnim.join(', ')} — to cecha tempa/oddechu, nie pozy)` : ''}`);
   if (pomijane.length) L.push('', `Pominięte w tym poleceniu (nie generuj ich): ${pomijane.map((x) => `"${x.klucz}" — ${x.powod}`).join('; ')}.`);
   L.push('', '## Zasady dla każdego ćwiczenia', '', '- u = 0 to pozycja wyjściowa, u = 1 pozycja skrajna ruchu; dobierz sprzęt (sprzet[]) i chwyt do tego konkretnego ćwiczenia (sens z listy powyżej).', '- Poza ma być anatomicznie wiarygodna dla nazwanego ćwiczenia, ale zgodność z liczbami i regułami powyżej jest ważniejsza niż szczegół.', '- Przed odpowiedzią sprawdź każdą pozę punkt po punkcie: zasięg ramienia, zakresy stawów z marginesem, przenikanie, chwyt na osi, reguły sensu, deklaracje „dotyczy”.', '');
   L.push(...FORMAT_ODPOWIEDZI(rodzina, cwiczenia));
@@ -253,6 +276,7 @@ const PODOBNE = { pulldown: 'pull_up', core_hang: 'pull_up', dip: 'pull_up', cab
 /** Wzorce: (1) z tej samej rodziny — zaliczone pozy z poses/ (najpierw z błędami, najwięcej klatek) albo wyliczony z modelu (pull_up), (2) z rodziny podobnej, (3) w ostateczności przysiad. Razem ≤ 2. */
 export function wzorce(rodzina, kontrakt, root = ROOT) {
   const o = []; const wlasne = Object.entries(pozyGotowe(rodzina, root).cwiczenia ?? {}).sort((a, b) => (b[1].bledy.length > 0) - (a[1].bledy.length > 0) || b[1].klatki.length - a[1].klatki.length);
+  if (rodzina === 'core_floor') o.push({ opis: '„Crunch” leżąc na plecach wyliczony z modelu (przechodzi geometrię i reguły sensu; liczby dopasuj do swojego ćwiczenia, ta sama struktura)', poza: wzorzecCrunch() });
   if (rodzina === 'pull_up') { const w = wzorzecPodciagania(); if (w) o.push({ opis: `„Pull Up” wyliczony z modelu (drążek y = 230, chwyt z = ±22; przechodzi walidację geometrii i sensu; liczby dopasuj do swojego ćwiczenia, ta sama struktura i sposób liczenia)`, poza: w.poza }); }
   for (const [cw, poza] of wlasne.slice(0, 1)) o.push({ opis: `zaliczona poza „${cw}” z tej samej rodziny`, poza });
   const pod = PODOBNE[rodzina]; if (pod && pod !== rodzina && o.length < 2) { const [cw, poza] = Object.entries(pozyGotowe(pod, root).cwiczenia ?? {})[0] ?? []; if (poza) o.push({ opis: `zaliczona poza „${cw}” z rodziny podobnej (${pod})`, poza }); }
@@ -270,16 +294,17 @@ export async function poleceniaRodziny(rodzina, { root = ROOT, lista } = {}) {
     const pomijane = []; const robic = [];
     for (const c of czesc.cwiczenia) { const p = pominiecie(rodzina, c, root) ?? sprzetNieobslugiwany(c, catalog); if (p) pomijane.push({ klucz: c, powod: `pomiń — zrobi nasz agent (${p})` }); else robic.push(c); }
     return { plik: `${czesc.id}.md`, cwiczenia: robic, pomijane,
-      tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc, cwiczenia: robic, przyklady, kontrakt, pomijane, root, opisy: robic.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog })) }) };
+      tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc, cwiczenia: robic, przyklady, kontrakt, pomijane, root, opisy: robic.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog, rodzina })) }) };
   }).filter((x) => x.cwiczenia.length);
 }
 
 export function parsujArgumenty(argv) {
-  const o = { rodzina: null, wszystkie: false, wyjscie: null };
+  const o = { rodzina: null, wszystkie: false, bezRegul: false, wyjscie: null };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]; const w = () => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${a}`); return argv[++i]; };
     if (a === '--rodzina') { o.rodzina = w(); if (!/^[a-z][a-z0-9_]{1,40}$/.test(o.rodzina)) throw new Error('--rodzina: oczekiwany identyfikator rodziny'); }
     else if (a === '--wszystkie') o.wszystkie = true;
+    else if (a === '--bez-regul') o.bezRegul = true; /* wymusza polecenie dla rodziny bez reguł sensu (bramka 3 pominięta — tylko świadomie) */
     else if (a === '--wyjscie') o.wyjscie = w();
     else throw new Error(`nieznany argument: ${a}`);
   }
@@ -290,7 +315,8 @@ export function parsujArgumenty(argv) {
 
 export async function main(argv, { root = ROOT, log = console.log } = {}) {
   const o = parsujArgumenty(argv); const docs = join(root, 'docs/51-figury-v2-pokrycie.md');
-  const ids = o.wszystkie ? rodzinyZDokumentu(docs).filter((r) => r.stan !== 'gotowa').map((r) => r.id) : [o.rodzina];
+  const maRegul = (id) => !!wczytajSens(root).rodziny?.[id];
+  const ids = (o.wszystkie ? rodzinyZDokumentu(docs).filter((r) => r.stan !== 'gotowa').map((r) => r.id) : [o.rodzina]).filter((id) => { if (maRegul(id) || o.bezRegul) return true; log(`${id}: POMINIĘTA — brak reguł sensu w data/zrodla/figury-sens.json (docs/53, bramka 3; --bez-regul wymusza)`); return false; });
   mkdirSync(resolve(o.wyjscie), { recursive: true }); let plikow = 0, najdluzsze = 0, rodzin = 0;
   for (const id of ids) {
     const p = await poleceniaRodziny(id, { root }); if (!p.length) { log(`${id}: nic do zrobienia (pozy gotowe)`); continue; }

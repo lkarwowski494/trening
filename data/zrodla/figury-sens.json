@@ -156,6 +156,91 @@
    "pomin": {
     "Rope Climb": "sprzęt „lina” nie jest rodzajem sprzętu kontraktu (silnik go nie rysuje) — zrobi nasz agent"
    }
+  },
+  "core_floor": {
+   "reguly": {
+    "miednica_na_podlodze": {
+     "typ": "miednica_na_podlodze",
+     "grupa": "plecy",
+     "cue": "crunch.lowBack",
+     "cue_dodatkowe": [
+      "db.back"
+     ],
+     "parametry": {
+      "max_y_cm": 12
+     },
+     "zrodlo": "wskazówki crunch.lowBack („dolna część pleców zostaje na podłodze”) i db.back („lędźwie przy podłodze — nie wyginaj pleców w łuk”); źródła w cues.json",
+     "liczba": "uproszczenie (środek miednicy leżącej osoby ma y ≈ 8 cm — najniżej, przy którym uda nie przenikają podłogi; dopuszczamy do 12 cm)"
+    },
+    "szyja_neutralna": {
+     "typ": "szyja_neutralna",
+     "grupa": "szyja",
+     "cue": "crunch.neck",
+     "parametry": {
+      "max_deg": 30
+     },
+     "zrodlo": "wskazówka crunch.neck („szyja rozluźniona — nie ciągnij głowy rękami”): głowa podąża za tułowiem, bez zgięcia szyi względem osi tułowia; źródła w cues.json",
+     "liczba": "uproszczenie (kąt między osią głowy a osią tułowia ≤ 30° w każdej klatce)"
+    },
+    "lopatki_od_podlogi": {
+     "typ": "lopatki_od_podlogi",
+     "grupa": "zakres",
+     "cue": "crunch.move",
+     "parametry": {
+      "min_cm": 8,
+      "max_miednica_cm": 3
+     },
+     "zrodlo": "wskazówka crunch.move („zbliżaj żebra do miednicy, unosząc łopatki od podłogi”); źródła w cues.json",
+     "liczba": "uproszczenie (barki unoszą się o ≥ 8 cm, a miednica zmienia wysokość o ≤ 3 cm)"
+    },
+    "miednica_unosi_sie": {
+     "typ": "miednica_unosi_sie",
+     "grupa": "zakres",
+     "cue": "rcrunch.move",
+     "parametry": {
+      "min_cm": 8,
+      "max_barki_cm": 4
+     },
+     "zrodlo": "wskazówka rcrunch.move („zwijaj biodra od podłoża w stronę żeber”) i rcrunch.hips („ruch prowadzi miednica — nie wymachuj nogami”); źródła w cues.json",
+     "liczba": "uproszczenie (miednica unosi się o ≥ 8 cm, a barki zmieniają wysokość o ≤ 4 cm)"
+    },
+    "bird_dog_linia": {
+     "typ": "bird_dog_linia",
+     "grupa": "zakres",
+     "cue": "bd.move",
+     "parametry": {
+      "tol_cm": 10
+     },
+     "zrodlo": "wskazówka bd.move („unieś jednocześnie przeciwną rękę i nogę do linii tułowia”) i bd.level; źródła w cues.json",
+     "liczba": "uproszczenie (dłoń na wysokości barku i kostka przeciwnej nogi na wysokości miednicy ± 10 cm w pozycji skrajnej)"
+    }
+   },
+   "wskazowki_na_reguly": {
+    "crunch.lowBack": [
+     "miednica_na_podlodze"
+    ],
+    "db.back": [
+     "miednica_na_podlodze"
+    ],
+    "crunch.neck": [
+     "szyja_neutralna"
+    ],
+    "crunch.move": [
+     "lopatki_od_podlogi"
+    ],
+    "rcrunch.move": [
+     "miednica_unosi_sie"
+    ],
+    "bd.move": [
+     "bird_dog_linia"
+    ]
+   },
+   "grupy_bledow": {},
+   "bledy_bez_animacji": {
+    "mis.jerk": "szarpanie to cecha tempa (prędkości), nie pozy — nie pokazujemy go animacją pozy (bledy: [])",
+    "plank.mis.breath": "wstrzymywanie oddechu nie zmienia pozy — nie pokazujemy go animacją (bledy: [])"
+   },
+   "pomin": {}
   }
  }
 }

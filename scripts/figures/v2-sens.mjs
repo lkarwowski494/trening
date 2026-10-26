@@ -18,10 +18,21 @@ export function wczytajSens(root = ROOT) {
 /** Reguły ćwiczenia: [{ id, typ, grupa, cue, parametry, zrodlo, liczba }]; null = ćwiczenie do pominięcia (powód w `pomin`), [] = brak reguł. */
 export function regulyDla(rodzina, cwiczenie, root = ROOT) {
   const r = wczytajSens(root).rodziny?.[rodzina]; if (!r) return [];
-  const w = r.warianty?.[cwiczenie]; if (!w) return [];
-  const ids = typeof w === 'string' ? r.warianty[w] : w;
+  const w = r.warianty?.[cwiczenie];
+  let ids;
+  if (w) ids = typeof w === 'string' ? r.warianty[w] : w;
+  else if (r.wskazowki_na_reguly) ids = [...new Set(wskazowkiCwiczenia(cwiczenie, root).flatMap((c) => r.wskazowki_na_reguly[c] ?? []))]; /* reguły wyprowadzone ze wskazówek ćwiczenia (setup/move/tips lub zestaw ogólny) */
+  else return [];
   return ids.map((id) => ({ id, ...r.reguly[id] }));
 }
+/** Identyfikatory wskazówek ćwiczenia: własne (lib/cues/data.json: setup/move/tips/mistakes) albo zestaw ogólny (cue-sets.json: ok). */
+export function wskazowkiCwiczenia(cwiczenie, root = ROOT) {
+  const pc = path.join(root, 'lib/cues/data.json'); const own = fs.existsSync(pc) ? JSON.parse(fs.readFileSync(pc, 'utf8')).exercises?.[cwiczenie] : null;
+  if (own) return Object.values(own).flat().map((x) => x.c);
+  const ps = path.join(root, 'lib/figures/v2/cue-sets.json'); const set = fs.existsSync(ps) ? JSON.parse(fs.readFileSync(ps, 'utf8')).items?.[cwiczenie] : null;
+  return set?.ok ?? [];
+}
+export const bledyBezAnimacji = (rodzina, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.bledy_bez_animacji ?? {};
 export const pominiecie = (rodzina, cwiczenie, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.pomin?.[cwiczenie] ?? null;
 export const grupaBledu = (rodzina, cue, root = ROOT) => wczytajSens(root).rodziny?.[rodzina]?.grupy_bledow?.[cue] ?? null;
 
@@ -79,6 +90,18 @@ export const EWALUATORY = {
   },
 };
 
+const kat = (a, b) => { const na = Math.hypot(...a), nb = Math.hypot(...b); if (!na || !nb) return 0; const c = Math.max(-1, Math.min(1, (a[0] * b[0] + a[1] * b[1] + a[2] * b[2]) / (na * nb))); return (Math.acos(c) * 180) / Math.PI; };
+Object.assign(EWALUATORY, {
+  miednica_na_podlodze: ({ p, parametry: q }) => { const m = Math.max(...p.map((s) => s.f.sk.pelvis[1])); return m > q.max_y_cm ? [`środek miednicy dochodzi do y = ${f1(m)} cm, a ma być ≤ ${q.max_y_cm} cm (dolna część pleców zostaje na podłodze; leżąca osoba ma miednicę na y ≈ 8)`] : []; },
+  szyja_neutralna: ({ p, parametry: q }) => { const m = Math.max(...p.map((s) => { const sk = s.f.sk; return kat(sk.headUp, [sk.shoulderC[0] - sk.pelvis[0], sk.shoulderC[1] - sk.pelvis[1], sk.shoulderC[2] - sk.pelvis[2]]); })); return m > q.max_deg ? [`kąt między osią głowy a osią tułowia dochodzi do ${f1(m)}°, a ma być ≤ ${q.max_deg}° (głowa podąża za tułowiem: pochylenieGlowy ≈ pochylenieTulowia ± ${q.max_deg}°)`] : []; },
+  lopatki_od_podlogi: ({ p, parametry: q }) => { const o = []; const dy = p[p.length - 1].f.sk.shoulderC[1] - p[0].f.sk.shoulderC[1]; const dm = zakres(p.map((s) => s.f.sk.pelvis[1])).span;
+    if (dy < q.min_cm) o.push(`barki w u = 1 są tylko ${f1(dy)} cm wyżej niż w u = 0, a mają być ≥ ${q.min_cm} cm (łopatki unoszą się od podłogi)`); if (dm > q.max_miednica_cm) o.push(`miednica zmienia wysokość o ${f1(dm)} cm, a ma ≤ ${q.max_miednica_cm} cm (miednica zostaje na podłodze)`); return o; },
+  miednica_unosi_sie: ({ p, parametry: q }) => { const o = []; const dy = p[p.length - 1].f.sk.pelvis[1] - p[0].f.sk.pelvis[1]; const ds = zakres(p.map((s) => s.f.sk.shoulderC[1])).span;
+    if (dy < q.min_cm) o.push(`miednica w u = 1 jest tylko ${f1(dy)} cm wyżej niż w u = 0, a ma być ≥ ${q.min_cm} cm (ruch prowadzi miednica)`); if (ds > q.max_barki_cm) o.push(`barki zmieniają wysokość o ${f1(ds)} cm, a mają ≤ ${q.max_barki_cm} cm (barki zostają na podłodze)`); return o; },
+  bird_dog_linia: ({ p, parametry: q }) => { const s = p[p.length - 1].f.sk; const wynik = ['R', 'L'].map((side) => { const opp = side === 'R' ? 'L' : 'R'; return Math.max(Math.abs(s.arms[side].grip[1] - s.shoulderC[1]), Math.abs(s.legs[opp].ankle[1] - s.pelvis[1])); });
+    return Math.min(...wynik) > q.tol_cm ? [`w u = 1 żadna para (ręka + przeciwna noga) nie leży w linii tułowia: najlepsza odchyłka ${f1(Math.min(...wynik))} cm, a ma być ≤ ${q.tol_cm} cm (dłoń na wysokości barku, kostka na wysokości miednicy)`] : []; },
+});
+
 /** Naruszenia reguł dla jednej pozy (poprawnej: blad undefined). Zwraca [{ regula, grupa, opisy }] tylko dla złamanych. */
 export function naruszenia(v2, d, reguly, blad) {
   const p = probki(v2, d, blad); const out = [];
@@ -88,8 +111,9 @@ export function naruszenia(v2, d, reguly, blad) {
 
 /** Walidacja sensu: poza poprawna bez naruszeń; każdy błąd łamie dokładnie grupę swojej wskazówki. Zwraca [{ kod, szczegol }]. */
 export function sprawdzSens({ v2, poza, rodzina, cwiczenie, root = ROOT }) {
-  const reguly = regulyDla(rodzina, cwiczenie, root); if (!reguly.length) return [];
-  const out = []; const dane = wczytajSens(root).rodziny[rodzina];
+  const bez = bledyBezAnimacji(rodzina, root); const nieAnim = (poza.bledy ?? []).map((b, j) => ({ b, j })).filter(({ b }) => b.cue in bez).map(({ b, j }) => ({ kod: 'blad-sens', szczegol: `bledy[${j}] „${b.cue}”: ${bez[b.cue]}` }));
+  const reguly = regulyDla(rodzina, cwiczenie, root); if (!reguly.length) return nieAnim;
+  const out = [...nieAnim]; const dane = wczytajSens(root).rodziny[rodzina];
   for (const n of naruszenia(v2, poza, reguly)) for (const o of n.opisy) out.push({ kod: 'sens', szczegol: `reguła „${n.regula}” (wskazówka ${reguly.find((r) => r.id === n.regula).cue ?? 'konwencja'}): ${o}` });
   if (out.length) return out; /* błędy oceniamy dopiero, gdy poza poprawna jest czysta */
   (poza.bledy ?? []).forEach((b, j) => {

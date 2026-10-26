@@ -160,22 +160,49 @@ describe('gemini-polecenia: treść polecenia v2 (liczby z silnika, reguły z da
   });
 });
 
-describe('gemini-polecenia: macierz rodzin (--wszystkie)', () => {
-  test('plik dla każdej rodziny do zrobienia (bez gotowych), części ≤ 12 ćwiczeń, długość ≤ limitu, polecenie zawiera każdy klucz części i rdzeń v2', () => {
-    const r = tmpRoot(); const out = path.join(r, 'out');
+describe('gemini-polecenia: macierz rodzin (--wszystkie) i bramka reguł sensu', () => {
+  test('polecenie powstaje tylko dla rodzin z regułami sensu (pull_up, core_floor); pozostałe 38 rodzin do zrobienia jest POMINIĘTE z komunikatem (docs/53, bramka 3); części ≤ 12 ćwiczeń, długość ≤ limitu, każdy klucz części w poleceniu; --bez-regul wymusza', () => {
+    const r = tmpRoot(true); const out = path.join(r, 'out');
     const wynik = run(POL, `const log = []; await m.main(['--wszystkie','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(r)}, log: (s) => log.push(s) }); console.log(JSON.stringify(log));`) as string[];
-    const pliki = fs.readdirSync(out).sort(); expect(wynik[wynik.length - 1]).toMatch(/^rodzin: 40, plików: \d+, najdłuższe: \d+ znaków$/);
-    for (const g of ['squat', 'bench_press', 'hinge']) expect(pliki.filter((p) => p.startsWith(g))).toEqual([]);
-    const doc = fs.readFileSync(path.join(ROOT, 'docs/51-figury-v2-pokrycie.md'), 'utf8');
-    const rodziny = [...doc.matchAll(/^\| `([a-z_0-9]+)` \| do zrobienia/gm)].map((m) => m[1]); expect(rodziny.length).toBe(40);
-    for (const id of rodziny) {
-      const mp = pliki.filter((p) => p === `${id}.md` || new RegExp(`^${id}-\\d+\\.md$`).test(p)); expect([id, mp.length > 0]).toEqual([id, true]);
-      for (const f of mp) {
-        const t = fs.readFileSync(path.join(out, f), 'utf8'); expect([f, t.length < 36000]).toEqual([f, true]); expect(t).toContain('[polecenie@2]');
-        const klucze = /DOKŁADNIE te nazwy[^:]*: (.*)\.$/m.exec(t)![1].split('", "').map((k) => k.replace(/^"|"$/g, '')); expect(klucze.length).toBeLessThanOrEqual(12);
-        for (const k of klucze) expect([f, t.includes(`- "${k}"`)]).toEqual([f, true]);
-      }
+    const pliki = fs.readdirSync(out).sort(); expect(wynik.filter((l) => /POMINIĘTA — brak reguł sensu/.test(l))).toHaveLength(38); expect(wynik[wynik.length - 1]).toMatch(/^rodzin: 2, plików: \d+, najdłuższe: \d+ znaków$/);
+    expect(pliki.every((f) => /^(pull_up|core_floor)(-\d+)?\.md$/.test(f))).toBe(true); expect(pliki).toContain('pull_up.md'); expect(pliki.filter((f) => f.startsWith('core_floor')).length).toBeGreaterThanOrEqual(2);
+    for (const f of pliki) {
+      const t = fs.readFileSync(path.join(out, f), 'utf8'); expect([f, t.length < 36000]).toEqual([f, true]); expect(t).toContain('[polecenie@2]'); expect(t).toContain('## Reguły sensu ruchu');
+      const klucze = /DOKŁADNIE te nazwy[^:]*: (.*)\.$/m.exec(t)![1].split('", "').map((k) => k.replace(/^"|"$/g, '')); expect(klucze.length).toBeLessThanOrEqual(12); for (const k of klucze) expect([f, t.includes(`- "${k}"`)]).toEqual([f, true]);
     }
+    const w = run(POL, `const log = []; await m.main(['--rodzina','squat_x','--bez-regul','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(r)}, log: (s) => log.push(s) }).catch(e => log.push('ERR ' + e.message)); console.log(JSON.stringify(log));`) as string[]; expect(w.join(' ')).toMatch(/nie występuje w docs\/51/);
+  });
+});
+
+describe('core_floor: reguły sensu wyprowadzone ze wskazówek ćwiczeń (docs/53), sprzęt spoza kontraktu, błędy tempa bez animacji', () => {
+  const CR = run(POL, 'console.log(JSON.stringify(m.wzorzecCrunch()))') as any;
+  const wal = (poza: unknown, cw: string) => run(VAL, `console.log(JSON.stringify(m.waliduj(${JSON.stringify(poza)}, { rodzina: 'core_floor', cwiczenie: ${JSON.stringify(cw)} })))`) as { ok: boolean; bledy: { kod: string; szczegol: string }[] };
+  test('reguły ćwiczenia powstają ze wskazówek (własnych lub zestawu ogólnego): Crunch = łopatki + miednica na podłodze + szyja; Reverse Crunch = miednica unosi się; Bird Dog = linia; V-Up bez reguł; każda reguła ma wskazówkę istniejącą w cues.json', () => {
+    const r = run(SENS, `console.log(JSON.stringify(['Crunch', 'Reverse Crunch', 'Bird Dog', 'Dead Bug', 'Sit Up', 'V-Up'].map(c => m.regulyDla('core_floor', c).map(x => x.id).sort())))`);
+    expect(r).toEqual([['lopatki_od_podlogi', 'miednica_na_podlodze', 'szyja_neutralna'], ['miednica_unosi_sie'], ['bird_dog_linia'], ['miednica_na_podlodze'], ['szyja_neutralna'], []]);
+    const dane = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-sens.json'), 'utf8')).rodziny.core_floor; const cues = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/cues.json'), 'utf8'));
+    const ids = new Set(Object.values(cues.exercises as Record<string, Record<string, { c: string }[]>>).flatMap((x) => Object.values(x).flat().map((q) => q.c)));
+    for (const [id, reg] of Object.entries(dane.reguly) as [string, any][]) { expect([id, ids.has(reg.cue)]).toEqual([id, true]); expect(reg.liczba).toMatch(/uproszczenie|konwencja/); }
+    for (const [cue, lista] of Object.entries(dane.wskazowki_na_reguly) as [string, string[]][]) { expect([cue, ids.has(cue)]).toEqual([cue, true]); for (const id of lista) expect(id in dane.reguly).toBe(true); }
+  });
+  test('wzorzec Crunch wyliczony z modelu przechodzi geometrię i reguły sensu; łamiące pozy odrzucone z konkretnym komunikatem (miednica w górze, głowa nie podąża, barki nie unoszą się)', () => {
+    expect(wal(CR, 'Crunch')).toEqual({ ok: true, bledy: [] });
+    const a = klon(CR); for (const k of a.klatki) k.miednica[1] += 12; for (const k of a.klatki) for (const s of ['R', 'L']) { k.nogi[s].kostka[1] += 12; } expect(wal(a, 'Crunch').bledy.map((b) => b.szczegol).join('|')).toMatch(/miednica_na_podlodze.*środek miednicy dochodzi do y = 20\.0 cm, a ma być ≤ 12 cm/);
+    const b = klon(CR); for (const k of b.klatki) k.pochylenieGlowy = 0; expect(wal(b, 'Crunch').bledy.map((x) => x.szczegol).join('|')).toMatch(/szyja_neutralna.*kąt między osią głowy a osią tułowia dochodzi do/);
+    const c = klon(CR); for (const k of c.klatki) { k.pochylenieTulowia = -90; k.pochylenieGlowy = -90; } expect(wal(c, 'Crunch').bledy.map((x) => x.szczegol).join('|')).toMatch(/lopatki_od_podlogi.*barki w u = 1 są tylko 0\.0 cm wyżej/);
+    expect(wal({ ...CR, cwiczenie: 'Reverse Crunch' }, 'Reverse Crunch').bledy.map((x) => x.szczegol).join('|')).toMatch(/miednica_unosi_sie.*miednica w u = 1 jest tylko 0\.0 cm wyżej/);
+    expect(wal({ ...CR, cwiczenie: 'Bird Dog' }, 'Bird Dog').bledy.map((x) => x.szczegol).join('|')).toMatch(/bird_dog_linia.*żadna para/);
+  });
+  test('błędy tempa/oddechu (mis.jerk, plank.mis.breath) nie są animowane: poza z takim błędem odrzucona; lista błędów w poleceniu ich nie zawiera, jest adnotacja', () => {
+    const z = klon(CR); z.bledy = [{ cue: 'mis.jerk', znacznik: 'back', dotyczy: ['hip'], klatki: [{ u: 0 }, { u: 1, miednica: [0, 0, 0] }] }];
+    expect(wal(z, 'Crunch').bledy.some((b) => b.kod === 'blad-sens' && /szarpanie to cecha tempa/.test(b.szczegol))).toBe(true);
+    const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'cf-')), 'out'); run(POL, `await m.main(['--rodzina','core_floor','--wyjscie',${JSON.stringify(out)}], { log: () => {} }); console.log('0')`);
+    const wsz = fs.readdirSync(out).map((f) => fs.readFileSync(path.join(out, f), 'utf8')).join('\n'); const p1 = fs.readFileSync(path.join(out, 'core_floor-1.md'), 'utf8');
+    expect(p1).toContain('## Reguły sensu ruchu'); expect(p1).toContain('[reguła: miednica_na_podlodze]'); expect(p1).toContain('Układ leżący na plecach'); expect(p1).toMatch(/## Wzorzec 1: „Crunch” leżąc na plecach wyliczony z modelu/);
+    expect(wsz).toMatch(/- "Alternate Heel Touchers" — .*błędy: brak \(bledy: \[\]\) \(nie animujemy: mis\.jerk — to cecha tempa\/oddechu, nie pozy\)/);
+    expect(wsz).not.toContain('- "Cable Crunch"'); expect(wsz).toMatch(/Pominięte w tym poleceniu .*"Cable Crunch" — pomiń — zrobi nasz agent \(sprzęt spoza kontraktu: cable\.high/); expect(wsz).toMatch(/"Stability Ball Crunch" — pomiń/); expect(wsz).toMatch(/"Decline Crunch" — pomiń/);
+    const klucze = [...wsz.matchAll(/^- "([^"]+)" — sens:/gm)].map((m) => m[1]); expect(klucze).toContain('Crunch'); expect(klucze).toContain('Bird Dog'); expect(klucze).not.toContain('Machine Crunch'); expect(klucze.length).toBeLessThan(30);
+    const wzor = /## Wzorzec 1[^\n]*\n\n```json\n(\{.*\})\n```/.exec(p1)!; expect(wal(JSON.parse(wzor[1]), 'Crunch')).toEqual({ ok: true, bledy: [] });
   });
 });
 
