@@ -700,6 +700,54 @@
   }
  },
  "dane": {
+  "calf_raise/Łydki na stopniu": {
+   "svg": "11557441e9afbeb63a85",
+   "raw": "1fd032f276a61239731f"
+  },
+  "calf_raise/Standing Calf Raise": {
+   "svg": "d3b2835d6270766c6ae9",
+   "raw": "563dae4ca245f14a56c9"
+  },
+  "calf_raise/Smith Machine Calf Raise": {
+   "svg": "255d46e90a3402fcde68",
+   "raw": "2c21ec567f5c92b0ad5b"
+  },
+  "calf_raise/Calf Raise (sztanga)": {
+   "svg": "8436c9379be2128f3ace",
+   "raw": "20ad33a1da3b0712bc18"
+  },
+  "calf_raise/Calf Raise (linki)": {
+   "svg": "154bafa7966130fccb17",
+   "raw": "d589a4901b890d7c0061"
+  },
+  "calf_raise/Donkey Calf Raise": {
+   "svg": "ed8a64362beb14eed17f",
+   "raw": "fb40e610773f7a672c51"
+  },
+  "calf_raise/Band Calf Raise": {
+   "svg": "0fef00d2ef543390b60a",
+   "raw": "cdd2140296f4eb583e22"
+  },
+  "calf_raise/Single Leg Calf Raise": {
+   "svg": "e78641fdfa829409927d",
+   "raw": "69cdd32d0355ab6719a6"
+  },
+  "calf_raise/Seated Calf Raise": {
+   "svg": "92d9b7b7465c11fc3f5d",
+   "raw": "dad71de72cddfbae5a2d"
+  },
+  "calf_raise/Seated Calf Raise (hantle)": {
+   "svg": "cf8054d0a139c5bb8ae6",
+   "raw": "ed7b715bd5044e8e6450"
+  },
+  "calf_raise/Barbell Seated Calf Raise": {
+   "svg": "cb338fb52200a259b2ea",
+   "raw": "e554d793bd19f4fb1fcb"
+  },
+  "calf_raise/Dumbbell Seated One-Leg Calf Raise": {
+   "svg": "15dbbe170a8d486c5401",
+   "raw": "e25c2b70190ead5f76f2"
+  },
   "core_floor/Crunch": {
    "svg": "051f10c1febe48e73681",
    "raw": "a227d59030275d964f1b"
@@ -779,6 +827,114 @@
   "core_floor/V-Up": {
    "svg": "984cfbaa6b3c53a0b0c3",
    "raw": "4d51e49e97ec31f61d6b"
+  },
+  "hip_bridge/Glute Bridge": {
+   "svg": "143a25a7dc74bf1a14db",
+   "raw": "fd78a34d3a72190be3c5"
+  },
+  "hip_bridge/Glute Bridge (sztanga)": {
+   "svg": "171fd25226cd7e3cf053",
+   "raw": "86950aa78b21232a072f"
+  },
+  "hip_bridge/Frog Pump": {
+   "svg": "74818d9e66cffb82bbd2",
+   "raw": "8bedc56f18c8876abf4f"
+  },
+  "hip_bridge/Single Leg Glute Bridge": {
+   "svg": "7874bdd53734487d0b1d",
+   "raw": "a617d6de9b3b4af91ed3"
+  },
+  "hip_bridge/Hip Thrust (sztanga)": {
+   "svg": "38fcd0f0852c9d042f8a",
+   "raw": "d25bc974514f46b69af3"
+  },
+  "hip_bridge/Hip Thrust (hantel)": {
+   "svg": "927fd98ab27691aef084",
+   "raw": "770231790717b1244721"
+  },
+  "hip_bridge/Single Leg Hip Thrust": {
+   "svg": "e788db6ba97d9e3d0123",
+   "raw": "ba3f32fd2e9455776c29"
+  },
+  "hip_bridge/Smith Machine Hip Thrust": {
+   "svg": "fdeff577afcdd5686a7c",
+   "raw": "cc9fff9e383b0e630261"
+  },
+  "hip_bridge/Machine Hip Thrust": {
+   "svg": "c1d6e24ba181a94886de",
+   "raw": "0ef95e2d6d3046909a33"
+  },
+  "hip_bridge/Stability Ball Hip Bridge": {
+   "svg": "c4a547b1485a263f3ce4",
+   "raw": "d5c3c876cc7039a35f8c"
+  },
+  "lunge/Split Squat": {
+   "svg": "ec7d561d94c2b8e64f2f",
+   "raw": "f89bebd7c5f9dce54cf1"
+  },
+  "lunge/Split Squat (linki)": {
+   "svg": "8c199e7f6cbe8d95374c",
+   "raw": "03c806a63d5638010059"
+  },
+  "lunge/Reverse Lunge": {
+   "svg": "632e9973d2bac939d957",
+   "raw": "81ae30e79e1494a03a33"
+  },
+  "lunge/Walking Lunges": {
+   "svg": "aa283e26056ea4f5e92c",
+   "raw": "72c2fdd66d14bad80afe"
+  },
+  "lunge/Lunges (hantle)": {
+   "svg": "aa283e26056ea4f5e92c",
+   "raw": "72c2fdd66d14bad80afe"
+  },
+  "lunge/Lunges (sztanga)": {
+   "svg": "d51c2dc7d8ad7ddcc99c",
+   "raw": "95afa5175712189bd4ae"
+  },
+  "lunge/Barbell Walking Lunge": {
+   "svg": "d51c2dc7d8ad7ddcc99c",
+   "raw": "95afa5175712189bd4ae"
+  },
+  "lunge/Elevated Back Lunge": {
+   "svg": "78bf003033e0cd6dcdb1",
+   "raw": "c015deb253b17fad72ba"
+  },
+  "lunge/Slider Reverse Lunge": {
+   "svg": "a05598745f8bfecc1461",
+   "raw": "3535191f0bf8d6c5d768"
+  },
+  "lunge/Step Up": {
+   "svg": "c1900ee44c63f9c433f2",
+   "raw": "8296d912776c0e84dc0e"
+  },
+  "lunge/Barbell Step Up": {
+   "svg": "f8253d3d108d8976d7b0",
+   "raw": "c4b375f087e476606965"
+  },
+  "lunge/Pistol Squat": {
+   "svg": "63ba47e55313141e2f2b",
+   "raw": "09ba5287a0778f70de92"
+  },
+  "lunge/Smith Machine Pistol Squat": {
+   "svg": "9d6f7b24df9d36ac9895",
+   "raw": "232cd4de99c0db7a04dc"
+  },
+  "lunge/Single-Leg High Box Squat": {
+   "svg": "c98e5b2dbb3bfb0aa129",
+   "raw": "46bd3edbb08ec39dbe21"
+  },
+  "lunge/Lunge Pass Through": {
+   "svg": "425bf50903f8eee0915b",
+   "raw": "a4d16ea6598db6655b84"
+  },
+  "lunge/Curtsy Lunge": {
+   "svg": "b334c198eab9ec5626c7",
+   "raw": "4617ede9754cfb5a17a0"
+  },
+  "lunge/Crossover Reverse Lunge": {
+   "svg": "fa14fcf7d8440dbb5622",
+   "raw": "da698ababd731474718d"
   },
   "pull_up/Gironda Sternum Chins": {
    "svg": "623c46ecb8f11308b199",
