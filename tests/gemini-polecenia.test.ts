@@ -165,7 +165,7 @@ describe('gemini-polecenia: macierz rodzin (--wszystkie) i bramka reguł sensu',
     const r = tmpRoot(true); const out = path.join(r, 'out');
     const wynik = run(POL, `const log = []; await m.main(['--wszystkie','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(r)}, log: (s) => log.push(s) }); console.log(JSON.stringify(log));`) as string[];
     const pliki = fs.readdirSync(out).sort(); expect(wynik.filter((l) => /POMINIĘTA — brak reguł sensu/.test(l))).toHaveLength(38); expect(wynik[wynik.length - 1]).toMatch(/^rodzin: 2, plików: \d+, najdłuższe: \d+ znaków$/);
-    expect(pliki.every((f) => /^(pull_up|core_floor)(-\d+)?\.md$/.test(f))).toBe(true); expect(pliki).toContain('pull_up.md'); expect(pliki.filter((f) => f.startsWith('core_floor')).length).toBeGreaterThanOrEqual(2);
+    expect(pliki.every((f) => /^(pull_up|core_floor)(-\d+[ab]*)?\.md$/.test(f))).toBe(true); expect(pliki).toContain('pull_up.md'); expect(pliki.filter((f) => f.startsWith('core_floor')).length).toBeGreaterThanOrEqual(2);
     for (const f of pliki) {
       const t = fs.readFileSync(path.join(out, f), 'utf8'); expect([f, t.length < 36000]).toEqual([f, true]); expect(t).toContain('[polecenie@2]'); expect(t).toContain('## Reguły sensu ruchu');
       const klucze = /DOKŁADNIE te nazwy[^:]*: (.*)\.$/m.exec(t)![1].split('", "').map((k) => k.replace(/^"|"$/g, '')); expect(klucze.length).toBeLessThanOrEqual(12); for (const k of klucze) expect([f, t.includes(`- "${k}"`)]).toEqual([f, true]);
@@ -306,9 +306,9 @@ describe('przegląd ruchu przez niezależnego recenzenta (bramka 4, docs/53): pa
 describe('sprzęt w kontrakcie → polecenia (docs/54): możliwości z rejestru, sekcja punktów odniesienia, brak „pomiń” dla obsługiwanego sprzętu', () => {
   const KAT = 'm.silnikCatalog()';
   test('sprzetObslugiwany = możliwości rejestru (stare + db, kb, plate, med_ball); sprzetNieobslugiwany: ćwiczenia z hantlem, talerzem i piłką nie są pomijane, wyciąg nadal tak', () => {
-    const caps = run(POL, 'console.log(JSON.stringify(m.sprzetObslugiwany()))') as string[]; for (const c of ['pullup.bar', 'rings', 'barbell', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'ez_bar', 'axle_bar', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains', 'cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.row_seat', 'lat_pulldown', 'ankle_strap', 'cable.handles', 'cable.rope', 'bench.flat', 'bench.incline', 'bench.decline', 'bands', 'stability_ball', 'foam_roller', 'leg_ext', 'leg_press', 'ab_crunch_machine', 'lever_machine', 't_bar', 'preacher_bench']) expect(caps).toContain(c);
-    const r = run(POL, `console.log(JSON.stringify(['Front Plate Raise', 'Medicine Ball Chest Pass', 'Svend Press', 'Sled Push', 'Nie ma takiego'].map(c => m.sprzetNieobslugiwany(c, ${KAT}))))`) as (string | null)[];
-    expect(r[0]).toBeNull(); expect(r[1]).toBeNull(); expect(r[2]).toBeNull(); expect(r[3]).toMatch(/sprzęt spoza kontraktu: sled/); expect(r[4]).toBeNull();
+    const caps = run(POL, 'console.log(JSON.stringify(m.sprzetObslugiwany()))') as string[]; for (const c of ['pullup.bar', 'rings', 'barbell', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'ez_bar', 'axle_bar', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains', 'cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.row_seat', 'lat_pulldown', 'ankle_strap', 'cable.handles', 'cable.rope', 'bench.flat', 'bench.incline', 'bench.decline', 'bands', 'stability_ball', 'foam_roller', 'leg_ext', 'leg_press', 'ab_crunch_machine', 'lever_machine', 't_bar', 'preacher_bench', 'suspension', 'climbing_rope', 'sled', 'dip.bars', 'atlas_stones']) expect(caps).toContain(c);
+    const r = run(POL, `console.log(JSON.stringify(['Front Plate Raise', 'Medicine Ball Chest Pass', 'Svend Press', 'Assault Bike', 'Nie ma takiego'].map(c => m.sprzetNieobslugiwany(c, ${KAT}))))`) as (string | null)[];
+    expect(r[0]).toBeNull(); expect(r[1]).toBeNull(); expect(r[2]).toBeNull(); expect(r[3]).toMatch(/sprzęt spoza kontraktu: cardio\.bike/); expect(r[4]).toBeNull();
   });
   test('rodzajeSprzetu i sekcjaSprzetu: rodzaje z możliwości ćwiczeń (kolejność rejestru); bez nowego sprzętu sekcja pusta; liczby z silnika w liniach', () => {
     expect(run(POL, `console.log(JSON.stringify(m.rodzajeSprzetu(['Medicine Ball Chest Pass', 'Front Plate Raise'], ${KAT})))`)).toEqual(['talerz', 'pilka_lekarska']);
@@ -351,7 +351,7 @@ describe('gemini-polecenia: dzielenie za długich części (sekcja sprzętu roś
   test('część dłuższa niż limit jest dzielona na pół rekurencyjnie (sufiks a/b), żadne ćwiczenie nie ginie, każdy plik mieści się w limicie albo ma jedno ćwiczenie; nagłówek ma numer części z sufiksem', () => {
     const wszystkie = run(POL, `const p = await m.poleceniaRodziny('core_floor'); console.log(JSON.stringify(p.map((x) => [x.plik, x.cwiczenia, x.tresc.length])))`) as [string, string[], number][];
     const male = run(POL, `const p = await m.poleceniaRodziny('core_floor', { maxZnakow: 20000 }); console.log(JSON.stringify(p.map((x) => [x.plik, x.cwiczenia, x.tresc.length, x.tresc.split('\\n')[0]])))`) as [string, string[], number, string][];
-    expect(wszystkie.map((x) => x[0])).toEqual(['core_floor-1.md', 'core_floor-2.md', 'core_floor-3.md', 'core_floor-4.md']); expect(male.length).toBeGreaterThan(wszystkie.length);
+    expect(wszystkie.every((x) => /^core_floor-\d[ab]*\.md$/.test(x[0]))).toBe(true); expect(wszystkie.length).toBeGreaterThanOrEqual(4); expect(male.length).toBeGreaterThan(wszystkie.length); expect(wszystkie.every((x) => x[2] <= 36000)).toBe(true);
     expect(male.map((x) => x[1]).flat().sort()).toEqual(wszystkie.map((x) => x[1]).flat().sort()); for (const [, cw, len] of male) expect(len <= 20000 || cw.length === 1).toBe(true);
     const z = male.find((x) => /-\d[ab]+\.md$/.test(x[0]))!; expect(z[3]).toMatch(/\(część \d[ab]+\/4\)/);
   });

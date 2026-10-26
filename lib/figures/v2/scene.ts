@@ -30,6 +30,9 @@ export type Prop =
   | { k: 'roll'; c: V3; r: number; len: number }                                                         /* wałek (roller piankowy): walec wzdłuż z, środek */
   | { k: 'bench'; seatFrom: V2; hinge: V2; backTo: V2; legH: number; w?: number; rollers?: boolean }              /* ławka: siedzisko od-do, zawias, koniec oparcia */
   | { k: 'preacher'; top: V2; bottom: V2; seat: V2 }                                                      /* modlitewnik: pochyła podpórka na ramiona (górny koniec przy osobie, dolny dalej) i małe siedzisko (środek) */
+  | { k: 'sled'; x: number; h: number; len: number; posts: boolean }                                    /* sanie obciążeniowe: słupki uchwytów w x (wysokość h, z = ±EQUIP.sledHalf), podstawa od x o len w stronę +x; posts = dłonie na słupkach */
+  | { k: 'rope'; x: number; z: number; top: number; bottom: number; held?: boolean | 'R' | 'L' }      /* lina pionowa (do wspinania): od bottom do top w (x, z) */
+  | { k: 'dipbars'; x0: number; x1: number; h: number; z: number; held?: boolean }                   /* poręcze do dipów: dwie poziome rury na wysokości h w z = ±z, od x0 do x1 */
   | { k: 'box'; x0: number; x1: number; top: number; w?: number }
   | { k: 'wall'; x: number; h: number; front?: boolean }                                      /* ściana: lita po stronie −x od powierzchni x (za osobą); front: lita po stronie +x (przed osobą; w widoku z przodu przekrój) */
   | { k: 'rail'; x: number; h: number }                                                        /* prowadnica suwnicy Smitha (pionowa) */

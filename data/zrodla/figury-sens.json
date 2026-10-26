@@ -154,7 +154,7 @@
     ]
    },
    "pomin": {
-    "Rope Climb": "sprzęt „lina” nie jest rodzajem sprzętu kontraktu (silnik go nie rysuje) — zrobi nasz agent"
+    "Rope Climb": "brak reguł sensu dla wspinania po linie (badacz, docs/53 krok 1); sprzęt lina_pionowa jest już w kontrakcie (docs/54)"
    }
   },
   "core_floor": {

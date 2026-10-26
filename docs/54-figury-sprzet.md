@@ -17,7 +17,7 @@ Liczby poniżej: ćwiczenia z 622, które wymagają danego rodzaju (w nawiasie: 
 | 4 | ławka regulowana (skos +/−, wałki na nogi, modlitewnik) | 35 (9) | curl 12, delt_raise 6, core_floor 5 | niski–średni | ławka i modlitewnik gotowe (26.10.2026) |
 | 5 | guma / taśma oporowa | 17 (16) | hip_abd_add 4, rotator_cuff 3 | niski | **gotowe (26.10.2026)** |
 | 6 | piłka gimnastyczna, BOSU, ślizgacze, roller, kółko do brzucha | 25 (21) | foam_roll 10, core_floor 3, core_standing 3 | niski–średni | piłka gimnastyczna i wałek piankowy gotowe (26.10.2026); BOSU, ślizgacze, kółko do brzucha, wałek na nadgarstki — nie (po 1–2 ćwiczenia) |
-| 7 | taśmy zawieszane, lina pionowa; ławki specjalne (rzymska, GHD, GHR, reverse hyper) | 5 + 4 | cardio, back_extension, core_floor | średni | do zrobienia |
+| 7 | taśmy zawieszane, lina pionowa; ławki specjalne (rzymska, GHD, GHR, reverse hyper) | 5 + 4 | cardio, back_extension, core_floor | średni | taśmy i lina gotowe (26.10.2026); ławki specjalne — nie (4 ćwiczenia, osobne konstrukcje) |
 | 8 | maszyny (siedzisko, oparcie, dźwignia; ok. 21 typów) | 45 (43) | leg_machine 7, sled_throw 6, leg_isolation 5 | wysoki | **gotowe jako schemat (26.10.2026)**: dźwignia obrotowa albo prowadnica + ławka jako siedzisko; sanie (sled) nie |
 | 9 | cardio (ergometry) | 9 (9) | cardio 9 | inna klasa (rig, nie sprzęt) | wyjątek z powodem |
 
@@ -84,7 +84,17 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 |---|---|---|---|
 | `modlitewnik` | `x`, `top` (górny koniec podpórki, 95), `kat` (30–80°, 60), `dlugosc` (45), `y` (siedzisko, 48) | preacher_bench | podpórka opada od osoby (+x), siedzisko za górnym końcem; kontakty: ramię/przedramię 3 cm, tułów 2 cm, miednica/uda 1,5 cm |
 
-### 2.8 Maszyny (schematycznie)
+### 2.8 Taśmy do podwieszania, lina pionowa, sanie, poręcze
+
+| Rodzaj | Pola | Możliwości katalogu | Uwagi |
+|---|---|---|---|
+| `zawieszenie` | `x`, `y` (zaczep, 220), `z`, `punkt` (dlonie / kostki), `trzyma` | suspension | dwie taśmy z jednego zaczepu do dłoni albo kostek; kolider taśm (jak linka wyciągu) |
+| `lina_pionowa` | `x`, `z`, `h` (góra, 400), `y` (dół, 20), `trzyma` | climbing_rope | dłonie na osi liny ± 3 cm; stopy i łydki mogą dociskać linę do 3 cm; szablon pull_up nie wymaga drążka przy linie; reguł sensu dla wspinania nadal brak (Rope Climb pomijany z tego powodu) |
+| `sanie` | `x`, `h` (słupki, 100), `dlugosc` (60), `trzymanie` (slupki / lina) | sled | słupki: dłonie ± 1,5 cm; lina: linka od przodu sań do dłoni; bez pasa/uprzęży (dip_belt — nadal poza kontraktem) |
+| `poreczy` | `x0`, `x1`, `h` (115), `z` (połowa rozstawu, 22) | dip.bars | dłonie na poręczach ± 1 cm |
+| `pilka_lekarska` (kamień atlas, beczka, worek) | `promien` 6–20 | atlas_stones, keg, sandbag | rysowane jak kula — uproszczenie |
+
+### 2.9 Maszyny (schematycznie)
 
 | Rodzaj | Pola | Możliwości katalogu | Uwagi |
 |---|---|---|---|
@@ -93,6 +103,10 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 Przykłady few-shot z rigów gotowych rodzin (`exampleFor`) zawierają teraz wpis `lawka` (wcześniej ławka nie była zapisywana w danych).
 
 Wymagany sprzęt ćwiczenia (`requiredGearIssues`, używane w `waliduj`): poza musi zawierać wpis rodzaju pokrywającego możliwość z `requires` katalogu (np. wyciąg z bloczkiem wysokim dla `cable.high`); alternatywy w grupie to ALBO; stojak (słupek) nie jest wymagany; grupy bez rodzaju w rejestrze pomijane. Kod błędu: `sprzet`.
+
+## 2.10 Poza kontraktem (stan 26.10.2026)
+
+Pozostałe ćwiczenia z niewspieranym sprzętem (z 622 do zrobienia): cardio (ergometry, bieżnie, skakanka, liny bojowe: 10), ławki specjalne (rzymska, GHD, glute-ham, reverse hyper: 4), sprzęt strongman (opona, jarzmo, kłoda, riksza, circus bell: 5), kółko do brzucha, ślizgacze, BOSU, wałek na nadgarstki, młot, uprząż na szyję, pas obciążeniowy z sańmi (dip_belt) — po 1–2 ćwiczenia. Powód: osobne konstrukcje albo inna klasa rigu (cardio = lokomocja, nie sprzęt). Do decyzji: wyjątek z powodem czy kolejne prymitywy.
 
 ## 3. Wymiary sprzętu — konwencja rysunku
 

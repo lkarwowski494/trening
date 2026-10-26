@@ -11,11 +11,11 @@ import { TOL } from './colliders';
 import { BENCH } from './rigs/benchPress';
 import type { Contact, Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka', 'dzwignia', 'modlitewnik'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka', 'dzwignia', 'modlitewnik', 'zawieszenie', 'lina_pionowa', 'sanie', 'poreczy'] as const;
 export type GearName = typeof GEAR[number];
-export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean; mocowanie?: typeof BAND_MOUNT[number]; tryb?: typeof LEVER_MODE[number]; punkt?: typeof LEVER_POINT[number]; siedzisko?: number };
+export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean; mocowanie?: typeof BAND_MOUNT[number]; tryb?: typeof LEVER_MODE[number]; punkt?: typeof LEVER_POINT[number]; siedzisko?: number; trzymanie?: typeof SLED_HOLD[number] };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
-export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki', 'mocowanie', 'tryb', 'punkt', 'siedzisko'] as const;
+export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki', 'mocowanie', 'tryb', 'punkt', 'siedzisko', 'trzymanie'] as const;
 export const BELL_MODES = ['dol', 'wzdluz', 'tyl'] as const;
 /** Osprzęt linki wyciągu: uchwyt (jeden na dłoń), lina (dwa końce), drążek (prosty, między dłońmi), kostka (opaska na kostkę). */
 export const CABLE_ATTACH = ['uchwyt', 'lina', 'drazek', 'kostka'] as const;
@@ -24,6 +24,8 @@ export const BAND_MOUNT = ['zaczep', 'stopy', 'kostki', 'dlonie', 'sztanga'] as 
 /** Dźwignia maszyny: obrót wokół osi (sztywne ramię) albo prowadnica liniowa (skok po prostej); punkt mocowania: dłonie, kostki, miednica. */
 export const LEVER_MODE = ['obrot', 'prosta'] as const;
 export const LEVER_POINT = ['dlonie', 'kostki', 'miednica'] as const;
+/** Sposób trzymania sań: słupki (dłonie na uchwytach sań, pchanie) albo lina (linka od sań do dłoni, ciągnięcie). */
+export const SLED_HOLD = ['slupki', 'lina'] as const;
 /** Kąt oparcia ławki (stopnie, 0 = płasko, dodatni = skos głową wyżej, ujemny = głową niżej) wg możliwości katalogu — konwencja rysunku. */
 export const BENCH_KAT = { min: -45, max: 90, flat: [-5, 5], incline: [10, 90], decline: [-45, -5] } as const;
 /** Wysokość bloczka stacji wyciągów (cm) wg możliwości katalogu — konwencja rysunku (data/zrodla/figury-sprzet.json → wyciag): niski, środkowy, wysoki. */
@@ -298,6 +300,46 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
       `modlitewnik: pochyła podpórka na ramiona (preacher curl). Górny koniec podpórki w [x, top] (domyślnie x = 0, top = ${f1(EQUIP.preacherTop)} cm: na wysokości klatki osoby siedzącej), podpórka opada od osoby w stronę +x pod kątem kat od poziomu (domyślnie ${EQUIP.preacherKat}°, 30–80°) na długość dlugosc (domyślnie ${EQUIP.preacherLen} cm), grubość ${f1(EQUIP.preacherT)} cm, szerokość ${f1(EQUIP.preacherW)} cm (z = ±${f1(EQUIP.preacherW / 2)}). Siedzisko ${f1(EQUIP.preacherSeatL)} × ${f1(EQUIP.preacherSeatW)} cm w [x − ${f1(EQUIP.preacherSeatDx)}, y] (y = wysokość siedziska, domyślnie ${f1(EQUIP.preacherSeatY)} cm). Osoba siedzi PRZODEM do podpórki (twarz +x): miednica na siedzisku, klatka tuż za górnym końcem podpórki, ramiona (łokcie) leżą na powierzchni podpórki, dłonie trzymają sztangę/hantle/uchwyt przed nią. Kontakty: ramię i przedramię z podpórką do 3 cm, tułów do 2 cm, miednica i uda z siedziskiem do 1,5 cm; głębiej odrzucane.`,
     ],
   },
+  zawieszenie: {
+    nazwa: 'taśmy do podwieszania', caps: ['suspension'], fields: ['z', 'punkt'], opis: 'taśmy do podwieszania (TRX): punkt zaczepu wysoko (x, y, z), dwie taśmy do dłoni albo kostek (punkt, trzyma)',
+    props: (g, grips, _all, ankles) => {
+      const anchor: V3 = [g.x ?? 0, g.y ?? EQUIP.suspensionY, g.z ?? 0]; const kost = g.punkt === 'kostki';
+      return sidesOf(g).map((s): Prop => ({ k: 'cable', from: anchor, to: kost ? ankles[s] : grips[s], attach: kost ? 'strap' : 'handle', ends: [kost ? ankles[s] : grips[s]], solid: true }));
+    },
+    check: g => [...bounds('wysokość zaczepu taśm y', g.y, 100, 350), ...(g.punkt === 'miednica' ? ['sprzęt: taśmy do podwieszania mocujemy do dłoni albo kostek (punkt: "dlonie" lub "kostki")'] : [])],
+    ref: () => [
+      `zawieszenie: taśmy do podwieszania (TRX) przypięte do jednego punktu zaczepu P = [x, y, z] (domyślnie x = 0, y = ${EQUIP.suspensionY} cm, z = 0: belka nad głową), dwie taśmy prosto do uchwytów w dłoniach (punkt "dlonie", domyślnie) albo do pętli na kostkach (punkt "kostki": stopy w pętlach; trzyma "obie" = obie nogi, "R"/"L" = jedna noga, druga na podłodze). Taśma napięta w całym ruchu: linia od P do dłoni/kostki. Taśmy nie przenikają ciała (poza ostatnimi ${f1(EQUIP.cableEnd)} cm przy dłoni/kostce): ustaw P tak, by linie nie przechodziły przez tułów i głowę.`,
+    ],
+  },
+  lina_pionowa: {
+    nazwa: 'lina pionowa', caps: ['climbing_rope'], fields: ['z'], opis: 'lina do wspinania zawieszona pionowo (x, z, y = dół, h = góra), dłonie na linie (trzyma)',
+    props: g => [{ k: 'rope', x: g.x ?? 0, z: g.z ?? 0, top: g.h ?? EQUIP.ropeTop, bottom: g.y ?? EQUIP.ropeBottom, held: g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : true }],
+    contacts: () => [{ body: 'foot', equip: 'rope', tol: 3 }, { body: 'shank', equip: 'rope', tol: 3 }],
+    check: g => [...bounds('góra liny h', g.h, 150, 600), ...bounds('dół liny y', g.y, 0, 150)],
+    ref: () => [
+      `lina_pionowa: lina do wspinania zawieszona prosto w dół w (x, z) (domyślnie x = 0, z = 0) od dołu y (domyślnie ${EQUIP.ropeBottom} cm nad podłogą) do góry h (domyślnie ${EQUIP.ropeTop} cm), średnica ${f1(2 * EQUIP.ropeR)} cm. Dłonie OBEJMUJĄ linę: środek chwytu na osi liny (x i z liny, y między dołem a górą), odchylenie ≤ 3 cm w KAŻDEJ klatce (trzyma "obie" domyślnie; "R"/"L" = jedna dłoń). Ciało nie przenika liny; stopy i łydki mogą ją dociskać (wspinaczka): przenikanie do 3 cm.`,
+    ],
+  },
+  sanie: {
+    nazwa: 'sanie obciążeniowe', caps: ['sled'], fields: ['trzymanie'], opis: 'sanie obciążeniowe na podłodze: słupki uchwytów w x (wysokość h), podstawa długości dlugosc w stronę +x; dłonie na słupkach albo lina do dłoni (trzymanie)',
+    props: (g, grips) => {
+      const x = g.x ?? 0, len = g.dlugosc ?? EQUIP.sledLen; const rope = g.trzymanie === 'lina';
+      const body: Prop = { k: 'sled', x, h: g.h ?? EQUIP.sledPostH, len, posts: !rope };
+      return rope ? [body, { k: 'cable', from: [x + len, 15, 0], to: avg(sidesOf(g).map(s => grips[s])), attach: 'handle', ends: sidesOf(g).map(s => grips[s]), solid: true }] : [body];
+    },
+    check: g => [...bounds('dlugosc podstawy sań', g.dlugosc, 30, 120), ...bounds('wysokość słupków sań h', g.h, 40, 160)],
+    ref: () => [
+      `sanie: sanie obciążeniowe (prowler) stojące na podłodze: dwa słupki uchwytów w x (z = ±${f1(EQUIP.sledHalf)} cm) o wysokości h (domyślnie ${EQUIP.sledPostH} cm), podstawa wysokości ${f1(EQUIP.sledBase)} cm od x o dlugosc (domyślnie ${EQUIP.sledLen} cm) w stronę +x (sanie przed osobą, pchanie w stronę +x), talerze na podstawie (tło). trzymanie: "slupki" (domyślnie; pchanie i ciągnięcie za słupki): w KAŻDEJ klatce dłonie na słupkach (x słupków, z = ±${f1(EQUIP.sledHalf)}, y od ${f1(EQUIP.sledBase)} cm do h; ± 1,5 cm); "lina" = lina od przodu sań [x + dlugosc, 15, 0] do dłoni (wiosłowanie, ciągnięcie wstecz, wznosy z liną). Ciało nie przenika sań ani słupków.`,
+    ],
+  },
+  poreczy: {
+    nazwa: 'poręcze do dipów', caps: ['dip.bars'], fields: ['z'], opis: 'dwie równoległe poręcze (x0, x1, h wysokość, z = połowa rozstawu), dłonie na poręczach',
+    props: g => [{ k: 'dipbars', x0: g.x0 ?? -EQUIP.dipLen / 2, x1: g.x1 ?? EQUIP.dipLen / 2, h: g.h ?? EQUIP.dipH, z: g.z ?? EQUIP.dipHalf }],
+    check: g => [...bounds('rozstaw poręczy z', g.z, 15, 40), ...bounds('wysokość poręczy h', g.h, 80, 160), ...(g.x0 !== undefined && g.x1 !== undefined && g.x1 - g.x0 < 30 ? [`sprzęt: poręcze krótsze niż 30 cm (x0 = ${g.x0}, x1 = ${g.x1})`] : [])],
+    ref: () => [
+      `poreczy: dwie równoległe poziome poręcze na wysokości h (domyślnie ${EQUIP.dipH} cm) w z = ±z, gdzie z (pole z) to POŁOWA rozstawu poręczy (domyślnie ${f1(EQUIP.dipHalf)} cm, dozwolone 15–40 cm, czyli rozstaw 30–80 cm), od x0 do x1 (domyślnie ±${f1(EQUIP.dipLen / 2)} cm), średnica ${f1(2 * EQUIP.dipR)} cm. W KAŻDEJ klatce dłonie na poręczach: y = h, z = ±z (R dodatnie), x między x0 a x1 (± 1 cm). Tułów przechodzi między poręczami (nie przenika ich).`,
+    ],
+  },
   skrzynia: { nazwa: 'skrzynia albo stopień', caps: ['box'], opis: 'skrzynia albo stopień (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
   hantel: {
     nazwa: 'hantle',
@@ -340,7 +382,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
   },
   pilka_lekarska: {
     nazwa: 'piłka lekarska',
-    caps: ['med_ball'], fields: ['promien', 'przesuniecie'], opis: 'piłka lekarska (trzyma, promien, przesuniecie)',
+    caps: ['med_ball', 'atlas_stones', 'keg', 'sandbag'], capLabel: { med_ball: 'piłka lekarska', atlas_stones: 'kamień atlas (rysowany jak kula — uproszczenie)', keg: 'beczka (rysowana jak kula — uproszczenie)', sandbag: 'worek z piaskiem (rysowany jak kula — uproszczenie)' }, fields: ['promien', 'przesuniecie'], opis: 'piłka lekarska (trzyma, promien, przesuniecie)',
     props: (g, grips) => {
       const r = g.promien ?? EQUIP.medBallR; const ss = sidesOf(g);
       return [{ k: 'ball', c: add(avg(ss.map(s => grips[s])), g.przesuniecie ?? (ss.length === 1 ? [0, r - 1, 0] : [0, 0, 0])), r: g.promien, held: g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : true }];
