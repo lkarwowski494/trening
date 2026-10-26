@@ -117,3 +117,6 @@ Nie zrobione:
 - Podglądy n6 (`docs/przekazanie/n6`, scratchpad `pilotaz-agent/n6`) nie wygenerowane z końcowym kodem (`run.mjs --rodzina X --wyjscie ... --podglad`).
 - Pełne `npm run verify` i zielony `tests.yml` dla 61b1e0a niesprawdzone (lokalnie: figury-jakosc 59/59, figures-v2 zielone po regeneracji odcisków).
 - Otwarte: Mountain Climbers — sens (`miednica_stala_wysokosc` ≤ 5 cm) i R5 (kolano ≥ 11 cm) mają okno 4,5–5 cm unoszenia biodra (udo przechodzi przez pion); do decyzji badacza, czy poluzować rozpiętość miednicy do ok. 7 cm. Wall Sit z rigu daje `klatki_rozne` (9 identycznych klatek przy ćwiczeniu izometrycznym) — kod rigu, nie poza z danych.
+
+## Uwaga koordynatora na poranny status (26.10 ~23:00 UTC)
+PR https://github.com/lkarwowski494/trening/pull/70 (integracja-2026-10-26b → main) scalił agent 1.0 o 22:28 UTC na podstawie polecenia nocnego („E2E do skutku → PR do main → wydanie-1-0-0 …”) odczytanego przez koordynatora jako zgoda na scalenie. CLAUDE.md wymaga polecenia właściciela — zgłosić to rano wprost i zapytać, czy ta interpretacja była właściwa (do zapisu w docs/18).
