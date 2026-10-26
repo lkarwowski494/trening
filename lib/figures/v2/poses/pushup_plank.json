@@ -3027,9 +3027,9 @@
        "podbicie": -90,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        -0.3
+        0.9903640991564342,
+        -0.13848809010909446,
+        0.1
        ]
       },
       "L": {
@@ -3041,9 +3041,9 @@
        "podbicie": -60,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        0.3
+        0.26871719205941197,
+        -0.9632191187324435,
+        -0.1
        ]
       }
      },
@@ -3077,13 +3077,13 @@
     {
      "u": 0.125,
      "miednica": [
-      77,
-      48.5,
+      76.4,
+      50.3,
       0
      ],
-     "pochylenieTulowia": 69.9,
+     "pochylenieTulowia": 72.1,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 52.4,
+     "pochylenieGlowy": 54.1,
      "nogi": {
       "R": {
        "kostka": [
@@ -3091,12 +3091,12 @@
         22,
         10
        ],
-       "podbicie": -86.2,
+       "podbicie": -89.3,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        -0.3
+        0.9112075769848557,
+        -0.41194751078916414,
+        0.1
        ]
       },
       "L": {
@@ -3105,12 +3105,12 @@
         22.7,
         -10
        ],
-       "podbicie": -63.7,
+       "podbicie": -66.8,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        0.3
+        0.3540115927920827,
+        -0.9352410342627254,
+        -0.1
        ]
       }
      },
@@ -3144,13 +3144,13 @@
     {
      "u": 0.25,
      "miednica": [
-      77,
-      48.5,
+      75.9,
+      51.9,
       0
      ],
-     "pochylenieTulowia": 69.9,
+     "pochylenieTulowia": 74,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 52.4,
+     "pochylenieGlowy": 55.5,
      "nogi": {
       "R": {
        "kostka": [
@@ -3158,12 +3158,12 @@
         24.3,
         10
        ],
-       "podbicie": -82.5,
+       "podbicie": -88.2,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        -0.3
+        0.7839448254925299,
+        -0.6208305006871736,
+        0.1
        ]
       },
       "L": {
@@ -3172,12 +3172,12 @@
         24.7,
         -10
        ],
-       "podbicie": -67.5,
+       "podbicie": -73.2,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        0.3
+        0.4049982212185727,
+        -0.9143174726591372,
+        -0.1
        ]
       }
      },
@@ -3211,13 +3211,13 @@
     {
      "u": 0.375,
      "miednica": [
-      77,
-      48.5,
+      75.6,
+      52.9,
       0
      ],
-     "pochylenieTulowia": 69.9,
+     "pochylenieTulowia": 75.2,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 52.4,
+     "pochylenieGlowy": 56.4,
      "nogi": {
       "R": {
        "kostka": [
@@ -3225,12 +3225,12 @@
         25.8,
         10
        ],
-       "podbicie": -78.7,
+       "podbicie": -86.1,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        -0.3
+        0.6564688409879644,
+        -0.7543531406522537,
+        0.1
        ]
       },
       "L": {
@@ -3239,12 +3239,12 @@
         26,
         -10
        ],
-       "podbicie": -71.2,
+       "podbicie": -78.6,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        0.3
+        0.46811002208124697,
+        -0.8836701914329205,
+        -0.1
        ]
       }
      },
@@ -3278,13 +3278,13 @@
     {
      "u": 0.5,
      "miednica": [
-      77,
-      48.5,
+      75.5,
+      53.3,
       0
      ],
-     "pochylenieTulowia": 69.9,
+     "pochylenieTulowia": 75.7,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 52.4,
+     "pochylenieGlowy": 56.8,
      "nogi": {
       "R": {
        "kostka": [
@@ -3292,12 +3292,12 @@
         26.5,
         10
        ],
-       "podbicie": -75,
+       "podbicie": -83,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        -0.3
+        0.5493292326241058,
+        -0.8356060041578273,
+        0.1
        ]
       },
       "L": {
@@ -3306,12 +3306,12 @@
         26.5,
         -10
        ],
-       "podbicie": -75,
+       "podbicie": -83,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        0.3
+        0.5493292326241058,
+        -0.8356060041578273,
+        -0.1
        ]
       }
      },
@@ -3345,13 +3345,13 @@
     {
      "u": 0.625,
      "miednica": [
-      77,
-      48.5,
+      75.6,
+      52.9,
       0
      ],
-     "pochylenieTulowia": 69.9,
+     "pochylenieTulowia": 75.2,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 52.4,
+     "pochylenieGlowy": 56.4,
      "nogi": {
       "R": {
        "kostka": [
@@ -3359,12 +3359,12 @@
         26,
         10
        ],
-       "podbicie": -71.2,
+       "podbicie": -78.6,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        -0.3
+        0.46811002208124697,
+        -0.8836701914329205,
+        0.1
        ]
       },
       "L": {
@@ -3373,12 +3373,12 @@
         25.8,
         -10
        ],
-       "podbicie": -78.7,
+       "podbicie": -86.1,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        0.3
+        0.6564688409879644,
+        -0.7543531406522537,
+        -0.1
        ]
       }
      },
@@ -3412,13 +3412,13 @@
     {
      "u": 0.75,
      "miednica": [
-      77,
-      48.5,
+      75.9,
+      51.9,
       0
      ],
-     "pochylenieTulowia": 69.9,
+     "pochylenieTulowia": 74,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 52.4,
+     "pochylenieGlowy": 55.5,
      "nogi": {
       "R": {
        "kostka": [
@@ -3426,12 +3426,12 @@
         24.7,
         10
        ],
-       "podbicie": -67.5,
+       "podbicie": -73.2,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        -0.3
+        0.4049982212185727,
+        -0.9143174726591372,
+        0.1
        ]
       },
       "L": {
@@ -3440,12 +3440,12 @@
         24.3,
         -10
        ],
-       "podbicie": -82.5,
+       "podbicie": -88.2,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        0.3
+        0.7839448254925299,
+        -0.6208305006871736,
+        -0.1
        ]
       }
      },
@@ -3479,13 +3479,13 @@
     {
      "u": 0.875,
      "miednica": [
-      77,
-      48.5,
+      76.4,
+      50.3,
       0
      ],
-     "pochylenieTulowia": 69.9,
+     "pochylenieTulowia": 72.1,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 52.4,
+     "pochylenieGlowy": 54.1,
      "nogi": {
       "R": {
        "kostka": [
@@ -3493,12 +3493,12 @@
         22.7,
         10
        ],
-       "podbicie": -63.7,
+       "podbicie": -66.8,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        -0.3
+        0.3540115927920827,
+        -0.9352410342627254,
+        0.1
        ]
       },
       "L": {
@@ -3507,12 +3507,12 @@
         22,
         -10
        ],
-       "podbicie": -86.2,
+       "podbicie": -89.3,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        0.3
+        0.9112075769848557,
+        -0.41194751078916414,
+        -0.1
        ]
       }
      },
@@ -3563,9 +3563,9 @@
        "podbicie": -60,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        -0.3
+        0.26871719205941197,
+        -0.9632191187324435,
+        0.1
        ]
       },
       "L": {
@@ -3577,9 +3577,9 @@
        "podbicie": -90,
        "rotacjaStopy": 10,
        "biegunKolana": [
-        1,
-        0.3,
-        0.3
+        0.9903640991564342,
+        -0.13848809010909446,
+        -0.1
        ]
       }
      },
@@ -6441,7 +6441,7 @@
     },
     {
      "rodzaj": "zawieszenie",
-     "x": 125.2,
+     "x": 160,
      "punkt": "dlonie"
     }
    ],
@@ -6449,13 +6449,13 @@
     {
      "u": 0,
      "miednica": [
-      47,
-      87.5,
+      60,
+      76.2,
       0
      ],
-     "pochylenieTulowia": 35,
+     "pochylenieTulowia": 47,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 26.3,
+     "pochylenieGlowy": 35.3,
      "nogi": {
       "R": {
        "kostka": [
@@ -6479,8 +6479,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        125.2,
-        89.8,
+        142.3,
+        67.3,
         20
        ],
        "biegunLokcia": [
@@ -6491,8 +6491,8 @@
       },
       "L": {
        "chwyt": [
-        125.2,
-        89.8,
+        142.3,
+        67.3,
         -20
        ],
        "biegunLokcia": [
@@ -6506,13 +6506,13 @@
     {
      "u": 0.14,
      "miednica": [
-      54.7,
-      81.4,
+      63.3,
+      72.5,
       0
      ],
-     "pochylenieTulowia": 41.9,
+     "pochylenieTulowia": 50.5,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 31.4,
+     "pochylenieGlowy": 37.9,
      "nogi": {
       "R": {
        "kostka": [
@@ -6536,8 +6536,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        140.3,
-        83.7,
+        152.1,
+        66.5,
         20
        ],
        "biegunLokcia": [
@@ -6548,8 +6548,8 @@
       },
       "L": {
        "chwyt": [
-        140.3,
-        83.7,
+        152.1,
+        66.5,
         -20
        ],
        "biegunLokcia": [
@@ -6563,13 +6563,13 @@
     {
      "u": 0.28,
      "miednica": [
-      61.6,
-      74.4,
+      66.3,
+      68.5,
       0
      ],
-     "pochylenieTulowia": 48.7,
+     "pochylenieTulowia": 54,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 36.5,
+     "pochylenieGlowy": 40.5,
      "nogi": {
       "R": {
        "kostka": [
@@ -6593,8 +6593,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        153.8,
-        76.4,
+        161.1,
+        66.3,
         20
        ],
        "biegunLokcia": [
@@ -6605,8 +6605,8 @@
       },
       "L": {
        "chwyt": [
-        153.8,
-        76.4,
+        161.1,
+        66.3,
         -20
        ],
        "biegunLokcia": [
@@ -6620,13 +6620,13 @@
     {
      "u": 0.42,
      "miednica": [
-      67.6,
-      66.7,
+      69.2,
+      64.4,
       0
      ],
-     "pochylenieTulowia": 55.6,
+     "pochylenieTulowia": 57.5,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 41.7,
+     "pochylenieGlowy": 43.1,
      "nogi": {
       "R": {
        "kostka": [
@@ -6650,8 +6650,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        165.6,
-        68,
+        169.1,
+        66.6,
         20
        ],
        "biegunLokcia": [
@@ -6662,8 +6662,8 @@
       },
       "L": {
        "chwyt": [
-        165.6,
-        68,
+        169.1,
+        66.6,
         -20
        ],
        "biegunLokcia": [
@@ -6677,13 +6677,13 @@
     {
      "u": 0.57,
      "miednica": [
-      73,
-      57.6,
+      71.9,
+      59.7,
       0
      ],
-     "pochylenieTulowia": 62.9,
+     "pochylenieTulowia": 61.3,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 47.2,
+     "pochylenieGlowy": 45.9,
      "nogi": {
       "R": {
        "kostka": [
@@ -6707,8 +6707,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        176.2,
-        58,
+        176.3,
+        67.2,
         20
        ],
        "biegunLokcia": [
@@ -6719,8 +6719,8 @@
       },
       "L": {
        "chwyt": [
-        176.2,
-        58,
+        176.3,
+        67.2,
         -20
        ],
        "biegunLokcia": [
@@ -6734,13 +6734,13 @@
     {
      "u": 0.71,
      "miednica": [
-      77,
-      48.6,
+      74.2,
+      55.3,
       0
      ],
-     "pochylenieTulowia": 69.8,
+     "pochylenieTulowia": 64.8,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 52.3,
+     "pochylenieGlowy": 48.6,
      "nogi": {
       "R": {
        "kostka": [
@@ -6764,8 +6764,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        184,
-        47.8,
+        181.6,
+        67.8,
         20
        ],
        "biegunLokcia": [
@@ -6776,8 +6776,8 @@
       },
       "L": {
        "chwyt": [
-        184,
-        47.8,
+        181.6,
+        67.8,
         -20
        ],
        "biegunLokcia": [
@@ -6791,13 +6791,13 @@
     {
      "u": 0.85,
      "miednica": [
-      79.8,
-      39.2,
+      76.2,
+      50.7,
       0
      ],
-     "pochylenieTulowia": 76.7,
+     "pochylenieTulowia": 68.3,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 57.5,
+     "pochylenieGlowy": 51.2,
      "nogi": {
       "R": {
        "kostka": [
@@ -6821,8 +6821,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        189.8,
-        37.2,
+        185.4,
+        68.4,
         20
        ],
        "biegunLokcia": [
@@ -6833,8 +6833,8 @@
       },
       "L": {
        "chwyt": [
-        189.8,
-        37.2,
+        185.4,
+        68.4,
         -20
        ],
        "biegunLokcia": [
@@ -6848,13 +6848,13 @@
     {
      "u": 1,
      "miednica": [
-      81.6,
-      28.9,
+      78,
+      45.6,
       0
      ],
-     "pochylenieTulowia": 84,
+     "pochylenieTulowia": 72,
      "zgiecieKregoslupa": 0,
-     "pochylenieGlowy": 63,
+     "pochylenieGlowy": 54,
      "nogi": {
       "R": {
        "kostka": [
@@ -6878,8 +6878,8 @@
      "rece": {
       "R": {
        "chwyt": [
-        193.5,
-        25.4,
+        187.9,
+        68.8,
         20
        ],
        "biegunLokcia": [
@@ -6890,8 +6890,8 @@
       },
       "L": {
        "chwyt": [
-        193.5,
-        25.4,
+        187.9,
+        68.8,
         -20
        ],
        "biegunLokcia": [
@@ -6918,8 +6918,8 @@
       {
        "u": 0,
        "miednica": [
-        6,
-        -3.6,
+        5.1,
+        -4.7,
         0
        ],
        "pochylenieTulowia": -8
@@ -6927,8 +6927,8 @@
       {
        "u": 0.14,
        "miednica": [
-        5.5,
-        -4.3,
+        4.8,
+        -5.1,
         0
        ],
        "pochylenieTulowia": -8
@@ -6936,8 +6936,8 @@
       {
        "u": 0.28,
        "miednica": [
-        5,
-        -4.9,
+        4.5,
+        -5.3,
         0
        ],
        "pochylenieTulowia": -8
@@ -6945,8 +6945,8 @@
       {
        "u": 0.42,
        "miednica": [
-        4.4,
-        -5.5,
+        4.1,
+        -5.6,
         0
        ],
        "pochylenieTulowia": -8
@@ -6954,8 +6954,8 @@
       {
        "u": 0.57,
        "miednica": [
-        3.6,
-        -6,
+        3.8,
+        -5.8,
         0
        ],
        "pochylenieTulowia": -8
@@ -6963,8 +6963,8 @@
       {
        "u": 0.71,
        "miednica": [
-        2.8,
-        -6.3,
+        3.4,
+        -6.1,
         0
        ],
        "pochylenieTulowia": -8
@@ -6972,8 +6972,8 @@
       {
        "u": 0.85,
        "miednica": [
-        2.1,
-        -6.6,
+        3,
+        -6.3,
         0
        ],
        "pochylenieTulowia": -8
@@ -6981,8 +6981,8 @@
       {
        "u": 1,
        "miednica": [
-        1.2,
-        -6.9,
+        2.6,
+        -6.4,
         0
        ],
        "pochylenieTulowia": -8

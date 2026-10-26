@@ -128,7 +128,8 @@ W.cialo_w_linii_pelne = { dobre: J.cialoWLiniiPelne(v2, PL), zle: J.cialoWLiniiP
 W.kolana_proste_podpor = { dobre: J.kolanaProstePodpor(v2, PL), zle: J.kolanaProstePodpor(v2, stopyBlizej) };
 const foZle = klon(FO); for (const k of foZle.klatki) for (const sd of ['R', 'L']) k.rece[sd].chwyt = [k.miednica[0] + 10, k.miednica[1] - 10, sd === 'R' ? 20 : -20];
 W.fallout_start_rece_przod = { dobre: J.falloutStartRecePrzod(v2, FO), zle: J.falloutStartRecePrzod(v2, foZle) };
-W.kolano_pod_tulowiem = { dobre: J.kolanoPodTulowiem(v2, MC), zle: J.kolanoPodTulowiem(v2, G.mountain('Mountain Climbers', { poleZ: 0.6 })) };
+const mcSzeroko = klon(MC); for (const k of mcSzeroko.klatki) { k.nogi.R.biegunKolana = [0.3, 0, 1]; k.nogi.L.biegunKolana = [0.3, 0, -1]; }
+W.kolano_pod_tulowiem = { dobre: J.kolanoPodTulowiem(v2, MC), zle: J.kolanoPodTulowiem(v2, mcSzeroko) };
 const mcKlek = klon(MC); for (const k of mcKlek.klatki) k.miednica[1] -= 8;
 W.podpor_bez_kleku = { dobre: J.podporBezKleku(v2, MC), zle: J.podporBezKleku(v2, mcKlek) };
 W.lokiec_nad_nadgarstkiem_bok = { dobre: J.lokiecNadNadgarstkiemBok(v2, DE), zle: J.lokiecNadNadgarstkiemBok(v2, G.pompka('Decline Push Up', { hz: 22, boxStopy: 27, thetaDol: 146, blady: ['partial'] })) };
@@ -157,6 +158,12 @@ const kontrakt = (p, cue) => waliduj(p, { rodzina: 'pushup_plank', cwiczenie: p.
 const sagNaStarcie = JSON.parse(JSON.stringify(PL)); sagNaStarcie.bledy[0].klatki[0] = { u: 0, miednica: [0, -5, 0] };
 const partialNaStarcie = JSON.parse(JSON.stringify(PU)); partialNaStarcie.bledy[0].klatki[0] = { u: 0, miednica: [0, -5, 0] };
 W.kontrakt_start = { dobre: [kontrakt(sagNaStarcie)], zle: [kontrakt(partialNaStarcie)] };
+/* niezmienniki konstrukcyjne silnika (lib/figures/v2/contract.ts): taśma nierozciągliwa, kolano po swojej stronie osi ciała */
+const inv = (p, rod, cw, kod) => waliduj(p, { rodzina: rod, cwiczenie: cw }).bledy.filter((b) => b.kod === kod).length;
+const SPU = poza('pushup_plank', 'Suspended Push-Up'); const taśmaZla = klon(SPU); taśmaZla.klatki[taśmaZla.klatki.length - 1].rece.R.chwyt[1] -= 30;
+const kolanoZle = klon(poza('core_floor', 'Crunch')); kolanoZle.bledy = []; for (const k of kolanoZle.klatki) k.nogi.R.biegunKolana = [0, 0, -1];
+const kolanoDobre = klon(poza('core_floor', 'Crunch')); kolanoDobre.bledy = [];
+W.niezmienniki_silnika = { dobre: [inv(SPU, 'pushup_plank', 'Suspended Push-Up', 'tasma-dlugosc'), inv(kolanoDobre, 'core_floor', 'Crunch', 'kolano-strona')], zle: [inv(taśmaZla, 'pushup_plank', 'Suspended Push-Up', 'tasma-dlugosc'), inv(kolanoZle, 'core_floor', 'Crunch', 'kolano-strona')] };
 /* cechy ruchu: reguły przypisane po cechach (dane sens + teksty), nie po nazwie rodziny */
 const teksty = J.wczytajTeksty();
 const cechy = (f, cw) => [...J.cechyRuchu(v2, poza(f, cw), { rodzina: f, cwiczenie: cw, teksty, reguly: SENS.regulyDla(f, cw, ${JSON.stringify(ROOT)}) })];
@@ -175,6 +182,7 @@ const W = run(KOD) as Record<string, { dobre: unknown[]; zle: unknown[] }>;
 const REGULY = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'rzad_bledu_wszystkie', 'cialo_w_linii_pelne', 'kolana_proste_podpor', 'fallout_start_rece_przod', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'widocznosc_w_obszarze', 'podglad_wazny', 'widocznosc_bledu_kat', 'ledzwie_przy_podlodze', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie', 'manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
 describe('reguły jakości po cechach ruchu', () => {
+  test('niezmienniki silnika: taśma zawieszenia ma stałą długość, kolano zostaje po swojej stronie osi ciała (poprawne pozy bez komunikatu, łamiące z komunikatem)', () => { expect(W.niezmienniki_silnika.dobre).toEqual([0, 0]); expect((W.niezmienniki_silnika.zle as number[]).every((n) => n > 0)).toBe(true); });
   test('cechy ruchu wyprowadzone z danych sens i tekstów, nie z nazwy rodziny (Fallout nie jest rolloutem kolanowym)', () => { expect(W.cechy_ruchu.dobre).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0]); expect(W.cechy_ruchu.zle).toEqual([0, 1]); });
   test('klatki_rozne: poniżej progu obrotu przedramienia klatki są takie same (komunikaty są, bo reszta identyczna)', () => { expect(W.klatki_rozne_obrot.zle[0]).toBeGreaterThan(0); });
 });
