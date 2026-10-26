@@ -98,6 +98,14 @@ describe('przekład API: odpowiedź modelu', () => {
       const r = parse(txt); expect(r.blad).toBeNull(); expect(Object.keys(r.propozycje)).toEqual([T1, T2, T3]);
     }
   });
+  test('fr: zwykła spacja przed ; : ! ? » i po « zamieniana na spację nierozdzielającą (audyt 1.0: strażnik A11N-03 padał na nowych przekładach); inne języki bez zmian', () => {
+    const txt = JSON.stringify({ 1: 'Sauvegarde {n} : « un fichier » ! Vraiment ?', 2: 'Nouveau', 3: 'Pause ; {a} min' });
+    const fr = run(`console.log(JSON.stringify(m.parsujOdpowiedz(${JSON.stringify(txt)}, ${JSON.stringify(poz)}, 'fr')))`);
+    expect(fr.propozycje[T1]).toBe('Sauvegarde {n}\u00a0: «\u00a0un fichier\u00a0»\u00a0! Vraiment\u00a0?'); expect(fr.propozycje[T3]).toBe('Pause\u00a0; {a} min');
+    const de = run(`console.log(JSON.stringify(m.parsujOdpowiedz(${JSON.stringify(txt)}, ${JSON.stringify(poz)}, 'de')))`);
+    expect(de.propozycje[T1]).toBe('Sauvegarde {n} : « un fichier » ! Vraiment ?');
+    expect(run(`console.log(JSON.stringify(m.typografia('fr', 'a : b')))`)).toBe('a\u00a0: b');
+  });
   test('brak JSON / niepoprawny JSON / brakująca pozycja', () => {
     expect(parse('Przepraszam, nie mogę.')).toMatchObject({ blad: 'brak obiektu JSON w odpowiedzi', propozycje: {} });
     expect(parse('{ nie json }').blad).toMatch(/niepoprawny JSON/);
