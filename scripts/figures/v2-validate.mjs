@@ -41,6 +41,9 @@ export function opisKontraktu(rodzina) { return silnik().v2.describeContract(rod
 /** Walidacja: schemat + geometria + zakresy + ciągłość + błędy jako delty. Wynik { ok, bledy: [{ kod, szczegol }] }. */
 export function waliduj(poza, { rodzina, cwiczenie, root = ROOT }) {
   const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root) });
+  /* wymagany sprzęt ćwiczenia z katalogu (docs/54): poza musi go zawierać (np. wyciąg z bloczkiem wysokim) */
+  /* rodziny gotowe w kodzie (przykłady few-shot z rigów, np. ławka bez wpisu w gearOf) pomijane — wymóg obejmuje pozy generowane */
+  if (!bledy.some((b) => ['schemat', 'kontrakt', 'rodzina', 'klatki-u'].includes(b.kod)) && silnik().v2.FAMILIES.find((f) => f.id === rodzina)?.status !== 'ready') { const req = silnik().catalog?.CATALOG?.[cwiczenie]?.requires; if (req) bledy.push(...silnik().v2.requiredGearIssues(req, poza.sprzet).map((szczegol) => ({ kod: 'sprzet', szczegol }))); }
   /* sens ruchu (docs/53, bramka 3): po przejściu schematu, kontraktu i sprzętu; ewentualny wyjątek obliczeń nie psuje geometrii */
   if (!bledy.some((b) => ['schemat', 'kontrakt', 'rodzina', 'klatki-u', 'sprzet'].includes(b.kod))) {
     try { bledy.push(...sprawdzSens({ v2: silnik().v2, poza, rodzina, cwiczenie, root })); } catch (e) { bledy.push({ kod: 'sens', szczegol: `nie da się ocenić sensu ruchu (${e.message})` }); }

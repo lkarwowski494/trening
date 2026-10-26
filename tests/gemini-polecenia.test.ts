@@ -200,8 +200,8 @@ describe('core_floor: reguły sensu wyprowadzone ze wskazówek ćwiczeń (docs/5
     const wsz = fs.readdirSync(out).map((f) => fs.readFileSync(path.join(out, f), 'utf8')).join('\n'); const p1 = fs.readFileSync(path.join(out, 'core_floor-1.md'), 'utf8');
     expect(p1).toContain('## Reguły sensu ruchu'); expect(p1).toContain('[reguła: miednica_na_podlodze]'); expect(p1).toContain('Układ leżący na plecach'); expect(p1).toMatch(/## Wzorzec 1: „Crunch” leżąc na plecach wyliczony z modelu/);
     expect(wsz).toMatch(/- "Alternate Heel Touchers" — .*błędy: brak \(bledy: \[\]\) \(nie animujemy: mis\.jerk — to cecha tempa\/oddechu, nie pozy\)/);
-    expect(wsz).not.toContain('- "Cable Crunch"'); expect(wsz).toMatch(/Pominięte w tym poleceniu .*"Cable Crunch" — pomiń — zrobi nasz agent \(sprzęt spoza kontraktu: cable\.high/); expect(wsz).toMatch(/"Stability Ball Crunch" — pomiń/); expect(wsz).toMatch(/"Decline Crunch" — pomiń/);
-    const klucze = [...wsz.matchAll(/^- "([^"]+)" — sens:/gm)].map((m) => m[1]); expect(klucze).toContain('Crunch'); expect(klucze).toContain('Bird Dog'); expect(klucze).not.toContain('Machine Crunch'); expect(klucze.length).toBeLessThan(30);
+    expect(wsz).toContain('- "Cable Crunch" — sens: sprzęt: wyciąg z bloczkiem wysokim (sprzet: rodzaj "wyciag", bloczek wysoki: y 150–240 cm)'); expect(wsz).not.toMatch(/"Cable Crunch" — pomiń/); /* wyciąg w kontrakcie (docs/54) */ expect(wsz).toMatch(/"Stability Ball Crunch" — pomiń/); expect(wsz).toMatch(/"Decline Crunch" — pomiń/);
+    const klucze = [...wsz.matchAll(/^- "([^"]+)" — sens:/gm)].map((m) => m[1]); expect(klucze).toContain('Crunch'); expect(klucze).toContain('Bird Dog'); expect(klucze).not.toContain('Machine Crunch'); const pomin = (wsz.match(/"[^"]+" — pomiń —/g) ?? []).length; expect(klucze.length + pomin).toBe(44); expect(pomin).toBeGreaterThan(0); /* 44 ćwiczeń rodziny = do zrobienia + pominięte (sprzęt jeszcze spoza kontraktu: maszyny, ławki, piłki, gumy) */
     const wzor = /## Wzorzec 1[^\n]*\n\n```json\n(\{.*\})\n```/.exec(p1)!; expect(wal(JSON.parse(wzor[1]), 'Crunch')).toEqual({ ok: true, bledy: [] });
   });
 });
@@ -306,14 +306,15 @@ describe('przegląd ruchu przez niezależnego recenzenta (bramka 4, docs/53): pa
 describe('sprzęt w kontrakcie → polecenia (docs/54): możliwości z rejestru, sekcja punktów odniesienia, brak „pomiń” dla obsługiwanego sprzętu', () => {
   const KAT = 'm.silnikCatalog()';
   test('sprzetObslugiwany = możliwości rejestru (stare + db, kb, plate, med_ball); sprzetNieobslugiwany: ćwiczenia z hantlem, talerzem i piłką nie są pomijane, wyciąg nadal tak', () => {
-    const caps = run(POL, 'console.log(JSON.stringify(m.sprzetObslugiwany()))') as string[]; for (const c of ['pullup.bar', 'rings', 'barbell', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'ez_bar', 'axle_bar', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains']) expect(caps).toContain(c);
-    const r = run(POL, `console.log(JSON.stringify(['Front Plate Raise', 'Medicine Ball Chest Pass', 'Svend Press', 'Cable Crunch', 'Nie ma takiego'].map(c => m.sprzetNieobslugiwany(c, ${KAT}))))`) as (string | null)[];
-    expect(r[0]).toBeNull(); expect(r[1]).toBeNull(); expect(r[2]).toBeNull(); expect(r[3]).toMatch(/sprzęt spoza kontraktu: cable\.high/); expect(r[4]).toBeNull();
+    const caps = run(POL, 'console.log(JSON.stringify(m.sprzetObslugiwany()))') as string[]; for (const c of ['pullup.bar', 'rings', 'barbell', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'ez_bar', 'axle_bar', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains', 'cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.row_seat', 'lat_pulldown', 'ankle_strap', 'cable.handles', 'cable.rope']) expect(caps).toContain(c);
+    const r = run(POL, `console.log(JSON.stringify(['Front Plate Raise', 'Medicine Ball Chest Pass', 'Svend Press', 'Machine Crunch', 'Nie ma takiego'].map(c => m.sprzetNieobslugiwany(c, ${KAT}))))`) as (string | null)[];
+    expect(r[0]).toBeNull(); expect(r[1]).toBeNull(); expect(r[2]).toBeNull(); expect(r[3]).toMatch(/sprzęt spoza kontraktu: ab_crunch_machine/); expect(r[4]).toBeNull();
   });
   test('rodzajeSprzetu i sekcjaSprzetu: rodzaje z możliwości ćwiczeń (kolejność rejestru); bez nowego sprzętu sekcja pusta; liczby z silnika w liniach', () => {
     expect(run(POL, `console.log(JSON.stringify(m.rodzajeSprzetu(['Medicine Ball Chest Pass', 'Front Plate Raise'], ${KAT})))`)).toEqual(['talerz', 'pilka_lekarska']);
     expect(run(POL, `console.log(JSON.stringify(m.rodzajeSprzetu(['Svend Press'], ${KAT})))`)).toEqual(['hantel', 'talerz']); /* możliwości z alternatywą: oba rodzaje */
     expect(run(POL, `console.log(JSON.stringify(m.sekcjaSprzetu(['Crunch', 'Bird Dog'], ${KAT})))`)).toEqual([]);
+    expect(run(POL, `console.log(JSON.stringify([m.sprzetNieobslugiwany('Triceps Pushdown', ${KAT}), m.sprzetNieobslugiwany('Cable Fly', ${KAT}), m.rodzajeSprzetu(['Triceps Pushdown', 'Cable Fly'], ${KAT}), m.sensZKatalogu('Triceps Pushdown', ${KAT}), m.sensZKatalogu('Cable Reverse Crunch', ${KAT}), m.opisMozliwosci('nie.ma'), m.sekcjaSprzetu(['Triceps Pushdown'], ${KAT}).join(' ')]))`)).toEqual([null, null, ['wyciag'], ['sprzęt: wyciąg z bloczkiem wysokim (sprzet: rodzaj "wyciag", bloczek wysoki: y 150–240 cm)'], ['sprzęt: wyciąg z bloczkiem niskim (sprzet: rodzaj "wyciag", bloczek niski: y 5–60 cm) + opaska na kostkę (sprzet: rodzaj "wyciag", chwyt: "kostka")'], 'nie.ma', expect.stringMatching(/wyciag: kolumna stacji wyciągów.*niski y 5–60 cm.*środkowy 70–160 cm.*wysoki 150–240 cm/)]);
     expect(run(POL, `console.log(JSON.stringify([m.sprzetNieobslugiwany('Deadlift with Chains', ${KAT}), m.rodzajeSprzetu(['Deadlift with Chains'], ${KAT}), m.sensZKatalogu('Deadlift with Chains', ${KAT})]))`)).toEqual([null, ['lancuchy'], ['sprzęt: sztanga + łańcuchy (sprzet: rodzaj "lancuchy")']]);
     expect(run(POL, `console.log(JSON.stringify([m.sprzetNieobslugiwany('Wall Sit', ${KAT}), m.rodzajeSprzetu(['Wall Sit', 'Trap Bar Deadlift', "Farmer's Walk (Farmers Handles)"], ${KAT}), m.sensZKatalogu('Wall Sit', ${KAT}), m.sensZKatalogu("Farmer's Walk (Farmers Handles)", ${KAT})]))`)).toEqual([null, ['hantel', 'sciana', 'gryf_szesciokatny'], ['sprzęt: ściana (sprzet: rodzaj "sciana", pole przed)', 'ciężar ciała'], ['sprzęt: uchwyty farmerskie (sprzet: rodzaj "hantel", promien 10–12)']]);
     expect(run(POL, `console.log(JSON.stringify([m.sprzetNieobslugiwany('Landmine Press', ${KAT}), m.rodzajeSprzetu(['Landmine Press'], ${KAT}), m.sekcjaSprzetu(['Landmine Press'], ${KAT}).join(' ')]))`)).toEqual([null, ['landmine'], expect.stringMatching(/landmine: gryf przymocowany.*P = \[175, 5, 0\].*grip\.x = 20 → y ≈ 131,4; grip\.x = 35 → y ≈ 147,8; grip\.x = 50 → y ≈ 161,1/)]);
@@ -328,5 +329,17 @@ describe('sprzęt w kontrakcie → polecenia (docs/54): możliwości z rejestru,
     const wsz = fs.readdirSync(out).map((f) => fs.readFileSync(path.join(out, f), 'utf8')).join('\n'); expect(wsz).toContain('- "Otis-Up" — sens: sprzęt: talerz trzymany'); expect(wsz).not.toMatch(/"Otis-Up" — pomiń/);
     expect(wsz).toContain('## Sprzęt w ćwiczeniach tej części'); expect(wsz).toMatch(/- hantel: środek hantla = środek chwytu dłoni/); expect(wsz).not.toMatch(/strong|hevy|fitbod|jefit/i);
     for (const f of fs.readdirSync(out)) expect(fs.readFileSync(path.join(out, f), 'utf8').length).toBeLessThan(36000);
+  });
+});
+
+describe('waliduj (v2-validate.mjs): wymagany sprzęt ćwiczenia z katalogu (docs/54)', () => {
+  const kf = (u: number, g: number[]) => ({ u, miednica: [0, 88.5, 0], pochylenieTulowia: 0, pochylenieGlowy: 0, nogi: { R: { kostka: [0, 7, 9] }, L: { kostka: [0, 7, -9] } }, rece: { R: { chwyt: [g[0], g[1], g[2]] }, L: { chwyt: [g[0], g[1], -g[2]] } } });
+  const poza = (sprzet: unknown[]) => ({ kontrakt: 'figury-v2/poza@1', rodzina: 'triceps', cwiczenie: 'Triceps Pushdown', sprzet: [{ rodzaj: 'podloga', x0: -120, x1: 120 }, ...sprzet], klatki: [kf(0, [20, 125, 8]), kf(1, [18, 95, 8])], bledy: [] });
+  const wal = (p: unknown) => run(VAL, `console.log(JSON.stringify(m.waliduj(${JSON.stringify(p)}, { rodzina: 'triceps', cwiczenie: 'Triceps Pushdown' })))`) as { ok: boolean; bledy: { kod: string; szczegol: string }[] };
+  test('poza bez wyciągu → „sprzet”: ćwiczenie wymaga wyciągu z bloczkiem wysokim; bloczek za nisko → ten sam komunikat; poprawny wyciąg przechodzi (nie blokuje sensu ruchu)', () => {
+    const brak = wal(poza([])); expect(brak.ok).toBe(false); expect(brak.bledy.map((x) => x.kod)).toEqual(['sprzet']);
+    expect(brak.bledy[0].szczegol).toMatch(/^sprzęt: ćwiczenie wymaga: wyciąg z bloczkiem wysokim \(rodzaj „wyciag”, bloczek wysoki: y 150–240 cm\), a sprzet\[\] tego nie zawiera$/);
+    expect(wal(poza([{ rodzaj: 'wyciag', x: 45, y: 20 }])).bledy.map((b) => b.kod)).toEqual(['sprzet']);
+    expect(wal(poza([{ rodzaj: 'wyciag', x: 45, y: 220, chwyt: 'lina' }]))).toEqual({ ok: true, bledy: [] });
   });
 });

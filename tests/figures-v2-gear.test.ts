@@ -4,7 +4,7 @@
  * sprzętem (macierz: rodzaj × wariant), komunikaty dla generatora. Rodzaje (docs/20): logika, ekran-rysunek, scenariusze, macierz, niezmienniki, dane, motywy.
  */
 import {
-  GEAR, GEAR_KINDS, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
+  GEAR, GEAR_KINDS, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
   CONTRACT, EQUIP, poseSchema, describeContract, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
   type Gear, type KeyFrame, type PoseData, type Prop, type V3, type RomData, type Frame, type View,
 } from '@/lib/figures/v2';
@@ -31,7 +31,13 @@ const arcY = (px: number, gx: number, L = EQUIP.landmineLen): number => Math.rou
 const LANDMINE = (sp: Gear, px = 178, gxs = [22, 34, 46]): PoseData => pose('overhead_press', 'Landmine Press', [sp], gxs.map((gx, i) => two(i / (gxs.length - 1), [gx, arcY(px, gx), 4], [gx, arcY(px, gx), -4])));
 const WALLPOSE = (sp: Gear, g0: V3 = [0, 76, 27], g1: V3 = [30, 125, 22]): PoseData => pose('mobility_stand', 'Wall Slide', [sp], [two(0, g0, [g0[0], g0[1], -g0[2]]), two(1, g1, [g1[0], g1[1], -g1[2]])]);
 const TRAP = (sp: Gear = { rodzaj: 'gryf_szesciokatny' }): PoseData => pose('hinge', 'Trap Bar Deadlift', [sp], [two(0, [0, 78, 29], [0, 78, -29]), { ...two(1, [10, 74, 29], [10, 74, -29]), miednica: [0, 86, 0] }]);
+const PUSHDOWN = (sp: Gear): PoseData => pose('triceps', 'Triceps Pushdown', [sp], [two(0, ...sym(20, 125, 8)), two(1, ...sym(18, 95, 8))]);
+const CABLECURL = (sp: Gear): PoseData => pose('curl', 'Cable Curl', [sp], [two(0, ...sym(18, 80, 20)), two(1, ...sym(25, 125, 20))]);
+const FLY = (sp: Gear): PoseData => pose('chest_fly', 'Cable Fly', [sp], [two(0, ...sym(5, 130, 55)), two(1, ...sym(35, 120, 8))]);
+const STRAP = (sp: Gear): PoseData => pose('glute_floor', 'Cable Reverse Crunch', [sp], [two(0, ...sym(0, 76, 27)), { ...two(1, ...sym(0, 76, 27)), nogi: { R: { kostka: [25, 40, 9] }, L: { kostka: [0, 7, -9] } } }]);
 const MATRIX: [string, PoseData][] = [
+  ['wyciąg wysoki z liną (pushdown)', PUSHDOWN({ rodzaj: 'wyciag', x: 45, y: 220, chwyt: 'lina' })], ['wyciąg wysoki z uchwytem', PUSHDOWN({ rodzaj: 'wyciag', x: 45, y: 220 })], ['wyciąg niski z drążkiem (curl)', CABLECURL({ rodzaj: 'wyciag', x: 60, y: 20, chwyt: 'drazek' })],
+  ['dwa wyciągi (rozpiętki)', FLY({ rodzaj: 'wyciag', x: -10, y: 130, dwa: true, z: 80 })], ['opaska na kostkę (jedna noga)', STRAP({ rodzaj: 'wyciag', x: 60, y: 20, chwyt: 'kostka', trzyma: 'R' })],
   ['łańcuchy na sztandze (martwy ciąg z łańcuchami)', RACKPULL([{ rodzaj: 'lancuchy' }])], ['łańcuchy w dłoniach (bez sztangi)', pose('triceps', 'Chain Handle Extension', [{ rodzaj: 'lancuchy' }], [two(0, ...sym(0, 76, 27)), two(1, ...sym(20, 125, 21))])],
   ['ściana za osobą (bez kontaktu)', WALLPOSE({ rodzaj: 'sciana', x: -20 })], ['ściana przed osobą, dłonie na ścianie', pose('mobility_stand', 'Wall Lat Stretch', [{ rodzaj: 'sciana', x: 40, przed: true }], [two(0, ...sym(36.7, 100, 22)), two(1, ...sym(36.7, 140, 22))])],
   ['gryf sześciokątny: dłonie na uchwytach z = ±29', TRAP()], ['uchwyty farmerskie jako hantle z dużym promieniem', pose('carry', 'Farmer', [{ rodzaj: 'hantel', promien: 12 }], [two(0, ...sym(0, 77, 30)), two(1, ...sym(20, 125, 22))])],
@@ -47,11 +53,11 @@ const MATRIX: [string, PoseData][] = [
 
 describe('rejestr rodzajów sprzętu (gear.ts)', () => {
   test('GEAR: osiem rodzajów; każdy ma wpis w rejestrze z opisem i rekwizytem; możliwości katalogu pokryte przez rejestr', () => {
-    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy']);
+    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag']);
     for (const k of GEAR) { expect(GEAR_KINDS[k].opis.length).toBeGreaterThan(10); expect(typeof GEAR_KINDS[k].props).toBe('function'); }
-    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains']));
+    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles', 'chains', 'cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.row_seat', 'lat_pulldown', 'ankle_strap', 'cable.handles', 'cable.rope']));
     expect(new Set(GEAR_CAPS).size).toBe(GEAR_CAPS.length); /* każda możliwość ma jeden rodzaj */
-    expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
+    expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
   });
   test('punkty odniesienia (ref) mają liczby z EQUIP i nazwy pól; rodzaje bez ref (stare) nie mają go', () => {
     for (const k of ['hantel', 'kettlebell', 'talerz', 'pilka_lekarska'] as const) { const r = GEAR_KINDS[k].ref?.().join(' ') ?? ''; expect(r).toContain(k === 'pilka_lekarska' ? 'pilka_lekarska' : k); expect(r).toMatch(/\d/); }
@@ -108,6 +114,32 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
     expect(propsFrom([{ rodzaj: 'lancuchy' }], G)).toEqual([{ k: 'chain', from: G.R, to: [10, 0, 20] }, { k: 'chain', from: G.L, to: [14, 0, -20] }]);
     expect(equipColliders(propsFrom([{ rodzaj: 'lancuchy' }], G))).toEqual([]); /* łańcuchy bez kolidera */
     const sh = propShapes(propsFrom([bar, { rodzaj: 'lancuchy' }], G), 'side').filter(s => s.id === 'chain'); expect(sh.length).toBe(2); for (const x of sh) expect(x.k === 'line' && x.dash).toBeTruthy();
+  });
+  test('wyciąg: jedna kolumna i jedna linka (środek między dłońmi), osprzęt: handle/rope/bar/strap; dwa: po kolumnie i lince na dłoń w z = ±|z|; kostka bierze kostki, nie dłonie', () => {
+    const A = { R: [5, 20, 9] as V3, L: [6, 22, -9] as V3 };
+    const one = propsFrom([{ rodzaj: 'wyciag', x: 45, y: 220, h: 230 }], G, A); expect(one).toEqual([{ k: 'tower', x: 45, z: 0, h: 230, solid: true }, { k: 'cable', from: [45, 220, 0], to: [12, 85, 0], attach: 'handle', ends: [G.R, G.L], solid: true }]);
+    expect(propsFrom([{ rodzaj: 'wyciag', y: 20, chwyt: 'lina', trzyma: 'R' }], G, A)[1]).toMatchObject({ to: G.R, attach: 'rope', ends: [G.R] }); expect(propsFrom([{ rodzaj: 'wyciag', chwyt: 'drazek' }], G, A)[1]).toMatchObject({ attach: 'bar' });
+    expect(propsFrom([{ rodzaj: 'wyciag', y: 20, chwyt: 'kostka', trzyma: 'L' }], G, A)[1]).toMatchObject({ to: A.L, attach: 'strap', ends: [A.L], from: [0, 20, 0] });
+    const two2 = propsFrom([{ rodzaj: 'wyciag', y: 130, dwa: true }], G, A); expect(two2.map(p => p.k)).toEqual(['tower', 'cable', 'tower', 'cable']); expect(two2[0]).toMatchObject({ z: EQUIP.cableSpan }); expect(two2[3]).toMatchObject({ from: [0, 130, -EQUIP.cableSpan], to: G.L });
+    expect(propsFrom([{ rodzaj: 'wyciag', y: 130, dwa: true, z: -70, trzyma: 'R' }], G, A).map(p => p.k === 'tower' ? p.z : p.k)).toEqual([70, 'cable']); /* jedna dłoń: jedna strona, |z| */
+  });
+  test('wyciąg: capOk — bloczek niski/średni/wysoki wg CABLE_Y, dwa wyciągi, opaska, uchwyt, lina; capNeed opisuje wymaganie', () => {
+    const ok = (cap: string, g: Partial<Gear>) => GEAR_KINDS.wyciag.capOk!(cap, { rodzaj: 'wyciag', ...g });
+    expect(CABLE_Y).toEqual({ low: [5, 60], mid: [70, 160], high: [150, 240] });
+    expect([ok('cable.high', { y: 220 }), ok('cable.high', { y: 20 }), ok('lat_pulldown', { y: 200 }), ok('cable.mid', { y: 120 }), ok('cable.mid', { y: 20 }), ok('cable.low', { y: 20 }), ok('cable.low', { y: 120 }), ok('cable.row_seat', { y: 30 })]).toEqual([true, false, true, true, false, true, false, true]);
+    expect([ok('cable.dual', { dwa: true }), ok('cable.dual', {}), ok('ankle_strap', { chwyt: 'kostka' }), ok('ankle_strap', {}), ok('cable.handles', {}), ok('cable.handles', { chwyt: 'lina' }), ok('cable.rope', { chwyt: 'lina' }), ok('cable.rope', {})]).toEqual([true, false, true, false, true, false, true, false]);
+    expect(GEAR_KINDS.wyciag.capNeed?.['cable.high']).toBe('bloczek wysoki: y 150–240 cm'); expect(ok('inna', {})).toBe(true);
+  });
+  test('requiredGearIssues: brak wymaganego sprzętu → komunikat z rodzajem i wymaganiem; alternatywy (ALBO); grupy bez możliwości w rejestrze i stojak (opcjonalny) pomijane', () => {
+    const w = (req: string[][], gear: Gear[]) => requiredGearIssues(req, gear);
+    expect(w([['cable.high']], [])).toEqual(['sprzęt: ćwiczenie wymaga: wyciąg z bloczkiem wysokim (rodzaj „wyciag”, bloczek wysoki: y 150–240 cm), a sprzet[] tego nie zawiera']);
+    expect(w([['cable.high']], [{ rodzaj: 'wyciag', y: 20 }]).length).toBe(1); expect(w([['cable.high']], [{ rodzaj: 'wyciag', y: 200 }])).toEqual([]);
+    expect(w([['cable.high', 'cable.mid']], [{ rodzaj: 'wyciag', y: 120 }])).toEqual([]); expect(w([['cable.high', 'cable.mid']], [{ rodzaj: 'wyciag', y: 20 }])[0]).toContain(' ALBO ');
+    expect(w([['cable.dual'], ['cable.low']], [{ rodzaj: 'wyciag', y: 20 }]).length).toBe(1); expect(w([['cable.dual'], ['cable.low']], [{ rodzaj: 'wyciag', y: 20, dwa: true }])).toEqual([]);
+    expect(w([['db', 'plate']], [{ rodzaj: 'talerz' }])).toEqual([]); expect(w([['db']], [{ rodzaj: 'talerz' }]).length).toBe(1); expect(w([['barbell'], ['rack']], [{ rodzaj: 'sztanga' }])).toEqual([]); /* stojak opcjonalny */
+    expect(w([['sled']], [])).toEqual([]); expect(w([['sled', 'db']], [])).toEqual(['sprzęt: ćwiczenie wymaga: hantle (rodzaj „hantel”), a sprzet[] tego nie zawiera']); /* grupa z możliwością w rejestrze liczy się, reszta bez rodzaju nie pomaga */
+    expect(w([['landmine'], ['barbell']], [{ rodzaj: 'landmine' }])).toEqual(['sprzęt: ćwiczenie wymaga: sztanga albo drążek (rodzaj „sztanga”), a sprzet[] tego nie zawiera']); expect(w([['pullup.bar', 'rings']], [])).toEqual(['sprzęt: ćwiczenie wymaga: sztanga albo drążek (rodzaj „sztanga”), a sprzet[] tego nie zawiera']); /* ta sama nazwa raz */
+    expect(w([['rack'], ['rack.safeties']], [])).toEqual([]);
   });
   test('stary sprzęt bez zmian: sztanga podąża za chwytem, słupek, podłoga, skrzynia', () => {
     expect(propsFrom([{ rodzaj: 'sztanga', podazaZaChwytem: true }, { rodzaj: 'slupek', x: 5, h: 100 }, { rodzaj: 'skrzynia', x0: 1, x1: 2, top: 30 }, { rodzaj: 'podloga' }], G).map(p => p.k)).toEqual(['barbell', 'post', 'box', 'floor']);
@@ -224,6 +256,26 @@ describe('kolidery i kontrola chwytu', () => {
     const f = keyframeFrame(pose('carry', 'Farmer', [{ rodzaj: 'hantel', promien: 12 }], [two(0, ...sym(0, 77, 30)), two(1, ...sym(20, 125, 22))]), 0); expect(checkFrame(f).filter(i => i.code === 'pen')).toEqual([]);
     expect(gearFieldIssues({ rodzaj: 'hantel', promien: 12 })).toEqual([]);
   });
+  test('wyciąg: rysunek — kolumna, bloczek, linka i osprzęt w trzech widokach; kolizje: kolumna i linka tylko z danych kontraktu (solid), ostatnie EQUIP.cableEnd cm linki bez kolidera', () => {
+    const base: Prop[] = [{ k: 'tower', x: 45, z: 0, h: 230 }, { k: 'cable', from: [45, 220, 0], to: [20, 120, 0], ends: [[20, 120, 8], [20, 120, -8]] }];
+    for (const v of ['side', 'front', 'top'] as View[]) expect(propShapes(base, v).map(x => x.id)).toEqual(expect.arrayContaining(['tower', 'cable', 'pulley']));
+    const ids = (attach: 'handle' | 'rope' | 'bar' | 'strap', v: View = 'side') => propShapes([{ k: 'cable', from: [45, 220, 0], to: [20, 120, 0], attach, ends: [[20, 120, 8], [20, 120, -8]] }], v).map(x => x.id);
+    expect(ids('handle')).toEqual(expect.arrayContaining(['cableHandle'])); expect(ids('rope')).toEqual(expect.arrayContaining(['cableRope', 'cableHandle'])); expect(ids('bar', 'front')).toContain('cableBar'); expect(ids('strap')).toContain('cableStrap');
+    expect(equipColliders(base)).toEqual([]); /* rig gotowej rodziny: linka i kolumna bez kolidera */
+    const sol = equipColliders([{ ...base[0], solid: true } as Prop, { ...base[1], solid: true } as Prop]); expect(sol.map(c => c.id)).toEqual(['tower', 'cable']);
+    const cab = sol[1] as Extract<typeof sol[number], { k: 'capsule' }>; expect(Math.hypot(...cab.b.map((x, i) => x - [20, 120, 0][i]))).toBeCloseTo(EQUIP.cableEnd, 6); expect(cab.r).toBe(EQUIP.cableR);
+    const twr = sol[0]; expect(twr.k === 'prism' && [twr.z0, twr.z1]).toEqual([-EQUIP.towerW / 2, EQUIP.towerW / 2]);
+  });
+  test('wyciąg: kolumna w ciele i linka przez tułów → „geometria” z nazwami (tower, cable); poprawna ustawiona z przodu osoby przechodzi', () => {
+    expect(texts(PUSHDOWN({ rodzaj: 'wyciag', x: 0, y: 220 }))).toMatch(/torso × tower: przenikanie/);
+    expect(texts(PUSHDOWN({ rodzaj: 'wyciag', x: -30, y: 220 }))).toMatch(/torso × cable: przenikanie/); /* kolumna za plecami: linka do dłoni przed tułowiem przechodzi przez tułów */
+    expect(texts(PUSHDOWN({ rodzaj: 'wyciag', x: 45, y: 220 }))).toBe('');
+  });
+  test('wyciąg: pola — wysokość bloczka i kolumny, opaska bez wskazania nogi, pole z nie dla innych rodzajów', () => {
+    expect(gearFieldIssues({ rodzaj: 'wyciag', y: 300 })).toEqual(['sprzęt: wysokość bloczka y = 300 cm poza przedziałem 5–240 cm']); expect(gearFieldIssues({ rodzaj: 'wyciag', y: 200, h: 150 })).toEqual(['sprzęt: kolumna wyciągu h = 150 cm niższa niż bloczek (y = 200 cm)']);
+    expect(gearFieldIssues({ rodzaj: 'wyciag', chwyt: 'kostka' })).toEqual(['sprzęt: opaska na kostkę (chwyt: "kostka") jednego wyciągu wymaga trzyma: "R" albo "L" (kostka tej nogi)']); expect(gearFieldIssues({ rodzaj: 'wyciag', chwyt: 'kostka', trzyma: 'R' })).toEqual([]); expect(gearFieldIssues({ rodzaj: 'wyciag', chwyt: 'kostka', dwa: true })).toEqual([]);
+    expect(gearFieldIssues({ rodzaj: 'hantel', dwa: true })).toEqual(['sprzęt: pole „dwa” nie dotyczy rodzaju „hantel” (dla tego rodzaju: promien, pionowo)']); expect(gearFieldIssues({ rodzaj: 'smith', chwyt: 'lina' })[0]).toContain('pole „chwyt” nie dotyczy rodzaju „smith”');
+  });
   test('stojak: słupki w z = ±64 poza zasięgiem ciała — poza przechodzi niezależnie od x słupka; kolider słupka to dwa graniastosłupy (z = ±64)', () => {
     for (const x of [-45, 0, 15]) expect(texts(RACKPULL([{ rodzaj: 'slupek', x, h: 200 }]))).toBe('');
     const posts = equipColliders(propsFrom([{ rodzaj: 'slupek', x: 0, h: 200 }], { R: [0, 0, 0], L: [0, 0, 0] })); expect(posts.map(c => c.id)).toEqual(['post', 'post']); expect(posts.map(c => c.k === 'prism' ? (c.z0 + c.z1) / 2 : 0)).toEqual([-EQUIP.postSpan, EQUIP.postSpan]);
@@ -262,7 +314,7 @@ describe('walidator pozy z nowym sprzętem — macierz rodzaj × wariant', () =>
     expect(texts(RACKPULL([{ rodzaj: 'slupek', x: -45, h: 100, hak: 150 }]))).toContain('hak = 150 cm wyżej niż słupek');
     expect(gearFieldIssues({ rodzaj: 'landmine', dlugosc: 50 })).toEqual(['sprzęt: dlugosc gryfu landmine = 50 cm poza przedziałem 100–300 cm']); expect(gearFieldIssues({ rodzaj: 'landmine', y: 50 })).toEqual(['sprzęt: wysokość osi obrotu y = 50 cm poza przedziałem 0–30 cm']);
     expect(gearFieldIssues({ rodzaj: 'smith', z: 3 })).toEqual(['sprzęt: pole „z” nie dotyczy rodzaju „smith”']);
-    expect(texts({ ...CURL({ rodzaj: 'hantel' }), sprzet: [{ rodzaj: 'wyciag' as never }] })).toMatch(/\[schemat\].*spoza listy/);
+    expect(texts({ ...CURL({ rodzaj: 'hantel' }), sprzet: [{ rodzaj: 'maszyna' as never }] })).toMatch(/\[schemat\].*spoza listy/);
   });
   test('schemat: rodzaje i pola nowego sprzętu w JSON Schema (enum rodzajów, dzwon, przesuniecie jako wektor)', () => {
     const s = JSON.stringify(poseSchema('curl')); for (const k of GEAR) expect(s).toContain(`"${k}"`); for (const f of GEAR_EXTRA_FIELDS) expect(s).toContain(`"${f}"`);

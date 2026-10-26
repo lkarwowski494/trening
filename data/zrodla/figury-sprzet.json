@@ -1,6 +1,7 @@
 {
  "_opis": "Wymiary sprzętu rysowanych w figurach v2 (lib/figures/v2/draw.ts → EQUIP; docs/53 bramka 6 „spójność”, docs/54). WSZYSTKIE wymiary to „konwencja rysunku” (uproszczenie ilustracyjne: figura nie twierdzi nic o rozmiarach sprzętu i aplikacja ich nie podaje użytkownikowi). Pole zgodnosc opisuje orientacyjną zgodność z powszechnymi rozmiarami (wiedza ogólna, NIE przeczytane źródło); potwierdzenie źródłem szczebla 4 (dokumentacja producentów, regulaminy federacji) jest otwarte (docs/54, otwarte pytania) i należy do badacza. Do paczki aplikacji NIC stąd nie trafia; test tests/zrodla-pelne-sprzet.test.ts pilnuje zgodności z EQUIP i kompletności (każdy klucz EQUIP ma wpis).",
  "statusy": ["konwencja rysunku"],
+ "wysokosci_bloczkow": { "status": "konwencja rysunku", "zgodnosc": "typowe wysokości bloczków stacji wyciągów (cm): niski ok. 5–60, środkowy ok. 70–160, wysoki ok. 150–240 — wiedza ogólna, NIE przeczytane źródło", "low": [5, 60], "mid": [70, 160], "high": [150, 240] },
  "wymiary": {
   "barR": { "cm": 1.6, "status": "konwencja rysunku", "zgodnosc": "promień gryfu ok. 1,4–1,6 cm (gryf ok. 28–32 mm)", "uzycie": "gryf sztangi i drążka" },
   "barLen": { "cm": 220, "status": "konwencja rysunku", "zgodnosc": "długość gryfu olimpijskiego męskiego ok. 2,2 m", "uzycie": "długość gryfu w widoku z przodu i w kolizjach" },
@@ -17,6 +18,12 @@
   "landmineR": { "cm": 1.8, "status": "konwencja rysunku", "zgodnosc": "promień gryfu w kolizjach (z tuleją)", "uzycie": "landmine: kapsuła gryfu" },
   "landmineHand": { "cm": 10, "status": "konwencja rysunku", "zgodnosc": "długość końca gryfu w dłoniach (bez kolidera)", "uzycie": "landmine: kolider gryfu kończy się tyle cm przed dłońmi" },
   "chainZ": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "położenie łańcuchów na tulejach gryfu (talerze leżą w z = ±44…49)", "uzycie": "łańcuchy zawieszone na sztandze" },
+  "towerW": { "cm": 10, "status": "konwencja rysunku", "zgodnosc": "szerokość kolumny stacji wyciągów ok. 10 cm (rysunek)", "uzycie": "wyciąg: kolumna i jej kolider" },
+  "cableR": { "cm": 0.6, "status": "konwencja rysunku", "zgodnosc": "promień linki w kolizjach", "uzycie": "wyciąg: kolider linki" },
+  "cableEnd": { "cm": 12, "status": "konwencja rysunku", "zgodnosc": "długość końca linki przy osprzęcie (dłonie, kostka) bez kolidera", "uzycie": "wyciąg: kolider linki kończy się tyle cm przed osprzętem" },
+  "cableSpan": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "połowa rozstawu kolumn dwóch wyciągów (domyślna; stacje krzyżowe mają ok. 1–2 m)", "uzycie": "wyciąg: dwa wyciągi (dwa: true), domyślne z" },
+  "handleR": { "cm": 1.8, "status": "konwencja rysunku", "zgodnosc": "promień uchwytu na rysunku", "uzycie": "wyciąg: uchwyt, koniec liny" },
+  "strapR": { "cm": 3.4, "status": "konwencja rysunku", "zgodnosc": "promień opaski na kostkę na rysunku", "uzycie": "wyciąg: opaska na kostkę" },
   "benchW": { "cm": 28, "status": "konwencja rysunku", "zgodnosc": "szerokość ławki ok. 28–32 cm", "uzycie": "ławka" },
   "benchPad": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "grubość wyściełania ławki", "uzycie": "ławka" },
   "benchLegW": { "cm": 3.2, "status": "konwencja rysunku", "zgodnosc": "grubość nóg ławki", "uzycie": "ławka" },

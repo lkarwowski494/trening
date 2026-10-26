@@ -38,9 +38,10 @@
        "landmine",
        "sciana",
        "gryf_szesciokatny",
-       "lancuchy"
+       "lancuchy",
+       "wyciag"
       ],
-      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze), sciana, gryf_szesciokatny (trap bar), lancuchy. Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem."
+      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze), sciana, gryf_szesciokatny (trap bar), lancuchy, wyciag (kolumna z bloczkiem i linką). Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem."
      },
      "x": {
       "type": "number",
@@ -126,6 +127,20 @@
       "maximum": 300,
       "description": "Tylko landmine: położenie osi obrotu w z (cm; domyślnie 0)."
      },
+     "dwa": {
+      "type": "boolean",
+      "description": "Tylko wyciag: true = dwa wyciągi (kolumny i bloczki w z = ±|z|, po jednej lince na dłoń); domyślnie false = jeden wyciąg."
+     },
+     "chwyt": {
+      "type": "string",
+      "enum": [
+       "uchwyt",
+       "lina",
+       "drazek",
+       "kostka"
+      ],
+      "description": "Tylko wyciag: osprzęt linki: uchwyt (domyślnie), lina, drazek, kostka (opaska na kostkę; nogę wskazuje trzyma)."
+     },
      "przed": {
       "type": "boolean",
       "description": "Tylko sciana: true = ściana PRZED osobą (lita po stronie +x od x); domyślnie false = za osobą (lita po stronie −x)."
@@ -155,7 +170,7 @@
    },
    "minItems": 1,
    "maxItems": 8,
-   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy albo stojak (x, h, hak); podloga — podłoga (x0, x1); skrzynia — skrzynia, stopień albo ławka płaska (x0, x1, top); hantel — hantel trzymany w dłoni; uchwyty farmerskie rysujemy jak hantle z dużym promieniem (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie); smith — prowadnica suwnicy Smitha (x, h); sztanga o podazaZaChwytem: true porusza się po niej tylko w pionie; landmine — gryf landmine: oś obrotu przy podłodze (x, y, z), długość gryfu (dlugosc), dłonie na końcu gryfu (trzyma); sciana — ściana (x, h, przed); gryf_szesciokatny — gryf sześciokątny (trap bar): uchwyty w z = ±29, środek między dłońmi; lancuchy — łańcuchy zawieszone na sztandze (albo trzymane w dłoniach, gdy nie ma sztangi) i opadające na podłogę."
+   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy albo stojak (x, h, hak); podloga — podłoga (x0, x1); skrzynia — skrzynia, stopień albo ławka płaska (x0, x1, top); hantel — hantel trzymany w dłoni; uchwyty farmerskie rysujemy jak hantle z dużym promieniem (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie); smith — prowadnica suwnicy Smitha (x, h); sztanga o podazaZaChwytem: true porusza się po niej tylko w pionie; landmine — gryf landmine: oś obrotu przy podłodze (x, y, z), długość gryfu (dlugosc), dłonie na końcu gryfu (trzyma); sciana — ściana (x, h, przed); gryf_szesciokatny — gryf sześciokątny (trap bar): uchwyty w z = ±29, środek między dłońmi; lancuchy — łańcuchy zawieszone na sztandze (albo trzymane w dłoniach, gdy nie ma sztangi) i opadające na podłogę; wyciag — wyciąg: kolumna z bloczkiem na wysokości y i linka do osprzętu w dłoniach albo na kostce (x, y, z, h, dwa, chwyt, trzyma)."
   },
   "klatki": {
    "type": "array",

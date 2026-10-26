@@ -9,7 +9,7 @@
 import { add, dist, type V3 } from './math';
 import { BODY, SIDES, jointAngles, type LegIn, type ArmIn, type PoseIn, type Side } from './skeleton';
 import type { Frame } from './scene';
-import { GEAR, GEAR_KINDS, BELL_MODES, contactsFrom, gearFieldIssues, gearSetIssues, propsFrom, resolveBells, type Gear } from './gear';
+import { GEAR, GEAR_KINDS, BELL_MODES, CABLE_ATTACH, contactsFrom, gearFieldIssues, gearSetIssues, propsFrom, resolveBells, type Gear } from './gear';
 import { checkFrame } from './colliders';
 import { mkFrame } from './rigs/common';
 import { FAMILY } from './families';
@@ -104,7 +104,7 @@ const side = (props: Record<string, Sch>, required: string[], d: boolean): Sch =
 export function poseSchema(family: string): Sch {
   const t = templateFor(family);
   const gear = obj({
-    rodzaj: { type: 'string', enum: [...GEAR], description: 'sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze), sciana, gryf_szesciokatny (trap bar), lancuchy. Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem.' },
+    rodzaj: { type: 'string', enum: [...GEAR], description: 'sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze), sciana, gryf_szesciokatny (trap bar), lancuchy, wyciag (kolumna z bloczkiem i linką). Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem.' },
     x: num(-CONTRACT.coord, CONTRACT.coord, 'Położenie w przód (cm): środek sztangi, słupek, prowadnica Smitha albo oś obrotu landmine.'), y: num(0, CONTRACT.coord, 'Wysokość środka sztangi nad podłogą (cm); landmine: wysokość osi obrotu (domyślnie 5).'),
     h: num(0, CONTRACT.coord, 'Wysokość słupka (cm).'), x0: num(-CONTRACT.coord, CONTRACT.coord, 'Początek podłogi albo skrzyni (cm).'), x1: num(-CONTRACT.coord, CONTRACT.coord, 'Koniec podłogi albo skrzyni (cm).'),
     top: num(0, CONTRACT.coord, 'Wysokość górnej powierzchni skrzyni (cm).'), talerze: { type: 'boolean', description: 'Czy sztanga ma talerze (domyślnie true; drążek: false).' },
@@ -114,6 +114,8 @@ export function poseSchema(family: string): Sch {
     pionowo: { type: 'boolean', description: 'Tylko hantel: true = jeden hantel trzymany pionowo obiema dłońmi (goblet); domyślnie false.' },
     dzwon: { type: 'string', enum: [...BELL_MODES], description: 'Tylko kettlebell: kierunek dzwonu względem rączki: dol (domyślnie), wzdluz (w przedłużeniu przedramienia), tyl (za rączką, pozycja rack i nad głową).' },
     z: num(-CONTRACT.coord, CONTRACT.coord, 'Tylko landmine: położenie osi obrotu w z (cm; domyślnie 0).'),
+    dwa: { type: 'boolean', description: 'Tylko wyciag: true = dwa wyciągi (kolumny i bloczki w z = ±|z|, po jednej lince na dłoń); domyślnie false = jeden wyciąg.' },
+    chwyt: { type: 'string', enum: [...CABLE_ATTACH], description: 'Tylko wyciag: osprzęt linki: uchwyt (domyślnie), lina, drazek, kostka (opaska na kostkę; nogę wskazuje trzyma).' },
     przed: { type: 'boolean', description: 'Tylko sciana: true = ściana PRZED osobą (lita po stronie +x od x); domyślnie false = za osobą (lita po stronie −x).' },
     hak: num(0, CONTRACT.coord, 'Tylko slupek (stojak): wysokość haka na sztangę w cm (nie wyżej niż h).'),
     przesuniecie: vec('Tylko talerz i pilka_lekarska: położenie środka sprzętu względem środka między dłońmi [dx, dy, dz] w cm (domyślnie [0,0,0]; jedna dłoń: talerz [0, −(promień−1), 0], piłka [0, promień−1, 0]).', 40),
@@ -216,7 +218,7 @@ export function toPoseIn(k: KeyFrame): PoseIn {
 export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
   let k = poseAt(d.klatki, u); if (error !== undefined && d.bledy[error]) k = applyDelta(k, deltaAt(d.bledy[error].klatki, u));
   const pose = toPoseIn(k); const grips = { R: pose.arms.R.grip, L: pose.arms.L.grip };
-  const props = propsFrom(d.sprzet, grips); const bar = props.find(p => p.k === 'barbell');
+  const props = propsFrom(d.sprzet, grips, { R: pose.legs.R.ankle, L: pose.legs.L.ankle }); const bar = props.find(p => p.k === 'barbell');
   const info: Record<string, V3> = {}; if (bar && bar.k === 'barbell') info.load = bar.c;
   return resolveBells(mkFrame(pose, props, info, contactsFrom(d.sprzet)));
 }

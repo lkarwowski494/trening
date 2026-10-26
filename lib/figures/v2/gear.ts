@@ -10,21 +10,35 @@ import { EQUIP } from './draw';
 import { TOL } from './colliders';
 import type { Contact, Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag'] as const;
 export type GearName = typeof GEAR[number];
-export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean };
+export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number] };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
-export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed'] as const;
+export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt'] as const;
 export const BELL_MODES = ['dol', 'wzdluz', 'tyl'] as const;
+/** Osprzęt linki wyciągu: uchwyt (jeden na dłoń), lina (dwa końce), drążek (prosty, między dłońmi), kostka (opaska na kostkę). */
+export const CABLE_ATTACH = ['uchwyt', 'lina', 'drazek', 'kostka'] as const;
+/** Wysokość bloczka stacji wyciągów (cm) wg możliwości katalogu — konwencja rysunku (data/zrodla/figury-sprzet.json → wyciag): niski, środkowy, wysoki. */
+export const CABLE_Y = { low: [5, 60], mid: [70, 160], high: [150, 240] } as const;
 
 export type GearGrips = Record<Side, V3>;
 export type GearKind = {
+  /** Krótka nazwa w komunikatach (np. „hantle”). */
+  nazwa: string;
   /** Możliwości katalogu ćwiczeń (lib/catalog.generated.ts → requires), które ten rodzaj pozwala narysować. */
   caps: readonly string[];
   /** Krótki opis do generatora poleceń (jak wypełnić pola). */
   opis: string;
   /** Rekwizyty sceny dla wpisu sprzętu (chwyty rąk potrzebne sprzętowi trzymanemu w dłoni). */
-  props: (g: Gear, grips: GearGrips, all: Gear[]) => Prop[];
+  props: (g: Gear, grips: GearGrips, all: Gear[], ankles: GearGrips) => Prop[];
+  /** Czy wpis spełnia możliwość katalogu (np. bloczek wysoki ↔ cable.high); domyślnie tak. */
+  capOk?: (cap: string, g: Gear) => boolean;
+  /** Opis możliwości dla generatora poleceń (jak ją narysować); brak = opis ogólny. */
+  capLabel?: Record<string, string>;
+  /** Wymaganie możliwości w zrozumiałej formie (do komunikatu, gdy wpis nie spełnia capOk). */
+  capNeed?: Record<string, string>;
+  /** Możliwości, których obecność w pozie nie jest wymagana (sprzęt tła, np. stojak). */
+  optionalCaps?: readonly string[];
   /** Dozwolone kontakty ciało–sprzęt dla wpisu (tolerancja przenikania, cm). */
   contacts?: (g: Gear) => Contact[];
   /** Pola z GEAR_EXTRA_FIELDS, które ten rodzaj przyjmuje. */
@@ -45,18 +59,21 @@ const f1 = (x: number): string => String(Math.round(x * 10) / 10).replace('.', '
 const bounds = (name: string, v: number | undefined, lo: number, hi: number): string[] => v !== undefined && (v < lo || v > hi) ? [`sprzęt: ${name} = ${v} cm poza przedziałem ${lo}–${hi} cm`] : [];
 export const GEAR_KINDS: Record<GearName, GearKind> = {
   sztanga: {
+    nazwa: 'sztanga albo drążek',
     caps: ['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar'], opis: 'sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma)',
     props: (g, grips) => { const c: V3 = g.podazaZaChwytem ? [(grips.R[0] + grips.L[0]) / 2, (grips.R[1] + grips.L[1]) / 2, 0] : [g.x ?? 0, g.y ?? 0, 0]; return [{ k: 'barbell', c, plates: g.talerze !== false, held: g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : true, len: g.dlugosc ?? BAR_LEN }]; },
   },
   slupek: {
-    caps: ['rack', 'bench.uprights', 'rack.safeties'], fields: ['hak'], opis: 'słupek pionowy albo stojak (x, h, hak)',
+    nazwa: 'stojak (słupek)',
+    caps: ['rack', 'bench.uprights', 'rack.safeties'], optionalCaps: ['rack', 'bench.uprights', 'rack.safeties'], fields: ['hak'], opis: 'słupek pionowy albo stojak (x, h, hak)',
     props: g => [{ k: 'post', x: g.x ?? 0, h: g.h ?? 200, ...(g.hak !== undefined ? { hook: g.hak } : {}) }],
     check: g => g.hak !== undefined && g.h !== undefined && g.hak > g.h ? [`sprzęt: hak = ${g.hak} cm wyżej niż słupek (h = ${g.h} cm)`] : [],
     ref: () => [
       `slupek jako STOJAK (klatka, stojaki ławki, asekuracja): x = położenie słupków w osi x, h = wysokość (typowo 200–230 cm), hak = wysokość haka na sztangę (cm; rysowany haczyk ${f1(5)} cm do przodu). Z boku widać jeden słupek, z przodu dwa (z = ±${f1(EQUIP.postSpan)} cm, grubość ${f1(EQUIP.postW)} cm). Słupki stoją poza zasięgiem ciała, więc kolizje z ciałem nie występują, a położenie względem sztangi NIE jest sprawdzane programem (ocenia je recenzent ruchu): sztangę zdjętą ze stojaka trzymaj przed słupkami albo za nimi (nie w osi słupków), a w haku tylko w pozycji, w której ćwiczenie ją odkłada.`,
     ] },
-  podloga: { caps: [], opis: 'podłoga (x0, x1)', props: g => [{ k: 'floor', x0: g.x0 ?? -120, x1: g.x1 ?? 120 }] },
+  podloga: { nazwa: 'podłoga', caps: [], opis: 'podłoga (x0, x1)', props: g => [{ k: 'floor', x0: g.x0 ?? -120, x1: g.x1 ?? 120 }] },
   smith: {
+    nazwa: 'suwnica Smitha',
     caps: ['smith'], opis: 'prowadnica suwnicy Smitha (x, h); sztanga o podazaZaChwytem: true porusza się po niej tylko w pionie',
     props: g => [{ k: 'rail', x: g.x ?? 0, h: g.h ?? 200 }],
     ref: () => [
@@ -64,6 +81,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     ],
   },
   landmine: {
+    nazwa: 'landmine',
     caps: ['landmine'], fields: ['z'], opis: 'gryf landmine: oś obrotu przy podłodze (x, y, z), długość gryfu (dlugosc), dłonie na końcu gryfu (trzyma)',
     props: (g, grips) => [{ k: 'pivot', from: [g.x ?? 0, g.y ?? 5, g.z ?? 0], to: avg(sidesOf(g).map(s => grips[s])), len: g.dlugosc ?? EQUIP.landmineLen }],
     check: g => [...bounds('dlugosc gryfu landmine', g.dlugosc, 100, 300), ...(g.y !== undefined && (g.y < 0 || g.y > 30) ? [`sprzęt: wysokość osi obrotu y = ${g.y} cm poza przedziałem 0–30 cm`] : [])],
@@ -75,6 +93,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     },
   },
   sciana: {
+    nazwa: 'ściana',
     caps: ['wall'], fields: ['przed'], opis: 'ściana (x, h, przed)',
     props: g => [{ k: 'wall', x: g.x ?? 0, h: g.h ?? 250, ...(g.przed ? { front: true } : {}) }],
     contacts: () => [{ body: '', equip: 'wall', tol: WALL_CONTACT }],
@@ -84,6 +103,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     ],
   },
   gryf_szesciokatny: {
+    nazwa: 'gryf sześciokątny (trap bar)',
     caps: ['trap_bar'], opis: 'gryf sześciokątny (trap bar): uchwyty w z = ±29, środek między dłońmi',
     props: (g, grips) => [{ k: 'trapbar', c: avg(SIDES.map(s => grips[s])) }],
     ref: () => [
@@ -91,18 +111,61 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     ],
   },
   lancuchy: {
+    nazwa: 'łańcuchy',
     caps: ['chains'], opis: 'łańcuchy zawieszone na sztandze (albo trzymane w dłoniach, gdy nie ma sztangi) i opadające na podłogę',
-    props: (g, grips, all) => {
+    props: (g, grips, all, ankles) => {
       const bar = all.find(x => x.rodzaj === 'sztanga');
-      if (bar) { const [b] = GEAR_KINDS.sztanga.props(bar, grips, all); if (b.k !== 'barbell') return []; return [-1, 1].map((sg): Prop => ({ k: 'chain', from: [b.c[0], b.c[1], sg * EQUIP.chainZ], to: [b.c[0], 0, sg * EQUIP.chainZ] })); }
+      if (bar) { const [b] = GEAR_KINDS.sztanga.props(bar, grips, all, ankles); if (b.k !== 'barbell') return []; return [-1, 1].map((sg): Prop => ({ k: 'chain', from: [b.c[0], b.c[1], sg * EQUIP.chainZ], to: [b.c[0], 0, sg * EQUIP.chainZ] })); }
       return SIDES.map((s): Prop => ({ k: 'chain', from: grips[s], to: [grips[s][0], 0, grips[s][2]] }));
     },
     ref: () => [
       `lancuchy: dwa łańcuchy opadające prosto w dół na podłogę, zawieszone na końcach gryfu (z = ±${f1(EQUIP.chainZ)} cm od osi, x i y jak sztanga) — gdy w sprzet[] jest sztanga; bez sztangi (ćwiczenia z łańcuchami w dłoniach) wiszą z dłoni. Rysunek: linia przerywana od sztangi (dłoni) do podłogi. Łańcuchy nie mają kolidera i nie mają własnych pól: pokazują tylko, że ćwiczenie jest z łańcuchami (obciążenie rośnie z wysokością sztangi — tego rysunek nie pokazuje).`,
     ],
   },
-  skrzynia: { caps: ['box', 'bench.flat'], opis: 'skrzynia, stopień albo ławka płaska (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
+  wyciag: {
+    nazwa: 'wyciąg',
+    caps: ['cable.high', 'cable.mid', 'cable.low', 'cable.dual', 'cable.row_seat', 'lat_pulldown', 'ankle_strap', 'cable.handles', 'cable.rope'], fields: ['z', 'dwa', 'chwyt'],
+    opis: 'wyciąg: kolumna z bloczkiem na wysokości y i linka do osprzętu w dłoniach albo na kostce (x, y, z, h, dwa, chwyt, trzyma)',
+    capLabel: { 'cable.high': 'wyciąg z bloczkiem wysokim', 'cable.mid': 'wyciąg z bloczkiem na średniej wysokości', 'cable.low': 'wyciąg z bloczkiem niskim', 'cable.dual': 'dwa wyciągi', 'cable.row_seat': 'stacja do wiosłowania (bloczek niski)', lat_pulldown: 'wyciąg górny do ściągania (bloczek wysoki)', ankle_strap: 'opaska na kostkę', 'cable.handles': 'uchwyty do linki', 'cable.rope': 'lina do wyciągu' },
+    capNeed: { 'cable.high': `bloczek wysoki: y ${CABLE_Y.high[0]}–${CABLE_Y.high[1]} cm`, lat_pulldown: `bloczek wysoki: y ${CABLE_Y.high[0]}–${CABLE_Y.high[1]} cm`, 'cable.mid': `bloczek środkowy: y ${CABLE_Y.mid[0]}–${CABLE_Y.mid[1]} cm`, 'cable.low': `bloczek niski: y ${CABLE_Y.low[0]}–${CABLE_Y.low[1]} cm`, 'cable.row_seat': `bloczek niski: y ${CABLE_Y.low[0]}–${CABLE_Y.low[1]} cm`, 'cable.dual': 'dwa: true (dwa wyciągi)', ankle_strap: 'chwyt: "kostka"', 'cable.handles': 'chwyt: "uchwyt"', 'cable.rope': 'chwyt: "lina"' },
+    capOk: (cap, g) => {
+      const y = g.y ?? 20; const within = (r: readonly [number, number]): boolean => y >= r[0] && y <= r[1];
+      switch (cap) {
+        case 'cable.high': case 'lat_pulldown': return within(CABLE_Y.high);
+        case 'cable.mid': return within(CABLE_Y.mid);
+        case 'cable.low': case 'cable.row_seat': return within(CABLE_Y.low);
+        case 'cable.dual': return g.dwa === true;
+        case 'ankle_strap': return g.chwyt === 'kostka';
+        case 'cable.handles': return (g.chwyt ?? 'uchwyt') === 'uchwyt';
+        case 'cable.rope': return g.chwyt === 'lina';
+        default: return true;
+      }
+    },
+    props: (g, grips, _all, ankles) => {
+      const x = g.x ?? 0, y = g.y ?? 20, h = g.h ?? 230; const kind = g.chwyt ?? 'uchwyt'; const ss = sidesOf(g);
+      const at = (s: Side): V3 => kind === 'kostka' ? ankles[s] : grips[s];
+      const attach = kind === 'uchwyt' ? 'handle' as const : kind === 'lina' ? 'rope' as const : kind === 'drazek' ? 'bar' as const : 'strap' as const;
+      if (g.dwa) return ss.flatMap((s): Prop[] => { const z = (s === 'R' ? 1 : -1) * Math.abs(g.z ?? EQUIP.cableSpan); return [{ k: 'tower', x, z, h, solid: true }, { k: 'cable', from: [x, y, z], to: at(s), attach, ends: [at(s)], solid: true }]; });
+      const z = g.z ?? 0; return [{ k: 'tower', x, z, h, solid: true }, { k: 'cable', from: [x, y, z], to: avg(ss.map(at)), attach, ends: ss.map(at), solid: true }];
+    },
+    check: g => [
+      ...(g.y !== undefined && (g.y < 5 || g.y > 240) ? [`sprzęt: wysokość bloczka y = ${g.y} cm poza przedziałem 5–240 cm`] : []),
+      ...(g.h !== undefined && g.y !== undefined && g.h < g.y ? [`sprzęt: kolumna wyciągu h = ${g.h} cm niższa niż bloczek (y = ${g.y} cm)`] : []),
+      ...(g.chwyt === 'kostka' && !g.dwa && g.trzyma !== 'R' && g.trzyma !== 'L' ? ['sprzęt: opaska na kostkę (chwyt: "kostka") jednego wyciągu wymaga trzyma: "R" albo "L" (kostka tej nogi)'] : []),
+    ],
+    ref: () => {
+      const r = (k: keyof typeof CABLE_Y): string => `${CABLE_Y[k][0]}–${CABLE_Y[k][1]}`;
+      return [
+        `wyciag: kolumna stacji wyciągów w x (przód/tył), z (domyślnie 0) o wysokości h (domyślnie 230) z bloczkiem na wysokości y; linka biegnie prosto od bloczka do osprzętu i wyznacza KIERUNEK OPORU (ruch ćwiczenia ma być przeciw temu kierunkowi: linka napięta w całym zakresie). Wysokość bloczka wg możliwości katalogu ćwiczenia: niski y ${r('low')} cm (cable.low, cable.row_seat), środkowy ${r('mid')} cm (cable.mid), wysoki ${r('high')} cm (cable.high, lat_pulldown) — ćwiczenie z możliwości „wysoki” z y poza zakresem jest odrzucane.`,
+        `wyciag, osprzęt (pole chwyt): "uchwyt" (domyślnie; kółko przy każdej dłoni), "lina" (dwa końce, lina rozwidla się od punktu między dłońmi), "drazek" (prosty drążek między dłońmi), "kostka" (opaska na kostce: trzyma "R" albo "L" wskazuje nogę; linka kończy się na kostce, kostka = cel linki, nie dłoń). Linka kończy się w punkcie osprzętu: środek między dłońmi (trzyma "obie"), jedna dłoń ("R"/"L") albo kostka.`,
+        `wyciag dwa: true = dwa wyciągi, po jednym na dłoń: kolumny i bloczki w z = ±|z| (domyślnie ±${f1(EQUIP.cableSpan)} cm), każda linka do swojej dłoni (rozpiętki, wyciskanie na linkach; wymóg możliwości cable.dual). Jeden wyciąg (domyślnie): jeden bloczek w z (domyślnie 0).`,
+        `wyciag, kolizje: ciało NIE przenika kolumny (prostopadłościan ${f1(EQUIP.towerW)} × ${f1(EQUIP.towerW)} cm) ani linki (poza ostatnimi ${f1(EQUIP.cableEnd)} cm przy dłoniach/kostce): ustaw osobę tak, by linka od bloczka do dłoni nie przechodziła przez tułów, głowę ani ramię (typowo stań przodem do kolumny w odległości 40–80 cm albo bokiem). Jedna kolumna na jeden wpis; kilka wpisów wyciag = kilka kolumn.`,
+      ];
+    },
+  },
+  skrzynia: { nazwa: 'skrzynia albo ławka płaska', caps: ['box', 'bench.flat'], opis: 'skrzynia, stopień albo ławka płaska (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
   hantel: {
+    nazwa: 'hantle',
     caps: ['db', 'farmers_handles'], fields: ['promien', 'pionowo'], opis: 'hantel trzymany w dłoni; uchwyty farmerskie rysujemy jak hantle z dużym promieniem (trzyma, promien, pionowo)',
     props: (g, grips) => g.pionowo
       ? [{ k: 'dumbbell', c: avg(sidesOf(g).map(s => grips[s])), side: 'R', vertical: true, r: g.promien, held: true }]
@@ -114,6 +177,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     ],
   },
   kettlebell: {
+    nazwa: 'kettlebell',
     caps: ['kb'], fields: ['promien', 'dzwon'], opis: 'kettlebell trzymany za rączkę (trzyma, promien, dzwon)',
     props: (g, grips) => {
       const ss = sidesOf(g); const bell = g.dzwon === 'wzdluz' ? 'along' as const : g.dzwon === 'tyl' ? 'back' as const : 'down' as const;
@@ -127,6 +191,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     ],
   },
   talerz: {
+    nazwa: 'talerz',
     caps: ['plate'], fields: ['promien', 'przesuniecie'], opis: 'talerz trzymany za brzegi (trzyma, promien, przesuniecie)',
     props: (g, grips) => {
       const r = g.promien ?? EQUIP.plateR; const ss = sidesOf(g);
@@ -139,6 +204,7 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     ],
   },
   pilka_lekarska: {
+    nazwa: 'piłka lekarska',
     caps: ['med_ball'], fields: ['promien', 'przesuniecie'], opis: 'piłka lekarska (trzyma, promien, przesuniecie)',
     props: (g, grips) => {
       const r = g.promien ?? EQUIP.medBallR; const ss = sidesOf(g);
@@ -181,6 +247,25 @@ export function gearFieldIssues(g: Gear): string[] {
   ];
 }
 
+/**
+ * Wymagany sprzęt ćwiczenia (katalog: requires = lista grup „wszystkie z listy, w grupie dowolna”): dla każdej grupy, w której choć jedna możliwość ma rodzaj w rejestrze,
+ * poza musi zawierać wpis takiego rodzaju spełniający możliwość (np. bloczek wysoki). Grupy bez możliwości w rejestrze pomijane (ćwiczenia z nimi generator i tak pomija);
+ * grupy z samych możliwości opcjonalnych (stojak) nie są wymagane.
+ */
+export function requiredGearIssues(requires: string[][], gear: Gear[]): string[] {
+  const kindOf = (cap: string) => GEAR.map(k => ({ k, def: GEAR_KINDS[k] })).filter(x => x.def.caps.includes(cap));
+  const out: string[] = [];
+  for (const group of requires) {
+    const covered = group.filter(c => kindOf(c).length > 0); if (!covered.length) continue;
+    if (covered.every(c => kindOf(c).every(x => x.def.optionalCaps?.includes(c)))) continue;
+    const ok = covered.some(c => kindOf(c).some(x => gear.some(g => g.rodzaj === x.k && (x.def.capOk?.(c, g) ?? true))));
+    if (ok) continue;
+    const label = (c: string): string => { const x = kindOf(c)[0]; return `${x.def.capLabel?.[c] ?? x.def.nazwa} (rodzaj „${x.k}”${x.def.capNeed?.[c] ? `, ${x.def.capNeed[c]}` : ''})`; };
+    out.push(`sprzęt: ćwiczenie wymaga: ${[...new Set(covered.map(label))].join(' ALBO ')}, a sprzet[] tego nie zawiera`);
+  }
+  return out;
+}
+
 /** Dozwolone kontakty ciała ze sprzętem zadeklarowane przez wpisy sprzętu. */
 export function contactsFrom(gear: Gear[]): Contact[] { return gear.flatMap(g => GEAR_KINDS[g.rodzaj].contacts?.(g) ?? []); }
 
@@ -188,4 +273,4 @@ export function contactsFrom(gear: Gear[]): Contact[] { return gear.flatMap(g =>
 export const GEAR_CAPS: readonly string[] = Object.values(GEAR_KINDS).flatMap(k => k.caps);
 
 /** Sprzęt jako rekwizyty sceny; sprzęt „podążający za chwytem” leży między dłońmi albo w dłoni. */
-export function propsFrom(gear: Gear[], grips: GearGrips): Prop[] { return gear.flatMap(g => GEAR_KINDS[g.rodzaj].props(g, grips, gear)); }
+export function propsFrom(gear: Gear[], grips: GearGrips, ankles: GearGrips = { R: [0, 0, 0], L: [0, 0, 0] }): Prop[] { return gear.flatMap(g => GEAR_KINDS[g.rodzaj].props(g, grips, gear, ankles)); }

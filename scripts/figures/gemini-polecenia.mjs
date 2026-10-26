@@ -221,6 +221,11 @@ export function sprzetNieobslugiwany(cw, catalog) {
   return null;
 }
 const OPIS_SPRZETU = { 'pullup.bar': 'drążek poziomy', rings: 'kółka (zastępuje drążek — rysuj jako drążek)', db: 'hantle (sprzet: rodzaj \"hantel\")', kb: 'kettlebell (sprzet: rodzaj \"kettlebell\")', plate: 'talerz trzymany (sprzet: rodzaj \"talerz\")', med_ball: 'piłka lekarska (sprzet: rodzaj \"pilka_lekarska\")', bench: 'ławka', barbell: 'sztanga', chains: 'łańcuchy (sprzet: rodzaj \"lancuchy\")', wall: 'ściana (sprzet: rodzaj \"sciana\", pole przed)', trap_bar: 'gryf sześciokątny (sprzet: rodzaj \"gryf_szesciokatny\")', farmers_handles: 'uchwyty farmerskie (sprzet: rodzaj \"hantel\", promien 10–12)', landmine: 'landmine (sprzet: rodzaj \"landmine\"; gryf to ten pręt, bez osobnej sztangi)', smith: 'suwnica Smitha (sprzet: rodzaj \"smith\" + sztanga podążająca za chwytem)', ez_bar: 'gryf łamany (sprzet: rodzaj \"sztanga\", dlugosc 120)', axle_bar: 'gryf gruby (sprzet: rodzaj \"sztanga\")', rack: 'stojak (sprzet: rodzaj \"slupek\" z polem hak)', 'bench.uprights': 'stojaki ławki (sprzet: rodzaj \"slupek\" z polem hak)', 'rack.safeties': 'asekuracja stojaka (sprzet: rodzaj \"slupek\")' };
+/** Opis możliwości katalogu z rejestru kontraktu (capLabel + rodzaj + wymaganie, np. wysokość bloczka); możliwość spoza rejestru → identyfikator. */
+export function opisMozliwosci(cap) {
+  const { v2 } = silnik(); const k = v2.GEAR.find((x) => v2.GEAR_KINDS[x].caps.includes(cap)); if (!k) return cap;
+  const d = v2.GEAR_KINDS[k]; const label = d.capLabel?.[cap]; return label ? `${label} (sprzet: rodzaj \"${k}\"${d.capNeed?.[cap] ? `, ${d.capNeed[cap]}` : ''})` : cap;
+}
 /** Rodzaje sprzętu z rejestru kontraktu, których potrzebują ćwiczenia (możliwości katalogu → rodzaj); kolejność jak w rejestrze. */
 export function rodzajeSprzetu(cwiczenia, catalog) {
   const { v2 } = silnik(); const caps = new Set(cwiczenia.flatMap((c) => (catalog?.CATALOG?.[c]?.requires ?? []).flat()));
@@ -234,7 +239,7 @@ export function sekcjaSprzetu(cwiczenia, catalog) {
 /** Sens ruchu z danych katalogu i nazwy: sprzęt, liczba rąk, obciążenie (bez zgadywania). */
 export function sensZKatalogu(cw, catalog) {
   const o = []; const e = catalog?.CATALOG?.[cw];
-  if (e) { const sp = e.requires.map((g) => g.map((c) => OPIS_SPRZETU[c] ?? c).join(' albo ')).join(' + '); if (sp) o.push(`sprzęt: ${sp}`); if (e.loadSource === 'bodyweight') o.push('ciężar ciała'); if (e.implements === 1) o.push('jeden przyrząd (jedna ręka)'); if (e.implements === 2) o.push('dwa przyrządy'); }
+  if (e) { const sp = e.requires.map((g) => g.map((c) => OPIS_SPRZETU[c] ?? opisMozliwosci(c)).join(' albo ')).join(' + '); if (sp) o.push(`sprzęt: ${sp}`); if (e.loadSource === 'bodyweight') o.push('ciężar ciała'); if (e.implements === 1) o.push('jeden przyrząd (jedna ręka)'); if (e.implements === 2) o.push('dwa przyrządy'); }
   if (/one[- ]arm|single[- ]arm|jednor/i.test(cw)) o.push('JEDNORĄCZ: drążek trzyma jedna dłoń (sprzet: trzyma "R"/"L"), druga ręka wolna poza drążkiem');
   if (/(mixed)/i.test(cw)) o.push('chwyt mieszany: jedna dłoń nachwytem, druga podchwytem (w danych: oba chwyty na osi drążka, rozstaw ±20)');
   if (/neutral/i.test(cw)) o.push('chwyt neutralny (dłonie skierowane do siebie)'); if (/wide/i.test(cw)) o.push('chwyt szeroki (z ±30…40)'); if (/(rear)/i.test(cw)) o.push('ruch za głowę nie jest wymagany — rysuj chwyt szeroki, broda nad drążkiem');

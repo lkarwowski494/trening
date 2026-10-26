@@ -11,7 +11,7 @@ export const EQUIP = {
   barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [44, 49] as [number, number], plateW: 2.8,
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6, medBallR: 11,
   benchW: 28, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
-  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
+  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];
@@ -169,7 +169,22 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         else S.push({ k: 'poly', pts: rect(-w / 2, pr.seatFrom[1] - E.benchPad, w / 2, pr.seatFrom[1]), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zKey(LAYER.backEquip, -30), id: 'benchSeat' });
         break;
       }
-      case 'cable': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.7, role: 'cable', z: zKey(LAYER.frontEquip, 0), id: 'cable' }); S.push({ k: 'circle', c: a, r: 2.6, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pulley' }); break; }
+      case 'cable': {
+        const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.7, role: 'cable', z: zKey(LAYER.frontEquip, 0), id: 'cable' }); S.push({ k: 'circle', c: a, r: 2.6, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pulley' });
+        const ends = (pr.ends ?? []).map(e => proj(e, view)); const zz = zKey(LAYER.frontEquip, 0.2);
+        if (pr.attach === 'handle') for (const e of ends) S.push({ k: 'circle', c: e, r: E.handleR, fill: 'steel', z: zz, id: 'cableHandle' });
+        else if (pr.attach === 'rope') for (const e of ends) { S.push({ k: 'line', a: b, b: e, w: 1.4, role: 'cable', z: zz, id: 'cableRope' }); S.push({ k: 'circle', c: e, r: E.handleR, fill: 'steel', z: zz, id: 'cableHandle' }); }
+        else if (pr.attach === 'bar' && ends.length) S.push({ k: 'line', a: ends[0], b: ends[ends.length - 1], w: 2.2, role: 'steel', z: zz, id: 'cableBar' });
+        else if (pr.attach === 'strap') for (const e of ends) S.push({ k: 'circle', c: e, r: E.strapR, stroke: 'steel', w: 1.6, z: zz, id: 'cableStrap' });
+        break;
+      }
+      case 'tower': {
+        const W = E.towerW; const zk = zKey(LAYER.backEquip, -20);
+        if (side) S.push({ k: 'poly', pts: rect(pr.x - W / 2, 0, pr.x + W / 2, pr.h), fill: 'frame', a: 0.28, stroke: 'frame', w: 0.6, close: true, z: zk, id: 'tower' });
+        else if (view === 'front') S.push({ k: 'poly', pts: rect(-pr.z - W / 2, 0, -pr.z + W / 2, pr.h), fill: 'frame', a: 0.28, stroke: 'frame', w: 0.6, close: true, z: zk, id: 'tower' });
+        else S.push({ k: 'poly', pts: rect(-pr.z - W / 2, -pr.x - W / 2, -pr.z + W / 2, -pr.x + W / 2), fill: 'frame', a: 0.28, stroke: 'frame', w: 0.6, close: true, z: zk, id: 'tower' });
+        break;
+      }
       case 'band': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.frontEquip, 0), id: 'band' }); break; }
       case 'chain': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 1.2, role: 'steel', dash: [0.8, 1.4], z: zKey(LAYER.frontEquip, 0), id: 'chain' }); break; }
       case 'pivot': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 2.8, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'landmine' }); S.push({ k: 'circle', c: a, r: 3, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pivot' }); break; }
