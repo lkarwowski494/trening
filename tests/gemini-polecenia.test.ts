@@ -419,7 +419,7 @@ describe('gemini-polecenia: dzielenie za długich części (sekcja sprzętu roś
   });
   test('zabezpieczenie: polecenie jednego ćwiczenia ponad limitem nie przerywa generowania (log POMINIĘTE + UWAGA, plik niezapisany); limit 36000 przy obecnym katalogu: nic nie jest pomijane, żaden plik nie przekracza limitu', () => {
     const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'op-')), 'out');
-    const ciasny = run(POL, `const log = []; const c = await m.main(['--rodzina','overhead_press','--wyjscie',${JSON.stringify(out)}], { log: (s) => log.push(s), maxZnakow: 30000 }); console.log(JSON.stringify([c, log]))`) as [number, string[]];
+    const ciasny = run(POL, `const log = []; const c = await m.main(['--rodzina','overhead_press','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(PELNY)}, log: (s) => log.push(s), maxZnakow: 30000 }); console.log(JSON.stringify([c, log]))`) as [number, string[]];
     expect(ciasny[0]).toBe(0); expect(ciasny[1].filter((l) => /POMINIĘTE — polecenie jednego ćwiczenia \(.+\) ma \d+ znaków, limit 30000/.test(l)).length).toBeGreaterThanOrEqual(1); expect(ciasny[1].some((l) => /^UWAGA: \d+ polecenie\(a\) jednego ćwiczenia przekracza limit 30000/.test(l))).toBe(true);
     for (const f of fs.readdirSync(out)) expect(fs.readFileSync(path.join(out, f), 'utf8').length).toBeLessThanOrEqual(30000);
     const out2 = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'op-')), 'out');
