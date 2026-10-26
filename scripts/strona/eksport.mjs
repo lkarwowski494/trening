@@ -3,6 +3,7 @@
 // lib/i18n + lib/locales) — nie z data/zrodla (pełne dane ze źródłami), więc nazwy źródeł i organizacji nie mają skąd się wziąć. Dodatkowo ostatnia bramka:
 // przed zapisem każdy tekst przechodzi te same wzorce co tests/zrodla-wiedzy.test.ts (lib/sources.ts) — trafienie przerywa eksport (kod 1).
 // Pole `app` przypina eksport do wersji aplikacji (app.json), skrótu commitu i rewizji katalogu; strona czyta eksport przypięty do wersji.
+// Sylwetka mięśni (przód/tył): sylwetka.json — arkusz SVG z lib/musclemap.ts (silhouetteSprite) i stopnie 0–4 per partia dla każdego ćwiczenia (ten sam wzór co mapa w aplikacji: exerciseMapSets + shadeLevel).
 // Pliki: atlas-<język>.json (teksty i dane ćwiczeń), figury.json (dane figur — niezależne od języka, więc raz), manifest.json, wzorce-zrodel.json (lista wzorców dla strażnika
 // w repo strony: ta sama co lib/sources.ts). Figura = próbki klatek (poza + rekwizyty w 25 punktach ruchu, już rozwiązane przez rig albo kontrakt pozy), z których przeglądarka
 // składa kształty silnikiem z silnik-build.mjs; dane pozy w kontrakcie figury-v2/poza@1 (jeśli są) dołączone obok.
@@ -13,6 +14,7 @@ import { join } from 'node:path';
 import { appRequire, repoRoot } from './ts-loader.mjs';
 
 export const SCHEMA = 'techniqueatlas-eksport@1';
+/** Minimalny udział regionu na sylwetce: ten sam próg co lista „główne / pomocnicze” (MUSCLE_MIN_LOAD figur v2). */
 /** Liczba zamienników przy ćwiczeniu = SWAP_TOP aplikacji (arkusz zamiany; test pilnuje równości). */
 export const ALTERNATIVES = 3;
 /** Liczba przedziałów ruchu w próbkach figury (25 próbek: u = 0, 1/24, …, 1). */
@@ -37,6 +39,7 @@ function gitCommit() { try { return execSync('git rev-parse HEAD', { cwd: repoRo
 export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit() } = {}) {
   const R = appRequire();
   const seed = R('lib/seed.ts'), i18n = R('lib/i18n.ts'), cat = R('lib/catalog.generated.ts'), cues = R('lib/cues/index.ts'), eq = R('lib/equipment.ts');
+  const mm = R('lib/musclemap.ts'), MIN_LOAD = R('lib/figures/v2/muscles.ts').MUSCLE_MIN_LOAD;
   const v2 = R('lib/figures/v2/index.ts'), cueSets = R('lib/figures/v2/cueSets.ts'), ui = R('lib/figures/v2/ui.ts'), swapScore = R('lib/swapScore.ts'), sources = R('lib/sources.ts');
   const app = JSON.parse(readFileSync(join(repoRoot, 'app.json'), 'utf8')).expo;
   const keys = seed.LIB.map(r => r[0]);
@@ -73,6 +76,13 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
     const fam = v2.FAMILIES.find(f => f.id === v2.familyOf(key));
     return { family: fam.id, views: fam.views, static: false, lowerFirst: true, tempo: { ...v2.TEMPO }, pose, frames: sample(u => v2.keyframeFrame(pose, u)), errors: [] };
   };
+  /* sylwetka: stopień 0–4 każdej z 12 partii (kolejność mm.MUSCLES = numer zmiennej --mm-<n> arkusza); niezależne od języka */
+  const levelsOf = key => {
+    const sets = mm.exerciseMapSets(seed.muscleLoadOf(exOf[key]).filter(([, w]) => w >= MIN_LOAD).map(([r, w]) => ({ muscle: seed.REGION_MUSCLE[r], load: w })));
+    const max = Math.max(0, ...Object.values(sets));
+    return seed.MUSCLES.map(m => mm.shadeLevel(sets[m] ?? 0, max));
+  };
+  const silhouette = { sprite: mm.silhouetteSprite(), vars: { body: mm.SILHOUETTE_VARS.body, part: mm.SILHOUETTE_VARS.part, muscle: seed.MUSCLES.map(mm.SILHOUETTE_VARS.muscle) }, muscles: [...seed.MUSCLES], levels: Object.fromEntries(keys.map(k => [slugs[k], levelsOf(k)])) };
   const figures = {};
   for (const k of keys) { const fe = figureEntry(k); if (fe) figures[slugs[k]] = fe; }
   const cueTextIn = (l, id) => { const a = cues.cueDict(l)[id] ?? cues.cueDict('en')[id] ?? cues.cueDict('pl')[id]; return a; };
@@ -150,7 +160,7 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
     walk(obj, l);
     if (bad.length) throw new Error(`eksport zawiera nazwy źródeł lub odwołania ogólne (${bad.length}), np. ${bad.slice(0, 3).join(' | ')}`);
   }
-  return { buildLang, guard, figures, langNames: i18n.LANG_NAME, patterns: { name: sources.SOURCE_NAME_PATTERNS, generic: sources.GENERIC_REFERENCE_PATTERNS }, languages: i18n.LANGS, app: { version: app.version, commit, catalogRev: cat.CATALOG_REV } };
+  return { buildLang, guard, figures, silhouette, langNames: i18n.LANG_NAME, patterns: { name: sources.SOURCE_NAME_PATTERNS, generic: sources.GENERIC_REFERENCE_PATTERNS }, languages: i18n.LANGS, app: { version: app.version, commit, catalogRev: cat.CATALOG_REV } };
 }
 
 export const serialize = obj => JSON.stringify(obj) + '\n';
@@ -161,8 +171,9 @@ if (process.argv[1] && import.meta.url === new URL(process.argv[1], 'file://').h
   const ex = createExporter(arg('--commit') ? { commit: arg('--commit') } : {});
   const langs = arg('--langs') ? arg('--langs').split(',') : [...ex.languages];
   mkdirSync(out, { recursive: true });
-  const manifest = { schema: SCHEMA, app: ex.app, languages: [], figures: 'figury.json', patterns: 'wzorce-zrodel.json' };
+  const manifest = { schema: SCHEMA, app: ex.app, languages: [], figures: 'figury.json', silhouette: 'sylwetka.json', patterns: 'wzorce-zrodel.json' };
   const figText = serialize({ schema: SCHEMA, app: ex.app, figures: ex.figures }); writeFileSync(join(out, 'figury.json'), figText); manifest.figuresBytes = Buffer.byteLength(figText);
+  writeFileSync(join(out, 'sylwetka.json'), serialize({ schema: SCHEMA, app: ex.app, ...ex.silhouette }));
   writeFileSync(join(out, 'wzorce-zrodel.json'), serialize({ schema: SCHEMA, ...ex.patterns }));
   for (const l of langs) {
     const file = `atlas-${l}.json`; const text = serialize(ex.buildLang(l));

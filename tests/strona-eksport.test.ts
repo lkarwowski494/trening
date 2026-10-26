@@ -14,7 +14,8 @@ import { CUE_DATA, cueDict } from '@/lib/cues';
 import { cueSelection } from '@/lib/figures/v2/cueSets';
 import { figureSpec, phasesFor, tempoFor, frameAt } from '@/lib/figures/v2/figure';
 import { errorsOf, legendOf } from '@/lib/figures/v2/ui';
-import { isNiche } from '@/lib/seed';
+import { isNiche, MUSCLES, REGION_MUSCLE } from '@/lib/seed';
+import { PARTS, silhouetteSprite, SILHOUETTE_VARS, exerciseMapSets, shadeLevel } from '@/lib/musclemap';
 import { FAMILIES } from '@/lib/figures/v2/families';
 import { figurePalette, svgInner, shapesAt as appShapesAt } from '@/lib/figures/v2';
 import { light } from '@/lib/tokens';
@@ -242,4 +243,40 @@ describe('silnik figur dla przeglądarki (scripts/strona/silnik-build.mjs)', () 
       for (const l of lines) { const na = nums(l); const j = left.findIndex((nb, k) => nb.length === na.length && tag(b[k]) === tag(l) && Math.max(0, ...na.map((v, q) => Math.abs(v - nb[q]))) < 0.12); expect([r.key, r.view, r.u, l.slice(0, 40), j >= 0]).toEqual([r.key, r.view, r.u, l.slice(0, 40), true]); left.splice(j, 1); b.splice(j, 1); }
     });
   });
+});
+
+describe('eksport dla strony: sylwetka mięśni przód/tył (sylwetka.json)', () => {
+  type Sil = { schema: string; app: { commit: string }; sprite: string; vars: { body: string; part: string; muscle: string[] }; muscles: string[]; levels: Record<string, number[]> };
+  let sil: Sil;
+  beforeAll(() => { sil = JSON.parse(fs.readFileSync(path.join(dir, 'sylwetka.json'), 'utf8')); });
+  test('manifest wskazuje plik; plik jest przypięty do commitu eksportu; kolejność partii = MUSCLES aplikacji, zmienne CSS po numerze partii', () => {
+    expect(JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')).silhouette).toBe('sylwetka.json');
+    expect(sil.schema).toBe('techniqueatlas-eksport@1'); expect(sil.app.commit).toBe('abc1234def');
+    expect(sil.muscles).toEqual([...MUSCLES]); expect(sil.vars.muscle).toEqual(MUSCLES.map((_, i) => `--mm-${i}`)); expect([sil.vars.body, sil.vars.part]).toEqual(['--mm-body', '--mm-part']);
+  });
+  test('arkusz: dwa widoki (front, back), kształty z PARTS (przód i tył osobno), wypełnienia tylko przez zmienne CSS (zero kolorów wpisanych), każda partia ma zmienną', () => {
+    expect(sil.sprite).toBe(silhouetteSprite());
+    const g = (id: string) => sil.sprite.match(new RegExp(`<g id="${id}">(.*?)</g>`, 's'))![1];
+    for (const v of ['front', 'back'] as const) {
+      const shapes = PARTS.filter(p => p.view === v).reduce((n, p) => n + p.shapes.length, 0);
+      expect([v, (g(v).match(/<(?:ellipse|path) /g) ?? []).length]).toEqual([v, shapes]);
+    }
+    expect(sil.sprite).not.toMatch(/#[0-9A-Fa-f]{3,6}|rgb\(|fill="/);
+    for (const m of MUSCLES) expect([m, sil.sprite.includes(`var(${SILHOUETTE_VARS.muscle(m)},var(--mm-part))`)]).toEqual([m, true]);
+    expect(sil.sprite).toContain('var(--mm-body)');
+  });
+  test('stopnie: każde z 709 ćwiczeń ma 12 liczb 0–4; partie podświetlone = partie regionów z udziałem ≥ 0,5 (jak lista „główne / pomocnicze” na stronie); główna → 4, pomocnicza → 2; szyja poza mapą', () => {
+    const slugs = data.en.exercises.map(e => e.slug); expect(Object.keys(sil.levels).sort()).toEqual([...slugs].sort());
+    for (const e of data.en.exercises) {
+      const lv = sil.levels[e.slug]; expect([e.id, lv.length]).toEqual([e.id, 12]);
+      for (const v of lv) expect([0, 1, 2, 3, 4]).toContain(v);
+      const sets = exerciseMapSets(e.regions.filter(r => r.load >= 0.5).map(r => ({ muscle: REGION_MUSCLE[r.id as keyof typeof REGION_MUSCLE], load: r.load })));
+      const max = Math.max(0, ...Object.values(sets)); expect([e.id, lv]).toEqual([e.id, MUSCLES.map(m => shadeLevel(sets[m] ?? 0, max))]);
+    }
+    const sq = sil.levels['back-squat']; expect(sq[MUSCLES.indexOf('czworogłowe')]).toBe(4); expect(sq[MUSCLES.indexOf('klatka')]).toBe(0);
+  });
+  test('exerciseMapSets: największy udział regionów partii; szyja (bez partii) pomijana', () => {
+    expect(exerciseMapSets([{ muscle: 'barki', load: 0.5 }, { muscle: 'barki', load: 1 }, { muscle: null, load: 1 }, { muscle: 'klatka', load: 0.5 }])).toEqual({ barki: 1, klatka: 0.5 });
+  });
+  test('deterministyczność: dwa przebiegi dają identyczne bajty', () => { expect(fs.readFileSync(path.join(dir2, 'sylwetka.json'), 'utf8')).toBe(fs.readFileSync(path.join(dir, 'sylwetka.json'), 'utf8')); });
 });
