@@ -19,7 +19,7 @@ Aktualizowane na bieżąco przez koordynatora (polecenie właściciela 26.10.202
 | tests.yml na c56ef5d | zielony (run 40389032814) | |
 | E2E pakiet podstawowy | brak maszyny macOS: 40385948580, 40389043078, 40391367923 anulowane „not acquired by Runner” (każde po ~18 min w kolejce); ponowione jako run 40394232571 (c56ef5d, 20:17 UTC) — ponawiać | |
 | PR integracja → main + scalenie | do zrobienia (repo bez szablonu PR) | |
-| Wersja 1.0.0 | gałąź zaktualizowana: 6a722cf (7a45540 + decyzje właściciela w docs/18 eb9c6fd + scalona integracja c56ef5d); pełne verify lokalnie w toku | `wydanie-1-0-0`; po scaleniu integracji do main dołączyć main (treść ta sama) i PR do main |
+| Wersja 1.0.0 | gałąź zaktualizowana: 6a722cf (7a45540 + decyzje właściciela w docs/18 eb9c6fd + scalona integracja c56ef5d); pełne verify lokalnie zielone, tests.yml 40392538178 zielony | `wydanie-1-0-0`; po scaleniu integracji do main dołączyć main (treść ta sama) i PR do main |
 | Pełny katalog E2E | do zrobienia, na SHA wersji na main | `pakiet: pelny`, iPhone standardowy; czerwony z winy skryptu nie blokuje (CLAUDE.md) |
 | testflight.yml | do zrobienia; zatrzyma się na `release` — zatwierdza WŁAŚCICIEL rano | |
 | check-urls.yml | do zrobienia po scaleniu do main (dowód, zamyka R-017 w docs/40) | |
