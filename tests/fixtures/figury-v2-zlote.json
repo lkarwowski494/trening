@@ -868,6 +868,66 @@
    "svg": "c4a547b1485a263f3ce4",
    "raw": "d5c3c876cc7039a35f8c"
   },
+  "leg_isolation/Leg Extension": {
+   "svg": "44cec13c3e9d43172b20",
+   "raw": "2ebce39499f4d891150f"
+  },
+  "leg_isolation/Single-Leg Leg Extension": {
+   "svg": "cef7e0fc855ad4b8e218",
+   "raw": "0fc389ba5ee96b5e33c3"
+  },
+  "leg_isolation/Leg Curl": {
+   "svg": "ed252c0cbcdfab7133ea",
+   "raw": "6f931f9e44ee30932a59"
+  },
+  "leg_isolation/Lying Leg Curl": {
+   "svg": "bfabb5aee38edbd18e27",
+   "raw": "7adda69ed6c60d5ba298"
+  },
+  "leg_isolation/Standing Leg Curl": {
+   "svg": "5b2ca67c53b5ed56bc70",
+   "raw": "41dd3ca7dcf9365400ff"
+  },
+  "leg_isolation/Standing Cable Leg Curl": {
+   "svg": "10ed0151fe93b032cb63",
+   "raw": "2c8a3e23dfbdcdc93237"
+  },
+  "leg_isolation/Seated Band Hamstring Curl": {
+   "svg": "d46275b04bcf1f8baf88",
+   "raw": "a2118a6ba4052966e9ab"
+  },
+  "leg_isolation/Slider Hamstring Curl": {
+   "svg": "1b6edff0a73c09ce579f",
+   "raw": "045b12c58dc6dd42e42e"
+  },
+  "leg_machine/Leg Press": {
+   "svg": "ff7cd4bfbe269d2343d3",
+   "raw": "e2a8553e50f698592224"
+  },
+  "leg_machine/Single Leg Press": {
+   "svg": "3a3b35049d0f230d9196",
+   "raw": "ee850a21c7f262935aea"
+  },
+  "leg_machine/Calf Press (leg press)": {
+   "svg": "f0d4a04534cddc46d7ff",
+   "raw": "1a128c75d2b858baaa89"
+  },
+  "leg_machine/Hack Squat": {
+   "svg": "e50c89860cff8a33120e",
+   "raw": "767166d7b0ef1475fe8f"
+  },
+  "leg_machine/Pendulum Squat": {
+   "svg": "7129fd9005449a53bac5",
+   "raw": "4439af32a0d94b69b9c8"
+  },
+  "leg_machine/Lying Machine Squat": {
+   "svg": "85b24ceb9a81c76f888f",
+   "raw": "7fc3083121e8fc292121"
+  },
+  "leg_machine/Belt Squat Machine": {
+   "svg": "c6d2890c53adc44b8220",
+   "raw": "f2842d398ef432bcb4b7"
+  },
   "lunge/Split Squat": {
    "svg": "ec7d561d94c2b8e64f2f",
    "raw": "f89bebd7c5f9dce54cf1"
