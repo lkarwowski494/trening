@@ -650,9 +650,9 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy sprawdza licznik
     - Wtedy zużył jeden dzień, a kolejny trening tego dnia może zacząć nawet przy wyczerpanym limicie
   - Scenariusz: Co się liczy
-    - Zakładając, że użytkownik ma trening wstecz (także z dzisiejszą datą), anulowany, trwający i trening na żywo krótszy niż 20 minut
+    - Zakładając, że użytkownik ma trening wstecz (także z dzisiejszą datą), anulowany, trwający i trening na żywo krótszy niż 7 minut
     - Gdy sprawdza licznik
-    - Wtedy żaden z nich nie zużywa dnia i żaden nie jest blokowany; liczy się trening na żywo dłuższy niż 20 minut (bez pauz), zakończony „Zakończ” albo zapisany po 6 godzinach bez aktywności
+    - Wtedy żaden z nich nie zużywa dnia i żaden nie jest blokowany; liczy się trening na żywo dłuższy niż 7 minut (bez pauz), zakończony „Zakończ” albo zapisany po 6 godzinach bez aktywności
   - Scenariusz: Usunięcie treningu
     - Zakładając, że użytkownik zużył dzień treningiem na żywo
     - Gdy usuwa ten trening z historii

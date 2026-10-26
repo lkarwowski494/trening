@@ -26,7 +26,7 @@
  "Dane i kopie": "Datos y respaldos",
  "Dane nie zostały wyczyszczone": "No se borraron los datos",
  "Dane w telefonie": "Datos en este celular",
- "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.": "Los datos del celular los guardó una versión más reciente (esquema {a}); esta versión admite hasta {b}. No se cambia nada — instala la versión más reciente (TestFlight). También puedes enviar los datos como archivo.",
+ "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.": "Los datos del teléfono los guardó una versión más reciente (esquema {a}); esta versión admite hasta {b}. No se cambia nada: instala la versión más reciente desde la App Store. También puedes enviar los datos como archivo.",
  "Deload: podpowiedź w Kalendarzu, a w tygodniu deload przy starcie {less}; przypomnienie rano w dniu treningu z planu.": "Descarga: aviso en el Calendario y, en una semana de descarga, {less} al empezar; recordatorio por la mañana los días de entrenamiento planificado.",
  "Dodaj ciężar": "Agregar lastre",
  "Dodaj notatkę": "Agregar nota",
@@ -47,7 +47,7 @@
  "Karta bieżącej serii w treningu; widok „Lista” jak wcześniej do wyboru w Ustawieniach.": "Tarjeta de la serie actual durante el entrenamiento; la vista «Lista» como antes, a elegir en Configuración.",
  "Koniec przerwy i przypomnienie o treningu z planu przyjdą także przy zablokowanym ekranie.": "El fin del descanso y el recordatorio de entrenamientos planificados llegarán incluso con la pantalla bloqueada.",
  "Kopia automatyczna po treningu jest wyłączona (Ustawienia).": "El respaldo automático después de un entrenamiento está desactivado (Configuración).",
- "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.": "Respaldo automático: después de cada entrenamiento se guarda un archivo JSON en Archivos (En mi iPhone → {app} → Backup, últimos {n}). Importar también acepta estos archivos. Estos respaldos se borran junto con la app — antes de eliminarla o de instalarla desde otra cuenta de Apple, exporta un respaldo a otro lugar.",
+ "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.": "Respaldo automático: después de cada entrenamiento se guarda un archivo JSON en Archivos (En mi iPhone → {app} → Backup, los últimos {n}). Importar también acepta estos archivos. Estos respaldos se borran junto con la app: antes de eliminarla o de instalarla desde otra cuenta de Apple, exporta un respaldo a otro lugar.",
  "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.": "Hay una copia guardada en el celular. Toca para enviarla y luego importa un respaldo.",
  "Kopia zapasowa": "Respaldo",
  "Kopia zapasowa (eksport / import)": "Respaldo (exportar / importar)",
@@ -206,7 +206,7 @@
  "Masa: serie na partię w tygodniu do celu z Ustawień (automatycznie {m}), {a}–{b} powtórzeń (w domu {c}–{d}), zwykle {r1}–{r2} powtórzenia w zapasie.": "Masa: series por grupo muscular a la semana hasta el objetivo de Configuración (automáticamente {m}), {a}–{b} repeticiones (en casa {c}–{d}), normalmente {r1}–{r2} repeticiones en reserva.",
  "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.": "Lectura de Apple Health (se activa en Configuración): pasos y otras actividades en el panel del día, promedio de pasos bajo «Esta semana» y frecuencia cardiaca y kcal del reloj en el entrenamiento.",
  "Generator uwzględnia Twój cel serii z Ustawień.": "El generador tiene en cuenta tu objetivo de series de Configuración.",
- "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).": "El lugar se agregará a la lista de lugares (Configuración → Lugares y equipo).",
+ "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).": "El lugar se agregará a tu lista de lugares (Más → Lugares y equipo).",
  "Miejsce tylko na ten trening. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lugar solo para este entrenamiento. Elige el equipo que tienes allí; no hace falta escribir pesos.",
  "Miejsce na dni {a} – {b}. Wybierz sprzęt, jaki tam masz — ciężarów nie trzeba wpisywać.": "Un lugar para {a} – {b}. Elige el equipo que tienes allí; no hace falta escribir pesos.",
  "W słuchawkach": "Con audífonos",
@@ -223,7 +223,7 @@
  "Na koniec „Zakończ” w nagłówku (albo „Zakończ trening” w karcie po ostatniej serii) — sesja trafi do zakładki Plan.": "Al final, «Terminar» en el encabezado (o «Terminar entrenamiento» en la tarjeta tras la última serie) — la sesión pasa a la pestaña Plan.",
  "Pomiary masy ciała („Masa ciała — pomiary”) usuniesz po „Edytuj” w nagłówku albo przesunięciem w lewo.": "Las mediciones de peso corporal («Peso corporal — mediciones») se eliminan con «Editar» en el encabezado o deslizando a la izquierda.",
  "Gumy usuniesz po „Edytuj” w nagłówku ekranu gum albo przesunięciem w lewo.": "Las bandas se eliminan con «Editar» en el encabezado de su pantalla o deslizando a la izquierda.",
- "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.": "Entrena gratis {n} días al mes. Pro quita el límite. Puedes cancelar cuando quieras en la configuración de tu cuenta de Apple.",
+ "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.": "Entrena {n} días al mes gratis. Pro quita el límite. Puedes cancelar cuando quieras en la configuración de tu cuenta de Apple.",
  "Bez zakupu: do {n} dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.": "Sin compra: hasta {n} días de entrenamiento al mes; el historial, el respaldo y la exportación siempre están disponibles.",
  "W tym miesiącu ciężko trenujesz i wykorzystujesz wszystkie darmowe dni treningowe ({n}). Dobra robota!": "Este mes entrenaste duro y usaste todos los días de entrenamiento gratuitos ({n}). ¡Buen trabajo!",
  "Przerwa. Pozostały czas: {t}. Cała przerwa: {all}.": "Descanso. Tiempo restante: {t}. Descanso total: {all}.",
@@ -266,5 +266,6 @@
  "Wstawanie": "Ponerse de pie",
  "Wszystkie funkcje działają od pierwszego dnia, bez konta i bez reklam. Dane zostają w telefonie.": "Todas las funciones están disponibles desde el primer día, sin cuenta y sin anuncios. Tus datos se quedan en tu celular.",
  "Zaimportowane treningi, rekordy i wykresy są zawsze dostępne, także bez internetu. Trenuj {n} dni w miesiącu za darmo — Pro zdejmuje limit, także jednorazowo na zawsze.": "Los entrenamientos, récords y gráficas importados siempre están disponibles, incluso sin internet. Entrena {n} días al mes gratis; Pro quita el límite, también con un pago único para siempre.",
- "Zakończ trening na telefonie": "Termina el entrenamiento en tu celular"
+ "Zakończ trening na telefonie": "Termina el entrenamiento en tu celular",
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "El entrenamiento del {d} {s} estuvo {h} horas sin actividad, así que se guardó solo. Fin: {e} (última serie). Lo encontrarás en la pestaña Plan."
 }

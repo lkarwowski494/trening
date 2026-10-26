@@ -1,0 +1,140 @@
+{
+ "_opis": "Wymiary sprzętu rysowanych w figurach v2 (lib/figures/v2/draw.ts → EQUIP): pełne dane ze źródłami; runtime bez nazw (stałe w module). Korekta 26.10.2026 (naprawy po audycie 1.0): talerze, łańcuchy i szerokość ławki wg przepisów technicznych federacji trójboju (szczebel 4, jedno źródło — oznaczenie „zgodne ze źródłem”, nie „ustalone”). Pozostałe wymiary: konwencja rysunku (figura nie twierdzi nic o rozmiarach sprzętu, aplikacja ich nie podaje). Test tests/zrodla-pelne-sprzet.test.ts pilnuje zgodności z EQUIP; poza paczką aplikacji.",
+ "statusy": [
+  "zgodne ze źródłem",
+  "konwencja rysunku"
+ ],
+ "wymiary": {
+  "barR": {
+   "cm": 1.6,
+   "status": "konwencja rysunku",
+   "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+   "zgodnosc": "gryf ma średnicę 28–29 mm (promień 1,4–1,45 cm); rysujemy 1,6 cm (Ø 32 mm) jako jawną konwencję „pogrubienie dla czytelności” — decyzja 26.10.2026: przy 1,45 linia gryfu w widoku z przodu ma ok. 3,9 pt zamiast 4,3 pt na 390 pt, a styk gryfu z klatką (touchB = 11,9 + barR w rigu wyciskania) i odstępy kolizji przesunęłyby się o 0,15 cm bez korzyści dla czytelności",
+   "uzycie": "gryf sztangi (promień kapsuły kolizji i szerokość linii)"
+  },
+  "barLen": {
+   "cm": 220,
+   "status": "zgodne ze źródłem",
+   "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+   "zgodnosc": "długość całkowita gryfu ≤ 2,2 m (górna granica)",
+   "uzycie": "długość gryfu w widoku z przodu i w kolizjach"
+  },
+  "sleeveR": {
+   "cm": 2.6,
+   "status": "zgodne ze źródłem",
+   "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+   "zgodnosc": "średnica tulei 50–52 mm (promień 2,5–2,6 cm)",
+   "uzycie": "piasta talerza"
+  },
+  "plateR": {
+   "cm": 22.5,
+   "status": "zgodne ze źródłem",
+   "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+   "zgodnosc": "średnica największych talerzy ≤ 45 cm",
+   "uzycie": "talerz na sztandze i talerz trzymany (domyślny promień)"
+  },
+  "plateZ": {
+   "cm": [
+    66,
+    71
+   ],
+   "status": "zgodne ze źródłem",
+   "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+   "zgodnosc": "talerze zaczynają się za wewnętrznymi kołnierzami: odległość między wewnętrznymi kołnierzami 1,31–1,32 m (±65,5–66 cm); dwa talerze po ok. 2,8 cm obok siebie; korekta 26.10.2026 (wcześniej 44–49 cm = talerze na części chwytnej gryfu)",
+   "uzycie": "środki dwóch talerzy na każdej tulei w widoku z przodu (od osi gryfu, cm)"
+  },
+  "plateW": {
+   "cm": 2.8,
+   "status": "zgodne ze źródłem",
+   "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+   "zgodnosc": "grubość talerzy ≥ 20 kg ≤ 6 cm, talerzy ≤ 15 kg ≤ 3 cm",
+   "uzycie": "grubość talerza na sztandze"
+  },
+  "dbHeadR": {
+   "cm": 6,
+   "status": "konwencja rysunku",
+   "zgodnosc": "główka hantla ok. 12 cm średnicy (hantel ok. 10–20 kg)",
+   "uzycie": "hantel trzymany"
+  },
+  "dbHandle": {
+   "cm": 13,
+   "status": "konwencja rysunku",
+   "zgodnosc": "długość rączki hantla ok. 13 cm",
+   "uzycie": "hantel trzymany (rysunek z przodu i pionowy)"
+  },
+  "kbBallR": {
+   "cm": 9.5,
+   "status": "konwencja rysunku",
+   "zgodnosc": "dzwon kettlebell ok. 18–20 cm średnicy (ok. 16 kg)",
+   "uzycie": "kettlebell trzymany"
+  },
+  "kbHandleR": {
+   "cm": 6,
+   "status": "konwencja rysunku",
+   "zgodnosc": "rączka kettlebell ok. 12 cm wewnętrznej średnicy",
+   "uzycie": "kettlebell trzymany"
+  },
+  "benchW": {
+   "cm": 30,
+   "status": "zgodne ze źródłem",
+   "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+   "zgodnosc": "szerokość ławki 29–32 cm (korekta 26.10.2026 z 28 cm)",
+   "uzycie": "szerokość ławki (widok z przodu i z góry)"
+  },
+  "benchPad": {
+   "cm": 8,
+   "status": "konwencja rysunku",
+   "zgodnosc": "grubość wyściełania ławki",
+   "uzycie": "ławka"
+  },
+  "benchLegW": {
+   "cm": 3.2,
+   "status": "konwencja rysunku",
+   "zgodnosc": "grubość nóg ławki",
+   "uzycie": "ławka"
+  },
+  "floorLine": {
+   "cm": 1.2,
+   "status": "konwencja rysunku",
+   "zgodnosc": "grubość linii podłogi na rysunku",
+   "uzycie": "podłoga"
+  },
+  "trapW": {
+   "cm": 29,
+   "status": "konwencja rysunku",
+   "zgodnosc": "rozstaw uchwytów gryfu sześciokątnego ok. 58 cm",
+   "uzycie": "trap bar"
+  },
+  "boxW": {
+   "cm": 45,
+   "status": "konwencja rysunku",
+   "zgodnosc": "szerokość skrzyni ok. 45–50 cm",
+   "uzycie": "skrzynia"
+  },
+  "postW": {
+   "cm": 3.5,
+   "status": "konwencja rysunku",
+   "zgodnosc": "grubość słupka stojaka",
+   "uzycie": "słupek"
+  },
+  "railW": {
+   "cm": 1.2,
+   "status": "konwencja rysunku",
+   "zgodnosc": "grubość prowadnicy suwnicy Smitha",
+   "uzycie": "prowadnica"
+  },
+  "wallW": {
+   "cm": 3,
+   "status": "konwencja rysunku",
+   "zgodnosc": "grubość ściany na rysunku",
+   "uzycie": "ściana"
+  },
+  "chainZ": {
+   "cm": 73,
+   "status": "zgodne ze źródłem",
+   "zrodlo": "przepisy techniczne międzynarodowej federacji trójboju siłowego, wyd. 01.2024, s. 7–9 „Equipment and Specifications” (szczebel 4; przeczytane 26.10.2026; pełny opis: Dysk, Trening App/05 Research)",
+   "zgodnosc": "łańcuchy wiszą na tulejach tuż za zewnętrznym talerzem (talerze do ±72,4 cm = środek 71 + połowa grubości 1,4)",
+   "uzycie": "dwa łańcuchy sztangi w widoku z przodu i z góry (±73 cm od osi gryfu)"
+  }
+ }
+}

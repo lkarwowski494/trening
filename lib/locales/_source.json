@@ -1131,8 +1131,8 @@
   "en": "Your data on this phone was not changed — you can send it as a file."
  },
  {
-  "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję (TestFlight). Dane możesz też wysłać jako plik.",
-  "en": "The data on this phone was saved by a newer version (schema {a}); this version supports up to {b}. Nothing is changed — install the latest version (TestFlight). You can also send the data as a file."
+  "pl": "Dane w telefonie zapisała nowsza wersja (schemat {a}); ta wersja obsługuje do {b}. Niczego nie zmieniam — zainstaluj najnowszą wersję z App Store. Dane możesz też wysłać jako plik.",
+  "en": "The data on this phone was saved by a newer version (schema {a}); this version supports up to {b}. Nothing is changed — install the latest version from the App Store. You can also send the data as a file."
  },
  {
   "pl": "Dane z nowszej wersji aplikacji",
@@ -2136,8 +2136,8 @@
   "en": "Automatic backup after a workout is off (Settings)."
  },
  {
-  "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego Apple ID wyeksportuj backup na zewnątrz.",
-  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → {app} → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple ID, export a backup elsewhere."
+  "pl": "Kopia automatyczna: po każdym treningu plik JSON zapisuje się sam w Plikach (Na moim iPhonie → {app} → Backup, ostatnie {n}). Import przyjmuje też te pliki. Te kopie znikają razem z aplikacją — przed jej usunięciem albo instalacją z innego konta Apple wyeksportuj backup na zewnątrz.",
+  "en": "Automatic backup: after every workout a JSON file is saved in Files (On My iPhone → {app} → Backup, last {n}). Import accepts these files too. These copies are deleted together with the app — before removing it or installing from a different Apple account, export a backup elsewhere."
  },
  {
   "pl": "Kopia jest zachowana w telefonie. Tapnij, by ją wysłać, a potem zaimportuj backup.",
@@ -2701,8 +2701,8 @@
   "en": "Place of this workout"
  },
  {
-  "pl": "Miejsce trafi na listę miejsc (Ustawienia → Miejsca i sprzęt).",
-  "en": "The place will be added to your places (Settings → Places and equipment)."
+  "pl": "Miejsce trafi na listę miejsc (Więcej → Miejsca i sprzęt).",
+  "en": "The place will be added to your places (More → Places and equipment)."
  },
  {
   "pl": "Miejsce treningu: {l}",
@@ -5525,8 +5525,8 @@
   "en": "Workout paused"
  },
  {
-  "pl": "Trening z {d} {s} nie miał aktywności od 6 godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
-  "en": "The workout from {d} {s} had no activity for 6 hours, so it was saved automatically. End: {e} (last set). You will find it in the Plan tab."
+  "pl": "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.",
+  "en": "The workout from {d} {s} had no activity for {h} hours, so it was saved automatically. End: {e} (last set). You will find it in the Plan tab."
  },
  {
   "pl": "Trening z tego dnia zrobiony wcześniej — dzień wolny.",
@@ -5577,8 +5577,8 @@
   "en": "Train {n} days a month for free, no time limit."
  },
  {
-  "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.",
-  "en": "Train {n} days a month for free. Pro removes the limit. Cancel anytime in your Apple ID settings."
+  "pl": "Trenuj {n} dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.",
+  "en": "Train {n} days a month for free. Pro removes the limit. Cancel anytime in your Apple account settings."
  },
  {
   "pl": "triceps",

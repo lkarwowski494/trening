@@ -6,11 +6,13 @@ import { add, mul, norm, sub, rad, type V2, type V3 } from './math';
 import { BODY, GIRTH, SIDES, type Skeleton } from './skeleton';
 import { LAYER, type Prop, type Role, type Shape, type View } from './scene';
 
-/** Wymiary sprzętu (cm) — uproszczenie ilustracyjne. */
+/** Wymiary sprzętu (cm). Jedno źródło wartości: ta stała; opis, status i źródło każdego wymiaru — data/zrodla/figury-sprzet.json (test tests/zrodla-pelne-sprzet.test.ts).
+ * Gryf, tuleje, talerze i ławka zgodne z normą sprzętu startowego; barR 1,6 to jawna konwencja „pogrubienie dla czytelności”; reszta — uproszczenie ilustracyjne.
+ * plateZ = środki dwóch talerzy na tulei (od osi gryfu; pierwszy tuż za wewnętrznym kołnierzem), chainZ = łańcuchy sztangi tuż za zewnętrznym talerzem. */
 export const EQUIP = {
-  barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [44, 49] as [number, number], plateW: 2.8,
+  barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [66, 71] as [number, number], plateW: 2.8, chainZ: 73,
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6,
-  benchW: 28, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
+  benchW: 30, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
   trapW: 29, boxW: 45, postW: 3.5, railW: 1.2, wallW: 3,
 } as const;
 
@@ -171,7 +173,11 @@ export function propShapes(props: Prop[], view: View): Shape[] {
       }
       case 'cable': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.7, role: 'cable', z: zKey(LAYER.frontEquip, 0), id: 'cable' }); S.push({ k: 'circle', c: a, r: 2.6, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pulley' }); break; }
       case 'band': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 0.9, role: 'load', dash: [2.5, 2], z: zKey(LAYER.frontEquip, 0), id: 'band' }); break; }
-      case 'chain': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 1.2, role: 'steel', dash: [0.8, 1.4], z: zKey(LAYER.frontEquip, 0), id: 'chain' }); break; }
+      case 'chain': {
+        /* łańcuchy sztangi (bar) wiszą na obu tulejach: w widoku z przodu i z góry dwa, na ±chainZ; z boku jeden. Łańcuch pasa (bez bar) — jeden, jak dotąd. */
+        const zs = pr.bar && !side ? [-E.chainZ, E.chainZ] : [pr.from[2]];
+        for (const zz of zs) { const a = proj([pr.from[0], pr.from[1], zz], view), b = proj([pr.to[0], pr.to[1], pr.bar && !side ? zz : pr.to[2]], view); S.push({ k: 'line', a, b, w: 1.2, role: 'steel', dash: [0.8, 1.4], z: zKey(LAYER.frontEquip, 0), id: 'chain' }); }
+        break; }
       case 'pivot': { const a = proj(pr.from, view), b = proj(pr.to, view); S.push({ k: 'line', a, b, w: 2.8, role: 'steel', z: zKey(LAYER.frontEquip, 1), id: 'landmine' }); S.push({ k: 'circle', c: a, r: 3, fill: 'frame', z: zKey(LAYER.back, -60), id: 'pivot' }); break; }
       case 'barbell': {
         const c = pr.c; const o = proj(c, view);

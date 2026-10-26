@@ -102,7 +102,7 @@ export function benchFrame(p: BenchParams, u: number, fault?: Fault): Frame {
     info.bar = c;
     if (p.impl === 'smith') props.push({ k: 'rail', x: c[0], h: 190 });
     if (p.band || p.impl === 'band') props.push({ k: 'band', from: c, to: [c[0], 0, 0] });
-    if (p.chain || p.impl === 'chain') props.push({ k: 'chain', from: c, to: [c[0], 0, 0] });
+    if (p.chain || p.impl === 'chain') props.push({ k: 'chain', from: c, to: [c[0], 0, 0], bar: true });
   }
   /* dozwolone kontakty: plecy na oparciu, miednica i uda na siedzisku, gryf/hantle na klatce (tylko na dole) */
   contacts.push({ body: 'torso', equip: 'benchBack', tol: 1.5 }, { body: 'pelvis', equip: 'benchSeat', tol: 1.5 }, { body: 'pelvis', equip: 'benchBack', tol: 1.5 },
