@@ -19,14 +19,14 @@ Aktualizowane na bieżąco przez koordynatora (polecenie właściciela 26.10.202
 | tests.yml na c56ef5d | zielony (run 40389032814) | |
 | E2E pakiet podstawowy | czeka na maszynę macOS: 40385948580 i 40389043078 anulowane „not acquired by Runner”; ponowione jako run 40391367923 (c56ef5d, 26.10 ok. 20:20 UTC) — ponawiać | |
 | PR integracja → main + scalenie | do zrobienia (repo bez szablonu PR) | |
-| Wersja 1.0.0 | commit gotowy, wypchnięty jako zapis | `wydanie-1-0-0` 7a45540 (od 227cb8c; po scaleniu main przenieść na nowy main, pełne verify — hak pre-push zatrzymał push, prawdopodobnie pliki generowane) |
+| Wersja 1.0.0 | gałąź zaktualizowana: 6a722cf (7a45540 + decyzje właściciela w docs/18 eb9c6fd + scalona integracja c56ef5d); pełne verify lokalnie w toku | `wydanie-1-0-0`; po scaleniu integracji do main dołączyć main (treść ta sama) i PR do main |
 | Pełny katalog E2E | do zrobienia, na SHA wersji na main | `pakiet: pelny`, iPhone standardowy; czerwony z winy skryptu nie blokuje (CLAUDE.md) |
 | testflight.yml | do zrobienia; zatrzyma się na `release` — zatwierdza WŁAŚCICIEL rano | |
 | check-urls.yml | do zrobienia po scaleniu do main (dowód, zamyka R-017 w docs/40) | |
 
 Agent ścieżki 1.0 (stara sesja) prowadził te kroki; nowa sesja kontynuuje od pierwszego niezrobionego.
 
-**Otwarte pytanie do właściciela (1.0):** pusta historia „Co nowego” w 1.0.0 → bez przycisku ✦ (rekomendacja; zero nowych tekstów) albo panel powitalny (nowy tekst × 35 języków, wyjątek od zamrożenia). Domyślnie: bez przycisku.
+**Rozstrzygnięte (właściciel 26.10 wieczór, docs/18):** „Co nowego” w 1.0.0 bez przycisku ✦; kalistenika w sekcji „Progresje” techniqueatlas. **Dawne pytanie (1.0):** pusta historia „Co nowego” w 1.0.0 → bez przycisku ✦ (rekomendacja; zero nowych tekstów) albo panel powitalny (nowy tekst × 35 języków, wyjątek od zamrożenia). Domyślnie: bez przycisku.
 
 **Rano dla właściciela (po buildzie), po kolei:** zatwierdzenie `release` → lista z telefonu docs/49 (T-01–T-14) + zakupy sandbox → akceptacja podpisów zrzutów EN → notatki EN do ASC (store/review-notes.md) i kontakt → sprawdzić support@apps4brew.com → zamknąć R-004 i R-014.
 
