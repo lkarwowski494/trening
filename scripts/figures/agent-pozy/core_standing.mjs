@@ -62,7 +62,7 @@ function sklonPilka(cw) {
     return K({ u, m: st.m, p: 0, head: 0, lean, R: st.R, L: st.L, hr: { g, pole: [0, 0, 1] }, hl: { g: [st.m[0] + 2, st.m[1] + 4, -(HIP() + 11)], pole: [0, -0.3, -1] } }); };
   return zloz(cw, [PODLOGA(-80, 120), ...st.sprzet, { rodzaj: 'hantel', trzyma: 'R' }], fr);
 }
-/** Cable crunch na Bosu ze skłonem bocznym: siad na półkuli (promień 30), dłonie przy głowie z linkami od niskich bloczków za plecami; zgięcie do przodu i skłon w prawo. */
+/** Cable crunch na półkuli balansowej ze skłonem bocznym: siad na półkuli (promień 30), dłonie przy głowie z linkami od niskich bloczków za plecami; zgięcie do przodu i skłon w prawo. */
 function bosuCrunch(cw) {
   const m = [0, 41]; const ak = (sg) => ({ a: [36, 7, sg * 16], pod: 0, rot: 10, pole: [1, 0.4, sg * 0.1] });
   const fr = (u) => { const a = a01(u); const p = lerp(-8, 24, a), lean = 24 * a; const c = klatkaPiersiowa(m, p, { lean });
