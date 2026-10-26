@@ -53,7 +53,7 @@ export function F({ u, pel, pitch, bend = 0, head, nogi, rece, z0 = 0, zo = 0 })
   for (const s of ['R', 'L']) {
     const g = nogi[s] ?? nogi.R; const sg = sgn(s); const f = nogaFK(hip, g.t, g.k); const pole = g.pole ?? f.pole;
     const pod = g.pod !== undefined ? g.pod : f.sd + 90 + (g.dors ?? 0);
-    nog[s] = { k: [f.ankle[0], f.ankle[1], sg * (g.z ?? 12) + zo], pod, rot: g.rot ?? 10, pole: pole ? [pole[0], pole[1], sg * 0.12] : undefined, odchylenie: g.odch };
+    nog[s] = { k: [f.ankle[0], f.ankle[1], sg * (g.z ?? 12) + zo], pod, rot: g.rot ?? 10, pole: pole ? [pole[0], pole[1], sg * (g.kz ?? 0.12)] : undefined, odchylenie: g.odch };
     const a = rece[s] ?? rece.R;
     if (a.w !== undefined) { /* chwyt = w · punkt w świecie + (1 − w) · punkt w układzie tułowia (sztanga zakotwiczona na podłodze → przy barkach) */
       const u2 = up(pitch), f2 = front(pitch); const gz = sg * (a.z ?? 30) + zo; const wx = a.g[0], wy = a.g[1]; const rx = S[0] + u2[0] * a.rel[0] + f2[0] * a.rel[1], ry = S[1] + u2[1] * a.rel[0] + f2[1] * a.rel[1];
@@ -84,9 +84,9 @@ export function katyNogi(hip, ankle, pole = [1, 0]) {
  *  pitch, bend, head, ra/rl: ramiona { psi, th, z } albo { g: [x, y, z], pole } (rl domyślnie = ra).
  */
 export function P(p) {
-  const l = { t: -90 - p.al + p.k, k: p.k }; const hip = biodroZKostki(p.A, l.t, l.k); const nogi = { R: { ...l, pod: p.pod ?? (p.dors === undefined ? 0 : undefined), dors: p.dors, z: p.zR ?? 12, rot: p.rotR, odch: p.odchR } };
-  if (p.AL) { const kt = katyNogi(hip, p.AL); nogi.L = { ...kt, pod: p.podL ?? p.pod ?? (p.dors === undefined ? 0 : undefined), dors: p.dors, z: p.zL ?? p.zR ?? 12, rot: p.rotL, odch: p.odchL }; } else nogi.L = { ...nogi.R, z: p.zL ?? p.zR ?? 12 };
-  return F({ u: 0, pel: hip, pitch: p.pitch ?? pitchDoChwytu(hip, p.ra, p.bend ?? 0), bend: p.bend ?? 0, head: p.head, nogi, rece: { R: p.ra, L: p.rl ?? p.ra }, zo: p.zo ?? 0 });
+  const l = { t: -90 - p.al + p.k, k: p.k }; const hip = biodroZKostki(p.A, l.t, l.k); const nogi = { R: { ...l, pod: p.pod ?? (p.dors === undefined ? 0 : undefined), dors: p.dors, z: p.zR ?? 12, rot: p.rotR, odch: p.odchR, kz: p.kz } };
+  if (p.AL) { const kt = katyNogi(hip, p.AL); nogi.L = { ...kt, pod: p.podL ?? p.pod ?? (p.dors === undefined ? 0 : undefined), dors: p.dors, z: p.zL ?? p.zR ?? 12, rot: p.rotL, odch: p.odchL, kz: p.kz }; } else nogi.L = { ...nogi.R, z: p.zL ?? p.zR ?? 12 };
+  return F({ u: 0, pel: hip, pitch: p.pitch === undefined || (p.ra?.w !== undefined && p.ra.w >= 0.999 && p.ra.g) ? pitchDoChwytu(hip, p.ra, p.bend ?? 0) : p.pitch, bend: p.bend ?? 0, head: p.head, nogi, rece: { R: p.ra, L: p.rl ?? p.ra }, zo: p.zo ?? 0 });
 }
 /** Pochylenie tułowia, przy którym chwyt zakotwiczony w świecie (ra.g, z) leży w prawie wyprostowanym zasięgu ramienia (ra.reach, domyślnie 62 cm) od barku; skan 0…100° (wybór najmniejszego błędu). */
 export function pitchDoChwytu(hip, ra, bend = 0) {

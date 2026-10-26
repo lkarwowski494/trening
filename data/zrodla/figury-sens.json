@@ -2939,6 +2939,9 @@
       "pomin": {}
     },
     "olympic": {
+      "dynamiczne": {
+        "*": "zarzut, rwanie i podrzut z przechwytem: sztanga pokonuje 130–200 cm, a ciało schodzi pod nią w jednym przebiegu; droga najszybszego punktu na cały ruch (sztanga, łokcie, głowa przy przechwycie) przekracza 288 cm limitu ruchu zwykłego (pomiar generatora 26.10.2026) — limit CONTRACT.maxJumpDynamic zamiast maxJump (v2-sens.dynamiczne)"
+      },
       "reguly": {
         "plecy_neutralne": {
           "typ": "kregoslup_neutralny",

@@ -780,6 +780,98 @@
    "svg": "984cfbaa6b3c53a0b0c3",
    "raw": "4d51e49e97ec31f61d6b"
   },
+  "olympic/Power Clean": {
+   "svg": "b5348400e3faf369aa88",
+   "raw": "094e8211d3f4fab69ba1"
+  },
+  "olympic/Clean": {
+   "svg": "3eff260f4fe361b23ca7",
+   "raw": "9f1c8067139f0d52b3bd"
+  },
+  "olympic/Split Clean": {
+   "svg": "cd3531dc98275edbcb5d",
+   "raw": "e5417f6126986284fde3"
+  },
+  "olympic/Hang Clean": {
+   "svg": "d68e4f058409bba46aea",
+   "raw": "332a7dcba2995b873f0e"
+  },
+  "olympic/Block Clean": {
+   "svg": "9b2172d5f04db2eee689",
+   "raw": "898f86cfc38469523e0e"
+  },
+  "olympic/Block Power Clean": {
+   "svg": "dd53bce282c5408903d3",
+   "raw": "54727322a8285e9b96a9"
+  },
+  "olympic/Barbell Snatch": {
+   "svg": "c591979046e2b88e2d9a",
+   "raw": "2769e96f157f5f114ebe"
+  },
+  "olympic/Power Snatch": {
+   "svg": "c4163b904b42a861dca4",
+   "raw": "90ccb768fbbc0854a4f3"
+  },
+  "olympic/Split Snatch": {
+   "svg": "58c44bfd2f64ef9f3847",
+   "raw": "f4eea2c3e76be802cdb0"
+  },
+  "olympic/Hang Snatch": {
+   "svg": "142bc9f4272cb618f709",
+   "raw": "63a386c8f10d80d8b382"
+  },
+  "olympic/Block Snatch": {
+   "svg": "a73eae265546358f535b",
+   "raw": "f9a3a7a1cd65ea36e7b8"
+  },
+  "olympic/Block Power Snatch": {
+   "svg": "b766cb789dba46ee9de2",
+   "raw": "d38b0cf2d521ef5c4816"
+  },
+  "olympic/Clean Pull": {
+   "svg": "9e69e9d41c6a5b003cfd",
+   "raw": "3f40cea50c3832b2f010"
+  },
+  "olympic/Snatch Pull": {
+   "svg": "5180c4f7c71b86cda227",
+   "raw": "7a06f31fd2c911ce2299"
+  },
+  "olympic/Clean Shrug": {
+   "svg": "2069503f9d277df66a01",
+   "raw": "4d7729c9a424c846f3d8"
+  },
+  "olympic/Snatch Shrug": {
+   "svg": "19a84c3c1bdf4545e9c6",
+   "raw": "875f138f8917154a350a"
+  },
+  "olympic/Power Jerk": {
+   "svg": "2361bfcd08abcab6919f",
+   "raw": "345cadcf7bcc1295509d"
+  },
+  "olympic/Split Jerk": {
+   "svg": "13950964adfde37f8462",
+   "raw": "40ae354f93aa62d67a2b"
+  },
+  "olympic/Squat Jerk": {
+   "svg": "75d6288be704a5b17abc",
+   "raw": "835f7cc80f4f44e75874"
+  },
+  "olympic/Jerk Dip Squat": {
+   "svg": "a3b340f37f1078945ab8",
+   "raw": "08fb3ccc2336207900ee"
+  },
+  "olympic/Snatch Balance": {
+   "svg": "610e97ebb49b0c13bf3a",
+   "raw": "3b2aa3f9ab8b0d398cd2"
+  },
+  "olympic/Muscle Snatch": {
+   "svg": "f7974b29d047cd466c15",
+   "raw": "2e5df0cafa2918fcdc18"
+  },
+  "olympic/Clean and Jerk": {
+   "svg": "2e9926f0c7b6079d40c0",
+   "raw": "caa3f7b845c90e31d256"
+  },
   "plyo/Jump Squat": {
    "svg": "34a9c8f6c2d05816153d",
    "raw": "f3942efa95cea9ac6fc7"
