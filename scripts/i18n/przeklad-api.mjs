@@ -86,10 +86,23 @@ export function budujZadanieBatcha(kod, pozycje, staraTresc, { model, effort }, 
   return { custom_id: `pr-${kod}`, params: { model, max_tokens: MAX_TOKENS, system: z.system, messages: z.messages, output_config: { effort } } };
 }
 
+/** Indeks klamry zamykającej pierwszy obiekt JSON od pozycji `a` (z uwzględnieniem łańcuchów i znaków ucieczki); gdy się nie domyka — ostatnia „}” w tekście (jak dawniej).
+ * Komentarz modelu po obiekcie (np. „zmienne {n} bez zmian”) nie może przesuwać końca obiektu. */
+export function zamknieciaObiektu(s, a) {
+  if (a < 0) return -1;
+  let g = 0, w = false, u = false;
+  for (let i = a; i < s.length; i++) {
+    const c = s[i];
+    if (w) { if (u) u = false; else if (c === '\\') u = true; else if (c === '"') w = false; continue; }
+    if (c === '"') w = true; else if (c === '{') g++; else if (c === '}' && --g === 0) return i;
+  }
+  return s.lastIndexOf('}');
+}
+
 /** Odpowiedź modelu → { blad, propozycje: {pl: tlumaczenie}, odrzucone: [{klucz, powod}] }. Tłumaczenie bez zgodnych zmiennych {…} albo puste trafia do „odrzucone”. */
 export function parsujOdpowiedz(tekst, pozycje, kod = null, slownik = null) {
   const s = String(tekst ?? '').trim().replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '');
-  const a = s.indexOf('{'); const b = s.lastIndexOf('}');
+  const a = s.indexOf('{'); const b = zamknieciaObiektu(s, a);
   if (a < 0 || b <= a) return { blad: 'brak obiektu JSON w odpowiedzi', propozycje: {}, odrzucone: pozycje.map((p) => ({ klucz: p.pl, powod: 'brak odpowiedzi' })) };
   let obj;
   try { obj = JSON.parse(s.slice(a, b + 1)); } catch (e) { return { blad: `niepoprawny JSON: ${e.message}`, propozycje: {}, odrzucone: pozycje.map((p) => ({ klucz: p.pl, powod: 'brak odpowiedzi' })) }; }

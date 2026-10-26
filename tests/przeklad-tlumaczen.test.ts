@@ -92,6 +92,12 @@ describe('przekład API: odpowiedź modelu', () => {
     expect(Object.keys(r.propozycje)).toEqual([T3]);
     expect(r.odrzucone.map((o: any) => o.klucz)).toEqual([T1, T2]); expect(r.odrzucone[0].powod).toMatch(/zmienne/);
   });
+  test('komentarz modelu po obiekcie JSON (także z klamrami {n}) nie psuje odczytu: bierzemy pierwszy zamknięty obiekt (audyt 1.0: hu, dwa przebiegi)', () => {
+    const ok = JSON.stringify({ 1: 'Enregistrer {n} séries', 2: 'Nouveau texte', 3: 'Pauses : {a} min' });
+    for (const txt of [ok + '\n\nUwaga: zmienne {n} i {a} zostawiłem bez zmian.', 'Oto tłumaczenie:\n' + ok + '\n(zmienna {n})', '```json\n' + ok + '\n```\nPrzypis {x}']) {
+      const r = parse(txt); expect(r.blad).toBeNull(); expect(Object.keys(r.propozycje)).toEqual([T1, T2, T3]);
+    }
+  });
   test('brak JSON / niepoprawny JSON / brakująca pozycja', () => {
     expect(parse('Przepraszam, nie mogę.')).toMatchObject({ blad: 'brak obiektu JSON w odpowiedzi', propozycje: {} });
     expect(parse('{ nie json }').blad).toMatch(/niepoprawny JSON/);
