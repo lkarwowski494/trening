@@ -65,7 +65,7 @@ export function equipColliders(props: Prop[]): Collider[] {
       case 'plate': c.push(...plateColliders(p)); break;
       case 'bench': { const bp = benchPolys(p); const w = (p.w ?? EQUIP.benchW) / 2; c.push(prism('benchSeat', bp.seat, -w, w), prism('benchBack', bp.back, -w, w)); break; }
       case 'box': { const w = (p.w ?? EQUIP.boxW) / 2; c.push(prism('box', rectPoly(p.x0, 0, p.x1, p.top), -w, w)); break; }
-      case 'wall': c.push(prism('wall', rectPoly(p.x - EQUIP.wallW, 0, p.x, p.h), -100, 100)); break;
+      case 'wall': c.push(prism('wall', p.front ? rectPoly(p.x, 0, p.x + EQUIP.wallW, p.h) : rectPoly(p.x - EQUIP.wallW, 0, p.x, p.h), -100, 100)); break;
       case 'mat': c.push(prism('mat', rectPoly(p.x0, 0, p.x1, p.h), -60, 60)); break;
       case 'post': for (const sg of [-1, 1]) c.push(prism('post', rectPoly(p.x - EQUIP.postW / 2, 0, p.x + EQUIP.postW / 2, p.h), sg * EQUIP.postSpan - 2, sg * EQUIP.postSpan + 2)); break;
       case 'rail': for (const sg of [-1, 1]) c.push(prism('rail', rectPoly(p.x - EQUIP.railW / 2, 0, p.x + EQUIP.railW / 2, p.h), sg * EQUIP.railSpan - 1, sg * EQUIP.railSpan + 1)); break;
@@ -129,7 +129,7 @@ export function checkFrame(f: Frame): Issue[] {
   for (const b of body) for (const e of eq) {
     const g = gap(b, e); const allowed = f.contacts.find(c => matches(b.id, c.body) && matches(e.id, c.equip));
     const heldHand = /^farm/.test(b.id) && /^(bar|db|kb|plate|ball)/.test(e.id);
-    const tol = heldHand ? (/^kb/.test(e.id) ? 14 : 12) : allowed ? allowed.tol : TOL.pen;
+    const tol = heldHand ? (/^kb/.test(e.id) ? 14 : /^db/.test(e.id) && e.k === 'capsule' ? Math.max(12, e.r + 6) : 12) : allowed ? allowed.tol : TOL.pen; /* hantel: chwyt w jego środku, więc tolerancja rośnie z promieniem główki */
     if (g < -tol) out.push({ code: 'pen', detail: `${b.id} × ${e.id}: przenikanie ${(-g).toFixed(2)} cm (dopuszczalne ${tol})` });
   }
   const head = body.find(b => b.id === 'head'); const bodyOther = body.filter(b => /^(uarm|farm)/.test(b.id));
@@ -151,7 +151,7 @@ export function holdChecks(f: Frame): { name: string; err: number; tol: number; 
   const seg = (p: V3, a: V3, b: V3): number => distSegSeg(p, p, a, b);
   for (const p of f.props) {
     if (p.k === 'barbell' && p.held !== false) for (const s of p.held === 'R' ? ['R' as const] : p.held === 'L' ? ['L' as const] : SIDES) out.push({ name: `gryf/${s}`, err: seg(sk.arms[s].grip, [p.c[0], p.c[1], -60], [p.c[0], p.c[1], 60]), tol: 0.6 });
-    if (p.k === 'trapbar') for (const s of SIDES) { const z = (s === 'R' ? 1 : -1) * (p.w ?? EQUIP.trapW); out.push({ name: `uchwyt/${s}`, err: seg(sk.arms[s].grip, [p.c[0] - 7, p.c[1], z], [p.c[0] + 7, p.c[1], z]), tol: 0.6 }); }
+    if (p.k === 'trapbar') for (const s of SIDES) { const z = (s === 'R' ? 1 : -1) * (p.w ?? EQUIP.trapW); out.push({ name: `uchwyt/${s}`, err: seg(sk.arms[s].grip, [p.c[0] - 7, p.c[1], z], [p.c[0] + 7, p.c[1], z]), tol: 0.6, hint: `dłonie na uchwytach gryfu sześciokątnego: z = ±${p.w ?? EQUIP.trapW} cm, x i y wspólne dla obu dłoni (środek gryfu = środek między dłońmi)` }); }
     if (p.k === 'dumbbell' && p.held !== false) for (const s of p.vertical ? SIDES : [p.side]) out.push({ name: `hantel/${s}`, err: dist(sk.arms[s].grip, p.c), tol: p.vertical ? 6.5 : 0.6 });
     if (p.k === 'kettlebell' && p.held !== false) for (const s of p.side === 'R' || p.side === 'L' ? [p.side] : SIDES) out.push({ name: `kettlebell/${s}`, err: dist(sk.arms[s].grip, p.c), tol: 7 });
     if (p.k === 'plate' && p.held !== false) for (const s of p.held === 'R' || p.held === 'L' ? [p.held] : SIDES) out.push({ name: `talerz/${s}`, err: distToRingYZ(sk.arms[s].grip, p.c, p.r ?? EQUIP.plateR), tol: HOLD.plateRim, hint: 'dłoń musi leżeć na obręczy talerza (okrąg o promieniu talerza wokół środka w płaszczyźnie y–z); środek talerza = środek między dłońmi + przesuniecie' });

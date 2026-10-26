@@ -8,13 +8,13 @@ import { add, clamp, mul, norm, sub, type V3 } from './math';
 import { BODY, GIRTH, SIDES, type Side } from './skeleton';
 import { EQUIP } from './draw';
 import { TOL } from './colliders';
-import type { Frame, Prop } from './scene';
+import type { Contact, Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny'] as const;
 export type GearName = typeof GEAR[number];
-export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number };
+export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
-export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z'] as const;
+export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed'] as const;
 export const BELL_MODES = ['dol', 'wzdluz', 'tyl'] as const;
 
 export type GearGrips = Record<Side, V3>;
@@ -25,6 +25,8 @@ export type GearKind = {
   opis: string;
   /** Rekwizyty sceny dla wpisu sprzętu (chwyty rąk potrzebne sprzętowi trzymanemu w dłoni). */
   props: (g: Gear, grips: GearGrips) => Prop[];
+  /** Dozwolone kontakty ciało–sprzęt dla wpisu (tolerancja przenikania, cm). */
+  contacts?: (g: Gear) => Contact[];
   /** Pola z GEAR_EXTRA_FIELDS, które ten rodzaj przyjmuje. */
   fields?: readonly (typeof GEAR_EXTRA_FIELDS[number])[];
   /** Sprawdzenia pól wpisu (komunikaty dla generatora). */
@@ -36,6 +38,8 @@ export type GearKind = {
 const BAR_LEN = 220;
 const sidesOf = (g: Gear): Side[] => g.trzyma === 'R' ? ['R'] : g.trzyma === 'L' ? ['L'] : [...SIDES];
 const avg = (vs: V3[]): V3 => mul(vs.reduce((a, v) => add(a, v), [0, 0, 0] as V3), 1 / vs.length);
+/** Kontakt ciała ze ścianą: dopuszczalne przenikanie (cm). */
+export const WALL_CONTACT = 1.5;
 const BELL_BACK: V3 = norm([-1, -0.15, 0]);
 const f1 = (x: number): string => String(Math.round(x * 10) / 10).replace('.', ',');
 const bounds = (name: string, v: number | undefined, lo: number, hi: number): string[] => v !== undefined && (v < lo || v > hi) ? [`sprzęt: ${name} = ${v} cm poza przedziałem ${lo}–${hi} cm`] : [];
@@ -70,9 +74,25 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
       ];
     },
   },
+  sciana: {
+    caps: ['wall'], fields: ['przed'], opis: 'ściana (x, h, przed)',
+    props: g => [{ k: 'wall', x: g.x ?? 0, h: g.h ?? 250, ...(g.przed ? { front: true } : {}) }],
+    contacts: () => [{ body: '', equip: 'wall', tol: WALL_CONTACT }],
+    check: g => g.h !== undefined && (g.h < 100 || g.h > 400) ? [`sprzęt: wysokość ściany h = ${g.h} cm poza przedziałem 100–400 cm`] : [],
+    ref: () => [
+      `sciana: ściana pionowa o grubości ${f1(EQUIP.wallW)} cm, powierzchnia robocza w x, wysokość h (domyślnie 250). Domyślnie lita po stronie −x od x, czyli ZA osobą (plecy, siedzenie przy ścianie: ćwiczenie „Wall Sit”); przed: true = lita po stronie +x, czyli PRZED osobą (piłka rzucana w ścianę, stójka na rękach przodem do ściany, rozciąganie z dłońmi na ścianie). Ciało dotyka ściany: dozwolone przenikanie do ${f1(WALL_CONTACT)} cm (kontakt), głębiej odrzucane; dłonie i plecy opieraj o powierzchnię x (± 1,5 cm).`,
+    ],
+  },
+  gryf_szesciokatny: {
+    caps: ['trap_bar'], opis: 'gryf sześciokątny (trap bar): uchwyty w z = ±29, środek między dłońmi',
+    props: (g, grips) => [{ k: 'trapbar', c: avg(SIDES.map(s => grips[s])) }],
+    ref: () => [
+      `gryf_szesciokatny: gryf sześciokątny (trap bar) bez własnych współrzędnych — środek gryfu = środek między dłońmi, uchwyty leżą wzdłuż z w z = ±${f1(EQUIP.trapW)} cm (rozstaw ${f1(2 * EQUIP.trapW)} cm), każdy długości 14 cm wzdłuż x. W KAŻDEJ klatce dłonie: z = ±${f1(EQUIP.trapW)} (± 0,6 cm), x i y obu dłoni takie same (± 0,6 cm), x dłoni w obrębie ±7 cm od środka. Z boku widać gryf i tarczę talerza o promieniu ${f1(EQUIP.plateR)} cm (tło, bez kolizji).`,
+    ],
+  },
   skrzynia: { caps: ['box', 'bench.flat'], opis: 'skrzynia, stopień albo ławka płaska (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
   hantel: {
-    caps: ['db'], fields: ['promien', 'pionowo'], opis: 'hantel trzymany w dłoni (trzyma, promien, pionowo)',
+    caps: ['db', 'farmers_handles'], fields: ['promien', 'pionowo'], opis: 'hantel trzymany w dłoni; uchwyty farmerskie rysujemy jak hantle z dużym promieniem (trzyma, promien, pionowo)',
     props: (g, grips) => g.pionowo
       ? [{ k: 'dumbbell', c: avg(sidesOf(g).map(s => grips[s])), side: 'R', vertical: true, r: g.promien, held: true }]
       : sidesOf(g).map((s): Prop => ({ k: 'dumbbell', c: grips[s], side: s, r: g.promien, held: true })),
@@ -149,6 +169,9 @@ export function gearFieldIssues(g: Gear): string[] {
     ...(GEAR_KINDS[g.rodzaj].check?.(g) ?? []),
   ];
 }
+
+/** Dozwolone kontakty ciała ze sprzętem zadeklarowane przez wpisy sprzętu. */
+export function contactsFrom(gear: Gear[]): Contact[] { return gear.flatMap(g => GEAR_KINDS[g.rodzaj].contacts?.(g) ?? []); }
 
 /** Możliwości katalogu pokryte przez rejestr (wszystkie rodzaje). */
 export const GEAR_CAPS: readonly string[] = Object.values(GEAR_KINDS).flatMap(k => k.caps);

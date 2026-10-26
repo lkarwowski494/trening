@@ -4,7 +4,7 @@
  * sprzętem (macierz: rodzaj × wariant), komunikaty dla generatora. Rodzaje (docs/20): logika, ekran-rysunek, scenariusze, macierz, niezmienniki, dane, motywy.
  */
 import {
-  GEAR, GEAR_KINDS, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, gearFieldIssues, gearSetIssues, TOL, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
+  GEAR, GEAR_KINDS, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
   CONTRACT, EQUIP, poseSchema, describeContract, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
   type Gear, type KeyFrame, type PoseData, type Prop, type V3, type RomData, type Frame, type View,
 } from '@/lib/figures/v2';
@@ -29,7 +29,11 @@ const RACKPULL = (sp: Gear[]): PoseData => pose('hinge', 'Rack Pull', [{ rodzaj:
 const SMITH = (sp: Gear[], bx = 15): PoseData => pose('hinge', 'Smith Machine Stiff-Legged Deadlift', [{ rodzaj: 'sztanga', podazaZaChwytem: true, trzyma: 'obie', talerze: true }, ...sp], [two(0, ...sym(bx, 90, 25)), two(1, ...sym(bx, 78, 25))]);
 const arcY = (px: number, gx: number, L = EQUIP.landmineLen): number => Math.round((5 + Math.sqrt(L * L - (gx - px) ** 2)) * 100) / 100;
 const LANDMINE = (sp: Gear, px = 178, gxs = [22, 34, 46]): PoseData => pose('overhead_press', 'Landmine Press', [sp], gxs.map((gx, i) => two(i / (gxs.length - 1), [gx, arcY(px, gx), 4], [gx, arcY(px, gx), -4])));
+const WALLPOSE = (sp: Gear, g0: V3 = [0, 76, 27], g1: V3 = [30, 125, 22]): PoseData => pose('mobility_stand', 'Wall Slide', [sp], [two(0, g0, [g0[0], g0[1], -g0[2]]), two(1, g1, [g1[0], g1[1], -g1[2]])]);
+const TRAP = (sp: Gear = { rodzaj: 'gryf_szesciokatny' }): PoseData => pose('hinge', 'Trap Bar Deadlift', [sp], [two(0, [0, 78, 29], [0, 78, -29]), { ...two(1, [10, 74, 29], [10, 74, -29]), miednica: [0, 86, 0] }]);
 const MATRIX: [string, PoseData][] = [
+  ['ściana za osobą (bez kontaktu)', WALLPOSE({ rodzaj: 'sciana', x: -20 })], ['ściana przed osobą, dłonie na ścianie', pose('mobility_stand', 'Wall Lat Stretch', [{ rodzaj: 'sciana', x: 40, przed: true }], [two(0, ...sym(36.7, 100, 22)), two(1, ...sym(36.7, 140, 22))])],
+  ['gryf sześciokątny: dłonie na uchwytach z = ±29', TRAP()], ['uchwyty farmerskie jako hantle z dużym promieniem', pose('carry', 'Farmer', [{ rodzaj: 'hantel', promien: 12 }], [two(0, ...sym(0, 77, 30)), two(1, ...sym(20, 125, 22))])],
   ['landmine: dłonie na sferze o promieniu gryfu wokół osi obrotu', LANDMINE({ rodzaj: 'landmine', x: 178 })],
   ['smith: sztanga na osi prowadnicy w każdej klatce', SMITH([{ rodzaj: 'smith', x: 15, h: 200 }])],
   ['stojak: słupek z hakiem za osobą przy sztandze', RACKPULL([{ rodzaj: 'slupek', x: -45, h: 200, hak: 70 }])], ['stojak bez haka (asekuracja)', RACKPULL([{ rodzaj: 'slupek', x: -45, h: 100 }])],
@@ -42,18 +46,18 @@ const MATRIX: [string, PoseData][] = [
 
 describe('rejestr rodzajów sprzętu (gear.ts)', () => {
   test('GEAR: osiem rodzajów; każdy ma wpis w rejestrze z opisem i rekwizytem; możliwości katalogu pokryte przez rejestr', () => {
-    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine']);
+    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny']);
     for (const k of GEAR) { expect(GEAR_KINDS[k].opis.length).toBeGreaterThan(10); expect(typeof GEAR_KINDS[k].props).toBe('function'); }
-    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine']));
+    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'ez_bar', 'axle_bar', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball', 'rack', 'bench.uprights', 'rack.safeties', 'smith', 'landmine', 'wall', 'trap_bar', 'farmers_handles']));
     expect(new Set(GEAR_CAPS).size).toBe(GEAR_CAPS.length); /* każda możliwość ma jeden rodzaj */
-    expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
+    expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
   });
   test('punkty odniesienia (ref) mają liczby z EQUIP i nazwy pól; rodzaje bez ref (stare) nie mają go', () => {
     for (const k of ['hantel', 'kettlebell', 'talerz', 'pilka_lekarska'] as const) { const r = GEAR_KINDS[k].ref?.().join(' ') ?? ''; expect(r).toContain(k === 'pilka_lekarska' ? 'pilka_lekarska' : k); expect(r).toMatch(/\d/); }
     expect(GEAR_KINDS.talerz.ref?.().join(' ')).toContain(String(EQUIP.plateR).replace('.', ',')); expect(GEAR_KINDS.pilka_lekarska.ref?.().join(' ')).toContain(String(EQUIP.medBallR));
     expect(GEAR_KINDS.kettlebell.ref?.().join(' ')).toMatch(/dzwon "dol".*"wzdluz".*"tyl"/);
     /* zgodność polecenie ↔ walidator: każde pole rodzaju jest opisane w jego punktach odniesienia, a opis nie wspomina pól cudzych rodzajów */
-    for (const k of GEAR) { const own = GEAR_KINDS[k].fields ?? []; const ref = GEAR_KINDS[k].ref?.().join(' ') ?? ''; if (!ref) continue; for (const f of own) expect([k, f, ref.includes(f)]).toEqual([k, f, true]); for (const f of GEAR_EXTRA_FIELDS.filter(x => !own.includes(x) && x.length > 1)) expect([k, f, ref.includes(`${f} `) || ref.includes(`${f}:`)]).toEqual([k, f, false]); }
+    for (const k of GEAR) { const own = GEAR_KINDS[k].fields ?? []; const ref = GEAR_KINDS[k].ref?.().join(' ') ?? ''; if (!ref) continue; for (const f of own) expect([k, f, ref.includes(f)]).toEqual([k, f, true]); for (const f of (['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak'] as const).filter(x => !own.includes(x))) expect([k, f, ref.includes(`${f} `) || ref.includes(`${f}:`)]).toEqual([k, f, false]); }
   });
 });
 
@@ -90,6 +94,11 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
   test('landmine: oś obrotu [x, y, z] (domyślnie [0, 5, 0]), koniec gryfu między dłońmi (jedna dłoń: w dłoni), długość z dlugosc albo EQUIP.landmineLen', () => {
     expect(propsFrom([{ rodzaj: 'landmine', x: -150 }], G)).toEqual([{ k: 'pivot', from: [-150, 5, 0], to: [12, 85, 0], len: EQUIP.landmineLen }]);
     expect(propsFrom([{ rodzaj: 'landmine', x: -150, y: 8, z: 30, dlugosc: 180, trzyma: 'L' }], G)).toEqual([{ k: 'pivot', from: [-150, 8, 30], to: G.L, len: 180 }]);
+  });
+  test('ściana: lita za osobą (domyślnie) albo przed osobą (przed: true), wysokość domyślnie 250; kontakt ze ścianą deklarowany (tolerancja WALL_CONTACT); gryf sześciokątny: środek między dłońmi', () => {
+    expect(propsFrom([{ rodzaj: 'sciana', x: -12 }], G)).toEqual([{ k: 'wall', x: -12, h: 250 }]); expect(propsFrom([{ rodzaj: 'sciana', x: 40, h: 200, przed: true }], G)).toEqual([{ k: 'wall', x: 40, h: 200, front: true }]);
+    expect(contactsFrom([{ rodzaj: 'sciana' }, { rodzaj: 'sztanga' }])).toEqual([{ body: '', equip: 'wall', tol: WALL_CONTACT }]); expect(WALL_CONTACT).toBe(1.5);
+    expect(propsFrom([{ rodzaj: 'gryf_szesciokatny' }], G)).toEqual([{ k: 'trapbar', c: [12, 85, 0] }]);
   });
   test('stary sprzęt bez zmian: sztanga podąża za chwytem, słupek, podłoga, skrzynia', () => {
     expect(propsFrom([{ rodzaj: 'sztanga', podazaZaChwytem: true }, { rodzaj: 'slupek', x: 5, h: 100 }, { rodzaj: 'skrzynia', x0: 1, x1: 2, top: 30 }, { rodzaj: 'podloga' }], G).map(p => p.k)).toEqual(['barbell', 'post', 'box', 'floor']);
@@ -183,6 +192,26 @@ describe('kolidery i kontrola chwytu', () => {
   test('landmine: łuk dłoni — klatki co ≤ ok. 30 cm drogi (interpolacja liniowa skraca łuk o < 3 cm); za rzadkie klatki odrzucone', () => {
     expect(texts(LANDMINE({ rodzaj: 'landmine', x: 178 }, 178, [22, 46]))).toBe(''); /* 24 cm drogi: sagitta ≈ 0,4 cm */
     expect(texts(LANDMINE({ rodzaj: 'landmine', x: 178 }, 178, [0, 120]))).toMatch(/landmine: dłonie/);
+  });
+  test('ściana: rysunek (z boku pas po właściwej stronie x; z przodu ściana przed osobą nie jest rysowana) i kolider po właściwej stronie x', () => {
+    const rect = (pr: Prop, v: View) => { const sh = propShapes([pr], v)[0]; return sh && sh.k === 'poly' ? [Math.min(...sh.pts.map(p => p[0])), Math.max(...sh.pts.map(p => p[0]))] : null; };
+    expect(rect({ k: 'wall', x: 40, h: 200 }, 'side')).toEqual([40 - EQUIP.wallW, 40]); expect(rect({ k: 'wall', x: 40, h: 200, front: true }, 'side')).toEqual([40, 40 + EQUIP.wallW]);
+    expect(propShapes([{ k: 'wall', x: 40, h: 200, front: true }], 'front')).toEqual([]); expect(propShapes([{ k: 'wall', x: 40, h: 200 }], 'front').length).toBe(1);
+    const c = (pr: Prop) => equipColliders([pr])[0]; const xs = (pr: Prop) => { const q = c(pr); return q.k === 'prism' ? [Math.min(...q.poly.map(p => p[0])), Math.max(...q.poly.map(p => p[0]))] : []; };
+    expect(xs({ k: 'wall', x: 40, h: 200 })).toEqual([40 - EQUIP.wallW, 40]); expect(xs({ k: 'wall', x: 40, h: 200, front: true })).toEqual([40, 40 + EQUIP.wallW]);
+  });
+  test('ściana: ciało dotykające ściany (tułów, miednica) w tolerancji kontaktu OK, głębsze przenikanie odrzucone; bez deklaracji kontaktu (sztanga) obowiązuje 0,3 cm', () => {
+    const base = WALLPOSE({ rodzaj: 'sciana', x: -8.5 }, [0, 76, 27], [0, 76, 27]); const f = keyframeFrame(base, 0); expect(checkFrame(f).filter(i => /torso|pelvis|head/.test(i.detail))).toEqual([]);
+    const deep = checkFrame(keyframeFrame(WALLPOSE({ rodzaj: 'sciana', x: -5 }), 0)).filter(i => i.code === 'pen'); expect(deep.map(i => i.detail).join(' ')).toMatch(/torso × wall: przenikanie 4\.\d+ cm \(dopuszczalne 1\.5\)/);
+    const strict = checkFrame({ ...f, contacts: [] }).filter(i => i.code === 'pen'); expect(strict.length).toBeGreaterThan(0);
+  });
+  test('gryf sześciokątny: dłoń poza uchwytem → „chwyt” uchwyt/R z hintem (z = ±29); trapbar w klatce ma uchwyty w z = ±EQUIP.trapW', () => {
+    const d = TRAP(); d.klatki[1].rece.R.chwyt = [10, 74, 22]; expect(texts(d)).toMatch(/\[chwyt\] uchwyt\/R: dłoń \d+\.\d+ cm od chwytu \(dopuszczalne 0\.6\) w fazie u=.* — dłonie na uchwytach gryfu sześciokątnego: z = ±29 cm/);
+    expect(holdChecks(keyframeFrame(TRAP(), 0)).map(h => [h.name, h.err < 0.6])).toEqual([['uchwyt/R', true], ['uchwyt/L', true]]);
+  });
+  test('uchwyty farmerskie: hantel z promieniem 12 — tolerancja kontaktu przedramienia rośnie z promieniem (r + 6); hantel domyślny 12', () => {
+    const f = keyframeFrame(pose('carry', 'Farmer', [{ rodzaj: 'hantel', promien: 12 }], [two(0, ...sym(0, 77, 30)), two(1, ...sym(20, 125, 22))]), 0); expect(checkFrame(f).filter(i => i.code === 'pen')).toEqual([]);
+    expect(gearFieldIssues({ rodzaj: 'hantel', promien: 12 })).toEqual([]);
   });
   test('stojak: słupki w z = ±64 poza zasięgiem ciała — poza przechodzi niezależnie od x słupka; kolider słupka to dwa graniastosłupy (z = ±64)', () => {
     for (const x of [-45, 0, 15]) expect(texts(RACKPULL([{ rodzaj: 'slupek', x, h: 200 }]))).toBe('');

@@ -150,7 +150,7 @@ export function propShapes(props: Prop[], view: View): Shape[] {
     switch (pr.k) {
       case 'floor': if (view === 'top') break; else S.push({ k: 'line', a: [pr.x0, 0], b: [pr.x1, 0], w: E.floorLine, role: 'floor', z: zKey(LAYER.back, -100), id: 'floor' }); break;
       case 'mat': if (view === 'top') break; else S.push({ k: 'poly', pts: side ? rect(pr.x0, 0, pr.x1, pr.h) : rect(-30, 0, 30, pr.h), fill: 'pad', stroke: 'floor', w: 0.6, close: true, z: zKey(LAYER.backEquip, -50), id: 'mat' }); break;
-      case 'wall': S.push({ k: 'poly', pts: side ? rect(pr.x - E.wallW, 0, pr.x, pr.h) : rect(-110, 0, 110, pr.h), fill: 'frame', a: side ? 0.35 : 0.12, close: true, z: zKey(LAYER.back, -90), id: 'wall' }); break;
+      case 'wall': if (pr.front && view === 'front') break; else S.push({ k: 'poly', pts: side ? (pr.front ? rect(pr.x, 0, pr.x + E.wallW, pr.h) : rect(pr.x - E.wallW, 0, pr.x, pr.h)) : rect(-110, 0, 110, pr.h), fill: 'frame', a: side ? 0.35 : 0.12, close: true, z: zKey(LAYER.back, -90), id: 'wall' }); break;
       case 'rail': if (view === 'top') break; else if (side) S.push({ k: 'line', a: [pr.x, 0], b: [pr.x, pr.h], w: E.railW, role: 'frame', z: zKey(LAYER.back, -80), id: 'rail' }); else for (const sg of [-1, 1]) S.push({ k: 'line', a: [sg * E.railSpan, 0], b: [sg * E.railSpan, pr.h], w: E.railW, role: 'frame', z: zKey(LAYER.back, -80), id: 'rail' }); break;
       case 'post': {
         if (side) S.push({ k: 'line', a: [pr.x, 0], b: [pr.x, pr.h], w: E.postW, role: 'frame', z: zKey(LAYER.back, -70), id: 'post' });
