@@ -67,20 +67,22 @@ const stopyPlasko = (x, z) => ({ R: { ankle: [x, 7], strona: 'gora', pod: 0, z }
 
 /* ---------- ćwiczenia leżące ---------- */
 function alternateHeelTouchers(cw, { lean = 16, p1 = -72, heelX = 30, bend1 = 40 } = {}) {
-  /* leżąc na plecach, kolana zgięte, stopy płasko; naprzemienny skłon boczny (przechylTulowia, poza@2): u = 0 płasko, 0,5 skłon ku prawej pięcie, 1 ku lewej; ręka po stronie skłonu sięga pięty, druga leży przy boku */
-  const us = [0, 0.5, 1]; const zS = 22;
-  const fr = (u) => { const sk = u === 0.5 ? 1 : u === 1 ? -1 : 0; const p = u === 0 ? -90 : p1; const bend = u === 0 ? 0 : bend1; const S = barki([0, Y0], p, bend); /* odrywają się tylko łopatki: lędźwie przy podłodze */
-    const bok = (s) => { const sg = s === 'R' ? 1 : -1; return { g: [S[0] + Math.sqrt(46 ** 2 - 25), 5, sg * 24], pole: [0, 0, sg] }; }; /* ręka przy boku, na podłodze */
-    const sięga = (s) => { const sg = s === 'R' ? 1 : -1; return { g: [heelX - 12, 6, sg * zS], pole: [0, 0.3, sg] }; }; /* dłoń przy pięcie po stronie skłonu */
-    const rece = { R: sk === 1 ? sięga('R') : bok('R'), L: sk === -1 ? sięga('L') : bok('L') };
-    return ramka({ u, miednica: [0, Y0], p, bend, glowa: p, nogi: { R: { ankle: [heelX, 7], strona: 'gora', pod: 0, z: zS }, L: { ankle: [heelX, 7], strona: 'gora', pod: 0, z: -zS } }, rece, przechyl: sk * lean }); };
+  /* leżąc na plecach, kolana zgięte, stopy płasko; naprawdę prosta ręka (łokieć ≤ 30°, v2-jakosc: rece_proste): dłonie liczone z położenia barku (po skłonie bark przesuwa się w bok); naprzemienny skłon boczny (przechylTulowia, poza@2):
+     u = 0 płasko, 0,5 skłon ku prawej pięcie, 1 ku lewej; ręka po stronie skłonu sięga ku pięcie, druga leży przy boku */
+  const us = [0, 0.5, 1]; const zS = 22; const E = v2();
+  const fr = (u) => { const sk = u === 0.5 ? 1 : u === 1 ? -1 : 0; const p = u === 0 ? -90 : p1; const bend = u === 0 ? 0 : bend1; const nogi = { R: { ankle: [heelX, 7], strona: 'gora', pod: 0, z: zS }, L: { ankle: [heelX, 7], strona: 'gora', pod: 0, z: -zS } };
+    const proba = ramka({ u, miednica: [0, Y0], p, bend, glowa: p, nogi, rece: { R: { g: [0, 5, 24] }, L: { g: [0, 5, -24] } }, przechyl: sk * lean });
+    const sh = E.keyframeFrame({ kontrakt: E.CONTRACT.id, rodzina: RODZINA, cwiczenie: cw, sprzet: SPRZET, klatki: [proba, { ...proba, u: 1 }], bledy: [] }, 0).sk.arms; /* położenia barków po skłonie */
+    const prosta = (s_, cel) => { const S = sh[s_].shoulder; const d = [cel[0] - S[0], cel[1] - S[1], cel[2] - S[2]]; const l = Math.hypot(...d); const k = 62 / l; return [S[0] + d[0] * k, Math.max(3, S[1] + d[1] * k), S[2] + d[2] * k].map(r1); }; /* ręka prosta: dłoń 62 cm od barku w kierunku celu (łokieć ≈ 15°) */
+    const sg = (s_) => (s_ === 'R' ? 1 : -1); const bok = (s_) => ({ g: prosta(s_, [8, 5, sg(s_) * 26]), pole: [0, 0, sg(s_)] }); const siega = (s_) => ({ g: prosta(s_, [heelX - 8, 6, sg(s_) * zS]), pole: [0, 0.3, sg(s_)] });
+    return ramka({ u, miednica: [0, Y0], p, bend, glowa: p, nogi, rece: { R: sk === 1 ? siega('R') : bok('R'), L: sk === -1 ? siega('L') : bok('L') }, przechyl: sk * lean }); };
   return zbuduj1(cw, us.map(fr));
 }
 function crunchHandsOverhead(cw) {
   return crunch(cw, { pU1: -62, bend1: 40, nogi: () => stopyPlasko(35, ZNOG), rece: (S, p) => ({ R: { a: KAT_OS(p) - 25, z: 5 }, L: { a: KAT_OS(p) - 25, z: -5 } }) });
 }
 function tuckCrunch(cw) {
-  const us = [0, 0.5, 1]; const fr = (u) => { const p = lerp(-90, -62, u); const S = barki([0, Y0], p); const t = lerp(90, 102, u); const k = lerp(30, 70, u); const fk = (z) => ({ t, k, z, rot: 10, stopa: 'dol' });
+  const us = [0, 0.5, 1]; const fr = (u) => { const p = lerp(-90, -62, u); const S = barki([0, Y0], p); const t = lerp(90, 102, u); const k = lerp(95, 115, u); /* kolana podkulone w każdej klatce (v2-jakosc: kolana_ugiete_min) */ const fk = (z) => ({ t, k, z, rot: 10, stopa: 'dol' });
     const chest = (sg) => { const upv = up(p), fv = [Math.cos(p * R), -Math.sin(p * R)]; const P = [0 + upv[0] * 32 + fv[0] * 9.5, 9 + upv[1] * 32 + fv[1] * 9.5]; return [P[0], P[1], sg * 6]; }; /* ręce skrzyżowane na klatce */
     return ramka({ u, miednica: [0, Y0], p, glowa: p, nogi: { R: fk(3), L: fk(-3) }, rece: { R: { g: chest(-1), pole: [0, 0.1, 1] }, L: { g: chest(1), pole: [0, 0.1, -1] } } }); };
   return zbuduj1(cw, us.map(fr));

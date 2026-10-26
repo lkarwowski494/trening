@@ -27,9 +27,20 @@ export const PROGI = {
   rozstawTolerancja: 0.25, /* rozstaw dłoni = wielokrotność rozstawu barków ± tyle */
   ledzwieCm: 3, /* leżenie na plecach z wskazówką „lędźwie przy podłodze”: dolna krawędź odcinka lędźwiowego (25% długości tułowia od miednicy, po krzywiźnie kręgosłupa) najwyżej tyle nad podłogą */
   bladWidocznyDeg: 8, /* błąd widoczny w klatce: kąt któregokolwiek stawu różni się od pozy poprawnej o ≥ tyle (błąd postawy: w każdej klatce kluczowej; błąd zakresu: w ostatniej) */
+  widocznoscBiodroMaxDeg: 30, /* R9: klatki ze zgięciem biodra pozy poprawnej > tyle (start rolloutu w skłonie) zwolnione z wymogu widoczności błędu postawy */
   zwisKatDeg: 10, /* przyciąganie, u = 0: ręce w pionie ± tyle */
   zwisMostekCm: 8, /* przyciąganie, u = 0: drążek nad mostkiem ± tyle (oś x) */
   prosteReceDeg: 15, /* rollout: zgięcie łokcia ≤ tyle (łokieć ≥ 165°) w każdej klatce pozy poprawnej */
+  /* recenzja n4 (26.10.2026), R1–R10: progi to KONWENCJA RYSUNKU (do potwierdzenia przez badacza), nie twierdzenia merytoryczne */
+  liniaPelnaCm: 11, /* R1: kolano i miednica najwyżej tyle od linii kostka–bark w każdej klatce (podpór na stopach z ciałem prostym) */
+  falloutBarkMinDeg: 70, falloutLokiecMaxDeg: 25, /* R2: Suspended Fallout u = 0: zgięcie barku ≥, łokieć ≤ */
+  koloProsteMaxDeg: 22, /* R3: zgięcie kolana w podporze z prostym ciałem ≤ (silnik: noga prosta = 0°, ale uda + golenie = 83 cm, więc 1 cm niedoboru odległości biodro–kostka to już ok. 14° — to czułość cosinusa, nie przesunięcie zera; 22° ≈ 1,5 cm niedoboru) */
+  kolanoPodTulowiemCm: 13, /* R4: |z kolana| − |z biodra| ≤ */
+  kolanoNadPodlogaCm: 11, /* uwaga: dobrany blisko wartości poprawionej pozy (11,3) i błędnej z n4 (10,2) — słaba separacja, do potwierdzenia */ /* R5: podpór na dłoniach: kolano (oś) ≥ tyle nad podłogą (bez klęku) */
+  przedramieBokDeg: 55, lokiecPodBarkiemCm: 2, /* R6: dół pompki do podłogi: przedramię z boku ≤ od pionu, łokieć nie niżej niż bark − tyle */
+  kolanaUgieteMinDeg: 80, /* R7: ćwiczenia z podkulonymi kolanami */
+  receProsteMaxDeg: 30, /* R8: ręce „wzdłuż ciała”/„sięgające”: zgięcie łokcia ≤ */
+  bladGorszyCm: 2.5, /* R10: rząd błędu opadania: odchylenie miednicy od linii kostka–bark większe niż w pozie poprawnej o ≥ tyle (w stronę opadania) */
   rzadBleduTolDeg: 8, /* staw spoza obszaru błędu (WSZYSTKIE: biodro, kolano, kostka, łokieć, bark) może się różnić od pozy poprawnej najwyżej o tyle; wyjątki: TOL_BLEDU */
   stykPodparciaCm: 4.5, /* punkt ciała uznany za podparcie, gdy jego (oś) wysokość ≤ tyle: dłoń, stopa, kolano (promień kończyny) */
 };
@@ -80,10 +91,18 @@ const KAT_STAWU = { hip: 'hip', knee: 'knee', ankle: 'ankle', elbow: 'elbow', sh
 export const LOKIEC_ZA_BARKIEM = { 'Close-Grip Push-Up': 6, 'Incline Push-Up Close-Grip': 6, 'Diamond Push Up': 6 }; /* cm za barkiem w rzucie bocznym (łokieć w tył) */
 /** Grupy błędów POSTAWY (widoczne w każdej klatce); pozostałe (zakres, tempo, bujanie) narastają z fazą ruchu. */
 export const GRUPY_POSTAWY = ['linia', 'przeprost', 'lokcie'];
-export const RECE_WZDLUZ = ['Lying Leg Raise', 'Reverse Crunch', 'Leg Pull-In', 'Scissor Kick'];
+export const RECE_WZDLUZ = ['Lying Leg Raise', 'Reverse Crunch', 'Leg Pull-In', 'Scissor Kick', 'Alternate Heel Touchers'];
 export const PODSTAWA_SZEROKA = ['Single-Arm Push-Up'];
 export const WYMAGA_PODWIESZENIA = /^Suspended /;
-export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie'];
+/** R1/R3/R10: podpór na stopach z ciałem prostym (bez Standing Rollout: start w skłonie, Mountain Climbers: kolano w ruchu, Plyo Push-Up: lot). */
+export const LINIA_PELNA = ['Push Up', 'Push-Up Wide', 'Close-Grip Push-Up', 'Diamond Push Up', 'Decline Push Up', 'Incline Push Up', 'Incline Push-Up Close-Grip', 'Single-Arm Push-Up', 'Plank', 'Plank Shoulder Taps', 'Suspended Push-Up', 'Suspended Fallout']; /* bez Plyo Push-Up: faza lotu zmienia położenie barków */
+export const FALLOUTY = ['Suspended Fallout'];
+export const PODPOR_NA_DLONIACH_KOLANO = ['Mountain Climbers'];
+/** R6: pompki do podłogi i z podwyższeń (bez zawieszenia — taśmy zmieniają tor przedramienia). */
+export const DOL_POMPKI = ['Push Up', 'Push-Up Wide', 'Close-Grip Push-Up', 'Diamond Push Up', 'Decline Push Up', 'Incline Push Up', 'Incline Push-Up Close-Grip'];
+/** R7: najmniejsze zgięcie kolana (w KAŻDEJ klatce) w ćwiczeniach z podkulonymi kolanami. */
+export const KOLANA_UGIETE = { 'Tuck Crunch': 80, 'Reverse Crunch': 80 };
+export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'cialo_w_linii_pelne', 'fallout_start_rece_przod', 'kolana_proste_podpor', 'kolano_pod_tulowiem', 'podpor_bez_kleku', 'lokiec_nad_nadgarstkiem_bok', 'kolana_ugiete_min', 'rece_proste', 'rzad_bledu_nie_lepszy', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'ledzwie_przy_podlodze', 'rzad_bledu_dotyczy', 'widocznosc_bledu_kat', 'tor_lokcia_przyciaganie', 'zwis_startowy', 'tor_lokcia_srodek', 'proste_rece_rollout', 'srodek_ciezkosci_podparcie'];
 /** Reguły poziomu manifestu podglądu (nie pozy): zgodność manifestu z obrazem i układ podglądu. */
 export const REGULY_MANIFESTU = ['manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
@@ -203,11 +222,70 @@ export function rzadBleduDotyczy(v2, poza) {
     if (zle.length) o.push(`błąd „${b.cue}” zmienia też: ${zle.map(([et, v]) => `${et} o ${f1(v.d)}° (u = ${v.u})`).join(', ')} (dozwolone: ${[...dop].join(', ')}; tolerancja ${PROGI.rzadBleduTolDeg}° (wyjątki: ${JSON.stringify(TOL_BLEDU[b.cue] ?? {})}) — rząd błędu ma pokazywać wyłącznie ten jeden błąd`); });
   return o;
 }
-/** 15b. Minimalna widoczność błędu: różnica kąta któregokolwiek stawu (biodro, kolano, kostka, łokieć, bark) względem pozy poprawnej ≥ bladWidocznyDeg w klatce, w której błąd ma być widoczny (błąd postawy: w każdej klatce kluczowej; błąd zakresu: w ostatniej). */
+/** 15b. Minimalna widoczność błędu: różnica kąta stawu z obszaru błędu (R9) względem pozy poprawnej ≥ bladWidocznyDeg w klatce, w której błąd ma być widoczny (błąd postawy: w każdej klatce kluczowej; błąd zakresu: w ostatniej). */
 export function widocznoscBleduKat(v2, poza) {
-  const o = []; poza.bledy.forEach((b, j) => { if (!DOTYCZY_BLEDU[b.cue]) return; const us = BLAD_POSTAWY.includes(b.cue) ? poza.klatki.map((k) => k.u) : [poza.klatki[poza.klatki.length - 1].u]; const slabe = [];
-    for (const u of us) { const fa = v2.keyframeFrame(poza, u), fc = v2.keyframeFrame(poza, u, j); const a = fa.sk, c = fc.sk; let m = Math.max(Math.abs((fa.pose?.trunkPitch ?? 0) - (fc.pose?.trunkPitch ?? 0)), Math.abs((fa.pose?.spineBend ?? 0) - (fc.pose?.spineBend ?? 0))); /* kręgosłup/tułów (kąt osi tułowia, zgięcie kręgosłupa) */ for (const k of ['R', 'L']) { const x = v2.jointAngles(a, k), y = v2.jointAngles(c, k); for (const kat of Object.keys(KAT_STAWU)) m = Math.max(m, Math.abs(x[kat] - y[kat])); } if (m < PROGI.bladWidocznyDeg) slabe.push(`u = ${u}: ${f1(m)}°`); }
-    if (slabe.length) o.push(`błąd „${b.cue}” jest za słabo widoczny w klatkach: ${slabe.join('; ')} — największa różnica kąta stawu ma być ≥ ${PROGI.bladWidocznyDeg}°`); });
+  /* R9: widoczność liczona tylko ze stawów z BAZOWEGO obszaru błędu (DOTYCZY_BLEDU[cue], bez wyjątków per ćwiczenie) i z osi tułowia/kręgosłupa — zmiana niezwiązana z błędem (np. prostowanie łokcia) jej nie spełnia;
+     klatki, w których biodro pozy poprawnej jest zgięte o > widocznoscBiodroMaxDeg (rolloutowy start w skłonie), są jawnie zwolnione z wymogu „w każdej klatce”. */
+  const o = []; poza.bledy.forEach((b, j) => { const dop = DOTYCZY_BLEDU[b.cue]; if (!dop) return; const us = BLAD_POSTAWY.includes(b.cue) ? poza.klatki.map((k) => k.u) : [poza.klatki[poza.klatki.length - 1].u]; const slabe = [];
+    for (const u of us) { const fa = v2.keyframeFrame(poza, u), fc = v2.keyframeFrame(poza, u, j); const a = fa.sk, c = fc.sk; if (BLAD_POSTAWY.includes(b.cue) && Math.max(v2.jointAngles(a, 'R').hip, v2.jointAngles(a, 'L').hip) > PROGI.widocznoscBiodroMaxDeg) continue;
+      let m = Math.max(Math.abs((fa.pose?.trunkPitch ?? 0) - (fc.pose?.trunkPitch ?? 0)), Math.abs((fa.pose?.spineBend ?? 0) - (fc.pose?.spineBend ?? 0)));
+      for (const k of ['R', 'L']) { const x = v2.jointAngles(a, k), y = v2.jointAngles(c, k); for (const [kat, et] of Object.entries(KAT_STAWU)) if (dop.includes(et)) m = Math.max(m, Math.abs(x[kat] - y[kat])); } if (m < PROGI.bladWidocznyDeg) slabe.push(`u = ${u}: ${f1(m)}°`); }
+    if (slabe.length) o.push(`błąd „${b.cue}” jest za słabo widoczny (w stawach swojego obszaru: ${dop.join(', ')} i osi tułowia) w klatkach: ${slabe.join('; ')} — różnica ma być ≥ ${PROGI.bladWidocznyDeg}°`); });
+  return o;
+}
+const odlOdOdcinka = (p, a, b) => { const v = [b[0] - a[0], b[1] - a[1], b[2] - a[2]], w = [p[0] - a[0], p[1] - a[1], p[2] - a[2]]; const t = Math.max(0, Math.min(1, (w[0] * v[0] + w[1] * v[1] + w[2] * v[2]) / ((v[0] * v[0] + v[1] * v[1] + v[2] * v[2]) || 1))); return dist3(p, [a[0] + v[0] * t, a[1] + v[1] * t, a[2] + v[2] * t]); };
+const odchylenieLinii = (s) => { const A = dist3(s.legs.R.ankle, s.pelvis) >= dist3(s.legs.L.ankle, s.pelvis) ? s.legs.R.ankle : s.legs.L.ankle; return { miednica: odlOdOdcinka(s.pelvis, s.shoulderC, A), kolano: Math.max(...['R', 'L'].map((k) => odlOdOdcinka(s.legs[k].knee, s.shoulderC, s.legs[k].ankle))) }; };
+/** R1. Ciało w linii w KAŻDEJ klatce pozy poprawnej: kolano i miednica ≤ liniaPelnaCm od linii kostka–bark (nie tylko miednica i nie tylko klatka skrajna). */
+export function cialoWLiniiPelne(v2, poza) {
+  for (const u of siatka(poza)) { const o = odchylenieLinii(v2.keyframeFrame(poza, u).sk); const m = Math.max(o.miednica, o.kolano); if (m > PROGI.liniaPelnaCm) return [`${o.kolano > o.miednica ? 'kolano' : 'miednica'} odchyla się od linii kostka–bark o ${f1(m)} cm (u = ${u}), a ma ≤ ${PROGI.liniaPelnaCm} cm w każdej klatce (ciało proste, nie półprzysiad)`]; }
+  return [];
+}
+/** R2. Fallout, start (u = 0): ręce przed klatką — zgięcie barku ≥ falloutBarkMinDeg i łokieć ≤ falloutLokiecMaxDeg. */
+export function falloutStartRecePrzod(v2, poza) {
+  const s = v2.keyframeFrame(poza, poza.klatki[0].u).sk; const o = [];
+  for (const k of ['R', 'L']) { const a = v2.jointAngles(s, k); if (a.shSag < PROGI.falloutBarkMinDeg) o.push(`zgięcie barku ${k} w u = 0 to ${f1(a.shSag)}°, a ma ≥ ${PROGI.falloutBarkMinDeg}° (ręce przed klatką, nie przy biodrach)`); if (a.elbow > PROGI.falloutLokiecMaxDeg) o.push(`łokieć ${k} w u = 0 zgięty o ${f1(a.elbow)}°, a ma ≤ ${PROGI.falloutLokiecMaxDeg}°`); }
+  return o;
+}
+/** R3. Kolana proste w podporze: zgięcie kolana ≤ koloProsteMaxDeg w każdej klatce pozy poprawnej. */
+export function kolanaProstePodpor(v2, poza) {
+  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; for (const k of ['R', 'L']) { const e = v2.jointAngles(s, k).knee; if (e > PROGI.koloProsteMaxDeg) return [`kolano ${k} zgięte o ${f1(e)}° (u = ${u}), a ma ≤ ${PROGI.koloProsteMaxDeg}° (noga prosta w podporze)`]; } }
+  return [];
+}
+/** R4. Kolano pod tułowiem (Mountain Climbers): |z kolana| − |z biodra| ≤ kolanoPodTulowiemCm i |z kolana| ≤ |z dłoni| w każdej klatce. */
+export function kolanoPodTulowiem(v2, poza) {
+  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; const zd = Math.max(...['R', 'L'].map((k) => Math.abs(s.arms[k].grip[2]))); for (const k of ['R', 'L']) { const l = s.legs[k]; const zk = Math.abs(l.knee[2]); if (zk - Math.abs(l.hip[2]) > PROGI.kolanoPodTulowiemCm || zk > zd) return [`kolano ${k} idzie w bok do z = ${f1(zk)} cm (biodro ${f1(Math.abs(l.hip[2]))}, dłoń ${f1(zd)}; u = ${u}) — kolano ma iść prosto pod klatkę, między ręce (≤ biodro + ${PROGI.kolanoPodTulowiemCm} cm)`]; } }
+  return [];
+}
+/** R5. Podpór na dłoniach bez klęku: najniższe kolano (oś) ≥ kolanoNadPodlogaCm nad podłogą w każdej klatce. */
+export function podporBezKleku(v2, poza) {
+  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; const y = Math.min(s.legs.R.knee[1], s.legs.L.knee[1]); if (y < PROGI.kolanoNadPodlogaCm) return [`najniższe kolano jest ${f1(y)} cm nad podłogą (u = ${u}), a ma ≥ ${PROGI.kolanoNadPodlogaCm} cm (podpór na dłoniach, nie klęk)`]; }
+  return [];
+}
+/** R6. Dół pompki w rzucie z boku (klatka największego zgięcia łokcia ≥ 120°): przedramię ≤ przedramieBokDeg od pionu i łokieć nie niżej niż bark − lokiecPodBarkiemCm. */
+export function lokiecNadNadgarstkiemBok(v2, poza) {
+  let best = null; for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; const e = (v2.jointAngles(s, 'R').elbow + v2.jointAngles(s, 'L').elbow) / 2; if (!best || e > best.e) best = { e, s, u }; }
+  if (best.e < 120) return []; const o = [];
+  for (const k of ['R', 'L']) { const a = best.s.arms[k]; const dx = Math.abs(a.grip[0] - a.elbow[0]), dy = a.elbow[1] - a.grip[1]; const kat = (Math.atan2(dx, Math.abs(dy) || 1e-6) * 180) / Math.PI; const nizej = a.shoulder[1] - a.elbow[1];
+    if (kat > PROGI.przedramieBokDeg) o.push(`przedramię ${k} w rzucie z boku odchyla się ${f1(kat)}° od pionu (u = ${best.u}), a ma ≤ ${PROGI.przedramieBokDeg}° (dół pompki, nie zejście na przedramiona)`);
+    else if (nizej > PROGI.lokiecPodBarkiemCm) o.push(`łokieć ${k} jest ${f1(nizej)} cm poniżej barku (u = ${best.u}), a ma być nie niżej niż bark − ${PROGI.lokiecPodBarkiemCm} cm`); }
+  return o;
+}
+/** R7. Kolana podkulone: zgięcie kolana ≥ KOLANA_UGIETE[ćwiczenie] w każdej klatce. */
+export function kolanaUgieteMin(v2, poza) {
+  const min = KOLANA_UGIETE[poza.cwiczenie]; if (min === undefined) return [];
+  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; for (const k of ['R', 'L']) { const e = v2.jointAngles(s, k).knee; if (e < min) return [`kolano ${k} zgięte tylko o ${f1(e)}° (u = ${u}), a „${poza.cwiczenie}” ma ≥ ${min}° w każdej klatce (podkulone kolana — cecha ćwiczenia)`]; } }
+  return [];
+}
+/** R8. Ręce proste (wzdłuż ciała, sięgające): zgięcie łokcia ≤ receProsteMaxDeg w każdej klatce (RECE_WZDLUZ). */
+export function receProste(v2, poza) {
+  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; for (const k of ['R', 'L']) { const e = v2.jointAngles(s, k).elbow; if (e > PROGI.receProsteMaxDeg) return [`łokieć ${k} zgięty o ${f1(e)}° (u = ${u}), a ma ≤ ${PROGI.receProsteMaxDeg}° (ręce proste)`]; } }
+  return [];
+}
+/** R10. Rząd błędu opadania nie jest „lepszy” od pozy poprawnej: odchylenie miednicy od linii kostka–bark w rzędzie błędu ≥ w pozie poprawnej + bladGorszyCm w każdej klatce błędu postawy. */
+export function rzadBleduNieLepszy(v2, poza) {
+  const o = []; poza.bledy.forEach((b, j) => { if (b.cue !== 'plank.mis.sag') return; const slabe = [];
+    for (const k of poza.klatki) { const a = v2.keyframeFrame(poza, k.u).sk, c = v2.keyframeFrame(poza, k.u, j).sk; const d = odchylenieLinii(c).miednica - odchylenieLinii(a).miednica; if (d < PROGI.bladGorszyCm) slabe.push(`u = ${k.u}: ${f1(d)} cm`); }
+    if (slabe.length) o.push(`rząd błędu „${b.cue}” nie jest gorszy od pozy poprawnej o ≥ ${PROGI.bladGorszyCm} cm odchylenia miednicy od linii kostka–bark w klatkach: ${slabe.join('; ')} (błąd ma wyglądać gorzej, nie lepiej)`); });
   return o;
 }
 /** 16b. Proste ręce w rolloutach: zgięcie łokcia ≤ prosteReceDeg w każdej klatce pozy poprawnej (ROLLOUTY). */
@@ -279,6 +357,26 @@ export function zgodnoscManifestu(manifest, teksty, wyjatkiOpisu = {}) {
   for (const [nazwa, powod] of Object.entries(manifest.wyjatki ?? {})) if (!String(powod ?? '').trim()) dodaj('manifest_przyblizenia', `wyjątek „${nazwa}” bez powodu`);
   return out;
 }
+/** Tabela kątów stawów dla recenzenta (recenzja n4, krok 5 listy kontrolnej bramki 4): min i max na staw w całym ruchu pozy poprawnej (obie strony, siatka + klatki). Recenzent porównuje ją z opisem ćwiczenia, nie tylko z obrazem.
+ * Kąty z silnika: zgięcie dodatnie (łokieć i kolano proste = 0°, noga „prosta” w tym rigu ≈ 10–18°: uda + golenie = 83 cm, więc 1 cm niedoboru odległości to ok. 14°); biodro ze znakiem (przeprost < 0); bark: zgięcie w płaszczyźnie strzałkowej (shSag), uniesienie (shElev), odwiedzenie (shAbd). */
+export const STAWY_TABELA = { hip: 'biodro', knee: 'kolano', ankle: 'kostka', elbow: 'łokieć', shSag: 'bark zgięcie', shElev: 'bark uniesienie', shAbd: 'bark odwiedzenie' };
+export function tabelaKatow(v2, poza) {
+  const t = {}; for (const k of Object.keys(STAWY_TABELA)) t[k] = { min: Infinity, max: -Infinity };
+  for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; for (const side of ['R', 'L']) { const a = v2.jointAngles(s, side); for (const k of Object.keys(STAWY_TABELA)) { t[k].min = Math.min(t[k].min, a[k]); t[k].max = Math.max(t[k].max, a[k]); } } }
+  for (const k of Object.keys(t)) { t[k].min = Math.round(t[k].min * 10) / 10; t[k].max = Math.round(t[k].max * 10) / 10; } return t;
+}
+/** Tabela kątów jako Markdown (jeden wiersz na ćwiczenie): `wiersze` = [{ cwiczenie, katy }]. */
+export function tabelaKatowMd(wiersze) {
+  const kol = Object.entries(STAWY_TABELA); const L = [`| ćwiczenie | ${kol.map(([, n]) => n).join(' | ')} |`, `|---|${kol.map(() => '---').join('|')}|`];
+  for (const w of wiersze) L.push(`| ${w.cwiczenie} | ${kol.map(([k]) => `${f1(w.katy[k].min)}…${f1(w.katy[k].max)}°`).join(' | ')} |`); return L.join('\n') + '\n';
+}
+/** P1 (recenzja n4): podgląd jest WAŻNY dla recenzji tylko z wynikiem kontroli manifestu (`zgodnosc_manifestu`: tablica; pusta = zgodny) i tabelą kątów stawów (`katy_stawow`) przy każdym ćwiczeniu, a każde ćwiczenie ma obraz. Zwraca listę powodów nieważności (pusta = ważny). */
+export function podgladWazny(manifest) {
+  const o = []; if (!Array.isArray(manifest.zgodnosc_manifestu)) o.push('manifest nie ma pola zgodnosc_manifestu — kontrola manifestu (zgodnoscManifestu) nie została uruchomiona przy budowie podglądu');
+  else if (manifest.zgodnosc_manifestu.length) o.push(`kontrola manifestu zgłasza ${manifest.zgodnosc_manifestu.length} niezgodności (${manifest.zgodnosc_manifestu.map((x) => x.regula).join(', ')})`);
+  for (const c of manifest.cwiczenia ?? []) { if (!c.obraz) o.push(`${c.cwiczenie}: brak obrazu PNG`); if (!c.katy_stawow || !c.katy_stawow.knee) o.push(`${c.cwiczenie}: brak tabeli kątów stawów (katy_stawow)`); }
+  return o;
+}
 /** 19. Układ podglądu: wszystkie komórki jednego wiersza (poprawna poza / błąd) leżą w jednej linii — mają wspólną dolną krawędź (wiersz wyrównany do dołu; zawinięta komórka ma dolną krawędź o wysokość wiersza niżej). `wiersze` = [{ etykieta, dolne: [px…] }] (pomiar z przeglądarki). */
 export function wierszeWJednejLinii(wiersze, tolPx = 2) {
   return wiersze.flatMap((w) => { const t = w.dolne; const rozrzut = t.length ? Math.max(...t) - Math.min(...t) : 0; return rozrzut > tolPx ? [`wiersz „${w.etykieta}”: komórki mają różne położenie pionowe (rozrzut ${f1(rozrzut)} px) — klatki jednego rzędu muszą leżeć w jednym wierszu`] : []; });
@@ -291,7 +389,9 @@ export function sprawdzJakosc(poza, ctx) {
   const front = poza.klatki.flatMap((k) => { const f = v2.keyframeFrame(poza, k.u); const sole = { R: Math.min(f.sk.legs.R.heel[1], f.sk.legs.R.toe[1]), L: Math.min(f.sk.legs.L.heel[1], f.sk.legs.L.toe[1]) }; const sh = v2.dataShapes(poza, k.u, 'front'); return stykZPodlogaPrzod(sh, sole, k.u); });
   dodaj('styk_z_podloga_przod', [...new Set(front)].slice(0, 3));
   const box = poza.sprzet.filter((g) => g.rodzaj === 'skrzynia'); if (box.length) dodaj('zaslanianie_sprzetu', zaslanianieSprzetu(v2.dataShapes(poza, 0, 'front'), Math.max(...box.map((g) => g.x1 ?? 0))));
-  if (RECE_WZDLUZ.includes(cwiczenie)) dodaj('rece_wzdluz_ciala', receWzdluzCiala(v2, poza));
+  if (RECE_WZDLUZ.includes(cwiczenie)) { dodaj('rece_wzdluz_ciala', receWzdluzCiala(v2, poza)); dodaj('rece_proste', receProste(v2, poza)); }
+  if (rodzina === 'pushup_plank') { if (LINIA_PELNA.includes(cwiczenie)) { dodaj('cialo_w_linii_pelne', cialoWLiniiPelne(v2, poza)); dodaj('kolana_proste_podpor', kolanaProstePodpor(v2, poza)); dodaj('rzad_bledu_nie_lepszy', rzadBleduNieLepszy(v2, poza)); } if (FALLOUTY.includes(cwiczenie)) dodaj('fallout_start_rece_przod', falloutStartRecePrzod(v2, poza)); if (PODPOR_NA_DLONIACH_KOLANO.includes(cwiczenie)) { dodaj('kolano_pod_tulowiem', kolanoPodTulowiem(v2, poza)); dodaj('podpor_bez_kleku', podporBezKleku(v2, poza)); } if (DOL_POMPKI.includes(cwiczenie)) dodaj('lokiec_nad_nadgarstkiem_bok', lokiecNadNadgarstkiemBok(v2, poza)); }
+  if (cwiczenie in KOLANA_UGIETE) dodaj('kolana_ugiete_min', kolanaUgieteMin(v2, poza));
   dodaj('klatki_rozne', klatkiRozne(v2, poza, izometryczne)); dodaj('sprzet_rozpoznawczy', sprzetRozpoznawczy(poza));
   if (PODSTAWA_SZEROKA.includes(cwiczenie)) dodaj('podstawa_szeroka', podstawaSzeroka(poza));
   if (rodzina === 'pushup_plank') { dodaj('szyja_neutralna', szyjaNeutralna(v2, poza)); if (/Push[- ]?Up|Inverted Row/.test(cwiczenie)) { dodaj('odwiedzenie_lokcia', odwiedzenieLokcia(v2, poza)); dodaj('lokiec_za_barkiem', lokiecZaBarkiem(v2, poza)); } }

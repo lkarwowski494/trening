@@ -2,11 +2,12 @@
 // Uruchamia generator rodziny po stronie agenta (pilotaż 26.10.2026): generuje pozy z modelu, waliduje (geometria + reguły sensu), zapisuje raport, podglądy PNG i manifest dla recenzenta,
 // opcjonalnie nakłada przechodzące pozy (lib/figures/v2/poses/<rodzina>.json). Pomiar: każdy przebieg dopisuje wiersz do --log (iteracja generatora, odsetek zaliczonych).
 // Użycie: node scripts/figures/agent-pozy/run.mjs --rodzina pushup_plank --wyjscie <katalog> [--podglad] [--zastosuj] [--log <plik.jsonl>] [--tylko "A;B"]
-import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { waliduj, podglad, htmlPodgladu, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
-import { zgodnoscManifestu, wczytajTeksty } from '../v2-jakosc.mjs';
+import { zgodnoscManifestu, wczytajTeksty, tabelaKatow, tabelaKatowMd, podgladWazny } from '../v2-jakosc.mjs';
+import { v2 as silnikV2 } from './model.mjs';
 import { opisCwiczenia, silnikCatalog } from '../gemini-polecenia.mjs';
 import { regulyDla, bledyBezAnimacji } from '../v2-sens.mjs';
 
@@ -39,12 +40,17 @@ async function main() {
       let png = null; try { png = await podglad(poza, dir, 'light'); } catch (e) { console.log(`podgląd ${cw}: ${e.message}`); }
       const op = opisCwiczenia(cw, { root: ROOT, bledyCwiczenia, catalog, rodzina });
       const bez = bledyBezAnimacji(rodzina, ROOT);
-      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: poza.klatki.map((k) => k.u), klatki_na_obrazie: htmlPodgladu(poza, 'light').klatki, bledy_w_pozie: poza.bledy.map((b) => b.cue), bledy_wskazowki_id: bledyCwiczenia(cw, ROOT).filter((id) => !(id in bez)), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
+      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: poza.klatki.map((k) => k.u), klatki_na_obrazie: htmlPodgladu(poza, 'light').klatki, katy_stawow: tabelaKatow(silnikV2(), poza), bledy_w_pozie: poza.bledy.map((b) => b.cue), bledy_wskazowki_id: bledyCwiczenia(cw, ROOT).filter((id) => !(id in bez)), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
     }
     if (tylko) { const tylkoPodzbior = (o) => Object.fromEntries(Object.entries(o ?? {}).filter(([k]) => tylko.includes(k))); manifest.wyjatki = tylkoPodzbior(manifest.wyjatki); manifest.przyblizenia = tylkoPodzbior(manifest.przyblizenia); } /* przebieg częściowy: manifest dotyczy tylko wybranych ćwiczeń */
     manifest.wyjatki_opisu = mod.WYJATKI_OPISU ?? {}; const uwagi = zgodnoscManifestu(manifest, wczytajTeksty(ROOT), manifest.wyjatki_opisu); manifest.zgodnosc_manifestu = uwagi;
     writeFileSync(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n'); console.log(`podglądy + manifest: ${dir}`);
-    if (uwagi.length) { console.log('NIEZGODNOŚĆ MANIFESTU Z OBRAZEM:'); for (const u of uwagi) console.log(`  [${u.regula}] ${u.szczegol}`); process.exitCode = 1; }
+    writeFileSync(join(dir, 'katy-stawow.md'), `# Kąty stawów (min…max w całym ruchu, obie strony; silnik v2)\n\n` + tabelaKatowMd(manifest.cwiczenia.map((c) => ({ cwiczenie: c.cwiczenie, katy: c.katy_stawow }))));
+    if (uwagi.length) { console.log('NIEZGODNOŚĆ MANIFESTU Z OBRAZEM:'); for (const u of uwagi) console.log(`  [${u.regula}] ${u.szczegol}`); }
+    /* P1: znacznik ważności podglądu dla recenzji (mechanizm, nie notatka): bez wyniku kontroli manifestu i tabeli kątów podgląd jest NIEWAŻNY */
+    const niewazny = podgladWazny(manifest); for (const f of ['PODGLAD-WAZNY.txt', 'PODGLAD-NIEWAZNY.txt']) rmSync(join(dir, f), { force: true });
+    if (niewazny.length) { writeFileSync(join(dir, 'PODGLAD-NIEWAZNY.txt'), 'Podgląd NIE trafia do recenzji:\n' + niewazny.map((x) => `- ${x}`).join('\n') + '\n'); console.log('PODGLĄD NIEWAŻNY DLA RECENZJI:'); for (const x of niewazny) console.log(`  - ${x}`); process.exitCode = 1; }
+    else writeFileSync(join(dir, 'PODGLAD-WAZNY.txt'), `Kontrola manifestu (zgodnosc_manifestu) wykonana, bez niezgodności; tabela kątów stawów w manifest.json i katy-stawow.md.\n`);
   }
   if (flag('zastosuj') && ok.length) { const r = zastosuj(ROOT, { rodzina, poze }); const plik = join(ROOT, r.plik); const dane = JSON.parse(readFileSync(plik, 'utf8')); const usuniete = Object.keys(mod.WYJATKI ?? {}).filter((k) => k in dane.cwiczenia); for (const k of usuniete) delete dane.cwiczenia[k]; if (usuniete.length) { writeFileSync(plik, JSON.stringify(dane, null, 1) + '\n'); console.log(`usunięto z danych ćwiczenia z wyjątkiem: ${usuniete.join(', ')}`); } console.log(`nałożono: ${r.zapisano.length} → ${r.plik}${r.odrzucone.length ? `; odrzucone: ${r.odrzucone.map((x) => x.cwiczenie).join(', ')}` : ''}`); }
 }
