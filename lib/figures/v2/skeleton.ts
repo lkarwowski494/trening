@@ -21,19 +21,19 @@ export const GIRTH = {
 } as const;
 
 /**
- * Zakresy nowych stopni swobody (poza@2, 26.10.2026). Liczby w jednym miejscu; każdy zakres to UPROSZCZENIE ILUSTRACYJNE kierunkowo zbliżone do podręcznikowych zakresów
- * goniometrycznych (skręt i skłon boczny tułowia, nadgarstek, przedramię) — wartości NIE mają przeczytanego źródła w repozytorium (otwarte dla badacza, docs/50 rozdz. 13);
- * aplikacja ich nie podaje użytkownikowi jako faktu. `roll` to orientacja całego ciała (deska bokiem), nie staw: bez ograniczenia stawowego.
+ * Zakresy nowych stopni swobody (poza@2, 26.10.2026). Liczby w jednym miejscu; granica pozy na rysunku, nie norma pokazywana użytkownikowi. Od 26.10.2026 (badacz,
+ * data/zrodla/figury-zakresy-poza2.json; tests/zrodla-pelne-zakresy.test.ts pilnuje zgodności): skręt tułowia ±40° i nadgarstek −65…75° mają po dwa przeczytane źródła, skłon
+ * boczny tułowia, skłon głowy i przedramię po jednym; przechył miednicy i barki w cm to UPROSZCZENIE ILUSTRACYJNE (brak norm). `roll` to orientacja całego ciała (deska bokiem), nie staw: bez ograniczenia stawowego.
  * Znaki: obrót, skręt i skłon dodatnie = klatka/głowa ku PRAWEJ stronie osoby (+z); przechył dodatni = prawe biodro wyżej; barki: cm wzdłuż osi tułowia (dodatnie = w górę);
  * nadgarstek: zgięcie dodatnie (dłoń ku przedramieniu), wyprost ujemny; obrót przedramienia: 0 = kciuk w górę, dodatni = supinacja (dłoń w górę), ujemny = pronacja (dłoń w dół); skłon boczny głowy dodatni = ucho ku prawemu barkowi; wysunięcie barku w cm wzdłuż przodu klatki (dodatnie = protrakcja).
  */
 export const EXT_ROM = {
   roll: { min: -180, max: 180 },
-  twist: { min: -45, max: 45 },
+  twist: { min: -40, max: 40 },
   lean: { min: -35, max: 35 },
   tilt: { min: -15, max: 15 },
   shrug: { min: -3, max: 6 },
-  wrist: { min: -70, max: 80 },
+  wrist: { min: -65, max: 75 },
   forearm: { min: -80, max: 80 },
   headTilt: { min: -35, max: 35 },
   protract: { min: -4, max: 6 },

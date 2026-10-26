@@ -932,6 +932,10 @@
   "en": "What's new — new changes"
  },
  {
+  "pl": "Co robią mięśnie",
+  "en": "What the muscles do"
+ },
+ {
   "pl": "Cofnąć zamianę?",
   "en": "Undo swap?"
  },
@@ -2392,6 +2396,10 @@
   "en": "Muscle map"
  },
  {
+  "pl": "Mapa mięśni ćwiczenia: {list}",
+  "en": "Exercise muscle map: {list}"
+ },
+ {
   "pl": "Mapa mięśni i serie na partię z kreską {n} serii tygodniowo.",
   "en": "Muscle map and sets per muscle group with a {n}-sets-per-week line."
  },
@@ -2797,6 +2805,10 @@
  {
   "pl": "Mniej serii",
   "en": "Fewer sets"
+ },
+ {
+  "pl": "Mocniejszy kolor: partia główna, słabszy: pomocnicza.",
+  "en": "Stronger colour: primary muscle group, weaker: secondary."
  },
  {
   "pl": "modlitewnik",
@@ -3387,6 +3399,14 @@
   "en": "From: {day}"
  },
  {
+  "pl": "Odciąga ramię do tyłu, gdy przyciągasz.",
+  "en": "Draws your arm back as you pull."
+ },
+ {
+  "pl": "Odciąga ramię do tyłu.",
+  "en": "Draws your arm back."
+ },
+ {
   "pl": "Odczyt z Apple Health (włączasz w Ustawieniach): kroki i inne aktywności w panelu dnia, średnia kroków pod „Ten tydzień” oraz tętno i kcal z zegarka przy sesji.",
   "en": "Reading from Apple Health (turn it on in Settings): steps and other activities in the day panel, average steps under “This week”, and heart rate and kcal from your watch on a workout."
  },
@@ -3441,6 +3461,10 @@
  {
   "pl": "Odrzuć zmiany",
   "en": "Discard changes"
+ },
+ {
+  "pl": "Odsuwa nogę w bok.",
+  "en": "Moves your leg out to the side."
  },
  {
   "pl": "odwodziciele",
@@ -3975,6 +3999,74 @@
   "en": "Connect to your phone"
  },
  {
+  "pl": "Pomaga odciągać ramię do tyłu, gdy przyciągasz.",
+  "en": "Helps draw your arm back as you pull."
+ },
+ {
+  "pl": "Pomaga prostować biodro, gdy się prostujesz.",
+  "en": "Helps straighten your hip as you straighten up."
+ },
+ {
+  "pl": "Pomaga prostować biodro, gdy wstajesz.",
+  "en": "Helps straighten your hip as you stand up."
+ },
+ {
+  "pl": "Pomaga prostować biodro.",
+  "en": "Helps straighten your hip."
+ },
+ {
+  "pl": "Pomaga prostować kolano, gdy się prostujesz.",
+  "en": "Helps straighten your knee as you straighten up."
+ },
+ {
+  "pl": "Pomaga prostować kolano, gdy wstajesz.",
+  "en": "Helps straighten your knee as you stand up."
+ },
+ {
+  "pl": "Pomaga prostować łokieć, gdy pchasz.",
+  "en": "Helps straighten your elbow as you push."
+ },
+ {
+  "pl": "Pomaga prostować plecy i trzymać je prosto.",
+  "en": "Helps straighten your back and hold it straight."
+ },
+ {
+  "pl": "Pomaga przyciągać ramię do przodu i do środka, gdy pchasz.",
+  "en": "Helps bring your upper arm forward and inward as you push."
+ },
+ {
+  "pl": "Pomaga ściągać łopatki do siebie, gdy przyciągasz.",
+  "en": "Helps squeeze your shoulder blades together as you pull."
+ },
+ {
+  "pl": "Pomaga ściągać ramię w dół i do tyłu.",
+  "en": "Helps pull your upper arm down and back."
+ },
+ {
+  "pl": "Pomaga trzymać miednicę poziomo, gdy stoisz na jednej nodze.",
+  "en": "Helps keep your pelvis level when you stand on one leg."
+ },
+ {
+  "pl": "Pomaga unosić ramię do przodu, gdy pchasz.",
+  "en": "Helps raise your arm forward as you push."
+ },
+ {
+  "pl": "Pomaga unosić ramię w bok, gdy pchasz.",
+  "en": "Helps raise your arm out to the side as you push."
+ },
+ {
+  "pl": "Pomaga zaciskać dłoń na uchwycie.",
+  "en": "Helps keep your hand closed around the grip."
+ },
+ {
+  "pl": "Pomaga zginać łokieć, gdy przyciągasz.",
+  "en": "Helps bend your elbow as you pull."
+ },
+ {
+  "pl": "Pomaga zginać łokieć.",
+  "en": "Helps bend your elbow."
+ },
+ {
   "pl": "Pomiar z tym samym dniem zastępuje poprzedni.",
   "en": "A measurement with the same date replaces the earlier one."
  },
@@ -4333,6 +4425,46 @@
   "en": "lower back"
  },
  {
+  "pl": "Prostuje biodro, gdy się prostujesz.",
+  "en": "Straightens your hip as you straighten up."
+ },
+ {
+  "pl": "Prostuje biodro, gdy wstajesz.",
+  "en": "Straightens your hip as you stand up."
+ },
+ {
+  "pl": "Prostuje biodro.",
+  "en": "Straightens your hip."
+ },
+ {
+  "pl": "Prostuje kolano, gdy się prostujesz.",
+  "en": "Straightens your knee as you straighten up."
+ },
+ {
+  "pl": "Prostuje kolano, gdy wstajesz.",
+  "en": "Straightens your knee as you stand up."
+ },
+ {
+  "pl": "Prostuje kolano.",
+  "en": "Straightens your knee."
+ },
+ {
+  "pl": "Prostuje łokieć, gdy pchasz.",
+  "en": "Straightens your elbow as you push."
+ },
+ {
+  "pl": "Prostuje łokieć.",
+  "en": "Straightens your elbow."
+ },
+ {
+  "pl": "Prostuje nadgarstek.",
+  "en": "Straightens your wrist."
+ },
+ {
+  "pl": "Prostuje plecy i trzyma je prosto.",
+  "en": "Straightens your back and holds it straight."
+ },
+ {
   "pl": "Prywatność",
   "en": "Privacy"
  },
@@ -4479,6 +4611,18 @@
  {
   "pl": "Przy co najmniej {n} seriach na partię tygodniowo mięśnie rosną wyraźniej niż przy mniejszej liczbie serii; trening siłowy w różnych formach daje przyrost w porównaniu z brakiem treningu.",
   "en": "With at least {n} sets per muscle group per week, muscles grow more than with fewer sets; resistance training in its various forms builds muscle compared with none."
+ },
+ {
+  "pl": "Przyciąga nogę do środka.",
+  "en": "Draws your leg inward."
+ },
+ {
+  "pl": "Przyciąga ramię do przodu i do środka, gdy pchasz.",
+  "en": "Brings your upper arm forward and inward as you push."
+ },
+ {
+  "pl": "Przyciąga ramię do przodu i do środka.",
+  "en": "Brings your upper arm forward and inward."
  },
  {
   "pl": "Przycisk „Napisz do nas” w Więcej → O aplikacji.",
@@ -4916,6 +5060,10 @@
   "en": "obliques"
  },
  {
+  "pl": "Skręca tułów i pochyla go na bok.",
+  "en": "Twists your trunk and bends it to the side."
+ },
+ {
   "pl": "Skróć przerwę o 15 sekund",
   "en": "Shorten rest by 15 seconds"
  },
@@ -5223,6 +5371,14 @@
  {
   "pl": "ściana",
   "en": "wall"
+ },
+ {
+  "pl": "Ściąga łopatki do siebie, gdy przyciągasz.",
+  "en": "Squeezes your shoulder blades together as you pull."
+ },
+ {
+  "pl": "Ściąga ramię w dół i do tyłu, do tułowia.",
+  "en": "Pulls your upper arm down and back toward your body."
  },
  {
   "pl": "ślizgacze",
@@ -5609,6 +5765,10 @@
   "en": "The workout in progress at this place continues; the place will show as “(deleted place)”."
  },
  {
+  "pl": "Trzyma miednicę poziomo, gdy stoisz na jednej nodze.",
+  "en": "Keeps your pelvis level when you stand on one leg."
+ },
+ {
   "pl": "Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.",
   "en": "Your subscription still renews — cancel it so you don't pay twice."
  },
@@ -5711,6 +5871,30 @@
  {
   "pl": "ukryte: {n}",
   "en": "hidden: {n}"
+ },
+ {
+  "pl": "Unosi barki.",
+  "en": "Raises your shoulders."
+ },
+ {
+  "pl": "Unosi piętę.",
+  "en": "Lifts your heel."
+ },
+ {
+  "pl": "Unosi ramię do przodu, gdy pchasz.",
+  "en": "Raises your arm forward as you push."
+ },
+ {
+  "pl": "Unosi ramię do przodu.",
+  "en": "Raises your arm forward."
+ },
+ {
+  "pl": "Unosi ramię w bok, gdy pchasz.",
+  "en": "Raises your arm out to the side as you push."
+ },
+ {
+  "pl": "Unosi ramię w bok.",
+  "en": "Raises your arm out to the side."
  },
  {
   "pl": "uprząż na szyję",
@@ -6545,6 +6729,10 @@
   "en": "Too many saved plans"
  },
  {
+  "pl": "Zaciska dłoń na uchwycie.",
+  "en": "Keeps your hand closed around the grip."
+ },
+ {
   "pl": "Zacząć z mniejszą liczbą serii: {a} zamiast {b} serii roboczych? Ciężary bez zmian, szablon się nie zmienia.",
   "en": "Start with fewer sets: {a} instead of {b} working sets? Same weights, the template stays unchanged."
  },
@@ -6891,6 +7079,26 @@
  {
   "pl": "zgięcie łokcia",
   "en": "elbow flexion"
+ },
+ {
+  "pl": "Zgina kolano.",
+  "en": "Bends your knee."
+ },
+ {
+  "pl": "Zgina łokieć, gdy przyciągasz.",
+  "en": "Bends your elbow as you pull."
+ },
+ {
+  "pl": "Zgina łokieć.",
+  "en": "Bends your elbow."
+ },
+ {
+  "pl": "Zgina nadgarstek.",
+  "en": "Bends your wrist."
+ },
+ {
+  "pl": "Zgina tułów, przybliżając żebra do miednicy.",
+  "en": "Curls your trunk, bringing your ribs toward your pelvis."
  },
  {
   "pl": "zginacze biodra",

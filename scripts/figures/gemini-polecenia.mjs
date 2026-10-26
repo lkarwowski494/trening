@@ -171,7 +171,7 @@ const FAZY_CORE_FLOOR = () => [
 ];
 /** Wzorzec: crunch leżąc na plecach wyliczony z modelu (barki unoszą się o ≈ 20 cm, głowa podąża za tułowiem, miednica nieruchoma); przechodzi geometrię i reguły sensu core_floor. */
 export function wzorzecCrunch(cwiczenie = 'Crunch') {
-  const { v2 } = silnik(); const base = (u, pitch) => ({ u, miednica: [0, 8, 0], pochylenieTulowia: pitch, zgiecieKregoslupa: 0, pochylenieGlowy: pitch, nogi: { R: { kostka: [35, 7, 15] }, L: { kostka: [35, 7, -15] } }, rece: { R: { chwyt: [0, 0, 0] }, L: { chwyt: [0, 0, 0] } } });
+  const { v2 } = silnik(); const base = (u, pitch) => ({ u, miednica: [0, 8, 0], pochylenieTulowia: pitch, zgiecieKregoslupa: Math.round(40 * u), /* zwinięcie: lędźwie przy podłodze (v2-jakosc: ledzwie_przy_podlodze) */ pochylenieGlowy: pitch, nogi: { R: { kostka: [35, 7, 15] }, L: { kostka: [35, 7, -15] } }, rece: { R: { chwyt: [0, 0, 0] }, L: { chwyt: [0, 0, 0] } } });
   const sprzet = [{ rodzaj: 'podloga', x0: -150, x1: 150 }];
   const klatki = [0, 0.5, 1].map((u) => { const k = base(u, -90 + 28 * u); const d = { kontrakt: v2.CONTRACT.id, rodzina: 'core_floor', cwiczenie, sprzet, klatki: [k, { ...k, u: 1 }], bledy: [] }; const sh = v2.keyframeFrame(d, 0).sk.shoulderC;
     const w = [8 - sh[0], 8 - sh[1]]; const n = Math.hypot(...w); const g = [sh[0] + (w[0] / n) * 63.3, sh[1] + (w[1] / n) * 63.3 - 1]; /* ręce wzdłuż ciała, proste (63,3 cm od barku: łokieć ≤ 15°), w stronę miednicy */
@@ -180,7 +180,7 @@ export function wzorzecCrunch(cwiczenie = 'Crunch') {
 }
 
 /* ---------- pushup_plank: układ podporu przodem (wzorzec Push Up z modelu) ---------- */
-export const PU = { dl: 81, phiGora: 20, phiDol: 0, phiBlad: 10, podbicie: -60, biegunLokcia: [-1, -0.3, 0.35] };
+export const PU = { dl: 82, phiGora: 20, phiDol: 0, phiBlad: 10, podbicie: -60, biegunLokcia: [-1, -0.3, 0.35] };
 /** Poza pompki wyliczona z modelu: ciało w jednej linii od kostek (na palcach) do barków, kąt linii φ nad podłogą (góra 20°, dół 10°), dłonie NA STAŁE pod barkami z u = 0, kostki 20 cm nad podłogą (palce stoją na podłodze); błąd push.mis.partial = płytki dół (φ 18°). */
 export function wzorzecPompki(cwiczenie = 'Push Up') {
   const { v2 } = silnik(); const r = Math.PI / 180; const pod = PU.podbicie;
@@ -190,7 +190,7 @@ export function wzorzecPompki(cwiczenie = 'Push Up') {
   const kl = (u, phi) => { const q = pozaPhi(phi); const f = (x) => Math.round(x * 10) / 10; return { u, miednica: [f(q.pel[0]), f(q.pel[1]), 0], pochylenieTulowia: f(q.pitch), zgiecieKregoslupa: 0, pochylenieGlowy: f(q.pitch * 0.6), nogi: { R: { kostka: [ax, f(ay), 10], podbicie: pod }, L: { kostka: [ax, f(ay), -10], podbicie: pod } }, rece: { R: { chwyt: [gx, 2, 19], biegunLokcia: PU.biegunLokcia }, L: { chwyt: [gx, 2, -19], biegunLokcia: [PU.biegunLokcia[0], PU.biegunLokcia[1], -PU.biegunLokcia[2]] } } }; };
   const phiU = (u) => PU.phiGora + (PU.phiDol - PU.phiGora) * u; const klatki = [0, 0.25, 0.5, 0.75, 1].map((u) => kl(u, phiU(u)));
   const bl = pozaPhi(PU.phiBlad), dn = pozaPhi(PU.phiDol); const f = (x) => Math.round(x * 10) / 10;
-  const delta = (u, w) => ({ u, miednica: [f((bl.pel[0] - dn.pel[0]) * w), f((bl.pel[1] - dn.pel[1]) * w), 0], pochylenieTulowia: f((bl.pitch - dn.pitch) * w), pochylenieGlowy: f((bl.pitch - dn.pitch) * 0.6 * w) });
+  const delta = (u, w) => { const q0 = pozaPhi(phiU(u)), q1 = pozaPhi(phiU(u) + (PU.phiBlad - PU.phiDol) * w); /* płytki dół = ciało obrócone o dodatkowe φ wokół kostek (sztywno: noga bez zmiany kąta kolana; v2-jakosc: rzad_bledu_dotyczy) */ return { u, miednica: [f(q1.pel[0] - q0.pel[0]), f(q1.pel[1] - q0.pel[1]), 0], pochylenieTulowia: f(q1.pitch - q0.pitch), pochylenieGlowy: f((q1.pitch - q0.pitch) * 0.6) }; };
   const bledy = [{ cue: 'push.mis.partial', znacznik: 'pelvis', dotyczy: ['elbow', 'shoulder', 'hip', 'knee', 'ankle'], klatki: [{ u: 0 }, delta(0.5, 0.5), delta(1, 1)] }];
   return { kontrakt: v2.CONTRACT.id, rodzina: 'pushup_plank', cwiczenie, sprzet: [{ rodzaj: 'podloga', x0: -150, x1: 150 }], klatki, bledy };
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Raport: ile naruszeń reguł jakości (v2-jakosc.mjs) łapią pozy z danych (lib/figures/v2/poses/*.json) i gotowe figury z rigów (squat, bench_press, hinge przez exampleFor).
-// Użycie: node scripts/figures/jakosc-raport.mjs [--json]
+// Użycie: node scripts/figures/jakosc-raport.mjs [--json] [--root <katalog repozytorium z poses/ — np. worktree innej gałęzi; reguły i silnik zawsze z tego repozytorium>]
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -22,7 +22,7 @@ export function raport(root = ROOT) {
   return wynik;
 }
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
-  const w = raport(); const per = {}; for (const x of w) for (const r of new Set(x.naruszenia)) { per[x.zrodlo + '/' + x.rodzina] ??= {}; per[x.zrodlo + '/' + x.rodzina][r] = (per[x.zrodlo + '/' + x.rodzina][r] ?? 0) + 1; }
+  const rootArg = process.argv.indexOf('--root'); const w = raport(rootArg > 0 ? path.resolve(process.argv[rootArg + 1]) : ROOT); const per = {}; for (const x of w) for (const r of new Set(x.naruszenia)) { per[x.zrodlo + '/' + x.rodzina] ??= {}; per[x.zrodlo + '/' + x.rodzina][r] = (per[x.zrodlo + '/' + x.rodzina][r] ?? 0) + 1; }
   if (process.argv.includes('--json')) console.log(JSON.stringify(w, null, 1));
   else { console.log(`póz ocenionych: ${w.length} (dane ${w.filter((x) => x.zrodlo === 'dane').length}, rigi ${w.filter((x) => x.zrodlo === 'rig').length}); z naruszeniem jakości: ${w.filter((x) => x.naruszenia.length).length}`);
     for (const r of REGULY_JAKOSCI) { const lista = w.filter((x) => x.naruszenia.includes(r)); console.log(`  ${r}: ${lista.length}${lista.length ? ' — ' + lista.slice(0, 6).map((x) => x.cwiczenie).join(', ') + (lista.length > 6 ? '…' : '') : ''}`); } }
