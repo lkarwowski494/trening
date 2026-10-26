@@ -117,7 +117,7 @@ describe('walidator poza@2: zakresy nowych stopni swobody', () => {
     const bad = gr([kf(0), kf(1, { ...over, rece: { R: { chwyt: [8, 80, 24] }, L: { chwyt: [8, 80, -24] } } })]);
     const t = kody(bad); expect(t).toContain('zakres'); expect(t).toContain(pole);
   });
-  test('na granicy zakresu (skręt = 45°) poza przechodzi; 45,6° jest już poza (tolerancja 0,5°)', () => {
+  test('na granicy zakresu (skręt = 40°) poza przechodzi; 40,6° jest już poza (tolerancja 0,5°)', () => {
     expect(kody(twistPose(0, EXT_ROM.twist.max))).not.toContain('zakres'); expect(kody(twistPose(0, EXT_ROM.twist.max + 0.6))).toContain('skretTulowia');
   });
   test.each([

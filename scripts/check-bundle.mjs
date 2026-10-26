@@ -47,6 +47,10 @@ const TEXTCH = /[\p{L}\p{N} .,:;()/_'-]/u;
 export function textRun(text, i, len) {
   let a = i, b = i + len; while (a > 0 && TEXTCH.test(text[a - 1])) a--; while (b < text.length && TEXTCH.test(text[b])) b++; return b - a;
 }
+/** Bieg z małą literą: prawdziwy łańcuch tekstu (zdanie, klucz) ma małe litery; bieg samych wielkich liter i cyfr (np. „CWCTC7CDC”) to przypadkowe bajty (L-033, drugi przypadek 26.10.2026). */
+export function runHasLower(text, i, len) {
+  let a = i, b = i + len; while (a > 0 && TEXTCH.test(text[a - 1])) a--; while (b < text.length && TEXTCH.test(text[b])) b++; return /\p{Ll}/u.test(text.slice(a, b));
+}
 
 /** Trafienia nazw w buforze po usunięciu dozwolonych łańcuchów: [{ nazwa, kontekst }]. */
 export function findNames(buf, re, allowed = []) {
@@ -54,7 +58,7 @@ export function findNames(buf, re, allowed = []) {
   for (let text of views(buf)) {
     for (const a of allowed) if (text.includes(a)) text = text.split(a).join('\u0000');
     re.lastIndex = 0;
-    for (const m of text.matchAll(re)) { if (m[0].length <= 3 && textRun(text, m.index, m[0].length) < SHORT_RUN_MIN) continue; hits.push({ nazwa: m[0], kontekst: text.slice(Math.max(0, m.index - 30), m.index + m[0].length + 30).replace(/[^\p{L}\p{N} .,:;()/_-]/gu, '·') }); }
+    for (const m of text.matchAll(re)) { if (m[0].length <= 3 && (textRun(text, m.index, m[0].length) < SHORT_RUN_MIN || !runHasLower(text, m.index, m[0].length))) continue; hits.push({ nazwa: m[0], kontekst: text.slice(Math.max(0, m.index - 30), m.index + m[0].length + 30).replace(/[^\p{L}\p{N} .,:;()/_-]/gu, '·') }); }
   }
   return hits;
 }

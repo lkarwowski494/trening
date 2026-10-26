@@ -400,6 +400,23 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Gdy użytkownik otwiera to ćwiczenie
     - Wtedy ekran pokazuje ramkę „Asekuracja” ze zdaniem „Ćwiczenie z hantlami nad głową lub twarzą: zalecana osoba asekurująca.”; ćwiczenia dynamiczne z hantlem, goblet i hip thrust (hantel) zostają bez ramki [OTWARTE]
 
+### BR-BIB-003: Mięśnie ćwiczenia: mapa i jedno zdanie o roli każdego mięśnia
+- Przepływ: PR-01
+- Dowód potrzeby: decyzja właściciela 2026-10-26 (docs/18); `data/zrodla/role-miesni.json` (pełne dane ze źródłami, poza paczką aplikacji); testy `tests/muscle-roles.test.ts`, `tests/muscle-roles-ui.test.tsx`
+- Kryteria akceptacji:
+  - Scenariusz: Mapa i zdania
+    - Zakładając, że ćwiczenie z biblioteki ma w katalogu podświetlone mięśnie (udział główny albo pomocniczy)
+    - Gdy użytkownik otwiera ćwiczenie
+    - Wtedy sekcja „Co robią mięśnie” pokazuje sylwetkę z przodu i z tyłu z zabarwionymi partiami (główna mocniej, pomocnicza słabiej) i przy każdym mięśniu z pewną rolą jedno zdanie o jego pracy w ruchu (np. „Prostuje kolano, gdy wstajesz.”), w języku aplikacji
+  - Scenariusz: Tylko role potwierdzone
+    - Zakładając, że rola mięśnia w tym ruchu jest uproszczeniem albo ma jedno źródło, albo nie wynika z rodziny ruchu (szyja, rodziny mieszane)
+    - Gdy użytkownik otwiera ćwiczenie
+    - Wtedy mięsień nie ma wiersza ze zdaniem i nie ma dopisku o braku opisu; zdanie pokazujemy tylko dla ról z co najmniej dwoma źródłami; przypisanie po nazwie ćwiczenia tylko z jawnej listy (szrugsy, zginanie i prostowanie nadgarstka)
+  - Scenariusz: Ćwiczenie własne
+    - Zakładając, że ćwiczenie jest własne (bez wpisu w katalogu) albo ma tylko mięśnie bez partii (szyja)
+    - Gdy użytkownik otwiera ćwiczenie
+    - Wtedy sekcji nie ma
+
 ### BR-ZDR-001: Opcjonalny zapis zakończonych treningów do Apple Health
 - Przepływ: PR-07
 - Dowód potrzeby: OG-01; docs/28-healthkit-etap0.md; `site/privacy.html`

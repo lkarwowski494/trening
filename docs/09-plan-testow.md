@@ -546,3 +546,9 @@ Zachowanie systemu bez zmian (tryb cichy: tylko wibracja); pod przełącznikiem 
 | Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
 |---|---|---|---|---|
 | Wskazówka o trybie cichym | `tests/tryb-cichy-wskazowka.test.tsx` (PL: linia jedna, pod dźwiękiem, podpowiedź VoiceOver, „Wibracje” bez niej; EN: to samo; słownik EN ≤ 100 znaków; 33 słowniki mają niepusty klucz) | ekran, języki, niezmiennik, macierz (UI w `docs/19`) | zielone | 33 słowniki: własny krótki przekład (kopie EN odrzucają testy jakości i18n-variants/wave2-4); do recenzji native speakera. **Maestro pominięty:** tekst statyczny, bez nowego ekranu ani przepływu; widoczność sprawdza test ekranowy. |
+## 26.10.2026 — role mięśni w ruchu, zakresy stawów poza@2 (gałąź `role-miesni`)
+| Zadanie | Testy (nazwy) | Rodzaje | Wynik | Uwagi |
+|---|---|---|---|---|
+| Role mięśni: dane, silnik, liczby | `tests/muscle-roles.test.ts` (liczby par z pliku, `roleKindOf`, przykłady z każdej rodziny, `requireMain`, `v_push`, rodziny mieszane i szyja, wyjątki `noRole`, strażnik ćwiczeń na czas, lista po nazwie, niezmienniki katalogu, runtime bez nazw źródeł i zdania ↔ słownik EN) | logika, niezmienniki, dane, macierz | zielone | kg/lb — nie dotyczy (zdania bez liczb) |
+| Sekcja „Co robią mięśnie” | `tests/muscle-roles-ui.test.tsx` (PL jasny/ciemny, EN, VoiceOver, faza i izolacja, uproszczenie niewyświetlane, szyja, lista po nazwie, ćwiczenie własne, Plank, 35 języków) | ekran, języki, wygląd | zielone | E2E: `.maestro/57-grafika-cwiczenia.yaml` (Pull Up: zdania ról, brak zdania uproszczonego); przepływ ten sam co 57 — bez nowego wpisu w `tests/przeplywy.json` (ten sam ekran) |
+| Zakresy poza@2 | `tests/zrodla-pelne-zakresy.test.ts` (EXT_ROM = dane, status ↔ źródła, znak nadgarstka, brak nazw w kodzie) + istniejące `tests/figures-v2-poza2.test.ts` | dane, regresja | zielone | granice testów zmienione celowo (45 → 40°, 80 → 75°) |
