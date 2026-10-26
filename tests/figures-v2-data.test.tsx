@@ -70,7 +70,7 @@ describe('błędy z danych (bledy[])', () => {
   test('errorsOf: każdy wpis bledy[] ćwiczenia = błąd do pokazania (id data:i, wskazówka z danych); błąd rigowy nie dotyczy rodziny z danych poza tempem; indeks poza zakresem nieobsługiwany', () => {
     for (const [, k] of DATA_KEYS) {
       const s = figureSpec(k)!; const d = (s.variant as { data: { bledy: { cue: string }[] } }).data; const e = errorsOf(s);
-      expect([k, e.map(x => x.cue)]).toEqual([k, d.bledy.map(b => b.cue)]); expect(e.length).toBeGreaterThan(0);
+      expect([k, e.map(x => x.cue)]).toEqual([k, d.bledy.map(b => b.cue)]); if (k !== 'Gorilla Chin/Crunch') expect(e.length).toBeGreaterThan(0); /* Gorilla: poza bez błędu (v2-jakosc etykieta_bledu: brak tekstu wskazówki) */
       d.bledy.forEach((_, i) => expect(faultApplicable(s, `data:${i}`)).toBe(true)); expect(faultApplicable(s, `data:${d.bledy.length}`)).toBe(false);
       for (const r of ['kneesIn', 'heels', 'roundBack', 'arch', 'barAway', 'kneesBent'] as const) expect(faultApplicable(s, r)).toBe(false);
     }
@@ -118,11 +118,11 @@ describe('komponent z danych (ekran, dostępność)', () => {
     fireEvent.press(screen.getByRole('button', { name: 'Ukryj częsty błąd' })); expect(screen.queryByTestId('exercise-figure-v2-error')).toBeNull();
     fireEvent.press(screen.getByRole('button', { name: 'Zatrzymaj animację' })); expect(screen.getByTestId('exercise-figure-v2-static')).toBeTruthy();
   });
-  test('EN: fazy i błąd po angielsku („Pulling up 1 s”, „Lowering 2 s”, „Common mistake: …”); Gorilla Chin/Crunch pokazuje tekst z t() zamiast id', async () => {
+  test('EN: fazy i błąd po angielsku („Pulling up 1 s”, „Lowering 2 s”, „Common mistake: …”); Pull Up pokazuje tekst z t() zamiast id', async () => {
     jest.useFakeTimers(); setReduce(false); applyLang('en');
-    render(<ExerciseFigureV2 exercise={lib('Gorilla Chin/Crunch')} />); await flush();
+    render(<ExerciseFigureV2 exercise={lib('Pull Up')} />); await flush();
     expect(screen.getByText('Pulling up 1 s ·')).toBeTruthy(); expect(screen.getByText('Lowering 2 s')).toBeTruthy();
-    fireEvent.press(screen.getByRole('button', { name: 'Show common mistake' })); expect(screen.getByText('Common mistake: Swinging and kicking the legs.')).toBeTruthy();
+    fireEvent.press(screen.getByRole('button', { name: 'Show common mistake' })); expect(screen.getByText('Common mistake: Cutting the range short — not straightening your arms at the bottom.')).toBeTruthy();
   });
   test('wiele błędów: Gironda Sternum Chins ma jeden (bez listy wyboru); Ogranicz ruch → statycznie start i koniec bez przycisku pauzy; Dead Hang statycznie jedna pozycja bez licznika faz', async () => {
     jest.useFakeTimers(); setReduce(true);
