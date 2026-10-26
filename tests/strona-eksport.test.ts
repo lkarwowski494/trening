@@ -7,7 +7,7 @@ import { execFileSync } from 'child_process';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { LANGS, LANG_NAME, applyLang, exName } from '@/lib/i18n';
+import { LANGS, LANG_NAME, applyLang, exName, tIn } from '@/lib/i18n';
 import { LIB, LIB_DISPLAY_NAME, libExercise } from '@/lib/seed';
 import { CATALOG_REV, CATALOG } from '@/lib/catalog.generated';
 import { CUE_DATA, cueDict } from '@/lib/cues';
@@ -97,6 +97,11 @@ describe('eksport dla strony: komplet i spójność z runtime aplikacji (macierz
   test('etykiety: grupy, partie, regiony, sprzęt, możliwości i fazy ruchu są w każdym języku (niepuste)', () => {
     for (const l of LANGS) for (const [sec, m] of Object.entries(data[l].labels)) { expect([l, sec, Object.keys(m).length > 0]).toEqual([l, sec, true]); for (const [k, v] of Object.entries(m)) expect([l, sec, k, v.length > 0]).toEqual([l, sec, k, true]); }
     expect(data.pl.labels.regions.chest).toBe('klatka');
+  });
+  test('etykiety sylwetki i pozycji statycznych (Przód, Tył, Pozycja wyjściowa, Pozycja końcowa) jak w aplikacji — te same klucze t()', () => {
+    expect(data.pl.labels.ui).toMatchObject({ front: 'Przód', back: 'Tył', startPose: 'Pozycja wyjściowa', endPose: 'Pozycja końcowa' });
+    expect(data.en.labels.ui).toMatchObject({ front: 'Front', back: 'Back', startPose: 'Starting position', endPose: 'End position' });
+    for (const l of LANGS) { applyLang(l); expect([l, data[l].labels.ui]).toMatchObject([l, { front: tIn(l, 'Przód'), back: tIn(l, 'Tył'), startPose: tIn(l, 'Pozycja wyjściowa'), endPose: tIn(l, 'Pozycja końcowa') }]); }
   });
 });
 
