@@ -99,7 +99,7 @@ export function checkFrame(f: Frame): Issue[] {
   if (allPts.some(p => p.some(v => !Number.isFinite(v)))) { out.push({ code: 'finite', detail: 'niefinitywne współrzędne' }); return out; }
   for (const s of SIDES) {
     const L = sk.legs[s], A = sk.arms[s];
-    const bones: [string, number, number][] = [['thigh', dist(L.hip, L.knee), BODY.thigh], ['shank', dist(L.knee, L.ankle), BODY.shank], ['uarm', dist(A.shoulder, A.elbow), BODY.uarm], ['farm', dist(A.elbow, A.grip), A.lower]];
+    const bones: [string, number, number][] = [['thigh', dist(L.hip, L.knee), BODY.thigh], ['shank', dist(L.knee, L.ankle), BODY.shank], ['uarm', dist(A.shoulder, A.elbow), A.uarm], ['farm', dist(A.elbow, A.grip), A.lower]];
     for (const [n, got, want] of bones) if (Math.abs(got - want) > 1e-4) out.push({ code: 'bone', detail: `${n}${s}: ${got.toFixed(4)} ≠ ${want}` });
     if (L.err > TOL.reach) out.push({ code: 'reach', detail: `noga ${s}: cel poza zasięgiem o ${L.err.toFixed(2)} cm` });
     if (A.err > TOL.reach) out.push({ code: 'reach', detail: `ręka ${s}: cel poza zasięgiem o ${A.err.toFixed(2)} cm` });

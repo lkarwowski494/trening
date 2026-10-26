@@ -18,6 +18,7 @@ import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { CENY, MODELE, RABAT_BATCH, DOMYSLNY_MODEL, DOMYSLNY_EFFORT, EFFORTY, MAX_TOKENS, REJESTR, INTERWAL_S, CZEKAJ_MIN_DOMYSLNIE, jezyki, zmienne, nazwaJezyka, przyblizTokeny, tekstZadania, kosztUsd, klient, czekajNaBatch } from './przeglad-api.mjs';
+import { maskuj } from '../maskuj.mjs';
 
 /** Powyżej tego szacunku (USD) przebieg zatrzymuje się, chyba że podano --zgoda-koszt (zgoda właściciela 23.10.2026: do 6 USD). */
 export const LIMIT_KOSZTU_USD = 6;
@@ -85,10 +86,28 @@ export function budujZadanieBatcha(kod, pozycje, staraTresc, { model, effort }, 
   return { custom_id: `pr-${kod}`, params: { model, max_tokens: MAX_TOKENS, system: z.system, messages: z.messages, output_config: { effort } } };
 }
 
+/** Typografia języka: fr — spacja nierozdzielająca przed ; : ! ? » i po « (strażnik A11N-03, tests/audit-k1-bl-mer.test.tsx); inne języki bez zmian. */
+export function typografia(kod, tekst) {
+  return kod === 'fr' ? tekst.replace(/[ \t]([;:!?»])/g, '\u00a0$1').replace(/«[ \t]/g, '«\u00a0') : tekst;
+}
+
+/** Indeks klamry zamykającej pierwszy obiekt JSON od pozycji `a` (z uwzględnieniem łańcuchów i znaków ucieczki); gdy się nie domyka — ostatnia „}” w tekście (jak dawniej).
+ * Komentarz modelu po obiekcie (np. „zmienne {n} bez zmian”) nie może przesuwać końca obiektu. */
+export function zamknieciaObiektu(s, a) {
+  if (a < 0) return -1;
+  let g = 0, w = false, u = false;
+  for (let i = a; i < s.length; i++) {
+    const c = s[i];
+    if (w) { if (u) u = false; else if (c === '\\') u = true; else if (c === '"') w = false; continue; }
+    if (c === '"') w = true; else if (c === '{') g++; else if (c === '}' && --g === 0) return i;
+  }
+  return s.lastIndexOf('}');
+}
+
 /** Odpowiedź modelu → { blad, propozycje: {pl: tlumaczenie}, odrzucone: [{klucz, powod}] }. Tłumaczenie bez zgodnych zmiennych {…} albo puste trafia do „odrzucone”. */
 export function parsujOdpowiedz(tekst, pozycje, kod = null, slownik = null) {
   const s = String(tekst ?? '').trim().replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '');
-  const a = s.indexOf('{'); const b = s.lastIndexOf('}');
+  const a = s.indexOf('{'); const b = zamknieciaObiektu(s, a);
   if (a < 0 || b <= a) return { blad: 'brak obiektu JSON w odpowiedzi', propozycje: {}, odrzucone: pozycje.map((p) => ({ klucz: p.pl, powod: 'brak odpowiedzi' })) };
   let obj;
   try { obj = JSON.parse(s.slice(a, b + 1)); } catch (e) { return { blad: `niepoprawny JSON: ${e.message}`, propozycje: {}, odrzucone: pozycje.map((p) => ({ klucz: p.pl, powod: 'brak odpowiedzi' })) }; }
@@ -99,7 +118,7 @@ export function parsujOdpowiedz(tekst, pozycje, kod = null, slownik = null) {
     if (zmienne(p.pl).join('') !== zmienne(v).join('')) { odrzucone.push({ klucz: p.pl, powod: `zmienne: źródło ${zmienne(p.pl).join('') || '—'}, tłumaczenie ${zmienne(v).join('') || '—'}`, tlumaczenie: v }); continue; }
     const naruszenia = kod && slownik ? SLOWNIK_MOD.sprawdz(slownik, kod, p.pl, v) : [];
     if (naruszenia.length) { odrzucone.push({ klucz: p.pl, powod: `słownik terminów: ${naruszenia.map((n) => `${n.pojecie} /${n.wzorzec}/ — ${n.powod}`).join('; ')}`, tlumaczenie: v }); continue; }
-    propozycje[p.pl] = v.trim();
+    propozycje[p.pl] = typografia(kod, v.trim());
   }
   return { blad: null, propozycje, odrzucone };
 }
@@ -107,7 +126,7 @@ export function parsujOdpowiedz(tekst, pozycje, kod = null, slownik = null) {
 /** Jedna linia wyniku batcha → { kod, blad, tekst, uzycie }. */
 export function odczytajLinie(linia) {
   const r = JSON.parse(linia); const kod = String(r.custom_id).replace(/^pr-/, ''); const res = r.result ?? {};
-  if (res.type !== 'succeeded') return { kod, blad: `${res.type}${res.error?.error?.message ? `: ${res.error.error.message}` : res.error?.message ? `: ${res.error.message}` : ''}`, tekst: null, uzycie: null };
+  if (res.type !== 'succeeded') return { kod, blad: maskuj(`${res.type}${res.error?.error?.message ? `: ${res.error.error.message}` : res.error?.message ? `: ${res.error.message}` : ''}`), tekst: null, uzycie: null };
   const m = res.message ?? {};
   const tekst = (m.content ?? []).filter((c) => c.type === 'text').map((c) => c.text).join('\n');
   if (m.stop_reason === 'max_tokens') return { kod, blad: 'odpowiedź ucięta (max_tokens)', tekst: null, uzycie: m.usage ?? null };
@@ -156,7 +175,7 @@ export function zastosuj(root, katalog, plikZestawu) {
     for (const [pl, tl] of Object.entries(r.propozycje ?? {})) {
       if (!dozwolone.has(pl)) { podsumowanie.pominietych.push(`${kod}: klucz spoza zestawu „${pl.slice(0, 40)}”`); continue; }
       if (typeof tl !== 'string' || !tl.trim() || zmienne(pl).join('') !== zmienne(tl).join('')) { podsumowanie.pominietych.push(`${kod}: zmienne „${pl.slice(0, 40)}”`); continue; }
-      d[pl] = tl; podsumowanie.zapisanych++; pokrycie.set(pl, (pokrycie.get(pl) ?? 0) + 1);
+      d[pl] = typografia(kod, tl); podsumowanie.zapisanych++; pokrycie.set(pl, (pokrycie.get(pl) ?? 0) + 1);
     }
     writeFileSync(plik, JSON.stringify(d, null, 1) + '\n'); podsumowanie.jezykow++;
   }
@@ -225,7 +244,7 @@ export async function main(argv, env, { fetchFn = fetch, log = console.log, root
   if (!id) { const b = await api.utworz(zadania); id = b.id; log(`wysłano batch ${id}`); }
   let batch;
   try { batch = await czekajNaBatch(api, id, { czekajMin: o.czekajMin, interwalS: INTERWAL_S, log }); }
-  catch (e) { log(e.message); return e.kodWyjscia ?? 1; }
+  catch (e) { log(maskuj(e.message)); return e.kodWyjscia ?? 1; }
   const linie = (await api.wyniki(batch.results_url)).split('\n').filter((l) => l.trim());
   const odczyty = Object.fromEntries(linie.map((l) => { const r = odczytajLinie(l); return [r.kod, r]; }));
   const meta = { model: o.model, effort: o.effort, batch_id: id };
@@ -237,5 +256,5 @@ export async function main(argv, env, { fetchFn = fetch, log = console.log, root
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  main(process.argv.slice(2), process.env).then((c) => process.exit(c), (e) => { console.error(`błąd: ${e.message}`); process.exit(1); });
+  main(process.argv.slice(2), process.env).then((c) => process.exit(c), (e) => { console.error(`błąd: ${maskuj(e.message)}`); process.exit(1); });
 }

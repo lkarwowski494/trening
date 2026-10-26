@@ -6,7 +6,7 @@ import type { SetKind } from './seed';
 import { snapLb } from './units';
 import { clampName, NAME_MAX } from './state/util';
 import { localISODate } from './state/time';
-import { IMPORT_DURATION_MAX_S, num, clean, note, valid, addSet, setStart, build, parseDateLoose, parseDurationA, parseTimeB, type ParsedFile, type ParsedSession, type ParsedSet } from './csvcore';
+import { IMPORT_DURATION_MAX_S, num, clean, note, valid, addSet, setStart, build, parseDateLoose, parseDurationA, parseTimeB, mkDate, type ParsedFile, type ParsedSession, type ParsedSet } from './csvcore';
 /* ---------- układ generic: aliasy nagłówków (jedno miejsce) ---------- */
 /** Aliasy nagłówków (małe litery, po trim i ze zwiniętymi spacjami); kolejność = pierwszeństwo, gdy plik ma kilka pasujących kolumn. Bez nazw programów — układy rozpoznajemy tylko po nagłówkach (mapowanie na producentów: docs/21). */
 export const CSV_ALIASES = {
@@ -52,23 +52,46 @@ export function parseDurationLoose(s: string): number | null {
 }
 const distFactor = (head: string): { f: number; unit?: 'm' | 'km' | 'mi' } => /(^|[^a-z])km([^a-z]|$)/.test(head) ? { f: 1000, unit: 'km' } : /(^|[^a-z])mi([^a-z]|$)/.test(head) ? { f: 1609.344, unit: 'mi' } : { f: 1 };
 
+/** A-1 (audyt 1.0): kolumna o nagłówku „time” przy osobnej kolumnie daty bywa GODZINĄ treningu (gg:mm[:ss]), nie czasem serii. Uznajemy ją za godzinę tylko, gdy
+ * wszystkie daty są bez godziny, wszystkie niepuste wartości są poprawną godziną (0:00–23:59), w obrębie dnia każda wartość tworzy jeden ciągły blok wierszy
+ * (godzina treningu się powtarza w jego seriach; czasy serii zwykle nie) i jest co najmniej jeden blok z ≥ 2 wierszami. Inaczej zostaje czas serii (jak dotąd). */
+const TIME_OF_DAY = /^([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?$/;
+function timeOfDayColumn(rows: string[][], cols: Cols, head: string[], now: number): number | null {
+  const c = cols.seconds; if (c == null || head[c] !== 'time' || cols.workoutDate == null || c === cols.workoutDate) return null;
+  const seen = new Map<string, Set<string>>(); let last = ''; let lastDay = ''; let run = 0; let longRun = false; let any = false;
+  for (let i = 1; i < rows.length; i++) {
+    const v = (rows[i][c] ?? '').trim(); const d = parseDateLoose(rows[i][cols.workoutDate] ?? '', now); if (!d) continue;
+    if (!d.dateOnly) return null;
+    if (v === '') { last = ''; run = 0; continue; }
+    if (!TIME_OF_DAY.test(v)) return null;
+    any = true; const day = localISODate(new Date(d.wall)); const set = seen.get(day) ?? new Set<string>(); seen.set(day, set);
+    if (day === lastDay && v === last) { run++; if (run >= 2) longRun = true; }
+    else { if (set.has(v)) return null; set.add(v); run = 1; }
+    last = v; lastDay = day;
+  }
+  return any && longRun ? c : null;
+}
+
 export function parseGeneric(rows: string[][], cols: Cols, now: number): ParsedFile {
   const head = rows[0].map(normHead); const at = (r: string[], k: ColKey) => (cols[k] == null ? '' : r[cols[k]!] ?? '');
+  const todCol = timeOfDayColumn(rows, cols, head, now);
   const dist = cols.distance != null ? distFactor(head[cols.distance]) : { f: 1 };
   const kgCol = cols.weightKg ?? null, lbCol = cols.weightLb ?? null; const unitKnown = kgCol != null || lbCol != null;
   const wCol = unitKnown ? null : cols.weight ?? null; /* sama kolumna „weight” nie podaje jednostki → wybór użytkownika (jak formatA) */
   const parts = new Map<string, ParsedSession>(); const order: string[] = []; let bad = 0; let hasDist = false;
   for (let i = 1; i < rows.length; i++) {
-    const r = rows[i]; const date = parseDateLoose(at(r, 'workoutDate'), now); const exN = clean(at(r, 'exerciseName'));
+    const r = rows[i]; let date = parseDateLoose(at(r, 'workoutDate'), now);
+    const tod = todCol != null && date?.dateOnly ? TIME_OF_DAY.exec((r[todCol] ?? '').trim()) : null;
+    if (date && tod) { const d0 = new Date(date.wall); date = mkDate(d0.getFullYear(), d0.getMonth() + 1, d0.getDate(), +tod[1], +tod[2], +(tod[3] ?? 0), false, now); } const exN = clean(at(r, 'exerciseName'));
     const num_ = (k: ColKey) => { const v = at(r, k); return v.trim() === '' ? null : num(v); };
     const kg = kgCol != null ? num(r[kgCol]) : wCol != null ? num(r[wCol]) : null, lb = lbCol != null ? num(r[lbCol]) : null;
     const reps = num_('reps'), dm0 = num_('distance'); let rpe = num_('rpe'); const rir = num_('rir');
     if (rpe == null && rir != null) rpe = Number.isFinite(rir) && rir >= 0 && rir <= 10 ? 10 - rir : NaN; /* RIR = 10 − RPE (Zourdos i in., JSCR 2016 — jak skala wysiłku w Ustawieniach) */
-    const secRaw = at(r, 'seconds').trim(); const sec = secRaw === '' ? null : parseDurationLoose(secRaw);
+    const secRaw = todCol != null ? '' : at(r, 'seconds').trim(); const sec = secRaw === '' ? null : parseDurationLoose(secRaw);
     const secBad = secRaw !== '' && sec == null;
     if (!date || !exN || secBad || !valid(kg, reps, sec, dm0, rpe) || !valid(lb, null, null, null, null) || [kg, lb, reps, sec, dm0].every(x => x == null)) { bad++; continue; }
     const title = cols.workoutTitle != null ? clean(at(r, 'workoutTitle')) : '';
-    const key = cols.workoutTitle != null ? at(r, 'workoutDate').trim() + '\u0000' + title : localISODate(new Date(date.wall)); /* bez nazwy: trening = dzień */
+    const key = cols.workoutTitle != null ? at(r, 'workoutDate').trim() + '\u0000' + title + (tod ? '\u0000' + tod[0] : '') : localISODate(new Date(date.wall)) + (tod ? ' ' + tod[0] : ''); /* bez nazwy: trening = dzień */
     let s = parts.get(key);
     if (!s) {
       const durCol = parseDurationLoose(at(r, 'workoutDuration')); let dur = durCol != null && durCol > 0 ? durCol : null;

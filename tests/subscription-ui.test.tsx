@@ -39,7 +39,7 @@ describe('ekran zakupu: ceny, nazwy i opisy planów (bez okresu próbnego)', () 
     expect(require('expo-router/build/global-state/router-store').store.navigationRef.getCurrentOptions()?.title).toBe('Full version'); /* H1 zdublowany z nagłówkiem usunięty (N28) */
     const labels = ['yearly', 'monthly', 'lifetime'].map(p => screen.getByTestId(`plan-${p}`).props.accessibilityLabel);
     expect(labels).toEqual([`Training is part of my week, ${FAKE_PRICES.yearly}/year. A whole year of workouts, billed yearly.`, `Still finding my rhythm, ${FAKE_PRICES.monthly}/month. Pay month by month and stop whenever you like.`, `Training is my life, ${FAKE_PRICES.lifetime} one-time. Pay once, keep it forever.`]);
-    expect(screen.getByText('Train 5 days a month for free. Pro removes the limit. Cancel anytime in your Apple ID settings.')).toBeTruthy(); expect(screen.queryByText(/free trial|days free/i)).toBeNull();
+    expect(screen.getByText('Train 5 days a month for free. Pro removes the limit. Cancel anytime in your Apple account settings.')).toBeTruthy(); expect(screen.queryByText(/free trial|days free/i)).toBeNull();
     const order = screen.getAllByTestId(/^plan-/).map(n => n.props.testID); expect(order).toEqual(['plan-yearly', 'plan-monthly', 'plan-lifetime']);
     expect(screen.getByTestId('plan-yearly').props.accessibilityState.selected).toBe(true); expect(screen.getByTestId('plan-monthly').props.accessibilityState.selected).toBe(false);
     expect(screen.getByText('Subscribe')).toBeTruthy(); expect(screen.getByText('The subscription renews automatically until you cancel it in your Apple account settings.')).toBeTruthy();
@@ -49,7 +49,7 @@ describe('ekran zakupu: ceny, nazwy i opisy planów (bez okresu próbnego)', () 
   test('PL: teksty po polsku, okresy „miesiąc”/„rok”', async () => {
     await boot(); expect(screen.getByTestId('plan-monthly').props.accessibilityLabel).toBe(`Szukam swojego rytmu, ${FAKE_PRICES.monthly}/miesiąc. Płacisz co miesiąc i kończysz, kiedy chcesz.`);
     expect(screen.getByTestId('plan-yearly').props.accessibilityLabel).toBe(`Trening to część mojego tygodnia, ${FAKE_PRICES.yearly}/rok. Cały rok treningów, rozliczany rocznie.`); expect(screen.getByTestId('plan-lifetime').props.accessibilityLabel).toBe(`Trening to moje życie, ${FAKE_PRICES.lifetime} jednorazowo. Płacisz raz i masz na zawsze.`);
-    expect(screen.getByText('Subskrybuj')).toBeTruthy(); expect(screen.getByText('Trenuj 5 dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach Apple ID, kiedy zechcesz.')).toBeTruthy();
+    expect(screen.getByText('Subskrybuj')).toBeTruthy(); expect(screen.getByText('Trenuj 5 dni w miesiącu za darmo. Pro zdejmuje limit. Anulujesz w ustawieniach konta Apple, kiedy zechcesz.')).toBeTruthy();
     expect(screen.getByText('Bez zakupu: do 5 dni treningowych w miesiącu; historia, kopia i eksport zawsze dostępne.')).toBeTruthy();
   });
   test('przycisk: „Subskrybuj” dla subskrypcji, „Kup na zawsze” dla planu dożywotniego; informacja o odnawianiu tylko przy subskrypcji', async () => {
@@ -130,7 +130,7 @@ describe('ekran zakupu: powód otwarcia', () => {
   test('limit: „Nie teraz” zamyka ekran; z Ustawień — nagłówek „Train 5 days a month for free…”, bez tekstu limitu i bez „Nie teraz”; nieznany powód (dawne first) = jak Ustawienia', async () => {
     await boot({ locale: 'en', live: 5, url: '/more/settings' }); const { router } = require('expo-router'); await act(async () => { router.push('/paywall?reason=limit'); }); await settle(); await tap(screen.getByText('Not now')); await settle(); expect(screen.queryByTestId('paywall-limit')).toBeNull(); expect(screen.getByLabelText(/^Full version\./)).toBeTruthy();
     await act(async () => { router.push('/paywall?reason=first'); }); await settle(); expect(screen.queryByTestId('paywall-limit')).toBeNull(); expect(screen.getByTestId('paywall-headline')).toBeTruthy(); expect(screen.queryByText('Not now')).toBeNull(); expect(screen.queryByText('Log a past workout')).toBeNull();
-    await act(async () => { router.back(); }); await act(async () => { router.push('/paywall?reason=settings'); }); await settle(); expect(screen.queryByText('Not now')).toBeNull(); expect(screen.getByText('Train 5 days a month for free. Pro removes the limit. Cancel anytime in your Apple ID settings.')).toBeTruthy();
+    await act(async () => { router.back(); }); await act(async () => { router.push('/paywall?reason=settings'); }); await settle(); expect(screen.queryByText('Not now')).toBeNull(); expect(screen.getByText('Train 5 days a month for free. Pro removes the limit. Cancel anytime in your Apple account settings.')).toBeTruthy();
   });
 });
 

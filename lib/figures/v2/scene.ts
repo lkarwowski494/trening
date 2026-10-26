@@ -32,7 +32,7 @@ export type Prop =
   | { k: 'post'; x: number; h: number; hook?: number }                                         /* słupek stojaka */
   | { k: 'cable'; from: V3; to: V3 }
   | { k: 'band'; from: V3; to: V3 }
-  | { k: 'chain'; from: V3; to: V3 }
+  | { k: 'chain'; from: V3; to: V3; /** łańcuch sztangi (wisi na obu tulejach); bez tego pola — pojedynczy łańcuch (np. pas z obciążeniem) */ bar?: true }
   | { k: 'floor'; x0: number; x1: number }
   | { k: 'mat'; x0: number; x1: number; h: number }
   | { k: 'pivot'; from: V3; to: V3 };                                                          /* gryf landmine: z podłogi do dłoni */

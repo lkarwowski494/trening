@@ -3,7 +3,7 @@
  * Rodzaje (docs/20): dane (linie związane z id wskazówek ćwiczenia), logika (fazy, indeks fazy w czasie), niezmienniki (linie bez tekstu, tor = droga środka ciężaru).
  */
 import {
-  GUIDES, guidesFor, trailShapes, phasesOf, phaseIndexAt, phaseNames, phasesFor, tempoFor, ELBOW45_KEYS, uAt, loopLength, trailFor, guideShapes, figureSpec, frameAt, shapesAt, TEMPO, type GuideId, type FigureSpec,
+  GUIDES, guidesFor, trailShapes, phasesOf, phaseIndexAt, phaseNames, phasesFor, tempoFor, uAt, loopLength, trailFor, guideShapes, figureSpec, frameAt, shapesAt, TEMPO, type GuideId, type FigureSpec,
 } from '@/lib/figures/v2';
 import { cueIdsOf, guidesOf, errorsOf, legendOf } from '@/lib/figures/v2/ui';
 
@@ -40,9 +40,9 @@ describe('tor ruchu', () => {
     expect(trailFor(spec('Wall Sit'), 'side')).toEqual([]); expect(trailFor(spec('Back Squat'), 'side')).toBe(t);
     expect(trailShapes([frameAt(spec('Back Squat'), 0)], 'side')).toEqual([]);
   });
-  test('sztanga w wyciskaniu idzie pionowo (tor z boku: zmiana x ≤ 20 cm przy zmianie y ≥ 40 cm)', () => {
+  test('sztanga w wyciskaniu idzie pionowo (tor z boku: zmiana x < 28 cm przy zmianie y ≥ 40 cm; NSCA: w dół i lekko do przodu, w górę i lekko do tyłu)', () => {
     const pts = trailFor(spec('Bench Press (sztanga)'), 'side').filter(x => x.id === 'trail') as { a: [number, number]; b: [number, number] }[];
-    const xs = pts.flatMap(p => [p.a[0], p.b[0]]), ys = pts.flatMap(p => [p.a[1], p.b[1]]); expect(Math.max(...xs) - Math.min(...xs)).toBeLessThan(20); expect(Math.max(...ys) - Math.min(...ys)).toBeGreaterThan(40);
+    const xs = pts.flatMap(p => [p.a[0], p.b[0]]), ys = pts.flatMap(p => [p.a[1], p.b[1]]); expect(Math.max(...xs) - Math.min(...xs)).toBeLessThan(28); expect(Math.max(...ys) - Math.min(...ys)).toBeGreaterThan(40);
   });
   test('kształty klatki z mięśniami i błędem zawierają więcej niż samo ciało', () => {
     expect(shapesAt(spec('Back Squat'), 0.5, 'side', true).length).toBeGreaterThan(shapesAt(spec('Back Squat'), 0.5, 'side').length);
@@ -87,10 +87,8 @@ describe('dane dla ekranu: wskazówki, błędy, legenda mięśni', () => {
     const l = legendOf('Back Squat')!; expect(l.main).toEqual(['quads']); expect(l.aux).toEqual(expect.arrayContaining(['glutes', 'hamstrings'])); expect(l.simplified).toBe(false); expect(l.label('quads')).toBe('czworogłowe');
     expect(legendOf('Nie ma takiego')).toBeNull();
   });
-  test('łokcie ok. 45° (decyzja właściciela 25.10.2026): kąt łokcia od osi tułowia w widoku z góry na dole ruchu = 45° ± 2° dla sztangi i hantli, płasko i skos; linia tylko w widoku z góry; nie dla pozostałych wariantów', () => {
-    expect([...ELBOW45_KEYS].sort()).toEqual(['Bench Press (hantle)', 'Bench Press (sztanga)', 'Incline Bench Press (hantle)', 'Incline Bench Press (sztanga)']);
-    for (const k of ELBOW45_KEYS) { const sp = spec(k); const f = frameAt(sp, 1); for (const s of ['R', 'L'] as const) { const a = f.sk.arms[s]; const ang = Math.atan2(Math.abs(a.elbow[2] - a.shoulder[2]), Math.abs(a.elbow[0] - a.shoulder[0])) * 180 / Math.PI; expect([k, s, Math.abs(ang - 45) < 2]).toEqual([k, s, true]); }
-      expect(guideShapes(sp, 1, 'top', ['elbows45']).filter(x => x.id === 'guideElbows45').length).toBe(2); expect(guideShapes(sp, 1, 'side', ['elbows45'])).toEqual([]); }
-    expect(GUIDES.elbows45.cue).toEqual(['bp.elbowsAngle']);
+  test('brak linii i opisu „łokcie ok. 45°” (decyzja właściciela 26.10.2026: liczba bez źródła — OTWARTE; łokcie wynikają z geometrii): żadnej linii łokci w GUIDES, a ruch ma przedramiona pionowe (tests/figures-v2-bench-rules)', () => {
+    expect(Object.keys(GUIDES).sort()).toEqual(['backLine', 'kneeToe', 'plumbMidfoot', 'thighParallel']);
+    expect(guideShapes(spec('Bench Press (sztanga)'), 1, 'top', ['kneeToe'])).toEqual([]);
   });
 });

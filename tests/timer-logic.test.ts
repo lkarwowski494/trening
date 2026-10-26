@@ -37,10 +37,10 @@ describe('przerwa: start, powiadomienie, Live Activity', () => {
     expect([S().timer.restEndAt, S().timer.restTotal, S().timer.restSetId]).toEqual([NOW + 90e3, 90, 's1']);
     expect(cancelled()).toContain('rest-end');
     expect(notes()).toEqual([{ identifier: 'rest-end', content: { title: 'Przerwa minęła', body: 'Następna seria.', sound: true, interruptionLevel: 'timeSensitive' }, trigger: { type: 'timeInterval', seconds: 90, repeats: false } }]);
-    expect(la()).toEqual([['start', 'Push', 'dalej: Plank', NOW + 90e3, 90, 'rest|Przerwa']]);
+    expect(la()).toEqual([['start', 'Push', 'dalej: Plank', NOW + 90e3, 90, 'rest|Przerwa', 'pl']]);
   });
   test('start bez podpisu i bez treningu: tytuł „Trening”, podpis „przerwa N s”; tytuł z labels.title wygrywa', async () => {
-    await timer.start(75.4); expect(la()[0]).toEqual(['start', 'Trening', 'przerwa 75 s', NOW + 75.4e3, 75.4, 'rest|Przerwa']);
+    await timer.start(75.4); expect(la()[0]).toEqual(['start', 'Trening', 'przerwa 75 s', NOW + 75.4e3, 75.4, 'rest|Przerwa', 'pl']);
     reset(); timer.labels.title = 'Mój'; await timer.start(60); expect(la()[0][1]).toBe('Mój');
   });
   test('start od chwili `from` (seria skończyła się wcześniej): koniec = from + sekundy; `from` w przyszłości albo niepoprawny — od teraz', async () => {
@@ -83,14 +83,14 @@ describe('przerwa: korekta ±, stop', () => {
     await timer.adjust(15); expect(timer.T.on).toBe(false); expect(notes()).toEqual([]);
     await timer.start(60); reset();
     await timer.adjust(15); expect([timer.T.endAt, timer.T.total, S().timer.restEndAt, S().timer.restTotal]).toEqual([NOW + 75e3, 75, NOW + 75e3, 75]);
-    expect(notes()[0].trigger.seconds).toBe(75); expect(la()).toEqual([['update', 'przerwa 75 s', NOW + 75e3, 75]]);
+    expect(notes()[0].trigger.seconds).toBe(75); expect(la()).toEqual([['update', 'przerwa 75 s', NOW + 75e3, 75, 'pl']]);
     await timer.adjust(-200); expect([timer.T.endAt, timer.T.total]).toEqual([NOW, 0]);
   });
   test('po końcu przerwy: „−15” nic nie zmienia; „+15” liczy od teraz, uzbraja alarm i przywraca Live Activity', async () => {
     await timer.start(30); jest.setSystemTime(NOW + 40e3); timer.tick(); expect(timer.T.alarmed).toBe(true); reset();
     await timer.adjust(-15); expect([timer.T.endAt, timer.T.total]).toEqual([NOW + 30e3, 30]); expect(notes()).toEqual([]);
     await timer.adjust(15); expect([timer.T.endAt, timer.T.total, timer.T.alarmed]).toEqual([NOW + 55e3, 45, false]);
-    expect(la()).toEqual([['start', 'Trening', 'przerwa 45 s', NOW + 55e3, 45, 'rest|Przerwa']]); expect(notes()[0].trigger.seconds).toBe(15);
+    expect(la()).toEqual([['start', 'Trening', 'przerwa 45 s', NOW + 55e3, 45, 'rest|Przerwa', 'pl']]); expect(notes()[0].trigger.seconds).toBe(15);
   });
   test('koniec przerwy dokładnie teraz (0 s) to już „po końcu”: „−15” nic nie zmienia', async () => {
     await timer.start(30); jest.setSystemTime(NOW + 30e3); reset();
@@ -141,7 +141,7 @@ describe('stoper serii czasowych', () => {
     expect(timer.T.on).toBe(false); expect([timer.S.on, timer.S.startAt, timer.S.targetSec, timer.S.setId, timer.S.alarmed]).toEqual([true, NOW, 30, sid, false]);
     expect([S().timer.setStartAt, S().timer.setTarget, S().timer.setId]).toEqual([NOW, 30, sid]);
     expect(notes()).toEqual([{ identifier: 'set-end', content: { title: 'Seria skończona', body: 'Minęło 30 s.', sound: true, interruptionLevel: 'timeSensitive' }, trigger: { type: 'timeInterval', seconds: 30, repeats: false } }]);
-    expect(la().filter(x => x[0] === 'start')).toEqual([['start', 'Push', 'seria 30 s', NOW + 30e3, 30, 'set|Seria']]);
+    expect(la().filter(x => x[0] === 'start')).toEqual([['start', 'Push', 'seria 30 s', NOW + 30e3, 30, 'set|Seria', 'pl']]);
     reset(); await timer.startSet(sid, 0); expect(timer.S.targetSec).toBe(0); expect(notes()).toEqual([]); expect(la().filter(x => x[0] === 'start')).toEqual([]);
     await timer.startSet(sid, -5); expect(timer.S.targetSec).toBe(0); await timer.startSet(sid, 1e9); expect(timer.S.targetSec).toBe(86400);
     await timer.startSet(sid, NaN as unknown as number); expect(timer.S.targetSec).toBe(0);
@@ -163,12 +163,12 @@ describe('stoper serii czasowych', () => {
     const a = startWorkout(); const sid = a.exercises[1].sets[0].id;
     await timer.startSet(sid, 60); jest.setSystemTime(NOW + 10e3);
     timer.T.on = true; timer.T.endAt = NOW + 100e3; timer.T.total = 90; timer.T.alarmed = false; timer.T.sub = ''; /* przerwa trwa w tle (np. odtworzona) */
-    reset(); await timer.stopSet(); expect(la()).toEqual([['end'], ['start', 'Push', 'przerwa 90 s', NOW + 100e3, 90, 'rest|Przerwa']]);
+    reset(); await timer.stopSet(); expect(la()).toEqual([['end'], ['start', 'Push', 'przerwa 90 s', NOW + 100e3, 90, 'rest|Przerwa', 'pl']]);
   });
   test('przekazanie: koniec przerwy, gdy stoper z celem jeszcze odlicza — Live Activity stopera', async () => {
     const a = startWorkout(); const sid = a.exercises[1].sets[0].id;
     await timer.start(30); timer.S.on = true; timer.S.startAt = NOW; timer.S.targetSec = 120; timer.S.alarmed = false; timer.S.setId = sid; reset();
-    await timer.stop(); expect(la()).toEqual([['end'], ['start', 'Push', 'seria 120 s', NOW + 120e3, 120, 'set|Seria']]);
+    await timer.stop(); expect(la()).toEqual([['end'], ['start', 'Push', 'seria 120 s', NOW + 120e3, 120, 'set|Seria', 'pl']]);
     timer.S.on = false;
   });
 });
@@ -183,7 +183,7 @@ describe('odtworzenie po restarcie (restore)', () => {
     store.setTimerState({ restEndAt: NOW + 50e3, restTotal: 90, restSetId: s0.id }); reset(); await timer.restore();
     expect([timer.T.on, timer.T.endAt, timer.T.total, timer.T.setId, timer.T.alarmed]).toEqual([true, NOW + 50e3, 90, s0.id, false]);
     expect(timer.T.sub).toBe('dalej: Plank'); /* jedna seria ławki — następna jest deska (lib/live.ts restLabel) */ expect(timer.labels.subtitle).toBe(timer.T.sub);
-    expect(notes()[0].trigger.seconds).toBe(50); expect(la().filter(x => x[0] === 'start')).toEqual([['start', 'Push', timer.T.sub, NOW + 50e3, 90, 'rest|Przerwa']]);
+    expect(notes()[0].trigger.seconds).toBe(50); expect(la().filter(x => x[0] === 'start')).toEqual([['start', 'Push', timer.T.sub, NOW + 50e3, 90, 'rest|Przerwa', 'pl']]);
     store.setTimerState({ restEndAt: NOW - 10e3, restTotal: 90, restSetId: s0.id }); reset(); await timer.restore();
     expect([timer.T.on, timer.T.alarmed]).toEqual([true, true]); expect(notes()).toEqual([]); expect(la()).toEqual([['end']]);
   });
@@ -200,7 +200,7 @@ describe('odtworzenie po restarcie (restore)', () => {
     const back = async (p: Partial<ReturnType<typeof blankTimer>>) => { timer.S.on = false; store.setTimerState({ setStartAt: null, setTarget: 0, setId: null, ...p }); reset(); await timer.restore(); return timer.S.on; };
     expect(await back({ setStartAt: NOW - 10e3, setTarget: 30, setId: sid })).toBe(true);
     expect([timer.S.startAt, timer.S.targetSec, timer.S.setId, timer.S.alarmed]).toEqual([NOW - 10e3, 30, sid, false]);
-    expect(notes()[0]).toMatchObject({ identifier: 'set-end', trigger: { seconds: 20 } }); expect(la().filter(x => x[0] === 'start')).toEqual([['start', 'Push', 'seria 30 s', NOW + 20e3, 30, 'set|Seria']]);
+    expect(notes()[0]).toMatchObject({ identifier: 'set-end', trigger: { seconds: 20 } }); expect(la().filter(x => x[0] === 'start')).toEqual([['start', 'Push', 'seria 30 s', NOW + 20e3, 30, 'set|Seria', 'pl']]);
     expect(await back({ setStartAt: NOW - 30e3, setTarget: 30, setId: sid })).toBe(true); expect(timer.S.alarmed).toBe(true); expect(notes()).toEqual([]);
     expect(await back({ setStartAt: NOW + 60e3, setTarget: 30, setId: sid })).toBe(true); /* granica: 60 s w przód (zegar telefonu) */
     expect(await back({ setStartAt: NOW + 60e3 + 1, setTarget: 30, setId: sid })).toBe(false);
@@ -295,7 +295,7 @@ describe('granice po drugim przebiegu Strykera (09.10.2026)', () => {
     const a = startWorkout(); const sid = a.exercises[1].sets[0].id;
     store.setTimerState({ restEndAt: NOW, restTotal: 60, restSetId: null }); reset(); await timer.restore(); expect(timer.T.alarmed).toBe(true); expect(notes()).toEqual([]);
     await timer.stop(); store.setTimerState({ restEndAt: NOW + 30e3, restTotal: 60, restSetId: 'nie-ma' }); reset(); await timer.restore();
-    expect([timer.T.sub, timer.T.last]).toEqual(['', false]); expect(la()).toEqual([['start', 'Push', 'przerwa 60 s', NOW + 30e3, 60, 'rest|Przerwa']]);
+    expect([timer.T.sub, timer.T.last]).toEqual(['', false]); expect(la()).toEqual([['start', 'Push', 'przerwa 60 s', NOW + 30e3, 60, 'rest|Przerwa', 'pl']]);
     await timer.stop(); store.setTimerState({ restEndAt: NOW + 30e3, restTotal: 60, restSetId: null, setStartAt: NOW - 5e3, setTarget: 30, setId: sid }); reset(); await timer.restore();
     expect(la().map(x => x[0] + ':' + String(x[5] ?? ''))).toEqual(['start:rest|Przerwa']); expect(timer.S.on).toBe(true); expect(notes().map(n => n.identifier).sort()).toEqual(['rest-end', 'set-end']);
   });

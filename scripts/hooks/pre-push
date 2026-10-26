@@ -1,6 +1,6 @@
 #!/bin/sh
 # Hak pre-push (L-009, decyzja właściciela 21.10.2026): zatrzymuje wypchnięcie, gdy lint, README albo macierz testów są nieaktualne.
-# Dokładnie trzy sprawdzenia, w tej kolejności, przerwanie przy pierwszym błędzie: lint, check:readme, check:matrix.
+# Trzy sprawdzenia, w tej kolejności, przerwanie przy pierwszym błędzie: lint, check:readme, check:matrix; do tego (L-037) przy zmianach w docs/: numeracja lekcji i testy dokumentów.
 # Wyjątek: gdy zmiany względem origin/main to wyłącznie dokumenty (scripts/verify-docs.mjs --czy-dokumenty), lint jest pomijany.
 # Pełne `npm run verify` zostaje obowiązkiem przed wypchnięciem (CLAUDE.md) — hak łapie tylko najtańsze, najczęstsze pomyłki.
 # Instaluje go `npm ci` (skrypt `prepare` → scripts/hooks/instaluj.mjs ustawia core.hooksPath na scripts/hooks; nie w CI i nie w katalogu bez .git).
@@ -10,11 +10,14 @@
 # POSIX sh, bez składni bash.
 
 # Bez terminala na wejściu git podaje linie „lokalny_ref lokalny_sha zdalny_ref zdalny_sha”; same zera = usuwanie gałęzi lub tagu.
+# Zapamiętujemy je („lokalny_sha zdalny_ref zdalny_sha”), żeby po trzech sprawdzeniach ocenić, czy wypychane commity zmieniają docs/ (L-037, wariant A).
+refy=""
 if [ ! -t 0 ]; then
   tylko_usuwanie=1
-  while read -r _ lokalny_sha _; do
+  while read -r _ lokalny_sha zdalny_ref zdalny_sha; do
     case "$lokalny_sha" in
-      '' | *[!0]*) tylko_usuwanie=0 ;;
+      '' | *[!0]*) tylko_usuwanie=0; refy="$refy$lokalny_sha $zdalny_ref $zdalny_sha
+" ;;
     esac
   done
   if [ "$tylko_usuwanie" = 1 ]; then
@@ -43,6 +46,43 @@ else
 fi
 sprawdz check:readme "node scripts/readme.mjs --write (README jest generowane z kodu), potem git add README.md."
 sprawdz check:matrix "najpierw git add nowych plików testów (macierz liczy tylko pliki śledzone), potem node scripts/test-matrix.mjs --write (docs/19-macierz-testow.md) i git add docs; brakujące testy z listy dopisz, nie wyłączaj sprawdzenia."
+
+# L-037 (wariant A, decyzja właściciela 26.10.2026): gdy wypychane commity zmieniają docs/, sprawdzamy numerację lekcji i testy dokumentów — zmiana „tylko w dokumentach”
+# pomijała lint, więc czerwone CI łapało dopiero numerację docs/40. Reguła gałęzi: na main i integracja-* nienumerowana lekcja (## L-NNN) to błąd, na gałęziach funkcji jest
+# dozwolona (numer nadaje koordynator przy scalaniu: scripts/numeruj-lekcje.mjs). Testy dostają GITHUB_REF_NAME = gałąź docelowa, tak jak w CI (tests.yml).
+docs_zmienione() { # $1 = lokalny sha, $2 = zdalny sha (same zera = nowa gałąź: porównanie z origin/main); nieznany lokalny sha — nic do sprawdzenia
+  git cat-file -e "$1^{commit}" 2>/dev/null || return 1
+  case "$2" in *[!0]*) baza="$2" ;; *) baza=$(git merge-base origin/main "$1" 2>/dev/null) ;; esac
+  if [ -z "$baza" ] || ! git cat-file -e "$baza^{commit}" 2>/dev/null; then # brak punktu odniesienia (np. pierwsze wypchnięcie): liczą się wszystkie pliki commitu
+    git ls-tree -r --name-only "$1" 2>/dev/null | grep -q '^docs/'
+    return
+  fi
+  git diff --name-only "$baza..$1" 2>/dev/null | grep -q '^docs/'
+}
+sprawdz_docs() { # $1 = gałąź docelowa
+  echo "hak pre-push: zmiany w docs/ — numeracja lekcji i testy dokumentów (gałąź $1)" >&2
+  case "$1" in
+    main | integracja-*)
+      if ! node scripts/numeruj-lekcje.mjs --sprawdz >&2 </dev/null; then
+        echo "" >&2
+        echo "hak pre-push: WYPCHNIĘCIE ZATRZYMANE — na gałęzi $1 lekcje w docs/40 muszą mieć numer." >&2
+        echo "Jak naprawić: node scripts/numeruj-lekcje.mjs (nadaje kolejne numery), potem git add docs/40-lekcje.md i commit. Obejście (świadome): git push --no-verify" >&2
+        exit 1
+      fi ;;
+  esac
+  if ! GITHUB_REF_NAME="$1" npx jest tests/audit-m1-p4b-queue.test.ts tests/verify-docs.test.ts >&2 </dev/null; then
+    echo "" >&2
+    echo "hak pre-push: WYPCHNIĘCIE ZATRZYMANE — testy dokumentów (numeracja lekcji, verify:docs) zwróciły błąd." >&2
+    echo "Jak naprawić: przeczytaj, który test padł (zwykle docs/40: numeracja lekcji, kolejność, rejestr ryzyk), popraw dokument i dodaj do commitu. Obejście (świadome): git push --no-verify" >&2
+    exit 1
+  fi
+}
+printf '%s' "$refy" | while read -r lokalny_sha zdalny_ref zdalny_sha; do
+  [ -n "$lokalny_sha" ] || continue
+  if docs_zmienione "$lokalny_sha" "$zdalny_sha"; then
+    printf '%s\n' "${zdalny_ref#refs/heads/}"
+  fi
+done | sort -u | while read -r galaz; do sprawdz_docs "$galaz" || exit 1; done || exit 1
 
 echo "hak pre-push: zielone po $(($(date +%s) - start)) s" >&2
 exit 0

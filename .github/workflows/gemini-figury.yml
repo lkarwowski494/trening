@@ -1,6 +1,7 @@
 # Pilotaż póz figur v2 przez API Gemini (decyzja właściciela 25.10.2026; docs/52). Tylko ręcznie, odczyt repozytorium.
 # Płatny z kredytów Google Cloud właściciela (limit budżetu po stronie Google + twardy limit na przebieg w skrypcie). Klucz: sekret GEMINI_API_KEY, użyty w JEDNYM kroku,
-# jako zmienna środowiskowa; skrypt nigdy go nie wypisuje. Repozytorium NIE jest zmieniane — wynik to artefakt `raport-pozy` (poze.json, raport.json, koszt.json, podsumowanie.md; 7 dni);
+# jako zmienna środowiskowa; skrypt nigdy go nie wypisuje. Wejście `api` (26.10.2026): `vertex` (domyślnie) = Vertex AI / Agent Platform z kluczem API Google Cloud, adres globalny
+# bez identyfikatora projektu; `gemini` = Gemini API (AI Studio, wymaga planu z rozliczeniem Prepay — odrzucone). Ten sam sekret, bez nowych (docs/52 pkt 6). Repozytorium NIE jest zmieniane — wynik to artefakt `raport-pozy` (poze.json, raport.json, koszt.json, podsumowanie.md; 7 dni);
 # nałożenie lokalnie po przeglądzie: node scripts/figures/gemini-pozy.mjs --zastosuj <katalog>.
 # Uruchom z gałęzi grafiki-cwiczen („Use workflow from”): tam są docs/51, silnik v2 i walidator geometrii póz; sam plik workflowu musi być na gałęzi domyślnej.
 # Porównanie modeli: ta sama rodzina puszczona dwa razy z różnym `model`.
@@ -12,6 +13,24 @@ on:
         description: 'Rodzina ruchu z docs/51 (np. pull_up)'
         type: string
         default: pull_up
+      api:
+        description: 'Które API: vertex (Vertex AI / Agent Platform, klucz API Google Cloud; domyślnie) albo gemini (AI Studio)'
+        type: choice
+        default: vertex
+        options: [vertex, gemini]
+      lokalizacja:
+        description: 'Tylko vertex: global (domyślnie) albo multi-region us / eu (Argon: Standard PayGo global, us, eu; us-central1 nie jest obsługiwane)'
+        type: choice
+        default: global
+        options: [global, us, eu]
+      lista_modeli:
+        description: 'Tylko diagnostyka bez kosztu: lista modeli widocznych dla klucza i odczyt naszych modeli (artefakt modele.json), bez generowania póz'
+        type: boolean
+        default: false
+      diagnoza:
+        description: 'Diagnoza odrzucenia żądania (400): to samo żądanie z pełnym schematem w każdym formacie JSON, potem bisekcja schematu; kilka krótkich wywołań (limit_usd), artefakt diagnoza.json; bez generowania póz'
+        type: boolean
+        default: false
       model:
         description: 'Model Gemini (domyślnie flagowy gemini-4-argon; porównanie: gemini-3.1-pro-preview)'
         type: choice
@@ -49,24 +68,38 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Szacunek kosztu bez klucza
         env:
+          WEJ_API: ${{ inputs.api }}
+          WEJ_LOKALIZACJA: ${{ inputs.lokalizacja }}
           WEJ_RODZINA: ${{ inputs.rodzina }}
           WEJ_MODEL: ${{ inputs.model }}
           WEJ_LIMIT: ${{ inputs.limit_usd }}
           WEJ_PROBY: ${{ inputs.proby }}
         run: |
           set -eu
-          node scripts/figures/gemini-pozy.mjs --szacuj --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --proby "$WEJ_PROBY" --wyjscie raport-pozy
+          node scripts/figures/gemini-pozy.mjs --szacuj --api "$WEJ_API" --lokalizacja "$WEJ_LOKALIZACJA" --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --proby "$WEJ_PROBY" --wyjscie raport-pozy
       - name: Generowanie póz (pętla generuj → waliduj → popraw)
-        if: ${{ !inputs.tylko_szacuj }}
+        if: ${{ !inputs.tylko_szacuj || inputs.lista_modeli }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          WEJ_API: ${{ inputs.api }}
+          WEJ_LOKALIZACJA: ${{ inputs.lokalizacja }}
           WEJ_RODZINA: ${{ inputs.rodzina }}
           WEJ_MODEL: ${{ inputs.model }}
           WEJ_LIMIT: ${{ inputs.limit_usd }}
           WEJ_PROBY: ${{ inputs.proby }}
+          WEJ_LISTA: ${{ inputs.lista_modeli }}
+          WEJ_DIAGNOZA: ${{ inputs.diagnoza }}
         run: |
           set -eu
-          node scripts/figures/gemini-pozy.mjs --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --proby "$WEJ_PROBY" --wyjscie raport-pozy
+          if [ "$WEJ_LISTA" = "true" ]; then
+            node scripts/figures/gemini-pozy.mjs --lista-modeli --api "$WEJ_API" --lokalizacja "$WEJ_LOKALIZACJA" --wyjscie raport-pozy
+            exit 0
+          fi
+          if [ "$WEJ_DIAGNOZA" = "true" ]; then
+            node scripts/figures/gemini-pozy.mjs --diagnoza --api "$WEJ_API" --lokalizacja "$WEJ_LOKALIZACJA" --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --wyjscie raport-pozy
+            exit 0
+          fi
+          node scripts/figures/gemini-pozy.mjs --api "$WEJ_API" --lokalizacja "$WEJ_LOKALIZACJA" --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --proby "$WEJ_PROBY" --wyjscie raport-pozy
       - name: Podsumowanie w logu przebiegu
         if: always()
         run: |

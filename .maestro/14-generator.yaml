@@ -54,7 +54,8 @@ name: Generator szablonów i planu
 - tapOn: { id: "day-2" }
 - tapOn: { id: "day-5" }
 - scrollUntilVisible: { element: "Mon.* Full Body", direction: DOWN, timeout: 30000 }
-- scrollUntilVisible: { element: "One workout a week still brings progress.*", direction: DOWN, timeout: 30000 }
+# uwaga „oneday” stoi pod celem, NAD podglądem — na małym ekranie po przewinięciu do „Mon.* Full Body” jest nad ekranem (nocny przebieg 40263099163), więc szukamy w górę
+- scrollUntilVisible: { element: "One workout a week still brings progress.*", direction: UP, timeout: 30000 }
 - takeScreenshot: 70a-generator-1-dzien
 - scrollUntilVisible: { element: { id: "day-0" }, direction: UP, timeout: 30000 }
 - tapOn: { id: "day-0" }
@@ -87,8 +88,9 @@ name: Generator szablonów i planu
 - takeScreenshot: 70-generator
 - scrollUntilVisible: { element: "Plan rules", direction: DOWN, timeout: 30000 }
 - tapOn: { id: "info-gen-basis" }  # 14.10.2026: „Zasady planu” — źródła pod ⓘ (treść bez zmian)
-- assertVisible: ".*Each major muscle group on at least.*"
-- assertVisible: ".*more days do not have to give proportionally more.*"  # 25.10.2026: brzmienie bez odwołań do dowodów (druga decyzja właściciela „całkiem anonimowo”)
+# E2E 40309855134 (iPhone 16e, ciemny): rozwinięte punkty leżą przy dolnej krawędzi i są ucięte — assertVisible ich nie widzi; przewijamy do każdego
+- scrollUntilVisible: { element: ".*Each major muscle group on at least.*", direction: DOWN, timeout: 30000 }
+- scrollUntilVisible: { element: ".*more days do not have to give proportionally more.*", direction: DOWN, timeout: 30000 }  # 25.10.2026: brzmienie bez odwołań do dowodów (druga decyzja właściciela „całkiem anonimowo”)
 - takeScreenshot: 71-generator-zrodla
 - scrollUntilVisible: { element: "Save templates and plan", direction: DOWN, timeout: 30000, centerElement: true }
 - tapOn: "Save templates and plan"

@@ -309,7 +309,7 @@ describe('przegląd tłumaczeń API: strażnik workflowu (styl public-repo.test.
   });
   test('skrypt: tylko fetch i moduły wbudowane (bez nowych zależności), bez zapisu do lib/', () => {
     const s = fs.readFileSync(SCRIPT, 'utf8');
-    for (const m of s.matchAll(/from '([^']+)'/g)) expect(m[1]).toMatch(/^node:/);
+    for (const m of s.matchAll(/from '([^']+)'/g)) expect(m[1]).toMatch(/^(node:|\.\.\/maskuj\.mjs$)/); /* 26.10.2026: dozwolony wyłącznie wspólny moduł maskowania scripts/maskuj.mjs (L-035), żadnych paczek */
     expect(s).not.toMatch(/require\(/); expect(s).not.toMatch(/writeFileSync\(\s*join\(root/);
   });
 });
