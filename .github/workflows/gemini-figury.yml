@@ -18,6 +18,15 @@ on:
         type: choice
         default: vertex
         options: [vertex, gemini]
+      lokalizacja:
+        description: 'Tylko vertex: global (domyślnie) albo multi-region us / eu (Argon: Standard PayGo global, us, eu; us-central1 nie jest obsługiwane)'
+        type: choice
+        default: global
+        options: [global, us, eu]
+      lista_modeli:
+        description: 'Tylko diagnostyka bez kosztu: lista modeli widocznych dla klucza i odczyt naszych modeli (artefakt modele.json), bez generowania póz'
+        type: boolean
+        default: false
       model:
         description: 'Model Gemini (domyślnie flagowy gemini-4-argon; porównanie: gemini-3.1-pro-preview)'
         type: choice
@@ -56,25 +65,32 @@ jobs:
       - name: Szacunek kosztu bez klucza
         env:
           WEJ_API: ${{ inputs.api }}
+          WEJ_LOKALIZACJA: ${{ inputs.lokalizacja }}
           WEJ_RODZINA: ${{ inputs.rodzina }}
           WEJ_MODEL: ${{ inputs.model }}
           WEJ_LIMIT: ${{ inputs.limit_usd }}
           WEJ_PROBY: ${{ inputs.proby }}
         run: |
           set -eu
-          node scripts/figures/gemini-pozy.mjs --szacuj --api "$WEJ_API" --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --proby "$WEJ_PROBY" --wyjscie raport-pozy
+          node scripts/figures/gemini-pozy.mjs --szacuj --api "$WEJ_API" --lokalizacja "$WEJ_LOKALIZACJA" --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --proby "$WEJ_PROBY" --wyjscie raport-pozy
       - name: Generowanie póz (pętla generuj → waliduj → popraw)
-        if: ${{ !inputs.tylko_szacuj }}
+        if: ${{ !inputs.tylko_szacuj || inputs.lista_modeli }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           WEJ_API: ${{ inputs.api }}
+          WEJ_LOKALIZACJA: ${{ inputs.lokalizacja }}
           WEJ_RODZINA: ${{ inputs.rodzina }}
           WEJ_MODEL: ${{ inputs.model }}
           WEJ_LIMIT: ${{ inputs.limit_usd }}
           WEJ_PROBY: ${{ inputs.proby }}
+          WEJ_LISTA: ${{ inputs.lista_modeli }}
         run: |
           set -eu
-          node scripts/figures/gemini-pozy.mjs --api "$WEJ_API" --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --proby "$WEJ_PROBY" --wyjscie raport-pozy
+          if [ "$WEJ_LISTA" = "true" ]; then
+            node scripts/figures/gemini-pozy.mjs --lista-modeli --api "$WEJ_API" --lokalizacja "$WEJ_LOKALIZACJA" --wyjscie raport-pozy
+            exit 0
+          fi
+          node scripts/figures/gemini-pozy.mjs --api "$WEJ_API" --lokalizacja "$WEJ_LOKALIZACJA" --rodzina "$WEJ_RODZINA" --model "$WEJ_MODEL" --limit-usd "$WEJ_LIMIT" --proby "$WEJ_PROBY" --wyjscie raport-pozy
       - name: Podsumowanie w logu przebiegu
         if: always()
         run: |

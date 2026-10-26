@@ -18,6 +18,7 @@
 // Użycie:
 //   node scripts/figures/gemini-pozy.mjs --rodzina pull_up --szacuj
 //   node scripts/figures/gemini-pozy.mjs --rodzina pull_up --model gemini-4-argon --limit-usd 3 --proby 4 --wyjscie raport-pozy
+//   node scripts/figures/gemini-pozy.mjs --lista-modeli --lokalizacja global   (bez kosztu: lista modeli widocznych dla klucza i odczyt każdego z naszych; modele.json)
 //   node scripts/figures/gemini-pozy.mjs --zastosuj raport-pozy
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
@@ -110,33 +111,43 @@ export function budujPrompt({ rodzina, cwiczenie, opis, przyklady, wsk, poprzedn
 }
 
 /* ---------- maskowanie klucza ---------- */
-/** Zastępuje klucz (i wszystko w kształcie klucza Google) w tekście; stosowane do każdego logu, błędu i pliku wyniku. */
+/** Zastępuje klucz, wszystko w kształcie klucza Google oraz identyfikatory projektu Google Cloud (numer lub nazwa w `projects/<id>`, „project <id>”, długie ciągi cyfr) w tekście;
+ *  stosowane do każdego logu, błędu i pliku wyniku — odpowiedzi błędów API powtarzają ścieżkę zasobu z numerem projektu (lekcja L-035: trafił do publicznego logu). */
 export const maskuj = (tekst, klucz = '') => {
   let s = String(tekst ?? '');
   if (klucz && klucz.length >= 4) s = s.split(klucz).join('***');
-  return s.replace(/AIza[0-9A-Za-z_-]{20,}/g, '***');
+  return s
+    .replace(/AIza[0-9A-Za-z_-]{20,}/g, '***')
+    .replace(/projects\/[^/\s"'`,;)\]]+/gi, 'projects/***')
+    .replace(/\bprojects?([\s:=]+)['"]?\d{4,}/gi, (m, b) => `project${b}***`)
+    .replace(/\d{9,}/g, '***');
 };
 
 /* ---------- klient API ---------- */
 export const ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/interactions'; /* tryb gemini (Interactions, ai.google.dev/api/interactions-api) */
-export const ENDPOINT_VERTEX = 'https://aiplatform.googleapis.com/v1/publishers/google/models'; /* tryb vertex: globalny, bez projektu; + /<model>:generateContent */
-export const endpointVertex = (model) => `${ENDPOINT_VERTEX}/${model}:generateContent`;
+/** Lokalizacje (karta modelu Argon: Standard PayGo tylko `global` oraz multi-regiony `us`, `eu`; us-central1 nie jest obsługiwane). Bez projektu w adresie region wybiera host. */
+export const LOKALIZACJE = ['global', 'us', 'eu'];
+export const DOMYSLNA_LOKALIZACJA = 'global';
+export const hostVertex = (lok = DOMYSLNA_LOKALIZACJA) => (lok === 'global' ? 'aiplatform.googleapis.com' : `${lok}-aiplatform.googleapis.com`);
+export const ENDPOINT_VERTEX = `https://${hostVertex()}/v1/publishers/google/models`; /* tryb vertex: globalny, bez projektu; + /<model>:generateContent */
+export const endpointVertex = (model, lok = DOMYSLNA_LOKALIZACJA) => `https://${hostVertex(lok)}/v1/publishers/google/models/${model}:generateContent`;
 /** Statusy, po których NIE ponawiamy i kończymy cały przebieg (klucz, uprawnienia, rozliczenia, przydział). */
-export const STATUSY_KRYTYCZNE = { gemini: [401, 402, 403], vertex: [401, 402, 403, 429] };
+export const STATUSY_KRYTYCZNE = { gemini: [401, 402, 403, 404], vertex: [401, 402, 403, 404, 429] };
 export const KOMUNIKATY_KRYTYCZNE = {
   401: 'klucz odrzucony (401) — sprawdź wartość sekretu GEMINI_API_KEY (dla trybu vertex: klucz API Google Cloud z włączonym Agent Platform API, nie klucz z AI Studio)',
   402: 'wymagane rozliczenia lub brak kredytów (402) — sprawdź konto rozliczeniowe i kredyty projektu',
   403: 'brak uprawnień (403) — Agent Platform API niewłączone w projekcie, ograniczenia klucza (API restrictions), rola projektu albo model niedostępny dla tego typu klucza',
+  404: 'model lub zasób nie znaleziony albo brak do niego dostępu (404) — stop po pierwszym błędzie; sprawdź --lokalizacja (global/us/eu), identyfikator modelu i dostęp klucza (uruchom wejście lista_modeli)',
   429: 'przekroczony przydział lub limit zapytań (429) — stop bez ponowień; sprawdź przydziały projektu w konsoli Google Cloud',
 };
 export class BladApi extends Error {
   constructor(status, wiadomosc, krytyczny) { super(wiadomosc); this.name = 'BladApi'; this.status = status; this.krytyczny = krytyczny; }
 }
-export function klient(fetchFn, klucz, { tryb = 'gemini', endpoint, spij = (ms) => new Promise((r) => setTimeout(r, ms)), ponowien = 2 } = {}) {
+export function klient(fetchFn, klucz, { tryb = 'gemini', lokalizacja = DOMYSLNA_LOKALIZACJA, endpoint, spij = (ms) => new Promise((r) => setTimeout(r, ms)), ponowien = 2 } = {}) {
   const krytyczne = STATUSY_KRYTYCZNE[tryb] ?? STATUSY_KRYTYCZNE.gemini;
   return {
     async generuj({ model, system, input, schemat, maxTokens = MAX_TOKENS_ODPOWIEDZI }) {
-      const url = endpoint ?? (tryb === 'vertex' ? endpointVertex(model) : ENDPOINT);
+      const url = endpoint ?? (tryb === 'vertex' ? endpointVertex(model, lokalizacja) : ENDPOINT);
       /* vertex: generateContent; JSON wg schematu przez responseMimeType + responseJsonSchema (docs/52 pkt 6); maxOutputTokens ≤ 32 768 (limit żądania nie-strumieniowego dla Argon) */
       const body = tryb === 'vertex'
         ? { contents: [{ role: 'user', parts: [{ text: input }] }], systemInstruction: { parts: [{ text: system }] }, generationConfig: { responseMimeType: 'application/json', responseJsonSchema: schemat, maxOutputTokens: maxTokens } }
@@ -169,6 +180,35 @@ export function odczytajOdpowiedz(o) {
 export function parsujPoze(tekst) {
   const s = String(tekst ?? '').trim().replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '');
   try { return { poza: JSON.parse(s), blad: null }; } catch (e) { return { poza: null, blad: `niepoprawny JSON: ${e.message}` }; }
+}
+
+/* ---------- lista modeli (bez kosztu; tryb vertex) ---------- */
+/** GET listy modeli wydawcy `google` (Model Garden, v1beta1) oraz GET każdego z naszych modeli (v1). Nic nie kosztuje (brak generowania). Zwraca { lista, sprawdzone, blad }. */
+export async function listaModeli({ fetchFn, klucz, lokalizacja = DOMYSLNA_LOKALIZACJA, log = () => {}, modele = MODELE }) {
+  const baza = `https://${hostVertex(lokalizacja)}`; const naglowki = { 'x-goog-api-key': klucz };
+  const pobierz = async (url) => {
+    const r = await fetchFn(url, { method: 'GET', headers: naglowki }); let tresc = null; try { tresc = await r.json(); } catch { /* brak treści */ }
+    return { status: r.status, ok: r.ok, tresc, blad: r.ok ? null : maskuj(String(tresc?.error?.message ?? '').slice(0, 300), klucz) };
+  };
+  const wynik = { lokalizacja, host: hostVertex(lokalizacja), lista: null, lista_blad: null, sprawdzone: [] };
+  let token = ''; const ids = [];
+  for (let strona = 0; strona < 10; strona++) {
+    const r = await pobierz(`${baza}/v1beta1/publishers/google/models?pageSize=100${token ? `&pageToken=${encodeURIComponent(token)}` : ''}`);
+    if (!r.ok) { wynik.lista_blad = `HTTP ${r.status}${r.blad ? `: ${r.blad}` : ''}`; if (STATUSY_KRYTYCZNE.vertex.includes(r.status) && r.status !== 404) wynik.krytyczny = r.status; break; }
+    for (const m of r.tresc?.publisherModels ?? []) ids.push(String(m.name ?? '').split('/').pop());
+    token = r.tresc?.nextPageToken ?? ''; wynik.lista = ids.filter(Boolean).sort();
+    if (!token) break;
+  }
+  if (wynik.lista) log(`lista modeli (${lokalizacja}): ${wynik.lista.length} pozycji; gemini: ${wynik.lista.filter((i) => /^gemini/.test(i)).join(', ') || '(brak)'}`);
+  else log(`lista modeli (${lokalizacja}) niedostępna: ${wynik.lista_blad}`);
+  if (wynik.krytyczny) return wynik;
+  for (const id of modele) {
+    const r = await pobierz(`${baza}/v1/publishers/google/models/${id}`);
+    wynik.sprawdzone.push({ model: id, status: r.status, ok: r.ok, blad: r.blad, na_liscie: wynik.lista ? wynik.lista.includes(id) : null });
+    log(`model ${id} (${lokalizacja}): ${r.ok ? 'dostępny do odczytu' : `HTTP ${r.status}${r.blad ? ` — ${r.blad}` : ''}`}${wynik.lista ? `; na liście: ${wynik.lista.includes(id) ? 'tak' : 'nie'}` : ''}`);
+    if (STATUSY_KRYTYCZNE.vertex.includes(r.status) && r.status !== 404) { wynik.krytyczny = r.status; break; }
+  }
+  return wynik;
 }
 
 /* ---------- próba połączenia (tryb vertex) ---------- */
@@ -231,13 +271,15 @@ export function szacunek({ model, liczbaCwiczen, tokenyWejsciaNaProbe, dzis, zal
 
 /* ---------- uruchomienie ---------- */
 export function parsujArgumenty(argv) {
-  const o = { rodzina: null, api: DOMYSLNY_API, model: DOMYSLNY_MODEL, limitUsd: LIMIT_USD, proby: PROBY, szacuj: false, wyjscie: 'raport-pozy', zastosuj: null, cwiczenia: null, lista: null };
+  const o = { rodzina: null, api: DOMYSLNY_API, lokalizacja: DOMYSLNA_LOKALIZACJA, listaModeli: false, model: DOMYSLNY_MODEL, limitUsd: LIMIT_USD, proby: PROBY, szacuj: false, wyjscie: 'raport-pozy', zastosuj: null, cwiczenia: null, lista: null };
   const wart = (i, n) => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${n}`); return argv[i + 1]; };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--szacuj') o.szacuj = true;
     else if (a === '--rodzina') { o.rodzina = wart(i++, a); if (!/^[a-z][a-z0-9_]{1,40}$/.test(o.rodzina)) throw new Error('--rodzina: oczekiwany identyfikator rodziny (małe litery, cyfry, _)'); }
     else if (a === '--api') { o.api = wart(i++, a); if (!API_TRYBY.includes(o.api)) throw new Error(`nieznany tryb --api: ${o.api} (dozwolone: ${API_TRYBY.join(', ')})`); }
+    else if (a === '--lokalizacja') { o.lokalizacja = wart(i++, a); if (!LOKALIZACJE.includes(o.lokalizacja)) throw new Error(`nieznana --lokalizacja: ${o.lokalizacja} (dozwolone: ${LOKALIZACJE.join(', ')})`); }
+    else if (a === '--lista-modeli') o.listaModeli = true;
     else if (a === '--model') { o.model = wart(i++, a); if (!MODELE.includes(o.model)) throw new Error(`nieznany model: ${o.model} (dozwolone: ${MODELE.join(', ')})`); }
     else if (a === '--limit-usd') { o.limitUsd = Number(wart(i++, a)); if (!(o.limitUsd > 0 && o.limitUsd <= 50)) throw new Error('--limit-usd: liczba z przedziału (0, 50]'); }
     else if (a === '--proby') { o.proby = Number(wart(i++, a)); if (!Number.isInteger(o.proby) || o.proby < 1 || o.proby > 8) throw new Error('--proby: liczba całkowita 1–8'); }
@@ -255,6 +297,13 @@ export async function main(argv, env, { fetchFn = fetch, log: logSurowy = consol
   const klucz = env.GEMINI_API_KEY || '';
   const log = (s) => logSurowy(maskuj(s, klucz)); /* nic nie wychodzi bez maskowania */
   const zapisz = (nazwa, tresc) => writeFileSync(join(o.wyjscie, nazwa), maskuj(tresc, klucz));
+  if (o.listaModeli) { /* diagnostyka bez kosztu: tylko klucz + sieć, bez kontraktu i bez docs/51 */
+    if (!klucz) { log('brak GEMINI_API_KEY — lista modeli niemożliwa'); return 2; }
+    mkdirSync(o.wyjscie, { recursive: true });
+    const w = await listaModeli({ fetchFn, klucz, lokalizacja: o.lokalizacja, log });
+    zapisz('modele.json', JSON.stringify(w, null, 1) + '\n');
+    return w.krytyczny ? 5 : 0;
+  }
   const kontrakt = await wczytajKontrakt(root);
   if (o.zastosuj) {
     if (!kontrakt || typeof kontrakt.zastosuj !== 'function') { log('brak v2-validate.mjs → zastosuj(): nałożenie niemożliwe'); return 4; }
@@ -268,13 +317,13 @@ export async function main(argv, env, { fetchFn = fetch, log: logSurowy = consol
   mkdirSync(o.wyjscie, { recursive: true });
   const wejscie = kontrakt ? przyblizTokeny(SYSTEM + kontrakt.opisKontraktu(o.rodzina) + JSON.stringify(kontrakt.schematPozy(o.rodzina)) + JSON.stringify(przykladyWzor)) + 300 : 3000;
   const sz = szacunek({ model: o.model, liczbaCwiczen: lista.length, tokenyWejsciaNaProbe: wejscie, dzis, tryb: o.api });
-  log(`rodzina ${o.rodzina}: ${lista.length} ćwiczeń; API ${o.api}; model ${o.model}; szacunek (założenia, nie pomiar): ${sz.koszt_usd.toFixed(2)} USD; limit ${o.limitUsd} USD${kontrakt ? '' : ' [brak kontraktu v2-validate.mjs — wejście z założenia]'}`);
+  log(`rodzina ${o.rodzina}: ${lista.length} ćwiczeń; API ${o.api}${o.api === 'vertex' ? ` (${o.lokalizacja})` : ''}; model ${o.model}; szacunek (założenia, nie pomiar): ${sz.koszt_usd.toFixed(2)} USD; limit ${o.limitUsd} USD${kontrakt ? '' : ' [brak kontraktu v2-validate.mjs — wejście z założenia]'}`);
   zapisz('szacunek.json', JSON.stringify({ ...sz, kontrakt: !!kontrakt, limit_usd: o.limitUsd }, null, 1) + '\n');
   if (o.szacuj) return 0;
   if (!kontrakt) { log('brak scripts/figures/v2-validate.mjs (gałąź grafiki-cwiczen) — przebieg płatny niemożliwy'); return 4; }
   if (!klucz) { log('brak GEMINI_API_KEY — przebieg płatny niemożliwy (użyj --szacuj)'); return 2; }
   if (sz.koszt_usd > o.limitUsd) log(`UWAGA: szacunek ${sz.koszt_usd.toFixed(2)} USD przekracza limit ${o.limitUsd} USD — przebieg zatrzyma się na limicie (część ćwiczeń zostanie pominięta)`);
-  const api = klient(fetchFn, klucz, { tryb: o.api, ...(spij ? { spij } : {}) }); const stan = { wydano: 0, netto: 0 }; let wyniki = []; let polaczenie = null; let krytyczny = null;
+  const api = klient(fetchFn, klucz, { tryb: o.api, lokalizacja: o.lokalizacja, ...(spij ? { spij } : {}) }); const stan = { wydano: 0, netto: 0 }; let wyniki = []; let polaczenie = null; let krytyczny = null;
   const pominiete = (cw, powod) => ({ cwiczenie: cw, proby: 0, ok: false, pierwsza_proba_ok: false, poprawki: 0, koszt_usd: 0, czas_ms: 0, bledy_historia: [], poza: null, przerwane: powod });
   if (o.api === 'vertex') {
     try {
@@ -293,7 +342,7 @@ export async function main(argv, env, { fetchFn = fetch, log: logSurowy = consol
     if (w.przerwane === 'limit') { for (const reszta of lista.slice(wyniki.length)) wyniki.push(pominiete(reszta, 'limit')); break; }
     if (w.krytyczny) { krytyczny = w.krytyczny; log(`STOP bez dalszych prób: ${w.krytyczny}`); for (const reszta of lista.slice(wyniki.length)) wyniki.push(pominiete(reszta, 'api')); break; }
   }
-  const rap = { rodzina: o.rodzina, api: o.api, model: o.model, limit_usd: o.limitUsd, polaczenie, wyniki };
+  const rap = { rodzina: o.rodzina, api: o.api, lokalizacja: o.lokalizacja, model: o.model, limit_usd: o.limitUsd, polaczenie, wyniki };
   const s = podsumowanie(rap); s.koszt_usd = Number(stan.wydano.toFixed(4)); /* łącznie z próbą połączenia */
   zapisz('poze.json', JSON.stringify({ rodzina: o.rodzina, api: o.api, model: o.model, poze: Object.fromEntries(wyniki.filter((x) => x.ok).map((x) => [x.cwiczenie, x.poza])) }, null, 1) + '\n');
   zapisz('raport.json', JSON.stringify(rap, null, 1) + '\n');

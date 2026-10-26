@@ -40,8 +40,8 @@ function runMain(root: string, args0: string[], env: Record<string, string>, odp
     const calls = []; const q = ${JSON.stringify(odp)}; const log = [];
     const usage = { total_input_tokens: 2000, total_output_tokens: 1000, total_thought_tokens: 1000, total_tokens: 4000 };
     const usageV = { promptTokenCount: 2000, candidatesTokenCount: 1000, thoughtsTokenCount: 1000, totalTokenCount: 4000 };
-    const err = { http401: 401, http402: 402, http403: 403, http429: 429, blad400: 400, http503: 503 }; const msg = { http401: 'API key not valid. tajny-klucz-z-echa', blad400: 'zły schemat', http429: 'za dużo' };
-    const fetchFn = async (url, init) => { calls.push({ url, headers: init.headers, body: JSON.parse(init.body) }); const x = q.shift();
+    const err = { http401: 401, http402: 402, http403: 403, http404: 404, http429: 429, blad400: 400, http503: 503 }; const msg = { http401: 'API key not valid. tajny-klucz-z-echa', blad400: 'zły schemat', http429: 'za dużo', http404: 'Publisher model projects/123456789012/locations/us-central1/publishers/google/models/gemini-4-argon was not found or your project does not have access to it' };
+    const fetchFn = async (url, init) => { calls.push({ url, headers: init.headers, body: init.body ? JSON.parse(init.body) : null }); const x = q.shift();
       if (typeof x === 'string' && err[x]) return { ok: false, status: err[x], json: async () => ({ error: { message: msg[x] ?? 'błąd ' + err[x] } }) };
       if (x === undefined) throw new Error('nieoczekiwane wywołanie sieci');
       const tekst = JSON.stringify(x === 'probe' ? { ok: true } : { kat: x });
@@ -175,7 +175,7 @@ describe('gemini-pozy: tryb vertex (Agent Platform z kluczem API, docs/52 pkt 6;
     expect(run(`console.log(JSON.stringify([m.API_TRYBY, m.DOMYSLNY_API, m.parsujArgumenty([]).api, m.parsujArgumenty(['--api','gemini']).api, m.parsujArgumenty(['--api','vertex']).api]))`)).toEqual([['vertex', 'gemini'], 'vertex', 'vertex', 'gemini', 'vertex']);
     for (const bad of ["['--api','azure']", "['--api']", "['--api','']"]) expect(() => run(`m.parsujArgumenty(${bad})`)).toThrow();
     expect(run(`console.log(JSON.stringify(m.endpointVertex('gemini-4-argon')))`)).toBe('https://aiplatform.googleapis.com/v1/publishers/google/models/gemini-4-argon:generateContent');
-    const src = fs.readFileSync(SCRIPT, 'utf8'); expect(src).not.toMatch(/projects\/|locations\/|PROJECT_ID|[?&]key=/); /* ani projekt, ani klucz w adresie */
+    expect(run(`console.log(JSON.stringify([m.ENDPOINT_VERTEX, m.endpointVertex('x','us'), m.endpointVertex('x','eu')]))`).join(' ')).not.toMatch(/projects|locations|[?&]key=/); /* ani projekt, ani klucz w adresie */
   });
   test('cennik Vertex (strona cennika Agent Platform, region global, standard): Argon liczony od ceny listowej 4/20 (do 30.11 promocja = 50% zwrotu w kredytach), 3.1 Pro 2/12, 3.8 Flash 0,75/3,75 do końca 2026', () => {
     expect(run(`console.log(JSON.stringify([m.cena('gemini-4-argon','2026-11-30','vertex'), m.cena('gemini-4-argon','2026-12-01','vertex'), m.cena('gemini-3.1-pro-preview','2026-11-01','vertex'), m.cena('gemini-3.8-flash','2026-12-31','vertex'), m.cena('gemini-3.8-flash','2027-01-01','vertex')]))`))
@@ -253,6 +253,52 @@ describe('gemini-pozy: tryb vertex (Agent Platform z kluczem API, docs/52 pkt 6;
   });
 });
 
+describe('gemini-pozy: prywatność odpowiedzi błędów, 404 jako twardy stop, lokalizacja, lista modeli (lekcja L-035, 26.10.2026)', () => {
+  test('maskuj: ścieżka zasobu z numerem projektu, „project <numer>” i długie ciągi cyfr zamaskowane; zwykłe słowa i liczby tokenów bez zmian', () => {
+    const w = run(`console.log(JSON.stringify(m.maskuj('Publisher model \`projects/123456789012/locations/us-central1/publishers/google/models/gemini-4-argon\` not found; project 987654 x; projects/moj-projekt-1/y; konto 12345678901234; rola projektu albo model; tokeny 2000, koszt 0.0123')))`);
+    expect(w).not.toMatch(/123456789012|987654|moj-projekt-1|12345678901234/);
+    expect(w).toContain('projects/***/locations/us-central1/publishers/google/models/gemini-4-argon'); expect(w).toContain('rola projektu albo model'); expect(w).toContain('tokeny 2000, koszt 0.0123');
+  });
+  test('404 z numerem projektu w treści: po PIERWSZYM ćwiczeniu stop całego przebiegu (jedno wywołanie), reszta „api”, kod 5; numer projektu nigdzie (log, raport, podsumowanie, koszt, wszystkie pliki)', () => {
+    const fx = fixture(); const r = runMain(fx, ['--api', 'vertex', '--rodzina', 'pull_up'], { GEMINI_API_KEY: 'k' }, ['probe', 'http404', 50, 50]);
+    expect(r.code).toBe(5); expect(r.calls).toHaveLength(2); /* próba połączenia + pierwsze ćwiczenie */
+    const rap = JSON.parse(fs.readFileSync(path.join(fx, 'wyjscie/raport.json'), 'utf8')); expect(rap.wyniki.map((x: any) => x.przerwane)).toEqual(['api', 'api', 'api']);
+    expect(r.log.join('\n')).toMatch(/404/); expect(r.log.join('\n')).toMatch(/--lokalizacja|lista_modeli/);
+    for (const f of r.files) expect(fs.readFileSync(path.join(fx, 'wyjscie', f), 'utf8')).not.toMatch(/123456789012/); expect(r.log.join('\n')).not.toMatch(/123456789012/);
+    const fy = fixture(); const r2 = runMain(fy, ['--api', 'vertex', '--rodzina', 'pull_up'], { GEMINI_API_KEY: 'k' }, ['http404', 50]);
+    expect(r2.code).toBe(5); expect(r2.calls).toHaveLength(1); expect(r2.log.join('\n')).not.toMatch(/123456789012/);
+  });
+  test('--lokalizacja: global (domyślnie), us, eu wybierają host bez projektu w adresie; inne odrzucone; wywołanie z lokalizacją us trafia na host us', () => {
+    expect(run(`console.log(JSON.stringify([m.LOKALIZACJE, m.DOMYSLNA_LOKALIZACJA, m.parsujArgumenty([]).lokalizacja, m.hostVertex('global'), m.hostVertex('us'), m.hostVertex('eu'), m.endpointVertex('gemini-4-argon','eu')]))`))
+      .toEqual([['global', 'us', 'eu'], 'global', 'global', 'aiplatform.googleapis.com', 'us-aiplatform.googleapis.com', 'eu-aiplatform.googleapis.com', 'https://eu-aiplatform.googleapis.com/v1/publishers/google/models/gemini-4-argon:generateContent']);
+    for (const bad of ["['--lokalizacja','us-central1']", "['--lokalizacja']"]) expect(() => run(`m.parsujArgumenty(${bad})`)).toThrow();
+    const fx = fixture(); const r = runMain(fx, ['--api', 'vertex', '--lokalizacja', 'us', '--rodzina', 'pulldown'], { GEMINI_API_KEY: 'k' }, ['probe', 40]);
+    expect(r.calls[0].url).toBe('https://us-aiplatform.googleapis.com/v1/publishers/google/models/gemini-4-argon:generateContent'); expect(JSON.parse(fs.readFileSync(path.join(fx, 'wyjscie/raport.json'), 'utf8')).lokalizacja).toBe('us');
+  });
+  test('lista modeli: GET listy (strony) i GET każdego z naszych modeli, bez kosztu; modele.json bez klucza i projektu; 403 listy kończy z kodem 5; bez klucza kod 2', () => {
+    const kod = (extra: string) => `const calls = []; const stron = { 1: { publisherModels: [{ name: 'publishers/google/models/gemini-4-argon' }, { name: 'publishers/google/models/gemini-2.5-flash' }], nextPageToken: 'T2' }, 2: { publisherModels: [{ name: 'publishers/google/models/gemini-3.8-flash' }] } };
+      const fetchFn = async (url, init) => { calls.push({ url, metoda: init.method, klucz: init.headers['x-goog-api-key'], body: init.body ?? null }); ${extra} };`;
+    const ok = run(kod(`if (url.includes('/v1beta1/')) return { ok: true, status: 200, json: async () => (url.includes('pageToken=T2') ? stron[2] : stron[1]) };
+        return url.endsWith('gemini-3.1-pro-preview') ? { ok: false, status: 404, json: async () => ({ error: { message: 'Publisher model \`projects/123456789012/x\` not found' } }) } : { ok: true, status: 200, json: async () => ({ name: 'x' }) };`)
+      + `const log = []; const w = await m.listaModeli({ fetchFn, klucz: 'k-testowy', lokalizacja: 'us', log: (s) => log.push(s) }); console.log(JSON.stringify({ w, calls, log }));`);
+    expect(ok.w.lista).toEqual(['gemini-2.5-flash', 'gemini-3.8-flash', 'gemini-4-argon']);
+    expect(ok.calls.every((c: any) => c.metoda === 'GET' && c.klucz === 'k-testowy' && c.body === null && c.url.startsWith('https://us-aiplatform.googleapis.com/'))).toBe(true);
+    expect(ok.calls.map((c: any) => c.url)).toEqual([
+      'https://us-aiplatform.googleapis.com/v1beta1/publishers/google/models?pageSize=100', 'https://us-aiplatform.googleapis.com/v1beta1/publishers/google/models?pageSize=100&pageToken=T2',
+      'https://us-aiplatform.googleapis.com/v1/publishers/google/models/gemini-4-argon', 'https://us-aiplatform.googleapis.com/v1/publishers/google/models/gemini-3.1-pro-preview', 'https://us-aiplatform.googleapis.com/v1/publishers/google/models/gemini-3.8-flash']);
+    expect(ok.w.sprawdzone.map((x: any) => [x.model, x.status, x.na_liscie])).toEqual([['gemini-4-argon', 200, true], ['gemini-3.1-pro-preview', 404, false], ['gemini-3.8-flash', 200, true]]);
+    expect(JSON.stringify(ok)).not.toMatch(/123456789012/);
+    const zakaz = run(kod(`return { ok: false, status: 403, json: async () => ({ error: { message: 'API restrictions' } }) };`) + `const log = []; const w = await m.listaModeli({ fetchFn, klucz: 'k', log: (s) => log.push(s) }); console.log(JSON.stringify({ w, n: calls.length }));`);
+    expect(zakaz.w.krytyczny).toBe(403); expect(zakaz.n).toBe(1);
+    const fx = fixture(); const out = path.join(fx, 'wyj');
+    const wywolaj = (env: string) => run(`const log = []; const c = await m.main(['--lista-modeli', '--wyjscie', ${JSON.stringify(out)}], ${env}, { fetchFn: async (u) => ({ ok: true, status: 200, json: async () => (u.includes('v1beta1') ? { publisherModels: [{ name: 'publishers/google/models/gemini-4-argon' }] } : {}) }), log: (s) => log.push(s), root: ${JSON.stringify(fx)} }); console.log(JSON.stringify({ c, log }));`);
+    expect(wywolaj("{}").c).toBe(2);
+    const w2 = wywolaj("{ GEMINI_API_KEY: 'tajny-klucz-listy' }"); expect(w2.c).toBe(0);
+    const modele = fs.readFileSync(path.join(out, 'modele.json'), 'utf8'); expect(modele).toContain('gemini-4-argon'); expect(modele).not.toContain('tajny-klucz-listy'); expect(JSON.stringify(w2.log)).not.toContain('tajny-klucz-listy');
+    expect(fs.readdirSync(out)).toEqual(['modele.json']); /* żadnych kosztów, żadnych póz */
+  });
+});
+
 describe('workflow gemini-figury.yml (strażnik)', () => {
   test('tylko workflow_dispatch; odczyt repozytorium; model z listy dozwolonych (zgodnej ze skryptem), domyślnie flagowy; tylko_szacuj domyślnie true', () => {
     expect(wf).toMatch(/^on:\n  workflow_dispatch:/m); expect(wf).not.toMatch(/^\s+(push|pull_request|schedule|workflow_run|repository_dispatch):/m);
@@ -260,14 +306,16 @@ describe('workflow gemini-figury.yml (strażnik)', () => {
     expect(wf).toMatch(/model:[\s\S]*?default: gemini-4-argon[\s\S]*?options: \[gemini-4-argon, gemini-3\.1-pro-preview, gemini-3\.8-flash\]/);
     expect(run('console.log(JSON.stringify(m.MODELE))')).toEqual(['gemini-4-argon', 'gemini-3.1-pro-preview', 'gemini-3.8-flash']);
     expect(wf).toMatch(/api:[\s\S]*?type: choice[\s\S]*?default: vertex[\s\S]*?options: \[vertex, gemini\]/); expect(run('console.log(JSON.stringify([m.API_TRYBY, m.DOMYSLNY_API]))')).toEqual([['vertex', 'gemini'], 'vertex']);
-    expect(wf).toMatch(/WEJ_API: \$\{\{ inputs\.api \}\}/); expect(wf.match(/--api "\$WEJ_API"/g)).toHaveLength(2); /* szacunek i generowanie */
+    expect(wf).toMatch(/lokalizacja:[\s\S]*?type: choice[\s\S]*?default: global[\s\S]*?options: \[global, us, eu\]/); expect(run('console.log(JSON.stringify(m.LOKALIZACJE))')).toEqual(['global', 'us', 'eu']);
+    expect(wf).toMatch(/lista_modeli:[\s\S]*?type: boolean[\s\S]*?default: false/); expect(wf).toMatch(/WEJ_LOKALIZACJA: \$\{\{ inputs\.lokalizacja \}\}/); expect(wf).toMatch(/--lista-modeli --api "\$WEJ_API" --lokalizacja "\$WEJ_LOKALIZACJA"/);
+    expect(wf).toMatch(/WEJ_API: \$\{\{ inputs\.api \}\}/); expect(wf.match(/--api "\$WEJ_API"/g)).toHaveLength(3); /* szacunek, lista modeli i generowanie */
     expect(wf).toMatch(/tylko_szacuj:[\s\S]*?default: true/); expect(wf).toMatch(/rodzina:[\s\S]*?default: pull_up/);
     expect(wf).toMatch(/concurrency:\n  group: gemini-figury\n  cancel-in-progress: false/);
   });
   test('sekret GEMINI_API_KEY w jednym kroku, jako zmienna środowiskowa; nigdy w run/echo; bez innych sekretów; wejścia tylko przez env', () => {
     expect(wf.match(/secrets\.[A-Z_0-9]+/g)).toEqual(['secrets.GEMINI_API_KEY']);
     const z = wf.split(/\n      - /).filter(s => /secrets\.GEMINI_API_KEY/.test(s));
-    expect(z).toHaveLength(1); expect(z[0]).toMatch(/env:\n\s+GEMINI_API_KEY: \$\{\{ secrets\.GEMINI_API_KEY \}\}/); expect(z[0]).toMatch(/if: \$\{\{ !inputs\.tylko_szacuj \}\}/);
+    expect(z).toHaveLength(1); expect(z[0]).toMatch(/env:\n\s+GEMINI_API_KEY: \$\{\{ secrets\.GEMINI_API_KEY \}\}/); expect(z[0]).toMatch(/if: \$\{\{ !inputs\.tylko_szacuj \|\| inputs\.lista_modeli \}\}/);
     expect(wf).not.toMatch(/echo[^\n]*GEMINI_API_KEY/);
     for (const blok of wf.split(/\n        run: \|\n/).slice(1)) expect(blok.split('\n      - ')[0]).not.toContain('${{');
   });

@@ -68,3 +68,13 @@ Powód: Gemini API (AI Studio) odrzuciło wywołanie z kodem 429 „Free Tier, l
 2. Zwykły klucz wymaga włączonego „Agent Platform API” w projekcie (a dokumentacja wspomina o roli `roles/aiplatform.user` dla projektu) — czy i jak rola dotyczy samego klucza, nie jest opisane.
 3. Czy `responseJsonSchema` przyjmuje nasze schematy (dokumentacja oznacza je jako przestarzałe na rzecz `responseFormat[]`, ale przewodnik Argon nadal używa starego pola); przy 400 komunikat API trafi do logu.
 4. Czy zwrot promocji 50% obejmuje kredyty próbne; czy limit dzienny/przydział dla Argon (strona modelu go nie podaje) nie zatrzyma pilotażu kodem 429.
+
+### 6a. Pierwszy przebieg vertex (26.10.2026): 404 „model nie znaleziony lub brak dostępu” — poprawki
+
+Klucz został przyjęty (brak 401/403/429), ale API odpowiedziało 404 dla `gemini-4-argon`; w treści błędu zasób był szukany w `us-central1` (bez projektu w adresie host `aiplatform.googleapis.com` wybrał region według klucza, nie „global”). Karta modelu (…/models/gemini/4-argon) podaje dla Standard PayGo tylko `global` oraz multi-regiony `us` i `eu` — **`us-central1` nie jest obsługiwane**. Wnioski i zmiany:
+- Nowy parametr `--lokalizacja global|us|eu` (wejście workflowu `lokalizacja`): `global` = `aiplatform.googleapis.com`, `us` / `eu` = `us-aiplatform.googleapis.com` / `eu-aiplatform.googleapis.com` (multi-regionalne hosty; **nazwa hosta wnioskowana z konwencji nazw, nie z przeczytanej strony — do potwierdzenia przebiegiem `lista_modeli`**). Identyfikator projektu nadal nie jest używany.
+- Nowy tryb bez kosztu `--lista-modeli` (wejście `lista_modeli`, artefakt `modele.json`): `GET /v1beta1/publishers/google/models` (lista Model Garden, strona …/reference/rest/v1beta1/publishers.models/list) oraz `GET /v1/publishers/google/models/<model>` dla każdego z naszych modeli (…/reference/rest/v1/publishers.models/get). Czy klucz API może wołać te metody, dokumentacja nie mówi — wynik 401/403/404 też jest informacją.
+- 404 jest twardym stopem (kod 5) po pierwszym błędzie, jak 401/402/403/429.
+- Prywatność: treść błędów API zawiera ścieżkę zasobu z numerem projektu, więc `maskuj()` zastępuje `projects/<id>` i długie ciągi cyfr (docs/40, L-035).
+- Jeśli `lista_modeli` pokaże, że `gemini-4-argon` jest niedostępny dla klucza (np. klucz ograniczony do trybu express, w którym wg listy modeli Argon nie ma), zostają `gemini-3.1-pro-preview` (jest na liście express) i `gemini-3.8-flash`.
+
