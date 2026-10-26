@@ -21,6 +21,12 @@ describe('docs/48: notatki dla recenzenta', () => {
     expect(read('lib/seed.ts')).toContain(`> MIN_LIVE_MINUTES_FOR_DAY (${MIN_LIVE_MINUTES_FOR_DAY} min)`);
   });
 });
+describe('BRD: dzień treningowy', () => {
+  test(`docs/brd/wymagania.md podaje próg ${MIN_LIVE_MINUTES_FOR_DAY} minut z lib/access.ts, nie 20`, () => {
+    const brd = read('docs/brd/wymagania.md');
+    expect(brd).toContain(`krótszy niż ${MIN_LIVE_MINUTES_FOR_DAY} minut`); expect(brd).toContain(`dłuższy niż ${MIN_LIVE_MINUTES_FOR_DAY} minut`); expect(brd).not.toMatch(/(?:krótszy|dłuższy) niż 20 minut/);
+  });
+});
 describe('docs/48 pkt 6: propozycje opisu sklepu', () => {
   const pkt6 = sekcja('**Propozycja zmian (do decyzji D4', '## 7. Otwarte ryzyka');
   test('bez odwołań do źródeł, ekranu „Źródła wiedzy” i rysunków dla całej biblioteki', () => {
