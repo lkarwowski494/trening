@@ -4,7 +4,7 @@
  * sprzętem (macierz: rodzaj × wariant), komunikaty dla generatora. Rodzaje (docs/20): logika, ekran-rysunek, scenariusze, macierz, niezmienniki, dane, motywy.
  */
 import {
-  GEAR, GEAR_KINDS, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
+  GEAR, GEAR_KINDS, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, CABLE_ATTACH, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
   CONTRACT, EQUIP, poseSchema, describeContract, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
   type Gear, type KeyFrame, type PoseData, type Prop, type V3, type RomData, type Frame, type View,
 } from '@/lib/figures/v2';
@@ -265,6 +265,12 @@ describe('kolidery i kontrola chwytu', () => {
     const sol = equipColliders([{ ...base[0], solid: true } as Prop, { ...base[1], solid: true } as Prop]); expect(sol.map(c => c.id)).toEqual(['tower', 'cable']);
     const cab = sol[1] as Extract<typeof sol[number], { k: 'capsule' }>; expect(Math.hypot(...cab.b.map((x, i) => x - [20, 120, 0][i]))).toBeCloseTo(EQUIP.cableEnd, 6); expect(cab.r).toBe(EQUIP.cableR);
     const twr = sol[0]; expect(twr.k === 'prism' && [twr.z0, twr.z1]).toEqual([-EQUIP.towerW / 2, EQUIP.towerW / 2]);
+  });
+  test.each([...CABLE_ATTACH])('wyciąg: osprzęt „%s” — rekwizyt linki ma właściwy typ osprzętu i rysunek (macierz po CABLE_ATTACH)', chwyt => {
+    const A = { R: [5, 20, 9] as V3, L: [6, 22, -9] as V3 }; const G2 = { R: [10, 80, 20] as V3, L: [14, 90, -20] as V3 };
+    const cab = propsFrom([{ rodzaj: 'wyciag', y: 20, chwyt, trzyma: 'R' }], G2, A).find(p => p.k === 'cable') as Extract<Prop, { k: 'cable' }>;
+    expect(cab.attach).toBe({ uchwyt: 'handle', lina: 'rope', drazek: 'bar', kostka: 'strap' }[chwyt]); expect(cab.to).toEqual(chwyt === 'kostka' ? A.R : G2.R);
+    const ids = propShapes([cab], 'side').map(x => x.id); expect(ids).toContain({ uchwyt: 'cableHandle', lina: 'cableRope', drazek: 'cableBar', kostka: 'cableStrap' }[chwyt]);
   });
   test('wyciąg: kolumna w ciele i linka przez tułów → „geometria” z nazwami (tower, cable); poprawna ustawiona z przodu osoby przechodzi', () => {
     expect(texts(PUSHDOWN({ rodzaj: 'wyciag', x: 0, y: 220 }))).toMatch(/torso × tower: przenikanie/);

@@ -13,7 +13,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | UI | 354 | 354 | 0 |
 | TEKST | 1116 | 1116 | 0 |
 | LOGIKA | 1048 | 1048 | 0 |
-| WYMIAR | 149 | 148 | 0 |
+| WYMIAR | 149 | 149 | 0 |
 
 ## EKRAN
 
@@ -2638,7 +2638,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | GEAR (14) | lib/figures/v2/gear.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts |
 | GEAR_EXTRA_FIELDS (9) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | BELL_MODES (3) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
-| CABLE_ATTACH (4) | lib/figures/v2/gear.ts | WYJĄTEK: BRAK |
+| CABLE_ATTACH (4) | lib/figures/v2/gear.ts | tests/figures-v2-gear.test.ts |
 | GuideId: thighParallel \| plumbMidfoot \| kneeToe \| backLine \| elbows45 | lib/figures/v2/guides.ts | tests/figures-v2-guides.test.tsx |
 | MuscleId: chest \| triceps \| front_delt \| biceps \| abs \| lower_back \| hamstrings \| glutes \| quads \| upper_back \| forearms \| lats \| adductors \| rear_delt \| obliques \| side_delt \| calves \| abductors \| neck | lib/figures/v2/muscles.ts | tests/audit-0.10-gen.test.ts, tests/audit-k1-muscleload.test.tsx, tests/catalog-v2.test.ts +1 |
 | MUSCLES (19) | lib/figures/v2/muscles.ts | tests/figures-v2-engine.test.ts, tests/guard.test.ts, tests/logic.test.ts +8 |
