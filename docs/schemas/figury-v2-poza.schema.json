@@ -34,21 +34,22 @@
        "kettlebell",
        "talerz",
        "pilka_lekarska",
-       "smith"
+       "smith",
+       "landmine"
       ],
-      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha). Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem."
+      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska, smith (prowadnica suwnicy Smitha), landmine (gryf z osią obrotu przy podłodze). Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem."
      },
      "x": {
       "type": "number",
       "minimum": -300,
       "maximum": 300,
-      "description": "Położenie w przód (cm): środek sztangi albo słupka."
+      "description": "Położenie w przód (cm): środek sztangi, słupek, prowadnica Smitha albo oś obrotu landmine."
      },
      "y": {
       "type": "number",
       "minimum": 0,
       "maximum": 300,
-      "description": "Wysokość środka sztangi nad podłogą (cm)."
+      "description": "Wysokość środka sztangi nad podłogą (cm); landmine: wysokość osi obrotu (domyślnie 5)."
      },
      "h": {
       "type": "number",
@@ -95,7 +96,7 @@
       "type": "number",
       "minimum": 10,
       "maximum": 300,
-      "description": "Długość gryfu w cm (domyślnie 220)."
+      "description": "Długość gryfu w cm (domyślnie 220; landmine: 200)."
      },
      "promien": {
       "type": "number",
@@ -115,6 +116,12 @@
        "tyl"
       ],
       "description": "Tylko kettlebell: kierunek dzwonu względem rączki: dol (domyślnie), wzdluz (w przedłużeniu przedramienia), tyl (za rączką, pozycja rack i nad głową)."
+     },
+     "z": {
+      "type": "number",
+      "minimum": -300,
+      "maximum": 300,
+      "description": "Tylko landmine: położenie osi obrotu w z (cm; domyślnie 0)."
      },
      "hak": {
       "type": "number",
@@ -141,7 +148,7 @@
    },
    "minItems": 1,
    "maxItems": 8,
-   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy albo stojak (x, h, hak); podloga — podłoga (x0, x1); skrzynia — skrzynia, stopień albo ławka płaska (x0, x1, top); hantel — hantel trzymany w dłoni (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie); smith — prowadnica suwnicy Smitha (x, h); sztanga o podazaZaChwytem: true porusza się po niej tylko w pionie."
+   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy; gryf łamany (dlugosc 120) i gruby rysujemy jak sztangę (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy albo stojak (x, h, hak); podloga — podłoga (x0, x1); skrzynia — skrzynia, stopień albo ławka płaska (x0, x1, top); hantel — hantel trzymany w dłoni (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie); smith — prowadnica suwnicy Smitha (x, h); sztanga o podazaZaChwytem: true porusza się po niej tylko w pionie; landmine — gryf landmine: oś obrotu przy podłodze (x, y, z), długość gryfu (dlugosc), dłonie na końcu gryfu (trzyma)."
   },
   "klatki": {
    "type": "array",

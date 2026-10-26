@@ -37,7 +37,7 @@ export type Prop =
   | { k: 'chain'; from: V3; to: V3 }
   | { k: 'floor'; x0: number; x1: number }
   | { k: 'mat'; x0: number; x1: number; h: number }
-  | { k: 'pivot'; from: V3; to: V3 };                                                          /* gryf landmine: z podłogi do dłoni */
+  | { k: 'pivot'; from: V3; to: V3; len?: number };                                                /* gryf landmine: z osi obrotu (przy podłodze) do dłoni; len = długość gryfu (sztywny) */
 
 /** Kolider do testów: kapsuła (ciało, gryf) albo graniastosłup (ławka, skrzynia, ściana: wielokąt w xy wyciągnięty po z). */
 export type Collider =

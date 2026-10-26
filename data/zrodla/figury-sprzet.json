@@ -13,6 +13,8 @@
   "kbBallR": { "cm": 9.5, "status": "konwencja rysunku", "zgodnosc": "dzwon kettlebell ok. 18–20 cm średnicy (ok. 16 kg)", "uzycie": "kettlebell trzymany" },
   "kbHandleR": { "cm": 6, "status": "konwencja rysunku", "zgodnosc": "rączka kettlebell ok. 12 cm wewnętrznej średnicy", "uzycie": "kettlebell trzymany" },
   "medBallR": { "cm": 11, "status": "konwencja rysunku", "zgodnosc": "piłka lekarska ok. 4 kg ma ok. 22–24 cm średnicy (rozmiary różnych piłek: ok. 20–36 cm)", "uzycie": "piłka lekarska trzymana (domyślny promień)" },
+  "landmineLen": { "cm": 200, "status": "konwencja rysunku", "zgodnosc": "długość gryfu przy osi landmine ok. 2,0–2,2 m", "uzycie": "landmine: sztywny gryf od osi obrotu do dłoni" },
+  "landmineR": { "cm": 1.8, "status": "konwencja rysunku", "zgodnosc": "promień gryfu w kolizjach (z tuleją)", "uzycie": "landmine: kapsuła gryfu" },
   "benchW": { "cm": 28, "status": "konwencja rysunku", "zgodnosc": "szerokość ławki ok. 28–32 cm", "uzycie": "ławka" },
   "benchPad": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "grubość wyściełania ławki", "uzycie": "ławka" },
   "benchLegW": { "cm": 3.2, "status": "konwencja rysunku", "zgodnosc": "grubość nóg ławki", "uzycie": "ławka" },

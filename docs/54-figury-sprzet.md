@@ -12,7 +12,7 @@ Liczby poniżej: ćwiczenia z 622, które wymagają danego rodzaju (w nawiasie: 
 | # | Rodzaj sprzętu (prymityw) | Ćwiczeń | Główne rodziny | Koszt | Stan |
 |---|---|---|---|---|---|
 | 1 | hantel / kettlebell / talerz / piłka lekarska w dłoni | 142 (123) | delt_raise 19, kb_ballistic 17, curl 16, sled_throw 12 | niski | **gotowe (26.10.2026)** |
-| 2 | stojak, Smith, landmine, poręcze, gryf łamany/trap/T, ściana, mata, łańcuchy | 58 (50) | lunge 8, triceps 5, overhead_press 5, row 4 | niski (rekwizyty są w silniku) | w toku: stojak, gryf łamany/gruby i Smith gotowe (26.10.2026) |
+| 2 | stojak, Smith, landmine, poręcze, gryf łamany/trap/T, ściana, mata, łańcuchy | 58 (50) | lunge 8, triceps 5, overhead_press 5, row 4 | niski (rekwizyty są w silniku) | w toku: stojak, gryf łamany/gruby, Smith i landmine gotowe (26.10.2026) |
 | 3 | wyciąg (słup, bloczek, uchwyt / lina / opaska na kostkę) | 76 (70) | curl 10, triceps 9, cable_row 7, pulldown 7 | średni | do zrobienia |
 | 4 | ławka regulowana (skos +/−, wałki na nogi, modlitewnik) | 35 (9) | curl 12, delt_raise 6, core_floor 5 | niski–średni | do zrobienia |
 | 5 | guma / taśma oporowa | 17 (16) | hip_abd_add 4, rotator_cuff 3 | niski | do zrobienia |
@@ -46,6 +46,7 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 |---|---|---|---|
 | `slupek` (stojak) | `x`, `h`, `hak` (wysokość haka) | rack, bench.uprights, rack.safeties | słupki w z = ±64 poza zasięgiem ciała; położenie względem sztangi ocenia recenzent ruchu |
 | `smith` | `x`, `h`; sztanga (podazaZaChwytem) na osi prowadnicy | smith | sprawdzenie: oś sztangi w x prowadnicy ± 1,5 cm w każdej klatce (kod `geometria`); wymaga wpisu sztanga; prowadnica bez pochylenia (uproszczenie) |
+| `landmine` | `x`, `y` (oś obrotu, domyślnie 5), `z`, `dlugosc` (200), `trzyma` | landmine | sztywny gryf: dłonie na sferze o promieniu `dlugosc` wokół osi obrotu ± 3 cm (kod `geometria`), klatki co ≤ 48 cm drogi dłoni; bez osobnej sztangi |
 | `sztanga` (gryf łamany, gruby) | jak dotąd; gryf łamany: `dlugosc` 120 | ez_bar, axle_bar (oraz pullup.bar, rings, barbell) | gryf łamany i gruby rysowane jak sztanga — uproszczenie |
 
 ## 3. Wymiary sprzętu — konwencja rysunku

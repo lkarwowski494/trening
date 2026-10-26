@@ -10,11 +10,11 @@ import { EQUIP } from './draw';
 import { TOL } from './colliders';
 import type { Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine'] as const;
 export type GearName = typeof GEAR[number];
-export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number };
+export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
-export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak'] as const;
+export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z'] as const;
 export const BELL_MODES = ['dol', 'wzdluz', 'tyl'] as const;
 
 export type GearGrips = Record<Side, V3>;
@@ -58,6 +58,17 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     ref: () => [
       `smith: suwnica Smitha = pionowa prowadnica w x (rysunek: z boku linia, z przodu dwie w z = ±${f1(EQUIP.railSpan)} cm) o wysokości h (typowo 190–210 cm). Sztanga jest nadal wpisem sztanga (talerze: true, podazaZaChwytem: true), ale w KAŻDEJ klatce jej oś leży w x prowadnicy (± ${f1(TOL.rail)} cm): chwyt dłoni x = x prowadnicy, sztanga porusza się tylko w pionie (y); ruch do przodu/tyłu wykonuje ciało względem sztangi, nie sztanga. Prowadnica nie ma pochylenia (uproszczenie).`,
     ],
+  },
+  landmine: {
+    caps: ['landmine'], fields: ['z'], opis: 'gryf landmine: oś obrotu przy podłodze (x, y, z), długość gryfu (dlugosc), dłonie na końcu gryfu (trzyma)',
+    props: (g, grips) => [{ k: 'pivot', from: [g.x ?? 0, g.y ?? 5, g.z ?? 0], to: avg(sidesOf(g).map(s => grips[s])), len: g.dlugosc ?? EQUIP.landmineLen }],
+    check: g => [...bounds('dlugosc gryfu landmine', g.dlugosc, 100, 300), ...(g.y !== undefined && (g.y < 0 || g.y > 30) ? [`sprzęt: wysokość osi obrotu y = ${g.y} cm poza przedziałem 0–30 cm`] : [])],
+    ref: () => {
+      const L = EQUIP.landmineLen; const ex = (px: number, gx: number): string => `grip.x = ${gx} → y ≈ ${f1(5 + Math.sqrt(L * L - (gx - px) ** 2))}`;
+      return [
+        `landmine: gryf przymocowany jednym końcem do osi obrotu przy podłodze P = [x, y, z] (y domyślnie 5 cm, z domyślnie 0), drugi koniec trzymasz w dłoniach. Gryf jest SZTYWNY o długości dlugosc (domyślnie ${L} cm): w KAŻDEJ klatce środek między dłońmi (trzyma "obie"; "R"/"L" = jedna dłoń) leży na sferze o promieniu dlugosc wokół P (± ${TOL.pivot} cm). W płaszczyźnie z = 0 dla P = [175, 5, 0] (oś obrotu przed osobą): ${ex(175, 20)}; ${ex(175, 35)}; ${ex(175, 50)} (wzór: y = P.y + sqrt(dlugosc² − (grip.x − P.x)²)). Ruch dłoni po łuku: klatki co najwyżej ${Math.floor(Math.sqrt(8 * L * TOL.pivot * 0.5))} cm drogi dłoni (interpolacja liniowa skraca łuk). Sztangi NIE dodawaj osobno — gryf landmine jest tym prętem; gryf nie przenika ciała (poza dłońmi).`,
+      ];
+    },
   },
   skrzynia: { caps: ['box', 'bench.flat'], opis: 'skrzynia, stopień albo ławka płaska (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
   hantel: {

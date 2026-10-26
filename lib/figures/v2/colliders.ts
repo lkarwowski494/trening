@@ -18,6 +18,8 @@ export const TOL = {
   reach: 0.5,
   /** Suwnica Smitha: odchylenie osi sztangi od prowadnicy w x (cm); sztanga porusza się tylko w pionie (uproszczenie: prowadnica bez pochylenia). */
   rail: 1.5,
+  /** Landmine: odchylenie długości gryfu (odległość osi obrotu od dłoni) od nominalnej (cm). */
+  pivot: 3,
 } as const;
 
 /** Kapsuły ciała jednej klatki (id: nazwa części + strona). */
@@ -58,6 +60,7 @@ export function equipColliders(props: Prop[]): Collider[] {
       case 'trapbar': for (const sg of [-1, 1]) c.push({ k: 'capsule', id: 'bar', a: [p.c[0] - 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], b: [p.c[0] + 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], r: 1.8 }); break;
       case 'dumbbell': c.push({ k: 'capsule', id: 'db' + p.side, a: p.c, b: p.c, r: p.r ?? EQUIP.dbHeadR }); break;
       case 'kettlebell': { const d = p.dir ?? [0, -1, 0]; const o = p.r === undefined ? 12 : p.r + 2.5; const q: V3 = [p.c[0] + d[0] * o, p.c[1] + d[1] * o, p.c[2] + d[2] * o]; c.push({ k: 'capsule', id: 'kb', a: q, b: q, r: p.r ?? EQUIP.kbBallR }); break; }
+      case 'pivot': c.push({ k: 'capsule', id: 'barPivot', a: p.from, b: p.to, r: EQUIP.landmineR }); break;
       case 'ball': c.push({ k: 'capsule', id: 'ball', a: p.c, b: p.c, r: p.r ?? EQUIP.medBallR }); break;
       case 'plate': c.push(...plateColliders(p)); break;
       case 'bench': { const bp = benchPolys(p); const w = (p.w ?? EQUIP.benchW) / 2; c.push(prism('benchSeat', bp.seat, -w, w), prism('benchBack', bp.back, -w, w)); break; }
@@ -132,6 +135,7 @@ export function checkFrame(f: Frame): Issue[] {
   const head = body.find(b => b.id === 'head'); const bodyOther = body.filter(b => /^(uarm|farm)/.test(b.id));
   if (head) for (const o of bodyOther) { const g = gap(head, o); if (g < -0.5) out.push({ code: 'self', detail: `głowa × ${o.id}: ${(-g).toFixed(2)} cm` }); }
   for (const r of f.props) if (r.k === 'rail') for (const b of f.props) if (b.k === 'barbell' && Math.abs(b.c[0] - r.x) > TOL.rail) out.push({ code: 'rail', detail: `sztanga × prowadnica: x sztangi ${b.c[0].toFixed(1)} cm, x prowadnicy ${r.x.toFixed(1)} cm (różnica ${Math.abs(b.c[0] - r.x).toFixed(1)} cm, dopuszczalne ${TOL.rail})` });
+  for (const p of f.props) if (p.k === 'pivot' && p.len !== undefined) { const d = dist(p.from, p.to); if (Math.abs(d - p.len) > TOL.pivot) out.push({ code: 'pivot', detail: `landmine: dłonie ${d.toFixed(1)} cm od osi obrotu, a gryf ma ${p.len} cm (dopuszczalne ± ${TOL.pivot})` }); }
   for (const h of holdChecks(f)) if (h.err > h.tol) out.push({ code: 'grip', detail: `${h.name}: dłoń ${h.err.toFixed(2)} cm od chwytu (dopuszczalne ${h.tol})`, ...(h.hint ? { hint: h.hint } : {}) });
   return out;
 }
