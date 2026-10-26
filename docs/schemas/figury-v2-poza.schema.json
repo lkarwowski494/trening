@@ -1,0 +1,560 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "Poza ćwiczenia — rodzina generic",
+ "description": "u = 0: pozycja wyjściowa, u = 1: pozycja skrajna.",
+ "type": "object",
+ "properties": {
+  "kontrakt": {
+   "type": "string",
+   "enum": [
+    "figury-v2/poza@1"
+   ]
+  },
+  "rodzina": {
+   "type": "string",
+   "maxLength": 40
+  },
+  "cwiczenie": {
+   "type": "string",
+   "maxLength": 120
+  },
+  "sprzet": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "rodzaj": {
+      "type": "string",
+      "enum": [
+       "sztanga",
+       "slupek",
+       "podloga",
+       "skrzynia"
+      ],
+      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia."
+     },
+     "x": {
+      "type": "number",
+      "minimum": -300,
+      "maximum": 300,
+      "description": "Położenie w przód (cm): środek sztangi albo słupka."
+     },
+     "y": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 300,
+      "description": "Wysokość środka sztangi nad podłogą (cm)."
+     },
+     "h": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 300,
+      "description": "Wysokość słupka (cm)."
+     },
+     "x0": {
+      "type": "number",
+      "minimum": -300,
+      "maximum": 300,
+      "description": "Początek podłogi albo skrzyni (cm)."
+     },
+     "x1": {
+      "type": "number",
+      "minimum": -300,
+      "maximum": 300,
+      "description": "Koniec podłogi albo skrzyni (cm)."
+     },
+     "top": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 300,
+      "description": "Wysokość górnej powierzchni skrzyni (cm)."
+     },
+     "talerze": {
+      "type": "boolean",
+      "description": "Czy sztanga ma talerze (domyślnie true; drążek: false)."
+     },
+     "podazaZaChwytem": {
+      "type": "boolean",
+      "description": "true: środek sztangi leży między dłońmi w każdej klatce (sztanga w ruchu); false: nieruchoma (x, y). Domyślnie false."
+     },
+     "dlugosc": {
+      "type": "number",
+      "minimum": 10,
+      "maximum": 300,
+      "description": "Długość gryfu w cm (domyślnie 220)."
+     }
+    },
+    "required": [
+     "rodzaj"
+    ],
+    "additionalProperties": false
+   },
+   "minItems": 1,
+   "maxItems": 8,
+   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga (x, y, talerze, podazaZaChwytem), słupek (x, h), podłoga, skrzynia (x0, x1, top)."
+  },
+  "klatki": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "u": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Pozycja ruchu: 0 = wyjściowa, 1 = skrajna; klatki rosnąco, pierwsza u = 0, ostatnia u = 1."
+     },
+     "miednica": {
+      "type": "array",
+      "items": {
+       "type": "number",
+       "minimum": -300,
+       "maximum": 300
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "Środek stawów biodrowych [x, y, z] w cm; z = 0 oznacza płaszczyznę symetrii osoby."
+     },
+     "pochylenieTulowia": {
+      "type": "number",
+      "minimum": -200,
+      "maximum": 200,
+      "description": "Pochylenie tułowia od pionu w płaszczyźnie strzałkowej, stopnie: 0 = pion, do przodu dodatnie, 90 = poziomo głową do przodu, 180 = do góry nogami."
+     },
+     "zgiecieKregoslupa": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "Zgięcie kręgosłupa, stopnie: 0 = neutralny, dodatnie = zaokrąglony grzbiet. Domyślnie 0."
+     },
+     "pochylenieGlowy": {
+      "type": "number",
+      "minimum": -200,
+      "maximum": 200,
+      "description": "Pochylenie głowy od pionu (bezwzględne), stopnie, do przodu dodatnie. Domyślnie 40% pochylenia tułowia."
+     },
+     "nogi": {
+      "type": "object",
+      "properties": {
+       "R": {
+        "type": "object",
+        "properties": {
+         "kostka": {
+          "type": "array",
+          "items": {
+           "type": "number",
+           "minimum": -300,
+           "maximum": 300
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Środek stawu skokowego [x, y, z] w cm (x = przód, y = góra, z = prawa strona osoby)."
+         },
+         "podbicie": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (0 = płasko, dodatnie = palce wyżej niż pięta). Domyślnie 0."
+         },
+         "rotacjaStopy": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "Rotacja zewnętrzna stopy, stopnie. Domyślnie 10."
+         },
+         "odchylenieKolana": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "Odchylenie kolana na zewnątrz w poziomie, stopnie. Domyślnie 2 × rotacja stopy."
+         }
+        },
+        "required": [
+         "kostka"
+        ],
+        "additionalProperties": false
+       },
+       "L": {
+        "type": "object",
+        "properties": {
+         "kostka": {
+          "type": "array",
+          "items": {
+           "type": "number",
+           "minimum": -300,
+           "maximum": 300
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Środek stawu skokowego [x, y, z] w cm (x = przód, y = góra, z = prawa strona osoby)."
+         },
+         "podbicie": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (0 = płasko, dodatnie = palce wyżej niż pięta). Domyślnie 0."
+         },
+         "rotacjaStopy": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "Rotacja zewnętrzna stopy, stopnie. Domyślnie 10."
+         },
+         "odchylenieKolana": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90,
+          "description": "Odchylenie kolana na zewnątrz w poziomie, stopnie. Domyślnie 2 × rotacja stopy."
+         }
+        },
+        "required": [
+         "kostka"
+        ],
+        "additionalProperties": false
+       }
+      },
+      "required": [
+       "R",
+       "L"
+      ],
+      "additionalProperties": false,
+      "description": "R = prawa strona osoby, L = lewa."
+     },
+     "rece": {
+      "type": "object",
+      "properties": {
+       "R": {
+        "type": "object",
+        "properties": {
+         "chwyt": {
+          "type": "array",
+          "items": {
+           "type": "number",
+           "minimum": -300,
+           "maximum": 300
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Środek chwytu dłoni [x, y, z] w cm (dla sztangi: na jej osi)."
+         },
+         "biegunLokcia": {
+          "type": "array",
+          "items": {
+           "type": "number",
+           "minimum": -10,
+           "maximum": 10
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Kierunek zgięcia łokcia [x, y, z] (wektor kierunku, nie cm). Domyślnie w dół i do tyłu."
+         },
+         "dolnaCzesc": {
+          "type": "number",
+          "minimum": 10,
+          "maximum": 40,
+          "description": "Odległość łokieć–środek chwytu w cm (domyślnie 33)."
+         }
+        },
+        "required": [
+         "chwyt"
+        ],
+        "additionalProperties": false
+       },
+       "L": {
+        "type": "object",
+        "properties": {
+         "chwyt": {
+          "type": "array",
+          "items": {
+           "type": "number",
+           "minimum": -300,
+           "maximum": 300
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Środek chwytu dłoni [x, y, z] w cm (dla sztangi: na jej osi)."
+         },
+         "biegunLokcia": {
+          "type": "array",
+          "items": {
+           "type": "number",
+           "minimum": -10,
+           "maximum": 10
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Kierunek zgięcia łokcia [x, y, z] (wektor kierunku, nie cm). Domyślnie w dół i do tyłu."
+         },
+         "dolnaCzesc": {
+          "type": "number",
+          "minimum": 10,
+          "maximum": 40,
+          "description": "Odległość łokieć–środek chwytu w cm (domyślnie 33)."
+         }
+        },
+        "required": [
+         "chwyt"
+        ],
+        "additionalProperties": false
+       }
+      },
+      "required": [
+       "R",
+       "L"
+      ],
+      "additionalProperties": false,
+      "description": "R = prawa strona osoby, L = lewa."
+     }
+    },
+    "required": [
+     "u",
+     "miednica",
+     "pochylenieTulowia",
+     "nogi",
+     "rece"
+    ],
+    "additionalProperties": false
+   },
+   "minItems": 2,
+   "maxItems": 12,
+   "description": "Klatki kluczowe poprawnej pozy; między nimi interpolacja liniowa, więc dodaj klatki pośrednie, gdy ruch jest zakrzywiony."
+  },
+  "bledy": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "cue": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Identyfikator wskazówki „częsty błąd” z listy podanej dla ćwiczenia (tekst błędu pochodzi z naszego słownika, nie z odpowiedzi)."
+     },
+     "znacznik": {
+      "type": "string",
+      "enum": [
+       "knees",
+       "heels",
+       "back",
+       "pelvis",
+       "bar"
+      ],
+      "description": "Gdzie rysujemy znacznik ✕: kolana, pięty, plecy, miednica albo sztanga."
+     },
+     "dotyczy": {
+      "type": "array",
+      "items": {
+       "type": "string",
+       "enum": [
+        "knee",
+        "ankle",
+        "hip",
+        "spine",
+        "kneeLat",
+        "heel",
+        "pelvis",
+        "bar",
+        "shoulder",
+        "elbow"
+       ]
+      },
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "Wielkości, które błąd zmienia (reszta kątów ma zostać jak w pozie poprawnej, ±4°): knee, ankle, hip (kąty), spine, kneeLat, heel, pelvis, bar, shoulder, elbow."
+     },
+     "klatki": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "u": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1,
+         "description": "Pozycja ruchu, na której delta ma pełną wartość (między klatkami interpolacja liniowa); pierwsza u = 0 z deltą zerową."
+        },
+        "miednica": {
+         "type": "array",
+         "items": {
+          "type": "number",
+          "minimum": -60,
+          "maximum": 60
+         },
+         "minItems": 3,
+         "maxItems": 3,
+         "description": "Zmiana położenia środka miednicy [dx, dy, dz] w cm."
+        },
+        "pochylenieTulowia": {
+         "type": "number",
+         "minimum": -200,
+         "maximum": 200,
+         "description": "Zmiana pochylenia tułowia w stopniach."
+        },
+        "zgiecieKregoslupa": {
+         "type": "number",
+         "minimum": -90,
+         "maximum": 90,
+         "description": "Zmiana zgięcia kręgosłupa w stopniach."
+        },
+        "pochylenieGlowy": {
+         "type": "number",
+         "minimum": -200,
+         "maximum": 200,
+         "description": "Zmiana pochylenia głowy w stopniach."
+        },
+        "nogi": {
+         "type": "object",
+         "properties": {
+          "R": {
+           "type": "object",
+           "properties": {
+            "kostka": {
+             "type": "array",
+             "items": {
+              "type": "number",
+              "minimum": -60,
+              "maximum": 60
+             },
+             "minItems": 3,
+             "maxItems": 3,
+             "description": "Zmiana położenia kostki [dx, dy, dz] w cm."
+            },
+            "podbicie": {
+             "type": "number",
+             "minimum": -90,
+             "maximum": 90,
+             "description": "Zmiana pochylenia stopy w stopniach."
+            },
+            "rotacjaStopy": {
+             "type": "number",
+             "minimum": -90,
+             "maximum": 90,
+             "description": "Zmiana rotacji zewnętrznej stopy w stopniach."
+            },
+            "odchylenieKolana": {
+             "type": "number",
+             "minimum": -90,
+             "maximum": 90,
+             "description": "Zmiana odchylenia kolana na zewnątrz (stopnie; ujemne = do środka)."
+            }
+           },
+           "required": [],
+           "additionalProperties": false
+          },
+          "L": {
+           "type": "object",
+           "properties": {
+            "kostka": {
+             "type": "array",
+             "items": {
+              "type": "number",
+              "minimum": -60,
+              "maximum": 60
+             },
+             "minItems": 3,
+             "maxItems": 3,
+             "description": "Zmiana położenia kostki [dx, dy, dz] w cm."
+            },
+            "podbicie": {
+             "type": "number",
+             "minimum": -90,
+             "maximum": 90,
+             "description": "Zmiana pochylenia stopy w stopniach."
+            },
+            "rotacjaStopy": {
+             "type": "number",
+             "minimum": -90,
+             "maximum": 90,
+             "description": "Zmiana rotacji zewnętrznej stopy w stopniach."
+            },
+            "odchylenieKolana": {
+             "type": "number",
+             "minimum": -90,
+             "maximum": 90,
+             "description": "Zmiana odchylenia kolana na zewnątrz (stopnie; ujemne = do środka)."
+            }
+           },
+           "required": [],
+           "additionalProperties": false
+          }
+         },
+         "required": [],
+         "additionalProperties": false,
+         "description": "R = prawa strona osoby, L = lewa."
+        },
+        "rece": {
+         "type": "object",
+         "properties": {
+          "R": {
+           "type": "object",
+           "properties": {
+            "chwyt": {
+             "type": "array",
+             "items": {
+              "type": "number",
+              "minimum": -60,
+              "maximum": 60
+             },
+             "minItems": 3,
+             "maxItems": 3,
+             "description": "Zmiana położenia chwytu [dx, dy, dz] w cm."
+            }
+           },
+           "required": [],
+           "additionalProperties": false
+          },
+          "L": {
+           "type": "object",
+           "properties": {
+            "chwyt": {
+             "type": "array",
+             "items": {
+              "type": "number",
+              "minimum": -60,
+              "maximum": 60
+             },
+             "minItems": 3,
+             "maxItems": 3,
+             "description": "Zmiana położenia chwytu [dx, dy, dz] w cm."
+            }
+           },
+           "required": [],
+           "additionalProperties": false
+          }
+         },
+         "required": [],
+         "additionalProperties": false,
+         "description": "R = prawa strona osoby, L = lewa."
+        }
+       },
+       "required": [
+        "u"
+       ],
+       "additionalProperties": false
+      },
+      "minItems": 2,
+      "maxItems": 8,
+      "description": "Delty dodawane do pozy poprawnej."
+     }
+    },
+    "required": [
+     "cue",
+     "znacznik",
+     "dotyczy",
+     "klatki"
+    ],
+    "additionalProperties": false,
+    "description": "Błąd = modyfikacja pozy poprawnej (delty), nie osobna poza."
+   },
+   "maxItems": 3
+  }
+ },
+ "required": [
+  "kontrakt",
+  "rodzina",
+  "cwiczenie",
+  "sprzet",
+  "klatki",
+  "bledy"
+ ],
+ "additionalProperties": false
+}

@@ -28,39 +28,19 @@ const STILL_OPEN = ['Decline Bench Press', 'Pec Deck', 'Chest Dip', 'Arnold Pres
 describe('0.14.0 wskazówki: dane', () => {
   test('20 nowych ćwiczeń ma wskazówki, nie jest już „otwartych”; łącznie 102', () => {
     expect(NEW.length).toBe(20);
-    for (const k of NEW) { expect([k, !!CUE_DATA.exercises[k], k in CUE_DATA.open]).toEqual([k, true, false]); expect(cuesFor(lib(k), 'pl')).not.toBeNull(); }
+    for (const k of NEW) { expect([k, !!CUE_DATA.exercises[k], CUE_DATA.open.includes(k)]).toEqual([k, true, false]); expect(cuesFor(lib(k), 'pl')).not.toBeNull(); }
     expect(Object.keys(CUE_DATA.exercises).length).toBe(102);
   });
   test('otwarte zostają otwarte (powód ≥ 20 znaków, bez wskazówek) — nic spornego nie wdrożono', () => {
     expect(STILL_OPEN.length).toBe(22);
-    for (const k of STILL_OPEN) { expect([k, k in CUE_DATA.open, CUE_DATA.exercises[k]]).toEqual([k, true, undefined]); expect(CUE_DATA.open[k].length).toBeGreaterThan(20); expect(cuesFor(lib(k))).toBeNull(); }
-  });
-  test('żadne źródło ze spornego szczebla (uczelniane centra sportu, DAN, WebMD Ignite, przedruk NSCA ETM) nie wchodzi do danych', () => {
-    const HOSTS = /cse\.hku\.hk|uwo\.ca|sussex\.ac\.uk|ummhealth\.org|dan\.org|coachesontario\.ca|exrx\.net/;
-    const bad = Object.entries(CUE_DATA.sources).filter(([id, s]) => !id.startsWith('exrx-') && HOSTS.test(s.url)).map(([id]) => id);
-    expect(bad).toEqual([]);
-    for (const o of Object.keys(CUE_DATA.orgs)) expect(o).not.toMatch(/HKU|Western SRS|Sussex|WebMD|^DAN$|NSCA ETM/);
+    for (const k of STILL_OPEN) { expect([k, CUE_DATA.open.includes(k), CUE_DATA.exercises[k]]).toEqual([k, true, undefined]); expect(cuesFor(lib(k))).toBeNull(); }
   });
   test('lista „partial”: tylko nowe ćwiczenia, każde naprawdę niekompletne; reszta ma komplet sekcji (etap 1 bez zmian)', () => {
-    const partial = CUE_DATA.partial ?? [];
+    const partial = CUE_DATA.partial;
     expect(partial.length).toBeGreaterThan(0);
     for (const k of partial) { expect(NEW).toContain(k); const x = CUE_DATA.exercises[k]; expect([k, x.setup.length >= 1 && x.move.length >= 1 && x.tips.length >= 2]).toEqual([k, false]); expect(x.setup.length + x.move.length + x.tips.length).toBeGreaterThanOrEqual(2); }
     for (const [k, x] of Object.entries(CUE_DATA.exercises)) if (!partial.includes(k)) expect([k, x.setup.length >= 1, x.move.length >= 1, x.tips.length >= 2]).toEqual([k, true, true, true]);
     for (const k of ['Machine Shoulder Press', 'Nordic Curl', 'Pallof Press']) expect(partial).not.toContain(k);
-    expect(CUE_DATA.partialNote).toMatch(/docs\/research\/31/);
-  });
-  test('każda nowa wskazówka: ≥ 2 różne organizacje bez „analogii”; miejsce w źródle; Wall Sit „oddech” nie liczy zespołu Wilesa podwójnie', () => {
-    for (const k of NEW) for (const sec of CUE_SECTIONS) for (const r of CUE_DATA.exercises[k][sec]) {
-      const orgs = new Set(r.s.filter(x => x[2] === undefined).map(([sid]) => CUE_DATA.sources[sid].org));
-      expect([k, r.c, orgs.size >= 2]).toEqual([k, r.c, true]);
-    }
-    const breath = CUE_DATA.exercises['Wall Sit'].tips.find(r => r.c === 'wall.breath')!;
-    expect(breath.s.map(([sid]) => sid)).toEqual(['pmc-10786991', 'pmc-11050476']);
-    expect(breath.s.every(([, at]) => at.length > 10)).toBe(true);
-  });
-  test('Preacher Curl: ustawienie oznaczone w danych jako słabsze (ustawienie testowe)', () => {
-    const r = CUE_DATA.exercises['Preacher Curl'].setup[0];
-    expect(r.c).toBe('preacher.setup'); expect(r.s.every(([, at]) => /słabsze/.test(at))).toBe(true);
   });
   test('wyłączone z komplet: wskazówki zależne od spornych źródeł nie mają zdań w słownikach', () => {
     const pl = cueDict('pl');

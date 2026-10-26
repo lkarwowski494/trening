@@ -36,7 +36,8 @@
     "24:S8",
     "24:S6"
    ]
-  }
+  },
+  "rid": "96e58da0"
  },
  {
   "name": "Bench Press (hantle)",
@@ -69,7 +70,8 @@
     "L5-S28",
     "24:S7"
    ]
-  }
+  },
+  "rid": "5b7bf8c4"
  },
  {
   "name": "Incline Bench Press (sztanga)",
@@ -106,7 +108,8 @@
     "24:S10",
     "24:S6"
    ]
-  }
+  },
+  "rid": "1ca50c53"
  },
  {
   "name": "Incline Bench Press (hantle)",
@@ -140,7 +143,8 @@
     "24:S6",
     "L5-S4"
    ]
-  }
+  },
+  "rid": "705d017f"
  },
  {
   "name": "Decline Bench Press",
@@ -176,7 +180,8 @@
     "L5-S3",
     "24:S6"
    ]
-  }
+  },
+  "rid": "c6faecd2"
  },
  {
   "name": "Chest Fly (hantle)",
@@ -209,7 +214,8 @@
     "24-S6",
     "24-S35"
    ]
-  }
+  },
+  "rid": "0c3fae30"
  },
  {
   "name": "Cable Fly",
@@ -238,7 +244,8 @@
     "24-S6",
     "24-S35"
    ]
-  }
+  },
+  "rid": "bb3c999c"
  },
  {
   "name": "Pec Deck",
@@ -264,7 +271,8 @@
     "L2-S3",
     "24-S6"
    ]
-  }
+  },
+  "rid": "e00cfccd"
  },
  {
   "name": "Machine Chest Press",
@@ -291,7 +299,8 @@
     "L5-S9",
     "24:S6"
    ]
-  }
+  },
+  "rid": "a3a1ed7d"
  },
  {
   "name": "Wyciskanie na linkach (stojąc)",
@@ -323,7 +332,8 @@
     "L5-S11",
     "L5-S32"
    ]
-  }
+  },
+  "rid": "7ad8aef8"
  },
  {
   "name": "Chest Dip",
@@ -351,7 +361,8 @@
     "L5-S8",
     "L5-S37"
    ]
-  }
+  },
+  "rid": "8e56ad30"
  },
  {
   "name": "Push Up",
@@ -377,7 +388,8 @@
     "L5-S29",
     "L5-S31"
    ]
-  }
+  },
+  "rid": "de556ca6"
  },
  {
   "name": "Incline Push Up",
@@ -406,7 +418,8 @@
     "L5-S7",
     "24:S9"
    ]
-  }
+  },
+  "rid": "6494e666"
  },
  {
   "name": "Diamond Push Up",
@@ -431,7 +444,8 @@
     "24:S36",
     "L5-S31"
    ]
-  }
+  },
+  "rid": "e4b2b8ff"
  },
  {
   "name": "Deadlift (sztanga)",
@@ -469,7 +483,8 @@
     "S21",
     "S14"
    ]
-  }
+  },
+  "rid": "8d99cc4f"
  },
  {
   "name": "Deadlift (hantle)",
@@ -505,7 +520,8 @@
     "S20",
     "S21"
    ]
-  }
+  },
+  "rid": "02956c6a"
  },
  {
   "name": "Sumo Deadlift",
@@ -536,7 +552,8 @@
     "S16",
     "S18"
    ]
-  }
+  },
+  "rid": "2fccd41c"
  },
  {
   "name": "Trap Bar Deadlift",
@@ -567,7 +584,8 @@
     "S17",
     "S18"
    ]
-  }
+  },
+  "rid": "e466a255"
  },
  {
   "name": "RDL (sztanga)",
@@ -603,7 +621,8 @@
     "S21",
     "L4-S27"
    ]
-  }
+  },
+  "rid": "e89a5985"
  },
  {
   "name": "RDL (hantle/linki)",
@@ -638,7 +657,8 @@
     "S16",
     "L4-S27"
    ]
-  }
+  },
+  "rid": "2368ad5c"
  },
  {
   "name": "Bent Over Row (sztanga)",
@@ -672,7 +692,8 @@
     "24:S13",
     "24:S37"
    ]
-  }
+  },
+  "rid": "67c3d038"
  },
  {
   "name": "Bent Over Row (hantle)",
@@ -706,7 +727,8 @@
     "24:S13",
     "24:S37"
    ]
-  }
+  },
+  "rid": "523c030b"
  },
  {
   "name": "Pendlay Row",
@@ -738,7 +760,8 @@
     "24:S13",
     "24:S37"
    ]
-  }
+  },
+  "rid": "16a15188"
  },
  {
   "name": "One Arm Row (hantle)",
@@ -772,7 +795,8 @@
     "L5-S22",
     "24:S13"
    ]
-  }
+  },
+  "rid": "204baa77"
  },
  {
   "name": "Chest Supported Row",
@@ -806,7 +830,8 @@
     "24:S13",
     "24:S37"
    ]
-  }
+  },
+  "rid": "16c65d57"
  },
  {
   "name": "T-Bar Row",
@@ -843,7 +868,8 @@
     "24:S13",
     "24:S37"
    ]
-  }
+  },
+  "rid": "72db6413"
  },
  {
   "name": "Seated Cable Row",
@@ -876,7 +902,8 @@
     "L5-S39",
     "24:S6"
    ]
-  }
+  },
+  "rid": "8e991db5"
  },
  {
   "name": "Wiosłowanie na linkach (siedząc)",
@@ -909,7 +936,8 @@
     "L5-S39",
     "24:S6"
    ]
-  }
+  },
+  "rid": "662edea9"
  },
  {
   "name": "Lat Pulldown",
@@ -944,7 +972,8 @@
     "24:S11",
     "24:S12"
    ]
-  }
+  },
+  "rid": "7f6cf42e"
  },
  {
   "name": "Straight Arm Pulldown",
@@ -975,7 +1004,8 @@
     "24-S35",
     "24-S37"
    ]
-  }
+  },
+  "rid": "20273872"
  },
  {
   "name": "Chin Up",
@@ -1008,7 +1038,8 @@
     "24:S11",
     "24:S12"
    ]
-  }
+  },
+  "rid": "7d083969"
  },
  {
   "name": "Pull Up",
@@ -1041,7 +1072,8 @@
     "24:S11",
     "24:S12"
    ]
-  }
+  },
+  "rid": "944dc0f9"
  },
  {
   "name": "Neutral Grip Pull Up",
@@ -1074,7 +1106,8 @@
     "24:S11",
     "24:S12"
    ]
-  }
+  },
+  "rid": "7e46f9ec"
  },
  {
   "name": "Inverted Row",
@@ -1114,7 +1147,8 @@
     "L5-S43",
     "24:S37"
    ]
-  }
+  },
+  "rid": "6133bf63"
  },
  {
   "name": "Face Pull",
@@ -1144,7 +1178,8 @@
     "L5-S23",
     "24:S35"
    ]
-  }
+  },
+  "rid": "26524ac4"
  },
  {
   "name": "Back Extension",
@@ -1175,7 +1210,8 @@
     "L4-S23",
     "L4-S24"
    ]
-  }
+  },
+  "rid": "d6ccc59f"
  },
  {
   "name": "Shrugs (hantle)",
@@ -1203,7 +1239,8 @@
     "L2-S28",
     "24-S35"
    ]
-  }
+  },
+  "rid": "e7477f1c"
  },
  {
   "name": "Shrugs (sztanga)",
@@ -1232,7 +1269,8 @@
     "L2-S28",
     "24-S35"
    ]
-  }
+  },
+  "rid": "8bdff5bd"
  },
  {
   "name": "Good Morning",
@@ -1265,7 +1303,8 @@
     "S16",
     "L4-S21"
    ]
-  }
+  },
+  "rid": "fb199e85"
  },
  {
   "name": "Overhead Press (sztanga)",
@@ -1301,7 +1340,8 @@
     "24:S15",
     "L5-S35"
    ]
-  }
+  },
+  "rid": "611efa54"
  },
  {
   "name": "Overhead Press (hantle)",
@@ -1334,7 +1374,8 @@
     "24:S6",
     "24:S15"
    ]
-  }
+  },
+  "rid": "31139c78"
  },
  {
   "name": "Seated Shoulder Press (hantle)",
@@ -1373,7 +1414,8 @@
     "24:S6",
     "24:S15"
    ]
-  }
+  },
+  "rid": "733d3384"
  },
  {
   "name": "Arnold Press",
@@ -1407,7 +1449,8 @@
     "24:S6",
     "24:S15"
    ]
-  }
+  },
+  "rid": "4bb29ac2"
  },
  {
   "name": "Push Press",
@@ -1441,7 +1484,8 @@
     "L5-S19",
     "L5-S17"
    ]
-  }
+  },
+  "rid": "384b8cc8"
  },
  {
   "name": "Machine Shoulder Press",
@@ -1468,7 +1512,8 @@
     "L5-S17",
     "L5-S35"
    ]
-  }
+  },
+  "rid": "1bbe4ec9"
  },
  {
   "name": "Wyciskanie nad głowę (linki)",
@@ -1500,7 +1545,8 @@
    "sources": [
     "L5-S17"
    ]
-  }
+  },
+  "rid": "fd65aaf3"
  },
  {
   "name": "Lateral Raise (hantle)",
@@ -1529,7 +1575,8 @@
     "24-S31",
     "L2-S27"
    ]
-  }
+  },
+  "rid": "ad78370b"
  },
  {
   "name": "Cable Lateral Raise",
@@ -1558,7 +1605,8 @@
     "24-S31",
     "L2-S27"
    ]
-  }
+  },
+  "rid": "7a318bee"
  },
  {
   "name": "Front Raise",
@@ -1587,7 +1635,8 @@
     "L2-S27",
     "24-S6"
    ]
-  }
+  },
+  "rid": "fb50fe85"
  },
  {
   "name": "Reverse Fly (hantle)",
@@ -1616,7 +1665,8 @@
     "L2-S6",
     "24-S35"
    ]
-  }
+  },
+  "rid": "f6ff5284"
  },
  {
   "name": "Reverse Pec Deck",
@@ -1642,7 +1692,8 @@
     "L2-S6",
     "24-S35"
    ]
-  }
+  },
+  "rid": "0558deba"
  },
  {
   "name": "Upright Row (hantle)",
@@ -1672,7 +1723,8 @@
     "L2-S7",
     "24-S35"
    ]
-  }
+  },
+  "rid": "d2d5e5f6"
  },
  {
   "name": "Biceps Curl (hantle)",
@@ -1701,7 +1753,8 @@
     "24-S13",
     "24-S6"
    ]
-  }
+  },
+  "rid": "1698f6ee"
  },
  {
   "name": "Barbell Curl",
@@ -1729,7 +1782,8 @@
     "24-S13",
     "24-S6"
    ]
-  }
+  },
+  "rid": "68e19508"
  },
  {
   "name": "EZ Bar Curl",
@@ -1756,7 +1810,8 @@
     "24-S12",
     "24-S13"
    ]
-  }
+  },
+  "rid": "825f0947"
  },
  {
   "name": "Hammer Curl",
@@ -1784,7 +1839,8 @@
     "24-S12",
     "24-S13"
    ]
-  }
+  },
+  "rid": "6ea7080c"
  },
  {
   "name": "Incline Curl (hantle)",
@@ -1815,7 +1871,8 @@
     "24-S12",
     "24-S13"
    ]
-  }
+  },
+  "rid": "5d2b92ad"
  },
  {
   "name": "Concentration Curl (hantle)",
@@ -1847,7 +1904,8 @@
     "L2-S1",
     "L2-S23"
    ]
-  }
+  },
+  "rid": "a74fe6bd"
  },
  {
   "name": "Preacher Curl",
@@ -1878,7 +1936,8 @@
     "24-S12",
     "24-S13"
    ]
-  }
+  },
+  "rid": "b2f90ae5"
  },
  {
   "name": "Spider Curl",
@@ -1909,7 +1968,8 @@
     "24-S12",
     "24-S13"
    ]
-  }
+  },
+  "rid": "844a51e7"
  },
  {
   "name": "Cable Curl",
@@ -1937,7 +1997,8 @@
     "24-S12",
     "24-S13"
    ]
-  }
+  },
+  "rid": "d28d3e8c"
  },
  {
   "name": "Skullcrusher (hantle)",
@@ -1967,7 +2028,8 @@
     "L2-S2",
     "24-S29"
    ]
-  }
+  },
+  "rid": "f57b6875"
  },
  {
   "name": "Skullcrusher (EZ)",
@@ -1996,7 +2058,8 @@
     "L2-S2",
     "24-S29"
    ]
-  }
+  },
+  "rid": "b26dbcbc"
  },
  {
   "name": "Triceps Dips (ławka)",
@@ -2024,7 +2087,8 @@
     "L5-S16",
     "L5-S37"
    ]
-  }
+  },
+  "rid": "44ea544b"
  },
  {
   "name": "Triceps Pushdown",
@@ -2050,7 +2114,8 @@
     "L2-S2",
     "24-S29"
    ]
-  }
+  },
+  "rid": "e1c367a0"
  },
  {
   "name": "Overhead Triceps Extension (hantel)",
@@ -2077,7 +2142,8 @@
     "L2-S2",
     "24-S29"
    ]
-  }
+  },
+  "rid": "27880c0a"
  },
  {
   "name": "Cable Overhead Extension",
@@ -2104,7 +2170,8 @@
     "L2-S2",
     "24-S29"
    ]
-  }
+  },
+  "rid": "38b14c0e"
  },
  {
   "name": "Close Grip Bench Press",
@@ -2141,7 +2208,8 @@
     "L5-S27",
     "24:S6"
    ]
-  }
+  },
+  "rid": "542cb2e7"
  },
  {
   "name": "Triceps Kickback",
@@ -2170,7 +2238,8 @@
     "L2-S2",
     "24-S29"
    ]
-  }
+  },
+  "rid": "cbeb1bf8"
  },
  {
   "name": "Back Squat",
@@ -2211,7 +2280,8 @@
     "S6",
     "L4-S6"
    ]
-  }
+  },
+  "rid": "d950cf19"
  },
  {
   "name": "Front Squat",
@@ -2249,7 +2319,8 @@
     "L4-S11",
     "L4-S12"
    ]
-  }
+  },
+  "rid": "2817fc5d"
  },
  {
   "name": "Goblet Squat",
@@ -2281,7 +2352,8 @@
     "S2",
     "S6"
    ]
-  }
+  },
+  "rid": "04ba274b"
  },
  {
   "name": "Przysiad z pasem (linki)",
@@ -2316,7 +2388,8 @@
     "L4-S14",
     "L4-S15"
    ]
-  }
+  },
+  "rid": "775db8cc"
  },
  {
   "name": "Box Squat",
@@ -2355,7 +2428,8 @@
     "S2",
     "S6"
    ]
-  }
+  },
+  "rid": "59769fa1"
  },
  {
   "name": "Hack Squat",
@@ -2383,7 +2457,8 @@
     "S2",
     "S6"
    ]
-  }
+  },
+  "rid": "a48a08dc"
  },
  {
   "name": "Leg Press",
@@ -2413,7 +2488,8 @@
     "S6",
     "L4-S9"
    ]
-  }
+  },
+  "rid": "4858c730"
  },
  {
   "name": "Bulgarian Split Squat (hantle)",
@@ -2451,7 +2527,8 @@
     "S6",
     "L4-S20"
    ]
-  }
+  },
+  "rid": "a1f69eac"
  },
  {
   "name": "Lunges (hantle)",
@@ -2484,7 +2561,8 @@
     "S18",
     "S26"
    ]
-  }
+  },
+  "rid": "a1b79aac"
  },
  {
   "name": "Walking Lunges",
@@ -2515,7 +2593,8 @@
     "S18",
     "S26"
    ]
-  }
+  },
+  "rid": "cf6131e9"
  },
  {
   "name": "Reverse Lunge",
@@ -2546,7 +2625,8 @@
     "S18",
     "S26"
    ]
-  }
+  },
+  "rid": "5eb67f84"
  },
  {
   "name": "Step Up",
@@ -2581,7 +2661,8 @@
     "S35",
     "L4-S18"
    ]
-  }
+  },
+  "rid": "ee5538cf"
  },
  {
   "name": "Leg Extension",
@@ -2606,7 +2687,8 @@
     "L2-S18",
     "24-S3"
    ]
-  }
+  },
+  "rid": "9c62575a"
  },
  {
   "name": "Leg Curl",
@@ -2633,7 +2715,8 @@
     "24-S27",
     "24-S28"
    ]
-  }
+  },
+  "rid": "11aae854"
  },
  {
   "name": "Lying Leg Curl",
@@ -2660,7 +2743,8 @@
     "24-S27",
     "24-S28"
    ]
-  }
+  },
+  "rid": "51a28334"
  },
  {
   "name": "Nordic Curl",
@@ -2693,7 +2777,8 @@
     "24-S28",
     "24-S22"
    ]
-  }
+  },
+  "rid": "38447b0d"
  },
  {
   "name": "Pistol Squat",
@@ -2721,7 +2806,8 @@
     "L4-S17",
     "L4-S19"
    ]
-  }
+  },
+  "rid": "6c776838"
  },
  {
   "name": "Sissy Squat",
@@ -2743,7 +2829,8 @@
     "L2-S18",
     "24-S35"
    ]
-  }
+  },
+  "rid": "79d95cb2"
  },
  {
   "name": "Wall Sit",
@@ -2768,7 +2855,8 @@
    "sources": [
     "S35"
    ]
-  }
+  },
+  "rid": "707e65e4"
  },
  {
   "name": "Hip Thrust (sztanga)",
@@ -2803,7 +2891,8 @@
     "S5",
     "S25"
    ]
-  }
+  },
+  "rid": "2d9caf62"
  },
  {
   "name": "Hip Thrust (hantel)",
@@ -2837,7 +2926,8 @@
     "S2",
     "S4"
    ]
-  }
+  },
+  "rid": "d4dbe8d2"
  },
  {
   "name": "Glute Bridge",
@@ -2861,7 +2951,8 @@
     "S2",
     "S4"
    ]
-  }
+  },
+  "rid": "1d173268"
  },
  {
   "name": "Cable Kickback",
@@ -2890,7 +2981,8 @@
     "24-S4",
     "24-S35"
    ]
-  }
+  },
+  "rid": "74dd1979"
  },
  {
   "name": "Hip Abduction",
@@ -2916,7 +3008,8 @@
     "L2-S19",
     "24-S35"
    ]
-  }
+  },
+  "rid": "85914384"
  },
  {
   "name": "Hip Adduction",
@@ -2942,7 +3035,8 @@
     "L2-S19",
     "24-S35"
    ]
-  }
+  },
+  "rid": "c89dc9ec"
  },
  {
   "name": "Kettlebell Swing",
@@ -2976,7 +3070,8 @@
     "S24",
     "L4-S25"
    ]
-  }
+  },
+  "rid": "5c6eb6ba"
  },
  {
   "name": "Standing Calf Raise",
@@ -3001,7 +3096,8 @@
     "L2-S21",
     "24-S30"
    ]
-  }
+  },
+  "rid": "1e2b72e4"
  },
  {
   "name": "Seated Calf Raise",
@@ -3026,7 +3122,8 @@
     "L2-S21",
     "24-S30"
    ]
-  }
+  },
+  "rid": "b3f0b2f8"
  },
  {
   "name": "Łydki na stopniu",
@@ -3052,7 +3149,8 @@
     "L2-S21",
     "24-S30"
    ]
-  }
+  },
+  "rid": "def8bdc4"
  },
  {
   "name": "Calf Press (leg press)",
@@ -3077,7 +3175,8 @@
     "L2-S21",
     "24-S30"
    ]
-  }
+  },
+  "rid": "5569dd47"
  },
  {
   "name": "Plank",
@@ -3104,7 +3203,8 @@
     "S32",
     "L6-S22"
    ]
-  }
+  },
+  "rid": "b9646d6b"
  },
  {
   "name": "Side Plank",
@@ -3132,7 +3232,8 @@
     "L6-S3",
     "L6-S24"
    ]
-  }
+  },
+  "rid": "c0847fad"
  },
  {
   "name": "Dead Bug",
@@ -3155,7 +3256,8 @@
    "sources": [
     "L6-S23"
    ]
-  }
+  },
+  "rid": "38276075"
  },
  {
   "name": "Bird Dog",
@@ -3183,7 +3285,8 @@
     "S32",
     "L6-S21"
    ]
-  }
+  },
+  "rid": "f3f12d45"
  },
  {
   "name": "Ab Wheel",
@@ -3215,7 +3318,8 @@
     "L6-S1",
     "L6-S2"
    ]
-  }
+  },
+  "rid": "7683bc97"
  },
  {
   "name": "Pallof Press",
@@ -3244,7 +3348,8 @@
     "L6-S15",
     "L6-S8"
    ]
-  }
+  },
+  "rid": "aaaca995"
  },
  {
   "name": "Hanging Leg Raise",
@@ -3273,7 +3378,8 @@
     "L6-S1",
     "L6-S7"
    ]
-  }
+  },
+  "rid": "70fd6bf0"
  },
  {
   "name": "Hanging Knee Raise",
@@ -3303,7 +3409,8 @@
     "L6-S1",
     "L6-S7"
    ]
-  }
+  },
+  "rid": "436f667d"
  },
  {
   "name": "Cable Crunch",
@@ -3334,7 +3441,8 @@
     "L6-S1",
     "L6-S18"
    ]
-  }
+  },
+  "rid": "34e385bc"
  },
  {
   "name": "Crunch",
@@ -3360,7 +3468,8 @@
     "L6-S2",
     "L6-S18"
    ]
-  }
+  },
+  "rid": "5e1e9548"
  },
  {
   "name": "Reverse Crunch",
@@ -3385,7 +3494,8 @@
     "L6-S7",
     "L6-S19"
    ]
-  }
+  },
+  "rid": "d6deed3b"
  },
  {
   "name": "Russian Twist",
@@ -3411,7 +3521,8 @@
     "L6-S8",
     "L6-S34"
    ]
-  }
+  },
+  "rid": "7c977887"
  },
  {
   "name": "Hollow Hold",
@@ -3432,7 +3543,8 @@
    "part": "L6",
    "confidence": "brak źródła — uproszczenie",
    "sources": []
-  }
+  },
+  "rid": "caa99c72"
  },
  {
   "name": "Farmer's Walk",
@@ -3469,7 +3581,8 @@
     "L3-S28",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "d876f56b"
  },
  {
   "name": "Suitcase Carry",
@@ -3502,7 +3615,8 @@
     "L3-S33",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "0f8ef8dd"
  },
  {
   "name": "Mountain Climbers",
@@ -3530,7 +3644,8 @@
     "L3-S9",
     "L3-S17"
    ]
-  }
+  },
+  "rid": "a96e6806"
  },
  {
   "name": "Incline Walk (bieżnia)",
@@ -3557,7 +3672,8 @@
    "sources": [
     "L3-S20"
    ]
-  }
+  },
+  "rid": "64f44c5f"
  },
  {
   "name": "Bieg",
@@ -3581,7 +3697,8 @@
    "sources": [
     "L3-S19"
    ]
-  }
+  },
+  "rid": "549e67ad"
  },
  {
   "name": "Rower",
@@ -3610,7 +3727,8 @@
     "L3-S22",
     "L3-S23"
    ]
-  }
+  },
+  "rid": "1292a0f7"
  },
  {
   "name": "Rowing Machine",
@@ -3643,7 +3761,8 @@
    "sources": [
     "L3-S18"
    ]
-  }
+  },
+  "rid": "3a3cd3b2"
  },
  {
   "name": "Assault Bike",
@@ -3675,7 +3794,8 @@
     "L3-S34",
     "L3-S23"
    ]
-  }
+  },
+  "rid": "3014b76c"
  },
  {
   "name": "Skakanka",
@@ -3703,7 +3823,8 @@
    "sources": [
     "L3-S27"
    ]
-  }
+  },
+  "rid": "603e45e5"
  },
  {
   "name": "Burpees",
@@ -3730,7 +3851,8 @@
    "sources": [
     "L3-S9"
    ]
-  }
+  },
+  "rid": "3a3a28c0"
  },
  {
   "name": "Box Jump",
@@ -3759,7 +3881,8 @@
     "L6-S5",
     "L6-S39"
    ]
-  }
+  },
+  "rid": "ed2f0be3"
  },
  {
   "name": "Medicine Ball Slam",
@@ -3790,7 +3913,8 @@
     "L6-S48",
     "L6-S5"
    ]
-  }
+  },
+  "rid": "5791a03d"
  },
  {
   "name": "Incline Chest Fly (hantle)",
@@ -3832,7 +3956,8 @@
     "L1-S3",
     "L1-S4"
    ]
-  }
+  },
+  "rid": "9bf70689"
  },
  {
   "name": "Decline Bench Press (hantle)",
@@ -3874,7 +3999,8 @@
     "L5-S3",
     "24:S6"
    ]
-  }
+  },
+  "rid": "1b06b218"
  },
  {
   "name": "Floor Press (hantle)",
@@ -3918,7 +4044,8 @@
     "L5-S4",
     "24:S7"
    ]
-  }
+  },
+  "rid": "3524eadb"
  },
  {
   "name": "Floor Press (sztanga)",
@@ -3964,7 +4091,8 @@
     "24:S8",
     "24:S6"
    ]
-  }
+  },
+  "rid": "43c9cf95"
  },
  {
   "name": "Squeeze Press (hantle)",
@@ -4006,7 +4134,8 @@
     "L5-S4",
     "L5-S28"
    ]
-  }
+  },
+  "rid": "0dfe2f27"
  },
  {
   "name": "Cable Fly (low to high)",
@@ -4047,7 +4176,8 @@
     "L1-S3",
     "L1-S4"
    ]
-  }
+  },
+  "rid": "9e7eaa9e"
  },
  {
   "name": "Cable Fly (high to low)",
@@ -4088,7 +4218,8 @@
     "L1-S3",
     "L1-S4"
    ]
-  }
+  },
+  "rid": "47eded34"
  },
  {
   "name": "Incline Cable Fly",
@@ -4133,7 +4264,8 @@
     "L1-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "91a6571b"
  },
  {
   "name": "Single Arm Cable Fly",
@@ -4174,7 +4306,8 @@
     "L1-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "552c95f9"
  },
  {
   "name": "Single Arm Cable Chest Press",
@@ -4214,7 +4347,8 @@
     "L5-S11",
     "L5-S32"
    ]
-  }
+  },
+  "rid": "dbabc099"
  },
  {
   "name": "Svend Press",
@@ -4248,7 +4382,8 @@
    "confidence": "brak źródła — uproszczenie",
    "sources": []
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1e7bf856"
  },
  {
   "name": "Decline Push Up",
@@ -4287,7 +4422,8 @@
    "sources": [
     "L5-S6"
    ]
-  }
+  },
+  "rid": "f9c3ccee"
  },
  {
   "name": "Smith Machine Bench Press",
@@ -4328,7 +4464,8 @@
     "L5-S10",
     "L5-S28"
    ]
-  }
+  },
+  "rid": "0fbec6c7"
  },
  {
   "name": "Smith Machine Incline Press",
@@ -4369,7 +4506,8 @@
     "L5-S2",
     "L5-S28"
    ]
-  }
+  },
+  "rid": "5873d31d"
  },
  {
   "name": "Pullover (hantel)",
@@ -4411,7 +4549,8 @@
     "L1-S5",
     "S37"
    ]
-  }
+  },
+  "rid": "7c578e94"
  },
  {
   "name": "Single Arm Cable Row",
@@ -4452,7 +4591,8 @@
     "L5-S43",
     "L5-S22"
    ]
-  }
+  },
+  "rid": "dc60e59a"
  },
  {
   "name": "Standing Cable Row",
@@ -4492,7 +4632,8 @@
    "sources": [
     "L5-S43"
    ]
-  }
+  },
+  "rid": "0673416d"
  },
  {
   "name": "Bent Over Row (linki)",
@@ -4538,7 +4679,8 @@
     "24:S13",
     "24:S37"
    ]
-  }
+  },
+  "rid": "97cbb261"
  },
  {
   "name": "Meadows Row",
@@ -4582,7 +4724,8 @@
     "24:S13",
     "24:S37"
    ]
-  }
+  },
+  "rid": "16cbdc4e"
  },
  {
   "name": "Seal Row (sztanga)",
@@ -4624,7 +4767,8 @@
    "sources": [
     "L5-S22"
    ]
-  }
+  },
+  "rid": "34d54cf9"
  },
  {
   "name": "Rack Pull",
@@ -4668,7 +4812,8 @@
     "L4-S26",
     "S16"
    ]
-  }
+  },
+  "rid": "ab779e3c"
  },
  {
   "name": "Single Arm Lat Pulldown",
@@ -4711,7 +4856,8 @@
     "24:S11",
     "24:S12"
    ]
-  }
+  },
+  "rid": "7a961cb3"
  },
  {
   "name": "Renegade Row",
@@ -4758,7 +4904,8 @@
     "24:S13",
     "24:S37"
    ]
-  }
+  },
+  "rid": "8e932c4b"
  },
  {
   "name": "Superman",
@@ -4795,7 +4942,8 @@
     "L6-S9",
     "S32"
    ]
-  }
+  },
+  "rid": "1993b006"
  },
  {
   "name": "Shrugs (linki)",
@@ -4830,7 +4978,8 @@
     "L2-S14"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "bd1491cd"
  },
  {
   "name": "Dead Hang",
@@ -4868,7 +5017,8 @@
     "L6-S10",
     "L6-S12"
    ]
-  }
+  },
+  "rid": "e1ad2ce0"
  },
  {
   "name": "Landmine Press",
@@ -4909,7 +5059,8 @@
    "sources": [
     "L5-S17"
    ]
-  }
+  },
+  "rid": "7272dbd4"
  },
  {
   "name": "Single Arm Overhead Press (hantel)",
@@ -4949,7 +5100,8 @@
     "L5-S17",
     "L5-S34"
    ]
-  }
+  },
+  "rid": "84fadd0f"
  },
  {
   "name": "Cable Front Raise",
@@ -4985,7 +5137,8 @@
     "L2-S5",
     "L2-S27"
    ]
-  }
+  },
+  "rid": "332c00fc"
  },
  {
   "name": "Cable Reverse Fly",
@@ -5025,7 +5178,8 @@
    "sources": [
     "L2-S6"
    ]
-  }
+  },
+  "rid": "576114e7"
  },
  {
   "name": "Y Raise (hantle)",
@@ -5064,7 +5218,8 @@
    "sources": [
     "L2-S8"
    ]
-  }
+  },
+  "rid": "632ebf20"
  },
  {
   "name": "Cable Y Raise",
@@ -5104,7 +5259,8 @@
    "sources": [
     "L2-S8"
    ]
-  }
+  },
+  "rid": "8d2b23aa"
  },
  {
   "name": "Upright Row (linki)",
@@ -5142,7 +5298,8 @@
    "sources": [
     "L2-S7"
    ]
-  }
+  },
+  "rid": "9ba18829"
  },
  {
   "name": "Upright Row (sztanga)",
@@ -5180,7 +5337,8 @@
    "sources": [
     "L2-S7"
    ]
-  }
+  },
+  "rid": "59434aa7"
  },
  {
   "name": "Pike Push Up",
@@ -5213,7 +5371,8 @@
    "sources": [
     "L5-S18"
    ]
-  }
+  },
+  "rid": "0f0531b4"
  },
  {
   "name": "Handstand Push Up",
@@ -5252,7 +5411,8 @@
    "sources": [
     "L5-S18"
    ]
-  }
+  },
+  "rid": "ddc7d946"
  },
  {
   "name": "Kettlebell Press",
@@ -5292,7 +5452,8 @@
     "L5-S36",
     "L5-S17"
    ]
-  }
+  },
+  "rid": "d5b95859"
  },
  {
   "name": "Smith Machine Shoulder Press",
@@ -5335,7 +5496,8 @@
    "sources": [
     "L5-S17"
    ]
-  }
+  },
+  "rid": "528929cf"
  },
  {
   "name": "External Rotation (linki)",
@@ -5373,7 +5535,8 @@
     "24-S6"
    ]
   },
-  "unmapped": "rotator_cuff"
+  "unmapped": "rotator_cuff",
+  "rid": "a6ad10ed"
  },
  {
   "name": "External Rotation (hantel)",
@@ -5413,7 +5576,8 @@
     "24-S6"
    ]
   },
-  "unmapped": "rotator_cuff"
+  "unmapped": "rotator_cuff",
+  "rid": "c076465a"
  },
  {
   "name": "Band Pull Apart",
@@ -5449,7 +5613,8 @@
     "L5-S23",
     "24:S35"
    ]
-  }
+  },
+  "rid": "2fd11628"
  },
  {
   "name": "Hammer Curl (linki)",
@@ -5487,7 +5652,8 @@
     "L1-S6",
     "S6"
    ]
-  }
+  },
+  "rid": "a935f695"
  },
  {
   "name": "Bayesian Curl",
@@ -5525,7 +5691,8 @@
     "S13",
     "S6"
    ]
-  }
+  },
+  "rid": "3df27a14"
  },
  {
   "name": "High Cable Curl",
@@ -5566,7 +5733,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6fba2f9f"
  },
  {
   "name": "Cable Curl (dwie linki)",
@@ -5606,7 +5774,8 @@
     "S13",
     "S6"
    ]
-  }
+  },
+  "rid": "1f02eafa"
  },
  {
   "name": "Preacher Curl (EZ)",
@@ -5646,7 +5815,8 @@
     "S13",
     "S6"
    ]
-  }
+  },
+  "rid": "1b1b8a70"
  },
  {
   "name": "Reverse Curl",
@@ -5682,7 +5852,8 @@
     "L1-S26",
     "L1-S1"
    ]
-  }
+  },
+  "rid": "af6446d2"
  },
  {
   "name": "Zottman Curl",
@@ -5722,7 +5893,8 @@
     "S13",
     "S6"
    ]
-  }
+  },
+  "rid": "7a6c1027"
  },
  {
   "name": "Wrist Curl (hantle)",
@@ -5757,7 +5929,8 @@
    "sources": [
     "L2-S16"
    ]
-  }
+  },
+  "rid": "ec5de4bd"
  },
  {
   "name": "Reverse Wrist Curl (hantle)",
@@ -5792,7 +5965,8 @@
    "sources": [
     "L2-S16"
    ]
-  }
+  },
+  "rid": "bb6ad54a"
  },
  {
   "name": "Single Arm Triceps Pushdown",
@@ -5826,7 +6000,8 @@
     "L1-S44",
     "S29"
    ]
-  }
+  },
+  "rid": "1fe425fa"
  },
  {
   "name": "Triceps Kickback (linki)",
@@ -5862,7 +6037,8 @@
     "L1-S56",
     "S6"
    ]
-  }
+  },
+  "rid": "3880d7d2"
  },
  {
   "name": "Overhead Triceps Extension (EZ)",
@@ -5899,7 +6075,8 @@
     "S29",
     "S6"
    ]
-  }
+  },
+  "rid": "1e0c1fd4"
  },
  {
   "name": "Skullcrusher (sztanga)",
@@ -5936,7 +6113,8 @@
     "L1-S40",
     "S6"
    ]
-  }
+  },
+  "rid": "b47610c2"
  },
  {
   "name": "JM Press",
@@ -5981,7 +6159,8 @@
    "sources": [
     "L5-S14"
    ]
-  }
+  },
+  "rid": "4882bd11"
  },
  {
   "name": "Tate Press",
@@ -6021,7 +6200,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5c4e545e"
  },
  {
   "name": "Single Leg RDL (hantel)",
@@ -6063,7 +6243,8 @@
     "L4-S19",
     "L4-S28"
    ]
-  }
+  },
+  "rid": "f93d6ef4"
  },
  {
   "name": "Single Leg RDL (linki)",
@@ -6103,7 +6284,8 @@
     "L4-S16",
     "L4-S28"
    ]
-  }
+  },
+  "rid": "1b164036"
  },
  {
   "name": "Cable Squat",
@@ -6143,7 +6325,8 @@
     "S2"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "18f65485"
  },
  {
   "name": "Single Leg Press",
@@ -6179,7 +6362,8 @@
    "sources": [
     "S3"
    ]
-  }
+  },
+  "rid": "378641ff"
  },
  {
   "name": "Split Squat",
@@ -6215,7 +6399,8 @@
     "L4-S20",
     "S6"
    ]
-  }
+  },
+  "rid": "e0bb82f3"
  },
  {
   "name": "Split Squat (linki)",
@@ -6255,7 +6440,8 @@
     "L4-S20"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "c5422426"
  },
  {
   "name": "Lateral Lunge",
@@ -6289,7 +6475,8 @@
    "sources": [
     "L4-S28"
    ]
-  }
+  },
+  "rid": "7c9629ef"
  },
  {
   "name": "Curtsy Lunge",
@@ -6324,7 +6511,8 @@
    "sources": [
     "L4-S28"
    ]
-  }
+  },
+  "rid": "b698b682"
  },
  {
   "name": "Cossack Squat",
@@ -6354,7 +6542,8 @@
    "part": "L4",
    "confidence": "brak źródła — uproszczenie",
    "sources": []
-  }
+  },
+  "rid": "d8b86a6c"
  },
  {
   "name": "Bodyweight Squat",
@@ -6386,7 +6575,8 @@
     "S1",
     "S2"
    ]
-  }
+  },
+  "rid": "fe531d19"
  },
  {
   "name": "Jump Squat",
@@ -6421,7 +6611,8 @@
     "L6-S5",
     "L6-S40"
    ]
-  }
+  },
+  "rid": "c0b1bae9"
  },
  {
   "name": "Smith Machine Squat",
@@ -6457,7 +6648,8 @@
    "sources": [
     "L4-S10"
    ]
-  }
+  },
+  "rid": "f053594f"
  },
  {
   "name": "Zercher Squat",
@@ -6502,7 +6694,8 @@
     "L4-S11"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e6348917"
  },
  {
   "name": "Double Kettlebell Front Squat",
@@ -6542,7 +6735,8 @@
     "L4-S11"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5a14f7c0"
  },
  {
   "name": "Landmine Squat",
@@ -6582,7 +6776,8 @@
     "S1",
     "S2"
    ]
-  }
+  },
+  "rid": "4b1e74d0"
  },
  {
   "name": "Sumo Squat (hantel)",
@@ -6620,7 +6815,8 @@
     "L4-S7",
     "L4-S8"
    ]
-  }
+  },
+  "rid": "d9ffd006"
  },
  {
   "name": "Lunges (sztanga)",
@@ -6662,7 +6858,8 @@
     "S26",
     "S6"
    ]
-  }
+  },
+  "rid": "83ddab84"
  },
  {
   "name": "Reverse Nordic",
@@ -6694,7 +6891,8 @@
     "L2-S31",
     "L2-S32"
    ]
-  }
+  },
+  "rid": "0a2ca44c"
  },
  {
   "name": "Glute Ham Raise",
@@ -6731,7 +6929,8 @@
     "L2-S17",
     "24-S28"
    ]
-  }
+  },
+  "rid": "767fe7da"
  },
  {
   "name": "Standing Cable Leg Curl",
@@ -6768,7 +6967,8 @@
     "L2-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e30c822a"
  },
  {
   "name": "Leg Curl (hantel)",
@@ -6806,7 +7006,8 @@
     "L2-S17",
     "24-S27"
    ]
-  }
+  },
+  "rid": "78af3c3e"
  },
  {
   "name": "Cable Pull Through",
@@ -6846,7 +7047,8 @@
     "L4-S22",
     "S4"
    ]
-  }
+  },
+  "rid": "67d23079"
  },
  {
   "name": "Frog Pump",
@@ -6878,7 +7080,8 @@
     "L4-S28"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "0b6da23c"
  },
  {
   "name": "Single Leg Glute Bridge",
@@ -6910,7 +7113,8 @@
     "S2",
     "L4-S30"
    ]
-  }
+  },
+  "rid": "56d1492e"
  },
  {
   "name": "Single Leg Hip Thrust",
@@ -6946,7 +7150,8 @@
     "S2",
     "S4"
    ]
-  }
+  },
+  "rid": "9864f4c8"
  },
  {
   "name": "Glute Bridge (sztanga)",
@@ -6983,7 +7188,8 @@
     "S2",
     "S4"
    ]
-  }
+  },
+  "rid": "dabed9ab"
  },
  {
   "name": "Smith Machine Hip Thrust",
@@ -7022,7 +7228,8 @@
     "S2",
     "S4"
    ]
-  }
+  },
+  "rid": "8a3c4ebd"
  },
  {
   "name": "Sumo Deadlift (kettlebell)",
@@ -7062,7 +7269,8 @@
    "sources": [
     "S16"
    ]
-  }
+  },
+  "rid": "6197a61b"
  },
  {
   "name": "Cable Hip Abduction",
@@ -7099,7 +7307,8 @@
     "L2-S19",
     "24-S35"
    ]
-  }
+  },
+  "rid": "54183db8"
  },
  {
   "name": "Lateral Band Walk",
@@ -7134,7 +7343,8 @@
     "L2-S26",
     "L2-S33"
    ]
-  }
+  },
+  "rid": "5fd356f0"
  },
  {
   "name": "Fire Hydrant",
@@ -7167,7 +7377,8 @@
     "24-S35",
     "L2-S19"
    ]
-  }
+  },
+  "rid": "94e1449f"
  },
  {
   "name": "Donkey Kick",
@@ -7201,7 +7412,8 @@
     "L2-S26",
     "L2-S20"
    ]
-  }
+  },
+  "rid": "c1345e6c"
  },
  {
   "name": "Clamshell",
@@ -7235,7 +7447,8 @@
     "L2-S26",
     "L2-S34"
    ]
-  }
+  },
+  "rid": "aea2cfe3"
  },
  {
   "name": "Single Leg Calf Raise",
@@ -7267,7 +7480,8 @@
    "sources": [
     "L2-S21"
    ]
-  }
+  },
+  "rid": "24086d58"
  },
  {
   "name": "Seated Calf Raise (hantle)",
@@ -7307,7 +7521,8 @@
     "L2-S21",
     "24-S30"
    ]
-  }
+  },
+  "rid": "72078974"
  },
  {
   "name": "Smith Machine Calf Raise",
@@ -7341,7 +7556,8 @@
    "sources": [
     "L2-S21"
    ]
-  }
+  },
+  "rid": "3dc2db49"
  },
  {
   "name": "Calf Raise (sztanga)",
@@ -7380,7 +7596,8 @@
     "L2-S21",
     "24-S30"
    ]
-  }
+  },
+  "rid": "ca4359a7"
  },
  {
   "name": "Calf Raise (linki)",
@@ -7419,7 +7636,8 @@
     "L2-S21"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "c0a99694"
  },
  {
   "name": "Cable Woodchop",
@@ -7457,7 +7675,8 @@
     "L6-S35",
     "L6-S8"
    ]
-  }
+  },
+  "rid": "6b69c0e8"
  },
  {
   "name": "Landmine Rotation",
@@ -7497,7 +7716,8 @@
     "L6-S8"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ba0c4585"
  },
  {
   "name": "Toes to Bar",
@@ -7533,7 +7753,8 @@
    "sources": [
     "L6-S1"
    ]
-  }
+  },
+  "rid": "745ed79a"
  },
  {
   "name": "L-Sit",
@@ -7563,7 +7784,8 @@
    "part": "L6",
    "confidence": "brak źródła — uproszczenie",
    "sources": []
-  }
+  },
+  "rid": "ef5b2217"
  },
  {
   "name": "Plank Shoulder Taps",
@@ -7595,7 +7817,8 @@
    "sources": [
     "L6-S51"
    ]
-  }
+  },
+  "rid": "fb2bf6d1"
  },
  {
   "name": "Copenhagen Plank",
@@ -7633,7 +7856,8 @@
    "sources": [
     "L6-S6"
    ]
-  }
+  },
+  "rid": "869dc6c5"
  },
  {
   "name": "Decline Crunch",
@@ -7667,7 +7891,8 @@
     "S32",
     "L6-S1"
    ]
-  }
+  },
+  "rid": "ad130abc"
  },
  {
   "name": "GHD Sit Up",
@@ -7702,7 +7927,8 @@
     "L6-S1"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "97859f3e"
  },
  {
   "name": "Sit Up",
@@ -7737,7 +7963,8 @@
     "L6-S2",
     "L6-S3"
    ]
-  }
+  },
+  "rid": "25b112df"
  },
  {
   "name": "V-Up",
@@ -7769,7 +7996,8 @@
     "S32",
     "L6-S30"
    ]
-  }
+  },
+  "rid": "49b9dbb3"
  },
  {
   "name": "Bicycle Crunch",
@@ -7800,7 +8028,8 @@
    "sources": [
     "L6-S7"
    ]
-  }
+  },
+  "rid": "a8bdb3fc"
  },
  {
   "name": "Lying Leg Raise",
@@ -7832,7 +8061,8 @@
    "sources": [
     "S32"
    ]
-  }
+  },
+  "rid": "39405831"
  },
  {
   "name": "Dragon Flag",
@@ -7865,7 +8095,8 @@
    "confidence": "brak źródła — uproszczenie",
    "sources": []
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "81394a8f"
  },
  {
   "name": "Rollout (sztanga)",
@@ -7902,7 +8133,8 @@
     "L6-S29",
     "L6-S1"
    ]
-  }
+  },
+  "rid": "312cd4e3"
  },
  {
   "name": "Side Bend (hantel)",
@@ -7937,7 +8169,8 @@
    "sources": [
     "L6-S8"
    ]
-  }
+  },
+  "rid": "6423ce3d"
  },
  {
   "name": "Kettlebell Windmill",
@@ -7976,7 +8209,8 @@
     "L6-S38"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "69133829"
  },
  {
   "name": "Turkish Get Up",
@@ -8021,7 +8255,8 @@
     "L6-S36",
     "L6-S11"
    ]
-  }
+  },
+  "rid": "40af8b81"
  },
  {
   "name": "Overhead Carry (hantle)",
@@ -8059,7 +8294,8 @@
    "confidence": "brak źródła — uproszczenie",
    "sources": []
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d1e40214"
  },
  {
   "name": "Double Kettlebell Front Rack Carry",
@@ -8098,7 +8334,8 @@
     "L3-S35"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8513c648"
  },
  {
   "name": "Farmer's Walk (trap bar)",
@@ -8142,7 +8379,8 @@
     "L3-S32"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4bb003a0"
  },
  {
   "name": "Kettlebell Clean",
@@ -8184,7 +8422,8 @@
     "S24",
     "L4-S25"
    ]
-  }
+  },
+  "rid": "4846cf18"
  },
  {
   "name": "Kettlebell Snatch",
@@ -8226,7 +8465,8 @@
     "S24",
     "L4-S25"
    ]
-  }
+  },
+  "rid": "0d42da2c"
  },
  {
   "name": "Snatch (hantel)",
@@ -8268,7 +8508,8 @@
     "S24",
     "L4-S25"
    ]
-  }
+  },
+  "rid": "3fe0adbb"
  },
  {
   "name": "Power Clean",
@@ -8312,7 +8553,8 @@
     "L4-S4",
     "L4-S27"
    ]
-  }
+  },
+  "rid": "ab5fd96c"
  },
  {
   "name": "Thruster (hantle)",
@@ -8354,7 +8596,8 @@
     "S15",
     "L4-S11"
    ]
-  }
+  },
+  "rid": "d47706a4"
  },
  {
   "name": "Wall Ball",
@@ -8395,7 +8638,8 @@
    "sources": [
     "L6-S5"
    ]
-  }
+  },
+  "rid": "ed968a54"
  },
  {
   "name": "Jumping Jacks",
@@ -8421,7 +8665,8 @@
    "part": "L3",
    "confidence": "brak źródła — uproszczenie",
    "sources": []
-  }
+  },
+  "rid": "ec680d2b"
  },
  {
   "name": "High Knees",
@@ -8447,7 +8692,8 @@
    "part": "L3",
    "confidence": "brak źródła — uproszczenie",
    "sources": []
-  }
+  },
+  "rid": "ecb4c1e9"
  },
  {
   "name": "Broad Jump",
@@ -8481,7 +8727,8 @@
     "L6-S5",
     "L6-S47"
    ]
-  }
+  },
+  "rid": "8b336c2a"
  },
  {
   "name": "Single Arm RDL (hantel/linka)",
@@ -8527,7 +8774,8 @@
     "S20",
     "S16"
    ]
-  }
+  },
+  "rid": "6f635cdd"
  },
  {
   "name": "Cable Hip Adduction",
@@ -8564,7 +8812,8 @@
    "sources": [
     "L2-S19"
    ]
-  }
+  },
+  "rid": "f7400217"
  },
  {
   "name": "Machine Row",
@@ -8603,7 +8852,8 @@
    "sources": [
     "L5-S22"
    ]
-  }
+  },
+  "rid": "a865735f"
  },
  {
   "name": "Machine Pullover",
@@ -8638,7 +8888,8 @@
    "sources": [
     "L2-S15"
    ]
-  }
+  },
+  "rid": "93266e43"
  },
  {
   "name": "Machine Crunch",
@@ -8672,7 +8923,8 @@
    "sources": [
     "L6-S32"
    ]
-  }
+  },
+  "rid": "b93b57ce"
  },
  {
   "name": "Machine Biceps Curl",
@@ -8709,7 +8961,8 @@
     "S13",
     "S6"
    ]
-  }
+  },
+  "rid": "224d2ffe"
  },
  {
   "name": "Machine Triceps Extension",
@@ -8743,7 +8996,8 @@
     "L1-S53",
     "S6"
    ]
-  }
+  },
+  "rid": "cb531f12"
  },
  {
   "name": "Machine Lateral Raise",
@@ -8777,7 +9031,8 @@
    "sources": [
     "L2-S4"
    ]
-  }
+  },
+  "rid": "0ca9dde9"
  },
  {
   "name": "Machine Glute Kickback",
@@ -8811,7 +9066,8 @@
    "sources": [
     "L2-S20"
    ]
-  }
+  },
+  "rid": "bb9ae56b"
  },
  {
   "name": "Machine Hip Thrust",
@@ -8847,7 +9103,8 @@
     "S2",
     "S4"
    ]
-  }
+  },
+  "rid": "f43a88cc"
  },
  {
   "name": "Belt Squat Machine",
@@ -8886,7 +9143,8 @@
     "L4-S14",
     "L4-S15"
    ]
-  }
+  },
+  "rid": "95bf2bee"
  },
  {
   "name": "Pendulum Squat",
@@ -8923,7 +9181,8 @@
    "sources": [
     "S3"
    ]
-  }
+  },
+  "rid": "498c219c"
  },
  {
   "name": "Reverse Hyperextension",
@@ -8963,7 +9222,8 @@
     "L4-S23",
     "L4-S24"
    ]
-  }
+  },
+  "rid": "33cb1047"
  },
  {
   "name": "Sled Push",
@@ -9004,7 +9264,8 @@
    "sources": [
     "L6-S13"
    ]
-  }
+  },
+  "rid": "1470f685"
  },
  {
   "name": "Battle Ropes",
@@ -9045,7 +9306,8 @@
     "L3-S26",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "3282a5bd"
  },
  {
   "name": "Stair Climber",
@@ -9079,7 +9341,8 @@
    "sources": [
     "L3-S20"
    ]
-  }
+  },
+  "rid": "8a61bcd6"
  },
  {
   "name": "Orbitrek",
@@ -9115,7 +9378,8 @@
    "sources": [
     "L3-S21"
    ]
-  }
+  },
+  "rid": "4f579a33"
  },
  {
   "name": "Ski Erg",
@@ -9152,7 +9416,8 @@
     "L3-S24",
     "L3-S25"
    ]
-  }
+  },
+  "rid": "4efc71a1"
  },
  {
   "name": "Stability Ball Crunch",
@@ -9187,7 +9452,8 @@
     "L6-S7",
     "L6-S26"
    ]
-  }
+  },
+  "rid": "d30db4f4"
  },
  {
   "name": "Stability Ball Hamstring Curl",
@@ -9224,7 +9490,8 @@
    "sources": [
     "L2-S17"
    ]
-  }
+  },
+  "rid": "87d64cc1"
  },
  {
   "name": "Slider Hamstring Curl",
@@ -9261,7 +9528,8 @@
    "sources": [
     "L2-S17"
    ]
-  }
+  },
+  "rid": "21725270"
  },
  {
   "name": "Slider Reverse Lunge",
@@ -9299,7 +9567,8 @@
     "S26"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "dcb4d3c7"
  },
  {
   "name": "Around The Worlds",
@@ -9344,7 +9613,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "63d95e34"
  },
  {
   "name": "Decline Dumbbell Fly",
@@ -9390,7 +9660,8 @@
     "L1-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "96c5a0f5"
  },
  {
   "name": "One-Arm Flat Bench Dumbbell Fly",
@@ -9437,7 +9708,8 @@
     "L1-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a984f904"
  },
  {
   "name": "One-Arm Kettlebell Floor Press",
@@ -9483,7 +9755,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "cb32257c"
  },
  {
   "name": "One Arm Dumbbell Bench Press",
@@ -9531,7 +9804,8 @@
     "L5-S34"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "885d95e9"
  },
  {
   "name": "Barbell Guillotine Bench Press",
@@ -9585,7 +9859,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "413bc31c"
  },
  {
   "name": "Wide-Grip Barbell Bench Press",
@@ -9639,7 +9914,8 @@
     "L5-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b37aae3e"
  },
  {
   "name": "Front Raise And Pullover",
@@ -9686,7 +9962,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ce60e956"
  },
  {
   "name": "Wide-Grip Decline Barbell Pullover",
@@ -9731,7 +10008,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "9c596b89"
  },
  {
   "name": "Smith Machine Decline Press",
@@ -9774,7 +10052,8 @@
     "L5-S28"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ddda27bc"
  },
  {
   "name": "Leverage Decline Chest Press",
@@ -9813,7 +10092,8 @@
     "L5-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1c9abcb6"
  },
  {
   "name": "Leverage Incline Chest Press",
@@ -9853,7 +10133,8 @@
     "L5-S9",
     "L5-S2"
    ]
-  }
+  },
+  "rid": "aa94afd5"
  },
  {
   "name": "Seated Cable Chest Press",
@@ -9902,7 +10183,8 @@
    "sources": [
     "L5-S11"
    ]
-  }
+  },
+  "rid": "e4e96efd"
  },
  {
   "name": "Incline Cable Chest Press",
@@ -9949,7 +10231,8 @@
     "L5-S11"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "78593c18"
  },
  {
   "name": "Flat Bench Cable Fly",
@@ -9997,7 +10280,8 @@
     "L1-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "255dbf77"
  },
  {
   "name": "Band Bench Press",
@@ -10045,7 +10329,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "111cc3cd"
  },
  {
   "name": "Band Chest Fly",
@@ -10085,7 +10370,8 @@
     "L1-S3",
     "L1-S4"
    ]
-  }
+  },
+  "rid": "870f95c4"
  },
  {
   "name": "Chain Press",
@@ -10129,7 +10415,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "c7e994d7"
  },
  {
   "name": "Sled Forward Drag with Press",
@@ -10173,7 +10460,8 @@
     "L6-S14"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2ef8da81"
  },
  {
   "name": "Medicine Ball Chest Pass",
@@ -10214,7 +10502,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "154e7cfe"
  },
  {
   "name": "Clock Push-Up",
@@ -10254,7 +10543,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b4f985d5"
  },
  {
   "name": "Push-Up Wide",
@@ -10291,7 +10581,8 @@
     "L5-S5",
     "L5-S31"
    ]
-  }
+  },
+  "rid": "bf2d1c87"
  },
  {
   "name": "Single-Arm Push-Up",
@@ -10329,7 +10620,8 @@
     "L5-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "fab94391"
  },
  {
   "name": "Push Up to Side Plank",
@@ -10370,7 +10662,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "93c0dbeb"
  },
  {
   "name": "Isometric Wipers",
@@ -10411,7 +10704,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7aae4083"
  },
  {
   "name": "Push-Ups With Feet On A Stability Ball",
@@ -10452,7 +10746,8 @@
     "L5-S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "0d11e220"
  },
  {
   "name": "Suspended Push-Up",
@@ -10495,7 +10790,8 @@
     "L5-S30"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "0273e5a2"
  },
  {
   "name": "Incline Push-Up Reverse Grip",
@@ -10543,7 +10839,8 @@
     "L5-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ed1d368f"
  },
  {
   "name": "Plyo Push-Up",
@@ -10582,7 +10879,8 @@
     "L5-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "da15e5bf"
  },
  {
   "name": "Drop Push",
@@ -10626,7 +10924,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6a976d11"
  },
  {
   "name": "Incline Push-Up Depth Jump",
@@ -10670,7 +10969,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "cdbd6590"
  },
  {
   "name": "Plyo Kettlebell Push-Ups",
@@ -10715,7 +11015,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "35a6d7e7"
  },
  {
   "name": "Atlas Stones",
@@ -10762,7 +11063,8 @@
     "S34"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "50e022dd"
  },
  {
   "name": "Axle Deadlift",
@@ -10811,7 +11113,8 @@
     "S18"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d17225a9"
  },
  {
   "name": "Barbell Shrug Behind The Back",
@@ -10853,7 +11156,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "af2c053b"
  },
  {
   "name": "Bent-Arm Barbell Pullover",
@@ -10899,7 +11203,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f67d46b7"
  },
  {
   "name": "Calf-Machine Shoulder Shrug",
@@ -10935,7 +11240,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "cf4d620c"
  },
  {
   "name": "Clean Shrug",
@@ -10978,7 +11284,8 @@
     "L4-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7355b0d7"
  },
  {
   "name": "Snatch Shrug",
@@ -11021,7 +11328,8 @@
     "L4-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f1e92b97"
  },
  {
   "name": "Close-Grip Front Lat Pulldown",
@@ -11069,7 +11377,8 @@
     "24:S12"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3fe570eb"
  },
  {
   "name": "Deadlift with Bands",
@@ -11120,7 +11429,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3025ba6f"
  },
  {
   "name": "Deadlift with Chains",
@@ -11171,7 +11481,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4517cc0f"
  },
  {
   "name": "Deficit Deadlift",
@@ -11218,7 +11529,8 @@
     "S16"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "77623d7e"
  },
  {
   "name": "Full Range-Of-Motion Lat Pulldown",
@@ -11267,7 +11579,8 @@
     "24:S12"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8b7add2d"
  },
  {
   "name": "Gironda Sternum Chins",
@@ -11312,7 +11625,8 @@
     "24:S12"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "afe3a485"
  },
  {
   "name": "Keg Load",
@@ -11359,7 +11673,8 @@
     "S34"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "660e1f4e"
  },
  {
   "name": "Kettlebell Sumo High Pull",
@@ -11405,7 +11720,8 @@
     "L4-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f3154b8d"
  },
  {
   "name": "Muscle Up",
@@ -11456,7 +11772,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "69a9b809"
  },
  {
   "name": "Kneeling High Pulley Row",
@@ -11501,7 +11818,8 @@
     "L5-S22"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4691a85c"
  },
  {
   "name": "Leverage High Row",
@@ -11541,7 +11859,8 @@
    "sources": [
     "L5-S22"
    ]
-  }
+  },
+  "rid": "04c94607"
  },
  {
   "name": "Leverage Shrug",
@@ -11580,7 +11899,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "9bfac6b8"
  },
  {
   "name": "London Bridges",
@@ -11627,7 +11947,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "20008e9f"
  },
  {
   "name": "Lying T-Bar Row",
@@ -11667,7 +11988,8 @@
    "sources": [
     "L5-S21"
    ]
-  }
+  },
+  "rid": "7b10f7fd"
  },
  {
   "name": "Middle Back Shrug",
@@ -11708,7 +12030,8 @@
     "L2-S28"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1490c13f"
  },
  {
   "name": "Mixed Grip Chin",
@@ -11753,7 +12076,8 @@
     "24:S12"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "9c5c8269"
  },
  {
   "name": "One Arm Chin-Up",
@@ -11797,7 +12121,8 @@
     "L5-S25"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d8d3e457"
  },
  {
   "name": "Rack Pull with Bands",
@@ -11847,7 +12172,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7825f2db"
  },
  {
   "name": "Reverse Band Deadlift",
@@ -11901,7 +12227,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b9920529"
  },
  {
   "name": "Reverse Grip Bent Over Row",
@@ -11945,7 +12272,8 @@
     "L5-S21"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7fa8f6ab"
  },
  {
   "name": "Rope Climb",
@@ -11987,7 +12315,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "9b180ad6"
  },
  {
   "name": "Scapular Pull-Up",
@@ -12027,7 +12356,8 @@
     "L2-S23",
     "24-S35"
    ]
-  }
+  },
+  "rid": "608cace2"
  },
  {
   "name": "Seated Good Mornings",
@@ -12078,7 +12408,8 @@
     "S35"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a1d8a3f4"
  },
  {
   "name": "Side To Side Chins",
@@ -12120,7 +12451,8 @@
     "L5-S25"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "76c15d28"
  },
  {
   "name": "Sled Row",
@@ -12163,7 +12495,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "730dcd49"
  },
  {
   "name": "Smith Machine Behind the Back Shrug",
@@ -12201,7 +12534,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "77e6e36b"
  },
  {
   "name": "Smith Machine Bent Over Row",
@@ -12243,7 +12577,8 @@
     "L5-S21"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e7a45505"
  },
  {
   "name": "Smith Machine Upright Row",
@@ -12284,7 +12619,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b13aed0a"
  },
  {
   "name": "Underhand Lat Pulldown",
@@ -12331,7 +12667,8 @@
     "24:S11",
     "24:S12"
    ]
-  }
+  },
+  "rid": "6d589d8f"
  },
  {
   "name": "Band Upright Row",
@@ -12372,7 +12709,8 @@
     "L2-S7"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d5cb5396"
  },
  {
   "name": "V-Bar Pulldown",
@@ -12420,7 +12758,8 @@
     "24:S12",
     "L5-S41"
    ]
-  }
+  },
+  "rid": "6c81f087"
  },
  {
   "name": "Weighted Ball Hyperextension",
@@ -12463,7 +12802,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "0b1fe205"
  },
  {
   "name": "Wide-Grip Pulldown Behind The Neck",
@@ -12513,7 +12853,8 @@
     "L5-S41"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "642b731d"
  },
  {
   "name": "Wide-Grip Rear Pull-Up",
@@ -12559,7 +12900,8 @@
     "L5-S40"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f92def02"
  },
  {
   "name": "Seated Barbell Military Press",
@@ -12610,7 +12952,8 @@
     "L5-S17",
     "L5-S33"
    ]
-  }
+  },
+  "rid": "703311f7"
  },
  {
   "name": "Bradford Press",
@@ -12655,7 +12998,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f4ecc859"
  },
  {
   "name": "Standing Barbell Press Behind Neck",
@@ -12702,7 +13046,8 @@
     "L5-S35"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "801042da"
  },
  {
   "name": "Push Press - Behind the Neck",
@@ -12751,7 +13096,8 @@
     "L5-S35"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "dd0f5355"
  },
  {
   "name": "See-Saw Press (Alternating Side Press)",
@@ -12795,7 +13141,8 @@
     "L5-S34"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "51003b6d"
  },
  {
   "name": "Band Shoulder Press",
@@ -12834,7 +13181,8 @@
     "L5-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "eaaa0677"
  },
  {
   "name": "Seated Cable Shoulder Press",
@@ -12884,7 +13232,8 @@
     "L5-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3e038585"
  },
  {
   "name": "Kettlebell Arnold Press",
@@ -12928,7 +13277,8 @@
     "L5-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7fbc8ebe"
  },
  {
   "name": "Kettlebell Seated Press",
@@ -12974,7 +13324,8 @@
     "L5-S33"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3a1c6fa3"
  },
  {
   "name": "Double Kettlebell Press",
@@ -13017,7 +13368,8 @@
     "L5-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a9d95758"
  },
  {
   "name": "Double Kettlebell Push Press",
@@ -13066,7 +13418,8 @@
     "L5-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4bad8247"
  },
  {
   "name": "Double Kettlebell Jerk",
@@ -13115,7 +13468,8 @@
     "L5-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "877d0961"
  },
  {
   "name": "One-Arm Kettlebell Push Press",
@@ -13164,7 +13518,8 @@
     "L5-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "981bcd94"
  },
  {
   "name": "One-Arm Kettlebell Jerk",
@@ -13213,7 +13568,8 @@
     "L5-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6a629f47"
  },
  {
   "name": "One-Arm Kettlebell Split Jerk",
@@ -13262,7 +13618,8 @@
     "L5-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "35dbdf07"
  },
  {
   "name": "Landmine Linear Jammer",
@@ -13311,7 +13668,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1de768bc"
  },
  {
   "name": "Single-Arm Linear Jammer",
@@ -13359,7 +13717,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "128a749b"
  },
  {
   "name": "Log Lift",
@@ -13405,7 +13764,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a3e23921"
  },
  {
   "name": "Circus Bell",
@@ -13450,7 +13810,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d97ff117"
  },
  {
   "name": "Clean and Press",
@@ -13498,7 +13859,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "094726c5"
  },
  {
   "name": "One-Arm Lateral Raise (hantel)",
@@ -13537,7 +13899,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "335afd0d"
  },
  {
   "name": "One-Arm Incline Lateral Raise",
@@ -13579,7 +13942,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d233159f"
  },
  {
   "name": "Cable Seated Lateral Raise",
@@ -13625,7 +13989,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "c5cb8d5f"
  },
  {
   "name": "Band Lateral Raise",
@@ -13662,7 +14027,8 @@
     "L2-S23",
     "L2-S4"
    ]
-  }
+  },
+  "rid": "0bd3b071"
  },
  {
   "name": "Alternating Deltoid Raise",
@@ -13702,7 +14068,8 @@
     "L2-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d0471370"
  },
  {
   "name": "Front Incline Dumbbell Raise",
@@ -13744,7 +14111,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3b3e81a0"
  },
  {
   "name": "Front Plate Raise",
@@ -13782,7 +14150,8 @@
     "L2-S23",
     "L2-S27"
    ]
-  }
+  },
+  "rid": "514dbb77"
  },
  {
   "name": "Single Dumbbell Front Raise",
@@ -13822,7 +14191,8 @@
     "L2-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1d7f2f9a"
  },
  {
   "name": "Dumbbell Front Raise to Overhead",
@@ -13862,7 +14232,8 @@
     "L2-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a6467c93"
  },
  {
   "name": "Barbell Front Raise to Overhead",
@@ -13901,7 +14272,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6900fc7d"
  },
  {
   "name": "Dumbbell Scaption",
@@ -13942,7 +14314,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5e6ca5f4"
  },
  {
   "name": "Straight Raises on Incline Bench",
@@ -13984,7 +14357,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5ce9183e"
  },
  {
   "name": "Crucifix",
@@ -14029,7 +14403,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "11d9b9f9"
  },
  {
   "name": "Car Drivers",
@@ -14069,7 +14444,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "31591a9d"
  },
  {
   "name": "Kettlebell Halo",
@@ -14109,7 +14485,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a286d72a"
  },
  {
   "name": "Kettlebell Halo with Overhead Extension",
@@ -14150,7 +14527,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e8a801b5"
  },
  {
   "name": "Kettlebell Pirate Ships",
@@ -14191,7 +14569,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "50bc3b67"
  },
  {
   "name": "Dumbbell Incline Shoulder Raise",
@@ -14235,7 +14614,8 @@
    ]
   },
   "scope": "niche",
-  "unmapped": "serratus_anterior"
+  "unmapped": "serratus_anterior",
+  "rid": "4106a799"
  },
  {
   "name": "Barbell Incline Shoulder Raise",
@@ -14283,7 +14663,8 @@
    ]
   },
   "scope": "niche",
-  "unmapped": "serratus_anterior"
+  "unmapped": "serratus_anterior",
+  "rid": "ffb52b77"
  },
  {
   "name": "Smith Incline Shoulder Raise",
@@ -14325,7 +14706,8 @@
    ]
   },
   "scope": "niche",
-  "unmapped": "serratus_anterior"
+  "unmapped": "serratus_anterior",
+  "rid": "9809553d"
  },
  {
   "name": "Cuban Press",
@@ -14368,7 +14750,8 @@
     "L2-S10"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5d7db1f7"
  },
  {
   "name": "Dumbbell One-Arm Upright Row",
@@ -14410,7 +14793,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "694dda48"
  },
  {
   "name": "Smith Machine One-Arm Upright Row",
@@ -14451,7 +14835,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "958466f1"
  },
  {
   "name": "Dumbbell Lying One-Arm Rear Lateral Raise",
@@ -14495,7 +14880,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e49d2ee2"
  },
  {
   "name": "Reverse Flyes With External Rotation",
@@ -14539,7 +14925,8 @@
     "L2-S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "da21f0e6"
  },
  {
   "name": "One-Arm Cable Rear Lateral Raise",
@@ -14580,7 +14967,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "507c30f5"
  },
  {
   "name": "Cable Rope Rear-Delt Rows",
@@ -14624,7 +15012,8 @@
     "L5-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a222cb10"
  },
  {
   "name": "Barbell Rear Delt Row",
@@ -14665,7 +15054,8 @@
     "L5-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4113fb7d"
  },
  {
   "name": "Sled Reverse Flye",
@@ -14703,7 +15093,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b019145e"
  },
  {
   "name": "Sled Overhead Backward Walk",
@@ -14746,7 +15137,8 @@
     "L6-S14"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4f633d15"
  },
  {
   "name": "External Rotation with Band",
@@ -14784,7 +15176,8 @@
     "L2-S24"
    ]
   },
-  "unmapped": "rotator_cuff"
+  "unmapped": "rotator_cuff",
+  "rid": "da7c0b5b"
  },
  {
   "name": "Internal Rotation with Band",
@@ -14822,7 +15215,8 @@
    ]
   },
   "scope": "niche",
-  "unmapped": "rotator_cuff"
+  "unmapped": "rotator_cuff",
+  "rid": "4a681dd9"
  },
  {
   "name": "Cable Internal Rotation",
@@ -14865,7 +15259,8 @@
    ]
   },
   "scope": "niche",
-  "unmapped": "rotator_cuff"
+  "unmapped": "rotator_cuff",
+  "rid": "afcebfba"
  },
  {
   "name": "Isometric Neck Exercise - Front And Back",
@@ -14895,7 +15290,8 @@
     "L2-S30"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8a23bdef"
  },
  {
   "name": "Isometric Neck Exercise - Sides",
@@ -14925,7 +15321,8 @@
     "L2-S30"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d4ce5863"
  },
  {
   "name": "Lying Neck Extension (talerz)",
@@ -14963,7 +15360,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6adf17da"
  },
  {
   "name": "Lying Neck Flexion (talerz)",
@@ -15001,7 +15399,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4c462d13"
  },
  {
   "name": "Neck Harness Extension",
@@ -15043,7 +15442,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b469ac43"
  },
  {
   "name": "Clean and Jerk",
@@ -15092,7 +15492,8 @@
     "L4-S4",
     "L4-S27"
    ]
-  }
+  },
+  "rid": "63b36fef"
  },
  {
   "name": "Jerk Balance",
@@ -15136,7 +15537,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5a6b9f72"
  },
  {
   "name": "Rack Delivery",
@@ -15175,7 +15577,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1e7032f8"
  },
  {
   "name": "Double Kettlebell Snatch",
@@ -15220,7 +15623,8 @@
     "L4-S25"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2961dd45"
  },
  {
   "name": "Double Kettlebell Clean",
@@ -15263,7 +15667,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "28883814"
  },
  {
   "name": "One-Arm Kettlebell Clean and Jerk",
@@ -15308,7 +15713,8 @@
     "L4-S25"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e232b4a2"
  },
  {
   "name": "Kettlebell Thruster",
@@ -15352,7 +15758,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b3904276"
  },
  {
   "name": "Backward Medicine Ball Throw",
@@ -15390,7 +15797,8 @@
     "L6-S49"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5f1b8a8e"
  },
  {
   "name": "Medicine Ball Scoop Throw",
@@ -15427,7 +15835,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "fc0dc4eb"
  },
  {
   "name": "Standing Two-Arm Overhead Throw",
@@ -15465,7 +15874,8 @@
     "L6-S49"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ed11b601"
  },
  {
   "name": "Spider Curl (sztanga)",
@@ -15510,7 +15920,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d7562db2"
  },
  {
   "name": "Drag Curl",
@@ -15551,7 +15962,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ec7c0ee1"
  },
  {
   "name": "Barbell Preacher Curl",
@@ -15595,7 +16007,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5a6b5b1c"
  },
  {
   "name": "Reverse EZ-Bar Preacher Curl",
@@ -15638,7 +16051,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "bf463fda"
  },
  {
   "name": "Seated Close-Grip Concentration Barbell Curl",
@@ -15683,7 +16097,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d4b0e33c"
  },
  {
   "name": "Cross Body Hammer Curl",
@@ -15722,7 +16137,8 @@
     "S6",
     "L1-S57"
    ]
-  }
+  },
+  "rid": "5e68372e"
  },
  {
   "name": "Incline Hammer Curl",
@@ -15765,7 +16181,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4477a7ca"
  },
  {
   "name": "Lying Supine Dumbbell Curl",
@@ -15809,7 +16226,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5eef847c"
  },
  {
   "name": "One Arm Dumbbell Preacher Curl",
@@ -15853,7 +16271,8 @@
     "S13",
     "S6"
    ]
-  }
+  },
+  "rid": "07e2f1b5"
  },
  {
   "name": "Preacher Hammer Dumbbell Curl",
@@ -15896,7 +16315,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "adf55f40"
  },
  {
   "name": "Zottman Preacher Curl",
@@ -15943,7 +16363,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e7edebf5"
  },
  {
   "name": "Standing Inner-Biceps Curl",
@@ -15984,7 +16405,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "44d46cc0"
  },
  {
   "name": "Standing Dumbbell Reverse Curl",
@@ -16024,7 +16446,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "08083885"
  },
  {
   "name": "Standing Concentration Curl",
@@ -16064,7 +16487,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "26f2d41f"
  },
  {
   "name": "Standing One-Arm Cable Curl",
@@ -16104,7 +16528,8 @@
     "S13",
     "S6"
    ]
-  }
+  },
+  "rid": "41c7a764"
  },
  {
   "name": "Cable Preacher Curl",
@@ -16148,7 +16573,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5490445d"
  },
  {
   "name": "Lying Cable Curl",
@@ -16191,7 +16617,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "db39d64b"
  },
  {
   "name": "Lying Close-Grip Bar Curl On High Pulley",
@@ -16235,7 +16662,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "75d5b41f"
  },
  {
   "name": "Reverse Cable Curl",
@@ -16276,7 +16704,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "68757a96"
  },
  {
   "name": "Cable Wrist Curl",
@@ -16318,7 +16747,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2cc6b133"
  },
  {
   "name": "Dumbbell Lying Pronation",
@@ -16358,7 +16788,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "cc90844e"
  },
  {
   "name": "Dumbbell Lying Supination",
@@ -16399,7 +16830,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "76807381"
  },
  {
   "name": "One-Arm Dumbbell Wrist Curl",
@@ -16440,7 +16872,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "936fa312"
  },
  {
   "name": "One-Arm Dumbbell Reverse Wrist Curl",
@@ -16481,7 +16914,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4ce2b3bb"
  },
  {
   "name": "Barbell Wrist Curl",
@@ -16521,7 +16955,8 @@
     "L1-S6",
     "L1-S57"
    ]
-  }
+  },
+  "rid": "aeecbd81"
  },
  {
   "name": "Barbell Reverse Wrist Curl",
@@ -16561,7 +16996,8 @@
     "L1-S6",
     "L1-S57"
    ]
-  }
+  },
+  "rid": "45203e7d"
  },
  {
   "name": "Behind-the-Back Barbell Wrist Curl",
@@ -16599,7 +17035,8 @@
     "L1-S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "cd8ff968"
  },
  {
   "name": "Wrist Roller",
@@ -16637,7 +17074,8 @@
     "L1-S57",
     "L1-S6"
    ]
-  }
+  },
+  "rid": "6535bffb"
  },
  {
   "name": "Plate Pinch",
@@ -16672,7 +17110,8 @@
     "L6-S10"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f170251f"
  },
  {
   "name": "Reverse Plate Curls",
@@ -16711,7 +17150,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "90efde25"
  },
  {
   "name": "Bottoms-Up Clean From The Hang Position",
@@ -16757,7 +17197,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d17ab165"
  },
  {
   "name": "Farmer's Walk (Farmers Handles)",
@@ -16804,7 +17245,8 @@
     "L3-S28"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1cc1afe1"
  },
  {
   "name": "Rickshaw Carry",
@@ -16850,7 +17292,8 @@
     "L3-S30"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "741dfeb6"
  },
  {
   "name": "Band Skull Crusher",
@@ -16890,7 +17333,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ea315483"
  },
  {
   "name": "Band Overhead Triceps Extension",
@@ -16926,7 +17370,8 @@
     "S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "749220c9"
  },
  {
   "name": "Body-Up",
@@ -16963,7 +17408,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "92f9ac84"
  },
  {
   "name": "Bodyweight Triceps Extension",
@@ -17005,7 +17451,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1e780a1e"
  },
  {
   "name": "Bench Press with Chains",
@@ -17061,7 +17508,8 @@
     "24:S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "57b6ad1a"
  },
  {
   "name": "Floor Press with Chains",
@@ -17113,7 +17561,8 @@
     "24:S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2156f341"
  },
  {
   "name": "Reverse Band Bench Press",
@@ -17168,7 +17617,8 @@
     "24:S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a3fe7298"
  },
  {
   "name": "Board Press",
@@ -17221,7 +17671,8 @@
     "24:S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d515bf41"
  },
  {
   "name": "Pin Press",
@@ -17276,7 +17727,8 @@
     "24:S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "0e2ba0fd"
  },
  {
   "name": "Close-Grip Dumbbell Press",
@@ -17323,7 +17775,8 @@
     "24:S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ace612aa"
  },
  {
   "name": "Close-Grip EZ-Bar Press",
@@ -17374,7 +17827,8 @@
     "24:S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "db971e4a"
  },
  {
   "name": "Smith Machine Close-Grip Bench Press",
@@ -17417,7 +17871,8 @@
     "L5-S13"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7869708c"
  },
  {
   "name": "Reverse Grip Bench Press",
@@ -17469,7 +17924,8 @@
     "24:S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5d75f0eb"
  },
  {
   "name": "Decline Close-Grip Bench To Skull Crusher",
@@ -17519,7 +17975,8 @@
     "24:S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3ff5abd3"
  },
  {
   "name": "Decline Dumbbell Triceps Extension",
@@ -17561,7 +18018,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b04e2fb6"
  },
  {
   "name": "Decline EZ Bar Triceps Extension",
@@ -17602,7 +18060,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6aa2a1b2"
  },
  {
   "name": "Incline Barbell Triceps Extension",
@@ -17643,7 +18102,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7e2399d8"
  },
  {
   "name": "Lying Close-Grip Barbell Triceps Extension Behind The Head",
@@ -17685,7 +18145,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3cf07a53"
  },
  {
   "name": "One-Arm Lying Dumbbell Triceps Extension",
@@ -17726,7 +18187,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8affff26"
  },
  {
   "name": "Dumbbell One-Arm Triceps Extension",
@@ -17767,7 +18229,8 @@
     "S29",
     "S6"
    ]
-  }
+  },
+  "rid": "93597271"
  },
  {
   "name": "Kettlebell Overhead Triceps Extension",
@@ -17807,7 +18270,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "000fc9b9"
  },
  {
   "name": "Standing Overhead Barbell Triceps Extension",
@@ -17847,7 +18311,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6d328340"
  },
  {
   "name": "Two-Arm Dumbbell Kickback",
@@ -17886,7 +18351,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8c7f7424"
  },
  {
   "name": "Cable Incline Triceps Extension",
@@ -17928,7 +18394,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4834c347"
  },
  {
   "name": "Cable Lying Triceps Extension",
@@ -17970,7 +18437,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2ab572ee"
  },
  {
   "name": "Reverse Grip Triceps Pushdown",
@@ -18008,7 +18476,8 @@
     "S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "677ec4e5"
  },
  {
   "name": "Kneeling Cable Triceps Extension",
@@ -18051,7 +18520,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d17ee222"
  },
  {
   "name": "Standing Low-Pulley One-Arm Triceps Extension",
@@ -18089,7 +18559,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8dc5d40d"
  },
  {
   "name": "Chain Handle Extension",
@@ -18128,7 +18599,8 @@
     "L1-S46"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e2bbdde9"
  },
  {
   "name": "Sled Overhead Triceps Extension",
@@ -18164,7 +18636,8 @@
     "L1-S57"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "bebf2fdb"
  },
  {
   "name": "Dip Machine",
@@ -18203,7 +18676,8 @@
    "sources": [
     "L5-S16"
    ]
-  }
+  },
+  "rid": "7fb124e0"
  },
  {
   "name": "Triceps Dip",
@@ -18243,7 +18717,8 @@
     "L5-S16",
     "L5-S37"
    ]
-  }
+  },
+  "rid": "1f87993e"
  },
  {
   "name": "Ring Dips",
@@ -18284,7 +18759,8 @@
     "L5-S37"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "9f094399"
  },
  {
   "name": "Close-Grip Push-Up",
@@ -18324,7 +18800,8 @@
     "L5-S31"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "93e5f4a8"
  },
  {
   "name": "Incline Push-Up Close-Grip",
@@ -18366,7 +18843,8 @@
     "L5-S15"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8cd4a246"
  },
  {
   "name": "Supine Chest Throw",
@@ -18404,7 +18882,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "abb79275"
  },
  {
   "name": "Box Squat with Bands",
@@ -18459,7 +18938,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a5d7dff7"
  },
  {
   "name": "Box Squat with Chains",
@@ -18514,7 +18994,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8ec87a9a"
  },
  {
   "name": "Reverse Band Box Squat",
@@ -18569,7 +19050,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "86fb928c"
  },
  {
   "name": "Reverse Band Power Squat",
@@ -18622,7 +19104,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8db87cad"
  },
  {
   "name": "Squat with Bands",
@@ -18675,7 +19158,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "fd66cb91"
  },
  {
   "name": "Squat with Chains",
@@ -18728,7 +19212,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "0e54debf"
  },
  {
   "name": "Jefferson Squat",
@@ -18770,7 +19255,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "26976ce5"
  },
  {
   "name": "Barbell Hack Squat",
@@ -18812,7 +19298,8 @@
     "S2"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "50d40872"
  },
  {
   "name": "Overhead Squat",
@@ -18859,7 +19346,8 @@
     "L4-S13",
     "L4-S27"
    ]
-  }
+  },
+  "rid": "21dfb27e"
  },
  {
   "name": "Jerk Dip Squat",
@@ -18905,7 +19393,8 @@
     "L4-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5c97cefb"
  },
  {
   "name": "Barbell Side Split Squat",
@@ -18950,7 +19439,8 @@
     "L4-S28"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f51c61e6"
  },
  {
   "name": "Barbell Walking Lunge",
@@ -18995,7 +19485,8 @@
     "S26"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "781d9dec"
  },
  {
   "name": "Barbell Step Up",
@@ -19043,7 +19534,8 @@
     "L4-S18"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "492cc23c"
  },
  {
   "name": "Elevated Back Lunge",
@@ -19091,7 +19583,8 @@
     "S26"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "181dc21b"
  },
  {
   "name": "Bulgarian Split Squat (sztanga)",
@@ -19140,7 +19633,8 @@
     "L4-S20"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "46a62c92"
  },
  {
   "name": "Weighted Jump Squat",
@@ -19184,7 +19678,8 @@
     "L6-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3687ff78"
  },
  {
   "name": "Dumbbell Squat",
@@ -19226,7 +19721,8 @@
     "S1",
     "S2"
    ]
-  }
+  },
+  "rid": "2095e0c6"
  },
  {
   "name": "One-Arm Overhead Kettlebell Squat",
@@ -19270,7 +19766,8 @@
     "L4-S13"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "30a1285c"
  },
  {
   "name": "Smith Machine Pistol Squat",
@@ -19310,7 +19807,8 @@
     "L4-S16"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1903db1f"
  },
  {
   "name": "Smith Machine Bulgarian Split Squat",
@@ -19354,7 +19852,8 @@
     "S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "90c518a9"
  },
  {
   "name": "Smith Machine Leg Press",
@@ -19393,7 +19892,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ed6a8a0e"
  },
  {
   "name": "Lying Machine Squat",
@@ -19432,7 +19932,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "48c1507e"
  },
  {
   "name": "Single-Leg Leg Extension",
@@ -19468,7 +19969,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d6abf991"
  },
  {
   "name": "Single-Leg High Box Squat",
@@ -19511,7 +20013,8 @@
     "L4-S16"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e8229d23"
  },
  {
   "name": "Suspended Split Squat",
@@ -19551,7 +20054,8 @@
     "L4-S20"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "73f7d77c"
  },
  {
   "name": "Dip Belt Squat",
@@ -19599,7 +20103,8 @@
     "L4-S15"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ed84066e"
  },
  {
   "name": "Band Squat",
@@ -19638,7 +20143,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "386a0fa7"
  },
  {
   "name": "Hip Flexion with Band",
@@ -19679,7 +20185,8 @@
    ]
   },
   "scope": "niche",
-  "unmapped": "hip_flexors"
+  "unmapped": "hip_flexors",
+  "rid": "c3e48bf4"
  },
  {
   "name": "Cable Deadlift",
@@ -19728,7 +20235,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b1938231"
  },
  {
   "name": "Leverage Deadlift",
@@ -19772,7 +20280,8 @@
     "S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6df50c2d"
  },
  {
   "name": "One-Arm Side Deadlift",
@@ -19816,7 +20325,8 @@
     "S34"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7b4e7fd3"
  },
  {
   "name": "Hang Clean",
@@ -19863,7 +20373,8 @@
     "L4-S4",
     "L4-S27"
    ]
-  }
+  },
+  "rid": "0bd235ce"
  },
  {
   "name": "Clean Pull",
@@ -19910,7 +20421,8 @@
     "L4-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "87721abf"
  },
  {
   "name": "Block Clean",
@@ -19958,7 +20470,8 @@
     "L4-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b8272ee8"
  },
  {
   "name": "Split Clean",
@@ -20002,7 +20515,8 @@
     "L4-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "eb77ca5d"
  },
  {
   "name": "Barbell Snatch",
@@ -20049,7 +20563,8 @@
     "L4-S4",
     "L4-S27"
    ]
-  }
+  },
+  "rid": "8aa072e5"
  },
  {
   "name": "Block Snatch",
@@ -20098,7 +20613,8 @@
     "L4-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "cb0e487b"
  },
  {
   "name": "Block Power Snatch",
@@ -20147,7 +20663,8 @@
     "L4-S2"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "af1ae602"
  },
  {
   "name": "Snatch Balance",
@@ -20194,7 +20711,8 @@
     "L4-S13"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "546c4493"
  },
  {
   "name": "Power Jerk",
@@ -20241,7 +20759,8 @@
     "L5-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "c047cac8"
  },
  {
   "name": "Split Jerk",
@@ -20288,7 +20807,8 @@
     "L5-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "06608841"
  },
  {
   "name": "Squat Jerk",
@@ -20336,7 +20856,8 @@
     "L5-S44"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ddc906e0"
  },
  {
   "name": "Backward Drag",
@@ -20378,7 +20899,8 @@
     "L6-S14"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "fd9e254e"
  },
  {
   "name": "Sled Drag (Harness)",
@@ -20422,7 +20944,8 @@
     "L6-S14"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "dd6cdae1"
  },
  {
   "name": "Bear Crawl Sled Drag",
@@ -20468,7 +20991,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "c4bd613e"
  },
  {
   "name": "Yoke Walk",
@@ -20515,7 +21039,8 @@
     "L3-S30"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d5b0c729"
  },
  {
   "name": "Conan's Wheel",
@@ -20563,7 +21088,8 @@
     "L3-S30"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a7078fe5"
  },
  {
   "name": "Rickshaw Deadlift",
@@ -20607,7 +21133,8 @@
     "L4-S1"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "9d0bd6ca"
  },
  {
   "name": "Tire Flip",
@@ -20654,7 +21181,8 @@
     "S34"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8e14e1b4"
  },
  {
   "name": "Sandbag Load",
@@ -20701,7 +21229,8 @@
     "L4-S1"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5f6ec438"
  },
  {
   "name": "Alternate Leg Diagonal Bound",
@@ -20741,7 +21270,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "19d77038"
  },
  {
   "name": "Bench Jump",
@@ -20784,7 +21314,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "79ac1c78"
  },
  {
   "name": "Alternate Leg Push-Off",
@@ -20828,7 +21359,8 @@
     "L6-S45"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d248db72"
  },
  {
   "name": "Single Leg Push-Off",
@@ -20872,7 +21404,8 @@
     "L6-S46"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "30c617b6"
  },
  {
   "name": "Single-Leg Stride Jump",
@@ -20914,7 +21447,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7094add3"
  },
  {
   "name": "Side to Side Box Shuffle",
@@ -20956,7 +21490,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "932e4ff6"
  },
  {
   "name": "Depth Jump",
@@ -20998,7 +21533,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3fa90c8c"
  },
  {
   "name": "Dumbbell Seated Box Jump",
@@ -21045,7 +21581,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "31398221"
  },
  {
   "name": "Double Leg Butt Kick",
@@ -21083,7 +21620,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "fe035e03"
  },
  {
   "name": "Single Leg Butt Kick",
@@ -21121,7 +21659,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "de2b172e"
  },
  {
   "name": "Split Jump",
@@ -21159,7 +21698,8 @@
     "L6-S5",
     "L6-S44"
    ]
-  }
+  },
+  "rid": "c0957a95"
  },
  {
   "name": "Star Jump",
@@ -21197,7 +21737,8 @@
     "L6-S4",
     "L6-S5"
    ]
-  }
+  },
+  "rid": "c87f2a13"
  },
  {
   "name": "Side Standing Long Jump",
@@ -21236,7 +21777,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "c4f5a769"
  },
  {
   "name": "Front Cone Hops",
@@ -21275,7 +21817,8 @@
     "L6-S42"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7f1675a4"
  },
  {
   "name": "Side Hop-Sprint",
@@ -21313,7 +21856,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "61bc9035"
  },
  {
   "name": "Single-Leg Hop Progression",
@@ -21351,7 +21895,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "facf48ae"
  },
  {
   "name": "Single-Leg Lateral Hop",
@@ -21389,7 +21934,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f5aa9406"
  },
  {
   "name": "Fast Skipping",
@@ -21421,7 +21967,8 @@
     "L3-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2d7eacd3"
  },
  {
   "name": "Treadmill Walking",
@@ -21456,7 +22003,8 @@
    "sources": [
     "L3-S20"
    ]
-  }
+  },
+  "rid": "fef6473a"
  },
  {
   "name": "Band Good Morning",
@@ -21497,7 +22045,8 @@
     "L4-S21"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8bf2c66a"
  },
  {
   "name": "Band Hip Adduction",
@@ -21536,7 +22085,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d246e72a"
  },
  {
   "name": "Barbell Seated Calf Raise",
@@ -21578,7 +22128,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5b8f4c58"
  },
  {
   "name": "Box Skip",
@@ -21620,7 +22171,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "204b020d"
  },
  {
   "name": "Band Calf Raise",
@@ -21656,7 +22208,8 @@
     "L2-S21"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "baf2df9d"
  },
  {
   "name": "Carioca Quick Step",
@@ -21689,7 +22242,8 @@
     "L3-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "63011406"
  },
  {
   "name": "Clean",
@@ -21735,7 +22289,8 @@
     "L4-S4",
     "L4-S27"
    ]
-  }
+  },
+  "rid": "4d7282a4"
  },
  {
   "name": "Clean Deadlift",
@@ -21780,7 +22335,8 @@
     "S16"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "db7fc620"
  },
  {
   "name": "Donkey Calf Raise",
@@ -21816,7 +22372,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3e99f324"
  },
  {
   "name": "Downward Facing Balance",
@@ -21859,7 +22416,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "039fb885"
  },
  {
   "name": "Dumbbell Clean",
@@ -21907,7 +22465,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b8d99b11"
  },
  {
   "name": "Dumbbell Seated One-Leg Calf Raise",
@@ -21950,7 +22509,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e564de06"
  },
  {
   "name": "Prone Flutter Kicks",
@@ -21989,7 +22549,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "9b1284f1"
  },
  {
   "name": "Good Morning off Pins",
@@ -22036,7 +22597,8 @@
     "L4-S21"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "51799968"
  },
  {
   "name": "Hang Snatch",
@@ -22085,7 +22647,8 @@
     "L4-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "73e00a6d"
  },
  {
   "name": "Hip Extension with Bands",
@@ -22125,7 +22688,8 @@
     "L2-S20",
     "L2-S23"
    ]
-  }
+  },
+  "rid": "16242276"
  },
  {
   "name": "Tuck Jump",
@@ -22163,7 +22727,8 @@
     "L6-S5",
     "L6-S41"
    ]
-  }
+  },
+  "rid": "c78ea856"
  },
  {
   "name": "Kneeling Jump Squat",
@@ -22209,7 +22774,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d56b6781"
  },
  {
   "name": "Kneeling Squat",
@@ -22255,7 +22821,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "cfc020b7"
  },
  {
   "name": "Lateral Bound",
@@ -22293,7 +22860,8 @@
     "L6-S4",
     "L6-S5"
    ]
-  }
+  },
+  "rid": "35cc54e4"
  },
  {
   "name": "Lateral Box Jump",
@@ -22336,7 +22904,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8b1b8c30"
  },
  {
   "name": "Lateral Cone Hops",
@@ -22377,7 +22946,8 @@
     "L6-S42"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2eb9fd0d"
  },
  {
   "name": "Lunge Pass Through",
@@ -22420,7 +22990,8 @@
     "S26"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "c529bbf6"
  },
  {
   "name": "Monster Walk",
@@ -22457,7 +23028,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6c34d746"
  },
  {
   "name": "Muscle Snatch",
@@ -22503,7 +23075,8 @@
     "L4-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "fcf7627a"
  },
  {
   "name": "One-Arm Kettlebell Swings",
@@ -22551,7 +23124,8 @@
     "L4-S25"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "749eac95"
  },
  {
   "name": "Stability Ball Hip Bridge",
@@ -22589,7 +23163,8 @@
     "S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f2164284"
  },
  {
   "name": "Block Power Clean",
@@ -22636,7 +23211,8 @@
     "L4-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "fbfbdfca"
  },
  {
   "name": "Power Snatch",
@@ -22683,7 +23259,8 @@
     "L4-S4",
     "L4-S27"
    ]
-  }
+  },
+  "rid": "70913c12"
  },
  {
   "name": "Power Stairs",
@@ -22733,7 +23310,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "21b82f3e"
  },
  {
   "name": "Reverse Band Sumo Deadlift",
@@ -22785,7 +23363,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "49e25568"
  },
  {
   "name": "Seated Band Hamstring Curl",
@@ -22828,7 +23407,8 @@
     "L2-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "63206e77"
  },
  {
   "name": "Smith Machine Reverse Calf Raise",
@@ -22863,7 +23443,8 @@
    ]
   },
   "scope": "niche",
-  "unmapped": "tibialis_anterior"
+  "unmapped": "tibialis_anterior",
+  "rid": "946f91e8"
  },
  {
   "name": "Smith Machine Stiff-Legged Deadlift",
@@ -22905,7 +23486,8 @@
     "S20"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "96c559a5"
  },
  {
   "name": "Snatch Deadlift",
@@ -22950,7 +23532,8 @@
     "S16"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "858714ad"
  },
  {
   "name": "Snatch Pull",
@@ -22995,7 +23578,8 @@
     "L4-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f1d82a42"
  },
  {
   "name": "Split Snatch",
@@ -23040,7 +23624,8 @@
     "L4-S29"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2127f712"
  },
  {
   "name": "Standing Leg Curl",
@@ -23077,7 +23662,8 @@
     "L2-S23"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7a29c288"
  },
  {
   "name": "Stiff-Legged Barbell Deadlift",
@@ -23121,7 +23707,8 @@
     "L4-S27"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "14b913df"
  },
  {
   "name": "Sumo Deadlift with Bands",
@@ -23172,7 +23759,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a0e17d17"
  },
  {
   "name": "Sumo Deadlift with Chains",
@@ -23221,7 +23809,8 @@
     "L4-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7a323143"
  },
  {
   "name": "Alternate Heel Touchers",
@@ -23256,7 +23845,8 @@
     "L6-S8"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "0a1674dd"
  },
  {
   "name": "Standing Barbell Rollout",
@@ -23298,7 +23888,8 @@
     "L6-S2"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "873ee264"
  },
  {
   "name": "Barbell Rollout from Bench",
@@ -23340,7 +23931,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5611091f"
  },
  {
   "name": "Barbell Side Bend",
@@ -23380,7 +23972,8 @@
     "L6-S8"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b250ede5"
  },
  {
   "name": "Bent Press",
@@ -23425,7 +24018,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "864a5fe8"
  },
  {
   "name": "Bosu Ball Cable Crunch With Side Bends",
@@ -23471,7 +24065,8 @@
     "S32"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2cfc60fd"
  },
  {
   "name": "Butt-Ups",
@@ -23506,7 +24101,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1a93b54c"
  },
  {
   "name": "Cable Judo Flip",
@@ -23548,7 +24144,8 @@
     "L6-S8"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "cc034ea5"
  },
  {
   "name": "Cable Reverse Crunch",
@@ -23592,7 +24189,8 @@
     "L6-S1"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e17235e6"
  },
  {
   "name": "Cable Russian Twists",
@@ -23634,7 +24232,8 @@
     "L6-S33"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "5009c6d1"
  },
  {
   "name": "Cable Seated Crunch",
@@ -23677,7 +24276,8 @@
     "S32"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "16adfc49"
  },
  {
   "name": "Cocoons",
@@ -23713,7 +24313,8 @@
     "S32"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "40c9ad54"
  },
  {
   "name": "Cross-Body Crunch",
@@ -23747,7 +24348,8 @@
     "L6-S8",
     "L6-S7"
    ]
-  }
+  },
+  "rid": "8970332f"
  },
  {
   "name": "Crunch - Hands Overhead",
@@ -23781,7 +24383,8 @@
     "L6-S7"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "eca0e693"
  },
  {
   "name": "Crunch - Legs On Exercise Ball",
@@ -23820,7 +24423,8 @@
     "L6-S18"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2222b356"
  },
  {
   "name": "Decline Oblique Crunch",
@@ -23857,7 +24461,8 @@
     "L6-S8"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "573f70ba"
  },
  {
   "name": "Decline Reverse Crunch",
@@ -23893,7 +24498,8 @@
     "L6-S1"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b54b7b73"
  },
  {
   "name": "Double Kettlebell Windmill",
@@ -23938,7 +24544,8 @@
     "L6-S38"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e090f3cd"
  },
  {
   "name": "Stability Ball Knee Tuck",
@@ -23977,7 +24584,8 @@
     "L6-S2",
     "L6-S25"
    ]
-  }
+  },
+  "rid": "a25cf58f"
  },
  {
   "name": "Frog Sit-Ups",
@@ -24011,7 +24619,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6db844b2"
  },
  {
   "name": "Gorilla Chin/Crunch",
@@ -24055,7 +24664,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "92fe6eee"
  },
  {
   "name": "Janda Sit-Up",
@@ -24091,7 +24701,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f7c07c35"
  },
  {
   "name": "Kettlebell Figure 8",
@@ -24135,7 +24746,8 @@
     "L6-S37"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "9915b439"
  },
  {
   "name": "Kneeling Cable Crunch With Alternating Oblique Twists",
@@ -24176,7 +24788,8 @@
     "L6-S8"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "9abbde89"
  },
  {
   "name": "Leg Pull-In",
@@ -24212,7 +24825,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ec73c963"
  },
  {
   "name": "Medicine Ball Full Twist",
@@ -24249,7 +24863,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b0baf8ed"
  },
  {
   "name": "Oblique Crunches - On The Floor",
@@ -24284,7 +24899,8 @@
     "L6-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "03686829"
  },
  {
   "name": "One-Arm High-Pulley Cable Side Bends",
@@ -24324,7 +24940,8 @@
     "L6-S8"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "8eaa2b4d"
  },
  {
   "name": "One-Arm Medicine Ball Slam",
@@ -24362,7 +24979,8 @@
     "L6-S48"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "9fd1e9dd"
  },
  {
   "name": "Otis-Up",
@@ -24405,7 +25023,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "df35c046"
  },
  {
   "name": "Pallof Press With Rotation",
@@ -24446,7 +25065,8 @@
     "L6-S15"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2da9e334"
  },
  {
   "name": "Press Sit-Up",
@@ -24491,7 +25111,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "56ae5773"
  },
  {
   "name": "Seated Barbell Twist",
@@ -24532,7 +25153,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "903ecf3d"
  },
  {
   "name": "Seated Flat Bench Leg Pull-In",
@@ -24570,7 +25192,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "bd10f542"
  },
  {
   "name": "Side Jackknife",
@@ -24605,7 +25228,8 @@
     "L6-S16"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3e2ecaef"
  },
  {
   "name": "Sledgehammer Swings",
@@ -24646,7 +25270,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4ba92053"
  },
  {
   "name": "Smith Machine Hip Raise",
@@ -24685,7 +25310,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "178d7fe5"
  },
  {
   "name": "Spell Caster",
@@ -24726,7 +25352,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "eef0d080"
  },
  {
   "name": "Spider Crawl",
@@ -24766,7 +25393,8 @@
     "L6-S50"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f39f6293"
  },
  {
   "name": "Standing Rope Crunch",
@@ -24805,7 +25433,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "091ff035"
  },
  {
   "name": "Supine One-Arm Overhead Throw",
@@ -24849,7 +25478,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b717035f"
  },
  {
   "name": "Supine Two-Arm Overhead Throw",
@@ -24893,7 +25523,8 @@
     "L6-S5"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "018df432"
  },
  {
   "name": "Suspended Fallout",
@@ -24934,7 +25565,8 @@
     "S32"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1dc3129a"
  },
  {
   "name": "Suspended Reverse Crunch",
@@ -24974,7 +25606,8 @@
     "S32"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "a0fbcd1c"
  },
  {
   "name": "Tuck Crunch",
@@ -25009,7 +25642,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "36bc77af"
  },
  {
   "name": "Weighted Ball Side Bend",
@@ -25050,7 +25684,8 @@
     "L6-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "db95b70b"
  },
  {
   "name": "Weighted Sit-Ups - With Bands",
@@ -25089,7 +25724,8 @@
     "L6-S17"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "66d0cd90"
  },
  {
   "name": "Ankle Circles",
@@ -25121,7 +25757,8 @@
     "L3-S15"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d260327b"
  },
  {
   "name": "Supine Figure-Four Stretch",
@@ -25156,7 +25793,8 @@
     "L3-S10",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "3d9f5abe"
  },
  {
   "name": "Arm Circles",
@@ -25188,7 +25826,8 @@
     "L3-S3",
     "L3-S4"
    ]
-  }
+  },
+  "rid": "99a8a235"
  },
  {
   "name": "Wall Calf Stretch",
@@ -25227,7 +25866,8 @@
     "L3-S15",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "93f182b0"
  },
  {
   "name": "Cat-Cow",
@@ -25261,7 +25901,8 @@
     "L3-S3",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "7852f438"
  },
  {
   "name": "Chest And Front Of Shoulder Stretch",
@@ -25293,7 +25934,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ad768106"
  },
  {
   "name": "Chest Stretch on Stability Ball",
@@ -25331,7 +25973,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "676c5f86"
  },
  {
   "name": "Child's Pose",
@@ -25367,7 +26010,8 @@
     "L3-S9",
     "L3-S13"
    ]
-  }
+  },
+  "rid": "82a3ca75"
  },
  {
   "name": "Chin To Chest Stretch",
@@ -25402,7 +26046,8 @@
     "L3-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3785f29d"
  },
  {
   "name": "Crossover Reverse Lunge",
@@ -25437,7 +26082,8 @@
     "L3-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "defcd499"
  },
  {
   "name": "Seated Rotation Stretch",
@@ -25475,7 +26121,8 @@
     "L3-S13"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "d6f41da9"
  },
  {
   "name": "Dynamic Back Stretch",
@@ -25507,7 +26154,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "4f161ddd"
  },
  {
   "name": "Dynamic Chest Stretch",
@@ -25539,7 +26187,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "9d9ab5f3"
  },
  {
   "name": "Standing Chest Stretch",
@@ -25571,7 +26220,8 @@
     "L3-S3",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "d66defea"
  },
  {
   "name": "Leg Swings (Front-to-Back)",
@@ -25602,7 +26252,8 @@
     "L3-S3",
     "L3-S4"
    ]
-  }
+  },
+  "rid": "ccdd5ed5"
  },
  {
   "name": "Butterfly Stretch",
@@ -25637,7 +26288,8 @@
     "L3-S10",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "79ea2012"
  },
  {
   "name": "Groiners",
@@ -25672,7 +26324,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "532e55f3"
  },
  {
   "name": "Supine Hamstring Stretch",
@@ -25709,7 +26362,8 @@
     "L3-S14",
     "L3-S10"
    ]
-  }
+  },
+  "rid": "fb127122"
  },
  {
   "name": "Hip Circles (Prone)",
@@ -25744,7 +26398,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "0c03a774"
  },
  {
   "name": "IT Band and Glute Stretch",
@@ -25780,7 +26435,8 @@
     "L3-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "175e42c9"
  },
  {
   "name": "Inchworm",
@@ -25815,7 +26471,8 @@
     "L3-S4",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "606eeeb1"
  },
  {
   "name": "Intermediate Groin Stretch",
@@ -25850,7 +26507,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "c9fd2c2e"
  },
  {
   "name": "Iron Crosses (Stretch)",
@@ -25885,7 +26543,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2e7bea95"
  },
  {
   "name": "Supine Spinal Twist",
@@ -25921,7 +26580,8 @@
     "L3-S3",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "e7993d9c"
  },
  {
   "name": "Knee Circles",
@@ -25954,7 +26614,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6233ed19"
  },
  {
   "name": "Kneeling Forearm Stretch",
@@ -25987,7 +26648,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b3988033"
  },
  {
   "name": "Kneeling Hip Flexor Stretch",
@@ -26020,7 +26682,8 @@
     "L3-S3",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "7e391afd"
  },
  {
   "name": "Middle Back Stretch",
@@ -26053,7 +26716,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "1f877c19"
  },
  {
   "name": "Side-Lying Quad Stretch",
@@ -26087,7 +26751,8 @@
     "L3-S10",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "6cbce3c7"
  },
  {
   "name": "Wall Lat Stretch",
@@ -26122,7 +26787,8 @@
     "L3-S3",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "6ee49385"
  },
  {
   "name": "One Knee To Chest",
@@ -26158,7 +26824,8 @@
     "L3-S12",
     "L3-S13"
    ]
-  }
+  },
+  "rid": "e2b8c7c1"
  },
  {
   "name": "Overhead Stretch",
@@ -26191,7 +26858,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7ba75389"
  },
  {
   "name": "Peroneals Stretch",
@@ -26225,7 +26893,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "b112cd70"
  },
  {
   "name": "Posterior Tibialis Stretch",
@@ -26259,7 +26928,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "0d416643"
  },
  {
   "name": "Round The World Shoulder Stretch",
@@ -26292,7 +26962,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f0cd6c32"
  },
  {
   "name": "Runner's Stretch",
@@ -26327,7 +26998,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6ae421f4"
  },
  {
   "name": "Seated Calf Stretch",
@@ -26363,7 +27035,8 @@
     "L3-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "6c025171"
  },
  {
   "name": "Seated Floor Hamstring Stretch",
@@ -26398,7 +27071,8 @@
     "L3-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "e0b740ff"
  },
  {
   "name": "Shoulder Circles",
@@ -26431,7 +27105,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "14f92cc9"
  },
  {
   "name": "Cross-Body Shoulder Stretch",
@@ -26463,7 +27138,8 @@
     "L3-S3",
     "L3-S16"
    ]
-  }
+  },
+  "rid": "4efc01e8"
  },
  {
   "name": "Leg Swings (Side-to-Side)",
@@ -26495,7 +27171,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "abcb0603"
  },
  {
   "name": "Side Lying Groin Stretch",
@@ -26529,7 +27206,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2f1ae6c5"
  },
  {
   "name": "Side Neck Stretch",
@@ -26563,7 +27241,8 @@
     "L3-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ed0a5282"
  },
  {
   "name": "Standing Biceps Stretch",
@@ -26597,7 +27276,8 @@
     "L3-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "c9a4fa6e"
  },
  {
   "name": "Standing Elevated Quad Stretch",
@@ -26632,7 +27312,8 @@
     "L3-S14"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f86de64c"
  },
  {
   "name": "Standing Gastrocnemius Calf Stretch",
@@ -26667,7 +27348,8 @@
     "L3-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "507613d6"
  },
  {
   "name": "Standing Hip Circles",
@@ -26701,7 +27383,8 @@
     "L3-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "0426ea14"
  },
  {
   "name": "Standing Lateral Stretch",
@@ -26734,7 +27417,8 @@
     "L3-S11"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f1f38f44"
  },
  {
   "name": "Standing Pelvic Tilt",
@@ -26766,7 +27450,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "99c3625e"
  },
  {
   "name": "Standing Soleus And Achilles Stretch",
@@ -26798,7 +27483,8 @@
     "L3-S15"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "26d6e32c"
  },
  {
   "name": "Standing Toe Touches",
@@ -26831,7 +27517,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "cfeccd0f"
  },
  {
   "name": "The Straddle",
@@ -26867,7 +27554,8 @@
     "L3-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "22910680"
  },
  {
   "name": "Torso Rotation",
@@ -26905,7 +27593,8 @@
     "L3-S9"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "64359ab3"
  },
  {
   "name": "Overhead Triceps Stretch",
@@ -26937,7 +27626,8 @@
     "L3-S3",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "7083a938"
  },
  {
   "name": "Upper Back Stretch",
@@ -26969,7 +27659,8 @@
     "L3-S3"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "c612be76"
  },
  {
   "name": "Lying Leg Crossover Swings",
@@ -27005,7 +27696,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7f3b3607"
  },
  {
   "name": "World's Greatest Stretch",
@@ -27042,7 +27734,8 @@
     "L3-S4",
     "L3-S9"
    ]
-  }
+  },
+  "rid": "bad4d2bb"
  },
  {
   "name": "Wrist Circles",
@@ -27073,7 +27766,8 @@
     "L3-S4"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "413f79dd"
  },
  {
   "name": "Adductor-SMR",
@@ -27110,7 +27804,8 @@
     "L3-S7"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "3c85132c"
  },
  {
   "name": "Calves-SMR",
@@ -27148,7 +27843,8 @@
     "L3-S6"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2b5a4aa5"
  },
  {
   "name": "Foam Roll: Hamstrings",
@@ -27185,7 +27881,8 @@
     "L3-S7",
     "L3-S6"
    ]
-  }
+  },
+  "rid": "f38daa87"
  },
  {
   "name": "Iliotibial Tract-SMR",
@@ -27223,7 +27920,8 @@
     "L3-S7"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7099e219"
  },
  {
   "name": "Latissimus Dorsi-SMR",
@@ -27260,7 +27958,8 @@
     "L3-S7"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "564a122f"
  },
  {
   "name": "Peroneals-SMR",
@@ -27297,7 +27996,8 @@
     "L3-S7"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "90486bc9"
  },
  {
   "name": "Piriformis-SMR",
@@ -27334,7 +28034,8 @@
     "L3-S7"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "ac9e7cd6"
  },
  {
   "name": "Foam Roll: Quadriceps",
@@ -27371,7 +28072,8 @@
     "L3-S7",
     "L3-S6"
    ]
-  }
+  },
+  "rid": "577cc0a0"
  },
  {
   "name": "Rhomboids-SMR",
@@ -27409,7 +28111,8 @@
     "L3-S8"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7deb94b3"
  },
  {
   "name": "Foot-SMR",
@@ -27441,7 +28144,8 @@
     "L3-S15"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "f9dd2033"
  },
  {
   "name": "Frog Hops",
@@ -27480,7 +28184,8 @@
     "L6-S47"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "7dc2a266"
  },
  {
   "name": "Lower Back Curl",
@@ -27516,7 +28221,8 @@
     "S32"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "81577bea"
  },
  {
   "name": "Stomach Vacuum",
@@ -27548,7 +28254,8 @@
     "S32"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "2f685e0b"
  },
  {
   "name": "Scissor Kick",
@@ -27584,7 +28291,8 @@
     "S32"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "43e25d33"
  },
  {
   "name": "Toe Touchers",
@@ -27618,6 +28326,7 @@
     "L6-S31"
    ]
   },
-  "scope": "niche"
+  "scope": "niche",
+  "rid": "310772dc"
  }
 ]

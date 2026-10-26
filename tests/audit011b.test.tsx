@@ -12,7 +12,7 @@ import * as backup from '@/lib/backup';
 import { fresh, saved, ex, addWorkout, pressAlert } from './helpers';
 import { renderApp, flushAll, screen, act, go, startEdit, saveEdit, tap, openInfo } from './app';
 import type { Exercise, Template } from '@/lib/seed';
-import { generate, previewWarnings, GENERAL_SETS, GENERAL_SETS_RANGE, ACSM_MIN_SETS, MIN_DAYS } from '@/lib/generator';
+import { generate, previewWarnings, GENERAL_SETS, GENERAL_SETS_RANGE, MIN_SETS_PER_EX, MIN_DAYS } from '@/lib/generator';
 import { LANGS, tIn, applyLang } from '@/lib/i18n';
 import { EN } from '@/lib/i18n.en';
 
@@ -117,9 +117,9 @@ describe('A11B-2: punkt „Serie” celu „Ogólny” — „jedna seria dział
   const KEY = 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.';
   const OLD = 'Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b} (wytyczne USA 2018, ACSM 2011, ACSM 2026: jedna seria działa, więcej zwykle trochę lepiej); {s} to dolna granica.';
   afterEach(() => { applyLang('pl'); }); /* jak tests/gen-general-ui: zegar udawany zostaje do sprzątania ekranu (useRealTimers przed nim zawiesza sprzątanie) */
-  test('PL: tekst na ekranie z liczbami ze stałych (GENERAL_SETS, GENERAL_SETS_RANGE, ACSM_MIN_SETS); dawnego zdania nie ma', async () => {
+  test('PL: tekst na ekranie z liczbami ze stałych (GENERAL_SETS, GENERAL_SETS_RANGE, MIN_SETS_PER_EX); dawnego zdania nie ma', async () => {
     await showGenerator('pl'); const s = GENERAL_SETS, b = GENERAL_SETS_RANGE[1];
-    expect(screen.getByText(`• Serie: ${s} na ćwiczenie — dla zdrowia zwykle ${s}–${b}. Warto zrobić co najmniej ${ACSM_MIN_SETS}. Jedna seria już działa, ${s}–${b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. ${s} to dolna granica.`)).toBeTruthy();
+    expect(screen.getByText(`• Serie: ${s} na ćwiczenie — dla zdrowia zwykle ${s}–${b}. Warto zrobić co najmniej ${MIN_SETS_PER_EX}. Jedna seria już działa, ${s}–${b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. ${s} to dolna granica.`)).toBeTruthy();
     expect(screen.queryByText(/ACSM 2026: jedna seria/)).toBeNull();
   });
   test('EN: „ACSM 2026 recommends at least 2”; „one set works” przy US guidelines 2018', async () => {

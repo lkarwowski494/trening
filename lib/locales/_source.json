@@ -84,6 +84,10 @@
   "en": "{ex} — {s} × {a}–{b}, rest {r}"
  },
  {
+  "pl": "{faza} {n} s",
+  "en": "{faza} {n} s"
+ },
+ {
   "pl": "{goal}, {n}× w tygodniu · {place}",
   "en": "{goal}, {n}× per week · {place}"
  },
@@ -1000,6 +1004,10 @@
   "en": "Common mistakes"
  },
  {
+  "pl": "Częsty błąd: {opis}",
+  "en": "Common mistake: {opis}"
+ },
+ {
   "pl": "część zaplanowanych serii nie ma ciężaru",
   "en": "some planned sets have no weight"
  },
@@ -1229,6 +1237,10 @@
  {
   "pl": "Do: {day}",
   "en": "To: {day}"
+ },
+ {
+  "pl": "Dobór mięśni: przybliżony",
+  "en": "Muscle selection: approximate"
  },
  {
   "pl": "dociążenie: {v}",
@@ -2019,8 +2031,8 @@
   "en": "Current set card during a workout; the “List” view as before, selectable in Settings."
  },
  {
-  "pl": "Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.",
-  "en": "Each major muscle group on at least {n} days a week — that is what is recommended for health. Frequency affects strength, but there is not enough evidence that more days give proportionally more; with the same number of sets the differences are small. A day when the group only assists counts as {h}. You can pick the split (full body, upper/lower) freely — with the same number of sets it gives similar results."
+  "pl": "Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.",
+  "en": "Each major muscle group on at least {n} days a week — that is what is recommended for health. Frequency affects strength, but more days do not have to give proportionally more; with the same number of sets the differences are small. A day when the group only assists counts as {h}. You can pick the split (full body, upper/lower) freely — with the same number of sets it gives similar results."
  },
  {
   "pl": "Każda z tych możliwości wraca do rutyny w ciągu {n} dni.",
@@ -2029,6 +2041,10 @@
  {
   "pl": "Każde ćwiczenie ma tu 1 serię — liczba serii zostaje bez zmian (ćwiczenia z 1 serią nie są skracane). Ciężary bez zmian.",
   "en": "Every exercise here has 1 set — the number of sets stays the same (exercises with 1 set are not cut). Same weights."
+ },
+ {
+  "pl": "Kąt na rysunku: {staw} {n}°",
+  "en": "Angle in the drawing: {staw} {n}°"
  },
  {
   "pl": "kettlebell",
@@ -2358,6 +2374,10 @@
  {
   "pl": "Łączny dystans",
   "en": "Total distance"
+ },
+ {
+  "pl": "Łokcie mniej więcej 45° od tułowia — ani szeroko na boki, ani przyklejone.",
+  "en": "Elbows about 45° from your torso — not flared wide, not tucked tight."
  },
  {
   "pl": "łydki",
@@ -2715,6 +2735,14 @@
  {
   "pl": "Mięsień docelowy spoza mapy partii: {m} — nie liczy się w seriach na partię ani na mapie mięśni.",
   "en": "Target muscle outside the muscle-group map: {m} — not counted in sets per muscle or on the muscle map."
+ },
+ {
+  "pl": "Mięśnie główne: {lista}",
+  "en": "Main muscles: {lista}"
+ },
+ {
+  "pl": "Mięśnie pomocnicze: {lista}",
+  "en": "Supporting muscles: {lista}"
  },
  {
   "pl": "mila|mile|mil",
@@ -3423,6 +3451,10 @@
   "en": "General"
  },
  {
+  "pl": "Ogólne wskazówki dla tego ruchu",
+  "en": "General tips for this movement"
+ },
+ {
   "pl": "Ogólny",
   "en": "General fitness"
  },
@@ -3465,6 +3497,10 @@
  {
   "pl": "Opona do przewracania",
   "en": "Tire (flips)"
+ },
+ {
+  "pl": "Opuszczanie",
+  "en": "Lowering"
  },
  {
   "pl": "opuszczony: {name}",
@@ -3581,6 +3617,10 @@
  {
   "pl": "pakiety: {n} · treść wg {p}",
   "en": "packages: {n} · text from {p}"
+ },
+ {
+  "pl": "Palce stóp lekko na zewnątrz — zwykle mniej więcej 15–20°.",
+  "en": "Toes pointed slightly out — usually about 15–20°."
  },
  {
   "pl": "para: {a} ({r}); jeden hantel: {b} ({r1})",
@@ -3835,6 +3875,10 @@
   "en": "Import preview"
  },
  {
+  "pl": "Podnoszenie",
+  "en": "Lifting"
+ },
+ {
   "pl": "Podpowiedź progresji",
   "en": "Progression hint"
  },
@@ -3873,6 +3917,10 @@
  {
   "pl": "Pokaż cele partii",
   "en": "Show muscle group goals"
+ },
+ {
+  "pl": "Pokaż częsty błąd",
+  "en": "Show common mistake"
  },
  {
   "pl": "Pokaż inne ćwiczenia",
@@ -4267,6 +4315,10 @@
  {
   "pl": "Propozycje",
   "en": "Suggestions"
+ },
+ {
+  "pl": "Prostowanie",
+  "en": "Straightening"
  },
  {
   "pl": "prostowniki grzbietu",
@@ -5581,8 +5633,8 @@
   "en": "Training weeks without a deload: {n}."
  },
  {
-  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — tak najczęściej robią trenerzy i zawodnicy; to praktyka, a nie dowód, że działa najlepiej.",
-  "en": "Training weeks in a row without a deload: {n}. A deload usually comes every {a}–{b} weeks — that is what coaches and athletes most often do; it is practice, not proof that it works best."
+  "pl": "Tygodnie treningu z rzędu bez deloadu: {n}. Deload zwykle co {a}–{b} tygodni — to częsta praktyka, nie sztywna reguła.",
+  "en": "Training weeks in a row without a deload: {n}. A deload usually comes every {a}–{b} weeks — that is common practice, not a fixed rule."
  },
  {
   "pl": "Tygodnie z wykonanym planem: {done} z {n}",
@@ -5639,6 +5691,10 @@
  {
   "pl": "Ukryj cele partii",
   "en": "Hide muscle group goals"
+ },
+ {
+  "pl": "Ukryj częsty błąd",
+  "en": "Hide common mistake"
  },
  {
   "pl": "Ukryj komunikat",
@@ -6177,6 +6233,10 @@
   "en": "Insert this model’s weights"
  },
  {
+  "pl": "Wstawanie",
+  "en": "Standing up"
+ },
+ {
   "pl": "Wszystkie",
   "en": "All"
  },
@@ -6367,6 +6427,10 @@
  {
   "pl": "Wypełnij zakresem",
   "en": "Fill with range"
+ },
+ {
+  "pl": "Wypychanie",
+  "en": "Pressing"
  },
  {
   "pl": "Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.",
@@ -6803,6 +6867,18 @@
  {
   "pl": "zębaty przedni",
   "en": "serratus anterior"
+ },
+ {
+  "pl": "zgięcie biodra",
+  "en": "hip flexion"
+ },
+ {
+  "pl": "zgięcie kolana",
+  "en": "knee flexion"
+ },
+ {
+  "pl": "zgięcie łokcia",
+  "en": "elbow flexion"
  },
  {
   "pl": "zginacze biodra",

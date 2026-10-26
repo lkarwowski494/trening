@@ -9,8 +9,8 @@ import { Screen, Field, Chip, Muted, Txt, H2, Btn, SectionTitle, SwitchRow, Segm
 import { InfoTip } from '@/components/InfoTip';
 import { getState, useTick, exById, fmtSec, visibleLocations } from '@/lib/store';
 import {
-  generate, genProposal, weeklySetsList, saveGenerated, replaceable, previewWarnings, genFolder, goalLabel, GOALS, GEN_SESSIONS, GEN_MINUTES, WARMUP_MIN, SET_WORK_SEC, SETS_PER_EX, ACSM_MIN_SETS,
-  MIN_EXERCISES, CUT_CARDIO_FROM, cardioCount, cardioSwitch, genCount, setsFor, REPS, REST, HEAVY_PCT, RIR, RIR_ACSM, MIN_DAYS, SECONDARY_SHARE, WHO_MODERATE, WHO_VIGOROUS,
+  generate, genProposal, weeklySetsList, saveGenerated, replaceable, previewWarnings, genFolder, goalLabel, GOALS, GEN_SESSIONS, GEN_MINUTES, WARMUP_MIN, SET_WORK_SEC, SETS_PER_EX, MIN_SETS_PER_EX,
+  MIN_EXERCISES, CUT_CARDIO_FROM, cardioCount, cardioSwitch, genCount, setsFor, REPS, REST, HEAVY_PCT, RIR, RIR_NEAR_FAILURE, MIN_DAYS, SECONDARY_SHARE, CARDIO_WEEK_MODERATE, CARDIO_WEEK_VIGOROUS,
   GENERAL_SETS_RANGE, GENERAL_LIFT_MAX, GENERAL_CARDIO_FROM, type GenInput,
 } from '@/lib/generator';
 import { WEEKLY_SETS_MARK } from '@/lib/stats';
@@ -98,14 +98,14 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
     ]);
   };
   const basis = [
-    t('Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale nie ma dość dowodów, że więcej dni daje proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.', { n: MIN_DAYS, h: fmtNum(SECONDARY_SHARE, 1) }),
-    general ? t('Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.', { s: sets, b: GENERAL_SETS_RANGE[1], m: ACSM_MIN_SETS }) /* A11B-2: źródła rozdzielone — „jedna seria” = PAG 2018 (c8) i ACSM 2011 (c4), ACSM 2026 = co najmniej 2 (docs/research/22 7g) */
-      : t('Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.', { s: SETS_PER_EX, m: ACSM_MIN_SETS }),
+    t('Każda główna partia co najmniej {n} dni w tygodniu — tyle zalecane jest dla zdrowia. Częstotliwość wpływa na siłę, ale więcej dni nie musi dawać proporcjonalnie więcej; przy tej samej liczbie serii różnice są małe. Dzień, w którym partia pracuje tylko pomocniczo, liczy się jako {h}. Podział na sesje (całe ciało, góra/dół) możesz wybrać dowolnie — przy tej samej liczbie serii daje podobne efekty.', { n: MIN_DAYS, h: fmtNum(SECONDARY_SHARE, 1) }),
+    general ? t('Serie: {s} na ćwiczenie — dla zdrowia zwykle {s}–{b}. Warto zrobić co najmniej {m}. Jedna seria już działa, {s}–{b} mogą działać lepiej; u początkujących i starszych jedna seria może wystarczyć. {s} to dolna granica.', { s: sets, b: GENERAL_SETS_RANGE[1], m: MIN_SETS_PER_EX }) /* A11B-2: źródła rozdzielone — „jedna seria” = PAG 2018 (c8) i ACSM 2011 (c4), ACSM 2026 = co najmniej 2 (docs/research/22 7g) */
+      : t('Serie: {s} na ćwiczenie — warto zrobić co najmniej {m}; więcej serii zwykle daje trochę więcej, z malejącym zyskiem.', { s: SETS_PER_EX, m: MIN_SETS_PER_EX }),
     t('Liczba serii z czasu sesji: (minuty − {w} min rozgrzewki) × 60 / ({s} s serii + średnia przerwa {r} s) = {n}; ćwiczeń = serie / {k} (co najmniej {e}). To szacunek.', { w: WARMUP_MIN, s: SET_WORK_SEC, r: r.avgRest, n: r.budget, k: sets, e: MIN_EXERCISES }),
     general ? t('Powtórzenia: {a}–{b}; w domu i bez obciążenia {c}–{d} — lżejszy ciężar, więcej powtórzeń.', { a: REPS.gym[0], b: REPS.gym[1], c: REPS.home[0], d: REPS.home[1] })
       : t('Zakresy powtórzeń (masa {a}–{b}, w domu i bez obciążenia {c}–{d}; przy sile dodatkowe {e}–{f}): mięśnie rosną przy szerokim zakresie ciężarów, gdy serie są blisko upadku.', { a: REPS.gym[0], b: REPS.gym[1], c: REPS.home[0], d: REPS.home[1], e: REPS.strength[0], f: REPS.strength[1] }),
     general ? t('Wysiłek: do chwili, gdy kolejne powtórzenie byłoby trudne — zmęczenie, ale nie wyczerpanie. Do upadku nie trzeba.')
-      : t('Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.', { a: RIR[0], b: RIR[1], c: RIR_ACSM[0], d: RIR_ACSM[1] }),
+      : t('Wysiłek: zwykle {a}–{b} powtórzenia w zapasie — blisko upadku albo {c}–{d}; dokładna liczba nie jest ustalona. Do upadku nie trzeba.', { a: RIR[0], b: RIR[1], c: RIR_NEAR_FAILURE[0], d: RIR_NEAR_FAILURE[1] }),
     general ? t('Przerwy: {b} min po wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.', { b: min(REST.multi), c: min(REST.iso) })
       : t('Przerwy: {a} min po ciężkich seriach boju głównego, {b} min po innych wielostawowych, {c} min po jednostawowych i core; dokładna długość przerwy nie jest ustalona.', { a: min(REST.heavy), b: min(REST.multi), c: min(REST.iso) }),
     ...(inp.goal === 'cut' ? [cardioN ? t('Cardio: jedna sesja umiarkowanego wysiłku w osobny dzień; jej długość = czas sesji.')
@@ -153,10 +153,10 @@ function NewTemplatesPlan({ header }: { header: React.ReactNode }) {
         </View>))}
       <Muted style={{ ...font('footnote') }}>{t('Serie na partię w tygodniu (pomocnicza = {h} serii): {list}', { h: fmtNum(SECONDARY_SHARE, 1), list: weeklySetsList(r, inp.goal === 'hypertrophy' || inp.goal === 'cut') })}</Muted>
       {warn.filter(w => w.kind !== 'unloaded' && w.kind !== 'oneday' /* pod celem */).map(w => <Txt key={w.kind} style={{ ...font('footnote'), marginTop: 6 }}>{w.text}</Txt>)}
-      {inp.goal === 'cut' && !cardioN ? <InfoTip id="gen-cardio-out" label={t('Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.')} info={t('Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { k: CUT_CARDIO_FROM, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })} style={{ marginTop: 6 }}>
+      {inp.goal === 'cut' && !cardioN ? <InfoTip id="gen-cardio-out" label={t('Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.')} info={t('Cardio poza planem: sesja cardio jest w planie od {k} dni w tygodniu, przy mniejszej liczbie wszystkie dni są siłowe. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { k: CUT_CARDIO_FROM, a: CARDIO_WEEK_MODERATE[0], b: CARDIO_WEEK_MODERATE[1], c: CARDIO_WEEK_VIGOROUS[0], d: CARDIO_WEEK_VIGOROUS[1] })} style={{ marginTop: 6 }}>
         <Muted style={{ ...font('footnote') }}>{t('Cardio poza planem: przy tej liczbie dni wszystkie sesje są siłowe.')}</Muted>
       </InfoTip> : null}
-      {(inp.goal === 'cut' && cardioN) || general ? <InfoTip id="gen-cardio-in" label={t('Cardio w planie: {n} min tygodniowo.', { n: r.cardioMin })} info={t('Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { n: r.cardioMin, a: WHO_MODERATE[0], b: WHO_MODERATE[1], c: WHO_VIGOROUS[0], d: WHO_VIGOROUS[1] })} style={{ marginTop: 6 }}>
+      {(inp.goal === 'cut' && cardioN) || general ? <InfoTip id="gen-cardio-in" label={t('Cardio w planie: {n} min tygodniowo.', { n: r.cardioMin })} info={t('Cardio w planie: {n} min tygodniowo. Dla zdrowia warto mieć co najmniej {a}–{b} min umiarkowanego wysiłku tygodniowo (albo {c}–{d} min intensywnego); liczy się też umiarkowany ruch w ciągu dnia, np. szybki marsz, nawet krótki.', { n: r.cardioMin, a: CARDIO_WEEK_MODERATE[0], b: CARDIO_WEEK_MODERATE[1], c: CARDIO_WEEK_VIGOROUS[0], d: CARDIO_WEEK_VIGOROUS[1] })} style={{ marginTop: 6 }}>
         <Muted style={{ ...font('footnote') }}>{t('Cardio w planie: {n} min tygodniowo.', { n: r.cardioMin })}</Muted>
       </InfoTip> : null}</> : null}
 

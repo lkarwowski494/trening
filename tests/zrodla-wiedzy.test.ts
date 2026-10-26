@@ -23,14 +23,17 @@ export const NAME = new RegExp(`(?<![\\p{L}])(?:${SOURCE_NAME_PATTERNS.join('|')
 /** Odwołanie ogólne do podstaw wiedzy (bez wielkości liter). */
 export const GENERIC = new RegExp(`(?<![\\p{L}])(?:${GENERIC_REFERENCE_PATTERNS.join('|')})`, 'iu');
 export const BAD = (s: string) => NAME.test(s) || GENERIC.test(s);
-const strings = (o: unknown, out: string[] = []): string[] => { if (typeof o === 'string') out.push(o); else if (Array.isArray(o)) o.forEach(x => strings(x, out)); else if (o && typeof o === 'object') Object.values(o).forEach(x => strings(x, out)); return out; };
+/** Wszystkie łańcuchy JSON; pola zaczynające się od „_” to dokumentacja wewnętrzna (np. „_opis” plików sklepu — nie są wysyłane), więc pomijane. */
+const strings = (o: unknown, out: string[] = []): string[] => { if (typeof o === 'string') out.push(o); else if (Array.isArray(o)) o.forEach(x => strings(x, out)); else if (o && typeof o === 'object') Object.entries(o).forEach(([k, x]) => { if (!k.startsWith('_')) strings(x, out); }); return out; };
 
 describe('wzorce nazw źródeł i odwołań ogólnych (jedna lista: lib/sources.ts)', () => {
   test('rozpoznaje cytaty, skróty i odwołania ogólne w PL i EN, nie łapie zwykłych słów', () => {
     for (const s of ['Zourdos i in., JSCR 2016', 'ACSM 2026', 'wytyczne USA 2018', 'WHO 2020', 'Pelland et al. 2026', 'wzór Epleya', 'Epley formula', 'NSCA 2017', 'Helms i in. 2016', 'Bell i in. 2023', 'Kowalski i in. 2020', 'CDC', 'MIMIT', 'Teleborsa',
-      'Opiera się na zaleceniach zdrowotnych i treningowych.', 'Na podstawie badań.', 'według zaleceń organizacji', 'W badaniach nie wykazano.', 'Based on research.', 'It follows health and training guidelines.', 'Studies show that', 'a review of the guidelines'])
+      'Opiera się na zaleceniach zdrowotnych i treningowych.', 'Na podstawie badań.', 'według zaleceń organizacji', 'W badaniach nie wykazano.', 'Based on research.', 'It follows health and training guidelines.', 'Studies show that', 'a review of the guidelines',
+      'Nie ma dość dowodów, że więcej dni daje więcej.', 'To nie dowód, że działa.', 'Tak robią trenerzy i zawodnicy.', 'Zdaniem ekspertów', 'Naukowcy zalecają', 'Wyniki badań', 'Badania są niejednoznaczne',
+      'There is not enough evidence.', 'Studies agree', 'Research suggests', 'What experts recommend', 'Coaches and athletes do this'])
       expect([s, BAD(s)]).toEqual([s, true]);
-    for (const s of ['people who used earlier versions', 'Dumbbell row', 'Zrób 3 serie', 'RPE 8 = 2 RIR', 'Bellows', 'Apple Health', 'e1RM (na hantel)', 'Propozycja według Twoich założeń — przejrzysz ją przed zapisem.', 'Dobre samopoczucie po treningu']) expect([s, BAD(s)]).toEqual([s, false]);
+    for (const s of ['people who used earlier versions', 'Dumbbell row', 'Zrób 3 serie', 'RPE 8 = 2 RIR', 'Bellows', 'Apple Health', 'e1RM (na hantel)', 'Propozycja według Twoich założeń — przejrzysz ją przed zapisem.', 'Dobre samopoczucie po treningu', 'Dowolny dzień tygodnia', 'Wpisz dowolną liczbę', 'Badanie krwi nie jest częścią aplikacji'.replace('Badanie krwi', 'Wynik krwi'), 'Researchers'.replace('Researchers', 'Searchers'), 'Trener personalny']) expect([s, BAD(s)]).toEqual([s, false]);
   });
   test('każde źródło z rejestru twierdzeń (pole zrodla, poza etykietą prywatności sklepu) jest rozpoznawane przez wzorzec nazw', () => {
     const reg = JSON.parse(read('docs/research/rejestr-twierdzen.json')).twierdzenia as { id: string; zrodla: string[] }[];
@@ -117,6 +120,17 @@ describe('niezmiennik: brak oznaczeń pewności w tekstach UI', () => {
     expect(k).not.toMatch(/Nie ma dowodów|WHO|badani/);
     expect(EN[k]).toContain('More muscle-strengthening activity does not necessarily bring more health benefits');
     expect(EN[k]).not.toMatch(/[Ss]tudies/);
+  });
+  test('druga decyzja 25.10.2026: tekst o częstotliwości na partię i podpowiedź deloadu bez słów „dowody”, „trenerzy i zawodnicy”; klucze w zestawie przekładu (zmieniony) i w słownikach 33 języków', () => {
+    const freq = Object.keys(EN).find(x => x.startsWith('Każda główna partia co najmniej {n} dni'))!;
+    const del = Object.keys(EN).find(x => x.startsWith('Tygodnie treningu z rzędu bez deloadu'))!;
+    expect(freq).toContain('ale więcej dni nie musi dawać proporcjonalnie więcej;'); expect(EN[freq]).toContain('but more days do not have to give proportionally more;');
+    expect(del).toContain('Deload zwykle co {a}–{b} tygodni — to częsta praktyka, nie sztywna reguła.'); expect(EN[del]).toContain('that is common practice, not a fixed rule.');
+    for (const x of [freq, del, EN[freq], EN[del]]) expect([x.slice(0, 40), BAD(x)]).toEqual([x.slice(0, 40), false]);
+    for (const k of [freq, del]) {
+      expect([k.slice(0, 30), PENDING.some(p => p.rodzaj === 'zmieniony' && p.pl === k && !!p.poprzedni_pl)]).toEqual([k.slice(0, 30), true]);
+      for (const l of LANGS) if (l !== 'pl' && l !== 'en' && l !== 'es-419' && l !== 'pt-BR') expect([l, typeof (LOCALES[l] ?? {})[k]]).toEqual([l, 'string']); /* stare tłumaczenie pod nowym kluczem do czasu przekładu */
+    }
   });
   test('nagłówek ⓘ w generatorze i Planie z moich szablonów: „Zasady planu” (nie „Na czym to oparte”)', () => {
     expect(EN['Zasady planu']).toBe('Plan rules'); expect(EN['Na czym to oparte']).toBeUndefined();

@@ -4,7 +4,7 @@ import { lang, type Lang } from '@/lib/i18n';
 /*
  * Wskazówki techniki, etap 1 (decyzja właściciela 08.10.2026 ok. 23:50, wariant A etapami; research docs/research/26).
  * Własne sformułowania dla ćwiczeń bazowych biblioteki (seed.LIB_BASE_NAMES): ustawienie, ruch, 2–4 wskazówki, częste błędy.
- * Każda wskazówka ma ≥ 2 przeczytane źródła z różnych organizacji (data.json → „s”: [źródło, miejsce w źródle]);
+ * Każda wskazówka ma ≥ 2 przeczytane źródła z różnych organizacji (pełne dane: data/zrodla/cues.json — poza paczką aplikacji);
  * dokument źródeł docs/research/27-wskazowki-zrodla.md generuje scripts/cues/gen.mjs (--check w verify).
  *
  * Dlaczego osobne dane, a nie klucze słownika t() (lib/locales): treść katalogu (nazwy ćwiczeń — exName) żyje poza słownikiem
@@ -16,16 +16,15 @@ import { lang, type Lang } from '@/lib/i18n';
 
 export const CUE_SECTIONS = ['setup', 'move', 'tips', 'mistakes'] as const;
 export type CueSection = typeof CUE_SECTIONS[number];
-/** Odwołanie do źródła: [id źródła z data.json „sources”, miejsce w źródle (krok, sekcja), opcjonalnie „analogia” — inne ćwiczenie, nie liczy się
- * do ≥ 2 źródeł (audyt kontrolny 1 MER2-04; sprawdza scripts/cues/gen.mjs)]. */
-export type CueRef = { c: string; s: ([string, string] | [string, string, 'analogia'])[] };
-export type CueSource = { org: string; title: string; url: string; archive?: string; level: 2 | 3 | 4 };
+/** Zdanie wskazówki (id tekstu w lib/cues/text). Odwołania do źródeł NIE są w paczce aplikacji (decyzja właściciela 25.10.2026): pełne dane — data/zrodla/cues.json,
+ * plik runtime lib/cues/data.json generuje scripts/zrodla-runtime.mjs (--check w verify). */
+export type CueRef = { c: string };
 /** Rodzaj organizacji źródła (podpis w aplikacji — audyt kontrolny 1 MER2-07 = SEC2-02, decyzja właściciela 09.10.2026 wariant A: bez nazw
  * organizacji i marek w tekstach aplikacji, pełna lista w docs/research/27): organizacja szkoleniowa (biblioteka ćwiczeń), serwis specjalistyczny,
  * producent sprzętu, badanie w recenzowanym czasopiśmie. Kolejność = kolejność w podpisie. */
 export const CUE_BASIS_KINDS = ['org', 'site', 'maker', 'study'] as const;
 export type CueBasisKind = typeof CUE_BASIS_KINDS[number];
-type CueData = { orgs: Record<string, { name: string; level: 2 | 3 | 4; kind: CueBasisKind }>; sources: Record<string, CueSource>; exercises: Record<string, Record<CueSection, CueRef[]>>; open: Record<string, string>; /** 0.14.0: ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część), patrz partialNote */ partial?: string[]; partialNote?: string };
+type CueData = { exercises: Record<string, Record<CueSection, CueRef[]>>; /** rodzaje źródeł ćwiczenia w kolejności CUE_BASIS_KINDS (obliczone z pełnych danych) */ basis: Record<string, CueBasisKind[]>; /** klucze ćwiczeń bez wskazówek (powody — tylko w pełnych danych) */ open: string[]; /** 0.14.0: ćwiczenia z niepełnym zestawem sekcji (research potwierdził tylko część) */ partial: string[] };
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 export const CUE_DATA: CueData = require('./data.json');
@@ -66,15 +65,5 @@ export function cuesFor(e: Pick<Exercise, 'lib' | 'libKey'> | null | undefined, 
   const sections = CUE_SECTIONS.map(id => ({ id, items: (x[id] ?? []).map(r => cueText(r.c, l)) })).filter(s => s.items.length);
   return { key, sections, basis: cueBasis(key) };
 }
-/** Rodzaje źródeł wskazówek ćwiczenia (podpis „Na podstawie: …” — MER2-07: opis ogólny zamiast nazw), w kolejności CUE_BASIS_KINDS. */
-export function cueBasis(key: string): CueBasisKind[] {
-  const kinds = new Set(cueOrgs(key).map(o => own(CUE_DATA.orgs, o)?.kind));
-  return CUE_BASIS_KINDS.filter(k => kinds.has(k));
-}
-/** Organizacje, na których opierają się wskazówki ćwiczenia (dokument źródeł; w aplikacji tylko rodzaje — cueBasis), w kolejności pierwszego użycia. */
-export function cueOrgs(key: string): string[] {
-  const x = own(CUE_DATA.exercises, key); if (!x) return [];
-  const out: string[] = [];
-  for (const sec of CUE_SECTIONS) for (const r of x[sec] ?? []) for (const [sid] of r.s) { const o = own(CUE_DATA.sources, sid)?.org; if (o && !out.includes(o)) out.push(o); }
-  return out;
-}
+/** Rodzaje źródeł wskazówek ćwiczenia (podpis — MER2-07: opis ogólny zamiast nazw), w kolejności CUE_BASIS_KINDS; obliczone przy generowaniu danych runtime. */
+export function cueBasis(key: string): CueBasisKind[] { return own(CUE_DATA.basis, key) ?? []; }

@@ -5,13 +5,13 @@ import { resolveFigure, framePoints, shapes, bounds, loopAt, poseBetween, type F
 
 /*
  * Figury ruchu, etap 2–3 (decyzja właściciela 08.10.2026 ok. 23:50 — wariant A etapami; research docs/research/26 pkt 7).
- * Dane: lib/figures/data.json — dla każdego ćwiczenia 1–3 pozy (kąty stawów) z odwołaniem do zdań wskazówek etapu 1 (lib/cues),
+ * Dane: lib/figures/data.json (plik runtime bez nazw źródeł, generuje go scripts/zrodla-runtime.mjs z data/zrodla/figures.json) — dla każdego ćwiczenia 1–3 pozy (kąty stawów) z odwołaniem do zdań wskazówek etapu 1 (lib/cues),
  * z których wynika poza; reszta kątów to nazwane uproszczenie ilustracyjne. Geometria: ./geom.ts (jeden moduł, bez React).
  * Dokument docs/research/28-figury.md generuje scripts/figures/gen.mjs (--check w verify). Ćwiczenia bez figury: „open” z powodem.
  */
 
-export type RomRange = { min: number; max: number; src: string };
-type FigData = { rom: { note: string; side: Record<string, RomRange>; front: Record<string, RomRange> }; exercises: Record<string, FigDef>; open: Record<string, string> };
+export type RomRange = { min: number; max: number };
+type FigData = { rom: { side: Record<string, RomRange>; front: Record<string, RomRange> }; exercises: Record<string, FigDef>; open: string[] };
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 export const FIG_DATA: FigData = require('./data.json');
 
