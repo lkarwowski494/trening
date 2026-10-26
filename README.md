@@ -15,7 +15,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Baza lokalna SQLite, tryb offline](https://img.shields.io/badge/SQLite-offline-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![Języki interfejsu](https://img.shields.io/badge/języki-35-brightgreen?style=flat)](docs/16-jezyki-i-marka.md)
-[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5776-brightgreen?style=flat)](docs/19-macierz-testow.md)
+[![Przypadki testowe liczone statycznie](https://img.shields.io/badge/testy_(statycznie)-5808-brightgreen?style=flat)](docs/19-macierz-testow.md)
 [![Scenariusze Maestro](https://img.shields.io/badge/scenariusze_E2E-47-brightgreen?style=flat)](docs/37-katalog-przeplywow.md)
 <!-- /gen:badges-ver -->
 
@@ -60,10 +60,10 @@ Liczba przypadków testowych jest liczona **statycznie** (bez uruchamiania test�
 | Ekrany (trasy w `app/`) | 32 (z testem: 32) | docs/19-macierz-testow.md |
 | Elementy UI (przyciski, pola, przełączniki) | 354 (z testem: 354) | docs/19-macierz-testow.md |
 | Komunikaty i teksty | 1116 (z testem: 1116) | docs/19-macierz-testow.md |
-| Funkcje biblioteki `lib/` | 1041 (z testem: 1041) | docs/19-macierz-testow.md |
-| Wymiary (listy wartości i typy-unie) | 146 (z testem: 146) | docs/19-macierz-testow.md |
-| Pliki testów Jest | 493 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
-| Przypadki testowe (statycznie) | 5776 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
+| Funkcje biblioteki `lib/` | 1045 (z testem: 1045) | docs/19-macierz-testow.md |
+| Wymiary (listy wartości i typy-unie) | 148 (z testem: 148) | docs/19-macierz-testow.md |
+| Pliki testów Jest | 495 | `tests/*.test.ts(x)`, docs/09-plan-testow.md |
+| Przypadki testowe (statycznie) | 5808 | wywołania `test(` i `it(` w kodzie testów, bez uruchamiania; `test.each` i pętla liczą się raz, więc liczba rzeczywistych przebiegów jest większa |
 | Przepływy użytkownika w katalogu E2E | 156 (Maestro: 128, Maestro, eksperymentalne: 4, Jest: 10, lista kontrolna wydania (telefon): 14) | docs/37-katalog-przeplywow.md |
 | Scenariusze Maestro | 47 (w głównym przebiegu: 44, eksperymentalne: 3) | `.maestro/`, docs/38-przeplywy-i-luki-e2e.md |
 <!-- /gen:stats -->
@@ -260,7 +260,7 @@ trening/
 - **Role agentów** pracujących nad repozytorium: [`.claude/agents/`](.claude/agents/).
 
 <!-- gen:docs-index -->
-<details><summary>Wszystkie dokumenty w <code>docs/</code> (53)</summary>
+<details><summary>Wszystkie dokumenty w <code>docs/</code> (54)</summary>
 
 - [`docs/09-archiwum-do-0.11.md`](docs/09-archiwum-do-0.11.md) — 09 Plan testów — archiwum rund do wydania 0.11.0 (stan 11.10.2026)
 - [`docs/09-plan-testow.md`](docs/09-plan-testow.md) — 09 Plan testów — Trening App (od 0.8.1)
@@ -310,6 +310,7 @@ trening/
 - [`docs/51-figury-v2-pokrycie.md`](docs/51-figury-v2-pokrycie.md) — 51 — Figury v2: rodziny ruchu i pokrycie ćwiczeń (generowane)
 - [`docs/52-gemini-pozy-pilotaz.md`](docs/52-gemini-pozy-pilotaz.md) — 52 — Pilotaż: pozy figur v2 generowane przez API Gemini
 - [`docs/53-grafiki-model-pracy.md`](docs/53-grafiki-model-pracy.md) — 53. Grafiki ćwiczeń — model pracy (bramki jakości)
+- [`docs/54-figury-sprzet.md`](docs/54-figury-sprzet.md) — 54 — Figury v2: sprzęt w kontrakcie danych
 - [`docs/m3-stan.md`](docs/m3-stan.md) — M3 Redesigner — stan przebiegu (plik stanu na wypadek utraty kontenera)
 - [`docs/monetyzacja-badanie-2026-10.md`](docs/monetyzacja-badanie-2026-10.md) — Badanie zmiany modelu monetyzacji (rola 02, build) — STOP E2
 - [`docs/monetyzacja.md`](docs/monetyzacja.md) — Monetyzacja — model stały (jedno miejsce)

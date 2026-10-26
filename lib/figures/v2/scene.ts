@@ -24,7 +24,9 @@ export type Prop =
   | { k: 'barbell'; c: V3; plates?: boolean; len?: number; held?: boolean | 'R' | 'L'; id?: string }                        /* sztanga: środek gryfu */
   | { k: 'trapbar'; c: V3; w?: number }                                                                    /* gryf sześciokątny: środek (uchwyty wzdłuż z) */
   | { k: 'dumbbell'; c: V3; side: 'R' | 'L'; vertical?: boolean; r?: number; held?: boolean }                  /* hantel: środek chwytu */
-  | { k: 'kettlebell'; c: V3; side?: 'R' | 'L' | 'C'; r?: number; held?: boolean }                             /* kettlebell: środek rączki */
+  | { k: 'kettlebell'; c: V3; side?: 'R' | 'L' | 'C'; r?: number; held?: boolean; bell?: 'down' | 'along' | 'back'; dir?: V3 } /* kettlebell: środek rączki; dir = wersor od rączki do środka dzwonu (domyślnie w dół; bell: tryb wyznaczany ze szkieletu) */
+  | { k: 'plate'; c: V3; r?: number; held?: boolean | 'R' | 'L' }                                           /* talerz trzymany: tarcza w płaszczyźnie y–z (powierzchnią do przodu), środek */
+  | { k: 'ball'; c: V3; r?: number; held?: boolean | 'R' | 'L' }                                            /* piłka lekarska: kula, środek */
   | { k: 'bench'; seatFrom: V2; hinge: V2; backTo: V2; legH: number; w?: number }              /* ławka: siedzisko od-do, zawias, koniec oparcia */
   | { k: 'box'; x0: number; x1: number; top: number; w?: number }
   | { k: 'wall'; x: number; h: number }

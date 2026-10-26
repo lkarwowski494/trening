@@ -9,7 +9,7 @@
 import { add, dist, type V3 } from './math';
 import { BODY, SIDES, jointAngles, type LegIn, type ArmIn, type PoseIn, type Side } from './skeleton';
 import type { Frame } from './scene';
-import { GEAR, propsFrom, type Gear } from './gear';
+import { GEAR, GEAR_KINDS, BELL_MODES, gearFieldIssues, propsFrom, resolveBells, type Gear } from './gear';
 import { checkFrame } from './colliders';
 import { mkFrame } from './rigs/common';
 import { FAMILY } from './families';
@@ -77,7 +77,7 @@ export const TEMPLATES: Record<string, FamilyTemplate> = {
       return o; },
   },
 };
-const GENERIC: FamilyTemplate = { gear: 'Sprzęt wg rodzaju ćwiczenia: sztanga (x, y, talerze, podazaZaChwytem), słupek (x, h), podłoga, skrzynia (x0, x1, top).', defaultGear: [{ rodzaj: 'podloga', x0: -120, x1: 120 }], movement: 'u = 0: pozycja wyjściowa, u = 1: pozycja skrajna.' };
+const GENERIC: FamilyTemplate = { gear: 'Sprzęt wg rodzaju ćwiczenia: ' + GEAR.map(k => `${k} — ${GEAR_KINDS[k].opis}`).join('; ') + '.', defaultGear: [{ rodzaj: 'podloga', x0: -120, x1: 120 }], movement: 'u = 0: pozycja wyjściowa, u = 1: pozycja skrajna.' };
 export const templateFor = (family: string): FamilyTemplate => TEMPLATES[family] ?? GENERIC;
 export const knownFamily = (family: string): boolean => Object.prototype.hasOwnProperty.call(FAMILY, family);
 
@@ -104,12 +104,16 @@ const side = (props: Record<string, Sch>, required: string[], d: boolean): Sch =
 export function poseSchema(family: string): Sch {
   const t = templateFor(family);
   const gear = obj({
-    rodzaj: { type: 'string', enum: [...GEAR], description: 'sztanga (także drążek), slupek (pionowy), podloga, skrzynia.' },
+    rodzaj: { type: 'string', enum: [...GEAR], description: 'sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska. Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem.' },
     x: num(-CONTRACT.coord, CONTRACT.coord, 'Położenie w przód (cm): środek sztangi albo słupka.'), y: num(0, CONTRACT.coord, 'Wysokość środka sztangi nad podłogą (cm).'),
     h: num(0, CONTRACT.coord, 'Wysokość słupka (cm).'), x0: num(-CONTRACT.coord, CONTRACT.coord, 'Początek podłogi albo skrzyni (cm).'), x1: num(-CONTRACT.coord, CONTRACT.coord, 'Koniec podłogi albo skrzyni (cm).'),
     top: num(0, CONTRACT.coord, 'Wysokość górnej powierzchni skrzyni (cm).'), talerze: { type: 'boolean', description: 'Czy sztanga ma talerze (domyślnie true; drążek: false).' },
     trzyma: { type: 'string', enum: ['obie', 'R', 'L'], description: 'Która dłoń trzyma sztangę/drążek: obie (domyślnie), R albo L (ćwiczenie jednorącz; druga dłoń jest wolna i nie musi leżeć na osi — jej chwyt to dowolny punkt w zasięgu ramienia, bez przenikania sprzętu).' },
     podazaZaChwytem: { type: 'boolean', description: 'true: środek sztangi leży między dłońmi w każdej klatce (sztanga w ruchu); false: nieruchoma (x, y). Domyślnie false.' }, dlugosc: num(10, 300, 'Długość gryfu w cm (domyślnie 220).'),
+    promien: num(3, 30, 'Promień w cm: główka hantla (domyślnie 6), dzwon kettlebell (9,5), talerz (22,5), piłka lekarska (11).'),
+    pionowo: { type: 'boolean', description: 'Tylko hantel: true = jeden hantel trzymany pionowo obiema dłońmi (goblet); domyślnie false.' },
+    dzwon: { type: 'string', enum: [...BELL_MODES], description: 'Tylko kettlebell: kierunek dzwonu względem rączki: dol (domyślnie), wzdluz (w przedłużeniu przedramienia), tyl (za rączką, pozycja rack i nad głową).' },
+    przesuniecie: vec('Tylko talerz i pilka_lekarska: położenie środka sprzętu względem środka między dłońmi [dx, dy, dz] w cm (domyślnie [0,0,0]; jedna dłoń: talerz [0, −(promień−1), 0], piłka [0, promień−1, 0]).', 40),
   }, ['rodzaj']);
   const key = obj({
     u: num(0, 1, 'Pozycja ruchu: 0 = wyjściowa, 1 = skrajna; klatki rosnąco, pierwsza u = 0, ostatnia u = 1.'), ...keyProps(false),
@@ -211,7 +215,7 @@ export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {
   const pose = toPoseIn(k); const grips = { R: pose.arms.R.grip, L: pose.arms.L.grip };
   const props = propsFrom(d.sprzet, grips); const bar = props.find(p => p.k === 'barbell');
   const info: Record<string, V3> = {}; if (bar && bar.k === 'barbell') info.load = bar.c;
-  return mkFrame(pose, props, info);
+  return resolveBells(mkFrame(pose, props, info));
 }
 
 /* ---------- walidator semantyczny ---------- */
@@ -236,7 +240,7 @@ function geometry(d: PoseData, error: number | undefined, label: string, out: Co
     let f: Frame; try { f = keyframeFrame(d, u, error); } catch (e) { out.push({ kod: 'geometria', szczegol: `${label}u=${f2(u)}: nie da się policzyć pozy (${(e as Error).message})` }); return; }
     for (const i of checkFrame(f)) {
       const key = i.code + i.detail.replace(/[-\d.]+/g, '#');
-      if (i.code === 'grip') grip.add(key, u, uu => `${label}${i.detail.replace(/^gryf\/R/, 'dłoń prawa wobec drążka/sztangi').replace(/^gryf\/L/, 'dłoń lewa wobec drążka/sztangi')} w fazie u=${uu} — chwyt musi leżeć na osi sztangi (x, y sztangi, z = ±połowa rozstawu dłoni)`);
+      if (i.code === 'grip') grip.add(key, u, uu => `${label}${i.detail.replace(/^gryf\/R/, 'dłoń prawa wobec drążka/sztangi').replace(/^gryf\/L/, 'dłoń lewa wobec drążka/sztangi')} w fazie u=${uu} — ${i.hint ?? 'chwyt musi leżeć na osi sztangi (x, y sztangi, z = ±połowa rozstawu dłoni)'}`);
       else agg.add(key, u, uu => `${label}${i.detail} w fazie u=${uu}`);
     }
   }
@@ -255,6 +259,7 @@ export function validatePose(data: unknown, ctx: ValidateCtx): ContractIssue[] {
   if (us[0] !== 0) out.push({ kod: 'klatki-u', szczegol: `pierwsza klatka ma u = ${us[0]}, powinna mieć u = 0` });
   if (us[us.length - 1] !== 1) out.push({ kod: 'klatki-u', szczegol: `ostatnia klatka ma u = ${us[us.length - 1]}, powinna mieć u = 1` });
   for (let i = 1; i < us.length; i++) if (us[i] <= us[i - 1]) out.push({ kod: 'klatki-u', szczegol: `klatki muszą mieć rosnące u: klatki[${i}].u = ${us[i]} ≤ klatki[${i - 1}].u = ${us[i - 1]}` });
+  out.push(...d.sprzet.flatMap(gearFieldIssues).map(szczegol => ({ kod: 'sprzet', szczegol })));
   out.push(...(templateFor(ctx.family).check?.(d.sprzet) ?? []).map(szczegol => ({ kod: 'sprzet', szczegol })));
   if (out.length) return out.slice(0, CONTRACT.maxIssues);
 
@@ -313,7 +318,7 @@ export function describeContract(family: string): string {
     `Szkielet (stałe długości kości, cm): udo ${BODY.thigh}, podudzie ${BODY.shank}, wysokość kostki ${BODY.ankleH}, tułów (miednica do barków) ${BODY.trunk}, ramię ${BODY.uarm}, przedramię ${BODY.farm}, dłoń ${BODY.hand} (łokieć do środka chwytu ${BODY.farm + BODY.hand}); biodra ±${BODY.hipHalf} cm od płaszczyzny symetrii (z), barki ±${BODY.shHalf} cm. Ramię wyprostowane sięga 64 cm od barku do chwytu.`,
     'Podajesz tylko: miednicę (środek stawów biodrowych), pochylenie tułowia, zgięcie kręgosłupa i głowy, kostki obu nóg i środki chwytu obu dłoni. Kolana i łokcie liczy nasz IK (kierunek zgięcia: odchylenieKolana, biegunLokcia). Barki leżą na tułowiu: tułów od miednicy do barków ma stałą długość, więc chwyt musi być w zasięgu ramienia od barku (≤ 64 cm), a kostka w zasięgu nogi od biodra (≤ 83 cm).',
     `Ruch: ${t.movement} Między klatkami kluczowymi interpolacja jest liniowa: dla ruchów zakrzywionych dodaj klatki pośrednie (maks. ${CONTRACT.frames.max}); żaden staw nie może przeskakiwać o więcej niż ${CONTRACT.maxJump} cm na 1/${CONTRACT.step} ruchu.`,
-    `Sprzęt: ${t.gear} Stopy opierają się o podłogę (podeszwa nie niżej niż y = 0), ciało nie przenika sprzętu, dłonie leżą na chwycie sztangi (tolerancja 0,6 cm).`,
+    `Sprzęt: ${t.gear} Stopy opierają się o podłogę (podeszwa nie niżej niż y = 0), ciało nie przenika sprzętu, dłonie leżą na chwycie sztangi (tolerancja 0,6 cm). Sprzęt trzymany w dłoniach (hantel, kettlebell, talerz, pilka_lekarska) podąża za chwytem: nie podajesz jego położenia, tylko rodzaj i pola; talerz i piłka wymagają dłoni na obręczy/powierzchni (tolerancja 3 cm).`,
     `Błędy (bledy[]): każdy to MODYFIKACJA pozy poprawnej: klatki[] z deltami (dodawanymi do pozy poprawnej, interpolacja liniowa), pierwsza u = 0 z deltą zerową, ostatnia u = 1. cue = identyfikator wskazówki błędu z listy podanej dla ćwiczenia (tekstu nie piszesz). dotyczy = wielkości, które błąd zmienia; pozostałe kąty (biodro, kolano, kostka, łokieć, bark) mogą się różnić od pozy poprawnej najwyżej o ${CONTRACT.undeclaredDeg}°. Błąd musi być widoczny (≥ ${CONTRACT.visibleCm} cm lub ≥ ${CONTRACT.visibleDeg}°). Poza błędu też nie przenika sprzętu ani podłogi. Najwyżej ${CONTRACT.errorsMax} błędy; gdy ćwiczenie nie ma błędów na liście, bledy = [].`,
     'Nie dodajesz tekstów do wyświetlenia ani liczb kątów jako opisów: kąty i rozstawy bez źródła to uproszczenie ilustracyjne.',
   ].join('\n');

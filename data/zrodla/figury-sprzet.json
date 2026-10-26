@@ -1,0 +1,26 @@
+{
+ "_opis": "Wymiary sprzętu rysowanych w figurach v2 (lib/figures/v2/draw.ts → EQUIP; docs/53 bramka 6 „spójność”, docs/54). WSZYSTKIE wymiary to „konwencja rysunku” (uproszczenie ilustracyjne: figura nie twierdzi nic o rozmiarach sprzętu i aplikacja ich nie podaje użytkownikowi). Pole zgodnosc opisuje orientacyjną zgodność z powszechnymi rozmiarami (wiedza ogólna, NIE przeczytane źródło); potwierdzenie źródłem szczebla 4 (dokumentacja producentów, regulaminy federacji) jest otwarte (docs/54, otwarte pytania) i należy do badacza. Do paczki aplikacji NIC stąd nie trafia; test tests/zrodla-pelne-sprzet.test.ts pilnuje zgodności z EQUIP i kompletności (każdy klucz EQUIP ma wpis).",
+ "statusy": ["konwencja rysunku"],
+ "wymiary": {
+  "barR": { "cm": 1.6, "status": "konwencja rysunku", "zgodnosc": "promień gryfu ok. 1,4–1,6 cm (gryf ok. 28–32 mm)", "uzycie": "gryf sztangi i drążka" },
+  "barLen": { "cm": 220, "status": "konwencja rysunku", "zgodnosc": "długość gryfu olimpijskiego męskiego ok. 2,2 m", "uzycie": "długość gryfu w widoku z przodu i w kolizjach" },
+  "sleeveR": { "cm": 2.6, "status": "konwencja rysunku", "zgodnosc": "promień tulei ok. 2,5 cm (średnica 50 mm)", "uzycie": "piasta talerza" },
+  "plateR": { "cm": 22.5, "status": "konwencja rysunku", "zgodnosc": "średnica talerza obciążeniowego ok. 450 mm (talerz 20 kg)", "uzycie": "talerz na sztandze i talerz trzymany (domyślny promień)" },
+  "plateZ": { "cm": [44, 49], "status": "konwencja rysunku", "zgodnosc": "położenie talerzy wzdłuż gryfu (widok z przodu)", "uzycie": "talerze na sztandze" },
+  "plateW": { "cm": 2.8, "status": "konwencja rysunku", "zgodnosc": "grubość talerza ok. 2,5–3 cm", "uzycie": "grubość talerza trzymanego i kapsuł kolidera" },
+  "dbHeadR": { "cm": 6, "status": "konwencja rysunku", "zgodnosc": "główka hantla ok. 12 cm średnicy (hantel ok. 10–20 kg)", "uzycie": "hantel trzymany" },
+  "dbHandle": { "cm": 13, "status": "konwencja rysunku", "zgodnosc": "długość rączki hantla ok. 13 cm", "uzycie": "hantel trzymany (rysunek z przodu i pionowy)" },
+  "kbBallR": { "cm": 9.5, "status": "konwencja rysunku", "zgodnosc": "dzwon kettlebell ok. 18–20 cm średnicy (ok. 16 kg)", "uzycie": "kettlebell trzymany" },
+  "kbHandleR": { "cm": 6, "status": "konwencja rysunku", "zgodnosc": "rączka kettlebell ok. 12 cm wewnętrznej średnicy", "uzycie": "kettlebell trzymany" },
+  "medBallR": { "cm": 11, "status": "konwencja rysunku", "zgodnosc": "piłka lekarska ok. 4 kg ma ok. 22–24 cm średnicy (rozmiary różnych piłek: ok. 20–36 cm)", "uzycie": "piłka lekarska trzymana (domyślny promień)" },
+  "benchW": { "cm": 28, "status": "konwencja rysunku", "zgodnosc": "szerokość ławki ok. 28–32 cm", "uzycie": "ławka" },
+  "benchPad": { "cm": 8, "status": "konwencja rysunku", "zgodnosc": "grubość wyściełania ławki", "uzycie": "ławka" },
+  "benchLegW": { "cm": 3.2, "status": "konwencja rysunku", "zgodnosc": "grubość nóg ławki", "uzycie": "ławka" },
+  "floorLine": { "cm": 1.2, "status": "konwencja rysunku", "zgodnosc": "grubość linii podłogi na rysunku", "uzycie": "podłoga" },
+  "trapW": { "cm": 29, "status": "konwencja rysunku", "zgodnosc": "rozstaw uchwytów gryfu sześciokątnego ok. 58 cm", "uzycie": "trap bar" },
+  "boxW": { "cm": 45, "status": "konwencja rysunku", "zgodnosc": "szerokość skrzyni ok. 45–50 cm", "uzycie": "skrzynia" },
+  "postW": { "cm": 3.5, "status": "konwencja rysunku", "zgodnosc": "grubość słupka stojaka", "uzycie": "słupek" },
+  "railW": { "cm": 1.2, "status": "konwencja rysunku", "zgodnosc": "grubość prowadnicy suwnicy Smitha", "uzycie": "prowadnica" },
+  "wallW": { "cm": 3, "status": "konwencja rysunku", "zgodnosc": "grubość ściany na rysunku", "uzycie": "ściana" }
+ }
+}

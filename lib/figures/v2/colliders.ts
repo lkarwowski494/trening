@@ -35,6 +35,15 @@ export function bodyColliders(sk: Skeleton): Collider[] {
   return c;
 }
 
+/** Talerz trzymany jako obręcz i szprychy z kapsuł (tarcza w płaszczyźnie y–z, grubość EQUIP.plateW): 16 odcinków obręczy i 4 średnice. */
+export function plateColliders(p: Extract<Prop, { k: 'plate' }>): Collider[] {
+  const r = p.r ?? EQUIP.plateR; const rim = 16; const pt = (a: number, k = 1): V3 => [p.c[0], p.c[1] + Math.sin(a) * r * k, p.c[2] + Math.cos(a) * r * k];
+  const out: Collider[] = [];
+  for (let i = 0; i < rim; i++) out.push({ k: 'capsule', id: 'plate', a: pt(2 * Math.PI * i / rim), b: pt(2 * Math.PI * (i + 1) / rim), r: EQUIP.plateW / 2 });
+  for (let i = 0; i < 4; i++) out.push({ k: 'capsule', id: 'plate', a: pt(Math.PI * i / 4), b: pt(Math.PI * i / 4 + Math.PI), r: EQUIP.plateW / 2 });
+  return out;
+}
+
 const prism = (id: string, poly: V2[], z0: number, z1: number): Collider => ({ k: 'prism', id, poly, z0, z1 });
 const rectPoly = (x0: number, y0: number, x1: number, y1: number): V2[] => [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
 
@@ -46,7 +55,9 @@ export function equipColliders(props: Prop[]): Collider[] {
       case 'barbell': c.push({ k: 'capsule', id: 'bar', a: [p.c[0], p.c[1], -(p.len ?? EQUIP.barLen) / 2], b: [p.c[0], p.c[1], (p.len ?? EQUIP.barLen) / 2], r: EQUIP.barR }); break;
       case 'trapbar': for (const sg of [-1, 1]) c.push({ k: 'capsule', id: 'bar', a: [p.c[0] - 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], b: [p.c[0] + 7, p.c[1], sg * (p.w ?? EQUIP.trapW)], r: 1.8 }); break;
       case 'dumbbell': c.push({ k: 'capsule', id: 'db' + p.side, a: p.c, b: p.c, r: p.r ?? EQUIP.dbHeadR }); break;
-      case 'kettlebell': c.push({ k: 'capsule', id: 'kb', a: [p.c[0], p.c[1] - 12, p.c[2]], b: [p.c[0], p.c[1] - 12, p.c[2]], r: p.r ?? EQUIP.kbBallR }); break;
+      case 'kettlebell': { const d = p.dir ?? [0, -1, 0]; const o = p.r === undefined ? 12 : p.r + 2.5; const q: V3 = [p.c[0] + d[0] * o, p.c[1] + d[1] * o, p.c[2] + d[2] * o]; c.push({ k: 'capsule', id: 'kb', a: q, b: q, r: p.r ?? EQUIP.kbBallR }); break; }
+      case 'ball': c.push({ k: 'capsule', id: 'ball', a: p.c, b: p.c, r: p.r ?? EQUIP.medBallR }); break;
+      case 'plate': c.push(...plateColliders(p)); break;
       case 'bench': { const bp = benchPolys(p); const w = (p.w ?? EQUIP.benchW) / 2; c.push(prism('benchSeat', bp.seat, -w, w), prism('benchBack', bp.back, -w, w)); break; }
       case 'box': { const w = (p.w ?? EQUIP.boxW) / 2; c.push(prism('box', rectPoly(p.x0, 0, p.x1, p.top), -w, w)); break; }
       case 'wall': c.push(prism('wall', rectPoly(p.x - EQUIP.wallW, 0, p.x, p.h), -100, 100)); break;
@@ -87,7 +98,7 @@ export function gap(a: Collider, b: Collider): number {
 
 const matches = (id: string, prefix: string): boolean => id === prefix || id.startsWith(prefix);
 
-export type Issue = { code: string; detail: string };
+export type Issue = { code: string; detail: string; /** Wskazówka naprawy (chwyt: gdzie ma leżeć dłoń). */ hint?: string };
 
 /**
  * Sprawdzenia klatki: skończone współrzędne, stałe długości kości, zasięg IK, podłoga, przenikanie ciało–sprzęt (poza zadeklarowanymi kontaktami),
@@ -107,27 +118,37 @@ export function checkFrame(f: Frame): Issue[] {
   const body = bodyColliders(sk), eq = equipColliders(f.props);
   for (const b of body) if (b.k === 'capsule') { const low = Math.min(b.a[1], b.b[1]) - b.r; if (low < -TOL.floor && !/^(torso|pelvis|head|uarm|farm)/.test(b.id)) out.push({ code: 'floor', detail: `${b.id} poniżej podłogi o ${(-low).toFixed(2)} cm` }); }
   for (const s of SIDES) if (soleY(sk.legs[s]) < -TOL.floor) out.push({ code: 'floor', detail: `stopa ${s} poniżej podłogi` });
+  const lowest = new Map<string, number>(); /* sprzęt trzymany (talerz = wiele kapsuł): jeden komunikat na rekwizyt, z najniższym punktem */
+  for (const e of equipColliders(f.props)) if (e.k === 'capsule' && /^(ball|plate)/.test(e.id)) lowest.set(e.id, Math.min(lowest.get(e.id) ?? Infinity, Math.min(e.a[1], e.b[1]) - e.r));
+  for (const [id, low] of lowest) if (low < -TOL.floor) out.push({ code: 'floor', detail: `${id} poniżej podłogi o ${(-low).toFixed(2)} cm` });
   for (const b of body) for (const e of eq) {
     const g = gap(b, e); const allowed = f.contacts.find(c => matches(b.id, c.body) && matches(e.id, c.equip));
-    const heldHand = /^farm/.test(b.id) && /^(bar|db|kb)/.test(e.id);
+    const heldHand = /^farm/.test(b.id) && /^(bar|db|kb|plate|ball)/.test(e.id);
     const tol = heldHand ? (/^kb/.test(e.id) ? 14 : 12) : allowed ? allowed.tol : TOL.pen;
     if (g < -tol) out.push({ code: 'pen', detail: `${b.id} × ${e.id}: przenikanie ${(-g).toFixed(2)} cm (dopuszczalne ${tol})` });
   }
   const head = body.find(b => b.id === 'head'); const bodyOther = body.filter(b => /^(uarm|farm)/.test(b.id));
   if (head) for (const o of bodyOther) { const g = gap(head, o); if (g < -0.5) out.push({ code: 'self', detail: `głowa × ${o.id}: ${(-g).toFixed(2)} cm` }); }
-  for (const h of holdChecks(f)) if (h.err > h.tol) out.push({ code: 'grip', detail: `${h.name}: dłoń ${h.err.toFixed(2)} cm od chwytu (dopuszczalne ${h.tol})` });
+  for (const h of holdChecks(f)) if (h.err > h.tol) out.push({ code: 'grip', detail: `${h.name}: dłoń ${h.err.toFixed(2)} cm od chwytu (dopuszczalne ${h.tol})`, ...(h.hint ? { hint: h.hint } : {}) });
   return out;
 }
 
+/** Tolerancje chwytu sprzętu trzymanego na powierzchni (cm): dłoń na obręczy talerza i na powierzchni piłki. */
+export const HOLD = { plateRim: 3, ballSurface: 3 } as const;
+/** Odległość punktu od okręgu o środku c i promieniu r w płaszczyźnie y–z (oś x = normalna). */
+export function distToRingYZ(p: V3, c: V3, r: number): number { const dx = p[0] - c[0], inPlane = Math.hypot(p[1] - c[1], p[2] - c[2]); return Math.hypot(dx, inPlane - r); }
+
 /** Odległość chwytu od uchwytu sprzętu trzymanego w rękach (błąd dłoni na gryfie/hantlu/uchwycie). */
-export function holdChecks(f: Frame): { name: string; err: number; tol: number }[] {
-  const out: { name: string; err: number; tol: number }[] = []; const sk = f.sk;
+export function holdChecks(f: Frame): { name: string; err: number; tol: number; hint?: string }[] {
+  const out: { name: string; err: number; tol: number; hint?: string }[] = []; const sk = f.sk;
   const seg = (p: V3, a: V3, b: V3): number => distSegSeg(p, p, a, b);
   for (const p of f.props) {
     if (p.k === 'barbell' && p.held !== false) for (const s of p.held === 'R' ? ['R' as const] : p.held === 'L' ? ['L' as const] : SIDES) out.push({ name: `gryf/${s}`, err: seg(sk.arms[s].grip, [p.c[0], p.c[1], -60], [p.c[0], p.c[1], 60]), tol: 0.6 });
     if (p.k === 'trapbar') for (const s of SIDES) { const z = (s === 'R' ? 1 : -1) * (p.w ?? EQUIP.trapW); out.push({ name: `uchwyt/${s}`, err: seg(sk.arms[s].grip, [p.c[0] - 7, p.c[1], z], [p.c[0] + 7, p.c[1], z]), tol: 0.6 }); }
     if (p.k === 'dumbbell' && p.held !== false) for (const s of p.vertical ? SIDES : [p.side]) out.push({ name: `hantel/${s}`, err: dist(sk.arms[s].grip, p.c), tol: p.vertical ? 6.5 : 0.6 });
     if (p.k === 'kettlebell' && p.held !== false) for (const s of p.side === 'R' || p.side === 'L' ? [p.side] : SIDES) out.push({ name: `kettlebell/${s}`, err: dist(sk.arms[s].grip, p.c), tol: 7 });
+    if (p.k === 'plate' && p.held !== false) for (const s of p.held === 'R' || p.held === 'L' ? [p.held] : SIDES) out.push({ name: `talerz/${s}`, err: distToRingYZ(sk.arms[s].grip, p.c, p.r ?? EQUIP.plateR), tol: HOLD.plateRim, hint: 'dłoń musi leżeć na obręczy talerza (okrąg o promieniu talerza wokół środka w płaszczyźnie y–z); środek talerza = środek między dłońmi + przesuniecie' });
+    if (p.k === 'ball' && p.held !== false) for (const s of p.held === 'R' || p.held === 'L' ? [p.held] : SIDES) out.push({ name: `pilka/${s}`, err: Math.abs(dist(sk.arms[s].grip, p.c) - (p.r ?? EQUIP.medBallR)), tol: HOLD.ballSurface, hint: 'dłoń musi leżeć na powierzchni piłki (odległość od środka = promień piłki); środek piłki = środek między dłońmi + przesuniecie' });
   }
   return out;
 }

@@ -39,7 +39,7 @@ describe('schemat JSON (docs/schemas/figury-v2-poza.schema.json)', () => {
   test('poseSchema: obiekt z polami kontrakt, rodzina, cwiczenie, sprzet, klatki, bledy; bez $ref i oneOf (structured output); stałe w CONTRACT', () => {
     const s = poseSchema('pull_up') as { properties: Record<string, unknown>; required: string[] }; expect(Object.keys(s.properties)).toEqual(['kontrakt', 'rodzina', 'cwiczenie', 'sprzet', 'klatki', 'bledy']); expect(s.required.length).toBe(6);
     const json = JSON.stringify(s); expect(json).not.toMatch(/\$ref|oneOf|anyOf/); expect(json).toContain(CONTRACT.id);
-    expect(CONTRACT.frames.min).toBe(2); expect(CONTRACT.errorsMax).toBe(3); expect(MARKS).toEqual(['knees', 'heels', 'back', 'pelvis', 'bar']); expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia']); expect(AFFECTS.length).toBe(10);
+    expect(CONTRACT.frames.min).toBe(2); expect(CONTRACT.errorsMax).toBe(3); expect(MARKS).toEqual(['knees', 'heels', 'back', 'pelvis', 'bar']); expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska']); expect(AFFECTS.length).toBe(10);
   });
   test('plik schematu w repozytorium jest aktualny (node scripts/figures/v2-validate.mjs --schema --check; część check:figures-v2)', () => {
     const r = spawnSync('node', ['scripts/figures/v2-validate.mjs', '--schema', '--check'], { cwd: root, encoding: 'utf8' }); expect([r.status, r.stdout]).toEqual([0, expect.stringContaining('aktualny')]);

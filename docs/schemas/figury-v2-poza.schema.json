@@ -29,9 +29,13 @@
        "sztanga",
        "slupek",
        "podloga",
-       "skrzynia"
+       "skrzynia",
+       "hantel",
+       "kettlebell",
+       "talerz",
+       "pilka_lekarska"
       ],
-      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia."
+      "description": "sztanga (także drążek), slupek (pionowy), podloga, skrzynia (także stopień i ławka płaska), hantel, kettlebell, talerz (trzymany), pilka_lekarska. Hantel, kettlebell, talerz i piłka lekarska są trzymane w dłoniach i podążają za chwytem."
      },
      "x": {
       "type": "number",
@@ -91,6 +95,36 @@
       "minimum": 10,
       "maximum": 300,
       "description": "Długość gryfu w cm (domyślnie 220)."
+     },
+     "promien": {
+      "type": "number",
+      "minimum": 3,
+      "maximum": 30,
+      "description": "Promień w cm: główka hantla (domyślnie 6), dzwon kettlebell (9,5), talerz (22,5), piłka lekarska (11)."
+     },
+     "pionowo": {
+      "type": "boolean",
+      "description": "Tylko hantel: true = jeden hantel trzymany pionowo obiema dłońmi (goblet); domyślnie false."
+     },
+     "dzwon": {
+      "type": "string",
+      "enum": [
+       "dol",
+       "wzdluz",
+       "tyl"
+      ],
+      "description": "Tylko kettlebell: kierunek dzwonu względem rączki: dol (domyślnie), wzdluz (w przedłużeniu przedramienia), tyl (za rączką, pozycja rack i nad głową)."
+     },
+     "przesuniecie": {
+      "type": "array",
+      "items": {
+       "type": "number",
+       "minimum": -40,
+       "maximum": 40
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "Tylko talerz i pilka_lekarska: położenie środka sprzętu względem środka między dłońmi [dx, dy, dz] w cm (domyślnie [0,0,0]; jedna dłoń: talerz [0, −(promień−1), 0], piłka [0, promień−1, 0])."
      }
     },
     "required": [
@@ -100,7 +134,7 @@
    },
    "minItems": 1,
    "maxItems": 8,
-   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga (x, y, talerze, podazaZaChwytem), słupek (x, h), podłoga, skrzynia (x0, x1, top)."
+   "description": "Sprzęt wg rodzaju ćwiczenia: sztanga — sztanga albo drążek poziomy (x, y, dlugosc, talerze, podazaZaChwytem, trzyma); slupek — słupek pionowy (x, h); podloga — podłoga (x0, x1); skrzynia — skrzynia, stopień albo ławka płaska (x0, x1, top); hantel — hantel trzymany w dłoni (trzyma, promien, pionowo); kettlebell — kettlebell trzymany za rączkę (trzyma, promien, dzwon); talerz — talerz trzymany za brzegi (trzyma, promien, przesuniecie); pilka_lekarska — piłka lekarska (trzyma, promien, przesuniecie)."
   },
   "klatki": {
    "type": "array",

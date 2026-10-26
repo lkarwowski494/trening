@@ -1,0 +1,185 @@
+/*
+ * Figury v2 — sprzęt w kontrakcie danych (docs/54): rejestr rodzajów (GEAR_KINDS), rekwizyty ze sprzętu i chwytów (propsFrom), kierunek dzwonu kettlebell (resolveBells),
+ * rysunek w trzech widokach i czterech motywach, kolidery (talerz = obręcz + szprychy, piłka, dzwon), kontrola chwytu na obręczy i powierzchni, walidator pozy z nowym
+ * sprzętem (macierz: rodzaj × wariant), komunikaty dla generatora. Rodzaje (docs/20): logika, ekran-rysunek, scenariusze, macierz, niezmienniki, dane, motywy.
+ */
+import {
+  GEAR, GEAR_KINDS, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, gearFieldIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
+  CONTRACT, EQUIP, poseSchema, describeContract, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
+  type Gear, type KeyFrame, type PoseData, type Prop, type V3, type RomData, type Frame, type View,
+} from '@/lib/figures/v2';
+import { FIG_DATA } from '@/lib/figures';
+import { light, dark, lightHC, darkHC } from '@/lib/theme';
+
+const ROM = FIG_DATA.rom as unknown as RomData;
+const kf = (u: number, gr: V3, gl: V3): KeyFrame => ({ u, miednica: [0, 88.5, 0], pochylenieTulowia: 0, pochylenieGlowy: 0, nogi: { R: { kostka: [0, 7, 9] }, L: { kostka: [0, 7, -9] } }, rece: { R: { chwyt: gr }, L: { chwyt: gl } } });
+const pose = (rodzina: string, cwiczenie: string, sprzet: Gear[], klatki: KeyFrame[]): PoseData => ({ kontrakt: CONTRACT.id, rodzina, cwiczenie, sprzet: [{ rodzaj: 'podloga', x0: -120, x1: 120 }, ...sprzet], klatki, bledy: [] });
+const check = (d: PoseData) => validatePose(JSON.parse(JSON.stringify(d)), { family: d.rodzina, exercise: d.cwiczenie, errorCues: [], rom: ROM });
+const texts = (d: PoseData): string => check(d).map(i => `[${i.kod}] ${i.szczegol}`).join(' | ');
+const sym = (x: number, y: number, z: number): [V3, V3] => [[x, y, z], [x, y, -z]];
+const two = (u: number, a: V3, b: V3): KeyFrame => kf(u, a, b);
+
+/** Pozy poprawne per rodzaj sprzętu i wariant (tułów pionowo, dłonie w zasięgu ramienia z zapasem, bez przenikania). */
+const CURL = (sp: Gear): PoseData => pose('curl', 'Curl', [sp], [two(0, ...sym(0, 76, 27)), two(1, ...sym(20, 125, 21))]);
+const GOBLET = (sp: Gear): PoseData => pose('squat', 'Goblet', [sp], [two(0, ...sym(17, 125, 4)), two(1, ...sym(24, 112, 4))]);
+const SWING = (sp: Gear): PoseData => pose('squat', 'KB swing', [sp], [two(0, ...sym(18, 82, 3)), two(1, ...sym(50, 128, 3))]);
+const PLATE = (sp: Gear): PoseData => pose('delt_raise', 'Front Plate Raise', [sp], [two(0, ...sym(20, 100, 20.5)), two(1, ...sym(30, 135, 20.5))]);
+const BALL = (sp: Gear): PoseData => pose('sled_throw', 'Chest Pass', [sp], [two(0, ...sym(25, 120, 11)), two(1, ...sym(45, 125, 11))]);
+const MATRIX: [string, PoseData][] = [
+  ['hantel obie (dwa hantle)', CURL({ rodzaj: 'hantel' })], ['hantel jedna ręka R', CURL({ rodzaj: 'hantel', trzyma: 'R' })], ['hantel jedna ręka L', CURL({ rodzaj: 'hantel', trzyma: 'L' })],
+  ['hantel pionowo (goblet)', GOBLET({ rodzaj: 'hantel', pionowo: true })], ['hantel z promieniem', CURL({ rodzaj: 'hantel', promien: 5 })],
+  ['kettlebell dzwon w dół (domyślny)', SWING({ rodzaj: 'kettlebell' })], ['kettlebell wzdłuż przedramienia', SWING({ rodzaj: 'kettlebell', dzwon: 'wzdluz' })], ['kettlebell dzwon za rączką (rack)', pose('squat', 'KB rack', [{ rodzaj: 'kettlebell', dzwon: 'tyl' }], [two(0, ...sym(32, 115, 3)), two(1, ...sym(32, 135, 3))])],
+  ['talerz obiema dłońmi', PLATE({ rodzaj: 'talerz' })], ['talerz mniejszy', pose('delt_raise', 'Front Plate Raise', [{ rodzaj: 'talerz', promien: 15 }], [two(0, ...sym(20, 100, 13.5)), two(1, ...sym(30, 135, 13.5))])],
+  ['piłka lekarska obiema dłońmi', BALL({ rodzaj: 'pilka_lekarska' })],
+];
+
+describe('rejestr rodzajów sprzętu (gear.ts)', () => {
+  test('GEAR: osiem rodzajów; każdy ma wpis w rejestrze z opisem i rekwizytem; możliwości katalogu pokryte przez rejestr', () => {
+    expect(GEAR).toEqual(['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska']);
+    for (const k of GEAR) { expect(GEAR_KINDS[k].opis.length).toBeGreaterThan(10); expect(typeof GEAR_KINDS[k].props).toBe('function'); }
+    expect(GEAR_CAPS).toEqual(expect.arrayContaining(['pullup.bar', 'rings', 'barbell', 'box', 'bench.flat', 'db', 'kb', 'plate', 'med_ball']));
+    expect(new Set(GEAR_CAPS).size).toBe(GEAR_CAPS.length); /* każda możliwość ma jeden rodzaj */
+    expect(GEAR_EXTRA_FIELDS).toEqual(['promien', 'pionowo', 'dzwon', 'przesuniecie']); expect(BELL_MODES).toEqual(['dol', 'wzdluz', 'tyl']);
+  });
+  test('punkty odniesienia (ref) mają liczby z EQUIP i nazwy pól; rodzaje bez ref (stare) nie mają go', () => {
+    for (const k of ['hantel', 'kettlebell', 'talerz', 'pilka_lekarska'] as const) { const r = GEAR_KINDS[k].ref?.().join(' ') ?? ''; expect(r).toContain(k === 'pilka_lekarska' ? 'pilka_lekarska' : k); expect(r).toMatch(/\d/); }
+    expect(GEAR_KINDS.talerz.ref?.().join(' ')).toContain(String(EQUIP.plateR).replace('.', ',')); expect(GEAR_KINDS.pilka_lekarska.ref?.().join(' ')).toContain(String(EQUIP.medBallR));
+    expect(GEAR_KINDS.kettlebell.ref?.().join(' ')).toMatch(/dzwon "dol".*"wzdluz".*"tyl"/);
+    /* zgodność polecenie ↔ walidator: każde pole rodzaju jest opisane w jego punktach odniesienia, a opis nie wspomina pól cudzych rodzajów */
+    for (const k of GEAR) { const own = GEAR_KINDS[k].fields ?? []; const ref = GEAR_KINDS[k].ref?.().join(' ') ?? ''; if (!ref) continue; for (const f of own) expect([k, f, ref.includes(f)]).toEqual([k, f, true]); for (const f of GEAR_EXTRA_FIELDS.filter(x => !own.includes(x))) expect([k, f, ref.includes(`${f} `) || ref.includes(`${f}:`)]).toEqual([k, f, false]); }
+  });
+});
+
+describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża za dłonią)', () => {
+  const G = { R: [10, 80, 20] as V3, L: [14, 90, -20] as V3 };
+  test('hantel: obie = dwa hantle w dłoniach; R/L = jeden; pionowo = jeden między dłońmi; promień przekazany', () => {
+    expect(propsFrom([{ rodzaj: 'hantel' }], G)).toEqual([{ k: 'dumbbell', c: G.R, side: 'R', r: undefined, held: true }, { k: 'dumbbell', c: G.L, side: 'L', r: undefined, held: true }]);
+    expect(propsFrom([{ rodzaj: 'hantel', trzyma: 'L', promien: 5 }], G)).toEqual([{ k: 'dumbbell', c: G.L, side: 'L', r: 5, held: true }]);
+    expect(propsFrom([{ rodzaj: 'hantel', pionowo: true }], G)).toEqual([{ k: 'dumbbell', c: [12, 85, 0], side: 'R', vertical: true, r: undefined, held: true }]);
+  });
+  test('kettlebell: obie = jeden między dłońmi (side C), R/L = w dłoni; tryb dzwonu: dol bez kierunku, tyl ma kierunek −x, wzdluz czeka na szkielet', () => {
+    const c = propsFrom([{ rodzaj: 'kettlebell' }], G)[0] as Extract<Prop, { k: 'kettlebell' }>; expect([c.k, c.side, c.c, c.bell, c.dir]).toEqual(['kettlebell', 'C', [12, 85, 0], 'down', undefined]);
+    expect((propsFrom([{ rodzaj: 'kettlebell', trzyma: 'R' }], G)[0] as Extract<Prop, { k: 'kettlebell' }>).c).toEqual(G.R);
+    const t = propsFrom([{ rodzaj: 'kettlebell', dzwon: 'tyl' }], G)[0] as Extract<Prop, { k: 'kettlebell' }>; expect(t.bell).toBe('back'); expect(t.dir?.[0]).toBeLessThan(-0.9);
+    const w = propsFrom([{ rodzaj: 'kettlebell', dzwon: 'wzdluz' }], G)[0] as Extract<Prop, { k: 'kettlebell' }>; expect([w.bell, w.dir]).toEqual(['along', undefined]);
+  });
+  test('talerz i piłka: środek między dłońmi + przesunięcie; jedna dłoń ma domyślne przesunięcie (talerz pod dłonią, piłka na dłoni); held = true albo strona', () => {
+    expect(propsFrom([{ rodzaj: 'talerz' }], G)).toEqual([{ k: 'plate', c: [12, 85, 0], r: undefined, held: true }]);
+    expect(propsFrom([{ rodzaj: 'talerz', przesuniecie: [0, 3, 0] }], G)[0]).toMatchObject({ c: [12, 88, 0] });
+    expect(propsFrom([{ rodzaj: 'talerz', trzyma: 'R' }], G)[0]).toMatchObject({ c: [10, 80 - (EQUIP.plateR - 1), 20], held: 'R' });
+    expect(propsFrom([{ rodzaj: 'talerz', trzyma: 'R', promien: 10 }], G)[0]).toMatchObject({ c: [10, 80 - 9, 20], r: 10 });
+    expect(propsFrom([{ rodzaj: 'pilka_lekarska' }], G)).toEqual([{ k: 'ball', c: [12, 85, 0], r: undefined, held: true }]);
+    expect(propsFrom([{ rodzaj: 'pilka_lekarska', trzyma: 'L' }], G)[0]).toMatchObject({ c: [14, 90 + EQUIP.medBallR - 1, -20], held: 'L' });
+    expect(propsFrom([{ rodzaj: 'pilka_lekarska', przesuniecie: [0, 11, 0], promien: 12 }], G)[0]).toMatchObject({ c: [12, 96, 0], r: 12 });
+  });
+  test('stary sprzęt bez zmian: sztanga podąża za chwytem, słupek, podłoga, skrzynia', () => {
+    expect(propsFrom([{ rodzaj: 'sztanga', podazaZaChwytem: true }, { rodzaj: 'slupek', x: 5, h: 100 }, { rodzaj: 'skrzynia', x0: 1, x1: 2, top: 30 }, { rodzaj: 'podloga' }], G).map(p => p.k)).toEqual(['barbell', 'post', 'box', 'floor']);
+  });
+});
+
+describe('resolveBells: dzwon kettlebell wzdłuż przedramienia (ze szkieletu)', () => {
+  const frameWith = (grips: [V3, V3]): Frame => keyframeFrame({ ...SWING({ rodzaj: 'kettlebell', dzwon: 'wzdluz' }), klatki: [two(0, ...grips), two(1, ...grips)] }, 0);
+  const dirOf = (f: Frame): V3 => (f.props.find(p => p.k === 'kettlebell') as Extract<Prop, { k: 'kettlebell' }>).dir as V3;
+  test('przedramię w dół → dzwon w dół; przedramię w przód → dzwon w przód; przedramię w górę → dzwon za przedramieniem (−x, w dół); wersor jednostkowy', () => {
+    const down = dirOf(frameWith(sym(18, 82, 3))); expect(down[1]).toBeLessThan(-0.5);
+    const fwd = dirOf(frameWith(sym(50, 128, 3))); expect(fwd[0]).toBeGreaterThan(0.8);
+    const up = dirOf(frameWith(sym(20, 150, 4))); expect(up[0]).toBeLessThan(-0.3); expect(up[1]).toBeLessThan(0);
+    for (const d of [down, fwd, up]) expect(Math.hypot(...d)).toBeCloseTo(1, 6);
+  });
+  test('klatka bez dzwonu „wzdluz” zwracana bez zmian (ta sama referencja)', () => {
+    const f = keyframeFrame(SWING({ rodzaj: 'kettlebell' }), 0); expect(resolveBells(f)).toBe(f);
+  });
+});
+
+describe('rysunek: trzy widoki, cztery motywy, role z palety', () => {
+  const props: Prop[] = [{ k: 'dumbbell', c: [10, 80, 20], side: 'R', held: true }, { k: 'kettlebell', c: [10, 80, 0], side: 'C', dir: [0, -1, 0] }, { k: 'plate', c: [20, 110, 0], r: 22.5, held: true }, { k: 'ball', c: [20, 110, 0], r: 11, held: true }];
+  const themes = { jasny: light, ciemny: dark, 'jasny + HC': lightHC, 'ciemny + HC': darkHC };
+  test.each(Object.entries(themes))('motyw %s: talerz i piłka mają kształty w każdym widoku, kolory z palety (bez kolorów na sztywno), dokument SVG poprawny', (_n, th) => {
+    const pal = figurePalette(th);
+    for (const v of ['side', 'front', 'top'] as View[]) {
+      const sh = propShapes(props, v); const ids = sh.map(s => s.id);
+      expect(ids).toEqual(expect.arrayContaining(['plateHeld', 'ball', 'ballSeam', 'kb', 'kbHandle']));
+      const svg = svgDocument(sh, boundsOf([sh]), pal); expect(svg).toContain(pal.plate); expect(svg).toContain(pal.load); expect(svg).toMatch(/^<svg[\s\S]*<\/svg>$/);
+    }
+  });
+  test('talerz: z boku cienki pas (grubość plateW), z przodu koło o promieniu talerza z piastą, z góry pas o szerokości średnicy', () => {
+    const side = propShapes([props[2]], 'side')[0]; expect(side.k).toBe('poly'); if (side.k === 'poly') { const xs = side.pts.map(p => p[0]); expect(Math.max(...xs) - Math.min(...xs)).toBeCloseTo(EQUIP.plateW, 6); const ys = side.pts.map(p => p[1]); expect(Math.max(...ys) - Math.min(...ys)).toBeCloseTo(45, 6); }
+    const front = propShapes([props[2]], 'front'); expect(front.find(s => s.id === 'plateHeld')).toMatchObject({ k: 'circle', r: 22.5 }); expect(front.map(s => s.id)).toContain('plateHub');
+    const top = propShapes([props[2]], 'top')[0]; if (top.k === 'poly') { const xs = top.pts.map(p => p[0]); expect(Math.max(...xs) - Math.min(...xs)).toBeCloseTo(45, 6); }
+  });
+  test('piłka: koło o promieniu r i dwa szwy; domyślny promień z EQUIP; kettlebell: dzwon i rączka przesunięte wzdłuż dir', () => {
+    expect(propShapes([{ k: 'ball', c: [0, 50, 0] }], 'side').find(s => s.id === 'ball')).toMatchObject({ k: 'circle', r: EQUIP.medBallR });
+    expect(propShapes([{ k: 'ball', c: [0, 50, 0], r: 15 }], 'side').filter(s => s.id === 'ballSeam').length).toBe(2);
+    const kb = propShapes([{ k: 'kettlebell', c: [0, 80, 0], dir: [1, 0, 0] }], 'side'); const bell = kb.find(s => s.id === 'kb'); if (bell?.k === 'circle') expect(bell.c[0]).toBeCloseTo(EQUIP.kbBallR + 2, 6);
+    const dflt = propShapes([{ k: 'kettlebell', c: [0, 80, 0] }], 'side').find(s => s.id === 'kb'); if (dflt?.k === 'circle') expect(dflt.c[1]).toBeCloseTo(80 - EQUIP.kbBallR - 2, 6);
+  });
+  test('dataShapes: poza z nowym sprzętem daje kształty sprzętu w widoku z boku, z przodu i z góry', () => {
+    for (const [, d] of MATRIX) for (const v of ['side', 'front', 'top'] as View[]) expect(dataShapes(d, 0.5, v).length).toBeGreaterThan(20);
+  });
+});
+
+describe('kolidery i kontrola chwytu', () => {
+  test('talerz: 16 odcinków obręczy i 4 średnice (kapsuły grubości plateW); piłka: jedna kapsuła o promieniu piłki; dzwon: w kierunku dir', () => {
+    const pc = plateColliders({ k: 'plate', c: [0, 100, 0] }); expect(pc.length).toBe(20); for (const c of pc) expect(c).toMatchObject({ k: 'capsule', id: 'plate', r: EQUIP.plateW / 2 });
+    const all = equipColliders([{ k: 'plate', c: [5, 100, 0], r: 10 }, { k: 'ball', c: [0, 50, 0] }, { k: 'kettlebell', c: [0, 80, 0], r: 9.5, dir: [1, 0, 0] }]);
+    expect(all.filter(c => c.id === 'plate').length).toBe(20); expect(all.find(c => c.id === 'ball')).toMatchObject({ r: EQUIP.medBallR, a: [0, 50, 0] });
+    expect(all.find(c => c.id === 'kb')).toMatchObject({ a: [12, 80, 0], r: 9.5 });
+    expect(equipColliders([{ k: 'kettlebell', c: [0, 80, 0] }])[0]).toMatchObject({ a: [0, 68, 0], r: EQUIP.kbBallR }); /* dzwon w dół: jak dotychczas */
+  });
+  test('distToRingYZ: punkt na okręgu 0, w środku r, przed płaszczyzną talerza = odległość w x', () => {
+    expect(distToRingYZ([0, 110, 22.5], [0, 110, 0], 22.5)).toBeCloseTo(0, 9); expect(distToRingYZ([0, 110, 0], [0, 110, 0], 22.5)).toBeCloseTo(22.5, 9); expect(distToRingYZ([4, 110, 22.5], [0, 110, 0], 22.5)).toBeCloseTo(4, 9);
+    expect(HOLD).toEqual({ plateRim: 3, ballSurface: 3 });
+  });
+  const hold = (d: PoseData, u = 0) => holdChecks(keyframeFrame(d, u));
+  test('holdChecks: dłonie na obręczy talerza i na powierzchni piłki dają błąd ≈ 0; nazwy talerz/R, pilka/L; hint opisuje naprawę', () => {
+    const p = hold(PLATE({ rodzaj: 'talerz' })); expect(p.map(h => h.name)).toEqual(['talerz/R', 'talerz/L']); for (const h of p) { expect(h.err).toBeLessThan(HOLD.plateRim); expect(h.hint).toContain('obręczy'); }
+    const b = hold(BALL({ rodzaj: 'pilka_lekarska' })); expect(b.map(h => h.name)).toEqual(['pilka/R', 'pilka/L']); for (const h of b) { expect(h.err).toBeLessThan(HOLD.ballSurface); expect(h.hint).toContain('powierzchni'); }
+    expect(hold(PLATE({ rodzaj: 'talerz', trzyma: 'R' })).map(h => h.name)).toEqual(['talerz/R']);
+  });
+  test('checkFrame: ręce za blisko środka piłki → „grip” z hintem; piłka i talerz pod podłogą → „floor”; piłka w tułowiu → „pen”', () => {
+    const near = BALL({ rodzaj: 'pilka_lekarska' }); near.klatki[0].rece.R.chwyt = [25, 120, 4]; const g = checkFrame(keyframeFrame(near, 0)).find(i => i.code === 'grip'); expect(g?.hint).toContain('powierzchni piłki'); expect(g?.detail).toMatch(/pilka\/R: dłoń \d+\.\d+ cm od chwytu \(dopuszczalne 3\)/);
+    const low = checkFrame({ ...keyframeFrame(BALL({ rodzaj: 'pilka_lekarska' }), 0), props: [{ k: 'ball', c: [25, 5, 0], r: 11 }, { k: 'plate', c: [25, 20, 0], r: 22.5 }] }); expect(low.filter(i => i.code === 'floor').map(i => i.detail.split(' ')[0])).toEqual(['ball', 'plate']);
+    const f = keyframeFrame(BALL({ rodzaj: 'pilka_lekarska' }), 0); const inside = checkFrame({ ...f, props: [{ k: 'ball', c: [3, 120, 0], r: 11, held: false }] }); expect(inside.some(i => i.code === 'pen' && /torso × ball/.test(i.detail))).toBe(true);
+  });
+  test('przedramię trzymające talerz i piłkę ma tolerancję kontaktu (jak sztanga i hantel)', () => {
+    for (const [, d] of MATRIX.filter(([n]) => /talerz|piłka/.test(n))) expect(checkFrame(keyframeFrame(d, 0.5)).filter(i => i.code === 'pen')).toEqual([]);
+  });
+  test('ciało i sprzęt z kolizjami: bodyColliders × talerz — udo w płaszczyźnie talerza wykrywa przenikanie', () => {
+    const sk = solveSkeleton(keyframeFrame(PLATE({ rodzaj: 'talerz' }), 0).pose!); const eq = equipColliders([{ k: 'plate', c: [sk.legs.R.knee[0], sk.legs.R.knee[1], sk.legs.R.knee[2]], r: 22.5 }]);
+    expect(Math.min(...bodyColliders(sk).flatMap(b => eq.map(e => gap(b, e))))).toBeLessThan(0);
+  });
+});
+
+describe('walidator pozy z nowym sprzętem — macierz rodzaj × wariant', () => {
+  test.each(MATRIX)('%s: poza przechodzi walidację (geometria, zakresy, ciągłość, chwyt)', (_n, d) => { expect(texts(d)).toBe(''); });
+  test('poza z hantlem pionowo: dłonie > 13 cm od siebie → chwyt hantla (tolerancja 6,5 cm od środka)', () => {
+    const d = GOBLET({ rodzaj: 'hantel', pionowo: true }); d.klatki[0].rece.R.chwyt = [17, 125, 12]; d.klatki[0].rece.L.chwyt = [17, 125, -12]; expect(texts(d)).toMatch(/\[chwyt\].*hantel\/R: dłoń/);
+  });
+  test('dłoń poza obręczą talerza → „chwyt” z talerz/R i wskazówką naprawy; poprawne w innej fazie nie maskuje', () => {
+    const d = PLATE({ rodzaj: 'talerz' }); d.klatki[1].rece.R.chwyt = [30, 135, 12]; const t = texts(d); expect(t).toMatch(/\[chwyt\] talerz\/R: dłoń \d+\.\d+ cm od chwytu \(dopuszczalne 3\) w fazie u=\d\.\d\d — dłoń musi leżeć na obręczy talerza/);
+  });
+  test('dłoń poza powierzchnią piłki → „chwyt” pilka/R z hintem', () => {
+    const d = BALL({ rodzaj: 'pilka_lekarska' }); d.klatki[0].rece.R.chwyt = [25, 120, 20]; expect(texts(d)).toMatch(/\[chwyt\] pilka\/R: dłoń .* na powierzchni piłki/);
+  });
+  test('piłka w udach i hantel w udzie → „geometria” z przenikaniem (nazwa kolidera i sprzętu)', () => {
+    const ball = pose('sled_throw', 'Chest Pass', [{ rodzaj: 'pilka_lekarska' }], [two(0, ...sym(0, 76, 11)), two(1, ...sym(45, 125, 11))]); expect(texts(ball)).toMatch(/\[geometria\] thighR × ball: przenikanie/);
+    const thigh = CURL({ rodzaj: 'hantel' }); thigh.klatki[0].rece.R.chwyt = [0, 76, 20]; thigh.klatki[0].rece.L.chwyt = [0, 76, -20]; expect(texts(thigh)).toMatch(/thighR × dbR: przenikanie/);
+  });
+  test('pola sprzętu: nieznany rodzaj i pole nie dla rodzaju odrzucone konkretnym komunikatem; zakresy promienia', () => {
+    expect(texts(CURL({ rodzaj: 'hantel', dzwon: 'dol' }))).toContain('sprzęt: pole „dzwon” nie dotyczy rodzaju „hantel” (dla tego rodzaju: promien, pionowo)');
+    expect(texts(SWING({ rodzaj: 'kettlebell', pionowo: true }))).toContain('pole „pionowo” nie dotyczy rodzaju „kettlebell”');
+    expect(texts(PLATE({ rodzaj: 'talerz', promien: 50 }))).toMatch(/\[schemat\].*promien/); /* poza przedziałem schematu 3–30 */
+    expect(gearFieldIssues({ rodzaj: 'talerz', promien: 5 })).toEqual(['sprzęt: promien talerza = 5 cm poza przedziałem 8–30 cm']);
+    expect(gearFieldIssues({ rodzaj: 'kettlebell', promien: 20 })).toEqual(['sprzęt: promien dzwonu = 20 cm poza przedziałem 5–15 cm']);
+    expect(gearFieldIssues({ rodzaj: 'hantel', promien: 2 })).toEqual(['sprzęt: promien hantla = 2 cm poza przedziałem 3–12 cm']);
+    expect(gearFieldIssues({ rodzaj: 'pilka_lekarska', promien: 25 })).toEqual(['sprzęt: promien piłki = 25 cm poza przedziałem 6–20 cm']);
+    expect(gearFieldIssues({ rodzaj: 'sztanga', przesuniecie: [0, 0, 0] })).toEqual(['sprzęt: pole „przesuniecie” nie dotyczy rodzaju „sztanga”']);
+    expect(texts({ ...CURL({ rodzaj: 'hantel' }), sprzet: [{ rodzaj: 'wyciag' as never }] })).toMatch(/\[schemat\].*spoza listy/);
+  });
+  test('schemat: rodzaje i pola nowego sprzętu w JSON Schema (enum rodzajów, dzwon, przesuniecie jako wektor)', () => {
+    const s = JSON.stringify(poseSchema('curl')); for (const k of GEAR) expect(s).toContain(`"${k}"`); for (const f of GEAR_EXTRA_FIELDS) expect(s).toContain(`"${f}"`);
+  });
+  test('opis kontraktu wspomina sprzęt trzymany w dłoniach i tolerancję 3 cm', () => {
+    const t = describeContract('curl'); expect(t).toContain('podąża za chwytem'); expect(t).toContain('tolerancja 3 cm'); expect(t).toContain('hantel — hantel trzymany w dłoni');
+  });
+});

@@ -220,7 +220,17 @@ export function sprzetNieobslugiwany(cw, catalog) {
   for (const grupa of e.requires) if (grupa.length && !grupa.some((c) => sprzetObslugiwany().includes(c))) return `sprzęt spoza kontraktu: ${grupa.join(' / ')} — silnik go nie rysuje`;
   return null;
 }
-const OPIS_SPRZETU = { 'pullup.bar': 'drążek poziomy', rings: 'kółka (zastępuje drążek — rysuj jako drążek)', db: 'hantle', bench: 'ławka' };
+const OPIS_SPRZETU = { 'pullup.bar': 'drążek poziomy', rings: 'kółka (zastępuje drążek — rysuj jako drążek)', db: 'hantle (sprzet: rodzaj \"hantel\")', kb: 'kettlebell (sprzet: rodzaj \"kettlebell\")', plate: 'talerz trzymany (sprzet: rodzaj \"talerz\")', med_ball: 'piłka lekarska (sprzet: rodzaj \"pilka_lekarska\")', bench: 'ławka' };
+/** Rodzaje sprzętu z rejestru kontraktu, których potrzebują ćwiczenia (możliwości katalogu → rodzaj); kolejność jak w rejestrze. */
+export function rodzajeSprzetu(cwiczenia, catalog) {
+  const { v2 } = silnik(); const caps = new Set(cwiczenia.flatMap((c) => (catalog?.CATALOG?.[c]?.requires ?? []).flat()));
+  return v2.GEAR.filter((k) => v2.GEAR_KINDS[k].caps.some((c) => caps.has(c)) && v2.GEAR_KINDS[k].ref);
+}
+/** Sekcja polecenia „Sprzęt w ćwiczeniach tej części”: punkty odniesienia rodzajów sprzętu (liczby z silnika) albo [] (tylko sprzęt dotychczasowy). */
+export function sekcjaSprzetu(cwiczenia, catalog) {
+  const { v2 } = silnik(); const rodzaje = rodzajeSprzetu(cwiczenia, catalog); if (!rodzaje.length) return [];
+  return ['Rodzaje sprzętu w sprzet[] (pole rodzaj) potrzebne w tej części; sprzęt trzymany w dłoniach NIE ma własnych współrzędnych — podąża za chwytem, a jego pola opisano niżej. Sprzęt dodajesz obok podłogi (podloga).', '', ...rodzaje.flatMap((k) => v2.GEAR_KINDS[k].ref().map((x) => `- ${x}`))];
+}
 /** Sens ruchu z danych katalogu i nazwy: sprzęt, liczba rąk, obciążenie (bez zgadywania). */
 export function sensZKatalogu(cw, catalog) {
   const o = []; const e = catalog?.CATALOG?.[cw];
@@ -252,7 +262,7 @@ export const FORMAT_ODPOWIEDZI = (rodzina, klucze) => [
   '- Jeśli nie jesteś w stanie dopasować pozy do wymagań, i tak ją zwróć (błędy sprawdzimy my) — nie pomijaj ćwiczeń.',
 ];
 
-export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia, przyklady, kontrakt, opisy, pomijane = [], root = ROOT }) {
+export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia, przyklady, kontrakt, opisy, pomijane = [], sprzet = [], root = ROOT }) {
   const L = [];
   L.push(`# Pozy figur ćwiczeń — rodzina „${rodzina}”${czesc.ile > 1 ? ` (część ${czesc.numer}/${czesc.ile})` : ''} [${ETYKIETA_WERSJI}]`, '');
   L.push('Jesteś animatorem postaci do aplikacji treningowej. Tworzysz dane póz (klatki kluczowe szkieletu) dla ćwiczeń jednej rodziny ruchu. Dane wczyta program, który sprawdzi geometrię ORAZ sens ruchu — poza niezgodna z wymaganiami zostanie odrzucona, więc trzymaj się liczb poniżej. Liczby i relacje są wyliczone z naszego modelu; nie zgaduj ich, tylko podstaw.');
@@ -260,6 +270,7 @@ export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia,
   L.push('## Kontrakt danych', '', kontrakt.opisKontraktu(rodzina), '');
   L.push('## Pola obiektu pozy', '', ...opisPol(kontrakt.schematPozy(rodzina)), '');
   L.push('## Punkty odniesienia (stałe wymiary i relacje)', '', ...punktyOdniesienia(rodzina), '');
+  if (sprzet.length) L.push('## Sprzęt w ćwiczeniach tej części', '', ...sprzet, '');
   L.push('## Wymagania liczbowe walidatora', '', ...wymagania(rodzina).map((x) => `- ${x}`), '');
   const reg = sekcjaRegul(rodzina, cwiczenia, root); if (reg.length) L.push('## Reguły sensu ruchu', '', ...reg, '');
   const aktywne = new Set(cwiczenia.flatMap((c) => regulyDla(rodzina, c, root).map((x) => x.id))); const rej = liniePolecenia(wczytajRejestr(root), liczbyZSilnika(rodzina), undefined, { rodzina, reguly: aktywne }); if (rej.length) L.push('## Najczęstsze błędy z poprzednich odpowiedzi i jak ich uniknąć', '', 'Rejestr błędów popełnionych w poprzednich odpowiedziach (liczba wystąpień) — sprawdź każdy punkt przed odpowiedzią:', ...rej, '');
@@ -294,7 +305,7 @@ export async function poleceniaRodziny(rodzina, { root = ROOT, lista } = {}) {
     const pomijane = []; const robic = [];
     for (const c of czesc.cwiczenia) { const p = pominiecie(rodzina, c, root) ?? sprzetNieobslugiwany(c, catalog); if (p) pomijane.push({ klucz: c, powod: `pomiń — zrobi nasz agent (${p})` }); else robic.push(c); }
     return { plik: `${czesc.id}.md`, cwiczenia: robic, pomijane,
-      tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc, cwiczenia: robic, przyklady, kontrakt, pomijane, root, opisy: robic.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog, rodzina })) }) };
+      tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc, cwiczenia: robic, przyklady, kontrakt, pomijane, sprzet: sekcjaSprzetu(robic, catalog), root, opisy: robic.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog, rodzina })) }) };
   }).filter((x) => x.cwiczenia.length);
 }
 
