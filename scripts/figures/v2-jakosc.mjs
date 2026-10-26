@@ -23,13 +23,22 @@ export const PROGI = {
   wisiCm: 1, /* ćwiczenie na podłodze: najniższy punkt tułowia/miednicy (oś − promień) najwyżej tyle nad podłogą (leżąc i siedząc ciało leży, nie wisi) */
   lokiecPrzedPlecamiMaxCm: 2, /* przyciąganie (wiosłowanie): na końcu łokieć leży najwyżej tyle PRZED płaszczyzną pleców (po stronie klatki/drążka); łokieć ma kończyć przy tułowiu, za linią pleców, nie nad klatką */
   podparcieMarginesCm: 2, /* podpór jednorącz/jednonóż: rzut środka ciężkości leży wewnątrz wielokąta podparcia o co najmniej tyle */
+  lokiecNadNadgarstkiemCm: 8, /* dolna faza: |łokieć z − dłoń z| ≤ tyle (przedramię pionowe z przodu; wymiar: ok. 40% szerokości barków) */
+  rozstawTolerancja: 0.25, /* rozstaw dłoni = wielokrotność rozstawu barków ± tyle */
   rzadBleduTolDeg: 15, /* staw spoza obszaru błędu może się różnić od pozy poprawnej najwyżej o tyle (zapas 2 cm w długości nogi w modelu opadania biodra daje ≤ 13°; „wyraźnie ugięte kolana” to ≥ 30°) */
   stykPodparciaCm: 4.5, /* punkt ciała uznany za podparcie, gdy jego (oś) wysokość ≤ tyle: dłoń, stopa, kolano (promień kończyny) */
 };
-/** Odwiedzenie ramienia widoczne Z PRZODU (stopnie): arcsin(wysunięcie łokcia w bok poza oś barku / długość ramienia), sprawdzane w KAŻDEJ klatce (nie tylko przy największym zgięciu).
- * Konwencja rysunku (nie twierdzenie merytoryczne; do zatwierdzenia przez badacza): NASM (łokcie ok. 45° od tułowia) i ACE (łokcie na boki) rozchodzą się na tym samym szczeblu, a rzut z przodu nie pokazuje głębi,
- * więc 45° czyta się jak litera T (recenzja n2, 26.10.2026: 6 przecieków). Rysujemy ciaśniej: pompka ≤ 30°, wariant wąski ≤ 22°, diamentowa ≤ 25°, szeroka ≤ 70° (jej cechą jest szeroki łokieć), wiosłowanie odwrócone ≤ 60° (tor łokcia pilnuje tor_lokcia_przyciaganie). */
-export const ODWIEDZENIE_PRZOD = { domyslnie: 30, 'Push-Up Wide': 70, 'Close-Grip Push-Up': 22, 'Incline Push-Up Close-Grip': 22, 'Diamond Push Up': 25, 'Inverted Row': 60 };
+/** Odwiedzenie ramienia widoczne Z PRZODU (stopnie): arcsin(wysunięcie łokcia w bok poza oś barku / PRAWDZIWA długość ramienia 3D, nie długość w rzucie), sprawdzane w KAŻDEJ klatce. To druga linia obrony; pierwsza to geometria (lokiec_nad_nadgarstkiem, rozstaw_dloni).
+ * Konwencja rysunku (nie twierdzenie merytoryczne; badacz 26.10.2026, scratchpad/badania-figury/lokiec-masy.md; rozstrzygnięcie koordynatora): pompka standardowa, wąska i diamentowa ≤ 45° (część wspólna źródeł: NASM ok. 45°, ACE „na boki” — brak liczb dla wąskiej/diamentowej,
+ * a źródła różnią się kierunkowo), szeroka ≤ 70° i wyraźnie szersza niż standardowa (≥ ODWIEDZENIE_DOLNE), wiosłowanie odwrócone ≤ 45° (spójnie ze wskazówką inv.pull „łokcie blisko tułowia”). Litera T (≈ 90°) jest odrzucana w każdym wariancie. */
+export const ODWIEDZENIE_PRZOD = { domyslnie: 45, 'Push-Up Wide': 70, 'Close-Grip Push-Up': 45, 'Incline Push-Up Close-Grip': 45, 'Diamond Push Up': 45, 'Inverted Row': 45 };
+/** Dolna granica odwiedzenia (najwyższy kąt w ruchu ≥): pompka szeroka ma łokcie wyraźnie szerzej niż standardowa (kierunek: źródła jakościowo; liczba = konwencja). */
+export const ODWIEDZENIE_DOLNE = { 'Push-Up Wide': 50 };
+/** Pompki z łokciem nad nadgarstkiem w dolnej fazie (przedramię pionowe w rzucie z przodu; pompka standardowa i szeroka). Wąska i diamentowa mają dłonie bliżej osi, łokieć na zewnątrz — wyłączone. */
+export const LOKIEC_NAD_NADGARSTKIEM = ['Push Up', 'Push-Up Wide', 'Decline Push Up', 'Incline Push Up'];
+/** Rozstaw dłoni jako ułamek rozstawu barków (S4: wąski 50%, normalny 100%, szeroki 150%); ćwiczenia spoza listy (diamentowa — dłonie złączone, Single-Arm, Clock) bez sprawdzenia. */
+export const ROZSTAW_DLONI = { 'Push Up': 1, 'Decline Push Up': 1, 'Incline Push Up': 1, 'Push-Up Wide': 1.5, 'Close-Grip Push-Up': 0.5, 'Incline Push-Up Close-Grip': 0.5 };
+export const ODWIEDZENIE = ODWIEDZENIE_PRZOD; /* reguła 11 (klatka największego zgięcia) używa tych samych progów */
 /** Ćwiczenia na podłodze, w których tułów nie leży (czworaki): reguła nic_nie_wisi ich nie obejmuje. */
 export const NIE_LEZY = ['Bird Dog'];
 /** Ćwiczenia z deklarowanym lotem (ciało oderwane od podłogi z założenia): ćwiczenie → powód. Puste: żadne ćwiczenie na podłodze rodziny core_floor nie ma fazy lotu. */
@@ -38,8 +47,8 @@ export const LOT = {};
 export const PRZYCIAGANIE = ['Inverted Row'];
 /** Podpór jednorącz/jednonóż (stabilność): środek ciężkości nad podparciem. */
 export const PODPARCIE_ZMIENNE = ['Single-Arm Push-Up']; /* Plank Shoulder Taps i Mountain Climbers: faza jednej ręki/lotu trwa ułamek ruchu (przybliżenie przejścia) — reguła je mierzy (jakosc-raport), ale ich nie wymusza; powód: ruch dynamiczny, recenzja n2 = OK */
-/** Udziały mas segmentów (Dempster; Winter, „Biomechanics and Motor Control of Human Movement”, tab. 4.1 — wartości z pamięci, do potwierdzenia przez badacza; uproszczenie rysunku, nie twierdzenie): głowa 0,081, tułów 0,497, ramię 0,028, przedramię z dłonią 0,022, udo 0,100, goleń 0,0465, stopa 0,0145. */
-export const MASY = { glowa: 0.081, tulow: 0.497, ramie: 0.028, przedramie: 0.022, udo: 0.1, golen: 0.0465, stopa: 0.0145 };
+/** Udziały mas segmentów i położenia ich środków mas: jeden komplet (de Leva 1996, zbiór męski; data/zrodla/figury-masy-segmentow.json — źródło i status w pliku). */
+export const MASY = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/zrodla/figury-masy-segmentow.json'), 'utf8')).segmenty;
 /** Dozwolone obszary zmian rzędu błędu według wskazówki: rząd błędu zmienia wyłącznie to, co opisuje jego wskazówka; kąty stawów spoza listy nie mogą się różnić od pozy poprawnej o więcej niż PROGI.rzadBleduTolDeg
  * (etykiety jak `dotyczy`: hip, knee, ankle, elbow, shoulder). Brak wpisu dla wskazówki = brak sprawdzenia. */
 export const DOTYCZY_BLEDU = {
@@ -50,15 +59,13 @@ export const DOTYCZY_BLEDU = {
 /** Wyjątki per ćwiczenie: w rollout z podparciem na kolanach opadanie miednicy obraca udo wokół kolana na podłodze, więc kąt kolana, kostki i łokcia (chwyt na sztandze) zmienia się z natury błędu. */
 export const DOTYCZY_BLEDU_CWICZENIE = { 'Rollout (sztanga)': { 'plank.mis.sag': ['knee', 'ankle', 'elbow'] }, 'Barbell Rollout from Bench': { 'plank.mis.sag': ['knee', 'ankle', 'elbow'] } };
 const KAT_STAWU = { hip: 'hip', knee: 'knee', ankle: 'ankle', elbow: 'elbow', shElev: 'shoulder' };
-/** Dopuszczalne odwiedzenie ramienia (stopnie) przy największym zgięciu łokcia w pompkach i wiosłowaniu; wariant wąski i diamentowy mają łokcie przy tułowiu. Konwencja rysunku (NASM: ok. 45°, ACE: łokcie na boki → część wspólna). */
-export const ODWIEDZENIE = { domyslnie: 60, 'Push-Up Wide': 90, 'Close-Grip Push-Up': 40, 'Incline Push-Up Close-Grip': 40, 'Diamond Push Up': 35 };
 export const LOKIEC_ZA_BARKIEM = { 'Close-Grip Push-Up': 6, 'Incline Push-Up Close-Grip': 6, 'Diamond Push Up': 6 }; /* cm za barkiem w rzucie bocznym (łokieć w tył) */
 /** Grupy błędów POSTAWY (widoczne w każdej klatce); pozostałe (zakres, tempo, bujanie) narastają z fazą ruchu. */
 export const GRUPY_POSTAWY = ['linia', 'przeprost', 'lokcie'];
 export const RECE_WZDLUZ = ['Lying Leg Raise', 'Reverse Crunch', 'Leg Pull-In', 'Scissor Kick'];
 export const PODSTAWA_SZEROKA = ['Single-Arm Push-Up'];
 export const WYMAGA_PODWIESZENIA = /^Suspended /;
-export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie'];
+export const REGULY_JAKOSCI = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie'];
 /** Reguły poziomu manifestu podglądu (nie pozy): zgodność manifestu z obrazem i układ podglądu. */
 export const REGULY_MANIFESTU = ['manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
@@ -145,7 +152,19 @@ export function lokiecZaBarkiem(v2, poza) {
 export function odwiedzenieLokciaPrzod(v2, poza) {
   const lim = ODWIEDZENIE_PRZOD[poza.cwiczenie] ?? ODWIEDZENIE_PRZOD.domyslnie; let naj = null;
   for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; for (const k of ['R', 'L']) { const a = s.arms[k]; const sg = Math.sign(a.shoulder[2]) || 1; const w = Math.max(0, sg * (a.elbow[2] - a.shoulder[2])); const kat = (Math.asin(Math.min(1, w / (dist3(a.shoulder, a.elbow) || 1))) * 180) / Math.PI; if (!naj || kat > naj.kat) naj = { kat, u, k, w }; } }
+  const dol = ODWIEDZENIE_DOLNE[poza.cwiczenie]; if (naj && dol !== undefined && naj.kat < dol) return [`największe odwiedzenie łokcia z przodu to ${f1(naj.kat)}°, a „${poza.cwiczenie}” ma łokcie wyraźnie szerzej: ≥ ${dol}° (cecha wariantu szerokiego)`];
   return naj && naj.kat > lim ? [`łokieć ${naj.k} wychodzi w rzucie z przodu ${f1(naj.w)} cm poza oś barku, czyli odwiedzenie ${f1(naj.kat)}° (u = ${naj.u}), a ma ≤ ${lim}° dla „${poza.cwiczenie}” w KAŻDEJ klatce (łokcie nie w literę T)`] : [];
+}
+/** 13b. Łokieć nad nadgarstkiem w dolnej fazie (klatka największego zgięcia łokcia): różnica z (rzut z przodu) ≤ lokiecNadNadgarstkiemCm. Dotyczy LOKIEC_NAD_NADGARSTKIEM. */
+export function lokiecNadNadgarstkiem(v2, poza) {
+  let best = null; for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; const e = (v2.jointAngles(s, 'R').elbow + v2.jointAngles(s, 'L').elbow) / 2; if (!best || e > best.e) best = { e, s, u }; }
+  const o = []; for (const k of ['R', 'L']) { const a = best.s.arms[k]; const d = Math.abs(a.elbow[2] - a.grip[2]); if (d > PROGI.lokiecNadNadgarstkiemCm) o.push(`łokieć ${k} jest ${f1(d)} cm od pionu nadgarstka w rzucie z przodu (u = ${best.u}), a ma ≤ ${PROGI.lokiecNadNadgarstkiemCm} cm (łokieć nad nadgarstkiem, przedramię pionowe)`); }
+  return o;
+}
+/** 13c. Rozstaw dłoni (u = 0) jako wielokrotność rozstawu barków: ROZSTAW_DLONI ± rozstawTolerancja. */
+export function rozstawDloni(v2, poza) {
+  const cel = ROZSTAW_DLONI[poza.cwiczenie]; if (cel === undefined) return []; const s = v2.keyframeFrame(poza, poza.klatki[0].u).sk; const w = Math.abs(s.arms.R.grip[2] - s.arms.L.grip[2]) / (2 * v2.BODY.shHalf);
+  return Math.abs(w - cel) > PROGI.rozstawTolerancja ? [`rozstaw dłoni to ${f1(w * 100)}% rozstawu barków, a „${poza.cwiczenie}” ma ${f1(cel * 100)}% ± ${f1(PROGI.rozstawTolerancja * 100)}% (wąski 50%, normalny 100%, szeroki 150%)`] : [];
 }
 /** 14. Nic nie wisi: w ćwiczeniu na podłodze najniższy punkt tułowia/miednicy (oś − promień kolidera) jest najwyżej wisiCm nad podłogą w każdej klatce (leżąc i siedząc ciało leży). */
 export function nicNieWisi(v2, poza) {
@@ -170,12 +189,12 @@ export function torLokciaPrzyciagania(v2, poza) {
     else if (wBiodra < 0) o.push(`łokieć ${k} na końcu (u = ${u}) leży ${f1(-wBiodra)} cm bliżej głowy niż bark, a ma być przy tułowiu (ku biodrom)`); }
   return o;
 }
-const srodek = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2];
-/** Środek ciężkości ciała (3D) z udziałów mas segmentów (MASY); segment w połowie osi. */
+const miedzy = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+/** Środek ciężkości ciała (3D): suma mas segmentów (MASY.masa) w ich środkach mas (MASY.srodek × długość od końca bliższego). */
 export function srodekCiezkosci(s) {
-  const m = MASY; const czesci = [[m.tulow, srodek(s.pelvis, s.shoulderC)], [m.glowa, s.head]];
-  for (const k of ['R', 'L']) { const a = s.arms[k], l = s.legs[k]; czesci.push([m.ramie, srodek(a.shoulder, a.elbow)], [m.przedramie, srodek(a.elbow, a.grip)], [m.udo, srodek(l.hip, l.knee)], [m.golen, srodek(l.knee, l.ankle)], [m.stopa, srodek(l.heel, l.toe)]); }
-  const M = czesci.reduce((t, c) => t + c[0], 0); return [0, 1, 2].map((i) => czesci.reduce((t, c) => t + c[0] * c[1][i], 0) / M);
+  const m = MASY; const czesci = [[m.tulow, miedzy(s.shoulderC, s.pelvis, m.tulow.srodek)], [m.glowa, s.head]];
+  for (const k of ['R', 'L']) { const a = s.arms[k], l = s.legs[k]; czesci.push([m.ramie, miedzy(a.shoulder, a.elbow, m.ramie.srodek)], [m.przedramie, miedzy(a.elbow, a.wrist, m.przedramie.srodek)], [m.dlon, miedzy(a.wrist, a.grip, m.dlon.srodek)], [m.udo, miedzy(l.hip, l.knee, m.udo.srodek)], [m.golen, miedzy(l.knee, l.ankle, m.golen.srodek)], [m.stopa, miedzy(l.heel, l.toe, m.stopa.srodek)]); }
+  const M = czesci.reduce((t, c) => t + c[0].masa, 0); return [0, 1, 2].map((i) => czesci.reduce((t, c) => t + c[0].masa * c[1][i], 0) / M);
 }
 /** Wypukła otoczka punktów (x, z), przeciwnie do wskazówek zegara. */
 export function otoczka(pts2) {

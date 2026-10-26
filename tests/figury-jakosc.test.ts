@@ -60,10 +60,17 @@ W.lokiec_za_barkiem = { dobre: J.lokiecZaBarkiem(v2, CL), zle: J.lokiecZaBarkiem
 /* 13 odwiedzenie łokcia z przodu w każdej klatce: biegun łokcia ku tyłowi (ciasno) vs w bok (litera T); ten sam średni łokieć: dopuszczalny w szerokiej, za szeroki w wąskiej i domyślnej */
 const ciasna = klon(PU); for (const k of ciasna.klatki) { k.rece.R.biegunLokcia = [-1, 0, 0.1]; k.rece.L.biegunLokcia = [-1, 0, -0.1]; }
 const wBok = klon(PU); for (const k of wBok.klatki) { k.rece.R.biegunLokcia = [0, 0, 1]; k.rece.L.biegunLokcia = [0, 0, -1]; }
-const srednia = klon(PU); for (const k of srednia.klatki) { k.rece.R.biegunLokcia = [-1, 0, 0.7]; k.rece.L.biegunLokcia = [-1, 0, -0.7]; }
+const srednia = klon(PU); for (const k of srednia.klatki) { k.rece.R.biegunLokcia = [-1, 0, 1.5]; k.rece.L.biegunLokcia = [-1, 0, -1.5]; } /* ≈ 56°: nad progiem 45°, pod 70° */
 const jako = (p, cw) => ({ ...p, cwiczenie: cw });
 W.odwiedzenie_lokcia_przod = { dobre: J.odwiedzenieLokciaPrzod(v2, ciasna), zle: J.odwiedzenieLokciaPrzod(v2, wBok) };
 W.odwiedzenie_przod_wariant = { dobre: [...J.odwiedzenieLokciaPrzod(v2, jako(srednia, 'Push-Up Wide'))], zle: [...J.odwiedzenieLokciaPrzod(v2, srednia), ...J.odwiedzenieLokciaPrzod(v2, jako(srednia, 'Close-Grip Push-Up')), ...J.odwiedzenieLokciaPrzod(v2, jako(srednia, 'Diamond Push Up'))] };
+/* litera T (≈ 90°) odrzucana w każdym wariancie; wariant szeroki ma dolną granicę (ciasne łokcie to nie pompka szeroka) */
+W.litera_T = { dobre: [], zle: ['Push Up', 'Push-Up Wide', 'Close-Grip Push-Up', 'Diamond Push Up', 'Inverted Row'].map((c) => J.odwiedzenieLokciaPrzod(v2, jako(wBok, c)).length) };
+W.wide_dolna_granica = { dobre: J.odwiedzenieLokciaPrzod(v2, jako(srednia, 'Push-Up Wide')), zle: J.odwiedzenieLokciaPrzod(v2, jako(ciasna, 'Push-Up Wide')) };
+/* geometria przed kątem: łokieć nad nadgarstkiem w dolnej fazie, rozstaw dłoni 50/100/150% rozstawu barków */
+W.lokiec_nad_nadgarstkiem = { dobre: J.lokiecNadNadgarstkiem(v2, ciasna), zle: J.lokiecNadNadgarstkiem(v2, srednia) };
+const waska = klon(PU); for (const k of waska.klatki) { k.rece.R.chwyt[2] = 10; k.rece.L.chwyt[2] = -10; }
+W.rozstaw_dloni = { dobre: [...J.rozstawDloni(v2, PU), ...J.rozstawDloni(v2, jako(waska, 'Close-Grip Push-Up')), ...J.rozstawDloni(v2, jako(waska, 'Diamond Push Up'))], zle: [...J.rozstawDloni(v2, waska), ...J.rozstawDloni(v2, jako(PU, 'Close-Grip Push-Up')), ...J.rozstawDloni(v2, jako(PU, 'Push-Up Wide'))] };
 W.odwiedzenie_przod_integracja = { dobre: J.sprawdzJakosc(ciasna, { v2, rodzina: 'pushup_plank', cwiczenie: 'Push Up', postural: new Set(), izometryczne: false, teksty: { 'push.mis.partial': 'x' } }).filter((x) => x.regula === 'odwiedzenie_lokcia_przod'), zle: J.sprawdzJakosc(wBok, { v2, rodzina: 'pushup_plank', cwiczenie: 'Push Up', postural: new Set(), izometryczne: false, teksty: { 'push.mis.partial': 'x' } }).filter((x) => x.regula === 'odwiedzenie_lokcia_przod') };
 /* 14 nic nie wisi: leżące ćwiczenie z miednicą i barkami o 12 cm nad podłogą; czworaki (Bird Dog) poza regułą */
 const wisi = klon(RC); for (const k of wisi.klatki) k.miednica[1] += 12;
@@ -79,7 +86,7 @@ W.tor_lokcia_przyciaganie = { dobre: J.torLokciaPrzyciagania(v2, IR), zle: J.tor
 /* 17 środek ciężkości nad podparciem: tułów przesunięty o 18 cm w stronę niepodpartą */
 const poza_ = klon(SA); for (const k of poza_.klatki) k.miednica[2] -= 18;
 W.srodek_ciezkosci_podparcie = { dobre: J.srodekCiezkosciNadPodparciem(v2, SA), zle: J.srodekCiezkosciNadPodparciem(v2, poza_) };
-W.otoczka_i_masy = { dobre: [J.otoczka([[0, 0], [4, 0], [4, 4], [0, 4], [2, 2]]).length === 4 ? 0 : 1, Math.abs(Object.values(J.MASY).slice(0, 2).reduce((t, x) => t + x, 0) + 2 * (J.MASY.ramie + J.MASY.przedramie + J.MASY.udo + J.MASY.golen + J.MASY.stopa) - 1) < 1e-9 ? 0 : 1, J.otoczka([[0, 0], [1, 1]]).length === 2 ? 0 : 1], zle: [] };
+W.otoczka_i_masy = { dobre: [J.otoczka([[0, 0], [4, 0], [4, 4], [0, 4], [2, 2]]).length === 4 ? 0 : 1, Math.abs(J.MASY.glowa.masa + J.MASY.tulow.masa + 2 * ['ramie', 'przedramie', 'dlon', 'udo', 'golen', 'stopa'].reduce((t, k) => t + J.MASY[k].masa, 0) - 1) < 1e-9 ? 0 : 1, J.otoczka([[0, 0], [1, 1]]).length === 2 ? 0 : 1], zle: [] };
 /* 18 zgodność manifestu z obrazem */
 const zm = (...a) => J.zgodnoscManifestu(...a).map((x) => x.szczegol);
 const mf = (c, przybl = {}, wyj = {}) => ({ wyjatki: wyj, przyblizenia: przybl, cwiczenia: [c] });
@@ -107,13 +114,15 @@ W.kontrakt_start = { dobre: [kontrakt(sagNaStarcie)], zle: [kontrakt(partialNaSt
 console.log(JSON.stringify(W));
 `;
 const W = run(KOD) as Record<string, { dobre: unknown[]; zle: unknown[] }>;
-const REGULY = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie', 'manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
+const REGULY = ['blad_widoczny_stale', 'pod_podloga', 'styk_z_podloga_przod', 'zaslanianie_sprzetu', 'rece_wzdluz_ciala', 'klatki_rozne', 'sprzet_rozpoznawczy', 'podstawa_szeroka', 'szyja_neutralna', 'etykieta_bledu', 'odwiedzenie_lokcia', 'lokiec_za_barkiem', 'odwiedzenie_lokcia_przod', 'lokiec_nad_nadgarstkiem', 'rozstaw_dloni', 'nic_nie_wisi', 'rzad_bledu_dotyczy', 'tor_lokcia_przyciaganie', 'srodek_ciezkosci_podparcie', 'manifest_klatki', 'manifest_przyblizenia', 'manifest_opis_bledu', 'podglad_jeden_wiersz'];
 
 describe('reguły jakości póz (luki z recenzji ruchu): poza spełniająca bez komunikatu, łamiąca z komunikatem', () => {
   test.each(REGULY)('%s', (r) => {
     expect(W[r].dobre).toEqual([]); expect(W[r].zle.length).toBeGreaterThan(0); if (!['sprzet_rozpoznawczy', 'etykieta_bledu', 'manifest_przyblizenia', 'manifest_opis_bledu'].includes(r)) expect(String(W[r].zle[0])).toMatch(/\d/); /* komunikat z liczbą (poza regułami nazwowymi) */
   });
   test('odwiedzenie z przodu: progi per wariant (ten sam łokieć: szeroka tak, wąska/diamentowa/domyślna nie); reguła podpięta do rodziny w sprawdzJakosc', () => { expect(W.odwiedzenie_przod_wariant.dobre).toEqual([]); expect(W.odwiedzenie_przod_wariant.zle).toHaveLength(3); expect(W.odwiedzenie_przod_integracja.dobre).toEqual([]); expect(W.odwiedzenie_przod_integracja.zle.length).toBeGreaterThan(0); });
+  test('litera T (≈ 90°) odrzucana w pompce standardowej, szerokiej, wąskiej, diamentowej i wiosłowaniu; łokcie ciaśniejsze niż dolna granica to nie pompka szeroka', () => { expect(W.litera_T.zle.every((n: number) => n > 0)).toBe(true); expect(W.wide_dolna_granica.dobre).toEqual([]); expect(W.wide_dolna_granica.zle).toHaveLength(1); });
+  test('rozstaw dłoni: 100% standardowa, 50% wąska; diamentowa bez sprawdzenia', () => { expect(W.rozstaw_dloni.dobre).toEqual([]); expect(W.rozstaw_dloni.zle).toHaveLength(3); });
   test('nic nie wisi: czworaki (Bird Dog) i ćwiczenia leżące bez lotu: zakres reguły w sprawdzJakosc', () => { expect(W.nic_nie_wisi_zakres.dobre).toEqual([0, 0, 0]); expect(W.nic_nie_wisi_zakres.zle).toEqual([1]); });
   test('środek ciężkości: otoczka punktów i udziały mas sumują się do 1', () => { expect(W.otoczka_i_masy.dobre).toEqual([0, 0, 0]); });
   test('podgląd: HTML ma po jednej komórce na klatkę kluczową w obu widokach (= klatki_u), wiersz bez zawijania, skala maleje przy wielu klatkach', () => { expect(W.podglad_html.dobre).toEqual([0, 0, 0, 0, 0]); });
