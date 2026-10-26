@@ -20,12 +20,14 @@ describe('wyciskanie leżąc: reguły techniki (NSCA) na geometrii klatki', () =
   /** Kąt przedramienia od pionu (stopnie, 3D) i odwiedzenie ramienia od osi tułowia w widoku z góry. */
   const tilt = (f: Frame, s: 'R' | 'L'): number => { const a = f.sk.arms[s]; const d = [a.grip[0] - a.elbow[0], a.grip[1] - a.elbow[1], a.grip[2] - a.elbow[2]]; return Math.atan2(Math.hypot(d[0], d[2]), Math.abs(d[1])) * 180 / Math.PI; };
   const abduction = (f: Frame, s: 'R' | 'L'): number => { const a = f.sk.arms[s]; return Math.atan2(Math.abs(a.elbow[2] - a.shoulder[2]), Math.abs(a.elbow[0] - a.shoulder[0])) * 180 / Math.PI; };
-  test('(a) dół ruchu: przedramiona prostopadle do podłogi (≤ 10° od pionu) i równolegle do siebie (różnica ≤ 10°); chwyt trochę szerzej niż barki; odwiedzenie łokci wynika z geometrii (ok. 5–25° od tułowia w widoku z góry)', () => {
+  test('(a) dół ruchu: przedramiona prostopadle do podłogi (≤ 10° od pionu) i równolegle do siebie (różnica ≤ 10°); chwyt 1,4–2,0 × szerokość dwubarkowa; odwiedzenie łokci w widoku z góry WYNIKA z geometrii łańcucha bark–łokieć–dłoń (długości segmentów stałe)', () => {
+    /* Zakresy odwiedzenia (rachunek badacza 26.10.2026: atan(połowa chwytu − połowa barków / dotyk poniżej linii stawów); pomiar 3D Mausehund 2022 — 59° przy chwycie średnim, inna definicja kąta): sztanga 35–65°, hantle 30–45° (węższy chwyt hantli). Parametry: ANSUR II (M), chwyt 1,7 × BAD (konwencja w zakresie 1,4–2,0 ×), dotyk 16 cm (płasko) / 10 cm (skos) poniżej linii stawów (zakres 10–20: uproszczenie). */
+    const RANGE: Record<string, [number, number]> = { 'Bench Press (sztanga)': [35, 65], 'Incline Bench Press (sztanga)': [35, 65], 'Bench Press (hantle)': [30, 45], 'Incline Bench Press (hantle)': [30, 45] };
     for (const k of CORE) { const f = fr(k, 1); const r = tilt(f, 'R'), l = tilt(f, 'L');
       expect([k, r <= 10, l <= 10, Math.abs(r - l) <= 10, +r.toFixed(1)]).toEqual([k, true, true, true, +r.toFixed(1)]);
-      const gz = Math.abs(f.sk.arms.R.grip[2]); expect([k, gz > BODY.shHalf, gz <= BODY.shHalf + 8]).toEqual([k, true, true]);
-      const ab = abduction(f, 'R'); expect([k, ab > 3 && ab < 30, +ab.toFixed(0)]).toEqual([k, true, +ab.toFixed(0)]); }
-    expect(abduction(fr('Bench Press (sztanga)', 1), 'R')).toBeLessThan(abduction(fr('Incline Bench Press (sztanga)', 1), 'R')); /* skos: łokcie bardziej na zewnątrz wynika z geometrii */
+      const ratio = Math.abs(f.sk.arms.R.grip[2]) / Math.abs(f.sk.arms.R.shoulder[2]); expect([k, ratio >= 1.4 && ratio <= 2.0, +ratio.toFixed(2)]).toEqual([k, true, +ratio.toFixed(2)]);
+      const ab = abduction(f, 'R'); expect([k, ab >= RANGE[k][0] && ab <= RANGE[k][1], +ab.toFixed(0)]).toEqual([k, true, +ab.toFixed(0)]);
+      for (const s of SIDES) { const a = f.sk.arms[s]; expect(Math.abs(Math.hypot(a.elbow[0] - a.shoulder[0], a.elbow[1] - a.shoulder[1], a.elbow[2] - a.shoulder[2]) - 33)).toBeLessThan(1e-6); expect(Math.abs(Math.hypot(a.grip[0] - a.elbow[0], a.grip[1] - a.elbow[1], a.grip[2] - a.elbow[2]) - 33.5)).toBeLessThan(1e-6); } }
   });
   test('(b) dół ruchu (płasko): środek gryfu/hantla na klatce na wysokości linii sutków: 15–26 cm od barku wzdłuż tułowia (tułów 50 cm; granice = uproszczenie ilustracyjne, bez źródła antropometrycznego)', () => {
     for (const k of FLAT) { const f = fr(k, 1); const d = along(f, f.info.load); expect([k, d > 15 && d < 26, +d.toFixed(1)]).toEqual([k, true, +d.toFixed(1)]); }

@@ -167,7 +167,7 @@ describe('biblioteka scripts/figures/v2-validate.mjs (interfejs pilotażu) i CLI
   });
   test('przyklad: gotowa rodzina → [{ cwiczenie, poza }] przechodząca walidator; rodzina planowana → []', () => {
     const r = lib(`const out = {}; for (const f of ['squat', 'bench_press', 'hinge', 'pull_up']) { const p = m.przyklad(f); out[f] = p.map(x => ({ cwiczenie: x.cwiczenie, bledy: m.waliduj(x.poza, { rodzina: f, cwiczenie: x.cwiczenie }).bledy, nBledow: x.poza.bledy.length })); } return out;`);
-    expect(r.squat).toEqual([{ cwiczenie: 'Back Squat', bledy: [], nBledow: 2 }]); expect(r.pull_up).toEqual([]); for (const f of ['bench_press', 'hinge']) { expect(r[f].length).toBe(1); expect(r[f][0].bledy).toEqual([]); }
+    expect(r.squat).toEqual([{ cwiczenie: 'Back Squat', bledy: [], nBledow: 2 }]); expect(r.pull_up).toEqual([]); expect(r.bench_press).toEqual([]); /* wyciskanie ma własną sylwetkę (ANSUR II) i ławkę — kontrakt v1 nie ma wymiarów ani ławki */ expect(r.hinge.length).toBe(1); expect(r.hinge[0].bledy).toEqual([]);
   });
   test('zastosuj: zapisuje tylko poprawne pozy do lib/figures/v2/poses/<rodzina>.json (katalog tymczasowy), odrzucone zwraca z błędami; kolejne wywołanie scala', () => {
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'v2apply-'));

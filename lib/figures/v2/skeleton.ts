@@ -37,7 +37,10 @@ export type LegIn = {
 };
 /** `lower`: odległość łokieć–środek chwytu (domyślnie przedramię + dłoń); krótsza przy chwycie z zagiętymi palcami i nadgarstkiem (rack przedni). */
 export type ArmIn = { grip: V3; elbowPole?: V3; lower?: number };
+/** Wymiary rąk i barków nadpisywane dla jednej figury (domyślnie BODY): wyciskanie leżąc ma sylwetkę z mediany ANSUR II (M), reszta rodzin zostaje na wspólnym BODY. */
+export type ArmDims = { uarm?: number; farm?: number; shHalf?: number };
 export type PoseIn = {
+  dims?: ArmDims;
   pelvis: V3;
   /** Pochylenie tułowia od pionu w płaszczyźnie strzałkowej (stopnie, do przodu dodatnie; 90 = poziomo głową do przodu, 180 = do góry nogami). */
   trunkPitch: number;
@@ -50,7 +53,7 @@ export type PoseIn = {
 };
 
 export type Leg = { hip: V3; knee: V3; ankle: V3; heel: V3; toe: V3; err: number };
-export type Arm = { shoulder: V3; elbow: V3; wrist: V3; grip: V3; err: number; lower: number };
+export type Arm = { shoulder: V3; elbow: V3; wrist: V3; grip: V3; err: number; lower: number; uarm: number };
 export type Skeleton = {
   pelvis: V3; spineMid: V3; shoulderC: V3; neck: V3; head: V3;
   /** Jednostkowy kierunek tułowia (miednica → barki) i normalna „przód” (klatka piersiowa). */
@@ -99,12 +102,12 @@ export function solveSkeleton(p: PoseIn): Skeleton {
     };
     legs[s] = { hip, knee: r.mid, ankle: r.end, heel: foot(-BODY.heelBack), toe: foot(BODY.toeFwd), err: r.err };
 
-    const shoulder: V3 = [shoulderC[0], shoulderC[1], sg * BODY.shHalf];
+    const D = p.dims ?? {}; const shoulder: V3 = [shoulderC[0], shoulderC[1], sg * (D.shHalf ?? BODY.shHalf)];
     const ai = p.arms[s]; const aPole = ai.elbowPole ?? [-0.3, -1, sg * 0.4];
-    const lower = ai.lower ?? BODY.farm + BODY.hand;
-    const ra = ik2(shoulder, ai.grip, BODY.uarm, lower, aPole);
+    const farm = D.farm ?? BODY.farm; const uarm = D.uarm ?? BODY.uarm; const lower = ai.lower ?? farm + BODY.hand;
+    const ra = ik2(shoulder, ai.grip, uarm, lower, aPole);
     const dirF = norm(sub(ra.end, ra.mid));
-    arms[s] = { shoulder, elbow: ra.mid, wrist: add(ra.mid, mul(dirF, Math.min(BODY.farm, lower - 1))), grip: ra.end, err: ra.err, lower };
+    arms[s] = { shoulder, elbow: ra.mid, wrist: add(ra.mid, mul(dirF, Math.min(farm, lower - 1))), grip: ra.end, err: ra.err, lower, uarm };
   }
   return { pelvis: p.pelvis, spineMid, shoulderC, neck, head, up, front, headUp, legs, arms };
 }
