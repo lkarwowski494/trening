@@ -132,7 +132,7 @@ export function hingeFrame(p0: HingeParams, u: number, fault?: Fault): Frame {
 
 /** Dzień dobry: sztanga na plecach (jak przysiad wysokim gryfem), kolana prawie proste, tułów pochyla się do przodu, gryf nad śródstopiem. */
 function goodMorning(p: HingeParams, u: number, fault?: Fault): Frame {
-  const sq: SquatParams = { load: 'highBar', impl: 'barbell', depth: 28, stance: p.stance, toeOut: p.toeOut, shin: { stand: 1, perKnee: 0, max: 1 }, band: p.band, chain: p.chain };
+  const sq: SquatParams = { load: 'highBar', impl: 'barbell', depth: 44, barBack: -8, stance: p.stance, toeOut: p.toeOut, shin: { stand: 1, perKnee: 0, max: 1 }, band: p.band, chain: p.chain };
   return squatFrame(sq, u, fault);
 }
 

@@ -24,6 +24,8 @@ export type SquatParams = {
   stance: number; toeOut: number;
   /** Reguła podudzia (domyślnie przysiad); dzień dobry używa pionowego podudzia. */
   shin?: ShinRule;
+  /** Przesunięcie gryfu względem śródstopia (cm, ujemne = do tyłu, ku pięcie): dzień dobry w staniu ma tułów blisko pionu (gryf nad piętą dopuszczalny). */
+  barBack?: number;
   box?: number; wall?: boolean; smith?: boolean; band?: boolean; chain?: boolean;
 };
 
@@ -82,7 +84,7 @@ export function squatFrame(p: SquatParams, u: number, fault?: Fault): Frame {
   const target = (off: number) => ankX + mid + off;
   const barAt = (kind: 'high' | 'front', t: number): V3 => kind === 'high' ? trunkPoint(hipC(), t, BODY.trunk - 3, -SQUAT.barBack.high, 0) : trunkPoint(hipC(), t, BODY.trunk + 1, SQUAT.barFront, 0);
   const balanceTau = (anchor: (t: number) => V3, off: number): number => wallSit ? 0 : solveRoot(t => anchor(t)[0] - target(off), -5, 80);
-  const barOff = p.smith ? -14 : 0;
+  const barOff = p.smith ? -14 : (p.barBack ?? 0);
   const poleBack: V3 = [-0.7, -1, 0.5];
 
   switch (p.load) {
