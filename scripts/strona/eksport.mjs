@@ -13,8 +13,8 @@ import { join } from 'node:path';
 import { appRequire, repoRoot } from './ts-loader.mjs';
 
 export const SCHEMA = 'techniqueatlas-eksport@1';
-/** Liczba zamienników przy ćwiczeniu (jedno miejsce; aplikacja pokazuje 3 w arkuszu zamiany — strona ma więcej miejsca). */
-export const ALTERNATIVES = 5;
+/** Liczba zamienników przy ćwiczeniu = SWAP_TOP aplikacji (arkusz zamiany; test pilnuje równości). */
+export const ALTERNATIVES = 3;
 /** Liczba przedziałów ruchu w próbkach figury (25 próbek: u = 0, 1/24, …, 1). */
 export const FRAME_STEPS = 24;
 const SECTIONS = ['setup', 'move', 'tips', 'mistakes'];
@@ -77,18 +77,18 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
   for (const k of keys) { const fe = figureEntry(k); if (fe) figures[slugs[k]] = fe; }
   const cueTextIn = (l, id) => { const a = cues.cueDict(l)[id] ?? cues.cueDict('en')[id] ?? cues.cueDict('pl')[id]; return a; };
 
-  /* zamienniki: ranking niezależny od języka (nazwa angielska rozstrzyga remisy) — ten sam kod co arkusz zamiany w aplikacji (lib/swapScore.ts) */
-  const enName = Object.fromEntries(keys.map(k => [k, i18n.exName({ name: dispName(k), lib: true })]));
-  const alternatives = {};
+  /* zamienniki: kandydaci i punkty (niezależne od języka) liczone kodem aplikacji (lib/swapScore.ts), kolejność jak w arkuszu zamiany dla NOWEGO użytkownika (bez miejsca i historii) —
+   * remisy rozstrzyga nazwa w języku pliku, więc kolejność składa buildLang */
+  const candidates = {};
   for (const a of keys) {
     const A = exOf[a], rows = [];
     for (const b of keys) {
       if (b === a || (exOf[b].metric ?? 'weight_reps') !== (A.metric ?? 'weight_reps')) continue;
-      const sim = swapScore.similarity(A, exOf[b]); if (sim) rows.push([b, sim.score, exOf[b].equipment === A.equipment ? 1 : 0]);
+      const sim = swapScore.similarity(A, exOf[b]); if (sim) rows.push({ exId: b, score: sim.score, sessions: 0 });
     }
-    rows.sort((x, y) => y[1] - x[1] || y[2] - x[2] || (enName[x[0]] < enName[y[0]] ? -1 : enName[x[0]] > enName[y[0]] ? 1 : 0));
-    alternatives[a] = rows.slice(0, ALTERNATIVES).map(r => slugs[r[0]]);
+    candidates[a] = rows;
   }
+  const alternativesFor = key => swapScore.orderSwaps(candidates[key].map(r => ({ ...r })), exOf[key], id => exOf[id], id => i18n.exName({ name: dispName(id), lib: true }), (x, y) => i18n.collator().compare(x, y)).slice(0, ALTERNATIVES).map(r => slugs[r.exId]);
   const NAME = new RegExp(`(?<![\\p{L}])(?:${sources.SOURCE_NAME_PATTERNS.join('|')})`, 'u');
   const GENERIC = new RegExp(`(?<![\\p{L}])(?:${sources.GENERIC_REFERENCE_PATTERNS.join('|')})`, 'iu');
 
@@ -105,7 +105,8 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
       ui: { technique: t('Technika'), setup: t('Ustawienie'), move: t('Ruch'), tips: t('Wskazówki'), mistakes: t('Częste błędy'), generalNote: t('Ogólne wskazówki dla tego ruchu'),
         disclaimer: t('Aplikacja nie udziela porad medycznych. Przy bólu, urazie lub chorobie skonsultuj się z lekarzem lub fizjoterapeutą.'), schematic: t('Rysunek schematyczny — pozycje orientacyjne.'),
         pause: t('Zatrzymaj animację'), resume: t('Wznów animację'), showError: t('Pokaż częsty błąd'), hideError: t('Ukryj częsty błąd'), errorLine: t('Częsty błąd: {opis}'),
-        musclesMain: t('Mięśnie główne: {lista}'), musclesAux: t('Mięśnie pomocnicze: {lista}'), figureLabel: t('Rysunek ruchu: {opis}') },
+        musclesMain: t('Mięśnie główne: {lista}'), musclesAux: t('Mięśnie pomocnicze: {lista}'), musclesApprox: t('Dobór mięśni: przybliżony'), figureLabel: t('Rysunek ruchu: {opis}') },
+      ...(l === 'pl' ? { families: Object.fromEntries(v2.FAMILIES.map(f => [f.id, f.label])) } : {}),
       phases: Object.fromEntries(['Opuszczanie', 'Wypychanie', 'Wstawanie', 'Podnoszenie', 'Prostowanie', 'Pauza'].map(p => [p, t(p)])),
     };
     const figurePhases = key => { const spec = v2.figureSpec(key); return spec ? v2.phasesFor(spec, v2.tempoFor(spec)).map(p => ({ name: t(p.name), ms: p.ms })) : []; };
@@ -126,10 +127,10 @@ export function createExporter({ commit = process.env.ATLAS_COMMIT || gitCommit(
         muscles: { main: e.muscles, aux: e.secondaryMuscles },
         regions: load.map(([id, w]) => ({ id, load: w })),
         requires: entry.requires, recommended: entry.recommended,
-        family: v2.familyOf(key),
+        family: v2.familyOf(key), niche: seed.isNiche(e), musclesApproximate: !!ui.legendOf(key)?.simplified,
         figure: own(figures, slugs[key]) ? { phases: figurePhases(key), errors: figureErrors(key) } : null,
         cues: cueBlock,
-        alternatives: alternatives[key],
+        alternatives: alternativesFor(key),
       };
     });
     const out = { schema: SCHEMA, app: { version: app.version, commit, catalogRev: cat.CATALOG_REV }, lang: l, meta: { exercises: exercises.length, cuesWithoutText: withoutText }, labels, exercises };
