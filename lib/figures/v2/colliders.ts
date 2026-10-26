@@ -4,7 +4,7 @@
  */
 import { distSegSeg, dist, sub, type V2, type V3 } from './math';
 import { BODY, GIRTH, SIDES, soleY, type Skeleton } from './skeleton';
-import { benchPolys, preacherPolys, rollerAt, EQUIP } from './draw';
+import { benchPolys, preacherPolys, hyperPolys, rollerAt, EQUIP } from './draw';
 import type { Collider, Frame, Prop } from './scene';
 
 export const TOL = {
@@ -68,7 +68,10 @@ export function equipColliders(props: Prop[]): Collider[] {
         c.push({ k: 'capsule', id: 'cable', a: p.from, b: [p.from[0] + d[0] * k, p.from[1] + d[1] * k, p.from[2] + d[2] * k], r: EQUIP.cableR }); break; }
       case 'tower': if (p.solid) c.push(prism('tower', rectPoly(p.x - EQUIP.towerW / 2, 0, p.x + EQUIP.towerW / 2, p.h), p.z - EQUIP.towerW / 2, p.z + EQUIP.towerW / 2)); break;
       case 'ball': c.push({ k: 'capsule', id: p.held === false ? 'gymBall' : 'ball', a: p.c, b: p.c, r: p.r ?? (p.held === false ? EQUIP.gymBallR : EQUIP.medBallR) }); break;
-      case 'roll': c.push({ k: 'capsule', id: 'roll', a: [p.c[0], p.c[1], -p.len / 2], b: [p.c[0], p.c[1], p.len / 2], r: p.r }); break;
+      case 'dome': c.push({ k: 'capsule', id: 'gymBall', a: p.c, b: p.c, r: p.r }); break;
+      case 'hyper': { const hp = hyperPolys(p); c.push(prism('hyperPad', hp.pad, -EQUIP.hyperW / 2, EQUIP.hyperW / 2)); if (p.roller) c.push({ k: 'capsule', id: 'hyperRoller', a: [p.roller[0], p.roller[1], -EQUIP.rollerHalf], b: [p.roller[0], p.roller[1], EQUIP.rollerHalf], r: EQUIP.rollerR }); break; }
+      case 'hammer': c.push({ k: 'capsule', id: 'barHammer', a: p.a, b: p.b, r: 2 }); break;
+      case 'roll': c.push({ k: 'capsule', id: p.held ? 'barLog' : 'roll', a: [p.c[0], p.c[1], -p.len / 2], b: [p.c[0], p.c[1], p.len / 2], r: p.r }); break;
       case 'plate': c.push(...plateColliders(p)); break;
       case 'bench': { const bp = benchPolys(p); const w = (p.w ?? EQUIP.benchW) / 2; c.push(prism('benchSeat', bp.seat, -w, w), prism('benchBack', bp.back, -w, w)); if (p.rollers) { const r = rollerAt(p); c.push({ k: 'capsule', id: 'benchRoller', a: [r[0], r[1], -EQUIP.rollerHalf], b: [r[0], r[1], EQUIP.rollerHalf], r: EQUIP.rollerR }); } break; }
       case 'sled': { c.push(prism('sled', rectPoly(p.x, 0, p.x + p.len, EQUIP.sledBase), -EQUIP.sledHalf - 5, EQUIP.sledHalf + 5)); for (const sg of [-1, 1]) c.push({ k: 'capsule', id: 'barSled', a: [p.x, EQUIP.sledBase, sg * EQUIP.sledHalf], b: [p.x, p.h, sg * EQUIP.sledHalf], r: 1.8 }); break; }
@@ -141,7 +144,7 @@ export function checkFrame(f: Frame): Issue[] {
   for (const b of body) for (const e of eq) {
     const g = gap(b, e); const allowed = f.contacts.find(c => matches(b.id, c.body) && matches(e.id, c.equip));
     const heldHand = /^farm/.test(b.id) && /^(bar|db|kb|plate|ball|rope|wheel)/.test(e.id);
-    const tol = heldHand ? (/^kb/.test(e.id) ? 14 : /^db/.test(e.id) && e.k === 'capsule' ? Math.max(12, e.r + 6) : 12) : allowed ? allowed.tol : TOL.pen; /* hantel: chwyt w jego środku, więc tolerancja rośnie z promieniem główki */
+    const tol = heldHand ? (/^kb/.test(e.id) ? 14 : /^(db|barLog)/.test(e.id) && e.k === 'capsule' ? Math.max(12, e.r + 6) : 12) : allowed ? allowed.tol : TOL.pen; /* hantel: chwyt w jego środku, więc tolerancja rośnie z promieniem główki */
     if (g < -tol) out.push({ code: 'pen', detail: `${b.id} × ${e.id}: przenikanie ${(-g).toFixed(2)} cm (dopuszczalne ${tol})` });
   }
   const head = body.find(b => b.id === 'head'); const bodyOther = body.filter(b => /^(uarm|farm)/.test(b.id));
@@ -171,6 +174,7 @@ export function holdChecks(f: Frame): { name: string; err: number; tol: number; 
     if (p.k === 'sled' && p.posts) for (const s of SIDES) out.push({ name: `slupek/${s}`, err: seg(sk.arms[s].grip, [p.x, EQUIP.sledBase, (s === 'R' ? 1 : -1) * EQUIP.sledHalf], [p.x, p.h, (s === 'R' ? 1 : -1) * EQUIP.sledHalf]), tol: 1.5, hint: `dłonie na słupkach sań: x = x słupków, z = ±${EQUIP.sledHalf} cm, y między ${EQUIP.sledBase} cm a wysokością słupków (± 1,5 cm)` });
     if (p.k === 'rope' && p.held !== false) for (const s of p.held === 'R' || p.held === 'L' ? [p.held] : SIDES) out.push({ name: `lina/${s}`, err: seg(sk.arms[s].grip, [p.x, p.bottom, p.z], [p.x, p.top, p.z]), tol: 3, hint: 'dłoń musi obejmować linę: środek chwytu na osi liny (x, z liny; y między dołem a górą liny), odchylenie ≤ 3 cm' });
     if (p.k === 'dipbars' && p.held !== false) for (const s of SIDES) out.push({ name: `poreczy/${s}`, err: seg(sk.arms[s].grip, [p.x0, p.h, (s === 'R' ? 1 : -1) * p.z], [p.x1, p.h, (s === 'R' ? 1 : -1) * p.z]), tol: 1, hint: `dłonie na poręczach: y = wysokość poręczy, z = ±${p.z} cm (R dodatnie), x między początkiem a końcem poręczy (± 1 cm)` });
+    if (p.k === 'roll' && p.held) for (const s of SIDES) out.push({ name: `kloda/${s}`, err: Math.max(0, seg(sk.arms[s].grip, [p.c[0], p.c[1], p.c[2] - p.len / 2], [p.c[0], p.c[1], p.c[2] + p.len / 2]) - p.r), tol: 3, hint: `dłonie na kłodzie: środek chwytu w odległości ≤ promień + 3 cm od osi kłody (oś wzdłuż z, długość ${p.len} cm)` });
     if (p.k === 'plate' && p.held !== false) for (const s of p.held === 'R' || p.held === 'L' ? [p.held] : SIDES) out.push({ name: `talerz/${s}`, err: distToRingYZ(sk.arms[s].grip, p.c, p.r ?? EQUIP.plateR), tol: HOLD.plateRim, hint: 'dłoń musi leżeć na obręczy talerza (okrąg o promieniu talerza wokół środka w płaszczyźnie y–z); środek talerza = środek między dłońmi + przesuniecie' });
     if (p.k === 'ball' && p.held !== false) for (const s of p.held === 'R' || p.held === 'L' ? [p.held] : SIDES) out.push({ name: `pilka/${s}`, err: Math.abs(dist(sk.arms[s].grip, p.c) - (p.r ?? EQUIP.medBallR)), tol: HOLD.ballSurface, hint: 'dłoń musi leżeć na powierzchni piłki (odległość od środka = promień piłki); środek piłki = środek między dłońmi + przesuniecie' });
   }

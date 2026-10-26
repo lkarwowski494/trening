@@ -11,7 +11,7 @@ export const EQUIP = {
   barR: 1.6, barLen: 220, sleeveR: 2.6, plateR: 22.5, plateZ: [44, 49] as [number, number], plateW: 2.8,
   dbHeadR: 6.0, dbHandle: 13, kbBallR: 9.5, kbHandleR: 6, medBallR: 11,
   benchW: 28, benchPad: 8, benchLegW: 3.2, floorLine: 1.2,
-  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, gymBallR: 32.5, foamR: 7.5, foamLen: 90, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, boxSide: 45, sliderR: 8, sliderH: 2, wheelR: 8, wheelW: 4, suspensionY: 220, sledHalf: 25, sledBase: 12, sledLen: 60, sledPostH: 100, ropeR: 1.9, ropeTop: 400, ropeBottom: 20, dipHalf: 22, dipLen: 60, dipH: 115, dipR: 1.75, preacherTop: 95, preacherKat: 60, preacherLen: 45, preacherSeatDx: 28, preacherSeatY: 48, preacherW: 50, preacherT: 8, preacherSeatW: 30, preacherSeatL: 34, machinePad: 36, leverEnd: 25, leverArm: 60, leverStroke: 60, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
+  trapW: 29, landmineLen: 200, landmineR: 1.8, landmineHand: 10, chainZ: 45, gymBallR: 32.5, foamR: 7.5, foamLen: 90, rollerR: 4.5, rollerDx: -8, rollerDy: 19, rollerHalf: 28, domeR: 30, hyperTop: 75, hyperKat: 45, hyperLen: 30, hyperT: 10, hyperW: 30, hyperRollerDx: 55, hyperRollerDy: -45, tireR: 60, tireW: 25, logR: 15, logLen: 60, hammerLen: 90, hammerHead: 16, beltLen: 35, beltPlateR: 12, wristBar: 30, wristRope: 60, boxSide: 45, sliderR: 8, sliderH: 2, wheelR: 8, wheelW: 4, suspensionY: 220, sledHalf: 25, sledBase: 12, sledLen: 60, sledPostH: 100, ropeR: 1.9, ropeTop: 400, ropeBottom: 20, dipHalf: 22, dipLen: 60, dipH: 115, dipR: 1.75, preacherTop: 95, preacherKat: 60, preacherLen: 45, preacherSeatDx: 28, preacherSeatY: 48, preacherW: 50, preacherT: 8, preacherSeatW: 30, preacherSeatL: 34, machinePad: 36, leverEnd: 25, leverArm: 60, leverStroke: 60, towerW: 10, cableR: 0.6, cableEnd: 12, cableSpan: 45, handleR: 1.8, strapR: 3.4, boxW: 45, postW: 3.5, postSpan: 64, railW: 1.2, railSpan: 56, wallW: 3,
 } as const;
 
 export const proj = (p: V3, v: View): V2 => v === 'side' ? [p[0], p[1]] : v === 'front' ? [-p[2], p[1]] : [-p[2], -p[0]];
@@ -149,6 +149,13 @@ export function preacherPolys(pr: Extract<Prop, { k: 'preacher' }>): { pad: V2[]
   return { pad: [[tx, ty], [bx, by], [bx - n[0] * T, by - n[1] * T], [tx - n[0] * T, ty - n[1] * T]], seat: [[sx - h, sy - EQUIP.benchPad], [sx + h, sy - EQUIP.benchPad], [sx + h, sy], [sx - h, sy]] };
 }
 
+/** Wielokąt podpórki bioder ławki do prostowania tułowia w widoku z boku: powierzchnia o długości hyperLen wokół środka, pochylona w dół ku stopom (+x), grubość hyperT w głąb. */
+export function hyperPolys(pr: Extract<Prop, { k: 'hyper' }>): { pad: V2[] } {
+  const th = rad(pr.kat); const d: V2 = [Math.cos(th), -Math.sin(th)], n: V2 = [Math.sin(th), Math.cos(th)]; const h = pr.len / 2, T = EQUIP.hyperT; const [px, py] = pr.pad;
+  const a: V2 = [px - d[0] * h, py - d[1] * h], b: V2 = [px + d[0] * h, py + d[1] * h];
+  return { pad: [a, b, [b[0] - n[0] * T, b[1] - n[1] * T], [a[0] - n[0] * T, a[1] - n[1] * T]] };
+}
+
 /** Środek wałków na nogi ławki ujemnej (x, y w widoku z boku): nad kostkami przy końcu siedziska. */
 export const rollerAt = (pr: Extract<Prop, { k: 'bench' }>): V2 => [pr.seatFrom[0] + EQUIP.rollerDx, pr.seatFrom[1] + EQUIP.rollerDy];
 
@@ -241,6 +248,33 @@ export function propShapes(props: Prop[], view: View): Shape[] {
         if (side) { S.push({ k: 'circle', c: o, r: pr.r, fill: 'pad', stroke: 'frame', w: 1.2, z: zz, id: 'wheel' }); S.push({ k: 'circle', c: o, r: 1.5, fill: 'steel', z: zz + 0.1, id: 'wheelHub' }); }
         else if (view === 'front') S.push({ k: 'poly', pts: rect(o[0] - E.wheelW / 2, o[1] - pr.r, o[0] + E.wheelW / 2, o[1] + pr.r), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zz, id: 'wheel' });
         else S.push({ k: 'poly', pts: rect(o[0] - E.wheelW / 2, o[1] - pr.r, o[0] + E.wheelW / 2, o[1] + pr.r), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zz, id: 'wheel' });
+        break;
+      }
+      case 'dome': {
+        const zk = zKey(LAYER.backEquip, -33); const r = pr.r;
+        if (view === 'top') S.push({ k: 'circle', c: proj(pr.c, view), r, fill: 'pad', stroke: 'frame', w: 0.9, z: zk, id: 'dome' });
+        else { const o = proj(pr.c, view); const pts: V2[] = Array.from({ length: 17 }, (_, i) => { const t = Math.PI * i / 16; return [o[0] + r * Math.cos(t), o[1] + r * Math.sin(t)] as V2; }); S.push({ k: 'poly', pts, fill: 'pad', stroke: 'frame', w: 0.9, close: true, z: zk, id: 'dome' }); }
+        break;
+      }
+      case 'hyper': {
+        const hp = hyperPolys(pr); const zb = (d: number): number => zKey(LAYER.backEquip, d); const ro = pr.roller; const wp = E.hyperW / 2;
+        if (side) {
+          S.push({ k: 'poly', pts: hp.pad, fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'hyperPad' });
+          S.push({ k: 'line', a: [pr.pad[0], 0], b: [pr.pad[0], pr.pad[1] - E.hyperT], w: E.benchLegW, role: 'frame', z: zb(-27), id: 'hyperLeg' });
+          if (ro) { S.push({ k: 'circle', c: ro, r: E.rollerR, fill: 'pad', stroke: 'frame', w: 0.8, z: zb(-25), id: 'hyperRoller' }); S.push({ k: 'line', a: [ro[0] + 6, 0], b: [ro[0] + 6, ro[1] - E.rollerR], w: E.benchLegW, role: 'frame', z: zb(-27), id: 'hyperLeg' }); }
+        } else if (view === 'top') {
+          S.push({ k: 'poly', pts: rect(-wp, -(pr.pad[0] + pr.len / 2), wp, -(pr.pad[0] - pr.len / 2)), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'hyperPad' });
+          if (ro) S.push({ k: 'poly', pts: rect(-E.rollerHalf, -(ro[0] + E.rollerR), E.rollerHalf, -(ro[0] - E.rollerR)), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-25), id: 'hyperRoller' });
+        } else {
+          S.push({ k: 'poly', pts: rect(-wp, pr.pad[1] - E.hyperT - 4, wp, pr.pad[1] + 4), fill: 'pad', stroke: 'frame', w: 0.8, close: true, z: zb(-26), id: 'hyperPad' });
+          if (ro) for (const sg of [-1, 1]) S.push({ k: 'circle', c: [sg * E.rollerHalf / 2, ro[1]], r: E.rollerR, fill: 'pad', stroke: 'frame', w: 0.8, z: zb(-25), id: 'hyperRoller' });
+        }
+        break;
+      }
+      case 'hammer': {
+        const a = proj(pr.a, view), b = proj(pr.b, view); const zz = zKey(LAYER.frontEquip, 0.4); const dx = b[0] - a[0], dy = b[1] - a[1]; const l = Math.hypot(dx, dy) || 1; const u: V2 = [dx / l, dy / l], n: V2 = [-u[1], u[0]]; const hh = E.hammerHead / 2;
+        S.push({ k: 'line', a, b, w: 2.6, role: 'steel', z: zz, id: 'hammerHandle' });
+        S.push({ k: 'poly', pts: [[b[0] - n[0] * hh - u[0] * 3, b[1] - n[1] * hh - u[1] * 3], [b[0] + n[0] * hh - u[0] * 3, b[1] + n[1] * hh - u[1] * 3], [b[0] + n[0] * hh + u[0] * 5, b[1] + n[1] * hh + u[1] * 5], [b[0] - n[0] * hh + u[0] * 5, b[1] - n[1] * hh + u[1] * 5]], fill: 'load', a: 0.9, close: true, z: zz + 0.1, id: 'hammerHead' });
         break;
       }
       case 'cable': {

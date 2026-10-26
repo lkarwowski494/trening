@@ -1,0 +1,9 @@
+{
+ "_opis": "Jawne wyjątki od rysowania figur v2 (docs/54, docs/53 bramka 5 „kompletność”): ćwiczenia i rodziny BEZ animacji — z powodem. Decyzja właściciela 26.10.2026 (przez koordynatora). Czyta scripts/figures/gemini-polecenia.mjs (polecenia pomijają je z adnotacją „wyjątek bez animacji”, nie „zrobi nasz agent”); test w tests/gemini-polecenia.test.ts pilnuje, że każdy wpis istnieje w katalogu i ma powód. Do paczki aplikacji NIC stąd nie trafia.",
+ "rodziny": {
+  "cardio": "cardio i lokomocja (bieg, rower, wioślarz, skakanka, burpees): ruch to lokomocja i praca maszyny, nie pozycja ciała względem sprzętu; animacja nie wnosi nauki techniki (decyzja właściciela 26.10.2026)"
+ },
+ "cwiczenia": {
+  "Stomach Vacuum": "ruch wewnętrzny (wciąganie brzucha) bez widocznej zmiany pozy szkieletu; animacja szkieletem nie ma sensu (decyzja właściciela 26.10.2026)"
+ }
+}
