@@ -8,7 +8,8 @@
  */
 import { add, dist, type V3 } from './math';
 import { BODY, SIDES, jointAngles, type LegIn, type ArmIn, type PoseIn, type Side } from './skeleton';
-import type { Frame, Prop } from './scene';
+import type { Frame } from './scene';
+import { GEAR, propsFrom, type Gear } from './gear';
 import { checkFrame } from './colliders';
 import { mkFrame } from './rigs/common';
 import { FAMILY } from './families';
@@ -32,7 +33,6 @@ export const CONTRACT = {
 
 export const MARKS = ['knees', 'heels', 'back', 'pelvis', 'bar'] as const;
 export const AFFECTS: Affects[] = ['knee', 'ankle', 'hip', 'spine', 'kneeLat', 'heel', 'pelvis', 'bar', 'shoulder', 'elbow'];
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia'] as const;
 
 /* ---------- typy danych ---------- */
 export type LegData = { kostka: V3; podbicie?: number; rotacjaStopy?: number; odchylenieKolana?: number };
@@ -41,7 +41,6 @@ export type KeyFrame = {
   u: number; miednica: V3; pochylenieTulowia: number; zgiecieKregoslupa?: number; pochylenieGlowy?: number;
   nogi: Record<Side, LegData>; rece: Record<Side, ArmData>;
 };
-export type Gear = { rodzaj: typeof GEAR[number]; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number };
 export type DeltaFrame = {
   u: number; miednica?: V3; pochylenieTulowia?: number; zgiecieKregoslupa?: number; pochylenieGlowy?: number;
   nogi?: Partial<Record<Side, Partial<LegData>>>; rece?: Partial<Record<Side, { chwyt?: V3 }>>;
@@ -205,18 +204,6 @@ export function toPoseIn(k: KeyFrame): PoseIn {
   const leg = (s: Side): LegIn => { const l = k.nogi[s]; return { ankle: l.kostka, footPitch: l.podbicie, toeOut: l.rotacjaStopy, kneeOut: l.odchylenieKolana }; };
   const arm = (s: Side): ArmIn => { const a = k.rece[s]; return { grip: a.chwyt, elbowPole: a.biegunLokcia, lower: a.dolnaCzesc }; };
   return { pelvis: k.miednica, trunkPitch: k.pochylenieTulowia, spineBend: k.zgiecieKregoslupa, headPitch: k.pochylenieGlowy, legs: { R: leg('R'), L: leg('L') }, arms: { R: arm('R'), L: arm('L') } };
-}
-const BAR_LEN = 220;
-/** Sprzęt jako rekwizyty sceny; sztanga „podążająca za chwytem” leży między dłońmi. */
-export function propsFrom(gear: Gear[], grips: Record<Side, V3>): Prop[] {
-  const out: Prop[] = [];
-  for (const g of gear) {
-    if (g.rodzaj === 'sztanga') { const c: V3 = g.podazaZaChwytem ? [(grips.R[0] + grips.L[0]) / 2, (grips.R[1] + grips.L[1]) / 2, 0] : [g.x ?? 0, g.y ?? 0, 0]; out.push({ k: 'barbell', c, plates: g.talerze !== false, held: g.trzyma === 'R' || g.trzyma === 'L' ? g.trzyma : true, len: g.dlugosc ?? BAR_LEN }); }
-    else if (g.rodzaj === 'slupek') out.push({ k: 'post', x: g.x ?? 0, h: g.h ?? 200 });
-    else if (g.rodzaj === 'podloga') out.push({ k: 'floor', x0: g.x0 ?? -120, x1: g.x1 ?? 120 });
-    else out.push({ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 });
-  }
-  return out;
 }
 /** Klatka danych rodziny w pozycji u; error = indeks błędu (poza poprawna + delta). Zwraca tę samą Frame co rigi (kolidery, kształty). */
 export function keyframeFrame(d: PoseData, u: number, error?: number): Frame {

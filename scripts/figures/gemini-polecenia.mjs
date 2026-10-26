@@ -214,10 +214,10 @@ export function sekcjaRegul(rodzina, cwiczenia, root = ROOT) {
 
 /* ---------- opis ćwiczeń ---------- */
 /** Sprzęt, który kontrakt umie narysować (rodzaje sprzętu: sztanga/drążek, słupek, podłoga, skrzynia/ławka płaska): możliwości katalogu spoza listy (wyciągi, taśmy, piłki, maszyny, ławki skośne, hantle, linę…) → ćwiczenie do zrobienia przez naszego agenta. */
-export const SPRZET_OBSLUGIWANY = ['pullup.bar', 'rings', 'barbell', 'box', 'bench.flat'];
+export const sprzetObslugiwany = () => silnik().v2.GEAR_CAPS; /* rejestr lib/figures/v2/gear.ts: możliwości katalogu, które kontrakt umie narysować */
 export function sprzetNieobslugiwany(cw, catalog) {
   const e = catalog?.CATALOG?.[cw]; if (!e) return null;
-  for (const grupa of e.requires) if (grupa.length && !grupa.some((c) => SPRZET_OBSLUGIWANY.includes(c))) return `sprzęt spoza kontraktu: ${grupa.join(' / ')} — silnik go nie rysuje`;
+  for (const grupa of e.requires) if (grupa.length && !grupa.some((c) => sprzetObslugiwany().includes(c))) return `sprzęt spoza kontraktu: ${grupa.join(' / ')} — silnik go nie rysuje`;
   return null;
 }
 const OPIS_SPRZETU = { 'pullup.bar': 'drążek poziomy', rings: 'kółka (zastępuje drążek — rysuj jako drążek)', db: 'hantle', bench: 'ławka' };

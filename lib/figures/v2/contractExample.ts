@@ -5,7 +5,8 @@
 import { frameAt, faultApplicable, figureSpec } from './figure';
 import { ERRORS, type ErrorId } from './errors';
 import { bodyShapes, propShapes } from './draw';
-import { keyframeFrame, CONTRACT, type DataError, type DeltaFrame, type Gear, type KeyFrame, type PoseData } from './contract';
+import { keyframeFrame, CONTRACT, type DataError, type DeltaFrame, type KeyFrame, type PoseData } from './contract';
+import type { Gear } from './gear';
 import type { PoseIn, Side } from './skeleton';
 import type { Frame, Shape, View } from './scene';
 import type { V3 } from './math';
