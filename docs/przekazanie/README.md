@@ -89,3 +89,8 @@ Przypomnienia starej sesji usunięte. Nowa sesja ustawia własne:
 1. Przegląd agentów co ~2 h do rana (aktualizacja tego pliku jako pierwszy krok, priorytet 1.0 > integracja 1.1 > bramki > pozy).
 2. Pon. 2.11.2026 07:00 UTC — wznowienie kalisteniki (repo lkarwowski494/kalistenika, gałąź monetyzacja, docs/sztafeta.md „Wstrzymanie 26.10.2026”; pytania DK-13, DK-14, zakup książek).
 Oszczędność limitu: agenci raportują tylko na końcu zadania albo przy blokadzie; czekanie na CI/E2E w tle (sleep), bez oddawania wyników pośrednich; mniejsze modele do czekania na przebiegi.
+
+## Stan ścieżki 1.0 przy przekazaniu (2026-10-26 21:01 UTC)
+- E2E pakiet podstawowy, run 40397482864 (nr 305, SHA c56ef5d, `integracja-2026-10-26b`): **in_progress** (maszyna macOS przydzielona ok. 20:52 UTC, po ~14 min w kolejce). Nie uruchamiano nowych przebiegów.
+- Stoję na kroku 1 (czekanie na wynik E2E). Dalej: gdy zielony → krok 2 (PR integracja → main, merge commit po zielonych checkach; potem main do `wydanie-1-0-0` 6a722cf, PR do main); gdy czerwony → ocena wg `.claude/agents/tester-e2e.md` (błąd aplikacji: stop i zapis tu; błąd scenariusza: jedno ponowienie przez `tylko_scenariusze`); gdy anulowany „not acquired by Runner” → ponowić `e2e-ios.yml` z `pakiet: podstawowy`.
+- Potem kroki 3–5: `pakiet: pelny` na SHA main, `testflight.yml` z main (zatrzyma się na `release`, bez `pomin_bramke_e2e`), `check-urls.yml` i wpis R-017 w docs/40 (krótka gałąź + PR).
