@@ -32,7 +32,7 @@ function odcisk(listy: Shape[][]): { svg: string; raw: string } {
 function figuryRigow(): Record<string, { svg: string; raw: string }> {
   const out: Record<string, { svg: string; raw: string }> = {};
   for (const key of Object.keys(CATALOG).sort()) {
-    const spec = figureSpec(key); if (!spec) continue;
+    const spec = figureSpec(key); if (!spec || !['squat', 'bench_press', 'hinge'].includes(spec.family)) continue; /* tylko rigi z kodu; rodziny z danych (pull_up…) obejmuje sekcja „dane” */
     const listy: Shape[][] = [];
     for (const view of spec.views) {
       for (const u of U) listy.push(shapesAt(spec, u, view, true));

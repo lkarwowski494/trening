@@ -2,11 +2,11 @@
  "rigi": {
   "Axle Deadlift": {
    "svg": "9d301644b6f19c4524b9",
-   "raw": "2e08e729d66dbd7ae206"
+   "raw": "de211eafd84654637792"
   },
   "Back Squat": {
-   "svg": "79ca3e8d2702e04fb804",
-   "raw": "e570e7e072f53a0e9114"
+   "svg": "3a7f10dfd20d6da757a7",
+   "raw": "93a97d20c7519158d261"
   },
   "Band Bench Press": {
    "svg": "201c6de5fe3a95bfd4ac",
@@ -14,19 +14,19 @@
   },
   "Band Good Morning": {
    "svg": "0349cdd6b29bcb094ef2",
-   "raw": "9db9dff1aeb8efab6634"
+   "raw": "4ba11f2b0321faa31697"
   },
   "Band Squat": {
-   "svg": "475cfb1765ce786bbef4",
-   "raw": "c3e0c4a5b5e56125fc35"
+   "svg": "c95a47d756492d0fbf9a",
+   "raw": "bc270adbcee22e42a68b"
   },
   "Barbell Guillotine Bench Press": {
    "svg": "7d7796f2c04c0e1641ee",
    "raw": "c245c140b11e8b50066d"
   },
   "Barbell Hack Squat": {
-   "svg": "a55e1eb286fe001dd978",
-   "raw": "ae4d2d73b72eae6624ad"
+   "svg": "84dfdc832a2f5163a9b4",
+   "raw": "f14a656acbb776ff29f7"
   },
   "Bench Press (hantle)": {
    "svg": "4a6c66e0d868c0cbc56c",
@@ -45,32 +45,32 @@
    "raw": "9723d765df5e0a267949"
   },
   "Bodyweight Squat": {
-   "svg": "e2bb512e2517f64ab65f",
-   "raw": "ad0d755f0ce5b11731ab"
+   "svg": "1587900a7f57446b6363",
+   "raw": "9e2430952113d576af36"
   },
   "Box Squat": {
-   "svg": "f144413e2242aeacf3d9",
-   "raw": "3a7199ce50718130b31e"
+   "svg": "142113a34ce94f715ca6",
+   "raw": "bf377a33f367ee0f7a04"
   },
   "Box Squat with Bands": {
-   "svg": "1881c2d0b9324d22050f",
-   "raw": "0e0a516a792f9da4e75b"
+   "svg": "d3b3938158ceae8817e3",
+   "raw": "bbb39abf2eaed5a5ef70"
   },
   "Box Squat with Chains": {
-   "svg": "3ce2c508432fc713dc83",
-   "raw": "27c9e87d3bb78740b695"
+   "svg": "bcf586e2010c77723771",
+   "raw": "26a20233728d7dc51afe"
   },
   "Cable Deadlift": {
    "svg": "710b50d4fb406376e0c1",
-   "raw": "dc9e2ed49dd3b36c27ed"
+   "raw": "6535611cb77e300200ce"
   },
   "Cable Pull Through": {
    "svg": "2ebf110f523b8af8ae71",
-   "raw": "cb6501f1f7843c960ff7"
+   "raw": "372061ca9b54fbc41daa"
   },
   "Cable Squat": {
-   "svg": "f750099b7467ddc4f10c",
-   "raw": "e5789477c80b1092612b"
+   "svg": "11ff61b16e8d6065c577",
+   "raw": "08eb8b6257dd78871b96"
   },
   "Chain Press": {
    "svg": "ec9ef0131b1ad4d65294",
@@ -78,7 +78,7 @@
   },
   "Clean Deadlift": {
    "svg": "af8d715445c8f54dc8b8",
-   "raw": "79a5851d62b228045936"
+   "raw": "e47255a32d9b096264fc"
   },
   "Close Grip Bench Press": {
    "svg": "2ade3ac4cff3980d6609",
@@ -94,19 +94,19 @@
   },
   "Deadlift (hantle)": {
    "svg": "cf2fa1eea89ee59f478a",
-   "raw": "da2e2363200a78ae4698"
+   "raw": "2d8f91136ecf8c5c3c2e"
   },
   "Deadlift (sztanga)": {
    "svg": "e08eb0ec11ae678aa415",
-   "raw": "17b4c6152d505ae54bfb"
+   "raw": "33bb9906763fbcf8df61"
   },
   "Deadlift with Bands": {
    "svg": "f493fa072443521965a8",
-   "raw": "605a1c3ee09b57ef972c"
+   "raw": "154489a77925e47bd0fd"
   },
   "Deadlift with Chains": {
    "svg": "d9f71943f7515045e4db",
-   "raw": "4eecd74660837bb4d664"
+   "raw": "c3566a0dfbad806cb876"
   },
   "Decline Bench Press": {
    "svg": "5ae46cfce29a0f7e22d6",
@@ -121,20 +121,20 @@
    "raw": "041775dc44dbbe9dfa40"
   },
   "Deficit Deadlift": {
-   "svg": "90dca6e3211db49f7a5c",
-   "raw": "0374f5ae67c9412fa3be"
+   "svg": "d4acf4fce6d2de07cd70",
+   "raw": "1424b8002f6328eb83f3"
   },
   "Dip Belt Squat": {
-   "svg": "87aa09b2ee044787fa12",
-   "raw": "904e995987938f277eca"
+   "svg": "e9969438955e4b14272f",
+   "raw": "426774e5fdc5b14313cb"
   },
   "Double Kettlebell Front Squat": {
-   "svg": "6b3d5a005afb421dd89d",
-   "raw": "ed5a0c234f6aea631a64"
+   "svg": "0b28d4e0f0a0d41ded53",
+   "raw": "f9b331fdc3b42ed943eb"
   },
   "Dumbbell Squat": {
-   "svg": "659c5857aaff59214736",
-   "raw": "c0ac3c44e930dcafa8b4"
+   "svg": "a12abbcb11e0bdcaa2b5",
+   "raw": "c50c2238374bcc53cdfb"
   },
   "Floor Press (hantle)": {
    "svg": "43c1a14b12fd9ebfcbd5",
@@ -149,20 +149,20 @@
    "raw": "50b795172c88f84157f4"
   },
   "Front Squat": {
-   "svg": "389e8274de62b439f752",
-   "raw": "4d89035fc572fbc6e0b3"
+   "svg": "068d59e1dca3365cec8d",
+   "raw": "08dbedf9171ef7fddf2f"
   },
   "Goblet Squat": {
-   "svg": "0de0dd2a6c862c6ea1ca",
-   "raw": "d3ed8dae02a65c746828"
+   "svg": "583e271cdedb80fe2a5b",
+   "raw": "369a18ea92c575b84f59"
   },
   "Good Morning": {
    "svg": "837cf151f91ebb4313ee",
-   "raw": "a2ad641a3486ec614334"
+   "raw": "0dd1af572eddc3b1a850"
   },
   "Good Morning off Pins": {
    "svg": "837cf151f91ebb4313ee",
-   "raw": "a2ad641a3486ec614334"
+   "raw": "0dd1af572eddc3b1a850"
   },
   "Incline Bench Press (hantle)": {
    "svg": "8059b884780a02bcd24b",
@@ -177,76 +177,76 @@
    "raw": "8d0938dcbb7c3ec1a4fb"
   },
   "Landmine Squat": {
-   "svg": "6e18d30ebfeb1aec4c31",
-   "raw": "39ceb5f2f3f513f86665"
+   "svg": "9fead8b340d832b8d230",
+   "raw": "3c0670cc92ad47928b6c"
   },
   "Leverage Deadlift": {
    "svg": "48c4797f53c9a189d4eb",
-   "raw": "74b48678ce8573bc7bcd"
+   "raw": "98ce1dd0cfc57442e695"
   },
   "One Arm Dumbbell Bench Press": {
    "svg": "dceba154c9ba1409c9e4",
    "raw": "dc367320d00c2ba8f75d"
   },
   "One-Arm Kettlebell Floor Press": {
-   "svg": "14ab2b7a0a864d2e0c88",
-   "raw": "c183f127dfe4a89eade2"
+   "svg": "00bc0e54cacf85061a95",
+   "raw": "ae71fc1b94ac8209a3f2"
   },
   "One-Arm Overhead Kettlebell Squat": {
-   "svg": "99fb191deacdb9e7ebaa",
-   "raw": "64e6cb6e629a9bb53fa4"
+   "svg": "97e4b96a794bcaa2a7a5",
+   "raw": "54aba76eef056a0177f7"
   },
   "One-Arm Side Deadlift": {
    "svg": "3e10af2ae5f5618ffde4",
-   "raw": "0e2008b8fd971ade5432"
+   "raw": "ddb528fd3e4d16b86275"
   },
   "Overhead Squat": {
-   "svg": "6efab6fe65e23e955abd",
-   "raw": "54b6e3f09afe835698d7"
+   "svg": "ebbe8efe0b758edbc80b",
+   "raw": "4a9e92ee318e651cf66d"
   },
   "Pin Press": {
    "svg": "75917faa639e39ddd147",
    "raw": "73f9bcfed77f90d5126e"
   },
   "Przysiad z pasem (linki)": {
-   "svg": "c12d00ffdc416a48363b",
-   "raw": "aab16b1226d9ca3fb617"
+   "svg": "39514817f65b368e6af5",
+   "raw": "bedbb7d01ff575972c5b"
   },
   "RDL (hantle/linki)": {
    "svg": "8dfc986fd79c80abe517",
-   "raw": "247fcf6ba8d00b809e8c"
+   "raw": "2b03f10c1f4025fef8cd"
   },
   "RDL (sztanga)": {
    "svg": "74f8778895e8b07e3be6",
-   "raw": "dfa58c5bb6767107043d"
+   "raw": "36fbc8b5c6851be63f88"
   },
   "Rack Pull": {
    "svg": "b112980f15a04709a17c",
-   "raw": "d14f778a6cc9f9cf77fe"
+   "raw": "5e623b962121e526a234"
   },
   "Rack Pull with Bands": {
    "svg": "30d453e4aaeb76f16527",
-   "raw": "bc92c5157eaca7d85c6a"
+   "raw": "847e107ffd5fa03375c4"
   },
   "Reverse Band Bench Press": {
    "svg": "201c6de5fe3a95bfd4ac",
    "raw": "0d109f0793b9e9cb636c"
   },
   "Reverse Band Box Squat": {
-   "svg": "1881c2d0b9324d22050f",
-   "raw": "0e0a516a792f9da4e75b"
+   "svg": "d3b3938158ceae8817e3",
+   "raw": "bbb39abf2eaed5a5ef70"
   },
   "Reverse Band Deadlift": {
    "svg": "f493fa072443521965a8",
-   "raw": "605a1c3ee09b57ef972c"
+   "raw": "154489a77925e47bd0fd"
   },
   "Reverse Band Power Squat": {
-   "svg": "51c879cf90bf24eb10fd",
-   "raw": "becee7b89999f854f122"
+   "svg": "29b57adaf1b77d39bea4",
+   "raw": "aca7ff9d0dc919187527"
   },
   "Reverse Band Sumo Deadlift": {
    "svg": "1d18d845aa7a20fba757",
-   "raw": "4ecccdb9834a6704dcbc"
+   "raw": "15faee6b560abff04ae6"
   },
   "Reverse Grip Bench Press": {
    "svg": "fb87333f927fc69457bd",
@@ -254,19 +254,19 @@
   },
   "Rickshaw Deadlift": {
    "svg": "7800c2e5440ddd0ddafe",
-   "raw": "c42c25f45405fb593c3c"
+   "raw": "06fc0f3c1b53fcef491a"
   },
   "Single Arm RDL (hantel/linka)": {
    "svg": "8863dffa86ea029d1882",
    "raw": "28288a0f97d0c1e623d2"
   },
   "Single Leg RDL (hantel)": {
-   "svg": "071faab051c1c264e0f3",
-   "raw": "cb89f8955bac5e6c5dbc"
+   "svg": "18d28abf2b03b926358d",
+   "raw": "026398007f58baadbd8b"
   },
   "Single Leg RDL (linki)": {
-   "svg": "95799b7940586442eb55",
-   "raw": "59bc6c887d385457bbd0"
+   "svg": "bc849839d4fc2af84a64",
+   "raw": "03566710e8e3124f3602"
   },
   "Smith Machine Bench Press": {
    "svg": "2d2190ac265a9a9134ec",
@@ -285,24 +285,24 @@
    "raw": "44a28cced5eab2ab627b"
   },
   "Smith Machine Squat": {
-   "svg": "13807fde88e2880697f6",
-   "raw": "521cc4e412533c2cee77"
+   "svg": "e3d58b676fef562d4a0b",
+   "raw": "923020037e3d566611e1"
   },
   "Smith Machine Stiff-Legged Deadlift": {
    "svg": "cb598c98220e15359d04",
-   "raw": "ac707beee63449983211"
+   "raw": "edfa2c6c38e2a0b90d86"
   },
   "Snatch Deadlift": {
    "svg": "52af5d21c241c6935220",
-   "raw": "4777c6b20c99bbc46c6b"
+   "raw": "203aea7e5bdb73a6a140"
   },
   "Squat with Bands": {
-   "svg": "51c879cf90bf24eb10fd",
-   "raw": "becee7b89999f854f122"
+   "svg": "29b57adaf1b77d39bea4",
+   "raw": "aca7ff9d0dc919187527"
   },
   "Squat with Chains": {
-   "svg": "e2720a960f6c67ff2563",
-   "raw": "98ce643ef0da365bbbfe"
+   "svg": "1f0dbe07e96246f95378",
+   "raw": "8d29ebea3dae53968f13"
   },
   "Squeeze Press (hantle)": {
    "svg": "72cb91332f39142d7760",
@@ -310,43 +310,43 @@
   },
   "Stiff-Legged Barbell Deadlift": {
    "svg": "730a732b598e4f0bc116",
-   "raw": "ad6458a7c17d7103f86b"
+   "raw": "36730ae6ec2cec8cd1ce"
   },
   "Sumo Deadlift": {
    "svg": "851ef876893ee346be62",
-   "raw": "b5dd5dee09c5e117aa32"
+   "raw": "061303d6383c242971dc"
   },
   "Sumo Deadlift (kettlebell)": {
    "svg": "456ef8a981b1d55a937f",
-   "raw": "ec4142acf90b66abd16c"
+   "raw": "bd36b0008319b92c9a6b"
   },
   "Sumo Deadlift with Bands": {
    "svg": "1d18d845aa7a20fba757",
-   "raw": "4ecccdb9834a6704dcbc"
+   "raw": "15faee6b560abff04ae6"
   },
   "Sumo Deadlift with Chains": {
    "svg": "7a4abcc1a8294d845163",
-   "raw": "ecada68c2106bbeb71f7"
+   "raw": "f562bcd804fbb6e786c9"
   },
   "Sumo Squat (hantel)": {
-   "svg": "469ed6dcfee11fc0a87a",
-   "raw": "2bc6cf1d43218ed71e8f"
+   "svg": "dda50373662fb9528218",
+   "raw": "74897e96125e81571799"
   },
   "Trap Bar Deadlift": {
    "svg": "ae04e036c346a7255885",
-   "raw": "a2f0553eeddf4c65367c"
+   "raw": "9f536260f86a5d0dd951"
   },
   "Wall Sit": {
    "svg": "e6b314a4de56de812b21",
-   "raw": "ba248770146b3a8d2c70"
+   "raw": "7275c83809891fc22860"
   },
   "Wide-Grip Barbell Bench Press": {
    "svg": "e2963f8d7b5fb138c5d9",
    "raw": "25a40e4497e43ab90a0a"
   },
   "Zercher Squat": {
-   "svg": "8d94b4341fb34a73fe8e",
-   "raw": "a69af4f18dceb63dfc4c"
+   "svg": "57764ad40f7ac7bee6b3",
+   "raw": "000134f4287cda580ec9"
   }
  },
  "przyklady": {
@@ -355,60 +355,60 @@
    "raw": "f269339ffc3292302f66"
   },
   "Back Squat": {
-   "svg": "ddeb4a22183e935491a0",
-   "raw": "e3b89e776c503abd5856"
+   "svg": "ddbee063edc03f6a14a3",
+   "raw": "a7de113b373081cbe944"
   },
   "Band Bench Press": {
-   "svg": "a45e28c3090616a76e88",
-   "raw": "c3783e6e6b6f5e2f104b"
+   "svg": "fbd85b2dd56bf0227e78",
+   "raw": "4ce1bbbf72fdc3afc043"
   },
   "Band Good Morning": {
    "svg": "b5316252c92c872aef32",
    "raw": "c7dcf3b32d192635517f"
   },
   "Band Squat": {
-   "svg": "ebdca276396aa593bf87",
-   "raw": "ae223e96e1d31965f5a2"
+   "svg": "43659dfa110d6ce33222",
+   "raw": "fea3a5042af95c92e262"
   },
   "Barbell Guillotine Bench Press": {
-   "svg": "975c5cdf8f3abdf41a30",
-   "raw": "63bf100f6f57aa18b917"
+   "svg": "384569e4a3450a3f1fc3",
+   "raw": "cce2403a5af6f29603d3"
   },
   "Barbell Hack Squat": {
-   "svg": "51d5e8b74d438df2b872",
-   "raw": "dea0c69fd21672035473"
+   "svg": "499a3b311f425561b876",
+   "raw": "b39c617f906be6f7295d"
   },
   "Bench Press (hantle)": {
-   "svg": "f66003d75de84da0ebd6",
-   "raw": "fd5be6baca4355797f5c"
+   "svg": "f7bbceb223d75c07f1f9",
+   "raw": "272a2d2d98d6e1422c5d"
   },
   "Bench Press (sztanga)": {
-   "svg": "007bacf081d961602cf0",
-   "raw": "50e314708312f2c2eba0"
+   "svg": "95738fcff91926c6eb68",
+   "raw": "400467d0e7d5312b62f8"
   },
   "Bench Press with Chains": {
-   "svg": "a45e28c3090616a76e88",
-   "raw": "c3783e6e6b6f5e2f104b"
+   "svg": "fbd85b2dd56bf0227e78",
+   "raw": "4ce1bbbf72fdc3afc043"
   },
   "Board Press": {
-   "svg": "7a8db8f0920b6ac40a66",
-   "raw": "1a9807705f4f1280c3c8"
+   "svg": "963f9e0977776e8a8749",
+   "raw": "5682decf098d0e0f03e5"
   },
   "Bodyweight Squat": {
-   "svg": "ebdca276396aa593bf87",
-   "raw": "ae223e96e1d31965f5a2"
+   "svg": "43659dfa110d6ce33222",
+   "raw": "fea3a5042af95c92e262"
   },
   "Box Squat": {
-   "svg": "7b1cce98739ce9ff8602",
-   "raw": "e1e6f1d8307b0af6114a"
+   "svg": "c8ef304d034c9539f614",
+   "raw": "637a7465d640a1d66c6d"
   },
   "Box Squat with Bands": {
-   "svg": "7b1cce98739ce9ff8602",
-   "raw": "e1e6f1d8307b0af6114a"
+   "svg": "c8ef304d034c9539f614",
+   "raw": "637a7465d640a1d66c6d"
   },
   "Box Squat with Chains": {
-   "svg": "7b1cce98739ce9ff8602",
-   "raw": "e1e6f1d8307b0af6114a"
+   "svg": "c8ef304d034c9539f614",
+   "raw": "637a7465d640a1d66c6d"
   },
   "Cable Deadlift": {
    "svg": "9ab2d8c70cd44eaaa249",
@@ -416,31 +416,31 @@
   },
   "Cable Pull Through": {
    "svg": "0e49d9be76b287015dca",
-   "raw": "0a5b7bdb9aec11d8efb7"
+   "raw": "7fe505b131d8f2675656"
   },
   "Cable Squat": {
-   "svg": "a04cca5e9e50a571a7c1",
-   "raw": "7578d00bf601b65435e0"
+   "svg": "9dbe7395f6f4366b0ee0",
+   "raw": "659301bb46cad32dd717"
   },
   "Chain Press": {
-   "svg": "a45e28c3090616a76e88",
-   "raw": "c3783e6e6b6f5e2f104b"
+   "svg": "fbd85b2dd56bf0227e78",
+   "raw": "4ce1bbbf72fdc3afc043"
   },
   "Clean Deadlift": {
    "svg": "61e9aaf786e55b722ce0",
    "raw": "f269339ffc3292302f66"
   },
   "Close Grip Bench Press": {
-   "svg": "3be47070c25e389dbbcb",
-   "raw": "c4c3d43ca6fb1430624c"
+   "svg": "1d24143ec7dfa5260d27",
+   "raw": "7e767feac99e25dd832f"
   },
   "Close-Grip Dumbbell Press": {
-   "svg": "c8bb3eddaa3c5b03911e",
-   "raw": "6d58dc88e01f0a49ca08"
+   "svg": "c3b0620e2a94a3e594c6",
+   "raw": "908ab605ceddde2e0a8d"
   },
   "Close-Grip EZ-Bar Press": {
-   "svg": "3be47070c25e389dbbcb",
-   "raw": "c4c3d43ca6fb1430624c"
+   "svg": "1d24143ec7dfa5260d27",
+   "raw": "7e767feac99e25dd832f"
   },
   "Deadlift (hantle)": {
    "svg": "212c9a2371c8ece7a72e",
@@ -459,32 +459,32 @@
    "raw": "f269339ffc3292302f66"
   },
   "Decline Bench Press": {
-   "svg": "c9649a40f703ddd5a1f7",
-   "raw": "6c6fcdfb2d8380370470"
+   "svg": "ca9931e7761478479368",
+   "raw": "b7d48e063c813008f826"
   },
   "Decline Bench Press (hantle)": {
-   "svg": "4e811e5a227ec689fa53",
-   "raw": "6073bdccc4f13eb6b43c"
+   "svg": "6df8ef5d0141ba422373",
+   "raw": "c82050714654679fab0e"
   },
   "Decline Close-Grip Bench To Skull Crusher": {
-   "svg": "d00a82ffa88fda26c156",
-   "raw": "7bf51a0ee8bb83b6c1b9"
+   "svg": "fed62a1d77bc68ec2fe7",
+   "raw": "2d6f856877b37f506e9e"
   },
   "Deficit Deadlift": {
-   "svg": "776a2d48189968623fb7",
-   "raw": "8680b102d1b822931475"
+   "svg": "b0d628c18934cab98096",
+   "raw": "f3988cf1abd6a11df4a2"
   },
   "Dip Belt Squat": {
-   "svg": "cf4d48c5ba67ead3c180",
-   "raw": "e2014ef26df264538282"
+   "svg": "1f1069dad0ef04865105",
+   "raw": "c0d4cdfa12df99a2dd9c"
   },
   "Double Kettlebell Front Squat": {
-   "svg": "754e94cd874c6169a5dd",
-   "raw": "c599d67f2bcae0d7dcec"
+   "svg": "915ce23975cf4c2e9920",
+   "raw": "d8413d1017b27391e574"
   },
   "Dumbbell Squat": {
-   "svg": "3607a4791548d3cfd66c",
-   "raw": "113780d69f21c5063219"
+   "svg": "1e7b51d301de4002cef7",
+   "raw": "14b8d70a38837a08a2e4"
   },
   "Floor Press (hantle)": {
    "svg": "55d211fad309572bee09",
@@ -499,12 +499,12 @@
    "raw": "6a91cbdaf0876279bc34"
   },
   "Front Squat": {
-   "svg": "e1892d7a503f169ead7f",
-   "raw": "524e99e3c557b30dfbda"
+   "svg": "c81cda587b7417355c17",
+   "raw": "df57a14e7a0bbc12ca0e"
   },
   "Goblet Squat": {
-   "svg": "f451908aa6bd96887c87",
-   "raw": "d0d787189f91c26e484c"
+   "svg": "e727b9a4221caa18dc58",
+   "raw": "677e587eeaf403f62d4e"
   },
   "Good Morning": {
    "svg": "b5316252c92c872aef32",
@@ -515,60 +515,60 @@
    "raw": "c7dcf3b32d192635517f"
   },
   "Incline Bench Press (hantle)": {
-   "svg": "411d15fc9a09528f392a",
-   "raw": "57d51848b0ed4b11b3d6"
+   "svg": "b666a1b22bc16d024d92",
+   "raw": "134792dd83dabc476783"
   },
   "Incline Bench Press (sztanga)": {
-   "svg": "506cb4095b8e63f1f5f8",
-   "raw": "911411691b8b276fc3e5"
+   "svg": "667923b60c504fc15b81",
+   "raw": "db8fc0fb587e09ddc13a"
   },
   "JM Press": {
-   "svg": "6444787dba85fe7f0a8e",
-   "raw": "150e9d34568c09fb8836"
+   "svg": "9b3a3b15d1f07b82d933",
+   "raw": "aaf09abaac71f873f3c9"
   },
   "Landmine Squat": {
-   "svg": "6a96fef7b08f45f34a9d",
-   "raw": "0532c6b3684432a15c1b"
+   "svg": "688a0000de324e5de86c",
+   "raw": "33e11fa5b556043fa82e"
   },
   "Leverage Deadlift": {
    "svg": "db669e73c46e19fff254",
    "raw": "38fe11ff5ef0b1b0990e"
   },
   "One Arm Dumbbell Bench Press": {
-   "svg": "8bff7d302324f7a73025",
-   "raw": "d9dd1e7e41cfa1702dd4"
+   "svg": "416b4833a9be500a8f4b",
+   "raw": "e1ba38bf5946b37cc729"
   },
   "One-Arm Kettlebell Floor Press": {
    "svg": "ea0936b551fb08f5c76b",
    "raw": "01cdce4e4672a85e0686"
   },
   "One-Arm Overhead Kettlebell Squat": {
-   "svg": "801416fdb72588e900da",
-   "raw": "d88a72b79fdc431d3761"
+   "svg": "f237e0548140b4a2dc5a",
+   "raw": "f3ef366189f7e74594b5"
   },
   "One-Arm Side Deadlift": {
    "svg": "1f7190d9f51f0584e2a3",
    "raw": "9bde0957f70d651b4ebe"
   },
   "Overhead Squat": {
-   "svg": "af8e477d6e7600d3f2bd",
-   "raw": "cefd05c8d215e9ed26de"
+   "svg": "d5abaf86ca607aa6f611",
+   "raw": "c8b6a5d8ae03c08508f2"
   },
   "Pin Press": {
-   "svg": "6692bbf57d33762318f2",
-   "raw": "db3728767735a8538966"
+   "svg": "7944cf42fa1f268b216a",
+   "raw": "f9bc24e00cd356c6e4ae"
   },
   "Przysiad z pasem (linki)": {
-   "svg": "cf4d48c5ba67ead3c180",
-   "raw": "e2014ef26df264538282"
+   "svg": "1f1069dad0ef04865105",
+   "raw": "c0d4cdfa12df99a2dd9c"
   },
   "RDL (hantle/linki)": {
    "svg": "01191ada933dac855f49",
-   "raw": "53f7ec0bc61ff407dc35"
+   "raw": "10e5ab21c478145d9ed0"
   },
   "RDL (sztanga)": {
    "svg": "8511a201c1d1e959908f",
-   "raw": "01e56d3e77a63f7b9057"
+   "raw": "7b05fe745180d5abba22"
   },
   "Rack Pull": {
    "svg": "c56145cb068dc8060aff",
@@ -579,28 +579,28 @@
    "raw": "3df7626988abfd309f52"
   },
   "Reverse Band Bench Press": {
-   "svg": "a45e28c3090616a76e88",
-   "raw": "c3783e6e6b6f5e2f104b"
+   "svg": "fbd85b2dd56bf0227e78",
+   "raw": "4ce1bbbf72fdc3afc043"
   },
   "Reverse Band Box Squat": {
-   "svg": "7b1cce98739ce9ff8602",
-   "raw": "e1e6f1d8307b0af6114a"
+   "svg": "c8ef304d034c9539f614",
+   "raw": "637a7465d640a1d66c6d"
   },
   "Reverse Band Deadlift": {
    "svg": "61e9aaf786e55b722ce0",
    "raw": "f269339ffc3292302f66"
   },
   "Reverse Band Power Squat": {
-   "svg": "ddeb4a22183e935491a0",
-   "raw": "e3b89e776c503abd5856"
+   "svg": "ddbee063edc03f6a14a3",
+   "raw": "a7de113b373081cbe944"
   },
   "Reverse Band Sumo Deadlift": {
    "svg": "a3aa464f4b24bd4f16a0",
    "raw": "9ec34762c18380448ff6"
   },
   "Reverse Grip Bench Press": {
-   "svg": "8978102440fc70ed9e98",
-   "raw": "20c0cc43ee9ccaf2a292"
+   "svg": "59ae314adce30a2e4a12",
+   "raw": "c790df744274d12eff07"
   },
   "Rickshaw Deadlift": {
    "svg": "8f405e7cade8c32b5d4b",
@@ -611,56 +611,56 @@
    "raw": "98d8cdddafd09f150004"
   },
   "Single Leg RDL (hantel)": {
-   "svg": "d4323025079b4a7c3f72",
-   "raw": "7c07014c3c5879b33fe6"
+   "svg": "906fb292adcd6b2d4e54",
+   "raw": "47024c4bb8c9e5c81daf"
   },
   "Single Leg RDL (linki)": {
-   "svg": "134121906fb1065cd291",
-   "raw": "74947ff457a8a3d0f16b"
+   "svg": "16ddd7c7a03469c21bb5",
+   "raw": "b00faf0d37e09786eb5a"
   },
   "Smith Machine Bench Press": {
-   "svg": "a45e28c3090616a76e88",
-   "raw": "c3783e6e6b6f5e2f104b"
+   "svg": "fbd85b2dd56bf0227e78",
+   "raw": "4ce1bbbf72fdc3afc043"
   },
   "Smith Machine Close-Grip Bench Press": {
-   "svg": "3be47070c25e389dbbcb",
-   "raw": "c4c3d43ca6fb1430624c"
+   "svg": "1d24143ec7dfa5260d27",
+   "raw": "7e767feac99e25dd832f"
   },
   "Smith Machine Decline Press": {
-   "svg": "c9649a40f703ddd5a1f7",
-   "raw": "6c6fcdfb2d8380370470"
+   "svg": "ca9931e7761478479368",
+   "raw": "b7d48e063c813008f826"
   },
   "Smith Machine Incline Press": {
-   "svg": "506cb4095b8e63f1f5f8",
-   "raw": "911411691b8b276fc3e5"
+   "svg": "667923b60c504fc15b81",
+   "raw": "db8fc0fb587e09ddc13a"
   },
   "Smith Machine Squat": {
-   "svg": "2b07502d3bc339084ad9",
-   "raw": "92b425a6f23391988bba"
+   "svg": "bc9c1a415ae1498986bd",
+   "raw": "8cba11243614c4c8ae3e"
   },
   "Smith Machine Stiff-Legged Deadlift": {
    "svg": "b1cb7e6a2601737605f7",
-   "raw": "05ab0e2ef87e9ab04a27"
+   "raw": "11220a4ad1f29f79fbcf"
   },
   "Snatch Deadlift": {
    "svg": "46291c2950072b50be42",
    "raw": "e80914f62f80217ea2ec"
   },
   "Squat with Bands": {
-   "svg": "ddeb4a22183e935491a0",
-   "raw": "e3b89e776c503abd5856"
+   "svg": "ddbee063edc03f6a14a3",
+   "raw": "a7de113b373081cbe944"
   },
   "Squat with Chains": {
-   "svg": "ddeb4a22183e935491a0",
-   "raw": "e3b89e776c503abd5856"
+   "svg": "ddbee063edc03f6a14a3",
+   "raw": "a7de113b373081cbe944"
   },
   "Squeeze Press (hantle)": {
-   "svg": "9a836fc71ae496ed0ea1",
-   "raw": "b621beedef08ced95a57"
+   "svg": "cad0364990401687dc9e",
+   "raw": "1b6aae67767b5a66e5f7"
   },
   "Stiff-Legged Barbell Deadlift": {
    "svg": "b1cb7e6a2601737605f7",
-   "raw": "05ab0e2ef87e9ab04a27"
+   "raw": "11220a4ad1f29f79fbcf"
   },
   "Sumo Deadlift": {
    "svg": "a3aa464f4b24bd4f16a0",
@@ -679,8 +679,8 @@
    "raw": "9ec34762c18380448ff6"
   },
   "Sumo Squat (hantel)": {
-   "svg": "740f03420c11c4cc5911",
-   "raw": "7bef7b50e35fb780698a"
+   "svg": "8b616715994cf751d88f",
+   "raw": "0c405f46d7e73e7fd7e2"
   },
   "Trap Bar Deadlift": {
    "svg": "35c783a5186c0841ad3b",
@@ -688,97 +688,205 @@
   },
   "Wall Sit": {
    "svg": "84e424d1b8be561af483",
-   "raw": "dc61d5fe7bbab0017337"
+   "raw": "ec96bf28096a8724efb1"
   },
   "Wide-Grip Barbell Bench Press": {
-   "svg": "6db30a4c16f65378fa3e",
-   "raw": "83cf1afa91b938ffa55a"
+   "svg": "fd87df7245ef32a20979",
+   "raw": "716fdc3b1951c52325f0"
   },
   "Zercher Squat": {
-   "svg": "014cd921f9f096dc0fb7",
-   "raw": "0df4e060e0fde0ea9406"
+   "svg": "718201a696d23a4ab182",
+   "raw": "cfa868d06e7d065c0324"
   }
  },
  "dane": {
   "core_floor/Crunch": {
-   "svg": "7499c6813b3d49448b52",
-   "raw": "bca6bd5a167777bb1099"
+   "svg": "051f10c1febe48e73681",
+   "raw": "a227d59030275d964f1b"
   },
   "core_floor/Frog Sit-Ups": {
    "svg": "1bab554ce29132b2c249",
    "raw": "d7e717fbbd97a74c0e27"
   },
   "core_floor/Janda Sit-Up": {
-   "svg": "d17dae44d7f04e3b24bd",
-   "raw": "6da6b9c7dbbaf050a0b7"
+   "svg": "c004800a5b903e534b03",
+   "raw": "d554084376598f6aa253"
   },
   "core_floor/Oblique Crunches - On The Floor": {
-   "svg": "30868d1aeef38104ff15",
-   "raw": "f00a4b6be3f220c6699d"
+   "svg": "62936965e5c88b9536bd",
+   "raw": "b6fce254ad0ee26e46de"
   },
   "core_floor/Sit Up": {
-   "svg": "e05293973a2cda16141c",
-   "raw": "b32f1daa6a255c115bd0"
+   "svg": "d0301e5b3334bedf3a4d",
+   "raw": "90a985a9f7717fcdef0d"
   },
   "core_floor/Toe Touchers": {
-   "svg": "5ac503af15aa3f8e235f",
-   "raw": "bec835d2f3c672a9171f"
+   "svg": "6728059260c8a4d00789",
+   "raw": "a28e6b5eba3f63f1fb5d"
   },
   "core_floor/Bicycle Crunch": {
-   "svg": "3a42e66dcb5ac4c2a0cf",
-   "raw": "8be8c565fd659af58240"
+   "svg": "91a78fb8dedb3cb54201",
+   "raw": "b198fd1dc12254e7ce14"
   },
   "core_floor/Cross-Body Crunch": {
-   "svg": "c1f9cefc682782410c69",
-   "raw": "fcbde7cc2f4a9793cd63"
+   "svg": "15ba4206e35d99e1c4a6",
+   "raw": "00af22d854339c26a0b1"
   },
   "core_floor/Scissor Kick": {
-   "svg": "efc40cae20a1ae808fbb",
-   "raw": "938d8e77e0f05de91a85"
+   "svg": "e43a8748f2ac8fc7a6be",
+   "raw": "663623b84b4aee64caf9"
+  },
+  "core_floor/Bird Dog": {
+   "svg": "434e1d382116ecd7c37b",
+   "raw": "391f795e0550724aeb6d"
+  },
+  "core_floor/Crunch - Hands Overhead": {
+   "svg": "609a4253ea1c56eaa57d",
+   "raw": "3a860c4d5bd8e9a4c02b"
+  },
+  "core_floor/Dead Bug": {
+   "svg": "1c0e7d7446daca21b51d",
+   "raw": "19f344c0b9cbd40d75a5"
+  },
+  "core_floor/Hollow Hold": {
+   "svg": "02d8bad726ff05b61511",
+   "raw": "95700c55c19bfe6d03ad"
+  },
+  "core_floor/Lying Leg Raise": {
+   "svg": "78acbe19ed03b76098a2",
+   "raw": "dbe097f348265777c96f"
+  },
+  "core_floor/Reverse Crunch": {
+   "svg": "de4c5249e58cb7405048",
+   "raw": "61b30f121288ad1004e1"
+  },
+  "core_floor/Tuck Crunch": {
+   "svg": "df567b7f601ceb852520",
+   "raw": "ae5a443543aaf94aae43"
+  },
+  "core_floor/Cocoons": {
+   "svg": "9a1b48df31c2a45468f9",
+   "raw": "fc1963a54d38afa244b0"
+  },
+  "core_floor/Leg Pull-In": {
+   "svg": "800bb96127c78035b203",
+   "raw": "0b73b2fcfdd7a0388a1a"
+  },
+  "core_floor/Superman": {
+   "svg": "c15471c1c8f8e79e94a5",
+   "raw": "7c80ffbe802a3069191c"
+  },
+  "core_floor/V-Up": {
+   "svg": "984cfbaa6b3c53a0b0c3",
+   "raw": "4d51e49e97ec31f61d6b"
   },
   "pull_up/Gironda Sternum Chins": {
-   "svg": "da6e7447b7f949d3ce85",
-   "raw": "7de38277d30ab5b85843"
+   "svg": "623c46ecb8f11308b199",
+   "raw": "0de14671e5e3fbd66843"
   },
   "pull_up/Chin Up": {
-   "svg": "6f38531de769b8f77363",
-   "raw": "f52acae3c9d72ee7e2c3"
+   "svg": "d9f384cc760a8b90a5e3",
+   "raw": "3304a1ccf07bb9542e5a"
   },
   "pull_up/Mixed Grip Chin": {
-   "svg": "9ce4a26ff07a3ff162ac",
-   "raw": "e8f4639ba5dc727f18c6"
+   "svg": "deec24f07f4bfb515d55",
+   "raw": "8bfb2569f2fad35ab406"
   },
   "pull_up/Neutral Grip Pull Up": {
-   "svg": "6f38531de769b8f77363",
-   "raw": "f52acae3c9d72ee7e2c3"
+   "svg": "d9f384cc760a8b90a5e3",
+   "raw": "3304a1ccf07bb9542e5a"
   },
   "pull_up/One Arm Chin-Up": {
-   "svg": "3bd0b93e74adc59002c8",
-   "raw": "269b32c0a71d5ac507c9"
+   "svg": "9d12aeb0cc7a499db363",
+   "raw": "64cfe0696ee91bf0a4b6"
   },
   "pull_up/Pull Up": {
-   "svg": "9508bb3ef9cfbe0916da",
-   "raw": "98623f60d6ff0dbe8e60"
+   "svg": "362c129da80b7e91e36f",
+   "raw": "d93194bc1d906c5e626f"
   },
   "pull_up/Side To Side Chins": {
-   "svg": "5239a19181b03db1d22d",
-   "raw": "befe4af86a438031e11f"
+   "svg": "6b5fec858fb5636bdfe8",
+   "raw": "72c728660ed7ef86cfcd"
   },
   "pull_up/Wide-Grip Rear Pull-Up": {
-   "svg": "bbc1f28b1280baccd035",
-   "raw": "efc53053616ef630fc06"
+   "svg": "5cb1c99eb910ce1e7aa3",
+   "raw": "7c2cba8dfd917343e543"
   },
   "pull_up/Dead Hang": {
-   "svg": "33046de0c520bee3c9ab",
-   "raw": "51cca204dd013c3f4ae4"
+   "svg": "9ad3c465e2e91556765b",
+   "raw": "328400b38ff59d7d0988"
   },
   "pull_up/Gorilla Chin/Crunch": {
-   "svg": "9bf1e35291407b3dcd5c",
-   "raw": "abd213dd53c477e5e2bd"
+   "svg": "501de9c26219a3bed6fe",
+   "raw": "b052c01dbd9f3ce6ff6b"
   },
   "pull_up/Scapular Pull-Up": {
-   "svg": "78a85b38b95b053c9194",
-   "raw": "931ddfec8bd974e49348"
+   "svg": "91d3b65e82e32bd13d30",
+   "raw": "7be151fd0aa7d47566a2"
+  },
+  "pushup_plank/Push Up": {
+   "svg": "86f8a72cffc2ded4905b",
+   "raw": "7f5b16d1a6d2ad0e75ac"
+  },
+  "pushup_plank/Push-Up Wide": {
+   "svg": "9282e00129354a63843a",
+   "raw": "d78d2dce20a4d0bd76a6"
+  },
+  "pushup_plank/Close-Grip Push-Up": {
+   "svg": "377b680518f660e104d1",
+   "raw": "fc65813e5dc63abb0daf"
+  },
+  "pushup_plank/Diamond Push Up": {
+   "svg": "6b54157ecff051d87397",
+   "raw": "7758e602fcdc6a2fd2ea"
+  },
+  "pushup_plank/Decline Push Up": {
+   "svg": "62605ee085dffee5ab20",
+   "raw": "63fa35555d55516cdc2d"
+  },
+  "pushup_plank/Incline Push Up": {
+   "svg": "d8c05bab3ea5f4d4185b",
+   "raw": "698c9058231aa870f054"
+  },
+  "pushup_plank/Incline Push-Up Close-Grip": {
+   "svg": "b7760528df106777acde",
+   "raw": "61d2b8b4a11f637abd13"
+  },
+  "pushup_plank/Single-Arm Push-Up": {
+   "svg": "94213f74ede285c9586a",
+   "raw": "7ea40b537c3a17780105"
+  },
+  "pushup_plank/Plank": {
+   "svg": "782c3fa10b5202ec481e",
+   "raw": "2086d449347706c0a984"
+  },
+  "pushup_plank/Mountain Climbers": {
+   "svg": "cb4d6bdf325759252631",
+   "raw": "8627616b0c1673bcbe8e"
+  },
+  "pushup_plank/Plank Shoulder Taps": {
+   "svg": "38328c98a152ea2a9b4d",
+   "raw": "6e3e17432e8d6696a00a"
+  },
+  "pushup_plank/Plyo Push-Up": {
+   "svg": "63ccda9d241f66b20262",
+   "raw": "c27330cb95343468b82f"
+  },
+  "pushup_plank/Inverted Row": {
+   "svg": "f1c40fa97446eeb03d26",
+   "raw": "8829a9271adeb3205c4b"
+  },
+  "pushup_plank/Rollout (sztanga)": {
+   "svg": "eb1b85a3a62c0f4186be",
+   "raw": "438ea66c3faaa0698355"
+  },
+  "pushup_plank/Barbell Rollout from Bench": {
+   "svg": "867760848bb8ecee092b",
+   "raw": "89420af4d1c4262682bf"
+  },
+  "pushup_plank/Standing Barbell Rollout": {
+   "svg": "318ef8a74c8251ed1af2",
+   "raw": "c1cd613ed35828177901"
   }
  }
 }

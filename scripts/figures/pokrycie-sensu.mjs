@@ -8,7 +8,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadV2 } from './v2-build.mjs';
 import { regulyDla, otwarteDla, pominiecie, wskazowkiCwiczenia } from './v2-sens.mjs';
-import { SPRZET_OBSLUGIWANY } from './gemini-polecenia.mjs';
+import { sprzetObslugiwany } from './gemini-polecenia.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export function pokrycie(root = ROOT) {
@@ -17,7 +17,7 @@ export function pokrycie(root = ROOT) {
   const wiersze = [];
   for (const cw of Object.keys(catalog.CATALOG)) {
     const rodzina = v2.familyOf(cw); const fam = v2.FAMILY[rodzina]; const e = catalog.CATALOG[cw];
-    const sprzet = e.requires.some((g) => g.length && !g.some((c) => SPRZET_OBSLUGIWANY.includes(c)));
+    const sprzet = e.requires.some((g) => g.length && !g.some((c) => sprzetObslugiwany().includes(c)));
     const reguly = regulyDla(rodzina, cw, root).map((r) => r.id); const otw = otwarteDla(rodzina, cw, root); const wsk = wskazowkiCwiczenia(cw, root);
     const figura = fam.status === 'ready' && Object.prototype.hasOwnProperty.call(v2.VARIANTS, cw) && v2.VARIANTS[cw].family === rodzina;
     wiersze.push({ cwiczenie: cw, rodzina, gotowa_rodzina: fam.status === 'ready', figura, reguly, otwarte: otw, pomin: pominiecie(rodzina, cw, root), sprzet_poza_kontraktem: sprzet, wskazowki: wsk });
