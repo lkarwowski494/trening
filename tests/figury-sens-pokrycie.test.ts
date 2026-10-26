@@ -11,18 +11,19 @@ type P = { cwiczen: number; rodziny: Record<string, { cwiczen: number; z_regulam
 const p: P = JSON.parse(execFileSync(process.execPath, [path.join(ROOT, 'scripts/figures/pokrycie-sensu.mjs'), '--json'], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 }));
 
 describe('pokrycie regułami sensu (bramka 3/5)', () => {
-  test('709 ćwiczeń; rodziny z regułami: pull_up, core_floor, curl, triceps, delt_raise, pushup_plank — razem 175 ćwiczeń z regułami; każde ćwiczenie ma dokładnie jeden status', () => {
+  test('709 ćwiczeń; 17 rodzin z regułami (6 z rundy 1 + squat, bench_press, hinge, lunge, overhead_press, chest_fly, row, cable_row, pulldown, plyo, olympic z rundy 2); każde ćwiczenie ma dokładnie jeden status; zapadka: pokrycie nie maleje', () => {
     expect(p.cwiczen).toBe(709);
-    const z = Object.entries(p.rodziny).filter(([, x]) => x.z_regulami > 0).map(([r, x]) => [r, x.z_regulami]).sort();
-    expect(z).toEqual([['core_floor', 35], ['curl', 36], ['delt_raise', 33], ['pull_up', 12], ['pushup_plank', 30], ['triceps', 29]]);
+    const z = Object.fromEntries(Object.entries(p.rodziny).filter(([, x]) => x.z_regulami > 0).map(([r, x]) => [r, x.z_regulami]));
+    expect(z).toEqual({ bench_press: 30, cable_row: 9, chest_fly: 17, core_floor: 35, curl: 36, delt_raise: 33, hinge: 32, lunge: 24, olympic: 23, overhead_press: 19, plyo: 27, pull_up: 12, pulldown: 7, pushup_plank: 30, row: 13, squat: 25, triceps: 29 });
+    expect(Object.values(z).reduce((a, b) => a + b, 0)).toBe(401);
     for (const [r, x] of Object.entries(p.rodziny)) expect([r, x.z_regulami + x.otwarte + x.sprzet_poza_kontraktem + x.bez_regul]).toEqual([r, x.cwiczen]);
     expect(Object.values(p.rodziny).reduce((a, x) => a + x.cwiczen, 0)).toBe(709);
   });
-  test('DŁUG: 87 gotowych figur (squat, bench_press, hinge) BEZ reguł sensu — wszystkie mają wskazówki (kandydaci do reguł); zapadka: liczba nie może rosnąć, spadek wymaga aktualizacji testu', () => {
-    expect(p.gotowe_figury).toBe(87); expect(p.gotowe_bez_regul).toHaveLength(87); expect(p.gotowe_z_wskazowkami).toBe(87); expect(p.gotowe_bez_wskazowek).toBe(0);
-    for (const c of ['Back Squat', 'Bench Press (sztanga)', 'RDL (sztanga)']) expect(p.gotowe_bez_regul).toContain(c);
-    const geo = ['hinge.back', 'mis.roundBack', 'sq.back', 'sq.kneesToes', 'sq.mis.kneesIn', 'sq.down', 'bp.contact', 'dl.close', 'rdl.knees']; /* wskazówki o treści geometrycznej — kandydaci do reguł */
-    for (const g of geo) expect([g, p.wskazowki_gotowych[g] > 0]).toEqual([g, true]);
-    expect(Object.keys(p.wskazowki_gotowych).length).toBe(64);
+  test('87 gotowych figur (squat, bench_press, hinge) ma reguły sensu (runda 2): lista bez reguł jest pusta; naruszenia figur: zapadka — liczba figur łamiących reguły nie może rosnąć (stan 26.10.2026: 42 z 87; naprawa parametrami figur, nie luzowaniem progów)', () => {
+    expect(p.gotowe_figury).toBe(87); expect(p.gotowe_bez_regul).toEqual([]);
+    const n = JSON.parse(execFileSync(process.execPath, [path.join(ROOT, 'scripts/figures/sens-gotowe.mjs'), '--json'], { encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 })) as { cwiczenie: string; naruszenia: { regula: string }[] }[];
+    expect(n).toHaveLength(87); const z = n.filter((x) => x.naruszenia.length);
+    expect(z.length).toBeLessThanOrEqual(42); /* spadek (naprawy) wymaga zmniejszenia tej liczby */
+    const reguly = new Set(z.flatMap((x) => x.naruszenia.map((y) => y.regula))); for (const r of reguly) expect(['kolana_nad_stopami', 'zawias_w_biodrach', 'kolana_lekko_ugiete', 'wyprost_na_gorze', 'przedramie_pod_sztanga', 'ciezar_przy_nogach', 'zakres_podloga', 'pelny_zakres']).toContain(r);
   });
 });

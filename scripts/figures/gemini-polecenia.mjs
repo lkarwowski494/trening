@@ -5,7 +5,7 @@
 //   node scripts/figures/gemini-polecenia.mjs --rodzina pull_up --wyjscie <katalog>
 //   node scripts/figures/gemini-polecenia.mjs --wszystkie --wyjscie <katalog>        (każda rodzina, której pozy nie są jeszcze gotowe; pliki <id>.md albo <id>-1.md, <id>-2.md…)
 // Liczby (zakresy stawów, tolerancje, minimalny ruch) pochodzą z silnika (CONTRACT, TOL, lib/figures/data.json) — nie są przepisane ręcznie. Nic nie jest zapisywane w repozytorium.
-import { readFileSync, writeFileSync, mkdirSync, existsSync, mkdtempSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, mkdtempSync, rmSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -58,7 +58,7 @@ export function czesciRodziny(rodzina, opcje) {
 
 /* ---------- silnik (liczby) ---------- */
 let silnikCache = null;
-const silnik = () => (silnikCache ??= loadV2(mkdtempSync(join(tmpdir(), 'polecenia-'))));
+const silnik = () => { if (!silnikCache) { const dir = mkdtempSync(join(tmpdir(), 'polecenia-')); silnikCache = loadV2(dir); process.on('exit', () => { try { rmSync(dir, { recursive: true, force: true }); } catch { /* sprzątanie best effort */ } }); } return silnikCache; };
 export const silnikCatalog = () => silnik().catalog;
 
 /* ---------- opis pól (zwięzła tabela ze schematu) ---------- */
@@ -222,6 +222,41 @@ const OPIS_TYPU = {
   lokiec_nad_dlonia_u1: (q) => `w u = 1 łokieć jest co najmniej ${q.min_cm} cm nad dłonią`,
   ciezar_blisko_glowy: (q) => `ciężar (środek chwytu) jest w całym ruchu ≤ ${q.max_cm} cm od głowy`,
   miednica_na_linii: (q) => `miednica leży ≤ ${q.max_cm} cm od linii barki–${q.koniec === 'kolano' ? 'kolano' : 'kostka (dalsza)'}${q.tylko_skrajna ? ' w pozycji skrajnej' : ' w całym ruchu'} (ciało w jednej linii)`,
+  kregoslup_neutralny: (q) => `zgięcie kręgosłupa (zgiecieKregoslupa; dodatnie = zaokrąglony grzbiet) w ${q.min_deg}°…${q.max_deg}° w każdej klatce (plecy neutralne)`,
+  kolano_w_linii_stopy: (q) => `przy zgięciu kolana ≥ ${q.min_zgiecie_deg}° kolano (nogi: ${q.nogi}) nie odchodzi do środka od osi stopy o więcej niż ${q.max_do_srodka_deg}° (kolana w linii palców)`,
+  piety_na_podlodze: (q) => `pięta każdej nogi zmienia wysokość o ≤ ${q.max_cm} cm (pięty na podłodze)`,
+  kolano_biodro_zakres: (q) => `w ruchu średnie kolano sięga ≥ ${q.kolano_min_max_deg}° i prostuje się do ≤ ${q.kolano_max_min_deg}°, a biodro sięga ≥ ${q.biodro_min_max_deg}°`,
+  udo_rownolegle_na_dole: (q) => `w najniższym punkcie (najniższa miednica) udo każdej nogi jest ≤ ${q.max_deg}° nad poziomem (równolegle albo niżej)`,
+  stanie_wyprost: (q) => `w którejś klatce kolana ≤ ${q.max_kolano_deg}°, biodra ≤ ${q.max_biodro_deg}° i |pochylenieTulowia| ≤ ${q.max_tulow_deg}° (pełny wyprost)`,
+  ciezar_blisko_nog: (q) => `środek chwytu ≤ ${q.max_cm} cm od linii kostka → kolano → miednica → barki (w płaszczyźnie x, y)${q.tylko_ponizej_barkow ? ', dopóki jest poniżej barków' : ''}`,
+  ciezar_ponizej_kolan: (q) => `w którejś klatce chwyt jest ≥ ${q.min_cm} cm poniżej środka kolan (start z podłogi)`,
+  pochylenie_tulowia_ruch: (q) => `pochylenieTulowia w ruchu: ${[q.min_deg !== undefined && `≥ ${q.min_deg}°`, q.max_deg !== undefined && `≤ ${q.max_deg}°`, q.min_zmiana_deg !== undefined && `zmiana ≥ ${q.min_zmiana_deg}°`, q.max_zmiana_deg !== undefined && `zmiana ≤ ${q.max_zmiana_deg}°`].filter(Boolean).join(', ')}`,
+  kolana_max: (q) => `kąt kolan ≤ ${q.max_deg}° w każdej klatce (kolana tylko lekko ugięte)`,
+  lawka_kontakt: (q) => `miednica zmienia wysokość o ≤ ${q.max_cm} cm, a zgiecieKregoslupa ≥ ${q.min_kregoslup_deg}° (pośladki i lędźwie na ławce)`,
+  chwyt_przy_klatce: (q) => `przy największym zgięciu łokcia chwyt jest ≤ ${q.max_cm} cm przed klatką (w osi normalnej klatki)`,
+  lokiec_pod_chwytem: (q) => `odległość chwytu od łokcia w osiach ${q.osie.join(', ')} ≤ ${q.max_cm} cm w całym ruchu (przedramię pionowo)`,
+  odwiedzenie_ramienia_max: (q) => `przy największym zgięciu łokcia odwiedzenie ramienia ≤ ${q.max_deg}°`,
+  ciezar_nad_glowa: (q) => `${q.tylko_u1 ? 'w u = 1' : 'w którejś klatce'} chwyt ≥ ${q.min_cm} cm nad głową${q.lokiec_max_deg !== undefined ? `, łokcie ≤ ${q.lokiec_max_deg}°` : ''}`,
+  chwyt_przy_barkach: (q) => `${q.caly_ruch ? 'w każdej klatce' : 'w którejś klatce'} chwyt jest ${q.min_cm !== undefined ? `${q.min_cm}…` : 'najwyżej '}${q.max_cm} cm względem wysokości barków`,
+  ciezar_nad_barkami: (q) => `w najwyższym punkcie chwyt jest ≤ ${q.max_cm} cm przed/za barkami (w osi x)`,
+  ugiecie_kolan_zakres: (q) => `największe zgięcie kolan w ruchu ≥ ${q.min_deg}°${q.max_deg !== undefined ? ` i ≤ ${q.max_deg}°` : ''}`,
+  dlonie_zblizaja_sie: (q) => `odległość między dłońmi zmienia się o ≥ ${q.min_cm} cm w ruchu`,
+  chwyt_nie_ponizej_barkow: (q) => `chwyt nie schodzi poniżej ${q.min_cm} cm względem barku w żadnej klatce`,
+  kat_ramie_tulow_zakres: (q) => `kąt ramię–tułów zmienia się o ≥ ${q.min_deg}° w ruchu (dla co najmniej jednej strony)`,
+  lokiec_za_tulowiem: (q) => `w którejś klatce łokcie są ≥ ${q.min_cm} cm za linią barków (po stronie pleców)`,
+  lokcie_w_dol: (q) => `przy najniższym chwycie łokcie są ≥ ${q.min_cm} cm pod barkami`,
+  lot: (q) => `w którejś klatce obie stopy są ≥ ${q.min_cm} cm nad podparciem (podłoga albo wierzch skrzyni) — lot`,
+  amortyzacja_ladowania: (q) => `po ostatniej klatce w locie ruch kończy się lądowaniem: kolano ≥ ${q.min_kolano_deg}° i biodro ≥ ${q.min_biodro_deg}° (miękkie lądowanie)`,
+  potrojny_wyprost: (q) => `w którejś klatce (nogi: ${q.nogi}) kolano ≤ ${q.max_kolano_deg}°, biodro ≤ ${q.max_biodro_deg}°${q.max_kostka_deg !== undefined ? `, kostka ≤ ${q.max_kostka_deg}°` : ''} — potrójny wyprost`,
+  dlonie_na_wysokosci_barkow: (q) => `w którejś klatce ${q.min_rak} ręk(a/i) ma dłoń ≥ ${q.min_cm} cm nad barkiem`,
+  rece_przed_wyprostem_bioder: (q) => `od najgłębszego zgięcia bioder do ich wyprostu (≤ ${q.max_biodro_deg}°) łokcie ≤ ${q.max_lokiec_deg}° (ręce proste)`,
+  odbior_na_barkach_u1: (q) => `w u = 1 chwyt ${q.min_cm}…${q.max_cm} cm względem barków, łokcie nie niżej niż ${q.max_lokiec_pod_barkiem_cm} cm pod barkiem (odbiór na barkach)`,
+  wolna_noga_przod: (q) => `wolna noga (mniej zgięta): kostka ≥ ${q.min_y_cm} cm nad podłogą w ruchu i ≥ ${q.min_przod_cm} cm przed miednicą w najniższym punkcie`,
+  wejscie_na_podwyzszenie: (q) => `miednica unosi się o ≥ ${q.min_cm} cm, a na szczycie mniejszy kąt kolan ≤ ${q.max_kolano_deg}°`,
+  kolano_tylne_nisko: (q) => `w najniższym punkcie tylne kolano ma y ≤ ${q.max_cm} cm (przy podłodze)`,
+  lokcie_wysoko: (q) => `łokcie nie schodzą więcej niż ${q.max_cm} cm pod barki w żadnej klatce`,
+  chwyt_blisko_tulowia: (q) => `środek chwytu ≤ ${q.max_cm} cm od odcinka miednica–barki w całym ruchu`,
+  kolana_do_klatki: (q) => `w locie (stopy ≥ ${q.min_cm} cm nad podparciem) biodro ≥ ${q.min_biodro_deg}° i kolano ≥ ${q.min_kolano_deg}° (kolana do klatki)`,
   jedna_reka: (q) => `sztanga ma trzyma: "R" albo "L", a wolna dłoń jest ≥ ${q.min_wolna_od_osi_cm} cm od osi drążka`,
 };
 /** Sekcja „Reguły sensu” dla ćwiczeń części: reguły raz (z liczbami), potem które ćwiczenia ich dotyczą; + wymóg dla błędów. */
@@ -325,25 +360,27 @@ export function czesciPolecen(rodzina, opcje = {}) {
   return cz.map((cwiczenia, i) => ({ id: cz.length === 1 ? rodzina : `${rodzina}-${i + 1}`, cwiczenia }));
 }
 /** Polecenia rodziny: [{ plik, tresc, cwiczenia, pomijane, wstrzymane }] — części liczone po odfiltrowaniu (tylko ćwiczenia z regułami), pominięte i wstrzymane wymienione w pierwszej części. */
-export async function poleceniaRodziny(rodzina, { root = ROOT, lista, bezRegul = false } = {}) {
+export async function poleceniaRodziny(rodzina, { root = ROOT, lista, bezRegul = false, wyklucz = [], nazwa = null } = {}) {
   const kontrakt = await wczytajKontrakt(root);
   if (!kontrakt) throw new Error('brak scripts/figures/v2-validate.mjs');
   const docs = lista ?? join(root, 'docs/51-figury-v2-pokrycie.md'); const r = rodzinyZDokumentu(docs).find((x) => x.id === rodzina);
   const przyklady = wzorce(rodzina, kontrakt, root); const { catalog } = silnik();
-  const { robic, pomijane, wstrzymane } = klasyfikujCwiczenia(rodzina, { root, lista: docs, bezRegul });
+  const kl = klasyfikujCwiczenia(rodzina, { root, lista: docs, bezRegul }); const { pomijane, wstrzymane } = kl; const robic = kl.robic.filter((c) => !wyklucz.includes(c)); /* --wyklucz: ćwiczenia już wysłane wcześniejszymi plikami */
   const cz = podzielNaCzesci(robic);
-  return cz.map((cwiczenia, i) => { const czesc = { id: cz.length === 1 ? rodzina : `${rodzina}-${i + 1}`, numer: i + 1, ile: cz.length };
+  return cz.map((cwiczenia, i) => { const czesc = { id: nazwa && cz.length === 1 ? nazwa : nazwa ? `${nazwa}-${i + 1}` : cz.length === 1 ? rodzina : `${rodzina}-${i + 1}`, numer: i + 1, ile: cz.length };
     const info = i === 0 ? [...pomijane, ...wstrzymane] : [];
     return { plik: `${czesc.id}.md`, cwiczenia, pomijane: i === 0 ? pomijane : [], wstrzymane: i === 0 ? wstrzymane : [],
       tresc: budujPolecenie({ rodzina, opisRodziny: r.opis, widoki: r.widoki, czesc, cwiczenia, przyklady, kontrakt, pomijane: info, root, opisy: cwiczenia.map((c) => opisCwiczenia(c, { root, bledyCwiczenia: kontrakt.bledyCwiczenia, catalog, rodzina })) }) }; });
 }
 
 export function parsujArgumenty(argv) {
-  const o = { rodzina: null, wszystkie: false, bezRegul: false, wyjscie: null };
+  const o = { rodzina: null, wszystkie: false, bezRegul: false, wyklucz: [], nazwa: null, wyjscie: null };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]; const w = () => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${a}`); return argv[++i]; };
     if (a === '--rodzina') { o.rodzina = w(); if (!/^[a-z][a-z0-9_]{1,40}$/.test(o.rodzina)) throw new Error('--rodzina: oczekiwany identyfikator rodziny'); }
     else if (a === '--wszystkie') o.wszystkie = true;
+    else if (a === '--wyklucz') o.wyklucz = w().split(',').map((x) => x.trim()).filter(Boolean); /* ćwiczenia pominięte w tym przebiegu (już wysłane innymi plikami) */
+    else if (a === '--nazwa') { o.nazwa = w(); if (!/^[a-z][a-z0-9_-]{1,40}$/.test(o.nazwa)) throw new Error('--nazwa: oczekiwana nazwa pliku bez rozszerzenia'); } /* nazwa pliku wyniku zamiast <rodzina> (nie nadpisuje plików już wysłanych) */
     else if (a === '--bez-regul') o.bezRegul = true; /* wymusza polecenie dla rodziny bez reguł sensu (bramka 3 pominięta — tylko świadomie) */
     else if (a === '--wyjscie') o.wyjscie = w();
     else throw new Error(`nieznany argument: ${a}`);
@@ -359,7 +396,7 @@ export async function main(argv, { root = ROOT, log = console.log } = {}) {
   const ids = (o.wszystkie ? rodzinyZDokumentu(docs).filter((r) => r.stan !== 'gotowa').map((r) => r.id) : [o.rodzina]).filter((id) => { if (maRegul(id) || o.bezRegul) return true; log(`${id}: POMINIĘTA — brak reguł sensu w data/zrodla/figury-sens.json (docs/53, bramka 3; --bez-regul wymusza)`); return false; });
   mkdirSync(resolve(o.wyjscie), { recursive: true }); let plikow = 0, najdluzsze = 0, rodzin = 0;
   for (const id of ids) {
-    const p = await poleceniaRodziny(id, { root, bezRegul: o.bezRegul }); if (!p.length) { log(`${id}: nic do zrobienia (pozy gotowe)`); continue; }
+    const p = await poleceniaRodziny(id, { root, bezRegul: o.bezRegul, wyklucz: o.wyklucz, nazwa: o.nazwa }); if (!p.length) { log(`${id}: brak ćwiczeń do wysłania (pozy gotowe, albo wszystkie pominięte/wstrzymane — sprzęt poza kontraktem, OTWARTE, brak reguł)`); continue; }
     rodzin++;
     for (const x of p) {
       if (x.tresc.length > MAX_ZNAKOW) throw new Error(`${x.plik}: polecenie ma ${x.tresc.length} znaków (limit ${MAX_ZNAKOW})`);

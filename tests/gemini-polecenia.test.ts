@@ -20,8 +20,9 @@ const VAL = path.join(ROOT, 'scripts/figures/v2-validate.mjs');
 const run = (script: string, code: string) => JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${JSON.stringify(script)}; ${code}`], { env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }));
 
 /** Korzeń tymczasowy: dane wejściowe skopiowane (docs/51 z rodziną pull_up zawężoną do dwóch ćwiczeń), skrypty przez dowiązanie; zapis póz i rejestru trafia tylko tutaj. */
+const SPRZATANIE: string[] = []; afterAll(() => { for (const d of SPRZATANIE) fs.rmSync(d, { recursive: true, force: true }); });
 function tmpRoot(pelny = false): string {
-  const r = fs.mkdtempSync(path.join(os.tmpdir(), 'polecenia-'));
+  const r = fs.mkdtempSync(path.join(os.tmpdir(), 'polecenia-')); SPRZATANIE.push(r);
   for (const f of ['docs/51-figury-v2-pokrycie.md', 'lib/figures/data.json', 'lib/figures/v2/cue-sets.json', 'lib/cues/data.json', 'lib/cues/text/pl.json', 'data/zrodla/figury-sens.json', ...(pelny ? ['data/figury-bledy-modelu.json'] : [])]) { fs.mkdirSync(path.dirname(path.join(r, f)), { recursive: true }); fs.copyFileSync(path.join(ROOT, f), path.join(r, f)); }
   const dp = path.join(r, 'docs/51-figury-v2-pokrycie.md'); fs.writeFileSync(dp, fs.readFileSync(dp, 'utf8').replace(/(### pull_up \(\d+\) — do zrobienia\n\n)([^\n]*)/, (_m, h, l) => h + (pelny ? l.replace('Gironda Sternum Chins; ', '') : 'Chin Up; Pull Up')));
   fs.mkdirSync(path.join(r, 'scripts'), { recursive: true }); fs.symlinkSync(path.join(ROOT, 'scripts/figures'), path.join(r, 'scripts/figures'));
@@ -79,7 +80,7 @@ describe('reguły sensu ruchu (data/zrodla/figury-sens.json + v2-sens.mjs; docs/
     const d = klon(WZ['Pull Up']); d.klatki[0].pochylenieTulowia = -20; d.bledy = []; expect(waliduj(d, 'Pull Up').bledy.map((x) => x.kod)).toContain('sens');
   });
   test('wyjątki wariantów: Gironda i Muscle Up bez reguł bujania; Rope Climb do pominięcia; Side To Side bez limitu z; jednorącz wymaga trzyma R/L i wolnej dłoni poza drążkiem', () => {
-    const r = run(SENS, `console.log(JSON.stringify([m.regulyDla('pull_up', 'Gironda Sternum Chins').map(x => x.id), m.regulyDla('pull_up', 'Muscle Up').map(x => x.id), m.pominiecie('pull_up', 'Rope Climb'), m.regulyDla('pull_up', 'Side To Side Chins').map(x => x.id), m.regulyDla('pull_up', 'Squat Xyz'), m.regulyDla('squat', 'Back Squat'), m.regulyDla('pull_up', 'Dead Hang').map(x => x.id)]))`) as any[];
+    const r = run(SENS, `console.log(JSON.stringify([m.regulyDla('pull_up', 'Gironda Sternum Chins').map(x => x.id), m.regulyDla('pull_up', 'Muscle Up').map(x => x.id), m.pominiecie('pull_up', 'Rope Climb'), m.regulyDla('pull_up', 'Side To Side Chins').map(x => x.id), m.regulyDla('pull_up', 'Squat Xyz'), m.regulyDla('dip', 'Chest Dip'), m.regulyDla('pull_up', 'Dead Hang').map(x => x.id)]))`) as any[];
     expect(r[0]).toEqual(['dol_rece_proste']); expect(r[1]).toEqual(['dol_rece_proste']); expect(r[2]).toMatch(/lina/); expect(r[3]).toContain('miednica_nie_buja_x'); expect(r[3]).not.toContain('miednica_nie_buja'); expect(r[4]).toEqual([]); expect(r[5]).toEqual([]); expect(r[6]).toContain('nogi_nieruchome') /* bujanie nogami jest bujaniem (wskazówka pu.noSwing: „bez wymachów nogami”) */;
     const oa = klon(WZ['Pull Up']); oa.cwiczenie = 'One Arm Chin-Up'; oa.bledy = [];
     expect(waliduj(oa, 'One Arm Chin-Up').bledy.map((b) => b.szczegol).join('|')).toMatch(/jednorącz, a sprzet\[\] ma drążek trzymany obiema rękami/);
@@ -97,8 +98,8 @@ describe('reguły sensu ruchu (data/zrodla/figury-sens.json + v2-sens.mjs; docs/
     const sz = waliduj(nz, 'Mixed Grip Chin').bledy.filter((b) => b.kod === 'blad-sens').map((b) => b.szczegol).join('|');
     expect(sz).toMatch(/nie łamie żadnej reguły grupy „bujanie”/); expect(sz).toMatch(/łamie także regułę innej grupy „pelna_amplituda” \(broda_nad_drazkiem\)/);
   });
-  test('rodzina bez reguł (np. squat): sens pominięty, walidator zachowuje się jak dotąd', () => {
-    expect(run(SENS, `console.log(JSON.stringify(m.sprawdzSens({ v2: null, poza: {}, rodzina: 'squat', cwiczenie: 'Back Squat' })))`)).toEqual([]);
+  test('rodzina bez reguł (np. dip): sens pominięty, walidator zachowuje się jak dotąd', () => {
+    expect(run(SENS, `console.log(JSON.stringify(m.sprawdzSens({ v2: null, poza: {}, rodzina: 'dip', cwiczenie: 'Chest Dip' })))`)).toEqual([]);
   });
 });
 
@@ -119,7 +120,7 @@ describe('gemini-polecenia: logika', () => {
 });
 
 describe('gemini-polecenia: treść polecenia v2 (liczby z silnika, reguły z danych, rejestr błędów, wzorce)', () => {
-  const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'polecenia-')), 'out'); /* stały stan wejściowy (PELNY); rejestr i reguły skopiowane z repozytorium; zapis tylko w katalogu wyniku */
+  const out = path.join(tmpRoot(), 'out'); /* stały stan wejściowy (PELNY); rejestr i reguły skopiowane z repozytorium; zapis tylko w katalogu wyniku */
   run(POL, `await m.main(['--rodzina','pull_up','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(PELNY)}, log: () => {} }); console.log('0')`);
   const tresc = fs.readFileSync(path.join(out, 'pull_up.md'), 'utf8');
   test('sekcje: kontrakt, pola, punkty odniesienia, wymagania, reguły sensu, najczęstsze błędy, wzorce, ćwiczenia, format z polem polecenie@N; wersja rdzenia w nagłówku', () => {
@@ -161,11 +162,11 @@ describe('gemini-polecenia: treść polecenia v2 (liczby z silnika, reguły z da
 });
 
 describe('gemini-polecenia: macierz rodzin (--wszystkie) i bramka reguł sensu', () => {
-  test('polecenie powstaje tylko dla rodzin z regułami sensu (pull_up, core_floor, curl, triceps, delt_raise, pushup_plank); pozostałe 34 rodziny do zrobienia są POMINIĘTE z komunikatem (docs/53, bramka 3); części ≤ 12 ćwiczeń, długość ≤ limitu, każdy klucz części w poleceniu; --bez-regul wymusza', () => {
+  test('polecenie powstaje tylko dla rodzin z regułami sensu (14 niegotowych rodzin po rundzie 2); pozostałe 26 rodzin do zrobienia jest POMINIĘTE z komunikatem (docs/53, bramka 3); części ≤ 12 ćwiczeń, długość ≤ limitu, każdy klucz części w poleceniu; --bez-regul wymusza', () => {
     const r = tmpRoot(true); const out = path.join(r, 'out');
     const wynik = run(POL, `const log = []; await m.main(['--wszystkie','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(r)}, log: (s) => log.push(s) }); console.log(JSON.stringify(log));`) as string[];
-    const pliki = fs.readdirSync(out).sort(); expect(wynik.filter((l) => /POMINIĘTA — brak reguł sensu/.test(l))).toHaveLength(34); expect(wynik[wynik.length - 1]).toMatch(/^rodzin: 6, plików: \d+, najdłuższe: \d+ znaków$/);
-    expect(pliki.every((f) => /^(pull_up|core_floor|curl|triceps|delt_raise|pushup_plank)(-\d+)?\.md$/.test(f))).toBe(true); expect(pliki).toContain('pull_up.md'); expect(pliki.some((f) => f.startsWith('pushup_plank'))).toBe(true); expect(pliki.filter((f) => f.startsWith('core_floor')).length).toBeGreaterThanOrEqual(2);
+    const pliki = fs.readdirSync(out).sort(); expect(wynik.filter((l) => /POMINIĘTA — brak reguł sensu/.test(l))).toHaveLength(26); expect(wynik[wynik.length - 1]).toMatch(/^rodzin: 12, plików: \d+, najdłuższe: \d+ znaków$/);
+    expect(pliki.every((f) => /^(pull_up|core_floor|curl|triceps|delt_raise|pushup_plank|lunge|overhead_press|chest_fly|row|olympic|plyo)(-\d+)?\.md$/.test(f))).toBe(true); expect(pliki).toContain('pull_up.md'); expect(pliki.some((f) => f.startsWith('pushup_plank'))).toBe(true); expect(pliki.filter((f) => f.startsWith('core_floor')).length).toBeGreaterThanOrEqual(2);
     for (const f of pliki) {
       const t = fs.readFileSync(path.join(out, f), 'utf8'); expect([f, t.length < 36000]).toEqual([f, true]); expect(t).toContain('[polecenie@2]'); expect(t).toContain('## Reguły sensu ruchu');
       const klucze = /DOKŁADNIE te nazwy[^:]*: (.*)\.$/m.exec(t)![1].split('", "').map((k) => k.replace(/^"|"$/g, '')); expect(klucze.length).toBeLessThanOrEqual(12); for (const k of klucze) expect([f, t.includes(`- "${k}"`)]).toEqual([f, true]);
@@ -195,7 +196,7 @@ describe('core_floor: reguły sensu wyprowadzone ze wskazówek ćwiczeń (docs/5
     expect(wal({ ...CR, cwiczenie: 'Bird Dog' }, 'Bird Dog').bledy.map((x) => x.szczegol).join('|')).toMatch(/bird_dog_linia.*żadna para/);
   });
   test('wzorzec Crunch ma proste ramiona wzdłuż ciała (łokieć ≤ 15° w każdej klatce); bramka per ćwiczenie: bez reguł sensu → wstrzymane, --bez-regul wpuszcza', () => {
-    const el = run(path.join(ROOT, 'scripts/figures/v2-build.mjs'), `const os = await import('node:os'); const fs = await import('node:fs'); const { v2 } = m.loadV2(fs.mkdtempSync(os.tmpdir() + '/el-')); const d = ${JSON.stringify(CR)}; console.log(JSON.stringify([0, 0.5, 1].map((u) => ['R', 'L'].map((s) => v2.jointAngles(v2.keyframeFrame(d, u).sk, s).elbow))));`) as number[][];
+    const el = run(path.join(ROOT, 'scripts/figures/v2-build.mjs'), `const os = await import('node:os'); const fs = await import('node:fs'); const dir = fs.mkdtempSync(os.tmpdir() + '/el-'); process.on('exit', () => fs.rmSync(dir, { recursive: true, force: true })); const { v2 } = m.loadV2(dir); const d = ${JSON.stringify(CR)}; console.log(JSON.stringify([0, 0.5, 1].map((u) => ['R', 'L'].map((s) => v2.jointAngles(v2.keyframeFrame(d, u).sk, s).elbow))));`) as number[][];
     for (const par of el) for (const a of par) expect(a).toBeLessThanOrEqual(15);
     const k = run(POL, `console.log(JSON.stringify([m.klasyfikujCwiczenia('core_floor', { root: ${JSON.stringify(PELNY)} }), m.klasyfikujCwiczenia('core_floor', { root: ${JSON.stringify(PELNY)}, bezRegul: true })].map(x => [x.robic.length, x.pomijane.length, x.wstrzymane.length])))`); expect(k).toEqual([[21, 18, 5], [21, 18, 5]]); /* wszystkie 5 wstrzymanych to OTWARTE (brak źródła ruchu) — --bez-regul ich nie wpuszcza (wpuszcza tylko ćwiczenia bez reguły, ale ze źródłem) */ /* 5 wstrzymanych: 4 OTWARTE (Butt-Ups, Dragon Flag, Side Jackknife, Stomach Vacuum) + Seated Flat Bench Leg Pull-In bez reguły */
   });
@@ -207,7 +208,7 @@ describe('core_floor: reguły sensu wyprowadzone ze wskazówek ćwiczeń (docs/5
   test('błędy tempa/oddechu (mis.jerk, plank.mis.breath) nie są animowane: poza z takim błędem odrzucona; lista błędów w poleceniu ich nie zawiera, jest adnotacja', () => {
     const z = klon(CR); z.bledy = [{ cue: 'mis.jerk', znacznik: 'back', dotyczy: ['hip'], klatki: [{ u: 0 }, { u: 1, miednica: [0, 0, 0] }] }];
     expect(wal(z, 'Crunch').bledy.some((b) => b.kod === 'blad-sens' && /szarpanie to cecha tempa/.test(b.szczegol))).toBe(true);
-    const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'cf-')), 'out'); run(POL, `await m.main(['--rodzina','core_floor','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(PELNY)}, log: () => {} }); console.log('0')`);
+    const out = path.join(tmpRoot(), 'out'); run(POL, `await m.main(['--rodzina','core_floor','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(PELNY)}, log: () => {} }); console.log('0')`);
     const wsz = fs.readdirSync(out).map((f) => fs.readFileSync(path.join(out, f), 'utf8')).join('\n'); const p1 = fs.readFileSync(path.join(out, 'core_floor-1.md'), 'utf8');
     expect(p1).toContain('## Reguły sensu ruchu'); expect(p1).toContain('[reguła: miednica_na_podlodze]'); expect(p1).toContain('Układ leżący na plecach'); expect(p1).toMatch(/## Wzorzec 1: „Crunch” leżąc na plecach wyliczony z modelu/);
     expect(wsz).toMatch(/- "Alternate Heel Touchers" — .*błędy: brak \(bledy: \[\]\) \(nie animujemy: mis\.jerk — to cecha tempa\/oddechu, nie pozy\)/);

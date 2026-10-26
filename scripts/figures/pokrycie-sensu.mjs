@@ -12,7 +12,8 @@ import { SPRZET_OBSLUGIWANY } from './gemini-polecenia.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 export function pokrycie(root = ROOT) {
-  const { v2, catalog } = loadV2(fs.mkdtempSync(path.join(os.tmpdir(), 'pokrycie-')));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'pokrycie-')); process.on('exit', () => { try { fs.rmSync(dir, { recursive: true, force: true }); } catch { /* best effort */ } });
+  const { v2, catalog } = loadV2(dir);
   const wiersze = [];
   for (const cw of Object.keys(catalog.CATALOG)) {
     const rodzina = v2.familyOf(cw); const fam = v2.FAMILY[rodzina]; const e = catalog.CATALOG[cw];

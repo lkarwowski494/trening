@@ -19,7 +19,7 @@ const czytaj = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
 let cache = null;
 /** Silnik v2 (transpilacja do katalogu tymczasowego, raz na proces). */
 function silnik() {
-  if (!cache) cache = loadV2(fs.mkdtempSync(path.join(os.tmpdir(), 'v2validate-')));
+  if (!cache) { const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'v2validate-')); cache = loadV2(dir); process.on('exit', () => { try { fs.rmSync(dir, { recursive: true, force: true }); } catch { /* sprzątanie best effort */ } }); }
   return cache;
 }
 /** Granice zakresów stawów (docs/research/28, lib/figures/data.json → rom). */
@@ -42,7 +42,8 @@ export function opisKontraktu(rodzina) { return silnik().v2.describeContract(rod
 export function waliduj(poza, { rodzina, cwiczenie, root = ROOT }) {
   const bledy = silnik().v2.validatePose(poza, { family: rodzina, exercise: cwiczenie, errorCues: bledyCwiczenia(cwiczenie, root), rom: rom(root) });
   /* sens ruchu (docs/53, bramka 3): po przejściu schematu, kontraktu i sprzętu; ewentualny wyjątek obliczeń nie psuje geometrii */
-  if (!bledy.some((b) => ['schemat', 'kontrakt', 'rodzina', 'klatki-u', 'sprzet'].includes(b.kod))) {
+  const rigowa = silnik().v2.FAMILIES.find((f) => f.id === rodzina)?.status === 'ready'; /* rodziny gotowe (rigi z kodu) sprawdza sens-gotowe.mjs na klatkach rigu — dane pozy tych rodzin nie powstają */
+  if (!rigowa && !bledy.some((b) => ['schemat', 'kontrakt', 'rodzina', 'klatki-u', 'sprzet'].includes(b.kod))) {
     try { bledy.push(...sprawdzSens({ v2: silnik().v2, poza, rodzina, cwiczenie, root })); } catch (e) { bledy.push({ kod: 'sens', szczegol: `nie da się ocenić sensu ruchu (${e.message})` }); }
   }
   return { ok: bledy.length === 0, bledy };
