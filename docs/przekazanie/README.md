@@ -66,3 +66,7 @@ Przekład 26.10: 3 przebiegi sonnet ok. 2,1–2,8 USD; batch Opus `msgbatch_012N
 
 ## Zaplanowane przypomnienia (send_later, stara sesja)
 Nocny przegląd agentów co ~2 h (następny 21:37 UTC); wznowienie kalisteniki 2.11 07:00 UTC. Przypomnienia trafiają do starej sesji — nowa sesja powinna ustawić własne.
+
+## Grafiki 1.1 — wniosek z recenzji n5 (26.10, ok. 21:15 UTC)
+Recenzja n5: 16 OK / 8 uwaga / 5 błąd; reguły złapały 0/5 (n4 też 0/5). Wzorzec: poprawki trafiają w zmierzoną liczbę, obok wyrasta błąd innej klasy, wartości tuż pod progiem (prawo Goodharta). Zmiana podejścia (koordynator, technicznie): ograniczenia strukturalne w silniku (stała długość taśmy, deklarowane punkty podparcia, strona kończyny, kształty nad podłogą) zamiast kolejnych progów; generatory celują w środek przedziału (P2). Agent jakosc-r2 robi rundę 5 → podglądy n6 → recenzja n6.
+**Pytanie do właściciela rano (model pracy, systemowe):** A) dalej: bramki automatyczne + recenzja ruchu każdej rodziny obowiązkowa przed wydaniem (rek.: reguły jako ochrona przed regresją, recenzja jako bramka); B) skalować na całą bibliotekę dopiero po osiągnięciu ≥90% szczelności (ryzyko: termin 1.1 przesunie się o nieznany czas); C) wydać w 1.1 tylko rodziny z recenzją OK, resztę bez animacji.
