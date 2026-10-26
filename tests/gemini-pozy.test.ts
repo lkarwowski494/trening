@@ -411,7 +411,7 @@ describe('workflow gemini-figury.yml (strażnik)', () => {
     expect(wf).toMatch(/lokalizacja:[\s\S]*?type: choice[\s\S]*?default: global[\s\S]*?options: \[global, us, eu\]/); expect(run('console.log(JSON.stringify(m.LOKALIZACJE))')).toEqual(['global', 'us', 'eu']);
     expect(wf).toMatch(/diagnoza:[\s\S]*?type: boolean[\s\S]*?default: false/); expect(wf).toMatch(/--diagnoza --api "\$WEJ_API" --lokalizacja "\$WEJ_LOKALIZACJA" --rodzina "\$WEJ_RODZINA" --model "\$WEJ_MODEL" --limit-usd "\$WEJ_LIMIT"/);
     expect(wf).toMatch(/lista_modeli:[\s\S]*?type: boolean[\s\S]*?default: false/); expect(wf).toMatch(/WEJ_LOKALIZACJA: \$\{\{ inputs\.lokalizacja \}\}/); expect(wf).toMatch(/--lista-modeli --api "\$WEJ_API" --lokalizacja "\$WEJ_LOKALIZACJA"/);
-    expect(wf).toMatch(/WEJ_API: \$\{\{ inputs\.api \}\}/); expect(wf.match(/--api "\$WEJ_API"/g)).toHaveLength(3); /* szacunek, lista modeli i generowanie */
+    expect(wf).toMatch(/WEJ_API: \$\{\{ inputs\.api \}\}/); expect(wf.match(/--api "\$WEJ_API"/g)).toHaveLength(4); /* szacunek, lista modeli, diagnoza i generowanie */
     expect(wf).toMatch(/tylko_szacuj:[\s\S]*?default: true/); expect(wf).toMatch(/rodzina:[\s\S]*?default: pull_up/);
     expect(wf).toMatch(/concurrency:\n  group: gemini-figury\n  cancel-in-progress: false/);
   });
