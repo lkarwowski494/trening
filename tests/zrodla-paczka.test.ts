@@ -47,6 +47,13 @@ describe('strażnik paczki (scripts/check-bundle.mjs): wyszukiwanie nazw w bajta
     for (const [nazwa, buf] of cases) expect([nazwa, hits(buf) > 0]).toEqual([nazwa, true]);
     for (const clean of ['Wyciskanie sztangi leżąc', 'Przysiad ze sztangą — plecy proste', 'Dumbbell row']) for (const enc of ['utf8', 'utf16le'] as const) expect([clean, enc, hits(Buffer.from(clean, enc))]).toEqual([clean, enc, 0]);
   });
+  test('L-032: 3-literowy skrót w losowych bajtach bajtkodu (krótki bieg tekstu) nie jest trafieniem; ten sam skrót w ciągłej tablicy łańcuchów — tak', () => {
+    const noise = Buffer.concat([Buffer.from([0x59, 0x72, 0x98, 0x8b, 0xee, 0x5b, 0x43, 0x87, 0x53, 0x8f, 0xa4, 0x44, 0xa4]), Buffer.from('DECDC', 'latin1'), Buffer.from([0xa1, 0x4e, 0x07, 0x96, 0x48])]);
+    expect(hits(noise)).toBe(0);
+    expect(hits(Buffer.from('\x01tekst CDC i dalszy tekst\x02', 'utf8'))).toBeGreaterThan(0);
+    expect(hits(Buffer.from('pole.CDC.pole', 'utf8'))).toBeGreaterThan(0);
+    expect(hits(Buffer.from('\x01\x02ACSM\x03', 'latin1'))).toBeGreaterThan(0); /* 4+ liter: bez wyjątku */
+  });
   test('dozwolone łańcuchy (stare tłumaczenia z zestawu do przekładu) są pomijane, reszta nie', () => {
     const old = 'Návrh podle směrnice USA 2018 (WHO, ACSM)';
     expect(hits(Buffer.from(`a${old}b`, 'utf8'), [old])).toBe(0);
