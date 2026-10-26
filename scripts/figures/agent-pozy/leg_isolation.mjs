@@ -88,6 +88,8 @@ export function slizgacze(cw) {
 export const WYJATKI = {
   'Leg Curl (hantel)': 'hantel zaciśnięty między stopami: sprzęt „hantel” podąża tylko za dłonią (chwyt), a nie za kostką — kontrakt nie umie narysować ciężaru trzymanego stopami',
   'Stability Ball Hamstring Curl': 'piłka gimnastyczna ma w kontrakcie stałe położenie (x, z) i toczy się po podłodze razem z piętami, więc przy ruchu kostek o ok. 40 cm pięty nie mogą leżeć na piłce w każdej klatce',
+  'Glute Ham Raise': 'schemat „rzymskiej” ma podpórkę pod biodrami i wałki na kostki (oś ruchu = biodra, osoba leży przodem), a w GHR ciało obraca się wokół podpórki pod udami/kolanami z kolanem jako głównym stawem ruchu — takiej podpórki ani ruchu kolana pod obciążeniem tułowia nie da się odwzorować w tym schemacie bez naginania sprzętu (sprzęt rzymska: kontakty biodra/uda/tułów z podpórką do 3 cm)',
+  'Nordic Curl': 'ćwiczenie wymaga klęku na podpórce z kostkami zaczepionymi za sobą (ghd, glute ham, wyciąg górny albo sztanga) i opadania prostego ciała do przodu wokół kolan; w kontrakcie nie ma podpórki pod kolana (rzymska ma podpórkę biodrową z kostkami po stronie +x przy leżeniu przodem), a sztanga/wyciąg jako zaczep kostek nie mają chwytu na kostce — poza nie byłaby zgodna ze sprzętem',
 };
 export const PRZYBLIZENIA = {};
 export function generuj() {

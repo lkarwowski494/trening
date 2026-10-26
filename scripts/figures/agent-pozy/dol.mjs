@@ -125,3 +125,17 @@ export function klatkaPiersiowa(m, p, { roll = 0, twist = 0, lean = 0, bend = 0 
   const pt = (a, bb, c) => [0, 1, 2].map((i) => sc[i] + ax.up[i] * a + ax.front[i] * bb + ax.right[i] * c);
   return { up: ax.up, front: ax.front, right: ax.right, sc, sh, pt };
 }
+
+/** Klatki kluczowe równomiernie co do DROGI najszybciej poruszającego się punktu (kontrakt: skok ≤ 6 cm na 1/48 ruchu; interpolacja klatek jest liniowa, więc przy ruchu o zmiennej prędkości
+ * gęstsze klatki dają krótszy odcinek tam, gdzie ruch jest szybki). Zwraca n wartości u (0 … 1). ok(u) → klatka kontraktu; sprzęt i ćwiczenie są potrzebne do liczenia szkieletu. */
+export function kluczeRownoDroznie(rodzina, cw, sprzet, ok, n = 12, N = 120) {
+  const E = v2(); const us = Array.from({ length: N + 1 }, (_, i) => i / N);
+  const p = { kontrakt: E.CONTRACT.id, rodzina, cwiczenie: cw, sprzet, klatki: us.map((u) => ok(u)), bledy: [] };
+  const pts = (f) => [f.sk.pelvis, f.sk.head, f.sk.shoulderC, f.sk.spineMid, ...['R', 'L'].flatMap((s) => [f.sk.legs[s].knee, f.sk.legs[s].ankle, f.sk.legs[s].heel, f.sk.legs[s].toe, f.sk.arms[s].elbow, f.sk.arms[s].grip])];
+  const d = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+  let prev = pts(E.keyframeFrame(p, 0)); const cum = [0];
+  for (let i = 1; i <= N; i++) { const cur = pts(E.keyframeFrame(p, us[i])); cum.push(cum[i - 1] + Math.max(...cur.map((q, j) => d(q, prev[j])))); prev = cur; }
+  const tot = cum[N]; const out = [0];
+  for (let k = 1; k < n - 1; k++) { const target = tot * k / (n - 1); let i = 1; while (i < N && cum[i] < target) i++; const t = (target - cum[i - 1]) / ((cum[i] - cum[i - 1]) || 1); out.push(Math.round((us[i - 1] + t / N) * 1000) / 1000); }
+  out.push(1); return out;
+}

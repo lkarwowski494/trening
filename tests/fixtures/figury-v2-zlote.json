@@ -944,6 +944,26 @@
    "svg": "5b536e9cef71033d303f",
    "raw": "a41879ecc797ad27ed96"
   },
+  "dip/Chest Dip": {
+   "svg": "55501a88c27ef20628f7",
+   "raw": "11f0e8de1adc760b9166"
+  },
+  "dip/Triceps Dip": {
+   "svg": "004cf3921ccfa7b50924",
+   "raw": "f59fc59437e62527cf0c"
+  },
+  "dip/Ring Dips": {
+   "svg": "17533ca33955305bd3ed",
+   "raw": "d8ac7be38c33f97e2df9"
+  },
+  "dip/Dip Machine": {
+   "svg": "0d4b3cdd8667b1e2b5b1",
+   "raw": "9b0203f5bc8420ddc3d5"
+  },
+  "dip/Triceps Dips (ławka)": {
+   "svg": "716ce04c067b2ed06c98",
+   "raw": "f5cbfc175bac302fe805"
+  },
   "glute_floor/Donkey Kick": {
    "svg": "0f5a3aeb6c3e99d83e92",
    "raw": "33452bdf1b270708f681"
@@ -1275,6 +1295,18 @@
   "pushup_plank/Standing Barbell Rollout": {
    "svg": "318ef8a74c8251ed1af2",
    "raw": "c1cd613ed35828177901"
+  },
+  "thruster/Thruster (hantle)": {
+   "svg": "b9a76b3fb96f103614b3",
+   "raw": "68d692e8cd3985c4f98c"
+  },
+  "thruster/Kettlebell Thruster": {
+   "svg": "0f94056989d0f6b08955",
+   "raw": "a621845024ac6517cf2b"
+  },
+  "thruster/Clean and Press": {
+   "svg": "fd77d83d39e9b89a23b7",
+   "raw": "4252f78e43921b7a7269"
   }
  }
 }

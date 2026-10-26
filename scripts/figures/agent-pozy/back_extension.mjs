@@ -45,7 +45,9 @@ export function lowerBackCurl(cw) {
   return poza(RODZINA, cw, [PODLOGA(-170, 130)], fr, []);
 }
 
-export const WYJATKI = {};
+export const WYJATKI = {
+  'Weighted Ball Hyperextension': 'talerz w kontrakcie to tarcza stojąca w płaszczyźnie y–z (nie da się go położyć płasko na klatce leżącego przodem), a piłka gimnastyczna ma kontakt z osią tułowia w odległości promień + 9,5 cm (wgniecenie ≤ 3 cm): przy zgięciu biodra ≥ 70° (reguła zawias_biodrowy) tułów wchodzi w piłkę o ponad 3 cm, a przy wyprostowanym na górze (biodro ≤ 15°) leży pod kątem ≈ 45–68° nad poziomem; talerz trzymany na wyprostowanych ramionach zahacza o podłogę lub piłkę',
+};
 export const PRZYBLIZENIA = {};
 export function generuj() {
   return {
