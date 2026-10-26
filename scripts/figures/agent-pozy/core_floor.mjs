@@ -97,7 +97,7 @@ function ruchMiednica(cw, { t0, k0, t1, k1, dy = 12, stopa = 'dol' }) {
   return zbuduj1(cw, us.map(fr));
 }
 export function reverseCrunch(cw, o = {}) { return ruchMiednica(cw, { t0: 90, k0: 90, t1: 135, k1: 130, dy: 11, ...o }); }
-function legPullIn(cw) { const ks = kolanoProste(); return ruchMiednica(cw, { t0: 10, k0: ks, t1: 105, k1: 105, stopa: 'gora' }); }
+export function legPullIn(cw, o = {}) { const ks = kolanoProste(); return ruchMiednica(cw, { t0: 10, k0: ks, t1: 130, k1: 130, dy: 12, stopa: "gora", ...o }); }
 
 function scissorKick(cw) {
   const ks = kolanoProste(); const us = [0, 0.5, 1]; const S = barki([0, Y0], -90);
@@ -145,10 +145,10 @@ function superman(cw, { bledy = !!wczytajTeksty()['cobra.mis'] } = {}) { /* bł�
 
 /* ---------- Bird Dog (klęk podparty; u = 1: prawa ręka i lewa noga wyprostowane) ---------- */
 function birdDog(cw) {
-  const B = BODY(); const hx = 60; const Sy = 2 + 61.5; const Py = 8.8 + B.thigh; const phi = Math.asin((Sy - Py) / B.trunk) / R; const P = [hx - B.trunk * Math.cos(phi * R), Py]; const p = 90 - phi; const us = [0, 0.25, 0.5, 0.75, 1];
+  const B = BODY(); const hx = 60; const Sy = 2 + 63.3; const Py = 8.8 + B.thigh; const phi = Math.asin((Sy - Py) / B.trunk) / R; const P = [hx - B.trunk * Math.cos(phi * R), Py]; const p = 90 - phi; const us = [0, 0.25, 0.5, 0.75, 1];
   const S = [hx, Sy]; const kn = [P[0], 8.8]; const ankleK = (t, k) => nogaFK(P, t, k);
   const fr = (u) => { const aR = lerp(-90, 0, u); const tR = 270, kR = 105; const tL = lerp(270, 184, u), kL = lerp(105, ks0(), u);
-    const rG = u === 0 ? [S[0], 2, 19] : chwyt(S, aR, 19, 61.5); const lG = [S[0], 2, -19];
+    const rG = u === 0 ? [S[0], 2, 19] : chwyt(S, aR, 19, 63.3); const lG = [S[0], 2, -19];
     const nR = nogaFK(P, tR, kR), nL = nogaFK(P, tL, kL); const PODB = -90; const PODL = lerp(-90, -80, u);
     return klatka({ u, miednica: [P[0], P[1], 0], pitch: p, glowa: p, nogi: { R: { k: [nR.ankle[0], nR.ankle[1], 10], pod: PODB, pole: nR.pole ? [nR.pole[0], nR.pole[1], 0.1] : [0.15, -1, 0.1] }, L: { k: [nL.ankle[0], nL.ankle[1], -10], pod: PODL, pole: nL.pole ? [nL.pole[0], nL.pole[1], -0.1] : [0.15, -1, -0.1] } }, rece: { R: { g: rG, pole: [-0.5, -1, 0.3] }, L: { g: lG, pole: [-0.5, -1, -0.3] } } }); };
   void ankleK; void kn;

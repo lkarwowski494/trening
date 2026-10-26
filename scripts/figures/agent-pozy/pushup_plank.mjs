@@ -109,9 +109,9 @@ const rv3 = (a) => a.map(r1);
 
 /* ---------- Single-Arm Push-Up (jedna ręka podpiera, druga leży na lędźwiach, stopy szeroko) ---------- */
 /** Podparcie: dłoń podporowa blisko osi ciała (hOff cm od osi tułowia), stopy szeroko (±fz), tułów przesunięty ku dłoni (pz) — środek ciężkości nad wielokątem podparcia (v2-jakosc: srodek_ciezkosci_podparcie, podstawa_szeroka). */
-export function jednaReka(cw, { pz = 6, hOff = 0, fz = 14.3, poleWolna = [0.3, -0.1, -1], sagDeg = 7 } = {}) {
-  const A = [0, kostkaNaPalcach(0)]; const hy = 2; const hzR = pz + hOff; const hx = dlonX({ A, hy, theta0: 12, hzR: hOff }); const H = [hx, hy];
-  const mk = (th) => (u) => { const t = th(u); const k = uklad({ A, H, theta: t, hzR: hOff }); const front = [Math.cos(k.pitch * R), -Math.sin(k.pitch * R)]; const upv = up(k.pitch);
+export function jednaReka(cw, { pz = 4, hOff = 0, fz = 15, poleWolna = [0.3, -0.1, -1], sagDeg = 9 } = {}) {
+  const A = [0, kostkaNaPalcach(0)]; const hy = 2; const hzR = pz + hOff; const hx = dlonX({ A, hy, theta0: 12, hzR }); const H = [hx, hy];
+  const mk = (th) => (u) => { const t = th(u); const k = uklad({ A, H, theta: t, hzR }); const front = [Math.cos(k.pitch * R), -Math.sin(k.pitch * R)]; const upv = up(k.pitch);
     const back = [k.pelvis[0] + upv[0] * 6 - front[0] * 12.5, k.pelvis[1] + upv[1] * 6 - front[1] * 12.5]; /* dłoń leży na lędźwiach (tuż nad grzbietem) */
     return { ...klatka({ u, miednica: [k.pelvis[0], k.pelvis[1], pz], pitch: k.pitch, glowa: k.pitch * 0.75, nogi: { R: { k: [A[0], A[1], pz + fz], pod: POD }, L: { k: [A[0], A[1], pz - fz], pod: POD } },
       rece: { R: { g: [H[0], H[1], hzR], pole: [-1, 0, 0.4] }, L: { g: [back[0], back[1], pz - 3], pole: poleWolna } } }), _S: k.S, _fi: k.fi }; };
