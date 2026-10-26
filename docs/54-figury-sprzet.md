@@ -15,7 +15,7 @@ Liczby poniżej: ćwiczenia z 622, które wymagają danego rodzaju (w nawiasie: 
 | 2 | stojak, Smith, landmine, poręcze, gryf łamany/trap/T, ściana, mata, łańcuchy | 58 (50) | lunge 8, triceps 5, overhead_press 5, row 4 | niski (rekwizyty są w silniku) | w toku: stojak, gryf łamany/gruby, Smith, landmine, ściana, trap bar, uchwyty farmerskie i łańcuchy gotowe (26.10.2026) |
 | 3 | wyciąg (słup, bloczek, uchwyt / lina / opaska na kostkę) | 76 (70) | curl 10, triceps 9, cable_row 7, pulldown 7 | średni | **gotowe (26.10.2026)** |
 | 4 | ławka regulowana (skos +/−, wałki na nogi, modlitewnik) | 35 (9) | curl 12, delt_raise 6, core_floor 5 | niski–średni | ławka gotowa (26.10.2026); modlitewnik z ławkami specjalnymi |
-| 5 | guma / taśma oporowa | 17 (16) | hip_abd_add 4, rotator_cuff 3 | niski | do zrobienia |
+| 5 | guma / taśma oporowa | 17 (16) | hip_abd_add 4, rotator_cuff 3 | niski | **gotowe (26.10.2026)** |
 | 6 | piłka gimnastyczna, BOSU, ślizgacze, roller, kółko do brzucha | 25 (21) | foam_roll 10, core_floor 3, core_standing 3 | niski–średni | do zrobienia |
 | 7 | taśmy zawieszane, lina pionowa; ławki specjalne (rzymska, GHD, GHR, reverse hyper) | 5 + 4 | cardio, back_extension, core_floor | średni | do zrobienia |
 | 8 | maszyny (siedzisko, oparcie, dźwignia; ok. 21 typów) | 45 (43) | leg_machine 7, sled_throw 6, leg_isolation 5 | wysoki | na koniec, o ile da się sensownie |
@@ -64,6 +64,12 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 | Rodzaj | Pola | Możliwości katalogu | Uwagi |
 |---|---|---|---|
 | `lawka` | `x` (zawias), `top` (siedzisko: 43, ujemna 60), `kat` (−45…90°), `dlugosc` oparcia (75), `walki` (wałki na nogi) | bench.flat, bench.incline, bench.decline | geometria i kontakty jak w rigu wyciskania leżąc (BENCH): plecy/miednica/uda/głowa 1,5 cm, ramię 6, przedramię 2,5, sztanga na klatce 2,6/2,2; kąt musi odpowiadać możliwości katalogu (płaska ±5°, skośna ≥ 10°, ujemna ≤ −5°); skrzynia nie jest już ławką płaską |
+
+### 2.5 Guma oporowa
+
+| Rodzaj | Pola | Możliwości katalogu | Uwagi |
+|---|---|---|---|
+| `guma` | `mocowanie` (zaczep / stopy / kostki / dlonie / sztanga), `x`, `y`, `z` (punkt zaczepu), `trzyma` | bands | linia przerywana od punktu mocowania do dłoni (po jednej na dłoń), między kostkami, między dłońmi albo od końców gryfu; bez kolidera i limitu długości (guma się rozciąga); kierunek oporu = linia |
 
 Przykłady few-shot z rigów gotowych rodzin (`exampleFor`) zawierają teraz wpis `lawka` (wcześniej ławka nie była zapisywana w danych).
 

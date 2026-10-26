@@ -11,14 +11,16 @@ import { TOL } from './colliders';
 import { BENCH } from './rigs/benchPress';
 import type { Contact, Frame, Prop } from './scene';
 
-export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka'] as const;
+export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma'] as const;
 export type GearName = typeof GEAR[number];
-export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean };
+export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean; mocowanie?: typeof BAND_MOUNT[number] };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
-export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki'] as const;
+export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki', 'mocowanie'] as const;
 export const BELL_MODES = ['dol', 'wzdluz', 'tyl'] as const;
 /** Osprzęt linki wyciągu: uchwyt (jeden na dłoń), lina (dwa końce), drążek (prosty, między dłońmi), kostka (opaska na kostkę). */
 export const CABLE_ATTACH = ['uchwyt', 'lina', 'drazek', 'kostka'] as const;
+/** Mocowanie gumy oporowej: zaczep (stały punkt x, y, z), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad). */
+export const BAND_MOUNT = ['zaczep', 'stopy', 'kostki', 'dlonie', 'sztanga'] as const;
 /** Kąt oparcia ławki (stopnie, 0 = płasko, dodatni = skos głową wyżej, ujemny = głową niżej) wg możliwości katalogu — konwencja rysunku. */
 export const BENCH_KAT = { min: -45, max: 90, flat: [-5, 5], incline: [10, 90], decline: [-45, -5] } as const;
 /** Wysokość bloczka stacji wyciągów (cm) wg możliwości katalogu — konwencja rysunku (data/zrodla/figury-sprzet.json → wyciag): niski, środkowy, wysoki. */
@@ -202,6 +204,25 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
       ];
     },
   },
+  guma: {
+    nazwa: 'guma oporowa', caps: ['bands'], fields: ['mocowanie', 'z'], opis: 'guma oporowa: linia sprężysta od punktu zamocowania do dłoni, kostek lub sztangi (mocowanie, x, y, z, trzyma)',
+    capLabel: { bands: 'guma oporowa' },
+    props: (g, grips, all, ankles) => {
+      const m = g.mocowanie ?? 'zaczep'; const ss = sidesOf(g); const band = (from: V3, to: V3): Prop => ({ k: 'band', from, to });
+      if (m === 'stopy') return ss.map(s => band([ankles[s][0], 0, ankles[s][2]], grips[s]));
+      if (m === 'kostki') return [band(ankles.R, ankles.L)];
+      if (m === 'dlonie') return [band(grips.R, grips.L)];
+      if (m === 'sztanga') { const bar = all.find(x => x.rodzaj === 'sztanga'); if (!bar) return []; const [b] = GEAR_KINDS.sztanga.props(bar, grips, all, ankles); if (b.k !== 'barbell') return []; return [-1, 1].map(sg => band([g.x ?? b.c[0], g.y ?? 0, sg * EQUIP.chainZ], [b.c[0], b.c[1], sg * EQUIP.chainZ])); }
+      const a: V3 = [g.x ?? 0, g.y ?? 100, g.z ?? 0]; return ss.map(s => band(a, grips[s]));
+    },
+    check: g => [
+      ...(g.y !== undefined && (g.y < 0 || g.y > 300) ? [`sprzęt: wysokość zaczepu gumy y = ${g.y} cm poza przedziałem 0–300 cm`] : []),
+    ],
+    ref: () => [
+      `guma: guma oporowa (pole mocowanie): "zaczep" (domyślnie) = stały punkt P = [x, y, z] (domyślnie [0, 100, 0]: drzwi, słupek, kolumna), guma biegnie od P do dłoni (jedna linia na dłoń; trzyma "obie" / "R" / "L"); "stopy" = guma pod stopami: od podłogi pod kostką (x, z kostki, y = 0) do dłoni tej samej strony (przysiad z gumą, uginanie, wznosy); "kostki" = pętla między kostkami (kroki w bok, odwodzenie: linia od kostki R do kostki L); "dlonie" = guma między dłońmi (rozciąganie gumy w poziomie: linia od dłoni R do dłoni L); "sztanga" = guma od końców gryfu (z = ±${f1(EQUIP.chainZ)} cm) do punktu [x (domyślnie x sztangi), y (domyślnie 0 = podłoga; wysoko = guma odwrócona), z] — wymaga wpisu sztanga.`,
+      'guma rysowana jest jako linia przerywana; nie ma kolidera ani limitu długości (guma się rozciąga): położenie zaczepu wyznacza KIERUNEK OPORU (ruch ćwiczenia ma rozciągać gumę); w całym ruchu linia ma prowadzić od zaczepu do dłoni/kostek/sztangi.',
+    ],
+  },
   skrzynia: { nazwa: 'skrzynia albo stopień', caps: ['box'], opis: 'skrzynia albo stopień (x0, x1, top)', props: g => [{ k: 'box', x0: g.x0 ?? 0, x1: g.x1 ?? 40, top: g.top ?? 40 }] },
   hantel: {
     nazwa: 'hantle',
@@ -273,6 +294,7 @@ export function resolveBells(f: Frame): Frame {
 export function gearSetIssues(gear: Gear[]): string[] {
   const out: string[] = [];
   if (gear.some(g => g.rodzaj === 'smith') && !gear.some(g => g.rodzaj === 'sztanga')) out.push('sprzęt: smith wymaga wpisu sztanga (talerze: true, podazaZaChwytem: true) — sztanga porusza się po prowadnicy');
+  if (gear.some(g => g.rodzaj === 'guma' && g.mocowanie === 'sztanga') && !gear.some(g => g.rodzaj === 'sztanga')) out.push('sprzęt: guma z mocowaniem „sztanga” wymaga wpisu sztanga');
   if (gear.filter(g => g.rodzaj === 'smith').length > 1) out.push('sprzęt: dokładnie jedna prowadnica smith');
   return out;
 }
