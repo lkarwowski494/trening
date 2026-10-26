@@ -127,6 +127,15 @@
    "przyklad": "Muscle Up: torso × bar: przenikanie 3.78 cm (dopuszczalne 0.3) w fazie u=0.54",
    "zapobieganie": "tułów nie może przenikać drążka: odsuń miednicę w x o ≥ 10 cm od osi drążka w klatkach, w których drążek jest na wysokości klatki piersiowej."
   },
+  "blad-sens": {
+   "wystapien": 2,
+   "cwiczen": 2,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Dead Hang: bledy[0] „pu.noSwing”: nie łamie żadnej reguły grupy „bujanie” (miednica_nie_buja, tulow_pion) — błąd ma wyraźnie przekraczać limity tych reguł (poza błędu musi się dać odróżnić od poprawnej)",
+   "zapobieganie": "błąd ma łamać TYLKO regułę swojej wskazówki (np. pu.noSwing: przekroczyć limit bujania) i żadnej innej; poza poprawna nie łamie żadnej."
+  },
   "sens:jedna_reka": {
    "wystapien": 2,
    "cwiczen": 2,
@@ -136,33 +145,6 @@
    "przyklad": "One Arm Chin-Up: reguła „jedna_reka” (wskazówka konwencja): ćwiczenie jednorącz, a sprzet[] ma drążek trzymany obiema rękami — ustaw na sztandze trzyma: \"R\" albo \"L\"",
    "zapobieganie": "ćwiczenie jednorącz: na drążku trzyma: \"R\" albo \"L\"; wolna dłoń ≥ {freeHand} cm od osi drążka, nie na drążku."
   },
-  "blad-sens": {
-   "wystapien": 1,
-   "cwiczen": 1,
-   "rodziny": [
-    "pull_up"
-   ],
-   "przyklad": "Gorilla Chin/Crunch: bledy[0] „hang.noSwing”: łamie także regułę innej grupy „pelna_amplituda” (broda_nad_drazkiem) — błąd ma pokazywać tylko „bujanie”",
-   "zapobieganie": "błąd ma łamać TYLKO regułę swojej wskazówki (np. pu.noSwing: przekroczyć limit bujania) i żadnej innej; poza poprawna nie łamie żadnej."
-  },
-  "geometria:uarmL × bar": {
-   "wystapien": 1,
-   "cwiczen": 1,
-   "rodziny": [
-    "pull_up"
-   ],
-   "przyklad": "Muscle Up: uarmL × bar: przenikanie 1.52 cm (dopuszczalne 0.3) w fazie u=0.58",
-   "zapobieganie": null
-  },
-  "geometria:uarmR × bar": {
-   "wystapien": 1,
-   "cwiczen": 1,
-   "rodziny": [
-    "pull_up"
-   ],
-   "przyklad": "Muscle Up: uarmR × bar: przenikanie 1.52 cm (dopuszczalne 0.3) w fazie u=0.58",
-   "zapobieganie": null
-  },
   "sprzet": {
    "wystapien": 1,
    "cwiczen": 1,
@@ -170,6 +152,15 @@
     "pull_up"
    ],
    "przyklad": "Rope Climb: sprzęt: oczekiwano dokładnie jednej sztangi (drążka), jest 0",
+   "zapobieganie": null
+  },
+  "geometria:uarm × bar": {
+   "wystapien": 2,
+   "cwiczen": 1,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Muscle Up: uarm × bar: przenikanie 1.52 cm (dopuszczalne 0.3) w fazie u=0.58",
    "zapobieganie": null
   }
  },
@@ -209,6 +200,24 @@
    "runda": 1,
    "cwiczen": 11,
    "zaliczone": 6
+  },
+  {
+   "hash": "9050e4575d8f",
+   "data": "2026-10-26",
+   "rodzina": "pull_up",
+   "wersja": "polecenie@2",
+   "runda": 1,
+   "cwiczen": 3,
+   "zaliczone": 2
+  },
+  {
+   "hash": "37633d178e0c",
+   "data": "2026-10-26",
+   "rodzina": "pull_up",
+   "wersja": "polecenie@2",
+   "runda": 2,
+   "cwiczen": 3,
+   "zaliczone": 3
   }
  ]
 }

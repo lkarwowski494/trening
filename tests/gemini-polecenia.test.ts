@@ -20,13 +20,15 @@ const VAL = path.join(ROOT, 'scripts/figures/v2-validate.mjs');
 const run = (script: string, code: string) => JSON.parse(execFileSync(process.execPath, ['--input-type=module', '-e', `import * as m from ${JSON.stringify(script)}; ${code}`], { env: { PATH: process.env.PATH ?? '' } as unknown as NodeJS.ProcessEnv, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }));
 
 /** Korzeń tymczasowy: dane wejściowe skopiowane (docs/51 z rodziną pull_up zawężoną do dwóch ćwiczeń), skrypty przez dowiązanie; zapis póz i rejestru trafia tylko tutaj. */
-function tmpRoot(): string {
+function tmpRoot(pelny = false): string {
   const r = fs.mkdtempSync(path.join(os.tmpdir(), 'polecenia-'));
-  for (const f of ['docs/51-figury-v2-pokrycie.md', 'lib/figures/data.json', 'lib/figures/v2/cue-sets.json', 'lib/cues/data.json', 'lib/cues/text/pl.json', 'data/zrodla/figury-sens.json']) { fs.mkdirSync(path.dirname(path.join(r, f)), { recursive: true }); fs.copyFileSync(path.join(ROOT, f), path.join(r, f)); }
-  const dp = path.join(r, 'docs/51-figury-v2-pokrycie.md'); fs.writeFileSync(dp, fs.readFileSync(dp, 'utf8').replace(/(### pull_up \(\d+\) — do zrobienia\n\n)[^\n]*/, '$1Chin Up; Pull Up'));
+  for (const f of ['docs/51-figury-v2-pokrycie.md', 'lib/figures/data.json', 'lib/figures/v2/cue-sets.json', 'lib/cues/data.json', 'lib/cues/text/pl.json', 'data/zrodla/figury-sens.json', ...(pelny ? ['data/figury-bledy-modelu.json'] : [])]) { fs.mkdirSync(path.dirname(path.join(r, f)), { recursive: true }); fs.copyFileSync(path.join(ROOT, f), path.join(r, f)); }
+  const dp = path.join(r, 'docs/51-figury-v2-pokrycie.md'); fs.writeFileSync(dp, fs.readFileSync(dp, 'utf8').replace(/(### pull_up \(\d+\) — do zrobienia\n\n)([^\n]*)/, (_m, h, l) => h + (pelny ? l.replace('Gironda Sternum Chins; ', '') : 'Chin Up; Pull Up')));
   fs.mkdirSync(path.join(r, 'scripts'), { recursive: true }); fs.symlinkSync(path.join(ROOT, 'scripts/figures'), path.join(r, 'scripts/figures'));
   return r;
 }
+/** Korzeń z rodziną pull_up bez Gironda (12 ćwiczeń z docs/51) i bez zapisanych póz — stały stan wejściowy testów treści polecenia. */
+const PELNY = tmpRoot(true);
 /** Pozy wyliczone z modelu (przechodzą geometrię i sens), jako odpowiedź „modelu”. */
 const WZ = run(POL, `const o = {}; for (const [cw, c] of [['Chin Up', 15], ['Pull Up', 22]]) o[cw] = m.wzorzecPodciagania(230, c, { cwiczenie: cw }).poza; console.log(JSON.stringify(o));`) as Record<string, any>;
 const importuj = (root: string, plik: string, extra: string[] = []) => run(POZY, `const log = []; const c = await m.main(${JSON.stringify(['--z-pliku', plik, '--wyjscie', path.join(root, 'wyj'), ...extra])}, {}, { root: ${JSON.stringify(root)}, log: (s) => log.push(s) }); console.log(JSON.stringify({ c, log }));`) as { c: number; log: string[] };
@@ -77,8 +79,8 @@ describe('reguły sensu ruchu (data/zrodla/figury-sens.json + v2-sens.mjs; docs/
     const d = klon(WZ['Pull Up']); d.klatki[0].pochylenieTulowia = -20; d.bledy = []; expect(waliduj(d, 'Pull Up').bledy.map((x) => x.kod)).toContain('sens');
   });
   test('wyjątki wariantów: Gironda i Muscle Up bez reguł bujania; Rope Climb do pominięcia; Side To Side bez limitu z; jednorącz wymaga trzyma R/L i wolnej dłoni poza drążkiem', () => {
-    const r = run(SENS, `console.log(JSON.stringify([m.regulyDla('pull_up', 'Gironda Sternum Chins').map(x => x.id), m.regulyDla('pull_up', 'Muscle Up').map(x => x.id), m.pominiecie('pull_up', 'Rope Climb'), m.regulyDla('pull_up', 'Side To Side Chins').map(x => x.id), m.regulyDla('pull_up', 'Squat Xyz'), m.regulyDla('squat', 'Back Squat')]))`) as any[];
-    expect(r[0]).toEqual(['dol_rece_proste']); expect(r[1]).toEqual(['dol_rece_proste']); expect(r[2]).toMatch(/lina/); expect(r[3]).toContain('miednica_nie_buja_x'); expect(r[3]).not.toContain('miednica_nie_buja'); expect(r[4]).toEqual([]); expect(r[5]).toEqual([]);
+    const r = run(SENS, `console.log(JSON.stringify([m.regulyDla('pull_up', 'Gironda Sternum Chins').map(x => x.id), m.regulyDla('pull_up', 'Muscle Up').map(x => x.id), m.pominiecie('pull_up', 'Rope Climb'), m.regulyDla('pull_up', 'Side To Side Chins').map(x => x.id), m.regulyDla('pull_up', 'Squat Xyz'), m.regulyDla('squat', 'Back Squat'), m.regulyDla('pull_up', 'Dead Hang').map(x => x.id)]))`) as any[];
+    expect(r[0]).toEqual(['dol_rece_proste']); expect(r[1]).toEqual(['dol_rece_proste']); expect(r[2]).toMatch(/lina/); expect(r[3]).toContain('miednica_nie_buja_x'); expect(r[3]).not.toContain('miednica_nie_buja'); expect(r[4]).toEqual([]); expect(r[5]).toEqual([]); expect(r[6]).toContain('nogi_nieruchome') /* bujanie nogami jest bujaniem (wskazówka pu.noSwing: „bez wymachów nogami”) */;
     const oa = klon(WZ['Pull Up']); oa.cwiczenie = 'One Arm Chin-Up'; oa.bledy = [];
     expect(waliduj(oa, 'One Arm Chin-Up').bledy.map((b) => b.szczegol).join('|')).toMatch(/jednorącz, a sprzet\[\] ma drążek trzymany obiema rękami/);
     oa.sprzet[0].trzyma = 'R'; for (const k of oa.klatki) k.rece.L.chwyt = [k.miednica[0] + 2, k.miednica[1] - 13, -21];
@@ -101,24 +103,24 @@ describe('reguły sensu ruchu (data/zrodla/figury-sens.json + v2-sens.mjs; docs/
 });
 
 describe('gemini-polecenia: logika', () => {
-  test('podział na części: do 12 ćwiczeń jedna część, więcej — równe części; pull_up (bez Gironda) = 12 ćwiczeń w jednym pliku, core_floor (44) = cztery części', () => {
+  test('podział na części: do 12 ćwiczeń jedna część, więcej — równe części; pull_up (12 ćwiczeń bez zapisanych póz) = jeden plik, core_floor (44) = cztery części', () => {
     expect(run(POL, `console.log(JSON.stringify([m.MAX_CWICZEN_W_CZESCI, m.podzielNaCzesci(['a','b','c']), m.podzielNaCzesci(Array.from({length: 13}, (_, i) => 'x' + i)).map(x => x.length), m.podzielNaCzesci([]), m.podzielNaCzesci(Array.from({length: 5}, (_, i) => i), 2).map(x => x.length)]))`))
       .toEqual([12, [['a', 'b', 'c']], [7, 6], [], [2, 2, 1]]);
-    expect(run(POL, `console.log(JSON.stringify(m.czesciRodziny('pull_up').map(c => [c.id, c.numer, c.ile, c.cwiczenia.length])))`)).toEqual([['pull_up', 1, 1, 12]]);
+    expect(run(POL, `console.log(JSON.stringify(m.czesciRodziny('pull_up', { root: ${JSON.stringify(PELNY)} }).map(c => [c.id, c.numer, c.ile, c.cwiczenia.length])))`)).toEqual([['pull_up', 1, 1, 12]]);
     const duza = run(POL, `console.log(JSON.stringify(m.czesciRodziny('core_floor').map(c => [c.id, c.cwiczenia.length])))`);
     expect(duza.map((x: any) => x[0])).toEqual(['core_floor-1', 'core_floor-2', 'core_floor-3', 'core_floor-4']); expect(duza.reduce((a: number, x: any) => a + x[1], 0)).toBe(44);
   });
   test('rodziny gotowe nie mają poleceń; ćwiczenia z zapisaną pozą są pomijane (Gironda); argumenty: wymagane --wyjscie i dokładnie jedno z --rodzina / --wszystkie', () => {
     expect(run(POL, `console.log(JSON.stringify(['squat','bench_press','hinge'].map(r => m.doZrobienia(r))))`)).toEqual([[], [], []]);
-    const lista = run(POL, `console.log(JSON.stringify(m.doZrobienia('pull_up')))`); expect(lista).not.toContain('Gironda Sternum Chins'); expect(lista).toContain('Chin Up');
+    const lista = run(POL, `console.log(JSON.stringify(m.doZrobienia('pull_up')))`); expect(lista).not.toContain('Gironda Sternum Chins'); expect(lista).not.toContain('Chin Up'); expect(lista).toContain('Muscle Up'); /* pozy zapisane w repozytorium są pomijane */
     const e = (a: string[]) => run(POL, `try { m.parsujArgumenty(${JSON.stringify(a)}); console.log('"ok"'); } catch (e) { console.log(JSON.stringify(e.message)); }`);
     expect(e(['--rodzina', 'pull_up', '--wyjscie', 'x'])).toBe('ok'); expect(e(['--rodzina', 'pull_up'])).toMatch(/--wyjscie/); expect(e(['--wyjscie', 'x'])).toMatch(/dokładnie jedno/); expect(e(['--foo'])).toMatch(/nieznany argument/);
   });
 });
 
 describe('gemini-polecenia: treść polecenia v2 (liczby z silnika, reguły z danych, rejestr błędów, wzorce)', () => {
-  const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'polecenia-')), 'out'); /* dane z repozytorium (docs/51, rejestr, reguły); zapis tylko w katalogu wyniku */
-  run(POL, `await m.main(['--rodzina','pull_up','--wyjscie',${JSON.stringify(out)}], { log: () => {} }); console.log('0')`);
+  const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'polecenia-')), 'out'); /* stały stan wejściowy (PELNY); rejestr i reguły skopiowane z repozytorium; zapis tylko w katalogu wyniku */
+  run(POL, `await m.main(['--rodzina','pull_up','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(PELNY)}, log: () => {} }); console.log('0')`);
   const tresc = fs.readFileSync(path.join(out, 'pull_up.md'), 'utf8');
   test('sekcje: kontrakt, pola, punkty odniesienia, wymagania, reguły sensu, najczęstsze błędy, wzorce, ćwiczenia, format z polem polecenie@N; wersja rdzenia w nagłówku', () => {
     for (const h of ['## Kontrakt danych', '## Pola obiektu pozy', '## Punkty odniesienia', '## Wymagania liczbowe walidatora', '## Reguły sensu ruchu', '## Najczęstsze błędy z poprzednich odpowiedzi', '## Wzorzec 1', '## Ćwiczenia do wykonania', 'FORMAT ODPOWIEDZI']) expect(tresc).toContain(h);

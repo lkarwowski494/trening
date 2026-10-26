@@ -26,6 +26,8 @@ export const ZAPOBIEGANIE = {
   'blad-niewidoczny': 'błąd musi się różnić od pozy poprawnej o ≥ {visibleCm} cm lub ≥ {visibleDeg}° — wyraźna delta, nie kosmetyka.',
   'blad-start': 'pierwsza klatka błędu (u = 0) ma deltę ZEROWĄ.',
   'blad-cue': 'identyfikator błędu tylko z listy podanej przy ćwiczeniu; brak listy = bledy: [].',
+  'geometria:uarm × bar': 'ramię nie może przenikać drążka (max {pen} cm): przy mijaniu drążka w przejściu nad drążek (np. muscle-up) odsuń łokcie od osi drążka i zadbaj o klatki pośrednie co 0,05 w tej fazie.',
+  'geometria:farm × bar': 'przedramię nie może przenikać drążka (max {pen} cm): chwyt na osi, łokieć poza drążkiem.',
   'sens:broda_nad_drazkiem': 'w u = 1 broda ≥ drążek + {chinMargin} cm: miednica.y ≥ wartość z tabeli „u = 1” (punkty odniesienia); nie kończ ruchu, gdy głowa dochodzi tylko do drążka.',
   'sens:dol_rece_proste': 'w u = 0 łokcie ≤ {armsStraight}° (ramię prawie proste): miednica.y z tabeli „u = 0”, nie niżej.',
   'sens:miednica_nie_buja': 'poprawna poza NIE buja: miednica.x i miednica.z prawie stałe (≤ {swingPelvis} cm w całym ruchu); bujanie to osobny błąd (pu.noSwing).',
@@ -53,7 +55,7 @@ export function kluczKategorii(kod, szczegol) {
   if (kod === 'zakres') { const m = /staw (\w+) /.exec(s); return `zakres:${m ? m[1] : '?'}`; }
   if (kod === 'geometria') {
     const t = s.replace(/^bledy\[\d+\] „[^”]*”: /, '').replace(/ w fazie u=.*$/, '').replace(/[-\d.]+/g, '#').replace(/\s+/g, ' ').trim();
-    const m = /^(\S+ × \S+): przenikanie/.exec(t) ?? /^(ręka [RL]): cel poza zasięgiem/.exec(t); if (m) return /ręka/.test(m[1]) ? 'geometria:cel poza zasięgiem' : `geometria:${m[1]}`;
+    const m = /^(\S+ × \S+): przenikanie/.exec(t) ?? /^(ręka [RL]): cel poza zasięgiem/.exec(t); if (m) return /ręka/.test(m[1]) ? 'geometria:cel poza zasięgiem' : `geometria:${m[1].replace(/([a-z]+)[RL] × /, '$1 × ')}`; /* strona ciała nie tworzy osobnej kategorii */
     return `geometria:${t.slice(0, 40)}`;
   }
   if (kod === 'sens') { const m = /reguła „([^”]+)”/.exec(s); return `sens:${m ? m[1].replace(/_x$/, '') : '?'}`; }
