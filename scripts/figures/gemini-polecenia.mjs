@@ -107,7 +107,7 @@ export function liczbyZSilnika(rodzina = 'pull_up') {
   const { v2 } = silnik(); const C = v2.CONTRACT; const B = v2.BODY; const rom = czytaj(join(ROOT, 'lib/figures/data.json')).rom; const al = v2.templateFor(rodzina).allow ?? {};
   const reach = B.uarm + B.farm + B.hand; const s = wczytajSens().rodziny?.pull_up?.reguly ?? {};
   const par = (id, k, d) => s[id]?.parametry?.[k] ?? d;
-  return { gripTol: 0.6, reach, reachAim: reach - 0.5, trunk: B.trunk, shHalf: B.shHalf, ankleMax: rom.side.ankle.max, ankleSafe: '−20…−5°', elbowMax: rom.side.el.max, elbowAim: 140, shSagMax: rom.side.sh.max, shSagAllow: al.shSag ?? rom.side.sh.max,
+  return { gripTol: 0.6, reach, reachAim: reach - 0.5, trunk: B.trunk, shHalf: B.shHalf, ankleMax: rom.side.ankle.max, ankleSafe: '−20…−5°', elbowMax: rom.side.el.max, elbowAim: 140, shSagMax: rom.side.sh.max, shElevMax: rom.front.abd.max, shSagAllow: al.shSag ?? rom.side.sh.max,
     hipMin: rom.side.hip.min, hipMax: rom.side.hip.max, kneeMax: rom.side.knee.max, pen: v2.TOL.pen, maxJump: C.maxJump, step: C.step, perFrame: C.maxJump * C.step, gap10: Math.floor((C.maxJump * C.step) / 20), minMotion: C.minMotionCm,
     undeclared: C.undeclaredDeg, visibleCm: C.visibleCm, visibleDeg: C.visibleDeg, chinMargin: par('broda_nad_drazkiem', 'margines_cm', 2), armsStraight: par('dol_rece_proste', 'max_lokiec_deg', 25), swingPelvis: par('miednica_nie_buja', 'max_cm', 3),
     ankleRel: `${par('nogi_nieruchome', 'min_cm', -10)}…${par('nogi_nieruchome', 'max_cm', 5)}`, trunkRange: `${par('tulow_pion', 'min_deg', -12)}…${par('tulow_pion', 'max_deg', 3)}`, freeHand: par('jedna_reka', 'min_wolna_od_osi_cm', 15) };
@@ -153,6 +153,8 @@ const FAZY = {
 };
 const FAZY_CORE_FLOOR = () => [
   'Układ leżący na plecach (jak w crunch): głowa w stronę −x, nogi w stronę +x: pochylenieTulowia = −90 (poziomo), pochylenieGlowy ≈ pochylenieTulowia (głowa leży na podłodze), miednica = [0, 8, 0] (y = 8 cm — najniżej, przy którym uda nie przenikają podłogi; reguła: ≤ 12 cm), barki = miednica + 50 cm w stronę −x przy pochyleniu −90.',
+  'KOLANA (najczęstszy błąd — uda i golenie pod podłogą do 25 cm): przy leżeniu na plecach ZAWSZE podawaj w każdej klatce nogi.R/L.biegunKolana = [0.15, 1, ±0.1] (kolano w górę; bez tego IK kieruje kolano w podłogę); na czworaka i na brzuchu [0.15, −1, ±0.1] (kolano opiera się o podłogę). Kostki nie niżej niż y = 7. Kąt kostki = podbicie + nachylenie goleni: przy uniesionych nogach podbicie 0…20°, nigdy −60…−90°.',
+  'Ręce za głową (leżąc na plecach): chwyt = bark + 62 cm · (0,87 · oś tułowia ku głowie + 0,5 · przód klatki), gdzie oś tułowia ku głowie a = (sin p, cos p) w płaszczyźnie (x, y), przód klatki n = (cos p, −sin p), p = pochylenieTulowia w danej klatce (przy p = −90: a = (−1, 0), n = (0, 1)); kąt barku ≈ 150° (limit 171°). Ręka wzdłuż podłogi za głową (180°) łamie limit barku.',
   'Nogi zgięte, stopy na podłodze: kostki = [35, 7, ±15] (wysokość kostki 7 cm); kolana liczy IK. Dłonie: wzdłuż ciała, ramiona prawie proste: chwyt = bark + 63,3 cm w stronę miednicy (ramię proste: łokieć ≤ 15°; krótszy dystans zgina łokieć), z = ±24 (skrzyżowane na klatce zginają łokieć powyżej limitu 149° — unikaj); dłonie przy skroniach tylko bez ciągnięcia głowy.',
   'Unoszenie tułowia (crunch): u = 0 pochylenieTulowia −90 → u = 1 około −62 (barki unoszą się o ≈ 20 cm), pochylenieGlowy podąża za tułowiem (różnica ≤ 30°), miednica nie rusza się (y ≤ 12, zmiana ≤ 3 cm).',
   'Ruch prowadzony miednicą (reverse crunch): barki i głowa nieruchome na podłodze, miednica unosi się o ≥ 8 cm (u = 1: y ≈ 20), kostki podążają za miednicą (kolana do klatki).',
@@ -292,6 +294,11 @@ export function klasyfikujCwiczenia(rodzina, { root = ROOT, lista, bezRegul = fa
     else if (!bezRegul && !regulyDla(rodzina, c, root).length) wstrzymane.push({ klucz: c, powod: 'wstrzymane — brak reguły sensu dla tego ćwiczenia (docs/53, bramka 3)' });
     else robic.push(c); }
   return { robic, pomijane, wstrzymane };
+}
+/** Części polecenia po odfiltrowaniu (tylko ćwiczenia z regułami i sprzętem w kontrakcie): [{ id, cwiczenia }] — te same części, których używa generator i import (rozpoznanie wklejonej części i brakujących ćwiczeń). */
+export function czesciPolecen(rodzina, opcje = {}) {
+  const cz = podzielNaCzesci(klasyfikujCwiczenia(rodzina, opcje).robic);
+  return cz.map((cwiczenia, i) => ({ id: cz.length === 1 ? rodzina : `${rodzina}-${i + 1}`, cwiczenia }));
 }
 /** Polecenia rodziny: [{ plik, tresc, cwiczenia, pomijane, wstrzymane }] — części liczone po odfiltrowaniu (tylko ćwiczenia z regułami), pominięte i wstrzymane wymienione w pierwszej części. */
 export async function poleceniaRodziny(rodzina, { root = ROOT, lista, bezRegul = false } = {}) {

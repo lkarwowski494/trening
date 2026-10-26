@@ -176,6 +176,17 @@
           "minimum": -90,
           "maximum": 90,
           "description": "Odchylenie kolana na zewnątrz w poziomie, stopnie. Domyślnie 2 × rotacja stopy."
+         },
+         "biegunKolana": {
+          "type": "array",
+          "items": {
+           "type": "number",
+           "minimum": -10,
+           "maximum": 10
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Kierunek zgięcia kolana [x, y, z] (wektor kierunku, nie cm). Domyślnie do przodu i na zewnątrz (stojąc). Przy leżeniu na plecach i unoszonych nogach WSKAŻ [0.15, 1, 0] (kolano w górę, nie w podłogę); na czworaka i na brzuchu [0.15, -1, 0] (kolano opiera się o podłogę). Gdy podane, odchylenieKolana jest ignorowane."
          }
         },
         "required": [
@@ -214,6 +225,17 @@
           "minimum": -90,
           "maximum": 90,
           "description": "Odchylenie kolana na zewnątrz w poziomie, stopnie. Domyślnie 2 × rotacja stopy."
+         },
+         "biegunKolana": {
+          "type": "array",
+          "items": {
+           "type": "number",
+           "minimum": -10,
+           "maximum": 10
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "description": "Kierunek zgięcia kolana [x, y, z] (wektor kierunku, nie cm). Domyślnie do przodu i na zewnątrz (stojąc). Przy leżeniu na plecach i unoszonych nogach WSKAŻ [0.15, 1, 0] (kolano w górę, nie w podłogę); na czworaka i na brzuchu [0.15, -1, 0] (kolano opiera się o podłogę). Gdy podane, odchylenieKolana jest ignorowane."
          }
         },
         "required": [

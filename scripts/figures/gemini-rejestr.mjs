@@ -13,11 +13,13 @@ export const MAX_W_POLECENIU = 10;
 export const ZAPOBIEGANIE = {
   'chwyt': 'dłoń musi leżeć na osi drążka z dokładnością {gripTol} cm: chwyt = [x drążka, y drążka, ±z], bez zaokrągleń; a miednicę ustaw tak, by ręka sięgała celu (zasięg ramienia {reach} cm od barku, cel w odległości ≤ {reachAim} cm).',
   'geometria:cel poza zasięgiem': 'zasięg ramienia od barku do chwytu to {reach} cm; w zwisie celuj w {reachAim} cm (zapas), czyli miednica.y = drążek.y − {trunk} − sqrt({reachAim}² − (z chwytu − {shHalf})²) (tabela w punktach odniesienia).',
-  'zakres:ankle': 'kąt kostki = podbicie + nachylenie goleni (kolano przed kostką = dodatnie, zwykle +10…+20° w zwisie); limit {ankleMax}°. W zwisie ustaw podbicie {ankleSafe}.',
+  'zakres:ankle': 'kąt kostki = podbicie + nachylenie goleni (kolano przed kostką = dodatnie, zwykle +10…+20° w zwisie); zakres −60…{ankleMax}°. W zwisie ustaw podbicie {ankleSafe}; przy uniesionych nogach leżąc podbicie 0…20° (nie −60…−90°: kostka nie schodzi poniżej −60°).',
   'zakres:elbow': 'łokieć ma zakres 0…{elbowMax}° (0° = prosty); w górnej pozycji celuj w ≤ {elbowAim}°: miednica za drążkiem (x = drążek − 18) i nie wyżej niż w tabeli, bo bliżej drążka łokieć zgina się powyżej limitu.',
-  'zakres:shSag': 'bark w płaszczyźnie strzałkowej ma limit {shSagMax}° (w podciąganiu {shSagAllow}°); nie wyprowadzaj chwytu daleko za głowę — chwyt tuż nad barkiem (|x chwytu − x barku| ≤ 10 cm).',
+  'zakres:shSag': 'bark w płaszczyźnie strzałkowej ma limit {shSagMax}°: nie prowadź ręki za głowę wzdłuż osi ciała (180°) — ręce za głową (leżąc): chwyt = bark + 62 cm · (0,87 · oś tułowia ku głowie + 0,5 · przód klatki) (kąt barku ≈ 150°); w podciąganiu chwyt tuż nad barkiem.',
   'zakres:hip': 'biodro {hipMin}…{hipMax}°; nie podnoś kolan wyżej niż do poziomu miednicy.',
   'zakres:knee': 'kolano 0…{kneeMax}°.',
+  'geometria:poniżej podłogi': 'uda, golenie i stopy nie mogą wchodzić pod podłogę (y = 0): przy leżeniu na plecach i unoszonych nogach ZAWSZE podaj biegunKolana [0.15, 1, ±0.1] (kolano w górę; bez tego IK kieruje kolano w podłogę), na czworaka i na brzuchu [0.15, −1, ±0.1]; kostki nie niżej niż y = 7, miednicę leżącej osoby na y ≈ 8.',
+  'zakres:shElev': 'uniesienie ramienia ma limit {shElevMax}°: ręce za głową (leżąc) = chwyt = bark + 62 cm · (0,87 · oś tułowia ku głowie + 0,5 · przód klatki) — kąt barku ≈ 150°, NIE wzdłuż podłogi za głową (180°).',
   'geometria:head × bar': 'głowa nie może przenikać drążka (max {pen} cm): w górnej pozycji przesuń głowę w x o ≥ 15 cm od osi drążka (do przodu lub do tyłu) i dobierz pochylenieGlowy; sprawdź klatki pośrednie, w których głowa mija wysokość drążka (u ≈ 0,4–0,6).',
   'geometria:torso × bar': 'tułów nie może przenikać drążka: odsuń miednicę w x o ≥ 10 cm od osi drążka w klatkach, w których drążek jest na wysokości klatki piersiowej.',
   'ciaglosc': 'żaden punkt nie może skoczyć o więcej niż {maxJump} cm na 1/{step} ruchu; gdy punkt (miednica, kostka, chwyt) przesuwa się o więcej niż {gap10} cm między klatkami, dodaj klatki co 0,1, a w szybkich fazach (mijanie drążka) co 0,05.',
@@ -55,6 +57,8 @@ export function kluczKategorii(kod, szczegol) {
   if (kod === 'zakres') { const m = /staw (\w+) /.exec(s); return `zakres:${m ? m[1] : '?'}`; }
   if (kod === 'geometria') {
     const t = s.replace(/^bledy\[\d+\] „[^”]*”: /, '').replace(/ w fazie u=.*$/, '').replace(/[-\d.]+/g, '#').replace(/\s+/g, ' ').trim();
+    if (/poniżej podłogi/.test(t) && !/stopa/.test(t)) return 'geometria:poniżej podłogi'; /* uda, golenie, stopy: osobno strona i część nie tworzą kategorii */
+    if (/^stopa [RL] poniżej podłogi/.test(t)) return 'geometria:poniżej podłogi';
     const m = /^(\S+ × \S+): przenikanie/.exec(t) ?? /^(ręka [RL]): cel poza zasięgiem/.exec(t); if (m) return /ręka/.test(m[1]) ? 'geometria:cel poza zasięgiem' : `geometria:${m[1].replace(/([a-z]+)[RL] × /, '$1 × ')}`; /* strona ciała nie tworzy osobnej kategorii */
     return `geometria:${t.slice(0, 40)}`;
   }
@@ -86,7 +90,7 @@ export function statystykaWersji(r) {
   for (const e of Object.values(o)) e.odsetek = e.cwiczen ? Math.round((100 * e.zaliczone) / e.cwiczen) : 0;
   return o;
 }
-const podstaw = (t, liczby) => t.replace(/\{(\w+)\}/g, (m, k) => (k in liczby ? String(liczby[k]) : m));
+export const podstaw = (t, liczby) => t.replace(/\{(\w+)\}/g, (m, k) => (k in liczby ? String(liczby[k]) : m));
 /** Linie sekcji „Najczęstsze błędy…”: do 10 najczęstszych kategorii; zapobieganie z liczbami z silnika (liczby), a gdy brak reguły — przykład z walidatora. */
 export function liniePolecenia(r, liczby, max = MAX_W_POLECENIU, { rodzina = null, reguly = null } = {}) {
   /* trafne dla rodziny: reguły sensu tylko aktywne w poleceniu, kolizje ze sprzętem tylko z rodzin, które je zgłosiły; reszta (zasięg, zakresy, chwyt, ciągłość…) jest ogólna */

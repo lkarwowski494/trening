@@ -414,9 +414,10 @@ export function wyciagnijOdpowiedz(tekst) {
   wynik.blad ??= 'w pliku nie znaleziono obiektu JSON z odpowiedzią'; return wynik;
 }
 /** Polecenie poprawkowe do wklejenia w TĘ SAMĄ rozmowę: lista błędów walidatora na ćwiczenie + brakujące ćwiczenia (ucięta odpowiedź). */
-export function poleceniePoprawkowe({ rodzina, bledy, brakujace = [], nieznane = [], nieMa = [] }) {
+export function poleceniePoprawkowe({ rodzina, bledy, brakujace = [], nieznane = [], nieMa = [], wskazowki = [] }) {
   const L = [`# Poprawka póz — rodzina „${rodzina}”`, '', 'Poprzednia odpowiedź w tej rozmowie: część póz nie przeszła naszej walidacji geometrii. Dla każdego ćwiczenia poniżej popraw DOKŁADNIE wskazane miejsca (trzymaj się liczb z polecenia: zakresy stawów, ruch ≥ minimum, brak przenikania, chwyt na osi sprzętu, „dotyczy” w błędach) i nie zmieniaj tego, co nie jest wymienione.', ''];
   for (const [cw, lista] of Object.entries(bledy)) { L.push(`## ${cw}`, ...lista.map((b) => `- [${b.kod}] ${b.szczegol}`), ''); }
+  if (wskazowki.length) L.push('## Jak naprawić (z rejestru błędów, z liczbami)', ...wskazowki, '');
   if (nieMa.length) L.push('## Pozy bez oceny recenzenta', 'Brak oceny ruchu dla: ' + nieMa.join(', ') + ' — nałożenie wstrzymane (nie wymaga poprawki od modelu).', '');
   if (brakujace.length) L.push('## Brakujące pozy (odpowiedź została ucięta)', 'Wyślij pełne pozy dla ćwiczeń: ' + brakujace.map((k) => `"${k}"`).join(', ') + '. Zapisz JSON zwięźle (jedna klatka w jednej linii), aby odpowiedź się zmieściła.', '');
   if (nieznane.length) L.push('## Nieznane klucze', 'Te klucze nie należą do tej rodziny — użyj dokładnie nazw ćwiczeń z polecenia: ' + nieznane.map((k) => `"${k}"`).join(', ') + '.', '');
@@ -471,7 +472,7 @@ export async function importujZPliku({ plik, rodzina: rodzinaArg = null, wyjscie
   let brakujace = [];
   if (w.ucieta || Object.keys(w.poze).length) { /* którą część polecenia wklejono: ta o największym wspólnym zbiorze kluczy */
     try {
-      const { czesciRodziny } = await import('./gemini-polecenia.mjs'); const cz = czesciRodziny(rodzina, { root, lista: docs }); const mam = new Set(Object.keys(w.poze));
+      const { czesciPolecen } = await import('./gemini-polecenia.mjs'); const cz = czesciPolecen(rodzina, { root, lista: docs }); const mam = new Set(Object.keys(w.poze));
       const najlepsza = cz.map((c) => ({ c, wspolne: c.cwiczenia.filter((x) => mam.has(x)).length })).sort((a, b) => b.wspolne - a.wspolne)[0];
       if (najlepsza && najlepsza.wspolne > 0) brakujace = najlepsza.c.cwiczenia.filter((x) => !mam.has(x));
     } catch { /* brak modułu poleceń: bez wykrywania braków */ }
@@ -499,7 +500,9 @@ export async function importujZPliku({ plik, rodzina: rodzinaArg = null, wyjscie
   if (brakujace.length) md.push('', `Brakujące: ${brakujace.join(', ')}`);
   zapisz('raport-import.md', md.join('\n') + '\n');
   const potrzebnaPoprawka = Object.keys(bledy).length || brakujace.length || nieznane.length;
-  if (potrzebnaPoprawka) zapisz(`${rodzina}-poprawka.md`, poleceniePoprawkowe({ rodzina, bledy, brakujace, nieznane }));
+  let wskazowki = []; if (potrzebnaPoprawka) { try { const { kluczKategorii, ZAPOBIEGANIE, podstaw } = await import('./gemini-rejestr.mjs'); const { liczbyZSilnika } = await import('./gemini-polecenia.mjs'); const lic = liczbyZSilnika(rodzina);
+    const klucze = [...new Set(Object.values(bledy).flat().map((b) => kluczKategorii(b.kod, b.szczegol)))]; wskazowki = klucze.filter((k) => ZAPOBIEGANIE[k]).map((k) => `- ${k}: ${podstaw(ZAPOBIEGANIE[k], lic)}`); } catch { /* bez wskazówek */ } }
+  if (potrzebnaPoprawka) zapisz(`${rodzina}-poprawka.md`, poleceniePoprawkowe({ rodzina, bledy, brakujace, nieznane, wskazowki }));
   log(`import ${rodzina}: przeszło ${raport.przeszly.length}, nie przeszło ${raport.nie_przeszly.length}, brakuje ${brakujace.length}${bezPrzegladu.length ? `, bez oceny recenzenta ${bezPrzegladu.length}` : ''}${paczka ? `; paczka przeglądu: ${paczka}` : ''}${nalozono ? `; nałożono do ${nalozono.plik}` : ''}${potrzebnaPoprawka ? `; polecenie poprawkowe: ${rodzina}-poprawka.md` : ''}`);
   for (const r of wyniki.filter((x) => !x.ok)) { log(`  NIE ${r.cwiczenie}`); for (const b of r.bledy) log(`    [${b.kod}] ${b.szczegol}`); }
   return { kod: potrzebnaPoprawka || w.blad || bezPrzegladu.length ? 1 : 0, raport };

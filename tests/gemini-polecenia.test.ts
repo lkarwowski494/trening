@@ -107,7 +107,7 @@ describe('gemini-polecenia: logika', () => {
     expect(run(POL, `console.log(JSON.stringify([m.MAX_CWICZEN_W_CZESCI, m.podzielNaCzesci(['a','b','c']), m.podzielNaCzesci(Array.from({length: 13}, (_, i) => 'x' + i)).map(x => x.length), m.podzielNaCzesci([]), m.podzielNaCzesci(Array.from({length: 5}, (_, i) => i), 2).map(x => x.length)]))`))
       .toEqual([12, [['a', 'b', 'c']], [7, 6], [], [2, 2, 1]]);
     expect(run(POL, `console.log(JSON.stringify(m.czesciRodziny('pull_up', { root: ${JSON.stringify(PELNY)} }).map(c => [c.id, c.numer, c.ile, c.cwiczenia.length])))`)).toEqual([['pull_up', 1, 1, 12]]);
-    const duza = run(POL, `console.log(JSON.stringify(m.czesciRodziny('core_floor').map(c => [c.id, c.cwiczenia.length])))`);
+    const duza = run(POL, `console.log(JSON.stringify(m.czesciRodziny('core_floor', { root: ${JSON.stringify(PELNY)} }).map(c => [c.id, c.cwiczenia.length])))`);
     expect(duza.map((x: any) => x[0])).toEqual(['core_floor-1', 'core_floor-2', 'core_floor-3', 'core_floor-4']); expect(duza.reduce((a: number, x: any) => a + x[1], 0)).toBe(44);
   });
   test('rodziny gotowe nie mają poleceń; ćwiczenia z zapisaną pozą są pomijane (Gironda); argumenty: wymagane --wyjscie i dokładnie jedno z --rodzina / --wszystkie', () => {
@@ -140,7 +140,7 @@ describe('gemini-polecenia: treść polecenia v2 (liczby z silnika, reguły z da
   test('rejestr błędów modelu w poleceniu: 10 najczęstszych kategorii z liczbami wystąpień i regułami zapobiegawczymi z liczbami silnika (bez nierozwiniętych {miejsc})', () => {
     const sek = /## Najczęstsze błędy[^\n]*\n\n[^\n]*\n((?:- .*\n)+)/.exec(tresc)!; const linie = sek[1].trim().split('\n'); expect(linie.length).toBeLessThanOrEqual(10); expect(linie.length).toBeGreaterThanOrEqual(8);
     expect(linie[0]).toMatch(/^- \(\d+×\) /); const licz = linie.map((l) => Number(/^- \((\d+)×\)/.exec(l)![1])); expect([...licz].sort((a, b) => b - a)).toEqual(licz);
-    expect(sek[1]).not.toMatch(/\{\w+\}/); expect(sek[1]).toContain('zasięg ramienia od barku do chwytu to 64 cm'); expect(sek[1]).toContain('limit 37°');
+    expect(sek[1]).not.toMatch(/\{\w+\}/); expect(sek[1]).toContain('zasięg ramienia od barku do chwytu to 64 cm'); expect(sek[1]).toContain('−60…37°');
   });
   test('brak nazw innych aplikacji i marek; polecenie mieści się w oknie czatu', () => {
     expect(tresc.length).toBeLessThan(36000); expect(tresc.length).toBeGreaterThan(8000); expect(tresc).not.toMatch(/strong|hevy|fitbod|jefit|stronglifts|myfitnesspal/i);
@@ -196,12 +196,17 @@ describe('core_floor: reguły sensu wyprowadzone ze wskazówek ćwiczeń (docs/5
   test('wzorzec Crunch ma proste ramiona wzdłuż ciała (łokieć ≤ 15° w każdej klatce); bramka per ćwiczenie: bez reguł sensu → wstrzymane, --bez-regul wpuszcza', () => {
     const el = run(path.join(ROOT, 'scripts/figures/v2-build.mjs'), `const os = await import('node:os'); const fs = await import('node:fs'); const { v2 } = m.loadV2(fs.mkdtempSync(os.tmpdir() + '/el-')); const d = ${JSON.stringify(CR)}; console.log(JSON.stringify([0, 0.5, 1].map((u) => ['R', 'L'].map((s) => v2.jointAngles(v2.keyframeFrame(d, u).sk, s).elbow))));`) as number[][];
     for (const par of el) for (const a of par) expect(a).toBeLessThanOrEqual(15);
-    const k = run(POL, `console.log(JSON.stringify([m.klasyfikujCwiczenia('core_floor'), m.klasyfikujCwiczenia('core_floor', { bezRegul: true })].map(x => [x.robic.length, x.pomijane.length, x.wstrzymane.length])))`); expect(k).toEqual([[17, 18, 9], [26, 18, 0]]);
+    const k = run(POL, `console.log(JSON.stringify([m.klasyfikujCwiczenia('core_floor', { root: ${JSON.stringify(PELNY)} }), m.klasyfikujCwiczenia('core_floor', { root: ${JSON.stringify(PELNY)}, bezRegul: true })].map(x => [x.robic.length, x.pomijane.length, x.wstrzymane.length])))`); expect(k).toEqual([[17, 18, 9], [26, 18, 0]]);
+  });
+  test('kontrakt: nogi.biegunKolana (kierunek zgięcia kolana): domyślny IK kieruje kolano leżącego w podłogę, [0.15, 1, ±0.1] — w górę; pole w schemacie i w poleceniu', () => {
+    const poza = (bk: boolean) => { const w = klon(CR); w.cwiczenie = 'Tuck Crunch'; for (const k of w.klatki) for (const [sd, z] of [['R', 15], ['L', -15]] as const) { k.nogi[sd].kostka = [45, 20, z]; if (bk) k.nogi[sd].biegunKolana = [0.15, 1, sd === 'R' ? 0.1 : -0.1]; } return w; };
+    expect(wal(poza(false), 'Tuck Crunch').bledy.map((b) => b.szczegol).join('|')).toMatch(/thighR poniżej podłogi o [\d.]+ cm/); expect(wal(poza(true), 'Tuck Crunch')).toEqual({ ok: true, bledy: [] });
+    const sch = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/schemas/figury-v2-poza.schema.json'), 'utf8')); expect(JSON.stringify(sch)).toContain('biegunKolana'); expect(fs.readFileSync(path.join(ROOT, 'scripts/figures/gemini-polecenia.mjs'), 'utf8')).toContain('biegunKolana = [0.15, 1, ±0.1]');
   });
   test('błędy tempa/oddechu (mis.jerk, plank.mis.breath) nie są animowane: poza z takim błędem odrzucona; lista błędów w poleceniu ich nie zawiera, jest adnotacja', () => {
     const z = klon(CR); z.bledy = [{ cue: 'mis.jerk', znacznik: 'back', dotyczy: ['hip'], klatki: [{ u: 0 }, { u: 1, miednica: [0, 0, 0] }] }];
     expect(wal(z, 'Crunch').bledy.some((b) => b.kod === 'blad-sens' && /szarpanie to cecha tempa/.test(b.szczegol))).toBe(true);
-    const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'cf-')), 'out'); run(POL, `await m.main(['--rodzina','core_floor','--wyjscie',${JSON.stringify(out)}], { log: () => {} }); console.log('0')`);
+    const out = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'cf-')), 'out'); run(POL, `await m.main(['--rodzina','core_floor','--wyjscie',${JSON.stringify(out)}], { root: ${JSON.stringify(PELNY)}, log: () => {} }); console.log('0')`);
     const wsz = fs.readdirSync(out).map((f) => fs.readFileSync(path.join(out, f), 'utf8')).join('\n'); const p1 = fs.readFileSync(path.join(out, 'core_floor-1.md'), 'utf8');
     expect(p1).toContain('## Reguły sensu ruchu'); expect(p1).toContain('[reguła: miednica_na_podlodze]'); expect(p1).toContain('Układ leżący na plecach'); expect(p1).toMatch(/## Wzorzec 1: „Crunch” leżąc na plecach wyliczony z modelu/);
     expect(wsz).toMatch(/- "Alternate Heel Touchers" — .*błędy: brak \(bledy: \[\]\) \(nie animujemy: mis\.jerk — to cecha tempa\/oddechu, nie pozy\)/);
@@ -228,7 +233,7 @@ describe('rejestr błędów modelu (gemini-rejestr.mjs, docs/53): kategorie, ide
       m.zapiszOdpowiedz(${JSON.stringify(r)}, { rodzina: 'pull_up', wersja: 'polecenie@2', runda: 2, tekst: 'y', wyniki: ${JSON.stringify([{ cwiczenie: 'A', ok: true, bledy: [] }])} });
       const rej = m.wczytajRejestr(${JSON.stringify(r)}); console.log(JSON.stringify({ p1: a.powtorka, p2: b.powtorka, kat: rej.kategorie, st: m.statystykaWersji(rej), n: rej.odpowiedzi.length, linie: m.liniePolecenia(rej, { ankleMax: 37, ankleSafe: '-5', minMotion: 8 }) }));`);
     expect([w.p1, w.p2, w.n]).toEqual([false, true, 2]); expect(w.kat['zakres:ankle']).toMatchObject({ wystapien: 2, cwiczen: 1, rodziny: ['pull_up'] }); expect(w.kat.ruch.wystapien).toBe(1);
-    expect(w.st['polecenie@2']).toEqual({ cwiczen: 2, zaliczone: 1, odsetek: 50 }); expect(w.linie[0]).toMatch(/^- \(2×\) zakres:ankle: .*limit 37°/);
+    expect(w.st['polecenie@2']).toEqual({ cwiczen: 2, zaliczone: 1, odsetek: 50 }); expect(w.linie[0]).toMatch(/^- \(2×\) zakres:ankle: .*−60…37°/);
     expect(fs.existsSync(path.join(r, 'data/figury-bledy-modelu.json'))).toBe(true);
   });
   test('zasilony rejestr w repozytorium: odpowiedzi pull_up polecenie@1 (3 rundy), kategorie z liczbami, wszystkie znane kategorie mają regułę zapobiegawczą z liczbami', () => {

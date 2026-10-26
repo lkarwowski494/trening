@@ -1,6 +1,16 @@
 {
  "_opis": "Rejestr błędów modelu (docs/53): zasilany automatycznie przez gemini-pozy.mjs --z-pliku; czytany przez gemini-polecenia.mjs. Nie edytować ręcznie liczników.",
  "kategorie": {
+  "geometria:cel poza zasięgiem": {
+   "wystapien": 21,
+   "cwiczen": 8,
+   "rodziny": [
+    "pull_up",
+    "core_floor"
+   ],
+   "przyklad": "Tuck Crunch: ręka L: cel poza zasięgiem o 0.53 cm w fazie u=0.25",
+   "zapobieganie": "zasięg ramienia od barku do chwytu to {reach} cm; w zwisie celuj w {reachAim} cm (zapas), czyli miednica.y = drążek.y − {trunk} − sqrt({reachAim}² − (z chwytu − {shHalf})²) (tabela w punktach odniesienia)."
+  },
   "sens:nogi_nieruchome": {
    "wystapien": 20,
    "cwiczen": 10,
@@ -19,14 +29,25 @@
    "przyklad": "Dead Hang: bledy[0] „pu.noSwing”: dłoń lewa wobec drążka/sztangi: dłoń 0.65 cm od chwytu (dopuszczalne 0.6) w fazie u=0.96 — chwyt musi leżeć na osi sztangi (x, y sztangi, z = ±połowa rozstawu dłoni)",
    "zapobieganie": "dłoń musi leżeć na osi drążka z dokładnością {gripTol} cm: chwyt = [x drążka, y drążka, ±z], bez zaokrągleń; a miednicę ustaw tak, by ręka sięgała celu (zasięg ramienia {reach} cm od barku, cel w odległości ≤ {reachAim} cm)."
   },
-  "geometria:cel poza zasięgiem": {
-   "wystapien": 16,
-   "cwiczen": 5,
+  "zakres:ankle": {
+   "wystapien": 12,
+   "cwiczen": 6,
    "rodziny": [
-    "pull_up"
+    "pull_up",
+    "core_floor"
    ],
-   "przyklad": "Dead Hang: bledy[0] „pu.noSwing”: ręka L: cel poza zasięgiem o 0.57 cm w fazie u=0.92",
-   "zapobieganie": "zasięg ramienia od barku do chwytu to {reach} cm; w zwisie celuj w {reachAim} cm (zapas), czyli miednica.y = drążek.y − {trunk} − sqrt({reachAim}² − (z chwytu − {shHalf})²) (tabela w punktach odniesienia)."
+   "przyklad": "Tuck Crunch: staw ankle L = 39.0° poza zakresem ruchu [-60°, 37°] w fazie u=0.96 — zmień położenie kostki, miednicy lub chwytu",
+   "zapobieganie": "kąt kostki = podbicie + nachylenie goleni (kolano przed kostką = dodatnie, zwykle +10…+20° w zwisie); limit {ankleMax}°. W zwisie ustaw podbicie {ankleSafe}."
+  },
+  "ciaglosc": {
+   "wystapien": 11,
+   "cwiczen": 6,
+   "rodziny": [
+    "pull_up",
+    "core_floor"
+   ],
+   "przyklad": "Hollow Hold: skok o 6.5 cm (limit 6 cm na 1/48 ruchu) w fazie u=0.50 — dodaj klatki pośrednie albo zmniejsz zmianę między sąsiednimi klatkami",
+   "zapobieganie": "żaden punkt nie może skoczyć o więcej niż {maxJump} cm na 1/{step} ruchu (czyli {perFrame} cm na całą fazę, gdy jest to 1/{step}·…): gdy punkt przesuwa się o więcej niż {gap10} cm w ruchu, dodaj klatki co 0,1, w szybkich fazach co 0,05."
   },
   "sens:broda_nad_drazkiem": {
    "wystapien": 11,
@@ -64,14 +85,15 @@
    "przyklad": "Side To Side Chins: reguła „tulow_pion” (wskazówka pu.noSwing): pochylenieTulowia w ruchu: -20.0°…0.0°, dozwolone -12°…3° (odchylenie tułowia to bujanie)",
    "zapobieganie": "pochylenieTulowia w poprawnej pozie w {trunkRange}° w każdej klatce; odchylenie tułowia to bujanie."
   },
-  "ciaglosc": {
-   "wystapien": 8,
-   "cwiczen": 4,
+  "zakres:shSag": {
+   "wystapien": 11,
+   "cwiczen": 7,
    "rodziny": [
-    "pull_up"
+    "pull_up",
+    "core_floor"
    ],
-   "przyklad": "Muscle Up: skok o 9.2 cm (limit 6 cm na 1/48 ruchu) w fazie u=0.56 — dodaj klatki pośrednie albo zmniejsz zmianę między sąsiednimi klatkami",
-   "zapobieganie": "żaden punkt nie może skoczyć o więcej niż {maxJump} cm na 1/{step} ruchu (czyli {perFrame} cm na całą fazę, gdy jest to 1/{step}·…): gdy punkt przesuwa się o więcej niż {gap10} cm w ruchu, dodaj klatki co 0,1, w szybkich fazach co 0,05."
+   "przyklad": "Hollow Hold: staw shSag L = 217.7° poza zakresem ruchu [-53°, 171°] w fazie u=0.71 — zmień położenie kostki, miednicy lub chwytu",
+   "zapobieganie": "bark w płaszczyźnie strzałkowej ma limit {shSagMax}° (w podciąganiu {shSagAllow}°); nie wyprowadzaj chwytu daleko za głowę — chwyt tuż nad barkiem (|x chwytu − x barku| ≤ 10 cm)."
   },
   "sens:rece_proste_caly_ruch": {
    "wystapien": 6,
@@ -82,15 +104,6 @@
    "przyklad": "Scapular Pull-Up: reguła „rece_proste_caly_ruch” (wskazówka npu.hang): łokieć L dochodzi do 31.8° w ruchu, a ma być ≤ 25° w każdej klatce (ramiona proste)",
    "zapobieganie": "ramiona proste w całym ruchu (łokieć ≤ {armsStraight}°); porusza się tylko obręcz barkowa (miednica o kilka cm w y)."
   },
-  "zakres:ankle": {
-   "wystapien": 6,
-   "cwiczen": 3,
-   "rodziny": [
-    "pull_up"
-   ],
-   "przyklad": "Rope Climb: staw ankle L = 43.4° poza zakresem ruchu [-60°, 37°] w fazie u=0.00 — zmień położenie kostki, miednicy lub chwytu",
-   "zapobieganie": "kąt kostki = podbicie + nachylenie goleni (kolano przed kostką = dodatnie, zwykle +10…+20° w zwisie); limit {ankleMax}°. W zwisie ustaw podbicie {ankleSafe}."
-  },
   "zakres:elbow": {
    "wystapien": 6,
    "cwiczen": 3,
@@ -99,15 +112,6 @@
    ],
    "przyklad": "Muscle Up: staw elbow L = 151.1° poza zakresem ruchu [0°, 149°] w fazie u=0.46 — zmień położenie kostki, miednicy lub chwytu",
    "zapobieganie": "łokieć ma zakres 0…{elbowMax}° (0° = prosty); w górnej pozycji celuj w ≤ {elbowAim}°, bo miednica zbyt wysoko przy chwycie nad nią zgina łokieć powyżej limitu."
-  },
-  "zakres:shSag": {
-   "wystapien": 4,
-   "cwiczen": 2,
-   "rodziny": [
-    "pull_up"
-   ],
-   "przyklad": "Muscle Up: staw shSag L = -59.1° poza zakresem ruchu [-53°, 200°] w fazie u=0.63 — zmień położenie kostki, miednicy lub chwytu",
-   "zapobieganie": "bark w płaszczyźnie strzałkowej ma limit {shSagMax}° (w podciąganiu {shSagAllow}°); nie wyprowadzaj chwytu daleko za głowę — chwyt tuż nad barkiem (|x chwytu − x barku| ≤ 10 cm)."
   },
   "geometria:head × bar": {
    "wystapien": 3,
@@ -136,6 +140,15 @@
    "przyklad": "Dead Hang: bledy[0] „pu.noSwing”: nie łamie żadnej reguły grupy „bujanie” (miednica_nie_buja, tulow_pion) — błąd ma wyraźnie przekraczać limity tych reguł (poza błędu musi się dać odróżnić od poprawnej)",
    "zapobieganie": "błąd ma łamać TYLKO regułę swojej wskazówki (np. pu.noSwing: przekroczyć limit bujania) i żadnej innej; poza poprawna nie łamie żadnej."
   },
+  "geometria:uarm × bar": {
+   "wystapien": 2,
+   "cwiczen": 1,
+   "rodziny": [
+    "pull_up"
+   ],
+   "przyklad": "Muscle Up: uarm × bar: przenikanie 1.52 cm (dopuszczalne 0.3) w fazie u=0.58",
+   "zapobieganie": null
+  },
   "sens:jedna_reka": {
    "wystapien": 2,
    "cwiczen": 2,
@@ -144,6 +157,15 @@
    ],
    "przyklad": "One Arm Chin-Up: reguła „jedna_reka” (wskazówka konwencja): ćwiczenie jednorącz, a sprzet[] ma drążek trzymany obiema rękami — ustaw na sztandze trzyma: \"R\" albo \"L\"",
    "zapobieganie": "ćwiczenie jednorącz: na drążku trzyma: \"R\" albo \"L\"; wolna dłoń ≥ {freeHand} cm od osi drążka, nie na drążku."
+  },
+  "zakres:knee": {
+   "wystapien": 2,
+   "cwiczen": 1,
+   "rodziny": [
+    "core_floor"
+   ],
+   "przyklad": "Reverse Crunch: staw knee L = 142.2° poza zakresem ruchu [0°, 141°] w fazie u=0.50 — zmień położenie kostki, miednicy lub chwytu",
+   "zapobieganie": "kolano 0…{kneeMax}°."
   },
   "sprzet": {
    "wystapien": 1,
@@ -154,13 +176,13 @@
    "przyklad": "Rope Climb: sprzęt: oczekiwano dokładnie jednej sztangi (drążka), jest 0",
    "zapobieganie": null
   },
-  "geometria:uarm × bar": {
-   "wystapien": 2,
-   "cwiczen": 1,
+  "geometria:poniżej podłogi": {
+   "wystapien": 38,
+   "cwiczen": 9,
    "rodziny": [
-    "pull_up"
+    "core_floor"
    ],
-   "przyklad": "Muscle Up: uarm × bar: przenikanie 1.52 cm (dopuszczalne 0.3) w fazie u=0.58",
+   "przyklad": "Tuck Crunch: thighL poniżej podłogi o 6.93 cm w fazie u=0.08",
    "zapobieganie": null
   }
  },
@@ -218,6 +240,24 @@
    "runda": 2,
    "cwiczen": 3,
    "zaliczone": 3
+  },
+  {
+   "hash": "eb1d440e0d7e",
+   "data": "2026-10-26",
+   "rodzina": "core_floor",
+   "wersja": "polecenie@2",
+   "runda": 1,
+   "cwiczen": 9,
+   "zaliczone": 2
+  },
+  {
+   "hash": "ee02398b3bae",
+   "data": "2026-10-26",
+   "rodzina": "core_floor",
+   "wersja": "polecenie@2",
+   "runda": 1,
+   "cwiczen": 8,
+   "zaliczone": 4
   }
  ]
 }

@@ -35,7 +35,7 @@ export const AFFECTS: Affects[] = ['knee', 'ankle', 'hip', 'spine', 'kneeLat', '
 export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia'] as const;
 
 /* ---------- typy danych ---------- */
-export type LegData = { kostka: V3; podbicie?: number; rotacjaStopy?: number; odchylenieKolana?: number };
+export type LegData = { kostka: V3; podbicie?: number; rotacjaStopy?: number; odchylenieKolana?: number; biegunKolana?: V3 };
 export type ArmData = { chwyt: V3; biegunLokcia?: V3; dolnaCzesc?: number };
 export type KeyFrame = {
   u: number; miednica: V3; pochylenieTulowia: number; zgiecieKregoslupa?: number; pochylenieGlowy?: number;
@@ -92,6 +92,7 @@ const legProps = (d: boolean): Record<string, Sch> => ({
   podbicie: num(-90, 90, d ? 'Zmiana pochylenia stopy w stopniach.' : 'Pochylenie stopy w płaszczyźnie strzałkowej, stopnie (0 = płasko, dodatnie = palce wyżej niż pięta). Domyślnie 0.'),
   rotacjaStopy: num(-90, 90, d ? 'Zmiana rotacji zewnętrznej stopy w stopniach.' : 'Rotacja zewnętrzna stopy, stopnie. Domyślnie 10.'),
   odchylenieKolana: num(-90, 90, d ? 'Zmiana odchylenia kolana na zewnątrz (stopnie; ujemne = do środka).' : 'Odchylenie kolana na zewnątrz w poziomie, stopnie. Domyślnie 2 × rotacja stopy.'),
+  ...(d ? {} : { biegunKolana: vec('Kierunek zgięcia kolana [x, y, z] (wektor kierunku, nie cm). Domyślnie do przodu i na zewnątrz (stojąc). Przy leżeniu na plecach i unoszonych nogach WSKAŻ [0.15, 1, 0] (kolano w górę, nie w podłogę); na czworaka i na brzuchu [0.15, -1, 0] (kolano opiera się o podłogę). Gdy podane, odchylenieKolana jest ignorowane.', 10) }),
 });
 const keyProps = (d: boolean): Record<string, Sch> => ({
   miednica: vec(d ? 'Zmiana położenia środka miednicy [dx, dy, dz] w cm.' : 'Środek stawów biodrowych [x, y, z] w cm; z = 0 oznacza płaszczyznę symetrii osoby.', d ? CONTRACT.deltaCoord : CONTRACT.coord),
@@ -179,7 +180,7 @@ function segment(us: number[], u: number): [number, number] {
 /** Klatka kluczowa w pozycji u (interpolacja liniowa wszystkich pól). */
 export function poseAt(frames: KeyFrame[], u: number): KeyFrame {
   const [i, t] = segment(frames.map(f => f.u), u); const a = frames[i], b = frames[Math.min(i + 1, frames.length - 1)];
-  const leg = (s: Side): LegData => ({ kostka: lerp3(a.nogi[s].kostka, b.nogi[s].kostka, t), podbicie: opt(a.nogi[s].podbicie, b.nogi[s].podbicie, t), rotacjaStopy: opt(a.nogi[s].rotacjaStopy, b.nogi[s].rotacjaStopy, t), odchylenieKolana: opt(a.nogi[s].odchylenieKolana, b.nogi[s].odchylenieKolana, t) });
+  const leg = (s: Side): LegData => ({ kostka: lerp3(a.nogi[s].kostka, b.nogi[s].kostka, t), podbicie: opt(a.nogi[s].podbicie, b.nogi[s].podbicie, t), rotacjaStopy: opt(a.nogi[s].rotacjaStopy, b.nogi[s].rotacjaStopy, t), odchylenieKolana: opt(a.nogi[s].odchylenieKolana, b.nogi[s].odchylenieKolana, t), biegunKolana: opt3(a.nogi[s].biegunKolana, b.nogi[s].biegunKolana, t) });
   const arm = (s: Side): ArmData => ({ chwyt: lerp3(a.rece[s].chwyt, b.rece[s].chwyt, t), biegunLokcia: opt3(a.rece[s].biegunLokcia, b.rece[s].biegunLokcia, t), dolnaCzesc: opt(a.rece[s].dolnaCzesc, b.rece[s].dolnaCzesc, t) });
   return { u, miednica: lerp3(a.miednica, b.miednica, t), pochylenieTulowia: lerp(a.pochylenieTulowia, b.pochylenieTulowia, t), zgiecieKregoslupa: opt(a.zgiecieKregoslupa, b.zgiecieKregoslupa, t), pochylenieGlowy: opt(a.pochylenieGlowy, b.pochylenieGlowy, t), nogi: { R: leg('R'), L: leg('L') }, rece: { R: arm('R'), L: arm('L') } };
 }
@@ -197,12 +198,12 @@ const plus = (a: V3, d: V3 | undefined): V3 => d ? add(a, d) : a;
 const plusN = (a: number | undefined, d: number | undefined, base = 0): number | undefined => d === undefined ? a : (a ?? base) + d;
 /** Poza z nałożoną deltą. */
 export function applyDelta(k: KeyFrame, d: DeltaFrame): KeyFrame {
-  const leg = (s: Side): LegData => { const l = k.nogi[s], x = d.nogi?.[s]; const toe = l.rotacjaStopy ?? 10; return { kostka: plus(l.kostka, x?.kostka), podbicie: plusN(l.podbicie, x?.podbicie), rotacjaStopy: plusN(l.rotacjaStopy, x?.rotacjaStopy, 10), odchylenieKolana: plusN(l.odchylenieKolana, x?.odchylenieKolana, toe * 2) }; };
+  const leg = (s: Side): LegData => { const l = k.nogi[s], x = d.nogi?.[s]; const toe = l.rotacjaStopy ?? 10; return { biegunKolana: l.biegunKolana, kostka: plus(l.kostka, x?.kostka), podbicie: plusN(l.podbicie, x?.podbicie), rotacjaStopy: plusN(l.rotacjaStopy, x?.rotacjaStopy, 10), odchylenieKolana: plusN(l.odchylenieKolana, x?.odchylenieKolana, toe * 2) }; };
   const arm = (s: Side): ArmData => ({ ...k.rece[s], chwyt: plus(k.rece[s].chwyt, d.rece?.[s]?.chwyt) });
   return { ...k, miednica: plus(k.miednica, d.miednica), pochylenieTulowia: k.pochylenieTulowia + (d.pochylenieTulowia ?? 0), zgiecieKregoslupa: plusN(k.zgiecieKregoslupa, d.zgiecieKregoslupa), pochylenieGlowy: d.pochylenieGlowy === undefined ? k.pochylenieGlowy : (k.pochylenieGlowy ?? Math.max(-20, Math.min(60, k.pochylenieTulowia * 0.4))) + d.pochylenieGlowy, nogi: { R: leg('R'), L: leg('L') }, rece: { R: arm('R'), L: arm('L') } };
 }
 export function toPoseIn(k: KeyFrame): PoseIn {
-  const leg = (s: Side): LegIn => { const l = k.nogi[s]; return { ankle: l.kostka, footPitch: l.podbicie, toeOut: l.rotacjaStopy, kneeOut: l.odchylenieKolana }; };
+  const leg = (s: Side): LegIn => { const l = k.nogi[s]; return { ankle: l.kostka, footPitch: l.podbicie, toeOut: l.rotacjaStopy, kneeOut: l.odchylenieKolana, kneePole: l.biegunKolana }; };
   const arm = (s: Side): ArmIn => { const a = k.rece[s]; return { grip: a.chwyt, elbowPole: a.biegunLokcia, lower: a.dolnaCzesc }; };
   return { pelvis: k.miednica, trunkPitch: k.pochylenieTulowia, spineBend: k.zgiecieKregoslupa, headPitch: k.pochylenieGlowy, legs: { R: leg('R'), L: leg('L') }, arms: { R: arm('R'), L: arm('L') } };
 }
@@ -324,7 +325,7 @@ export function describeContract(family: string): string {
     `Kontrakt ${CONTRACT.id}. Zwracasz JEDEN obiekt JSON zgodny ze schematem: kontrakt, rodzina, cwiczenie, sprzet[], klatki[] (poza poprawna), bledy[] (zmiany pozy poprawnej).`,
     'Układ współrzędnych (cm): x = do przodu (w stronę twarzy), y = w górę (podłoga y = 0), z = prawa strona osoby (z = 0 to płaszczyzna symetrii). Kąty w stopniach.',
     `Szkielet (stałe długości kości, cm): udo ${BODY.thigh}, podudzie ${BODY.shank}, wysokość kostki ${BODY.ankleH}, tułów (miednica do barków) ${BODY.trunk}, ramię ${BODY.uarm}, przedramię ${BODY.farm}, dłoń ${BODY.hand} (łokieć do środka chwytu ${BODY.farm + BODY.hand}); biodra ±${BODY.hipHalf} cm od płaszczyzny symetrii (z), barki ±${BODY.shHalf} cm. Ramię wyprostowane sięga 64 cm od barku do chwytu.`,
-    'Podajesz tylko: miednicę (środek stawów biodrowych), pochylenie tułowia, zgięcie kręgosłupa i głowy, kostki obu nóg i środki chwytu obu dłoni. Kolana i łokcie liczy nasz IK (kierunek zgięcia: odchylenieKolana, biegunLokcia). Barki leżą na tułowiu: tułów od miednicy do barków ma stałą długość, więc chwyt musi być w zasięgu ramienia od barku (≤ 64 cm), a kostka w zasięgu nogi od biodra (≤ 83 cm).',
+    'Podajesz tylko: miednicę (środek stawów biodrowych), pochylenie tułowia, zgięcie kręgosłupa i głowy, kostki obu nóg i środki chwytu obu dłoni. Kolana i łokcie liczy nasz IK (kierunek zgięcia: odchylenieKolana albo biegunKolana, biegunLokcia). Barki leżą na tułowiu: tułów od miednicy do barków ma stałą długość, więc chwyt musi być w zasięgu ramienia od barku (≤ 64 cm), a kostka w zasięgu nogi od biodra (≤ 83 cm).',
     `Ruch: ${t.movement} Między klatkami kluczowymi interpolacja jest liniowa: dla ruchów zakrzywionych dodaj klatki pośrednie (maks. ${CONTRACT.frames.max}); żaden staw nie może przeskakiwać o więcej niż ${CONTRACT.maxJump} cm na 1/${CONTRACT.step} ruchu.`,
     `Sprzęt: ${t.gear} Stopy opierają się o podłogę (podeszwa nie niżej niż y = 0), ciało nie przenika sprzętu, dłonie leżą na chwycie sztangi (tolerancja 0,6 cm).`,
     `Błędy (bledy[]): każdy to MODYFIKACJA pozy poprawnej: klatki[] z deltami (dodawanymi do pozy poprawnej, interpolacja liniowa), pierwsza u = 0 z deltą zerową, ostatnia u = 1. cue = identyfikator wskazówki błędu z listy podanej dla ćwiczenia (tekstu nie piszesz). dotyczy = wielkości, które błąd zmienia; pozostałe kąty (biodro, kolano, kostka, łokieć, bark) mogą się różnić od pozy poprawnej najwyżej o ${CONTRACT.undeclaredDeg}°. Błąd musi być widoczny (≥ ${CONTRACT.visibleCm} cm lub ≥ ${CONTRACT.visibleDeg}°). Poza błędu też nie przenika sprzętu ani podłogi. Najwyżej ${CONTRACT.errorsMax} błędy; gdy ćwiczenie nie ma błędów na liście, bledy = [].`,
