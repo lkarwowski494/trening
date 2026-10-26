@@ -134,7 +134,7 @@ const side = (props: Record<string, Sch>, required: string[], d: boolean): Sch =
 
 /** Zakres polecenia dla jednej części ćwiczeń (docs/54, decyzja 26.10.2026): pola sprzętu tylko dla rodzajów występujących w części, pola poza@2 tylko te, których wymagają reguły części. Brak zakresu = pełny kontrakt (schemat generyczny w docs/schemas). */
 export type PromptScope = { gear?: readonly string[]; ext?: readonly string[] };
-export const EXT_FIELDS: readonly string[] = [...['obrotTulowia', 'skretTulowia', 'przechylTulowia', 'przechylMiednicy', 'przechylGlowy'], ...['uniesienieBarkow', 'wysuniecieBarkow', 'zgiecieNadgarstka', 'obrotPrzedramienia']];
+export const EXT_FIELDS: readonly string[] = ['obrotTulowia', 'skretTulowia', 'przechylTulowia', 'przechylMiednicy', 'przechylGlowy', 'uniesienieBarkow', 'wysuniecieBarkow', 'zgiecieNadgarstka', 'obrotPrzedramienia'];
 /** Pola sprzętu spoza podstawowych (te, które rejestr przypisuje rodzajom): tylko one są przycinane. */
 const gearFieldsOf = (kinds: readonly string[]): Set<string> => new Set(kinds.flatMap(k => (GEAR_KINDS as Record<string, { fields?: readonly string[] }>)[k]?.fields ?? []));
 /** Opis „rodzaj” przycięty do wybranych rodzajów (lista „nazwa (komentarz), …” + zdanie o sprzęcie trzymanym). */
