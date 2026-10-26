@@ -5,7 +5,7 @@
  */
 import {
   GEAR, GEAR_KINDS, BENCH_KAT, BAND_MOUNT, SLED_HOLD, LEVER_MODE, LEVER_POINT, benchHip, SOFT_CONTACT, GEAR_CAPS, GEAR_EXTRA_FIELDS, BELL_MODES, CABLE_ATTACH, gearFieldIssues, gearSetIssues, contactsFrom, WALL_CONTACT, TOL, CABLE_Y, requiredGearIssues, propsFrom, resolveBells, plateColliders, distToRingYZ, HOLD,
-  CONTRACT, EQUIP, BENCH, hyperPolys, preacherPolys, templateFor, exampleFor, figureSpec, frameAt, rollerAt, poseSchema, describeContract, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
+  CONTRACT, EQUIP, BENCH, hyperPolys, preacherPolys, templateFor, exampleFor, figureSpec, frameAt, rollerAt, poseSchema, describeContract, gearText, hasOwnTemplate, EXT_FIELDS, figurePalette, propShapes, boundsOf, svgDocument, equipColliders, bodyColliders, gap, checkFrame, holdChecks, keyframeFrame, validatePose, dataShapes, solveSkeleton,
   type Gear, type KeyFrame, type PoseData, type Prop, type V3, type RomData, type Frame, type View,
 } from '@/lib/figures/v2';
 import { FIG_DATA } from '@/lib/figures';
@@ -297,8 +297,13 @@ describe('propsFrom: rekwizyty ze sprzętu i chwytów (sprzęt trzymany podąża
   });
   test('zawieszenie, lina, sanie, poręcze: rekwizyty (taśmy z zaczepu do dłoni/kostek, lina pionowa, sanie ze słupkami albo liną, dwie poręcze)', () => {
     const A = { R: [5, 20, 9] as V3, L: [6, 22, -9] as V3 };
-    expect(propsFrom([{ rodzaj: 'zawieszenie', x: 10 }], G, A)).toEqual([{ k: 'cable', from: [10, EQUIP.suspensionY, 0], to: G.R, attach: 'handle', ends: [G.R], solid: true }, { k: 'cable', from: [10, EQUIP.suspensionY, 0], to: G.L, attach: 'handle', ends: [G.L], solid: true }]);
-    expect(propsFrom([{ rodzaj: 'zawieszenie', y: 200, punkt: 'kostki', trzyma: 'L' }], G, A)).toEqual([{ k: 'cable', from: [0, 200, 0], to: A.L, attach: 'strap', ends: [A.L], solid: true }]);
+    expect(propsFrom([{ rodzaj: 'zawieszenie', x: 10 }], G, A)).toEqual([{ k: 'cable', from: [10, EQUIP.suspensionY, 0], to: G.R, attach: 'handle', ends: [G.R], solid: true, free: EQUIP.suspensionFree }, { k: 'cable', from: [10, EQUIP.suspensionY, 0], to: G.L, attach: 'handle', ends: [G.L], solid: true, free: EQUIP.suspensionFree }]);
+    expect(propsFrom([{ rodzaj: 'zawieszenie', y: 200, punkt: 'kostki', trzyma: 'L' }], G, A)).toEqual([{ k: 'cable', from: [0, 200, 0], to: A.L, attach: 'strap', ends: [A.L], solid: true, free: EQUIP.suspensionFree }]);
+    /* kolizja taśmy: ostatnie EQUIP.suspensionFree cm przy uchwycie (dłoń trzyma uchwyt, taśma biegnie wzdłuż przedramienia) bez kolidera, reszta solidna; zwykła linka wyciągu — krótszy odcinek EQUIP.cableEnd */
+    const taśma = (free?: number) => equipColliders([{ k: 'cable', from: [0, 220, 0], to: [0, 120, 0], attach: 'handle', ends: [[0, 120, 0]], solid: true, ...(free !== undefined ? { free } : {}) }])[0] as Extract<ReturnType<typeof equipColliders>[number], { k: 'capsule' }>;
+    expect(taśma(EQUIP.suspensionFree).b[1]).toBeCloseTo(120 + EQUIP.suspensionFree, 6); expect(taśma().b[1]).toBeCloseTo(120 + EQUIP.cableEnd, 6); expect(EQUIP.suspensionFree).toBeGreaterThan(EQUIP.cableEnd);
+    const pada = (free: number) => { const c = equipColliders([{ k: 'cable', from: [0, 220, 0], to: [0, 120, 0], attach: 'handle', ends: [[0, 120, 0]], solid: true, free }])[0] as Extract<ReturnType<typeof equipColliders>[number], { k: 'capsule' }>; return c.b[1]; };
+    expect(pada(15)).toBeGreaterThan(pada(0)); expect(pada(0)).toBeCloseTo(120, 6); expect(equipColliders([{ k: 'cable', from: [0, 220, 0], to: [0, 120, 0], solid: false, free: 15 }])).toEqual([]);
     expect(propsFrom([{ rodzaj: 'lina_pionowa', x: 20, z: 3, h: 300, y: 10, trzyma: 'R' }], G)).toEqual([{ k: 'rope', x: 20, z: 3, top: 300, bottom: 10, held: 'R' }]); expect(propsFrom([{ rodzaj: 'lina_pionowa' }], G)).toEqual([{ k: 'rope', x: 0, z: 0, top: EQUIP.ropeTop, bottom: EQUIP.ropeBottom, held: true }]);
     expect(propsFrom([{ rodzaj: 'sanie', x: 30 }], G)).toEqual([{ k: 'sled', x: 30, h: EQUIP.sledPostH, len: EQUIP.sledLen, posts: true }]);
     expect(propsFrom([{ rodzaj: 'sanie', x: 80, h: 90, dlugosc: 50, trzymanie: 'lina' }], G)).toEqual([{ k: 'sled', x: 80, h: 90, len: 50, posts: false }, { k: 'cable', from: [130, 15, 0], to: [12, 85, 0], attach: 'handle', ends: [G.R, G.L], solid: true }]);
@@ -576,5 +581,13 @@ describe('walidator pozy z nowym sprzętem — macierz rodzaj × wariant', () =>
   });
   test('opis kontraktu wspomina sprzęt trzymany w dłoniach i tolerancję 3 cm', () => {
     const t = describeContract('curl'); expect(t).toContain('podąża za chwytem'); expect(t).toContain('tolerancja 3 cm'); expect(t).toContain('hantel — hantel trzymany w dłoni');
+  });
+  test('zakres polecenia (gearText, hasOwnTemplate, EXT_FIELDS): rodzina z własnym szablonem zachowuje jego tekst, generyczna dostaje tylko rodzaje z zakresu; EXT_FIELDS = 9 pól poza@2 usuwanych ze schematu spoza zakresu', () => {
+    expect(hasOwnTemplate('pull_up')).toBe(true); expect(hasOwnTemplate('shrug')).toBe(false);
+    expect(gearText('pull_up', { gear: ['podloga'] })).toBe(templateFor('pull_up').gear);
+    const t = gearText('shrug', { gear: ['podloga', 'hantel'] }); expect(t).toContain('podloga —'); expect(t).toContain('hantel —'); expect(t).not.toContain('kettlebell —'); expect(gearText('shrug')).toBe(templateFor('shrug').gear);
+    expect(EXT_FIELDS).toHaveLength(9); expect(EXT_FIELDS).toContain('obrotTulowia'); expect(EXT_FIELDS).toContain('obrotPrzedramienia');
+    const w = poseSchema('shrug', { gear: ['podloga'], ext: ['uniesienieBarkow'] }) as any; const k = Object.keys(w.properties.klatki.items.properties); const r = Object.keys(w.properties.klatki.items.properties.rece.properties.R.properties); expect(r).toContain('uniesienieBarkow'); expect(r).not.toContain('obrotPrzedramienia'); expect(k).not.toContain('obrotTulowia'); expect(Object.keys(w.properties.sprzet.items.properties)).not.toContain('promien');
+    expect(describeContract('shrug', { gear: ['podloga'], ext: [] })).not.toContain('Opcjonalne stopnie swobody');
   });
 });

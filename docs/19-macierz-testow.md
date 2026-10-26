@@ -12,8 +12,8 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | EKRAN | 32 | 32 | 0 |
 | UI | 354 | 354 | 0 |
 | TEKST | 1118 | 1118 | 0 |
-| LOGIKA | 1081 | 1081 | 0 |
-| WYMIAR | 160 | 160 | 0 |
+| LOGIKA | 1083 | 1083 | 0 |
+| WYMIAR | 161 | 161 | 0 |
 
 ## EKRAN
 
@@ -58,7 +58,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 |---|---|---|
 | {label}: {v}, poprzednio {p} | components/PeriodSummary.tsx | tests/period-summary.test.tsx, tests/progression-ui.test.tsx |
 | {label}: {v}, poprzednio {p}, {d} | app/progression.tsx | tests/period-summary.test.tsx, tests/progression-ui.test.tsx |
-| {n} min | app/generator.tsx | tests/adapt-ui.test.tsx, tests/app.tsx, tests/asc-metadane.test.ts +110 |
+| {n} min | app/generator.tsx | tests/adapt-ui.test.tsx, tests/app.tsx, tests/asc-metadane.test.ts +111 |
 | {n} z {all} | components/DragList.tsx | (tylko parametry — pokrycie przez test ekranu) |
 | {title} ({sub}): objętość {v}, {p}; serie {s}, {d} | components/Dashboard.tsx | tests/progression-ui.test.tsx |
 | ↑ przy ćwiczeniu, gdy ostatnio wszystkie serie były na górze zakresu powtórzeń | app/more/settings.tsx | tests/audit-m1-046-047-claims.test.tsx, tests/matrix-ui.test.tsx |
@@ -205,7 +205,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | opcjonalne pole, nie wpływa na objętość | app/more/settings.tsx | tests/matrix-ui.test.tsx |
 | Opcjonalnie, tylko w telefonie. Potrzebna do e1RM w podciąganiu i pompkach. | app/more/bodymass.tsx | tests/audit-0.10-stats-ui.test.tsx |
 | Otwórz Ustawienia iOS | app/more/settings.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-m1-035-notif-denied.test.tsx, tests/i18n-variants.test.ts +3 |
-| Partia | app/exercise/[id].tsx | tests/audit-k1-fala2b.test.tsx, tests/edit-on-demand.test.tsx, tests/interaction-guards.test.ts +8 |
+| Partia | app/exercise/[id].tsx | tests/audit-k1-fala2b.test.tsx, tests/edit-on-demand.test.tsx, tests/figury-jakosc.test.ts +9 |
 | Partie główne (1 seria) | app/exercise/[id].tsx | tests/edit-on-demand.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Partie pomocnicze (0,5 serii) | app/exercise/[id].tsx | tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Partie z większą objętością | app/progression.tsx | tests/progression-ui.test.tsx |
@@ -284,7 +284,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Sprawdź zgodę na powiadomienia | app/more/settings.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Spróbuj ponownie | app/paywall.tsx | tests/audit-m1-003-boundary.test.tsx, tests/audit-m1-003-guard-ui.test.tsx, tests/health-read-ui.test.tsx +3 |
 | Sprzęt | app/exercise/[id].tsx | tests/audit-0.10-tst.test.ts, tests/edit-on-demand.test.tsx, tests/figures-v2-contract.test.ts +2 |
-| Start | app/pick-template.tsx | tests/app.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-plan-ui.test.tsx +69 |
+| Start | app/pick-template.tsx | tests/app.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-plan-ui.test.tsx +70 |
 | Start stopera: {ex}, seria {n} | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx |
 | Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo. | components/DayPanel.tsx | tests/places-ui.test.tsx |
 | Start zaplanowanego treningu: {name} | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/deload-ui.test.tsx +2 |
@@ -833,7 +833,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Mięśnie główne: {lista} | components/ExerciseFigureV2.tsx | tests/figures-v2-ui.test.tsx |
 | Mięśnie pomocnicze: {lista} | components/ExerciseFigureV2.tsx | tests/figures-v2-ui.test.tsx |
 | Minęło {s} s. | lib/timer.ts | tests/matrix-ui.test.tsx, tests/timer-logic.test.ts |
-| mniej | components/MuscleMap.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +38 |
+| mniej | components/MuscleMap.tsx | tests/audit-0.10-gen-ui.test.tsx, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +39 |
 | Mniej niż przed tygodniem: {list}. | lib/guard.ts | tests/guard-ui.test.tsx, tests/guard.test.ts |
 | Mniej niż w tygodniu {d}: {list}. | lib/guard.ts | tests/guard-ui.test.tsx, tests/guard.test.ts |
 | Mniej opcji | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx |
@@ -1786,8 +1786,10 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | figures/v2/contacts.glowShapes | lib/figures/v2/contacts.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/contacts.contactGlows | lib/figures/v2/contacts.ts | tests/figures-v2-styk.test.tsx |
 | figures/v2/contacts.lostContacts | lib/figures/v2/contacts.ts | tests/figures-v2-styk.test.tsx |
+| figures/v2/contract.hasOwnTemplate | lib/figures/v2/contract.ts | tests/figures-v2-gear.test.ts |
 | figures/v2/contract.templateFor | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts |
 | figures/v2/contract.knownFamily | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
+| figures/v2/contract.gearText | lib/figures/v2/contract.ts | tests/figures-v2-gear.test.ts |
 | figures/v2/contract.poseSchema | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts |
 | figures/v2/contract.checkSchema | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
 | figures/v2/contract.poseAt | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts, tests/figures-v2-poza2.test.ts |
@@ -2665,6 +2667,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | ContactKind: foot \| hand \| body | lib/figures/v2/contacts.ts | tests/figures-v2-gear.test.ts, tests/figures-v2-styk.test.tsx |
 | MARKS (5) | lib/figures/v2/contract.ts | tests/figures-v2-bench-rules.test.ts, tests/figures-v2-contract.test.ts |
 | AFFECTS (10) | lib/figures/v2/contract.ts | tests/figures-v2-contract.test.ts |
+| EXT_FIELDS (9) | lib/figures/v2/contract.ts | tests/figures-v2-gear.test.ts, tests/figures-v2-poza2.test.ts |
 | TRUNK_EXT (5) | lib/figures/v2/contract.ts | tests/figures-v2-poza2.test.ts |
 | ARM_EXT (4) | lib/figures/v2/contract.ts | tests/figures-v2-poza2.test.ts |
 | CuePolicy: A \| B | lib/figures/v2/cueSets.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-live-logic.test.ts |

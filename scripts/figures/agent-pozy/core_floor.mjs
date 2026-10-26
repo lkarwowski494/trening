@@ -37,7 +37,7 @@ const pole3 = (p, z, domyslny) => (p ? [p[0], p[1], z * 0.1] : domyslny);
 
 /** Klatka leżenia/podparcia: miednica [x, y], pochylenie p, zgięcie kręgosłupa, głowa; nogi: { R: noga, L: noga } gdzie noga = { t, k, pod?, rot?, z? } (FK) albo { ankle:[x,y], strona, pod?, rot?, z? } (cel);
  ręce: { R: { a, z, d? } | { g:[x,y,z] }, L }. Zwraca klatkę kontraktu. */
-export function ramka({ u, miednica, p, bend = 0, glowa, nogi, rece, polaLokci = {} }) {
+export function ramka({ u, miednica, p, bend = 0, glowa, nogi, rece, polaLokci = {}, przechyl }) {
   const hip = [miednica[0], miednica[1]]; const S = barki([miednica[0], miednica[1]], p, bend); const nog = {}; const rec = {};
   for (const s of ['R', 'L']) {
     const sg = s === 'R' ? 1 : -1; const n = nogi[s]; const hz = sg * 8.5; void hz;
@@ -45,7 +45,7 @@ export function ramka({ u, miednica, p, bend = 0, glowa, nogi, rece, polaLokci =
     const sd = n.ankle ? null : n.t - n.k; nog[s] = { k: [f.ankle[0], f.ankle[1], sg * (n.z === undefined ? ZNOG : Math.abs(n.z))], pod: n.pod ?? (sd === null ? 0 : podbicieNeutralne(sd, n.stopa)), rot: n.rot ?? 10, pole: pole ? [pole[0], pole[1], sg * 0.1] : [0.15, 1, sg * 0.1] };
     const r = rece[s]; const g = r.g ? r.g : chwyt(S, r.a, r.z ?? sg * 19, r.d); rec[s] = { g, pole: polaLokci[s] ?? r.pole ?? (r.g ? undefined : [0, 0.2, sg]) };
   }
-  return klatka({ u, miednica: [miednica[0], miednica[1], 0], pitch: p, bend, glowa: glowa ?? p, nogi: nog, rece: rec });
+  return klatka({ u, miednica: [miednica[0], miednica[1], 0], pitch: p, bend, glowa: glowa ?? p, nogi: nog, rece: rec, przechyl });
 }
 const lerp = (a, b, t) => a + (b - a) * t;
 const wygladzenie = (x) => x * x * (3 - 2 * x); /* start i koniec ruchu ramienia wolniejsze (limit szybkości punktu w kontrakcie) */
@@ -59,23 +59,25 @@ const RECE_BOK = (S, y = 5, d = 62) => ({ R: { g: [S[0] + Math.sqrt(d * d - 25),
 const RECE_NAD_GLOWA = (kat = 25) => (S, p) => ({ R: { a: KAT_OS(p) - kat, z: 8 }, L: { a: KAT_OS(p) - kat, z: -8 } }); /* ramiona w osi tułowia nad głową, 25° poniżej osi (bark < 170°) */
 
 /* ---------- unoszenie tułowia leżąc na plecach (crunch i pochodne) ---------- */
-function crunch(cw, { pU1 = -62, nogi, rece, pHeadDelta = 0, pelvisY = Y0 }) {
-  const us = [0, 0.5, 1]; const fr = (u) => { const p = lerp(-90, pU1, u); const S = barki([0, pelvisY], p); return ramka({ u, miednica: [0, pelvisY], p, glowa: p + pHeadDelta, nogi: nogi(u, p), rece: rece(S, p, u) }); };
+export function crunch(cw, { pU1 = -62, nogi, rece, pHeadDelta = 0, pelvisY = Y0, bend1 = 0 }) {
+  const us = [0, 0.5, 1]; const fr = (u) => { const p = lerp(-90, pU1, u); const bend = bend1 * u; const S = barki([0, pelvisY], p, bend); return ramka({ u, miednica: [0, pelvisY], p, bend, glowa: p + pHeadDelta, nogi: nogi(u, p), rece: rece(S, p, u) }); };
   return zbuduj1(cw, us.map(fr));
 }
 const stopyPlasko = (x, z) => ({ R: { ankle: [x, 7], strona: 'gora', pod: 0, z }, L: { ankle: [x, 7], strona: 'gora', pod: 0, z } });
 
 /* ---------- ćwiczenia leżące ---------- */
-function alternateHeelTouchers(cw) {
-  const us = [0, 0.5, 1]; const pU1 = -62;
-  const fr = (u) => { const p = lerp(-90, pU1, u); const S = barki([0, Y0], p); const zS = 22;
-    const bok = (s) => { const sg = s === 'R' ? 1 : -1; return { g: [S[0] + Math.sqrt(62 ** 2 - 25), 5, sg * 24], pole: [0, 0, sg] }; }; /* lewa ręka zostaje przy boku */
-    const heel = [30 - 6, 7]; const toHeel = Math.atan2(heel[1] - S[1], heel[0] - S[0]) / R; const reach = chwyt(S, toHeel, 24, 62);
-    return ramka({ u, miednica: [0, Y0], p, glowa: p, nogi: { R: { ankle: [30, 7], strona: 'gora', z: zS }, L: { ankle: [30, 7], strona: 'gora', z: -zS } }, rece: { R: u === 0 ? bok('R') : { g: reach, pole: [0, 0, 1] }, L: bok('L') } }); };
+function alternateHeelTouchers(cw, { lean = 16, p1 = -72, heelX = 30, bend1 = 40 } = {}) {
+  /* leżąc na plecach, kolana zgięte, stopy płasko; naprzemienny skłon boczny (przechylTulowia, poza@2): u = 0 płasko, 0,5 skłon ku prawej pięcie, 1 ku lewej; ręka po stronie skłonu sięga pięty, druga leży przy boku */
+  const us = [0, 0.5, 1]; const zS = 22;
+  const fr = (u) => { const sk = u === 0.5 ? 1 : u === 1 ? -1 : 0; const p = u === 0 ? -90 : p1; const bend = u === 0 ? 0 : bend1; const S = barki([0, Y0], p, bend); /* odrywają się tylko łopatki: lędźwie przy podłodze */
+    const bok = (s) => { const sg = s === 'R' ? 1 : -1; return { g: [S[0] + Math.sqrt(46 ** 2 - 25), 5, sg * 24], pole: [0, 0, sg] }; }; /* ręka przy boku, na podłodze */
+    const sięga = (s) => { const sg = s === 'R' ? 1 : -1; return { g: [heelX - 12, 6, sg * zS], pole: [0, 0.3, sg] }; }; /* dłoń przy pięcie po stronie skłonu */
+    const rece = { R: sk === 1 ? sięga('R') : bok('R'), L: sk === -1 ? sięga('L') : bok('L') };
+    return ramka({ u, miednica: [0, Y0], p, bend, glowa: p, nogi: { R: { ankle: [heelX, 7], strona: 'gora', pod: 0, z: zS }, L: { ankle: [heelX, 7], strona: 'gora', pod: 0, z: -zS } }, rece, przechyl: sk * lean }); };
   return zbuduj1(cw, us.map(fr));
 }
 function crunchHandsOverhead(cw) {
-  return crunch(cw, { pU1: -62, nogi: () => stopyPlasko(35, ZNOG), rece: (S, p) => ({ R: { a: KAT_OS(p) - 25, z: 5 }, L: { a: KAT_OS(p) - 25, z: -5 } }) });
+  return crunch(cw, { pU1: -62, bend1: 40, nogi: () => stopyPlasko(35, ZNOG), rece: (S, p) => ({ R: { a: KAT_OS(p) - 25, z: 5 }, L: { a: KAT_OS(p) - 25, z: -5 } }) });
 }
 function tuckCrunch(cw) {
   const us = [0, 0.5, 1]; const fr = (u) => { const p = lerp(-90, -62, u); const S = barki([0, Y0], p); const t = lerp(90, 102, u); const k = lerp(30, 70, u); const fk = (z) => ({ t, k, z, rot: 10, stopa: 'dol' });
@@ -103,7 +105,7 @@ function lyingLegRaise(cw) {
   return zbuduj1(cw, us.map((u) => { const t = lerp(16, 88, u); return ramka({ u, miednica: [0, Y0], p: -90, glowa: -90, nogi: { R: { t, k: ks, z: ZNOG, stopa: 'dol' }, L: { t, k: ks, z: -ZNOG, stopa: 'dol' } }, rece: RECE_BOK(S) }); }));
 }
 function hollowHold(cw) {
-  const ks = kolanoProste(); const p = -72; const fr = (u) => ramka({ u, miednica: [0, Y0], p, glowa: p, nogi: { R: { t: 28, k: ks, z: ZNOG }, L: { t: 28, k: ks, z: -ZNOG } }, rece: RECE_NAD_GLOWA(20)(null, p) });
+  const ks = kolanoProste(); const p = -76; const bend = 35; /* lędźwie dociśnięte (v2-jakosc: ledzwie_przy_podlodze): unosi się górna część pleców (zaokrąglenie) i nogi */ const fr = (u) => ramka({ u, miednica: [0, Y0], p, bend, glowa: p, nogi: { R: { t: 28, k: ks, z: ZNOG }, L: { t: 28, k: ks, z: -ZNOG } }, rece: RECE_NAD_GLOWA(20)(null, p) });
   return zbuduj1(cw, [fr(0), fr(1)]);
 }
 function deadBug(cw) {
@@ -114,7 +116,7 @@ function deadBug(cw) {
 }
 function cocoons(cw) {
   const ks = kolanoProste(); const us = Array.from({ length: 9 }, (_, i) => i / 8);
-  const fr = (u) => { const p = lerp(-90, -62, u); const y = Y0 + 8 * u; const t = lerp(10, 100, u), k = lerp(ks, 100, u); const S = barki([0, y], p);
+  const fr = (u) => { const p = lerp(-90, -62, u); const y = Y0; /* miednica zostaje na podłodze (siedzi na pośladkach) — v2-jakosc: nic_nie_wisi */ const t = lerp(10, 100, u), k = lerp(ks, 100, u); const S = barki([0, y], p);
     const fk = nogaFK([0, y], t, k); const dokolan = Math.atan2(fk.knee[1] - S[1], fk.knee[0] - S[0]) / R; const aOver = KAT_OS(p) - 20; const a = lerp(aOver, dokolan, wygladzenie(Math.min(1, u * 1.2)));
     return ramka({ u, miednica: [0, y], p, glowa: p, nogi: { R: { t, k, z: ZNOG, stopa: 'gora' }, L: { t, k, z: -ZNOG, stopa: 'gora' } }, rece: { R: { a, z: 8 }, L: { a, z: -8 } } }); };
   return zbuduj1(cw, us.map(fr));
@@ -152,8 +154,10 @@ const ks0 = () => kolanoProste();
 
 /** Ćwiczenia, których generator rodziny nie robi (powód obowiązkowy). */
 export const WYJATKI = {};
+/** Identyfikatory błędów z katalogu bez opisu w lib/cues/text/pl.json (id → powód); do uzupełnienia przez badacza i tłumacza. */
+export const WYJATKI_OPISU = { 'cobra.mis': 'zestaw ogólny „cobra” (cue-sets.json: Superman, Lower Back Curl) odwołuje się do wskazówki bez tekstu w lib/cues/text/*.json; tekst do napisania przez badacza, przekład przez tłumacza' };
 export const PRZYBLIZENIA = {
-  'Alternate Heel Touchers': 'przybliżenie: skłon boczny do pięty niemodelowany (kontrakt nie ma przechyłu bocznego); prawa ręka sięga w stronę pięty, nie dotyka jej',
+  'Alternate Heel Touchers': 'skłon boczny tułowia (przechylTulowia, poza@2) jest sztywny w biodrach, nie łukiem; dłoń kończy ruch przy pięcie, bez dotyku',
   'Superman': 'przybliżenie: stopy skierowane na zewnątrz (rotacja 90°), bo model stopy nie ma palców skierowanych do tyłu',
   'Tuck Crunch': 'przybliżenie: skrzyżowanie kostek zastąpione zbliżeniem kostek (z = ±3)',
   'Cocoons': 'ruch ramion: z nad głową w stronę kolan (opis katalogu niejednoznaczny)',
@@ -168,6 +172,7 @@ export function generuj() {
     'Lying Leg Raise': () => lyingLegRaise('Lying Leg Raise'),
     'Reverse Crunch': () => reverseCrunch('Reverse Crunch'),
     'Tuck Crunch': () => tuckCrunch('Tuck Crunch'),
+    'Alternate Heel Touchers': () => alternateHeelTouchers('Alternate Heel Touchers'),
     'Cocoons': () => cocoons('Cocoons'),
     'Leg Pull-In': () => legPullIn('Leg Pull-In'),
     'Superman': () => superman('Superman'),

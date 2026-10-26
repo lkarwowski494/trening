@@ -741,16 +741,16 @@
    "raw": "391f795e0550724aeb6d"
   },
   "core_floor/Crunch - Hands Overhead": {
-   "svg": "609a4253ea1c56eaa57d",
-   "raw": "3a860c4d5bd8e9a4c02b"
+   "svg": "5f531246b21c667cd584",
+   "raw": "1c6e140018de1599fcb3"
   },
   "core_floor/Dead Bug": {
    "svg": "1c0e7d7446daca21b51d",
    "raw": "19f344c0b9cbd40d75a5"
   },
   "core_floor/Hollow Hold": {
-   "svg": "02d8bad726ff05b61511",
-   "raw": "95700c55c19bfe6d03ad"
+   "svg": "0f3c20badbb64575895c",
+   "raw": "2b5b7dbcb011e8b09df1"
   },
   "core_floor/Lying Leg Raise": {
    "svg": "78acbe19ed03b76098a2",
@@ -765,8 +765,8 @@
    "raw": "ae5a443543aaf94aae43"
   },
   "core_floor/Cocoons": {
-   "svg": "9a1b48df31c2a45468f9",
-   "raw": "fc1963a54d38afa244b0"
+   "svg": "6df3a2a90d42eb917001",
+   "raw": "31925ae082eb25acf1b7"
   },
   "core_floor/Leg Pull-In": {
    "svg": "800bb96127c78035b203",
@@ -779,6 +779,10 @@
   "core_floor/V-Up": {
    "svg": "984cfbaa6b3c53a0b0c3",
    "raw": "4d51e49e97ec31f61d6b"
+  },
+  "core_floor/Alternate Heel Touchers": {
+   "svg": "1d08389db1e89c6d05b7",
+   "raw": "269fd4e6116a3f5bf4fb"
   },
   "kb_ballistic/Kettlebell Swing": {
    "svg": "652ed9d72942e3373224",
@@ -1061,36 +1065,36 @@
    "raw": "7be151fd0aa7d47566a2"
   },
   "pushup_plank/Push Up": {
-   "svg": "86f8a72cffc2ded4905b",
-   "raw": "7f5b16d1a6d2ad0e75ac"
+   "svg": "cc53fdad6255716ccc8e",
+   "raw": "3e0fe60e6a531f63da55"
   },
   "pushup_plank/Push-Up Wide": {
    "svg": "9282e00129354a63843a",
    "raw": "d78d2dce20a4d0bd76a6"
   },
   "pushup_plank/Close-Grip Push-Up": {
-   "svg": "377b680518f660e104d1",
-   "raw": "fc65813e5dc63abb0daf"
+   "svg": "5c570ec5bc48f87edd73",
+   "raw": "56dbabbfbf6f1e74ad95"
   },
   "pushup_plank/Diamond Push Up": {
    "svg": "6b54157ecff051d87397",
    "raw": "7758e602fcdc6a2fd2ea"
   },
   "pushup_plank/Decline Push Up": {
-   "svg": "62605ee085dffee5ab20",
-   "raw": "63fa35555d55516cdc2d"
+   "svg": "77d2579f79b109dedbfb",
+   "raw": "9d0029b58241b72df00f"
   },
   "pushup_plank/Incline Push Up": {
-   "svg": "d8c05bab3ea5f4d4185b",
-   "raw": "698c9058231aa870f054"
+   "svg": "bf6379bdc08295f911a7",
+   "raw": "c8a027951d61638c70a1"
   },
   "pushup_plank/Incline Push-Up Close-Grip": {
-   "svg": "b7760528df106777acde",
-   "raw": "61d2b8b4a11f637abd13"
+   "svg": "8cb1d755a426b6f9a731",
+   "raw": "ac0dcb19283a398662d1"
   },
   "pushup_plank/Single-Arm Push-Up": {
-   "svg": "94213f74ede285c9586a",
-   "raw": "7ea40b537c3a17780105"
+   "svg": "cad0074ce28c78504ad1",
+   "raw": "c718e2ab7bdfa7f8ea73"
   },
   "pushup_plank/Plank": {
    "svg": "782c3fa10b5202ec481e",
@@ -1108,21 +1112,25 @@
    "svg": "63ccda9d241f66b20262",
    "raw": "c27330cb95343468b82f"
   },
-  "pushup_plank/Inverted Row": {
-   "svg": "f1c40fa97446eeb03d26",
-   "raw": "8829a9271adeb3205c4b"
-  },
   "pushup_plank/Rollout (sztanga)": {
-   "svg": "eb1b85a3a62c0f4186be",
-   "raw": "438ea66c3faaa0698355"
+   "svg": "543bfeb06f44d8168606",
+   "raw": "2d1b5ab164f505eab4b8"
   },
   "pushup_plank/Barbell Rollout from Bench": {
-   "svg": "867760848bb8ecee092b",
-   "raw": "89420af4d1c4262682bf"
+   "svg": "05eddac93b3a593c9f4e",
+   "raw": "088f117d6df784dd7473"
   },
   "pushup_plank/Standing Barbell Rollout": {
-   "svg": "318ef8a74c8251ed1af2",
-   "raw": "c1cd613ed35828177901"
+   "svg": "47665364d27de6daaecd",
+   "raw": "4a7654fb12409981f3e9"
+  },
+  "pushup_plank/Suspended Push-Up": {
+   "svg": "931a070de93d4b6cceea",
+   "raw": "0da60d7f475ff569aafd"
+  },
+  "pushup_plank/Suspended Fallout": {
+   "svg": "8cd7ca12c96ce87b283c",
+   "raw": "6016efe454a6412c9cce"
   },
   "sled_throw/Medicine Ball Slam": {
    "svg": "4a9658a5f1e4642ee46e",

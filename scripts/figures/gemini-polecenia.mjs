@@ -180,7 +180,7 @@ export function wzorzecCrunch(cwiczenie = 'Crunch') {
 }
 
 /* ---------- pushup_plank: układ podporu przodem (wzorzec Push Up z modelu) ---------- */
-export const PU = { dl: 82, phiGora: 20, phiDol: 0, phiBlad: 10, podbicie: -60, biegunLokcia: [-1, -0.3, 0.9] };
+export const PU = { dl: 81, phiGora: 20, phiDol: 0, phiBlad: 10, podbicie: -60, biegunLokcia: [-1, -0.3, 0.35] };
 /** Poza pompki wyliczona z modelu: ciało w jednej linii od kostek (na palcach) do barków, kąt linii φ nad podłogą (góra 20°, dół 10°), dłonie NA STAŁE pod barkami z u = 0, kostki 20 cm nad podłogą (palce stoją na podłodze); błąd push.mis.partial = płytki dół (φ 18°). */
 export function wzorzecPompki(cwiczenie = 'Push Up') {
   const { v2 } = silnik(); const r = Math.PI / 180; const pod = PU.podbicie;
@@ -198,7 +198,7 @@ const FAZY_PUSHUP_PLANK = () => [
   `Układ podporu przodem: kostki NA PALCACH za osobą: kostka = [0, ${f0(-(Math.sin(PU.podbicie * Math.PI / 180) * 19 - Math.cos(PU.podbicie * Math.PI / 180) * 7) + 0.3)}, ±10] z podbicie = ${PU.podbicie} (palce stoją na podłodze, pięta w górze; kąt kostki ≈ −55…−65° — dopuszczalny wyjątek rodziny: dolna granica −75°), dłonie na podłodze: chwyt = [x barków w u = 0, 2, ±19] i NIE zmieniają położenia w ruchu (dłonie stałe).`,
   `Ciało w jednej linii: miednica leży na odcinku bark–kostka (odchyłka ≤ 6 cm). Oś ciała nad podłogą pod kątem φ: miednica = kostka + ${PU.dl}·[cos φ, sin φ], bark = miednica + 50·[cos φ, sin φ], pochylenieTulowia = 90 − φ (90 = poziomo głową do przodu), pochylenieGlowy ≈ 0,6 · pochylenieTulowia.`,
   `Pompka: u = 0 góra φ = ${PU.phiGora}° (ramiona proste: łokieć ≤ 20°), u = 1 dół φ = ${PU.phiDol}° (klatka ≤ 20 cm nad dłońmi: bark − dłoń ≤ 20 cm, łokieć ≥ 85°; wzorzec ma ≈ 18 cm i łokieć ≈ 144° zgięcia); klatki pośrednie co 0,25 (φ liniowo). ŁOKCIE (technika: łokcie do tyłu, nie na boki — błąd klasyczny): w KAŻDEJ klatce rece.R.biegunLokcia = [${PU.biegunLokcia.join(', ')}], rece.L.biegunLokcia = [${PU.biegunLokcia[0]}, ${PU.biegunLokcia[1]}, ${-PU.biegunLokcia[2]}] (łokieć za tułowiem, ramię ≈ 45° od tułowia z góry — konwencja/uproszczenie, zakres techniki 30–60°); limit reguły: odwiedzenie barku ≤ 75°. Deska (Plank): jedna poza (φ = ${PU.phiGora}°, łokcie zgięte 90° albo proste), ćwiczenie izometryczne.`,
-  'Nogi proste (kolana ≤ 20°): odległość miednica–kostka ≈ 82 cm; kostka dalej niż 90 cm od biodra = poza zasięgiem nogi.',
+  `Nogi proste (kolana ≤ 20°): odległość miednica–kostka ≈ ${PU.dl} cm; kostka dalej niż 90 cm od biodra = poza zasięgiem nogi.`,
 ];
 
 export function punktyOdniesienia(rodzina) {
@@ -366,13 +366,23 @@ export const FORMAT_ODPOWIEDZI = (rodzina, klucze) => [
   '- Jeśli nie jesteś w stanie dopasować pozy do wymagań, i tak ją zwróć (błędy sprawdzimy my) — nie pomijaj ćwiczeń.',
 ];
 
+/** Zakres kontraktu w poleceniu dla jednej części (decyzja koordynatora 26.10.2026, limit 36 000 znaków zostaje): rodzaje sprzętu = podłoga i skrzynia, sprzęt domyślny rodziny, sprzęt z możliwości katalogu ćwiczeń części i rodzaje wymienione w szablonie rodziny; pola poza@2 = tylko pola, które nazywają reguły sensu ćwiczeń części (parametry.pole itd.). */
+export function zakresPolecenia(rodzina, cwiczenia, root = ROOT) {
+  const { v2, catalog } = silnik(); const t = v2.templateFor(rodzina);
+  const gear = new Set(['podloga', 'skrzynia', ...(t.defaultGear ?? []).map((g) => g.rodzaj), ...rodzajeSprzetu(cwiczenia, catalog)]);
+  if (v2.hasOwnTemplate?.(rodzina)) for (const k of v2.GEAR) if (new RegExp(`\\b${k}\\b`).test(t.gear)) gear.add(k);
+  const ext = new Set(); const pola = JSON.stringify(cwiczenia.flatMap((c) => regulyDla(rodzina, c, root).map((r) => r.parametry ?? {})));
+  for (const k of v2.EXT_FIELDS) if (pola.includes(`"${k}"`)) ext.add(k);
+  return { gear: v2.GEAR.filter((k) => gear.has(k)), ext: [...ext] };
+}
 export function budujPolecenie({ rodzina, opisRodziny, widoki, czesc, cwiczenia, przyklady, kontrakt, opisy, pomijane = [], sprzet = [], root = ROOT }) {
   const L = [];
   L.push(`# Pozy figur ćwiczeń — rodzina „${rodzina}”${czesc.ile > 1 || czesc.sufiks ? ` (część ${czesc.numer}${czesc.sufiks ?? ''}/${czesc.ile})` : ''} [${ETYKIETA_WERSJI}]`, '');
   L.push('Jesteś animatorem postaci do aplikacji treningowej. Tworzysz dane póz (klatki kluczowe szkieletu) dla ćwiczeń jednej rodziny ruchu. Dane wczyta program, który sprawdzi geometrię ORAZ sens ruchu — poza niezgodna z wymaganiami zostanie odrzucona, więc trzymaj się liczb poniżej. Liczby i relacje są wyliczone z naszego modelu; nie zgaduj ich, tylko podstaw.');
   L.push(`Rodzina: ${opisRodziny}. Widoki w aplikacji: ${widoki} (pozę podajesz w 3D, widoki liczy program).`, '');
-  L.push('## Kontrakt danych', '', kontrakt.opisKontraktu(rodzina), '');
-  L.push('## Pola obiektu pozy', '', ...opisPol(kontrakt.schematPozy(rodzina)), '');
+  const zakres = zakresPolecenia(rodzina, cwiczenia, root);
+  L.push('## Kontrakt danych', '', kontrakt.opisKontraktu(rodzina, zakres), '');
+  L.push('## Pola obiektu pozy', '', ...opisPol(kontrakt.schematPozy(rodzina, zakres)), '');
   L.push('## Punkty odniesienia (stałe wymiary i relacje)', '', ...punktyOdniesienia(rodzina), '');
   if (sprzet.length) L.push('## Sprzęt w ćwiczeniach tej części', '', ...sprzet, '');
   L.push('## Wymagania liczbowe walidatora', '', ...wymagania(rodzina).map((x) => `- ${x}`), '');
@@ -456,21 +466,21 @@ export function parsujArgumenty(argv) {
   return o;
 }
 
-export async function main(argv, { root = ROOT, log = console.log } = {}) {
+export async function main(argv, { root = ROOT, log = console.log, maxZnakow = MAX_ZNAKOW } = {}) {
   const o = parsujArgumenty(argv); const docs = join(root, 'docs/51-figury-v2-pokrycie.md');
   const maRegul = (id) => !!wczytajSens(root).rodziny?.[id];
   const ids = (o.wszystkie ? rodzinyZDokumentu(docs).filter((r) => r.stan !== 'gotowa' || existsSync(join(root, 'lib/figures/v2/poses', `${r.id}.json`))).map((r) => r.id) : [o.rodzina]).filter((id) => { if (maRegul(id) || o.bezRegul) return true; log(`${id}: POMINIĘTA — brak reguł sensu w data/zrodla/figury-sens.json (docs/53, bramka 3; --bez-regul wymusza)`); return false; });
   mkdirSync(resolve(o.wyjscie), { recursive: true }); let plikow = 0, najdluzsze = 0, rodzin = 0, przekroczone = 0;
   for (const id of ids) {
-    const p = await poleceniaRodziny(id, { root, bezRegul: o.bezRegul, wyklucz: o.wyklucz, nazwa: o.nazwa }); if (!p.length) { log(`${id}: brak ćwiczeń do wysłania (pozy gotowe, albo wszystkie pominięte/wstrzymane — sprzęt poza kontraktem, OTWARTE, brak reguł)`); continue; }
+    const p = await poleceniaRodziny(id, { maxZnakow, root, bezRegul: o.bezRegul, wyklucz: o.wyklucz, nazwa: o.nazwa }); if (!p.length) { log(`${id}: brak ćwiczeń do wysłania (pozy gotowe, albo wszystkie pominięte/wstrzymane — sprzęt poza kontraktem, OTWARTE, brak reguł)`); continue; }
     rodzin++;
     for (const x of p) {
-      if (x.tresc.length > MAX_ZNAKOW) { if (x.cwiczenia.length > 1) throw new Error(`${x.plik}: polecenie ma ${x.tresc.length} znaków (limit ${MAX_ZNAKOW})`); log(`${x.plik}: POMINIĘTE — polecenie jednego ćwiczenia (${x.cwiczenia[0]}) ma ${x.tresc.length} znaków, limit ${MAX_ZNAKOW} (sekcja sprzętu + kontrakt); zrobi nasz agent albo po skróceniu kontraktu`); przekroczone++; continue; }
+      if (x.tresc.length > maxZnakow) { if (x.cwiczenia.length > 1) throw new Error(`${x.plik}: polecenie ma ${x.tresc.length} znaków (limit ${maxZnakow})`); log(`${x.plik}: POMINIĘTE — polecenie jednego ćwiczenia (${x.cwiczenia[0]}) ma ${x.tresc.length} znaków, limit ${maxZnakow} (sekcja sprzętu + kontrakt); zrobi nasz agent albo po skróceniu kontraktu`); przekroczone++; continue; }
       writeFileSync(join(resolve(o.wyjscie), x.plik), x.tresc); plikow++; najdluzsze = Math.max(najdluzsze, x.tresc.length);
       log(`${x.plik}: ${x.cwiczenia.length} ćwiczeń, ${x.tresc.length} znaków`);
     }
   }
-  if (przekroczone) log(`UWAGA: ${przekroczone} polecenie(a) jednego ćwiczenia przekracza limit ${MAX_ZNAKOW} znaków i nie zostało zapisane`);
+  if (przekroczone) log(`UWAGA: ${przekroczone} polecenie(a) jednego ćwiczenia przekracza limit ${maxZnakow} znaków i nie zostało zapisane`);
   log(`rodzin: ${rodzin}, plików: ${plikow}, najdłuższe: ${najdluzsze} znaków`);
   return 0;
 }

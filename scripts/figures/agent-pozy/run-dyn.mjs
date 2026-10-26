@@ -6,7 +6,8 @@
 import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { waliduj, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
+import { waliduj, htmlPodgladu, zastosuj, bledyCwiczenia } from '../v2-validate.mjs';
+import { zgodnoscManifestu, wczytajTeksty, wierszeWJednejLinii } from '../v2-jakosc.mjs';
 import { opisCwiczenia, silnikCatalog } from '../gemini-polecenia.mjs';
 import { regulyDla } from '../v2-sens.mjs';
 import { silnik } from './model.mjs';
@@ -16,18 +17,6 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const arg = (n, d) => { const i = process.argv.indexOf('--' + n); return i >= 0 ? process.argv[i + 1] : d; };
 const flag = (n) => process.argv.includes('--' + n);
 
-/** Szerokość docelowa wiersza podglądu (px): przy wielu klatkach skala rysunku maleje, żeby wiersz mieścił się w obrazie. */
-const PODGLAD_SZEROKOSC = 3000;
-/** HTML podglądu pozy: wiersz = poprawna poza / jeden błąd; w wierszu widok z boku, potem z przodu, po jednej komórce na KAŻDĄ klatkę kluczową (klatki_u), wszystkie w jednym wierszu. */
-function htmlPodgladu(poza, motyw) {
-  const { v2, tokens } = silnik(); const pal = v2.figurePalette(tokens[motyw]); const widoki = ['side', 'front']; const warianty = [undefined, ...poza.bledy.map((_, i) => i)]; const klatki = poza.klatki.map((k) => k.u);
-  const boxy = widoki.map((view) => { const listy = []; for (const x of warianty) for (let i = 0; i <= 24; i++) listy.push(v2.dataShapes(poza, i / 24, view, x)); for (const k of klatki) for (const x of warianty) listy.push(v2.dataShapes(poza, k, view, x)); return v2.boundsOf(listy); });
-  const suma = boxy.reduce((t, b) => t + b.w, 0) * klatki.length; const px = Math.min(1.5, Math.max(0.5, (PODGLAD_SZEROKOSC - 8 * (klatki.length * widoki.length)) / Math.max(1, suma)));
-  const wiersze = warianty.map((w) => {
-    const komorki = widoki.flatMap((view, vi) => klatki.map((u) => `<span class="k" data-u="${u}" data-widok="${view}">${v2.svgDocument(v2.dataShapes(poza, u, view, w), boxy[vi], pal, px)}</span>`));
-    return `<div style="font:12px sans-serif;color:${tokens[motyw].text};margin:6px 0 2px">${w === undefined ? 'poza poprawna' : 'błąd: ' + poza.bledy[w].cue}</div><div class="w" style="display:flex;flex-wrap:nowrap;gap:8px;align-items:flex-end;width:max-content">${komorki.join('')}</div>`; });
-  return { html: `<html><body style="margin:0;padding:8px;background:${tokens[motyw].surface}">${wiersze.join('')}</body></html>`, klatki };
-}
 /** Podglądy partii póz jedną przeglądarką: zrzut PNG na pozę; zwraca { ćwiczenie: ścieżka PNG }. */
 async function podgladPartia(poze, dir, motyw = 'light') {
   const wynik = {}; mkdirSync(dir, { recursive: true });
@@ -35,7 +24,7 @@ async function podgladPartia(poze, dir, motyw = 'light') {
   const browser = chromium ? await chromium.launch() : null; const page = browser ? await browser.newPage({ viewport: { width: 1400, height: 700 } }) : null;
   for (const [cw, poza] of Object.entries(poze)) {
     const { html } = htmlPodgladu(poza, motyw); const nazwa = join(dir, `${poza.cwiczenie.replace(/\W+/g, '-')}-${motyw}`); writeFileSync(nazwa + '.html', html);
-    if (page) { await page.setContent(html); const szer = await page.evaluate(() => document.documentElement.scrollWidth); await page.setViewportSize({ width: Math.max(1400, szer), height: 700 }); await page.screenshot({ path: nazwa + '.png', fullPage: true }); wynik[cw] = nazwa + '.png'; } else wynik[cw] = nazwa + '.html';
+    if (page) { await page.setContent(html); const szer = await page.evaluate(() => document.documentElement.scrollWidth); await page.setViewportSize({ width: Math.max(1400, szer), height: 700 }); const pomiar = await page.evaluate(() => [...document.querySelectorAll('.w')].map((w) => ({ etykieta: w.dataset.etykieta, dolne: [...w.querySelectorAll('.k')].map((k) => k.getBoundingClientRect().bottom) }))); const uklad = wierszeWJednejLinii(pomiar); if (uklad.length) throw new Error(`podgląd ${poza.cwiczenie}: ${uklad.join('; ')}`); await page.screenshot({ path: nazwa + '.png', fullPage: true }); wynik[cw] = nazwa + '.png'; } else wynik[cw] = nazwa + '.html';
   }
   if (browser) await browser.close(); return wynik;
 }
@@ -69,8 +58,11 @@ async function main() {
     for (const [cw, poza] of Object.entries(poze)) {
       const png = obrazy[cw] ?? null;
       const op = opisCwiczenia(cw, { root: ROOT, bledyCwiczenia, catalog, rodzina });
-      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: poza.klatki.map((k) => k.u), klatki_na_obrazie: htmlPodgladu(poza, 'light').klatki, bledy_w_pozie: poza.bledy.map((b) => b.cue), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
+      manifest.cwiczenia.push({ cwiczenie: cw, obraz: png ? png.split('/').pop() : null, sprzet: poza.sprzet, klatki_u: poza.klatki.map((k) => k.u), klatki_na_obrazie: htmlPodgladu(poza, 'light').klatki, bledy_w_pozie: poza.bledy.map((b) => b.cue), bledy_wskazowki_id: bledyCwiczenia(cw, ROOT), opis: { sens: op.sens, ruch: op.ruch, bledy_wskazowki: op.bledy }, reguly_sensu: regulyDla(rodzina, cw, ROOT).map((r) => r.id), przyblizenie: mod.PRZYBLIZENIA?.[cw] ?? null });
     }
+    if (tylko) { const pod = (o) => Object.fromEntries(Object.entries(o ?? {}).filter(([k]) => tylko.includes(k))); manifest.wyjatki = pod(manifest.wyjatki); manifest.przyblizenia = pod(manifest.przyblizenia); }
+    manifest.wyjatki_opisu = mod.WYJATKI_OPISU ?? {}; const uwagi = zgodnoscManifestu(manifest, wczytajTeksty(ROOT), manifest.wyjatki_opisu); manifest.zgodnosc_manifestu = uwagi;
+    if (uwagi.length) { console.log('NIEZGODNOŚĆ MANIFESTU Z OBRAZEM:'); for (const u of uwagi) console.log(`  [${u.regula}] ${u.szczegol}`); process.exitCode = 1; }
     writeFileSync(join(dir, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n'); console.log(`podglądy + manifest: ${dir}`);
   }
   if (flag('zastosuj') && ok.length) { const r = zastosuj(ROOT, { rodzina, poze }); console.log(`nałożono: ${r.zapisano.length} → ${r.plik}${r.odrzucone.length ? `; odrzucone: ${r.odrzucone.map((x) => x.cwiczenie).join(', ')}` : ''}`); }
