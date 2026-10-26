@@ -21,8 +21,9 @@
 //   node scripts/figures/gemini-pozy.mjs --diagnoza --rodzina pull_up --model gemini-3.1-pro-preview --limit-usd 0.3   (bisekcja odrzucenia żądania 400: które formaty JSON i fragmenty schematu API przyjmuje)
 //   node scripts/figures/gemini-pozy.mjs --lista-modeli --lokalizacja global   (bez kosztu: lista modeli widocznych dla klucza i odczyt każdego z naszych; modele.json)
 //   node scripts/figures/gemini-pozy.mjs --zastosuj raport-pozy
+//   node scripts/figures/gemini-pozy.mjs --z-pliku odpowiedz.md [--rodzina id] [--wyjscie katalog] [--tylko-raport]   (odpowiedź wklejona z aplikacji Gemini: walidacja, nałożenie przechodzących, <id>-poprawka.md; docs/52 pkt 7)
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
-import { join, dirname, resolve } from 'node:path';
+import { join, dirname, resolve, basename } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { maskuj } from '../maskuj.mjs';
 
@@ -363,9 +364,110 @@ export function szacunek({ model, liczbaCwiczen, tokenyWejsciaNaProbe, dzis, zal
   return { model, api: tryb, cwiczen: liczbaCwiczen, prob: Math.round(prob), tokeny_we: Math.round(we), tokeny_wy: Math.round(wy), koszt_usd: Number(((we * c.we + wy * c.wy) / 1e6).toFixed(2)), zalozenia: zal, cena: c };
 }
 
+
+/* ---------- import odpowiedzi wklejonej z aplikacji Gemini (--z-pliku; docs/52 pkt 7) ---------- */
+/** Koniec pierwszego pełnego obiektu/tablicy JSON zaczynającego się w s[od] (świadomy napisów); -1 gdy tekst kończy się przed domknięciem (odpowiedź ucięta). */
+export function koniecWartosci(s, od) {
+  let gl = 0, wNapisie = false, esc = false;
+  for (let i = od; i < s.length; i++) {
+    const c = s[i];
+    if (wNapisie) { if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') wNapisie = false; continue; }
+    if (c === '"') wNapisie = true; else if (c === '{' || c === '[') gl++; else if (c === '}' || c === ']') { gl--; if (gl === 0) return i; }
+  }
+  return -1;
+}
+/** Z uciętego tekstu odzyskuje kompletne wpisy obiektu "poze": { "klucz": {...}, ... }. Zwraca { poze, ostatniKlucz } (ostatniKlucz = wpis, który się urwał). */
+export function odzyskajPoze(s) {
+  const i0 = s.search(/"poze"\s*:\s*\{/); if (i0 < 0) return { poze: {}, ostatniKlucz: null };
+  let i = s.indexOf('{', i0 + 6); i++; const poze = {}; let ostatniKlucz = null;
+  for (;;) {
+    const m = /^\s*,?\s*"((?:[^"\\]|\\.)*)"\s*:\s*/.exec(s.slice(i)); if (!m) break;
+    const klucz = JSON.parse(`"${m[1]}"`); const start = i + m[0].length; if (s[start] !== '{') break;
+    const k = koniecWartosci(s, start); if (k < 0) { ostatniKlucz = klucz; break; }
+    try { poze[klucz] = JSON.parse(s.slice(start, k + 1)); } catch { ostatniKlucz = klucz; break; }
+    i = k + 1;
+  }
+  return { poze, ostatniKlucz };
+}
+/** Wyciąga obiekt odpowiedzi z tekstu: czysty JSON, blok ```json, JSON w otoczce tekstu albo odpowiedź ucięta (odzysk kompletnych póz). Zwraca { obiekt, rodzina, poze, ucieta, ostatniKlucz, blad }. */
+export function wyciagnijOdpowiedz(tekst) {
+  const t = String(tekst ?? '').replace(/^\uFEFF/, ''); const wynik = { obiekt: null, rodzina: null, poze: {}, ucieta: false, ostatniKlucz: null, blad: null };
+  const kandydaci = []; for (const m of t.matchAll(/```[a-zA-Z]*\s*\n([\s\S]*?)```/g)) kandydaci.push(m[1]);
+  const otwarty = /```[a-zA-Z]*\s*\n(?![\s\S]*```)([\s\S]*)$/.exec(t); if (otwarty) kandydaci.push(otwarty[1]); /* blok bez zamknięcia = ucięty */
+  kandydaci.push(t);
+  let uciety = null;
+  for (const k of kandydaci) {
+    const od = k.indexOf('{'); if (od < 0) continue;
+    const koniec = koniecWartosci(k, od);
+    if (koniec < 0) { uciety ??= k.slice(od); continue; }
+    try {
+      const o = JSON.parse(k.slice(od, koniec + 1)); if (!o || typeof o !== 'object' || Array.isArray(o)) continue;
+      if (o.poze && typeof o.poze === 'object') { wynik.obiekt = o; wynik.rodzina = o.rodzina ?? null; wynik.poze = o.poze; return wynik; }
+      if (Array.isArray(o.klatki) && o.cwiczenie) { wynik.obiekt = o; wynik.rodzina = o.rodzina ?? null; wynik.poze = { [o.cwiczenie]: o }; return wynik; }
+    } catch (e) { wynik.blad = `niepoprawny JSON: ${e.message}`; }
+  }
+  if (uciety !== null) {
+    const r = odzyskajPoze(uciety); wynik.ucieta = true; wynik.poze = r.poze; wynik.ostatniKlucz = r.ostatniKlucz; wynik.rodzina = /"rodzina"\s*:\s*"([^"]+)"/.exec(uciety)?.[1] ?? null;
+    wynik.blad = `odpowiedź ucięta (JSON bez zamknięcia); odzyskano ${Object.keys(r.poze).length} kompletnych póz`; return wynik;
+  }
+  wynik.blad ??= 'w pliku nie znaleziono obiektu JSON z odpowiedzią'; return wynik;
+}
+/** Polecenie poprawkowe do wklejenia w TĘ SAMĄ rozmowę: lista błędów walidatora na ćwiczenie + brakujące ćwiczenia (ucięta odpowiedź). */
+export function poleceniePoprawkowe({ rodzina, bledy, brakujace = [], nieznane = [], przyklad = null }) {
+  const L = [`# Poprawka póz — rodzina „${rodzina}”`, '', 'Poprzednia odpowiedź w tej rozmowie: część póz nie przeszła naszej walidacji geometrii. Dla każdego ćwiczenia poniżej popraw DOKŁADNIE wskazane miejsca (trzymaj się liczb z polecenia: zakresy stawów, ruch ≥ minimum, brak przenikania, chwyt na osi sprzętu, „dotyczy” w błędach) i nie zmieniaj tego, co nie jest wymienione.', ''];
+  for (const [cw, lista] of Object.entries(bledy)) { L.push(`## ${cw}`, ...lista.map((b) => `- [${b.kod}] ${b.szczegol}`), ''); }
+  if (brakujace.length) L.push('## Brakujące pozy (odpowiedź została ucięta)', 'Wyślij pełne pozy dla ćwiczeń: ' + brakujace.map((k) => `"${k}"`).join(', ') + '. Zapisz JSON zwięźle (jedna klatka w jednej linii), aby odpowiedź się zmieściła.', '');
+  if (nieznane.length) L.push('## Nieznane klucze', 'Te klucze nie należą do tej rodziny — użyj dokładnie nazw ćwiczeń z polecenia: ' + nieznane.map((k) => `"${k}"`).join(', ') + '.', '');
+  const klucze = [...Object.keys(bledy), ...brakujace];
+  L.push('FORMAT ODPOWIEDZI (obowiązkowy):', `- JEDEN blok kodu \`\`\`json z obiektem { "rodzina": "${rodzina}", "poze": { ${klucze.map((k) => `"${k}": <poprawiona poza>`).join(', ')} } } — tylko te ćwiczenia, pełne pozy (kontrakt, rodzina, cwiczenie, sprzet, klatki, bledy), bez komentarzy i bez tekstu poza blokiem.`);
+  return L.join('\n') + '\n';
+}
+/** Wczytuje odpowiedź z pliku (.json lub .md/tekst), waliduje każdą pozę, nakłada przechodzące (chyba że tylkoRaport), zapisuje raport i ewentualną poprawkę. Zwraca { kod, raport }. */
+export async function importujZPliku({ plik, rodzina: rodzinaArg = null, wyjscie, root = ROOT, kontrakt, tylkoRaport = false, lista = null, log = () => {} }) {
+  const tekst = readFileSync(resolve(plik), 'utf8'); const w = wyciagnijOdpowiedz(tekst);
+  const rodzina = rodzinaArg ?? w.rodzina;
+  mkdirSync(wyjscie, { recursive: true });
+  const zapisz = (n, c) => writeFileSync(join(wyjscie, n), c);
+  if (!rodzina) { log(`nie ustalono rodziny (brak pola "rodzina" w odpowiedzi; podaj --rodzina): ${w.blad ?? ''}`); return { kod: 2, raport: null }; }
+  if (rodzinaArg && w.rodzina && w.rodzina !== rodzinaArg) { log(`rodzina w odpowiedzi („${w.rodzina}”) różni się od --rodzina („${rodzinaArg}”)`); return { kod: 2, raport: null }; }
+  const docs = lista ?? join(root, 'docs/51-figury-v2-pokrycie.md');
+  const znane = cwiczeniaRodziny(rodzina, docs);
+  const wyniki = []; const doNalozenia = {}; const bledy = {}; const nieznane = [];
+  for (const [cw, poza0] of Object.entries(w.poze)) {
+    if (!znane.includes(cw)) { nieznane.push(cw); wyniki.push({ cwiczenie: cw, ok: false, bledy: [{ kod: 'klucz', szczegol: `„${cw}” nie jest ćwiczeniem rodziny ${rodzina}` }] }); continue; }
+    const poza = poza0 && typeof poza0 === 'object' && !Array.isArray(poza0) ? { kontrakt: 'figury-v2/poza@1', rodzina, cwiczenie: cw, ...poza0 } : poza0; /* brakujące pola nagłówka uzupełniane, błędne zostają dla walidatora */
+    const v = kontrakt.waliduj(poza, { rodzina, cwiczenie: cw });
+    wyniki.push({ cwiczenie: cw, ok: v.ok, bledy: v.bledy });
+    if (v.ok) doNalozenia[cw] = poza; else bledy[cw] = v.bledy;
+  }
+  let brakujace = [];
+  if (w.ucieta || Object.keys(w.poze).length) { /* którą część polecenia wklejono: ta o największym wspólnym zbiorze kluczy */
+    try {
+      const { czesciRodziny } = await import('./gemini-polecenia.mjs'); const cz = czesciRodziny(rodzina, { root, lista: docs }); const mam = new Set(Object.keys(w.poze));
+      const najlepsza = cz.map((c) => ({ c, wspolne: c.cwiczenia.filter((x) => mam.has(x)).length })).sort((a, b) => b.wspolne - a.wspolne)[0];
+      if (najlepsza && najlepsza.wspolne > 0) brakujace = najlepsza.c.cwiczenia.filter((x) => !mam.has(x));
+    } catch { /* brak modułu poleceń: bez wykrywania braków */ }
+  }
+  if (w.ucieta && w.ostatniKlucz && !brakujace.includes(w.ostatniKlucz) && znane.includes(w.ostatniKlucz)) brakujace.unshift(w.ostatniKlucz);
+  let nalozono = null;
+  if (!tylkoRaport && Object.keys(doNalozenia).length) nalozono = await kontrakt.zastosuj(root, { rodzina, poze: doNalozenia });
+  const raport = { rodzina, plik: basename(plik), ucieta: w.ucieta, blad_odczytu: w.blad, przeszly: Object.keys(doNalozenia), nie_przeszly: Object.keys(bledy), nieznane, brakujace, nalozono, tylko_raport: tylkoRaport, wyniki };
+  zapisz('raport-import.json', JSON.stringify(raport, null, 1) + '\n');
+  const md = [`# Import póz — rodzina \`${rodzina}\``, '', `Plik: \`${basename(plik)}\`. Przeszło walidację: **${raport.przeszly.length}**, nie przeszło: **${raport.nie_przeszly.length}**, brakuje: **${brakujace.length}**.${w.ucieta ? ' Odpowiedź była UCIĘTA.' : ''}${tylkoRaport ? ' (tryb tylko raport — nic nie nałożono)' : ''}`, ''];
+  if (w.blad) md.push(`Uwaga: ${w.blad}`, '');
+  for (const r of wyniki) { md.push(`- ${r.ok ? 'OK ' : 'NIE'} ${r.cwiczenie}`); for (const b of r.bledy ?? []) md.push(`    - [${b.kod}] ${b.szczegol}`); }
+  if (brakujace.length) md.push('', `Brakujące: ${brakujace.join(', ')}`);
+  zapisz('raport-import.md', md.join('\n') + '\n');
+  const potrzebnaPoprawka = Object.keys(bledy).length || brakujace.length || nieznane.length;
+  if (potrzebnaPoprawka) zapisz(`${rodzina}-poprawka.md`, poleceniePoprawkowe({ rodzina, bledy, brakujace, nieznane }));
+  log(`import ${rodzina}: przeszło ${raport.przeszly.length}, nie przeszło ${raport.nie_przeszly.length}, brakuje ${brakujace.length}${nalozono ? `; nałożono do ${nalozono.plik}` : ''}${potrzebnaPoprawka ? `; polecenie poprawkowe: ${rodzina}-poprawka.md` : ''}`);
+  for (const r of wyniki.filter((x) => !x.ok)) { log(`  NIE ${r.cwiczenie}`); for (const b of r.bledy) log(`    [${b.kod}] ${b.szczegol}`); }
+  return { kod: potrzebnaPoprawka || w.blad ? 1 : 0, raport };
+}
+
 /* ---------- uruchomienie ---------- */
 export function parsujArgumenty(argv) {
-  const o = { rodzina: null, diagnoza: false, api: DOMYSLNY_API, lokalizacja: DOMYSLNA_LOKALIZACJA, listaModeli: false, model: DOMYSLNY_MODEL, limitUsd: LIMIT_USD, proby: PROBY, szacuj: false, wyjscie: 'raport-pozy', zastosuj: null, cwiczenia: null, lista: null };
+  const o = { rodzina: null, diagnoza: false, api: DOMYSLNY_API, lokalizacja: DOMYSLNA_LOKALIZACJA, listaModeli: false, model: DOMYSLNY_MODEL, limitUsd: LIMIT_USD, proby: PROBY, szacuj: false, wyjscie: 'raport-pozy', zastosuj: null, zPliku: null, tylkoRaport: false, cwiczenia: null, lista: null };
   const wart = (i, n) => { if (i + 1 >= argv.length) throw new Error(`brak wartości dla ${n}`); return argv[i + 1]; };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -382,6 +484,8 @@ export function parsujArgumenty(argv) {
     else if (a === '--lista') o.lista = wart(i++, a); /* plik docs/51 (domyślnie docs/51-figury-v2-pokrycie.md) */
     else if (a === '--wyjscie') o.wyjscie = wart(i++, a);
     else if (a === '--zastosuj') o.zastosuj = wart(i++, a);
+    else if (a === '--z-pliku') o.zPliku = wart(i++, a); /* odpowiedź wklejona z aplikacji Gemini (docs/52 pkt 7) */
+    else if (a === '--tylko-raport') o.tylkoRaport = true;
     else throw new Error(`nieznany argument: ${a}`);
   }
   return o;
@@ -400,6 +504,10 @@ export async function main(argv, env, { fetchFn = fetch, log: logSurowy = consol
     return w.krytyczny ? 5 : 0;
   }
   const kontrakt = await wczytajKontrakt(root);
+  if (o.zPliku) {
+    if (!kontrakt) { log('brak v2-validate.mjs — walidacja niemożliwa'); return 4; }
+    return (await importujZPliku({ plik: o.zPliku, rodzina: o.rodzina, wyjscie: resolve(o.wyjscie), root, kontrakt, tylkoRaport: o.tylkoRaport, lista: o.lista ? resolve(o.lista) : null, log })).kod;
+  }
   if (o.zastosuj) {
     if (!kontrakt || typeof kontrakt.zastosuj !== 'function') { log('brak v2-validate.mjs → zastosuj(): nałożenie niemożliwe'); return 4; }
     const wynik = czytaj(join(resolve(o.zastosuj), 'poze.json')); log(JSON.stringify(await kontrakt.zastosuj(root, wynik))); return 0;
