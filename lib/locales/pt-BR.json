@@ -572,5 +572,6 @@
  "Wypychanie": "Empurrar",
  "zgięcie biodra": "flexão do quadril",
  "Zobacz plany Pro ›": "Ver planos Pro ›",
- "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "O treino de {d} {s} ficou {h} horas sem atividade, então foi salvo automaticamente. Fim: {e} (última série). Você o encontra na aba Plano."
+ "Trening z {d} {s} nie miał aktywności od {h} godzin, więc zapisał się sam. Koniec: {e} (ostatnia seria). Znajdziesz go w zakładce Plan.": "O treino de {d} {s} ficou {h} horas sem atividade, então foi salvo automaticamente. Fim: {e} (última série). Você o encontra na aba Plano.",
+ "Zegarek zapisuje zakończony trening siłowy, z tętnem i energią aktywną, w Apple Health.": "O relógio salva no Apple Health o treino de força terminado, com frequência cardíaca e energia ativa."
 }
