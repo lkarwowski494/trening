@@ -34,8 +34,6 @@ logika `lib/csvparse.ts`/`lib/csvimport.ts`, testy `csv-import-logic`/`csv-impor
 ## Otwarte ryzyka
 - E2E-105: zgubione znaki przy szybkim wpisie masy ciała na wolnym symulatorze — do sprawdzenia na telefonie (docs/25).
 - Scenariusz E2E 04 „Plank ze stoperem” (w backlogu „05”) — zgubione znaki po zimnym starcie; poprawka jak w 15 zrobiona 12.10.2026 (Q-029, gałąź f014-bledy; do potwierdzenia w E2E na symulatorze).
-- Interpreter Maestro w Jest (tests/maestro-flows) liczy czas od zegara maszyny: uruchomiony po ok. 22:00 UTC przekracza północ i scenariusz 05 („This week: deload”) pada —
-  to artefakt pory dnia, nie błąd (z `TZ=America/Los_Angeles` albo wcześniej w ciągu dnia przechodzi).
 
 ## Decyzje (od 11.10.2026)
 - 11.10.2026: raporty rynkowe — wnioski w docs/research/raporty-rynkowe-2026-10.md; import CSV i prośba o ocenę → „Przed App Store” (A+A). [wdrożenie: bez kodu — research rynku i kolejność prac]
