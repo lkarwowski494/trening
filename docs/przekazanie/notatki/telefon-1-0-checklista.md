@@ -15,7 +15,10 @@
 | T-12 | ✅ OK |
 | T-09 | ✅ OK |
 | T-11 (b, c) | ✅ OK — po reinstalacji pełna wersja wraca sama (bez „Przywróć zakupy”), tryb samolotowy: dostęp zostaje |
-| T-08, T-11 (a, d) | ⏭️ nazwany wyjątek 27.10.2026: konto ma już zakup testowy (dożywotni nie wygasa), stanu darmowego nie da się odtworzyć; pokrycie: E2E 56, kontrola ASC 40487413598 (ceny, brak ofert, Family Sharing), testy Jest, zakup właściciela 23.10 (build 1030) |
+| T-11 (d) — konto testerki | ✅ OK — ekran zakupu, linki polityki i warunków, „Zrealizuj kod”; ⚠️ kolejność planów i domyślny plan niezgodne z decyzją 23.10 (roczny pierwszy i zaznaczony) — do napraw |
+| T-08 — konto testerki | ✅ OK (okno po pierwszym treningu, link espresso, plany Pro, zamknięcie) |
+| T-11 (a) — konto testerki | w toku (zakupy) |
+| (poprzednio) T-08, T-11 (a, d) | ⏭️ nazwany wyjątek 27.10.2026: konto ma już zakup testowy (dożywotni nie wygasa), stanu darmowego nie da się odtworzyć; pokrycie: E2E 56, kontrola ASC 40487413598 (ceny, brak ofert, Family Sharing), testy Jest, zakup właściciela 23.10 (build 1030) |
 | T-10 | na nowym buildzie (lista różnicowa) |
 
 **Ważne przy kolejnych punktach z powiadomieniami (T-03, T-13):** zdejmij zegarek albo włącz na nim tryb samolotowy — gdy zegarek jest na ręce i odblokowany, iOS wysyła powiadomienia tylko na zegarek, a telefon milczy.
