@@ -494,9 +494,9 @@ export function resolveBells(f: Frame): Frame {
     const t = clamp((fv[1] - 0.2) / 0.4, 0, 1);
     const wzdluz = norm(add(mul(fv, 1 - t), mul(norm([-0.8, -0.6, 0]), t)));
     if (!p.dnemDoGory) return { ...p, dir: wzdluz };
-    /* dnem do góry dopiero przy przedramieniu ≤ 45° od pionu (fv[1] ≥ cos 45°): pełne przy ≤ 20°; poniżej progu dzwon jak w trybie „wzdluz” */
+    /* dnem do góry dopiero przy przedramieniu ≤ 45° od pionu (fv[1] ≥ cos 45°): pełne przy ≤ 20°; dzwon zawsze w przedłużeniu przedramienia (bez przechodzenia za przedramię jak w „wzdluz”: w dnem-do-góry dzwon nigdy nie jest za dłonią), poniżej progu jak „wzdluz” w zwisie i przy przedramieniu poniżej poziomu */
     const g = clamp((fv[1] - BELL_UP_FROM) / (BELL_UP_FULL - BELL_UP_FROM), 0, 1);
-    return { ...p, dir: norm(add(mul(wzdluz, 1 - g), mul(BELL_UP, g))) };
+    return { ...p, dir: norm(add(mul(fv, 1 - g), mul(BELL_UP, g))) };
   });
   return { ...f, props };
 }

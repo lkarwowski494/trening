@@ -28,15 +28,15 @@ describe('silnik: tryb dzwonu „wzdluz_gora” zależy od fazy (zwis: dzwon wzd
   const fore = (f: Frame): V3 => { const a = f.sk.arms.R; const v = [a.grip[0] - a.elbow[0], a.grip[1] - a.elbow[1], a.grip[2] - a.elbow[2]]; const n = Math.hypot(...v); return [v[0] / n, v[1] / n, v[2] / n]; };
   test('zwis: dzwon w dół (nie nad rączką); przedramię w przód: dzwon w przód; przedramię pionowo: dnem do góry', () => {
     expect(dirOf(frameAt([18, 82, 3], 'wzdluz_gora'))[1]).toBeLessThan(-0.5);
-    dirOf(frameAt([50, 128, 3], 'wzdluz_gora')).forEach((c, i) => expect(c).toBeCloseTo(dirOf(frameAt([50, 128, 3], 'wzdluz'))[i], 9)); /* poza zakresem 45° od pionu dokładnie jak „wzdluz” */
+    dirOf(frameAt([50, 128, 3], 'wzdluz_gora')).forEach((c, i) => expect(c).toBeCloseTo(fore(frameAt([50, 128, 3], 'wzdluz_gora'))[i], 9)); /* poza zakresem 45° od pionu: dzwon dokładnie w przedłużeniu przedramienia (nie za nim jak w „wzdluz”) */
     dirOf(frameAt([18, 82, 3], 'wzdluz_gora')).forEach((c, i) => expect(c).toBeCloseTo(dirOf(frameAt([18, 82, 3], 'wzdluz'))[i], 9));
     expect(dirOf(frameAt([20, 150, 4], 'wzdluz_gora'))[1]).toBeGreaterThan(0.9);
   });
-  test('dzwon „do góry” (kierunek y > 0,7) tylko przy przedramieniu ≤ 45° od pionu; wersor jednostkowy; obrót ciągły (krok o 1 cm chwytu nie większy niż w trybie „wzdluz”)', () => {
+  test('dzwon „do góry” (kierunek y > 0,75) tylko przy przedramieniu ≤ 45° od pionu; wersor jednostkowy; obrót ciągły (krok o 1 cm chwytu nie większy niż w trybie „wzdluz”)', () => {
     let poprzedni: V3 | undefined; let maks = 0, maksWzdluz = 0, poprzedniWz: V3 | undefined;
     for (let y = 80; y <= 152; y += 1) {
       const f = frameAt([20, y, 4], 'wzdluz_gora'); const d = dirOf(f); expect(Math.hypot(...d)).toBeCloseTo(1, 6);
-      if (d[1] > 0.7) expect(fore(f)[1]).toBeGreaterThanOrEqual(Math.SQRT1_2 - 1e-9);
+      if (d[1] > 0.75) expect(fore(f)[1]).toBeGreaterThanOrEqual(Math.SQRT1_2 - 1e-9);
       const w = dirOf(frameAt([20, y, 4], 'wzdluz'));
       if (poprzedni && poprzedniWz) { maks = Math.max(maks, Math.hypot(d[0] - poprzedni[0], d[1] - poprzedni[1], d[2] - poprzedni[2])); maksWzdluz = Math.max(maksWzdluz, Math.hypot(w[0] - poprzedniWz[0], w[1] - poprzedniWz[1], w[2] - poprzedniWz[2])); }
       poprzedni = d; poprzedniWz = w;
