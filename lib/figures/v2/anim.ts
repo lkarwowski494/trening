@@ -25,8 +25,9 @@ const lowLeg = (tempo: Tempo): number => tempo.holdLowMs ?? TEMPO.holdMs;
 export const loopLength = (_lowerFirst: boolean, tempo: Tempo = TEMPO): number => TEMPO.holdMs + lowLeg(tempo) + tempo.downMs + tempo.upMs;
 
 /** Fazy pętli do licznika: etykiety (klucze t()) i czas w ms. `first` = faza 0→1 (u rośnie), `second` = powrót. */
-export type PhaseName = 'Podciąganie' | 'Opuszczanie' | 'Wypychanie' | 'Wstawanie' | 'Podnoszenie' | 'Prostowanie' | 'Pauza';
-export type Phase = { name: PhaseName; ms: number };
+export type PhaseName = 'Podciąganie' | 'Opuszczanie' | 'Wypychanie' | 'Wstawanie' | 'Podnoszenie' | 'Prostowanie' | 'Unoszenie' | 'Obrót' | 'Powrót' | 'Rozsuwanie' | 'Ściąganie' | 'Uginanie' | 'Marsz' | 'Pauza';
+/** `untimed`: faza bez czasu w liczniku (chód: sekundy opuszczania i podnoszenia nie dotyczą kroku); `ms` służy wtedy tylko do wyznaczenia bieżącej fazy w pętli. */
+export type Phase = { name: PhaseName; ms: number; untimed?: true };
 export type PhaseNames = { first: PhaseName; second: PhaseName };
 
 /** Cztery fazy jednej pętli w kolejności: pierwsza, pauza, druga, pauza (pauza ilustracyjna 0,5 s). */
@@ -34,6 +35,8 @@ export function phasesOf(names: PhaseNames, lowerFirst: boolean, tempo: Tempo = 
   const a = lowerFirst ? tempo.downMs : tempo.upMs, b = lowerFirst ? tempo.upMs : tempo.downMs;
   return [{ name: names.first, ms: a }, { name: 'Pauza', ms: lowLeg(tempo) }, { name: names.second, ms: b }, { name: 'Pauza', ms: TEMPO.holdMs }];
 }
+/** Jedna faza pętli dla ruchu chodzonego (noszenie): „Marsz” przez całą pętlę, bez sekund i bez pauz. */
+export const walkPhases = (tempo: Tempo = TEMPO): Phase[] => [{ name: 'Marsz', ms: loopLength(false, tempo), untimed: true }];
 /** Indeks fazy (w `phasesOf`) w chwili ms pętli: wiodąca pauza na starcie jest ostatnią fazą poprzedniej pętli. */
 export function phaseIndexAt(ms: number, phases: Phase[]): number {
   const total = phases.reduce((s, p) => s + p.ms, 0); let x = ((ms % total) + total) % total;
