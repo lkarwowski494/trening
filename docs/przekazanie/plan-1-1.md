@@ -1,8 +1,26 @@
-# Plan prac 1.0 → 1.1 (stan na koniec sesji 27.10.2026 ~09:00 UTC)
+# Plan prac 1.0 → 1.1 (stan na koniec sesji 27.10.2026 ~09:00 UTC; weryfikacja nowej sesji 27.10 08:50 UTC — sekcja niżej)
 
 Legenda: ✅ zrobione · 🔶 w toku/niedokończone (stan na gałęzi) · ⬜ do zrobienia · **TERAZ** = można zacząć bez ryzyka przeróbki.
 Zasady: verify przez `flock /tmp/claude-0/verify.lock npm run verify` (decyzja B 27.10); przed verify `git config --get core.hooksPath` = `scripts/hooks`; worktree na agenta; agenci wypychają po każdym kroku i dopisują stan w docs/przekazanie/README.md; nic do main bez polecenia właściciela.
 Decyzje 27.10: docs/18 na integracja-1-1 (ded4827, 88c2bf7) + linie „DECYZJA” w README przekazania (oparcie maszyn A, verify B).
+
+## Weryfikacja nowej sesji koordynatora (27.10.2026, 08:50 UTC) — stan CI na GitHubie
+| Gałąź @ SHA | tests.yml | Inne | Agent nowej sesji |
+|---|---|---|---|
+| naprawa-figury-1-0 @ 6a9dd65 | ✅ 40468378516 | E2E podst. 40468399399 w kolejce od 07:39 (brak maszyny); PR #73 | A2 + port pull_up z p1 + podglądy do A2r |
+| technika-rozwinieta-1-0 @ 5f3d92d | ⏳ 40473034847 | wcześniejsze SHA czerwone | A3 |
+| z02-przeklad-1-0 @ 5309766 | ❌ 40464325134 | | A4+A5 |
+| review-notes-1-0 @ 891ded9 | ❌ 40464521009 | notatka mówi o 3 rodzinach ready, w 1.0 są 4 (pull_up) | A4+A5 |
+| zrzuty-1-0 @ c5d0177 | ✅ 40464320899 | store-screenshots 40464544722 „in_progress” od 07:00 | A6+A7 |
+| poprawki-p1 @ 76d4b3c | ❌ 40464294526 | | G3 (CI p1/p4b) |
+| poprawki-p4b @ e65ae28 | ❌ 40466829470 | podglądy p4b skasowane wyścigiem w e63bbdb → przywrócone c30cda8 | G3 (CI p1/p4b) |
+| jakosc-r2 @ e1b31d6 | ✅ 40464552537 | | G1 (R17b/R19/R21 + 3 lunge) |
+| poprawki-p2 @ b0baa9f, p3 @ 28381fb, p4a @ aa4253f | ✅ 40465151377 / 40464181234 / 40466271258 | | G3r: recenzenci p2+p3, p4a |
+| rodziny-mobilnosc @ c3913af | ✅ 40466344263 | | G3r: recenzent mobilność |
+| przeklad-kontekst @ f9b0926 | ✅ 40466811901 | gotowe do G6 | — |
+| strona-filtr-audytu @ 2463e83 | ✅ 40469744168 | lokalne verify niezrobione | kolejka (priorytet 3) |
+| wersja-1-0-1-wip @ 4b3055e | ❌ 40464284389 | | kolejka (priorytet 3) |
+Uwagi: `gh` CLI w tym kontenerze niezalogowane — CI przez narzędzia MCP. Zapis stanu wyłącznie przez `/home/user/wt/zapisz-stan.sh` (blokada, `[skip ci]`, push `--no-verify` — gałąź tylko z dokumentami; wyjątek koordynatora 27.10) — chroni przed wyścigiem jak e63bbdb.
 
 ## Ścieżka 1 — 1.0 (priorytet 1)
 | ID | Zadanie | Stan / gałąź | Następny krok |
