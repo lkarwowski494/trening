@@ -51,7 +51,7 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 | `gryf_szesciokatny` | bez pól (środek = środek między dłońmi) | trap_bar | uchwyty w z = ±29, dłonie na uchwytach ± 0,6 cm |
 | `hantel` (uchwyty farmerskie) | `promien` 10–12 | farmers_handles (oraz db) | uchwyty farmerskie rysowane jako hantle z dużym promieniem — uproszczenie; tolerancja kontaktu przedramienia rośnie z promieniem |
 | `lancuchy` | bez pól; wiszą na końcach gryfu (z = ±45) albo z dłoni | chains | pionowe linie przerywane do podłogi, bez kolidera; rysunek nie pokazuje zmiany obciążenia |
-| `sztanga` (gryf łamany, gruby) | jak dotąd; gryf łamany: `dlugosc` 120 | ez_bar, axle_bar (oraz pullup.bar, rings, barbell) | gryf łamany i gruby rysowane jak sztanga — uproszczenie |
+| `sztanga` (gryf łamany, gruby) | jak dotąd; gryf łamany: `dlugosc` 120 | ez_bar, axle_bar (oraz pullup.bar, barbell; „rings” zdjęte 27.10.2026 — kółka to nie sztywny drążek) | gryf łamany i gruby rysowane jak sztanga — uproszczenie |
 
 ### 2.3 Wyciąg
 
@@ -88,7 +88,7 @@ Polecenia: ćwiczenia z hantlem, kettlebell, talerzem i piłką lekarską nie s�
 
 | Rodzaj | Pola | Możliwości katalogu | Uwagi |
 |---|---|---|---|
-| `zawieszenie` | `x`, `y` (zaczep, 220), `z`, `punkt` (dlonie / kostki), `trzyma` | suspension | dwie taśmy z jednego zaczepu do dłoni albo kostek; kolider taśm (jak linka wyciągu) |
+| `zawieszenie` | `x`, `y` (zaczep, 220), `z`, `punkt` (dlonie / kostki), `trzyma` | suspension, rings (kółka gimnastyczne rysowane jako uchwyty na taśmach — uproszczenie; Ring Dips: osobna taśma na dłoń, `trzyma` R i L, recenzja ruchu 27.10.2026) | dwie taśmy z jednego zaczepu do dłoni albo kostek; kolider taśm (jak linka wyciągu) |
 | `lina_pionowa` | `x`, `z`, `h` (góra, 400), `y` (dół, 20), `trzyma` | climbing_rope | dłonie na osi liny ± 3 cm; stopy i łydki mogą dociskać linę do 3 cm; szablon pull_up nie wymaga drążka przy linie; reguł sensu dla wspinania nadal brak (Rope Climb pomijany z tego powodu) |
 | `sanie` | `x`, `h` (słupki, 100), `dlugosc` (60), `trzymanie` (slupki / lina) | sled | słupki: dłonie ± 1,5 cm; lina: linka od przodu sań do dłoni; bez pasa/uprzęży (dip_belt — nadal poza kontraktem) |
 | `poreczy` | `x0`, `x1`, `h` (115), `z` (połowa rozstawu, 22) | dip.bars | dłonie na poręczach ± 1 cm |
