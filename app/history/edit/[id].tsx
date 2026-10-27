@@ -6,7 +6,7 @@ import { Screen, Muted, Btn, Txt, Field, Input, NumInput, Empty, Missing } from 
 import { IconRow } from '@/components/Icon';
 import { WhenFields } from '@/components/WhenFields';
 import { setLabel } from '@/components/ActiveWorkout';
-import { visibleLocations, effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, ssTag, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
+import { visibleLocations, effortLabel, effortField, effortIn, getState, useTick, exById, isBW, loadLabel, loadLabelShort, groupLabels, ssTag, occurrence, occurrences, deleteWorkout, bandA11y, shortBand, clampName, SET_NOTE_MAX, NAME_MAX, blockImpl, liveBlockImpl, nextBandId, loadFieldValue, loadOf, writeLoad, usesBand, workCount, wallTs, REPS_MAX } from '@/lib/store';
 import { draftOf, beginEdit, discardDraft, isDirty, touchDraft, useDraftTick, checkDraft, commitDraft, draftAddSet, draftRemoveSet, draftRemoveExercise, draftSetWhen, draftSetLocation, dateText, timeText, prefilledOffList, type Draft } from '@/lib/edit';
 import { onHistoryEdited } from '@/lib/backup';
 import { locationLabel } from '@/lib/locations';
@@ -110,7 +110,7 @@ function EditBlock({ d, e, ei, labels }: { d: Draft; e: WExercise; ei: number; l
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
     ActionSheetIOS.showActionSheetWithOptions({ options: opts, cancelButtonIndex: 6, destructiveButtonIndex: 5, title: t('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; touchDraft(); }
-      else if (i === 4) Alert.prompt?.(t('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: t('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); touchDraft(); } }], 'plain-text', set.note);
+      else if (i === 4) Alert.prompt?.(t('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: t('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), SET_NOTE_MAX); touchDraft(); } }], 'plain-text', set.note);
       else if (i === 5) {
         if (e.sets.length <= 1) { const b = lastSetBlock(); Alert.alert(b.title, b.message, [okButton()]); }
         else confirmDelete({ title: t('Usunąć serię?'), message: nm, onDelete: () => draftRemoveSet(d.key, ei, set.id) });

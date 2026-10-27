@@ -4,7 +4,7 @@ import { useTheme, NUM_SCALE_MAX, FW, font, RADIUS, SIZE } from '@/lib/theme';
 import { Icon } from '@/components/Icon';
 import { Btn, NumInput, Muted, useOnce } from '@/components/ui';
 import { TechniqueLink } from '@/components/ExerciseCues';
-import { effortLabel, effortField, effortIn, progressionFor, skipExercise, unskipExercise, typeSetValue, bandA11y, clampName, loadLabelShort, getState, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtSec, setSummary, roundRest, addSet, removeSetById, removeExercise, save, loadLabel, ssTag, ssBtn, linkWithNext, unlink, cycleBand, shortBand, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, isDeloadWeek, wallTs, REPS_MAX, REST_MAX } from '@/lib/store';
+import { effortLabel, effortField, effortIn, progressionFor, skipExercise, unskipExercise, typeSetValue, bandA11y, clampName, SET_NOTE_MAX, loadLabelShort, getState, exById, prevOfActiveBlock, previousFor, canUndoSwap, undoSwap, pinnedImpl, rememberRest as storeRememberRest, canRememberAlt, rememberAlt, altHint, skipAlt, occurrence, occurrences, hintFor, isBW, reps, fmtSec, setSummary, roundRest, addSet, removeSetById, removeExercise, save, loadLabel, ssTag, ssBtn, linkWithNext, unlink, cycleBand, shortBand, locationById, offListNote, liveBlockImpl, listLocFor, srcSetAt, usesBand, isDeloadWeek, wallTs, REPS_MAX, REST_MAX } from '@/lib/store';
 import { setLabel, timedLabel } from '@/lib/live';
 import { availability, missingLabel } from '@/lib/equipment';
 import { SwipeRow, lastSetBlock, confirmDelete } from '@/components/SwipeRow';
@@ -131,7 +131,7 @@ export function ExerciseBlock({ w, e, ei, onDone, onStartSet, labels, prs }: { w
     const kinds = ['normal', 'warmup', 'drop', 'failure'] as const;
     ActionSheetIOS.showActionSheetWithOptions({ options: labels, cancelButtonIndex: labels.length - 1, destructiveButtonIndex: labels.length - 2, title: tr('Seria {n}', { n: setLabel(e, si) }) }, i => {
       if (i < 4) { set.kind = kinds[i]; set.warmup = set.kind === 'warmup'; save(st.active); }
-      else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: tr('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), 300); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
+      else if (i === 4) Alert.prompt?.(tr('Notatka do serii'), undefined, [{ ...cancelButton() }, { text: tr('Zapisz'), onPress: (v?: string) => { set.note = clampName((v ?? '').trim(), SET_NOTE_MAX); /* runda 49: limit notatki */ save(st.active); } }], 'plain-text', set.note);
       else if (i === 5) { /* M1-028: to samo potwierdzenie i ta sama blokada ostatniej serii co przy geście */
         if (e.sets.length <= 1) { const b = lastSetBlock(); Alert.alert(b.title, b.message, [okButton()]); }
         else confirmDelete({ title: tr('Usunąć serię?'), message: set.done ? tr('Seria jest już odhaczona.') : undefined, onDelete: () => deleteSet(set.id) });

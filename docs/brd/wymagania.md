@@ -49,6 +49,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że w ćwiczeniu jest seria typu drop set
     - Gdy liczone są rekordy e1RM
     - Wtedy seria drop set nie daje rekordu e1RM
+  - Scenariusz: Długa notatka serii zostaje cała
+    - Zakładając, że seria ma notatkę dłuższą niż 300 znaków (np. z importu CSV, do 500 znaków)
+    - Gdy użytkownik otwiera „Edytuj notatkę” i zapisuje bez zmian
+    - Wtedy notatka ma tę samą długość — import i okna notatki używają jednej stałej `SET_NOTE_MAX` (test `tests/audit-m1-2026-10-27-003-notatka-serii.test.tsx`)
 
 ### BR-TRN-003: Pauza treningu
 - Przepływ: PR-01
