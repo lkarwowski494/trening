@@ -195,7 +195,7 @@ describe('natywny adapter na makiecie expo-iap 5.8.1', () => {
   test('przywracanie: sync (restorePurchases) przed odczytem uprawnień; kod i zarządzanie subskrypcją wołają odpowiednie funkcje biblioteki', async () => {
     iap().purchases = [buy('lifetime')]; const s = createNativeStore(); const list = await s.restore(); expect(list.map(e => e.plan)).toEqual(['lifetime']);
     const names = iap().calls.map((c: any[]) => c[0]); expect(names.indexOf('restorePurchases')).toBeGreaterThan(-1); expect(names.indexOf('restorePurchases')).toBeLessThan(names.lastIndexOf('getAvailablePurchases'));
-    await s.redeemCode(); await s.manageSubscriptions(); expect(iap().calls.some((c: any[]) => c[0] === 'openRedeemOfferCode')).toBe(true); expect(iap().calls.some((c: any[]) => c[0] === 'deepLinkToSubscriptions')).toBe(true);
+    await s.redeemCode(); await s.manageSubscriptions(); expect(iap().calls.some((c: any[]) => c[0] === 'openRedeemOfferCode')).toBe(true); expect(iap().calls.some((c: any[]) => c[0] === 'showManageSubscriptionsIOS')).toBe(true); /* M1-audytor-generalny-016: arkusz systemowy zamiast strony App Store */
     iap().fail = 'x'; await expect(s.restore()).rejects.toThrow();
   });
   test('nasłuch transakcji od startu: po połączeniu rejestruje zdarzenia zakupu i błędu, kończy transakcję i budzi słuchacza; zakończenie nasłuchu usuwa rejestrację', async () => {

@@ -86,7 +86,7 @@ export default function PaywallScreen() {
         {view.active.source === 'family' ? <Muted>{t('Dostęp z Chmury rodzinnej')}</Muted> : null}
         {!lifetime && view.active.expiresAt != null ? <Muted>{view.active.source === 'code' ? t('Dostęp z kodu do {date}', { date: fmtDate(view.active.expiresAt) }) : t('Dostęp do {date}', { date: fmtDate(view.active.expiresAt) })}</Muted> : null}
         {lifetime && subActive ? <Muted>{t('Twoja subskrypcja nadal się odnawia — anuluj ją, żeby nie płacić podwójnie.')}</Muted> : null}
-        {!lifetime || subActive ? <Btn small title={t('Zarządzaj subskrypcją')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => { void store(() => getStoreAdapter().manageSubscriptions()); }} /> : null}
+        {!lifetime || subActive ? <Btn small title={t('Zarządzaj subskrypcją')} style={{ alignSelf: 'flex-start', marginTop: 6 }} onPress={() => { void store(() => getStoreAdapter().manageSubscriptions().then(() => refreshEntitlements())); /* M1-audytor-generalny-016: zmiana w arkuszu widoczna od razu */ }} /> : null}
       </View> : null}
 
       {!lifetime && view.active ? <Btn small testID="paywall-change-plan" expanded={plansOpen} title={t('Zmień plan')} style={{ alignSelf: 'flex-start', marginBottom: 8 }} onPress={() => setPlansOpen(o => !o)} /> : null}

@@ -72,6 +72,8 @@ jest.mock('expo-iap', () => {
     subscriptionStatusIOS: async (...a) => { rec('subscriptionStatusIOS', a); maybeFail(); if (g().statusFail) throw new Error(g().statusFail); return g().status; },
     openRedeemOfferCode: async (...a) => { rec('openRedeemOfferCode', a); return null; },
     deepLinkToSubscriptions: async (...a) => { rec('deepLinkToSubscriptions', a); },
+    /* M1-audytor-generalny-016: arkusz systemowy zarządzania subskrypcją (OpenIAP: AppStore.showManageSubscriptions); g().manageFail — arkusz niedostępny */
+    showManageSubscriptionsIOS: async (...a) => { rec('showManageSubscriptionsIOS', a); if (g().manageFail) throw new Error(g().manageFail); return []; },
   };
 }, { virtual: true });
 global.__review = { available: true, requested: 0, fail: false };
