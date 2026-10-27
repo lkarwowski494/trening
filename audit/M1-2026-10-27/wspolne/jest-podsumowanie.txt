@@ -1,0 +1,7 @@
+$ npx jest --maxWorkers=1 --silent
+Test Suites: 497 passed, 497 total
+Tests:       1 skipped, 10326 passed, 10327 total
+Snapshots:   5 passed, 5 total
+Time:        3584.397 s
+exit=0
+git status --porcelain po komendach: 0 bajtów (puste = pliki śledzone nietknięte)
