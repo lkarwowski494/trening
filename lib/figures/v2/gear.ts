@@ -13,10 +13,10 @@ import type { Contact, Frame, Prop } from './scene';
 
 export const GEAR = ['sztanga', 'slupek', 'podloga', 'skrzynia', 'hantel', 'kettlebell', 'talerz', 'pilka_lekarska', 'smith', 'landmine', 'sciana', 'gryf_szesciokatny', 'lancuchy', 'wyciag', 'lawka', 'guma', 'pilka_gimnastyczna', 'rolka', 'dzwignia', 'modlitewnik', 'zawieszenie', 'lina_pionowa', 'sanie', 'poreczy', 'slizgacze', 'kolko', 'bosu', 'pas', 'walek_nadgarstkow', 'rzymska', 'kloda', 'opona', 'mlot', 'uprzaz_szyja'] as const;
 export type GearName = typeof GEAR[number];
-export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean; mocowanie?: typeof BAND_MOUNT[number]; tryb?: typeof LEVER_MODE[number]; punkt?: typeof LEVER_POINT[number]; siedzisko?: number; trzymanie?: typeof SLED_HOLD[number] };
+export type Gear = { rodzaj: GearName; x?: number; y?: number; h?: number; x0?: number; x1?: number; top?: number; talerze?: boolean; podazaZaChwytem?: boolean; trzyma?: 'obie' | 'R' | 'L'; dlugosc?: number; promien?: number; pionowo?: boolean; dzwon?: 'dol' | 'wzdluz' | 'tyl' | 'gora'; przesuniecie?: V3; hak?: number; z?: number; przed?: boolean; dwa?: boolean; chwyt?: typeof CABLE_ATTACH[number]; kat?: number; walki?: boolean; mocowanie?: typeof BAND_MOUNT[number]; tryb?: typeof LEVER_MODE[number]; punkt?: typeof LEVER_POINT[number]; siedzisko?: number; trzymanie?: typeof SLED_HOLD[number] };
 /** Pola sprzętu wprowadzone po pierwszej wersji kontraktu: dozwolone tylko dla rodzajów, które je wymieniają w `fields`. */
 export const GEAR_EXTRA_FIELDS = ['promien', 'pionowo', 'dzwon', 'przesuniecie', 'hak', 'z', 'przed', 'dwa', 'chwyt', 'kat', 'walki', 'mocowanie', 'tryb', 'punkt', 'siedzisko', 'trzymanie'] as const;
-export const BELL_MODES = ['dol', 'wzdluz', 'tyl'] as const;
+export const BELL_MODES = ['dol', 'wzdluz', 'tyl', 'gora'] as const;
 /** Osprzęt linki wyciągu: uchwyt (jeden na dłoń), lina (dwa końce), drążek (prosty, między dłońmi), kostka (opaska na kostkę). */
 export const CABLE_ATTACH = ['uchwyt', 'lina', 'drazek', 'kostka'] as const;
 /** Mocowanie gumy oporowej: zaczep (stały punkt x, y, z), stopy (guma pod stopami), kostki (pętla między kostkami), dlonie (guma między dłońmi), sztanga (od końców gryfu do punktu pod/nad). */
@@ -92,6 +92,7 @@ const HYPER_CONTACTS: Contact[] = [
 /** Kontakt ciała ze ścianą: dopuszczalne przenikanie (cm). */
 export const WALL_CONTACT = 1.5;
 const BELL_BACK: V3 = norm([-1, -0.15, 0]);
+const BELL_UP: V3 = [0, 1, 0]; /* dzwon dnem do góry: kula nad rączką */
 const f1 = (x: number): string => String(Math.round(x * 10) / 10).replace('.', ',');
 const bounds = (name: string, v: number | undefined, lo: number, hi: number): string[] => v !== undefined && (v < lo || v > hi) ? [`sprzęt: ${name} = ${v} cm poza przedziałem ${lo}–${hi} cm`] : [];
 export const GEAR_KINDS: Record<GearName, GearKind> = {
@@ -443,14 +444,14 @@ export const GEAR_KINDS: Record<GearName, GearKind> = {
     nazwa: 'kettlebell',
     caps: ['kb'], fields: ['promien', 'dzwon'], opis: 'kettlebell trzymany za rączkę (trzyma, promien, dzwon)',
     props: (g, grips) => {
-      const ss = sidesOf(g); const bell = g.dzwon === 'wzdluz' ? 'along' as const : g.dzwon === 'tyl' ? 'back' as const : 'down' as const;
-      const mk = (c: V3, side: 'R' | 'L' | 'C'): Prop => ({ k: 'kettlebell', c, side, r: g.promien, held: true, bell, ...(bell === 'back' ? { dir: BELL_BACK } : {}) });
+      const ss = sidesOf(g); const bell = g.dzwon === 'wzdluz' ? 'along' as const : g.dzwon === 'tyl' || g.dzwon === 'gora' ? 'back' as const : 'down' as const;
+      const mk = (c: V3, side: 'R' | 'L' | 'C'): Prop => ({ k: 'kettlebell', c, side, r: g.promien, held: true, bell, ...(g.dzwon === 'gora' ? { dir: BELL_UP } : bell === 'back' ? { dir: BELL_BACK } : {}) });
       return g.trzyma === 'R' || g.trzyma === 'L' ? [mk(grips[g.trzyma], g.trzyma)] : [mk(avg(ss.map(s => grips[s])), 'C')];
     },
     check: g => bounds('promien dzwonu', g.promien, 5, 15),
     ref: () => [
       `kettlebell: środek rączki = środek chwytu (obie dłonie na rączce: odległość dłoni od środka rączki ≤ 7 cm, czyli z = ±2…5). trzyma: "obie" (domyślnie) = jeden kettlebell trzymany obiema dłońmi (swing, goblet), "R"/"L" = jeden kettlebell w jednej dłoni. Dzwon (kula o promieniu ${f1(EQUIP.kbBallR)} cm, promien) ma środek ${f1(EQUIP.kbBallR + 2)} cm od rączki; kierunek wybierasz polem dzwon (stałe w całym ruchu):`,
-      'dzwon "dol" (domyślnie) = dzwon pod rączką (goblet, martwy ciąg, zwis); "wzdluz" = dzwon w przedłużeniu przedramienia (swing, clean, snatch w fazie zwisu i wyrzutu; gdy przedramię jest uniesione powyżej poziomu, dzwon płynnie przechodzi za przedramię); "tyl" = dzwon za rączką w kierunku −x (pozycja rack i nad głową).',
+      'dzwon "dol" (domyślnie) = dzwon pod rączką (goblet, martwy ciąg, zwis); "wzdluz" = dzwon w przedłużeniu przedramienia (swing, clean, snatch w fazie zwisu i wyrzutu; gdy przedramię jest uniesione powyżej poziomu, dzwon płynnie przechodzi za przedramię); "tyl" = dzwon za rączką w kierunku −x (pozycja rack i nad głową); "gora" = dzwon dnem do góry, kula nad rączką (bottoms-up: przedramię pionowo, łokieć pod dłonią).',
     ],
   },
   talerz: {

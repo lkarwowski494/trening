@@ -137,9 +137,10 @@
       "enum": [
        "dol",
        "wzdluz",
-       "tyl"
+       "tyl",
+       "gora"
       ],
-      "description": "Tylko kettlebell: kierunek dzwonu względem rączki: dol (domyślnie), wzdluz (w przedłużeniu przedramienia), tyl (za rączką, pozycja rack i nad głową)."
+      "description": "Tylko kettlebell: kierunek dzwonu względem rączki: dol (domyślnie), wzdluz (w przedłużeniu przedramienia), tyl (za rączką, pozycja rack i nad głową), gora (dnem do góry, kula nad rączką)."
      },
      "z": {
       "type": "number",
