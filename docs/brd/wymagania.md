@@ -168,6 +168,10 @@ Odtworzone z kodu i docs (OP-01). Każde wymaganie ma źródło w repo (decyzja,
     - Zakładając, że wybrano skalę RIR
     - Gdy użytkownik wpisuje RIR 7
     - Wtedy zapisuje się RPE 4 („lekko”), a ekran pokazuje „7+” (RD-02-W9, RD-02-W3)
+  - Scenariusz: Stoper serii i pole RPE na wąskim ekranie (M1-audytor-generalny-028, 27.10.2026)
+    - Zakładając, że ekran ma 320 pt i ćwiczenie na czas z dystansem, a skala wysiłku jest włączona (układ zwarty wiersza serii)
+    - Gdy użytkownik stuka przycisk stopera serii albo pole RPE
+    - Wtedy pole dotyku każdego z nich ma co najmniej 44 pt szerokości (kolumna 40 pt + margines dotyku po bokach), a wiersz nadal mieści się na ekranie
 
 ### BR-TRN-008: Usuwanie serii i ćwiczenia: gest i menu, to samo potwierdzenie
 - Przepływ: PR-01

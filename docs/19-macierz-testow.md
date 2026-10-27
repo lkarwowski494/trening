@@ -20,7 +20,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Pozycja | Źródło | Testy (pierwsze 3) |
 |---|---|---|
 | /history | app/(tabs)/history.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +61 |
-| / | app/(tabs)/index.tsx | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +242 |
+| / | app/(tabs)/index.tsx | tests/a11y-routes.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +243 |
 | /more | app/(tabs)/more.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-gen-ui.test.tsx +75 |
 | /progress | app/(tabs)/progress.tsx | tests/a11y-routes.ts, tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-lang-ui.test.tsx +37 |
 | /adapt | app/adapt.tsx | tests/a11y-routes.ts, tests/adapt-ui.test.tsx, tests/close-button-guard.test.tsx +1 |
@@ -111,7 +111,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Dni cardio w planie | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni powyżej {k} to sesje umiarkowanego cardio zamiast siłowych. | app/generator.tsx | tests/gen-general-ui.test.tsx, tests/matrix-i18n.test.tsx |
 | Dni treningowe w tygodniu | components/OwnPlan.tsx | tests/gen-days-ui.test.tsx, tests/gen-general-ui.test.tsx, tests/generator-ui.test.tsx +1 |
-| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +301 |
+| do | app/template/[id].tsx | tests/adapt-logic.test.ts, tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts +302 |
 | Do upadku (F) | app/template/[id].tsx | tests/scenario-full.test.tsx |
 | dodaj ciężar | components/LoadEditor.tsx | tests/audit-0.10-ui.test.tsx, tests/locations-ui.test.tsx, tests/matrix-ui.test.tsx +1 |
 | Dodaj notatkę | components/WorkoutBlocks.tsx | tests/scenario-full.test.tsx |
@@ -284,7 +284,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | Sprawdź zgodę na powiadomienia | app/more/settings.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/matrix-ui.test.tsx, tests/scenario-full.test.tsx |
 | Spróbuj ponownie | app/_layout.tsx | tests/audit-m1-003-boundary.test.tsx, tests/audit-m1-003-guard-ui.test.tsx, tests/audit-m1-2026-10-27-015-blad-zapisu.test.tsx +4 |
 | Sprzęt | app/exercise/[id].tsx | tests/audit-0.10-tst.test.ts, tests/edit-on-demand.test.tsx, tests/figures-v2-contract.test.ts +1 |
-| Start | app/pick-template.tsx | tests/app.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-plan-ui.test.tsx +67 |
+| Start | app/pick-template.tsx | tests/app.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-plan-ui.test.tsx +68 |
 | Start stopera: {ex}, seria {n} | components/NowBoard.tsx | tests/audit-0.10-live.test.tsx |
 | Start w tych dniach weźmie to miejsce. Nic nie zmienia się samo. | components/DayPanel.tsx | tests/places-ui.test.tsx |
 | Start zaplanowanego treningu: {name} | components/DayPanel.tsx | tests/audit-0.10-plan-ui.test.tsx, tests/audit-0.10-ui.test.tsx, tests/deload-ui.test.tsx +2 |
@@ -442,7 +442,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | {label} {value}, przyrost {delta} | components/RecordsCard.tsx | tests/records-card.test.tsx |
 | {left} {n} z {limit} darmowych dni treningowych w tym miesiącu. | components/StartPanel.tsx | tests/subscription-i18n.test.ts, tests/subscription-ui.test.tsx |
 | {n} {w} · Dostosuj | components/ActiveWorkout.tsx | tests/adapt-ui.test.tsx, tests/maestro-selectors.test.ts, tests/places-ui.test.tsx |
-| {n} / {goal} serii | components/GuardSection.tsx | tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts, tests/audit-0.10-gen-ui.test.tsx +83 |
+| {n} / {goal} serii | components/GuardSection.tsx | tests/adapt-ui.test.tsx, tests/architecture-limits.test.ts, tests/audit-0.10-gen-ui.test.tsx +84 |
 | {n} h | components/Dashboard.tsx | (tylko parametry) |
 | {n} kcal aktywne | lib/healthRead.ts | tests/health-read-ui.test.tsx, tests/health-read.test.ts, tests/health-scenario.test.tsx |
 | {n} kilokalorii aktywnych | lib/healthRead.ts | tests/health-read-ui.test.tsx, tests/health-read.test.ts |
@@ -1165,7 +1165,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | stabilizacja | app/exercise/[id].tsx | tests/matrix-ui.test.tsx |
 | stacja | lib/swap.ts | tests/audit-k1-brands.test.ts, tests/locations-audit.test.tsx, tests/matrix-logic.test.tsx +5 |
 | Start następnego treningu: {name} | components/StartPanel.tsx | tests/home-b.test.tsx, tests/ux.test.tsx |
-| Start stopera serii | components/WorkoutBlocks.tsx | tests/audit-0.10-live.test.tsx, tests/audit-close-b.test.tsx, tests/audit-close-c.test.tsx +18 |
+| Start stopera serii | components/WorkoutBlocks.tsx | tests/audit-0.10-live.test.tsx, tests/audit-close-b.test.tsx, tests/audit-close-c.test.tsx +19 |
 | Start treningu w tych dniach weźmie to miejsce przed miejscem szablonu, a okno „Dostosuj” zaproponuje zamiany. Nic nie zmienia się samo. | components/DayPanel.tsx | tests/places-ui.test.tsx |
 | Stoper trwa | components/WorkoutBlocks.tsx | tests/matrix-ui.test.tsx |
 | stos na {v} | components/EquipVisual.tsx | tests/karta-sprzet.test.tsx, tests/matrix-a11y.test.tsx, tests/matrix-karta.test.tsx |
@@ -2184,7 +2184,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.replaceState | lib/state/boot.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-plan.test.ts, tests/audit-close-d.test.ts +17 |
 | store.resetAll | lib/state/boot.ts | tests/audit-1-0-a2-reset.test.ts, tests/audit-journey-c.test.tsx, tests/audit-m1-lok07-02-default-system.test.ts +5 |
 | store.applyCfg | lib/state/core.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-tst.test.ts, tests/helpers.ts +1 |
-| store.flush | lib/state/core.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +210 |
+| store.flush | lib/state/core.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +211 |
 | store.flushStrict | lib/state/core.ts | tests/audit-m1-006-import.test.ts |
 | store.registerDraftStore | lib/state/core.ts | tests/backlog-0.10.1-dane-lib.test.ts |
 | store.draftsChanged | lib/state/core.ts | tests/backlog-0.10.1-dane-lib.test.ts |
@@ -2197,7 +2197,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.isDraftObj | lib/state/core.ts | tests/edit-on-demand.test.tsx, tests/matrix-invariants.test.ts |
 | store.save | lib/state/core.ts | tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx, tests/adapt-ui.test.tsx +205 |
 | store.saveCfg | lib/state/core.ts | tests/audit-0.10-data-ui.test.tsx, tests/audit-0.10-data.test.ts, tests/audit-m1-027-voice-default.test.ts +11 |
-| store.getState | lib/state/core.ts | tests/a11y-routes.ts, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +266 |
+| store.getState | lib/state/core.ts | tests/a11y-routes.ts, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +267 |
 | store.useStore | lib/state/core.ts | tests/matrix-logic.test.tsx |
 | store.useTick | lib/state/core.ts | tests/audit-0.10-tst.test.ts |
 | store.usePrefsTick | lib/state/core.ts | tests/matrix-logic.test.tsx |
@@ -2344,10 +2344,10 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | store.startableItem | lib/state/start.ts | tests/audit-0.10-live-logic.test.ts |
 | store.repeatBlocks | lib/state/start.ts | tests/audit-0.10-live-logic.test.ts |
 | store.startFromTemplate | lib/state/start.ts | tests/a11y-routes.ts, tests/adapt-logic.test.ts, tests/adapt-scenario.test.tsx +70 |
-| store.startEmpty | lib/state/start.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +125 |
+| store.startEmpty | lib/state/start.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +126 |
 | store.repeatLast | lib/state/start.ts | tests/access.test.ts, tests/audit-0.10-live-logic.test.ts, tests/audit-close-d.test.ts +14 |
 | store.deloadTail | lib/state/start.ts | tests/audit-0.10-live-logic.test.ts |
-| store.addExerciseToActive | lib/state/start.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +116 |
+| store.addExerciseToActive | lib/state/start.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-live.test.tsx +117 |
 | store.swapBlock | lib/state/swap.ts | tests/audit-0.10-live-logic.test.ts, tests/audit-0.10-tst-ui.test.tsx, tests/audit-0.10-tst.test.ts +13 |
 | store.swapImpl | lib/state/swap.ts | tests/audit-k1-log.test.ts, tests/live2-split-template.test.tsx, tests/matrix-invariants.test.ts +2 |
 | store.canUndoSwap | lib/state/swap.ts | tests/invariants.test.ts, tests/matrix-invariants.test.ts, tests/swap-logic.test.ts |
@@ -2457,7 +2457,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | timer.start | lib/timer.ts | tests/audit-0.10-data.test.ts, tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst.test.ts +54 |
 | timer.adjust | lib/timer.ts | tests/live-activity-lang.test.ts, tests/maestro-selectors.test.ts, tests/matrix-logic.test.tsx +4 |
 | timer.relabel | lib/timer.ts | tests/audit-0.10-tst.test.ts, tests/timer-logic.test.ts |
-| timer.stop | lib/timer.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst-ui.test.tsx +91 |
+| timer.stop | lib/timer.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst-ui.test.tsx +92 |
 | timer.stopIfFrom | lib/timer.ts | tests/matrix-logic.test.tsx, tests/timer-logic.test.ts |
 | timer.restore | lib/timer.ts | tests/adapt-logic.test.ts, tests/audit-final-timer.test.tsx, tests/audit-m1-012-status.test.ts +12 |
 | timer.onForeground | lib/timer.ts | tests/matrix-logic.test.tsx, tests/matrix-time.test.ts, tests/timer-logic.test.ts |
@@ -2466,7 +2466,7 @@ scenariuszowe (docs/09, sekcja „Macierz testów”).
 | timer.resetAll | lib/timer.ts | tests/audit-1-0-a2-reset.test.ts, tests/audit-journey-c.test.tsx, tests/audit-m1-lok07-02-default-system.test.ts +5 |
 | timer.startSet | lib/timer.ts | tests/adapt-ui.test.tsx, tests/audit-backlog-q.test.tsx, tests/audit-close-a.test.ts +12 |
 | timer.refreshScheduled | lib/timer.ts | tests/audit-backlog-r75.test.tsx, tests/m3-p5d-haptics.test.ts, tests/regress.test.tsx +1 |
-| timer.stopSet | lib/timer.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst-ui.test.tsx +81 |
+| timer.stopSet | lib/timer.ts | tests/adapt-scenario.test.tsx, tests/audit-0.10-live.test.tsx, tests/audit-0.10-tst-ui.test.tsx +82 |
 | timer.setElapsed | lib/timer.ts | tests/matrix-logic.test.tsx, tests/timer-logic.test.ts |
 | timer.setReached | lib/timer.ts | tests/matrix-logic.test.tsx, tests/timer-logic.test.ts |
 | timer.tick | lib/timer.ts | tests/adapt-logic.test.ts, tests/audit-0.10-tst.test.ts, tests/audit-journey-a.test.tsx +18 |
