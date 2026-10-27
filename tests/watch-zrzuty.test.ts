@@ -48,6 +48,12 @@ describe('zrzuty zegarka: potok', () => {
     expect(SCRIPT).toMatch(/-alpha off/);
     expect(SCRIPT).toMatch(/identify[^\n]*channels|%\[channels\]/); /* po konwersji skrypt sprawdza, że alfy nie ma */
   });
+  test('zestaw do sklepu: bez stanu „paused” (nachodzący podpis), pliki NN-<stan>.png w kolejności', () => {
+    const states = SCRIPT.match(/STATES="([^"]+)"/)![1].split(' ');
+    expect(states).not.toContain('paused');
+    expect(states[0]).toBe('set-first');
+    expect(SCRIPT).toMatch(/printf '%02d' "\$i"\)-\$state\.png/);
+  });
   test('workflow generuje migawki (jest) i wywołuje skrypt z katalogiem danych', () => {
     expect(WORKFLOW).toMatch(/scripts\/screens\/watch-seed\.test\.ts/);
     expect(WORKFLOW).toMatch(/WATCH_SEED_OUT/);
