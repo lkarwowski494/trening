@@ -1,0 +1,53 @@
+| Nr | Partia | ID | Poziom | Rodzaj | Wykonawca | Rola | Zależy od | Decyzja |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 1 | M1-audytor-generalny-001 | P1 | D | M2 | 02-monetyzacja | — | — |
+| 2 | 1 | M1-audytor-generalny-002 | P1 | D | M2 | 02-monetyzacja | — | — |
+| 3 | 1 | M1-audytor-generalny-003 | P1 | D | M2 | 05-architekt | — | — |
+| 4 | 1 | M1-audytor-generalny-004 | P1 | D | M2 | 12-niezawodnosc | — | — |
+| 5 | 1 | M1-audytor-generalny-009 | P2 | P | rola | 07-jakosc | — | DEC-02 → a |
+| 6 | 2 | M1-audytor-generalny-005 | P1 | P | rola | 06-tresci | — | DEC-01 → b |
+| 7 | 2 | M1-audytor-generalny-006 | P1 | D | M2 | 09-lokalizacja | — | — |
+| 8 | 2 | M1-audytor-generalny-007 | P1 | D | M2 | 10-wydanie | — | — |
+| 9 | 2 | M1-audytor-generalny-008 | P1 | D | M2 | 10-wydanie | — | — |
+| 10 | 2 | M1-audytor-generalny-010 | P2 | P | rola | 02-monetyzacja | M1-audytor-generalny-001 | DEC-09 → a |
+| 11 | 2 | M1-audytor-generalny-011 | P2 | D | M2 | 04-studio-projektowe | — | — |
+| 12 | 2 | M1-audytor-generalny-012 | P2 | D | M2 | 07-jakosc | — | — |
+| 13 | 2 | M1-audytor-generalny-017 | P2 | D | M2 | 10-wydanie | — | — |
+| 14 | 3 | M1-audytor-generalny-013 | P2 | D | M2 | 12-niezawodnosc | — | — |
+| 15 | 3 | M1-audytor-generalny-014 | P2 | P | rola | 05-architekt | — | DEC-03 → b |
+| 16 | 3 | M1-audytor-generalny-015 | P2 | D | M2 | 05-architekt | — | — |
+| 17 | 3 | M1-audytor-generalny-016 | P2 | D | M2 | 02-monetyzacja | — | — |
+| 18 | 3 | M1-audytor-generalny-018 | P2 | D | M2 | 11-wzrost | — | — |
+| 19 | 3 | M1-audytor-generalny-019 | P2 | D | M2 | 09-lokalizacja | — | — |
+| 20 | 3 | M1-audytor-generalny-020 | P2 | M | rola | 06-tresci | — | DEC-04 → a |
+| 21 | 3 | M1-audytor-generalny-021 | P2 | M | rola | 06-tresci | — | DEC-05 → a |
+| 22 | 3 | M1-audytor-generalny-022 | P2 | D | M2 | 01-odkrywanie | — | — |
+| 23 | 3 | M1-audytor-generalny-023 | P2 | D | M2 | 07-jakosc | — | — |
+| 24 | 3 | M1-audytor-generalny-024 | P2 | D | M2 | 04-studio-projektowe | — | — |
+| 25 | 3 | M1-audytor-generalny-025 | P2 | D | M2 | 04-studio-projektowe | — | — |
+| 26 | 3 | M1-audytor-generalny-026 | P2 | D | M2 | 04-studio-projektowe | — | — |
+| 27 | 3 | M1-audytor-generalny-027 | P2 | D | M2 | 04-studio-projektowe | — | — |
+| 28 | 3 | M1-audytor-generalny-028 | P2 | D | M2 | 04-studio-projektowe | — | — |
+| 29 | 3 | M1-audytor-generalny-029 | P2 | D | M2 | 04-studio-projektowe | — | — |
+| 30 | 3 | M1-audytor-generalny-030 | P2 | D | M2 | 08-programista | — | — |
+| 31 | 3 | M1-audytor-generalny-031 | P2 | D | M2 | 09-lokalizacja | — | — |
+| 32 | 3 | M1-audytor-generalny-032 | P2 | D | M2 | 12-niezawodnosc | — | — |
+| 33 | 3 | M1-audytor-generalny-033 | P2 | D | M2 | 11-wzrost | — | — |
+| 34 | 3 | M1-audytor-generalny-034 | P2 | D | M2 | 07-jakosc | — | — |
+| 35 | 3 | M1-audytor-generalny-035 | P2 | D | M2 | 05-architekt | — | — |
+| 36 | 3 | M1-audytor-generalny-036 | P2 | M | rola | 02-monetyzacja | — | DEC-08 → a |
+| 37 | 3 | M1-audytor-generalny-037 | P2 | P | rola | 03-zakres | — | DEC-07 → b |
+
+Partia 1: zadania 5, D 4; STOP przed partią: tak (P/M: M1-audytor-generalny-009)
+  07-jakosc: node /home/user/prompts/tools/assemble.mjs 07-jakosc --tryb fix --wyjscie /home/user/trening/audit/M1-2026-10-27/role/07-jakosc/fix-2026-10-27 --galaz naprawy/M2-koordynator-napraw-2026-10-27-p1 --data 2026-10-27 --zadania 07-jakosc-005
+
+Partia 2: zadania 8, D 6; STOP przed partią: tak (P/M: M1-audytor-generalny-005, M1-audytor-generalny-010)
+  06-tresci: node /home/user/prompts/tools/assemble.mjs 06-tresci --tryb fix --wyjscie /home/user/trening/audit/M1-2026-10-27/role/06-tresci/fix-2026-10-27 --galaz naprawy/M2-koordynator-napraw-2026-10-27-p2 --data 2026-10-27 --zadania 06-tresci-001
+  02-monetyzacja: node /home/user/prompts/tools/assemble.mjs 02-monetyzacja --tryb fix --wyjscie /home/user/trening/audit/M1-2026-10-27/role/02-monetyzacja/fix-2026-10-27 --galaz naprawy/M2-koordynator-napraw-2026-10-27-p2 --data 2026-10-27 --zadania 02-monetyzacja-001,02-monetyzacja-504
+
+Partia 3: zadania 24, D 19; STOP przed partią: tak (P/M: M1-audytor-generalny-014, M1-audytor-generalny-020, M1-audytor-generalny-021, M1-audytor-generalny-036, M1-audytor-generalny-037)
+  05-architekt: node /home/user/prompts/tools/assemble.mjs 05-architekt --tryb fix --wyjscie /home/user/trening/audit/M1-2026-10-27/role/05-architekt/fix-2026-10-27 --galaz naprawy/M2-koordynator-napraw-2026-10-27-p3 --data 2026-10-27 --zadania 05-architekt-002
+  06-tresci: node /home/user/prompts/tools/assemble.mjs 06-tresci --tryb fix --wyjscie /home/user/trening/audit/M1-2026-10-27/role/06-tresci/fix-2026-10-27 --galaz naprawy/M2-koordynator-napraw-2026-10-27-p3 --data 2026-10-27 --zadania 06-tresci-004,06-tresci-002,06-tresci-003
+  02-monetyzacja: node /home/user/prompts/tools/assemble.mjs 02-monetyzacja --tryb fix --wyjscie /home/user/trening/audit/M1-2026-10-27/role/02-monetyzacja/fix-2026-10-27 --galaz naprawy/M2-koordynator-napraw-2026-10-27-p3 --data 2026-10-27 --zadania 02-monetyzacja-004
+  03-zakres: node /home/user/prompts/tools/assemble.mjs 03-zakres --tryb fix --wyjscie /home/user/trening/audit/M1-2026-10-27/role/03-zakres/fix-2026-10-27 --galaz naprawy/M2-koordynator-napraw-2026-10-27-p3 --data 2026-10-27 --zadania 03-zakres-006,03-zakres-007,03-zakres-008
+OK: zadania 37, do wykonania 37, partie 3

@@ -1,0 +1,5 @@
+Stan wyjściowy, main 025a50b (2026-10-27):
+- npm run typecheck: kod 0 (stan-typecheck.txt)
+- npm run lint: kod 0 (stan-lint.txt)
+- npx jest --maxWorkers=1: przerwane po 60 min (limit zadania w tle); 208 zestawów: 207 PASS, 1 FAIL tests/matrix-dim-langs4.test.tsx — "JavaScript heap out of memory" w procesie jest (środowisko, nie asercja) (stan-jest.txt)
+- CI tests.yml na 025a50b: success (przebieg 1221, id 40526427186); na naprawy-1-0 862f119: success (przebieg 1231, id 40549790280)
