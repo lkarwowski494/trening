@@ -8,7 +8,7 @@ Decyzje 27.10: docs/18 na integracja-1-1 (ded4827, 88c2bf7) + linie „DECYZJA�
 | ID | Zadanie | Stan / gałąź | Następny krok |
 |---|---|---|---|
 | A1 | Lista z telefonu docs/49 T-01–T-14 (bez T-10) + zakupy sandbox | ⬜ właściciel (po pracy) | prowadzić krok po kroku od T-01 |
-| A2 | Naprawa figur 1.0: squat/bench_press/hinge (Deadlift hantle — zgłoszenie właściciela), lekcja w docs/40, reguła CLAUDE.md | 🔶 `naprawa-figury-1-0` | sprawdzić log i linie stanu; dokończyć; **dołożyć pull_up** (3 błędy, poprawka na `poprawki-p1`: generator `agent-pozy/pull_up.mjs` + `poses/pull_up.json`) |
+| A2 | Naprawa figur 1.0: squat/bench_press/hinge (Deadlift hantle — zgłoszenie właściciela), lekcja w docs/40, reguła CLAUDE.md | 🔶 `naprawa-figury-1-0` 6a9dd65, tests.yml zielony 40468378516, PR https://github.com/lkarwowski494/trening/pull/73 (nie scalony), E2E podstawowy 40468399399 (wynik nieznany; brak maszyny → ponowić) | ~60 wariantów poprawionych (martwe ciągi 14, RDL/stiff, Front Squat, wyciskanie 18, Dip Belt, gumy); lekcja L-NNN do numeracji; **dołożyć pull_up** (3 błędy, poprawka na `poprawki-p1`: generator `agent-pozy/pull_up.mjs` + `poses/pull_up.json`) |
 | A2r | Niezależna ponowna recenzja ruchu i treści kart 4 rodzin z 1.0 | ⬜ PO A2 | recenzent bez dostępu do uzasadnień |
 | A3 | „Technika” rozwinięta w karcie (decyzja B) | 🔶 `technika-rozwinieta-1-0` 5f3d92d | verify, tests.yml, E2E 16/17/57, PR; sprawdzić, czy w treningu na żywo jest wejście, które ma być zwinięte (?cues=0) |
 | A4 | Z-02 przekład po 26.10 | 🔶 `z02-przeklad-1-0` 5309766 | verify, PR (49 nieblokujących w osobnym commicie → akceptacja właściciela) |
