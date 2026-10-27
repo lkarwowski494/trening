@@ -66,12 +66,17 @@ jobs:
             -destination "platform=watchOS Simulator,id=$UDID" -derivedDataPath build -resultBundlePath ../watch-ui.xcresult \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
             2>&1 | tee ../watch-xcodebuild.log | xcbeautify
-      - name: Zrzuty ekranu (te same trafią do App Store Connect)
+      - name: Dane pokazowe zegarka w języku zrzutu (migawki z funkcji telefonu, 35 języków)
+        if: success()
+        env:
+          WATCH_SEED_OUT: ${{ github.workspace }}/watch-dane
+        run: npx jest --testMatch "**/scripts/screens/watch-seed.test.ts"
+      - name: Zrzuty ekranu (te same trafią do App Store Connect; bez kanału alfa — Apple go odrzuca)
         if: success()
         env:
           UDID: ${{ steps.sim.outputs.udid }}
           JEZYKI: ${{ inputs.jezyki_zrzutow || 'pl,en,de,fi,ja' }}
-        run: bash scripts/ci/watch-screenshots.sh "$UDID" watch-screens "$JEZYKI"
+        run: bash scripts/ci/watch-screenshots.sh "$UDID" watch-screens "$JEZYKI" watch-dane
       - uses: actions/upload-artifact@v4
         if: always()
         with:
