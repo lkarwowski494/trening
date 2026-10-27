@@ -98,3 +98,27 @@ describe('R21 baza_lezenia: jedna wysokość bazowa póz leżących', () => {
   test('miednica uniesiona: 10,5 (granica wisiCm) przechodzi, 10,6 i 11,2 są odrzucone', () => { expect(W.r21.crunch105).toBe(0); expect(W.r21.crunch106).toBeGreaterThan(0); expect(W.r21.crunch11).toBeGreaterThan(0); });
   test('reguła nie dotyczy póz nieleżących: czworaki (Bird Dog) i pompka', () => { expect(W.r21.birdDog).toBe(0); expect(W.r21.pushup).toBe(0); });
 });
+
+describe('R17/R17b: zakres rodzin (STYK_RODZINY)', () => {
+  const W2 = run(`
+    import fs from 'node:fs';
+    import { waliduj } from ${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-validate.mjs'))};
+    import * as J from ${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-jakosc.mjs'))};
+    const l = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(ROOT, 'lib/figures/v2/poses/lunge.json'))}, 'utf8')).cwiczenia['Step Up'];
+    const kody = (p, rodzina) => [...new Set(waliduj(p, { rodzina, cwiczenie: p.cwiczenie }).bledy.map((b) => b.szczegol))].filter((x) => /styk_z_podlozem|styk_kazdego_podparcia/.test(x)).length;
+    const fx = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(ROOT, 'tests/fixtures/figury-n6-bledne.json'))}, 'utf8'));
+    console.log(JSON.stringify({ rodziny: J.STYK_RODZINY, stepUp: kody(l, 'lunge'), cocoons6: kody(fx.poze[0].poza, 'core_floor') }));`) as { rodziny: string[]; stepUp: number; cocoons6: number };
+  test('R17 i R17b obowiązują w rodzinach sprawdzonych bez fałszywych alarmów: core_floor, pushup_plank, pull_up', () => { expect(W2.rodziny).toEqual(['core_floor', 'pushup_plank', 'pull_up']); expect(W2.cocoons6).toBeGreaterThan(0); });
+  test('poza z rodziny spoza zakresu (Step Up, stopa przechodzi nad skrzynią) nie łamie R17 ani R17b — 100 trafień R17 poza zakresem czeka na triaż rodzin', () => { expect(W2.stepUp).toBe(0); });
+});
+
+describe('cecha „kolana podkulone” (R7): wzorzec nazwy dotyczy tylko rodziny core_floor', () => {
+  const W3 = run(`
+    import fs from 'node:fs';
+    import { waliduj } from ${JSON.stringify(path.join(ROOT, 'scripts/figures/v2-validate.mjs'))};
+    const tj = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(ROOT, 'lib/figures/v2/poses/plyo.json'))}, 'utf8')).cwiczenia['Tuck Jump'];
+    const tc = JSON.parse(fs.readFileSync(${JSON.stringify(path.join(ROOT, 'lib/figures/v2/poses/core_floor.json'))}, 'utf8')).cwiczenia['Tuck Crunch'];
+    const k = (p, r) => waliduj(p, { rodzina: r, cwiczenie: p.cwiczenie }).bledy.filter((b) => /kolana_ugiete_min/.test(b.szczegol)).length;
+    console.log(JSON.stringify({ tuckJump: k(tj, 'plyo'), tuckCrunch: k(tc, 'core_floor') }));`) as { tuckJump: number; tuckCrunch: number };
+  test('Tuck Jump (plyo, wybicie i lądowanie z prostymi kolanami) nie podlega regule kolan ≥ 80° w każdej klatce; Tuck Crunch (core_floor) przechodzi regułę', () => { expect(W3.tuckJump).toBe(0); expect(W3.tuckCrunch).toBe(0); });
+});

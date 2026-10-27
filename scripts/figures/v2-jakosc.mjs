@@ -427,6 +427,8 @@ export function ksztaltyNadPodloga(v2, poza) {
 /** R17. Styk z podłożem (niezmiennik, bez warunku cechy ćwiczenia; recenzja n6): w każdej klatce najniższy punkt NARYSOWANEGO ciała (rzut z boku) leży najwyżej wisiCm nad podłożem pod nim: podłogą albo wierzchem zadeklarowanej skrzyni/ławki.
  * Wyjątki: ćwiczenie z zadeklarowanym lotem (LOT) i ciało podwieszone (chwyt ≥ PODWIESZENIE_MIN_CM nad podłogą na sprzęcie zawieszenie/sztanga; zwis na drążku nie dotyka podłoża). */
 export const PODWIESZENIE_MIN_CM = 120;
+/** Rodziny, na których R17 i R17b są sprawdzone bez fałszywych alarmów (49 póz). Na pozostałych 433 pozach danych i 87 rigach R17 daje 100 trafień (lot bez deklaracji LOT: plyo 27, olympic 21, kb_ballistic 10, sled_throw 8; palce/pięty: calf_raise 7; lunge 5; ławka ujemna w rigach 4; dip, leg_isolation, back_extension i in.), więc rozszerzenie wymaga triażu rodziny przy jej recenzji (G3r) — raport: `jakosc-raport.mjs --styk-wszystkie`. */
+export const STYK_RODZINY = ['core_floor', 'pushup_plank', 'pull_up'];
 /** Dłoń na gryfie sztangi leżącej na talerzach na podłodze (rollout): spód dłoni ok. tyle cm pod osią gryfu (konwencja rysunku); gryf na talerzach jest podłożem dla dłoni. */
 export const DLON_POD_OSIA_GRYFU_CM = 3;
 /** Powierzchnie, na których może stać albo opierać się ciało: podłoga, wierzch skrzyni i ławki, gryf na talerzach (dla dłoni). Zawsze jest podłoga y = 0. */
@@ -509,7 +511,7 @@ export function wyjatekWymagaMechanizmu(v2, poza, wyjatki = LEDZWIE_WYJATKI, mec
 }
 /** Cechy deklarowane w danych (data/zrodla/figury-cechy.json): cechy, których nie da się wyprowadzić z reguł sensu ani z tekstów wskazówek. */
 export const wczytajCechy = (root = ROOT) => { const p = path.join(root, 'data/zrodla/figury-cechy.json'); return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')).cechy ?? {} : {}; };
-const maDeklarowana = (cecha, cwiczenie, root) => { const c = wczytajCechy(root)[cecha]; return !!c && (c.cwiczenia.includes(cwiczenie) || (c.wzorce_nazw ?? []).some((w) => new RegExp(w).test(cwiczenie))); };
+const maDeklarowana = (cecha, cwiczenie, root, rodzina) => { const c = wczytajCechy(root)[cecha]; return !!c && (c.cwiczenia.includes(cwiczenie) || (!c.wzorce_rodziny || c.wzorce_rodziny.includes(rodzina)) && (c.wzorce_nazw ?? []).some((w) => new RegExp(w).test(cwiczenie))); };
 /** Czy wskazówki ćwiczenia (zestaw ogólny albo własne; teksty `teksty`) zawierają tekst pasujący do wzorca. */
 export function maWskazowke(cwiczenie, teksty, wzorzec, root = ROOT) {
   const set = JSON.parse(fs.readFileSync(path.join(root, 'lib/figures/v2/cue-sets.json'), 'utf8')).items?.[cwiczenie]; const wlasne = JSON.parse(fs.readFileSync(path.join(root, 'lib/cues/data.json'), 'utf8')).exercises?.[cwiczenie];
@@ -529,7 +531,7 @@ export function cechyRuchu(v2, poza, ctx) {
   if (ma('miednica_na_linii', (r) => r.parametry?.koniec === 'kolano') && reka()) c.add('rollout');
   if (ma('klatka_przy_dloniach') && !zaw) c.add('dol_pompki');
   if (ma('miednica_pion_span')) { let rece = true; for (const u of siatka(poza)) { const s = v2.keyframeFrame(poza, u).sk; if (['R', 'L'].some((k) => s.arms[k].grip[1] > PROGI.stykPodparciaCm)) { rece = false; break; } } if (rece) c.add('podpor_dlonie_ruch_nog'); }
-  if (maDeklarowana('kolana_podkulone', cw, root)) c.add('kolana_podkulone');
+  if (maDeklarowana('kolana_podkulone', cw, root, ctx.rodzina)) c.add('kolana_podkulone');
   if (maDeklarowana('rece_proste_wzdluz', cw, root) || maWskazowke(cw, teksty, WSKAZOWKA_RECE_PROSTE, root)) c.add('rece_proste');
   if (ma('miednica_na_podlodze') && !NIE_LEZY.includes(cw) && !(cw in LOT)) c.add('lezenie');
   if (!(cw in LEDZWIE_WYJATKI) && !NIE_LEZY.includes(cw) && maWskazowke(cw, teksty, WSKAZOWKA_LEDZWIE, root)) c.add('ledzwie_przy_podlodze');
@@ -567,8 +569,8 @@ export function sprawdzJakosc(poza, ctx) {
   if (cechy.has('rollout')) dodaj('proste_rece_rollout', prosteReceRollout(v2, poza));
   dodaj('widocznosc_bledu_kat', widocznoscBleduKat(v2, poza));
   if (cechy.has('klek_lawka')) dodaj('podparcie_kolan', podparcieKolan(v2, poza, 'lawka')); else if (cechy.has('klek_podloga')) dodaj('podparcie_kolan', podparcieKolan(v2, poza, 'podloga'));
-  dodaj('ksztalty_nad_podloga', ksztaltyNadPodloga(v2, poza)); dodaj('styk_z_podlozem', stykZPodlozem(v2, poza));
-  dodaj('styk_kazdego_podparcia', stykKazdegoPodparcia(v2, poza)); dodaj('podparcie_wyzej_niz_dlonie', podparcieWyzejNizDlonie(v2, poza, rodzina)); if (rodzina === 'core_floor') dodaj('baza_lezenia', bazaLezenia(v2, poza)); /* rigi (np. Floor Press leży na macie 2 cm, której sprzet nie opisuje) mają własne bazy */
+  dodaj('ksztalty_nad_podloga', ksztaltyNadPodloga(v2, poza)); if (ctx.stykWszystkie || STYK_RODZINY.includes(rodzina)) { dodaj('styk_z_podlozem', stykZPodlozem(v2, poza)); dodaj('styk_kazdego_podparcia', stykKazdegoPodparcia(v2, poza)); }
+  dodaj('podparcie_wyzej_niz_dlonie', podparcieWyzejNizDlonie(v2, poza, rodzina)); if (rodzina === 'core_floor') dodaj('baza_lezenia', bazaLezenia(v2, poza)); /* rigi (np. Floor Press leży na macie 2 cm, której sprzet nie opisuje) mają własne bazy */
   if (cechy.has('ledzwie_przy_podlodze')) dodaj('kregoslup_zwija_sie', kregoslupZwijaSie(v2, poza));
   if (cwiczenie in LEDZWIE_WYJATKI) { dodaj('wyjatek_nie_przeczy_wskazowce', wyjatekNieStoiWSprzecznosci(cwiczenie, teksty ?? {}, ctx.root ?? ROOT)); dodaj('wyjatek_wymaga_mechanizmu', wyjatekWymagaMechanizmu(v2, poza)); }
   if (PODPARCIE_ZMIENNE.includes(cwiczenie)) dodaj('srodek_ciezkosci_podparcie', srodekCiezkosciNadPodparciem(v2, poza));
