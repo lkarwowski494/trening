@@ -1,0 +1,193 @@
+{
+ "rodzina": "sled_throw",
+ "wygenerowano": "2026-10-27T08:58:03.902Z",
+ "wyjatki": {},
+ "przyblizenia": {},
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Sled Push",
+   "obraz": "Sled-Push-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -200,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sanie",
+     "x": 75,
+     "h": 100,
+     "dlugosc": 60
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.144,
+    0.21,
+    0.274,
+    0.359,
+    0.446,
+    0.529,
+    0.617,
+    0.705,
+    0.791,
+    0.896,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.144,
+    0.21,
+    0.274,
+    0.359,
+    0.446,
+    0.529,
+    0.617,
+    0.705,
+    0.791,
+    0.896,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -8.3,
+     "max": 119.4
+    },
+    "knee": {
+     "min": 13.2,
+     "max": 129.8
+    },
+    "ankle": {
+     "min": -25.3,
+     "max": 33.6
+    },
+    "elbow": {
+     "min": 28.1,
+     "max": 28.1
+    },
+    "shSag": {
+     "min": 75.9,
+     "max": 75.9
+    },
+    "shElev": {
+     "min": 76.1,
+     "max": 76.1
+    },
+    "shAbd": {
+     "min": 9.4,
+     "max": 9.4
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: sanie obciążeniowe (sprzet: rodzaj \"sanie\")"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "sanki_pochylenie",
+    "sanki_plecy"
+   ],
+   "przyblizenie": null
+  },
+  {
+   "cwiczenie": "Sled Drag (Harness)",
+   "obraz": "Sled-Drag-Harness--light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -200,
+     "x1": 200
+    },
+    {
+     "rodzaj": "sanie",
+     "x": -170,
+     "dlugosc": 60,
+     "trzymanie": "pas"
+    },
+    {
+     "rodzaj": "pas"
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.144,
+    0.21,
+    0.274,
+    0.359,
+    0.446,
+    0.529,
+    0.617,
+    0.705,
+    0.791,
+    0.896,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.144,
+    0.21,
+    0.274,
+    0.359,
+    0.446,
+    0.529,
+    0.617,
+    0.705,
+    0.791,
+    0.896,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": -7.4,
+     "max": 120.8
+    },
+    "knee": {
+     "min": 13.2,
+     "max": 129.8
+    },
+    "ankle": {
+     "min": -25.3,
+     "max": 33.6
+    },
+    "elbow": {
+     "min": 29.5,
+     "max": 32
+    },
+    "shSag": {
+     "min": 14.5,
+     "max": 104.5
+    },
+    "shElev": {
+     "min": 15,
+     "max": 104.5
+    },
+    "shAbd": {
+     "min": 3.7,
+     "max": 4
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [],
+   "opis": {
+    "sens": [
+     "sprzęt: sanie obciążeniowe (sprzet: rodzaj \"sanie\") + pas obciążeniowy (sprzet: rodzaj \"pas\")"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": []
+   },
+   "reguly_sensu": [
+    "sanki_pochylenie",
+    "sanki_plecy"
+   ],
+   "przyblizenie": null
+  }
+ ],
+ "wyjatki_opisu": {},
+ "zgodnosc_manifestu": []
+}

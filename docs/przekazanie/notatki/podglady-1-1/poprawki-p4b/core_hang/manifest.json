@@ -1,0 +1,112 @@
+{
+ "rodzina": "core_hang",
+ "wygenerowano": "2026-10-27T08:59:05.438Z",
+ "wyjatki": {},
+ "przyblizenia": {
+  "Toes to Bar": "błąd „hang.noSwing” bez opisu w lib/cues/text/pl.json — nie rysowany (reguła jakości etykieta_bledu); generator narysuje go po wdrożeniu tekstu"
+ },
+ "bledy_pominiete": {},
+ "pytania_recenzenta": "patrz docs/53 (bramka 4)",
+ "cwiczenia": [
+  {
+   "cwiczenie": "Toes to Bar",
+   "obraz": "Toes-to-Bar-light.png",
+   "sprzet": [
+    {
+     "rodzaj": "podloga",
+     "x0": -150,
+     "x1": 150
+    },
+    {
+     "rodzaj": "sztanga",
+     "x": 0,
+     "y": 230,
+     "dlugosc": 120,
+     "talerze": false,
+     "podazaZaChwytem": false
+    }
+   ],
+   "klatki_u": [
+    0,
+    0.084,
+    0.17,
+    0.261,
+    0.347,
+    0.438,
+    0.529,
+    0.62,
+    0.713,
+    0.806,
+    0.901,
+    1
+   ],
+   "klatki_na_obrazie": [
+    0,
+    0.084,
+    0.17,
+    0.261,
+    0.347,
+    0.438,
+    0.529,
+    0.62,
+    0.713,
+    0.806,
+    0.901,
+    1
+   ],
+   "katy_stawow": {
+    "hip": {
+     "min": 45.4,
+     "max": 124.4
+    },
+    "knee": {
+     "min": 5.2,
+     "max": 15.4
+    },
+    "ankle": {
+     "min": 4.6,
+     "max": 5.3
+    },
+    "elbow": {
+     "min": 15.3,
+     "max": 16.4
+    },
+    "shSag": {
+     "min": 88.4,
+     "max": 161.7
+    },
+    "shElev": {
+     "min": 88.4,
+     "max": 160.3
+    },
+    "shAbd": {
+     "min": 6.8,
+     "max": 7.3
+    }
+   },
+   "bledy_w_pozie": [],
+   "bledy_wskazowki_id": [
+    "hang.noSwing"
+   ],
+   "opis": {
+    "sens": [
+     "sprzęt: drążek poziomy albo kółka (zastępuje drążek — rysuj jako drążek)",
+     "ciężar ciała"
+    ],
+    "ruch": [],
+    "bledy_wskazowki": [
+     "hang.noSwing"
+    ]
+   },
+   "reguly_sensu": [
+    "rece_proste",
+    "palce_do_drazka"
+   ],
+   "przyblizenie": "błąd „hang.noSwing” bez opisu w lib/cues/text/pl.json — nie rysowany (reguła jakości etykieta_bledu); generator narysuje go po wdrożeniu tekstu"
+  }
+ ],
+ "wyjatki_opisu": {
+  "hang.noSwing": "brak tekstu w lib/cues/text/pl.json (id w newIds cue-sets.json: tekst wdroży tłumacz); błąd nierysowany do czasu wdrożenia tekstu (reguła etykieta_bledu)"
+ },
+ "zgodnosc_manifestu": []
+}
