@@ -1,5 +1,6 @@
 /* Notatki dla recenzenta App Store (store/review-notes.md, docs/41-droga-do-app-store.md A5 i B5; odświeżone przez M8 21.10.2026): limit pola,
- * teksty przycisków zgodne z aplikacją, liczby z kodu (okres próbny, limit), stan domyślny głosu i Zdrowia, bez danych osobowych (repo publiczne — CLAUDE.md). */
+ * teksty przycisków zgodne z aplikacją, liczby z kodu (okres próbny, limit), stan domyślny głosu i Zdrowia, bez danych osobowych (repo publiczne — CLAUDE.md);
+ * 1.0 (27.10.2026): rysunki ćwiczeń i ścieżki z kodu main 4b77c9f. */
 import * as fs from 'fs';
 import * as path from 'path';
 import { EN } from '@/lib/i18n.en';
@@ -82,6 +83,25 @@ describe('store/review-notes.md', () => {
     };
     expect(Object.keys(START)).toHaveLength(28);
     for (const [k, s] of Object.entries(START)) expect([k, L[k].description.includes(s), [...L[k].description].length <= 4000]).toEqual([k, true, true]);
+  });
+  /* 1.0 (27.10.2026): ścieżki z kodu main 4b77c9f — rysunki tylko dla rodzin gotowych w 1.0 (pełna biblioteka w 1.1), „Dopisz trening wstecz” w zakładce Plan,
+   * przyciski zegarka z jego słownika etykiet. Zmiana zakresu rysunków albo miejsca przycisku czerwieni test, zanim notatka rozjedzie się z aplikacją. */
+  const E = EN as Record<string, string>;
+  test('1.0: akapit o rysunkach zgodny z rodzinami gotowymi w kodzie; ścieżka do karty ćwiczenia i sekcji „Technika”', () => {
+    const { FAMILIES } = require('@/lib/figures/v2/families') as typeof import('@/lib/figures/v2/families');
+    expect(FAMILIES.filter(f => f.status === 'ready').map(f => f.id).sort()).toEqual(['bench_press', 'hinge', 'squat']);
+    const ex = section(en, 'EXERCISES'); const cw = section(pl, 'ĆWICZENIA');
+    expect(ex).toContain(`${E['Więcej']} > ${E['Ćwiczenia']}`); expect(ex).toContain(`"${E['Technika']}"`);
+    expect(ex).toMatch(/Many exercises also show/); expect(ex).toMatch(/squat, bench press and deadlift variations are animated/); expect(ex).not.toMatch(/every exercise|all exercises/i);
+    expect(cw).toContain('Więcej → Ćwiczenia'); expect(cw).toMatch(/Wiele ćwiczeń/); expect(cw).toMatch(/przysiadu, wyciskania leżąc i martwego ciągu/);
+    expect(fs.readFileSync(path.join(__dirname, '../components/ExerciseCues.tsx'), 'utf8')).toContain("t('Aplikacja nie udziela porad medycznych.");
+  });
+  test('1.0: „Dopisz trening wstecz” w zakładce Plan, „Inny trening” w zakładce Trening; przyciski zegarka ze słownika zegarka', () => {
+    const src = (f: string) => fs.readFileSync(path.join(__dirname, '..', f), 'utf8');
+    expect(src('app/(tabs)/history.tsx')).toContain("t('Dopisz trening wstecz')"); expect(src('components/StartPanel.tsx')).toContain("t('Inny trening')");
+    expect(en).toContain(`on the Plan tab tap "${E['Dopisz trening wstecz']}"`); expect(pl).toContain('w zakładce Plan „Dopisz trening wstecz”');
+    const watch = src('lib/watch/labels.ts'); for (const k of ['Seria zrobiona', 'Cofnij', 'Zacznij trening na telefonie']) expect([k, watch.includes(`t('${k}')`)]).toEqual([k, true]);
+    expect(section(en, 'APPLE WATCH')).toContain(`"${E['Seria zrobiona']}" and "${E['Cofnij']}"`);
   });
   test('bez danych osobowych: jedyny adres e-mail to adres wsparcia, bez numerów telefonu i haseł', () => {
     expect([...md.matchAll(/[\w.+-]+@[\w-]+\.[\w.]+/g)].map(m => m[0]).filter(a => a !== 'support@apps4brew.com')).toEqual([]);
